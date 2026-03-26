@@ -1591,8 +1591,8 @@ HitmonchanEvosAttacks:
 	db 20, AGILITY
 	db 20, PURSUIT
 	db 20, MACH_PUNCH
-	db 26, THUNDERPUNCH
-	db 26, ICE_PUNCH
+	db 24, THUNDERPUNCH
+	db 25, ICE_PUNCH
 	db 26, FIRE_PUNCH
 	db 32, MEGA_PUNCH
 	db 38, DYNAMICPUNCH
@@ -2189,7 +2189,7 @@ MoltresEvosAttacks:
 	db 0 ; no more level-up moves
 
 DratiniEvosAttacks:
-	db EVOLVE_LEVEL, 30, DRAGONAIR
+	db EVOLVE_LEVEL, 25, DRAGONAIR
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2197,7 +2197,7 @@ DratiniEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 15, TWISTER
 	db 22, DRAGON_RAGE
-	db 29, SLAM
+	db 24, SLAM
 	db 35, AGILITY
 	db 41, SAFEGUARD
 	db 45, OUTRAGE
@@ -2205,7 +2205,7 @@ DratiniEvosAttacks:
 	db 0 ; no more level-up moves
 
 DragonairEvosAttacks:
-	db EVOLVE_LEVEL, 55, DRAGONITE
+	db EVOLVE_LEVEL, 45, DRAGONITE
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2213,7 +2213,7 @@ DragonairEvosAttacks:
 	db 8, THUNDER_WAVE
 	db 15, TWISTER
 	db 22, DRAGON_RAGE
-	db 29, SLAM
+	db 25, SLAM
 	db 38, AGILITY
 	db 47, SAFEGUARD
 	db 50, OUTRAGE
@@ -2230,10 +2230,9 @@ DragoniteEvosAttacks:
 	db 22, DRAGON_RAGE
 	db 29, SLAM
 	db 38, AGILITY
-	db 47, SAFEGUARD
-	db 55, WING_ATTACK
-	db 56, OUTRAGE
-	db 70, HYPER_BEAM
+	db 45, RAZOR_WIND
+	db 47, OUTRAGE
+	db 55, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 MewtwoEvosAttacks:
@@ -2474,13 +2473,14 @@ NoctowlEvosAttacks:
 	db 0 ; no more level-up moves
 
 LedybaEvosAttacks:
-	db EVOLVE_LEVEL, 18, LEDIAN
+	db EVOLVE_LEVEL, 24, LEDIAN
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 6, LEECH_LIFE
 	db 8, SUPERSONIC
+	db 12, KARATE_CHOP
 	db 15, COMET_PUNCH
-	db 20, LIGHT_SCREEN
+	db 18, MACH_PUNCH
 	db 20, REFLECT
 	db 22, SAFEGUARD
 	db 26, BATON_PASS
@@ -2500,10 +2500,11 @@ LedianEvosAttacks:
 	db 18, REFLECT
 	db 24, SAFEGUARD
 	db 26, BATON_PASS
-	db 31, AGILITY
-	db 36, GIGA_DRAIN
-	db 42, SWIFT
-	db 50, DOUBLE_EDGE
+	db 27, AGILITY
+	db 29, GIGA_DRAIN
+	db 32, SUBMISSION
+	db 38, TWINEEDLE
+	db 42, CROSS_CHOP
 	db 0 ; no more level-up moves
 
 SpinarakEvosAttacks:
@@ -2938,9 +2939,9 @@ EspeonEvosAttacks:
 	db 12, GROWL
 	db 16, DOUBLE_KICK
 	db 20, CONFUSION
-	db 23, QUICK_ATTACK
-	db 26, SWIFT
-	db 30, PSYBEAM
+	db 22, QUICK_ATTACK
+	db 24, SWIFT
+	db 28, PSYBEAM
 	db 36, PSYCHIC_M
 	db 42, PSYCH_UP
 	db 47, MORNING_SUN
@@ -2955,9 +2956,10 @@ UmbreonEvosAttacks:
 	db 12, GROWL
 	db 16, DOUBLE_KICK
 	db 20, PURSUIT
-	db 23, QUICK_ATTACK
-	db 26, CONFUSE_RAY
-	db 30, FAINT_ATTACK
+	db 22, QUICK_ATTACK
+	db 24, CONFUSE_RAY
+	db 26, FAINT_ATTACK
+	db 30, CRUNCH
 	db 36, CURSE
 	db 42, MEAN_LOOK
 	db 47, MOONLIGHT
@@ -3513,6 +3515,11 @@ TyrogueEvosAttacks:
 	db EVOLVE_STAT, 20, ATK_GT_DEF, HITMONLEE
 	db 0 ; no more evolutions
 	db 1, TACKLE
+	db 5, KARATE_CHOP
+	db 10, DIZZY_PUNCH
+	db 12, MACH_PUNCH
+	db 16, ROLLING_KICK
+	db 20, HI_JUMP_KICK
 	db 0 ; no more level-up moves
 
 HitmontopEvosAttacks:
@@ -3523,9 +3530,9 @@ HitmontopEvosAttacks:
 	db 20, ROLLING_KICK
 	db 25, RAPID_SPIN
 	db 31, COUNTER
+	db 34, TRIPLE_KICK
 	db 37, AGILITY
 	db 43, DETECT
-	db 45, TRIPLE_KICK
 	db 0 ; no more level-up moves
 
 SmoochumEvosAttacks:
@@ -3644,7 +3651,7 @@ SuicuneEvosAttacks:
 	db 0 ; no more level-up moves
 
 LarvitarEvosAttacks:
-	db EVOLVE_LEVEL, 30, PUPITAR
+	db EVOLVE_LEVEL, 25, PUPITAR
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, BITE
@@ -3660,7 +3667,7 @@ LarvitarEvosAttacks:
 	db 0 ; no more level-up moves
 
 PupitarEvosAttacks:
-	db EVOLVE_LEVEL, 55, TYRANITAR
+	db EVOLVE_LEVEL, 45, TYRANITAR
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, BITE
@@ -3668,11 +3675,11 @@ PupitarEvosAttacks:
 	db 1, SANDSTORM
 	db 15, SCREECH
 	db 26, THRASH
-	db 34, SCARY_FACE
-	db 40, ROCK_SLIDE
-	db 50, CRUNCH
-	db 55, EARTHQUAKE
-	db 65, HYPER_BEAM
+	db 30, SCARY_FACE
+	db 32, ROCK_SLIDE
+	db 38, CRUNCH
+	db 50, EARTHQUAKE
+	db 55, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 TyranitarEvosAttacks:
@@ -3685,9 +3692,9 @@ TyranitarEvosAttacks:
 	db 26, THRASH
 	db 34, SCARY_FACE
 	db 40, ROCK_SLIDE
-	db 50, CRUNCH
-	db 55, EARTHQUAKE
-	db 65, HYPER_BEAM
+	db 42, CRUNCH
+	db 45, EARTHQUAKE
+	db 50, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 LugiaEvosAttacks:

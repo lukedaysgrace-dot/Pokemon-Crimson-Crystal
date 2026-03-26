@@ -207,12 +207,40 @@ endr
 	call Random
 	ld c, a
 .initializeDVs
-	ld a, b
-	ld [de], a
-	inc de
-	ld a, c
-	ld [de], a
-	inc de
+    ; First DV byte (Atk/Def)
+    call Random
+    and %11000000
+    or %00111111
+    ld [de], a
+    inc de
+
+; Second DV byte (Spd/Spc + shiny + gender)
+
+call Random
+and %00000011
+ld b, a
+
+ld a, %11111100
+
+; --- shiny (bit 0)
+bit 0, b
+jr z, .no_shiny
+set 0, a
+
+.no_shiny
+
+; --- gender (bit 1)
+bit 1, b
+jr z, .male
+set 1, a
+jr .store
+
+.male
+res 1, a
+
+.store
+ld [de], a
+inc de
 
 	; Initialize PP.
 	push hl

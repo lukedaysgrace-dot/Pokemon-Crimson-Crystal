@@ -1,6 +1,6 @@
 	db DEWGONG ; 087
 
-	db  90,  60,  80,  70,  80,  95
+	db  100,  70,  90,  70,  90,  95
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ICE ; type

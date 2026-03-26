@@ -122,117 +122,50 @@ PrintTempMonStats:
 	next "@"
 
 GetGender:
-; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
-; When calling this function, a should be set to an appropriate wMonType value.
+    ; --- pointer logic (REQUIRED) ---
+    ld hl, wPartyMon1DVs
+    ld bc, PARTYMON_STRUCT_LENGTH
+    ld a, [wMonType]
+    and a
+    jr z, .PartyMon
 
-; return values:
-; a = 1: f = nc|nz; male
-; a = 0: f = nc|z;  female
-;        f = c:  genderless
+    ld hl, wOTPartyMon1DVs
+    dec a
+    jr z, .PartyMon
 
-; This is determined by comparing the Attack and Speed DVs
-; with the species' gender ratio.
+    ld hl, sBoxMon1DVs
+    ld bc, BOXMON_STRUCT_LENGTH
+    dec a
+    jr z, .sBoxMon
 
-; Figure out what type of monster struct we're looking at.
+    ld hl, wTempMonDVs
+    dec a
+    jr z, .DVs
 
-; 0: PartyMon
-	ld hl, wPartyMon1DVs
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wMonType]
-	and a
-	jr z, .PartyMon
+    ld hl, wEnemyMonDVs
+    jr .DVs
 
-; 1: OTPartyMon
-	ld hl, wOTPartyMon1DVs
-	dec a
-	jr z, .PartyMon
-
-; 2: sBoxMon
-	ld hl, sBoxMon1DVs
-	ld bc, BOXMON_STRUCT_LENGTH
-	dec a
-	jr z, .sBoxMon
-
-; 3: Unknown
-	ld hl, wTempMonDVs
-	dec a
-	jr z, .DVs
-
-; else: WildMon
-	ld hl, wEnemyMonDVs
-	jr .DVs
-
-; Get our place in the party/box.
-
-.PartyMon:
+.PartyMon
 .sBoxMon
-	ld a, [wCurPartyMon]
-	call AddNTimes
+    ld a, [wCurPartyMon]
+    call AddNTimes
 
-.DVs:
-; sBoxMon data is read directly from SRAM.
-	ld a, [wMonType]
-	cp BOXMON
-	ld a, BANK(sBox)
-	call z, OpenSRAM
+.DVs
+    ; --- YOUR SYSTEM ---
+    inc hl
 
-; Attack DV
-	ld a, [hli]
-	and $f0
-	ld b, a
-; Speed DV
-	ld a, [hl]
-	and $f0
-	swap a
+    ld a, [hl]
+    and %00000010
+    jr nz, .female
 
-; Put our DVs together.
-	or b
-	ld b, a
+.male
+    xor a
+    ret
 
-; Close SRAM if we were dealing with a sBoxMon.
-	ld a, [wMonType]
-	cp BOXMON
-	call z, CloseSRAM
-
-; We need the gender ratio to do anything with this.
-	push bc
-	ld a, [wCurPartySpecies]
-	dec a
-	ld hl, BaseData + BASE_GENDER
-	ld bc, BASE_DATA_SIZE
-	call AddNTimes
-	pop bc
-
-	ld a, BANK(BaseData)
-	call GetFarByte
-
-; The higher the ratio, the more likely the monster is to be female.
-
-	cp GENDER_UNKNOWN
-	jr z, .Genderless
-
-	and a ; GENDER_F0?
-	jr z, .Male
-
-	cp GENDER_F100
-	jr z, .Female
-
-; Values below the ratio are male, and vice versa.
-	cp b
-	jr c, .Male
-
-.Female:
-	xor a
-	ret
-
-.Male:
-	ld a, 1
-	and a
-	ret
-
-.Genderless:
-	scf
-	ret
+.female
+    ld a, 1
+    and a
+    ret
 
 ListMovePP:
 	ld a, [wNumMoves]

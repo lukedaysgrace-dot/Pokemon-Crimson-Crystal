@@ -1,9 +1,9 @@
 	db TYROGUE ; 236
 
-	db  35,  35,  35,  35,  35,  35
+	db  65,  65,  65,  55,  35,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIGHTING, FIGHTING ; type
+	db FIGHTING, NORMAL ; type
 	db 75 ; catch rate
 	db 91 ; base exp
 	db NO_ITEM, NO_ITEM ; items
