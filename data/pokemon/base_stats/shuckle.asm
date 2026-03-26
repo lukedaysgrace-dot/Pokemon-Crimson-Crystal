@@ -1,6 +1,6 @@
 	db SHUCKLE ; 213
 
-	db  20,  10, 230,  05,  10, 230
+	db  80,  70, 170,  05,  10, 170
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, ROCK ; type

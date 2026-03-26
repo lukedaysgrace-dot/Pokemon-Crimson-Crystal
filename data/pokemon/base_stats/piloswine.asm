@@ -1,6 +1,6 @@
 	db PILOSWINE ; 221
 
-	db 100, 100,  80,  50,  80,  70
+	db 110, 110,  80,  80,  100,  60
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, GROUND ; type
