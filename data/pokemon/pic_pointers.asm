@@ -508,6 +508,70 @@ PokemonPicPointers::
 	dba_pic HoOhBackpic
 	dba_pic CelebiFrontpic
 	dba_pic CelebiBackpic
+	dba_pic AmbipomFrontpic
+	dba_pic AmbipomBackpic
+	dba_pic AnnihilapeFrontpic
+	dba_pic AnnihilapeBackpic
+	dba_pic DrunsparceFrontpic
+	dba_pic DrunsparceBackpic
+	dba_pic ElectivireFrontpic
+	dba_pic ElectivireBackpic
+	dba_pic FarigirafFrontpic
+	dba_pic FarigirafBackpic
+	dba_pic GlaceonFrontpic
+	dba_pic GlaceonBackpic
+	dba_pic GliscorFrontpic
+	dba_pic GliscorBackpic
+	dba_pic HonchkrowFrontpic
+	dba_pic HonchkrowBackpic
+	dba_pic LeafeonFrontpic
+	dba_pic LeafeonBackpic
+	dba_pic LickilickyFrontpic
+	dba_pic LickilickyBackpic
+	dba_pic MagmortarFrontpic
+	dba_pic MagmortarBackpic
+	dba_pic MagnezoneFrontpic
+	dba_pic MagnezoneBackpic
+	dba_pic MamoswineFrontpic
+	dba_pic MamoswineBackpic
+	dba_pic MesmeriaFrontpic
+	dba_pic MesmeriaBackpic
+	dba_pic MismagiusFrontpic
+	dba_pic MismagiusBackpic
+	dba_pic PorygonZFrontpic
+	dba_pic PorygonZBackpic
+	dba_pic TangrowthFrontpic
+	dba_pic TangrowthBackpic
+	dba_pic UrsalunaFrontpic
+	dba_pic UrsalunaBackpic
+	dba_pic WeavileFrontpic
+	dba_pic WeavileBackpic
+	dba_pic YanmegaFrontpic
+	dba_pic YanmegaBackpic
+	dba_pic BagonFrontpic
+	dba_pic BagonBackpic
+	dba_pic ShelgonFrontpic
+	dba_pic ShelgonBackpic
+	dba_pic SalamenceFrontpic
+	dba_pic SalamenceBackpic
+	dba_pic RaltsFrontpic
+	dba_pic RaltsBackpic
+	dba_pic KirliaFrontpic
+	dba_pic KirliaBackpic
+	dba_pic GardevoirFrontpic
+	dba_pic GardevoirBackpic
+	dba_pic VenipedeFrontpic
+	dba_pic VenipedeBackpic
+	dba_pic WhirlipedeFrontpic
+	dba_pic WhirlipedeBackpic
+	dba_pic ScolipedeFrontpic
+	dba_pic ScolipedeBackpic
+	dba_pic WyrdeerFrontpic
+	dba_pic WyrdeerBackpic
+	dba_pic RhyperiorFrontpic
+	dba_pic RhyperiorBackpic
+	dba_pic TogekissFrontpic
+	dba_pic TogekissBackpic
 	assert_table_length NUM_POKEMON
 	dbw -1, -1 ; unused
 	dbw -1, -1 ; unused

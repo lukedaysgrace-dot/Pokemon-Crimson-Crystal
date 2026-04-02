@@ -257,9 +257,36 @@ PokemonCries::
 	mon_cry CRY_TYPHLOSION,    0,  256 ; LUGIA
 	mon_cry CRY_AIPOM,         0,  384 ; HO_OH
 	mon_cry CRY_ENTEI,       330,  273 ; CELEBI
+	mon_cry CRY_AIPOM,        0,   384 ; AMBIPOM
+	mon_cry CRY_MANKEY,      64,   320 ; ANNIHILAPE
+	mon_cry CRY_DUNSPARCE,   32,   256 ; DRUNSPARCE
+	mon_cry CRY_ELECTABUZZ,  32,   384 ; ELECTIVIRE
+	mon_cry CRY_GIRAFARIG,   32,   320 ; FARIGIRAF
+	mon_cry CRY_EEVEE,      -64,   256 ; GLACEON
+	mon_cry CRY_GLIGAR,      32,   320 ; GLISCOR
+	mon_cry CRY_MURKROW,    -32,   320 ; HONCHKROW
+	mon_cry CRY_EEVEE,       32,   256 ; LEAFEON
+	mon_cry CRY_LICKITUNG,   32,   320 ; LICKILICKY
+	mon_cry CRY_MAGMAR,      32,   384 ; MAGMORTAR
+	mon_cry CRY_MAGNEMITE,   64,   384 ; MAGNEZONE
+	mon_cry CRY_PILOSWINE,   32,   384 ; MAMOSWINE
+	mon_cry CRY_JYNX,       -64,   320 ; MESMERIA (higher pitch Jynx)
+	mon_cry CRY_MISDREAVUS,  32,   320 ; MISMAGIUS
+	mon_cry CRY_PORYGON2,    64,   320 ; PORYGON_Z
+	mon_cry CRY_TANGELA,     32,   320 ; TANGROWTH
+	mon_cry CRY_URSARING,    32,   384 ; URSALUNA
+	mon_cry CRY_SNEASEL,     32,   320 ; WEAVILE
+	mon_cry CRY_YANMA,       32,   256 ; YANMEGA
+	mon_cry CRY_LARVITAR,     0,   256 ; BAGON
+	mon_cry CRY_PUPITAR,      0,   320 ; SHELGON
+	mon_cry CRY_CHARIZARD,   32,   384 ; SALAMENCE
+	mon_cry CRY_ABRA,        32,   256 ; RALTS
+	mon_cry CRY_KADABRA,     32,   320 ; KIRLIA
+	mon_cry CRY_ALAKAZAM,    32,   384 ; GARDEVOIR
+	mon_cry CRY_SPINARAK,    64,   256 ; VENIPEDE
+	mon_cry CRY_ARIADOS,     32,   320 ; WHIRLIPEDE
+	mon_cry CRY_ARIADOS,    -32,   384 ; SCOLIPEDE
+	mon_cry CRY_STANTLER,    32,   320 ; WYRDEER
+	mon_cry CRY_RHYDON,      32,   384 ; RHYPERIOR
+	mon_cry CRY_TOGEPY,      64,   256 ; TOGEKISS
 	assert_table_length NUM_POKEMON
-	mon_cry CRY_NIDORAN_M,     0,    0 ; 252
-	mon_cry CRY_NIDORAN_M,     0,    0 ; 253
-	mon_cry CRY_NIDORAN_M,     0,    0 ; 254
-	mon_cry CRY_NIDORAN_M,     0,    0 ; 255
-	assert_table_length $ff

@@ -302,10 +302,11 @@ JOHTO_POKEMON EQU const_value
 	const SCOLIPEDE  ; 118
 	const WYRDEER    ; 119
 	const RYPHERIOR  ; 11a
+	const TOGEKISS   ; 11b
 
 NUM_POKEMON EQU const_value - 1
-	const_skip      ; 11b
-	const EGG       ; 11c
+	const_skip      ; 11c
+	const EGG       ; 11d
 
 ; Unown forms
 ; indexes for:

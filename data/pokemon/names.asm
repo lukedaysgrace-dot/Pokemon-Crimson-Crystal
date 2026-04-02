@@ -282,6 +282,7 @@ PokemonNames::
 	db "SCOLIPEDE@"
 	db "WYRDEER@@@"
 	db "RYPHERIOR@"
+	db "TOGEKISS@@"
 	assert_table_length NUM_POKEMON
 	db "?????@@@@@"
 	db "EGG@@@@@@@"
