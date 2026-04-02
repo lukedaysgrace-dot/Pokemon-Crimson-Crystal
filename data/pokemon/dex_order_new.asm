@@ -283,5 +283,6 @@ NewPokedexOrder:
 	db WHIRLIPEDE
 	db SCOLIPEDE
 	db WYRDEER
-	db RYPHERIOR
+	db RHYPERIOR
+	db TOGEKISS
 	assert_table_length NUM_POKEMON
