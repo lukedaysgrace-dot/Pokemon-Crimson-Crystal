@@ -291,36 +291,5 @@ IconPointers:
 	dw LugiaIcon
 	dw HoOhIcon
 	dw CelebiIcon
-	dw AmbipomIcon
-	dw AnnihilapeIcon
-	dw DrunsparceIcon
-	dw ElectivireIcon
-	dw FarigirafIcon
-	dw GlaceonIcon
-	dw GliscorIcon
-	dw HonchkrowIcon
-	dw LeafeonIcon
-	dw LickilickyIcon
-	dw MagmortarIcon
-	dw MagnezoneIcon
-	dw MamoswineIcon
-	dw MesmeriaIcon
-	dw MismagiusIcon
-	dw PorygonZIcon
-	dw TangrowthIcon
-	dw UrsalunaIcon
-	dw WeavileIcon
-	dw YanmegaIcon
-	dw BagonIcon
-	dw ShelgonIcon
-	dw SalamenceIcon
-	dw RaltsIcon
-	dw KirliaIcon
-	dw GardevoirIcon
-	dw VenipedeIcon
-	dw WhirlipedeIcon
-	dw ScolipedeIcon
-	dw WyrdeerIcon
-	dw RhyperiorIcon
 	dw EggIcon
 	assert_table_length NUM_ICONS + 1

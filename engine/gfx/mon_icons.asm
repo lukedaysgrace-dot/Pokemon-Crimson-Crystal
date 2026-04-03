@@ -670,7 +670,7 @@ HoldSwitchmonIcon:
 	ret
 
 ReadMonMenuIcon:
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	dec a
 	ld hl, MonMenuIcons

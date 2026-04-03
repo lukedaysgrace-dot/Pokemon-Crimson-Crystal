@@ -1,9 +1,9 @@
-	db TOGEKISS ; 283
+	db TOGEKISS ; 284
 
-	db 85, 50, 95, 80, 120, 115
+	db 85, 120, 95, 80, 50, 115
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, FLYING_TYPE ; type
+	db NORMAL, FLYING ; type
 	db 30 ; catch rate
 	db 245 ; base exp
 	db NO_ITEM, NO_ITEM ; items

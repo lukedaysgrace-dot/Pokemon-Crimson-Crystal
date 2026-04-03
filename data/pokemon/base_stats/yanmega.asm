@@ -1,9 +1,9 @@
-	db YANMEGA ; 271
+	db LOW(YANMEGA) ; truncated species id for extended species
 
 	db 86, 116, 86, 95, 66, 66
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG_TYPE, FLYING_TYPE ; type
+	db BUG, FLYING ; type
 	db 30 ; catch rate
 	db 180 ; base exp
 	db NO_ITEM, NO_ITEM ; items

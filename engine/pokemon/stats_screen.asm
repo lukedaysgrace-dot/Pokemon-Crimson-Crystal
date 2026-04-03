@@ -128,7 +128,7 @@ MonStatsInit:
 	farcall HDMATransferTilemapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	call StatsScreen_InitUpperHalf
 	ld hl, wStatsScreenFlags
@@ -248,7 +248,7 @@ StatsScreen_CopyToTempMon:
 .not_tempmon
 	farcall CopyMonToTempMon
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .done
 	ld a, [wMonType]
 	cp BOXMON
@@ -1433,7 +1433,7 @@ StatsScreen_GetAnimationParam:
 
 .CheckEggFaintedFrzSlp:
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	call CheckFaintedFrzSlp
 	jr c, .FaintedFrzSlp

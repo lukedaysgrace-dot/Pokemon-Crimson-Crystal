@@ -1,9 +1,9 @@
-	db GLISCOR ; 258
+	db LOW(GLISCOR) ; truncated species id for extended species
 
 	db 75, 95, 125, 95, 45, 75
 	;   hp  atk  def  spd  sat  sdf
 
-	db GROUND_TYPE, FLYING_TYPE ; type
+	db GROUND, FLYING ; type
 	db 30 ; catch rate
 	db 192 ; base exp
 	db NO_ITEM, NO_ITEM ; items

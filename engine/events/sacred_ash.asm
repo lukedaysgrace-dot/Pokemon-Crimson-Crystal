@@ -23,7 +23,7 @@ CheckAnyFaintedMon:
 	push hl
 	ld a, [bc]
 	inc bc
-	cp EGG
+	cp LOW(EGG)
 	jr z, .next
 
 	ld a, [hli]

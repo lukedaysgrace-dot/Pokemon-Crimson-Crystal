@@ -1,9 +1,9 @@
-	db MAMOSWINE ; 264
+	db LOW(MAMOSWINE) ; truncated species id for extended species
 
 	db 110, 130, 80, 80, 70, 60
 	;   hp  atk  def  spd  sat  sdf
 
-	db ICE_TYPE, GROUND_TYPE ; type
+	db ICE, GROUND ; type
 	db 50 ; catch rate
 	db 239 ; base exp
 	db NO_ITEM, NO_ITEM ; items

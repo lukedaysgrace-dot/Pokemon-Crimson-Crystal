@@ -533,7 +533,7 @@ PlayDanger:
 	ret z
 
 	; Don't do anything if SFX is being played
-	and ~(1 << DANGER_ON_F)
+	and LOW(~(1 << DANGER_ON_F))
 	ld d, a
 	call _CheckSFX
 	jr c, .increment

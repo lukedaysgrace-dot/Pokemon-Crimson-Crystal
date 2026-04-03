@@ -579,7 +579,7 @@ GiveItem:
 	farcall PartyMenuSelect
 	jr c, .finish
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .give
 	ld hl, .AnEggCantHoldAnItemText
 	call PrintText

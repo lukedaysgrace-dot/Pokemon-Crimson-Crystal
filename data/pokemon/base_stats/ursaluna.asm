@@ -1,11 +1,11 @@
-	db URSALUNA ; 269
+	db LOW(URSALUNA) ; truncated species id for extended species
 
 	db 130, 140, 105, 50, 45, 80
 	;   hp  atk  def  spd  sat  sdf
 
-	db GROUND_TYPE, NORMAL_TYPE ; type
+	db GROUND, NORMAL ; type
 	db 20 ; catch rate
-	db 275 ; base exp
+	db LOW(275) ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

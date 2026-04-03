@@ -1,9 +1,9 @@
-	db HONCHKROW ; 259
+	db LOW(HONCHKROW) ; truncated species id for extended species
 
 	db 100, 125, 52, 71, 105, 52
 	;   hp  atk  def  spd  sat  sdf
 
-	db DARK_TYPE, FLYING_TYPE ; type
+	db DARK, FLYING ; type
 	db 30 ; catch rate
 	db 187 ; base exp
 	db NO_ITEM, NO_ITEM ; items

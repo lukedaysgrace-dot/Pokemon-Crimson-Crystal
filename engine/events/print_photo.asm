@@ -4,7 +4,7 @@ PhotoStudio:
 	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 
 	ld hl, .HoldStillText

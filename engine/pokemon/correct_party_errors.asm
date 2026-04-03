@@ -15,12 +15,9 @@ CorrectPartyErrors: ; unreferenced
 	ld c, 0
 .loop1
 	ld a, [hl]
-	and a
-	jr z, .invalid_species
-	cp NUM_POKEMON + 1
-	jr z, .invalid_species
-	cp EGG + 1
-	jr c, .next_species
+	call IsAPokemon
+	jr c, .invalid_species
+	jr .next_species
 
 .invalid_species
 	ld [hl], SMEARGLE
@@ -50,10 +47,9 @@ CorrectPartyErrors: ; unreferenced
 	ld b, h
 	ld c, l
 	ld a, [hl]
-	and a
-	jr z, .invalid_species_2
-	cp NUM_POKEMON + 1
-	jr c, .check_level
+	call IsAPokemon
+	jr c, .invalid_species_2
+	jr .check_level
 
 .invalid_species_2
 	ld [hl], SMEARGLE
@@ -120,7 +116,7 @@ CorrectPartyErrors: ; unreferenced
 	add hl, bc
 	pop bc
 	ld a, [hl]
-	cp EGG
+	cp LOW(EGG)
 	ld hl, .TAMAGO
 	jr z, .got_nickname
 	ld [wNamedObjectIndex], a

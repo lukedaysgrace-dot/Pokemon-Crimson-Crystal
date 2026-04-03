@@ -1,9 +1,9 @@
-	db GLACEON ; 257
+	db LOW(GLACEON) ; truncated species id for extended species
 
 	db 65, 60, 110, 65, 130, 95
 	;   hp  atk  def  spd  sat  sdf
 
-	db ICE_TYPE, ICE_TYPE ; type
+	db ICE, ICE ; type
 	db 45 ; catch rate
 	db 184 ; base exp
 	db NO_ITEM, NO_ITEM ; items

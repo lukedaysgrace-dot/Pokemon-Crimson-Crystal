@@ -756,7 +756,7 @@ ValidateTempWildMonSpecies:
 ; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
 	and a
 	jr z, .nowildmon ; = 0
-	cp NUM_POKEMON + 1 ; 252
+	cp LOW(NUM_POKEMON + 1) ; 252
 	jr nc, .nowildmon ; >= 252
 	and a ; 1 <= Species <= 251
 	ret

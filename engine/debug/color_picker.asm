@@ -83,7 +83,7 @@ DebugColor_InitMonOrTrainerColor:
 
 DebugColor_InitMonColor:
 	ld de, wDebugOriginalColors
-	ld c, NUM_POKEMON + 1
+	ld c, LOW(NUM_POKEMON + 1)
 .loop
 	push bc
 	push hl
@@ -281,7 +281,7 @@ DebugColorMain:
 	and a
 	jr nz, .trainer
 ; mon
-	ld a, NUM_POKEMON ; CELEBI
+	ld a, LOW(NUM_POKEMON) ; CELEBI
 	ret
 .trainer
 	ld a, NUM_TRAINER_CLASSES ; MYSTICALMAN

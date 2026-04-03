@@ -1231,7 +1231,7 @@ wcc61:: ds 1
 wcc62:: ds 2
 wcc64:: ds 1
 wcc65:: ds 57
-	ds 22
+	ds 14
 wccb4:: ds 1
 wccb5:: ds 3
 wccb8:: ds 1
@@ -3303,7 +3303,7 @@ wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
 wPartyMonNicknamesEnd::
 
-	ds 22
+	ds 14
 
 wPokedexCaught:: flag_array NUM_POKEMON
 wEndPokedexCaught::

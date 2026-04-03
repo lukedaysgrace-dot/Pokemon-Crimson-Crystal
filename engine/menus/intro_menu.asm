@@ -633,9 +633,9 @@ Continue_DisplayPokedexNumCaught:
 	push hl
 	ld hl, wPokedexCaught
 if NUM_POKEMON % 8
-	ld b, NUM_POKEMON / 8 + 1
+	ld b, LOW(NUM_POKEMON) / 8 + 1
 else
-	ld b, NUM_POKEMON / 8
+	ld b, LOW(NUM_POKEMON) / 8
 endc
 	call CountSetBits
 	pop hl

@@ -1214,7 +1214,7 @@ Function10898a:
 MobileTradeAnim_DisplayMonToBeSent:
 	ld de, wPlayerTrademonSpecies
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	jr z, MobileTradeAnim_DisplayEggData
 	call MobileTradeAnim_LoadMonTemplate
 	ld de, wPlayerTrademonSpecies
@@ -1232,7 +1232,7 @@ MobileTradeAnim_DisplayMonToBeSent:
 MobileTradeAnim_DisplayReceivedMon:
 	ld de, wOTTrademonSpecies
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	jr z, MobileTradeAnim_DisplayEggData
 	call MobileTradeAnim_LoadMonTemplate
 	ld de, wOTTrademonSpecies

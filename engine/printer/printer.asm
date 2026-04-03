@@ -755,7 +755,7 @@ Printer_PrintBoxListSegment:
 	push hl
 	call PlaceString
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	pop hl
 	jr z, .ok2
 

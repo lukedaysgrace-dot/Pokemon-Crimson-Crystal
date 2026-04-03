@@ -1,9 +1,9 @@
-	db LICKILICKY ; 261
+	db LOW(LICKILICKY) ; truncated species id for extended species
 
 	db 110, 85, 95, 50, 80, 95
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, NORMAL_TYPE ; type
+	db NORMAL, NORMAL ; type
 	db 30 ; catch rate
 	db 180 ; base exp
 	db NO_ITEM, NO_ITEM ; items

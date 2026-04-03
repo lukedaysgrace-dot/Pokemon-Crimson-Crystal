@@ -1,9 +1,9 @@
-	db AMBIPOM ; 252
+	db LOW(AMBIPOM) ; truncated species id for extended species
 
 	db 75, 100, 66, 115, 60, 66
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, NORMAL_TYPE ; type
+	db NORMAL, NORMAL ; type
 	db 45 ; catch rate
 	db 186 ; base exp
 	db NO_ITEM, NO_ITEM ; items

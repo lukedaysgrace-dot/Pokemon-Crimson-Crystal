@@ -1,9 +1,9 @@
-	db SCOLIPEDE ; 280
+	db LOW(SCOLIPEDE) ; truncated species id for extended species
 
 	db 60, 100, 89, 112, 55, 69
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG_TYPE, POISON_TYPE ; type
+	db BUG, POISON ; type
 	db 45 ; catch rate
 	db 218 ; base exp
 	db NO_ITEM, NO_ITEM ; items

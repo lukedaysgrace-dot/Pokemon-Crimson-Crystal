@@ -637,7 +637,7 @@ GetPreEvolution:
 .no_evolve
 	inc c
 	ld a, c
-	cp NUM_POKEMON
+	cp LOW(NUM_POKEMON)
 	jr c, .loop
 	and a
 	ret

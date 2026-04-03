@@ -58,7 +58,7 @@ _TempMonStatsCalculation:
 	ld d, h
 	ld e, l
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .not_egg
 	xor a
 	ld [de], a

@@ -6224,7 +6224,7 @@ Function102bdc:
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	cp EGG
+	cp LOW(EGG)
 	jr z, .asm_102bfa
 	cp [hl]
 	jr nz, .asm_102c05
@@ -6403,7 +6403,7 @@ Function102d48:
 	add hl, de
 	ld a, [hl]
 	ld [wTempSpecies], a
-	cp EGG
+	cp LOW(EGG)
 	jr z, .asm_102d6d
 	dec a
 	call SetSeenAndCaughtMon

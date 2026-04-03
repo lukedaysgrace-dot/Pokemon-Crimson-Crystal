@@ -1,4 +1,4 @@
-	db GARDEVOIR ; 277
+	db LOW(GARDEVOIR) ; truncated species id for extended species
 
 	db 68, 65, 65, 80, 125, 115
 	;   hp  atk  def  spd  sat  sdf

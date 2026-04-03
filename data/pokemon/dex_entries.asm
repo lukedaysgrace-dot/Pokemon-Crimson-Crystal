@@ -268,7 +268,7 @@ HoOhPokedexEntry::       INCLUDE "data/pokemon/dex_entries/ho_oh.asm"
 CelebiPokedexEntry::     INCLUDE "data/pokemon/dex_entries/celebi.asm"
 
 
-SECTION "Pokedex Entries 252-282", ROMX
+SECTION "Pokedex Entries 252-284", ROMX
 
 AmbipomPokedexEntry::     INCLUDE "data/pokemon/dex_entries/ambipom.asm"
 AnnihilapePokedexEntry::  INCLUDE "data/pokemon/dex_entries/annihilape.asm"

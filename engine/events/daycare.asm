@@ -125,7 +125,7 @@ DayCareAskDepositPokemon:
 	farcall SelectTradeOrDayCareMon
 	jr c, .Declined
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .Egg
 	farcall CheckCurPartyMonFainted
 	jr c, .OutOfUsableMons
@@ -475,7 +475,7 @@ DayCare_GiveEgg:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, EGG
+	ld a, LOW(EGG)
 	ld [hli], a
 	ld a, [wEggMonSpecies]
 	ld [wCurSpecies], a

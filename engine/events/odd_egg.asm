@@ -58,7 +58,7 @@ _GiveOddEgg:
 	call TossItem
 
 	; load species in wMobileMonSpecies
-	ld a, EGG
+	ld a, LOW(EGG)
 	ld [wMobileMonSpecies], a
 
 	; load pointer to (wMobileMonSpecies - 1) in wMobileMonSpeciesPointer

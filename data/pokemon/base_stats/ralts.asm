@@ -1,4 +1,4 @@
-	db RALTS ; 275
+	db LOW(RALTS) ; truncated species id for extended species
 
 	db 28, 25, 25, 40, 45, 35
 	;   hp  atk  def  spd  sat  sdf

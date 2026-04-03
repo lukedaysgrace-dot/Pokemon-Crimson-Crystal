@@ -146,7 +146,7 @@ GetHallOfFameParty:
 	ld a, [hli]
 	cp -1
 	jr z, .done
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .mon
 	inc c
 	jr .next
@@ -467,7 +467,7 @@ DisplayHOFMon:
 	hlcoord 6, 5
 	call _PrepMonFrontpic
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .print_id_no
 	hlcoord 1, 13
 	ld a, "№"

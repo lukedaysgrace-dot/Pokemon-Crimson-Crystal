@@ -129,8 +129,8 @@ Pokedex_InitCursorPosition:
 	ld a, [wPrevDexEntry]
 	and a
 	jr z, .done
-	cp NUM_POKEMON + 1
-	jr nc, .done
+	call IsAPokemon
+    jr c, .done
 
 	ld b, a
 	ld a, [wDexListingEnd]
@@ -2476,7 +2476,7 @@ Pokedex_OrderMonsByMode:
 .NewMode:
 	ld de, NewPokedexOrder
 	ld hl, wPokedexOrder
-	ld c, NUM_POKEMON
+	ld c, LOW(NUM_POKEMON)
 .loopnew
 	ld a, [de]
 	inc de
@@ -2489,7 +2489,7 @@ Pokedex_OrderMonsByMode:
 .OldMode:
 	ld hl, wPokedexOrder
 	ld a, $1
-	ld c, NUM_POKEMON
+	ld c, LOW(NUM_POKEMON)
 .loopold
 	ld [hli], a
 	inc a
@@ -2500,7 +2500,7 @@ Pokedex_OrderMonsByMode:
 
 .FindLastSeen:
 	ld hl, wPokedexOrder + NUM_POKEMON - 1
-	ld d, NUM_POKEMON
+	ld d, LOW(NUM_POKEMON)
 	ld e, d
 .loopfindend
 	ld a, [hld]
@@ -2520,7 +2520,7 @@ Pokedex_ABCMode:
 	ld [wDexListingEnd], a
 	ld hl, wPokedexOrder
 	ld de, AlphabeticalPokedexOrder
-	ld c, NUM_POKEMON
+	ld c, LOW(NUM_POKEMON)
 .loop1abc
 	push bc
 	ld a, [de]
@@ -2541,7 +2541,7 @@ Pokedex_ABCMode:
 	ld a, [wDexListingEnd]
 	ld c, 0
 .loop2abc
-	cp NUM_POKEMON
+	cp LOW(NUM_POKEMON)
 	jr z, .doneabc
 	ld [hl], c
 	inc hl
@@ -2756,7 +2756,7 @@ Pokedex_SearchForMons:
 	ld [wDexConvertedMonType], a
 	ld hl, wPokedexOrder
 	ld de, wPokedexOrder
-	ld c, NUM_POKEMON
+	ld c, LOW(NUM_POKEMON)
 	xor a
 	ld [wDexSearchResultCount], a
 .loop
@@ -2803,7 +2803,7 @@ Pokedex_SearchForMons:
 	ld c, 0
 
 .zero_remaining_mons
-	cp NUM_POKEMON
+	cp LOW(NUM_POKEMON)
 	jr z, .done
 	ld [hl], c
 	inc hl

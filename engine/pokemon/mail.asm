@@ -495,7 +495,7 @@ MailboxPC:
 	farcall PartyMenuSelect
 	jr c, .exit2
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	ld a, MON_ITEM
 	call GetPartyParamLocation

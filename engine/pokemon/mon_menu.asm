@@ -201,7 +201,7 @@ SwitchPartyMons:
 GiveTakePartyMonItem:
 ; Eggs can't hold items!
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .cancel
 
 	ld hl, GiveTakeItemMenuData
@@ -857,7 +857,7 @@ DeleteMoveScreen2DMenuData:
 
 ManagePokemonMoves:
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	ld hl, wOptions
 	ld a, [hl]
@@ -973,7 +973,7 @@ MoveScreenLoop:
 	ld a, [hl]
 	cp -1
 	jr z, .cycle_left
-	cp EGG
+	cp LOW(EGG)
 	ret nz
 	jr .cycle_right
 
@@ -990,7 +990,7 @@ MoveScreenLoop:
 	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	cp EGG
+	cp LOW(EGG)
 	ret nz
 	ld a, [wCurPartyMon]
 	and a
@@ -1246,9 +1246,9 @@ PlaceMoveScreenLeftArrow:
 	ld a, [hl]
 	and a
 	jr z, .prev
-	cp EGG
+	cp LOW(EGG)
 	jr z, .prev
-	cp NUM_POKEMON + 1
+	cp LOW(NUM_POKEMON + 1)
 	jr c, .legal
 
 .prev
@@ -1279,9 +1279,9 @@ PlaceMoveScreenRightArrow:
 	ret z
 	and a
 	jr z, .next
-	cp EGG
+	cp LOW(EGG)
 	jr z, .next
-	cp NUM_POKEMON + 1
+	cp LOW(NUM_POKEMON + 1)
 	jr c, .legal
 
 .next

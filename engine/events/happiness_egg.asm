@@ -4,7 +4,7 @@ GetFirstPokemonHappiness:
 	ld de, wPartySpecies
 .loop
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .done
 	inc de
 	add hl, bc
@@ -20,7 +20,7 @@ GetFirstPokemonHappiness:
 CheckFirstMonIsEgg:
 	ld a, [wPartySpecies]
 	ld [wNamedObjectIndex], a
-	cp EGG
+	cp LOW(EGG)
 	ld a, TRUE
 	jr z, .egg
 	xor a
@@ -40,7 +40,7 @@ ChangeHappiness:
 	ld hl, wPartySpecies - 1
 	add hl, de
 	ld a, [hl]
-	cp EGG
+	cp LOW(EGG)
 	ret z
 
 	push bc
@@ -124,7 +124,7 @@ StepHappiness::
 .loop
 	inc de
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .next
 	inc [hl]
 	jr nz, .next

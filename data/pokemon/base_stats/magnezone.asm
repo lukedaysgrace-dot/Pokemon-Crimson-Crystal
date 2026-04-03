@@ -1,9 +1,9 @@
-	db MAGNEZONE ; 263
+	db LOW(MAGNEZONE) ; truncated species id for extended species
 
 	db 70, 70, 115, 60, 130, 90
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC_TYPE, STEEL_TYPE ; type
+	db ELECTRIC, STEEL ; type
 	db 30 ; catch rate
 	db 211 ; base exp
 	db NO_ITEM, NO_ITEM ; items

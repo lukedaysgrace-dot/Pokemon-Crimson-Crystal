@@ -1,0 +1,19 @@
+
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+data/pokemon/dex_order_alpha.asm: no newline at end of file
+rgbasm -o rgbdscheck.o rgbdscheck.asm
+rgbasm -L -Weverything -Wnumeric-string=2 -Wtruncation=1  -o audio.o audio.asm
+rgbasm -L -Weverything -Wnumeric-string=2 -Wtruncation=1  -o home.o home.asm
+warning: home.asm(58) -> home/pokemon.asm(5): [-Wtruncation]
+    Expression must be 8-bit
+warning: home.asm(58) -> home/pokemon.asm(7): [-Wtruncation]
+    Expression must be 8-bit
+warning: home.asm(58) -> home/pokemon.asm(195): [-Wtruncation]
+    Expression must be 8-bit
+warning: home.asm(58) -> home/pokemon.asm(256): [-Wtruncation]
+    Expression must be 8-bit
+make: *** No rule to make target 'engine/batt', needed by 'main.o'.  Stop.

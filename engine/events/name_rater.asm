@@ -11,7 +11,7 @@ _NameRater:
 	jr c, .cancel
 ; He can't rename an egg...
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 ; ... or a Pokemon you got from a trade.
 	call GetCurNickname

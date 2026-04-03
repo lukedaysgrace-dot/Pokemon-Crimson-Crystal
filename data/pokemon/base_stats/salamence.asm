@@ -1,9 +1,9 @@
-	db SALAMENCE ; 274
+	db LOW(SALAMENCE) ; truncated species id for extended species
 
 	db 95, 135, 80, 100, 110, 80
 	;   hp  atk  def  spd  sat  sdf
 
-	db DRAGON_TYPE, FLYING_TYPE ; type
+	db DRAGON, FLYING ; type
 	db 45 ; catch rate
 	db 218 ; base exp
 	db NO_ITEM, NO_ITEM ; items

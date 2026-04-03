@@ -11,7 +11,7 @@ CheckForLuckyNumberWinners:
 .PartyLoop:
 	ld a, [bc]
 	inc bc
-	cp EGG
+	cp LOW(EGG)
 	call nz, .CompareLuckyNumberToMonID
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -30,7 +30,7 @@ CheckForLuckyNumberWinners:
 .OpenBoxLoop:
 	ld a, [bc]
 	inc bc
-	cp EGG
+	cp LOW(EGG)
 	jr z, .SkipOpenBoxMon
 	call .CompareLuckyNumberToMonID
 	jr nc, .SkipOpenBoxMon
@@ -76,7 +76,7 @@ CheckForLuckyNumberWinners:
 .BoxNLoop:
 	ld a, [bc]
 	inc bc
-	cp EGG
+	cp LOW(EGG)
 	jr z, .SkipBoxMon
 
 	call .CompareLuckyNumberToMonID ; sets wScriptVar and wCurPartySpecies appropriately

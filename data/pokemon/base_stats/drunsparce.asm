@@ -1,9 +1,9 @@
-	db DRUNSPARCE ; 254
+	db LOW(DRUNSPARCE) ; truncated species id for extended species
 
 	db 125, 100, 80, 55, 85, 75
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, NORMAL_TYPE ; type
+	db NORMAL, NORMAL ; type
 	db 45 ; catch rate
 	db 188 ; base exp
 	db NO_ITEM, NO_ITEM ; items

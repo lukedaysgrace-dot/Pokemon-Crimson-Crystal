@@ -1,4 +1,4 @@
-	db KIRLIA ; 276
+	db LOW(KIRLIA) ; truncated species id for extended species
 
 	db 38, 35, 35, 50, 65, 55
 	;   hp  atk  def  spd  sat  sdf

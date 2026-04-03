@@ -234,10 +234,8 @@ ROMX $59
 ROMX $5a
 	"Pics 19"
 ROMX $5b
-	"bank5B"
 	"Pics 20"
 ROMX $5c
-	"mobile5C"
 	"Pics 21"
 ROMX $5d
 	"Crystal Phone Text 2"
@@ -295,6 +293,10 @@ ROMX $73
 	"Pokedex Entries 129-192"
 ROMX $74
 	"Pokedex Entries 193-251"
+ROMX $75
+	"Pokedex Entries 252-284"
+ROMX $76
+	"bank5B"
 ROMX $77
 	"Unown Font"
 	"Print Party"
@@ -305,6 +307,8 @@ ROMX $77
 ROMX $78
 	"Debug Room"
 	"Tileset Data 8"
+ROMX $79
+	"mobile5C"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c

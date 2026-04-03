@@ -1,9 +1,9 @@
-	db TANGROWTH ; 268
+	db LOW(TANGROWTH) ; truncated species id for extended species
 
 	db 100, 100, 125, 50, 110, 50
 	;   hp  atk  def  spd  sat  sdf
 
-	db GRASS_TYPE, GRASS_TYPE ; type
+	db GRASS, GRASS ; type
 	db 30 ; catch rate
 	db 187 ; base exp
 	db NO_ITEM, NO_ITEM ; items

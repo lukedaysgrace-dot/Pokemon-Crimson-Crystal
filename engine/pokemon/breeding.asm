@@ -180,7 +180,7 @@ DoEggStep::
 	inc de
 	cp -1
 	ret z
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .next
 	dec [hl]
 	jr nz, .next
@@ -216,7 +216,7 @@ HatchEggs:
 	jp z, .done
 	push de
 	push hl
-	cp EGG
+	cp LOW(EGG)
 	jp nz, .next
 	ld a, [hl]
 	and a
@@ -693,7 +693,7 @@ EggHatch_AnimationSequence:
 	ld a, [wJumptableIndex]
 	call GetHatchlingFrontpic
 	ld de, vTiles2 tile $31
-	ld a, EGG
+	ld a, LOW(EGG)
 	call GetEggFrontpic
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
@@ -701,7 +701,7 @@ EggHatch_AnimationSequence:
 	hlcoord 7, 4
 	ld b, HIGH(vBGMap0)
 	ld c, $31 ; Egg tiles start here
-	ld a, EGG
+	ld a, LOW(EGG)
 	call Hatch_UpdateFrontpicBGMapCenter
 	ld c, 80
 	call DelayFrames

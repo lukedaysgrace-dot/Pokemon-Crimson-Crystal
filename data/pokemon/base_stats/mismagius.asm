@@ -1,9 +1,9 @@
-	db MISMAGIUS ; 266
+	db LOW(MISMAGIUS) ; truncated species id for extended species
 
 	db 60, 60, 60, 105, 105, 105
 	;   hp  atk  def  spd  sat  sdf
 
-	db GHOST_TYPE, GHOST_TYPE ; type
+	db GHOST, GHOST ; type
 	db 45 ; catch rate
 	db 187 ; base exp
 	db NO_ITEM, NO_ITEM ; items

@@ -1069,7 +1069,7 @@ PCMonInfo:
 	ld [wBillsPC_MonHasMail], a
 	ld a, [wCurPartySpecies]
 	ld [wTempSpecies], a
-	cp EGG
+	cp LOW(EGG)
 	ret z
 
 	call GetBasePokemonName
@@ -1633,7 +1633,7 @@ BillsPC_CheckMail_PreventBlackout:
 
 BillsPC_IsMonAnEgg:
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	and a
 	ret

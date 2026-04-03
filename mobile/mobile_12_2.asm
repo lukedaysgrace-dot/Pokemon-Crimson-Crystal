@@ -444,7 +444,7 @@ Function4aad3:
 
 Function4aafb:
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	and a
 	ret

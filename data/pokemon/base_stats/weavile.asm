@@ -1,9 +1,9 @@
-	db WEAVILE ; 270
+	db LOW(WEAVILE) ; truncated species id for extended species
 
-	db 70, 120, 65, 125, 45, 85
+	db 70, 110, 65, 125, 65, 75
 	;   hp  atk  def  spd  sat  sdf
 
-	db DARK_TYPE, ICE_TYPE ; type
+	db DARK, ICE ; type
 	db 45 ; catch rate
 	db 199 ; base exp
 	db NO_ITEM, NO_ITEM ; items

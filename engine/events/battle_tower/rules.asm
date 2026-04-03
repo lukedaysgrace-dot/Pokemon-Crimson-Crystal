@@ -189,7 +189,7 @@ BattleTower_CheckPartyHasThreeMonsThatAreNotEggs:
 	ld c, a
 .loop
 	ld a, [hli]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	inc b
 
@@ -271,7 +271,7 @@ CheckPartyValueIsUnique:
 	push bc
 	ld b, a
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	ld a, b
 	pop bc
 	ret
@@ -287,7 +287,7 @@ CheckBTRule_HasPartyAnEgg:
 	ld c, a
 .loop
 	ld a, [hli]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .found
 	dec c
 	jr nz, .loop

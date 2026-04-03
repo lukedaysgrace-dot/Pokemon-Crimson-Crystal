@@ -1,11 +1,11 @@
-	db ANNIHILAPE ; 253
+	db LOW(ANNIHILAPE) ; truncated species id for extended species
 
 	db 110, 115, 80, 90, 50, 90
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIGHTING_TYPE, GHOST_TYPE ; type
+	db FIGHTING, GHOST ; type
 	db 45 ; catch rate
-	db 268 ; base exp
+	db LOW(268) ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

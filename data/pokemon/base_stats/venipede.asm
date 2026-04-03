@@ -1,9 +1,9 @@
-	db VENIPEDE ; 278
+	db LOW(VENIPEDE) ; truncated species id for extended species
 
 	db 30, 45, 59, 57, 30, 39
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG_TYPE, POISON_TYPE ; type
+	db BUG, POISON ; type
 	db 255 ; catch rate
 	db 52 ; base exp
 	db NO_ITEM, NO_ITEM ; items

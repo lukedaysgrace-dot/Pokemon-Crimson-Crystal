@@ -562,7 +562,7 @@ PartyMenuCheckEgg:
 	adc 0
 	ld d, a
 	ld a, [de]
-	cp EGG
+	cp LOW(EGG)
 	ret
 
 GetPartyMenuQualityIndexes:

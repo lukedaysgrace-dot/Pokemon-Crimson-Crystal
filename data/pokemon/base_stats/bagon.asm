@@ -1,9 +1,9 @@
-	db BAGON ; 272
+	db LOW(BAGON) ; truncated species id for extended species
 
 	db 45, 75, 60, 50, 40, 30
 	;   hp  atk  def  spd  sat  sdf
 
-	db DRAGON_TYPE, DRAGON_TYPE ; type
+	db DRAGON, DRAGON ; type
 	db 45 ; catch rate
 	db 89 ; base exp
 	db NO_ITEM, NO_ITEM ; items

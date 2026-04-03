@@ -77,7 +77,7 @@ CheckPartyMove:
 	jr z, .no
 	cp -1
 	jr z, .no
-	cp EGG
+	cp LOW(EGG)
 	jr z, .next
 
 	ld bc, PARTYMON_STRUCT_LENGTH

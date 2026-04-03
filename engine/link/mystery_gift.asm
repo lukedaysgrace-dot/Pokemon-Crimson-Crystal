@@ -1421,7 +1421,7 @@ StagePartyDataForMysteryGift:
 	ld a, [hli]
 	cp -1
 	jr z, .party_end
-	cp EGG
+	cp LOW(EGG)
 	jr z, .next
 	push hl
 	; copy level

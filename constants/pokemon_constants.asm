@@ -301,7 +301,7 @@ JOHTO_POKEMON EQU const_value
 	const WHIRLIPEDE ; 117
 	const SCOLIPEDE  ; 118
 	const WYRDEER    ; 119
-	const RYPHERIOR  ; 11a
+	const RHYPERIOR  ; 11a
 	const TOGEKISS   ; 11b
 
 NUM_POKEMON EQU const_value - 1

@@ -1,9 +1,9 @@
-	db ELECTIVIRE ; 255
+	db LOW(ELECTIVIRE) ; truncated species id for extended species
 
 	db 75, 123, 67, 95, 95, 85
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC_TYPE, ELECTRIC_TYPE ; type
+	db ELECTRIC, ELECTRIC ; type
 	db 30 ; catch rate
 	db 199 ; base exp
 	db NO_ITEM, NO_ITEM ; items

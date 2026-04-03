@@ -257,6 +257,38 @@ MonMenuIconPals:
 	icon_pals BLUE,   TEAL   ; LUGIA
 	icon_pals RED,    BROWN  ; HO_OH
 	icon_pals GREEN,  PINK   ; CELEBI
+	icon_pals BROWN,  TEAL   ; AMBIPOM
+	icon_pals GRAY,   PURPLE ; ANNIHILAPE
+	icon_pals BLUE,   PINK   ; DRUNSPARCE
+	icon_pals BROWN,  RED    ; ELECTIVIRE
+	icon_pals PURPLE, BLUE   ; FARIGIRAF
+	icon_pals BLUE,   TEAL   ; GLACEON
+	icon_pals PURPLE, GRAY   ; GLISCOR
+	icon_pals BLUE,   PINK   ; HONCHKROW
+	icon_pals GREEN,  TEAL   ; LEAFEON
+	icon_pals PINK,   BROWN  ; LICKILICKY
+	icon_pals RED,    BROWN  ; MAGMORTAR
+	icon_pals GRAY,   BLUE   ; MAGNEZONE
+	icon_pals BROWN,  GREEN  ; MAMOSWINE
+	icon_pals PURPLE, PINK   ; MESMERIA
+	icon_pals PURPLE, PINK   ; MISMAGIUS
+	icon_pals BLUE,   TEAL   ; PORYGON_Z
+	icon_pals GREEN,  TEAL   ; TANGROWTH
+	icon_pals BROWN,  GREEN  ; URSALUNA
+	icon_pals RED,    PINK   ; WEAVILE
+	icon_pals GREEN,  RED    ; YANMEGA
+	icon_pals BLUE,   BROWN  ; BAGON
+	icon_pals BLUE,   GRAY   ; SHELGON
+	icon_pals BLUE,   RED    ; SALAMENCE
+	icon_pals GREEN,  PINK   ; RALTS
+	icon_pals GREEN,  PINK   ; KIRLIA
+	icon_pals GREEN,  PINK   ; GARDEVOIR
+	icon_pals RED,    GREEN  ; VENIPEDE
+	icon_pals RED,    PURPLE ; WHIRLIPEDE
+	icon_pals RED,    PURPLE ; SCOLIPEDE
+	icon_pals BROWN,  GREEN  ; WYRDEER
+	icon_pals GRAY,   BROWN  ; RHYPERIOR
+	icon_pals PINK,   BLUE   ; TOGEKISS
 	assert_table_length NUM_POKEMON
 
 	icon_pals RED,    RED    ; 252

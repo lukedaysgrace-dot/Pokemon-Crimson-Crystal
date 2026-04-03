@@ -1,9 +1,9 @@
-	db WHIRLIPEDE ; 279
+	db LOW(WHIRLIPEDE) ; truncated species id for extended species
 
 	db 40, 55, 99, 47, 40, 79
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG_TYPE, POISON_TYPE ; type
+	db BUG, POISON ; type
 	db 120 ; catch rate
 	db 126 ; base exp
 	db NO_ITEM, NO_ITEM ; items

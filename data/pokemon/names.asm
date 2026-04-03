@@ -1,3 +1,5 @@
+SECTION "Pokemon Names", ROMX
+
 PokemonNames::
 	table_width NAME_LENGTH - 1, PokemonNames
 	db "BULBASAUR@"
@@ -28,10 +30,10 @@ PokemonNames::
 	db "RAICHU@@@@"
 	db "SANDSHREW@"
 	db "SANDSLASH@"
-	db "NIDORAN♀@@"
+	db "NIDORANF@@"
 	db "NIDORINA@@"
 	db "NIDOQUEEN@"
-	db "NIDORAN♂@@"
+	db "NIDORANM@@"
 	db "NIDORINO@@"
 	db "NIDOKING@@"
 	db "CLEFAIRY@@"
@@ -258,7 +260,7 @@ PokemonNames::
 	db "FARIGIRAF@"
 	db "GLACEON@@@"
 	db "GLISCOR@@@"
-	db "HONCHKROW@@"
+	db "HONCHKROW@"
 	db "LEAFEON@@@"
 	db "LICKILICKY"
 	db "MAGMORTAR@"
@@ -283,11 +285,5 @@ PokemonNames::
 	db "WYRDEER@@@"
 	db "RYPHERIOR@"
 	db "TOGEKISS@@"
-	assert_table_length NUM_POKEMON
 	db "?????@@@@@"
 	db "EGG@@@@@@@"
-	assert_table_length EGG
-	db "?????@@@@@"
-	db "?????@@@@@"
-	db "?????@@@@@"
-	assert_table_length $100

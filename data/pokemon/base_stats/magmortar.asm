@@ -1,9 +1,9 @@
-	db MAGMORTAR ; 262
+	db LOW(MAGMORTAR) ; truncated species id for extended species
 
 	db 75, 95, 67, 83, 125, 95
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIRE_TYPE, FIRE_TYPE ; type
+	db FIRE, FIRE ; type
 	db 30 ; catch rate
 	db 199 ; base exp
 	db NO_ITEM, NO_ITEM ; items

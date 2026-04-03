@@ -282,7 +282,7 @@ Unused_PlaceEnemyHPLevel:
 	call CopyMonToTempMon
 	pop hl
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	push hl
 	ld bc, -12

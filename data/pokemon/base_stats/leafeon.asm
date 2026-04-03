@@ -1,9 +1,9 @@
-	db LEAFEON ; 260
+	db LOW(LEAFEON) ; truncated species id for extended species
 
 	db 65, 110, 130, 95, 60, 65
 	;   hp  atk  def  spd  sat  sdf
 
-	db GRASS_TYPE, GRASS_TYPE ; type
+	db GRASS, GRASS ; type
 	db 45 ; catch rate
 	db 184 ; base exp
 	db NO_ITEM, NO_ITEM ; items

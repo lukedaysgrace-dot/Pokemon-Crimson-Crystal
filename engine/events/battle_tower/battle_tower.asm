@@ -1363,7 +1363,7 @@ BattleTowerAction_EggTicket: ; BattleTowerAction $0e
 	ld hl, wPartySpecies
 .loop
 	ld a, [hli]
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .not_egg
 	push hl
 	ld hl, wPartyMonOTs

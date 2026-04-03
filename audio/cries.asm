@@ -2038,6 +2038,8 @@ Cry_Growlithe_Ch8:
 	noise_note 8, 11, 1, 68
 	sound_ret
 
+SECTION "Cries 2", ROMX
+
 Cry_Krabby_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 13, 15, 1, 1297

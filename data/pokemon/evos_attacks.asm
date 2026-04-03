@@ -3937,7 +3937,7 @@ MismagiusEvosAttacks:
 	db 55, PERISH_SONG
 	db 0 ; no more level-up moves
 
-Porygon_ZEvosAttacks:
+PorygonZEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, CONVERSION
@@ -4158,3 +4158,5 @@ TogekissEvosAttacks:
 	db 45, TRI_ATTACK
 	db 53, SKY_ATTACK
 	db 0 ; no more level-up moves
+	
+	

@@ -251,4 +251,36 @@ FramesPointers:
 	dw LugiaFrames
 	dw HoOhFrames
 	dw CelebiFrames
+	dw AmbipomFrames
+	dw AnnihilapeFrames
+	dw DrunsparceFrames
+	dw ElectivireFrames
+	dw FarigirafFrames
+	dw GlaceonFrames
+	dw GliscorFrames
+	dw HonchkrowFrames
+	dw LeafeonFrames
+	dw LickilickyFrames
+	dw MagmortarFrames
+	dw MagnezoneFrames
+	dw MamoswineFrames
+	dw MesmeriaFrames
+	dw MismagiusFrames
+	dw PorygonZFrames
+	dw TangrowthFrames
+	dw UrsalunaFrames
+	dw WeavileFrames
+	dw YanmegaFrames
+	dw BagonFrames
+	dw ShelgonFrames
+	dw SalamenceFrames
+	dw RaltsFrames
+	dw KirliaFrames
+	dw GardevoirFrames
+	dw VenipedeFrames
+	dw WhirlipedeFrames
+	dw ScolipedeFrames
+	dw WyrdeerFrames
+	dw RhyperiorFrames
+	dw TogekissFrames
 	assert_table_length NUM_POKEMON

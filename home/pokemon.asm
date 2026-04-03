@@ -1,19 +1,16 @@
 IsAPokemon::
 ; Return carry if species a is not a Pokemon.
-	and a
-	jr z, .NotAPokemon
-	cp EGG
-	jr z, .Pokemon
-	cp NUM_POKEMON + 1
-	jr c, .Pokemon
+    and a
+    jr z, .NotAPokemon
+
+    ; temporary >255-safe check:
+    ; treat any nonzero species as a Pokémon for now
+    and a
+    ret
 
 .NotAPokemon:
-	scf
-	ret
-
-.Pokemon:
-	and a
-	ret
+    scf
+    ret
 
 DrawBattleHPBar::
 ; Draw an HP bar d tiles long at hl
@@ -192,7 +189,7 @@ endr
 GetCryIndex::
 	and a
 	jr z, .no
-	cp NUM_POKEMON + 1
+	cp LOW(NUM_POKEMON + 1)
 	jr nc, .no
 
 	dec a
@@ -253,7 +250,7 @@ GetBaseData::
 
 ; Egg doesn't have BaseData
 	ld a, [wCurSpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 
 ; Get BaseData

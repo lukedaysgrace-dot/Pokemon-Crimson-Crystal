@@ -1,11 +1,11 @@
-	db WYRDEER ; 281
+	db LOW(WYRDEER) ; truncated species id for extended species
 
 	db 103, 105, 72, 65, 105, 75
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, PSYCHIC_TYPE ; type
+	db NORMAL, PSYCHIC_TYPE ; type
 	db 45 ; catch rate
-	db 263 ; base exp
+	db LOW(263) ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

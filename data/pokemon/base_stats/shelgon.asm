@@ -1,9 +1,9 @@
-	db SHELGON ; 273
+	db LOW(SHELGON) ; truncated species id for extended species
 
 	db 65, 95, 100, 50, 60, 50
 	;   hp  atk  def  spd  sat  sdf
 
-	db DRAGON_TYPE, DRAGON_TYPE ; type
+	db DRAGON, DRAGON ; type
 	db 45 ; catch rate
 	db 144 ; base exp
 	db NO_ITEM, NO_ITEM ; items

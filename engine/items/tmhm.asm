@@ -91,7 +91,7 @@ ChooseMonToLearnTMHM_NoRefresh:
 	farcall PartyMenuSelect
 	push af
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	pop bc ; now contains the former contents of af
 	jr z, .egg
 	push bc

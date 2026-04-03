@@ -1,11 +1,11 @@
-	db FARIGIRAF ; 256
+	db LOW(FARIGIRAF) ; truncated species id for extended species
 
 	db 120, 90, 70, 60, 110, 70
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL_TYPE, PSYCHIC_TYPE ; type
+	db NORMAL, PSYCHIC_TYPE ; type
 	db 45 ; catch rate
-	db 260 ; base exp
+	db LOW(260) ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

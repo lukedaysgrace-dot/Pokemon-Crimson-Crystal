@@ -528,7 +528,7 @@ Function1162f2:
 	call Function116758
 	call Function1167a6
 	ld a, [wc310]
-	cp EGG
+	cp LOW(EGG)
 	ret z
 	sla a
 	ld c, a

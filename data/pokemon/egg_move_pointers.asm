@@ -251,4 +251,36 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; Ambipom
+	dw NoEggMoves ; Annihilape
+	dw NoEggMoves ; Drunsparce
+	dw NoEggMoves ; Electivire
+	dw NoEggMoves ; Farigiraf
+	dw NoEggMoves ; Glaceon
+	dw NoEggMoves ; Gliscor
+	dw NoEggMoves ; Honchkrow
+	dw NoEggMoves ; Leafeon
+	dw NoEggMoves ; Lickilicky
+	dw NoEggMoves ; Magmortar
+	dw NoEggMoves ; Magnezone
+	dw NoEggMoves ; Mamoswine
+	dw NoEggMoves ; Mesmeria
+	dw NoEggMoves ; Mismagius
+	dw NoEggMoves ; Porygon-Z
+	dw NoEggMoves ; Tangrowth
+	dw NoEggMoves ; Ursaluna
+	dw NoEggMoves ; Weavile
+	dw NoEggMoves ; Yanmega
+	dw NoEggMoves ; Bagon
+	dw NoEggMoves ; Shelgon
+	dw NoEggMoves ; Salamence
+	dw NoEggMoves ; Ralts
+	dw NoEggMoves ; Kirlia
+	dw NoEggMoves ; Gardevoir
+	dw NoEggMoves ; Venipede
+	dw NoEggMoves ; Whirlipede
+	dw NoEggMoves ; Scolipede
+	dw NoEggMoves ; Wyrdeer
+	dw NoEggMoves ; Rhyperior
+	dw NoEggMoves ; Togekiss
 	assert_table_length NUM_POKEMON

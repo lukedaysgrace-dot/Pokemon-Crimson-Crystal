@@ -1,9 +1,9 @@
-	db MESMERIA ; 265
+	db LOW(MESMERIA) ; truncated species id for extended species
 
 	db 85, 50, 60, 105, 135, 105
 	;   hp  atk  def  spd  sat  sdf
 
-	db ICE_TYPE, PSYCHIC_TYPE ; type
+	db ICE, PSYCHIC_TYPE ; type
 	db 30 ; catch rate
 	db 225 ; base exp
 	db NO_ITEM, NO_ITEM ; items

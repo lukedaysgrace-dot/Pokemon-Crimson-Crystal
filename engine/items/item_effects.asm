@@ -1719,7 +1719,7 @@ UseItem_SelectMon:
 	ret c
 
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .not_egg
 
 	call CantUseOnEggMessage

@@ -3959,7 +3959,7 @@ BattleTower_UbersCheck:
 	jr z, .uber
 	cp LUGIA
 	jr c, .next
-	cp NUM_POKEMON + 1
+	cp LOW(NUM_POKEMON + 1)
 	jr nc, .next
 .uber
 	ld a, [hl]

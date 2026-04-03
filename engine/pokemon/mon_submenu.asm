@@ -117,7 +117,7 @@ GetMonMenuString:
 GetMonSubmenuItems:
 	call ResetMonSubmenu
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	ld a, [wLinkMode]
 	and a

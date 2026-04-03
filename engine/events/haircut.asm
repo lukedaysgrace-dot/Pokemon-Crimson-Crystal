@@ -30,7 +30,7 @@ HaircutOrGrooming:
 	pop hl
 	jr c, .nope
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	push hl
 	call GetCurNickname

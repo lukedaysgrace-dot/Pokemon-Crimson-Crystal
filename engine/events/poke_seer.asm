@@ -25,7 +25,7 @@ PokeSeer:
 	jr c, .cancel
 
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 
 	call IsAPokemon

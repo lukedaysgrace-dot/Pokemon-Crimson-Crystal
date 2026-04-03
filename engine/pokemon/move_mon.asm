@@ -473,7 +473,7 @@ AddTempmonToParty:
 
 	ld a, [wCurPartySpecies]
 	ld [wNamedObjectIndex], a
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	dec a
 	call SetSeenAndCaughtMon
@@ -703,7 +703,7 @@ SendGetMonIntoFromBox:
 	ld d, h
 	ld e, l
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	inc hl
 	inc hl
@@ -1224,7 +1224,7 @@ GiveEgg::
 	ld b, 0
 	ld c, a
 	add hl, bc
-	ld a, EGG
+	ld a, LOW(EGG)
 	ld [hl], a
 	ld a, [wPartyCount]
 	dec a

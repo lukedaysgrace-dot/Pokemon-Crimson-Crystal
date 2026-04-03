@@ -123,7 +123,7 @@ RetroactivelyIgnoreEggs:
 	ld a, [hli]
 	cp -1
 	ret z
-	cp EGG
+	cp LOW(EGG)
 	jr nz, .skip_notegg
 	ld a, c
 	and e

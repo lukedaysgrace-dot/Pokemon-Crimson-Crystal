@@ -8,7 +8,7 @@ MoveDeletion:
 	farcall SelectMonFromParty
 	jr c, .declined
 	ld a, [wCurPartySpecies]
-	cp EGG
+	cp LOW(EGG)
 	jr z, .egg
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves + 1
