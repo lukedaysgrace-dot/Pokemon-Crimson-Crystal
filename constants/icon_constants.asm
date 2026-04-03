@@ -290,7 +290,43 @@
 	const ICON_LUGIA
 	const ICON_HOOH
 	const ICON_CELEBI
+
+	; --- new icons ---
+	const ICON_AMBIPOM
+	const ICON_ANNIHILAPE
+	const ICON_DRUNSPARCE
+	const ICON_ELECTIVIRE
+	const ICON_FARIGIRAF
+	const ICON_GLACEON
+	const ICON_GLISCOR
+	const ICON_HONCHKROW
+	const ICON_LEAFEON
+	const ICON_LICKILICKY
+	const ICON_MAGMORTAR
+	const ICON_MAGNEZONE
+	const ICON_MAMOSWINE
+	const ICON_MESMERIA
+	const ICON_MISMAGIUS
+	const ICON_PORYGON_Z
+	const ICON_TANGROWTH
+	const ICON_URSALUNA
+	const ICON_WEAVILE
+	const ICON_YANMEGA
+	const ICON_BAGON
+	const ICON_SHELGON
+	const ICON_SALAMENCE
+	const ICON_RALTS
+	const ICON_KIRLIA
+	const ICON_GARDEVOIR
+	const ICON_VENIPEDE
+	const ICON_WHIRLIPEDE
+	const ICON_SCOLIPEDE
+	const ICON_WYRDEER
+	const ICON_RHYPERIOR
+	const ICON_TOGEKISS
+
 	const ICON_EGG
+
 NUM_ICONS EQU const_value - 1
 
 ; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
@@ -313,4 +349,3 @@ NUM_ICONS EQU const_value - 1
 	const PAL_ICON_GRAY   ; 5
 	const PAL_ICON_TEAL   ; 6
 	const PAL_ICON_PURPLE ; 7
-	
