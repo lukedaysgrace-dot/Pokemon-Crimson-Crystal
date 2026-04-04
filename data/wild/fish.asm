@@ -260,7 +260,7 @@ Group4_Name:
 Group5_Name:
     db " DRATINI@"
 Group6_Name:
-    db " QWILFISH SWARM@"
+    db " QWILFISH SWRM@"
 Group7_Name:
     db " REMORAID SWARM@"
 Group8_Name:

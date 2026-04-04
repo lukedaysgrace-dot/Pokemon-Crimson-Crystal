@@ -333,6 +333,9 @@ gfx/mobile/stadium2_n64.2bpp: tools/gfx += --trim-whitespace
 %.tilemap: %.png
 	$(RGBGFX) -t $@ $<
 
+%.tilemap.lz: %.tilemap
+	$(LZ) -c $< > $@
+
 %.attrmap: %.png
 	$(RGBGFX) -a $@ $<
 

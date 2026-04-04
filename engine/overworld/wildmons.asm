@@ -64,7 +64,7 @@ FindNest:
 	inc hl
 	inc hl
 	inc hl
-	ld a, NUM_GRASSMON * 3
+	ld a, NUM_GRASSMON
 	call .SearchMapForMon
 	jr nc, .next_grass
 	ld [de], a
@@ -99,14 +99,19 @@ FindNest:
 	jr .FindWater
 
 .SearchMapForMon:
-	inc hl
+	inc hl ; level -> species low
 .ScanMapLoop:
 	push af
 	ld a, [wNamedObjectIndex]
 	cp [hl]
+	jr nz, .not_found
+	inc hl
+	ld a, [wNamedObjectIndex + 1]
+	cp [hl]
 	jr z, .found
-	inc hl
-	inc hl
+
+.not_found
+	inc hl ; species high -> next entry level
 	pop af
 	dec a
 	jr nz, .ScanMapLoop
@@ -264,7 +269,7 @@ ChooseWildEncounter:
 	inc hl
 	inc hl
 	ld a, [wTimeOfDay]
-	ld bc, NUM_GRASSMON * 2
+	ld bc, NUM_GRASSMON * 3
 	call AddNTimes
 	ld de, GrassMonProbTable
 
@@ -315,8 +320,8 @@ ChooseWildEncounter:
 .ok
 	ld a, b
 	ld [wCurPartyLevel], a
+	ld a, [hli]
 	ld b, [hl]
-	ld a, b
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
@@ -776,10 +781,10 @@ RandomUnseenWildMon:
 
 .GetGrassmon:
 	push hl
-	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
+	ld bc, 5 + 4 * 3 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
 	ld a, [wTimeOfDay]
-	ld bc, NUM_GRASSMON * 2
+	ld bc, NUM_GRASSMON * 3
 	call AddNTimes
 .randloop1
 	call Random
@@ -790,33 +795,43 @@ RandomUnseenWildMon:
 	ld b, 0
 	add hl, bc
 	add hl, bc
+	add hl, bc
 ; We now have the pointer to one of the last (rarest) three wild Pokemon found in that area.
 	inc hl
-	ld c, [hl] ; Contains the species index of this rare Pokemon
+	ld a, [hli] ; rare species low byte
+	ld e, a
+	ld a, [hl]  ; rare species high byte
+	ld d, a
 	pop hl
-	ld de, 5 + 0 * 2
-	add hl, de
-	inc hl ; Species index of the most common Pokemon on that route
+	ld bc, 5 + 0 * 3
+	add hl, bc
+	inc hl ; species low byte of the most common Pokemon on that route
 	ld b, 4
 .loop2
 	ld a, [hli]
-	cp c ; Compare this most common Pokemon with the rare one stored in c.
+	cp e
+	jr nz, .next_common
+	ld a, [hl]
+	cp d
 	jr z, .done
-	inc hl
+.next_common
+	inc hl ; species high -> next entry level
 	dec b
 	jr nz, .loop2
 ; This Pokemon truly is rare.
-	push bc
-	dec c
-	ld a, c
+	push de
+	ld a, e
+	dec a
 	call CheckSeenMon
-	pop bc
+	pop de
 	jr nz, .done
 ; Since we haven't seen it, have the caller tell us about it.
+	ld a, e
+	ld [wNamedObjectIndex], a
+	ld a, d
+	ld [wNamedObjectIndex + 1], a
 	ld de, wStringBuffer1
 	call CopyName1
-	ld a, c
-	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, .JustSawSomeRareMonText
 	call PrintText
@@ -845,11 +860,11 @@ RandomPhoneWildMon:
 	call LookUpWildmonsForMapDE
 
 .ok
-	ld bc, 5 + 0 * 2
+	ld bc, 5 + 0 * 3
 	add hl, bc
 	ld a, [wTimeOfDay]
 	inc a
-	ld bc, NUM_GRASSMON * 2
+	ld bc, NUM_GRASSMON * 3
 .loop
 	dec a
 	jr z, .done
@@ -859,13 +874,16 @@ RandomPhoneWildMon:
 .done
 	call Random
 	and %11
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	add hl, de
 	inc hl
-	ld a, [hl]
+	ld a, [hli]
 	ld [wNamedObjectIndex], a
+	ld a, [hl]
+	ld [wNamedObjectIndex + 1], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer4
@@ -995,3 +1013,4 @@ INCLUDE "data/wild/kanto_grass.asm"
 INCLUDE "data/wild/kanto_water.asm"
 INCLUDE "data/wild/swarm_grass.asm"
 INCLUDE "data/wild/swarm_water.asm"
+

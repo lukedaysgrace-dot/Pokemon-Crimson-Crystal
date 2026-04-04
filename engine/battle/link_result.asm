@@ -1,3 +1,5 @@
+SECTION "Link Result", ROMX
+
 DetermineLinkBattleResult:
 	farcall UpdateEnemyMonInParty
 	ld hl, wPartyMon1HP
@@ -54,7 +56,6 @@ DetermineLinkBattleResult:
 .drawn
 	ld a, [wBattleResult]
 	and $f0
-	add DRAW
 	ld [wBattleResult], a
 	ret
 
