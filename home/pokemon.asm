@@ -189,8 +189,6 @@ endr
 GetCryIndex::
 	and a
 	jr z, .no
-	cp LOW(NUM_POKEMON + 1)
-	jr nc, .no
 
 	dec a
 	ld c, a

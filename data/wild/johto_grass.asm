@@ -1245,13 +1245,13 @@ JohtoGrassWildMons:
 	db 3, HOPPIP
 	db 3, HOPPIP
 	; day
-	db 2, HOPPIP
-	db 2, HOPPIP
-	db 3, HOPPIP
-	db 3, HOPPIP
-	db 2, HOPPIP
-	db 3, HOPPIP
-	db 3, HOPPIP
+	db 2, ANNIHILAPE
+	db 2, DRUNSPARCE
+	db 3, RHYPERIOR
+	db 3, TYRANITAR
+	db 2, AMBIPOM
+	db 3, BULBASAUR
+	db 3, CELEBI
 	; nite
 	db 2, HOOTHOOT
 	db 2, RATTATA
