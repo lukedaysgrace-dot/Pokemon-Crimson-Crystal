@@ -5738,6 +5738,7 @@ MoveInfoBox:
 	ld [hl], "/"
 
 	callfar UpdateMoveData
+	call .PrintMoveCategory
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	ld b, a
 	hlcoord 2, 10
@@ -5749,7 +5750,28 @@ MoveInfoBox:
 .Disabled:
 	db "Disabled!@"
 .Type:
-	db "TYPE/@"
+	db "     @"
+
+.PrintMoveCategory:
+	hlcoord 1, 9
+	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
+	and a
+	ld de, .Physical
+	jr z, .place
+	cp CATEGORIZE_SPECIAL
+	ld de, .Special
+	jr z, .place
+	ld de, .Status
+.place
+	call PlaceString
+	ret
+
+.Physical:
+	db "PHYS@"
+.Special:
+	db "SPEC@"
+.Status:
+	db "STAT@"
 
 .PrintPP:
 	hlcoord 5, 11

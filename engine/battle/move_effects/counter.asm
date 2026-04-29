@@ -31,9 +31,9 @@ BattleCommand_Counter:
 	and a
 	ret z
 
-	ld a, [wStringBuffer1 + MOVE_TYPE]
-	cp SPECIAL
-	ret nc
+	ld a, [wStringBuffer1 + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+	ret z
 
 	; BUG: Move should fail with all non-damaging battle actions
 	ld hl, wCurDamage

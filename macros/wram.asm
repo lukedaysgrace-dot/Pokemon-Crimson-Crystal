@@ -257,6 +257,7 @@ move_struct: MACRO
 \1Effect::       db
 \1Power::        db
 \1Type::         db
+\1Category::      db
 \1Accuracy::     db
 \1PP::           db
 \1EffectChance:: db

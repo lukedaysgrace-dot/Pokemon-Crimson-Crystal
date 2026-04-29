@@ -1351,9 +1351,9 @@ AI_Smart_Counter:
 	and a
 	jr z, .asm_38c0e
 
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr nc, .asm_38c0e
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_PHYSICAL
+	jr nz, .asm_38c0e
 
 	inc b
 
@@ -1379,9 +1379,9 @@ AI_Smart_Counter:
 	and a
 	jr z, .asm_38c38
 
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr nc, .asm_38c38
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_PHYSICAL
+	jr nz, .asm_38c38
 
 .asm_38c30
 	call Random
@@ -2522,9 +2522,9 @@ AI_Smart_MirrorCoat:
 	and a
 	jr z, .asm_391a8
 
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr c, .asm_391a8
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+	jr nz, .asm_391a8
 
 	inc b
 
@@ -2550,9 +2550,9 @@ AI_Smart_MirrorCoat:
 	and a
 	jr z, .asm_391d2
 
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
-	cp SPECIAL
-	jr c, .asm_391d2
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+	jr nz, .asm_391d2
 
 .asm_391ca
 	call Random

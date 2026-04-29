@@ -32,9 +32,9 @@ BattleCommand_MirrorCoat:
 	and a
 	ret z
 
-	ld a, [wStringBuffer1 + MOVE_TYPE]
-	cp SPECIAL
-	ret c
+	ld a, [wStringBuffer1 + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+	ret nz
 
 	; BUG: Move should fail with all non-damaging battle actions
 	ld hl, wCurDamage

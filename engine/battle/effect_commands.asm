@@ -2647,9 +2647,10 @@ PlayerAttackDamage:
 	ld d, a
 	ret z
 
+	inc hl ; wPlayerMoveStructType -> Category
 	ld a, [hl]
-	cp SPECIAL
-	jr nc, .special
+	cp CATEGORIZE_SPECIAL
+	jr z, .special
 
 .physical
 	ld hl, wEnemyMonDefense
@@ -2778,8 +2779,8 @@ CheckDamageStatsCritical:
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy
-	ld a, [wPlayerMoveStructType]
-	cp SPECIAL
+	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
 ; special
 	ld a, [wPlayerSAtkLevel]
 	ld b, a
@@ -2792,8 +2793,8 @@ CheckDamageStatsCritical:
 	jr .end
 
 .enemy
-	ld a, [wEnemyMoveStructType]
-	cp SPECIAL
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
 ; special
 	ld a, [wEnemySAtkLevel]
 	ld b, a
@@ -2900,9 +2901,10 @@ EnemyAttackDamage:
 	and a
 	ret z
 
+	inc hl ; Type -> Category
 	ld a, [hl]
-	cp SPECIAL
-	jr nc, .Special
+	cp CATEGORIZE_SPECIAL
+	jr z, .Special
 
 .physical
 	ld hl, wBattleMonDefense
