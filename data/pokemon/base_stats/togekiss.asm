@@ -1,11 +1,11 @@
 	db 0 ; species ID placeholder
 
-	db  80,  90,  70,  80,  90,  70
-	;   hp  atk  def  spd  sat  sdf
+	db  85,  50,  95,  80, 120, 115
+	;  hp  atk  def  spd  sat  sdf
 
-	db NORMAL, NORMAL ; type
-	db 45 ; catch rate
-	db 120 ; base exp
+	db NORMAL, FLYING ; type
+	db 30 ; catch rate
+	db 245 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

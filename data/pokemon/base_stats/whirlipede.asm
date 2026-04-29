@@ -1,11 +1,11 @@
 	db 0 ; species ID placeholder
 
-	db  80,  90,  70,  80,  90,  70
-	;   hp  atk  def  spd  sat  sdf
+	db  40,  55,  99,  47,  40,  79
+	;  hp  atk  def  spd  sat  sdf
 
-	db NORMAL, NORMAL ; type
-	db 45 ; catch rate
-	db 120 ; base exp
+	db BUG, POISON ; type
+	db 120 ; catch rate
+	db 126 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
