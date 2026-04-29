@@ -87,6 +87,7 @@ AlphabeticalPokedexOrder:
 	dw HITMONTOP
 	dw HO_OH
 	dw HOOTHOOT
+	dw HONCHKROW
 	dw HOPPIP
 	dw HORSEA
 	dw HOUNDOOM
