@@ -5767,11 +5767,11 @@ MoveInfoBox:
 	ret
 
 .Physical:
-	db "PHYS@"
+	db "PHYSICAL/@"
 .Special:
-	db "SPEC@"
+	db "SPECIAL/@"
 .Status:
-	db "STAT@"
+	db "STATUS/@"
 
 .PrintPP:
 	hlcoord 5, 11
