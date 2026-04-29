@@ -1440,30 +1440,40 @@ CelebiEvosAttacks:
 HonchkrowEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, PECK
-	dbw 1, PURSUIT
-	dbw 1, HAZE
+	dbw 11, PURSUIT
+	dbw 16, HAZE
+	dbw 26, NIGHT_SHADE
 	dbw 31, FAINT_ATTACK
-	dbw 41, NIGHT_SHADE
-	dbw 51, MEAN_LOOK
-	dbw 61, SKY_ATTACK
+	dbw 41, MEAN_LOOK
 	db 0 ; no more level-up moves
 
 AmbipomEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, SCRATCH
+	dbw 1, TAIL_WHIP
+	dbw 6, SAND_ATTACK
+	dbw 12, BATON_PASS
+	dbw 19, FURY_SWIPES
+	dbw 27, SWIFT
+	dbw 36, SCREECH
+	dbw 46, AGILITY
 	db 0 ; no more level-up moves
 
 AnnihilapeEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 1, LOW_KICK
+	dbw 1, RAGE
+	dbw 9, LOW_KICK
+	dbw 15, KARATE_CHOP
+	dbw 21, FURY_SWIPES
+	dbw 27, FOCUS_ENERGY
+	dbw 28, RAGE
+	dbw 36, SEISMIC_TOSS
+	dbw 45, CROSS_CHOP
+	dbw 54, SCREECH
+	dbw 63, THRASH
 	db 0 ; no more level-up moves
 
 BagonEvosAttacks:
@@ -1477,29 +1487,40 @@ BagonEvosAttacks:
 
 DrunsparceEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, RAGE
+	dbw 5, DEFENSE_CURL
+	dbw 13, GLARE
+	dbw 18, SPITE
+	dbw 26, PURSUIT
+	dbw 30, SCREECH
+	dbw 38, TAKE_DOWN
 	db 0 ; no more level-up moves
 
 ElectivireEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, QUICK_ATTACK
+	dbw 1, LEER
+	dbw 1, THUNDERPUNCH
+	dbw 9, THUNDERPUNCH
+	dbw 17, LIGHT_SCREEN
+	dbw 25, SWIFT
+	dbw 36, SCREECH
+	dbw 47, THUNDERBOLT
+	dbw 58, THUNDER
 	db 0 ; no more level-up moves
 
 FarigirafEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, CONFUSION
+	dbw 1, STOMP
+	dbw 7, CONFUSION
+	dbw 13, STOMP
+	dbw 20, AGILITY
+	dbw 30, BATON_PASS
+	dbw 41, PSYBEAM
+	dbw 54, CRUNCH
 	db 0 ; no more level-up moves
 
 GardevoirEvosAttacks:
@@ -1514,19 +1535,25 @@ GardevoirEvosAttacks:
 GlaceonEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, TAIL_WHIP
+	dbw 8, SAND_ATTACK
+	dbw 16, GROWL
+	dbw 23, QUICK_ATTACK
+	dbw 30, BITE
+	dbw 36, BATON_PASS
+	dbw 42, TAKE_DOWN
 	db 0 ; no more level-up moves
 
 GliscorEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, POISON_STING
+	dbw 6, SAND_ATTACK
+	dbw 13, HARDEN
+	dbw 20, QUICK_ATTACK
+	dbw 28, FAINT_ATTACK
+	dbw 36, SLASH
+	dbw 44, SCREECH
+	dbw 52, GUILLOTINE
 	db 0 ; no more level-up moves
 
 KirliaEvosAttacks:
@@ -1541,46 +1568,71 @@ KirliaEvosAttacks:
 LeafeonEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, TAIL_WHIP
+	dbw 8, SAND_ATTACK
+	dbw 16, GROWL
+	dbw 23, QUICK_ATTACK
+	dbw 30, BITE
+	dbw 36, BATON_PASS
+	dbw 42, TAKE_DOWN
 	db 0 ; no more level-up moves
 
 LickilickyEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, LICK
+	dbw 7, SUPERSONIC
+	dbw 13, DEFENSE_CURL
+	dbw 19, STOMP
+	dbw 25, WRAP
+	dbw 31, DISABLE
+	dbw 37, SLAM
+	dbw 43, SCREECH
 	db 0 ; no more level-up moves
 
 MagmortarEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, EMBER
+	dbw 1, LEER
+	dbw 1, SMOG
+	dbw 1, FIRE_PUNCH
+	dbw 7, LEER
+	dbw 13, SMOG
+	dbw 19, FIRE_PUNCH
+	dbw 25, SMOKESCREEN
+	dbw 33, SUNNY_DAY
+	dbw 41, FLAMETHROWER
+	dbw 49, CONFUSE_RAY
+	dbw 57, FIRE_BLAST
 	db 0 ; no more level-up moves
 
 MagnezoneEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, THUNDERSHOCK
+	dbw 1, SUPERSONIC
+	dbw 1, SONICBOOM
+	dbw 6, THUNDERSHOCK
+	dbw 11, SUPERSONIC
+	dbw 16, SONICBOOM
+	dbw 21, THUNDER_WAVE
+	dbw 27, LOCK_ON
+	dbw 35, TRI_ATTACK
+	dbw 43, SCREECH
+	dbw 53, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 MamoswineEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, HORN_ATTACK
+	dbw 1, POWDER_SNOW
+	dbw 1, ENDURE
+	dbw 10, POWDER_SNOW
+	dbw 19, ENDURE
+	dbw 28, TAKE_DOWN
+	dbw 33, FURY_ATTACK
+	dbw 42, MIST
+	dbw 56, BLIZZARD
+	dbw 70, AMNESIA
 	db 0 ; no more level-up moves
 
 MesmeriaEvosAttacks:
@@ -1594,20 +1646,28 @@ MesmeriaEvosAttacks:
 
 MismagiusEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
 	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, PSYWAVE
+	dbw 6, SPITE
+	dbw 12, CONFUSE_RAY
+	dbw 19, MEAN_LOOK
+	dbw 27, PSYBEAM
+	dbw 36, PAIN_SPLIT
+	dbw 46, PERISH_SONG
 	db 0 ; no more level-up moves
 
 PorygonZEvosAttacks:
 	db 0 ; no more evolutions
+	dbw 1, CONVERSION2
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, CONVERSION
+	dbw 9, AGILITY
+	dbw 12, PSYBEAM
+	dbw 20, RECOVER
+	dbw 24, DEFENSE_CURL
+	dbw 32, LOCK_ON
+	dbw 36, TRI_ATTACK
+	dbw 44, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 RaltsEvosAttacks:
@@ -1621,20 +1681,30 @@ RaltsEvosAttacks:
 
 RhyperiorEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, HORN_ATTACK
+	dbw 1, TAIL_WHIP
+	dbw 1, STOMP
+	dbw 1, FURY_ATTACK
+	dbw 13, STOMP
+	dbw 19, FURY_ATTACK
+	dbw 31, SCARY_FACE
+	dbw 37, HORN_DRILL
+	dbw 54, TAKE_DOWN
+	dbw 65, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 RypheriorEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, HORN_ATTACK
+	dbw 1, TAIL_WHIP
+	dbw 1, STOMP
+	dbw 1, FURY_ATTACK
+	dbw 13, STOMP
+	dbw 19, FURY_ATTACK
+	dbw 31, SCARY_FACE
+	dbw 37, HORN_DRILL
+	dbw 54, TAKE_DOWN
+	dbw 65, EARTHQUAKE
 	db 0 ; no more level-up moves
 
 SalamenceEvosAttacks:
@@ -1666,29 +1736,42 @@ ShelgonEvosAttacks:
 
 TangrowthEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, CONSTRICT
+	dbw 4, SLEEP_POWDER
+	dbw 10, ABSORB
+	dbw 13, POISONPOWDER
+	dbw 19, VINE_WHIP
+	dbw 25, BIND
+	dbw 31, MEGA_DRAIN
+	dbw 34, STUN_SPORE
+	dbw 40, SLAM
+	dbw 46, GROWTH
 	db 0 ; no more level-up moves
 
 TogekissEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
 	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, CHARM
+	dbw 7, METRONOME
+	dbw 18, SWEET_KISS
+	dbw 25, ENCORE
+	dbw 31, SAFEGUARD
+	dbw 38, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 UrsalunaEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 1, LICK
+	dbw 1, FURY_SWIPES
+	dbw 8, LICK
+	dbw 15, FURY_SWIPES
+	dbw 22, FAINT_ATTACK
+	dbw 29, REST
+	dbw 39, SLASH
+	dbw 49, SNORE
+	dbw 59, THRASH
 	db 0 ; no more level-up moves
 
 VenipedeEvosAttacks:
@@ -1702,11 +1785,16 @@ VenipedeEvosAttacks:
 
 WeavileEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 9, QUICK_ATTACK
+	dbw 17, SCREECH
+	dbw 25, FAINT_ATTACK
+	dbw 33, FURY_SWIPES
+	dbw 41, AGILITY
+	dbw 49, SLASH
+	dbw 57, BEAT_UP
+	dbw 65, METAL_CLAW
 	db 0 ; no more level-up moves
 
 WhirlipedeEvosAttacks:
@@ -1721,18 +1809,24 @@ WhirlipedeEvosAttacks:
 WyrdeerEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 8, LEER
+	dbw 15, HYPNOSIS
+	dbw 23, STOMP
+	dbw 31, SAND_ATTACK
+	dbw 40, TAKE_DOWN
+	dbw 49, CONFUSE_RAY
 	db 0 ; no more level-up moves
 
 YanmegaEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 10, QUICK_ATTACK
-	dbw 20, BITE
-	dbw 30, SWIFT
+	dbw 1, FORESIGHT
+	dbw 7, QUICK_ATTACK
+	dbw 13, DOUBLE_TEAM
+	dbw 19, SONICBOOM
+	dbw 25, DETECT
+	dbw 31, SUPERSONIC
+	dbw 37, WING_ATTACK
+	dbw 43, SCREECH
 	db 0 ; no more level-up moves
 
