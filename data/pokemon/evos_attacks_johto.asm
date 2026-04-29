@@ -102,6 +102,39 @@ EvosAttacksPointers2::
 	dw HoOhEvosAttacks
 	dw CelebiEvosAttacks
 	dw HonchkrowEvosAttacks
+	dw AmbipomEvosAttacks
+	dw AnnihilapeEvosAttacks
+	dw BagonEvosAttacks
+	dw DrunsparceEvosAttacks
+	dw ElectivireEvosAttacks
+	dw FarigirafEvosAttacks
+	dw GardevoirEvosAttacks
+	dw GlaceonEvosAttacks
+	dw GliscorEvosAttacks
+	dw KirliaEvosAttacks
+	dw LeafeonEvosAttacks
+	dw LickilickyEvosAttacks
+	dw MagmortarEvosAttacks
+	dw MagnezoneEvosAttacks
+	dw MamoswineEvosAttacks
+	dw MesmeriaEvosAttacks
+	dw MismagiusEvosAttacks
+	dw PorygonZEvosAttacks
+	dw RaltsEvosAttacks
+	dw RhyperiorEvosAttacks
+	dw RypheriorEvosAttacks
+	dw SalamenceEvosAttacks
+	dw ScolipedeEvosAttacks
+	dw ShelgonEvosAttacks
+	dw TangrowthEvosAttacks
+	dw TogekissEvosAttacks
+	dw UrsalunaEvosAttacks
+	dw VenipedeEvosAttacks
+	dw WeavileEvosAttacks
+	dw WhirlipedeEvosAttacks
+	dw WyrdeerEvosAttacks
+	dw YanmegaEvosAttacks
+
 
 ChikoritaEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, BAYLEEF
@@ -1414,3 +1447,292 @@ HonchkrowEvosAttacks:
 	dbw 51, MEAN_LOOK
 	dbw 61, SKY_ATTACK
 	db 0 ; no more level-up moves
+
+AmbipomEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+AnnihilapeEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+BagonEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, SHELGON
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+DrunsparceEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+ElectivireEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+FarigirafEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+GardevoirEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+GlaceonEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+GliscorEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+KirliaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, GARDEVOIR
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+LeafeonEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+LickilickyEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+MagmortarEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+MagnezoneEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+MamoswineEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+MesmeriaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+MismagiusEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+PorygonZEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+RaltsEvosAttacks:
+	dbbw EVOLVE_LEVEL, 20, KIRLIA
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+RhyperiorEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+RypheriorEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+SalamenceEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+ScolipedeEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+ShelgonEvosAttacks:
+	dbbw EVOLVE_LEVEL, 50, SALAMENCE
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+TangrowthEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+TogekissEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+UrsalunaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+VenipedeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 22, WHIRLIPEDE
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+WeavileEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+WhirlipedeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, SCOLIPEDE
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+WyrdeerEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+
+YanmegaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	db 0 ; no more level-up moves
+

@@ -251,3 +251,35 @@ AnimationPointers:
 	dw HoOhAnimation
 	dw CelebiAnimation
 	dw HonchkrowAnimation
+	dw AmbipomAnimation
+	dw AnnihilapeAnimation
+	dw BagonAnimation
+	dw DrunsparceAnimation
+	dw ElectivireAnimation
+	dw FarigirafAnimation
+	dw GardevoirAnimation
+	dw GlaceonAnimation
+	dw GliscorAnimation
+	dw KirliaAnimation
+	dw LeafeonAnimation
+	dw LickilickyAnimation
+	dw MagmortarAnimation
+	dw MagnezoneAnimation
+	dw MamoswineAnimation
+	dw MesmeriaAnimation
+	dw MismagiusAnimation
+	dw PorygonZAnimation
+	dw RaltsAnimation
+	dw RhyperiorAnimation
+	dw RypheriorAnimation
+	dw SalamenceAnimation
+	dw ScolipedeAnimation
+	dw ShelgonAnimation
+	dw TangrowthAnimation
+	dw TogekissAnimation
+	dw UrsalunaAnimation
+	dw VenipedeAnimation
+	dw WeavileAnimation
+	dw WhirlipedeAnimation
+	dw WyrdeerAnimation
+	dw YanmegaAnimation

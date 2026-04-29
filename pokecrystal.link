@@ -73,7 +73,6 @@ ROMX $11
 ROMX $12
 	"Crystal Features 1"
 	"Egg Moves 2"
-	"Evolutions and Attacks 2"
 ROMX $13
 	"bank13"
 ROMX $14
@@ -163,7 +162,6 @@ ROMX $3b
 ROMX $3c
 	"Songs 3"
 	"Sound Effects"
-	"Cries"
 ROMX $3d
 	"Songs 4"
 ROMX $3e
@@ -295,12 +293,16 @@ ROMX $74
 	"Pokedex Entries 193-251"
 ROMX $75
 	"16-bit ID stuff"
+ROMX $76
+	"Cries"
 ROMX $77
 	"bank77"
 	"Tileset Data 7"
 	"bank77_2"
 ROMX $78
 	"Tileset Data 8"
+ROMX $79
+	"Evolutions and Attacks 2"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c

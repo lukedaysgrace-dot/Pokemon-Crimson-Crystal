@@ -251,3 +251,35 @@ FramesPointers:
 	dba HoOhFrames
 	dba CelebiFrames
 	dba HonchkrowFrames
+	dba AmbipomFrames
+	dba AnnihilapeFrames
+	dba BagonFrames
+	dba DrunsparceFrames
+	dba ElectivireFrames
+	dba FarigirafFrames
+	dba GardevoirFrames
+	dba GlaceonFrames
+	dba GliscorFrames
+	dba KirliaFrames
+	dba LeafeonFrames
+	dba LickilickyFrames
+	dba MagmortarFrames
+	dba MagnezoneFrames
+	dba MamoswineFrames
+	dba MesmeriaFrames
+	dba MismagiusFrames
+	dba PorygonZFrames
+	dba RaltsFrames
+	dba RhyperiorFrames
+	dba RypheriorFrames
+	dba SalamenceFrames
+	dba ScolipedeFrames
+	dba ShelgonFrames
+	dba TangrowthFrames
+	dba TogekissFrames
+	dba UrsalunaFrames
+	dba VenipedeFrames
+	dba WeavileFrames
+	dba WhirlipedeFrames
+	dba WyrdeerFrames
+	dba YanmegaFrames

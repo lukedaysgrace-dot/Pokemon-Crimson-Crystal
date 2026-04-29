@@ -712,12 +712,93 @@ UnownIBackpic:       INCBIN "gfx/pokemon/unown_i/back.2bpp.lz"
 UnownRBackpic:       INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
 
 
+SECTION "Pics 20", ROMX
+
+HonchkrowFrontpic: INCBIN "gfx/pokemon/honchkrow/front.animated.2bpp.lz"
+HonchkrowBackpic:  INCBIN "gfx/pokemon/honchkrow/back.2bpp.lz"
+AmbipomFrontpic: INCBIN "gfx/pokemon/ambipom/front.animated.2bpp.lz"
+AmbipomBackpic:  INCBIN "gfx/pokemon/ambipom/back.2bpp.lz"
+AnnihilapeFrontpic: INCBIN "gfx/pokemon/annihilape/front.animated.2bpp.lz"
+AnnihilapeBackpic:  INCBIN "gfx/pokemon/annihilape/back.2bpp.lz"
+BagonFrontpic: INCBIN "gfx/pokemon/bagon/front.animated.2bpp.lz"
+BagonBackpic:  INCBIN "gfx/pokemon/bagon/back.2bpp.lz"
+DrunsparceFrontpic: INCBIN "gfx/pokemon/drunsparce/front.animated.2bpp.lz"
+DrunsparceBackpic:  INCBIN "gfx/pokemon/drunsparce/back.2bpp.lz"
+ElectivireFrontpic: INCBIN "gfx/pokemon/electivire/front.animated.2bpp.lz"
+ElectivireBackpic:  INCBIN "gfx/pokemon/electivire/back.2bpp.lz"
+
+SECTION "Pics 21", ROMX
+
+FarigirafFrontpic: INCBIN "gfx/pokemon/farigiraf/front.animated.2bpp.lz"
+FarigirafBackpic:  INCBIN "gfx/pokemon/farigiraf/back.2bpp.lz"
+GardevoirFrontpic: INCBIN "gfx/pokemon/gardevoir/front.animated.2bpp.lz"
+GardevoirBackpic:  INCBIN "gfx/pokemon/gardevoir/back.2bpp.lz"
+GlaceonFrontpic: INCBIN "gfx/pokemon/glaceon/front.animated.2bpp.lz"
+GlaceonBackpic:  INCBIN "gfx/pokemon/glaceon/back.2bpp.lz"
+GliscorFrontpic: INCBIN "gfx/pokemon/gliscor/front.animated.2bpp.lz"
+GliscorBackpic:  INCBIN "gfx/pokemon/gliscor/back.2bpp.lz"
+KirliaFrontpic: INCBIN "gfx/pokemon/kirlia/front.animated.2bpp.lz"
+KirliaBackpic:  INCBIN "gfx/pokemon/kirlia/back.2bpp.lz"
+LeafeonFrontpic: INCBIN "gfx/pokemon/leafeon/front.animated.2bpp.lz"
+LeafeonBackpic:  INCBIN "gfx/pokemon/leafeon/back.2bpp.lz"
+
+SECTION "Pics 22", ROMX
+
+LickilickyFrontpic: INCBIN "gfx/pokemon/lickilicky/front.animated.2bpp.lz"
+LickilickyBackpic:  INCBIN "gfx/pokemon/lickilicky/back.2bpp.lz"
+MagmortarFrontpic: INCBIN "gfx/pokemon/magmortar/front.animated.2bpp.lz"
+MagmortarBackpic:  INCBIN "gfx/pokemon/magmortar/back.2bpp.lz"
+MagnezoneFrontpic: INCBIN "gfx/pokemon/magnezone/front.animated.2bpp.lz"
+MagnezoneBackpic:  INCBIN "gfx/pokemon/magnezone/back.2bpp.lz"
+MamoswineFrontpic: INCBIN "gfx/pokemon/mamoswine/front.animated.2bpp.lz"
+MamoswineBackpic:  INCBIN "gfx/pokemon/mamoswine/back.2bpp.lz"
+MesmeriaFrontpic: INCBIN "gfx/pokemon/mesmeria/front.animated.2bpp.lz"
+MesmeriaBackpic:  INCBIN "gfx/pokemon/mesmeria/back.2bpp.lz"
+MismagiusFrontpic: INCBIN "gfx/pokemon/mismagius/front.animated.2bpp.lz"
+MismagiusBackpic:  INCBIN "gfx/pokemon/mismagius/back.2bpp.lz"
+
+SECTION "Pics 23", ROMX
+
+PorygonZFrontpic: INCBIN "gfx/pokemon/porygon_z/front.animated.2bpp.lz"
+PorygonZBackpic:  INCBIN "gfx/pokemon/porygon_z/back.2bpp.lz"
+RaltsFrontpic: INCBIN "gfx/pokemon/ralts/front.animated.2bpp.lz"
+RaltsBackpic:  INCBIN "gfx/pokemon/ralts/back.2bpp.lz"
+RhyperiorFrontpic: INCBIN "gfx/pokemon/rhyperior/front.animated.2bpp.lz"
+RhyperiorBackpic:  INCBIN "gfx/pokemon/rhyperior/back.2bpp.lz"
+RypheriorFrontpic: INCBIN "gfx/pokemon/rypherior/front.animated.2bpp.lz"
+RypheriorBackpic:  INCBIN "gfx/pokemon/rypherior/back.2bpp.lz"
+SalamenceFrontpic: INCBIN "gfx/pokemon/salamence/front.animated.2bpp.lz"
+SalamenceBackpic:  INCBIN "gfx/pokemon/salamence/back.2bpp.lz"
+ScolipedeFrontpic: INCBIN "gfx/pokemon/scolipede/front.animated.2bpp.lz"
+ScolipedeBackpic:  INCBIN "gfx/pokemon/scolipede/back.2bpp.lz"
+
+SECTION "Pics 24", ROMX
+
+ShelgonFrontpic: INCBIN "gfx/pokemon/shelgon/front.animated.2bpp.lz"
+ShelgonBackpic:  INCBIN "gfx/pokemon/shelgon/back.2bpp.lz"
+TangrowthFrontpic: INCBIN "gfx/pokemon/tangrowth/front.animated.2bpp.lz"
+TangrowthBackpic:  INCBIN "gfx/pokemon/tangrowth/back.2bpp.lz"
+TogekissFrontpic: INCBIN "gfx/pokemon/togekiss/front.animated.2bpp.lz"
+TogekissBackpic:  INCBIN "gfx/pokemon/togekiss/back.2bpp.lz"
+UrsalunaFrontpic: INCBIN "gfx/pokemon/ursaluna/front.animated.2bpp.lz"
+UrsalunaBackpic:  INCBIN "gfx/pokemon/ursaluna/back.2bpp.lz"
+VenipedeFrontpic: INCBIN "gfx/pokemon/venipede/front.animated.2bpp.lz"
+VenipedeBackpic:  INCBIN "gfx/pokemon/venipede/back.2bpp.lz"
+WeavileFrontpic: INCBIN "gfx/pokemon/weavile/front.animated.2bpp.lz"
+WeavileBackpic:  INCBIN "gfx/pokemon/weavile/back.2bpp.lz"
+
+SECTION "Pics 25", ROMX
+
+WhirlipedeFrontpic: INCBIN "gfx/pokemon/whirlipede/front.animated.2bpp.lz"
+WhirlipedeBackpic:  INCBIN "gfx/pokemon/whirlipede/back.2bpp.lz"
+WyrdeerFrontpic: INCBIN "gfx/pokemon/wyrdeer/front.animated.2bpp.lz"
+WyrdeerBackpic:  INCBIN "gfx/pokemon/wyrdeer/back.2bpp.lz"
+YanmegaFrontpic: INCBIN "gfx/pokemon/yanmega/front.animated.2bpp.lz"
+YanmegaBackpic:  INCBIN "gfx/pokemon/yanmega/back.2bpp.lz"
 SECTION "Pics 19", ROMX
 
 ; Seems to be an accidental copy of the previous bank
 
-HonchkrowFrontpic: INCBIN "gfx/pokemon/honchkrow/front.animated.2bpp.lz"
-HonchkrowBackpic:  INCBIN "gfx/pokemon/honchkrow/back.2bpp.lz"
 
 INCBIN "gfx/pokemon/spinarak/back.2bpp.lz"
 INCBIN "gfx/pokemon/raikou/back.2bpp.lz"

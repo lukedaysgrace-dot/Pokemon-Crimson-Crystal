@@ -251,3 +251,35 @@ AnimationIdlePointers:
 	dw HoOhAnimationIdle
 	dw CelebiAnimationIdle
 	dw HonchkrowAnimationIdle
+	dw AmbipomAnimationIdle
+	dw AnnihilapeAnimationIdle
+	dw BagonAnimationIdle
+	dw DrunsparceAnimationIdle
+	dw ElectivireAnimationIdle
+	dw FarigirafAnimationIdle
+	dw GardevoirAnimationIdle
+	dw GlaceonAnimationIdle
+	dw GliscorAnimationIdle
+	dw KirliaAnimationIdle
+	dw LeafeonAnimationIdle
+	dw LickilickyAnimationIdle
+	dw MagmortarAnimationIdle
+	dw MagnezoneAnimationIdle
+	dw MamoswineAnimationIdle
+	dw MesmeriaAnimationIdle
+	dw MismagiusAnimationIdle
+	dw PorygonZAnimationIdle
+	dw RaltsAnimationIdle
+	dw RhyperiorAnimationIdle
+	dw RypheriorAnimationIdle
+	dw SalamenceAnimationIdle
+	dw ScolipedeAnimationIdle
+	dw ShelgonAnimationIdle
+	dw TangrowthAnimationIdle
+	dw TogekissAnimationIdle
+	dw UrsalunaAnimationIdle
+	dw VenipedeAnimationIdle
+	dw WeavileAnimationIdle
+	dw WhirlipedeAnimationIdle
+	dw WyrdeerAnimationIdle
+	dw YanmegaAnimationIdle

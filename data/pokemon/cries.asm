@@ -257,3 +257,35 @@ PokemonCries::
 	mon_cry CRY_AIPOM,       $000,  $180 ; HO_OH
 	mon_cry CRY_ENTEI,       $14a,  $111 ; CELEBI
 	mon_cry CRY_AIPOM,      -$040,  $190 ; HONCHKROW
+	mon_cry CRY_AIPOM,       $000,  $180 ; AMBIPOM
+	mon_cry CRY_AIPOM,       $000,  $180 ; ANNIHILAPE
+	mon_cry CRY_AIPOM,       $000,  $180 ; BAGON
+	mon_cry CRY_AIPOM,       $000,  $180 ; DRUNSPARCE
+	mon_cry CRY_AIPOM,       $000,  $180 ; ELECTIVIRE
+	mon_cry CRY_AIPOM,       $000,  $180 ; FARIGIRAF
+	mon_cry CRY_AIPOM,       $000,  $180 ; GARDEVOIR
+	mon_cry CRY_AIPOM,       $000,  $180 ; GLACEON
+	mon_cry CRY_AIPOM,       $000,  $180 ; GLISCOR
+	mon_cry CRY_AIPOM,       $000,  $180 ; KIRLIA
+	mon_cry CRY_AIPOM,       $000,  $180 ; LEAFEON
+	mon_cry CRY_AIPOM,       $000,  $180 ; LICKILICKY
+	mon_cry CRY_AIPOM,       $000,  $180 ; MAGMORTAR
+	mon_cry CRY_AIPOM,       $000,  $180 ; MAGNEZONE
+	mon_cry CRY_AIPOM,       $000,  $180 ; MAMOSWINE
+	mon_cry CRY_AIPOM,       $000,  $180 ; MESMERIA
+	mon_cry CRY_AIPOM,       $000,  $180 ; MISMAGIUS
+	mon_cry CRY_AIPOM,       $000,  $180 ; PORYGON_Z
+	mon_cry CRY_AIPOM,       $000,  $180 ; RALTS
+	mon_cry CRY_AIPOM,       $000,  $180 ; RHYPERIOR
+	mon_cry CRY_AIPOM,       $000,  $180 ; RYPHERIOR
+	mon_cry CRY_AIPOM,       $000,  $180 ; SALAMENCE
+	mon_cry CRY_AIPOM,       $000,  $180 ; SCOLIPEDE
+	mon_cry CRY_AIPOM,       $000,  $180 ; SHELGON
+	mon_cry CRY_AIPOM,       $000,  $180 ; TANGROWTH
+	mon_cry CRY_AIPOM,       $000,  $180 ; TOGEKISS
+	mon_cry CRY_AIPOM,       $000,  $180 ; URSALUNA
+	mon_cry CRY_AIPOM,       $000,  $180 ; VENIPEDE
+	mon_cry CRY_AIPOM,       $000,  $180 ; WEAVILE
+	mon_cry CRY_AIPOM,       $000,  $180 ; WHIRLIPEDE
+	mon_cry CRY_AIPOM,       $000,  $180 ; WYRDEER
+	mon_cry CRY_AIPOM,       $000,  $180 ; YANMEGA
