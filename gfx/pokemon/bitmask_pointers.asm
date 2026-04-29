@@ -251,3 +251,35 @@ BitmasksPointers:
 	dw HoOhBitmasks
 	dw CelebiBitmasks
 	dw HonchkrowBitmasks
+	dw AmbipomBitmasks
+	dw AnnihilapeBitmasks
+	dw BagonBitmasks
+	dw DrunsparceBitmasks
+	dw ElectivireBitmasks
+	dw FarigirafBitmasks
+	dw GardevoirBitmasks
+	dw GlaceonBitmasks
+	dw GliscorBitmasks
+	dw KirliaBitmasks
+	dw LeafeonBitmasks
+	dw LickilickyBitmasks
+	dw MagmortarBitmasks
+	dw MagnezoneBitmasks
+	dw MamoswineBitmasks
+	dw MesmeriaBitmasks
+	dw MismagiusBitmasks
+	dw PorygonZBitmasks
+	dw RaltsBitmasks
+	dw RhyperiorBitmasks
+	dw RypheriorBitmasks
+	dw SalamenceBitmasks
+	dw ScolipedeBitmasks
+	dw ShelgonBitmasks
+	dw TangrowthBitmasks
+	dw TogekissBitmasks
+	dw UrsalunaBitmasks
+	dw VenipedeBitmasks
+	dw WeavileBitmasks
+	dw WhirlipedeBitmasks
+	dw WyrdeerBitmasks
+	dw YanmegaBitmasks

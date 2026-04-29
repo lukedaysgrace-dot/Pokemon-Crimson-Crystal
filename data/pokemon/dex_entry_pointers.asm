@@ -252,3 +252,35 @@ PokedexDataPointerTable:
 	dba HoOhPokedexEntry
 	dba CelebiPokedexEntry
 	dba HonchkrowPokedexEntry
+	dba AmbipomPokedexEntry
+	dba AnnihilapePokedexEntry
+	dba BagonPokedexEntry
+	dba DrunsparcePokedexEntry
+	dba ElectivirePokedexEntry
+	dba FarigirafPokedexEntry
+	dba GardevoirPokedexEntry
+	dba GlaceonPokedexEntry
+	dba GliscorPokedexEntry
+	dba KirliaPokedexEntry
+	dba LeafeonPokedexEntry
+	dba LickilickyPokedexEntry
+	dba MagmortarPokedexEntry
+	dba MagnezonePokedexEntry
+	dba MamoswinePokedexEntry
+	dba MesmeriaPokedexEntry
+	dba MismagiusPokedexEntry
+	dba PorygonZPokedexEntry
+	dba RaltsPokedexEntry
+	dba RhyperiorPokedexEntry
+	dba RypheriorPokedexEntry
+	dba SalamencePokedexEntry
+	dba ScolipedePokedexEntry
+	dba ShelgonPokedexEntry
+	dba TangrowthPokedexEntry
+	dba TogekissPokedexEntry
+	dba UrsalunaPokedexEntry
+	dba VenipedePokedexEntry
+	dba WeavilePokedexEntry
+	dba WhirlipedePokedexEntry
+	dba WyrdeerPokedexEntry
+	dba YanmegaPokedexEntry

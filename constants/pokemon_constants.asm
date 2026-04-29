@@ -272,6 +272,38 @@ JOHTO_POKEMON EQU const_value
 	const HO_OH      ; fa
 	const CELEBI     ; fb
 	const HONCHKROW  ; fc
+	const AMBIPOM    ;
+	const ANNIHILAPE ;
+	const BAGON      ;
+	const DRUNSPARCE ;
+	const ELECTIVIRE ;
+	const FARIGIRAF  ;
+	const GARDEVOIR  ;
+	const GLACEON    ;
+	const GLISCOR    ;
+	const KIRLIA     ;
+	const LEAFEON    ;
+	const LICKILICKY ;
+	const MAGMORTAR  ;
+	const MAGNEZONE  ;
+	const MAMOSWINE  ;
+	const MESMERIA   ;
+	const MISMAGIUS  ;
+	const PORYGON_Z  ;
+	const RALTS      ;
+	const RHYPERIOR  ;
+	const RYPHERIOR  ;
+	const SALAMENCE  ;
+	const SCOLIPEDE  ;
+	const SHELGON    ;
+	const TANGROWTH  ;
+	const TOGEKISS   ;
+	const URSALUNA   ;
+	const VENIPEDE   ;
+	const WEAVILE    ;
+	const WHIRLIPEDE ;
+	const WYRDEER    ;
+	const YANMEGA    ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3
