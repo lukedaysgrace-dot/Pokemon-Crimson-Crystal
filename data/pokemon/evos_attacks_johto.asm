@@ -101,6 +101,7 @@ EvosAttacksPointers2::
 	dw LugiaEvosAttacks
 	dw HoOhEvosAttacks
 	dw CelebiEvosAttacks
+	dw HonchkrowEvosAttacks
 
 ChikoritaEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, BAYLEEF
@@ -716,7 +717,7 @@ UmbreonEvosAttacks:
 	db 0 ; no more level-up moves
 
 MurkrowEvosAttacks:
-	db 0 ; no more evolutions
+	dbbw EVOLVE_LEVEL, 40, HONCHKROW
 	dbw 1, PECK
 	dbw 11, PURSUIT
 	dbw 16, HAZE
@@ -1401,4 +1402,15 @@ CelebiEvosAttacks:
 	dbw 30, FUTURE_SIGHT
 	dbw 40, BATON_PASS
 	dbw 50, PERISH_SONG
+	db 0 ; no more level-up moves
+
+HonchkrowEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, PECK
+	dbw 1, PURSUIT
+	dbw 1, HAZE
+	dbw 31, FAINT_ATTACK
+	dbw 41, NIGHT_SHADE
+	dbw 51, MEAN_LOOK
+	dbw 61, SKY_ATTACK
 	db 0 ; no more level-up moves

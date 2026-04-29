@@ -251,3 +251,4 @@ FirstEvoStages::
 	dw LUGIA
 	dw HO_OH
 	dw CELEBI
+	dw MURKROW

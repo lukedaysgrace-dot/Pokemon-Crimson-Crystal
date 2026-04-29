@@ -716,6 +716,9 @@ SECTION "Pics 19", ROMX
 
 ; Seems to be an accidental copy of the previous bank
 
+HonchkrowFrontpic: INCBIN "gfx/pokemon/honchkrow/front.animated.2bpp.lz"
+HonchkrowBackpic:  INCBIN "gfx/pokemon/honchkrow/back.2bpp.lz"
+
 INCBIN "gfx/pokemon/spinarak/back.2bpp.lz"
 INCBIN "gfx/pokemon/raikou/back.2bpp.lz"
 INCBIN "gfx/pokemon/unown_k/front.animated.2bpp.lz"
