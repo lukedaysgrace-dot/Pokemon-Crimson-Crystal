@@ -42,14 +42,21 @@ NUM_LEVEL_STATS EQU const_value
 
 ; move struct members (see data/moves/moves.asm)
 	const_def
-	const MOVE_ANIM   ; 0
-	const MOVE_EFFECT ; 1
-	const MOVE_POWER  ; 2
-	const MOVE_TYPE   ; 3
-	const MOVE_ACC    ; 4
-	const MOVE_PP     ; 5
-	const MOVE_CHANCE ; 6
+	const MOVE_ANIM     ; 0
+	const MOVE_EFFECT   ; 1
+	const MOVE_POWER    ; 2
+	const MOVE_TYPE     ; 3
+	const MOVE_CATEGORY ; 4
+	const MOVE_ACC      ; 5
+	const MOVE_PP       ; 6
+	const MOVE_CHANCE   ; 7
 MOVE_LENGTH EQU const_value
+
+; damage category per move (Gen IV+; name avoids clash with type PHYSICAL / SPECIAL threshold)
+	const_def
+	const CATEGORIZE_PHYSICAL
+	const CATEGORIZE_SPECIAL
+	const CATEGORIZE_STATUS
 
 ; stat constants
 ; indexes for:
