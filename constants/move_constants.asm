@@ -258,14 +258,20 @@
 	const WHIRLPOOL    ; fa
 	const BEAT_UP      ; fb
 	const GIGA_HAMMER  ; fc
+	const DAZZLING_GLEAM   ; fd
+	const DISARMING_VOICE  ; fe
+	const DRAINING_KISS    ; ff
+	const PLAY_ROUGH       ; 100
+	const SPIRIT_BREAK     ; 101
+	const FAIRY_WIND       ; 102
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
 		fail "Too many moves defined!"
 	endc
 
-; Battle animations use the same constants as the moves
-	const ANIM_SWEET_SCENT_2     ; fc
+; Battle animation id (index in BattleAnimations after all move anims)
+	const ANIM_SWEET_SCENT_2
 ; Animations with negative IDs will play even when animations are disabled
 const_value = -$16 ;fix if more negative values are added
 	const ANIM_THROW_POKE_BALL   ; -16 (ffea)

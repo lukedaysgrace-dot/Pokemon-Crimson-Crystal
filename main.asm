@@ -426,9 +426,6 @@ INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
-TheEndGFX::
-INCBIN "gfx/credits/theend.2bpp"
-
 
 SECTION "Move Animations", ROMX
 
@@ -495,6 +492,9 @@ INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
 INCLUDE "engine/movie/crystal_intro.asm"
+
+TheEndGFX::
+INCBIN "gfx/credits/theend.2bpp"
 
 
 SECTION "bank3E", ROMX

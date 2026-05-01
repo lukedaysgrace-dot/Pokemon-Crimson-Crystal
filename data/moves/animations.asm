@@ -276,6 +276,12 @@ BattleAnimations::
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
 	dw BattleAnim_GigaHammer
+	dw BattleAnim_DazzlingGleam
+	dw BattleAnim_DisarmingVoice
+	dw BattleAnim_DrainingKiss
+	dw BattleAnim_PlayRough
+	dw BattleAnim_SpiritBreak
+	dw BattleAnim_FairyWind
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -330,6 +336,147 @@ BattleAnim_GigaHammer:
 	anim_wait 8
 	anim_call BattleAnim_ShowMon_0
 	anim_resetobp0
+	anim_ret
+
+BattleAnim_DazzlingGleam:
+; Bright pastel fairy flash washing across the battlefield
+	anim_3gfx ANIM_GFX_SHINE, ANIM_GFX_BEAM, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_bgeffect ANIM_BG_06, $0, $2, $0
+	anim_sound 0, 0, SFX_SHINE
+	anim_obj ANIM_OBJ_MOONLIGHT, 32, 72, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 48, 84, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 64, 96, $0
+	anim_wait 16
+	anim_call BattleAnim_AuroraBeam_branch_cbb39
+	anim_wait 16
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_01, 128, 48, $10
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_01, 144, 64, $18
+	anim_wait 24
+	anim_ret
+
+BattleAnim_DisarmingVoice:
+; Rings of sound then unavoidable fairy-colored sparks striking the foe
+	anim_3gfx ANIM_GFX_NOISE, ANIM_GFX_OBJECTS, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_06, $0, $2, $0
+	anim_sound 0, 0, SFX_SUPERSONIC
+.loop1
+	anim_call BattleAnim_Growl_branch_cbbbc
+	anim_wait 12
+	anim_loop 3, .loop1
+	anim_sound 6, 2, SFX_METRONOME
+	anim_obj ANIM_OBJ_SWIFT, 64, 88, $4
+	anim_wait 4
+	anim_obj ANIM_OBJ_SWIFT, 72, 80, $4
+	anim_wait 4
+	anim_obj ANIM_OBJ_SWIFT, 56, 76, $4
+	anim_wait 48
+	anim_sound 0, 1, SFX_MENU
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_sound 0, 1, SFX_MENU
+	anim_obj ANIM_OBJ_01, 128, 52, $8
+	anim_wait 16
+	anim_ret
+
+BattleAnim_DrainingKiss:
+; Kiss motif then pink healing streams like Giga Drain
+	anim_3gfx ANIM_GFX_OBJECTS, ANIM_GFX_CHARGE, ANIM_GFX_ANGELS
+	anim_bgeffect ANIM_BG_07, $0, $2, $0
+	anim_obj ANIM_OBJ_SWEET_KISS, 96, 40, $0
+	anim_sound 0, 1, SFX_SWEET_KISS
+	anim_wait 32
+	anim_call BattleAnim_TargetObj_1Row
+	anim_bgeffect ANIM_BG_1C, $0, $0, $10
+	anim_setvar $0
+.loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 128, 48, $2
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 64, $3
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 32, $4
+	anim_wait 6
+	anim_incvar
+	anim_if_var_equal $5, .done
+	anim_jump .loop
+
+.done
+	anim_wait 24
+	anim_incbgeffect ANIM_BG_1C
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_PlayRough:
+; Bouncy tackle into tumbling chaos hits
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_SPEED
+	anim_call BattleAnim_TargetObj_2Row
+	anim_bgeffect ANIM_BG_BOUNCE_DOWN, $0, $1, $0
+	anim_wait 28
+	anim_incbgeffect ANIM_BG_BOUNCE_DOWN
+	anim_sound 0, 1, SFX_DOUBLESLAP
+	anim_obj ANIM_OBJ_08, 136, 48, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_HEADBUTT
+	anim_obj ANIM_OBJ_01, 140, 52, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_04, 132, 44, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_TACKLE
+	anim_obj ANIM_OBJ_01, 128, 56, $0
+	anim_wait 12
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_SpiritBreak:
+; Psychic shockwave then crushing bite-like strike (spirit shattered)
+	anim_3gfx ANIM_GFX_PSYCHIC, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_bgp $1b
+	anim_obp0 $c0
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_bgeffect ANIM_BG_PSYCHIC, $0, $0, $0
+	anim_sound 6, 2, SFX_PSYCHIC
+	anim_obj ANIM_OBJ_WAVE, 80, 88, $2
+	anim_wait 8
+	anim_sound 6, 2, SFX_PSYCHIC
+	anim_obj ANIM_OBJ_WAVE, 72, 92, $2
+	anim_wait 8
+	anim_sound 6, 2, SFX_PSYCHIC
+	anim_obj ANIM_OBJ_WAVE, 88, 84, $2
+	anim_wait 32
+	anim_incbgeffect ANIM_BG_PSYCHIC
+	anim_sound 0, 1, SFX_BITE
+	anim_obj ANIM_OBJ_BITE, 136, 56, $a8
+	anim_obj ANIM_OBJ_BITE, 136, 56, $28
+	anim_wait 8
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_00, 136, 52, $18
+	anim_wait 16
+	anim_ret
+
+BattleAnim_FairyWind:
+; Sparkling gust like Gust but with fairy shimmer
+	anim_3gfx ANIM_GFX_WIND, ANIM_GFX_SHINE, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+.loop
+	anim_sound 0, 1, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_GUST, 136, 72, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_MOONLIGHT, 112, 68, $0
+	anim_wait 4
+	anim_loop 8, .loop
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_01, 128, 48, $18
+	anim_wait 16
 	anim_ret
 
 BattleAnim_SweetScent2:
