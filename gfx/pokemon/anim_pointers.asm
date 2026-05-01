@@ -271,7 +271,6 @@ AnimationPointers:
 	dw PorygonZAnimation
 	dw RaltsAnimation
 	dw RhyperiorAnimation
-	dw RypheriorAnimation
 	dw SalamenceAnimation
 	dw ScolipedeAnimation
 	dw ShelgonAnimation
@@ -283,3 +282,35 @@ AnimationPointers:
 	dw WhirlipedeAnimation
 	dw WyrdeerAnimation
 	dw YanmegaAnimation
+	dw LileepAnimation
+	dw CradilyAnimation
+	dw ArmaldoAnimation
+	dw GolettAnimation
+	dw GolurkAnimation
+	dw DuskullAnimation
+	dw DusclopsAnimation
+	dw DusknoirAnimation
+	dw TimburrAnimation
+	dw GurdurrAnimation
+	dw ConkeldurrAnimation
+	dw LarvestaAnimation
+	dw VolcaronaAnimation
+	dw DeinoAnimation
+	dw ZweilousAnimation
+	dw HydreigonAnimation
+	dw DreepyAnimation
+	dw DrakloakAnimation
+	dw DragapultAnimation
+	dw ImpidimpAnimation
+	dw MorgremAnimation
+	dw GrimmsnarlAnimation
+	dw TinkatinkAnimation
+	dw TinkatuffAnimation
+	dw TinkatonAnimation
+	dw FrigibaxAnimation
+	dw ArctibaxAnimation
+	dw BaxcaliburAnimation
+	dw CharcadetAnimation
+	dw ArmarogueAnimation
+	dw CeruledgeAnimation
+	dw SylveonAnimation

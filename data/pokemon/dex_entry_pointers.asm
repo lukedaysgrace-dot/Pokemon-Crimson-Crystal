@@ -272,7 +272,6 @@ PokedexDataPointerTable:
 	dba PorygonZPokedexEntry
 	dba RaltsPokedexEntry
 	dba RhyperiorPokedexEntry
-	dba RypheriorPokedexEntry
 	dba SalamencePokedexEntry
 	dba ScolipedePokedexEntry
 	dba ShelgonPokedexEntry
@@ -284,3 +283,35 @@ PokedexDataPointerTable:
 	dba WhirlipedePokedexEntry
 	dba WyrdeerPokedexEntry
 	dba YanmegaPokedexEntry
+	dba LileepPokedexEntry
+	dba CradilyPokedexEntry
+	dba ArmaldoPokedexEntry
+	dba GolettPokedexEntry
+	dba GolurkPokedexEntry
+	dba DuskullPokedexEntry
+	dba DusclopsPokedexEntry
+	dba DusknoirPokedexEntry
+	dba TimburrPokedexEntry
+	dba GurdurrPokedexEntry
+	dba ConkeldurrPokedexEntry
+	dba LarvestaPokedexEntry
+	dba VolcaronaPokedexEntry
+	dba DeinoPokedexEntry
+	dba ZweilousPokedexEntry
+	dba HydreigonPokedexEntry
+	dba DreepyPokedexEntry
+	dba DrakloakPokedexEntry
+	dba DragapultPokedexEntry
+	dba ImpidimpPokedexEntry
+	dba MorgremPokedexEntry
+	dba GrimmsnarlPokedexEntry
+	dba TinkatinkPokedexEntry
+	dba TinkatuffPokedexEntry
+	dba TinkatonPokedexEntry
+	dba FrigibaxPokedexEntry
+	dba ArctibaxPokedexEntry
+	dba BaxcaliburPokedexEntry
+	dba CharcadetPokedexEntry
+	dba ArmaroguePokedexEntry
+	dba CeruledgePokedexEntry
+	dba SylveonPokedexEntry

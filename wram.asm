@@ -675,41 +675,45 @@ wTempLevel:: db ; c719
 wLastPlayerMon:: db ; c71a
 wLastPlayerMove:: db ; c71b
 wLastEnemyMove:: db ; c71c
+wPlayerGigaHammerLock:: db ; c71d: nz if Giga Hammer cannot be used this turn
+wEnemyGigaHammerLock:: db ; c71e
+wPlayerMustRechooseMove:: db ; c71f: set when Giga Hammer fails in battle; redo move menu
+wSkipCheckTurnOnce:: db ; c720: skip CheckTurn on next DoTurn (Giga Hammer re-pick same round)
 
-wPlayerFutureSightCount:: db ; c71d
-wEnemyFutureSightCount:: db ; c71e
+wPlayerFutureSightCount:: db ; c721
+wEnemyFutureSightCount:: db ; c722
 
-wGivingExperienceToExpShareHolders:: db ; c71f
+wGivingExperienceToExpShareHolders:: db ; c723
 
-wBackupEnemyMonBaseStats:: ds 5 ; c720
-wBackupEnemyMonCatchRate:: db ; c725
-wBackupEnemyMonBaseExp:: db ; c726
+wBackupEnemyMonBaseStats:: ds 5 ; c724
+wBackupEnemyMonCatchRate:: db ; c729
+wBackupEnemyMonBaseExp:: db ; c72a
 
-wPlayerFutureSightDamage:: dw ; c727
-wEnemyFutureSightDamage:: dw ; c729
-wPlayerRageCounter:: db ; c72b
-wEnemyRageCounter:: db ; c72c
+wPlayerFutureSightDamage:: dw ; c72b
+wEnemyFutureSightDamage:: dw ; c72d
+wPlayerRageCounter:: db ; c72f
+wEnemyRageCounter:: db ; c730
 
-wBeatUpHitAtLeastOnce:: db ; c72d
+wBeatUpHitAtLeastOnce:: db ; c731
 
-wPlayerTrappingMove:: db ; c72e
-wEnemyTrappingMove:: db ; c72f
-wPlayerWrapCount:: db ; c730
-wEnemyWrapCount:: db ; c731
-wPlayerCharging:: db ; c732
-wEnemyCharging:: db ; c733
+wPlayerTrappingMove:: db ; c732
+wEnemyTrappingMove:: db ; c733
+wPlayerWrapCount:: db ; c734
+wEnemyWrapCount:: db ; c735
+wPlayerCharging:: db ; c736
+wEnemyCharging:: db ; c737
 
-wBattleEnded:: db ; c734
+wBattleEnded:: db ; c738
 
-wWildMonMoves:: ds NUM_MOVES ; c735
-wWildMonPP:: ds NUM_MOVES ; c739
+wWildMonMoves:: ds NUM_MOVES ; c739
+wWildMonPP:: ds NUM_MOVES ; c73d
 
-wAmuletCoin:: db ; c73a
+wAmuletCoin:: db ; c741
 
-wSomeoneIsRampaging:: db ; c73b
+wSomeoneIsRampaging:: db ; c742
 
-wPlayerJustGotFrozen:: db ; c73c
-wEnemyJustGotFrozen:: db ; c73d
+wPlayerJustGotFrozen:: db ; c743
+wEnemyJustGotFrozen:: db ; c744
 wBattleEnd::
 
 NEXTU ; c608
@@ -2874,7 +2878,7 @@ wPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
 wPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; de41
 wPartyMonNicknamesEnd::
 
-	ds 22
+	ds 16
 
 wPokedexCaught:: flag_array NUM_POKEMON ; de99
 wEndPokedexCaught::

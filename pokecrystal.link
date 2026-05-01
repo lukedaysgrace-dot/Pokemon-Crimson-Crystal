@@ -195,7 +195,6 @@ ROMX $47
 	"Battle Tower"
 ROMX $48
 	"Pic Pointers"
-	"Pics 1"
 ROMX $49
 	"Unown Pic Pointers"
 	"Pics 2"
@@ -303,6 +302,8 @@ ROMX $78
 	"Tileset Data 8"
 ROMX $79
 	"Evolutions and Attacks 2"
+ROMX $7a
+	"Pics 1"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c

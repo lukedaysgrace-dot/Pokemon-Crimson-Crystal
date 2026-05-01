@@ -277,7 +277,6 @@ PokemonCries::
 	mon_cry CRY_AIPOM,       $000,  $180 ; PORYGON_Z
 	mon_cry CRY_AIPOM,       $000,  $180 ; RALTS
 	mon_cry CRY_AIPOM,       $000,  $180 ; RHYPERIOR
-	mon_cry CRY_AIPOM,       $000,  $180 ; RYPHERIOR
 	mon_cry CRY_AIPOM,       $000,  $180 ; SALAMENCE
 	mon_cry CRY_AIPOM,       $000,  $180 ; SCOLIPEDE
 	mon_cry CRY_AIPOM,       $000,  $180 ; SHELGON
@@ -289,3 +288,35 @@ PokemonCries::
 	mon_cry CRY_AIPOM,       $000,  $180 ; WHIRLIPEDE
 	mon_cry CRY_AIPOM,       $000,  $180 ; WYRDEER
 	mon_cry CRY_AIPOM,       $000,  $180 ; YANMEGA
+	mon_cry CRY_ODDISH,      $020,  $0e0 ; LILEEP
+	mon_cry CRY_ODDISH,      $010,  $100 ; CRADILY
+	mon_cry CRY_CATERPIE,    $0f0,  $0c0 ; ARMALDO
+	mon_cry CRY_DIGLETT,     $0a0,  $100 ; GOLETT
+	mon_cry CRY_DIGLETT,     $060,  $140 ; GOLURK
+	mon_cry CRY_HOOTHOOT,    $020,  $0c0 ; DUSKULL
+	mon_cry CRY_HOOTHOOT,    $000,  $100 ; DUSCLOPS
+	mon_cry CRY_HOOTHOOT,    $0e0,  $160 ; DUSKNOIR
+	mon_cry CRY_GROWLITHE,   $020,  $0c0 ; TIMBURR
+	mon_cry CRY_GROWLITHE,   $000,  $100 ; GURDURR
+	mon_cry CRY_GROWLITHE,   $000,  $140 ; CONKELDURR
+	mon_cry CRY_CATERPIE,    $080,  $0a0 ; LARVESTA
+	mon_cry CRY_RAICHU,      $000,  $180 ; VOLCARONA
+	mon_cry CRY_BULBASAUR,   $060,  $0c0 ; DEINO
+	mon_cry CRY_BULBASAUR,   $040,  $100 ; ZWEILOUS
+	mon_cry CRY_BULBASAUR,   $020,  $140 ; HYDREIGON
+	mon_cry CRY_BULBASAUR,   $0e0,  $080 ; DREEPY
+	mon_cry CRY_BULBASAUR,   $0c0,  $0c0 ; DRAKLOAK
+	mon_cry CRY_BULBASAUR,   $000,  $160 ; DRAGAPULT
+	mon_cry CRY_NIDORAN_M,   $0e0,  $080 ; IMPIDIMP
+	mon_cry CRY_NIDORAN_M,   $0c0,  $0a0 ; MORGREM
+	mon_cry CRY_NIDORAN_M,   $0a0,  $0c0 ; GRIMMSNARL
+	mon_cry CRY_CLEFAIRY,    $0e0,  $080 ; TINKATINK
+	mon_cry CRY_CLEFAIRY,    $0c0,  $0a0 ; TINKATUFF
+	mon_cry CRY_CLEFAIRY,    $0a0,  $0c0 ; TINKATON
+	mon_cry CRY_BULBASAUR,   $0e0,  $0a0 ; FRIGIBAX
+	mon_cry CRY_BULBASAUR,   $0c0,  $0c0 ; ARCTIBAX
+	mon_cry CRY_BULBASAUR,   $000,  $180 ; BAXCALIBUR
+	mon_cry CRY_CHARMANDER,  $040,  $0c0 ; CHARCADET
+	mon_cry CRY_CHARMANDER,  $020,  $100 ; ARMAROGUE
+	mon_cry CRY_CHARMANDER,  $000,  $140 ; CERULEDGE
+	mon_cry CRY_PIDGEY,      $0ff,  $0b5 ; SYLVEON
