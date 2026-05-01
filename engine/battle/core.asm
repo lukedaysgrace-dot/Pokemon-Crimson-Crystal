@@ -976,7 +976,22 @@ Battle_PlayerFirst:
 PlayerTurn_EndOpponentProtectEndureDestinyBond:
 	call SetPlayerTurn
 	call EndUserDestinyBond
+.player_move_turn
 	callfar DoPlayerTurn
+	ld a, [wPlayerMustRechooseMove]
+	and a
+	jr z, .player_move_done
+	xor a
+	ld [wPlayerMustRechooseMove], a
+.resel_menu_loop
+	call PlayerPickMoveAfterGigaHammerFail
+	jr nz, .resel_menu_loop
+	ld a, 1
+	ld [wSkipCheckTurnOnce], a
+	jr .player_move_turn
+.player_move_done
+	xor a
+	ld [wSkipCheckTurnOnce], a
 	jp EndOpponentProtectEndureDestinyBond
 
 EnemyTurn_EndOpponentProtectEndureDestinyBond:
@@ -3236,6 +3251,7 @@ ResetEnemyBattleVars:
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
 	ld [wLastEnemyMove], a
+	ld [wEnemyGigaHammerLock], a
 	ld [wCurEnemyMove], a
 	dec a
 	ld [wEnemyItemState], a
@@ -3641,6 +3657,7 @@ NewEnemyMonStatus:
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
 	ld [wLastEnemyMove], a
+	ld [wEnemyGigaHammerLock], a
 	ld hl, wEnemySubStatus1
 rept 4
 	ld [hli], a
@@ -4080,6 +4097,9 @@ SendOutPlayerMon:
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
 	ld [wLastPlayerMove], a
+	ld [wPlayerGigaHammerLock], a
+	ld [wPlayerMustRechooseMove], a
+	ld [wSkipCheckTurnOnce], a
 	call CheckAmuletCoin
 	call FinishBattleAnim
 	xor a
@@ -4120,6 +4140,9 @@ NewBattleMonStatus:
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
 	ld [wLastPlayerMove], a
+	ld [wPlayerGigaHammerLock], a
+	ld [wPlayerMustRechooseMove], a
+	ld [wSkipCheckTurnOnce], a
 	ld hl, wPlayerSubStatus1
 rept 4
 	ld [hli], a
@@ -5364,6 +5387,61 @@ CheckAmuletCoin:
 	ld [wAmuletCoin], a
 	ret
 
+PlayerPickMoveAfterGigaHammerFail:
+; After Giga Hammer fails in battle, let the player pick another move for the
+; same turn (enemy does not get a second action).
+; "But it failed!" was drawn to the tilemap; restore the saved layout before
+; opening the move menu (same idea as .place_textbox_start_over).
+	call Call_LoadTempTileMapToTileMap
+	xor a
+	ld [wMoveSwapBuffer], a
+	xor a
+	ld [wMoveSelectionMenuType], a
+	if HIGH(POUND)
+		ld a, HIGH(POUND)
+	endc
+	ld [wFXAnimID + 1], a
+	if LOW(POUND) == (HIGH(POUND) + 1)
+		inc a
+	else
+		ld a, LOW(POUND)
+	endc
+	ld [wFXAnimID], a
+	call MoveSelectionScreen
+	push af
+	call Call_LoadTempTileMapToTileMap
+	call UpdateBattleHuds
+	pop af
+	ret nz
+	call SetPlayerTurn
+	callfar UpdateMoveData
+	xor a
+	ld [wPlayerCharging], a
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_FURY_CUTTER
+	jr z, .retry_fury_ok
+	xor a
+	ld [wPlayerFuryCutterCount], a
+.retry_fury_ok
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_RAGE
+	jr z, .retry_rage_ok
+	ld hl, wPlayerSubStatus4
+	res SUBSTATUS_RAGE, [hl]
+	xor a
+	ld [wPlayerRageCounter], a
+.retry_rage_ok
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_PROTECT
+	jr z, .retry_protect_done
+	cp EFFECT_ENDURE
+	jr z, .retry_protect_done
+	xor a
+	ld [wPlayerProtectCount], a
+.retry_protect_done
+	xor a
+	ret
+
 MoveSelectionScreen:
 	call IsMobileBattle
 	jr nz, .not_mobile
@@ -5549,11 +5627,21 @@ MoveSelectionScreen:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
+	cp GIGA_HAMMER
+	jr nz, .skip2
+	ld a, [wPlayerGigaHammerLock]
+	and a
+	jr nz, .move_cant_be_used_twice
+	ld a, GIGA_HAMMER
 
 .skip2
 	ld [wCurPlayerMove], a
 	xor a
 	ret
+
+.move_cant_be_used_twice
+	ld hl, BattleText_MoveCantBeUsedTwice
+	jr .place_textbox_start_over
 
 .move_disabled
 	ld hl, BattleText_TheMoveIsDisabled

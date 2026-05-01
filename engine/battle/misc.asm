@@ -142,8 +142,6 @@ DoWeatherModifiers:
 .done
 	ret
 
-INCLUDE "data/battle/weather_modifiers.asm"
-
 DoBadgeTypeBoosts:
 	ld a, [wLinkMode]
 	and a
@@ -157,15 +155,11 @@ DoBadgeTypeBoosts:
 	and a
 	ret nz
 
-	push de
-	push bc
-
+	ld hl, wJohtoBadges
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
 	ld hl, BadgeTypeBoosts
-
-	ld a, [wKantoBadges]
-	ld b, a
-	ld a, [wJohtoBadges]
-	ld c, a
 
 .CheckBadge:
 	ld a, [hl]
@@ -217,8 +211,7 @@ DoBadgeTypeBoosts:
 	ld [wCurDamage + 1], a
 
 .done
-	pop bc
-	pop de
 	ret
 
 INCLUDE "data/types/badge_type_boosts.asm"
+INCLUDE "data/battle/weather_modifiers.asm"

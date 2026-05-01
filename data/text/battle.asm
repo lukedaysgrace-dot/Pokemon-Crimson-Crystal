@@ -329,6 +329,11 @@ BattleText_TheMoveIsDisabled:
 	line "DISABLED!"
 	prompt
 
+BattleText_MoveCantBeUsedTwice:
+	text "It can't be used"
+	line "twice in a row!"
+	prompt
+
 BattleText_MonHasNoMovesLeft:
 	text_ram wBattleMonNick
 	text_start

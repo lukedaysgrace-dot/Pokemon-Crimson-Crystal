@@ -230,12 +230,11 @@ CalcMagikarpLength:
 	ld a, [wTempByteValue]
 	ldh [hMultiplier], a
 	call Multiply
-	ld b, 0
 	ldh a, [hProduct + 3]
 	add c
 	ld e, a
 	ldh a, [hProduct + 2]
-	adc b
+	adc 0
 	ld d, a
 	jr .done
 

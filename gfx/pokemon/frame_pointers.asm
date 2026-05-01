@@ -271,7 +271,6 @@ FramesPointers:
 	dba PorygonZFrames
 	dba RaltsFrames
 	dba RhyperiorFrames
-	dba RypheriorFrames
 	dba SalamenceFrames
 	dba ScolipedeFrames
 	dba ShelgonFrames
@@ -283,3 +282,35 @@ FramesPointers:
 	dba WhirlipedeFrames
 	dba WyrdeerFrames
 	dba YanmegaFrames
+	dba LileepFrames
+	dba CradilyFrames
+	dba ArmaldoFrames
+	dba GolettFrames
+	dba GolurkFrames
+	dba DuskullFrames
+	dba DusclopsFrames
+	dba DusknoirFrames
+	dba TimburrFrames
+	dba GurdurrFrames
+	dba ConkeldurrFrames
+	dba LarvestaFrames
+	dba VolcaronaFrames
+	dba DeinoFrames
+	dba ZweilousFrames
+	dba HydreigonFrames
+	dba DreepyFrames
+	dba DrakloakFrames
+	dba DragapultFrames
+	dba ImpidimpFrames
+	dba MorgremFrames
+	dba GrimmsnarlFrames
+	dba TinkatinkFrames
+	dba TinkatuffFrames
+	dba TinkatonFrames
+	dba FrigibaxFrames
+	dba ArctibaxFrames
+	dba BaxcaliburFrames
+	dba CharcadetFrames
+	dba ArmarogueFrames
+	dba CeruledgeFrames
+	dba SylveonFrames

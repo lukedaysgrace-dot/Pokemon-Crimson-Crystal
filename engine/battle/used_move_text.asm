@@ -38,6 +38,18 @@ UsedMoveText:
 	ld [hl], a
 	ld [de], a
 
+	; Clear Giga Hammer reuse lock when this side uses any other move
+	cp GIGA_HAMMER
+	jr z, .ok
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerGigaHammerLock
+	jr z, .clear_giga_lock
+	ld hl, wEnemyGigaHammerLock
+.clear_giga_lock
+	xor a
+	ld [hl], a
+
 .ok
 	ld hl, UsedMoveInsteadText
 	ret

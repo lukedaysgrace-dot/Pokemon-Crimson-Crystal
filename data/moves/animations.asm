@@ -275,10 +275,61 @@ BattleAnimations::
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
+	dw BattleAnim_GigaHammer
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
 BattleAnim_MirrorMove:
+	anim_ret
+
+BattleAnim_GigaHammer:
+; Steel charge-up (same reflect / shine / harden sequence as Metal Claw),
+; then heavy rocks and deep impact hits on the target.
+; No anim_bgp / FLASH_INVERTED here: those fight the player palette and draw a
+; bright frame around the backpic during the "dark" beat.
+	anim_3gfx ANIM_GFX_REFLECT, ANIM_GFX_ROCKS, ANIM_GFX_HIT
+	anim_obp0 $0
+	anim_sound 0, 0, SFX_RAGE
+	anim_call BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_MetalClaw_branch_cbc43
+	anim_call BattleAnim_ShowMon_0
+	anim_wait 16
+	anim_sound 0, 1, SFX_OUTRAGE
+	anim_wait 28
+	anim_bgeffect ANIM_BG_1F, $e0, $2, $0
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 136, 48, $48
+	anim_obj ANIM_OBJ_SMALL_ROCK, 148, 56, $30
+	anim_obj ANIM_OBJ_SMALL_ROCK, 124, 52, $50
+	anim_wait 8
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 128, 44, $38
+	anim_obj ANIM_OBJ_SMALL_ROCK, 144, 64, $40
+	anim_obj ANIM_OBJ_SMALL_ROCK, 132, 60, $28
+	anim_wait 8
+	anim_bgeffect ANIM_BG_25, $0, $1, $0
+	anim_bgeffect ANIM_BG_26, $0, $1, $0
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_0A, 136, 48, $43
+	anim_wait 8
+	anim_sound 0, 1, SFX_MEGA_KICK
+	anim_obj ANIM_OBJ_04, 140, 40, $0
+	anim_obj ANIM_OBJ_05, 132, 52, $0
+	anim_obj ANIM_OBJ_00, 128, 44, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_03, 144, 48, $0
+	anim_obj ANIM_OBJ_04, 136, 36, $0
+	anim_wait 10
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_wait 14
+	anim_incbgeffect ANIM_BG_26
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_1F
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_wait 8
+	anim_call BattleAnim_ShowMon_0
+	anim_resetobp0
 	anim_ret
 
 BattleAnim_SweetScent2:

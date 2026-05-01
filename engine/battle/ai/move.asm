@@ -26,7 +26,7 @@ AIChooseMove:
 ; Don't pick disabled moves.
 	ld a, [wEnemyDisabledMove]
 	and a
-	jr z, .CheckPP
+	jr z, .CheckGigaHammer
 
 	ld hl, wEnemyMonMoves
 	ld c, 0
@@ -37,6 +37,29 @@ AIChooseMove:
 	inc hl
 	jr .CheckDisabledMove
 .ScoreDisabledMove:
+	ld hl, wBuffer1
+	ld b, 0
+	add hl, bc
+	ld [hl], 80
+
+; Don't pick Giga Hammer twice in a row.
+.CheckGigaHammer:
+	ld a, [wEnemyGigaHammerLock]
+	and a
+	jr z, .CheckPP
+
+	ld hl, wEnemyMonMoves
+	ld c, 0
+.CheckGigaHammerMove:
+	ld a, [hli]
+	cp GIGA_HAMMER
+	jr z, .ScoreGigaHammerMove
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr nz, .CheckGigaHammerMove
+	jr .CheckPP
+.ScoreGigaHammerMove:
 	ld hl, wBuffer1
 	ld b, 0
 	add hl, bc

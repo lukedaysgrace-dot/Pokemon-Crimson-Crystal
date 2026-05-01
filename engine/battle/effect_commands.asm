@@ -111,6 +111,16 @@ CheckTurn:
 BattleCommand_CheckTurn:
 ; checkturn
 
+; Skip full turn checks once (Giga Hammer re-pick same round) without duplicating DoTurn.
+	ld a, [wSkipCheckTurnOnce]
+	and a
+	jr z, .run_full_checkturn
+	xor a
+	ld [wSkipCheckTurnOnce], a
+	ld [wTurnEnded], a
+	ret
+
+.run_full_checkturn
 ; Repurposed as hardcoded turn handling. Useless as a command.
 
 ; Move $ff immediately ends the turn.
@@ -923,6 +933,9 @@ BattleCommand_CheckObedience:
 .EndDisobedience:
 	xor a
 	ld [wLastPlayerMove], a
+	ld [wPlayerGigaHammerLock], a
+	ld [wPlayerMustRechooseMove], a
+	ld [wSkipCheckTurnOnce], a
 	ld [wLastPlayerCounterMove], a
 
 	; Break Encore too.
@@ -5784,6 +5797,15 @@ BattleCommand_Charge:
 	text_far UnknownText_0x1c0d6c
 	text_end
 
+BattleCommand_GigaHammerCheck:
+; Body in Battle Core bank (see BattleGigaHammer_CheckCore).
+	callfar BattleGigaHammer_CheckCore
+	ret
+
+BattleCommand_GigaHammerSetLock:
+	callfar BattleGigaHammer_SetLockCore
+	ret
+
 BattleCommand3c:
 ; unused
 	ret
@@ -6922,6 +6944,12 @@ PlayOpponentBattleAnim:
 CallBattleCore:
 	ld a, BANK("Battle Core")
 	rst FarCall
+	ret
+
+BattleGigaHammer_ApplyFailAnimAndText:
+	call AnimateFailedMove
+	ld hl, ButItFailedText
+	call StdBattleTextbox
 	ret
 
 AnimateFailedMove:

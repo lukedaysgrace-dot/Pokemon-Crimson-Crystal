@@ -292,7 +292,6 @@ JOHTO_POKEMON EQU const_value
 	const PORYGON_Z  ;
 	const RALTS      ;
 	const RHYPERIOR  ;
-	const RYPHERIOR  ;
 	const SALAMENCE  ;
 	const SCOLIPEDE  ;
 	const SHELGON    ;
@@ -304,6 +303,38 @@ JOHTO_POKEMON EQU const_value
 	const WHIRLIPEDE ;
 	const WYRDEER    ;
 	const YANMEGA    ;
+	const LILEEP     ;
+	const CRADILY    ;
+	const ARMALDO    ;
+	const GOLETT     ;
+	const GOLURK     ;
+	const DUSKULL    ;
+	const DUSCLOPS   ;
+	const DUSKNOIR   ;
+	const TIMBURR    ;
+	const GURDURR    ;
+	const CONKELDURR ;
+	const LARVESTA   ;
+	const VOLCARONA  ;
+	const DEINO      ;
+	const ZWEILOUS   ;
+	const HYDREIGON  ;
+	const DREEPY     ;
+	const DRAKLOAK   ;
+	const DRAGAPULT  ;
+	const IMPIDIMP   ;
+	const MORGREM    ;
+	const GRIMMSNARL ;
+	const TINKATINK  ;
+	const TINKATUFF  ;
+	const TINKATON   ;
+	const FRIGIBAX   ;
+	const ARCTIBAX   ;
+	const BAXCALIBUR ;
+	const CHARCADET  ;
+	const ARMAROGUE  ;
+	const CERULEDGE  ;
+	const SYLVEON    ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

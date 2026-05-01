@@ -271,7 +271,6 @@ AnimationIdlePointers:
 	dw PorygonZAnimationIdle
 	dw RaltsAnimationIdle
 	dw RhyperiorAnimationIdle
-	dw RypheriorAnimationIdle
 	dw SalamenceAnimationIdle
 	dw ScolipedeAnimationIdle
 	dw ShelgonAnimationIdle
@@ -283,3 +282,35 @@ AnimationIdlePointers:
 	dw WhirlipedeAnimationIdle
 	dw WyrdeerAnimationIdle
 	dw YanmegaAnimationIdle
+	dw LileepAnimationIdle
+	dw CradilyAnimationIdle
+	dw ArmaldoAnimationIdle
+	dw GolettAnimationIdle
+	dw GolurkAnimationIdle
+	dw DuskullAnimationIdle
+	dw DusclopsAnimationIdle
+	dw DusknoirAnimationIdle
+	dw TimburrAnimationIdle
+	dw GurdurrAnimationIdle
+	dw ConkeldurrAnimationIdle
+	dw LarvestaAnimationIdle
+	dw VolcaronaAnimationIdle
+	dw DeinoAnimationIdle
+	dw ZweilousAnimationIdle
+	dw HydreigonAnimationIdle
+	dw DreepyAnimationIdle
+	dw DrakloakAnimationIdle
+	dw DragapultAnimationIdle
+	dw ImpidimpAnimationIdle
+	dw MorgremAnimationIdle
+	dw GrimmsnarlAnimationIdle
+	dw TinkatinkAnimationIdle
+	dw TinkatuffAnimationIdle
+	dw TinkatonAnimationIdle
+	dw FrigibaxAnimationIdle
+	dw ArctibaxAnimationIdle
+	dw BaxcaliburAnimationIdle
+	dw CharcadetAnimationIdle
+	dw ArmarogueAnimationIdle
+	dw CeruledgeAnimationIdle
+	dw SylveonAnimationIdle

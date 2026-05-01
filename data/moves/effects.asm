@@ -22,6 +22,28 @@ NormalHit:
 	kingsrock
 	endmove
 
+GigaHammer:
+	checkobedience
+	gigahammercheck
+	usedmovetext
+	gigahammerset
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
 DoSleep:
 	checkobedience
 	usedmovetext

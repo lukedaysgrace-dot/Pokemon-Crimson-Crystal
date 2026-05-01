@@ -557,8 +557,6 @@ PokemonPicPointers::
 	dba RaltsBackpic
 	dba RhyperiorFrontpic
 	dba RhyperiorBackpic
-	dba RypheriorFrontpic
-	dba RypheriorBackpic
 	dba SalamenceFrontpic
 	dba SalamenceBackpic
 	dba ScolipedeFrontpic
@@ -581,3 +579,67 @@ PokemonPicPointers::
 	dba WyrdeerBackpic
 	dba YanmegaFrontpic
 	dba YanmegaBackpic
+	dba LileepFrontpic
+	dba LileepBackpic
+	dba CradilyFrontpic
+	dba CradilyBackpic
+	dba ArmaldoFrontpic
+	dba ArmaldoBackpic
+	dba GolettFrontpic
+	dba GolettBackpic
+	dba GolurkFrontpic
+	dba GolurkBackpic
+	dba DuskullFrontpic
+	dba DuskullBackpic
+	dba DusclopsFrontpic
+	dba DusclopsBackpic
+	dba DusknoirFrontpic
+	dba DusknoirBackpic
+	dba TimburrFrontpic
+	dba TimburrBackpic
+	dba GurdurrFrontpic
+	dba GurdurrBackpic
+	dba ConkeldurrFrontpic
+	dba ConkeldurrBackpic
+	dba LarvestaFrontpic
+	dba LarvestaBackpic
+	dba VolcaronaFrontpic
+	dba VolcaronaBackpic
+	dba DeinoFrontpic
+	dba DeinoBackpic
+	dba ZweilousFrontpic
+	dba ZweilousBackpic
+	dba HydreigonFrontpic
+	dba HydreigonBackpic
+	dba DreepyFrontpic
+	dba DreepyBackpic
+	dba DrakloakFrontpic
+	dba DrakloakBackpic
+	dba DragapultFrontpic
+	dba DragapultBackpic
+	dba ImpidimpFrontpic
+	dba ImpidimpBackpic
+	dba MorgremFrontpic
+	dba MorgremBackpic
+	dba GrimmsnarlFrontpic
+	dba GrimmsnarlBackpic
+	dba TinkatinkFrontpic
+	dba TinkatinkBackpic
+	dba TinkatuffFrontpic
+	dba TinkatuffBackpic
+	dba TinkatonFrontpic
+	dba TinkatonBackpic
+	dba FrigibaxFrontpic
+	dba FrigibaxBackpic
+	dba ArctibaxFrontpic
+	dba ArctibaxBackpic
+	dba BaxcaliburFrontpic
+	dba BaxcaliburBackpic
+	dba CharcadetFrontpic
+	dba CharcadetBackpic
+	dba ArmarogueFrontpic
+	dba ArmarogueBackpic
+	dba CeruledgeFrontpic
+	dba CeruledgeBackpic
+	dba SylveonFrontpic
+	dba SylveonBackpic

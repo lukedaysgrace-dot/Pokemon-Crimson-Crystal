@@ -271,7 +271,6 @@ BitmasksPointers:
 	dw PorygonZBitmasks
 	dw RaltsBitmasks
 	dw RhyperiorBitmasks
-	dw RypheriorBitmasks
 	dw SalamenceBitmasks
 	dw ScolipedeBitmasks
 	dw ShelgonBitmasks
@@ -283,3 +282,35 @@ BitmasksPointers:
 	dw WhirlipedeBitmasks
 	dw WyrdeerBitmasks
 	dw YanmegaBitmasks
+	dw LileepBitmasks
+	dw CradilyBitmasks
+	dw ArmaldoBitmasks
+	dw GolettBitmasks
+	dw GolurkBitmasks
+	dw DuskullBitmasks
+	dw DusclopsBitmasks
+	dw DusknoirBitmasks
+	dw TimburrBitmasks
+	dw GurdurrBitmasks
+	dw ConkeldurrBitmasks
+	dw LarvestaBitmasks
+	dw VolcaronaBitmasks
+	dw DeinoBitmasks
+	dw ZweilousBitmasks
+	dw HydreigonBitmasks
+	dw DreepyBitmasks
+	dw DrakloakBitmasks
+	dw DragapultBitmasks
+	dw ImpidimpBitmasks
+	dw MorgremBitmasks
+	dw GrimmsnarlBitmasks
+	dw TinkatinkBitmasks
+	dw TinkatuffBitmasks
+	dw TinkatonBitmasks
+	dw FrigibaxBitmasks
+	dw ArctibaxBitmasks
+	dw BaxcaliburBitmasks
+	dw CharcadetBitmasks
+	dw ArmarogueBitmasks
+	dw CeruledgeBitmasks
+	dw SylveonBitmasks

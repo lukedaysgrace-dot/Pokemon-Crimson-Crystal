@@ -167,6 +167,7 @@ SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
 INCLUDE "data/battle/effect_command_pointers.asm"
+INCLUDE "engine/battle/giga_hammer_core.asm"
 
 
 SECTION "bank10", ROMX
@@ -501,17 +502,17 @@ SECTION "bank3E", ROMX
 INCLUDE "engine/gfx/load_font.asm"
 INCLUDE "engine/link/time_capsule.asm"
 INCLUDE "engine/events/name_rater.asm"
-INCLUDE "engine/events/play_slow_cry.asm"
 INCLUDE "engine/pokedex/new_pokedex_entry.asm"
 INCLUDE "engine/link/time_capsule_2.asm"
 INCLUDE "engine/pokedex/unown_dex.asm"
-INCLUDE "engine/events/magikarp.asm"
-INCLUDE "engine/battle/hidden_power.asm"
 INCLUDE "engine/battle/misc.asm"
+INCLUDE "engine/battle/hidden_power.asm"
 
 
 SECTION "bank3F", ROMX
 
+INCLUDE "engine/events/play_slow_cry.asm"
+INCLUDE "engine/events/magikarp.asm"
 INCLUDE "engine/tilesets/tileset_anims.asm"
 INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"

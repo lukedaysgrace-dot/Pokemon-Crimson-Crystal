@@ -256,6 +256,7 @@ MoveDescriptions1:
 	dw RockSmashDescription
 	dw WhirlpoolDescription
 	dw BeatUpDescription
+	dw GigaHammerDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1263,3 +1264,7 @@ WhirlpoolDescription:
 BeatUpDescription:
 	db   "Party #MON join"
 	next "in the attack.@"
+
+GigaHammerDescription:
+	db   "Can't be used"
+	next "twice in a row.@"

@@ -1193,18 +1193,18 @@ JohtoGrassWildMons:
 	map_id ROUTE_29
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 2, ANNIHILAPE
-	dbw 2, SCOLIPEDE
-	dbw 3, SALAMENCE
-	dbw 3, SENTRET
+	dbw 2, CERULEDGE
+	dbw 2, ARMAROGUE
+	dbw 3, TINKATON
+	dbw 3, DRAGAPULT
 	dbw 2, RATTATA
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP
 	; day
-	dbw 2, ANNIHILAPE
-	dbw 2, SCOLIPEDE
-	dbw 3, SALAMENCE
-	dbw 3, SENTRET
+	dbw 2, CERULEDGE
+	dbw 2, ARMAROGUE
+	dbw 3, TINKATON
+	dbw 3, DRAGAPULT
 	dbw 2, RATTATA
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP
