@@ -32,6 +32,8 @@ AlphabeticalPokedexOrder:
 	dw CLEFFA
 	dw CLOYSTER
 	dw CORSOLA
+	dw CORVIKNIGHT
+	dw CORVISQUIRE
 	dw CROBAT
 	dw CROCONAW
 	dw CUBONE
@@ -248,6 +250,7 @@ AlphabeticalPokedexOrder:
 	dw RATICATE
 	dw RATTATA
 	dw REMORAID
+	dw ROOKIDEE
 	dw RHYDON
 	dw RHYHORN
 	dw SANDSHREW

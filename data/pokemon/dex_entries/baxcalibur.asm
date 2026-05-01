@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "ICE DRAGON@" ; category name
+	dw 611, 4630 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Icy breath"
+	next "flash-freezes"
+	next "any threat."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It rumbles"
+	next "like a mountain"
+	next "in snow.@"

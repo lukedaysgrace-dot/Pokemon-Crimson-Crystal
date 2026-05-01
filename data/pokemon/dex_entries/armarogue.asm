@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "FIRE@" ; category name
+	dw 411, 1874 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Armor fused"
+	next "with cannon-fire"
+	next "pride."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It fires bursts"
+	next "taught by"
+	next "old codes.@"

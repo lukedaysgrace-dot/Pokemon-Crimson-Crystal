@@ -18,6 +18,9 @@ lib/mobile/main.o
 
 ### Build tools
 
+# Optional: create local.mk with e.g. RGBDS := /opt/rgbds-0.5.2/bin/
+-include local.mk
+
 ifeq (,$(shell which sha1sum))
 SHA1 := shasum
 else

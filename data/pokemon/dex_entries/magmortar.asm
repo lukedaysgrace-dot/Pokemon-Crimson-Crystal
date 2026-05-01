@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "BLAST@" ; category name
+	dw 503, 1499 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Blast arms"
+	next "roast foes"
+	next "from afar."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Magma heat"
+	next "fills its wide"
+	next "round gut.@"

@@ -47,3 +47,6 @@ gfx/pokemon/*/bitmask.asm
 gfx/pokemon/*/frames.asm
 !gfx/pokemon/unown/bitmask.asm
 !gfx/pokemon/unown/frames.asm
+
+# machine-local Makefile overrides (RGBDS path, etc.)
+local.mk

@@ -315,3 +315,6 @@ FirstEvoStages::
 	dw CHARCADET
 	dw CHARCADET
 	dw EEVEE
+	dw ROOKIDEE
+	dw ROOKIDEE
+	dw ROOKIDEE

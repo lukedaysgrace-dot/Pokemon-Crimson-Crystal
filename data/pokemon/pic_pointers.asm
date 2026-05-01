@@ -643,3 +643,9 @@ PokemonPicPointers::
 	dba CeruledgeBackpic
 	dba SylveonFrontpic
 	dba SylveonBackpic
+	dba RookideeFrontpic
+	dba RookideeBackpic
+	dba CorvisquireFrontpic
+	dba CorvisquireBackpic
+	dba CorviknightFrontpic
+	dba CorviknightBackpic

@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "LONG NECK@" ; category name
+	dw 1006, 3527 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "One head fights"
+	next "while the"
+	next "other watches."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Both heads"
+	next "stay alert"
+	next "day and night.@"

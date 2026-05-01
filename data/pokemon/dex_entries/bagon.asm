@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "ROCK HEAD@" ; category name
+	dw 200, 928 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Iron skull"
+	next "bashes rock"
+	next "as it leaps."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It wants to"
+	next "fly but grows"
+	next "no wings yet.@"

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  45,  95,  45,  62,  35,  39
+	db  65,  75,  45,  55,  35,  45
 	;  hp  atk  def  spd  sat  sdf
 
 	db DRAGON, ICE ; type

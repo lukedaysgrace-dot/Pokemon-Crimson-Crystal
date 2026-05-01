@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "TWIN TUSK@" ; category name
+	dw 802, 6415 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Ice tusks"
+	next "once carved"
+	next "glacier paths."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It charges"
+	next "drifts to crush"
+	next "intruders.@"

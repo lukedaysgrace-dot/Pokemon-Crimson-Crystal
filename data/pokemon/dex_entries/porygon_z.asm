@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "VIRTUAL@" ; category name
+	dw 211, 750 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Strange code"
+	next "made its mind"
+	next "unstable."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It drifts"
+	next "in data and"
+	next "glitches out.@"

@@ -335,6 +335,9 @@ JOHTO_POKEMON EQU const_value
 	const ARMAROGUE  ;
 	const CERULEDGE  ;
 	const SYLVEON    ;
+	const ROOKIDEE   ;
+	const CORVISQUIRE ;
+	const CORVIKNIGHT ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

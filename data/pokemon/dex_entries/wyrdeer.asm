@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "BIG HORN@" ; category name
+	dw 511, 2097 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Bright antlers"
+	next "sense paths"
+	next "in snow."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Herds follow"
+	next "when storms"
+	next "blind trails.@"

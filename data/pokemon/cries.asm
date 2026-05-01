@@ -320,3 +320,6 @@ PokemonCries::
 	mon_cry CRY_CHARMANDER,  $020,  $100 ; ARMAROGUE
 	mon_cry CRY_CHARMANDER,  $000,  $140 ; CERULEDGE
 	mon_cry CRY_PIDGEY,      $0ff,  $0b5 ; SYLVEON
+	mon_cry CRY_PIDGEY,      $120,  $0e0 ; ROOKIDEE
+	mon_cry CRY_PIDGEY,      $0e0,  $100 ; CORVISQUIRE
+	mon_cry CRY_PIDGEY,      $0a0,  $140 ; CORVIKNIGHT

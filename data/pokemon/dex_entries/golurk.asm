@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "AUTOMATON@" ; category name
+	dw 902, 7275 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Ancient seals"
+	next "lock power"
+	next "in clay."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Hidden jets"
+	next "vault it"
+	next "across ruins.@"

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  70,  45,  70,  30,  45,  90
+	db  65,  55,  55,  78,  45,  82
 	;  hp  atk  def  spd  sat  sdf
 
 	db FAIRY, STEEL ; type

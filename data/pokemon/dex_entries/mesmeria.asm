@@ -1,10 +1,11 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "TRANCE@@@@" ; category name
+	dw 411, 1146 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Its icy stare"
+	next "can dull the"
+	next "will of foes."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Legends say it"
+	next "reflects moonlight"
+	next "into waking dreams.@"
+

@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "VINE@" ; category name
+	dw 607, 2835 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Vines snag"
+	next "prey that stray"
+	next "too close."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Torn vines"
+	next "grow back thick"
+	next "overnight.@"

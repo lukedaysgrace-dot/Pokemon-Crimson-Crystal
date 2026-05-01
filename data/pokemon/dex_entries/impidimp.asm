@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "WILY@" ; category name
+	dw 104, 121 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "It steals shiny"
+	next "things from"
+	next "quiet rooms."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It eats spite"
+	next "when folks"
+	next "lose cool.@"

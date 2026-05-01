@@ -860,6 +860,12 @@ CeruledgeFrontpic: INCBIN "gfx/pokemon/ceruledge/front.animated.2bpp.lz"
 CeruledgeBackpic:  INCBIN "gfx/pokemon/ceruledge/back.2bpp.lz"
 SylveonFrontpic: INCBIN "gfx/pokemon/sylveon/front.animated.2bpp.lz"
 SylveonBackpic:  INCBIN "gfx/pokemon/sylveon/back.2bpp.lz"
+RookideeFrontpic: INCBIN "gfx/pokemon/rookidee/front.animated.2bpp.lz"
+RookideeBackpic:  INCBIN "gfx/pokemon/rookidee/back.2bpp.lz"
+CorvisquireFrontpic: INCBIN "gfx/pokemon/corvisquire/front.animated.2bpp.lz"
+CorvisquireBackpic:  INCBIN "gfx/pokemon/corvisquire/back.2bpp.lz"
+CorviknightFrontpic: INCBIN "gfx/pokemon/corviknight/front.animated.2bpp.lz"
+CorviknightBackpic:  INCBIN "gfx/pokemon/corviknight/back.2bpp.lz"
 SECTION "Pics 19", ROMX
 
 ; Seems to be an accidental copy of the previous bank

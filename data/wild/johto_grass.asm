@@ -1201,10 +1201,10 @@ JohtoGrassWildMons:
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP
 	; day
-	dbw 2, CERULEDGE
-	dbw 2, ARMAROGUE
-	dbw 3, TINKATON
-	dbw 3, DRAGAPULT
+	dbw 2, ROOKIDEE
+	dbw 2, CORVISQUIRE
+	dbw 3, CORVIKNIGHT
+	dbw 3, URSALUNA
 	dbw 2, RATTATA
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP

@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "LINGERING@" ; category name
+	dw 108, 44 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "This dart"
+	next "wants someone"
+	next "to shoot it."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It rides ally"
+	next "shots like"
+	next "tiny ammo.@"

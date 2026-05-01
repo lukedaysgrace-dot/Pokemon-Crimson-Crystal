@@ -315,3 +315,6 @@ PokedexDataPointerTable:
 	dba ArmaroguePokedexEntry
 	dba CeruledgePokedexEntry
 	dba SylveonPokedexEntry
+	dba RookideePokedexEntry
+	dba CorvisquirePokedexEntry
+	dba CorviknightPokedexEntry

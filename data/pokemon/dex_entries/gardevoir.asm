@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "EMBRACE@" ; category name
+	dw 503, 1067 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "It shields"
+	next "allies by"
+	next "warping space."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Loyal hearts"
+	next "unleash"
+	next "psychic power.@"
