@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "THUNDERBOL@" ; category name
+	dw 511, 3056 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Electric cords"
+	next "crackle on"
+	next "its limbs."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It jams live"
+	next "wires against"
+	next "bulky foes.@"

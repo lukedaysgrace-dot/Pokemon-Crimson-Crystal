@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "MEGAPEDE@" ; category name
+	dw 802, 4420 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "It runs prey"
+	next "down with"
+	next "fierce poison."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Horns stab"
+	next "first; venom"
+	next "ends the fight.@"

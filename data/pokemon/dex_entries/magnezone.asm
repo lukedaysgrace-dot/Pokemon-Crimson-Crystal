@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "MAGNET@" ; category name
+	dw 311, 3968 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Magnets float"
+	next "it while"
+	next "radar scans."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Three eyes"
+	next "pulse strange"
+	next "sky signals.@"

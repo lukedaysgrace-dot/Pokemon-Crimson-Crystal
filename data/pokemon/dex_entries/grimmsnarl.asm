@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "BULK UP@" ; category name
+	dw 411, 1345 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Hair limbs"
+	next "swipe like"
+	next "heavy clubs."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "It cheats then"
+	next "brawls rough"
+	next "up close.@"

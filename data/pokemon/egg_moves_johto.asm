@@ -165,6 +165,9 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
+	dw RookideeEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
 
 ChikoritaEggMoves:
 	dw VINE_WHIP
@@ -521,6 +524,13 @@ MiltankEggMoves:
 	dw PRESENT
 	dw REVERSAL
 	dw SEISMIC_TOSS
+	dw -1 ; end
+
+RookideeEggMoves:
+	dw DRILL_PECK
+	dw PURSUIT
+	dw WHIRLWIND
+	dw SKY_ATTACK
 	dw -1 ; end
 
 LarvitarEggMoves:

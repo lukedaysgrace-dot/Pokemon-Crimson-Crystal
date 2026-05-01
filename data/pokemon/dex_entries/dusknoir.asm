@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "GRIPPER@" ; category name
+	dw 703, 2350 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "It leads lost"
+	next "spirits past"
+	next "the veil."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Its head"
+	next "picks up"
+	next "faraway voices.@"

@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "SEA LILY@" ; category name
+	dw 303, 525 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "It feigned"
+	next "kelp on shallow"
+	next "sea rocks."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Tides rocked"
+	next "bait till prey"
+	next "drew near.@"

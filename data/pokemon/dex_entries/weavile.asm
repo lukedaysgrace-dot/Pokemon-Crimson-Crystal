@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "SHARP CLAW@" ; category name
+	dw 307, 750 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Packs hunt"
+	next "prey down with"
+	next "sharp claws."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Scratch marks"
+	next "guide allies"
+	next "through snow.@"

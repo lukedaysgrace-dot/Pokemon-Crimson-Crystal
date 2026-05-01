@@ -318,3 +318,6 @@ PokemonNames::
 	db "ARMAROGUE@"
 	db "CERULEDGE@"
 	db "SYLVEON@@@"
+	db "ROOKIDEE@@"
+	db "CORVISQUIR"
+	db "CORVKNIGHT"

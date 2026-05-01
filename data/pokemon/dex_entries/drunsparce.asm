@@ -1,10 +1,11 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "LAND SNAKE@" ; category name
+	dw 709, 5291 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "Its massive frame"
+	next "shakes the earth"
+	next "when it tunnels."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Older locals swear"
+	next "they feel tremors"
+	next "before it surfaces.@"
+

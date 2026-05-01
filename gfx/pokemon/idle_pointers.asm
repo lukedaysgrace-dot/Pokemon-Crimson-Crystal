@@ -314,3 +314,6 @@ AnimationIdlePointers:
 	dw ArmarogueAnimationIdle
 	dw CeruledgeAnimationIdle
 	dw SylveonAnimationIdle
+	dw RookideeAnimationIdle
+	dw CorvisquireAnimationIdle
+	dw CorviknightAnimationIdle

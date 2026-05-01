@@ -660,3 +660,9 @@ INCBIN "gfx/pokemon/ceruledge/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/ceruledge/shiny.pal"
 INCBIN "gfx/pokemon/sylveon/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/sylveon/shiny.pal"
+INCBIN "gfx/pokemon/rookidee/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/rookidee/shiny.pal"
+INCBIN "gfx/pokemon/corvisquire/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/corvisquire/shiny.pal"
+INCBIN "gfx/pokemon/corviknight/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/corviknight/shiny.pal"

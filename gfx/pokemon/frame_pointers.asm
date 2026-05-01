@@ -314,3 +314,6 @@ FramesPointers:
 	dba ArmarogueFrames
 	dba CeruledgeFrames
 	dba SylveonFrames
+	dba RookideeFrames
+	dba CorvisquireFrames
+	dba CorviknightFrames

@@ -314,3 +314,6 @@ BitmasksPointers:
 	dw ArmarogueBitmasks
 	dw CeruledgeBitmasks
 	dw SylveonBitmasks
+	dw RookideeBitmasks
+	dw CorvisquireBitmasks
+	dw CorviknightBitmasks

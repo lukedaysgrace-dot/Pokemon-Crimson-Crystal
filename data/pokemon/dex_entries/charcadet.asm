@@ -1,10 +1,10 @@
-	db "MYSTERY@@@" ; species name
-	dw 100, 1000 ; height, weight
+	db "FIRE CHILD@" ; category name
+	dw 200, 231 ; height, weight
 
-	db   "A newly added"
-	next "Pokemon species"
-	next "for this project."
+	db   "A tiny knight"
+	next "trains inner"
+	next "spirit."
 
-	page "Its final data"
-	next "can be tuned as"
-	next "needed later.@"
+	page "Armor"
+	next "waits for a"
+	next "worthy hero.@"

@@ -314,3 +314,6 @@ AnimationPointers:
 	dw ArmarogueAnimation
 	dw CeruledgeAnimation
 	dw SylveonAnimation
+	dw RookideeAnimation
+	dw CorvisquireAnimation
+	dw CorviknightAnimation

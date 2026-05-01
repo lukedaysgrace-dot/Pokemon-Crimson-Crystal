@@ -165,6 +165,9 @@ EvosAttacksPointers2::
 	dw ArmarogueEvosAttacks
 	dw CeruledgeEvosAttacks
 	dw SylveonEvosAttacks
+	dw RookideeEvosAttacks
+	dw CorvisquireEvosAttacks
+	dw CorviknightEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -2194,4 +2197,46 @@ SylveonEvosAttacks:
 	dbw 30, BITE
 	dbw 36, BATON_PASS
 	dbw 42, TAKE_DOWN
+	db 0 ; no more level-up moves
+
+RookideeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 18, CORVISQUIRE
+	db 0 ; no more evolutions
+	dbw 1, PECK
+	dbw 1, LEER
+	dbw 6, SAND_ATTACK
+	dbw 12, GUST
+	dbw 16, QUICK_ATTACK
+	dbw 22, PURSUIT
+	dbw 28, WING_ATTACK
+	db 0 ; no more level-up moves
+
+CorvisquireEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, CORVIKNIGHT
+	db 0 ; no more evolutions
+	dbw 1, PECK
+	dbw 1, LEER
+	dbw 1, SAND_ATTACK
+	dbw 8, GUST
+	dbw 14, QUICK_ATTACK
+	dbw 20, PURSUIT
+	dbw 28, AGILITY
+	dbw 34, WING_ATTACK
+	dbw 42, SWIFT
+	db 0 ; no more level-up moves
+
+CorviknightEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, PECK
+	dbw 1, LEER
+	dbw 1, SAND_ATTACK
+	dbw 1, GUST
+	dbw 8, QUICK_ATTACK
+	dbw 15, PURSUIT
+	dbw 22, AGILITY
+	dbw 30, WING_ATTACK
+	dbw 38, SWIFT
+	dbw 46, FURY_ATTACK
+	dbw 54, STEEL_WING
+	dbw 62, SKY_ATTACK
 	db 0 ; no more level-up moves
