@@ -19,6 +19,9 @@ MON_TABLE_CACHE_SIZE             EQU  16
 MON_TABLE_SAVED_RECENT_INDEXES   EQU   8
 MON_TABLE_MINIMUM_RESERVED_INDEX EQU $FD ; ensures that the value for the egg will remain reserved
 
+; Must be < MOVE_TABLE_MINIMUM_RESERVED_INDEX.
+; Larger values inflate wMoveIndexTable → sMoveIndexTable + sBackupMoveIndexTable in SRAM Bank 0 ($ae00–$bfff);
+; raising this caused "Sections would extend past the end of SRAM" — keep aligned with available save RAM.
 MOVE_TABLE_ENTRIES                EQU 230
 MOVE_TABLE_LOCKED_ENTRIES         EQU  18
 MOVE_TABLE_CACHE_SIZE             EQU  16

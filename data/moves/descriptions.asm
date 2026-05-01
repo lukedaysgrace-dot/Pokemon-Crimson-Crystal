@@ -257,6 +257,12 @@ MoveDescriptions1:
 	dw WhirlpoolDescription
 	dw BeatUpDescription
 	dw GigaHammerDescription
+	dw DazzlingGleamDescription
+	dw DisarmingVoiceDescription
+	dw DrainingKissDescription
+	dw PlayRoughDescription
+	dw SpiritBreakDescription
+	dw FairyWindDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1268,3 +1274,27 @@ BeatUpDescription:
 GigaHammerDescription:
 	db   "Can't be used"
 	next "twice in a row.@"
+
+DazzlingGleamDescription:
+	db   "Damaging fairy flash"
+	next "hits every foe.@"
+
+DisarmingVoiceDescription:
+	db   "Loud sound that never"
+	next "misses the target.@"
+
+DrainingKissDescription:
+	db   "A kiss that steals HP."
+	next "Heals by half damage.@"
+
+PlayRoughDescription:
+	db   "Playful, rough attack."
+	next "May lower ATTACK.@"
+
+SpiritBreakDescription:
+	db   "Shatters the spirit."
+	next "Lowers SPCL.ATK.@"
+
+FairyWindDescription:
+	db   "A sparkling fairy wind"
+	next "sweeps the target.@"
