@@ -264,6 +264,26 @@
 	const PLAY_ROUGH       ; 100
 	const SPIRIT_BREAK     ; 101
 	const FAIRY_WIND       ; 102
+	const SUCKER_PUNCH     ; 103
+	const DARK_PULSE       ; 104
+	const FIRE_FANG        ; 105
+	const ICE_FANG         ; 106
+	const THUNDER_FANG     ; 107
+	const AQUA_JET        ; 108
+	const WILD_CHARGE      ; 109
+	const BITTER_BLADE     ; 110
+	const HEAT_CRASH       ; 111
+	const ICE_SHARD        ; 112
+	const TRIPLE_AXEL      ; 113
+	const ICICLE_CRASH     ; 114
+	const STRUGGLE_BUG     ; 115
+	const INFESTATION      ; 116
+	const BUG_BUZZ         ; 117
+	const ACCELROCK        ; 118
+	const STONE_EDGE       ; 119
+	const AIR_SLASH        ; 120
+	const POISON_FANG      ; 121
+	const VENOSHOCK        ; 122
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

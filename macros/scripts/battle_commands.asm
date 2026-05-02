@@ -181,6 +181,8 @@ ENDM
 	command startloop               ; ae
 	command curl                    ; af
 	command gigahammerset           ; b0
+	command toxictarget             ; b1
+	command venoshockdouble         ; b2
 
 	enum_start $fe
 	command endturn                 ; fe

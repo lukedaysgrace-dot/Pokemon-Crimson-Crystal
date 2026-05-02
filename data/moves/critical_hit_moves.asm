@@ -6,4 +6,5 @@ CriticalHitMoves:
 	dw SLASH
 	dw AEROBLAST
 	dw CROSS_CHOP
+	dw STONE_EDGE
 	dw -1
