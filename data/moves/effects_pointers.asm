@@ -158,3 +158,5 @@ MoveEffectsPointers:
 	dw Fly
 	dw DefenseCurl
 	dw GigaHammer
+	dw PoisonFangHit
+	dw Venoshock

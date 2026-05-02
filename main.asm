@@ -381,6 +381,11 @@ INCLUDE "engine/pokegear/radio.asm"
 INCLUDE "engine/pokemon/mail_2.asm"
 
 
+SECTION "Battle BG Effects", ROMX
+
+INCLUDE "engine/battle_anims/bg_effects.asm"
+
+
 SECTION "Phone Scripts 2", ROMX
 
 INCLUDE "engine/events/std_scripts.asm"
@@ -422,9 +427,7 @@ INCLUDE "engine/events/trainer_scripts.asm"
 
 SECTION "bank32", ROMX
 
-INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
-INCLUDE "engine/events/poisonstep_pals.asm"
 
 
 SECTION "Move Animations", ROMX
@@ -483,6 +486,7 @@ INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/dummy_game.asm"
 INCLUDE "engine/pokemon/bills_pc.asm"
+INCLUDE "engine/events/poisonstep_pals.asm"
 
 
 SECTION "bank39", ROMX

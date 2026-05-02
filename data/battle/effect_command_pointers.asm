@@ -180,3 +180,5 @@ BattleCommandPointers:
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
 	dw BattleCommand_GigaHammerSetLock
+	dw BattleCommand_ToxicTarget
+	dw BattleCommand_VenoshockDouble

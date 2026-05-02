@@ -263,6 +263,26 @@ MoveDescriptions1:
 	dw PlayRoughDescription
 	dw SpiritBreakDescription
 	dw FairyWindDescription
+	dw SuckerPunchDescription
+	dw DarkPulseDescription
+	dw FireFangDescription
+	dw IceFangDescription
+	dw ThunderFangDescription
+	dw AquaJetDescription
+	dw WildChargeDescription
+	dw BitterBladeDescription
+	dw HeatCrashDescription
+	dw IceShardDescription
+	dw TripleAxelDescription
+	dw IcicleCrashDescription
+	dw StruggleBugDescription
+	dw InfestationDescription
+	dw BugBuzzDescription
+	dw AccelrockDescription
+	dw StoneEdgeDescription
+	dw AirSlashDescription
+	dw PoisonFangDescription
+	dw VenoshockDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1298,3 +1318,83 @@ SpiritBreakDescription:
 FairyWindDescription:
 	db   "A sparkling fairy wind"
 	next "sweeps the target.@"
+
+SuckerPunchDescription:
+	db   "Strikes first with a"
+	next "sharp punch.@"
+
+DarkPulseDescription:
+	db   "An aura pulse that may"
+	next "make the foe flinch.@"
+
+FireFangDescription:
+	db   "Bites with flame. May"
+	next "burn the target.@"
+
+IceFangDescription:
+	db   "Bites with cold. May"
+	next "freeze the target.@"
+
+ThunderFangDescription:
+	db   "Bites with current. May"
+	next "paralyze the target.@"
+
+AquaJetDescription:
+	db   "Strikes first with a jet"
+	next "of water.@"
+
+WildChargeDescription:
+	db   "Shrouded in electricity."
+	next "May paralyze.@"
+
+BitterBladeDescription:
+	db   "Fiery slash with malice."
+	next "Heals by half damage.@"
+
+HeatCrashDescription:
+	db   "A searing body slam."
+	next "May burn the foe.@"
+
+IceShardDescription:
+	db   "Strikes first with"
+	next "sharp ice.@"
+
+TripleAxelDescription:
+	db   "Hits three times with"
+	next "rising power.@"
+
+IcicleCrashDescription:
+	db   "Hurls icicles. May"
+	next "make the foe flinch.@"
+
+StruggleBugDescription:
+	db   "May lower SPCL.ATK."
+	next "A weak bug wave.@"
+
+InfestationDescription:
+	db   "Crawling bugs swarm"
+	next "the foe. May poison.@"
+
+BugBuzzDescription:
+	db   "An attack that may"
+	next "lower SPCL.DEF.@"
+
+AccelrockDescription:
+	db   "Strikes first with"
+	next "a stone shard.@"
+
+StoneEdgeDescription:
+	db   "Has a high criti-"
+	next "cal hit ratio.@"
+
+AirSlashDescription:
+	db   "Wind blades. May"
+	next "make the foe flinch.@"
+
+PoisonFangDescription:
+	db   "Toxic bite. May badly"
+	next "poison the foe.@"
+
+VenoshockDescription:
+	db   "Stronger if the foe"
+	next "is poisoned.@"

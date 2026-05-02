@@ -130,6 +130,7 @@ ROMX $2d
 	"Tileset Data 5"
 ROMX $2e
 	"bank2E"
+	"Battle BG Effects"
 ROMX $2f
 	"Phone Scripts 2"
 ROMX $30

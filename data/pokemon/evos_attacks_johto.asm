@@ -262,10 +262,10 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, PLAY_ROUGH
-	dbw 1, DISARMING_VOICE
-	dbw 6, DAZZLING_GLEAM
-	dbw 7, SPIRIT_BREAK
+	dbw 1, STRUGGLE_BUG
+	dbw 1, INFESTATION
+	dbw 6, BUG_BUZZ
+	dbw 7, AIR_SLASH
 	dbw 20, BITE
 	dbw 27, SCARY_FACE
 	dbw 35, SLASH

@@ -3817,6 +3817,53 @@ BattleCommand_PoisonTarget:
 	farcall UseHeldStatusHealingItem
 	ret
 
+BattleCommand_ToxicTarget:
+; toxictarget
+
+	call CheckSubstituteOpp
+	ret nz
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	and a
+	ret nz
+	ld a, [wTypeModifier]
+	and $7f
+	ret z
+	call CheckIfTargetIsPoisonType
+	ret z
+	call GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_POISON
+	ret z
+	ld a, [wEffectFailed]
+	and a
+	ret nz
+	call SafeCheckSafeguard
+	ret nz
+
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVarAddr
+	ldh a, [hBattleTurn]
+	and a
+	ld de, wEnemyToxicCount
+	jr z, .toxic_target_de
+	ld de, wPlayerToxicCount
+.toxic_target_de
+	set SUBSTATUS_TOXIC, [hl]
+	xor a
+	ld [de], a
+
+	call PoisonOpponent
+	ld de, ANIM_PSN
+	call PlayOpponentBattleAnim
+	call RefreshBattleHuds
+
+	ld hl, BadlyPoisonedText
+	call StdBattleTextbox
+
+	farcall UseHeldStatusHealingItem
+	ret
+
 BattleCommand_Poison:
 ; poison
 
@@ -6176,6 +6223,15 @@ EndRechargeOpp:
 	ret
 
 INCLUDE "engine/battle/move_effects/rage.asm"
+
+BattleCommand_VenoshockDouble:
+; venoshockdouble
+
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and 1 << PSN
+	ret z
+	jr DoubleDamage
 
 BattleCommand_DoubleFlyingDamage:
 ; doubleflyingdamage
