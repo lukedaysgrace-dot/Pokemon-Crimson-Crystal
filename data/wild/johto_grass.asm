@@ -1197,9 +1197,9 @@ JohtoGrassWildMons:
 	dbw 2, ARMAROGUE
 	dbw 3, TINKATON
 	dbw 3, DRAGAPULT
-	dbw 2, RATTATA
-	dbw 3, HOPPIP
-	dbw 3, HOPPIP
+	dbw 2, FRIGIBAX
+	dbw 3, BAXCALIBUR
+	dbw 3, ARCTIBAX
 	; day
 	dbw 2, ROOKIDEE
 	dbw 2, CORVISQUIRE

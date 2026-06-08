@@ -185,6 +185,11 @@ INCLUDE "engine/pokedex/pokedex_2.asm"
 INCLUDE "engine/pokemon/mail.asm"
 
 
+SECTION "Battle Effect Overflow", ROMX
+
+INCLUDE "engine/battle/effect_commands_core.asm"
+
+
 SECTION "Crystal Features 1", ROMX
 
 INCLUDE "engine/menus/init_gender.asm"

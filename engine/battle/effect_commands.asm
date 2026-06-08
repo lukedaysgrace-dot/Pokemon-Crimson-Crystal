@@ -4960,10 +4960,7 @@ BattleCommand_TriStatusChance:
 	dw BattleCommand_BurnTarget ; burn
 
 BattleCommand_Curl:
-; curl
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	set SUBSTATUS_CURLED, [hl]
+	callfar BattleCurl_Core
 	ret
 
 BattleCommand_RaiseSubNoAnim:
@@ -5101,67 +5098,11 @@ CalcBattleStats:
 INCLUDE "engine/battle/move_effects/bide.asm"
 
 BattleCommand_CheckRampage:
-; checkrampage
-
-	ld de, wPlayerRolloutCount
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .player
-	ld de, wEnemyRolloutCount
-.player
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	bit SUBSTATUS_RAMPAGE, [hl]
-	ret z
-	ld a, [de]
-	dec a
-	ld [de], a
-	jr nz, .continue_rampage
-
-	res SUBSTATUS_RAMPAGE, [hl]
-	call BattleCommand_SwitchTurn
-	call SafeCheckSafeguard
-	push af
-	call BattleCommand_SwitchTurn
-	pop af
-	jr nz, .continue_rampage
-
-	set SUBSTATUS_CONFUSED, [hl]
-	call BattleRandom
-	and %00000001
-	inc a
-	inc a
-	inc de ; ConfuseCount
-	ld [de], a
-.continue_rampage
-	ld b, rampage_command
-	jp SkipToBattleCommand
+	callfar BattleCheckRampage_Core
+	ret
 
 BattleCommand_Rampage:
-; rampage
-
-; No rampage during Sleep Talk.
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	and SLP
-	ret nz
-
-	ld de, wPlayerRolloutCount
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld de, wEnemyRolloutCount
-.ok
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	set SUBSTATUS_RAMPAGE, [hl]
-; Rampage for 1 or 2 more turns
-	call BattleRandom
-	and %00000001
-	inc a
-	ld [de], a
-	ld a, 1
-	ld [wSomeoneIsRampaging], a
+	callfar BattleRampage_Core
 	ret
 
 INCLUDE "engine/battle/move_effects/teleport.asm"
@@ -5687,17 +5628,8 @@ BattleCommand_OHKO:
 	ret
 
 BattleCommand_CheckCharge:
-; checkcharge
-
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	bit SUBSTATUS_CHARGED, [hl]
-	ret z
-	res SUBSTATUS_CHARGED, [hl]
-	res SUBSTATUS_UNDERGROUND, [hl]
-	res SUBSTATUS_FLYING, [hl]
-	ld b, charge_command
-	jp SkipToBattleCommand
+	callfar BattleCheckCharge_Core
+	ret
 
 BattleCommand_Charge:
 ; charge
@@ -6208,10 +6140,7 @@ CheckMoveTypeMatchesTarget:
 INCLUDE "engine/battle/move_effects/substitute.asm"
 
 BattleCommand_RechargeNextTurn:
-; rechargenextturn
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarAddr
-	set SUBSTATUS_RECHARGE, [hl]
+	callfar BattleRechargeNextTurn_Core
 	ret
 
 EndRechargeOpp:
@@ -6225,42 +6154,16 @@ EndRechargeOpp:
 INCLUDE "engine/battle/move_effects/rage.asm"
 
 BattleCommand_VenoshockDouble:
-; venoshockdouble
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	and 1 << PSN
-	ret z
-	jr DoubleDamage
+; Body in Battle Effect Overflow bank (see BattleVenoshockDouble_Core).
+	callfar BattleVenoshockDouble_Core
+	ret
 
 BattleCommand_DoubleFlyingDamage:
-; doubleflyingdamage
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	bit SUBSTATUS_FLYING, a
-	ret z
-	jr DoubleDamage
+	callfar BattleDoubleFlyingDamage_Core
+	ret
 
 BattleCommand_DoubleUndergroundDamage:
-; doubleundergrounddamage
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	bit SUBSTATUS_UNDERGROUND, a
-	ret z
-
-	; fallthrough
-
-DoubleDamage:
-	ld hl, wCurDamage + 1
-	sla [hl]
-	dec hl
-	rl [hl]
-	jr nc, .quit
-
-	ld a, $ff
-	ld [hli], a
-	ld [hl], a
-.quit
+	callfar BattleDoubleUndergroundDamage_Core
 	ret
 
 INCLUDE "engine/battle/move_effects/mimic.asm"
@@ -6808,34 +6711,12 @@ INCLUDE "engine/battle/move_effects/psych_up.asm"
 INCLUDE "engine/battle/move_effects/mirror_coat.asm"
 
 BattleCommand_DoubleMinimizeDamage:
-; doubleminimizedamage
-
-	ld hl, wEnemyMinimized
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld hl, wPlayerMinimized
-.ok
-	ld a, [hl]
-	and a
-	ret z
-	ld hl, wCurDamage + 1
-	sla [hl]
-	dec hl
-	rl [hl]
-	ret nc
-	ld a, $ff
-	ld [hli], a
-	ld [hl], a
+	callfar BattleDoubleMinimizeDamage_Core
 	ret
 
 BattleCommand_SkipSunCharge:
-; mimicsuncharge
-	ld a, [wBattleWeather]
-	cp WEATHER_SUN
-	ret nz
-	ld b, charge_command
-	jp SkipToBattleCommand
+	callfar BattleSkipSunCharge_Core
+	ret
 
 INCLUDE "engine/battle/move_effects/future_sight.asm"
 
@@ -7000,12 +6881,6 @@ PlayOpponentBattleAnim:
 CallBattleCore:
 	ld a, BANK("Battle Core")
 	rst FarCall
-	ret
-
-BattleGigaHammer_ApplyFailAnimAndText:
-	call AnimateFailedMove
-	ld hl, ButItFailedText
-	call StdBattleTextbox
 	ret
 
 AnimateFailedMove:
