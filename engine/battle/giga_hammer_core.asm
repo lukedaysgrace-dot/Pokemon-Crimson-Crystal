@@ -17,9 +17,14 @@ BattleGigaHammer_CheckCore:
 	ld a, 1
 	ld [wPlayerMustRechooseMove], a
 .no_repick
-	callfar BattleGigaHammer_ApplyFailAnimAndText
+	call BattleGigaHammer_ApplyFailAnimAndText
 	callfar EndMoveEffect
 	ret
+
+BattleGigaHammer_ApplyFailAnimAndText:
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
 
 BattleGigaHammer_SetLockCore:
 	ldh a, [hBattleTurn]
