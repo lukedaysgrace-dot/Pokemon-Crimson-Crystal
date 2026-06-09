@@ -472,6 +472,19 @@ StartMenu_Pokedex:
 StartMenu_Pokegear:
 	call FadeToMenu
 	farcall PokeGear
+	ld a, [wPokegearFlyQueued]
+	dec a
+	jr nz, .no_fly
+	ld [wPokegearFlyQueued], a
+	farcall PokegearPrepareFlyWarp
+	ld a, BANK(FlyWarpScript)
+	ld hl, FlyWarpScript
+	call FarQueueScript
+	call ExitAllMenus
+	ld a, 4
+	ret
+
+.no_fly
 	call CloseSubmenu
 	ld a, 0
 	ret

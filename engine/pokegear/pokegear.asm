@@ -97,6 +97,9 @@ PokeGear:
 	ld [wPokegearRadioChannelBank], a
 	ld [wPokegearRadioChannelAddr], a
 	ld [wPokegearRadioChannelAddr + 1], a
+	xor a
+	ld [wPokegearFlyQueued], a
+	ld [wFlySpawnpoint], a
 	call Pokegear_InitJumptableIndices
 	call InitPokegearTilemap
 	ld b, SCGB_POKEGEAR_PALS
@@ -580,6 +583,9 @@ PokegearMap_ContinueMap:
 	and B_BUTTON
 	jr nz, .cancel
 	ld a, [hl]
+	and A_BUTTON
+	jr nz, .try_fly
+	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
 	ld a, [hl]
@@ -614,6 +620,16 @@ PokegearMap_ContinueMap:
 .cancel
 	ld hl, wJumptableIndex
 	set 7, [hl]
+	ret
+
+.try_fly
+	call FieldHMPokegearTryFly
+	jr nc, .fly_cancel
+	ld hl, wJumptableIndex
+	set 7, [hl]
+	ret
+
+.fly_cancel
 	ret
 
 .DPad:
@@ -2259,6 +2275,57 @@ HasVisitedSpawn:
 	ret
 
 INCLUDE "data/maps/flypoints.asm"
+
+GetFlySpawnFromLandmark:
+; a = world landmark id. Returns spawn in a, carry if flypoint exists.
+; Uses the same Flypoints + 1 lookup as _FlyMap.
+	ld b, a
+	ld hl, Flypoints
+	xor a
+.loop
+	ld c, a
+	ld a, [hli]
+	cp -1
+	jr z, .fail
+	cp b
+	jr z, .found
+	inc hl
+	ld a, c
+	inc a
+	jr .loop
+.found
+	ld a, c
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, Flypoints + 1
+	add hl, de
+	ld a, [hl]
+	scf
+	ret
+.fail
+	and a
+	ret
+
+FieldHMPokegearTryFly:
+; Fly to the map cursor if eligible.
+	farcall TryTownMapFlyEligibility
+	jr nc, .no
+	ld a, [wPokegearMapCursorLandmark]
+	call GetFlySpawnFromLandmark
+	ret nc
+	ld [wFlySpawnpoint], a
+	ld c, a
+	call HasVisitedSpawn
+	and a
+	ret z
+	ld a, 1
+	ld [wPokegearFlyQueued], a
+	scf
+	ret
+.no
+	and a
+	ret
 
 ret_91c8f:
 	ret

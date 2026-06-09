@@ -1101,7 +1101,18 @@ ReturnToBattle_UseBall:
 	ret
 
 TownMapEffect:
-	farcall PokegearMap
+	call TownMapFlyFromItem
+	cp -1
+	jr z, .view_map
+	ld [wDefaultSpawnpoint], a
+	ld hl, FlyWarpScript
+	call QueueScript
+	ret
+
+.view_map
+	call FadeToMenu
+	farcall _TownMap
+	call ExitAllMenus
 	ret
 
 BicycleEffect:

@@ -295,6 +295,20 @@ _BadgeRequiredText::
 	line "is required."
 	prompt
 
+_NeedHMOrCompatibleMonText::
+	text "You need the HM and"
+	line "a compatible #MON."
+	done
+
+_StopSurfingPromptText::
+	text "Climb onto dry land?"
+	done
+
+_UseFlashPromptText::
+	text "It is pitch black."
+	line "Use FLASH?"
+	done
+
 UnknownText_0x1c05c8::
 	text "Can't use that"
 	line "here."

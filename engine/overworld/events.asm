@@ -1024,12 +1024,6 @@ ChangeDirectionScript: ; 9
 
 INCLUDE "engine/overworld/scripting.asm"
 
-WarpToSpawnPoint::
-	ld hl, wStatusFlags2
-	res STATUSFLAGS2_SAFARI_GAME_F, [hl]
-	res STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	ret
-
 RunMemScript::
 ; If there is no script here, we don't need to be here.
 	ld a, [wMapReentryScriptQueueFlag]
@@ -1106,6 +1100,11 @@ TryTileCollisionEvent::
 
 .surf
 	farcall TrySurfOW
+	jr nc, .flash
+	jr .done
+
+.flash
+	farcall TryFlashOW
 	jr nc, .noevent
 	jr .done
 
