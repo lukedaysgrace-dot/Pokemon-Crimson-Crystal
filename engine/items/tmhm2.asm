@@ -6,9 +6,15 @@ CanLearnTMHMMove:
 	push hl
 
 	ld a, [wPutativeTMHMMove]
+	ld d, a
 	call GetMoveIndexFromID
 	ld b, h
 	ld c, l
+	or b
+	jr nz, .have_index
+	ld b, 0
+	ld c, d
+.have_index
 	ld hl, TMHMMoves
 .loop
 	ld a, [hli]

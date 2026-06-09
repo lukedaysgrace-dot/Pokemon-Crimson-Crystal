@@ -816,6 +816,8 @@ wPokegearMapPlayerIconLandmark:: db ; c6d8
 wPokegearRadioChannelBank:: db ; c6d9
 wPokegearRadioChannelAddr:: dw ; c6da
 wPokegearRadioMusicPlaying:: db ; c6dc
+wPokegearFlyQueued:: db ; c6dd
+wFlySpawnpoint:: db ; c6de
 
 NEXTU ; c6d0
 ; trade

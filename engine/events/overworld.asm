@@ -140,6 +140,9 @@ CutFunction:
 	ld de, ENGINE_HIVEBADGE
 	call CheckBadge
 	jr c, .nohivebadge
+	ld hl, CUT
+	call CheckFieldHMAllowForMenu
+	jr c, .nohivebadge
 	call CheckMapForSomethingToCut
 	jr c, .nothingtocut
 	ld a, $1
@@ -301,6 +304,9 @@ OWFlash:
 	cp %11111111 ; 3, 3, 3, 3
 	jr nz, .notadarkcave
 .useflash
+	ld hl, FLASH
+	call CheckFieldHMAllowForMenu
+	jr c, .nozephyrbadge
 	call UseFlash
 	ld a, $81
 	ret
@@ -359,6 +365,9 @@ SurfFunction:
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .asm_c956
+	ld hl, SURF
+	call CheckFieldHMAllowForMenu
+	jr c, .asm_c956
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .cannotsurf
@@ -412,6 +421,7 @@ SurfFromMenuScript:
 	special UpdateTimePals
 
 UsedSurfScript:
+	callasm GetPartyNick
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
 	closetext
@@ -494,14 +504,14 @@ CheckDirection:
 
 TrySurfOW::
 ; Checking a tile in the overworld.
-; Return carry if fail is allowed.
+; Return carry if a surf or stop-surf prompt was shown.
 
-; Don't ask to surf if already fail.
+; If already surfing, offer to climb onto dry land.
 	ld a, [wPlayerState]
 	cp PLAYER_SURF_PIKA
-	jr z, .quit
+	jr z, .try_stop
 	cp PLAYER_SURF
-	jr z, .quit
+	jr z, .try_stop
 
 ; Must be facing water.
 	ld a, [wFacingTileID]
@@ -513,14 +523,16 @@ TrySurfOW::
 	call CheckDirection
 	jr c, .quit
 
-	ld de, ENGINE_FOGBADGE
-	call CheckEngineFlag
-	jr c, .quit
-
 	ld hl, SURF
-	call CheckPartyMoveIndex
-	jr c, .quit
+	call CheckFieldHMAllow
+	jr nc, .ask_surf
+	ld a, BANK(FieldHMCantUseScript)
+	ld hl, FieldHMCantUseScript
+	call CallScript
+	scf
+	ret
 
+.ask_surf
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .quit
@@ -533,6 +545,19 @@ TrySurfOW::
 	ld hl, AskSurfScript
 	call CallScript
 
+	scf
+	ret
+
+.try_stop
+	call GetFacingTileCoord
+	call GetTileCollision
+	and a
+	ret nz
+	call CheckDirection
+	ret c
+	ld a, BANK(AskStopSurfScript)
+	ld hl, AskStopSurfScript
+	call CallScript
 	scf
 	ret
 
@@ -573,6 +598,9 @@ FlyFunction:
 	ld de, ENGINE_STORMBADGE
 	call CheckBadge
 	jr c, .nostormbadge
+	ld hl, FLY
+	call CheckFieldHMAllowForMenu
+	jr c, .nostormbadge
 	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .outdoors
@@ -581,6 +609,11 @@ FlyFunction:
 .outdoors
 	xor a
 	ldh [hMapAnims], a
+	push hl
+	ld hl, FLY
+	call FindFirstPartyMonCanLearnMove
+	ld [wCurPartyMon], a
+	pop hl
 	call LoadStandardMenuHeader
 	call ClearSprites
 	farcall _FlyMap
@@ -610,7 +643,7 @@ FlyFunction:
 	ret
 
 .DoFly:
-	ld hl, .FlyScript
+	ld hl, FlyWarpScript
 	call QueueScript
 	ld a, $81
 	ret
@@ -620,7 +653,7 @@ FlyFunction:
 	ld a, $82
 	ret
 
-.FlyScript:
+FlyWarpScript:
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
@@ -654,6 +687,9 @@ WaterfallFunction:
 	farcall CheckBadge
 	ld a, $80
 	ret c
+	ld hl, WATERFALL
+	call CheckFieldHMAllowForMenu
+	jr c, .failed
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu
@@ -719,11 +755,8 @@ Script_UsedWaterfall:
 
 TryWaterfallOW::
 	ld hl, WATERFALL
-	call CheckPartyMoveIndex
-	jr c, .failed
-	ld de, ENGINE_RISINGBADGE
-	call CheckEngineFlag
-	jr c, .failed
+	call CheckFieldHMAllow
+	jr c, .quit
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld a, BANK(Script_AskWaterfall)
@@ -737,6 +770,10 @@ TryWaterfallOW::
 	ld hl, Script_CantDoWaterfall
 	call CallScript
 	scf
+	ret
+
+.quit
+	xor a
 	ret
 
 Script_CantDoWaterfall:
@@ -987,6 +1024,9 @@ StrengthFunction:
 	ld de, ENGINE_PLAINBADGE
 	call CheckBadge
 	jr c, .Failed
+	ld hl, STRENGTH
+	call CheckFieldHMAllowForMenu
+	jr c, .Failed
 	jr .UseStrength
 
 .Unreferenced_AlreadyUsing:
@@ -1080,17 +1120,13 @@ UnknownText_0xcd73:
 	text_end
 
 TryStrengthOW:
-	ld hl, STRENGTH
-	call CheckPartyMoveIndex
-	jr c, .nope
-
-	ld de, ENGINE_PLAINBADGE
-	call CheckEngineFlag
-	jr c, .nope
-
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
-	jr z, .already_using
+	jr nz, .already_using
+
+	ld hl, STRENGTH
+	call CheckFieldHMAllow
+	jr c, .nope
 
 	ld a, 2
 	jr .done
@@ -1125,6 +1161,9 @@ Jumptable_cdae:
 .TryWhirlpool:
 	ld de, ENGINE_GLACIERBADGE
 	call CheckBadge
+	jr c, .noglacierbadge
+	ld hl, WHIRLPOOL
+	call CheckFieldHMAllowForMenu
 	jr c, .noglacierbadge
 	call TryWhirlpoolMenu
 	jr c, .failed
@@ -1215,11 +1254,8 @@ DisappearWhirlpool:
 
 TryWhirlpoolOW::
 	ld hl, WHIRLPOOL
-	call CheckPartyMoveIndex
-	jr c, .failed
-	ld de, ENGINE_GLACIERBADGE
-	call CheckEngineFlag
-	jr c, .failed
+	call CheckFieldHMAllow
+	jr c, .quit
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, BANK(Script_AskWhirlpoolOW)
@@ -1233,6 +1269,10 @@ TryWhirlpoolOW::
 	ld hl, Script_MightyWhirlpool
 	call CallScript
 	scf
+	ret
+
+.quit
+	xor a
 	ret
 
 Script_MightyWhirlpool:
@@ -1796,25 +1836,88 @@ GotOffTheBikeText:
 
 TryCutOW::
 	ld hl, CUT
-	call CheckPartyMoveIndex
-	jr c, .cant_cut
+	call CheckFieldHMAllow
+	jr nc, .ask
+	ld a, BANK(FieldHMCantUseScript)
+	ld hl, FieldHMCantUseScript
+	call CallScript
+	scf
+	ret
 
-	ld de, ENGINE_HIVEBADGE
-	call CheckEngineFlag
-	jr c, .cant_cut
-
+.ask
 	ld a, BANK(AskCutScript)
 	ld hl, AskCutScript
 	call CallScript
 	scf
 	ret
 
-.cant_cut
-	ld a, BANK(CantCutScript)
-	ld hl, CantCutScript
+FieldHMCantUseScript:
+	opentext
+	writetext Text_FieldHMNeedHM
+	waitbutton
+	closetext
+	end
+
+Text_FieldHMNeedHM:
+	text_far _NeedHMOrCompatibleMonText
+	text_end
+
+StopSurfFromField:
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	call ReplaceKrisSprite
+	ret
+
+AskStopSurfScript:
+	opentext
+	writetext Text_StopSurfingPrompt
+	yesorno
+	iffalse .end
+	callasm StopSurfFromField
+.end
+	closetext
+	end
+
+Text_StopSurfingPrompt:
+	text_far _StopSurfingPromptText
+	text_end
+
+TryFlashOW::
+	ld a, [wPlayerState]
+	cp PLAYER_SURF
+	jr z, .flash_quit
+	cp PLAYER_SURF_PIKA
+	jr z, .flash_quit
+	ld a, [wTimeOfDayPalset]
+	cp %11111111
+	jr nz, .flash_quit
+	ld hl, FLASH
+	call CheckFieldHMAllow
+	jr c, .flash_quit
+	ld a, BANK(AskFlashScript)
+	ld hl, AskFlashScript
 	call CallScript
 	scf
 	ret
+.flash_quit
+	xor a
+	ret
+
+AskFlashScript:
+	opentext
+	writetext Text_UseFlashPrompt
+	yesorno
+	iffalse .flash_end
+	closetext
+	ld hl, Script_UseFlash
+	jp QueueScript
+.flash_end
+	closetext
+	end
+
+Text_UseFlashPrompt:
+	text_far _UseFlashPromptText
+	text_end
 
 AskCutScript:
 	opentext
@@ -1838,11 +1941,4 @@ AskCutScript:
 
 UnknownText_0xd1c8:
 	text_far UnknownText_0x1c09dd
-	text_end
-
-CantCutScript:
-	jumptext UnknownText_0xd1d0
-
-UnknownText_0xd1d0:
-	text_far UnknownText_0x1c0a05
 	text_end
