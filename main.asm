@@ -167,7 +167,6 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
-INCLUDE "data/battle/effect_command_pointers.asm"
 INCLUDE "engine/battle/giga_hammer_core.asm"
 
 
@@ -189,6 +188,8 @@ INCLUDE "engine/pokemon/mail.asm"
 SECTION "Battle Effect Overflow", ROMX
 
 INCLUDE "engine/battle/effect_commands_core.asm"
+; read via GetFarHalfword, so it doesn't need to share a bank with its callers
+INCLUDE "data/battle/effect_command_pointers.asm"
 
 
 SECTION "Crystal Features 1", ROMX

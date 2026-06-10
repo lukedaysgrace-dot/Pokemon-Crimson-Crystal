@@ -61,7 +61,6 @@ ROMX $0d
 	"Effect Commands"
 ROMX $0e
 	"Enemy Trainers"
-	"Enemy Trainer Parties 2"
 ROMX $0f
 	"Battle Core"
 ROMX $10
@@ -71,6 +70,7 @@ ROMX $10
 ROMX $11
 	"bank11"
 	"Battle Effect Overflow"
+	"Enemy Trainer Parties 2"
 ROMX $12
 	"Crystal Features 1"
 	"Egg Moves 2"

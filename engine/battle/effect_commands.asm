@@ -1643,6 +1643,9 @@ BattleCommand_CheckHit:
 	call .ThunderRain
 	ret z
 
+	call .BlizzardHail
+	ret z
+
 	call .XAccuracy
 	ret nz
 
@@ -1817,6 +1820,17 @@ BattleCommand_CheckHit:
 
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
+	ret
+
+.BlizzardHail:
+; Return z if the current move always hits in hail, and it is hailing.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BLIZZARD
+	ret nz
+
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
 	ret
 
 .XAccuracy:
@@ -2722,6 +2736,7 @@ PlayerAttackDamage:
 	call ThickClubBoost
 
 .done
+	call ApplyWeatherDefenseBoost
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
@@ -2973,6 +2988,7 @@ EnemyAttackDamage:
 	call ThickClubBoost
 
 .done
+	call ApplyWeatherDefenseBoost
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]
@@ -2981,6 +2997,15 @@ EnemyAttackDamage:
 
 	ld a, 1
 	and a
+	ret
+
+ApplyWeatherDefenseBoost:
+; Raise the defending Pokémon's defense stat in bc by 50%
+; if its type benefits from the current weather.
+; Body in Battle Effect Overflow bank (see WeatherDefenseBoost_Core).
+	push hl
+	callfar WeatherDefenseBoost_Core
+	pop hl
 	ret
 
 INCLUDE "engine/battle/move_effects/beat_up.asm"
@@ -6721,6 +6746,8 @@ BattleCommand_SkipSunCharge:
 INCLUDE "engine/battle/move_effects/future_sight.asm"
 
 INCLUDE "engine/battle/move_effects/thunder.asm"
+
+INCLUDE "engine/battle/move_effects/hail.asm"
 
 CheckHiddenOpponent:
 ; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.

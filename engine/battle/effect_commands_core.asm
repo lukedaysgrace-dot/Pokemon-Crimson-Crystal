@@ -137,3 +137,69 @@ DoubleDamage_Core:
 	ld [hl], a
 .quit
 	ret
+
+BattleStartHail_Core:
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	jr z, .failed
+
+	ld a, WEATHER_HAIL
+	ld [wBattleWeather], a
+	ld a, 5
+	ld [wWeatherCount], a
+	callfar AnimateCurrentMove
+	ld hl, ItStartedToHailText
+	jp StdBattleTextbox
+
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+WeatherDefenseBoost_Core:
+; Raise the defending Pokémon's defense stat in bc by 50%
+; if its type benefits from the current weather:
+; - Ice-types get 1.5x Defense against physical moves in hail.
+; - Rock-types get 1.5x Sp.Def against special moves in a sandstorm.
+	push de
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	jr z, .hail
+	cp WEATHER_SANDSTORM
+	jr nz, .done
+; sandstorm
+	ld d, CATEGORIZE_SPECIAL
+	ld e, ROCK
+	jr .got_weather
+.hail
+	ld d, CATEGORIZE_PHYSICAL
+	ld e, ICE
+.got_weather
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
+	ld hl, wEnemyMonType1
+	jr z, .got_category
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	ld hl, wBattleMonType1
+.got_category
+	cp d
+	jr nz, .done
+	ld a, [hli]
+	cp e
+	jr z, .boost
+	ld a, [hl]
+	cp e
+	jr nz, .done
+.boost
+; bc = bc * 1.5
+	ld h, b
+	ld l, c
+	srl h
+	rr l
+	add hl, bc
+	ld b, h
+	ld c, l
+.done
+	pop de
+	ret

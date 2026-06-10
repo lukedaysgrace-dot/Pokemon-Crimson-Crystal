@@ -1,5 +1,6 @@
 ; entries correspond to constants/move_constants.asm
 ; negative entries first (see the constants file for details)
+	dw BattleAnim_InHail
 	dw BattleAnim_ThrowPokeBall
 	dw BattleAnim_SendOutMon
 	dw BattleAnim_ReturnMon
@@ -302,6 +303,7 @@ BattleAnimations::
 	dw BattleAnim_AirSlash
 	dw BattleAnim_PoisonFang
 	dw BattleAnim_Venoshock
+	dw BattleAnim_Hail
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -1292,6 +1294,22 @@ BattleAnim_InSandstorm:
 	anim_sound 0, 1, SFX_MENU
 	anim_wait 8
 	anim_loop 6, .loop
+	anim_wait 8
+	anim_ret
+
+BattleAnim_Hail:
+BattleAnim_InHail:
+	anim_1gfx ANIM_GFX_ICE
+	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
+	anim_obj ANIM_OBJ_HAIL, 88, 0, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_HAIL, 72, 0, $1
+	anim_wait 8
+	anim_obj ANIM_OBJ_HAIL, 56, 0, $2
+.loop
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 8
+	anim_loop 8, .loop
 	anim_wait 8
 	anim_ret
 

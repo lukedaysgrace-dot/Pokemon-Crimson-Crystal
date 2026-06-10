@@ -160,3 +160,5 @@ MoveEffectsPointers:
 	dw GigaHammer
 	dw PoisonFangHit
 	dw Venoshock
+	dw FreezeHit ; for Blizzard, purposefully with different EFFECT_* constant
+	dw Hail

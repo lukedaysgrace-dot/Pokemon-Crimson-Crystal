@@ -217,6 +217,7 @@ BattleAnimOAMData:
 	dbbw $00,  6, .OAMData_d5 ; BATTLEANIMOAMSET_D5
 	dbbw $00, 14, .OAMData_d6 ; BATTLEANIMOAMSET_D6
 	dbbw $00, 12, .OAMData_d7 ; BATTLEANIMOAMSET_D7
+	dbbw $00, 13, .OAMData_Hail ; BATTLEANIMOAMSET_HAIL
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -767,6 +768,21 @@ BattleAnimOAMData:
 	dsprite   1, 0,   1, 0, $09, $1 | OBP_NUM
 	dsprite   0, 0,   2, 0, $0a, $1 | OBP_NUM
 	dsprite   1, 0,   2, 0, $0b, $1 | OBP_NUM
+
+.OAMData_Hail:
+	dsprite  -2, 0, -13, 4, $04, $0
+	dsprite  -4, 0, -11, 4, $04, $0
+	dsprite  -1, 0,  -9, 4, $04, $0
+	dsprite  -5, 0,  -7, 4, $04, $0
+	dsprite  -3, 0,  -5, 4, $04, $0
+	dsprite  -5, 0,  -3, 4, $04, $0
+	dsprite  -3, 0,  -1, 4, $04, $0
+	dsprite  -3, 0,   0, 4, $04, $0
+	dsprite  -5, 0,   2, 4, $04, $0
+	dsprite   0, 0,   4, 4, $04, $0
+	dsprite  -2, 0,   6, 4, $04, $0
+	dsprite  -4, 0,   8, 4, $04, $0
+	dsprite  -2, 0,  10, 4, $04, $0
 
 .OAMData_6e:
 	dsprite  -2, 4,   0, 4, $00, $0

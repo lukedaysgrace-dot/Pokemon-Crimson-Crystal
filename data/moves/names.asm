@@ -277,3 +277,4 @@ MoveNames::
 	db "AIR SLASH@"
 	db "POISON FANG@"
 	db "VENOSHOCK@"
+	db "HAIL@"

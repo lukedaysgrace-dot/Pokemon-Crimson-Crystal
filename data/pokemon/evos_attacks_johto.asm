@@ -263,7 +263,7 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, STRUGGLE_BUG
-	dbw 1, INFESTATION
+	dbw 1, HAIL
 	dbw 6, BUG_BUZZ
 	dbw 7, AIR_SLASH
 	dbw 20, BITE

@@ -183,6 +183,7 @@ ENDM
 	command gigahammerset           ; b0
 	command toxictarget             ; b1
 	command venoshockdouble         ; b2
+	command starthail               ; b3
 
 	enum_start $fe
 	command endturn                 ; fe

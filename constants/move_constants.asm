@@ -284,6 +284,7 @@
 	const AIR_SLASH        ; 120
 	const POISON_FANG      ; 121
 	const VENOSHOCK        ; 122
+	const HAIL             ; 123
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
@@ -293,7 +294,8 @@ NUM_ATTACKS EQU const_value + -1
 ; Battle animation id (index in BattleAnimations after all move anims)
 	const ANIM_SWEET_SCENT_2
 ; Animations with negative IDs will play even when animations are disabled
-const_value = -$16 ;fix if more negative values are added
+const_value = -$17 ;fix if more negative values are added
+	const ANIM_IN_HAIL           ; -17 (ffe9)
 	const ANIM_THROW_POKE_BALL   ; -16 (ffea)
 	const ANIM_SEND_OUT_MON      ; -15 (ffeb)
 	const ANIM_RETURN_MON        ; -14 (ffec)
