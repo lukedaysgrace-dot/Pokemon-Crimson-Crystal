@@ -932,6 +932,19 @@ _ComposeMailMessage:
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], $0
+
+	; the party mon OAM data no longer sets attributes every frame,
+	; so make sure the mail icon uses palette 0
+	ld hl, wVirtualOAMSprite00Attributes
+	ld de, SPRITEOAMSTRUCT_LENGTH
+	xor a
+	ld [hl], a
+	add hl, de
+	ld [hl], a
+	add hl, de
+	ld [hl], a
+	add hl, de
+	ld [hl], a
 	call .InitCharset
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a

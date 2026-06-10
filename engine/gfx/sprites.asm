@@ -288,8 +288,14 @@ UpdateAnimFrame:
 	inc de
 	; fourth byte: attributes
 	; [de] = GetSpriteOAMAttr([hl])
+	; an attribute byte of -1 leaves the current OAM attributes alone,
+	; so that per-mon icon palettes set at init are preserved
+	ld a, [hl]
+	cp -1
+	jr z, .skip_attributes
 	call GetSpriteOAMAttr
 	ld [de], a
+.skip_attributes
 	inc hl
 	inc de
 	ld a, e
