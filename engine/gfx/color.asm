@@ -695,6 +695,22 @@ SetFirstOBJPalette::
 	ldh [hCGBPalUpdate], a
 	jp ApplyPals
 
+RestoreFirstOBJPalette::
+; Reload OBJ palette 0 from the map object palettes for the current
+; time of day. Undoes SetFirstOBJPalette after the Fly animation.
+	ld a, [wTimeOfDayPal]
+	maskbits NUM_DAYTIMES
+	ld bc, 8 palettes
+	ld hl, MapObjectPals
+	call AddNTimes
+	ld de, wOBPals1
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	jp ApplyPals
+
 GetBattlemonBackpicPalettePointer:
 	push de
 	farcall GetPartyMonDVs
