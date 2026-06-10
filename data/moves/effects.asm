@@ -1597,6 +1597,55 @@ Hail:
 	starthail
 	endmove
 
+UTurn:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	uturn
+	endmove
+
+DracoMeteor:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	switchturn
+	specialattackdown2
+	switchturn
+	lowersub
+	statdownanim
+	raisesub
+	switchturn
+	statdownmessage
+	switchturn
+	kingsrock
+	endmove
+
 Endure:
 	checkobedience
 	usedmovetext

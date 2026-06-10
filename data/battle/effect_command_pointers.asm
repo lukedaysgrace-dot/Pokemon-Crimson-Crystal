@@ -183,3 +183,4 @@ BattleCommandPointers:
 	dw BattleCommand_ToxicTarget
 	dw BattleCommand_VenoshockDouble
 	dw BattleCommand_StartHail
+	dw BattleCommand_UTurn

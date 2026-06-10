@@ -284,6 +284,19 @@ MoveDescriptions1:
 	dw PoisonFangDescription
 	dw VenoshockDescription
 	dw HailDescription
+	dw LeafBladeDescription
+	dw ShadowSneakDescription
+	dw ShadowPunchDescription
+	dw ShadowClawDescription
+	dw PoisonJabDescription
+	dw LungeDescription
+	dw BugBiteDescription
+	dw XScissorDescription
+	dw UTurnDescription
+	dw DragonClawDescription
+	dw DracoMeteorDescription
+	dw MoonblastDescription
+	dw PixiePunchDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1403,3 +1416,63 @@ VenoshockDescription:
 HailDescription:
 	db   "Summons a hail-"
 	next "storm for 5 turns.@"
+
+LeafBladeDescription:
+	db   "Slashes with a"
+	next "sharp leaf. High"
+	next "critical-hit ratio.@"
+
+ShadowSneakDescription:
+	db   "Extends a shadow"
+	next "to strike first.@"
+
+ShadowPunchDescription:
+	db   "A punch thrown"
+	next "from the shadows."
+	next "Never misses.@"
+
+ShadowClawDescription:
+	db   "Slashes with a"
+	next "shadowy claw. High"
+	next "critical-hit ratio.@"
+
+PoisonJabDescription:
+	db   "Stabs with a"
+	next "poisonous limb."
+	next "May poison.@"
+
+LungeDescription:
+	db   "A quick lunge"
+	next "that hits first.@"
+
+BugBiteDescription:
+	db   "Bites the foe."
+	next "May eat its berry.@"
+
+XScissorDescription:
+	db   "Slashes by cross-"
+	next "ing claws like"
+	next "scissors.@"
+
+UTurnDescription:
+	db   "Attacks, then"
+	next "switches out.@"
+
+DragonClawDescription:
+	db   "Slashes the foe"
+	next "with sharp claws.@"
+
+DracoMeteorDescription:
+	db   "Comets fall from"
+	next "the sky. Harshly"
+	next "lowers SP. ATK.@"
+
+MoonblastDescription:
+	db   "Attacks with moon"
+	next "power. May lower"
+	next "SP. ATK.@"
+
+PixiePunchDescription:
+	db   "A playful fairy"
+	next "punch. May lower"
+	next "SPEED.@"

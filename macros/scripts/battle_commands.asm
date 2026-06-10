@@ -184,6 +184,7 @@ ENDM
 	command toxictarget             ; b1
 	command venoshockdouble         ; b2
 	command starthail               ; b3
+	command uturn                   ; b4
 
 	enum_start $fe
 	command endturn                 ; fe

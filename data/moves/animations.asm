@@ -304,6 +304,19 @@ BattleAnimations::
 	dw BattleAnim_PoisonFang
 	dw BattleAnim_Venoshock
 	dw BattleAnim_Hail
+	dw BattleAnim_LeafBlade
+	dw BattleAnim_ShadowSneak
+	dw BattleAnim_ShadowPunch
+	dw BattleAnim_ShadowClaw
+	dw BattleAnim_PoisonJab
+	dw BattleAnim_Lunge
+	dw BattleAnim_BugBite
+	dw BattleAnim_XScissor
+	dw BattleAnim_UTurn
+	dw BattleAnim_DragonClaw
+	dw BattleAnim_DracoMeteor
+	dw BattleAnim_Moonblast
+	dw BattleAnim_PixiePunch
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -5658,4 +5671,276 @@ BattleAnim_ShowMon_1:
 	anim_wait 4
 	anim_incobj 1
 	anim_wait 1
+	anim_ret
+
+BattleAnim_LeafBlade:
+; Sharp grass blades slash the target
+	anim_2gfx ANIM_GFX_PLANT, ANIM_GFX_CUT
+	anim_sound 0, 0, SFX_VINE_WHIP
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 56, 80, $28
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 88, $5c
+	anim_wait 12
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 152, 40, $0
+	anim_obj ANIM_OBJ_3A, 120, 72, $0
+	anim_wait 24
+	anim_ret
+
+BattleAnim_ShadowSneak:
+; Dark shadow lunge from behind (priority ghost strike)
+	anim_2gfx ANIM_GFX_SPEED, ANIM_GFX_HIT
+	anim_bgp $1b
+	anim_obp0 $c0
+	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
+	anim_sound 0, 0, SFX_CURSE
+	anim_wait 20
+	anim_sound 0, 0, SFX_MENU
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $80
+	anim_wait 12
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_04, 136, 48, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 16
+	anim_ret
+
+BattleAnim_ShadowPunch:
+; Faint Attack vanish, then a silent Thunder Punch fist from the dark
+	anim_1gfx ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_CURSE
+	anim_call BattleAnim_TargetObj_1Row
+	anim_bgeffect ANIM_BG_1D, $0, $1, $80
+	anim_wait 40
+	anim_obj ANIM_OBJ_0A, 136, 56, $43
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_wait 64
+	anim_incbgeffect ANIM_BG_1D
+	anim_call BattleAnim_ShowMon_0
+	anim_wait 4
+	anim_ret
+
+BattleAnim_ShadowClaw:
+; Faint Attack vanish, then brutal slash rakes from the dark
+	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_CURSE
+	anim_call BattleAnim_TargetObj_1Row
+	anim_bgeffect ANIM_BG_1D, $0, $1, $80
+	anim_wait 40
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 152, 40, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3B, 112, 40, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 148, 36, $0
+	anim_bgeffect ANIM_BG_1F, $58, $2, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 16
+	anim_incbgeffect ANIM_BG_1D
+	anim_call BattleAnim_ShowMon_0
+	anim_wait 4
+	anim_ret
+
+BattleAnim_PoisonJab:
+; Poisonous thrust into the target
+	anim_3gfx ANIM_GFX_HORN, ANIM_GFX_POISON, ANIM_GFX_HIT
+	anim_obj ANIM_OBJ_HORN, 72, 80, $1
+	anim_wait 12
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 8
+	anim_call BattleAnim_Toxic_branch_cbc35
+	anim_sound 0, 1, SFX_TOXIC
+	anim_obj ANIM_OBJ_1A, 136, 62, $0
+	anim_wait 16
+	anim_ret
+
+BattleAnim_Lunge:
+; Bug-quick dash: speed lines + powder trail, no hide-mon
+	anim_3gfx ANIM_GFX_SPEED, ANIM_GFX_POWDER, ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 8
+	anim_sound 0, 1, SFX_MENU
+	anim_obj ANIM_OBJ_POWDER, 88, 84, $11
+	anim_obj ANIM_OBJ_POWDER, 96, 80, $13
+	anim_wait 4
+	anim_sound 0, 1, SFX_MENU
+	anim_obj ANIM_OBJ_POWDER, 104, 76, $12
+	anim_wait 4
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 16
+	anim_ret
+
+BattleAnim_BugBite:
+; Buggy chomp: powder skitter then repeated bites
+	anim_3gfx ANIM_GFX_POWDER, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_sound 0, 1, SFX_MENU
+	anim_obj ANIM_OBJ_POWDER, 112, 72, $12
+	anim_obj ANIM_OBJ_POWDER, 120, 68, $14
+	anim_wait 6
+	anim_obj ANIM_OBJ_BITE, 136, 56, $98
+	anim_obj ANIM_OBJ_BITE, 136, 56, $18
+	anim_wait 6
+	anim_sound 0, 1, SFX_BITE
+	anim_obj ANIM_OBJ_01, 144, 48, $18
+	anim_wait 8
+	anim_sound 0, 1, SFX_BITE
+	anim_obj ANIM_OBJ_01, 128, 64, $18
+	anim_wait 8
+	anim_sound 0, 1, SFX_BITE
+	anim_obj ANIM_OBJ_00, 136, 52, $0
+	anim_wait 12
+	anim_ret
+
+BattleAnim_XScissor:
+; Crossing scissor-claw slash
+	anim_1gfx ANIM_GFX_CUT
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_A0, 152, 40, $0
+	anim_obj ANIM_OBJ_A1, 120, 72, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_1F, $58, $2, $0
+	anim_wait 16
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_wait 16
+	anim_ret
+
+BattleAnim_UTurn:
+; Strike, spin, and gust away (Rapid Spin style — no hide-mon)
+	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 10
+	anim_sound 0, 0, SFX_MENU
+.loop
+	anim_obj ANIM_OBJ_RAPID_SPIN, 44, 112, $0
+	anim_wait 2
+	anim_loop 5, .loop
+	anim_sound 0, 0, SFX_BATON_PASS
+	anim_obj ANIM_OBJ_GUST, 56, 96, $0
+	anim_obj ANIM_OBJ_GUST, 72, 88, $0
+	anim_obj ANIM_OBJ_GUST, 88, 80, $0
+	anim_wait 24
+	anim_ret
+
+BattleAnim_DragonClaw:
+; Powerful dragon claw rake
+	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_RAGE
+	anim_call BattleAnim_TargetObj_1Row
+	anim_sound 0, 1, SFX_SCRATCH
+	anim_obj ANIM_OBJ_37, 144, 48, $0
+	anim_obj ANIM_OBJ_37, 140, 44, $0
+	anim_obj ANIM_OBJ_37, 136, 40, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_SCRATCH
+	anim_obj ANIM_OBJ_37, 132, 36, $0
+	anim_call BattleAnim_ShowMon_0
+	anim_wait 16
+	anim_ret
+
+BattleAnim_DracoMeteor:
+; Meteor shower, rock barrage, then a brutal crash on the foe
+	anim_3gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT, ANIM_GFX_EXPLOSION
+	anim_bgeffect ANIM_BG_1F, $c0, $1, $0
+	anim_sound 0, 0, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 24, 108, $20
+	anim_wait 4
+	anim_sound 0, 0, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 40, 100, $20
+	anim_wait 4
+	anim_sound 0, 0, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 56, 92, $20
+	anim_wait 4
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 72, 84, $20
+	anim_wait 4
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 88, 76, $20
+	anim_wait 4
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 104, 68, $20
+	anim_wait 4
+	anim_sound 0, 1, SFX_SPARK
+	anim_obj ANIM_OBJ_ANCIENTPOWER, 120, 60, $20
+	anim_wait 6
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_SMALL_ROCK, 128, 64, $40
+	anim_wait 3
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 136, 56, $30
+	anim_wait 3
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_SMALL_ROCK, 144, 68, $30
+	anim_wait 3
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 132, 52, $40
+	anim_wait 6
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $20
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_BIG_ROCK, 136, 24, $48
+	anim_wait 8
+	anim_bgeffect ANIM_BG_1F, $e0, $4, $10
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_18, 136, 56, $0
+	anim_obj ANIM_OBJ_18, 128, 48, $0
+	anim_obj ANIM_OBJ_18, 144, 64, $0
+	anim_wait 4
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_03, 144, 48, $0
+	anim_obj ANIM_OBJ_04, 136, 36, $0
+	anim_obj ANIM_OBJ_05, 128, 52, $0
+	anim_wait 32
+	anim_ret
+
+BattleAnim_Moonblast:
+; Moonlight charge, then aurora beam blast
+	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_BEAM
+	anim_bgp $1b
+	anim_bgeffect ANIM_BG_07, $0, $0, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 0, 40, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 16, 56, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 32, 72, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 48, 88, $0
+	anim_obj ANIM_OBJ_MOONLIGHT, 64, 104, $0
+	anim_wait 1
+	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_wait 48
+	anim_call BattleAnim_Moonlight_branch_cbc6a
+	anim_bgeffect ANIM_BG_06, $0, $2, $0
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_wait 16
+	anim_call BattleAnim_AuroraBeam_branch_cbb39
+	anim_wait 40
+	anim_ret
+
+BattleAnim_PixiePunch:
+; Thunder Punch fist impact, hearts rise from contact on the punch sound
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_OBJECTS
+	anim_obj ANIM_OBJ_0A, 136, 56, $43
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_sound 0, 0, SFX_SWEET_KISS_2
+	anim_obj ANIM_OBJ_HEART, 136, 56, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_HEART, 132, 44, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_HEART, 128, 32, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_HEART, 124, 20, $0
+	anim_wait 40
 	anim_ret
