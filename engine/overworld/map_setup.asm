@@ -187,6 +187,8 @@ CheckReplaceKrisSprite:
 .checkbiking
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
+	jr z, .surfing
+	cp PLAYER_SKATEBOARD
 	jr nz, .nope
 .surfing
 	ld a, PLAYER_NORMAL
@@ -237,7 +239,10 @@ RotatePalettesRightMapAndMusic:
 ForceMapMusic:
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
+	jr z, .biking
+	cp PLAYER_SKATEBOARD
 	jr nz, .notbiking
+.biking
 	call VolumeOff
 	ld a, $88
 	ld [wMusicFade], a

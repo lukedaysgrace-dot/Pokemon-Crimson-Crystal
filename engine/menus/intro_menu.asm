@@ -161,6 +161,14 @@ _ResetWRAM:
 	ld hl, wNumKeyItems
 	call .InitList
 
+	; TEMP: start with a SKATEBOARD for testing
+	ld a, 1
+	ld [wNumKeyItems], a
+	ld a, SKATEBOARD
+	ld [wKeyItems], a
+	ld a, -1
+	ld [wKeyItems + 1], a
+
 	ld hl, wNumBalls
 	call .InitList
 

@@ -24,7 +24,7 @@ ItemDescriptions:
 	dw FireStoneDesc
 	dw ThunderStoneDesc
 	dw WaterStoneDesc
-	dw QuestionMarkDesc
+	dw SkateboardDesc
 	dw HPUpDesc
 	dw ProteinDesc
 	dw IronDesc
@@ -278,6 +278,10 @@ PokeBallDesc:
 
 BicycleDesc:
 	db   "A collapsible bike"
+	next "for fast movement.@"
+
+SkateboardDesc:
+	db   "A board on wheels"
 	next "for fast movement.@"
 
 MoonStoneDesc:

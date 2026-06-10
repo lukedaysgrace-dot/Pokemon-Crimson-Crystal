@@ -19,9 +19,29 @@ GoldenrodBikeShopClerkScript:
 	iffalse .Refused
 	writetext GoldenrodBikeShopClerkAgreedText
 	buttonsound
+	writetext GoldenrodBikeShopAskBicycleText
+	yesorno
+	iftrue .GiveBicycle
+	writetext GoldenrodBikeShopAskSkateboardText
+	yesorno
+	iftrue .GiveSkateboard
+	sjump .Refused
+
+.GiveBicycle:
 	waitsfx
 	giveitem BICYCLE
 	writetext BorrowedABicycleText
+	playsound SFX_KEY_ITEM
+	waitsfx
+	itemnotify
+	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
+	setevent EVENT_GOT_BICYCLE
+	sjump .GotBicycle
+
+.GiveSkateboard:
+	waitsfx
+	giveitem SKATEBOARD
+	writetext BorrowedASkateboardText
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify
@@ -71,6 +91,28 @@ GoldenrodBikeShopClerkAgreedText:
 BorrowedABicycleText:
 	text "<PLAYER> borrowed a"
 	line "BICYCLE."
+	done
+
+GoldenrodBikeShopAskBicycleText:
+	text "I've also got this"
+	line "new SKATEBOARD in"
+	cont "stock."
+
+	para "But I can only"
+	line "loan you one."
+
+	para "Would you like the"
+	line "BICYCLE?"
+	done
+
+GoldenrodBikeShopAskSkateboardText:
+	text "Then how about the"
+	line "SKATEBOARD?"
+	done
+
+BorrowedASkateboardText:
+	text "<PLAYER> borrowed a"
+	line "SKATEBOARD."
 	done
 
 GoldenrodBikeShopClerkFirstRateBikesText:

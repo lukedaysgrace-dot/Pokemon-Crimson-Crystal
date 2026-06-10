@@ -642,6 +642,8 @@ FadeMusic:
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr z, .bicycle
+	cp PLAYER_SKATEBOARD
+	jr z, .bicycle
 	push bc
 	; restart sound
 	call MusicFadeRestart

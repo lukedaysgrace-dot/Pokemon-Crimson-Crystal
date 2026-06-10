@@ -1835,6 +1835,121 @@ GotOffTheBikeText:
 	text_far UnknownText_0x1c09c7
 	text_end
 
+SkateboardFunction:
+; Same as BikeFunction, but for the SKATEBOARD (PLAYER_SKATEBOARD).
+	call .TrySkateboard
+	and $7f
+	ld [wFieldMoveSucceeded], a
+	ret
+
+.TrySkateboard:
+	call .CheckEnvironment
+	jr c, .CannotUseSkateboard
+	ld a, [wPlayerState]
+	cp PLAYER_NORMAL
+	jr z, .GetOnSkateboard
+	cp PLAYER_SKATEBOARD
+	jr z, .GetOffSkateboard
+	jr .CannotUseSkateboard
+
+.GetOnSkateboard:
+	ld hl, Script_GetOnSkateboard
+	ld de, Script_GetOnSkateboard_Register
+	call .CheckIfRegistered
+	call QueueScript
+	xor a
+	ld [wMusicFade], a
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	call MaxVolume
+	ld de, MUSIC_BICYCLE
+	ld a, e
+	ld [wMapMusic], a
+	call PlayMusic
+	ld a, $1
+	ret
+
+.GetOffSkateboard:
+	ld hl, wBikeFlags
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
+	jr nz, .CantGetOffSkateboard
+	ld hl, Script_GetOffSkateboard
+	ld de, Script_GetOffSkateboard_Register
+	call .CheckIfRegistered
+	ld a, BANK(Script_GetOffSkateboard)
+	jr .done
+
+.CantGetOffSkateboard:
+	ld hl, Script_CantGetOffBike
+	jr .done
+
+.CannotUseSkateboard:
+	ld a, $0
+	ret
+
+.done
+	call QueueScript
+	ld a, $1
+	ret
+
+.CheckIfRegistered:
+	ld a, [wUsingItemWithSelect]
+	and a
+	ret z
+	ld h, d
+	ld l, e
+	ret
+
+.CheckEnvironment:
+	call GetMapEnvironment
+	call CheckOutdoorMap
+	jr z, .ok
+	cp CAVE
+	jr z, .ok
+	cp GATE
+	jr z, .ok
+	jr .nope
+
+.ok
+	call GetPlayerStandingTile
+	and WALLTILE | WATERTILE ; can't skate in a wall or on water
+	jr nz, .nope
+	xor a
+	ret
+
+.nope
+	scf
+	ret
+
+Script_GetOnSkateboard:
+	reloadmappart
+	special UpdateTimePals
+	loadvar VAR_MOVEMENT, PLAYER_SKATEBOARD
+	writetext GotOnTheBikeText
+	waitbutton
+	closetext
+	special ReplaceKrisSprite
+	end
+
+Script_GetOnSkateboard_Register:
+	loadvar VAR_MOVEMENT, PLAYER_SKATEBOARD
+	closetext
+	special ReplaceKrisSprite
+	end
+
+Script_GetOffSkateboard:
+	reloadmappart
+	special UpdateTimePals
+	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	writetext GotOffTheBikeText
+	waitbutton
+	sjump FinishGettingOffBike
+
+Script_GetOffSkateboard_Register:
+	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	sjump FinishGettingOffBike
+
 TryCutOW::
 	ld hl, CUT
 	call CheckFieldHMAllow
