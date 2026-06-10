@@ -370,6 +370,8 @@ EnterMapMusic::
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr z, .play
+	cp PLAYER_SKATEBOARD
+	jr z, .play
 	call GetMapMusic_MaybeSpecial
 .play
 	push de
