@@ -283,6 +283,7 @@ MoveDescriptions1:
 	dw AirSlashDescription
 	dw PoisonFangDescription
 	dw VenoshockDescription
+	dw HailDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1398,3 +1399,7 @@ PoisonFangDescription:
 VenoshockDescription:
 	db   "Stronger if the foe"
 	next "is poisoned.@"
+
+HailDescription:
+	db   "Summons a hail-"
+	next "storm for 5 turns.@"

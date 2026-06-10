@@ -182,3 +182,4 @@ BattleCommandPointers:
 	dw BattleCommand_GigaHammerSetLock
 	dw BattleCommand_ToxicTarget
 	dw BattleCommand_VenoshockDouble
+	dw BattleCommand_StartHail
