@@ -10,7 +10,8 @@ CanLearnTMHMMove:
 	call GetMoveIndexFromID
 	ld b, h
 	ld c, l
-	or b
+	ld a, b
+	or c
 	jr nz, .have_index
 	ld b, 0
 	ld c, d

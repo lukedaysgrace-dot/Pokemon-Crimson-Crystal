@@ -135,7 +135,7 @@ CheckHMOwnedForMove:
 	ret
 
 MonCanLearnHMMoveBySlot:
-; a = move id. wCurPartySpecies must be set.
+; a = 8-bit move ID (table ID, not index). wCurPartySpecies must be set.
 ; Output: c != 0 if this mon can learn the move via TM/HM table.
 	ld [wPutativeTMHMMove], a
 	ld a, [wCurPartySpecies]
@@ -145,28 +145,25 @@ MonCanLearnHMMoveBySlot:
 	ret
 
 CheckFieldHMAllowCore:
-; move id in wPutativeTMHMMove. Carry on failure.
-	ld a, [wPutativeTMHMMove]
-	ld l, a
-	ld h, 0
+; hl = 16-bit move index. Carry on failure.
 	push hl
 	call CheckHMOwnedForMove
-	jr nc, .fail
 	pop hl
+	jr nc, .fail
 	push hl
 	call PartyAnyCanLearnMove
 	pop hl
+	jr nc, .fail
 	and a
 	ret
 .fail:
-	pop hl
 	scf
 	ret
 
 PartyAnyCanLearnMove:
-; hl = move id (ld hl, CUT / SURF / FLY — id in l)
+; hl = 16-bit move index (ld hl, CUT / SURF / FLY)
 ; Output: carry if at least one party member can learn it
-	ld a, l
+	call GetMoveIDFromIndex
 	ld [wPutativeTMHMMove], a
 	ld a, [wPartyCount]
 	and a
@@ -207,9 +204,9 @@ PartyAnyCanLearnMove:
 	ret
 
 FindFirstPartyMonCanLearnMove:
-; hl = move id (ld hl, CUT / SURF / FLY — id in l)
+; hl = 16-bit move index (ld hl, CUT / SURF / FLY)
 ; Output: a = party index, or $ff if none
-	ld a, l
+	call GetMoveIDFromIndex
 	ld [wPutativeTMHMMove], a
 	ld a, [wPartyCount]
 	and a
@@ -250,25 +247,21 @@ FindFirstPartyMonCanLearnMove:
 	ret
 
 CheckFieldHMAllow:
-; hl = move id in l
+; hl = 16-bit move index
 ; Output: carry on failure; wCurPartyMon = first eligible mon on success
-	ld a, l
-	ld [wPutativeTMHMMove], a
 	push hl
 	call FindHMEntryForMove
 	jr nc, .fallback
 	ld a, b
 	call CheckJohtoBadgeOwned
 	jr c, .fail
+	pop hl
+	push hl
 	call CheckFieldHMAllowCore
 	jr c, .fail
-	ld a, [wPutativeTMHMMove]
-	ld l, a
-	ld h, 0
+	pop hl
 	call FindFirstPartyMonCanLearnMove
 	ld [wCurPartyMon], a
-.fail_ok:
-	pop hl
 	and a
 	ret
 .fail:
@@ -280,10 +273,8 @@ CheckFieldHMAllow:
 	jp CheckPartyMoveIndex
 
 CheckFieldHMAllowForMenu:
-; hl = move id, badge already verified
+; hl = 16-bit move index, badge already verified
 ; Output: carry on failure after printing HM text if needed
-	ld a, l
-	ld [wPutativeTMHMMove], a
 	call CheckFieldHMAllowCore
 	jr nc, .ok
 	ld hl, FieldHMNeedHMText
@@ -345,8 +336,18 @@ FieldHMOpenFlyMap:
 	call ClearSprites
 	farcall _FlyMap
 	ld a, e
+	cp -1
+	jr z, .cancelled
+	cp NUM_SPAWNS
+	jr nc, .cancelled
+	push af
+	call CloseWindow
+	pop af
 	ret
 
+.cancelled
+	call CloseWindow
+	call WaitBGMap
 .cancel
 	ld a, -1
 	ret
