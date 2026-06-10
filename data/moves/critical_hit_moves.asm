@@ -7,4 +7,6 @@ CriticalHitMoves:
 	dw AEROBLAST
 	dw CROSS_CHOP
 	dw STONE_EDGE
+	dw LEAF_BLADE
+	dw SHADOW_CLAW
 	dw -1

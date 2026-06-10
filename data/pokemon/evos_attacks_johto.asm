@@ -173,10 +173,10 @@ EvosAttacksPointers2::
 ChikoritaEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, BAYLEEF
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, GROWL
-	dbw 8, RAZOR_LEAF
-	dbw 12, REFLECT
+	dbw 1, LEAF_BLADE
+	dbw 1, SHADOW_SNEAK
+	dbw 4, SHADOW_PUNCH
+	dbw 5, SHADOW_CLAW
 	dbw 15, POISONPOWDER
 	dbw 22, SYNTHESIS
 	dbw 29, BODY_SLAM
@@ -221,11 +221,11 @@ MeganiumEvosAttacks:
 CyndaquilEvosAttacks:
 	dbbw EVOLVE_LEVEL, 14, QUILAVA
 	db 0 ; no more evolutions
-	dbw 1, TACKLE
-	dbw 1, LEER
-	dbw 6, SMOKESCREEN
-	dbw 12, EMBER
-	dbw 19, QUICK_ATTACK
+	dbw 1, U_TURN
+	dbw 1, DRAGON_CLAW
+	dbw 4, DRACO_METEOR
+	dbw 5, MOONBLAST
+	dbw 6, PIXIE_PUNCH
 	dbw 27, FLAME_WHEEL
 	dbw 36, SWIFT
 	dbw 46, FLAMETHROWER
@@ -262,10 +262,10 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, STRUGGLE_BUG
-	dbw 1, HAIL
-	dbw 6, BUG_BUZZ
-	dbw 7, AIR_SLASH
+	dbw 1, POISON_JAB
+	dbw 1, LUNGE
+	dbw 4, BUG_BITE
+	dbw 5, X_SCISSOR
 	dbw 20, BITE
 	dbw 27, SCARY_FACE
 	dbw 35, SLASH

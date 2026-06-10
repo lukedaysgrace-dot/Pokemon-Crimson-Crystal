@@ -285,6 +285,19 @@
 	const POISON_FANG      ; 121
 	const VENOSHOCK        ; 122
 	const HAIL             ; 123
+	const LEAF_BLADE       ; 124
+	const SHADOW_SNEAK     ; 125
+	const SHADOW_PUNCH     ; 126
+	const SHADOW_CLAW      ; 127
+	const POISON_JAB       ; 128
+	const LUNGE            ; 129
+	const BUG_BITE         ; 12a
+	const X_SCISSOR        ; 12b
+	const U_TURN           ; 12c
+	const DRAGON_CLAW      ; 12d
+	const DRACO_METEOR     ; 12e
+	const MOONBLAST        ; 12f
+	const PIXIE_PUNCH      ; 130
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

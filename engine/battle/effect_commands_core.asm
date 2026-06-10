@@ -203,3 +203,58 @@ WeatherDefenseBoost_Core:
 .done
 	pop de
 	ret
+
+BattleUTurn_Core:
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+
+	ldh a, [hBattleTurn]
+	and a
+	jp nz, .enemy
+
+	callfar CheckAnyOtherAlivePartyMons
+	ret z
+
+	callfar UpdateBattleMonInParty
+	call LoadStandardMenuHeader
+	farcall SetUpBattlePartyMenu_NoLoop
+	farcall ForcePickSwitchMonInBattle
+	call ClearPalettes
+	farcall _LoadBattleFontsHPBar
+	call CloseWindow
+	call ClearSprites
+	hlcoord 1, 0
+	lb bc, 4, 10
+	call ClearBox
+	ld b, SCGB_BATTLE_COLORS
+	call GetSGBLayout
+	call SetPalettes
+	callfar BatonPass_LinkPlayerSwitch
+
+	farcall CheckMobileBattleError
+	ret c
+
+	ld hl, BattleMonEntrance
+	ld a, BANK("Battle Core")
+	rst FarCall
+	ret
+
+.enemy
+	ld a, [wBattleMode]
+	dec a ; WILDMON
+	ret z
+
+	callfar CheckAnyOtherAliveEnemyMons
+	ret z
+
+	callfar UpdateEnemyMonInParty
+	callfar BatonPass_LinkEnemySwitch
+
+	farcall CheckMobileBattleError
+	ret c
+
+	ld hl, EnemySwitch
+	ld a, BANK("Battle Core")
+	rst FarCall
+	ret
