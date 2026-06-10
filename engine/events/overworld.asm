@@ -669,6 +669,7 @@ FlyWarpScript:
 	end
 
 .ReturnFromFly:
+	farcall RestoreFirstOBJPalette ; undo the FlyMon palette on OBJ pal 0
 	farcall Function561d
 	call DelayFrame
 	call ReplaceKrisSprite
