@@ -70,7 +70,7 @@
 	const SPRITE_RECEPTIONIST ; 42
 	const SPRITE_OFFICER ; 43
 	const SPRITE_CAL ; 44
-	const SPRITE_SLOWPOKE ; 45
+	const SPRITE_SLOWPOKE_NPC ; 45 (unused: mon icons are used instead)
 	const SPRITE_CAPTAIN ; 46
 	const SPRITE_BIG_LAPRAS ; 47
 	const SPRITE_GYM_GUY ; 48
@@ -83,7 +83,7 @@
 	const SPRITE_DRAGON ; 4f
 	const SPRITE_BIG_ONIX ; 50
 	const SPRITE_N64 ; 51
-	const SPRITE_SUDOWOODO ; 52
+	const SPRITE_SUDOWOODO_NPC ; 52 (unused: mon icons are used instead)
 	const SPRITE_SURF ; 53
 	const SPRITE_POKE_BALL ; 54
 	const SPRITE_POKEDEX ; 55
@@ -100,9 +100,9 @@
 	const SPRITE_KRIS ; 60
 	const SPRITE_KRIS_BIKE ; 61
 	const SPRITE_KURT_OUTSIDE ; 62
-	const SPRITE_SUICUNE ; 63
-	const SPRITE_ENTEI ; 64
-	const SPRITE_RAIKOU ; 65
+	const SPRITE_SUICUNE_NPC ; 63 (unused: mon icons are used instead)
+	const SPRITE_ENTEI_NPC ; 64 (unused: mon icons are used instead)
+	const SPRITE_RAIKOU_NPC ; 65 (unused: mon icons are used instead)
 	const SPRITE_STANDING_YOUNGSTER ; 66
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
@@ -143,6 +143,17 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_GYARADOS ; a0
 	const SPRITE_LUGIA ; a1
 	const SPRITE_HO_OH ; a2
+	const SPRITE_AMPHAROS ; a3
+	const SPRITE_FARFETCHD ; a4
+	const SPRITE_PIDGEY ; a5
+	const SPRITE_RATTATA ; a6
+	const SPRITE_SLOWPOKE ; a7
+	const SPRITE_SLOWBRO ; a8
+	const SPRITE_DRAGONITE ; a9
+	const SPRITE_SUDOWOODO ; aa
+	const SPRITE_SUICUNE ; ab
+	const SPRITE_ENTEI ; ac
+	const SPRITE_RAIKOU ; ad
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0

@@ -238,7 +238,7 @@ GetMonSprite:
 
 	farcall LoadOverworldMonIcon
 
-	ld l, 1
+	ld l, MON_ICON_SPRITE
 	ld h, 0
 	scf
 	ret
@@ -510,6 +510,8 @@ GetSpriteLength:
 	jr z, .AnyDirection
 	cp STILL_SPRITE
 	jr z, .OneDirection
+	cp MON_ICON_SPRITE
+	jr z, .MonIcon
 
 	ld a, 12
 	ret
@@ -520,6 +522,10 @@ GetSpriteLength:
 
 .OneDirection:
 	ld a, 4
+	ret
+
+.MonIcon:
+	ld a, 8
 	ret
 
 GetUsedSprites:

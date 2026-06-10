@@ -524,6 +524,7 @@ _CGB_Diploma:
 
 	ld hl, PalPacket_Diploma + 1
 	call CopyFourPalettes
+	call InitPartyMenuOBPals ; for mon icon colors on the naming screen
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret

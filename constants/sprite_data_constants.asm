@@ -13,6 +13,7 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 	const WALKING_SPRITE  ; 1
 	const STANDING_SPRITE ; 2
 	const STILL_SPRITE    ; 3
+	const MON_ICON_SPRITE ; 4 (not in OverworldSprites; used for SpriteMons icons)
 
 ; sprite palettes
 	const_def

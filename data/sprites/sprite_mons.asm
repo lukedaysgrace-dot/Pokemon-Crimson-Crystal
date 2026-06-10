@@ -35,3 +35,14 @@ SpriteMons:
 	dw GYARADOS
 	dw LUGIA
 	dw HO_OH
+	dw AMPHAROS
+	dw FARFETCH_D
+	dw PIDGEY
+	dw RATTATA
+	dw SLOWPOKE
+	dw SLOWBRO
+	dw DRAGONITE
+	dw SUDOWOODO
+	dw SUICUNE
+	dw ENTEI
+	dw RAIKOU

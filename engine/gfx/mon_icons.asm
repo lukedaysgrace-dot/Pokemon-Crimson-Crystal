@@ -1,16 +1,125 @@
 LoadOverworldMonIcon:
+; e = species id
+; Output: de = icon gfx pointer, b = bank, c = number of tiles
 	ld a, e
-	call ReadMonMenuIcon
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, IconPointers
-	add hl, de
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	ld b, BANK(Icons)
+	call GetIconPointer
+	ld d, h
+	ld e, l
 	ld c, 8
+	ret
+
+SetMenuMonIconColor:
+; Set the OAM palette of menu icon 0 based on the species in
+; wTempIconSpecies and the DVs pointed to by hl.
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [wTempIconSpecies]
+	ld [wCurPartySpecies], a
+	call GetMenuMonIconPalette
+	ld hl, wVirtualOAMSprite00Attributes
+	jp _ApplyMenuMonIconColor
+
+LoadPartyMenuMonIconColors:
+; Set the OAM palette of the current party menu icon
+; (party mon index in hObjectStructIndexBuffer).
+	push hl
+	push de
+	push bc
+	push af
+
+	ldh a, [hObjectStructIndexBuffer]
+	ld [wCurPartyMon], a
+	ld hl, wPartyMon1Item
+	call GetPartyLocation
+	ld a, [hl]
+	push af ; held item
+
+	ldh a, [hObjectStructIndexBuffer]
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
+	ld a, [hl]
+	ld [wCurPartySpecies], a
+	ld a, MON_DVS
+	call GetPartyParamLocation
+	call GetMenuMonIconPalette
+	ld hl, wVirtualOAMSprite00Attributes
+	push af
+	ldh a, [hObjectStructIndexBuffer]
+	swap a ; party mon index * 16 (4 OAM entries of 4 bytes each)
+	ld d, 0
+	ld e, a
+	add hl, de
+	pop af
+
+	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld [hl], a ; top left
+	add hl, de
+	ld [hl], a ; top right
+	add hl, de
+	push hl
+	add hl, de
+	ld [hl], a ; bottom right
+	pop hl
+	ld d, a
+	pop af ; held item
+	and a
+	ld a, PAL_ICON_RED ; item/mail mini icon color
+	jr nz, .got_pal
+	ld a, d
+.got_pal
+	ld [hl], a ; bottom left
+	jr _FinishMenuMonIconColor
+
+_ApplyMenuMonIconColor:
+	ld c, 4
+	ld de, SPRITEOAMSTRUCT_LENGTH
+.loop
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .loop
+	; fallthrough
+_FinishMenuMonIconColor:
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+GetMenuMonIconPalette::
+; hl = pointer to the mon's DVs
+; Returns the palette index in a (and e).
+	ld c, l
+	ld b, h
+	farcall CheckShininess
+GetMenuMonIconPalette_PredeterminedShininess:
+	push af
+	ld a, [wCurPartySpecies]
+	cp EGG
+	jr z, .egg
+	call GetPokemonIndexFromID
+	dec hl
+	ld bc, MonMenuIconPals
+	add hl, bc
+	ld e, [hl]
+	pop af
+	ld a, e
+	jr c, .shiny
+	swap a
+.shiny
+	and $f
+	ld e, a
+	ret
+
+.egg
+	pop af
+	ld a, PAL_ICON_BLUE
+	ld e, a
 	ret
 
 LoadMenuMonIcon:
@@ -152,6 +261,7 @@ PartyMenu_InitAnimatedMonIcon:
 	ret
 
 InitPartyMenuIcon:
+	call LoadPartyMenuMonIconColors
 	ld a, [wCurIconTile]
 	push af
 	ldh a, [hObjectStructIndexBuffer]
@@ -215,6 +325,8 @@ SetPartyMonIconAnimSpeed:
 	db $80 ; HP_RED
 
 NamingScreen_InitAnimatedMonIcon:
+	ld hl, wTempMonDVs
+	call SetMenuMonIconColor
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
@@ -229,6 +341,9 @@ NamingScreen_InitAnimatedMonIcon:
 	ret
 
 MoveList_InitAnimatedMonIcon:
+	ld a, MON_DVS
+	call GetPartyParamLocation
+	call SetMenuMonIconColor
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
@@ -255,6 +370,9 @@ Trade_LoadMonIconGFX:
 GetSpeciesIcon:
 ; Load species icon into VRAM at tile a
 	push de
+	ld a, MON_DVS
+	call GetPartyParamLocation
+	call SetMenuMonIconColor
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
@@ -271,6 +389,17 @@ FlyFunction_GetMonIcon:
 	pop de
 	ld a, e
 	call GetIcon_a
+	; Edit OBJ palette 0 so the flying mon has the right colors.
+	ld a, [wTempIconSpecies]
+	ld [wCurPartySpecies], a
+	ld a, MON_DVS
+	call GetPartyParamLocation
+	call GetMenuMonIconPalette
+	add a
+	add a
+	add a ; palette index * 8 bytes
+	ld e, a
+	farcall SetFirstOBJPalette
 	ret
 
 Unreferenced_GetMonIcon2:
@@ -323,21 +452,15 @@ endr
 	add hl, de
 	push hl
 
-; The icons are contiguous, in order and of the same
-; size, so the pointer table is somewhat redundant.
+; Each species has its own icon, looked up through IconPointers.
 	ld a, [wCurIcon]
 	push hl
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, IconPointers
-	add hl, de
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
+	call GetIconPointer
+	ld d, h
+	ld e, l
 	pop hl
 
-	lb bc, BANK(Icons), 8
+	ld c, 8
 	call GetGFXUnlessMobile
 
 	pop hl
@@ -435,19 +558,37 @@ HoldSwitchmonIcon:
 	ret
 
 ReadMonMenuIcon:
+; Icons are per-species now: the icon id is the species id itself.
+; EGG is resolved in GetIconPointer.
+	ret
+
+GetIconPointer:
+; a = species id (or EGG)
+; Output: b = bank, hl = address of icon gfx
 	cp EGG
 	jr z, .egg
 	call GetPokemonIndexFromID
-	ld de, MonMenuIcons - 1
-	add hl, de
-	ld a, [hl]
-	ret
-.egg
-	ld a, ICON_EGG
+	dec hl
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc ; hl = (species index - 1) * 3
+	ld bc, IconPointers
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	ret
 
-INCLUDE "data/pokemon/menu_icons.asm"
+.egg
+	ld b, BANK(EggIcon)
+	ld hl, EggIcon
+	ret
 
 INCLUDE "data/icon_pointers.asm"
+
+INCLUDE "data/pokemon/menu_icon_pals.asm"
 
 INCLUDE "gfx/icons.asm"
