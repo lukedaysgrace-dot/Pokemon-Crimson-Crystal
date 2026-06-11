@@ -168,6 +168,60 @@ EvosAttacksPointers2::
 	dw RookideeEvosAttacks
 	dw CorvisquireEvosAttacks
 	dw CorviknightEvosAttacks
+	dw AbomasnowEvosAttacks
+	dw AltariaEvosAttacks
+	dw AnorithEvosAttacks
+	dw AppletunEvosAttacks
+	dw ApplinEvosAttacks
+	dw ArchaludonEvosAttacks
+	dw BreloomEvosAttacks
+	dw BunearyEvosAttacks
+	dw CameruptEvosAttacks
+	dw CentiskorchEvosAttacks
+	dw CharjabugEvosAttacks
+	dw CroagunkEvosAttacks
+	dw DipplinEvosAttacks
+	dw DrifblimEvosAttacks
+	dw DrifloonEvosAttacks
+	dw DrilburEvosAttacks
+	dw DuraludonEvosAttacks
+	dw ElectrikeEvosAttacks
+	dw ExcadrillEvosAttacks
+	dw FlappleEvosAttacks
+	dw FletchinderEvosAttacks
+	dw FletchlingEvosAttacks
+	dw FlygonEvosAttacks
+	dw FroslassEvosAttacks
+	dw GolisopodEvosAttacks
+	dw GrubbinEvosAttacks
+	dw GrumpigEvosAttacks
+	dw HydrappleEvosAttacks
+	dw KingambitEvosAttacks
+	dw LombreEvosAttacks
+	dw LopunnyEvosAttacks
+	dw LotadEvosAttacks
+	dw LudicoloEvosAttacks
+	dw ManectricEvosAttacks
+	dw NumelEvosAttacks
+	dw OverqwilEvosAttacks
+	dw ScraftyEvosAttacks
+	dw ScraggyEvosAttacks
+	dw SealeoEvosAttacks
+	dw ShroomishEvosAttacks
+	dw SizzlipedeEvosAttacks
+	dw SnoruntEvosAttacks
+	dw SnoverEvosAttacks
+	dw SphealEvosAttacks
+	dw SpoinkEvosAttacks
+	dw SwabluEvosAttacks
+	dw TalonflameEvosAttacks
+	dw ToxicroakEvosAttacks
+	dw TrapinchEvosAttacks
+	dw UrsalunabmEvosAttacks
+	dw VibravaEvosAttacks
+	dw VikavoltEvosAttacks
+	dw WalreinEvosAttacks
+	dw WimpodEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -2239,4 +2293,629 @@ CorviknightEvosAttacks:
 	dbw 46, FURY_ATTACK
 	dbw 54, STEEL_WING
 	dbw 62, SKY_ATTACK
+	db 0 ; no more level-up moves
+
+AbomasnowEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 8, POWDER_SNOW
+	dbw 18, RAZOR_LEAF
+	dbw 24, ICY_WIND
+	dbw 35, GIGA_DRAIN
+	dbw 42, BLIZZARD
+	db 0 ; no more level-up moves
+
+AltariaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, GUST
+	dbw 18, DRAGONBREATH
+	dbw 24, WING_ATTACK
+	dbw 44, AIR_SLASH
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+AnorithEvosAttacks:
+	dbbw EVOLVE_LEVEL, 40, ARMALDO
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 10, ROCK_THROW
+	dbw 20, FURY_CUTTER
+	dbw 34, ANCIENTPOWER
+	dbw 40, BUG_BUZZ
+	dbw 50, STONE_EDGE
+	db 0 ; no more level-up moves
+
+AppletunEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, DRAGONBREATH
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+ApplinEvosAttacks:
+	dbbw EVOLVE_ITEM, LEAF_STONE, FLAPPLE
+	dbbw EVOLVE_ITEM, WATER_STONE, APPLETUN
+	dbbw EVOLVE_ITEM, SUN_STONE, DIPPLIN
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, DRAGONBREATH
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+ArchaludonEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 12, METAL_CLAW
+	dbw 18, DRAGONBREATH
+	dbw 40, IRON_TAIL
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+BreloomEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 10, LOW_KICK
+	dbw 18, RAZOR_LEAF
+	dbw 30, VITAL_THROW
+	dbw 35, GIGA_DRAIN
+	dbw 48, DYNAMICPUNCH
+	db 0 ; no more level-up moves
+
+BunearyEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, LOPUNNY
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 12, QUICK_ATTACK
+	dbw 30, TAKE_DOWN
+	dbw 48, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+CameruptEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 10, MUD_SLAP
+	dbw 28, FLAME_WHEEL
+	dbw 30, MAGNITUDE
+	dbw 45, FLAMETHROWER
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+CentiskorchEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 8, STRING_SHOT
+	dbw 20, FURY_CUTTER
+	dbw 28, FLAME_WHEEL
+	dbw 40, BUG_BUZZ
+	dbw 45, FLAMETHROWER
+	db 0 ; no more level-up moves
+
+CharjabugEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, VIKAVOLT
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 8, THUNDERSHOCK
+	dbw 20, FURY_CUTTER
+	dbw 24, SPARK
+	dbw 40, BUG_BUZZ
+	dbw 42, THUNDERBOLT
+	db 0 ; no more level-up moves
+
+CroagunkEvosAttacks:
+	dbbw EVOLVE_LEVEL, 37, TOXICROAK
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, LOW_KICK
+	dbw 10, POISON_STING
+	dbw 30, VITAL_THROW
+	dbw 32, SLUDGE_BOMB
+	dbw 48, DYNAMICPUNCH
+	db 0 ; no more level-up moves
+
+DipplinEvosAttacks:
+	dbbw EVOLVE_LEVEL, 50, HYDRAPPLE
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, DRAGONBREATH
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+DrifblimEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, GUST
+	dbw 12, NIGHT_SHADE
+	dbw 24, WING_ATTACK
+	dbw 34, SHADOW_BALL
+	dbw 44, AIR_SLASH
+	db 0 ; no more level-up moves
+
+DrifloonEvosAttacks:
+	dbbw EVOLVE_LEVEL, 28, DRIFBLIM
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, GUST
+	dbw 12, NIGHT_SHADE
+	dbw 24, WING_ATTACK
+	dbw 34, SHADOW_BALL
+	dbw 44, AIR_SLASH
+	db 0 ; no more level-up moves
+
+DrilburEvosAttacks:
+	dbbw EVOLVE_LEVEL, 31, EXCADRILL
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 30, MAGNITUDE
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+DuraludonEvosAttacks:
+	dbbw EVOLVE_LEVEL, 50, ARCHALUDON
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 12, METAL_CLAW
+	dbw 18, DRAGONBREATH
+	dbw 40, IRON_TAIL
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+ElectrikeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 26, MANECTRIC
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, THUNDERSHOCK
+	dbw 24, SPARK
+	dbw 42, THUNDERBOLT
+	db 0 ; no more level-up moves
+
+ExcadrillEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 12, METAL_CLAW
+	dbw 30, MAGNITUDE
+	dbw 40, IRON_TAIL
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+FlappleEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, DRAGONBREATH
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+FletchinderEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, TALONFLAME
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 8, GUST
+	dbw 24, WING_ATTACK
+	dbw 28, FLAME_WHEEL
+	dbw 44, AIR_SLASH
+	dbw 45, FLAMETHROWER
+	db 0 ; no more level-up moves
+
+FletchlingEvosAttacks:
+	dbbw EVOLVE_LEVEL, 17, FLETCHINDER
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, GUST
+	dbw 12, QUICK_ATTACK
+	dbw 24, WING_ATTACK
+	dbw 30, TAKE_DOWN
+	dbw 44, AIR_SLASH
+	dbw 48, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+FlygonEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 18, DRAGONBREATH
+	dbw 30, MAGNITUDE
+	dbw 48, OUTRAGE
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+FroslassEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, POWDER_SNOW
+	dbw 12, NIGHT_SHADE
+	dbw 24, ICY_WIND
+	dbw 34, SHADOW_BALL
+	dbw 42, BLIZZARD
+	db 0 ; no more level-up moves
+
+GolisopodEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 8, WATER_GUN
+	dbw 20, FURY_CUTTER
+	dbw 28, BUBBLEBEAM
+	dbw 40, BUG_BUZZ
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+GrubbinEvosAttacks:
+	dbbw EVOLVE_LEVEL, 20, CHARJABUG
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 20, FURY_CUTTER
+	dbw 40, BUG_BUZZ
+	db 0 ; no more level-up moves
+
+GrumpigEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, CONFUSION
+	dbw 30, PSYBEAM
+	dbw 48, PSYCHIC_M
+	db 0 ; no more level-up moves
+
+HydrappleEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, DRAGONBREATH
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+KingambitEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 12, BITE
+	dbw 12, METAL_CLAW
+	dbw 34, CRUNCH
+	dbw 40, IRON_TAIL
+	dbw 48, DARK_PULSE
+	db 0 ; no more level-up moves
+
+LombreEvosAttacks:
+	dbbw EVOLVE_ITEM, WATER_STONE, LUDICOLO
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 8, WATER_GUN
+	dbw 18, RAZOR_LEAF
+	dbw 28, BUBBLEBEAM
+	dbw 35, GIGA_DRAIN
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+LopunnyEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 12, QUICK_ATTACK
+	dbw 30, TAKE_DOWN
+	dbw 48, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+LotadEvosAttacks:
+	dbbw EVOLVE_LEVEL, 14, LOMBRE
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 8, WATER_GUN
+	dbw 18, RAZOR_LEAF
+	dbw 28, BUBBLEBEAM
+	dbw 35, GIGA_DRAIN
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+LudicoloEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 8, WATER_GUN
+	dbw 18, RAZOR_LEAF
+	dbw 28, BUBBLEBEAM
+	dbw 35, GIGA_DRAIN
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+ManectricEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, THUNDERSHOCK
+	dbw 24, SPARK
+	dbw 42, THUNDERBOLT
+	db 0 ; no more level-up moves
+
+NumelEvosAttacks:
+	dbbw EVOLVE_LEVEL, 33, CAMERUPT
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 10, MUD_SLAP
+	dbw 28, FLAME_WHEEL
+	dbw 30, MAGNITUDE
+	dbw 45, FLAMETHROWER
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+OverqwilEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, POISON_STING
+	dbw 12, BITE
+	dbw 32, SLUDGE_BOMB
+	dbw 34, CRUNCH
+	dbw 48, DARK_PULSE
+	db 0 ; no more level-up moves
+
+ScraftyEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, LOW_KICK
+	dbw 12, BITE
+	dbw 30, VITAL_THROW
+	dbw 34, CRUNCH
+	dbw 48, DARK_PULSE
+	dbw 48, DYNAMICPUNCH
+	db 0 ; no more level-up moves
+
+ScraggyEvosAttacks:
+	dbbw EVOLVE_LEVEL, 39, SCRAFTY
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, LOW_KICK
+	dbw 12, BITE
+	dbw 30, VITAL_THROW
+	dbw 34, CRUNCH
+	dbw 48, DARK_PULSE
+	dbw 48, DYNAMICPUNCH
+	db 0 ; no more level-up moves
+
+SealeoEvosAttacks:
+	dbbw EVOLVE_LEVEL, 44, WALREIN
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, POWDER_SNOW
+	dbw 8, WATER_GUN
+	dbw 24, ICY_WIND
+	dbw 28, BUBBLEBEAM
+	dbw 42, BLIZZARD
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+ShroomishEvosAttacks:
+	dbbw EVOLVE_LEVEL, 23, BRELOOM
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 18, RAZOR_LEAF
+	dbw 35, GIGA_DRAIN
+	db 0 ; no more level-up moves
+
+SizzlipedeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 28, CENTISKORCH
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 8, STRING_SHOT
+	dbw 20, FURY_CUTTER
+	dbw 28, FLAME_WHEEL
+	dbw 40, BUG_BUZZ
+	dbw 45, FLAMETHROWER
+	db 0 ; no more level-up moves
+
+SnoruntEvosAttacks:
+	dbbw EVOLVE_LEVEL, 42, FROSLASS
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, POWDER_SNOW
+	dbw 24, ICY_WIND
+	dbw 42, BLIZZARD
+	db 0 ; no more level-up moves
+
+SnoverEvosAttacks:
+	dbbw EVOLVE_LEVEL, 40, ABOMASNOW
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, ABSORB
+	dbw 8, POWDER_SNOW
+	dbw 18, RAZOR_LEAF
+	dbw 24, ICY_WIND
+	dbw 35, GIGA_DRAIN
+	dbw 42, BLIZZARD
+	db 0 ; no more level-up moves
+
+SphealEvosAttacks:
+	dbbw EVOLVE_LEVEL, 32, SEALEO
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, POWDER_SNOW
+	dbw 8, WATER_GUN
+	dbw 24, ICY_WIND
+	dbw 28, BUBBLEBEAM
+	dbw 42, BLIZZARD
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+SpoinkEvosAttacks:
+	dbbw EVOLVE_LEVEL, 32, GRUMPIG
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, CONFUSION
+	dbw 30, PSYBEAM
+	dbw 48, PSYCHIC_M
+	db 0 ; no more level-up moves
+
+SwabluEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, ALTARIA
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, GUST
+	dbw 12, QUICK_ATTACK
+	dbw 24, WING_ATTACK
+	dbw 30, TAKE_DOWN
+	dbw 44, AIR_SLASH
+	dbw 48, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+TalonflameEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, EMBER
+	dbw 8, GUST
+	dbw 24, WING_ATTACK
+	dbw 28, FLAME_WHEEL
+	dbw 44, AIR_SLASH
+	dbw 45, FLAMETHROWER
+	db 0 ; no more level-up moves
+
+ToxicroakEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, LOW_KICK
+	dbw 10, POISON_STING
+	dbw 30, VITAL_THROW
+	dbw 32, SLUDGE_BOMB
+	dbw 48, DYNAMICPUNCH
+	db 0 ; no more level-up moves
+
+TrapinchEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, VIBRAVA
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 30, MAGNITUDE
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+UrsalunabmEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 12, QUICK_ATTACK
+	dbw 30, MAGNITUDE
+	dbw 30, TAKE_DOWN
+	dbw 48, DOUBLE_EDGE
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+VibravaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 45, FLYGON
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 10, MUD_SLAP
+	dbw 18, DRAGONBREATH
+	dbw 30, MAGNITUDE
+	dbw 48, OUTRAGE
+	dbw 50, EARTHQUAKE
+	db 0 ; no more level-up moves
+
+VikavoltEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 8, THUNDERSHOCK
+	dbw 20, FURY_CUTTER
+	dbw 24, SPARK
+	dbw 40, BUG_BUZZ
+	dbw 42, THUNDERBOLT
+	db 0 ; no more level-up moves
+
+WalreinEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, POWDER_SNOW
+	dbw 8, WATER_GUN
+	dbw 24, ICY_WIND
+	dbw 28, BUBBLEBEAM
+	dbw 42, BLIZZARD
+	dbw 45, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+WimpodEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, GOLISOPOD
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 8, STRING_SHOT
+	dbw 8, WATER_GUN
+	dbw 20, FURY_CUTTER
+	dbw 28, BUBBLEBEAM
+	dbw 40, BUG_BUZZ
+	dbw 45, HYDRO_PUMP
 	db 0 ; no more level-up moves
