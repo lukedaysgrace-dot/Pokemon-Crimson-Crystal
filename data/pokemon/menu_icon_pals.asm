@@ -326,3 +326,57 @@ MonMenuIconPals:
 	icon_pals BLUE,   GRAY   ; ROOKIDEE
 	icon_pals BLUE,   GRAY   ; CORVISQUIRE
 	icon_pals BLUE,   RED    ; CORVIKNIGHT
+	icon_pals BROWN , BLUE   ; ABOMASNOW
+	icon_pals BLUE  , GREEN  ; ALTARIA
+	icon_pals GRAY  , BLUE   ; ANORITH
+	icon_pals GREEN , RED    ; APPLETUN
+	icon_pals GREEN , RED    ; APPLIN
+	icon_pals GRAY  , BLUE   ; ARCHALUDON
+	icon_pals GREEN , RED    ; BRELOOM
+	icon_pals BROWN , PINK   ; BUNEARY
+	icon_pals RED   , BROWN  ; CAMERUPT
+	icon_pals RED   , BROWN  ; CENTISKORCH
+	icon_pals GREEN , BROWN ; CHARJABUG
+	icon_pals BLUE  , PURPLE ; CROAGUNK
+	icon_pals GREEN , RED    ; DIPPLIN
+	icon_pals PURPLE, GRAY   ; DRIFBLIM
+	icon_pals PURPLE, GRAY   ; DRIFLOON
+	icon_pals BROWN , GRAY   ; DRILBUR
+	icon_pals GRAY  , BLUE   ; DURALUDON
+	icon_pals GREEN , BROWN ; ELECTRIKE
+	icon_pals BROWN , GRAY   ; EXCADRILL
+	icon_pals GREEN , RED    ; FLAPPLE
+	icon_pals RED   , GRAY   ; FLETCHINDER
+	icon_pals RED   , GRAY   ; FLETCHLING
+	icon_pals GREEN , RED    ; FLYGON
+	icon_pals BLUE  , RED    ; FROSLASS
+	icon_pals GRAY  , BLUE   ; GOLISOPOD
+	icon_pals GREEN , BROWN  ; GRUBBIN
+	icon_pals PURPLE, GRAY   ; GRUMPIG
+	icon_pals GREEN , RED    ; HYDRAPPLE
+	icon_pals GRAY  , RED    ; KINGAMBIT
+	icon_pals GREEN , BLUE   ; LOMBRE
+	icon_pals BROWN , PINK   ; LOPUNNY
+	icon_pals GREEN , BLUE   ; LOTAD
+	icon_pals GREEN , BLUE   ; LUDICOLO
+	icon_pals BROWN, BLUE   ; MANECTRIC
+	icon_pals BROWN , RED    ; NUMEL
+	icon_pals PURPLE, GRAY   ; OVERQWIL
+	icon_pals BROWN, RED    ; SCRAFTY
+	icon_pals BROWN, RED    ; SCRAGGY
+	icon_pals BLUE  , GRAY   ; SEALEO
+	icon_pals GREEN , BROWN  ; SHROOMISH
+	icon_pals RED   , BROWN  ; SIZZLIPEDE
+	icon_pals BLUE  , GRAY   ; SNORUNT
+	icon_pals GREEN , BLUE   ; SNOVER
+	icon_pals BLUE  , GRAY   ; SPHEAL
+	icon_pals GRAY  , PINK   ; SPOINK
+	icon_pals BLUE  , GRAY   ; SWABLU
+	icon_pals RED   , GRAY   ; TALONFLAME
+	icon_pals BLUE  , PURPLE ; TOXICROAK
+	icon_pals BROWN , RED    ; TRAPINCH
+	icon_pals BROWN , RED    ; URSALUNABM
+	icon_pals GREEN , RED    ; VIBRAVA
+	icon_pals BROWN, BLUE   ; VIKAVOLT
+	icon_pals BLUE  , GRAY   ; WALREIN
+	icon_pals GRAY  , BLUE   ; WIMPOD

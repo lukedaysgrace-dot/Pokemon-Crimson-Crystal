@@ -1193,11 +1193,11 @@ JohtoGrassWildMons:
 	map_id ROUTE_29
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 2, CERULEDGE
-	dbw 2, ARMAROGUE
-	dbw 3, TINKATON
-	dbw 3, DRAGAPULT
-	dbw 2, FRIGIBAX
+	dbw 2, URSALUNABM
+	dbw 2, GOLISOPOD
+	dbw 3, HYDRAPPLE
+	dbw 3, ARCHALUDON
+	dbw 2, APPLETUN
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
