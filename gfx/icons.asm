@@ -325,7 +325,7 @@ MorgremIcon:     INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/morgrem.png
 GrimmsnarlIcon:  INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/grimmsnarl.png
 TinkatinkIcon:   INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/tinkatink.png
 TinkatuffIcon:   INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/tinkatuff.png
-TinkatonIcon:    INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/tinkaton.png
+TinkatonIcon:    INCBIN "gfx/icons/tinkaton.2bpp"
 FrigibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/frigibax.png
 ArctibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/arctibax.png
 BaxcaliburIcon:  INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/baxcalibur.png
