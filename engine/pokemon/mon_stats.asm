@@ -153,48 +153,53 @@ GetGender:
 	dec a
 	jr z, .sBoxMon
 
-; 3: Unknown
+; 3: TempMon
 	ld hl, wTempMonDVs
 	dec a
-	jr z, .DVs
+	jr z, .TempMon
 
 ; else: WildMon
-	ld hl, wEnemyMonDVs
-	jr .DVs
+	ld a, [wEnemyMonShinyGenderFlags]
+	ld b, a
+	jr .SpeciesRatio
 
 ; Get our place in the party/box.
 
 .PartyMon:
+	ld a, [wCurPartyMon]
+	call AddNTimes
+	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
+	jr .LoadShinyGenderByte
+
 .sBoxMon
 	ld a, [wCurPartyMon]
 	call AddNTimes
+	ld bc, PKRUS_OFFSET_FROM_DVS
+	jr .LoadShinyGenderByte
 
-.DVs:
+.TempMon:
+	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
+
+.LoadShinyGenderByte:
+	add hl, bc
+
 ; sBoxMon data is read directly from SRAM.
 	ld a, [wMonType]
 	cp BOXMON
 	ld a, BANK(sBox)
 	call z, GetSRAMBank
 
-; Attack DV
-	ld a, [hli]
-	and $f0
-	ld b, a
-; Speed DV
 	ld a, [hl]
-	and $f0
-	swap a
-
-; Put our DVs together.
-	or b
-	ld b, a
 
 ; Close SRAM if we were dealing with a sBoxMon.
+	push af
 	ld a, [wMonType]
 	cp BOXMON
 	call z, CloseSRAM
+	pop af
+	ld b, a
 
-; We need the gender ratio to do anything with this.
+.SpeciesRatio:
 	push bc
 	ld a, [wCurPartySpecies]
 	call GetPokemonIndexFromID
@@ -205,25 +210,23 @@ GetGender:
 	call LoadIndirectPointer
 	ld bc, BASE_GENDER
 	add hl, bc
-	pop bc
-	jr z, .Genderless
-
 	call GetFarByte
+	ld d, a
+	pop bc
 
-; The higher the ratio, the more likely the monster is to be female.
-
+	ld a, d
 	cp GENDER_UNKNOWN
 	jr z, .Genderless
 
-	and a ; GENDER_F0?
+	and a
 	jr z, .Male
 
 	cp GENDER_F100
 	jr z, .Female
 
-; Values below the ratio are male, and vice versa.
-	cp b
-	jr c, .Male
+	ld a, b
+	and MON_MALE_FLAG
+	jr nz, .Male
 
 .Female:
 	xor a

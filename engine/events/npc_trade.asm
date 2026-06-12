@@ -265,6 +265,13 @@ DoNPCTrade:
 	ld a, PERFECT_SPDSPC_DV
 	ld [hl], a
 
+	ld hl, wPartyMon1Unused
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call Trade_GetAttributeOfLastPartymon
+	ld d, h
+	ld e, l
+	farcall InitMonShinyGender
+
 	ld e, NPCTRADE_OT_ID
 	call GetTradeAttribute
 	ld de, wOTTrademonID + 1

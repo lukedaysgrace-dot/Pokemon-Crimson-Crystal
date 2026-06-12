@@ -235,11 +235,11 @@ endr
 	ld [de], a
 	inc de
 
-	xor a
 	; PokerusStatus
-	ld [de], a
+	farcall InitMonPokerus
 	inc de
 	; CaughtData/CaughtTime/CaughtLevel
+	xor a
 	ld [de], a
 	inc de
 	; CaughtGender/CaughtLocation
@@ -255,22 +255,8 @@ endr
 	; Status
 	ld [de], a
 	inc de
-	; Unused
-	ld [de], a
-	inc de
-
-	; Initialize HP.
-	ld bc, MON_STAT_EXP - 1
-	add hl, bc
-	ld a, 1
-	ld c, a
-	ld b, FALSE
-	call CalcMonStatC
-	ldh a, [hProduct + 2]
-	ld [de], a
-	inc de
-	ldh a, [hProduct + 3]
-	ld [de], a
+	; Unused (shiny/gender flags)
+	farcall InitMonShinyGender
 	inc de
 	jr .initstats
 
@@ -311,11 +297,10 @@ endr
 	ld [de], a
 	inc de
 
-	xor a
-	; PokerusStatus
-	ld [de], a
+	farcall InitMonPokerus
 	inc de
 	; CaughtData/CaughtTime/CaughtLevel
+	xor a
 	ld [de], a
 	inc de
 	; CaughtGender/CaughtLocation
@@ -332,8 +317,8 @@ endr
 	ld a, [hli]
 	ld [de], a
 	inc de
-	; Copy EnemyMonUnused
-	ld a, [hli]
+	; Unused (shiny/gender flags)
+	ld a, [wEnemyMonShinyGenderFlags]
 	ld [de], a
 	inc de
 	; Copy wEnemyMonHP
@@ -356,10 +341,32 @@ endr
 
 .generatestats
 	pop hl
+	push hl
+	ld bc, MON_MAXHP
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	push hl
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, FALSE
 	call CalcMonStats
+	pop hl
+	push hl
+	ld bc, MON_MAXHP
+	add hl, bc
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld e, a
+	pop hl
+	ld bc, MON_HP
+	add hl, bc
+	ld a, d
+	ld [hli], a
+	ld a, e
+	ld [hl], a
 
 .registerunowndex
 	ld a, [wMonType]
@@ -595,8 +602,42 @@ SendGetMonIntoFromBox:
 	call AddNTimes
 
 .okay4
+	push de
+	push hl
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
+	pop bc
+	pop de
+	ld a, [wPokemonWithdrawDepositParameter]
+	and a
+	jr z, .sync_withdraw_flags
+	cp PC_DEPOSIT
+	jr nz, .sync_done
+	ld hl, MON_UNUSED
+	add hl, bc
+	ld a, [hl]
+	and $c0
+	ld b, a
+	ld hl, MON_PKRUS
+	add hl, de
+	ld a, [hl]
+	and $3f
+	or b
+	ld [hl], a
+	jr .sync_done
+.sync_withdraw_flags
+	ld hl, MON_PKRUS
+	add hl, de
+	ld a, [hl]
+	ld b, a
+	and $3f
+	ld [hl], a
+	ld a, b
+	and $c0
+	ld hl, MON_UNUSED
+	add hl, de
+	ld [hl], a
+.sync_done
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp DAY_CARE_DEPOSIT
 	ld de, wBreedMon1OT
@@ -1071,9 +1112,10 @@ SendMonIntoBox:
 	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
-	xor a
+	ld a, [wEnemyMonShinyGenderFlags]
 	ld [de], a
 	inc de
+	xor a
 	ld [de], a
 	inc de
 	ld [de], a

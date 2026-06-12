@@ -553,7 +553,12 @@ StatsScreen_LoadGFX:
 	ld b, a
 	and $f
 	jr nz, .HasPokerus
+	ld a, [wMonType]
+	cp BOXMON
 	ld a, b
+	jr nz, .check_pokerus_immunity
+	and $3f ; box mons store shiny/gender in bits 6-7
+.check_pokerus_immunity
 	and $f0
 	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8

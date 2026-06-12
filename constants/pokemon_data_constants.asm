@@ -79,6 +79,14 @@ MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
 ; perfect DVs (15 in every stat)
 PERFECT_ATKDEF_DV EQU $ff
 PERFECT_SPDSPC_DV EQU $ff
+
+; shiny/gender flags (party: Unused byte; box: PokerusStatus bits 6-7)
+MON_SHINY_FLAG EQU %10000000
+MON_MALE_FLAG  EQU %01000000
+SHINY_PROBABILITY EQU 10 percent
+POKERUS_PROBABILITY EQU 5 percent
+PKRUS_OFFSET_FROM_DVS EQU 2 + NUM_MOVES + 1
+MON_SHINY_GENDER_OFFSET_FROM_DVS EQUS "(MON_UNUSED - MON_DVS)"
 MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
 MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
 MON_PKRUS              EQUS "(wPartyMon1PokerusStatus - wPartyMon1)"
@@ -89,6 +97,7 @@ MON_CAUGHTGENDER       EQUS "(wPartyMon1CaughtGender - wPartyMon1)"
 MON_CAUGHTLOCATION     EQUS "(wPartyMon1CaughtLocation - wPartyMon1)"
 MON_LEVEL              EQUS "(wPartyMon1Level - wPartyMon1)"
 MON_STATUS             EQUS "(wPartyMon1Status - wPartyMon1)"
+MON_UNUSED             EQUS "(wPartyMon1Unused - wPartyMon1)"
 MON_HP                 EQUS "(wPartyMon1HP - wPartyMon1)"
 MON_MAXHP              EQUS "(wPartyMon1MaxHP - wPartyMon1)"
 MON_ATK                EQUS "(wPartyMon1Attack - wPartyMon1)"
