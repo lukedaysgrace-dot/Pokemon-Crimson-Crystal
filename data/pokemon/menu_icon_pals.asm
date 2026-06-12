@@ -315,7 +315,7 @@ MonMenuIconPals:
 	icon_pals PURPLE, GRAY   ; GRIMMSNARL
 	icon_pals PINK,   GREEN  ; TINKATINK
 	icon_pals PINK,   GREEN  ; TINKATUFF
-	icon_pals PINK,   GREEN  ; TINKATON
+	icon_pals PINK,   GRAY   ; TINKATON
 	icon_pals GRAY,   BLUE   ; FRIGIBAX
 	icon_pals BLUE,   GRAY   ; ARCTIBAX
 	icon_pals BLUE,   GRAY   ; BAXCALIBUR
