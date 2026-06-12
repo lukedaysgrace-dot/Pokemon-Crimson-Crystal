@@ -371,5 +371,5 @@ AnimationPointers:
 	dw VikavoltAnimation
 	dw WalreinAnimation
 	dw WimpodAnimation
-	dw TeddiursaAnimation
-	dw UrsaringAnimation
+	dw TeddiursabmAnimation
+	dw UrsaringbmAnimation
