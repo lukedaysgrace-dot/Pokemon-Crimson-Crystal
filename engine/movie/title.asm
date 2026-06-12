@@ -221,17 +221,37 @@ SuicuneFrameIterator:
 	ld hl, wSuicuneFrame
 	ld a, [hl]
 	ld c, a
-	inc [hl]
+	inc a
+	cp 40
+	jr c, .store_counter
+	xor a
+.store_counter
+	ld [hl], a
 
-; Only do this once every eight frames
-	and %111
-	ret nz
-
+; Hold each title Suicune frame for 10 frames instead of 8.
 	ld a, c
-	and %11000
-	sla a
-	swap a
-	ld e, a
+	and a
+	jr z, .frame0
+	cp 10
+	jr z, .frame1
+	cp 20
+	jr z, .frame2
+	cp 30
+	jr z, .frame3
+	ret
+
+.frame0
+	ld e, 0
+	jr .load_frame
+.frame1
+	ld e, 1
+	jr .load_frame
+.frame2
+	ld e, 2
+	jr .load_frame
+.frame3
+	ld e, 3
+.load_frame
 	ld d, $0
 	ld hl, .Frames
 	add hl, de
