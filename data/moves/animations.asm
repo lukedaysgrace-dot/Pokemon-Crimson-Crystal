@@ -5943,6 +5943,8 @@ BattleAnim_BloodMoon:
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
 	anim_wait 48
+	anim_bgeffect ANIM_BG_1F, $30, $4, $10
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
 	anim_wait 16
 	anim_sound 0, 0, SFX_HYPER_BEAM
