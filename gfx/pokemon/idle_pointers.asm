@@ -371,5 +371,5 @@ AnimationIdlePointers:
 	dw VikavoltAnimationIdle
 	dw WalreinAnimationIdle
 	dw WimpodAnimationIdle
-	dw TeddiursaAnimationIdle
-	dw UrsaringAnimationIdle
+	dw TeddiursabmAnimationIdle
+	dw UrsaringbmAnimationIdle

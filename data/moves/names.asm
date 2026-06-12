@@ -291,3 +291,4 @@ MoveNames::
 	db "DRACO METEOR@"
 	db "MOONBLAST@"
 	db "PIXIE PUNCH@"
+	db "BLOOD MOON@"

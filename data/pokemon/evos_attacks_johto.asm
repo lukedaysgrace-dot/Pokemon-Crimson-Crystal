@@ -318,7 +318,7 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, POISON_JAB
+	dbw 1, BLOOD_MOON
 	dbw 1, LUNGE
 	dbw 4, BUG_BITE
 	dbw 5, X_SCISSOR
@@ -2869,6 +2869,7 @@ UrsalunabmEvosAttacks:
 	dbw 12, QUICK_ATTACK
 	dbw 30, MAGNITUDE
 	dbw 30, TAKE_DOWN
+	dbw 45, BLOOD_MOON
 	dbw 48, DOUBLE_EDGE
 	dbw 50, EARTHQUAKE
 	db 0 ; no more level-up moves

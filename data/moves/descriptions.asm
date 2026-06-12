@@ -297,6 +297,7 @@ MoveDescriptions1:
 	dw DracoMeteorDescription
 	dw MoonblastDescription
 	dw PixiePunchDescription
+	dw BloodMoonDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1476,3 +1477,7 @@ PixiePunchDescription:
 	db   "A playful fairy"
 	next "punch. May lower"
 	next "SPEED.@"
+
+BloodMoonDescription:
+	db   "Can't be used"
+	next "twice in a row.@"

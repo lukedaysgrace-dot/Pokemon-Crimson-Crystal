@@ -371,5 +371,5 @@ FramesPointers:
 	dba VikavoltFrames
 	dba WalreinFrames
 	dba WimpodFrames
-	dba TeddiursaFrames
-	dba UrsaringFrames
+	dba TeddiursabmFrames
+	dba UrsaringbmFrames

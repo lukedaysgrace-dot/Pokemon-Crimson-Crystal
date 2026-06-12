@@ -1,4 +1,4 @@
-; Giga Hammer battle commands (Battle Core bank) — keeps Effect Commands bank under its limit.
+; Giga Hammer-style battle commands (Battle Core bank) - keeps Effect Commands bank under its limit.
 
 BattleGigaHammer_CheckCore:
 	ldh a, [hBattleTurn]
@@ -11,6 +11,15 @@ BattleGigaHammer_CheckCore:
 	ld a, [hl]
 	and a
 	ret z
+	ld c, a
+	ld a, b
+	and a
+	ld a, [wPlayerMoveStruct + MOVE_ANIM]
+	jr z, .got_move
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+.got_move
+	cp c
+	ret nz
 	ld a, b
 	and a
 	jr nz, .no_repick
@@ -29,10 +38,13 @@ BattleGigaHammer_ApplyFailAnimAndText:
 BattleGigaHammer_SetLockCore:
 	ldh a, [hBattleTurn]
 	and a
+	jr nz, .enemy
 	ld hl, wPlayerGigaHammerLock
-	jr z, .set
+	ld a, [wPlayerMoveStruct + MOVE_ANIM]
+	jr .set
+.enemy
 	ld hl, wEnemyGigaHammerLock
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
 .set
-	ld a, 1
 	ld [hl], a
 	ret

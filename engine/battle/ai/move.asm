@@ -42,17 +42,18 @@ AIChooseMove:
 	add hl, bc
 	ld [hl], 80
 
-; Don't pick Giga Hammer twice in a row.
+; Don't pick a Giga Hammer-style move twice in a row.
 .CheckGigaHammer:
 	ld a, [wEnemyGigaHammerLock]
 	and a
 	jr z, .CheckPP
+	ld d, a
 
 	ld hl, wEnemyMonMoves
 	ld c, 0
 .CheckGigaHammerMove:
 	ld a, [hli]
-	cp GIGA_HAMMER
+	cp d
 	jr z, .ScoreGigaHammerMove
 	inc c
 	ld a, c

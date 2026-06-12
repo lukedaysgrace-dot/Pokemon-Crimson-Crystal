@@ -38,8 +38,10 @@ UsedMoveText:
 	ld [hl], a
 	ld [de], a
 
-	; Clear Giga Hammer reuse lock when this side uses any other move
-	cp GIGA_HAMMER
+	; Clear Giga Hammer-style reuse lock when this side uses any other effect.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_GIGA_HAMMER
 	jr z, .ok
 	ldh a, [hBattleTurn]
 	and a

@@ -298,6 +298,7 @@
 	const DRACO_METEOR     ; 12e
 	const MOONBLAST        ; 12f
 	const PIXIE_PUNCH      ; 130
+	const BLOOD_MOON       ; 131
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

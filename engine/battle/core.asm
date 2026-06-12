@@ -5682,12 +5682,14 @@ MoveSelectionScreen:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	cp GIGA_HAMMER
-	jr nz, .skip2
+	ld b, a
 	ld a, [wPlayerGigaHammerLock]
 	and a
-	jr nz, .move_cant_be_used_twice
-	ld a, GIGA_HAMMER
+	jr z, .use_selected_move
+	cp b
+	jr z, .move_cant_be_used_twice
+.use_selected_move
+	ld a, b
 
 .skip2
 	ld [wCurPlayerMove], a

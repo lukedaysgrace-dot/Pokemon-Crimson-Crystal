@@ -317,6 +317,7 @@ BattleAnimations::
 	dw BattleAnim_DracoMeteor
 	dw BattleAnim_Moonblast
 	dw BattleAnim_PixiePunch
+	dw BattleAnim_BloodMoon
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -5926,6 +5927,36 @@ BattleAnim_Moonblast:
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_wait 16
 	anim_call BattleAnim_AuroraBeam_branch_cbb39
+	anim_wait 40
+	anim_ret
+
+BattleAnim_BloodMoon:
+; Crimson moonlight charge, then a Hyper Beam-style blast.
+	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_BEAM
+	anim_bgp $1b
+	anim_bgeffect ANIM_BG_07, $0, $0, $0
+	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 0, 40, $0
+	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 16, 56, $0
+	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 32, 72, $0
+	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 48, 88, $0
+	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 64, 104, $0
+	anim_wait 1
+	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_wait 48
+	anim_bgeffect ANIM_BG_06, $0, $2, $0
+	anim_wait 16
+	anim_sound 0, 0, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BLOOD_MOON_BEAM, 64, 92, $0
+	anim_wait 4
+	anim_sound 0, 0, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BLOOD_MOON_BEAM, 80, 84, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BLOOD_MOON_BEAM, 96, 76, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BLOOD_MOON_BEAM, 112, 68, $0
+	anim_obj ANIM_OBJ_BLOOD_MOON_BEAM_END, 126, 62, $0
 	anim_wait 40
 	anim_ret
 
