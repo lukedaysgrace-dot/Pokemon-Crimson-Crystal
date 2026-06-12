@@ -6,36 +6,33 @@ SHINY_SPD_VAL EQU 10
 SHINY_SPC_VAL EQU 10
 
 CheckShininess:
-; Check if a mon is shiny by DVs at bc.
+; Check if a mon is shiny.
+; bc = DVs pointer for party/box mons.
 ; Return carry if shiny.
 
-	ld l, c
-	ld h, b
+	ld a, b
+	cp HIGH(wEnemyMonDVs)
+	jr nz, .PartyMon
+	ld a, c
+	cp LOW(wEnemyMonDVs)
+	jr nz, .PartyMon
+	ld a, [wEnemyMonShinyGenderFlags]
+	jr .CheckFlag
 
-; Attack
+.PartyMon:
+	ld a, [wMonType]
+	cp BOXMON
+	ld hl, PKRUS_OFFSET_FROM_DVS
+	jr z, .LoadShinyGenderByte
+	ld hl, MON_SHINY_GENDER_OFFSET_FROM_DVS
+
+.LoadShinyGenderByte:
+	add hl, bc
 	ld a, [hl]
-	and 1 << SHINY_ATK_BIT
+
+.CheckFlag:
+	and MON_SHINY_FLAG
 	jr z, .NotShiny
-
-; Defense
-	ld a, [hli]
-	and $f
-	cp  SHINY_DEF_VAL
-	jr nz, .NotShiny
-
-; Speed
-	ld a, [hl]
-	and $f0
-	cp  SHINY_SPD_VAL << 4
-	jr nz, .NotShiny
-
-; Special
-	ld a, [hl]
-	and $f
-	cp  SHINY_SPC_VAL
-	jr nz, .NotShiny
-
-.Shiny:
 	scf
 	ret
 

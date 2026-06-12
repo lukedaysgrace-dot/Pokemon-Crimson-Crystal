@@ -745,6 +745,8 @@ DayCare_InitBreeding:
 	ld [hli], a
 	ld a, PERFECT_SPDSPC_DV
 	ld [hl], a
+	ld de, wEggMonPokerusStatus
+	farcall InitMonShinyGender
 	ret
 
 .String_EGG:

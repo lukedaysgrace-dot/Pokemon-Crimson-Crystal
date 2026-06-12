@@ -2177,6 +2177,7 @@ wEnemyMon:: battle_struct wEnemyMon ; d206
 wEnemyMonBaseStats:: ds 5 ; d226
 wEnemyMonCatchRate:: db ; d22b
 wEnemyMonBaseExp::   db ; d22c
+wEnemyMonShinyGenderFlags:: db ; d22d
 wEnemyMonEnd::
 
 wBattleMode:: ; d22d

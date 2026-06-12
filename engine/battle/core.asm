@@ -6319,15 +6319,6 @@ LoadEnemyMon:
 .NotRoaming:
 ; Register a contains wBattleType
 
-; Forced shiny battle type
-; Used by Red Gyarados at Lake of Rage
-	cp BATTLETYPE_SHINY
-	jr nz, .GenerateDVs
-
-	ld b, ATKDEFDV_SHINY ; $ea
-	ld c, SPDSPCDV_SHINY ; $aa
-	jr .UpdateDVs
-
 .GenerateDVs:
 ; Generate new random DVs
 	call BattleRandom
@@ -6478,7 +6469,17 @@ LoadEnemyMon:
 	cp TRAINER_BATTLE
 	jr z, .OpponentParty
 
+	farcall InitWildMonShinyGender
+	ld a, [wBattleType]
+	cp BATTLETYPE_SHINY
+	jr nz, .CheckWildBattle
+	ld a, [wEnemyMonShinyGenderFlags]
+	or MON_SHINY_FLAG
+	ld [wEnemyMonShinyGenderFlags], a
+
+.CheckWildBattle:
 ; If we're in a wild battle, check wild-specific stuff
+	ld a, [wBattleMode]
 	and a
 	jr z, .TreeMon
 
