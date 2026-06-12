@@ -373,3 +373,5 @@ IconPointers:
 	dba VikavoltIcon
 	dba WalreinIcon
 	dba WimpodIcon
+	dba TeddiursabmIcon
+	dba UrsaringbmIcon

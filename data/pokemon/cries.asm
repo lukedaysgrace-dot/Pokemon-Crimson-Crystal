@@ -377,3 +377,5 @@ PokemonCries::
 	mon_cry CRY_PIDGEOTTO     ,  $000,  $100 ; VIKAVOLT
 	mon_cry CRY_SEEL    ,  $000,  $100 ; WALREIN
 	mon_cry CRY_CATERPIE   ,  $000,  $100 ; WIMPOD
+	mon_cry CRY_TEDDIURSA,   $7a2,  $06e ; TEDDIURSABM
+	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; URSARINGBM

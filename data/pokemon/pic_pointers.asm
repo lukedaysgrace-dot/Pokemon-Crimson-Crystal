@@ -757,3 +757,7 @@ PokemonPicPointers::
 	dba WalreinBackpic
 	dba WimpodFrontpic
 	dba WimpodBackpic
+	dba TeddiursaFrontpic
+	dba TeddiursaBackpic
+	dba UrsaringFrontpic
+	dba UrsaringBackpic

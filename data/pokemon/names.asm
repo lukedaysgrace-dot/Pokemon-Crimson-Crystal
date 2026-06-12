@@ -375,3 +375,5 @@ PokemonNames::
 	db "VIKAVOLT@@"
 	db "WALREIN@@@"
 	db "WIMPOD@@@@"
+	db "TEDDIURSA@"
+	db "URSARING@@"

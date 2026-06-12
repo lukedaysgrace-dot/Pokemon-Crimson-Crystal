@@ -390,5 +390,7 @@ VibravaIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/vibrava.png
 VikavoltIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/vikavolt.png
 WalreinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/walrein.png
 WimpodIcon: INCBIN "gfx/icons/wimpod.2bpp" ; TODO: gfx/icons/wimpod.png
+TeddiursabmIcon: INCBIN "gfx/icons/teddiursa.2bpp"
+UrsaringbmIcon: INCBIN "gfx/icons/ursaring.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

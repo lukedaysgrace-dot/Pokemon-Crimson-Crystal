@@ -380,3 +380,5 @@ MonMenuIconPals:
 	icon_pals BROWN, BLUE   ; VIKAVOLT
 	icon_pals BLUE  , GRAY   ; WALREIN
 	icon_pals GRAY  , BLUE   ; WIMPOD
+	icon_pals BROWN,  GREEN  ; TEDDIURSABM
+	icon_pals BROWN,  GREEN  ; URSARINGBM
