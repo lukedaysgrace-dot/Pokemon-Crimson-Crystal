@@ -728,6 +728,7 @@ StatsScreen_LoadGFX:
 	db "MOVE@"
 
 .BluePage:
+	call StatsScreen_PrintHappiness
 	call .PlaceOTInfo
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
@@ -786,6 +787,22 @@ IDNoString:
 
 OTString:
 	db "OT/@"
+
+StatsScreen_PrintHappiness:
+	hlcoord 1, 15
+	ld [hl], $34 ; heart icon
+
+	hlcoord 3, 15
+	lb bc, 1, 3
+	ld de, wTempMonHappiness
+	call PrintNum
+	ld de, .outofMaxLoveString
+	hlcoord 4, 16
+	call PlaceString
+	ret
+
+.outofMaxLoveString:
+	db "/255@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
