@@ -260,8 +260,10 @@ DoNPCTrade:
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfLastPartymon
-	ld hl, wOTTrademonDVs
-	call Trade_CopyTwoBytes
+	ld a, PERFECT_ATKDEF_DV
+	ld [hli], a
+	ld a, PERFECT_SPDSPC_DV
+	ld [hl], a
 
 	ld e, NPCTRADE_OT_ID
 	call GetTradeAttribute

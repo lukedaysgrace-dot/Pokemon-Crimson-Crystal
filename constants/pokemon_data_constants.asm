@@ -75,6 +75,10 @@ MON_DEF_EXP            EQUS "(wPartyMon1DefExp - wPartyMon1)"
 MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
 MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
 MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
+
+; perfect DVs (15 in every stat)
+PERFECT_ATKDEF_DV EQU $ff
+PERFECT_SPDSPC_DV EQU $ff
 MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
 MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
 MON_PKRUS              EQUS "(wPartyMon1PokerusStatus - wPartyMon1)"

@@ -740,6 +740,11 @@ DayCare_InitBreeding:
 	ld [hl], a
 	ld a, [wCurPartyLevel]
 	ld [wEggMonLevel], a
+	ld hl, wEggMonDVs
+	ld a, PERFECT_ATKDEF_DV
+	ld [hli], a
+	ld a, PERFECT_SPDSPC_DV
+	ld [hl], a
 	ret
 
 .String_EGG:
