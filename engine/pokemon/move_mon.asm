@@ -205,6 +205,12 @@ endr
 	call Random
 	ld c, a
 .initializeDVs
+	ld a, [wMonType]
+	and $f
+	jr nz, .storeDVs
+	ld b, PERFECT_ATKDEF_DV
+	ld c, PERFECT_SPDSPC_DV
+.storeDVs
 	ld a, b
 	ld [de], a
 	inc de
@@ -269,6 +275,18 @@ endr
 	jr .initstats
 
 .copywildmonDVs
+	ld a, [wMonType]
+	and $f
+	jr nz, .copyEnemyDVs
+	ld a, PERFECT_ATKDEF_DV
+	ld [de], a
+	inc de
+	ld a, PERFECT_SPDSPC_DV
+	ld [de], a
+	inc de
+	jr .copyWildMonPP
+
+.copyEnemyDVs
 	ld a, [wEnemyMonDVs]
 	ld [de], a
 	inc de
@@ -276,6 +294,7 @@ endr
 	ld [de], a
 	inc de
 
+.copyWildMonPP
 	push hl
 	ld hl, wEnemyMonPP
 	ld b, NUM_MOVES
@@ -1034,8 +1053,14 @@ SendMonIntoBox:
 	dec b
 	jr nz, .loop2
 
-	ld hl, wEnemyMonDVs
-	ld b, 2 + NUM_MOVES ; DVs and PP ; wEnemyMonHappiness - wEnemyMonDVs
+	ld a, PERFECT_ATKDEF_DV
+	ld [de], a
+	inc de
+	ld a, PERFECT_SPDSPC_DV
+	ld [de], a
+	inc de
+	ld hl, wEnemyMonPP
+	ld b, NUM_MOVES
 .loop3
 	ld a, [hli]
 	ld [de], a
