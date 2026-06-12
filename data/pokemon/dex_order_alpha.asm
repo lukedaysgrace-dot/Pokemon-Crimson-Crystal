@@ -289,6 +289,7 @@ AlphabeticalPokedexOrder:
 	dw TANGELA
 	dw TAUROS
 	dw TEDDIURSA
+	dw TEDDIURSABM
 	dw TENTACOOL
 	dw TENTACRUEL
 	dw TOGEPI
@@ -300,6 +301,7 @@ AlphabeticalPokedexOrder:
 	dw UMBREON
 	dw UNOWN
 	dw URSARING
+	dw URSARINGBM
 	dw VAPOREON
 	dw VENOMOTH
 	dw VENONAT

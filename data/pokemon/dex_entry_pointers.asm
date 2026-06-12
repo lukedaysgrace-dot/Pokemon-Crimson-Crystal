@@ -372,3 +372,5 @@ PokedexDataPointerTable:
 	dba VikavoltPokedexEntry
 	dba WalreinPokedexEntry
 	dba WimpodPokedexEntry
+	dba TeddiursabmPokedexEntry
+	dba UrsaringbmPokedexEntry

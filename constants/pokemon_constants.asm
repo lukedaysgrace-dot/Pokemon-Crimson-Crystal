@@ -392,6 +392,8 @@ JOHTO_POKEMON EQU const_value
 	const VIKAVOLT   ;
 	const WALREIN    ;
 	const WIMPOD     ;
+	const TEDDIURSABM ;
+	const URSARINGBM ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

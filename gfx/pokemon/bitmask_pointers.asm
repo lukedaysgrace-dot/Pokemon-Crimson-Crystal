@@ -371,3 +371,5 @@ BitmasksPointers:
 	dw VikavoltBitmasks
 	dw WalreinBitmasks
 	dw WimpodBitmasks
+	dw TeddiursaBitmasks
+	dw UrsaringBitmasks
