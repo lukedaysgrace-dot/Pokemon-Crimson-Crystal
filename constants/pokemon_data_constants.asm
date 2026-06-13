@@ -86,7 +86,8 @@ MON_MALE_FLAG  EQU %01000000
 SHINY_PROBABILITY EQU 10 percent
 POKERUS_PROBABILITY EQU 5 percent
 PKRUS_OFFSET_FROM_DVS EQU 2 + NUM_MOVES + 1
-MON_SHINY_GENDER_OFFSET_FROM_DVS EQUS "(MON_UNUSED - MON_DVS)"
+MON_DVs                          EQUS "(wPartyMon1DVs - wPartyMon1)"
+MON_SHINY_GENDER_OFFSET_FROM_DVS EQUS "(MON_UNUSED - MON_DVs)"
 MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
 MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
 MON_PKRUS              EQUS "(wPartyMon1PokerusStatus - wPartyMon1)"
