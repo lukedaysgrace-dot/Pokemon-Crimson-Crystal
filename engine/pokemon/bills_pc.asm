@@ -1771,10 +1771,13 @@ BillsPC_CopyMon:
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld de, wBufferMon
-	ld bc, PARTYMON_STRUCT_LENGTH
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
+	ld hl, wBufferMon
+	call BillsPC_ConvertBoxMonToPartyMon
 	farcall CalcBufferMonStats
+	call BillsPC_CopyBoxShinyGenderToBufferUnused
 	ret
 
 .party
@@ -1826,6 +1829,7 @@ BillsPC_CopyMon:
 	ld hl, wBufferMon
 	call BillsPC_ConvertBoxMonToPartyMon
 	farcall CalcBufferMonStats
+	call BillsPC_CopyBoxShinyGenderToBufferUnused
 	ret
 
 DepositPokemon:
@@ -2196,6 +2200,17 @@ CopyMonToTemp:
 	call AddNTimes
 	ld de, wBufferMon
 	call CopyBytes
+	ret
+
+BillsPC_CopyBoxShinyGenderToBufferUnused:
+	ld hl, wBufferMonPokerusStatus
+	ld a, [hl]
+	ld b, a
+	and $3f
+	ld [hl], a
+	ld a, b
+	and $c0
+	ld [wBufferMonUnused], a
 	ret
 
 GetBoxPointer:

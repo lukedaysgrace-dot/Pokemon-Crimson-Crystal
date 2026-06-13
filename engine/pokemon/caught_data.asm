@@ -97,8 +97,10 @@ CheckPartyFullAfterContest:
 	ld [wCurPartyMon], a
 	ld hl, wContestMon
 	ld de, wBufferMon
-	ld bc, BOXMON_STRUCT_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
+	xor a ; REMOVE_PARTY
+	ld [wPokemonWithdrawDepositParameter], a
 	ld hl, wPlayerName
 	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH

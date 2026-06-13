@@ -24,6 +24,7 @@ InsertPokemonIntoBox:
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld de, wBufferMon
 	call InsertDataIntoBoxOrParty
+	call SyncBufferMonShinyGenderToBox
 	ld hl, wBufferMonMoves
 	ld de, wTempMonMoves
 	ld bc, NUM_MOVES
@@ -61,6 +62,56 @@ InsertPokemonIntoParty:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wBufferMon
 	call InsertDataIntoBoxOrParty
+	call SyncBufferMonShinyGenderToParty
+	ret
+
+GetBufferMonShinyGenderFlags:
+	ld a, [wPokemonWithdrawDepositParameter]
+	cp REMOVE_BOX
+	jr z, .box
+	ld a, [wBufferMonUnused]
+	and $c0
+	ret
+
+.box
+	ld a, [wBufferMonPokerusStatus]
+	and $c0
+	ret
+
+SyncBufferMonShinyGenderToBox:
+	call GetBufferMonShinyGenderFlags
+	push af
+	ld a, [sBoxCount]
+	dec a
+	ld hl, sBoxMon1PokerusStatus
+	ld bc, BOXMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	and $3f
+	ld b, a
+	pop af
+	or b
+	ld [hl], a
+	ret
+
+SyncBufferMonShinyGenderToParty:
+	call GetBufferMonShinyGenderFlags
+	push af
+	ld a, [wPartyCount]
+	dec a
+	ld hl, wPartyMon1PokerusStatus
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	and $3f
+	ld [hl], a
+	ld a, [wPartyCount]
+	dec a
+	ld hl, wPartyMon1Unused
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	pop af
+	ld [hl], a
 	ret
 
 InsertSpeciesIntoBoxOrParty:
