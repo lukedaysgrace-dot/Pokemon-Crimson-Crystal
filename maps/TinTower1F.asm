@@ -57,18 +57,18 @@ TinTower1F_MapScripts:
 	special MonCheck
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
-	sjump .CheckEntei
+	sjump .CheckSuicune
 
 .NoRaikou:
 	disappear TINTOWER1F_RAIKOU
-.CheckEntei:
-	loadmonindex 0, ENTEI
+.CheckSuicune:
+	loadmonindex 0, SUICUNE
 	special MonCheck
-	iftrue .NoEntei
+	iftrue .NoSuicune
 	appear TINTOWER1F_ENTEI
 	sjump .BeastsDone
 
-.NoEntei:
+.NoSuicune:
 	disappear TINTOWER1F_ENTEI
 .BeastsDone:
 	return
@@ -104,12 +104,12 @@ TinTower1F_MapScripts:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 .Next1:
-	loadmonindex 0, ENTEI
+	loadmonindex 0, SUICUNE
 	special MonCheck
-	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
+	iftrue .Next2 ; if player caught Suicune, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
 	turnobject PLAYER, RIGHT
-	cry ENTEI
+	cry SUICUNE
 	pause 10
 	playsound SFX_WARP_FROM
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement2
@@ -121,9 +121,9 @@ TinTower1F_MapScripts:
 	pause 10
 	applymovement PLAYER, TinTowerPlayerMovement2
 	applymovement TINTOWER1F_SUICUNE, TinTowerSuicuneMovement
-	cry SUICUNE
+	cry ENTEI
 	pause 20
-	loadwildmon SUICUNE, 40
+	loadwildmon ENTEI, 40
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	dontrestartmapmusic
@@ -324,13 +324,13 @@ TinTowerEusineSuicuneText:
 	para "That was truly"
 	line "inspiring to see."
 
-	para "SUICUNE was tough,"
+	para "ENTEI was tough,"
 	line "but you were even"
 
 	para "more incredible,"
 	line "<PLAYER>."
 
-	para "I heard SUICUNE's"
+	para "I heard ENTEI's"
 	line "mystic power"
 
 	para "summons a rainbow-"
@@ -397,7 +397,7 @@ TinTower1FSage2Text:
 
 	para "They are…"
 
-	para "SUICUNE, ENTEI and"
+	para "ENTEI, SUICUNE and"
 	line "RAIKOU."
 
 	para "That is what they"
@@ -509,7 +509,7 @@ TinTower1FSage5Text3:
 
 TinTower1FSage6Text2:
 	text "Of the legendary"
-	line "#MON, SUICUNE"
+	line "#MON, ENTEI"
 
 	para "is said to be the"
 	line "closest to HO-OH."
@@ -524,7 +524,7 @@ TinTower1FSage6Text2:
 	line "must be sharing a"
 
 	para "cooperative bond"
-	line "with SUICUNE."
+	line "with ENTEI."
 	done
 
 TinTower1F_MapEvents:
@@ -540,9 +540,9 @@ TinTower1F_MapEvents:
 	db 0 ; bg events
 
 	db 10 ; object events
-	object_event  9,  9, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	object_event  9,  9, SPRITE_ENTEI, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
 	object_event  7,  9, SPRITE_RAIKOU, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
-	object_event 12,  9, SPRITE_ENTEI, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	object_event 12,  9, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
 	object_event  8,  3, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TinTowerEusine, EVENT_TIN_TOWER_1F_EUSINE
 	object_event  5,  9, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TinTower1FSage1Script, EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TinTower1FSage2Script, EVENT_TIN_TOWER_1F_WISE_TRIO_1

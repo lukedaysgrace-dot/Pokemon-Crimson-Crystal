@@ -525,7 +525,7 @@ InitRoamMons:
 	ld hl, RAIKOU
 	call GetPokemonIDFromIndex
 	ld [wRoamMon1Species], a
-	ld hl, ENTEI
+	ld hl, SUICUNE
 	call GetPokemonIDFromIndex
 	ld [wRoamMon2Species], a
 
@@ -540,7 +540,7 @@ InitRoamMons:
 	ld a, MAP_ROUTE_42
 	ld [wRoamMon1MapNumber], a
 
-; entei starting map
+; suicune starting map
 	ld a, GROUP_ROUTE_37
 	ld [wRoamMon2MapGroup], a
 	ld a, MAP_ROUTE_37
@@ -566,7 +566,7 @@ CheckEncounterRoamMon:
 	jr nc, .DontEncounterRoamMon
 	and %00000011 ; Of that, a 3/4 chance.  Running total: 75/256, or around 29.3%.
 	jr z, .DontEncounterRoamMon
-	dec a ; 1/3 chance that it's Entei, 1/3 chance that it's Raikou
+	dec a ; 1/3 chance that it's Suicune, 1/3 chance that it's Raikou
 ; Compare its current location with yours
 	ld hl, wRoamMon1MapGroup
 	ld c, a
@@ -616,7 +616,7 @@ UpdateRoamMons:
 .SkipRaikou:
 	ld a, [wRoamMon2MapGroup]
 	cp GROUP_N_A
-	jr z, .SkipEntei
+	jr z, .SkipSuicune
 	ld b, a
 	ld a, [wRoamMon2MapNumber]
 	ld c, a
@@ -626,7 +626,7 @@ UpdateRoamMons:
 	ld a, c
 	ld [wRoamMon2MapNumber], a
 
-.SkipEntei:
+.SkipSuicune:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
 	jr z, .Finished
@@ -712,14 +712,14 @@ JumpRoamMons:
 .SkipRaikou:
 	ld a, [wRoamMon2MapGroup]
 	cp GROUP_N_A
-	jr z, .SkipEntei
+	jr z, .SkipSuicune
 	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon2MapGroup], a
 	ld a, c
 	ld [wRoamMon2MapNumber], a
 
-.SkipEntei:
+.SkipSuicune:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
 	jr z, .Finished
