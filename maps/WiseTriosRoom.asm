@@ -131,7 +131,7 @@ MovementData_0x98628:
 WiseTriosRoomSage1Text:
 	text "Astounding…"
 
-	para "SUICUNE, ENTEI and"
+	para "ENTEI, SUICUNE and"
 	line "RAIKOU have arisen"
 	cont "from their sleep…"
 
@@ -161,9 +161,9 @@ WiseTriosRoomSage3BlocksExitText:
 	line "GYM BADGE."
 
 	para "However, now that"
-	line "SUICUNE, RAIKOU"
+	line "ENTEI, RAIKOU"
 
-	para "and ENTEI have"
+	para "and SUICUNE have"
 	line "arisen, I ask you"
 
 	para "to refrain from"
@@ -198,7 +198,7 @@ SageGakuSeenText:
 	line "come true!"
 
 	para "The legendary"
-	line "#MON SUICUNE"
+	line "#MON ENTEI"
 	cont "has arrived!"
 
 	para "We, the WISE TRIO,"
@@ -217,8 +217,8 @@ SageGakuAfterBattleText:
 	text "Ah, so it is you"
 	line "who claim to have"
 
-	para "seen SUICUNE,"
-	line "ENTEI and RAIKOU"
+	para "seen ENTEI,"
+	line "SUICUNE and RAIKOU"
 	cont "while they slept?"
 
 	para "Unbelievable!"
@@ -331,14 +331,14 @@ SageKojiAfterBattleSpeechText:
 	line "and enter the TIN"
 	cont "TOWER ahead."
 
-	para "SUICUNE will put"
+	para "ENTEI will put"
 	line "you to the test."
 	done
 
 SageKojiAfterBattleFinalText:
 	text "Please, do go on."
 
-	para "SUICUNE will put"
+	para "ENTEI will put"
 	line "you to the test."
 	done
 

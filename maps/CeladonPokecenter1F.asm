@@ -27,14 +27,14 @@ CeladonEusine:
 	opentext
 	writetext CeladonEusineText1
 	buttonsound
-	loadmonindex 1, SUICUNE
+	loadmonindex 1, ENTEI
 	special MonCheck
-	iffalse .NoSuicune
+	iffalse .NoEntei
 	special BeastsCheck
 	iftrue .HoOh
 	writetext NoBeastsText
 	waitbutton
-.NoSuicune:
+.NoEntei:
 	closetext
 	end
 
@@ -129,7 +129,7 @@ NoBeastsText:
 	line "the legendary"
 
 	para "#MON RAIKOU and"
-	line "ENTEI?"
+	line "SUICUNE?"
 
 	para "<……><……><……>"
 
