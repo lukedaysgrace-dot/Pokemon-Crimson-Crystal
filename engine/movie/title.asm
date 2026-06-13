@@ -222,21 +222,21 @@ SuicuneFrameIterator:
 	ld a, [hl]
 	ld c, a
 	inc a
-	cp 40
+	cp 52
 	jr c, .store_counter
 	xor a
 .store_counter
 	ld [hl], a
 
-; Hold each title Suicune frame for 10 frames instead of 8.
+; Hold each title Suicune frame for 13 frames.
 	ld a, c
 	and a
 	jr z, .frame0
-	cp 10
+	cp 13
 	jr z, .frame1
-	cp 20
+	cp 26
 	jr z, .frame2
-	cp 30
+	cp 39
 	jr z, .frame3
 	ret
 
