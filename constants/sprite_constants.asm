@@ -105,6 +105,7 @@
 	const SPRITE_RAIKOU_NPC ; 65 (unused: mon icons are used instead)
 	const SPRITE_STANDING_YOUNGSTER ; 66
 	const SPRITE_CHRIS_SKATEBOARD ; 67
+	const SPRITE_MYSTICALMAN ; 68
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
