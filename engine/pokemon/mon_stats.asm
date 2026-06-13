@@ -130,15 +130,18 @@ GetGender:
 ; a = 0: f = nc|z;  female
 ;        f = c:  genderless
 
-; This is determined by comparing the Attack and Speed DVs
-; with the species' gender ratio.
+; Gender is stored in the mon's shiny/gender flags byte (MON_MALE_FLAG),
+; assigned randomly when the mon is created.
 
 ; Figure out what type of monster struct we're looking at.
+
+	ld a, [wMonType]
+	cp WILDMON
+	jr z, .WildMon
 
 ; 0: PartyMon
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wMonType]
 	and a
 	jr z, .PartyMon
 
@@ -158,7 +161,11 @@ GetGender:
 	dec a
 	jr z, .TempMon
 
-; else: WildMon
+; Unknown mon type; treat as genderless.
+	scf
+	ret
+
+.WildMon:
 	ld a, [wEnemyMonShinyGenderFlags]
 	ld b, a
 	jr .SpeciesRatio
@@ -202,15 +209,9 @@ GetGender:
 .SpeciesRatio:
 	push bc
 	ld a, [wCurPartySpecies]
-	call GetPokemonIndexFromID
-	ld b, h
-	ld c, l
-	ld hl, BaseData
-	ld a, BANK(BaseData)
-	call LoadIndirectPointer
-	ld bc, BASE_GENDER
-	add hl, bc
-	call GetFarByte
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld a, [wBaseGender]
 	ld d, a
 	pop bc
 

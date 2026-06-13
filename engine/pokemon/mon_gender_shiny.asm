@@ -4,16 +4,11 @@ RollMonGender:
 ; a = 1: male
 ; a = 0: female
 
+	push bc
 	ld a, [wCurPartySpecies]
-	call GetPokemonIndexFromID
-	ld b, h
-	ld c, l
-	ld hl, BaseData
-	ld a, BANK(BaseData)
-	call LoadIndirectPointer
-	ld bc, BASE_GENDER
-	add hl, bc
-	call GetFarByte
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld a, [wBaseGender]
 
 	cp GENDER_UNKNOWN
 	jr z, .Genderless
@@ -24,10 +19,46 @@ RollMonGender:
 	cp GENDER_F100
 	jr z, .Female
 
-	ld b, a
+; All other gendered species use a flat 50/50 ratio.
 	call Random
-	cp b
-	jr nc, .Male
+	rrc a
+	jr c, .Male
+
+.Female:
+	xor a
+	pop bc
+	ret
+
+.Male:
+	ld a, 1
+	and a
+	pop bc
+	ret
+
+.Genderless:
+	scf
+	pop bc
+	ret
+
+GetGenderFromFlags:
+; Return gender from wBaseGender and a mon's shiny/gender flags byte in b.
+; carry: genderless
+; a = 1: male
+; a = 0: female
+
+	ld a, [wBaseGender]
+	cp GENDER_UNKNOWN
+	jr z, .Genderless
+
+	and a
+	jr z, .Male
+
+	cp GENDER_F100
+	jr z, .Female
+
+	ld a, b
+	and MON_MALE_FLAG
+	jr nz, .Male
 
 .Female:
 	xor a
@@ -134,3 +165,4 @@ InitWildMonShinyGender:
 	ld [wEnemyMonShinyGenderFlags], a
 	pop bc
 	ret
+
