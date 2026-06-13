@@ -4093,6 +4093,12 @@ InitEnemyMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnEnemyStats
+	ld hl, wOTPartyMon1Unused
+	ld a, [wCurPartyMon]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	ld [wEnemyMonShinyGenderFlags], a
 	ld hl, wBaseType1
 	ld de, wEnemyMonType1
 	ld a, [hli]

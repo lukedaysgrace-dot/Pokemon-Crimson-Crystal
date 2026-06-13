@@ -12,11 +12,25 @@ CheckShininess:
 
 	ld a, b
 	cp HIGH(wEnemyMonDVs)
-	jr nz, .PartyMon
+	jr nz, .CheckBattleMon
 	ld a, c
 	cp LOW(wEnemyMonDVs)
-	jr nz, .PartyMon
+	jr nz, .CheckBattleMon
 	ld a, [wEnemyMonShinyGenderFlags]
+	jr .CheckFlag
+
+.CheckBattleMon:
+	ld a, b
+	cp HIGH(wBattleMonDVs)
+	jr nz, .PartyMon
+	ld a, c
+	cp LOW(wBattleMonDVs)
+	jr nz, .PartyMon
+	ld hl, wPartyMon1Unused
+	ld a, [wCurBattleMon]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
 	jr .CheckFlag
 
 .PartyMon:
