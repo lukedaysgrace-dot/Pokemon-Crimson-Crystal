@@ -382,3 +382,17 @@ MonMenuIconPals:
 	icon_pals GRAY  , BLUE   ; WIMPOD
 	icon_pals BROWN,  GREEN  ; TEDDIURSABM
 	icon_pals BROWN,  GREEN  ; URSARINGBM
+	icon_pals GREEN,  GRAY   ; AXEW
+	icon_pals GREEN,  GRAY   ; FRAXURE
+	icon_pals GREEN,  GRAY   ; HAXORUS
+	icon_pals GRAY,   BROWN  ; CRANIDOS
+	icon_pals GRAY,   BROWN  ; RAMPARDOS
+	icon_pals GRAY,   BLUE   ; SHIELDON
+	icon_pals GRAY,   BLUE   ; BASTIODON
+	icon_pals RED,    GRAY   ; PAWNIARD
+	icon_pals RED,    GRAY   ; BISHARP
+	icon_pals BLUE,   TEAL   ; CETODDLE
+	icon_pals BLUE,   TEAL   ; CETITAN
+	icon_pals BROWN,  BLUE   ; FEEBAS
+	icon_pals BLUE,   PINK   ; MILOTIC
+	icon_pals BROWN,  GRAY   ; MIMIKYU

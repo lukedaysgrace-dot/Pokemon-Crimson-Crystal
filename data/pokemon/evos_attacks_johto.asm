@@ -224,6 +224,20 @@ EvosAttacksPointers2::
 	dw WimpodEvosAttacks
 	dw TeddiursabmEvosAttacks
 	dw UrsaringbmEvosAttacks
+	dw AxewEvosAttacks
+	dw FraxureEvosAttacks
+	dw HaxorusEvosAttacks
+	dw CranidosEvosAttacks
+	dw RampardosEvosAttacks
+	dw ShieldonEvosAttacks
+	dw BastiodonEvosAttacks
+	dw PawniardEvosAttacks
+	dw BisharpEvosAttacks
+	dw CetoddleEvosAttacks
+	dw CetitanEvosAttacks
+	dw FeebasEvosAttacks
+	dw MiloticEvosAttacks
+	dw MimikyuEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -2951,4 +2965,158 @@ UrsaringbmEvosAttacks:
 	dbw 39, SLASH
 	dbw 49, SNORE
 	dbw 59, THRASH
+	db 0 ; no more level-up moves
+
+
+AxewEvosAttacks:
+	dbbw EVOLVE_LEVEL, 38, FRAXURE
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 8, BITE
+	dbw 15, SLASH
+	dbw 18, DRAGON_CLAW
+	dbw 24, CRUNCH
+	dbw 36, DRAGONBREATH
+	dbw 48, OUTRAGE
+	db 0 ; no more level-up moves
+
+FraxureEvosAttacks:
+	dbbw EVOLVE_LEVEL, 48, HAXORUS
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 1, BITE
+	dbw 15, SLASH
+	dbw 18, DRAGON_CLAW
+	dbw 24, CRUNCH
+	dbw 36, DRAGONBREATH
+	dbw 54, OUTRAGE
+	db 0 ; no more level-up moves
+
+HaxorusEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 1, BITE
+	dbw 1, SLASH
+	dbw 18, DRAGON_CLAW
+	dbw 24, CRUNCH
+	dbw 36, DRAGONBREATH
+	dbw 58, OUTRAGE
+	db 0 ; no more level-up moves
+
+CranidosEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, RAMPARDOS
+	db 0 ; no more evolutions
+	dbw 1, HEADBUTT
+	dbw 1, LEER
+	dbw 10, ROCK_THROW
+	dbw 20, TAKE_DOWN
+	dbw 30, ROCK_SLIDE
+	dbw 44, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+RampardosEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, HEADBUTT
+	dbw 1, LEER
+	dbw 1, ROCK_THROW
+	dbw 20, TAKE_DOWN
+	dbw 30, ROCK_SLIDE
+	dbw 48, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+ShieldonEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, BASTIODON
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, PROTECT
+	dbw 10, HARDEN
+	dbw 20, ROCK_THROW
+	dbw 30, METAL_CLAW
+	dbw 44, IRON_TAIL
+	db 0 ; no more level-up moves
+
+BastiodonEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, PROTECT
+	dbw 1, HARDEN
+	dbw 20, ROCK_THROW
+	dbw 30, METAL_CLAW
+	dbw 48, IRON_TAIL
+	db 0 ; no more level-up moves
+
+PawniardEvosAttacks:
+	dbbw EVOLVE_LEVEL, 52, BISHARP
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 12, BITE
+	dbw 12, METAL_CLAW
+	dbw 34, CRUNCH
+	dbw 40, IRON_TAIL
+	dbw 48, DARK_PULSE
+	db 0 ; no more level-up moves
+
+BisharpEvosAttacks:
+	dbbw EVOLVE_LEVEL, 64, KINGAMBIT
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, LEER
+	dbw 1, BITE
+	dbw 1, METAL_CLAW
+	dbw 34, CRUNCH
+	dbw 40, IRON_TAIL
+	dbw 48, DARK_PULSE
+	db 0 ; no more level-up moves
+
+CetoddleEvosAttacks:
+	dbbw EVOLVE_ITEM, WATER_STONE, CETITAN
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, POWDER_SNOW
+	dbw 6, GROWL
+	dbw 12, ICY_WIND
+	dbw 36, BODY_SLAM
+	dbw 53, BLIZZARD
+	db 0 ; no more level-up moves
+
+CetitanEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, POWDER_SNOW
+	dbw 1, GROWL
+	dbw 12, ICY_WIND
+	dbw 36, BODY_SLAM
+	dbw 53, BLIZZARD
+	db 0 ; no more level-up moves
+
+FeebasEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, MILOTIC
+	db 0 ; no more evolutions
+	dbw 1, SPLASH
+	dbw 15, TACKLE
+	dbw 30, FLAIL
+	db 0 ; no more level-up moves
+
+MiloticEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, WATER_GUN
+	dbw 1, WRAP
+	dbw 15, BUBBLEBEAM
+	dbw 30, RECOVER
+	dbw 40, RAIN_DANCE
+	dbw 50, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+MimikyuEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 1, GROWL
+	dbw 12, SHADOW_SNEAK
+	dbw 24, SHADOW_CLAW
+	dbw 36, PLAY_ROUGH
+	dbw 48, SHADOW_BALL
 	db 0 ; no more level-up moves

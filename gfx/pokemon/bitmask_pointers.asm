@@ -373,3 +373,17 @@ BitmasksPointers:
 	dw WimpodBitmasks
 	dw TeddiursabmBitmasks
 	dw UrsaringbmBitmasks
+	dw AxewBitmasks
+	dw FraxureBitmasks
+	dw HaxorusBitmasks
+	dw CranidosBitmasks
+	dw RampardosBitmasks
+	dw ShieldonBitmasks
+	dw BastiodonBitmasks
+	dw PawniardBitmasks
+	dw BisharpBitmasks
+	dw CetoddleBitmasks
+	dw CetitanBitmasks
+	dw FeebasBitmasks
+	dw MiloticBitmasks
+	dw MimikyuBitmasks

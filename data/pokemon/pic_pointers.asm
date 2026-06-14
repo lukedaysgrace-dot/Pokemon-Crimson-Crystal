@@ -761,3 +761,31 @@ PokemonPicPointers::
 	dba TeddiursabmBackpic
 	dba UrsaringbmFrontpic
 	dba UrsaringbmBackpic
+	dba AxewFrontpic
+	dba AxewBackpic
+	dba FraxureFrontpic
+	dba FraxureBackpic
+	dba HaxorusFrontpic
+	dba HaxorusBackpic
+	dba CranidosFrontpic
+	dba CranidosBackpic
+	dba RampardosFrontpic
+	dba RampardosBackpic
+	dba ShieldonFrontpic
+	dba ShieldonBackpic
+	dba BastiodonFrontpic
+	dba BastiodonBackpic
+	dba PawniardFrontpic
+	dba PawniardBackpic
+	dba BisharpFrontpic
+	dba BisharpBackpic
+	dba CetoddleFrontpic
+	dba CetoddleBackpic
+	dba CetitanFrontpic
+	dba CetitanBackpic
+	dba FeebasFrontpic
+	dba FeebasBackpic
+	dba MiloticFrontpic
+	dba MiloticBackpic
+	dba MimikyuFrontpic
+	dba MimikyuBackpic

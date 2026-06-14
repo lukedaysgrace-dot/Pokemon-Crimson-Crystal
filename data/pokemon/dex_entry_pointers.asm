@@ -374,3 +374,17 @@ PokedexDataPointerTable:
 	dba WimpodPokedexEntry
 	dba TeddiursabmPokedexEntry
 	dba UrsaringbmPokedexEntry
+	dba AxewPokedexEntry
+	dba FraxurePokedexEntry
+	dba HaxorusPokedexEntry
+	dba CranidosPokedexEntry
+	dba RampardosPokedexEntry
+	dba ShieldonPokedexEntry
+	dba BastiodonPokedexEntry
+	dba PawniardPokedexEntry
+	dba BisharpPokedexEntry
+	dba CetoddlePokedexEntry
+	dba CetitanPokedexEntry
+	dba FeebasPokedexEntry
+	dba MiloticPokedexEntry
+	dba MimikyuPokedexEntry

@@ -373,3 +373,17 @@ FramesPointers:
 	dba WimpodFrames
 	dba TeddiursabmFrames
 	dba UrsaringbmFrames
+	dba AxewFrames
+	dba FraxureFrames
+	dba HaxorusFrames
+	dba CranidosFrames
+	dba RampardosFrames
+	dba ShieldonFrames
+	dba BastiodonFrames
+	dba PawniardFrames
+	dba BisharpFrames
+	dba CetoddleFrames
+	dba CetitanFrames
+	dba FeebasFrames
+	dba MiloticFrames
+	dba MimikyuFrames
