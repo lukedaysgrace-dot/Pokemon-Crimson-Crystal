@@ -805,9 +805,9 @@ NamePlayer:
 	ret
 
 .Chris:
-	db "CHRIS@@@@@@"
+	db "GOLD@@@@@@@"
 .Kris:
-	db "KRIS@@@@@@@"
+	db "LYRA@@@@@@@"
 
 Unreferenced_Function60e9:
 	call LoadMenuHeader
