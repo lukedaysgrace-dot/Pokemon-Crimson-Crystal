@@ -665,15 +665,10 @@ _CGB_TrainerCard:
 	ld a, $0 ; chris
 .got_gender
 	call ByteFill
-	; fill trainer sprite area with same-gender palette
+	; fill trainer sprite area with Chris's player palette
 	hlcoord 14, 1, wAttrMap
 	lb bc, 7, 5
-	ld a, [wPlayerGender]
-	and a
-	ld a, $0 ; chris
-	jr z, .got_gender2
-	ld a, $1 ; kris
-.got_gender2
+	xor a ; chris
 	call FillBoxCGB
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrMap
@@ -786,7 +781,7 @@ _CGB_PackPals:
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .tutorial_male
 
-	ld hl, .KrisPackPals
+	ld hl, .ChrisPackPals
 	jr .got_gender
 
 .tutorial_male

@@ -572,6 +572,7 @@ TogepiEvosAttacks:
 	db 0 ; no more level-up moves
 
 TogeticEvosAttacks:
+	dbbw EVOLVE_ITEM, SUN_STONE, TOGEKISS
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, CHARM
@@ -788,6 +789,7 @@ SunfloraEvosAttacks:
 	db 0 ; no more level-up moves
 
 YanmaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 45, YANMEGA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, FORESIGHT
@@ -877,6 +879,7 @@ SlowkingEvosAttacks:
 	db 0 ; no more level-up moves
 
 MisdreavusEvosAttacks:
+	dbbw EVOLVE_ITEM, MOON_STONE, MISMAGIUS
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, PSYWAVE
@@ -902,6 +905,7 @@ WobbuffetEvosAttacks:
 	db 0 ; no more level-up moves
 
 GirafarigEvosAttacks:
+	dbbw EVOLVE_LEVEL, 32, FARIGIRAF
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
@@ -944,6 +948,7 @@ ForretressEvosAttacks:
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
+	dbbw EVOLVE_LEVEL, 40, DRUNSPARCE
 	db 0 ; no more evolutions
 	dbw 1, RAGE
 	dbw 5, DEFENSE_CURL
@@ -955,6 +960,7 @@ DunsparceEvosAttacks:
 	db 0 ; no more level-up moves
 
 GligarEvosAttacks:
+	dbbw EVOLVE_LEVEL, 42, GLISCOR
 	db 0 ; no more evolutions
 	dbw 1, POISON_STING
 	dbw 6, SAND_ATTACK
@@ -1007,6 +1013,7 @@ GranbullEvosAttacks:
 	db 0 ; no more level-up moves
 
 QwilfishEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, OVERQWIL
 	db 0 ; no more evolutions
 	dbw 1, SPIKES
 	dbw 1, TACKLE
@@ -1058,6 +1065,7 @@ HeracrossEvosAttacks:
 	db 0 ; no more level-up moves
 
 SneaselEvosAttacks:
+	dbbw EVOLVE_LEVEL, 42, WEAVILE
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, LEER
@@ -1086,6 +1094,7 @@ TeddiursaEvosAttacks:
 	db 0 ; no more level-up moves
 
 UrsaringEvosAttacks:
+	dbbw EVOLVE_LEVEL, 50, URSALUNA
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, LEER
@@ -1140,6 +1149,7 @@ SwinubEvosAttacks:
 	db 0 ; no more level-up moves
 
 PiloswineEvosAttacks:
+	dbbw EVOLVE_LEVEL, 45, MAMOSWINE
 	db 0 ; no more evolutions
 	dbw 1, HORN_ATTACK
 	dbw 1, POWDER_SNOW
@@ -1284,6 +1294,7 @@ DonphanEvosAttacks:
 	db 0 ; no more level-up moves
 
 Porygon2EvosAttacks:
+	dbbw EVOLVE_TRADE, UP_GRADE, PORYGON_Z
 	db 0 ; no more evolutions
 	dbw 1, CONVERSION2
 	dbw 1, TACKLE
@@ -1298,6 +1309,7 @@ Porygon2EvosAttacks:
 	db 0 ; no more level-up moves
 
 StantlerEvosAttacks:
+	dbbw EVOLVE_LEVEL, 31, WYRDEER
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 8, LEER

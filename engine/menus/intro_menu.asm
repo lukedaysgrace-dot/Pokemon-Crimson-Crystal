@@ -719,7 +719,7 @@ OakSpeech:
 	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
 
-	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -790,7 +790,7 @@ NamePlayer:
 	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
 
-	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call RotateThreePalettesLeft
 
@@ -964,7 +964,7 @@ Intro_PlacePlayerSprite:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
-	ld b, PAL_OW_BLUE
+	ld b, PAL_OW_RED
 .male
 	ld a, b
 
