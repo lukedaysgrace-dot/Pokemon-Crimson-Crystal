@@ -1201,10 +1201,10 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 2, ROOKIDEE
-	dbw 2, CORVISQUIRE
-	dbw 3, CORVIKNIGHT
-	dbw 3, URSALUNA
+	dbw 2, CETITAN
+	dbw 2, CETODDLE
+	dbw 3, KINGAMBIT
+	dbw 3, MILOTIC
 	dbw 2, RATTATA
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP
