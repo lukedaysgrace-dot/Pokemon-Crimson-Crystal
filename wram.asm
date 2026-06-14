@@ -2385,7 +2385,7 @@ wPlayerSpriteSetupFlags:: ; d45b
 wMapReentryScriptQueueFlag:: db ; d45c MemScriptFlag
 wMapReentryScriptBank:: db ; d45d MemScriptBank
 wMapReentryScriptAddress:: dw ; d45e MemScriptAddr
-	ds 4
+	ds 2
 wTimeCyclesSinceLastCall:: db ; d464
 wReceiveCallDelay_MinsRemaining:: db ; d465
 wReceiveCallDelay_StartTime:: ds 3 ; d466
@@ -2394,8 +2394,6 @@ wBugContestMinsRemaining:: db ; d46c
 wBugContestSecsRemaining:: db ; d46d
 	ds 2
 wMapStatusEnd:: ; d470
-
-	ds 2
 
 wCrystalData::
 wPlayerGender:: ; d472

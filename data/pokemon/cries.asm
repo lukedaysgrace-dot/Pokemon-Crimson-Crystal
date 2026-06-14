@@ -379,3 +379,17 @@ PokemonCries::
 	mon_cry CRY_CATERPIE   ,  $000,  $100 ; WIMPOD
 	mon_cry CRY_TEDDIURSA,   $7a2,  $06e ; TEDDIURSABM
 	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; URSARINGBM
+	mon_cry CRY_CHARMANDER,  $060,  $0c0 ; AXEW
+	mon_cry CRY_CHARMANDER,  $040,  $0e0 ; FRAXURE
+	mon_cry CRY_CHARMANDER,  $020,  $100 ; HAXORUS
+	mon_cry CRY_RHYDON,      $000,  $100 ; CRANIDOS
+	mon_cry CRY_RHYDON,      $020,  $120 ; RAMPARDOS
+	mon_cry CRY_RHYDON,        $100,  $100 ; SHIELDON
+	mon_cry CRY_RHYDON,        $080,  $120 ; BASTIODON
+	mon_cry CRY_GLIGAR,     $000,  $100 ; PAWNIARD
+	mon_cry CRY_GLIGAR,     $020,  $120 ; BISHARP
+	mon_cry CRY_SEEL,        $040,  $100 ; CETODDLE
+	mon_cry CRY_SEEL,        $000,  $120 ; CETITAN
+	mon_cry CRY_SEEL,    $080,  $100 ; FEEBAS
+	mon_cry CRY_LAPRAS,      $000,  $100 ; MILOTIC
+	mon_cry CRY_PICHU,     $020,  $100 ; MIMIKYU

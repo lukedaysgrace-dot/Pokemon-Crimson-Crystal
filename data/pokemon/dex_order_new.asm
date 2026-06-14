@@ -78,6 +78,8 @@ NewPokedexOrder:
 	dw POLITOED
 	dw MAGIKARP
 	dw GYARADOS
+	dw FEEBAS
+	dw MILOTIC
 	dw GOLDEEN
 	dw SEAKING
 	dw SLOWPOKE
@@ -215,6 +217,9 @@ NewPokedexOrder:
 	dw BAGON
 	dw SHELGON
 	dw SALAMENCE
+	dw AXEW
+	dw FRAXURE
+	dw HAXORUS
 	dw DRUNSPARCE
 	dw ELECTIVIRE
 	dw FARIGIRAF
@@ -229,7 +234,9 @@ NewPokedexOrder:
 	dw MAGNEZONE
 	dw MAMOSWINE
 	dw MESMERIA
+	dw MISDREAVUS
 	dw MISMAGIUS
+	dw MIMIKYU
 	dw PORYGON_Z
 	dw RHYPERIOR
 	dw TANGROWTH
@@ -243,7 +250,12 @@ NewPokedexOrder:
 	dw YANMEGA
 	dw LILEEP
 	dw CRADILY
+	dw ANORITH
 	dw ARMALDO
+	dw CRANIDOS
+	dw RAMPARDOS
+	dw SHIELDON
+	dw BASTIODON
 	dw GOLETT
 	dw GOLURK
 	dw DUSKULL
@@ -281,7 +293,6 @@ NewPokedexOrder:
 	dw SLUGMA
 	dw MAGCARGO
 	dw SNEASEL
-	dw MISDREAVUS
 	dw PORYGON
 	dw PORYGON2
 	dw CHANSEY
@@ -321,7 +332,6 @@ NewPokedexOrder:
 	dw CELEBI
 	dw ABOMASNOW
 	dw ALTARIA
-	dw ANORITH
 	dw APPLETUN
 	dw APPLIN
 	dw ARCHALUDON
@@ -347,6 +357,8 @@ NewPokedexOrder:
 	dw GRUBBIN
 	dw GRUMPIG
 	dw HYDRAPPLE
+	dw PAWNIARD
+	dw BISHARP
 	dw KINGAMBIT
 	dw LOMBRE
 	dw LOPUNNY
@@ -357,12 +369,15 @@ NewPokedexOrder:
 	dw OVERQWIL
 	dw SCRAFTY
 	dw SCRAGGY
+	dw SPHEAL
 	dw SEALEO
+	dw WALREIN
+	dw CETODDLE
+	dw CETITAN
 	dw SHROOMISH
 	dw SIZZLIPEDE
 	dw SNORUNT
 	dw SNOVER
-	dw SPHEAL
 	dw SPOINK
 	dw SWABLU
 	dw TALONFLAME
@@ -373,5 +388,4 @@ NewPokedexOrder:
 	dw URSALUNABM
 	dw VIBRAVA
 	dw VIKAVOLT
-	dw WALREIN
 	dw WIMPOD

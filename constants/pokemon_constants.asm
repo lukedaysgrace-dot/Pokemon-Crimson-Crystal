@@ -394,6 +394,20 @@ JOHTO_POKEMON EQU const_value
 	const WIMPOD     ;
 	const TEDDIURSABM ;
 	const URSARINGBM ;
+	const AXEW       ;
+	const FRAXURE    ;
+	const HAXORUS    ;
+	const CRANIDOS   ;
+	const RAMPARDOS  ;
+	const SHIELDON   ;
+	const BASTIODON  ;
+	const PAWNIARD   ;
+	const BISHARP    ;
+	const CETODDLE   ;
+	const CETITAN    ;
+	const FEEBAS     ;
+	const MILOTIC    ;
+	const MIMIKYU    ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

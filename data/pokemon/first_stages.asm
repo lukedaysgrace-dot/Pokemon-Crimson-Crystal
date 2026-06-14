@@ -346,7 +346,7 @@ FirstEvoStages::
 	dw GRUBBIN
 	dw SPOINK
 	dw APPLIN
-	dw KINGAMBIT
+	dw PAWNIARD
 	dw LOTAD
 	dw BUNEARY
 	dw LOTAD
@@ -374,3 +374,17 @@ FirstEvoStages::
 	dw WIMPOD
 	dw TEDDIURSABM
 	dw TEDDIURSABM
+	dw AXEW
+	dw AXEW
+	dw AXEW
+	dw CRANIDOS
+	dw CRANIDOS
+	dw SHIELDON
+	dw SHIELDON
+	dw PAWNIARD
+	dw PAWNIARD
+	dw CETODDLE
+	dw CETODDLE
+	dw FEEBAS
+	dw FEEBAS
+	dw MIMIKYU

@@ -375,3 +375,17 @@ AlphabeticalPokedexOrder:
 	dw VIKAVOLT
 	dw WALREIN
 	dw WIMPOD
+	dw AXEW
+	dw FRAXURE
+	dw HAXORUS
+	dw CRANIDOS
+	dw RAMPARDOS
+	dw SHIELDON
+	dw BASTIODON
+	dw PAWNIARD
+	dw BISHARP
+	dw CETODDLE
+	dw CETITAN
+	dw FEEBAS
+	dw MILOTIC
+	dw MIMIKYU

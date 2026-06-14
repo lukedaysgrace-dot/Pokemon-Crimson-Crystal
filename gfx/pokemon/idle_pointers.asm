@@ -373,3 +373,17 @@ AnimationIdlePointers:
 	dw WimpodAnimationIdle
 	dw TeddiursabmAnimationIdle
 	dw UrsaringbmAnimationIdle
+	dw AxewAnimationIdle
+	dw FraxureAnimationIdle
+	dw HaxorusAnimationIdle
+	dw CranidosAnimationIdle
+	dw RampardosAnimationIdle
+	dw ShieldonAnimationIdle
+	dw BastiodonAnimationIdle
+	dw PawniardAnimationIdle
+	dw BisharpAnimationIdle
+	dw CetoddleAnimationIdle
+	dw CetitanAnimationIdle
+	dw FeebasAnimationIdle
+	dw MiloticAnimationIdle
+	dw MimikyuAnimationIdle

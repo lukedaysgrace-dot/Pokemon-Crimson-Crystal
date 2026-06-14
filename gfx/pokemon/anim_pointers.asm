@@ -373,3 +373,17 @@ AnimationPointers:
 	dw WimpodAnimation
 	dw TeddiursabmAnimation
 	dw UrsaringbmAnimation
+	dw AxewAnimation
+	dw FraxureAnimation
+	dw HaxorusAnimation
+	dw CranidosAnimation
+	dw RampardosAnimation
+	dw ShieldonAnimation
+	dw BastiodonAnimation
+	dw PawniardAnimation
+	dw BisharpAnimation
+	dw CetoddleAnimation
+	dw CetitanAnimation
+	dw FeebasAnimation
+	dw MiloticAnimation
+	dw MimikyuAnimation

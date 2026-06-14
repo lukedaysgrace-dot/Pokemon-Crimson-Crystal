@@ -778,3 +778,31 @@ INCBIN "gfx/pokemon/teddiursabm/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/teddiursabm/shiny.pal"
 INCBIN "gfx/pokemon/ursaringbm/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/ursaringbm/shiny.pal"
+INCBIN "gfx/pokemon/axew/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/axew/shiny.pal"
+INCBIN "gfx/pokemon/fraxure/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/fraxure/shiny.pal"
+INCBIN "gfx/pokemon/haxorus/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/haxorus/shiny.pal"
+INCBIN "gfx/pokemon/cranidos/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/cranidos/shiny.pal"
+INCBIN "gfx/pokemon/rampardos/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/rampardos/shiny.pal"
+INCBIN "gfx/pokemon/shieldon/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/shieldon/shiny.pal"
+INCBIN "gfx/pokemon/bastiodon/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/bastiodon/shiny.pal"
+INCBIN "gfx/pokemon/pawniard/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/pawniard/shiny.pal"
+INCBIN "gfx/pokemon/bisharp/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/bisharp/shiny.pal"
+INCBIN "gfx/pokemon/cetoddle/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/cetoddle/shiny.pal"
+INCBIN "gfx/pokemon/cetitan/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/cetitan/shiny.pal"
+INCBIN "gfx/pokemon/feebas/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/feebas/shiny.pal"
+INCBIN "gfx/pokemon/milotic/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/milotic/shiny.pal"
+INCBIN "gfx/pokemon/mimikyu/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/mimikyu/shiny.pal"
