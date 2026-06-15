@@ -700,4 +700,9 @@ KRIS EQU __enum__
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
 
+	trainerclass CRYSTAL ; 44
+	const CRYSTAL_1_CHIKORITA
+	const CRYSTAL_1_CYNDAQUIL
+	const CRYSTAL_1_TOTODILE
+
 NUM_TRAINER_CLASSES EQU __enum__

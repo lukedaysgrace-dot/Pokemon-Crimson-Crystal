@@ -133,6 +133,17 @@ InitMonShinyGender:
 	ld b, a
 .female
 .genderless
+; Crystal's team is always female (gender is independent of DVs).
+	ld a, [wMonType]
+	and $f
+	jr z, .store
+	ld a, [wOtherTrainerClass]
+	cp CRYSTAL
+	jr nz, .store
+	ld a, b
+	and %10111111 ; clear MON_MALE_FLAG
+	ld b, a
+.store
 	pop de
 	ld a, b
 	ld [de], a
