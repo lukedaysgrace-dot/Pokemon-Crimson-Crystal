@@ -2024,9 +2024,7 @@ AskFlashScript:
 	writetext Text_UseFlashPrompt
 	yesorno
 	iffalse .flash_end
-	closetext
-	ld hl, Script_UseFlash
-	jp QueueScript
+	sjump Script_UseFlash
 .flash_end
 	closetext
 	end
