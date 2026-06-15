@@ -64,7 +64,7 @@ EvolveAfterBattle_MasterLoop:
 	ld b, a
 
 	cp EVOLVE_TRADE
-	jr z, .trade
+	jp z, .trade
 
 	ld a, [wLinkMode]
 	and a
@@ -81,6 +81,9 @@ EvolveAfterBattle_MasterLoop:
 	ld a, b
 	cp EVOLVE_LEVEL
 	jp z, .level
+
+	cp EVOLVE_LEVEL_TIME
+	jp z, .level_time
 
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
@@ -123,7 +126,7 @@ EvolveAfterBattle_MasterLoop:
 
 	call GetNextEvoAttackByte
 	cp TR_ANYTIME
-	jr z, .proceed
+	jp z, .proceed
 	cp TR_MORNDAY
 	jr z, .happiness_daylight
 
@@ -131,13 +134,13 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp nz, .skip_evolution_species
-	jr .proceed
+	jp .proceed
 
 .happiness_daylight
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp z, .skip_evolution_species
-	jr .proceed
+	jp .proceed
 
 .trade
 	ld a, [wLinkMode]
@@ -186,6 +189,35 @@ EvolveAfterBattle_MasterLoop:
 	cp b
 	jp c, .skip_evolution_species
 	call IsMonHoldingEverstone
+	jp z, .skip_evolution_species
+
+	jr .proceed
+
+.level_time
+	call GetNextEvoAttackByte
+	ld b, a
+	call GetNextEvoAttackByte
+	ld c, a
+	ld a, [wTempMonLevel]
+	cp b
+	jp c, .skip_evolution_species
+	call IsMonHoldingEverstone
+	jp z, .skip_evolution_species
+	ld a, c
+	cp TR_ANYTIME
+	jr z, .proceed
+	cp TR_MORNDAY
+	jr z, .level_time_daylight
+
+; TR_NITE
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	jp nz, .skip_evolution_species
+	jr .proceed
+
+.level_time_daylight
+	ld a, [wTimeOfDay]
+	cp NITE_F
 	jp z, .skip_evolution_species
 
 .proceed
@@ -328,7 +360,10 @@ EvolveAfterBattle_MasterLoop:
 .dont_evolve_check
 	ld a, b
 	cp EVOLVE_STAT
+	jr z, .skip_evolution_extra_parameter
+	cp EVOLVE_LEVEL_TIME
 	jr nz, .skip_evolution_species_parameter
+.skip_evolution_extra_parameter
 	inc hl
 .skip_evolution_species_parameter
 	inc hl
@@ -639,7 +674,10 @@ SkipEvolutions::
 	and a
 	ret z
 	cp EVOLVE_STAT
+	jr z, .extra_skip
+	cp EVOLVE_LEVEL_TIME
 	jr nz, .no_extra_skip
+.extra_skip
 	inc hl
 .no_extra_skip
 	inc hl
@@ -660,6 +698,8 @@ DetermineEvolutionItemResults::
 	and a
 	ret z
 	cp EVOLVE_STAT
+	jr z, .skip_species_two_parameters
+	cp EVOLVE_LEVEL_TIME
 	jr z, .skip_species_two_parameters
 	cp EVOLVE_ITEM
 	jr nz, .skip_species_parameter
