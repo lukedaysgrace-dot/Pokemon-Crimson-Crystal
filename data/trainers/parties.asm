@@ -3417,6 +3417,39 @@ Rival2Group:
 
 	end_list_items
 
+CrystalGroup:
+	next_list_item ; CRYSTAL (1)
+	db "CRYSTAL@", TRAINERTYPE_MOVES
+	db 9
+	dw CHIKORITA
+	dw TACKLE, GROWL, RAZOR_LEAF, NO_MOVE
+	db 9
+	dw NATU
+	dw PECK, LEER, NIGHT_SHADE, NO_MOVE
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (2)
+	db "CRYSTAL@", TRAINERTYPE_MOVES
+	db 9
+	dw CYNDAQUIL
+	dw TACKLE, LEER, SMOKESCREEN, NO_MOVE
+	db 9
+	dw NATU
+	dw PECK, LEER, NIGHT_SHADE, NO_MOVE
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (3)
+	db "CRYSTAL@", TRAINERTYPE_MOVES
+	db 9
+	dw TOTODILE
+	dw SCRATCH, LEER, RAGE, NO_MOVE
+	db 9
+	dw NATU
+	dw PECK, LEER, NIGHT_SHADE, NO_MOVE
+	db -1 ; end
+
+	end_list_items
+
 GuitaristGroup:
 	next_list_item ; GUITARIST (1)
 	db "CLYDE@", TRAINERTYPE_NORMAL

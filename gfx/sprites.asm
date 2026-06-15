@@ -113,3 +113,4 @@ SECTION "Sprites 3", ROMX
 ChrisSkateboardSpriteGFX::     INCBIN "gfx/sprites/chris_skateboard.2bpp"
 KrisSkateboardSpriteGFX::      INCBIN "gfx/sprites/kris_skateboard.2bpp"
 MysticalmanSpriteGFX::         INCBIN "gfx/sprites/mysticalman.2bpp"
+CrystalSpriteGFX::             INCBIN "gfx/sprites/crystal.2bpp"

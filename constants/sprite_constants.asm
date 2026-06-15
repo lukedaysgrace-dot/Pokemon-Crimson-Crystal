@@ -107,6 +107,7 @@
 	const SPRITE_CHRIS_SKATEBOARD ; 67
 	const SPRITE_KRIS_SKATEBOARD ; 68
 	const SPRITE_MYSTICALMAN ; 69
+	const SPRITE_CRYSTAL ; 6a
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80

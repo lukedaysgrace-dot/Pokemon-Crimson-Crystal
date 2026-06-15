@@ -111,3 +111,4 @@ OverworldSprites:
 	overworld_sprite ChrisSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite KrisSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite MysticalmanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite CrystalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE

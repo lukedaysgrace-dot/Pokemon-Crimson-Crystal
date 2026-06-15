@@ -344,9 +344,11 @@ PlaceEnemysName::
 
 	ld a, [wTrainerClass]
 	cp RIVAL1
-	jr z, .rival
+	jr z, .name_only
 	cp RIVAL2
-	jr z, .rival
+	jr z, .name_only
+	cp CRYSTAL
+	jr z, .crystal_name
 
 	ld de, wOTClassName
 	call PlaceString
@@ -360,7 +362,11 @@ PlaceEnemysName::
 	ld de, wStringBuffer1
 	jr PlaceCommandCharacter
 
-.rival
+.crystal_name
+	ld de, wOTClassName
+	jr PlaceCommandCharacter
+
+.name_only
 	ld de, wRivalName
 	jr PlaceCommandCharacter
 
