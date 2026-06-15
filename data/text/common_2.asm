@@ -296,8 +296,9 @@ _BadgeRequiredText::
 	prompt
 
 _NeedHMOrCompatibleMonText::
-	text "You need the HM and"
-	line "a compatible #MON."
+	text "You need the HM"
+	line "and a compatible"
+	cont "#MON."
 	done
 
 _StopSurfingPromptText::
