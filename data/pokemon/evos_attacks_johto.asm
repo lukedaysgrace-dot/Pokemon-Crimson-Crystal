@@ -1094,7 +1094,7 @@ TeddiursaEvosAttacks:
 	db 0 ; no more level-up moves
 
 UrsaringEvosAttacks:
-	dbbbw EVOLVE_LEVEL_TIME, 42, TR_MORNDAY, URSALUNA
+	dbbw EVOLVE_LEVEL, 42, URSALUNA
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, LEER
@@ -2964,7 +2964,7 @@ TeddiursabmEvosAttacks:
 	db 0 ; no more level-up moves
 
 UrsaringbmEvosAttacks:
-	dbbbw EVOLVE_LEVEL_TIME, 42, TR_NITE, URSALUNABM
+	dbbw EVOLVE_LEVEL, 42, URSALUNABM
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, LEER

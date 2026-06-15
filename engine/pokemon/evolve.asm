@@ -82,9 +82,6 @@ EvolveAfterBattle_MasterLoop:
 	cp EVOLVE_LEVEL
 	jp z, .level
 
-	cp EVOLVE_LEVEL_TIME
-	jp z, .level_time
-
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
 
@@ -191,34 +188,38 @@ EvolveAfterBattle_MasterLoop:
 	call IsMonHoldingEverstone
 	jp z, .skip_evolution_species
 
+	push hl
+	ld a, [wEvolutionOldSpecies]
+	call GetPokemonIndexFromID
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, d
+	cp HIGH(URSARING)
+	jr nz, .check_ursaringbm
+	ld a, e
+	cp LOW(URSARING)
+	jr z, .level_ursaring
+
+.check_ursaringbm
+	ld a, d
+	cp HIGH(URSARINGBM)
+	jr nz, .proceed
+	ld a, e
+	cp LOW(URSARINGBM)
+	jr z, .level_ursaringbm
 	jr .proceed
 
-.level_time
-	call GetNextEvoAttackByte
-	ld b, a
-	call GetNextEvoAttackByte
-	ld c, a
-	ld a, [wTempMonLevel]
-	cp b
-	jp c, .skip_evolution_species
-	call IsMonHoldingEverstone
+.level_ursaring
+	ld a, [wTimeOfDay]
+	cp NITE_F
 	jp z, .skip_evolution_species
-	ld a, c
-	cp TR_ANYTIME
-	jr z, .proceed
-	cp TR_MORNDAY
-	jr z, .level_time_daylight
+	jr .proceed
 
-; TR_NITE
+.level_ursaringbm
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp nz, .skip_evolution_species
-	jr .proceed
-
-.level_time_daylight
-	ld a, [wTimeOfDay]
-	cp NITE_F
-	jp z, .skip_evolution_species
 
 .proceed
 	ld a, [wTempMonLevel]
@@ -360,10 +361,7 @@ EvolveAfterBattle_MasterLoop:
 .dont_evolve_check
 	ld a, b
 	cp EVOLVE_STAT
-	jr z, .skip_evolution_extra_parameter
-	cp EVOLVE_LEVEL_TIME
 	jr nz, .skip_evolution_species_parameter
-.skip_evolution_extra_parameter
 	inc hl
 .skip_evolution_species_parameter
 	inc hl
@@ -674,10 +672,7 @@ SkipEvolutions::
 	and a
 	ret z
 	cp EVOLVE_STAT
-	jr z, .extra_skip
-	cp EVOLVE_LEVEL_TIME
 	jr nz, .no_extra_skip
-.extra_skip
 	inc hl
 .no_extra_skip
 	inc hl
@@ -698,8 +693,6 @@ DetermineEvolutionItemResults::
 	and a
 	ret z
 	cp EVOLVE_STAT
-	jr z, .skip_species_two_parameters
-	cp EVOLVE_LEVEL_TIME
 	jr z, .skip_species_two_parameters
 	cp EVOLVE_ITEM
 	jr nz, .skip_species_parameter
