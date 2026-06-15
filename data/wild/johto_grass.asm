@@ -1193,8 +1193,8 @@ JohtoGrassWildMons:
 	map_id ROUTE_29
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
+	dbw 2, URSARING
 	dbw 2, URSARINGBM
-	dbw 2, TEDDIURSABM
 	dbw 3, URSALUNABM
 	dbw 3, ARCHALUDON
 	dbw 2, APPLETUN
@@ -1209,8 +1209,8 @@ JohtoGrassWildMons:
 	dbw 3, HOPPIP
 	dbw 3, HOPPIP
 	; nite
-	dbw 2, HONCHKROW
-	dbw 2, HONCHKROW
+	dbw 2, URSARING
+	dbw 2, URSARINGBM
 	dbw 3, HOOTHOOT
 	dbw 3, RATTATA
 	dbw 2, RATTATA
