@@ -8,11 +8,33 @@ GetEmote2bpp:
 
 _ReplaceKrisSprite::
 	call GetPlayerSprite
+	call SetPlayerSpritePalette
 	ld a, [wUsedSprites]
 	ldh [hUsedSpriteIndex], a
 	ld a, [wUsedSprites + 1]
 	ldh [hUsedSpriteTile], a
 	call GetUsedSprite
+	call UpdateSprites
+	ret
+
+SetPlayerSpritePalette:
+	ld a, [wPlayerSprite]
+	call GetSpritePalette
+	ld c, a
+	or PAL_NPC_RED
+	swap a
+	and $f0
+	ld d, a
+	ld hl, wMapObjects + MAPOBJECT_COLOR
+	ld a, [hl]
+	and $f
+	or d
+	ld [hl], a
+	ld hl, wPlayerStruct + OBJECT_PALETTE
+	ld a, [hl]
+	and $ff ^ PALETTE_MASK
+	or c
+	ld [hl], a
 	ret
 
 Function14146: ; mobile
