@@ -4889,22 +4889,7 @@ DrawEnemyHUD:
 	ld a, [hl]
 	ld [de], a
 
-	ld a, [wBattleMode]
-	cp TRAINER_BATTLE
-	jr z, .trainer_enemy_gender_flags
-
 	ld a, [wEnemyMonShinyGenderFlags]
-	jr .display_enemy_gender
-
-.trainer_enemy_gender_flags
-	ld a, [wCurPartyMon]
-	ld hl, wOTPartyMon1
-	call GetPartyLocation
-	ld bc, MON_UNUSED
-	add hl, bc
-	ld a, [hl]
-
-.display_enemy_gender
 	ld b, a
 	farcall GetGenderFromFlags
 	ld a, " "
