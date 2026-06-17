@@ -62,7 +62,6 @@ Function14157: ; mobile
 RefreshSprites::
 	call .Refresh
 	call LoadUsedSpritesGFX
-	farcall RefreshObjectSpriteTiles
 	ret
 
 .Refresh:
@@ -122,7 +121,7 @@ AddMapSprites:
 	ret
 
 .outdoor
-	call AddIndoorSprites
+	call AddOutdoorSprites
 	ret
 
 AddIndoorSprites:
