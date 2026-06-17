@@ -108,6 +108,17 @@
 	const SPRITE_KRIS_SKATEBOARD ; 68
 	const SPRITE_MYSTICALMAN ; 69
 	const SPRITE_CRYSTAL ; 6a
+	const SPRITE_COOLTRAINER_M_NEW ; 6b
+	const SPRITE_COOLTRAINER_F_NEW ; 6c
+	const SPRITE_BIRD_KEEPER_NEW ; 6d
+	const SPRITE_FIREBREATHER_NEW ; 6e
+	const SPRITE_CAMPER_NEW ; 6f
+	const SPRITE_PICNICKER_NEW ; 70
+	const SPRITE_JUGGLER_NEW ; 71
+	const SPRITE_POKEMANIAC_NEW ; 72
+	const SPRITE_SKIER_NEW ; 73
+	const SPRITE_SNOWBOARDER_NEW ; 74
+	const SPRITE_RATTATA_UP ; 75
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
@@ -158,6 +169,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_SUICUNE ; ab
 	const SPRITE_ENTEI ; ac
 	const SPRITE_RAIKOU ; ad
+	const SPRITE_MILTANK ; ae
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0

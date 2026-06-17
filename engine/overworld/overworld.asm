@@ -62,6 +62,7 @@ Function14157: ; mobile
 RefreshSprites::
 	call .Refresh
 	call LoadUsedSpritesGFX
+	farcall RefreshObjectSpriteTiles
 	ret
 
 .Refresh:
@@ -121,7 +122,7 @@ AddMapSprites:
 	ret
 
 .outdoor
-	call AddOutdoorSprites
+	call AddIndoorSprites
 	ret
 
 AddIndoorSprites:
@@ -130,7 +131,10 @@ AddIndoorSprites:
 .loop
 	push af
 	ld a, [hl]
+	and a
+	jr z, .skip
 	call AddSpriteGFX
+.skip
 	ld de, OBJECT_LENGTH
 	add hl, de
 	pop af
@@ -165,6 +169,7 @@ LoadUsedSpritesGFX:
 	call RunMapCallback
 	call GetUsedSprites
 	call .LoadMiscTiles
+	farcall RefreshObjectSpriteTiles
 	ret
 
 .LoadMiscTiles:
@@ -336,6 +341,9 @@ LoadAndSortSprites:
 AddSpriteGFX:
 ; Add any new sprite ids to a list of graphics to be loaded.
 ; Return carry if the list is full.
+
+	and a
+	ret z
 
 	push hl
 	push bc
@@ -567,6 +575,18 @@ GetUsedSprites:
 	ld a, [hli]
 	ldh [hUsedSpriteTile], a
 
+; Skip sprites that failed VRAM assignment in ArrangeUsedSprites.
+; Their tile byte is still a sprite type (1-4), which would overwrite
+; the player if loaded at tiles 1-4.
+	cp WALKING_SPRITE
+	jr c, .load
+	cp MON_ICON_SPRITE + 1
+	jr nc, .load
+	dec c
+	jr nz, .loop
+	jr .done
+
+.load
 	bit 7, a
 	jr z, .dont_set
 

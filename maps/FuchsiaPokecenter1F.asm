@@ -31,7 +31,7 @@ FuchsiaPokecenter1FJanineImpersonatorScript:
 	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, FuchsiaPokecenter1FJanineImpersonatorSpinMovement
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	opentext
 	writetext FuchsiaPokecenter1FJanineImpersonatorText2
 	waitbutton
@@ -39,7 +39,7 @@ FuchsiaPokecenter1FJanineImpersonatorScript:
 	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, FuchsiaPokecenter1FJanineImpersonatorSpinMovement
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	end
 
 FuchsiaPokecenter1FJanineImpersonatorSpinMovement:

@@ -46,3 +46,4 @@ SpriteMons:
 	dw SUICUNE
 	dw ENTEI
 	dw RAIKOU
+	dw MILTANK
