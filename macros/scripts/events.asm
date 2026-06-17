@@ -1074,3 +1074,10 @@ ENDM
 checkmaplockedmons: MACRO
 	db checkmaplockedmons_command
 ENDM
+
+	enum set_object_priority_command ; $ac
+set_object_priority: MACRO
+	db set_object_priority_command
+	db \1 ; object
+	db \2 ; priority
+ENDM

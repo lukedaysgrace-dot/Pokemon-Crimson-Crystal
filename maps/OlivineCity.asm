@@ -43,7 +43,7 @@ OlivineCityRivalSceneTop:
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	end
 
 OlivineCityRivalSceneBottom:
@@ -67,7 +67,7 @@ OlivineCityRivalSceneBottom:
 	setscene SCENE_FINISHED
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	end
 
 OlivineCitySailor1Script:

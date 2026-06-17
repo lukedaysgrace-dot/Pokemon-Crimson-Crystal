@@ -112,3 +112,14 @@ OverworldSprites:
 	overworld_sprite KrisSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite MysticalmanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CrystalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite CooltrainerMNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite CooltrainerFNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite BirdKeeperNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite FirebreatherNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite CamperNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite PicnickerNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite JugglerNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite PokemaniacNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite SkierNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite SnowboarderNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite RattataUpSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE

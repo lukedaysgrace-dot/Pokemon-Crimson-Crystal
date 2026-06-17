@@ -235,6 +235,7 @@ ScriptCommandTable:
 	dw Script_checksave                  ; a9
 	dw Script_loadmonindex               ; aa
 	dw Script_checkmaplockedmons         ; ab
+	dw Script_setobjectpriority          ; ac
 
 StartScript:
 	ld hl, wScriptFlags
@@ -2860,6 +2861,26 @@ Script_checkmaplockedmons:
 .done
 	ld a, c
 	ld [wScriptVar], a
+	ret
+
+Script_setobjectpriority:
+; script command 0xac
+; parameters: object, priority
+	call GetScriptByte
+	dec a
+	call GetMapObject
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, bc
+	ld a, [hl]
+	call GetObjectStruct
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	ld a, [hl]
+	and ~(LOW_PRIORITY | HIGH_PRIORITY)
+	ld d, a
+	call GetScriptByte
+	or d
+	ld [hl], a
 	ret
 
 LoadScriptPokemonID:

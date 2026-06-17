@@ -854,3 +854,34 @@ QueueFollowerFirstStep:
 .same_xy
 	scf
 	ret
+
+RefreshObjectSpriteTiles::
+; Update OBJECT_SPRITE_TILE for active object structs after a sprite refresh.
+	ld a, NUM_OBJECT_STRUCTS
+	ld e, a
+	xor a
+.loop
+	push af
+	call GetObjectStruct
+	call DoesObjectHaveASprite
+	jr z, .next
+
+	ld hl, OBJECT_MAP_OBJECT_INDEX
+	add hl, bc
+	ld a, [hl]
+	ldh [hMapObjectIndexBuffer], a
+
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld a, [hl]
+	call GetSpriteVTile
+	ld hl, OBJECT_SPRITE_TILE
+	add hl, bc
+	ld [hl], a
+
+.next
+	pop af
+	inc a
+	cp e
+	jr nz, .loop
+	ret

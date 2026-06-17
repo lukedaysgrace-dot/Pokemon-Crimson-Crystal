@@ -125,6 +125,9 @@ SuspendMapAnims:
 LoadObjectsRunCallback_02:
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
+; Reload overworld sprite VRAM for this map's objects. Required when
+; entering via map connections, which skip LoadGraphics/RefreshSprites.
+	farcall RefreshSprites
 	farcall LoadObjectMasks
 	farcall InitializeVisibleSprites
 	ret

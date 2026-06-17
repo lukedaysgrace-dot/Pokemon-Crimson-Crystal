@@ -51,7 +51,7 @@ VioletCityCrystalSceneFarLeft:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -64,7 +64,7 @@ VioletCityCrystalScene:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -77,7 +77,7 @@ VioletCityCrystalSceneTop:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -90,7 +90,7 @@ VioletCityCrystalSceneTopFarLeft:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -103,7 +103,7 @@ VioletCityCrystalSceneLow:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -116,7 +116,7 @@ VioletCityCrystalSceneLowFarLeft:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -129,7 +129,7 @@ VioletCityCrystalSceneTopRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -142,7 +142,7 @@ VioletCityCrystalSceneRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -155,7 +155,7 @@ VioletCityCrystalSceneLowRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -168,7 +168,7 @@ VioletCityCrystalSceneTopFarRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -181,7 +181,7 @@ VioletCityCrystalSceneFarRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -194,7 +194,7 @@ VioletCityCrystalSceneLowFarRight:
 	moveobject VIOLETCITY_CRYSTAL, 30, 17
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
-	special LoadUsedSpritesGFX
+	special RefreshSprites
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarRightMovement
 	sjump VioletCityCrystalBattleScript
 

@@ -37,3 +37,7 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 	const PAL_NPC_SILVER ; d
 	const PAL_NPC_TREE   ; e
 	const PAL_NPC_ROCK   ; f
+
+; unused pink slot repurposed for Sour Crystal-style purple
+DEF PAL_OW_PURPLE EQU PAL_OW_PINK
+DEF PAL_NPC_PURPLE EQU PAL_NPC_PINK
