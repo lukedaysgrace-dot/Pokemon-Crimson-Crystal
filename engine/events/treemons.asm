@@ -192,6 +192,13 @@ SelectTreeMon:
 	ld h, [hl]
 	ld l, a
 	call GetPokemonIDFromIndex
+	cp APPLIN
+	jr nz, .store_species
+	ld a, [wTimeOfDay]
+	cp DAY_F
+	jr z, NoTreeMon
+	ld a, APPLIN
+.store_species
 	ld [wTempWildMonSpecies], a
 	scf
 	ret

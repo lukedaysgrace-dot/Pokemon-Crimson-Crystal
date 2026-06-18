@@ -125,3 +125,4 @@ OverworldSprites:
 	overworld_sprite RattataUpSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite PsychicSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite HikerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite AppleSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED

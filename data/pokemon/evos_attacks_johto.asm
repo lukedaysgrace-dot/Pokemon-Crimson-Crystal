@@ -2372,9 +2372,9 @@ AppletunEvosAttacks:
 	db 0 ; no more level-up moves
 
 ApplinEvosAttacks:
-	dbbw EVOLVE_ITEM, LEAF_STONE, FLAPPLE
-	dbbw EVOLVE_ITEM, WATER_STONE, APPLETUN
-	dbbw EVOLVE_ITEM, SUN_STONE, DIPPLIN
+	dbbw EVOLVE_ITEM, TART_APPLE, FLAPPLE
+	dbbw EVOLVE_ITEM, SWEET_APPLE, APPLETUN
+	dbbw EVOLVE_ITEM, SYRUPY_APPLE, DIPPLIN
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, TACKLE

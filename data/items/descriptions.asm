@@ -44,12 +44,12 @@ ItemDescriptions:
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw DireHitDesc
-	dw QuestionMarkDesc
+	dw TartAppleDesc
 	dw FreshWaterDesc
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw XAttackDesc
-	dw QuestionMarkDesc
+	dw SweetAppleDesc
 	dw XDefendDesc
 	dw XSpeedDesc
 	dw XSpecialDesc
@@ -99,7 +99,7 @@ ItemDescriptions:
 	dw WhtApricornDesc
 	dw BlackbeltDesc
 	dw BlkApricornDesc
-	dw QuestionMarkDesc
+	dw SyrupyAppleDesc
 	dw PnkApricornDesc
 	dw BlackGlassesDesc
 	dw SlowpokeTailDesc
@@ -916,3 +916,15 @@ MusicMailDesc:
 MewMailDesc:
 	db   "MEW-print MAIL."
 	next "(HOLD)@"
+
+TartAppleDesc:
+	db   "A very tart apple."
+	next "It evolves APPLIN.@"
+
+SweetAppleDesc:
+	db   "A sweet apple."
+	next "It evolves APPLIN.@"
+
+SyrupyAppleDesc:
+	db   "A syrupy apple."
+	next "It evolves APPLIN.@"
