@@ -332,7 +332,7 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, BLOOD_MOON
+	dbw 1, BULLET_PUNCH
 	dbw 1, LUNGE
 	dbw 4, BUG_BITE
 	dbw 5, X_SCISSOR
@@ -1028,6 +1028,7 @@ QwilfishEvosAttacks:
 
 ScizorEvosAttacks:
 	db 0 ; no more evolutions
+	dbw 1, BULLET_PUNCH
 	dbw 1, QUICK_ATTACK
 	dbw 1, LEER
 	dbw 6, FOCUS_ENERGY

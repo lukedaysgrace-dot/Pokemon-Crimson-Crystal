@@ -292,3 +292,4 @@ MoveNames::
 	db "MOONBLAST@"
 	db "PIXIE PUNCH@"
 	db "BLOOD MOON@"
+	db "BULLET PUNCH@"

@@ -298,6 +298,7 @@ MoveDescriptions1:
 	dw MoonblastDescription
 	dw PixiePunchDescription
 	dw BloodMoonDescription
+	dw BulletPunchDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1481,3 +1482,8 @@ PixiePunchDescription:
 BloodMoonDescription:
 	db   "Can't be used"
 	next "twice in a row.@"
+
+BulletPunchDescription:
+	db   "A tough punch as"
+	next "fast as a bullet."
+	next "Always strikes first.@"

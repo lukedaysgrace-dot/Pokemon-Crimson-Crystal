@@ -318,6 +318,7 @@ BattleAnimations::
 	dw BattleAnim_Moonblast
 	dw BattleAnim_PixiePunch
 	dw BattleAnim_BloodMoon
+	dw BattleAnim_BulletPunch
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -5976,4 +5977,32 @@ BattleAnim_PixiePunch:
 	anim_wait 8
 	anim_obj ANIM_OBJ_HEART, 124, 20, $0
 	anim_wait 40
+	anim_ret
+
+BattleAnim_BulletPunch:
+; A Mach Punch rush followed by a metallic flash and fist impact.
+	anim_3gfx ANIM_GFX_SPEED, ANIM_GFX_REFLECT, ANIM_GFX_HIT
+	anim_obp0 $0
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 12
+	anim_sound 0, 0, SFX_SHINE
+	anim_bgeffect ANIM_BG_17, $0, $1, $40
+	anim_obj ANIM_OBJ_HARDEN, 48, 84, $0
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_17
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_0A, 136, 56, $43
+	anim_wait 6
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_resetobp0
+	anim_wait 16
 	anim_ret
