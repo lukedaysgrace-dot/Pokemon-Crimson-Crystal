@@ -299,6 +299,7 @@
 	const MOONBLAST        ; 12f
 	const PIXIE_PUNCH      ; 130
 	const BLOOD_MOON       ; 131
+	const BULLET_PUNCH     ; 132
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
