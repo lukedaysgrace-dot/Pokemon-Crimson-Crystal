@@ -119,6 +119,8 @@
 	const SPRITE_SKIER_NEW ; 73
 	const SPRITE_SNOWBOARDER_NEW ; 74
 	const SPRITE_RATTATA_UP ; 75
+	const SPRITE_PSYCHIC ; 76
+	const SPRITE_HIKER ; 77
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80

@@ -41,6 +41,7 @@ CloseText::
 	call ReplaceKrisSprite
 	farcall ReturnFromMapSetupScript
 	farcall LoadOverworldFont
+	farcall ReloadBank0SpriteFacings
 	ret
 
 OpenText::

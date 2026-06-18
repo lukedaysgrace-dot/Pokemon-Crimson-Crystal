@@ -143,7 +143,7 @@ PlaceMapNameCenterAlign:
 	ld a, [wCurLandmark]
 	ld e, a
 	farcall GetLandmarkName
-	call .GetNameLength
+	call GetMapNameLength
 	ld a, SCREEN_WIDTH
 	sub c
 	srl a
@@ -153,9 +153,53 @@ PlaceMapNameCenterAlign:
 	add hl, bc
 	ld de, wStringBuffer1
 	call PlaceString
+	call RemapMapNameFont
 	ret
 
-.GetNameLength:
+RemapMapNameFont::
+	hlcoord 0, 0
+	ld c, SCREEN_WIDTH * 4
+.loop
+	ld a, [hl]
+	cp "A"
+	jr c, .punctuation
+	cp "Z" + 1
+	jr nc, .punctuation
+	add MAP_NAME_FONT_TILE_START - "A"
+	jr .write
+.punctuation
+	cp "'"
+	ld a, MAP_NAME_FONT_TILE_START + 16
+	jr z, .write
+	ld a, [hl]
+	cp "."
+	jr z, .period
+	ld a, [hl]
+	cp "/"
+	ld a, MAP_NAME_FONT_TILE_START + 16
+	jr z, .write
+	ld a, [hl]
+	cp "é"
+	ld a, MAP_NAME_FONT_TILE_START + ("E" - "A")
+	jr nz, .next
+.write
+	ld [hl], a
+	jr .next
+.period
+	ld a, MAP_NAME_FONT_TILE_START + 16
+	ld [hl], a
+	push hl
+	ld de, wAttrMap - wTileMap
+	add hl, de
+	set 6, [hl] ; flip apostrophe into a period
+	pop hl
+.next
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
+
+GetMapNameLength::
 	ld c, 0
 	push hl
 	ld hl, wStringBuffer1

@@ -304,7 +304,10 @@ _DoesSpriteHaveFacings::
 	pop bc
 	pop hl
 	cp STILL_SPRITE
+	jr z, .one_direction
+	cp BIG_SPRITE
 	jr nz, .only_down
+.one_direction
 	scf
 	ret
 
@@ -539,6 +542,8 @@ GetSpriteLength:
 	jr z, .AnyDirection
 	cp STILL_SPRITE
 	jr z, .OneDirection
+	cp BIG_SPRITE
+	jr z, .AnyDirection
 	cp MON_ICON_SPRITE
 	jr z, .MonIcon
 
@@ -579,7 +584,7 @@ GetUsedSprites:
 ; the player if loaded at tiles 1-4.
 	cp WALKING_SPRITE
 	jr c, .load
-	cp MON_ICON_SPRITE + 1
+	cp BIG_SPRITE + 1
 	jr nc, .load
 	dec c
 	jr nz, .loop
@@ -603,6 +608,62 @@ GetUsedSprites:
 	jr nz, .loop
 
 .done
+	ret
+
+ReloadBank0SpriteFacings::
+; Bank 0's second sprite table shares VRAM with the overworld font.
+	ld hl, wSpriteFlags
+	ld a, [hl]
+	push af
+	set 7, [hl] ; skip the first facing
+	res 6, [hl]
+	set 5, [hl] ; load VBank0
+
+	ld hl, wUsedSprites
+	ld c, SPRITE_GFX_LIST_CAPACITY
+.loop
+	ld a, [hli]
+	and a
+	jr z, .done
+	ldh [hUsedSpriteIndex], a
+	ld a, [hli]
+	bit 7, a
+	jr z, .next
+	ldh [hUsedSpriteTile], a
+	push bc
+	push hl
+	ldh a, [hUsedSpriteIndex]
+	call .IsUsedByCurrentMap
+	jr nc, .unused
+	call GetUsedSprite
+.unused
+	pop hl
+	pop bc
+.next
+	dec c
+	jr nz, .loop
+
+.done
+	pop af
+	ld [wSpriteFlags], a
+	ret
+
+.IsUsedByCurrentMap:
+	ld b, a
+	ld hl, wMap1ObjectSprite
+	ld c, NUM_OBJECTS - 1
+.find
+	ld a, [hl]
+	cp b
+	jr z, .found
+	ld de, OBJECT_LENGTH
+	add hl, de
+	dec c
+	jr nz, .find
+	and a
+	ret
+.found
+	scf
 	ret
 
 GetUsedSprite:
@@ -632,8 +693,6 @@ endr
 	pop hl
 
 	ld a, [wSpriteFlags]
-	bit 5, a
-	jr nz, .done
 	bit 6, a
 	jr nz, .done
 

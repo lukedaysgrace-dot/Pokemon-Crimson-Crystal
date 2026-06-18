@@ -43,6 +43,9 @@ NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 
 SPRITE_GFX_LIST_CAPACITY EQU 32 ; see wUsedSprites
 
+MAP_NAME_FONT_TILE_START EQU $dc
+MAP_NAME_FONT_NUM_TILES  EQU 36
+
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
