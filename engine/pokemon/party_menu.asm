@@ -359,6 +359,7 @@ PlacePartyMonEvoStoneCompatibility:
 	call PartyMenuCheckEgg
 	jr z, .next
 	push hl
+	push bc
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Species
@@ -375,8 +376,25 @@ PlacePartyMonEvoStoneCompatibility:
 	farcall DetermineEvolutionItemResults
 	ld a, d
 	or e
+	pop bc
 	ld de, .string_not_able
 	jr z, .got_string
+	ld a, [wCurItem]
+	cp TART_APPLE
+	jr z, .check_apple_level
+	cp SWEET_APPLE
+	jr z, .check_apple_level
+	cp SYRUPY_APPLE
+	jr nz, .able
+.check_apple_level
+	ld a, b
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1Level
+	call AddNTimes
+	ld a, [hl]
+	cp 36
+	jr c, .got_string
+.able
 	ld de, .string_able
 .got_string
 	pop hl

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  70, 110,  80,  70,  95,  60
+	db  70, 135,  80, 100,  95,  60
 	;  hp  atk  def  spd  sat  sdf
 
 	db GRASS, DRAGON ; type

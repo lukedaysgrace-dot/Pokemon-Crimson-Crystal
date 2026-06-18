@@ -2372,9 +2372,7 @@ AppletunEvosAttacks:
 	db 0 ; no more level-up moves
 
 ApplinEvosAttacks:
-	dbbw EVOLVE_ITEM, TART_APPLE, FLAPPLE
-	dbbw EVOLVE_ITEM, SWEET_APPLE, APPLETUN
-	dbbw EVOLVE_ITEM, SYRUPY_APPLE, DIPPLIN
+	dbbw EVOLVE_LEVEL, 22, DIPPLIN
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, TACKLE
@@ -2467,7 +2465,9 @@ CroagunkEvosAttacks:
 	db 0 ; no more level-up moves
 
 DipplinEvosAttacks:
-	dbbw EVOLVE_LEVEL, 38, HYDRAPPLE
+	dbbw EVOLVE_ITEM, TART_APPLE, FLAPPLE
+	dbbw EVOLVE_ITEM, SWEET_APPLE, APPLETUN
+	dbbw EVOLVE_ITEM, SYRUPY_APPLE, HYDRAPPLE
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, TACKLE
