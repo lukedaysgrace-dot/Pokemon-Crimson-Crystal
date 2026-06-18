@@ -177,6 +177,24 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wLinkMode]
 	and a
 	jp nz, .skip_evolution_species
+
+	push hl
+	ld a, [wEvolutionOldSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(DIPPLIN)
+	jr nz, .item_level_ok
+	ld a, l
+	cp LOW(DIPPLIN)
+	jr nz, .item_level_ok
+	ld a, [wTempMonLevel]
+	cp 36
+	jr nc, .item_level_ok
+	pop hl
+	jp .skip_evolution_species
+
+.item_level_ok
+	pop hl
 	jr .proceed
 
 .level

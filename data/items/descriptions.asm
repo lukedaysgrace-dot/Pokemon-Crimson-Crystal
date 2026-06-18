@@ -919,12 +919,15 @@ MewMailDesc:
 
 TartAppleDesc:
 	db   "A very tart apple."
-	next "It evolves APPLIN.@"
+	next "Evolves DIPPLIN."
+	next "Works at LV.36.@"
 
 SweetAppleDesc:
 	db   "A sweet apple."
-	next "It evolves APPLIN.@"
+	next "Evolves DIPPLIN."
+	next "Works at LV.36.@"
 
 SyrupyAppleDesc:
 	db   "A syrupy apple."
-	next "It evolves APPLIN.@"
+	next "Evolves DIPPLIN."
+	next "Works at LV.36.@"
