@@ -45,7 +45,7 @@ GetSpriteVTile::
 ; Un-arranged sprite type bytes (VRAM overflow) must not be used as tiles.
 	cp WALKING_SPRITE
 	jr c, .done
-	cp MON_ICON_SPRITE + 1
+	cp BIG_SPRITE + 1
 	jr nc, .done
 	ld a, [wUsedSprites + 1]
 	scf

@@ -37,7 +37,9 @@ for line in open(ROOT / "data/sprites/sprites.asm", encoding="utf-8"):
 TYPE_TILES = {
     "WALKING_SPRITE": 12,
     "STANDING_SPRITE": 12,
+    "MON_ICON_SPRITE": 8,
     "STILL_SPRITE": 4,
+    "BIG_SPRITE": 12,
 }
 
 SPRITE_POKEMON = sprite_ids.get("SPRITE_POKEMON", 0x80)
@@ -67,12 +69,18 @@ def get_tiles(sprite_name):
 def type_priority(sprite_name):
     sid = sprite_ids.get(sprite_name, 0)
     if sid >= SPRITE_POKEMON and sid < 0xE0:
-        return 4
+        return 3
     if sid >= SPRITE_VARS:
         return 1
     if sid in overworld_types:
         st = overworld_types[sid][0]
-        return {"WALKING_SPRITE": 1, "STANDING_SPRITE": 2, "STILL_SPRITE": 3}.get(st, 1)
+        return {
+            "WALKING_SPRITE": 1,
+            "STANDING_SPRITE": 2,
+            "MON_ICON_SPRITE": 3,
+            "STILL_SPRITE": 4,
+            "BIG_SPRITE": 5,
+        }.get(st, 1)
     return 1
 
 
