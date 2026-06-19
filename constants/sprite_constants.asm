@@ -122,6 +122,7 @@
 	const SPRITE_PSYCHIC ; 76
 	const SPRITE_HIKER ; 77
 	const SPRITE_APPLE ; 78
+	const SPRITE_CRYSTAL_SURF ; 79
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80

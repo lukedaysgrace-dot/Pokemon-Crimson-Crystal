@@ -6,7 +6,7 @@
 	const CIANWOODCITY_ROCK2
 	const CIANWOODCITY_ROCK3
 	const CIANWOODCITY_ROCK4
-	const CIANWOODCITY_ROCK5
+	const CIANWOODCITY_CRYSTAL
 	const CIANWOODCITY_ROCK6
 	const CIANWOODCITY_POKEFAN_F
 	const CIANWOODCITY_EUSINE
@@ -29,6 +29,11 @@ CianwoodCity_MapScripts:
 .FlyPointAndSuicune:
 	setflag ENGINE_FLYPOINT_CIANWOOD
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
+	checkevent EVENT_CRYSTAL_CIANWOOD_INITIALIZED
+	iftrue .CrystalInitialized
+	clearevent EVENT_BEAT_CRYSTAL_CIANWOOD_CITY
+	setevent EVENT_CRYSTAL_CIANWOOD_INITIALIZED
+.CrystalInitialized:
 	checkevent EVENT_FOUGHT_EUSINE
 	iffalse .Done
 	disappear CIANWOODCITY_EUSINE
@@ -78,6 +83,76 @@ CianwoodCitySuicuneAndEusine:
 	playmapmusic
 	pause 10
 .Done:
+	end
+
+CianwoodCityCrystalLeftTrigger:
+	checkevent EVENT_BEAT_CRYSTAL_CIANWOOD_CITY
+	iftrue .Done
+	showemote EMOTE_SHOCK, CIANWOODCITY_CRYSTAL, 15
+	special FadeOutMusic
+	pause 15
+	turnobject PLAYER, LEFT
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	applymovement CIANWOODCITY_CRYSTAL, CianwoodCityCrystalApproachLeftMovement
+	sjump CianwoodCityCrystalBattle
+.Done:
+	end
+
+CianwoodCityCrystalRightTrigger:
+	checkevent EVENT_BEAT_CRYSTAL_CIANWOOD_CITY
+	iftrue .Done
+	showemote EMOTE_SHOCK, CIANWOODCITY_CRYSTAL, 15
+	special FadeOutMusic
+	pause 15
+	turnobject PLAYER, LEFT
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	applymovement CIANWOODCITY_CRYSTAL, CianwoodCityCrystalApproachRightMovement
+	sjump CianwoodCityCrystalBattle
+.Done:
+	end
+
+CianwoodCityCrystalBattle:
+	opentext
+	writetext CianwoodCityCrystalBeforeText
+	waitbutton
+	closetext
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .Cyndaquil
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Totodile
+	loadtrainer CRYSTAL, CRYSTAL_3_CHIKORITA
+	sjump .StartBattle
+
+.Cyndaquil:
+	loadtrainer CRYSTAL, CRYSTAL_3_CYNDAQUIL
+	sjump .StartBattle
+
+.Totodile:
+	loadtrainer CRYSTAL, CRYSTAL_3_TOTODILE
+
+.StartBattle:
+	winlosstext CianwoodCityCrystalWinText, CianwoodCityCrystalLossText
+	setlasttalked CIANWOODCITY_CRYSTAL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	opentext
+	writetext CianwoodCityCrystalAfterText
+	waitbutton
+	closetext
+	setevent EVENT_BEAT_CRYSTAL_CIANWOOD_CITY
+	readvar VAR_XCOORD
+	ifequal 26, .LeaveLeft
+	applymovement CIANWOODCITY_CRYSTAL, CianwoodCityCrystalLeavesRightMovement
+	sjump .Disappear
+
+.LeaveLeft:
+	applymovement CIANWOODCITY_CRYSTAL, CianwoodCityCrystalLeavesLeftMovement
+
+.Disappear:
+	disappear CIANWOODCITY_CRYSTAL
+	playmapmusic
 	end
 
 CianwoodCityChucksWife:
@@ -178,6 +253,35 @@ CianwoodCityEusineDepartMovement:
 	step DOWN
 	step DOWN
 	step DOWN
+	step_end
+
+CianwoodCityCrystalApproachLeftMovement:
+	slow_step RIGHT
+	slow_step RIGHT
+	step_end
+
+CianwoodCityCrystalApproachRightMovement:
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	step_end
+
+CianwoodCityCrystalLeavesLeftMovement:
+	slow_step DOWN
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	step_end
+
+CianwoodCityCrystalLeavesRightMovement:
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
 	step_end
 
 ChucksWifeEasierToFlyText:
@@ -338,6 +442,41 @@ EusineAfterText:
 	para "See you around!"
 	done
 
+CianwoodCityCrystalBeforeText:
+	text "Hey, <PLAYER>!"
+	line "Perfect timing."
+
+	para "I've been"
+	line "training my team"
+	cont "since our last"
+	cont "battle."
+
+	para "Let's see how"
+	line "much stronger"
+	cont "we've both"
+	cont "gotten!"
+	done
+
+CianwoodCityCrystalWinText:
+	text "You win again!"
+	done
+
+CianwoodCityCrystalLossText:
+	text "My training paid"
+	line "off!"
+	done
+
+CianwoodCityCrystalAfterText:
+	text "That was a great"
+	line "battle!"
+
+	para "I've still got"
+	line "work to do."
+
+	para "See you around,"
+	line "<PLAYER>!"
+	done
+
 CianwoodCitySignText:
 	text "CIANWOOD CITY"
 
@@ -391,8 +530,10 @@ CianwoodCity_MapEvents:
 	warp_event 15, 37, CIANWOOD_LUGIA_SPEECH_HOUSE, 1
 	warp_event  5, 17, POKE_SEERS_HOUSE, 1
 
-	db 1 ; coord events
+	db 3 ; coord events
 	coord_event 11, 16, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE, CianwoodCitySuicuneAndEusine
+	coord_event 26, 16, -1, CianwoodCityCrystalLeftTrigger
+	coord_event 27, 16, -1, CianwoodCityCrystalRightTrigger
 
 	db 8 ; bg events
 	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign
@@ -412,7 +553,7 @@ CianwoodCity_MapEvents:
 	object_event  9, 17, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	object_event  4, 25, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	object_event  5, 29, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event 10, 27, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 23, 16, SPRITE_CRYSTAL_SURF, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BEAT_CRYSTAL_CIANWOOD_CITY
 	object_event  4, 19, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
 	object_event 11, 21, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE

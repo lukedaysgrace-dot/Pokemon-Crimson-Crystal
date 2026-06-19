@@ -126,3 +126,4 @@ OverworldSprites:
 	overworld_sprite PsychicSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite HikerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite AppleSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
+	overworld_sprite CrystalSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
