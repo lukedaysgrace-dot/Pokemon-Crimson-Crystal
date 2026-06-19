@@ -443,22 +443,84 @@ EusineAfterText:
 	done
 
 CianwoodCityCrystalBeforeText:
-	text "Hey, <PLAYER>!"
-	line "Perfect timing."
+	text "Oh! Hi,"
+	line "<PLAYER>!"
+
+	para "It's good to see"
+	line "you again!"
 
 	para "I've been"
-	line "training my team"
-	cont "since our last"
-	cont "battle."
+	line "surfing all"
+	cont "around these"
+	cont "waters, looking"
+	cont "for #MON."
+
+	para "There are"
+	line "species out here"
+	cont "you can't find"
+	cont "anywhere else."
+
+	para "PROF.OAK is"
+	line "always telling"
+	cont "me to keep"
+	cont "exploring."
+
+	para "But lately..."
+
+	para "I've been"
+	line "focusing on"
+	cont "something else,"
+	cont "too."
+
+	para "The last couple"
+	line "of times we"
+	cont "battled, I"
+	cont "learned an"
+	cont "important"
+	cont "lesson."
+
+	para "Finding #MON"
+	line "is only part of"
+	cont "being a great"
+	cont "TRAINER."
+
+	para "If I want to"
+	line "complete the"
+	cont "#DEX..."
+
+	para "I need a team"
+	line "strong enough to"
+	cont "handle any"
+	cont "challenge."
+
+	para "So I've been"
+	line "training hard."
+
+	para "My #MON and I"
+	line "have been"
+	cont "working together"
+	cont "every day."
+
+	para "And I think"
+	line "we're stronger"
+	cont "than we've ever"
+	cont "been."
+
+	para "I think we've"
+	line "both come a long"
+	cont "way since our"
+	cont "first battle."
 
 	para "Let's see how"
-	line "much stronger"
-	cont "we've both"
-	cont "gotten!"
+	line "much we've"
+	cont "improved!"
 	done
 
 CianwoodCityCrystalWinText:
-	text "You win again!"
+	text "What?"
+
+	para "I was sure I had"
+	line "you that time!"
 	done
 
 CianwoodCityCrystalLossText:
@@ -467,14 +529,23 @@ CianwoodCityCrystalLossText:
 	done
 
 CianwoodCityCrystalAfterText:
-	text "That was a great"
-	line "battle!"
+	text "You know..."
 
-	para "I've still got"
-	line "work to do."
+	para "I was hoping all"
+	line "that training"
+	cont "would finally"
+	cont "put me ahead."
+
+	para "But battling you"
+	line "always teaches"
+	cont "me something"
+	cont "new."
+
+	para "Next time, I'll"
+	line "be ready!"
 
 	para "See you around,"
-	line "<PLAYER>!"
+	line "<PLAYER>."
 	done
 
 CianwoodCitySignText:
