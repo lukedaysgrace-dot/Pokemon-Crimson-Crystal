@@ -3448,6 +3448,54 @@ CrystalGroup:
 	dw PECK, LEER, NIGHT_SHADE, NO_MOVE
 	db -1 ; end
 
+	next_list_item ; CRYSTAL (4)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 13
+	dw NATU
+	db NO_ITEM
+	db 14
+	dw APPLIN
+	db NO_ITEM
+	db 14
+	dw CUBONE
+	db THICK_CLUB
+	db 17
+	dw BAYLEEF
+	db NO_ITEM
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (5)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 13
+	dw NATU
+	db NO_ITEM
+	db 14
+	dw APPLIN
+	db NO_ITEM
+	db 14
+	dw CUBONE
+	db THICK_CLUB
+	db 17
+	dw QUILAVA
+	db NO_ITEM
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (6)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 13
+	dw NATU
+	db NO_ITEM
+	db 14
+	dw APPLIN
+	db NO_ITEM
+	db 14
+	dw CUBONE
+	db THICK_CLUB
+	db 17
+	dw CROCONAW
+	db NO_ITEM
+	db -1 ; end
+
 	end_list_items
 
 GuitaristGroup:
