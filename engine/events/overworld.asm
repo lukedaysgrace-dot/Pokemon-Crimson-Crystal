@@ -674,6 +674,7 @@ FlyWarpScript:
 	call DelayFrame
 	call ReplaceKrisSprite
 	farcall LoadOverworldFont
+	farcall ReloadBank0SpriteFacings
 	ret
 
 WaterfallFunction:
