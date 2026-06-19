@@ -10,6 +10,10 @@
 	const ILEXFOREST_POKE_BALL2
 	const ILEXFOREST_POKE_BALL3
 	const ILEXFOREST_POKE_BALL4
+	const ILEXFOREST_TART_APPLE
+	const ILEXFOREST_SWEET_APPLE
+	const ILEXFOREST_SYRUPY_APPLE
+	const ILEXFOREST_CRYSTAL
 
 IlexForest_MapScripts:
 	db 0 ; scene scripts
@@ -18,6 +22,12 @@ IlexForest_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
 .FarfetchdCallback:
+	checkevent EVENT_CRYSTAL_ILEX_INITIALIZED
+	iftrue .CrystalInitialized
+	setevent EVENT_ILEX_FOREST_CRYSTAL
+	clearevent EVENT_BEAT_CRYSTAL_ILEX_FOREST
+	setevent EVENT_CRYSTAL_ILEX_INITIALIZED
+.CrystalInitialized:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
 	readmem wFarfetchdPosition
@@ -385,6 +395,54 @@ IlexForestHeadbuttGuyScript:
 	closetext
 	end
 
+IlexForestCrystalScene:
+	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
+	iffalse .Done
+	checkevent EVENT_BEAT_CRYSTAL_ILEX_FOREST
+	iftrue .Done
+	special FadeOutMusic
+	turnobject PLAYER, RIGHT
+	clearevent EVENT_ILEX_FOREST_CRYSTAL
+	appear ILEXFOREST_CRYSTAL
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	applymovement ILEXFOREST_CRYSTAL, IlexForestCrystalApproachMovement
+	opentext
+	writetext IlexForestCrystalBeforeText
+	waitbutton
+	closetext
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .Cyndaquil
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Totodile
+	loadtrainer CRYSTAL, CRYSTAL_2_CHIKORITA
+	sjump .StartBattle
+
+.Cyndaquil:
+	loadtrainer CRYSTAL, CRYSTAL_2_CYNDAQUIL
+	sjump .StartBattle
+
+.Totodile:
+	loadtrainer CRYSTAL, CRYSTAL_2_TOTODILE
+
+.StartBattle:
+	winlosstext IlexForestCrystalWinText, IlexForestCrystalLossText
+	setlasttalked ILEXFOREST_CRYSTAL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	opentext
+	writetext IlexForestCrystalAfterText
+	waitbutton
+	closetext
+	setevent EVENT_BEAT_CRYSTAL_ILEX_FOREST
+	applymovement ILEXFOREST_CRYSTAL, IlexForestCrystalLeavesMovement
+	disappear ILEXFOREST_CRYSTAL
+	setevent EVENT_ILEX_FOREST_CRYSTAL
+	playmapmusic
+.Done:
+	end
+
 TrainerBugCatcherWayne:
 	trainer BUG_CATCHER, WAYNE, EVENT_BEAT_BUG_CATCHER_WAYNE, BugCatcherWayneSeenText, BugCatcherWayneBeatenText, 0, .Script
 
@@ -745,6 +803,20 @@ MovementData_0x6ef58:
 	remove_fixed_facing
 	step_end
 
+IlexForestCrystalApproachMovement:
+	slow_step LEFT
+	slow_step LEFT
+	slow_step LEFT
+	turn_head LEFT
+	step_end
+
+IlexForestCrystalLeavesMovement:
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	step_end
+
 IlexForestApprenticeIntroText:
 	text "Oh, man… My boss"
 	line "is going to be"
@@ -944,6 +1016,77 @@ BugCatcherWayneAfterBattleText:
 	cont "places too."
 	done
 
+IlexForestCrystalBeforeText:
+	text "CRYSTAL: Hey,"
+	line "it's you again!"
+
+	para "I've been"
+	line "searching all over"
+	cont "ILEX FOREST!"
+
+	para "Did you know some"
+	line "really rare #MON"
+	cont "only come out when"
+	cont "you HEADBUTT"
+	cont "trees?"
+
+	para "Most people just"
+	line "walk right past"
+	cont "them."
+
+	para "But if you know"
+	line "where to look..."
+
+	para "You can find some"
+	line "amazing catches!"
+
+	para "I spent hours in"
+	line "this forest and"
+	cont "found some really"
+	cont "interesting #MON."
+
+	para "Let's see how your"
+	line "training is going!"
+	done
+
+IlexForestCrystalWinText:
+	text "Oh!"
+
+	para "I wasn't"
+	line "expecting that..."
+	done
+
+IlexForestCrystalLossText:
+	text "My training paid"
+	line "off!"
+	done
+
+IlexForestCrystalAfterText:
+	text "You've gotten"
+	line "stronger since we"
+	cont "last battled."
+
+	para "Maybe I've been"
+	line "spending too much"
+	cont "time looking for"
+	cont "rare #MON"
+
+	para "and should focus"
+	line "a bit more on"
+	cont "training."
+
+	para "I know there's"
+	line "quite a few"
+	cont "trainers before"
+	cont "GOLDENROD,"
+
+	para "so the timing is"
+	line "perfect."
+
+	para "I'll see you"
+	line "later, <PLAYER>!"
+	done
+
 IlexForest_MapEvents:
 	db 0, 0 ; filler
 
@@ -952,7 +1095,8 @@ IlexForest_MapEvents:
 	warp_event  3, 42, ILEX_FOREST_AZALEA_GATE, 1
 	warp_event  3, 43, ILEX_FOREST_AZALEA_GATE, 2
 
-	db 0 ; coord events
+	db 1 ; coord events
+	coord_event 15, 10, -1, IlexForestCrystalScene
 
 	db 5 ; bg events
 	bg_event  3, 17, BGEVENT_READ, IlexForestSignpost
@@ -961,7 +1105,7 @@ IlexForest_MapEvents:
 	bg_event  1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
 	bg_event  8, 22, BGEVENT_UP, IlexForestShrineScript
 
-	db 14 ; object events
+	db 15 ; object events
 	object_event 14, 31, SPRITE_FARFETCHD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
 	object_event  7, 28, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
 	object_event  5, 28, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
@@ -976,3 +1120,4 @@ IlexForest_MapEvents:
 	object_event 10,  9, SPRITE_APPLE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestTartApple, EVENT_ILEX_FOREST_TART_APPLE
 	object_event 18, 15, SPRITE_APPLE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestSweetApple, EVENT_ILEX_FOREST_SWEET_APPLE
 	object_event 26, 21, SPRITE_APPLE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestSyrupyApple, EVENT_ILEX_FOREST_SYRUPY_APPLE
+	object_event 20, 10, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, IlexForestCrystalScene, EVENT_ILEX_FOREST_CRYSTAL
