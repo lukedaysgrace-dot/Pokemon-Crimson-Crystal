@@ -1021,14 +1021,14 @@ IlexForestCrystalBeforeText:
 	line "it's you again!"
 
 	para "I've been"
-	line "searching all over"
-	cont "ILEX FOREST!"
+	line "searching all"
+	cont "over ILEX FOREST!"
 
 	para "Did you know some"
-	line "really rare #MON"
-	cont "only come out when"
-	cont "you HEADBUTT"
-	cont "trees?"
+	line "really rare"
+	cont "#MON only come"
+	cont "out when you"
+	cont "HEADBUTT trees?"
 
 	para "Most people just"
 	line "walk right past"
@@ -1041,12 +1041,14 @@ IlexForestCrystalBeforeText:
 	line "amazing catches!"
 
 	para "I spent hours in"
-	line "this forest and"
+	line "here and"
 	cont "found some really"
-	cont "interesting #MON."
+	cont "interesting"
+	cont "#MON."
 
-	para "Let's see how your"
-	line "training is going!"
+	para "Let's see how"
+	line "your training is"
+	cont "going!"
 	done
 
 IlexForestCrystalWinText:
