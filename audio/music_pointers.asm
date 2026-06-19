@@ -108,3 +108,5 @@ Music:
 	dba Music_MobileCenter
 	dba Music_CrystalEncounter
 	dba Music_CrystalBattle
+	dba Music_MahoganyTown
+	dba Music_Route38_39
