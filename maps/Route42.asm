@@ -8,6 +8,7 @@
 	const ROUTE42_POKE_BALL1
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
+	const ROUTE42_FISHING_SPOT_FISHER
 
 Route42_MapScripts:
 	db 2 ; scene scripts
@@ -33,6 +34,50 @@ Route42SuicuneScript:
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
 	setmapscene ROUTE_36, SCENE_ROUTE36_SUICUNE
 	end
+
+Route42FishingSpotNearScript:
+	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachNear
+	turnobject PLAYER, RIGHT
+	scall Route42FishingSpotFisherTalk
+	follow PLAYER, ROUTE42_FISHING_SPOT_FISHER
+	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
+	stopfollow
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetNear
+	end
+
+Route42FishingSpotMiddleScript:
+	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachMiddle
+	turnobject PLAYER, RIGHT
+	scall Route42FishingSpotFisherTalk
+	follow PLAYER, ROUTE42_FISHING_SPOT_FISHER
+	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
+	stopfollow
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetMiddle
+	end
+
+Route42FishingSpotFarScript:
+	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachFar
+	turnobject PLAYER, RIGHT
+	scall Route42FishingSpotFisherTalk
+	follow PLAYER, ROUTE42_FISHING_SPOT_FISHER
+	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
+	stopfollow
+	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetFar
+	end
+
+Route42FishingSpotFisherTalk:
+	opentext
+	writetext Route42FishingSpotFisherText
+	waitbutton
+	closetext
+	playsound SFX_TACKLE
+	end
+
+Route42FishingSpotFisherScript:
+	jumptextfaceplayer Route42FishingSpotFisherText
 
 TrainerFisherTully:
 	trainer FISHER, TULLY1, EVENT_BEAT_FISHER_TULLY, FisherTullySeenText, FisherTullyBeatenText, 0, .Script
@@ -223,6 +268,50 @@ Route42SuicuneMovement:
 	remove_sliding
 	step_end
 
+
+Route42FishingSpotFisherApproachNear:
+	step RIGHT
+	step DOWN
+	turn_head LEFT
+	step_end
+
+Route42FishingSpotFisherApproachMiddle:
+	step RIGHT
+	step DOWN
+	step DOWN
+	turn_head LEFT
+	step_end
+
+Route42FishingSpotFisherApproachFar:
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	turn_head LEFT
+	step_end
+
+Route42FishingSpotPlayerPushedBack:
+	step LEFT
+	step_end
+
+Route42FishingSpotFisherResetNear:
+	step UP
+	turn_head DOWN
+	step_end
+
+Route42FishingSpotFisherResetMiddle:
+	step UP
+	step UP
+	turn_head DOWN
+	step_end
+
+Route42FishingSpotFisherResetFar:
+	step UP
+	step UP
+	step UP
+	turn_head DOWN
+	step_end
+
 FisherTullySeenText:
 	text "Let me demonstrate"
 	line "the power of the"
@@ -316,6 +405,24 @@ Route42Sign2Text:
 	line "MAHOGANY TOWN"
 	done
 
+Route42FishingSpotFisherText:
+	text "Sorry bud, this"
+	line "is my favorite"
+	cont "fishing spot and"
+	cont "I'm just now"
+	cont "setting up."
+
+	para "Come back later,"
+	line "you should go"
+	cont "check out the"
+	cont "LIGHTHOUSE in"
+	cont "OLIVINE."
+
+	para "I heard"
+	line "something's gone"
+	cont "wrong there."
+	done
+
 Route42_MapEvents:
 	db 0, 0 ; filler
 
@@ -326,8 +433,11 @@ Route42_MapEvents:
 	warp_event 28,  9, MOUNT_MORTAR_1F_OUTSIDE, 2
 	warp_event 46,  7, MOUNT_MORTAR_1F_OUTSIDE, 3
 
-	db 1 ; coord events
+	db 4 ; coord events
 	coord_event 24, 14, SCENE_ROUTE42_SUICUNE, Route42SuicuneScript
+	coord_event 10,  7, -1, Route42FishingSpotNearScript
+	coord_event 10,  8, -1, Route42FishingSpotMiddleScript
+	coord_event 10,  9, -1, Route42FishingSpotFarScript
 
 	db 5 ; bg events
 	bg_event  4, 10, BGEVENT_READ, Route42Sign1
@@ -336,7 +446,7 @@ Route42_MapEvents:
 	bg_event 54,  8, BGEVENT_READ, Route42Sign2
 	bg_event 16, 11, BGEVENT_ITEM, Route42HiddenMaxPotion
 
-	db 9 ; object events
+	db 10 ; object events
 	object_event 40, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully, -1
 	object_event 51,  9, SPRITE_HIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
 	object_event 47,  8, SPRITE_POKEMANIAC_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
@@ -346,3 +456,4 @@ Route42_MapEvents:
 	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_ENTEI, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	object_event 10,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route42FishingSpotFisherScript, -1
