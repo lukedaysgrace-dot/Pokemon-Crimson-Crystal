@@ -150,7 +150,7 @@ EvolveAfterBattle_MasterLoop:
 	call GetNextEvoAttackByte
 	ld b, a
 	inc a
-	jr z, .proceed
+	jp z, .proceed
 
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
