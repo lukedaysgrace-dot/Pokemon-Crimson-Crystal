@@ -87,6 +87,10 @@ PlayBattleMusic:
 	jr .done
 
 .trainermusic
+	ld de, MUSIC_CRYSTAL_BATTLE
+	cp CRYSTAL
+	jr z, .done
+
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
 	jr z, .done

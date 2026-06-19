@@ -52,6 +52,7 @@ VioletCityCrystalSceneFarLeft:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -65,6 +66,7 @@ VioletCityCrystalScene:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -78,6 +80,7 @@ VioletCityCrystalSceneTop:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -91,6 +94,7 @@ VioletCityCrystalSceneTopFarLeft:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -104,6 +108,7 @@ VioletCityCrystalSceneLow:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -117,6 +122,7 @@ VioletCityCrystalSceneLowFarLeft:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarLeftMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -130,6 +136,7 @@ VioletCityCrystalSceneTopRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -143,6 +150,7 @@ VioletCityCrystalSceneRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -156,6 +164,7 @@ VioletCityCrystalSceneLowRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -169,6 +178,7 @@ VioletCityCrystalSceneTopFarRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -182,6 +192,7 @@ VioletCityCrystalSceneFarRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -195,6 +206,7 @@ VioletCityCrystalSceneLowFarRight:
 	playsound SFX_EXIT_BUILDING
 	appear VIOLETCITY_CRYSTAL
 	special RefreshSprites
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
@@ -202,7 +214,6 @@ VioletCityCrystalSceneDone:
 	end
 
 VioletCityCrystalBattleScript:
-	playmusic MUSIC_LASS_ENCOUNTER
 	opentext
 	writetext VioletCityCrystalBeforeText
 	waitbutton
@@ -227,7 +238,7 @@ VioletCityCrystalBattleScript:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	playmusic MUSIC_LASS_ENCOUNTER
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	opentext
 	writetext VioletCityCrystalAfterText
 	waitbutton
