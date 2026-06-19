@@ -22,7 +22,6 @@ INCLUDE "audio/music/johtogymbattle.asm"
 INCLUDE "audio/music/championbattle.asm"
 INCLUDE "audio/music/ssaqua.asm"
 INCLUDE "audio/music/newbarktown.asm"
-INCLUDE "audio/music/goldenrodcity.asm"
 INCLUDE "audio/music/vermilioncity.asm"
 INCLUDE "audio/music/titlescreen.asm"
 INCLUDE "audio/music/ruinsofalphinterior.asm"
@@ -149,6 +148,21 @@ INCLUDE "audio/music/crystalencounter.asm"
 SECTION "Extra Songs 4", ROMX
 
 INCLUDE "audio/music/crystalbattle.asm"
+
+
+SECTION "Extra Songs 5", ROMX
+
+INCLUDE "audio/music/goldenrodcity.asm"
+
+
+SECTION "Extra Songs 6", ROMX
+
+INCLUDE "audio/music/mahoganytown.asm"
+
+
+SECTION "Extra Songs 7", ROMX
+
+INCLUDE "audio/music/route3839.asm"
 
 
 SECTION "Sound Effects", ROMX
