@@ -89,7 +89,7 @@ ItemDescriptions:
 	dw BigMushroomDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
-	dw QuestionMarkDesc
+	dw IceStoneDesc
 	dw AmuletCoinDesc
 	dw YlwApricornDesc
 	dw GrnApricornDesc
@@ -876,6 +876,10 @@ RainbowWingDesc:
 
 QuestionMarkDesc:
 	db   "?@"
+
+IceStoneDesc:
+	db   "An icy stone that"
+	next "evolves EEVEE.@"
 
 BrickPieceDesc:
 	db   "A rare chunk of"

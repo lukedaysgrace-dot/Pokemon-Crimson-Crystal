@@ -677,6 +677,33 @@ JohtoGrassWildMons:
 	dbw 18, RATICATE
 	dbw 18, RATICATE
 
+	map_id ICE_ISLAND
+	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 20, CETODDLE
+	dbw 21, SPHEAL
+	dbw 21, SNOVER
+	dbw 22, SMOOCHUM
+	dbw 23, SNORUNT
+	dbw 24, FRIGIBAX
+	dbw 22, SNEASEL
+	; day
+	dbw 20, CETODDLE
+	dbw 21, SPHEAL
+	dbw 21, SNOVER
+	dbw 22, SMOOCHUM
+	dbw 23, SNORUNT
+	dbw 24, FRIGIBAX
+	dbw 22, SNEASEL
+	; nite
+	dbw 20, CETODDLE
+	dbw 21, SEEL
+	dbw 21, SNOVER
+	dbw 22, DELIBIRD
+	dbw 23, SNORUNT
+	dbw 24, FRIGIBAX
+	dbw 22, SNEASEL
+
 	map_id ICE_PATH_1F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn

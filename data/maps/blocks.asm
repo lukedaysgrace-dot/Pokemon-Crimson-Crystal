@@ -779,6 +779,9 @@ OlivineLighthouse6F_Blocks:
 
 SECTION "Map Blocks 3", ROMX
 
+IceIsland_Blocks:
+	INCBIN "maps/IceIsland.blk"
+
 BetaSlowpokeWell1F_Blocks:
 	INCBIN "maps/unused/BetaSlowpokeWell1F.blk"
 

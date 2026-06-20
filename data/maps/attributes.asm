@@ -208,6 +208,8 @@ ENDM
 	connection north, Route40, ROUTE_40, 15
 	connection west, CianwoodCity, CIANWOOD_CITY, 0
 
+	map_attributes IceIsland, ICE_ISLAND, $19, 0
+
 	map_attributes Route42, ROUTE_42, $05, WEST | EAST
 	connection west, EcruteakCity, ECRUTEAK_CITY, -9
 	connection east, MahoganyTown, MAHOGANY_TOWN, 0
