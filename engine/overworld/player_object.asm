@@ -524,7 +524,7 @@ TrainerWalkToPlayer:
 	ldh a, [hLastTalked]
 	ld b, a
 	ld c, PLAYER
-	ld d, 1
+	ld d, 0
 	call .GetPathToPlayer
 	call DecrementMovementBufferCount
 

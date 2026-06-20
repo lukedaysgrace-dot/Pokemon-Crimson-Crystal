@@ -2249,6 +2249,16 @@ SkierGroup:
 	dw DEWGONG
 	db -1 ; end
 
+	next_list_item ; SKIER (3)
+	db "BIANCA@", TRAINERTYPE_NORMAL
+	db 19
+	dw SMOOCHUM
+	db 20
+	dw SWINUB
+	db 21
+	dw SNORUNT
+	db -1 ; end
+
 	end_list_items
 
 TeacherGroup:
@@ -3432,7 +3442,7 @@ CrystalGroup:
 	db "CRYSTAL@", TRAINERTYPE_MOVES
 	db 9
 	dw CYNDAQUIL
-	dw TACKLE, LEER, SMOKESCREEN, NO_MOVE
+	dw TACKLE, LEER, SMOKESCREEN, EMBER
 	db 9
 	dw NATU
 	dw PECK, LEER, NIGHT_SHADE, NO_MOVE
@@ -4945,6 +4955,24 @@ BoarderGroup:
 	dw CLOYSTER
 	db 24
 	dw SHELLDER
+	db -1 ; end
+
+	next_list_item ; BOARDER (4)
+	db "AIDAN@", TRAINERTYPE_NORMAL
+	db 19
+	dw SWINUB
+	db 21
+	dw SNEASEL
+	db -1 ; end
+
+	next_list_item ; BOARDER (5)
+	db "NOEL@", TRAINERTYPE_NORMAL
+	db 19
+	dw SNORUNT
+	db 20
+	dw SNOVER
+	db 21
+	dw SPHEAL
 	db -1 ; end
 
 	end_list_items
