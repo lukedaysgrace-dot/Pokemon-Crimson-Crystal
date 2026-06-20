@@ -60,8 +60,9 @@ BoarderAidanAfterBattleText:
 	done
 
 BoarderNoelSeenText:
-	text "The colder it gets,"
-	line "the better I ride!"
+	text "The colder it"
+	line "gets, the better I"
+	cont "ride!"
 	done
 
 BoarderNoelBeatenText:
