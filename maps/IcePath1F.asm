@@ -93,15 +93,66 @@ IcePath1FCrystalLeaveMovement:
 	step_end
 
 IcePath1FCrystalBeforeText:
-	text "Hey, <PLAYER>!"
+	text "CRYSTAL:"
+	line "<PLAYER>!"
 
-	para "Perfect timing."
-	line "Let's battle!"
+	para "I should've known"
+	line "you'd make it this"
+	cont "far."
+
+	para "I've spent the last"
+	line "few weeks studying"
+	cont "#MON all across"
+	cont "Johto."
+
+	para "Their different"
+	line "habitats..."
+
+	para "And their"
+	line "different"
+	cont "behaviors..."
+
+	para "Every place has"
+	line "taught me"
+	cont "something new."
+
+	para "Blackthorn is just"
+	line "ahead."
+
+	para "Getting this far"
+	line "takes more than"
+	cont "determination."
+
+	para "It takes"
+	line "experience."
+
+	para "And every time"
+	line "we've battled..."
+
+	para "You've given me"
+	line "something new to"
+	cont "think about."
+
+	para "I've been training"
+	line "too."
+
+	para "So before we"
+	line "move on..."
+
+	para "I want to see how"
+	line "far we've both"
+	cont "come."
+
+	para "Let's see the"
+	line "results of our"
+	cont "training."
 	done
 
 IcePath1FCrystalWinText:
-	text "You're still one"
-	line "step ahead!"
+	text "...I understand."
+
+	para "I still have more"
+	line "to learn."
 	done
 
 IcePath1FCrystalLossText:
@@ -110,11 +161,38 @@ IcePath1FCrystalLossText:
 	done
 
 IcePath1FCrystalAfterText:
-	text "That was a great"
-	line "battle!"
+	text "I thought I was"
+	line "prepared for this"
+	cont "battle."
 
-	para "I'll see you"
-	line "again, <PLAYER>!"
+	para "But I still came"
+	line "up short."
+
+	para "That's alright."
+
+	para "There's still"
+	line "a lot I haven't"
+	cont "discovered yet."
+
+	para "I think I'll spend"
+	line "a little more time"
+	cont "here."
+
+	para "There are #MON"
+	line "in this cave I"
+	cont "haven't finished"
+	cont "studying."
+
+	para "When we meet"
+	line "again..."
+
+	para "I'll have more"
+	line "than a few new"
+	cont "things to show"
+	cont "you."
+
+	para "Take care,"
+	line "<PLAYER>."
 	done
 
 IcePath1F_MapEvents:
