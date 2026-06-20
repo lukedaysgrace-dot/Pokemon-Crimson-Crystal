@@ -3554,6 +3554,63 @@ CrystalGroup:
 	db NO_ITEM
 	db -1 ; end
 
+	next_list_item ; CRYSTAL (10)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 35
+	dw XATU
+	db NO_ITEM
+	db 36
+	dw MAROWAK
+	db THICK_CLUB
+	db 36
+	dw HYDRAPPLE
+	db NO_ITEM
+	db 36
+	dw PUPITAR
+	db NO_ITEM
+	db 38
+	dw MEGANIUM
+	db NO_ITEM
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (11)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 35
+	dw XATU
+	db NO_ITEM
+	db 36
+	dw MAROWAK
+	db THICK_CLUB
+	db 36
+	dw FLAPPLE
+	db NO_ITEM
+	db 36
+	dw PUPITAR
+	db NO_ITEM
+	db 38
+	dw TYPHLOSION
+	db NO_ITEM
+	db -1 ; end
+
+	next_list_item ; CRYSTAL (12)
+	db "CRYSTAL@", TRAINERTYPE_ITEM
+	db 35
+	dw XATU
+	db NO_ITEM
+	db 36
+	dw MAROWAK
+	db THICK_CLUB
+	db 36
+	dw APPLETUN
+	db NO_ITEM
+	db 36
+	dw PUPITAR
+	db NO_ITEM
+	db 38
+	dw FERALIGATR
+	db NO_ITEM
+	db -1 ; end
+
 	end_list_items
 
 GuitaristGroup:
