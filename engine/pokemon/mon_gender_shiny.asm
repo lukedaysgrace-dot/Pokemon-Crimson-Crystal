@@ -139,7 +139,10 @@ InitMonShinyGender:
 	jr z, .store
 	ld a, [wOtherTrainerClass]
 	cp CRYSTAL
+	jr z, .crystal
+	cp CRYSTAL2
 	jr nz, .store
+.crystal
 	ld a, b
 	and %10111111 ; clear MON_MALE_FLAG
 	ld b, a

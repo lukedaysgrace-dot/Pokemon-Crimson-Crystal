@@ -70,3 +70,4 @@ TrainerGroups:
 	dba GruntFGroup
 	dba MysticalmanGroup
 	dba CrystalGroup
+	dba CrystalGroup

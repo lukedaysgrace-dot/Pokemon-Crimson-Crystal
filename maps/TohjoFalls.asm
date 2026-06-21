@@ -55,15 +55,15 @@ TohjoFallsCrystalBattle:
 	iftrue .Cyndaquil
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Totodile
-	loadtrainer CRYSTAL, CRYSTAL_5_CHIKORITA
+	loadtrainer CRYSTAL2, CRYSTAL2_CHIKORITA
 	sjump .StartBattle
 
 .Cyndaquil:
-	loadtrainer CRYSTAL, CRYSTAL_5_CYNDAQUIL
+	loadtrainer CRYSTAL2, CRYSTAL2_CYNDAQUIL
 	sjump .StartBattle
 
 .Totodile:
-	loadtrainer CRYSTAL, CRYSTAL_5_TOTODILE
+	loadtrainer CRYSTAL2, CRYSTAL2_TOTODILE
 
 .StartBattle:
 	winlosstext TohjoFallsCrystalWinText, TohjoFallsCrystalLossText
@@ -119,17 +119,53 @@ TohjoFallsCrystalLeaveBottomMovement:
 
 TohjoFallsCrystalBeforeText:
 	text "CRYSTAL:"
-	line "You made it to"
-	cont "TOHJO FALLS too!"
+	line "I expected to find"
+	cont "you here."
 
-	para "Let's see how much"
-	line "stronger we've"
-	cont "both become!"
+	para "When we first left"
+	line "New Bark Town, I"
+	cont "thought completing"
+
+	para "the #DEX was"
+	line "all that mattered."
+
+	para "But this journey"
+	line "has taught me"
+	cont "otherwise."
+
+	para "A Trainer can't"
+	line "understand #MON"
+	cont "by simply"
+
+	para "observing them."
+
+	para "They have to earn"
+	line "that"
+	cont "understanding."
+
+	para "And every time"
+	line "we've battled..."
+
+	para "I've been forced"
+	line "to confront that."
+
+	para "We've both come"
+	line "too far to hold"
+	cont "anything back now."
+
+	para "I want to see the"
+	line "result of"
+	cont "everything we've"
+
+	para "learned."
+
+	para "Show me your"
+	line "strength."
 	done
 
 TohjoFallsCrystalWinText:
-	text "You're ready for"
-	line "anything ahead!"
+	text "....I understand"
+	line "now."
 	done
 
 TohjoFallsCrystalLossText:
@@ -139,13 +175,45 @@ TohjoFallsCrystalLossText:
 
 TohjoFallsCrystalAfterText:
 	text "CRYSTAL:"
-	line "That was a great"
-	cont "battle!"
+	line "I kept searching"
+	cont "for the difference"
 
-	para "I'll see you again,"
-	line "<PLAYER>!"
+	para "between us."
+
+	para "I thought it was"
+	line "experience."
+
+	para "Or knowledge."
+
+	para "But it wasn't."
+
+	para "Your #MON"
+	line "trust you"
+	cont "completely."
+
+	para "And you trust"
+	line "them."
+
+	para "That's why you"
+	line "won."
+
+	para "That's something"
+	line "no #DEX can"
+	cont "measure."
+
+	para "I think I've found"
+	line "the answer I was"
+	cont "looking for."
+
+	para "...the next time"
+	line "we meet the"
+	cont "outcome may be"
+
+	para "different."
+
+	para "Until then, take"
+	line "care <PLAYER>."
 	done
-
 TohjoFalls_MapEvents:
 	db 0, 0 ; filler
 

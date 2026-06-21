@@ -70,3 +70,4 @@ TrainerPicPointers::
 	dba GruntfPic
 	dba MysticalmanPic
 	dba CrystalPic
+	dba Crystal2Pic
