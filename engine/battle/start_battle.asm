@@ -90,6 +90,8 @@ PlayBattleMusic:
 	ld de, MUSIC_CRYSTAL_BATTLE
 	cp CRYSTAL
 	jr z, .done
+	cp CRYSTAL2
+	jr z, .done
 
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION

@@ -349,6 +349,8 @@ PlaceEnemysName::
 	jr z, .name_only
 	cp CRYSTAL
 	jr z, .crystal_name
+	cp CRYSTAL2
+	jr z, .crystal_name
 
 	ld de, wOTClassName
 	call PlaceString

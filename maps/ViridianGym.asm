@@ -1,5 +1,8 @@
 	object_const_def ; object_event constants
 	const VIRIDIANGYM_BLUE
+	const VIRIDIANGYM_LARRY
+	const VIRIDIANGYM_SNOW
+	const VIRIDIANGYM_CYANIDE
 	const VIRIDIANGYM_GYM_GUY
 
 ViridianGym_MapScripts:
@@ -32,6 +35,39 @@ ViridianGymBlueScript:
 
 .FightDone:
 	writetext LeaderBlueEpilogueText
+	waitbutton
+	closetext
+	end
+
+TrainerCooltrainermLarry:
+	trainer COOLTRAINERM, LARRY2, EVENT_BEAT_COOLTRAINERM_LARRY, CooltrainermLarrySeenText, CooltrainermLarryBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CooltrainermLarryAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerCooltrainermSnow:
+	trainer COOLTRAINERM, SNOW, EVENT_BEAT_COOLTRAINERM_SNOW, CooltrainermSnowSeenText, CooltrainermSnowBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CooltrainermSnowAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerCooltrainermCyanide:
+	trainer COOLTRAINERM, CYANIDE, EVENT_BEAT_COOLTRAINERM_CYANIDE, CooltrainermCyanideSeenText, CooltrainermCyanideBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CooltrainermCyanideAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -136,6 +172,54 @@ LeaderBlueEpilogueText:
 	cont "you. Got it?"
 	done
 
+CooltrainermLarrySeenText:
+	text "Ohhhhh waowww,"
+	line "another"
+	cont "challenger."
+	done
+
+CooltrainermLarryBeatenText:
+	text "THAT DIDN'T HIT"
+	line "ME."
+	done
+
+CooltrainermLarryAfterBattleText:
+	text "There was"
+	line "something in my"
+	cont "eye, that's the"
+
+	para "only reason you"
+	line "won."
+	done
+
+CooltrainermSnowSeenText:
+	text "You'll never get"
+	line "past me, Larry"
+	cont "and Cy."
+	done
+
+CooltrainermSnowBeatenText:
+	text "....Starting to"
+	line "get mad."
+	done
+
+CooltrainermSnowAfterBattleText:
+	text "You're garbage"
+	line "man."
+	done
+
+CooltrainermCyanideSeenText:
+	text "OHOHOHO...baka."
+	done
+
+CooltrainermCyanideBeatenText:
+	text "Whatever dude."
+	done
+
+CooltrainermCyanideAfterBattleText:
+	text "Just go, you"
+	line "filthy casual."
+	done
 ViridianGymGuyText:
 	text "Yo, CHAMP in"
 	line "making!"
@@ -180,6 +264,9 @@ ViridianGym_MapEvents:
 	bg_event  3, 13, BGEVENT_READ, ViridianGymStatue
 	bg_event  6, 13, BGEVENT_READ, ViridianGymStatue
 
-	db 2 ; object events
+	db 5 ; object events
 	object_event  5,  3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  7,  8, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermLarry, -1
+	object_event  2, 11, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermSnow, -1
+	object_event  2,  6, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermCyanide, -1
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

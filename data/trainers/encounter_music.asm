@@ -71,6 +71,7 @@ TrainerEncounterMusic::
 	db MUSIC_ROCKET_ENCOUNTER      ; gruntf
 	db MUSIC_HIKER_ENCOUNTER       ; mysticalman
 	db MUSIC_CRYSTAL_ENCOUNTER    ; crystal
+	db MUSIC_CRYSTAL_ENCOUNTER     ; crystal2
 	db MUSIC_HIKER_ENCOUNTER
 	db MUSIC_HIKER_ENCOUNTER
 	db MUSIC_HIKER_ENCOUNTER

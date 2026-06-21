@@ -70,3 +70,4 @@ BTTrainerClassGenders:
 	db FEMALE ; GRUNTF
 	db MALE   ; MYSTICALMAN
 	db FEMALE ; CRYSTAL
+	db FEMALE ; CRYSTAL2
