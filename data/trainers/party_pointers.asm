@@ -71,3 +71,7 @@ TrainerGroups:
 	dba MysticalmanGroup
 	dba CrystalGroup
 	dba CrystalGroup
+	dba ProtonGroup
+	dba PetrelGroup
+	dba ArianaGroup
+	dba ArcherGroup

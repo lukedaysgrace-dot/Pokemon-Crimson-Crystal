@@ -71,3 +71,7 @@ BTTrainerClassGenders:
 	db MALE   ; MYSTICALMAN
 	db FEMALE ; CRYSTAL
 	db FEMALE ; CRYSTAL2
+	db MALE   ; PROTON
+	db MALE   ; PETREL
+	db FEMALE ; ARIANA
+	db MALE   ; ARCHER

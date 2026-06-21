@@ -123,6 +123,10 @@
 	const SPRITE_HIKER ; 77
 	const SPRITE_APPLE ; 78
 	const SPRITE_CRYSTAL_SURF ; 79
+	const SPRITE_PROTON ; 7a
+	const SPRITE_PETREL ; 7b
+	const SPRITE_ARIANA ; 7c
+	const SPRITE_POLIWRATH_NPC ; 7d
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
@@ -174,6 +178,19 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_ENTEI ; ac
 	const SPRITE_RAIKOU ; ad
 	const SPRITE_MILTANK ; ae
+	const SPRITE_MURKROW ; af
+	const SPRITE_DODRIO ; b0
+	const SPRITE_FEAROW ; b1
+	const SPRITE_SPEAROW ; b2
+	const SPRITE_PSYDUCK ; b3
+	const SPRITE_NIDORINO ; b4
+	const SPRITE_BLISSEY ; b5
+	const SPRITE_BAYLEEF ; b6
+	const SPRITE_PERSIAN ; b7
+	const SPRITE_MEOWTH ; b8
+	const SPRITE_NIDORAN_F ; b9
+	const SPRITE_NIDORAN_M ; ba
+	const SPRITE_DRATINI ; bb
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0

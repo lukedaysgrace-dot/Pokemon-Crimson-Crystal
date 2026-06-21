@@ -71,3 +71,7 @@ TrainerPicPointers::
 	dba MysticalmanPic
 	dba CrystalPic
 	dba Crystal2Pic
+	dba ProtonPic
+	dba PetrelPic
+	dba ArianaPic
+	dba ArcherPic

@@ -47,3 +47,16 @@ SpriteMons:
 	dw ENTEI
 	dw RAIKOU
 	dw MILTANK
+	dw MURKROW
+	dw DODRIO
+	dw FEAROW
+	dw SPEAROW
+	dw PSYDUCK
+	dw NIDORINO
+	dw BLISSEY
+	dw BAYLEEF
+	dw PERSIAN
+	dw MEOWTH
+	dw NIDORAN_F
+	dw NIDORAN_M
+	dw DRATINI

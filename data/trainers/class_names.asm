@@ -69,3 +69,7 @@ TrainerClassNames::
 	db "MYSTICALMAN@"
 	db "CRYSTAL@"
 	db "CRYSTAL@"
+	db "EXECUTIVE@"
+	db "EXECUTIVE@"
+	db "EXECUTIVE@"
+	db "EXECUTIVE@"
