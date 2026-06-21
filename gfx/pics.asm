@@ -1097,3 +1097,11 @@ MiloticFrontpic: INCBIN "gfx/pokemon/milotic/front.animated.2bpp.lz"
 MiloticBackpic:  INCBIN "gfx/pokemon/milotic/back.2bpp.lz"
 MimikyuFrontpic: INCBIN "gfx/pokemon/mimikyu/front.animated.2bpp.lz"
 MimikyuBackpic:  INCBIN "gfx/pokemon/mimikyu/back.2bpp.lz"
+
+
+SECTION "Rocket Executive Pics", ROMX
+
+ProtonPic: INCBIN "gfx/trainers/proton.2bpp.lz"
+PetrelPic: INCBIN "gfx/trainers/petrel.2bpp.lz"
+ArianaPic: INCBIN "gfx/trainers/ariana.2bpp.lz"
+ArcherPic: INCBIN "gfx/trainers/archer.2bpp.lz"

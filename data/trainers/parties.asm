@@ -5601,3 +5601,45 @@ MysticalmanGroup:
 	db -1 ; end
 
 	end_list_items
+
+ProtonGroup:
+	next_list_item ; PROTON (1)
+	db "PROTON@", TRAINERTYPE_NORMAL
+	db 14
+	dw KOFFING
+	db -1 ; end
+
+	end_list_items
+
+PetrelGroup:
+	next_list_item ; PETREL (1)
+	db "PETREL@", TRAINERTYPE_NORMAL
+	db 22
+	dw RATICATE
+	db 22
+	dw KOFFING
+	db -1 ; end
+
+	end_list_items
+
+ArianaGroup:
+	next_list_item ; ARIANA (1)
+	db "ARIANA@", TRAINERTYPE_NORMAL
+	db 25
+	dw ARBOK
+	db 25
+	dw GLOOM
+	db -1 ; end
+
+	end_list_items
+
+ArcherGroup:
+	next_list_item ; ARCHER (1)
+	db "ARCHER@", TRAINERTYPE_NORMAL
+	db 33
+	dw KOFFING
+	db 35
+	dw HOUNDOOM
+	db -1 ; end
+
+	end_list_items

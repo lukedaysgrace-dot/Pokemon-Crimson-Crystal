@@ -76,3 +76,7 @@ INCBIN "gfx/trainers/grunt_f.gbcpal", middle_colors
 INCBIN "gfx/trainers/mysticalman.gbcpal", middle_colors
 INCBIN "gfx/trainers/crystal.gbcpal", middle_colors
 INCBIN "gfx/trainers/crystal2.gbcpal", middle_colors
+INCBIN "gfx/trainers/proton.gbcpal", middle_colors
+INCBIN "gfx/trainers/petrel.gbcpal", middle_colors
+INCBIN "gfx/trainers/ariana.gbcpal", middle_colors
+INCBIN "gfx/trainers/archer.gbcpal", middle_colors
