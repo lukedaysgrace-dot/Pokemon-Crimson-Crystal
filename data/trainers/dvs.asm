@@ -70,7 +70,8 @@ TrainerClassDVs:
 	dn  9,  8,  8,  8 ; MYSTICALMAN
 	dn 15, 15, 15, 15 ; CRYSTAL
 	dn 15, 15, 15, 15 ; CRYSTAL2
-	dn 13,  8, 10,  8 ; PROTON
-	dn 13,  8, 10,  8 ; PETREL
-	dn  7, 14, 10,  8 ; ARIANA
-	dn 13,  8, 10,  8 ; ARCHER
+	dn 15, 15, 15, 15 ; PROTON
+	dn 15, 15, 15, 15 ; PETREL
+	dn 15, 15, 15, 15 ; ARIANA
+	dn 15, 15, 15, 15 ; ARCHER
+	dn 15, 15, 15, 15 ; PETREL_DIRECTOR

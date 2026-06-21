@@ -730,14 +730,20 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 
 	trainerclass PROTON ; 46
 	const PROTON1
+	const PROTON2
 
 	trainerclass PETREL ; 47
 	const PETREL1
 
 	trainerclass ARIANA ; 48
 	const ARIANA1
+	const ARIANA2
 
 	trainerclass ARCHER ; 49
 	const ARCHER1
+	const ARCHER2
+
+	trainerclass PETREL_DIRECTOR ; 4a
+	const PETREL_DIRECTOR1
 
 NUM_TRAINER_CLASSES EQU __enum__
