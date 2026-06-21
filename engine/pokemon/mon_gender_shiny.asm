@@ -110,12 +110,17 @@ InitMonPokerus:
 
 InitMonShinyGender:
 ; Assign a 10% shiny chance and species gender ratio.
+; Trainer Pokemon cannot be shiny. Their gender matches their trainer unless
+; their species is fixed-gender or genderless.
 ; de = destination shiny/gender flags byte.
 
 	push bc
 	push de
 	xor a
 	ld b, a
+	ld a, [wMonType]
+	and $f
+	jr nz, .trainer
 
 	call Random
 	cp SHINY_PROBABILITY
@@ -125,27 +130,38 @@ InitMonShinyGender:
 .not_shiny
 
 	call RollMonGender
-	jr c, .genderless
+	jr c, .store
 	and a
-	jr z, .female
+	jr z, .store
 	ld a, b
 	or MON_MALE_FLAG
 	ld b, a
-.female
-.genderless
-; Crystal's team is always female (gender is independent of DVs).
-	ld a, [wMonType]
-	and $f
+	jr .store
+
+.trainer
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld a, [wBaseGender]
+	cp GENDER_UNKNOWN
 	jr z, .store
+	and a
+	jr z, .male
+	cp GENDER_F100
+	jr z, .store
+
 	ld a, [wOtherTrainerClass]
-	cp CRYSTAL
-	jr z, .crystal
-	cp CRYSTAL2
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, BTTrainerClassGenders
+	add hl, bc
+	ld a, BANK(BTTrainerClassGenders)
+	call GetFarByte
+	and a
 	jr nz, .store
-.crystal
-	ld a, b
-	and %10111111 ; clear MON_MALE_FLAG
-	ld b, a
+.male
+	ld b, MON_MALE_FLAG
 .store
 	pop de
 	ld a, b
