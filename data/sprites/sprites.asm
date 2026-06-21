@@ -130,4 +130,5 @@ OverworldSprites:
 	overworld_sprite ProtonSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite PetrelSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite ArianaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ArcherSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PoliwrathSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
