@@ -6544,6 +6544,12 @@ LoadEnemyMon:
 	jr .Moves
 
 .OpponentParty:
+	ld hl, wOTPartyMon1Unused
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld a, [hl]
+	ld [wEnemyMonShinyGenderFlags], a
+
 ; Get HP from the party struct
 	ld hl, (wOTPartyMon1HP + 1)
 	ld a, [wCurPartyMon]

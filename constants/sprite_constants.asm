@@ -126,7 +126,8 @@
 	const SPRITE_PROTON ; 7a
 	const SPRITE_PETREL ; 7b
 	const SPRITE_ARIANA ; 7c
-	const SPRITE_POLIWRATH_NPC ; 7d
+	const SPRITE_ARCHER ; 7d
+	const SPRITE_POLIWRATH_NPC ; 7e
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
