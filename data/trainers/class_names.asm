@@ -73,3 +73,4 @@ TrainerClassNames::
 	db "EXECUTIVE@"
 	db "EXECUTIVE@"
 	db "EXECUTIVE@"
+	db "EXECUTIVE@"

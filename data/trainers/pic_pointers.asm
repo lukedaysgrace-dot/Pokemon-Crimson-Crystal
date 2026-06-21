@@ -75,3 +75,4 @@ TrainerPicPointers::
 	dba PetrelPic
 	dba ArianaPic
 	dba ArcherPic
+	dba PetrelDirectorPic

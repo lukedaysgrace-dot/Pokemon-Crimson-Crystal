@@ -75,3 +75,4 @@ TrainerGroups:
 	dba PetrelGroup
 	dba ArianaGroup
 	dba ArcherGroup
+	dba PetrelDirectorGroup

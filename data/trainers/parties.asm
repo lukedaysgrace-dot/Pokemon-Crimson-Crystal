@@ -5609,6 +5609,13 @@ ProtonGroup:
 	dw KOFFING
 	db -1 ; end
 
+	next_list_item ; PROTON (2)
+	db "PROTON@", TRAINERTYPE_MOVES
+	db 36
+	dw GOLBAT
+	dw LEECH_LIFE, BITE, CONFUSE_RAY, WING_ATTACK
+	db -1 ; end
+
 	end_list_items
 
 PetrelGroup:
@@ -5631,6 +5638,19 @@ ArianaGroup:
 	dw GLOOM
 	db -1 ; end
 
+	next_list_item ; ARIANA (2)
+	db "ARIANA@", TRAINERTYPE_MOVES
+	db 32
+	dw ARBOK
+	dw WRAP, POISON_STING, BITE, GLARE
+	db 32
+	dw VILEPLUME
+	dw ABSORB, SWEET_SCENT, SLEEP_POWDER, ACID
+	db 32
+	dw MURKROW
+	dw PECK, PURSUIT, HAZE, NIGHT_SHADE
+	db -1 ; end
+
 	end_list_items
 
 ArcherGroup:
@@ -5640,6 +5660,44 @@ ArcherGroup:
 	dw KOFFING
 	db 35
 	dw HOUNDOOM
+	db -1 ; end
+
+	next_list_item ; ARCHER (2)
+	db "ARCHER@", TRAINERTYPE_MOVES
+	db 33
+	dw HOUNDOUR
+	dw EMBER, ROAR, BITE, FAINT_ATTACK
+	db 33
+	dw KOFFING
+	dw TACKLE, SLUDGE, SMOKESCREEN, HAZE
+	db 35
+	dw HOUNDOOM
+	dw EMBER, SMOG, BITE, FAINT_ATTACK
+	db -1 ; end
+
+	end_list_items
+
+PetrelDirectorGroup:
+	next_list_item ; PETREL_DIRECTOR (1)
+	db "PETREL@", TRAINERTYPE_MOVES
+	db 30
+	dw KOFFING
+	dw TACKLE, SELFDESTRUCT, SLUDGE, SMOKESCREEN
+	db 30
+	dw KOFFING
+	dw TACKLE, SELFDESTRUCT, SLUDGE, SMOKESCREEN
+	db 30
+	dw KOFFING
+	dw TACKLE, SELFDESTRUCT, SLUDGE, SMOKESCREEN
+	db 32
+	dw WEEZING
+	dw TACKLE, EXPLOSION, SLUDGE, SMOKESCREEN
+	db 30
+	dw KOFFING
+	dw TACKLE, SELFDESTRUCT, SLUDGE, SMOKESCREEN
+	db 30
+	dw KOFFING
+	dw TACKLE, SMOG, SLUDGE, SMOKESCREEN
 	db -1 ; end
 
 	end_list_items

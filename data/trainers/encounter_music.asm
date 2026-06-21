@@ -76,3 +76,4 @@ TrainerEncounterMusic::
 	db MUSIC_ROCKET_ENCOUNTER      ; petrel
 	db MUSIC_ROCKET_ENCOUNTER      ; ariana
 	db MUSIC_ROCKET_ENCOUNTER      ; archer
+	db MUSIC_ROCKET_ENCOUNTER      ; petrel_director
