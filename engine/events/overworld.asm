@@ -1130,7 +1130,7 @@ TryStrengthOW:
 	call CheckFieldHMAllow
 	jr c, .nope
 
-	ld a, 2
+	xor a
 	jr .done
 
 .nope
@@ -1138,7 +1138,7 @@ TryStrengthOW:
 	jr .done
 
 .already_using
-	xor a
+	ld a, 2
 	jr .done
 
 .done

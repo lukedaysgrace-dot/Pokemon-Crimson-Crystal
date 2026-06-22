@@ -12,6 +12,8 @@
 010AA6CE
 !disabled
 # all badges
+01FF57D8
+91FF57D8
 !disabled
 # all hms
 01FF54D8
@@ -60,3 +62,9 @@
 0101D5D8
 0163D6D8
 01FFD7D8
+!disabled
+# johto badges
+01FF54D8
+!disabled
+# restore kanto no badges
+010055D8
