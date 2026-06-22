@@ -627,10 +627,10 @@ _CGB_UnownPuzzle:
 
 _CGB_TrainerCard:
 	ld de, wBGPals1
-	xor a ; CHRIS
+	xor a ; GOLD
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, FALKNER ; KRIS
+	ld a, FALKNER ; LYRA
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	ld a, BUGSY
@@ -660,15 +660,15 @@ _CGB_TrainerCard:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, [wPlayerGender]
 	and a
-	ld a, $1 ; kris
+	ld a, $1 ; lyra
 	jr z, .got_gender
-	ld a, $0 ; chris
+	ld a, $0 ; gold
 .got_gender
 	call ByteFill
-	; fill trainer sprite area with Chris's player palette
+	; fill trainer sprite area with Gold's player palette
 	hlcoord 14, 1, wAttrMap
 	lb bc, 7, 5
-	xor a ; chris
+	xor a ; gold
 	call FillBoxCGB
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrMap
@@ -701,7 +701,7 @@ _CGB_TrainerCard:
 	lb bc, 2, 4
 	ld a, $7 ; pryce
 	call FillBoxCGB
-	; clair uses kris's palette
+	; clair uses lyra's palette
 	ld a, [wPlayerGender]
 	and a
 	push af
@@ -781,11 +781,11 @@ _CGB_PackPals:
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .tutorial_male
 
-	ld hl, .ChrisPackPals
+	ld hl, .GoldPackPals
 	jr .got_gender
 
 .tutorial_male
-	ld hl, .ChrisPackPals
+	ld hl, .GoldPackPals
 
 .got_gender
 	ld de, wBGPals1
@@ -819,10 +819,10 @@ _CGB_PackPals:
 	ldh [hCGBPalUpdate], a
 	ret
 
-.ChrisPackPals:
+.GoldPackPals:
 INCLUDE "gfx/pack/pack.pal"
 
-.KrisPackPals:
+.LyraPackPals:
 INCLUDE "gfx/pack/pack_f.pal"
 
 _CGB_Pokepic:

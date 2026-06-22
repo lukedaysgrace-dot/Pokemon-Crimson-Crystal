@@ -70,11 +70,11 @@ SunnyScript:
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny:
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .Kris
+	iftrue .Lyra
 	writetext SunnyGivesGiftText1
 	buttonsound
 	sjump .next
-.Kris:
+.Lyra:
 	writetext SunnyGivesGiftText2
 	buttonsound
 .next

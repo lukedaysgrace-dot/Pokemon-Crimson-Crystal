@@ -142,7 +142,7 @@ DelayLoadingNewSprites:
 	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
 
-CheckReplaceKrisSprite:
+CheckReplacePlayerSprite:
 	nop
 	call .CheckBiking
 	jr c, .ok
@@ -153,7 +153,7 @@ CheckReplaceKrisSprite:
 	ret
 
 .ok
-	call ReplaceKrisSprite
+	call ReplacePlayerSprite
 	ret
 
 .CheckBiking:

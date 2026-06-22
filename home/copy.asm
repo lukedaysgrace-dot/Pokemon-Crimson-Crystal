@@ -93,8 +93,8 @@ OldDMATransfer::
 	ldh [hBGMapMode], a
 	ret
 
-ReplaceKrisSprite::
-	farcall _ReplaceKrisSprite
+ReplacePlayerSprite::
+	farcall _ReplacePlayerSprite
 	ret
 
 LoadStandardFont::

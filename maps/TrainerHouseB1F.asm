@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const TRAINERHOUSEB1F_RECEPTIONIST
-	const TRAINERHOUSEB1F_CHRIS
+	const TRAINERHOUSEB1F_GOLD
 
 TrainerHouseB1F_MapScripts:
 	db 1 ; scene scripts
@@ -43,14 +43,14 @@ TrainerHouseReceptionistScript:
 	special TrainerHouse
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
-	setlasttalked TRAINERHOUSEB1F_CHRIS
+	setlasttalked TRAINERHOUSEB1F_GOLD
 	loadtrainer CAL, CAL2
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
 	winlosstext TrainerHouseB1FCalBeatenText, 0
-	setlasttalked TRAINERHOUSEB1F_CHRIS
+	setlasttalked TRAINERHOUSEB1F_GOLD
 	loadtrainer CAL, CAL3
 	startbattle
 	reloadmapafterbattle
@@ -180,4 +180,4 @@ TrainerHouseB1F_MapEvents:
 
 	db 2 ; object events
 	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
-	object_event  6, 11, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  6, 11, SPRITE_GOLD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

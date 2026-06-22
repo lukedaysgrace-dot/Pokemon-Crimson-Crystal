@@ -56,11 +56,11 @@ MovePlayerPic:
 	jr .loop
 
 ShowPlayerNamingChoices:
-	ld hl, ChrisNameMenuHeader
+	ld hl, GoldNameMenuHeader
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotGender
-	ld hl, KrisNameMenuHeader
+	ld hl, LyraNameMenuHeader
 .GotGender:
 	call LoadMenuHeader
 	call VerticalMenu
@@ -88,30 +88,30 @@ GetPlayerIcon:
 ; Get the player icon corresponding to gender
 
 ; Male
-	ld de, ChrisSpriteGFX
-	ld b, BANK(ChrisSpriteGFX)
+	ld de, GoldSpriteGFX
+	ld b, BANK(GoldSpriteGFX)
 
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .done
 
 ; Female
-	ld de, KrisSpriteGFX
-	ld b, BANK(KrisSpriteGFX)
+	ld de, LyraSpriteGFX
+	ld b, BANK(LyraSpriteGFX)
 
 .done
 	ret
 
 GetCardPic:
-	ld hl, ChrisCardPic
+	ld hl, GoldCardPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
-	ld hl, KrisCardPic
+	ld hl, LyraCardPic
 .GotClass:
 	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
-	ld a, BANK(ChrisCardPic) ; aka BANK(KrisCardPic)
+	ld a, BANK(GoldCardPic) ; aka BANK(LyraCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
 	ld de, vTiles2 tile $23
@@ -120,11 +120,11 @@ GetCardPic:
 	call FarCopyBytes
 	ret
 
-ChrisCardPic:
-INCBIN "gfx/trainer_card/chris_card.2bpp"
+GoldCardPic:
+INCBIN "gfx/trainer_card/gold_card.2bpp"
 
-KrisCardPic:
-INCBIN "gfx/trainer_card/kris_card.2bpp"
+LyraCardPic:
+INCBIN "gfx/trainer_card/lyra_card.2bpp"
 
 CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
@@ -132,13 +132,13 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, GetChrisBackpic
-	call GetKrisBackpic
+	jr z, GetGoldBackpic
+	call GetLyraBackpic
 	ret
 
-GetChrisBackpic:
-	ld hl, ChrisBackpic
-	ld b, BANK(ChrisBackpic)
+GetGoldBackpic:
+	ld hl, GoldBackpic
+	ld b, BANK(GoldBackpic)
 	ld de, vTiles2 tile $31
 	ld c, 7 * 7
 	predef DecompressGet2bpp
@@ -157,15 +157,15 @@ HOF_LoadTrainerFrontpic:
 .GotClass:
 	ld a, e
 	ld [wTrainerClass], a
-	ld de, ChrisPic
+	ld de, GoldPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotPic
-	ld de, KrisPic
+	ld de, LyraPic
 
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
+	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld c, 7 * 7
 	call Get2bpp
 	call WaitBGMap
@@ -177,24 +177,24 @@ DrawIntroPlayerPic:
 ; Draw the player pic at (6,4).
 
 ; Get class
-	ld e, CHRIS
+	ld e, GOLD
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
-	ld e, KRIS
+	ld e, LYRA
 .GotClass:
 	ld a, e
 	ld [wTrainerClass], a
 
 ; Load pic
-	ld de, ChrisPic
+	ld de, GoldPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotPic
-	ld de, KrisPic
+	ld de, LyraPic
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
+	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
@@ -206,19 +206,19 @@ DrawIntroPlayerPic:
 	predef PlaceGraphic
 	ret
 
-ChrisPic:
-INCBIN "gfx/player/chris.2bpp"
+GoldPic:
+INCBIN "gfx/player/gold.2bpp"
 
-KrisPic:
-INCBIN "gfx/player/kris.2bpp"
+LyraPic:
+INCBIN "gfx/player/lyra.2bpp"
 
-GetKrisBackpic:
-; Kris's backpic is uncompressed.
-	ld de, KrisBackpic
+GetLyraBackpic:
+; Lyra's backpic is uncompressed.
+	ld de, LyraBackpic
 	ld hl, vTiles2 tile $31
-	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
+	lb bc, BANK(LyraBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
 
-KrisBackpic:
-INCBIN "gfx/player/kris_back.2bpp"
+LyraBackpic:
+INCBIN "gfx/player/lyra_back.2bpp"

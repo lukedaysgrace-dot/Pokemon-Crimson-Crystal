@@ -6,8 +6,8 @@ ENDM
 
 OverworldSprites:
 ; entries correspond to SPRITE_* constants
-	overworld_sprite ChrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite ChrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite GoldSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite GoldBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite GameboyKidSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
 	overworld_sprite SilverSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite OakSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
@@ -88,7 +88,7 @@ OverworldSprites:
 	overworld_sprite BigOnixSpriteGFX, 12, BIG_SPRITE, PAL_OW_BROWN
 	overworld_sprite N64SpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite SlowpokeNoTailSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED
-	overworld_sprite SurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite GoldSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite PokeBallSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite PokedexSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite PaperSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
@@ -101,15 +101,15 @@ OverworldSprites:
 	overworld_sprite FruitTreeSpriteGFX, 4, STILL_SPRITE, PAL_OW_TREE
 	overworld_sprite GoldTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_SILVER
-	overworld_sprite KrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite KrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite LyraSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite LyraBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite KurtOutsideSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
-	overworld_sprite SuicuneSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite LyraSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite EnteiSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite StandingYoungsterSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
-	overworld_sprite ChrisSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite KrisSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite GoldSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite LyraSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite MysticalmanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CrystalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CooltrainerMNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED

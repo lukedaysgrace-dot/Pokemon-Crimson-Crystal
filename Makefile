@@ -154,17 +154,17 @@ gfx/battle_anims/rocks.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
 
-gfx/player/chris.2bpp: rgbgfx += -h
-gfx/player/chris_back.2bpp: rgbgfx += -h
-gfx/player/kris.2bpp: rgbgfx += -h
-gfx/player/kris_back.2bpp: rgbgfx += -h
+gfx/player/gold.2bpp: rgbgfx += -h
+gfx/player/gold_back.2bpp: rgbgfx += -h
+gfx/player/lyra.2bpp: rgbgfx += -h
+gfx/player/lyra_back.2bpp: rgbgfx += -h
 
-gfx/trainer_card/chris_card.2bpp: rgbgfx += -h
-gfx/trainer_card/kris_card.2bpp: rgbgfx += -h
+gfx/trainer_card/gold_card.2bpp: rgbgfx += -h
+gfx/trainer_card/lyra_card.2bpp: rgbgfx += -h
 gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 
-gfx/overworld/chris_fish.2bpp: tools/gfx += --trim-whitespace
-gfx/overworld/kris_fish.2bpp: tools/gfx += --trim-whitespace
+gfx/overworld/gold_fish.2bpp: tools/gfx += --trim-whitespace
+gfx/overworld/lyra_fish.2bpp: tools/gfx += --trim-whitespace
 
 gfx/battle/dude.2bpp: rgbgfx += -h
 

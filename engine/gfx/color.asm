@@ -751,7 +751,7 @@ GetPlayerOrMonPalettePointer:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .male
-	; Kris shares Chris's player palette.
+	; Lyra shares Gold's player palette.
 	ld hl, PlayerPalette
 	ret
 
