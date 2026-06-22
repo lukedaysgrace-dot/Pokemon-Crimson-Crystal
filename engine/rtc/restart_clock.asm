@@ -28,7 +28,6 @@ endr
 	db 60, 15
 
 RestartClockFromItem:
-	farcall RelicClockTimeDistortion
 	call ClearBGPalettes
 	call ClearSprites
 	xor a
@@ -52,12 +51,10 @@ RestartClockFromItem:
 	ldh [hLYOverrideEnd], a
 	ldh [hSCX], a
 	ldh [hSCY], a
+	ldh [hBGMapMode], a
 	call ClearBGPalettes
-	call ReturnToMapFromSubmenu
-	call ReloadTilesetAndPalettes
-	call EnableSpriteUpdates
-	call UpdateSprites
-	call FinishExitMenu
+	call ClearSprites
+	call ClearScreen
 	pop bc
 	ret
 
