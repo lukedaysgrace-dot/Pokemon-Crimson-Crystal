@@ -132,7 +132,7 @@ ItemEffects:
 	dw NoEffect            ; MIRACLE_SEED
 	dw NoEffect            ; THICK_CLUB
 	dw NoEffect            ; FOCUS_BAND
-	dw NoEffect            ; ITEM_78
+	dw RelicClockEffect     ; RELIC_CLOCK
 	dw EnergypowderEffect  ; ENERGYPOWDER
 	dw EnergyRootEffect    ; ENERGY_ROOT
 	dw HealPowderEffect    ; HEAL_POWDER
@@ -1114,6 +1114,88 @@ TownMapEffect:
 	farcall _TownMap
 	call ExitAllMenus
 	ret
+
+RelicClockEffect:
+	ld hl, RelicClockScript
+	call QueueScript
+	ret
+
+RelicClockScript:
+	reloadmappart
+	callasm RelicClockUse
+	end
+
+RelicClockUse:
+	farcall RestartClockFromItem
+	ret
+
+RelicClockTimeDistortion:
+	ldh a, [hSCX]
+	ld [wcf66], a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wLYOverrides)
+	ldh [rSVBK], a
+	xor a
+	ld [wcf64], a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ld a, SCREEN_HEIGHT_PX
+	ldh [hLYOverrideEnd], a
+	ld b, 24
+
+.frame
+	push bc
+	ld a, [wcf64]
+	add 3
+	ld [wcf64], a
+	ld e, a
+	ld a, 24
+	sub b
+	srl a
+	srl a
+	inc a
+	ld [wcf65], a
+	ld a, SCREEN_HEIGHT_PX
+	ld bc, wLYOverridesBackup
+
+.scanline
+	push af
+	push de
+	ld a, [wcf65]
+	ld d, a
+	ld a, e
+	call RelicClockSine
+	ld hl, wcf66
+	add [hl]
+	ld [bc], a
+	inc bc
+	pop de
+	ld a, e
+	add 2
+	ld e, a
+	pop af
+	dec a
+	jr nz, .scanline
+	call PushLYOverrides
+	ld a, LOW(rSCX)
+	ldh [hLCDCPointer], a
+	call DelayFrame
+	pop bc
+	dec b
+	jr nz, .frame
+	xor a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
+	ld a, [wcf66]
+	ldh [hSCX], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+RelicClockSine:
+	calc_sine_wave
 
 BicycleEffect:
 	farcall BikeFunction

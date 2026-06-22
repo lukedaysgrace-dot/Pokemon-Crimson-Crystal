@@ -118,7 +118,7 @@ ItemNames::
 	db "MIRACLE SEED@"
 	db "THICK CLUB@"
 	db "FOCUS BAND@"
-	db "TERU-SAMA@"
+	db "RELIC CLOCK@"
 	db "ENERGYPOWDER@"
 	db "ENERGY ROOT@"
 	db "HEAL POWDER@"

@@ -119,7 +119,7 @@ ItemDescriptions:
 	dw MiracleSeedDesc
 	dw ThickClubDesc
 	dw FocusBandDesc
-	dw QuestionMarkDesc
+	dw RelicClockDesc
 	dw EnergyPowderDesc
 	dw EnergyRootDesc
 	dw HealPowderDesc
@@ -702,6 +702,10 @@ ThickClubDesc:
 FocusBandDesc:
 	db   "May prevent faint-"
 	next "ing. (HOLD)@"
+
+RelicClockDesc:
+	db   "An ancient clock"
+	next "that resets time.@"
 
 EnergyPowderDesc:
 	db   "Restores #MON"
