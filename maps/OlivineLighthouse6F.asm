@@ -1,6 +1,7 @@
 	object_const_def ; object_event constants
 	const OLIVINELIGHTHOUSE6F_JASMINE
-	const OLIVINELIGHTHOUSE6F_MONSTER
+	const OLIVINELIGHTHOUSE6F_AMPY_SICK
+	const OLIVINELIGHTHOUSE6F_AMPY_HEALTHY
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
 OlivineLighthouse6F_MapScripts:
@@ -11,6 +12,13 @@ OlivineLighthouse6F_MapScripts:
 
 .LoadReservedID:
 	loadmonindex 1, AMPHAROS
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iftrue .ShowHealthyAmphy
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	return
+
+.ShowHealthyAmphy:
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	return
 
 OlivineLighthouseJasmine:
@@ -41,7 +49,7 @@ OlivineLighthouseJasmine:
 	closetext
 	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_SICK, LEFT
 	opentext
 	playmusic MUSIC_HEAL
 	writetext JasmineAmphyHowAreYouFeelingText
@@ -51,19 +59,22 @@ OlivineLighthouseJasmine:
 	special RestartMapMusic
 	cry AMPHAROS
 	special FadeOutPalettes
+	disappear OLIVINELIGHTHOUSE6F_AMPY_SICK
+	appear OLIVINELIGHTHOUSE6F_AMPY_HEALTHY
+	special RefreshSprites
 	pause 10
 	special FadeInPalettes
 	opentext
 	writetext AmphyPaluPaluluText
 	waitbutton
 	closetext
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_HEALTHY, RIGHT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_HEALTHY, LEFT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_HEALTHY, RIGHT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_HEALTHY, LEFT
 	pause 10
 	faceplayer
 	opentext
@@ -95,7 +106,7 @@ OlivineLighthouseJasmine:
 	closetext
 	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPY_SICK, LEFT
 	opentext
 	writetext JasmineAmphyHangOnText
 	waitbutton
@@ -273,7 +284,8 @@ OlivineLighthouse6F_MapEvents:
 
 	db 0 ; bg events
 
-	db 3 ; object events
+	db 4 ; object events
 	object_event  8,  8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event  9,  8, SPRITE_AMPHAROS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
+	object_event  9,  8, SPRITE_AMPY_SICK, SPRITEMOVEDATA_SLOW_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  9,  8, SPRITE_AMPHAROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	object_event  3,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

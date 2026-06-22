@@ -297,10 +297,10 @@ SpriteMovementData::
 	db 0 ; flags2
 	db SWIMMING ; palette flags
 
-; 25
-	db SPRITEMOVEFN_00 ; movement function
+; SPRITEMOVEDATA_SLOW_POKEMON
+	db SPRITEMOVEFN_SLOW_BOUNCE ; movement function
 	db DOWN ; facing
-	db OBJECT_ACTION_STAND ; action
-	db 0 ; flags1
+	db OBJECT_ACTION_SLOW_BOUNCE ; action
+	db WONT_DELETE | FIXED_FACING | SLIDING | MOVE_ANYWHERE ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags

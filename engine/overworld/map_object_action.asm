@@ -17,6 +17,7 @@ ObjectActionPairPointers:
 	dw SetFacingBoulderDust,           SetFacingStanding
 	dw SetFacingGrassShake,            SetFacingStanding
 	dw SetFacingSkyfall,               SetFacingCurrent
+	dw SetFacingSlowBounce,            SetFacingFreezeBounce
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -210,6 +211,19 @@ SetFacingBounce:
 	and %00001111
 	ld [hl], a
 	and %00001000
+	jr z, SetFacingFreezeBounce
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], FACING_STEP_UP_0
+	ret
+
+SetFacingSlowBounce:
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	and %01000000
 	jr z, SetFacingFreezeBounce
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
