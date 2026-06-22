@@ -9256,19 +9256,19 @@ GetTrainerBackpic:
 ; What gender are we?
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
-	jr nz, .Chris
+	jr nz, .Gold
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .Chris
+	jr z, .Gold
 
 ; It's a girl.
-	farcall GetKrisBackpic
+	farcall GetLyraBackpic
 	ret
 
-.Chris:
+.Gold:
 ; It's a boy.
-	ld b, BANK(ChrisBackpic)
-	ld hl, ChrisBackpic
+	ld b, BANK(GoldBackpic)
+	ld hl, GoldBackpic
 
 .Decompress:
 	ld de, vTiles2 tile $31

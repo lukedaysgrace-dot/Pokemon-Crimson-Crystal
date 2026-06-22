@@ -6,7 +6,7 @@ GetEmote2bpp:
 	ldh [rVBK], a
 	ret
 
-_ReplaceKrisSprite::
+_ReplacePlayerSprite::
 	call GetPlayerSprite
 	call SetPlayerSpritePalette
 	ld a, [wUsedSprites]
@@ -75,15 +75,15 @@ RefreshSprites::
 	ret
 
 GetPlayerSprite:
-; Get Chris or Kris's sprite.
-	ld hl, ChrisStateSprites
+; Get Gold or Lyra's sprite.
+	ld hl, GoldStateSprites
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .go
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .go
-	ld hl, KrisStateSprites
+	ld hl, LyraStateSprites
 
 .go
 	ld a, [wPlayerState]
@@ -96,10 +96,10 @@ GetPlayerSprite:
 	cp -1
 	jr nz, .loop
 
-; Any player state not in the array defaults to Chris's sprite.
+; Any player state not in the array defaults to Gold's sprite.
 	xor a ; ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
-	ld a, SPRITE_CHRIS
+	ld a, SPRITE_GOLD
 	jr .finish
 
 .good

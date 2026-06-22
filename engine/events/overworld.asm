@@ -431,7 +431,7 @@ UsedSurfScript:
 	readmem wBuffer2
 	writevar VAR_MOVEMENT
 
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	special PlayMapMusic
 ; step into the water (slow_step DIR, step_end)
 	special SurfStartStep
@@ -672,7 +672,7 @@ FlyWarpScript:
 	farcall RestoreFirstOBJPalette ; undo the FlyMon palette on OBJ pal 0
 	farcall Function561d
 	call DelayFrame
-	call ReplaceKrisSprite
+	call ReplacePlayerSprite
 	farcall LoadOverworldFont
 	farcall ReloadBank0SpriteFacings
 	ret
@@ -1674,7 +1674,7 @@ PutTheRodAway:
 	ld a, $1
 	ld [wPlayerAction], a
 	call UpdateSprites
-	call ReplaceKrisSprite
+	call ReplacePlayerSprite
 	ret
 
 UnknownText_0xd0a4:
@@ -1785,13 +1785,13 @@ Script_GetOnBike:
 	writetext GotOnTheBikeText
 	waitbutton
 	closetext
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	end
 
 Script_GetOnBike_Register:
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
 	closetext
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	end
 
 ; unused
@@ -1807,7 +1807,7 @@ Script_GetOffBike:
 
 FinishGettingOffBike:
 	closetext
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	special PlayMapMusic
 	end
 
@@ -1930,13 +1930,13 @@ Script_GetOnSkateboard:
 	writetext GotOnTheBikeText
 	waitbutton
 	closetext
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	end
 
 Script_GetOnSkateboard_Register:
 	loadvar VAR_MOVEMENT, PLAYER_SKATEBOARD
 	closetext
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	end
 
 Script_GetOffSkateboard:
@@ -1982,7 +1982,7 @@ Text_FieldHMNeedHM:
 StopSurfFromField:
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
-	call ReplaceKrisSprite
+	call ReplacePlayerSprite
 	ret
 
 AskStopSurfScript:

@@ -16,7 +16,7 @@ ENDM
 ; - BTTrainerClassGenders (see data/trainers/genders.asm)
 ; trainer constants are Trainers indexes, for the sub-tables of TrainerGroups (see data/trainers/parties.asm)
 	enum_start
-CHRIS EQU __enum__
+GOLD EQU __enum__
 	trainerclass TRAINER_NONE ; 0
 	const PHONECONTACT_MOM
 	const PHONECONTACT_BIKESHOP
@@ -25,7 +25,7 @@ CHRIS EQU __enum__
 	const PHONECONTACT_BUENA
 	const PHONECONTACT_OAK
 
-KRIS EQU __enum__
+LYRA EQU __enum__
 	trainerclass FALKNER ; 1
 	const FALKNER1
 	const FALKNER2

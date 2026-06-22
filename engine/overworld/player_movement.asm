@@ -783,7 +783,7 @@ ENDM
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
-	call ReplaceKrisSprite ; UpdateSprites
+	call ReplacePlayerSprite ; UpdateSprites
 	pop bc
 	ret
 

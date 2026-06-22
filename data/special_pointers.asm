@@ -25,7 +25,7 @@ SpecialsPointers::
 	add_special TradeCenter
 	add_special Colosseum
 	add_special TimeCapsule
-	add_special CableClubCheckWhichChris ; $10
+	add_special CableClubCheckWhichPlayer ; $10
 	add_special CheckMysteryGift
 	add_special GetMysteryGiftItem
 	add_special UnlockMysteryGift
@@ -67,7 +67,7 @@ SpecialsPointers::
 	add_special UpdateTimePals ; bank 0
 	add_special ClearTileMap ; bank 0
 	add_special UpdateSprites ; bank 0
-	add_special ReplaceKrisSprite ; $38 ; bank 0
+	add_special ReplacePlayerSprite ; $38 ; bank 0
 	add_special GameCornerPrizeMonCheckDex
 	add_special UnusedSetSeenMon
 	add_special WaitSFX ; bank 0

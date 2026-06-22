@@ -36,13 +36,13 @@ Copycat:
 	iftrue .Default_Female_1
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinAroundMovementData
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_GOLD
 	sjump .Default_Merge_1
 
 .Default_Female_1:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_LYRA
 .Default_Merge_1:
 	special RefreshSprites
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -132,13 +132,13 @@ Copycat:
 	iftrue .GotPass_Female_1
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinAroundMovementData
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_GOLD
 	sjump .GotPass_Merge_1
 
 .GotPass_Female_1:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_LYRA
 .GotPass_Merge_1:
 	special RefreshSprites
 	opentext

@@ -1232,7 +1232,7 @@ DrawPackGFX:
 	ret
 
 .female
-	farcall DrawKrisPackGFX
+	farcall DrawLyraPackGFX
 	ret
 
 PackGFXPointers:

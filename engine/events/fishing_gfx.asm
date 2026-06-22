@@ -8,7 +8,7 @@ LoadFishingGFX:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
-	ld de, KrisFishingGFX
+	ld de, LyraFishingGFX
 .got_gender
 
 	ld hl, vTiles0 tile $02
@@ -36,7 +36,7 @@ LoadFishingGFX:
 	ret
 
 FishingGFX:
-INCBIN "gfx/overworld/chris_fish.2bpp"
+INCBIN "gfx/overworld/gold_fish.2bpp"
 
-KrisFishingGFX:
-INCBIN "gfx/overworld/kris_fish.2bpp"
+LyraFishingGFX:
+INCBIN "gfx/overworld/lyra_fish.2bpp"

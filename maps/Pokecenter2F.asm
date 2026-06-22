@@ -436,8 +436,8 @@ Pokecenter2F_CheckGender:
 	setval (PAL_NPC_RED << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special ReplaceKrisSprite
+	setflag ENGINE_LYRA_IN_CABLE_CLUB
+	special ReplacePlayerSprite
 	opentext
 	writetext Text_LikeTheLook
 	waitbutton
@@ -447,7 +447,7 @@ Pokecenter2F_CheckGender:
 	end
 
 Script_WalkOutOfLinkTradeRoom:
-	checkflag ENGINE_KRIS_IN_CABLE_CLUB
+	checkflag ENGINE_LYRA_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement POKECENTER2F_TRADE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesThreeStepsDown
@@ -457,19 +457,19 @@ Script_WalkOutOfLinkTradeRoom:
 .Female:
 	applymovement POKECENTER2F_TRADE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown_2
-	clearflag ENGINE_KRIS_IN_CABLE_CLUB
+	clearflag ENGINE_LYRA_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	setval (PAL_NPC_RED << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
 	applymovement POKECENTER2F_TRADE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightAndDown
 	end
 
 Script_WalkOutOfLinkBattleRoom:
-	checkflag ENGINE_KRIS_IN_CABLE_CLUB
+	checkflag ENGINE_LYRA_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesThreeStepsDown
@@ -479,13 +479,13 @@ Script_WalkOutOfLinkBattleRoom:
 .Female:
 	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown_2
-	clearflag ENGINE_KRIS_IN_CABLE_CLUB
+	clearflag ENGINE_LYRA_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	setval (PAL_NPC_RED << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
 	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightAndDown
 	end
@@ -545,8 +545,8 @@ TimeCapsuleScript_CheckPlayerGender:
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown
 	faceobject PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
-	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special ReplaceKrisSprite
+	setflag ENGINE_LYRA_IN_CABLE_CLUB
+	special ReplacePlayerSprite
 	opentext
 	writetext Text_LikeTheLook
 	waitbutton
@@ -557,7 +557,7 @@ TimeCapsuleScript_CheckPlayerGender:
 
 Script_LeftTimeCapsule:
 	special WaitForOtherPlayerToExit
-	checkflag ENGINE_KRIS_IN_CABLE_CLUB
+	checkflag ENGINE_LYRA_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown
@@ -567,13 +567,13 @@ Script_LeftTimeCapsule:
 .Female:
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
-	clearflag ENGINE_KRIS_IN_CABLE_CLUB
+	clearflag ENGINE_LYRA_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	setval (PAL_NPC_RED << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special ReplacePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:

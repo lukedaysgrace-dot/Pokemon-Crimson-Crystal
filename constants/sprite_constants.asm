@@ -1,9 +1,7 @@
-; sprite ids
-; OverworldSprites indexes (see data/sprites/sprites.asm)
 	const_def
 	const SPRITE_NONE ; 00
-	const SPRITE_CHRIS ; 01
-	const SPRITE_CHRIS_BIKE ; 02
+	const SPRITE_GOLD ; 01
+	const SPRITE_GOLD_BIKE ; 02
 	const SPRITE_GAMEBOY_KID ; 03
 	const SPRITE_SILVER ; 04
 	const SPRITE_OAK ; 05
@@ -84,7 +82,7 @@
 	const SPRITE_BIG_ONIX ; 50
 	const SPRITE_N64 ; 51
 	const SPRITE_SLOWPOKE_NOTAIL ; 52
-	const SPRITE_SURF ; 53
+	const SPRITE_GOLD_SURF ; 53
 	const SPRITE_POKE_BALL ; 54
 	const SPRITE_POKEDEX ; 55
 	const SPRITE_PAPER ; 56
@@ -97,15 +95,15 @@
 	const SPRITE_FRUIT_TREE ; 5d
 	const SPRITE_GOLD_TROPHY ; 5e
 	const SPRITE_SILVER_TROPHY ; 5f
-	const SPRITE_KRIS ; 60
-	const SPRITE_KRIS_BIKE ; 61
+	const SPRITE_LYRA ; 60
+	const SPRITE_LYRA_BIKE ; 61
 	const SPRITE_KURT_OUTSIDE ; 62
-	const SPRITE_SUICUNE_NPC ; 63 (unused: mon icons are used instead)
+	const SPRITE_LYRA_SURF ; 63
 	const SPRITE_ENTEI_NPC ; 64 (unused: mon icons are used instead)
 	const SPRITE_RAIKOU_NPC ; 65 (unused: mon icons are used instead)
 	const SPRITE_STANDING_YOUNGSTER ; 66
-	const SPRITE_CHRIS_SKATEBOARD ; 67
-	const SPRITE_KRIS_SKATEBOARD ; 68
+	const SPRITE_GOLD_SKATEBOARD ; 67
+	const SPRITE_LYRA_SKATEBOARD ; 68
 	const SPRITE_MYSTICALMAN ; 69
 	const SPRITE_CRYSTAL ; 6a
 	const SPRITE_COOLTRAINER_M_NEW ; 6b

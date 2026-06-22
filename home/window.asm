@@ -38,7 +38,7 @@ CloseText::
 	call SafeUpdateSprites
 	ld a, $90
 	ldh [hWY], a
-	call ReplaceKrisSprite
+	call ReplacePlayerSprite
 	farcall ReturnFromMapSetupScript
 	farcall LoadOverworldFont
 	farcall ReloadBank0SpriteFacings

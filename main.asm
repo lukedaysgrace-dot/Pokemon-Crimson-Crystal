@@ -129,8 +129,8 @@ SECTION "bankA", ROMX
 
 INCLUDE "engine/overworld/wildmons.asm"
 
-ChrisBackpic:
-INCBIN "gfx/player/chris_back.2bpp.lz"
+GoldBackpic:
+INCBIN "gfx/player/gold_back.2bpp.lz"
 
 DudeBackpic:
 INCBIN "gfx/battle/dude.2bpp.lz"
@@ -195,7 +195,7 @@ INCLUDE "data/battle/effect_command_pointers.asm"
 SECTION "Crystal Features 1", ROMX
 
 INCLUDE "engine/menus/init_gender.asm"
-INCLUDE "engine/items/pack_kris.asm"
+INCLUDE "engine/items/pack_lyra.asm"
 INCLUDE "engine/events/move_tutor.asm"
 INCLUDE "engine/gfx/crystal_layouts.asm"
 INCLUDE "engine/events/celebi.asm"
