@@ -51,6 +51,22 @@ MahoganyGymPryceScript:
 	end
 
 PryceScript_Defeat:
+	checkevent EVENT_BEAT_PRYCE_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_JASMINE_REMATCH
+	iffalse .RematchDone
+	writetext PryceRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext PryceRematchWinText, 0
+	loadtrainer PRYCE, PRYCE2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_PRYCE_REMATCH
+	end
+
+.RematchDone:
 	writetext PryceText_CherishYourPokemon
 	waitbutton
 MahoganyGym_NoRoomForIcyWind:
@@ -368,6 +384,46 @@ MahoganyGymGuyWinText:
 
 	para "bridged the gen-"
 	line "eration gap!"
+	done
+
+PryceRematchChallengeText:
+	text "Ah, JOHTO"
+	line "CHAMPION!"
+
+	para "Your skills"
+	line "are indeed"
+	cont "remarkable."
+
+	para "I am impressed."
+
+	para "But even now,"
+	line "there is much"
+	cont "to learn from"
+	cont "each other."
+
+	para "I, PRYCE--the"
+	line "winter trainer--"
+
+	para "still have a"
+	line "few tricks left."
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+PryceRematchWinText:
+	text "Ah, yet again I'm"
+	line "impressed by your"
+	cont "prowess."
+
+	para "With your strong"
+	line "will, I know you"
+
+	para "will overcome all"
+	line "life's obstacles."
+
+	para "CLAIR is the final"
+	line "JOHTO rematch."
 	done
 
 MahoganyGym_MapEvents:

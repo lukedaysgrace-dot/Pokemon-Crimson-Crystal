@@ -47,6 +47,22 @@ VioletGymFalknerScript:
 	end
 
 .SpeechAfterTM:
+	checkevent EVENT_BEAT_FALKNER_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_BLUE
+	iffalse .RematchDone
+	writetext FalknerRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext FalknerRematchWinText, 0
+	loadtrainer FALKNER, FALKNER2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_FALKNER_REMATCH
+	end
+
+.RematchDone:
 	writetext FalknerFightDoneText
 	waitbutton
 .NoRoomForMudSlap:
@@ -277,6 +293,36 @@ VioletGymGuyWinText:
 
 	para "be the CHAMP in no"
 	line "time at all!"
+	done
+
+FalknerRematchChallengeText:
+	text "Congratulations"
+	line "on defeating the"
+	cont "ELITE 4!"
+
+	para "I've been training"
+	line "my FLYING-type"
+	cont "#MON even"
+	cont "harder."
+
+	para "Think you can take"
+	line "on the power of"
+	cont "the skies again?"
+	done
+
+FalknerRematchWinText:
+	text "Wow…"
+	line "You beat me again."
+
+	para "I'm going to train"
+	line "harder to become"
+
+	para "the greatest bird"
+	line "master!"
+
+	para "BUGSY is waiting"
+	line "for you in"
+	cont "AZALEA TOWN."
 	done
 
 VioletGym_MapEvents:

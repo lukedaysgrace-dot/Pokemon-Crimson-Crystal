@@ -23,8 +23,9 @@ Oak:
 	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
+	checkevent EVENT_BEAT_LANCE_REMATCH
+	iftrue .OpenMtSilver
 	readvar VAR_BADGES
-	ifequal NUM_BADGES, .OpenMtSilver
 	ifequal NUM_JOHTO_BADGES, .Complain
 	sjump .AhGood
 
@@ -38,6 +39,7 @@ Oak:
 	end
 
 .OpenMtSilver:
+	specialphonecall SPECIALCALL_NONE
 	writetext OakOpenMtSilverText
 	buttonsound
 	setevent EVENT_OPENED_MT_SILVER

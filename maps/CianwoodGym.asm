@@ -67,6 +67,22 @@ CianwoodGymChuckScript:
 	end
 
 .AlreadyGotTM:
+	checkevent EVENT_BEAT_CHUCK_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_MORTY_REMATCH
+	iffalse .RematchDone
+	writetext ChuckRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext ChuckRematchWinText, 0
+	loadtrainer CHUCK, CHUCK2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_CHUCK_REMATCH
+	end
+
+.RematchDone:
 	writetext ChuckAfterText
 	waitbutton
 .BagFull:
@@ -301,6 +317,30 @@ BlackbeltLungAfterText:
 	text "My #MON lost…"
 	line "My… my pride is"
 	cont "shattered…"
+	done
+
+ChuckRematchChallengeText:
+	text "WAHAHAH!"
+	line "JOHTO CHAMPION!"
+
+	para "You've come"
+	line "back for more!"
+
+	para "I see your"
+	line "skills have"
+	cont "improved!"
+
+	para "Ready to see"
+	line "who's stronger?"
+	done
+
+ChuckRematchWinText:
+	text "Wha? Huh?"
+	line "I lost?"
+	cont "Again?"
+
+	para "JASMINE is waiting"
+	line "in OLIVINE."
 	done
 
 CianwoodGym_MapEvents:

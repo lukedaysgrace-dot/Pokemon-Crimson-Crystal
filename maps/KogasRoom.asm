@@ -49,7 +49,13 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KogaScript_KogaBeatenText, 0
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iftrue .LoadRematchTeam
 	loadtrainer KOGA, KOGA1
+	sjump .StartBattle
+.LoadRematchTeam:
+	loadtrainer KOGA, KOGA2
+.StartBattle:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA

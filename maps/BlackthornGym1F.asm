@@ -85,6 +85,22 @@ BlackthornGymClairScript:
 	end
 
 .GotTM24:
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_PRYCE_REMATCH
+	iffalse .RematchDone
+	writetext ClairRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext ClairRematchWinText, 0
+	loadtrainer CLAIR, CLAIR2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_CLAIR_REMATCH
+	end
+
+.RematchDone:
 	writetext BlackthornGymClairText_League
 	waitbutton
 	closetext
@@ -382,6 +398,41 @@ BlackthornGymGuyWinText:
 	para "You're on the way"
 	line "to becoming the"
 	cont "#MON CHAMPION!"
+	done
+
+ClairRematchChallengeText:
+	text "You did it, huh?"
+
+	para "You are now the"
+	line "JOHTO CHAMP."
+
+	para "You've proven"
+	line "your strength"
+
+	para "but can you"
+	line "handle me again?"
+
+	para "As a Dragon"
+	line "Master, I won't"
+	cont "hold back."
+
+	para "Not this time."
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+ClairRematchWinText:
+	text "I lost?"
+
+	para "Again?"
+
+	para "I don't believe"
+	line "it. There must be"
+	cont "some mistake…"
+
+	para "The ELITE FOUR now"
+	line "await your return."
 	done
 
 BlackthornGym1F_MapEvents:

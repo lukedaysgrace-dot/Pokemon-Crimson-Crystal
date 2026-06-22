@@ -162,6 +162,12 @@ LeaderBlueAfterText:
 
 	para "Don't you forget"
 	line "it!"
+
+	para "The JOHTO LEADERS"
+	line "want rematches."
+
+	para "Start with FALKNER"
+	line "in VIOLET CITY."
 	done
 
 LeaderBlueEpilogueText:

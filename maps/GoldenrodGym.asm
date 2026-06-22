@@ -73,6 +73,22 @@ GoldenrodGymWhitneyScript:
 	end
 
 .GotAttract:
+	checkevent EVENT_BEAT_WHITNEY_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_BUGSY_REMATCH
+	iffalse .RematchDone
+	writetext WhitneyRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext WhitneyRematchWinText, 0
+	loadtrainer WHITNEY, WHITNEY2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_WHITNEY_REMATCH
+	end
+
+.RematchDone:
 	writetext WhitneyGoodCryText
 	waitbutton
 .NoRoomForAttract:
@@ -375,6 +391,35 @@ GoldenrodGymGuyWinText:
 	text "You won? Great! I"
 	line "was busy admiring"
 	cont "the ladies here."
+	done
+
+WhitneyRematchChallengeText:
+	text "Hi! It's you!"
+
+	para "Wow, JOHTO"
+	line "CHAMPION now?"
+
+	para "You really are"
+	line "amazing!"
+
+	para "I want to see"
+	line "how strong you"
+	cont "are."
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+WhitneyRematchWinText:
+	text "Waaaaah!"
+
+	para "Waaaaah!"
+
+	para "…Snivel, hic…"
+	line "…You meanie!"
+
+	para "MORTY will battle"
+	line "you next."
 	done
 
 GoldenrodGym_MapEvents:

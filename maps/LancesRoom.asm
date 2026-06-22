@@ -57,13 +57,28 @@ LancesRoomLanceScript:
 	closetext
 	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iftrue .LoadRematchTeam
 	loadtrainer CHAMPION, LANCE
+	sjump .StartBattle
+.LoadRematchTeam:
+	loadtrainer CHAMPION, LANCE2
+.StartBattle:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iffalse .RegularVictoryText
+	setevent EVENT_BEAT_LANCE_REMATCH
+	specialphonecall SPECIALCALL_OAK_MT_SILVER
+	opentext
+	writetext LanceRematchAfterText
+	sjump .VictoryTextDone
+.RegularVictoryText:
 	opentext
 	writetext LanceBattleAfterText
+.VictoryTextDone:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -251,6 +266,16 @@ LanceBattleWinText:
 
 	para "of a great new"
 	line "CHAMPION!"
+	done
+
+LanceRematchAfterText:
+	text "Magnificent!"
+
+	para "You conquered our"
+	line "strongest teams."
+
+	para "Visit PROF.OAK."
+	line "MT.SILVER awaits."
 	done
 
 LanceBattleAfterText:
