@@ -1122,12 +1122,33 @@ RelicClockEffect:
 
 RelicClockScript:
 	reloadmappart
+	callasm RelicClockTimeDistortion
+	playsound SFX_WARP_TO
+	applymovement PLAYER, RelicClockWarpOut
 	callasm RelicClockUse
+	callasm RelicClockPrepareSameMapWarp
+	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	newloadmap MAPSETUP_WARP
+	playsound SFX_WARP_FROM
+	applymovement PLAYER, RelicClockWarpIn
 	end
 
 RelicClockUse:
 	farcall RestartClockFromItem
 	ret
+
+RelicClockPrepareSameMapWarp:
+	ld a, SPAWN_N_A
+	ld [wDefaultSpawnpoint], a
+	ret
+
+RelicClockWarpOut:
+	teleport_from
+	step_end
+
+RelicClockWarpIn:
+	teleport_to
+	step_end
 
 RelicClockTimeDistortion:
 	ldh a, [hSCX]
