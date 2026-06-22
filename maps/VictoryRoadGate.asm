@@ -8,13 +8,21 @@ VictoryRoadGate_MapScripts:
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .LockMtSilver
 
 .DummyScene0:
 	end
 
 .DummyScene1:
 	end
+
+.LockMtSilver:
+	checkevent EVENT_BEAT_LANCE_REMATCH
+	iftrue .MtSilverLockDone
+	appear VICTORYROADGATE_BLACK_BELT1
+.MtSilverLockDone:
+	return
 
 VictoryRoadGateBadgeCheckScene:
 	turnobject PLAYER, LEFT

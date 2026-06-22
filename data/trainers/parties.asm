@@ -20,6 +20,22 @@ FalknerGroup:
 	dw TACKLE, MUD_SLAP, GUST, NO_MOVE
 	db -1 ; end
 
+	next_list_item ; FALKNER (2)
+	db "FALKNER@", TRAINERTYPE_NORMAL
+	db 60
+	dw NOCTOWL
+	db 60
+	dw CROBAT
+	db 61
+	dw MURKROW
+	db 61
+	dw SKARMORY
+	db 62
+	dw TOGEKISS
+	db 63
+	dw PIDGEOT
+	db -1 ; end
+
 	end_list_items
 
 WhitneyGroup:
@@ -31,6 +47,22 @@ WhitneyGroup:
 	db 20
 	dw MILTANK
 	dw ROLLOUT, ATTRACT, STOMP, MILK_DRINK
+	db -1 ; end
+
+	next_list_item ; WHITNEY (2)
+	db "WHITNEY@", TRAINERTYPE_NORMAL
+	db 62
+	dw WIGGLYTUFF
+	db 62
+	dw GIRAFARIG
+	db 63
+	dw AMBIPOM
+	db 63
+	dw URSARING
+	db 64
+	dw BLISSEY
+	db 65
+	dw MILTANK
 	db -1 ; end
 
 	end_list_items
@@ -47,6 +79,22 @@ BugsyGroup:
 	db 16
 	dw SCYTHER
 	dw QUICK_ATTACK, LEER, FURY_CUTTER, NO_MOVE
+	db -1 ; end
+
+	next_list_item ; BUGSY (2)
+	db "BUGSY@", TRAINERTYPE_NORMAL
+	db 61
+	dw ARIADOS
+	db 61
+	dw YANMEGA
+	db 62
+	dw HERACROSS
+	db 62
+	dw PINSIR
+	db 63
+	dw FORRETRESS
+	db 64
+	dw SCIZOR
 	db -1 ; end
 
 	end_list_items
@@ -68,6 +116,22 @@ MortyGroup:
 	dw SPITE, MEAN_LOOK, MIMIC, NIGHT_SHADE
 	db -1 ; end
 
+	next_list_item ; MORTY (2)
+	db "MORTY@", TRAINERTYPE_NORMAL
+	db 63
+	dw HAUNTER
+	db 63
+	dw MISDREAVUS
+	db 64
+	dw MISMAGIUS
+	db 64
+	dw DUSKNOIR
+	db 65
+	dw FROSLASS
+	db 66
+	dw GENGAR
+	db -1 ; end
+
 	end_list_items
 
 PryceGroup:
@@ -82,6 +146,22 @@ PryceGroup:
 	db 31
 	dw PILOSWINE
 	dw ICY_WIND, FURY_ATTACK, MIST, BLIZZARD
+	db -1 ; end
+
+	next_list_item ; PRYCE (2)
+	db "PRYCE@", TRAINERTYPE_NORMAL
+	db 66
+	dw DEWGONG
+	db 66
+	dw CLOYSTER
+	db 67
+	dw GLACEON
+	db 67
+	dw WEAVILE
+	db 68
+	dw FROSLASS
+	db 69
+	dw MAMOSWINE
 	db -1 ; end
 
 	end_list_items
@@ -100,6 +180,22 @@ JasmineGroup:
 	dw SCREECH, SUNNY_DAY, ROCK_THROW, IRON_TAIL
 	db -1 ; end
 
+	next_list_item ; JASMINE (2)
+	db "JASMINE@", TRAINERTYPE_NORMAL
+	db 65
+	dw FORRETRESS
+	db 65
+	dw SKARMORY
+	db 66
+	dw SCIZOR
+	db 66
+	dw MAGNEZONE
+	db 67
+	dw MAGNETON
+	db 68
+	dw STEELIX
+	db -1 ; end
+
 	end_list_items
 
 ChuckGroup:
@@ -111,6 +207,22 @@ ChuckGroup:
 	db 30
 	dw POLIWRATH
 	dw HYPNOSIS, MIND_READER, SURF, DYNAMICPUNCH
+	db -1 ; end
+
+	next_list_item ; CHUCK (2)
+	db "CHUCK@", TRAINERTYPE_NORMAL
+	db 64
+	dw HITMONTOP
+	db 64
+	dw HITMONLEE
+	db 64
+	dw HITMONCHAN
+	db 65
+	dw HERACROSS
+	db 66
+	dw MACHAMP
+	db 67
+	dw POLIWRATH
 	db -1 ; end
 
 	end_list_items
@@ -130,6 +242,22 @@ ClairGroup:
 	db 40
 	dw KINGDRA
 	dw SMOKESCREEN, SURF, HYPER_BEAM, DRAGONBREATH
+	db -1 ; end
+
+	next_list_item ; CLAIR (2)
+	db "CLAIR@", TRAINERTYPE_NORMAL
+	db 68
+	dw ALTARIA
+	db 68
+	dw FLYGON
+	db 69
+	dw KINGDRA
+	db 69
+	dw HAXORUS
+	db 70
+	dw HYDREIGON
+	db 71
+	dw DRAGONITE
 	db -1 ; end
 
 	end_list_items
@@ -378,6 +506,22 @@ WillGroup:
 	dw QUICK_ATTACK, FUTURE_SIGHT, CONFUSE_RAY, PSYCHIC_M
 	db -1 ; end
 
+	next_list_item ; WILL (2)
+	db "WILL@", TRAINERTYPE_NORMAL
+	db 72
+	dw ESPEON
+	db 72
+	dw XATU
+	db 73
+	dw JYNX
+	db 73
+	dw SLOWKING
+	db 74
+	dw GARDEVOIR
+	db 75
+	dw ALAKAZAM
+	db -1 ; end
+
 	end_list_items
 
 PKMNTrainerGroup:
@@ -433,6 +577,22 @@ BrunoGroup:
 	dw ROCK_SLIDE, FORESIGHT, VITAL_THROW, CROSS_CHOP
 	db -1 ; end
 
+	next_list_item ; BRUNO (2)
+	db "BRUNO@", TRAINERTYPE_NORMAL
+	db 74
+	dw HITMONTOP
+	db 74
+	dw HITMONLEE
+	db 74
+	dw HITMONCHAN
+	db 75
+	dw HERACROSS
+	db 76
+	dw POLIWRATH
+	db 77
+	dw MACHAMP
+	db -1 ; end
+
 	end_list_items
 
 KarenGroup:
@@ -455,6 +615,22 @@ KarenGroup:
 	dw ROAR, PURSUIT, FLAMETHROWER, CRUNCH
 	db -1 ; end
 
+	next_list_item ; KAREN (2)
+	db "KAREN@", TRAINERTYPE_NORMAL
+	db 75
+	dw UMBREON
+	db 75
+	dw HOUNDOOM
+	db 76
+	dw WEAVILE
+	db 76
+	dw HONCHKROW
+	db 77
+	dw TYRANITAR
+	db 78
+	dw HYDREIGON
+	db -1 ; end
+
 	end_list_items
 
 KogaGroup:
@@ -475,6 +651,22 @@ KogaGroup:
 	db 44
 	dw CROBAT
 	dw DOUBLE_TEAM, QUICK_ATTACK, WING_ATTACK, TOXIC
+	db -1 ; end
+
+	next_list_item ; KOGA (2)
+	db "KOGA@", TRAINERTYPE_NORMAL
+	db 73
+	dw ARIADOS
+	db 73
+	dw VENOMOTH
+	db 74
+	dw WEEZING
+	db 74
+	dw MUK
+	db 75
+	dw TOXICROAK
+	db 76
+	dw CROBAT
 	db -1 ; end
 
 	end_list_items
@@ -500,6 +692,22 @@ ChampionGroup:
 	db 50
 	dw DRAGONITE
 	dw FIRE_BLAST, SAFEGUARD, OUTRAGE, HYPER_BEAM
+	db -1 ; end
+
+	next_list_item ; CHAMPION (2)
+	db "LANCE@", TRAINERTYPE_NORMAL
+	db 77
+	dw ALTARIA
+	db 77
+	dw FLYGON
+	db 78
+	dw SALAMENCE
+	db 78
+	dw KINGDRA
+	db 79
+	dw HAXORUS
+	db 80
+	dw DRAGONITE
 	db -1 ; end
 
 	end_list_items

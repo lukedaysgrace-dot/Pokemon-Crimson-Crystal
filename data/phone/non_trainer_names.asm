@@ -6,6 +6,7 @@ NonTrainerCallerNames:
 	dw .bill
 	dw .elm
 	dw .buena
+	dw .oak
 
 .none:     db "----------@"
 .mom:      db "MOM:@"
@@ -13,3 +14,4 @@ NonTrainerCallerNames:
 .elm:      db "PROF.ELM:@"
 .bikeshop: db "BIKE SHOP:@"
 .buena:    db "BUENA:<LF>   DISC JOCKEY@"
+.oak:      db "PROF.OAK:@"

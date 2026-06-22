@@ -4,7 +4,7 @@ BTTrainerClassGenders:
 ; entries correspond to trainer classes
 	db MALE   ; FALKNER
 	db FEMALE ; WHITNEY
-	db FEMALE ; BUGSY
+	db MALE   ; BUGSY
 	db MALE   ; MORTY
 	db MALE   ; PRYCE
 	db FEMALE ; JASMINE
@@ -12,7 +12,7 @@ BTTrainerClassGenders:
 	db FEMALE ; CLAIR
 	db MALE   ; RIVAL1
 	db MALE   ; POKEMON_PROF
-	db FEMALE ; WILL
+	db MALE   ; WILL
 	db MALE   ; CAL
 	db MALE   ; BRUNO
 	db FEMALE ; KAREN

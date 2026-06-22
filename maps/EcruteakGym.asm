@@ -62,6 +62,22 @@ EcruteakGymMortyScript:
 	end
 
 .GotShadowBall:
+	checkevent EVENT_BEAT_MORTY_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_WHITNEY_REMATCH
+	iffalse .RematchDone
+	writetext MortyRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext MortyRematchWinText, 0
+	loadtrainer MORTY, MORTY2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_MORTY_REMATCH
+	end
+
+.RematchDone:
 	writetext MortyFightDoneText
 	waitbutton
 .NoRoomForShadowBall:
@@ -382,6 +398,48 @@ EcruteakGymClosedText:
 	line "have to leave."
 
 	para "Hohohoho."
+	done
+
+MortyRematchChallengeText:
+	text "Ah, the JOHTO"
+	line "CHAMPION! Good"
+	cont "of you to come."
+
+	para "You've shown your"
+	line "strength and"
+	cont "skill, but have"
+
+	para "you improved"
+	line "since our last"
+	cont "battle?"
+
+	para "I've been"
+	line "training with my"
+	cont "GHOST-type"
+	cont "#MON."
+
+	para "Let's see if you"
+	line "can overcome the"
+	cont "shadows once"
+	cont "again."
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+MortyRematchWinText:
+	text "I'm not good"
+	line "enough yet…"
+
+	para "You have wit-"
+	line "nessed much more"
+	cont "than I."
+
+	para "I envy you for"
+	line "that…"
+
+	para "CHUCK awaits you"
+	line "in CIANWOOD."
 	done
 
 EcruteakGym_MapEvents:

@@ -50,6 +50,22 @@ AzaleaGymBugsyScript:
 	end
 
 .GotFuryCutter:
+	checkevent EVENT_BEAT_BUGSY_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_FALKNER_REMATCH
+	iffalse .RematchDone
+	writetext BugsyRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext BugsyRematchWinText, 0
+	loadtrainer BUGSY, BUGSY2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_BUGSY_REMATCH
+	end
+
+.RematchDone:
 	writetext BugsyText_BugMonsAreDeep
 	waitbutton
 .NoRoomForFuryCutter:
@@ -357,6 +373,37 @@ AzaleaGymGuyWinText:
 	para "With people like"
 	line "you, the future of"
 	cont "#MON is bright!"
+	done
+
+BugsyRematchChallengeText:
+	text "Wow, you're the"
+	line "JOHTO CHAMPION"
+	cont "now!"
+
+	para "Your skills are"
+	line "truly impressive!"
+
+	para "I've been busy"
+	line "with my research."
+
+	para "I'm ready to"
+	line "show you my new"
+	cont "findings."
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+BugsyRematchWinText:
+	text "Wow, you must"
+	line "be an expert"
+	cont "trainer."
+
+	para "My research must"
+	line "not be complete…"
+
+	para "WHITNEY is your"
+	line "next challenge."
 	done
 
 AzaleaGym_MapEvents:

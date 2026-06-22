@@ -41,6 +41,22 @@ OlivineGymJasmineScript:
 	end
 
 .GotIronTail:
+	checkevent EVENT_BEAT_JASMINE_REMATCH
+	iftrue .RematchDone
+	checkevent EVENT_BEAT_CHUCK_REMATCH
+	iffalse .RematchDone
+	writetext JasmineRematchChallengeText
+	yesorno
+	iffalse .RematchDone
+	closetext
+	winlosstext JasmineRematchWinText, 0
+	loadtrainer JASMINE, JASMINE2
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_JASMINE_REMATCH
+	end
+
+.RematchDone:
 	writetext Jasmine_GoodLuck
 	waitbutton
 .NoRoomForIronTail:
@@ -193,6 +209,34 @@ OlivineGymGuyPreText:
 	para "A strong trainer"
 	line "has to be compas-"
 	cont "sionate."
+	done
+
+JasmineRematchChallengeText:
+	text "…Congratulations,"
+	line "JOHTO CHAMPION."
+
+	para "You have become"
+	line "so strong…"
+
+	para "I wonder if I"
+	line "have improved."
+
+	para "Would you like"
+	line "to test that?"
+
+	para "Want to have a"
+	line "rematch with me?"
+	done
+
+JasmineRematchWinText:
+	text "…You are a better"
+	line "trainer than me,"
+
+	para "in both skill and"
+	line "kindness."
+
+	para "PRYCE will test"
+	line "you next."
 	done
 
 OlivineGym_MapEvents:

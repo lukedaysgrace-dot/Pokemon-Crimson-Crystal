@@ -38,6 +38,8 @@ HallOfFame_MapScripts:
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
+	checkevent EVENT_BEAT_LANCE_REMATCH
+	iftrue .SkipPhoneCall
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
 	specialphonecall SPECIALCALL_SSTICKET
