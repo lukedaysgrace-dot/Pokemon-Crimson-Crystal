@@ -70,7 +70,7 @@
 	const SPRITE_RECEPTIONIST ; 42
 	const SPRITE_OFFICER ; 43
 	const SPRITE_CAL ; 44
-	const SPRITE_SLOWPOKE_NPC ; 45 (unused: mon icons are used instead)
+	const SPRITE_AMPY_SICK ; 45
 	const SPRITE_CAPTAIN ; 46
 	const SPRITE_BIG_LAPRAS ; 47
 	const SPRITE_GYM_GUY ; 48
@@ -83,7 +83,7 @@
 	const SPRITE_DRAGON ; 4f
 	const SPRITE_BIG_ONIX ; 50
 	const SPRITE_N64 ; 51
-	const SPRITE_SUDOWOODO_NPC ; 52 (unused: mon icons are used instead)
+	const SPRITE_SLOWPOKE_NOTAIL ; 52
 	const SPRITE_SURF ; 53
 	const SPRITE_POKE_BALL ; 54
 	const SPRITE_POKEDEX ; 55
@@ -128,6 +128,7 @@
 	const SPRITE_ARIANA ; 7c
 	const SPRITE_ARCHER ; 7d
 	const SPRITE_POLIWRATH_NPC ; 7e
+	const SPRITE_FARFETCH_D_NPC ; 7f
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
