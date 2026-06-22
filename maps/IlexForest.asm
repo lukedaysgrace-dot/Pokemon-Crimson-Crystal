@@ -487,6 +487,9 @@ IlexForestHiddenSuperPotion:
 IlexForestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL
 
+IlexForestHiddenRelicClock:
+	hiddenitem RELIC_CLOCK, EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK
+
 IlexForestBoulder:
 ; unused
 	jumpstd strengthboulder
@@ -1100,12 +1103,13 @@ IlexForest_MapEvents:
 	db 1 ; coord events
 	coord_event 15, 10, -1, IlexForestCrystalScene
 
-	db 5 ; bg events
+	db 6 ; bg events
 	bg_event  3, 17, BGEVENT_READ, IlexForestSignpost
 	bg_event 11,  7, BGEVENT_ITEM, IlexForestHiddenEther
 	bg_event 22, 14, BGEVENT_ITEM, IlexForestHiddenSuperPotion
 	bg_event  1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
 	bg_event  8, 22, BGEVENT_UP, IlexForestShrineScript
+	bg_event  8, 23, BGEVENT_ITEM, IlexForestHiddenRelicClock
 
 	db 15 ; object events
 	object_event 14, 31, SPRITE_FARFETCH_D_NPC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD

@@ -27,10 +27,46 @@ endr
 	dw wBuffer6
 	db 60, 15
 
+RestartClockFromItem:
+	farcall RelicClockTimeDistortion
+	call ClearBGPalettes
+	call ClearSprites
+	xor a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
+	ldh [hSCX], a
+	ldh [hSCY], a
+	ldh [hBGMapMode], a
+	call ClearScreen
+	ld b, SCGB_DIPLOMA
+	call GetSGBLayout
+	call SetPalettes
+	call LoadStandardFont
+	call LoadFontsExtra
+	call RestartClock.from_item
+	push bc
+	xor a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
+	ldh [hSCX], a
+	ldh [hSCY], a
+	call ClearBGPalettes
+	call ReturnToMapFromSubmenu
+	call ReloadTilesetAndPalettes
+	call EnableSpriteUpdates
+	call UpdateSprites
+	call FinishExitMenu
+	pop bc
+	ret
+
 RestartClock:
 ; If we're here, we had an RTC overflow.
 	ld hl, .Text_ClockTimeMayBeWrong
 	call PrintText
+
+.from_item
 	ld hl, wOptions
 	ld a, [hl]
 	push af
