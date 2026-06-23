@@ -404,6 +404,44 @@ GEN3_SPECIES = [
     "deoxys",
 ]
 
+GEN3_SLOT_OVERRIDES = {
+    "kecleon": 391,
+    "shuppet": 392,
+    "banette": 393,
+    "duskull": 394,
+    "dusclops": 395,
+    "tropius": 396,
+    "chimecho": 397,
+    "absol": 398,
+    "wynaut": 399,
+    "snorunt": 400,
+    "glalie": 401,
+    "spheal": 402,
+    "sealeo": 403,
+    "walrein": 404,
+    "clamperl": 405,
+    "huntail": 406,
+    "gorebyss": 407,
+    "relicanth": 408,
+    "luvdisc": 409,
+    "bagon": 410,
+    "shelgon": 411,
+    "salamence": 412,
+    "beldum": 413,
+    "metang": 414,
+    "metagross": 415,
+    "regirock": 416,
+    "regice": 417,
+    "registeel": 418,
+    "latias": 419,
+    "latios": 420,
+    "kyogre": 421,
+    "groudon": 422,
+    "rayquaza": 423,
+    "jirachi": 424,
+    "deoxys": 425,
+}
+
 
 def crop_cell(image: Image.Image, index: int) -> Image.Image:
     row, col = divmod(index, COLS)
@@ -471,7 +509,7 @@ def main() -> int:
         gen3_frames.append(image.convert("RGBA"))
 
     for offset, species in enumerate(GEN3_SPECIES):
-        slot_index = gen3_start_slot + offset
+        slot_index = GEN3_SLOT_OVERRIDES.get(species, gen3_start_slot + offset)
         top = crop_cell(gen3_frames[0], slot_index)
         bottom = crop_cell(gen3_frames[1], slot_index)
         stacked = Image.new("RGBA", (CELL_SIZE, CELL_SIZE * 2), (0, 0, 0, 0))
