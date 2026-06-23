@@ -70,15 +70,15 @@ PokeAnims:
 	dw .Egg1
 	dw .Egg2
 
-.Slow:   pokeanim StereoCry, BasePic
-.Normal: pokeanim StereoCry, BasePic
-.Menu:   pokeanim CryNoWait, BasePic
-.Trade:  pokeanim Cry, BasePic
-.Evolve: pokeanim CryNoWait, BasePic
-.Hatch:  pokeanim CryNoWait, BasePic
-.HOF:    pokeanim CryNoWait, BasePic
-.Egg1:   pokeanim BasePic
-.Egg2:   pokeanim BasePic
+.Slow:   pokeanim StereoCry, Setup2, Play
+.Normal: pokeanim StereoCry, Setup, Play
+.Menu:   pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.Trade:  pokeanim Idle, Play2, Idle, Play, SetWait, Wait, Cry, Setup, Play
+.Evolve: pokeanim Idle, Play, SetWait, Wait, CryNoWait, Setup, Play
+.Hatch:  pokeanim Idle, Play, CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.HOF:    pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.Egg1:   pokeanim Setup, Play
+.Egg2:   pokeanim Idle, Play
 
 AnimateFrontpic:
 	call AnimateMon_CheckIfPokemon
