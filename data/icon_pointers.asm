@@ -384,12 +384,12 @@ IconPointers:
 	dba BastiodonIcon
 	dba PawniardIcon
 	dba BisharpIcon
-	dba SeelIcon
-	dba WalreinIcon
-	dba MagikarpIcon
-	dba GyaradosIcon
+	dba CetoddleIcon
+	dba CetitanIcon
+	dba FeebasIcon
+	dba MiloticIcon
 	dba MimikyuIcon
 	dba CursolaIcon
-	dba GardevoirIcon
+	dba GalladeIcon
 	dba MrRimeIcon
 	dba SirfetchDIcon
