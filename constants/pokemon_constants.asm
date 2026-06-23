@@ -408,6 +408,10 @@ JOHTO_POKEMON EQU const_value
 	const FEEBAS     ;
 	const MILOTIC    ;
 	const MIMIKYU    ;
+	const CURSOLA    ;
+	const GALLADE    ;
+	const MR__RIME   ;
+	const SIRFETCH_D ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

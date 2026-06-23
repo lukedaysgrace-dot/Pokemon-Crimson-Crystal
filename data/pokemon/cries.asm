@@ -393,3 +393,7 @@ PokemonCries::
 	mon_cry CRY_SEEL,    $080,  $100 ; FEEBAS
 	mon_cry CRY_LAPRAS,      $000,  $100 ; MILOTIC
 	mon_cry CRY_PICHU,     $020,  $100 ; MIMIKYU
+	mon_cry CRY_MAGCARGO,  $081,  $0e8 ; CURSOLA
+	mon_cry CRY_GROWLITHE, $020,  $100 ; GALLADE
+	mon_cry CRY_KRABBY,    $020,  $120 ; MR__RIME
+	mon_cry CRY_SPEAROW,   $020,  $120 ; SIRFETCH_D

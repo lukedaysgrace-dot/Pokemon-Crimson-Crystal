@@ -91,7 +91,7 @@ SlowpokeIcon:    INCBIN "gfx/icons/slowpoke.2bpp"
 SlowbroIcon:     INCBIN "gfx/icons/slowbro.2bpp"
 MagnemiteIcon:   INCBIN "gfx/icons/magnemite.2bpp"
 MagnetonIcon:    INCBIN "gfx/icons/magneton.2bpp"
-FarfetchDIcon:   INCBIN "gfx/icons/farfetchd.2bpp"
+FarfetchDIcon: INCBIN "gfx/icons/farfetch_d.2bpp"
 DoduoIcon:       INCBIN "gfx/icons/doduo.2bpp"
 DodrioIcon:      INCBIN "gfx/icons/dodrio.2bpp"
 SeelIcon:        INCBIN "gfx/icons/seel.2bpp"
@@ -133,7 +133,7 @@ StaryuIcon:      INCBIN "gfx/icons/staryu.2bpp"
 SECTION "Mon Icons 3", ROMX
 
 StarmieIcon:     INCBIN "gfx/icons/starmie.2bpp"
-MrMimeIcon:      INCBIN "gfx/icons/mr_mime.2bpp"
+MrMimeIcon: INCBIN "gfx/icons/mr__mime.2bpp"
 ScytherIcon:     INCBIN "gfx/icons/scyther.2bpp"
 JynxIcon:        INCBIN "gfx/icons/jynx.2bpp"
 ElectabuzzIcon:  INCBIN "gfx/icons/electabuzz.2bpp"
@@ -267,18 +267,18 @@ LarvitarIcon:    INCBIN "gfx/icons/larvitar.2bpp"
 PupitarIcon:     INCBIN "gfx/icons/pupitar.2bpp"
 TyranitarIcon:   INCBIN "gfx/icons/tyranitar.2bpp"
 LugiaIcon:       INCBIN "gfx/icons/lugia.2bpp"
-HoOhIcon:        INCBIN "gfx/icons/ho-oh.2bpp"
+HoOhIcon: INCBIN "gfx/icons/ho_oh.2bpp"
 CelebiIcon:      INCBIN "gfx/icons/celebi.2bpp"
 HonchkrowIcon:   INCBIN "gfx/icons/honchkrow.2bpp"
-AmbipomIcon:     INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/ambipom.png
+AmbipomIcon: INCBIN "gfx/icons/ambipom.2bpp"
 AnnihilapeIcon:  INCBIN "gfx/icons/annihilape.2bpp"
 BagonIcon:       INCBIN "gfx/icons/bagon.2bpp"
-DrunsparceIcon:  INCBIN "gfx/icons/dunsparce.2bpp" ; TODO: gfx/icons/drunsparce.png
+DrunsparceIcon: INCBIN "gfx/icons/drunsparce.2bpp"
 ElectivireIcon:  INCBIN "gfx/icons/electivire.2bpp"
-FarigirafIcon:   INCBIN "gfx/icons/girafarig.2bpp" ; TODO: gfx/icons/farigiraf.png
+FarigirafIcon: INCBIN "gfx/icons/farigiraf.2bpp"
 GardevoirIcon:   INCBIN "gfx/icons/gardevoir.2bpp"
 GlaceonIcon:     INCBIN "gfx/icons/glaceon.2bpp"
-GliscorIcon:     INCBIN "gfx/icons/gligar.2bpp" ; TODO: gfx/icons/gliscor.png
+GliscorIcon: INCBIN "gfx/icons/gliscor.2bpp"
 KirliaIcon:      INCBIN "gfx/icons/kirlia.2bpp"
 LeafeonIcon:     INCBIN "gfx/icons/leafeon.2bpp"
 LickilickyIcon:  INCBIN "gfx/icons/lickilicky.2bpp"
@@ -294,13 +294,13 @@ SalamenceIcon:   INCBIN "gfx/icons/salamence.2bpp"
 ScolipedeIcon:   INCBIN "gfx/icons/scolipede.2bpp"
 ShelgonIcon:     INCBIN "gfx/icons/shelgon.2bpp"
 TangrowthIcon:   INCBIN "gfx/icons/tangrowth.2bpp"
-TogekissIcon:    INCBIN "gfx/icons/togetic.2bpp" ; TODO: gfx/icons/togekiss.png
-UrsalunaIcon:    INCBIN "gfx/icons/ursaring.2bpp" ; TODO: gfx/icons/ursaluna.png
+TogekissIcon: INCBIN "gfx/icons/togekiss.2bpp"
+UrsalunaIcon: INCBIN "gfx/icons/ursaluna.2bpp"
 VenipedeIcon:    INCBIN "gfx/icons/venipede.2bpp"
 WeavileIcon:     INCBIN "gfx/icons/weavile.2bpp"
 WhirlipedeIcon:  INCBIN "gfx/icons/whirlipede.2bpp"
-WyrdeerIcon:     INCBIN "gfx/icons/stantler.2bpp" ; TODO: gfx/icons/wyrdeer.png
-YanmegaIcon:     INCBIN "gfx/icons/yanma.2bpp" ; TODO: gfx/icons/yanmega.png
+WyrdeerIcon: INCBIN "gfx/icons/wyrdeer.2bpp"
+YanmegaIcon: INCBIN "gfx/icons/yanmega.2bpp"
 LileepIcon:      INCBIN "gfx/icons/lileep.2bpp"
 CradilyIcon:     INCBIN "gfx/icons/cradily.2bpp"
 ArmaldoIcon:     INCBIN "gfx/icons/armaldo.2bpp"
@@ -314,9 +314,9 @@ GurdurrIcon:     INCBIN "gfx/icons/fighter.2bpp" ; TODO: gfx/icons/gurdurr.png
 ConkeldurrIcon:  INCBIN "gfx/icons/fighter.2bpp" ; TODO: gfx/icons/conkeldurr.png
 LarvestaIcon:    INCBIN "gfx/icons/caterpillar.2bpp" ; TODO: gfx/icons/larvesta.png
 VolcaronaIcon:   INCBIN "gfx/icons/moth.2bpp" ; TODO: gfx/icons/volcarona.png
-DeinoIcon:       INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/deino.png
-ZweilousIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/zweilous.png
-HydreigonIcon:   INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/hydreigon.png
+DeinoIcon: INCBIN "gfx/icons/deino.2bpp"
+ZweilousIcon: INCBIN "gfx/icons/zweilous.2bpp"
+HydreigonIcon: INCBIN "gfx/icons/hydreigon.2bpp"
 DreepyIcon:      INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/dreepy.png
 DrakloakIcon:    INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/drakloak.png
 DragapultIcon:   INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/dragapult.png
@@ -332,7 +332,7 @@ BaxcaliburIcon:  INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/baxcalibur.pn
 CharcadetIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/charcadet.png
 ArmarogueIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/armarogue.png
 CeruledgeIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/ceruledge.png
-SylveonIcon:     INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/sylveon.png
+SylveonIcon: INCBIN "gfx/icons/sylveon.2bpp"
 RookideeIcon:    INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/rookidee.png
 CorvisquireIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/corvisquire.png
 CorviknightIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/corviknight.png
@@ -351,15 +351,15 @@ CroagunkIcon: INCBIN "gfx/icons/croagunk.2bpp" ; TODO: gfx/icons/croagunk.png
 DipplinIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/dipplin.png
 DrifblimIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/drifblim.png
 DrifloonIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/drifloon.png
-DrilburIcon: INCBIN "gfx/icons/diglett.2bpp" ; TODO: gfx/icons/drilbur.png
+DrilburIcon: INCBIN "gfx/icons/drilbur.2bpp"
 DuraludonIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/duraludon.png
 ElectrikeIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/electrike.png
-ExcadrillIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/excadrill.png
+ExcadrillIcon: INCBIN "gfx/icons/excadrill.2bpp"
 FlappleIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/flapple.png
 FletchinderIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/fletchinder.png
 FletchlingIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/fletchling.png
 FlygonIcon: INCBIN "gfx/icons/dragonite.2bpp" ; TODO: gfx/icons/flygon.png
-FroslassIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/froslass.png
+FroslassIcon: INCBIN "gfx/icons/froslass.2bpp"
 GolisopodIcon: INCBIN "gfx/icons/golisopod.2bpp" ; TODO: gfx/icons/golisopod.png
 GrubbinIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/grubbin.png
 GrumpigIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/grumpig.png
@@ -371,13 +371,13 @@ LotadIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/lotad.png
 LudicoloIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/ludicolo.png
 ManectricIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/manectric.png
 NumelIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/numel.png
-OverqwilIcon: INCBIN "gfx/icons/qwilfish.2bpp" ; TODO: gfx/icons/overqwil.png
-ScraftyIcon: INCBIN "gfx/icons/fighter.2bpp" ; TODO: gfx/icons/scrafty.png
-ScraggyIcon: INCBIN "gfx/icons/fighter.2bpp" ; TODO: gfx/icons/scraggy.png
+OverqwilIcon: INCBIN "gfx/icons/overqwil.2bpp"
+ScraftyIcon: INCBIN "gfx/icons/scrafty.2bpp"
+ScraggyIcon: INCBIN "gfx/icons/scraggy.2bpp"
 SealeoIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/sealeo.png
 ShroomishIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/shroomish.png
 SizzlipedeIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/sizzlipede.png
-SnoruntIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/snorunt.png
+SnoruntIcon: INCBIN "gfx/icons/snorunt.2bpp"
 SnoverIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/snover.png
 SphealIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/spheal.png
 SpoinkIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/spoink.png
@@ -392,5 +392,22 @@ WalreinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/walrein.png
 WimpodIcon: INCBIN "gfx/icons/wimpod.2bpp" ; TODO: gfx/icons/wimpod.png
 TeddiursabmIcon: INCBIN "gfx/icons/teddiursa.2bpp"
 UrsaringbmIcon: INCBIN "gfx/icons/ursaring.2bpp"
+
+
+SECTION "Mon Icons 6", ROMX
+
+AxewIcon: INCBIN "gfx/icons/axew.2bpp"
+FraxureIcon: INCBIN "gfx/icons/fraxure.2bpp"
+HaxorusIcon: INCBIN "gfx/icons/haxorus.2bpp"
+CranidosIcon: INCBIN "gfx/icons/cranidos.2bpp"
+RampardosIcon: INCBIN "gfx/icons/rampardos.2bpp"
+ShieldonIcon: INCBIN "gfx/icons/shieldon.2bpp"
+BastiodonIcon: INCBIN "gfx/icons/bastiodon.2bpp"
+PawniardIcon: INCBIN "gfx/icons/pawniard.2bpp"
+BisharpIcon: INCBIN "gfx/icons/bisharp.2bpp"
+MimikyuIcon: INCBIN "gfx/icons/mimikyu.2bpp"
+CursolaIcon: INCBIN "gfx/icons/cursola.2bpp"
+MrRimeIcon: INCBIN "gfx/icons/mr__rime.2bpp"
+SirfetchDIcon: INCBIN "gfx/icons/sirfetch_d.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

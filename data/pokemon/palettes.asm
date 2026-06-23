@@ -806,3 +806,11 @@ INCBIN "gfx/pokemon/milotic/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/milotic/shiny.pal"
 INCBIN "gfx/pokemon/mimikyu/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/mimikyu/shiny.pal"
+INCBIN "gfx/pokemon/cursola/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/cursola/shiny.pal"
+INCBIN "gfx/pokemon/gallade/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/gallade/shiny.pal"
+INCBIN "gfx/pokemon/mr__rime/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/mr__rime/shiny.pal"
+INCBIN "gfx/pokemon/sirfetch_d/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/sirfetch_d/shiny.pal"

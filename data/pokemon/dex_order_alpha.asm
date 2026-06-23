@@ -389,3 +389,7 @@ AlphabeticalPokedexOrder:
 	dw FEEBAS
 	dw MILOTIC
 	dw MIMIKYU
+	dw CURSOLA
+	dw GALLADE
+	dw MR__RIME
+	dw SIRFETCH_D

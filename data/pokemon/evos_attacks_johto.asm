@@ -1165,6 +1165,7 @@ PiloswineEvosAttacks:
 	db 0 ; no more level-up moves
 
 CorsolaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 38, CURSOLA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 7, HARDEN
@@ -1674,7 +1675,9 @@ GliscorEvosAttacks:
 	db 0 ; no more level-up moves
 
 KirliaEvosAttacks:
-	dbbw EVOLVE_LEVEL, 30, GARDEVOIR
+	dbbw EVOLVE_LEVEL_FEMALE, 30, GARDEVOIR
+	dbbw EVOLVE_LEVEL_MALE, 30, GALLADE
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -3132,4 +3135,55 @@ MimikyuEvosAttacks:
 	dbw 24, SHADOW_CLAW
 	dbw 36, PLAY_ROUGH
 	dbw 48, SHADOW_BALL
+	db 0 ; no more level-up moves
+
+CursolaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, HARDEN
+	dbw 1, BUBBLE
+	dbw 19, RECOVER
+	dbw 25, BUBBLEBEAM
+	dbw 31, SPIKE_CANNON
+	dbw 37, MIRROR_COAT
+	dbw 43, ANCIENTPOWER
+	dbw 50, SHADOW_BALL
+	db 0 ; no more level-up moves
+
+GalladeEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 10, QUICK_ATTACK
+	dbw 20, BITE
+	dbw 30, SWIFT
+	dbw 40, SLASH
+	dbw 50, SWORDS_DANCE
+	db 0 ; no more level-up moves
+
+MrRimeEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, BARRIER
+	dbw 1, CONFUSION
+	dbw 11, SUBSTITUTE
+	dbw 16, MEDITATE
+	dbw 21, DOUBLESLAP
+	dbw 26, LIGHT_SCREEN
+	dbw 26, REFLECT
+	dbw 36, PSYBEAM
+	dbw 46, SAFEGUARD
+	dbw 52, ICE_BEAM
+	db 0 ; no more level-up moves
+
+SirfetchDEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, PECK
+	dbw 1, SAND_ATTACK
+	dbw 13, LEER
+	dbw 19, FURY_ATTACK
+	dbw 25, SWORDS_DANCE
+	dbw 31, AGILITY
+	dbw 37, SLASH
+	dbw 44, FALSE_SWIPE
+	dbw 52, SKY_ATTACK
 	db 0 ; no more level-up moves

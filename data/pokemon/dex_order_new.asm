@@ -159,8 +159,10 @@ NewPokedexOrder:
 	dw ELEKID
 	dw ELECTABUZZ
 	dw MR__MIME
+	dw MR__RIME
 	dw SMEARGLE
 	dw FARFETCH_D
+	dw SIRFETCH_D
 	dw NATU
 	dw XATU
 	dw QWILFISH
@@ -174,6 +176,7 @@ NewPokedexOrder:
 	dw SHELLDER
 	dw CLOYSTER
 	dw CORSOLA
+	dw CURSOLA
 	dw REMORAID
 	dw OCTILLERY
 	dw CHINCHOU
@@ -226,6 +229,7 @@ NewPokedexOrder:
 	dw RALTS
 	dw KIRLIA
 	dw GARDEVOIR
+	dw GALLADE
 	dw GLACEON
 	dw GLISCOR
 	dw LEAFEON
