@@ -7,6 +7,8 @@ SECTION "Evolutions and Attacks Pointers", ROMX
 ; Evos+attacks data structure:
 ; - Evolution methods:
 ;    * dbbw EVOLVE_LEVEL, level, species
+;    * dbbw EVOLVE_LEVEL_MALE, level, species
+;    * dbbw EVOLVE_LEVEL_FEMALE, level, species
 ;    * dbbw EVOLVE_ITEM, used item, species
 ;    * dbbw EVOLVE_TRADE, held item (or -1 for none), species
 ;    * dbbw EVOLVE_HAPPINESS, TR_* constant (ANYTIME, MORNDAY, NITE), species

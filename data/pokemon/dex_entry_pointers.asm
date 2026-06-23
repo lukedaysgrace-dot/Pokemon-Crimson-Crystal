@@ -388,3 +388,7 @@ PokedexDataPointerTable:
 	dba FeebasPokedexEntry
 	dba MiloticPokedexEntry
 	dba MimikyuPokedexEntry
+	dba CursolaPokedexEntry
+	dba GalladePokedexEntry
+	dba MrRimePokedexEntry
+	dba SirfetchDPokedexEntry

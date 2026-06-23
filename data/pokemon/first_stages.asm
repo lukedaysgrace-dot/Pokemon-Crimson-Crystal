@@ -388,3 +388,7 @@ FirstEvoStages::
 	dw FEEBAS
 	dw FEEBAS
 	dw MIMIKYU
+	dw CORSOLA
+	dw RALTS
+	dw MR__MIME
+	dw FARFETCH_D

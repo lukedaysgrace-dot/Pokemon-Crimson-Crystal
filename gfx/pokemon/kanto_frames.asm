@@ -104,6 +104,9 @@ ElectrodeFrames:  INCLUDE "gfx/pokemon/electrode/frames.asm"
 ExeggcuteFrames:  INCLUDE "gfx/pokemon/exeggcute/frames.asm"
 ExeggutorFrames:  INCLUDE "gfx/pokemon/exeggutor/frames.asm"
 CuboneFrames:     INCLUDE "gfx/pokemon/cubone/frames.asm"
+
+SECTION "Pic Animations 2a", ROMX
+
 MarowakFrames:    INCLUDE "gfx/pokemon/marowak/frames.asm"
 HitmonleeFrames:  INCLUDE "gfx/pokemon/hitmonlee/frames.asm"
 HitmonchanFrames: INCLUDE "gfx/pokemon/hitmonchan/frames.asm"

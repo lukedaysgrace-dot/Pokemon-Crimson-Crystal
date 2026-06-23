@@ -387,3 +387,7 @@ AnimationIdlePointers:
 	dw FeebasAnimationIdle
 	dw MiloticAnimationIdle
 	dw MimikyuAnimationIdle
+	dw CursolaAnimationIdle
+	dw GalladeAnimationIdle
+	dw MrRimeAnimationIdle
+	dw SirfetchDAnimationIdle

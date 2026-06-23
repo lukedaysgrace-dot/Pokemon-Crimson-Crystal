@@ -387,3 +387,7 @@ AnimationPointers:
 	dw FeebasAnimation
 	dw MiloticAnimation
 	dw MimikyuAnimation
+	dw CursolaAnimation
+	dw GalladeAnimation
+	dw MrRimeAnimation
+	dw SirfetchDAnimation

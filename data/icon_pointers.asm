@@ -375,17 +375,21 @@ IconPointers:
 	dba WimpodIcon
 	dba TeddiursabmIcon
 	dba UrsaringbmIcon
-	dba DragoniteIcon
-	dba DragoniteIcon
-	dba DragoniteIcon
-	dba RhydonIcon
-	dba RhydonIcon
-	dba KabutoIcon
-	dba KabutoIcon
-	dba KingambitIcon
-	dba KingambitIcon
+	dba AxewIcon
+	dba FraxureIcon
+	dba HaxorusIcon
+	dba CranidosIcon
+	dba RampardosIcon
+	dba ShieldonIcon
+	dba BastiodonIcon
+	dba PawniardIcon
+	dba BisharpIcon
 	dba SeelIcon
 	dba WalreinIcon
 	dba MagikarpIcon
 	dba GyaradosIcon
-	dba PikachuIcon
+	dba MimikyuIcon
+	dba CursolaIcon
+	dba GardevoirIcon
+	dba MrRimeIcon
+	dba SirfetchDIcon

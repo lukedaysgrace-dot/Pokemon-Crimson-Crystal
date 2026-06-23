@@ -1257,6 +1257,7 @@ MagnetonEvosAttacks:
 	db 0 ; no more level-up moves
 
 FarfetchDEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, SIRFETCH_D
 	db 0 ; no more evolutions
 	dbw 1, PECK
 	dbw 7, SAND_ATTACK
@@ -1795,6 +1796,7 @@ StarmieEvosAttacks:
 	db 0 ; no more level-up moves
 
 MrMimeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 42, MR__RIME
 	db 0 ; no more evolutions
 	dbw 1, BARRIER
 	dbw 6, CONFUSION

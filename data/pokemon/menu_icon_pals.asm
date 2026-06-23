@@ -396,3 +396,7 @@ MonMenuIconPals:
 	icon_pals BROWN,  BLUE   ; FEEBAS
 	icon_pals BLUE,   PINK   ; MILOTIC
 	icon_pals BROWN,  GRAY   ; MIMIKYU
+	icon_pals GRAY,   PINK   ; CURSOLA
+	icon_pals GREEN,  GRAY   ; GALLADE
+	icon_pals BLUE,   PINK   ; MR__RIME
+	icon_pals BROWN,  GREEN  ; SIRFETCH_D

@@ -387,3 +387,7 @@ BitmasksPointers:
 	dw FeebasBitmasks
 	dw MiloticBitmasks
 	dw MimikyuBitmasks
+	dw CursolaBitmasks
+	dw GalladeBitmasks
+	dw MrRimeBitmasks
+	dw SirfetchDBitmasks

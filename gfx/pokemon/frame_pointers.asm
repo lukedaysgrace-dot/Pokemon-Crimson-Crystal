@@ -387,3 +387,7 @@ FramesPointers:
 	dba FeebasFrames
 	dba MiloticFrames
 	dba MimikyuFrames
+	dba CursolaFrames
+	dba GalladeFrames
+	dba MrRimeFrames
+	dba SirfetchDFrames

@@ -81,6 +81,10 @@ EvolveAfterBattle_MasterLoop:
 	ld a, b
 	cp EVOLVE_LEVEL
 	jp z, .level
+	cp EVOLVE_LEVEL_MALE
+	jp z, .level_male
+	cp EVOLVE_LEVEL_FEMALE
+	jp z, .level_female
 
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
@@ -162,7 +166,7 @@ EvolveAfterBattle_MasterLoop:
 
 	xor a
 	ld [wTempMonItem], a
-	jr .proceed
+	jp .proceed
 
 .item
 	call GetNextEvoAttackByte
@@ -195,14 +199,92 @@ EvolveAfterBattle_MasterLoop:
 
 .item_level_ok
 	pop hl
-	jr .proceed
+	jp .proceed
 
-.level
+.CheckLevelEvolution
 	call GetNextEvoAttackByte
 	ld b, a
 	ld a, [wTempMonLevel]
 	cp b
+	ret
+
+.CheckMaleEvolution
+	push hl
+	ldh a, [hTemp]
+	push af
+	ld a, [wEvolutionOldSpecies]
+	ld [wCurPartySpecies], a
+	xor a
+	ld [wMonType], a
+	farcall GetGender
+	jr c, .male_genderless
+	ld b, a
+	pop af
+	ldh [hTemp], a
+	pop hl
+	ld a, b
+	cp 1
+	jr z, .male_gender_ok
+.male_gender_fail
+	scf
+	ret
+.male_genderless
+	pop af
+	ldh [hTemp], a
+	pop hl
+	jr .male_gender_fail
+.male_gender_ok
+	and a
+	ret
+
+.CheckFemaleEvolution
+	push hl
+	ldh a, [hTemp]
+	push af
+	ld a, [wEvolutionOldSpecies]
+	ld [wCurPartySpecies], a
+	xor a
+	ld [wMonType], a
+	farcall GetGender
+	jr c, .female_genderless
+	ld b, a
+	pop af
+	ldh [hTemp], a
+	pop hl
+	ld a, b
+	and a
+	jr z, .female_gender_ok
+.female_gender_fail
+	scf
+	ret
+.female_genderless
+	pop af
+	ldh [hTemp], a
+	pop hl
+	jr .female_gender_fail
+.female_gender_ok
+	and a
+	ret
+
+.level
+	call .CheckLevelEvolution
 	jp c, .skip_evolution_species
+	jr .level_after_gender
+
+.level_male
+	call .CheckLevelEvolution
+	jp c, .skip_evolution_species
+	call .CheckMaleEvolution
+	jp c, .skip_evolution_species
+	jr .level_after_gender
+
+.level_female
+	call .CheckLevelEvolution
+	jp c, .skip_evolution_species
+	call .CheckFemaleEvolution
+	jp c, .skip_evolution_species
+
+.level_after_gender
 	call IsMonHoldingEverstone
 	jp z, .skip_evolution_species
 

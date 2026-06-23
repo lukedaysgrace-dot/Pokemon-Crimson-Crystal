@@ -391,3 +391,7 @@ PokemonNames::
 	db "FEEBAS@@@@"
 	db "MILOTIC@@@"
 	db "MIMIKYU@@@"
+	db "CURSOLA@@@"
+	db "GALLADE@@@"
+	db "MR.RIME@@@"
+	db "SIRFETCH'D"

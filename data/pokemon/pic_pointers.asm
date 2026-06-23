@@ -789,3 +789,11 @@ PokemonPicPointers::
 	dba MiloticBackpic
 	dba MimikyuFrontpic
 	dba MimikyuBackpic
+	dba CursolaFrontpic
+	dba CursolaBackpic
+	dba GalladeFrontpic
+	dba GalladeBackpic
+	dba MrRimeFrontpic
+	dba MrRimeBackpic
+	dba SirfetchDFrontpic
+	dba SirfetchDBackpic
