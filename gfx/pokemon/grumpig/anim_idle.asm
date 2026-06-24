@@ -1,3 +1,2 @@
-	frame 3, 12
-	frame 4, 12
+	frame 0, 16
 	endanim
