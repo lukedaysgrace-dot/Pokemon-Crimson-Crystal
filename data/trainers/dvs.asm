@@ -12,7 +12,7 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; RIVAL1
 	dn  9,  8,  8,  8 ; POKEMON_PROF
 	dn 15, 15, 15, 15 ; WILL
-	dn 13, 12, 13, 13 ; CAL
+	dn 15, 15, 15, 15 ; CAL
 	dn 15, 15, 15, 15 ; BRUNO
 	dn 15, 15, 15, 15 ; KAREN
 	dn 15, 15, 15, 15 ; KOGA
@@ -67,7 +67,7 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; BLUE
 	dn  9,  8,  8,  8 ; OFFICER
 	dn  7, 14, 10,  8 ; GRUNTF
-	dn  9,  8,  8,  8 ; MYSTICALMAN
+	dn 15, 15, 15, 15 ; MYSTICALMAN
 	dn 15, 15, 15, 15 ; CRYSTAL
 	dn 15, 15, 15, 15 ; CRYSTAL2
 	dn 15, 15, 15, 15 ; PROTON
