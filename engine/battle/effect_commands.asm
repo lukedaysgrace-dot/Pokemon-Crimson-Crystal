@@ -1220,14 +1220,33 @@ BattleCommand_Critical:
 			cp HIGH(FARFETCH_D)
 		endc
 	endc
-	jr nz, .FocusEnergy
+	jr nz, .Sirfetchd
+
+.Stick:
 	ld a, b
 	cp STICK
 	jr nz, .FocusEnergy
 
-; +2 critical level
-	ld c, 2
+; +4 critical level
+	ld c, 4
 	jr .Tally
+
+.Sirfetchd:
+	ld a, l
+	sub LOW(SIRFETCH_D)
+	if HIGH(SIRFETCH_D) == 0
+		or h
+	else
+		jr nz, .FocusEnergy
+		if HIGH(SIRFETCH_D) == 1
+			dec h
+		else
+			ld a, h
+			cp HIGH(SIRFETCH_D)
+		endc
+	endc
+	jr nz, .FocusEnergy
+	jr .Stick
 
 .FocusEnergy:
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -2733,6 +2752,7 @@ PlayerAttackDamage:
 
 .thickclub
 ; Note: Returns player attack at hl in hl.
+	call LightBallBoost
 	call ThickClubBoost
 
 .done
@@ -2985,6 +3005,7 @@ EnemyAttackDamage:
 	jr .done
 
 .thickclub
+	call LightBallBoost
 	call ThickClubBoost
 
 .done
