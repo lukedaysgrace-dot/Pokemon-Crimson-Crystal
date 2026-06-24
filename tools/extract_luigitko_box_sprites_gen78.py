@@ -201,108 +201,6 @@ GEN8_SPECIES = [
     "enamorus",
 ]
 
-GEN7_EXTRA_FORMS = [
-    "rattata_alolan",
-    "raticate_alolan",
-    "raichu_alolan",
-    "sandshrew_alolan",
-    "sandslash_alolan",
-    "vulpix_alolan",
-    "ninetales_alolan",
-    "diglett_alolan",
-    "dugtrio_alolan",
-    "meowth_alolan",
-    "persian_alolan",
-    "geodude_alolan",
-    "graveler_alolan",
-    "golem_alolan",
-    "grimer_alolan",
-    "muk_alolan",
-    "exeggutor_alolan",
-    "marowak_alolan",
-    "zygarde_cell",
-    "zygarde_core",
-    "zygarde_10_percent",
-    "zygarde_complete",
-    "lycanroc_midnight",
-    "lycanroc_dusk",
-    "pikachu_original_cap",
-    "pikachu_hoenn_cap",
-    "pikachu_sinnoh_cap",
-    "pikachu_unova_cap",
-    "pikachu_kalos_cap",
-    "minior_red_core",
-    "minior_orange_core",
-    "minior_yellow_core",
-    "minior_green_core",
-    "minior_blue_core",
-    "minior_indigo_core",
-    "minior_violet_core",
-    "wishiwashi_school",
-    "oricorio_pom_pom",
-    "oricorio_pau",
-    "oricorio_sensu",
-    "mimikyu_busted",
-]
-
-GEN8_EXTRA_FORMS = [
-    "meowth_galarian",
-    "ponyta_galarian",
-    "rapidash_galarian",
-    "slowpoke_galarian",
-    "slowbro_galarian",
-    "farfetchd_galarian",
-    "weezing_galarian",
-    "mr_mime_galarian",
-    "articuno_galarian",
-    "zapdos_galarian",
-    "moltres_galarian",
-    "slowking_galarian",
-    "corsola_galarian",
-    "zigzagoon_galarian",
-    "linoone_galarian",
-    "darumaka_galarian",
-    "darmanitan_galarian",
-    "darmanitan_galarian_zen",
-    "yamask_galarian",
-    "stunfisk_galarian",
-    "venusaur_gmax",
-    "charizard_gmax",
-    "blastoise_gmax",
-    "butterfree_gmax",
-    "pikachu_gmax",
-    "meowth_gmax",
-    "machamp_gmax",
-    "gengar_gmax",
-    "kingler_gmax",
-    "lapras_gmax",
-    "eevee_gmax",
-    "snorlax_gmax",
-    "garbodor_gmax",
-    "melmetal_gmax",
-    "rillaboom_gmax",
-    "cinderace_gmax",
-    "inteleon_gmax",
-    "corviknight_gmax",
-    "orbeetle_gmax",
-    "drednaw_gmax",
-    "coalossal_gmax",
-    "flapple_gmax",
-    "appletun_gmax",
-    "sandaconda_gmax",
-    "toxtricity_gmax",
-    "centiskorch_gmax",
-    "hatterene_gmax",
-    "grimmsnarl_gmax",
-    "alcremie_gmax",
-    "copperajah_gmax",
-    "duraludon_gmax",
-    "urshifu_gmax",
-    "urshifu_rapid_strike_gmax",
-    *[f"alcremie_variant_{i:02d}" for i in range(1, 33)],
-    *[f"alcremie_sweet_{i:02d}" for i in range(1, 9)],
-]
-
 
 def occupied_slots(frame: Image.Image) -> list[int]:
     slots: list[int] = []
@@ -357,11 +255,16 @@ def main() -> int:
 
     occupied = occupied_slots(frames[0])
 
+    gen7_extra_count = 41
+    gen8_extra_count = len(occupied) - len(GEN7_SPECIES) - gen7_extra_count - len(GEN8_SPECIES)
+    if gen8_extra_count < 0:
+        raise ValueError("sheet does not have enough occupied slots for configured counts")
+
     ordered_names = (
         GEN7_SPECIES
-        + GEN7_EXTRA_FORMS
+        + [f"gen7_extra_{i:02d}" for i in range(1, gen7_extra_count + 1)]
         + GEN8_SPECIES
-        + GEN8_EXTRA_FORMS
+        + [f"gen8_extra_{i:02d}" for i in range(1, gen8_extra_count + 1)]
     )
 
     if len(ordered_names) != len(occupied):
