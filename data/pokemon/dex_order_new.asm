@@ -233,6 +233,8 @@ NewPokedexOrder:
 	dw GLACEON
 	dw GLISCOR
 	dw LEAFEON
+	dw RIOLU
+	dw LUCARIO
 	dw LICKILICKY
 	dw MAGMORTAR
 	dw MAGNEZONE
@@ -260,6 +262,10 @@ NewPokedexOrder:
 	dw RAMPARDOS
 	dw SHIELDON
 	dw BASTIODON
+	dw TYRUNT
+	dw TYRANTRUM
+	dw AMAURA
+	dw AURORUS
 	dw GOLETT
 	dw GOLURK
 	dw DUSKULL
@@ -307,6 +313,7 @@ NewPokedexOrder:
 	dw KABUTO
 	dw KABUTOPS
 	dw AERODACTYL
+	dw MUNCHLAX
 	dw SNORLAX
 	dw BULBASAUR
 	dw IVYSAUR

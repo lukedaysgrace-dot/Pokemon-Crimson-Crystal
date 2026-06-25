@@ -392,3 +392,10 @@ PokedexDataPointerTable:
 	dba GalladePokedexEntry
 	dba MrRimePokedexEntry
 	dba SirfetchDPokedexEntry
+	dba RioluPokedexEntry
+	dba LucarioPokedexEntry
+	dba TyruntPokedexEntry
+	dba TyrantrumPokedexEntry
+	dba AmauraPokedexEntry
+	dba AurorusPokedexEntry
+	dba MunchlaxPokedexEntry

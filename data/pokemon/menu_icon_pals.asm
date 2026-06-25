@@ -400,3 +400,10 @@ MonMenuIconPals:
 	icon_pals GREEN,  GRAY   ; GALLADE
 	icon_pals BLUE,   PINK   ; MR__RIME
 	icon_pals BROWN,  GREEN  ; SIRFETCH_D
+	icon_pals BLUE,   GRAY   ; RIOLU
+	icon_pals BLUE,   GRAY   ; LUCARIO
+	icon_pals BROWN,  GRAY   ; TYRUNT
+	icon_pals RED,    GRAY   ; TYRANTRUM
+	icon_pals BLUE,   GRAY   ; AMAURA
+	icon_pals BLUE,   GRAY   ; AURORUS
+	icon_pals BLUE,   BROWN  ; MUNCHLAX

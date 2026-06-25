@@ -392,3 +392,10 @@ FirstEvoStages::
 	dw RALTS
 	dw MR__MIME
 	dw FARFETCH_D
+	dw RIOLU
+	dw RIOLU
+	dw TYRUNT
+	dw TYRUNT
+	dw AMAURA
+	dw AMAURA
+	dw MUNCHLAX

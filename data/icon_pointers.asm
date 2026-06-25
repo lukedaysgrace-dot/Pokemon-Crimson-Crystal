@@ -393,3 +393,10 @@ IconPointers:
 	dba GardevoirIcon
 	dba MrRimeIcon
 	dba SirfetchDIcon
+	dba RioluIcon
+	dba LucarioIcon
+	dba TyruntIcon
+	dba TyrantrumIcon
+	dba AmauraIcon
+	dba AurorusIcon
+	dba MunchlaxIcon

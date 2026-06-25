@@ -412,6 +412,13 @@ JOHTO_POKEMON EQU const_value
 	const GALLADE    ;
 	const MR__RIME   ;
 	const SIRFETCH_D ;
+	const RIOLU      ;
+	const LUCARIO    ;
+	const TYRUNT     ;
+	const TYRANTRUM  ;
+	const AMAURA     ;
+	const AURORUS    ;
+	const MUNCHLAX   ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

@@ -238,6 +238,17 @@ EvosAttacksPointers2::
 	dw FeebasEvosAttacks
 	dw MiloticEvosAttacks
 	dw MimikyuEvosAttacks
+	dw CursolaEvosAttacks
+	dw GalladeEvosAttacks
+	dw MrRimeEvosAttacks
+	dw SirfetchDEvosAttacks
+	dw RioluEvosAttacks
+	dw LucarioEvosAttacks
+	dw TyruntEvosAttacks
+	dw TyrantrumEvosAttacks
+	dw AmauraEvosAttacks
+	dw AurorusEvosAttacks
+	dw MunchlaxEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -3186,4 +3197,101 @@ SirfetchDEvosAttacks:
 	dbw 37, SLASH
 	dbw 44, FALSE_SWIPE
 	dbw 52, SKY_ATTACK
+	db 0 ; no more level-up moves
+
+RioluEvosAttacks:
+	dbbw EVOLVE_HAPPINESS, TR_MORNDAY, LUCARIO
+	db 0 ; no more evolutions
+	dbw 1, QUICK_ATTACK
+	dbw 1, FORESIGHT
+	dbw 6, ENDURE
+	dbw 11, COUNTER
+	dbw 15, DETECT
+	dbw 19, REVERSAL
+	dbw 24, SCREECH
+	dbw 29, QUICK_ATTACK
+	dbw 47, CROSS_CHOP
+	db 0 ; no more level-up moves
+
+LucarioEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, QUICK_ATTACK
+	dbw 1, FORESIGHT
+	dbw 1, DETECT
+	dbw 11, COUNTER
+	dbw 19, METAL_CLAW
+	dbw 24, BONE_RUSH
+	dbw 29, SWORDS_DANCE
+	dbw 37, EXTREMESPEED
+	dbw 51, CROSS_CHOP
+	db 0 ; no more level-up moves
+
+TyruntEvosAttacks:
+	dbbw EVOLVE_LEVEL, 39, TYRANTRUM
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
+	dbw 10, ROAR
+	dbw 15, BITE
+	dbw 20, ANCIENTPOWER
+	dbw 26, DRAGON_CLAW
+	dbw 30, CRUNCH
+	dbw 37, ROCK_SLIDE
+	dbw 44, THRASH
+	db 0 ; no more level-up moves
+
+TyrantrumEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
+	dbw 1, ROAR
+	dbw 15, BITE
+	dbw 20, ANCIENTPOWER
+	dbw 26, DRAGON_CLAW
+	dbw 30, CRUNCH
+	dbw 37, ROCK_SLIDE
+	dbw 49, THRASH
+	dbw 58, HYPER_BEAM
+	db 0 ; no more level-up moves
+
+AmauraEvosAttacks:
+	dbbw EVOLVE_LEVEL, 39, AURORUS
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, POWDER_SNOW
+	dbw 10, THUNDER_WAVE
+	dbw 13, ROCK_THROW
+	dbw 18, ICY_WIND
+	dbw 26, ANCIENTPOWER
+	dbw 34, AURORA_BEAM
+	dbw 43, ICE_BEAM
+	dbw 50, BLIZZARD
+	db 0 ; no more level-up moves
+
+AurorusEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, POWDER_SNOW
+	dbw 1, THUNDER_WAVE
+	dbw 13, ROCK_THROW
+	dbw 18, ICY_WIND
+	dbw 26, ANCIENTPOWER
+	dbw 34, AURORA_BEAM
+	dbw 43, ICE_BEAM
+	dbw 56, BLIZZARD
+	dbw 63, HYPER_BEAM
+	db 0 ; no more level-up moves
+
+MunchlaxEvosAttacks:
+	dbbw EVOLVE_HAPPINESS, TR_ANYTIME, SNORLAX
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, DEFENSE_CURL
+	dbw 8, AMNESIA
+	dbw 15, LICK
+	dbw 22, HEADBUTT
+	dbw 29, REST
+	dbw 36, SNORE
+	dbw 43, BODY_SLAM
+	dbw 50, ROLLOUT
 	db 0 ; no more level-up moves

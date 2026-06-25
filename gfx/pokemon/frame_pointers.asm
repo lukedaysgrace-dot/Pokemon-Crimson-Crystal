@@ -391,3 +391,10 @@ FramesPointers:
 	dba GalladeFrames
 	dba MrRimeFrames
 	dba SirfetchDFrames
+	dba RioluFrames
+	dba LucarioFrames
+	dba TyruntFrames
+	dba TyrantrumFrames
+	dba AmauraFrames
+	dba AurorusFrames
+	dba MunchlaxFrames

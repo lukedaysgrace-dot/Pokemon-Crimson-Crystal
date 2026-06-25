@@ -397,3 +397,10 @@ PokemonCries::
 	mon_cry CRY_GROWLITHE, $020,  $100 ; GALLADE
 	mon_cry CRY_KRABBY,    $020,  $120 ; MR__RIME
 	mon_cry CRY_SPEAROW,   $020,  $120 ; SIRFETCH_D
+	mon_cry CRY_PICHU,     $040,  $100 ; RIOLU
+	mon_cry CRY_GOLEM,     $020,  $120 ; LUCARIO
+	mon_cry CRY_CHARMANDER, $030,  $0e0 ; TYRUNT
+	mon_cry CRY_RHYDON,    $020,  $140 ; TYRANTRUM
+	mon_cry CRY_LAPRAS,    $060,  $100 ; AMAURA
+	mon_cry CRY_LAPRAS,    $020,  $140 ; AURORUS
+	mon_cry CRY_KANGASKHAN, $060,  $0c0 ; MUNCHLAX

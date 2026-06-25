@@ -391,3 +391,10 @@ AnimationIdlePointers:
 	dw GalladeAnimationIdle
 	dw MrRimeAnimationIdle
 	dw SirfetchDAnimationIdle
+	dw RioluAnimationIdle
+	dw LucarioAnimationIdle
+	dw TyruntAnimationIdle
+	dw TyrantrumAnimationIdle
+	dw AmauraAnimationIdle
+	dw AurorusAnimationIdle
+	dw MunchlaxAnimationIdle
