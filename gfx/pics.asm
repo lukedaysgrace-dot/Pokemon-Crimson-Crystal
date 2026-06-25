@@ -1124,6 +1124,23 @@ MrRimeBackpic:  INCBIN "gfx/pokemon/mr__rime/back.2bpp.lz"
 SirfetchDFrontpic: INCBIN "gfx/pokemon/sirfetch_d/front.animated.2bpp.lz"
 SirfetchDBackpic:  INCBIN "gfx/pokemon/sirfetch_d/back.2bpp.lz"
 
+SECTION "Pics 37", ROMX
+
+RioluFrontpic: INCBIN "gfx/pokemon/riolu/front.animated.2bpp.lz"
+RioluBackpic:  INCBIN "gfx/pokemon/riolu/back.2bpp.lz"
+LucarioFrontpic: INCBIN "gfx/pokemon/lucario/front.animated.2bpp.lz"
+LucarioBackpic:  INCBIN "gfx/pokemon/lucario/back.2bpp.lz"
+TyruntFrontpic: INCBIN "gfx/pokemon/tyrunt/front.animated.2bpp.lz"
+TyruntBackpic:  INCBIN "gfx/pokemon/tyrunt/back.2bpp.lz"
+TyrantrumFrontpic: INCBIN "gfx/pokemon/tyrantrum/front.animated.2bpp.lz"
+TyrantrumBackpic:  INCBIN "gfx/pokemon/tyrantrum/back.2bpp.lz"
+AmauraFrontpic: INCBIN "gfx/pokemon/amaura/front.animated.2bpp.lz"
+AmauraBackpic:  INCBIN "gfx/pokemon/amaura/back.2bpp.lz"
+AurorusFrontpic: INCBIN "gfx/pokemon/aurorus/front.animated.2bpp.lz"
+AurorusBackpic:  INCBIN "gfx/pokemon/aurorus/back.2bpp.lz"
+MunchlaxFrontpic: INCBIN "gfx/pokemon/munchlax/front.animated.2bpp.lz"
+MunchlaxBackpic:  INCBIN "gfx/pokemon/munchlax/back.2bpp.lz"
+
 SECTION "Rocket Executive Pics", ROMX
 
 ProtonPic: INCBIN "gfx/trainers/proton.2bpp.lz"

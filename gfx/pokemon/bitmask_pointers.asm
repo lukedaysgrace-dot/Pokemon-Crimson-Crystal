@@ -391,3 +391,10 @@ BitmasksPointers:
 	dw GalladeBitmasks
 	dw MrRimeBitmasks
 	dw SirfetchDBitmasks
+	dw RioluBitmasks
+	dw LucarioBitmasks
+	dw TyruntBitmasks
+	dw TyrantrumBitmasks
+	dw AmauraBitmasks
+	dw AurorusBitmasks
+	dw MunchlaxBitmasks

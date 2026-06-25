@@ -797,3 +797,17 @@ PokemonPicPointers::
 	dba MrRimeBackpic
 	dba SirfetchDFrontpic
 	dba SirfetchDBackpic
+	dba RioluFrontpic
+	dba RioluBackpic
+	dba LucarioFrontpic
+	dba LucarioBackpic
+	dba TyruntFrontpic
+	dba TyruntBackpic
+	dba TyrantrumFrontpic
+	dba TyrantrumBackpic
+	dba AmauraFrontpic
+	dba AmauraBackpic
+	dba AurorusFrontpic
+	dba AurorusBackpic
+	dba MunchlaxFrontpic
+	dba MunchlaxBackpic

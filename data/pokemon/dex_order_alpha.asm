@@ -2,6 +2,7 @@
 
 AlphabeticalPokedexOrder:
 	dw ABRA
+	dw AMAURA
 	dw AERODACTYL
 	dw AIPOM
 	dw ALAKAZAM
@@ -9,6 +10,7 @@ AlphabeticalPokedexOrder:
 	dw ARBOK
 	dw ARCANINE
 	dw ARIADOS
+	dw AURORUS
 	dw ARTICUNO
 	dw AZUMARILL
 	dw BAYLEEF
@@ -179,6 +181,7 @@ AlphabeticalPokedexOrder:
 	dw LEDIAN
 	dw LEDYBA
 	dw LICKITUNG
+	dw LUCARIO
 	dw LUGIA
 	dw MACHAMP
 	dw MACHOKE
@@ -203,6 +206,7 @@ AlphabeticalPokedexOrder:
 	dw MISDREAVUS
 	dw MOLTRES
 	dw MR__MIME
+	dw MUNCHLAX
 	dw MUK
 	dw MURKROW
 	dw NATU
@@ -250,6 +254,7 @@ AlphabeticalPokedexOrder:
 	dw RATICATE
 	dw RATTATA
 	dw REMORAID
+	dw RIOLU
 	dw ROOKIDEE
 	dw RHYDON
 	dw RHYHORN
@@ -296,7 +301,9 @@ AlphabeticalPokedexOrder:
 	dw TOGETIC
 	dw TOTODILE
 	dw TYPHLOSION
+	dw TYRANTRUM
 	dw TYRANITAR
+	dw TYRUNT
 	dw TYROGUE
 	dw UMBREON
 	dw UNOWN

@@ -391,3 +391,10 @@ AnimationPointers:
 	dw GalladeAnimation
 	dw MrRimeAnimation
 	dw SirfetchDAnimation
+	dw RioluAnimation
+	dw LucarioAnimation
+	dw TyruntAnimation
+	dw TyrantrumAnimation
+	dw AmauraAnimation
+	dw AurorusAnimation
+	dw MunchlaxAnimation
