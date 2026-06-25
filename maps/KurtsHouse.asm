@@ -166,8 +166,8 @@ Kurt1:
 	sjump .GaveKurtApricorns
 
 .GaveKurtApricorns:
-	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	setflag ENGINE_KURT_MAKING_BALLS
+	sjump .GotLureBall
+
 .WaitForApricorns:
 	writetext KurtsHouseKurtItWillTakeADayText
 	waitbutton
