@@ -1212,7 +1212,7 @@ BattleCommand_Critical:
 	if HIGH(FARFETCH_D) == 0
 		or h
 	else
-		jr nz, .FocusEnergy
+		jr nz, .Sirfetchd
 		if HIGH(FARFETCH_D) == 1
 			dec h
 		else
@@ -1220,13 +1220,31 @@ BattleCommand_Critical:
 			cp HIGH(FARFETCH_D)
 		endc
 	endc
+	jr z, .Stick
+
+.Sirfetchd:
+	ld a, l
+	sub LOW(SIRFETCH_D)
+	if HIGH(SIRFETCH_D) == 0
+		or h
+	else
+		jr nz, .FocusEnergy
+		if HIGH(SIRFETCH_D) == 1
+			dec h
+		else
+			ld a, h
+			cp HIGH(SIRFETCH_D)
+		endc
+	endc
 	jr nz, .FocusEnergy
+
+.Stick:
 	ld a, b
 	cp STICK
 	jr nz, .FocusEnergy
 
-; +2 critical level
-	ld c, 2
+; +4 critical level
+	ld c, 4
 	jr .Tally
 
 .FocusEnergy:
