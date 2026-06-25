@@ -3666,6 +3666,8 @@ Function_SetEnemyMonAndSendOutAnimation:
 	predef CopyMonToTempMon
 	call GetEnemyMonFrontpic
 
+	ld a, POKE_BALL
+	ld [wCurItem], a
 	xor a
 	ld [wNumHits], a
 	ld [wBattleAnimParam], a
@@ -4166,6 +4168,7 @@ SendOutPlayerMon:
 	xor a
 	ld [wEnemyWrapCount], a
 	call SetPlayerTurn
+	call LoadBattleMonBallColor
 	xor a
 	ld [wNumHits], a
 	ld [wBattleAnimParam], a
@@ -4195,6 +4198,33 @@ SendOutPlayerMon:
 	ld a, $1
 	ldh [hBGMapMode], a
 	ret
+
+LoadBattleMonBallColor:
+	ld a, [wCurBattleMon]
+	ld hl, wPartyMon1Unused
+	call GetPartyLocation
+	ld a, [hl]
+	and MON_BALL_COLOR_MASK
+	cp NUM_MON_BALL_COLORS
+	jr c, .got_color
+	xor a
+
+.got_color
+	ld hl, .BallColorItems
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	ld [wCurItem], a
+	ret
+
+.BallColorItems:
+	db POKE_BALL
+	db MASTER_BALL
+	db ULTRA_BALL
+	db GREAT_BALL
+	db HEAVY_BALL
+	db LEVEL_BALL
 
 NewBattleMonStatus:
 	xor a
