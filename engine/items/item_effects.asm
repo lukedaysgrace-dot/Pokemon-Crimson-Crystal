@@ -893,9 +893,7 @@ MoonBallMultiplier:
 	ret
 
 LoveBallMultiplier:
-; This function is buggy.
-; Intent:  multiply catch rate by 8 if mons are of same species, different sex
-; Reality: multiply catch rate by 8 if mons are of same species, same sex
+; Multiply catch rate by 8 if mons are of same species, different sex.
 
 	; does species match?
 	ld a, [wTempEnemyMonSpecies]
@@ -938,7 +936,7 @@ LoveBallMultiplier:
 	pop de
 	cp d
 	pop bc
-	ret nz ; for the intended effect, this should be "ret z"
+	ret z
 
 	sla b
 	jr c, .max
@@ -959,29 +957,33 @@ LoveBallMultiplier:
 
 FastBallMultiplier:
 ; multiply catch rate by 4 if the enemy mon is in the FleeMons tables
+	push bc
 	ld a, [wTempEnemyMonSpecies]
 	call GetPokemonIndexFromID
-	ld d, h
-	ld e, l
+	ld b, h
+	ld c, l
 	ld hl, FleeMons
-	ld c, 3
-	push bc
+	ld e, 3
 
 .loop
 	ld a, BANK(FleeMons)
 	call GetFarByte
-	ld c, a
+	ld d, a
+	inc hl
 	ld a, BANK(FleeMons)
 	call GetFarByte
-	ld b, a
-	and c
-	inc a
+	inc hl
+	cp $ff
+	jr nz, .not_list_end
+	ld a, d
+	cp $ff
 	jr z, .next_list
-	ld a, b
-	cp d
+	ld a, $ff
+.not_list_end
+	cp b
 	jr nz, .loop
-	ld a, c
-	cp e
+	ld a, d
+	cp c
 	jr nz, .loop
 
 	pop bc
@@ -994,11 +996,10 @@ FastBallMultiplier:
 	ret
 
 .next_list
+	dec e
+	jr nz, .loop
 	pop bc
-	dec c
-	ret z
-	push bc
-	jr .loop
+	ret
 
 LevelBallMultiplier:
 ; multiply catch rate by 8 if player mon level / 4 > enemy mon level
