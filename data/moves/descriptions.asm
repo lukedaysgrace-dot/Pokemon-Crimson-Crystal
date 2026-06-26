@@ -299,6 +299,7 @@ MoveDescriptions1:
 	dw PixiePunchDescription
 	dw BloodMoonDescription
 	dw BulletPunchDescription
+	dw DrainPunchDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1487,3 +1488,7 @@ BulletPunchDescription:
 	db   "A tough punch as"
 	next "fast as a bullet."
 	next "Always strikes first.@"
+
+DrainPunchDescription:
+	db   "A draining punch."
+	next "Heals half damage.@"

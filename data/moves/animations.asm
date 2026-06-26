@@ -319,6 +319,7 @@ BattleAnimations::
 	dw BattleAnim_PixiePunch
 	dw BattleAnim_BloodMoon
 	dw BattleAnim_BulletPunch
+	dw BattleAnim_DrainPunch
 	dw BattleAnim_SweetScent2
 
 BattleAnim_0:
@@ -6009,4 +6010,35 @@ BattleAnim_BulletPunch:
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_resetobp0
 	anim_wait 16
+	anim_ret
+
+BattleAnim_DrainPunch:
+; Heavy fist impact, then Absorb-style HP drain from the target.
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_CHARGE
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_0A, 136, 56, $43
+	anim_wait 6
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 12
+	anim_call BattleAnim_TargetObj_1Row
+	anim_bgeffect ANIM_BG_1C, $0, $0, $10
+	anim_setvar $0
+.loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 128, 48, $2
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 64, $3
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 32, $4
+	anim_wait 6
+	anim_incvar
+	anim_if_var_equal $5, .done
+	anim_jump .loop
+
+.done
+	anim_wait 24
+	anim_incbgeffect ANIM_BG_1C
+	anim_call BattleAnim_ShowMon_0
 	anim_ret
