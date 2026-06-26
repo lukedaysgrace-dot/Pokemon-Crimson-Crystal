@@ -781,6 +781,15 @@ BattlePack:
 ItemSubmenu:
 	farcall CheckItemContext
 	ld a, [wItemAttributeParamBuffer]
+	and a
+	jr z, TMHMSubmenu.NoUse
+	; Only Ball-pocket items can be used from the battle pack.
+	ld b, a
+	farcall CheckItemPocket
+	ld a, [wItemAttributeParamBuffer]
+	cp BALL
+	ld a, b
+	jr nz, TMHMSubmenu.NoUse
 TMHMSubmenu:
 	and a
 	jr z, .NoUse
