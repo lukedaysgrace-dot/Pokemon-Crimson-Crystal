@@ -63,6 +63,8 @@ NewGame:
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
+	call SelectDifficulty
+	farcall UpdateLevelCap
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
@@ -80,6 +82,17 @@ AreYouABoyOrAreYouAGirl:
 	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
 	jr c, .ok
 	farcall InitGender
+	ret
+
+.ok
+	ld c, 0
+	farcall InitMobileProfile ; mobile
+	ret
+
+SelectDifficulty:
+	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
+	jr c, .ok
+	farcall InitDifficulty
 	ret
 
 .ok
@@ -353,6 +366,7 @@ Continue:
 	farcall TryLoadSaveFile
 	jr c, .FailToLoad
 	farcall _LoadData
+	farcall UpdateLevelCap
 	call LoadStandardMenuHeader
 	call DisplaySaveInfoOnContinue
 	ld a, $1

@@ -58,6 +58,69 @@ TextJump_AreYouABoyOrAreYouAGirl:
 	text_far Text_AreYouABoyOrAreYouAGirl
 	text_end
 
+InitDifficulty:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetPalettes
+	ld hl, TextJump_SelectDifficulty
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr nz, .confirm_hard
+	ld hl, TextJump_SelectDifficultyNormal
+	call PrintText
+	call YesNoBox
+	jr c, InitDifficulty
+	ld de, ENGINE_HARD_MODE
+	ld b, RESET_FLAG
+	farcall EngineFlagAction
+	jr .done
+
+.confirm_hard
+	ld hl, TextJump_SelectDifficultyHard
+	call PrintText
+	call YesNoBox
+	jr c, InitDifficulty
+	ld de, ENGINE_HARD_MODE
+	ld b, SET_FLAG
+	farcall EngineFlagAction
+
+.done
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 5, 4, 14, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "Normal@"
+	db "Hard@"
+
+TextJump_SelectDifficulty:
+	text_far Text_SelectDifficulty
+	text_end
+
+TextJump_SelectDifficultyNormal:
+	text_far Text_SelectDifficultyNormal
+	text_end
+
+TextJump_SelectDifficultyHard:
+	text_far Text_SelectDifficultyHard
+	text_end
+
 InitGenderScreen:
 	ld a, $10
 	ld [wMusicFade], a
