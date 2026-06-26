@@ -322,6 +322,7 @@ endr
 	ld [de], a
 	inc de
 	; Copy wEnemyMonHP
+	inc hl
 	ld a, [hli]
 	ld [de], a
 	inc de
