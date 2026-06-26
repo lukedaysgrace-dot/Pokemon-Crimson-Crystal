@@ -300,6 +300,7 @@
 	const PIXIE_PUNCH      ; 130
 	const BLOOD_MOON       ; 131
 	const BULLET_PUNCH     ; 132
+	const DRAIN_PUNCH
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
