@@ -983,7 +983,7 @@ GetPokeBallColor:
 	cp LURE_BALL
 	jr z, .blue
 	cp FAST_BALL
-	jr z, .blue
+	jr z, .yellow
 	cp HEAVY_BALL
 	jr z, .gray
 	cp MOON_BALL
