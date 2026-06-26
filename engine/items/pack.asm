@@ -783,7 +783,15 @@ ItemSubmenu:
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr z, TMHMSubmenu.NoUse
-	; Only Ball-pocket items can be used from the battle pack.
+	push af
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	ld a, c
+	and a
+	pop af
+	jr z, TMHMSubmenu
+	; Hard Mode only allows Ball-pocket items from the battle pack.
 	ld b, a
 	farcall CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]

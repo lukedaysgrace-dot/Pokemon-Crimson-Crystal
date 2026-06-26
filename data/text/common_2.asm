@@ -680,6 +680,25 @@ Text_AreYouABoyOrAreYouAGirl::
 	line "Or are you a girl?"
 	done
 
+Text_SelectDifficulty::
+	text "Select difficulty."
+	done
+
+Text_SelectDifficultyNormal::
+	text "Are you sure?"
+
+	para "Classic #MON"
+	line "rules."
+	done
+
+Text_SelectDifficultyHard::
+	text "Are you sure?"
+
+	para "SET mode, no"
+	line "items in battle,"
+	cont "GYM LVL caps."
+	done
+
 UnknownText_0x1c0cc6::
 	text "<USER>'s"
 	line "@"

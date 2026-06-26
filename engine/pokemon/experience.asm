@@ -5,8 +5,16 @@ CalcLevel:
 	ld d, 1
 .next_level
 	inc d
+	ld a, [wLevelCap]
+	and a
+	jr nz, .got_level_cap
+	ld a, MAX_LEVEL
+
+.got_level_cap
+	inc a
+	ld b, a
 	ld a, d
-	cp LOW(MAX_LEVEL + 1)
+	cp b
 	jr z, .got_level
 	call CalcExpAtLevel
 	push hl
@@ -29,6 +37,57 @@ CalcLevel:
 .got_level
 	dec d
 	ret
+
+UpdateLevelCap::
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	ld a, c
+	and a
+	jr nz, .hard
+	ld a, MAX_LEVEL
+	ld [wLevelCap], a
+	ret
+
+.hard
+	ld hl, wBadges
+	ld b, 2
+	call CountSetBits
+	ld e, a
+	ld hl, wStatusFlags
+	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
+	jr z, .load_cap
+	cp NUM_JOHTO_BADGES
+	jr c, .load_cap
+	inc e
+
+.load_cap
+	ld d, 0
+	ld hl, HardModeLevelCaps
+	add hl, de
+	ld a, [hl]
+	ld [wLevelCap], a
+	ret
+
+HardModeLevelCaps:
+	db 10 ; 0 badges
+	db 16 ; Zephyr
+	db 21 ; Hive
+	db 25 ; Plain
+	db 31 ; Fog
+	db 36 ; fifth Johto badge
+	db 38 ; sixth Johto badge
+	db 45 ; seventh Johto badge
+	db 50 ; Rising
+	db 60 ; Hall of Fame
+	db 62 ; 1 Kanto badge
+	db 63 ; 2 Kanto badges
+	db 64 ; 3 Kanto badges
+	db 66 ; 4 Kanto badges
+	db 66 ; 5 Kanto badges
+	db 67 ; 6 Kanto badges
+	db 69 ; 7 Kanto badges
+	db MAX_LEVEL ; 8 Kanto badges
 
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e

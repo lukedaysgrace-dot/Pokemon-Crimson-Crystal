@@ -151,9 +151,12 @@ CheckSubstatusCantRun:
 	ret
 
 AI_TryItem:
-	; In-battle trainer bag items are disabled.
-	; Held items are handled by separate battle code.
-	ret
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	ld a, c
+	and a
+	ret nz
 
 	; items are not allowed in the BattleTower
 	ld a, [wInBattleTowerBattle]
