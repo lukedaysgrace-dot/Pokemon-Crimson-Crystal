@@ -20,7 +20,8 @@ SECTION "Evolutions and Attacks Pointers", ROMX
 
 EvosAttacksPointers::
 	indirect_table 2, 1
-	indirect_entries MEW, EvosAttacksPointers1
+	indirect_entries STARMIE, EvosAttacksPointers1
+	indirect_entries MEW, EvosAttacksPointers1B
 	indirect_entries NUM_POKEMON, EvosAttacksPointers2
 	indirect_table_end
 
