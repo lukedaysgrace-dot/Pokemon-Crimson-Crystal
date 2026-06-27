@@ -100,7 +100,7 @@
 	const SPRITE_KURT_OUTSIDE ; 62
 	const SPRITE_LYRA_SURF ; 63
 	const SPRITE_ENTEI_NPC ; 64 (unused: mon icons are used instead)
-	const SPRITE_RAIKOU_NPC ; 65 (unused: mon icons are used instead)
+	const SPRITE_MOVE_TUTOR ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
 	const SPRITE_GOLD_SKATEBOARD ; 67
 	const SPRITE_LYRA_SKATEBOARD ; 68
