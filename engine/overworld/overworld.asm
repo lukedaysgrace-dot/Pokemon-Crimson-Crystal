@@ -196,6 +196,8 @@ SafeGetSprite:
 GetSprite:
 	call GetMonSprite
 	ret c
+	call GetIndigoPlayerSprite
+	ret c
 
 	ld hl, OverworldSprites + SPRITEDATA_ADDR
 	dec a
@@ -218,6 +220,52 @@ GetSprite:
 	; load the sprite type into l
 	ld l, [hl]
 	ld h, a
+	ret
+
+GetIndigoPlayerSprite:
+	ld d, a
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .not_indigo
+	ld a, d
+	cp SPRITE_GOLD
+	jr z, .normal
+	cp SPRITE_GOLD_BIKE
+	jr z, .bike
+	cp SPRITE_GOLD_SURF
+	jr z, .surf
+	cp SPRITE_GOLD_SKATEBOARD
+	jr z, .skateboard
+
+.not_indigo
+	ld a, d
+	and a
+	ret
+
+.normal
+	ld de, IndigoSpriteGFX
+	ld b, BANK(IndigoSpriteGFX)
+	jr .done
+
+.bike
+	ld de, IndigoBikeSpriteGFX
+	ld b, BANK(IndigoBikeSpriteGFX)
+	jr .done
+
+.surf
+	ld de, IndigoSurfSpriteGFX
+	ld b, BANK(IndigoSurfSpriteGFX)
+	jr .done
+
+.skateboard
+	ld de, IndigoSkateboardSpriteGFX
+	ld b, BANK(IndigoSkateboardSpriteGFX)
+
+.done
+	ld c, 12
+	ld h, b
+	ld l, WALKING_SPRITE
+	scf
 	ret
 
 GetMonSprite:
@@ -319,6 +367,25 @@ _GetSpritePalette::
 	ld a, c
 	call GetMonSprite
 	jr c, .is_pokemon
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .not_indigo
+	ld a, c
+	cp SPRITE_GOLD
+	jr z, .indigo
+	cp SPRITE_GOLD_BIKE
+	jr z, .indigo
+	cp SPRITE_GOLD_SURF
+	jr z, .indigo
+	cp SPRITE_GOLD_SKATEBOARD
+	jr nz, .not_indigo
+
+.indigo
+	ld c, PAL_OW_PURPLE
+	ret
+
+.not_indigo
+	ld a, c
 
 	ld hl, OverworldSprites + SPRITEDATA_PALETTE
 	dec a

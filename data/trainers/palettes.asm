@@ -1,3 +1,7 @@
+IndigoPlayerPalette:
+	RGB 25, 18, 12
+	RGB 15, 07, 26
+
 TrainerPalettes:
 ; entries correspond to trainer classes
 

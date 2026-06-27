@@ -321,6 +321,11 @@ INCLUDE "engine/events/dratini.asm"
 INCLUDE "engine/events/battle_tower/rules.asm"
 INCLUDE "mobile/mobile_22_2.asm"
 
+SECTION "Indigo Player Backpic", ROMX
+
+IndigoBackpic:
+INCBIN "gfx/player/indigo_back.2bpp"
+
 
 SECTION "bank23", ROMX
 

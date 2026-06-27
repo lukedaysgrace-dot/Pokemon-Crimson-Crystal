@@ -627,8 +627,15 @@ _CGB_UnownPuzzle:
 
 _CGB_TrainerCard:
 	ld de, wBGPals1
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .gold_palette
+	ld hl, IndigoPlayerPalette
+	jr .got_player_palette
+.gold_palette
 	xor a ; GOLD
 	call GetTrainerPalettePointer
+.got_player_palette
 	call LoadPalette_White_Col1_Col2_Black
 	ld a, FALKNER ; LYRA
 	call GetTrainerPalettePointer
@@ -659,7 +666,7 @@ _CGB_TrainerCard:
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, [wPlayerGender]
-	and a
+	bit PLAYERGENDER_FEMALE_F, a
 	ld a, $1 ; lyra
 	jr z, .got_gender
 	ld a, $0 ; gold
@@ -703,7 +710,7 @@ _CGB_TrainerCard:
 	call FillBoxCGB
 	; clair uses lyra's palette
 	ld a, [wPlayerGender]
-	and a
+	bit PLAYERGENDER_FEMALE_F, a
 	push af
 	jr z, .got_gender3
 	hlcoord 14, 14, wAttrMap

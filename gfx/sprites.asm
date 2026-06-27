@@ -136,3 +136,11 @@ ArcherSpriteGFX::              INCBIN "gfx/sprites/archer.2bpp"
 PoliwrathSpriteGFX::           INCBIN "gfx/sprites/poliwrath.2bpp"
 FarfetchDNPCSpriteGFX::        INCBIN "gfx/sprites/farfetch_d.2bpp"
 MoveTutorSpriteGFX::           INCBIN "gfx/sprites/move_tutor.2bpp"
+
+
+SECTION "Indigo Sprites", ROMX
+
+IndigoSpriteGFX::              INCBIN "gfx/sprites/indigo.2bpp"
+IndigoBikeSpriteGFX::          INCBIN "gfx/sprites/indigo_bike.2bpp"
+IndigoSurfSpriteGFX::          INCBIN "gfx/sprites/indigo_surf.2bpp"
+IndigoSkateboardSpriteGFX::    INCBIN "gfx/sprites/indigo_skateboard.2bpp"
