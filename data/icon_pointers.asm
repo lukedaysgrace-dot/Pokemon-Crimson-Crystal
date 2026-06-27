@@ -400,3 +400,4 @@ IconPointers:
 	dba AmauraIcon
 	dba AurorusIcon
 	dba MunchlaxIcon
+	dba OrstryxIcon

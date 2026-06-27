@@ -828,3 +828,5 @@ INCBIN "gfx/pokemon/aurorus/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/aurorus/shiny.pal"
 INCBIN "gfx/pokemon/munchlax/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/munchlax/shiny.pal"
+INCBIN "gfx/pokemon/orstryx/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/orstryx/shiny.pal"

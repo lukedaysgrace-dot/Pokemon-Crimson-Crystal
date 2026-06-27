@@ -1228,8 +1228,8 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 2, CETITAN
-	dbw 2, CETODDLE
+	dbw 2, ORSTRYX
+	dbw 2, ORSTRYX
 	dbw 3, KINGAMBIT
 	dbw 3, MILOTIC
 	dbw 2, RATTATA

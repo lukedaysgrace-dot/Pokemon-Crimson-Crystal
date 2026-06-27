@@ -249,6 +249,7 @@ EvosAttacksPointers2::
 	dw AmauraEvosAttacks
 	dw AurorusEvosAttacks
 	dw MunchlaxEvosAttacks
+	dw OrstryxEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -424,6 +425,7 @@ HoothootEvosAttacks:
 	db 0 ; no more level-up moves
 
 NoctowlEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, ORSTRYX
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
@@ -3294,4 +3296,19 @@ MunchlaxEvosAttacks:
 	dbw 36, SNORE
 	dbw 43, BODY_SLAM
 	dbw 50, ROLLOUT
+	db 0 ; no more level-up moves
+
+OrstryxEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, GROWL
+	dbw 1, FORESIGHT
+	dbw 1, PECK
+	dbw 6, FORESIGHT
+	dbw 11, PECK
+	dbw 16, HYPNOSIS
+	dbw 25, REFLECT
+	dbw 33, TAKE_DOWN
+	dbw 41, CONFUSION
+	dbw 57, DREAM_EATER
 	db 0 ; no more level-up moves

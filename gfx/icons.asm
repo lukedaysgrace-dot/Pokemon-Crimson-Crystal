@@ -416,5 +416,6 @@ TyrantrumIcon: INCBIN "gfx/icons/tyrantrum.2bpp"
 AmauraIcon: INCBIN "gfx/icons/amaura.2bpp"
 AurorusIcon: INCBIN "gfx/icons/aurorus.2bpp"
 MunchlaxIcon: INCBIN "gfx/icons/munchlax.2bpp"
+OrstryxIcon:  INCBIN "gfx/icons/noctowl.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

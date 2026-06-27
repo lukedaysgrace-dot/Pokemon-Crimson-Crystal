@@ -407,3 +407,4 @@ MonMenuIconPals:
 	icon_pals BLUE,   GRAY   ; AMAURA
 	icon_pals BLUE,   GRAY   ; AURORUS
 	icon_pals BLUE,   BROWN  ; MUNCHLAX
+	icon_pals BROWN,  GREEN  ; ORSTRYX

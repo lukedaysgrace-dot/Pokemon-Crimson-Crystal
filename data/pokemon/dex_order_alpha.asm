@@ -218,6 +218,7 @@ AlphabeticalPokedexOrder:
 	dw NIDORINO
 	dw NINETALES
 	dw NOCTOWL
+	dw ORSTRYX
 	dw OCTILLERY
 	dw ODDISH
 	dw OMANYTE

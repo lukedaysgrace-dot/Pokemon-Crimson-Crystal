@@ -1140,6 +1140,8 @@ AurorusFrontpic: INCBIN "gfx/pokemon/aurorus/front.animated.2bpp.lz"
 AurorusBackpic:  INCBIN "gfx/pokemon/aurorus/back.2bpp.lz"
 MunchlaxFrontpic: INCBIN "gfx/pokemon/munchlax/front.animated.2bpp.lz"
 MunchlaxBackpic:  INCBIN "gfx/pokemon/munchlax/back.2bpp.lz"
+OrstryxFrontpic: INCBIN "gfx/pokemon/orstryx/front.animated.2bpp.lz"
+OrstryxBackpic:  INCBIN "gfx/pokemon/orstryx/back.2bpp.lz"
 
 SECTION "Rocket Executive Pics", ROMX
 

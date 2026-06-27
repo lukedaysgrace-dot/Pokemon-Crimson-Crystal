@@ -398,3 +398,4 @@ AnimationIdlePointers:
 	dw AmauraAnimationIdle
 	dw AurorusAnimationIdle
 	dw MunchlaxAnimationIdle
+	dw OrstryxAnimationIdle

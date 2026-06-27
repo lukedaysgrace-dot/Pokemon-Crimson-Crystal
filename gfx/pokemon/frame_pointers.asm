@@ -398,3 +398,4 @@ FramesPointers:
 	dba AmauraFrames
 	dba AurorusFrames
 	dba MunchlaxFrames
+	dba OrstryxFrames
