@@ -398,3 +398,4 @@ BitmasksPointers:
 	dw AmauraBitmasks
 	dw AurorusBitmasks
 	dw MunchlaxBitmasks
+	dw OrstryxBitmasks

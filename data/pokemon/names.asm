@@ -402,3 +402,4 @@ PokemonNames::
 	db "AMAURA@@@@"
 	db "AURORUS@@@"
 	db "MUNCHLAX@@"
+	db "ORSTRYX@@@"

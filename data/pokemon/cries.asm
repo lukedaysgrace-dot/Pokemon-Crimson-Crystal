@@ -404,3 +404,4 @@ PokemonCries::
 	mon_cry CRY_LAPRAS,      $080,  $120 ; AMAURA
 	mon_cry CRY_LAPRAS,     -$040,  $190 ; AURORUS
 	mon_cry CRY_GRIMER,      $080,  $0e0 ; MUNCHLAX
+	mon_cry CRY_HOOTHOOT,    $000,  $200 ; ORSTRYX

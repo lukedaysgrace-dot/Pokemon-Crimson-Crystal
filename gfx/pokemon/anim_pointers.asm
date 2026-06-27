@@ -398,3 +398,4 @@ AnimationPointers:
 	dw AmauraAnimation
 	dw AurorusAnimation
 	dw MunchlaxAnimation
+	dw OrstryxAnimation

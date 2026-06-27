@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  78,  81,  71, 126,  74,  69
+	db  78,  82,  71, 126,  74,  69
 	;  hp  atk  def  spd  sat  sdf
 
 	db FIRE, FLYING ; type

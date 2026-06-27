@@ -399,3 +399,4 @@ PokedexDataPointerTable:
 	dba AmauraPokedexEntry
 	dba AurorusPokedexEntry
 	dba MunchlaxPokedexEntry
+	dba OrstryxPokedexEntry

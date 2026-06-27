@@ -419,6 +419,7 @@ JOHTO_POKEMON EQU const_value
 	const AMAURA     ;
 	const AURORUS    ;
 	const MUNCHLAX   ;
+	const ORSTRYX    ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

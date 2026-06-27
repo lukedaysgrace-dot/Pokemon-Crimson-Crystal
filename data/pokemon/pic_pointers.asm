@@ -811,3 +811,5 @@ PokemonPicPointers::
 	dba AurorusBackpic
 	dba MunchlaxFrontpic
 	dba MunchlaxBackpic
+	dba OrstryxFrontpic
+	dba OrstryxBackpic
