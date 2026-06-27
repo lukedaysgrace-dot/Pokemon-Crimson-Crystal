@@ -46,6 +46,7 @@ SpecialsPointers::
 	add_special DayCareManOutside ; $20
 	add_special MoveDeletion
 	add_special MoveReminder
+	add_special EggMoveTutor
 	add_special BankOfMom
 	add_special MagnetTrain
 	add_special NameRival

@@ -158,16 +158,19 @@ MoveDeletion:
 	ret
 
 MoveReminder:
-	ld hl, .IntroText
-	call .RemindStart
-	jr c, .cancel_no_text
-	call .GetRemindableMoves
-	jr z, .no_moves
-	ld hl, .WhichMoveText
+	ld hl, MoveReminder_IntroText
+	call MoveTutorShared_RemindStart
+	jr c, MoveReminder_CancelNoText
+	ld hl, MoveReminder_WhichMonText
+	call MoveTutorShared_SelectMon
+	jr c, MoveReminder_CancelNoText
+	call MoveReminder_GetRemindableMoves
+	jr z, MoveReminder_NoMoves
+	ld hl, MoveReminder_WhichMoveText
 	call PrintText
 	call JoyWaitAorB
-	call .ChooseMoveToLearn
-	jr c, .skip_learn
+	call MoveTutorShared_ChooseMoveToLearn
+	jr c, MoveReminder_SkipLearn
 	ld a, [wMenuSelection]
 	ld [wPutativeTMHMMove], a
 	ld [wNamedObjectIndexBuffer], a
@@ -176,62 +179,29 @@ MoveReminder:
 	predef LearnMove
 	ld a, b
 	and a
-	jr z, .skip_learn
+	jr z, MoveReminder_SkipLearn
 	call ReturnToMapWithSpeechTextbox
 	xor a ; FALSE
 	ld [wScriptVar], a
 	ret
 
-.skip_learn
+MoveReminder_SkipLearn:
 	call ReturnToMapWithSpeechTextbox
-	ld hl, .CancelText
+	ld hl, MoveReminder_CancelText
 	call PrintText
-	jr .cancel_no_text
+	jr MoveReminder_CancelNoText
 
-.no_moves
-	ld hl, .NoMovesText
+MoveReminder_NoMoves:
+	ld hl, MoveReminder_NoMovesText
 	call PrintText
-	jr .cancel_no_text
+	jr MoveReminder_CancelNoText
 
-.cancel_no_text
+MoveReminder_CancelNoText:
 	ld a, -1
 	ld [wScriptVar], a
 	ret
 
-.RemindStart:
-	call PrintText
-	call YesNoBox
-	jp c, .cancel
-	ld hl, .WhichMonText
-	call PrintText
-	call JoyWaitAorB
-	farcall SelectMonFromParty
-	jr c, .cancel
-	ld a, [wCurPartySpecies]
-	cp EGG
-	jr z, .egg
-	call IsAPokemon
-	jr c, .no_mon
-	and a
-	ret
-
-.cancel
-	ld hl, .CancelText
-	jr .done
-
-.egg
-	ld hl, .EggText
-	jr .done
-
-.no_mon
-	ld hl, .NoMonText
-
-.done
-	call PrintText
-	scf
-	ret
-
-.GetRemindableMoves:
+MoveReminder_GetRemindableMoves:
 	ld hl, wMoveReminderMoveList
 	xor a
 	ld [hli], a
@@ -259,7 +229,7 @@ MoveReminder:
 	call FarSkipEvolutions
 
 .loop_moves
-	call .GetNextEvoAttackByte
+	call MoveReminder_GetNextEvoAttackByte
 	and a
 	jr z, .done_moves
 	ld b, a
@@ -275,13 +245,13 @@ MoveReminder:
 	pop hl
 	inc hl
 	inc hl
-	call .CheckAlreadyInList
+	call MoveTutorShared_CheckAlreadyInList
 	jr c, .loop_moves
-	call .CheckPokemonAlreadyKnowsMove
+	call MoveTutorShared_CheckPokemonAlreadyKnowsMove
 	jr c, .loop_moves
 	ld a, c
 	push hl
-	call .AddMoveToList
+	call MoveTutorShared_AddMoveToList
 	pop hl
 	jr .loop_moves
 
@@ -290,13 +260,48 @@ MoveReminder:
 	and a
 	ret
 
-.GetNextEvoAttackByte:
+MoveReminder_GetNextEvoAttackByte:
 	ldh a, [hTemp]
 	call GetFarByte
 	inc hl
 	ret
 
-.CheckAlreadyInList:
+MoveTutorShared_RemindStart:
+	call PrintText
+	call YesNoBox
+	jp c, MoveTutorShared_RemindCancel
+	ret
+
+MoveTutorShared_SelectMon:
+	call PrintText
+	call JoyWaitAorB
+	farcall SelectMonFromParty
+	jr c, MoveTutorShared_RemindCancel
+	ld a, [wCurPartySpecies]
+	cp EGG
+	jr z, MoveTutorShared_RemindEgg
+	call IsAPokemon
+	jr c, MoveTutorShared_RemindNoMon
+	and a
+	ret
+
+MoveTutorShared_RemindCancel:
+	ld hl, MoveTutorShared_CancelText
+	jr MoveTutorShared_RemindDone
+
+MoveTutorShared_RemindEgg:
+	ld hl, MoveTutorShared_EggText
+	jr MoveTutorShared_RemindDone
+
+MoveTutorShared_RemindNoMon:
+	ld hl, MoveTutorShared_NoMonText
+
+MoveTutorShared_RemindDone:
+	call PrintText
+	scf
+	ret
+
+MoveTutorShared_CheckAlreadyInList:
 	push hl
 	ld hl, wMoveReminderMoveList + 1
 
@@ -316,7 +321,7 @@ MoveReminder:
 	and a
 	ret
 
-.CheckPokemonAlreadyKnowsMove:
+MoveTutorShared_CheckPokemonAlreadyKnowsMove:
 	push hl
 	push bc
 	ld a, MON_MOVES
@@ -340,7 +345,7 @@ MoveReminder:
 	scf
 	ret
 
-.AddMoveToList:
+MoveTutorShared_AddMoveToList:
 	push af
 	ld hl, wMoveReminderMoveList
 	ld a, [hl]
@@ -359,7 +364,7 @@ MoveReminder:
 	pop af
 	ret
 
-.ChooseMoveToLearn:
+MoveTutorShared_ChooseMoveToLearn:
 	call FadeToMenu
 	call ClearBGPalettes
 	ld b, SCGB_PACKPALS
@@ -369,7 +374,7 @@ MoveReminder:
 	call DmgToCgbBGPals
 	call ClearScreen
 	call WaitBGMap2
-	ld hl, .MenuHeader
+	ld hl, MoveTutorShared_MenuHeader
 	call CopyMenuHeader
 	xor a
 	ld [wMenuScrollPosition], a
@@ -391,22 +396,22 @@ MoveReminder:
 	scf
 	ret
 
-.MenuHeader:
+MoveTutorShared_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 2, SCREEN_WIDTH - 2, 10
-	dw .MenuData
+	dw MoveTutorShared_MenuData
 	db 1 ; default option
 
-.MenuData:
+MoveTutorShared_MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wMoveReminderMoveList
-	dba .PrintMoveName
+	dba MoveTutorShared_PrintMoveName
 	dba NULL
 	dba NULL
 
-.PrintMoveName:
+MoveTutorShared_PrintMoveName:
 	push de
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndexBuffer], a
@@ -415,7 +420,7 @@ MoveReminder:
 	pop hl
 	jp PlaceString
 
-.IntroText:
+MoveReminder_IntroText:
 	text "Hiya, I'm the"
 	line "MOVE REMINDER!"
 
@@ -429,7 +434,7 @@ MoveReminder:
 	line "Interested?"
 	done
 
-.WhichMonText:
+MoveReminder_WhichMonText:
 	text "Which #MON"
 	line "would you like"
 
@@ -437,16 +442,31 @@ MoveReminder:
 	line "a move?"
 	done
 
-.WhichMoveText:
+MoveTutorShared_WhichMonText:
+	text "Which #MON should"
+	line "learn an egg move?"
+	done
+
+MoveReminder_WhichMoveText:
 	text "Which move should"
 	line "it learn?"
 	done
 
-.CancelText:
+MoveReminder_CancelText:
+	text "Come back anytime."
+	done
+
+MoveTutorShared_CancelText:
 	text "Come back anytime."
 	done
 
 .EggText:
+	text "Hey! What am I"
+	line "supposed to teach"
+	cont "an EGG?"
+	done
+
+MoveTutorShared_EggText:
 	text "Hey! What am I"
 	line "supposed to teach"
 	cont "an EGG?"
@@ -458,8 +478,147 @@ MoveReminder:
 	cont "remember a move."
 	done
 
-.NoMovesText:
+MoveTutorShared_NoMonText:
+	text "You don't have a"
+	line "#MON that can"
+	cont "learn a move."
+	done
+
+MoveReminder_NoMovesText:
 	text "There are no moves"
 	line "for this #MON"
 	cont "to learn."
+	done
+
+EggMoveTutor:
+	ld hl, EggMoveTutorIntroText
+	call MoveTutorShared_RemindStart
+	jr c, EggMoveTutorCancelNoText
+	ld hl, MoveTutorShared_WhichMonText
+	call MoveTutorShared_SelectMon
+	jr c, EggMoveTutorCancelNoText
+	call EggMoveTutor_GetTeachableMoves
+	jr z, EggMoveTutorNoMoves
+	ld hl, EggMoveTutorWhichMoveText
+	call PrintText
+	call JoyWaitAorB
+	call MoveTutorShared_ChooseMoveToLearn
+	jr c, EggMoveTutorSkipLearn
+	ld a, [wMenuSelection]
+	ld [wPutativeTMHMMove], a
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	call CopyName1
+	predef LearnMove
+	ld a, b
+	and a
+	jr z, EggMoveTutorSkipLearn
+	call ReturnToMapWithSpeechTextbox
+	xor a ; FALSE
+	ld [wScriptVar], a
+	ret
+
+EggMoveTutorSkipLearn:
+	call ReturnToMapWithSpeechTextbox
+	ld hl, EggMoveTutorCancelText
+	call PrintText
+
+EggMoveTutorCancelNoText:
+	ld a, -1
+	ld [wScriptVar], a
+	ret
+
+EggMoveTutorNoMoves:
+	ld hl, EggMoveTutorNoMovesText
+	call PrintText
+	jr EggMoveTutorCancelNoText
+
+EggMoveTutor_GetTeachableMoves:
+	ld hl, wMoveReminderMoveList
+	xor a
+	ld [hli], a
+	dec a
+	ld [hl], a
+
+	ld a, MON_SPECIES
+	call GetPartyParamLocation
+	ld a, [hl]
+	ld [wCurPartySpecies], a
+
+	callfar GetLowestEvolutionStage
+
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, EggMovePointers
+	ld a, BANK(EggMovePointers)
+	call LoadDoubleIndirectPointer
+	ldh [hTemp], a
+
+.loop_moves
+	ldh a, [hTemp]
+	push hl
+	call GetFarHalfword
+	ld d, h
+	ld e, l
+	ld a, d
+	cp HIGH(-1)
+	jr nz, .check_move
+	ld a, e
+	cp LOW(-1)
+	jr nz, .check_move
+	pop hl
+	jr .done_moves
+.check_move
+	push de
+	ld h, d
+	ld l, e
+	call GetMoveIDFromIndex
+	ld c, a
+	pop de
+	pop hl
+	inc hl
+	inc hl
+	call MoveTutorShared_CheckAlreadyInList
+	jr c, .loop_moves
+	call MoveTutorShared_CheckPokemonAlreadyKnowsMove
+	jr c, .loop_moves
+	ld a, c
+	push hl
+	call MoveTutorShared_AddMoveToList
+	pop hl
+	jr .loop_moves
+
+.done_moves
+	ld a, [wMoveReminderMoveList]
+	and a
+	ret
+
+EggMoveTutorIntroText:
+	text "I'm an EGG MOVE"
+	line "TUTOR!"
+
+	para "I teach moves that"
+	line "#MON normally"
+
+	para "only get from"
+	line "breeding."
+
+	para "My fee is ¥5000."
+	line "Interested?"
+	done
+
+EggMoveTutorWhichMoveText:
+	text "Which egg move"
+	line "should it learn?"
+	done
+
+EggMoveTutorCancelText:
+	text "Come back anytime."
+	done
+
+EggMoveTutorNoMovesText:
+	text "That #MON has no"
+	line "egg moves to learn."
 	done

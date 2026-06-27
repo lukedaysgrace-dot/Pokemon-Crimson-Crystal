@@ -1,6 +1,7 @@
 	object_const_def ; object_event constants
 	const MOVEDELETERSHOUSE_SUPER_NERD
 	const MOVEDELETERSHOUSE_UNUSED_GUY
+	const MOVEDELETERSHOUSE_EGG_MOVE_TUTOR
 
 MoveDeletersHouse_MapScripts:
 	db 0 ; scene scripts
@@ -54,6 +55,42 @@ MoveReminderNotEnoughMoneyText:
 	line "have enough money."
 	done
 
+EggMoveTutorScript:
+	faceplayer
+	opentext
+	checkmoney YOUR_MONEY, 5000
+	ifequal HAVE_LESS, .NotEnoughMoney
+	special EggMoveTutor
+	ifequal FALSE, .TeachMove
+	waitbutton
+	closetext
+	end
+
+.TeachMove:
+	takemoney YOUR_MONEY, 5000
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext EggMoveTutorDoneText
+	waitbutton
+	closetext
+	end
+
+.NotEnoughMoney:
+	writetext EggMoveTutorNotEnoughMoneyText
+	waitbutton
+	closetext
+	end
+
+EggMoveTutorDoneText:
+	text "There we go!"
+	line "That's ¥5000."
+	done
+
+EggMoveTutorNotEnoughMoneyText:
+	text "Sorry, you don't"
+	line "have enough money."
+	done
+
 MoveDeletersHouse_MapEvents:
 	db 0, 0 ; filler
 
@@ -67,6 +104,7 @@ MoveDeletersHouse_MapEvents:
 	bg_event  0,  1, BGEVENT_READ, MoveDeletersHouseBookshelf
 	bg_event  1,  1, BGEVENT_READ, MoveDeletersHouseBookshelf
 
-	db 2 ; object events
+	db 3 ; object events
 	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleter, -1
 	object_event  5,  3, SPRITE_UNUSED_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MoveReminderScript, -1
+	object_event  6,  1, SPRITE_MOVE_TUTOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EggMoveTutorScript, -1
