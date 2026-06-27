@@ -224,6 +224,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_BLOOD_MOONLIGHT
 	const ANIM_OBJ_BLOOD_MOON_BEAM
 	const ANIM_OBJ_BLOOD_MOON_BEAM_END
+	const ANIM_OBJ_SEND_OUT_POKE_BALL
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def

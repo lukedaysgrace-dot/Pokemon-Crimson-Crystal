@@ -1206,7 +1206,7 @@ BattleAnim_SendOutMon:
 .Normal:
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj ANIM_OBJ_POKE_BALL, 16, 110, $0
+	anim_obj ANIM_OBJ_SEND_OUT_POKE_BALL, 16, 110, $0
 	anim_wait 14
 	anim_setobj $1, $b
 	anim_sound 0, 0, SFX_BALL_POOF
