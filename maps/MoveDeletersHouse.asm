@@ -46,7 +46,7 @@ MoveDeletersHouseBookshelf:
 
 MoveReminderDoneText:
 	text "There we go!"
-	line "That's $1000."
+	line "That's ¥1000."
 	done
 
 MoveReminderNotEnoughMoneyText:
@@ -69,4 +69,4 @@ MoveDeletersHouse_MapEvents:
 
 	db 2 ; object events
 	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleter, -1
-	object_event  5,  3, SPRITE_UNUSED_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MoveReminderScript, -1
+	object_event  5,  3, SPRITE_UNUSED_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MoveReminderScript, -1

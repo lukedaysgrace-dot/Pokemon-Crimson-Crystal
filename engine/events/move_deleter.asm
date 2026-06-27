@@ -237,155 +237,17 @@ MoveReminder:
 	ld [hli], a
 	dec a
 	ld [hl], a
+
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [wCurPartySpecies], a
-	ld [wBuffer1], a
+
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [wCurPartyLevel], a
-	call .BuildEvolutionChain
-	ld a, [wStringBuffer3]
-	ld [wBuffer4], a
 
-.add_chain_moves
-	ld a, [wBuffer4]
-	and a
-	jr z, .done_species
-	ld e, a
-	ld d, 0
-	ld hl, wStringBuffer3
-	add hl, de
-	ld a, [hl]
-	ld [wCurPartySpecies], a
-	call .AddRemindableMovesForCurSpecies
-	ld hl, wBuffer4
-	dec [hl]
-	jr .add_chain_moves
-
-.done_species
-	ld a, [wBuffer1]
-	ld [wCurPartySpecies], a
-	ld a, [wMoveReminderMoveList]
-	and a
-	ret
-
-.BuildEvolutionChain:
-	ld hl, wStringBuffer3
-	xor a
-	ld [hl], a
-	ld a, [wBuffer1]
-
-.build_chain_loop
-	call .AddSpeciesToChain
-	ld [wCurPartySpecies], a
-	call .FindPreEvolution
-	jr c, .build_chain_loop
-	ret
-
-.AddSpeciesToChain:
-	push af
-	ld hl, wStringBuffer3
-	ld a, [hl]
-	cp MON_NAME_LENGTH - 1
-	jr nc, .chain_full
-	inc [hl]
-	ld e, [hl]
-	ld d, 0
-	add hl, de
-	pop af
-	ld [hl], a
-	ret
-
-.chain_full
-	pop af
-	ret
-
-.FindPreEvolution:
-	ld a, [wCurPartySpecies]
-	call GetPokemonIndexFromID
-	ld a, l
-	ld [wBuffer5], a
-	ld a, h
-	ld [wBuffer6], a
-	ld hl, 1
-	ld a, l
-	ld [wBuffer3], a
-	ld a, h
-	ld [wBuffer4], a
-
-.find_pre_loop
-	ld a, [wBuffer3]
-	cp LOW(NUM_POKEMON + 1)
-	ld a, [wBuffer4]
-	sbc HIGH(NUM_POKEMON + 1)
-	jr nc, .no_pre_evo
-	call .CandidateEvolvesToTarget
-	jr c, .found_pre_evo
-	ld hl, wBuffer3
-	inc [hl]
-	jr nz, .find_pre_loop
-	inc hl
-	inc [hl]
-	jr .find_pre_loop
-
-.found_pre_evo
-	ld a, [wBuffer3]
-	ld l, a
-	ld a, [wBuffer4]
-	ld h, a
-	call GetPokemonIDFromIndex
-	scf
-	ret
-
-.no_pre_evo
-	and a
-	ret
-
-.CandidateEvolvesToTarget:
-	ld a, [wBuffer3]
-	ld c, a
-	ld a, [wBuffer4]
-	ld b, a
-	ld hl, EvosAttacksPointers
-	ld a, BANK(EvosAttacksPointers)
-	call LoadDoubleIndirectPointer
-	ldh [hTemp], a
-
-.check_evo_loop
-	call .GetNextEvoAttackByte
-	and a
-	ret z
-	cp EVOLVE_STAT
-	jr nz, .skip_one_parameter
-	inc hl
-
-.skip_one_parameter
-	inc hl
-	push hl
-	ldh a, [hTemp]
-	call GetFarHalfword
-	ld a, [wBuffer5]
-	cp l
-	jr nz, .not_target
-	ld a, [wBuffer6]
-	cp h
-	jr nz, .not_target
-	pop hl
-	inc hl
-	inc hl
-	scf
-	ret
-
-.not_target
-	pop hl
-	inc hl
-	inc hl
-	jr .check_evo_loop
-
-.AddRemindableMovesForCurSpecies:
 	ld a, [wCurPartySpecies]
 	call GetPokemonIndexFromID
 	ld b, h
@@ -404,6 +266,7 @@ MoveReminder:
 	ld a, [wCurPartyLevel]
 	cp b
 	jr c, .done_moves
+
 	push hl
 	ldh a, [hTemp]
 	call GetFarHalfword
@@ -417,10 +280,14 @@ MoveReminder:
 	call .CheckPokemonAlreadyKnowsMove
 	jr c, .loop_moves
 	ld a, c
+	push hl
 	call .AddMoveToList
+	pop hl
 	jr .loop_moves
 
 .done_moves
+	ld a, [wMoveReminderMoveList]
+	and a
 	ret
 
 .GetNextEvoAttackByte:
@@ -526,13 +393,13 @@ MoveReminder:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 1, 1, SCREEN_WIDTH - 1, 11
+	menu_coords 1, 2, SCREEN_WIDTH - 2, 10
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
-	db 5, 0 ; rows, columns
+	db 4, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wMoveReminderMoveList
 	dba .PrintMoveName
@@ -558,7 +425,7 @@ MoveReminder:
 	para "that they learned"
 	line "while growing up."
 
-	para "My fee is $1000."
+	para "My fee is ¥1000."
 	line "Interested?"
 	done
 
