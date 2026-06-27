@@ -366,14 +366,7 @@ MoveTutorShared_AddMoveToList:
 
 MoveTutorShared_ChooseMoveToLearn:
 	call FadeToMenu
-	call ClearBGPalettes
-	ld b, SCGB_PACKPALS
-	call GetSGBLayout
-	farcall LoadOW_BGPal7
-	ld a, %11100100
-	call DmgToCgbBGPals
-	call ClearScreen
-	call WaitBGMap2
+	farcall BlankScreen
 	ld hl, MoveTutorShared_MenuHeader
 	call CopyMenuHeader
 	xor a
@@ -381,6 +374,8 @@ MoveTutorShared_ChooseMoveToLearn:
 	inc a
 	ld [wMenuCursorBuffer], a
 	call InitScrollingMenu
+	call SetPalettes
+	call UpdateSprites
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
@@ -443,8 +438,7 @@ MoveReminder_WhichMonText:
 	done
 
 MoveTutorShared_WhichMonText:
-	text "Which #MON should"
-	line "learn an egg move?"
+	text "Which #MON?"
 	done
 
 MoveReminder_WhichMoveText:
@@ -599,19 +593,15 @@ EggMoveTutorIntroText:
 	text "I'm an EGG MOVE"
 	line "TUTOR!"
 
-	para "I teach moves that"
-	line "#MON normally"
-
-	para "only get from"
-	line "breeding."
+	para "I teach moves"
+	line "from breeding."
 
 	para "My fee is ¥5000."
 	line "Interested?"
 	done
 
 EggMoveTutorWhichMoveText:
-	text "Which egg move"
-	line "should it learn?"
+	text "Which egg move?"
 	done
 
 EggMoveTutorCancelText:
@@ -620,5 +610,6 @@ EggMoveTutorCancelText:
 
 EggMoveTutorNoMovesText:
 	text "That #MON has no"
-	line "egg moves to learn."
+	line "egg moves"
+	cont "to learn."
 	done
