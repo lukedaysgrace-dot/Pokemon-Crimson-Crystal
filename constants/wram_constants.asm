@@ -102,7 +102,7 @@ DAY_CARE_DEPOSIT  EQU 3
 	const PLAYERSTEP_START_F    ; 7
 
 ; wMoveReminderMoveList
-wMoveReminderMoveList EQUS "wMovementBuffer"
+wMoveReminderMoveList EQUS "wd002"
 
 ; wInitListType:: ; d263
 INIT_ENEMYOT_LIST    EQU 1
