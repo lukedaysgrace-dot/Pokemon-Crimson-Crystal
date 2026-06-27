@@ -36,6 +36,14 @@ InitGender:
 	call CloseWindow
 	ld a, [wMenuCursorY]
 	dec a
+	jr z, .got_choice
+	cp 1
+	jr nz, .girl
+	ld a, PLAYERGENDER_INDIGO
+	jr .got_choice
+.girl
+	ld a, 1 << PLAYERGENDER_FEMALE_F
+.got_choice
 	ld [wPlayerGender], a
 	ld c, 10
 	call DelayFrames
@@ -43,18 +51,19 @@ InitGender:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 6, 4, 12, 9
+	menu_coords 5, 4, 14, 11
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "Boy@"
-	db "Girl@"
+	db 3 ; items
+	db "Gold@"
+	db "Indigo@"
+	db "Lyra@"
 
 TextJump_AreYouABoyOrAreYouAGirl:
-	; Are you a boy? Or are you a girl?
+	; Which trainer are you?
 	text_far Text_AreYouABoyOrAreYouAGirl
 	text_end
 

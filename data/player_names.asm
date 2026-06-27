@@ -17,6 +17,25 @@ MalePlayerNameArray:
 	db 2 ; displacement
 	db " NAME @" ; title
 
+IndigoNameMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 10, TEXTBOX_Y - 1
+	dw .IndigoNames
+	db 1 ; ????
+	db 0 ; default option
+
+.IndigoNames:
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
+	db 5 ; items
+	db "NEW NAME@"
+IndigoPlayerNameArray:
+	db "INDIGO@"
+	db "VIOLET@"
+	db "IRIS@"
+	db "ROY@"
+	db 2 ; displacement
+	db " NAME @" ; title
+
 LyraNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, TEXTBOX_Y - 1

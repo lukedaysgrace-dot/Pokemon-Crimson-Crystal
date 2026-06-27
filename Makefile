@@ -156,10 +156,13 @@ gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
 
 gfx/player/gold.2bpp: rgbgfx += -h
 gfx/player/gold_back.2bpp: rgbgfx += -h
+gfx/player/indigo.2bpp: rgbgfx += -h
+gfx/player/indigo_back.2bpp: rgbgfx += -h
 gfx/player/lyra.2bpp: rgbgfx += -h
 gfx/player/lyra_back.2bpp: rgbgfx += -h
 
 gfx/trainer_card/gold_card.2bpp: rgbgfx += -h
+gfx/trainer_card/indigo_card.2bpp: rgbgfx += -h
 gfx/trainer_card/lyra_card.2bpp: rgbgfx += -h
 gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 

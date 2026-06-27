@@ -30,6 +30,12 @@ SpawnPlayer:
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .check_female
+	ln e, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT
+	jr .ok
+.check_female
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .ok

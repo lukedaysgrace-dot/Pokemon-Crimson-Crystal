@@ -749,6 +749,8 @@ GetPlayerOrMonPalettePointer:
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .male
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr z, .indigo
 	and a
 	jr z, .male
 	; Lyra shares Gold's player palette.
@@ -757,6 +759,10 @@ GetPlayerOrMonPalettePointer:
 
 .male
 	ld hl, PlayerPalette
+	ret
+
+.indigo
+	ld hl, IndigoPlayerPalette
 	ret
 
 GetFrontpicPalettePointer:

@@ -676,8 +676,8 @@ Text_YouCantUseItInABattle::
 	prompt
 
 Text_AreYouABoyOrAreYouAGirl::
-	text "Are you a boy?"
-	line "Or are you a girl?"
+	text "Which trainer"
+	line "are you?"
 	done
 
 Text_SelectDifficulty::

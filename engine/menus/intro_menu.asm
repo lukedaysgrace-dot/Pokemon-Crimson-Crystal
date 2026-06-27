@@ -811,6 +811,11 @@ NamePlayer:
 	ld hl, wPlayerName
 	ld de, .Gold
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .CheckFemale
+	ld de, .Indigo
+	jr .Male
+.CheckFemale
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .Male
 	ld de, .Lyra
@@ -822,6 +827,8 @@ NamePlayer:
 	db "GOLD@@@@@@@"
 .Lyra:
 	db "LYRA@@@@@@@"
+.Indigo:
+	db "INDIGO@@@@@"
 
 Unreferenced_Function60e9:
 	call LoadMenuHeader
@@ -976,6 +983,11 @@ Intro_PlacePlayerSprite:
 
 	ld b, PAL_OW_RED
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .CheckFemale
+	ld b, PAL_OW_PURPLE
+	jr .male
+.CheckFemale
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
 	ld b, PAL_OW_RED
