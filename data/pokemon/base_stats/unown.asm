@@ -12,7 +12,8 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/unown_a/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for UNOWN, LEVITATE, LEVITATE, LEVITATE
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 

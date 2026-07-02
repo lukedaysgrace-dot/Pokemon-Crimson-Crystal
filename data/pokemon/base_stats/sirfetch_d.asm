@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/sirfetch_d/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for SIRFETCH_D, STEADFAST, STEADFAST, SCRAPPY
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_GROUND ; egg groups
 

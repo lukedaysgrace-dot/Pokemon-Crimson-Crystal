@@ -12,7 +12,8 @@
 	db 120 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ho_oh/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for HO_OH, PRESSURE, PRESSURE, REGENERATOR
+	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 

@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/staryu/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for STARYU, ILLUMINATE, NATURAL_CURE, ANALYTIC
+	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_WATER_3 ; egg groups
 

@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/lotad/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for LOTAD, SWIFT_SWIM, RAIN_DISH, OWN_TEMPO
+	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_PLANT ; egg groups
 

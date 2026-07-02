@@ -84,6 +84,8 @@ DoBattle:
 	call SlideBattlePicOut
 	call LoadTileMapToTempTileMap
 	call ResetBattleParticipants
+	xor a
+	ld [wInAbility], a
 	call InitBattleMon
 	call ResetPlayerStatLevels
 	call SendOutMonText
@@ -93,7 +95,7 @@ DoBattle:
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked_2
@@ -107,9 +109,18 @@ DoBattle:
 	call BreakAttraction
 	call EnemySwitch
 	call SetEnemyTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 
 .not_linked_2
+	; a wild mon is already out and never passes through SpikesDamage,
+	; so run its entry abilities here
+	ld a, [wBattleMode]
+	dec a ; WILD_BATTLE?
+	jr nz, .no_wild_entry
+	call SetEnemyTurn
+	farcall RunEntryAbilities
+	call SetPlayerTurn
+.no_wild_entry
 	jp BattleTurn
 
 .tutorial_debug
@@ -283,6 +294,9 @@ HandleBetweenTurnEffects:
 	ret c
 
 .NoMoreFaintingConditions:
+	farcall RunEndTurnAbilitiesBoth
+	call CheckFaint_PlayerThenEnemy
+	ret c
 	call HandleLeftovers
 	call HandleMysteryberry
 	call HandleDefrost
@@ -467,7 +481,7 @@ DetermineMoveOrder:
 .switch
 	callfar AI_Switch
 	call SetEnemyTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 	jp .enemy_first
 
 .use_move
@@ -1892,7 +1906,7 @@ SubtractHPFromTarget:
 	call SubtractHP
 	jp UpdateHPBar
 
-SubtractHPFromUser:
+SubtractHPFromUser::
 ; Subtract HP from mon
 	call SubtractHP
 	jp UpdateHPBarBattleHuds
@@ -1941,7 +1955,7 @@ GetSixteenthMaxHP:
 .ok
 	ret
 
-GetEighthMaxHP:
+GetEighthMaxHP::
 ; output: bc
 	call GetQuarterMaxHP
 ; assumes nothing can have 1024 or more hp
@@ -1955,7 +1969,7 @@ GetEighthMaxHP:
 .end
 	ret
 
-GetQuarterMaxHP:
+GetQuarterMaxHP::
 ; output: bc
 	call GetMaxHP
 
@@ -2041,7 +2055,7 @@ CheckUserHasEnoughHP:
 	sbc [hl]
 	ret
 
-RestoreHP:
+RestoreHP::
 	ld hl, wEnemyMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
@@ -2352,6 +2366,7 @@ StopDangerSound:
 	ret
 
 FaintYourPokemon:
+	farcall RunFaintAbilities
 	call StopDangerSound
 	call WaitSFX
 	ld a, $f0
@@ -2366,6 +2381,7 @@ FaintYourPokemon:
 	jp StdBattleTextbox
 
 FaintEnemyPokemon:
+	farcall RunFaintAbilities
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -2441,7 +2457,7 @@ EnemyPartyMonEntrance:
 .done_switch
 	call ResetBattleParticipants
 	call SetEnemyTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 	xor a
 	ld [wEnemyMoveStruct + MOVE_ANIM], a
 	ld [wBattlePlayerAction], a
@@ -2874,7 +2890,7 @@ ForcePlayerMonChoice:
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 	ld a, $1
 	and a
 	ld c, a
@@ -2895,7 +2911,7 @@ PlayerPartyMonEntrance:
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
-	jp SpikesDamage
+	jp SpikesDamageAndEntryAbilities
 
 CheckMobileBattleError:
 	ld a, [wLinkMode]
@@ -4010,6 +4026,7 @@ InitBattleMon:
 	ld [wBattleMonType1], a
 	ld a, [wBaseType2]
 	ld [wBattleMonType2], a
+	call SetPlayerAbility
 	ld hl, wPartyMonNicknames
 	ld a, [wCurBattleMon]
 	call SkipNames
@@ -4090,6 +4107,7 @@ InitEnemyMon:
 	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
+	call SetEnemyAbility
 	ld hl, wOTPartyMonNicknames
 	ld a, [wCurPartyMon]
 	call SkipNames
@@ -4268,6 +4286,12 @@ BreakAttraction:
 	res SUBSTATUS_IN_LOVE, [hl]
 	ld hl, wEnemySubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
+	ret
+
+SpikesDamageAndEntryAbilities:
+; Switch-in handling: spikes, then the incoming mon's entry abilities.
+	call SpikesDamage
+	farcall RunEntryAbilities
 	ret
 
 SpikesDamage:
@@ -5404,7 +5428,7 @@ PlayerSwitch:
 EnemyMonEntrance:
 	callfar AI_Switch
 	call SetEnemyTurn
-	jp SpikesDamage
+	jp SpikesDamageAndEntryAbilities
 
 BattleMonEntrance:
 	call WithdrawMonText
@@ -5437,7 +5461,7 @@ BattleMonEntrance:
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
-	call SpikesDamage
+	call SpikesDamageAndEntryAbilities
 	ld a, $2
 	ld [wMenuCursorY], a
 	ret
@@ -5461,7 +5485,7 @@ PassedBattleMonEntrance:
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
-	jp SpikesDamage
+	jp SpikesDamageAndEntryAbilities
 
 BattleMenu_Run:
 	call Call_LoadTempTileMapToTileMap
@@ -6663,6 +6687,30 @@ LoadEnemyMon:
 	call CopyBytes
 
 .Finish:
+; Set personality (ability)
+	ld a, [wBattleMode]
+	cp TRAINER_BATTLE
+	jr nz, .WildPersonality
+	ld hl, wOTPartyMon1Personality
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld a, [hl]
+	jr .SetPersonality
+
+.WildPersonality:
+	ld a, [wBaseAbility2]
+	and a ; NO_ABILITY?
+	ld a, ABILITY_1
+	jr z, .SetPersonality
+	call BattleRandom
+	and %1
+	ld a, ABILITY_1
+	jr z, .SetPersonality
+	ld a, ABILITY_2
+.SetPersonality:
+	ld [wEnemyMonPersonality], a
+	call SetEnemyAbility
+
 ; Only the first five base stats are copied..
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
@@ -8634,6 +8682,7 @@ ExitBattle:
 	xor a
 	ld [wForceEvolution], a
 	predef EvolveAfterBattle
+	farcall RunPostBattleAbilities
 	farcall GivePokerusAndConvertBerries
 	ret
 

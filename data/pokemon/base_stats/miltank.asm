@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/miltank/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for MILTANK, THICK_FAT, SCRAPPY, SAP_SIPPER
+	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 

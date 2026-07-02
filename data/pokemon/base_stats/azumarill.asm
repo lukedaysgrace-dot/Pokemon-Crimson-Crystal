@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/azumarill/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for AZUMARILL, THICK_FAT, HUGE_POWER, SAP_SIPPER
+	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_FAIRY ; egg groups
 

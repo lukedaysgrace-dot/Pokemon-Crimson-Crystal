@@ -12,7 +12,8 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hitmonlee/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for HITMONLEE, LIMBER, RECKLESS, UNBURDEN
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
 

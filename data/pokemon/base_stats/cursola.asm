@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cursola/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for CURSOLA, WEAK_ARMOR, WEAK_ARMOR, PERISH_BODY
+	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups
 

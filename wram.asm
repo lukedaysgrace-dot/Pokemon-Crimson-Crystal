@@ -515,6 +515,10 @@ wEnemyPerishCount:: db ; c67f
 wEnemyFuryCutterCount:: db ; c680
 wEnemyProtectCount:: db ; c681
 
+; current effective abilities (can change via Trace, Skill Swap, etc.)
+wPlayerAbility:: db
+wEnemyAbility:: db
+
 wPlayerDamageTaken:: dw ; c682
 wEnemyDamageTaken:: dw ; c684
 
@@ -529,7 +533,9 @@ wBattleScriptBufferAddress:: dw ; c6b2
 
 wTurnEnded:: db ; c6b4
 
-	ds 1
+; NOTE: unions with wBT_OTTempMon3SpclDef (dormant during battles);
+; zeroed at battle start
+wInAbility:: db
 
 wPlayerStats:: ; c6b6
 wPlayerAttack:: dw
@@ -1771,7 +1777,7 @@ wd014:: ds 2
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1
-	ds 19
+	ds 19 - 18 ; -18: party/battle structs grew (Personality byte)
 wd02d:: ds 1
 wd02e:: ds 1
 wd02f:: ds 1
@@ -2232,7 +2238,11 @@ wBaseUnknown1:: db ; d244
 wBaseEggSteps:: db ; d245
 wBaseUnknown2:: db ; d246
 wBasePicSize:: db ; d247
-wBasePadding:: ds 4 ; d248
+wBaseAbilities::
+wBaseAbility1:: db ; d248
+wBaseAbility2:: db ; d249
+wBaseHiddenAbility:: db ; d24a
+wBasePadding:: ds 1 ; d24b
 wBaseGrowthRate:: db ; d24c
 wBaseEggGroups:: db ; d24d
 wBaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
@@ -2986,6 +2996,11 @@ wPokeAnimBitmaskBuffer:: ds 7
 	ds 2
 wPokeAnimStructEnd::
 
+; ability slideout banner buffers (see engine/battle/ability_gfx.asm)
+wAbilityTiles:: ds SLIDEOUT_WIDTH * 2 * LEN_2BPP_TILE
+wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
+wAbilityName:: ds 17 ; longest ability name + @
+
 
 SECTION "16-bit WRAM tables", WRAMX
 ; align this section to $100
@@ -3039,7 +3054,7 @@ w3_d8a2:: ds 1
 w3_d8a3:: ds 1
 ENDU ; d8a4
 
-	ds $1c0
+	ds $1c0 - 21 ; -21: battle_tower_structs grew (Personality byte in party_struct)
 
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT

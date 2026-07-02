@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/magneton/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for MAGNETON, MAGNET_PULL, STURDY, ANALYTIC
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
 

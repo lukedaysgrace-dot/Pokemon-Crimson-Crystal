@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ditto/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for DITTO, LIMBER, LIMBER, IMPOSTER
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_DITTO, EGG_DITTO ; egg groups
 

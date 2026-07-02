@@ -12,7 +12,8 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/rookidee/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for ROOKIDEE, KEEN_EYE, UNNERVE, BIG_PECKS
+	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups
 

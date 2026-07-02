@@ -258,3 +258,87 @@ BattleUTurn_Core:
 	ld a, BANK("Battle Core")
 	rst FarCall
 	ret
+
+BattleParalyze_Core:
+; Relocated from effect_commands.asm; in-bank calls became callfar.
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	bit PAR, a
+	jp nz, .paralyzed
+	ld a, [wTypeModifier]
+	and $7f
+	jp z, .didnt_affect
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_PARALYZE
+	jr nz, .no_item_protection
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	callfar AnimateFailedMove
+	ld hl, ProtectedByText
+	jp StdBattleTextbox
+
+.no_item_protection
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .dont_sample_failure
+
+	ld a, [wLinkMode]
+	and a
+	jr nz, .dont_sample_failure
+
+	ld a, [wInBattleTowerBattle]
+	and a
+	jr nz, .dont_sample_failure
+
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_LOCK_ON, a
+	jr nz, .dont_sample_failure
+
+	call BattleRandom
+	cp 25 percent + 1 ; 25% chance AI fails
+	jp c, .failed
+
+.dont_sample_failure
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	and a
+	jp nz, .failed
+	ld a, [wAttackMissed]
+	and a
+	jp nz, .failed
+	callfar CheckSubstituteOpp
+	jp nz, .failed
+	; ability check (Limber)
+	farcall AbilityPreventsParalysis
+	jp c, .failed
+	ld c, 30
+	call DelayFrames
+	callfar AnimateCurrentMove
+	ld a, $1
+	ldh [hBGMapMode], a
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PAR, [hl]
+	call UpdateOpponentInParty
+	ld hl, ApplyPrzEffectOnSpeed
+	call CallBattleCore
+	call UpdateBattleHuds
+	callfar PrintParalyze
+	ld hl, UseHeldStatusHealingItem
+	jp CallBattleCore
+
+.paralyzed
+	callfar AnimateFailedMove
+	ld hl, AlreadyParalyzedText
+	jp StdBattleTextbox
+
+.failed
+	callfar PrintDidntAffect2
+	ret
+
+.didnt_affect
+	callfar AnimateFailedMove
+	callfar PrintDoesntAffect
+	ret

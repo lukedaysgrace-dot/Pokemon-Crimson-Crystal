@@ -251,6 +251,11 @@ endr
 	ld [de], a
 	inc de
 
+	; Personality (rolled ability slot)
+	call GetRandomAbilitySlot
+	ld [de], a
+	inc de
+
 	xor a
 	; Status
 	ld [de], a
@@ -309,6 +314,11 @@ endr
 
 	; Initialize level.
 	ld a, [wCurPartyLevel]
+	ld [de], a
+	inc de
+
+	; Personality: keep the battle mon's ability
+	ld a, [wEnemyMonPersonality]
 	ld [de], a
 	inc de
 
@@ -1122,6 +1132,10 @@ SendMonIntoBox:
 	ld [de], a
 	inc de
 	ld a, [wCurPartyLevel]
+	ld [de], a
+	inc de
+	; Personality: keep the battle mon's ability
+	ld a, [wEnemyMonPersonality]
 	ld [de], a
 	ld a, [wCurPartySpecies]
 	call SetSeenAndCaughtMon

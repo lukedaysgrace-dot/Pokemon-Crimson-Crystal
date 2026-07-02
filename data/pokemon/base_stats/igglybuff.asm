@@ -12,7 +12,8 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/igglybuff/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for IGGLYBUFF, CUTE_CHARM, COMPETITIVE, FRISK
+	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 

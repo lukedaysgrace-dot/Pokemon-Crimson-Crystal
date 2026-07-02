@@ -5034,3 +5034,15 @@ Sfx_GlassTing2_Ch6:
 	dutycycle $2
 	sound C_,  1, $d1, $07dd
 	endchannel
+
+Sfx_AbilitySlideout:
+	musicheader 1, 5, Sfx_AbilitySlideout_Ch5
+
+Sfx_AbilitySlideout_Ch5:
+	dutycycle $1
+	soundinput $9f ; pitch sweep: time 1, down, shift 7
+	sound __, 3, $e8, $07ff
+	sound __, 16, $e8, $07e0
+	sound __, 7, $b8, $07e0
+	soundinput $8 ; pitch sweep off
+	endchannel

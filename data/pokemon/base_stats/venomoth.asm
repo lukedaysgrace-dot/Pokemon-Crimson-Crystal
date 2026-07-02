@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/venomoth/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for VENOMOTH, SHIELD_DUST, TINTED_LENS, WONDER_SKIN
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

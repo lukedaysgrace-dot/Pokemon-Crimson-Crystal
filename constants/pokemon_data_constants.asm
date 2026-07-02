@@ -24,6 +24,26 @@ BASE_GROWTH_RATE EQUS "(wBaseGrowthRate - wCurBaseData)"
 BASE_EGG_GROUPS  EQUS "(wBaseEggGroups - wCurBaseData)"
 BASE_TMHM        EQUS "(wBaseTMHM - wCurBaseData)"
 BASE_DATA_SIZE   EQUS "(wCurBaseDataEnd - wCurBaseData)"
+BASE_ABILITIES      EQUS "(wBaseAbility1 - wCurBaseData)"
+BASE_ABILITY_1      EQUS "(wBaseAbility1 - wCurBaseData)"
+BASE_ABILITY_2      EQUS "(wBaseAbility2 - wCurBaseData)"
+BASE_HIDDEN_ABILITY EQUS "(wBaseHiddenAbility - wCurBaseData)"
+
+; AbilityFlags values (see data/abilities/flags.asm)
+ABILFLAG_NO_COPY       EQU %00000001
+ABILFLAG_NO_TRACE      EQU %00000010
+ABILFLAG_NO_SWAP       EQU %00000100
+ABILFLAG_NO_SUPPRESS   EQU %00001000
+ABILFLAG_IGNORABLE     EQU %00010000
+ABILFLAG_NO_TRANSFORM  EQU %00100000
+ABILFLAG_NO_INTIMIDATE EQU %01000000
+
+; Personality byte bit masks (party/box/battle struct Personality)
+; bits 5-6: ability slot; other bits reserved
+ABILITY_MASK   EQU %01100000
+ABILITY_1      EQU %00100000
+ABILITY_2      EQU %01000000
+HIDDEN_ABILITY EQU %01100000
 
 ; gender ratio constants
 GENDER_F0      EQU 0 percent
@@ -75,6 +95,7 @@ MON_DEF_EXP            EQUS "(wPartyMon1DefExp - wPartyMon1)"
 MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
 MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
 MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
+MON_PERSONALITY        EQUS "(wPartyMon1Personality - wPartyMon1)"
 
 ; perfect DVs (15 in every stat)
 PERFECT_ATKDEF_DV EQU $ff

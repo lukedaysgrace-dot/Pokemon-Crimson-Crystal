@@ -60,6 +60,7 @@ INCLUDE "home/string.asm"
 INCLUDE "home/region.asm"
 INCLUDE "home/item.asm"
 INCLUDE "home/random.asm"
+INCLUDE "home/abilities.asm"
 INCLUDE "home/sram.asm"
 
 ; Register aliases

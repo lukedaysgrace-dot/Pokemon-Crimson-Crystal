@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/chinchou/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for CHINCHOU, VOLT_ABSORB, ILLUMINATE, WATER_ABSORB
+	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_2, EGG_WATER_2 ; egg groups
 

@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/kangaskhan/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for KANGASKHAN, EARLY_BIRD, SCRAPPY, INNER_FOCUS
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 

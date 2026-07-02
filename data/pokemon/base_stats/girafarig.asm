@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/girafarig/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for GIRAFARIG, INNER_FOCUS, EARLY_BIRD, SAP_SIPPER
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
