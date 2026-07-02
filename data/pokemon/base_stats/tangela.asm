@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tangela/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for TANGELA, CHLOROPHYLL, LEAF_GUARD, REGENERATOR
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups
 

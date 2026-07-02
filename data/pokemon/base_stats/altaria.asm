@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/altaria/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for ALTARIA, NATURAL_CURE, NO_ABILITY, CLOUD_NINE
+	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_FLYING, EGG_DRAGON ; egg groups
 

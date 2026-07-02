@@ -1130,3 +1130,5 @@ BattleText_0x8188e:
 	text "There is no time"
 	line "left today!"
 	done
+
+INCLUDE "data/text/ability_text.asm"

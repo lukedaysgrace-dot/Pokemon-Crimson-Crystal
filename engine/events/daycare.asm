@@ -625,6 +625,8 @@ DayCare_InitBreeding:
 	ld [wEggMonSpecies], a
 
 	call GetBaseData
+	call GetRandomAbilitySlot
+	ld [wEggMonPersonality], a
 	ld hl, wEggNick
 	ld de, .String_EGG
 	call CopyName2

@@ -167,6 +167,10 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
+
+
+SECTION "Battle Core Overflow", ROMX
+
 INCLUDE "engine/battle/giga_hammer_core.asm"
 
 
@@ -737,3 +741,13 @@ INCLUDE "engine/16/table_functions.asm"
 
 ; own section
 INCLUDE "data/trainers/parties.asm"
+
+INCLUDE "engine/pokemon/abilities.asm"
+
+SECTION "Abilities Engine", ROMX
+
+INCLUDE "engine/battle/abilities_engine.asm"
+
+SECTION "Ability Descriptions", ROMX
+
+INCLUDE "data/abilities/descriptions.asm"

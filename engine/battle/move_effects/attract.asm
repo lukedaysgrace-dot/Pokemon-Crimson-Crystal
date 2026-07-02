@@ -11,6 +11,8 @@ BattleCommand_Attract:
 	call GetBattleVarAddr
 	bit SUBSTATUS_IN_LOVE, [hl]
 	jr nz, .failed
+	farcall AbilityPreventsAttraction
+	jr c, .failed
 
 	set SUBSTATUS_IN_LOVE, [hl]
 	call AnimateCurrentMove

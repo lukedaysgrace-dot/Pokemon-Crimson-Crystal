@@ -12,7 +12,8 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/onix/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for ONIX, ROCK_HEAD, STURDY, WEAK_ARMOR
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
 

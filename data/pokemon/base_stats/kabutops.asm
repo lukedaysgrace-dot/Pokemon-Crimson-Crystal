@@ -12,7 +12,8 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/kabutops/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for KABUTOPS, SWIFT_SWIM, BATTLE_ARMOR, WEAK_ARMOR
+	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups
 

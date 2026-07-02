@@ -1484,6 +1484,7 @@ BattleCommand_Stab:
 	and %10000000
 	or b
 	ld [wTypeModifier], a
+	farcall RunNullificationAbilities
 	ret
 
 BattleCheckTypeMatchup:
@@ -3765,6 +3766,9 @@ BattleCommand_SleepTarget:
 	call CheckSubstituteOpp
 	jr nz, .fail
 
+	farcall AbilityPreventsSleep
+	jp c, PrintDidntAffect2
+
 	call AnimateCurrentMove
 	ld b, $7
 	ld a, [wInBattleTowerBattle]
@@ -3848,6 +3852,8 @@ BattleCommand_PoisonTarget:
 	ret nz
 	call SafeCheckSafeguard
 	ret nz
+	farcall AbilityPreventsPoison
+	ret c
 
 	call PoisonOpponent
 	ld de, ANIM_PSN
@@ -3996,6 +4002,8 @@ BattleCommand_Poison:
 	jp StdBattleTextbox
 
 .apply_poison
+	farcall AbilityPreventsPoison
+	jp c, PrintDidntAffect2
 	call AnimateCurrentMove
 	call PoisonOpponent
 	jp RefreshBattleHuds
@@ -4165,6 +4173,8 @@ BattleCommand_BurnTarget:
 	ret nz
 	call SafeCheckSafeguard
 	ret nz
+	farcall AbilityPreventsBurn
+	ret c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set BRN, [hl]
@@ -4234,6 +4244,8 @@ BattleCommand_FreezeTarget:
 	ret nz
 	call SafeCheckSafeguard
 	ret nz
+	farcall AbilityPreventsFreeze
+	ret c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set FRZ, [hl]
@@ -4373,7 +4385,7 @@ BattleCommand_StatUp:
 	ret nz
 	jp MinimizeDropSub
 
-RaiseStat:
+RaiseStat::
 	ld a, b
 	ld [wLoweredStat], a
 	ld hl, wPlayerStatLevels
@@ -4566,7 +4578,7 @@ BattleCommand_EvasionDown2:
 ; evasiondown2
 	ld a, $10 | EVASION
 
-BattleCommand_StatDown:
+BattleCommand_StatDown::
 ; statdown
 
 	ld [wLoweredStat], a
@@ -4714,7 +4726,7 @@ CheckMist:
 	bit SUBSTATUS_MIST, a
 	ret
 
-BattleCommand_StatUpMessage:
+BattleCommand_StatUpMessage::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
@@ -4744,7 +4756,7 @@ BattleCommand_StatUpMessage:
 	text_far UnknownText_0x1c0ce0
 	text_end
 
-BattleCommand_StatDownMessage:
+BattleCommand_StatDownMessage::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
@@ -6011,6 +6023,8 @@ BattleCommand_Confuse:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+	farcall AbilityPreventsConfusion
+	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
 BattleCommand_FinishConfusingTarget:
 	ld bc, wEnemyConfuseCount
 	ldh a, [hBattleTurn]
@@ -6067,83 +6081,9 @@ BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit:
 
 BattleCommand_Paralyze:
 ; paralyze
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	bit PAR, a
-	jr nz, .paralyzed
-	ld a, [wTypeModifier]
-	and $7f
-	jr z, .didnt_affect
-	call GetOpponentItem
-	ld a, b
-	cp HELD_PREVENT_PARALYZE
-	jr nz, .no_item_protection
-	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
-	call AnimateFailedMove
-	ld hl, ProtectedByText
-	jp StdBattleTextbox
-
-.no_item_protection
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .dont_sample_failure
-
-	ld a, [wLinkMode]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .dont_sample_failure
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	jr c, .failed
-
-.dont_sample_failure
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	and a
-	jr nz, .failed
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .failed
-	call CheckSubstituteOpp
-	jr nz, .failed
-	ld c, 30
-	call DelayFrames
-	call AnimateCurrentMove
-	ld a, $1
-	ldh [hBGMapMode], a
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	set PAR, [hl]
-	call UpdateOpponentInParty
-	ld hl, ApplyPrzEffectOnSpeed
-	call CallBattleCore
-	call UpdateBattleHuds
-	call PrintParalyze
-	ld hl, UseHeldStatusHealingItem
-	jp CallBattleCore
-
-.paralyzed
-	call AnimateFailedMove
-	ld hl, AlreadyParalyzedText
-	jp StdBattleTextbox
-
-.failed
-	jp PrintDidntAffect2
-
-.didnt_affect
-	call AnimateFailedMove
-	jp PrintDoesntAffect
+; Body in Battle Effect Overflow bank (see BattleParalyze_Core).
+	callfar BattleParalyze_Core
+	ret
 
 CheckMoveTypeMatchesTarget:
 ; Compare move type to opponent type.
@@ -7017,3 +6957,8 @@ CheckMoveInList:
 	pop de
 	pop bc
 	ret
+
+AbilityStatDown::
+; b = stat (farcall-safe entry for BattleCommand_StatDown)
+	ld a, b
+	jp BattleCommand_StatDown

@@ -694,6 +694,10 @@ StatsScreen_LoadGFX:
 	call .GetItemName
 	hlcoord 8, 8
 	call PlaceString
+	ld de, .AbilityLabel
+	hlcoord 0, 9
+	call PlaceString
+	farcall PlaceAbilityNameStats
 	ld de, .Move
 	hlcoord 0, 10
 	call PlaceString
@@ -731,6 +735,9 @@ StatsScreen_LoadGFX:
 
 .Move:
 	db "MOVE@"
+
+.AbilityLabel:
+	db "ABILITY@"
 
 .BluePage:
 	call StatsScreen_PrintHappiness

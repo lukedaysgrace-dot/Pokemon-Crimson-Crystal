@@ -12,7 +12,8 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/jigglypuff/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for JIGGLYPUFF, CUTE_CHARM, COMPETITIVE, FRISK
+	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
 

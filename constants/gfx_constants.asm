@@ -1,4 +1,8 @@
 TILE_WIDTH EQU 8 ; pixels
+
+; ability slideout banner (see engine/battle/ability_gfx.asm)
+SLIDEOUT_WIDTH EQU 16 ; tiles
+SLIDEOUT_START_TILE EQU $c0 ; VRAM bank 1; enemy $c0-$df, player $e0-$ff
 LEN_1BPP_TILE EQU 1 * TILE_WIDTH ; bytes
 LEN_2BPP_TILE EQU 2 * TILE_WIDTH ; bytes
 

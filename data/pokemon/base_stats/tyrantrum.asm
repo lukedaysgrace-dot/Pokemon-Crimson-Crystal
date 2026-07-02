@@ -12,7 +12,8 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tyrantrum/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for TYRANTRUM, TOUGH_CLAWS, NO_ABILITY, ROCK_HEAD
+	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
 

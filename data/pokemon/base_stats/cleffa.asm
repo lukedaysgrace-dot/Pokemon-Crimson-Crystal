@@ -12,7 +12,8 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cleffa/front.dimensions"
-	db 0, 0, 0, 0 ; padding
+	abilities_for CLEFFA, CUTE_CHARM, MAGIC_GUARD, CUTE_CHARM
+	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 
