@@ -114,9 +114,35 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
   PlaceAbilityNameStats in engine/pokemon/abilities.asm. Descriptions data is
   ported but not yet shown anywhere (needs a page-4 or info box next session).
 
+### Session 2d additions
+- **Damage modifiers** (VERIFIED: Thick Fat halves Ice Punch damage, 14 -> 7):
+  hook extends the existing post-Stab farcall (RunNullificationAbilities ->
+  RunDamageModifiers), modifying wCurDamage after it is final.
+  Attacker: Huge Power (x2 physical), Guts (x1.5 physical when statused),
+  Technician (x1.5 for <=60 BP), Tinted Lens (x2 not-very-effective),
+  Solar Power (x1.5 special in sun), Overgrow/Blaze/Torrent/Swarm (x1.5
+  matching type at <=1/3 HP). Defender: Thick Fat (x0.5 fire/ice),
+  Multiscale (x0.5 at full HP), Fur Coat (x0.5 physical), Marvel Scale
+  (x0.75 physical when statused - approximates the 1.5x Def boost),
+  Filter/Solid Rock (x0.75 super effective), Dry Skin (x1.25 fire taken).
+  Damage fraction helpers at the bottom of abilities_engine.asm.
+  NOTE: Hustle intentionally NOT implemented (its accuracy penalty needs the
+  accuracy hook first; boost alone would be a pure buff).
+- **Stat-drop protection** (build-verified): Clear Body/White Smoke (all
+  stats), Hyper Cutter (Atk), Keen Eye (Acc), Big Pecks (Def) - hooked into
+  BattleCommand_StatDown after the Mist check; shows the banner and fails the
+  move. Also covers Intimidate automatically (it uses the same command).
+- **Weather damage immunity** (build-verified): sandstorm - Sand Veil/Rush/
+  Force, Overcoat, Magic Guard; hail - Ice Body, Snow Cloak, Slush Rush,
+  Overcoat, Magic Guard. Hooked at .SandstormDamage/.HailDamage in
+  HandleWeather (core.asm).
+
 ## NOT DONE / NEXT SESSION
 
-1. **Nullification for status moves + Flash Fire boost flag**
+1. **Accuracy/evasion abilities** (Compound Eyes, Hustle penalty + then its
+   x1.5 physical boost, No Guard, Sand Veil/Snow Cloak evasion, Tangled Feet,
+   Wonder Skin): hook the accuracy math in BattleCommand_CheckHit.
+2. **Nullification for status moves + Flash Fire boost flag**
 2. **Wind Rider, Damp, Soundproof/Bulletproof/Overcoat** (need move-class data).
 3. **Damage/stat modifiers** (Huge Power, Guts, Hustle, Technician, Tinted Lens,
    Filter/Solid Rock, Multiscale, Thick Fat, Fur Coat, Adaptability, Iron Fist,

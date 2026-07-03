@@ -1785,6 +1785,8 @@ HandleWeather:
 	call SetPlayerTurn
 
 .SandstormDamage:
+	farcall AbilityImmuneToSandstorm
+	ret c
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
@@ -1845,6 +1847,8 @@ HandleWeather:
 	call SetPlayerTurn
 
 .HailDamage:
+	farcall AbilityImmuneToHail
+	ret c
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a

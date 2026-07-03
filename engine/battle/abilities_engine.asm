@@ -938,13 +938,20 @@ GetRandomPickupItem:
 	db ELIXER
 
 RunNullificationAbilities::
-; Called at the end of BattleCommand_Stab, on the attacker's turn.
-; If the defender's ability nullifies this move's type, zero wTypeModifier
-; (the regular battle flow then treats the move as ineffective), show the
-; defender's ability banner and apply the absorb effect.
+; Called at the end of BattleCommand_Stab, on the attacker's turn, after
+; wCurDamage and wTypeModifier are final. First checks type nullification;
+; if the move goes through, applies ability damage modifiers to wCurDamage.
+	call .CheckNullification
+	ret c ; nullified
+	jp RunDamageModifiers
+
+.CheckNullification:
 	ld a, [wTypeModifier]
 	and $7f
-	ret z ; already immune
+	jr nz, .not_immune
+	and a ; clear carry
+	ret
+.not_immune
 	call GetOpponentIgnorableAbility
 	and a
 	ret z
@@ -956,7 +963,10 @@ RunNullificationAbilities::
 .loop
 	ld a, [hli]
 	cp -1
-	ret z
+	jr nz, .check
+	and a ; no match: clear carry
+	ret
+.check
 	cp b
 	jr nz, .next
 	ld a, [hli]
@@ -983,7 +993,9 @@ RunNullificationAbilities::
 	call ShowAbilityActivation
 	call _hl_
 	call EndAbility
-	jp SwitchTurn
+	call SwitchTurn
+	scf ; nullified
+	ret
 
 NullificationAbilities:
 ; ability, move type, handler
@@ -1028,6 +1040,409 @@ AbsorbRaiseStat:
 	jp AbilityRaiseStat
 
 AbsorbNothing:
+	ret
+
+RunDamageModifiers:
+; Apply ability-based damage modifiers to wCurDamage.
+; Attacker = current turn holder. Physical/special moves only.
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	ret z
+	ld e, a ; e = category
+
+	; ---- attacker's ability ----
+	call GetTrueUserAbility
+	ld d, a
+	cp HUGE_POWER
+	jr z, .huge_power
+	cp GUTS
+	jr z, .guts
+	cp TECHNICIAN
+	jr z, .technician
+	cp TINTED_LENS
+	jr z, .tinted_lens
+	cp SOLAR_POWER
+	jr z, .solar_power
+	cp OVERGROW
+	ld b, GRASS
+	jr z, .pinch_boost
+	cp BLAZE
+	ld b, FIRE
+	jr z, .pinch_boost
+	cp TORRENT
+	ld b, WATER
+	jr z, .pinch_boost
+	cp SWARM
+	ld b, BUG
+	jr z, .pinch_boost
+	jr .defender
+
+.huge_power
+	ld a, e
+	and a ; CATEGORIZE_PHYSICAL == 0
+	jr nz, .defender
+	call DoubleDamage
+	jr .defender
+
+.guts
+	ld a, e
+	and a
+	jr nz, .defender
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and a
+	jr z, .defender
+	call DamageX1_5
+	jr .defender
+
+.technician
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVar
+	cp 60 + 1
+	jr nc, .defender
+	call DamageX1_5
+	jr .defender
+
+.tinted_lens
+	ld a, [wTypeModifier]
+	and $7f
+	cp EFFECTIVE
+	jr nc, .defender
+	call DoubleDamage
+	jr .defender
+
+.solar_power
+	ld a, e
+	cp CATEGORIZE_SPECIAL
+	jr nz, .defender
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr nz, .defender
+	call DamageX1_5
+	jr .defender
+
+.pinch_boost
+	; 1.5x for the matching type when at 1/3 max HP or less
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp b
+	jr nz, .defender
+	call CheckUserThirdHP
+	jr nc, .defender
+	call DamageX1_5
+	; fallthrough
+
+.defender
+	; ---- defender's ability ----
+	call GetOpponentIgnorableAbility
+	ld d, a
+	cp THICK_FAT
+	jr z, .thick_fat
+	cp MULTISCALE
+	jr z, .multiscale
+	cp FUR_COAT
+	jr z, .fur_coat
+	cp MARVEL_SCALE
+	jr z, .marvel_scale
+	cp FILTER
+	jr z, .filter
+	cp SOLID_ROCK
+	jr z, .filter
+	cp DRY_SKIN
+	jr z, .dry_skin
+	ret
+
+.thick_fat
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jp z, HalveDamage
+	cp ICE
+	jp z, HalveDamage
+	ret
+
+.multiscale
+	call SwitchTurn
+	call CheckUserFullHP
+	call SwitchTurn
+	ret nz
+	jp HalveDamage
+
+.fur_coat
+	ld a, e
+	and a ; physical?
+	ret nz
+	jp HalveDamage
+
+.marvel_scale
+	; approximates the 1.5x Defense boost as x0.75 damage
+	ld a, e
+	and a
+	ret nz
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret z
+	jp DamageX0_75
+
+.filter
+	ld a, [wTypeModifier]
+	and $7f
+	cp EFFECTIVE + 1
+	ret c ; not super effective
+	jp DamageX0_75
+
+.dry_skin
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	ret nz
+	jp DamageX1_25
+
+GetMoveCategory::
+; a = current move's damage category
+	push hl
+	ld hl, wPlayerMoveStructCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got
+	ld hl, wEnemyMoveStructCategory
+.got
+	ld a, [hl]
+	pop hl
+	ret
+
+CheckUserThirdHP:
+; carry if the user's HP is at 1/3 max or below
+	push hl
+	push de
+	push bc
+	ld hl, wBattleMonHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld hl, wEnemyMonHP
+.got_hp
+	; bc = HP * 3 (with overflow guard in a)
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	push hl
+	ld h, b
+	ld l, c
+	add hl, bc
+	jr c, .no ; HP*2 overflowed; certainly above 1/3
+	add hl, bc
+	jr c, .no
+	ld b, h
+	ld c, l
+	pop hl
+	; compare with max HP: carry if HP*3 <= MaxHP i.e. MaxHP >= HP*3
+	ld a, [hli]
+	cp b
+	jr c, .no_pop
+	jr nz, .yes
+	ld a, [hl]
+	cp c
+	jr c, .no_pop
+.yes
+	scf
+	jr .done
+.no
+	pop hl
+.no_pop
+	and a
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; ---- wCurDamage fraction helpers ----
+DoubleDamage:
+	push hl
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	add hl, hl
+	jr nc, .store
+	ld hl, $ffff
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop hl
+	ret
+
+DamageX1_5:
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	add hl, de
+	jr nc, .store
+	ld hl, $ffff
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop de
+	pop hl
+	ret
+
+DamageX1_25:
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	srl d
+	rr e
+	add hl, de
+	jr nc, .store
+	ld hl, $ffff
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop de
+	pop hl
+	ret
+
+DamageX0_75:
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc d
+	ld h, a
+	jr HalveDamage.store_min1
+
+HalveDamage:
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	srl h
+	rr l
+.store_min1
+	ld a, h
+	or l
+	jr nz, .store
+	ld l, 1
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop de
+	pop hl
+	ret
+
+AbilityProtectsStatDrop::
+; Carry if the opponent's (stat-drop target's) ability protects the stat
+; in wLoweredStat. Shows the ability banner when it does.
+	call GetOpponentIgnorableAbility
+	and a
+	ret z ; nc
+	ld b, a
+	cp CLEAR_BODY
+	jr z, .protected
+	cp WHITE_SMOKE
+	jr z, .protected
+	ld a, [wLoweredStat]
+	and $f
+	ld c, a
+	ld a, b
+	cp HYPER_CUTTER
+	jr nz, .not_atk
+	ld a, c
+	cp ATTACK
+	jr z, .protected
+	jr .no
+.not_atk
+	cp KEEN_EYE
+	jr nz, .not_acc
+	ld a, c
+	cp ACCURACY
+	jr z, .protected
+	jr .no
+.not_acc
+	cp BIG_PECKS
+	jr nz, .no
+	ld a, c
+	cp DEFENSE
+	jr z, .protected
+.no
+	and a ; nc
+	ret
+.protected
+	call BeginAbility
+	call ShowEnemyAbilityActivation
+	call EndAbility
+	scf
+	ret
+
+AbilityImmuneToSandstorm::
+; Carry if the current turn holder's ability grants sandstorm immunity.
+	call GetTrueUserAbility
+	cp SAND_VEIL
+	jr z, WeatherImmune
+	cp SAND_RUSH
+	jr z, WeatherImmune
+	cp SAND_FORCE
+	jr z, WeatherImmune
+	jr WeatherImmuneCommon
+
+AbilityImmuneToHail::
+; Carry if the current turn holder's ability grants hail immunity.
+	call GetTrueUserAbility
+	cp ICE_BODY
+	jr z, WeatherImmune
+	cp SNOW_CLOAK
+	jr z, WeatherImmune
+	cp SLUSH_RUSH
+	jr z, WeatherImmune
+	; fallthrough
+WeatherImmuneCommon:
+	cp OVERCOAT
+	jr z, WeatherImmune
+	cp MAGIC_GUARD
+	jr z, WeatherImmune
+	and a ; nc
+	ret
+WeatherImmune:
+	scf
 	ret
 
 RunFaintAbilities::
