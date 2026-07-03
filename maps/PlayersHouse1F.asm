@@ -46,6 +46,11 @@ MeetMomScript:
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
 	writetext MomGivesPokegearText
 	buttonsound
+	giveitem ABILITY_CAP
+	getstring STRING_BUFFER_4, PlayersHouse1FAbilityCapName
+	scall PlayersHouse1FReceiveItemStd
+	writetext MomGivesAbilityCapText
+	buttonsound
 	special SetDayOfWeek
 .SetDayOfWeek:
 	writetext IsItDSTText
@@ -108,6 +113,9 @@ GearName:
 
 PlayersHouse1FReceiveItemStd:
 	jumpstd receiveitem
+
+PlayersHouse1FAbilityCapName:
+	db "ABILITY CAP@"
 	end
 
 MomScript:
@@ -407,3 +415,12 @@ PlayersHouse1F_MapEvents:
 	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  0,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  4,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NeighborScript, EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
+
+MomGivesAbilityCapText:
+	text "MOM: Take this"
+	line "ABILITY CAP too!"
+
+	para "Use it to change"
+	line "a #MON's"
+	cont "special ability!"
+	done
