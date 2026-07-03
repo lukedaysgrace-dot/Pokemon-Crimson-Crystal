@@ -158,6 +158,8 @@ AbilityDescriptions::
 	dw ArmorTailDescription
 	dw MindsEyeDescription
 	dw MegaSolDescription
+	dw RefrigerateDescription
+	dw AerilateDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -938,3 +940,12 @@ MegaSolDescription:
 	next "harsh sun is up."
 	done
 
+RefrigerateDescription:
+	text "Normal moves"
+	next "become Ice-type."
+	done
+
+AerilateDescription:
+	text "Normal moves be-"
+	next "come Flying-type."
+	done

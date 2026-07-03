@@ -1080,6 +1080,9 @@ RunDamageModifiers:
 	cp SWARM
 	ld b, BUG
 	jr z, .pinch_boost
+	call CheckAteAbilityBoost
+	jr nc, .defender
+	call DamageX1_2
 	jr .defender
 
 .huge_power
@@ -1302,6 +1305,39 @@ DamageX1_5:
 	rr e
 	add hl, de
 	jr nc, .store
+	ld hl, $ffff
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop de
+	pop hl
+	ret
+
+DamageX1_2:
+; approximates x1.2 as +1/8 +1/16 (x1.1875)
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e ; 1/8
+	add hl, de
+	jr c, .cap
+	srl d
+	rr e ; 1/16
+	add hl, de
+	jr nc, .store
+.cap
 	ld hl, $ffff
 .store
 	ld a, h
@@ -1894,6 +1930,95 @@ OpponentIsPoisonImmuneType:
 	ret
 
 INCLUDE "data/moves/contact_moves.asm"
+
+AbilityConvertMoveType::
+; "-ate" abilities: the user's Normal-type damaging moves become their
+; element (Galvanize/Pixilate/Refrigerate/Aerilate). Runs right after the
+; move struct is loaded for this use. Struggle is exempt.
+	call GetTrueUserAbility
+	and a
+	ret z
+	ld b, a
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	ret z
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp NORMAL
+	ret nz
+	ld a, b
+	ld c, ELECTRIC
+	cp GALVANIZE
+	jr z, .convert
+	ld c, FAIRY
+	cp PIXILATE
+	jr z, .convert
+	ld c, ICE
+	cp REFRIGERATE
+	jr z, .convert
+	ld c, FLYING
+	cp AERILATE
+	ret nz
+.convert
+	; not Struggle
+	push hl
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(STRUGGLE)
+	jr nz, .not_struggle
+	ld a, l
+	cp LOW(STRUGGLE)
+	jr z, .abort
+.not_struggle
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	ld [hl], c
+.abort
+	pop hl
+	ret
+
+CheckAteAbilityBoost:
+; carry if the attacker has an "-ate" ability and this move was converted
+; (its original type in the move data is Normal)
+	call GetTrueUserAbility
+	cp GALVANIZE
+	jr z, .check_original
+	cp PIXILATE
+	jr z, .check_original
+	cp REFRIGERATE
+	jr z, .check_original
+	cp AERILATE
+	jr z, .check_original
+	and a ; nc
+	ret
+.check_original
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	dec hl
+	push hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	pop de
+	add hl, de ; index * 9 (MOVE_LENGTH)
+	ld de, Moves + MOVE_TYPE
+	add hl, de
+	ld a, BANK(Moves)
+	call GetFarByte
+	cp NORMAL
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret z
+	and a ; nc
+	ret
 
 RunFaintAbilities::
 ; Called when a battler faints. If the current turn holder is still alive

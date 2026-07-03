@@ -159,3 +159,5 @@ AbilityFlags:
 	db $00 ; ARMOR_TAIL
 	db $10 ; MINDS_EYE (IGNORABLE)
 	db $00 ; MEGA_SOL
+	db $00 ; REFRIGERATE
+	db $00 ; AERILATE

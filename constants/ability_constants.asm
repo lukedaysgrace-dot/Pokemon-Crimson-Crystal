@@ -162,4 +162,6 @@
 	const ARMOR_TAIL
 	const MINDS_EYE
 	const MEGA_SOL
+	const REFRIGERATE
+	const AERILATE
 NUM_ABILITIES EQU const_value
