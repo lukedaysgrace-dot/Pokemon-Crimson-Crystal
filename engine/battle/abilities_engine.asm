@@ -200,6 +200,14 @@ EndAbility::
 	ld [wInAbility], a
 	ret
 
+AbilityRestoreUserHP::
+; bc = amount. The battle core's RestoreHP heals the side OPPOSITE to
+; hBattleTurn (see its use by Leech Seed and Leftovers), so wrap it in
+; SwitchTurns to heal the turn holder (the ability's owner).
+	call SwitchTurn
+	farcall RestoreHP
+	jp SwitchTurn
+
 ShowEnemyAbilityActivation::
 	call StackCallOpponentTurn
 ShowAbilityActivation::
@@ -351,8 +359,9 @@ TraceAbility:
 	jp RunEntryAbilities
 
 ImposterAbility:
-	call BeginAbility
-	call ShowPotentialAbilityActivation
+; banner briefly, then transform (Transform redraws the scene and would
+; corrupt a live player-side banner)
+	call ShowAbilityBannerBrief
 	farcall BattleCommand_Transform
 	jp EndAbility
 
@@ -433,8 +442,8 @@ IntimidateAbility:
 
 DownloadAbility:
 ; Raise Atk if the foe's Def is lower than its SpDef, otherwise SpAtk.
-	call BeginAbility
-	call ShowAbilityActivation
+; (StatUpAbility presents the banner itself - no separate slideout here,
+; or the banner would play twice.)
 	ld hl, wEnemyMonDefense
 	ld de, wEnemyMonSpclDef
 	ldh a, [hBattleTurn]
@@ -781,7 +790,7 @@ Heal16thAbility:
 	jr nz, .got_amount
 	inc c
 .got_amount
-	farcall RestoreHP
+	call AbilityRestoreUserHP
 	ld hl, RegainedHealthText
 	call StdBattleTextbox
 	jp EndAbility
@@ -804,7 +813,7 @@ DrySkinAbility:
 	ret z
 	call ShowAbilityBannerBrief
 	farcall GetEighthMaxHP
-	farcall RestoreHP
+	call AbilityRestoreUserHP
 	ld hl, RegainedHealthText
 	call StdBattleTextbox
 	jp EndAbility
@@ -994,9 +1003,13 @@ RunNullificationAbilities::
 	inc hl
 	jr .loop
 .found
-	; nullified: make the move ineffective
+	; nullified: cancel the hit outright, like a natural immunity
+	; (wTypeModifier alone does not stop applydamage - wCurDamage has
+	; already been through the type-chart multiplication by now)
 	xor a
 	ld [wTypeModifier], a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
 	; run the absorb effect on the defender's side
 	ld a, [hli]
 	ld h, [hl]
@@ -1007,6 +1020,9 @@ RunNullificationAbilities::
 	pop hl
 	call _hl_
 	call SwitchTurn
+	; flag the miss AFTER the effect (the stat-up helpers clear it)
+	ld a, 1
+	ld [wAttackMissed], a
 	scf ; nullified
 	ret
 
@@ -1034,7 +1050,7 @@ AbsorbHealQuarter:
 	call CheckUserFullHP
 	ret z ; immune, but nothing to heal
 	farcall GetQuarterMaxHP
-	farcall RestoreHP
+	call AbilityRestoreUserHP
 	ld hl, RegainedHealthText
 	jp StdBattleTextbox
 
@@ -1110,6 +1126,12 @@ RunDamageModifiers:
 	call GetBattleVar
 	and a
 	jr z, .defender
+	; Guts ignores the burn attack cut: an extra x2 when burned makes
+	; the net effect x1.5 of unburned damage
+	bit BRN, a
+	jr z, .guts_boost
+	call DoubleDamage
+.guts_boost
 	call DamageX1_5
 	jr .defender
 
@@ -1734,6 +1756,9 @@ RunContactAbilitiesHook::
 	ret nz
 	call CheckContactMove
 	ret nc
+	; nothing procs if the defender already fainted
+	call OppHasFainted
+	ret z
 	; attacker on-contact abilities
 	call GetTrueUserAbility
 	cp POISON_TOUCH
@@ -1811,8 +1836,7 @@ StaticAbility:
 	ret nz
 	call AbilityPreventsParalysis
 	ret c
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set PAR, [hl]
@@ -1832,8 +1856,7 @@ FlameBodyAbility:
 	ret nz
 	call AbilityPreventsBurn
 	ret c
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set BRN, [hl]
@@ -1857,8 +1880,7 @@ TryPoisonOpponentContact:
 	ret z
 	call AbilityPreventsPoison
 	ret c
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set PSN, [hl]
@@ -1885,8 +1907,7 @@ EffectSporeAbility:
 	; sleep
 	call AbilityPreventsSleep
 	ret c
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	call BattleRandom
 	and %11
 	inc a
@@ -1901,8 +1922,7 @@ EffectSporeAbility:
 	jp EndAbility
 
 TanglingHairAbility:
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	xor a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a

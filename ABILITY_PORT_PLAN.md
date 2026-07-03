@@ -243,6 +243,70 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
   carve + hold -> clean dismissal -> "Enemy PIKACHU's ATTACK fell!" on an
   uncorrupted screen.
 
+### Session 3: full-audit fixes (NOT yet built or emulator-tested!)
+Lucas reported: banner shows garbage + a flash when it appears; Water
+Absorb lets the move hit AND heals the attacker. Root causes found and
+fixed, plus an audit sweep:
+
+1. **Banner garbage/flash on appear AND dismiss - FIXED (rewrite).**
+   Cause: engagement wrote the attr map and tilemap via WaitBGMap2, which
+   pushes them on DIFFERENT frames -> several frames where cells point at
+   bank-1 tiles with the old ids (garbage band + flash). Dismissal had the
+   mirror problem plus a GetSGBLayout palette reload (screen flash).
+   ability_gfx.asm was also left mid-refactor (dead code, deleted helpers
+   still called) - it would not even have built. Rewrote on the HEAD base:
+   per-cell ATOMIC BGMap writes (tile id + attr inside one hblank,
+   hBGMapMode=0 during the loops), attr backup at engage (wAbilityAttrBackup,
+   now 2 sides x 32 bytes + wAbilityBackupPtr), dismissal restores scene
+   tiles from wTempTileMap + exact attrs from the backup. No WaitBGMap2, no
+   GetSGBLayout, no palette reload anywhere in the banner path. Engage is
+   idempotent (skips if the side is already engaged, keeps backup intact).
+2. **Water Absorb healing the attacker - FIXED.** Vanilla RestoreHP heals
+   the side OPPOSITE hBattleTurn (see Leech Seed/Leftovers). All ability
+   self-heals went through it un-swapped, so Water/Volt Absorb + Dry Skin
+   absorb healed the ATTACKER, and Rain Dish/Ice Body/Dry Skin end-of-turn
+   healed the OPPONENT. New AbilityRestoreUserHP wraps it in SwitchTurns.
+3. **Absorb abilities let the move hit - FIXED.** The nullification hook
+   runs at the END of Stab, after the type-chart multiplication, so zeroing
+   wTypeModifier alone did NOT zero wCurDamage and did NOT set
+   wAttackMissed -> applydamage still landed. Now zeroes wCurDamage and
+   sets wAttackMissed=1 (after the absorb effect runs - the stat-up helpers
+   clear it), exactly like a natural immunity; failuretext then prints
+   "doesn't affect" and ends the script.
+4. **Contact abilities RE-ENABLED** at a text-safe point: farcall
+   RunContactAbilitiesHook at the top of BattleCommand_HeldFlinch (the
+   kingsrock command - runs after applydamage/checkfaint in every damaging
+   script). The dead ApplyDamage wrapper was removed (net +2 bytes in the
+   Effect Commands bank). Added guard: no procs if the defender fainted
+   (Poison Touch was able to poison a fainted mon's party struct).
+   IF BATTLES STALL after contact hits, remove that one farcall line.
+5. **Banner-corruption pattern sweep** (session-2k rule: dismiss before
+   anything that redraws): converted Imposter (Transform), Static, Flame
+   Body, Poison Point/Poison Touch, Effect Spore, Tangling Hair to
+   ShowAbilityBannerBrief.
+6. **Download double banner - FIXED** (it showed its own banner AND
+   StatUpAbility's ShowPotentialAbilityActivation slid a second one).
+7. **Bad Dreams text - FIXED**: printed with the victim as turn holder, so
+   "<TARGET>" named the Bad Dreams user; now "<USER>".
+8. **Guts vs burn - FIXED**: extra x2 when burned so the burn attack cut is
+   cancelled (net x1.5, canon behavior).
+Audited and found CORRECT: entry-table split, Trace flow, Intimidate +
+Rattled + flags, Download stat compare, status heal/prevention hooks (all 7
+sites), weather abilities, end-of-turn procs (except the heal direction
+above), Moxie, damage modifiers incl. pinch-boost HP math, accuracy mods,
+speed compare direction at the DetermineMoveOrder call site, weather
+immunities, -ate conversion, Ability Cap, GetAbility fallback, flags table
+(161 = NUM_ABILITIES), battle-var wiring, SetPlayer/EnemyAbility refresh
+before entry hooks.
+
+**SANDBOX NETWORK WAS BLOCKED this session (github/apt/pip all 403) - no
+rgbds, no PyBoy. NOTHING here is built or emulator-tested.** Test checklist
+for next session: `make`; enemy + player banner appear/dismiss (no garbage,
+no flash); Water Gun vs Vaporeon both directions (no damage, VAPOREON
+heals, "doesn't affect"); Rain Dish/Ice Body heal the holder; Thunder Punch
+vs Static mon repeatedly (30% attacker paralysis, no stall at kingsrock);
+Ditto Imposter; Download (one banner); burned Guts damage; Bad Dreams text.
+
 ## HOW AN ABILITY IS DETERMINED (reference)
 - Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
   the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).

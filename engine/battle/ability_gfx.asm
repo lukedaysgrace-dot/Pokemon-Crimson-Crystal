@@ -1,9 +1,19 @@
 ; Ability slideout banner.
 ; Fixed-width port of Polished Crystal's engine/battle/ability_gfx.asm.
+;
 ; The banner is a 2-row band that slides across the battler's side of the
 ; screen, then reveals "<MON>'s" / "<ABILITY>" cut out of the band.
-; Banner tile graphics live in VRAM bank 1, so they never conflict with
-; the battle scene tiles; the tilemap cells select them via attrmap bits.
+; Banner tile graphics live in VRAM bank 1 (enemy $c0-$df, player $e0-$ff),
+; so they never conflict with the battle scene tiles.
+;
+; All BGMap engagement/dismissal is done with per-cell ATOMIC writes: a
+; cell's tile id and its attribute are written inside the same hblank, so
+; there is never a visible frame where the tile id and the bank attribute
+; mismatch (that mismatch was the source of the old garbage flash, because
+; WaitBGMap2 pushed the attr map and the tilemap on different frames).
+; Dismissal restores the scene tiles from wTempTileMap and the exact
+; original attributes from a backup taken at engagement - no palette
+; reloads, no full-map pushes, no flash.
 
 PerformAbilityGFX::
 ; b = ability constant to display. hBattleTurn = which side.
@@ -30,9 +40,8 @@ PerformAbilityGFX::
 	call .CopyTilesToWRAM
 	; Upload them to the banner tiles (no visible change yet)
 	call ApplyAbilityTiles
-	; Point the tilemap at the banner tiles, keeping current palettes
-	call .WriteTilemap
-	call WaitBGMap2
+	; Point the cells at the banner tiles - atomic, invisible
+	call EngageBannerCells
 
 	ld de, SFX_ABILITYSLIDEOUT
 	call WaitPlaySFX
@@ -40,10 +49,9 @@ PerformAbilityGFX::
 	; Slide the band across, one column per frame
 	call .OverlaySlideout
 
-	; Switch the banner to the text palette
+	; Switch the banner cells to the text palette
 	ld b, PAL_BATTLE_BG_TEXT
-	call SetUserAbilityOverlayAttributes
-	call WaitBGMap2
+	call SetBannerCellsPalette
 
 	; Carve the text out of the band
 	call .DrawBannerText
@@ -98,23 +106,6 @@ endr
 	dec b
 	jr nz, .copy_outer
 	ret
-
-.WriteTilemap:
-	ldh a, [hBattleTurn]
-	and a
-	hlcoord 0, 8
-	ld b, SLIDEOUT_START_TILE + SLIDEOUT_WIDTH * 2
-	jr z, .got_tilemap_data
-	hlcoord 4, 3
-	ld b, SLIDEOUT_START_TILE
-.got_tilemap_data
-	call SetAbilityTilemap
-	; matching attrmap region: keep palette, set vram bank 1 + priority
-	ld bc, wAttrMap - wTileMap - SLIDEOUT_WIDTH - SCREEN_WIDTH
-	add hl, bc
-	ld b, -1 ; keep current palette
-	jp SetAbilityOverlayAttributes
-
 .OverlaySlideout:
 	ld d, 0 ; column step
 .slide_loop
@@ -469,119 +460,294 @@ WaitFreshHBlank:
 	jr nz, .wait_hblank
 	ret
 
-SetAbilityTilemap:
-; Write banner tile ids starting at b to the 2-row region at hl.
-	call .do_tilemap_loop
-	push bc
-	ld bc, SCREEN_WIDTH - SLIDEOUT_WIDTH
-	add hl, bc
-	pop bc
-.do_tilemap_loop
-	ld c, SLIDEOUT_WIDTH
-.tilemap_loop
-	ld [hl], b
-	inc hl
-	inc b
-	dec c
-	jr nz, .tilemap_loop
-	ret
+; ==== Atomic BGMap banner cell management ================================
 
-SetUserAbilityOverlayAttributes::
-; b = palette, or -1 to keep the current palette
+GetBannerLayout:
+; For the current side: hl = wTilemap anchor, de = BGMap anchor,
+; b = first banner tile id. Points wAbilityBackupPtr at this side's
+; attribute backup. Assumes rSVBK = BANK(wAbilityTiles).
 	ldh a, [hBattleTurn]
 	and a
-	hlcoord 0, 8, wAttrMap
-	jr z, SetAbilityOverlayAttributes
-	hlcoord 4, 3, wAttrMap
-	; fallthrough
-SetAbilityOverlayAttributes:
-; Set attributes for the 2-row banner region at hl: use VRAM bank 1,
-; BG priority, and palette b (-1 = keep).
-	call .do_attrmap_loop
+	jr nz, .enemy
+	hlcoord 0, 8
+	ld de, vBGMap0 + 8 * BG_MAP_WIDTH + 0
+	ld a, LOW(wAbilityAttrBackup)
+	ld [wAbilityBackupPtr], a
+	ld a, HIGH(wAbilityAttrBackup)
+	ld [wAbilityBackupPtr + 1], a
+	ld b, SLIDEOUT_START_TILE + SLIDEOUT_WIDTH * 2
+	ret
+.enemy
+	hlcoord 4, 3
+	ld de, vBGMap0 + 3 * BG_MAP_WIDTH + 4
+	ld a, LOW(wAbilityAttrBackup + SLIDEOUT_WIDTH * 2)
+	ld [wAbilityBackupPtr], a
+	ld a, HIGH(wAbilityAttrBackup + SLIDEOUT_WIDTH * 2)
+	ld [wAbilityBackupPtr + 1], a
+	ld b, SLIDEOUT_START_TILE
+	ret
+
+EngageBannerCells:
+; Back up each banner cell's attribute, then point the cells at the
+; banner tiles (VRAM bank 1) with per-cell atomic BGMap writes. The
+; banner tiles hold a copy of the scene, so nothing changes on screen.
+; Assumes rSVBK = BANK(wAbilityTiles).
+	call GetBannerLayout
+	; already engaged? then the backup is live - leave everything alone
+	push hl
+	push de
+	ld de, wAttrMap - wTileMap
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	and VRAM_BANK_1
+	ret nz
+	ldh a, [hBGMapMode]
+	push af
+	xor a
+	ldh [hBGMapMode], a
+	ld c, SLIDEOUT_WIDTH * 2
+.cell_loop
 	push bc
-	ld bc, SCREEN_WIDTH - SLIDEOUT_WIDTH
+	; wTilemap cell <- banner tile id
+	ld [hl], b
+	; wAttrMap cell: back up the original, then set bank 1 + priority
+	push hl
+	push de
+	ld de, wAttrMap - wTileMap
+	add hl, de
+	ld a, [hl]
+	call BannerBackupPut
+	or VRAM_BANK_1 | PRIORITY
+	ld [hl], a
+	pop de
+	pop hl
+	ld c, a
+	; BGMap cell <- (tile id, attribute) in one hblank
+	call WriteBGCellAtomic
+	inc hl
+	inc de
+	pop bc
+	inc b
+	dec c
+	jr z, .done
+	ld a, c
+	cp SLIDEOUT_WIDTH
+	jr nz, .cell_loop
+	call BannerAdvanceRowGap
+	jr .cell_loop
+.done
+	pop af
+	ldh [hBGMapMode], a
+	ret
+
+SetBannerCellsPalette:
+; b = palette. Rewrite every banner cell's attribute with palette b,
+; keeping VRAM bank 1 + priority. Atomic per-cell attribute writes.
+; Assumes rSVBK = BANK(wAbilityTiles).
+	ldh a, [hBGMapMode]
+	push af
+	xor a
+	ldh [hBGMapMode], a
+	push bc
+	call GetBannerLayout
+	pop bc
+	push bc
+	ld bc, wAttrMap - wTileMap
 	add hl, bc
 	pop bc
-.do_attrmap_loop
-	ld c, SLIDEOUT_WIDTH
-.attrmap_loop
-	ld a, b
-	inc a
-	jr z, .no_pal_change
+	ld c, SLIDEOUT_WIDTH * 2
+.cell_loop
+	push bc
 	ld a, [hl]
 	and ~%111 ; clear palette bits
 	or b
-	ld [hl], a
-.no_pal_change
-	ld a, [hl]
 	or VRAM_BANK_1 | PRIORITY
 	ld [hl], a
+	ld c, a
+	call WriteBGAttrAtomic
 	inc hl
+	inc de
+	pop bc
 	dec c
-	jr nz, .attrmap_loop
+	jr z, .done
+	ld a, c
+	cp SLIDEOUT_WIDTH
+	jr nz, .cell_loop
+	call BannerAdvanceRowGap
+	jr .cell_loop
+.done
+	pop af
+	ldh [hBGMapMode], a
 	ret
 
-ResetAbilityTilemap::
-; Re-apply banner tilemap data for any active overlays (call after battle
-; code redraws the tilemap, e.g. after a move animation).
-	hlcoord 0, 8, wAttrMap
-	ld a, [hl]
-	and VRAM_BANK_1
-	jr z, .check_enemy
-	hlcoord 0, 8
-	ld b, SLIDEOUT_START_TILE + SLIDEOUT_WIDTH * 2
-	call SetAbilityTilemap
-.check_enemy
-	hlcoord 4, 3, wAttrMap
-	ld a, [hl]
-	and VRAM_BANK_1
-	ret z
-	hlcoord 4, 3
-	ld b, SLIDEOUT_START_TILE
-	jp SetAbilityTilemap
-
 DismissAbilityOverlays::
-; Dismiss the ability overlays on both sides and restore the scene.
+; Retire the ability banners on both sides: restore the scene tiles
+; (from wTempTileMap, saved at BeginAbility) and the original attributes
+; (from the engagement backup) with per-cell atomic BGMap writes.
 	push hl
 	push de
 	push bc
-
-	; restore the tilemap under both banner regions from wTempTileMap
 	ldh a, [rSVBK]
 	push af
-	ld a, BANK(wTempTileMap)
+	ld a, BANK(wAbilityTiles)
 	ldh [rSVBK], a
-	hlcoord 0, 8
-	call .reset_rows
-	hlcoord 4, 3
-	call .reset_rows
+	ldh a, [hBGMapMode]
+	push af
+	xor a
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
+	push af
+	xor a
+	ldh [hBattleTurn], a
+	call .DismissSide
+	ld a, 1
+	ldh [hBattleTurn], a
+	call .DismissSide
+	pop af
+	ldh [hBattleTurn], a
+	pop af
+	ldh [hBGMapMode], a
 	pop af
 	ldh [rSVBK], a
-
-	; push the restored tiles first so the banner ids are gone from the
-	; map before the attrs drop the bank-1 bit (avoids a garbage flash)
-	call WaitBGMap
-	; rebuild the battle attrmap (clears bank 1 + priority bits)
-	ld b, SCGB_BATTLE_COLORS
-	call GetSGBLayout
-	call WaitBGMap2
-
 	pop bc
 	pop de
 	pop hl
 	ret
 
-.reset_rows
-	call .reset_row
-.reset_row
-	ld d, h
-	ld e, l
+.DismissSide:
+	; only if this side's banner is engaged (bank-1 bit at the anchor)
+	ldh a, [hBattleTurn]
+	and a
+	hlcoord 0, 8, wAttrMap
+	jr z, .got_anchor
+	hlcoord 4, 3, wAttrMap
+.got_anchor
+	ld a, [hl]
+	and VRAM_BANK_1
+	ret z
+	call GetBannerLayout
+	ld c, SLIDEOUT_WIDTH * 2
+.cell_loop
+	push bc
+	; scene tile from wTempTileMap -> wTilemap (and b)
 	push hl
-	ld bc, wTempTileMap - wTileMap
-	add hl, bc
-	ld bc, SLIDEOUT_WIDTH
-	call CopyBytes
+	push de
+	ld de, wTempTileMap - wTileMap
+	add hl, de
+	ld b, [hl]
+	pop de
 	pop hl
-	ld bc, SCREEN_WIDTH
-	add hl, bc
+	ld [hl], b
+	; original attribute from the backup -> wAttrMap (and c)
+	call BannerBackupGet
+	ld c, a
+	push hl
+	push de
+	ld de, wAttrMap - wTileMap
+	add hl, de
+	ld [hl], a
+	pop de
+	pop hl
+	; BGMap cell <- (tile, attribute) in one hblank
+	call WriteBGCellAtomic
+	inc hl
+	inc de
+	pop bc
+	dec c
+	ret z
+	ld a, c
+	cp SLIDEOUT_WIDTH
+	jr nz, .cell_loop
+	call BannerAdvanceRowGap
+	jr .cell_loop
+
+BannerBackupPut:
+; Append a to the attribute backup (advances wAbilityBackupPtr).
+; Preserves all registers.
+	push hl
+	push af
+	ld hl, wAbilityBackupPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	ld [hli], a
+	push af
+	ld a, l
+	ld [wAbilityBackupPtr], a
+	ld a, h
+	ld [wAbilityBackupPtr + 1], a
+	pop af
+	pop hl
+	ret
+
+BannerBackupGet:
+; a <- next byte from the attribute backup (advances wAbilityBackupPtr).
+; Preserves all other registers.
+	push hl
+	ld hl, wAbilityBackupPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	push af
+	ld a, l
+	ld [wAbilityBackupPtr], a
+	ld a, h
+	ld [wAbilityBackupPtr + 1], a
+	pop af
+	pop hl
+	ret
+
+WriteBGCellAtomic:
+; Write tile id b, then attribute c, to BGMap address de - both inside
+; one hblank (or during vblank), so the cell never shows a tile id with
+; a mismatched bank attribute. Preserves all registers.
+	push af
+	di
+	call WaitFreshHBlank
+	ld a, b
+	ld [de], a
+	ld a, 1
+	ldh [rVBK], a
+	ld a, c
+	ld [de], a
+	xor a
+	ldh [rVBK], a
+	ei
+	pop af
+	ret
+
+WriteBGAttrAtomic:
+; Write attribute c to BGMap address de. Preserves all registers.
+	push af
+	di
+	call WaitFreshHBlank
+	ld a, 1
+	ldh [rVBK], a
+	ld a, c
+	ld [de], a
+	xor a
+	ldh [rVBK], a
+	ei
+	pop af
+	ret
+
+BannerAdvanceRowGap:
+; Step hl (a 20-wide WRAM map pointer) and de (a 32-wide BGMap pointer)
+; from the end of one banner row to the start of the next.
+	ld a, SCREEN_WIDTH - SLIDEOUT_WIDTH
+	add l
+	ld l, a
+	adc h
+	sub l
+	ld h, a
+	ld a, BG_MAP_WIDTH - SLIDEOUT_WIDTH
+	add e
+	ld e, a
+	adc d
+	sub e
+	ld d, a
 	ret

@@ -2227,14 +2227,10 @@ BattleCommand_FailureText:
 	dw -1
 
 BattleCommand_ApplyDamage:
-	call BattleCommand_ApplyDamage_
-	; DISABLED pending debug: the contact-ability banner hangs when run from
-	; this context (see ABILITY_PORT_PLAN.md). Engine + data are complete;
-	; re-enable with: farcall RunContactAbilitiesHook
-	ret
-
 BattleCommand_ApplyDamage_:
 ; applydamage
+; (contact abilities run from the kingsrock command instead - running
+; them from inside ApplyDamage stalled the battle; see ABILITY_PORT_PLAN.md)
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -5621,6 +5617,9 @@ CheckOpponentWentFirst:
 
 BattleCommand_HeldFlinch:
 ; kingsrock
+; Also the post-hit hook for contact abilities: this command sits after
+; applydamage/checkfaint in every damaging move script, a text-safe spot.
+	farcall RunContactAbilitiesHook
 
 	ld a, [wAttackMissed]
 	and a

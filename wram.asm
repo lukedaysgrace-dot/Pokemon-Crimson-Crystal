@@ -3000,6 +3000,8 @@ wPokeAnimStructEnd::
 wAbilityTiles:: ds SLIDEOUT_WIDTH * 2 * LEN_2BPP_TILE
 wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
 wAbilityName:: ds 17 ; longest ability name + @
+wAbilityAttrBackup:: ds SLIDEOUT_WIDTH * 2 * 2 ; original attrs under the banners (player, then enemy)
+wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
 
 
 SECTION "16-bit WRAM tables", WRAMX
