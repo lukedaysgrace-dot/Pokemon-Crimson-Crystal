@@ -2020,6 +2020,96 @@ CheckAteAbilityBoost:
 	and a ; nc
 	ret
 
+AbilityCapCore::
+; ABILITY CAP key item: cycle the chosen mon's ability through its
+; available slots (1 -> 2 -> hidden -> 1), skipping empty ones.
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	callfar UseItem_SelectMon
+	ret c ; cancelled
+	; no eggs
+	ld a, MON_SPECIES
+	call GetPartyParamLocation
+	ld a, [hl]
+	cp EGG
+	jr z, .no_effect
+	ld [wCurSpecies], a
+	push af
+	call GetBaseData
+	pop af
+	ld c, a ; c = species id
+	; current slot
+	ld a, MON_PERSONALITY
+	call GetPartyParamLocation
+	ld a, [hl]
+	and ABILITY_MASK
+	ld d, a
+	; availability
+	ld a, [wBaseAbility2]
+	and a
+	ld e, 0
+	jr z, .no_second
+	set 1, e
+.no_second
+	ld a, [wBaseHiddenAbility]
+	and a
+	jr z, .no_hidden
+	set 2, e
+.no_hidden
+	ld a, e
+	and a
+	jr z, .no_effect ; only one ability exists
+	; cycle d to the next available slot
+	ld a, d
+	cp ABILITY_1
+	jr z, .from_one
+	cp ABILITY_2
+	jr z, .from_two
+	; from hidden (or unset): go to slot 1
+	ld d, ABILITY_1
+	jr .apply
+.from_one
+	bit 1, e
+	ld d, ABILITY_2
+	jr nz, .apply
+	ld d, HIDDEN_ABILITY
+	jr .apply
+.from_two
+	bit 2, e
+	ld d, HIDDEN_ABILITY
+	jr nz, .apply
+	ld d, ABILITY_1
+.apply
+	ld a, [hl]
+	and ~ABILITY_MASK & $ff
+	or d
+	ld [hl], a
+	; announce the new ability
+	ld b, a
+	call GetAbility
+	farcall GetAbilityName
+	push de
+	ld de, SFX_FULL_HEAL
+	call PlaySFX
+	call WaitSFX
+	pop de
+	ld hl, .BecameText
+	jp PrintText
+
+.no_effect
+	ld hl, .NoEffectText
+	jp PrintText
+
+.BecameText:
+	text "Its ability is"
+	line "now @"
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
+.NoEffectText:
+	text "It won't have"
+	line "any effect."
+	prompt
 RunFaintAbilities::
 ; Called when a battler faints. If the current turn holder is still alive
 ; and its opponent just fainted, run its on-KO abilities (Moxie).

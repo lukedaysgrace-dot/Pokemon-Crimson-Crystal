@@ -211,6 +211,20 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
 - Normalize and Liquid Voice NOT implemented (no users in the dex; Liquid
   Voice also needs sound-move data).
 
+### Session 2j: ABILITY CAP key item (verified)
+- New key item ABILITY CAP (reuses the ITEM_87 slot; name/attributes/effect
+  table updated; the one ITEM_87 reference in catch_rate_items.asm renamed).
+- Key-item pocket, reusable, not usable in battle. Use -> pick a party mon ->
+  its ability cycles slot 1 -> slot 2 -> hidden -> slot 1, skipping slots the
+  species does not have; eggs and single-ability mons get "won't have any
+  effect". Plays the FULL_HEAL jingle and prints the new ability name.
+  VERIFIED in-emulator: Gyarados cycles INTIMIDATE -> MOXIE -> MOLD BREAKER
+  (hidden!) -> INTIMIDATE with correct text. This makes HIDDEN ABILITIES
+  obtainable for the first time.
+- Mom gives it right after the POKEGEAR in PlayersHouse1F (script mirrors the
+  existing receiveitem pattern; NOT emulator-tested - verify the scene once
+  on a fresh save). Effect core: AbilityCapCore in abilities_engine.asm.
+
 ## HOW AN ABILITY IS DETERMINED (reference)
 - Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
   the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).

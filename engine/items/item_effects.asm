@@ -147,7 +147,7 @@ ItemEffects:
 	dw NoEffect            ; STAR_PIECE
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
-	dw NoEffect            ; ITEM_87
+	dw AbilityCapEffect    ; ABILITY_CAP
 	dw NoEffect            ; ITEM_88
 	dw NoEffect            ; ITEM_89
 	dw NoEffect            ; CHARCOAL
@@ -1432,6 +1432,10 @@ RareCandy_StatBooster_GetParameters:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
+	ret
+
+AbilityCapEffect:
+	farcall AbilityCapCore
 	ret
 
 RareCandyEffect:
