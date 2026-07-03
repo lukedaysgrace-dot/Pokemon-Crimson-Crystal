@@ -165,6 +165,17 @@ AbilityCanBeTraced::
 
 ; ==== Activation framework ================================================
 
+ShowAbilityBannerBrief::
+; Full banner presentation, held briefly, then dismissed. Use this before
+; effects that redraw the HUD or play animations (they corrupt a live
+; banner on the player's side).
+	call BeginAbility
+	call ShowAbilityActivation
+BannerHoldAndDismiss::
+	ld c, 24
+	call DelayFrames
+	jp EndAbility
+
 BeginAbility::
 	ld a, [wInAbility]
 	and a
@@ -402,8 +413,7 @@ IntimidateAbility:
 	jp EndAbility
 
 .intimidate_ok
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	xor a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
@@ -515,9 +525,14 @@ ScreenCleanerAbility:
 ; ==== Stat change helpers =================================================
 
 StatUpAbility::
-; Force-raise stat b of the user, with the banner if within an ability.
+; Force-raise stat b of the user. Shows the banner briefly, dismisses it,
+; then applies the stat change (anims corrupt a live player-side banner).
 	push bc
+	call BeginAbility
 	call ShowPotentialAbilityActivation
+	ld c, 24
+	call DelayFrames
+	call EndAbility
 	xor a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
@@ -756,8 +771,7 @@ Heal16thAbility:
 ; Heal 1/16 max HP, if not already at full HP.
 	call CheckUserFullHP
 	ret z
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	farcall GetEighthMaxHP
 	; halve for 1/16, minimum 1
 	srl b
@@ -779,8 +793,7 @@ DrySkinAbility:
 	cp WEATHER_SUN
 	ret nz
 	; hurt 1/8 in sun
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	farcall GetEighthMaxHP
 	farcall SubtractHPFromUser
 	ld hl, IsHurtText
@@ -789,8 +802,7 @@ DrySkinAbility:
 .heal
 	call CheckUserFullHP
 	ret z
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	farcall GetEighthMaxHP
 	farcall RestoreHP
 	ld hl, RegainedHealthText
@@ -801,8 +813,7 @@ SolarPowerAbility:
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret nz
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	farcall GetEighthMaxHP
 	farcall SubtractHPFromUser
 	ld hl, IsHurtText
@@ -817,8 +828,7 @@ BadDreamsAbility:
 	ret z
 	call OppHasFainted
 	ret z
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	call SwitchTurn
 	farcall GetEighthMaxHP
 	farcall SubtractHPFromUser
@@ -992,10 +1002,10 @@ RunNullificationAbilities::
 	ld h, [hl]
 	ld l, a
 	call SwitchTurn
-	call BeginAbility
-	call ShowAbilityActivation
+	push hl
+	call ShowAbilityBannerBrief
+	pop hl
 	call _hl_
-	call EndAbility
 	call SwitchTurn
 	scf ; nullified
 	ret
