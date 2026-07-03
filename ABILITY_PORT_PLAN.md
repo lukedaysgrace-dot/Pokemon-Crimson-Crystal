@@ -183,6 +183,34 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
   Intimidate, Moxie, Speed Boost, Download, Rattled, Tangling Hair and the
   absorb stat boosts.
 
+### Session 2h
+- Ability names are now ALL CAPS everywhere (single table in
+  data/abilities/names.asm drives the banner, stats screen and Trace text).
+- Species audit: only mesmeria and orstryx lacked abilities; assigned
+  flavor picks (mesmeria: SYNCHRONIZE/ICE_BODY/BAD_DREAMS; orstryx:
+  PRESSURE/KEEN_EYE/MAGIC_BOUNCE) - marked "change freely" in their files.
+  The 56 species with an empty slot 2 are canon single-regular-ability mons
+  (GetAbility falls back to slot 1). data/pokemon/base_stats/rypherior.asm
+  is an orphaned misspelled file, not in the build; the real rhyperior.asm
+  is included and has correct abilities.
+
+### Session 2i: "-ate" type-conversion abilities (verified)
+- All four implemented: Galvanize (Normal->Electric), Pixilate (Normal->
+  Fairy), Refrigerate (Normal->Ice), Aerilate (Normal->Flying), each with
+  the +20% converted-move boost (implemented as x1.1875; only applies when
+  the move's ORIGINAL type in the ROM data is Normal). Struggle exempt.
+- REFRIGERATE and AERILATE added as new constants (appended after MEGA_SOL;
+  names/descriptions/flags tables extended in order; NUM_ABILITIES now 161).
+- Conversion hooks UpdateMoveData (after GetMoveData) and rewrites the move
+  struct's type, so STAB/type chart/absorbs all see the new type. VERIFIED:
+  Refrigerate Amaura's Tackle reads type ICE in the move struct in-battle.
+- Amaura/Aurorus restored to canon REFRIGERATE (was the Ice Body sub).
+  Sylveon has PIXILATE as hidden (unobtainable until ability items).
+  Aerilate/Galvanize currently unassigned (canon users are megas/regional
+  forms not in the dex) - available for customs.
+- Normalize and Liquid Voice NOT implemented (no users in the dex; Liquid
+  Voice also needs sound-move data).
+
 ## HOW AN ABILITY IS DETERMINED (reference)
 - Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
   the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).

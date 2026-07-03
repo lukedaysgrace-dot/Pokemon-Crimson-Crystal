@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/aurorus/front.dimensions"
-	abilities_for AURORUS, ICE_BODY, NO_ABILITY, SNOW_WARNING
+	abilities_for AURORUS, REFRIGERATE, NO_ABILITY, SNOW_WARNING
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

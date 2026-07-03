@@ -3732,6 +3732,7 @@ UpdateMoveData:
 	ld [wNamedObjectIndexBuffer], a
 
 	call GetMoveData
+	farcall AbilityConvertMoveType
 	call GetMoveName
 	jp CopyName1
 

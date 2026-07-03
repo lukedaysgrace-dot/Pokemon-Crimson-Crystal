@@ -12,7 +12,8 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mesmeria/front.dimensions"
-	abilities_for MESMERIA, NO_ABILITY, NO_ABILITY, NO_ABILITY
+	; custom mon (Ice/Psychic, mesmerist flavor) - change freely
+	abilities_for MESMERIA, SYNCHRONIZE, ICE_BODY, BAD_DREAMS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
