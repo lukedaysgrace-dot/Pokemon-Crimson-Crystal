@@ -399,3 +399,41 @@ AnimationIdlePointers:
 	dw AurorusAnimationIdle
 	dw MunchlaxAnimationIdle
 	dw OrstryxAnimationIdle
+	dw RattataAlolanAnimationIdle
+	dw RaticateAlolanAnimationIdle
+	dw RaichuAlolanAnimationIdle
+	dw SandshrewAlolanAnimationIdle
+	dw SandslashAlolanAnimationIdle
+	dw VulpixAlolanAnimationIdle
+	dw NinetalesAlolanAnimationIdle
+	dw DiglettAlolanAnimationIdle
+	dw DugtrioAlolanAnimationIdle
+	dw MeowthAlolanAnimationIdle
+	dw PersianAlolanAnimationIdle
+	dw GeodudeAlolanAnimationIdle
+	dw GravelerAlolanAnimationIdle
+	dw GolemAlolanAnimationIdle
+	dw GrimerAlolanAnimationIdle
+	dw MukAlolanAnimationIdle
+	dw ExeggutorAlolanAnimationIdle
+	dw MarowakAlolanAnimationIdle
+	dw MeowthGalarianAnimationIdle
+	dw PerrserkerAnimationIdle
+	dw PonytaGalarianAnimationIdle
+	dw RapidashGalarianAnimationIdle
+	dw SlowpokeGalarianAnimationIdle
+	dw SlowbroGalarianAnimationIdle
+	dw WeezingGalarianAnimationIdle
+	dw SlowkingGalarianAnimationIdle
+	dw CorsolaGalarianAnimationIdle
+	dw GrowlitheHisuianAnimationIdle
+	dw ArcanineHisuianAnimationIdle
+	dw VoltorbHisuianAnimationIdle
+	dw ElectrodeHisuianAnimationIdle
+	dw TyphlosionHisuianAnimationIdle
+	dw SneaselHisuianAnimationIdle
+	dw WooperPaldeanAnimationIdle
+	dw ClodsireAnimationIdle
+	dw TaurosPaldeanFireAnimationIdle
+	dw TaurosPaldeanWaterAnimationIdle
+	dw SneaslerAnimationIdle

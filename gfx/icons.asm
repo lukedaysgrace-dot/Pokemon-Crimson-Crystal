@@ -323,8 +323,8 @@ DragapultIcon:   INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/dragapult.png
 ImpidimpIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/impidimp.png
 MorgremIcon:     INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/morgrem.png
 GrimmsnarlIcon:  INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/grimmsnarl.png
-TinkatinkIcon:   INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/tinkatink.png
-TinkatuffIcon:   INCBIN "gfx/icons/clefairy.2bpp" ; TODO: gfx/icons/tinkatuff.png
+TinkatinkIcon:   INCBIN "gfx/icons/tinkatink.2bpp"
+TinkatuffIcon:   INCBIN "gfx/icons/tinkatuff.2bpp"
 TinkatonIcon:    INCBIN "gfx/icons/tinkaton.2bpp"
 FrigibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/frigibax.png
 ArctibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/arctibax.png
@@ -417,5 +417,48 @@ AmauraIcon: INCBIN "gfx/icons/amaura.2bpp"
 AurorusIcon: INCBIN "gfx/icons/aurorus.2bpp"
 MunchlaxIcon: INCBIN "gfx/icons/munchlax.2bpp"
 OrstryxIcon:  INCBIN "gfx/icons/noctowl.2bpp"
+
+
+
+SECTION "Mon Icons 7", ROMX
+
+RattataAlolanIcon: INCBIN "gfx/icons/rattata_alolan.2bpp"
+RaticateAlolanIcon: INCBIN "gfx/icons/raticate_alolan.2bpp"
+RaichuAlolanIcon: INCBIN "gfx/icons/raichu_alolan.2bpp"
+SandshrewAlolanIcon: INCBIN "gfx/icons/sandshrew_alolan.2bpp"
+SandslashAlolanIcon: INCBIN "gfx/icons/sandslash_alolan.2bpp"
+VulpixAlolanIcon: INCBIN "gfx/icons/vulpix_alolan.2bpp"
+NinetalesAlolanIcon: INCBIN "gfx/icons/ninetales_alolan.2bpp"
+DiglettAlolanIcon: INCBIN "gfx/icons/diglett_alolan.2bpp"
+DugtrioAlolanIcon: INCBIN "gfx/icons/dugtrio_alolan.2bpp"
+MeowthAlolanIcon: INCBIN "gfx/icons/meowth_alolan.2bpp"
+PersianAlolanIcon: INCBIN "gfx/icons/persian_alolan.2bpp"
+GeodudeAlolanIcon: INCBIN "gfx/icons/geodude_alolan.2bpp"
+GravelerAlolanIcon: INCBIN "gfx/icons/graveler_alolan.2bpp"
+GolemAlolanIcon: INCBIN "gfx/icons/golem_alolan.2bpp"
+GrimerAlolanIcon: INCBIN "gfx/icons/grimer_alolan.2bpp"
+MukAlolanIcon: INCBIN "gfx/icons/muk_alolan.2bpp"
+ExeggutorAlolanIcon: INCBIN "gfx/icons/exeggutor_alolan.2bpp"
+MarowakAlolanIcon: INCBIN "gfx/icons/marowak_alolan.2bpp"
+MeowthGalarianIcon: INCBIN "gfx/icons/meowth_galarian.2bpp"
+PerrserkerIcon: INCBIN "gfx/icons/perrserker.2bpp"
+PonytaGalarianIcon: INCBIN "gfx/icons/ponyta_galarian.2bpp"
+RapidashGalarianIcon: INCBIN "gfx/icons/rapidash_galarian.2bpp"
+SlowpokeGalarianIcon: INCBIN "gfx/icons/slowpoke_galarian.2bpp"
+SlowbroGalarianIcon: INCBIN "gfx/icons/slowbro_galarian.2bpp"
+WeezingGalarianIcon: INCBIN "gfx/icons/weezing_galarian.2bpp"
+SlowkingGalarianIcon: INCBIN "gfx/icons/slowking_galarian.2bpp"
+CorsolaGalarianIcon: INCBIN "gfx/icons/corsola_galarian.2bpp"
+GrowlitheHisuianIcon: INCBIN "gfx/icons/growlithe_hisuian.2bpp"
+ArcanineHisuianIcon: INCBIN "gfx/icons/arcanine_hisuian.2bpp"
+VoltorbHisuianIcon: INCBIN "gfx/icons/voltorb_hisuian.2bpp"
+ElectrodeHisuianIcon: INCBIN "gfx/icons/electrode_hisuian.2bpp"
+TyphlosionHisuianIcon: INCBIN "gfx/icons/typhlosion_hisuian.2bpp"
+SneaselHisuianIcon: INCBIN "gfx/icons/sneasel_hisuian.2bpp"
+WooperPaldeanIcon: INCBIN "gfx/icons/wooper_paldean.2bpp"
+ClodsireIcon: INCBIN "gfx/icons/clodsire.2bpp"
+TaurosPaldeanFireIcon: INCBIN "gfx/icons/tauros_paldean_fire.2bpp"
+TaurosPaldeanWaterIcon: INCBIN "gfx/icons/tauros_paldean_water.2bpp"
+SneaslerIcon: INCBIN "gfx/icons/sneasler.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

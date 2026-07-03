@@ -118,10 +118,6 @@ EvosAttacksPointers1::
 	dw KangaskhanEvosAttacks
 	dw HorseaEvosAttacks
 	dw SeadraEvosAttacks
-	dw GoldeenEvosAttacks
-	dw SeakingEvosAttacks
-	dw StaryuEvosAttacks
-	dw StarmieEvosAttacks
 
 BulbasaurEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, IVYSAUR
@@ -2087,6 +2083,14 @@ SeadraEvosAttacks:
 	dbw 51, HYDRO_PUMP
 	dbw 65, RAIN_DANCE
 	db 0 ; no more level-up moves
+
+SECTION "Evolutions and Attacks 1C", ROMX
+
+EvosAttacksPointers1C::
+	dw GoldeenEvosAttacks
+	dw SeakingEvosAttacks
+	dw StaryuEvosAttacks
+	dw StarmieEvosAttacks
 
 GoldeenEvosAttacks:
 	dbbw EVOLVE_LEVEL, 33, SEAKING

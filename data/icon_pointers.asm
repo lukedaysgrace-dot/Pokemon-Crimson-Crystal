@@ -401,3 +401,41 @@ IconPointers:
 	dba AurorusIcon
 	dba MunchlaxIcon
 	dba OrstryxIcon
+	dba RattataAlolanIcon
+	dba RaticateAlolanIcon
+	dba RaichuAlolanIcon
+	dba SandshrewAlolanIcon
+	dba SandslashAlolanIcon
+	dba VulpixAlolanIcon
+	dba NinetalesAlolanIcon
+	dba DiglettAlolanIcon
+	dba DugtrioAlolanIcon
+	dba MeowthAlolanIcon
+	dba PersianAlolanIcon
+	dba GeodudeAlolanIcon
+	dba GravelerAlolanIcon
+	dba GolemAlolanIcon
+	dba GrimerAlolanIcon
+	dba MukAlolanIcon
+	dba ExeggutorAlolanIcon
+	dba MarowakAlolanIcon
+	dba MeowthGalarianIcon
+	dba PerrserkerIcon
+	dba PonytaGalarianIcon
+	dba RapidashGalarianIcon
+	dba SlowpokeGalarianIcon
+	dba SlowbroGalarianIcon
+	dba WeezingGalarianIcon
+	dba SlowkingGalarianIcon
+	dba CorsolaGalarianIcon
+	dba GrowlitheHisuianIcon
+	dba ArcanineHisuianIcon
+	dba VoltorbHisuianIcon
+	dba ElectrodeHisuianIcon
+	dba TyphlosionHisuianIcon
+	dba SneaselHisuianIcon
+	dba WooperPaldeanIcon
+	dba ClodsireIcon
+	dba TaurosPaldeanFireIcon
+	dba TaurosPaldeanWaterIcon
+	dba SneaslerIcon

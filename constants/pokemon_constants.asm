@@ -420,6 +420,44 @@ JOHTO_POKEMON EQU const_value
 	const AURORUS    ;
 	const MUNCHLAX   ;
 	const ORSTRYX    ;
+	const RATTATA_ALOLAN    ;
+	const RATICATE_ALOLAN   ;
+	const RAICHU_ALOLAN     ;
+	const SANDSHREW_ALOLAN  ;
+	const SANDSLASH_ALOLAN  ;
+	const VULPIX_ALOLAN     ;
+	const NINETALES_ALOLAN  ;
+	const DIGLETT_ALOLAN    ;
+	const DUGTRIO_ALOLAN    ;
+	const MEOWTH_ALOLAN     ;
+	const PERSIAN_ALOLAN    ;
+	const GEODUDE_ALOLAN    ;
+	const GRAVELER_ALOLAN   ;
+	const GOLEM_ALOLAN      ;
+	const GRIMER_ALOLAN     ;
+	const MUK_ALOLAN        ;
+	const EXEGGUTOR_ALOLAN  ;
+	const MAROWAK_ALOLAN    ;
+	const MEOWTH_GALARIAN   ;
+	const PERRSERKER        ;
+	const PONYTA_GALARIAN   ;
+	const RAPIDASH_GALARIAN ;
+	const SLOWPOKE_GALARIAN ;
+	const SLOWBRO_GALARIAN  ;
+	const WEEZING_GALARIAN  ;
+	const SLOWKING_GALARIAN ;
+	const CORSOLA_GALARIAN  ;
+	const GROWLITHE_HISUIAN ;
+	const ARCANINE_HISUIAN  ;
+	const VOLTORB_HISUIAN   ;
+	const ELECTRODE_HISUIAN ;
+	const TYPHLOSION_HISUIAN;
+	const SNEASEL_HISUIAN   ;
+	const WOOPER_PALDEAN    ;
+	const CLODSIRE          ;
+	const TAUROS_PALDEAN_FIRE;
+	const TAUROS_PALDEAN_WATER;
+	const SNEASLER          ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

@@ -399,3 +399,41 @@ FramesPointers:
 	dba AurorusFrames
 	dba MunchlaxFrames
 	dba OrstryxFrames
+	dba RattataAlolanFrames
+	dba RaticateAlolanFrames
+	dba RaichuAlolanFrames
+	dba SandshrewAlolanFrames
+	dba SandslashAlolanFrames
+	dba VulpixAlolanFrames
+	dba NinetalesAlolanFrames
+	dba DiglettAlolanFrames
+	dba DugtrioAlolanFrames
+	dba MeowthAlolanFrames
+	dba PersianAlolanFrames
+	dba GeodudeAlolanFrames
+	dba GravelerAlolanFrames
+	dba GolemAlolanFrames
+	dba GrimerAlolanFrames
+	dba MukAlolanFrames
+	dba ExeggutorAlolanFrames
+	dba MarowakAlolanFrames
+	dba MeowthGalarianFrames
+	dba PerrserkerFrames
+	dba PonytaGalarianFrames
+	dba RapidashGalarianFrames
+	dba SlowpokeGalarianFrames
+	dba SlowbroGalarianFrames
+	dba WeezingGalarianFrames
+	dba SlowkingGalarianFrames
+	dba CorsolaGalarianFrames
+	dba GrowlitheHisuianFrames
+	dba ArcanineHisuianFrames
+	dba VoltorbHisuianFrames
+	dba ElectrodeHisuianFrames
+	dba TyphlosionHisuianFrames
+	dba SneaselHisuianFrames
+	dba WooperPaldeanFrames
+	dba ClodsireFrames
+	dba TaurosPaldeanFireFrames
+	dba TaurosPaldeanWaterFrames
+	dba SneaslerFrames

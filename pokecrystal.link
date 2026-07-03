@@ -65,7 +65,6 @@ ROMX $0f
 	"Battle Core"
 ROMX $10
 	"bank10"
-	"Evolutions and Attacks Pointers"
 	"Evolutions and Attacks 1"
 ROMX $11
 	"bank11"
@@ -295,6 +294,8 @@ ROMX $74
 	"Pokedex Entries 193-251"
 ROMX $75
 	"16-bit ID stuff"
+	"Evolutions and Attacks Pointers"
+	"Evolutions and Attacks 1C"
 ROMX $76
 	"Cries"
 ROMX $77

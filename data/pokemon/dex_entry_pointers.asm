@@ -400,3 +400,41 @@ PokedexDataPointerTable:
 	dba AurorusPokedexEntry
 	dba MunchlaxPokedexEntry
 	dba OrstryxPokedexEntry
+	dba RattataAlolanPokedexEntry
+	dba RaticateAlolanPokedexEntry
+	dba RaichuAlolanPokedexEntry
+	dba SandshrewAlolanPokedexEntry
+	dba SandslashAlolanPokedexEntry
+	dba VulpixAlolanPokedexEntry
+	dba NinetalesAlolanPokedexEntry
+	dba DiglettAlolanPokedexEntry
+	dba DugtrioAlolanPokedexEntry
+	dba MeowthAlolanPokedexEntry
+	dba PersianAlolanPokedexEntry
+	dba GeodudeAlolanPokedexEntry
+	dba GravelerAlolanPokedexEntry
+	dba GolemAlolanPokedexEntry
+	dba GrimerAlolanPokedexEntry
+	dba MukAlolanPokedexEntry
+	dba ExeggutorAlolanPokedexEntry
+	dba MarowakAlolanPokedexEntry
+	dba MeowthGalarianPokedexEntry
+	dba PerrserkerPokedexEntry
+	dba PonytaGalarianPokedexEntry
+	dba RapidashGalarianPokedexEntry
+	dba SlowpokeGalarianPokedexEntry
+	dba SlowbroGalarianPokedexEntry
+	dba WeezingGalarianPokedexEntry
+	dba SlowkingGalarianPokedexEntry
+	dba CorsolaGalarianPokedexEntry
+	dba GrowlitheHisuianPokedexEntry
+	dba ArcanineHisuianPokedexEntry
+	dba VoltorbHisuianPokedexEntry
+	dba ElectrodeHisuianPokedexEntry
+	dba TyphlosionHisuianPokedexEntry
+	dba SneaselHisuianPokedexEntry
+	dba WooperPaldeanPokedexEntry
+	dba ClodsirePokedexEntry
+	dba TaurosPaldeanFirePokedexEntry
+	dba TaurosPaldeanWaterPokedexEntry
+	dba SneaslerPokedexEntry
