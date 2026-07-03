@@ -5046,3 +5046,63 @@ Sfx_AbilitySlideout_Ch5:
 	sound __, 7, $b8, $07e0
 	soundinput $8 ; pitch sweep off
 	endchannel
+
+Sfx_StatUp:
+; ported from Polished Crystal
+	musicheader 1, 5, Sfx_StatUp_Ch5
+
+Sfx_StatUp_Ch5:
+	dutycycle $2
+	sound __, 2, $e8, 1900
+	sound __, 2, $e8, 1700
+	sound __, 2, $e8, 1910
+	sound __, 2, $e8, 1710
+	sound __, 2, $e8, 1920
+	sound __, 2, $e8, 1720
+	sound __, 2, $e8, 1930
+	sound __, 2, $e8, 1730
+	sound __, 2, $e8, 1940
+	sound __, 2, $e8, 1740
+	sound __, 2, $e8, 1950
+	sound __, 2, $e8, 1750
+	sound __, 2, $e8, 1960
+	sound __, 2, $e8, 1760
+	sound __, 2, $e8, 1970
+	sound __, 2, $e8, 1770
+	sound __, 2, $e8, 1980
+	sound __, 2, $e8, 1780
+	sound __, 2, $e8, 1990
+	sound __, 2, $e8, 1790
+	sound __, 2, $e8, 2000
+	sound __, 2, $e8, 1800
+	endchannel
+
+Sfx_StatDown:
+; ported from Polished Crystal
+	musicheader 1, 5, Sfx_StatDown_Ch5
+
+Sfx_StatDown_Ch5:
+	dutycycle $2
+	sound __, 2, $e8, 2000
+	sound __, 2, $e8, 1800
+	sound __, 2, $e8, 1990
+	sound __, 2, $e8, 1790
+	sound __, 2, $e8, 1980
+	sound __, 2, $e8, 1780
+	sound __, 2, $e8, 1970
+	sound __, 2, $e8, 1770
+	sound __, 2, $e8, 1960
+	sound __, 2, $e8, 1760
+	sound __, 2, $e8, 1950
+	sound __, 2, $e8, 1750
+	sound __, 2, $e8, 1940
+	sound __, 2, $e8, 1740
+	sound __, 2, $e8, 1930
+	sound __, 2, $e8, 1730
+	sound __, 2, $e8, 1920
+	sound __, 2, $e8, 1720
+	sound __, 2, $e8, 1910
+	sound __, 2, $e8, 1710
+	sound __, 2, $e8, 1900
+	sound __, 2, $e8, 1700
+	endchannel

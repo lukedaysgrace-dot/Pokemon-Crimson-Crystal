@@ -172,9 +172,10 @@ anim_minimize: MACRO
 	db anim_minimize_command
 ENDM
 
-	enum anim_0xea_command ; $ea
-anim_0xea: MACRO
-	db anim_0xea_command
+	enum anim_statloop_command ; $ea
+anim_statloop: MACRO
+	db anim_statloop_command
+	dw \1 ; address
 ENDM
 
 	enum anim_0xeb_command ; $eb

@@ -186,6 +186,8 @@ BattleAnimFrameData:
 	dw .Frameset_b7 ; BATTLEANIMFRAMESET_B7
 	dw .Frameset_b8 ; BATTLEANIMFRAMESET_B8
 	dw .Frameset_Hail ; BATTLEANIMFRAMESET_HAIL
+	dw .Frameset_StatUp ; BATTLEANIMFRAMESET_STAT_UP
+	dw .Frameset_StatDown ; BATTLEANIMFRAMESET_STAT_DOWN
 
 .Frameset_00:
 	frame BATTLEANIMOAMSET_00,  6
@@ -1271,3 +1273,11 @@ BattleAnimFrameData:
 .Frameset_Hail:
 	frame BATTLEANIMOAMSET_HAIL, 32
 	endanim
+
+.Frameset_StatUp:
+	frame BATTLEANIMOAMSET_STAT, 16
+	delanim
+
+.Frameset_StatDown:
+	frame BATTLEANIMOAMSET_STAT, 16, 5 ; y flip
+	delanim
