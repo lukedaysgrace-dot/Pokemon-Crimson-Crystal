@@ -51,11 +51,12 @@ SetFacingStepAction:
 	add hl, bc
 	ld a, [hl]
 	inc a
-	and %00001111
+	and %00011111 ; 60fps: was %00001111
 	ld [hl], a
 
 	rrca
 	rrca
+	rrca ; 60fps: one more shift (anim tick rate doubled)
 	maskbits NUM_DIRECTIONS
 	ld d, a
 
@@ -77,11 +78,12 @@ SetFacingSkyfall:
 	add hl, bc
 	ld a, [hl]
 	add 2
-	and %00001111
+	and %00011111 ; 60fps: was %00001111
 	ld [hl], a
 
 	rrca
 	rrca
+	rrca ; 60fps: one more shift
 	maskbits NUM_DIRECTIONS
 	ld d, a
 
@@ -107,6 +109,7 @@ SetFacingBumpAction:
 	rrca
 	rrca
 	rrca
+	rrca ; 60fps: one more shift
 	maskbits NUM_DIRECTIONS
 	ld d, a
 
@@ -136,7 +139,7 @@ SetFacingCounterclockwiseSpin2:
 CounterclockwiseSpinAction:
 ; Here, OBJECT_STEP_FRAME consists of two 2-bit components,
 ; using only bits 0,1 and 4,5.
-; bits 0,1 is a timer (4 overworld frames)
+; bits 0-2 is a timer (8 overworld frames at 60fps)
 ; bits 4,5 determines the facing - the direction is counterclockwise.
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
@@ -148,7 +151,7 @@ CounterclockwiseSpinAction:
 	inc a
 	and %00001111
 	ld d, a
-	cp 4
+	cp 8 ; 60fps: was 4
 	jr c, .ok
 
 	ld d, 0
@@ -208,9 +211,9 @@ SetFacingBounce:
 	add hl, bc
 	ld a, [hl]
 	inc a
-	and %00001111
+	and %00011111 ; 60fps: was %00001111
 	ld [hl], a
-	and %00001000
+	and %00010000 ; 60fps: was %00001000
 	jr z, SetFacingFreezeBounce
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -223,7 +226,7 @@ SetFacingSlowBounce:
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	and %01000000
+	and %10000000 ; 60fps: was %01000000
 	jr z, SetFacingFreezeBounce
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -242,9 +245,10 @@ SetFacingWeirdTree:
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	maskbits NUM_DIRECTIONS, 2
+	maskbits NUM_DIRECTIONS, 3 ; 60fps: was ", 2"
 	rrca
 	rrca
+	rrca ; 60fps: one more shift
 	add FACING_WEIRD_TREE_0
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -280,7 +284,7 @@ SetFacingBoulderDust:
 
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	and 2
+	and 4 ; 60fps: was 2
 	ld a, FACING_BOULDER_DUST_1
 	jr z, .ok
 	inc a ; FACING_BOULDER_DUST_2
@@ -295,7 +299,7 @@ SetFacingGrassShake:
 	ld a, [hl]
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	and 4
+	and 8 ; 60fps: was 4
 	ld a, FACING_GRASS_1
 	jr z, .ok
 	inc a ; FACING_GRASS_2

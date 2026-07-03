@@ -327,6 +327,20 @@ GetNextTile:
 
 AddStepVector:
 	call GetStepVector
+	; slow steps (STEP_SLOW tier) move on alternate frames only
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld a, [hl]
+	and %00001100 ; step speed bits; STEP_SLOW == 0
+	jr nz, .apply
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	and %1
+	jr nz, .apply
+	ld d, 0
+	ld e, 0
+.apply
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
@@ -361,21 +375,25 @@ GetStepVector:
 
 StepVectors:
 ; x,  y, duration, speed
+; 60fps: pixel deltas halved and durations doubled, so real-world speeds
+; are unchanged but the screen scrolls in 1px steps. The slow tier cannot
+; halve 1px, so slow steps apply their vector on alternate frames instead
+; (see AddStepVector).
 	; slow
+	db  0,  1, 32, 1
+	db  0, -1, 32, 1
+	db -1,  0, 32, 1
+	db  1,  0, 32, 1
+	; normal
 	db  0,  1, 16, 1
 	db  0, -1, 16, 1
 	db -1,  0, 16, 1
 	db  1,  0, 16, 1
-	; normal
+	; fast
 	db  0,  2,  8, 2
 	db  0, -2,  8, 2
 	db -2,  0,  8, 2
 	db  2,  0,  8, 2
-	; fast
-	db  0,  4,  4, 4
-	db  0, -4,  4, 4
-	db -4,  0,  4, 4
-	db  4,  0,  4, 4
 
 GetStepVectorSign:
 	add a
@@ -817,7 +835,7 @@ MapObjectMovementPattern:
 	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
-	ld a, $10
+	ld a, $20 ; 60fps: was $10
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -1060,13 +1078,13 @@ MapObjectMovementPattern:
 RandomStepDuration_Slow:
 	call Random
 	ldh a, [hRandomAdd]
-	and %01111111
+	and %11111110 ; 60fps: was %01111111
 	jr SetRandomStepDuration
 
 RandomStepDuration_Fast:
 	call Random
 	ldh a, [hRandomAdd]
-	and %00011111
+	and %00111110 ; 60fps: was %00011111
 SetRandomStepDuration:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1218,7 +1236,7 @@ TeleportFrom:
 	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], 16
+	ld [hl], 32 ; 60fps: was 16
 	call IncrementObjectStructField1c
 .DoSpin:
 	ld hl, OBJECT_ACTION
@@ -1289,7 +1307,7 @@ TeleportTo:
 	ld [hl], OBJECT_ACTION_00
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], 16
+	ld [hl], 32 ; 60fps: was 16
 	call IncrementObjectStructField1c
 	ret
 
@@ -1335,7 +1353,7 @@ TeleportTo:
 .InitFinalSpin:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], 16
+	ld [hl], 32 ; 60fps: was 16
 	call IncrementObjectStructField1c
 	ret
 
@@ -1607,10 +1625,10 @@ PlayerOrNPCTurnStep:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
-	ld [hl], 2
+	ld [hl], 4 ; 60fps: was 2 (walk-anim divisor doubled too)
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], 2
+	ld [hl], 4 ; 60fps: was 2
 	call IncrementObjectStructField1c
 .step1
 	ld hl, OBJECT_STEP_DURATION
@@ -1627,7 +1645,7 @@ PlayerOrNPCTurnStep:
 	ld [hl], a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], 2
+	ld [hl], 4 ; 60fps: was 2
 	call IncrementObjectStructField1c
 .step2
 	ld hl, OBJECT_STEP_DURATION
@@ -1816,13 +1834,18 @@ Stubbed_Function4fb2:
 	db 0, -1, -2, -3, -4, -3, -2, -1
 UpdateJumpPosition:
 	call GetStepVector
+	push af
 	ld a, h
 	ld hl, OBJECT_1F
 	add hl, bc
 	ld e, [hl]
 	add e
 	ld [hl], a
-	nop
+	pop af
+	cp 32 ; slow-tier jump? (its arc counter ticks 2x per pixel)
+	jr nz, .not_slow
+	srl e
+.not_slow
 	srl e
 	ld d, 0
 	ld hl, .y

@@ -177,7 +177,7 @@ MapEvents:
 	ret
 
 MaxOverworldDelay:
-	db 2
+	db 1 ; 60fps: was 2 (one overworld iteration per frame)
 
 ResetOverworldDelay:
 	ld a, [MaxOverworldDelay]
