@@ -1701,6 +1701,7 @@ BattleCommand_CheckHit:
 	ld b, 0
 
 .skip_brightpowder
+	farcall AbilityAccuracyMods
 	ld a, b
 	cp -1
 	jr z, .Hit
@@ -2226,6 +2227,13 @@ BattleCommand_FailureText:
 	dw -1
 
 BattleCommand_ApplyDamage:
+	call BattleCommand_ApplyDamage_
+	; DISABLED pending debug: the contact-ability banner hangs when run from
+	; this context (see ABILITY_PORT_PLAN.md). Engine + data are complete;
+	; re-enable with: farcall RunContactAbilitiesHook
+	ret
+
+BattleCommand_ApplyDamage_:
 ; applydamage
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP

@@ -251,8 +251,23 @@ endr
 	ld [de], a
 	inc de
 
-	; Personality (rolled ability slot)
+	; Personality (ability slot). Trainer mons derive it from their fixed
+	; DVs so it is stable across battles; player mons roll 50/50.
+	ld a, [wMonType]
+	and $f
+	jr z, .roll_ability
+	push hl
+	ld hl, MON_DVS - MON_PERSONALITY
+	add hl, de
+	bit 0, [hl] ; Attack DV low bit picks the slot
+	pop hl
+	ld a, ABILITY_1
+	jr z, .got_ability_slot
+	ld a, ABILITY_2 ; GetAbility falls back to slot 1 if empty
+	jr .got_ability_slot
+.roll_ability
 	call GetRandomAbilitySlot
+.got_ability_slot
 	ld [de], a
 	inc de
 

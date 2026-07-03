@@ -137,9 +137,73 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
   Overcoat, Magic Guard. Hooked at .SandstormDamage/.HailDamage in
   HandleWeather (core.asm).
 
+### Session 2e additions
+- **Accuracy/evasion abilities** (validated: battles play normally, hits land):
+  hook at .skip_brightpowder in BattleCommand_CheckHit modifies the final hit
+  chance in b. No Guard (either side, always hit), Compound Eyes (+25%,
+  approximates x1.3), Hustle (-25% physical; its x1.5 physical damage boost is
+  now enabled too), Sand Veil/Snow Cloak (-25% in their weather, approximates
+  x0.8), Tangled Feet (x0.5 while defender confused), Wonder Skin (status
+  moves capped at 50%).
+- **Weather speed abilities** (build-verified): Swift Swim/Chlorophyll/
+  Sand Rush/Slush Rush double effective speed in their weather; Quick Feet
+  x1.5 while statused. Implemented in CompareSpeedsWithAbilities, replacing
+  the .speed_check CompareBytes in DetermineMoveOrder (net bank byte savings).
+  Note: only affects turn ORDER, not Speed-based formulas.
+- **Contact abilities: engine + data complete, HOOK DISABLED.**
+  data/moves/contact_moves.asm (110-move bitfield by 16-bit move index,
+  generated from the canonical contact list; SS custom moves default to
+  non-contact). Engine: RunContactAbilitiesHook + CheckContactMove + Static/
+  Flame Body/Poison Point/Effect Spore/Tangling Hair/Poison Touch in
+  abilities_engine.asm. The hook (a wrapper around BattleCommand_ApplyDamage)
+  is COMMENTED OUT in effect_commands.asm: with it enabled, instrumented runs
+  showed the chain works up to the 30% roll, but the apply path appears to
+  hang when the banner runs from inside ApplyDamage (probe reached the
+  BeginAbility step; battles then stall). NEXT SESSION: move the hook to a
+  text-safe point later in the move script (e.g. an endmove-adjacent command,
+  like Polished's RunHitAbilities placement), or defer the banner/text to
+  after the HP-bar animation completes. Everything else is plug-and-play:
+  re-enable with the farcall noted in the wrapper comment.
+
+### Session 2f tuning
+- Trainer abilities are now DETERMINISTIC (verified: Falkner's Pidgey rolls
+  Keen Eye consistently): derived from the trainer mon's fixed Attack DV low
+  bit (slot 1/2) in GeneratePartyMonStats; GetAbility's empty-slot fallback
+  keeps single-ability species on slot 1. Player mons still roll 50/50 at
+  creation and keep it for life.
+- Accuracy reductions (Hustle, Sand Veil, Snow Cloak) tightened from x0.75 to
+  x0.8125 (canon x0.8).
+- Marvel Scale tightened from x0.75 to x0.6875 damage (canon x2/3).
+
+### Session 2g
+- Stat-change ANIMATIONS wired into ability stat changes (verified via
+  Intimidate at battle start: banner -> wobble anim -> fell text, no
+  glitches): AbilityRaiseStat/AbilityLowerOppStat now farcall
+  BattleCommand_StatUpAnim/StatDownAnim before the message. Covers
+  Intimidate, Moxie, Speed Boost, Download, Rattled, Tangling Hair and the
+  absorb stat boosts.
+
+## HOW AN ABILITY IS DETERMINED (reference)
+- Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
+  the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).
+- The slot is set ONCE at creation and never re-rolled: wild mons roll 50/50
+  between slots 1/2 in LoadEnemyMon (link-safe RNG); gift/egg/generated mons
+  roll in GeneratePartyMonStats / daycare; trainer mons derive it from their
+  fixed DVs; catching copies the wild mon's byte, so the ability you saw is
+  the ability you get.
+- The slot maps to a concrete ability through the species' abilities_for
+  entry in data/pokemon/base_stats/*.asm (slot 2 = NO_ABILITY falls back to
+  slot 1). Hidden abilities exist in data but nothing assigns the HIDDEN
+  bits yet - reserved for future ability items.
+- In battle, wPlayerAbility/wEnemyAbility hold the CURRENT effective ability
+  (Trace overwrites them; personality stays untouched).
+- The ability shows on the stats screen green page ("ABILITY" line between
+  ITEM and MOVE).
+
 ## NOT DONE / NEXT SESSION
 
-1. **Accuracy/evasion abilities** (Compound Eyes, Hustle penalty + then its
+1. **Contact hook re-enable** (see above - engine/data done, placement issue).
+2. **Old item 1: accuracy abilities - DONE (see session 2e).** (Compound Eyes, Hustle penalty + then its
    x1.5 physical boost, No Guard, Sand Veil/Snow Cloak evasion, Tangled Feet,
    Wonder Skin): hook the accuracy math in BattleCommand_CheckHit.
 2. **Nullification for status moves + Flash Fire boost flag**

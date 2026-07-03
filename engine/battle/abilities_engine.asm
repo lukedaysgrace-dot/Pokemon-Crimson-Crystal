@@ -524,20 +524,23 @@ StatUpAbility::
 	pop bc
 	; fallthrough
 AbilityRaiseStat::
-; b = stat. Prints the stat-up text on success.
+; b = stat. Plays the stat-up animation and prints the text on success.
 	farcall RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	farcall BattleCommand_StatUpAnim
 	farcall BattleCommand_StatUpMessage
 	ret
 
 AbilityLowerOppStat::
 ; b = stat. Lowers the user's opponent's stat; respects Mist.
+; Plays the stat-down animation and prints the text on success.
 	farcall AbilityStatDown
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	farcall BattleCommand_StatDownAnim
 	farcall BattleCommand_StatDownMessage
 	ret
 
@@ -1057,6 +1060,8 @@ RunDamageModifiers:
 	jr z, .huge_power
 	cp GUTS
 	jr z, .guts
+	cp HUSTLE
+	jr z, .hustle
 	cp TECHNICIAN
 	jr z, .technician
 	cp TINTED_LENS
@@ -1092,6 +1097,13 @@ RunDamageModifiers:
 	call GetBattleVar
 	and a
 	jr z, .defender
+	call DamageX1_5
+	jr .defender
+
+.hustle
+	ld a, e
+	and a ; physical?
+	jr nz, .defender
 	call DamageX1_5
 	jr .defender
 
@@ -1175,7 +1187,7 @@ RunDamageModifiers:
 	jp HalveDamage
 
 .marvel_scale
-	; approximates the 1.5x Defense boost as x0.75 damage
+	; approximates the 1.5x Defense boost (x2/3 damage) as x0.6875
 	ld a, e
 	and a
 	ret nz
@@ -1183,7 +1195,7 @@ RunDamageModifiers:
 	call GetBattleVar
 	and a
 	ret z
-	jp DamageX0_75
+	jp DamageX0_69
 
 .filter
 	ld a, [wTypeModifier]
@@ -1346,6 +1358,32 @@ DamageX0_75:
 	ld h, a
 	jr HalveDamage.store_min1
 
+DamageX0_69:
+; x11/16: half + eighth + sixteenth
+	push hl
+	push de
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ld d, h
+	ld e, l
+	srl d
+	rr e ; 1/2
+	push de
+	srl d
+	rr e
+	srl d
+	rr e ; 1/8
+	ld h, d
+	ld l, e
+	srl d
+	rr e ; 1/16
+	add hl, de
+	pop de
+	add hl, de
+	jr HalveDamage.store_min1
+
 HalveDamage:
 	push hl
 	push de
@@ -1444,6 +1482,418 @@ WeatherImmuneCommon:
 WeatherImmune:
 	scf
 	ret
+
+AbilityAccuracyMods::
+; b = hit chance (0-255, -1 = never miss). Modify per abilities.
+	ld a, b
+	cp -1
+	ret z
+	; No Guard on either side: always hits
+	call GetTrueUserAbility
+	cp NO_GUARD
+	jr z, .always_hit
+	call GetOpponentAbility
+	cp NO_GUARD
+	jr z, .always_hit
+	; attacker mods
+	call GetTrueUserAbility
+	cp COMPOUND_EYES
+	jr z, .compound_eyes
+	cp HUSTLE
+	jr z, .hustle
+.defender
+	call GetOpponentIgnorableAbility
+	cp SAND_VEIL
+	jr z, .sand_veil
+	cp SNOW_CLOAK
+	jr z, .snow_cloak
+	cp TANGLED_FEET
+	jr z, .tangled_feet
+	cp WONDER_SKIN
+	jr z, .wonder_skin
+	ret
+
+.always_hit
+	ld b, -1
+	ret
+
+.compound_eyes
+	; ~x1.3 (implemented as +25%)
+	ld a, b
+	srl a
+	srl a
+	add b
+	jr nc, .ce_ok
+	ld a, $fe ; cap below the never-miss value
+.ce_ok
+	ld b, a
+	jr .defender
+
+.hustle
+	; physical moves only: ~x0.8 (implemented as -25%)
+	call GetMoveCategory
+	and a ; CATEGORIZE_PHYSICAL
+	jr nz, .defender
+	jr ReduceAccuracyQuarter_Defender
+
+.sand_veil
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	ret nz
+	jr ReduceAccuracyQuarter
+.snow_cloak
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	ret nz
+	jr ReduceAccuracyQuarter
+
+.tangled_feet
+	; only while the defender is confused
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	bit SUBSTATUS_CONFUSED, a
+	ret z
+	srl b
+	ret
+
+.wonder_skin
+	; status moves get 50% accuracy at most
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	ret nz
+	ld a, b
+	cp 50 percent + 1
+	ret c
+	ld b, 50 percent + 1
+	ret
+
+ReduceAccuracyQuarter_Defender:
+	call ReduceAccuracyQuarter
+	jr AbilityAccuracyMods.defender
+ReduceAccuracyQuarter:
+; approximates x0.8: b = b - b/8 - b/16 (= x0.8125)
+	ld a, b
+	srl a
+	srl a
+	srl a
+	ld c, a ; b/8
+	srl a   ; b/16
+	add c
+	ld c, a
+	ld a, b
+	sub c
+	ld b, a
+	ret
+
+CompareSpeedsWithAbilities::
+; Compare ability-adjusted speeds. Returns like CompareBytes on
+; (player speed, enemy speed): z = tie, carry = enemy is faster.
+	push hl
+	push de
+	push bc
+	; player effective speed -> hl
+	ld a, [wPlayerAbility]
+	ld c, a
+	ld a, [wBattleMonStatus]
+	ld b, a
+	ld hl, wBattleMonSpeed
+	call .GetEffectiveSpeed
+	push hl
+	; enemy effective speed -> hl
+	ld a, [wEnemyAbility]
+	ld c, a
+	ld a, [wEnemyMonStatus]
+	ld b, a
+	ld hl, wEnemyMonSpeed
+	call .GetEffectiveSpeed
+	ld d, h
+	ld e, l
+	pop hl
+	; compare hl (player) vs de (enemy)
+	ld a, h
+	cp d
+	jr nz, .done
+	ld a, l
+	cp e
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.GetEffectiveSpeed:
+; hl = speed stat ptr, c = ability, b = status. Returns speed in hl.
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	; hl := de
+	ld h, d
+	ld l, e
+	ld a, c
+	cp QUICK_FEET
+	jr z, .quick_feet
+	ld d, WEATHER_RAIN
+	cp SWIFT_SWIM
+	jr z, .weather_double
+	ld d, WEATHER_SUN
+	cp CHLOROPHYLL
+	jr z, .weather_double
+	ld d, WEATHER_SANDSTORM
+	cp SAND_RUSH
+	jr z, .weather_double
+	ld d, WEATHER_HAIL
+	cp SLUSH_RUSH
+	ret nz
+	; fallthrough
+.weather_double
+	ld a, [wBattleWeather]
+	cp d
+	ret nz
+	add hl, hl
+	ret nc
+	ld hl, $ffff
+	ret
+
+.quick_feet
+	; x1.5 while statused
+	ld a, b
+	and a
+	ret z
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	add hl, de
+	ret nc
+	ld hl, $ffff
+	ret
+
+RunContactAbilitiesHook::
+; Runs after damage is applied. Turn = attacker.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld a, [wTypeModifier]
+	and $7f
+	ret z
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	or b
+	ret z
+	; no procs through a Substitute
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret nz
+	call CheckContactMove
+	ret nc
+	; attacker on-contact abilities
+	call GetTrueUserAbility
+	cp POISON_TOUCH
+	call z, PoisonTouchAbility
+	; defender on-contact abilities (perspective switches to the defender)
+	call StackCallOpponentTurn
+_RunDefenderContactAbilities:
+	call UserHasFainted
+	ret z
+	call GetTrueUserAbility
+	ld hl, TargetContactAbilities
+	jp BattleJumptable
+
+TargetContactAbilities:
+	dbw STATIC, StaticAbility
+	dbw FLAME_BODY, FlameBodyAbility
+	dbw POISON_POINT, PoisonPointAbility
+	dbw EFFECT_SPORE, EffectSporeAbility
+	dbw TANGLING_HAIR, TanglingHairAbility
+	dbw -1, -1
+
+CheckContactMove::
+; carry if the current move makes contact
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	and a
+	jr z, .no ; no move (e.g. confusion self-hit)
+	call GetMoveIndexFromID
+	; bit l&7 of ContactMoves[index >> 3]
+	ld a, l
+	and %111
+	ld c, a
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+	ld de, ContactMoves
+	add hl, de
+	ld b, [hl]
+	inc c
+.shift
+	srl b
+	dec c
+	jr nz, .shift
+	; bit now in carry
+	jr c, .yes
+.no
+	and a
+.yes
+	pop bc
+	pop de
+	pop hl
+	ret
+
+PoisonTouchAbility:
+; attacker ability: 30% to poison the defender
+	ld a, 10
+	call BattleRandomRange
+	cp 3
+	ret nc
+	jp TryPoisonOpponentContact
+
+StaticAbility:
+	call ContactChance
+	ret nc
+.spore_paralyze
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
+	call AbilityPreventsParalysis
+	ret c
+	call BeginAbility
+	call ShowAbilityActivation
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PAR, [hl]
+	call UpdateOpponentInParty
+	ld hl, ApplyPrzEffectOnSpeed
+	call CallBattleCore
+	call UpdateBattleHuds
+	farcall PrintParalyze
+	jp EndAbility
+
+FlameBodyAbility:
+	call ContactChance
+	ret nc
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
+	call AbilityPreventsBurn
+	ret c
+	call BeginAbility
+	call ShowAbilityActivation
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set BRN, [hl]
+	call UpdateOpponentInParty
+	ld hl, ApplyBrnEffectOnAttack
+	call CallBattleCore
+	call UpdateBattleHuds
+	ld hl, WasBurnedText
+	call StdBattleTextbox
+	jp EndAbility
+
+PoisonPointAbility:
+	call ContactChance
+	ret nc
+TryPoisonOpponentContact:
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
+	call OpponentIsPoisonImmuneType
+	ret z
+	call AbilityPreventsPoison
+	ret c
+	call BeginAbility
+	call ShowAbilityActivation
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PSN, [hl]
+	call UpdateOpponentInParty
+	call UpdateBattleHuds
+	ld hl, WasPoisonedText
+	call StdBattleTextbox
+	jp EndAbility
+
+EffectSporeAbility:
+	call ContactChance
+	ret nc
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
+	; 1/3 each: poison, paralysis, sleep
+	ld a, 3
+	call BattleRandomRange
+	and a
+	jp z, TryPoisonOpponentContact
+	dec a
+	jp z, StaticAbility.spore_paralyze
+	; sleep
+	call AbilityPreventsSleep
+	ret c
+	call BeginAbility
+	call ShowAbilityActivation
+	call BattleRandom
+	and %11
+	inc a
+	ld b, a
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	ld [hl], b
+	call UpdateOpponentInParty
+	call UpdateBattleHuds
+	ld hl, FellAsleepText
+	call StdBattleTextbox
+	jp EndAbility
+
+TanglingHairAbility:
+	call BeginAbility
+	call ShowAbilityActivation
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld b, SPEED
+	call AbilityLowerOppStat
+	jp EndAbility
+
+ContactChance:
+; carry 30% of the time
+	ld a, 10
+	call BattleRandomRange
+	cp 3
+	ret
+
+OpponentIsPoisonImmuneType:
+; z if the opponent is Poison- or Steel-type
+	push hl
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wBattleMonType1
+.got_types
+	ld a, [hli]
+	cp POISON
+	jr z, .immune
+	cp STEEL
+	jr z, .immune
+	ld a, [hl]
+	cp POISON
+	jr z, .immune
+	cp STEEL
+.immune
+	pop hl
+	ret
+
+INCLUDE "data/moves/contact_moves.asm"
 
 RunFaintAbilities::
 ; Called when a battler faints. If the current turn holder is still alive
