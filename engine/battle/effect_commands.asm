@@ -4585,6 +4585,8 @@ BattleCommand_StatDown::
 
 	call CheckMist
 	jp nz, .Mist
+	farcall AbilityProtectsStatDrop
+	jp c, .Failed
 
 	ld hl, wEnemyStatLevels
 	ldh a, [hBattleTurn]
