@@ -71,6 +71,7 @@ IsHurtText:
 	prompt
 
 TormentedText:
-	text "<TARGET> is"
+; printed with the victim as the turn holder (see BadDreamsAbility)
+	text "<USER> is"
 	line "tormented!"
 	prompt
