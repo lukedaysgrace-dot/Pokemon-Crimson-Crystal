@@ -548,23 +548,23 @@ StatUpAbility::
 	pop bc
 	; fallthrough
 AbilityRaiseStat::
-; b = stat. Plays the stat-up animation and prints the text on success.
+; b = stat. Prints the text on success; the generic stat-up
+; animation plays from BattleCommand_StatUpMessage itself.
 	farcall RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	ret nz
-	farcall BattleCommand_StatUpAnim
 	farcall BattleCommand_StatUpMessage
 	ret
 
 AbilityLowerOppStat::
 ; b = stat. Lowers the user's opponent's stat; respects Mist.
-; Plays the stat-down animation and prints the text on success.
+; Prints the text on success; the generic stat-down animation
+; plays from BattleCommand_StatDownMessage itself.
 	farcall AbilityStatDown
 	ld a, [wFailedMessage]
 	and a
 	ret nz
-	farcall BattleCommand_StatDownAnim
 	farcall BattleCommand_StatDownMessage
 	ret
 

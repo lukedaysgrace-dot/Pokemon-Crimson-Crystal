@@ -356,7 +356,7 @@ BattleAnimCommands::
 	dw BattleAnimCmd_E7
 	dw BattleAnimCmd_UpdateActorPic
 	dw BattleAnimCmd_Minimize
-	dw BattleAnimCmd_EA ; dummy
+	dw BattleAnimCmd_StatLoop ; anim_statloop
 	dw BattleAnimCmd_EB ; dummy
 	dw BattleAnimCmd_EC ; dummy
 	dw BattleAnimCmd_ED ; dummy
@@ -432,8 +432,18 @@ BattleAnimCmd_Jump:
 	ld [hl], d
 	ret
 
+BattleAnimCmd_StatLoop:
+; Loops back once per stage the stat changed (ported from Polished Crystal).
+; wLoweredStat's high nibble is nonzero for "sharply" (+2/-2) changes.
+	ld a, [wLoweredStat]
+	swap a
+	and $f
+	inc a
+	jr _BattleAnimLoop
+
 BattleAnimCmd_Loop:
 	call GetBattleAnimByte
+_BattleAnimLoop:
 	ld hl, wBattleAnimFlags
 	bit BATTLEANIM_IN_LOOP_F, [hl]
 	jr nz, .continue_loop

@@ -2130,15 +2130,13 @@ BattleCommand_StatUpAnim:
 	jr BattleCommand_StatUpDownAnim
 
 BattleCommand_StatDownAnim:
+; The old wobble/flash hack is gone; the generic stat-down animation
+; (played from BattleCommand_StatDownMessage) replaces it.
 	ld a, [wAttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
 
-	ldh a, [hBattleTurn]
-	and a
-	ld a, BATTLEANIM_ENEMY_STAT_DOWN
-	jr z, BattleCommand_StatUpDownAnim
-	ld a, BATTLEANIM_WOBBLE
+	xor a
 
 	; fallthrough
 
@@ -4737,6 +4735,7 @@ BattleCommand_StatUpMessage::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	call PlayStatUpAnim
 	ld a, [wLoweredStat]
 	and $f
 	ld b, a
@@ -4767,6 +4766,7 @@ BattleCommand_StatDownMessage::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	call PlayStatDownAnim
 	ld a, [wLoweredStat]
 	and $f
 	ld b, a
@@ -4792,6 +4792,29 @@ BattleCommand_StatDownMessage::
 .fell
 	text_far UnknownText_0x1c0d06
 	text_end
+
+PlayStatUpAnim::
+; Play the generic stat raise animation on the user's side.
+	ld de, ANIM_STAT_UP
+	jr PlayStatChangeAnim
+
+PlayStatDownAnim::
+; Play the generic stat drop animation on the opponent's side
+; (the same side StatDownMessage's text refers to).
+	call BattleCommand_SwitchTurn
+	ld de, ANIM_STAT_DOWN
+	call PlayStatChangeAnim
+	jp BattleCommand_SwitchTurn
+
+PlayStatChangeAnim:
+	push de
+	call _CheckBattleScene
+	pop de
+	ret c
+	xor a
+	ld [wNumHits], a
+	ld [wKickCounter], a
+	jp PlayFXAnimID
 
 TryLowerStat:
 ; Lower stat c from stat struct hl (buffer de).

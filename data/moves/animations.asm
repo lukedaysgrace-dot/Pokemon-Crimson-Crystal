@@ -321,6 +321,8 @@ BattleAnimations::
 	dw BattleAnim_BulletPunch
 	dw BattleAnim_DrainPunch
 	dw BattleAnim_SweetScent2
+	dw BattleAnim_StatUp
+	dw BattleAnim_StatDown
 
 BattleAnim_0:
 BattleAnim_MirrorMove:
@@ -6010,6 +6012,36 @@ BattleAnim_BulletPunch:
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_resetobp0
 	anim_wait 16
+	anim_ret
+
+BattleAnim_StatUp:
+; Generic stat raise animation (ported from Polished Crystal).
+; Rising bars + SFX; the mon pulses to black. Loops once per stage.
+; ANIM_BG_19 = fade mon to black repeating (Polished's ANIM_BG_FADE_MON_TO_BLACK_REPEATING)
+	anim_1gfx ANIM_GFX_STATS
+	anim_bgeffect ANIM_BG_19, $0, $1, $40
+	anim_obp0 $30
+.loop
+	anim_sound 0, 0, SFX_STAT_UP
+	anim_obj ANIM_OBJ_STAT_UP, 44, 107, $30
+	anim_wait 12
+	anim_statloop .loop
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_19
+	anim_ret
+
+BattleAnim_StatDown:
+; Generic stat drop animation (ported from Polished Crystal).
+	anim_1gfx ANIM_GFX_STATS
+	anim_bgeffect ANIM_BG_19, $0, $1, $40
+	anim_obp0 $30
+.loop
+	anim_sound 0, 0, SFX_STAT_DOWN
+	anim_obj ANIM_OBJ_STAT_DOWN, 44, 56, $10
+	anim_wait 12
+	anim_statloop .loop
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_19
 	anim_ret
 
 BattleAnim_DrainPunch:

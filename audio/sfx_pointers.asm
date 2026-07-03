@@ -209,3 +209,5 @@ SFX:
 	dba Sfx_4NoteDitty
 	dba Sfx_Twinkle
 	dba Sfx_AbilitySlideout
+	dba Sfx_StatUp
+	dba Sfx_StatDown

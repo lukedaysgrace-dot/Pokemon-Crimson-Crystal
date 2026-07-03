@@ -363,8 +363,9 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
-	dbw 1, LEER
-	dbw 6, WATER_GUN
+	dbw 1, SWORDS_DANCE
+	dbw 3, WATER_GUN
+	dbw 4, SCREECH
 	dbw 19, ICE_FANG
 	dbw 20, BITE
 	dbw 22, FLAIL

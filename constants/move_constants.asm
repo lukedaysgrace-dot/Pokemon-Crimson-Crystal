@@ -309,6 +309,8 @@ NUM_ATTACKS EQU const_value + -1
 
 ; Battle animation id (index in BattleAnimations after all move anims)
 	const ANIM_SWEET_SCENT_2
+	const ANIM_STAT_UP
+	const ANIM_STAT_DOWN
 ; Animations with negative IDs will play even when animations are disabled
 const_value = -$17 ;fix if more negative values are added
 	const ANIM_IN_HAIL           ; -17 (ffe9)
