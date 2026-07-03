@@ -225,6 +225,24 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
   existing receiveitem pattern; NOT emulator-tested - verify the scene once
   on a fresh save). Effect core: AbilityCapCore in abilities_engine.asm.
 
+### Session 2k: player-side banner corruption FIX (verified)
+- BUG (found by Lucas in playtesting): a live banner on the PLAYER side
+  (rows 8-9) gets partially reverted/garbled when anything redraws those
+  rows - the stat wobble anim and HP-bar/HUD updates rewrite wTilemap while
+  the cells' attrs still point at VRAM bank 1 (enemy banners at rows 3-4
+  never collided, which is why emulator tests missed it).
+- FIX: all ability flows with side effects now present the banner BRIEFLY
+  and dismiss it BEFORE the effect: slide out -> ~24-frame hold -> dismiss
+  -> then stat change/anim/HP effect/message. New helper
+  ShowAbilityBannerBrief in abilities_engine.asm. Applied to: Intimidate,
+  StatUpAbility (Moxie/Speed Boost/Download/Rattled/absorb boosts),
+  nullification absorbs, Rain Dish/Ice Body/Dry Skin/Solar Power/Bad Dreams.
+  Text-only flows (notifications, Trace, Frisk, status heals, prevention)
+  keep the banner through their text - they never redraw those rows.
+- VERIFIED player-side: Gyarados Intimidate at switch-in: band + INTIMIDATE
+  carve + hold -> clean dismissal -> "Enemy PIKACHU's ATTACK fell!" on an
+  uncorrupted screen.
+
 ## HOW AN ABILITY IS DETERMINED (reference)
 - Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
   the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).
