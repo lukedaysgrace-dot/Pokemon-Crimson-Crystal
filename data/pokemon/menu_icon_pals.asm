@@ -408,3 +408,41 @@ MonMenuIconPals:
 	icon_pals BLUE,   GRAY   ; AURORUS
 	icon_pals BLUE,   BROWN  ; MUNCHLAX
 	icon_pals BROWN,  GREEN  ; ORSTRYX
+	icon_pals GRAY  , GRAY   ; RATTATA_ALOLAN
+	icon_pals BROWN , BROWN  ; RATICATE_ALOLAN
+	icon_pals RED   , RED    ; RAICHU_ALOLAN
+	icon_pals GRAY  , GRAY   ; SANDSHREW_ALOLAN
+	icon_pals TEAL  , TEAL   ; SANDSLASH_ALOLAN
+	icon_pals GRAY  , GRAY   ; VULPIX_ALOLAN
+	icon_pals GRAY  , GRAY   ; NINETALES_ALOLAN
+	icon_pals GRAY  , GRAY   ; DIGLETT_ALOLAN
+	icon_pals GRAY  , GRAY   ; DUGTRIO_ALOLAN
+	icon_pals GRAY  , GRAY   ; MEOWTH_ALOLAN
+	icon_pals GRAY  , GRAY   ; PERSIAN_ALOLAN
+	icon_pals GRAY  , GRAY   ; GEODUDE_ALOLAN
+	icon_pals GRAY  , GRAY   ; GRAVELER_ALOLAN
+	icon_pals GRAY  , GRAY   ; GOLEM_ALOLAN
+	icon_pals GRAY  , GRAY   ; GRIMER_ALOLAN
+	icon_pals GRAY  , GRAY   ; MUK_ALOLAN
+	icon_pals GREEN , GREEN  ; EXEGGUTOR_ALOLAN
+	icon_pals BROWN , BROWN  ; MAROWAK_ALOLAN
+	icon_pals BROWN , BROWN  ; MEOWTH_GALARIAN
+	icon_pals PINK  , PINK   ; PERRSERKER
+	icon_pals BLUE  , BLUE   ; PONYTA_GALARIAN
+	icon_pals BLUE  , BLUE   ; RAPIDASH_GALARIAN
+	icon_pals PINK  , PINK   ; SLOWPOKE_GALARIAN
+	icon_pals GRAY  , GRAY   ; SLOWBRO_GALARIAN
+	icon_pals GRAY  , GRAY   ; WEEZING_GALARIAN
+	icon_pals GRAY  , GRAY   ; SLOWKING_GALARIAN
+	icon_pals GRAY  , GRAY   ; CORSOLA_GALARIAN
+	icon_pals BROWN , BROWN  ; GROWLITHE_HISUIAN
+	icon_pals GRAY  , GRAY   ; ARCANINE_HISUIAN
+	icon_pals RED   , RED    ; VOLTORB_HISUIAN
+	icon_pals RED   , RED    ; ELECTRODE_HISUIAN
+	icon_pals PINK  , PINK   ; TYPHLOSION_HISUIAN
+	icon_pals GRAY  , GRAY   ; SNEASEL_HISUIAN
+	icon_pals GRAY  , GRAY   ; WOOPER_PALDEAN
+	icon_pals BROWN , BROWN  ; CLODSIRE
+	icon_pals GRAY  , GRAY   ; TAUROS_PALDEAN_FIRE
+	icon_pals GRAY  , GRAY   ; TAUROS_PALDEAN_WATER
+	icon_pals GRAY  , GRAY   ; SNEASLER

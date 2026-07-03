@@ -522,10 +522,6 @@ SECTION "bank3E", ROMX
 
 INCLUDE "engine/gfx/load_font.asm"
 INCLUDE "engine/link/time_capsule.asm"
-INCLUDE "engine/events/name_rater.asm"
-INCLUDE "engine/pokedex/new_pokedex_entry.asm"
-INCLUDE "engine/link/time_capsule_2.asm"
-INCLUDE "engine/pokedex/unown_dex.asm"
 
 
 SECTION "bank3F", ROMX
@@ -738,6 +734,11 @@ INCBIN "mobile/stadium/stadium2.bin"
 SECTION "16-bit ID stuff", ROMX
 
 INCLUDE "engine/16/table_functions.asm"
+INCLUDE "engine/link/time_capsule_2.asm"
+INCLUDE "data/pokemon/gen1_base_special.asm"
+INCLUDE "engine/events/name_rater.asm"
+INCLUDE "engine/pokedex/new_pokedex_entry.asm"
+INCLUDE "engine/pokedex/unown_dex.asm"
 
 ; own section
 INCLUDE "data/trainers/parties.asm"

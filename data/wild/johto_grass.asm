@@ -1228,9 +1228,9 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 2, ORSTRYX
-	dbw 2, ORSTRYX
-	dbw 3, KINGAMBIT
+	dbw 2, SNEASEL_HISUIAN
+	dbw 2, SNEASLER
+	dbw 3, PERRSERKER
 	dbw 3, MILOTIC
 	dbw 2, RATTATA
 	dbw 3, HOPPIP

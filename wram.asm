@@ -2717,7 +2717,7 @@ wParryFightCount::   db
 wErinFightCount::    db
 ; da0e
 
-	ds 100
+	ds 90 ; trimmed for expanded Pokedex caught/seen flag arrays
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6c

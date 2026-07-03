@@ -399,3 +399,41 @@ AnimationPointers:
 	dw AurorusAnimation
 	dw MunchlaxAnimation
 	dw OrstryxAnimation
+	dw RattataAlolanAnimation
+	dw RaticateAlolanAnimation
+	dw RaichuAlolanAnimation
+	dw SandshrewAlolanAnimation
+	dw SandslashAlolanAnimation
+	dw VulpixAlolanAnimation
+	dw NinetalesAlolanAnimation
+	dw DiglettAlolanAnimation
+	dw DugtrioAlolanAnimation
+	dw MeowthAlolanAnimation
+	dw PersianAlolanAnimation
+	dw GeodudeAlolanAnimation
+	dw GravelerAlolanAnimation
+	dw GolemAlolanAnimation
+	dw GrimerAlolanAnimation
+	dw MukAlolanAnimation
+	dw ExeggutorAlolanAnimation
+	dw MarowakAlolanAnimation
+	dw MeowthGalarianAnimation
+	dw PerrserkerAnimation
+	dw PonytaGalarianAnimation
+	dw RapidashGalarianAnimation
+	dw SlowpokeGalarianAnimation
+	dw SlowbroGalarianAnimation
+	dw WeezingGalarianAnimation
+	dw SlowkingGalarianAnimation
+	dw CorsolaGalarianAnimation
+	dw GrowlitheHisuianAnimation
+	dw ArcanineHisuianAnimation
+	dw VoltorbHisuianAnimation
+	dw ElectrodeHisuianAnimation
+	dw TyphlosionHisuianAnimation
+	dw SneaselHisuianAnimation
+	dw WooperPaldeanAnimation
+	dw ClodsireAnimation
+	dw TaurosPaldeanFireAnimation
+	dw TaurosPaldeanWaterAnimation
+	dw SneaslerAnimation

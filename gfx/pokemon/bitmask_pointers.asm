@@ -399,3 +399,41 @@ BitmasksPointers:
 	dw AurorusBitmasks
 	dw MunchlaxBitmasks
 	dw OrstryxBitmasks
+	dw RattataAlolanBitmasks
+	dw RaticateAlolanBitmasks
+	dw RaichuAlolanBitmasks
+	dw SandshrewAlolanBitmasks
+	dw SandslashAlolanBitmasks
+	dw VulpixAlolanBitmasks
+	dw NinetalesAlolanBitmasks
+	dw DiglettAlolanBitmasks
+	dw DugtrioAlolanBitmasks
+	dw MeowthAlolanBitmasks
+	dw PersianAlolanBitmasks
+	dw GeodudeAlolanBitmasks
+	dw GravelerAlolanBitmasks
+	dw GolemAlolanBitmasks
+	dw GrimerAlolanBitmasks
+	dw MukAlolanBitmasks
+	dw ExeggutorAlolanBitmasks
+	dw MarowakAlolanBitmasks
+	dw MeowthGalarianBitmasks
+	dw PerrserkerBitmasks
+	dw PonytaGalarianBitmasks
+	dw RapidashGalarianBitmasks
+	dw SlowpokeGalarianBitmasks
+	dw SlowbroGalarianBitmasks
+	dw WeezingGalarianBitmasks
+	dw SlowkingGalarianBitmasks
+	dw CorsolaGalarianBitmasks
+	dw GrowlitheHisuianBitmasks
+	dw ArcanineHisuianBitmasks
+	dw VoltorbHisuianBitmasks
+	dw ElectrodeHisuianBitmasks
+	dw TyphlosionHisuianBitmasks
+	dw SneaselHisuianBitmasks
+	dw WooperPaldeanBitmasks
+	dw ClodsireBitmasks
+	dw TaurosPaldeanFireBitmasks
+	dw TaurosPaldeanWaterBitmasks
+	dw SneaslerBitmasks
