@@ -966,6 +966,10 @@ RunNullificationAbilities::
 ; Called at the end of BattleCommand_Stab, on the attacker's turn, after
 ; wCurDamage and wTypeModifier are final. First checks type nullification;
 ; if the move goes through, applies ability damage modifiers to wCurDamage.
+	; clear a stale Disguise presentation flag (set by a move that missed
+	; after damage calc and never reached its kingsrock command)
+	ld hl, wDisguiseBusted + 1
+	res 7, [hl]
 	call .CheckNullification
 	ret c ; nullified
 	jp RunDamageModifiers
@@ -1798,6 +1802,11 @@ CompareSpeedsWithAbilities::
 
 RunContactAbilitiesHook::
 ; Runs after damage is applied. Turn = attacker.
+	; deferred Disguise reveal: now that the move animation has played,
+	; bust the disguise, swap the sprite and print the texts
+	ld hl, wDisguiseBusted + 1
+	bit 7, [hl]
+	call nz, DisguisePresentation
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -2502,14 +2511,14 @@ DisguiseBlock:
 	ld a, h
 	cp HIGH(MIMIKYU)
 	jr nz, .no_block
+	; no trigger through a Substitute (canon)
+	ld a, BATTLE_VARS_SUBSTATUS4
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr nz, .no_block
 	call GetDisguiseFlag
-	ld b, a
 	and [hl]
 	jr nz, .no_block ; already busted
-	; bust the disguise
-	ld a, [hl]
-	or b
-	ld [hl], a
 	; cancel the damage, but keep the move's secondary effects:
 	; zero wCurDamage and neutralize the effectiveness text
 	xor a
@@ -2520,7 +2529,34 @@ DisguiseBlock:
 	and $80
 	or EFFECTIVE
 	ld [wTypeModifier], a
-	; presentation: banner, decoy text, sprite swap, busted text
+	; the bust + presentation are DEFERRED to DisguisePresentation (run
+	; from the kingsrock hook), so the move's animation plays first and a
+	; move that misses after damage calc doesn't break the disguise
+	ld hl, wDisguiseBusted + 1
+	set 7, [hl]
+	call SwitchTurn
+	scf
+	ret
+.no_block
+	call SwitchTurn
+	and a
+	ret
+
+DisguisePresentation:
+; Deferred from DisguiseBlock; runs from the kingsrock hook (turn =
+; attacker), after the move animation and HP bar update.
+	ld hl, wDisguiseBusted + 1
+	res 7, [hl]
+	; if the move ultimately missed, the disguise never broke
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	call SwitchTurn ; the Disguise holder's side
+	call GetDisguiseFlag
+	ld b, a
+	ld a, [hl]
+	or b
+	ld [hl], a ; mark this slot's disguise as busted
 	call BeginAbility
 	call ShowAbilityActivation
 	ld hl, DisguiseDecoyText
@@ -2529,13 +2565,7 @@ DisguiseBlock:
 	ld hl, DisguiseBustedText
 	call StdBattleTextbox
 	call EndAbility
-	call SwitchTurn
-	scf
-	ret
-.no_block
-	call SwitchTurn
-	and a
-	ret
+	jp SwitchTurn
 
 GetDisguiseFlag:
 ; For the current turn holder: hl = its wDisguiseBusted byte,
