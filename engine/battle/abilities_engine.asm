@@ -343,15 +343,18 @@ TraceAbility:
 	call AbilityCanBeTraced
 	ret nz
 	push af
-	; buffer the traced ability's name for the text
-	ld b, a
-	farcall GetAbilityName
 	call BeginAbility
 	call ShowAbilityActivation
 	call ShowEnemyAbilityActivation
 	pop af
 	push af
 	call ShowAbilityReplacement
+	; buffer the traced ability's name AFTER the banners - the banner
+	; GFX clobbers wStringBuffer1
+	pop af
+	push af
+	ld b, a
+	farcall GetAbilityName
 	ld hl, TraceActivationText
 	call StdBattleTextbox
 	call EndAbility
@@ -412,14 +415,17 @@ IntimidateAbility:
 	call GetAbilityFlags
 	and ABILFLAG_NO_INTIMIDATE
 	jr z, .intimidate_ok
-	; blocked: show both abilities and print the resist text
+	; blocked: show both abilities and print the resist text.
+	; NOTE: buffer the resisting ability's name AFTER the banners -
+	; the banner GFX clobbers wStringBuffer1
 	ld a, b
 	push af
-	farcall GetAbilityName
 	call BeginAbility
 	call ShowAbilityActivation
 	call ShowEnemyAbilityActivation
 	pop af
+	ld b, a
+	farcall GetAbilityName
 	ld hl, IntimidateResistedText
 	call StdBattleTextbox
 	jp EndAbility
@@ -564,6 +570,13 @@ AbilityLowerOppStat::
 ; b = stat. Lowers the user's opponent's stat; respects Mist.
 ; Prints the text on success; the generic stat-down animation
 ; plays from BattleCommand_StatDownMessage itself.
+; Flags the drop as ability-driven so StatDown skips the vanilla
+; 25% computer-miss roll (it randomly ate Mirror Armor reflections
+; and enemy Intimidate).
+	push hl
+	ld hl, wDisguiseBusted
+	set 6, [hl]
+	pop hl
 	farcall AbilityStatDown
 	ld a, [wFailedMessage]
 	and a
