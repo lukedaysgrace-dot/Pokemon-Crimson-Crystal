@@ -3203,4 +3203,9 @@ ENDU ; e000
 SECTION "Stack RAM", WRAMX
 
 wWindowStack:: ds $1000 - 1
-wWindowStackB
+wWindowStackBottom:: ds 1
+
+
+INCLUDE "sram.asm"
+
+INCLUDE "hram.asm"
