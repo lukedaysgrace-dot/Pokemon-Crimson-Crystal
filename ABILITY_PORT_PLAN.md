@@ -386,6 +386,110 @@ constants/names/flags/descriptions all extended in matching order).
   overflows, relocate BattleCommand_Critical + its two data INCLUDEs to
   the Battle Effect Overflow bank. Battle Core roughly net-neutral.
 
+### Session 5: full static audit of sessions 3-4 (network blocked AGAIN — no
+rgbds/wine/PyBoy; the repo's rgbds/ is Windows-only. NOTHING built/tested.)
+Audited: abilities_engine.asm + ability_gfx.asm line by line; every hook
+site in effect_commands/core; symbol cross-check of all refs in the ability
+files (all resolve); table order constants==names==flags==descriptions
+(171 each, tails match); all 439 base_stats abilities_for args valid; the
+8 status-prevention hook sites present; BattleVarPairs has the ability
+pair; the 3-arg coord macro form used by ability_gfx exists; farcall
+preserves flags (ReturnFarCall pops to bc), so all the carry-returning
+farcall hooks are sound.
+
+**FIXED (3 bugs found):**
+1. **Contact/Disguise hook was at kingsrock — wrong script coverage.**
+   Secondary-effect scripts (PoisonHit, FlinchHit, ConfuseHit, BurnHit,
+   AttackDownHit, DreamEater, TriAttack, ... ~20 scripts) contain stab but
+   NO kingsrock. Consequences: no contact procs (Static etc.) off any such
+   move, and FATAL for Disguise: DisguiseBlock zeroed the damage at stab
+   but the deferred reveal (at kingsrock) never ran -> Mimikyu blocked
+   Bite/Ember/etc. forever without ever busting. Hook MOVED to the top of
+   BattleCommand_CheckFaint — checkfaint is in EVERY damaging script (the
+   only stab-scripts without it are Toxic/DoParalyze, correctly skipped),
+   still after applydamage/criticaltext/supereffectivetext (text-safe) and
+   before faint processing. Net bank size ~0 (farcall moved, not added).
+   Side effect: contact procs now fire per-hit inside MultiHit's loop.
+2. **Trace banner remnants**: PerformAbilityReplacementGFX wiped row 1 in
+   the WRAM buffer but only uploaded the tiles the NEW name carves — a
+   shorter traced name left the old name's glyphs in VRAM on the flanks.
+   Now uploads the whole wiped row before DrawRow.
+3. **Bit-6 leak closed for real**: BattleCommand_StatDown's .CantLower/
+   .Failed/.Mist exits now clear the ability-driven-drop flag (was the
+   documented "tiny known leak" that skipped the enemy's next 25%
+   computer-miss roll once).
+
+Audited and found CORRECT (sessions 3-4 code): StackCallOpponentTurn stack
+math; nullification found-path (damage+typemod zeroed, wAttackMissed set
+after the absorb effect); AbilityRestoreUserHP SwitchTurn wrap; damage
+fraction helpers (big-endian wCurDamage reads, $ffff caps, min-1 store);
+pinch-boost HP*3 compare; Guts burn-cancel x2; priority compare direction
++ Gale Wings/Triage adjustments; crit-mod order (armor block beats
+Merciless, canon); Mirror Armor reflect flow + anti-ping-pong guard;
+Disguise block/defer/reapply + GetDisguiseFlag bit layout; broken-pic
+loader bank discipline; contact-chain perspectives (Stamina/Thermal on-hit
+before the contact gate; every prevention check targets the right mon);
+banner atomic BGMap writes are timing-safe (VRAM stays writable through
+mode 2, so worst-case ~100 dots fits the >=165-dot hblank+OAM window);
+attr backup/restore pointer flow; CheckContactMove bitfield math;
+GetAbility fallback + bank save/restore.
+
+Known minor notes (NOT fixed, low priority): personality ability bits %00
+resolve to the hidden slot (all current creation points roll, so
+unreachable — but a future gift-mon path that forgets to roll would hand
+out hidden abilities); Quick Feet stacks with rather than ignores the
+paralysis speed cut; Moxie can proc on residual-damage KOs; battle-start
+entry abilities run player-then-enemy instead of speed order; status-move
+absorbs now DO fire through DoPoison/DoParalyze's stab (Thunder Wave vs
+Volt Absorb heals + fails the move — arguably canon; gate
+.CheckNullification on move category if unwanted).
+
+**Session 5b — CRASH FIX (from Lucas's live test: Static reset the game).**
+Root cause: `CallBattleCore` is NOT a home routine in this repo — it lives
+in the Effect Commands bank ($13). Three files plain-called it from OTHER
+banks, which jumps into garbage and hard-resets:
+- abilities_engine ($76): StaticAbility + FlameBodyAbility (and Effect
+  Spore's paralysis branch via Static's shared body). This was Lucas's
+  crash. -> now `farcall ApplyPrzEffectOnSpeed` / `farcall
+  ApplyBrnEffectOnAttack` (farcall = same rst FarCall mechanism, correct
+  bank).
+- effect_commands_core ("Battle Effect Overflow", $17): the relocated
+  BattleCommand_Paralyze body called it TWICE on the success path — i.e.
+  every move-inflicted paralysis that actually LANDED crashed the game
+  since session 2b (the emulator test only covered the Limber-blocked
+  path). -> farcall ApplyPrzEffectOnSpeed + farcall
+  UseHeldStatusHealingItem + ret.
+Swept every other plain call/jp in abilities_engine, ability_gfx and
+effect_commands_core against the map's bank assignments: all remaining
+targets are ROM0 (home) or same-bank. AbilityCapEffect and the stats
+screen already farcall correctly. Poison Point/Poison Touch/Tangling
+Hair/Stamina/Thermal Exchange never used CallBattleCore (no crash there).
+TEST: Thunder Wave that LANDS (the old crash), then Static/Flame Body
+procs, then Effect Spore all three outcomes.
+
+**Session 5c — status anims for contact abilities (Lucas request; contact
+abilities confirmed WORKING in his testing after 5b).** New
+AbilityStatusAnim helper in abilities_engine (local equivalent of Effect
+Commands' PlayOpponentBattleAnim, which is bank-unreachable): sets
+wFXAnimID/wNumHits, SwitchTurn-wraps farcall PlayBattleAnim so the anim
+plays on the statused mon. Wired vanilla-style (status -> anim -> HUD ->
+text) into: Static (ANIM_PAR, also covers Effect Spore's paralysis
+branch), Flame Body (ANIM_BRN), TryPoisonOpponentContact (ANIM_PSN — Poison
+Point, Poison Touch, Effect Spore poison), Effect Spore sleep (ANIM_SLP).
+Banner is always dismissed first (ShowAbilityBannerBrief), so no
+player-side banner corruption. Tangling Hair already animates via the
+stat-down machinery.
+
+**Session 5 test checklist (everything from sessions 3-4 still untested,
+plus):** Bite/Ember/Poison Sting vs Mimikyu -> disguise busts on the FIRST
+secondary-effect hit (0 damage, sprite swap, texts; later hits damage
+normally); Thunder Punch vs Static mon (30% proc, no stall at checkfaint);
+Doubleslap vs Static (per-hit procs OK); Trace copying a SHORT ability
+over a longer one -> no leftover letters on the banner row; enemy stat-
+drop move after a Mist-blocked enemy Intimidate -> 25% computer-miss roll
+still applies (leak regression test); Thunder Wave vs Volt Absorb mon ->
+heal + move fails (see note above).
+
 **Session 4 test checklist (nothing built - rgbds unavailable in sandbox):**
 `make`; wild/trainer Mimikyu both sides: first damaging hit -> banner,
 decoy text, sprite becomes broken (front AND back), busted text, 0 damage,

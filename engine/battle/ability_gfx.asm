@@ -255,7 +255,18 @@ PerformAbilityReplacementGFX::
 	or c
 	ld a, $ff
 	jr nz, .wipe_loop
-	; redraw and upload the whole row
+	; push the wiped band to VRAM first - DrawRow only uploads the tiles
+	; it carves text into, so without this, glyphs of the old (longer)
+	; name would linger on the flanks of the new one
+	ld a, SLIDEOUT_WIDTH
+.upload_loop
+	push af
+	call UploadBannerTile
+	pop af
+	inc a
+	cp SLIDEOUT_WIDTH * 2
+	jr c, .upload_loop
+	; redraw and upload the row's text
 	ld de, wAbilityName
 	ld b, 1
 	call PerformAbilityGFX.DrawRow

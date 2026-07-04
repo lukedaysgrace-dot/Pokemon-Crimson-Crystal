@@ -322,12 +322,15 @@ BattleParalyze_Core:
 	call GetBattleVarAddr
 	set PAR, [hl]
 	call UpdateOpponentInParty
-	ld hl, ApplyPrzEffectOnSpeed
-	call CallBattleCore
+	; CallBattleCore lives in the Effect Commands bank; this file is in the
+	; Battle Effect Overflow bank, so a plain call to it jumps into garbage
+	; and crashes (every move-inflicted paralysis that LANDED did this).
+	; farcall does the same job with the target's own bank.
+	farcall ApplyPrzEffectOnSpeed
 	call UpdateBattleHuds
 	callfar PrintParalyze
-	ld hl, UseHeldStatusHealingItem
-	jp CallBattleCore
+	farcall UseHeldStatusHealingItem
+	ret
 
 .paralyzed
 	callfar AnimateFailedMove
