@@ -418,6 +418,9 @@ GoldenrodUndergroundHiddenSuperPotion:
 GoldenrodUndergroundHiddenAntidote:
 	hiddenitem ANTIDOTE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE
 
+GoldenrodUndergroundHiddenLoadedDice:
+	hiddenitem LOADED_DICE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_LOADED_DICE
+
 SupernerdEricSeenText:
 	text "I got booted out"
 	line "of the GAME COR-"
@@ -660,12 +663,13 @@ GoldenrodUnderground_MapEvents:
 
 	db 0 ; coord events
 
-	db 5 ; bg events
+	db 6 ; bg events
 	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
 	bg_event 19,  6, BGEVENT_READ, GoldenrodUndergroundNoEntrySign
 	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
+	bg_event  3,  6, BGEVENT_ITEM, GoldenrodUndergroundHiddenLoadedDice
 
 	db 9 ; object events
 	object_event  5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1

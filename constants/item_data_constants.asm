@@ -126,3 +126,4 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_BRIGHTPOWDER
 	const HELD_78
 	const HELD_FOCUS_BAND
+	const HELD_LOADED_DICE
