@@ -102,47 +102,30 @@ BattleCheckHitLoadedDiceTripleKick_Core:
 	or 1
 	ret
 
-BattleTripleKickHitCount_Core:
-; wPredefTemp = loop count (1-2), or 0 for a single-hit finish.
-	call BattleUserHasLoadedDice_Core
-	jr z, .loaded_dice
-.sample
-	call BattleRandom
-	and $3
-	jr z, .sample
-	dec a
-	ld [wPredefTemp], a
-	ret
-.loaded_dice
-	ld a, 2
-	ld [wPredefTemp], a
-	ret
-
 BattleMultiHitRoll_Core:
-; Return hit count in wPredefTemp. Normal rolls are pre-inc (EndLoop adds 1).
-; Loaded Dice stores loop count 3-4 and sets wPredefTemp + 1 (skip that inc).
-; Must not return in a: callfar clobbers a while restoring the bank.
+; Leave the final endloop loop count in wPredefTemp.
+; Must not return it in a: callfar clobbers a while restoring the bank.
+; NOTE: BattleRandom itself stores its result in wPredefTemp + 1 (see
+; home/random.asm), so that byte can never carry flags out of here.
+; (A previous version did exactly that - the "skip inc" flag came back
+; as random garbage, loop counts of 0 underflowed to 255 in endloop,
+; and multi-hit moves pummeled the target until it fainted.)
 	call BattleUserHasLoadedDice_Core
 	jr z, .loaded_dice
-	xor a
-	ld [wPredefTemp + 1], a
 	call BattleRandom
 	and $3
 	cp 2
-	jr c, .store
+	jr c, .got_roll
 	call BattleRandom
 	and $3
+.got_roll
+	inc a ; loop count 1-4 (2-5 hits total)
 	jr .store
 
 .loaded_dice
 	call BattleRandom
 	and 1
 	add 3 ; loop count 3-4 (4-5 hits total)
-	ld [wPredefTemp], a
-	ld a, 1
-	ld [wPredefTemp + 1], a
-	ret
-
 .store
 	ld [wPredefTemp], a
 	ret
