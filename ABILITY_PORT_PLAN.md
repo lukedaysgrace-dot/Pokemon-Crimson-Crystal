@@ -331,6 +331,13 @@ constants/names/flags/descriptions all extended in matching order).
   moment — known cosmetic wart). LIMITATIONS: confusion self-hits and
   Struggle bypass (no Stab); dropping a Substitute redraws the normal pic;
   contact abilities don't proc off a blocked hit (damage==0 early-out).
+  TIMING FIX (Lucas feedback): the bust + banner/text/sprite swap are now
+  DEFERRED - DisguiseBlock only zeroes the damage and sets bit 7 of
+  wDisguiseBusted+1; DisguisePresentation (called at the top of
+  RunContactAbilitiesHook, i.e. kingsrock, after the move anim + HP bar)
+  marks the slot busted and does the reveal. Bonus corrections: no trigger
+  through a Substitute, and a move that misses after damage calc no longer
+  busts the disguise (stale pending flag is cleared at the next Stab).
 - **Gale Wings (X/Y rules: +1 priority for ALL Flying moves, no HP check)**
   and **Triage (+3 for HP-restoring moves, TriageMoves table)**:
   CompareMovePriority body replaced with farcall AbilityCompareMovePriority;
