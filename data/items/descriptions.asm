@@ -135,7 +135,7 @@ ItemDescriptions:
 	dw BasementKeyDesc
 	dw PassDesc
 	dw QuestionMarkDesc
-	dw QuestionMarkDesc
+	dw LoadedDiceDesc
 	dw QuestionMarkDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
@@ -761,6 +761,10 @@ BasementKeyDesc:
 PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
+
+LoadedDiceDesc:
+	db   "Multi-hit moves"
+	next "hit 4-5 times.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

@@ -148,7 +148,7 @@ ItemEffects:
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
 	dw AbilityCapEffect    ; ABILITY_CAP
-	dw NoEffect            ; ITEM_88
+	dw NoEffect            ; LOADED_DICE
 	dw NoEffect            ; ITEM_89
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE

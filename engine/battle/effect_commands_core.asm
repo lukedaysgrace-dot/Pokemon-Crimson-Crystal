@@ -79,6 +79,28 @@ BattleSkipSunCharge_Core:
 	callfar SkipToBattleCommand
 	ret
 
+BattleMultiHitRoll_Core:
+	push bc
+	callfar GetUserItem
+	ld a, b
+	pop bc
+	cp HELD_LOADED_DICE
+	jr z, .loaded_dice
+	call BattleRandom
+	and $3
+	cp 2
+	ret c
+	call BattleRandom
+	and $3
+	ret
+
+.loaded_dice
+	call BattleRandom
+	and 1
+	add 3
+	scf
+	ret
+
 BattleCheckCharge_Core:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr

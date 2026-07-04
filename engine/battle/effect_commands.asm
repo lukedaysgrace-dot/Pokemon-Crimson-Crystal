@@ -5543,12 +5543,7 @@ BattleCommand_EndLoop:
 	jp EndMoveEffect
 
 .not_triple_kick
-	call BattleRandom
-	and $3
-	cp 2
-	jr c, .got_number_hits
-	call BattleRandom
-	and $3
+	callfar BattleMultiHitRoll_Core
 .got_number_hits
 	inc a
 .double_hit
