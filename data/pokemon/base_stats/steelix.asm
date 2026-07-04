@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/steelix/front.dimensions"
-	abilities_for STEELIX, SHEER_FORCE, STURDY, SAND_FORCE
+	abilities_for STEELIX, SAND_FORCE, STURDY, SHEER_FORCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups

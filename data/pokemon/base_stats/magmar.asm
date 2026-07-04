@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/magmar/front.dimensions"
-	abilities_for MAGMAR, FLAME_BODY, FLAME_BODY, VITAL_SPIRIT
+	abilities_for MAGMAR, FLAME_BODY, FLASH_FIRE, VITAL_SPIRIT
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

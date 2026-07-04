@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/golem/front.dimensions"
-	abilities_for GOLEM, ROCK_HEAD, STURDY, SAND_VEIL
+	abilities_for GOLEM, ROCK_HEAD, STURDY, SAND_FORCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups

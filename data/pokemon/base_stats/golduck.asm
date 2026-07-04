@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/golduck/front.dimensions"
-	abilities_for GOLDUCK, DAMP, CLOUD_NINE, SWIFT_SWIM
+	abilities_for GOLDUCK, HYDRATION, CLOUD_NINE, SWIFT_SWIM
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups

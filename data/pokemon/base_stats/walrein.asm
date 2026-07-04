@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/walrein/front.dimensions"
-	abilities_for WALREIN, THICK_FAT, ICE_BODY, OBLIVIOUS
+	abilities_for WALREIN, THICK_FAT, ICE_BODY, SLUSH_RUSH
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups

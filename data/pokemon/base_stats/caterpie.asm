@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/caterpie/front.dimensions"
-	abilities_for CATERPIE, SHIELD_DUST, SHIELD_DUST, RUN_AWAY
+	abilities_for CATERPIE, SHIELD_DUST, RUN_AWAY, STENCH
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

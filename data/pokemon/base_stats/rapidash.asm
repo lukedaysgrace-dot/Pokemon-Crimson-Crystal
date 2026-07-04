@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/rapidash/front.dimensions"
-	abilities_for RAPIDASH, RUN_AWAY, FLASH_FIRE, FLAME_BODY
+	abilities_for RAPIDASH, FLAME_BODY, FLASH_FIRE, RECKLESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

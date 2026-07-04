@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/venonat/front.dimensions"
-	abilities_for VENONAT, COMPOUND_EYES, TINTED_LENS, RUN_AWAY
+	abilities_for VENONAT, TINTED_LENS, COMPOUND_EYES, RUN_AWAY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

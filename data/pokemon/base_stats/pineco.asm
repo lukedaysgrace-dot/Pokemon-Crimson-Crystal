@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/pineco/front.dimensions"
-	abilities_for PINECO, STURDY, STURDY, OVERCOAT
+	abilities_for PINECO, STURDY, AFTERMATH, OVERCOAT
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

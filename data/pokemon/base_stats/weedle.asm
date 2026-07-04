@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/weedle/front.dimensions"
-	abilities_for WEEDLE, SHIELD_DUST, SHIELD_DUST, RUN_AWAY
+	abilities_for WEEDLE, SHIELD_DUST, RUN_AWAY, POISON_POINT
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/dusknoir/front.dimensions"
-	abilities_for DUSKNOIR, PRESSURE, NO_ABILITY, FRISK
+	abilities_for DUSKNOIR, IRON_FIST, PRESSURE, REGENERATOR
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

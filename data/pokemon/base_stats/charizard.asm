@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/charizard/front.dimensions"
-	abilities_for CHARIZARD, BLAZE, SOLAR_POWER, DROUGHT
+	abilities_for CHARIZARD, LEVITATE, BLAZE, DROUGHT
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups

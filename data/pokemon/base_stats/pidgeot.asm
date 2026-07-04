@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/pidgeot/front.dimensions"
-	abilities_for PIDGEOT, KEEN_EYE, TANGLED_FEET, NO_GUARD
+	abilities_for PIDGEOT, NO_GUARD, TANGLED_FEET, BIG_PECKS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

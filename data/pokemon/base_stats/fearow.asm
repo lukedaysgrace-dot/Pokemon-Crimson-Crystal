@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/fearow/front.dimensions"
-	abilities_for FEAROW, KEEN_EYE, KEEN_EYE, SNIPER
+	abilities_for FEAROW, KEEN_EYE, SNIPER, INTIMIDATE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

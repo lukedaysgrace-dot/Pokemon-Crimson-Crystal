@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/meowth/front.dimensions"
-	abilities_for MEOWTH, PICKUP, TECHNICIAN, UNNERVE
+	abilities_for MEOWTH, TECHNICIAN, PICKUP, SUPER_LUCK
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

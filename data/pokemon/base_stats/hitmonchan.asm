@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hitmonchan/front.dimensions"
-	abilities_for HITMONCHAN, KEEN_EYE, IRON_FIST, INNER_FOCUS
+	abilities_for HITMONCHAN, IRON_FIST, KEEN_EYE, INNER_FOCUS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

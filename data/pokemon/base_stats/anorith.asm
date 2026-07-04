@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/anorith/front.dimensions"
-	abilities_for ANORITH, BATTLE_ARMOR, NO_ABILITY, SWIFT_SWIM
+	abilities_for ANORITH, BATTLE_ARMOR, SWIFT_SWIM, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_WATER_3 ; egg groups

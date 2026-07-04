@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/armaldo/front.dimensions"
-	abilities_for ARMALDO, BATTLE_ARMOR, NO_ABILITY, SWIFT_SWIM
+	abilities_for ARMALDO, BATTLE_ARMOR, SWIFT_SWIM, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_BUG ; egg groups

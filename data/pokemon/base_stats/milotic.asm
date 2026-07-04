@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/milotic/front.dimensions"
-	abilities_for MILOTIC, MARVEL_SCALE, COMPETITIVE, CUTE_CHARM
+	abilities_for MILOTIC, MARVEL_SCALE, COMPETITIVE, WONDER_SKIN
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_WATER_2 ; egg groups

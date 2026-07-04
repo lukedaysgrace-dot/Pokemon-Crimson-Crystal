@@ -12,7 +12,7 @@
 	db 80 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/suicune/front.dimensions"
-	abilities_for SUICUNE, PRESSURE, PRESSURE, INNER_FOCUS
+	abilities_for SUICUNE, PRESSURE, INNER_FOCUS, WATER_ABSORB
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

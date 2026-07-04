@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cloyster/front.dimensions"
-	abilities_for CLOYSTER, SHELL_ARMOR, SKILL_LINK, OVERCOAT
+	abilities_for CLOYSTER, SKILL_LINK, SHELL_ARMOR, ICE_BODY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_WATER_3 ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/poliwhirl/front.dimensions"
-	abilities_for POLIWHIRL, WATER_ABSORB, DAMP, SWIFT_SWIM
+	abilities_for POLIWHIRL, SWIFT_SWIM, DAMP, WATER_ABSORB
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_WATER_1 ; egg groups

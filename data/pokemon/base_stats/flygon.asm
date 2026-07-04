@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/flygon/front.dimensions"
-	abilities_for FLYGON, LEVITATE, NO_ABILITY, NO_ABILITY
+	abilities_for FLYGON, COMPOUND_EYES, LEVITATE, OVERCOAT
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_BUG, EGG_DRAGON ; egg groups

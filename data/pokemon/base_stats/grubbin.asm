@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/grubbin/front.dimensions"
-	abilities_for GRUBBIN, SWARM, NO_ABILITY, NO_ABILITY
+	abilities_for GRUBBIN, SWARM, SWARM, SWARM
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

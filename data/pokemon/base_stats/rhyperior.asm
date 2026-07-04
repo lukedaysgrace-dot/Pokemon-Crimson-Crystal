@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/rhyperior/front.dimensions"
-	abilities_for RHYPERIOR, LIGHTNING_ROD, SOLID_ROCK, RECKLESS
+	abilities_for RHYPERIOR, SOLID_ROCK, RECKLESS, SHEER_FORCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

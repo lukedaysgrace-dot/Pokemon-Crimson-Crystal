@@ -12,7 +12,7 @@
 	db 5 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/gyarados/front.dimensions"
-	abilities_for GYARADOS, INTIMIDATE, MOXIE, MOLD_BREAKER
+	abilities_for GYARADOS, INTIMIDATE, INTIMIDATE, MOXIE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_2, EGG_DRAGON ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/delibird/front.dimensions"
-	abilities_for DELIBIRD, VITAL_SPIRIT, HUSTLE, INSOMNIA
+	abilities_for DELIBIRD, TECHNICIAN, HUSTLE, PRANKSTER
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups

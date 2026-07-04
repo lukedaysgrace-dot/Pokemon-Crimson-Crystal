@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/shieldon/front.dimensions"
-	abilities_for SHIELDON, STURDY, NO_ABILITY, SOUNDPROOF
+	abilities_for SHIELDON, STURDY, SOUNDPROOF, FILTER
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

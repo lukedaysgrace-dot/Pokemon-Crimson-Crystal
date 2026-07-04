@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hitmontop/front.dimensions"
-	abilities_for HITMONTOP, INTIMIDATE, TECHNICIAN, STEADFAST
+	abilities_for HITMONTOP, TECHNICIAN, INTIMIDATE, CONTRARY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

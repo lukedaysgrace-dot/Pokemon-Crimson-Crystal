@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/gliscor/front.dimensions"
-	abilities_for GLISCOR, HYPER_CUTTER, SAND_VEIL, POISON_HEAL
+	abilities_for GLISCOR, POISON_HEAL, HYPER_CUTTER, SAND_VEIL
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

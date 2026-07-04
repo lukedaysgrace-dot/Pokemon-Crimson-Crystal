@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/abra/front.dimensions"
-	abilities_for ABRA, SYNCHRONIZE, MAGIC_GUARD, TRACE
+	abilities_for ABRA, MAGIC_GUARD, SYNCHRONIZE, DOWNLOAD
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/sudowoodo/front.dimensions"
-	abilities_for SUDOWOODO, STURDY, ROCK_HEAD, RATTLED
+	abilities_for SUDOWOODO, ROCK_HEAD, STURDY, RATTLED
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups

@@ -12,7 +12,7 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/pikachu/front.dimensions"
-	abilities_for PIKACHU, STATIC, STATIC, LIGHTNING_ROD
+	abilities_for PIKACHU, STATIC, LIGHTNING_ROD, GALVANIZE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups

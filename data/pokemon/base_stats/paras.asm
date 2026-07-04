@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/paras/front.dimensions"
-	abilities_for PARAS, EFFECT_SPORE, DRY_SKIN, DAMP
+	abilities_for PARAS, EFFECT_SPORE, DAMP, OBLIVIOUS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_PLANT ; egg groups
