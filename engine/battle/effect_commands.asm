@@ -1303,8 +1303,6 @@ INCLUDE "data/moves/critical_hit_moves.asm"
 
 INCLUDE "data/battle/critical_hit_chances.asm"
 
-INCLUDE "engine/battle/move_effects/triple_kick.asm"
-
 BattleCommand_Stab:
 ; STAB = Same Type Attack Bonus
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -1710,6 +1708,10 @@ BattleCommand_CheckHit:
 	cp -1
 	jr z, .Hit
 
+	callfar BattleCheckHitLoadedDiceTripleKick_Core
+	jr z, .Hit
+
+.RollAccuracy
 	call BattleRandom
 	cp b
 	jr nc, .Miss
@@ -5505,13 +5507,11 @@ BattleCommand_EndLoop:
 	jr z, .beat_up
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .not_triple_kick
-.reject_triple_kick_sample
-	call BattleRandom
-	and $3
-	jr z, .reject_triple_kick_sample
-	dec a
+	callfar BattleTripleKickHitCount_Core
+	ld a, [wPredefTemp]
+	and a
 	jr nz, .double_hit
-	ld a, 1
+	inc a
 	ld [bc], a
 	jr .done_loop
 
@@ -5545,7 +5545,12 @@ BattleCommand_EndLoop:
 .not_triple_kick
 	callfar BattleMultiHitRoll_Core
 .got_number_hits
+	ld a, [wPredefTemp + 1]
+	and a
+	ld a, [wPredefTemp]
+	jr nz, .final_hit_count
 	inc a
+.final_hit_count
 .double_hit
 	ld [de], a
 	inc a

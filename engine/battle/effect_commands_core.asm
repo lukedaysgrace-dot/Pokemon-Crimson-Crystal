@@ -79,26 +79,72 @@ BattleSkipSunCharge_Core:
 	callfar SkipToBattleCommand
 	ret
 
-BattleMultiHitRoll_Core:
+BattleUserHasLoadedDice_Core:
+; Return z if the user holds Loaded Dice.
 	push bc
 	callfar GetUserItem
 	ld a, b
 	pop bc
 	cp HELD_LOADED_DICE
+	ret
+
+BattleCheckHitLoadedDiceTripleKick_Core:
+; Return z if Triple Kick/Axel hit 2+ with Loaded Dice (skip accuracy).
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_TRIPLE_KICK
+	ret nz
+	ld a, [wKickCounter]
+	and a
+	jr z, .first_kick
+	jp BattleUserHasLoadedDice_Core
+.first_kick
+	or 1
+	ret
+
+BattleTripleKickHitCount_Core:
+; wPredefTemp = loop count (1-2), or 0 for a single-hit finish.
+	call BattleUserHasLoadedDice_Core
 	jr z, .loaded_dice
+.sample
+	call BattleRandom
+	and $3
+	jr z, .sample
+	dec a
+	ld [wPredefTemp], a
+	ret
+.loaded_dice
+	ld a, 2
+	ld [wPredefTemp], a
+	ret
+
+BattleMultiHitRoll_Core:
+; Return hit count in wPredefTemp. Normal rolls are pre-inc (EndLoop adds 1).
+; Loaded Dice stores loop count 3-4 and sets wPredefTemp + 1 (skip that inc).
+; Must not return in a: callfar clobbers a while restoring the bank.
+	call BattleUserHasLoadedDice_Core
+	jr z, .loaded_dice
+	xor a
+	ld [wPredefTemp + 1], a
 	call BattleRandom
 	and $3
 	cp 2
-	ret c
+	jr c, .store
 	call BattleRandom
 	and $3
-	ret
+	jr .store
 
 .loaded_dice
 	call BattleRandom
 	and 1
-	add 3
-	scf
+	add 3 ; loop count 3-4 (4-5 hits total)
+	ld [wPredefTemp], a
+	ld a, 1
+	ld [wPredefTemp + 1], a
+	ret
+
+.store
+	ld [wPredefTemp], a
 	ret
 
 BattleCheckCharge_Core:
@@ -367,3 +413,5 @@ BattleParalyze_Core:
 	callfar AnimateFailedMove
 	callfar PrintDoesntAffect
 	ret
+
+INCLUDE "engine/battle/move_effects/triple_kick.asm"

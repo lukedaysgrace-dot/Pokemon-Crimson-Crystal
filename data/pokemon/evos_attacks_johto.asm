@@ -404,7 +404,8 @@ TotodileEvosAttacks:
 	dbw 1, SWORDS_DANCE
 	dbw 3, WATER_GUN
 	dbw 4, SCREECH
-	dbw 19, ICE_FANG
+	dbw 6, DOUBLESLAP
+	dbw 7, TRIPLE_AXEL
 	dbw 20, BITE
 	dbw 22, FLAIL
 	dbw 27, CRUNCH

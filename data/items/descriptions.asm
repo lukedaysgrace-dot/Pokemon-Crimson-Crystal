@@ -763,8 +763,9 @@ PassDesc:
 	next "MAGNET TRAIN.@"
 
 LoadedDiceDesc:
-	db   "Multi-hit moves"
-	next "hit 4-5 times.@"
+	db   "Multi-hit moves hit"
+	next "4-5 times. Triple"
+	next "Kick/Axel hit thrice.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

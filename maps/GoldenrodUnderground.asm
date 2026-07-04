@@ -669,7 +669,7 @@ GoldenrodUnderground_MapEvents:
 	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
-	bg_event  3,  6, BGEVENT_ITEM, GoldenrodUndergroundHiddenLoadedDice
+	bg_event  5,  1, BGEVENT_ITEM, GoldenrodUndergroundHiddenLoadedDice
 
 	db 9 ; object events
 	object_event  5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
