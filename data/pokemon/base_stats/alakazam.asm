@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/alakazam/front.dimensions"
-	abilities_for ALAKAZAM, SYNCHRONIZE, MAGIC_GUARD, TRACE
+	abilities_for ALAKAZAM, MAGIC_GUARD, SYNCHRONIZE, DOWNLOAD
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/seaking/front.dimensions"
-	abilities_for SEAKING, SWIFT_SWIM, WATER_VEIL, LIGHTNING_ROD
+	abilities_for SEAKING, SWIFT_SWIM, WATER_ABSORB, LIGHTNING_ROD
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_2, EGG_WATER_2 ; egg groups

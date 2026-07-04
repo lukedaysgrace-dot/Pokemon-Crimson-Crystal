@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/munchlax/front.dimensions"
-	abilities_for MUNCHLAX, PICKUP, THICK_FAT, GLUTTONY
+	abilities_for MUNCHLAX, THICK_FAT, PICKUP, GLUTTONY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

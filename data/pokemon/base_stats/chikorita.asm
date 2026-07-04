@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/chikorita/front.dimensions"
-	abilities_for CHIKORITA, OVERGROW, OVERGROW, LEAF_GUARD
+	abilities_for CHIKORITA, SERENE_GRACE, OVERGROW, LEAF_GUARD
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_PLANT ; egg groups

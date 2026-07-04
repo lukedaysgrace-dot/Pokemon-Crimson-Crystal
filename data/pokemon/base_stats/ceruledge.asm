@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ceruledge/front.dimensions"
-	abilities_for CERULEDGE, FLASH_FIRE, NO_ABILITY, WEAK_ARMOR
+	abilities_for CERULEDGE, FLASH_FIRE, WEAK_ARMOR, SHARPNESS
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

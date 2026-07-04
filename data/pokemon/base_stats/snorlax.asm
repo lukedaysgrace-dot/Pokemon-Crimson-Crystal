@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/snorlax/front.dimensions"
-	abilities_for SNORLAX, IMMUNITY, THICK_FAT, GLUTTONY
+	abilities_for SNORLAX, THICK_FAT, IMMUNITY, GLUTTONY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

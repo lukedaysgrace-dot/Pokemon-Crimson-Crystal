@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hoothoot/front.dimensions"
-	abilities_for HOOTHOOT, INSOMNIA, KEEN_EYE, TINTED_LENS
+	abilities_for HOOTHOOT, TINTED_LENS, INSOMNIA, INTIMIDATE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

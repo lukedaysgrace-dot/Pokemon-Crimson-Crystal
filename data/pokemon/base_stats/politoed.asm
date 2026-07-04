@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/politoed/front.dimensions"
-	abilities_for POLITOED, WATER_ABSORB, DAMP, DRIZZLE
+	abilities_for POLITOED, DRIZZLE, DAMP, WATER_ABSORB
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_WATER_1 ; egg groups

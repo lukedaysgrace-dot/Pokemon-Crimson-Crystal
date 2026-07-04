@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/toxicroak/front.dimensions"
-	abilities_for TOXICROAK, ANTICIPATION, DRY_SKIN, POISON_TOUCH
+	abilities_for TOXICROAK, DRY_SKIN, ANTICIPATION, POISON_TOUCH
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

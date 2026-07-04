@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ledian/front.dimensions"
-	abilities_for LEDIAN, SWARM, EARLY_BIRD, IRON_FIST
+	abilities_for LEDIAN, TECHNICIAN, IRON_FIST, DEFIANT
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

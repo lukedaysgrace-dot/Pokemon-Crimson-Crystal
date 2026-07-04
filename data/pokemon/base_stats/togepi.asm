@@ -12,7 +12,7 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/togepi/front.dimensions"
-	abilities_for TOGEPI, HUSTLE, SERENE_GRACE, SUPER_LUCK
+	abilities_for TOGEPI, SUPER_LUCK, SERENE_GRACE, PIXILATE
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/froslass/front.dimensions"
-	abilities_for FROSLASS, SNOW_CLOAK, NO_ABILITY, CURSED_BODY
+	abilities_for FROSLASS, LEVITATE, SNOW_CLOAK, CURSED_BODY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FAIRY, EGG_MINERAL ; egg groups

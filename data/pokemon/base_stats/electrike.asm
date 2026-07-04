@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/electrike/front.dimensions"
-	abilities_for ELECTRIKE, STATIC, LIGHTNING_ROD, NO_ABILITY
+	abilities_for ELECTRIKE, STATIC, LIGHTNING_ROD, INTIMIDATE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/seel/front.dimensions"
-	abilities_for SEEL, THICK_FAT, HYDRATION, ICE_BODY
+	abilities_for SEEL, THICK_FAT, SWIFT_SWIM, ICE_BODY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups

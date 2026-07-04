@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/zubat/front.dimensions"
-	abilities_for ZUBAT, INNER_FOCUS, INNER_FOCUS, INFILTRATOR
+	abilities_for ZUBAT, INNER_FOCUS, FRISK, INFILTRATOR
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

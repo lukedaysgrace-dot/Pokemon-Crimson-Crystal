@@ -12,7 +12,7 @@
 	db 35 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/flareon/front.dimensions"
-	abilities_for FLAREON, FLASH_FIRE, FLASH_FIRE, GUTS
+	abilities_for FLAREON, FLASH_FIRE, GUTS, QUICK_FEET
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

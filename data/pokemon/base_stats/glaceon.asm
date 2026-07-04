@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/glaceon/front.dimensions"
-	abilities_for GLACEON, SNOW_CLOAK, SNOW_CLOAK, ICE_BODY
+	abilities_for GLACEON, SNOW_CLOAK, ICE_BODY, SLUSH_RUSH
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

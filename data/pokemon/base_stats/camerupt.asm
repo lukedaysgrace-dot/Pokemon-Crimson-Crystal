@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/camerupt/front.dimensions"
-	abilities_for CAMERUPT, MAGMA_ARMOR, SOLID_ROCK, ANGER_POINT
+	abilities_for CAMERUPT, SOLID_ROCK, DROUGHT, SHEER_FORCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

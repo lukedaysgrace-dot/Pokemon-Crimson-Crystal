@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/buneary/front.dimensions"
-	abilities_for BUNEARY, RUN_AWAY, NO_ABILITY, LIMBER
+	abilities_for BUNEARY, LIMBER, RUN_AWAY, ADAPTABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_HUMANSHAPE ; egg groups

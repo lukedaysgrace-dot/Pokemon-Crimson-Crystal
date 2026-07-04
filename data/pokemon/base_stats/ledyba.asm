@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ledyba/front.dimensions"
-	abilities_for LEDYBA, SWARM, EARLY_BIRD, RATTLED
+	abilities_for LEDYBA, TECHNICIAN, IRON_FIST, DEFIANT
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

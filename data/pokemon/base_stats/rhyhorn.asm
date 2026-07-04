@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/rhyhorn/front.dimensions"
-	abilities_for RHYHORN, LIGHTNING_ROD, ROCK_HEAD, RECKLESS
+	abilities_for RHYHORN, ROCK_HEAD, RECKLESS, SHEER_FORCE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_GROUND ; egg groups

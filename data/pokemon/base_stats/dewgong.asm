@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/dewgong/front.dimensions"
-	abilities_for DEWGONG, THICK_FAT, HYDRATION, ICE_BODY
+	abilities_for DEWGONG, THICK_FAT, SWIFT_SWIM, SNOW_WARNING
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups

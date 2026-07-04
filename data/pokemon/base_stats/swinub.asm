@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/swinub/front.dimensions"
-	abilities_for SWINUB, OBLIVIOUS, SNOW_CLOAK, THICK_FAT
+	abilities_for SWINUB, THICK_FAT, OBLIVIOUS, QUICK_FEET
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

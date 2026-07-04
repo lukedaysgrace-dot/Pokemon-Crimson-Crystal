@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/dragonair/front.dimensions"
-	abilities_for DRAGONAIR, SHED_SKIN, SHED_SKIN, MARVEL_SCALE
+	abilities_for DRAGONAIR, MARVEL_SCALE, SHED_SKIN, MULTISCALE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_1, EGG_DRAGON ; egg groups

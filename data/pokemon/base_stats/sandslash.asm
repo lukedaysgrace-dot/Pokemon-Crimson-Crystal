@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/sandslash/front.dimensions"
-	abilities_for SANDSLASH, SAND_VEIL, SAND_VEIL, SAND_RUSH
+	abilities_for SANDSLASH, SAND_VEIL, SAND_FORCE, SAND_RUSH
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mismagius/front.dimensions"
-	abilities_for MISMAGIUS, LEVITATE, LEVITATE, LEVITATE
+	abilities_for MISMAGIUS, LEVITATE, LEVITATE, PRANKSTER
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

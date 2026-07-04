@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/charcadet/front.dimensions"
-	abilities_for CHARCADET, FLASH_FIRE, NO_ABILITY, FLAME_BODY
+	abilities_for CHARCADET, FLASH_FIRE, FLASH_FIRE, FLAME_BODY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
