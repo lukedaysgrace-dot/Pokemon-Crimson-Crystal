@@ -2475,6 +2475,15 @@ BattleCommand_CheckFaint:
 ;  and faint the user along with it if it used Destiny Bond.
 ; Ends the move effect if the opponent faints.
 
+; Also the post-hit hook for contact abilities and the deferred Disguise
+; reveal. checkfaint (unlike kingsrock) is present in EVERY damaging move
+; script - secondary-effect scripts (PoisonHit, FlinchHit, ConfuseHit, ...)
+; have no kingsrock, which previously meant no contact procs off those
+; moves and a Mimikyu whose Disguise blocked them without ever busting.
+; It runs after applydamage/criticaltext/supereffectivetext, a text-safe
+; spot, and before faint processing (the hook guards fainted sides itself).
+	farcall RunContactAbilitiesHook
+
 	ld hl, wEnemyMonHP
 	ldh a, [hBattleTurn]
 	and a
@@ -4700,19 +4709,26 @@ BattleCommand_StatDown::
 	ld [wFailedMessage], a
 	ld a, 1
 	ld [wAttackMissed], a
-	ret
+	jr .ClearAbilityDropFlag
 
 .Failed:
 	ld a, 1
 	ld [wFailedMessage], a
 	ld [wAttackMissed], a
-	ret
+	jr .ClearAbilityDropFlag
 
 .Mist:
 	ld a, 2
 	ld [wFailedMessage], a
 	ld a, 1
 	ld [wAttackMissed], a
+.ClearAbilityDropFlag:
+; An ability-driven drop (Intimidate, Mirror Armor, Tangling Hair) sets
+; bit 6 of wDisguiseBusted to skip the 25% computer-miss roll; normally
+; .ComputerMiss consumes it, but these exits can be reached first. Clear
+; it so it can't leak into the enemy's next move-based stat drop.
+	ld hl, wDisguiseBusted
+	res 6, [hl]
 	ret
 
 CheckMist:
@@ -5649,9 +5665,6 @@ CheckOpponentWentFirst:
 
 BattleCommand_HeldFlinch:
 ; kingsrock
-; Also the post-hit hook for contact abilities: this command sits after
-; applydamage/checkfaint in every damaging move script, a text-safe spot.
-	farcall RunContactAbilitiesHook
 
 	ld a, [wAttackMissed]
 	and a

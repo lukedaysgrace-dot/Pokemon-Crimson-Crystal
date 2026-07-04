@@ -1950,8 +1950,12 @@ StaticAbility:
 	call GetBattleVarAddr
 	set PAR, [hl]
 	call UpdateOpponentInParty
-	ld hl, ApplyPrzEffectOnSpeed
-	call CallBattleCore
+	; CallBattleCore lives in the Effect Commands bank - a plain call from
+	; this bank jumps into garbage and crashes. farcall does the same job
+	; with the target's own bank.
+	farcall ApplyPrzEffectOnSpeed
+	ld de, ANIM_PAR
+	call AbilityStatusAnim
 	call UpdateBattleHuds
 	farcall PrintParalyze
 	jp EndAbility
@@ -1970,8 +1974,10 @@ FlameBodyAbility:
 	call GetBattleVarAddr
 	set BRN, [hl]
 	call UpdateOpponentInParty
-	ld hl, ApplyBrnEffectOnAttack
-	call CallBattleCore
+	; see StaticAbility: CallBattleCore is not callable from this bank
+	farcall ApplyBrnEffectOnAttack
+	ld de, ANIM_BRN
+	call AbilityStatusAnim
 	call UpdateBattleHuds
 	ld hl, WasBurnedText
 	call StdBattleTextbox
@@ -1994,6 +2000,8 @@ TryPoisonOpponentContact:
 	call GetBattleVarAddr
 	set PSN, [hl]
 	call UpdateOpponentInParty
+	ld de, ANIM_PSN
+	call AbilityStatusAnim
 	call UpdateBattleHuds
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
@@ -2025,6 +2033,8 @@ EffectSporeAbility:
 	call GetBattleVarAddr
 	ld [hl], b
 	call UpdateOpponentInParty
+	ld de, ANIM_SLP
+	call AbilityStatusAnim
 	call UpdateBattleHuds
 	ld hl, FellAsleepText
 	call StdBattleTextbox
@@ -2045,6 +2055,22 @@ ContactChance:
 	call BattleRandomRange
 	cp 3
 	ret
+
+AbilityStatusAnim:
+; de = status anim id (ANIM_PAR/BRN/PSN/SLP). Plays it on the turn
+; holder's opponent (the mon that just got the status). Same mechanism as
+; Effect Commands' PlayOpponentBattleAnim, which is in another bank.
+; Safe here: every caller uses ShowAbilityBannerBrief, so the banner is
+; already dismissed before the animation redraws the scene.
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	xor a
+	ld [wNumHits], a
+	call SwitchTurn
+	farcall PlayBattleAnim
+	jp SwitchTurn
 
 OpponentIsPoisonImmuneType:
 ; z if the opponent is Poison- or Steel-type
