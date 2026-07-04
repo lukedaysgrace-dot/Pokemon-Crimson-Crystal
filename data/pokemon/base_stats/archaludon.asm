@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/archaludon/front.dimensions"
-	abilities_for ARCHALUDON, STURDY, NO_ABILITY, STEADFAST
+	abilities_for ARCHALUDON, STAMINA, STURDY, STEADFAST
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MINERAL, EGG_DRAGON ; egg groups

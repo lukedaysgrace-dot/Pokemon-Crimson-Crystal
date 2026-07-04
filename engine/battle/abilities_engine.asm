@@ -271,6 +271,8 @@ RunEntryAbilities::
 	call EndAbility
 	call UserHasFainted
 	ret z
+	; a busted Mimikyu keeps its broken sprite when it re-enters
+	call ReapplyBrokenDisguise
 	call OppHasFainted
 	ld hl, BattleEntryAbilities
 	jr z, .got_table
@@ -308,6 +310,7 @@ StatusHealAbilities:
 	dbw VITAL_SPIRIT, VitalSpiritAbility
 	dbw OWN_TEMPO, OwnTempoAbility
 	dbw OBLIVIOUS, ObliviousAbility
+	dbw THERMAL_EXCHANGE, WaterVeilAbility
 	dbw -1, -1
 
 CloudNineAbility:
@@ -668,7 +671,7 @@ AbilityPreventsBurn::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db WATER_VEIL, -1
+	db WATER_VEIL, THERMAL_EXCHANGE, -1
 
 AbilityPreventsFreeze::
 	ld hl, .abilities
@@ -977,6 +980,8 @@ RunNullificationAbilities::
 	call GetOpponentIgnorableAbility
 	and a
 	ret z
+	cp DISGUISE
+	jp z, DisguiseBlock
 	ld b, a
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
@@ -1036,6 +1041,8 @@ NullificationAbilities:
 	dw AbsorbRaiseSpeed
 	db WATER_ABSORB, WATER
 	dw AbsorbHealQuarter
+	db STORM_DRAIN, WATER
+	dw AbsorbRaiseSpAtk
 	db DRY_SKIN, WATER
 	dw AbsorbHealQuarter
 	db FLASH_FIRE, FIRE
@@ -1092,6 +1099,10 @@ RunDamageModifiers:
 	jr z, .technician
 	cp TINTED_LENS
 	jr z, .tinted_lens
+	cp STRONG_JAW
+	jp z, .strong_jaw
+	cp SUPREME_OVERLORD
+	jp z, .supreme_overlord
 	cp SOLAR_POWER
 	jr z, .solar_power
 	cp OVERGROW
@@ -1245,6 +1256,32 @@ RunDamageModifiers:
 	cp FIRE
 	ret nz
 	jp DamageX1_25
+
+.strong_jaw
+	; x1.5 for biting moves
+	push de
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	ld de, 2
+	ld hl, BiteMoves
+	call IsInHalfwordArray
+	pop de
+	jp nc, .defender
+	call DamageX1_5
+	jp .defender
+
+.supreme_overlord
+	; ~+10% damage for each fainted ally (x1.09375 each, additive)
+	push de
+	call CountFaintedAllies
+	pop de
+	and a
+	jp z, .defender
+	call SupremeOverlordBoost
+	jp .defender
 
 GetMoveCategory::
 ; a = current move's damage category
@@ -1482,6 +1519,8 @@ AbilityProtectsStatDrop::
 	and a
 	ret z ; nc
 	ld b, a
+	cp MIRROR_ARMOR
+	jr z, .mirror_armor
 	cp CLEAR_BODY
 	jr z, .protected
 	cp WHITE_SMOKE
@@ -1516,6 +1555,27 @@ AbilityProtectsStatDrop::
 	call BeginAbility
 	call ShowEnemyAbilityActivation
 	call EndAbility
+	scf
+	ret
+
+.mirror_armor
+	; bounce the drop back at its source (no ping-pong between two
+	; Mirror Armors: while the guard bit is set, take the drop instead)
+	ld a, [wDisguiseBusted]
+	bit 7, a
+	jr nz, .no
+	call BeginAbility
+	call ShowEnemyAbilityActivation
+	call EndAbility
+	ld hl, wDisguiseBusted
+	set 7, [hl]
+	ld a, [wLoweredStat]
+	ld b, a ; stat | possible $10 sharp-drop flag
+	call StackCallOpponentTurn
+	; (defender's perspective from here; ret unswitches)
+	call AbilityLowerOppStat
+	ld hl, wDisguiseBusted
+	res 7, [hl]
 	scf
 	ret
 
@@ -1754,17 +1814,44 @@ RunContactAbilitiesHook::
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	call CheckContactMove
-	ret nc
 	; nothing procs if the defender already fainted
 	call OppHasFainted
 	ret z
+	; defender on-hit abilities (any damaging move, contact or not)
+	call GetOpponentAbility
+	cp STAMINA
+	jr z, .stamina
+	cp THERMAL_EXCHANGE
+	jr z, .thermal_exchange
+.contact
+	call CheckContactMove
+	ret nc
 	; attacker on-contact abilities
 	call GetTrueUserAbility
 	cp POISON_TOUCH
 	call z, PoisonTouchAbility
 	; defender on-contact abilities (perspective switches to the defender)
 	call StackCallOpponentTurn
+	jr _RunDefenderContactAbilities
+
+.stamina
+	ld b, DEFENSE
+	jr .on_hit_stat_up
+.thermal_exchange
+	; only Fire-type hits (checked from the attacker's perspective)
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jr nz, .contact
+	ld b, ATTACK
+.on_hit_stat_up
+	call SwitchTurn
+	call BeginAbility
+	call StatUpAbility
+	call EndAbility
+	call SwitchTurn
+	jr .contact
+
 _RunDefenderContactAbilities:
 	call UserHasFainted
 	ret z
@@ -2178,5 +2265,455 @@ CheckUserFullHP:
 	pop de
 	pop hl
 	ret
+
+; ==== Session 4 additions ================================================
+
+AbilityCriticalMods::
+; Called from BattleCommand_Critical before the normal crit roll.
+; Returns carry if the crit decision is final (wCriticalHit already set):
+; Battle Armor/Shell Armor block crits; Merciless always crits poisoned foes.
+	call GetOpponentIgnorableAbility
+	cp BATTLE_ARMOR
+	jr z, .blocked
+	cp SHELL_ARMOR
+	jr z, .blocked
+	call GetTrueUserAbility
+	cp MERCILESS
+	jr nz, .normal
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and 1 << PSN
+	jr z, .normal
+	ld a, 1
+	ld [wCriticalHit], a
+	scf
+	ret
+.blocked
+	xor a
+	ld [wCriticalHit], a
+	scf
+	ret
+.normal
+	and a
+	ret
+
+AbilityCompareMovePriority::
+; Replaces the body of CompareMovePriority (Battle Core).
+; Returns carry if the player goes first, z if the priorities match.
+; Applies Gale Wings (X/Y behavior: all Flying moves +1, no HP condition)
+; and Triage (+3 to HP-restoring moves).
+	ld a, [wCurPlayerMove]
+	ld e, a
+	farcall GetMovePriority_e
+	ld d, e
+	ld a, [wCurPlayerMove]
+	ld b, a
+	ld a, [wPlayerAbility]
+	ld c, a
+	call .Adjust
+	push de
+	ld a, [wCurEnemyMove]
+	ld e, a
+	farcall GetMovePriority_e
+	ld d, e
+	ld a, [wCurEnemyMove]
+	ld b, a
+	ld a, [wEnemyAbility]
+	ld c, a
+	call .Adjust
+	pop bc ; b = player priority
+	ld a, d ; enemy priority
+	cp b
+	ret
+
+.Adjust:
+; b = move id, c = ability, d = priority. Returns adjusted priority in d.
+	ld a, b
+	and a
+	ret z ; no move chosen (switch/item)
+	ld a, c
+	cp GALE_WINGS
+	jr z, .gale_wings
+	cp TRIAGE
+	jr z, .triage
+	ret
+
+.gale_wings
+	; +1 priority for Flying-type moves (type as stored in the move data)
+	ld a, b
+	call GetMoveIndexFromID
+	dec hl
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, bc ; hl = (index - 1) * MOVE_LENGTH
+	ld bc, Moves + MOVE_TYPE
+	add hl, bc
+	ld a, BANK(Moves)
+	call GetFarByte
+	cp FLYING
+	ret nz
+	inc d
+	ret
+
+.triage
+	; +3 priority for HP-restoring moves
+	ld a, b
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	push de
+	ld de, 2
+	ld hl, TriageMoves
+	call IsInHalfwordArray
+	pop de
+	ret nc
+	ld a, d
+	add 3
+	ld d, a
+	ret
+
+CountFaintedAllies:
+; a = number of fainted mons in the user's party (0-5). Eggs don't count.
+	push hl
+	push de
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player
+	; wild mons have no party
+	ld a, [wBattleMode]
+	dec a ; WILDMON?
+	jr z, .none
+	ld a, [wOTPartyCount]
+	and a
+	jr z, .none
+	ld c, a
+	ld hl, wOTPartySpecies
+	ld de, wOTPartyMon1HP
+	jr .count
+.player
+	ld a, [wPartyCount]
+	and a
+	jr z, .none
+	ld c, a
+	ld hl, wPartySpecies
+	ld de, wPartyMon1HP
+.count
+	ld b, 0
+.loop
+	ld a, [hli]
+	cp EGG
+	jr z, .next
+	push hl
+	ld h, d
+	ld l, e
+	ld a, [hli]
+	or [hl]
+	pop hl
+	jr nz, .next
+	inc b
+.next
+	push hl
+	ld hl, PARTYMON_STRUCT_LENGTH
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	dec c
+	jr nz, .loop
+	ld a, b
+	jr .done
+.none
+	xor a
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+SupremeOverlordBoost:
+; Add a * (1/16 + 1/32) of the current damage to wCurDamage (a = 1-5).
+; Approximates the canon +10% per fainted ally as +9.375% each, additive.
+	push hl
+	push de
+	push bc
+	ld b, a
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld e, [hl]
+	ld d, a ; de = damage
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e ; de = damage / 16
+	ld h, d
+	ld l, e
+	srl h
+	rr l ; hl = damage / 32
+	add hl, de
+	ld d, h
+	ld e, l ; de = fraction per fainted ally
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+.add_loop
+	add hl, de
+	jr c, .cap
+	dec b
+	jr nz, .add_loop
+	jr .store
+.cap
+	ld hl, $ffff
+.store
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; ==== Disguise (Sun/Moon behavior) ========================================
+
+DisguiseBlock:
+; Jumped to from .CheckNullification with the defender's ability = DISGUISE.
+; Blocks the damage of the first hit outright (no HP loss - S/M behavior),
+; but not the move's other effects. Returns carry if the hit was blocked.
+	call SwitchTurn ; user = the Disguise holder from here
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .got_species
+	ld a, [wEnemyMonSpecies]
+.got_species
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(MIMIKYU)
+	jr nz, .no_block
+	ld a, h
+	cp HIGH(MIMIKYU)
+	jr nz, .no_block
+	call GetDisguiseFlag
+	ld b, a
+	and [hl]
+	jr nz, .no_block ; already busted
+	; bust the disguise
+	ld a, [hl]
+	or b
+	ld [hl], a
+	; cancel the damage, but keep the move's secondary effects:
+	; zero wCurDamage and neutralize the effectiveness text
+	xor a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+	ld [wCriticalHit], a
+	ld a, [wTypeModifier]
+	and $80
+	or EFFECTIVE
+	ld [wTypeModifier], a
+	; presentation: banner, decoy text, sprite swap, busted text
+	call BeginAbility
+	call ShowAbilityActivation
+	ld hl, DisguiseDecoyText
+	call StdBattleTextbox
+	call LoadBrokenDisguisePic
+	ld hl, DisguiseBustedText
+	call StdBattleTextbox
+	call EndAbility
+	call SwitchTurn
+	scf
+	ret
+.no_block
+	call SwitchTurn
+	and a
+	ret
+
+GetDisguiseFlag:
+; For the current turn holder: hl = its wDisguiseBusted byte,
+; a = the bit mask for its current party slot (wild mons use bit 0).
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player
+	ld hl, wDisguiseBusted + 1
+	ld a, [wBattleMode]
+	dec a ; WILDMON?
+	ld a, 0
+	jr z, .got_slot
+	ld a, [wCurOTMon]
+	jr .got_slot
+.player
+	ld hl, wDisguiseBusted
+	ld a, [wCurBattleMon]
+.got_slot
+	and %111
+	push bc
+	ld b, a
+	ld a, 1
+	inc b
+.shift
+	dec b
+	jr z, .shifted
+	add a, a
+	jr .shift
+.shifted
+	pop bc
+	ret
+
+ReapplyBrokenDisguise:
+; If the entering turn holder is a Mimikyu whose disguise busted earlier
+; this battle, restore the broken sprite (the switch-in loaded the normal
+; pic).
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .got_species
+	ld a, [wEnemyMonSpecies]
+.got_species
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(MIMIKYU)
+	ret nz
+	ld a, h
+	cp HIGH(MIMIKYU)
+	ret nz
+	call GetDisguiseFlag
+	and [hl]
+	ret z
+	; fallthrough
+
+LoadBrokenDisguisePic:
+; Load the broken-disguise pic for the current turn holder's side.
+; Enemy: animated 5x5 frontpic padded to 7x7 at vTiles2 $00 (+ animation
+; tiles in VRAM bank 1, mirroring GetAnimatedFrontpic's layout).
+; Player: 6x6 backpic at vTiles2 $31.
+	push hl
+	push de
+	push bc
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	xor a
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .backpic
+	; enemy frontpic
+	ld a, BANK(MimikyuBrokenFrontpic)
+	ld hl, MimikyuBrokenFrontpic
+	ld de, wDecompressScratch
+	call FarDecompress
+	ld de, wDecompressScratch
+	ld hl, wDecompressScratch + 50 tiles
+	call .Pad5x5To7x7
+	ld hl, vTiles2
+	ld de, wDecompressScratch + 50 tiles
+	ld c, 7 * 7
+	ldh a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	; animation frames -> VRAM bank 1, after the padded base pic
+	ld a, BANK(vTiles3)
+	ldh [rVBK], a
+	ld hl, vTiles2 tile $31
+	ld de, wDecompressScratch + 25 tiles
+	ld c, 25
+	ldh a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	xor a
+	ldh [rVBK], a
+	jr .done
+.backpic
+	ld a, BANK(MimikyuBrokenBackpic)
+	ld hl, MimikyuBrokenBackpic
+	ld de, wDecompressScratch
+	call FarDecompress
+	ld hl, vTiles2 tile $31
+	ld de, wDecompressScratch
+	ld c, 6 * 6
+	ldh a, [hROMBank]
+	ld b, a
+	call Get2bpp
+.done
+	pop af
+	ldh [rSVBK], a
+	ld a, $1
+	ldh [hBGMapMode], a
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.Pad5x5To7x7:
+; de = source (25 tiles, column-major), hl = dest (49 tiles).
+; Mirrors PadFrontpic's 5x5 layout: 1 blank column, 5x (2 blank tiles +
+; 5 pic tiles), 1 blank column.
+	xor a
+	ld c, 7 * 16
+	call .fill
+	ld b, 5
+.column
+	xor a
+	ld c, 2 * 16
+	call .fill
+	ld c, 5 * 16
+.copy
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .copy
+	dec b
+	jr nz, .column
+	xor a
+	ld c, 7 * 16
+	; fallthrough
+.fill
+	ld [hli], a
+	dec c
+	jr nz, .fill
+	ret
+
+BiteMoves:
+; Strong Jaw: biting moves (canon list, restricted to moves in this game)
+	dw BITE
+	dw CRUNCH
+	dw HYPER_FANG
+	dw FIRE_FANG
+	dw ICE_FANG
+	dw THUNDER_FANG
+	dw POISON_FANG
+	dw -1
+
+TriageMoves:
+; Triage: HP-restoring moves (canon list, restricted to moves in this game)
+	dw ABSORB
+	dw MEGA_DRAIN
+	dw GIGA_DRAIN
+	dw LEECH_LIFE
+	dw DREAM_EATER
+	dw DRAIN_PUNCH
+	dw DRAINING_KISS
+	dw RECOVER
+	dw SOFTBOILED
+	dw REST
+	dw MILK_DRINK
+	dw MORNING_SUN
+	dw SYNTHESIS
+	dw MOONLIGHT
+	dw -1
+
+MimikyuBrokenFrontpic: INCBIN "gfx/pokemon/mimikyu-broken/front.animated.2bpp.lz"
+MimikyuBrokenBackpic:  INCBIN "gfx/pokemon/mimikyu-broken/back.2bpp.lz"
 
 INCLUDE "data/abilities/flags.asm"

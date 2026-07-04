@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/lileep/front.dimensions"
-	abilities_for LILEEP, SUCTION_CUPS, NO_ABILITY, WATER_ABSORB
+	abilities_for LILEEP, SUCTION_CUPS, NO_ABILITY, STORM_DRAIN
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_PLANT ; egg groups

@@ -1171,6 +1171,10 @@ BattleCommand_Critical:
 	and a
 	ret z
 
+	; Merciless force-crit / Battle Armor + Shell Armor crit block
+	farcall AbilityCriticalMods
+	ret c
+
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wEnemyMonItem
@@ -4581,6 +4585,11 @@ BattleCommand_EvasionDown2:
 ; evasiondown2
 	ld a, $10 | EVASION
 
+AbilityStatDown::
+; farcall-safe entry for ability-driven stat drops (farcall clobbers a):
+; stat (optionally | $10 for a sharp drop) in b.
+	ld a, b
+	; fallthrough
 BattleCommand_StatDown::
 ; statdown
 
@@ -6956,42 +6965,4 @@ AppearUserRaiseSub:
 _CheckBattleScene:
 ; Checks the options.  Returns carry if battle animations are disabled.
 	push hl
-	push de
-	push bc
-	farcall CheckBattleScene
-	pop bc
-	pop de
-	pop hl
-	ret
-
-CompareMove:
-	; checks if the move ID in a matches the move in bc
-	push hl
-	call GetMoveIndexFromID
-	ld a, h
-	cp b
-	ld a, l
-	pop hl
-	ret nz
-	cp c
-	ret
-
-CheckMoveInList:
-	; checks if the move ID in a belongs to a list of moves in hl
-	push bc
-	push de
-	push hl
-	call GetMoveIndexFromID
-	ld b, h
-	ld c, l
-	pop hl
-	ld de, 2
-	call IsInHalfwordArray
-	pop de
-	pop bc
-	ret
-
-AbilityStatDown::
-; b = stat (farcall-safe entry for BattleCommand_StatDown)
-	ld a, b
-	jp BattleCommand_StatDown
+	

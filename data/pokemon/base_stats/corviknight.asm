@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/corviknight/front.dimensions"
-	abilities_for CORVIKNIGHT, PRESSURE, UNNERVE, MAGIC_BOUNCE
+	abilities_for CORVIKNIGHT, PRESSURE, UNNERVE, MIRROR_ARMOR
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups
