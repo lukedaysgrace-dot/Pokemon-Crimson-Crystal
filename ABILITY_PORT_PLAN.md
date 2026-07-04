@@ -349,8 +349,17 @@ constants/names/flags/descriptions all extended in matching order).
   sets guard bit, StackCallOpponentTurn + AbilityLowerOppStat with the
   original wLoweredStat byte (keeps sharp-drop flag), original drop fails.
   Covers moves AND Intimidate. No ping-pong (guard bit); reflected drops
-  respect the attacker's Clear Body/etc + Mist; inherits the vanilla 25%
-  AI-fail quirk when the reflector is the enemy.
+  respect the attacker's Clear Body/etc + Mist.
+  FIX (Lucas feedback): ability-driven drops (AbilityLowerOppStat -> bit 6
+  of wDisguiseBusted, checked/cleared in StatDown's .ComputerMiss) now skip
+  the vanilla 25% computer-miss roll that randomly ate Mirror Armor
+  reflections AND enemy Intimidate. Tiny known leak: if the drop exits
+  before .ComputerMiss (Mist/protection/at-minimum), the bit stays set and
+  the enemy's next move-based stat drop skips its 25% roll once.
+  FIX (Lucas feedback): IntimidateResistedText + TraceActivationText were
+  printing garbage - the banner GFX clobbers wStringBuffer1, so
+  GetAbilityName is now called AFTER the banners, right before the
+  textbox, in both flows.
 - **Storm Drain**: NullificationAbilities entry (WATER -> AbsorbRaiseSpAtk),
   i.e. water immunity + SpAtk+1. Same status-move limitation as Water Absorb.
 - **Stamina / Thermal Exchange**: RunContactAbilitiesHook restructured —

@@ -4622,6 +4622,11 @@ BattleCommand_StatDown::
 
 .ComputerMiss:
 ; Computer opponents have a 25% chance of failing.
+	; ...but not ability-driven drops (Intimidate, Mirror Armor)
+	ld hl, wDisguiseBusted
+	bit 6, [hl]
+	res 6, [hl]
+	jr nz, .DidntMiss
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
