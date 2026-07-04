@@ -780,43 +780,41 @@ BattleAnim_IceShard:
 	anim_ret
 
 BattleAnim_TripleAxel:
-; Hits 1–2: foot → short ice → hit. Hit 3: foot → Ice Punch ice burst → slam.
+; Hits 1-2: icy kick. Hit 3: icy kick with the Ice Punch burst.
 	anim_2gfx ANIM_GFX_ICE, ANIM_GFX_HIT
 	anim_if_param_equal $1, BattleAnim_TripleAxel_branch_a
 	anim_if_param_equal $2, BattleAnim_TripleAxel_branch_b
-	anim_sound 0, 1, SFX_MEGA_KICK
-	anim_obj ANIM_OBJ_07, 144, 48, $0
-	anim_wait 5
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_07, 136, 56, $0
+	anim_wait 6
 	anim_sound 6, 2, SFX_SHINE
-	anim_obj ANIM_OBJ_12, 140, 46, $0
-	anim_obj ANIM_OBJ_ICE_BEAM, 134, 42, $4
-	anim_wait 5
+	anim_obj ANIM_OBJ_12, 136, 56, $0
+	anim_wait 6
 	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_obj ANIM_OBJ_01, 144, 48, $0
+	anim_obj ANIM_OBJ_01, 136, 56, $0
 	anim_wait 8
 	anim_ret
 
 BattleAnim_TripleAxel_branch_a:
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_07, 120, 64, $0
-	anim_wait 5
+	anim_obj ANIM_OBJ_07, 136, 56, $0
+	anim_wait 6
 	anim_sound 6, 2, SFX_SHINE
-	anim_obj ANIM_OBJ_12, 118, 62, $0
-	anim_obj ANIM_OBJ_ICE_BEAM, 114, 58, $4
-	anim_wait 5
+	anim_obj ANIM_OBJ_12, 136, 56, $0
+	anim_wait 6
 	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_obj ANIM_OBJ_01, 120, 64, $0
+	anim_obj ANIM_OBJ_01, 136, 56, $0
 	anim_wait 8
 	anim_ret
 
 BattleAnim_TripleAxel_branch_b:
-; Final hit: foot arc, then full Ice Punch ice burst (branch_cbbdf), then slam
+; Final hit: kick, then full Ice Punch ice burst, then slam.
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_07, 132, 32, $0
+	anim_obj ANIM_OBJ_07, 136, 56, $0
 	anim_wait 8
 	anim_call BattleAnim_IcePunch_branch_cbbdf
 	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_01, 132, 32, $0
+	anim_obj ANIM_OBJ_01, 136, 56, $0
 	anim_wait 16
 	anim_ret
 

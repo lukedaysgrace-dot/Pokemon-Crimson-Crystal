@@ -2211,6 +2211,8 @@ BattleCommand_FailureText:
 	jr z, .multihit
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
+	cp EFFECT_TRIPLE_KICK
+	jr z, .multihit
 	jp EndMoveEffect
 
 .multihit
@@ -5075,6 +5077,20 @@ BattleCommand_Curl:
 	callfar BattleCurl_Core
 	ret
 
+BattleCommand_TripleKick:
+; triplekick
+; Body in Battle Effect Overflow bank (see BattleTripleKick_Core).
+; The dispatcher jumps to command handlers with this bank active, so the
+; handler itself must live here even though the body was relocated.
+	callfar BattleTripleKick_Core
+	ret
+
+BattleCommand_KickCounter:
+; kickcounter
+; Body in Battle Effect Overflow bank (see BattleKickCounter_Core).
+	callfar BattleKickCounter_Core
+	ret
+
 BattleCommand_RaiseSubNoAnim:
 	ld hl, GetBattleMonBackpic
 	ldh a, [hBattleTurn]
@@ -5506,14 +5522,9 @@ BattleCommand_EndLoop:
 	cp EFFECT_BEAT_UP
 	jr z, .beat_up
 	cp EFFECT_TRIPLE_KICK
-	jr nz, .not_triple_kick
-	callfar BattleTripleKickHitCount_Core
-	ld a, [wPredefTemp]
-	and a
-	jr nz, .double_hit
-	inc a
-	ld [bc], a
-	jr .done_loop
+	ld a, 2
+	jr z, .double_hit ; always attempt all three kicks
+	jr .not_triple_kick
 
 .beat_up
 	ldh a, [hBattleTurn]
@@ -5544,13 +5555,7 @@ BattleCommand_EndLoop:
 
 .not_triple_kick
 	callfar BattleMultiHitRoll_Core
-.got_number_hits
-	ld a, [wPredefTemp + 1]
-	and a
 	ld a, [wPredefTemp]
-	jr nz, .final_hit_count
-	inc a
-.final_hit_count
 .double_hit
 	ld [de], a
 	inc a

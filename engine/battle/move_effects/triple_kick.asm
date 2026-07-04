@@ -1,5 +1,7 @@
-BattleCommand_TripleKick:
-; triplekick
+BattleTripleKick_Core:
+; triplekick body. Lives in the Battle Effect Overflow bank; the command
+; dispatcher jumps with the Effect Commands bank active, so the command
+; itself is a callfar stub over there (see BattleCommand_TripleKick).
 
 	ld a, [wKickCounter]
 	ld b, a
@@ -26,8 +28,8 @@ BattleCommand_TripleKick:
 	ld [hl], a
 	ret
 
-BattleCommand_KickCounter:
-; kickcounter
+BattleKickCounter_Core:
+; kickcounter body (see BattleCommand_KickCounter).
 
 	ld hl, wKickCounter
 	inc [hl]
