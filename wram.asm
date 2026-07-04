@@ -519,6 +519,11 @@ wEnemyProtectCount:: db ; c681
 wPlayerAbility:: db
 wEnemyAbility:: db
 
+; Disguise state: +0 player side, +1 enemy side.
+; Bits 0-5 = party slot whose Mimikyu's disguise is busted (wild = bit 0).
+; Bit 7 of +0 doubles as the Mirror Armor reflect-in-progress guard.
+wDisguiseBusted:: ds 2
+
 wPlayerDamageTaken:: dw ; c682
 wEnemyDamageTaken:: dw ; c684
 
@@ -3198,9 +3203,4 @@ ENDU ; e000
 SECTION "Stack RAM", WRAMX
 
 wWindowStack:: ds $1000 - 1
-wWindowStackBottom:: ds 1
-
-
-INCLUDE "sram.asm"
-
-INCLUDE "hram.asm"
+wWindowStackB

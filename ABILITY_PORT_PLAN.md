@@ -307,6 +307,81 @@ heals, "doesn't affect"); Rain Dish/Ice Body heal the holder; Thunder Punch
 vs Static mon repeatedly (30% attacker paralysis, no stall at kingsrock);
 Ditto Imposter; Download (one banner); burned Guts damage; Bad Dreams text.
 
+### Session 4: 10 new abilities incl. Disguise + sprite swap (NOT built/tested — network blocked again)
+Added on Lucas's request, mechanics confirmed against Bulbapedia:
+DISGUISE, GALE_WINGS, MERCILESS, MIRROR_ARMOR, STORM_DRAIN, STAMINA,
+STRONG_JAW, SUPREME_OVERLORD, THERMAL_EXCHANGE, TRIAGE (NUM_ABILITIES 171;
+constants/names/flags/descriptions all extended in matching order).
+
+- **Disguise (Sun/Moon rules: no HP loss on break)**: hooked in
+  .CheckNullification (defender ability == DISGUISE + species == MIMIKYU +
+  unbusted). Zeroes wCurDamage + wCriticalHit, neutralizes wTypeModifier
+  (no effectiveness text), does NOT set wAttackMissed so secondary effects
+  still apply (canon). Busted state: wDisguiseBusted (2 bytes after
+  wEnemyAbility; bit per party slot per side; wild = bit 0; bit 7 of +0 is
+  the Mirror Armor guard), cleared in DoBattle. Sprite swap: new pics
+  MimikyuBrokenFront/Backpic (INCBIN in the Abilities Engine bank, from
+  gfx/pokemon/mimikyu-broken/, same 5x5 dims + palette as normal);
+  LoadBrokenDisguisePic decompresses to wDecompressScratch, pads 5x5->7x7
+  (PadFrontpic layout replicated), Get2bpp to vTiles2 $00 (enemy, + 25 anim
+  tiles to VRAM bank 1 at tile $31 mirroring GetAnimatedFrontpic) or
+  vTiles2 $31 (player backpic, 6x6). hBGMapMode=0 during, =1 after;
+  rSVBK saved/restored. ReapplyBrokenDisguise in RunEntryAbilities keeps
+  the broken sprite on re-entry (entrance anim shows normal pic for a
+  moment — known cosmetic wart). LIMITATIONS: confusion self-hits and
+  Struggle bypass (no Stab); dropping a Substitute redraws the normal pic;
+  contact abilities don't proc off a blocked hit (damage==0 early-out).
+- **Gale Wings (X/Y rules: +1 priority for ALL Flying moves, no HP check)**
+  and **Triage (+3 for HP-restoring moves, TriageMoves table)**:
+  CompareMovePriority body replaced with farcall AbilityCompareMovePriority;
+  GetMovePriority_e shim added (farcall clobbers a; returns priority in e).
+- **Merciless**: farcall AbilityCriticalMods at the top of
+  BattleCommand_Critical — always crits poisoned/toxic'd targets; also adds
+  Battle Armor/Shell Armor crit BLOCKING (previously unimplemented).
+- **Mirror Armor**: reflect branch in AbilityProtectsStatDrop — banner,
+  sets guard bit, StackCallOpponentTurn + AbilityLowerOppStat with the
+  original wLoweredStat byte (keeps sharp-drop flag), original drop fails.
+  Covers moves AND Intimidate. No ping-pong (guard bit); reflected drops
+  respect the attacker's Clear Body/etc + Mist; inherits the vanilla 25%
+  AI-fail quirk when the reflector is the enemy.
+- **Storm Drain**: NullificationAbilities entry (WATER -> AbsorbRaiseSpAtk),
+  i.e. water immunity + SpAtk+1. Same status-move limitation as Water Absorb.
+- **Stamina / Thermal Exchange**: RunContactAbilitiesHook restructured —
+  after the sub/faint early-outs, defender on-hit abilities now run for ANY
+  damaging move, then the contact-only chain. Stamina: Def+1 per hit.
+  Thermal Exchange: Atk+1 on Fire hits (no damage reduction, canon), added
+  to AbilityPreventsBurn and to the entry status-heal table (cures burn).
+- **Strong Jaw**: x1.5 in RunDamageModifiers for BiteMoves (BITE, CRUNCH,
+  HYPER_FANG, FIRE/ICE/THUNDER/POISON_FANG — full canon list present here).
+- **Supreme Overlord**: +9.375% damage per fainted ally (canon 10%,
+  additive), counted live via CountFaintedAllies (eggs excluded; wild
+  enemies = 0). NOTE: bodies for these two live AFTER .dry_skin — putting
+  them before .pinch_boost breaks jr ranges in the dispatch chain.
+- **AbilityStatDown REGRESSION FIX**: session 3 farcalled it but the shim
+  had been lost — it's now `ld a, b` falling into BattleCommand_StatDown.
+  THE PREVIOUS TREE DID NOT LINK.
+- Species updates: fletchling line hidden -> GALE_WINGS; mimikyu ->
+  DISGUISE; corviknight hidden -> MIRROR_ARMOR; lileep/cradily hidden ->
+  STORM_DRAIN; archaludon -> STAMINA/STURDY/STEADFAST; tyrunt/tyrantrum ->
+  STRONG_JAW; kingambit slot 2 -> SUPREME_OVERLORD; frigibax line ->
+  THERMAL_EXCHANGE. MERCILESS and TRIAGE have no users yet (no
+  mareanie/toxapex/comfey in the dex) — free for customs.
+- Bank budget: Effect Commands +8 bytes (crit hook + shim) — if it
+  overflows, relocate BattleCommand_Critical + its two data INCLUDEs to
+  the Battle Effect Overflow bank. Battle Core roughly net-neutral.
+
+**Session 4 test checklist (nothing built - rgbds unavailable in sandbox):**
+`make`; wild/trainer Mimikyu both sides: first damaging hit -> banner,
+decoy text, sprite becomes broken (front AND back), busted text, 0 damage,
+Nuzzle-style secondaries still land, second hit damages normally, switch
+out/in keeps broken sprite; Talonflame Brave Bird outspeeds faster mon;
+Comfey-less Triage via Ability Cap hack mon if desired; Growl vs
+Corviknight -> attacker's Attack falls; Intimidate vs Corviknight;
+Thunder Wave-less: Toxic + attack vs Merciless holder -> every hit crits;
+Crunch from Tyrunt vs calc; Kingambit damage grows after allies faint;
+Ember vs Frigibax -> Atk+1, no burn from Fire Punch burns; Tackle vs
+Archaludon -> Def+1 each hit; Water Gun vs Cradily -> SpAtk+1 + immune.
+
 ## HOW AN ABILITY IS DETERMINED (reference)
 - Every mon has a Personality byte (party/box/battle structs); bits 5-6 hold
   the ability slot: ABILITY_1 (%001), ABILITY_2 (%010), HIDDEN (%011).

@@ -160,6 +160,16 @@ AbilityDescriptions::
 	dw MegaSolDescription
 	dw RefrigerateDescription
 	dw AerilateDescription
+	dw DisguiseDescription
+	dw GaleWingsDescription
+	dw MercilessDescription
+	dw MirrorArmorDescription
+	dw StormDrainDescription
+	dw StaminaDescription
+	dw StrongJawDescription
+	dw SupremeOverlordDescription
+	dw ThermalExchangeDescription
+	dw TriageDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -948,4 +958,54 @@ RefrigerateDescription:
 AerilateDescription:
 	text "Normal moves be-"
 	next "come Flying-type."
+	done
+
+DisguiseDescription:
+	text "Its disguise"
+	next "blocks one hit."
+	done
+
+GaleWingsDescription:
+	text "Flying moves"
+	next "go first."
+	done
+
+MercilessDescription:
+	text "Always crits"
+	next "poisoned foes."
+	done
+
+MirrorArmorDescription:
+	text "Bounces back"
+	next "stat drops."
+	done
+
+StormDrainDescription:
+	text "Draws in water,"
+	next "raising SpclAtk."
+	done
+
+StaminaDescription:
+	text "Boosts Defense"
+	next "when hit."
+	done
+
+StrongJawDescription:
+	text "Boosts biting"
+	next "moves' power."
+	done
+
+SupremeOverlordDescription:
+	text "Grows stronger"
+	next "for fallen pals."
+	done
+
+ThermalExchangeDescription:
+	text "Fire raises Atk."
+	next "Can't be burned."
+	done
+
+TriageDescription:
+	text "Healing moves"
+	next "go first."
 	done

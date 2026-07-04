@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/frigibax/front.dimensions"
-	abilities_for FRIGIBAX, FLASH_FIRE, NO_ABILITY, ICE_BODY
+	abilities_for FRIGIBAX, THERMAL_EXCHANGE, NO_ABILITY, ICE_BODY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_DRAGON, EGG_MINERAL ; egg groups

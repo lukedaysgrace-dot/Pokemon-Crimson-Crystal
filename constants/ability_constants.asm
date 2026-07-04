@@ -164,4 +164,14 @@
 	const MEGA_SOL
 	const REFRIGERATE
 	const AERILATE
+	const DISGUISE
+	const GALE_WINGS
+	const MERCILESS
+	const MIRROR_ARMOR
+	const STORM_DRAIN
+	const STAMINA
+	const STRONG_JAW
+	const SUPREME_OVERLORD
+	const THERMAL_EXCHANGE
+	const TRIAGE
 NUM_ABILITIES EQU const_value

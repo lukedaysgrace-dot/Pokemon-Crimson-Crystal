@@ -6,6 +6,8 @@ DoBattle:
 	ld [wBattleParticipantsIncludingFainted], a
 	ld [wBattlePlayerAction], a
 	ld [wBattleEnded], a
+	ld [wDisguiseBusted], a
+	ld [wDisguiseBusted + 1], a
 	inc a
 	ld [wBattleHasJustStarted], a
 	ld hl, wOTPartyMon1HP
@@ -836,15 +838,15 @@ INCLUDE "data/wild/flee_mons.asm"
 CompareMovePriority:
 ; Compare the priority of the player and enemy's moves.
 ; Return carry if the player goes first, or z if they match.
+; Ability adjustments (Gale Wings, Triage) live in the abilities engine.
+	farcall AbilityCompareMovePriority
+	ret
 
-	ld a, [wCurPlayerMove]
+GetMovePriority_e::
+; farcall-safe wrapper: move id in e, priority returned in e.
+	ld a, e
 	call GetMovePriority
-	ld b, a
-	push bc
-	ld a, [wCurEnemyMove]
-	call GetMovePriority
-	pop bc
-	cp b
+	ld e, a
 	ret
 
 GetMovePriority:

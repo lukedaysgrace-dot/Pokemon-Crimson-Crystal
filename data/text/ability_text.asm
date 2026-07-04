@@ -75,3 +75,15 @@ TormentedText:
 	text "<USER> is"
 	line "tormented!"
 	prompt
+
+DisguiseDecoyText::
+	text "Its disguise"
+	line "served it as"
+	cont "a decoy!"
+	prompt
+
+DisguiseBustedText::
+	text "<USER>'s"
+	line "disguise was"
+	cont "busted!"
+	prompt
