@@ -176,6 +176,13 @@ BannerHoldAndDismiss::
 	call DelayFrames
 	jp EndAbility
 
+ShowEnemyAbilityBannerBrief::
+; Like ShowAbilityBannerBrief, but presents the opponent's (defender's)
+; banner. Held briefly, then dismissed before any text/effect runs.
+	call BeginAbility
+	call ShowEnemyAbilityActivation
+	jr BannerHoldAndDismiss
+
 BeginAbility::
 	ld a, [wInAbility]
 	and a
@@ -330,11 +337,9 @@ NeutralizingGasAbility:
 	; fallthrough
 NotificationAbilities:
 	push hl
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	pop hl
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 TraceAbility:
 	call GetOpponentIgnorableAbility
@@ -349,6 +354,7 @@ TraceAbility:
 	pop af
 	push af
 	call ShowAbilityReplacement
+	call BannerHoldAndDismiss
 	; buffer the traced ability's name AFTER the banners - the banner
 	; GFX clobbers wStringBuffer1
 	pop af
@@ -357,7 +363,6 @@ TraceAbility:
 	farcall GetAbilityName
 	ld hl, TraceActivationText
 	call StdBattleTextbox
-	call EndAbility
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVarAddr
 	pop af
@@ -395,16 +400,14 @@ WeatherAbility:
 	ret z ; don't re-activate it
 	push hl
 	push bc
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	pop bc
 	ld a, b
 	ld [wBattleWeather], a
 	ld a, 5
 	ld [wWeatherCount], a
 	pop hl
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 IntimidateAbility:
 	; does not work against Inner Focus, Own Tempo, Oblivious, Scrappy
@@ -423,12 +426,12 @@ IntimidateAbility:
 	call BeginAbility
 	call ShowAbilityActivation
 	call ShowEnemyAbilityActivation
+	call BannerHoldAndDismiss
 	pop af
 	ld b, a
 	farcall GetAbilityName
 	ld hl, IntimidateResistedText
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 .intimidate_ok
 	call ShowAbilityBannerBrief
@@ -493,12 +496,10 @@ FriskAbility:
 	and a
 	ret z ; no item
 	ld [wNamedObjectIndexBuffer], a
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	call GetItemName
 	ld hl, FriskedItemText
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 ScreenCleanerAbility:
 	ld a, [wPlayerScreens]
@@ -508,8 +509,7 @@ ScreenCleanerAbility:
 	and a
 	ret z
 .screens_up
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ldh a, [hBattleTurn]
 	push af
 	call .do_it
@@ -517,7 +517,7 @@ ScreenCleanerAbility:
 	call .do_it
 	pop af
 	ldh [hBattleTurn], a
-	jp EndAbility
+	ret
 
 .do_it
 	ldh a, [hBattleTurn]
@@ -616,15 +616,13 @@ HealStatusAbility:
 	call GetBattleVar
 	and b
 	ret z ; not afflicted / wrong status
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
 	xor a
 	ld [hl], a
 	ld hl, BecameHealthyText
 	call StdBattleTextbox
-	call EndAbility
 	ldh a, [hBattleTurn]
 	and a
 	jp z, UpdateBattleMonInParty
@@ -635,28 +633,24 @@ OwnTempoAbility:
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
 	ret z ; not confused
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, ConfusedNoMoreText
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 ObliviousAbility:
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
 	bit SUBSTATUS_IN_LOVE, a
 	ret z ; not infatuated
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	res SUBSTATUS_IN_LOVE, [hl]
 	ld hl, NoLongerInfatuatedText
-	call StdBattleTextbox
-	jp EndAbility
+	jp StdBattleTextbox
 
 ; Status prevention: called from effect commands with hBattleTurn = attacker.
 ; Each returns carry if the DEFENDER's ability prevents the status
@@ -717,9 +711,7 @@ CheckStatusPrevention:
 	cp b
 	jr nz, .loop
 	; prevented: show the defender's banner
-	call BeginAbility
-	call ShowEnemyAbilityActivation
-	call EndAbility
+	call ShowEnemyAbilityBannerBrief
 	scf
 	ret
 .no_match
@@ -1830,9 +1822,7 @@ AbilityProtectsStatDrop::
 	and a ; nc
 	ret
 .protected
-	call BeginAbility
-	call ShowEnemyAbilityActivation
-	call EndAbility
+	call ShowEnemyAbilityBannerBrief
 	scf
 	ret
 
@@ -1842,9 +1832,7 @@ AbilityProtectsStatDrop::
 	ld a, [wDisguiseBusted]
 	bit 7, a
 	jr nz, .no
-	call BeginAbility
-	call ShowEnemyAbilityActivation
-	call EndAbility
+	call ShowEnemyAbilityBannerBrief
 	ld hl, wDisguiseBusted
 	set 7, [hl]
 	ld a, [wLoweredStat]
@@ -3015,14 +3003,12 @@ DisguisePresentation:
 	ld a, [hl]
 	or b
 	ld [hl], a ; mark this slot's disguise as busted
-	call BeginAbility
-	call ShowAbilityActivation
+	call ShowAbilityBannerBrief
 	ld hl, DisguiseDecoyText
 	call StdBattleTextbox
 	call LoadBrokenDisguisePic
 	ld hl, DisguiseBustedText
 	call StdBattleTextbox
-	call EndAbility
 	jp SwitchTurn
 
 GetDisguiseFlag:

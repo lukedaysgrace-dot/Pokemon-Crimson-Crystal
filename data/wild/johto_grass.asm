@@ -1228,8 +1228,8 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 2, PIKACHU
-	dbw 2, PIKACHU
+	dbw 2, DIGLETT
+	dbw 2, DIGLETT
 	dbw 3, PERRSERKER
 	dbw 3, MILOTIC
 	dbw 2, RATTATA

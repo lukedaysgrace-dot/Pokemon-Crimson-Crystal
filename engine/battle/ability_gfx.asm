@@ -622,6 +622,17 @@ DismissAbilityOverlays::
 	ldh [hBGMapMode], a
 	pop af
 	ldh [rSVBK], a
+	; Scene tiles + the backed-up attributes are restored above, but the
+	; per-cell backup can be STALE: if a move animation (e.g. Dig) or an
+	; HP-bar update rewrote a battler's rows while the banner was live, the
+	; captured palette was already wrong, so those cells stayed stuck on
+	; the banner's text palette (the "blue" corruption on the player's HP
+	; label and sprite). Authoritatively rebuild the battle BG attributes
+	; from the real per-region layout - exactly what the move-animation and
+	; switch-in code do. The scene tiles are already back, so this only
+	; corrects palettes: no garbage flash.
+	ld b, SCGB_BATTLE_COLORS
+	call GetSGBLayout
 	pop bc
 	pop de
 	pop hl
