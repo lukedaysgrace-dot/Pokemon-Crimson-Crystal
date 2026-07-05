@@ -87,8 +87,8 @@ ___move = ___move + 1
 	ld a, [wNamedObjectIndexBuffer] ;or any of its aliases...
 	call .set_bit
 	; only valid sometimes
-	___conversion_bitmap_check_values .set_bit, wCurPlayerMove, wCurEnemyMove, wDisabledMove, wEnemyDisabledMove, wUnusedPlayerLockedMove, \
-	                                            wLastPlayerMove, wLastEnemyMove, wLastPlayerCounterMove, wLastEnemyCounterMove, \
+	___conversion_bitmap_check_values .set_bit, wCurPlayerMove, wCurEnemyMove, wDisabledMove, wEnemyDisabledMove, wPlayerChoiceLockedMove, \
+	                                            wEnemyChoiceLockedMove, wLastPlayerMove, wLastEnemyMove, wLastPlayerCounterMove, wLastEnemyCounterMove, \
 	                                            wPlayerTrappingMove, wEnemyTrappingMove, wPlayerMoveStructAnimation, wEnemyMoveStructAnimation, \
 	                                            wPutativeTMHMMove
 	pop af

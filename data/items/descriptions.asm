@@ -136,32 +136,32 @@ ItemDescriptions:
 	dw PassDesc
 	dw QuestionMarkDesc
 	dw LoadedDiceDesc
-	dw QuestionMarkDesc
+	dw ChoiceBandDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw QuestionMarkDesc
-	dw QuestionMarkDesc
+	dw ChoiceSpecsDesc
+	dw ChoiceScarfDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw QuestionMarkDesc
+	dw EvioliteDesc
 	dw LeftoversDesc
-	dw QuestionMarkDesc
-	dw QuestionMarkDesc
-	dw QuestionMarkDesc
+	dw AssaultVestDesc
+	dw FocusSashDesc
+	dw ExpertBeltDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
-	dw QuestionMarkDesc
-	dw QuestionMarkDesc
-	dw QuestionMarkDesc
+	dw RockyHelmetDesc
+	dw LifeOrbDesc
+	dw WeakPolicyDesc
 	dw SacredAshDesc
 	dw HeavyBallDesc
 	dw FlowerMailDesc
 	dw LevelBallDesc
 	dw LureBallDesc
 	dw FastBallDesc
-	dw QuestionMarkDesc
+	dw AirBalloonDesc
 	dw LightBallDesc
 	dw FriendBallDesc
 	dw MoonBallDesc
@@ -170,12 +170,12 @@ ItemDescriptions:
 	dw GorgeousBoxDesc
 	dw SunStoneDesc
 	dw PolkadotBowDesc
-	dw QuestionMarkDesc
+	dw MuscleBandDesc
 	dw UpGradeDesc
 	dw BerryDesc
 	dw GoldBerryDesc
 	dw SquirtBottleDesc
-	dw QuestionMarkDesc
+	dw WiseGlassesDesc
 	dw ParkBallDesc
 	dw RainbowWingDesc
 	dw QuestionMarkDesc
@@ -766,6 +766,58 @@ LoadedDiceDesc:
 	db   "Multi-hit moves hit"
 	next "4-5 times. Triple"
 	next "Kick/Axel hit thrice.@"
+
+ChoiceBandDesc:
+	db   "Boosts ATTACK,"
+	next "locks move. (HOLD)@"
+
+ChoiceSpecsDesc:
+	db   "Boosts SPCL.ATK,"
+	next "locks move. (HOLD)@"
+
+ChoiceScarfDesc:
+	db   "Boosts SPEED,"
+	next "locks move. (HOLD)@"
+
+EvioliteDesc:
+	db   "Boosts DEFENSE of"
+	next "evolvers. (HOLD)@"
+
+AssaultVestDesc:
+	db   "Boosts SPCL.DEF,"
+	next "blocks status. (HOLD)@"
+
+FocusSashDesc:
+	db   "May endure from"
+	next "full HP. (HOLD)@"
+
+ExpertBeltDesc:
+	db   "Boosts super-"
+	next "effective hits. (HOLD)@"
+
+RockyHelmetDesc:
+	db   "Hurts foes on"
+	next "contact. (HOLD)@"
+
+LifeOrbDesc:
+	db   "Boosts attacks but"
+	next "costs HP. (HOLD)@"
+
+WeakPolicyDesc:
+	db   "Raises offenses if"
+	next "hit weakly. (HOLD)@"
+
+AirBalloonDesc:
+	db   "Grants ground"
+	next "immunity. (HOLD)@"
+
+MuscleBandDesc:
+	db   "Boosts physical"
+	next "moves. (HOLD)@"
+
+WiseGlassesDesc:
+	db   "Boosts special"
+	next "moves. (HOLD)@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

@@ -189,6 +189,131 @@ DoubleDamage_Core:
 .quit
 	ret
 
+HeldDefenseBoost_Core:
+; bc = defending stat. Returns boosted bc when applicable.
+	push hl
+	push de
+	push bc
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_ASSAULT_VEST
+	jr z, .assault_vest
+	cp HELD_EVIOLITE
+	jr z, .eviolite
+	pop bc
+	jr .done
+.assault_vest
+	call .CurrentMoveCategory
+	cp CATEGORIZE_SPECIAL
+	pop bc
+	jr nz, .done
+	call .BoostBCx1_5
+	jr .done
+.eviolite
+	call .OpponentCanEvolve
+	pop bc
+	jr nc, .done
+	call .BoostBCx1_5
+.done
+	pop de
+	pop hl
+	ret
+
+.CurrentMoveCategory
+	ld hl, wPlayerMoveStructCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_category
+	ld hl, wEnemyMoveStructCategory
+.got_category
+	ld a, [hl]
+	ret
+
+.OpponentCanEvolve
+	ld a, [wEnemyMonSpecies]
+	ldh [hTemp], a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_species
+	ld a, [wBattleMonSpecies]
+	ldh [hTemp], a
+.got_species
+	ldh a, [hTemp]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, EvosAttacksPointers
+	ld a, BANK(EvosAttacksPointers)
+	call LoadDoubleIndirectPointer
+	call GetFarByte
+	and a
+	ret z
+	scf
+	ret
+
+.BoostBCx1_5
+	ld h, b
+	ld l, c
+	ld d, b
+	ld e, c
+	srl d
+	rr e
+	add hl, de
+	jr nc, .store_boost
+	ld hl, $ffff
+.store_boost
+	ld b, h
+	ld c, l
+	ret
+
+EndureFocusSashInEffect_Core:
+; Carry if ApplyDamage should proceed to damage. b = survival message id.
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_ENDURE, a
+	jr z, .focus_sash
+	farcall BattleCommand_FalseSwipe
+	ld b, 0
+	jr nc, .go_damage
+	ld b, 1
+	jr .go_damage
+.focus_sash
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_FOCUS_SASH
+	jr nz, .not_sash
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
+.got_hp
+	ld a, [de]
+	cp [hl]
+	jr nz, .no_trigger
+	inc de
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .no_trigger
+	farcall BattleCommand_FalseSwipe
+	ld b, 0
+	jr nc, .go_damage
+	callfar ConsumeHeldItem
+	ld b, 3
+.go_damage
+	scf
+	ret
+.no_trigger
+	ld b, 0
+	scf
+	ret
+.not_sash
+	and a
+	ret
+
 BattleStartHail_Core:
 	ld a, [wBattleWeather]
 	cp WEATHER_HAIL

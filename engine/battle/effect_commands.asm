@@ -2238,16 +2238,8 @@ BattleCommand_ApplyDamage_:
 ; (contact abilities run from the kingsrock command instead - running
 ; them from inside ApplyDamage stalled the battle; see ABILITY_PORT_PLAN.md)
 
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVar
-	bit SUBSTATUS_ENDURE, a
-	jr z, .focus_band
-
-	call BattleCommand_FalseSwipe
-	ld b, 0
-	jr nc, .damage
-	ld b, 1
-	jr .damage
+	callfar EndureFocusSashInEffect_Core
+	jr c, .damage
 
 .focus_band
 	call GetOpponentItem
@@ -2285,6 +2277,8 @@ BattleCommand_ApplyDamage_:
 
 	dec a
 	jr nz, .focus_band_text
+
+.endure_text
 	ld hl, EnduredText
 	jp StdBattleTextbox
 
@@ -2775,6 +2769,9 @@ PlayerAttackDamage:
 
 .done
 	call ApplyWeatherDefenseBoost
+	push hl
+	callfar HeldDefenseBoost_Core
+	pop hl
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
@@ -3027,6 +3024,9 @@ EnemyAttackDamage:
 
 .done
 	call ApplyWeatherDefenseBoost
+	push hl
+	callfar HeldDefenseBoost_Core
+	pop hl
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]

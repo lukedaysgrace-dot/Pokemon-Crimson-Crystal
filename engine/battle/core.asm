@@ -3740,6 +3740,7 @@ NewEnemyMonStatus:
 	ld [wLastEnemyCounterMove], a
 	ld [wLastEnemyMove], a
 	ld [wEnemyGigaHammerLock], a
+	ld [wEnemyChoiceLockedMove], a
 	ld hl, wEnemySubStatus1
 rept 4
 	ld [hli], a
@@ -4188,6 +4189,7 @@ SendOutPlayerMon:
 	ld [wLastEnemyCounterMove], a
 	ld [wLastPlayerMove], a
 	ld [wPlayerGigaHammerLock], a
+	ld [wPlayerChoiceLockedMove], a
 	ld [wPlayerMustRechooseMove], a
 	ld [wSkipCheckTurnOnce], a
 	call CheckAmuletCoin
@@ -4259,6 +4261,7 @@ NewBattleMonStatus:
 	ld [wLastEnemyCounterMove], a
 	ld [wLastPlayerMove], a
 	ld [wPlayerGigaHammerLock], a
+	ld [wPlayerChoiceLockedMove], a
 	ld [wPlayerMustRechooseMove], a
 	ld [wSkipCheckTurnOnce], a
 	ld hl, wPlayerSubStatus1
@@ -5747,9 +5750,6 @@ MoveSelectionScreen:
 	dec a
 	cp c
 	jr z, .move_disabled
-	ld a, [wUnusedPlayerLockedMove]
-	and a
-	jr nz, .skip2
 	ld a, [wMenuCursorY]
 	ld hl, wBattleMonMoves
 	ld c, a
@@ -5757,6 +5757,10 @@ MoveSelectionScreen:
 	add hl, bc
 	ld a, [hl]
 	ld b, a
+	callfar CheckPlayerAssaultVestMove_Core
+	jr c, .assault_vest_blocked
+	callfar CheckPlayerChoiceLock_Core
+	jr c, .choice_locked
 	ld a, [wPlayerGigaHammerLock]
 	and a
 	jr z, .use_selected_move
@@ -5764,14 +5768,20 @@ MoveSelectionScreen:
 	jr z, .move_cant_be_used_twice
 .use_selected_move
 	ld a, b
-
-.skip2
 	ld [wCurPlayerMove], a
 	xor a
 	ret
 
 .move_cant_be_used_twice
 	ld hl, BattleText_MoveCantBeUsedTwice
+	jr .place_textbox_start_over
+
+.assault_vest_blocked
+	ld hl, BattleText_AssaultVestPreventsMove
+	jr .place_textbox_start_over
+
+.choice_locked
+	ld hl, BattleText_ChoiceItemLocksMove
 	jr .place_textbox_start_over
 
 .move_disabled
@@ -5788,6 +5798,8 @@ MoveSelectionScreen:
 
 .string_3e61c
 	db "@"
+
+
 
 .pressed_up
 	ld a, [wMenuCursorY]
@@ -6173,6 +6185,7 @@ ParseEnemyAction:
 	ld [wCurEnemyMove], a
 
 .skip_load
+	callfar HandleEnemyHeldMoveLocks_Core
 	call SetEnemyTurn
 	callfar UpdateMoveData
 	call CheckEnemyLockedIn
