@@ -1228,13 +1228,13 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 2, DIGLETT
-	dbw 2, DIGLETT
 	dbw 3, PERRSERKER
-	dbw 3, MILOTIC
-	dbw 2, RATTATA
-	dbw 3, HOPPIP
-	dbw 3, HOPPIP
+	dbw 3, PERRSERKER
+	dbw 3, PERRSERKER
+	dbw 3, PERRSERKER
+	dbw 3, PERRSERKER
+	dbw 3, PERRSERKER
+	dbw 3, PERRSERKER
 	; nite
 	dbw 2, URSARING
 	dbw 2, URSARINGBM

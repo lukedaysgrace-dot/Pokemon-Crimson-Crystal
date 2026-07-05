@@ -3,9 +3,15 @@ SECTION "Abilities", ROMX
 GetAbilityName::
 ; in: b = ability constant
 ; out: ability name copied to wStringBuffer1
+; wStringBuffer1 lives in banked WRAM ($D000+). Select its bank only for the
+; copy, then restore rSVBK so battle text (<USER>, etc.) still reads WRAM0.
 	push hl
 	push de
 	push bc
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
 	ld hl, AbilityNames
 	ld a, b
 	and a
@@ -25,6 +31,8 @@ GetAbilityName::
 	inc de
 	cp "@"
 	jr nz, .copy
+	pop af
+	ldh [rSVBK], a
 	pop bc
 	pop de
 	pop hl

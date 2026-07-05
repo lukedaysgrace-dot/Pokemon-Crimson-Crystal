@@ -23,6 +23,52 @@ BattleCommand_Transform::
 	call GetMoveIDFromIndex
 	call LoadAnim
 .mimic_substitute
+	call TransformMonData
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wBattleMonSpecies
+	jr z, .got_species
+	ld hl, wEnemyMonSpecies
+.got_species
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
+	call _CheckBattleScene
+	jr c, .mimic_anims
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerMinimized]
+	jr z, .got_byte
+	ld a, [wEnemyMinimized]
+.got_byte
+	and a
+	jr nz, .mimic_anims
+	call LoadMoveAnim
+	jr .after_anim
+
+.mimic_anims
+	call BattleCommand_MoveDelay
+	call BattleCommand_RaiseSubNoAnim
+.after_anim
+	xor a
+	ld [wNumHits], a
+	ld a, $2
+	ld [wKickCounter], a
+	pop af
+	jr z, .no_substitute
+	ld hl, SUBSTITUTE
+	call GetMoveIDFromIndex
+	call LoadAnim
+.no_substitute
+	ld a, [wTempByteValue]
+	and a
+	ret nz
+	ld hl, TransformedText
+	jp StdBattleTextbox
+
+TransformMonData::
+; Copy the target's moves, DVs, stats and stat stages onto the user.
+; Sets SUBSTATUS_TRANSFORMED. Used by the move and by Imposter.
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	set SUBSTATUS_TRANSFORMED, [hl]
@@ -101,9 +147,6 @@ BattleCommand_Transform::
 	dec b
 	jr nz, .pp_loop
 	pop hl
-	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
 	ld hl, wEnemyStats
 	ld de, wPlayerStats
 	ld bc, 2 * 5
@@ -111,36 +154,7 @@ BattleCommand_Transform::
 	ld hl, wEnemyStatLevels
 	ld de, wPlayerStatLevels
 	ld bc, 8
-	call BattleSideCopy
-	call _CheckBattleScene
-	jr c, .mimic_anims
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wPlayerMinimized]
-	jr z, .got_byte
-	ld a, [wEnemyMinimized]
-.got_byte
-	and a
-	jr nz, .mimic_anims
-	call LoadMoveAnim
-	jr .after_anim
-
-.mimic_anims
-	call BattleCommand_MoveDelay
-	call BattleCommand_RaiseSubNoAnim
-.after_anim
-	xor a
-	ld [wNumHits], a
-	ld a, $2
-	ld [wKickCounter], a
-	pop af
-	jr z, .no_substitute
-	ld hl, SUBSTITUTE
-	call GetMoveIDFromIndex
-	call LoadAnim
-.no_substitute
-	ld hl, TransformedText
-	jp StdBattleTextbox
+	jp BattleSideCopy
 
 BattleSideCopy:
 ; Copy bc bytes from hl to de if it's the player's turn.
