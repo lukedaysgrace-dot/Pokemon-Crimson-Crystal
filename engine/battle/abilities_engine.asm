@@ -407,7 +407,50 @@ WeatherAbility:
 	ld a, 5
 	ld [wWeatherCount], a
 	pop hl
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	; show the weather itself, right after the "it started" text
+	ld a, [wBattleWeather]
+	ld b, a
+	; fallthrough
+
+PlayWeatherAbilityAnim:
+; b = WEATHER_*. Play that weather's full-screen effect animation once.
+	ld a, b
+	cp WEATHER_RAIN
+	ld de, RAIN_DANCE
+	jr z, PlayWeatherAnimDE
+	cp WEATHER_SUN
+	ld de, SUNNY_DAY
+	jr z, PlayWeatherAnimDE
+	cp WEATHER_SANDSTORM
+	ld de, ANIM_IN_SANDSTORM
+	jr z, PlayWeatherAnimDE
+	ld de, ANIM_IN_HAIL ; WEATHER_HAIL
+	; fallthrough
+
+PlayWeatherAnimDE:
+; de = animation id. Play it full-screen.
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	xor a
+	ld [wNumHits], a
+	farcall PlayBattleAnim
+	ret
+
+PlayPerTurnWeatherAnim::
+; Called from HandleWeather each turn (via farcall). Rain and sun replay
+; their animation; sandstorm and hail already animate via their own
+; between-turn damage path, so they are skipped here.
+	ld a, [wBattleWeather]
+	cp WEATHER_RAIN
+	ld de, RAIN_DANCE
+	jr z, PlayWeatherAnimDE
+	cp WEATHER_SUN
+	ret nz
+	ld de, SUNNY_DAY
+	jr PlayWeatherAnimDE
 
 IntimidateAbility:
 	; does not work against Inner Focus, Own Tempo, Oblivious, Scrappy
@@ -721,6 +764,11 @@ CheckStatusPrevention:
 ; ==== End-of-turn abilities ==============================================
 
 RunEndTurnAbilitiesBoth::
+	; rain and sun replay their weather animation each turn (sandstorm and
+	; hail animate via their own between-turn damage path in HandleWeather).
+	; Hooked here - which core.asm already farcalls every turn - so the
+	; tight Battle Core bank gains no bytes.
+	call PlayPerTurnWeatherAnim
 	call SetPlayerTurn
 	call .run
 	call SetEnemyTurn
