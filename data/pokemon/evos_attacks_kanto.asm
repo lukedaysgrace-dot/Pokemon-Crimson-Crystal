@@ -923,7 +923,7 @@ VenomothEvosAttacks:
 DiglettEvosAttacks:
 	dbbw EVOLVE_LEVEL, 26, DUGTRIO
 	db 0 ; no more evolutions
-	dbw 1, SCRATCH
+	dbw 1, DIG
 	dbw 5, GROWL
 	dbw 9, MAGNITUDE
 	dbw 12, MUD_SLAP
