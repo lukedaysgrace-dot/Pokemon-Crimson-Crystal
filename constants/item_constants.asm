@@ -142,32 +142,32 @@
 	const PASS         ; 86
 	const ABILITY_CAP  ; 87
 	const LOADED_DICE  ; 88
-	const ITEM_89      ; 89
+	const CHOICE_BAND  ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c
-	const ITEM_8D      ; 8d
-	const ITEM_8E      ; 8e
+	const CHOICE_SPECS ; 8d
+	const CHOICE_SCARF ; 8e
 	const METAL_COAT   ; 8f
 	const DRAGON_FANG  ; 90
-	const ITEM_91      ; 91
+	const EVIOLITE     ; 91
 	const LEFTOVERS    ; 92
-	const ITEM_93      ; 93
-	const ITEM_94      ; 94
-	const ITEM_95      ; 95
+	const ASSAULT_VEST ; 93
+	const FOCUS_SASH   ; 94
+	const EXPERT_BELT  ; 95
 	const MYSTERYBERRY ; 96
 	const DRAGON_SCALE ; 97
 	const BERSERK_GENE ; 98
-	const ITEM_99      ; 99
-	const ITEM_9A      ; 9a
-	const ITEM_9B      ; 9b
+	const ROCKY_HELMET ; 99
+	const LIFE_ORB     ; 9a
+	const WEAK_POLICY  ; 9b
 	const SACRED_ASH   ; 9c
 	const HEAVY_BALL   ; 9d
 	const FLOWER_MAIL  ; 9e
 	const LEVEL_BALL   ; 9f
 	const LURE_BALL    ; a0
 	const FAST_BALL    ; a1
-	const ITEM_A2      ; a2
+	const AIR_BALLOON  ; a2
 	const LIGHT_BALL   ; a3
 	const FRIEND_BALL  ; a4
 	const MOON_BALL    ; a5
@@ -176,12 +176,12 @@
 	const GORGEOUS_BOX ; a8
 	const SUN_STONE    ; a9
 	const POLKADOT_BOW ; aa
-	const ITEM_AB      ; ab
+	const MUSCLE_BAND  ; ab
 	const UP_GRADE     ; ac
 	const BERRY        ; ad
 	const GOLD_BERRY   ; ae
 	const SQUIRTBOTTLE ; af
-	const ITEM_B0      ; b0
+	const WISE_GLASSES ; b0
 	const PARK_BALL    ; b1
 	const RAINBOW_WING ; b2
 	const ITEM_B3      ; b3

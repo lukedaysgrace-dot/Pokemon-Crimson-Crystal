@@ -983,6 +983,8 @@ RunNullificationAbilities::
 	; after damage calc and never reached its kingsrock command)
 	ld hl, wDisguiseBusted + 1
 	res 7, [hl]
+	call CheckAirBalloonImmunity
+	ret c
 	call .CheckNullification
 	ret c ; nullified
 	jp RunDamageModifiers
@@ -1095,6 +1097,185 @@ AbsorbRaiseStat:
 AbsorbNothing:
 	ret
 
+CheckPlayerAssaultVestMove_Core:
+; b = selected move. Carry if Assault Vest blocks it.
+	push bc
+	callfar GetUserItem
+	ld a, b
+	cp HELD_ASSAULT_VEST
+	jr nz, .ok
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	pop bc
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+	jr z, .blocked
+	and a
+	ret
+.ok
+	pop bc
+	and a
+	ret
+.blocked
+	scf
+	ret
+
+CheckPlayerChoiceLock_Core:
+; b = selected move. Carry if a Choice item locks another move.
+	push bc
+	callfar GetUserItem
+	ld a, b
+	sub HELD_CHOICE_BAND
+	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
+	jr nc, .not_choice
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	pop bc
+	ld a, [wPlayerChoiceLockedMove]
+	and a
+	jr z, .set_lock
+	cp b
+	jr nz, .blocked
+	and a
+	ret
+.set_lock
+	ld a, b
+	ld [wPlayerChoiceLockedMove], a
+	and a
+	ret
+.not_choice
+	pop bc
+	xor a
+	ld [wPlayerChoiceLockedMove], a
+	and a
+	ret
+.blocked
+	scf
+	ret
+
+
+HandleEnemyHeldMoveLocks_Core:
+	call SetEnemyTurn
+	callfar GetUserItem
+	ld a, b
+	cp HELD_ASSAULT_VEST
+	jr z, .assault_vest
+	sub HELD_CHOICE_BAND
+	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
+	jr nc, .not_choice
+	ld a, [wEnemyChoiceLockedMove]
+	and a
+	jr nz, .use_locked
+	ld a, [wCurEnemyMove]
+	and a
+	ret z
+	ld [wEnemyChoiceLockedMove], a
+	ret
+.use_locked
+	ld b, a
+	call FindEnemyMoveWithPP
+	ret c
+	jr ForceEnemyStruggle
+.not_choice
+	xor a
+	ld [wEnemyChoiceLockedMove], a
+	ret
+.assault_vest
+	xor a
+	ld [wEnemyChoiceLockedMove], a
+	ld a, [wCurEnemyMove]
+	call EnemyMoveIsStatus
+	ret nc
+	call FindFirstEnemyDamagingMove
+	ret c
+	; fallthrough
+ForceEnemyStruggle:
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	ld [wCurEnemyMove], a
+	ret
+
+FindEnemyMoveWithPP:
+; b = move id. Carry if the enemy can use it.
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonPP
+	ld c, 0
+.loop
+	ld a, [hli]
+	cp b
+	jr nz, .next
+	ld a, [wEnemyDisabledMove]
+	cp b
+	jr z, .no
+	ld a, [de]
+	and PP_MASK
+	jr z, .no
+	ld a, c
+	ld [wCurEnemyMoveNum], a
+	ld a, b
+	ld [wCurEnemyMove], a
+	scf
+	ret
+.next
+	inc de
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .loop
+.no
+	and a
+	ret
+
+FindFirstEnemyDamagingMove:
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonPP
+	ld c, 0
+.loop
+	ld a, [hli]
+	and a
+	jr z, .next
+	ld b, a
+	ld a, [wEnemyDisabledMove]
+	cp b
+	jr z, .next
+	ld a, [de]
+	and PP_MASK
+	jr z, .next
+	ld a, b
+	call EnemyMoveIsStatus
+	jr c, .next
+	ld a, c
+	ld [wCurEnemyMoveNum], a
+	ld a, b
+	ld [wCurEnemyMove], a
+	scf
+	ret
+.next
+	inc de
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .loop
+	and a
+	ret
+
+EnemyMoveIsStatus:
+; Carry if move a is status.
+	ld l, a
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+	jr z, .status
+	and a
+	ret
+.status
+	scf
+	ret
+
 RunDamageModifiers:
 ; Apply ability-based damage modifiers to wCurDamage.
 ; Attacker = current turn holder. Physical/special moves only.
@@ -1102,6 +1283,7 @@ RunDamageModifiers:
 	cp CATEGORIZE_STATUS
 	ret z
 	ld e, a ; e = category
+	call ApplyHeldItemDamageModifiers
 
 	; ---- attacker's ability ----
 	call GetTrueUserAbility
@@ -1300,6 +1482,57 @@ RunDamageModifiers:
 	call SupremeOverlordBoost
 	jp .defender
 
+ApplyHeldItemDamageModifiers:
+	callfar GetUserItem
+	ld a, b
+	cp HELD_CHOICE_BAND
+	jr z, .physical_50
+	cp HELD_CHOICE_SPECS
+	jr z, .special_50
+	cp HELD_EXPERT_BELT
+	jr z, .expert_belt
+	cp HELD_LIFE_ORB
+	jr z, .life_orb
+	cp HELD_MUSCLE_BAND
+	jr z, .physical_10
+	cp HELD_WISE_GLASSES
+	jr z, .special_10
+	ret
+.physical_50
+	ld a, e
+	and a
+	ret nz
+	ld a, 150
+	jp DamagePercent
+.special_50
+	ld a, e
+	cp CATEGORIZE_SPECIAL
+	ret nz
+	ld a, 150
+	jp DamagePercent
+.expert_belt
+	ld a, [wTypeModifier]
+	and $7f
+	cp EFFECTIVE + 1
+	ret c
+	ld a, 120
+	jp DamagePercent
+.life_orb
+	ld a, 130
+	jp DamagePercent
+.physical_10
+	ld a, e
+	and a
+	ret nz
+	ld a, 110
+	jp DamagePercent
+.special_10
+	ld a, e
+	cp CATEGORIZE_SPECIAL
+	ret nz
+	ld a, 110
+	jp DamagePercent
+
 GetMoveCategory::
 ; a = current move's damage category
 	push hl
@@ -1361,6 +1594,34 @@ CheckUserThirdHP:
 	ret
 
 ; ---- wCurDamage fraction helpers ----
+DamagePercent:
+; a = percent multiplier for wCurDamage. Preserves de.
+	push hl
+	push bc
+	push de
+	ldh [hMultiplier], a
+	xor a
+	ldh [hMultiplicand + 0], a
+	ld hl, wCurDamage
+	ld a, [hli]
+	ldh [hMultiplicand + 1], a
+	ld a, [hl]
+	ldh [hMultiplicand + 2], a
+	call Multiply
+	ld a, 100
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ld hl, wCurDamage
+	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
+	ld [hl], a
+	pop de
+	pop bc
+	pop hl
+	ret
+
 DoubleDamage:
 	push hl
 	ld hl, wCurDamage
@@ -1743,6 +2004,8 @@ CompareSpeedsWithAbilities::
 	ld b, a
 	ld hl, wBattleMonSpeed
 	call .GetEffectiveSpeed
+	ld a, [wBattleMonItem]
+	call .ChoiceScarfBoost
 	push hl
 	; enemy effective speed -> hl
 	ld a, [wEnemyAbility]
@@ -1751,6 +2014,8 @@ CompareSpeedsWithAbilities::
 	ld b, a
 	ld hl, wEnemyMonSpeed
 	call .GetEffectiveSpeed
+	ld a, [wEnemyMonItem]
+	call .ChoiceScarfBoost
 	ld d, h
 	ld e, l
 	pop hl
@@ -1799,6 +2064,18 @@ CompareSpeedsWithAbilities::
 	ld hl, $ffff
 	ret
 
+.ChoiceScarfBoost:
+	cp CHOICE_SCARF
+	ret nz
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+	add hl, de
+	ret nc
+	ld hl, $ffff
+	ret
+
 .quick_feet
 	; x1.5 while statused
 	ld a, b
@@ -1811,6 +2088,147 @@ CompareSpeedsWithAbilities::
 	add hl, de
 	ret nc
 	ld hl, $ffff
+	ret
+
+CheckAirBalloonImmunity:
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr z, .no
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp GROUND
+	jr nz, .no
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_AIR_BALLOON
+	jr nz, .no
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	xor a
+	ld [wTypeModifier], a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+	inc a
+	ld [wAttackMissed], a
+	ld hl, AirBalloonImmuneText
+	call StdBattleTextbox
+	scf
+	ret
+.no
+	and a
+	ret
+
+RunPostDamageHeldItems:
+	call LifeOrbRecoil
+	call AirBalloonPop
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret nz
+	call WeaknessPolicyBoost
+	jp RockyHelmetDamage
+
+LifeOrbRecoil:
+	callfar GetUserItem
+	ld a, b
+	cp HELD_LIFE_ORB
+	ret nz
+	call GetTrueUserAbility
+	cp MAGIC_GUARD
+	ret z
+	call UserHasFainted
+	ret z
+	ld d, 10
+	call GetUserMaxHPFraction
+	farcall SubtractHPFromUser
+	ld hl, LifeOrbRecoilText
+	jp StdBattleTextbox
+
+AirBalloonPop:
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_AIR_BALLOON
+	ret nz
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	callfar ConsumeHeldItem
+	ld hl, AirBalloonPoppedText
+	jp StdBattleTextbox
+
+WeaknessPolicyBoost:
+	ld a, [wTypeModifier]
+	and $7f
+	cp EFFECTIVE + 1
+	ret c
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_WEAKNESS_POLICY
+	ret nz
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	callfar ConsumeHeldItem
+	call SwitchTurn
+	ld hl, BattleText_UsersStringBuffer1Activated
+	call StdBattleTextbox
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	farcall BattleCommand_AttackUp2
+	farcall BattleCommand_StatUpMessage
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	farcall BattleCommand_SpecialAttackUp2
+	farcall BattleCommand_StatUpMessage
+	jp SwitchTurn
+
+RockyHelmetDamage:
+	call CheckContactMove
+	ret nc
+	call UserHasFainted
+	ret z
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_ROCKY_HELMET
+	ret nz
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	ld d, 6
+	call GetUserMaxHPFraction
+	farcall SubtractHPFromUser
+	ld hl, RockyHelmetText
+	jp StdBattleTextbox
+
+GetUserMaxHPFraction:
+; d = divisor. Returns bc = max(1, max HP / d).
+	ld hl, wBattleMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld hl, wEnemyMonMaxHP
+.got_hp
+	xor a
+	ldh [hDividend + 0], a
+	ldh [hDividend + 1], a
+	ld a, [hli]
+	ldh [hDividend + 2], a
+	ld a, [hl]
+	ldh [hDividend + 3], a
+	ld a, d
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
+	ld c, a
+	or b
+	ret nz
+	inc c
 	ret
 
 RunContactAbilitiesHook::
@@ -1831,6 +2249,7 @@ RunContactAbilitiesHook::
 	ld a, [wCurDamage + 1]
 	or b
 	ret z
+	call RunPostDamageHeldItems
 	; no procs through a Substitute
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar

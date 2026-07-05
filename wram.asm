@@ -591,8 +591,8 @@ wPlayerTurnsTaken:: db ; c6dd
 wPlayerSubstituteHP:: db ; c6df
 wEnemySubstituteHP:: db ; c6e0
 
-wUnusedPlayerLockedMove:: db ; c6e1
-	ds 1
+wPlayerChoiceLockedMove:: db ; c6e1
+wEnemyChoiceLockedMove:: db
 
 wCurPlayerMove:: db ; c6e3
 wCurEnemyMove:: db ; c6e4

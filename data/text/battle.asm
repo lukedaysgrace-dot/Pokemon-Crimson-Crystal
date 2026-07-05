@@ -437,6 +437,45 @@ BattleText_ItemHealedConfusion:
 	cont "of its confusion."
 	prompt
 
+BattleText_AssaultVestPreventsMove:
+	text "The @"
+	text_ram wStringBuffer1
+	text " prevents"
+	line "status moves!"
+	prompt
+
+BattleText_ChoiceItemLocksMove:
+	text "The @"
+	text_ram wStringBuffer1
+	text " only"
+	line "allows one move!"
+	prompt
+
+AirBalloonImmuneText:
+	text "<TARGET> floats with"
+	line "its @"
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
+AirBalloonPoppedText:
+	text "The @"
+	text_ram wStringBuffer1
+	text " popped!"
+	prompt
+
+LifeOrbRecoilText:
+	text "The LIFE ORB hurt"
+	line "<USER>!"
+	prompt
+
+RockyHelmetText:
+	text "The @"
+	text_ram wStringBuffer1
+	text " hurt"
+	line "<USER>!"
+	prompt
+
 AlreadyConfusedText:
 	text "<TARGET>'s"
 	line "already confused!"
