@@ -355,12 +355,9 @@ TraceAbility:
 	push af
 	call ShowAbilityReplacement
 	call BannerHoldAndDismiss
-	; buffer the traced ability's name AFTER the banners - the banner
-	; GFX clobbers wStringBuffer1
+	; announce the traced ability AFTER the banners
 	pop af
 	push af
-	ld b, a
-	farcall GetAbilityName
 	ld hl, TraceActivationText
 	call StdBattleTextbox
 	ld a, BATTLE_VARS_ABILITY
@@ -370,11 +367,26 @@ TraceAbility:
 	jp RunEntryAbilities
 
 ImposterAbility:
-; banner briefly, then transform (Transform redraws the scene and would
-; corrupt a live player-side banner)
+; banner briefly, then transform into the foe (moves + backpic).
+; wTempBattleMonSpecies keeps the user's original species so
+; FinishBattleAnim restores their palette after the animation.
 	call ShowAbilityBannerBrief
+	ld a, 1
+	ld [wTempByteValue], a ; skip TransformedText in BattleCommand_Transform
+	ld a, TRANSFORM
+	ld [wPlayerMoveStruct + MOVE_ANIM], a
 	farcall BattleCommand_Transform
+	xor a
+	ld [wTempByteValue], a
+	farcall GetBattleMonBackpic
+	call ImposterRestoreBattlePalette
 	jp EndAbility
+
+ImposterRestoreBattlePalette:
+; Reload battle colors so the player's OB palette comes from
+; wTempBattleMonSpecies (their real species), not the transformed one.
+	farcall FinishBattleAnim
+	ret
 
 ; Lasts 5 turns, consistent with Generation VI.
 DrizzleAbility:
@@ -753,8 +765,14 @@ CheckStatusPrevention:
 	jr z, .no_match
 	cp b
 	jr nz, .loop
-	; prevented: show the defender's banner
+	; prevented. Thermal Exchange's Fire hit already shows its own Atk-up
+	; banner via the on-hit path, so suppress this (redundant) second
+	; banner for it - the burn is still blocked, just silently.
+	cp THERMAL_EXCHANGE
+	jr z, .prevented_no_banner
+	; show the defender's banner
 	call ShowEnemyAbilityBannerBrief
+.prevented_no_banner
 	scf
 	ret
 .no_match

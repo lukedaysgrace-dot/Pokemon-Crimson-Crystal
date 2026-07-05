@@ -1,0 +1,174 @@
+==============================================================
+ POKEMON SUPREME SILVER - ABILITY TESTING CHECKLIST
+==============================================================
+ P = test on YOUR mon    E = test on the ENEMY mon
+ Mark [x] when it passes. [~] = pre-checked (already trust it)
+ Tip: the old banner bug was player-side only, so test BOTH.
+==============================================================
+
+
+--------------------------------------------------------------
+ ALREADY WORKING (pre-checked)
+--------------------------------------------------------------
+[~] Intimidate        Foe's Attack falls at switch-in (confirmed by you)
+[~] Stamina           Def +1 each time it's hit (confirmed by you)
+[~] Flame Body        ~30% burn on contact (confirmed by you)
+[~] Static            ~30% paralysis on contact (confirmed by you)
+[~] Drizzle           Rain starts + anim (confirmed by you)
+[~] Drought           Sun starts + anim (confirmed by you)
+[~] Sand Stream       Sandstorm starts + anim (confirmed by you)
+[~] Snow Warning      Hail starts + anim (confirmed by you)
+[~] Poison Point      ~30% poison on contact
+                      (same machinery as Static/Flame Body)
+[~] Thermal Exchange  Atk+1 when hit by Fire; can't be burned
+                      (stat-up = Stamina path; burn = Water Veil path)
+
+
+--------------------------------------------------------------
+ HIGH PRIORITY  (most likely to break - test hard)
+--------------------------------------------------------------
+[ ]P [ ]E  Trace
+           Copies foe's ability (2nd banner). Copying an entry
+           ability (Intimidate) should ALSO trigger it. A short
+           name over a long one = no leftover letters on banner.
+
+[ ]P [ ]E  Imposter
+           Ditto transforms + banner; no screen corruption after.
+
+[ ]P [ ]E  Disguise (Mimikyu)
+           1st damaging hit = 0 dmg + front AND back sprite change
+           + text; later hits normal; switch out/in keeps the
+           broken sprite. Weak spots: Substitute, confusion
+           self-hit, Struggle.
+
+[ ]P [ ]E  Neutralizing Gas
+           While it's out, all OTHER abilities go dormant; confirm
+           they come back when it leaves. Can break many at once.
+
+[ ]P [ ]E  Effect Spore
+           3 random outcomes (sleep/poison/paralysis) - grind hits
+           until you've seen all three, each with anim + text.
+
+[ ]P [ ]E  Poison Touch      Your contact move poisons target ~30%
+[ ]P [ ]E  Tangling Hair     Attacker's Speed falls on contact
+
+[ ]P [ ]E  Volt Absorb       Electric = 0 dmg + HOLDER heals + text
+[ ]P [ ]E  Water Absorb      Water = 0 dmg + holder heals
+[ ]P [ ]E  Storm Drain       Water = 0 dmg + SpA +1
+[ ]P [ ]E  Lightning Rod     Electric = 0 dmg + SpA +1
+[ ]P [ ]E  Motor Drive       Electric = 0 dmg + Spe +1
+[ ]P [ ]E  Sap Sipper        Grass = 0 dmg + Atk +1
+[ ]P [ ]E  Flash Fire        Fire = 0 dmg  (NOTE: power boost NOT
+                             implemented yet - immunity only)
+[ ]P [ ]E  Levitate          Ground move = 0 dmg + doesn't affect
+[ ]P [ ]E  Dry Skin          Water heals; Fire +25% taken; heals in
+                             rain; loses HP in sun
+
+[ ]P [ ]E  Mirror Armor
+           Bounces stat drops back (incl. Intimidate). Vs another
+           Mirror Armor it must NOT ping-pong forever.
+
+
+--------------------------------------------------------------
+ MEDIUM PRIORITY  (logic / timing)
+--------------------------------------------------------------
+[ ]P [ ]E  Download        Atk vs SpA from foe's weaker defense -
+                           test vs a physical wall AND special wall
+[ ]P [ ]E  Moxie           Atk +1 on KO (may also proc on a
+                           weather/poison KO - minor)
+[ ]P [ ]E  Supreme Overlord  Damage grows per fainted ally
+[ ]P [ ]E  Speed Boost     Speed rises each turn
+[ ]P [ ]E  Shed Skin       ~30%/turn cure own status
+[ ]P [ ]E  Hydration       Cures status each turn in rain
+[ ]P [ ]E  Rain Dish       HOLDER heals 1/16 in rain (check it's
+                           the holder, not the foe)
+[ ]P [ ]E  Ice Body        Holder heals 1/16 in hail; hail-immune
+[ ]P [ ]E  Solar Power     x1.5 SpA in sun but loses HP each turn
+[ ]P [ ]E  Bad Dreams      Sleeping foe loses HP; text names the
+                           VICTIM (was a fixed bug)
+[ ]P [ ]E  Refrigerate     Normal moves become Ice (verified Amaura)
+[ ]P [ ]E  Galvanize       Normal->Electric (only if you assign it)
+[ ]P [ ]E  Pixilate        Normal->Fairy (Sylveon hidden; needs
+                           Ability Cap item)
+[ ]P [ ]E  Aerilate        Normal->Flying (only if you assign it)
+[ ]P [ ]E  Swift Swim      Moves first in rain (turn order only)
+[ ]P [ ]E  Chlorophyll     Moves first in sun
+[ ]P [ ]E  Sand Rush       Moves first in sandstorm; sand-immune
+[ ]P [ ]E  Slush Rush      Moves first in hail; hail-immune
+[ ]P [ ]E  Quick Feet      Faster when statused
+[ ]P [ ]E  Limber          Can't be paralyzed (verified before)
+[ ]P [ ]E  Immunity        Can't be poisoned
+[ ]P [ ]E  Pastel Veil     Can't be poisoned
+[ ]P [ ]E  Water Veil      Can't be burned
+[ ]P [ ]E  Magma Armor     Can't be frozen
+[ ]P [ ]E  Insomnia        Can't fall asleep
+[ ]P [ ]E  Vital Spirit    Can't fall asleep
+[ ]P [ ]E  Own Tempo       Can't be confused (incl. Swagger/Snore)
+[ ]P [ ]E  Oblivious       Can't be infatuated
+[ ]P [ ]E  Clear Body      All stat drops fail + banner (incl.
+                           enemy Intimidate)
+[ ]P [ ]E  White Smoke     Same as Clear Body
+[ ]P [ ]E  Hyper Cutter    Attack can't be lowered
+[ ]P [ ]E  Keen Eye        Accuracy can't be lowered
+[ ]P [ ]E  Big Pecks       Defense can't be lowered
+[ ]P [ ]E  Cloud Nine      Weather effects ignored while out
+[ ]P [ ]E  Pressure        Banner + text at switch-in
+[ ]P [ ]E  Mold Breaker    Banner; your moves ignore foe's ability
+                           (e.g. can hit a Levitate mon)
+[ ]P [ ]E  Unnerve         Banner + text
+[ ]P [ ]E  Frisk           Names the foe's held item
+[ ]P [ ]E  Screen Cleaner  Clears Reflect/Light Screen both sides
+[ ]P [ ]E  Merciless       Always crits a poisoned target; also
+                           adds Battle/Shell Armor crit-block
+[ ]P [ ]E  Gale Wings      Flying moves get +1 priority (always)
+[ ]P [ ]E  Triage          Healing moves +3 priority (needs a user)
+[ ]P [ ]E  Natural Cure    Status cured when it switches out
+[ ]P [ ]E  Pickup          ~10% item after battle (silent)
+[ ]P [ ]E  Honey Gather    Level-scaled item after battle (silent)
+
+
+--------------------------------------------------------------
+ LOW PRIORITY  (approximations - quick glance is enough)
+--------------------------------------------------------------
+[ ]  Huge Power       ~x2 physical damage
+[ ]  Guts             x1.5 physical when statused; burn cut cancelled
+[ ]  Technician       x1.5 for weak moves (<=60 BP)
+[ ]  Tinted Lens      x2 not-very-effective hits
+[ ]  Overgrow         x1.5 Grass under 1/3 HP
+[ ]  Blaze            x1.5 Fire under 1/3 HP
+[ ]  Torrent          x1.5 Water under 1/3 HP
+[ ]  Swarm            x1.5 Bug under 1/3 HP
+[ ]  Strong Jaw       x1.5 bite moves (Bite/Crunch/Fang)
+[ ]  Hustle           x1.5 physical but lower accuracy
+[ ]  Thick Fat        x0.5 from Fire/Ice
+[ ]  Multiscale       x0.5 when at full HP
+[ ]  Fur Coat         x0.5 physical
+[ ]  Marvel Scale     ~x2/3 physical when statused
+[ ]  Filter           x0.75 super-effective
+[ ]  Solid Rock       x0.75 super-effective
+[ ]  No Guard         both sides always hit (easy to see)
+[ ]  Compound Eyes    shaky moves land more (easy to see)
+[ ]  Sand Veil        harder to hit in sandstorm; sand-immune
+[ ]  Snow Cloak       harder to hit in hail; hail-immune
+[ ]  Tangled Feet     harder to hit while confused
+[ ]  Wonder Skin      status moves capped ~50% accuracy
+[ ]  Sand Force       immune to sandstorm chip
+[ ]  Overcoat         immune to sandstorm & hail chip
+[ ]  Magic Guard      no sandstorm/hail chip damage
+[ ]  Battle Armor     can't be crit
+[ ]  Shell Armor      can't be crit
+
+
+--------------------------------------------------------------
+ NOT IMPLEMENTED  (do nothing - don't chase these)
+--------------------------------------------------------------
+ Synchronize, Magic Bounce, Prankster, Serene Grace, Sheer Force,
+ Skill Link, Regenerator, Shadow Tag / Arena Trap / Magnet Pull,
+ Anticipation / Forewarn, Moody, Harvest, Gluttony / Unburden,
+ Analytic / Infiltrator, Leaf Guard / Shield Dust, Berserk /
+ Weak Armor / Justified (Rattled works via Intimidate only),
+ Cursed Body / Aftermath / Cute Charm, Run Away / Early Bird /
+ Quick Draw / Cud Chew, Stench / Suction Cups / Sticky Hold /
+ Liquid Ooze, Illuminate / Gorilla Tactics / Armor Tail / Corrosion.
+
+==============================================================

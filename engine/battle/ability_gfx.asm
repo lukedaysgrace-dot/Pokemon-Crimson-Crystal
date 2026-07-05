@@ -572,8 +572,6 @@ DismissAbilityOverlays::
 	ldh [hBattleTurn], a
 	pop af
 	ldh [hBGMapMode], a
-	pop af
-	ldh [rSVBK], a
 	; Scene tiles + the backed-up attributes are restored above, but the
 	; per-cell backup can be STALE: if a move animation (e.g. Dig) or an
 	; HP-bar update rewrote a battler's rows while the banner was live, the
@@ -585,6 +583,11 @@ DismissAbilityOverlays::
 	; corrects palettes: no garbage flash.
 	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
+	; Restore rSVBK AFTER GetSGBLayout - it leaves a different WRAM bank
+	; selected, which corrupted later reads of wStringBuffer1 (the traced
+	; ability name printed as garbage).
+	pop af
+	ldh [rSVBK], a
 	pop bc
 	pop de
 	pop hl

@@ -4900,7 +4900,7 @@ MarowakAlolanEvosAttacks:
 MeowthGalarianEvosAttacks:
 	dbbw EVOLVE_LEVEL, 28, PERRSERKER
 	db 0 ; no more evolutions
-	dbw 1, LICK
+	dbw 1, EMBER
 	dbw 1, GROWL
 	dbw 4, SWORDS_DANCE
 	dbw 8, SCRATCH
@@ -4917,13 +4917,7 @@ MeowthGalarianEvosAttacks:
 
 PerrserkerEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, IRON_TAIL
-	dbw 1, COUNTER
-	dbw 1, PLAY_ROUGH
-	dbw 1, LICK
-	dbw 1, GROWL
-	dbw 1, SWORDS_DANCE
-	dbw 1, SCRATCH
+	dbw 1, EMBER
 	dbw 12, PAY_DAY
 	dbw 16, METAL_CLAW
 	dbw 20, PURSUIT
