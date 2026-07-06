@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/spinarak/front.dimensions"
-	abilities_for SPINARAK, SWARM, INSOMNIA, SNIPER
+	abilities_for SPINARAK, INSOMNIA, SNIPER, MERCILESS
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

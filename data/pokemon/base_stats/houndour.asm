@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/houndour/front.dimensions"
-	abilities_for HOUNDOUR, FLASH_FIRE, NO_ABILITY, UNNERVE
+	abilities_for HOUNDOUR, INTIMIDATE, FLASH_FIRE, UNNERVE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

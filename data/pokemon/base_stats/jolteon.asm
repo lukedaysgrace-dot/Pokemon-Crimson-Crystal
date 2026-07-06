@@ -12,7 +12,7 @@
 	db 35 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/jolteon/front.dimensions"
-	abilities_for JOLTEON, VOLT_ABSORB, VOLT_ABSORB, QUICK_FEET
+	abilities_for JOLTEON, VOLT_ABSORB, VOLT_ABSORB, COMPETITIVE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

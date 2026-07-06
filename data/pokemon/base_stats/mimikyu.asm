@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mimikyu/front.dimensions"
-	abilities_for MIMIKYU, DISGUISE, NO_ABILITY, NO_ABILITY
+	abilities_for MIMIKYU, DISGUISE, DISGUISE, DISGUISE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

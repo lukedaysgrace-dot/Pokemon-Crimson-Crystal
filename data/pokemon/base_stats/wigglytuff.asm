@@ -12,7 +12,7 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/wigglytuff/front.dimensions"
-	abilities_for WIGGLYTUFF, CUTE_CHARM, COMPETITIVE, FRISK
+	abilities_for WIGGLYTUFF, MAGIC_GUARD, COMPETITIVE, FRISK
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups

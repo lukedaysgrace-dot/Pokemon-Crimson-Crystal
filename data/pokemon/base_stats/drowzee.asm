@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/drowzee/front.dimensions"
-	abilities_for DROWZEE, INSOMNIA, NO_ABILITY, INNER_FOCUS
+	abilities_for DROWZEE, INSOMNIA, NO_GUARD, INNER_FOCUS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

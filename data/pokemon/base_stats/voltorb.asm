@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/voltorb/front.dimensions"
-	abilities_for VOLTORB, SOUNDPROOF, STATIC, AFTERMATH
+	abilities_for VOLTORB, SOUNDPROOF, AFTERMATH, AFTERMATH
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
