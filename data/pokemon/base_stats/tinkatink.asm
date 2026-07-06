@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tinkatink/front.dimensions"
-	abilities_for TINKATINK, MOLD_BREAKER, OWN_TEMPO, PICKPOCKET
+	abilities_for TINKATINK, MOLD_BREAKER, OWN_TEMPO, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups

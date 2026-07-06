@@ -84,7 +84,6 @@
 	const MOLD_BREAKER
 	const SUPER_LUCK
 	const AFTERMATH
-	const UNAWARE
 	const TINTED_LENS
 	const FILTER
 	const SCRAPPY
@@ -95,14 +94,12 @@
 	const FRISK
 	const RECKLESS
 	const BAD_DREAMS
-	const PICKPOCKET
 	const SHEER_FORCE
 	const CONTRARY
 	const UNNERVE
 	const DEFIANT
 	const CURSED_BODY
 	const WEAK_ARMOR
-	const LIGHT_METAL
 	const MULTISCALE
 	const OVERCOAT
 	const POISON_TOUCH

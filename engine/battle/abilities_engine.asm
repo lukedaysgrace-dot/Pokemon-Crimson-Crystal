@@ -2174,6 +2174,8 @@ AbilityProtectsStatDrop::
 	jr z, .mirror_armor
 	cp MAGIC_BOUNCE
 	jr z, .magic_bounce_drop
+	cp CONTRARY
+	jr z, .contrary
 	cp CLEAR_BODY
 	jr z, .protected
 	cp WHITE_SMOKE
@@ -2210,6 +2212,26 @@ AbilityProtectsStatDrop::
 .protected
 	call ShowEnemyAbilityBannerBrief
 	scf
+	ret
+
+.contrary
+	; Contrary: drops on the holder become raises (any source, incl.
+	; Intimidate). The bit-7 marker stops ContraryCheckRaise from
+	; re-inverting the synthetic raise.
+	call ShowEnemyAbilityBannerBrief
+	ld a, [wLoweredStat]
+	and $1f
+	ld b, a
+	ld a, [wLoweredStat]
+	or $80
+	ld [wLoweredStat], a
+	call SwitchTurn
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	call AbilityRaiseStat
+	call SwitchTurn
+	scf ; the original drop "fails"
 	ret
 
 .magic_bounce_drop
@@ -2666,6 +2688,12 @@ RunContactAbilitiesHook::
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	; if the defender just fainted, only its Aftermath can proc
+	call OppHasFainted
+	jp z, .aftermath
+	; Parental Bond: a second hit at 25% power
+	call GetTrueUserAbility
+	cp PARENTAL_BOND
+	call z, ParentalBondSecondHit
 	call OppHasFainted
 	jp z, .aftermath
 	; defender on-hit abilities (any damaging move, contact or not)
@@ -4253,6 +4281,101 @@ DoRegenerator:
 	ret
 
 ; ==== Session 7 additions ================================================
+
+ContraryCheckRaise::
+; Hooked at the top of RaiseStat. b = stat id (with $10 sharp bit).
+; Carry if Contrary converted the turn holder's raise into a drop
+; (fully resolved, "fell" message printed; wLoweredStat bit 7 tells the
+; pending statupmessage to stay quiet).
+	ld a, [wLoweredStat]
+	add a ; bit 7 -> carry
+	jr c, .no ; this raise IS a Contrary inversion - don't recurse
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .no
+	ld a, [wEffectFailed]
+	and a
+	jr nz, .no
+	call GetTrueUserAbility
+	cp CONTRARY
+	jr z, .invert
+.no
+	and a
+	ret
+.invert
+	call SwitchTurn
+	; from here the holder is the "opponent"; drop its stat via the
+	; StatDown core, skipping Mist/protection (self-inflicted, canon)
+	ld hl, wDisguiseBusted
+	set 6, [hl] ; skip the AI 25% miss roll
+	ld a, b
+	and $1f
+	ld [wLoweredStat], a
+	farcall StatDownSkipProtect
+	farcall BattleCommand_StatDownMessage
+	call SwitchTurn
+	; mark the pending statupmessage as handled; report success
+	ld a, [wLoweredStat]
+	or $80
+	ld [wLoweredStat], a
+	xor a
+	ld [wFailedMessage], a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	scf
+	ret
+
+AbilityPiercesGhosts::
+; Carry if the user's ability lets Normal/Fighting hit Ghosts
+; (Scrappy, Mind's Eye) - hooked at the type chart's Foresight marker.
+	call GetTrueUserAbility
+	cp SCRAPPY
+	jr z, .yes
+	cp MINDS_EYE
+	jr z, .yes
+	and a
+	ret
+.yes
+	scf
+	ret
+
+ParentalBondSecondHit:
+; Turn = attacker; the defender is alive and not behind a Substitute.
+; Deals a second hit at 25% of the damage just dealt. Multi-hit-style
+; moves are exempt.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_MULTI_HIT
+	ret z
+	cp EFFECT_DOUBLE_HIT
+	ret z
+	cp EFFECT_TRIPLE_KICK
+	ret z
+	cp EFFECT_BEAT_UP
+	ret z
+	cp EFFECT_SELFDESTRUCT
+	ret z
+	; bc = damage / 4, min 1
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	ld c, a
+	srl b
+	rr c
+	srl b
+	rr c
+	ld a, b
+	or c
+	jr nz, .got_damage
+	inc c
+.got_damage
+	; hit the defender
+	call SwitchTurn
+	farcall SubtractHPFromUser
+	call SwitchTurn
+	call UpdateBattleHuds
+	ld hl, Hit2TimesText
+	jp StdBattleTextbox
 
 CurrentMoveInList:
 ; hl = -1-terminated dw move-index list. Carry if the current move is in

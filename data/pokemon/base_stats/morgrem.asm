@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/morgrem/front.dimensions"
-	abilities_for MORGREM, PRANKSTER, FRISK, PICKPOCKET
+	abilities_for MORGREM, PRANKSTER, FRISK, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_FAIRY ; egg groups

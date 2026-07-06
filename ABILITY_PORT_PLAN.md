@@ -3,6 +3,31 @@
 Status doc, updated 2026-07-05 (sessions 6-7). Phases 1-2 complete,
 Phase 3-4 substantially complete, Phase 5 not started.
 
+## Session 7b (2026-07-05): Contrary/Parental Bond/Scrappy + 3 deletions
+- DELETED: UNAWARE, PICKPOCKET, LIGHT_METAL (no engine code existed).
+  Tables rebuilt in sync (148 entries each, verified). 15 base_stats
+  hidden slots -> NO_ABILITY; duraludon slot 1 -> STURDY.
+- CONTRARY: received drops become raises via AbilityProtectsStatDrop
+  (.contrary -> AbilityRaiseStat, incl. Intimidate); own raises become
+  drops via a ContraryCheckRaise hook at the top of RaiseStat, which
+  runs the drop through the new StatDownSkipProtect entry (skips
+  Mist/protections; the top-of-StatDown local refs are now qualified
+  as StatDownSkipProtect.Mist/.Failed because the new global label
+  splits the local scope). wLoweredStat bit 7 = anti-recursion marker +
+  statupmessage suppression (consumed in BattleCommand_StatUpMessage).
+- PARENTAL_BOND: second hit at 25% of dealt damage from the checkfaint
+  hook ("Hit 2 times!"); multi-hit/beat-up/triple-kick/selfdestruct
+  exempt; second hit can KO (Aftermath still honored). Secondary
+  effects don't double-proc (limitation).
+- SCRAPPY + MIND'S EYE now pierce Ghost immunity: one hook at the type
+  chart's Foresight (-2) marker in BattleCommand_Stab (hl pushed around
+  the farcall - the macro clobbers the table pointer).
+- Mini-audit fixes: the Scrappy hook's hl clobber and the StatDown
+  scope split (both would have broken the build/battles); verified
+  RefreshBattleHuds/UpdateBattleHuds/BattlePartyAttr/IsInHalfwordArray
+  are ROM0, table parity 148/148/148/148 + 297 description symbols,
+  no dangling references to the 3 deleted abilities.
+
 ## Session 7 (2026-07-05): the remaining blank abilities (NOT built/tested)
 Implemented: Mega Sol (custom: the user's moves act as if Sunny Day were
 up - Fire x1.5/Water x0.5 with rain compensation in RunDamageModifiers,

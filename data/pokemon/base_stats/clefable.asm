@@ -12,7 +12,7 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/clefable/front.dimensions"
-	abilities_for CLEFABLE, CUTE_CHARM, MAGIC_GUARD, UNAWARE
+	abilities_for CLEFABLE, CUTE_CHARM, MAGIC_GUARD, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups

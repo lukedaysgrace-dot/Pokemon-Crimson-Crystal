@@ -80,7 +80,6 @@ AbilityDescriptions::
 	dw MoldBreakerDescription
 	dw SuperLuckDescription
 	dw AftermathDescription
-	dw UnawareDescription
 	dw TintedLensDescription
 	dw FilterDescription
 	dw ScrappyDescription
@@ -91,14 +90,12 @@ AbilityDescriptions::
 	dw FriskDescription
 	dw RecklessDescription
 	dw BadDreamsDescription
-	dw PickpocketDescription
 	dw SheerForceDescription
 	dw ContraryDescription
 	dw UnnerveDescription
 	dw DefiantDescription
 	dw CursedBodyDescription
 	dw WeakArmorDescription
-	dw LightMetalDescription
 	dw MultiscaleDescription
 	dw OvercoatDescription
 	dw PoisonTouchDescription
@@ -545,11 +542,6 @@ AftermathDescription:
 	next "fainting."
 	done
 
-UnawareDescription:
-	text "Ignores the foe's"
-	next "stat changes."
-	done
-
 TintedLensDescription:
 	text "Powers up not very"
 	next "effective moves."
@@ -600,11 +592,6 @@ BadDreamsDescription:
 	next "foe's HP."
 	done
 
-PickpocketDescription:
-	text "Steals foe's item"
-	next "when contacted."
-	done
-
 SheerForceDescription:
 	text "Removes effects to"
 	next "increase damage."
@@ -633,11 +620,6 @@ CursedBodyDescription:
 WeakArmorDescription:
 	text "Physical attacks"
 	next "trade Def for Spe."
-	done
-
-LightMetalDescription:
-	text "Halves the Poké-"
-	next "mon's weight."
 	done
 
 MultiscaleDescription:
