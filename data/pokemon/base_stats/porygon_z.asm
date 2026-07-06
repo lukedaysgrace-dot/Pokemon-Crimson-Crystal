@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/porygon_z/front.dimensions"
-	abilities_for PORYGON_Z, ADAPTABILITY, DOWNLOAD, ANALYTIC
+	abilities_for PORYGON_Z, ADAPTABILITY, NO_ABILITY, ANALYTIC
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

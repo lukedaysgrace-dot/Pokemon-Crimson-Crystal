@@ -4,7 +4,6 @@
 ; - AbilityDescriptions (see data/abilities/descriptions.asm)
 	const_def
 	const NO_ABILITY
-	const STENCH
 	const DRIZZLE
 	const SPEED_BOOST
 	const BATTLE_ARMOR
@@ -21,9 +20,7 @@
 	const INSOMNIA
 	const IMMUNITY
 	const FLASH_FIRE
-	const SHIELD_DUST
 	const OWN_TEMPO
-	const SUCTION_CUPS
 	const INTIMIDATE
 	const SHADOW_TAG
 	const LEVITATE
@@ -35,7 +32,6 @@
 	const SERENE_GRACE
 	const SWIFT_SWIM
 	const CHLOROPHYLL
-	const ILLUMINATE
 	const TRACE
 	const HUGE_POWER
 	const POISON_POINT
@@ -48,19 +44,15 @@
 	const SAND_STREAM
 	const PRESSURE
 	const THICK_FAT
-	const EARLY_BIRD
 	const FLAME_BODY
-	const RUN_AWAY
 	const KEEN_EYE
 	const HYPER_CUTTER
 	const PICKUP
 	const HUSTLE
 	const CUTE_CHARM
-	const STICKY_HOLD
 	const SHED_SKIN
 	const GUTS
 	const MARVEL_SCALE
-	const LIQUID_OOZE
 	const OVERGROW
 	const BLAZE
 	const TORRENT
@@ -76,11 +68,8 @@
 	const RIVALRY
 	const STEADFAST
 	const SNOW_CLOAK
-	const GLUTTONY
 	const ANGER_POINT
-	const UNBURDEN
 	const DRY_SKIN
-	const DOWNLOAD
 	const IRON_FIST
 	const POISON_HEAL
 	const ADAPTABILITY
@@ -92,12 +81,9 @@
 	const MAGIC_GUARD
 	const NO_GUARD
 	const TECHNICIAN
-	const LEAF_GUARD
 	const MOLD_BREAKER
 	const SUPER_LUCK
 	const AFTERMATH
-	const ANTICIPATION
-	const FOREWARN
 	const UNAWARE
 	const TINTED_LENS
 	const FILTER
@@ -118,8 +104,6 @@
 	const WEAK_ARMOR
 	const LIGHT_METAL
 	const MULTISCALE
-	const HARVEST
-	const MOODY
 	const OVERCOAT
 	const POISON_TOUCH
 	const REGENERATOR
@@ -128,7 +112,6 @@
 	const WONDER_SKIN
 	const ANALYTIC
 	const IMPOSTER
-	const INFILTRATOR
 	const MOXIE
 	const JUSTIFIED
 	const RATTLED
@@ -146,18 +129,14 @@
 	const BERSERK
 	const SLUSH_RUSH
 	const GALVANIZE
-	const CORROSION
 	const FLUFFY
 	const TANGLING_HAIR
 	const SCREEN_CLEANER
 	const STEELY_SPIRIT
 	const PERISH_BODY
-	const GORILLA_TACTICS
 	const NEUTRALIZING_GAS
 	const PASTEL_VEIL
-	const QUICK_DRAW
 	const WIND_RIDER
-	const CUD_CHEW
 	const SHARPNESS
 	const ARMOR_TAIL
 	const MINDS_EYE
@@ -174,4 +153,5 @@
 	const SUPREME_OVERLORD
 	const THERMAL_EXCHANGE
 	const TRIAGE
+	const IRON_BARBS
 NUM_ABILITIES EQU const_value

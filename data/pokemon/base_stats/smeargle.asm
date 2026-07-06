@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/smeargle/front.dimensions"
-	abilities_for SMEARGLE, TECHNICIAN, OWN_TEMPO, MOODY
+	abilities_for SMEARGLE, TECHNICIAN, OWN_TEMPO, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

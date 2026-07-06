@@ -20,6 +20,10 @@ AI_SwitchOrTryItem:
 	and a
 	jr nz, DontSwitch
 
+	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull)
+	farcall CheckPlayerTrapsEnemy
+	jr c, DontSwitch
+
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
 	ld a, [wInBattleTowerBattle] ; always load the first trainer class in wTrainerClass for BattleTower-Trainers
 	and a

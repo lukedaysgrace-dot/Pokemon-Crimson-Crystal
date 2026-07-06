@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/snubbull/front.dimensions"
-	abilities_for SNUBBULL, INTIMIDATE, RUN_AWAY, RATTLED
+	abilities_for SNUBBULL, INTIMIDATE, NO_ABILITY, RATTLED
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups

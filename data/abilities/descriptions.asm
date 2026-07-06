@@ -1,6 +1,5 @@
 AbilityDescriptions::
 	dw NoAbilityDescription
-	dw StenchDescription
 	dw DrizzleDescription
 	dw SpeedBoostDescription
 	dw BattleArmorDescription
@@ -17,9 +16,7 @@ AbilityDescriptions::
 	dw InsomniaDescription
 	dw ImmunityDescription
 	dw FlashFireDescription
-	dw ShieldDustDescription
 	dw OwnTempoDescription
-	dw SuctionCupsDescription
 	dw IntimidateDescription
 	dw ShadowTagDescription
 	dw LevitateDescription
@@ -31,7 +28,6 @@ AbilityDescriptions::
 	dw SereneGraceDescription
 	dw SwiftSwimDescription
 	dw ChlorophyllDescription
-	dw IlluminateDescription
 	dw TraceDescription
 	dw HugePowerDescription
 	dw PoisonPointDescription
@@ -44,19 +40,15 @@ AbilityDescriptions::
 	dw SandStreamDescription
 	dw PressureDescription
 	dw ThickFatDescription
-	dw EarlyBirdDescription
 	dw FlameBodyDescription
-	dw RunAwayDescription
 	dw KeenEyeDescription
 	dw HyperCutterDescription
 	dw PickupDescription
 	dw HustleDescription
 	dw CuteCharmDescription
-	dw StickyHoldDescription
 	dw ShedSkinDescription
 	dw GutsDescription
 	dw MarvelScaleDescription
-	dw LiquidOozeDescription
 	dw OvergrowDescription
 	dw BlazeDescription
 	dw TorrentDescription
@@ -72,11 +64,8 @@ AbilityDescriptions::
 	dw RivalryDescription
 	dw SteadfastDescription
 	dw SnowCloakDescription
-	dw GluttonyDescription
 	dw AngerPointDescription
-	dw UnburdenDescription
 	dw DrySkinDescription
-	dw DownloadDescription
 	dw IronFistDescription
 	dw PoisonHealDescription
 	dw AdaptabilityDescription
@@ -88,12 +77,9 @@ AbilityDescriptions::
 	dw MagicGuardDescription
 	dw NoGuardDescription
 	dw TechnicianDescription
-	dw LeafGuardDescription
 	dw MoldBreakerDescription
 	dw SuperLuckDescription
 	dw AftermathDescription
-	dw AnticipationDescription
-	dw ForewarnDescription
 	dw UnawareDescription
 	dw TintedLensDescription
 	dw FilterDescription
@@ -114,8 +100,6 @@ AbilityDescriptions::
 	dw WeakArmorDescription
 	dw LightMetalDescription
 	dw MultiscaleDescription
-	dw HarvestDescription
-	dw MoodyDescription
 	dw OvercoatDescription
 	dw PoisonTouchDescription
 	dw RegeneratorDescription
@@ -124,7 +108,6 @@ AbilityDescriptions::
 	dw WonderSkinDescription
 	dw AnalyticDescription
 	dw ImposterDescription
-	dw InfiltratorDescription
 	dw MoxieDescription
 	dw JustifiedDescription
 	dw RattledDescription
@@ -142,18 +125,14 @@ AbilityDescriptions::
 	dw BerserkDescription
 	dw SlushRushDescription
 	dw GalvanizeDescription
-	dw CorrosionDescription
 	dw FluffyDescription
 	dw TanglingHairDescription
 	dw ScreenCleanerDescription
 	dw SteelySpiritDescription
 	dw PerishBodyDescription
-	dw GorillaTacticsDescription
 	dw NeutralizingGasDescription
 	dw PastelVeilDescription
-	dw QuickDrawDescription
 	dw WindRiderDescription
-	dw CudChewDescription
 	dw SharpnessDescription
 	dw ArmorTailDescription
 	dw MindsEyeDescription
@@ -170,15 +149,11 @@ AbilityDescriptions::
 	dw SupremeOverlordDescription
 	dw ThermalExchangeDescription
 	dw TriageDescription
+	dw IronBarbsDescription
 
 NoAbilityDescription:
 	text "Abilities are"
 	next "disabled."
-	done
-
-StenchDescription:
-	text "May cause the foe"
-	next "to flinch."
 	done
 
 DrizzleDescription:
@@ -264,19 +239,9 @@ FlashFireDescription:
 	next "if hit by one."
 	done
 
-ShieldDustDescription:
-	text "Blocks additional"
-	next "attack effects."
-	done
-
 OwnTempoDescription:
 	text "Prevents it from"
 	next "becoming confused."
-	done
-
-SuctionCupsDescription:
-	text "Negates forced"
-	next "switch-outs."
 	done
 
 IntimidateDescription:
@@ -333,11 +298,6 @@ SwiftSwimDescription:
 ChlorophyllDescription:
 	text "Boosts its Speed"
 	next "in sunshine."
-	done
-
-IlluminateDescription:
-	text "Raises the rate"
-	next "of wild #mon."
 	done
 
 TraceDescription:
@@ -400,19 +360,9 @@ ThickFatDescription:
 	next "Fire and Ice."
 	done
 
-EarlyBirdDescription:
-	text "Awakens quickly"
-	next "from sleep."
-	done
-
 FlameBodyDescription:
 	text "Contact may burn"
 	next "the foe."
-	done
-
-RunAwayDescription:
-	text "Sure getaway from"
-	next "wild #mon."
 	done
 
 KeenEyeDescription:
@@ -440,11 +390,6 @@ CuteCharmDescription:
 	next "infatuation."
 	done
 
-StickyHoldDescription:
-	text "Protects it from"
-	next "item theft."
-	done
-
 ShedSkinDescription:
 	text "May heal its own"
 	next "status problems."
@@ -458,11 +403,6 @@ GutsDescription:
 MarvelScaleDescription:
 	text "Boosts Defense on"
 	next "status problems."
-	done
-
-LiquidOozeDescription:
-	text "Damages foes using"
-	next "draining moves."
 	done
 
 OvergrowDescription:
@@ -525,29 +465,14 @@ SnowCloakDescription:
 	next "hailstorms."
 	done
 
-GluttonyDescription:
-	text "Encourages early"
-	next "Berry use."
-	done
-
 AngerPointDescription:
 	text "Maxes Attack after"
 	next "a critical hit."
 	done
 
-UnburdenDescription:
-	text "Boosts Speed when"
-	next "held item is lost."
-	done
-
 DrySkinDescription:
 	text "Reduces HP in sun."
 	next "Water restores HP."
-	done
-
-DownloadDescription:
-	text "Adjusts stats based"
-	next "on foe's defenses."
 	done
 
 IronFistDescription:
@@ -605,11 +530,6 @@ TechnicianDescription:
 	next "weaker moves."
 	done
 
-LeafGuardDescription:
-	text "Prevents status"
-	next "problems in sun."
-	done
-
 MoldBreakerDescription:
 	text "Moves disregard"
 	next "the foe's ability."
@@ -623,16 +543,6 @@ SuperLuckDescription:
 AftermathDescription:
 	text "Damages the foe on"
 	next "fainting."
-	done
-
-AnticipationDescription:
-	text "Senses the foe's"
-	next "dangerous moves."
-	done
-
-ForewarnDescription:
-	text "Determines the"
-	next "foe's moves."
 	done
 
 UnawareDescription:
@@ -735,16 +645,6 @@ MultiscaleDescription:
 	next "when HP is full."
 	done
 
-HarvestDescription:
-	text "May recreate a"
-	next "Berry after use."
-	done
-
-MoodyDescription:
-	text "Raises a stat and"
-	next "lowers another."
-	done
-
 OvercoatDescription:
 	text "Protects it from"
 	next "weather damage."
@@ -783,11 +683,6 @@ AnalyticDescription:
 ImposterDescription:
 	text "Transforms itself"
 	next "into the foe."
-	done
-
-InfiltratorDescription:
-	text "Attacks bypass the"
-	next "foe's barriers."
 	done
 
 MoxieDescription:
@@ -875,11 +770,6 @@ GalvanizeDescription:
 	next "become Electric."
 	done
 
-CorrosionDescription:
-	text "Foes of any type"
-	next "can be poisoned."
-	done
-
 FluffyDescription:
 	text "Resists contact,"
 	next "but weak to Fire."
@@ -890,19 +780,9 @@ TanglingHairDescription:
 	next "the foe's Speed."
 	done
 
-GorillaTacticsDescription:
-	text "Boosts Attack, but"
-	next "allows one move."
-	done
-
 NeutralizingGasDescription:
 	text "Suppresses all"
 	next "other Abilities."
-	done
-
-QuickDrawDescription:
-	text "Moves first"
-	next "occasionally."
 	done
 
 WindRiderDescription:
@@ -923,11 +803,6 @@ PerishBodyDescription:
 ScreenCleanerDescription:
 	text "Removes screens"
 	next "when switched in."
-	done
-
-CudChewDescription:
-	text "Eats a Berry again"
-	next "after first use."
 	done
 
 SharpnessDescription:
@@ -1008,4 +883,9 @@ ThermalExchangeDescription:
 TriageDescription:
 	text "Healing moves"
 	next "go first."
+	done
+
+IronBarbsDescription:
+	text "Hurts foes that"
+	next "make contact."
 	done

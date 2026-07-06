@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/slowpoke_galarian/front.dimensions"
-	abilities_for SLOWPOKE_GALARIAN, GLUTTONY, OWN_TEMPO, REGENERATOR
+	abilities_for SLOWPOKE_GALARIAN, OWN_TEMPO, NO_ABILITY, REGENERATOR
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_WATER_1 ; egg groups

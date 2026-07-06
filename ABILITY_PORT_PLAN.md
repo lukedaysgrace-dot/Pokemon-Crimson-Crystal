@@ -1,7 +1,115 @@
 # Ability System Port: Polished Crystal → Supreme Silver
 
-Status doc, updated 2026-07-01 (session 2). Phases 1-2 complete, Phase 3-4
-substantially complete, Phase 5 not started. Everything below builds clean
+Status doc, updated 2026-07-05 (session 6, see bottom). Phases 1-2 complete,
+Phase 3-4 substantially complete, Phase 5 not started.
+
+## Session 6 (2026-07-05): 21 abilities DELETED, 19 abilities ADDED, audit fixes
+(NOT built or emulator-tested — the sandbox could not mount the repo this
+session, so rgbds was unavailable. `make` FIRST and fix any jr-range/bank
+overflow errors before playtesting.)
+
+### Deleted (Lucas's list; NUM_ABILITIES now 151)
+DOWNLOAD (was coded — entry table line + DownloadAbility removed),
+ILLUMINATE, GORILLA_TACTICS, CORROSION, LIQUID_OOZE, STICKY_HOLD,
+SUCTION_CUPS, STENCH, RUN_AWAY, EARLY_BIRD, QUICK_DRAW, CUD_CHEW,
+SHIELD_DUST, LEAF_GUARD, INFILTRATOR, UNBURDEN, GLUTTONY, HARVEST, MOODY,
+ANTICIPATION, FOREWARN. Constants/names/flags/descriptions all rebuilt in
+matching order (151 entries each, verified). ~94 base_stats files
+reassigned to canon substitutes (empty slots use NO_ABILITY; GetAbility
+falls back to slot 1). Flavor picks: caterpie->SWARM, golisopod->
+BATTLE_ARMOR, wimpod->RATTLED, dipplin->BULLETPROOF, kangaskhan slot2->
+INNER_FOCUS, abra line hidden->INNER_FOCUS.
+
+### Added: IRON_BARBS (new constant, appended last) + the sheet's
+"not coded" list: SYNCHRONIZE, MAGIC_BOUNCE, PRANKSTER, SERENE_GRACE,
+SHEER_FORCE, SKILL_LINK, REGENERATOR, SHADOW_TAG, ARENA_TRAP, MAGNET_PULL,
+ANALYTIC, BERSERK, WEAK_ARMOR, JUSTIFIED, CURSED_BODY, AFTERMATH,
+CUTE_CHARM, ARMOR_TAIL.
+- On-hit chain (RunContactAbilitiesHook): Justified (Atk+1 on Dark hits),
+  Weak Armor (physical: own Def-1/Spe+2), Berserk (SpA+1 crossing below
+  half HP), Cursed Body (30%: disables the attacker's move, 4 turns, via
+  wDisableCount slot|turns format), Aftermath (contact KO: attacker loses
+  1/4 max, runs on the fainted-defender path).
+- Contact table: Cute Charm (30% infatuate, farcalls CheckOppositeGender,
+  now exported), Iron Barbs (attacker loses 1/8 max; no canon user in the
+  dex yet — free for customs, e.g. Pineco line).
+- Magic Bounce: reflects STATUS moves. Status kinds ride as a prefix byte
+  on the AbilityPreventsX lists; reflected via shared TrySleep/Paralyze/
+  Poison/Burn/Confuse/AttractOpponent helpers (Static/Flame Body/Effect
+  Spore refactored to share them). Stat-drop moves bounce via the Mirror
+  Armor path (ability-driven drops like Intimidate are NOT bounced,
+  gated on the bit-6 flag). Anti-rebounce guard: wDisguiseBusted+1 bit 6.
+  NOT bounced (limitation): Leech Seed, Spikes-likes, Toxic bounces as
+  regular poison, "bounced back" text is just "didn't affect".
+- Synchronize: farcall hooks after every successful move-inflicted
+  psn/tox/brn/par (PoisonTarget, ToxicTarget, Poison, BurnTarget,
+  ParalyzeTarget bodies) -> RunSynchronizePsn/Brn/Par.
+- Serene Grace (double) + Sheer Force (suppress) in relocated
+  BattleCommand_EffectChance_Core; Sheer Force x1.3 boost in
+  RunDamageModifiers (any move with a nonzero chance byte). Analytic
+  x1.3 when moving last (reads wEnemyGoesFirst).
+- Skill Link: forced loop count 4 in BattleMultiHitRoll_Core.
+- Prankster: +1 for status moves in AbilityCompareMovePriority. NOTE:
+  Armor Tail reads BASE move priority, so it does not block
+  Prankster-boosted status moves (known limitation).
+- Armor Tail: increased-priority moves get hit chance 0 in
+  AbilityAccuracyMods (misses rather than "blocked" text).
+- Trapping: CheckOpponentTrapAbility / CheckPlayerTrapsEnemy (Ghost-types
+  exempt, Shadow Tag vs Shadow Tag exempt, Arena Trap skips Flying/
+  Levitate, Magnet Pull Steel only, Neutralizing Gas suppresses). Hooked:
+  TryPlayerSwitch, TryToRunAwayFromBattle (after Smoke Ball, canon),
+  TryEnemyFlee (wild/roamer flee), AI_SwitchOrTryItem. Air Balloon vs
+  Arena Trap not checked (limitation).
+- Regenerator (1/3 max, party struct) + Natural Cure on switch-out:
+  RunPlayer/EnemySwitchOutAbilities hooked in BattleMonEntrance (before
+  RecallPlayerMon, after Pursuit), EnemyMonEntrance, and BattleUTurn_Core
+  (which now also sets wLastPlayerMon for the player side). Baton Pass
+  and Roar/Whirlwind forced switches NOT covered (limitation).
+
+### Audit fixes (sheet's "not DONE" rows reviewed line-by-line)
+1. BattleCommand_ParalyzeTarget never checked Limber — secondary
+   paralysis (Body Slam/Thunderbolt) bypassed it. Body relocated to the
+   overflow bank (BattleParalyzeTarget_Core) with the check + Synchronize.
+2. BattleCommand_Poison's .apply_poison printed "was poisoned!" even when
+   AbilityPreventsPoison blocked it (after "didn't affect"). Check moved
+   before the toxic/poison branch.
+3. BattleCommand_ConfuseTarget (secondary confusion) never checked
+   Own Tempo — added.
+4. ATTRACT WAS BROKEN: the farcall macro clobbers hl (it loads the target
+   into hl), so BattleCommand_Attract's `set SUBSTATUS_IN_LOVE, [hl]`
+   after `farcall AbilityPreventsAttraction` wrote to ROM — Attract
+   printed its text but never infatuated. hl is now re-fetched.
+5. Natural Cure only worked post-battle; now also cures on switch-out.
+
+### Bank budget notes (unverified — no rgbds this session!)
+- Effect Commands: EffectChance + ParalyzeTarget bodies relocated out
+  (~-90 bytes) vs ~+45 of new farcalls -> net NEGATIVE, should fit.
+- Battle Core: +~50 bytes of hooks (trap checks x3, switch-out x2)
+  against the ~60 reported free. If the link fails here, relocate
+  TryEnemyFlee's body to an overflow bank.
+- Abilities Engine bank: ~+1.2 KB. Overflow bank: ~+300 bytes.
+
+### Session 6 test checklist
+`make` first. Then: Body Slam vs Limber (no para), Toxic vs Immunity
+(no false "was poisoned"), Attract actually infatuates + Cute Charm 30%,
+Growl vs Xatu (bounced), Thunder Wave vs Xatu (bounced para), Toxic vs
+Xatu (bounced as psn), two Magic Bounce mons (no loop), Synchronize
+returns brn/psn/par (incl. secondaries like Flamethrower burn),
+Fury Swipes with Skill Link = always 5 hits, Serene Grace doubled flinch
+rate, Sheer Force: boosted damage + no secondary, Analytic boost when
+moving second, Prankster status move goes first, Quick Attack fails vs
+Armor Tail, wild flee blocked by Shadow Tag/Arena Trap/Magnet Pull
+(Ghost mons exempt), switch menu blocked, Regenerator heals 1/3 on
+switch (menu + U-turn), Natural Cure cures on switch, Weak Armor
+(Def-1/Spe+2 on physical), Berserk at the half-HP crossing only,
+Justified vs Bite, Cursed Body disable (4 turns, right slot), Aftermath
+1/4 on contact KO, Iron Barbs 1/8 per contact hit.
+
+Everything below this line is the pre-session-6 history.
+
+---
+
+Everything below builds clean
 with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
 
 ## DONE

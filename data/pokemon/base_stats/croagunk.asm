@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/croagunk/front.dimensions"
-	abilities_for CROAGUNK, DRY_SKIN, ANTICIPATION, POISON_TOUCH
+	abilities_for CROAGUNK, DRY_SKIN, NO_ABILITY, POISON_TOUCH
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

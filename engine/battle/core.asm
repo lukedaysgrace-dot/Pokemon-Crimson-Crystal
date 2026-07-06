@@ -780,60 +780,11 @@ HandleEncore:
 	jp StdBattleTextbox
 
 TryEnemyFlee:
-	ld a, [wBattleMode]
-	dec a
-	jr nz, .Stay
-
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_CANT_RUN, a
-	jr nz, .Stay
-
-	ld a, [wEnemyWrapCount]
-	and a
-	jr nz, .Stay
-
-	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
-	jr nz, .Stay
-
-	ld a, [wTempEnemyMonSpecies]
-	call GetPokemonIndexFromID
-	ld b, h
-	ld c, l
-	ld de, 2
-	ld hl, AlwaysFleeMons
-	call IsInHalfwordArray
-	jr c, .Flee
-
-	call BattleRandom
-	add a, a
-	jr nc, .Stay
-
-	push af
-	; de preserved from last call
-	ld hl, OftenFleeMons
-	call IsInHalfwordArray
-	pop de
-	jr c, .Flee
-
-	ld a, d
-	cp 20 percent ; double the value because of the previous add a, a
-	jr nc, .Stay
-
-	ld de, 2
-	ld hl, SometimesFleeMons
-	call IsInHalfwordArray
-	jr c, .Flee
-
-.Stay:
-	and a
+; Body + flee_mons tables relocated to the Abilities Engine bank to free
+; Battle Core space (FastBallMultiplier reads the tables via BANK(FleeMons),
+; so the data can live anywhere).
+	farcall TryEnemyFlee_Core
 	ret
-
-.Flee:
-	scf
-	ret
-
-INCLUDE "data/wild/flee_mons.asm"
 
 CompareMovePriority:
 ; Compare the priority of the player and enemy's moves.
@@ -3867,6 +3818,10 @@ TryToRunAwayFromBattle:
 	jp .can_escape
 
 .no_flee_item
+	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull);
+	; CheckOpponentTrapAbility preserves hl/de (live speed pointers here)
+	farcall CheckOpponentTrapAbility
+	jp c, .cant_escape
 	ld a, [wNumFleeAttempts]
 	inc a
 	ld [wNumFleeAttempts], a
@@ -5354,12 +5309,10 @@ TryPlayerSwitch:
 	jp BattleMenuPKMN_Loop
 
 .check_trapped
-	ld a, [wPlayerWrapCount]
-	and a
-	jr nz, .trapped
-	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_CANT_RUN, a
-	jr z, .try_switch
+	; Wrap, Mean Look, or a trapping ability (checks live in the
+	; abilities engine bank to spare Battle Core bytes)
+	farcall CheckPlayerIsTrapped
+	jr nc, .try_switch
 
 .trapped
 	ld hl, BattleText_MonCantBeRecalled
@@ -5432,6 +5385,8 @@ PlayerSwitch:
 	ret
 
 EnemyMonEntrance:
+	; Natural Cure / Regenerator on the outgoing mon
+	farcall RunEnemySwitchOutAbilities
 	callfar AI_Switch
 	call SetEnemyTurn
 	jp SpikesDamageAndEntryAbilities
@@ -5448,6 +5403,8 @@ BattleMonEntrance:
 	call SetEnemyTurn
 	call PursuitSwitch
 	jr c, .ok
+	; Natural Cure / Regenerator on the outgoing mon
+	farcall RunPlayerSwitchOutAbilities
 	call RecallPlayerMon
 .ok
 

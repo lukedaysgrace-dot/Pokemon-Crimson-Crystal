@@ -2,11 +2,13 @@
 ; Port of Polished Crystal's engine/battle/abilities.asm, adapted to the
 ; vanilla-style Supreme Silver battle engine.
 ;
-; Ported categories: entry abilities, status-heal abilities, status
-; prevention, end-of-turn abilities, post-battle abilities.
-; Not yet ported (see docs/ABILITY_PORT_STATUS.md): contact abilities,
-; damage/stat modifiers, nullification/absorb abilities, faint abilities,
-; Anticipation/Forewarn, Moody, Neutralizing Gas deactivation handling.
+; Ported categories: entry, status-heal, status prevention, end-of-turn,
+; post-battle, contact/on-hit, nullification/absorb, damage/stat/accuracy/
+; priority modifiers, faint abilities, Magic Bounce, Synchronize, trapping
+; (Shadow Tag/Arena Trap/Magnet Pull), switch-out (Natural Cure/
+; Regenerator), Serene Grace/Sheer Force/Skill Link/Prankster/Armor Tail/
+; Analytic/Cursed Body/Berserk/Weak Armor/Justified/Aftermath/Cute Charm/
+; Iron Barbs. See ABILITY_PORT_PLAN.md for status and known limitations.
 
 ; ==== Turn and jumptable helpers =========================================
 
@@ -292,7 +294,6 @@ BattleEntryAbilitiesNonfainted:
 	dbw TRACE, TraceAbility
 	dbw IMPOSTER, ImposterAbility
 	dbw INTIMIDATE, IntimidateAbility
-	dbw DOWNLOAD, DownloadAbility
 	dbw FRISK, FriskAbility
 	dbw UNNERVE, UnnerveAbility
 BattleEntryAbilities:
@@ -507,40 +508,6 @@ IntimidateAbility:
 	call SwitchTurn
 	jp EndAbility
 
-DownloadAbility:
-; Raise Atk if the foe's Def is lower than its SpDef, otherwise SpAtk.
-; (StatUpAbility presents the banner itself - no separate slideout here,
-; or the banner would play twice.)
-	ld hl, wEnemyMonDefense
-	ld de, wEnemyMonSpclDef
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_stats
-	ld hl, wBattleMonDefense
-	ld de, wBattleMonSpclDef
-.got_stats
-	; compare 16-bit Def (hl) with SpDef (de)
-	ld a, [de]
-	ld b, a
-	ld a, [hli]
-	cp b
-	jr c, .inc_atk
-	jr nz, .inc_spatk
-	inc de
-	ld a, [de]
-	ld b, a
-	ld a, [hl]
-	cp b
-	jr c, .inc_atk
-.inc_spatk
-	ld b, SP_ATTACK
-	jr .got_stat
-.inc_atk
-	ld b, ATTACK
-.got_stat
-	call StatUpAbility
-	jp EndAbility
-
 FriskAbility:
 	ldh a, [hBattleTurn]
 	and a
@@ -710,55 +677,81 @@ ObliviousAbility:
 ; Status prevention: called from effect commands with hBattleTurn = attacker.
 ; Each returns carry if the DEFENDER's ability prevents the status
 ; (and shows the ability banner).
+; Each list is prefixed with a "bounce kind" byte so Magic Bounce knows how
+; to reflect a STATUS move of that kind back at its user.
+; NOTE: de must be preserved on the no-carry path (SleepTarget keeps its
+; status pointer in de across the farcall). The carry paths all jump
+; straight to failure handling, so de is free to clobber there.
+
+BOUNCE_NONE EQU 0
+BOUNCE_SLP  EQU 1
+BOUNCE_PAR  EQU 2
+BOUNCE_PSN  EQU 3
+BOUNCE_BRN  EQU 4
+BOUNCE_CNF  EQU 5
+BOUNCE_ATR  EQU 6
 
 AbilityPreventsSleep::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_SLP
 	db INSOMNIA, VITAL_SPIRIT, -1
 
 AbilityPreventsParalysis::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_PAR
 	db LIMBER, -1
 
 AbilityPreventsPoison::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_PSN
 	db IMMUNITY, PASTEL_VEIL, -1
 
 AbilityPreventsBurn::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_BRN
 	db WATER_VEIL, THERMAL_EXCHANGE, -1
 
 AbilityPreventsFreeze::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_NONE
 	db MAGMA_ARMOR, -1
 
 AbilityPreventsConfusion::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_CNF
 	db OWN_TEMPO, -1
 
 AbilityPreventsAttraction::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
+	db BOUNCE_ATR
 	db OBLIVIOUS, -1
 
 CheckStatusPrevention:
-; hl = -1-terminated ability list. Carry if the defender's ability matches.
+; hl = bounce kind byte, then -1-terminated ability list.
+; Carry if the defender's ability matches (or Magic Bounce reflected).
 	call GetOpponentIgnorableAbility
 	and a
 	ret z ; nc
 	ld b, a
+	ld a, [hli] ; bounce kind
+	ld c, a
+	ld a, b
+	cp MAGIC_BOUNCE
+	jr z, .magic_bounce
 .loop
 	ld a, [hli]
 	cp -1
@@ -778,6 +771,48 @@ CheckStatusPrevention:
 .no_match
 	and a ; nc
 	ret
+
+.magic_bounce
+	; Magic Bounce reflects STATUS moves back at their user.
+	; Secondary effects of damaging moves are not bounced (canon), and a
+	; bounced move can't be bounced again (guard bit 6 of wDisguiseBusted+1).
+	ld a, c
+	and a ; BOUNCE_NONE?
+	jr z, .no_match
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .no_match
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .no_match
+	ld hl, wDisguiseBusted + 1
+	set 6, [hl]
+	; run the reflected status attempt from the bouncer's perspective
+	; (the Try* handlers status the bouncer's OPPONENT = original attacker,
+	; showing the bouncer's MAGIC BOUNCE banner)
+	ld hl, .bounce_handlers
+	ld b, 0
+	dec c
+	sla c
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call SwitchTurn
+	call _hl_
+	call SwitchTurn
+	ld hl, wDisguiseBusted + 1
+	res 6, [hl]
+	scf ; the original move fails
+	ret
+
+.bounce_handlers
+	dw TrySleepOpponent      ; BOUNCE_SLP
+	dw TryParalyzeOpponent   ; BOUNCE_PAR
+	dw TryPoisonOpponentContact ; BOUNCE_PSN
+	dw TryBurnOpponent       ; BOUNCE_BRN
+	dw TryConfuseOpponent    ; BOUNCE_CNF
+	dw TryAttractOpponent    ; BOUNCE_ATR
 
 ; ==== End-of-turn abilities ==============================================
 
@@ -1346,6 +1381,10 @@ RunDamageModifiers:
 	; ---- attacker's ability ----
 	call GetTrueUserAbility
 	ld d, a
+	cp ANALYTIC
+	jp z, .analytic
+	cp SHEER_FORCE
+	jp z, .sheer_force
 	cp HUGE_POWER
 	jr z, .huge_power
 	cp GUTS
@@ -1538,6 +1577,46 @@ RunDamageModifiers:
 	and a
 	jp z, .defender
 	call SupremeOverlordBoost
+	jp .defender
+
+.analytic
+	; x1.3 if the user moved last this turn
+	ld a, [wEnemyGoesFirst] ; 0 if the player went first
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .analytic_player
+	; enemy attacker: boost only if the player went first
+	ld a, b
+	and a
+	jp nz, .defender
+	jr .analytic_boost
+.analytic_player
+	; player attacker: boost only if the enemy went first
+	ld a, b
+	and a
+	jp z, .defender
+.analytic_boost
+	ld a, 130
+	call DamagePercent
+	jp .defender
+
+.sheer_force
+	; x1.3 if the move has a secondary effect chance (the effect itself is
+	; suppressed in BattleCommand_EffectChance_Core)
+	push hl
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .sheer_got_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.sheer_got_chance
+	ld a, [hl]
+	pop hl
+	and a
+	jp z, .defender
+	ld a, 130
+	call DamagePercent
 	jp .defender
 
 ApplyHeldItemDamageModifiers:
@@ -1857,6 +1936,8 @@ AbilityProtectsStatDrop::
 	ld b, a
 	cp MIRROR_ARMOR
 	jr z, .mirror_armor
+	cp MAGIC_BOUNCE
+	jr z, .magic_bounce_drop
 	cp CLEAR_BODY
 	jr z, .protected
 	cp WHITE_SMOKE
@@ -1892,6 +1973,17 @@ AbilityProtectsStatDrop::
 	scf
 	ret
 
+.magic_bounce_drop
+	; Magic Bounce reflects stat drops from STATUS moves only - not from
+	; abilities (Intimidate/Tangling Hair, flagged via bit 6) and not from
+	; secondary effects of damaging moves.
+	ld a, [wDisguiseBusted]
+	bit 6, a
+	jr nz, .no
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .no
+	; fallthrough: bounce it exactly like Mirror Armor
 .mirror_armor
 	; bounce the drop back at its source (no ping-pong between two
 	; Mirror Armors: while the guard bit is set, take the drop instead)
@@ -1971,6 +2063,8 @@ AbilityAccuracyMods::
 	jr z, .tangled_feet
 	cp WONDER_SKIN
 	jr z, .wonder_skin
+	cp ARMOR_TAIL
+	jr z, .armor_tail
 	ret
 
 .always_hit
@@ -2025,6 +2119,29 @@ AbilityAccuracyMods::
 	cp 50 percent + 1
 	ret c
 	ld b, 50 percent + 1
+	ret
+
+.armor_tail
+	; increased-priority moves fail against an Armor Tail holder
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wCurPlayerMove]
+	jr z, .armor_tail_got_move
+	ld a, [wCurEnemyMove]
+.armor_tail_got_move
+	and a
+	jr z, .armor_tail_ok ; no move (item/switch edge case)
+	ld e, a
+	farcall GetMovePriority_e
+	ld a, e
+	cp BASE_PRIORITY + 1
+	jr c, .armor_tail_ok ; normal or negative priority
+	pop bc
+	ld b, 0 ; can never hit
+	ret
+.armor_tail_ok
+	pop bc
 	ret
 
 ReduceAccuracyQuarter_Defender:
@@ -2309,15 +2426,23 @@ RunContactAbilitiesHook::
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	; nothing procs if the defender already fainted
+	; if the defender just fainted, only its Aftermath can proc
 	call OppHasFainted
-	ret z
+	jp z, .aftermath
 	; defender on-hit abilities (any damaging move, contact or not)
 	call GetOpponentAbility
 	cp STAMINA
 	jr z, .stamina
 	cp THERMAL_EXCHANGE
 	jr z, .thermal_exchange
+	cp JUSTIFIED
+	jr z, .justified
+	cp WEAK_ARMOR
+	jp z, .weak_armor
+	cp BERSERK
+	jp z, .berserk
+	cp CURSED_BODY
+	jp z, .cursed_body
 .contact
 	call CheckContactMove
 	ret nc
@@ -2327,7 +2452,7 @@ RunContactAbilitiesHook::
 	call z, PoisonTouchAbility
 	; defender on-contact abilities (perspective switches to the defender)
 	call StackCallOpponentTurn
-	jr _RunDefenderContactAbilities
+	jp _RunDefenderContactAbilities
 
 .stamina
 	ld b, DEFENSE
@@ -2339,6 +2464,14 @@ RunContactAbilitiesHook::
 	cp FIRE
 	jr nz, .contact
 	ld b, ATTACK
+	jr .on_hit_stat_up
+.justified
+	; Atk+1 when hit by a Dark-type move
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp DARK
+	jr nz, .contact
+	ld b, ATTACK
 .on_hit_stat_up
 	call SwitchTurn
 	call BeginAbility
@@ -2346,6 +2479,174 @@ RunContactAbilitiesHook::
 	call EndAbility
 	call SwitchTurn
 	jr .contact
+
+.weak_armor
+	; physical hits lower the holder's Defense but sharply raise its Speed
+	call GetMoveCategory
+	and a ; CATEGORIZE_PHYSICAL
+	jr nz, .contact
+	call ShowEnemyAbilityBannerBrief
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld b, DEFENSE
+	call AbilityLowerOppStat
+	call SwitchTurn
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld b, $10 | SPEED ; sharply (+2)
+	call AbilityRaiseStat
+	call SwitchTurn
+	jp .contact
+
+.berserk
+	; SpA+1 when a hit drops the holder from >=1/2 to <1/2 of its max HP
+	call .berserk_check
+	jr nc, .contact
+	ld b, SP_ATTACK
+	jr .on_hit_stat_up
+
+.berserk_check
+; carry if the defender crossed below half HP with this hit
+	push hl
+	push de
+	push bc
+	ld hl, wEnemyMonHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp_ptr
+	ld hl, wBattleMonHP
+.got_hp_ptr
+	; de = current HP
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
+	; bc = max HP / 2
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	srl b
+	rr c
+	; HP now must be below half...
+	ld a, d
+	cp b
+	jr c, .below_half_now
+	jr nz, .berserk_no
+	ld a, e
+	cp c
+	jr nc, .berserk_no
+.below_half_now
+	; ...and HP before the hit (HP + damage) must have been at least half
+	ld h, d
+	ld l, e
+	ld a, [wCurDamage]
+	ld d, a
+	ld a, [wCurDamage + 1]
+	ld e, a
+	add hl, de
+	jr c, .berserk_yes ; 16-bit overflow: certainly >= half
+	ld a, h
+	cp b
+	jr c, .berserk_no
+	jr nz, .berserk_yes
+	ld a, l
+	cp c
+	jr c, .berserk_no
+.berserk_yes
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+.berserk_no
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
+.cursed_body
+	; 30% chance to disable the move that hit the holder
+	call ContactChance
+	jp nc, .contact
+	call CursedBodyEffect
+	jp .contact
+
+.aftermath
+	; the fainted defender's Aftermath hurts a contact attacker (1/4 max HP)
+	call GetOpponentAbility
+	cp AFTERMATH
+	ret nz
+	call CheckContactMove
+	ret nc
+	call UserHasFainted
+	ret z
+	call ShowEnemyAbilityBannerBrief
+	ld d, 4
+	call GetUserMaxHPFraction
+	farcall SubtractHPFromUser
+	ld hl, IsHurtText
+	jp StdBattleTextbox
+
+CursedBodyEffect:
+; Turn = attacker. Disables the attacker's current move for 4 turns.
+	; not if the attacker already has a disabled move
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player_attacker
+	ld a, [wEnemyDisableCount]
+	and a
+	ret nz
+	ld a, [wCurEnemyMoveNum]
+	ld c, a
+	ld de, wEnemyDisableCount
+	ld hl, wDisabledMove + 1
+	jr .apply
+.player_attacker
+	ld a, [wPlayerDisableCount]
+	and a
+	ret nz
+	ld a, [wCurMoveNum]
+	ld c, a
+	ld de, wPlayerDisableCount
+	ld hl, wDisabledMove
+.apply
+	; get the move id; don't disable Struggle (or no-move hits)
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	and a
+	ret z
+	ld b, a
+	push hl
+	push de
+	push bc
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	pop bc
+	pop de
+	pop hl
+	cp b
+	ret z
+	; store the disabled move id
+	ld [hl], b
+	; count = (slot+1)<<4 | 4 turns
+	ld a, c
+	inc a
+	swap a
+	or 4
+	ld [de], a
+	; banner on the defender's side, then the disable text (naming the
+	; attacker, so print it from the defender's perspective)
+	call ShowEnemyAbilityBannerBrief
+	ld a, b
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	call SwitchTurn
+	ld hl, WasDisabledText
+	call StdBattleTextbox
+	jp SwitchTurn
 
 _RunDefenderContactAbilities:
 	call UserHasFainted
@@ -2360,6 +2661,8 @@ TargetContactAbilities:
 	dbw POISON_POINT, PoisonPointAbility
 	dbw EFFECT_SPORE, EffectSporeAbility
 	dbw TANGLING_HAIR, TanglingHairAbility
+	dbw CUTE_CHARM, CuteCharmAbility
+	dbw IRON_BARBS, IronBarbsAbility
 	dbw -1, -1
 
 CheckContactMove::
@@ -2411,7 +2714,10 @@ PoisonTouchAbility:
 StaticAbility:
 	call ContactChance
 	ret nc
-.spore_paralyze
+	; fallthrough
+TryParalyzeOpponent:
+; Paralyzes the turn holder's opponent, with banner/anim/text.
+; Shared by Static, Effect Spore, Synchronize and Magic Bounce.
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
@@ -2436,6 +2742,10 @@ StaticAbility:
 FlameBodyAbility:
 	call ContactChance
 	ret nc
+	; fallthrough
+TryBurnOpponent:
+; Burns the turn holder's opponent, with banner/anim/text.
+; Shared by Flame Body, Synchronize and Magic Bounce.
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
@@ -2493,8 +2803,15 @@ EffectSporeAbility:
 	and a
 	jp z, TryPoisonOpponentContact
 	dec a
-	jp z, StaticAbility.spore_paralyze
-	; sleep
+	jp z, TryParalyzeOpponent
+	; fallthrough
+TrySleepOpponent:
+; Puts the turn holder's opponent to sleep, with banner/anim/text.
+; Shared by Effect Spore and Magic Bounce.
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
 	call AbilityPreventsSleep
 	ret c
 	call ShowAbilityBannerBrief
@@ -2513,6 +2830,86 @@ EffectSporeAbility:
 	call StdBattleTextbox
 	jp EndAbility
 
+TryConfuseOpponent:
+; Confuses the turn holder's opponent, with banner/anim/text (Magic Bounce).
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	bit SUBSTATUS_CONFUSED, a
+	ret nz
+	call AbilityPreventsConfusion
+	ret c
+	call ShowAbilityBannerBrief
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVarAddr
+	set SUBSTATUS_CONFUSED, [hl]
+	; confused for 2-5 turns
+	ld bc, wEnemyConfuseCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_confuse_count
+	ld bc, wPlayerConfuseCount
+.got_confuse_count
+	call BattleRandom
+	and %11
+	inc a
+	inc a
+	ld [bc], a
+	ld de, ANIM_CONFUSED
+	call AbilityStatusAnim
+	ld hl, BecameConfusedText
+	call StdBattleTextbox
+	jp EndAbility
+
+TryAttractOpponent:
+; Infatuates the turn holder's opponent (Magic Bounce reflection of Attract;
+; the genders already passed the original move's compatibility check).
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_IN_LOVE, a
+	ret nz
+	call AbilityPreventsAttraction
+	ret c
+	call ShowAbilityBannerBrief
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVarAddr
+	set SUBSTATUS_IN_LOVE, [hl]
+	ld hl, FellInLoveText
+	call StdBattleTextbox
+	jp EndAbility
+
+CuteCharmAbility:
+; Defender contact ability: 30% to infatuate the attacker. Turn = defender.
+	call ContactChance
+	ret nc
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_IN_LOVE, a
+	ret nz
+	; genders must be opposite (CheckOppositeGender is turn-agnostic:
+	; it compares the two active battlers directly)
+	farcall CheckOppositeGender
+	ret c
+	call AbilityPreventsAttraction
+	ret c
+	call ShowAbilityBannerBrief
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVarAddr
+	set SUBSTATUS_IN_LOVE, [hl]
+	ld hl, FellInLoveText
+	call StdBattleTextbox
+	jp EndAbility
+
+IronBarbsAbility:
+; Defender contact ability: the attacker loses 1/8 of its max HP.
+	call ShowAbilityBannerBrief
+	call SwitchTurn
+	ld d, 8
+	call GetUserMaxHPFraction
+	farcall SubtractHPFromUser
+	ld hl, IsHurtText
+	call StdBattleTextbox
+	jp SwitchTurn
+
 TanglingHairAbility:
 	call ShowAbilityBannerBrief
 	xor a
@@ -2529,7 +2926,7 @@ ContactChance:
 	cp 3
 	ret
 
-AbilityStatusAnim:
+AbilityStatusAnim::
 ; de = status anim id (ANIM_PAR/BRN/PSN/SLP). Plays it on the turn
 ; holder's opponent (the mon that just got the status). Same mechanism as
 ; Effect Commands' PlayOpponentBattleAnim, which is in another bank.
@@ -2857,6 +3254,20 @@ AbilityCompareMovePriority::
 	jr z, .gale_wings
 	cp TRIAGE
 	jr z, .triage
+	cp PRANKSTER
+	jr z, .prankster
+	ret
+
+.prankster
+	; +1 priority for status moves
+	push hl
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	pop hl
+	cp CATEGORIZE_STATUS
+	ret nz
+	inc d
 	ret
 
 .gale_wings
@@ -3224,6 +3635,292 @@ LoadBrokenDisguisePic:
 	jr nz, .fill
 	ret
 
+; ==== Session 6 additions ================================================
+
+RunSynchronizePar::
+; Called (farcall) right after the attacker's move paralyzed the defender.
+	ld hl, TryParalyzeOpponent
+	jr RunSynchronize
+RunSynchronizeBrn::
+; Called right after the attacker's move burned the defender.
+	ld hl, TryBurnOpponent
+	jr RunSynchronize
+RunSynchronizePsn::
+; Called right after the attacker's move poisoned the defender.
+	ld hl, TryPoisonOpponentContact
+	; fallthrough
+RunSynchronize:
+; If the defender has Synchronize, pass the status back to the attacker.
+; Turn = attacker; the Try* helpers run from the defender's perspective.
+	call GetOpponentAbility
+	cp SYNCHRONIZE
+	ret nz
+	call SwitchTurn
+	call _hl_
+	jp SwitchTurn
+
+AbilityEffectChanceMods::
+; b = secondary effect chance. Serene Grace doubles it; Sheer Force
+; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
+	call GetTrueUserAbility
+	cp SHEER_FORCE
+	jr z, .suppress
+	cp SERENE_GRACE
+	jr z, .double
+	and a ; nc
+	ret
+.double
+	sla b
+	ret nc
+	ld b, $ff
+	and a ; nc
+	ret
+.suppress
+	ld a, b
+	and a
+	ret z ; no chance to suppress; nc
+	scf
+	ret
+
+GetTrueUserAbility_b::
+; farcall-safe wrapper: the user's effective ability, returned in b.
+	call GetTrueUserAbility
+	ld b, a
+	ret
+
+CheckPlayerIsTrapped::
+; Carry if the player's mon can't be recalled: Wrap, Mean Look, or an
+; enemy trapping ability. (Lives here to keep Battle Core bytes down.)
+	ld a, [wPlayerWrapCount]
+	and a
+	jr nz, .trapped
+	ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
+	jr z, CheckOpponentTrapAbility
+.trapped
+	scf
+	ret
+
+CheckOpponentTrapAbility::
+; Carry if the ENEMY's ability prevents the player's mon from
+; switching or fleeing. Preserves hl/de/bc.
+	push hl
+	push de
+	push bc
+	; the player's own Neutralizing Gas suppresses the trap
+	ld a, [wPlayerAbility]
+	cp NEUTRALIZING_GAS
+	jr z, .free
+	; Ghost-types can always leave (Gen 6 rules)
+	ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .free
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr z, .free
+	ld a, [wEnemyAbility]
+	cp SHADOW_TAG
+	jr z, .shadow_tag
+	cp MAGNET_PULL
+	jr z, .magnet_pull
+	cp ARENA_TRAP
+	jr nz, .free
+	; Arena Trap only traps grounded mons
+	ld a, [wBattleMonType1]
+	cp FLYING
+	jr z, .free
+	ld a, [wBattleMonType2]
+	cp FLYING
+	jr z, .free
+	ld a, [wPlayerAbility]
+	cp LEVITATE
+	jr z, .free
+	jr .trapped
+.shadow_tag
+	; Shadow Tag doesn't trap another Shadow Tag holder (Gen 4 rules)
+	ld a, [wPlayerAbility]
+	cp SHADOW_TAG
+	jr z, .free
+	jr .trapped
+.magnet_pull
+	; only Steel-types are trapped
+	ld a, [wBattleMonType1]
+	cp STEEL
+	jr z, .trapped
+	ld a, [wBattleMonType2]
+	cp STEEL
+	jr z, .trapped
+.free
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.trapped
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+CheckPlayerTrapsEnemy::
+; Carry if the PLAYER's ability prevents the enemy mon from
+; fleeing or switching. Preserves hl/de/bc.
+	push hl
+	push de
+	push bc
+	ld a, [wEnemyAbility]
+	cp NEUTRALIZING_GAS
+	jr z, .free
+	ld a, [wEnemyMonType1]
+	cp GHOST
+	jr z, .free
+	ld a, [wEnemyMonType2]
+	cp GHOST
+	jr z, .free
+	ld a, [wPlayerAbility]
+	cp SHADOW_TAG
+	jr z, .shadow_tag
+	cp MAGNET_PULL
+	jr z, .magnet_pull
+	cp ARENA_TRAP
+	jr nz, .free
+	ld a, [wEnemyMonType1]
+	cp FLYING
+	jr z, .free
+	ld a, [wEnemyMonType2]
+	cp FLYING
+	jr z, .free
+	ld a, [wEnemyAbility]
+	cp LEVITATE
+	jr z, .free
+	jr .trapped
+.shadow_tag
+	ld a, [wEnemyAbility]
+	cp SHADOW_TAG
+	jr z, .free
+	jr .trapped
+.magnet_pull
+	ld a, [wEnemyMonType1]
+	cp STEEL
+	jr z, .trapped
+	ld a, [wEnemyMonType2]
+	cp STEEL
+	jr z, .trapped
+.free
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.trapped
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+RunPlayerSwitchOutAbilities::
+; Natural Cure / Regenerator for the outgoing player mon (wLastPlayerMon).
+; Called right before RecallPlayerMon; edits the party struct directly.
+	ld a, [wPlayerAbility]
+	cp NATURAL_CURE
+	jr z, .natural_cure
+	cp REGENERATOR
+	ret nz
+	ld a, [wLastPlayerMon]
+	ld hl, wPartyMon1HP
+	jr DoRegenerator
+.natural_cure
+	ld a, [wLastPlayerMon]
+	ld hl, wPartyMon1Status
+	call GetPartyLocation
+	xor a
+	ld [hl], a
+	ret
+
+RunEnemySwitchOutAbilities::
+; Natural Cure / Regenerator for the outgoing enemy mon (wCurOTMon).
+; Called before AI_Switch swaps it out.
+	ld a, [wBattleMode]
+	dec a ; WILDMON?
+	ret z
+	ld a, [wEnemyAbility]
+	cp NATURAL_CURE
+	jr z, .natural_cure
+	cp REGENERATOR
+	ret nz
+	ld a, [wCurOTMon]
+	ld hl, wOTPartyMon1HP
+	jr DoRegenerator
+.natural_cure
+	ld a, [wCurOTMon]
+	ld hl, wOTPartyMon1Status
+	call GetPartyLocation
+	xor a
+	ld [hl], a
+	ret
+
+DoRegenerator:
+; a = party index, hl = partymon 1 HP base. Heals 1/3 max HP, capped.
+	call GetPartyLocation
+	; skip if fainted
+	ld a, [hli]
+	ld b, a
+	ld a, [hld]
+	or b
+	ret z
+	; de = max HP / 3
+	push hl
+	inc hl
+	inc hl ; -> max HP
+	xor a
+	ldh [hDividend + 0], a
+	ldh [hDividend + 1], a
+	ld a, [hli]
+	ldh [hDividend + 2], a
+	ld a, [hld]
+	ldh [hDividend + 3], a
+	ld a, 3
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	ld d, a
+	ldh a, [hQuotient + 3]
+	ld e, a
+	; bc = max HP
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	pop hl
+	; HP += de (big-endian in the struct)
+	inc hl ; -> HP low
+	ld a, [hl]
+	add e
+	ld [hld], a
+	ld a, [hl]
+	adc d
+	ld [hli], a
+	; cap at max HP: hl -> HP low, compare (high in a)
+	ld d, a
+	ld e, [hl]
+	ld a, d
+	cp b
+	jr c, .done
+	jr nz, .cap
+	ld a, e
+	cp c
+	jr c, .done
+	jr z, .done
+.cap
+	ld a, c
+	ld [hld], a
+	ld [hl], b
+	ret
+.done
+	ret
+
 BiteMoves:
 ; Strong Jaw: biting moves (canon list, restricted to moves in this game)
 	dw BITE
@@ -3234,6 +3931,68 @@ BiteMoves:
 	dw THUNDER_FANG
 	dw POISON_FANG
 	dw -1
+
+TryEnemyFlee_Core::
+; Relocated from core.asm ("Battle Core" was full). Carry = the wild
+; enemy flees. farcall preserves flags on return.
+	ld a, [wBattleMode]
+	dec a
+	jr nz, .Stay
+
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
+	jr nz, .Stay
+
+	ld a, [wEnemyWrapCount]
+	and a
+	jr nz, .Stay
+
+	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull); same bank now
+	call CheckPlayerTrapsEnemy
+	jr c, .Stay
+
+	ld a, [wEnemyMonStatus]
+	and 1 << FRZ | SLP
+	jr nz, .Stay
+
+	ld a, [wTempEnemyMonSpecies]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+	ld de, 2
+	ld hl, AlwaysFleeMons
+	call IsInHalfwordArray
+	jr c, .Flee
+
+	call BattleRandom
+	add a, a
+	jr nc, .Stay
+
+	push af
+	; de preserved from last call
+	ld hl, OftenFleeMons
+	call IsInHalfwordArray
+	pop de
+	jr c, .Flee
+
+	ld a, d
+	cp 20 percent ; double the value because of the previous add a, a
+	jr nc, .Stay
+
+	ld de, 2
+	ld hl, SometimesFleeMons
+	call IsInHalfwordArray
+	jr c, .Flee
+
+.Stay:
+	and a
+	ret
+
+.Flee:
+	scf
+	ret
+
+INCLUDE "data/wild/flee_mons.asm"
 
 TriageMoves:
 ; Triage: HP-restoring moves (canon list, restricted to moves in this game)
