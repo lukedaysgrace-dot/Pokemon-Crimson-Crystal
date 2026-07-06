@@ -116,9 +116,15 @@ BattleMultiHitRoll_Core:
 ; (A previous version did exactly that - the "skip inc" flag came back
 ; as random garbage, loop counts of 0 underflowed to 255 in endloop,
 ; and multi-hit moves pummeled the target until it fainted.)
-	; Skill Link always hits 5 times
+	; Skill Link always hits 5 times.
+	; MUST preserve bc: EndLoop keeps its hit-counter pointer in bc across
+	; this callfar, and farcall passes the callee's final bc back to the
+	; caller (clobbering b here wrote the hit count to a stray address -
+	; VRAM pixel garbage + "Hit 0 times!").
+	push bc
 	farcall GetTrueUserAbility_b
 	ld a, b
+	pop bc
 	cp SKILL_LINK
 	ld a, 4 ; loop count 4 (5 hits total)
 	jr z, .store
