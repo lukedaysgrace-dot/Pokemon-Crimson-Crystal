@@ -1228,10 +1228,10 @@ JohtoGrassWildMons:
 	dbw 3, BAXCALIBUR
 	dbw 3, ARCTIBAX
 	; day
-	dbw 3, PERRSERKER
-	dbw 3, PERRSERKER
-	dbw 3, PERRSERKER
-	dbw 3, PERRSERKER
+	dbw 3, PIKACHU
+	dbw 3, PIKACHU
+	dbw 3, PIKACHU
+	dbw 3, MIMIKYU
 	dbw 3, PERRSERKER
 	dbw 3, PERRSERKER
 	dbw 3, PERRSERKER
