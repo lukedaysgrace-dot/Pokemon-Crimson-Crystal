@@ -236,6 +236,9 @@ CheckPlayerTurn:
 	ld hl, FlinchedText
 	call StdBattleTextbox
 
+	; Steadfast: Speed rises when a flinch costs the turn
+	farcall RunSteadfast
+
 	call CantMove
 	jp EndTurn
 
@@ -473,6 +476,9 @@ CheckEnemyTurn:
 	res SUBSTATUS_FLINCHED, [hl]
 	ld hl, FlinchedText
 	call StdBattleTextbox
+
+	; Steadfast: Speed rises when a flinch costs the turn
+	farcall RunSteadfast
 
 	call CantMove
 	jp EndTurn
@@ -1289,6 +1295,8 @@ BattleCommand_Critical:
 	inc c
 
 .Tally:
+	; Super Luck: +1 crit stage
+	farcall AbilityCritLevelMods
 	ld hl, CriticalHitChances
 	ld b, 0
 	add hl, bc
@@ -4756,7 +4764,10 @@ BattleCommand_StatDownMessage::
 	inc b
 	call GetStatName
 	ld hl, .stat
-	jp BattleTextbox
+	call BattleTextbox
+	; Defiant / Competitive react to the drop
+	farcall RunStatDropReaction
+	ret
 
 .stat
 	text_far UnknownText_0x1c0ceb
@@ -5603,6 +5614,10 @@ BattleCommand_FlinchTarget:
 	and a
 	ret nz
 
+	; Inner Focus
+	farcall AbilityPreventsFlinch
+	ret c
+
 	; fallthrough
 
 FlinchTarget:
@@ -5644,6 +5659,9 @@ BattleCommand_HeldFlinch:
 	call BattleRandom
 	cp c
 	ret nc
+	; Inner Focus
+	farcall AbilityPreventsFlinch
+	ret c
 	call EndRechargeOpp
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
@@ -5652,48 +5670,8 @@ BattleCommand_HeldFlinch:
 
 BattleCommand_OHKO:
 ; ohko
-
-	call ResetDamage
-	ld a, [wTypeModifier]
-	and $7f
-	jr z, .no_effect
-	ld hl, wEnemyMonLevel
-	ld de, wBattleMonLevel
-	ld bc, wPlayerMoveStruct + MOVE_ACC
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_move_accuracy
-	push hl
-	ld h, d
-	ld l, e
-	pop de
-	ld bc, wEnemyMoveStruct + MOVE_ACC
-.got_move_accuracy
-	ld a, [de]
-	sub [hl]
-	jr c, .no_effect
-	add a
-	ld e, a
-	ld a, [bc]
-	add e
-	jr nc, .finish_ohko
-	ld a, $ff
-.finish_ohko
-	ld [bc], a
-	call BattleCommand_CheckHit
-	ld hl, wCurDamage
-	ld a, $ff
-	ld [hli], a
-	ld [hl], a
-	ld a, $2
-	ld [wCriticalHit], a
-	ret
-
-.no_effect
-	ld a, $ff
-	ld [wCriticalHit], a
-	ld a, $1
-	ld [wAttackMissed], a
+; Body in Battle Effect Overflow (adds Sturdy's OHKO immunity).
+	farcall BattleOHKO_Core
 	ret
 
 BattleCommand_CheckCharge:
@@ -5926,67 +5904,9 @@ INCLUDE "engine/battle/move_effects/focus_energy.asm"
 
 BattleCommand_Recoil:
 ; recoil
-
-	ld hl, wBattleMonMaxHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_hp
-	ld hl, wEnemyMonMaxHP
-.got_hp
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	ld d, a
-; get 1/4 damage or 1 HP, whichever is higher
-	ld a, [wCurDamage]
-	ld b, a
-	ld a, [wCurDamage + 1]
-	ld c, a
-	srl b
-	rr c
-	srl b
-	rr c
-	ld a, b
-	or c
-	jr nz, .min_damage
-	inc c
-.min_damage
-	ld a, [hli]
-	ld [wBuffer2], a
-	ld a, [hl]
-	ld [wBuffer1], a
-	dec hl
-	dec hl
-	ld a, [hl]
-	ld [wBuffer3], a
-	sub c
-	ld [hld], a
-	ld [wBuffer5], a
-	ld a, [hl]
-	ld [wBuffer4], a
-	sbc b
-	ld [hl], a
-	ld [wBuffer6], a
-	jr nc, .dont_ko
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld hl, wBuffer5
-	ld [hli], a
-	ld [hl], a
-.dont_ko
-	hlcoord 10, 9
-	ldh a, [hBattleTurn]
-	and a
-	ld a, 1
-	jr z, .animate_hp_bar
-	hlcoord 2, 2
-	xor a
-.animate_hp_bar
-	ld [wWhichHPBar], a
-	predef AnimateHPBar
-	call RefreshBattleHuds
-	ld hl, RecoilText
-	jp StdBattleTextbox
+; Body in Battle Effect Overflow (adds Rock Head / Magic Guard).
+	farcall BattleRecoil_Core
+	ret
 
 BattleCommand_ConfuseTarget:
 ; confusetarget
@@ -6649,6 +6569,12 @@ BattleCommand_TimeBasedHealContinue:
 	dec c ; double
 
 .Weather:
+	; Mega Sol: the user's heal acts as if the sun were shining
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MEGA_SOL
+	jr z, .sun_boost
+
 	ld a, [wBattleWeather]
 	and a
 	jr z, .Heal
@@ -6660,6 +6586,10 @@ BattleCommand_TimeBasedHealContinue:
 	jr z, .Heal
 	dec c
 	dec c
+	jr .Heal
+
+.sun_boost
+	inc c
 
 .Heal:
 	ld b, 0

@@ -75,6 +75,12 @@ TormentedText:
 	line "tormented!"
 	prompt
 
+MaxedAttackText:
+; Anger Point (printed from the holder's perspective)
+	text "<USER>"
+	line "maxed its ATTACK!"
+	prompt
+
 DisguiseDecoyText::
 	text "Its disguise"
 	line "served it as"

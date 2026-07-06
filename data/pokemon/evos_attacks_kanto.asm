@@ -1049,6 +1049,7 @@ PrimeapeEvosAttacks:
 	dbw 45, CROSS_CHOP
 	dbw 53, OUTRAGE
 	dbw 54, SCREECH
+	dbw 59, CLOSE_COMBAT
 	dbw 63, THRASH
 	db 0 ; no more level-up moves
 

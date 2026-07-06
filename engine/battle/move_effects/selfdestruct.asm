@@ -1,4 +1,8 @@
 BattleCommand_Selfdestruct:
+	; Damp (either side) stops the explosion; failuretext then ends the
+	; script before any damage, and the user keeps its HP
+	farcall AbilityPreventsSelfdestruct
+	ret c
 	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a

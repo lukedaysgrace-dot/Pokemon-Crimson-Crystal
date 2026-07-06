@@ -74,7 +74,13 @@ BattleRechargeNextTurn_Core:
 BattleSkipSunCharge_Core:
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
+	jr z, .skip_charge
+	; Mega Sol: the user's Solar Beam acts as if the sun were shining
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MEGA_SOL
 	ret nz
+.skip_charge
 	ld b, charge_command
 	callfar SkipToBattleCommand
 	ret
@@ -277,10 +283,39 @@ EndureFocusSashInEffect_Core:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a
-	jr z, .focus_sash
+	jr z, .sturdy
 	farcall BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .go_damage
+	ld b, 1
+	jr .go_damage
+.sturdy
+	; Sturdy (Gen 5): survives any hit taken at full HP
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STURDY
+	jr nz, .focus_sash
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .sturdy_got_hp
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
+.sturdy_got_hp
+	ld a, [de]
+	cp [hl]
+	jr nz, .focus_sash
+	inc de
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .focus_sash
+	farcall BattleCommand_FalseSwipe
+	ld b, 0
+	jr nc, .go_damage
+	; it would have been KO'd: banner + "endured the hit"
+	farcall ShowEnemyAbilityBannerBrief
 	ld b, 1
 	jr .go_damage
 .focus_sash
@@ -535,34 +570,8 @@ BattleParalyze_Core:
 	callfar PrintDoesntAffect
 	ret
 
-BattleCommand_EffectChance_Core:
-; Relocated from effect_commands.asm; adds Serene Grace (double chance)
-; and Sheer Force (suppress the secondary effect).
-	xor a
-	ld [wEffectFailed], a
-	callfar CheckSubstituteOpp
-	jr nz, .failed
-
-	ld hl, wPlayerMoveStruct + MOVE_CHANCE
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_move_chance
-	ld hl, wEnemyMoveStruct + MOVE_CHANCE
-.got_move_chance
-	ld b, [hl]
-	farcall AbilityEffectChanceMods
-	jr c, .failed ; Sheer Force
-
-	; BUG (vanilla): 1/256 chance to fail even for a 100% effect chance
-	call BattleRandom
-	cp b
-	ret c
-
-.failed
-	ld a, 1
-	ld [wEffectFailed], a
-	and a
-	ret
+; (BattleCommand_EffectChance_Core, BattleOHKO_Core and BattleRecoil_Core
+; live in the Abilities Engine bank - this bank was full.)
 
 BattleParalyzeTarget_Core:
 ; Relocated from effect_commands.asm. Adds the missing ability check

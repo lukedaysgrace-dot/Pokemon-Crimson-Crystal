@@ -2195,3 +2195,36 @@ DefenseCurl:
 	statupmessage
 	statupfailtext
 	endmove
+
+
+CloseCombat:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	switchturn
+	defensedown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	switchturn
+	specialdefensedown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	kingsrock
+	endmove
