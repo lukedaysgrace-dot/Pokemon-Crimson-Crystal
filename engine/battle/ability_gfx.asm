@@ -564,28 +564,19 @@ DismissAbilityOverlays::
 	push af
 	xor a
 	ldh [hBattleTurn], a
-	call .DismissSide
+	call DismissAbilityOverlaySide
 	ld a, 1
 	ldh [hBattleTurn], a
-	call .DismissSide
+	call DismissAbilityOverlaySide
 	pop af
 	ldh [hBattleTurn], a
 	pop af
 	ldh [hBGMapMode], a
-	; Scene tiles + the backed-up attributes are restored above, but the
-	; per-cell backup can be STALE: if a move animation (e.g. Dig) or an
-	; HP-bar update rewrote a battler's rows while the banner was live, the
-	; captured palette was already wrong, so those cells stayed stuck on
-	; the banner's text palette (the "blue" corruption on the player's HP
-	; label and sprite). Authoritatively rebuild the battle BG attributes
-	; from the real per-region layout - exactly what the move-animation and
-	; switch-in code do. The scene tiles are already back, so this only
-	; corrects palettes: no garbage flash.
-	ld b, SCGB_BATTLE_COLORS
-	call GetSGBLayout
-	; Restore rSVBK AFTER GetSGBLayout - it leaves a different WRAM bank
-	; selected, which corrupted later reads of wStringBuffer1 (the traced
-	; ability name printed as garbage).
+	; Scene tiles are restored above. Rebuild only the battle BG attribute
+	; map so stale banner attrs do not tint the HUD/sprites; do not run
+	; SCGB_BATTLE_COLORS here, since it also reloads mon palettes from temp
+	; species slots that can be stale during ability/move handoff.
+	call RestoreBattleAttrMapNoPalettes
 	pop af
 	ldh [rSVBK], a
 	pop bc
@@ -593,7 +584,58 @@ DismissAbilityOverlays::
 	pop hl
 	ret
 
-.DismissSide:
+RestoreBattleAttrMapNoPalettes:
+	ldh a, [hCGB]
+	and a
+	ret z
+	; Same battle regions as _CGB_FinishBattleScreenLayout, minus palette data.
+	hlcoord 0, 0, wAttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, PAL_BATTLE_BG_ENEMY_HP
+	call ByteFill
+	hlcoord 0, 4, wAttrMap
+	lb bc, 8, 10
+	ld a, PAL_BATTLE_BG_PLAYER
+	call .FillBox
+	hlcoord 10, 0, wAttrMap
+	lb bc, 7, 10
+	ld a, PAL_BATTLE_BG_ENEMY
+	call .FillBox
+	hlcoord 0, 0, wAttrMap
+	lb bc, 4, 10
+	ld a, PAL_BATTLE_BG_ENEMY_HP
+	call .FillBox
+	hlcoord 10, 7, wAttrMap
+	lb bc, 5, 10
+	ld a, PAL_BATTLE_BG_PLAYER_HP
+	call .FillBox
+	hlcoord 10, 11, wAttrMap
+	lb bc, 1, 9
+	ld a, PAL_BATTLE_BG_EXP
+	call .FillBox
+	hlcoord 0, 12, wAttrMap
+	ld bc, 6 * SCREEN_WIDTH
+	ld a, PAL_BATTLE_BG_TEXT
+	call ByteFill
+	farcall ApplyAttrMap
+	ret
+
+.FillBox:
+.row
+	push bc
+	push hl
+.col
+	ld [hli], a
+	dec c
+	jr nz, .col
+	pop hl
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .row
+	ret
+DismissAbilityOverlaySide:
 	; only if this side's banner is engaged (bank-1 bit at the anchor)
 	ldh a, [hBattleTurn]
 	and a
