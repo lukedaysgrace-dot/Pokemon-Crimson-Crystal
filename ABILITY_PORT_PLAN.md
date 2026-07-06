@@ -1,7 +1,64 @@
 # Ability System Port: Polished Crystal → Supreme Silver
 
-Status doc, updated 2026-07-05 (session 6, see bottom). Phases 1-2 complete,
+Status doc, updated 2026-07-05 (sessions 6-7). Phases 1-2 complete,
 Phase 3-4 substantially complete, Phase 5 not started.
+
+## Session 7 (2026-07-05): the remaining blank abilities (NOT built/tested)
+Implemented: Mega Sol (custom: the user's moves act as if Sunny Day were
+up - Fire x1.5/Water x0.5 with rain compensation in RunDamageModifiers,
+Solar Beam charge skip in BattleSkipSunCharge_Core, sun-tier
+Morning Sun/Synthesis/Moonlight healing), Sniper (x1.5 crit damage),
+Rivalry (x1.25 same gender / x0.75 opposite, via new CheckGenderMatchup;
+genderless = no change), Tough Claws (x1.3 contact), Iron Fist (x1.2,
+PunchMoves), Sharpness (x1.5, SliceMoves), Mega Launcher (x1.5,
+PulseMoves - only DARK_PULSE exists), Reckless (x1.2 recoil + jump-kick
+effects), Adaptability (x1.33 on STAB = x2 total), Steely Spirit (x1.5
+Steel), Sand Force (x1.3 Rock/Ground/Steel in sand - the immunity already
+worked), Fluffy (half contact taken, double Fire taken), Super Luck (+1
+crit stage via AbilityCritLevelMods at .Tally), Anger Point (crit taken ->
+Attack maxed, silent RaiseStat loop + MaxedAttackText), Steadfast (+1 Spe
+when a flinch costs the turn; hooks at both CheckTurn flinch sites),
+Inner Focus now actually blocks flinches (FlinchTarget + kingsrock),
+Defiant/Competitive (+2 Atk/SpA via RunStatDropReaction at the end of
+StatDownMessage - procs on Intimidate too), Sturdy (Gen 5 full-HP
+survival in EndureFocusSashInEffect_Core using the False Swipe cap +
+"endured the hit" text, plus classic OHKO immunity in relocated
+BattleOHKO_Core), Rock Head + Magic Guard recoil immunity (relocated
+BattleRecoil_Core), Poison Heal + Magic Guard psn/brn chip immunity
+(RunResidualStatusAbilities hooked in ResidualDamage), Damp (blocks
+Selfdestruct/Explosion from either side; failuretext ends the script,
+user keeps HP), Perish Body (contact -> both sides perish in 3, canon
+no-op if attacker already perishing), Soundproof/Bulletproof/Wind Rider
+(move-list blockers in the nullification path: SoundMoves/BallBombMoves/
+WindMoves; Wind Rider also gets Atk+1), Mind's Eye (accuracy-drop
+protection alongside Keen Eye - the Ghost-hitting part is NOT done).
+
+Relocations to keep banks under 0x4000: OHKO + Recoil bodies ->
+Battle Effect Overflow (EC net change is negative again).
+
+Known limitations: Armor Tail reads base priority (misses Prankster
+boosts); Soundproof blocks status sound moves only via... actually only
+damaging sound moves through the nullification path (Growl/Sing land -
+add an accuracy-hook block later if wanted); Sturdy shows "endured the
+hit" rather than a bespoke message; Anger Point loops silent +2 raises;
+Mega Sol doesn't apply sun's Thunder accuracy nerf; Rivalry treats
+"either genderless" as neutral (canon); Tangling Hair/on-hit stat procs
+now clear wAttackMissed/wEffectFailed after running so they can't eat a
+later secondary effect of the same move.
+
+Still not implemented (hard tier, need real engine surgery): Contrary,
+Unaware, Parental Bond, Pickpocket, Scrappy's Ghost-hitting (and Mind's
+Eye's), Light Metal (no weight mechanics exist), Analytic edge cases.
+
+Test additions: crit a Primeape (Attack maxes once, not per hit), Focus
+Punch-less flinch tests via Headbutt + Steadfast/Inner Focus, Explosion
+vs Damp both directions (user must NOT faint), OHKO + strong hits vs
+full-HP Sturdy, Double-Edge with Rock Head (no recoil), Toxic'd Poison
+Heal mon (heals 1/8, no damage), Growl vs Defiant (+2 Atk after the
+fall message), Intimidate vs Defiant, Snore/Bug Buzz vs Soundproof,
+Sludge Bomb vs Bulletproof, Gust vs Wind Rider (blocked + Atk+1),
+contact vs Perish Body (both counters tick), Solar Beam + Fire/Water
+damage + Morning Sun on a Mega Sol Meganium in clear/rain weather.
 
 ## Session 6 (2026-07-05): 21 abilities DELETED, 19 abilities ADDED, audit fixes
 (NOT built or emulator-tested — the sandbox could not mount the repo this

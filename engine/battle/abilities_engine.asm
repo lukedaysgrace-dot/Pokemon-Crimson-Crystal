@@ -1103,8 +1103,7 @@ RunNullificationAbilities::
 	ld a, [hli]
 	cp -1
 	jr nz, .check
-	and a ; no match: clear carry
-	ret
+	jr .list_abilities ; type table exhausted; try move-list blockers
 .check
 	cp b
 	jr nz, .next
@@ -1141,6 +1140,54 @@ RunNullificationAbilities::
 	ld a, 1
 	ld [wAttackMissed], a
 	scf ; nullified
+	ret
+
+.list_abilities
+	; Soundproof / Bulletproof / Wind Rider block whole move classes
+	ld a, b
+	push af
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	pop af
+	ld de, 2
+	cp SOUNDPROOF
+	ld hl, SoundMoves
+	jr z, .try_block
+	cp BULLETPROOF
+	ld hl, BallBombMoves
+	jr z, .try_block
+	cp WIND_RIDER
+	jr nz, .no_block
+	; Wind Rider also raises Attack when it blocks
+	ld hl, WindMoves
+	call IsInHalfwordArray
+	jr nc, .no_block
+	ld hl, AbsorbRaiseAttack
+	jr .do_block
+.try_block
+	call IsInHalfwordArray
+	jr nc, .no_block
+	ld hl, AbsorbNothing
+.do_block
+	xor a
+	ld [wTypeModifier], a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+	call SwitchTurn
+	push hl
+	call ShowAbilityBannerBrief
+	pop hl
+	call _hl_
+	call SwitchTurn
+	ld a, 1
+	ld [wAttackMissed], a
+	scf ; blocked
+	ret
+.no_block
+	and a ; nc
 	ret
 
 NullificationAbilities:
@@ -1385,6 +1432,28 @@ RunDamageModifiers:
 	jp z, .analytic
 	cp SHEER_FORCE
 	jp z, .sheer_force
+	cp SNIPER
+	jp z, .sniper
+	cp RIVALRY
+	jp z, .rivalry
+	cp TOUGH_CLAWS
+	jp z, .tough_claws
+	cp IRON_FIST
+	jp z, .iron_fist
+	cp SHARPNESS
+	jp z, .sharpness
+	cp RECKLESS
+	jp z, .reckless
+	cp ADAPTABILITY
+	jp z, .adaptability
+	cp STEELY_SPIRIT
+	jp z, .steely_spirit
+	cp MEGA_LAUNCHER
+	jp z, .mega_launcher
+	cp MEGA_SOL
+	jp z, .mega_sol
+	cp SAND_FORCE
+	jp z, .sand_force
 	cp HUGE_POWER
 	jr z, .huge_power
 	cp GUTS
@@ -1504,6 +1573,8 @@ RunDamageModifiers:
 	jr z, .filter
 	cp DRY_SKIN
 	jr z, .dry_skin
+	cp FLUFFY
+	jr z, .fluffy
 	ret
 
 .thick_fat
@@ -1552,6 +1623,18 @@ RunDamageModifiers:
 	cp FIRE
 	ret nz
 	jp DamageX1_25
+
+.fluffy
+	; halves contact damage, but doubles Fire damage taken (both can apply)
+	call CheckContactMove
+	jr nc, .fluffy_fire
+	call HalveDamage
+.fluffy_fire
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	ret nz
+	jp DoubleDamage
 
 .strong_jaw
 	; x1.5 for biting moves
@@ -1617,6 +1700,159 @@ RunDamageModifiers:
 	jp z, .defender
 	ld a, 130
 	call DamagePercent
+	jp .defender
+
+.sniper
+	; x1.5 damage on critical hits
+	ld a, [wCriticalHit]
+	and a
+	jp z, .defender
+	call DamageX1_5
+	jp .defender
+
+.rivalry
+	; x1.25 vs the same gender, x0.75 vs the opposite gender
+	push de
+	call CheckGenderMatchup
+	pop de
+	and a
+	jr z, .rivalry_boost
+	dec a
+	jp nz, .defender ; genderless involved: no change
+	call DamageX0_75
+	jp .defender
+.rivalry_boost
+	call DamageX1_25
+	jp .defender
+
+.tough_claws
+	; x1.3 for contact moves
+	call CheckContactMove
+	jp nc, .defender
+	ld a, 130
+	call DamagePercent
+	jp .defender
+
+.iron_fist
+	; x1.2 for punching moves
+	ld hl, PunchMoves
+	call CurrentMoveInList
+	jp nc, .defender
+	call DamageX1_2
+	jp .defender
+
+.sharpness
+	; x1.5 for slicing moves
+	ld hl, SliceMoves
+	call CurrentMoveInList
+	jp nc, .defender
+	call DamageX1_5
+	jp .defender
+
+.mega_launcher
+	; x1.5 for pulse moves
+	ld hl, PulseMoves
+	call CurrentMoveInList
+	jp nc, .defender
+	call DamageX1_5
+	jp .defender
+
+.reckless
+	; x1.2 for recoil and crash-damage moves
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_RECOIL_HIT
+	jr z, .reckless_boost
+	cp EFFECT_JUMP_KICK
+	jp nz, .defender
+.reckless_boost
+	call DamageX1_2
+	jp .defender
+
+.adaptability
+	; STAB becomes x2 (an extra x1.33 on top of the normal x1.5)
+	push hl
+	ld hl, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .adapt_got_types
+	ld hl, wEnemyMonType1
+.adapt_got_types
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp [hl]
+	inc hl
+	jr z, .adapt_boost
+	cp [hl]
+	jr z, .adapt_boost
+	pop hl
+	jp .defender
+.adapt_boost
+	pop hl
+	ld a, 133
+	call DamagePercent
+	jp .defender
+
+.steely_spirit
+	; x1.5 for Steel-type moves
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp STEEL
+	jp nz, .defender
+	call DamageX1_5
+	jp .defender
+
+.sand_force
+	; x1.3 for Rock/Ground/Steel moves in a sandstorm
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jp nz, .defender
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp ROCK
+	jr z, .sand_force_boost
+	cp GROUND
+	jr z, .sand_force_boost
+	cp STEEL
+	jp nz, .defender
+.sand_force_boost
+	ld a, 130
+	call DamagePercent
+	jp .defender
+
+.mega_sol
+	; the user's moves act as if Sunny Day were active:
+	; Fire x1.5, Water x0.5 (compensating if rain is really up)
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jp z, .defender ; real sun already applied
+	cp WEATHER_RAIN
+	jr z, .mega_sol_rain
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jr z, .mega_sol_fire
+	cp WATER
+	jp nz, .defender
+	call HalveDamage
+	jp .defender
+.mega_sol_fire
+	call DamageX1_5
+	jp .defender
+.mega_sol_rain
+	; rain already halved Fire / boosted Water - convert to sun's numbers
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jr z, .mega_sol_rain_fire
+	cp WATER
+	jp nz, .defender
+	ld a, 33 ; x1.5 rain boost -> x0.5 net
+	call DamagePercent
+	jp .defender
+.mega_sol_rain_fire
+	call DoubleDamage
+	call DamageX1_5 ; x0.5 rain cut -> x1.5 net
 	jp .defender
 
 ApplyHeldItemDamageModifiers:
@@ -1954,7 +2190,10 @@ AbilityProtectsStatDrop::
 	jr .no
 .not_atk
 	cp KEEN_EYE
+	jr z, .check_acc
+	cp MINDS_EYE
 	jr nz, .not_acc
+.check_acc
 	ld a, c
 	cp ACCURACY
 	jr z, .protected
@@ -2443,6 +2682,8 @@ RunContactAbilitiesHook::
 	jp z, .berserk
 	cp CURSED_BODY
 	jp z, .cursed_body
+	cp ANGER_POINT
+	jp z, .anger_point
 .contact
 	call CheckContactMove
 	ret nc
@@ -2478,6 +2719,10 @@ RunContactAbilitiesHook::
 	call StatUpAbility
 	call EndAbility
 	call SwitchTurn
+	; don't leak a maxed-stat failure into the rest of the move script
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
 	jr .contact
 
 .weak_armor
@@ -2498,6 +2743,10 @@ RunContactAbilitiesHook::
 	ld b, $10 | SPEED ; sharply (+2)
 	call AbilityRaiseStat
 	call SwitchTurn
+	; don't leak a failed stat change into the rest of the move script
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
 	jp .contact
 
 .berserk
@@ -2574,6 +2823,14 @@ RunContactAbilitiesHook::
 	call CursedBodyEffect
 	jp .contact
 
+.anger_point
+	; a critical hit maxes the holder's Attack
+	ld a, [wCriticalHit]
+	and a
+	jp z, .contact
+	call AngerPointEffect
+	jp .contact
+
 .aftermath
 	; the fainted defender's Aftermath hurts a contact attacker (1/4 max HP)
 	call GetOpponentAbility
@@ -2589,6 +2846,39 @@ RunContactAbilitiesHook::
 	farcall SubtractHPFromUser
 	ld hl, IsHurtText
 	jp StdBattleTextbox
+
+AngerPointEffect:
+; Turn = attacker. Maximizes the crit victim's Attack.
+	call SwitchTurn ; holder's perspective
+	; already maxed?
+	ld hl, wPlayerStatLevels + ATTACK
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_levels
+	ld hl, wEnemyStatLevels + ATTACK
+.got_levels
+	ld a, [hl]
+	cp MAX_STAT_LEVEL
+	jr nc, .done
+	call ShowAbilityBannerBrief
+.raise_loop
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld b, $10 | ATTACK
+	farcall RaiseStat
+	ld a, [wFailedMessage]
+	and a
+	jr z, .raise_loop
+	; clear the cap-failure state RaiseStat left behind
+	xor a
+	ld [wFailedMessage], a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld hl, MaxedAttackText
+	call StdBattleTextbox
+.done
+	jp SwitchTurn
 
 CursedBodyEffect:
 ; Turn = attacker. Disables the attacker's current move for 4 turns.
@@ -2663,6 +2953,7 @@ TargetContactAbilities:
 	dbw TANGLING_HAIR, TanglingHairAbility
 	dbw CUTE_CHARM, CuteCharmAbility
 	dbw IRON_BARBS, IronBarbsAbility
+	dbw PERISH_BODY, PerishBodyAbility
 	dbw -1, -1
 
 CheckContactMove::
@@ -2917,7 +3208,47 @@ TanglingHairAbility:
 	ld [wEffectFailed], a
 	ld b, SPEED
 	call AbilityLowerOppStat
+	; don't leak a failed drop into the rest of the move script
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
 	jp EndAbility
+
+PerishBodyAbility:
+; Defender contact ability: both mons will faint in three turns
+; (unless the attacker is already perishing). Turn = defender.
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_PERISH, a
+	ret nz
+	call ShowAbilityBannerBrief
+	; doom the attacker
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVarAddr
+	set SUBSTATUS_PERISH, [hl]
+	ld hl, wPlayerPerishCount
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .got_attacker_count ; holder = enemy -> attacker = player
+	ld hl, wEnemyPerishCount
+.got_attacker_count
+	ld [hl], 4
+	; the holder is doomed too (unless already counting down)
+	ld a, BATTLE_VARS_SUBSTATUS1
+	call GetBattleVarAddr
+	bit SUBSTATUS_PERISH, [hl]
+	jr nz, .text
+	set SUBSTATUS_PERISH, [hl]
+	ld hl, wEnemyPerishCount
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .got_holder_count
+	ld hl, wPlayerPerishCount
+.got_holder_count
+	ld [hl], 4
+.text
+	ld hl, StartPerishText
+	jp StdBattleTextbox
 
 ContactChance:
 ; carry 30% of the time
@@ -3920,6 +4251,404 @@ DoRegenerator:
 	ret
 .done
 	ret
+
+; ==== Session 7 additions ================================================
+
+CurrentMoveInList:
+; hl = -1-terminated dw move-index list. Carry if the current move is in
+; the list. Preserves de.
+	push de
+	push hl
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	pop hl
+	ld de, 2
+	call IsInHalfwordArray
+	pop de
+	ret
+
+AbilityCritLevelMods::
+; c = crit stage. Super Luck adds one stage (capped at the table limit).
+	call GetTrueUserAbility
+	cp SUPER_LUCK
+	ret nz
+	inc c
+	ld a, c
+	cp 5
+	ret c
+	ld c, 4
+	ret
+
+AbilityPreventsFlinch::
+; Carry if the defender's ability blocks flinching (Inner Focus).
+; Canon: no message is shown.
+	call GetOpponentIgnorableAbility
+	cp INNER_FOCUS
+	jr z, .block
+	and a ; nc
+	ret
+.block
+	scf
+	ret
+
+RunSteadfast::
+; Called when the turn holder loses its action to a flinch.
+	call GetTrueUserAbility
+	cp STEADFAST
+	ret nz
+	call BeginAbility
+	ld b, SPEED
+	call StatUpAbility
+	call EndAbility
+	; a maxed Speed shouldn't leave failure flags set mid-turn
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld [wFailedMessage], a
+	ret
+
+RunStatDropReaction::
+; Called after a successful stat-drop message. If the victim (the turn
+; holder's opponent) has Defiant/Competitive, its Atk/SpA sharply rises.
+	ld a, [wFailedMessage]
+	and a
+	ret nz
+	call GetOpponentAbility
+	cp DEFIANT
+	ld b, $10 | ATTACK
+	jr z, .proc
+	cp COMPETITIVE
+	ld b, $10 | SP_ATTACK
+	ret nz
+.proc
+	push bc
+	call SwitchTurn
+	call BeginAbility
+	pop bc
+	call StatUpAbility
+	call EndAbility
+	call SwitchTurn
+	; restore the caller's success state (the drop DID land)
+	xor a
+	ld [wFailedMessage], a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ret
+
+AbilityPreventsSelfdestruct::
+; Carry if Damp (on either side) blocks the user's selfdestructing move.
+; Sets the missed/failed flags so the rest of the script fizzles.
+	call GetOpponentIgnorableAbility
+	cp DAMP
+	jr z, .blocked_opp
+	call GetTrueUserAbility
+	cp DAMP
+	jr z, .blocked_self
+	and a ; nc
+	ret
+.blocked_opp
+	call ShowEnemyAbilityBannerBrief
+	jr .fail
+.blocked_self
+	call ShowAbilityBannerBrief
+.fail
+	ld a, 1
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	scf
+	ret
+
+GetOppIgnorableAbility_b::
+; farcall-safe wrapper: the opponent's effective (Mold Breaker-ignorable)
+; ability, returned in b.
+	call GetOpponentIgnorableAbility
+	ld b, a
+	ret
+
+RunResidualStatusAbilities::
+; Called from ResidualDamage before poison/burn chip is applied.
+; Carry = skip the damage: Magic Guard ignores it, Poison Heal replaces
+; it with healing.
+	call GetTrueUserAbility
+	cp MAGIC_GUARD
+	jr z, .no_damage
+	cp POISON_HEAL
+	jr z, .poison_heal
+	and a ; nc
+	ret
+.poison_heal
+	; heals 1/8 max HP while poisoned; burn damages normally
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and 1 << PSN
+	ret z ; nc
+	call CheckUserFullHP
+	jr z, .no_damage
+	call ShowAbilityBannerBrief
+	farcall GetEighthMaxHP
+	call AbilityRestoreUserHP
+	ld hl, RegainedHealthText
+	call StdBattleTextbox
+	call EndAbility
+.no_damage
+	scf
+	ret
+
+CheckGenderMatchup:
+; For the two active battlers: a = 0 if same gender, 1 if opposite
+; genders, 2 if either is genderless/unknown. (Same setup as
+; CheckOppositeGender in attract.asm, which lives in another bank.)
+	ld a, MON_SPECIES
+	call BattlePartyAttr
+	ld a, [hl]
+	ld [wCurPartySpecies], a
+	ld a, [wCurBattleMon]
+	ld [wCurPartyMon], a
+	xor a
+	ld [wMonType], a
+	farcall GetGender
+	jr c, .genderless
+	ld b, 1
+	jr nz, .got_gender
+	dec b
+.got_gender
+	push bc
+	ld a, [wTempEnemyMonSpecies]
+	ld [wCurPartySpecies], a
+	ld hl, wEnemyMonDVs
+	ld a, [wEnemySubStatus5]
+	bit SUBSTATUS_TRANSFORMED, a
+	jr z, .not_transformed
+	ld hl, wEnemyBackupDVs
+.not_transformed
+	ld a, [hli]
+	ld [wTempMonDVs], a
+	ld a, [hl]
+	ld [wTempMonDVs + 1], a
+	ld a, 3
+	ld [wMonType], a
+	farcall GetGender
+	pop bc
+	jr c, .genderless
+	ld a, 1
+	jr nz, .got_enemy_gender
+	dec a
+.got_enemy_gender
+	xor b ; 0 = same, 1 = opposite
+	ret
+.genderless
+	ld a, 2
+	ret
+
+BattleCommand_EffectChance_Core::
+; Relocated from effect_commands.asm; adds Serene Grace (double chance)
+; and Sheer Force (suppress the secondary effect).
+	xor a
+	ld [wEffectFailed], a
+	callfar CheckSubstituteOpp
+	jr nz, .failed
+
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.got_move_chance
+	ld b, [hl]
+	call AbilityEffectChanceMods
+	jr c, .failed ; Sheer Force
+
+	; BUG (vanilla): 1/256 chance to fail even for a 100% effect chance
+	call BattleRandom
+	cp b
+	ret c
+
+.failed
+	ld a, 1
+	ld [wEffectFailed], a
+	and a
+	ret
+
+BattleOHKO_Core::
+; Relocated from effect_commands.asm; adds Sturdy's OHKO immunity.
+	callfar ResetDamage
+	ld a, [wTypeModifier]
+	and $7f
+	jr z, .no_effect
+	; Sturdy is immune to OHKO moves (classic effect)
+	call GetOpponentIgnorableAbility
+	cp STURDY
+	jr z, .sturdy
+	ld hl, wEnemyMonLevel
+	ld de, wBattleMonLevel
+	ld bc, wPlayerMoveStruct + MOVE_ACC
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move_accuracy
+	push hl
+	ld h, d
+	ld l, e
+	pop de
+	ld bc, wEnemyMoveStruct + MOVE_ACC
+.got_move_accuracy
+	ld a, [de]
+	sub [hl]
+	jr c, .no_effect
+	add a
+	ld e, a
+	ld a, [bc]
+	add e
+	jr nc, .finish_ohko
+	ld a, $ff
+.finish_ohko
+	ld [bc], a
+	callfar BattleCommand_CheckHit
+	ld hl, wCurDamage
+	ld a, $ff
+	ld [hli], a
+	ld [hl], a
+	ld a, $2
+	ld [wCriticalHit], a
+	ret
+
+.sturdy
+	call ShowEnemyAbilityBannerBrief
+.no_effect
+	ld a, $ff
+	ld [wCriticalHit], a
+	ld a, $1
+	ld [wAttackMissed], a
+	ret
+
+BattleRecoil_Core::
+; Relocated from effect_commands.asm; adds Rock Head / Magic Guard.
+	call GetTrueUserAbility
+	cp ROCK_HEAD
+	ret z
+	cp MAGIC_GUARD
+	ret z
+	ld hl, wBattleMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld hl, wEnemyMonMaxHP
+.got_hp
+; get 1/4 damage or 1 HP, whichever is higher
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	ld c, a
+	srl b
+	rr c
+	srl b
+	rr c
+	ld a, b
+	or c
+	jr nz, .min_damage
+	inc c
+.min_damage
+	ld a, [hli]
+	ld [wBuffer2], a
+	ld a, [hl]
+	ld [wBuffer1], a
+	dec hl
+	dec hl
+	ld a, [hl]
+	ld [wBuffer3], a
+	sub c
+	ld [hld], a
+	ld [wBuffer5], a
+	ld a, [hl]
+	ld [wBuffer4], a
+	sbc b
+	ld [hl], a
+	ld [wBuffer6], a
+	jr nc, .dont_ko
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wBuffer5
+	ld [hli], a
+	ld [hl], a
+.dont_ko
+	hlcoord 10, 9
+	ldh a, [hBattleTurn]
+	and a
+	ld a, 1
+	jr z, .animate_hp_bar
+	hlcoord 2, 2
+	xor a
+.animate_hp_bar
+	ld [wWhichHPBar], a
+	predef AnimateHPBar
+	call RefreshBattleHuds
+	ld hl, RecoilText
+	jp StdBattleTextbox
+
+PunchMoves:
+; Iron Fist: punching moves in this game
+	dw COMET_PUNCH
+	dw MEGA_PUNCH
+	dw FIRE_PUNCH
+	dw ICE_PUNCH
+	dw THUNDERPUNCH
+	dw DIZZY_PUNCH
+	dw MACH_PUNCH
+	dw DYNAMICPUNCH
+	dw SHADOW_PUNCH
+	dw BULLET_PUNCH
+	dw DRAIN_PUNCH
+	dw -1
+
+SliceMoves:
+; Sharpness: slicing moves in this game
+	dw RAZOR_WIND
+	dw CUT
+	dw RAZOR_LEAF
+	dw SLASH
+	dw FURY_CUTTER
+	dw AIR_SLASH
+	dw LEAF_BLADE
+	dw X_SCISSOR
+	dw -1
+
+PulseMoves:
+; Mega Launcher: aura/pulse moves in this game
+	dw DARK_PULSE
+	dw -1
+
+SoundMoves:
+; Soundproof: sound-based moves in this game
+	dw GROWL
+	dw ROAR
+	dw SING
+	dw SUPERSONIC
+	dw SCREECH
+	dw SNORE
+	dw PERISH_SONG
+	dw BUG_BUZZ
+	dw -1
+
+BallBombMoves:
+; Bulletproof: ball and bomb moves in this game
+	dw EGG_BOMB
+	dw BARRAGE
+	dw SLUDGE_BOMB
+	dw OCTAZOOKA
+	dw ZAP_CANNON
+	dw SHADOW_BALL
+	dw -1
+
+WindMoves:
+; Wind Rider: wind moves in this game
+	dw GUST
+	dw RAZOR_WIND
+	dw WHIRLWIND
+	dw TWISTER
+	dw -1
 
 BiteMoves:
 ; Strong Jaw: biting moves (canon list, restricted to moves in this game)

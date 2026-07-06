@@ -164,3 +164,4 @@ MoveEffectsPointers:
 	dw Hail
 	dw UTurn
 	dw DracoMeteor
+	dw CloseCombat

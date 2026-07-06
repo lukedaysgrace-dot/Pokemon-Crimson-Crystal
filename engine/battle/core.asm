@@ -1009,6 +1009,14 @@ ResidualDamage:
 	and 1 << PSN | 1 << BRN
 	jr z, .did_psn_brn
 
+	; Magic Guard ignores the chip; Poison Heal turns poison into healing
+	farcall RunResidualStatusAbilities
+	jr c, .did_psn_brn
+
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and 1 << PSN | 1 << BRN
+
 	ld hl, HurtByPoisonText
 	ld de, ANIM_PSN
 	and 1 << BRN
