@@ -147,3 +147,4 @@ AbilityNames::
 	db "THERMAL EXCHANGE@"
 	db "TRIAGE@"
 	db "IRON BARBS@"
+	db "POISON PUPPETEER@"

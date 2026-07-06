@@ -147,6 +147,7 @@ AbilityDescriptions::
 	dw ThermalExchangeDescription
 	dw TriageDescription
 	dw IronBarbsDescription
+	dw PoisonPuppeteerDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -870,4 +871,9 @@ TriageDescription:
 IronBarbsDescription:
 	text "Hurts foes that"
 	next "make contact."
+	done
+
+PoisonPuppeteerDescription:
+	text "Foes it poisons"
+	next "become confused."
 	done

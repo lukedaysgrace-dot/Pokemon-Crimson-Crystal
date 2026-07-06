@@ -1538,6 +1538,14 @@ CheckTypeMatchup:
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .End
+	; Scrappy / Mind's Eye pierce Ghost immunities here too - without
+	; this, BattleCommand_Stab's .end merge (which reads wTypeMatchup
+	; from this function) zeroed the modifier the damage loop had just
+	; pierced. (push hl: the farcall macro clobbers the table pointer)
+	push hl
+	farcall AbilityPiercesGhosts
+	pop hl
+	jr c, .End
 	jr .TypesLoop
 
 .Next:

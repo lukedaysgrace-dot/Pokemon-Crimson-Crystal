@@ -312,7 +312,7 @@ PokedexDataPointerTable:
 	dba ArctibaxPokedexEntry
 	dba BaxcaliburPokedexEntry
 	dba CharcadetPokedexEntry
-	dba ArmaroguePokedexEntry
+	dba ArmarougePokedexEntry
 	dba CeruledgePokedexEntry
 	dba SylveonPokedexEntry
 	dba RookideePokedexEntry

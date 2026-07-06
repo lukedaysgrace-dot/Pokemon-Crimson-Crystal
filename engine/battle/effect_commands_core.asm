@@ -559,6 +559,10 @@ BattleParalyze_Core:
 	farcall ApplyPrzEffectOnSpeed
 	call UpdateBattleHuds
 	callfar PrintParalyze
+	; Synchronize passes move-inflicted paralysis back (this body covers
+	; the pure status moves - Thunder Wave/Glare/Stun Spore - which were
+	; the one paralysis path missing the hook)
+	farcall RunSynchronizePar
 	farcall UseHeldStatusHealingItem
 	ret
 

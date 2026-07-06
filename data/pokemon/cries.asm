@@ -317,7 +317,7 @@ PokemonCries::
 	mon_cry CRY_CYNDAQUIL,   $080,  $140 ; ARCTIBAX
 	mon_cry CRY_RAIKOU,     -$140,  $180 ; BAXCALIBUR
 	mon_cry CRY_CHARMANDER,  $120,  $0d0 ; CHARCADET
-	mon_cry CRY_TYPHLOSION,  $100,  $180 ; ARMAROGUE
+	mon_cry CRY_TYPHLOSION,  $100,  $180 ; ARMAROUGE
 	mon_cry CRY_HOOTHOOT,    $080,  $1c0 ; CERULEDGE
 	mon_cry CRY_TOGETIC,     $040,  $150 ; SYLVEON
 	mon_cry CRY_PIDGEY,      $0c0,  $088 ; ROOKIDEE

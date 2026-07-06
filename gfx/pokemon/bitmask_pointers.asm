@@ -311,7 +311,7 @@ BitmasksPointers:
 	dw ArctibaxBitmasks
 	dw BaxcaliburBitmasks
 	dw CharcadetBitmasks
-	dw ArmarogueBitmasks
+	dw ArmarougeBitmasks
 	dw CeruledgeBitmasks
 	dw SylveonBitmasks
 	dw RookideeBitmasks

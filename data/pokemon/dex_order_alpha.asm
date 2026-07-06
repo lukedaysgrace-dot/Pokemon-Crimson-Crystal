@@ -125,7 +125,7 @@ AlphabeticalPokedexOrder:
 	dw YANMEGA
 	dw ARCTIBAX
 	dw ARMALDO
-	dw ARMAROGUE
+	dw ARMAROUGE
 	dw BAXCALIBUR
 	dw CERULEDGE
 	dw CHARCADET

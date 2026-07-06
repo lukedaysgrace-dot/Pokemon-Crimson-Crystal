@@ -320,7 +320,7 @@ MonMenuIconPals:
 	icon_pals BLUE,   GRAY   ; ARCTIBAX
 	icon_pals BLUE,   GRAY   ; BAXCALIBUR
 	icon_pals RED,    BLUE   ; CHARCADET
-	icon_pals RED,    PURPLE ; ARMAROGUE
+	icon_pals RED,    PURPLE ; ARMAROUGE
 	icon_pals BLUE,   PURPLE ; CERULEDGE
 	icon_pals PINK,   BLUE   ; SYLVEON
 	icon_pals BLUE,   GRAY   ; ROOKIDEE

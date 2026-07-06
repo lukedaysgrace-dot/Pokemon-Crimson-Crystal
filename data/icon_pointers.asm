@@ -313,7 +313,7 @@ IconPointers:
 	dba ArctibaxIcon
 	dba BaxcaliburIcon
 	dba CharcadetIcon
-	dba ArmarogueIcon
+	dba ArmarougeIcon
 	dba CeruledgeIcon
 	dba SylveonIcon
 	dba RookideeIcon

@@ -637,8 +637,8 @@ PokemonPicPointers::
 	dba BaxcaliburBackpic
 	dba CharcadetFrontpic
 	dba CharcadetBackpic
-	dba ArmarogueFrontpic
-	dba ArmarogueBackpic
+	dba ArmarougeFrontpic
+	dba ArmarougeBackpic
 	dba CeruledgeFrontpic
 	dba CeruledgeBackpic
 	dba SylveonFrontpic

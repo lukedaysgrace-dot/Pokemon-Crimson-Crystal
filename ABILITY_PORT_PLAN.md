@@ -1,7 +1,112 @@
 # Ability System Port: Polished Crystal → Supreme Silver
 
-Status doc, updated 2026-07-05 (sessions 6-7). Phases 1-2 complete,
+Status doc, updated 2026-07-06 (session 8). Phases 1-2 complete,
 Phase 3-4 substantially complete, Phase 5 not started.
+
+## Session 8 (2026-07-06): full-ability audit, 5 fixes (NOT built - repo
+mount unavailable to the sandbox again; `make` first, see bank note)
+Audited every ability path end-to-end (engine + all hook sites + flags
+table + relocated cores). Gale Wings and Disguise intentionally left
+pre-nerf (X/Y Gale Wings, S/M no-HP-loss Disguise). Filter/Solid Rock
+CONFIRMED already correct per Lucas's spec: wTypeModifier >= 40 (4x)
+-> x0.5, otherwise super effective (2x) -> x0.75 (RunDamageModifiers
+.filter; constants EFFECTIVE=10/SUPER_EFFECTIVE=20 check out).
+
+FIXED:
+1. SCRAPPY/MIND'S EYE WERE STILL BROKEN: the session-7b hook pierced the
+   Ghost rows in BattleCommand_Stab's damage loop, but Stab's .end then
+   merges wTypeModifier from BattleCheckTypeMatchup/CheckTypeMatchup,
+   which had NO hook -> final modifier came back 0: checkfaint's
+   contact/held-item hook early-outed, "not very effective" printed,
+   Tinted Lens doubled the hit. Same push-hl/farcall hook added at
+   CheckTypeMatchup's -2 marker (also fixes ResetTypeMatchup + AI eval).
+   COSTS ~10 BYTES in Effect Commands - if the link overflows, relocate
+   another body to the overflow bank.
+2. Thunder Wave/Glare/Stun Spore never triggered Synchronize - the
+   relocated BattleParalyze_Core was the one paralysis body without the
+   hook (farcall RunSynchronizePar after PrintParalyze).
+3. Flame Body / Synchronize-burn / Magic Bounce-reflected burns could
+   burn FIRE-TYPES (move burns are gated by CheckMoveTypeMatchesTarget;
+   the ability helper wasn't). New OpponentIsFireType check in
+   TryBurnOpponent.
+4. Aftermath now respects a Damp attacker (canon: no proc).
+5. Neutralizing Gas flags byte was $27 (comment claimed NO_SUPPRESS but
+   $20 is NO_TRANSFORM; NO_SUPPRESS is $08) -> $2f. Two opposing N-Gas
+   holders no longer suppress each other.
+6. FLASH FIRE BOOST IMPLEMENTED (was immunity-only since session 2c):
+   new SUBSTATUS_FLASH_FIRE (SubStatus2 bit 7 - only CURLED used that
+   byte; NewBattleMonStatus/NewEnemyMonStatus clear SubStatus1-5, so the
+   state resets on every switch-in for free). Blocked Fire hit ->
+   FlashFireActivate (nullification table entry, replaces AbsorbNothing)
+   sets the bit + "Fire power rose!" text (FlashFireText appended to
+   ability_text.asm, BANK(BattleText)); RunDamageModifiers attacker
+   chain gained cp FLASH_FIRE -> x1.5 on the holder's Fire moves while
+   the bit is set (body placed at the end of the dispatch area to dodge
+   the jr-range trap). Re-blocks while lit stay immune, no re-text.
+   Still not covered: Fire STATUS moves can't arm it (none exist in the
+   dex - Will-o-Wisp isn't in the game), Baton Pass doesn't pass it.
+
+Audited and found CORRECT (beyond previous sessions): Contrary bit-7
+anti-recursion + RaiseStat overwrite ordering; StatDown bit-6 lifecycle
+incl. all early exits; Defiant/Competitive placement (no double-proc via
+Contrary, ability-drop victims can't self-proc); Berserk HP-crossing
+math; Anger Point loop + turn perspective; Cursed Body slot|turns
+format vs the CheckTurn decrementer; Perish Body count 4 (matches
+Perish Song); Sturdy endure path (full-HP compare, b=1 message id);
+OHKO/Recoil/EffectChance/MultiHit relocations; Skill Link; Magic Bounce
+category gate + guard bit vs Disguise slot bits (no collision);
+Synchronize psn/tox/brn secondary paths; trap checks (types, Levitate,
+N-Gas, Ghost); Regenerator big-endian HP math + cap; switch-out hook
+placement (wLastPlayerMon set in TryPlayerSwitch AND BattleUTurn_Core);
+Mega Sol sun-tier healing/charge-skip/rain compensation; -ate original-
+type gate; Gale Wings/Triage/Prankster priority adjust + Armor Tail
+base-priority read; Super Luck cap; accuracy mods incl. Armor Tail b=0;
+CheckContactMove bit shift; contact chain perspectives; Cute Charm
+CheckOppositeGender carry semantics; flags table = 148 rows in const
+order; farcall carry-return pattern at every new hook.
+
+Known gaps left on purpose (call them out if wanted later): Leech Seed
+ignores Magic Guard (hook must live in tight Battle Core - deferred);
+BattleCommand_FakeOut skips Inner Focus but NO move uses
+EFFECT_FAKE_OUT (dead code - fix when a move gets it); Electric-types
+can still be paralyzed (Gen 6 type immunity, engine-wide, not ability);
+Toxic bounces as regular psn; Sheer Force doesn't suppress King's Rock;
+Speed Boost procs on its entry turn; Grass-types not immune to Effect
+Spore (Gen 6). Session 8 test adds: Scrappy Normal move vs Ghost (real
+damage, correct effectiveness text, Static/Rocky Helmet procs work);
+Thunder Wave vs Synchronize (attacker paralyzed back); Flame Body vs a
+Fire-type attacker (no burn); Explosion KO by Damp-less attacker vs
+Aftermath still hurts, Damp attacker doesn't; double N-Gas battle.
+
+## Session 8b (2026-07-06): Poison Puppeteer + Armarouge rename
+- POISON_PUPPETEER added (appended after IRON_BARBS; NUM_ABILITIES 149;
+  constants/names/flags/descriptions extended in matching order - the
+  name "POISON PUPPETEER" is 16 chars, exactly the banner width, same
+  as SUPREME OVERLORD). Note: STENCH itself was already deleted back in
+  session 6, so this was purely an addition. Gen 9 behavior minus the
+  Pecharunt species gate: any target poisoned by the HOLDER'S MOVE also
+  becomes confused. Implemented as RunPoisonPuppeteer called at the top
+  of RunSynchronizePsn - that hook already fires at every move-poison
+  site (Poison body: Toxic/Poison Gas/Powder; PoisonTarget;
+  ToxicTarget), so zero new bytes in the tight Effect Commands bank.
+  Confusion goes through TryConfuseOpponent (banner, Own Tempo/already-
+  confused guards, 2-5 turn count, anim, text). Ability-inflicted
+  poison (Poison Touch/Effect Spore) does NOT proc it - canon says
+  moves. NO SPECIES HAS IT YET - free for customs/Ability Cap testing.
+- ARMAROUGE spelling normalized everywhere: constant,
+  display name, all Armarouge* labels (pics/anims/frames/bitmasks/
+  idles/icons/dex/evos), dex orders, cries + icon-pal comments, tools
+  scripts (slug maps simplified - the misspelling workaround entries
+  are gone). base_stats/armarouge.asm + dex_entries/armarouge.asm
+  created with corrected content; the old typo-path files were removed
+  and the gfx dir was renamed to gfx/pokemon/armarouge.
+  The gfx mv MUST happen before `make` (palettes.asm/pics.asm/
+  bitmasks.asm/etc. now INCBIN/INCLUDE gfx/pokemon/armarouge/...).
+- Session 8b tests: Toxic/Sludge Bomb poison from a Poison Puppeteer
+  mon -> target also becomes confused (banner + text), no proc when
+  poison is blocked (Immunity/Poison-type/Safeguard) or from Poison
+  Touch; Armarouge name shows correctly in dex/party/battle; Charcadet
+  + Moon Stone still evolves.
 
 ## Session 7b (2026-07-05): Contrary/Parental Bond/Scrappy + 3 deletions
 - DELETED: UNAWARE, PICKPOCKET, LIGHT_METAL (no engine code existed).

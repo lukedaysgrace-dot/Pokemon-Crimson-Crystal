@@ -11,8 +11,8 @@
 	db 100 ; unknown 1
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
-	INCBIN "gfx/pokemon/armarogue/front.dimensions"
-	abilities_for ARMAROGUE, FLASH_FIRE, WEAK_ARMOR, MEGA_LAUNCHER
+	INCBIN "gfx/pokemon/armarouge/front.dimensions"
+	abilities_for ARMAROUGE, FLASH_FIRE, WEAK_ARMOR, MEGA_LAUNCHER
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

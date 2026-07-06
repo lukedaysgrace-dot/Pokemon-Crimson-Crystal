@@ -330,7 +330,7 @@ FrigibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/frigibax.png
 ArctibaxIcon:    INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/arctibax.png
 BaxcaliburIcon:  INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/baxcalibur.png
 CharcadetIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/charcadet.png
-ArmarogueIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/armarogue.png
+ArmarougeIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/armarouge.png
 CeruledgeIcon:   INCBIN "gfx/icons/charmander.2bpp" ; TODO: gfx/icons/ceruledge.png
 SylveonIcon: INCBIN "gfx/icons/sylveon.2bpp"
 RookideeIcon:    INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/rookidee.png

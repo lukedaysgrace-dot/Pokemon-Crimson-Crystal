@@ -311,7 +311,7 @@ AnimationIdlePointers:
 	dw ArctibaxAnimationIdle
 	dw BaxcaliburAnimationIdle
 	dw CharcadetAnimationIdle
-	dw ArmarogueAnimationIdle
+	dw ArmarougeAnimationIdle
 	dw CeruledgeAnimationIdle
 	dw SylveonAnimationIdle
 	dw RookideeAnimationIdle

@@ -162,7 +162,7 @@ EvosAttacksPointers2::
 	dw ArctibaxEvosAttacks
 	dw BaxcaliburEvosAttacks
 	dw CharcadetEvosAttacks
-	dw ArmarogueEvosAttacks
+	dw ArmarougeEvosAttacks
 	dw CeruledgeEvosAttacks
 	dw SylveonEvosAttacks
 	dw RookideeEvosAttacks
@@ -2945,7 +2945,7 @@ BaxcaliburEvosAttacks:
 	db 0 ; no more level-up moves
 
 CharcadetEvosAttacks:
-	dbbw EVOLVE_ITEM, MOON_STONE, ARMAROGUE
+	dbbw EVOLVE_ITEM, MOON_STONE, ARMAROUGE
 	dbbw EVOLVE_ITEM, THUNDERSTONE, CERULEDGE
 	db 0 ; no more evolutions
 	dbw 1, LEER
@@ -2957,7 +2957,7 @@ CharcadetEvosAttacks:
 	dbw 20, QUICK_ATTACK
 	db 0 ; no more level-up moves
 
-ArmarogueEvosAttacks:
+ArmarougeEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, CONFUSION
 	dbw 1, EMBER

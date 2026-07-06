@@ -311,7 +311,7 @@ AnimationPointers:
 	dw ArctibaxAnimation
 	dw BaxcaliburAnimation
 	dw CharcadetAnimation
-	dw ArmarogueAnimation
+	dw ArmarougeAnimation
 	dw CeruledgeAnimation
 	dw SylveonAnimation
 	dw RookideeAnimation
