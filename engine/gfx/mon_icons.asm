@@ -9,8 +9,9 @@ LoadOverworldMonIcon:
 	ret
 
 SetMenuMonIconColor:
-; Set the OAM palette of menu icon 0 based on the species in
-; wTempIconSpecies and the DVs pointed to by hl.
+; Load the actual battle colors (shiny-aware; shininess data at hl)
+; of the species in wTempIconSpecies into OBJ palette 1, and give
+; that palette to menu icon 0.
 	push hl
 	push de
 	push bc
@@ -18,7 +19,12 @@ SetMenuMonIconColor:
 
 	ld a, [wTempIconSpecies]
 	ld [wCurPartySpecies], a
-	call GetMenuMonIconPalette
+	ld d, a
+	ld c, l
+	ld b, h
+	ld e, 1 ; OBJ palette 1
+	farcall LoadMonMenuIconPal
+	ld a, 1 ; OBJ palette 1
 	ld hl, wVirtualOAMSprite00Attributes
 	jp _ApplyMenuMonIconColor
 
@@ -37,16 +43,10 @@ LoadPartyMenuMonIconColors:
 	ld a, [hl]
 	push af ; held item
 
+; Party mon icon palettes hold each mon's actual battle colors,
+; loaded into OBJ palettes 2-7 by LoadPartyMenuMonPals.
 	ldh a, [hObjectStructIndexBuffer]
-	ld e, a
-	ld d, 0
-	ld hl, wPartySpecies
-	add hl, de
-	ld a, [hl]
-	ld [wCurPartySpecies], a
-	ld a, MON_DVS
-	call GetPartyParamLocation
-	call GetMenuMonIconPalette
+	add 2
 	ld hl, wVirtualOAMSprite00Attributes
 	push af
 	ldh a, [hObjectStructIndexBuffer]
@@ -89,37 +89,6 @@ _FinishMenuMonIconColor:
 	pop bc
 	pop de
 	pop hl
-	ret
-
-GetMenuMonIconPalette::
-; hl = pointer to the mon's DVs
-; Returns the palette index in a (and e).
-	ld c, l
-	ld b, h
-	farcall CheckShininess
-GetMenuMonIconPalette_PredeterminedShininess:
-	push af
-	ld a, [wCurPartySpecies]
-	cp EGG
-	jr z, .egg
-	call GetPokemonIndexFromID
-	dec hl
-	ld bc, MonMenuIconPals
-	add hl, bc
-	ld e, [hl]
-	pop af
-	ld a, e
-	jr c, .shiny
-	swap a
-.shiny
-	and $f
-	ld e, a
-	ret
-
-.egg
-	pop af
-	ld a, PAL_ICON_BLUE
-	ld e, a
 	ret
 
 LoadMenuMonIcon:
@@ -392,14 +361,12 @@ FlyFunction_GetMonIcon:
 	; Edit OBJ palette 0 so the flying mon has the right colors.
 	ld a, [wTempIconSpecies]
 	ld [wCurPartySpecies], a
+	ld d, a
 	ld a, MON_DVS
 	call GetPartyParamLocation
-	call GetMenuMonIconPalette
-	add a
-	add a
-	add a ; palette index * 8 bytes
-	ld e, a
-	farcall SetFirstOBJPalette
+	ld c, l
+	ld b, h
+	farcall SetFirstOBJPaletteFromMonColors
 	ret
 
 Unreferenced_GetMonIcon2:
@@ -588,7 +555,5 @@ GetIconPointer:
 	ret
 
 INCLUDE "data/icon_pointers.asm"
-
-INCLUDE "data/pokemon/menu_icon_pals.asm"
 
 INCLUDE "gfx/icons.asm"

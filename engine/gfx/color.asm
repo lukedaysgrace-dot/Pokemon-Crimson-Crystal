@@ -114,6 +114,7 @@ InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
 	call InitPartyMenuOBPals
+	call LoadPartyMenuMonPals
 	call WipeAttrMap
 	ret
 
@@ -692,6 +693,73 @@ InitPartyMenuOBPals:
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
+
+LoadMonMenuIconPal::
+; Load the two middle colors of species d's battle palette (or of its
+; shiny palette, depending on the shininess data at bc) into OBJ
+; palette e, between white and black.
+	push de
+	ld a, d
+	call GetMonNormalOrShinyPalettePointer
+	pop de
+	; de = wOBPals1 palette e
+	ld a, e
+	add a
+	add a
+	add a ; palette index * 8 bytes
+	ld e, a
+	ld d, 0
+	push hl
+	ld hl, wOBPals1
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	jp LoadPalette_White_Col1_Col2_Black
+
+SetFirstOBJPaletteFromMonColors::
+; Load species d's battle colors (shininess data at bc) into
+; OBJ palette 0 and apply. Used for the Fly animation.
+	ld e, 0
+	call LoadMonMenuIconPal
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	jp ApplyPals
+
+LoadPartyMenuMonPals::
+; Load each party mon's actual battle palette colors into
+; OBJ palettes 2-7 for their menu icons.
+	xor a
+.loop
+	ld hl, wPartyCount
+	cp [hl]
+	ret nc
+	push af
+	; bc = pointer to this mon's DVs (shininess data)
+	ld hl, wPartyMon1DVs
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld b, h
+	ld c, l
+	; d = species (or EGG)
+	pop af
+	push af
+	ld hl, wPartySpecies
+	add l
+	ld l, a
+	adc h
+	sub l
+	ld h, a
+	ld d, [hl]
+	; e = OBJ palette (party index + 2)
+	pop af
+	push af
+	add 2
+	ld e, a
+	call LoadMonMenuIconPal
+	pop af
+	inc a
+	jr .loop
 
 SetFirstOBJPalette::
 ; Copy one palette from PartyMenuOBPals + e into OBJ palette 0.
