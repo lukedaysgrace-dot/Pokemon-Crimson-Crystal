@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/perrserker/front.dimensions"
-	abilities_for PERRSERKER, INTIMIDATE, INTIMIDATE, INTIMIDATE
+	abilities_for PERRSERKER, CONTRARY, PARENTAL_BOND, CONTRARY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

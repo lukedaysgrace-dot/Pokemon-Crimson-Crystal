@@ -1407,6 +1407,12 @@ BattleCommand_Stab:
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .end
+	; Scrappy / Mind's Eye pierce Ghost immunities like Foresight
+	; (push hl: the farcall macro clobbers the table pointer)
+	push hl
+	farcall AbilityPiercesGhosts
+	pop hl
+	jr c, .end
 
 	jr .TypesLoop
 
@@ -4368,6 +4374,9 @@ BattleCommand_StatUp:
 	jp MinimizeDropSub
 
 RaiseStat::
+	; Contrary turns the holder's own raises into drops
+	farcall ContraryCheckRaise
+	ret c
 	ld a, b
 	ld [wLoweredStat], a
 	ld hl, wPlayerStatLevels
@@ -4565,11 +4574,14 @@ BattleCommand_StatDown::
 
 	ld [wLoweredStat], a
 
+	; NOTE: the label below starts a new local-label scope, so these two
+	; references must be fully qualified
 	call CheckMist
-	jp nz, .Mist
+	jp nz, StatDownSkipProtect.Mist
 	farcall AbilityProtectsStatDrop
-	jp c, .Failed
-
+	jp c, StatDownSkipProtect.Failed
+StatDownSkipProtect::
+; entry for Contrary's self-inflicted drops (no Mist/protection checks)
 	ld hl, wEnemyStatLevels
 	ldh a, [hBattleTurn]
 	and a
@@ -4726,6 +4738,14 @@ BattleCommand_StatUpMessage::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	; bit 7 of wLoweredStat: Contrary already printed its own "fell"
+	ld a, [wLoweredStat]
+	bit 7, a
+	jr z, .show
+	and $7f
+	ld [wLoweredStat], a
+	ret
+.show
 	call PlayStatUpAnim
 	ld a, [wLoweredStat]
 	and $f

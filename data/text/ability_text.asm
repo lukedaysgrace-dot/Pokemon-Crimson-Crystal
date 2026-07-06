@@ -81,6 +81,11 @@ MaxedAttackText:
 	line "maxed its ATTACK!"
 	prompt
 
+Hit2TimesText:
+; Parental Bond
+	text "Hit 2 times!"
+	prompt
+
 DisguiseDecoyText::
 	text "Its disguise"
 	line "served it as"

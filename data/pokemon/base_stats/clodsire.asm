@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/clodsire/front.dimensions"
-	abilities_for CLODSIRE, POISON_POINT, WATER_ABSORB, UNAWARE
+	abilities_for CLODSIRE, POISON_POINT, WATER_ABSORB, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups
