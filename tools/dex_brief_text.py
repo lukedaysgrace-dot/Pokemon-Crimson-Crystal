@@ -122,7 +122,7 @@ BRIEF_DEX: dict[str, tuple[str, str]] = {
         "Huge wings whip gusts that shear bark.",
         "It snaps birds mid-air with swift jaws.",
     ),
-    "armarogue": (
+    "armarouge": (
         "Armor fused with cannon-fire pride.",
         "It fires bursts taught by old codes.",
     ),

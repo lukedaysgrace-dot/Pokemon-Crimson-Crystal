@@ -311,7 +311,7 @@ FramesPointers:
 	dba ArctibaxFrames
 	dba BaxcaliburFrames
 	dba CharcadetFrames
-	dba ArmarogueFrames
+	dba ArmarougeFrames
 	dba CeruledgeFrames
 	dba SylveonFrames
 	dba RookideeFrames

@@ -17,7 +17,6 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; BaseStatSync/1.0)"}
 # Filename stem -> pokemondb slug (same as dex generator)
 SLUG_MAP = {
     "porygon_z": "porygon-z",
-    "armarogue": "armarouge",
 }
 
 # Not on pokemondb — skip or manual
@@ -86,7 +85,7 @@ NEW_SPECIES = [
     "arctibax",
     "baxcalibur",
     "charcadet",
-    "armarogue",
+    "armarouge",
     "ceruledge",
     "sylveon",
     "rookidee",

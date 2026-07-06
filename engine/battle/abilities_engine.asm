@@ -1205,7 +1205,7 @@ NullificationAbilities:
 	db DRY_SKIN, WATER
 	dw AbsorbHealQuarter
 	db FLASH_FIRE, FIRE
-	dw AbsorbNothing
+	dw FlashFireActivate
 	db SAP_SIPPER, GRASS
 	dw AbsorbRaiseAttack
 	db LEVITATE, GROUND
@@ -1236,6 +1236,18 @@ AbsorbRaiseStat:
 
 AbsorbNothing:
 	ret
+
+FlashFireActivate:
+; Runs from the holder's perspective (the .found path SwitchTurns first).
+; Arms the x1.5 Fire boost in RunDamageModifiers; the bit lives in
+; SubStatus2 so it clears automatically when the mon leaves the field.
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVarAddr
+	bit SUBSTATUS_FLASH_FIRE, [hl]
+	ret nz ; already activated: still immune, no second message
+	set SUBSTATUS_FLASH_FIRE, [hl]
+	ld hl, FlashFireText
+	jp StdBattleTextbox
 
 CheckPlayerAssaultVestMove_Core:
 ; b = selected move. Carry if Assault Vest blocks it.
@@ -1454,6 +1466,8 @@ RunDamageModifiers:
 	jp z, .mega_sol
 	cp SAND_FORCE
 	jp z, .sand_force
+	cp FLASH_FIRE
+	jp z, .flash_fire
 	cp HUGE_POWER
 	jr z, .huge_power
 	cp GUTS
@@ -1615,6 +1629,8 @@ RunDamageModifiers:
 	and $7f
 	cp EFFECTIVE + 1
 	ret c ; not super effective
+	cp SUPER_EFFECTIVE * 2
+	jp nc, HalveDamage
 	jp DamageX0_75
 
 .dry_skin
@@ -1853,6 +1869,21 @@ RunDamageModifiers:
 .mega_sol_rain_fire
 	call DoubleDamage
 	call DamageX1_5 ; x0.5 rain cut -> x1.5 net
+	jp .defender
+
+.flash_fire
+	; x1.5 for the user's Fire moves once Flash Fire has been activated
+	; (body lives at the end of the dispatch area - see the session 4
+	; note about jr ranges before .pinch_boost)
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVar
+	bit SUBSTATUS_FLASH_FIRE, a
+	jp z, .defender
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jp nz, .defender
+	call DamageX1_5
 	jp .defender
 
 ApplyHeldItemDamageModifiers:
@@ -2864,6 +2895,10 @@ RunContactAbilitiesHook::
 	call GetOpponentAbility
 	cp AFTERMATH
 	ret nz
+	; a Damp attacker suffers no Aftermath damage (canon)
+	call GetTrueUserAbility
+	cp DAMP
+	ret z
 	call CheckContactMove
 	ret nc
 	call UserHasFainted
@@ -3069,6 +3104,9 @@ TryBurnOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call OpponentIsFireType
+	ret z ; Fire-types can't be burned (move burns already ensure this
+	      ; via CheckMoveTypeMatchesTarget; this covers the ability paths)
 	call AbilityPreventsBurn
 	ret c
 	call ShowAbilityBannerBrief
@@ -3300,6 +3338,24 @@ AbilityStatusAnim::
 	call SwitchTurn
 	farcall PlayBattleAnim
 	jp SwitchTurn
+
+OpponentIsFireType:
+; z if the turn holder's opponent is Fire-type (burn immunity)
+	push hl
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wBattleMonType1
+.got_types
+	ld a, [hli]
+	cp FIRE
+	jr z, .done
+	ld a, [hl]
+	cp FIRE
+.done
+	pop hl
+	ret
 
 OpponentIsPoisonImmuneType:
 ; z if the opponent is Poison- or Steel-type
@@ -4006,6 +4062,10 @@ RunSynchronizeBrn::
 	jr RunSynchronize
 RunSynchronizePsn::
 ; Called right after the attacker's move poisoned the defender.
+; Doubles as the Poison Puppeteer hook - both react to "this move just
+; poisoned the target" (primary Toxic/Poison Gas/Powder via the Poison
+; body, secondaries via PoisonTarget/ToxicTarget).
+	call RunPoisonPuppeteer
 	ld hl, TryPoisonOpponentContact
 	; fallthrough
 RunSynchronize:
@@ -4017,6 +4077,16 @@ RunSynchronize:
 	call SwitchTurn
 	call _hl_
 	jp SwitchTurn
+
+RunPoisonPuppeteer:
+; Poison Puppeteer: a target poisoned by the holder's move also becomes
+; confused (no species requirement here, unlike canon Pecharunt).
+; Turn = attacker = the Puppeteer holder; TryConfuseOpponent handles the
+; banner, the already-confused/Own Tempo guards, count, anim and text.
+	call GetTrueUserAbility
+	cp POISON_PUPPETEER
+	ret nz
+	jp TryConfuseOpponent
 
 AbilityEffectChanceMods::
 ; b = secondary effect chance. Serene Grace doubles it; Sheer Force

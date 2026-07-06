@@ -315,7 +315,7 @@ PokemonNames::
 	db "ARCTIBAX@@"
 	db "BAXCALIBUR"
 	db "CHARCADET@"
-	db "ARMAROGUE@"
+	db "ARMAROUGE@"
 	db "CERULEDGE@"
 	db "SYLVEON@@@"
 	db "ROOKIDEE@@"

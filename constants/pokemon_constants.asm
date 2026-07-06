@@ -332,7 +332,7 @@ JOHTO_POKEMON EQU const_value
 	const ARCTIBAX   ;
 	const BAXCALIBUR ;
 	const CHARCADET  ;
-	const ARMAROGUE  ;
+	const ARMAROUGE  ;
 	const CERULEDGE  ;
 	const SYLVEON    ;
 	const ROOKIDEE   ;

@@ -341,7 +341,6 @@ CATEGORY_OVERRIDES: dict[str, str] = {
 # slug -> optional manual overrides when URL differs
 SLUG_MAP = {
     "porygon_z": "porygon-z",
-    "armarogue": "armarouge",
 }
 
 # Species with no pokemondb page — full manual asm body without fetch
@@ -445,7 +444,7 @@ ALL_BASES = [
     "grimmsnarl",
     "lickilicky",
     "yanmega",
-    "armarogue",
+    "armarouge",
     "sylveon",
     "weavile",
     "lileep",

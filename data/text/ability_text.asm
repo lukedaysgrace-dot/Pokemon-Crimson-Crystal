@@ -97,3 +97,9 @@ DisguiseBustedText::
 	line "disguise was"
 	cont "busted!"
 	prompt
+
+FlashFireText::
+; Flash Fire activation (printed from the holder's perspective)
+	text "<USER>'s"
+	line "Fire power rose!"
+	prompt
