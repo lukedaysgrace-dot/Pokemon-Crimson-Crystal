@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/wimpod/front.dimensions"
-	abilities_for WIMPOD, RUN_AWAY, NO_ABILITY, NO_ABILITY
+	abilities_for WIMPOD, RATTLED, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_WATER_3 ; egg groups

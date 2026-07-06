@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/grimer_alolan/front.dimensions"
-	abilities_for GRIMER_ALOLAN, POISON_TOUCH, GLUTTONY, CORROSION
+	abilities_for GRIMER_ALOLAN, POISON_TOUCH, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

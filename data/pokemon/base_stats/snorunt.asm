@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/snorunt/front.dimensions"
-	abilities_for SNORUNT, INNER_FOCUS, ICE_BODY, MOODY
+	abilities_for SNORUNT, INNER_FOCUS, ICE_BODY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FAIRY, EGG_MINERAL ; egg groups

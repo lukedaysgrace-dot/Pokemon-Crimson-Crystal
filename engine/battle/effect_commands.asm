@@ -1960,31 +1960,8 @@ INCLUDE "data/battle/accuracy_multipliers.asm"
 
 BattleCommand_EffectChance:
 ; effectchance
-
-	xor a
-	ld [wEffectFailed], a
-	call CheckSubstituteOpp
-	jr nz, .failed
-
-	push hl
-	ld hl, wPlayerMoveStruct + MOVE_CHANCE
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_move_chance
-	ld hl, wEnemyMoveStruct + MOVE_CHANCE
-.got_move_chance
-
-	; BUG: 1/256 chance to fail even for a 100% effect chance,
-	; since carry is not set if BattleRandom == [hl] == 255
-	call BattleRandom
-	cp [hl]
-	pop hl
-	ret c
-
-.failed
-	ld a, 1
-	ld [wEffectFailed], a
-	and a
+; Body in Battle Effect Overflow (adds Serene Grace / Sheer Force).
+	farcall BattleCommand_EffectChance_Core
 	ret
 
 BattleCommand_LowerSub:
@@ -3883,6 +3860,7 @@ BattleCommand_PoisonTarget:
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
 
+	farcall RunSynchronizePsn
 	farcall UseHeldStatusHealingItem
 	ret
 
@@ -3930,6 +3908,7 @@ BattleCommand_ToxicTarget:
 	ld hl, BadlyPoisonedText
 	call StdBattleTextbox
 
+	farcall RunSynchronizePsn
 	farcall UseHeldStatusHealingItem
 	ret
 
@@ -3994,6 +3973,10 @@ BattleCommand_Poison:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
+	; ability check BEFORE applying/printing anything (previously the
+	; prevented path still printed "was poisoned!")
+	farcall AbilityPreventsPoison
+	jp c, PrintDidntAffect2
 	call .check_toxic
 	jr z, .toxic
 
@@ -4012,6 +3995,7 @@ BattleCommand_Poison:
 	call StdBattleTextbox
 
 .finished
+	farcall RunSynchronizePsn
 	farcall UseHeldStatusHealingItem
 	ret
 
@@ -4022,8 +4006,6 @@ BattleCommand_Poison:
 	jp StdBattleTextbox
 
 .apply_poison
-	farcall AbilityPreventsPoison
-	jp c, PrintDidntAffect2
 	call AnimateCurrentMove
 	call PoisonOpponent
 	jp RefreshBattleHuds
@@ -4208,6 +4190,7 @@ BattleCommand_BurnTarget:
 	ld hl, WasBurnedText
 	call StdBattleTextbox
 
+	farcall RunSynchronizeBrn
 	farcall UseHeldStatusHealingItem
 	ret
 
@@ -4293,39 +4276,10 @@ BattleCommand_FreezeTarget:
 
 BattleCommand_ParalyzeTarget:
 ; paralyzetarget
-
-	xor a
-	ld [wNumHits], a
-	call CheckSubstituteOpp
-	ret nz
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	and a
-	ret nz
-	ld a, [wTypeModifier]
-	and $7f
-	ret z
-	call GetOpponentItem
-	ld a, b
-	cp HELD_PREVENT_PARALYZE
-	ret z
-	ld a, [wEffectFailed]
-	and a
-	ret nz
-	call SafeCheckSafeguard
-	ret nz
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	set PAR, [hl]
-	call UpdateOpponentInParty
-	ld hl, ApplyPrzEffectOnSpeed
-	call CallBattleCore
-	ld de, ANIM_PAR
-	call PlayOpponentBattleAnim
-	call RefreshBattleHuds
-	call PrintParalyze
-	ld hl, UseHeldStatusHealingItem
-	jp CallBattleCore
+; Body in Battle Effect Overflow (adds the Limber check - secondary
+; paralysis used to bypass it - and Synchronize).
+	farcall BattleParalyzeTarget_Core
+	ret
 
 BattleCommand_AttackUp:
 ; attackup
@@ -6048,6 +6002,9 @@ BattleCommand_ConfuseTarget:
 	ret nz
 	call CheckSubstituteOpp
 	ret nz
+	; Own Tempo (secondary confusion used to bypass it)
+	farcall AbilityPreventsConfusion
+	ret c
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_CONFUSED, [hl]

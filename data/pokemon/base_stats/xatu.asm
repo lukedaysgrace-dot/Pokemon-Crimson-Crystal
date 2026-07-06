@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/xatu/front.dimensions"
-	abilities_for XATU, SYNCHRONIZE, EARLY_BIRD, MAGIC_BOUNCE
+	abilities_for XATU, SYNCHRONIZE, NO_ABILITY, MAGIC_BOUNCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

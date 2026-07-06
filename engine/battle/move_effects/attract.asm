@@ -14,6 +14,9 @@ BattleCommand_Attract:
 	farcall AbilityPreventsAttraction
 	jr c, .failed
 
+	; re-fetch the address: the farcall macro clobbers hl
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVarAddr
 	set SUBSTATUS_IN_LOVE, [hl]
 	call AnimateCurrentMove
 
@@ -24,7 +27,7 @@ BattleCommand_Attract:
 .failed
 	jp FailMove
 
-CheckOppositeGender:
+CheckOppositeGender::
 	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hl]

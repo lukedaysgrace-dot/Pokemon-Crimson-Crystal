@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/gloom/front.dimensions"
-	abilities_for GLOOM, CHLOROPHYLL, CHLOROPHYLL, STENCH
+	abilities_for GLOOM, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups

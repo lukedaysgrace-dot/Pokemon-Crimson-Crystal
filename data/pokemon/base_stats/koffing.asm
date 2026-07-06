@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/koffing/front.dimensions"
-	abilities_for KOFFING, LEVITATE, NEUTRALIZING_GAS, STENCH
+	abilities_for KOFFING, LEVITATE, NEUTRALIZING_GAS, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

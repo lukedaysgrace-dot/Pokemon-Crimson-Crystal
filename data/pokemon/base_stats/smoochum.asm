@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/smoochum/front.dimensions"
-	abilities_for SMOOCHUM, OBLIVIOUS, FOREWARN, HYDRATION
+	abilities_for SMOOCHUM, OBLIVIOUS, NO_ABILITY, HYDRATION
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

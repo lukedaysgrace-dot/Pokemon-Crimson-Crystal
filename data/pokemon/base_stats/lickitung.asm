@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/lickitung/front.dimensions"
-	abilities_for LICKITUNG, OBLIVIOUS, GLUTTONY, CLOUD_NINE
+	abilities_for LICKITUNG, OBLIVIOUS, NO_ABILITY, CLOUD_NINE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

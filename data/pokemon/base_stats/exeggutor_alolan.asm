@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/exeggutor_alolan/front.dimensions"
-	abilities_for EXEGGUTOR_ALOLAN, FRISK, FRISK, HARVEST
+	abilities_for EXEGGUTOR_ALOLAN, FRISK, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups

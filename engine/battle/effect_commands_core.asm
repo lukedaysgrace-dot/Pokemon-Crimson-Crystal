@@ -110,6 +110,12 @@ BattleMultiHitRoll_Core:
 ; (A previous version did exactly that - the "skip inc" flag came back
 ; as random garbage, loop counts of 0 underflowed to 255 in endloop,
 ; and multi-hit moves pummeled the target until it fainted.)
+	; Skill Link always hits 5 times
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp SKILL_LINK
+	ld a, 4 ; loop count 4 (5 hits total)
+	jr z, .store
 	call BattleUserHasLoadedDice_Core
 	jr z, .loaded_dice
 	call BattleRandom
@@ -392,6 +398,11 @@ BattleUTurn_Core:
 	callfar CheckAnyOtherAlivePartyMons
 	ret z
 
+	; record the outgoing mon so switch-out abilities (Regenerator/
+	; Natural Cure) heal the right party slot in BattleMonEntrance
+	ld a, [wCurBattleMon]
+	ld [wLastPlayerMon], a
+
 	callfar UpdateBattleMonInParty
 	call LoadStandardMenuHeader
 	farcall SetUpBattlePartyMenu_NoLoop
@@ -425,6 +436,8 @@ BattleUTurn_Core:
 	ret z
 
 	callfar UpdateEnemyMonInParty
+	; switch-out abilities for the outgoing enemy mon
+	farcall RunEnemySwitchOutAbilities
 	callfar BatonPass_LinkEnemySwitch
 
 	farcall CheckMobileBattleError
@@ -520,6 +533,73 @@ BattleParalyze_Core:
 .didnt_affect
 	callfar AnimateFailedMove
 	callfar PrintDoesntAffect
+	ret
+
+BattleCommand_EffectChance_Core:
+; Relocated from effect_commands.asm; adds Serene Grace (double chance)
+; and Sheer Force (suppress the secondary effect).
+	xor a
+	ld [wEffectFailed], a
+	callfar CheckSubstituteOpp
+	jr nz, .failed
+
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.got_move_chance
+	ld b, [hl]
+	farcall AbilityEffectChanceMods
+	jr c, .failed ; Sheer Force
+
+	; BUG (vanilla): 1/256 chance to fail even for a 100% effect chance
+	call BattleRandom
+	cp b
+	ret c
+
+.failed
+	ld a, 1
+	ld [wEffectFailed], a
+	and a
+	ret
+
+BattleParalyzeTarget_Core:
+; Relocated from effect_commands.asm. Adds the missing ability check
+; (Limber - secondary paralysis used to bypass it) and Synchronize.
+	xor a
+	ld [wNumHits], a
+	callfar CheckSubstituteOpp
+	ret nz
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	and a
+	ret nz
+	ld a, [wTypeModifier]
+	and $7f
+	ret z
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_PARALYZE
+	ret z
+	ld a, [wEffectFailed]
+	and a
+	ret nz
+	callfar SafeCheckSafeguard
+	ret nz
+	farcall AbilityPreventsParalysis
+	ret c
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PAR, [hl]
+	call UpdateOpponentInParty
+	farcall ApplyPrzEffectOnSpeed
+	ld de, ANIM_PAR
+	farcall AbilityStatusAnim
+	call UpdateBattleHuds
+	callfar PrintParalyze
+	farcall RunSynchronizePar
+	farcall UseHeldStatusHealingItem
 	ret
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
