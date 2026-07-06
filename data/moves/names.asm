@@ -294,3 +294,5 @@ MoveNames::
 	db "BLOOD MOON@"
 	db "BULLET PUNCH@"
 	db "DRAIN PUNCH@"
+	db "SOLAR BLADE@"
+	db "CLOSE COMBAT@"

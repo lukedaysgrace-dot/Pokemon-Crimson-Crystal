@@ -301,6 +301,8 @@
 	const BLOOD_MOON       ; 131
 	const BULLET_PUNCH     ; 132
 	const DRAIN_PUNCH
+	const SOLAR_BLADE
+	const CLOSE_COMBAT
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

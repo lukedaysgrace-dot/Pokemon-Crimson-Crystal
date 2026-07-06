@@ -320,6 +320,8 @@ BattleAnimations::
 	dw BattleAnim_BloodMoon
 	dw BattleAnim_BulletPunch
 	dw BattleAnim_DrainPunch
+	dw BattleAnim_SolarBlade
+	dw BattleAnim_CloseCombat
 	dw BattleAnim_SweetScent2
 	dw BattleAnim_StatUp
 	dw BattleAnim_StatDown
@@ -6071,4 +6073,143 @@ BattleAnim_DrainPunch:
 	anim_wait 24
 	anim_incbgeffect ANIM_BG_1C
 	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_SolarBlade:
+	anim_if_param_equal $0, .FireSolarBlade
+	; Charge sunlight into a green blade around the user.
+	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_PLANT
+	anim_bgp $90
+	anim_sound 0, 0, SFX_MORNING_SUN
+	anim_obj ANIM_OBJ_3D, 48, 84, $0
+	anim_obj ANIM_OBJ_3C, 48, 84, $0
+	anim_obj ANIM_OBJ_3C, 48, 84, $8
+	anim_obj ANIM_OBJ_3C, 48, 84, $10
+	anim_obj ANIM_OBJ_3C, 48, 84, $18
+	anim_wait 16
+	anim_sound 0, 0, SFX_VINE_WHIP
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $28
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $5c
+	anim_wait 24
+	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $4
+	anim_wait 64
+	anim_ret
+
+.FireSolarBlade:
+	; Sunny Day glare, then a barrage of single-blade cut slashes.
+	anim_3gfx ANIM_GFX_WATER, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_bgp $90
+	anim_sound 0, 1, SFX_MORNING_SUN
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
+	anim_wait 16
+	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $3
+	anim_bgeffect ANIM_BG_1F, $e0, $2, $0
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 152, 40, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 120, 72, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 144, 32, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 128, 64, $0
+	anim_wait 4
+	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 136, 44, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 152, 64, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 120, 40, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_3A, 140, 72, $0
+	anim_wait 6
+	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
+	anim_sound 0, 1, SFX_MEGA_KICK
+	anim_obj ANIM_OBJ_03, 144, 48, $0
+	anim_obj ANIM_OBJ_04, 136, 36, $0
+	anim_obj ANIM_OBJ_05, 128, 52, $0
+	anim_wait 32
+	anim_ret
+
+BattleAnim_CloseCombat:
+	; Rush in, shake the screen, and pummel the target from every angle.
+	anim_3gfx ANIM_GFX_SPEED, ANIM_GFX_HIT, ANIM_GFX_EXPLOSION
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 10
+	anim_bgeffect ANIM_BG_1F, $e0, $4, $0
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 120, 40, $0
+	anim_obj ANIM_OBJ_06, 120, 40, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 152, 64, $0
+	anim_obj ANIM_OBJ_06, 152, 64, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 136, 32, $0
+	anim_obj ANIM_OBJ_06, 136, 32, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 128, 72, $0
+	anim_obj ANIM_OBJ_06, 128, 72, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 148, 44, $0
+	anim_obj ANIM_OBJ_06, 148, 44, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 120, 60, $0
+	anim_obj ANIM_OBJ_06, 120, 60, $0
+	anim_wait 3
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_17, 136, 56, $0
+	anim_obj ANIM_OBJ_0A, 136, 56, $43
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 152, 36, $0
+	anim_obj ANIM_OBJ_06, 152, 36, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 124, 76, $0
+	anim_obj ANIM_OBJ_06, 124, 76, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 144, 68, $0
+	anim_obj ANIM_OBJ_06, 144, 68, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_17, 128, 44, $0
+	anim_obj ANIM_OBJ_06, 128, 44, $0
+	anim_wait 3
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_sound 0, 1, SFX_OUTRAGE
+	anim_obj ANIM_OBJ_17, 144, 48, $0
+	anim_obj ANIM_OBJ_03, 144, 48, $0
+	anim_obj ANIM_OBJ_17, 136, 36, $0
+	anim_obj ANIM_OBJ_04, 136, 36, $0
+	anim_obj ANIM_OBJ_17, 128, 52, $0
+	anim_obj ANIM_OBJ_05, 128, 52, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 16
 	anim_ret
