@@ -300,6 +300,8 @@ MoveDescriptions1:
 	dw BloodMoonDescription
 	dw BulletPunchDescription
 	dw DrainPunchDescription
+	dw SolarBladeDescription
+	dw CloseCombatDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1492,3 +1494,11 @@ BulletPunchDescription:
 DrainPunchDescription:
 	db   "A draining punch."
 	next "Heals half damage.@"
+
+SolarBladeDescription:
+	db   "Charges, then slashes."
+	next "No charge in sun.@"
+
+CloseCombatDescription:
+	db   "A fierce attack."
+	next "Lowers DEF/SP.DEF.@"
