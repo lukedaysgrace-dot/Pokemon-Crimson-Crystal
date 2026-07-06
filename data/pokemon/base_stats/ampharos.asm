@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ampharos/front.dimensions"
-	abilities_for AMPHAROS, STATIC, STATIC, MOLD_BREAKER
+	abilities_for AMPHAROS, STATIC, MOLD_BREAKER, MOLD_BREAKER
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_GROUND ; egg groups

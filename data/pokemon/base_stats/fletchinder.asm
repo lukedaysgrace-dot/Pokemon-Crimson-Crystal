@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/fletchinder/front.dimensions"
-	abilities_for FLETCHINDER, FLAME_BODY, NO_ABILITY, GALE_WINGS
+	abilities_for FLETCHINDER, FLAME_BODY, FLAME_BODY, GALE_WINGS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

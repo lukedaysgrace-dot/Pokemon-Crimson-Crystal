@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tyrunt/front.dimensions"
-	abilities_for TYRUNT, STRONG_JAW, NO_ABILITY, STURDY
+	abilities_for TYRUNT, STRONG_JAW, STRONG_JAW, STURDY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups

@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cradily/front.dimensions"
-	abilities_for CRADILY, STORM_DRAIN, NO_ABILITY, NO_ABILITY
+	abilities_for CRADILY, STORM_DRAIN, STORM_DRAIN, REGENERATOR
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_PLANT ; egg groups

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/arcanine_hisuian/front.dimensions"
-	abilities_for ARCANINE_HISUIAN, INTIMIDATE, FLASH_FIRE, ROCK_HEAD
+	abilities_for ARCANINE_HISUIAN, INTIMIDATE, ROCK_HEAD, DEFIANT
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

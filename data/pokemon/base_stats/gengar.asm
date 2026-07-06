@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/gengar/front.dimensions"
-	abilities_for GENGAR, CURSED_BODY, CURSED_BODY, SHADOW_TAG
+	abilities_for GENGAR, LEVITATE, CURSED_BODY, MERCILESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

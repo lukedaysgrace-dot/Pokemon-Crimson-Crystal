@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/blissey/front.dimensions"
-	abilities_for BLISSEY, NATURAL_CURE, SERENE_GRACE, NATURAL_CURE
+	abilities_for BLISSEY, SERENE_GRACE, NATURAL_CURE, NATURAL_CURE
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
