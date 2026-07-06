@@ -367,6 +367,12 @@ _GetSpritePalette::
 	ld a, c
 	call GetMonSprite
 	jr c, .is_pokemon
+	; a now holds the RESOLVED sprite id (variable sprites like
+	; SPRITE_OLIVINE_RIVAL resolve to their real sprite, e.g. Silver).
+	; Keep it in b: the Indigo check below clobbers a, and c still holds
+	; the unresolved id - reloading that indexed OverworldSprites out of
+	; bounds and painted the Olivine Gym rival barf green.
+	ld b, a
 	ld a, [wPlayerGender]
 	cp PLAYERGENDER_INDIGO
 	jr nz, .not_indigo
@@ -385,7 +391,7 @@ _GetSpritePalette::
 	ret
 
 .not_indigo
-	ld a, c
+	ld a, b ; the resolved sprite id, NOT c (see above)
 
 	ld hl, OverworldSprites + SPRITEDATA_PALETTE
 	dec a

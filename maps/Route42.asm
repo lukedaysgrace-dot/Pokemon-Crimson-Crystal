@@ -36,6 +36,8 @@ Route42SuicuneScript:
 	end
 
 Route42FishingSpotNearScript:
+	checkevent EVENT_BEAT_JASMINE
+	iftrue .Done
 	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachNear
 	turnobject PLAYER, RIGHT
@@ -44,9 +46,12 @@ Route42FishingSpotNearScript:
 	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
 	stopfollow
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetNear
+.Done
 	end
 
 Route42FishingSpotMiddleScript:
+	checkevent EVENT_BEAT_JASMINE
+	iftrue .Done
 	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachMiddle
 	turnobject PLAYER, RIGHT
@@ -55,9 +60,12 @@ Route42FishingSpotMiddleScript:
 	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
 	stopfollow
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetMiddle
+.Done
 	end
 
 Route42FishingSpotFarScript:
+	checkevent EVENT_BEAT_JASMINE
+	iftrue .Done
 	showemote EMOTE_SHOCK, ROUTE42_FISHING_SPOT_FISHER, 15
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherApproachFar
 	turnobject PLAYER, RIGHT
@@ -66,6 +74,7 @@ Route42FishingSpotFarScript:
 	applymovement PLAYER, Route42FishingSpotPlayerPushedBack
 	stopfollow
 	applymovement ROUTE42_FISHING_SPOT_FISHER, Route42FishingSpotFisherResetFar
+.Done
 	end
 
 Route42FishingSpotFisherTalk:
@@ -456,4 +465,4 @@ Route42_MapEvents:
 	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_ENTEI, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
-	object_event 10,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route42FishingSpotFisherScript, -1
+	object_event 10,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route42FishingSpotFisherScript, EVENT_BEAT_JASMINE
