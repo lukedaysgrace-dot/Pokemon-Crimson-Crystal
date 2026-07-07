@@ -6533,3 +6533,18 @@ PetrelDirectorGroup:
 	db -1 ; end
 
 	end_list_items
+
+HexManiacGroup:
+	next_list_item ; HEX_MANIAC (1)
+	db "WINNIE@", TRAINERTYPE_NORMAL
+	db 20
+	dw GASTLY
+	db 21
+	dw DUSKULL
+	db 21
+	dw DRIFLOON
+	db 22
+	dw MISDREAVUS
+	db -1 ; end
+
+	end_list_items

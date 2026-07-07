@@ -1,5 +1,6 @@
-; Per-species menu icons.
+; Per-species OVERWORLD icons (walking/follower sprites, daycare, etc).
 ; Each icon is 8 tiles (two 16x16 frames side by side in a 32x16 png).
+; The in-menu party/PC icons use gfx/menu_icons.asm instead.
 ; Species without their own art yet fall back to the old class icons;
 ; to give one its own icon, add gfx/icons/<species>.png and update the
 ; INCBIN filename on its line below.

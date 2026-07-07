@@ -76,3 +76,4 @@ BTTrainerClassGenders:
 	db FEMALE ; ARIANA
 	db MALE   ; ARCHER
 	db MALE   ; PETREL_DIRECTOR
+	db FEMALE ; HEX_MANIAC

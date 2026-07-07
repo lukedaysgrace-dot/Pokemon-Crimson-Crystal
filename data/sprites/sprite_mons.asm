@@ -60,3 +60,7 @@ SpriteMons:
 	dw NIDORAN_F
 	dw NIDORAN_M
 	dw DRATINI
+	dw ABRA
+	dw ELECTRODE
+	dw MACHOKE
+	dw KANGASKHAN

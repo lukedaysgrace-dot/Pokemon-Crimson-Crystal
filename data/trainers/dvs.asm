@@ -75,3 +75,4 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; ARIANA
 	dn 15, 15, 15, 15 ; ARCHER
 	dn 15, 15, 15, 15 ; PETREL_DIRECTOR
+	dn  9,  8,  8, 10 ; HEX_MANIAC
