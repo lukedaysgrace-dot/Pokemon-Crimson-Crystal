@@ -310,6 +310,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_ZEN_HEADBUTT_PARTICLE
 	const ANIM_OBJ_SLUDGE
 	const ANIM_OBJ_MOON_GLOBE
+	const ANIM_OBJ_BLOOD_MOON_CHARGE
+	const ANIM_OBJ_BLOOD_MOON_CHARGE_CORE
+	const ANIM_OBJ_AURA_SPHERE_GLOW
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def

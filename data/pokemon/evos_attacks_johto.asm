@@ -401,10 +401,10 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, AURA_SPHERE
-	dbw 1, BLOOD_MOON
-	dbw 3, MOONLIGHT
-	dbw 4, ICICLE_SPEAR
-	dbw 6, CLOSE_COMBAT
+	dbw 1, PSYSTRIKE
+	dbw 3, DRAGON_PULSE
+	dbw 4, BULLDOZE
+	dbw 6, AVALANCHE
 	dbw 7, TRIPLE_AXEL
 	dbw 20, BITE
 	dbw 22, FLAIL

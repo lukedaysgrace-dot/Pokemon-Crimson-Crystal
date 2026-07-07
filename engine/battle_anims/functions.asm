@@ -4201,11 +4201,11 @@ BattleAnimSineWave:
 BattleAnimFunction_MoonRise:
 ; A moon/globe that floats straight up, slowly and smoothly, then hovers.
 ; Rises ~40px using a sub-pixel accumulator so the motion stays slow and smooth.
-	; stop rising once we've floated up 40 pixels, then hover
+	; stop rising once we've floated up 56 pixels, then hover
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	cp $d0 ; -48
+	cp $c8 ; -56
 	ret z
 	; sub-pixel accumulate: slow, evenly-spaced pixel steps
 	ld hl, BATTLEANIMSTRUCT_0F

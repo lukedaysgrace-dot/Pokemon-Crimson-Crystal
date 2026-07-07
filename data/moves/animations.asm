@@ -5113,18 +5113,21 @@ BattleAnim_Moonlight:
 	anim_obj ANIM_OBJ_MOON_GLOBE, 88, 104, $1
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
-	anim_wait 104
-	; shimmer rains straight down onto the Pokemon before the heal
-	anim_sound 0, 0, SFX_MOONLIGHT
-	anim_obj ANIM_OBJ_MOONLIGHT, 48, 40, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_MOONLIGHT, 64, 56, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_MOONLIGHT, 36, 68, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_MOONLIGHT, 56, 84, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_MOONLIGHT, 44, 100, $0
+	anim_wait 130
+	; a silvery shimmer wavers over the Pokemon right before the heal
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_sound 0, 0, SFX_SHINE
+	anim_obj ANIM_OBJ_GLIMMER, 48, 48, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_GLIMMER, 60, 64, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_GLIMMER, 36, 72, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_GLIMMER, 56, 88, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_GLIMMER, 44, 60, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_GLIMMER, 64, 80, $0
 	anim_wait 8
 	anim_if_param_equal $3, .three
 	anim_call BattleAnim_Moonlight_branch_cbc6a
@@ -6001,13 +6004,25 @@ BattleAnim_Moonblast:
 	anim_ret
 
 BattleAnim_BloodMoon:
-; A blood-red globe rises and floats up, then fires a crimson Hyper Beam-style blast.
-	anim_2gfx ANIM_GFX_GLOBE, ANIM_GFX_BEAM
+; A blood-red globe rises and floats up, gathers crimson energy, then fires a Hyper Beam-style blast.
+	anim_3gfx ANIM_GFX_GLOBE, ANIM_GFX_CHARGE, ANIM_GFX_BEAM
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_07, $0, $0, $0
 	anim_obj ANIM_OBJ_BLOOD_MOON_GLOBE, 88, 104, $1
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_wait 130
+	; moon has risen to its peak and stopped; gather crimson energy into the Pokemon before firing
+	anim_sound 0, 0, SFX_CHARGE
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE_CORE, 48, 84, $0
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $0
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $8
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $10
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $18
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $20
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $28
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $30
+	anim_obj ANIM_OBJ_BLOOD_MOON_CHARGE, 48, 84, $38
 	anim_wait 104
 	anim_bgeffect ANIM_BG_1F, $30, $4, $10
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
