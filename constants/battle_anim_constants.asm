@@ -313,6 +313,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_BLOOD_MOON_CHARGE
 	const ANIM_OBJ_BLOOD_MOON_CHARGE_CORE
 	const ANIM_OBJ_AURA_SPHERE_GLOW
+	const ANIM_OBJ_AURA_SPHERE_CHARGE
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -659,6 +660,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_PC_VORTEX
 	const BATTLEANIMFRAMESET_PC_5C
 	const BATTLEANIMFRAMESET_PC_AMNESIA_3_RECOVER
+	const BATTLEANIMFRAMESET_AVALANCHE_ICE_BIG
+	const BATTLEANIMFRAMESET_AVALANCHE_ICE_SMALL
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
