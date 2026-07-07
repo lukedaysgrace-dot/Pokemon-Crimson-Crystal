@@ -5106,17 +5106,26 @@ BattleAnim_Crunch:
 	anim_ret
 
 BattleAnim_Moonlight:
-	anim_1gfx ANIM_GFX_SHINE
+; A pale moon globe rises up, then shimmers for the heal.
+	anim_2gfx ANIM_GFX_GLOBE, ANIM_GFX_SHINE
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_07, $0, $0, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 0, 40, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 16, 56, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 32, 72, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 48, 88, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 64, 104, $0
+	anim_obj ANIM_OBJ_MOON_GLOBE, 88, 104, $1
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
-	anim_wait 63
+	anim_wait 104
+	; shimmer rains straight down onto the Pokemon before the heal
+	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_obj ANIM_OBJ_MOONLIGHT, 48, 40, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_MOONLIGHT, 64, 56, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_MOONLIGHT, 36, 68, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_MOONLIGHT, 56, 84, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_MOONLIGHT, 44, 100, $0
+	anim_wait 8
 	anim_if_param_equal $3, .three
 	anim_call BattleAnim_Moonlight_branch_cbc6a
 	anim_ret
@@ -5982,7 +5991,7 @@ BattleAnim_Moonblast:
 	anim_obj ANIM_OBJ_MOONLIGHT, 64, 104, $0
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
-	anim_wait 48
+	anim_wait 104
 	anim_call BattleAnim_Moonlight_branch_cbc6a
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
@@ -5992,18 +6001,14 @@ BattleAnim_Moonblast:
 	anim_ret
 
 BattleAnim_BloodMoon:
-; Crimson moonlight charge, then a Hyper Beam-style blast.
-	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_BEAM
+; A blood-red globe rises and floats up, then fires a crimson Hyper Beam-style blast.
+	anim_2gfx ANIM_GFX_GLOBE, ANIM_GFX_BEAM
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_07, $0, $0, $0
-	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 0, 40, $0
-	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 16, 56, $0
-	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 32, 72, $0
-	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 48, 88, $0
-	anim_obj ANIM_OBJ_BLOOD_MOONLIGHT, 64, 104, $0
+	anim_obj ANIM_OBJ_BLOOD_MOON_GLOBE, 88, 104, $1
 	anim_wait 1
 	anim_sound 0, 0, SFX_MOONLIGHT
-	anim_wait 48
+	anim_wait 104
 	anim_bgeffect ANIM_BG_1F, $30, $4, $10
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
 	anim_bgeffect ANIM_BG_06, $0, $2, $0

@@ -104,6 +104,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_PowerGem ; 58
 	dw BattleAnimFunction_Roost ; 59
 	dw BattleAnimFunction_RadialMoveOut_VerySlow ; 5a
+	dw BattleAnimFunction_MoonRise ; 5b
 
 BattleAnimFunction_Stat:
 ; Stat up/down bars (ported from Polished Crystal).
@@ -4194,6 +4195,30 @@ BattleAnim_AbsCosinePrecise:
 	ld d, h
 	ret
 
+BattleAnimSineWave:
+	sine_table 32
+
+BattleAnimFunction_MoonRise:
+; A moon/globe that floats straight up, slowly and smoothly, then hovers.
+; Rises ~40px using a sub-pixel accumulator so the motion stays slow and smooth.
+	; stop rising once we've floated up 40 pixels, then hover
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld a, [hl]
+	cp $d0 ; -48
+	ret z
+	; sub-pixel accumulate: slow, evenly-spaced pixel steps
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	add $70 ; rise speed (~0.44 px/frame)
+	ld [hl], a
+	ret nc
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	dec [hl]
+	ret
+
 ; ==== New battle anim functions ported from polishedcrystal ====
 
 BattleAnimFunction_RadialMoveOut:
@@ -4585,6 +4610,3 @@ BattleAnimFunction_Roost:
 	inc [hl]
 	inc [hl]
 	ret
-
-BattleAnimSineWave:
-	sine_table 32
