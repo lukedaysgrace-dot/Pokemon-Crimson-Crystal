@@ -9,4 +9,5 @@ CriticalHitMoves:
 	dw STONE_EDGE
 	dw LEAF_BLADE
 	dw SHADOW_CLAW
+	dw NIGHT_SLASH
 	dw -1

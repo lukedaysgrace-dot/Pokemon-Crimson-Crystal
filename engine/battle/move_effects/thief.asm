@@ -1,5 +1,5 @@
-BattleCommand_Thief:
-; thief
+BattleThief_Core:
+; thief (body in the Battle Effect Overflow bank)
 
 	ldh a, [hBattleTurn]
 	and a

@@ -302,6 +302,54 @@ MoveDescriptions1:
 	dw DrainPunchDescription
 	dw SolarBladeDescription
 	dw CloseCombatDescription
+	dw AcrobaticsDescription
+	dw AerialAceDescription
+	dw AquaTailDescription
+	dw AstonishDescription
+	dw AerialAceDescription
+	dw AvalancheDescription
+	dw BraveBirdDescription
+	dw BulkUpDescription
+	dw BulldozeDescription
+	dw CalmMindDescription
+	dw DragonDanceDescription
+	dw DragonPulseDescription
+	dw EarthPowerDescription
+	dw EarthPowerDescription
+	dw AstonishDescription
+	dw FacadeDescription
+	dw FlameChargeDescription
+	dw BraveBirdDescription
+	dw EarthPowerDescription
+	dw EarthPowerDescription
+	dw GigaImpactDescription
+	dw GunkShotDescription
+	dw GyroBallDescription
+	dw HexDescription
+	dw HoneClawsDescription
+	dw HurricaneDescription
+	dw HyperVoiceDescription
+	dw IcicleSpearDescription
+	dw AstonishDescription
+	dw KnockOffDescription
+	dw NastyPlotDescription
+	dw NightSlashDescription
+	dw PowerGemDescription
+	dw PowerWhipDescription
+	dw PsystrikeDescription
+	dw RockBlastDescription
+	dw RoostDescription
+	dw ScaldDescription
+	dw SeedBombDescription
+	dw ShellSmashDescription
+	dw SkillSwapDescription
+	dw ToxicSpikesDescription
+	dw TrickDescription
+	dw TrickRoomDescription
+	dw VoltSwitchDescription
+	dw HurricaneDescription
+	dw WillOWispDescription
+	dw AstonishDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1502,3 +1550,160 @@ SolarBladeDescription:
 CloseCombatDescription:
 	db   "A fierce attack."
 	next "Lowers DEF/SP.DEF.@"
+
+AcrobaticsDescription:
+	db   "Damage doubles if"
+	next "user has no item.@"
+
+AerialAceDescription:
+	db   "An attack that"
+	next "never misses.@"
+
+AquaTailDescription:
+	db   "Swings its tail"
+	next "like a wave.@"
+
+AstonishDescription:
+	db   "An attack that may"
+	next "cause flinching.@"
+
+AvalancheDescription:
+	db   "Damage doubles if"
+	next "user is hit first.@"
+
+BraveBirdDescription:
+	db   "A charge that also"
+	next "hurts the user.@"
+
+BulkUpDescription:
+	db   "Raises the user's"
+	next "Atk and Def.@"
+
+BulldozeDescription:
+	db   "A Ground attack"
+	next "that lowers Speed.@"
+
+CalmMindDescription:
+	db   "Raises the user's"
+	next "Sp.Atk and Sp.Def.@"
+
+DragonDanceDescription:
+	db   "Raises the user's"
+	next "Attack and Speed.@"
+
+DragonPulseDescription:
+	db   "Attacks foe with"
+	next "a shock wave.@"
+
+EarthPowerDescription:
+	db   "An attack that may"
+	next "lower Sp.Def.@"
+
+FacadeDescription:
+	db   "Double damage with"
+	next "Psn, Brn, or Prz.@"
+
+FlameChargeDescription:
+	db   "An attack that may"
+	next "up user's Speed.@"
+
+GigaImpactDescription:
+	db   "1st turn: Attack"
+	next "2nd turn: Rest@"
+
+GunkShotDescription:
+	db   "An attack that may"
+	next "poison the foe.@"
+
+GyroBallDescription:
+	db   "Does more damage"
+	next "at lower speed.@"
+
+HexDescription:
+	db   "Damage doubles if"
+	next "foe has status.@"
+
+HoneClawsDescription:
+	db   "Raises the user's"
+	next "Atk and accuracy.@"
+
+HurricaneDescription:
+	db   "An attack that may"
+	next "confuse the foe.@"
+
+HyperVoiceDescription:
+	db   "Attack the foe"
+	next "with sound waves.@"
+
+IcicleSpearDescription:
+	db   "Fires icicles to"
+	next "hit 2-5 times.@"
+
+KnockOffDescription:
+	db   "Slaps down the"
+	next "foe's held item.@"
+
+NastyPlotDescription:
+	db   "Sharply raises the"
+	next "user's Sp.Atk.@"
+
+NightSlashDescription:
+	db   "Has a high criti-"
+	next "cal hit ratio.@"
+
+PowerGemDescription:
+	db   "Attacks with a"
+	next "gem-light ray.@"
+
+PowerWhipDescription:
+	db   "A violent lash"
+	next "attack.@"
+
+PsystrikeDescription:
+	db   "A wave that does"
+	next "physical damage.@"
+
+RockBlastDescription:
+	db   "Hurls boulders to"
+	next "hit 2-5 times.@"
+
+RoostDescription:
+	db   "Lands to restore"
+	next "1/2 the max HP.@"
+
+ScaldDescription:
+	db   "An attack that may"
+	next "inflict a burn.@"
+
+SeedBombDescription:
+	db   "Slams a barrage of"
+	next "seeds at the foe.@"
+
+ShellSmashDescription:
+	db   "Lowers defenses,"
+	next "raises offenses.@"
+
+SkillSwapDescription:
+	db   "Swaps abilities"
+	next "with the foe.@"
+
+ToxicSpikesDescription:
+	db   "Poisons foes when"
+	next "they switch in.@"
+
+TrickDescription:
+	db   "Swaps held items"
+	next "with the foe.@"
+
+TrickRoomDescription:
+	db   "Slow #mon move"
+	next "first for 5 turns.@"
+
+VoltSwitchDescription:
+	db   "Switches out after"
+	next "making its attack.@"
+
+WillOWispDescription:
+	db   "A move that may"
+	next "burn the foe.@"
+

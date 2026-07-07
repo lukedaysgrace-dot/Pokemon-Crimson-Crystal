@@ -130,7 +130,7 @@ BattleAnimOAMData:
 	dbbw $04,  4, .OAMData_03 ; BATTLEANIMOAMSET_7E
 	dbbw $08,  4, .OAMData_03 ; BATTLEANIMOAMSET_7F
 	dbbw $0d,  1, .OAMData_0f ; BATTLEANIMOAMSET_80
-	dbbw $0e,  4, .OAMData_81 ; BATTLEANIMOAMSET_81
+	dbbw $0e,  4, .OAMData_30 ; BATTLEANIMOAMSET_81
 	dbbw $10,  1, .OAMData_0f ; BATTLEANIMOAMSET_82
 	dbbw $11,  1, .OAMData_0f ; BATTLEANIMOAMSET_83
 	dbbw $04,  2, .OAMData_6a ; BATTLEANIMOAMSET_84
@@ -173,7 +173,7 @@ BattleAnimOAMData:
 	dbbw $1e,  9, .OAMData_a4 ; BATTLEANIMOAMSET_A9
 	dbbw $24,  9, .OAMData_a4 ; BATTLEANIMOAMSET_AA
 	dbbw $2a,  9, .OAMData_a4 ; BATTLEANIMOAMSET_AB
-	dbbw $03,  4, .OAMData_ac ; BATTLEANIMOAMSET_AC
+	dbbw $03,  4, .OAMData_59 ; BATTLEANIMOAMSET_AC
 	dbbw $12,  4, .OAMData_03 ; BATTLEANIMOAMSET_AD
 	dbbw $10,  4, .OAMData_04 ; BATTLEANIMOAMSET_AE
 	dbbw $16,  1, .OAMData_0f ; BATTLEANIMOAMSET_AF
@@ -219,6 +219,90 @@ BattleAnimOAMData:
 	dbbw $00, 12, .OAMData_d7 ; BATTLEANIMOAMSET_D7
 	dbbw $00, 13, .OAMData_Hail ; BATTLEANIMOAMSET_HAIL
 	dbbw $00, 16, .OAMData_Stats ; BATTLEANIMOAMSET_STAT
+	dbbw $05,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_55
+	dbbw $04,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_54
+	dbbw $00,  9, .OAMData_01_pc ; BATTLEANIMOAMSET_PC_53
+	dbbw $00,  4, .OAMData_59_pc ; BATTLEANIMOAMSET_PC_AC
+	dbbw $04,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_0F
+	dbbw $00, 29, .OAMData_dd ; BATTLEANIMOAMSET_PC_DD
+	dbbw $09, 16, .OAMData_00_pc ; BATTLEANIMOAMSET_PC_DC
+	dbbw $08,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_20
+	dbbw $00, 18, .OAMData_dd ; BATTLEANIMOAMSET_PC_EF
+	dbbw $09, 18, .OAMData_dd ; BATTLEANIMOAMSET_PC_F0
+	dbbw $05,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_10
+	dbbw $02,  4, .OAMData_04_pc ; BATTLEANIMOAMSET_PC_0E
+	dbbw $00,  4, .OAMData_04_pc ; BATTLEANIMOAMSET_PC_0A
+	dbbw $07,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_1F
+	dbbw $06,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_1E
+	dbbw $02,  5, .OAMData_dd ; BATTLEANIMOAMSET_PC_E2
+	dbbw $02,  6, .OAMData_dd ; BATTLEANIMOAMSET_PC_E3
+	dbbw $02,  7, .OAMData_dd ; BATTLEANIMOAMSET_PC_E4
+	dbbw $02,  8, .OAMData_dd ; BATTLEANIMOAMSET_PC_E5
+	dbbw $02,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_E6
+	dbbw $02, 10, .OAMData_dd ; BATTLEANIMOAMSET_PC_E7
+	dbbw $02, 11, .OAMData_dd ; BATTLEANIMOAMSET_PC_E8
+	dbbw $01,  5, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_4B
+	dbbw $01,  6, .OAMData_4c_pc ; BATTLEANIMOAMSET_PC_4C
+	dbbw $01,  7, .OAMData_4d_pc ; BATTLEANIMOAMSET_PC_4D
+	dbbw $01,  8, .OAMData_4f_pc ; BATTLEANIMOAMSET_PC_4F
+	dbbw $01,  9, .OAMData_50_pc ; BATTLEANIMOAMSET_PC_50
+	dbbw $01, 10, .OAMData_51_pc ; BATTLEANIMOAMSET_PC_51
+	dbbw $01,  6, .OAMData_51_pc ; BATTLEANIMOAMSET_PC_52
+	dbbw $01,  3, .OAMData_4d_pc ; BATTLEANIMOAMSET_PC_4E
+	dbbw $09,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_EE
+	dbbw $02,  2, .OAMData_dd ; BATTLEANIMOAMSET_PC_E0
+	dbbw $00,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_18
+	dbbw $01, 16, .OAMData_00_pc ; BATTLEANIMOAMSET_PC_19
+	dbbw $05, 16, .OAMData_00_pc ; BATTLEANIMOAMSET_PC_1A
+	dbbw $00, 16, .OAMData_00_pc ; BATTLEANIMOAMSET_PC_00
+	dbbw $04, 16, .OAMData_00_pc ; BATTLEANIMOAMSET_PC_07
+	dbbw $0b,  4, .OAMData_30_pc ; BATTLEANIMOAMSET_PC_C5
+	dbbw $1c,  6, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_C6
+	dbbw $20, 16, .OAMData_c1_pc ; BATTLEANIMOAMSET_PC_C7
+	dbbw $1a,  4, .OAMData_30_pc ; BATTLEANIMOAMSET_PC_BF
+	dbbw $16,  9, .OAMData_01_pc ; BATTLEANIMOAMSET_PC_C0
+	dbbw $10, 16, .OAMData_c1_pc ; BATTLEANIMOAMSET_PC_C1
+	dbbw $0a,  9, .OAMData_f3 ; BATTLEANIMOAMSET_PC_F3
+	dbbw $00, 14, .OAMData_dd ; BATTLEANIMOAMSET_PC_85
+	dbbw $0e, 13, .OAMData_dd ; BATTLEANIMOAMSET_PC_95
+	dbbw $1b, 14, .OAMData_dd ; BATTLEANIMOAMSET_PC_B9
+	dbbw $29, 14, .OAMData_dd ; BATTLEANIMOAMSET_PC_BD
+	dbbw $04,  9, .OAMData_01_pc ; BATTLEANIMOAMSET_PC_01
+	dbbw $01, 15, .OAMData_dd ; BATTLEANIMOAMSET_PC_HONE_CLAWS_1
+	dbbw $01, 18, .OAMData_dd ; BATTLEANIMOAMSET_PC_HONE_CLAWS_2
+	dbbw $01, 21, .OAMData_dd ; BATTLEANIMOAMSET_PC_HONE_CLAWS_3
+	dbbw $01,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_HONE_CLAWS_4
+	dbbw $01,  8, .OAMData_70_pc ; BATTLEANIMOAMSET_PC_70
+	dbbw $03,  8, .OAMData_70_pc ; BATTLEANIMOAMSET_PC_71
+	dbbw $05,  8, .OAMData_70_pc ; BATTLEANIMOAMSET_PC_72
+	dbbw $07,  8, .OAMData_70_pc ; BATTLEANIMOAMSET_PC_73
+	dbbw $07, 10, .OAMData_HyperVoice ; BATTLEANIMOAMSET_PC_HYPER_VOICE
+	dbbw $07,  4, .OAMData_03 ; BATTLEANIMOAMSET_PC_E1
+	dbbw $00, 12, .OAMData_dd ; BATTLEANIMOAMSET_PC_FB
+	dbbw $00,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_14
+	dbbw $01,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_15
+	dbbw $06,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_74
+	dbbw $0c,  6, .OAMData_dd ; BATTLEANIMOAMSET_PC_BIG_WHIP_1
+	dbbw $00,  6, .OAMData_dd ; BATTLEANIMOAMSET_PC_BIG_WHIP_2
+	dbbw $06,  6, .OAMData_dd ; BATTLEANIMOAMSET_PC_BIG_WHIP_3
+	dbbw $00, 24, .OAMData_dd ; BATTLEANIMOAMSET_PC_DF
+	dbbw $00,  8, .OAMData_dd ; BATTLEANIMOAMSET_PC_DE
+	dbbw $16,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_AF
+	dbbw $00,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_1
+	dbbw $0c,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_2
+	dbbw $06,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_3
+	dbbw $12,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_4
+	dbbw $03,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_EA
+	dbbw $02,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_1D
+	dbbw $01,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_EB
+	dbbw $00, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_VOLT_SWITCH_1
+	dbbw $0f,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_DISCHARGE_SPARKS_N_1
+	dbbw $0e,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_DISCHARGE_SPARKS_N_2
+	dbbw $10,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_82
+	dbbw $08, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_D9
+	dbbw $10, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_DA
+	dbbw $18, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_DB
+	dbbw $0d,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_80
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -881,11 +965,6 @@ BattleAnimOAMData:
 	dsprite   0, 0,   0, 0, $01, X_FLIP | Y_FLIP
 	dsprite   1, 0,   0, 0, $00, X_FLIP | Y_FLIP
 
-.OAMData_81:
-	dsprite  -1, 0,  -1, 0, $00, $0
-	dsprite  -1, 0,   0, 0, $01, $0
-	dsprite   0, 0,  -1, 0, $01, X_FLIP | Y_FLIP
-	dsprite   0, 0,   0, 0, $00, X_FLIP | Y_FLIP
 
 .OAMData_87:
 	dsprite  -2, 4,  -1, 0, $00, $0
@@ -1032,11 +1111,6 @@ BattleAnimOAMData:
 	dsprite   0, 4,  -1, 4, $01, Y_FLIP
 	dsprite   0, 4,   0, 4, $02, Y_FLIP
 
-.OAMData_ac:
-	dsprite  -1, 4,  -2, 0, $00, $0
-	dsprite  -1, 4,  -1, 0, $01, $0
-	dsprite  -1, 4,   0, 0, $01, X_FLIP
-	dsprite  -1, 4,   1, 0, $00, X_FLIP
 
 .OAMData_bc:
 	dsprite  -1, 4,  -3, 0, $00, $0
@@ -1118,3 +1192,167 @@ BattleAnimOAMData:
 	dsprite   0, 0,   2, 0, $01, $0
 	dsprite   0, 0,   3, 0, $01, $0
 	dsprite   0, 0,   4, 0, $01, $0
+
+.OAMData_02_pc:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $00, $0 | X_FLIP
+	dsprite   0, 0,  -1, 0, $00, $0 | Y_FLIP
+	dsprite   0, 0,   0, 0, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_01_pc:
+	dsprite  -2, 4,  -2, 4, $00, $0
+	dsprite  -2, 4,  -1, 4, $01, $0
+	dsprite  -2, 4,   0, 4, $00, $0 | X_FLIP
+	dsprite  -1, 4,  -2, 4, $02, $0
+	dsprite  -1, 4,  -1, 4, $03, $0
+	dsprite  -1, 4,   0, 4, $02, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 4,  -2, 4, $00, $0 | Y_FLIP
+	dsprite   0, 4,  -1, 4, $01, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 4,   0, 4, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_59_pc:
+	dsprite  -1, 4,  -2, 0, $00, $0
+	dsprite  -1, 4,  -1, 0, $01, $0
+	dsprite  -1, 4,   0, 0, $01, $0 | X_FLIP
+	dsprite  -1, 4,   1, 0, $00, $0 | X_FLIP
+
+.OAMData_0f_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite  -1, 4,  -2, 4, $01, $0
+	dsprite  -1, 4,  -1, 4, $01, $0 | X_FLIP
+	dsprite   0, 4,  -2, 4, $01, $0 | Y_FLIP
+	dsprite   0, 4,  -1, 4, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_dd:
+
+.OAMData_00_pc:
+	dsprite  -2, 0,  -2, 0, $00, $0
+	dsprite  -2, 0,  -1, 0, $01, $0
+	dsprite  -1, 0,  -2, 0, $02, $0
+	dsprite  -1, 0,  -1, 0, $03, $0
+	dsprite  -2, 0,   0, 0, $01, $0 | X_FLIP
+	dsprite  -2, 0,   1, 0, $00, $0 | X_FLIP
+	dsprite  -1, 0,   0, 0, $03, $0 | X_FLIP
+	dsprite  -1, 0,   1, 0, $02, $0 | X_FLIP
+	dsprite   0, 0,  -2, 0, $02, $0 | Y_FLIP
+	dsprite   0, 0,  -1, 0, $03, $0 | Y_FLIP
+	dsprite   1, 0,  -2, 0, $00, $0 | Y_FLIP
+	dsprite   1, 0,  -1, 0, $01, $0 | Y_FLIP
+	dsprite   0, 0,   0, 0, $03, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 0,   1, 0, $02, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,   0, 0, $01, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,   1, 0, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_04_pc:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $00, $0 | X_FLIP
+	dsprite   0, 0,  -1, 0, $01, $0
+	dsprite   0, 0,   0, 0, $01, $0 | X_FLIP
+
+.OAMData_4c_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite   0, 2,  -2, 6, $00, $0
+	dsprite   0, 2,  -3, 6, $01, $0
+	dsprite   0, 2,  -2, 6, $01, $0 | X_FLIP
+	dsprite   1, 2,  -3, 6, $01, $0 | Y_FLIP
+	dsprite   1, 2,  -2, 6, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_4d_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite   0, 2,  -2, 6, $00, $0
+	dsprite   1, 0,  -2, 0, $00, $0
+	dsprite   1, 0,  -3, 0, $01, $0
+	dsprite   1, 0,  -2, 0, $01, $0 | X_FLIP
+	dsprite   2, 0,  -3, 0, $01, $0 | Y_FLIP
+	dsprite   2, 0,  -2, 0, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_4f_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite   0, 2,  -2, 6, $00, $0
+	dsprite   1, 0,  -2, 0, $00, $0
+	dsprite   1, 6,  -3, 2, $00, $0
+	dsprite   1, 6,  -4, 2, $01, $0
+	dsprite   1, 6,  -3, 2, $01, $0 | X_FLIP
+	dsprite   2, 6,  -4, 2, $01, $0 | Y_FLIP
+	dsprite   2, 6,  -3, 2, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_50_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite   0, 2,  -2, 6, $00, $0
+	dsprite   1, 0,  -2, 0, $00, $0
+	dsprite   1, 6,  -3, 2, $00, $0
+	dsprite   2, 4,  -4, 4, $00, $0
+	dsprite   2, 4,  -5, 4, $01, $0
+	dsprite   2, 4,  -4, 4, $01, $0 | X_FLIP
+	dsprite   3, 4,  -5, 4, $01, $0 | Y_FLIP
+	dsprite   3, 4,  -4, 4, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_51_pc:
+	dsprite  -1, 4,  -1, 4, $00, $0
+	dsprite   0, 2,  -2, 6, $00, $0
+	dsprite   1, 0,  -2, 0, $00, $0
+	dsprite   1, 6,  -3, 2, $00, $0
+	dsprite   2, 4,  -4, 4, $00, $0
+	dsprite   3, 2,  -5, 6, $00, $0
+	dsprite   3, 2,  -6, 6, $01, $0
+	dsprite   3, 2,  -5, 6, $01, $0 | X_FLIP
+	dsprite   4, 2,  -6, 6, $01, $0 | Y_FLIP
+	dsprite   4, 2,  -5, 6, $01, $0 | X_FLIP | Y_FLIP
+
+.OAMData_30_pc:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $01, $0
+	dsprite   0, 0,  -1, 0, $01, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 0,   0, 0, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_c1_pc:
+	dsprite  -2, 0,  -2, 0, $00, $0
+	dsprite  -2, 0,  -1, 0, $01, $0
+	dsprite  -2, 0,   0, 0, $02, $0
+	dsprite  -2, 0,   1, 0, $00, $0 | X_FLIP
+	dsprite  -1, 0,  -2, 0, $03, $0
+	dsprite  -1, 0,  -1, 0, $04, $0
+	dsprite  -1, 0,   0, 0, $04, $0 | X_FLIP
+	dsprite  -1, 0,   1, 0, $05, $0
+	dsprite   0, 0,  -2, 0, $05, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 0,  -1, 0, $04, $0 | Y_FLIP
+	dsprite   0, 0,   0, 0, $04, $0 | X_FLIP | Y_FLIP
+	dsprite   0, 0,   1, 0, $03, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,  -2, 0, $00, $0 | Y_FLIP
+	dsprite   1, 0,  -1, 0, $02, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,   0, 0, $01, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,   1, 0, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_f3:
+	dsprite  -2, 4,  -2, 4, $00, $0
+	dsprite  -2, 4,  -1, 4, $03, $0
+	dsprite  -2, 4,   0, 4, $06, $0
+	dsprite  -1, 4,  -2, 4, $01, $0
+	dsprite  -1, 4,  -1, 4, $04, $0
+	dsprite  -1, 4,   0, 4, $07, $0
+	dsprite   0, 4,  -2, 4, $02, $0
+	dsprite   0, 4,  -1, 4, $05, $0
+	dsprite   0, 4,   0, 4, $08, $0
+
+.OAMData_70_pc:
+	dsprite  -2, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,  -1, 0, $01, $0
+	dsprite  -2, 0,   0, 0, $00, $0 | X_FLIP
+	dsprite  -1, 0,   0, 0, $01, $0 | X_FLIP
+	dsprite   0, 0,  -1, 0, $01, $0 | Y_FLIP
+	dsprite   1, 0,  -1, 0, $00, $0 | Y_FLIP
+	dsprite   0, 0,   0, 0, $01, $0 | X_FLIP | Y_FLIP
+	dsprite   1, 0,   0, 0, $00, $0 | X_FLIP | Y_FLIP
+
+.OAMData_HyperVoice:
+	dsprite  -3, 0,   0, 0, $00, $0
+	dsprite  -2, 0,   0, 0, $01, $0
+	dsprite  -1, 0,   0, 0, $06, $0
+	dsprite  -3, 0,   1, 0, $00, X_FLIP
+	dsprite  -2, 0,   1, 0, $01, X_FLIP
+	dsprite  -1, 0,   1, 0, $06, X_FLIP
+	dsprite   0, 0,   0, 0, $01, Y_FLIP
+	dsprite   1, 0,   0, 0, $00, Y_FLIP
+	dsprite   0, 0,   1, 0, $01, X_FLIP | Y_FLIP
+	dsprite   1, 0,   1, 0, $00, X_FLIP | Y_FLIP
+

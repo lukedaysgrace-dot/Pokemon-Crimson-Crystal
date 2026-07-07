@@ -20,6 +20,24 @@ BattleCommand_ClearHazards:
 .got_screens_wrap
 	bit SCREENS_SPIKES, [hl]
 	jr z, .no_spikes
+	; reload the screens pointer (hl may have been clobbered above)
+	ld hl, wPlayerScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens_2
+	ld hl, wEnemyScreens
+.got_screens_2
+	ld a, [hl]
+	and SCREENS_TOXIC_SPIKES_MASK
+	jr z, .no_toxic_spikes
+	ld a, [hl]
+	and $ff ^ SCREENS_TOXIC_SPIKES_MASK
+	ld [hl], a
+	ld hl, BlewToxicSpikesText
+	push de
+	call StdBattleTextbox
+	pop de
+.no_toxic_spikes
 	res SCREENS_SPIKES, [hl]
 	ld hl, BlewSpikesText
 	push de

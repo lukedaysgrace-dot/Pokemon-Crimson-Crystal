@@ -710,6 +710,8 @@ wEnemyRageCounter:: db ; c730
 
 wBeatUpHitAtLeastOnce:: db ; c731
 
+wTrickRoomTimer:: db ; turns of Trick Room remaining (0 = inactive)
+
 wPlayerTrappingMove:: db ; c732
 wEnemyTrappingMove:: db ; c733
 wPlayerWrapCount:: db ; c734
@@ -3131,14 +3133,16 @@ wLastAnimObjectIndex:: db ; d40e
 
 wBattleAnimFlags:: db ; d40f
 wBattleAnimAddress:: dw ; d410
+wBattleAnimScriptBank:: db ; bank of the currently playing anim script
 wBattleAnimDelay:: db ; d412
 wBattleAnimParent:: dw ; d413
 wBattleAnimLoops:: db ; d415
 wBattleAnimVar:: db ; d416
 wBattleAnimByte:: db ; d417
 wBattleAnimOAMPointerLo:: db ; d418
+wBattleObjectTempIDHi:: db ; high byte of the anim_obj object id (anim_hiobj)
 
-UNION ; d419
+UNION
 ; unidentified
 wBattleAnimTemp0:: db
 wBattleAnimTemp1:: db

@@ -65,10 +65,8 @@ ROMX $0f
 	"Battle Core"
 ROMX $10
 	"bank10"
-	"Evolutions and Attacks 1"
 ROMX $11
 	"bank11"
-	"Battle Effect Overflow"
 	"Enemy Trainer Parties 2"
 ROMX $12
 	"Crystal Features 1"

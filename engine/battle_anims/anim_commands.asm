@@ -357,7 +357,7 @@ BattleAnimCommands::
 	dw BattleAnimCmd_UpdateActorPic
 	dw BattleAnimCmd_Minimize
 	dw BattleAnimCmd_StatLoop ; anim_statloop
-	dw BattleAnimCmd_EB ; dummy
+	dw BattleAnimCmd_HiObj
 	dw BattleAnimCmd_EC ; dummy
 	dw BattleAnimCmd_ED ; dummy
 	dw BattleAnimCmd_IfParamAnd
@@ -607,8 +607,17 @@ BattleAnimCmd_IfParamAnd:
 	ld [hl], d
 	ret
 
+BattleAnimCmd_HiObj:
+; index (+$100), x, y, param
+	ld a, 1
+	ld [wBattleObjectTempIDHi], a
+	jr BattleAnimCmd_Obj_common
+
 BattleAnimCmd_Obj:
 ; index, x, y, param
+	xor a
+	ld [wBattleObjectTempIDHi], a
+BattleAnimCmd_Obj_common:
 	call GetBattleAnimByte
 	ld [wBattleObjectTempID], a
 	call GetBattleAnimByte
@@ -688,15 +697,7 @@ BattleAnimCmd_5GFX:
 	ld [hli], a
 	push bc
 	push hl
-	ld l, a
-	ld h, $0
-rept 4
-	add hl, hl
-endr
-	ld de, vTiles0 tile BATTLEANIM_BASE_TILE
-	add hl, de
-	ld a, [wBattleAnimByte]
-	call LoadBattleAnimGFX
+	farcall LoadBattleAnimGFX ; reads wBattleAnimByte and wBattleAnimTemp0
 	ld a, [wBattleAnimTemp0]
 	add c
 	ld [wBattleAnimTemp0], a
@@ -1374,6 +1375,7 @@ ClearBattleAnims::
 	ld hl, BattleAnimations
 	add hl, de
 	add hl, de
+	add hl, de
 	call GetBattleAnimPointer
 	call BattleAnimAssignPals
 	call BattleAnimDelayFrame
@@ -1458,7 +1460,7 @@ BattleAnim_UpdateOAM_All:
 	push hl
 	push de
 	call DoBattleAnimFrame
-	call BattleAnimOAMUpdate
+	farcall BattleAnimOAMUpdate
 	pop de
 	pop hl
 	jr c, .done

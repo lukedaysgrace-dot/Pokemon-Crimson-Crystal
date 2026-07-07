@@ -187,8 +187,10 @@ GetBattleAnimPointer::
 
 	ld a, [hli]
 	ld [wBattleAnimAddress], a
-	ld a, [hl]
+	ld a, [hli]
 	ld [wBattleAnimAddress + 1], a
+	ld a, [hl]
+	ld [wBattleAnimScriptBank], a
 
 	; ClearBattleAnims is the only function that calls this...
 	ld a, BANK(ClearBattleAnims)
@@ -205,7 +207,7 @@ GetBattleAnimByte::
 	inc hl
 	ld d, [hl]
 
-	ld a, BANK(BattleAnimations)
+	ld a, [wBattleAnimScriptBank]
 	rst Bankswitch
 
 	ld a, [de]

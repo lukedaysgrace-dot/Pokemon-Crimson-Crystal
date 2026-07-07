@@ -185,6 +185,15 @@ ENDM
 	command venoshockdouble         ; b2
 	command starthail               ; b3
 	command uturn                   ; b4
+	command conditionalboost        ; b5
+	command gyroball                ; b6
+	command knockoff                ; b7
+	command roost                   ; b8
+	command skillswap               ; b9
+	command trick                   ; ba
+	command toxicspikes             ; bb
+	command trickroom               ; bc
+	command burn                    ; bd
 
 	enum_start $fe
 	command endturn                 ; fe

@@ -165,3 +165,25 @@ MoveEffectsPointers:
 	dw UTurn
 	dw DracoMeteor
 	dw CloseCombat
+	dw ConditionalBoostHit ; EFFECT_ACROBATICS
+	dw ConditionalBoostHit ; EFFECT_FACADE
+	dw ConditionalBoostHit ; EFFECT_HEX
+	dw ConditionalBoostHit ; EFFECT_AVALANCHE
+	dw BulkUp
+	dw CalmMind
+	dw DragonDance
+	dw HoneClaws
+	dw ShellSmash
+	dw SpeedUpHit
+	dw FlareBlitz
+	dw GyroBall
+	dw KnockOff
+	dw Psystrike
+	dw Roost
+	dw SkillSwap
+	dw Trick
+	dw ToxicSpikes
+	dw TrickRoom
+	dw DoBurn
+	dw ConfuseHit ; EFFECT_HURRICANE
+	dw FlameWheel ; EFFECT_SCALD (thaws the user)

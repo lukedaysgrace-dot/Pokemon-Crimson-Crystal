@@ -302,6 +302,8 @@ HandleBetweenTurnEffects:
 	call HandleLeftovers
 	call HandleMysteryberry
 	call HandleDefrost
+	farcall HandleTrickRoom
+	farcall HandleRoost
 	call HandleSafeguard
 	call HandleScreens
 	call HandleStatBoostingHeldItems
@@ -4264,6 +4266,11 @@ SpikesDamageAndEntryAbilities:
 	ret
 
 SpikesDamage:
+	call .Spikes
+	farcall ToxicSpikesPoison
+	ret
+
+.Spikes:
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
 	ld bc, UpdatePlayerHUD
@@ -6949,7 +6956,7 @@ ApplyPrzEffectOnSpeed:
 	ld [hl], b
 	ret
 
-ApplyBrnEffectOnAttack:
+ApplyBrnEffectOnAttack::
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .enemy

@@ -49,3 +49,24 @@ AnimObjGFX:
 	anim_obj_gfx  1, NULL
 	anim_obj_gfx  1, NULL
 	anim_obj_gfx  2, AnimObjStatsGFX
+	anim_obj_gfx 16, AnimObjAuraSphereGFX
+	anim_obj_gfx 15, AnimObjBigGlowClearGFX
+	anim_obj_gfx 15, AnimObjBigRingsGFX
+	anim_obj_gfx 20, AnimObjBigWhipGFX
+	anim_obj_gfx 18, AnimObjBulkUpGFX
+	anim_obj_gfx 10, AnimObjEnergyBallGFX
+	anim_obj_gfx  8, AnimObjFocusBlastGFX
+	anim_obj_gfx 10, AnimObjGlowGFX
+	anim_obj_gfx 56, AnimObjGyroBallGFX
+	anim_obj_gfx 10, AnimObjHit2GFX
+	anim_obj_gfx 18, AnimObjHurricaneGFX
+	anim_obj_gfx  5, AnimObjMisc2GFX
+	anim_obj_gfx 16, AnimObjPsystrikeGFX
+	anim_obj_gfx  6, AnimObjRingsGFX
+	anim_obj_gfx 10, AnimObjSmokePuffGFX
+	anim_obj_gfx  8, AnimObjStarsGFX
+	anim_obj_gfx 24, AnimObjSwirlGFX
+	anim_obj_gfx 14, AnimObjTrickRoomGFX
+	anim_obj_gfx 28, AnimObjVoltSwitchGFX
+	anim_obj_gfx 32, AnimObjVortexGFX
+	anim_obj_gfx  4, AnimObjWindBGGFX
