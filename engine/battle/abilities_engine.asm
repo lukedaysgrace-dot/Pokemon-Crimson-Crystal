@@ -2668,6 +2668,11 @@ RockyHelmetDamage:
 
 GetUserMaxHPFraction:
 ; d = divisor. Returns bc = max(1, max HP / d).
+; Also refreshes wBuffer1-2 (= wCurHPAnimMaxHP) with the USER's max HP, the
+; way GetMaxHP does, so a following SubtractHPFromUser animates the bar
+; against the right maximum. Without this the bar scales the user's HP
+; against whatever max was last left in the buffer (the just-KO'd defender's
+; on the Aftermath/Rocky Helmet/Life Orb paths), garbling the HP bar.
 	ld hl, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
@@ -2679,8 +2684,10 @@ GetUserMaxHPFraction:
 	ldh [hDividend + 1], a
 	ld a, [hli]
 	ldh [hDividend + 2], a
+	ld [wBuffer2], a ; HP-bar max HP, high byte
 	ld a, [hl]
 	ldh [hDividend + 3], a
+	ld [wBuffer1], a ; HP-bar max HP, low byte
 	ld a, d
 	ldh [hDivisor], a
 	ld b, 4
