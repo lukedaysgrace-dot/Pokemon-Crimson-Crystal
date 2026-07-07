@@ -401,11 +401,11 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, AURA_SPHERE
-	dbw 1, PSYSTRIKE
-	dbw 3, DRAGON_PULSE
-	dbw 4, BULLDOZE
+	dbw 1, HURRICANE
+	dbw 3, VOLT_SWITCH
+	dbw 4, GUNK_SHOT
 	dbw 6, AVALANCHE
-	dbw 7, TRIPLE_AXEL
+	dbw 7, WILL_O_WISP
 	dbw 20, BITE
 	dbw 22, FLAIL
 	dbw 27, CRUNCH

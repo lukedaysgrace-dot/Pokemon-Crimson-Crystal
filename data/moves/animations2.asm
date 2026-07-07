@@ -166,18 +166,29 @@ BattleAnim_Astonish:
 
 
 BattleAnim_AuraSphere:
-; The user glows with a swelling blue aura, then fires the blue aura sphere.
-	anim_1gfx ANIM_GFX_GLOW
+; The user gathers rising blue energy (Focus Energy-style charge), then fires the blue aura sphere.
+	anim_2gfx ANIM_GFX_SPEED, ANIM_GFX_GLOW
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_sound 0, 1, SFX_CHARGE
+.charge_loop
+	anim_sound 0, 0, SFX_SWORDS_DANCE
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 44, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 36, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 52, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 28, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 60, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 20, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_AURA_SPHERE_CHARGE, 68, 108, $8
+	anim_wait 2
+	anim_loop 3, .charge_loop
+	anim_wait 8
 	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
-	anim_wait 14
-	anim_sound 0, 1, SFX_CHARGE
-	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
-	anim_wait 14
-	anim_sound 0, 1, SFX_CHARGE
-	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
-	anim_wait 22
+	anim_wait 16
 	anim_clearobjs
 	anim_3gfx ANIM_GFX_BIG_GLOW_CLEAR, ANIM_GFX_AURA_SPHERE, ANIM_GFX_WIND_BG
 	anim_sound 0, 1, SFX_MEGA_PUNCH
@@ -193,7 +204,7 @@ BattleAnim_AuraSphere:
 
 
 BattleAnim_Avalanche:
-	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_SMOKE_PUFF
+	anim_2gfx ANIM_GFX_ICE, ANIM_GFX_SMOKE_PUFF
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_bgeffect ANIM_BG_20, $c0, $1, $0
 	anim_bgp $90
