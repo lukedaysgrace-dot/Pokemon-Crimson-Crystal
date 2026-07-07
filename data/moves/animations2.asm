@@ -166,23 +166,21 @@ BattleAnim_Astonish:
 
 
 BattleAnim_AuraSphere:
-	anim_4gfx ANIM_GFX_VORTEX, ANIM_GFX_GLOW, ANIM_GFX_WIND_BG, ANIM_GFX_SWIRL
+; The user glows with a swelling blue aura, then fires the blue aura sphere.
+	anim_1gfx ANIM_GFX_GLOW
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_call BattleAnimSub_AgilityMinor
-	anim_sound 0, 1, SFX_OUTRAGE
-.loop
-	anim_obj ANIM_OBJ_SWIRL_SHORT, 44, 96, $0
-	anim_wait 8
-	anim_loop 4, .loop
-	anim_obj ANIM_OBJ_VORTEX, 44, 96, $0
-	anim_wait 64
+	anim_sound 0, 1, SFX_CHARGE
+	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
+	anim_wait 14
+	anim_sound 0, 1, SFX_CHARGE
+	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
+	anim_wait 14
+	anim_sound 0, 1, SFX_CHARGE
+	anim_obj ANIM_OBJ_AURA_SPHERE_GLOW, 48, 96, $0
+	anim_wait 22
 	anim_clearobjs
-	anim_sound 0, 1, SFX_SLUDGE_BOMB
-	anim_obj ANIM_OBJ_SHRINKING_GLOW, 44, 96, $4
-	anim_wait 10
 	anim_3gfx ANIM_GFX_BIG_GLOW_CLEAR, ANIM_GFX_AURA_SPHERE, ANIM_GFX_WIND_BG
 	anim_sound 0, 1, SFX_MEGA_PUNCH
-.loop2
 	anim_obj ANIM_OBJ_AURA_SPHERE, 64, 88, $6
 	anim_wait 12
 	anim_bgeffect ANIM_BG_1F, $08, $2, $0
