@@ -978,6 +978,65 @@ FullyParalyzedText:
 	line "fully paralyzed!"
 	prompt
 
+UserWasPoisonedText:
+	text "<USER>"
+	line "was poisoned!"
+	prompt
+
+UserBadlyPoisonedText:
+	text "<USER> is"
+	line "badly poisoned!"
+	prompt
+
+AlreadyBurnedText:
+	text "<TARGET> is"
+	line "already burned!"
+	prompt
+
+KnockedOffItemText:
+	text "<USER>"
+	line "knocked off"
+	cont ""
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
+SwappedItemsText:
+	text "The battlers"
+	line "swapped items!"
+	prompt
+
+SwappedAbilitiesText:
+	text "The battlers"
+	line "swapped abilities!"
+	prompt
+
+ToxicSpikesText:
+	text "Toxic spikes"
+	line "scattered around"
+	cont "<TARGET>!"
+	prompt
+
+BlewToxicSpikesText:
+	text "<USER>"
+	line "blew away Toxic"
+	cont "Spikes!"
+	prompt
+
+TrickRoomText:
+	text "<USER>"
+	line "twisted the"
+	cont "dimensions!"
+	prompt
+
+TrickRoomEndedText:
+	text "The twisted"
+	line "dimensions"
+
+	para "returned to"
+	line "normal!"
+	prompt
+
 AlreadyParalyzedText:
 	text "<TARGET>'s"
 	line "already paralyzed!"

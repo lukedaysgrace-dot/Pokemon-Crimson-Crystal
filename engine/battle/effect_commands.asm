@@ -1851,6 +1851,7 @@ BattleCommand_CheckHit:
 	dw WHIRLWIND
 	dw THUNDER
 	dw TWISTER
+	dw HURRICANE
 	dw -1
 
 .DigMoves:
@@ -1864,8 +1865,10 @@ BattleCommand_CheckHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_THUNDER
+	jr z, .rain_check
+	cp EFFECT_HURRICANE
 	ret nz
-
+.rain_check
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	ret
@@ -2735,6 +2738,11 @@ PlayerAttackDamage:
 	jr .thickclub
 
 .special
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .psystrike
+
 	ld hl, wEnemyMonSpclDef
 	ld a, [hli]
 	ld b, a
@@ -2752,6 +2760,31 @@ PlayerAttackDamage:
 	jr c, .lightball
 
 	ld hl, wEnemySpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerSpAtk
+	jr .lightball
+
+.psystrike
+; Psystrike is special but hits the target's physical Defense.
+	ld hl, wEnemyMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wEnemyScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .psystrikecrit
+	sla c
+	rl b
+
+.psystrikecrit
+	ld hl, wBattleMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+
+	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -2993,6 +3026,11 @@ EnemyAttackDamage:
 	jr .thickclub
 
 .Special:
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .psystrike
+
 	ld hl, wBattleMonSpclDef
 	ld a, [hli]
 	ld b, a
@@ -3009,6 +3047,30 @@ EnemyAttackDamage:
 	call CheckDamageStatsCritical
 	jr c, .lightball
 	ld hl, wPlayerSpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemySpAtk
+	jr .lightball
+
+.psystrike
+; Psystrike is special but hits the target's physical Defense.
+	ld hl, wBattleMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wPlayerScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .psystrikecrit
+	sla c
+	rl b
+
+.psystrikecrit
+	ld hl, wEnemyMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -6418,7 +6480,10 @@ ResetTurn:
 	call DoMove
 	jp EndMoveEffect
 
-INCLUDE "engine/battle/move_effects/thief.asm"
+BattleCommand_Thief:
+; thief
+	callfar BattleThief_Core
+	ret
 
 BattleCommand_ArenaTrap:
 ; arenatrap
@@ -6683,6 +6748,51 @@ INCLUDE "engine/battle/move_effects/thunder.asm"
 INCLUDE "engine/battle/move_effects/hail.asm"
 
 INCLUDE "engine/battle/move_effects/u_turn.asm"
+
+BattleCommand_ConditionalBoost:
+; conditionalboost
+	callfar BattleConditionalBoost_Core
+	ret
+
+BattleCommand_GyroBall:
+; gyroball
+	callfar BattleGyroBall_Core
+	ret
+
+BattleCommand_KnockOff:
+; knockoff
+	callfar BattleKnockOff_Core
+	ret
+
+BattleCommand_Roost:
+; roost
+	callfar BattleRoost_Core
+	ret
+
+BattleCommand_SkillSwap:
+; skillswap
+	callfar BattleSkillSwap_Core
+	ret
+
+BattleCommand_Trick:
+; trick
+	callfar BattleTrick_Core
+	ret
+
+BattleCommand_ToxicSpikes:
+; toxicspikes
+	callfar BattleToxicSpikes_Core
+	ret
+
+BattleCommand_TrickRoom:
+; trickroom
+	callfar BattleTrickRoom_Core
+	ret
+
+BattleCommand_Burn:
+; burn
+	callfar BattleBurn_Core
+	ret
 
 CheckHiddenOpponent:
 ; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.

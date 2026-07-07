@@ -400,10 +400,10 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, SCRATCH
-	dbw 1, SWORDS_DANCE
-	dbw 3, WATER_GUN
-	dbw 4, SCREECH
+	dbw 1, AURA_SPHERE
+	dbw 1, DRAGON_DANCE
+	dbw 3, FLASH_CANNON
+	dbw 4, ICICLE_SPEAR
 	dbw 6, CLOSE_COMBAT
 	dbw 7, TRIPLE_AXEL
 	dbw 20, BITE

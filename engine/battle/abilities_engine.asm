@@ -1779,6 +1779,8 @@ RunDamageModifiers:
 	call GetBattleVar
 	cp EFFECT_RECOIL_HIT
 	jr z, .reckless_boost
+	cp EFFECT_FLARE_BLITZ
+	jr z, .reckless_boost
 	cp EFFECT_JUMP_KICK
 	jp nz, .defender
 .reckless_boost
@@ -2489,6 +2491,22 @@ CompareSpeedsWithAbilities::
 	ld a, l
 	cp e
 .done
+	jr z, .finish
+	sbc a ; $ff if the enemy is faster, else $00
+	ld b, a
+	ld a, [wTrickRoomTimer]
+	and a
+	ld a, b
+	jr z, .tr_done
+	cpl ; Trick Room inverts speed order
+.tr_done
+	and a
+	jr z, .player_faster
+	scf ; enemy faster: carry set, z clear (a is $ff)
+	jr .finish
+.player_faster
+	or 1 ; player faster: carry and z clear
+.finish
 	pop bc
 	pop de
 	pop hl
@@ -4813,11 +4831,15 @@ SliceMoves:
 	dw AIR_SLASH
 	dw LEAF_BLADE
 	dw X_SCISSOR
+	dw NIGHT_SLASH
 	dw -1
 
 PulseMoves:
 ; Mega Launcher: aura/pulse moves in this game
 	dw DARK_PULSE
+	dw DRAGON_PULSE
+	dw WATER_PULSE
+	dw AURA_SPHERE
 	dw -1
 
 SoundMoves:
@@ -4830,6 +4852,8 @@ SoundMoves:
 	dw SNORE
 	dw PERISH_SONG
 	dw BUG_BUZZ
+	dw HYPER_VOICE
+	dw DISARMING_VOICE
 	dw -1
 
 BallBombMoves:
@@ -4840,6 +4864,12 @@ BallBombMoves:
 	dw OCTAZOOKA
 	dw ZAP_CANNON
 	dw SHADOW_BALL
+	dw AURA_SPHERE
+	dw ENERGY_BALL
+	dw FOCUS_BLAST
+	dw GYRO_BALL
+	dw ROCK_BLAST
+	dw SEED_BOMB
 	dw -1
 
 WindMoves:
@@ -4848,6 +4878,7 @@ WindMoves:
 	dw RAZOR_WIND
 	dw WHIRLWIND
 	dw TWISTER
+	dw HURRICANE
 	dw -1
 
 BiteMoves:

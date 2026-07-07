@@ -10,15 +10,19 @@ ENDM
 
 	enum anim_obj_command ; $d0
 anim_obj: MACRO
+if HIGH(\1)
+	db anim_hiobj_command
+else
 	db anim_obj_command
+endc
 if _NARG <= 4
-	db \1 ; object
+	db LOW(\1) ; object
 	db \2 ; x
 	db \3 ; y
 	db \4 ; param
 else
 ; LEGACY: Support the tile+offset format
-	db \1 ; object
+	db LOW(\1) ; object
 	db (\2) * 8 + (\3) ; x_tile, x
 	db (\4) * 8 + (\5) ; y_tile, y
 	db \6 ; param
@@ -178,10 +182,8 @@ anim_statloop: MACRO
 	dw \1 ; address
 ENDM
 
-	enum anim_0xeb_command ; $eb
-anim_0xeb: MACRO
-	db anim_0xeb_command
-ENDM
+	enum anim_hiobj_command ; $eb
+; anim_obj emits this automatically for object ids >= $100
 
 	enum anim_0xec_command ; $ec
 anim_0xec: MACRO

@@ -184,3 +184,12 @@ BattleCommandPointers:
 	dw BattleCommand_VenoshockDouble
 	dw BattleCommand_StartHail
 	dw BattleCommand_UTurn
+	dw BattleCommand_ConditionalBoost
+	dw BattleCommand_GyroBall
+	dw BattleCommand_KnockOff
+	dw BattleCommand_Roost
+	dw BattleCommand_SkillSwap
+	dw BattleCommand_Trick
+	dw BattleCommand_ToxicSpikes
+	dw BattleCommand_TrickRoom
+	dw BattleCommand_Burn

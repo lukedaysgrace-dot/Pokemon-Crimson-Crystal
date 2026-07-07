@@ -622,3 +622,5 @@ BattleParalyzeTarget_Core:
 	ret
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
+INCLUDE "engine/battle/move_effects/new_move_cores.asm"
+INCLUDE "engine/battle/move_effects/thief.asm"

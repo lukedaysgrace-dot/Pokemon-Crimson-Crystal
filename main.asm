@@ -146,9 +146,6 @@ INCLUDE "engine/link/mystery_gift_2.asm"
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/pokemon/print_move_description.asm"
 INCLUDE "data/moves/descriptions.asm"
-INCLUDE "engine/events/pokerus/pokerus.asm"
-INCLUDE "engine/battle/start_battle.asm"
-INCLUDE "engine/gfx/place_graphic.asm"
 
 
 SECTION "Effect Commands", ROMX
@@ -447,17 +444,38 @@ SECTION "bank32", ROMX
 INCLUDE "data/moves/animations.asm"
 
 
-SECTION "Move Animations", ROMX
+SECTION "Move Animations 2", ROMX
+
+INCLUDE "data/moves/animations2.asm"
+
+
+SECTION "Bug Contest Stats Display", ROMX
 
 INCLUDE "engine/events/bug_contest/display_stats.asm"
+
+
+SECTION "Pokerus", ROMX
+
+INCLUDE "engine/events/pokerus/pokerus.asm"
+INCLUDE "engine/gfx/place_graphic.asm"
+INCLUDE "engine/battle/start_battle.asm"
+
+
+SECTION "Move Animations", ROMX
+
 INCLUDE "engine/battle_anims/anim_commands.asm"
 INCLUDE "engine/battle_anims/core.asm"
-INCLUDE "data/battle_anims/objects.asm"
 INCLUDE "engine/battle_anims/functions.asm"
 INCLUDE "engine/battle_anims/helpers.asm"
+
+
+SECTION "Battle Anim Data", ROMX
+
+INCLUDE "data/battle_anims/objects.asm"
 INCLUDE "data/battle_anims/framesets.asm"
 INCLUDE "data/battle_anims/oam.asm"
 INCLUDE "data/battle_anims/object_gfx.asm"
+INCLUDE "engine/battle_anims/data_readers.asm"
 
 
 SECTION "Pic Animations 1", ROMX

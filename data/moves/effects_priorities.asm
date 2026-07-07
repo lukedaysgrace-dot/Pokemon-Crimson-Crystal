@@ -5,4 +5,6 @@ MoveEffectPriorities:
 	db EFFECT_FORCE_SWITCH, 0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
+	db EFFECT_AVALANCHE,    0
+	db EFFECT_TRICK_ROOM,   0
 	db -1

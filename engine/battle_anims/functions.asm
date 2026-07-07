@@ -94,6 +94,16 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_4E ; 4e
 	dw BattleAnimFunction_4F ; 4f
 	dw BattleAnimFunction_Stat ; 50
+	dw BattleAnimFunction_RadialMoveOut ; 51
+	dw BattleAnimFunction_PauseThenRush ; 52
+	dw BattleAnimFunction_BubbleSplash ; 53
+	dw BattleAnimFunction_NightSlash ; 54
+	dw BattleAnimFunction_RadialMoveOut_Slow ; 55
+	dw BattleAnimFunction_RadialMoveIn ; 56
+	dw BattleAnimFunction_LastResort ; 57
+	dw BattleAnimFunction_PowerGem ; 58
+	dw BattleAnimFunction_Roost ; 59
+	dw BattleAnimFunction_RadialMoveOut_VerySlow ; 5a
 
 BattleAnimFunction_Stat:
 ; Stat up/down bars (ported from Polished Crystal).
@@ -4182,6 +4192,398 @@ BattleAnim_AbsCosinePrecise:
 	call BattleAnim_Cosine
 	ld e, l
 	ld d, h
+	ret
+
+; ==== New battle anim functions ported from polishedcrystal ====
+
+BattleAnimFunction_RadialMoveOut:
+	lb de, 12, 80
+	jr BattleAnimFunc_DoRadialMoveOut
+
+BattleAnimFunction_RadialMoveOut_Slow:
+	lb de, 3, 80
+	jr BattleAnimFunc_DoRadialMoveOut
+
+BattleAnimFunction_RadialMoveOut_VerySlow:
+	lb de, 1, 120
+	; fallthrough
+BattleAnimFunc_DoRadialMoveOut:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .init
+	dw .step
+
+.init
+	call BattleAnimFunc_RadialInit
+.step
+	; fallthrough
+BattleAnimFunc_RadialStep:
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	push bc
+	push hl
+	ld a, [hli]
+	ld c, [hl]
+	ld b, a
+	ld h, d ; speed x 2
+	ld l, 0
+	srl h
+	rr l
+	add hl, bc
+	ld a, h
+	ld c, l
+	pop hl
+	ld [hli], a
+	ld [hl], c
+	ld d, b ; used for Sine/Cosine
+	pop bc
+	cp e ; final position
+	jr c, .no_deinit
+	call DeinitBattleAnimation
+	ret
+.no_deinit
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld e, [hl]
+	push de
+	ld a, e
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	ld a, e
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ret
+
+BattleAnimFunc_RadialInit:
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	ld hl, BATTLEANIMSTRUCT_11
+	add hl, bc
+	add a
+	swap a
+	ld [hld], a
+	xor a
+	ld [hld], a
+	ld [hl], a ; initial position = 0
+	jp BattleAnim_IncAnonJumptableIndex
+
+BattleAnimFunction_RadialMoveIn:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+
+.zero
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	; Set x/y flip dynamically (unused by this engine; kept for parity).
+	ld hl, BATTLEANIMSTRUCT_11
+	add hl, bc
+	add a
+	swap a
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, 40
+	ld [hli], a
+	ld [hl], 0
+	; fallthrough
+.one
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld d, [hl]
+	push af
+	push de
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	pop af
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	ld hl, -1152 ; -4.5 in 8.8 fixed point
+	add hl, de
+	jr c, .no_deinit
+	call DeinitBattleAnimation
+	ret
+.no_deinit
+	ld e, l
+	ld d, h
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, e
+	ld [hld], a
+	ld [hl], d
+	ret
+
+BattleAnimFunction_PauseThenRush:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw .two
+
+.zero
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	swap a
+	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX
+	add hl, bc
+	ld [hl], a
+	ret
+
+.two
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	ld d, $10
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	bit 7, a
+	jr z, .skip
+	ld [hl], a
+.skip
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	sub 4
+	ld [hl], a
+.one
+	ld hl, BATTLEANIMSTRUCT_XCOORD
+	add hl, bc
+	ld a, [hl]
+	cp $e4
+	jr c, .no_deinit
+	call DeinitBattleAnimation
+	ret
+.no_deinit
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	jr BattleAnim_StepToTarget
+
+BattleAnim_StepToTarget:
+	and $f
+	ld e, a
+	ld hl, BATTLEANIMSTRUCT_XCOORD
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	srl e
+	ld hl, BATTLEANIMSTRUCT_YCOORD
+	add hl, bc
+.loop
+	dec [hl]
+	dec e
+	jr nz, .loop
+	ret
+
+BattleAnimFunction_BubbleSplash:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .zero
+	dw BattleAnimFunction_4E.one
+
+.zero
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], $40
+	jp BattleAnimFunction_4E.one
+
+BattleAnimFunction_NightSlash:
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	; Set x/y flip dynamically (unused by this engine; kept for parity).
+	ld hl, BATTLEANIMSTRUCT_11
+	add hl, bc
+	add a
+	swap a
+	ld [hl], a
+	ret
+
+BattleAnimFunction_LastResort:
+; A rotating circle of objects centered at a position. It expands for $40
+; frames and then shrinks. Once radius reaches 0, the object disappears.
+; Obj Param: Defines starting point in the circle
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	inc [hl] ; These speed up spinning
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld d, [hl]
+	push af
+	push de
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	pop af
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, [hl]
+	inc [hl]
+	inc [hl] ; the rest of these control the in and out.
+	inc [hl]
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	cp $40
+	jr nc, .shrink
+	inc [hl]
+	inc [hl] ; in and out
+	inc [hl]
+	ret
+
+.shrink
+	ld a, [hl]
+	dec [hl]
+	dec [hl] ; in and out
+	dec [hl]
+	and a
+	ret nz
+	call DeinitBattleAnimation
+	ret
+
+BattleAnimFunction_PowerGem:
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .one
+	dw .two
+	dw .three
+
+.one
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .move_up
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], $2
+	ret
+
+.move_up
+	ld d, a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld e, [hl]
+	ld hl, -$80 ; -0.5 in 8.8 fixed point
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], d
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], e
+	ret
+
+.two
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .switch_position
+	dec [hl]
+	ret
+
+.switch_position
+	ld [hl], $4
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	cpl
+	inc a
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	ret
+
+.three
+	ld hl, BATTLEANIMSTRUCT_XCOORD
+	add hl, bc
+	ld a, [hl]
+	cp $c0
+	ret nc
+	ld a, $8
+	jp BattleAnim_StepToTarget
+
+BattleAnimFunction_Roost:
+; Moves object in a circle where the height is 1/8 the width, while also
+; moving downward 1 pixel per frame.
+; Obj Param: Defines where the object starts in the circle
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	ld d, $18
+	call BattleAnim_Sine
+	sra a
+	sra a
+	sra a
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	add [hl]
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	inc [hl]
+	ld d, $18
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	and $7
+	ret nz
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, [hl]
+	cp $1e
+	jr c, .grow
+	call DeinitBattleAnimation
+	ret
+.grow
+	inc [hl]
+	inc [hl]
 	ret
 
 BattleAnimSineWave:

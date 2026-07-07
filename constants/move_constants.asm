@@ -303,6 +303,54 @@
 	const DRAIN_PUNCH
 	const SOLAR_BLADE
 	const CLOSE_COMBAT
+	const ACROBATICS
+	const AERIAL_ACE
+	const AQUA_TAIL
+	const ASTONISH
+	const AURA_SPHERE
+	const AVALANCHE
+	const BRAVE_BIRD
+	const BULK_UP
+	const BULLDOZE
+	const CALM_MIND
+	const DRAGON_DANCE
+	const DRAGON_PULSE
+	const EARTH_POWER
+	const ENERGY_BALL
+	const EXTRASENSORY
+	const FACADE
+	const FLAME_CHARGE
+	const FLARE_BLITZ
+	const FLASH_CANNON
+	const FOCUS_BLAST
+	const GIGA_IMPACT
+	const GUNK_SHOT
+	const GYRO_BALL
+	const HEX
+	const HONE_CLAWS
+	const HURRICANE
+	const HYPER_VOICE
+	const ICICLE_SPEAR
+	const IRON_HEAD
+	const KNOCK_OFF
+	const NASTY_PLOT
+	const NIGHT_SLASH
+	const POWER_GEM
+	const POWER_WHIP
+	const PSYSTRIKE
+	const ROCK_BLAST
+	const ROOST
+	const SCALD
+	const SEED_BOMB
+	const SHELL_SMASH
+	const SKILL_SWAP
+	const TOXIC_SPIKES
+	const TRICK
+	const TRICK_ROOM
+	const VOLT_SWITCH
+	const WATER_PULSE
+	const WILL_O_WISP
+	const ZEN_HEADBUTT
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
