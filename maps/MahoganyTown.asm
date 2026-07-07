@@ -5,14 +5,17 @@ MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 	const MAHOGANYTOWN_GRAMPS
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
+	const MAHOGANYTOWN_LANCE
+	const MAHOGANYTOWN_DRAGON
 
 MahoganyTown_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .LanceAndDragon
 
 .DummyScene0:
 	end
@@ -22,6 +25,24 @@ MahoganyTown_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_MAHOGANY
+	return
+
+.LanceAndDragon:
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
+	iftrue .HideLanceAndDragon
+	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
+	iftrue .HideLanceAndDragon
+	checkevent EVENT_DECIDED_TO_HELP_LANCE
+	iffalse .HideLanceAndDragon
+	checkevent EVENT_MAHOGANY_TOWN_LANCE_AND_DRAGONITE
+	iftrue .HideLanceAndDragon
+	appear MAHOGANYTOWN_LANCE
+	appear MAHOGANYTOWN_DRAGON
+	return
+
+.HideLanceAndDragon:
+	disappear MAHOGANYTOWN_LANCE
+	disappear MAHOGANYTOWN_DRAGON
 	return
 
 MahoganyTownTryARageCandyBarScript:
@@ -109,6 +130,34 @@ MahoganyTownFisherScript:
 MahoganyTownLassScript:
 	jumptextfaceplayer MahoganyTownLassText
 
+MahoganyTownLanceScript:
+	faceplayer
+	opentext
+	writetext MahoganyTownLanceText
+	waitbutton
+	closetext
+	turnobject MAHOGANYTOWN_LANCE, UP
+	applymovement MAHOGANYTOWN_LANCE, MahoganyTownLanceEntersHideoutMovement
+	playsound SFX_EXIT_BUILDING
+	disappear MAHOGANYTOWN_LANCE
+	waitsfx
+	applymovement MAHOGANYTOWN_DRAGON, MahoganyTownDragonEntersHideoutMovement
+	playsound SFX_EXIT_BUILDING
+	disappear MAHOGANYTOWN_DRAGON
+	setevent EVENT_MAHOGANY_TOWN_LANCE_AND_DRAGONITE
+	setmapscene MAHOGANY_MART_1F, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
+	waitsfx
+	end
+
+MahoganyTownDragonScript:
+	faceplayer
+	opentext
+	writetext MahoganyTownDragonText
+	cry DRAGONITE
+	waitbutton
+	closetext
+	end
+
 MahoganyTownSign:
 	jumptext MahoganyTownSignText
 
@@ -138,6 +187,15 @@ MovementData_0x1900a9:
 MovementData_0x1900ad:
 	step UP
 	turn_head DOWN
+	step_end
+
+MahoganyTownLanceEntersHideoutMovement:
+	slow_step UP
+	step_end
+
+MahoganyTownDragonEntersHideoutMovement:
+	slow_step RIGHT
+	slow_step UP
 	step_end
 
 RageCandyBarMerchantTryOneText:
@@ -222,6 +280,19 @@ MahoganyTownLassText:
 	line "else has."
 	done
 
+MahoganyTownLanceText:
+	text "Good, you made"
+	line "it."
+
+	para "Let's go,"
+	line "<PLAYER>."
+	done
+
+MahoganyTownDragonText:
+	text "DRAGONITE:"
+	line "Dragonite!"
+	done
+
 MahoganyTownSignText:
 	text "MAHOGANY TOWN"
 
@@ -264,8 +335,10 @@ MahoganyTown_MapEvents:
 	bg_event  3, 13, BGEVENT_READ, MahoganyGymSign
 	bg_event 16, 13, BGEVENT_READ, MahoganyTownPokecenterSign
 
-	db 4 ; object events
+	db 6 ; object events
 	object_event 19,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownPokefanMScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	object_event  6,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownGrampsScript, -1
 	object_event  6, 14, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
 	object_event 12,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS
+	object_event 11,  8, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLanceScript, EVENT_MAHOGANY_TOWN_LANCE_AND_DRAGONITE
+	object_event 10,  8, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownDragonScript, EVENT_MAHOGANY_TOWN_LANCE_AND_DRAGONITE
