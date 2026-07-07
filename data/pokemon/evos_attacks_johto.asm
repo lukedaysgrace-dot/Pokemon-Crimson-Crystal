@@ -401,8 +401,8 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, AURA_SPHERE
-	dbw 1, DRAGON_DANCE
-	dbw 3, FLASH_CANNON
+	dbw 1, BLOOD_MOON
+	dbw 3, MOONLIGHT
 	dbw 4, ICICLE_SPEAR
 	dbw 6, CLOSE_COMBAT
 	dbw 7, TRIPLE_AXEL
