@@ -85,3 +85,4 @@ INCBIN "gfx/trainers/petrel.gbcpal", middle_colors
 INCBIN "gfx/trainers/ariana.gbcpal", middle_colors
 INCBIN "gfx/trainers/archer.gbcpal", middle_colors
 INCBIN "gfx/trainers/petreldirector.gbcpal", middle_colors
+INCBIN "gfx/trainers/hex_maniac.gbcpal", middle_colors

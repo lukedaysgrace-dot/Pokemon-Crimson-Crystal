@@ -76,3 +76,4 @@ TrainerGroups:
 	dba ArianaGroup
 	dba ArcherGroup
 	dba PetrelDirectorGroup
+	dba HexManiacGroup

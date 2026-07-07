@@ -127,9 +127,11 @@
 	const SPRITE_ARCHER ; 7d
 	const SPRITE_POLIWRATH_NPC ; 7e
 	const SPRITE_FARFETCH_D_NPC ; 7f
+	const SPRITE_HEX_MANIAC ; 80
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
-	const_def $80
+; (shifted up by 1 to make room for SPRITE_HEX_MANIAC; hex comments below are stale)
+	const_def $81
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_GEODUDE ; 81
@@ -191,6 +193,10 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_NIDORAN_F ; b9
 	const SPRITE_NIDORAN_M ; ba
 	const SPRITE_DRATINI ; bb
+	const SPRITE_ABRA ; bc
+	const SPRITE_ELECTRODE ; bd
+	const SPRITE_MACHOKE ; be
+	const SPRITE_KANGASKHAN ; bf
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0

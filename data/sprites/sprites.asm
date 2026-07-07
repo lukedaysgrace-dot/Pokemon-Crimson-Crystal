@@ -133,3 +133,4 @@ OverworldSprites:
 	overworld_sprite ArcherSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PoliwrathSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite FarfetchDNPCSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite HexManiacSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE

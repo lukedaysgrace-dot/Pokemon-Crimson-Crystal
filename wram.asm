@@ -2728,9 +2728,9 @@ wErinFightCount::    db
 	ds 90 ; trimmed for expanded Pokedex caught/seen flag arrays
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
-; db6c
+; db6d
 
-	ds 6
+	ds 5 ; trimmed by 1: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE
 
 wCurBox:: db ; db72
 

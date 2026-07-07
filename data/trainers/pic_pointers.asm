@@ -76,3 +76,4 @@ TrainerPicPointers::
 	dba ArianaPic
 	dba ArcherPic
 	dba PetrelDirectorPic
+	dba HexManiacPic

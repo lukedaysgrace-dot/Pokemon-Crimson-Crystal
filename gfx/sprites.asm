@@ -136,6 +136,7 @@ ArcherSpriteGFX::              INCBIN "gfx/sprites/archer.2bpp"
 PoliwrathSpriteGFX::           INCBIN "gfx/sprites/poliwrath.2bpp"
 FarfetchDNPCSpriteGFX::        INCBIN "gfx/sprites/farfetch_d.2bpp"
 MoveTutorSpriteGFX::           INCBIN "gfx/sprites/move_tutor.2bpp"
+HexManiacSpriteGFX::           INCBIN "gfx/sprites/hex_maniac.2bpp"
 
 
 SECTION "Indigo Sprites", ROMX

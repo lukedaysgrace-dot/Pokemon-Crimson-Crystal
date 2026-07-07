@@ -419,10 +419,10 @@ endr
 	add hl, de
 	push hl
 
-; Each species has its own icon, looked up through IconPointers.
+; Each species has its own menu icon, looked up through MenuIconPointers.
 	ld a, [wCurIcon]
 	push hl
-	call GetIconPointer
+	call GetMenuIconPointer
 	ld d, h
 	ld e, l
 	pop hl
@@ -554,6 +554,35 @@ GetIconPointer:
 	ld hl, EggIcon
 	ret
 
+GetMenuIconPointer:
+; a = species id (or EGG)
+; Output: b = bank, hl = address of menu icon gfx
+; MenuIconPointers lives in its own bank, so read it with far accessors.
+	cp EGG
+	jr z, .egg
+	call GetPokemonIndexFromID
+	dec hl
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc ; hl = (species index - 1) * 3
+	ld bc, MenuIconPointers
+	add hl, bc
+	ld a, BANK(MenuIconPointers)
+	call GetFarByte
+	ld b, a ; icon gfx bank
+	inc hl
+	ld a, BANK(MenuIconPointers)
+	call GetFarHalfword ; hl = icon gfx address
+	ret
+
+.egg
+	ld b, BANK(EggMenuIcon)
+	ld hl, EggMenuIcon
+	ret
+
 INCLUDE "data/icon_pointers.asm"
 
 INCLUDE "gfx/icons.asm"
+
+INCLUDE "gfx/menu_icons.asm"
