@@ -538,6 +538,8 @@ LYRA EQU __enum__
 	const IRWIN2
 	const IRWIN3
 	const IRWIN4
+	const MARCO
+	const LEON
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1
@@ -765,5 +767,15 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 
 	trainerclass COSPLAYER ; 4c
 	const COSPLAYER1
+	const COSPLAYER2
+	const COSPLAYER3
+	const COSPLAYER4
+	const COSPLAYER5
+
+	trainerclass NINJA ; 4d
+	const NINJA1
+	const NINJA2
+	const NINJA3
+	const NINJA4
 
 NUM_TRAINER_CLASSES EQU __enum__

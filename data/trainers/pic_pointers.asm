@@ -78,3 +78,4 @@ TrainerPicPointers::
 	dba PetrelDirectorPic
 	dba HexManiacPic
 	dba CosplayerPic
+	dba NinjaPic

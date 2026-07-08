@@ -76,3 +76,4 @@ TrainerClassNames::
 	db "EXECUTIVE@"
 	db "HEX MANIAC@"
 	db "COSPLAYER@"
+	db "NINJA@"

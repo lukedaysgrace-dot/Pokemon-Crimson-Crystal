@@ -79,3 +79,4 @@ TrainerEncounterMusic::
 	db MUSIC_ROCKET_ENCOUNTER      ; petrel_director
 	db MUSIC_SAGE_ENCOUNTER        ; hex_maniac
 	db MUSIC_BEAUTY_ENCOUNTER      ; cosplayer
+	db MUSIC_ROCKET_ENCOUNTER      ; ninja

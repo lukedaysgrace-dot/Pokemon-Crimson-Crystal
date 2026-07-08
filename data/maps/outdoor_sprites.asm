@@ -82,7 +82,7 @@ ViridianGroupSprites:
 
 PewterGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_COSPLAYER ; was SPRITE_SILVER_TROPHY (unused filler) - for Route 3 Cosplayers
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
@@ -132,8 +132,8 @@ CinnabarGroupSprites:
 
 CeruleanGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
+	db SPRITE_COSPLAYER ; was SPRITE_SILVER_TROPHY (unused filler) - for Route 4 Cosplayers
+	db SPRITE_JUGGLER_NEW ; was SPRITE_FAMICOM (unused filler) - for Route 9 Jugglers
 	db SPRITE_POKEDEX
 	db SPRITE_POKEFAN_M
 	db SPRITE_HIKER
