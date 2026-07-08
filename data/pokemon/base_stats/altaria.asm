@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  75,  70,  90,  80,  70, 105
+	db  75,  90,  90,  80,  90, 105
 	;  hp  atk  def  spd  sat  sdf
 
 	db DRAGON, FAIRY ; type

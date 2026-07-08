@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  70,  80,  70, 110,  80,  70
+	db  70,  70,  70, 110, 110,  70
 	;  hp  atk  def  spd  sat  sdf
 
 	db ICE, GHOST ; type

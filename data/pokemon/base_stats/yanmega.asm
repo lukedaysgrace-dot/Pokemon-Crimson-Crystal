@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  86,  76,  86,  95, 116,  56
+	db  86,  76,  86,  95, 116,  76
 	;  hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING ; type

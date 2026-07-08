@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  62, 135,  95,  65,  68,  82
+	db  62, 135,  95,  65,  60,  90
 	;  hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FLYING ; type

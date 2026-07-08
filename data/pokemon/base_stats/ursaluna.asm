@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 130, 140, 105,  55,  45,  80
+	db 130, 140, 105,  50,  45,  80
 	;  hp  atk  def  spd  sat  sdf
 
 	db GROUND, NORMAL ; type
