@@ -417,7 +417,7 @@ TotodileEvosAttacks:
 	dbw 1, MORTAL_SPIN
 	dbw 1, TROP_KICK
 	dbw 3, VOLT_SWITCH
-	dbw 4, GUNK_SHOT
+	dbw 4, U_TURN
 	dbw 6, AVALANCHE
 	dbw 7, WILL_O_WISP
 	dbw 20, BITE
