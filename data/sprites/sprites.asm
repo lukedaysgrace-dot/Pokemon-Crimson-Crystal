@@ -135,3 +135,4 @@ OverworldSprites:
 	overworld_sprite FarfetchDNPCSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite HexManiacSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite CosplayerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite SlowbroNPCSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED
