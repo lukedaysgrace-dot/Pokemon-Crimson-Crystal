@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/scyther/front.dimensions"
-	abilities_for SCYTHER, TECHNICIAN, SWARM, HYPER_CUTTER
+	abilities_for SCYTHER, TECHNICIAN, SHARPNESS, HYPER_CUTTER
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
