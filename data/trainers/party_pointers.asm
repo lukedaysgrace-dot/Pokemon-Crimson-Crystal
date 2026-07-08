@@ -77,3 +77,4 @@ TrainerGroups:
 	dba ArcherGroup
 	dba PetrelDirectorGroup
 	dba HexManiacGroup
+	dba CosplayerGroup
