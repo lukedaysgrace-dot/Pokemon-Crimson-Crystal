@@ -77,3 +77,4 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; PETREL_DIRECTOR
 	dn  9,  8,  8, 10 ; HEX_MANIAC
 	dn  6, 10, 10,  8 ; COSPLAYER
+	dn 15, 15, 15, 15 ; NINJA

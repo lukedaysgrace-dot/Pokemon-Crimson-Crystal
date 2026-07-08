@@ -78,3 +78,4 @@ TrainerGroups:
 	dba PetrelDirectorGroup
 	dba HexManiacGroup
 	dba CosplayerGroup
+	dba NinjaGroup

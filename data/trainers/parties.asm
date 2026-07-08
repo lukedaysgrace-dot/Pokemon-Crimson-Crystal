@@ -4912,6 +4912,24 @@ JugglerGroup:
 	dw ELECTRODE
 	db -1 ; end
 
+	next_list_item ; JUGGLER (7)
+	db "MARCO@", TRAINERTYPE_NORMAL
+	db 57
+	dw HYPNO
+	db 57
+	dw MR__MIME
+	db -1 ; end
+
+	next_list_item ; JUGGLER (8)
+	db "LEON@", TRAINERTYPE_NORMAL
+	db 56
+	dw ELECTRODE
+	db 56
+	dw XATU
+	db 58
+	dw HYPNO
+	db -1 ; end
+
 	end_list_items
 
 BlackbeltGroup:
@@ -6549,6 +6567,8 @@ HexManiacGroup:
 
 	end_list_items
 
+SECTION "Enemy Trainer Parties 3", ROMX
+
 CosplayerGroup:
 	next_list_item ; COSPLAYER (1)
 	db "MAYA@", TRAINERTYPE_NORMAL
@@ -6558,6 +6578,75 @@ CosplayerGroup:
 	dw CLEFAIRY
 	db 23
 	dw EEVEE
+	db -1 ; end
+
+	next_list_item ; COSPLAYER (2)
+	db "DAISY@", TRAINERTYPE_NORMAL
+	db 59
+	dw DITTO
+	db 59
+	dw SMEARGLE
+	db -1 ; end
+
+	next_list_item ; COSPLAYER (3)
+	db "MIMI@", TRAINERTYPE_NORMAL
+	db 58
+	dw MR__MIME
+	db 60
+	dw SUDOWOODO
+	db -1 ; end
+
+	next_list_item ; COSPLAYER (4)
+	db "PEARL@", TRAINERTYPE_NORMAL
+	db 60
+	dw DITTO
+	db 61
+	dw CLEFABLE
+	db -1 ; end
+
+	next_list_item ; COSPLAYER (5)
+	db "PIXIE@", TRAINERTYPE_NORMAL
+	db 59
+	dw SMEARGLE
+	db 60
+	dw WOBBUFFET
+	db -1 ; end
+
+	end_list_items
+
+NinjaGroup:
+	next_list_item ; NINJA (1)
+	db "KANE@", TRAINERTYPE_NORMAL
+	db 58
+	dw ARIADOS
+	db 59
+	dw CROBAT
+	db -1 ; end
+
+	next_list_item ; NINJA (2)
+	db "SHIRO@", TRAINERTYPE_NORMAL
+	db 58
+	dw VENOMOTH
+	db 58
+	dw WEEZING
+	db 58
+	dw MUK
+	db -1 ; end
+
+	next_list_item ; NINJA (3)
+	db "KAEDE@", TRAINERTYPE_NORMAL
+	db 57
+	dw TENTACRUEL
+	db 60
+	dw NIDOQUEEN
+	db -1 ; end
+
+	next_list_item ; NINJA (4)
+	db "RYU@", TRAINERTYPE_NORMAL
+	db 57
+	dw GOLBAT
+	db 60
+	dw NIDOKING
 	db -1 ; end
 
 	end_list_items

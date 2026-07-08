@@ -129,11 +129,12 @@
 	const SPRITE_FARFETCH_D_NPC ; 7f
 	const SPRITE_HEX_MANIAC ; 80
 	const SPRITE_COSPLAYER ; 81
-	const SPRITE_SLOWBRO_NPC ; 82
+	const SPRITE_NINJA ; 82
+	const SPRITE_SLOWBRO_NPC ; 83
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
-; (shifted up by 3 to make room for SPRITE_HEX_MANIAC, SPRITE_COSPLAYER, and SPRITE_SLOWBRO_NPC; hex comments below are stale)
-	const_def $83
+; (shifted up by 4 to make room for SPRITE_HEX_MANIAC, SPRITE_COSPLAYER, SPRITE_NINJA, and SPRITE_SLOWBRO_NPC; hex comments below are stale)
+	const_def $84
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_GEODUDE ; 81
