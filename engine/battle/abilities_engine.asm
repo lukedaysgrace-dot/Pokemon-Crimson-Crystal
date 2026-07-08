@@ -2768,6 +2768,8 @@ RunContactAbilitiesHook::
 	jp z, .cursed_body
 	cp ANGER_POINT
 	jp z, .anger_point
+	cp TOXIC_DEBRIS
+	jp z, .toxic_debris
 .contact
 	call CheckContactMove
 	ret nc
@@ -2914,6 +2916,39 @@ RunContactAbilitiesHook::
 	jp z, .contact
 	call AngerPointEffect
 	jp .contact
+
+.toxic_debris
+	; a physical hit makes the holder scatter Toxic Spikes on the attacker's
+	; side (max 2 layers). Turn = attacker, so the attacker's own screens are
+	; wPlayerScreens when hBattleTurn == 0, else wEnemyScreens.
+	call GetMoveCategory
+	and a ; CATEGORIZE_PHYSICAL
+	jp nz, .contact
+	call .toxic_debris_screens
+	bit SCREENS_TOXIC_SPIKES_2, [hl]
+	jp nz, .contact ; already two layers down
+	call ShowEnemyAbilityBannerBrief
+	call .toxic_debris_screens ; the banner GFX clobbered hl
+	bit SCREENS_TOXIC_SPIKES_1, [hl]
+	jr z, .toxic_debris_first
+	set SCREENS_TOXIC_SPIKES_2, [hl]
+	jr .toxic_debris_text
+.toxic_debris_first
+	set SCREENS_TOXIC_SPIKES_1, [hl]
+.toxic_debris_text
+	ld hl, ToxicDebrisText
+	call StdBattleTextbox
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	jp .contact
+.toxic_debris_screens
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerScreens
+	ret z
+	ld hl, wEnemyScreens
+	ret
 
 .aftermath
 	; the fainted defender's Aftermath hurts a contact attacker (1/4 max HP)

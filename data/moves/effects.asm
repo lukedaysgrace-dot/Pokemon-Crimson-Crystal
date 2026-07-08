@@ -1885,6 +1885,29 @@ RapidSpin:
 	kingsrock
 	endmove
 
+MortalSpin:
+; Rapid Spin's cleanup plus a guaranteed poison (full-canon Mortal Spin).
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	clearhazards
+	checkfaint
+	buildopponentrage
+	poisontarget
+	endmove
+
 MorningSun:
 	checkobedience
 	usedmovetext

@@ -375,6 +375,8 @@ BattleAnimations::
 	banim BattleAnim_WaterPulse ; WATER_PULSE
 	banim BattleAnim_WillOWisp ; WILL_O_WISP
 	banim BattleAnim_ZenHeadbutt ; ZEN_HEADBUTT
+	banim BattleAnim_HiJumpKick ; TROP_KICK
+	banim BattleAnim_RapidSpin ; MORTAL_SPIN
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown

@@ -149,3 +149,4 @@ AbilityFlags:
 	db $00 ; TRIAGE
 	db $00 ; IRON_BARBS
 	db $00 ; POISON_PUPPETEER
+	db $00 ; TOXIC_DEBRIS

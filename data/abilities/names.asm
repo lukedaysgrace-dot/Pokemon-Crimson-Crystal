@@ -148,3 +148,4 @@ AbilityNames::
 	db "TRIAGE@"
 	db "IRON BARBS@"
 	db "POISON PUPPETEER@"
+	db "TOXIC DEBRIS@"

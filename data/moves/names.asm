@@ -344,3 +344,5 @@ MoveNames::
 	db "WATER PULSE@"
 	db "WILL-O-WISP@"
 	db "ZEN HEADBUTT@"
+	db "TROP KICK@"
+	db "MORTAL SPIN@"

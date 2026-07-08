@@ -414,8 +414,8 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, AURA_SPHERE
-	dbw 1, HURRICANE
+	dbw 1, MORTAL_SPIN
+	dbw 1, TROP_KICK
 	dbw 3, VOLT_SWITCH
 	dbw 4, GUNK_SHOT
 	dbw 6, AVALANCHE
@@ -5354,6 +5354,7 @@ TsareenaEvosAttacks:
 	dbw 25, GIGA_DRAIN
 	dbw 29, RAZOR_LEAF
 	dbw 33, BODY_SLAM
+	dbw 37, TROP_KICK
 	dbw 41, HI_JUMP_KICK
 	dbw 49, POWER_WHIP
 	db 0 ; no more level-up moves
@@ -5499,6 +5500,7 @@ GlimmoraEvosAttacks:
 	dbw 18, ANCIENTPOWER
 	dbw 24, SPIKES
 	dbw 30, POWER_GEM
+	dbw 33, MORTAL_SPIN
 	dbw 36, SLUDGE_BOMB
 	dbw 42, STONE_EDGE
 	dbw 48, TOXIC

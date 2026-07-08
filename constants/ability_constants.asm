@@ -152,4 +152,5 @@
 	const TRIAGE
 	const IRON_BARBS
 	const POISON_PUPPETEER
+	const TOXIC_DEBRIS
 NUM_ABILITIES EQU const_value

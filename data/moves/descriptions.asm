@@ -350,9 +350,19 @@ MoveDescriptions1:
 	dw HurricaneDescription
 	dw WillOWispDescription
 	dw AstonishDescription
+	dw TropKickDescription
+	dw MortalSpinDescription
 
 InvalidMoveDescription:
 	db "?@"
+
+TropKickDescription:
+	db   "Kicks up. Lowers"
+	next "foe's ATTACK.@"
+
+MortalSpinDescription:
+	db   "Poisons foes and"
+	next "frees the user.@"
 
 PoundDescription:
 	db   "Pounds with fore-"
