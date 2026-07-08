@@ -103,3 +103,10 @@ FlashFireText::
 	text "<USER>'s"
 	line "Fire power rose!"
 	prompt
+
+ToxicDebrisText::
+; Toxic Debris (printed from the attacker's perspective)
+	text "Toxic Spikes were"
+	line "scattered on the"
+	cont "ground!"
+	prompt

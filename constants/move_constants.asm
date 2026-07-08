@@ -351,6 +351,8 @@
 	const WATER_PULSE
 	const WILL_O_WISP
 	const ZEN_HEADBUTT
+	const TROP_KICK
+	const MORTAL_SPIN
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

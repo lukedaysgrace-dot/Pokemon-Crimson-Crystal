@@ -148,6 +148,7 @@ AbilityDescriptions::
 	dw TriageDescription
 	dw IronBarbsDescription
 	dw PoisonPuppeteerDescription
+	dw ToxicDebrisDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -876,4 +877,9 @@ IronBarbsDescription:
 PoisonPuppeteerDescription:
 	text "Foes it poisons"
 	next "become confused."
+	done
+
+ToxicDebrisDescription:
+	text "Lays Toxic Spikes"
+	next "when hit."
 	done

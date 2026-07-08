@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/glimmora/front.dimensions"
-	abilities_for GLIMMORA, POISON_POINT, NO_ABILITY, MERCILESS
+	abilities_for GLIMMORA, TOXIC_DEBRIS, TOXIC_DEBRIS, TOXIC_DEBRIS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups

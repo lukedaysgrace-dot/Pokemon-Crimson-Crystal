@@ -187,3 +187,4 @@ MoveEffectsPointers:
 	dw DoBurn
 	dw ConfuseHit ; EFFECT_HURRICANE
 	dw FlameWheel ; EFFECT_SCALD (thaws the user)
+	dw MortalSpin ; EFFECT_MORTAL_SPIN
