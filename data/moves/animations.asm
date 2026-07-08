@@ -5914,20 +5914,23 @@ BattleAnim_XScissor:
 	anim_ret
 
 BattleAnim_UTurn:
-; Strike, spin, and gust away (Rapid Spin style — no hide-mon)
-	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_obj ANIM_OBJ_01, 136, 56, $0
-	anim_wait 10
+; Green hard-hitting slash (X-Scissor style), then rapid spin on the user
+	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_WIND, ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_A0, 152, 40, $0
+	anim_obj ANIM_OBJ_A1, 120, 72, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_1F, $58, $2, $0
+	anim_wait 12
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_obj ANIM_OBJ_00, 136, 56, $0
+	anim_wait 16
 	anim_sound 0, 0, SFX_MENU
 .loop
 	anim_obj ANIM_OBJ_RAPID_SPIN, 44, 112, $0
 	anim_wait 2
 	anim_loop 5, .loop
-	anim_sound 0, 0, SFX_BATON_PASS
-	anim_obj ANIM_OBJ_GUST, 56, 96, $0
-	anim_obj ANIM_OBJ_GUST, 72, 88, $0
-	anim_obj ANIM_OBJ_GUST, 88, 80, $0
 	anim_wait 24
 	anim_ret
 
