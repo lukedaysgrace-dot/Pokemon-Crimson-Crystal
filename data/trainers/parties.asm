@@ -6548,3 +6548,16 @@ HexManiacGroup:
 	db -1 ; end
 
 	end_list_items
+
+CosplayerGroup:
+	next_list_item ; COSPLAYER (1)
+	db "MAYA@", TRAINERTYPE_NORMAL
+	db 22
+	dw PIKACHU
+	db 22
+	dw CLEFAIRY
+	db 23
+	dw EEVEE
+	db -1 ; end
+
+	end_list_items
