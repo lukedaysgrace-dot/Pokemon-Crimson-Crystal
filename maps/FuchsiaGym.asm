@@ -29,10 +29,10 @@ FuchsiaGymJanineScript:
 	setevent EVENT_BEAT_LASS_LINDA
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	setevent EVENT_BEAT_CAMPER_BARRY
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_PICNICKER_NEW
-	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_CAMPER_NEW
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_NINJA
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_NINJA
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_NINJA
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_NINJA
 	special RefreshSprites
 	opentext
 	writetext Text_ReceivedSoulBadge
@@ -62,7 +62,7 @@ LassAliceScript:
 	iftrue .AliceUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_NINJA
 	special RefreshSprites
 .AliceUnmasked:
 	faceplayer
@@ -73,7 +73,7 @@ LassAliceScript:
 	waitbutton
 	closetext
 	winlosstext LassAliceBeatenText, 0
-	loadtrainer LASS, ALICE
+	loadtrainer NINJA, NINJA1
 	startbattle
 	iftrue .AliceBecomesJanine
 	reloadmapafterbattle
@@ -96,7 +96,7 @@ LassLindaScript:
 	iftrue .LindaUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
+	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_NINJA
 	special RefreshSprites
 .LindaUnmasked:
 	faceplayer
@@ -107,7 +107,7 @@ LassLindaScript:
 	waitbutton
 	closetext
 	winlosstext LassLindaBeatenText, 0
-	loadtrainer LASS, LINDA
+	loadtrainer NINJA, NINJA2
 	startbattle
 	iftrue .LindaBecomesJanine
 	reloadmapafterbattle
@@ -130,7 +130,7 @@ PicnickerCindyScript:
 	iftrue .CindyUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_PICNICKER_NEW
+	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_NINJA
 	special RefreshSprites
 .CindyUnmasked:
 	faceplayer
@@ -141,7 +141,7 @@ PicnickerCindyScript:
 	waitbutton
 	closetext
 	winlosstext PicnickerCindyBeatenText, 0
-	loadtrainer PICNICKER, CINDY
+	loadtrainer NINJA, NINJA3
 	startbattle
 	iftrue .CindyBecomesJanine
 	reloadmapafterbattle
@@ -164,7 +164,7 @@ CamperBarryScript:
 	iftrue .BarryUnmasked
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
 	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_CAMPER_NEW
+	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_NINJA
 	special RefreshSprites
 .BarryUnmasked:
 	faceplayer
@@ -175,7 +175,7 @@ CamperBarryScript:
 	waitbutton
 	closetext
 	winlosstext CamperBarryBeatenText, 0
-	loadtrainer CAMPER, BARRY
+	loadtrainer NINJA, NINJA4
 	startbattle
 	iftrue .BarryBecomesJanine
 	reloadmapafterbattle

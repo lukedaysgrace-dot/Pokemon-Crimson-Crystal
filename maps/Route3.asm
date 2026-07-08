@@ -3,6 +3,8 @@
 	const ROUTE3_YOUNGSTER1
 	const ROUTE3_YOUNGSTER2
 	const ROUTE3_FISHER2
+	const ROUTE3_COSPLAYER1
+	const ROUTE3_COSPLAYER2
 
 Route3_MapScripts:
 	db 0 ; scene scripts
@@ -49,6 +51,28 @@ TrainerFirebreatherBurt:
 	endifjustbattled
 	opentext
 	writetext FirebreatherBurtAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerCosplayerDaisy:
+	trainer COSPLAYER, COSPLAYER2, EVENT_BEAT_COSPLAYER_DAISY, CosplayerDaisySeenText, CosplayerDaisyBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CosplayerDaisyAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerCosplayerMimi:
+	trainer COSPLAYER, COSPLAYER3, EVENT_BEAT_COSPLAYER_MIMI, CosplayerMimiSeenText, CosplayerMimiBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext CosplayerMimiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -123,6 +147,38 @@ FirebreatherBurtAfterBattleText:
 	line "trainer…"
 	done
 
+CosplayerDaisySeenText:
+	text "Guess who I'm"
+	line "dressed as today!"
+	done
+
+CosplayerDaisyBeatenText:
+	text "My costume got"
+	line "wrecked!"
+	done
+
+CosplayerDaisyAfterBattleText:
+	text "My DITTO helps me"
+	line "get every look"
+	cont "just right!"
+	done
+
+CosplayerMimiSeenText:
+	text "Do you like my"
+	line "outfit? #MON"
+	cont "included!"
+	done
+
+CosplayerMimiBeatenText:
+	text "Out of character…"
+	done
+
+CosplayerMimiAfterBattleText:
+	text "A great cosplay is"
+	line "all about com-"
+	cont "mitment!"
+	done
+
 Route3MtMoonSquareSignText:
 	text "MT.MOON SQUARE"
 
@@ -141,8 +197,10 @@ Route3_MapEvents:
 	db 1 ; bg events
 	bg_event 49, 13, BGEVENT_READ, Route3MtMoonSquareSign
 
-	db 4 ; object events
+	db 6 ; object events
 	object_event 26, 12, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherOtis, -1
 	object_event 10,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterWarren, -1
 	object_event 16,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerYoungsterJimmy, -1
 	object_event 49,  5, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerFirebreatherBurt, -1
+	object_event 30,  8, SPRITE_COSPLAYER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerDaisy, -1
+	object_event 21, 10, SPRITE_COSPLAYER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerMimi, -1

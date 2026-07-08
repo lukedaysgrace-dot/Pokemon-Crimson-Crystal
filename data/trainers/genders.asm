@@ -78,3 +78,4 @@ BTTrainerClassGenders:
 	db MALE   ; PETREL_DIRECTOR
 	db FEMALE ; HEX_MANIAC
 	db FEMALE ; COSPLAYER
+	db MALE   ; NINJA

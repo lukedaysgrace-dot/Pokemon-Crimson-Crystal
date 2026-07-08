@@ -134,5 +134,6 @@ OverworldSprites:
 	overworld_sprite PoliwrathSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite FarfetchDNPCSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite HexManiacSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite CosplayerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite SlowbroNPCSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED
+	overworld_sprite CosplayerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_COSPLAYER
+	overworld_sprite NinjaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_NINJA
+	overworld_sprite SlowbroNPCSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED ; SPRITE_SLOWBRO_NPC

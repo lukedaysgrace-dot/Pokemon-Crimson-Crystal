@@ -5,6 +5,8 @@
 	const ROUTE9_LASS2
 	const ROUTE9_POKEFAN_M1
 	const ROUTE9_POKEFAN_M2
+	const ROUTE9_JUGGLER1
+	const ROUTE9_JUGGLER2
 
 Route9_MapScripts:
 	db 0 ; scene scripts
@@ -73,6 +75,28 @@ TrainerHikerSidney:
 	endifjustbattled
 	opentext
 	writetext HikerSidneyAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerJugglerMarco:
+	trainer JUGGLER, MARCO, EVENT_BEAT_JUGGLER_MARCO, JugglerMarcoSeenText, JugglerMarcoBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext JugglerMarcoAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerJugglerLeon:
+	trainer JUGGLER, LEON, EVENT_BEAT_JUGGLER_LEON, JugglerLeonSeenText, JugglerLeonBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext JugglerLeonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -196,6 +220,37 @@ HikerSidneyAfterBattleText:
 	cont "river."
 	done
 
+JugglerMarcoSeenText:
+	text "Keep your eyes on"
+	line "my hands… and my"
+	cont "#MON!"
+	done
+
+JugglerMarcoBeatenText:
+	text "I dropped the"
+	line "ball!"
+	done
+
+JugglerMarcoAfterBattleText:
+	text "A JUGGLER never"
+	line "loses focus!"
+	done
+
+JugglerLeonSeenText:
+	text "Round and round"
+	line "my #MON go!"
+	done
+
+JugglerLeonBeatenText:
+	text "You broke my"
+	line "rhythm!"
+	done
+
+JugglerLeonAfterBattleText:
+	text "Timing is every-"
+	line "thing in battle."
+	done
+
 Route9SignText:
 	text "ROUTE 9"
 
@@ -215,10 +270,12 @@ Route9_MapEvents:
 	bg_event 15,  7, BGEVENT_READ, Route9Sign
 	bg_event 41, 15, BGEVENT_ITEM, Route9HiddenEther
 
-	db 6 ; object events
+	db 8 ; object events
 	object_event 23, 11, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
 	object_event 39,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
 	object_event 11,  4, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
 	object_event 12, 15, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
 	object_event 28,  3, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
 	object_event 36, 15, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	object_event 31,  6, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerJugglerMarco, -1
+	object_event 20, 12, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerJugglerLeon, -1
