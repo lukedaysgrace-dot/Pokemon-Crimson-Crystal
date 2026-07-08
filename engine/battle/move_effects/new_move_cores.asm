@@ -660,11 +660,13 @@ ToxicSpikesPoison:
 	xor a
 	ld [hl], a
 	call UpdateUserInParty
+	call .poison_anim
 	call RefreshBattleHuds
 	ld hl, UserBadlyPoisonedText
 	jp StdBattleTextbox
 .not_toxic
 	call UpdateUserInParty
+	call .poison_anim
 	call RefreshBattleHuds
 	ld hl, UserWasPoisonedText
 	jp StdBattleTextbox
@@ -673,4 +675,18 @@ ToxicSpikesPoison:
 	ld a, [hl]
 	and $ff ^ SCREENS_TOXIC_SPIKES_MASK
 	ld [hl], a
+	ret
+
+.poison_anim
+; Play the skull-and-crossbones poison animation on the victim. The victim
+; is the current turn holder, so (unlike AbilityStatusAnim) no SwitchTurn is
+; needed - PlayBattleAnim renders it on the mon that just switched in.
+	ld de, ANIM_PSN
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	xor a
+	ld [wNumHits], a
+	farcall PlayBattleAnim
 	ret
