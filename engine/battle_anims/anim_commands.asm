@@ -20,6 +20,10 @@ _PlayBattleAnim:
 	dec c
 	jr nz, .wait
 
+	; Reset the poison-move object palette slots in case a previous poison
+	; move's animation tinted them purple (see anim_purplepal / BattleAnimCmd_F5).
+	call RestoreAnimObjPals
+
 	call BattleAnimAssignPals
 	call BattleAnimRequestPals
 	call BattleAnimDelayFrame
@@ -1174,7 +1178,77 @@ BattleAnimCmd_KeepSprites:
 	ret
 
 BattleAnimCmd_F5:
+; anim_purplepal: tint the poison-move object palette slots purple for the
+; duration of the current animation. Poison move objects use the gray slot
+; (sludge/acid/smog/etc.) or the green slot (poison powder), so both are
+; recolored. These slots are reset to their defaults at the start of every
+; animation (see RestoreAnimObjPals), so only the calling move is affected.
+	ld hl, PoisonPurplePalette
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
+	call CopyAnimObjPal
+	ld hl, PoisonPurplePalette
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GREEN
+	jr CopyAnimObjPalAndFlag
+
+RestoreAnimObjPals:
+; Reset the gray and green object palette slots to their default colors.
+	ld hl, DefaultAnimObjGrayPalette
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
+	call CopyAnimObjPal
+	ld hl, DefaultAnimObjGreenPalette
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GREEN
+	; fallthrough
+
+CopyAnimObjPalAndFlag:
+	call CopyAnimObjPal
+	ld a, $1
+	ldh [hCGBPalUpdate], a
 	ret
+
+CopyAnimObjPal:
+; Copy one 4-color palette at hl into the wOBPals1 slot at de AND the matching
+; wOBPals2 slot. wOBPals2 is the buffer VBlank pushes to the CGB hardware, so
+; without it the change never reaches the screen. No-op on DMG.
+	ldh a, [hCGB]
+	and a
+	ret z
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wOBPals1)
+	ldh [rSVBK], a
+	ld c, PALETTE_SIZE
+.loop
+	ld a, [hli]
+	ld [de], a          ; base palette (wOBPals1)
+	push hl
+	ld hl, wOBPals2 - wOBPals1
+	add hl, de
+	ld [hl], a          ; display palette (wOBPals2)
+	pop hl
+	inc de
+	dec c
+	jr nz, .loop
+	pop af
+	ldh [rSVBK], a
+	ret
+
+PoisonPurplePalette:
+	RGB 31, 31, 31
+	RGB 19, 11, 25
+	RGB 12, 05, 17
+	RGB 00, 00, 00
+
+DefaultAnimObjGrayPalette:
+	RGB 31, 31, 31
+	RGB 25, 25, 25
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+DefaultAnimObjGreenPalette:
+	RGB 31, 31, 31
+	RGB 12, 25, 01
+	RGB 05, 14, 00
+	RGB 00, 00, 00
 
 BattleAnimCmd_F6:
 	ret

@@ -692,6 +692,7 @@ BattleAnim_GigaImpact:
 
 
 BattleAnim_GunkShot:
+	anim_purplepal
 	anim_2gfx ANIM_GFX_WIND_BG, ANIM_GFX_POISON
 	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
 	anim_obj ANIM_OBJ_GUNK_SHOT, 48, 96, $0
@@ -1311,6 +1312,7 @@ BattleAnim_Transfer_Orbs_branch:
 
 
 BattleAnim_ToxicSpikes:
+	anim_purplepal
 	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_POISON
 	anim_sound 6, 2, SFX_MENU
 	anim_obj ANIM_OBJ_SPIKES, 48, 88, $20
