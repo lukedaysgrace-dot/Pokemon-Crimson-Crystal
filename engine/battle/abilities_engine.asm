@@ -2928,7 +2928,12 @@ RunContactAbilitiesHook::
 	bit SCREENS_TOXIC_SPIKES_2, [hl]
 	jp nz, .contact ; already two layers down
 	call ShowEnemyAbilityBannerBrief
-	call .toxic_debris_screens ; the banner GFX clobbered hl
+	; play the Toxic Spikes move animation. AbilityStatusAnim flips to the
+	; holder's (defender's) perspective before PlayBattleAnim, so the spikes
+	; render on the attacker's field - exactly the side we just spiked.
+	ld de, TOXIC_SPIKES
+	call AbilityStatusAnim
+	call .toxic_debris_screens ; the banner + anim clobbered hl
 	bit SCREENS_TOXIC_SPIKES_1, [hl]
 	jr z, .toxic_debris_first
 	set SCREENS_TOXIC_SPIKES_2, [hl]
