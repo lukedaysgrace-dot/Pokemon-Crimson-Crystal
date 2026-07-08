@@ -443,3 +443,17 @@ PokemonCries::
 	mon_cry CRY_SQUIRTLE,    $011,  $0c0 ; TAUROS_PALDEAN_FIRE
 	mon_cry CRY_SQUIRTLE,    $011,  $0c0 ; TAUROS_PALDEAN_WATER
 	mon_cry CRY_WOOPER,      $053,  $0af ; SNEASLER
+	mon_cry CRY_NATU,       -$087,  $130 ; WATU
+	mon_cry CRY_CHIKORITA,   $0c0,  $0d0 ; BOUNSWEET
+	mon_cry CRY_CHIKORITA,   $080,  $100 ; STEENEE
+	mon_cry CRY_SUNFLORA,   -$080,  $180 ; TSAREENA
+	mon_cry CRY_GOLEM,       $120,  $0e0 ; ARON
+	mon_cry CRY_GOLEM,       $080,  $120 ; LAIRON
+	mon_cry CRY_GOLEM,       $000,  $180 ; AGGRON
+	mon_cry CRY_CATERPIE,     $020,  $140 ; KLEAVOR
+	mon_cry CRY_MAGCARGO,    $100,  $0f0 ; GLIMMET
+	mon_cry CRY_SLOWKING,    $100,  $0d0 ; MAREANIE
+	mon_cry CRY_SLOWKING,    $040,  $160 ; TOXAPEX
+	mon_cry CRY_RATTATA,     $040,  $140 ; ZANGOOSE
+	mon_cry CRY_EKANS,       $040,  $140 ; SEVIPER
+	mon_cry CRY_MAGCARGO,    $100,  $0f0 ; GLIMMORA

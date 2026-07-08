@@ -446,3 +446,17 @@ MonMenuIconPals:
 	icon_pals GRAY  , GRAY   ; TAUROS_PALDEAN_FIRE
 	icon_pals GRAY  , GRAY   ; TAUROS_PALDEAN_WATER
 	icon_pals GRAY  , GRAY   ; SNEASLER
+	icon_pals GREEN,  TEAL   ; WATU
+	icon_pals GREEN,  BROWN   ; BOUNSWEET
+	icon_pals GREEN,  BROWN   ; STEENEE
+	icon_pals GREEN,  PURPLE   ; TSAREENA
+	icon_pals GRAY,   BLUE   ; ARON
+	icon_pals GRAY,   BLUE   ; LAIRON
+	icon_pals GRAY,   BLUE   ; AGGRON
+	icon_pals BROWN,  GREEN   ; KLEAVOR
+	icon_pals BLUE,   PURPLE   ; GLIMMET
+	icon_pals BLUE,   PURPLE   ; MAREANIE
+	icon_pals BLUE,   PURPLE   ; TOXAPEX
+	icon_pals GRAY,   RED   ; ZANGOOSE
+	icon_pals PURPLE, GREEN   ; SEVIPER
+	icon_pals BLUE,   PURPLE   ; GLIMMORA

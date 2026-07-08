@@ -464,5 +464,19 @@ ClodsireMenuIcon: INCBIN "gfx/menu_icons/clodsire.2bpp"
 TaurosPaldeanFireMenuIcon: INCBIN "gfx/menu_icons/tauros_paldean_fire.2bpp"
 TaurosPaldeanWaterMenuIcon: INCBIN "gfx/menu_icons/tauros_paldean_water.2bpp"
 SneaslerMenuIcon: INCBIN "gfx/menu_icons/sneasler.2bpp"
+WatuMenuIcon: INCBIN "gfx/menu_icons/bird.2bpp" ; TODO: gfx/menu_icons/watu.png
+BounsweetMenuIcon: INCBIN "gfx/menu_icons/oddish.2bpp" ; TODO: gfx/menu_icons/bounsweet.png
+SteeneeMenuIcon: INCBIN "gfx/menu_icons/oddish.2bpp" ; TODO: gfx/menu_icons/steenee.png
+TsareenaMenuIcon: INCBIN "gfx/menu_icons/humanshape.2bpp" ; TODO: gfx/menu_icons/tsareena.png
+AronMenuIcon: INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/aron.png
+LaironMenuIcon: INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/lairon.png
+AggronMenuIcon: INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/aggron.png
+KleavorMenuIcon: INCBIN "gfx/menu_icons/bug.2bpp" ; TODO: gfx/menu_icons/kleavor.png
+GlimmetMenuIcon: INCBIN "gfx/menu_icons/geodude.2bpp" ; TODO: gfx/menu_icons/glimmet.png
+MareanieMenuIcon: INCBIN "gfx/menu_icons/jellyfish.2bpp" ; TODO: gfx/menu_icons/mareanie.png
+ToxapexMenuIcon: INCBIN "gfx/menu_icons/jellyfish.2bpp" ; TODO: gfx/menu_icons/toxapex.png
+ZangooseMenuIcon: INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/zangoose.png
+SeviperMenuIcon: INCBIN "gfx/menu_icons/serpent.2bpp" ; TODO: gfx/menu_icons/seviper.png
+GlimmoraMenuIcon: INCBIN "gfx/menu_icons/geodude.2bpp" ; TODO: gfx/menu_icons/glimmora.png
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

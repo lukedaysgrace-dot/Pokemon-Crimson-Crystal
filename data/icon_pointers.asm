@@ -439,3 +439,17 @@ IconPointers:
 	dba TaurosPaldeanFireIcon
 	dba TaurosPaldeanWaterIcon
 	dba SneaslerIcon
+	dba WatuIcon
+	dba BounsweetIcon
+	dba SteeneeIcon
+	dba TsareenaIcon
+	dba AronIcon
+	dba LaironIcon
+	dba AggronIcon
+	dba KleavorIcon
+	dba GlimmetIcon
+	dba MareanieIcon
+	dba ToxapexIcon
+	dba ZangooseIcon
+	dba SeviperIcon
+	dba GlimmoraIcon

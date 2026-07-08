@@ -437,3 +437,17 @@ AnimationPointers:
 	dw TaurosPaldeanFireAnimation
 	dw TaurosPaldeanWaterAnimation
 	dw SneaslerAnimation
+	dw WatuAnimation
+	dw BounsweetAnimation
+	dw SteeneeAnimation
+	dw TsareenaAnimation
+	dw AronAnimation
+	dw LaironAnimation
+	dw AggronAnimation
+	dw KleavorAnimation
+	dw GlimmetAnimation
+	dw MareanieAnimation
+	dw ToxapexAnimation
+	dw ZangooseAnimation
+	dw SeviperAnimation
+	dw GlimmoraAnimation

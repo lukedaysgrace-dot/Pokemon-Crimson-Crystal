@@ -437,3 +437,17 @@ BitmasksPointers:
 	dw TaurosPaldeanFireBitmasks
 	dw TaurosPaldeanWaterBitmasks
 	dw SneaslerBitmasks
+	dw WatuBitmasks
+	dw BounsweetBitmasks
+	dw SteeneeBitmasks
+	dw TsareenaBitmasks
+	dw AronBitmasks
+	dw LaironBitmasks
+	dw AggronBitmasks
+	dw KleavorBitmasks
+	dw GlimmetBitmasks
+	dw MareanieBitmasks
+	dw ToxapexBitmasks
+	dw ZangooseBitmasks
+	dw SeviperBitmasks
+	dw GlimmoraBitmasks

@@ -440,3 +440,17 @@ MenuIconPointers:
 	dba TaurosPaldeanFireMenuIcon
 	dba TaurosPaldeanWaterMenuIcon
 	dba SneaslerMenuIcon
+	dba WatuMenuIcon
+	dba BounsweetMenuIcon
+	dba SteeneeMenuIcon
+	dba TsareenaMenuIcon
+	dba AronMenuIcon
+	dba LaironMenuIcon
+	dba AggronMenuIcon
+	dba KleavorMenuIcon
+	dba GlimmetMenuIcon
+	dba MareanieMenuIcon
+	dba ToxapexMenuIcon
+	dba ZangooseMenuIcon
+	dba SeviperMenuIcon
+	dba GlimmoraMenuIcon

@@ -2216,6 +2216,7 @@ MrMimeEvosAttacks:
 
 ScytherEvosAttacks:
 	dbbw EVOLVE_TRADE, METAL_COAT, SCIZOR
+	dbbw EVOLVE_TRADE, HARD_STONE, KLEAVOR
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, QUICK_ATTACK

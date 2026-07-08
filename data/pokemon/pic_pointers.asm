@@ -889,3 +889,31 @@ PokemonPicPointers::
 	dba TaurosPaldeanWaterBackpic
 	dba SneaslerFrontpic
 	dba SneaslerBackpic
+	dba WatuFrontpic
+	dba WatuBackpic
+	dba BounsweetFrontpic
+	dba BounsweetBackpic
+	dba SteeneeFrontpic
+	dba SteeneeBackpic
+	dba TsareenaFrontpic
+	dba TsareenaBackpic
+	dba AronFrontpic
+	dba AronBackpic
+	dba LaironFrontpic
+	dba LaironBackpic
+	dba AggronFrontpic
+	dba AggronBackpic
+	dba KleavorFrontpic
+	dba KleavorBackpic
+	dba GlimmetFrontpic
+	dba GlimmetBackpic
+	dba MareanieFrontpic
+	dba MareanieBackpic
+	dba ToxapexFrontpic
+	dba ToxapexBackpic
+	dba ZangooseFrontpic
+	dba ZangooseBackpic
+	dba SeviperFrontpic
+	dba SeviperBackpic
+	dba GlimmoraFrontpic
+	dba GlimmoraBackpic

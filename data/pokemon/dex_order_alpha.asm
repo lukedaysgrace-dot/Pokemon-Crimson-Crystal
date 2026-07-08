@@ -4,9 +4,11 @@ AlphabeticalPokedexOrder:
 	dw ABRA
 	dw AMAURA
 	dw AERODACTYL
+	dw AGGRON
 	dw AIPOM
 	dw ALAKAZAM
 	dw AMPHAROS
+	dw ARON
 	dw ARBOK
 	dw ARCANINE
 	dw ARIADOS
@@ -17,6 +19,7 @@ AlphabeticalPokedexOrder:
 	dw BEEDRILL
 	dw BELLOSSOM
 	dw BELLSPROUT
+	dw BOUNSWEET
 	dw BLASTOISE
 	dw BLISSEY
 	dw BULBASAUR
@@ -72,6 +75,8 @@ AlphabeticalPokedexOrder:
 	dw GASTLY
 	dw GENGAR
 	dw GEODUDE
+	dw GLIMMET
+	dw GLIMMORA
 	dw GIRAFARIG
 	dw GLIGAR
 	dw GLOOM
@@ -116,6 +121,7 @@ AlphabeticalPokedexOrder:
 	dw SCOLIPEDE
 	dw SHELGON
 	dw TANGROWTH
+	dw TOXAPEX
 	dw TOGEKISS
 	dw URSALUNA
 	dw VENIPEDE
@@ -176,6 +182,7 @@ AlphabeticalPokedexOrder:
 	dw KOFFING
 	dw KRABBY
 	dw LANTURN
+	dw LAIRON
 	dw LAPRAS
 	dw LARVITAR
 	dw LEDIAN
@@ -193,6 +200,7 @@ AlphabeticalPokedexOrder:
 	dw MAGNEMITE
 	dw MAGNETON
 	dw MANKEY
+	dw MAREANIE
 	dw MANTINE
 	dw MAREEP
 	dw MARILL
@@ -265,6 +273,7 @@ AlphabeticalPokedexOrder:
 	dw SCYTHER
 	dw SEADRA
 	dw SEAKING
+	dw SEVIPER
 	dw SEEL
 	dw SENTRET
 	dw SHELLDER
@@ -286,6 +295,7 @@ AlphabeticalPokedexOrder:
 	dw STANTLER
 	dw STARMIE
 	dw STARYU
+	dw STEENEE
 	dw STEELIX
 	dw SUDOWOODO
 	dw SUICUNE
@@ -320,12 +330,14 @@ AlphabeticalPokedexOrder:
 	dw VULPIX
 	dw WARTORTLE
 	dw WEEDLE
+	dw WATU
 	dw WEEPINBELL
 	dw WEEZING
 	dw WIGGLYTUFF
 	dw WOBBUFFET
 	dw WOOPER
 	dw XATU
+	dw ZANGOOSE
 	dw YANMA
 	dw ZAPDOS
 	dw ZUBAT
@@ -357,6 +369,7 @@ AlphabeticalPokedexOrder:
 	dw GRUBBIN
 	dw GRUMPIG
 	dw HYDRAPPLE
+	dw KLEAVOR
 	dw KINGAMBIT
 	dw LOMBRE
 	dw LOPUNNY
@@ -377,6 +390,7 @@ AlphabeticalPokedexOrder:
 	dw SWABLU
 	dw TALONFLAME
 	dw TOXICROAK
+	dw TSAREENA
 	dw TRAPINCH
 	dw URSALUNABM
 	dw VIBRAVA

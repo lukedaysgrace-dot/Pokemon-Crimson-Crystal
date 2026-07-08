@@ -288,6 +288,20 @@ EvosAttacksPointers2::
 	dw TaurosPaldeanFireEvosAttacks
 	dw TaurosPaldeanWaterEvosAttacks
 	dw SneaslerEvosAttacks
+	dw WatuEvosAttacks
+	dw BounsweetEvosAttacks
+	dw SteeneeEvosAttacks
+	dw TsareenaEvosAttacks
+	dw AronEvosAttacks
+	dw LaironEvosAttacks
+	dw AggronEvosAttacks
+	dw KleavorEvosAttacks
+	dw GlimmetEvosAttacks
+	dw MareanieEvosAttacks
+	dw ToxapexEvosAttacks
+	dw ZangooseEvosAttacks
+	dw SeviperEvosAttacks
+	dw GlimmoraEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -719,7 +733,7 @@ TogeticEvosAttacks:
 	db 0 ; no more level-up moves
 
 NatuEvosAttacks:
-	dbbw EVOLVE_LEVEL, 25, XATU
+	dbbw EVOLVE_LEVEL, 25, WATU
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, PECK
@@ -5287,4 +5301,205 @@ TaurosPaldeanWaterEvosAttacks:
 	dbw 63, WATERFALL
 	dbw 71, CROSS_CHOP
 	dbw 80, OUTRAGE
+	db 0 ; no more level-up moves
+
+WatuEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, XATU
+	db 0 ; no more evolutions
+	dbw 1, LEER
+	dbw 1, PECK
+	dbw 10, NIGHT_SHADE
+	dbw 20, TELEPORT
+	dbw 28, AIR_SLASH
+	dbw 36, FUTURE_SIGHT
+	dbw 44, CONFUSE_RAY
+	dbw 52, PSYCHIC_M
+	db 0 ; no more level-up moves
+
+BounsweetEvosAttacks:
+	dbbw EVOLVE_LEVEL, 18, STEENEE
+	db 0 ; no more evolutions
+	dbw 1, SPLASH
+	dbw 5, RAPID_SPIN
+	dbw 9, RAZOR_LEAF
+	dbw 13, SWEET_SCENT
+	dbw 17, RAZOR_LEAF
+	dbw 21, FLAIL
+	dbw 25, GIGA_DRAIN
+	dbw 29, RAZOR_LEAF
+	db 0 ; no more level-up moves
+
+SteeneeEvosAttacks:
+	dbbw EVOLVE_LEVEL, 29, TSAREENA
+	db 0 ; no more evolutions
+	dbw 1, SPLASH
+	dbw 1, RAPID_SPIN
+	dbw 9, RAZOR_LEAF
+	dbw 13, SWEET_SCENT
+	dbw 17, RAZOR_LEAF
+	dbw 21, STOMP
+	dbw 25, GIGA_DRAIN
+	dbw 29, RAZOR_LEAF
+	dbw 33, BODY_SLAM
+	db 0 ; no more level-up moves
+
+TsareenaEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, STOMP
+	dbw 1, RAPID_SPIN
+	dbw 9, RAZOR_LEAF
+	dbw 13, SWEET_SCENT
+	dbw 17, RAZOR_LEAF
+	dbw 21, STOMP
+	dbw 25, GIGA_DRAIN
+	dbw 29, RAZOR_LEAF
+	dbw 33, BODY_SLAM
+	dbw 41, HI_JUMP_KICK
+	dbw 49, POWER_WHIP
+	db 0 ; no more level-up moves
+
+AronEvosAttacks:
+	dbbw EVOLVE_LEVEL, 32, LAIRON
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 4, HARDEN
+	dbw 8, MUD_SLAP
+	dbw 12, HEADBUTT
+	dbw 16, METAL_CLAW
+	dbw 20, ROCK_THROW
+	dbw 24, PROTECT
+	dbw 28, IRON_HEAD
+	dbw 32, TAKE_DOWN
+	dbw 36, IRON_TAIL
+	db 0 ; no more level-up moves
+
+LaironEvosAttacks:
+	dbbw EVOLVE_LEVEL, 42, AGGRON
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, HARDEN
+	dbw 8, MUD_SLAP
+	dbw 12, HEADBUTT
+	dbw 16, METAL_CLAW
+	dbw 20, ROCK_THROW
+	dbw 24, PROTECT
+	dbw 28, IRON_HEAD
+	dbw 34, TAKE_DOWN
+	dbw 40, IRON_TAIL
+	dbw 46, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+AggronEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, HARDEN
+	dbw 1, METAL_CLAW
+	dbw 8, MUD_SLAP
+	dbw 12, HEADBUTT
+	dbw 16, METAL_CLAW
+	dbw 20, ROCK_THROW
+	dbw 24, PROTECT
+	dbw 28, IRON_HEAD
+	dbw 34, TAKE_DOWN
+	dbw 40, IRON_TAIL
+	dbw 48, DOUBLE_EDGE
+	dbw 56, HYPER_BEAM
+	db 0 ; no more level-up moves
+
+KleavorEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, LEER
+	dbw 1, QUICK_ATTACK
+	dbw 4, FURY_CUTTER
+	dbw 6, FOCUS_ENERGY
+	dbw 12, PURSUIT
+	dbw 18, FALSE_SWIPE
+	dbw 24, AGILITY
+	dbw 30, ROCK_THROW
+	dbw 36, SLASH
+	dbw 40, X_SCISSOR
+	dbw 42, SWORDS_DANCE
+	dbw 48, STONE_EDGE
+	db 0 ; no more level-up moves
+
+GlimmetEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, GLIMMORA
+	db 0 ; no more evolutions
+	dbw 1, POISON_GAS
+	dbw 1, ROCK_THROW
+	dbw 7, HARDEN
+	dbw 12, ACID
+	dbw 18, ANCIENTPOWER
+	dbw 24, SLUDGE_BOMB
+	dbw 30, POWER_GEM
+	dbw 36, TOXIC
+	db 0 ; no more level-up moves
+
+MareanieEvosAttacks:
+	dbbw EVOLVE_LEVEL, 38, TOXAPEX
+	db 0 ; no more evolutions
+	dbw 1, POISON_STING
+	dbw 5, PECK
+	dbw 10, BITE
+	dbw 15, RECOVER
+	dbw 20, VENOSHOCK
+	dbw 25, SPIKES
+	dbw 30, POISON_JAB
+	dbw 35, TOXIC
+	db 0 ; no more level-up moves
+
+ToxapexEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, POISON_STING
+	dbw 1, PECK
+	dbw 10, BITE
+	dbw 15, RECOVER
+	dbw 20, VENOSHOCK
+	dbw 25, SPIKES
+	dbw 30, POISON_JAB
+	dbw 35, TOXIC
+	dbw 42, SLUDGE_BOMB
+	dbw 49, PROTECT
+	db 0 ; no more level-up moves
+
+ZangooseEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, SCRATCH
+	dbw 5, LEER
+	dbw 9, QUICK_ATTACK
+	dbw 14, FURY_CUTTER
+	dbw 18, SLASH
+	dbw 22, PURSUIT
+	dbw 27, SWORDS_DANCE
+	dbw 33, SLASH
+	dbw 40, FALSE_SWIPE
+	dbw 47, X_SCISSOR
+	db 0 ; no more level-up moves
+
+SeviperEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, WRAP
+	dbw 5, LICK
+	dbw 9, BITE
+	dbw 14, POISON_FANG
+	dbw 19, GLARE
+	dbw 24, SCREECH
+	dbw 29, POISON_JAB
+	dbw 34, CRUNCH
+	dbw 39, HAZE
+	dbw 44, SLUDGE_BOMB
+	db 0 ; no more level-up moves
+
+GlimmoraEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, POISON_GAS
+	dbw 1, ROCK_THROW
+	dbw 1, HARDEN
+	dbw 12, ACID
+	dbw 18, ANCIENTPOWER
+	dbw 24, SPIKES
+	dbw 30, POWER_GEM
+	dbw 36, SLUDGE_BOMB
+	dbw 42, STONE_EDGE
+	dbw 48, TOXIC
 	db 0 ; no more level-up moves

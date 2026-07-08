@@ -1235,6 +1235,78 @@ TaurosPaldeanWaterBackpic:  INCBIN "gfx/pokemon/tauros_paldean_water/back.2bpp.l
 SneaslerFrontpic: INCBIN "gfx/pokemon/sneasler/front.animated.2bpp.lz"
 SneaslerBackpic:  INCBIN "gfx/pokemon/sneasler/back.2bpp.lz"
 
+
+
+SECTION "Pics 43", ROMX
+
+WatuFrontpic: INCBIN "gfx/pokemon/watu/front.animated.2bpp.lz"
+WatuBackpic:  INCBIN "gfx/pokemon/watu/back.2bpp.lz"
+
+SECTION "Pics 44", ROMX
+
+BounsweetFrontpic: INCBIN "gfx/pokemon/bounsweet/front.animated.2bpp.lz"
+BounsweetBackpic:  INCBIN "gfx/pokemon/bounsweet/back.2bpp.lz"
+
+SECTION "Pics 45", ROMX
+
+SteeneeFrontpic: INCBIN "gfx/pokemon/steenee/front.animated.2bpp.lz"
+SteeneeBackpic:  INCBIN "gfx/pokemon/steenee/back.2bpp.lz"
+
+SECTION "Pics 46", ROMX
+
+TsareenaFrontpic: INCBIN "gfx/pokemon/tsareena/front.animated.2bpp.lz"
+TsareenaBackpic:  INCBIN "gfx/pokemon/tsareena/back.2bpp.lz"
+
+SECTION "Pics 47", ROMX
+
+AronFrontpic: INCBIN "gfx/pokemon/aron/front.animated.2bpp.lz"
+AronBackpic:  INCBIN "gfx/pokemon/aron/back.2bpp.lz"
+
+SECTION "Pics 48", ROMX
+
+LaironFrontpic: INCBIN "gfx/pokemon/lairon/front.animated.2bpp.lz"
+LaironBackpic:  INCBIN "gfx/pokemon/lairon/back.2bpp.lz"
+
+SECTION "Pics 49", ROMX
+
+AggronFrontpic: INCBIN "gfx/pokemon/aggron/front.animated.2bpp.lz"
+AggronBackpic:  INCBIN "gfx/pokemon/aggron/back.2bpp.lz"
+
+SECTION "Pics 50", ROMX
+
+KleavorFrontpic: INCBIN "gfx/pokemon/kleavor/front.animated.2bpp.lz"
+KleavorBackpic:  INCBIN "gfx/pokemon/kleavor/back.2bpp.lz"
+
+SECTION "Pics 51", ROMX
+
+GlimmetFrontpic: INCBIN "gfx/pokemon/glimmet/front.animated.2bpp.lz"
+GlimmetBackpic:  INCBIN "gfx/pokemon/glimmet/back.2bpp.lz"
+
+SECTION "Pics 52", ROMX
+
+MareanieFrontpic: INCBIN "gfx/pokemon/mareanie/front.animated.2bpp.lz"
+MareanieBackpic:  INCBIN "gfx/pokemon/mareanie/back.2bpp.lz"
+
+SECTION "Pics 53", ROMX
+
+ToxapexFrontpic: INCBIN "gfx/pokemon/toxapex/front.animated.2bpp.lz"
+ToxapexBackpic:  INCBIN "gfx/pokemon/toxapex/back.2bpp.lz"
+
+SECTION "Pics 54", ROMX
+
+ZangooseFrontpic: INCBIN "gfx/pokemon/zangoose/front.animated.2bpp.lz"
+ZangooseBackpic:  INCBIN "gfx/pokemon/zangoose/back.2bpp.lz"
+
+SECTION "Pics 55", ROMX
+
+SeviperFrontpic: INCBIN "gfx/pokemon/seviper/front.animated.2bpp.lz"
+SeviperBackpic:  INCBIN "gfx/pokemon/seviper/back.2bpp.lz"
+
+SECTION "Pics 56", ROMX
+
+GlimmoraFrontpic: INCBIN "gfx/pokemon/glimmora/front.animated.2bpp.lz"
+GlimmoraBackpic:  INCBIN "gfx/pokemon/glimmora/back.2bpp.lz"
+
 SECTION "Rocket Executive Pics", ROMX
 
 ProtonPic: INCBIN "gfx/trainers/proton.2bpp.lz"
