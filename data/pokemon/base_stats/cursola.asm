@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  60,  95,  50,  30, 145, 130
+	db  60,  60,  85,  30, 145, 130
 	;  hp  atk  def  spd  sat  sdf
 
 	db GHOST, GHOST ; type

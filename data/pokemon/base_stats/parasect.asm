@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  60,  95,  80,  30,  60,  80
+	db  60, 115, 100,  30,  55,  90
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, GRASS ; type

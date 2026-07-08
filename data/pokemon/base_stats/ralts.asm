@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  28,  25,  25,  40,  45,  35
+	db  28,  25,  25,  40,  65,  55
 	;  hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FAIRY ; type
