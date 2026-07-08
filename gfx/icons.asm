@@ -461,5 +461,19 @@ ClodsireIcon: INCBIN "gfx/icons/clodsire.2bpp"
 TaurosPaldeanFireIcon: INCBIN "gfx/icons/tauros_paldean_fire.2bpp"
 TaurosPaldeanWaterIcon: INCBIN "gfx/icons/tauros_paldean_water.2bpp"
 SneaslerIcon: INCBIN "gfx/icons/sneasler.2bpp"
+WatuIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/watu.png
+BounsweetIcon: INCBIN "gfx/icons/oddish.2bpp" ; TODO: gfx/icons/bounsweet.png
+SteeneeIcon: INCBIN "gfx/icons/oddish.2bpp" ; TODO: gfx/icons/steenee.png
+TsareenaIcon: INCBIN "gfx/icons/humanshape.2bpp" ; TODO: gfx/icons/tsareena.png
+AronIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/aron.png
+LaironIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/lairon.png
+AggronIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/aggron.png
+KleavorIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/kleavor.png
+GlimmetIcon: INCBIN "gfx/icons/geodude.2bpp" ; TODO: gfx/icons/glimmet.png
+MareanieIcon: INCBIN "gfx/icons/jellyfish.2bpp" ; TODO: gfx/icons/mareanie.png
+ToxapexIcon: INCBIN "gfx/icons/jellyfish.2bpp" ; TODO: gfx/icons/toxapex.png
+ZangooseIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/zangoose.png
+SeviperIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/seviper.png
+GlimmoraIcon: INCBIN "gfx/icons/geodude.2bpp" ; TODO: gfx/icons/glimmora.png
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

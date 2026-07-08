@@ -437,3 +437,17 @@ AnimationIdlePointers:
 	dw TaurosPaldeanFireAnimationIdle
 	dw TaurosPaldeanWaterAnimationIdle
 	dw SneaslerAnimationIdle
+	dw WatuAnimationIdle
+	dw BounsweetAnimationIdle
+	dw SteeneeAnimationIdle
+	dw TsareenaAnimationIdle
+	dw AronAnimationIdle
+	dw LaironAnimationIdle
+	dw AggronAnimationIdle
+	dw KleavorAnimationIdle
+	dw GlimmetAnimationIdle
+	dw MareanieAnimationIdle
+	dw ToxapexAnimationIdle
+	dw ZangooseAnimationIdle
+	dw SeviperAnimationIdle
+	dw GlimmoraAnimationIdle

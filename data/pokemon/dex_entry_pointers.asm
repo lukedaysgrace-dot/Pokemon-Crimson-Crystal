@@ -438,3 +438,17 @@ PokedexDataPointerTable:
 	dba TaurosPaldeanFirePokedexEntry
 	dba TaurosPaldeanWaterPokedexEntry
 	dba SneaslerPokedexEntry
+	dba WatuPokedexEntry
+	dba BounsweetPokedexEntry
+	dba SteeneePokedexEntry
+	dba TsareenaPokedexEntry
+	dba AronPokedexEntry
+	dba LaironPokedexEntry
+	dba AggronPokedexEntry
+	dba KleavorPokedexEntry
+	dba GlimmetPokedexEntry
+	dba MareaniePokedexEntry
+	dba ToxapexPokedexEntry
+	dba ZangoosePokedexEntry
+	dba SeviperPokedexEntry
+	dba GlimmoraPokedexEntry

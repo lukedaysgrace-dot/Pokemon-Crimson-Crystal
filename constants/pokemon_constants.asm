@@ -458,6 +458,20 @@ JOHTO_POKEMON EQU const_value
 	const TAUROS_PALDEAN_FIRE;
 	const TAUROS_PALDEAN_WATER;
 	const SNEASLER          ;
+	const WATU              ;
+	const BOUNSWEET         ;
+	const STEENEE           ;
+	const TSAREENA          ;
+	const ARON              ;
+	const LAIRON            ;
+	const AGGRON            ;
+	const KLEAVOR           ;
+	const GLIMMET           ;
+	const MAREANIE          ;
+	const TOXAPEX           ;
+	const ZANGOOSE          ;
+	const SEVIPER           ;
+	const GLIMMORA          ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

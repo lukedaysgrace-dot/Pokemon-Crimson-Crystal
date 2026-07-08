@@ -437,3 +437,17 @@ FramesPointers:
 	dba TaurosPaldeanFireFrames
 	dba TaurosPaldeanWaterFrames
 	dba SneaslerFrames
+	dba WatuFrames
+	dba BounsweetFrames
+	dba SteeneeFrames
+	dba TsareenaFrames
+	dba AronFrames
+	dba LaironFrames
+	dba AggronFrames
+	dba KleavorFrames
+	dba GlimmetFrames
+	dba MareanieFrames
+	dba ToxapexFrames
+	dba ZangooseFrames
+	dba SeviperFrames
+	dba GlimmoraFrames
