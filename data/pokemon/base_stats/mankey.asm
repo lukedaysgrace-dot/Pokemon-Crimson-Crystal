@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  40,  80,  35,  70,  35,  45
+	db  40,  80,  35,  80,  35,  35
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING ; type

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  65,  60,  60, 115,  75,  65
+	db  65,  70,  60, 115,  90,  65
 	;  hp  atk  def  spd  sat  sdf
 
 	db DARK, DARK ; type

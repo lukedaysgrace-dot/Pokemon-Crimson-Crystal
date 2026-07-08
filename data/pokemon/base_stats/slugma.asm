@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  40,  40,  40,  20,  70,  40
+	db  50,  50,  50,  20,  90,  50
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

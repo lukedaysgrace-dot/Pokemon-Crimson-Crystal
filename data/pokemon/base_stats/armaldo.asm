@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  75, 125, 100,  45,  70,  80
+	db  75, 125, 100,  50,  70,  80
 	;  hp  atk  def  spd  sat  sdf
 
 	db ROCK, BUG ; type
