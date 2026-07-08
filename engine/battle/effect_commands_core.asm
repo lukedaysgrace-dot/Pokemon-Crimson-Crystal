@@ -463,6 +463,13 @@ BattleUTurn_Core:
 	farcall CheckMobileBattleError
 	ret c
 
+	; ForcePickSwitchMonInBattle stored the chosen slot in wCurPartyMon, but
+	; BattleMonEntrance keys off wCurBattleMon (and overwrites wCurPartyMon
+	; from it). Without this copy it re-sends the U-turn user. The normal
+	; switch path (TryPlayerSwitch) does the same copy before entering.
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
+
 	ld hl, BattleMonEntrance
 	ld a, BANK("Battle Core")
 	rst FarCall
