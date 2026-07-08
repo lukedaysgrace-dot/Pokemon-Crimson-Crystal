@@ -138,6 +138,7 @@ FarfetchDNPCSpriteGFX::        INCBIN "gfx/sprites/farfetch_d.2bpp"
 MoveTutorSpriteGFX::           INCBIN "gfx/sprites/move_tutor.2bpp"
 HexManiacSpriteGFX::           INCBIN "gfx/sprites/hex_maniac.2bpp"
 CosplayerSpriteGFX::           INCBIN "gfx/sprites/cosplayer.2bpp"
+SlowbroNPCSpriteGFX::          INCBIN "gfx/icons/slowbro_ow.2bpp"
 
 
 SECTION "Indigo Sprites", ROMX

@@ -13,7 +13,6 @@ OUT_PATH = ROOT / "pokecrystal.cheats"
 
 NUM_TMS = 50
 NUM_HMS = 7
-NUM_SPAWNS = 28
 MASTER_BALL = 0x01
 POKEGEAR_MAP_AND_ON = 0x81  # map card + pokegear obtained
 MAX_REPEL_STEPS = 0xFF
@@ -43,6 +42,32 @@ def cheat_block(title: str, lines: list[str], enabled: bool = False) -> list[str
 
 def codes_for_range(start: int, end: int, value: int, persistent: bool = False) -> list[str]:
     return [wram_code(addr, value, persistent) for addr in range(start, end)]
+
+
+def parse_rgbds_number(value: str) -> int:
+    value = value.rstrip(",")
+    return int(value[1:], 16) if value.startswith("$") else int(value, 0)
+
+
+def parse_const_value(path: Path, name: str) -> int:
+    const_value = 0
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.split(";", 1)[0].strip()
+        if not line:
+            continue
+        if line.startswith("const_def"):
+            parts = line.split()
+            const_value = parse_rgbds_number(parts[1]) if len(parts) > 1 else 0
+            continue
+        if line.startswith("const "):
+            const_name = line.split()[1]
+            if const_name == name:
+                return const_value
+            const_value += 1
+            continue
+        if line.startswith(f"{name} EQU const_value"):
+            return const_value
+    raise ValueError(f"constant not found: {name}")
 
 
 def main() -> int:
@@ -79,7 +104,8 @@ def main() -> int:
 
     fly_hm = w_tms_hms + NUM_TMS + 1  # HM02 FLY
     hm_end = w_tms_hms + NUM_TMS + NUM_HMS
-    visited_end = w_visited_spawns + (NUM_SPAWNS + 7) // 8
+    num_spawns = parse_const_value(ROOT / "constants" / "map_data_constants.asm", "NUM_SPAWNS")
+    visited_end = w_visited_spawns + (num_spawns + 7) // 8
 
     blocks: list[list[str]] = []
 
