@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/kleavor/front.dimensions"
-	abilities_for KLEAVOR, SWARM, SHEER_FORCE, SHARPNESS
+	abilities_for KLEAVOR, TECHNICIAN, SHEER_FORCE, SHARPNESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
