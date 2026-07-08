@@ -376,7 +376,7 @@ BattleAnimations::
 	banim BattleAnim_WillOWisp ; WILL_O_WISP
 	banim BattleAnim_ZenHeadbutt ; ZEN_HEADBUTT
 	banim BattleAnim_HiJumpKick ; TROP_KICK
-	banim BattleAnim_RapidSpin ; MORTAL_SPIN
+	banim BattleAnim_MortalSpin ; MORTAL_SPIN
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
@@ -653,6 +653,7 @@ BattleAnim_ThunderFang:
 
 BattleAnim_PoisonFang:
 ; Fang bites + bubbling venom (branch shared with Toxic intro)
+	anim_purplepal
 	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_POISON, ANIM_GFX_HIT
 	anim_obj ANIM_OBJ_BITE, 136, 56, $98
 	anim_obj ANIM_OBJ_BITE, 136, 56, $18
@@ -671,6 +672,7 @@ BattleAnim_PoisonFang:
 
 BattleAnim_Venoshock:
 ; Special poison blast — Sludge-style surge into impact
+	anim_purplepal
 	anim_2gfx ANIM_GFX_POISON, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_sound 0, 1, SFX_TOXIC
@@ -2197,6 +2199,7 @@ BattleAnim_Explosion:
 	anim_ret
 
 BattleAnim_Acid:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_POISON
 	anim_call BattleAnim_Acid_branch_cbc35
 	anim_wait 64
@@ -2264,6 +2267,8 @@ BattleAnim_Sing:
 	anim_ret
 
 BattleAnim_Poisonpowder:
+; Poison Powder tints its powder purple; Sleep Powder/Spore keep their palettes.
+	anim_purplepal
 BattleAnim_SleepPowder:
 BattleAnim_Spore:
 BattleAnim_StunSpore:
@@ -2806,6 +2811,7 @@ BattleAnim_Rest:
 	anim_ret
 
 BattleAnim_AcidArmor:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_TargetObj_2Row
 	anim_bgeffect ANIM_BG_ACID_ARMOR, $0, $1, $8
@@ -3028,6 +3034,7 @@ BattleAnim_Mist:
 	anim_ret
 
 BattleAnim_Smog:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_HAZE
 	anim_sound 0, 1, SFX_BUBBLEBEAM
 .loop
@@ -3038,6 +3045,7 @@ BattleAnim_Smog:
 	anim_ret
 
 BattleAnim_PoisonGas:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_HAZE
 	anim_sound 16, 2, SFX_BUBBLEBEAM
 .loop
@@ -3097,6 +3105,7 @@ BattleAnim_HornDrill:
 	anim_ret
 
 BattleAnim_PoisonSting:
+	anim_purplepal
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
 	anim_obj ANIM_OBJ_60, 64, 92, $14
 	anim_wait 16
@@ -3796,12 +3805,14 @@ BattleAnim_PsychicM:
 	anim_ret
 
 BattleAnim_Sludge:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_POISON
 	anim_call BattleAnim_Sludge_branch_cbc15
 	anim_wait 56
 	anim_ret
 
 BattleAnim_Toxic:
+	anim_purplepal
 	anim_1gfx ANIM_GFX_POISON
 	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
 	anim_call BattleAnim_Toxic_branch_cbc35
@@ -4308,6 +4319,7 @@ BattleAnim_BellyDrum:
 	anim_ret
 
 BattleAnim_SludgeBomb:
+	anim_purplepal
 	anim_2gfx ANIM_GFX_EGG, ANIM_GFX_POISON
 	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
 	anim_sound 6, 2, SFX_SLUDGE_BOMB
@@ -4963,6 +4975,11 @@ BattleAnim_Pursuit_branch_cb62b:
 	anim_call BattleAnim_ShowMon_1
 	anim_wait 1
 	anim_ret
+
+BattleAnim_MortalSpin:
+; Poison-type spin: tint the effect purple, then reuse the Rapid Spin script.
+	anim_purplepal
+	anim_jump BattleAnim_RapidSpin
 
 BattleAnim_RapidSpin:
 	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
@@ -5826,6 +5843,7 @@ BattleAnim_ShadowClaw:
 
 BattleAnim_PoisonJab:
 ; Poisonous thrust into the target
+	anim_purplepal
 	anim_3gfx ANIM_GFX_HORN, ANIM_GFX_POISON, ANIM_GFX_HIT
 	anim_obj ANIM_OBJ_HORN, 72, 80, $1
 	anim_wait 12

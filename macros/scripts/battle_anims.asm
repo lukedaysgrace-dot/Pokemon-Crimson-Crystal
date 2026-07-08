@@ -245,6 +245,14 @@ anim_0xf5: MACRO
 	db anim_0xf5_command
 ENDM
 
+; Loads a medium-purple palette into the gray battle-anim object slot for the
+; duration of the current animation. Used to tint poison-type moves purple.
+; The gray slot is restored to its default at the start of every animation
+; (see RestoreAnimObjGrayPal), so this only affects the move that calls it.
+anim_purplepal: MACRO
+	db anim_0xf5_command
+ENDM
+
 	enum anim_0xf6_command ; $f6
 anim_0xf6: MACRO
 	db anim_0xf6_command
