@@ -1614,7 +1614,7 @@ AI_Smart_HealBell:
 	jr z, .ok
 	dec [hl]
 .ok
-	and 1 << FRZ | SLP
+	and SLP ; frostbite isn't incapacitating; treat like a normal status
 	ret z
 	call AI_50_50
 	ret c
@@ -1810,14 +1810,8 @@ AI_Smart_Nightmare:
 	ret
 
 AI_Smart_FlameWheel:
-; Use this move if the enemy is frozen.
-
-	ld a, [wEnemyMonStatus]
-	bit FRZ, a
-	ret z
-rept 5
-	dec [hl]
-endr
+; Frostbite no longer freezes the target solid and Fire moves don't cure it,
+; so don't specially favor Flame Wheel against a frostbitten foe.
 	ret
 
 AI_Smart_Curse:
