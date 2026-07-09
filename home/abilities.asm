@@ -24,11 +24,12 @@ GetAbility::
 	ld e, l ; de = ability 1 pointer
 	ld a, b
 	and ABILITY_MASK
-	cp ABILITY_1
-	jr z, .got_ptr
-	inc hl
 	cp ABILITY_2
-	jr z, .got_ptr
+	jr z, .slot2
+	cp HIDDEN_ABILITY
+	jr nz, .got_ptr ; ABILITY_1, or unset bits: default to slot 1
+	inc hl
+.slot2
 	inc hl
 .got_ptr
 	ld a, [hl]
