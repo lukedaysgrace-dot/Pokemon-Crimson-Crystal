@@ -161,9 +161,11 @@ anim_beatup: MACRO
 	db anim_beatup_command
 ENDM
 
-	enum anim_0xe7_command ; $e7
-anim_0xe7: MACRO
-	db anim_0xe7_command
+	enum anim_clearopponenthud_command ; $e7
+; clear the opposing battler's HUD for the duration of the animation
+; (ported from polishedcrystal; formerly unused anim_0xe7)
+anim_clearopponenthud: MACRO
+	db anim_clearopponenthud_command
 ENDM
 
 	enum anim_updateactorpic_command ; $e8
@@ -185,14 +187,23 @@ ENDM
 	enum anim_hiobj_command ; $eb
 ; anim_obj emits this automatically for object ids >= $100
 
-	enum anim_0xec_command ; $ec
-anim_0xec: MACRO
-	db anim_0xec_command
+	enum anim_setobjpal_command ; $ec
+; overwrite an object palette slot (or the user's/target's mon palettes via
+; PAL_BATTLE_BG_USER/TARGET) with a custom palette; PAL_BTLCUSTOM_DEFAULT
+; restores defaults (ported from polishedcrystal; formerly unused anim_0xec)
+anim_setobjpal: MACRO
+	db anim_setobjpal_command
+	db \1 ; palette slot
+	db \2 ; custom palette id
 ENDM
 
-	enum anim_0xed_command ; $ed
-anim_0xed: MACRO
-	db anim_0xed_command
+	enum anim_setbgpal_command ; $ed
+; same as anim_setobjpal but for bg palette slots
+; (ported from polishedcrystal; formerly unused anim_0xed)
+anim_setbgpal: MACRO
+	db anim_setbgpal_command
+	db \1 ; palette slot
+	db \2 ; custom palette id
 ENDM
 
 	enum anim_if_param_and_command ; $ee

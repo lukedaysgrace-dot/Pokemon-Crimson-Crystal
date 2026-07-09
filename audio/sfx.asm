@@ -5106,3 +5106,15 @@ Sfx_StatDown_Ch5:
 	sound __, 2, $e8, 1900
 	sound __, 2, $e8, 1700
 	endchannel
+
+Sfx_Gravity:
+; ported from Polished Crystal
+	musicheader 1, 8, Sfx_Gravity_Ch8
+
+Sfx_Gravity_Ch8:
+	noise __, 12, $ea, $59
+	noise __, 12, $ea, $69
+	noise __, 12, $ea, $6a
+	noise __, 12, $ea, $6b
+	noise __, 12, $e1, $6c
+	endchannel

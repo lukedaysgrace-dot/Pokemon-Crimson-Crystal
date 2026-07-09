@@ -133,6 +133,7 @@ ANYTIME EQU MORN | DAY | NITE
 	const BATTLEANIM_IN_SUBROUTINE_F ; 1
 	const BATTLEANIM_IN_LOOP_F       ; 2
 	const BATTLEANIM_KEEPSPRITES_F   ; 3
+BATTLEANIM_CUSTOM_PAL_F EQU 7 ; a custom palette was set; reload defaults when done
 
 ; wPlayerSpriteSetupFlags:: ; d45b
 PLAYERSPRITESETUP_FACING_MASK       EQU %11

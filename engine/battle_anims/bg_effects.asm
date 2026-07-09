@@ -133,6 +133,8 @@ BattleBGEffects:
 	dw BattleBGEffect_VibrateMon
 	dw BattleBGEffect_WobbleMon
 	dw BattleBGEffect_35
+	dw BattleBGEffect_CycleBGPals_Inverted ; ANIM_BG_CYCLE_BGPALS_INVERTED
+	dw BattleBGEffect_ShakeMonY            ; ANIM_BG_SHAKE_MON_Y
 
 BattleBGEffect_End:
 	call EndBattleBGEffect
@@ -2908,3 +2910,72 @@ BattleBGEffects_Cosine:
 	callfar BattleAnim_Cosine_e
 	ld a, e
 	ret
+
+BattleBGEffect_CycleBGPals_Inverted:
+; Cycle the DMG bg palette through inverted arrangements
+; (ported from polishedcrystal).
+	ld de, .Pals
+	call BattleBGEffect_GetNthDMGPal
+	ld [wBGP], a
+	ret
+
+.Pals:
+	dc 0, 1, 2, 3
+	dc 1, 2, 0, 3
+	dc 2, 0, 1, 3
+	db -2
+
+BattleBGEffect_ShakeMonY:
+; Oscillates a mon between +1 and +x+1 pixels in the Y axis, where x is
+; the argument given to BG_EFFECT_STRUCT_03 (ported from polishedcrystal).
+	call BattleBGEffects_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw BattleAnim_ResetLCDStatCustom
+
+.zero
+	call BattleBGEffects_IncrementJumptable
+	call BattleBGEffects_ClearLYOverrides
+	ld a, LOW(rSCY)
+	call BattleBGEffect_SetLCDStatCustoms2
+	ldh a, [hLYOverrideEnd]
+	inc a
+	ldh [hLYOverrideEnd], a
+	jr .reset_duration
+
+.reload_distance
+	; toggles between distances
+	ld hl, BG_EFFECT_STRUCT_03
+	add hl, bc
+	ld a, $80
+	xor [hl]
+	ld [hl], a
+.reset_duration
+	; (re)set shake duration
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	ld [hl], a
+	swap a
+	or [hl]
+	ld [hl], a
+	ret
+
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	dec [hl]
+	ld a, [hl]
+	and $f
+	call z, .reload_distance
+
+	ld hl, BG_EFFECT_STRUCT_03
+	add hl, bc
+	ld a, [hl]
+	bit 7, a
+	jr z, .got_distance
+	xor a
+.got_distance
+	jp BGEffect_DisplaceLYOverridesBackup
