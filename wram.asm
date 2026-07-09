@@ -149,7 +149,8 @@ wUnusedScriptByteBuffer:: db
 
 wMapTimeOfDay:: db
 
-	ds 3
+wAlwaysCatchCheat:: db ; nonzero = 100% catch rate with any ball
+	ds 2
 
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db

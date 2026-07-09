@@ -5,6 +5,7 @@ AUTO_INPUT EQU $ff
 	const_def
 	const DEBUG_BATTLE_F
 	const DEBUG_FIELD_F
+	const DEBUG_LEVEL100_F ; GameShark: force Lv100 after defeating a Pokémon
 
 ; wCurDexMode:: ; c7d4
 	const_def
