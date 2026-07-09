@@ -39,9 +39,9 @@ NoLongerInfatuatedText:
 	prompt
 
 TraceActivationText:
-	text "<USER>"
-	line "traced"
-	cont "the ability"
+	text "<USER> traced"
+	line ""
+	text_ram wStringBuffer1
 	text "!"
 	prompt
 
