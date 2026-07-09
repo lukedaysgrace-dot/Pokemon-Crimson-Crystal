@@ -211,3 +211,4 @@ SFX:
 	dba Sfx_AbilitySlideout
 	dba Sfx_StatUp
 	dba Sfx_StatDown
+	dba Sfx_Gravity

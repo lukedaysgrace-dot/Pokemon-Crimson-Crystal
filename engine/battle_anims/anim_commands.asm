@@ -45,6 +45,13 @@ _PlayBattleAnim:
 	pop af
 	ldh [hVBlank], a
 
+	; If an anim_setobjpal/anim_setbgpal recolored any palettes, restore all
+	; default battle palettes now that the animation is over.
+	ld hl, wBattleAnimFlags
+	bit BATTLEANIM_CUSTOM_PAL_F, [hl]
+	res BATTLEANIM_CUSTOM_PAL_F, [hl]
+	call nz, ReloadBattleAnimDefaultPals
+
 	ld a, $1
 	ldh [hBGMapMode], a
 
@@ -357,13 +364,13 @@ BattleAnimCommands::
 	dw BattleAnimCmd_OAMOff
 	dw BattleAnimCmd_ClearObjs
 	dw BattleAnimCmd_BeatUp
-	dw BattleAnimCmd_E7
+	dw BattleAnimCmd_ClearOpponentHUD ; anim_clearopponenthud
 	dw BattleAnimCmd_UpdateActorPic
 	dw BattleAnimCmd_Minimize
 	dw BattleAnimCmd_StatLoop ; anim_statloop
 	dw BattleAnimCmd_HiObj
-	dw BattleAnimCmd_EC ; dummy
-	dw BattleAnimCmd_ED ; dummy
+	dw BattleAnimCmd_SetObjPal ; anim_setobjpal
+	dw BattleAnimCmd_SetBgPal ; anim_setbgpal
 	dw BattleAnimCmd_IfParamAnd
 	dw BattleAnimCmd_JumpUntil
 	dw BattleAnimCmd_BGEffect
@@ -385,9 +392,125 @@ BattleAnimCommands::
 
 BattleAnimCmd_EA:
 BattleAnimCmd_EB:
-BattleAnimCmd_EC:
-BattleAnimCmd_ED:
 	ret
+
+BattleAnimCmd_ClearOpponentHUD:
+; Clear the opposing battler's HUD (ported from polishedcrystal).
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .clear_enemy_hud
+; clear player hud
+	hlcoord 11, 7
+	lb bc, 5, 9
+	call ClearBox
+	ld a, " "
+	hlcoord 10, 7
+	ld [hl], a
+	hlcoord 10, 11
+	ld [hl], a
+	ret
+
+.clear_enemy_hud
+	hlcoord 0, 0
+	lb bc, 3, 11
+	jp ClearBox
+
+BattleAnimCmd_SetBgPal:
+; anim_setbgpal slot, custom_id (ported from polishedcrystal)
+	xor a
+	jr SetBattleAnimPal
+
+BattleAnimCmd_SetObjPal:
+; anim_setobjpal slot, custom_id (ported from polishedcrystal)
+	ld a, 1
+	; fallthrough
+SetBattleAnimPal:
+; a = 1 to target object palettes, 0 for bg palettes
+	ld b, a
+	call GetBattleAnimByte
+	ld d, a ; palette slot
+	call GetBattleAnimByte
+	ld e, a ; custom palette id
+
+	; flag that a custom palette was set so defaults get reloaded afterwards
+	ld hl, wBattleAnimFlags
+	set BATTLEANIM_CUSTOM_PAL_F, [hl]
+
+	ld a, d
+	cp PAL_BATTLE_BG_USER
+	jr z, .user_pal
+	cp PAL_BATTLE_BG_TARGET
+	jr z, .target_pal
+	; plain slot: offset by 8 palettes if targeting object pals
+	ld a, b
+	and a
+	jr z, .got_slot
+	ld a, d
+	add 8
+	ld d, a
+.got_slot
+	; fallthrough
+.set_one
+	; d = slot (0-7 bg, 8-15 obj), e = custom pal id (or $ff for default)
+	ld a, e
+	inc a ; cp PAL_BTLCUSTOM_DEFAULT
+	jp z, ReloadBattleAnimDefaultPals
+	push de
+	push bc
+	; hl = CustomBattlePalettes + e palettes
+	ld hl, CustomBattlePalettes
+	ld bc, 1 palettes
+	ld a, e
+	call AddNTimes
+	; de = wBGPals1 + d palettes (wOBPals1 follows wBGPals1)
+	push hl
+	ld hl, wBGPals1
+	ld a, d
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+	call CopyAnimObjPalAndFlag
+	pop bc
+	pop de
+	ret
+
+.user_pal
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player_mon
+	jr .enemy_mon
+
+.target_pal
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy_mon
+	; fallthrough
+.player_mon
+	; backpic bg palette + player object palette
+	ld d, PAL_BATTLE_BG_PLAYER
+	call .set_one
+	ld d, PAL_BATTLE_OB_PLAYER + 8
+	jr .set_one
+
+.enemy_mon
+	; frontpic bg palette + enemy object palette
+	ld d, PAL_BATTLE_BG_ENEMY
+	call .set_one
+	ld d, PAL_BATTLE_OB_ENEMY + 8
+	jr .set_one
+
+ReloadBattleAnimDefaultPals:
+; Restore all default battle palettes (mon pals, HUD pals, anim object pals).
+	push de
+	push bc
+	farcall ReloadBattleAnimColors
+	pop bc
+	pop de
+	ret
+
+CustomBattlePalettes:
+INCLUDE "gfx/battle_anims/custom.pal"
 
 BattleAnimCmd_Ret:
 	ld hl, wBattleAnimFlags

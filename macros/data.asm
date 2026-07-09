@@ -114,6 +114,12 @@ dsprite: MACRO
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
 ENDM
 
+dbsprite: MACRO
+; x tile, y tile, x pixel, y pixel, vtile offset, attributes
+; (polishedcrystal-style variant of dsprite with x/y argument order swapped)
+	db (\2 * 8) % $100 + \4, (\1 * 8) % $100 + \3, \5, \6
+ENDM
+
 menu_coords: MACRO
 ; x1, y1, x2, y2
 	db \2, \1 ; start coords
