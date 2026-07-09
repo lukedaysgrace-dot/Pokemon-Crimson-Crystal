@@ -778,4 +778,19 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 	const NINJA3
 	const NINJA4
 
+	trainerclass AGATHA ; 4e
+	const AGATHA1
+
+	trainerclass LORELEI ; 4f
+	const LORELEI1
+
+	trainerclass RED2 ; 50
+	const RED2_1
+
+	trainerclass BLUE_CLOAK ; 51
+	const BLUE_CLOAK1
+
+	trainerclass GREEN ; 52
+	const GREEN1
+
 NUM_TRAINER_CLASSES EQU __enum__

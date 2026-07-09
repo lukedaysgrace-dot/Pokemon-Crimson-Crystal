@@ -77,3 +77,8 @@ TrainerClassNames::
 	db "HEX MANIAC@"
 	db "COSPLAYER@"
 	db "NINJA@"
+	db "ELITE FOUR@"
+	db "ELITE FOUR@"
+	db "RED@"
+	db "BLUE@"
+	db "GREEN@"

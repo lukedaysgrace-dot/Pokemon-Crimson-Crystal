@@ -78,3 +78,8 @@ TrainerClassDVs:
 	dn  9,  8,  8, 10 ; HEX_MANIAC
 	dn  6, 10, 10,  8 ; COSPLAYER
 	dn 15, 15, 15, 15 ; NINJA
+	dn 15, 15, 15, 15 ; AGATHA
+	dn 15, 15, 15, 15 ; LORELEI
+	dn 15, 15, 15, 15 ; RED2
+	dn 15, 15, 15, 15 ; BLUE_CLOAK
+	dn 15, 15, 15, 15 ; GREEN

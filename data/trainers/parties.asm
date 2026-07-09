@@ -6650,3 +6650,98 @@ NinjaGroup:
 	db -1 ; end
 
 	end_list_items
+
+AgathaGroup:
+	next_list_item ; AGATHA (1)
+	db "AGATHA@", TRAINERTYPE_NORMAL
+	db 70
+	dw GENGAR
+	db 70
+	dw MISDREAVUS
+	db 70
+	dw ARBOK
+	db 70
+	dw CROBAT
+	db 70
+	dw HAUNTER
+	db 70
+	dw GENGAR
+	db -1 ; end
+
+	end_list_items
+
+LoreleiGroup:
+	next_list_item ; LORELEI (1)
+	db "LORELEI@", TRAINERTYPE_NORMAL
+	db 70
+	dw DEWGONG
+	db 70
+	dw CLOYSTER
+	db 70
+	dw SLOWBRO
+	db 70
+	dw JYNX
+	db 70
+	dw LAPRAS
+	db 70
+	dw ARTICUNO
+	db -1 ; end
+
+	end_list_items
+
+Red2Group:
+	next_list_item ; RED2 (1)
+	db "RED@", TRAINERTYPE_NORMAL
+	db 80
+	dw PIKACHU
+	db 80
+	dw ESPEON
+	db 80
+	dw SNORLAX
+	db 80
+	dw VENUSAUR
+	db 80
+	dw CHARIZARD
+	db 80
+	dw BLASTOISE
+	db -1 ; end
+
+	end_list_items
+
+BlueCloakGroup:
+	next_list_item ; BLUE_CLOAK (1)
+	db "BLUE@", TRAINERTYPE_NORMAL
+	db 80
+	dw PIDGEOT
+	db 80
+	dw ALAKAZAM
+	db 80
+	dw RHYDON
+	db 80
+	dw GYARADOS
+	db 80
+	dw ARCANINE
+	db 80
+	dw EXEGGUTOR
+	db -1 ; end
+
+	end_list_items
+
+GreenGroup:
+	next_list_item ; GREEN (1)
+	db "GREEN@", TRAINERTYPE_NORMAL
+	db 80
+	dw CLEFABLE
+	db 80
+	dw GENGAR
+	db 80
+	dw KANGASKHAN
+	db 80
+	dw NINETALES
+	db 80
+	dw VICTREEBEL
+	db 80
+	dw BLASTOISE
+	db -1 ; end
+
+	end_list_items
