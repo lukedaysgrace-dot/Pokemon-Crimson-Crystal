@@ -6,11 +6,24 @@
 PalletTown_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .CheckRed2
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PALLET
+	return
+
+.CheckRed2:
+	checkevent EVENT_BEAT_RED2
+	iftrue .HideRed2
+	checkevent EVENT_BEAT_BLUE_CLOAK
+	iffalse .HideRed2
+	clearevent EVENT_RED2_IN_PALLET
+	return
+
+.HideRed2:
+	setevent EVENT_RED2_IN_PALLET
 	return
 
 PalletTownTeacherScript:
@@ -20,28 +33,32 @@ PalletTownFisherScript:
 	jumptextfaceplayer PalletTownFisherText
 
 PalletTownRed2Script:
+	special FadeOutMusic
 	faceplayer
 	opentext
-	checkevent EVENT_BEAT_RED2
-	iftrue .Beaten
 	writetext PalletTownRed2BeforeText
 	waitbutton
 	closetext
-	winlosstext PalletTownRed2BeatenText, 0
+	winlosstext PalletTownRed2BeatenText, PalletTownRed2BeatenText
 	loadtrainer RED2, RED2_1
 	startbattle
+	dontrestartmapmusic
 	reloadmapafterbattle
-	setevent EVENT_BEAT_RED2
+	special FadeOutMusic
 	opentext
 	writetext PalletTownRed2AfterText
 	waitbutton
 	closetext
-	end
-
-.Beaten:
-	writetext PalletTownRed2AfterText
-	waitbutton
-	closetext
+	special FadeBlackQuickly
+	special ReloadSpritesNoPalettes
+	disappear PALLETTOWN_RED2
+	setevent EVENT_BEAT_RED2
+	pause 15
+	special FadeInQuickly
+	pause 30
+	special HealParty
+	refreshscreen
+	credits
 	end
 
 PalletTownSign:
@@ -126,4 +143,4 @@ PalletTown_MapEvents:
 	db 3 ; object events
 	object_event  3,  8, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
 	object_event 12, 14, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PalletTownFisherScript, -1
-	object_event  8, 16, SPRITE_RED, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PalletTownRed2Script, EVENT_RED2_IN_PALLET
+	object_event  5, 13, SPRITE_RED, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PalletTownRed2Script, EVENT_RED2_IN_PALLET

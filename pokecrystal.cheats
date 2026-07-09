@@ -1,5 +1,6 @@
 # Auto-generated from pokecrystal.sym by tools/generate_cheats.py
 # Re-run after rebuilding the ROM if cheats stop working.
+!disabled
 # walk through walls
 9100FAC2
 9100FBC2
