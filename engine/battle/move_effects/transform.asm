@@ -69,12 +69,15 @@ BattleCommand_Transform::
 	jp StdBattleTextbox
 
 TransformMonData::
-; Copy the target's moves, DVs, stats and stat stages onto the user.
+; Copy the target's ability, moves, DVs, stats and stat stages onto the user.
 ; Sets SUBSTATUS_TRANSFORMED. Used by the move and by Imposter.
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	set SUBSTATUS_TRANSFORMED, [hl]
 	call ResetActorDisable
+	; canon: Transform also copies the target's ability
+	; (Neutralizing Gas can't be copied - ABILFLAG_NO_TRANSFORM)
+	farcall TransformCopyAbility
 	ld hl, wBattleMonSpecies
 	ld de, wEnemyMonSpecies
 	ldh a, [hBattleTurn]

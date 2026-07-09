@@ -2331,6 +2331,23 @@ WeatherImmune:
 
 AbilityAccuracyMods::
 ; b = hit chance (0-255, -1 = never miss). Modify per abilities.
+	; Armor Tail / Queenly Majesty first: they fail increased-priority
+	; moves outright - even never-miss moves, and through No Guard - so
+	; they must precede those early exits. "Priority" is the EFFECTIVE
+	; priority, counting the attacker's Prankster/Gale Wings/Triage
+	; boosts.
+	call GetOpponentIgnorableAbility
+	cp ARMOR_TAIL
+	jr z, .priority_block
+	cp QUEENLY_MAJESTY
+	jr nz, .no_priority_block
+.priority_block
+	call .armor_tail_blocks
+	jr nc, .no_priority_block
+	call ShowEnemyAbilityBannerBrief
+	ld b, 0 ; can never hit
+	ret
+.no_priority_block
 	ld a, b
 	cp -1
 	ret z
@@ -2357,8 +2374,6 @@ AbilityAccuracyMods::
 	jr z, .tangled_feet
 	cp WONDER_SKIN
 	jr z, .wonder_skin
-	cp ARMOR_TAIL
-	jr z, .armor_tail
 	ret
 
 .always_hit
@@ -2415,32 +2430,44 @@ AbilityAccuracyMods::
 	ld b, 50 percent + 1
 	ret
 
-.armor_tail
-	; increased-priority moves fail against an Armor Tail holder
+.armor_tail_blocks
+; carry if the attacker's move has increased EFFECTIVE priority
+; (base priority plus the attacker's Prankster/Gale Wings/Triage boosts)
 	push bc
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wCurPlayerMove]
-	jr z, .armor_tail_got_move
-	ld a, [wCurEnemyMove]
-.armor_tail_got_move
+	call .armor_tail_move
 	and a
 	jr z, .armor_tail_ok ; no move (item/switch edge case)
 	ld e, a
 	farcall GetMovePriority_e
-	ld a, e
+	ld d, e ; d = base priority
+	call .armor_tail_move
+	ld b, a ; b = move id
+	call GetTrueUserAbility
+	ld c, a ; c = the attacker's effective ability
+	call AbilityCompareMovePriority.Adjust
+	ld a, d
 	cp BASE_PRIORITY + 1
 	jr c, .armor_tail_ok ; normal or negative priority
 	pop bc
-	ld b, 0 ; can never hit
+	scf
 	ret
 .armor_tail_ok
 	pop bc
+	and a
+	ret
+
+.armor_tail_move
+; a = the attacker's chosen move id
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wCurPlayerMove]
+	ret z
+	ld a, [wCurEnemyMove]
 	ret
 
 ReduceAccuracyQuarter_Defender:
 	call ReduceAccuracyQuarter
-	jr AbilityAccuracyMods.defender
+	jp AbilityAccuracyMods.defender
 ReduceAccuracyQuarter:
 ; approximates x0.8: b = b - b/8 - b/16 (= x0.8125)
 	ld a, b
@@ -4180,6 +4207,30 @@ GetTrueUserAbility_b::
 ; farcall-safe wrapper: the user's effective ability, returned in b.
 	call GetTrueUserAbility
 	ld b, a
+	ret
+
+TransformCopyAbility::
+; Transform/Imposter also copies the target's ability (canon), unless
+; that ability can't be acquired by transforming (ABILFLAG_NO_TRANSFORM,
+; e.g. Neutralizing Gas) - then the user keeps its own ability.
+; The copy lasts until the mon leaves the field: send-out recomputes
+; the ability from species and personality.
+	push hl
+	push bc
+	ld a, BATTLE_VARS_ABILITY_OPP
+	call GetBattleVar
+	and a
+	jr z, .done ; target has no ability; keep ours
+	ld b, a
+	call GetAbilityFlags
+	and ABILFLAG_NO_TRANSFORM
+	jr nz, .done
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVarAddr
+	ld [hl], b
+.done
+	pop bc
+	pop hl
 	ret
 
 CheckPlayerIsTrapped::

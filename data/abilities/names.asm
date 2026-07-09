@@ -149,3 +149,4 @@ AbilityNames::
 	db "IRON BARBS@"
 	db "POISON PUPPETEER@"
 	db "TOXIC DEBRIS@"
+	db "QUEENLY MAJESTY@"
