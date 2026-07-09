@@ -5,11 +5,22 @@
 CinnabarIsland_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .CheckBlueCloak
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CINNABAR
+	return
+
+.CheckBlueCloak:
+	checkevent EVENT_BEAT_GREEN
+	iffalse .HideBlueCloak
+	clearevent EVENT_BLUE_CLOAK_IN_CINNABAR
+	return
+
+.HideBlueCloak:
+	setevent EVENT_BLUE_CLOAK_IN_CINNABAR
 	return
 
 CinnabarIslandBlue:

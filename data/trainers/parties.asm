@@ -6262,7 +6262,7 @@ PokefanFGroup:
 
 RedGroup:
 	next_list_item ; RED (1)
-	db "RED@", TRAINERTYPE_ITEM_MOVES
+	db "@", TRAINERTYPE_ITEM_MOVES
 	db 93
 	dw PIKACHU
 	db LIGHT_BALL
@@ -6293,7 +6293,7 @@ RedGroup:
 
 BlueGroup:
 	next_list_item ; BLUE (1)
-	db "BLUE@", TRAINERTYPE_ITEM_MOVES
+	db "@", TRAINERTYPE_ITEM_MOVES
 	db 69
 	dw ARTICUNO
 	db MIRACLEBERRY
@@ -6691,7 +6691,7 @@ LoreleiGroup:
 
 Red2Group:
 	next_list_item ; RED2 (1)
-	db "RED@", TRAINERTYPE_NORMAL
+	db "@", TRAINERTYPE_NORMAL
 	db 80
 	dw PIKACHU
 	db 80
@@ -6710,7 +6710,7 @@ Red2Group:
 
 BlueCloakGroup:
 	next_list_item ; BLUE_CLOAK (1)
-	db "BLUE@", TRAINERTYPE_NORMAL
+	db "@", TRAINERTYPE_NORMAL
 	db 80
 	dw PIDGEOT
 	db 80
@@ -6729,7 +6729,7 @@ BlueCloakGroup:
 
 GreenGroup:
 	next_list_item ; GREEN (1)
-	db "GREEN@", TRAINERTYPE_NORMAL
+	db "@", TRAINERTYPE_NORMAL
 	db 80
 	dw CLEFABLE
 	db 80
