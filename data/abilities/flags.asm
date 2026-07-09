@@ -150,3 +150,4 @@ AbilityFlags:
 	db $00 ; IRON_BARBS
 	db $00 ; POISON_PUPPETEER
 	db $00 ; TOXIC_DEBRIS
+	db $00 ; QUEENLY_MAJESTY

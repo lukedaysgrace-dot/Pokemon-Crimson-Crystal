@@ -149,6 +149,7 @@ AbilityDescriptions::
 	dw IronBarbsDescription
 	dw PoisonPuppeteerDescription
 	dw ToxicDebrisDescription
+	dw QueenlyMajestyDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -882,4 +883,9 @@ PoisonPuppeteerDescription:
 ToxicDebrisDescription:
 	text "Lays Toxic Spikes"
 	next "when hit."
+	done
+
+QueenlyMajestyDescription:
+	text "Stops foes using"
+	next "priority moves."
 	done
