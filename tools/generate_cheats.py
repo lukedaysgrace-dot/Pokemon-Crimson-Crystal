@@ -16,6 +16,8 @@ NUM_HMS = 7
 MASTER_BALL = 0x01
 POKEGEAR_MAP_AND_ON = 0x81  # map card + pokegear obtained
 MAX_REPEL_STEPS = 0xFF
+DEBUG_LEVEL100 = 1 << 2  # DEBUG_LEVEL100_F in wDebugFlags
+ALWAYS_CATCH = 0x01  # nonzero in wAlwaysCatchCheat
 
 
 def parse_sym(path: Path) -> dict[str, int]:
@@ -98,19 +100,11 @@ def main() -> int:
     w_tms_hms = need("wTMsHMs")
     w_pokegear_flags = need("wPokegearFlags")
     w_visited_spawns = need("wVisitedSpawns")
-    w_battle_level = need("wBattleMonLevel")
+    w_debug_flags = need("wDebugFlags")
     w_num_balls = need("wNumBalls")
     w_balls = need("wBalls")
     w_num_items = need("wNumItems")
     w_items = need("wItems")
-    party_levels = [
-        need("wPartyMon1Level"),
-        need("wPartyMon2Level"),
-        need("wPartyMon3Level"),
-        need("wPartyMon4Level"),
-        need("wPartyMon5Level"),
-        need("wPartyMon6Level"),
-    ]
 
     fly_hm = w_tms_hms + NUM_TMS + 1  # HM02 FLY
     hm_end = w_tms_hms + NUM_TMS + NUM_HMS
@@ -165,10 +159,21 @@ def main() -> int:
     fly_lines.extend(codes_for_range(w_visited_spawns, visited_end, 0xFF, True))
     blocks.append(cheat_block("fly anywhere (needs a flying party mon)", fly_lines))
 
-    # Force your party (and active battle mon) to Lv100 — not the enemy.
-    level_100_lines = [wram_code(addr, 100, True) for addr in party_levels]
-    level_100_lines.append(wram_code(w_battle_level, 100, True))
-    blocks.append(cheat_block("level 100 party", level_100_lines))
+    # After defeating a Pokémon, participants level up to 100 with full stats/moves.
+    blocks.append(
+        cheat_block(
+            "level 100 after battle (participants)",
+            [wram_code(w_debug_flags, DEBUG_LEVEL100, True)],
+        )
+    )
+
+    w_always_catch = need("wAlwaysCatchCheat")
+    blocks.append(
+        cheat_block(
+            "100% catch rate (any ball)",
+            [wram_code(w_always_catch, ALWAYS_CATCH, True)],
+        )
+    )
 
     blocks.append(
         cheat_block(
