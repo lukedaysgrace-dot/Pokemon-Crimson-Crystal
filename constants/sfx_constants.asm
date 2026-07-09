@@ -213,3 +213,7 @@
 	const SFX_ABILITYSLIDEOUT             ; cf
 	const SFX_STAT_UP                     ; d0
 	const SFX_STAT_DOWN                   ; d1
+	const SFX_GRAVITY                     ; d2
+
+; polishedcrystal-compatible alias
+SFX_BUBBLE_BEAM EQU SFX_BUBBLEBEAM

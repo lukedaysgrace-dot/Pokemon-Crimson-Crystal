@@ -58,6 +58,10 @@ OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
 X_FLIP       EQU 1 << OAM_X_FLIP    ; $20
 Y_FLIP       EQU 1 << OAM_Y_FLIP    ; $40
 PRIORITY     EQU 1 << OAM_PRIORITY  ; $80
+; polishedcrystal-compatible aliases
+OAM_XFLIP    EQU X_FLIP
+OAM_YFLIP    EQU Y_FLIP
+OAM_PRIO     EQU PRIORITY
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)

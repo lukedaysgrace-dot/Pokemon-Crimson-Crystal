@@ -367,7 +367,7 @@ BattleAnimations::
 	banim BattleAnim_Scald ; SCALD
 	banim BattleAnim_SeedBomb ; SEED_BOMB
 	banim BattleAnim_ShellSmash ; SHELL_SMASH
-	banim BattleAnim_Transfer_Orbs_branch ; SKILL_SWAP (jump-only script aliased)
+	banim BattleAnim_SkillSwap ; SKILL_SWAP
 	banim BattleAnim_ToxicSpikes ; TOXIC_SPIKES
 	banim BattleAnim_Trick ; TRICK
 	banim BattleAnim_TrickRoom ; TRICK_ROOM
@@ -1440,7 +1440,7 @@ BattleAnim_EnemyStatDown:
 
 BattleAnim_PlayerStatDown:
 	anim_call BattleAnim_UserObj_1Row
-	anim_bgeffect ANIM_BG_WOBBLE_MON, $0, $0, $0
+	anim_bgeffect ANIM_BG_WOBBLE_PLAYER, $0, $0, $0
 	anim_wait 40
 	anim_call BattleAnim_ShowMon_1
 	anim_wait 1

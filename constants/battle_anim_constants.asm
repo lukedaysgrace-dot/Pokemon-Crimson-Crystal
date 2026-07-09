@@ -662,6 +662,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_PC_AMNESIA_3_RECOVER
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_BIG
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_SMALL
+	const BATTLEANIMFRAMESET_SMALL_BUBBLE
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -972,6 +973,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_PC_VOLT_SWITCH_4
 	const BATTLEANIMOAMSET_PC_VOLT_SWITCH_5
 	const BATTLEANIMOAMSET_PC_VOLT_SWITCH_6
+	const BATTLEANIMOAMSET_E9
+	const BATTLEANIMOAMSET_HURRICANE
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1026,8 +1029,27 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_31
 	const ANIM_BG_32
 	const ANIM_BG_VIBRATE_MON
-	const ANIM_BG_WOBBLE_MON
+	const ANIM_BG_WOBBLE_PLAYER ; formerly (mis)named ANIM_BG_WOBBLE_MON
 	const ANIM_BG_35
+; new effects ported from polishedcrystal
+	const ANIM_BG_CYCLE_BGPALS_INVERTED ; $36
+	const ANIM_BG_SHAKE_MON_Y           ; $37
+
+; polishedcrystal-compatible names for vanilla effects (index differs by 1
+; from polished past $08 because polished inserted CYCLE_BGPALS_INVERTED)
+ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW     EQU ANIM_BG_06
+ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW EQU ANIM_BG_07
+ANIM_BG_FADE_MON_TO_LIGHT_REPEATING      EQU ANIM_BG_18
+ANIM_BG_FADE_MON_TO_BLACK_REPEATING      EQU ANIM_BG_19
+ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING   EQU ANIM_BG_1A
+ANIM_BG_SHAKE_SCREEN_X                   EQU ANIM_BG_1F
+ANIM_BG_SHAKE_SCREEN_Y                   EQU ANIM_BG_20
+ANIM_BG_WOBBLE_MON                       EQU ANIM_BG_26
+ANIM_BG_REMOVE_MON                       EQU ANIM_BG_27
+
+; anim_bgeffect "turn" arguments used by polished scripts
+BG_EFFECT_TARGET EQU 0
+BG_EFFECT_USER   EQU 1
 
 ; battle anim frameset control words (see data/battle_anims/framesets.asm)
 OAMDELANIM_COMMAND  EQU $fcff
@@ -1131,3 +1153,72 @@ NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 	const PAL_BATTLE_OB_GREEN  ; 5
 	const PAL_BATTLE_OB_BLUE   ; 6
 	const PAL_BATTLE_OB_BROWN  ; 7
+
+; pseudo-slots for anim_setobjpal/anim_setbgpal: recolor the user's or
+; target's mon palettes (bg + obj), resolved via hBattleTurn at runtime
+PAL_BATTLE_BG_USER   EQU 8
+PAL_BATTLE_BG_TARGET EQU 9
+
+; custom bg/obj palettes (see gfx/battle_anims/custom.pal)
+; the first 6 match PAL_BATTLE_OB_GRAY/YELLOW/...
+	const_def
+	const PAL_BTLCUSTOM_GRAY             ; 0
+	const PAL_BTLCUSTOM_YELLOW           ; 1
+	const PAL_BTLCUSTOM_RED              ; 2
+	const PAL_BTLCUSTOM_GREEN            ; 3
+	const PAL_BTLCUSTOM_BLUE             ; 4
+	const PAL_BTLCUSTOM_BROWN            ; 5
+	const PAL_BTLCUSTOM_METALLIC         ; 6
+	const PAL_BTLCUSTOM_PURPLE           ; 7
+	const PAL_BTLCUSTOM_ICE              ; 8
+	const PAL_BTLCUSTOM_FIRE             ; 9
+	const PAL_BTLCUSTOM_GLOBE            ; a
+	const PAL_BTLCUSTOM_WATER            ; b
+	const PAL_BTLCUSTOM_BUBBLE           ; c
+	const PAL_BTLCUSTOM_DRAGON_FIRE      ; d
+	const PAL_BTLCUSTOM_DRAGONBREATH     ; e
+	const PAL_BTLCUSTOM_DRAGON_RAGE      ; f
+	const PAL_BTLCUSTOM_TRI_COLOR        ; 10
+	const PAL_BTLCUSTOM_SPORE            ; 11
+	const PAL_BTLCUSTOM_PEACH            ; 12
+	const PAL_BTLCUSTOM_BERRY            ; 13
+	const PAL_BTLCUSTOM_LIGHT_SCREEN     ; 14
+	const PAL_BTLCUSTOM_SKILL_SWAP       ; 15
+	const PAL_BTLCUSTOM_WILL_O_WISP      ; 16
+	const PAL_BTLCUSTOM_GLOW_YELLOW      ; 17
+	const PAL_BTLCUSTOM_GLOW_LUSTER      ; 18
+	const PAL_BTLCUSTOM_BRIGHT           ; 19
+	const PAL_BTLCUSTOM_SIGNAL_BEAM_RED  ; 1a
+	const PAL_BTLCUSTOM_SIGNAL_BEAM_BLUE ; 1b
+	const PAL_BTLCUSTOM_BULK_UP          ; 1c
+	const PAL_BTLCUSTOM_PSYCHO_BOOST_2   ; 1d
+	const PAL_BTLCUSTOM_PAYBACK          ; 1e
+	const PAL_BTLCUSTOM_GASTRO_ACID      ; 1f
+	const PAL_BTLCUSTOM_DARK_PULSE       ; 20
+	const PAL_BTLCUSTOM_PALE_LIME        ; 21
+	const PAL_BTLCUSTOM_DRAGON_PULSE     ; 22
+	const PAL_BTLCUSTOM_SNOW             ; 23
+	const PAL_BTLCUSTOM_REFLECT          ; 24
+	const PAL_BTLCUSTOM_MIRROR_COAT      ; 25
+	const PAL_BTLCUSTOM_ACID             ; 26
+	const PAL_BTLCUSTOM_MOON             ; 27
+	const PAL_BTLCUSTOM_MOONBLAST        ; 28
+	const PAL_BTLCUSTOM_VERY_BRIGHT      ; 29
+	const PAL_BTLCUSTOM_PINK             ; 2a
+	const PAL_BTLCUSTOM_BRIGHT_PINK      ; 2b
+	const PAL_BTLCUSTOM_VERY_BRIGHT_PINK ; 2c
+	const PAL_BTLCUSTOM_AURORA           ; 2d
+	const PAL_BTLCUSTOM_OUTRAGE          ; 2e
+	const PAL_BTLCUSTOM_ABSORB           ; 2f
+	const PAL_BTLCUSTOM_SHADOW_BALL      ; 30
+	const PAL_BTLCUSTOM_ZAP_CANNON       ; 31
+	const PAL_BTLCUSTOM_ATTACK           ; 32
+	const PAL_BTLCUSTOM_DEFENSE          ; 33
+	const PAL_BTLCUSTOM_SP_ATTACK        ; 34
+	const PAL_BTLCUSTOM_SP_DEFENSE       ; 35
+	const PAL_BTLCUSTOM_SPEED            ; 36
+	const PAL_BTLCUSTOM_ACCURACY         ; 37
+	const PAL_BTLCUSTOM_EVASION          ; 38
+NUM_CUSTOM_BATTLE_PALETTES EQU const_value
+
+PAL_BTLCUSTOM_DEFAULT EQU $ff

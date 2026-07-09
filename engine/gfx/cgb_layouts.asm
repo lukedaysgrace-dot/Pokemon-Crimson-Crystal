@@ -174,6 +174,50 @@ InitPartyMenuBGPal0:
 	call FarCopyWRAM
 	ret
 
+ReloadBattleAnimColors::
+; Reload every default battle palette. Used to undo the custom palettes set
+; by anim_setobjpal/anim_setbgpal (ported from polishedcrystal).
+	ld de, wBGPals1
+	call GetBattlemonBackpicPalettePointer
+	push hl
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER
+	call GetEnemyFrontpicPalettePointer
+	push hl
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
+	ld a, [wEnemyHPPal]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, HPBarPals
+	add hl, bc
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY_HP
+	ld a, [wPlayerHPPal]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, HPBarPals
+	add hl, bc
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER_HP
+	ld hl, ExpBarPalette
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_EXP
+	ld de, wOBPals1
+	pop hl
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_ENEMY
+	pop hl
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_PLAYER
+	ld hl, BattleObjectPals
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
+	ld bc, 6 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	call InitPartyMenuBGPal7
+	call ApplyPals
+	ld a, $1
+	ldh [hCGBPalUpdate], a
+	ret
+
 _CGB_PokegearPals:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
