@@ -98,9 +98,19 @@ def main() -> int:
     w_tms_hms = need("wTMsHMs")
     w_pokegear_flags = need("wPokegearFlags")
     w_visited_spawns = need("wVisitedSpawns")
-    w_enemy_level = need("wEnemyMonLevel")
+    w_battle_level = need("wBattleMonLevel")
+    w_num_balls = need("wNumBalls")
+    w_balls = need("wBalls")
     w_num_items = need("wNumItems")
     w_items = need("wItems")
+    party_levels = [
+        need("wPartyMon1Level"),
+        need("wPartyMon2Level"),
+        need("wPartyMon3Level"),
+        need("wPartyMon4Level"),
+        need("wPartyMon5Level"),
+        need("wPartyMon6Level"),
+    ]
 
     fly_hm = w_tms_hms + NUM_TMS + 1  # HM02 FLY
     hm_end = w_tms_hms + NUM_TMS + NUM_HMS
@@ -155,20 +165,18 @@ def main() -> int:
     fly_lines.extend(codes_for_range(w_visited_spawns, visited_end, 0xFF, True))
     blocks.append(cheat_block("fly anywhere (needs a flying party mon)", fly_lines))
 
-    blocks.append(
-        cheat_block(
-            "level 100 battle",
-            [wram_code(w_enemy_level, 100, True)],
-        )
-    )
+    # Force your party (and active battle mon) to Lv100 — not the enemy.
+    level_100_lines = [wram_code(addr, 100, True) for addr in party_levels]
+    level_100_lines.append(wram_code(w_battle_level, 100, True))
+    blocks.append(cheat_block("level 100 party", level_100_lines))
 
     blocks.append(
         cheat_block(
             "master balls x99",
             [
-                wram_code(w_num_items, 0x01),
-                wram_code(w_items, MASTER_BALL),
-                wram_code(w_items + 1, 99),
+                wram_code(w_num_balls, 0x01),
+                wram_code(w_balls, MASTER_BALL),
+                wram_code(w_balls + 1, 99),
             ],
         )
     )
