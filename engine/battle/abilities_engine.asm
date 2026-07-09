@@ -356,9 +356,12 @@ TraceAbility:
 	push af
 	call ShowAbilityReplacement
 	call BannerHoldAndDismiss
-	; announce the traced ability AFTER the banners
+	; announce the traced ability AFTER the banners (the banner GFX
+	; clobbers wStringBuffer1, so buffer the name here, not earlier)
 	pop af
 	push af
+	ld b, a
+	farcall GetAbilityName
 	ld hl, TraceActivationText
 	call StdBattleTextbox
 	ld a, BATTLE_VARS_ABILITY
@@ -513,11 +516,14 @@ FriskAbility:
 	jp StdBattleTextbox
 
 ScreenCleanerAbility:
+	; only Reflect/Light Screen count - the screens bytes also hold
+	; Safeguard, Spikes and Toxic Spikes bits, which are none of Screen
+	; Cleaner's business
 	ld a, [wPlayerScreens]
-	and a
+	and (1 << SCREENS_REFLECT) | (1 << SCREENS_LIGHT_SCREEN)
 	jr nz, .screens_up
 	ld a, [wEnemyScreens]
-	and a
+	and (1 << SCREENS_REFLECT) | (1 << SCREENS_LIGHT_SCREEN)
 	ret z
 .screens_up
 	call ShowAbilityBannerBrief
@@ -539,7 +545,8 @@ ScreenCleanerAbility:
 .got_screens
 	ld a, [hl]
 	push af
-	ld [hl], 0
+	res SCREENS_REFLECT, [hl]
+	res SCREENS_LIGHT_SCREEN, [hl]
 	and 1 << SCREENS_REFLECT
 	jr z, .no_reflect
 	ld hl, BattleText_MonsReflectFaded
@@ -1023,8 +1030,12 @@ RunPostBattleAbilities::
 	add 9
 	call SimpleDivide
 	pop hl
+	; success iff (level + 9) >= 10 * roll, i.e. quotient >= 10 - this makes
+	; the chance floor((level + 9) / 10) * 5%, matching the formula above
+	; (cp 11 was an off-by-one: it gave 0% below level 2 and ~5% less
+	; everywhere else)
 	ld a, b
-	cp 11
+	cp 10
 	jr c, .next
 	ld a, GOLD_BERRY ; no honey item; closest sweet treat
 	ld [hl], a
