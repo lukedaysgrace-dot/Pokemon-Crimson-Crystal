@@ -368,24 +368,37 @@ TraceAbility:
 	jp RunEntryAbilities
 
 ImposterAbility:
-; banner briefly, then transform into the foe (moves + backpic).
-; wTempBattleMonSpecies keeps the user's original species so
-; FinishBattleAnim restores their palette after the animation.
+; banner briefly, then transform into the foe (moves + pic).
+; wTempBattleMonSpecies / wTempEnemyMonSpecies keep the user's original
+; species so FinishBattleAnim restores their palette after the animation.
 	call ShowAbilityBannerBrief
 	ld a, 1
 	ld [wTempByteValue], a ; skip TransformedText in BattleCommand_Transform
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerMoveStruct + MOVE_ANIM
+	jr z, .got_anim
+	ld hl, wEnemyMoveStruct + MOVE_ANIM
+.got_anim
 	ld a, TRANSFORM
-	ld [wPlayerMoveStruct + MOVE_ANIM], a
+	ld [hl], a
 	farcall BattleCommand_Transform
 	xor a
 	ld [wTempByteValue], a
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_pic
 	farcall GetBattleMonBackpic
+	jr .restore
+.enemy_pic
+	farcall GetEnemyMonFrontpic
+.restore
 	call ImposterRestoreBattlePalette
 	jp EndAbility
 
 ImposterRestoreBattlePalette:
-; Reload battle colors so the player's OB palette comes from
-; wTempBattleMonSpecies (their real species), not the transformed one.
+; Reload battle colors so OB palettes come from the temp species
+; (real species), not the transformed one.
 	farcall FinishBattleAnim
 	ret
 

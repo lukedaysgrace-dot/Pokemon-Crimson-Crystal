@@ -114,15 +114,20 @@ DoBattle:
 	call SpikesDamageAndEntryAbilities
 
 .not_linked_2
-	; a wild mon is already out and never passes through SpikesDamage,
-	; so run its entry abilities here
-	ld a, [wBattleMode]
-	dec a ; WILD_BATTLE?
-	jr nz, .no_wild_entry
+	; Enemy send-out at battle start skips SpikesDamageAndEntryAbilities:
+	; wilds never go through EnemySwitch, and trainer EnemySwitch only
+	; draws the mon. Link USING_INTERNAL_CLOCK already ran them above.
+	ld a, [wLinkMode]
+	and a
+	jr z, .run_enemy_entry
+	ldh a, [hSerialConnectionStatus]
+	cp USING_INTERNAL_CLOCK
+	jr z, .no_enemy_entry
+.run_enemy_entry
 	call SetEnemyTurn
 	farcall RunEntryAbilities
 	call SetPlayerTurn
-.no_wild_entry
+.no_enemy_entry
 	jp BattleTurn
 
 .tutorial_debug
