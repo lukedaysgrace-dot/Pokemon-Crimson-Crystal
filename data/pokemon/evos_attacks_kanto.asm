@@ -1102,7 +1102,7 @@ PoliwagEvosAttacks:
 
 PoliwhirlEvosAttacks:
 	dbbw EVOLVE_ITEM, WATER_STONE, POLIWRATH
-	dbbw EVOLVE_TRADE, KINGS_ROCK, POLITOED
+	dbbw EVOLVE_ITEM, KINGS_ROCK, POLITOED
 	db 0 ; no more evolutions
 	dbw 1, BUBBLE
 	dbw 1, HYPNOSIS
@@ -1141,7 +1141,7 @@ AbraEvosAttacks:
 	db 0 ; no more level-up moves
 
 KadabraEvosAttacks:
-	dbbw EVOLVE_TRADE, -1, ALAKAZAM
+	dbbw EVOLVE_LEVEL, 36, ALAKAZAM
 	db 0 ; no more evolutions
 	dbw 1, CONFUSION
 	dbw 1, KINESIS
@@ -1188,7 +1188,7 @@ MachopEvosAttacks:
 	db 0 ; no more level-up moves
 
 MachokeEvosAttacks:
-	dbbw EVOLVE_TRADE, -1, MACHAMP
+	dbbw EVOLVE_LEVEL, 36, MACHAMP
 	db 0 ; no more evolutions
 	dbw 1, FOCUS_ENERGY
 	dbw 1, LEER
@@ -1327,7 +1327,7 @@ GeodudeEvosAttacks:
 	db 0 ; no more level-up moves
 
 GravelerEvosAttacks:
-	dbbw EVOLVE_TRADE, -1, GOLEM
+	dbbw EVOLVE_LEVEL, 36, GOLEM
 	db 0 ; no more evolutions
 	dbw 1, DEFENSE_CURL
 	dbw 1, ROCK_THROW
@@ -1400,7 +1400,7 @@ RapidashEvosAttacks:
 
 SlowpokeEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, SLOWBRO
-	dbbw EVOLVE_TRADE, KINGS_ROCK, SLOWKING
+	dbbw EVOLVE_ITEM, KINGS_ROCK, SLOWKING
 	db 0 ; no more evolutions
 	dbw 1, CURSE
 	dbw 1, TACKLE
@@ -1641,7 +1641,7 @@ GastlyEvosAttacks:
 	db 0 ; no more level-up moves
 
 HaunterEvosAttacks:
-	dbbw EVOLVE_TRADE, -1, GENGAR
+	dbbw EVOLVE_LEVEL, 36, GENGAR
 	db 0 ; no more evolutions
 	dbw 1, HYPNOSIS
 	dbw 1, LICK
@@ -1678,7 +1678,7 @@ GengarEvosAttacks:
 	db 0 ; no more level-up moves
 
 OnixEvosAttacks:
-	dbbw EVOLVE_TRADE, METAL_COAT, STEELIX
+	dbbw EVOLVE_ITEM, METAL_COAT, STEELIX
 	db 0 ; no more evolutions
 	dbw 1, SCREECH
 	dbw 1, TACKLE
@@ -1975,7 +1975,7 @@ RhyhornEvosAttacks:
 	db 0 ; no more level-up moves
 
 RhydonEvosAttacks:
-	dbbw EVOLVE_TRADE, METAL_COAT, RHYPERIOR
+	dbbw EVOLVE_ITEM, METAL_COAT, RHYPERIOR
 	db 0 ; no more evolutions
 	dbw 1, FURY_ATTACK
 	dbw 1, HORN_ATTACK
@@ -2067,7 +2067,7 @@ HorseaEvosAttacks:
 	db 0 ; no more level-up moves
 
 SeadraEvosAttacks:
-	dbbw EVOLVE_TRADE, DRAGON_SCALE, KINGDRA
+	dbbw EVOLVE_ITEM, DRAGON_SCALE, KINGDRA
 	db 0 ; no more evolutions
 	dbw 1, BUBBLE
 	dbw 1, LEER
@@ -2215,8 +2215,8 @@ MrMimeEvosAttacks:
 	db 0 ; no more level-up moves
 
 ScytherEvosAttacks:
-	dbbw EVOLVE_TRADE, METAL_COAT, SCIZOR
-	dbbw EVOLVE_TRADE, HARD_STONE, KLEAVOR
+	dbbw EVOLVE_ITEM, METAL_COAT, SCIZOR
+	dbbw EVOLVE_ITEM, HARD_STONE, KLEAVOR
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, QUICK_ATTACK
@@ -2459,7 +2459,7 @@ FlareonEvosAttacks:
 	db 0 ; no more level-up moves
 
 PorygonEvosAttacks:
-	dbbw EVOLVE_TRADE, UP_GRADE, PORYGON2
+	dbbw EVOLVE_LEVEL, 30, PORYGON2
 	db 0 ; no more evolutions
 	dbw 1, CONVERSION
 	dbw 1, CONVERSION2

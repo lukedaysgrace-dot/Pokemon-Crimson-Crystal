@@ -94,7 +94,7 @@ ItemEffects:
 	dw StatusHealingEffect ; BURNT_BERRY
 	dw StatusHealingEffect ; ICE_BERRY
 	dw NoEffect            ; POISON_BARB
-	dw NoEffect            ; KINGS_ROCK
+	dw EvoStoneEffect      ; KINGS_ROCK
 	dw BitterBerryEffect   ; BITTER_BERRY
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
@@ -137,7 +137,7 @@ ItemEffects:
 	dw EnergyRootEffect    ; ENERGY_ROOT
 	dw HealPowderEffect    ; HEAL_POWDER
 	dw RevivalHerbEffect   ; REVIVAL_HERB
-	dw NoEffect            ; HARD_STONE
+	dw EvoStoneEffect      ; HARD_STONE
 	dw NoEffect            ; LUCKY_EGG
 	dw CardKeyEffect       ; CARD_KEY
 	dw NoEffect            ; MACHINE_PART
@@ -155,7 +155,7 @@ ItemEffects:
 	dw NoEffect            ; SCOPE_LENS
 	dw NoEffect            ; CHOICE_SPECS
 	dw NoEffect            ; CHOICE_SCARF
-	dw NoEffect            ; METAL_COAT
+	dw EvoStoneEffect      ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
 	dw NoEffect            ; EVIOLITE
 	dw NoEffect            ; LEFTOVERS
@@ -163,7 +163,7 @@ ItemEffects:
 	dw NoEffect            ; FOCUS_SASH
 	dw NoEffect            ; EXPERT_BELT
 	dw RestorePPEffect     ; MYSTERYBERRY
-	dw NoEffect            ; DRAGON_SCALE
+	dw EvoStoneEffect      ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
 	dw NoEffect            ; ROCKY_HELMET
 	dw NoEffect            ; LIFE_ORB
@@ -184,7 +184,7 @@ ItemEffects:
 	dw EvoStoneEffect      ; SUN_STONE
 	dw NoEffect            ; POLKADOT_BOW
 	dw NoEffect            ; MUSCLE_BAND
-	dw NoEffect            ; UP_GRADE
+	dw EvoStoneEffect      ; UP_GRADE
 	dw RestoreHPEffect     ; BERRY
 	dw RestoreHPEffect     ; GOLD_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
@@ -192,6 +192,7 @@ ItemEffects:
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
+	dw EvoStoneEffect      ; BRICK_PIECE
 
 PokeBallEffect:
 	ld a, [wBattleMode]
