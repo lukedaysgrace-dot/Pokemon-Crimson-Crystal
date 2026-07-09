@@ -1,6 +1,5 @@
 # Auto-generated from pokecrystal.sym by tools/generate_cheats.py
 # Re-run after rebuilding the ROM if cheats stop working.
-!disabled
 # walk through walls
 9100FAC2
 9100FBC2
@@ -84,14 +83,11 @@
 91FF8CDC
 91FF8DDC
 !disabled
-# level 100 party
-9164E3DC
-916414DD
-916445DD
-916476DD
-9164A7DD
-9164D8DD
-91643BC6
+# level 100 after battle (participants)
+9104CCC2
+!disabled
+# 100% catch rate (any ball)
+9101D1C2
 !disabled
 # master balls x99
 0101CAD8

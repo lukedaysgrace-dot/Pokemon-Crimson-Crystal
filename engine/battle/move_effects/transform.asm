@@ -43,7 +43,9 @@ BattleCommand_Transform::
 .got_byte
 	and a
 	jr nz, .mimic_anims
-	call LoadMoveAnim
+	; Play Transform "raw" so Imposter works without a move struct
+	ld de, TRANSFORM
+	call FarPlayBattleAnimation
 	jr .after_anim
 
 .mimic_anims

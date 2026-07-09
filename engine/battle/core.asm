@@ -7325,6 +7325,13 @@ GiveExperiencePoints:
 	ret nz
 
 	farcall UpdateLevelCap
+; Level-100 cheat: ignore hard-mode caps so participants can still gain EXP.
+	ld a, [wDebugFlags]
+	bit DEBUG_LEVEL100_F, a
+	jr z, .no_level100_cap
+	ld a, MAX_LEVEL
+	ld [wLevelCap], a
+.no_level100_cap
 	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [wCurPartyMon], a
@@ -7503,6 +7510,27 @@ GiveExperiencePoints:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
+	ld a, [wDebugFlags]
+	bit DEBUG_LEVEL100_F, a
+	jr z, .cap_at_level_cap
+; Level-100 cheat: set EXP to exactly MAX_LEVEL so the normal
+; level-up path recalculates stats / HP / moves.
+	ld a, MAX_LEVEL
+	ld d, a
+	callfar CalcExpAtLevel
+	pop bc
+	ld hl, MON_EXP
+	add hl, bc
+	ldh a, [hQuotient + 1]
+	ld [hli], a
+	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
+	ld [hl], a
+	push bc
+	jr .not_max_exp
+
+.cap_at_level_cap
 	ld a, [wLevelCap]
 	ld d, a
 	callfar CalcExpAtLevel
