@@ -205,26 +205,8 @@ CheckPlayerTurn:
 
 .not_asleep
 
-	ld hl, wBattleMonStatus
-	bit FRZ, [hl]
-	jr z, .not_frozen
-
-	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [wCurPlayerMove]
-	ld hl, .thawing_moves
-	call CheckMoveInList
-	jr c, .not_frozen
-
-	ld hl, FrozenSolidText
-	call StdBattleTextbox
-
-	call CantMove
-	jp EndTurn
-
-.thawing_moves
-	dw FLAME_WHEEL
-	dw SACRED_FIRE
-	dw -1
+	; Frostbite (FRZ) no longer freezes the mon solid; it can act normally.
+	; Its chip damage and Sp. Atk drop are handled elsewhere.
 
 .not_frozen
 
@@ -447,25 +429,7 @@ CheckEnemyTurn:
 
 .not_asleep
 
-	ld hl, wEnemyMonStatus
-	bit FRZ, [hl]
-	jr z, .not_frozen
-
-	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [wCurEnemyMove]
-	ld hl, .thawing_moves
-	call CheckMoveInList
-	jr c, .not_frozen
-
-	ld hl, FrozenSolidText
-	call StdBattleTextbox
-	call CantMove
-	jp EndTurn
-
-.thawing_moves
-	dw FLAME_WHEEL
-	dw SACRED_FIRE
-	dw -1
+	; Frostbite (FRZ) no longer freezes the mon solid; it can act normally.
 
 .not_frozen
 
@@ -4244,7 +4208,7 @@ BattleCommand_BurnTarget:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	and a
-	jp nz, Defrost
+	ret nz ; Fire moves no longer thaw a frostbitten target
 	ld a, [wTypeModifier]
 	and $7f
 	ret z
@@ -4337,6 +4301,9 @@ BattleCommand_FreezeTarget:
 	call GetBattleVarAddr
 	set FRZ, [hl]
 	call UpdateOpponentInParty
+	; Frostbite halves the target's Special Attack immediately (like burn/Atk).
+	ld hl, ApplyFrzEffectOnSpclAtk
+	call CallBattleCore
 	ld de, ANIM_FRZ
 	call PlayOpponentBattleAnim
 	call RefreshBattleHuds
@@ -4345,17 +4312,6 @@ BattleCommand_FreezeTarget:
 	call StdBattleTextbox
 
 	farcall UseHeldStatusHealingItem
-	ret nz
-
-	call OpponentCantMove
-	call EndRechargeOpp
-	ld hl, wEnemyJustGotFrozen
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .finish
-	ld hl, wPlayerJustGotFrozen
-.finish
-	ld [hl], $1
 	ret
 
 BattleCommand_ParalyzeTarget:
@@ -5189,6 +5145,9 @@ CalcPlayerStats:
 	ld hl, ApplyBrnEffectOnAttack
 	call CallBattleCore
 
+	ld hl, ApplyFrzEffectOnSpclAtk
+	call CallBattleCore
+
 	jp BattleCommand_SwitchTurn
 
 CalcEnemyStats:
@@ -5205,6 +5164,9 @@ CalcEnemyStats:
 	call CallBattleCore
 
 	ld hl, ApplyBrnEffectOnAttack
+	call CallBattleCore
+
+	ld hl, ApplyFrzEffectOnSpclAtk
 	call CallBattleCore
 
 	jp BattleCommand_SwitchTurn
@@ -5677,7 +5639,7 @@ BattleCommand_FakeOut:
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
-	and 1 << FRZ | SLP
+	and SLP ; frostbite doesn't stop the mon moving, so it can still flinch
 	jr nz, .fail
 
 	call CheckOpponentWentFirst
@@ -5694,7 +5656,7 @@ BattleCommand_FlinchTarget:
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
-	and 1 << FRZ | SLP
+	and SLP ; frostbite doesn't stop the mon moving, so it can still flinch
 	ret nz
 
 	call CheckOpponentWentFirst
@@ -6516,7 +6478,9 @@ INCLUDE "engine/battle/move_effects/nightmare.asm"
 BattleCommand_Defrost:
 ; defrost
 
-; Thaw the user.
+; Frostbite is not cured by the user's own Fire moves (Flame Wheel, Sacred
+; Fire, etc.), so this self-thaw is now a no-op.
+	ret
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
