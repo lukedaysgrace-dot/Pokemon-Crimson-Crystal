@@ -166,8 +166,7 @@ protection alongside Keen Eye - the Ghost-hitting part is NOT done).
 Relocations to keep banks under 0x4000: OHKO + Recoil bodies ->
 Battle Effect Overflow (EC net change is negative again).
 
-Known limitations: Armor Tail reads base priority (misses Prankster
-boosts); Soundproof blocks status sound moves only via... actually only
+Known limitations: Soundproof blocks status sound moves only via... actually only
 damaging sound moves through the nullification path (Growl/Sing land -
 add an accuracy-hook block later if wanted); Sturdy shows "endured the
 hit" rather than a bespoke message; Anger Point loops silent +2 raises;
