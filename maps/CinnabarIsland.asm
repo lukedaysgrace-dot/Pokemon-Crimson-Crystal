@@ -1,5 +1,6 @@
 	object_const_def ; object_event constants
 	const CINNABARISLAND_BLUE
+	const CINNABARISLAND_BLUE_CLOAK
 
 CinnabarIsland_MapScripts:
 	db 0 ; scene scripts
@@ -21,6 +22,32 @@ CinnabarIslandBlue:
 	applymovement CINNABARISLAND_BLUE, CinnabarIslandBlueTeleport
 	disappear CINNABARISLAND_BLUE
 	clearevent EVENT_VIRIDIAN_GYM_BLUE
+	end
+
+CinnabarIslandBlueCloakScript:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_BLUE_CLOAK
+	iftrue .Beaten
+	writetext CinnabarIslandBlueCloakBeforeText
+	waitbutton
+	closetext
+	winlosstext CinnabarIslandBlueCloakBeatenText, 0
+	loadtrainer BLUE_CLOAK, BLUE_CLOAK1
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_BLUE_CLOAK
+	clearevent EVENT_RED2_IN_PALLET
+	opentext
+	writetext CinnabarIslandBlueCloakAfterText
+	waitbutton
+	closetext
+	end
+
+.Beaten:
+	writetext CinnabarIslandBlueCloakAfterText
+	waitbutton
+	closetext
 	end
 
 CinnabarIslandGymSign:
@@ -107,6 +134,30 @@ CinnabarIslandBlueText:
 	line "then."
 	done
 
+CinnabarIslandBlueCloakBeforeText:
+	text "BLUE: …You're the"
+	line "one who beat RED."
+
+	para "I've been waiting"
+	line "for a rematch of"
+	cont "my own."
+
+	para "Don't hold back!"
+	done
+
+CinnabarIslandBlueCloakBeatenText:
+	text "Tch… Still not"
+	line "enough…"
+	done
+
+CinnabarIslandBlueCloakAfterText:
+	text "BLUE: You're the"
+	line "real deal."
+
+	para "Don't get soft on"
+	line "me now."
+	done
+
 CinnabarIslandGymSignText:
 	text "There's a notice"
 	line "here…"
@@ -139,5 +190,6 @@ CinnabarIsland_MapEvents:
 	bg_event  7,  7, BGEVENT_READ, CinnabarIslandSign
 	bg_event  9,  1, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
 
-	db 1 ; object events
+	db 2 ; object events
 	object_event  9,  6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event  9,  6, SPRITE_BLUE_CLOAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlueCloakScript, EVENT_BLUE_CLOAK_IN_CINNABAR

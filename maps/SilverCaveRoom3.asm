@@ -26,6 +26,8 @@ Red:
 	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
+	clearevent EVENT_BLUE_CLOAK_IN_CINNABAR
+	clearevent EVENT_GREEN_IN_ROUTE20
 	pause 15
 	special FadeInQuickly
 	pause 30

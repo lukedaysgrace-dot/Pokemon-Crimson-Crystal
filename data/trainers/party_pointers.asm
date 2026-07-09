@@ -79,3 +79,8 @@ TrainerGroups:
 	dba HexManiacGroup
 	dba CosplayerGroup
 	dba NinjaGroup
+	dba AgathaGroup
+	dba LoreleiGroup
+	dba Red2Group
+	dba BlueCloakGroup
+	dba GreenGroup

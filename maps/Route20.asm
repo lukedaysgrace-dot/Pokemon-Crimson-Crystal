@@ -2,6 +2,7 @@
 	const ROUTE20_SWIMMER_GIRL1
 	const ROUTE20_SWIMMER_GIRL2
 	const ROUTE20_SWIMMER_GUY
+	const ROUTE20_GREEN
 
 Route20_MapScripts:
 	db 0 ; scene scripts
@@ -42,6 +43,31 @@ TrainerSwimmermCameron:
 	endifjustbattled
 	opentext
 	writetext SwimmermCameronAfterBattleText
+	waitbutton
+	closetext
+	end
+
+Route20GreenScript:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_GREEN
+	iftrue .Beaten
+	writetext Route20GreenBeforeText
+	waitbutton
+	closetext
+	winlosstext Route20GreenBeatenText, 0
+	loadtrainer GREEN, GREEN1
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_GREEN
+	opentext
+	writetext Route20GreenAfterText
+	waitbutton
+	closetext
+	end
+
+.Beaten:
+	writetext Route20GreenAfterText
 	waitbutton
 	closetext
 	end
@@ -102,6 +128,29 @@ SwimmermCameronAfterBattleText:
 	cont "ponds and rivers."
 	done
 
+Route20GreenBeforeText:
+	text "GREEN: So you're"
+	line "the one who beat"
+	cont "RED…"
+
+	para "I've been looking"
+	line "forward to this."
+
+	para "Let's battle!"
+	done
+
+Route20GreenBeatenText:
+	text "You're amazing…"
+	done
+
+Route20GreenAfterText:
+	text "GREEN: That was"
+	line "fun. Don't forget"
+
+	para "about me when you"
+	line "get even stronger."
+	done
+
 CinnabarGymSignText:
 	text "What does this"
 	line "sign say?"
@@ -121,7 +170,8 @@ Route20_MapEvents:
 	db 1 ; bg events
 	bg_event 37, 11, BGEVENT_READ, CinnabarGymSign
 
-	db 3 ; object events
+	db 4 ; object events
 	object_event 52,  8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
 	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
 	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1
+	object_event 37,  8, SPRITE_GREEN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route20GreenScript, EVENT_GREEN_IN_ROUTE20

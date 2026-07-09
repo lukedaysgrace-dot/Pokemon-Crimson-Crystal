@@ -80,3 +80,8 @@ TrainerEncounterMusic::
 	db MUSIC_SAGE_ENCOUNTER        ; hex_maniac
 	db MUSIC_BEAUTY_ENCOUNTER      ; cosplayer
 	db MUSIC_ROCKET_ENCOUNTER      ; ninja
+	db MUSIC_OFFICER_ENCOUNTER     ; agatha
+	db MUSIC_BEAUTY_ENCOUNTER      ; lorelei
+	db MUSIC_HIKER_ENCOUNTER       ; red2
+	db MUSIC_RIVAL_ENCOUNTER       ; blue_cloak
+	db MUSIC_RIVAL_ENCOUNTER       ; green

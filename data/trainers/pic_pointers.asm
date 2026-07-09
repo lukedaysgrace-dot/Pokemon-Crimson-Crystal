@@ -79,3 +79,8 @@ TrainerPicPointers::
 	dba HexManiacPic
 	dba CosplayerPic
 	dba NinjaPic
+	dba AgathaPic
+	dba LoreleiPic
+	dba Red2Pic
+	dba BlueCloakPic
+	dba GreenPic
