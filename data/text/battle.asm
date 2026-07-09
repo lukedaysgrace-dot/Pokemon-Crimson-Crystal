@@ -64,6 +64,11 @@ HurtByBurnText:
 	line "hurt by its burn!"
 	prompt
 
+HurtByFrostbiteText:
+	text "<USER>'s"
+	line "hurt by frostbite!"
+	prompt
+
 LeechSeedSapsText:
 	text "LEECH SEED saps"
 	line "<USER>!"
@@ -779,7 +784,7 @@ DefrostedOpponentText:
 
 WasFrozenText:
 	text "<TARGET>"
-	line "was frozen solid!"
+	line "got frostbite!"
 	prompt
 
 WontRiseAnymoreText:

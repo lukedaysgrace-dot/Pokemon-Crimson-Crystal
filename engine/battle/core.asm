@@ -306,7 +306,7 @@ HandleBetweenTurnEffects:
 	ret c
 	call HandleLeftovers
 	call HandleMysteryberry
-	call HandleDefrost
+	; Frostbite no longer self-thaws; it persists like burn until cured.
 	farcall HandleTrickRoom
 	farcall HandleRoost
 	call HandleSafeguard
@@ -1013,23 +1013,27 @@ ResidualDamage:
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 1 << PSN | 1 << BRN
+	and 1 << PSN | 1 << BRN | 1 << FRZ ; frostbite chips like burn
 	jr z, .did_psn_brn
 
 	; Magic Guard ignores the chip; Poison Heal turns poison into healing
 	farcall RunResidualStatusAbilities
 	jr c, .did_psn_brn
 
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	and 1 << PSN | 1 << BRN
-
 	ld hl, HurtByPoisonText
 	ld de, ANIM_PSN
-	and 1 << BRN
-	jr z, .got_anim
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	jr z, .check_frz_anim
 	ld hl, HurtByBurnText
 	ld de, ANIM_BRN
+	jr .got_anim
+.check_frz_anim
+	bit FRZ, a
+	jr z, .got_anim
+	ld hl, HurtByFrostbiteText
+	ld de, ANIM_FRZ
 .got_anim
 
 	push de
@@ -1548,65 +1552,6 @@ HandleFutureSight:
 
 	call UpdateBattleMonInParty
 	jp UpdateEnemyMonInParty
-
-HandleDefrost:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
-	call .do_player_turn
-	jr .do_enemy_turn
-
-.enemy_first
-	call .do_enemy_turn
-.do_player_turn
-	ld a, [wBattleMonStatus]
-	bit FRZ, a
-	ret z
-
-	ld a, [wPlayerJustGotFrozen]
-	and a
-	ret nz
-
-	call BattleRandom
-	cp 10 percent
-	ret nc
-	xor a
-	ld [wBattleMonStatus], a
-	ld a, [wCurBattleMon]
-	ld hl, wPartyMon1Status
-	call GetPartyLocation
-	ld [hl], 0
-	call UpdateBattleHuds
-	call SetEnemyTurn
-	ld hl, DefrostedOpponentText
-	jp StdBattleTextbox
-
-.do_enemy_turn
-	ld a, [wEnemyMonStatus]
-	bit FRZ, a
-	ret z
-	ld a, [wEnemyJustGotFrozen]
-	and a
-	ret nz
-	call BattleRandom
-	cp 10 percent
-	ret nc
-	xor a
-	ld [wEnemyMonStatus], a
-
-	ld a, [wBattleMode]
-	dec a
-	jr z, .wild
-	ld a, [wCurOTMon]
-	ld hl, wOTPartyMon1Status
-	call GetPartyLocation
-	ld [hl], 0
-.wild
-
-	call UpdateBattleHuds
-	call SetPlayerTurn
-	ld hl, DefrostedOpponentText
-	jp StdBattleTextbox
 
 HandleSafeguard:
 	ldh a, [hSerialConnectionStatus]
@@ -6914,7 +6859,8 @@ ApplyStatusEffectOnEnemyStats:
 ApplyStatusEffectOnStats:
 	ldh [hBattleTurn], a
 	call ApplyPrzEffectOnSpeed
-	jp ApplyBrnEffectOnAttack
+	call ApplyBrnEffectOnAttack
+	jp ApplyFrzEffectOnSpclAtk
 
 ApplyPrzEffectOnSpeed:
 	ldh a, [hBattleTurn]
@@ -6997,6 +6943,48 @@ ApplyBrnEffectOnAttack::
 	or b
 	jr nz, .enemy_ok
 	ld b, $1 ; min attack
+
+.enemy_ok
+	ld [hl], b
+	ret
+
+ApplyFrzEffectOnSpclAtk::
+; Frostbite (FRZ) halves Special Attack, mirroring how burn halves Attack.
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wBattleMonSpclAtk + 1
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .player_ok
+	ld b, $1 ; min sp. atk
+
+.player_ok
+	ld [hl], b
+	ret
+
+.enemy
+	ld a, [wEnemyMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wEnemyMonSpclAtk + 1
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .enemy_ok
+	ld b, $1 ; min sp. atk
 
 .enemy_ok
 	ld [hl], b

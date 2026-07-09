@@ -4941,7 +4941,7 @@ TryEnemyFlee_Core::
 	jr c, .Stay
 
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
+	and SLP ; frostbite no longer immobilizes; only sleep pins a wild mon
 	jr nz, .Stay
 
 	ld a, [wTempEnemyMonSpecies]

@@ -328,7 +328,7 @@ AI_Items:
 	jp c, .Use
 .FailToxicCheck:
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
+	and SLP ; only sleep is urgent enough for a context-use heal
 	jp z, .DontUse
 	jp .Use
 
