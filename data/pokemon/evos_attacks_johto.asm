@@ -1373,7 +1373,7 @@ HeracrossEvosAttacks:
 	db 0 ; no more level-up moves
 
 SneaselEvosAttacks:
-	dbbw EVOLVE_LEVEL, 42, WEAVILE
+	dbbw EVOLVE_LEVEL, 36, WEAVILE
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, SCRATCH
@@ -1661,7 +1661,7 @@ DonphanEvosAttacks:
 	db 0 ; no more level-up moves
 
 Porygon2EvosAttacks:
-	dbbw EVOLVE_TRADE, UP_GRADE, PORYGON_Z
+	dbbw EVOLVE_ITEM, UP_GRADE, PORYGON_Z
 	db 0 ; no more evolutions
 	dbw 1, CONVERSION
 	dbw 1, CONVERSION2
@@ -1707,7 +1707,7 @@ SmeargleEvosAttacks:
 TyrogueEvosAttacks:
 	dbbbw EVOLVE_STAT, 20, ATK_LT_DEF, HITMONCHAN
 	dbbbw EVOLVE_STAT, 20, ATK_GT_DEF, HITMONLEE
-	dbbbw EVOLVE_STAT, 20, ATK_EQ_DEF, HITMONTOP
+	dbbw EVOLVE_ITEM, BRICK_PIECE, HITMONTOP
 	db 0 ; no more evolutions
 	dbw 1, FOCUS_ENERGY
 	dbw 1, TACKLE
@@ -2959,8 +2959,8 @@ BaxcaliburEvosAttacks:
 	db 0 ; no more level-up moves
 
 CharcadetEvosAttacks:
-	dbbw EVOLVE_ITEM, MOON_STONE, ARMAROUGE
-	dbbw EVOLVE_ITEM, THUNDERSTONE, CERULEDGE
+	dbbw EVOLVE_LEVEL, 32, CERULEDGE
+	dbbw EVOLVE_LEVEL, 32, ARMAROUGE
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, TACKLE
@@ -5187,7 +5187,7 @@ TyphlosionHisuianEvosAttacks:
 	db 0 ; no more level-up moves
 
 SneaselHisuianEvosAttacks:
-	dbbw EVOLVE_HAPPINESS, TR_MORNDAY, SNEASLER
+	dbbw EVOLVE_LEVEL, 36, SNEASLER
 	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, LEER

@@ -288,6 +288,29 @@ EvolveAfterBattle_MasterLoop:
 	call IsMonHoldingEverstone
 	jp z, .skip_evolution_species
 
+; Time-of-day gated level evolutions based on target species:
+; Charcadet -> Ceruledge at night, Charcadet -> Armarouge by day.
+	push hl
+	ldh a, [hTemp]
+	call GetFarHalfword
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, d
+	cp HIGH(CERULEDGE)
+	jr nz, .check_armarouge_target
+	ld a, e
+	cp LOW(CERULEDGE)
+	jp z, .target_nite
+.check_armarouge_target
+	ld a, d
+	cp HIGH(ARMAROUGE)
+	jr nz, .check_ursaring
+	ld a, e
+	cp LOW(ARMAROUGE)
+	jp z, .target_day
+
+.check_ursaring
 	push hl
 	ld a, [wEvolutionOldSpecies]
 	call GetPokemonIndexFromID
@@ -320,6 +343,18 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp nz, .skip_evolution_species
+	jr .proceed
+
+.target_nite
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	jp nz, .skip_evolution_species
+	jr .proceed
+
+.target_day
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	jp z, .skip_evolution_species
 
 .proceed
 	ld a, [wTempMonLevel]
