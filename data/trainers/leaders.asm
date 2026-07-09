@@ -19,6 +19,9 @@ GymLeaders:
 	db KOGA
 	db CHAMPION
 	db RED
+	db RED2
+	db AGATHA
+	db LORELEI
 ; fallthrough
 KantoGymLeaders:
 	db BROCK
@@ -29,4 +32,6 @@ KantoGymLeaders:
 	db SABRINA
 	db BLAINE
 	db BLUE
+	db BLUE_CLOAK
+	db GREEN
 	db -1

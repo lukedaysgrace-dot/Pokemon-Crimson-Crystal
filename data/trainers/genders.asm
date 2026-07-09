@@ -79,3 +79,8 @@ BTTrainerClassGenders:
 	db FEMALE ; HEX_MANIAC
 	db FEMALE ; COSPLAYER
 	db MALE   ; NINJA
+	db FEMALE ; AGATHA
+	db FEMALE ; LORELEI
+	db MALE   ; RED2
+	db MALE   ; BLUE_CLOAK
+	db FEMALE ; GREEN

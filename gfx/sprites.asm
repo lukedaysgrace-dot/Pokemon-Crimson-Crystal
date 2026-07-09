@@ -140,6 +140,10 @@ HexManiacSpriteGFX::           INCBIN "gfx/sprites/hex_maniac.2bpp"
 CosplayerSpriteGFX::           INCBIN "gfx/sprites/cosplayer.2bpp"
 NinjaSpriteGFX::               INCBIN "gfx/sprites/ninja.2bpp"
 SlowbroNPCSpriteGFX::          INCBIN "gfx/icons/slowbro_ow.2bpp"
+AgathaSpriteGFX::              INCBIN "gfx/sprites/agatha.2bpp"
+LoreleiSpriteGFX::             INCBIN "gfx/sprites/lorelei.2bpp"
+BlueCloakSpriteGFX::           INCBIN "gfx/sprites/blue_cloak.2bpp"
+GreenSpriteGFX::               INCBIN "gfx/sprites/green.2bpp"
 
 
 SECTION "Indigo Sprites", ROMX

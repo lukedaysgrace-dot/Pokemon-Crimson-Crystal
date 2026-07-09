@@ -88,3 +88,8 @@ INCBIN "gfx/trainers/petreldirector.gbcpal", middle_colors
 INCBIN "gfx/trainers/hex_maniac.gbcpal", middle_colors
 INCBIN "gfx/trainers/cosplayer.gbcpal", middle_colors
 INCBIN "gfx/trainers/ninja.gbcpal", middle_colors
+INCBIN "gfx/trainers/agatha.gbcpal", middle_colors
+INCBIN "gfx/trainers/lorelei.gbcpal", middle_colors
+INCBIN "gfx/trainers/red2.gbcpal", middle_colors
+INCBIN "gfx/trainers/blue_cloak.gbcpal", middle_colors
+INCBIN "gfx/trainers/green.gbcpal", middle_colors

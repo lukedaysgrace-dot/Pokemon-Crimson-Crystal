@@ -137,3 +137,7 @@ OverworldSprites:
 	overworld_sprite CosplayerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_COSPLAYER
 	overworld_sprite NinjaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_NINJA
 	overworld_sprite SlowbroNPCSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED ; SPRITE_SLOWBRO_NPC
+	overworld_sprite AgathaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN ; SPRITE_AGATHA
+	overworld_sprite LoreleiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_LORELEI
+	overworld_sprite BlueCloakSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BLUE_CLOAK
+	overworld_sprite GreenSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_GREEN
