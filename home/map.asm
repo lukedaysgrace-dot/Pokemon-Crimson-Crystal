@@ -90,8 +90,7 @@ GetMapSceneID::
 	ret
 
 OverworldTextModeSwitch::
-	call LoadMapPart
-	jp FarCallSwapTextboxPalettes
+	; fallthrough
 
 LoadMapPart::
 	ldh a, [hROMBank]
@@ -106,6 +105,10 @@ LoadMapPart::
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
+	ld a, [wTilesetAttributesBank]
+	rst Bankswitch
+	call LoadMetatileAttributes
+
 	ld a, BANK(_LoadMapPart)
 	rst Bankswitch
 	call _LoadMapPart
@@ -115,12 +118,29 @@ LoadMapPart::
 	ret
 
 LoadMetatiles::
+	ld hl, wTilesetBlocksAddress
+	ld a, [hli]
+	ld [wTilesetDataAddress], a
+	ld a, [hl]
+	ld [wTilesetDataAddress + 1], a
+	ld hl, wSurroundingTiles
+	jr _LoadMetatilesOrAttributes
+
+LoadMetatileAttributes::
+	ld hl, wTilesetAttributesAddress
+	ld a, [hli]
+	ld [wTilesetDataAddress], a
+	ld a, [hl]
+	ld [wTilesetDataAddress + 1], a
+	ld hl, wSurroundingAttributes
+	; fallthrough
+
+_LoadMetatilesOrAttributes:
 	; de <- wOverworldMapAnchor
 	ld a, [wOverworldMapAnchor]
 	ld e, a
 	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
-	ld hl, wSurroundingTiles
 	ld b, SURROUNDING_HEIGHT / METATILE_WIDTH ; 5
 
 .row
@@ -139,25 +159,28 @@ LoadMetatiles::
 	ld a, [wMapBorderBlock]
 
 .ok
-	; Load the current wSurroundingTiles address into de.
+	; Load the current buffer address into de.
 	ld e, l
 	ld d, h
-	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
-	; This is buggy; it wraps around past 128 blocks.
-	; To fix, uncomment the line below.
-	add a ; Comment or delete this line to fix the above bug.
+	; Set hl to the address of the current data ([wTilesetDataAddress] + (a) * 16).
+	; (128+ block IDs are supported: the old wraparound bug is fixed.)
 	ld l, a
 	ld h, 0
-	; add hl, hl
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld a, [wTilesetBlocksAddress]
+	add hl, hl
+	ld a, [wTilesetDataAddress]
 	add l
 	ld l, a
-	ld a, [wTilesetBlocksAddress + 1]
+	ld a, [wTilesetDataAddress + 1]
 	adc h
 	ld h, a
+
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK("Surrounding Data")
+	ldh [rSVBK], a
 
 	; copy the 4x4 metatile
 rept METATILE_WIDTH + -1
@@ -178,6 +201,10 @@ rept METATILE_WIDTH
 	ld [de], a
 	inc de
 endr
+
+	pop af
+	ldh [rSVBK], a
+
 	; Next metatile
 	pop hl
 	ld de, METATILE_WIDTH
@@ -1126,8 +1153,9 @@ ScrollMapUp::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	ld c, 2 * SCREEN_WIDTH
-	call FarCallScrollBGMapPalettes
+	hlcoord 0, 0, wAttrMap
+	ld de, wBGMapPalBuffer
+	call BackupBGMapRow
 	ld a, [wBGMapAnchor]
 	ld e, a
 	ld a, [wBGMapAnchor + 1]
@@ -1141,8 +1169,9 @@ ScrollMapDown::
 	hlcoord 0, SCREEN_HEIGHT - 2
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	ld c, 2 * SCREEN_WIDTH
-	call FarCallScrollBGMapPalettes
+	hlcoord 0, SCREEN_HEIGHT - 2, wAttrMap
+	ld de, wBGMapPalBuffer
+	call BackupBGMapRow
 	ld a, [wBGMapAnchor]
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
@@ -1164,8 +1193,9 @@ ScrollMapLeft::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	ld c, 2 * SCREEN_HEIGHT
-	call FarCallScrollBGMapPalettes
+	hlcoord 0, 0, wAttrMap
+	ld de, wBGMapPalBuffer
+	call BackupBGMapColumn
 	ld a, [wBGMapAnchor]
 	ld e, a
 	ld a, [wBGMapAnchor + 1]
@@ -1179,8 +1209,9 @@ ScrollMapRight::
 	hlcoord SCREEN_WIDTH - 2, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	ld c, 2 * SCREEN_HEIGHT
-	call FarCallScrollBGMapPalettes
+	hlcoord SCREEN_WIDTH - 2, 0, wAttrMap
+	ld de, wBGMapPalBuffer
+	call BackupBGMapColumn
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and %11100000
@@ -1285,59 +1316,62 @@ UpdateBGMapColumn::
 	ret
 
 LoadTilesetGFX::
-	ld hl, wTilesetAddress
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wTilesetBank]
-	ld e, a
-
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 
-	ld a, e
-	ld de, wDecompressScratch
-	call FarDecompress
-
+	; GFX0: tiles $00-$5f of VRAM bank 0 (vTiles2)
+	ld hl, wTilesetAddress
+	call .LoadChunk
 	ld hl, wDecompressScratch
 	ld de, vTiles2
 	ld bc, $60 tiles
 	call CopyBytes
 
-	ldh a, [rVBK]
-	push af
-	ld a, BANK(vTiles5)
-	ldh [rVBK], a
-
-	ld hl, wDecompressScratch + $60 tiles
+	; GFX1: tiles $00-$7f of VRAM bank 1 (vTiles5)
+	ld hl, wTilesetGFX1Address
+	call .LoadChunk
 	ld de, vTiles5
-	ld bc, $60 tiles
-	call CopyBytes
+	call .CopyToVRAM1
 
-	pop af
-	ldh [rVBK], a
+	; GFX2: tiles $80-$ff of VRAM bank 1 (vTiles4)
+	ld hl, wTilesetGFX2Address
+	call .LoadChunk
+	ld de, vTiles4
+	call .CopyToVRAM1
 
 	pop af
 	ldh [rSVBK], a
 
-; These tilesets support dynamic per-mapgroup roof tiles.
-	ld a, [wMapTileset]
-	cp TILESET_JOHTO
-	jr z, .load_roof
-	cp TILESET_JOHTO_MODERN
-	jr z, .load_roof
-	cp TILESET_BATTLE_TOWER_OUTSIDE
-	jr z, .load_roof
-	jr .skip_roof
+; Dynamic per-mapgroup roof tiles (checks a tileset list).
+	farcall LoadMapGroupRoofIfNeeded
 
-.load_roof
-	farcall LoadMapGroupRoof
-
-.skip_roof
 	xor a
 	ldh [hTileAnimFrame], a
+	ret
+
+.LoadChunk:
+; hl points to a tileset gfx chunk pointer (address dw, bank in wTilesetBank).
+; Decompresses it to wDecompressScratch.
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wTilesetBank]
+	ld de, wDecompressScratch
+	jp FarDecompress
+
+.CopyToVRAM1:
+; Copies $80 tiles from wDecompressScratch to de in VRAM bank 1.
+	ldh a, [rVBK]
+	push af
+	ld a, 1
+	ldh [rVBK], a
+	ld hl, wDecompressScratch
+	ld bc, $80 tiles
+	call CopyBytes
+	pop af
+	ldh [rVBK], a
 	ret
 
 BufferScreen::

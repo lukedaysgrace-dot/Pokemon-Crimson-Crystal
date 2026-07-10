@@ -987,3 +987,238 @@ WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
 WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
 WhirlpoolTiles3: INCBIN "gfx/tilesets/whirlpool/3.2bpp"
 WhirlpoolTiles4: INCBIN "gfx/tilesets/whirlpool/4.2bpp"
+
+; --- Polished Crystal imported tilesets (auto-generated) ---
+
+TilesetPolishedEcruteakShrineAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedForestAAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedIndigoPlateauAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw vTiles2 tile $03, AnimatePolishedKantoFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoAncientAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoCoastAAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoCoastBAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoModernAAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoOutlandsAAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoTraditionalAAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedJohtoTraditionalBAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedKantoAAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw vTiles2 tile $03, AnimatePolishedKantoFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedKantoNorthAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw vTiles2 tile $03, AnimatePolishedKantoFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedParkAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedPortAnim:
+	dw vTiles2 tile $14, AnimatePolishedWaterTile
+	dw vTiles2 tile $03, AnimatePolishedFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedSafariZoneAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw vTiles2 tile $03, AnimatePolishedKantoFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedBattleFactoryAAnim:
+TilesetPolishedBattleFactoryBAnim:
+TilesetPolishedBattleTowerInsideAnim:
+TilesetPolishedBattleTowerOutsideAnim:
+TilesetPolishedCaveAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedChampionsRoomAnim:
+TilesetPolishedHomeDecorStoreAnim:
+TilesetPolishedFacilityAnim:
+TilesetPolishedFarawayIslandAnim:
+TilesetPolishedGameCornerAnim:
+TilesetPolishedGateAnim:
+TilesetPolishedGymAAnim:
+TilesetPolishedGymBAnim:
+TilesetPolishedHiddenGrottoAnim:
+TilesetPolishedHideoutAnim:
+TilesetPolishedHotelAnim:
+TilesetPolishedIcePathAnim:
+TilesetPolishedJohtoHouseAAnim:
+TilesetPolishedKantoGymAAnim:
+TilesetPolishedKantoGymBAnim:
+TilesetPolishedKantoHouseAAnim:
+TilesetPolishedKantoHouseBAnim:
+TilesetPolishedLabAAnim:
+TilesetPolishedLighthouseAnim:
+TilesetPolishedMagnetTrainAnim:
+TilesetPolishedCeladonMansionAnim:
+TilesetPolishedMartAnim:
+TilesetPolishedMuseumAAnim:
+TilesetPolishedMuseumBAnim:
+TilesetPolishedPeaksAnim:
+TilesetPolishedPokecenterAnim:
+TilesetPolishedPokecomCenterAAnim:
+TilesetPolishedPokemonMansionAnim:
+TilesetPolishedQuietCaveAnim:
+	dw vTiles2 tile $14, AnimatePolishedKantoWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+
+TilesetPolishedRadioTowerAnim:
+TilesetPolishedRuinsOfAlphAnim:
+TilesetPolishedShamoutiIslandAAnim:
+TilesetPolishedShamoutiIslandBAnim:
+TilesetPolishedSnowtopMountainAAnim:
+TilesetPolishedSproutTowerAAnim:
+TilesetPolishedSproutTowerBAnim:
+TilesetPolishedTraditionalHouseAnim:
+TilesetPolishedTunnelAnim:
+TilesetPolishedUndergroundAnim:
+TilesetPolishedValenciaIslandAnim:
+	dw NULL,  DoneTileAnimation
+
+AnimatePolishedWaterTile:
+; Draw Polished water tile for the current frame in VRAM tile at de.
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+	ld a, [wTileAnimationTimer]
+	and %110 ; 4 frames, updated every other tick
+	add a
+	add a
+	add a
+	add LOW(PolishedWaterJohtoFrames)
+	ld l, a
+	ld a, 0
+	adc HIGH(PolishedWaterJohtoFrames)
+	ld h, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+AnimatePolishedKantoWaterTile:
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+	ld a, [wTileAnimationTimer]
+	and %1110 ; 8 frames, updated every other tick
+	add a
+	add a
+	add a
+	add LOW(PolishedWaterKantoFrames)
+	ld l, a
+	ld a, 0
+	adc HIGH(PolishedWaterKantoFrames)
+	ld h, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+AnimatePolishedFlowerTile:
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+	ld a, [wTileAnimationTimer]
+	and %10 ; 2 frames, updated every other tick
+	add a
+	add a
+	add a
+	add LOW(PolishedFlowerJohtoFrames)
+	ld l, a
+	ld a, 0
+	adc HIGH(PolishedFlowerJohtoFrames)
+	ld h, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+AnimatePolishedKantoFlowerTile:
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+	ld a, [wTileAnimationTimer]
+	and %110 ; 4 frames, updated every other tick
+	add a
+	add a
+	add a
+	add LOW(PolishedFlowerKantoFrames)
+	ld l, a
+	ld a, 0
+	adc HIGH(PolishedFlowerKantoFrames)
+	ld h, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+PolishedWaterJohtoFrames:
+INCBIN "gfx/tilesets/polished_anim_water_johto.2bpp"
+PolishedWaterKantoFrames:
+INCBIN "gfx/tilesets/polished_anim_water_kanto.2bpp"
+PolishedFlowerJohtoFrames:
+INCBIN "gfx/tilesets/polished_anim_flower_johto.2bpp"
+PolishedFlowerKantoFrames:
+INCBIN "gfx/tilesets/polished_anim_flower_kanto.2bpp"
