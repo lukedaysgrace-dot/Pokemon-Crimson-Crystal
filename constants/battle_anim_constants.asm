@@ -314,6 +314,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_BLOOD_MOON_CHARGE_CORE
 	const ANIM_OBJ_AURA_SPHERE_GLOW
 	const ANIM_OBJ_AURA_SPHERE_CHARGE
+	const ANIM_OBJ_BLUR_DIAGONAL
+	const ANIM_OBJ_BLUR_VERTICAL_UP
+	const ANIM_OBJ_BLUR_VERTICAL_DOWN
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -409,6 +412,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_ROOST
 	const BATTLEANIMFUNC_RADIAL_MOVE_OUT_VERY_SLOW
 	const BATTLEANIMFUNC_MOON_RISE
+	const BATTLEANIMFUNC_HIDDEN_POWER_FAST
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
@@ -663,6 +667,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_BIG
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_SMALL
 	const BATTLEANIMFRAMESET_SMALL_BUBBLE
+	const BATTLEANIMFRAMESET_PC_U_TURN_DIAGONAL
+	const BATTLEANIMFRAMESET_PC_U_TURN_VERTICAL
+	const BATTLEANIMFRAMESET_PC_U_TURN_FALL
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -975,6 +982,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_PC_VOLT_SWITCH_6
 	const BATTLEANIMOAMSET_E9
 	const BATTLEANIMOAMSET_HURRICANE
+	const BATTLEANIMOAMSET_U_TURN_FALL
+	const BATTLEANIMOAMSET_PC_D8
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1034,6 +1043,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 ; new effects ported from polishedcrystal
 	const ANIM_BG_CYCLE_BGPALS_INVERTED ; $36
 	const ANIM_BG_SHAKE_MON_Y           ; $37
+	const ANIM_BG_SHAKE_MON_X           ; $38
 
 ; polishedcrystal-compatible names for vanilla effects (index differs by 1
 ; from polished past $08 because polished inserted CYCLE_BGPALS_INVERTED)
@@ -1122,6 +1132,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_VOLT_SWITCH
 	const ANIM_GFX_VORTEX
 	const ANIM_GFX_WIND_BG
+	const ANIM_GFX_U_TURN
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

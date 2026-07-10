@@ -135,6 +135,7 @@ BattleBGEffects:
 	dw BattleBGEffect_35
 	dw BattleBGEffect_CycleBGPals_Inverted ; ANIM_BG_CYCLE_BGPALS_INVERTED
 	dw BattleBGEffect_ShakeMonY            ; ANIM_BG_SHAKE_MON_Y
+	dw BattleBGEffect_ShakeMonX            ; ANIM_BG_SHAKE_MON_X
 
 BattleBGEffect_End:
 	call EndBattleBGEffect
@@ -2836,12 +2837,23 @@ BGEffect_FillLYOverridesBackup:
 	ld l, a
 	ldh a, [hLYOverrideEnd]
 	sub l
+	jr z, .none
+	jr c, .none
 	ld d, a
 	pop af
 .loop
 	ld [hli], a
 	dec d
 	jr nz, .loop
+	ret
+
+.none
+; Guard: if the override range is empty, write nothing. This happens when
+; several LCD-stat effects (e.g. the vibrate loop in Volt Switch) run at
+; once and the first to finish resets hLYOverrideStart/End; without this
+; guard the loop counter underflowed and sprayed 256 bytes across bank-5
+; WRAM, corrupting the live animation state (game crash).
+	pop af
 	ret
 
 BGEffect_DisplaceLYOverridesBackup:
@@ -2852,22 +2864,41 @@ BGEffect_DisplaceLYOverridesBackup:
 	ld l, a
 	ldh a, [hLYOverrideEnd]
 	sub l
+	jr z, .none
+	jr c, .none
 	sub e
+	jr c, .none
 	ld d, a
 	ld h, HIGH(wLYOverridesBackup)
 	ldh a, [hLYOverrideStart]
 	ld l, a
 	ld a, $90
+	; Check e before writing (like polishedcrystal): the shake passes a
+	; displacement of 0 on alternate half-cycles, and a do-while loop
+	; would underflow e and spray $90 across 256 bytes of WRAM (crash).
+	inc e
+	jr .first_iteration
 .loop
 	ld [hli], a
+.first_iteration
 	dec e
 	jr nz, .loop
 	pop af
 	xor $ff
+	inc d
+	dec d
+	ret z
 .loop2
 	ld [hli], a
 	dec d
 	jr nz, .loop2
+	ret
+
+.none
+; Guard against an empty/invalid override range (see
+; BGEffect_FillLYOverridesBackup) - the unguarded loops underflowed and
+; overwrote bank-5 WRAM past the end of wLYOverridesBackup.
+	pop af
 	ret
 
 BGEffect_CheckBattleTurn:
@@ -2937,8 +2968,21 @@ BattleBGEffect_ShakeMonY:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	; The "turn" argument doubles as the shake duration ($11), but vanilla
+	; CheckBattleTurn mishandles values with high bits set, always picking
+	; the player's rows. Mask bit 0 while selecting the row range.
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	push af
+	and $1
+	ld [hl], a
 	ld a, LOW(rSCY)
 	call BattleBGEffect_SetLCDStatCustoms2
+	pop af
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld [hl], a
 	ldh a, [hLYOverrideEnd]
 	inc a
 	ldh [hLYOverrideEnd], a
@@ -2979,3 +3023,67 @@ BattleBGEffect_ShakeMonY:
 	xor a
 .got_distance
 	jp BGEffect_DisplaceLYOverridesBackup
+
+BattleBGEffect_ShakeMonX:
+; Oscillates a mon between -x and +x pixels in the X axis, where x is
+; the argument given to BG_EFFECT_STRUCT_03 (ported from polishedcrystal).
+	call BattleBGEffects_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw BattleAnim_ResetLCDStatCustom
+
+.zero
+	call BattleBGEffects_IncrementJumptable
+	call BattleBGEffects_ClearLYOverrides
+	; See BattleBGEffect_ShakeMonY: mask bit 0 of the turn/duration
+	; argument while selecting the row range.
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	push af
+	and $1
+	ld [hl], a
+	ld a, LOW(rSCX)
+	call BattleBGEffect_SetLCDStatCustoms2
+	pop af
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld [hl], a
+	ldh a, [hLYOverrideEnd]
+	inc a
+	ldh [hLYOverrideEnd], a
+	jr .reset_duration
+
+.reload_distance
+	; toggles between sides
+	ld hl, BG_EFFECT_STRUCT_03
+	add hl, bc
+	ld a, [hl]
+	cpl
+	inc a
+	ld [hl], a
+.reset_duration
+	; (re)set shake duration
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	ld [hl], a
+	swap a
+	or [hl]
+	ld [hl], a
+	ret
+
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	dec [hl]
+	ld a, [hl]
+	and $f
+	call z, .reload_distance
+
+	ld hl, BG_EFFECT_STRUCT_03
+	add hl, bc
+	ld a, [hl]
+	jp BGEffect_FillLYOverridesBackup
