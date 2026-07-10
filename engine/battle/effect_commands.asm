@@ -4602,6 +4602,11 @@ BattleCommand_StatDown::
 
 	; NOTE: the label below starts a new local-label scope, so these two
 	; references must be fully qualified
+	; Self-inflicted drops (Close Combat, Draco Meteor, Shell Smash) skip
+	; Mist and stat-drop-protecting abilities: you can always lower your
+	; own stats.
+	call CheckSelfInflictedStatDrop
+	jr z, StatDownSkipProtect
 	call CheckMist
 	jp nz, StatDownSkipProtect.Mist
 	farcall AbilityProtectsStatDrop
@@ -4640,6 +4645,11 @@ StatDownSkipProtect::
 	bit 6, [hl]
 	res 6, [hl]
 	jr nz, .DidntMiss
+	; ...and not self-inflicted drops (the user "targets" itself via
+	; switchturn, which would wrongly enable the AI miss roll for the
+	; player's own Close Combat / Draco Meteor / Shell Smash)
+	call CheckSelfInflictedStatDrop
+	jr z, .SelfInflicted
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
@@ -4671,6 +4681,7 @@ StatDownSkipProtect::
 	call CheckSubstituteOpp
 	jr nz, .Failed
 
+.SelfInflicted:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .Failed
@@ -4733,6 +4744,19 @@ StatDownSkipProtect::
 ; it so it can't leak into the enemy's next move-based stat drop.
 	ld hl, wDisguiseBusted
 	res 6, [hl]
+	ret
+
+CheckSelfInflictedStatDrop:
+; Returns z if the current move's stat drop hits the user itself
+; (applied through switchturn). These skip Mist, protective abilities,
+; the 25% AI miss roll and the substitute check.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CLOSE_COMBAT
+	ret z
+	cp EFFECT_DRACO_METEOR
+	ret z
+	cp EFFECT_SHELL_SMASH
 	ret
 
 CheckMist:
@@ -4987,6 +5011,14 @@ BattleCommand_AllStatsUp:
 	call BattleCommand_SpecialDefenseUp
 	jp   BattleCommand_StatUpMessage
 
+BattleCommand_ResetMiss:
+; resetmiss
+; Clears the miss/failure flags between the stat changes of multi-stat
+; moves (Bulk Up, Calm Mind, Dragon Dance, Hone Claws, Shell Smash,
+; Close Combat), so one maxed/failed stat doesn't cancel the others.
+	xor a
+	ld [wEffectFailed], a
+	; fallthrough
 ResetMiss:
 	xor a
 	ld [wAttackMissed], a
@@ -6034,6 +6066,8 @@ BattleCommand_FinishConfusingTarget:
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
 	jr z, .got_effect
+	cp EFFECT_HURRICANE
+	jr z, .got_effect
 	cp EFFECT_SNORE
 	jr z, .got_effect
 	cp EFFECT_SWAGGER
@@ -6061,6 +6095,8 @@ BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
+	ret z
+	cp EFFECT_HURRICANE
 	ret z
 	cp EFFECT_SNORE
 	ret z

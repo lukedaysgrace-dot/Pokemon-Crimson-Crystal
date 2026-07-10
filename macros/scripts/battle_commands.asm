@@ -194,6 +194,7 @@ ENDM
 	command toxicspikes             ; bb
 	command trickroom               ; bc
 	command burn                    ; bd
+	command resetmiss               ; be
 
 	enum_start $fe
 	command endturn                 ; fe

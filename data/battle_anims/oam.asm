@@ -285,13 +285,13 @@ BattleAnimOAMData:
 	dbbw $0c,  6, .OAMData_BigWhip1 ; BATTLEANIMOAMSET_PC_BIG_WHIP_1
 	dbbw $00,  6, .OAMData_BigWhip2 ; BATTLEANIMOAMSET_PC_BIG_WHIP_2
 	dbbw $06,  6, .OAMData_BigWhip3 ; BATTLEANIMOAMSET_PC_BIG_WHIP_3
-	dbbw $00, 24, .OAMData_dd ; BATTLEANIMOAMSET_PC_DF
-	dbbw $00,  8, .OAMData_dd ; BATTLEANIMOAMSET_PC_DE
+	dbbw $00, 24, .OAMData_df_PCP ; BATTLEANIMOAMSET_PC_DF
+	dbbw $00,  8, .OAMData_de_PCP ; BATTLEANIMOAMSET_PC_DE
 	dbbw $16,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_AF
-	dbbw $00,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_1
-	dbbw $0c,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_2
-	dbbw $06,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_3
-	dbbw $12,  9, .OAMData_dd ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_4
+	dbbw $00,  9, .OAMData_SwirlShort_PCP ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_1
+	dbbw $0c,  9, .OAMData_SwirlShort_PCP ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_2
+	dbbw $06,  9, .OAMData_SwirlShort_PCP ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_3
+	dbbw $12,  9, .OAMData_SwirlShort_PCP ; BATTLEANIMOAMSET_PC_SWIRL_SHORT_4
 	dbbw $03,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_EA
 	dbbw $02,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_1D
 	dbbw $01,  4, .OAMData_02_pc ; BATTLEANIMOAMSET_PC_EB
@@ -299,9 +299,9 @@ BattleAnimOAMData:
 	dbbw $0f,  1, .OAMData_0f_PCP ; BATTLEANIMOAMSET_PC_DISCHARGE_SPARKS_N_1
 	dbbw $0e,  1, .OAMData_0f_PCP ; BATTLEANIMOAMSET_PC_DISCHARGE_SPARKS_N_2
 	dbbw $10,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_82
-	dbbw $08, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_D9
-	dbbw $10, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_DA
-	dbbw $18, 16, .OAMData_dd ; BATTLEANIMOAMSET_PC_DB
+	dbbw $08, 16, .OAMData_d8_PCP ; BATTLEANIMOAMSET_PC_D9
+	dbbw $10, 16, .OAMData_d8_PCP ; BATTLEANIMOAMSET_PC_DA
+	dbbw $18, 16, .OAMData_d8_PCP ; BATTLEANIMOAMSET_PC_DB
 	dbbw $0d,  1, .OAMData_0f_pc ; BATTLEANIMOAMSET_PC_80
 	dbbw $00, 16, .OAMData_VoltSwitch2_PCP ; BATTLEANIMOAMSET_PC_VOLT_SWITCH_2
 	dbbw $00, 16, .OAMData_VoltSwitch3_PCP ; BATTLEANIMOAMSET_PC_VOLT_SWITCH_3
@@ -310,6 +310,8 @@ BattleAnimOAMData:
 	dbbw $00, 16, .OAMData_VoltSwitch6_PCP ; BATTLEANIMOAMSET_PC_VOLT_SWITCH_6
 	dbbw $02,  7, .OAMData_e8 ; BATTLEANIMOAMSET_E9
 	dbbw $00, 18, .OAMData_Hurricane ; BATTLEANIMOAMSET_HURRICANE
+	dbbw $20, 16, .OAMData_1c ; BATTLEANIMOAMSET_U_TURN_FALL
+	dbbw $00, 16, .OAMData_d8_PCP ; BATTLEANIMOAMSET_PC_D8
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -1920,6 +1922,71 @@ BattleAnimOAMData:
 	dbsprite  -1,   1, 0, 0, $03, $0
 	dbsprite   0,   1, 0, 0, $04, $0
 	dbsprite   1,   1, 0, 0, $05, $0
+.OAMData_d8_PCP:
+; ported from polishedcrystal .OAMData_d8 (vortex ring)
+	dbsprite  -2,  -2, 0, 0, $00, $0
+	dbsprite  -1,  -2, 0, 0, $01, $0
+	dbsprite   0,  -2, 0, 0, $02, $0
+	dbsprite   1,  -2, 0, 0, $03, $0
+	dbsprite  -2,  -1, 0, 0, $04, $0
+	dbsprite  -1,  -1, 0, 0, $05, $0
+	dbsprite   0,  -1, 0, 0, $06, $0
+	dbsprite   1,  -1, 0, 0, $07, $0
+	dbsprite  -2,   0, 0, 0, $07, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1,   0, 0, 0, $06, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, 0, 0, $05, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   0, 0, 0, $04, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -2,   1, 0, 0, $03, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1,   1, 0, 0, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   1, 0, 0, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   1, 0, 0, $00, OAM_XFLIP | OAM_YFLIP
+.OAMData_SwirlShort_PCP:
+; ported from polishedcrystal .OAMData_SwirlShort
+	dbsprite  -2,  -2, 4, 4, $00, $0
+	dbsprite  -1,  -2, 4, 4, $01, $0
+	dbsprite   0,  -2, 4, 4, $02, $0
+	dbsprite  -2,  -1, 4, 4, $03, $0
+	dbsprite  -1,  -1, 4, 4, $04, $0
+	dbsprite   0,  -1, 4, 4, $05, $0
+	dbsprite  -2,   0, 4, 4, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1,   0, 4, 4, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, 4, 4, $00, OAM_XFLIP | OAM_YFLIP
+.OAMData_de_PCP:
+; ported from polishedcrystal .OAMData_de (small ring)
+	dbsprite  -2,  -2, 4, 4, $00, $0
+	dbsprite  -1,  -2, 4, 4, $01, $0
+	dbsprite   0,  -2, 4, 4, $00, OAM_XFLIP
+	dbsprite  -2,  -1, 4, 4, $02, $0
+	dbsprite   0,  -1, 4, 4, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -2,   0, 4, 4, $00, OAM_YFLIP
+	dbsprite  -1,   0, 4, 4, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, 4, 4, $00, OAM_XFLIP | OAM_YFLIP
+.OAMData_df_PCP:
+; ported from polishedcrystal .OAMData_df (big ring)
+	dbsprite  -3,  -4, 0, 7, $00, $0
+	dbsprite  -2,  -4, 0, 7, $01, $0
+	dbsprite  -1,  -4, 0, 7, $02, $0
+	dbsprite  -3,  -3, 0, 7, $03, $0
+	dbsprite  -2,  -3, 0, 7, $04, $0
+	dbsprite  -3,  -2, 0, 7, $06, $0
+	dbsprite   2,  -4, 0, 7, $00, OAM_XFLIP
+	dbsprite   1,  -4, 0, 7, $01, OAM_XFLIP
+	dbsprite   0,  -4, 0, 7, $02, OAM_XFLIP
+	dbsprite   2,  -3, 0, 7, $03, OAM_XFLIP
+	dbsprite   1,  -3, 0, 7, $04, OAM_XFLIP
+	dbsprite   2,  -2, 0, 7, $06, OAM_XFLIP
+	dbsprite  -3,   1, 0, 7, $00, OAM_YFLIP
+	dbsprite  -2,   1, 0, 7, $01, OAM_YFLIP
+	dbsprite  -1,   1, 0, 7, $02, OAM_YFLIP
+	dbsprite  -3,   0, 0, 7, $03, OAM_YFLIP
+	dbsprite  -2,   0, 0, 7, $04, OAM_YFLIP
+	dbsprite  -3,  -1, 0, 7, $06, OAM_YFLIP
+	dbsprite   2,   1, 0, 7, $00, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   1, 0, 7, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   1, 0, 7, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite   2,   0, 0, 7, $03, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   0, 0, 7, $04, OAM_XFLIP | OAM_YFLIP
+	dbsprite   2,  -1, 0, 7, $06, OAM_XFLIP | OAM_YFLIP
 .OAMData_VoltSwitch1_PCP:
 	dbsprite  -4,  -2, 0, 0, $00, $0
 	dbsprite  -3,  -2, 0, 0, $01, $0

@@ -45,6 +45,16 @@ _PlayBattleAnim:
 	pop af
 	ldh [hVBlank], a
 
+	; Disarm any LCD scanline-override (STAT interrupt) left armed by a bg
+	; effect that outlived the script. Ported scripts like Volt Switch queue
+	; several VIBRATE_MON effects whose lifetimes exceed the animation, so
+	; without this the LCD handler keeps firing after the WRAM bank is
+	; restored - and it assumes bank 5 is active (see home/lcd.asm).
+	xor a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
+
 	; If an anim_setobjpal/anim_setbgpal recolored any palettes, restore all
 	; default battle palettes now that the animation is over.
 	ld hl, wBattleAnimFlags
@@ -502,9 +512,20 @@ SetBattleAnimPal:
 
 ReloadBattleAnimDefaultPals:
 ; Restore all default battle palettes (mon pals, HUD pals, anim object pals).
+; Battle animations run with WRAM bank 5 active (see PlayBattleAnim), but the
+; species/DV variables the reload reads (wTempBattleMonSpecies etc.) live in
+; the main WRAM bank. Without switching banks, the species reads landed in
+; bank-5 animation RAM and both mons got reloaded with garbage (brown) colors.
+; Same pattern as BattleAnimCmd_BeatUp/BattleAnimRestoreHuds.
 	push de
 	push bc
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wTempBattleMonSpecies)
+	ldh [rSVBK], a
 	farcall ReloadBattleAnimColors
+	pop af
+	ldh [rSVBK], a
 	pop bc
 	pop de
 	ret
@@ -1555,6 +1576,14 @@ BattleAnimAssignPals:
 
 ClearBattleAnims::
 ; Clear animation block
+	; Preserve the custom-palette flag across the clear. The follow-up
+	; hit/miss animation for damaging moves re-enters here, and wiping
+	; wBattleAnimFlags made _PlayBattleAnim skip the default palette
+	; reload, leaving anim_setobjpal/anim_setbgpal colors stuck on the
+	; field until the next sendout.
+	ld a, [wBattleAnimFlags]
+	and 1 << BATTLEANIM_CUSTOM_PAL_F
+	push af
 	ld hl, wLYOverrides
 	ld bc, wBattleAnimEnd - wLYOverrides
 .loop
@@ -1564,6 +1593,16 @@ ClearBattleAnims::
 	ld a, c
 	or b
 	jr nz, .loop
+	pop af
+	ld [wBattleAnimFlags], a
+
+	; Start each script with the LCD scanline-override disarmed; a bg effect
+	; from the previous script (e.g. Volt Switch's vibrate) may have been cut
+	; off mid-life, and its wLYOverrides data was just wiped above.
+	xor a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
 
 	ld hl, wFXAnimID
 	ld e, [hl]
