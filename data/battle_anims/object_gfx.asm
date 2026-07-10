@@ -70,3 +70,4 @@ AnimObjGFX:
 	anim_obj_gfx 28, AnimObjVoltSwitchGFX
 	anim_obj_gfx 32, AnimObjVortexGFX
 	anim_obj_gfx  4, AnimObjWindBGGFX
+	anim_obj_gfx 48, AnimObjUTurnGFX

@@ -105,6 +105,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_Roost ; 59
 	dw BattleAnimFunction_RadialMoveOut_VerySlow ; 5a
 	dw BattleAnimFunction_MoonRise ; 5b
+	dw BattleAnimFunction_HiddenPowerFast ; 5c
 
 BattleAnimFunction_Stat:
 ; Stat up/down bars (ported from Polished Crystal).
@@ -4220,6 +4221,51 @@ BattleAnimFunction_MoonRise:
 	ret
 
 ; ==== New battle anim functions ported from polishedcrystal ====
+
+BattleAnimFunction_HiddenPowerFast:
+; Like BattleAnimFunction_45 (Hidden Power), but rotates twice as fast.
+; Used by Hurricane (ported from Polished Crystal).
+	call BattleAnim_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw .two
+
+.zero
+	ld d, $18
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	inc [hl] ; increased rotation speed
+	inc [hl]
+	jr .step_circle
+
+.one
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], $18
+.two
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	cp $80
+	jr nc, .done
+	ld d, a
+	add $8
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	jr .step_circle
+
+.done
+	call DeinitBattleAnimation
+	ret
+
+.step_circle
+	call Functionce6f1
+	ret
 
 BattleAnimFunction_RadialMoveOut:
 	lb de, 12, 80

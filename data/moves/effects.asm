@@ -1637,12 +1637,10 @@ DracoMeteor:
 	switchturn
 	specialattackdown2
 	switchturn
-	lowersub
-	statdownanim
-	raisesub
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	kingsrock
 	endmove
 
@@ -2243,12 +2241,14 @@ CloseCombat:
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	switchturn
 	specialdefensedown
 	switchturn
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	kingsrock
 	endmove
 
@@ -2382,6 +2382,9 @@ FlareBlitz:
 	kingsrock
 	endmove
 
+; The two-stat boost moves play the move animation only once (with the
+; first boost), then apply the remaining stat changes one at a time.
+; resetmiss keeps one maxed stat from cancelling the other boost.
 BulkUp:
 	checkobedience
 	usedmovetext
@@ -2392,10 +2395,8 @@ BulkUp:
 	raisesub
 	statupmessage
 	statupfailtext
+	resetmiss
 	defenseup
-	lowersub
-	statupanim
-	raisesub
 	statupmessage
 	statupfailtext
 	endmove
@@ -2410,10 +2411,8 @@ CalmMind:
 	raisesub
 	statupmessage
 	statupfailtext
+	resetmiss
 	specialdefenseup
-	lowersub
-	statupanim
-	raisesub
 	statupmessage
 	statupfailtext
 	endmove
@@ -2428,10 +2427,8 @@ DragonDance:
 	raisesub
 	statupmessage
 	statupfailtext
+	resetmiss
 	speedup
-	lowersub
-	statupanim
-	raisesub
 	statupmessage
 	statupfailtext
 	endmove
@@ -2446,40 +2443,41 @@ HoneClaws:
 	raisesub
 	statupmessage
 	statupfailtext
+	resetmiss
 	accuracyup
-	lowersub
-	statupanim
-	raisesub
 	statupmessage
 	statupfailtext
 	endmove
 
 ShellSmash:
+; Animation plays once up front; then Def/SpDef drop and Atk/SpAtk/Spe
+; sharply rise, each announced separately (like polishedcrystal).
 	checkobedience
 	usedmovetext
 	doturn
+	lowersub
+	statupanim
+	raisesub
 	switchturn
 	defensedown
 	switchturn
-	lowersub
-	statdownanim
-	raisesub
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	switchturn
 	specialdefensedown
 	switchturn
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	attackup2
-	lowersub
-	statupanim
-	raisesub
 	statupmessage
+	resetmiss
 	specialattackup2
 	statupmessage
+	resetmiss
 	speedup2
 	statupmessage
 	endmove

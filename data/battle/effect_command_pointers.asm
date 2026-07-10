@@ -193,3 +193,4 @@ BattleCommandPointers:
 	dw BattleCommand_ToxicSpikes
 	dw BattleCommand_TrickRoom
 	dw BattleCommand_Burn
+	dw BattleCommand_ResetMiss

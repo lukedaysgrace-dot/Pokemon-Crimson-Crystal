@@ -5914,24 +5914,42 @@ BattleAnim_XScissor:
 	anim_ret
 
 BattleAnim_UTurn:
-; Green hard-hitting slash (X-Scissor style), then rapid spin on the user
-	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_WIND, ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_CUT
-	anim_obj ANIM_OBJ_A0, 152, 40, $0
-	anim_obj ANIM_OBJ_A1, 120, 72, $0
-	anim_wait 8
-	anim_bgeffect ANIM_BG_1F, $58, $2, $0
+	anim_1gfx ANIM_GFX_SPEED
+	anim_sound 6, 2, SFX_THROW_BALL
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_call BattleAnimSub_UTurnQuickAttack
 	anim_wait 12
-	anim_sound 0, 1, SFX_VICEGRIP
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
-	anim_obj ANIM_OBJ_00, 136, 56, $0
+	anim_1gfx ANIM_GFX_U_TURN
+	anim_obj ANIM_OBJ_BLUR_DIAGONAL, 64, 92, $18
+	anim_wait 8
+	anim_clearobjs
+	anim_wait 1
+	anim_1gfx ANIM_GFX_HIT
+	anim_wait 1
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 132, 56, $0
+	anim_wait 8
+	anim_clearobjs
+	anim_wait 1
+	anim_1gfx ANIM_GFX_U_TURN
+	anim_wait 1
+	anim_sound 0, 0, SFX_RETURN
+	anim_obj ANIM_OBJ_BLUR_VERTICAL_UP, 132, 30, $30
+	anim_wait 32
+	anim_clearobjs
+	anim_obj ANIM_OBJ_BLUR_VERTICAL_DOWN, 48, 0, $10
 	anim_wait 16
-	anim_sound 0, 0, SFX_MENU
-.loop
-	anim_obj ANIM_OBJ_RAPID_SPIN, 44, 112, $0
-	anim_wait 2
-	anim_loop 5, .loop
-	anim_wait 24
+	anim_clearobjs
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_ret
+
+BattleAnimSub_UTurnQuickAttack:
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
 	anim_ret
 
 BattleAnim_DragonClaw:
