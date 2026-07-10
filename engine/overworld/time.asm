@@ -7,6 +7,7 @@ ClearDailyTimers:
 	ld [wLuckyNumberDayBuffer], a
 	ld [wUnusedTwoDayTimer], a
 	ld [wDailyResetTimer], a
+	ld [wWeatherRandomDay], a
 	ret
 
 InitCallReceiveDelay::
@@ -91,6 +92,7 @@ CheckDailyResetTimer::
 	call CheckDayDependentEventHL
 	ret nc
 	xor a
+	ld [wWeatherRandomDay], a
 	ld hl, wDailyFlags1
 	ld [hli], a ; wDailyFlags1
 	ld [hli], a ; wDailyFlags2

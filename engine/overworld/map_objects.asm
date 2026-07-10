@@ -2735,6 +2735,7 @@ _UpdateSprites::
 	ld a, 1
 	ldh [hOAMUpdate], a
 	call InitSprites
+	farcall DoOverworldWeather
 	call .fill
 	pop af
 	ldh [hOAMUpdate], a

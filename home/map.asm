@@ -1921,6 +1921,7 @@ ReloadTilesetAndPalettes::
 	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call LoadTilesetGFX
+	farcall LoadWeatherGraphics
 	ld a, 9
 	call SkipMusic
 	pop af
