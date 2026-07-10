@@ -31,6 +31,7 @@ MapSetupScript_Warp:
 	db map_buffer_screen
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_load_objects
 	db map_lcd_on
 	db map_palettes
@@ -55,6 +56,7 @@ MapSetupScript_BadWarp:
 	db map_lcd_off
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_fade_out_music
 	db map_lcd_on
 	db map_load_objects
@@ -79,6 +81,7 @@ MapSetupScript_Connection:
 	db map_load_objects
 	db map_fade_music
 	db map_palettes
+	db map_weather
 	db map_stop_script
 	db map_keep_palettes
 	db map_wildmons
@@ -101,6 +104,7 @@ MapSetupScript_Train:
 	db map_lcd_off
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_fade_out_music
 	db map_lcd_on
 	db map_load_objects
@@ -122,6 +126,7 @@ MapSetupScript_ReloadMap:
 	db map_connection_blocks
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_lcd_on
 	db map_palettes
 	db map_sprites
@@ -140,6 +145,7 @@ MapSetupScript_LinkReturn:
 	db map_buffer_screen
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_lcd_on
 	db map_palettes
 	db map_sprites
@@ -161,6 +167,7 @@ MapSetupScript_Continue:
 	db map_buffer_screen
 	db map_load_graphics
 	db map_time_of_day
+	db map_weather
 	db map_lcd_on
 	db map_palettes
 	db map_sprites

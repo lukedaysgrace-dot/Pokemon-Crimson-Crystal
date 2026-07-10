@@ -595,6 +595,8 @@ ArrangeUsedSprites:
 ; There are only two tables, so don't go any further than that.
 	add b
 	jr c, .quit
+	cp WEATHER_TILE
+	jr nc, .quit
 
 	ld [hl], b
 	ld b, a

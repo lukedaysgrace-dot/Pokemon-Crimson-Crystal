@@ -2824,7 +2824,21 @@ wPlayerMonSelection:: ds 3
 wdc5f:: db
 wdc60:: db
 
-	ds 18
+; Daily weather state occupies ten previously unused bytes. Keeping it inside
+; wPlayerData makes the day's pool survive saving and reloading.
+; The high nibble is a format/version marker; old weather saves reroll safely.
+wWeatherRandomDay:: db
+wWeatherDailyFlags:: db
+wWeatherDailySelections::
+wWeatherDailyJohto1:: db
+wWeatherDailyJohto2:: db
+wWeatherDailyJohto3:: db
+wWeatherDailyJohto4:: db
+wWeatherDailyKanto1:: db
+wWeatherDailyKanto2:: db
+wWeatherDailyKanto3:: db
+wWeatherDailyKanto4:: db
+	ds 8
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74

@@ -276,6 +276,7 @@ DmgToCgbTimePals:
 	ld a, [hli]
 	ld d, a
 	call DmgToCgbObjPals
+	farcall ApplyWeatherTint
 	pop de
 	pop hl
 	ret

@@ -770,3 +770,8 @@ INCLUDE "engine/battle/abilities_engine.asm"
 SECTION "Ability Descriptions", ROMX
 
 INCLUDE "data/abilities/descriptions.asm"
+
+
+SECTION "Overworld Weather", ROMX
+
+INCLUDE "engine/overworld/weather.asm"
