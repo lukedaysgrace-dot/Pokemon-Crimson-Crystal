@@ -106,6 +106,7 @@ MapSetupCommands:
 	dba RetainOldPalettes ; 2b
 	dba DontScrollText ; 2c
 	dba ReturnFromMapSetupScript ; 2d
+	dba _SetCurrentWeather ; 2e
 
 DontScrollText:
 	xor a

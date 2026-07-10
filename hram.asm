@@ -19,9 +19,10 @@ hHours:: db ; ff94
 hMinutes:: db ; ff96
 	ds 1
 hSeconds:: db ; ff98
-	ds 1
 
-	ds 1
+hWeatherXTimer:: db ; ff99
+
+hWeatherYTimer:: db ; ff9a
 
 hVBlankCounter:: db ; ff9b
 
@@ -32,7 +33,7 @@ hVBlank:: db ; ff9e
 hMapEntryMethod:: db ; ff9f
 hMenuReturn:: db ; ffa0
 
-	ds 1
+	ds 1 ; hMenuReturn + 1 is cleared by CheckMenuOW
 
 hJoypadReleased:: db ; ffa2
 hJoypadPressed::  db ; ffa3
@@ -45,7 +46,7 @@ hJoyLast::        db ; ffa9
 
 hInMenu:: db ; ffaa
 
-	ds 1
+hCurWeather:: db ; ffab
 
 hPrinter:: db ; ffac
 hGraphicStartTile:: db ; ffad

@@ -106,6 +106,7 @@ ROMX $22
 ROMX $23
 	"bank23"
 	"Evolutions and Attacks 1B"
+	"Overworld Weather"
 ROMX $24
 	"bank24"
 ROMX $25
