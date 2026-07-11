@@ -1217,7 +1217,7 @@ Pokedex_DrawMainScreenBG:
 	call Pokedex_PlaceString
 	ld hl, wPokedexSeen
 	ld bc, wEndPokedexSeen - wPokedexSeen
-	call CountSetBits16
+	homecall CountSetBits16
 	ld a, c
 	ld de, wPokedexDisplayNumber + 1
 	ld [de], a
@@ -1232,7 +1232,7 @@ Pokedex_DrawMainScreenBG:
 	call Pokedex_PlaceString
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	call CountSetBits16
+	homecall CountSetBits16
 	ld a, c
 	ld de, wPokedexDisplayNumber + 1
 	ld [de], a

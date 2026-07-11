@@ -52,8 +52,8 @@ UpdateLevelCap::
 .hard
 	ld hl, wBadges
 	ld b, 2
-	call CountSetBits
-	ld e, a
+	homecall CountSetBits
+	ld e, c ; CountSetBits also returns the count in c (homecall clobbers a)
 	ld hl, wStatusFlags
 	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
 	jr z, .load_cap

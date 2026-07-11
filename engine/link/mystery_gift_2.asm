@@ -21,7 +21,7 @@ PrepMysteryGiftDataToSend:
 	push de ; wc80e
 	ld hl, sPokemonData + wPokedexCaught - wPokemonData
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	call CountSetBits16
+	homecall CountSetBits16
 	ld a, b
 	add a, -1
 	sbc a
