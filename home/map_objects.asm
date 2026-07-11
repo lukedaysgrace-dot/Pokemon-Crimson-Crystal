@@ -545,6 +545,18 @@ UpdateSprites::
 	farcall _UpdateSprites
 	ret
 
+UpdateWeatherSprites::
+; Animate overworld weather particles while the game idles in a
+; textbox or a window menu. Thin stub to keep ROM0 small: the logic
+; lives in the Overworld Weather bank. Preserves all registers, so
+; it is safe to call from any input loop.
+	push af
+	push hl
+	farcall AnimateWeatherOnIdle
+	pop hl
+	pop af
+	ret
+
 GetObjectStruct::
 	ld bc, OBJECT_STRUCT_LENGTH
 	ld hl, wObjectStructs
