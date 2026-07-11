@@ -89,18 +89,9 @@ CheckMagikarpLength:
 	text_far UnknownText_0x1c1203
 	text_end
 
-Magikarp_LoadFeetInchesChars:
-	ld hl, vTiles2 tile "′" ; $6e
-	ld de, .feetinchchars
-	lb bc, BANK(.feetinchchars), 2
-	call Request2bpp
-	ret
-
-.feetinchchars
-INCBIN "gfx/font/feet_inches.2bpp"
-
 PrintMagikarpLength:
-	call Magikarp_LoadFeetInchesChars
+; The prime marks ′ ″ now live in the main font ($ce-$cf), so there is no
+; longer a separate feet/inches graphic to load here.
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2

@@ -11,9 +11,10 @@
 	tilepal 0, BROWN, BROWN, BROWN, BROWN, BROWN, BROWN, BROWN, BROWN
 	tilepal 0, WATER, GRAY, GRAY, GRAY, BROWN, BROWN, GRAY, GRAY
 
-rept 16
-	db $ff
-endr
+	tilepal 0, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 0, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 0, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 0, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, TEXT
 
 	tilepal 1, RED, WATER, WATER, ROOF, ROOF, ROOF, ROOF, ROOF
 	tilepal 1, RED, RED, RED, ROOF, RED, WATER, WATER, WATER
@@ -27,3 +28,9 @@ endr
 	tilepal 1, RED, ROOF, ROOF, RED, RED, RED, ROOF, ROOF
 	tilepal 1, RED, RED, RED, RED, YELLOW, RED, GREEN, RED
 	tilepal 1, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, RED, ROOF
+
+; Tiles $e0-$ff use the second VRAM bank. Set their colors here as needed.
+	tilepal 1, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 1, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 1, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
+	tilepal 1, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF, ROOF
