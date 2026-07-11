@@ -98,11 +98,31 @@ StartMenu::
 	ldh [hBGMapMode], a
 	call ._DrawMenuAccount
 	call SetUpMenu
-	ld a, $ff
+
+	; Resolve the highlighted item and draw its description once, up front, so
+	; the box shows the right text on the first background transfer instead of
+	; flashing empty. (Same cursor->selection lookup GetScrollingMenuJoypad uses.)
+	call GetMenuIndexSet
+	ld a, [wMenuCursorY]
+	ld l, a
+	ld h, 0
+	add hl, de
+	ld a, [hl]
 	ld [wMenuSelection], a
-.loop
+	ld [wStartMenuLastDesc], a
 	call .PrintMenuAccount
+.loop
 	call GetScrollingMenuJoypad
+	; Only redraw the description box when the selection actually changed.
+	; Redrawing it every idle frame (with weather animating on top) is what made
+	; the box blink and dragged the framerate / weather down.
+	ld a, [wMenuSelection]
+	ld hl, wStartMenuLastDesc
+	cp [hl]
+	jr z, .no_redraw
+	ld [hl], a
+	call .PrintMenuAccount
+.no_redraw
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .b

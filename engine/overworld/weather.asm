@@ -994,12 +994,10 @@ SandWeatherGFX:
 	db $00, $38
 	db $00, $10
 	db $00, $00
+; Cherry blossom petal from gfx/overworld/cherry_blossom.png. Its darkest
+; shade builds as color 2, matching the PAL_OW_RED color used by
+; RenderCherryBlossoms, so the petal reads pink without any palette change.
 CherryBlossomWeatherGFX:
-	db $00, $00
-	db $00, $00
-	db $00, $10
-	db $00, $00
-	db $00, $10
-	db $00, $00
-	db $00, $00
-	db $00, $00
+	INCBIN "gfx/overworld/cherry_blossom.2bpp"
+CherryBlossomWeatherGFXEnd:
+	assert CherryBlossomWeatherGFXEnd - CherryBlossomWeatherGFX == LEN_2BPP_TILE, "cherry_blossom.png must be a single 8x8 tile"
