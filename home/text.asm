@@ -493,7 +493,7 @@ Paragraph::
 	call ClearBox
 	call UnloadBlinkingCursor
 	ld c, 20
-	call DelayFrames
+	call WeatherDelayFrames
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	pop de
 	jp NextChar
@@ -606,7 +606,7 @@ TextScroll::
 	ld bc, TEXTBOX_INNERW
 	call ByteFill
 	ld c, 5
-	call DelayFrames
+	call WeatherDelayFrames
 	ret
 
 Text_WaitBGMap::
