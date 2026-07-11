@@ -464,19 +464,7 @@ AnimateWeatherOnIdle::
 	push af
 	ldh a, [hObjectStructIndexBuffer]
 	push af
-; GetUsedSprite keeps its sprite id and tile in these two across the
-; Request1bpp/Request2bpp frame waits (e.g. reloading sprite facings
-; when text closes), and _UpdateSprites uses hUsedSpriteIndex as its
-; OAM cursor, so preserve them too.
-	ldh a, [hUsedSpriteIndex]
-	push af
-	ldh a, [hUsedSpriteTile]
-	push af
 	call UpdateSprites
-	pop af
-	ldh [hUsedSpriteTile], a
-	pop af
-	ldh [hUsedSpriteIndex], a
 	pop af
 	ldh [hObjectStructIndexBuffer], a
 	pop af

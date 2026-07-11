@@ -227,7 +227,7 @@ Request2bpp::
 
 	ld [wRequested2bpp], a
 .wait
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait
@@ -247,7 +247,7 @@ Request2bpp::
 	ld [wRequested2bpp], a
 
 .wait2
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait2
@@ -301,7 +301,7 @@ Request1bpp::
 
 	ld [wRequested1bpp], a
 .wait
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait
@@ -321,7 +321,7 @@ Request1bpp::
 	ld [wRequested1bpp], a
 
 .wait2
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait2
