@@ -15,6 +15,11 @@ ShowLinkBattleParticipants:
 FindFirstAliveMonAndStartBattle:
 	xor a
 	ldh [hMapAnims], a
+	ld hl, wVramState
+	set VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
+	; Rebuild OAM before the first transition frame so particles from the last
+	; overworld frame cannot remain frozen on screen.
+	call UpdateSprites
 	call DelayFrame
 	ld b, PARTY_LENGTH
 	ld hl, wPartyMon1HP
@@ -34,6 +39,8 @@ FindFirstAliveMonAndStartBattle:
 	ld a, [hl]
 	ld [wBattleMonLevel], a
 	predef DoBattleTransition
+	ld hl, wVramState
+	res VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
 	ldh [hBGMapMode], a

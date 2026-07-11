@@ -8,8 +8,8 @@
 _SetCurrentWeather::
 	xor a
 	ldh [hCurWeather], a
-	ldh [hWeatherXTimer], a
-	ldh [hWeatherYTimer], a
+	; Keep the motion phase across map connections and reloads. HRAM is cleared
+	; at boot, and the render timers wrap themselves into range.
 
 	; Weather is an outdoor effect only.
 	ld a, [wEnvironment]
@@ -451,6 +451,14 @@ AnimateWeatherOnIdle::
 	ld a, [wVramState]
 	bit 0, a
 	jr z, .done
+	; A caller-owned OAM lock is only overridden while the overworld is in its
+	; reanchored text/window mode. Other interfaces keep ownership of OAM.
+	bit 6, a
+	jr nz, .check_frame
+	ldh a, [hOAMUpdate]
+	and a
+	jr nz, .done
+.check_frame
 	ldh a, [hVBlankCounter]
 	ld b, a
 	ldh a, [hWeatherIdleFrame]
@@ -464,7 +472,17 @@ AnimateWeatherOnIdle::
 	push af
 	ldh a, [hObjectStructIndexBuffer]
 	push af
+	; Sprite graphics loaders keep these values live across frame waits. Do not
+	; let an idle weather redraw replace them with its temporary OAM cursor.
+	ldh a, [hUsedSpriteIndex]
+	push af
+	ldh a, [hUsedSpriteTile]
+	push af
 	call UpdateSprites
+	pop af
+	ldh [hUsedSpriteTile], a
+	pop af
+	ldh [hUsedSpriteIndex], a
 	pop af
 	ldh [hObjectStructIndexBuffer], a
 	pop af
@@ -479,6 +497,10 @@ AnimateWeatherOnIdle::
 	ret
 
 DoOverworldWeather::
+	ld a, [wVramState]
+	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
+	ret nz
+
 	; Independent screen-width and screen-height timers avoid positional
 	; jumps while particles wrap around the display.
 	ldh a, [hWeatherXTimer]
@@ -520,15 +542,16 @@ DoOverworldWeather::
 	call c, WeatherLightning
 	jr RenderRain
 
-; Splash bands repeat every 32 px so raindrop impacts scatter up and down the
-; whole screen instead of only along the bottom edge.
+; Each particle salts these 32-pixel cells with its X seed and only splashes in
+; alternating cells. This scatters impacts without consuming the global RNG.
 DEF RAIN_SPLASH_CELL EQU 32
+DEF RAIN_SPEED EQU 2
 
 RenderRain:
 	ld hl, WeatherParticleSeeds
 	ld e, 16
 .loop
-	; x = seed - 3 * horizontal timer (mod screen width). The drop drifts left
+	; x = seed - RAIN_SPEED * horizontal timer (mod screen width). The drop drifts left
 	; (top-right to bottom-left); horizontal and vertical speed are matched so a
 	; splash can be pinned exactly to the spot where the drop landed.
 	ldh a, [hWeatherXTimer]
@@ -537,17 +560,18 @@ RenderRain:
 	sub b
 	ld b, a ; b = SCREEN_WIDTH_PX - horizontal timer
 	ld a, [hli] ; seed x
-	rept 3
+	ld d, a ; fixed per-particle salt for splash position and timing
+	rept RAIN_SPEED
 	add b
 	call WrapWeatherX
 	endr
 	add TILE_WIDTH
 	ld c, a ; c = moving OAM x
 
-	; y = seed + 3 * vertical timer (mod screen height)
+	; y = seed + RAIN_SPEED * vertical timer (mod screen height)
 	ld a, [hli] ; seed y
 	ld b, a
-	rept 3
+	rept RAIN_SPEED
 	ldh a, [hWeatherYTimer]
 	add b
 	call WrapWeatherY
@@ -555,13 +579,18 @@ RenderRain:
 	endr
 	; b = on-screen y (0 .. SCREEN_HEIGHT_PX - 1)
 
-	; phase = depth into the current 32px splash band.
+	; Salt the impact row with the particle's X seed. Bit 5 selects alternating
+	; cells, making the gaps irregular while keeping each splash deterministic.
 	ld a, b
+	add d
+	ld d, a
 	and RAIN_SPLASH_CELL - 1
 	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * 4
 	jr nc, .falling
+	bit 5, d
+	jr nz, .falling
 
-	; Splash: animate frame = phase / 4 and pin it to the band's top line so it
+	; Splash: animate frame = phase / 4 and pin it to the salted impact line so it
 	; holds still on the ground while the animation plays.
 	ld d, a ; d = phase
 	srl a

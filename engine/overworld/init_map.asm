@@ -32,6 +32,9 @@ ReanchorBGMap_NoOAMUpdate::
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
+	; ApplyPals restores the raw map palettes. Keep rainy/overcast maps from
+	; briefly brightening whenever a textbox or window reanchors the map.
+	farcall ApplyWeatherTint
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	xor a
