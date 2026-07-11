@@ -2417,16 +2417,6 @@ Function56cd:
 	push bc
 	call Coord2Tile
 	pop bc
-; Map tiles in VRAM bank 1 (attribute bit 3) never hide sprites;
-; text characters and textbox frames are always in bank 0.
-	push bc
-	push hl
-	ld bc, wAttrMap - wTileMap
-	add hl, bc
-	bit 3, [hl] ; OAM_TILE_BANK
-	pop hl
-	pop bc
-	jr nz, .ok8
 ; NPCs disappear if standing on tile $60-$7f (or $e0-$ff),
 ; since those IDs are for text characters and textbox frames.
 	ld a, [hl]
