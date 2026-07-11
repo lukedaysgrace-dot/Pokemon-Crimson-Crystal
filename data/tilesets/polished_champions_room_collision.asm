@@ -42,25 +42,3 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 29
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 2a
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 2b
-
-; Compatibility blocks for preserved Supreme Silver maps.
-	tilecoll WALL, WALL, WALL, WALL ; 2c
-	tilecoll WALL, WALL, WALL, WALL ; 2d
-	tilecoll WALL, WALL, WALL, WALL ; 2e
-	tilecoll WALL, FLOOR, WALL, FLOOR ; 2f
-	tilecoll FLOOR, WALL, FLOOR, WALL ; 30
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 31
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 32
-	tilecoll WALL, WALL, FLOOR, FLOOR ; 33
-	tilecoll FLOOR, FLOOR, WALL, WALL ; 34
-	tilecoll WALL, FLOOR, WALL, FLOOR ; 35
-	tilecoll FLOOR, WALL, FLOOR, WALL ; 36
-	tilecoll FLOOR, WALL, WALL, WALL ; 37
-	tilecoll WALL, FLOOR, WALL, FLOOR ; 38
-	tilecoll FLOOR, WALL, FLOOR, WALL ; 39
-	tilecoll WALL, WALL, WALL, WALL ; 3a
-	tilecoll WALL, WALL, WALL, WALL ; 3b
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 3c
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 3d
-	tilecoll WALL, FLOOR, WALL, WALL ; 3e
-	tilecoll FLOOR, WALL, WALL, WALL ; 3f

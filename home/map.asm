@@ -1318,6 +1318,8 @@ UpdateBGMapColumn::
 LoadTilesetGFX::
 	ldh a, [rSVBK]
 	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
 
 	; GFX0: tiles $00-$5f of VRAM bank 0 (vTiles2)
 	ld hl, wTilesetAddress
@@ -1352,18 +1354,10 @@ LoadTilesetGFX::
 .LoadChunk:
 ; hl points to a tileset gfx chunk pointer (address dw, bank in wTilesetBank).
 ; Decompresses it to wDecompressScratch.
-	; Read the ROM pointer from the tileset struct's WRAM bank, then select
-	; the decompression-scratch bank before FarDecompress writes to it.
-	ld a, BANK(wTileset)
-	ldh [rSVBK], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wTilesetBank]
-	ld b, a
-	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
-	ld a, b
 	ld de, wDecompressScratch
 	jp FarDecompress
 
