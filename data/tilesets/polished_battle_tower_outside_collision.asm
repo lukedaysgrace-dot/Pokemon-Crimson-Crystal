@@ -40,15 +40,3 @@
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 27
 	tilecoll WALL, WALL, WALL, WALL ; 28
 	tilecoll WALL, HEADBUTT_TREE, WALL, HEADBUTT_TREE ; 29
-
-; Compatibility blocks for preserved Supreme Silver maps.
-	tilecoll WALL, WALL, WALL, WALL ; 2a
-	tilecoll WALL, WALL, WALL, WALL ; 2b
-	tilecoll WALL, WALL, WALL, WALL ; 2c
-	tilecoll WALL, FLOOR, WALL, WALL ; 2d
-	tilecoll WALL, WALL, WALL, WALL ; 2e
-	tilecoll WALL, FLOOR, WALL, WALL ; 2f
-	tilecoll WALL, WALL, WALL, WALL ; 30
-	tilecoll WALL, FLOOR, WALL, FLOOR ; 31
-	tilecoll WALL, HEADBUTT_TREE, WALL, HEADBUTT_TREE ; 32
-	tilecoll WALL, WALL, WALL, WALL ; 33
