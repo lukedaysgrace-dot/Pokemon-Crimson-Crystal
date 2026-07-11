@@ -1462,7 +1462,11 @@ wWhichIndexSet:: db ; cf76
 wScrollingMenuCursorPosition:: db ; cf77
 wWindowStackSize:: db ; cf78
 
-	ds 8
+; Last start-menu item whose MENU_ACCOUNT description box was drawn, so the box
+; is only redrawn when the highlighted item changes instead of every frame.
+wStartMenuLastDesc:: db ; cf79
+
+	ds 7
 
 ; menu header
 wMenuHeader:: ; cf81
