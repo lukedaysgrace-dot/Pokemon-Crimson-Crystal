@@ -42,7 +42,7 @@ GetSpriteVTile::
 .found
 	inc hl
 	ld a, [hl]
-; Un-arranged sprite type bytes (VRAM overflow) must not be used as tiles.
+; Un-arranged sprite type bytes 1-5 (VRAM overflow) must not be used as tiles.
 	cp WALKING_SPRITE
 	jr c, .done
 	cp BIG_SPRITE + 1
