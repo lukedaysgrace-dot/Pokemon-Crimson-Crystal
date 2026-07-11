@@ -315,5 +315,10 @@ ReloadSpritesNoPalettes::
 	ldh [hCGBPalUpdate], a
 	jp DelayFrame
 
-; FarCallSwapTextboxPalettes and FarCallScrollBGMapPalettes were removed:
-; tile attributes now come from per-block *_attributes.bin data.
+FarCallSwapTextboxPalettes::
+	homecall SwapTextboxPalettes
+	ret
+
+FarCallScrollBGMapPalettes::
+	homecall ScrollBGMapPalettes
+	ret
