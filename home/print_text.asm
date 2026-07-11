@@ -39,7 +39,6 @@ PrintLetterDelay::
 	ld [wTextDelayFrames], a
 
 .checkjoypad
-	call UpdateWeatherSprites
 	call GetJoypad
 
 ; input override
