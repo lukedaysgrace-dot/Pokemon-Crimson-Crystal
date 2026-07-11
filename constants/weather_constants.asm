@@ -9,6 +9,11 @@
 	const OW_WEATHER_CHERRY_BLOSSOMS
 NUM_OW_WEATHERS EQU const_value
 
+; wVramState
+; Keep the current weather available for palettes and battle initialization
+; while temporarily preventing its overworld OAM particles from being drawn.
+DEF VRAMSTATE_SUPPRESS_WEATHER_F EQU 2
+
 ; Each daily selection packs a weather-area id into the low six bits and
 ; its overcast intensity into the high two bits.
 WEATHER_AREA_MASK            EQU %00111111

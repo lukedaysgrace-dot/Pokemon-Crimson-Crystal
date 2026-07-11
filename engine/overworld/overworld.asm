@@ -549,70 +549,73 @@ SortUsedSprites:
 	ret
 
 ArrangeUsedSprites:
-; Get the length of each sprite and space them out in VRAM.
-; Crystal introduces a second table in VRAM bank 0.
-
+; Pack sprites into two independent VRAM banks. Tile ids below $80 select
+; bank 1; ids with bit 7 set select bank 0 and use the low seven bits as their
+; tile number. Keep a cursor for each bank so smaller sprites later in the
+; type-sorted list can fill space that a walking sprite could not.
 	ld hl, wUsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
-	ld b, 0
-.FirstTableLength:
-; Keep going until the end of the list.
+	ld d, 0    ; next tile in VRAM bank 1
+	ld e, $80  ; bit-7-encoded next tile in VRAM bank 0
+.next_sprite
 	ld a, [hli]
 	and a
-	jr z, .quit
+	ret z
 
-	ld a, [hl]
+	ld a, [hl] ; unarranged sprite type
 	call GetSpriteLength
+	ld b, a
 
-; Spill over into the second table before walking frames can reach the
-; weather particle and emote tiles. First-table sprites copy their
-; walking frames to vTiles1 in VRAM bank 1 at tile id + $80, and
-; WEATHER_TILE ($f4) plus the emotes ($f8-$ff) live in that bank, so a
-; sprite here may not extend past tile $74. (This is what corrupted
-; walking NPCs on crowded rainy maps: the last first-table sprite's
-; walking frames landed on $f4-$ff and the weather/emote graphics
-; overwrote them.)
+	; Animated sprites copy their additional facings at tile id + $80 in
+	; bank 1, so their first frames must end before WEATHER_TILE. Still and
+	; big sprites have no second copy and may use the rest of the lower table.
+	ld a, [hl]
+	cp STILL_SPRITE
+	ld a, d
+	jr nc, .try_static_bank1
 	add b
 	cp WEATHER_TILE - $80
-	jr z, .loop
-	jr nc, .SecondTable
+	jr c, .assign_bank1
+	jr z, .assign_bank1
+	jr .try_bank0
 
-.loop
-	ld [hl], b
-	inc hl
-	ld b, a
-
-; Assumes the next table will be reached before c hits 0.
-	dec c
-	jr nz, .FirstTableLength
-
-.SecondTable:
-; The second tile table starts at tile $80.
-	ld b, $80
-	dec hl
-.SecondTableLength:
-; Keep going until the end of the list.
-	ld a, [hli]
-	and a
-	jr z, .quit
-
-	ld a, [hl]
-	call GetSpriteLength
-
-; There are only two tables, so don't go any further than that.
+.try_static_bank1
 	add b
-	jr c, .quit
-	cp WEATHER_TILE
-	jr nc, .quit
+	cp $80
+	jr c, .assign_bank1
+	jr z, .assign_bank1
+	jr .try_bank0
 
-	ld [hl], b
-	ld b, a
+.assign_bank1
+	ld [hl], d
+	ld d, a
+	jr .next
+
+.try_bank0
+	; Weather and emotes use VRAM bank 1, so they do not reduce this table.
+	; e = 0 is the sentinel for an exactly full $80-tile bank.
+	ld a, e
+	and a
+	jr z, .next
+	add b
+	jr nc, .assign_bank0
+	and a
+	jr nz, .next ; wrapped past $100
+	; An endpoint of exactly $100 is valid; record the start and mark full.
+	ld [hl], e
+	ld e, a
+	jr .next
+
+.assign_bank0
+	ld [hl], e
+	ld e, a
+
+.next
+	; Entries that fit neither bank retain their sprite-type byte. The loaders
+	; recognize that marker and safely fall back instead of using it as a tile.
 	inc hl
-
 	dec c
-	jr nz, .SecondTableLength
-
-.quit
+	jr nz, .next_sprite
 	ret
 
 GetSpriteLength:
@@ -662,8 +665,8 @@ GetUsedSprites:
 	ldh [hUsedSpriteTile], a
 
 ; Skip sprites that failed VRAM assignment in ArrangeUsedSprites.
-; Their tile byte is still a sprite type (1-4), which would overwrite
-; the player if loaded at tiles 1-4.
+; Their tile byte is still a sprite type (1-5), which would overwrite
+; the player if loaded at tiles 1-5.
 	cp WALKING_SPRITE
 	jr c, .load
 	cp BIG_SPRITE + 1
