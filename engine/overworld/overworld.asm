@@ -564,9 +564,16 @@ ArrangeUsedSprites:
 	ld a, [hl]
 	call GetSpriteLength
 
-; Spill over into the second table after $80 tiles.
+; Spill over into the second table before walking frames can reach the
+; weather particle and emote tiles. First-table sprites copy their
+; walking frames to vTiles1 in VRAM bank 1 at tile id + $80, and
+; WEATHER_TILE ($f4) plus the emotes ($f8-$ff) live in that bank, so a
+; sprite here may not extend past tile $74. (This is what corrupted
+; walking NPCs on crowded rainy maps: the last first-table sprite's
+; walking frames landed on $f4-$ff and the weather/emote graphics
+; overwrote them.)
 	add b
-	cp $80
+	cp WEATHER_TILE - $80
 	jr z, .loop
 	jr nc, .SecondTable
 
