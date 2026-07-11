@@ -72,7 +72,7 @@ _GetVarAction::
 	ld hl, wPokedexCaught
 .count_caught_or_seen_mons
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	homecall CountSetBits16
+	call CountSetBits16
 	ld a, b
 .load_or_saturate
 	add a, -1
@@ -89,7 +89,7 @@ _GetVarAction::
 ; Mons left to catch. Saturate at 255.
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	homecall CountSetBits16
+	call CountSetBits16
 	ld a, LOW(NUM_POKEMON)
 	sub c
 	ld c, a
@@ -101,7 +101,7 @@ _GetVarAction::
 ; Number of owned badges.
 	ld hl, wBadges
 	ld b, 2
-	homecall CountSetBits
+	call CountSetBits
 	ld a, [wNumSetBits]
 	jp .loadstringbuffer2
 

@@ -35,11 +35,11 @@ Rate:
 ; calculate Seen/Owned
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	homecall CountSetBits16
+	call CountSetBits16
 	push bc
 	ld hl, wPokedexSeen
 	ld bc, wEndPokedexSeen - wPokedexSeen
-	homecall CountSetBits16
+	call CountSetBits16
 
 ; print appropriate rating
 	ld hl, wStringBuffer3

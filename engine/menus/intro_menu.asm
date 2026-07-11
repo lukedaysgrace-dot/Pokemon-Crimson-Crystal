@@ -626,7 +626,7 @@ Continue_DisplayBadgeCount:
 	push hl
 	ld hl, wJohtoBadges
 	ld b, 2
-	homecall CountSetBits
+	call CountSetBits
 	pop hl
 	ld de, wNumSetBits
 	lb bc, 1, 2
@@ -639,7 +639,7 @@ Continue_DisplayPokedexNumCaught:
 	push hl
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	homecall CountSetBits16
+	call CountSetBits16
 	pop hl
 	ld a, b
 	ld b, c
