@@ -1,4 +1,4 @@
-MAP_NAME_SIGN_START EQU $60
+MAP_NAME_SIGN_START EQU $c0
 
 ReturnFromMapSetupScript::
 	xor a
@@ -125,8 +125,11 @@ PlaceMapNameSign::
 	ret
 
 LoadMapNameSignGFX:
+; The sign now lives at tiles $c0-$cd (formerly $60-$6d) so that $60-$7e are
+; free for map graphics. Tile IDs >= $80 read from bank 0 vTiles1 via signed
+; addressing, which "vTiles0 tile $c0" points at.
 	ld de, MapEntryFrameGFX
-	ld hl, vTiles2 tile MAP_NAME_SIGN_START
+	ld hl, vTiles0 tile MAP_NAME_SIGN_START
 	lb bc, BANK(MapEntryFrameGFX), 14
 	call Get2bpp
 	ret
