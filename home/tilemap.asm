@@ -6,7 +6,7 @@ WaitBGMap::
 	ldh [hBGMapMode], a
 ; Wait for it to do its magic
 	ld c, 4
-	jp DelayFrames
+	jp WeatherDelayFrames
 
 WaitBGMap2::
 	ldh a, [hCGB]
@@ -16,13 +16,13 @@ WaitBGMap2::
 	ld a, 2
 	ldh [hBGMapMode], a
 	ld c, 4
-	call DelayFrames
+	call WeatherDelayFrames
 
 .bg0
 	ld a, 1
 	ldh [hBGMapMode], a
 	ld c, 4
-	jp DelayFrames
+	jp WeatherDelayFrames
 
 IsCGB::
 	ldh a, [hCGB]
