@@ -8459,7 +8459,6 @@ BattleIntro:
 	res rLCDC_WINDOW_TILEMAP, [hl] ; select 9800-9BFF
 	call InitBattleDisplay
 	call BattleStartMessage
-	farcall ApplyOverworldBattleWeather
 	ld hl, rLCDC
 	set rLCDC_WINDOW_TILEMAP, [hl] ; select 9C00-9FFF
 	xor a

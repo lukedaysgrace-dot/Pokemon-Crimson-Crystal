@@ -290,7 +290,6 @@ JoyTitleScreenInput::
 JoyWaitAorB::
 .loop
 	call DelayFrame
-	call UpdateWeatherSprites
 	call GetJoypad
 	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
@@ -349,7 +348,6 @@ WaitPressAorB_BlinkCursor::
 	ldh [hObjectStructIndexBuffer], a
 
 .loop
-	call UpdateWeatherSprites
 	push hl
 	hlcoord 18, 17
 	call BlinkCursor
@@ -368,7 +366,6 @@ WaitPressAorB_BlinkCursor::
 
 SimpleWaitPressAorB::
 .loop
-	call UpdateWeatherSprites
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	and A_BUTTON | B_BUTTON
@@ -401,7 +398,6 @@ ButtonSound::
 	farcall _DudeAutoInput_A
 
 .input_wait_loop
-	call UpdateWeatherSprites
 	call .blink_cursor
 	call JoyTextDelay
 	ldh a, [hJoyPressed]

@@ -25,8 +25,6 @@ _SetCurrentWeather::
 	jr c, .set
 	call CheckLakeOfRageWeather
 	jr c, .set
-	call CheckOlivineWeather
-	jr c, .set
 	call CheckAzaleaWeather
 	jr c, .set
 	call CheckSnowWeather
@@ -252,18 +250,6 @@ CheckLakeOfRageWeather:
 	and a
 	ret
 
-CheckOlivineWeather:
-	ld hl, OlivineWeatherMaps
-	call IsCurrentMapInWeatherArea
-	jr nz, .no
-	; Olivine City is permanently stormy.
-	ld a, OW_WEATHER_THUNDERSTORM
-	scf
-	ret
-.no
-	and a
-	ret
-
 CheckAzaleaWeather:
 	ld hl, AzaleaWeatherMaps
 	call IsCurrentMapInWeatherArea
@@ -410,72 +396,25 @@ LoadWeatherGraphics::
 
 .rain
 	ld de, RainWeatherGFX
-	ld c, 1 + (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE ; drop + splash frames
 	jr .load
 .snow
 	ld de, SnowWeatherGFX
-	ld c, 1
 	jr .load
 .sand
 	ld de, SandWeatherGFX
-	ld c, 1
 	jr .load
 .blossoms
 	ld de, CherryBlossomWeatherGFX
-	ld c, 1
 .load
 	ldh a, [rVBK]
 	push af
 	ld a, 1
 	ldh [rVBK], a
 	ld hl, vTiles0 tile WEATHER_TILE
-	ld b, BANK(RainWeatherGFX)
+	lb bc, BANK(RainWeatherGFX), 1
 	call Get2bpp
 	pop af
 	ldh [rVBK], a
-	ret
-
-AnimateWeatherOnIdle::
-; Redraw overworld sprites so weather particles keep animating while
-; the game idles in a textbox or a window menu (farcalled from the
-; UpdateWeatherSprites stub in home). Full-screen interfaces (Pokedex,
-; party, Pack, Trainer Card, battles, ...) clear wVramState bit 0,
-; which turns this into a no-op there. Runs at most once per frame no
-; matter how often the caller's input loop spins.
-; The caller preserves af and hl; bc and de are preserved here.
-	push bc
-	push de
-	ldh a, [hCurWeather]
-	cp OW_WEATHER_RAIN
-	jr c, .done ; OW_WEATHER_NONE and OW_WEATHER_OVERCAST have no particles
-	ld a, [wVramState]
-	bit 0, a
-	jr z, .done
-	ldh a, [hVBlankCounter]
-	ld b, a
-	ldh a, [hWeatherIdleFrame]
-	cp b
-	jr z, .done ; already ran this frame
-	ld a, b
-	ldh [hWeatherIdleFrame], a
-; WaitPressAorB_BlinkCursor keeps its state in these two, and
-; Function55e0 uses them as scratch, so preserve them.
-	ldh a, [hMapObjectIndexBuffer]
-	push af
-	ldh a, [hObjectStructIndexBuffer]
-	push af
-	call UpdateSprites
-	pop af
-	ldh [hObjectStructIndexBuffer], a
-	pop af
-	ldh [hMapObjectIndexBuffer], a
-; Text and menu waits hold hOAMUpdate at 1, which blocks the OAM DMA
-; in VBlank; release it so the freshly built frame is displayed.
-	xor a
-	ldh [hOAMUpdate], a
-.done
-	pop de
-	pop bc
 	ret
 
 DoOverworldWeather::
@@ -506,7 +445,7 @@ DoOverworldWeather::
 	cp OW_WEATHER_SNOW
 	jr z, RenderSnow
 	cp OW_WEATHER_SANDSTORM
-	jp z, RenderSandstorm
+	jr z, RenderSandstorm
 	jp RenderCherryBlossoms
 
 .thunderstorm
@@ -520,77 +459,39 @@ DoOverworldWeather::
 	call c, WeatherLightning
 	jr RenderRain
 
-; Splash bands repeat every 32 px so raindrop impacts scatter up and down the
-; whole screen instead of only along the bottom edge.
-DEF RAIN_SPLASH_CELL EQU 32
-
 RenderRain:
 	ld hl, WeatherParticleSeeds
-	ld e, 16
+	ld e, 8
 .loop
-	; x = seed - 3 * horizontal timer (mod screen width). The drop drifts left
-	; (top-right to bottom-left); horizontal and vertical speed are matched so a
-	; splash can be pinned exactly to the spot where the drop landed.
+	; x = seed + 2 * horizontal timer (mod screen width)
+	ld a, [hli]
+	ld c, a
 	ldh a, [hWeatherXTimer]
-	ld b, a
-	ld a, SCREEN_WIDTH_PX
-	sub b
-	ld b, a ; b = SCREEN_WIDTH_PX - horizontal timer
-	ld a, [hli] ; seed x
-	rept 3
-	add b
+	add c
 	call WrapWeatherX
-	endr
+	ld c, a
+	ldh a, [hWeatherXTimer]
+	add c
+	call WrapWeatherX
 	add TILE_WIDTH
-	ld c, a ; c = moving OAM x
+	ld c, a
 
-	; y = seed + 3 * vertical timer (mod screen height)
-	ld a, [hli] ; seed y
+	; y = seed + 4 * vertical timer (mod screen height)
+	ld a, [hli]
 	ld b, a
-	rept 3
+	rept 4
 	ldh a, [hWeatherYTimer]
 	add b
 	call WrapWeatherY
 	ld b, a
 	endr
-	; b = on-screen y (0 .. SCREEN_HEIGHT_PX - 1)
-
-	; phase = depth into the current 32px splash band.
-	ld a, b
-	and RAIN_SPLASH_CELL - 1
-	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * 4
-	jr nc, .falling
-
-	; Splash: animate frame = phase / 4 and pin it to the band's top line so it
-	; holds still on the ground while the animation plays.
-	ld d, a ; d = phase
-	srl a
-	srl a
-	add WEATHER_TILE + 1 ; splash tile for this frame
-	push af ; save splash tile
-	ld a, c
-	add d
-	ld c, a ; pinned OAM x = moving x + phase
-	ld a, b
-	sub d
-	add 2 * TILE_WIDTH
-	ld b, a ; pinned OAM y = band's top line
-	ld d, VRAM_BANK_1 | PAL_OW_SILVER
-	pop af ; restore splash tile
-	call AppendWeatherParticle
-	ret c
-	jr .next
-
-.falling
-	; Still on its way down: draw the streak at its moving position.
 	ld a, b
 	add 2 * TILE_WIDTH
-	ld b, a ; OAM y
-	ld d, VRAM_BANK_1 | PAL_OW_SILVER
-	ld a, WEATHER_TILE
+	ld b, a
+
+	ld d, VRAM_BANK_1 | PAL_OW_BLUE
 	call AppendWeatherParticle
 	ret c
-.next
 	dec e
 	jr nz, .loop
 	ret
@@ -616,7 +517,6 @@ RenderSnow:
 	add 2 * TILE_WIDTH
 	ld b, a
 	ld d, VRAM_BANK_1 | PAL_OW_SILVER
-	ld a, WEATHER_TILE
 	call AppendWeatherParticle
 	ret c
 	dec e
@@ -651,7 +551,6 @@ RenderSandstorm:
 	add 2 * TILE_WIDTH
 	ld b, a
 	ld d, VRAM_BANK_1 | PAL_OW_BROWN
-	ld a, WEATHER_TILE
 	call AppendWeatherParticle
 	ret c
 	dec e
@@ -678,7 +577,6 @@ RenderCherryBlossoms:
 	add 2 * TILE_WIDTH
 	ld b, a
 	ld d, VRAM_BANK_1 | PAL_OW_RED
-	ld a, WEATHER_TILE
 	call AppendWeatherParticle
 	ret c
 	dec e
@@ -705,11 +603,8 @@ WrapWeatherY:
 	ret
 
 AppendWeatherParticle:
-; Input: a = tile id, b = OAM y, c = OAM x, d = attributes
+; Input: b = OAM y, c = OAM x, d = attributes
 ; Output: carry if the object OAM budget is full
-; Preserves hl.
-	push hl
-	push af ; stash the tile id for the write below
 	ld a, [wVramState]
 	bit 1, a
 	jr z, .full_budget
@@ -722,14 +617,14 @@ AppendWeatherParticle:
 	cp LOW(wVirtualOAMEnd)
 	jr nc, .full
 .append
+	push hl
 	ld l, a
 	ld h, HIGH(wVirtualOAM)
 	ld [hl], b
 	inc l
 	ld [hl], c
 	inc l
-	pop af ; a = tile id
-	ld [hl], a
+	ld [hl], WEATHER_TILE
 	inc l
 	ld [hl], d
 	inc l
@@ -739,8 +634,6 @@ AppendWeatherParticle:
 	and a
 	ret
 .full
-	pop af ; discard stashed tile id
-	pop hl
 	scf
 	ret
 
@@ -904,9 +797,7 @@ ApplyWeatherTint::
 
 INCLUDE "data/maps/overcast_maps.asm"
 
-; Seed coordinates (screen pixels, before OAM bias) scattered across the
-; screen. Snow, sand and cherry blossoms use the first eight; rain uses all of
-; them for a denser, less obviously patterned downpour.
+; Eight evenly distributed seed coordinates (screen pixels, before OAM bias).
 WeatherParticleSeeds:
 	db   4,  12
 	db  24,  96
@@ -916,43 +807,24 @@ WeatherParticleSeeds:
 	db 101,  22
 	db 123, 110
 	db 146,  52
-	db  15,  74
-	db  34, 132
-	db  55,   6
-	db  72,  46
-	db  92, 102
-	db 113,  60
-	db 135,  18
-	db 152, 118
 
-; Weather particles. Color 0 is always transparent. On the silver palette the
-; rain drop and its splash use color 1 (light blue) while snow uses color 2
-; (white), so rain reads blue without tinting the snow. Sand and cherry
-; blossoms use color 2 of their own palettes.
+; One-color particles. Color 0 remains transparent; the visible pixels use
+; color 2 except snow, which uses the silver palette's white color 1.
 RainWeatherGFX:
 	db $00, $00
-	db $08, $00
-	db $08, $00
-	db $10, $00
-	db $10, $00
-	db $20, $00
+	db $00, $08
+	db $00, $08
+	db $00, $10
+	db $00, $10
+	db $00, $20
 	db $00, $00
 	db $00, $00
-; Ground splash animation from gfx/overworld/rain_splash.png. It must directly
-; follow RainWeatherGFX so the drop tile and every splash frame load together as
-; one contiguous fetch. The frame count is measured from the file at build time.
-RainSplashGFX:
-	INCBIN "gfx/overworld/rain_splash.2bpp"
-RainSplashGFXEnd:
-; The drop tile plus every splash frame must fit between WEATHER_TILE
-; and the emote tiles at $f8, or loading rain graphics corrupts emotes.
-	assert RainSplashGFXEnd - RainSplashGFX <= ($f8 - WEATHER_TILE - 1) * LEN_2BPP_TILE, "Rain splash frames overflow into the emote tiles at $f8"
 SnowWeatherGFX:
 	db $00, $00
 	db $00, $00
-	db $00, $10
-	db $00, $38
-	db $00, $10
+	db $10, $00
+	db $38, $00
+	db $10, $00
 	db $00, $00
 	db $00, $00
 	db $00, $00
