@@ -26,7 +26,9 @@ hWeatherYTimer:: db ; ff9a
 
 hVBlankCounter:: db ; ff9b
 
-	ds 1
+; Last hVBlankCounter value UpdateWeatherSprites ran on, so weather
+; particles advance at most once per frame from busy-wait input loops.
+hWeatherIdleFrame:: db ; ff9c
 
 hROMBank:: db ; ff9d
 hVBlank:: db ; ff9e

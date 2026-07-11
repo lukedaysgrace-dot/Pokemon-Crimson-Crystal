@@ -158,6 +158,9 @@ LakeOfRageWeatherMaps:
 	map_id LAKE_OF_RAGE
 	map_id ROUTE_43
 	db -1
+OlivineWeatherMaps:
+	map_id OLIVINE_CITY
+	db -1
 MahoganySnowMaps:
 	map_id ROUTE_42
 	map_id MAHOGANY_TOWN
