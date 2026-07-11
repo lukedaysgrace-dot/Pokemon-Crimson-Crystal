@@ -361,9 +361,13 @@ wTileMapEnd::
 SECTION "Miscellaneous", WRAM0
 
 ; This union spans 480 bytes from c608 to c7e8.
-; (wSurroundingTiles was moved to the "Surrounding Data" WRAMX section
-;  along with wSurroundingAttributes, for the block attributes system.)
 UNION ; c608
+; surrounding tiles
+; This buffer determines the size for the rest of the union;
+; it uses exactly 480 bytes.
+wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
+
+NEXTU ; c608
 ; box save buffer
 ; SaveBoxAddress uses this buffer in three steps because it
 ; needs more space than the buffer can hold.
@@ -2112,21 +2116,15 @@ wWestMapConnection::  map_connection_struct wWest ; d1c1
 wEastMapConnection::  map_connection_struct wEast ; d1cd
 
 wTileset::
-; All of a tileset's data (GFX chunks, metatiles, collision, attributes)
-; is stored in a single ROM bank, so one bank byte serves every pointer.
-wTilesetBank::
-wTilesetGFX1Bank::
-wTilesetGFX2Bank::
-wTilesetBlocksBank::
-wTilesetCollisionBank::
-wTilesetAttributesBank:: db
-wTilesetAddress:: dw ; GFX0 (vTiles2, tiles $00-$5f)
-wTilesetGFX1Address:: dw ; GFX1 (vTiles5, bank-1 tiles $00-$7f)
-wTilesetGFX2Address:: dw ; GFX2 (vTiles4, bank-1 tiles $80-$ff)
-wTilesetBlocksAddress:: dw
-wTilesetCollisionAddress:: dw
-wTilesetAttributesAddress:: dw
-wTilesetAnim:: dw ; bank 3f
+wTilesetBank:: db ; d1d9
+wTilesetAddress:: dw ; d1da
+wTilesetBlocksBank:: db ; d1dc
+wTilesetBlocksAddress:: dw ; d1dd
+wTilesetCollisionBank:: db ; d1df
+wTilesetCollisionAddress:: dw ; d1e0
+wTilesetAnim:: dw ; bank 3f ; d1e2
+	ds 2 ; unused ; d1e4
+wTilesetPalettes:: dw ; bank 3f ; d1e6
 wTilesetEnd::
 
 wEvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
@@ -2263,7 +2261,7 @@ wCurBaseDataEnd::
 
 wCurDamage:: dw ; d256
 
-wTilesetDataAddress:: dw ; either wTilesetBlocksAddress or wTilesetAttributesAddress
+	ds 2
 
 wMornEncounterRate::  db ; d25a
 wDayEncounterRate::   db ; d25b
@@ -3029,13 +3027,6 @@ wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
 wAbilityName:: ds 17 ; longest ability name + @
 wAbilityAttrBackup:: ds SLIDEOUT_WIDTH * 2 * 2 ; original attrs under the banners (player, then enemy)
 wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
-
-
-SECTION "Surrounding Data", WRAMX
-
-; on-screen block tiles and their attributes (block attributes system)
-wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
-wSurroundingAttributes:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 
 
 SECTION "16-bit WRAM tables", WRAMX
