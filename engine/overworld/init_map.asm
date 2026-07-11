@@ -32,11 +32,6 @@ ReanchorBGMap_NoOAMUpdate::
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
-; ApplyPals copies the raw (untinted) wBGPals1 over wBGPals2, which
-; would brighten the screen in overcast/rain/thunderstorm weather the
-; moment a textbox opens. Reapply the weather tint before pushing the
-; palettes to hardware.
-	farcall ApplyWeatherTint
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	xor a
