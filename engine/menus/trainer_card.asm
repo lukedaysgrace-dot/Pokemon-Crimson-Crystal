@@ -275,7 +275,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	call PlaceString
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
-	call CountSetBits16
+	homecall CountSetBits16
 	ld a, c
 	ld c, b
 	ld b, a

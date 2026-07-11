@@ -773,3 +773,5 @@ INCLUDE "data/abilities/descriptions.asm"
 SECTION "Overworld Weather", ROMX
 
 INCLUDE "engine/overworld/weather.asm"
+
+INCLUDE "engine/math/count_set_bits.asm"
