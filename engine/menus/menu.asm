@@ -354,6 +354,11 @@ Do2DMenuRTCJoypad:
 	ret
 
 Menu_WasButtonPressed:
+; Menus that play sprite animations own the OAM; don't fight them
+; over it just to animate weather.
+	ld a, [w2DMenuFlags1]
+	bit 6, a
+	call z, UpdateWeatherSprites
 	ld a, [w2DMenuFlags1]
 	bit 6, a
 	jr z, .skip_to_joypad
