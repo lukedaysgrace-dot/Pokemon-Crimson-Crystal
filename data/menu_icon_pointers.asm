@@ -385,8 +385,8 @@ MenuIconPointers:
 	dba BastiodonMenuIcon
 	dba PawniardMenuIcon
 	dba BisharpMenuIcon
-	dba SeelMenuIcon
-	dba WalreinMenuIcon
+	dba CetoddleMenuIcon
+	dba CetitanMenuIcon
 	dba MagikarpMenuIcon
 	dba GyaradosMenuIcon
 	dba MimikyuMenuIcon
