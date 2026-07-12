@@ -343,3 +343,131 @@ INCBIN "data/tilesets/johto_metatiles.bin"
 Tileset0Coll:
 TilesetJohtoColl:
 INCLUDE "data/tilesets/johto_collision.asm"
+
+
+; Per-block attribute data for the Polished Map++ attribute system.
+; Generated from the old *_palette_map.asm files by tools/palmap2attr.py.
+
+SECTION "Tileset Data 10", ROMX
+
+Tileset0Attr::
+TilesetJohtoAttr::
+INCBIN "data/tilesets/johto_attributes.bin"
+
+TilesetJohtoModernAttr::
+INCBIN "data/tilesets/johto_modern_attributes.bin"
+
+TilesetKantoAttr::
+INCBIN "data/tilesets/kanto_attributes.bin"
+
+TilesetBattleTowerOutsideAttr::
+INCBIN "data/tilesets/battle_tower_outside_attributes.bin"
+
+TilesetHouseAttr::
+INCBIN "data/tilesets/house_attributes.bin"
+
+TilesetPlayersHouseAttr::
+INCBIN "data/tilesets/players_house_attributes.bin"
+
+
+SECTION "Tileset Data 11", ROMX
+
+TilesetPokecenterAttr::
+INCBIN "data/tilesets/pokecenter_attributes.bin"
+
+TilesetGateAttr::
+INCBIN "data/tilesets/gate_attributes.bin"
+
+TilesetPortAttr::
+INCBIN "data/tilesets/port_attributes.bin"
+
+TilesetLabAttr::
+INCBIN "data/tilesets/lab_attributes.bin"
+
+TilesetFacilityAttr::
+INCBIN "data/tilesets/facility_attributes.bin"
+
+TilesetMartAttr::
+INCBIN "data/tilesets/mart_attributes.bin"
+
+
+SECTION "Tileset Data 12", ROMX
+
+TilesetMansionAttr::
+INCBIN "data/tilesets/mansion_attributes.bin"
+
+TilesetGameCornerAttr::
+INCBIN "data/tilesets/game_corner_attributes.bin"
+
+TilesetEliteFourRoomAttr::
+INCBIN "data/tilesets/elite_four_room_attributes.bin"
+
+TilesetTraditionalHouseAttr::
+INCBIN "data/tilesets/traditional_house_attributes.bin"
+
+TilesetTrainStationAttr::
+INCBIN "data/tilesets/train_station_attributes.bin"
+
+TilesetChampionsRoomAttr::
+INCBIN "data/tilesets/champions_room_attributes.bin"
+
+
+SECTION "Tileset Data 13", ROMX
+
+TilesetLighthouseAttr::
+INCBIN "data/tilesets/lighthouse_attributes.bin"
+
+TilesetPlayersRoomAttr::
+INCBIN "data/tilesets/players_room_attributes.bin"
+
+TilesetPokeComCenterAttr::
+INCBIN "data/tilesets/pokecom_center_attributes.bin"
+
+TilesetBattleTowerAttr::
+INCBIN "data/tilesets/battle_tower_attributes.bin"
+
+TilesetTowerAttr::
+INCBIN "data/tilesets/tower_attributes.bin"
+
+TilesetCaveAttr::
+TilesetDarkCaveAttr::
+INCBIN "data/tilesets/cave_attributes.bin"
+
+
+SECTION "Tileset Data 14", ROMX
+
+TilesetParkAttr::
+INCBIN "data/tilesets/park_attributes.bin"
+
+TilesetRuinsOfAlphAttr::
+INCBIN "data/tilesets/ruins_of_alph_attributes.bin"
+
+TilesetRadioTowerAttr::
+INCBIN "data/tilesets/radio_tower_attributes.bin"
+
+TilesetUndergroundAttr::
+INCBIN "data/tilesets/underground_attributes.bin"
+
+TilesetIcePathAttr::
+INCBIN "data/tilesets/ice_path_attributes.bin"
+
+TilesetForestAttr::
+INCBIN "data/tilesets/forest_attributes.bin"
+
+
+SECTION "Tileset Data 15", ROMX
+
+TilesetBetaWordRoomAttr::
+INCBIN "data/tilesets/beta_word_room_attributes.bin"
+
+TilesetHoOhWordRoomAttr::
+INCBIN "data/tilesets/ho_oh_word_room_attributes.bin"
+
+TilesetKabutoWordRoomAttr::
+INCBIN "data/tilesets/kabuto_word_room_attributes.bin"
+
+TilesetOmanyteWordRoomAttr::
+INCBIN "data/tilesets/omanyte_word_room_attributes.bin"
+
+TilesetAerodactylWordRoomAttr::
+INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
