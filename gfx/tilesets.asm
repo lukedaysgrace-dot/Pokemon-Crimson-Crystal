@@ -19,13 +19,8 @@ Tileset0GFX:
 TilesetJohtoGFX:
 INCBIN "gfx/tilesets/johto.2bpp.lz"
 
-Tileset0Meta:
-TilesetJohtoMeta:
-INCBIN "data/tilesets/johto_metatiles.bin"
-
-Tileset0Coll:
-TilesetJohtoColl:
-INCLUDE "data/tilesets/johto_collision.asm"
+; Johto's metatiles and collision are expanded to 255 blocks and live in their
+; own section ("Tileset Data 9") so they don't overflow this bank.
 
 TilesetIcePathGFX:
 INCBIN "gfx/tilesets/ice_path.2bpp.lz"
@@ -335,3 +330,16 @@ INCBIN "data/tilesets/omanyte_word_room_metatiles.bin"
 
 TilesetAerodactylWordRoomMeta:
 INCBIN "data/tilesets/aerodactyl_word_room_metatiles.bin"
+
+
+SECTION "Tileset Data 9", ROMX
+
+; Johto tileset expanded to 255 blocks. Kept in its own bank so the larger
+; metatile and collision data has room to grow.
+Tileset0Meta:
+TilesetJohtoMeta:
+INCBIN "data/tilesets/johto_metatiles.bin"
+
+Tileset0Coll:
+TilesetJohtoColl:
+INCLUDE "data/tilesets/johto_collision.asm"

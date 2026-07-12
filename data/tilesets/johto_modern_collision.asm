@@ -126,3 +126,15 @@
 	tilecoll WALL, WALL, WALL, WALL ; 7d
 	tilecoll WALL, WALL, WALL, WALL ; 7e
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 7f
+	tilecoll WALL, WALL, WALL, WALL ; 80
+	tilecoll , , ,  ; 81
+	tilecoll , , ,  ; 82
+	tilecoll , , ,  ; 83
+	tilecoll , , ,  ; 84
+	tilecoll WALL, WALL, WALL, WALL ; 85
+	tilecoll , , ,  ; 86
+	tilecoll , , ,  ; 87
+	tilecoll , , ,  ; 88
+	tilecoll , , ,  ; 89
+	tilecoll , , ,  ; 8a
+	tilecoll , , ,  ; 8b
