@@ -1,13 +1,11 @@
 tileset: MACRO
-	dba \1GFX, \1Meta, \1Coll
+	dba \1GFX, \1Meta, \1Coll, \1Attr
 	dw \1Anim
-	dw NULL
-	dw \1PalMap
+	db 0 ; unused padding (keeps each entry 15 bytes, matching wTileset in wram.asm)
 ENDM
 
 ; Associated data:
-; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
-; - The *PalMap are defined in gfx/tileset_palette_maps.asm
+; - The *GFX, *Meta, *Coll, and *Attr are defined in gfx/tilesets.asm
 ; - The *Anim are defined in engine/tilesets/tileset_anims.asm
 
 Tilesets::
