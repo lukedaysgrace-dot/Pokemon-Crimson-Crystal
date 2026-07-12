@@ -12,7 +12,45 @@ LoadSpecialMapPalette:
 	jr z, .radio_tower
 	cp TILESET_MANSION
 	jr z, .mansion_mobile
+	cp TILESET_JOHTO
+	jr z, .johto
+	cp TILESET_JOHTO_MODERN
+	jr z, .johto_modern
 	jr .do_nothing
+
+.johto
+	ld hl, JohtoTilesetPalette
+	jr .load_outdoor_timeofday
+
+.johto_modern
+	ld hl, JohtoModernTilesetPalette
+.load_outdoor_timeofday
+; Only override outdoor maps (TOWN / ROUTE); anything else uses the default.
+	ld a, [wEnvironment]
+	and 7
+	cp TOWN
+	jr z, .outdoor_ok
+	cp ROUTE
+	jr z, .outdoor_ok
+	jr .do_nothing
+.outdoor_ok
+; hl = base palette; add (time of day) * 8 palettes.
+	ld a, [wTimeOfDayPal]
+	maskbits NUM_DAYTIMES
+	swap a ; * 16
+	add a  ; * 32
+	add a  ; * 64 (8 palettes)
+	add a, l
+	ld l, a
+	adc a, h
+	sub l
+	ld h, a
+	ld de, wBGPals1
+	ld bc, 8 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	scf
+	ret
 
 .pokecom_2f
 	call LoadPokeComPalette
@@ -135,3 +173,9 @@ LoadMansionPalette:
 
 MansionPalette2:
 INCLUDE "gfx/tilesets/mansion_2.pal"
+
+JohtoTilesetPalette:
+INCLUDE "gfx/tilesets/johto.pal"
+
+JohtoModernTilesetPalette:
+INCLUDE "gfx/tilesets/johto_modern.pal"
