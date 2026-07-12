@@ -127,14 +127,14 @@
 	tilecoll WALL, WALL, WALL, WALL ; 7e
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 7f
 	tilecoll WALL, WALL, WALL, WALL ; 80
-	tilecoll , , ,  ; 81
-	tilecoll , , ,  ; 82
-	tilecoll , , ,  ; 83
-	tilecoll , , ,  ; 84
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 81
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 82
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 83
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 84
 	tilecoll WALL, WALL, WALL, WALL ; 85
-	tilecoll , , ,  ; 86
-	tilecoll , , ,  ; 87
-	tilecoll , , ,  ; 88
-	tilecoll , , ,  ; 89
-	tilecoll , , ,  ; 8a
-	tilecoll , , ,  ; 8b
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 86
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 87
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 88
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 89
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 8a
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 8b
