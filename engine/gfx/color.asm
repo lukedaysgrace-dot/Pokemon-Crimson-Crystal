@@ -722,9 +722,14 @@ SetFirstOBJPaletteFromMonColors::
 ; OBJ palette 0 and apply. Used for the Fly animation.
 	ld e, 0
 	call LoadMonMenuIconPal
+	call ApplyPals
+	; ApplyPals rebuilds wBGPals2 from the untinted wBGPals1, which would
+	; strip the overcast/rain darkening mid-animation. Reapply it before
+	; the palettes are pushed to hardware.
+	farcall ApplyWeatherTint
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	jp ApplyPals
+	ret
 
 LoadPartyMenuMonPals::
 ; Load each party mon's actual battle palette colors into
@@ -786,9 +791,14 @@ RestoreFirstOBJPalette::
 	ld bc, 1 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
+	call ApplyPals
+	; ApplyPals rebuilds wBGPals2 from the untinted wBGPals1, which would
+	; leave the destination map without its overcast/rain darkening after
+	; landing. Reapply it before the palettes are pushed to hardware.
+	farcall ApplyWeatherTint
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	jp ApplyPals
+	ret
 
 GetBattlemonBackpicPalettePointer:
 	push de
