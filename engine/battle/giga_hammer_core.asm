@@ -82,21 +82,39 @@ ApplyOverworldBattleWeather:
 	cp NITE_F
 	ret nc ; no bright sun at night or in darkness
 	ld a, WEATHER_SUN
+	ld de, SUNNY_DAY
 	ld hl, SunGotBrightText
 	jr .apply
 .rain
 	ld a, WEATHER_RAIN
+	ld de, RAIN_DANCE
 	ld hl, DownpourText
 	jr .apply
 .hail
 	ld a, WEATHER_HAIL
+	ld de, HAIL
 	ld hl, ItStartedToHailText
 	jr .apply
 .sandstorm
 	ld a, WEATHER_SANDSTORM
+	ld de, SANDSTORM
 	ld hl, SandstormBrewedText
 .apply
 	ld [wBattleWeather], a
 	ld a, 255 ; effectively lasts the whole battle
 	ld [wWeatherCount], a
-	jp StdBattleTextbox
+	push de
+	call StdBattleTextbox
+	pop de
+	; Play the matching move animation (de) so the weather visibly sweeps
+	; the field right after its message, before any send-out.
+	xor a
+	ldh [hBattleTurn], a
+	ld [wNumHits], a
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	call WaitBGMap
+	predef PlayBattleAnim
+	ret
