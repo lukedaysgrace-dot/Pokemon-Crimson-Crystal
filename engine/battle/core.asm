@@ -6478,6 +6478,13 @@ LoadEnemyMon:
 	cp TRAINER_BATTLE
 	jr z, .OpponentParty
 
+; If we're capturing this mon, LoadEnemyMon is being called again by
+; PokeBallEffect; keep the shiny/gender flags rolled at battle start
+; instead of rerolling them.
+	ld a, [wWildMon]
+	and a
+	jr nz, .CheckWildBattle
+
 	farcall InitWildMonShinyGender
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
