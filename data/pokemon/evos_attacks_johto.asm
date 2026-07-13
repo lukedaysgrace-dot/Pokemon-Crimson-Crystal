@@ -414,11 +414,11 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, BULLDOZE
-	dbw 1, IRON_HEAD
-	dbw 3, EARTH_POWER
-	dbw 4, SHELL_SMASH
-	dbw 6, ZEN_HEADBUTT
+	dbw 1, GYRO_BALL
+	dbw 1, DAZZLING_GLEAM
+	dbw 3, SWEET_KISS
+	dbw 4, LOVELY_KISS
+	dbw 6, OCTAZOOKA
 	dbw 7, FACADE
 	dbw 20, BITE
 	dbw 22, FLAIL
