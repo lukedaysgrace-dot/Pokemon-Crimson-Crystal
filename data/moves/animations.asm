@@ -5,6 +5,15 @@ ENDM
 
 ; entries correspond to constants/move_constants.asm
 ; negative entries first (see the constants file for details)
+	; Intro weather anims: same scripts as the move anims, but with
+	; negative IDs so BattleAnimRunScript takes the .play_anyway path
+	; and skips BattleAnimClearHud/BattleAnimRestoreHuds - the HUDs
+	; don't exist yet during BattleIntro, and drawing them from empty
+	; mon data corrupts the screen.
+	banim BattleAnim_RainDance   ; ANIM_INTRO_RAIN
+	banim BattleAnim_SunnyDay    ; ANIM_INTRO_SUN
+	banim BattleAnim_Sandstorm   ; ANIM_INTRO_SANDSTORM
+	banim BattleAnim_Hail        ; ANIM_INTRO_HAIL
 	banim BattleAnim_InHail
 	banim BattleAnim_ThrowPokeBall
 	banim BattleAnim_SendOutMon
