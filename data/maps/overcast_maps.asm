@@ -174,6 +174,10 @@ Route45SandMaps:
 	map_id ROUTE_45
 	map_id ROUTE_46
 	db -1
+Route38SandMaps:
+	map_id ROUTE_38
+	map_id ROUTE_39
+	db -1
 RuinsSandMaps:
 	map_id RUINS_OF_ALPH_OUTSIDE
 	db -1
