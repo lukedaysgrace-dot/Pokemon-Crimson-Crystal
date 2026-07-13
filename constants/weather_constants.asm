@@ -28,6 +28,7 @@ NUM_DAILY_WEATHER_AREAS_PER_REGION EQU 4
 	const WEATHER_DAILY_ROUTE_45_SAND_F
 	const WEATHER_DAILY_RUINS_SAND_F
 	const WEATHER_DAILY_CHERRYGROVE_BLOSSOMS_F
+	const WEATHER_DAILY_ROUTE_38_SAND_F
 
 ; One tile in VRAM bank 1 is reserved for the active weather particle.
 ; Tiles $f8-$ff are already reserved by overworld emotes.

@@ -179,7 +179,12 @@ GenerateDailyWeather:
 	cp 26 ; 10% sand at the Ruins of Alph
 	jr c, .ruins_sand
 	cp 64 ; another 15% on rocky Routes 45 and 46
+	jr c, .route_45_sand
+	cp 102 ; another 15% on the dusty farmland of Routes 38 and 39
 	jr nc, .no_sand
+	set WEATHER_DAILY_ROUTE_38_SAND_F, b
+	jr .no_sand
+.route_45_sand
 	set WEATHER_DAILY_ROUTE_45_SAND_F, b
 	jr .no_sand
 .ruins_sand
@@ -301,8 +306,15 @@ CheckSandstormWeather:
 	; Sand is restricted to exposed rocky/dirt terrain.
 	ld hl, wWeatherDailyFlags
 	bit WEATHER_DAILY_ROUTE_45_SAND_F, [hl]
-	jr z, .check_ruins
+	jr z, .check_route_38
 	ld hl, Route45SandMaps
+	call IsCurrentMapInWeatherArea
+	jr z, .sand
+.check_route_38
+	ld hl, wWeatherDailyFlags
+	bit WEATHER_DAILY_ROUTE_38_SAND_F, [hl]
+	jr z, .check_ruins
+	ld hl, Route38SandMaps
 	call IsCurrentMapInWeatherArea
 	jr z, .sand
 .check_ruins
