@@ -31,8 +31,9 @@ HealPartyMon:
 	ld hl, MON_STATUS
 	add hl, de
 	xor a
-	ld [hli], a
 	ld [hl], a
+	; The following byte is MON_UNUSED, which stores the mon's permanent
+	; shiny/gender flags. Healing must not clear it.
 
 	ld hl, MON_MAXHP
 	add hl, de

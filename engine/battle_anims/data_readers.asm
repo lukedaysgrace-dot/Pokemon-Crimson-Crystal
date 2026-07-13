@@ -428,7 +428,20 @@ endr
 	ld h, [hl]
 	ld l, a
 	pop de
+	; vTiles0 from BATTLEANIM_BASE_TILE through tile $7f is the entire
+	; animation-GFX region. Refuse a set that would spill into vTiles1, where
+	; the battle font lives. Return carry so the command handler can discard
+	; the corresponding tile-dictionary entry.
+	ld a, [wBattleAnimTemp0]
+	add c
+	cp (vTiles1 - vTiles0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE + 1
+	jr nc, .overflow
 	push bc
 	call DecompressRequest2bpp
 	pop bc
+	and a
+	ret
+
+.overflow
+	scf
 	ret

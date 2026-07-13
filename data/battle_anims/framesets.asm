@@ -289,6 +289,7 @@ BattleAnimFrameData:
 	dw .Frameset_UTurnDiagonal ; BATTLEANIMFRAMESET_PC_U_TURN_DIAGONAL
 	dw .Frameset_UTurnVertical ; BATTLEANIMFRAMESET_PC_U_TURN_VERTICAL
 	dw .Frameset_UTurnFall ; BATTLEANIMFRAMESET_PC_U_TURN_FALL
+	dw .Frameset_GrowingHeart ; BATTLEANIMFRAMESET_PC_GROWING_HEART
 
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
@@ -1813,3 +1814,8 @@ BattleAnimFrameData:
 .Frameset_UTurnFall:
 	oamframe BATTLEANIMOAMSET_U_TURN_FALL, 32
 	oamendanim
+
+.Frameset_GrowingHeart:
+	oamframe BATTLEANIMOAMSET_0F, 6
+	oamframe BATTLEANIMOAMSET_1B, 6
+	oamdelanim

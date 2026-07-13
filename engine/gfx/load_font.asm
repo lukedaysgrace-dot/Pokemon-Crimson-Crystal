@@ -98,7 +98,27 @@ LoadHPBar:
 	ld hl, vTiles2 tile $5e
 	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2
+	; Shiny star icon: overwrite the unused "<DO>" glyph at tile $70 in battle
+	; VRAM so the battle HUD can display it next to a shiny mon's level.
+	ld de, ShinyStarGFX
+	ld hl, vTiles2 tile $70
+	lb bc, BANK(ShinyStarGFX), 1
+	call Get2bpp_2
 	ret
+
+ShinyStarGFX:
+; 8x8 shiny "asterism" icon: three equal small 4-point sparkles (one on top,
+; two on the bottom), matching the stats screen shiny symbol. Drawn in color
+; index 2, which is blue in the battle exp palette (PAL_BATTLE_BG_EXP) and in
+; the dedicated stats-screen shiny palette. Each row is (bitplane0, bitplane1).
+	db $00, $08
+	db $00, $1c
+	db $00, $08
+	db $00, $00
+	db $00, $22
+	db $00, $77
+	db $00, $22
+	db $00, $00
 
 StatsScreen_LoadFont:
 	call _LoadFontsBattleExtra
@@ -122,5 +142,12 @@ LoadStatsScreenPageTilesGFX:
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
 	lb bc, BANK(StatsScreenPageTilesGFX), 17
+	call Get2bpp_2
+	; Replace the stats screen shiny icon ("⁂", tile $3f) with the same blue
+	; asterism used in battle, so the two icons match. It is colored blue via
+	; the exp palette in _CGB_StatsScreen.
+	ld de, ShinyStarGFX
+	ld hl, vTiles2 tile $3f
+	lb bc, BANK(ShinyStarGFX), 1
 	call Get2bpp_2
 	ret
