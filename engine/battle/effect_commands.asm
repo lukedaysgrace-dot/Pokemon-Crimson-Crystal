@@ -6054,6 +6054,13 @@ BattleCommand_FinishConfusingTarget:
 	ld bc, wPlayerConfuseCount
 
 .got_confuse_count
+	; Re-fetch the target's SUBSTATUS3 address: the calls above
+	; (CheckSubstituteOpp, AbilityPreventsConfusion) clobber hl, so it can no
+	; longer be relied on to point at the opponent's status here.
+	push bc
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVarAddr
+	pop bc
 	set SUBSTATUS_CONFUSED, [hl]
 	; confused for 2-5 turns
 	call BattleRandom
