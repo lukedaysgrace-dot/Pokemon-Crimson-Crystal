@@ -125,10 +125,9 @@ _CGB_FinishBattleScreenLayout:
 	lb bc, 7, 10
 	ld a, PAL_BATTLE_BG_ENEMY
 	call FillBoxCGB
-	hlcoord 0, 0, wAttrMap
-	lb bc, 4, 10
-	ld a, PAL_BATTLE_BG_ENEMY_HP
-	call FillBoxCGB
+	; (Removed a redundant re-fill of rows 0-3, cols 0-9 with PAL_BATTLE_BG_ENEMY_HP;
+	;  the full-screen ByteFill above already set that region to ENEMY_HP, and nothing
+	;  overwrites it in between. Freed space keeps bank2 within its 0x4000 limit.)
 	hlcoord 10, 7, wAttrMap
 	lb bc, 5, 10
 	ld a, PAL_BATTLE_BG_PLAYER_HP
@@ -146,6 +145,11 @@ _CGB_FinishBattleScreenLayout:
 	ld bc, 6 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
+	; Recolor the two shiny star icon tiles blue (exp bar palette). These tiles
+	; are blank unless the mon is shiny, so this is invisible for normal mons.
+	ld a, PAL_BATTLE_BG_EXP
+	ld [wAttrMap + 1 * SCREEN_WIDTH + 4], a
+	ld [wAttrMap + 8 * SCREEN_WIDTH + 12], a
 	call ApplyAttrMap
 	ret
 
@@ -284,6 +288,12 @@ _CGB_StatsScreenHPPals:
 	lb bc, 2, 2
 	ld a, $5 ; blue page palette
 	call FillBoxCGB
+
+	; Color the shiny icon at (19, 0) using the blue page palette (slot 5:
+	; white background, blue foreground). Unlike the exp palette, this slot is
+	; not recolored per page, so the icon background stays white.
+	ld a, $5
+	ld [wAttrMap + 19], a
 
 	call ApplyAttrMap
 	call ApplyPals

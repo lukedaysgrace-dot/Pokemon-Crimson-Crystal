@@ -601,10 +601,8 @@ RestoreBattleAttrMapNoPalettes:
 	lb bc, 7, 10
 	ld a, PAL_BATTLE_BG_ENEMY
 	call .FillBox
-	hlcoord 0, 0, wAttrMap
-	lb bc, 4, 10
-	ld a, PAL_BATTLE_BG_ENEMY_HP
-	call .FillBox
+	; (The rows 0-3, cols 0-9 ENEMY_HP re-fill from the original layout is
+	;  redundant with the full-screen ByteFill above, so it is omitted here.)
 	hlcoord 10, 7, wAttrMap
 	lb bc, 5, 10
 	ld a, PAL_BATTLE_BG_PLAYER_HP
@@ -617,6 +615,10 @@ RestoreBattleAttrMapNoPalettes:
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, PAL_BATTLE_BG_TEXT
 	call ByteFill
+	; Keep the shiny star icons blue after an ability banner is dismissed.
+	ld a, PAL_BATTLE_BG_EXP
+	ld [wAttrMap + 1 * SCREEN_WIDTH + 4], a
+	ld [wAttrMap + 8 * SCREEN_WIDTH + 12], a
 	farcall ApplyAttrMap
 	ret
 

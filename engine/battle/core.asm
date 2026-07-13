@@ -4825,6 +4825,13 @@ PrintPlayerHUD:
 	dec hl ; genderless
 
 .copy_level
+	push hl
+	call BattleCheckPlayerShininess
+	jr nc, .player_not_shiny
+	hlcoord 12, 8
+	ld [hl], $70 ; shiny star icon
+.player_not_shiny
+	pop hl
 	ld a, [wBattleMonLevel]
 	ld [wTempMonLevel], a
 	jp PrintLevel
@@ -4901,6 +4908,13 @@ DrawEnemyHUD:
 	jr nz, .print_level
 	dec hl
 .print_level
+	push hl
+	call BattleCheckEnemyShininess
+	jr nc, .enemy_not_shiny
+	hlcoord 4, 1
+	ld [hl], $70 ; shiny star icon
+.enemy_not_shiny
+	pop hl
 	ld a, [wEnemyMonLevel]
 	ld [wTempMonLevel], a
 	call PrintLevel
