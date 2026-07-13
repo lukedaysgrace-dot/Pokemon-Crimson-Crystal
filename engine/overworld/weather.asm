@@ -638,7 +638,7 @@ RenderRain:
 
 RenderSnow:
 	ld hl, WeatherParticleSeeds
-	ld e, 8
+	ld e, 16
 .loop
 	; Small eight-pixel horizontal drift, one-pixel vertical fall.
 	ld a, [hli]
@@ -666,7 +666,7 @@ RenderSnow:
 
 RenderSandstorm:
 	ld hl, WeatherParticleSeeds
-	ld e, 8
+	ld e, 16
 .loop
 	; Fast diagonal movement across exposed rocky ground.
 	ld a, [hli]
@@ -701,7 +701,7 @@ RenderSandstorm:
 
 RenderCherryBlossoms:
 	ld hl, WeatherParticleSeeds
-	ld e, 8
+	ld e, 16
 .loop
 	; Petals drift gently down and right.
 	ld a, [hli]
@@ -946,8 +946,7 @@ ApplyWeatherTint::
 INCLUDE "data/maps/overcast_maps.asm"
 
 ; Seed coordinates (screen pixels, before OAM bias) scattered across the
-; screen. Snow, sand and cherry blossoms use the first eight; rain uses all of
-; them for a denser, less obviously patterned downpour.
+; screen. All weather types use the full set of sixteen seeds.
 WeatherParticleSeeds:
 	db   4,  12
 	db  24,  96
