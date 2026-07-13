@@ -319,6 +319,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_BLUR_VERTICAL_DOWN
 	const ANIM_OBJ_HEART_BURST
 	const ANIM_OBJ_SHOOTING_HEART
+	const ANIM_OBJ_DAZZLE ; ported from polishedcrystal for Dazzling Gleam
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
