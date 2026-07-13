@@ -845,7 +845,8 @@ BattleAnimCmd_5GFX:
 	ld [hli], a
 	push bc
 	push hl
-	farcall LoadBattleAnimGFX ; reads wBattleAnimByte and wBattleAnimTemp0
+	farcall LoadBattleAnimGFX ; reads wBattleAnimByte and wBattleAnimTemp0; carry on overflow
+	jr c, .overflow
 	ld a, [wBattleAnimTemp0]
 	add c
 	ld [wBattleAnimTemp0], a
@@ -853,6 +854,18 @@ BattleAnimCmd_5GFX:
 	pop bc
 	dec c
 	jr nz, .loop
+	ret
+
+.overflow
+	; Do not leave an out-of-range tile offset in the dictionary. Objects whose
+	; GFX could not be loaded will fall back to offset 0 instead of indexing the
+	; font tiles at vTiles1.
+	pop hl
+	pop bc
+	dec hl
+	xor a
+	ld [hld], a
+	ld [hl], a
 	ret
 
 BattleAnimCmd_IncObj:

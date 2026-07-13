@@ -143,6 +143,7 @@ gfx/battle_anims/charge.2bpp: tools/gfx += --trim-whitespace
 gfx/battle_anims/egg.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/explosion.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/hit.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/hearts.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/horn.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/lightning.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
