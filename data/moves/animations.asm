@@ -445,24 +445,47 @@ BattleAnim_GigaHammer:
 	anim_ret
 
 BattleAnim_DazzlingGleam:
-; Bright pastel fairy flash washing across the battlefield
-	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_BEAM
+; ported from polishedcrystal
+	anim_3gfx ANIM_GFX_HIT_2, ANIM_GFX_SHINE, ANIM_GFX_SPEED
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_TRI_COLOR
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_TRI_COLOR
+	anim_sound 0, 1, SFX_MOONLIGHT
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_MOONLIGHT, 32, 72, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 48, 84, $0
-	anim_obj ANIM_OBJ_MOONLIGHT, 64, 96, $0
-	anim_wait 16
-	anim_call BattleAnim_AuroraBeam_branch_cbb39
-	anim_wait 16
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_GLIMMER, 136, 56, $0
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_GLIMMER, 128, 48, $10
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_GLIMMER, 144, 64, $18
-	anim_wait 24
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $0
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $8
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $10
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $18
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $20
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $28
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $30
+	anim_obj ANIM_OBJ_DAZZLE, 44, 88, $38
+	anim_wait 48
+	anim_setbgpal PAL_BATTLE_BG_PLAYER, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_ENEMY, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_ENEMY_HP, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_PLAYER_HP, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_EXP, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_5, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_6, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_setbgpal PAL_BATTLE_BG_TEXT, PAL_BTLCUSTOM_VERY_BRIGHT_PINK
+	anim_incbgeffect ANIM_BG_ALTERNATE_HUES
+	anim_sound 0, 1, SFX_FLASH
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $20
+	anim_wait 4
+	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20
+	anim_obj ANIM_OBJ_GLIMMER, 24, 64, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 56, 104, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_obj ANIM_OBJ_GLIMMER, 24, 104, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 56, 64, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 40, 84, $0
+	anim_wait 5
+	anim_wait 32
 	anim_ret
 
 BattleAnim_DisarmingVoice:
@@ -512,10 +535,10 @@ BattleAnim_DrainingKiss:
 
 BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_SPEED
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_sound 0, 0, SFX_MENU
 	anim_call BattleAnimSub_QuickAttack
 	anim_wait 12
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
 	anim_3gfx ANIM_GFX_STARS, ANIM_GFX_HIT, ANIM_GFX_HEARTS
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $55, $2, $0
 .loop
