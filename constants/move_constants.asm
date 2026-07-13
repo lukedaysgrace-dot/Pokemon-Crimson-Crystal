@@ -364,7 +364,11 @@ NUM_ATTACKS EQU const_value + -1
 	const ANIM_STAT_UP
 	const ANIM_STAT_DOWN
 ; Animations with negative IDs will play even when animations are disabled
-const_value = -$17 ;fix if more negative values are added
+const_value = -$1b ;fix if more negative values are added
+	const ANIM_INTRO_RAIN        ; -1b (ffe5)
+	const ANIM_INTRO_SUN         ; -1a (ffe6)
+	const ANIM_INTRO_SANDSTORM   ; -19 (ffe7)
+	const ANIM_INTRO_HAIL        ; -18 (ffe8)
 	const ANIM_IN_HAIL           ; -17 (ffe9)
 	const ANIM_THROW_POKE_BALL   ; -16 (ffea)
 	const ANIM_SEND_OUT_MON      ; -15 (ffeb)

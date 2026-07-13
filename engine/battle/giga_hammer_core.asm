@@ -82,22 +82,22 @@ ApplyOverworldBattleWeather:
 	cp NITE_F
 	ret nc ; no bright sun at night or in darkness
 	ld a, WEATHER_SUN
-	ld de, SUNNY_DAY
+	ld de, ANIM_INTRO_SUN
 	ld hl, SunGotBrightText
 	jr .apply
 .rain
 	ld a, WEATHER_RAIN
-	ld de, RAIN_DANCE
+	ld de, ANIM_INTRO_RAIN
 	ld hl, DownpourText
 	jr .apply
 .hail
 	ld a, WEATHER_HAIL
-	ld de, HAIL
+	ld de, ANIM_INTRO_HAIL
 	ld hl, ItStartedToHailText
 	jr .apply
 .sandstorm
 	ld a, WEATHER_SANDSTORM
-	ld de, SANDSTORM
+	ld de, ANIM_INTRO_SANDSTORM
 	ld hl, SandstormBrewedText
 .apply
 	ld [wBattleWeather], a
@@ -106,8 +106,14 @@ ApplyOverworldBattleWeather:
 	push de
 	call StdBattleTextbox
 	pop de
-	; Play the matching move animation (de) so the weather visibly sweeps
-	; the field right after its message, before any send-out.
+	; Play the weather animation so it visibly sweeps the field right
+	; after its message, before any send-out. The ANIM_INTRO_* IDs are
+	; negative aliases for the move animations: negative IDs make
+	; BattleAnimRunScript skip BattleAnimClearHud/BattleAnimRestoreHuds,
+	; which would otherwise draw both HUDs from empty mon data mid-intro
+	; and corrupt the screen.
+	farcall CheckBattleScene
+	ret c ; respect the "battle scene off" option
 	xor a
 	ldh [hBattleTurn], a
 	ld [wNumHits], a
