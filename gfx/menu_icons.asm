@@ -314,20 +314,20 @@ GolurkMenuIcon:      INCBIN "gfx/menu_icons/golurk.2bpp"
 DuskullMenuIcon:     INCBIN "gfx/menu_icons/duskull.2bpp"
 DusclopsMenuIcon:    INCBIN "gfx/menu_icons/dusclops.2bpp"
 DusknoirMenuIcon:    INCBIN "gfx/menu_icons/dusknoir.2bpp"
-TimburrMenuIcon:     INCBIN "gfx/menu_icons/fighter.2bpp" ; TODO: gfx/menu_icons/timburr.png
-GurdurrMenuIcon:     INCBIN "gfx/menu_icons/fighter.2bpp" ; TODO: gfx/menu_icons/gurdurr.png
-ConkeldurrMenuIcon:  INCBIN "gfx/menu_icons/fighter.2bpp" ; TODO: gfx/menu_icons/conkeldurr.png
-LarvestaMenuIcon:    INCBIN "gfx/menu_icons/caterpillar.2bpp" ; TODO: gfx/menu_icons/larvesta.png
-VolcaronaMenuIcon:   INCBIN "gfx/menu_icons/moth.2bpp" ; TODO: gfx/menu_icons/volcarona.png
+TimburrMenuIcon:     INCBIN "gfx/menu_icons/timburr.2bpp"
+GurdurrMenuIcon:     INCBIN "gfx/menu_icons/gurdurr.2bpp"
+ConkeldurrMenuIcon:  INCBIN "gfx/menu_icons/conkeldurr.2bpp"
+LarvestaMenuIcon:    INCBIN "gfx/menu_icons/larvesta.2bpp"
+VolcaronaMenuIcon:   INCBIN "gfx/menu_icons/volcarona.2bpp"
 DeinoMenuIcon:       INCBIN "gfx/menu_icons/deino.2bpp"
 ZweilousMenuIcon:    INCBIN "gfx/menu_icons/zweilous.2bpp"
 HydreigonMenuIcon:   INCBIN "gfx/menu_icons/hydreigon.2bpp"
-DreepyMenuIcon:      INCBIN "gfx/menu_icons/ghost.2bpp" ; TODO: gfx/menu_icons/dreepy.png
+DreepyMenuIcon:      INCBIN "gfx/menu_icons/dreepy.2bpp"
 DrakloakMenuIcon:    INCBIN "gfx/menu_icons/drakloak.2bpp"
 DragapultMenuIcon:   INCBIN "gfx/menu_icons/dragapult.2bpp"
-ImpidimpMenuIcon:    INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/impidimp.png
-MorgremMenuIcon:     INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/morgrem.png
-GrimmsnarlMenuIcon:  INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/grimmsnarl.png
+ImpidimpMenuIcon:    INCBIN "gfx/menu_icons/impidimp.2bpp"
+MorgremMenuIcon:     INCBIN "gfx/menu_icons/morgrem.2bpp"
+GrimmsnarlMenuIcon:  INCBIN "gfx/menu_icons/grimmsnarl.2bpp"
 TinkatinkMenuIcon:   INCBIN "gfx/menu_icons/tinkatink.2bpp"
 TinkatuffMenuIcon:   INCBIN "gfx/menu_icons/tinkatuff.2bpp"
 TinkatonMenuIcon:    INCBIN "gfx/menu_icons/tinkaton.2bpp"
@@ -343,7 +343,7 @@ CorvisquireMenuIcon: INCBIN "gfx/menu_icons/corvisquire.2bpp"
 CorviknightMenuIcon: INCBIN "gfx/menu_icons/corviknight.2bpp"
 SECTION "Menu Icons 5b", ROMX
 
-AbomasnowMenuIcon:   INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/abomasnow.png
+AbomasnowMenuIcon:   INCBIN "gfx/menu_icons/abomasnow.2bpp"
 AltariaMenuIcon:     INCBIN "gfx/menu_icons/altaria.2bpp"
 AnorithMenuIcon:     INCBIN "gfx/menu_icons/anorith.2bpp"
 AppletunMenuIcon:    INCBIN "gfx/menu_icons/appletun.2bpp"
@@ -353,23 +353,23 @@ BreloomMenuIcon:     INCBIN "gfx/menu_icons/breloom.2bpp"
 BunearyMenuIcon:     INCBIN "gfx/menu_icons/buneary.2bpp"
 CameruptMenuIcon:    INCBIN "gfx/menu_icons/camerupt.2bpp"
 CentiskorchMenuIcon: INCBIN "gfx/menu_icons/centiskorch.2bpp"
-CharjabugMenuIcon:   INCBIN "gfx/menu_icons/bug.2bpp" ; TODO: gfx/menu_icons/charjabug.png
+CharjabugMenuIcon:   INCBIN "gfx/menu_icons/charjabug.2bpp"
 CroagunkMenuIcon:    INCBIN "gfx/menu_icons/croagunk.2bpp"
 DipplinMenuIcon:     INCBIN "gfx/menu_icons/dipplin.2bpp"
 DrifblimMenuIcon:    INCBIN "gfx/menu_icons/drifblim.2bpp"
 DrifloonMenuIcon:    INCBIN "gfx/menu_icons/drifloon.2bpp"
 DrilburMenuIcon:     INCBIN "gfx/menu_icons/drilbur.2bpp"
-DuraludonMenuIcon:   INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/duraludon.png
+DuraludonMenuIcon:   INCBIN "gfx/menu_icons/duraludon.2bpp"
 ElectrikeMenuIcon:   INCBIN "gfx/menu_icons/electrike.2bpp"
 ExcadrillMenuIcon:   INCBIN "gfx/menu_icons/excadrill.2bpp"
 FlappleMenuIcon:     INCBIN "gfx/menu_icons/flapple.2bpp"
-FletchinderMenuIcon: INCBIN "gfx/menu_icons/bird.2bpp" ; TODO: gfx/menu_icons/fletchinder.png
-FletchlingMenuIcon:  INCBIN "gfx/menu_icons/bird.2bpp" ; TODO: gfx/menu_icons/fletchling.png
+FletchinderMenuIcon: INCBIN "gfx/menu_icons/fletchinder.2bpp"
+FletchlingMenuIcon:  INCBIN "gfx/menu_icons/fletchling.2bpp"
 FlygonMenuIcon:      INCBIN "gfx/menu_icons/flygon.2bpp"
 FroslassMenuIcon:    INCBIN "gfx/menu_icons/froslass.2bpp"
 GolisopodMenuIcon:   INCBIN "gfx/menu_icons/golisopod.2bpp"
-GrubbinMenuIcon:     INCBIN "gfx/menu_icons/bug.2bpp" ; TODO: gfx/menu_icons/grubbin.png
-GrumpigMenuIcon:     INCBIN "gfx/menu_icons/quadruped.2bpp" ; TODO: gfx/menu_icons/grumpig.png
+GrubbinMenuIcon:     INCBIN "gfx/menu_icons/grubbin.2bpp"
+GrumpigMenuIcon:     INCBIN "gfx/menu_icons/grumpig.2bpp"
 HydrappleMenuIcon:   INCBIN "gfx/menu_icons/hydrapple.2bpp"
 KingambitMenuIcon:   INCBIN "gfx/menu_icons/kingambit.2bpp"
 LombreMenuIcon:      INCBIN "gfx/menu_icons/lombre.2bpp"
@@ -381,21 +381,21 @@ NumelMenuIcon:       INCBIN "gfx/menu_icons/numel.2bpp"
 OverqwilMenuIcon:    INCBIN "gfx/menu_icons/overqwil.2bpp"
 ScraftyMenuIcon:     INCBIN "gfx/menu_icons/scrafty.2bpp"
 ScraggyMenuIcon:     INCBIN "gfx/menu_icons/scraggy.2bpp"
-SealeoMenuIcon:      INCBIN "gfx/menu_icons/seel.2bpp" ; TODO: gfx/menu_icons/sealeo.png
+SealeoMenuIcon:      INCBIN "gfx/menu_icons/sealeo.2bpp"
 ShroomishMenuIcon:   INCBIN "gfx/menu_icons/shroomish.2bpp"
 SizzlipedeMenuIcon:  INCBIN "gfx/menu_icons/sizzlipede.2bpp"
 SnoruntMenuIcon:     INCBIN "gfx/menu_icons/snorunt.2bpp"
-SnoverMenuIcon:      INCBIN "gfx/menu_icons/plant.2bpp" ; TODO: gfx/menu_icons/snover.png
-SphealMenuIcon:      INCBIN "gfx/menu_icons/seel.2bpp" ; TODO: gfx/menu_icons/spheal.png
-SpoinkMenuIcon:      INCBIN "gfx/menu_icons/quadruped.2bpp" ; TODO: gfx/menu_icons/spoink.png
+SnoverMenuIcon:      INCBIN "gfx/menu_icons/snover.2bpp"
+SphealMenuIcon:      INCBIN "gfx/menu_icons/spheal.2bpp"
+SpoinkMenuIcon:      INCBIN "gfx/menu_icons/spoink.2bpp"
 SwabluMenuIcon:      INCBIN "gfx/menu_icons/swablu.2bpp"
-TalonflameMenuIcon:  INCBIN "gfx/menu_icons/bird.2bpp" ; TODO: gfx/menu_icons/talonflame.png
+TalonflameMenuIcon:  INCBIN "gfx/menu_icons/talonflame.2bpp"
 ToxicroakMenuIcon:   INCBIN "gfx/menu_icons/toxicroak.2bpp"
 TrapinchMenuIcon:    INCBIN "gfx/menu_icons/trapinch.2bpp"
 UrsalunabmMenuIcon:  INCBIN "gfx/menu_icons/ursaluna_bloodmoon.2bpp"
 VibravaMenuIcon:     INCBIN "gfx/menu_icons/vibrava.2bpp"
-VikavoltMenuIcon:    INCBIN "gfx/menu_icons/bug.2bpp" ; TODO: gfx/menu_icons/vikavolt.png
-WalreinMenuIcon:     INCBIN "gfx/menu_icons/dewgong.2bpp" ; TODO: gfx/menu_icons/walrein.png
+VikavoltMenuIcon:    INCBIN "gfx/menu_icons/vikavolt.2bpp"
+WalreinMenuIcon:     INCBIN "gfx/menu_icons/walrein.2bpp"
 WimpodMenuIcon:      INCBIN "gfx/menu_icons/wimpod.2bpp"
 TeddiursabmMenuIcon: INCBIN "gfx/menu_icons/teddiursa.2bpp"
 UrsaringbmMenuIcon:  INCBIN "gfx/menu_icons/ursaring.2bpp"
@@ -465,18 +465,18 @@ TaurosPaldeanFireMenuIcon: INCBIN "gfx/menu_icons/tauros_paldean_fire.2bpp"
 TaurosPaldeanWaterMenuIcon: INCBIN "gfx/menu_icons/tauros_paldean_water.2bpp"
 SneaslerMenuIcon: INCBIN "gfx/menu_icons/sneasler.2bpp"
 WatuMenuIcon: INCBIN "gfx/menu_icons/bird.2bpp" ; TODO: gfx/menu_icons/watu.png
-BounsweetMenuIcon: INCBIN "gfx/menu_icons/oddish.2bpp" ; TODO: gfx/menu_icons/bounsweet.png
-SteeneeMenuIcon: INCBIN "gfx/menu_icons/oddish.2bpp" ; TODO: gfx/menu_icons/steenee.png
-TsareenaMenuIcon: INCBIN "gfx/menu_icons/humanshape.2bpp" ; TODO: gfx/menu_icons/tsareena.png
+BounsweetMenuIcon: INCBIN "gfx/menu_icons/bounsweet.2bpp"
+SteeneeMenuIcon: INCBIN "gfx/menu_icons/steenee.2bpp"
+TsareenaMenuIcon: INCBIN "gfx/menu_icons/tsareena.2bpp"
 AronMenuIcon: INCBIN "gfx/menu_icons/aron.2bpp"
 LaironMenuIcon: INCBIN "gfx/menu_icons/lairon.2bpp"
 AggronMenuIcon: INCBIN "gfx/menu_icons/aggron.2bpp"
 KleavorMenuIcon: INCBIN "gfx/menu_icons/kleavor.2bpp"
 GlimmetMenuIcon: INCBIN "gfx/menu_icons/glimmet.2bpp"
-MareanieMenuIcon: INCBIN "gfx/menu_icons/jellyfish.2bpp" ; TODO: gfx/menu_icons/mareanie.png
-ToxapexMenuIcon: INCBIN "gfx/menu_icons/jellyfish.2bpp" ; TODO: gfx/menu_icons/toxapex.png
-ZangooseMenuIcon: INCBIN "gfx/menu_icons/monster.2bpp" ; TODO: gfx/menu_icons/zangoose.png
-SeviperMenuIcon: INCBIN "gfx/menu_icons/serpent.2bpp" ; TODO: gfx/menu_icons/seviper.png
+MareanieMenuIcon: INCBIN "gfx/menu_icons/mareanie.2bpp"
+ToxapexMenuIcon: INCBIN "gfx/menu_icons/toxapex.2bpp"
+ZangooseMenuIcon: INCBIN "gfx/menu_icons/zangoose.2bpp"
+SeviperMenuIcon: INCBIN "gfx/menu_icons/seviper.2bpp"
 GlimmoraMenuIcon: INCBIN "gfx/menu_icons/glimmora.2bpp"
 CetoddleMenuIcon: INCBIN "gfx/menu_icons/cetoddle.2bpp"
 CetitanMenuIcon: INCBIN "gfx/menu_icons/cetitan.2bpp"
