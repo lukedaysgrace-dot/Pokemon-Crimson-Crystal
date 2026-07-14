@@ -178,7 +178,7 @@ ItemDescriptions:
 	dw WiseGlassesDesc
 	dw ParkBallDesc
 	dw RainbowWingDesc
-	dw QuestionMarkDesc
+	dw FlameOrbDesc
 	dw BrickPieceDesc
 	dw SurfMailDesc
 	dw LiteBlueMailDesc
@@ -189,7 +189,7 @@ ItemDescriptions:
 	dw BlueSkyMailDesc
 	dw MusicMailDesc
 	dw MewMailDesc
-	dw QuestionMarkDesc
+	dw ToxicOrbDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
@@ -818,6 +818,14 @@ MuscleBandDesc:
 WiseGlassesDesc:
 	db   "Boosts special"
 	next "moves. (HOLD)@"
+
+FlameOrbDesc:
+	db   "Burns the holder"
+	next "in battle. (HOLD)@"
+
+ToxicOrbDesc:
+	db   "Badly poisons the"
+	next "holder. (HOLD)@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

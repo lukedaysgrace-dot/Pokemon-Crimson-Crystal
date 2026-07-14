@@ -993,6 +993,22 @@ UserBadlyPoisonedText:
 	line "badly poisoned!"
 	prompt
 
+BattleText_BurnedByItem:
+	text "<USER>"
+	line "was burned by"
+	cont "@"
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
+BattleText_BadlyPoisonedByItem:
+	text "<USER>"
+	line "was badly poisoned"
+	cont "by @"
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
 AlreadyBurnedText:
 	text "<TARGET> is"
 	line "already burned!"
