@@ -628,6 +628,185 @@ BattleParalyzeTarget_Core:
 	farcall UseHeldStatusHealingItem
 	ret
 
+HandleStatusOrbs_Core:
+; FLAME ORB / TOXIC ORB: status the holder at the end of the turn.
+; Self-inflicted, so Safeguard doesn't block it (canon).
+; Farcalled from HandleBetweenTurnEffects (core.asm).
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .DoEnemyFirst
+	call SetPlayerTurn
+	call .do_it
+	call SetEnemyTurn
+	jp .do_it
+
+.DoEnemyFirst:
+	call SetEnemyTurn
+	call .do_it
+	call SetPlayerTurn
+
+.do_it
+	callfar GetUserItem
+	ld a, b
+	cp HELD_FLAME_ORB
+	jr z, .flame_orb
+	cp HELD_TOXIC_ORB
+	jr z, .toxic_orb
+	ret
+
+.flame_orb
+	call .GetHolderState
+	ret c ; fainted or already statused
+	; Fire-types can't be burned
+	ld a, [de]
+	cp FIRE
+	ret z
+	inc de
+	ld a, [de]
+	cp FIRE
+	ret z
+	; nor can mons whose ability prevents burns
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp WATER_VEIL
+	ret z
+	cp THERMAL_EXCHANGE
+	ret z
+	call .GetOrbName
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	set BRN, [hl]
+	call UpdateUserInParty
+	; burn halves Attack; ApplyBrnEffectOnAttack works on the
+	; opponent of the turn holder, so flip perspective around it
+	callfar BattleCommand_SwitchTurn
+	farcall ApplyBrnEffectOnAttack
+	callfar BattleCommand_SwitchTurn
+	ld de, ANIM_BRN
+	call .OrbAnim
+	call RefreshBattleHuds
+	ld hl, BattleText_BurnedByItem
+	jp StdBattleTextbox
+
+.toxic_orb
+	call .GetHolderState
+	ret c ; fainted or already statused
+	; Poison- and Steel-types can't be poisoned
+	ld a, [de]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	inc de
+	ld a, [de]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	; nor can mons whose ability prevents poison
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp IMMUNITY
+	ret z
+	cp PASTEL_VEIL
+	ret z
+	call .GetOrbName
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	set PSN, [hl]
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVarAddr
+	set SUBSTATUS_TOXIC, [hl]
+	ld hl, wPlayerToxicCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_toxic_count
+	ld hl, wEnemyToxicCount
+.got_toxic_count
+	xor a
+	ld [hl], a
+	call UpdateUserInParty
+	ld de, ANIM_PSN
+	call .OrbAnim
+	call RefreshBattleHuds
+	ld hl, BattleText_BadlyPoisonedByItem
+	jp StdBattleTextbox
+
+.GetHolderState
+; Carry if the holder can't take the orb's status
+; (fainted or already statused). Returns de = holder's types.
+	ld hl, wBattleMonHP
+	ld de, wBattleMonType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_hp
+	ld hl, wEnemyMonHP
+	ld de, wEnemyMonType
+.got_hp
+	ld a, [hli]
+	or [hl]
+	jr z, .cant
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and a
+	jr nz, .cant
+	and a ; clear carry
+	ret
+.cant
+	scf
+	ret
+
+.GetOrbName
+	push de
+	callfar GetUserItem
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	pop de
+	ret
+
+.OrbAnim
+; de = anim id. Like ToxicSpikesPoison's poison_anim, the victim is the
+; current turn holder, so PlayBattleAnim renders it on the right mon.
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	xor a
+	ld [wNumHits], a
+	farcall PlayBattleAnim
+	ret
+
+CheckSpikesUngrounded_Core:
+; Carry if the turn holder isn't grounded - Flying-type, Levitate
+; or an AIR BALLOON - and so avoids Spikes. Body lives here because
+; the Battle Core bank is full. Clobbers b, hl.
+	ld hl, wBattleMonType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType
+.got_types
+	ld a, [hli]
+	cp FLYING
+	jr z, .ungrounded
+	ld a, [hl]
+	cp FLYING
+	jr z, .ungrounded
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp LEVITATE
+	jr z, .ungrounded
+	callfar GetUserItem
+	ld a, b
+	cp HELD_AIR_BALLOON
+	jr z, .ungrounded
+	and a
+	ret
+.ungrounded
+	scf
+	ret
+
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"

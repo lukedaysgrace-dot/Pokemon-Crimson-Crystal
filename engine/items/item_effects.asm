@@ -191,7 +191,7 @@ ItemEffects:
 	dw NoEffect            ; WISE_GLASSES
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
-	dw NoEffect            ; ITEM_B3
+	dw NoEffect            ; FLAME_ORB
 	dw EvoStoneEffect      ; BRICK_PIECE
 
 PokeBallEffect:

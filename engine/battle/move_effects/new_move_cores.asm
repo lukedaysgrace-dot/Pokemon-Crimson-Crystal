@@ -603,6 +603,21 @@ ToxicSpikesPoison:
 	cp FLYING
 	ret z
 
+	; An AIR BALLOON keeps the holder off the ground
+	; (checked before absorption: a floating Poison-type
+	; doesn't soak up the spikes either)
+	push hl
+	push de
+	push bc
+	callfar GetUserItem
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp HELD_AIR_BALLOON
+	ret z
+	ld a, [de] ; restore type2 for the checks below
+
 	; Grounded Poison-types absorb the toxic spikes (even Poison/Steel)
 	cp POISON
 	jr z, .absorb

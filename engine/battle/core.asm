@@ -313,6 +313,7 @@ HandleBetweenTurnEffects:
 	call HandleScreens
 	call HandleStatBoostingHeldItems
 	call HandleHealingItems
+	farcall HandleStatusOrbs_Core
 	call UpdateBattleMonInParty
 	call LoadTileMapToTempTileMap
 	jp HandleEncore
@@ -4222,27 +4223,22 @@ SpikesDamage:
 
 .Spikes:
 	ld hl, wPlayerScreens
-	ld de, wBattleMonType
 	ld bc, UpdatePlayerHUD
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, wEnemyScreens
-	ld de, wEnemyMonType
 	ld bc, UpdateEnemyHUD
 .ok
 
 	bit SCREENS_SPIKES, [hl]
 	ret z
 
-	; Flying-types aren't affected by Spikes.
-	ld a, [de]
-	cp FLYING
-	ret z
-	inc de
-	ld a, [de]
-	cp FLYING
-	ret z
+	; Flying-types, Levitate and AIR BALLOON holders avoid Spikes.
+	push bc
+	farcall CheckSpikesUngrounded_Core
+	pop bc
+	ret c
 
 	push bc
 
