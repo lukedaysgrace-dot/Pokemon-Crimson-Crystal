@@ -2112,7 +2112,6 @@ SeakingEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, PECK
 	dbw 1, TAIL_WHIP
-	dbw 1, TAIL_WHIP
 	dbw 10, SUPERSONIC
 	dbw 15, HORN_ATTACK
 	dbw 24, FLAIL

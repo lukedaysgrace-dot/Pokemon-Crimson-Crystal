@@ -3,7 +3,7 @@
 
 	db   "A charging blow"
 	next "from its head can"
-	next "topple large trees."
+	next "topple big trees."
 
 	page "Its skull is thick"
 	next "but its defenses"

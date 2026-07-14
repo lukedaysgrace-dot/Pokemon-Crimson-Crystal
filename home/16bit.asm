@@ -9,23 +9,23 @@ ___conversion_table_homecall: MACRO
 		fail "16-bit homecall: invalid call type"
 	endc
 
-	if "\1" != "write"
+	if strcmp("\1", "write")
 		ld h, a
 	endc
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(\2)
 	rst Bankswitch
-	if "\1" == "read"
+	if !strcmp("\1", "read")
 		ld a, h
 	endc
 	call \2
-	if "\1" != "read"
+	if strcmp("\1", "read")
 		ld l, a
 	endc
 	pop af
 	rst Bankswitch
-	if "\1" != "read"
+	if strcmp("\1", "read")
 		ld a, l
 	endc
 	ret

@@ -7,5 +7,5 @@
 
 	page "Legends say it"
 	next "reflects moonlight"
-	next "into waking dreams.@"
+	next "into vivid dreams.@"
 

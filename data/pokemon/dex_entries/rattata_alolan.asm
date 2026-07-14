@@ -5,5 +5,5 @@
 	next "in anything that's"
 	next "not fresh. If you"
 	page "take it shopping"
-	next "with you, it'll help"
+	next "with you, it helps"
 	next "pick ingredients.@"

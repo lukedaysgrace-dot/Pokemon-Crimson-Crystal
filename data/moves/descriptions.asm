@@ -1373,84 +1373,84 @@ GigaHammerDescription:
 	next "twice in a row.@"
 
 DazzlingGleamDescription:
-	db   "Damaging fairy flash"
-	next "hits every foe.@"
+	db   "Fairy light hits"
+	next "the target.@"
 
 DisarmingVoiceDescription:
-	db   "Loud sound that never"
-	next "misses the target.@"
+	db   "A cry that always"
+	next "hits the target.@"
 
 DrainingKissDescription:
-	db   "A kiss that steals HP."
-	next "Heals by half damage.@"
+	db   "A life-stealing"
+	next "kiss heals user.@"
 
 PlayRoughDescription:
-	db   "Playful, rough attack."
+	db   "Roughly attacks."
 	next "May lower ATTACK.@"
 
 SpiritBreakDescription:
-	db   "Shatters the spirit."
+	db   "Shatters spirit."
 	next "Lowers SPCL.ATK.@"
 
 FairyWindDescription:
-	db   "A sparkling fairy wind"
-	next "sweeps the target.@"
+	db   "A sparkling wind"
+	next "hits the target.@"
 
 SuckerPunchDescription:
-	db   "Strikes first with a"
-	next "sharp punch.@"
+	db   "A quick punch that"
+	next "strikes first.@"
 
 DarkPulseDescription:
-	db   "An aura pulse that may"
-	next "make the foe flinch.@"
+	db   "An aura pulse may"
+	next "cause flinching.@"
 
 FireFangDescription:
-	db   "Bites with flame. May"
+	db   "A fiery bite. May"
 	next "burn the target.@"
 
 IceFangDescription:
-	db   "Bites with cold. May"
+	db   "An icy bite. May"
 	next "freeze the target.@"
 
 ThunderFangDescription:
-	db   "Bites with current. May"
-	next "paralyze the target.@"
+	db   "A charged bite may"
+	next "paralyze the foe.@"
 
 AquaJetDescription:
-	db   "Strikes first with a jet"
-	next "of water.@"
+	db   "A water jet that"
+	next "strikes first.@"
 
 WildChargeDescription:
-	db   "Shrouded in electricity."
-	next "May paralyze.@"
+	db   "An electric charge"
+	next "that may paralyze.@"
 
 BitterBladeDescription:
-	db   "Fiery slash with malice."
-	next "Heals by half damage.@"
+	db   "A life-stealing"
+	next "fiery slash.@"
 
 HeatCrashDescription:
-	db   "A searing body slam."
-	next "May burn the foe.@"
+	db   "A hot body slam"
+	next "that may burn.@"
 
 IceShardDescription:
 	db   "Strikes first with"
 	next "sharp ice.@"
 
 TripleAxelDescription:
-	db   "Hits three times with"
+	db   "Hits 3 times with"
 	next "rising power.@"
 
 IcicleCrashDescription:
 	db   "Hurls icicles. May"
-	next "make the foe flinch.@"
+	next "cause flinching.@"
 
 StruggleBugDescription:
-	db   "May lower SPCL.ATK."
-	next "A weak bug wave.@"
+	db   "A weak bug wave."
+	next "May lower SP.ATK.@"
 
 InfestationDescription:
-	db   "Crawling bugs swarm"
-	next "the foe. May poison.@"
+	db   "Swarming bugs may"
+	next "poison the target.@"
 
 BugBuzzDescription:
 	db   "An attack that may"
@@ -1465,44 +1465,40 @@ StoneEdgeDescription:
 	next "cal hit ratio.@"
 
 AirSlashDescription:
-	db   "Wind blades. May"
-	next "make the foe flinch.@"
+	db   "Wind blades may"
+	next "cause flinching.@"
 
 PoisonFangDescription:
-	db   "Toxic bite. May badly"
-	next "poison the foe.@"
+	db   "A toxic bite may"
+	next "badly poison.@"
 
 VenoshockDescription:
-	db   "Stronger if the foe"
-	next "is poisoned.@"
+	db   "Power doubles if"
+	next "foe is poisoned.@"
 
 HailDescription:
 	db   "Summons a hail-"
 	next "storm for 5 turns.@"
 
 LeafBladeDescription:
-	db   "Slashes with a"
-	next "sharp leaf. High"
-	next "critical-hit ratio.@"
+	db   "A sharp leaf slash"
+	next "High crit rate.@"
 
 ShadowSneakDescription:
 	db   "Extends a shadow"
 	next "to strike first.@"
 
 ShadowPunchDescription:
-	db   "A punch thrown"
-	next "from the shadows."
-	next "Never misses.@"
+	db   "A shadowy punch"
+	next "that never misses.@"
 
 ShadowClawDescription:
-	db   "Slashes with a"
-	next "shadowy claw. High"
-	next "critical-hit ratio.@"
+	db   "A shadowy claw."
+	next "High crit rate.@"
 
 PoisonJabDescription:
-	db   "Stabs with a"
-	next "poisonous limb."
-	next "May poison.@"
+	db   "A poisonous jab."
+	next "May poison target.@"
 
 LungeDescription:
 	db   "A quick lunge"
@@ -1513,9 +1509,8 @@ BugBiteDescription:
 	next "its sturdy jaws.@"
 
 XScissorDescription:
-	db   "Slashes by cross-"
-	next "ing claws like"
-	next "scissors.@"
+	db   "Claws cross to cut"
+	next "like scissors.@"
 
 UTurnDescription:
 	db   "Attacks, then"
@@ -1526,35 +1521,31 @@ DragonClawDescription:
 	next "with sharp claws.@"
 
 DracoMeteorDescription:
-	db   "Comets fall from"
-	next "the sky. Harshly"
-	next "lowers SP. ATK.@"
+	db   "Calls down comets."
+	next "Harsh SP.ATK drop.@"
 
 MoonblastDescription:
-	db   "Attacks with moon"
-	next "power. May lower"
-	next "SP. ATK.@"
+	db   "Moon power may"
+	next "lower SP.ATK.@"
 
 PixiePunchDescription:
-	db   "A playful fairy"
-	next "punch. May lower"
-	next "SPEED.@"
+	db   "A fairy punch may"
+	next "lower SPEED.@"
 
 BloodMoonDescription:
 	db   "Can't be used"
 	next "twice in a row.@"
 
 BulletPunchDescription:
-	db   "A tough punch as"
-	next "fast as a bullet."
-	next "Always strikes first.@"
+	db   "A bullet punch."
+	next "It strikes first.@"
 
 DrainPunchDescription:
 	db   "A draining punch."
 	next "Heals half damage.@"
 
 SolarBladeDescription:
-	db   "Charges, then slashes."
+	db   "Charges to slash."
 	next "No charge in sun.@"
 
 CloseCombatDescription:
@@ -1716,4 +1707,3 @@ VoltSwitchDescription:
 WillOWispDescription:
 	db   "A move that may"
 	next "burn the foe.@"
-

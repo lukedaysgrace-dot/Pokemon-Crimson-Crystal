@@ -1,7 +1,7 @@
 BattleCommand_StartRain:
 ; startrain
 	ld a, WEATHER_RAIN
-	ld [wBattleWeather], a
+	farcall SetBattleWeatherPreservingSuppression
 	ld a, 5
 	ld [wWeatherCount], a
 	call AnimateCurrentMove

@@ -8,7 +8,6 @@ TreeMons:
 	dw TreeMonSet_Lake
 	dw TreeMonSet_Forest
 	dw TreeMonSet_Rock
-	dw TreeMonSet_City
 
 ; Two tables each (common, rare).
 ; Structure:

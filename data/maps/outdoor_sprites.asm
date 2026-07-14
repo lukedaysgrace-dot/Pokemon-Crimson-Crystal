@@ -142,7 +142,7 @@ CeruleanGroupSprites:
 	db SPRITE_COOLTRAINER_M
 	db SPRITE_SUPER_NERD
 	db SPRITE_COOLTRAINER_F
-	db SPRITE_BIG_SNORLAX
+	db SPRITE_NONE ; unused filler; Big Snorlax did not fit this group's VRAM
 	db SPRITE_BIRD_KEEPER_NEW
 	db SPRITE_PICNICKER_NEW
 	db SPRITE_CAMPER_NEW

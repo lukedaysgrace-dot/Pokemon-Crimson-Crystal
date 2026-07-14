@@ -37,13 +37,8 @@ HaircutOrGrooming:
 	call CopyPokemonName_Buffer1_Buffer3
 	pop hl
 	call Random
-; Bug: Subtracting $ff from $ff fails to set c.
-; This can result in overflow into the next data array.
-; In the case of getting a grooming from Daisy, we bleed
-; into CopyPokemonName_Buffer1_Buffer3, which passes
-; $d0 to ChangeHappiness and returns $73 to the script.
-; The end result is that there is a 0.4% chance your
-; Pokemon's happiness will not change at all.
+; Each probability table has a non-$ff row before its final catch-all.
+; That keeps the residual below $ff, so the final subtraction always carries.
 .loop
 	sub [hl]
 	jr c, .ok

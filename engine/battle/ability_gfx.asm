@@ -361,6 +361,10 @@ CopyStringToAbilityBank:
 
 GetAbilityGFXPkmnName:
 ; Copy the user's nickname plus "'s" into wStringBuffer2.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer2)
+	ldh [rSVBK], a
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonNick
@@ -383,6 +387,8 @@ GetAbilityGFXPkmnName:
 	inc de
 	ld a, "@"
 	ld [de], a
+	pop af
+	ldh [rSVBK], a
 	ret
 
 RenderBannerChar:

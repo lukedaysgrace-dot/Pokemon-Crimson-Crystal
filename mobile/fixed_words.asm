@@ -226,6 +226,19 @@ CopyMobileEZChatToC608:
 	ld hl, $c608
 	ld bc, NAME_LENGTH
 	call ByteFill
+	bit 7, d
+	jr z, .legacy_word
+; Pokemon inserted by the 16-bit kana list are tagged as
+; $8000 | true species index. Convert them to the current runtime ID;
+; D = 0 remains the legacy saved-phrase Pokemon representation.
+	ld h, d
+	res 7, h
+	ld l, e
+	call GetPokemonIDFromIndex
+	ld e, a
+	xor a
+	ld d, a
+.legacy_word
 	ld a, d
 	and a
 	jr z, .get_name
@@ -3061,26 +3074,45 @@ EZChat_GetSeenPokemonByKana:
 	pop hl
 	ld c, $0
 .loop2
-; Have you seen this Pokemon?
-	ld a, [hl]
-	cp $ff
-	jr z, .done
-	call .CheckSeenMon
-	jr nz, .next
-; If not, skip it.
-	inc hl
-	jr .loop2
-
-.next
-; If so, append it to the list at 5:de, and increase the count.
+; Read a true 16-bit species index while preserving the result count in c.
+	push bc
 	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	and c
+	inc a
+	jr z, .done_entry
+
+; Have you seen this Pokemon?
+	push hl
+	push de
+	ld d, b
+	ld e, c
+	call .CheckSeenMonIndex
+	pop de
+	pop hl
+	jr z, .not_seen
+
+; If so, append $8000 | true species index to distinguish Pokemon from
+; fixed-word category/index pairs, and increase the result count.
+	ld a, c
 	ld [de], a
 	inc de
-	xor a
+	ld a, b
+	or $80
 	ld [de], a
 	inc de
+	pop bc
 	inc c
 	jr .loop2
+
+.not_seen
+	pop bc
+	jr .loop2
+
+.done_entry
+	pop bc
 
 .done
 ; Remember the original value of bc from the table?
@@ -3136,17 +3168,17 @@ EZChat_GetSeenPokemonByKana:
 	ldh [rSVBK], a
 	ret
 
-.CheckSeenMon:
+.CheckSeenMonIndex:
 	push hl
 	push bc
 	push de
 	ld hl, rSVBK
-	ld e, $1
-	ld [hl], e
-	call CheckSeenMon
+	ld b, $1
+	ld [hl], b
+	call CheckSeenMonIndex
 	ld hl, rSVBK
-	ld e, $5
-	ld [hl], e
+	ld b, $5
+	ld [hl], b
 	pop de
 	pop bc
 	pop hl

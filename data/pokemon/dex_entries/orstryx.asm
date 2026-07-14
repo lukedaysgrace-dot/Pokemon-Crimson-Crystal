@@ -2,7 +2,7 @@ db "MYSTIC OWL@" ; species name
 dw 607, 1300 ; height, weight
 
 db   "Its watchful eyes"
-next "sense thoughts from"
+next "read distant minds"
 next "far overhead."
 
 page "It drifts silently"

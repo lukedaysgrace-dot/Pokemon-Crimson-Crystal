@@ -130,26 +130,37 @@ SwimmermCameronAfterBattleText:
 	done
 
 Route20GreenBeforeText:
-	text "GREEN: So you're"
-	line "the one who beat"
-	cont "RED…"
+	text "GREEN: Well, well!"
+	line "You're the one"
+	cont "who beat RED."
 
-	para "I've been looking"
-	line "forward to this."
+	para "I wanted to see"
+	line "what all the fuss"
+	cont "was about."
 
-	para "Let's battle!"
+	para "But don't expect"
+	line "me to fight fair!"
+
+	para "Try to keep up!"
 	done
 
 Route20GreenBeatenText:
-	text "You're amazing…"
+	text "Aw! You saw"
+	line "through my tricks!"
 	done
 
 Route20GreenAfterText:
-	text "GREEN: That was"
-	line "fun. Don't forget"
+	text "GREEN: No wonder"
+	line "you beat RED!"
 
-	para "about me when you"
-	line "get even stronger."
+	para "Brains, nerve,"
+	line "and style--you've"
+	cont "got all three."
+
+	para "Keep a trick or"
+	line "two in reserve!"
+
+	para "See you around!"
 	done
 
 CinnabarGymSignText:

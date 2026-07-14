@@ -9,10 +9,10 @@ ROOT = Path(__file__).resolve().parent.parent
 
 ALLOWED_CLASS_SPRITES = {
 	# Deliberate map-specific disguises and variable sprite replacements.
-	("LASS", "SPRITE_FUCHSIA_GYM_1"),
-	("LASS", "SPRITE_FUCHSIA_GYM_2"),
-	("PICNICKER", "SPRITE_FUCHSIA_GYM_3"),
-	("CAMPER", "SPRITE_FUCHSIA_GYM_4"),
+	("NINJA", "SPRITE_FUCHSIA_GYM_1"),
+	("NINJA", "SPRITE_FUCHSIA_GYM_2"),
+	("NINJA", "SPRITE_FUCHSIA_GYM_3"),
+	("NINJA", "SPRITE_FUCHSIA_GYM_4"),
 	("SCHOOLBOY", "SPRITE_STANDING_YOUNGSTER"),
 	("SWIMMERM", "SPRITE_OLIVINE_RIVAL"),
 	("TWINS", "SPRITE_WEIRD_TREE"),
@@ -127,24 +127,33 @@ def packed_sprite_tiles(sprites, ids, types):
 	for sprite in ["SPRITE_CHRIS", *sprites]:
 		if sprite not in unique and sprite != "SPRITE_NONE":
 			unique.append(sprite)
-	entries = sorted(
+	entries = [
 		(sprite_size(sprite, ids, types), sprite) for sprite in unique
 		if sprite_size(sprite, ids, types) is not None
-	)
+	]
+	# SortUsedSprites is stable and compares only the sprite type byte.
+	entries.sort(key=lambda entry: entry[0][0])
 
-	bank_start = 0
-	next_tile = 0
+	bank1_tile = 0
+	bank0_tile = 0x80
 	assignments = []
+	failed = []
 	for (type_id, size), sprite in entries:
-		if bank_start == 0 and next_tile + size > 0x80:
-			bank_start = 0x80
-			next_tile = 0x80
-		# ArrangeUsedSprites rejects a sprite ending exactly at tile $100.
-		if bank_start == 0x80 and next_tile + size >= 0x100:
-			return None, assignments, sprite
-		assignments.append((sprite, next_tile, size, type_id))
-		next_tile += size
-	return next_tile, assignments, None
+		# Animated sprites need room for their extra facings below the weather
+		# tiles; still/big sprites only occupy the lower tile table.
+		bank1_limit = 0x74 if type_id < 4 else 0x80
+		if bank1_tile + size <= bank1_limit:
+			assignments.append((sprite, bank1_tile, size, type_id))
+			bank1_tile += size
+			continue
+		# Bank 0 uses bit 7 in the stored tile id. An endpoint of $100 is
+		# explicitly valid and leaves a zero/full sentinel in the engine.
+		if bank0_tile and bank0_tile + size <= 0x100:
+			assignments.append((sprite, bank0_tile, size, type_id))
+			bank0_tile = (bank0_tile + size) & 0xff
+			continue
+		failed.append(sprite)
+	return bank1_tile, bank0_tile, assignments, failed
 
 
 def outdoor_groups():
@@ -208,31 +217,35 @@ def main():
 
 	print("\n=== OUTDOOR GROUP ISSUES ===")
 	issue_count = 0
+	unused_failures = []
 	for group, sprites in groups.items():
 		missing = sorted(needed_by_group.get(group, set()) - set(sprites))
-		end_tile, assignments, overflow = packed_sprite_tiles(sprites, ids, types)
-		font_overlap = [
-			sprite for sprite, tile, size, type_id in assignments
-			if type_id <= 3 and tile < 0x100 and tile + size > 0xDC
-		]
-		if not missing and not overflow and not font_overlap:
+		_, _, assignments, failed = packed_sprite_tiles(sprites, ids, types)
+		used_failures = sorted(set(failed) & needed_by_group.get(group, set()))
+		if failed and not used_failures:
+			unused_failures.append((group, failed))
+		if not missing and not used_failures:
 			continue
 		issue_count += 1
 		if missing:
 			print(f"{group}: missing {', '.join(missing)}")
-		if overflow:
-			used = max(tile + size for _, tile, size, _ in assignments)
-			print(f"{group}: VRAM overflow while assigning {overflow} after tile {used}")
-		if font_overlap:
-			print(f"{group}: animated sprites overlap map-name font: {', '.join(font_overlap)}")
+		if used_failures:
+			print(f"{group}: used sprites fail VRAM assignment: {', '.join(used_failures)}")
 		extras = sorted(set(sprites) - needed_by_group.get(group, set()))
 		print(f"{group}: unreferenced candidates: {', '.join(extras)}")
 	print(f"Total: {issue_count}")
+	if unused_failures:
+		print("Unused entries that do not fit (safe with current maps):")
+		for group, failed in unused_failures:
+			print(f"{group}: {', '.join(failed)}")
 
 	print("\n=== OUTDOOR GROUP PACKING ===")
 	for group, sprites in groups.items():
-		end_tile, assignments, overflow = packed_sprite_tiles(sprites, ids, types)
-		status = f"overflow at {overflow}" if overflow else f"ends at tile {end_tile}"
+		bank1, bank0, assignments, failed = packed_sprite_tiles(sprites, ids, types)
+		bank0_text = "$100 (full)" if bank0 == 0 else f"${bank0:02x}"
+		status = f"bank1 ${bank1:02x}, bank0 {bank0_text}"
+		if failed:
+			status += f", unassigned {', '.join(failed)}"
 		print(f"{group:12} {status}")
 
 

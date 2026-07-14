@@ -194,3 +194,5 @@ BattleCommandPointers:
 	dw BattleCommand_TrickRoom
 	dw BattleCommand_Burn
 	dw BattleCommand_ResetMiss
+	dw BattleCommand_SaveMiss
+	dw BattleCommand_RestoreMiss
