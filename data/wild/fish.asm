@@ -199,9 +199,9 @@ FishGroups:
 	dbbw  90 percent + 1, 20, POLIWAG
 	dbbw 100 percent,      6, TIME_GROUP
 .Remoraid_Super:
-	dbbw  40 percent,     40, POLIWAG
+	dbbw  40 percent,     40, REMORAID
 	dbbw  70 percent,      7, TIME_GROUP
-	dbbw  90 percent + 1, 40, MAGIKARP
+	dbbw  90 percent + 1, 40, OCTILLERY
 	dbbw 100 percent,     40, REMORAID
 
 TimeFishGroups:
