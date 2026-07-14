@@ -184,7 +184,7 @@
 	const WISE_GLASSES ; b0
 	const PARK_BALL    ; b1
 	const RAINBOW_WING ; b2
-	const ITEM_B3      ; b3
+	const FLAME_ORB    ; b3
 	const BRICK_PIECE  ; b4
 	const SURF_MAIL    ; b5
 	const LITEBLUEMAIL ; b6
@@ -195,7 +195,7 @@
 	const BLUESKY_MAIL ; bb
 	const MUSIC_MAIL   ; bc
 	const MIRAGE_MAIL  ; bd
-	const ITEM_BE      ; be
+	const TOXIC_ORB    ; be
 	const ITEM_DC      ; bf
 	const ITEM_C3      ; c0
 	const ITEM_FA      ; c1

@@ -1306,7 +1306,43 @@ CheckPlayerChoiceLock_Core:
 	and a
 	ret
 .blocked
+; a = locked move id, b = selected move id.
+; If the locked move can't be used anymore (no PP or disabled), the
+; holder must Struggle - like the enemy handler - instead of leaving
+; the player soft-locked in the move menu.
+	ld c, a
+	ld a, [wDisabledMove]
+	cp c
+	jr z, .must_struggle
+	ld hl, wBattleMonMoves
+	ld de, wBattleMonPP
+	push bc
+	ld b, NUM_MOVES
+.find_locked
+	ld a, [hli]
+	cp c
+	jr z, .found_locked
+	inc de
+	dec b
+	jr nz, .find_locked
+	; the locked move is gone (e.g. overwritten): drop the lock
+	pop bc
+	ld a, b
+	ld [wPlayerChoiceLockedMove], a
+	and a
+	ret
+.found_locked
+	pop bc
+	ld a, [de]
+	and PP_MASK
+	jr z, .must_struggle
 	scf
+	ret
+.must_struggle
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	ld b, a
+	and a
 	ret
 
 
@@ -2629,11 +2665,13 @@ CheckAirBalloonImmunity:
 
 RunPostDamageHeldItems:
 	call LifeOrbRecoil
-	call AirBalloonPop
+	; a hit taken by a Substitute doesn't touch the holder:
+	; no balloon pop, policy proc or helmet chip through a sub
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
+	call AirBalloonPop
 	call WeaknessPolicyBoost
 	jp RockyHelmetDamage
 
@@ -2642,6 +2680,21 @@ LifeOrbRecoil:
 	ld a, b
 	cp HELD_LIFE_ORB
 	ret nz
+	; multi-hit moves recoil once, after the final hit,
+	; not once per hit (this hook runs from every checkfaint)
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_MULTI_HIT
+	jr z, .multi_hit
+	cp EFFECT_DOUBLE_HIT
+	jr z, .multi_hit
+	cp EFFECT_POISON_MULTI_HIT
+	jr z, .multi_hit
+	cp EFFECT_TRIPLE_KICK
+	jr z, .multi_hit
+	cp EFFECT_BEAT_UP
+	jr z, .multi_hit
+.recoil
 	call GetTrueUserAbility
 	cp MAGIC_GUARD
 	ret z
@@ -2653,7 +2706,32 @@ LifeOrbRecoil:
 	ld hl, LifeOrbRecoilText
 	jp StdBattleTextbox
 
+.multi_hit
+	; a KO cuts the loop short: that hit was the final one
+	call OppHasFainted
+	jr z, .recoil
+	; endloop hasn't run yet on the first hit, so IN_LOOP clear
+	; means more hits are coming
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVar
+	bit SUBSTATUS_IN_LOOP, a
+	ret z
+	; the loop counter (see BattleCommand_EndLoop) reads 1 during
+	; the last hit's checkfaint
+	ld hl, wPlayerRolloutCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_count
+	ld hl, wEnemyRolloutCount
+.got_count
+	ld a, [hl]
+	dec a
+	ret nz
+	jr .recoil
+
 AirBalloonPop:
+	call OppHasFainted
+	ret z ; the balloon goes down with its holder, no pop message
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_AIR_BALLOON
@@ -2666,6 +2744,8 @@ AirBalloonPop:
 	jp StdBattleTextbox
 
 WeaknessPolicyBoost:
+	call OppHasFainted
+	ret z ; no boost if the holder didn't survive the hit (canon)
 	ld a, [wTypeModifier]
 	and $7f
 	cp EFFECTIVE + 1
