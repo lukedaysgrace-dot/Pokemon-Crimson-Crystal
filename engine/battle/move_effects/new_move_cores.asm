@@ -304,11 +304,13 @@ BattleSkillSwap_Core:
 	; Neutralizing Gas) cannot be exchanged. Swapping identical abilities
 	; must also fail instead of re-triggering both entry effects for free.
 	ld a, [wPlayerAbility]
+	ld b, a
 	farcall GetAbilityFlags_b
 	ld a, b
 	and ABILFLAG_NO_SWAP
 	jr nz, .failed
 	ld a, [wEnemyAbility]
+	ld b, a
 	farcall GetAbilityFlags_b
 	ld a, b
 	and ABILFLAG_NO_SWAP
