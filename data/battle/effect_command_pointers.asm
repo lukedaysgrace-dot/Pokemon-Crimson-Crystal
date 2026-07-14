@@ -196,3 +196,4 @@ BattleCommandPointers:
 	dw BattleCommand_ResetMiss
 	dw BattleCommand_SaveMiss
 	dw BattleCommand_RestoreMiss
+	dw BattleCommand_FirstImpressionCheck

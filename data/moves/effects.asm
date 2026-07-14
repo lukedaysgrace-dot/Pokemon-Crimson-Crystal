@@ -44,6 +44,27 @@ GigaHammer:
 	kingsrock
 	endmove
 
+FirstImpression:
+	checkobedience
+	usedmovetext
+	doturn
+	firstimpressioncheck
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
 DoSleep:
 	checkobedience
 	usedmovetext

@@ -423,10 +423,10 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, GYRO_BALL
-	dbw 1, DAZZLING_GLEAM
-	dbw 3, SWEET_KISS
-	dbw 4, LOVELY_KISS
+	dbw 1, ANCIENTPOWER
+	dbw 1, CLOSE_COMBAT
+	dbw 3, LIQUIDATION
+	dbw 4, FIRST_IMPRESSION
 	dbw 6, OCTAZOOKA
 	dbw 7, FACADE
 	dbw 20, BITE
@@ -3539,6 +3539,7 @@ FroslassEvosAttacks:
 GolisopodEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, DEFENSE_CURL
+	dbw 1, FIRST_IMPRESSION
 	dbw 1, GROWL
 	dbw 1, SAND_ATTACK
 	dbw 1, SPITE
@@ -3556,6 +3557,7 @@ GolisopodEvosAttacks:
 	dbw 40, BUG_BUZZ
 	dbw 40, SWORDS_DANCE
 	dbw 45, HYDRO_PUMP
+	dbw 48, LIQUIDATION
 	db 0 ; no more level-up moves
 
 GrubbinEvosAttacks:

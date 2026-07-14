@@ -386,6 +386,8 @@ BattleAnimations::
 	banim BattleAnim_ZenHeadbutt ; ZEN_HEADBUTT
 	banim BattleAnim_HiJumpKick ; TROP_KICK
 	banim BattleAnim_MortalSpin ; MORTAL_SPIN
+	banim BattleAnim_FirstImpression ; FIRST_IMPRESSION
+	banim BattleAnim_Liquidation ; LIQUIDATION
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown

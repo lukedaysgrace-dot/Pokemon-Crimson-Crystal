@@ -3,9 +3,15 @@ DoPlayerTurn:
 
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE?
-	ret nz
-
-	jr DoTurn
+	jr z, DoTurn
+	; A hard switch has already installed a fresh incoming mon, so preserve
+	; its window. Using an item (or failing to flee) spends the active mon's
+	; first opportunity just like being unable to move does.
+	cp BATTLEPLAYERACTION_SWITCH
+	ret z
+	xor a
+	ld [wPlayerFirstImpressionFresh], a
+	ret
 
 DoEnemyTurn:
 	call SetEnemyTurn
@@ -139,6 +145,20 @@ BattleCommand_CheckTurn:
 
 	ld a, EFFECTIVE
 	ld [wTypeModifier], a
+
+	; A newly entered mon gets exactly one action opportunity for First
+	; Impression. Snapshot and consume that window before sleep, flinch,
+	; paralysis, or another turn check can stop the move from executing.
+	ld hl, wPlayerFirstImpressionFresh
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_first_impression_window
+	inc hl ; wEnemyFirstImpressionFresh
+.got_first_impression_window
+	ld a, [hl]
+	ld [wFirstImpressionThisTurn], a
+	xor a
+	ld [hl], a
 
 	ldh a, [hBattleTurn]
 	and a
@@ -5937,6 +5957,19 @@ BattleCommand_GigaHammerCheck:
 BattleCommand_GigaHammerSetLock:
 	callfar BattleGigaHammer_SetLockCore
 	ret
+
+BattleCommand_FirstImpressionCheck:
+; First Impression only works during the user's first action opportunity
+; after entering battle. Its PP and turn have already been consumed.
+	ld a, [wFirstImpressionThisTurn]
+	and a
+	ret nz
+	ld a, 1
+	ld [wAttackMissed], a
+	call AnimateFailedMove
+	ld hl, ButItFailedText
+	call StdBattleTextbox
+	jp EndMoveEffect
 
 BattleCommand3c:
 ; unused

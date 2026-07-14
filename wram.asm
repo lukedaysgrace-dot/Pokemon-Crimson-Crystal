@@ -692,6 +692,9 @@ wPlayerGigaHammerLock:: db ; c71d: nz if Giga Hammer cannot be used this turn
 wEnemyGigaHammerLock:: db ; c71e
 wPlayerMustRechooseMove:: db ; c71f: set when Giga Hammer fails in battle; redo move menu
 wSkipCheckTurnOnce:: db ; c720: skip CheckTurn on next DoTurn (Giga Hammer re-pick same round)
+wPlayerFirstImpressionFresh:: db ; set on entry, consumed at the mon's first action opportunity
+wEnemyFirstImpressionFresh:: db
+wFirstImpressionThisTurn:: db ; snapshot for the side currently taking its turn
 
 wPlayerFutureSightCount:: db ; c721
 wEnemyFutureSightCount:: db ; c722

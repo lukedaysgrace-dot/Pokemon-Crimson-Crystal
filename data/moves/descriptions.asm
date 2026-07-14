@@ -352,6 +352,8 @@ MoveDescriptions1:
 	dw AstonishDescription
 	dw TropKickDescription
 	dw MortalSpinDescription
+	dw FirstImpressionDescription
+	dw LiquidationDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -363,6 +365,14 @@ TropKickDescription:
 MortalSpinDescription:
 	db   "Poisons foes and"
 	next "frees the user.@"
+
+FirstImpressionDescription:
+	db   "Priority hit only"
+	next "on the first turn.@"
+
+LiquidationDescription:
+	db   "A watery blow that"
+	next "may lower DEFENSE.@"
 
 PoundDescription:
 	db   "Pounds with fore-"
