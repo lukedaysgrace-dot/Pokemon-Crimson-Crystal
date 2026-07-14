@@ -107,17 +107,17 @@ LoadHPBar:
 	ret
 
 ShinyStarGFX:
-; 8x8 shiny "asterism" icon: three equal small 4-point sparkles (one on top,
-; two on the bottom), matching the stats screen shiny symbol. Drawn in color
-; index 2, which is blue in the battle exp palette (PAL_BATTLE_BG_EXP) and in
-; the dedicated stats-screen shiny palette. Each row is (bitplane0, bitplane1).
-	db $00, $08
-	db $00, $1c
-	db $00, $08
-	db $00, $00
-	db $00, $22
-	db $00, $77
-	db $00, $22
+; 8x8 shiny "asterism" icon in the vanilla Crystal style: three equal 4-point
+; sparkles lined up along a diagonal (top-right, center, bottom-left). Drawn in
+; color index 2, which is blue in the battle exp palette (PAL_BATTLE_BG_EXP) and
+; in the dedicated stats-screen shiny palette. Each row is (bitplane0, bitplane1).
+	db $00, $40
+	db $00, $e2
+	db $00, $47
+	db $00, $02
+	db $00, $10
+	db $00, $38
+	db $00, $10
 	db $00, $00
 
 StatsScreen_LoadFont:
