@@ -1509,8 +1509,8 @@ LungeDescription:
 	next "that hits first.@"
 
 BugBiteDescription:
-	db   "Bites the foe."
-	next "May eat its berry.@"
+	db   "Bites the foe with"
+	next "its sturdy jaws.@"
 
 XScissorDescription:
 	db   "Slashes by cross-"
