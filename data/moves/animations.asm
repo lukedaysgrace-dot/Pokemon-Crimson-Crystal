@@ -4352,19 +4352,36 @@ BattleAnim_MudSlap:
 	anim_ret
 
 BattleAnim_Octazooka:
-	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_EGG, ANIM_GFX_SMOKE
-	anim_sound 6, 2, SFX_SLUDGE_BOMB
-	anim_obj ANIM_OBJ_OCTAZOOKA, 64, 92, $4
-	anim_wait 16
-	anim_obj ANIM_OBJ_BALL_POOF, 132, 56, $10
-	anim_wait 8
-	anim_if_param_equal $0, .done
+; Water stream (Scald-style) followed by a big-glow explosion on impact.
+; GFX tiles: HIT_2(9) + MISC(40) + SMOKE_PUFF(9) + BIG_GLOW_CLEAR(13) = 71 <= 79 budget.
+; HIT_2 is loaded first so ANIM_OBJ_HIT_YFIX (which asks for ANIM_GFX_HIT) falls
+; back to slot 0 and renders HIT_2, exactly as Scald relies on.
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC, ANIM_GFX_SMOKE_PUFF, ANIM_GFX_BIG_GLOW_CLEAR
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_WATER
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_WATER
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_VERY_BRIGHT
+	anim_sound 0, 1, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
+	anim_wait 4
+	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
+	anim_wait 4
+	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
+	anim_wait 4
 .loop
-	anim_obj ANIM_OBJ_SMOKE, 132, 60, $20
-	anim_wait 8
-	anim_loop 5, .loop
-	anim_wait 128
-.done
+	anim_obj ANIM_OBJ_HIT_YFIX, 136, 52, $0
+	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
+	anim_obj ANIM_OBJ_SCALD_STEAM, 120, 46, $30
+	anim_wait 4
+	anim_obj ANIM_OBJ_HIT_YFIX, 136, 52, $0
+	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
+	anim_wait 4
+	anim_loop 4, .loop
+	anim_clearobjs
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_bgeffect ANIM_BG_1F, $60, $2, $0
+	anim_obj ANIM_OBJ_BIG_GLOW_CLEAR, 136, 48, $0
+	anim_wait 40
 	anim_ret
 
 BattleAnim_Spikes:
