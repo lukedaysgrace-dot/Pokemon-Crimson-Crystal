@@ -451,3 +451,12 @@ BitmasksPointers:
 	dw ZangooseBitmasks
 	dw SeviperBitmasks
 	dw GlimmoraBitmasks
+	dw BulbasaurCloneBitmasks
+	dw IvysaurCloneBitmasks
+	dw VenusaurCloneBitmasks
+	dw CharmanderCloneBitmasks
+	dw CharmeleonCloneBitmasks
+	dw CharizardCloneBitmasks
+	dw SquirtleCloneBitmasks
+	dw WartortleCloneBitmasks
+	dw BlastoiseCloneBitmasks

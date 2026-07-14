@@ -302,6 +302,15 @@ EvosAttacksPointers2::
 	dw ZangooseEvosAttacks
 	dw SeviperEvosAttacks
 	dw GlimmoraEvosAttacks
+	dw BulbasaurCloneEvosAttacks
+	dw IvysaurCloneEvosAttacks
+	dw VenusaurCloneEvosAttacks
+	dw CharmanderCloneEvosAttacks
+	dw CharmeleonCloneEvosAttacks
+	dw CharizardCloneEvosAttacks
+	dw SquirtleCloneEvosAttacks
+	dw WartortleCloneEvosAttacks
+	dw BlastoiseCloneEvosAttacks
 
 
 ChikoritaEvosAttacks:
@@ -5505,3 +5514,5 @@ GlimmoraEvosAttacks:
 	dbw 42, STONE_EDGE
 	dbw 48, TOXIC
 	db 0 ; no more level-up moves
+
+INCLUDE "data/pokemon/evos_attacks_clones.asm"

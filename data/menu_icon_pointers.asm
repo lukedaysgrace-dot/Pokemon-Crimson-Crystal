@@ -454,3 +454,12 @@ MenuIconPointers:
 	dba ZangooseMenuIcon
 	dba SeviperMenuIcon
 	dba GlimmoraMenuIcon
+	dba BulbasaurMenuIcon
+	dba IvysaurMenuIcon
+	dba VenusaurMenuIcon
+	dba CharmanderMenuIcon
+	dba CharmeleonMenuIcon
+	dba CharizardMenuIcon
+	dba SquirtleMenuIcon
+	dba WartortleMenuIcon
+	dba BlastoiseMenuIcon

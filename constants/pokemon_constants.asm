@@ -472,6 +472,15 @@ JOHTO_POKEMON EQU const_value
 	const ZANGOOSE          ;
 	const SEVIPER           ;
 	const GLIMMORA          ;
+	const BULBASAUR_CLONE   ;
+	const IVYSAUR_CLONE     ;
+	const VENUSAUR_CLONE    ;
+	const CHARMANDER_CLONE  ;
+	const CHARMELEON_CLONE  ;
+	const CHARIZARD_CLONE   ;
+	const SQUIRTLE_CLONE    ;
+	const WARTORTLE_CLONE   ;
+	const BLASTOISE_CLONE   ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

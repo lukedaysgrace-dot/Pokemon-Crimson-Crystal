@@ -452,3 +452,12 @@ PokedexDataPointerTable:
 	dba ZangoosePokedexEntry
 	dba SeviperPokedexEntry
 	dba GlimmoraPokedexEntry
+	dba BulbasaurClonePokedexEntry
+	dba IvysaurClonePokedexEntry
+	dba VenusaurClonePokedexEntry
+	dba CharmanderClonePokedexEntry
+	dba CharmeleonClonePokedexEntry
+	dba CharizardClonePokedexEntry
+	dba SquirtleClonePokedexEntry
+	dba WartortleClonePokedexEntry
+	dba BlastoiseClonePokedexEntry

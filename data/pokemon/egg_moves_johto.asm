@@ -300,6 +300,19 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
+	rept BULBASAUR_CLONE - IMPIDIMP
+		dw NoEggMoves2
+	endr
+	dw BulbasaurCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw CharmanderCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw SquirtleCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+
 
 ChikoritaEggMoves:
 	dw VINE_WHIP
@@ -672,4 +685,30 @@ LarvitarEggMoves:
 	dw FOCUS_ENERGY
 	dw ANCIENTPOWER
 NoEggMoves2:
+	dw -1 ; end
+
+BulbasaurCloneEggMoves:
+	dw LIGHT_SCREEN
+	dw SKULL_BASH
+	dw SAFEGUARD
+	dw RAZOR_WIND
+	dw PETAL_DANCE
+	dw -1 ; end
+
+CharmanderCloneEggMoves:
+	dw BELLY_DRUM
+	dw ANCIENTPOWER
+	dw ROCK_SLIDE
+	dw BITE
+	dw OUTRAGE
+	dw BEAT_UP
+	dw -1 ; end
+
+SquirtleCloneEggMoves:
+	dw MIRROR_COAT
+	dw HAZE
+	dw MIST
+	dw CONFUSION
+	dw FORESIGHT
+	dw FLAIL
 	dw -1 ; end
