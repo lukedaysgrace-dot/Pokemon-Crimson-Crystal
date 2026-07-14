@@ -601,8 +601,14 @@ ScreenCleanerAbility:
 	ld hl, BattleText_MonsLightScreenFell
 	jp StdBattleTextbox
 
+SetBattleWeatherFromB::
+; farcall-safe entry: the farcall macro clobbers a (bank) and hl (address),
+; so cross-bank callers must pass the weather type in b instead.
+	ld a, b
+	; fallthrough
 SetBattleWeatherPreservingSuppression::
 ; in: a = WEATHER_*. Keep Cloud Nine's field-suppression bit intact.
+; Only same-bank callers may use this entry point with a as the input.
 	push bc
 	ld b, a
 	ld a, [wBattleWeather]
@@ -728,8 +734,10 @@ HealStatusAbility:
 	cp 1 << PSN
 	call z, .clear_toxic
 	ld hl, BecameHealthyText
-	call StdBattleTextbox
+	; StdBattleTextbox runs the text engine, which clobbers bc; preserve the
+	; cured-status mask in b for the stat-recalc checks below.
 	push bc
+	call StdBattleTextbox
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .update_enemy
@@ -4604,7 +4612,9 @@ GetEnemyAbilityEffective_b::
 	ret
 
 GetAbilityFlags_b::
-; farcall-safe wrapper: the flags for ability a, returned in b.
+; farcall-safe wrapper: the flags for ability b, returned in b.
+; (The farcall macro clobbers a, so the input must arrive in b.)
+	ld a, b
 	call GetAbilityFlags
 	ld b, a
 	ret

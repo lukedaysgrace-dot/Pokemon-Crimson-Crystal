@@ -100,7 +100,12 @@ ApplyOverworldBattleWeather:
 	ld de, ANIM_INTRO_SANDSTORM
 	ld hl, SandstormBrewedText
 .apply
-	farcall SetBattleWeatherPreservingSuppression
+	; The farcall macro clobbers a and hl, so pass the weather in b and
+	; preserve the message pointer for StdBattleTextbox below.
+	ld b, a
+	push hl
+	farcall SetBattleWeatherFromB
+	pop hl
 	ld a, 255 ; effectively lasts the whole battle
 	ld [wWeatherCount], a
 	push de

@@ -6,8 +6,8 @@ BattleCommand_StartSandstorm:
 	cp WEATHER_SANDSTORM
 	jr z, .failed
 
-	ld a, WEATHER_SANDSTORM
-	farcall SetBattleWeatherPreservingSuppression
+	ld b, WEATHER_SANDSTORM
+	farcall SetBattleWeatherFromB
 	ld a, 5
 	ld [wWeatherCount], a
 	call AnimateCurrentMove

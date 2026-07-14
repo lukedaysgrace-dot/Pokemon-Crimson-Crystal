@@ -423,8 +423,8 @@ BattleStartHail_Core:
 	cp WEATHER_HAIL
 	jr z, .failed
 
-	ld a, WEATHER_HAIL
-	farcall SetBattleWeatherPreservingSuppression
+	ld b, WEATHER_HAIL
+	farcall SetBattleWeatherFromB
 	ld a, 5
 	ld [wWeatherCount], a
 	callfar AnimateCurrentMove

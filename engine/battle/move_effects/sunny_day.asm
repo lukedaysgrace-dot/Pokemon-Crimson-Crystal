@@ -1,7 +1,7 @@
 BattleCommand_StartSun:
 ; startsun
-	ld a, WEATHER_SUN
-	farcall SetBattleWeatherPreservingSuppression
+	ld b, WEATHER_SUN
+	farcall SetBattleWeatherFromB
 	ld a, 5
 	ld [wWeatherCount], a
 	call AnimateCurrentMove
