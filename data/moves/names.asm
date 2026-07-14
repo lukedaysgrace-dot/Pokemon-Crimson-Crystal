@@ -346,3 +346,5 @@ MoveNames::
 	db "ZEN HEADBUTT@"
 	db "TROP KICK@"
 	db "MORTAL SPIN@"
+	db "FIRST STRIKE@"
+	db "LIQUIDATION@"

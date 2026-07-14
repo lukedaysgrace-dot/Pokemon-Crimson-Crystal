@@ -831,7 +831,8 @@ GetMovePriority_e::
 	ret
 
 GetMovePriority:
-; Return the priority (0-3) of move a.
+; Return BASE_PRIORITY plus the move's normal priority modifier.
+; Vital Throw and similar negative-priority moves use 0.
 
 	ld b, a
 
@@ -896,6 +897,7 @@ Battle_EnemyFirst:
 	jp z, HandleEnemyMonFaint
 
 .switch_item
+	call ExpireEnemyFirstImpressionAfterItem
 	call SetEnemyTurn
 	call ResidualDamage
 	jp z, HandleEnemyMonFaint
@@ -959,12 +961,23 @@ Battle_PlayerFirst:
 	jp z, HandleEnemyMonFaint
 
 .switched_or_used_item
+	call ExpireEnemyFirstImpressionAfterItem
 	call SetEnemyTurn
 	call ResidualDamage
 	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
+	ret
+
+ExpireEnemyFirstImpressionAfterItem:
+; AI_SwitchOrTryItem returns carry for both actions. A switch has already
+; refreshed the incoming mon's window; only an item should consume it.
+	ld a, [wEnemyIsSwitching]
+	and a
+	ret nz
+	xor a
+	ld [wEnemyFirstImpressionFresh], a
 	ret
 
 PlayerTurn_EndOpponentProtectEndureDestinyBond:
@@ -3697,6 +3710,8 @@ endr
 	ld [wEnemyTurnsTaken], a
 	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
+	ld a, 1
+	ld [wEnemyFirstImpressionFresh], a
 	ret
 
 ResetEnemyStatLevels:
@@ -4229,6 +4244,8 @@ endr
 	ld [wPlayerTurnsTaken], a
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
+	ld a, 1
+	ld [wPlayerFirstImpressionFresh], a
 	ret
 
 BreakAttraction:

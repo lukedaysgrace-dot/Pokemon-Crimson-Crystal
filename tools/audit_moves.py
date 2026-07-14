@@ -182,6 +182,14 @@ def audit_move_tables(audit: Audit) -> tuple[list[str], dict[str, int], dict[str
     if "KNOCK_OFF" in move_rows and len(move_rows["KNOCK_OFF"]) == 7:
         audit.check(move_rows["KNOCK_OFF"][6] == "0", "KNOCK_OFF chance must be 0 (its item effect is primary, not Sheer Force eligible)")
 
+    canonical_rows = {
+        "FIRST_IMPRESSION": ["EFFECT_FIRST_IMPRESSION", "90", "BUG", "CATEGORIZE_PHYSICAL", "100", "10", "0"],
+        "LIQUIDATION": ["EFFECT_DEFENSE_DOWN_HIT", "85", "WATER", "CATEGORIZE_PHYSICAL", "100", "10", "20"],
+    }
+    for move, expected in canonical_rows.items():
+        if move in move_rows:
+            audit.check(move_rows[move] == expected, f"move {move}: got {move_rows[move]}, expected {expected}")
+
     names = re.findall(r'^\s*db\s+"([^"]*)"', read("data/moves/names.asm"), re.MULTILINE)
     audit.check(len(names) == len(moves), f"move names: got {len(names)}, expected {len(moves)}")
     for index, name in enumerate(names):
@@ -249,6 +257,8 @@ def audit_contact(audit: Audit, move_ids: dict[str, int]) -> None:
         "LUNGE": True,
         "PIXIE_PUNCH": True,
         "MORTAL_SPIN": True,
+        "FIRST_IMPRESSION": True,
+        "LIQUIDATION": True,
     }
     for move, should_contact in expected.items():
         move_id = move_ids[move]

@@ -188,3 +188,4 @@ MoveEffectsPointers:
 	dw ConfuseHit ; EFFECT_HURRICANE
 	dw FlameWheel ; EFFECT_SCALD (thaws the user)
 	dw MortalSpin ; EFFECT_MORTAL_SPIN
+	dw FirstImpression ; EFFECT_FIRST_IMPRESSION
