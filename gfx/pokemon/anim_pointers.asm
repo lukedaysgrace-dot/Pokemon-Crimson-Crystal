@@ -451,3 +451,12 @@ AnimationPointers:
 	dw ZangooseAnimation
 	dw SeviperAnimation
 	dw GlimmoraAnimation
+	dw BulbasaurCloneAnimation
+	dw IvysaurCloneAnimation
+	dw VenusaurCloneAnimation
+	dw CharmanderCloneAnimation
+	dw CharmeleonCloneAnimation
+	dw CharizardCloneAnimation
+	dw SquirtleCloneAnimation
+	dw WartortleCloneAnimation
+	dw BlastoiseCloneAnimation

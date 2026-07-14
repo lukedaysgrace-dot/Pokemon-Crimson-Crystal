@@ -6503,6 +6503,8 @@ LoadEnemyMon:
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
 	jr nz, .CheckWildBattle
+	farcall IsClonePokemon
+	jr c, .CheckWildBattle
 	ld a, [wEnemyMonShinyGenderFlags]
 	or MON_SHINY_FLAG
 	ld [wEnemyMonShinyGenderFlags], a

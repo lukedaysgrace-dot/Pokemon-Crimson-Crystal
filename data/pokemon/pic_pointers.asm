@@ -917,3 +917,21 @@ PokemonPicPointers::
 	dba SeviperBackpic
 	dba GlimmoraFrontpic
 	dba GlimmoraBackpic
+	dba BulbasaurCloneFrontpic
+	dba BulbasaurCloneBackpic
+	dba IvysaurCloneFrontpic
+	dba IvysaurCloneBackpic
+	dba VenusaurCloneFrontpic
+	dba VenusaurCloneBackpic
+	dba CharmanderCloneFrontpic
+	dba CharmanderCloneBackpic
+	dba CharmeleonCloneFrontpic
+	dba CharmeleonCloneBackpic
+	dba CharizardCloneFrontpic
+	dba CharizardCloneBackpic
+	dba SquirtleCloneFrontpic
+	dba SquirtleCloneBackpic
+	dba WartortleCloneFrontpic
+	dba WartortleCloneBackpic
+	dba BlastoiseCloneFrontpic
+	dba BlastoiseCloneBackpic

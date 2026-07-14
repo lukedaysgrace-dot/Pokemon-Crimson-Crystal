@@ -934,3 +934,21 @@ INCBIN "gfx/pokemon/seviper/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/seviper/shiny.pal"
 INCBIN "gfx/pokemon/glimmora/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/glimmora/shiny.pal"
+INCBIN "gfx/pokemon/bulbasaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/bulbasaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/ivysaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/ivysaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/venusaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/venusaur_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charmander_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charmander_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charmeleon_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charmeleon_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charizard_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/charizard_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/squirtle_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/squirtle_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/wartortle_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/wartortle_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/blastoise_clone/front.gbcpal", middle_colors
+INCBIN "gfx/pokemon/blastoise_clone/front.gbcpal", middle_colors

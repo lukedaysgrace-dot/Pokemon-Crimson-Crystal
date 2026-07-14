@@ -453,3 +453,12 @@ IconPointers:
 	dba ZangooseIcon
 	dba SeviperIcon
 	dba GlimmoraIcon
+	dba BulbasaurIcon
+	dba IvysaurIcon
+	dba VenusaurIcon
+	dba CharmanderIcon
+	dba CharmeleonIcon
+	dba CharizardIcon
+	dba SquirtleIcon
+	dba WartortleIcon
+	dba BlastoiseIcon

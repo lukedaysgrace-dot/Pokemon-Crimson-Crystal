@@ -5,6 +5,9 @@
 	const ELMSLAB_POKE_BALL2
 	const ELMSLAB_POKE_BALL3
 	const ELMSLAB_OFFICER
+	const ELMSLAB_POKE_BALL4
+	const ELMSLAB_POKE_BALL5
+	const ELMSLAB_POKE_BALL6
 
 ElmsLab_MapScripts:
 	db 6 ; scene scripts
@@ -40,7 +43,7 @@ ElmsLab_MapScripts:
 .MoveElmCallback:
 	checkscene
 	iftrue .Skip ; not SCENE_DEFAULT
-	moveobject ELMSLAB_ELM, 3, 4
+	moveobject ELMSLAB_ELM, 3, 8
 .Skip:
 	return
 
@@ -239,6 +242,174 @@ ChikoritaPokeBallScript:
 	givepoke CHIKORITA, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterChikoritaMovement
+	sjump ElmDirectionsScript
+
+CharmanderPokeBallScript:
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
+	iftrue LookAtElmPokeBallScript
+	turnobject ELMSLAB_ELM, DOWN
+	refreshscreen
+	pokepic CHARMANDER
+	cry CHARMANDER
+	waitbutton
+	closepokepic
+	refreshscreen
+	pokepic CHARMANDER_CLONE
+	cry CHARMANDER_CLONE
+	waitbutton
+	closepokepic
+	opentext
+	writetext AskCharmanderVersionText
+	buttonsound
+	loadmenu RegularOrCloneMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Regular
+	ifequal 2, .Clone
+	sjump DidntChooseStarterScript
+
+.Regular:
+	disappear ELMSLAB_POKE_BALL4
+	setevent EVENT_GOT_CHARMANDER_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, CHARMANDER
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke CHARMANDER, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterCharmanderMovement
+	sjump ElmDirectionsScript
+
+.Clone:
+	disappear ELMSLAB_POKE_BALL4
+	setevent EVENT_GOT_CHARMANDER_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, CHARMANDER_CLONE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke CHARMANDER_CLONE, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterCharmanderMovement
+	sjump ElmDirectionsScript
+
+SquirtlePokeBallScript:
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
+	iftrue LookAtElmPokeBallScript
+	turnobject ELMSLAB_ELM, DOWN
+	refreshscreen
+	pokepic SQUIRTLE
+	cry SQUIRTLE
+	waitbutton
+	closepokepic
+	refreshscreen
+	pokepic SQUIRTLE_CLONE
+	cry SQUIRTLE_CLONE
+	waitbutton
+	closepokepic
+	opentext
+	writetext AskSquirtleVersionText
+	buttonsound
+	loadmenu RegularOrCloneMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Regular
+	ifequal 2, .Clone
+	sjump DidntChooseStarterScript
+
+.Regular:
+	disappear ELMSLAB_POKE_BALL5
+	setevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, SQUIRTLE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke SQUIRTLE, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterSquirtleMovement
+	sjump ElmDirectionsScript
+
+.Clone:
+	disappear ELMSLAB_POKE_BALL5
+	setevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, SQUIRTLE_CLONE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke SQUIRTLE_CLONE, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterSquirtleMovement
+	sjump ElmDirectionsScript
+
+BulbasaurPokeBallScript:
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
+	iftrue LookAtElmPokeBallScript
+	turnobject ELMSLAB_ELM, DOWN
+	refreshscreen
+	pokepic BULBASAUR
+	cry BULBASAUR
+	waitbutton
+	closepokepic
+	refreshscreen
+	pokepic BULBASAUR_CLONE
+	cry BULBASAUR_CLONE
+	waitbutton
+	closepokepic
+	opentext
+	writetext AskBulbasaurVersionText
+	buttonsound
+	loadmenu RegularOrCloneMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Regular
+	ifequal 2, .Clone
+	sjump DidntChooseStarterScript
+
+.Regular:
+	disappear ELMSLAB_POKE_BALL6
+	setevent EVENT_GOT_BULBASAUR_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, BULBASAUR
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke BULBASAUR, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterBulbasaurMovement
+	sjump ElmDirectionsScript
+
+.Clone:
+	disappear ELMSLAB_POKE_BALL6
+	setevent EVENT_GOT_BULBASAUR_FROM_ELM
+	writetext ChoseStarterText
+	buttonsound
+	waitsfx
+	getmonname STRING_BUFFER_3, BULBASAUR_CLONE
+	writetext ReceivedStarterText
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	buttonsound
+	givepoke BULBASAUR_CLONE, 5, BERRY
+	closetext
+	applymovement PLAYER, AfterBulbasaurMovement
 	sjump ElmDirectionsScript
 
 DidntChooseStarterScript:
@@ -699,6 +870,8 @@ ElmsLab_ElmToDefaultPositionMovement2:
 	step RIGHT
 	step RIGHT
 	step UP
+	step UP
+	step UP
 	turn_head DOWN
 	step_end
 
@@ -720,6 +893,33 @@ AfterChikoritaMovement:
 	step LEFT
 	step LEFT
 	step UP
+	turn_head UP
+	step_end
+
+AfterCharmanderMovement:
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_end
+
+AfterSquirtleMovement:
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_end
+
+AfterBulbasaurMovement:
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	turn_head UP
 	step_end
 
@@ -842,6 +1042,18 @@ ElmText_ChooseAPokemon:
 	line "#MON's first"
 	cont "partner, <PLAY_G>!"
 
+	para "Oh, and PROF.OAK"
+	line "left some rare"
+
+	para "#MON from KANTO"
+	line "here, too."
+
+	para "They're on the"
+	line "back table if"
+
+	para "you'd rather take"
+	line "one of those!"
+
 	para "Go on. Pick one!"
 	done
 
@@ -873,6 +1085,51 @@ TakeChikoritaText:
 	line "CHIKORITA, the"
 	cont "grass #MON?"
 	done
+
+TakeCharmanderText:
+	text "ELM: You'll take"
+	line "CHARMANDER, the"
+	cont "fire #MON?"
+	done
+
+TakeSquirtleText:
+	text "ELM: Do you want"
+	line "SQUIRTLE, the"
+	cont "water #MON?"
+	done
+
+TakeBulbasaurText:
+	text "ELM: So, you like"
+	line "BULBASAUR, the"
+	cont "grass #MON?"
+	done
+
+AskCharmanderVersionText:
+	text "Which CHARMANDER"
+	line "will you take?"
+	done
+
+AskSquirtleVersionText:
+	text "Which SQUIRTLE"
+	line "will you take?"
+	done
+
+AskBulbasaurVersionText:
+	text "Which BULBASAUR"
+	line "will you take?"
+	done
+
+RegularOrCloneMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 8, 6, SCREEN_WIDTH - 1, 11
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 2 ; items
+	db "Regular@"
+	db "Clone@"
 
 DidntChooseStarterText:
 	text "ELM: Think it over"
@@ -1372,41 +1629,44 @@ ElmsLab_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event  4, 11, NEW_BARK_TOWN, 1
-	warp_event  5, 11, NEW_BARK_TOWN, 1
+	warp_event  4, 15, NEW_BARK_TOWN, 1
+	warp_event  5, 15, NEW_BARK_TOWN, 1
 
 	db 8 ; coord events
-	coord_event  4,  6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
-	coord_event  5,  6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
-	coord_event  4,  5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript
-	coord_event  5,  5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript2
-	coord_event  4,  8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion1
-	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion2
-	coord_event  4,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
-	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
+	coord_event  4, 10, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event  5, 10, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event  4,  9, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript
+	coord_event  5,  9, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript2
+	coord_event  4, 12, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion1
+	coord_event  5, 12, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion2
+	coord_event  4, 12, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
+	coord_event  5, 12, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
 
 	db 16 ; bg events
-	bg_event  2,  1, BGEVENT_READ, ElmsLabHealingMachine
-	bg_event  6,  1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  7,  1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  8,  1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  9,  1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  0,  7, BGEVENT_READ, ElmsLabTravelTip1
-	bg_event  1,  7, BGEVENT_READ, ElmsLabTravelTip2
-	bg_event  2,  7, BGEVENT_READ, ElmsLabTravelTip3
-	bg_event  3,  7, BGEVENT_READ, ElmsLabTravelTip4
-	bg_event  6,  7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  7,  7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  8,  7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  9,  7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  9,  3, BGEVENT_READ, ElmsLabTrashcan
+	bg_event  8,  1, BGEVENT_READ, ElmsLabHealingMachine
+	bg_event  6,  5, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  7,  5, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  8,  5, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  3, 11, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  0, 11, BGEVENT_READ, ElmsLabTravelTip1
+	bg_event  1, 11, BGEVENT_READ, ElmsLabTravelTip2
+	bg_event  2, 11, BGEVENT_READ, ElmsLabTravelTip3
+	bg_event  1,  0, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event  6, 11, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  8, 11, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  9, 11, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  7, 11, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  9,  5, BGEVENT_READ, ElmsLabTrashcan
 	bg_event  5,  0, BGEVENT_READ, ElmsLabWindow
-	bg_event  3,  5, BGEVENT_DOWN, ElmsLabPC
+	bg_event  3,  9, BGEVENT_DOWN, ElmsLabPC
 
-	db 6 ; object events
-	object_event  5,  2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
-	object_event  2,  9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	object_event  6,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	object_event  7,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	db 9 ; object events
+	object_event  5,  4, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
+	object_event  2, 13, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	object_event  6,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	object_event  7,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	object_event  8,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	object_event  5,  5, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	object_event  0,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharmanderPokeBallScript, EVENT_CHARMANDER_POKEBALL_IN_ELMS_LAB
+	object_event  1,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SquirtlePokeBallScript, EVENT_SQUIRTLE_POKEBALL_IN_ELMS_LAB
+	object_event  2,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BulbasaurPokeBallScript, EVENT_BULBASAUR_POKEBALL_IN_ELMS_LAB

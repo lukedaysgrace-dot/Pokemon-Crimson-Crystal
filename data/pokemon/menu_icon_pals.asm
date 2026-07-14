@@ -460,3 +460,12 @@ MonMenuIconPals:
 	icon_pals GRAY,   RED   ; ZANGOOSE
 	icon_pals PURPLE, GREEN   ; SEVIPER
 	icon_pals BLUE,   PURPLE   ; GLIMMORA
+	icon_pals TEAL, TEAL ; BULBASAUR_CLONE
+	icon_pals TEAL, TEAL ; IVYSAUR_CLONE
+	icon_pals TEAL, TEAL ; VENUSAUR_CLONE
+	icon_pals RED, RED ; CHARMANDER_CLONE
+	icon_pals RED, RED ; CHARMELEON_CLONE
+	icon_pals RED, RED ; CHARIZARD_CLONE
+	icon_pals BLUE, BLUE ; SQUIRTLE_CLONE
+	icon_pals BLUE, BLUE ; WARTORTLE_CLONE
+	icon_pals BLUE, BLUE ; BLASTOISE_CLONE

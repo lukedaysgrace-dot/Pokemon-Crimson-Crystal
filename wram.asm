@@ -2048,7 +2048,6 @@ wSpriteFlags:: db ; d13e
 
 wHandlePlayerStep:: db ; d13f
 
-	ds 1
 
 wPartyMenuActionText:: db ; d141
 
@@ -2187,7 +2186,6 @@ ENDU ; d1f7
 wOtherTrainerType:: db ; d1f7
 wTrainerGroupBank:: db ; d1f8
 
-	ds 1
 
 wLinkBattleRNs:: ds 10 ; d1fa
 
@@ -2301,7 +2299,6 @@ wMonTriedToEvolve:: db
 
 wTimeOfDay:: db ; d269
 
-	ds 1
 
 
 SECTION "Enemy Party", WRAMX

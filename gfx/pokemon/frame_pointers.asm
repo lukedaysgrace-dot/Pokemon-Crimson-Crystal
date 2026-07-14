@@ -451,3 +451,12 @@ FramesPointers:
 	dba ZangooseFrames
 	dba SeviperFrames
 	dba GlimmoraFrames
+	dba BulbasaurCloneFrames
+	dba IvysaurCloneFrames
+	dba VenusaurCloneFrames
+	dba CharmanderCloneFrames
+	dba CharmeleonCloneFrames
+	dba CharizardCloneFrames
+	dba SquirtleCloneFrames
+	dba WartortleCloneFrames
+	dba BlastoiseCloneFrames

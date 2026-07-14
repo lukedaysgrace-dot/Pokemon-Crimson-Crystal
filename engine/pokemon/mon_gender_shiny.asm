@@ -122,6 +122,8 @@ InitMonShinyGender:
 	and $f
 	jr nz, .trainer
 
+	call IsClonePokemon
+	jr c, .not_shiny
 	call Random
 	cp SHINY_PROBABILITY
 	jr nc, .not_shiny
@@ -176,6 +178,8 @@ InitWildMonShinyGender:
 	xor a
 	ld b, a
 
+	call IsClonePokemon
+	jr c, .not_shiny
 	call BattleRandom
 	cp SHINY_PROBABILITY
 	jr nc, .not_shiny
@@ -195,4 +199,25 @@ InitWildMonShinyGender:
 	ld [wEnemyMonShinyGenderFlags], a
 	pop bc
 	ret
-
+
+IsClonePokemon:
+; Return carry if wCurPartySpecies is one of the shiny-locked clone forms.
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+
+	assert HIGH(BULBASAUR_CLONE) == HIGH(BLASTOISE_CLONE)
+	ld a, h
+	cp HIGH(BULBASAUR_CLONE)
+	jr nz, .not_clone
+	ld a, l
+	cp LOW(BULBASAUR_CLONE)
+	jr c, .not_clone
+	cp LOW(BLASTOISE_CLONE) + 1
+	jr nc, .not_clone
+
+	scf
+	ret
+
+.not_clone
+	and a
+	ret

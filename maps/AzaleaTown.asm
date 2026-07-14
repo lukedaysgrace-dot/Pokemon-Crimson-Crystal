@@ -62,7 +62,11 @@ AzaleaTownRivalBattleScript:
 	setevent EVENT_RIVAL_AZALEA_TOWN
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue .Totodile
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Chikorita
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .Chikorita
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_SILVER

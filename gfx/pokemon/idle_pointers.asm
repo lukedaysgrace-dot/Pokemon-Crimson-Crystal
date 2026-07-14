@@ -451,3 +451,12 @@ AnimationIdlePointers:
 	dw ZangooseAnimationIdle
 	dw SeviperAnimationIdle
 	dw GlimmoraAnimationIdle
+	dw BulbasaurCloneAnimationIdle
+	dw IvysaurCloneAnimationIdle
+	dw VenusaurCloneAnimationIdle
+	dw CharmanderCloneAnimationIdle
+	dw CharmeleonCloneAnimationIdle
+	dw CharizardCloneAnimationIdle
+	dw SquirtleCloneAnimationIdle
+	dw WartortleCloneAnimationIdle
+	dw BlastoiseCloneAnimationIdle

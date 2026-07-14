@@ -451,3 +451,30 @@ ZangooseAnimation:  INCLUDE "gfx/pokemon/zangoose/anim.asm"
 SeviperAnimation:  INCLUDE "gfx/pokemon/seviper/anim.asm"
 GlimmoraAnimation:  INCLUDE "gfx/pokemon/glimmora/anim.asm"
 EggAnimation:        INCLUDE "gfx/pokemon/egg/anim.asm"
+BulbasaurCloneAnimation:
+	frame 0, 20
+	endanim
+IvysaurCloneAnimation:
+	frame 0, 20
+	endanim
+VenusaurCloneAnimation:
+	frame 0, 20
+	endanim
+CharmanderCloneAnimation:
+	frame 0, 20
+	endanim
+CharmeleonCloneAnimation:
+	frame 0, 20
+	endanim
+CharizardCloneAnimation:
+	frame 0, 20
+	endanim
+SquirtleCloneAnimation:
+	frame 0, 20
+	endanim
+WartortleCloneAnimation:
+	frame 0, 20
+	endanim
+BlastoiseCloneAnimation:
+	frame 0, 20
+	endanim

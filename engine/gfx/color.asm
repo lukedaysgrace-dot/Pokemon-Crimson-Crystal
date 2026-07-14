@@ -145,48 +145,6 @@ SGB_ApplyPartyMenuHPPals:
 	ld [hl], e
 	ret
 
-Unreferenced_Function8b07:
-	call CheckCGB
-	ret z
-; CGB only
-	ld hl, .BGPal
-	ld de, wBGPals1
-	ld bc, 1 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-
-	ld hl, .OBPal
-	ld de, wOBPals1
-	ld bc, 1 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
-
-	call ApplyPals
-	ld a, $1
-	ldh [hCGBPalUpdate], a
-	ret
-
-.BGPal:
-	RGB 31, 31, 31
-	RGB 18, 23, 31
-	RGB 15, 20, 31
-	RGB 00, 00, 00
-
-.OBPal:
-	RGB 31, 31, 31
-	RGB 31, 31, 12
-	RGB 08, 16, 28
-	RGB 00, 00, 00
-
-Unreferenced_Function8b3f:
-	call CheckCGB
-	ret nz
-	ldh a, [hSGB]
-	and a
-	ret z
-	ld hl, BlkPacket_9a86
-	jp PushSGBPals
-
 Unreferenced_Function8b4d:
 	call CheckCGB
 	jr nz, .cgb
