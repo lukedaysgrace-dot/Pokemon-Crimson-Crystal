@@ -82,7 +82,7 @@ JohtoWaterWildMons:
 
 	map_id SILVER_CAVE_ROOM_2
 	db 2 percent ; encounter rate
-	dbw 35, SEAKING
+	dbw 35, SLOWKING
 	dbw 38, WALREIN
 	dbw 38, TOXAPEX
 
@@ -143,7 +143,7 @@ JohtoWaterWildMons:
 	map_id ROUTE_40
 	db 6 percent ; encounter rate
 	dbw 20, TENTACOOL
-	dbw 15, SQUIRTLE
+	dbw 15, CHINCHOU
 	dbw 20, TENTACOOL
 
 	map_id ROUTE_41
@@ -155,7 +155,7 @@ JohtoWaterWildMons:
 	map_id ROUTE_42
 	db 4 percent ; encounter rate
 	dbw 20, GOLDEEN
-	dbw 15, TOTODILE
+	dbw 15, MARILL
 	dbw 20, GOLDEEN
 
 	map_id ROUTE_43
@@ -203,7 +203,7 @@ JohtoWaterWildMons:
 	map_id OLIVINE_CITY
 	db 6 percent ; encounter rate
 	dbw 20, TENTACOOL
-	dbw 15, LOTAD
+	dbw 15, LOMBRE
 	dbw 20, TENTACOOL
 
 	map_id ECRUTEAK_CITY
@@ -215,7 +215,7 @@ JohtoWaterWildMons:
 	map_id LAKE_OF_RAGE
 	db 6 percent ; encounter rate
 	dbw 15, MAGIKARP
-	dbw 10, SQUIRTLE
+	dbw 10, FEEBAS
 	dbw 15, MAGIKARP
 
 	map_id BLACKTHORN_CITY
@@ -228,6 +228,6 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	dbw 37, SLOWBRO
 	dbw 40, KINGDRA
-	dbw 36, BLASTOISE
+	dbw 36, POLIWRATH
 
 	db -1 ; end
