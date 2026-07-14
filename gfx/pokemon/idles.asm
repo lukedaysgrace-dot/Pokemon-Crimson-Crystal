@@ -451,3 +451,30 @@ ZangooseAnimationIdle:  INCLUDE "gfx/pokemon/zangoose/anim_idle.asm"
 SeviperAnimationIdle:  INCLUDE "gfx/pokemon/seviper/anim_idle.asm"
 GlimmoraAnimationIdle:  INCLUDE "gfx/pokemon/glimmora/anim_idle.asm"
 EggAnimationIdle:        INCLUDE "gfx/pokemon/egg/anim_idle.asm"
+BulbasaurCloneAnimationIdle:
+	frame 0, 20
+	endanim
+IvysaurCloneAnimationIdle:
+	frame 0, 20
+	endanim
+VenusaurCloneAnimationIdle:
+	frame 0, 20
+	endanim
+CharmanderCloneAnimationIdle:
+	frame 0, 20
+	endanim
+CharmeleonCloneAnimationIdle:
+	frame 0, 20
+	endanim
+CharizardCloneAnimationIdle:
+	frame 0, 20
+	endanim
+SquirtleCloneAnimationIdle:
+	frame 0, 20
+	endanim
+WartortleCloneAnimationIdle:
+	frame 0, 20
+	endanim
+BlastoiseCloneAnimationIdle:
+	frame 0, 20
+	endanim

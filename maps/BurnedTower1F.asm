@@ -63,7 +63,11 @@ BurnedTowerRivalBattleScript:
 	closetext
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue .totodile
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .chikorita
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .chikorita
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER

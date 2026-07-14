@@ -118,7 +118,11 @@ CianwoodCityCrystalBattle:
 	closetext
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue .Cyndaquil
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .Cyndaquil
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Totodile
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .Totodile
 	loadtrainer CRYSTAL, CRYSTAL_3_CHIKORITA
 	sjump .StartBattle
