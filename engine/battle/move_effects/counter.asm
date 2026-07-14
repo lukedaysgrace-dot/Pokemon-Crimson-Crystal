@@ -35,11 +35,10 @@ BattleCommand_Counter:
 	cp CATEGORIZE_SPECIAL
 	ret z
 
-	; BUG: Move should fail with all non-damaging battle actions
 	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
-	ret z
+	jr z, .failed
 
 	ld a, [hl]
 	add a
@@ -55,4 +54,10 @@ BattleCommand_Counter:
 
 	xor a
 	ld [wAttackMissed], a
+	ret
+
+.failed
+	ld a, 1
+	ld [wEffectFailed], a
+	and a
 	ret

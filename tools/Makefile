@@ -3,22 +3,26 @@
 CC := gcc
 CFLAGS := -O3 -std=c99 -Wall -Wextra -Wno-missing-field-initializers
 
+ifeq ($(OS),Windows_NT)
+EXEEXT := .exe
+endif
+
 tools := \
-	lzcomp \
-	png_dimensions \
-	scan_includes \
-	palette \
-	pokemon_animation \
-	pokemon_animation_graphics \
-	gfx \
-	md5
+	lzcomp$(EXEEXT) \
+	png_dimensions$(EXEEXT) \
+	scan_includes$(EXEEXT) \
+	palette$(EXEEXT) \
+	pokemon_animation$(EXEEXT) \
+	pokemon_animation_graphics$(EXEEXT) \
+	gfx$(EXEEXT) \
+	md5$(EXEEXT)
 all: $(tools)
 	@:
 
 clean:
 	rm -f $(tools)
 
-gfx md5: common.h
+gfx$(EXEEXT) md5$(EXEEXT): common.h
 
-%: %.c
+%$(EXEEXT): %.c
 	$(CC) $(CFLAGS) -o $@ $<

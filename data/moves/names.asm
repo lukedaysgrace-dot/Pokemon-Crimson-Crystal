@@ -253,7 +253,7 @@ MoveNames::
 	db "GIGA HAMMER@"
 	db "DAZZLE GLEAM@"
 	db "DISARM VOICE@"
-	db "DRAINING KISS@"
+	db "DRAIN KISS@"
 	db "PLAY ROUGH@"
 	db "SPIRIT BREAK@"
 	db "FAIRY WIND@"

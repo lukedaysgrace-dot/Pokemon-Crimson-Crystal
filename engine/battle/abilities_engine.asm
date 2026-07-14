@@ -110,15 +110,54 @@ GetOpponentAbility::
 	ld a, l
 	pop hl
 	ret nz
-	; Neutralizing Gas suppresses unless the ability can't be suppressed
+	; A fainted Neutralizing Gas holder no longer suppresses the field.
+	; Keep the opponent's ability in b while checking the current user.
 	push bc
 	ld b, a
+	call UserHasFainted
+	jr nz, .gas_active
+	ld a, b
+	pop bc
+	ret
+.gas_active
+	; Neutralizing Gas suppresses unless the ability can't be suppressed.
+	ld a, b
 	call GetAbilityFlags
 	and ABILFLAG_NO_SUPPRESS
 	ld a, b
 	pop bc
 	ret nz
 	xor a ; NO_ABILITY
+	ret
+
+GetPlayerAbilityEffective::
+; Return the player's effective ability without changing hBattleTurn.
+; Preserves bc so callers can use it in speed/priority calculations.
+	push bc
+	ldh a, [hBattleTurn]
+	ld c, a
+	call SetEnemyTurn ; the player is now the opponent
+	call GetOpponentAbility
+	ld b, a
+	ld a, c
+	ldh [hBattleTurn], a
+	ld a, b
+	pop bc
+	ret
+
+GetEnemyAbilityEffective::
+; Return the enemy's effective ability without changing hBattleTurn.
+; Preserves bc so callers can use it in speed/priority calculations.
+	push bc
+	ldh a, [hBattleTurn]
+	ld c, a
+	call SetPlayerTurn ; the enemy is now the opponent
+	call GetOpponentAbility
+	ld b, a
+	ld a, c
+	ldh [hBattleTurn], a
+	ld a, b
+	pop bc
 	ret
 
 GetTrueUserIgnorableAbility::
@@ -278,6 +317,7 @@ ShowPotentialAbilityActivation::
 RunEntryAbilities::
 ; Runs the current turn holder's switch-in abilities.
 	call EndAbility
+	call RefreshWeatherSuppression
 	call UserHasFainted
 	ret z
 	; a busted Mimikyu keeps its broken sprite when it re-enters
@@ -401,6 +441,7 @@ SnowWarningAbility:
 WeatherAbility:
 	ld b, a
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp b
 	ret z ; don't re-activate it
 	push hl
@@ -408,13 +449,14 @@ WeatherAbility:
 	call ShowAbilityBannerBrief
 	pop bc
 	ld a, b
-	ld [wBattleWeather], a
+	call SetBattleWeatherPreservingSuppression
 	ld a, 5
 	ld [wWeatherCount], a
 	pop hl
 	call StdBattleTextbox
 	; show the weather itself, right after the "it started" text
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	ld b, a
 	; fallthrough
 
@@ -449,6 +491,7 @@ PlayPerTurnWeatherAnim::
 ; their animation; sandstorm and hail already animate via their own
 ; between-turn damage path, so they are skipped here.
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_RAIN
 	ld de, RAIN_DANCE
 	jr z, PlayWeatherAnimDE
@@ -558,6 +601,44 @@ ScreenCleanerAbility:
 	ld hl, BattleText_MonsLightScreenFell
 	jp StdBattleTextbox
 
+SetBattleWeatherPreservingSuppression::
+; in: a = WEATHER_*. Keep Cloud Nine's field-suppression bit intact.
+	push bc
+	ld b, a
+	ld a, [wBattleWeather]
+	and WEATHER_SUPPRESSED
+	or b
+	ld [wBattleWeather], a
+	pop bc
+	ret
+
+RefreshWeatherSuppression::
+; Recompute Cloud Nine's field state after entry or an ability change.
+; Fainted holders do not suppress weather; Neutralizing Gas is respected
+; by the effective-ability helpers.
+	ld hl, wBattleWeather
+	res WEATHER_SUPPRESSED_F, [hl]
+	ld a, [wBattleMonHP]
+	ld b, a
+	ld a, [wBattleMonHP + 1]
+	or b
+	jr z, .enemy
+	call GetPlayerAbilityEffective
+	cp CLOUD_NINE
+	jr z, .suppress
+.enemy
+	ld a, [wEnemyMonHP]
+	ld b, a
+	ld a, [wEnemyMonHP + 1]
+	or b
+	ret z
+	call GetEnemyAbilityEffective
+	cp CLOUD_NINE
+	ret nz
+.suppress
+	set WEATHER_SUPPRESSED_F, [hl]
+	ret
+
 ; ==== Stat change helpers =================================================
 
 StatUpAbility::
@@ -634,17 +715,55 @@ HealStatusAbility:
 	call GetBattleVar
 	and b
 	ret z ; not afflicted / wrong status
+	push bc
 	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
 	xor a
 	ld [hl], a
+	pop bc
+	; Curing poison must also clear Toxic's field-only marker and counter;
+	; otherwise a later ordinary poison can inherit toxic escalation.
+	ld a, b
+	cp 1 << PSN
+	call z, .clear_toxic
 	ld hl, BecameHealthyText
 	call StdBattleTextbox
+	push bc
 	ldh a, [hBattleTurn]
 	and a
-	jp z, UpdateBattleMonInParty
-	jp UpdateEnemyMonInParty
+	jr nz, .update_enemy
+	call UpdateBattleMonInParty
+	pop bc
+	; Recalculate to undo the stored PAR/BRN/frostbite stat penalty that
+	; was applied before this switch-in ability cured the status.
+	ld a, b
+	and (1 << PAR) | (1 << BRN) | (1 << FRZ)
+	ret z
+	farcall CalcPlayerStats
+	ret
+.update_enemy
+	call UpdateEnemyMonInParty
+	pop bc
+	ld a, b
+	and (1 << PAR) | (1 << BRN) | (1 << FRZ)
+	ret z
+	farcall CalcEnemyStats
+	ret
+
+.clear_toxic
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVarAddr
+	res SUBSTATUS_TOXIC, [hl]
+	ld hl, wPlayerToxicCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_toxic_count
+	ld hl, wEnemyToxicCount
+.got_toxic_count
+	xor a
+	ld [hl], a
+	ret
 
 OwnTempoAbility:
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -709,6 +828,22 @@ AbilityPreventsPoison::
 	db IMMUNITY, PASTEL_VEIL, -1
 
 AbilityPreventsBurn::
+	; Flash Fire also blocks Fire-type status moves (notably Will-O-Wisp).
+	; Damaging Fire moves are handled earlier by RunNullificationAbilities.
+	call GetOpponentIgnorableAbility
+	cp FLASH_FIRE
+	jr nz, .ordinary
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp FIRE
+	jr nz, .ordinary
+	call SwitchTurn
+	call ShowAbilityBannerBrief
+	call FlashFireActivate
+	call SwitchTurn
+	scf
+	ret
+.ordinary
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
@@ -786,6 +921,17 @@ CheckStatusPrevention:
 	; run the reflected status attempt from the bouncer's perspective
 	; (the Try* handlers status the bouncer's OPPONENT = original attacker,
 	; showing the bouncer's MAGIC BOUNCE banner)
+	; Toxic must remain badly poisoned when reflected; the generic poison
+	; handler is correct for every other poison-inducing status move.
+	ld a, c
+	cp BOUNCE_PSN
+	jr nz, .ordinary_bounce
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_TOXIC
+	ld hl, TryToxicOpponent
+	jr z, .run_bounce
+.ordinary_bounce
 	ld hl, .bounce_handlers
 	ld b, 0
 	dec c
@@ -794,6 +940,7 @@ CheckStatusPrevention:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+.run_bounce
 	call SwitchTurn
 	call _hl_
 	call SwitchTurn
@@ -941,6 +1088,10 @@ BadDreamsAbility:
 	and SLP
 	ret z
 	call OppHasFainted
+	ret z
+	; Magic Guard prevents indirect damage from opposing abilities.
+	call GetOpponentAbility
+	cp MAGIC_GUARD
 	ret z
 	call ShowAbilityBannerBrief
 	call SwitchTurn
@@ -2384,6 +2535,10 @@ AbilityAccuracyMods::
 	ld b, 0 ; can never hit
 	ret
 .no_priority_block
+	; Damaging sound/wind moves are nullified after damage calculation, but
+	; status moves never reach that hook. Block them during accuracy setup.
+	call .status_class_block
+	ret c
 	ld a, b
 	cp -1
 	ret z
@@ -2410,6 +2565,43 @@ AbilityAccuracyMods::
 	jr z, .tangled_feet
 	cp WONDER_SKIN
 	jr z, .wonder_skin
+	ret
+
+.status_class_block
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .class_not_blocked
+	call GetOpponentIgnorableAbility
+	cp SOUNDPROOF
+	jr z, .soundproof_status
+	cp WIND_RIDER
+	jr z, .wind_rider_status
+	jr .class_not_blocked
+.soundproof_status
+	push bc
+	ld hl, SoundMoves
+	call CurrentMoveInList
+	pop bc
+	jr nc, .class_not_blocked
+	call ShowEnemyAbilityBannerBrief
+	ld b, 0
+	scf
+	ret
+.wind_rider_status
+	push bc
+	ld hl, WindMoves
+	call CurrentMoveInList
+	pop bc
+	jr nc, .class_not_blocked
+	call SwitchTurn
+	call ShowAbilityBannerBrief
+	call AbsorbRaiseAttack
+	call SwitchTurn
+	ld b, 0
+	scf
+	ret
+.class_not_blocked
+	and a
 	ret
 
 .always_hit
@@ -2526,7 +2718,7 @@ CompareSpeedsWithAbilities::
 	push de
 	push bc
 	; player effective speed -> hl
-	ld a, [wPlayerAbility]
+	call GetPlayerAbilityEffective
 	ld c, a
 	ld a, [wBattleMonStatus]
 	ld b, a
@@ -2536,7 +2728,7 @@ CompareSpeedsWithAbilities::
 	call .ChoiceScarfBoost
 	push hl
 	; enemy effective speed -> hl
-	ld a, [wEnemyAbility]
+	call GetEnemyAbilityEffective
 	ld c, a
 	ld a, [wEnemyMonStatus]
 	ld b, a
@@ -2621,16 +2813,26 @@ CompareSpeedsWithAbilities::
 	ret
 
 .quick_feet
-	; x1.5 while statused
+	; x1.5 while statused. The classic engine permanently quarters the
+	; stored Speed when paralysis lands, so undo that reduction first:
+	; Quick Feet ignores paralysis's Speed penalty.
 	ld a, b
 	and a
 	ret z
+	bit PAR, b
+	jr z, .quick_feet_boost
+	add hl, hl
+	jr c, .speed_cap
+	add hl, hl
+	jr c, .speed_cap
+.quick_feet_boost
 	ld d, h
 	ld e, l
 	srl d
 	rr e
 	add hl, de
 	ret nc
+.speed_cap
 	ld hl, $ffff
 	ret
 
@@ -2698,6 +2900,22 @@ LifeOrbRecoil:
 	call GetTrueUserAbility
 	cp MAGIC_GUARD
 	ret z
+	cp SHEER_FORCE
+	jr nz, .do_recoil
+	; A Sheer Force-boosted move also suppresses Life Orb recoil. Keep the
+	; same eligibility test used by RunDamageModifiers: nonzero chance.
+	push hl
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.got_chance
+	ld a, [hl]
+	pop hl
+	and a
+	ret nz
+.do_recoil
 	call UserHasFainted
 	ret z
 	ld d, 10
@@ -2778,6 +2996,9 @@ RockyHelmetDamage:
 	ret nc
 	call UserHasFainted
 	ret z
+	call GetTrueUserAbility
+	cp MAGIC_GUARD
+	ret z
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_ROCKY_HELMET
@@ -2850,17 +3071,25 @@ RunContactAbilitiesHook::
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	; if the defender just fainted, only its Aftermath can proc
-	call OppHasFainted
-	jp z, .aftermath
 	; Parental Bond: a second hit at 25% power
+	call OppHasFainted
+	jr z, .post_parental_bond
 	call GetTrueUserAbility
 	cp PARENTAL_BOND
 	call z, ParentalBondSecondHit
-	call OppHasFainted
-	jp z, .aftermath
+.post_parental_bond
 	; defender on-hit abilities (any damaging move, contact or not)
 	call GetOpponentAbility
+	; Cursed Body and Toxic Debris still have a useful effect when the hit
+	; knocks their holder out. Stat-changing reactions do not.
+	cp CURSED_BODY
+	jp z, .cursed_body
+	cp TOXIC_DEBRIS
+	jp z, .toxic_debris
+	ld b, a
+	call OppHasFainted
+	jr z, .contact
+	ld a, b
 	cp STAMINA
 	jr z, .stamina
 	cp THERMAL_EXCHANGE
@@ -2871,22 +3100,25 @@ RunContactAbilitiesHook::
 	jp z, .weak_armor
 	cp BERSERK
 	jp z, .berserk
-	cp CURSED_BODY
-	jp z, .cursed_body
 	cp ANGER_POINT
 	jp z, .anger_point
-	cp TOXIC_DEBRIS
-	jp z, .toxic_debris
 .contact
 	call CheckContactMove
-	ret nc
+	jr nc, .check_aftermath
 	; attacker on-contact abilities
+	call OppHasFainted
+	jr z, .defender_contact ; don't try to status a fainted defender
 	call GetTrueUserAbility
 	cp POISON_TOUCH
 	call z, PoisonTouchAbility
 	; defender on-contact abilities (perspective switches to the defender)
+.defender_contact
 	call StackCallOpponentTurn
-	jp _RunDefenderContactAbilities
+	call _RunDefenderContactAbilities
+.check_aftermath
+	call OppHasFainted
+	jp z, .aftermath
+	ret
 
 .stamina
 	ld b, DEFENSE
@@ -2945,7 +3177,7 @@ RunContactAbilitiesHook::
 .berserk
 	; SpA+1 when a hit drops the holder from >=1/2 to <1/2 of its max HP
 	call .berserk_check
-	jr nc, .contact
+	jp nc, .contact
 	ld b, SP_ATTACK
 	jr .on_hit_stat_up
 
@@ -3071,6 +3303,8 @@ RunContactAbilitiesHook::
 	call GetTrueUserAbility
 	cp DAMP
 	ret z
+	cp MAGIC_GUARD
+	ret z
 	call CheckContactMove
 	ret nc
 	call UserHasFainted
@@ -3174,7 +3408,9 @@ CursedBodyEffect:
 	jp SwitchTurn
 
 _RunDefenderContactAbilities:
-	call UserHasFainted
+	; Turn = defender. Its contact ability can still activate if the holder
+	; fainted, but there is nothing to affect if the attacker also fainted.
+	call OppHasFainted
 	ret z
 	call GetTrueUserAbility
 	ld hl, TargetContactAbilities
@@ -3248,6 +3484,8 @@ TryParalyzeOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call OpponentIsElectricType
+	ret z ; Electric-types cannot be paralyzed
 	call AbilityPreventsParalysis
 	ret c
 	call ShowAbilityBannerBrief
@@ -3319,9 +3557,49 @@ TryPoisonOpponentContact:
 	call StdBattleTextbox
 	jp EndAbility
 
+TryToxicOpponent:
+; Badly poison the turn holder's opponent. Used by Synchronize and Magic
+; Bounce so Toxic does not get degraded into regular poison.
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret nz
+	call OpponentIsPoisonImmuneType
+	ret z
+	call AbilityPreventsPoison
+	ret c
+	call ShowAbilityBannerBrief
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PSN, [hl]
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVarAddr
+	set SUBSTATUS_TOXIC, [hl]
+	ld bc, wEnemyToxicCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_toxic_count
+	ld bc, wPlayerToxicCount
+.got_toxic_count
+	xor a
+	ld [bc], a
+	call UpdateOpponentInParty
+	ld de, ANIM_PSN
+	call AbilityStatusAnim
+	call UpdateBattleHuds
+	ld hl, BadlyPoisonedText
+	call StdBattleTextbox
+	jp EndAbility
+
 EffectSporeAbility:
 	call ContactChance
 	ret nc
+	; Grass-types and Overcoat holders are immune to spores.
+	call OpponentIsGrassType
+	ret z
+	call GetOpponentAbility
+	cp OVERCOAT
+	ret z
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
@@ -3430,6 +3708,9 @@ CuteCharmAbility:
 
 IronBarbsAbility:
 ; Defender contact ability: the attacker loses 1/8 of its max HP.
+	call GetOpponentAbility
+	cp MAGIC_GUARD
+	ret z
 	call ShowAbilityBannerBrief
 	call SwitchTurn
 	ld d, 8
@@ -3511,9 +3792,21 @@ AbilityStatusAnim::
 	farcall PlayBattleAnim
 	jp SwitchTurn
 
+OpponentIsElectricType::
+	ld a, ELECTRIC
+	jr OpponentIsType
+
+OpponentIsGrassType:
+	ld a, GRASS
+	jr OpponentIsType
+
 OpponentIsFireType:
-; z if the turn holder's opponent is Fire-type (burn immunity)
+; z if the turn holder's opponent is the type in a.
+	ld a, FIRE
+OpponentIsType:
 	push hl
+	push bc
+	ld b, a
 	ld hl, wEnemyMonType1
 	ldh a, [hBattleTurn]
 	and a
@@ -3521,11 +3814,12 @@ OpponentIsFireType:
 	ld hl, wBattleMonType1
 .got_types
 	ld a, [hli]
-	cp FIRE
+	cp b
 	jr z, .done
 	ld a, [hl]
-	cp FIRE
+	cp b
 .done
+	pop bc
 	pop hl
 	ret
 
@@ -3735,6 +4029,9 @@ AbilityCapCore::
 RunFaintAbilities::
 ; Called when a battler faints. If the current turn holder is still alive
 ; and its opponent just fainted, run its on-KO abilities (Moxie).
+	; A fainted Cloud Nine holder stops suppressing the underlying weather
+	; immediately, even before its replacement enters.
+	call RefreshWeatherSuppression
 	call UserHasFainted
 	ret z
 	call OppHasFainted
@@ -3813,7 +4110,7 @@ AbilityCompareMovePriority::
 	ld d, e
 	ld a, [wCurPlayerMove]
 	ld b, a
-	ld a, [wPlayerAbility]
+	call GetPlayerAbilityEffective
 	ld c, a
 	call .Adjust
 	push de
@@ -3823,7 +4120,7 @@ AbilityCompareMovePriority::
 	ld d, e
 	ld a, [wCurEnemyMove]
 	ld b, a
-	ld a, [wEnemyAbility]
+	call GetEnemyAbilityEffective
 	ld c, a
 	call .Adjust
 	pop bc ; b = player priority
@@ -4239,6 +4536,11 @@ RunSynchronizePsn::
 ; body, secondaries via PoisonTarget/ToxicTarget).
 	call RunPoisonPuppeteer
 	ld hl, TryPoisonOpponentContact
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	bit SUBSTATUS_TOXIC, a
+	jr z, RunSynchronize
+	ld hl, TryToxicOpponent
 	; fallthrough
 RunSynchronize:
 ; If the defender has Synchronize, pass the status back to the attacker.
@@ -4289,6 +4591,24 @@ GetTrueUserAbility_b::
 	ld b, a
 	ret
 
+GetPlayerAbilityEffective_b::
+; farcall-safe wrapper: the player's effective ability, returned in b.
+	call GetPlayerAbilityEffective
+	ld b, a
+	ret
+
+GetEnemyAbilityEffective_b::
+; farcall-safe wrapper: the enemy's effective ability, returned in b.
+	call GetEnemyAbilityEffective
+	ld b, a
+	ret
+
+GetAbilityFlags_b::
+; farcall-safe wrapper: the flags for ability a, returned in b.
+	call GetAbilityFlags
+	ld b, a
+	ret
+
 TransformCopyAbility::
 ; Transform/Imposter also copies the target's ability (canon), unless
 ; that ability can't be acquired by transforming (ABILFLAG_NO_TRANSFORM,
@@ -4308,6 +4628,7 @@ TransformCopyAbility::
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVarAddr
 	ld [hl], b
+	call RefreshWeatherSuppression
 .done
 	pop bc
 	pop hl
@@ -4332,10 +4653,6 @@ CheckOpponentTrapAbility::
 	push hl
 	push de
 	push bc
-	; the player's own Neutralizing Gas suppresses the trap
-	ld a, [wPlayerAbility]
-	cp NEUTRALIZING_GAS
-	jr z, .free
 	; Ghost-types can always leave (Gen 6 rules)
 	ld a, [wBattleMonType1]
 	cp GHOST
@@ -4343,7 +4660,7 @@ CheckOpponentTrapAbility::
 	ld a, [wBattleMonType2]
 	cp GHOST
 	jr z, .free
-	ld a, [wEnemyAbility]
+	call GetEnemyAbilityEffective
 	cp SHADOW_TAG
 	jr z, .shadow_tag
 	cp MAGNET_PULL
@@ -4357,13 +4674,16 @@ CheckOpponentTrapAbility::
 	ld a, [wBattleMonType2]
 	cp FLYING
 	jr z, .free
-	ld a, [wPlayerAbility]
+	ld a, [wBattleMonItem]
+	cp AIR_BALLOON
+	jr z, .free
+	call GetPlayerAbilityEffective
 	cp LEVITATE
 	jr z, .free
 	jr .trapped
 .shadow_tag
 	; Shadow Tag doesn't trap another Shadow Tag holder (Gen 4 rules)
-	ld a, [wPlayerAbility]
+	call GetPlayerAbilityEffective
 	cp SHADOW_TAG
 	jr z, .free
 	jr .trapped
@@ -4394,16 +4714,13 @@ CheckPlayerTrapsEnemy::
 	push hl
 	push de
 	push bc
-	ld a, [wEnemyAbility]
-	cp NEUTRALIZING_GAS
-	jr z, .free
 	ld a, [wEnemyMonType1]
 	cp GHOST
 	jr z, .free
 	ld a, [wEnemyMonType2]
 	cp GHOST
 	jr z, .free
-	ld a, [wPlayerAbility]
+	call GetPlayerAbilityEffective
 	cp SHADOW_TAG
 	jr z, .shadow_tag
 	cp MAGNET_PULL
@@ -4416,12 +4733,15 @@ CheckPlayerTrapsEnemy::
 	ld a, [wEnemyMonType2]
 	cp FLYING
 	jr z, .free
-	ld a, [wEnemyAbility]
+	ld a, [wEnemyMonItem]
+	cp AIR_BALLOON
+	jr z, .free
+	call GetEnemyAbilityEffective
 	cp LEVITATE
 	jr z, .free
 	jr .trapped
 .shadow_tag
-	ld a, [wEnemyAbility]
+	call GetEnemyAbilityEffective
 	cp SHADOW_TAG
 	jr z, .free
 	jr .trapped
@@ -4448,7 +4768,7 @@ CheckPlayerTrapsEnemy::
 RunPlayerSwitchOutAbilities::
 ; Natural Cure / Regenerator for the outgoing player mon (wLastPlayerMon).
 ; Called right before RecallPlayerMon; edits the party struct directly.
-	ld a, [wPlayerAbility]
+	call GetPlayerAbilityEffective
 	cp NATURAL_CURE
 	jr z, .natural_cure
 	cp REGENERATOR
@@ -4470,7 +4790,7 @@ RunEnemySwitchOutAbilities::
 	ld a, [wBattleMode]
 	dec a ; WILDMON?
 	ret z
-	ld a, [wEnemyAbility]
+	call GetEnemyAbilityEffective
 	cp NATURAL_CURE
 	jr z, .natural_cure
 	cp REGENERATOR
@@ -4750,6 +5070,7 @@ AbilityPreventsSelfdestruct::
 	scf
 	ret
 
+GetOpponentIgnorableAbility_b::
 GetOppIgnorableAbility_b::
 ; farcall-safe wrapper: the opponent's effective (Mold Breaker-ignorable)
 ; ability, returned in b.
@@ -4850,7 +5171,11 @@ BattleCommand_EffectChance_Core::
 	call AbilityEffectChanceMods
 	jr c, .failed ; Sheer Force
 
-	; BUG (vanilla): 1/256 chance to fail even for a 100% effect chance
+	; $ff is the data encoding for a guaranteed secondary effect. Handle it
+	; before the RNG comparison so a roll of $ff cannot make it fail.
+	ld a, b
+	cp $ff
+	ret z
 	call BattleRandom
 	cp b
 	ret c
@@ -4990,6 +5315,7 @@ PunchMoves:
 	dw SHADOW_PUNCH
 	dw BULLET_PUNCH
 	dw DRAIN_PUNCH
+	dw PIXIE_PUNCH
 	dw -1
 
 SliceMoves:
@@ -4999,9 +5325,12 @@ SliceMoves:
 	dw RAZOR_LEAF
 	dw SLASH
 	dw FURY_CUTTER
+	dw BITTER_BLADE
 	dw AIR_SLASH
 	dw LEAF_BLADE
 	dw X_SCISSOR
+	dw SOLAR_BLADE
+	dw AERIAL_ACE
 	dw NIGHT_SLASH
 	dw -1
 
@@ -5048,7 +5377,11 @@ WindMoves:
 	dw GUST
 	dw RAZOR_WIND
 	dw WHIRLWIND
+	dw BLIZZARD
+	dw AEROBLAST
+	dw ICY_WIND
 	dw TWISTER
+	dw FAIRY_WIND
 	dw HURRICANE
 	dw -1
 
@@ -5134,8 +5467,10 @@ TriageMoves:
 	dw DREAM_EATER
 	dw DRAIN_PUNCH
 	dw DRAINING_KISS
+	dw BITTER_BLADE
 	dw RECOVER
 	dw SOFTBOILED
+	dw ROOST
 	dw REST
 	dw MILK_DRINK
 	dw MORNING_SUN
@@ -5143,7 +5478,11 @@ TriageMoves:
 	dw MOONLIGHT
 	dw -1
 
+INCLUDE "data/abilities/flags.asm"
+
+; Keep compressed art out of the nearly full executable ability bank. The
+; loader already uses BANK(label) + FarDecompress, so these are bank-safe.
+SECTION "Mimikyu Broken Pics", ROMX
+
 MimikyuBrokenFrontpic: INCBIN "gfx/pokemon/mimikyu-broken/front.animated.2bpp.lz"
 MimikyuBrokenBackpic:  INCBIN "gfx/pokemon/mimikyu-broken/back.2bpp.lz"
-
-INCLUDE "data/abilities/flags.asm"

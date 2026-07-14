@@ -3,7 +3,7 @@
 
 	db   "It gathers shiny"
 	next "objects and keeps"
-	next "them in hidden lairs."
+	next "them stored away."
 
 	page "MURKROW are said"
 	next "to serve this dark"

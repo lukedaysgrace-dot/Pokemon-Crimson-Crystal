@@ -80,6 +80,69 @@ ReadTrainerParty:
 	call CloseSRAM
 	jr .done
 
+SetTrainerBattleLevel:
+; The battle transition runs before the enemy party is built. Read the first
+; level directly from the selected trainer record so the transition can make
+; a deterministic strength comparison. Link, Battle Tower, and CAL2 parties
+; are already external/special data, so use the strongest transition for them.
+	ld a, $ff
+	ld [wCurPartyLevel], a
+
+	ld a, [wInBattleTowerBattle]
+	bit 0, a
+	ret nz
+
+	ld a, [wLinkMode]
+	and a
+	ret nz
+
+	ld a, [wOtherTrainerClass]
+	cp CAL
+	jr nz, .regular_trainer
+	ld a, [wOtherTrainerID]
+	cp CAL2
+	ret z
+	ld a, [wOtherTrainerClass]
+
+.regular_trainer
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, TrainerGroups
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld [wTrainerGroupBank], a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	ld a, [wOtherTrainerID]
+	ld b, a
+.skip_trainer
+	dec b
+	jr z, .got_trainer
+	ld a, [wTrainerGroupBank]
+	call GetFarByte
+	add a, l
+	ld l, a
+	jr nc, .skip_trainer
+	inc h
+	jr .skip_trainer
+
+.got_trainer
+	inc hl ; record length
+.skip_name
+	call GetNextTrainerDataByte
+	cp "@"
+	jr nz, .skip_name
+
+	call GetNextTrainerDataByte ; trainer type
+	call GetNextTrainerDataByte ; first party member's level
+	ld [wCurPartyLevel], a
+	ret
+
 ReadTrainerPartyPieces:
 	ld h, d
 	ld l, e

@@ -1,10 +1,10 @@
 ; Trainer data structure:
 ; - db "NAME@", TRAINERTYPE_* constant
 ; - 1 to 6 Pokémon:
-;    * for TRAINERTYPE_NORMAL:     db level, species
-;    * for TRAINERTYPE_MOVES:      db level, species, 4 moves
-;    * for TRAINERTYPE_ITEM:       db level, species, item
-;    * for TRAINERTYPE_ITEM_MOVES: db level, species, item, 4 moves
+;    * for TRAINERTYPE_NORMAL:     db level; dw species
+;    * for TRAINERTYPE_MOVES:      db level; dw species, 4 moves
+;    * for TRAINERTYPE_ITEM:       db level; dw species; db item
+;    * for TRAINERTYPE_ITEM_MOVES: db level; dw species; db item; dw 4 moves
 ; - db -1 ; end
 
 SECTION "Enemy Trainer Parties 1", ROMX
@@ -204,23 +204,23 @@ PryceGroup:
 
 	next_list_item ; PRYCE (2)
 	db "PRYCE@", TRAINERTYPE_ITEM_MOVES
-	db 33
+	db 53
 	dw CLOYSTER
 	db NO_ITEM
 	dw SURF, SPIKES, AURORA_BEAM, RAIN_DANCE
-	db 34
+	db 54
 	dw SNEASEL
 	db NO_ITEM
 	dw FAINT_ATTACK, METAL_CLAW, REFLECT, ICE_PUNCH
-	db 33
+	db 53
 	dw JYNX
 	db NO_ITEM
 	dw ICE_PUNCH, PSYCHIC_M, RAIN_DANCE, LOVELY_KISS
-	db 34
+	db 54
 	dw DEWGONG
 	db NO_ITEM
 	dw SURF, AURORA_BEAM, SNORE, REST
-	db 35
+	db 55
 	dw PILOSWINE
 	db GOLD_BERRY
 	dw HEADBUTT, EARTHQUAKE, ROCK_SMASH, BLIZZARD
@@ -255,23 +255,23 @@ JasmineGroup:
 
 	next_list_item ; JASMINE (2)
 	db "JASMINE@", TRAINERTYPE_ITEM_MOVES
-	db 35
+	db 53
 	dw SKARMORY
 	db NO_ITEM
 	dw SPIKES, DRILL_PECK, SWAGGER, STEEL_WING
-	db 35
+	db 53
 	dw CORSOLA
 	db NO_ITEM
 	dw RAIN_DANCE, SURF, RECOVER, ANCIENTPOWER
-	db 35
+	db 53
 	dw MAGNETON
 	db NO_ITEM
 	dw THUNDERBOLT, TRI_ATTACK, RAIN_DANCE, THUNDER
-	db 36
+	db 54
 	dw SCIZOR
 	db FOCUS_BAND
 	dw TWINEEDLE, METAL_CLAW, AGILITY, SWORDS_DANCE
-	db 36
+	db 55
 	dw STEELIX
 	db QUICK_CLAW
 	dw CRUNCH, EARTHQUAKE, ROCK_SLIDE, IRON_TAIL
@@ -302,23 +302,23 @@ ChuckGroup:
 
 	next_list_item ; CHUCK (2)
 	db "CHUCK@", TRAINERTYPE_ITEM_MOVES
-	db 35
+	db 54
 	dw HITMONTOP
 	db NO_ITEM
 	dw TRIPLE_KICK, ROLLING_KICK, DIG, PURSUIT
-	db 35
+	db 54
 	dw SUDOWOODO
 	db NO_ITEM
 	dw ROCK_SLIDE, THUNDERPUNCH, LOW_KICK, FAINT_ATTACK
-	db 34
+	db 53
 	dw PRIMEAPE
 	db NO_ITEM
 	dw LOW_KICK, KARATE_CHOP, ICE_PUNCH, RAGE
-	db 35
+	db 54
 	dw PINSIR
 	db NO_ITEM
 	dw ROCK_SMASH, TWINEEDLE, VICEGRIP, HARDEN
-	db 36
+	db 55
 	dw POLIWRATH
 	db BLACKBELT
 	dw HYPNOSIS, MIND_READER, SURF, DYNAMICPUNCH
@@ -3310,7 +3310,7 @@ FisherGroup:
 
 	next_list_item ; FISHER (14)
 	db "STEPHEN@", TRAINERTYPE_NORMAL
-	db 75
+	db 57
 	dw MAGIKARP
 	db 57
 	dw GYARADOS

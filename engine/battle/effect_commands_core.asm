@@ -284,6 +284,62 @@ HeldDefenseBoost_Core:
 	ld c, l
 	ret
 
+DittoMetalPowder_Core::
+; Apply Metal Powder's 1.5x defensive boost before the 16-to-8-bit stat
+; truncation. Applying it afterwards can increase damage when Defense has
+; already been scaled down, and the old bytewise math can overflow.
+	ld a, MON_SPECIES
+	call BattlePartyAttr
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [hl]
+	jr nz, .got_species
+	ld a, [wTempEnemyMonSpecies]
+.got_species
+	push hl
+	call GetPokemonIndexFromID
+	ld a, l
+	sub LOW(DITTO)
+	if HIGH(DITTO) == 0
+		or h
+		pop hl
+	else
+		ld a, h
+		pop hl
+		ret nz
+		if HIGH(DITTO) == 1
+			dec a
+		else
+			cp HIGH(DITTO)
+		endc
+	endc
+	ret nz
+
+	push bc
+	callfar GetOpponentItem
+	ld a, [hl]
+	cp METAL_POWDER
+	pop bc
+	ret nz
+
+	ld h, b
+	ld l, c
+	srl b
+	rr c
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp b
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp c
+	ret nc
+.cap
+	ld bc, MAX_STAT_VALUE
+	ret
+
 EndureFocusSashInEffect_Core:
 ; Carry if ApplyDamage should proceed to damage. b = survival message id.
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
@@ -363,11 +419,12 @@ EndureFocusSashInEffect_Core:
 
 BattleStartHail_Core:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_HAIL
 	jr z, .failed
 
 	ld a, WEATHER_HAIL
-	ld [wBattleWeather], a
+	farcall SetBattleWeatherPreservingSuppression
 	ld a, 5
 	ld [wWeatherCount], a
 	callfar AnimateCurrentMove
@@ -431,6 +488,10 @@ BattleUTurn_Core:
 	ld a, [wAttackMissed]
 	and a
 	ret nz
+	; Contact recoil can faint the user in CheckFaint's post-hit hook.
+	; A fainted user must go through normal replacement, not pivot out.
+	farcall UserHasFainted
+	ret z
 
 	ldh a, [hBattleTurn]
 	and a
@@ -504,6 +565,8 @@ BattleParalyze_Core:
 	jp nz, .paralyzed
 	ld a, [wTypeModifier]
 	and $7f
+	jp z, .didnt_affect
+	farcall OpponentIsElectricType
 	jp z, .didnt_affect
 	callfar GetOpponentItem
 	ld a, b
@@ -603,6 +666,8 @@ BattleParalyzeTarget_Core:
 	ret nz
 	ld a, [wTypeModifier]
 	and $7f
+	ret z
+	farcall OpponentIsElectricType
 	ret z
 	callfar GetOpponentItem
 	ld a, b
@@ -778,8 +843,8 @@ HandleStatusOrbs_Core:
 	ret
 
 CheckSpikesUngrounded_Core:
-; Carry if the turn holder isn't grounded - Flying-type, Levitate
-; or an AIR BALLOON - and so avoids Spikes. Body lives here because
+; Carry if the turn holder avoids Spikes: Flying-type, Levitate,
+; Air Balloon, or Magic Guard. Body lives here because
 ; the Battle Core bank is full. Clobbers b, hl.
 	ld hl, wBattleMonType
 	ldh a, [hBattleTurn]
@@ -797,6 +862,8 @@ CheckSpikesUngrounded_Core:
 	ld a, b
 	cp LEVITATE
 	jr z, .ungrounded
+	cp MAGIC_GUARD
+	jr z, .ungrounded
 	callfar GetUserItem
 	ld a, b
 	cp HELD_AIR_BALLOON
@@ -805,6 +872,13 @@ CheckSpikesUngrounded_Core:
 	ret
 .ungrounded
 	scf
+	ret
+
+UserHasMagicGuard_Core::
+; Return z if the current turn holder's effective ability is Magic Guard.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MAGIC_GUARD
 	ret
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"

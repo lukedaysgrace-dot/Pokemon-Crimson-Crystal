@@ -50,13 +50,33 @@ MonCheck:
 
 CheckOwnMonAnywhere:
 ; Check if the player owns any monsters of the species in wScriptVar.
-; It must exist in either party or PC, and have the player's OT and ID.
+; It must exist in the Day-Care, party, or PC, and have the player's OT and ID.
 
-	; If there are no monsters in the party,
-	; the player must not own any yet.
+	ld a, [wDayCareMan]
+	bit DAYCAREMAN_HAS_MON_F, a
+	jr z, .check_day_care_lady
+	ld hl, wBreedMon1Species
+	ld bc, wBreedMon1OT
+	and a
+	call CheckOwnMon
+	ret c ; found!
+
+.check_day_care_lady
+	ld a, [wDayCareLady]
+	bit DAYCARELADY_HAS_MON_F, a
+	jr z, .party
+	ld hl, wBreedMon2Species
+	ld bc, wBreedMon2OT
+	and a
+	call CheckOwnMon
+	ret c ; found!
+
+.party
+	; A zero-member party can occur in corrupted or externally edited saves.
+	; The PC still has to be searched in that case.
 	ld a, [wPartyCount]
 	and a
-	ret z
+	jr z, .current_box
 
 	ld d, a
 	ld e, 0
@@ -78,6 +98,7 @@ CheckOwnMonAnywhere:
 	jr nz, .partymon
 
 	; Run CheckOwnMon on each Pokémon in the PC.
+.current_box
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
@@ -215,12 +236,10 @@ CheckOwnMon:
 	jr nz, .notfound ; ID doesn't match
 
 ; check OT
-; This only checks five characters, which is fine for the Japanese version,
-; but in the English version the player name is 7 characters, so this is wrong.
 
 	ld hl, wPlayerName
 
-rept NAME_LENGTH_JAPANESE + -2 ; should be PLAYER_NAME_LENGTH + -2
+rept PLAYER_NAME_LENGTH + -2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound

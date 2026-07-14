@@ -146,27 +146,37 @@ CinnabarIslandBlueText:
 	done
 
 CinnabarIslandBlueCloakBeforeText:
-	text "BLUE: …You're the"
-	line "one who beat RED."
+	text "BLUE: So you're"
+	line "the Trainer who"
+	cont "beat RED..."
 
-	para "I've been waiting"
-	line "for a rematch of"
-	cont "my own."
+	para "Heh. Don't look"
+	line "so pleased."
 
-	para "Don't hold back!"
+	para "RED was never"
+	line "the finish line."
+
+	para "I've studied your"
+	line "battle style."
+
+	para "Now I'll tear it"
+	line "apart. Come on!"
 	done
 
 CinnabarIslandBlueCloakBeatenText:
-	text "Tch… Still not"
-	line "enough…"
+	text "Tch... So that's"
+	line "how you beat RED."
 	done
 
 CinnabarIslandBlueCloakAfterText:
-	text "BLUE: You're the"
-	line "real deal."
+	text "BLUE: You beat RED"
+	line "and me. Fine."
 
-	para "Don't get soft on"
-	line "me now."
+	para "But victory only"
+	line "shows your hand."
+
+	para "Next time, I'll"
+	line "have the counter."
 	done
 
 CinnabarIslandGymSignText:

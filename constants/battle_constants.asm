@@ -242,6 +242,12 @@ SCREENS_TOXIC_SPIKES_MASK EQU (1 << SCREENS_TOXIC_SPIKES_1) | (1 << SCREENS_TOXI
 	const WEATHER_SUN_END
 	const WEATHER_SANDSTORM_END
 
+; Cloud Nine leaves the underlying weather and its timer intact while
+; suppressing every mechanical effect. The low bits remain WEATHER_*.
+WEATHER_TYPE_MASK EQU %00000111
+WEATHER_SUPPRESSED_F EQU 7
+WEATHER_SUPPRESSED EQU 1 << WEATHER_SUPPRESSED_F
+
 ; wBattleAction
 	const_def
 	const BATTLEACTION_MOVE1

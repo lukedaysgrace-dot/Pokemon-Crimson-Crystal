@@ -7,5 +7,5 @@
 
 	page "Older locals swear"
 	next "they feel tremors"
-	next "before it surfaces.@"
+	next "before it emerges.@"
 

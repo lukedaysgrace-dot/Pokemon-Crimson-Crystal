@@ -6,4 +6,4 @@
 	next "gather its food,"
 	page "dining only on the"
 	next "most nutritious"
-	next "and delicious fare.@"
+	next "delicious fare.@"

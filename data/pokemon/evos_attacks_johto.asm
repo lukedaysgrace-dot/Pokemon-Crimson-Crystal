@@ -971,6 +971,7 @@ JumpluffEvosAttacks:
 
 AipomEvosAttacks:
 	dbbw EVOLVE_LEVEL, 32, AMBIPOM
+	db 0 ; no more evolutions
 	dbw 1, SCRATCH
 	dbw 1, TAIL_WHIP
 	dbw 6, SAND_ATTACK
@@ -1104,6 +1105,7 @@ UmbreonEvosAttacks:
 
 MurkrowEvosAttacks:
 	dbbw EVOLVE_LEVEL, 40, HONCHKROW
+	db 0 ; no more evolutions
 	dbw 1, PECK
 	dbw 11, PURSUIT
 	dbw 16, HAZE
@@ -2030,6 +2032,7 @@ AnnihilapeEvosAttacks:
 
 BagonEvosAttacks:
 	dbbw EVOLVE_LEVEL, 25, SHELGON
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -2308,6 +2311,7 @@ PorygonZEvosAttacks:
 
 RaltsEvosAttacks:
 	dbbw EVOLVE_LEVEL, 20, KIRLIA
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -2376,6 +2380,7 @@ ScolipedeEvosAttacks:
 
 ShelgonEvosAttacks:
 	dbbw EVOLVE_LEVEL, 45, SALAMENCE
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -2442,6 +2447,7 @@ UrsalunaEvosAttacks:
 
 VenipedeEvosAttacks:
 	dbbw EVOLVE_LEVEL, 22, WHIRLIPEDE
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -2468,6 +2474,7 @@ WeavileEvosAttacks:
 
 WhirlipedeEvosAttacks:
 	dbbw EVOLVE_LEVEL, 32, SCOLIPEDE
+	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, GROWL
 	dbw 10, QUICK_ATTACK
@@ -4656,7 +4663,6 @@ SandslashAlolanEvosAttacks:
 	dbw 1, ICICLE_CRASH
 	dbw 1, COUNTER
 	dbw 1, MIRROR_COAT
-	dbw 1, ICICLE_CRASH
 	dbw 1, SLASH
 	dbw 1, DEFENSE_CURL
 	dbw 1, ROLLOUT

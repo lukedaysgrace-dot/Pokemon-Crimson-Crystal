@@ -195,6 +195,8 @@ ENDM
 	command trickroom               ; bc
 	command burn                    ; bd
 	command resetmiss               ; be
+	command savemiss                ; bf
+	command restoremiss             ; c0
 
 	enum_start $fe
 	command endturn                 ; fe

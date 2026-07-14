@@ -639,7 +639,6 @@ DefenseDownHit:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
-	effectchance ; bug: duplicate effectchance shouldn't be here
 	defensedown
 	statdownmessage
 	endmove
@@ -764,16 +763,18 @@ DefenseUpHit:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	effectchance
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
-	checkfaint
-	buildopponentrage
 	defenseup
 	statupmessage
+	restoremiss
+	checkfaint
+	buildopponentrage
 	endmove
 
 AttackUpHit:
@@ -786,16 +787,18 @@ AttackUpHit:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	effectchance
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
-	checkfaint
-	buildopponentrage
 	attackup
 	statupmessage
+	restoremiss
+	checkfaint
+	buildopponentrage
 	endmove
 
 AllUpHit:
@@ -808,15 +811,17 @@ AllUpHit:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	effectchance
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
+	allstatsup
+	restoremiss
 	checkfaint
 	buildopponentrage
-	allstatsup
 	endmove
 
 PayDay:
@@ -1627,20 +1632,21 @@ DracoMeteor:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
-	checkfaint
-	buildopponentrage
 	switchturn
 	specialattackdown2
 	switchturn
 	switchturn
 	statdownmessage
 	switchturn
-	resetmiss
+	restoremiss
+	checkfaint
+	buildopponentrage
 	kingsrock
 	endmove
 
@@ -2228,27 +2234,28 @@ CloseCombat:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
-	checkfaint
-	buildopponentrage
 	switchturn
 	defensedown
 	switchturn
 	switchturn
 	statdownmessage
 	switchturn
-	resetmiss
+	restoremiss
 	switchturn
 	specialdefensedown
 	switchturn
 	switchturn
 	statdownmessage
 	switchturn
-	resetmiss
+	restoremiss
+	checkfaint
+	buildopponentrage
 	kingsrock
 	endmove
 
@@ -2346,16 +2353,18 @@ SpeedUpHit:
 	stab
 	damagevariation
 	checkhit
+	savemiss
 	effectchance
 	moveanim
 	failuretext
 	applydamage
 	criticaltext
 	supereffectivetext
-	checkfaint
-	buildopponentrage
 	speedup
 	statupmessage
+	restoremiss
+	checkfaint
+	buildopponentrage
 	endmove
 
 FlareBlitz:

@@ -1671,7 +1671,7 @@ AI_Smart_Thief:
 AI_Smart_Conversion2:
 	ld a, [wLastPlayerMove]
 	and a
-	jr nz, .asm_38dc9
+	jr z, .asm_38dc9
 
 	push hl
 	ld l, a
@@ -1742,9 +1742,8 @@ AI_Smart_MeanLook:
 	pop hl
 	jp z, AIDiscourageMove
 
-; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
-; Should check wPlayerSubStatus5 instead.
-	ld a, [wEnemySubStatus5]
+; 80% chance to greatly encourage this move if the player is badly poisoned.
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38e26
 
@@ -2674,6 +2673,7 @@ AI_Smart_Solarbeam:
 ; 90% chance to discourage this move when it's raining.
 
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_SUN
 	jr z, .asm_3921e
 
@@ -2700,6 +2700,7 @@ AI_Smart_Thunder:
 ; 90% chance to discourage this move when it's sunny.
 
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_SUN
 	ret nz
 
@@ -3120,7 +3121,7 @@ AI_Cautious:
 
 	call Random
 	cp 90 percent + 1
-	ret nc
+	jr nc, .asm_39425
 
 	inc [hl]
 	jr .asm_39425

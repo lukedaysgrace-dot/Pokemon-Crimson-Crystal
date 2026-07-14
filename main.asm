@@ -169,6 +169,7 @@ INCLUDE "engine/battle/core.asm"
 SECTION "Battle Core Overflow", ROMX
 
 INCLUDE "engine/battle/giga_hammer_core.asm"
+INCLUDE "engine/battle/legacy_core.asm"
 
 
 SECTION "bank10", ROMX
@@ -540,6 +541,12 @@ INCLUDE "engine/gfx/load_font.asm"
 INCLUDE "engine/link/time_capsule.asm"
 
 
+SECTION "Pokemon Footprints", ROMX
+
+Footprints:
+INCLUDE "gfx/footprints.asm"
+
+
 SECTION "bank3F", ROMX
 
 INCLUDE "engine/battle/misc.asm"
@@ -755,6 +762,7 @@ INCLUDE "data/pokemon/gen1_base_special.asm"
 INCLUDE "engine/events/name_rater.asm"
 INCLUDE "engine/pokedex/new_pokedex_entry.asm"
 INCLUDE "engine/pokedex/unown_dex.asm"
+INCLUDE "engine/overworld/script_stack.asm"
 
 ; own section
 INCLUDE "data/trainers/parties.asm"
@@ -764,6 +772,10 @@ INCLUDE "engine/pokemon/abilities.asm"
 SECTION "Abilities Engine", ROMX
 
 INCLUDE "engine/battle/abilities_engine.asm"
+
+SECTION "Perish Song Ability Core", ROMX
+
+INCLUDE "engine/battle/move_effects/perish_song_core.asm"
 
 SECTION "Ability Descriptions", ROMX
 

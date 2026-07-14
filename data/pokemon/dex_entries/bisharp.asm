@@ -3,7 +3,7 @@
 
 	db   "It commands packs"
 	next "of PAWNIARD and"
-	next "strikes with blades."
+	next "slashes its foes."
 
 	page "Only the strongest"
 	next "can keep control"

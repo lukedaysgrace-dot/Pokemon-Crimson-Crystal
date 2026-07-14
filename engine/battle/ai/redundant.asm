@@ -104,8 +104,8 @@ AI_Redundant:
 .SleepTalk:
 	ld a, [wEnemyMonStatus]
 	and SLP
-	jr z, .Redundant
-	jr .NotRedundant
+	jp z, .Redundant
+	jp .NotRedundant
 
 .MeanLook:
 	ld a, [wEnemySubStatus5]
@@ -114,7 +114,7 @@ AI_Redundant:
 
 .Nightmare:
 	ld a, [wBattleMonStatus]
-	and a
+	and SLP
 	jr z, .Redundant
 	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_NIGHTMARE, a
@@ -137,12 +137,14 @@ AI_Redundant:
 
 .Sandstorm:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_SANDSTORM
 	jr z, .Redundant
 	jr .NotRedundant
 
 .Hail:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_HAIL
 	jr z, .Redundant
 	jr .NotRedundant
@@ -161,12 +163,14 @@ AI_Redundant:
 
 .RainDance:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_RAIN
 	jr z, .Redundant
 	jr .NotRedundant
 
 .SunnyDay:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	cp WEATHER_SUN
 	jr z, .Redundant
 	jr .NotRedundant
@@ -183,8 +187,8 @@ AI_Redundant:
 	ret
 
 .FutureSight:
-	ld a, [wEnemyScreens]
-	bit 5, a
+	ld a, [wEnemyFutureSightCount]
+	and a
 	ret
 
 .Heal:

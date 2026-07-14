@@ -318,7 +318,20 @@ HandleBetweenTurnEffects:
 	call LoadTileMapToTempTileMap
 	jp HandleEncore
 
+HasAnyoneFainted:
+	call HasPlayerFainted
+	jp nz, HasEnemyFainted
+	ret
+
 CheckFaint_PlayerThenEnemy:
+.faint_loop
+	call .Function
+	ret c
+	call HasAnyoneFainted
+	ret nz
+	jr .faint_loop
+
+.Function
 	call HasPlayerFainted
 	jr nz, .PlayerNotFainted
 	call HandlePlayerMonFaint
@@ -343,6 +356,14 @@ CheckFaint_PlayerThenEnemy:
 	ret
 
 CheckFaint_EnemyThenPlayer:
+.faint_loop
+	call .Function
+	ret c
+	call HasAnyoneFainted
+	ret nz
+	jr .faint_loop
+
+.Function
 	call HasEnemyFainted
 	jr nz, .EnemyNotFainted
 	call HandleEnemyMonFaint
@@ -415,6 +436,7 @@ HandleBerserkGene:
 	call GetBattleVarAddr
 	push af
 	set SUBSTATUS_CONFUSED, [hl]
+	farcall SetBerserkGeneConfusionDuration
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarAddr
 	push hl
@@ -1011,6 +1033,10 @@ ResidualDamage:
 
 	call HasUserFainted
 	ret z
+	; Magic Guard prevents every indirect-damage branch below: status chip,
+	; Leech Seed, Nightmare and Curse.
+	farcall UserHasMagicGuard_Core
+	jp z, .not_cursed
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
@@ -1658,7 +1684,7 @@ HandleScreens:
 
 HandleWeather:
 	ld a, [wBattleWeather]
-	cp WEATHER_NONE
+	and WEATHER_TYPE_MASK
 	ret z
 
 	ld hl, wWeatherCount
@@ -1668,7 +1694,8 @@ HandleWeather:
 ; ended
 	ld hl, .WeatherEndedMessages
 	call .PrintWeatherMessage
-	xor a ; WEATHER_NONE
+	ld a, [wBattleWeather]
+	and WEATHER_SUPPRESSED
 	ld [wBattleWeather], a
 	ret
 
@@ -1793,6 +1820,7 @@ HandleWeather:
 
 .PrintWeatherMessage:
 	ld a, [wBattleWeather]
+	and WEATHER_TYPE_MASK
 	dec a
 	ld c, a
 	ld b, 0
@@ -4302,11 +4330,13 @@ PursuitSwitch:
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
+	ld a, [wCurBattleMon]
+	push af
 	ld a, [wLastPlayerMon]
-	ld c, a
-	ld hl, wBattleParticipantsNotFainted
-	ld b, RESET_FLAG
-	predef SmallFarFlagAction
+	ld [wCurBattleMon], a
+	call UpdateFaintedPlayerMon
+	pop af
+	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation
 	ld hl, BattleText_MonFainted
 	jr .done_fainted
@@ -5993,8 +6023,7 @@ CheckPlayerHasUsableMoves:
 	jr .loop
 
 .done
-	; Bug: this will result in a move with PP Up confusing the game.
-	and a ; should be "and PP_MASK"
+	and PP_MASK
 	ret nz
 
 .force_struggle
@@ -6380,21 +6409,18 @@ LoadEnemyMon:
 ; Get letter based on DVs
 	ld hl, wEnemyMonDVs
 	predef GetUnownLetter
-; Can't use any letters that haven't been unlocked
-; If combined with forced shiny battletype, causes an infinite loop
+; Scripted/custom Unown encounters can reach here before any letter set has
+; been unlocked. In that case there is no valid reroll target, so accept the
+; generated letter instead of retrying forever.
+	ld a, [wUnlockedUnowns]
+	and a
+	jr z, .Happiness
+; Otherwise, only use letters from sets that have been unlocked.
 	call CheckUnownLetter
 	jr c, .GenerateDVs ; try again
 	jr .Happiness ; skip the Magikarp check
 
 .Magikarp:
-; These filters are untranslated.
-; They expect at wMagikarpLength a 2-byte value in mm,
-; but the value is in feet and inches (one byte each).
-
-; The first filter is supposed to make very large Magikarp even rarer,
-; by targeting those 1600 mm (= 5'3") or larger.
-; After the conversion to feet, it is unable to target any,
-; since the largest possible Magikarp is 5'3", and $0503 = 1283 mm.
 	ld a, l
 	sub LOW(MAGIKARP)
 	if HIGH(MAGIKARP) == 0
@@ -6410,62 +6436,8 @@ LoadEnemyMon:
 	endc
 	jr nz, .Happiness
 
-; Get Magikarp's length
-	ld de, wEnemyMonDVs
-	ld bc, wPlayerID
-	callfar CalcMagikarpLength
-
-; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
-	ld a, [wMagikarpLength]
-	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
-	jr nz, .CheckMagikarpArea
-
-; 5% chance of skipping both size checks
-	call Random
-	cp 5 percent
-	jr c, .CheckMagikarpArea
-; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
-	ld a, [wMagikarpLength + 1]
-	cp LOW(1616) ; should be "cp 4", since 1616 mm = 5'4", but LOW(1616) = 80
-	jr nc, .GenerateDVs
-
-; 20% chance of skipping this check
-	call Random
-	cp 20 percent - 1
-	jr c, .CheckMagikarpArea
-; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
-	ld a, [wMagikarpLength + 1]
-	cp LOW(1600) ; should be "cp 3", since 1600 mm = 5'3", but LOW(1600) = 64
-	jr nc, .GenerateDVs
-
-.CheckMagikarpArea:
-; The "jr z" checks are supposed to be "jr nz".
-
-; Instead, all maps in GROUP_LAKE_OF_RAGE (Mahogany area)
-; and Routes 20 and 44 are treated as Lake of Rage.
-
-; This also means Lake of Rage Magikarp can be smaller than ones
-; caught elsewhere rather than the other way around.
-
-; Intended behavior enforces a minimum size at Lake of Rage.
-; The real behavior prevents a minimum size in the Lake of Rage area.
-
-; Moreover, due to the check not being translated to feet+inches, all Magikarp
-; smaller than 4'0" may be caught by the filter, a lot more than intended.
-	ld a, [wMapGroup]
-	cp GROUP_LAKE_OF_RAGE
-	jr z, .Happiness
-	ld a, [wMapNumber]
-	cp MAP_LAKE_OF_RAGE
-	jr z, .Happiness
-; 40% chance of not flooring
-	call Random
-	cp 40 percent - 2
-	jr c, .Happiness
-; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
-	ld a, [wMagikarpLength]
-	cp HIGH(1024) ; should be "cp 3", since 1024 mm = 3'4", but HIGH(1024) = 4
-	jr c, .GenerateDVs ; try again
+	farcall ApplyMagikarpLengthFilters
+	jr .Happiness
 
 ; Finally done with DVs
 
@@ -6710,7 +6682,9 @@ LoadEnemyMon:
 	ld de, wEnemyStats
 	ld bc, wEnemyMonStatsEnd - wEnemyMonStats
 	call CopyBytes
-
+	; Switched-in single-player opponents must receive the same burn,
+	; paralysis and frostbite stat reductions as initially loaded/link mons.
+	call ApplyStatusEffectOnEnemyStats
 	ret
 
 CheckSleepingTreeMon:
@@ -7151,7 +7125,11 @@ BadgeStatBoosts:
 .CheckBadge:
 	ld a, b
 	srl b
+	; BoostStat clobbers a; preserve the mask so Glacier's intended second
+	; boost (Special Defense) is tested deterministically.
+	push af
 	call c, BoostStat
+	pop af
 	inc hl
 	inc hl
 ; Check every other badge.
@@ -8062,20 +8040,7 @@ SendOutMonText:
 	ld a, [hl]
 	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
 	ldh [hMultiplicand + 2], a
-	ld a, 25
-	ldh [hMultiplier], a
-	call Multiply
-	ld hl, wEnemyMonMaxHP
-	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld a, b
-	ld b, 4
-	ldh [hDivisor], a
-	call Divide
+	farcall ComputeEnemyHPPercentage
 
 	ldh a, [hQuotient + 3]
 	ld hl, JumpText_GoMon
@@ -8143,20 +8108,7 @@ WithdrawMonText:
 	ld a, [de]
 	sbc b
 	ldh [hMultiplicand + 1], a
-	ld a, 25
-	ldh [hMultiplier], a
-	call Multiply
-	ld hl, wEnemyMonMaxHP
-	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld a, b
-	ld b, 4
-	ldh [hDivisor], a
-	call Divide
+	farcall ComputeEnemyHPPercentage
 	pop bc
 	pop de
 	ldh a, [hQuotient + 3]

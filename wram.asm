@@ -550,7 +550,7 @@ wPlayerDefense:: dw
 wPlayerSpeed:: dw
 wPlayerSpAtk:: dw
 wPlayerSpDef:: dw
-	ds 1
+wIsConfusionDamage:: db
 
 wEnemyStats:: ; c6c1
 wEnemyAttack:: dw
@@ -558,7 +558,7 @@ wEnemyDefense:: dw
 wEnemySpeed:: dw
 wEnemySpAtk:: dw
 wEnemySpDef:: dw
-	ds 1
+wPreStatAttackMiss:: db
 
 wPlayerStatLevels:: ; c6cc
 ; 07 neutral
