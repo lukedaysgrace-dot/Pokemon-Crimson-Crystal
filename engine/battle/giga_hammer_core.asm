@@ -100,7 +100,7 @@ ApplyOverworldBattleWeather:
 	ld de, ANIM_INTRO_SANDSTORM
 	ld hl, SandstormBrewedText
 .apply
-	ld [wBattleWeather], a
+	farcall SetBattleWeatherPreservingSuppression
 	ld a, 255 ; effectively lasts the whole battle
 	ld [wWeatherCount], a
 	push de

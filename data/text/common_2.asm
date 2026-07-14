@@ -103,14 +103,14 @@ Text_ABoostedStringBuffer2ExpPoints::
 	text_start
 	line "a boosted"
 	cont "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " EXP. Points!"
 	prompt
 
 Text_StringBuffer2ExpPoints::
 	text_start
 	line "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " EXP. Points!"
 	prompt
 
@@ -302,7 +302,7 @@ _NeedHMOrCompatibleMonText::
 	done
 
 _StopSurfingPromptText::
-	text "Climb onto dry land?"
+	text "Climb onto land?"
 	done
 
 _UseFlashPromptText::

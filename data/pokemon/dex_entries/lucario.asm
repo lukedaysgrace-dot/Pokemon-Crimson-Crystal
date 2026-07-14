@@ -6,5 +6,5 @@
 	next "and movements."
 
 	page "Its focused spirit"
-	next "lets it strike with"
+	next "lets it strike"
 	next "great precision.@"

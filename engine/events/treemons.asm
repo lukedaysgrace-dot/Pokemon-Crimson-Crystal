@@ -100,9 +100,6 @@ GetTreeMons:
 	cp NUM_TREEMON_SETS
 	jr nc, .quit
 
-	and a
-	jr z, .quit
-
 	ld e, a
 	ld d, 0
 	ld hl, TreeMons
@@ -191,13 +188,17 @@ SelectTreeMon:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetPokemonIDFromIndex
-	cp APPLIN
-	jr nz, .store_species
+	ld a, h
+	cp HIGH(APPLIN)
+	jr nz, .convert_species
+	ld a, l
+	cp LOW(APPLIN)
+	jr nz, .convert_species
 	ld a, [wTimeOfDay]
 	cp DAY_F
 	jr z, NoTreeMon
-	ld a, APPLIN
+.convert_species
+	call GetPokemonIDFromIndex
 .store_species
 	ld [wTempWildMonSpecies], a
 	scf

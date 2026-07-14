@@ -505,7 +505,7 @@ CheckEnemyTurn:
 	call StdBattleTextbox
 
 	call HitSelfInConfusion
-	call BattleCommand_DamageCalc
+	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 
 	xor a
@@ -608,7 +608,7 @@ HitConfusion:
 	ld [wCriticalHit], a
 
 	call HitSelfInConfusion
-	call BattleCommand_DamageCalc
+	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 
 	xor a
@@ -1471,20 +1471,18 @@ BattleCheckTypeMatchup:
 	ld hl, wEnemyMonType1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, CheckTypeMatchup
+	jr z, .get_type
 	ld hl, wBattleMonType1
+.get_type
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar ; preserves hl, de and bc
+	; fallthrough
 CheckTypeMatchup:
-; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
-; offensive type in a will make this function do the right thing. Since a is overwritten,
-; this assumption is incorrect. A simple fix would be to load the move type for the
-; current move into a in BattleCheckTypeMatchup, before falling through, which is
-; consistent with how the rest of the code assumes this code works like.
+; a = offensive type, hl = defender's two types. AI callers use this entry
+; directly; BattleCheckTypeMatchup supplies the current move type above.
 	push hl
 	push de
 	push bc
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVar
 	ld d, a
 	ld b, [hl]
 	inc hl
@@ -2339,6 +2337,12 @@ endr
 	ld a, $1
 	ld [wKickCounter], a
 	call LoadMoveAnim
+	; Magic Guard still allows the crash message/animation, but prevents its
+	; indirect HP loss.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MAGIC_GUARD
+	ret z
 	ld c, TRUE
 	ldh a, [hBattleTurn]
 	and a
@@ -2437,7 +2441,8 @@ BattleCommand_CheckFaint:
 
 ; Faint the opponent if its HP reached zero
 ;  and faint the user along with it if it used Destiny Bond.
-; Ends the move effect if the opponent faints.
+; Ends the move effect if the opponent faints, except for pivot moves,
+; which still have to switch their user out after scoring a KO.
 
 ; Also the post-hit hook for contact abilities and the deferred Disguise
 ; reveal. checkfaint (unlike kingsrock) is present in EVERY damaging move
@@ -2513,6 +2518,8 @@ BattleCommand_CheckFaint:
 .no_dbond
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_U_TURN
+	jr z, .u_turn_ko
 	cp EFFECT_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_DOUBLE_HIT
@@ -2530,12 +2537,14 @@ BattleCommand_CheckFaint:
 .finish
 	jp EndMoveEffect
 
+.u_turn_ko
+	; Skip BuildOpponentRage for a fainted target, but still perform the
+	; pivot before ending the move script.
+	call BattleCommand_UTurn
+	jr .finish
+
 BattleCommand_BuildOpponentRage:
 ; buildopponentrage
-
-	jp .start
-
-.start
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -2598,58 +2607,6 @@ EndMoveEffect:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ret
-
-DittoMetalPowder:
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .Ditto
-	ld a, [wTempEnemyMonSpecies]
-
-.Ditto:
-	push hl
-	call GetPokemonIndexFromID
-	ld a, l
-	sub LOW(DITTO)
-	if HIGH(DITTO) == 0
-		or h
-		pop hl
-	else
-		ld a, h
-		pop hl
-		ret nz
-		if HIGH(DITTO) == 1
-			dec a
-		else
-			cp HIGH(DITTO)
-		endc
-	endc
-	ret nz
-
-	push bc
-	call GetOpponentItem
-	ld a, [hl]
-	cp METAL_POWDER
-	pop bc
-	ret nz
-
-	ld a, c
-	srl a
-	add c
-	ld c, a
-	ret nc
-
-	srl b
-	ld a, b
-	and a
-	jr nz, .done
-	inc b
-.done
-	scf
-	rr c
 	ret
 
 BattleCommand_DamageStats:
@@ -2767,12 +2724,12 @@ PlayerAttackDamage:
 	call ApplyWeatherDefenseBoost
 	push hl
 	callfar HeldDefenseBoost_Core
+	callfar DittoMetalPowder_Core
 	pop hl
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
 	ld e, a
-	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -2809,9 +2766,6 @@ TruncateHL_BC:
 	inc l
 
 .finish
-	ld a, [wLinkMode]
-	cp LINK_COLOSSEUM
-	jr z, .done
 ; If we go back to the loop point,
 ; it's the same as doing this exact
 ; same check twice.
@@ -2819,7 +2773,6 @@ TruncateHL_BC:
 	or b
 	jr nz, .loop
 
-.done
 	ld b, l
 	ret
 
@@ -2948,6 +2901,15 @@ DoubleStatIfSpeciesHoldingItem:
 ; Double the stat
 	sla l
 	rl h
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap_boost
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+.cap_boost
+	ld hl, MAX_STAT_VALUE
 	ret
 
 EnemyAttackDamage:
@@ -3051,12 +3013,12 @@ EnemyAttackDamage:
 	call ApplyWeatherDefenseBoost
 	push hl
 	callfar HeldDefenseBoost_Core
+	callfar DittoMetalPowder_Core
 	pop hl
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]
 	ld e, a
-	call DittoMetalPowder
 
 	ld a, 1
 	and a
@@ -3115,6 +3077,8 @@ HitSelfInConfusion:
 	ld d, 40
 	pop af
 	ld e, a
+	ld a, TRUE
+	ld [wIsConfusionDamage], a
 	ret
 
 BattleCommand_DamageCalc:
@@ -3150,6 +3114,11 @@ BattleCommand_DamageCalc:
 	ret z
 
 .skip_zero_damage_check
+	xor a
+	ld [wIsConfusionDamage], a
+	; fallthrough
+
+ConfusionDamageCalc:
 ; Minimum defense value is 1.
 	ld a, c
 	and a
@@ -3204,6 +3173,10 @@ BattleCommand_DamageCalc:
 	call Divide
 
 ; Item boosts
+	ld a, [wIsConfusionDamage]
+	and a
+	jr nz, .DoneItem
+
 	call GetUserItem
 
 	ld a, b
@@ -3935,6 +3908,10 @@ BattleCommand_ToxicTarget:
 	ret nz
 	call SafeCheckSafeguard
 	ret nz
+	; Poison Fang-style toxic secondaries must respect Immunity,
+	; Pastel Veil and Magic Bounce prevention just like regular poison.
+	farcall AbilityPreventsPoison
+	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
@@ -4073,18 +4050,23 @@ BattleCommand_Poison:
 	ret
 
 CheckIfTargetIsPoisonType:
+	; z if the target is immune to poison by type (Poison or Steel).
 	ld de, wEnemyMonType1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld de, wBattleMonType1
 .ok
+	ld b, 2
+.type_loop
 	ld a, [de]
 	inc de
 	cp POISON
 	ret z
-	ld a, [de]
-	cp POISON
+	cp STEEL
+	ret z
+	dec b
+	jr nz, .type_loop
 	ret
 
 PoisonOpponent:
@@ -4985,6 +4967,12 @@ INCLUDE "data/battle/stat_multipliers.asm"
 
 BattleCommand_AllStatsUp:
 ; allstatsup
+	; AllStatsUp clears wAttackMissed between its individual boosts. Preserve
+	; a genuine miss from the damaging move instead of turning it into five
+	; successful boosts.
+	ld a, [wPreStatAttackMiss]
+	and a
+	ret nz
 
 ; Attack
 	call ResetMiss
@@ -5022,6 +5010,25 @@ BattleCommand_ResetMiss:
 ResetMiss:
 	xor a
 	ld [wAttackMissed], a
+	ret
+
+BattleCommand_SaveMiss:
+; savemiss
+; Preserve the move's actual hit result across a self-stat command. Stat
+; commands also use wAttackMissed as their own failure flag, so resetting it
+; afterward without this snapshot can turn a real miss into a false hit.
+	ld a, [wAttackMissed]
+	ld [wPreStatAttackMiss], a
+	ret
+
+BattleCommand_RestoreMiss:
+; restoremiss
+; Restore only the move's original miss state, while clearing the temporary
+; stat-effect failure exactly as resetmiss did.
+	ld a, [wPreStatAttackMiss]
+	ld [wAttackMissed], a
+	xor a
+	ld [wEffectFailed], a
 	ret
 
 LowerStat:
@@ -5599,8 +5606,7 @@ BattleCommand_EndLoop:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	res SUBSTATUS_IN_LOOP, [hl]
-	call BattleCommand_BeatUpFailText
-	jp EndMoveEffect
+	ret
 
 .not_triple_kick
 	callfar BattleMultiHitRoll_Core
@@ -5732,6 +5738,22 @@ BattleCommand_HeldFlinch:
 	ld a, b
 	cp HELD_FLINCH
 	ret nz
+	; Sheer Force suppresses King's Rock on moves whose built-in secondary
+	; effect is eligible for its damage boost.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp SHEER_FORCE
+	jr nz, .not_sheer_force
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.got_move_chance
+	ld a, [hl]
+	and a
+	ret nz
+.not_sheer_force
 
 	call CheckSubstituteOpp
 	ret nz
@@ -6676,7 +6698,9 @@ BattleCommand_TimeBasedHealContinue:
 	jr z, .sun_boost
 
 	ld a, [wBattleWeather]
-	and a
+	bit WEATHER_SUPPRESSED_F, a
+	jr nz, .Heal
+	and WEATHER_TYPE_MASK
 	jr z, .Heal
 
 ; x2 in sun
@@ -6802,7 +6826,13 @@ BattleCommand_Burn:
 	ret
 
 CheckHiddenOpponent:
-; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
+	; Lock-On/Mind Reader also bypass semi-invulnerability for secondary
+	; commands that call this helper instead of BattleCommand_CheckHit.
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	cpl
+	and 1 << SUBSTATUS_LOCK_ON
+	ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND

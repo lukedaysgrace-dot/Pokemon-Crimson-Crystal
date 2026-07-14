@@ -300,9 +300,8 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
-	rept BULBASAUR_CLONE - IMPIDIMP
-		dw NoEggMoves2
-	endr
+	dw NoEggMoves2
+	dw NoEggMoves2
 	dw BulbasaurCloneEggMoves
 	dw NoEggMoves2
 	dw NoEggMoves2

@@ -340,48 +340,31 @@ CorviknightIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/corviknight.png
 AbomasnowIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/abomasnow.png
 AltariaIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/altaria.png
 AnorithIcon: INCBIN "gfx/icons/anorith.2bpp" ; TODO: gfx/icons/anorith.png
-AppletunIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/appletun.png
-ApplinIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/applin.png
 ArchaludonIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/archaludon.png
-BreloomIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/breloom.png
 BunearyIcon: INCBIN "gfx/icons/buneary.2bpp" ; TODO: gfx/icons/buneary.png
-CameruptIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/camerupt.png
 CentiskorchIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/centiskorch.png
 CharjabugIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/charjabug.png
 CroagunkIcon: INCBIN "gfx/icons/croagunk.2bpp" ; TODO: gfx/icons/croagunk.png
-DipplinIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/dipplin.png
 DrifblimIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/drifblim.png
 DrifloonIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/drifloon.png
 DrilburIcon: INCBIN "gfx/icons/drilbur.2bpp"
 DuraludonIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/duraludon.png
-ElectrikeIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/electrike.png
 ExcadrillIcon: INCBIN "gfx/icons/excadrill.2bpp"
-FlappleIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/flapple.png
 FletchinderIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/fletchinder.png
 FletchlingIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/fletchling.png
 FlygonIcon: INCBIN "gfx/icons/dragonite.2bpp" ; TODO: gfx/icons/flygon.png
 FroslassIcon: INCBIN "gfx/icons/froslass.2bpp"
 GolisopodIcon: INCBIN "gfx/icons/golisopod.2bpp" ; TODO: gfx/icons/golisopod.png
 GrubbinIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/grubbin.png
-GrumpigIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/grumpig.png
-HydrappleIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/hydrapple.png
 KingambitIcon: INCBIN "gfx/icons/humanshape.2bpp" ; TODO: gfx/icons/kingambit.png
-LombreIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/lombre.png
 LopunnyIcon: INCBIN "gfx/icons/lopunny.2bpp" ; TODO: gfx/icons/lopunny.png
-LotadIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/lotad.png
-LudicoloIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/ludicolo.png
-ManectricIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/manectric.png
-NumelIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/numel.png
 OverqwilIcon: INCBIN "gfx/icons/overqwil.2bpp"
 ScraftyIcon: INCBIN "gfx/icons/scrafty.2bpp"
 ScraggyIcon: INCBIN "gfx/icons/scraggy.2bpp"
 SealeoIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/sealeo.png
-ShroomishIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/shroomish.png
 SizzlipedeIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/sizzlipede.png
 SnoruntIcon: INCBIN "gfx/icons/snorunt.2bpp"
-SnoverIcon: INCBIN "gfx/icons/plant.2bpp" ; TODO: gfx/icons/snover.png
 SphealIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/spheal.png
-SpoinkIcon: INCBIN "gfx/icons/quadruped.2bpp" ; TODO: gfx/icons/spoink.png
 SwabluIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/swablu.png
 TalonflameIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/talonflame.png
 ToxicroakIcon: INCBIN "gfx/icons/toxicroak.2bpp" ; TODO: gfx/icons/toxicroak.png
@@ -393,6 +376,16 @@ WalreinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/walrein.png
 WimpodIcon: INCBIN "gfx/icons/wimpod.2bpp" ; TODO: gfx/icons/wimpod.png
 TeddiursabmIcon: INCBIN "gfx/icons/teddiursa.2bpp"
 UrsaringbmIcon: INCBIN "gfx/icons/ursaring.2bpp"
+
+; These legacy class icons contain one 16x16 frame (four tiles). Followers
+; always load two frames, so repeat the frame instead of reading through into
+; whichever icon happens to be linked next.
+PlantIcon:
+	INCBIN "gfx/icons/plant.2bpp"
+	INCBIN "gfx/icons/plant.2bpp"
+QuadrupedIcon:
+	INCBIN "gfx/icons/quadruped.2bpp"
+	INCBIN "gfx/icons/quadruped.2bpp"
 
 
 SECTION "Mon Icons 6", ROMX

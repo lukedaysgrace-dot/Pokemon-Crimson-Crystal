@@ -2,8 +2,8 @@ TrainerClassDVs:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	;  atk,def,spd,spc
 	dn 15, 15, 15, 15 ; FALKNER
-	dn 15, 15, 15, 15 ; BUGSY
 	dn 15, 15, 15, 15 ; WHITNEY
+	dn 15, 15, 15, 15 ; BUGSY
 	dn 15, 15, 15, 15 ; MORTY
 	dn 15, 15, 15, 15 ; PRYCE
 	dn 15, 15, 15, 15 ; JASMINE

@@ -28,6 +28,16 @@ BattleConditionalBoost_Core:
 	push hl
 	callfar GetOpponentItem
 	ld a, [hl]
+	and a
+	jr z, .no_knock_off_item
+	ld d, a
+	farcall ItemIsMail
+	jr c, .no_knock_off_item
+	ld a, 1
+	jr .got_knock_off_item
+.no_knock_off_item
+	xor a
+.got_knock_off_item
 	pop hl
 	pop de
 	pop bc
@@ -106,7 +116,8 @@ BattleConditionalBoost_Core:
 	ret
 
 BattleGyroBall_Core:
-; Set move power (d) = 25 * (target speed / user speed), min 1, max 150.
+; Set move power (d) = floor(25 * target speed / user speed) + 1,
+; capped at 150.
 ; Must preserve b, c (attack/defense) and e (level).
 	push bc
 	push de
@@ -146,7 +157,7 @@ BattleGyroBall_Core:
 	rr e
 	jr .scaledown_loop
 .scaledown_ok
-	; Base Power = 25 * (target speed / user speed), capped at 150
+	; Base Power = floor(25 * target speed / user speed) + 1, capped at 150
 	xor a
 	ldh [hMultiplicand + 0], a
 	ld a, d
@@ -165,18 +176,15 @@ BattleGyroBall_Core:
 	ld b, 4
 	call Divide
 
-	; Cap between 1 and 150
+	; Add the formula's final +1 and cap at 150.
 	ldh a, [hMultiplicand + 0]
 	ld b, a
 	ldh a, [hMultiplicand + 1]
 	or b
 	jr nz, .max_power
 	ldh a, [hMultiplicand + 2]
-	and a
-	jr nz, .nonzero_power
-	ld a, 1
-	jr .got_power
-.nonzero_power
+	inc a
+	jr z, .max_power
 	cp 151
 	jr c, .got_power
 .max_power
@@ -292,6 +300,24 @@ BattleSkillSwap_Core:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
+	; Abilities marked NO_SWAP (including no ability, Disguise and
+	; Neutralizing Gas) cannot be exchanged. Swapping identical abilities
+	; must also fail instead of re-triggering both entry effects for free.
+	ld a, [wPlayerAbility]
+	farcall GetAbilityFlags_b
+	ld a, b
+	and ABILFLAG_NO_SWAP
+	jr nz, .failed
+	ld a, [wEnemyAbility]
+	farcall GetAbilityFlags_b
+	ld a, b
+	and ABILFLAG_NO_SWAP
+	jr nz, .failed
+	ld a, [wPlayerAbility]
+	ld b, a
+	ld a, [wEnemyAbility]
+	cp b
+	jr z, .failed
 	callfar AnimateCurrentMove
 	ld a, [wPlayerAbility]
 	ld b, a
@@ -603,9 +629,22 @@ ToxicSpikesPoison:
 	cp FLYING
 	ret z
 
-	; An AIR BALLOON keeps the holder off the ground
-	; (checked before absorption: a floating Poison-type
-	; doesn't soak up the spikes either)
+	; Levitate and an AIR BALLOON keep the holder off the ground.
+	; Check both before Poison-type absorption: an ungrounded Poison-type
+	; must not soak up the spikes either. Keep the effective ability in c
+	; for the poison-prevention checks below.
+	push hl
+	push de
+	push bc
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp LEVITATE
+	ret z
+	ld c, a
+
 	push hl
 	push de
 	push bc
@@ -633,12 +672,8 @@ ToxicSpikesPoison:
 	cp STEEL
 	ret z
 
-	; Levitate and poison-preventing abilities protect their owner
-	push hl
-	farcall GetTrueUserAbility
-	pop hl
-	cp LEVITATE
-	ret z
+	; Poison-preventing abilities protect their owner.
+	ld a, c
 	cp IMMUNITY
 	ret z
 	cp PASTEL_VEIL

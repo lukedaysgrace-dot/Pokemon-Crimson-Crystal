@@ -134,7 +134,7 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw QuestionMarkDesc
+	dw AbilityCapDesc
 	dw LoadedDiceDesc
 	dw ChoiceBandDesc
 	dw CharcoalDesc
@@ -762,10 +762,14 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
+AbilityCapDesc:
+	db   "Changes a #MON's"
+	next "current ABILITY.@"
+
 LoadedDiceDesc:
-	db   "Multi-hit moves hit"
+	db   "Multi-hit moves:"
 	next "4-5 times. Triple"
-	next "Kick/Axel hit thrice.@"
+	next "Kick/Axel hit 3x.@"
 
 ChoiceBandDesc:
 	db   "Boosts ATTACK,"
@@ -785,7 +789,7 @@ EvioliteDesc:
 
 AssaultVestDesc:
 	db   "Boosts SPCL.DEF,"
-	next "blocks status. (HOLD)@"
+	next "no status. (HOLD)@"
 
 FocusSashDesc:
 	db   "May endure from"
@@ -793,7 +797,8 @@ FocusSashDesc:
 
 ExpertBeltDesc:
 	db   "Boosts super-"
-	next "effective hits. (HOLD)@"
+	next "effective hits."
+	next "(HOLD)@"
 
 RockyHelmetDesc:
 	db   "Hurts foes on"

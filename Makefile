@@ -33,6 +33,10 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
+ifeq ($(OS),Windows_NT)
+EXEEXT := .exe
+endif
+
 
 ### Build targets
 
@@ -62,7 +66,7 @@ $(crystal_obj): RGBASMFLAGS =
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
-$1: $2 $$(shell tools/scan_includes $2)
+$1: $2 $$(shell tools/scan_includes$(EXEEXT) $2)
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
@@ -83,19 +87,19 @@ pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	tools/sort_symfile.sh pokecrystal.sym
 
 %.lz: %
-	tools/lzcomp -- $< $@
+	tools/lzcomp$(EXEEXT) -- $< $@
 
 
 ### Pokemon pic animation rules
 
 gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -o $@ $^
+	tools/pokemon_animation_graphics$(EXEEXT) -o $@ $^
 gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -t $@ $^
+	tools/pokemon_animation_graphics$(EXEEXT) -t $@ $^
 gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -b $^ > $@
+	tools/pokemon_animation$(EXEEXT) -b $^ > $@
 gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -f $^ > $@
+	tools/pokemon_animation$(EXEEXT) -f $^ > $@
 
 
 ### Misc file-specific graphics rules
@@ -191,15 +195,15 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 %.2bpp: %.png
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
-		tools/gfx $(tools/gfx) -o $@ $@)
+		tools/gfx$(EXEEXT) $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
-		tools/gfx $(tools/gfx) -d1 -o $@ $@)
+		tools/gfx$(EXEEXT) $(tools/gfx) -d1 -o $@ $@)
 
 %.gbcpal: %.png
 	$(RGBGFX) -p $@ $<
 
 %.dimensions: %.png
-	tools/png_dimensions $< $@
+	tools/png_dimensions$(EXEEXT) $< $@

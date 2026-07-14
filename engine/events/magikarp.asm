@@ -282,12 +282,10 @@ CalcMagikarpLength:
 	ret
 
 .BCLessThanDE:
-; Intention: Return bc < de.
-; Reality: Return b < d.
 	ld a, b
 	cp d
 	ret c
-	ret nc ; whoops
+	ret nz
 	ld a, c
 	cp e
 	ret
@@ -301,6 +299,84 @@ CalcMagikarpLength:
 	sbc d
 	ld b, a
 	ret
+
+ApplyMagikarpLengthFilters::
+; Make exceptionally large Magikarp rarer, and usually enforce the 3'4"
+; minimum at Lake of Rage. Length is stored as feet and inches, so compare
+; both bytes instead of treating it as the old millimeter value. Cap retries
+; so pathological RNG can never lock LoadEnemyMon forever.
+	ld a, 32
+.retry
+	push af
+	ld de, wEnemyMonDVs
+	ld bc, wPlayerID
+	call CalcMagikarpLength
+	ld hl, wMagikarpLength
+	ld b, [hl] ; feet
+	inc hl
+	ld c, [hl] ; inches
+
+; Lengths of 5'4" and above have only a 5% chance to survive this filter.
+; A 5'3" Magikarp gets that chance plus a second 20% chance.
+	ld a, b
+	cp 5
+	jr c, .check_area
+	call Random
+	cp 5 percent
+	jr c, .check_area
+	ld a, b
+	cp 5
+	jr nz, .reroll
+	ld a, c
+	cp 4
+	jr nc, .reroll
+	call Random
+	cp 20 percent - 1
+	jr c, .check_area
+	ld a, c
+	cp 3
+	jr nc, .reroll
+
+.check_area
+	ld a, [wMapGroup]
+	cp GROUP_LAKE_OF_RAGE
+	jr nz, .accept
+	ld a, [wMapNumber]
+	cp MAP_LAKE_OF_RAGE
+	jr nz, .accept
+
+; At Lake of Rage, allow any size 40% of the time. Otherwise reject values
+; below 3'4", comparing inches as well as feet.
+	call Random
+	cp 40 percent - 2
+	jr c, .accept
+	ld a, b
+	cp 3
+	jr c, .reroll
+	jr nz, .accept
+	ld a, c
+	cp 4
+	jr c, .reroll
+
+.accept
+	pop af
+	ret
+
+.reroll
+	pop af
+	dec a
+	ret z
+	push af
+	call BattleRandom
+	ld b, a
+	call BattleRandom
+	ld c, a
+	ld hl, wEnemyMonDVs
+	ld a, b
+	ld [hli], a
+	ld [hl], c
+	pop af
+	jr .retry
 
 INCLUDE "data/events/magikarp_lengths.asm"
 

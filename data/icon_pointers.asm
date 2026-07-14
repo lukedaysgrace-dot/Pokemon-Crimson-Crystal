@@ -322,48 +322,48 @@ IconPointers:
 	dba AbomasnowIcon
 	dba AltariaIcon
 	dba AnorithIcon
-	dba AppletunIcon
-	dba ApplinIcon
+	dba PlantIcon
+	dba PlantIcon
 	dba ArchaludonIcon
-	dba BreloomIcon
+	dba PlantIcon
 	dba BunearyIcon
-	dba CameruptIcon
+	dba QuadrupedIcon
 	dba CentiskorchIcon
 	dba CharjabugIcon
 	dba CroagunkIcon
-	dba DipplinIcon
+	dba PlantIcon
 	dba DrifblimIcon
 	dba DrifloonIcon
 	dba DrilburIcon
 	dba DuraludonIcon
-	dba ElectrikeIcon
+	dba QuadrupedIcon
 	dba ExcadrillIcon
-	dba FlappleIcon
+	dba PlantIcon
 	dba FletchinderIcon
 	dba FletchlingIcon
 	dba FlygonIcon
 	dba FroslassIcon
 	dba GolisopodIcon
 	dba GrubbinIcon
-	dba GrumpigIcon
-	dba HydrappleIcon
+	dba QuadrupedIcon
+	dba PlantIcon
 	dba KingambitIcon
-	dba LombreIcon
+	dba PlantIcon
 	dba LopunnyIcon
-	dba LotadIcon
-	dba LudicoloIcon
-	dba ManectricIcon
-	dba NumelIcon
+	dba PlantIcon
+	dba PlantIcon
+	dba QuadrupedIcon
+	dba QuadrupedIcon
 	dba OverqwilIcon
 	dba ScraftyIcon
 	dba ScraggyIcon
 	dba SealeoIcon
-	dba ShroomishIcon
+	dba PlantIcon
 	dba SizzlipedeIcon
 	dba SnoruntIcon
-	dba SnoverIcon
+	dba PlantIcon
 	dba SphealIcon
-	dba SpoinkIcon
+	dba QuadrupedIcon
 	dba SwabluIcon
 	dba TalonflameIcon
 	dba ToxicroakIcon
