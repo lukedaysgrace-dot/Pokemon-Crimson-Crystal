@@ -197,6 +197,7 @@ ENDM
 	command resetmiss               ; be
 	command savemiss                ; bf
 	command restoremiss             ; c0
+	command firstimpressioncheck     ; c1
 
 	enum_start $fe
 	command endturn                 ; fe

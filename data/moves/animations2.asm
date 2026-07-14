@@ -1689,3 +1689,79 @@ BattleAnimSub_SludgeShort:
 BattleAnim_SkillSwap:
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_SKILL_SWAP
 	anim_jump BattleAnim_Transfer_Orbs_branch
+
+BattleAnim_FirstImpression:
+; A lime-green blur crosses the field before a savage, near-instant bug hit.
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PALE_LIME
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GREEN
+	anim_4gfx ANIM_GFX_SPEED, ANIM_GFX_POWDER, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 6
+	anim_obj ANIM_OBJ_POWDER, 88, 84, $11
+	anim_obj ANIM_OBJ_POWDER, 104, 76, $14
+	anim_wait 4
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $10, $2, $0
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_CUT_HORIZONTAL, 112, 52, $0
+	anim_wait 3
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_HIT_YFIX, 148, 40, $0
+	anim_wait 2
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_HIT_YFIX, 124, 64, $0
+	anim_wait 2
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 16
+	anim_ret
+
+BattleAnim_Liquidation:
+; Bubbles gather around the user before it becomes a rushing water blade.
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_WATER
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_BUBBLE
+	anim_4gfx ANIM_GFX_SPEED, ANIM_GFX_CUT, ANIM_GFX_BUBBLE, ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_SURF
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 16, 112, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 32, 104, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 48, 112, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 64, 104, $0
+	anim_wait 3
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 24, 96, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 40, 112, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 56, 96, $0
+	anim_obj ANIM_OBJ_RISING_BUBBLE, 72, 112, $0
+	anim_wait 13
+	anim_clearobjs
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_CUT_LONG_DOWN_LEFT, 160, 40, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 136, 56, $5c
+	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 136, 56, $e8
+	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 136, 56, $d0
+	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 136, 56, $50
+	anim_sound 0, 1, SFX_MEGA_KICK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
+	anim_wait 10
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 16
+	anim_ret
