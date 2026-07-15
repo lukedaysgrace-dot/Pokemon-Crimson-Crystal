@@ -3,7 +3,7 @@
 	db  55,  95,  55, 115,  35,  75
 	;  hp  atk  def  spd  sat  sdf
 
-	db POISON, FIGHTING ; type
+	db FIGHTING, POISON ; type
 	db 60 ; catch rate
 	db 132 ; base exp
 	db QUICK_CLAW, QUICK_CLAW ; items
