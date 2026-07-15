@@ -250,18 +250,32 @@ FramesPointers:
 	dba LugiaFrames
 	dba HoOhFrames
 	dba CelebiFrames
+	dba CharmanderCloneFrames
+	dba CharmeleonCloneFrames
+	dba CharizardCloneFrames
+	dba SquirtleCloneFrames
+	dba WartortleCloneFrames
+	dba BlastoiseCloneFrames
+	dba BulbasaurCloneFrames
+	dba IvysaurCloneFrames
+	dba VenusaurCloneFrames
 	dba HonchkrowFrames
 	dba AmbipomFrames
 	dba AnnihilapeFrames
 	dba BagonFrames
+	dba ShelgonFrames
+	dba SalamenceFrames
 	dba DrunsparceFrames
 	dba ElectivireFrames
 	dba FarigirafFrames
-	dba GardevoirFrames
-	dba GlaceonFrames
-	dba GliscorFrames
+	dba RaltsFrames
 	dba KirliaFrames
+	dba GardevoirFrames
+	dba GalladeFrames
+	dba GlaceonFrames
 	dba LeafeonFrames
+	dba SylveonFrames
+	dba GliscorFrames
 	dba LickilickyFrames
 	dba MagmortarFrames
 	dba MagnezoneFrames
@@ -269,21 +283,19 @@ FramesPointers:
 	dba MesmeriaFrames
 	dba MismagiusFrames
 	dba PorygonZFrames
-	dba RaltsFrames
 	dba RhyperiorFrames
-	dba SalamenceFrames
+	dba VenipedeFrames
+	dba WhirlipedeFrames
 	dba ScolipedeFrames
-	dba ShelgonFrames
 	dba TangrowthFrames
 	dba TogekissFrames
 	dba UrsalunaFrames
-	dba VenipedeFrames
 	dba WeavileFrames
-	dba WhirlipedeFrames
 	dba WyrdeerFrames
 	dba YanmegaFrames
 	dba LileepFrames
 	dba CradilyFrames
+	dba AnorithFrames
 	dba ArmaldoFrames
 	dba GolettFrames
 	dba GolurkFrames
@@ -313,66 +325,66 @@ FramesPointers:
 	dba CharcadetFrames
 	dba ArmarougeFrames
 	dba CeruledgeFrames
-	dba SylveonFrames
 	dba RookideeFrames
 	dba CorvisquireFrames
 	dba CorviknightFrames
+	dba SnoverFrames
 	dba AbomasnowFrames
+	dba SwabluFrames
 	dba AltariaFrames
-	dba AnorithFrames
-	dba AppletunFrames
 	dba ApplinFrames
+	dba DipplinFrames
+	dba AppletunFrames
+	dba FlappleFrames
+	dba HydrappleFrames
+	dba DuraludonFrames
 	dba ArchaludonFrames
+	dba ShroomishFrames
 	dba BreloomFrames
 	dba BunearyFrames
-	dba CameruptFrames
-	dba CentiskorchFrames
-	dba CharjabugFrames
-	dba CroagunkFrames
-	dba DipplinFrames
-	dba DrifblimFrames
-	dba DrifloonFrames
-	dba DrilburFrames
-	dba DuraludonFrames
-	dba ElectrikeFrames
-	dba ExcadrillFrames
-	dba FlappleFrames
-	dba FletchinderFrames
-	dba FletchlingFrames
-	dba FlygonFrames
-	dba FroslassFrames
-	dba GolisopodFrames
-	dba GrubbinFrames
-	dba GrumpigFrames
-	dba HydrappleFrames
-	dba KingambitFrames
-	dba LombreFrames
 	dba LopunnyFrames
-	dba LotadFrames
-	dba LudicoloFrames
-	dba ManectricFrames
 	dba NumelFrames
-	dba OverqwilFrames
-	dba ScraftyFrames
-	dba ScraggyFrames
-	dba SealeoFrames
-	dba ShroomishFrames
+	dba CameruptFrames
 	dba SizzlipedeFrames
-	dba SnoruntFrames
-	dba SnoverFrames
-	dba SphealFrames
-	dba SpoinkFrames
-	dba SwabluFrames
-	dba TalonflameFrames
-	dba ToxicroakFrames
-	dba TrapinchFrames
-	dba UrsalunabmFrames
-	dba VibravaFrames
+	dba CentiskorchFrames
+	dba GrubbinFrames
+	dba CharjabugFrames
 	dba VikavoltFrames
-	dba WalreinFrames
+	dba CroagunkFrames
+	dba ToxicroakFrames
+	dba DrifloonFrames
+	dba DrifblimFrames
+	dba DrilburFrames
+	dba ExcadrillFrames
+	dba ElectrikeFrames
+	dba ManectricFrames
+	dba FletchlingFrames
+	dba FletchinderFrames
+	dba TalonflameFrames
+	dba TrapinchFrames
+	dba VibravaFrames
+	dba FlygonFrames
+	dba SnoruntFrames
+	dba FroslassFrames
 	dba WimpodFrames
+	dba GolisopodFrames
+	dba SpoinkFrames
+	dba GrumpigFrames
+	dba PawniardFrames
+	dba BisharpFrames
+	dba KingambitFrames
+	dba LotadFrames
+	dba LombreFrames
+	dba LudicoloFrames
+	dba OverqwilFrames
+	dba ScraggyFrames
+	dba ScraftyFrames
+	dba SphealFrames
+	dba SealeoFrames
+	dba WalreinFrames
 	dba TeddiursabmFrames
 	dba UrsaringbmFrames
+	dba UrsalunabmFrames
 	dba AxewFrames
 	dba FraxureFrames
 	dba HaxorusFrames
@@ -380,15 +392,13 @@ FramesPointers:
 	dba RampardosFrames
 	dba ShieldonFrames
 	dba BastiodonFrames
-	dba PawniardFrames
-	dba BisharpFrames
 	dba CetoddleFrames
 	dba CetitanFrames
 	dba FeebasFrames
 	dba MiloticFrames
 	dba MimikyuFrames
+	dba CorsolaGalarianFrames
 	dba CursolaFrames
-	dba GalladeFrames
 	dba MrRimeFrames
 	dba SirfetchDFrames
 	dba RioluFrames
@@ -423,20 +433,19 @@ FramesPointers:
 	dba RapidashGalarianFrames
 	dba SlowpokeGalarianFrames
 	dba SlowbroGalarianFrames
-	dba WeezingGalarianFrames
 	dba SlowkingGalarianFrames
-	dba CorsolaGalarianFrames
+	dba WeezingGalarianFrames
 	dba GrowlitheHisuianFrames
 	dba ArcanineHisuianFrames
 	dba VoltorbHisuianFrames
 	dba ElectrodeHisuianFrames
 	dba TyphlosionHisuianFrames
 	dba SneaselHisuianFrames
+	dba SneaslerFrames
 	dba WooperPaldeanFrames
 	dba ClodsireFrames
 	dba TaurosPaldeanFireFrames
 	dba TaurosPaldeanWaterFrames
-	dba SneaslerFrames
 	dba WatuFrames
 	dba BounsweetFrames
 	dba SteeneeFrames
@@ -446,17 +455,8 @@ FramesPointers:
 	dba AggronFrames
 	dba KleavorFrames
 	dba GlimmetFrames
+	dba GlimmoraFrames
 	dba MareanieFrames
 	dba ToxapexFrames
 	dba ZangooseFrames
 	dba SeviperFrames
-	dba GlimmoraFrames
-	dba BulbasaurCloneFrames
-	dba IvysaurCloneFrames
-	dba VenusaurCloneFrames
-	dba CharmanderCloneFrames
-	dba CharmeleonCloneFrames
-	dba CharizardCloneFrames
-	dba SquirtleCloneFrames
-	dba WartortleCloneFrames
-	dba BlastoiseCloneFrames

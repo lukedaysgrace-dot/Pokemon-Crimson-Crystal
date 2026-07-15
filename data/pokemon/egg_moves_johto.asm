@@ -101,6 +101,17 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
+	dw CharmanderCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw SquirtleCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw BulbasaurCloneEggMoves
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw NoEggMoves2
+	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
@@ -298,17 +309,6 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw BulbasaurCloneEggMoves
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw CharmanderCloneEggMoves
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw SquirtleCloneEggMoves
 	dw NoEggMoves2
 	dw NoEggMoves2
 
