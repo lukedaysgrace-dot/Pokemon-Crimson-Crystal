@@ -46,3 +46,31 @@ Because your project has substantial custom engine work, the parser is intention
 - `EGG` and the three `?????` engine records are ignored.
 - The nine clone starter constants are omitted from the Pokédex grid and appear through a **Normal / Clone** toggle on the corresponding starter page.
 - Animated or multi-frame PNGs are cropped to the first complete static front frame.
+
+
+## Encounter coverage and safety
+
+The generator parses:
+
+- Johto and Kanto grass/cave tables
+- Johto and Kanto Surf tables
+- Bug-Catching Contest tables
+- Headbutt and Rock Smash sets through `treemon_maps.asm`
+- Fishing groups only where an explicit map-to-`FISHGROUP_*` link is found
+- Grass and water swarm tables
+- Morning, day and night slots
+- Slot chances and encounter rates where the source format provides them
+
+It never pairs Pokémon and locations by Pokédex number, file position, or a guessed
+filename. Unknown species, unknown shared groups, and malformed rows are written
+to `docs/data/build-report.json`.
+
+After any game-data change, rerun:
+
+```bash
+source .venv/bin/activate
+python crimson-crystal-docs/generate_docs.py .
+git add crimson-crystal-docs docs
+git commit -m "Update documentation"
+git push
+```
