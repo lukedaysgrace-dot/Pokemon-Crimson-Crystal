@@ -249,7 +249,8 @@ Pokered_MonIndices:
 	db STEELIX
 	db SNUBBULL
 	db GRANBULL
-	db QWILFISH
-	db WOBBUFFET
-	db WOBBUFFET
-	db HONCHKROW
+; The expanded species IDs that still fit in the Time Capsule's 8-bit field.
+	db CHARMANDER_CLONE
+	db CHARMELEON_CLONE
+	db CHARIZARD_CLONE
+	db SQUIRTLE_CLONE
