@@ -15,3 +15,6 @@
 .encounter-card.labels{color:var(--muted);font-size:.75rem;text-transform:uppercase;font-weight:900}
 .location-row a{color:var(--crimson2)}
 @media(max-width:760px){.encounter-card{grid-template-columns:1.4fr 1fr .7fr}.encounter-card span:nth-child(n+4){display:none}}
+
+.evolution-list .evo-link,.evo-link{display:inline-block;background:var(--surface2);border:1px solid var(--line);padding:10px 12px;border-radius:9px;margin:4px 8px 4px 0;font-weight:800}
+.evolution-list .evo-link:hover,.evo-link:hover{border-color:var(--crimson);color:var(--crimson2)}
