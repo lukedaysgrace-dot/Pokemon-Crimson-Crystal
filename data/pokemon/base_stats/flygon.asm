@@ -3,7 +3,7 @@
 	db  90, 110,  85, 100, 130,  85
 	;  hp  atk  def  spd  sat  sdf
 
-	db GROUND, DRAGON ; type
+	db BUG, DRAGON ; type
 	db 45 ; catch rate
 	db 100 ; base exp
 	db NO_ITEM, NO_ITEM ; items

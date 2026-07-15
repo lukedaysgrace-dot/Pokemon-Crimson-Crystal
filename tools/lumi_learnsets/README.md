@@ -1,3 +1,24 @@
+# Luminescent 3.0 generators
+
+Two scripts, same approach and shared download cache:
+
+- `gen_learnsets.py` — rewrites level-up learnsets (see below).
+- `gen_types.py` — copies Luminescent's **types** onto your Pokemon by
+  rewriting the `db TYPE1, TYPE2 ; type` line in every
+  `data/pokemon/base_stats/*.asm`. Species/forms in Luminescent use its
+  PersonalTable typing; anything not in Luminescent falls back to PokeAPI;
+  fakemon (Watu, Orstryx, Mesmeria) are left unchanged. Run it the same way:
+
+  ```bash
+  python3 tools/lumi_learnsets/gen_types.py --dry-run   # shows every X/Y -> X/Y change
+  python3 tools/lumi_learnsets/gen_types.py             # apply
+  ```
+
+  The dry run prints every type change (`bulbasaur: GRASS/POISON -> ...`), so
+  skim a few known Pokemon to confirm nothing looks shifted before applying.
+
+---
+
 # Luminescent 3.0 learnset generator
 
 Rebuilds every level-up learnset in
