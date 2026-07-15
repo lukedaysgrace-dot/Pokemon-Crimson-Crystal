@@ -13,6 +13,7 @@ BulbasaurCloneEvosAttacks:
 	dbw 23, SWEET_SCENT
 	dbw 26, SLUDGE_BOMB
 	dbw 29, GROWTH
+	dbw 33, POWER_WHIP
 	dbw 35, DOUBLE_EDGE
 	dbw 36, SOLARBEAM
 	dbw 38, SYNTHESIS
@@ -38,6 +39,7 @@ IvysaurCloneEvosAttacks:
 	dbw 30, SLUDGE_BOMB
 	dbw 34, GROWTH
 	dbw 42, DOUBLE_EDGE
+	dbw 45, POWER_WHIP
 	dbw 46, SYNTHESIS
 	dbw 50, SOLARBEAM
 	db 0 ; no more level-up moves
@@ -118,7 +120,6 @@ CharizardCloneEvosAttacks:
 	dbw 1, GROWL
 	dbw 1, SCRATCH
 	dbw 1, WING_ATTACK
-	dbw 1, AIR_SLASH
 	dbw 5, EMBER
 	dbw 8, SMOKESCREEN
 	dbw 11, METAL_CLAW
