@@ -253,18 +253,32 @@ MenuIconPointers:
 	dba LugiaMenuIcon
 	dba HoOhMenuIcon
 	dba CelebiMenuIcon
+	dba CharmanderMenuIcon
+	dba CharmeleonMenuIcon
+	dba CharizardMenuIcon
+	dba SquirtleMenuIcon
+	dba WartortleMenuIcon
+	dba BlastoiseMenuIcon
+	dba BulbasaurMenuIcon
+	dba IvysaurMenuIcon
+	dba VenusaurMenuIcon
 	dba HonchkrowMenuIcon
 	dba AmbipomMenuIcon
 	dba AnnihilapeMenuIcon
 	dba BagonMenuIcon
+	dba ShelgonMenuIcon
+	dba SalamenceMenuIcon
 	dba DrunsparceMenuIcon
 	dba ElectivireMenuIcon
 	dba FarigirafMenuIcon
+	dba RaltsMenuIcon
+	dba KirliaMenuIcon
+	dba GardevoirMenuIcon
 	dba GardevoirMenuIcon
 	dba GlaceonMenuIcon
-	dba GliscorMenuIcon
-	dba KirliaMenuIcon
 	dba LeafeonMenuIcon
+	dba SylveonMenuIcon
+	dba GliscorMenuIcon
 	dba LickilickyMenuIcon
 	dba MagmortarMenuIcon
 	dba MagnezoneMenuIcon
@@ -272,21 +286,19 @@ MenuIconPointers:
 	dba MesmeriaMenuIcon
 	dba MismagiusMenuIcon
 	dba PorygonZMenuIcon
-	dba RaltsMenuIcon
 	dba RhyperiorMenuIcon
-	dba SalamenceMenuIcon
+	dba VenipedeMenuIcon
+	dba WhirlipedeMenuIcon
 	dba ScolipedeMenuIcon
-	dba ShelgonMenuIcon
 	dba TangrowthMenuIcon
 	dba TogekissMenuIcon
 	dba UrsalunaMenuIcon
-	dba VenipedeMenuIcon
 	dba WeavileMenuIcon
-	dba WhirlipedeMenuIcon
 	dba WyrdeerMenuIcon
 	dba YanmegaMenuIcon
 	dba LileepMenuIcon
 	dba CradilyMenuIcon
+	dba AnorithMenuIcon
 	dba ArmaldoMenuIcon
 	dba GolettMenuIcon
 	dba GolurkMenuIcon
@@ -316,66 +328,66 @@ MenuIconPointers:
 	dba CharcadetMenuIcon
 	dba ArmarougeMenuIcon
 	dba CeruledgeMenuIcon
-	dba SylveonMenuIcon
 	dba RookideeMenuIcon
 	dba CorvisquireMenuIcon
 	dba CorviknightMenuIcon
+	dba SnoverMenuIcon
 	dba AbomasnowMenuIcon
+	dba SwabluMenuIcon
 	dba AltariaMenuIcon
-	dba AnorithMenuIcon
-	dba AppletunMenuIcon
 	dba ApplinMenuIcon
+	dba DipplinMenuIcon
+	dba AppletunMenuIcon
+	dba FlappleMenuIcon
+	dba HydrappleMenuIcon
+	dba DuraludonMenuIcon
 	dba ArchaludonMenuIcon
+	dba ShroomishMenuIcon
 	dba BreloomMenuIcon
 	dba BunearyMenuIcon
-	dba CameruptMenuIcon
-	dba CentiskorchMenuIcon
-	dba CharjabugMenuIcon
-	dba CroagunkMenuIcon
-	dba DipplinMenuIcon
-	dba DrifblimMenuIcon
-	dba DrifloonMenuIcon
-	dba DrilburMenuIcon
-	dba DuraludonMenuIcon
-	dba ElectrikeMenuIcon
-	dba ExcadrillMenuIcon
-	dba FlappleMenuIcon
-	dba FletchinderMenuIcon
-	dba FletchlingMenuIcon
-	dba FlygonMenuIcon
-	dba FroslassMenuIcon
-	dba GolisopodMenuIcon
-	dba GrubbinMenuIcon
-	dba GrumpigMenuIcon
-	dba HydrappleMenuIcon
-	dba KingambitMenuIcon
-	dba LombreMenuIcon
 	dba LopunnyMenuIcon
-	dba LotadMenuIcon
-	dba LudicoloMenuIcon
-	dba ManectricMenuIcon
 	dba NumelMenuIcon
-	dba OverqwilMenuIcon
-	dba ScraftyMenuIcon
-	dba ScraggyMenuIcon
-	dba SealeoMenuIcon
-	dba ShroomishMenuIcon
+	dba CameruptMenuIcon
 	dba SizzlipedeMenuIcon
-	dba SnoruntMenuIcon
-	dba SnoverMenuIcon
-	dba SphealMenuIcon
-	dba SpoinkMenuIcon
-	dba SwabluMenuIcon
-	dba TalonflameMenuIcon
-	dba ToxicroakMenuIcon
-	dba TrapinchMenuIcon
-	dba UrsalunabmMenuIcon
-	dba VibravaMenuIcon
+	dba CentiskorchMenuIcon
+	dba GrubbinMenuIcon
+	dba CharjabugMenuIcon
 	dba VikavoltMenuIcon
-	dba WalreinMenuIcon
+	dba CroagunkMenuIcon
+	dba ToxicroakMenuIcon
+	dba DrifloonMenuIcon
+	dba DrifblimMenuIcon
+	dba DrilburMenuIcon
+	dba ExcadrillMenuIcon
+	dba ElectrikeMenuIcon
+	dba ManectricMenuIcon
+	dba FletchlingMenuIcon
+	dba FletchinderMenuIcon
+	dba TalonflameMenuIcon
+	dba TrapinchMenuIcon
+	dba VibravaMenuIcon
+	dba FlygonMenuIcon
+	dba SnoruntMenuIcon
+	dba FroslassMenuIcon
 	dba WimpodMenuIcon
+	dba GolisopodMenuIcon
+	dba SpoinkMenuIcon
+	dba GrumpigMenuIcon
+	dba PawniardMenuIcon
+	dba BisharpMenuIcon
+	dba KingambitMenuIcon
+	dba LotadMenuIcon
+	dba LombreMenuIcon
+	dba LudicoloMenuIcon
+	dba OverqwilMenuIcon
+	dba ScraggyMenuIcon
+	dba ScraftyMenuIcon
+	dba SphealMenuIcon
+	dba SealeoMenuIcon
+	dba WalreinMenuIcon
 	dba TeddiursabmMenuIcon
 	dba UrsaringbmMenuIcon
+	dba UrsalunabmMenuIcon
 	dba AxewMenuIcon
 	dba FraxureMenuIcon
 	dba HaxorusMenuIcon
@@ -383,15 +395,13 @@ MenuIconPointers:
 	dba RampardosMenuIcon
 	dba ShieldonMenuIcon
 	dba BastiodonMenuIcon
-	dba PawniardMenuIcon
-	dba BisharpMenuIcon
 	dba CetoddleMenuIcon
 	dba CetitanMenuIcon
 	dba MagikarpMenuIcon
 	dba GyaradosMenuIcon
 	dba MimikyuMenuIcon
+	dba CorsolaGalarianMenuIcon
 	dba CursolaMenuIcon
-	dba GardevoirMenuIcon
 	dba MrRimeMenuIcon
 	dba SirfetchDMenuIcon
 	dba RioluMenuIcon
@@ -426,20 +436,19 @@ MenuIconPointers:
 	dba RapidashGalarianMenuIcon
 	dba SlowpokeGalarianMenuIcon
 	dba SlowbroGalarianMenuIcon
-	dba WeezingGalarianMenuIcon
 	dba SlowkingGalarianMenuIcon
-	dba CorsolaGalarianMenuIcon
+	dba WeezingGalarianMenuIcon
 	dba GrowlitheHisuianMenuIcon
 	dba ArcanineHisuianMenuIcon
 	dba VoltorbHisuianMenuIcon
 	dba ElectrodeHisuianMenuIcon
 	dba TyphlosionHisuianMenuIcon
 	dba SneaselHisuianMenuIcon
+	dba SneaslerMenuIcon
 	dba WooperPaldeanMenuIcon
 	dba ClodsireMenuIcon
 	dba TaurosPaldeanFireMenuIcon
 	dba TaurosPaldeanWaterMenuIcon
-	dba SneaslerMenuIcon
 	dba WatuMenuIcon
 	dba BounsweetMenuIcon
 	dba SteeneeMenuIcon
@@ -449,17 +458,8 @@ MenuIconPointers:
 	dba AggronMenuIcon
 	dba KleavorMenuIcon
 	dba GlimmetMenuIcon
+	dba GlimmoraMenuIcon
 	dba MareanieMenuIcon
 	dba ToxapexMenuIcon
 	dba ZangooseMenuIcon
 	dba SeviperMenuIcon
-	dba GlimmoraMenuIcon
-	dba BulbasaurMenuIcon
-	dba IvysaurMenuIcon
-	dba VenusaurMenuIcon
-	dba CharmanderMenuIcon
-	dba CharmeleonMenuIcon
-	dba CharizardMenuIcon
-	dba SquirtleMenuIcon
-	dba WartortleMenuIcon
-	dba BlastoiseMenuIcon
