@@ -59,7 +59,16 @@ python3 tools/lumi_learnsets/gen_learnsets.py
 
 # Offline re-run (uses tools/lumi_learnsets/cache/):
 python3 tools/lumi_learnsets/gen_learnsets.py --no-net
+
+# Also add canonical level-up moves missing from Luminescent's data:
+python3 tools/lumi_learnsets/gen_learnsets.py --canonical-union
 ```
+
+`--canonical-union` keeps each Luminescent learnset as the base, then adds any
+move from that Pokemon's newest canonical level-up learnset that is absent.
+Supreme Silver's deliberate additions (including signature, legacy, and custom
+move availability) are layered on last. Cached PokeAPI responses are ignored by
+Git so the offline cache does not bloat the repository.
 
 **Do a `--dry-run` first.** The summary at the end lists:
 

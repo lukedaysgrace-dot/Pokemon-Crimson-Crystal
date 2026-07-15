@@ -23,7 +23,8 @@ EvosAttacksPointers::
 	indirect_entries SEADRA, EvosAttacksPointers1
 	indirect_entries STARMIE, EvosAttacksPointers1C
 	indirect_entries MEW, EvosAttacksPointers1B
-	indirect_entries NUM_POKEMON, EvosAttacksPointers2
+	indirect_entries GLIMMORA, EvosAttacksPointers2
+	indirect_entries NUM_POKEMON, EvosAttacksPointers2B
 	indirect_table_end
 
 INCLUDE "data/pokemon/evos_attacks_kanto.asm"
