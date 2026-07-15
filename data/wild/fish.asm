@@ -63,7 +63,7 @@ FishGroups:
 .Lake_Super:
 	dbbw  40 percent,     40, GOLDEEN
 	dbbw  70 percent,      5, TIME_GROUP
-	dbbw  90 percent + 1, 40, MAGIKARP
+	dbbw  90 percent + 1, 40, FEEBAS
 	dbbw 100 percent,     40, SEAKING
 
 .Pond_Old:
@@ -78,7 +78,7 @@ FishGroups:
 .Pond_Super:
 	dbbw  40 percent,     40, POLIWAG
 	dbbw  70 percent,      7, TIME_GROUP
-	dbbw  90 percent + 1, 40, MAGIKARP
+	dbbw  90 percent + 1, 40, POLIWHIRL
 	dbbw 100 percent,     40, POLIWAG
 
 .Dratini_Old:
@@ -186,8 +186,8 @@ FishGroups:
 .Qwilfish_Super:
 	dbbw  40 percent,     40, TENTACOOL
 	dbbw  70 percent,     21, TIME_GROUP
-	dbbw  90 percent + 1, 40, MAGIKARP
-	dbbw 100 percent,     40, QWILFISH
+	dbbw  90 percent + 1, 40, QWILFISH
+	dbbw 100 percent,     40, OVERQWIL
 
 .Remoraid_Old:
 	dbbw  70 percent + 1, 10, MAGIKARP
