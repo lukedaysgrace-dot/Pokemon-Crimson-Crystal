@@ -141,7 +141,7 @@
           {
             "level": 35,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 36,
@@ -226,7 +226,7 @@
           {
             "level": 35,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 36,
@@ -405,7 +405,7 @@
           {
             "level": 42,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 45,
@@ -500,7 +500,7 @@
           {
             "level": 42,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 45,
@@ -699,7 +699,7 @@
           {
             "level": 45,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 50,
@@ -809,7 +809,7 @@
           {
             "level": 45,
             "const": "DOUBLE_EDGE",
-            "move": "Double Edge"
+            "move": "Double-Edge"
           },
           {
             "level": 50,
@@ -2508,7 +2508,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 37,
@@ -2712,7 +2712,7 @@
       {
         "level": 28,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 34,
@@ -3047,7 +3047,7 @@
       {
         "level": 42,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -3219,7 +3219,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 46,
@@ -3328,7 +3328,7 @@
       {
         "level": 51,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 55,
@@ -4559,7 +4559,7 @@
       {
         "level": 59,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       }
     ],
     "evolutions": [],
@@ -4727,7 +4727,7 @@
       {
         "level": 35,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 40,
@@ -4851,7 +4851,7 @@
       {
         "level": 69,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -5501,7 +5501,7 @@
       {
         "level": 46,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 47,
@@ -5620,7 +5620,7 @@
       {
         "level": 54,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       }
     ],
     "evolutions": [],
@@ -5736,7 +5736,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -5875,7 +5875,7 @@
       {
         "level": 38,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 42,
@@ -6076,7 +6076,7 @@
       {
         "level": 33,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 36,
@@ -6220,7 +6220,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 38,
@@ -6346,7 +6346,7 @@
       {
         "level": 41,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 44,
@@ -6479,7 +6479,7 @@
       {
         "level": 46,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 50,
@@ -6637,7 +6637,7 @@
       {
         "level": 54,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -6730,7 +6730,7 @@
       {
         "level": 66,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -6860,7 +6860,7 @@
       {
         "level": 76,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -6974,7 +6974,7 @@
       {
         "level": 37,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 43,
@@ -7087,7 +7087,7 @@
       {
         "level": 37,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 40,
@@ -7223,7 +7223,7 @@
       {
         "level": 52,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -7331,7 +7331,7 @@
       {
         "level": 66,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -7444,7 +7444,7 @@
       {
         "level": 66,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -8504,7 +8504,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 49,
@@ -9685,7 +9685,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -9788,7 +9788,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -9911,7 +9911,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -10037,7 +10037,7 @@
       {
         "level": 38,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 40,
@@ -10170,7 +10170,7 @@
       {
         "level": 42,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 46,
@@ -10340,7 +10340,7 @@
       {
         "level": 33,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 35,
@@ -10482,7 +10482,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 49,
@@ -10619,7 +10619,7 @@
       {
         "level": 47,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -11045,7 +11045,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -11159,7 +11159,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 38,
@@ -11245,7 +11245,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 4,
@@ -11260,7 +11260,7 @@
       {
         "level": 13,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       },
       {
         "level": 19,
@@ -11305,7 +11305,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -11515,7 +11515,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 49,
@@ -12061,7 +12061,7 @@
       {
         "level": 31,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 33,
@@ -12175,7 +12175,7 @@
       {
         "level": 49,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 54,
@@ -12292,7 +12292,7 @@
       {
         "level": 33,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 36,
@@ -12411,7 +12411,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 40,
@@ -12535,7 +12535,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -12724,7 +12724,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 16,
@@ -12857,7 +12857,7 @@
       {
         "level": 28,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 31,
@@ -13336,7 +13336,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -13401,7 +13401,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -13527,7 +13527,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -13653,7 +13653,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -13828,7 +13828,7 @@
       {
         "level": 43,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 46,
@@ -13843,7 +13843,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -14604,7 +14604,7 @@
       {
         "level": 45,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 51,
@@ -15354,7 +15354,7 @@
       {
         "level": 38,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 42,
@@ -15440,7 +15440,7 @@
       {
         "level": 38,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 42,
@@ -15897,7 +15897,7 @@
       {
         "level": 38,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 41,
@@ -16010,7 +16010,7 @@
       {
         "level": 47,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 51,
@@ -16532,7 +16532,7 @@
       {
         "level": 44,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -16660,7 +16660,7 @@
       {
         "level": 54,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -16742,7 +16742,7 @@
       {
         "level": 30,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 33,
@@ -16861,7 +16861,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 38,
@@ -16970,7 +16970,7 @@
       {
         "level": 21,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 22,
@@ -17015,7 +17015,7 @@
       {
         "level": 39,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -17109,7 +17109,7 @@
       {
         "level": 23,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 24,
@@ -17154,7 +17154,7 @@
       {
         "level": 47,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -17276,7 +17276,7 @@
       {
         "level": 43,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 45,
@@ -17420,7 +17420,7 @@
       {
         "level": 52,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 55,
@@ -18008,7 +18008,7 @@
       {
         "level": 25,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       },
       {
         "level": 27,
@@ -18028,7 +18028,7 @@
       {
         "level": 33,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -18122,7 +18122,7 @@
       {
         "level": 25,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       },
       {
         "level": 27,
@@ -18142,7 +18142,7 @@
       {
         "level": 33,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -18205,7 +18205,7 @@
       {
         "level": 28,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 37,
@@ -18283,7 +18283,7 @@
       {
         "level": 30,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 38,
@@ -18819,7 +18819,7 @@
       {
         "level": 36,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 42,
@@ -18958,7 +18958,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 51,
@@ -19059,7 +19059,7 @@
       {
         "level": 39,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 42,
@@ -19120,7 +19120,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -19270,7 +19270,7 @@
       {
         "level": 27,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 28,
@@ -19387,7 +19387,7 @@
       {
         "level": 32,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 38,
@@ -19499,7 +19499,7 @@
       {
         "level": 34,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 42,
@@ -19672,7 +19672,7 @@
       {
         "level": 38,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 41,
@@ -19789,7 +19789,7 @@
       {
         "level": 56,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 60,
@@ -19901,7 +19901,7 @@
       {
         "level": 39,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 43,
@@ -20090,7 +20090,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -20160,7 +20160,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 37,
@@ -20211,7 +20211,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -20576,7 +20576,7 @@
       {
         "level": 30,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       }
     ],
     "evolutions": [],
@@ -20719,7 +20719,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -20832,7 +20832,7 @@
       {
         "level": 45,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -20936,7 +20936,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 58,
@@ -21033,7 +21033,7 @@
       {
         "level": 33,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -21147,7 +21147,7 @@
       {
         "level": 25,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 31,
@@ -21157,7 +21157,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 37,
@@ -21296,7 +21296,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -21426,7 +21426,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -21559,7 +21559,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 54,
@@ -21795,7 +21795,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 40,
@@ -22163,7 +22163,7 @@
       {
         "level": 15,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 18,
@@ -22267,7 +22267,7 @@
       {
         "level": 15,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 18,
@@ -23563,7 +23563,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -23606,7 +23606,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -23816,7 +23816,7 @@
       {
         "level": 43,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 46,
@@ -23924,7 +23924,7 @@
       {
         "level": 51,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -24303,7 +24303,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 42,
@@ -24479,7 +24479,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 16,
@@ -24632,7 +24632,7 @@
       {
         "level": 53,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -24703,7 +24703,7 @@
       {
         "level": 13,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       },
       {
         "level": 19,
@@ -24748,7 +24748,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -25727,7 +25727,7 @@
       {
         "level": 30,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 34,
@@ -26113,7 +26113,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 46,
@@ -26236,7 +26236,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 52,
@@ -26365,7 +26365,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -26471,7 +26471,7 @@
       {
         "level": 33,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -26695,7 +26695,7 @@
       {
         "level": 50,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       }
     ],
     "evolutions": [],
@@ -26766,7 +26766,7 @@
       {
         "level": 25,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 28,
@@ -26864,7 +26864,7 @@
       {
         "level": 27,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 31,
@@ -26979,7 +26979,7 @@
       {
         "level": 27,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 32,
@@ -27096,7 +27096,7 @@
       {
         "level": 1,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 1,
@@ -27207,7 +27207,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -27347,7 +27347,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -27488,7 +27488,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -27690,7 +27690,7 @@
       {
         "level": 25,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 31,
@@ -27700,7 +27700,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 37,
@@ -27906,7 +27906,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 19,
@@ -28292,7 +28292,7 @@
       {
         "level": 37,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 41,
@@ -28524,7 +28524,7 @@
       {
         "level": 43,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 46,
@@ -28539,7 +28539,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -28631,7 +28631,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 38,
@@ -28738,7 +28738,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -28827,7 +28827,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -28921,7 +28921,7 @@
       {
         "level": 52,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 56,
@@ -29128,7 +29128,7 @@
       {
         "level": 45,
         "const": "SOFTBOILED",
-        "move": "Softboiled"
+        "move": "Soft-Boiled"
       },
       {
         "level": 50,
@@ -29158,7 +29158,7 @@
       {
         "level": 70,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -29402,7 +29402,7 @@
       {
         "level": 38,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 47,
@@ -29417,7 +29417,7 @@
       {
         "level": 60,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -29529,7 +29529,7 @@
       {
         "level": 39,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 43,
@@ -29827,7 +29827,7 @@
       {
         "level": 30,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 33,
@@ -29941,7 +29941,7 @@
       {
         "level": 31,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 35,
@@ -30191,7 +30191,7 @@
       {
         "level": 22,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 28,
@@ -30319,7 +30319,7 @@
       {
         "level": 22,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 28,
@@ -30442,7 +30442,7 @@
       {
         "level": 22,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 28,
@@ -30816,7 +30816,7 @@
       {
         "level": 60,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 66,
@@ -30875,7 +30875,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -31369,7 +31369,7 @@
       {
         "level": 36,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 42,
@@ -31384,7 +31384,7 @@
       {
         "level": 66,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -31462,7 +31462,7 @@
       {
         "level": 36,
         "const": "U_TURN",
-        "move": "U Turn"
+        "move": "U-turn"
       },
       {
         "level": 42,
@@ -31477,7 +31477,7 @@
       {
         "level": 70,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 70,
@@ -32228,7 +32228,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 20,
@@ -32293,7 +32293,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 20,
@@ -32385,7 +32385,7 @@
       {
         "level": 16,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 20,
@@ -34113,7 +34113,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -34227,7 +34227,7 @@
       {
         "level": 47,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 52,
@@ -34504,7 +34504,7 @@
       {
         "level": 30,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 35,
@@ -34576,7 +34576,7 @@
       {
         "level": 36,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 43,
@@ -34655,7 +34655,7 @@
       {
         "level": 1,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 15,
@@ -36333,7 +36333,7 @@
       {
         "level": 24,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 27,
@@ -36595,7 +36595,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 43,
@@ -36702,7 +36702,7 @@
       {
         "level": 35,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 47,
@@ -37379,7 +37379,7 @@
       {
         "level": 49,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 54,
@@ -38061,7 +38061,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -38246,7 +38246,7 @@
       {
         "level": 59,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -38439,7 +38439,7 @@
       {
         "level": 63,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -39292,7 +39292,7 @@
       {
         "level": 49,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 53,
@@ -39380,7 +39380,7 @@
       {
         "level": 49,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 53,
@@ -39878,7 +39878,7 @@
       {
         "level": 52,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 56,
@@ -40022,7 +40022,7 @@
       {
         "level": 53,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 60,
@@ -40154,7 +40154,7 @@
       {
         "level": 33,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 36,
@@ -40311,7 +40311,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 49,
@@ -41028,7 +41028,7 @@
       {
         "level": 45,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -41117,7 +41117,7 @@
       {
         "level": 56,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 63,
@@ -41229,7 +41229,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -41299,7 +41299,7 @@
       {
         "level": 34,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 37,
@@ -41419,7 +41419,7 @@
       {
         "level": 36,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 39,
@@ -41514,7 +41514,7 @@
       {
         "level": 39,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -41551,7 +41551,7 @@
       {
         "level": 1,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 1,
@@ -42399,7 +42399,7 @@
       {
         "level": 17,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 23,
@@ -42624,7 +42624,7 @@
       {
         "level": 33,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 38,
@@ -43147,7 +43147,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 53,
@@ -43270,7 +43270,7 @@
       {
         "level": 54,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -43350,7 +43350,7 @@
       {
         "level": 54,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -43442,7 +43442,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -43517,7 +43517,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 43,
@@ -43627,7 +43627,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -43712,7 +43712,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -43822,7 +43822,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -43922,7 +43922,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -44446,7 +44446,7 @@
       {
         "level": 62,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 67,
@@ -44608,7 +44608,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -44653,7 +44653,7 @@
       {
         "level": 23,
         "const": "WILL_O_WISP",
-        "move": "Will O Wisp"
+        "move": "Will-O-Wisp"
       },
       {
         "level": 25,
@@ -44778,7 +44778,7 @@
       {
         "level": 53,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 57,
@@ -44944,7 +44944,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -45159,7 +45159,7 @@
       {
         "level": 50,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 52,
@@ -45239,7 +45239,7 @@
       {
         "level": 37,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 46,
@@ -45374,7 +45374,7 @@
       {
         "level": 56,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 1,
@@ -45469,7 +45469,7 @@
       {
         "level": 38,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -45575,7 +45575,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 35,
@@ -45670,7 +45670,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 37,
@@ -45796,7 +45796,7 @@
       {
         "level": 35,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -45911,7 +45911,7 @@
       {
         "level": 35,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -46053,7 +46053,7 @@
       {
         "level": 34,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 40,
@@ -46168,7 +46168,7 @@
       {
         "level": 35,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 39,
@@ -46482,7 +46482,7 @@
       {
         "level": 37,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 40,
@@ -46652,7 +46652,7 @@
       {
         "level": 45,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 50,
@@ -47151,7 +47151,7 @@
       {
         "level": 1,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 1,
@@ -47236,7 +47236,7 @@
       {
         "level": 50,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 55,
@@ -47341,7 +47341,7 @@
       {
         "level": 47,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 60,
@@ -47523,7 +47523,7 @@
       {
         "level": 37,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 41,
@@ -47663,7 +47663,7 @@
       {
         "level": 37,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 41,
@@ -48094,7 +48094,7 @@
       {
         "level": 52,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 55,
@@ -48215,7 +48215,7 @@
       {
         "level": 52,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 60,
@@ -48290,7 +48290,7 @@
       {
         "level": 43,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       },
       {
         "level": 46,
@@ -48391,7 +48391,7 @@
       {
         "level": 36,
         "const": "PSYCHIC_M",
-        "move": "Psychic M"
+        "move": "Psychic"
       },
       {
         "level": 40,
@@ -48677,7 +48677,7 @@
       {
         "level": 40,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -48765,7 +48765,7 @@
       {
         "level": 46,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [
@@ -48853,7 +48853,7 @@
       {
         "level": 48,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -48965,7 +48965,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 40,
@@ -49392,7 +49392,7 @@
       {
         "level": 34,
         "const": "X_SCISSOR",
-        "move": "X Scissor"
+        "move": "X-Scissor"
       },
       {
         "level": 43,
@@ -49407,7 +49407,7 @@
       {
         "level": 49,
         "const": "DOUBLE_EDGE",
-        "move": "Double Edge"
+        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
