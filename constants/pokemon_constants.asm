@@ -271,18 +271,32 @@ JOHTO_POKEMON EQU const_value
 	const LUGIA      ; f9
 	const HO_OH      ; fa
 	const CELEBI     ; fb
-	const HONCHKROW  ; fc
+	const CHARMANDER_CLONE  ; fc
+	const CHARMELEON_CLONE  ; fd
+	const CHARIZARD_CLONE   ; fe
+	const SQUIRTLE_CLONE    ; ff
+	const WARTORTLE_CLONE   ; 100
+	const BLASTOISE_CLONE   ; 101
+	const BULBASAUR_CLONE   ; 102
+	const IVYSAUR_CLONE     ; 103
+	const VENUSAUR_CLONE    ; 104
+	const HONCHKROW  ; 105
 	const AMBIPOM    ;
 	const ANNIHILAPE ;
 	const BAGON      ;
+	const SHELGON    ;
+	const SALAMENCE  ;
 	const DRUNSPARCE ;
 	const ELECTIVIRE ;
 	const FARIGIRAF  ;
-	const GARDEVOIR  ;
-	const GLACEON    ;
-	const GLISCOR    ;
+	const RALTS      ;
 	const KIRLIA     ;
+	const GARDEVOIR  ;
+	const GALLADE    ;
+	const GLACEON    ;
 	const LEAFEON    ;
+	const SYLVEON    ;
+	const GLISCOR    ;
 	const LICKILICKY ;
 	const MAGMORTAR  ;
 	const MAGNEZONE  ;
@@ -290,21 +304,19 @@ JOHTO_POKEMON EQU const_value
 	const MESMERIA   ;
 	const MISMAGIUS  ;
 	const PORYGON_Z  ;
-	const RALTS      ;
 	const RHYPERIOR  ;
-	const SALAMENCE  ;
+	const VENIPEDE   ;
+	const WHIRLIPEDE ;
 	const SCOLIPEDE  ;
-	const SHELGON    ;
 	const TANGROWTH  ;
 	const TOGEKISS   ;
 	const URSALUNA   ;
-	const VENIPEDE   ;
 	const WEAVILE    ;
-	const WHIRLIPEDE ;
 	const WYRDEER    ;
 	const YANMEGA    ;
 	const LILEEP     ;
 	const CRADILY    ;
+	const ANORITH    ;
 	const ARMALDO    ;
 	const GOLETT     ;
 	const GOLURK     ;
@@ -334,66 +346,66 @@ JOHTO_POKEMON EQU const_value
 	const CHARCADET  ;
 	const ARMAROUGE  ;
 	const CERULEDGE  ;
-	const SYLVEON    ;
 	const ROOKIDEE   ;
 	const CORVISQUIRE ;
 	const CORVIKNIGHT ;
+	const SNOVER     ;
 	const ABOMASNOW  ;
+	const SWABLU     ;
 	const ALTARIA    ;
-	const ANORITH    ;
-	const APPLETUN   ;
 	const APPLIN     ;
+	const DIPPLIN    ;
+	const APPLETUN   ;
+	const FLAPPLE    ;
+	const HYDRAPPLE  ;
+	const DURALUDON  ;
 	const ARCHALUDON ;
+	const SHROOMISH  ;
 	const BRELOOM    ;
 	const BUNEARY    ;
-	const CAMERUPT   ;
-	const CENTISKORCH ;
-	const CHARJABUG  ;
-	const CROAGUNK   ;
-	const DIPPLIN    ;
-	const DRIFBLIM   ;
-	const DRIFLOON   ;
-	const DRILBUR    ;
-	const DURALUDON  ;
-	const ELECTRIKE  ;
-	const EXCADRILL  ;
-	const FLAPPLE    ;
-	const FLETCHINDER ;
-	const FLETCHLING ;
-	const FLYGON     ;
-	const FROSLASS   ;
-	const GOLISOPOD  ;
-	const GRUBBIN    ;
-	const GRUMPIG    ;
-	const HYDRAPPLE  ;
-	const KINGAMBIT  ;
-	const LOMBRE     ;
 	const LOPUNNY    ;
-	const LOTAD      ;
-	const LUDICOLO   ;
-	const MANECTRIC  ;
 	const NUMEL      ;
-	const OVERQWIL   ;
-	const SCRAFTY    ;
-	const SCRAGGY    ;
-	const SEALEO     ;
-	const SHROOMISH  ;
+	const CAMERUPT   ;
 	const SIZZLIPEDE ;
-	const SNORUNT    ;
-	const SNOVER     ;
-	const SPHEAL     ;
-	const SPOINK     ;
-	const SWABLU     ;
-	const TALONFLAME ;
-	const TOXICROAK  ;
-	const TRAPINCH   ;
-	const URSALUNABM ;
-	const VIBRAVA    ;
+	const CENTISKORCH ;
+	const GRUBBIN    ;
+	const CHARJABUG  ;
 	const VIKAVOLT   ;
-	const WALREIN    ;
+	const CROAGUNK   ;
+	const TOXICROAK  ;
+	const DRIFLOON   ;
+	const DRIFBLIM   ;
+	const DRILBUR    ;
+	const EXCADRILL  ;
+	const ELECTRIKE  ;
+	const MANECTRIC  ;
+	const FLETCHLING ;
+	const FLETCHINDER ;
+	const TALONFLAME ;
+	const TRAPINCH   ;
+	const VIBRAVA    ;
+	const FLYGON     ;
+	const SNORUNT    ;
+	const FROSLASS   ;
 	const WIMPOD     ;
+	const GOLISOPOD  ;
+	const SPOINK     ;
+	const GRUMPIG    ;
+	const PAWNIARD   ;
+	const BISHARP    ;
+	const KINGAMBIT  ;
+	const LOTAD      ;
+	const LOMBRE     ;
+	const LUDICOLO   ;
+	const OVERQWIL   ;
+	const SCRAGGY    ;
+	const SCRAFTY    ;
+	const SPHEAL     ;
+	const SEALEO     ;
+	const WALREIN    ;
 	const TEDDIURSABM ;
 	const URSARINGBM ;
+	const URSALUNABM ;
 	const AXEW       ;
 	const FRAXURE    ;
 	const HAXORUS    ;
@@ -401,15 +413,13 @@ JOHTO_POKEMON EQU const_value
 	const RAMPARDOS  ;
 	const SHIELDON   ;
 	const BASTIODON  ;
-	const PAWNIARD   ;
-	const BISHARP    ;
 	const CETODDLE   ;
 	const CETITAN    ;
 	const FEEBAS     ;
 	const MILOTIC    ;
 	const MIMIKYU    ;
+	const CORSOLA_GALARIAN  ;
 	const CURSOLA    ;
-	const GALLADE    ;
 	const MR__RIME   ;
 	const SIRFETCH_D ;
 	const RIOLU      ;
@@ -444,20 +454,19 @@ JOHTO_POKEMON EQU const_value
 	const RAPIDASH_GALARIAN ;
 	const SLOWPOKE_GALARIAN ;
 	const SLOWBRO_GALARIAN  ;
-	const WEEZING_GALARIAN  ;
 	const SLOWKING_GALARIAN ;
-	const CORSOLA_GALARIAN  ;
+	const WEEZING_GALARIAN  ;
 	const GROWLITHE_HISUIAN ;
 	const ARCANINE_HISUIAN  ;
 	const VOLTORB_HISUIAN   ;
 	const ELECTRODE_HISUIAN ;
 	const TYPHLOSION_HISUIAN;
 	const SNEASEL_HISUIAN   ;
+	const SNEASLER          ;
 	const WOOPER_PALDEAN    ;
 	const CLODSIRE          ;
 	const TAUROS_PALDEAN_FIRE;
 	const TAUROS_PALDEAN_WATER;
-	const SNEASLER          ;
 	const WATU              ;
 	const BOUNSWEET         ;
 	const STEENEE           ;
@@ -467,20 +476,11 @@ JOHTO_POKEMON EQU const_value
 	const AGGRON            ;
 	const KLEAVOR           ;
 	const GLIMMET           ;
+	const GLIMMORA          ;
 	const MAREANIE          ;
 	const TOXAPEX           ;
 	const ZANGOOSE          ;
 	const SEVIPER           ;
-	const GLIMMORA          ;
-	const BULBASAUR_CLONE   ;
-	const IVYSAUR_CLONE     ;
-	const VENUSAUR_CLONE    ;
-	const CHARMANDER_CLONE  ;
-	const CHARMELEON_CLONE  ;
-	const CHARIZARD_CLONE   ;
-	const SQUIRTLE_CLONE    ;
-	const WARTORTLE_CLONE   ;
-	const BLASTOISE_CLONE   ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3
