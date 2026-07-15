@@ -98,6 +98,7 @@ VERSION_GROUP_PRIORITY = [
 # Networking / cache
 # --------------------------------------------------------------------------
 NO_NET = False
+INCLUDE_CANONICAL = False
 
 def fetch(url, cache_name, is_json=True, retries=3):
     path = os.path.join(CACHE, cache_name)
@@ -233,6 +234,8 @@ MOVE_MAP = {
     "hiddenpower": "HIDDEN_POWER", "crosschop": "CROSS_CHOP", "twister": "TWISTER",
     "raindance": "RAIN_DANCE", "sunnyday": "SUNNY_DAY", "crunch": "CRUNCH",
     "mirrorcoat": "MIRROR_COAT", "psychup": "PSYCH_UP", "extremespeed": "EXTREMESPEED",
+    "psychicm": "PSYCHIC_M", "gigahammer": "GIGA_HAMMER",
+    "gigatonhammer": "GIGA_HAMMER",
     "ancientpower": "ANCIENTPOWER", "shadowball": "SHADOW_BALL", "futuresight": "FUTURE_SIGHT",
     "rocksmash": "ROCK_SMASH", "whirlpool": "WHIRLPOOL", "beatup": "BEAT_UP",
     "dazzlinggleam": "DAZZLING_GLEAM", "disarmingvoice": "DISARMING_VOICE",
@@ -345,6 +348,32 @@ FAKEMON_OVERRIDES = {
     ],
 }
 
+# Intentional Supreme Silver additions layered on top of source learnsets.
+# These remain stable when the generator is re-run.
+PROJECT_ADDITIONS = {
+    # Legacy/custom moves omitted from current-generation level-up data.
+    "spinarak": [(29, "SPIDER_WEB")],
+    "ariados": [(32, "SPIDER_WEB")],
+    "snubbull": [(7, "PIXIE_PUNCH")],
+    "granbull": [(1, "PIXIE_PUNCH")],
+    "camerupt": [(52, "HEAT_CRASH")],
+    "centiskorch": [(56, "HEAT_CRASH")],
+    "alakazam": [(55, "FOCUS_BLAST")],
+    "gardevoir": [(55, "FOCUS_BLAST")],
+    "magmortar": [(58, "FOCUS_BLAST")],
+    "kingdra": [(65, "DRACO_METEOR")],
+    "flygon": [(65, "DRACO_METEOR")],
+    "salamence": [(70, "DRACO_METEOR")],
+    "dragonite": [(70, "DRACO_METEOR")],
+    "hydreigon": [(70, "DRACO_METEOR")],
+    "dragapult": [(70, "DRACO_METEOR")],
+    "archaludon": [(70, "DRACO_METEOR")],
+    "xatu": [(38, "ROOST")],
+    "unown": [(30, "PSYCHIC_M")],
+    "tinkaton": [(42, "IRON_HEAD"), (48, "GIGA_HAMMER")],
+    "corviknight": [(42, "ROOST")],
+}
+
 # --------------------------------------------------------------------------
 # Load ROM move constants (for validation)
 # --------------------------------------------------------------------------
@@ -352,9 +381,12 @@ def load_rom_moves():
     moves = set()
     with open(MOVE_CONSTANTS, "r", encoding="utf-8") as f:
         for line in f:
+            if line.strip().startswith("NUM_ATTACKS"):
+                break
             m = re.match(r"\s*const\s+([A-Z0-9_]+)", line)
             if m:
                 moves.add(m.group(1))
+    moves.discard("NO_MOVE")
     return moves
 
 # --------------------------------------------------------------------------
@@ -503,7 +535,7 @@ def slug_for(species_norm, api_suffix, tag):
         base = species_norm
     return f"{base}-{api_suffix}" if tag else base
 
-def resolve_learnset(label_base, lumi, rom_moves, report):
+def resolve_base_learnset(label_base, lumi, rom_moves, report):
     """label_base: e.g. 'Charizard', 'RaichuAlolan', 'Ursalunabm'.
     Returns (source_str, [(level, CONST), ...]) or (None, None) to leave as-is.
     Priority: custom-form label -> override -> Luminescent -> PokeAPI."""
@@ -522,7 +554,7 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
 
     # 2) fakemon override (by full label)
     if low in FAKEMON_OVERRIDES:
-        return ("override", moves_to_consts(FAKEMON_OVERRIDES[low], rom_moves, report))
+        return ("override", consts_direct(FAKEMON_OVERRIDES[low], rom_moves, report))
 
     species, tag, api_suffix = split_region(label_base)
     species_norm = norm_name(species)
@@ -560,6 +592,70 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
     if ls:
         return ("pokeapi:" + slug, moves_to_consts(ls, rom_moves, report))
     return (None, None)
+
+def canonical_learnset(label_base, rom_moves, report):
+    """Newest available canonical level-up learnset for audit/union mode."""
+    low = norm_name(label_base)
+    if low in FAKEMON_OVERRIDES:
+        return []
+
+    if low in SPECIAL_FORM_LABEL:
+        slug = SPECIAL_FORM_LABEL[low]
+        if not slug:
+            return []
+        ls = pokeapi_learnset(slug, prefer_hisui=("hisui" in slug))
+        return moves_to_consts(ls or [], rom_moves, report)
+
+    species, tag, api_suffix = split_region(label_base)
+    species_norm = norm_name(species)
+    slug = slug_for(species_norm, api_suffix, tag)
+    if not slug:
+        return []
+    ls = pokeapi_learnset(slug, prefer_hisui=(tag == "hisui"))
+    return moves_to_consts(ls or [], rom_moves, report)
+
+def merge_missing_moves(primary, additions):
+    """Add only move constants absent from primary; retain source levels."""
+    out = []
+    seen_rows = set()
+    for row in primary or []:
+        if row not in seen_rows:
+            out.append(row)
+            seen_rows.add(row)
+    present = {const for _, const in out}
+    for lvl, const in additions:
+        if const in present:
+            continue
+        out.append((lvl, const))
+        present.add(const)
+    out.sort(key=lambda x: x[0])
+    return out
+
+def resolve_learnset(label_base, lumi, rom_moves, report):
+    source, learn = resolve_base_learnset(label_base, lumi, rom_moves, report)
+    merged = list(learn or [])
+
+    if INCLUDE_CANONICAL:
+        before = len(merged)
+        merged = merge_missing_moves(
+            merged, canonical_learnset(label_base, rom_moves, report)
+        )
+        if len(merged) != before:
+            source = (source or "canonical") + "+canonical"
+
+    additions = PROJECT_ADDITIONS.get(norm_name(label_base), [])
+    if additions:
+        before = len(merged)
+        # Project rows are exact placements, so keep them even when the same
+        # move also has a level-1 reminder entry in canonical data.
+        for row in consts_direct(additions, rom_moves, report):
+            if row not in merged:
+                merged.append(row)
+        merged.sort(key=lambda x: x[0])
+        if len(merged) != before:
+            source = (source or "project") + "+project"
+
+    return (source, merged or None)
 
 # --------------------------------------------------------------------------
 # ASM parsing / rewriting
@@ -632,12 +728,15 @@ def process_file(path, lumi, rom_moves, report, dry_run):
 # Main
 # --------------------------------------------------------------------------
 def main():
-    global NO_NET
+    global NO_NET, INCLUDE_CANONICAL
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="report only, do not write")
     ap.add_argument("--no-net", action="store_true", help="use only cached data")
+    ap.add_argument("--canonical-union", action="store_true",
+                    help="add missing moves from the newest canonical level-up learnset")
     args = ap.parse_args()
     NO_NET = args.no_net
+    INCLUDE_CANONICAL = args.canonical_union
 
     print("Loading ROM move constants...")
     rom_moves = load_rom_moves()

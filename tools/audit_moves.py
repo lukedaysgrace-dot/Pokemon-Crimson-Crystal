@@ -566,7 +566,10 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
         + pointer_block(kanto, "EvosAttacksPointers1C")
         + pointer_block(kanto, "EvosAttacksPointers1B")
     )
-    second = pointer_block(johto, "EvosAttacksPointers2")
+    second = (
+        pointer_block(johto, "EvosAttacksPointers2")
+        + pointer_block(johto, "EvosAttacksPointers2B")
+    )
     pointers = first + second
     audit.check(len(first) == 151, f"Kanto evolution pointers: got {len(first)}, expected 151")
     audit.check(
@@ -617,6 +620,32 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
     audit.count("evolution/learnset blocks", total_blocks)
 
 
+def audit_move_availability(audit: Audit, moves: list[str]) -> None:
+    """Every usable move must be obtainable through level, egg, or machine data."""
+    available: set[str] = set()
+    for relative in (
+        "data/pokemon/evos_attacks_kanto.asm",
+        "data/pokemon/evos_attacks_johto.asm",
+        "data/pokemon/evos_attacks_clones.asm",
+    ):
+        available.update(
+            re.findall(r"^\s*dbw\s+\d+\s*,\s*([A-Z][A-Z0-9_]*)", read(relative), re.MULTILINE)
+        )
+    for relative in (
+        "data/pokemon/egg_moves_kanto.asm",
+        "data/pokemon/egg_moves_johto.asm",
+        "data/moves/tmhm_moves.asm",
+    ):
+        available.update(
+            re.findall(r"^\s*dw\s+([A-Z][A-Z0-9_]*)", read(relative), re.MULTILINE)
+        )
+
+    intentionally_unlearnable = {"STRUGGLE"}
+    missing = sorted(set(moves) - available - intentionally_unlearnable)
+    audit.check(not missing, "moves with no player learnset: " + ", ".join(missing))
+    audit.count("player-available moves", len(set(moves) & available))
+
+
 def main() -> int:
     audit = Audit()
     moves, move_ids, scripts = audit_move_tables(audit)
@@ -627,6 +656,7 @@ def main() -> int:
     audit_tmhm(audit, move_ids)
     audit_egg_moves(audit, move_ids)
     audit_learnsets(audit, move_ids)
+    audit_move_availability(audit, moves)
 
     if audit.errors:
         print(f"move audit failed with {len(audit.errors)} error(s):", file=sys.stderr)
