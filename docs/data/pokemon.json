@@ -20,8 +20,96 @@
       "Overgrow",
       "Effect Spore"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "VINE_WHIP",
+        "move": "Vine Whip"
+      },
+      {
+        "level": 8,
+        "const": "LEECH_SEED",
+        "move": "Leech Seed"
+      },
+      {
+        "level": 11,
+        "const": "RAZOR_LEAF",
+        "move": "Razor Leaf"
+      },
+      {
+        "level": 14,
+        "const": "POISONPOWDER",
+        "move": "Poisonpowder"
+      },
+      {
+        "level": 14,
+        "const": "SLEEP_POWDER",
+        "move": "Sleep Powder"
+      },
+      {
+        "level": 17,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 20,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 23,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 26,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 29,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 33,
+        "const": "POWER_WHIP",
+        "move": "Power Whip"
+      },
+      {
+        "level": 35,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 36,
+        "const": "SOLARBEAM",
+        "move": "Solarbeam"
+      },
+      {
+        "level": 38,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
+      },
+      {
+        "level": 41,
+        "const": "SEED_BOMB",
+        "move": "Seed Bomb"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 16, IVYSAUR"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/bulbasaur.png",
     "forms": {
@@ -46,8 +134,96 @@
           "Overgrow",
           "Effect Spore"
         ],
-        "learnset": [],
-        "evolutions": [],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "GROWL",
+            "move": "Growl"
+          },
+          {
+            "level": 1,
+            "const": "TACKLE",
+            "move": "Tackle"
+          },
+          {
+            "level": 5,
+            "const": "VINE_WHIP",
+            "move": "Vine Whip"
+          },
+          {
+            "level": 8,
+            "const": "LEECH_SEED",
+            "move": "Leech Seed"
+          },
+          {
+            "level": 11,
+            "const": "RAZOR_LEAF",
+            "move": "Razor Leaf"
+          },
+          {
+            "level": 14,
+            "const": "POISONPOWDER",
+            "move": "Poisonpowder"
+          },
+          {
+            "level": 14,
+            "const": "SLEEP_POWDER",
+            "move": "Sleep Powder"
+          },
+          {
+            "level": 17,
+            "const": "SLUDGE",
+            "move": "Sludge"
+          },
+          {
+            "level": 20,
+            "const": "TAKE_DOWN",
+            "move": "Take Down"
+          },
+          {
+            "level": 23,
+            "const": "SWEET_SCENT",
+            "move": "Sweet Scent"
+          },
+          {
+            "level": 26,
+            "const": "SLUDGE_BOMB",
+            "move": "Sludge Bomb"
+          },
+          {
+            "level": 29,
+            "const": "GROWTH",
+            "move": "Growth"
+          },
+          {
+            "level": 33,
+            "const": "POWER_WHIP",
+            "move": "Power Whip"
+          },
+          {
+            "level": 35,
+            "const": "DOUBLE_EDGE",
+            "move": "Double-Edge"
+          },
+          {
+            "level": 36,
+            "const": "SOLARBEAM",
+            "move": "Solarbeam"
+          },
+          {
+            "level": 38,
+            "const": "SYNTHESIS",
+            "move": "Synthesis"
+          },
+          {
+            "level": 41,
+            "const": "SEED_BOMB",
+            "move": "Seed Bomb"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 16, IVYSAUR"
+        ],
         "egg_moves": [],
         "sprite": "assets/pokemon/bulbasaur.png"
       },
@@ -157,6 +333,171 @@
             "level": 41,
             "const": "SEED_BOMB",
             "move": "Seed Bomb"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 16, IVYSAUR_CLONE"
+        ],
+        "egg_moves": [],
+        "sprite": "assets/pokemon/bulbasaur-clone.png"
+      }
+    }
+  },
+  {
+    "const": "IVYSAUR",
+    "name": "Ivysaur",
+    "number": 2,
+    "stats": {
+      "HP": 60,
+      "Attack": 62,
+      "Defense": 63,
+      "Speed": 60,
+      "Sp. Atk": 80,
+      "Sp. Def": 80
+    },
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "abilities": [
+      "Chlorophyll",
+      "Overgrow",
+      "Effect Spore"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 1,
+        "const": "VINE_WHIP",
+        "move": "Vine Whip"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "VINE_WHIP",
+        "move": "Vine Whip"
+      },
+      {
+        "level": 8,
+        "const": "LEECH_SEED",
+        "move": "Leech Seed"
+      },
+      {
+        "level": 11,
+        "const": "RAZOR_LEAF",
+        "move": "Razor Leaf"
+      },
+      {
+        "level": 14,
+        "const": "POISONPOWDER",
+        "move": "Poisonpowder"
+      },
+      {
+        "level": 14,
+        "const": "SLEEP_POWDER",
+        "move": "Sleep Powder"
+      },
+      {
+        "level": 18,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 20,
+        "const": "SEED_BOMB",
+        "move": "Seed Bomb"
+      },
+      {
+        "level": 22,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 26,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 30,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 34,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 42,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 45,
+        "const": "POWER_WHIP",
+        "move": "Power Whip"
+      },
+      {
+        "level": 46,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
+      },
+      {
+        "level": 50,
+        "const": "SOLARBEAM",
+        "move": "Solarbeam"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 32, VENUSAUR"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/ivysaur.png",
+    "forms": {
+      "normal": {
+        "const": "IVYSAUR",
+        "name": "Ivysaur",
+        "number": 2,
+        "stats": {
+          "HP": 60,
+          "Attack": 62,
+          "Defense": 63,
+          "Speed": 60,
+          "Sp. Atk": 80,
+          "Sp. Def": 80
+        },
+        "types": [
+          "Grass",
+          "Poison"
+        ],
+        "abilities": [
+          "Chlorophyll",
+          "Overgrow",
+          "Effect Spore"
+        ],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "GROWTH",
+            "move": "Growth"
+          },
+          {
+            "level": 1,
+            "const": "VINE_WHIP",
+            "move": "Vine Whip"
           },
           {
             "level": 1,
@@ -194,114 +535,59 @@
             "move": "Sleep Powder"
           },
           {
-            "level": 17,
+            "level": 18,
             "const": "SLUDGE",
             "move": "Sludge"
           },
           {
             "level": 20,
+            "const": "SEED_BOMB",
+            "move": "Seed Bomb"
+          },
+          {
+            "level": 22,
             "const": "TAKE_DOWN",
             "move": "Take Down"
           },
           {
-            "level": 23,
+            "level": 26,
             "const": "SWEET_SCENT",
             "move": "Sweet Scent"
           },
           {
-            "level": 26,
+            "level": 30,
             "const": "SLUDGE_BOMB",
             "move": "Sludge Bomb"
           },
           {
-            "level": 29,
+            "level": 34,
             "const": "GROWTH",
             "move": "Growth"
           },
           {
-            "level": 33,
-            "const": "POWER_WHIP",
-            "move": "Power Whip"
-          },
-          {
-            "level": 35,
+            "level": 42,
             "const": "DOUBLE_EDGE",
             "move": "Double-Edge"
           },
           {
-            "level": 36,
-            "const": "SOLARBEAM",
-            "move": "Solarbeam"
+            "level": 45,
+            "const": "POWER_WHIP",
+            "move": "Power Whip"
           },
           {
-            "level": 38,
+            "level": 46,
             "const": "SYNTHESIS",
             "move": "Synthesis"
           },
           {
-            "level": 41,
-            "const": "SEED_BOMB",
-            "move": "Seed Bomb"
+            "level": 50,
+            "const": "SOLARBEAM",
+            "move": "Solarbeam"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 16, IVYSAUR",
-          "dbbw EVOLVE_LEVEL, 16, IVYSAUR_CLONE"
+          "dbbw EVOLVE_LEVEL, 32, VENUSAUR"
         ],
-        "egg_moves": [],
-        "sprite": "assets/pokemon/bulbasaur-clone.png"
-      }
-    }
-  },
-  {
-    "const": "IVYSAUR",
-    "name": "Ivysaur",
-    "number": 2,
-    "stats": {
-      "HP": 60,
-      "Attack": 62,
-      "Defense": 63,
-      "Speed": 60,
-      "Sp. Atk": 80,
-      "Sp. Def": 80
-    },
-    "types": [
-      "Grass",
-      "Poison"
-    ],
-    "abilities": [
-      "Chlorophyll",
-      "Overgrow",
-      "Effect Spore"
-    ],
-    "learnset": [],
-    "evolutions": [],
-    "egg_moves": [],
-    "sprite": "assets/pokemon/ivysaur.png",
-    "forms": {
-      "normal": {
-        "const": "IVYSAUR",
-        "name": "Ivysaur",
-        "number": 2,
-        "stats": {
-          "HP": 60,
-          "Attack": 62,
-          "Defense": 63,
-          "Speed": 60,
-          "Sp. Atk": 80,
-          "Sp. Def": 80
-        },
-        "types": [
-          "Grass",
-          "Poison"
-        ],
-        "abilities": [
-          "Chlorophyll",
-          "Overgrow",
-          "Effect Spore"
-        ],
-        "learnset": [],
-        "evolutions": [],
         "egg_moves": [],
         "sprite": "assets/pokemon/ivysaur.png"
       },
@@ -421,105 +707,9 @@
             "level": 50,
             "const": "SOLARBEAM",
             "move": "Solarbeam"
-          },
-          {
-            "level": 1,
-            "const": "GROWTH",
-            "move": "Growth"
-          },
-          {
-            "level": 1,
-            "const": "VINE_WHIP",
-            "move": "Vine Whip"
-          },
-          {
-            "level": 1,
-            "const": "GROWL",
-            "move": "Growl"
-          },
-          {
-            "level": 1,
-            "const": "TACKLE",
-            "move": "Tackle"
-          },
-          {
-            "level": 5,
-            "const": "VINE_WHIP",
-            "move": "Vine Whip"
-          },
-          {
-            "level": 8,
-            "const": "LEECH_SEED",
-            "move": "Leech Seed"
-          },
-          {
-            "level": 11,
-            "const": "RAZOR_LEAF",
-            "move": "Razor Leaf"
-          },
-          {
-            "level": 14,
-            "const": "POISONPOWDER",
-            "move": "Poisonpowder"
-          },
-          {
-            "level": 14,
-            "const": "SLEEP_POWDER",
-            "move": "Sleep Powder"
-          },
-          {
-            "level": 18,
-            "const": "SLUDGE",
-            "move": "Sludge"
-          },
-          {
-            "level": 20,
-            "const": "SEED_BOMB",
-            "move": "Seed Bomb"
-          },
-          {
-            "level": 22,
-            "const": "TAKE_DOWN",
-            "move": "Take Down"
-          },
-          {
-            "level": 26,
-            "const": "SWEET_SCENT",
-            "move": "Sweet Scent"
-          },
-          {
-            "level": 30,
-            "const": "SLUDGE_BOMB",
-            "move": "Sludge Bomb"
-          },
-          {
-            "level": 34,
-            "const": "GROWTH",
-            "move": "Growth"
-          },
-          {
-            "level": 42,
-            "const": "DOUBLE_EDGE",
-            "move": "Double-Edge"
-          },
-          {
-            "level": 45,
-            "const": "POWER_WHIP",
-            "move": "Power Whip"
-          },
-          {
-            "level": 46,
-            "const": "SYNTHESIS",
-            "move": "Synthesis"
-          },
-          {
-            "level": 50,
-            "const": "SOLARBEAM",
-            "move": "Solarbeam"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 32, VENUSAUR",
           "dbbw EVOLVE_LEVEL, 32, VENUSAUR_CLONE"
         ],
         "egg_moves": [],
@@ -548,7 +738,118 @@
       "Thick Fat",
       "Thick Fat"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 1,
+        "const": "VINE_WHIP",
+        "move": "Vine Whip"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "PETAL_DANCE",
+        "move": "Petal Dance"
+      },
+      {
+        "level": 1,
+        "const": "POWER_WHIP",
+        "move": "Power Whip"
+      },
+      {
+        "level": 1,
+        "const": "EARTH_POWER",
+        "move": "Earth Power"
+      },
+      {
+        "level": 5,
+        "const": "VINE_WHIP",
+        "move": "Vine Whip"
+      },
+      {
+        "level": 8,
+        "const": "LEECH_SEED",
+        "move": "Leech Seed"
+      },
+      {
+        "level": 11,
+        "const": "RAZOR_LEAF",
+        "move": "Razor Leaf"
+      },
+      {
+        "level": 14,
+        "const": "POISONPOWDER",
+        "move": "Poisonpowder"
+      },
+      {
+        "level": 14,
+        "const": "SLEEP_POWDER",
+        "move": "Sleep Powder"
+      },
+      {
+        "level": 18,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 20,
+        "const": "SEED_BOMB",
+        "move": "Seed Bomb"
+      },
+      {
+        "level": 22,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 26,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 30,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 32,
+        "const": "PETAL_DANCE",
+        "move": "Petal Dance"
+      },
+      {
+        "level": 35,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 45,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 50,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
+      },
+      {
+        "level": 55,
+        "const": "SOLARBEAM",
+        "move": "Solarbeam"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/venusaur.png",
@@ -557,32 +858,6 @@
         "const": "VENUSAUR",
         "name": "Venusaur",
         "number": 3,
-        "stats": {
-          "HP": 80,
-          "Attack": 82,
-          "Defense": 83,
-          "Speed": 80,
-          "Sp. Atk": 110,
-          "Sp. Def": 100
-        },
-        "types": [
-          "Grass",
-          "Poison"
-        ],
-        "abilities": [
-          "Chlorophyll",
-          "Thick Fat",
-          "Thick Fat"
-        ],
-        "learnset": [],
-        "evolutions": [],
-        "egg_moves": [],
-        "sprite": "assets/pokemon/venusaur.png"
-      },
-      "clone": {
-        "const": "VENUSAUR_CLONE",
-        "name": "Venusaur",
-        "number": 260,
         "stats": {
           "HP": 80,
           "Attack": 82,
@@ -710,7 +985,34 @@
             "level": 55,
             "const": "SOLARBEAM",
             "move": "Solarbeam"
-          },
+          }
+        ],
+        "evolutions": [],
+        "egg_moves": [],
+        "sprite": "assets/pokemon/venusaur.png"
+      },
+      "clone": {
+        "const": "VENUSAUR_CLONE",
+        "name": "Venusaur",
+        "number": 260,
+        "stats": {
+          "HP": 80,
+          "Attack": 82,
+          "Defense": 83,
+          "Speed": 80,
+          "Sp. Atk": 110,
+          "Sp. Def": 100
+        },
+        "types": [
+          "Grass",
+          "Poison"
+        ],
+        "abilities": [
+          "Chlorophyll",
+          "Thick Fat",
+          "Thick Fat"
+        ],
+        "learnset": [
           {
             "level": 1,
             "const": "GROWTH",
@@ -848,8 +1150,91 @@
       "Blaze",
       "Drought"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 5,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 11,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 12,
+        "const": "DRAGONBREATH",
+        "move": "Dragonbreath"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 20,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 23,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 26,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 29,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 32,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 35,
+        "const": "DRAGON_PULSE",
+        "move": "Dragon Pulse"
+      },
+      {
+        "level": 38,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 41,
+        "const": "BELLY_DRUM",
+        "move": "Belly Drum"
+      },
+      {
+        "level": 44,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 16, CHARMELEON"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/charmander.png",
     "forms": {
@@ -873,8 +1258,91 @@
           "Blaze",
           "Drought"
         ],
-        "learnset": [],
-        "evolutions": [],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "GROWL",
+            "move": "Growl"
+          },
+          {
+            "level": 1,
+            "const": "SCRATCH",
+            "move": "Scratch"
+          },
+          {
+            "level": 5,
+            "const": "EMBER",
+            "move": "Ember"
+          },
+          {
+            "level": 8,
+            "const": "SMOKESCREEN",
+            "move": "Smokescreen"
+          },
+          {
+            "level": 11,
+            "const": "METAL_CLAW",
+            "move": "Metal Claw"
+          },
+          {
+            "level": 12,
+            "const": "DRAGONBREATH",
+            "move": "Dragonbreath"
+          },
+          {
+            "level": 14,
+            "const": "BITE",
+            "move": "Bite"
+          },
+          {
+            "level": 20,
+            "const": "FIRE_FANG",
+            "move": "Fire Fang"
+          },
+          {
+            "level": 23,
+            "const": "SLASH",
+            "move": "Slash"
+          },
+          {
+            "level": 26,
+            "const": "FLAMETHROWER",
+            "move": "Flamethrower"
+          },
+          {
+            "level": 29,
+            "const": "SCARY_FACE",
+            "move": "Scary Face"
+          },
+          {
+            "level": 32,
+            "const": "CRUNCH",
+            "move": "Crunch"
+          },
+          {
+            "level": 35,
+            "const": "DRAGON_PULSE",
+            "move": "Dragon Pulse"
+          },
+          {
+            "level": 38,
+            "const": "FIRE_SPIN",
+            "move": "Fire Spin"
+          },
+          {
+            "level": 41,
+            "const": "BELLY_DRUM",
+            "move": "Belly Drum"
+          },
+          {
+            "level": 44,
+            "const": "FLARE_BLITZ",
+            "move": "Flare Blitz"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 16, CHARMELEON"
+        ],
         "egg_moves": [],
         "sprite": "assets/pokemon/charmander.png"
       },
@@ -978,90 +1446,9 @@
             "level": 44,
             "const": "FLARE_BLITZ",
             "move": "Flare Blitz"
-          },
-          {
-            "level": 1,
-            "const": "GROWL",
-            "move": "Growl"
-          },
-          {
-            "level": 1,
-            "const": "SCRATCH",
-            "move": "Scratch"
-          },
-          {
-            "level": 5,
-            "const": "EMBER",
-            "move": "Ember"
-          },
-          {
-            "level": 8,
-            "const": "SMOKESCREEN",
-            "move": "Smokescreen"
-          },
-          {
-            "level": 11,
-            "const": "METAL_CLAW",
-            "move": "Metal Claw"
-          },
-          {
-            "level": 12,
-            "const": "DRAGONBREATH",
-            "move": "Dragonbreath"
-          },
-          {
-            "level": 14,
-            "const": "BITE",
-            "move": "Bite"
-          },
-          {
-            "level": 20,
-            "const": "FIRE_FANG",
-            "move": "Fire Fang"
-          },
-          {
-            "level": 23,
-            "const": "SLASH",
-            "move": "Slash"
-          },
-          {
-            "level": 26,
-            "const": "FLAMETHROWER",
-            "move": "Flamethrower"
-          },
-          {
-            "level": 29,
-            "const": "SCARY_FACE",
-            "move": "Scary Face"
-          },
-          {
-            "level": 32,
-            "const": "CRUNCH",
-            "move": "Crunch"
-          },
-          {
-            "level": 35,
-            "const": "DRAGON_PULSE",
-            "move": "Dragon Pulse"
-          },
-          {
-            "level": 38,
-            "const": "FIRE_SPIN",
-            "move": "Fire Spin"
-          },
-          {
-            "level": 41,
-            "const": "BELLY_DRUM",
-            "move": "Belly Drum"
-          },
-          {
-            "level": 44,
-            "const": "FLARE_BLITZ",
-            "move": "Flare Blitz"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 16, CHARMELEON",
           "dbbw EVOLVE_LEVEL, 16, CHARMELEON_CLONE"
         ],
         "egg_moves": [],
@@ -1089,8 +1476,91 @@
       "Blaze",
       "Drought"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 5,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 11,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 16,
+        "const": "DRAGONBREATH",
+        "move": "Dragonbreath"
+      },
+      {
+        "level": 22,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 26,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 30,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 34,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 38,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 42,
+        "const": "DRAGON_PULSE",
+        "move": "Dragon Pulse"
+      },
+      {
+        "level": 46,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 50,
+        "const": "BELLY_DRUM",
+        "move": "Belly Drum"
+      },
+      {
+        "level": 54,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 36, CHARIZARD"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/charmeleon.png",
     "forms": {
@@ -1114,8 +1584,91 @@
           "Blaze",
           "Drought"
         ],
-        "learnset": [],
-        "evolutions": [],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "GROWL",
+            "move": "Growl"
+          },
+          {
+            "level": 1,
+            "const": "SCRATCH",
+            "move": "Scratch"
+          },
+          {
+            "level": 5,
+            "const": "EMBER",
+            "move": "Ember"
+          },
+          {
+            "level": 8,
+            "const": "SMOKESCREEN",
+            "move": "Smokescreen"
+          },
+          {
+            "level": 11,
+            "const": "METAL_CLAW",
+            "move": "Metal Claw"
+          },
+          {
+            "level": 14,
+            "const": "BITE",
+            "move": "Bite"
+          },
+          {
+            "level": 16,
+            "const": "DRAGONBREATH",
+            "move": "Dragonbreath"
+          },
+          {
+            "level": 22,
+            "const": "FIRE_FANG",
+            "move": "Fire Fang"
+          },
+          {
+            "level": 26,
+            "const": "SLASH",
+            "move": "Slash"
+          },
+          {
+            "level": 30,
+            "const": "FLAMETHROWER",
+            "move": "Flamethrower"
+          },
+          {
+            "level": 34,
+            "const": "SCARY_FACE",
+            "move": "Scary Face"
+          },
+          {
+            "level": 38,
+            "const": "CRUNCH",
+            "move": "Crunch"
+          },
+          {
+            "level": 42,
+            "const": "DRAGON_PULSE",
+            "move": "Dragon Pulse"
+          },
+          {
+            "level": 46,
+            "const": "FIRE_SPIN",
+            "move": "Fire Spin"
+          },
+          {
+            "level": 50,
+            "const": "BELLY_DRUM",
+            "move": "Belly Drum"
+          },
+          {
+            "level": 54,
+            "const": "FLARE_BLITZ",
+            "move": "Flare Blitz"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 36, CHARIZARD"
+        ],
         "egg_moves": [],
         "sprite": "assets/pokemon/charmeleon.png"
       },
@@ -1219,90 +1772,9 @@
             "level": 54,
             "const": "FLARE_BLITZ",
             "move": "Flare Blitz"
-          },
-          {
-            "level": 1,
-            "const": "GROWL",
-            "move": "Growl"
-          },
-          {
-            "level": 1,
-            "const": "SCRATCH",
-            "move": "Scratch"
-          },
-          {
-            "level": 5,
-            "const": "EMBER",
-            "move": "Ember"
-          },
-          {
-            "level": 8,
-            "const": "SMOKESCREEN",
-            "move": "Smokescreen"
-          },
-          {
-            "level": 11,
-            "const": "METAL_CLAW",
-            "move": "Metal Claw"
-          },
-          {
-            "level": 14,
-            "const": "BITE",
-            "move": "Bite"
-          },
-          {
-            "level": 16,
-            "const": "DRAGONBREATH",
-            "move": "Dragonbreath"
-          },
-          {
-            "level": 22,
-            "const": "FIRE_FANG",
-            "move": "Fire Fang"
-          },
-          {
-            "level": 26,
-            "const": "SLASH",
-            "move": "Slash"
-          },
-          {
-            "level": 30,
-            "const": "FLAMETHROWER",
-            "move": "Flamethrower"
-          },
-          {
-            "level": 34,
-            "const": "SCARY_FACE",
-            "move": "Scary Face"
-          },
-          {
-            "level": 38,
-            "const": "CRUNCH",
-            "move": "Crunch"
-          },
-          {
-            "level": 42,
-            "const": "DRAGON_PULSE",
-            "move": "Dragon Pulse"
-          },
-          {
-            "level": 46,
-            "const": "FIRE_SPIN",
-            "move": "Fire Spin"
-          },
-          {
-            "level": 50,
-            "const": "BELLY_DRUM",
-            "move": "Belly Drum"
-          },
-          {
-            "level": 54,
-            "const": "FLARE_BLITZ",
-            "move": "Flare Blitz"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 36, CHARIZARD",
           "dbbw EVOLVE_LEVEL, 36, CHARIZARD_CLONE"
         ],
         "egg_moves": [],
@@ -1331,7 +1803,113 @@
       "Blaze",
       "Drought"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
+      },
+      {
+        "level": 1,
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 5,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 11,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 16,
+        "const": "DRAGONBREATH",
+        "move": "Dragonbreath"
+      },
+      {
+        "level": 22,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 26,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 30,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 34,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 36,
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
+      },
+      {
+        "level": 39,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 44,
+        "const": "DRAGON_PULSE",
+        "move": "Dragon Pulse"
+      },
+      {
+        "level": 49,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 54,
+        "const": "BELLY_DRUM",
+        "move": "Belly Drum"
+      },
+      {
+        "level": 59,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/charizard.png",
@@ -1340,32 +1918,6 @@
         "const": "CHARIZARD",
         "name": "Charizard",
         "number": 6,
-        "stats": {
-          "HP": 78,
-          "Attack": 84,
-          "Defense": 78,
-          "Speed": 100,
-          "Sp. Atk": 110,
-          "Sp. Def": 85
-        },
-        "types": [
-          "Fire",
-          "Dragon"
-        ],
-        "abilities": [
-          "Levitate",
-          "Blaze",
-          "Drought"
-        ],
-        "learnset": [],
-        "evolutions": [],
-        "egg_moves": [],
-        "sprite": "assets/pokemon/charizard.png"
-      },
-      "clone": {
-        "const": "CHARIZARD_CLONE",
-        "name": "Charizard",
-        "number": 254,
         "stats": {
           "HP": 78,
           "Attack": 84,
@@ -1488,7 +2040,34 @@
             "level": 59,
             "const": "FLARE_BLITZ",
             "move": "Flare Blitz"
-          },
+          }
+        ],
+        "evolutions": [],
+        "egg_moves": [],
+        "sprite": "assets/pokemon/charizard.png"
+      },
+      "clone": {
+        "const": "CHARIZARD_CLONE",
+        "name": "Charizard",
+        "number": 254,
+        "stats": {
+          "HP": 78,
+          "Attack": 84,
+          "Defense": 78,
+          "Speed": 100,
+          "Sp. Atk": 110,
+          "Sp. Def": 85
+        },
+        "types": [
+          "Fire",
+          "Dragon"
+        ],
+        "abilities": [
+          "Levitate",
+          "Blaze",
+          "Drought"
+        ],
+        "learnset": [
           {
             "level": 1,
             "const": "AIR_SLASH",
@@ -1621,8 +2200,81 @@
       "Torrent",
       "Drizzle"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 8,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 11,
+        "const": "BUBBLE",
+        "move": "Bubble"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 17,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 20,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 23,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 27,
+        "const": "SHELL_SMASH",
+        "move": "Shell Smash"
+      },
+      {
+        "level": 32,
+        "const": "SKULL_BASH",
+        "move": "Skull Bash"
+      },
+      {
+        "level": 35,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 38,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 41,
+        "const": "HYDRO_PUMP",
+        "move": "Hydro Pump"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 16, WARTORTLE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/squirtle.png",
     "forms": {
@@ -1646,8 +2298,81 @@
           "Torrent",
           "Drizzle"
         ],
-        "learnset": [],
-        "evolutions": [],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "TAIL_WHIP",
+            "move": "Tail Whip"
+          },
+          {
+            "level": 1,
+            "const": "TACKLE",
+            "move": "Tackle"
+          },
+          {
+            "level": 5,
+            "const": "WATER_GUN",
+            "move": "Water Gun"
+          },
+          {
+            "level": 8,
+            "const": "WITHDRAW",
+            "move": "Withdraw"
+          },
+          {
+            "level": 11,
+            "const": "BUBBLE",
+            "move": "Bubble"
+          },
+          {
+            "level": 14,
+            "const": "BITE",
+            "move": "Bite"
+          },
+          {
+            "level": 17,
+            "const": "RAPID_SPIN",
+            "move": "Rapid Spin"
+          },
+          {
+            "level": 20,
+            "const": "WATER_PULSE",
+            "move": "Water Pulse"
+          },
+          {
+            "level": 23,
+            "const": "PROTECT",
+            "move": "Protect"
+          },
+          {
+            "level": 27,
+            "const": "SHELL_SMASH",
+            "move": "Shell Smash"
+          },
+          {
+            "level": 32,
+            "const": "SKULL_BASH",
+            "move": "Skull Bash"
+          },
+          {
+            "level": 35,
+            "const": "AQUA_TAIL",
+            "move": "Aqua Tail"
+          },
+          {
+            "level": 38,
+            "const": "RAIN_DANCE",
+            "move": "Rain Dance"
+          },
+          {
+            "level": 41,
+            "const": "HYDRO_PUMP",
+            "move": "Hydro Pump"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 16, WARTORTLE"
+        ],
         "egg_moves": [],
         "sprite": "assets/pokemon/squirtle.png"
       },
@@ -1741,6 +2466,154 @@
             "level": 41,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
+          }
+        ],
+        "evolutions": [
+          "dbbw EVOLVE_LEVEL, 16, WARTORTLE_CLONE"
+        ],
+        "egg_moves": [],
+        "sprite": "assets/pokemon/squirtle-clone.png"
+      }
+    }
+  },
+  {
+    "const": "WARTORTLE",
+    "name": "Wartortle",
+    "number": 8,
+    "stats": {
+      "HP": 59,
+      "Attack": 63,
+      "Defense": 80,
+      "Speed": 58,
+      "Sp. Atk": 65,
+      "Sp. Def": 80
+    },
+    "types": [
+      "Water"
+    ],
+    "abilities": [
+      "Rain Dish",
+      "Torrent",
+      "Drizzle"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 8,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 11,
+        "const": "BUBBLE",
+        "move": "Bubble"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 18,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 22,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 26,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 35,
+        "const": "SHELL_SMASH",
+        "move": "Shell Smash"
+      },
+      {
+        "level": 38,
+        "const": "SKULL_BASH",
+        "move": "Skull Bash"
+      },
+      {
+        "level": 42,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 46,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 50,
+        "const": "HYDRO_PUMP",
+        "move": "Hydro Pump"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 36, BLASTOISE"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/wartortle.png",
+    "forms": {
+      "normal": {
+        "const": "WARTORTLE",
+        "name": "Wartortle",
+        "number": 8,
+        "stats": {
+          "HP": 59,
+          "Attack": 63,
+          "Defense": 80,
+          "Speed": 58,
+          "Sp. Atk": 65,
+          "Sp. Def": 80
+        },
+        "types": [
+          "Water"
+        ],
+        "abilities": [
+          "Rain Dish",
+          "Torrent",
+          "Drizzle"
+        ],
+        "learnset": [
+          {
+            "level": 1,
+            "const": "WITHDRAW",
+            "move": "Withdraw"
+          },
+          {
+            "level": 1,
+            "const": "WATER_GUN",
+            "move": "Water Gun"
           },
           {
             "level": 1,
@@ -1773,102 +2646,49 @@
             "move": "Bite"
           },
           {
-            "level": 17,
+            "level": 18,
             "const": "RAPID_SPIN",
             "move": "Rapid Spin"
           },
           {
-            "level": 20,
+            "level": 22,
             "const": "WATER_PULSE",
             "move": "Water Pulse"
           },
           {
-            "level": 23,
+            "level": 26,
             "const": "PROTECT",
             "move": "Protect"
           },
           {
-            "level": 27,
+            "level": 35,
             "const": "SHELL_SMASH",
             "move": "Shell Smash"
           },
           {
-            "level": 32,
+            "level": 38,
             "const": "SKULL_BASH",
             "move": "Skull Bash"
           },
           {
-            "level": 35,
+            "level": 42,
             "const": "AQUA_TAIL",
             "move": "Aqua Tail"
           },
           {
-            "level": 38,
+            "level": 46,
             "const": "RAIN_DANCE",
             "move": "Rain Dance"
           },
           {
-            "level": 41,
+            "level": 50,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 16, WARTORTLE",
-          "dbbw EVOLVE_LEVEL, 16, WARTORTLE_CLONE"
+          "dbbw EVOLVE_LEVEL, 36, BLASTOISE"
         ],
-        "egg_moves": [],
-        "sprite": "assets/pokemon/squirtle-clone.png"
-      }
-    }
-  },
-  {
-    "const": "WARTORTLE",
-    "name": "Wartortle",
-    "number": 8,
-    "stats": {
-      "HP": 59,
-      "Attack": 63,
-      "Defense": 80,
-      "Speed": 58,
-      "Sp. Atk": 65,
-      "Sp. Def": 80
-    },
-    "types": [
-      "Water"
-    ],
-    "abilities": [
-      "Rain Dish",
-      "Torrent",
-      "Drizzle"
-    ],
-    "learnset": [],
-    "evolutions": [],
-    "egg_moves": [],
-    "sprite": "assets/pokemon/wartortle.png",
-    "forms": {
-      "normal": {
-        "const": "WARTORTLE",
-        "name": "Wartortle",
-        "number": 8,
-        "stats": {
-          "HP": 59,
-          "Attack": 63,
-          "Defense": 80,
-          "Speed": 58,
-          "Sp. Atk": 65,
-          "Sp. Def": 80
-        },
-        "types": [
-          "Water"
-        ],
-        "abilities": [
-          "Rain Dish",
-          "Torrent",
-          "Drizzle"
-        ],
-        "learnset": [],
-        "evolutions": [],
         "egg_moves": [],
         "sprite": "assets/pokemon/wartortle.png"
       },
@@ -1972,90 +2792,9 @@
             "level": 50,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
-          },
-          {
-            "level": 1,
-            "const": "WITHDRAW",
-            "move": "Withdraw"
-          },
-          {
-            "level": 1,
-            "const": "WATER_GUN",
-            "move": "Water Gun"
-          },
-          {
-            "level": 1,
-            "const": "TAIL_WHIP",
-            "move": "Tail Whip"
-          },
-          {
-            "level": 1,
-            "const": "TACKLE",
-            "move": "Tackle"
-          },
-          {
-            "level": 5,
-            "const": "WATER_GUN",
-            "move": "Water Gun"
-          },
-          {
-            "level": 8,
-            "const": "WITHDRAW",
-            "move": "Withdraw"
-          },
-          {
-            "level": 11,
-            "const": "BUBBLE",
-            "move": "Bubble"
-          },
-          {
-            "level": 14,
-            "const": "BITE",
-            "move": "Bite"
-          },
-          {
-            "level": 18,
-            "const": "RAPID_SPIN",
-            "move": "Rapid Spin"
-          },
-          {
-            "level": 22,
-            "const": "WATER_PULSE",
-            "move": "Water Pulse"
-          },
-          {
-            "level": 26,
-            "const": "PROTECT",
-            "move": "Protect"
-          },
-          {
-            "level": 35,
-            "const": "SHELL_SMASH",
-            "move": "Shell Smash"
-          },
-          {
-            "level": 38,
-            "const": "SKULL_BASH",
-            "move": "Skull Bash"
-          },
-          {
-            "level": 42,
-            "const": "AQUA_TAIL",
-            "move": "Aqua Tail"
-          },
-          {
-            "level": 46,
-            "const": "RAIN_DANCE",
-            "move": "Rain Dance"
-          },
-          {
-            "level": 50,
-            "const": "HYDRO_PUMP",
-            "move": "Hydro Pump"
           }
         ],
         "evolutions": [
-          "dbbw EVOLVE_LEVEL, 36, BLASTOISE",
           "dbbw EVOLVE_LEVEL, 36, BLASTOISE_CLONE"
         ],
         "egg_moves": [],
@@ -2084,7 +2823,98 @@
       "Torrent",
       "Drizzle"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "FLASH_CANNON",
+        "move": "Flash Cannon"
+      },
+      {
+        "level": 1,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 8,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 11,
+        "const": "BUBBLE",
+        "move": "Bubble"
+      },
+      {
+        "level": 14,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 18,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 22,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 26,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 35,
+        "const": "SHELL_SMASH",
+        "move": "Shell Smash"
+      },
+      {
+        "level": 36,
+        "const": "AURA_SPHERE",
+        "move": "Aura Sphere"
+      },
+      {
+        "level": 39,
+        "const": "SKULL_BASH",
+        "move": "Skull Bash"
+      },
+      {
+        "level": 44,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 49,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 54,
+        "const": "HYDRO_PUMP",
+        "move": "Hydro Pump"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/blastoise.png",
@@ -2093,32 +2923,6 @@
         "const": "BLASTOISE",
         "name": "Blastoise",
         "number": 9,
-        "stats": {
-          "HP": 79,
-          "Attack": 83,
-          "Defense": 100,
-          "Speed": 78,
-          "Sp. Atk": 90,
-          "Sp. Def": 105
-        },
-        "types": [
-          "Water",
-          "Steel"
-        ],
-        "abilities": [
-          "Mega Launcher",
-          "Torrent",
-          "Drizzle"
-        ],
-        "learnset": [],
-        "evolutions": [],
-        "egg_moves": [],
-        "sprite": "assets/pokemon/blastoise.png"
-      },
-      "clone": {
-        "const": "BLASTOISE_CLONE",
-        "name": "Blastoise",
-        "number": 257,
         "stats": {
           "HP": 79,
           "Attack": 83,
@@ -2226,7 +3030,34 @@
             "level": 54,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
-          },
+          }
+        ],
+        "evolutions": [],
+        "egg_moves": [],
+        "sprite": "assets/pokemon/blastoise.png"
+      },
+      "clone": {
+        "const": "BLASTOISE_CLONE",
+        "name": "Blastoise",
+        "number": 257,
+        "stats": {
+          "HP": 79,
+          "Attack": 83,
+          "Defense": 100,
+          "Speed": 78,
+          "Sp. Atk": 90,
+          "Sp. Def": 105
+        },
+        "types": [
+          "Water",
+          "Steel"
+        ],
+        "abilities": [
+          "Mega Launcher",
+          "Torrent",
+          "Drizzle"
+        ],
+        "learnset": [
           {
             "level": 1,
             "const": "FLASH_CANNON",
@@ -3094,8 +3925,81 @@
       "Guts",
       "Technician"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 7,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 10,
+        "const": "FOCUS_ENERGY",
+        "move": "Focus Energy"
+      },
+      {
+        "level": 13,
+        "const": "PURSUIT",
+        "move": "Pursuit"
+      },
+      {
+        "level": 16,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 16,
+        "const": "HYPER_FANG",
+        "move": "Hyper Fang"
+      },
+      {
+        "level": 22,
+        "const": "SUPER_FANG",
+        "move": "Super Fang"
+      },
+      {
+        "level": 25,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 28,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 31,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 34,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 37,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 20, RATICATE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/rattata.png"
   },
@@ -3119,7 +4023,103 @@
       "Guts",
       "Technician"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 1,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "COUNTER",
+        "move": "Counter"
+      },
+      {
+        "level": 7,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 10,
+        "const": "FOCUS_ENERGY",
+        "move": "Focus Energy"
+      },
+      {
+        "level": 13,
+        "const": "PURSUIT",
+        "move": "Pursuit"
+      },
+      {
+        "level": 16,
+        "const": "DIZZY_PUNCH",
+        "move": "Dizzy Punch"
+      },
+      {
+        "level": 16,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 16,
+        "const": "HYPER_FANG",
+        "move": "Hyper Fang"
+      },
+      {
+        "level": 20,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 23,
+        "const": "SUPER_FANG",
+        "move": "Super Fang"
+      },
+      {
+        "level": 27,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 31,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 35,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 39,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 43,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/raticate.png"
@@ -3687,7 +4687,98 @@
       "Lightning Rod",
       "Galvanize"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "THUNDERPUNCH",
+        "move": "Thunderpunch"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 1,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 1,
+        "const": "SWEET_KISS",
+        "move": "Sweet Kiss"
+      },
+      {
+        "level": 1,
+        "const": "IRON_TAIL",
+        "move": "Iron Tail"
+      },
+      {
+        "level": 1,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 5,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 10,
+        "const": "THUNDER_WAVE",
+        "move": "Thunder Wave"
+      },
+      {
+        "level": 15,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 35,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 40,
+        "const": "DOUBLE_TEAM",
+        "move": "Double Team"
+      },
+      {
+        "level": 45,
+        "const": "SLAM",
+        "move": "Slam"
+      },
+      {
+        "level": 50,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 55,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 70,
+        "const": "LIGHT_SCREEN",
+        "move": "Light Screen"
+      },
+      {
+        "level": 75,
+        "const": "THUNDER",
+        "move": "Thunder"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/raichu.png"
@@ -3712,8 +4803,116 @@
       "Sand Force",
       "Sand Rush"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "POISON_STING",
+        "move": "Poison Sting"
+      },
+      {
+        "level": 7,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 9,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 11,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 13,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 14,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 15,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 21,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 27,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 27,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 30,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 33,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 36,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 39,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 42,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 45,
+        "const": "FISSURE",
+        "move": "Fissure"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 22, SANDSLASH"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/sandshrew.png"
   },
@@ -3737,7 +4936,113 @@
       "Sand Force",
       "Sand Rush"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "POISON_STING",
+        "move": "Poison Sting"
+      },
+      {
+        "level": 1,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 7,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 9,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 11,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 13,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 14,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 15,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 21,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 25,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 25,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 29,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 33,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 37,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 41,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 45,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 49,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 53,
+        "const": "FISSURE",
+        "move": "Fissure"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/sandslash.png"
@@ -4586,8 +5891,91 @@
       "Flash Fire",
       "Cursed Body"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 4,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 4,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 7,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 11,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 12,
+        "const": "SPITE",
+        "move": "Spite"
+      },
+      {
+        "level": 13,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 17,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 23,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
+      },
+      {
+        "level": 23,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 25,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 27,
+        "const": "SAFEGUARD",
+        "move": "Safeguard"
+      },
+      {
+        "level": 31,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
+      },
+      {
+        "level": 33,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 45,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_ITEM, FIRE_STONE, NINETALES"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/vulpix.png"
   },
@@ -4612,7 +6000,98 @@
       "Flash Fire",
       "Cursed Body"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 3,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 3,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 8,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 13,
+        "const": "SPITE",
+        "move": "Spite"
+      },
+      {
+        "level": 18,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 28,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 28,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 33,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 38,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
+      },
+      {
+        "level": 43,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 48,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
+      },
+      {
+        "level": 53,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 58,
+        "const": "SAFEGUARD",
+        "move": "Safeguard"
+      },
+      {
+        "level": 60,
+        "const": "MOONBLAST",
+        "move": "Moonblast"
+      },
+      {
+        "level": 73,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/ninetales.png"
@@ -5912,8 +7391,86 @@
       "Arena Trap",
       "Sand Force"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "MUD_SLAP",
+        "move": "Mud Slap"
+      },
+      {
+        "level": 4,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 7,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 10,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 13,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 19,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 22,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 28,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 28,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 31,
+        "const": "EARTH_POWER",
+        "move": "Earth Power"
+      },
+      {
+        "level": 34,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 37,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 43,
+        "const": "FISSURE",
+        "move": "Fissure"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 26, DUGTRIO"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/diglett.png"
   },
@@ -5937,7 +7494,98 @@
       "Arena Trap",
       "Sand Force"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "TRI_ATTACK",
+        "move": "Tri Attack"
+      },
+      {
+        "level": 1,
+        "const": "MUD_SLAP",
+        "move": "Mud Slap"
+      },
+      {
+        "level": 4,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 7,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 10,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 13,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 19,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 22,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 26,
+        "const": "TRI_ATTACK",
+        "move": "Tri Attack"
+      },
+      {
+        "level": 29,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 30,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 33,
+        "const": "EARTH_POWER",
+        "move": "Earth Power"
+      },
+      {
+        "level": 37,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 37,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 41,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 49,
+        "const": "FISSURE",
+        "move": "Fissure"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/dugtrio.png"
@@ -5962,8 +7610,76 @@
       "Pickup",
       "Super Luck"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 6,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 12,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 15,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 18,
+        "const": "PAY_DAY",
+        "move": "Pay Day"
+      },
+      {
+        "level": 21,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 33,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 36,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 39,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 48,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 28, PERSIAN"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/meowth.png"
   },
@@ -5987,7 +7703,88 @@
       "Limber",
       "Super Luck"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 6,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 12,
+        "const": "PAY_DAY",
+        "move": "Pay Day"
+      },
+      {
+        "level": 12,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 15,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 18,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 21,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 28,
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
+        "level": 34,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 38,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 42,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 54,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/persian.png"
@@ -6523,8 +8320,81 @@
       "Flash Fire",
       "Justified"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 1,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 7,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 15,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 18,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      },
+      {
+        "level": 21,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 23,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 25,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 28,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 31,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 33,
+        "const": "OUTRAGE",
+        "move": "Outrage"
+      },
+      {
+        "level": 38,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 41,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_ITEM, FIRE_STONE, ARCANINE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/growlithe.png"
   },
@@ -6548,7 +8418,88 @@
       "Flash Fire",
       "Defiant"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "EXTREMESPEED",
+        "move": "Extremespeed"
+      },
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 1,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 5,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 15,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 25,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 30,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 35,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      },
+      {
+        "level": 40,
+        "const": "OUTRAGE",
+        "move": "Outrage"
+      },
+      {
+        "level": 45,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 50,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 55,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 60,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 60,
+        "const": "CLOSE_COMBAT",
+        "move": "Close Combat"
+      },
+      {
+        "level": 65,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/arcanine.png"
@@ -8047,8 +9998,86 @@
       "Sturdy",
       "Sand Force"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 4,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 7,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 10,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 12,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 13,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 16,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 22,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 25,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 31,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 34,
+        "const": "ROCK_BLAST",
+        "move": "Rock Blast"
+      },
+      {
+        "level": 37,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 40,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 43,
+        "const": "STONE_EDGE",
+        "move": "Stone Edge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 25, GRAVELER"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/geodude.png"
   },
@@ -8073,8 +10102,91 @@
       "Sturdy",
       "Sand Force"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 4,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 7,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 10,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 12,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 13,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 16,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 22,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 25,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 26,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 34,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 38,
+        "const": "ROCK_BLAST",
+        "move": "Rock Blast"
+      },
+      {
+        "level": 42,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 46,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 50,
+        "const": "STONE_EDGE",
+        "move": "Stone Edge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 36, GOLEM"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/graveler.png"
   },
@@ -8099,7 +10211,103 @@
       "Sturdy",
       "Sand Force"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 1,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 1,
+        "const": "THUNDERPUNCH",
+        "move": "Thunderpunch"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "FIRE_PUNCH",
+        "move": "Fire Punch"
+      },
+      {
+        "level": 4,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 7,
+        "const": "MAGNITUDE",
+        "move": "Magnitude"
+      },
+      {
+        "level": 10,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 12,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 13,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 16,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 22,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 25,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 26,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 34,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 38,
+        "const": "ROCK_BLAST",
+        "move": "Rock Blast"
+      },
+      {
+        "level": 42,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 46,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 50,
+        "const": "STONE_EDGE",
+        "move": "Stone Edge"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/golem.png"
@@ -8124,8 +10332,91 @@
       "Flash Fire",
       "Reckless"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 7,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 10,
+        "const": "STOMP",
+        "move": "Stomp"
+      },
+      {
+        "level": 13,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 15,
+        "const": "FLAME_CHARGE",
+        "move": "Flame Charge"
+      },
+      {
+        "level": 16,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 19,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 22,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 25,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 28,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 31,
+        "const": "LOW_KICK",
+        "move": "Low Kick"
+      },
+      {
+        "level": 34,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      },
+      {
+        "level": 37,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 46,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 40, RAPIDASH"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/ponyta.png"
   },
@@ -8149,7 +10440,108 @@
       "Flash Fire",
       "Reckless"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "MEGAHORN",
+        "move": "Megahorn"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 7,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 10,
+        "const": "STOMP",
+        "move": "Stomp"
+      },
+      {
+        "level": 13,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 15,
+        "const": "FLAME_CHARGE",
+        "move": "Flame Charge"
+      },
+      {
+        "level": 16,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 19,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 22,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 25,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 28,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 31,
+        "const": "LOW_KICK",
+        "move": "Low Kick"
+      },
+      {
+        "level": 34,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      },
+      {
+        "level": 35,
+        "const": "FURY_ATTACK",
+        "move": "Fury Attack"
+      },
+      {
+        "level": 38,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 50,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/rapidash.png"
@@ -8175,8 +10567,102 @@
       "Own Tempo",
       "Regenerator"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "TELEPORT",
+        "move": "Teleport"
+      },
+      {
+        "level": 4,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 7,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 13,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 16,
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "level": 19,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 22,
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "level": 25,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 30,
+        "const": "SURF",
+        "move": "Surf"
+      },
+      {
+        "level": 31,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 34,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 37,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 40,
+        "const": "PSYCH_UP",
+        "move": "Psych Up"
+      },
+      {
+        "level": 43,
+        "const": "FUTURE_SIGHT",
+        "move": "Future Sight"
+      },
+      {
+        "level": 46,
+        "const": "TRICK_ROOM",
+        "move": "Trick Room"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 37, SLOWBRO",
+      "dbbw EVOLVE_ITEM, KINGS_ROCK, SLOWKING"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/slowpoke.png"
   },
@@ -8201,7 +10687,118 @@
       "Own Tempo",
       "Regenerator"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 1,
+        "const": "TELEPORT",
+        "move": "Teleport"
+      },
+      {
+        "level": 4,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 7,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 13,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 16,
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "level": 19,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 22,
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "level": 25,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 30,
+        "const": "SURF",
+        "move": "Surf"
+      },
+      {
+        "level": 31,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 33,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 35,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 39,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 43,
+        "const": "PSYCH_UP",
+        "move": "Psych Up"
+      },
+      {
+        "level": 47,
+        "const": "FUTURE_SIGHT",
+        "move": "Future Sight"
+      },
+      {
+        "level": 51,
+        "const": "TRICK_ROOM",
+        "move": "Trick Room"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/slowbro.png"
@@ -8976,8 +11573,91 @@
       "Poison Touch",
       "Poison Touch"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "POISON_GAS",
+        "move": "Poison Gas"
+      },
+      {
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 4,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 7,
+        "const": "MUD_SLAP",
+        "move": "Mud Slap"
+      },
+      {
+        "level": 10,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 13,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 18,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 19,
+        "const": "MINIMIZE",
+        "move": "Minimize"
+      },
+      {
+        "level": 22,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 26,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 28,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 34,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 37,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 40,
+        "const": "ACID_ARMOR",
+        "move": "Acid Armor"
+      },
+      {
+        "level": 43,
+        "const": "GUNK_SHOT",
+        "move": "Gunk Shot"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 38, MUK"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/grimer.png"
   },
@@ -9000,7 +11680,98 @@
       "Poison Touch",
       "Poison Touch"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "POISON_GAS",
+        "move": "Poison Gas"
+      },
+      {
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "HAZE",
+        "move": "Haze"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "MOONBLAST",
+        "move": "Moonblast"
+      },
+      {
+        "level": 4,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 7,
+        "const": "MUD_SLAP",
+        "move": "Mud Slap"
+      },
+      {
+        "level": 10,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 13,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 18,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 19,
+        "const": "MINIMIZE",
+        "move": "Minimize"
+      },
+      {
+        "level": 22,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 26,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 28,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 34,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 38,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 42,
+        "const": "ACID_ARMOR",
+        "move": "Acid Armor"
+      },
+      {
+        "level": 46,
+        "const": "GUNK_SHOT",
+        "move": "Gunk Shot"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/muk.png"
@@ -10217,8 +12988,76 @@
       "Aftermath",
       "Aftermath"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 9,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 12,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 15,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 21,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 24,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 30,
+        "const": "LIGHT_SCREEN",
+        "move": "Light Screen"
+      },
+      {
+        "level": 36,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 39,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 42,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 45,
+        "const": "MIRROR_COAT",
+        "move": "Mirror Coat"
+      },
+      {
+        "level": 48,
+        "const": "THUNDER",
+        "move": "Thunder"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 30, ELECTRODE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/voltorb.png"
   },
@@ -10242,7 +13081,73 @@
       "Aftermath",
       "Aftermath"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 9,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 12,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 15,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 21,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 24,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 31,
+        "const": "LIGHT_SCREEN",
+        "move": "Light Screen"
+      },
+      {
+        "level": 39,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 43,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 47,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 51,
+        "const": "MIRROR_COAT",
+        "move": "Mirror Coat"
+      },
+      {
+        "level": 55,
+        "const": "THUNDER",
+        "move": "Thunder"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/electrode.png"
@@ -10378,7 +13283,98 @@
     "abilities": [
       "Chlorophyll"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "HYPNOSIS",
+        "move": "Hypnosis"
+      },
+      {
+        "level": 1,
+        "const": "ABSORB",
+        "move": "Absorb"
+      },
+      {
+        "level": 1,
+        "const": "BARRAGE",
+        "move": "Barrage"
+      },
+      {
+        "level": 1,
+        "const": "SEED_BOMB",
+        "move": "Seed Bomb"
+      },
+      {
+        "level": 7,
+        "const": "REFLECT",
+        "move": "Reflect"
+      },
+      {
+        "level": 12,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 17,
+        "const": "STOMP",
+        "move": "Stomp"
+      },
+      {
+        "level": 22,
+        "const": "MEGA_DRAIN",
+        "move": "Mega Drain"
+      },
+      {
+        "level": 27,
+        "const": "LEECH_SEED",
+        "move": "Leech Seed"
+      },
+      {
+        "level": 32,
+        "const": "STUN_SPORE",
+        "move": "Stun Spore"
+      },
+      {
+        "level": 32,
+        "const": "POISONPOWDER",
+        "move": "Poisonpowder"
+      },
+      {
+        "level": 32,
+        "const": "SLEEP_POWDER",
+        "move": "Sleep Powder"
+      },
+      {
+        "level": 37,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
+      },
+      {
+        "level": 42,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
+      },
+      {
+        "level": 52,
+        "const": "ENERGY_BALL",
+        "move": "Energy Ball"
+      },
+      {
+        "level": 57,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 67,
+        "const": "GIGA_DRAIN",
+        "move": "Giga Drain"
+      },
+      {
+        "level": 72,
+        "const": "SOLARBEAM",
+        "move": "Solarbeam"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/exeggutor.png"
@@ -10516,7 +13512,98 @@
       "Battle Armor",
       "Technician"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "MUD_SLAP",
+        "move": "Mud Slap"
+      },
+      {
+        "level": 1,
+        "const": "SING",
+        "move": "Sing"
+      },
+      {
+        "level": 4,
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "level": 7,
+        "const": "BONE_CLUB",
+        "move": "Bone Club"
+      },
+      {
+        "level": 10,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 13,
+        "const": "FOCUS_ENERGY",
+        "move": "Focus Energy"
+      },
+      {
+        "level": 19,
+        "const": "BONEMERANG",
+        "move": "Bonemerang"
+      },
+      {
+        "level": 22,
+        "const": "FALSE_SWIPE",
+        "move": "False Swipe"
+      },
+      {
+        "level": 25,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 28,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 29,
+        "const": "BONE_RUSH",
+        "move": "Bone Rush"
+      },
+      {
+        "level": 33,
+        "const": "THRASH",
+        "move": "Thrash"
+      },
+      {
+        "level": 45,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 49,
+        "const": "BELLY_DRUM",
+        "move": "Belly Drum"
+      },
+      {
+        "level": 53,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 57,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/marowak.png"
@@ -10960,7 +14047,88 @@
       "Levitate",
       "Neutralizing Gas"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "PSYBEAM",
+        "move": "Psybeam"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "POISON_GAS",
+        "move": "Poison Gas"
+      },
+      {
+        "level": 4,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 7,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 13,
+        "const": "PAIN_SPLIT",
+        "move": "Pain Split"
+      },
+      {
+        "level": 16,
+        "const": "SLUDGE",
+        "move": "Sludge"
+      },
+      {
+        "level": 19,
+        "const": "SELFDESTRUCT",
+        "move": "Selfdestruct"
+      },
+      {
+        "level": 22,
+        "const": "HAZE",
+        "move": "Haze"
+      },
+      {
+        "level": 25,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 28,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 34,
+        "const": "DESTINY_BOND",
+        "move": "Destiny Bond"
+      },
+      {
+        "level": 38,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 38,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
+      },
+      {
+        "level": 42,
+        "const": "GUNK_SHOT",
+        "move": "Gunk Shot"
+      },
+      {
+        "level": 46,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/weezing.png"
@@ -12924,7 +16092,93 @@
       "Anger Point",
       "Sheer Force"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 4,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 7,
+        "const": "HORN_ATTACK",
+        "move": "Horn Attack"
+      },
+      {
+        "level": 13,
+        "const": "STOMP",
+        "move": "Stomp"
+      },
+      {
+        "level": 16,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 19,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 25,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 28,
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "level": 31,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 34,
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "level": 37,
+        "const": "THRASH",
+        "move": "Thrash"
+      },
+      {
+        "level": 40,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 43,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 46,
+        "const": "MEGAHORN",
+        "move": "Megahorn"
+      },
+      {
+        "level": 49,
+        "const": "OUTRAGE",
+        "move": "Outrage"
+      },
+      {
+        "level": 52,
+        "const": "GIGA_IMPACT",
+        "move": "Giga Impact"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/tauros.png"
@@ -16044,7 +19298,113 @@
       "Blaze",
       "Flash Fire"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 1,
+        "const": "FIRE_PUNCH",
+        "move": "Fire Punch"
+      },
+      {
+        "level": 1,
+        "const": "THUNDERPUNCH",
+        "move": "Thunderpunch"
+      },
+      {
+        "level": 1,
+        "const": "EARTH_POWER",
+        "move": "Earth Power"
+      },
+      {
+        "level": 5,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 11,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 14,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 15,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 19,
+        "const": "DEFENSE_CURL",
+        "move": "Defense Curl"
+      },
+      {
+        "level": 23,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      },
+      {
+        "level": 31,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 35,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
+      },
+      {
+        "level": 35,
+        "const": "FLAME_CHARGE",
+        "move": "Flame Charge"
+      },
+      {
+        "level": 36,
+        "const": "GYRO_BALL",
+        "move": "Gyro Ball"
+      },
+      {
+        "level": 40,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 45,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 50,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 55,
+        "const": "FLARE_BLITZ",
+        "move": "Flare Blitz"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/typhlosion.png"
@@ -19940,8 +23300,86 @@
       "Water Absorb",
       "Water Absorb"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 10,
+        "const": "SLAM",
+        "move": "Slam"
+      },
+      {
+        "level": 13,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 17,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 19,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 22,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 28,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 31,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 34,
+        "const": "COUNTER",
+        "move": "Counter"
+      },
+      {
+        "level": 36,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 37,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 43,
+        "const": "MIST",
+        "move": "Mist"
+      },
+      {
+        "level": 43,
+        "const": "HAZE",
+        "move": "Haze"
+      },
+      {
+        "level": 46,
+        "const": "RECOVER",
+        "move": "Recover"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 20, QUAGSIRE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/wooper.png"
   },
@@ -20413,7 +23851,128 @@
       "Own Tempo",
       "Regenerator"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
+        "level": 1,
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "level": 1,
+        "const": "TELEPORT",
+        "move": "Teleport"
+      },
+      {
+        "level": 4,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 7,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 13,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 16,
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "level": 16,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 22,
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "level": 25,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 27,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 28,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 30,
+        "const": "SURF",
+        "move": "Surf"
+      },
+      {
+        "level": 31,
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "level": 34,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 40,
+        "const": "PSYCH_UP",
+        "move": "Psych Up"
+      },
+      {
+        "level": 42,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 43,
+        "const": "FUTURE_SIGHT",
+        "move": "Future Sight"
+      },
+      {
+        "level": 46,
+        "const": "TRICK_ROOM",
+        "move": "Trick Room"
+      },
+      {
+        "level": 49,
+        "const": "AURA_SPHERE",
+        "move": "Aura Sphere"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/slowking.png"
@@ -22063,8 +25622,86 @@
       "Technician",
       "Inner Focus"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 7,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 10,
+        "const": "ICY_WIND",
+        "move": "Icy Wind"
+      },
+      {
+        "level": 10,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 16,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 19,
+        "const": "ICE_SHARD",
+        "move": "Ice Shard"
+      },
+      {
+        "level": 22,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 25,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 28,
+        "const": "BEAT_UP",
+        "move": "Beat Up"
+      },
+      {
+        "level": 31,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 34,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 36,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "level": 37,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 46,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 36, WEAVILE"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/sneasel.png"
   },
@@ -22088,8 +25725,106 @@
       "Quick Feet",
       "Honey Gather"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LICK",
+        "move": "Lick"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 6,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 15,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 15,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 16,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 18,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 21,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 30,
+        "const": "CROSS_CHOP",
+        "move": "Cross Chop"
+      },
+      {
+        "level": 33,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 33,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 36,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 37,
+        "const": "SNORE",
+        "move": "Snore"
+      },
+      {
+        "level": 39,
+        "const": "THRASH",
+        "move": "Thrash"
+      },
+      {
+        "level": 42,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 45,
+        "const": "CLOSE_COMBAT",
+        "move": "Close Combat"
+      },
+      {
+        "level": 48,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 30, URSARING"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/teddiursa.png"
   },
@@ -22114,8 +25849,116 @@
       "Quick Feet",
       "Unnerve"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 1,
+        "const": "LICK",
+        "move": "Lick"
+      },
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 6,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 15,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 15,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 17,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 18,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 21,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 31,
+        "const": "CROSS_CHOP",
+        "move": "Cross Chop"
+      },
+      {
+        "level": 35,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 35,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 39,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 41,
+        "const": "SNORE",
+        "move": "Snore"
+      },
+      {
+        "level": 43,
+        "const": "THRASH",
+        "move": "Thrash"
+      },
+      {
+        "level": 51,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 55,
+        "const": "CLOSE_COMBAT",
+        "move": "Close Combat"
+      },
+      {
+        "level": 59,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 42, URSALUNA"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/ursaring.png"
   },
@@ -22573,8 +26416,101 @@
       "Natural Cure",
       "Regenerator"
     ],
-    "learnset": [],
-    "evolutions": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 5,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 7,
+        "const": "RECOVER",
+        "move": "Recover"
+      },
+      {
+        "level": 10,
+        "const": "BUBBLE",
+        "move": "Bubble"
+      },
+      {
+        "level": 13,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 16,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 19,
+        "const": "ICICLE_SPEAR",
+        "move": "Icicle Spear"
+      },
+      {
+        "level": 22,
+        "const": "SPIKE_CANNON",
+        "move": "Spike Cannon"
+      },
+      {
+        "level": 25,
+        "const": "BUBBLEBEAM",
+        "move": "Bubblebeam"
+      },
+      {
+        "level": 28,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 31,
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
+        "level": 34,
+        "const": "EARTH_POWER",
+        "move": "Earth Power"
+      },
+      {
+        "level": 37,
+        "const": "ENDURE",
+        "move": "Endure"
+      },
+      {
+        "level": 40,
+        "const": "ROCK_BLAST",
+        "move": "Rock Blast"
+      },
+      {
+        "level": 41,
+        "const": "HEAL_BELL",
+        "move": "Heal Bell"
+      },
+      {
+        "level": 46,
+        "const": "MIRROR_COAT",
+        "move": "Mirror Coat"
+      },
+      {
+        "level": 49,
+        "const": "FLAIL",
+        "move": "Flail"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 38, CURSOLA"
+    ],
     "egg_moves": [],
     "sprite": "assets/pokemon/corsola.png"
   },
@@ -29186,7 +33122,118 @@
       "Bulletproof",
       "Unnerve"
     ],
-    "learnset": [],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 1,
+        "const": "LICK",
+        "move": "Lick"
+      },
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "FOCUS_ENERGY",
+        "move": "Focus Energy"
+      },
+      {
+        "level": 6,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 15,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 15,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 17,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 18,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 21,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 24,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 31,
+        "const": "CROSS_CHOP",
+        "move": "Cross Chop"
+      },
+      {
+        "level": 35,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 38,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 41,
+        "const": "SNORE",
+        "move": "Snore"
+      },
+      {
+        "level": 42,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 46,
+        "const": "THRASH",
+        "move": "Thrash"
+      },
+      {
+        "level": 56,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 59,
+        "const": "CLOSE_COMBAT",
+        "move": "Close Combat"
+      },
+      {
+        "level": 63,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      }
+    ],
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/ursaluna.png"
@@ -37970,101 +42017,6 @@
     "learnset": [
       {
         "level": 1,
-        "const": "LICK",
-        "move": "Lick"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 6,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 15,
-        "const": "SWEET_SCENT",
-        "move": "Sweet Scent"
-      },
-      {
-        "level": 15,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 16,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 18,
-        "const": "METAL_CLAW",
-        "move": "Metal Claw"
-      },
-      {
-        "level": 21,
-        "const": "CHARM",
-        "move": "Charm"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 30,
-        "const": "CROSS_CHOP",
-        "move": "Cross Chop"
-      },
-      {
-        "level": 33,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 33,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 36,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 37,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 39,
-        "const": "THRASH",
-        "move": "Thrash"
-      },
-      {
-        "level": 42,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 45,
-        "const": "CLOSE_COMBAT",
-        "move": "Close Combat"
-      },
-      {
-        "level": 48,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 1,
         "const": "SCRATCH",
         "move": "Scratch"
       },
@@ -38115,7 +42067,6 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 30, URSARING",
       "dbbw EVOLVE_LEVEL, 30, URSARINGBM"
     ],
     "egg_moves": [],
@@ -38145,111 +42096,6 @@
     "learnset": [
       {
         "level": 1,
-        "const": "CHARM",
-        "move": "Charm"
-      },
-      {
-        "level": 1,
-        "const": "LICK",
-        "move": "Lick"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 6,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 15,
-        "const": "SWEET_SCENT",
-        "move": "Sweet Scent"
-      },
-      {
-        "level": 15,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 17,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 18,
-        "const": "METAL_CLAW",
-        "move": "Metal Claw"
-      },
-      {
-        "level": 21,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 31,
-        "const": "CROSS_CHOP",
-        "move": "Cross Chop"
-      },
-      {
-        "level": 35,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 35,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 39,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 41,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 43,
-        "const": "THRASH",
-        "move": "Thrash"
-      },
-      {
-        "level": 51,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 55,
-        "const": "CLOSE_COMBAT",
-        "move": "Close Combat"
-      },
-      {
-        "level": 59,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 1,
         "const": "SCRATCH",
         "move": "Scratch"
       },
@@ -38305,7 +42151,6 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 42, URSALUNA",
       "dbbw EVOLVE_LEVEL, 42, URSALUNABM"
     ],
     "egg_moves": [],
@@ -38331,116 +42176,6 @@
       "Minds Eye"
     ],
     "learnset": [
-      {
-        "level": 1,
-        "const": "CHARM",
-        "move": "Charm"
-      },
-      {
-        "level": 1,
-        "const": "LICK",
-        "move": "Lick"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 1,
-        "const": "FOCUS_ENERGY",
-        "move": "Focus Energy"
-      },
-      {
-        "level": 6,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 15,
-        "const": "SWEET_SCENT",
-        "move": "Sweet Scent"
-      },
-      {
-        "level": 15,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 17,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 18,
-        "const": "METAL_CLAW",
-        "move": "Metal Claw"
-      },
-      {
-        "level": 21,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 31,
-        "const": "CROSS_CHOP",
-        "move": "Cross Chop"
-      },
-      {
-        "level": 35,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 38,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 41,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 42,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 46,
-        "const": "THRASH",
-        "move": "Thrash"
-      },
-      {
-        "level": 56,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 59,
-        "const": "CLOSE_COMBAT",
-        "move": "Close Combat"
-      },
-      {
-        "level": 63,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
       {
         "level": 1,
         "const": "SCRATCH",
@@ -39697,96 +43432,6 @@
       },
       {
         "level": 5,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 7,
-        "const": "RECOVER",
-        "move": "Recover"
-      },
-      {
-        "level": 10,
-        "const": "BUBBLE",
-        "move": "Bubble"
-      },
-      {
-        "level": 13,
-        "const": "ANCIENTPOWER",
-        "move": "Ancientpower"
-      },
-      {
-        "level": 16,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 19,
-        "const": "ICICLE_SPEAR",
-        "move": "Icicle Spear"
-      },
-      {
-        "level": 22,
-        "const": "SPIKE_CANNON",
-        "move": "Spike Cannon"
-      },
-      {
-        "level": 25,
-        "const": "BUBBLEBEAM",
-        "move": "Bubblebeam"
-      },
-      {
-        "level": 28,
-        "const": "AMNESIA",
-        "move": "Amnesia"
-      },
-      {
-        "level": 31,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 34,
-        "const": "EARTH_POWER",
-        "move": "Earth Power"
-      },
-      {
-        "level": 37,
-        "const": "ENDURE",
-        "move": "Endure"
-      },
-      {
-        "level": 40,
-        "const": "ROCK_BLAST",
-        "move": "Rock Blast"
-      },
-      {
-        "level": 41,
-        "const": "HEAL_BELL",
-        "move": "Heal Bell"
-      },
-      {
-        "level": 46,
-        "const": "MIRROR_COAT",
-        "move": "Mirror Coat"
-      },
-      {
-        "level": 49,
-        "const": "FLAIL",
-        "move": "Flail"
-      },
-      {
-        "level": 1,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 5,
         "const": "ASTONISH",
         "move": "Astonish"
       },
@@ -39887,7 +43532,6 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 38, CURSOLA",
       "dbbw EVOLVE_LEVEL, 38, CURSOLA"
     ],
     "egg_moves": [],
@@ -41235,81 +44879,10 @@
         "level": 37,
         "const": "REVERSAL",
         "move": "Reversal"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 7,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 10,
-        "const": "FOCUS_ENERGY",
-        "move": "Focus Energy"
-      },
-      {
-        "level": 13,
-        "const": "PURSUIT",
-        "move": "Pursuit"
-      },
-      {
-        "level": 16,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 16,
-        "const": "HYPER_FANG",
-        "move": "Hyper Fang"
-      },
-      {
-        "level": 22,
-        "const": "SUPER_FANG",
-        "move": "Super Fang"
-      },
-      {
-        "level": 25,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 28,
-        "const": "SUCKER_PUNCH",
-        "move": "Sucker Punch"
-      },
-      {
-        "level": 31,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 34,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 37,
-        "const": "REVERSAL",
-        "move": "Reversal"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 20, RATICATE_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 20, RATICATE"
+      "dbbw EVOLVE_LEVEL, 20, RATICATE_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/rattata-alolan.png"
@@ -41423,101 +44996,6 @@
       },
       {
         "level": 39,
-        "const": "REVERSAL",
-        "move": "Reversal"
-      },
-      {
-        "level": 1,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 1,
-        "const": "SWORDS_DANCE",
-        "move": "Swords Dance"
-      },
-      {
-        "level": 1,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "COUNTER",
-        "move": "Counter"
-      },
-      {
-        "level": 7,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 10,
-        "const": "FOCUS_ENERGY",
-        "move": "Focus Energy"
-      },
-      {
-        "level": 13,
-        "const": "PURSUIT",
-        "move": "Pursuit"
-      },
-      {
-        "level": 16,
-        "const": "DIZZY_PUNCH",
-        "move": "Dizzy Punch"
-      },
-      {
-        "level": 16,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 16,
-        "const": "HYPER_FANG",
-        "move": "Hyper Fang"
-      },
-      {
-        "level": 20,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 23,
-        "const": "SUPER_FANG",
-        "move": "Super Fang"
-      },
-      {
-        "level": 27,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 31,
-        "const": "SUCKER_PUNCH",
-        "move": "Sucker Punch"
-      },
-      {
-        "level": 35,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 39,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 43,
         "const": "REVERSAL",
         "move": "Reversal"
       }
@@ -41642,96 +45120,6 @@
         "level": 76,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
-      },
-      {
-        "level": 1,
-        "const": "THUNDERPUNCH",
-        "move": "Thunderpunch"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "THUNDERSHOCK",
-        "move": "Thundershock"
-      },
-      {
-        "level": 1,
-        "const": "CHARM",
-        "move": "Charm"
-      },
-      {
-        "level": 1,
-        "const": "SWEET_KISS",
-        "move": "Sweet Kiss"
-      },
-      {
-        "level": 1,
-        "const": "IRON_TAIL",
-        "move": "Iron Tail"
-      },
-      {
-        "level": 1,
-        "const": "NASTY_PLOT",
-        "move": "Nasty Plot"
-      },
-      {
-        "level": 5,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 10,
-        "const": "THUNDER_WAVE",
-        "move": "Thunder Wave"
-      },
-      {
-        "level": 15,
-        "const": "DOUBLE_KICK",
-        "move": "Double Kick"
-      },
-      {
-        "level": 35,
-        "const": "SPARK",
-        "move": "Spark"
-      },
-      {
-        "level": 40,
-        "const": "DOUBLE_TEAM",
-        "move": "Double Team"
-      },
-      {
-        "level": 45,
-        "const": "SLAM",
-        "move": "Slam"
-      },
-      {
-        "level": 50,
-        "const": "THUNDERBOLT",
-        "move": "Thunderbolt"
-      },
-      {
-        "level": 55,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 70,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
-      },
-      {
-        "level": 75,
-        "const": "THUNDER",
-        "move": "Thunder"
       }
     ],
     "evolutions": [],
@@ -41869,116 +45257,10 @@
         "level": 42,
         "const": "BLIZZARD",
         "move": "Blizzard"
-      },
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 1,
-        "const": "SAND_ATTACK",
-        "move": "Sand Attack"
-      },
-      {
-        "level": 1,
-        "const": "POISON_STING",
-        "move": "Poison Sting"
-      },
-      {
-        "level": 7,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 9,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 11,
-        "const": "RAPID_SPIN",
-        "move": "Rapid Spin"
-      },
-      {
-        "level": 13,
-        "const": "FURY_CUTTER",
-        "move": "Fury Cutter"
-      },
-      {
-        "level": 14,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 15,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 21,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 27,
-        "const": "DIG",
-        "move": "Dig"
-      },
-      {
-        "level": 27,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 30,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 33,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
-      },
-      {
-        "level": 36,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 39,
-        "const": "SWORDS_DANCE",
-        "move": "Swords Dance"
-      },
-      {
-        "level": 42,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 45,
-        "const": "FISSURE",
-        "move": "Fissure"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 22, SANDSLASH_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 22, SANDSLASH"
+      "dbbw EVOLVE_LEVEL, 22, SANDSLASH_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/sandshrew-alolan.png"
@@ -42114,111 +45396,6 @@
         "level": 76,
         "const": "TRIPLE_AXEL",
         "move": "Triple Axel"
-      },
-      {
-        "level": 1,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 1,
-        "const": "SAND_ATTACK",
-        "move": "Sand Attack"
-      },
-      {
-        "level": 1,
-        "const": "POISON_STING",
-        "move": "Poison Sting"
-      },
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 7,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 9,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 11,
-        "const": "RAPID_SPIN",
-        "move": "Rapid Spin"
-      },
-      {
-        "level": 13,
-        "const": "FURY_CUTTER",
-        "move": "Fury Cutter"
-      },
-      {
-        "level": 14,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 15,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 21,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 25,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 25,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 29,
-        "const": "DIG",
-        "move": "Dig"
-      },
-      {
-        "level": 33,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 37,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
-      },
-      {
-        "level": 41,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 45,
-        "const": "SWORDS_DANCE",
-        "move": "Swords Dance"
-      },
-      {
-        "level": 49,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 53,
-        "const": "FISSURE",
-        "move": "Fissure"
       }
     ],
     "evolutions": [],
@@ -42355,91 +45532,10 @@
         "level": 52,
         "const": "BLIZZARD",
         "move": "Blizzard"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 4,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 4,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 7,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 11,
-        "const": "CONFUSE_RAY",
-        "move": "Confuse Ray"
-      },
-      {
-        "level": 12,
-        "const": "SPITE",
-        "move": "Spite"
-      },
-      {
-        "level": 13,
-        "const": "FIRE_SPIN",
-        "move": "Fire Spin"
-      },
-      {
-        "level": 17,
-        "const": "WILL_O_WISP",
-        "move": "Will-O-Wisp"
-      },
-      {
-        "level": 23,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 23,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 25,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 27,
-        "const": "SAFEGUARD",
-        "move": "Safeguard"
-      },
-      {
-        "level": 31,
-        "const": "DARK_PULSE",
-        "move": "Dark Pulse"
-      },
-      {
-        "level": 33,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 45,
-        "const": "FIRE_BLAST",
-        "move": "Fire Blast"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 28, NINETALES_ALOLAN",
-      "dbbw EVOLVE_ITEM, FIRE_STONE, NINETALES"
+      "dbbw EVOLVE_LEVEL, 28, NINETALES_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/vulpix-alolan.png"
@@ -42570,96 +45666,6 @@
         "level": 73,
         "const": "ENCORE",
         "move": "Encore"
-      },
-      {
-        "level": 1,
-        "const": "NASTY_PLOT",
-        "move": "Nasty Plot"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 3,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 3,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 8,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 13,
-        "const": "SPITE",
-        "move": "Spite"
-      },
-      {
-        "level": 18,
-        "const": "HEX",
-        "move": "Hex"
-      },
-      {
-        "level": 28,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 28,
-        "const": "CONFUSE_RAY",
-        "move": "Confuse Ray"
-      },
-      {
-        "level": 33,
-        "const": "WILL_O_WISP",
-        "move": "Will-O-Wisp"
-      },
-      {
-        "level": 38,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 43,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 48,
-        "const": "DARK_PULSE",
-        "move": "Dark Pulse"
-      },
-      {
-        "level": 53,
-        "const": "FIRE_SPIN",
-        "move": "Fire Spin"
-      },
-      {
-        "level": 58,
-        "const": "SAFEGUARD",
-        "move": "Safeguard"
-      },
-      {
-        "level": 60,
-        "const": "MOONBLAST",
-        "move": "Moonblast"
-      },
-      {
-        "level": 73,
-        "const": "FIRE_BLAST",
-        "move": "Fire Blast"
       }
     ],
     "evolutions": [],
@@ -42767,86 +45773,10 @@
         "level": 43,
         "const": "FISSURE",
         "move": "Fissure"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 1,
-        "const": "SAND_ATTACK",
-        "move": "Sand Attack"
-      },
-      {
-        "level": 1,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
-      },
-      {
-        "level": 4,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 7,
-        "const": "ASTONISH",
-        "move": "Astonish"
-      },
-      {
-        "level": 10,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 13,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 19,
-        "const": "DIG",
-        "move": "Dig"
-      },
-      {
-        "level": 22,
-        "const": "SUCKER_PUNCH",
-        "move": "Sucker Punch"
-      },
-      {
-        "level": 28,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 28,
-        "const": "ROCK_SLIDE",
-        "move": "Rock Slide"
-      },
-      {
-        "level": 31,
-        "const": "EARTH_POWER",
-        "move": "Earth Power"
-      },
-      {
-        "level": 34,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 37,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 43,
-        "const": "FISSURE",
-        "move": "Fissure"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 26, DUGTRIO_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 26, DUGTRIO"
+      "dbbw EVOLVE_LEVEL, 26, DUGTRIO_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/diglett-alolan.png"
@@ -42960,96 +45890,6 @@
       },
       {
         "level": 40,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 49,
-        "const": "FISSURE",
-        "move": "Fissure"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 1,
-        "const": "SAND_ATTACK",
-        "move": "Sand Attack"
-      },
-      {
-        "level": 1,
-        "const": "TRI_ATTACK",
-        "move": "Tri Attack"
-      },
-      {
-        "level": 1,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
-      },
-      {
-        "level": 4,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 7,
-        "const": "ASTONISH",
-        "move": "Astonish"
-      },
-      {
-        "level": 10,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 13,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 19,
-        "const": "DIG",
-        "move": "Dig"
-      },
-      {
-        "level": 22,
-        "const": "SUCKER_PUNCH",
-        "move": "Sucker Punch"
-      },
-      {
-        "level": 26,
-        "const": "TRI_ATTACK",
-        "move": "Tri Attack"
-      },
-      {
-        "level": 29,
-        "const": "ROCK_SLIDE",
-        "move": "Rock Slide"
-      },
-      {
-        "level": 30,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 33,
-        "const": "EARTH_POWER",
-        "move": "Earth Power"
-      },
-      {
-        "level": 37,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 37,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 41,
         "const": "EARTHQUAKE",
         "move": "Earthquake"
       },
@@ -43271,86 +46111,6 @@
         "level": 54,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
-      },
-      {
-        "level": 1,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 6,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 12,
-        "const": "PAY_DAY",
-        "move": "Pay Day"
-      },
-      {
-        "level": 12,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 15,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 18,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 21,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 28,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 34,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 38,
-        "const": "NASTY_PLOT",
-        "move": "Nasty Plot"
-      },
-      {
-        "level": 42,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 54,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
       }
     ],
     "evolutions": [],
@@ -43448,86 +46208,10 @@
         "level": 43,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
-      },
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 4,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 7,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 10,
-        "const": "ROCK_THROW",
-        "move": "Rock Throw"
-      },
-      {
-        "level": 12,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 13,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 16,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 22,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 25,
-        "const": "ROCK_SLIDE",
-        "move": "Rock Slide"
-      },
-      {
-        "level": 31,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 34,
-        "const": "ROCK_BLAST",
-        "move": "Rock Blast"
-      },
-      {
-        "level": 37,
-        "const": "EXPLOSION",
-        "move": "Explosion"
-      },
-      {
-        "level": 40,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 43,
-        "const": "STONE_EDGE",
-        "move": "Stone Edge"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 25, GRAVELER_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 25, GRAVELER"
+      "dbbw EVOLVE_LEVEL, 25, GRAVELER_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/geodude-alolan.png"
@@ -43638,91 +46322,10 @@
         "level": 55,
         "const": "WILD_CHARGE",
         "move": "Wild Charge"
-      },
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 4,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 7,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 10,
-        "const": "ROCK_THROW",
-        "move": "Rock Throw"
-      },
-      {
-        "level": 12,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 13,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 16,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 22,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 25,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 26,
-        "const": "ROCK_SLIDE",
-        "move": "Rock Slide"
-      },
-      {
-        "level": 34,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 38,
-        "const": "ROCK_BLAST",
-        "move": "Rock Blast"
-      },
-      {
-        "level": 42,
-        "const": "EXPLOSION",
-        "move": "Explosion"
-      },
-      {
-        "level": 46,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 50,
-        "const": "STONE_EDGE",
-        "move": "Stone Edge"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 36, GOLEM_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 36, GOLEM"
+      "dbbw EVOLVE_LEVEL, 36, GOLEM_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/graveler-alolan.png"
@@ -43833,101 +46436,6 @@
         "level": 57,
         "const": "WILD_CHARGE",
         "move": "Wild Charge"
-      },
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "IRON_HEAD",
-        "move": "Iron Head"
-      },
-      {
-        "level": 1,
-        "const": "THUNDERPUNCH",
-        "move": "Thunderpunch"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "FIRE_PUNCH",
-        "move": "Fire Punch"
-      },
-      {
-        "level": 4,
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "level": 7,
-        "const": "MAGNITUDE",
-        "move": "Magnitude"
-      },
-      {
-        "level": 10,
-        "const": "ROCK_THROW",
-        "move": "Rock Throw"
-      },
-      {
-        "level": 12,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 13,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 16,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 22,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 25,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 26,
-        "const": "ROCK_SLIDE",
-        "move": "Rock Slide"
-      },
-      {
-        "level": 34,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 38,
-        "const": "ROCK_BLAST",
-        "move": "Rock Blast"
-      },
-      {
-        "level": 42,
-        "const": "EXPLOSION",
-        "move": "Explosion"
-      },
-      {
-        "level": 46,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 50,
-        "const": "STONE_EDGE",
-        "move": "Stone Edge"
       }
     ],
     "evolutions": [],
@@ -44038,91 +46546,10 @@
         "level": 43,
         "const": "GUNK_SHOT",
         "move": "Gunk Shot"
-      },
-      {
-        "level": 1,
-        "const": "POISON_GAS",
-        "move": "Poison Gas"
-      },
-      {
-        "level": 1,
-        "const": "POUND",
-        "move": "Pound"
-      },
-      {
-        "level": 1,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 4,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 7,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
-      },
-      {
-        "level": 10,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 13,
-        "const": "SLUDGE",
-        "move": "Sludge"
-      },
-      {
-        "level": 18,
-        "const": "SMOG",
-        "move": "Smog"
-      },
-      {
-        "level": 19,
-        "const": "MINIMIZE",
-        "move": "Minimize"
-      },
-      {
-        "level": 22,
-        "const": "SHADOW_SNEAK",
-        "move": "Shadow Sneak"
-      },
-      {
-        "level": 26,
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "level": 28,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
-      },
-      {
-        "level": 34,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 37,
-        "const": "SLUDGE_BOMB",
-        "move": "Sludge Bomb"
-      },
-      {
-        "level": 40,
-        "const": "ACID_ARMOR",
-        "move": "Acid Armor"
-      },
-      {
-        "level": 43,
-        "const": "GUNK_SHOT",
-        "move": "Gunk Shot"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 38, MUK_ALOLAN",
-      "dbbw EVOLVE_LEVEL, 38, MUK"
+      "dbbw EVOLVE_LEVEL, 38, MUK_ALOLAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/grimer-alolan.png"
@@ -44231,96 +46658,6 @@
         "level": 38,
         "const": "CRUNCH",
         "move": "Crunch"
-      },
-      {
-        "level": 42,
-        "const": "ACID_ARMOR",
-        "move": "Acid Armor"
-      },
-      {
-        "level": 46,
-        "const": "GUNK_SHOT",
-        "move": "Gunk Shot"
-      },
-      {
-        "level": 1,
-        "const": "POISON_GAS",
-        "move": "Poison Gas"
-      },
-      {
-        "level": 1,
-        "const": "POUND",
-        "move": "Pound"
-      },
-      {
-        "level": 1,
-        "const": "HAZE",
-        "move": "Haze"
-      },
-      {
-        "level": 1,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 1,
-        "const": "MOONBLAST",
-        "move": "Moonblast"
-      },
-      {
-        "level": 4,
-        "const": "HARDEN",
-        "move": "Harden"
-      },
-      {
-        "level": 7,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
-      },
-      {
-        "level": 10,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 13,
-        "const": "SLUDGE",
-        "move": "Sludge"
-      },
-      {
-        "level": 18,
-        "const": "SMOG",
-        "move": "Smog"
-      },
-      {
-        "level": 19,
-        "const": "MINIMIZE",
-        "move": "Minimize"
-      },
-      {
-        "level": 22,
-        "const": "SHADOW_SNEAK",
-        "move": "Shadow Sneak"
-      },
-      {
-        "level": 26,
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "level": 28,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
-      },
-      {
-        "level": 34,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 38,
-        "const": "SLUDGE_BOMB",
-        "move": "Sludge Bomb"
       },
       {
         "level": 42,
@@ -44462,96 +46799,6 @@
         "level": 77,
         "const": "LEAF_BLADE",
         "move": "Leaf Blade"
-      },
-      {
-        "level": 1,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 1,
-        "const": "ABSORB",
-        "move": "Absorb"
-      },
-      {
-        "level": 1,
-        "const": "BARRAGE",
-        "move": "Barrage"
-      },
-      {
-        "level": 1,
-        "const": "SEED_BOMB",
-        "move": "Seed Bomb"
-      },
-      {
-        "level": 7,
-        "const": "REFLECT",
-        "move": "Reflect"
-      },
-      {
-        "level": 12,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 17,
-        "const": "STOMP",
-        "move": "Stomp"
-      },
-      {
-        "level": 22,
-        "const": "MEGA_DRAIN",
-        "move": "Mega Drain"
-      },
-      {
-        "level": 27,
-        "const": "LEECH_SEED",
-        "move": "Leech Seed"
-      },
-      {
-        "level": 32,
-        "const": "STUN_SPORE",
-        "move": "Stun Spore"
-      },
-      {
-        "level": 32,
-        "const": "POISONPOWDER",
-        "move": "Poisonpowder"
-      },
-      {
-        "level": 32,
-        "const": "SLEEP_POWDER",
-        "move": "Sleep Powder"
-      },
-      {
-        "level": 37,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 42,
-        "const": "SYNTHESIS",
-        "move": "Synthesis"
-      },
-      {
-        "level": 52,
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
-      },
-      {
-        "level": 57,
-        "const": "ANCIENTPOWER",
-        "move": "Ancientpower"
-      },
-      {
-        "level": 67,
-        "const": "GIGA_DRAIN",
-        "move": "Giga Drain"
-      },
-      {
-        "level": 72,
-        "const": "SOLARBEAM",
-        "move": "Solarbeam"
       }
     ],
     "evolutions": [],
@@ -44694,96 +46941,6 @@
         "level": 57,
         "const": "EARTHQUAKE",
         "move": "Earthquake"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
-      },
-      {
-        "level": 1,
-        "const": "SING",
-        "move": "Sing"
-      },
-      {
-        "level": 4,
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "level": 7,
-        "const": "BONE_CLUB",
-        "move": "Bone Club"
-      },
-      {
-        "level": 10,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 13,
-        "const": "FOCUS_ENERGY",
-        "move": "Focus Energy"
-      },
-      {
-        "level": 19,
-        "const": "BONEMERANG",
-        "move": "Bonemerang"
-      },
-      {
-        "level": 22,
-        "const": "FALSE_SWIPE",
-        "move": "False Swipe"
-      },
-      {
-        "level": 25,
-        "const": "KNOCK_OFF",
-        "move": "Knock Off"
-      },
-      {
-        "level": 28,
-        "const": "SWORDS_DANCE",
-        "move": "Swords Dance"
-      },
-      {
-        "level": 29,
-        "const": "BONE_RUSH",
-        "move": "Bone Rush"
-      },
-      {
-        "level": 33,
-        "const": "THRASH",
-        "move": "Thrash"
-      },
-      {
-        "level": 45,
-        "const": "IRON_HEAD",
-        "move": "Iron Head"
-      },
-      {
-        "level": 49,
-        "const": "BELLY_DRUM",
-        "move": "Belly Drum"
-      },
-      {
-        "level": 53,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 57,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
       }
     ],
     "evolutions": [],
@@ -44880,76 +47037,10 @@
         "level": 50,
         "const": "THRASH",
         "move": "Thrash"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 6,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 12,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 15,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 18,
-        "const": "PAY_DAY",
-        "move": "Pay Day"
-      },
-      {
-        "level": 21,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 24,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
-      },
-      {
-        "level": 24,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 33,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 36,
-        "const": "NASTY_PLOT",
-        "move": "Nasty Plot"
-      },
-      {
-        "level": 39,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 48,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 28, PERRSERKER",
-      "dbbw EVOLVE_LEVEL, 28, PERSIAN"
+      "dbbw EVOLVE_LEVEL, 28, PERRSERKER"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/meowth-galarian.png"
@@ -45165,91 +47256,10 @@
         "level": 52,
         "const": "FLARE_BLITZ",
         "move": "Flare Blitz"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 7,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 10,
-        "const": "STOMP",
-        "move": "Stomp"
-      },
-      {
-        "level": 13,
-        "const": "DOUBLE_KICK",
-        "move": "Double Kick"
-      },
-      {
-        "level": 15,
-        "const": "FLAME_CHARGE",
-        "move": "Flame Charge"
-      },
-      {
-        "level": 16,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 19,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 22,
-        "const": "FIRE_SPIN",
-        "move": "Fire Spin"
-      },
-      {
-        "level": 25,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 28,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 31,
-        "const": "LOW_KICK",
-        "move": "Low Kick"
-      },
-      {
-        "level": 34,
-        "const": "FLARE_BLITZ",
-        "move": "Flare Blitz"
-      },
-      {
-        "level": 37,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 46,
-        "const": "FIRE_BLAST",
-        "move": "Fire Blast"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 40, RAPIDASH_GALARIAN",
-      "dbbw EVOLVE_LEVEL, 40, RAPIDASH"
+      "dbbw EVOLVE_LEVEL, 40, RAPIDASH_GALARIAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/ponyta-galarian.png"
@@ -45375,106 +47385,6 @@
         "level": 56,
         "const": "PSYCHIC_M",
         "move": "Psychic"
-      },
-      {
-        "level": 1,
-        "const": "MEGAHORN",
-        "move": "Megahorn"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
-      },
-      {
-        "level": 1,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 7,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 10,
-        "const": "STOMP",
-        "move": "Stomp"
-      },
-      {
-        "level": 13,
-        "const": "DOUBLE_KICK",
-        "move": "Double Kick"
-      },
-      {
-        "level": 15,
-        "const": "FLAME_CHARGE",
-        "move": "Flame Charge"
-      },
-      {
-        "level": 16,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 19,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 22,
-        "const": "FIRE_SPIN",
-        "move": "Fire Spin"
-      },
-      {
-        "level": 25,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 28,
-        "const": "HYPNOSIS",
-        "move": "Hypnosis"
-      },
-      {
-        "level": 31,
-        "const": "LOW_KICK",
-        "move": "Low Kick"
-      },
-      {
-        "level": 34,
-        "const": "FLARE_BLITZ",
-        "move": "Flare Blitz"
-      },
-      {
-        "level": 35,
-        "const": "FURY_ATTACK",
-        "move": "Fury Attack"
-      },
-      {
-        "level": 38,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 50,
-        "const": "FIRE_BLAST",
-        "move": "Fire Blast"
       }
     ],
     "evolutions": [],
@@ -45601,103 +47511,11 @@
         "level": 46,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
-      },
-      {
-        "level": 1,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "TELEPORT",
-        "move": "Teleport"
-      },
-      {
-        "level": 4,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 7,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 10,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 13,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 16,
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "level": 19,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 22,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 25,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 30,
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "level": 31,
-        "const": "AMNESIA",
-        "move": "Amnesia"
-      },
-      {
-        "level": 34,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "level": 37,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 40,
-        "const": "PSYCH_UP",
-        "move": "Psych Up"
-      },
-      {
-        "level": 43,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 46,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
       }
     ],
     "evolutions": [
       "dbbw EVOLVE_LEVEL, 42, SLOWKING_GALARIAN",
-      "dbbw EVOLVE_LEVEL, 37, SLOWBRO_GALARIAN",
-      "dbbw EVOLVE_LEVEL, 37, SLOWBRO",
-      "dbbw EVOLVE_ITEM, KINGS_ROCK, SLOWKING"
+      "dbbw EVOLVE_LEVEL, 37, SLOWBRO_GALARIAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/slowpoke-galarian.png"
@@ -45822,116 +47640,6 @@
         "level": 51,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "WITHDRAW",
-        "move": "Withdraw"
-      },
-      {
-        "level": 1,
-        "const": "TELEPORT",
-        "move": "Teleport"
-      },
-      {
-        "level": 4,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 7,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 10,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 13,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 16,
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "level": 19,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 22,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 25,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 30,
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "level": 31,
-        "const": "AMNESIA",
-        "move": "Amnesia"
-      },
-      {
-        "level": 33,
-        "const": "WITHDRAW",
-        "move": "Withdraw"
-      },
-      {
-        "level": 35,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "level": 39,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 43,
-        "const": "PSYCH_UP",
-        "move": "Psych Up"
-      },
-      {
-        "level": 47,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 51,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
       }
     ],
     "evolutions": [],
@@ -45960,126 +47668,6 @@
       "Regenerator"
     ],
     "learnset": [
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 1,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 1,
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "level": 1,
-        "const": "TELEPORT",
-        "move": "Teleport"
-      },
-      {
-        "level": 4,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 7,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 10,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 13,
-        "const": "DISABLE",
-        "move": "Disable"
-      },
-      {
-        "level": 16,
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "level": 16,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 22,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 25,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 27,
-        "const": "AMNESIA",
-        "move": "Amnesia"
-      },
-      {
-        "level": 28,
-        "const": "NASTY_PLOT",
-        "move": "Nasty Plot"
-      },
-      {
-        "level": 30,
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "level": 31,
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "level": 34,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "level": 40,
-        "const": "PSYCH_UP",
-        "move": "Psych Up"
-      },
-      {
-        "level": 42,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 43,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 46,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
-      },
-      {
-        "level": 49,
-        "const": "AURA_SPHERE",
-        "move": "Aura Sphere"
-      },
       {
         "level": 1,
         "const": "CURSE",
@@ -46316,86 +47904,6 @@
         "level": 56,
         "const": "DESTINY_BOND",
         "move": "Destiny Bond"
-      },
-      {
-        "level": 1,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "POISON_GAS",
-        "move": "Poison Gas"
-      },
-      {
-        "level": 4,
-        "const": "SMOG",
-        "move": "Smog"
-      },
-      {
-        "level": 7,
-        "const": "SMOKESCREEN",
-        "move": "Smokescreen"
-      },
-      {
-        "level": 13,
-        "const": "PAIN_SPLIT",
-        "move": "Pain Split"
-      },
-      {
-        "level": 16,
-        "const": "SLUDGE",
-        "move": "Sludge"
-      },
-      {
-        "level": 19,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 22,
-        "const": "HAZE",
-        "move": "Haze"
-      },
-      {
-        "level": 25,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 28,
-        "const": "SLUDGE_BOMB",
-        "move": "Sludge Bomb"
-      },
-      {
-        "level": 34,
-        "const": "DESTINY_BOND",
-        "move": "Destiny Bond"
-      },
-      {
-        "level": 38,
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "level": 38,
-        "const": "DARK_PULSE",
-        "move": "Dark Pulse"
-      },
-      {
-        "level": 42,
-        "const": "GUNK_SHOT",
-        "move": "Gunk Shot"
-      },
-      {
-        "level": 46,
-        "const": "EXPLOSION",
-        "move": "Explosion"
       }
     ],
     "evolutions": [],
@@ -46498,81 +48006,10 @@
         "level": 47,
         "const": "FLARE_BLITZ",
         "move": "Flare Blitz"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 1,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 7,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 15,
-        "const": "FIRE_FANG",
-        "move": "Fire Fang"
-      },
-      {
-        "level": 18,
-        "const": "REVERSAL",
-        "move": "Reversal"
-      },
-      {
-        "level": 21,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 23,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 25,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 28,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 31,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 33,
-        "const": "OUTRAGE",
-        "move": "Outrage"
-      },
-      {
-        "level": 38,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 41,
-        "const": "FLARE_BLITZ",
-        "move": "Flare Blitz"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 36, ARCANINE_HISUIAN",
-      "dbbw EVOLVE_ITEM, FIRE_STONE, ARCANINE"
+      "dbbw EVOLVE_LEVEL, 36, ARCANINE_HISUIAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/growlithe-hisuian.png"
@@ -46668,86 +48105,6 @@
         "level": 63,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
-      },
-      {
-        "level": 65,
-        "const": "FLARE_BLITZ",
-        "move": "Flare Blitz"
-      },
-      {
-        "level": 1,
-        "const": "EXTREMESPEED",
-        "move": "Extremespeed"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 1,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 5,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 15,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 25,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 30,
-        "const": "FIRE_FANG",
-        "move": "Fire Fang"
-      },
-      {
-        "level": 35,
-        "const": "REVERSAL",
-        "move": "Reversal"
-      },
-      {
-        "level": 40,
-        "const": "OUTRAGE",
-        "move": "Outrage"
-      },
-      {
-        "level": 45,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 50,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 55,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 60,
-        "const": "PLAY_ROUGH",
-        "move": "Play Rough"
-      },
-      {
-        "level": 60,
-        "const": "CLOSE_COMBAT",
-        "move": "Close Combat"
       },
       {
         "level": 65,
@@ -46865,76 +48222,10 @@
         "level": 47,
         "const": "EXPLOSION",
         "move": "Explosion"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 9,
-        "const": "THUNDERSHOCK",
-        "move": "Thundershock"
-      },
-      {
-        "level": 12,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 15,
-        "const": "SPARK",
-        "move": "Spark"
-      },
-      {
-        "level": 21,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 24,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 30,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
-      },
-      {
-        "level": 36,
-        "const": "THUNDERBOLT",
-        "move": "Thunderbolt"
-      },
-      {
-        "level": 39,
-        "const": "EXPLOSION",
-        "move": "Explosion"
-      },
-      {
-        "level": 42,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 45,
-        "const": "MIRROR_COAT",
-        "move": "Mirror Coat"
-      },
-      {
-        "level": 48,
-        "const": "THUNDER",
-        "move": "Thunder"
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 30, ELECTRODE_HISUIAN",
-      "dbbw EVOLVE_LEVEL, 30, ELECTRODE"
+      "dbbw EVOLVE_LEVEL, 30, ELECTRODE_HISUIAN"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/voltorb-hisuian.png"
@@ -47045,71 +48336,6 @@
         "level": 71,
         "const": "EXPLOSION",
         "move": "Explosion"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 9,
-        "const": "THUNDERSHOCK",
-        "move": "Thundershock"
-      },
-      {
-        "level": 12,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 15,
-        "const": "SPARK",
-        "move": "Spark"
-      },
-      {
-        "level": 21,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 24,
-        "const": "SELFDESTRUCT",
-        "move": "Selfdestruct"
-      },
-      {
-        "level": 31,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
-      },
-      {
-        "level": 39,
-        "const": "THUNDERBOLT",
-        "move": "Thunderbolt"
-      },
-      {
-        "level": 43,
-        "const": "EXPLOSION",
-        "move": "Explosion"
-      },
-      {
-        "level": 47,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 51,
-        "const": "MIRROR_COAT",
-        "move": "Mirror Coat"
-      },
-      {
-        "level": 55,
-        "const": "THUNDER",
-        "move": "Thunder"
       }
     ],
     "evolutions": [],
@@ -47138,111 +48364,6 @@
       "Flash Fire"
     ],
     "learnset": [
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 1,
-        "const": "FIRE_PUNCH",
-        "move": "Fire Punch"
-      },
-      {
-        "level": 1,
-        "const": "THUNDERPUNCH",
-        "move": "Thunderpunch"
-      },
-      {
-        "level": 1,
-        "const": "EARTH_POWER",
-        "move": "Earth Power"
-      },
-      {
-        "level": 5,
-        "const": "EMBER",
-        "move": "Ember"
-      },
-      {
-        "level": 8,
-        "const": "SMOKESCREEN",
-        "move": "Smokescreen"
-      },
-      {
-        "level": 11,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 14,
-        "const": "DOUBLE_KICK",
-        "move": "Double Kick"
-      },
-      {
-        "level": 15,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
-        "level": 19,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 23,
-        "const": "REVERSAL",
-        "move": "Reversal"
-      },
-      {
-        "level": 31,
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "level": 35,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 35,
-        "const": "FLAME_CHARGE",
-        "move": "Flame Charge"
-      },
-      {
-        "level": 36,
-        "const": "GYRO_BALL",
-        "move": "Gyro Ball"
-      },
-      {
-        "level": 40,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 45,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 50,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 55,
-        "const": "FLARE_BLITZ",
-        "move": "Flare Blitz"
-      },
       {
         "level": 1,
         "const": "QUICK_ATTACK",
@@ -47377,81 +48498,6 @@
     "learnset": [
       {
         "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
-      },
-      {
-        "level": 7,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 10,
-        "const": "ICY_WIND",
-        "move": "Icy Wind"
-      },
-      {
-        "level": 10,
-        "const": "FAINT_ATTACK",
-        "move": "Faint Attack"
-      },
-      {
-        "level": 16,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 19,
-        "const": "ICE_SHARD",
-        "move": "Ice Shard"
-      },
-      {
-        "level": 22,
-        "const": "METAL_CLAW",
-        "move": "Metal Claw"
-      },
-      {
-        "level": 25,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 28,
-        "const": "BEAT_UP",
-        "move": "Beat Up"
-      },
-      {
-        "level": 31,
-        "const": "SLASH",
-        "move": "Slash"
-      },
-      {
-        "level": 34,
-        "const": "SCREECH",
-        "move": "Screech"
-      },
-      {
-        "level": 36,
-        "const": "HONE_CLAWS",
-        "move": "Hone Claws"
-      },
-      {
-        "level": 37,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 46,
-        "const": "DARK_PULSE",
-        "move": "Dark Pulse"
-      },
-      {
-        "level": 1,
         "const": "QUICK_ATTACK",
         "move": "Quick Attack"
       },
@@ -47542,7 +48588,6 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 36, WEAVILE",
       "dbbw EVOLVE_LEVEL, 36, SNEASLER"
     ],
     "egg_moves": [],
@@ -47718,81 +48763,6 @@
     "learnset": [
       {
         "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 10,
-        "const": "SLAM",
-        "move": "Slam"
-      },
-      {
-        "level": 13,
-        "const": "DOUBLE_KICK",
-        "move": "Double Kick"
-      },
-      {
-        "level": 17,
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "level": 19,
-        "const": "AMNESIA",
-        "move": "Amnesia"
-      },
-      {
-        "level": 22,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 28,
-        "const": "BODY_SLAM",
-        "move": "Body Slam"
-      },
-      {
-        "level": 31,
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "level": 34,
-        "const": "COUNTER",
-        "move": "Counter"
-      },
-      {
-        "level": 36,
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "level": 37,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 43,
-        "const": "MIST",
-        "move": "Mist"
-      },
-      {
-        "level": 43,
-        "const": "HAZE",
-        "move": "Haze"
-      },
-      {
-        "level": 46,
-        "const": "RECOVER",
-        "move": "Recover"
-      },
-      {
-        "level": 1,
         "const": "POISON_STING",
         "move": "Poison Sting"
       },
@@ -47878,7 +48848,6 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 20, QUAGSIRE",
       "dbbw EVOLVE_LEVEL, 20, CLODSIRE"
     ],
     "egg_moves": [],
@@ -48221,91 +49190,6 @@
         "level": 60,
         "const": "CLOSE_COMBAT",
         "move": "Close Combat"
-      },
-      {
-        "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
-      },
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 4,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 7,
-        "const": "HORN_ATTACK",
-        "move": "Horn Attack"
-      },
-      {
-        "level": 13,
-        "const": "STOMP",
-        "move": "Stomp"
-      },
-      {
-        "level": 16,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 19,
-        "const": "BULLDOZE",
-        "move": "Bulldoze"
-      },
-      {
-        "level": 25,
-        "const": "TAKE_DOWN",
-        "move": "Take Down"
-      },
-      {
-        "level": 28,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 31,
-        "const": "BODY_SLAM",
-        "move": "Body Slam"
-      },
-      {
-        "level": 34,
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "level": 37,
-        "const": "THRASH",
-        "move": "Thrash"
-      },
-      {
-        "level": 40,
-        "const": "IRON_HEAD",
-        "move": "Iron Head"
-      },
-      {
-        "level": 43,
-        "const": "DOUBLE_EDGE",
-        "move": "Double-Edge"
-      },
-      {
-        "level": 46,
-        "const": "MEGAHORN",
-        "move": "Megahorn"
-      },
-      {
-        "level": 49,
-        "const": "OUTRAGE",
-        "move": "Outrage"
-      },
-      {
-        "level": 52,
-        "const": "GIGA_IMPACT",
-        "move": "Giga Impact"
       }
     ],
     "evolutions": [],
