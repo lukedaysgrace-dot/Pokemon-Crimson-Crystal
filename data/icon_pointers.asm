@@ -252,18 +252,32 @@ IconPointers:
 	dba LugiaIcon
 	dba HoOhIcon
 	dba CelebiIcon
+	dba CharmanderIcon
+	dba CharmeleonIcon
+	dba CharizardIcon
+	dba SquirtleIcon
+	dba WartortleIcon
+	dba BlastoiseIcon
+	dba BulbasaurIcon
+	dba IvysaurIcon
+	dba VenusaurIcon
 	dba HonchkrowIcon
 	dba AmbipomIcon
 	dba AnnihilapeIcon
 	dba BagonIcon
+	dba ShelgonIcon
+	dba SalamenceIcon
 	dba DrunsparceIcon
 	dba ElectivireIcon
 	dba FarigirafIcon
+	dba RaltsIcon
+	dba KirliaIcon
+	dba GardevoirIcon
 	dba GardevoirIcon
 	dba GlaceonIcon
-	dba GliscorIcon
-	dba KirliaIcon
 	dba LeafeonIcon
+	dba SylveonIcon
+	dba GliscorIcon
 	dba LickilickyIcon
 	dba MagmortarIcon
 	dba MagnezoneIcon
@@ -271,21 +285,19 @@ IconPointers:
 	dba MesmeriaIcon
 	dba MismagiusIcon
 	dba PorygonZIcon
-	dba RaltsIcon
 	dba RhyperiorIcon
-	dba SalamenceIcon
+	dba VenipedeIcon
+	dba WhirlipedeIcon
 	dba ScolipedeIcon
-	dba ShelgonIcon
 	dba TangrowthIcon
 	dba TogekissIcon
 	dba UrsalunaIcon
-	dba VenipedeIcon
 	dba WeavileIcon
-	dba WhirlipedeIcon
 	dba WyrdeerIcon
 	dba YanmegaIcon
 	dba LileepIcon
 	dba CradilyIcon
+	dba AnorithIcon
 	dba ArmaldoIcon
 	dba GolettIcon
 	dba GolurkIcon
@@ -315,66 +327,66 @@ IconPointers:
 	dba CharcadetIcon
 	dba ArmarougeIcon
 	dba CeruledgeIcon
-	dba SylveonIcon
 	dba RookideeIcon
 	dba CorvisquireIcon
 	dba CorviknightIcon
+	dba PlantIcon
 	dba AbomasnowIcon
+	dba SwabluIcon
 	dba AltariaIcon
-	dba AnorithIcon
 	dba PlantIcon
 	dba PlantIcon
+	dba PlantIcon
+	dba PlantIcon
+	dba PlantIcon
+	dba DuraludonIcon
 	dba ArchaludonIcon
 	dba PlantIcon
+	dba PlantIcon
 	dba BunearyIcon
+	dba LopunnyIcon
 	dba QuadrupedIcon
+	dba QuadrupedIcon
+	dba SizzlipedeIcon
 	dba CentiskorchIcon
-	dba CharjabugIcon
-	dba CroagunkIcon
-	dba PlantIcon
-	dba DrifblimIcon
-	dba DrifloonIcon
-	dba DrilburIcon
-	dba DuraludonIcon
-	dba QuadrupedIcon
-	dba ExcadrillIcon
-	dba PlantIcon
-	dba FletchinderIcon
-	dba FletchlingIcon
-	dba FlygonIcon
-	dba FroslassIcon
-	dba GolisopodIcon
 	dba GrubbinIcon
+	dba CharjabugIcon
+	dba VikavoltIcon
+	dba CroagunkIcon
+	dba ToxicroakIcon
+	dba DrifloonIcon
+	dba DrifblimIcon
+	dba DrilburIcon
+	dba ExcadrillIcon
 	dba QuadrupedIcon
-	dba PlantIcon
+	dba QuadrupedIcon
+	dba FletchlingIcon
+	dba FletchinderIcon
+	dba TalonflameIcon
+	dba TrapinchIcon
+	dba VibravaIcon
+	dba FlygonIcon
+	dba SnoruntIcon
+	dba FroslassIcon
+	dba WimpodIcon
+	dba GolisopodIcon
+	dba QuadrupedIcon
+	dba QuadrupedIcon
+	dba PawniardIcon
+	dba BisharpIcon
 	dba KingambitIcon
 	dba PlantIcon
-	dba LopunnyIcon
 	dba PlantIcon
 	dba PlantIcon
-	dba QuadrupedIcon
-	dba QuadrupedIcon
 	dba OverqwilIcon
-	dba ScraftyIcon
 	dba ScraggyIcon
-	dba SealeoIcon
-	dba PlantIcon
-	dba SizzlipedeIcon
-	dba SnoruntIcon
-	dba PlantIcon
+	dba ScraftyIcon
 	dba SphealIcon
-	dba QuadrupedIcon
-	dba SwabluIcon
-	dba TalonflameIcon
-	dba ToxicroakIcon
-	dba TrapinchIcon
-	dba UrsalunabmIcon
-	dba VibravaIcon
-	dba VikavoltIcon
+	dba SealeoIcon
 	dba WalreinIcon
-	dba WimpodIcon
 	dba TeddiursabmIcon
 	dba UrsaringbmIcon
+	dba UrsalunabmIcon
 	dba AxewIcon
 	dba FraxureIcon
 	dba HaxorusIcon
@@ -382,15 +394,13 @@ IconPointers:
 	dba RampardosIcon
 	dba ShieldonIcon
 	dba BastiodonIcon
-	dba PawniardIcon
-	dba BisharpIcon
 	dba SeelIcon
 	dba WalreinIcon
 	dba MagikarpIcon
 	dba GyaradosIcon
 	dba MimikyuIcon
+	dba CorsolaGalarianIcon
 	dba CursolaIcon
-	dba GardevoirIcon
 	dba MrRimeIcon
 	dba SirfetchDIcon
 	dba RioluIcon
@@ -425,20 +435,19 @@ IconPointers:
 	dba RapidashGalarianIcon
 	dba SlowpokeGalarianIcon
 	dba SlowbroGalarianIcon
-	dba WeezingGalarianIcon
 	dba SlowkingGalarianIcon
-	dba CorsolaGalarianIcon
+	dba WeezingGalarianIcon
 	dba GrowlitheHisuianIcon
 	dba ArcanineHisuianIcon
 	dba VoltorbHisuianIcon
 	dba ElectrodeHisuianIcon
 	dba TyphlosionHisuianIcon
 	dba SneaselHisuianIcon
+	dba SneaslerIcon
 	dba WooperPaldeanIcon
 	dba ClodsireIcon
 	dba TaurosPaldeanFireIcon
 	dba TaurosPaldeanWaterIcon
-	dba SneaslerIcon
 	dba WatuIcon
 	dba BounsweetIcon
 	dba SteeneeIcon
@@ -448,17 +457,8 @@ IconPointers:
 	dba AggronIcon
 	dba KleavorIcon
 	dba GlimmetIcon
+	dba GlimmoraIcon
 	dba MareanieIcon
 	dba ToxapexIcon
 	dba ZangooseIcon
 	dba SeviperIcon
-	dba GlimmoraIcon
-	dba BulbasaurIcon
-	dba IvysaurIcon
-	dba VenusaurIcon
-	dba CharmanderIcon
-	dba CharmeleonIcon
-	dba CharizardIcon
-	dba SquirtleIcon
-	dba WartortleIcon
-	dba BlastoiseIcon
