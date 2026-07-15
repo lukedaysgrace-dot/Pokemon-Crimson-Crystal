@@ -3,7 +3,7 @@
 	db  50,  85,  55,  90,  65,  65
 	;  hp  atk  def  spd  sat  sdf
 
-	db PSYCHIC, PSYCHIC ; type
+	db FAIRY, FAIRY ; type
 	db 190 ; catch rate
 	db 152 ; base exp
 	db NO_ITEM, MIRACLEBERRY ; items

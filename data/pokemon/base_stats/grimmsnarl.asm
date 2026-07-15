@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/grimmsnarl/front.dimensions"
-	abilities_for GRIMMSNARL, PRANKSTER, FRISK, NO_ABILITY
+	abilities_for GRIMMSNARL, PRANKSTER, INTIMIDATE, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_FAIRY ; egg groups
