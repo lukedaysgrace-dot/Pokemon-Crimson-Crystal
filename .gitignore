@@ -1,52 +1,33 @@
-# generated
-*.tx
-*.o
+# Python virtual environment
+.venv/
 
-# precompiled python
+# Python cache
+__pycache__/
 *.pyc
-*$py.class
+*.pyo
+*.pyd
 
-# no binaries
-*.exe
+# VS Code
+.vscode/
 
-# roms
-*.gbc
-*.gb
+# macOS
+.DS_Store
 
-# for any of the poor souls with save game files in their working directory
-*.sgm
-*.sav
-*.rtc
-*.sn*
-*.sa*
-*.sg1
-
-# rgbds extras
-*.map
-*.sym
-
-# compare.sh
-baserom.txt
-pokecrystal.txt
-
-# for vim configuration
-# url: http://www.vim.org/scripts/script.php?script_id=441
-.lvimrc
-# swap files for vim
-.*.swp
-# swap files for gedit
-*~
-
-*.dimensions
-*.gbcpal
-*.2bpp
+# Windows
+Thumbs.db
+# RGBDS and ROM build outputs
+*.o
 *.1bpp
+*.2bpp
 *.lz
-*.animated.tilemap
-gfx/pokemon/*/bitmask.asm
-gfx/pokemon/*/frames.asm
-!gfx/pokemon/unown/bitmask.asm
-!gfx/pokemon/unown/frames.asm
+*.gb
+*.gbc
+*.sym
+*.map
+*.sav
 
-# machine-local Makefile overrides (RGBDS path, etc.)
-local.mk
+# Temporary build tools
+.tmpbuild/
+
+# Documentation preview/cache
+docs/data/build-report.json
