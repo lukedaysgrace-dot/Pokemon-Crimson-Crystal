@@ -154,8 +154,19 @@ class Builder:
       if not m: continue
       v=[x.strip() for x in m.group(1).split(',')]
       if len(v)<7: continue
-      idx=len(out); name=names[idx] if idx<len(names) else (disp(raw.split(';',1)[1]) if ';' in raw else f'Move {idx+1}')
-      out.append({'const':re.sub('[^A-Z0-9]+','_',name.upper()).strip('_'),'name':name,'effect':disp(v[0]),'power':num(v[1]),'type':disp(v[2]),'category':disp(v[3]),'accuracy':num(v[4]),'pp':num(v[5]),'chance':num(v[6])})
+      idx=len(out)
+      comment=raw.split(';',1)[1].strip() if ';' in raw else ''
+      # Crimson Crystal's move table comments contain the actual code constant
+      # (for example PSYCHIC_M). Keep that constant for cross-referencing while
+      # using the names table / display formatter for the user-facing name.
+      const_match=re.search(r'\b([A-Z][A-Z0-9_]*)\b',comment.upper()) if comment else None
+      move_const=const_match.group(1) if const_match else None
+      name=names[idx] if idx<len(names) else (disp(move_const) if move_const else f'Move {idx+1}')
+      if move_const in SPECIAL_DISPLAY_NAMES:
+        name=SPECIAL_DISPLAY_NAMES[move_const]
+      if not move_const:
+        move_const=re.sub('[^A-Z0-9]+','_',name.upper()).strip('_')
+      out.append({'const':move_const,'name':name,'effect':disp(v[0]),'power':num(v[1]),'type':disp(v[2]),'category':disp(v[3]),'accuracy':num(v[4]),'pp':num(v[5]),'chance':num(v[6])})
     return out
   def export_static_sprite(self, src, dst):
     """Copy a square static sprite, or crop the first frame from a sprite sheet."""

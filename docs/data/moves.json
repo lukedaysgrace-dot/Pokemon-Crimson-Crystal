@@ -408,7 +408,7 @@
   },
   {
     "const": "DOUBLE_EDGE",
-    "name": "DOUBLE-EDGE",
+    "name": "Double-Edge",
     "effect": "Effect Recoil Hit",
     "power": 120,
     "type": "Normal",
@@ -1023,8 +1023,8 @@
     "chance": 10
   },
   {
-    "const": "PSYCHIC",
-    "name": "PSYCHIC",
+    "const": "PSYCHIC_M",
+    "name": "Psychic",
     "effect": "Effect Sp Def Down Hit",
     "power": 90,
     "type": "Psychic",
@@ -1475,7 +1475,7 @@
   },
   {
     "const": "SOFTBOILED",
-    "name": "SOFTBOILED",
+    "name": "Soft-Boiled",
     "effect": "Effect Heal",
     "power": 0,
     "type": "Normal",
@@ -1761,7 +1761,7 @@
   },
   {
     "const": "TRI_ATTACK",
-    "name": "TRI ATTACK",
+    "name": "Tri Attack",
     "effect": "Effect Tri Attack",
     "power": 80,
     "type": "Normal",
@@ -2772,7 +2772,7 @@
     "chance": 0
   },
   {
-    "const": "DAZZLE_GLEAM",
+    "const": "DAZZLING_GLEAM",
     "name": "DAZZLE GLEAM",
     "effect": "Effect Normal Hit",
     "power": 80,
@@ -2783,7 +2783,7 @@
     "chance": 0
   },
   {
-    "const": "DISARM_VOICE",
+    "const": "DISARMING_VOICE",
     "name": "DISARM VOICE",
     "effect": "Effect Always Hit",
     "power": 40,
@@ -2794,7 +2794,7 @@
     "chance": 0
   },
   {
-    "const": "DRAIN_KISS",
+    "const": "DRAINING_KISS",
     "name": "DRAIN KISS",
     "effect": "Effect Leech Hit",
     "power": 60,
@@ -3147,7 +3147,7 @@
   },
   {
     "const": "X_SCISSOR",
-    "name": "X-SCISSOR",
+    "name": "X-Scissor",
     "effect": "Effect Normal Hit",
     "power": 80,
     "type": "Bug",
@@ -3158,7 +3158,7 @@
   },
   {
     "const": "U_TURN",
-    "name": "U-TURN",
+    "name": "U-turn",
     "effect": "Effect U Turn",
     "power": 70,
     "type": "Bug",
@@ -3774,7 +3774,7 @@
   },
   {
     "const": "WILL_O_WISP",
-    "name": "WILL-O-WISP",
+    "name": "Will-O-Wisp",
     "effect": "Effect Burn",
     "power": 0,
     "type": "Fire",
@@ -3817,7 +3817,7 @@
     "chance": 100
   },
   {
-    "const": "FIRST_STRIKE",
+    "const": "FIRST_IMPRESSION",
     "name": "FIRST STRIKE",
     "effect": "Effect First Impression",
     "power": 90,
