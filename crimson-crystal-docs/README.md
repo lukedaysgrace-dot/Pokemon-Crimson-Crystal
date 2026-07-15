@@ -74,3 +74,14 @@ git add crimson-crystal-docs docs
 git commit -m "Update documentation"
 git push
 ```
+
+
+## Regional-form identity
+
+All generated Pokémon pages, sprites, learnsets, evolutions, encounter links, and
+cross-links use the unique species constant rather than the visible species name.
+For example, `GRIMER` and `GRIMER_ALOLAN` generate separate pages and can never
+overwrite or merge with one another.
+
+Evolution data follows each form's own source block exactly. Intentional custom
+evolutions such as the project's Corsola and Farfetch'd lines are preserved.
