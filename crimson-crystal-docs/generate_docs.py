@@ -10,8 +10,37 @@ def txt(p):
     return p.read_text(encoding='utf-8', errors='ignore')
 def strip(line):
     return line.split(';',1)[0].strip()
+SPECIAL_DISPLAY_NAMES = {
+    # Internal constants whose code-safe names differ from their proper display names.
+    'PSYCHIC_M': 'Psychic',
+    'FARFETCH_D': "Farfetch'd",
+    'SIRFETCH_D': "Sirfetch'd",
+    'MR__MIME': 'Mr. Mime',
+    'MR__RIME': 'Mr. Rime',
+    'HO_OH': 'Ho-Oh',
+    'PORYGON_Z': 'Porygon-Z',
+    'TYPE_NULL': 'Type: Null',
+    'JANGMO_O': 'Jangmo-o',
+    'HAKAMO_O': 'Hakamo-o',
+    'KOMMO_O': 'Kommo-o',
+    'NIDORAN_F': 'Nidoran♀',
+    'NIDORAN_M': 'Nidoran♂',
+    'DOUBLE_EDGE': 'Double-Edge',
+    'SOFTBOILED': 'Soft-Boiled',
+    'WILL_O_WISP': 'Will-O-Wisp',
+    'U_TURN': 'U-turn',
+    'X_SCISSOR': 'X-Scissor',
+    'V_CREATE': 'V-create',
+    'FREEZE_DRY': 'Freeze-Dry',
+    'TRI_ATTACK': 'Tri Attack',
+}
+
 def disp(s):
-    return ' '.join(x.capitalize() for x in s.strip().strip(',"').replace('@','').lower().split('_'))
+    raw=s.strip().strip(',"').replace('@','')
+    key=raw.upper()
+    if key in SPECIAL_DISPLAY_NAMES:
+        return SPECIAL_DISPLAY_NAMES[key]
+    return ' '.join(part.capitalize() for part in raw.lower().split('_') if part)
 def slug(s):
     return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 def num(s):
