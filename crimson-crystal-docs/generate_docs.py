@@ -41,6 +41,21 @@ def disp(s):
     if key in SPECIAL_DISPLAY_NAMES:
         return SPECIAL_DISPLAY_NAMES[key]
     return ' '.join(part.capitalize() for part in raw.lower().split('_') if part)
+def form_label(const, name):
+  suffixes=(
+    ('_ALOLAN','Alolan'),
+    ('_GALARIAN','Galarian'),
+    ('_HISUIAN','Hisuian'),
+    ('_PALDEAN_FIRE','Paldean Blaze Breed'),
+    ('_PALDEAN_WATER','Paldean Aqua Breed'),
+    ('_PALDEAN','Paldean'),
+    ('_BLOODMOON','Bloodmoon'),
+  )
+  for suffix,label in suffixes:
+    if const.endswith(suffix):
+      return f'{name} ({label})'
+  return name
+
 def slug(s):
     return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 def num(s):
@@ -118,7 +133,6 @@ class Builder:
     return out
   def learnsets(self, mons):
     look={re.sub('[^a-z0-9]','',k.lower()):k for k in mons}
-    look.update({re.sub('[^a-z0-9]','',v['name'].lower()):k for k,v in mons.items()})
     for p in [self.r/'data/pokemon/evos_attacks.asm',self.r/'data/pokemon/evos_attacks_johto.asm',self.r/'data/pokemon/evos_attacks_kanto.asm',self.r/'data/pokemon/evos_attacks_clones.asm']:
       if not p.exists(): continue
       cur=None; mode='evo'
@@ -196,7 +210,12 @@ class Builder:
     if not src.exists(): return
     dirs={re.sub('[^a-z0-9]','',p.name.lower()):p for p in src.iterdir() if p.is_dir()}
     for m in mons.values():
-      d=dirs.get(re.sub('[^a-z0-9]','',m['const'].lower())) or dirs.get(re.sub('[^a-z0-9]','',m['name'].lower()))
+      const_key=re.sub('[^a-z0-9]','',m['const'].lower())
+      d=dirs.get(const_key)
+      if not d:
+        same_name=[x for x in mons.values() if x['name'].lower()==m['name'].lower()]
+        if len(same_name)==1:
+          d=dirs.get(re.sub('[^a-z0-9]','',m['name'].lower()))
       if not d: continue
       # Prefer the dedicated static front image. Other PNGs are only fallbacks,
       # and must be large enough to contain a complete front frame.
@@ -530,9 +549,10 @@ class Builder:
   def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a></nav></header>'
   def shell(self,title,body,p=''): return f'<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
-    im=f'<img src="{p}{m["sprite"]}" alt="{html.escape(m["name"])}">' if m['sprite'] else '<div class="placeholder">◆</div>'
-    search=' '.join([m['name']]+m['types']+m['abilities']).lower()
-    return f'<a class="card searchable" data-search="{html.escape(search)}" data-type="{" ".join(slug(x) for x in m["types"])}" href="{p}pokemon/{slug(m["name"])}.html"><small>#{m["number"]:03}</small>{im}<h3>{html.escape(m["name"])}</h3><div>{"".join(self.badge(x) for x in m["types"])}</div></a>'
+    shown=form_label(m["const"],m["name"])
+    im=f'<img src="{p}{m["sprite"]}" alt="{html.escape(shown)}">' if m['sprite'] else '<div class="placeholder">◆</div>'
+    search=' '.join([shown,m["const"]]+m['types']+m['abilities']).lower()
+    return f'<a class="card searchable" data-search="{html.escape(search)}" data-type="{" ".join(slug(x) for x in m["types"])}" href="{p}pokemon/{slug(m["const"])}.html"><small>#{m["number"]:03}</small>{im}<h3>{html.escape(shown)}</h3><div>{"".join(self.badge(x) for x in m["types"])}</div></a>'
   def attach_clone_forms(self, mons):
     clone_pairs={
       'BULBASAUR':'BULBASAUR_CLONE','IVYSAUR':'IVYSAUR_CLONE','VENUSAUR':'VENUSAUR_CLONE',
@@ -572,17 +592,18 @@ class Builder:
         cstats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in c['stats'].items())
         clearn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(c['learnset'],key=lambda x:x['level']))
         toggle='<div class="form-toggle"><button class="active" data-form="normal">Normal</button><button data-form="clone">Clone</button></div>'
-        clone_panel=f'<div class="form-view" data-form-view="clone" hidden><section class="monhero">{csprite}<div><p class="eyebrow">CLONE FORM</p><h1>{html.escape(m["name"])}</h1><div>{"".join(self.badge(t) for t in c["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(c["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(c["stats"].values())}</em></h2>{cstats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in c["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{clearn or "<p>No moves detected.</p>"}</section></div>'
-      normal=f'<div class="form-view" data-form-view="normal"><section class="monhero">{sprite}<div><p class="eyebrow">#{m["number"]:03}</p><h1>{html.escape(m["name"])}</h1><div>{"".join(self.badge(t) for t in m["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(m["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(m["stats"].values())}</em></h2>{stats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in m["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{learn or "<p>No moves detected.</p>"}</section></div>'
+        clone_panel=f'<div class="form-view" data-form-view="clone" hidden><section class="monhero">{csprite}<div><p class="eyebrow">CLONE FORM</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in c["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(c["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(c["stats"].values())}</em></h2>{cstats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in c["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{clearn or "<p>No moves detected.</p>"}</section></div>'
+      normal=f'<div class="form-view" data-form-view="normal"><section class="monhero">{sprite}<div><p class="eyebrow">#{m["number"]:03}</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in m["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(m["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(m["stats"].values())}</em></h2>{stats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in m["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{learn or "<p>No moves detected.</p>"}</section></div>'
       loc_entries=wild_by_const.get(m['const'],[])
       loc_html=''.join(f'<div class="location-row"><b><a href="../locations/{slug(e["location_const"])}.html">{html.escape(e["location"])}</a></b><span>{html.escape(e["method"])}</span><span>{html.escape(e["time"])}</span><span>Lv. {e["level"]}</span></div>' for e in loc_entries)
       locations=f'<section class="panel"><h2>Wild locations</h2><div class="locations">{loc_html or "<p>Not found in the parsed wild encounter tables.</p>"}</div></section>'
       body=f'<a class="back" href="../pokedex.html">← Pokédex</a>{toggle}{normal}{clone_panel}{locations}'
-      p=self.o/'pokemon'/f'{slug(m["name"])}.html';p.parent.mkdir(exist_ok=True);p.write_text(self.shell(m['name'],body,'../'))
+      page_title=form_label(m["const"],m["name"])
+      p=self.o/'pokemon'/f'{slug(m["const"])}.html';p.parent.mkdir(exist_ok=True);p.write_text(self.shell(page_title,body,'../'))
     rows=''.join(f'<a class="row searchable" data-search="{html.escape((m["name"]+" "+m["type"]+" "+m["category"]).lower())}" href="moves/{slug(m["name"])}.html"><b>{html.escape(m["name"])}</b><span>{self.badge(m["type"])}</span><span>{m["category"]}</span><span>{m["power"] if m["power"] is not None else "—"}</span><span>{m["accuracy"] if m["accuracy"] is not None else "—"}</span><span>{m["pp"] if m["pp"] is not None else "—"}</span></a>' for m in moves)
     (self.o/'moves.html').write_text(self.shell('Moves',f'<section class="head"><p class="eyebrow">BATTLE DATA</p><h1>Moves</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search moves"></div><div class="table"><div class="row labels"><span>Move</span><span>Type</span><span>Category</span><span>Power</span><span>Accuracy</span><span>PP</span></div>{rows}</div>'))
     for m in moves:
-      b=f'<a class="back" href="../moves.html">← Moves</a><section class="head"><p class="eyebrow">{m["type"]} MOVE</p><h1>{html.escape(m["name"])}</h1></section><section class="panel"><dl><div><dt>Type</dt><dd>{self.badge(m["type"])}</dd></div><div><dt>Category</dt><dd>{m["category"]}</dd></div><div><dt>Power</dt><dd>{m["power"]}</dd></div><div><dt>Accuracy</dt><dd>{m["accuracy"]}</dd></div><div><dt>PP</dt><dd>{m["pp"]}</dd></div><div><dt>Effect</dt><dd>{m["effect"]}</dd></div></dl></section>'
+      b=f'<a class="back" href="../moves.html">← Moves</a><section class="head"><p class="eyebrow">{m["type"]} MOVE</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1></section><section class="panel"><dl><div><dt>Type</dt><dd>{self.badge(m["type"])}</dd></div><div><dt>Category</dt><dd>{m["category"]}</dd></div><div><dt>Power</dt><dd>{m["power"]}</dd></div><div><dt>Accuracy</dt><dd>{m["accuracy"]}</dd></div><div><dt>PP</dt><dd>{m["pp"]}</dd></div><div><dt>Effect</dt><dd>{m["effect"]}</dd></div></dl></section>'
       p=self.o/'moves'/f'{slug(m["name"])}.html';p.parent.mkdir(exist_ok=True);p.write_text(self.shell(m['name'],b,'../'))
     # Dedicated location index and pages.
     by_location={}
@@ -600,7 +621,7 @@ class Builder:
       sections=''
       for method,entries in sorted(methods.items()):
         rows=''.join(
-          f'<div class="encounter-card"><a href="../pokemon/{slug(e["pokemon"])}.html"><b>{html.escape(e["pokemon"])}</b></a><span>{html.escape(e["time"])}</span><span>Lv. {e["level"]}</span><span>{str(e["chance"])+"%" if e.get("chance") is not None else "—"}</span><span>{html.escape(e.get("condition") or "")}</span></div>'
+          f'<div class="encounter-card"><a href="../pokemon/{slug(e["const"])}.html"><b>{html.escape(e["pokemon"])}</b></a><span>{html.escape(e["time"])}</span><span>Lv. {e["level"]}</span><span>{str(e["chance"])+"%" if e.get("chance") is not None else "—"}</span><span>{html.escape(e.get("condition") or "")}</span></div>'
           for e in entries)
         sections+=f'<section class="panel"><h2>{html.escape(method)}</h2><div class="encounter-card labels"><span>Pokémon</span><span>Time</span><span>Level</span><span>Chance</span><span>Condition</span></div>{rows}</section>'
       lp=self.o/'locations'/f'{slug(loc)}.html'; lp.parent.mkdir(exist_ok=True)
