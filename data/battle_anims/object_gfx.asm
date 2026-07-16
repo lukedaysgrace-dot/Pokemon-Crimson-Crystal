@@ -72,3 +72,18 @@ AnimObjGFX:
 	anim_obj_gfx  4, AnimObjWindBGGFX
 	anim_obj_gfx 48, AnimObjUTurnGFX
 	anim_obj_gfx  5, AnimObjHeartsGFX
+; polishedcrystal ports (batch 2)
+	anim_obj_gfx 28, AnimObjAquaJetGFX
+	anim_obj_gfx  9, AnimObjBugBuzzGFX
+	anim_obj_gfx 10, AnimObjGlowShadowGFX
+	anim_obj_gfx  6, AnimObjIcicleCrashGFX
+	anim_obj_gfx  9, AnimObjMidGlowClearGFX
+	anim_obj_gfx 16, AnimObjMoonGFX
+	anim_obj_gfx 18, AnimObjMushroomGFX
+	anim_obj_gfx 22, AnimObjObjects2GFX
+	anim_obj_gfx  4, AnimObjPetalsGFX
+	anim_obj_gfx  9, AnimObjTearGFX
+	anim_obj_gfx 12, AnimObjTriangleGFX
+	anim_obj_gfx 12, AnimObjWaterBallGFX
+	anim_obj_gfx 10, AnimObjBeamAuroraGFX
+	anim_obj_gfx 10, AnimObjBeamSolarGFX
