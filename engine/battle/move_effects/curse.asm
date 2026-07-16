@@ -41,6 +41,9 @@ BattleCommand_Curse:
 	ld a, $1
 	ld [wKickCounter], a
 	call AnimateCurrentMove
+	; One stat up anim + "ATTACK and DEFENSE rose!", then one stat down
+	; anim + "SPEED fell!".
+	call BattleCommand_DeferStatMessages
 	ld a, SPEED
 	call LowerStat
 	call BattleCommand_SwitchTurn
@@ -51,7 +54,8 @@ BattleCommand_Curse:
 	call BattleCommand_StatUpMessage
 	call ResetMiss
 	call BattleCommand_DefenseUp
-	jp BattleCommand_StatUpMessage
+	call BattleCommand_StatUpMessage
+	jp BattleCommand_FlushStatMessages
 
 .ghost
 
