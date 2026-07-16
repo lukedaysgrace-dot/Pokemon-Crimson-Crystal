@@ -11,10 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SYM_PATH = ROOT / "pokecrystal.sym"
 OUT_PATH = ROOT / "pokecrystal.cheats"
 
-NUM_TMS = 50
-NUM_HMS = 7
 MASTER_BALL = 0x01
-POKEGEAR_MAP_AND_ON = 0x81  # map card + pokegear obtained
 MAX_REPEL_STEPS = 0xFF
 DEBUG_LEVEL100 = 1 << 2  # DEBUG_LEVEL100_F in wDebugFlags
 ALWAYS_CATCH = 0x01  # nonzero in wAlwaysCatchCheat
@@ -72,6 +69,47 @@ def parse_const_value(path: Path, name: str) -> int:
     raise ValueError(f"constant not found: {name}")
 
 
+def parse_equ_value(path: Path, name: str) -> int:
+    pattern = re.compile(rf"^{re.escape(name)}\s+EQU\s+(\$[0-9a-fA-F]+|\d+)\b")
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.split(";", 1)[0].strip()
+        match = pattern.match(line)
+        if match:
+            return parse_rgbds_number(match.group(1))
+    raise ValueError(f"constant not found: {name}")
+
+
+def parse_tm_hm_layout(path: Path) -> tuple[int, int, int]:
+    """Return (first HM offset, Fly offset, end offset) in wTMsHMs."""
+    tms: list[str] = []
+    hms: list[str] = []
+    pattern = re.compile(r"^add_(tm|hm)\s+(\w+)")
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.split(";", 1)[0].strip()
+        match = pattern.match(line)
+        if not match:
+            continue
+        kind, move = match.groups()
+        (tms if kind == "tm" else hms).append(move)
+
+    if not tms or not hms:
+        raise ValueError("could not parse TM/HM layout")
+    try:
+        fly_offset = len(tms) + hms.index("FLY")
+    except ValueError as error:
+        raise ValueError("FLY not found in HM layout") from error
+    return len(tms), fly_offset, len(tms) + len(hms)
+
+
+def codes_for_flag_array(start: int, num_flags: int, persistent: bool = False) -> list[str]:
+    num_bytes = (num_flags + 7) // 8
+    lines = codes_for_range(start, start + num_bytes, 0xFF, persistent)
+    remainder = num_flags % 8
+    if remainder:
+        lines[-1] = wram_code(start + num_bytes - 1, (1 << remainder) - 1, persistent)
+    return lines
+
+
 def main() -> int:
     sym_path = Path(sys.argv[1]) if len(sys.argv) > 1 else SYM_PATH
     out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else OUT_PATH
@@ -106,8 +144,17 @@ def main() -> int:
     w_num_items = need("wNumItems")
     w_items = need("wItems")
 
-    fly_hm = w_tms_hms + NUM_TMS + 1  # HM02 FLY
-    hm_end = w_tms_hms + NUM_TMS + NUM_HMS
+    item_constants = ROOT / "constants" / "item_constants.asm"
+    wram_constants = ROOT / "constants" / "wram_constants.asm"
+    hm_start_offset, fly_offset, tm_hm_end_offset = parse_tm_hm_layout(item_constants)
+    fly_hm = w_tms_hms + fly_offset
+    hm_start = w_tms_hms + hm_start_offset
+    hm_end = w_tms_hms + tm_hm_end_offset
+    num_johto_badges = parse_const_value(wram_constants, "NUM_JOHTO_BADGES")
+    num_kanto_badges = parse_const_value(wram_constants, "NUM_KANTO_BADGES")
+    map_card_bit = parse_const_value(wram_constants, "POKEGEAR_MAP_CARD_F")
+    pokegear_obtained_bit = parse_equ_value(wram_constants, "POKEGEAR_OBTAINED_F")
+    pokegear_map_and_on = (1 << map_card_bit) | (1 << pokegear_obtained_bit)
     num_spawns = parse_const_value(ROOT / "constants" / "map_data_constants.asm", "NUM_SPAWNS")
     visited_end = w_visited_spawns + (num_spawns + 7) // 8
 
@@ -138,24 +185,22 @@ def main() -> int:
     blocks.append(
         cheat_block(
             "all badges (16)",
-            [
-                wram_code(w_johto_badges, 0xFF, True),
-                wram_code(w_kanto_badges, 0xFF, True),
-            ],
+            codes_for_flag_array(w_johto_badges, num_johto_badges, True)
+            + codes_for_flag_array(w_kanto_badges, num_kanto_badges, True),
         )
     )
 
-    hm_lines: list[str] = []
-    for addr in range(w_tms_hms, hm_end):
-        hm_lines.append(wram_code(addr, 0x01, True))
+    hm_lines = codes_for_range(hm_start, hm_end, 0x01, True)
     blocks.append(cheat_block("all hms", hm_lines))
 
-    fly_lines = [
-        wram_code(w_johto_badges, 0xFF, True),
-        wram_code(w_kanto_badges, 0xFF, True),
-        wram_code(fly_hm, 0x01, True),
-        wram_code(w_pokegear_flags, POKEGEAR_MAP_AND_ON, True),
-    ]
+    fly_lines = (
+        codes_for_flag_array(w_johto_badges, num_johto_badges, True)
+        + codes_for_flag_array(w_kanto_badges, num_kanto_badges, True)
+        + [
+            wram_code(fly_hm, 0x01, True),
+            wram_code(w_pokegear_flags, pokegear_map_and_on, True),
+        ]
+    )
     fly_lines.extend(codes_for_range(w_visited_spawns, visited_end, 0xFF, True))
     blocks.append(cheat_block("fly anywhere (needs a flying party mon)", fly_lines))
 
