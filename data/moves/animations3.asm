@@ -3212,7 +3212,6 @@ BattleAnim_Scald_PC3:
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_WATER
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_WATER
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_VERY_BRIGHT
-	anim_bgp $90
 	anim_sound 0, 1, SFX_SURF
 	anim_obj ANIM_OBJ_SCALD, 64, 88, $4
 	anim_wait 4

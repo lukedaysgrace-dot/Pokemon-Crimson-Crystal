@@ -440,14 +440,14 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, BUG_BUZZ
-	dbw 1, ZEN_HEADBUTT
-	dbw 4, HYDRO_PUMP
-	dbw 5, VOLT_SWITCH
-	dbw 6, WILD_CHARGE
-	dbw 7, SEISMIC_TOSS
-	dbw 8, ICY_WIND
-	dbw 9, DISARMING_VOICE
+	dbw 1, SCALD
+	dbw 1, DRAGON_CLAW
+	dbw 4, DRAGON_DANCE
+	dbw 5, DRAINING_KISS
+	dbw 6, PIXIE_PUNCH
+	dbw 7, EXPLOSION
+	dbw 8, DRACO_METEOR
+	dbw 9, OCTAZOOKA
 	dbw 20, FLAIL
 	dbw 23, CRUNCH
 	dbw 26, AQUA_TAIL
