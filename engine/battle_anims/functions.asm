@@ -104,7 +104,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_PowerGem ; 58
 	dw BattleAnimFunction_Roost ; 59
 	dw BattleAnimFunction_RadialMoveOut_VerySlow ; 5a
-	dw BattleAnimFunction_MoonRise ; 5b
+	dw BattleAnimFunction_36 ; 5b BATTLEANIMFUNC_MOON_RISE (polished: Moon == StrengthSeismicToss; BattleAnimFunction_36 is the identical vanilla routine)
 	dw BattleAnimFunction_HiddenPowerFast ; 5c
 	dw BattleAnimFunction_AirCutter ; 5d
 	dw BattleAnimFunction_DarkPulse ; 5e

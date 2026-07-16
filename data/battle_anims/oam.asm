@@ -332,6 +332,8 @@ BattleAnimOAMData:
 	dbbw $06,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_MUSHROOM_2
 	dbbw $0c,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_MUSHROOM_3
 	dbbw $11,  2, .OAMData_PC_STONE_EDGE ; BATTLEANIMOAMSET_PC_STONE_EDGE
+	dbbw $0e, 13, .OAMData_PC_GYRO_BALL_2 ; BATTLEANIMOAMSET_PC_GYRO_BALL_2
+	dbbw $1b, 14, .OAMData_PC_GYRO_BALL_3 ; BATTLEANIMOAMSET_PC_GYRO_BALL_3
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -2269,3 +2271,34 @@ BattleAnimOAMData:
 .OAMData_PC_STONE_EDGE:
 	dsprite  -1, 0,  -1, 0, $00, $0
 	dsprite   0, 0,  -1, 0, $01, $0
+
+.OAMData_PC_GYRO_BALL_2:
+	dbsprite   0,  -2, 0, 0, $00, $0
+	dbsprite  -2,  -1, 0, 0, $01, $0
+	dbsprite  -1,  -1, 0, 0, $02, $0
+	dbsprite   0,  -1, 0, 0, $03, $0
+	dbsprite   1,  -1, 0, 0, $04, $0
+	dbsprite  -2,   0, 0, 0, $05, $0
+	dbsprite  -1,   0, 0, 0, $06, $0
+	dbsprite   0,   0, 0, 0, $07, $0
+	dbsprite   1,   0, 0, 0, $08, $0
+	dbsprite  -2,   1, 0, 0, $09, $0
+	dbsprite  -1,   1, 0, 0, $0a, $0
+	dbsprite   0,   1, 0, 0, $0b, $0
+	dbsprite   1,   1, 0, 0, $0c, $0
+
+.OAMData_PC_GYRO_BALL_3:
+	dbsprite  -1,  -2, 0, 0, $00, $0
+	dbsprite   0,  -2, 0, 0, $01, $0
+	dbsprite   1,  -2, 0, 0, $02, $0
+	dbsprite  -1,  -1, 0, 0, $03, $0
+	dbsprite   0,  -1, 0, 0, $04, $0
+	dbsprite   1,  -1, 0, 0, $05, $0
+	dbsprite  -2,   0, 0, 0, $06, $0
+	dbsprite  -1,   0, 0, 0, $07, $0
+	dbsprite   0,   0, 0, 0, $08, $0
+	dbsprite   1,   0, 0, 0, $09, $0
+	dbsprite  -2,   1, 0, 0, $0a, $0
+	dbsprite  -1,   1, 0, 0, $0b, $0
+	dbsprite   0,   1, 0, 0, $0c, $0
+	dbsprite   1,   1, 0, 0, $0d, $0
