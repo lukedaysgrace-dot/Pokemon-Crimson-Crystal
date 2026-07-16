@@ -2261,6 +2261,7 @@ CloseCombat:
 	applydamage
 	criticaltext
 	supereffectivetext
+	deferstatmessages
 	switchturn
 	defensedown
 	switchturn
@@ -2275,6 +2276,7 @@ CloseCombat:
 	statdownmessage
 	switchturn
 	restoremiss
+	flushstatmessages
 	checkfaint
 	buildopponentrage
 	kingsrock
@@ -2419,6 +2421,7 @@ BulkUp:
 	checkobedience
 	usedmovetext
 	doturn
+	deferstatmessages
 	attackup
 	lowersub
 	statupanim
@@ -2429,12 +2432,14 @@ BulkUp:
 	defenseup
 	statupmessage
 	statupfailtext
+	flushstatmessages
 	endmove
 
 CalmMind:
 	checkobedience
 	usedmovetext
 	doturn
+	deferstatmessages
 	specialattackup
 	lowersub
 	statupanim
@@ -2445,12 +2450,14 @@ CalmMind:
 	specialdefenseup
 	statupmessage
 	statupfailtext
+	flushstatmessages
 	endmove
 
 DragonDance:
 	checkobedience
 	usedmovetext
 	doturn
+	deferstatmessages
 	attackup
 	lowersub
 	statupanim
@@ -2461,12 +2468,14 @@ DragonDance:
 	speedup
 	statupmessage
 	statupfailtext
+	flushstatmessages
 	endmove
 
 HoneClaws:
 	checkobedience
 	usedmovetext
 	doturn
+	deferstatmessages
 	attackup
 	lowersub
 	statupanim
@@ -2477,17 +2486,21 @@ HoneClaws:
 	accuracyup
 	statupmessage
 	statupfailtext
+	flushstatmessages
 	endmove
 
 ShellSmash:
-; Animation plays once up front; then Def/SpDef drop and Atk/SpAtk/Spe
-; sharply rise, each announced separately (like polishedcrystal).
+; Move animation plays once up front; then Def/SpDef drop and
+; Atk/SpAtk/Spe sharply rise. The stat messages are deferred: one stat up
+; anim + "ATTACK, SPCL.ATK and SPEED sharply rose!", then one stat down
+; anim + "DEFENSE and SPCL.DEF fell!".
 	checkobedience
 	usedmovetext
 	doturn
 	lowersub
 	statupanim
 	raisesub
+	deferstatmessages
 	switchturn
 	defensedown
 	switchturn
@@ -2510,6 +2523,7 @@ ShellSmash:
 	resetmiss
 	speedup2
 	statupmessage
+	flushstatmessages
 	endmove
 
 Roost:

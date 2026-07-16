@@ -2987,6 +2987,8 @@ WeaknessPolicyBoost:
 	call SwitchTurn
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
+	; One stat up anim + "ATTACK and SPCL.ATK sharply rose!"
+	farcall DeferStatMessages_Core
 	xor a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
@@ -2997,6 +2999,7 @@ WeaknessPolicyBoost:
 	ld [wEffectFailed], a
 	farcall BattleCommand_SpecialAttackUp2
 	farcall BattleCommand_StatUpMessage
+	farcall FlushStatMessages_Core
 	jp SwitchTurn
 
 RockyHelmetDamage:

@@ -198,6 +198,8 @@ ENDM
 	command savemiss                ; bf
 	command restoremiss             ; c0
 	command firstimpressioncheck     ; c1
+	command deferstatmessages       ; c2
+	command flushstatmessages       ; c3
 
 	enum_start $fe
 	command endturn                 ; fe

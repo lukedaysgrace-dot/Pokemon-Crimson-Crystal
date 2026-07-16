@@ -197,3 +197,5 @@ BattleCommandPointers:
 	dw BattleCommand_SaveMiss
 	dw BattleCommand_RestoreMiss
 	dw BattleCommand_FirstImpressionCheck
+	dw BattleCommand_DeferStatMessages
+	dw BattleCommand_FlushStatMessages
