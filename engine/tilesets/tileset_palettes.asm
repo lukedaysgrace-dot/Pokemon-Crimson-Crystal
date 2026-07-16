@@ -16,6 +16,8 @@ LoadSpecialMapPalette:
 	jr z, .johto
 	cp TILESET_JOHTO_MODERN
 	jr z, .johto_modern
+	cp TILESET_KANTO
+	jr z, .kanto
 	jr .do_nothing
 
 .johto
@@ -24,6 +26,10 @@ LoadSpecialMapPalette:
 
 .johto_modern
 	ld hl, JohtoModernTilesetPalette
+	jr .load_outdoor_timeofday
+
+.kanto
+	ld hl, KantoTilesetPalette
 .load_outdoor_timeofday
 ; Only override outdoor maps (TOWN / ROUTE); anything else uses the default.
 	ld a, [wEnvironment]
@@ -179,3 +185,6 @@ INCLUDE "gfx/tilesets/johto.pal"
 
 JohtoModernTilesetPalette:
 INCLUDE "gfx/tilesets/johto_modern.pal"
+
+KantoTilesetPalette:
+INCLUDE "gfx/tilesets/kanto.pal"

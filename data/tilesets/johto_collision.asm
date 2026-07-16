@@ -154,3 +154,11 @@
 	tilecoll HEADBUTT_TREE, HEADBUTT_TREE, HEADBUTT_TREE, HEADBUTT_TREE ; 99
 	tilecoll FLOOR, FLOOR, CUT_TREE, HEADBUTT_TREE ; 9a
 	tilecoll WALL, WALL, WALL, WALL ; 9b
+	tilecoll WALL, WALL, WALL, WALL ; 9c
+	tilecoll WALL, FLOOR, WALL, FLOOR ; 9d
+	tilecoll FLOOR, WALL, FLOOR, WALL ; 9e
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 9f
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a0
+	tilecoll FLOOR, WALL, FLOOR, WALL ; a1
+	tilecoll WALL, WALL, FLOOR, WALL ; a2
+	tilecoll WALL, FLOOR, WALL, FLOOR ; a3
