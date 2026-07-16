@@ -14,7 +14,7 @@ ENDM
 	banim BattleAnim_SunnyDay    ; ANIM_INTRO_SUN
 	banim BattleAnim_Sandstorm   ; ANIM_INTRO_SANDSTORM
 	banim BattleAnim_Hail        ; ANIM_INTRO_HAIL
-	banim BattleAnim_InHail
+	banim BattleAnim_InHail_PC4
 	banim BattleAnim_ThrowPokeBall
 	banim BattleAnim_SendOutMon
 	banim BattleAnim_ReturnMon
@@ -22,11 +22,11 @@ ENDM
 	banim BattleAnim_Slp
 	banim BattleAnim_Brn
 	banim BattleAnim_Psn
-	banim BattleAnim_Sap
+	banim BattleAnim_Sap_PC3
 	banim BattleAnim_Frz
 	banim BattleAnim_Par
 	banim BattleAnim_InLove
-	banim BattleAnim_InSandstorm
+	banim BattleAnim_InSandstorm_PC4
 	banim BattleAnim_InNightmare
 	banim BattleAnim_InWhirlpool
 	banim BattleAnim_Miss
@@ -1320,6 +1320,7 @@ BattleAnim_Slp:
 	anim_ret
 
 BattleAnim_Brn:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx ANIM_GFX_FIRE
 .loop
 	anim_sound 0, 0, SFX_BURN
@@ -1330,6 +1331,7 @@ BattleAnim_Brn:
 	anim_ret
 
 BattleAnim_Psn:
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_1gfx ANIM_GFX_POISON
 	anim_sound 0, 0, SFX_POISON
 	anim_obj ANIM_OBJ_SKULL, 64, 56, $0
@@ -1353,8 +1355,9 @@ BattleAnim_Sap:
 	anim_ret
 
 BattleAnim_Frz:
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ICE
 	anim_1gfx ANIM_GFX_ICE
-	anim_obj ANIM_OBJ_FROZEN, 44, 110, $0
+	anim_obj ANIM_OBJ_FROZEN, 48, 112, $0
 	anim_sound 0, 0, SFX_SHINE
 	anim_wait 16
 	anim_sound 0, 0, SFX_SHINE
@@ -1363,11 +1366,11 @@ BattleAnim_Frz:
 
 BattleAnim_Par:
 	anim_1gfx ANIM_GFX_STATUS
-	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_sound 0, 0, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_PARALYZED, 20, 88, $42
-	anim_obj ANIM_OBJ_PARALYZED, 76, 88, $c2
-	anim_wait 128
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_obj ANIM_OBJ_PARALYZED, 20, 90, $42
+	anim_obj ANIM_OBJ_PARALYZED, 76, 90, $c2
+	anim_wait 32
 	anim_ret
 
 BattleAnim_InLove:

@@ -751,3 +751,20 @@ BattleAnim_XScissor_PC4:
 	anim_wait 32
 	anim_ret
 
+BattleAnim_InHail_PC4:
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ICE
+	anim_1gfx ANIM_GFX_ICE
+	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
+.loop
+	anim_call BattleAnimSub_Hail_PC4
+	anim_loop 2, .loop
+	anim_ret
+
+BattleAnim_InSandstorm_PC4:
+	anim_call BattleAnimSub_Sandstorm_PC4
+.loop
+	anim_sound 0, 1, SFX_MENU
+	anim_wait 8
+	anim_loop 6, .loop
+	anim_wait 8
+	anim_ret
