@@ -40,350 +40,350 @@ ENDM
 BattleAnimations::
 	banim BattleAnim_0
 	banim BattleAnim_Pound
-	banim BattleAnim_KarateChop
-	banim BattleAnim_Doubleslap
+	banim BattleAnim_KarateChop_PC3 ; KARATE_CHOP (was BattleAnim_KarateChop)
+	banim BattleAnim_DoubleSlap_PC3 ; DOUBLESLAP (was BattleAnim_Doubleslap)
 	banim BattleAnim_CometPunch
 	banim BattleAnim_MegaPunch
-	banim BattleAnim_PayDay
-	banim BattleAnim_FirePunch
-	banim BattleAnim_IcePunch
-	banim BattleAnim_Thunderpunch
-	banim BattleAnim_Scratch
+	banim BattleAnim_PayDay_PC4 ; PAY_DAY (was BattleAnim_PayDay)
+	banim BattleAnim_FirePunch_PC4 ; FIRE_PUNCH (was BattleAnim_FirePunch)
+	banim BattleAnim_IcePunch_PC4 ; ICE_PUNCH (was BattleAnim_IcePunch)
+	banim BattleAnim_Thunderpunch_PC3 ; THUNDERPUNCH (was BattleAnim_Thunderpunch)
+	banim BattleAnim_Scratch_PC4 ; SCRATCH (was BattleAnim_Scratch)
 	banim BattleAnim_Vicegrip
 	banim BattleAnim_Guillotine
 	banim BattleAnim_RazorWind
-	banim BattleAnim_SwordsDance
-	banim BattleAnim_Cut
-	banim BattleAnim_Gust
-	banim BattleAnim_WingAttack
+	banim BattleAnim_SwordsDance_PC3 ; SWORDS_DANCE (was BattleAnim_SwordsDance)
+	banim BattleAnim_Cut_PC4 ; CUT (was BattleAnim_Cut)
+	banim BattleAnim_Gust_PC3 ; GUST (was BattleAnim_Gust)
+	banim BattleAnim_WingAttack_PC3 ; WING_ATTACK (was BattleAnim_WingAttack)
 	banim BattleAnim_Whirlwind
-	banim BattleAnim_Fly
+	banim BattleAnim_Fly_PC3 ; FLY (was BattleAnim_Fly)
 	banim BattleAnim_Bind
 	banim BattleAnim_Slam
-	banim BattleAnim_VineWhip
-	banim BattleAnim_Stomp
-	banim BattleAnim_DoubleKick
+	banim BattleAnim_VineWhip_PC3 ; VINE_WHIP (was BattleAnim_VineWhip)
+	banim BattleAnim_Stomp_PC3 ; STOMP (was BattleAnim_Stomp)
+	banim BattleAnim_DoubleKick_PC3 ; DOUBLE_KICK (was BattleAnim_DoubleKick)
 	banim BattleAnim_MegaKick
 	banim BattleAnim_JumpKick
 	banim BattleAnim_RollingKick
 	banim BattleAnim_SandAttack
-	banim BattleAnim_Headbutt
-	banim BattleAnim_HornAttack
+	banim BattleAnim_Headbutt_PC3 ; HEADBUTT (was BattleAnim_Headbutt)
+	banim BattleAnim_HornAttack_PC4 ; HORN_ATTACK (was BattleAnim_HornAttack)
 	banim BattleAnim_FuryAttack
 	banim BattleAnim_HornDrill
-	banim BattleAnim_Tackle
-	banim BattleAnim_BodySlam
-	banim BattleAnim_Wrap
-	banim BattleAnim_TakeDown
-	banim BattleAnim_Thrash
-	banim BattleAnim_DoubleEdge
+	banim BattleAnim_Tackle_PC4 ; TACKLE (was BattleAnim_Tackle)
+	banim BattleAnim_BodySlam_PC3 ; BODY_SLAM (was BattleAnim_BodySlam)
+	banim BattleAnim_Wrap_PC3 ; WRAP (was BattleAnim_Wrap)
+	banim BattleAnim_TakeDown_PC3 ; TAKE_DOWN (was BattleAnim_TakeDown)
+	banim BattleAnim_Thrash_PC3 ; THRASH (was BattleAnim_Thrash)
+	banim BattleAnim_DoubleEdge_PC3 ; DOUBLE_EDGE (was BattleAnim_DoubleEdge)
 	banim BattleAnim_TailWhip
-	banim BattleAnim_PoisonSting
+	banim BattleAnim_PoisonSting_PC4 ; POISON_STING (was BattleAnim_PoisonSting)
 	banim BattleAnim_Twineedle
-	banim BattleAnim_PinMissile
-	banim BattleAnim_Leer
-	banim BattleAnim_Bite
-	banim BattleAnim_Growl
-	banim BattleAnim_Roar
-	banim BattleAnim_Sing
-	banim BattleAnim_Supersonic
-	banim BattleAnim_Sonicboom
-	banim BattleAnim_Disable
-	banim BattleAnim_Acid
-	banim BattleAnim_Ember
-	banim BattleAnim_Flamethrower
+	banim BattleAnim_PinMissile_PC3 ; PIN_MISSILE (was BattleAnim_PinMissile)
+	banim BattleAnim_Leer_PC4 ; LEER (was BattleAnim_Leer)
+	banim BattleAnim_Bite_PC3 ; BITE (was BattleAnim_Bite)
+	banim BattleAnim_Growl_PC4 ; GROWL (was BattleAnim_Growl)
+	banim BattleAnim_Roar_PC3 ; ROAR (was BattleAnim_Roar)
+	banim BattleAnim_Sing_PC3 ; SING (was BattleAnim_Sing)
+	banim BattleAnim_Supersonic_PC4 ; SUPERSONIC (was BattleAnim_Supersonic)
+	banim BattleAnim_Sonicboom_PC3 ; SONICBOOM (was BattleAnim_Sonicboom)
+	banim BattleAnim_Disable_PC3 ; DISABLE (was BattleAnim_Disable)
+	banim BattleAnim_Acid_PC3 ; ACID (was BattleAnim_Acid)
+	banim BattleAnim_Ember_PC3 ; EMBER (was BattleAnim_Ember)
+	banim BattleAnim_Flamethrower_PC3 ; FLAMETHROWER (was BattleAnim_Flamethrower)
 	banim BattleAnim_Mist
-	banim BattleAnim_WaterGun
-	banim BattleAnim_HydroPump
-	banim BattleAnim_Surf
-	banim BattleAnim_IceBeam
-	banim BattleAnim_Blizzard
-	banim BattleAnim_Psybeam
-	banim BattleAnim_Bubblebeam
-	banim BattleAnim_AuroraBeam
-	banim BattleAnim_HyperBeam
-	banim BattleAnim_Peck
-	banim BattleAnim_DrillPeck
+	banim BattleAnim_WaterGun_PC3 ; WATER_GUN (was BattleAnim_WaterGun)
+	banim BattleAnim_HydroPump_PC3 ; HYDRO_PUMP (was BattleAnim_HydroPump)
+	banim BattleAnim_Surf_PC3 ; SURF (was BattleAnim_Surf)
+	banim BattleAnim_IceBeam_PC3 ; ICE_BEAM (was BattleAnim_IceBeam)
+	banim BattleAnim_Blizzard_PC3 ; BLIZZARD (was BattleAnim_Blizzard)
+	banim BattleAnim_Psybeam_PC3 ; PSYBEAM (was BattleAnim_Psybeam)
+	banim BattleAnim_BubbleBeam_PC3 ; BUBBLEBEAM (was BattleAnim_Bubblebeam)
+	banim BattleAnim_AuroraBeam_PC4 ; AURORA_BEAM (was BattleAnim_AuroraBeam)
+	banim BattleAnim_HyperBeam_PC4 ; HYPER_BEAM (was BattleAnim_HyperBeam)
+	banim BattleAnim_Peck_PC4 ; PECK (was BattleAnim_Peck)
+	banim BattleAnim_DrillPeck_PC3 ; DRILL_PECK (was BattleAnim_DrillPeck)
 	banim BattleAnim_Submission
-	banim BattleAnim_LowKick
-	banim BattleAnim_Counter
-	banim BattleAnim_SeismicToss
-	banim BattleAnim_Strength
-	banim BattleAnim_Absorb
-	banim BattleAnim_MegaDrain
-	banim BattleAnim_LeechSeed
-	banim BattleAnim_Growth
-	banim BattleAnim_RazorLeaf
-	banim BattleAnim_Solarbeam
-	banim BattleAnim_Poisonpowder
-	banim BattleAnim_StunSpore
-	banim BattleAnim_SleepPowder
-	banim BattleAnim_PetalDance
-	banim BattleAnim_StringShot
-	banim BattleAnim_DragonRage
-	banim BattleAnim_FireSpin
-	banim BattleAnim_Thundershock
-	banim BattleAnim_Thunderbolt
-	banim BattleAnim_ThunderWave
-	banim BattleAnim_Thunder
-	banim BattleAnim_RockThrow
-	banim BattleAnim_Earthquake
+	banim BattleAnim_LowKick_PC3 ; LOW_KICK (was BattleAnim_LowKick)
+	banim BattleAnim_Counter_PC3 ; COUNTER (was BattleAnim_Counter)
+	banim BattleAnim_SeismicToss_PC3 ; SEISMIC_TOSS (was BattleAnim_SeismicToss)
+	banim BattleAnim_Strength_PC3 ; STRENGTH (was BattleAnim_Strength)
+	banim BattleAnim_Absorb_PC3 ; ABSORB (was BattleAnim_Absorb)
+	banim BattleAnim_MegaDrain_PC3 ; MEGA_DRAIN (was BattleAnim_MegaDrain)
+	banim BattleAnim_LeechSeed_PC3 ; LEECH_SEED (was BattleAnim_LeechSeed)
+	banim BattleAnim_Growth_PC3 ; GROWTH (was BattleAnim_Growth)
+	banim BattleAnim_RazorLeaf_PC3 ; RAZOR_LEAF (was BattleAnim_RazorLeaf)
+	banim BattleAnim_SolarBeam_PC3 ; SOLARBEAM (was BattleAnim_Solarbeam)
+	banim BattleAnim_Poisonpowder_PC4 ; POISONPOWDER (was BattleAnim_Poisonpowder)
+	banim BattleAnim_StunSpore_PC4 ; STUN_SPORE (was BattleAnim_StunSpore)
+	banim BattleAnim_SleepPowder_PC3 ; SLEEP_POWDER (was BattleAnim_SleepPowder)
+	banim BattleAnim_PetalDance_PC3 ; PETAL_DANCE (was BattleAnim_PetalDance)
+	banim BattleAnim_StringShot_PC3 ; STRING_SHOT (was BattleAnim_StringShot)
+	banim BattleAnim_DragonRage_PC4 ; DRAGON_RAGE (was BattleAnim_DragonRage)
+	banim BattleAnim_FireSpin_PC3 ; FIRE_SPIN (was BattleAnim_FireSpin)
+	banim BattleAnim_Thundershock_PC3 ; THUNDERSHOCK (was BattleAnim_Thundershock)
+	banim BattleAnim_Thunderbolt_PC3 ; THUNDERBOLT (was BattleAnim_Thunderbolt)
+	banim BattleAnim_ThunderWave_PC3 ; THUNDER_WAVE (was BattleAnim_ThunderWave)
+	banim BattleAnim_Thunder_PC3 ; THUNDER (was BattleAnim_Thunder)
+	banim BattleAnim_RockThrow_PC3 ; ROCK_THROW (was BattleAnim_RockThrow)
+	banim BattleAnim_Earthquake_PC4 ; EARTHQUAKE (was BattleAnim_Earthquake)
 	banim BattleAnim_Fissure
-	banim BattleAnim_Dig
-	banim BattleAnim_Toxic
+	banim BattleAnim_Dig_PC3 ; DIG (was BattleAnim_Dig)
+	banim BattleAnim_Toxic_PC4 ; TOXIC (was BattleAnim_Toxic)
 	banim BattleAnim_Confusion
-	banim BattleAnim_PsychicM
-	banim BattleAnim_Hypnosis
+	banim BattleAnim_PsychicM_PC3 ; PSYCHIC_M (was BattleAnim_PsychicM)
+	banim BattleAnim_Hypnosis_PC4 ; HYPNOSIS (was BattleAnim_Hypnosis)
 	banim BattleAnim_Meditate
-	banim BattleAnim_Agility
-	banim BattleAnim_QuickAttack
-	banim BattleAnim_Rage
-	banim BattleAnim_Teleport
-	banim BattleAnim_NightShade
+	banim BattleAnim_Agility_PC3 ; AGILITY (was BattleAnim_Agility)
+	banim BattleAnim_QuickAttack_PC3 ; QUICK_ATTACK (was BattleAnim_QuickAttack)
+	banim BattleAnim_Rage_PC3 ; RAGE (was BattleAnim_Rage)
+	banim BattleAnim_Teleport_PC3 ; TELEPORT (was BattleAnim_Teleport)
+	banim BattleAnim_NightShade_PC4 ; NIGHT_SHADE (was BattleAnim_NightShade)
 	banim BattleAnim_Mimic
-	banim BattleAnim_Screech
+	banim BattleAnim_Screech_PC4 ; SCREECH (was BattleAnim_Screech)
 	banim BattleAnim_DoubleTeam
-	banim BattleAnim_Recover
+	banim BattleAnim_Recover_PC4 ; RECOVER (was BattleAnim_Recover)
 	banim BattleAnim_Harden
-	banim BattleAnim_Minimize
-	banim BattleAnim_Smokescreen
-	banim BattleAnim_ConfuseRay
+	banim BattleAnim_Minimize_PC3 ; MINIMIZE (was BattleAnim_Minimize)
+	banim BattleAnim_Smokescreen_PC3 ; SMOKESCREEN (was BattleAnim_Smokescreen)
+	banim BattleAnim_ConfuseRay_PC3 ; CONFUSE_RAY (was BattleAnim_ConfuseRay)
 	banim BattleAnim_Withdraw
-	banim BattleAnim_DefenseCurl
-	banim BattleAnim_Barrier
-	banim BattleAnim_LightScreen
-	banim BattleAnim_Haze
-	banim BattleAnim_Reflect
-	banim BattleAnim_FocusEnergy
+	banim BattleAnim_DefenseCurl_PC3 ; DEFENSE_CURL (was BattleAnim_DefenseCurl)
+	banim BattleAnim_Barrier_PC4 ; BARRIER (was BattleAnim_Barrier)
+	banim BattleAnim_LightScreen_PC3 ; LIGHT_SCREEN (was BattleAnim_LightScreen)
+	banim BattleAnim_Haze_PC4 ; HAZE (was BattleAnim_Haze)
+	banim BattleAnim_Reflect_PC3 ; REFLECT (was BattleAnim_Reflect)
+	banim BattleAnim_FocusEnergy_PC3 ; FOCUS_ENERGY (was BattleAnim_FocusEnergy)
 	banim BattleAnim_Bide
-	banim BattleAnim_Metronome
+	banim BattleAnim_Metronome_PC4 ; METRONOME (was BattleAnim_Metronome)
 	banim BattleAnim_MirrorMove
 	banim BattleAnim_Selfdestruct
 	banim BattleAnim_EggBomb
-	banim BattleAnim_Lick
+	banim BattleAnim_Lick_PC4 ; LICK (was BattleAnim_Lick)
 	banim BattleAnim_Smog
 	banim BattleAnim_Sludge
 	banim BattleAnim_BoneClub
-	banim BattleAnim_FireBlast
-	banim BattleAnim_Waterfall
+	banim BattleAnim_FireBlast_PC3 ; FIRE_BLAST (was BattleAnim_FireBlast)
+	banim BattleAnim_Waterfall_PC3 ; WATERFALL (was BattleAnim_Waterfall)
 	banim BattleAnim_Clamp
-	banim BattleAnim_Swift
+	banim BattleAnim_Swift_PC3 ; SWIFT (was BattleAnim_Swift)
 	banim BattleAnim_SkullBash
 	banim BattleAnim_SpikeCannon
 	banim BattleAnim_Constrict
-	banim BattleAnim_Amnesia
+	banim BattleAnim_Amnesia_PC3 ; AMNESIA (was BattleAnim_Amnesia)
 	banim BattleAnim_Kinesis
 	banim BattleAnim_Softboiled
-	banim BattleAnim_HiJumpKick
-	banim BattleAnim_Glare
-	banim BattleAnim_DreamEater
+	banim BattleAnim_HiJumpKick_PC3 ; HI_JUMP_KICK (was BattleAnim_HiJumpKick)
+	banim BattleAnim_Glare_PC4 ; GLARE (was BattleAnim_Glare)
+	banim BattleAnim_DreamEater_PC3 ; DREAM_EATER (was BattleAnim_DreamEater)
 	banim BattleAnim_PoisonGas
 	banim BattleAnim_Barrage
-	banim BattleAnim_LeechLife
+	banim BattleAnim_LeechLife_PC3 ; LEECH_LIFE (was BattleAnim_LeechLife)
 	banim BattleAnim_LovelyKiss
 	banim BattleAnim_SkyAttack
-	banim BattleAnim_Transform
+	banim BattleAnim_Transform_PC4 ; TRANSFORM (was BattleAnim_Transform)
 	banim BattleAnim_Bubble
-	banim BattleAnim_DizzyPunch
-	banim BattleAnim_Spore
-	banim BattleAnim_Flash
+	banim BattleAnim_DizzyPunch_PC3 ; DIZZY_PUNCH (was BattleAnim_DizzyPunch)
+	banim BattleAnim_Spore_PC3 ; SPORE (was BattleAnim_Spore)
+	banim BattleAnim_Flash_PC3 ; FLASH (was BattleAnim_Flash)
 	banim BattleAnim_Psywave
 	banim BattleAnim_Splash
 	banim BattleAnim_AcidArmor
-	banim BattleAnim_Crabhammer
-	banim BattleAnim_Explosion
+	banim BattleAnim_Crabhammer_PC3 ; CRABHAMMER (was BattleAnim_Crabhammer)
+	banim BattleAnim_Explosion_PC3 ; EXPLOSION (was BattleAnim_Explosion)
 	banim BattleAnim_FurySwipes
-	banim BattleAnim_Bonemerang
-	banim BattleAnim_Rest
-	banim BattleAnim_RockSlide
-	banim BattleAnim_HyperFang
+	banim BattleAnim_Bonemerang_PC4 ; BONEMERANG (was BattleAnim_Bonemerang)
+	banim BattleAnim_Rest_PC4 ; REST (was BattleAnim_Rest)
+	banim BattleAnim_RockSlide_PC3 ; ROCK_SLIDE (was BattleAnim_RockSlide)
+	banim BattleAnim_HyperFang_PC4 ; HYPER_FANG (was BattleAnim_HyperFang)
 	banim BattleAnim_Sharpen
-	banim BattleAnim_Conversion
-	banim BattleAnim_TriAttack
-	banim BattleAnim_SuperFang
-	banim BattleAnim_Slash
-	banim BattleAnim_Substitute
-	banim BattleAnim_Struggle
-	banim BattleAnim_Sketch
+	banim BattleAnim_Conversion_PC3 ; CONVERSION (was BattleAnim_Conversion)
+	banim BattleAnim_TriAttack_PC3 ; TRI_ATTACK (was BattleAnim_TriAttack)
+	banim BattleAnim_SuperFang_PC3 ; SUPER_FANG (was BattleAnim_SuperFang)
+	banim BattleAnim_Slash_PC4 ; SLASH (was BattleAnim_Slash)
+	banim BattleAnim_Substitute_PC3 ; SUBSTITUTE (was BattleAnim_Substitute)
+	banim BattleAnim_Struggle_PC4 ; STRUGGLE (was BattleAnim_Struggle)
+	banim BattleAnim_Sketch_PC3 ; SKETCH (was BattleAnim_Sketch)
 	banim BattleAnim_TripleKick
-	banim BattleAnim_Thief
+	banim BattleAnim_Thief_PC3 ; THIEF (was BattleAnim_Thief)
 	banim BattleAnim_SpiderWeb
 	banim BattleAnim_MindReader
 	banim BattleAnim_Nightmare
 	banim BattleAnim_FlameWheel
 	banim BattleAnim_Snore
-	banim BattleAnim_Curse
+	banim BattleAnim_Curse_PC3 ; CURSE (was BattleAnim_Curse)
 	banim BattleAnim_Flail
 	banim BattleAnim_Conversion2
-	banim BattleAnim_Aeroblast
+	banim BattleAnim_Aeroblast_PC3 ; AEROBLAST (was BattleAnim_Aeroblast)
 	banim BattleAnim_CottonSpore
-	banim BattleAnim_Reversal
+	banim BattleAnim_Reversal_PC3 ; REVERSAL (was BattleAnim_Reversal)
 	banim BattleAnim_Spite
 	banim BattleAnim_PowderSnow
-	banim BattleAnim_Protect
-	banim BattleAnim_MachPunch
-	banim BattleAnim_ScaryFace
-	banim BattleAnim_FaintAttack
-	banim BattleAnim_SweetKiss
-	banim BattleAnim_BellyDrum
-	banim BattleAnim_SludgeBomb
-	banim BattleAnim_MudSlap
-	banim BattleAnim_Octazooka
-	banim BattleAnim_Spikes
-	banim BattleAnim_ZapCannon
-	banim BattleAnim_Foresight
-	banim BattleAnim_DestinyBond
-	banim BattleAnim_PerishSong
-	banim BattleAnim_IcyWind
+	banim BattleAnim_Protect_PC3 ; PROTECT (was BattleAnim_Protect)
+	banim BattleAnim_MachPunch_PC3 ; MACH_PUNCH (was BattleAnim_MachPunch)
+	banim BattleAnim_ScaryFace_PC4 ; SCARY_FACE (was BattleAnim_ScaryFace)
+	banim BattleAnim_FeintAttack_PC3 ; FAINT_ATTACK (was BattleAnim_FaintAttack)
+	banim BattleAnim_SweetKiss_PC3 ; SWEET_KISS (was BattleAnim_SweetKiss)
+	banim BattleAnim_BellyDrum_PC3 ; BELLY_DRUM (was BattleAnim_BellyDrum)
+	banim BattleAnim_SludgeBomb_PC4 ; SLUDGE_BOMB (was BattleAnim_SludgeBomb)
+	banim BattleAnim_MudSlap_PC4 ; MUD_SLAP (was BattleAnim_MudSlap)
+	banim BattleAnim_Octazooka_PC3 ; OCTAZOOKA (was BattleAnim_Octazooka)
+	banim BattleAnim_Spikes_PC3 ; SPIKES (was BattleAnim_Spikes)
+	banim BattleAnim_ZapCannon_PC3 ; ZAP_CANNON (was BattleAnim_ZapCannon)
+	banim BattleAnim_Foresight_PC3 ; FORESIGHT (was BattleAnim_Foresight)
+	banim BattleAnim_DestinyBond_PC3 ; DESTINY_BOND (was BattleAnim_DestinyBond)
+	banim BattleAnim_PerishSong_PC3 ; PERISH_SONG (was BattleAnim_PerishSong)
+	banim BattleAnim_IcyWind_PC3 ; ICY_WIND (was BattleAnim_IcyWind)
 	banim BattleAnim_Detect
 	banim BattleAnim_BoneRush
 	banim BattleAnim_LockOn
-	banim BattleAnim_Outrage
-	banim BattleAnim_Sandstorm
-	banim BattleAnim_GigaDrain
-	banim BattleAnim_Endure
-	banim BattleAnim_Charm
-	banim BattleAnim_Rollout
-	banim BattleAnim_FalseSwipe
-	banim BattleAnim_Swagger
+	banim BattleAnim_Outrage_PC3 ; OUTRAGE (was BattleAnim_Outrage)
+	banim BattleAnim_Sandstorm_PC4 ; SANDSTORM (was BattleAnim_Sandstorm)
+	banim BattleAnim_GigaDrain_PC3 ; GIGA_DRAIN (was BattleAnim_GigaDrain)
+	banim BattleAnim_Endure_PC4 ; ENDURE (was BattleAnim_Endure)
+	banim BattleAnim_Charm_PC3 ; CHARM (was BattleAnim_Charm)
+	banim BattleAnim_Rollout_PC3 ; ROLLOUT (was BattleAnim_Rollout)
+	banim BattleAnim_FalseSwipe_PC3 ; FALSE_SWIPE (was BattleAnim_FalseSwipe)
+	banim BattleAnim_Swagger_PC3 ; SWAGGER (was BattleAnim_Swagger)
 	banim BattleAnim_MilkDrink
-	banim BattleAnim_Spark
+	banim BattleAnim_Spark_PC3 ; SPARK (was BattleAnim_Spark)
 	banim BattleAnim_FuryCutter
-	banim BattleAnim_SteelWing
-	banim BattleAnim_MeanLook
-	banim BattleAnim_Attract
-	banim BattleAnim_SleepTalk
-	banim BattleAnim_HealBell
-	banim BattleAnim_Return
+	banim BattleAnim_SteelWing_PC4 ; STEEL_WING (was BattleAnim_SteelWing)
+	banim BattleAnim_MeanLook_PC3 ; MEAN_LOOK (was BattleAnim_MeanLook)
+	banim BattleAnim_Attract_PC4 ; ATTRACT (was BattleAnim_Attract)
+	banim BattleAnim_SleepTalk_PC4 ; SLEEP_TALK (was BattleAnim_SleepTalk)
+	banim BattleAnim_HealBell_PC3 ; HEAL_BELL (was BattleAnim_HealBell)
+	banim BattleAnim_Return_PC3 ; RETURN (was BattleAnim_Return)
 	banim BattleAnim_Present
 	banim BattleAnim_Frustration
-	banim BattleAnim_Safeguard
-	banim BattleAnim_PainSplit
-	banim BattleAnim_SacredFire
-	banim BattleAnim_Magnitude
-	banim BattleAnim_Dynamicpunch
-	banim BattleAnim_Megahorn
-	banim BattleAnim_Dragonbreath
-	banim BattleAnim_BatonPass
-	banim BattleAnim_Encore
-	banim BattleAnim_Pursuit
-	banim BattleAnim_RapidSpin
+	banim BattleAnim_Safeguard_PC3 ; SAFEGUARD (was BattleAnim_Safeguard)
+	banim BattleAnim_PainSplit_PC3 ; PAIN_SPLIT (was BattleAnim_PainSplit)
+	banim BattleAnim_SacredFire_PC3 ; SACRED_FIRE (was BattleAnim_SacredFire)
+	banim BattleAnim_Magnitude_PC3 ; MAGNITUDE (was BattleAnim_Magnitude)
+	banim BattleAnim_Dynamicpunch_PC4 ; DYNAMICPUNCH (was BattleAnim_Dynamicpunch)
+	banim BattleAnim_Megahorn_PC3 ; MEGAHORN (was BattleAnim_Megahorn)
+	banim BattleAnim_Dragonbreath_PC4 ; DRAGONBREATH (was BattleAnim_Dragonbreath)
+	banim BattleAnim_BatonPass_PC4 ; BATON_PASS (was BattleAnim_BatonPass)
+	banim BattleAnim_Encore_PC3 ; ENCORE (was BattleAnim_Encore)
+	banim BattleAnim_Pursuit_PC3 ; PURSUIT (was BattleAnim_Pursuit)
+	banim BattleAnim_RapidSpin_PC3 ; RAPID_SPIN (was BattleAnim_RapidSpin)
 	banim BattleAnim_SweetScent
-	banim BattleAnim_IronTail
-	banim BattleAnim_MetalClaw
+	banim BattleAnim_IronTail_PC3 ; IRON_TAIL (was BattleAnim_IronTail)
+	banim BattleAnim_MetalClaw_PC4 ; METAL_CLAW (was BattleAnim_MetalClaw)
 	banim BattleAnim_VitalThrow
 	banim BattleAnim_MorningSun
 	banim BattleAnim_Synthesis
 	banim BattleAnim_Moonlight
-	banim BattleAnim_HiddenPower
-	banim BattleAnim_CrossChop
+	banim BattleAnim_HiddenPower_PC3 ; HIDDEN_POWER (was BattleAnim_HiddenPower)
+	banim BattleAnim_CrossChop_PC3 ; CROSS_CHOP (was BattleAnim_CrossChop)
 	banim BattleAnim_Twister
-	banim BattleAnim_RainDance
-	banim BattleAnim_SunnyDay
-	banim BattleAnim_Crunch
-	banim BattleAnim_MirrorCoat
+	banim BattleAnim_RainDance_PC3 ; RAIN_DANCE (was BattleAnim_RainDance)
+	banim BattleAnim_SunnyDay_PC3 ; SUNNY_DAY (was BattleAnim_SunnyDay)
+	banim BattleAnim_Crunch_PC3 ; CRUNCH (was BattleAnim_Crunch)
+	banim BattleAnim_MirrorCoat_PC3 ; MIRROR_COAT (was BattleAnim_MirrorCoat)
 	banim BattleAnim_PsychUp
-	banim BattleAnim_Extremespeed
-	banim BattleAnim_Ancientpower
-	banim BattleAnim_ShadowBall
-	banim BattleAnim_FutureSight
-	banim BattleAnim_RockSmash
-	banim BattleAnim_Whirlpool
+	banim BattleAnim_Extremespeed_PC3 ; EXTREMESPEED (was BattleAnim_Extremespeed)
+	banim BattleAnim_Ancientpower_PC3 ; ANCIENTPOWER (was BattleAnim_Ancientpower)
+	banim BattleAnim_ShadowBall_PC3 ; SHADOW_BALL (was BattleAnim_ShadowBall)
+	banim BattleAnim_FutureSight_PC3 ; FUTURE_SIGHT (was BattleAnim_FutureSight)
+	banim BattleAnim_BrickBreak_PC3 ; ROCK_SMASH (was BattleAnim_RockSmash)
+	banim BattleAnim_Whirlpool_PC3 ; WHIRLPOOL (was BattleAnim_Whirlpool)
 	banim BattleAnim_BeatUp
 	banim BattleAnim_GigaHammer
-	banim BattleAnim_DazzlingGleam
+	banim BattleAnim_DazzlinGleam_PC3 ; DAZZLING_GLEAM (was BattleAnim_DazzlingGleam)
 	banim BattleAnim_DisarmingVoice
 	banim BattleAnim_DrainingKiss
-	banim BattleAnim_PlayRough
+	banim BattleAnim_PlayRough_PC3 ; PLAY_ROUGH (was BattleAnim_PlayRough)
 	banim BattleAnim_SpiritBreak
 	banim BattleAnim_FairyWind
-	banim BattleAnim_SuckerPunch
-	banim BattleAnim_DarkPulse
+	banim BattleAnim_SuckerPunch_PC3 ; SUCKER_PUNCH (was BattleAnim_SuckerPunch)
+	banim BattleAnim_DarkPulse_PC3 ; DARK_PULSE (was BattleAnim_DarkPulse)
 	banim BattleAnim_FireFang
 	banim BattleAnim_IceFang
 	banim BattleAnim_ThunderFang
-	banim BattleAnim_AquaJet
-	banim BattleAnim_WildCharge
+	banim BattleAnim_AquaJet_PC3 ; AQUA_JET (was BattleAnim_AquaJet)
+	banim BattleAnim_WildCharge_PC3 ; WILD_CHARGE (was BattleAnim_WildCharge)
 	banim BattleAnim_BitterBlade
 	banim BattleAnim_HeatCrash
-	banim BattleAnim_IceShard
+	banim BattleAnim_IceShard_PC3 ; ICE_SHARD (was BattleAnim_IceShard)
 	banim BattleAnim_TripleAxel
-	banim BattleAnim_IcicleCrash
+	banim BattleAnim_IcicleCrash_PC3 ; ICICLE_CRASH (was BattleAnim_IcicleCrash)
 	banim BattleAnim_StruggleBug
 	banim BattleAnim_Infestation
-	banim BattleAnim_BugBuzz
+	banim BattleAnim_BugBuzz_PC3 ; BUG_BUZZ (was BattleAnim_BugBuzz)
 	banim BattleAnim_Accelrock
-	banim BattleAnim_StoneEdge
-	banim BattleAnim_AirSlash
+	banim BattleAnim_StoneEdge_PC3 ; STONE_EDGE (was BattleAnim_StoneEdge)
+	banim BattleAnim_AirSlash_PC3 ; AIR_SLASH (was BattleAnim_AirSlash)
 	banim BattleAnim_PoisonFang
-	banim BattleAnim_Venoshock
-	banim BattleAnim_Hail
+	banim BattleAnim_Venoshock_PC3 ; VENOSHOCK (was BattleAnim_Venoshock)
+	banim BattleAnim_Hail_PC4 ; HAIL (was BattleAnim_Hail)
 	banim BattleAnim_LeafBlade
 	banim BattleAnim_ShadowSneak
 	banim BattleAnim_ShadowPunch
-	banim BattleAnim_ShadowClaw
-	banim BattleAnim_PoisonJab
+	banim BattleAnim_ShadowClaw_PC3 ; SHADOW_CLAW (was BattleAnim_ShadowClaw)
+	banim BattleAnim_PoisonJab_PC3 ; POISON_JAB (was BattleAnim_PoisonJab)
 	banim BattleAnim_Lunge
-	banim BattleAnim_BugBite
-	banim BattleAnim_XScissor
-	banim BattleAnim_UTurn
-	banim BattleAnim_DragonClaw
+	banim BattleAnim_BugBite_PC3 ; BUG_BITE (was BattleAnim_BugBite)
+	banim BattleAnim_XScissor_PC4 ; X_SCISSOR (was BattleAnim_XScissor)
+	banim BattleAnim_UTurn_PC3 ; U_TURN (was BattleAnim_UTurn)
+	banim BattleAnim_DragonClaw_PC3 ; DRAGON_CLAW (was BattleAnim_DragonClaw)
 	banim BattleAnim_DracoMeteor
-	banim BattleAnim_Moonblast
+	banim BattleAnim_Moonblast_PC3 ; MOONBLAST (was BattleAnim_Moonblast)
 	banim BattleAnim_PixiePunch
 	banim BattleAnim_BloodMoon
-	banim BattleAnim_BulletPunch
-	banim BattleAnim_DrainPunch
+	banim BattleAnim_BulletPunch_PC3 ; BULLET_PUNCH (was BattleAnim_BulletPunch)
+	banim BattleAnim_DrainPunch_PC3 ; DRAIN_PUNCH (was BattleAnim_DrainPunch)
 	banim BattleAnim_SolarBlade
-	banim BattleAnim_CloseCombat
-	banim BattleAnim_Acrobatics ; ACROBATICS
+	banim BattleAnim_CloseCombat_PC3 ; CLOSE_COMBAT (was BattleAnim_CloseCombat)
+	banim BattleAnim_Acrobatics_PC3 ; ACROBATICS (was BattleAnim_Acrobatics)
 	banim BattleAnim_AerialAce ; AERIAL_ACE
 	banim BattleAnim_AquaTail ; AQUA_TAIL
 	banim BattleAnim_Astonish ; ASTONISH
-	banim BattleAnim_AuraSphere ; AURA_SPHERE
-	banim BattleAnim_Avalanche ; AVALANCHE
+	banim BattleAnim_AuraSphere_PC3 ; AURA_SPHERE (was BattleAnim_AuraSphere)
+	banim BattleAnim_Avalanche_PC3 ; AVALANCHE (was BattleAnim_Avalanche)
 	banim BattleAnim_BraveBird ; BRAVE_BIRD
 	banim BattleAnim_BulkUp ; BULK_UP
-	banim BattleAnim_Bulldoze ; BULLDOZE
+	banim BattleAnim_Bulldoze_PC3 ; BULLDOZE (was BattleAnim_Bulldoze)
 	banim BattleAnim_CalmMind ; CALM_MIND
 	banim BattleAnim_DragonDance ; DRAGON_DANCE
 	banim BattleAnim_DragonPulse ; DRAGON_PULSE
 	banim BattleAnim_EarthPower ; EARTH_POWER
-	banim BattleAnim_EnergyBall ; ENERGY_BALL
+	banim BattleAnim_EnergyBall_PC3 ; ENERGY_BALL (was BattleAnim_EnergyBall)
 	banim BattleAnim_Extrasensory ; EXTRASENSORY
 	banim BattleAnim_Facade ; FACADE
-	banim BattleAnim_FlameCharge ; FLAME_CHARGE
-	banim BattleAnim_FlareBlitz ; FLARE_BLITZ
+	banim BattleAnim_FlameCharge_PC3 ; FLAME_CHARGE (was BattleAnim_FlameCharge)
+	banim BattleAnim_FlareBlitz_PC3 ; FLARE_BLITZ (was BattleAnim_FlareBlitz)
 	banim BattleAnim_FlashCannon ; FLASH_CANNON
-	banim BattleAnim_FocusBlast ; FOCUS_BLAST
-	banim BattleAnim_GigaImpact ; GIGA_IMPACT
-	banim BattleAnim_GunkShot ; GUNK_SHOT
+	banim BattleAnim_FocusBlast_PC3 ; FOCUS_BLAST (was BattleAnim_FocusBlast)
+	banim BattleAnim_GigaImpact_PC3 ; GIGA_IMPACT (was BattleAnim_GigaImpact)
+	banim BattleAnim_GunkShot_PC3 ; GUNK_SHOT (was BattleAnim_GunkShot)
 	banim BattleAnim_GyroBall ; GYRO_BALL
-	banim BattleAnim_Hex ; HEX
+	banim BattleAnim_Hex_PC3 ; HEX (was BattleAnim_Hex)
 	banim BattleAnim_HoneClaws ; HONE_CLAWS
 	banim BattleAnim_Hurricane ; HURRICANE
-	banim BattleAnim_HyperVoice ; HYPER_VOICE
+	banim BattleAnim_HyperVoice_PC3 ; HYPER_VOICE (was BattleAnim_HyperVoice)
 	banim BattleAnim_IcicleSpear ; ICICLE_SPEAR
 	banim BattleAnim_IronHead ; IRON_HEAD
 	banim BattleAnim_KnockOff ; KNOCK_OFF
 	banim BattleAnim_NastyPlot ; NASTY_PLOT
 	banim BattleAnim_NightSlash ; NIGHT_SLASH
-	banim BattleAnim_PowerGem ; POWER_GEM
+	banim BattleAnim_PowerGem_PC3 ; POWER_GEM (was BattleAnim_PowerGem)
 	banim BattleAnim_PowerWhip ; POWER_WHIP
-	banim BattleAnim_Psystrike ; PSYSTRIKE
+	banim BattleAnim_Psystrike_PC3 ; PSYSTRIKE (was BattleAnim_Psystrike)
 	banim BattleAnim_RockBlast ; ROCK_BLAST
 	banim BattleAnim_Roost ; ROOST
-	banim BattleAnim_Scald ; SCALD
+	banim BattleAnim_Scald_PC3 ; SCALD (was BattleAnim_Scald)
 	banim BattleAnim_SeedBomb ; SEED_BOMB
 	banim BattleAnim_ShellSmash ; SHELL_SMASH
 	banim BattleAnim_SkillSwap ; SKILL_SWAP
 	banim BattleAnim_ToxicSpikes ; TOXIC_SPIKES
 	banim BattleAnim_Trick ; TRICK
 	banim BattleAnim_TrickRoom ; TRICK_ROOM
-	banim BattleAnim_VoltSwitch ; VOLT_SWITCH
+	banim BattleAnim_VoltSwitch_PC3 ; VOLT_SWITCH (was BattleAnim_VoltSwitch)
 	banim BattleAnim_WaterPulse ; WATER_PULSE
-	banim BattleAnim_WillOWisp ; WILL_O_WISP
-	banim BattleAnim_ZenHeadbutt ; ZEN_HEADBUTT
+	banim BattleAnim_WillOWisp_PC3 ; WILL_O_WISP (was BattleAnim_WillOWisp)
+	banim BattleAnim_ZenHeadbutt_PC3 ; ZEN_HEADBUTT (was BattleAnim_ZenHeadbutt)
 	banim BattleAnim_HiJumpKick ; TROP_KICK
 	banim BattleAnim_MortalSpin ; MORTAL_SPIN
 	banim BattleAnim_FirstImpression ; FIRST_IMPRESSION
