@@ -4278,3 +4278,10 @@ BattleAnim_ZenHeadbutt_PC3:
 	anim_wait 32
 	anim_ret
 
+BattleAnim_Sap_PC3:
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_ABSORB
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $6, $0
+	anim_1gfx ANIM_GFX_CHARGE
+	anim_call BattleAnimSub_AbsorbHeal_PC3
+	anim_wait 16
+	anim_ret
