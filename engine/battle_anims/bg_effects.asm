@@ -541,6 +541,10 @@ BattleBGEffect_BattlerObj_2Row:
 	ret
 
 _QueueBattleAnimation:
+; Engine-spawned objects always have ids < $100; clear the high byte so a
+; stale value from a previous anim_hiobj doesn't corrupt the object id.
+	xor a
+	ld [wBattleObjectTempIDHi], a
 	callfar QueueBattleAnimation
 	ret
 
