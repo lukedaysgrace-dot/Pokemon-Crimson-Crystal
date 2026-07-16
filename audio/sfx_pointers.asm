@@ -212,3 +212,4 @@ SFX:
 	dba Sfx_StatUp
 	dba Sfx_StatDown
 	dba Sfx_Gravity
+	dba Sfx_Thunderbolt

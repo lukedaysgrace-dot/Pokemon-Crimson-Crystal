@@ -440,11 +440,12 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, LEER
-	dbw 1, SCRATCH
-	dbw 5, WATER_GUN
-	dbw 8, MUD_SLAP
-	dbw 11, BITE
+	dbw 1, MOONBLAST
+	dbw 1, BELLY_DRUM
+	dbw 4, HEAL_BELL
+	dbw 5, STONE_EDGE
+	dbw 6, AIR_SLASH
+	dbw 7, BIND
 	dbw 14, SCARY_FACE
 	dbw 17, ICE_FANG
 	dbw 20, FLAIL

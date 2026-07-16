@@ -448,6 +448,14 @@ SECTION "Move Animations 2", ROMX
 INCLUDE "data/moves/animations2.asm"
 
 
+SECTION "Move Animations 3", ROMX
+
+INCLUDE "data/moves/animations3.asm"
+
+SECTION "Move Animations 4", ROMX
+
+INCLUDE "data/moves/animations4.asm"
+
 SECTION "Bug Contest Stats Display", ROMX
 
 INCLUDE "engine/events/bug_contest/display_stats.asm"
