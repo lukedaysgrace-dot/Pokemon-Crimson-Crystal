@@ -322,6 +322,12 @@ Sfx_Charge:
 	musicheader 1, 6, Sfx_Charge_Ch6
 	musicheader 1, 8, Sfx_Charge_Ch8
 
+Sfx_Thunderbolt:
+; ported from Polished Crystal: Thundershock pitched down
+	musicheader 3, 5, Sfx_Thunderbolt_Ch5
+	musicheader 1, 6, Sfx_Thunderbolt_Ch6
+	musicheader 1, 8, Sfx_Thunderbolt_Ch8
+
 Sfx_Thundershock:
 	musicheader 3, 5, Sfx_Thundershock_Ch5
 	musicheader 1, 6, Sfx_Thundershock_Ch6
@@ -4498,6 +4504,9 @@ Sfx_Charge_Ch8:
 	loopchannel 9, Sfx_Charge_Ch8
 	endchannel
 
+Sfx_Thunderbolt_Ch5:
+	tone $0020
+	; fallthrough
 Sfx_Thundershock_Ch5:
 	sound_duty 3, 2, 2, 0
 	sound __,  4, $f1, $07f0
@@ -4505,6 +4514,9 @@ Sfx_Thundershock_Ch5:
 	loopchannel 8, Sfx_Thundershock_Ch5
 	endchannel
 
+Sfx_Thunderbolt_Ch6:
+	tone $0020
+	; fallthrough
 Sfx_Thundershock_Ch6:
 	sound_duty 3, 0, 3, 2
 	sound __,  5, $e2, $0202
@@ -4512,6 +4524,9 @@ Sfx_Thundershock_Ch6:
 	loopchannel 9, Sfx_Thundershock_Ch6
 	endchannel
 
+Sfx_Thunderbolt_Ch8:
+	tone $0020
+	; fallthrough
 Sfx_Thundershock_Ch8:
 	noise __,  5, $ff, $43
 	noise __,  5, $f2, $44

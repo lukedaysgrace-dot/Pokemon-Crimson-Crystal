@@ -214,6 +214,8 @@
 	const SFX_STAT_UP                     ; d0
 	const SFX_STAT_DOWN                   ; d1
 	const SFX_GRAVITY                     ; d2
+	const SFX_THUNDERBOLT                 ; d3
 
 ; polishedcrystal-compatible alias
 SFX_BUBBLE_BEAM EQU SFX_BUBBLEBEAM
+SFX_DOUBLE_SLAP EQU SFX_DOUBLESLAP

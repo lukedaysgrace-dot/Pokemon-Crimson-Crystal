@@ -313,6 +313,26 @@ BattleAnimOAMData:
 	dbbw $20, 16, .OAMData_1c ; BATTLEANIMOAMSET_U_TURN_FALL
 	dbbw $00, 16, .OAMData_d8_PCP ; BATTLEANIMOAMSET_PC_D8
 
+; polishedcrystal ports (batch 2)
+	dbbw $1b,  4, .OAMData_PC_BRICK_BREAK ; BATTLEANIMOAMSET_PC_BRICK_BREAK
+	dbbw $fc,  3, .OAMData_PC_BUG_BUZZ1 ; BATTLEANIMOAMSET_PC_BUG_BUZZ1
+	dbbw $f8,  5, .OAMData_PC_BUG_BUZZ2 ; BATTLEANIMOAMSET_PC_BUG_BUZZ2
+	dbbw $1f,  4, .OAMData_PC_BRICK_BREAK ; BATTLEANIMOAMSET_PC_BULLET_PUNCH
+	dbbw $00,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_EC
+	dbbw $00, 20, .OAMData_PC_F1 ; BATTLEANIMOAMSET_PC_F1
+	dbbw $05, 16, .OAMData_PC_F2 ; BATTLEANIMOAMSET_PC_F2
+	dbbw $00, 17, .OAMData_PC_F6 ; BATTLEANIMOAMSET_PC_F6
+	dbbw $00, 12, .OAMData_PC_F7 ; BATTLEANIMOAMSET_PC_F7
+	dbbw $06, 16, .OAMData_PC_F8 ; BATTLEANIMOAMSET_PC_F8
+	dbbw $0e, 16, .OAMData_PC_F8 ; BATTLEANIMOAMSET_PC_F9
+	dbbw $16, 12, .OAMData_PC_F7 ; BATTLEANIMOAMSET_PC_FA
+	dbbw $04,  6, .OAMData_PC_FC ; BATTLEANIMOAMSET_PC_FC
+	dbbw $00,  6, .OAMData_PC_ICICLE_CRASH ; BATTLEANIMOAMSET_PC_ICICLE_CRASH
+	dbbw $00,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_MUSHROOM_1
+	dbbw $06,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_MUSHROOM_2
+	dbbw $0c,  9, .OAMData_PC_EC ; BATTLEANIMOAMSET_PC_MUSHROOM_3
+	dbbw $11,  2, .OAMData_PC_STONE_EDGE ; BATTLEANIMOAMSET_PC_STONE_EDGE
+
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
 	dsprite   0, 0,  -1, 4, $01, $0
@@ -2108,3 +2128,144 @@ BattleAnimOAMData:
 	dbsprite  -2,   1, 4, 0, $0f, $0
 	dbsprite  -1,   1, 4, 0, $10, $0
 	dbsprite   0,   1, 4, 0, $11, $0
+
+; polishedcrystal ports (batch 2)
+.OAMData_PC_BRICK_BREAK:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $01, $0
+	dsprite   0, 0,  -1, 0, $02, $0
+	dsprite   0, 0,   0, 0, $03, $0
+
+.OAMData_PC_BUG_BUZZ1:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $01, $0
+	dsprite   0, 0,  -1, 0, $03, $0
+
+.OAMData_PC_BUG_BUZZ2:
+	dsprite  -2, 4,  -2, 4, $00, $0
+	dsprite  -2, 4,  -1, 4, $01, $0
+	dsprite  -2, 4,   0, 4, $02, $0
+	dsprite  -1, 4,  -2, 4, $03, $0
+	dsprite   0, 4,  -2, 4, $06, $0
+
+.OAMData_PC_EC:
+	dbsprite  -2,  -2, 4, 4, $00, $0
+	dbsprite  -1,  -2, 4, 4, $01, $0
+	dbsprite   0,  -2, 4, 4, $00, OAM_XFLIP
+	dbsprite  -2,  -1, 4, 4, $02, $0
+	dbsprite  -1,  -1, 4, 4, $03, $0
+	dbsprite   0,  -1, 4, 4, $02, OAM_XFLIP
+	dbsprite  -2,   0, 4, 4, $04, $0
+	dbsprite  -1,   0, 4, 4, $05, $0
+	dbsprite   0,   0, 4, 4, $04, OAM_XFLIP
+
+.OAMData_PC_F1:
+	dbsprite  -2,  -3, 0, 7, $00, $0
+	dbsprite  -1,  -3, 0, 7, $01, $0
+	dbsprite  -3,  -2, 0, 7, $02, $0
+	dbsprite  -2,  -2, 0, 7, $03, $0
+	dbsprite  -1,  -2, 0, 7, $04, $0
+	dbsprite   1,  -3, 0, 7, $00, OAM_XFLIP
+	dbsprite   0,  -3, 0, 7, $01, OAM_XFLIP
+	dbsprite   2,  -2, 0, 7, $02, OAM_XFLIP
+	dbsprite   1,  -2, 0, 7, $03, OAM_XFLIP
+	dbsprite   0,  -2, 0, 7, $04, OAM_XFLIP
+	dbsprite  -2,   0, 0, 7, $00, OAM_YFLIP
+	dbsprite  -1,   0, 0, 7, $01, OAM_YFLIP
+	dbsprite  -3,  -1, 0, 7, $02, OAM_YFLIP
+	dbsprite  -2,  -1, 0, 7, $03, OAM_YFLIP
+	dbsprite  -1,  -1, 0, 7, $04, OAM_YFLIP
+	dbsprite   1,   0, 0, 7, $00, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, 0, 7, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   2,  -1, 0, 7, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,  -1, 0, 7, $03, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -1, 0, 7, $04, OAM_XFLIP | OAM_YFLIP
+
+.OAMData_PC_F2:
+	dbsprite  -2,  -3, 0, 7, $00, $0
+	dbsprite  -1,  -3, 0, 7, $01, $0
+	dbsprite  -2,  -2, 0, 7, $02, $0
+	dbsprite  -1,  -2, 0, 7, $03, $0
+	dbsprite   1,  -3, 0, 7, $00, OAM_XFLIP
+	dbsprite   0,  -3, 0, 7, $01, OAM_XFLIP
+	dbsprite   1,  -2, 0, 7, $02, OAM_XFLIP
+	dbsprite   0,  -2, 0, 7, $03, OAM_XFLIP
+	dbsprite  -2,   0, 0, 7, $00, OAM_YFLIP
+	dbsprite  -1,   0, 0, 7, $01, OAM_YFLIP
+	dbsprite  -2,  -1, 0, 7, $02, OAM_YFLIP
+	dbsprite  -1,  -1, 0, 7, $03, OAM_YFLIP
+	dbsprite   1,   0, 0, 7, $00, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, 0, 7, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,  -1, 0, 7, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -1, 0, 7, $03, OAM_XFLIP | OAM_YFLIP
+
+.OAMData_PC_F6:
+	dbsprite  -2,  -2, -1, 1, $00, $0
+	dbsprite  -1,  -2, -1, 1, $01, $0
+	dbsprite   0,  -2, -1, 1, $02, $0
+	dbsprite  -2,  -1, -1, 1, $03, $0
+	dbsprite  -1,  -1, -1, 1, $04, $0
+	dbsprite   0,  -1, -1, 1, $05, $0
+	dbsprite  -2,   0, -1, 1, $06, $0
+	dbsprite  -1,   0, -1, 1, $07, $0
+	dbsprite   0,   0, -1, 1, $08, $0
+	dbsprite  -3,  -1, -1, 1, $00, $0
+	dbsprite  -3,   0, -3, 3, $05, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -3,   1, -3, 3, $02, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -2,   1, -3, 3, $01, OAM_XFLIP | OAM_YFLIP
+	dbsprite  -3,   0, -1, 1, $03, $0
+	dbsprite  -2,   0, -3, 3, $06, $0
+	dbsprite  -2,   1, -1, 1, $07, $0
+	dbsprite  -1,   1, -1, 1, $08, $0
+
+.OAMData_PC_F7:
+	dbsprite  -2,  -1, 0, 0, $00, $0
+	dbsprite  -1,  -1, 0, 0, $01, $0
+	dbsprite   0,  -1, 0, 0, $01, OAM_XFLIP
+	dbsprite   1,  -1, 0, 0, $00, OAM_XFLIP
+	dbsprite  -2,   0, 0, 0, $02, $0
+	dbsprite  -1,   0, 0, 0, $03, $0
+	dbsprite   0,   0, 0, 0, $03, OAM_XFLIP
+	dbsprite   1,   0, 0, 0, $02, OAM_XFLIP
+	dbsprite  -2,   1, 0, 0, $04, $0
+	dbsprite  -1,   1, 0, 0, $05, $0
+	dbsprite   0,   1, 0, 0, $05, OAM_XFLIP
+	dbsprite   1,   1, 0, 0, $04, OAM_XFLIP
+
+.OAMData_PC_F8:
+	dbsprite  -2,  -2, 0, 0, $00, $0
+	dbsprite  -1,  -2, 0, 0, $01, $0
+	dbsprite   0,  -2, 0, 0, $01, OAM_XFLIP
+	dbsprite   1,  -2, 0, 0, $00, OAM_XFLIP
+	dbsprite  -2,  -1, 0, 0, $02, $0
+	dbsprite  -1,  -1, 0, 0, $03, $0
+	dbsprite   0,  -1, 0, 0, $03, OAM_XFLIP
+	dbsprite   1,  -1, 0, 0, $02, OAM_XFLIP
+	dbsprite  -2,   0, 0, 0, $04, $0
+	dbsprite  -1,   0, 0, 0, $05, $0
+	dbsprite   0,   0, 0, 0, $05, OAM_XFLIP
+	dbsprite   1,   0, 0, 0, $04, OAM_XFLIP
+	dbsprite  -2,   1, 0, 0, $06, $0
+	dbsprite  -1,   1, 0, 0, $07, $0
+	dbsprite   0,   1, 0, 0, $07, OAM_XFLIP
+	dbsprite   1,   1, 0, 0, $06, OAM_XFLIP
+
+.OAMData_PC_FC:
+	dsprite  -1, 0,  -2, 4, $00, $0
+	dsprite  -1, 0,  -1, 4, $01, $0
+	dsprite  -1, 0,   0, 4, $02, $0
+	dsprite   0, 0,  -2, 4, $03, $0
+	dsprite   0, 0,  -1, 4, $04, $0
+	dsprite   0, 0,   0, 4, $05, $0
+
+.OAMData_PC_ICICLE_CRASH:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite  -1, 0,   0, 0, $01, $0
+	dsprite   0, 0,  -1, 0, $02, $0
+	dsprite   0, 0,   0, 0, $03, $0
+	dsprite   1, 0,  -1, 0, $04, $0
+	dsprite   1, 0,   0, 0, $05, $0
+
+.OAMData_PC_STONE_EDGE:
+	dsprite  -1, 0,  -1, 0, $00, $0
+	dsprite   0, 0,  -1, 0, $01, $0
