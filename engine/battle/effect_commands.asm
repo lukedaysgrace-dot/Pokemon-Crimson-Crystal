@@ -66,6 +66,10 @@ DoMove:
 	cp endmove_command
 	jr nz, .GetMoveEffect
 
+; Deferred stat messages never carry over between moves.
+	xor a
+	ld [wStatMsgDefer], a
+
 ; Start at the first command.
 	ld hl, wBattleScriptBuffer
 	ld a, l
@@ -4786,101 +4790,28 @@ CheckMist:
 	bit SUBSTATUS_MIST, a
 	ret
 
+; The stat message implementations (and the generic stat up/down animation
+; helpers they use) live in the Battle Effect Overflow bank; this bank is full.
 BattleCommand_StatUpMessage::
-	ld a, [wFailedMessage]
-	and a
-	ret nz
-	; bit 7 of wLoweredStat: Contrary already printed its own "fell"
-	ld a, [wLoweredStat]
-	bit 7, a
-	jr z, .show
-	and $7f
-	ld [wLoweredStat], a
+	callfar StatUpMessage_Core
 	ret
-.show
-	call PlayStatUpAnim
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, .stat
-	jp BattleTextbox
-
-.stat
-	text_far UnknownText_0x1c0cc6
-	text_asm
-	ld hl, .up
-	ld a, [wLoweredStat]
-	and $f0
-	ret z
-	ld hl, .wayup
-	ret
-
-.wayup
-	text_far UnknownText_0x1c0cd0
-	text_end
-
-.up
-	text_far UnknownText_0x1c0ce0
-	text_end
 
 BattleCommand_StatDownMessage::
-	ld a, [wFailedMessage]
-	and a
-	ret nz
-	call PlayStatDownAnim
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, .stat
-	call BattleTextbox
-	; Defiant / Competitive react to the drop
-	farcall RunStatDropReaction
+	callfar StatDownMessage_Core
 	ret
 
-.stat
-	text_far UnknownText_0x1c0ceb
-	text_asm
-	ld hl, .fell
-	ld a, [wLoweredStat]
-	and $f0
-	ret z
-	ld hl, .sharplyfell
+BattleCommand_DeferStatMessages:
+; deferstatmessages
+; Start accumulating stat change messages (multi-stat moves).
+	callfar DeferStatMessages_Core
 	ret
 
-.sharplyfell
-	text_far UnknownText_0x1c0cf5
-	text_end
-
-.fell
-	text_far UnknownText_0x1c0d06
-	text_end
-
-PlayStatUpAnim::
-; Play the generic stat raise animation on the user's side.
-	ld de, ANIM_STAT_UP
-	jr PlayStatChangeAnim
-
-PlayStatDownAnim::
-; Play the generic stat drop animation on the opponent's side
-; (the same side StatDownMessage's text refers to).
-	call BattleCommand_SwitchTurn
-	ld de, ANIM_STAT_DOWN
-	call PlayStatChangeAnim
-	jp BattleCommand_SwitchTurn
-
-PlayStatChangeAnim:
-	push de
-	call _CheckBattleScene
-	pop de
-	ret c
-	xor a
-	ld [wNumHits], a
-	ld [wKickCounter], a
-	jp PlayFXAnimID
+BattleCommand_FlushStatMessages:
+; flushstatmessages
+; Play the stat up anim once + combined message for all recorded raises,
+; then the stat down anim once + combined message for all recorded drops.
+	callfar FlushStatMessages_Core
+	ret
 
 TryLowerStat:
 ; Lower stat c from stat struct hl (buffer de).
@@ -4994,6 +4925,9 @@ BattleCommand_AllStatsUp:
 	and a
 	ret nz
 
+; One anim + one combined message for all five stats.
+	call BattleCommand_DeferStatMessages
+
 ; Attack
 	call ResetMiss
 	call BattleCommand_AttackUp
@@ -5017,7 +4951,8 @@ BattleCommand_AllStatsUp:
 ; Special Defense
 	call ResetMiss
 	call BattleCommand_SpecialDefenseUp
-	jp   BattleCommand_StatUpMessage
+	call BattleCommand_StatUpMessage
+	jp   BattleCommand_FlushStatMessages
 
 BattleCommand_ResetMiss:
 ; resetmiss
