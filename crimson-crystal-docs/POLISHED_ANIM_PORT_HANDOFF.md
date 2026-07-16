@@ -110,10 +110,29 @@ engine-substrate difference, no visual impact in CC's flow.
 ## REMAINING WORK
 1. ~~Vanilla motion functions~~ DONE (see above — no changes were needed).
 2. ~~Appended BG effect handlers~~ DONE (see above — no changes were needed).
-3. **Air Slash** — user reports it still looks wrong, but every data element and its
-   funcs verified equal to PC. RE-TEST AFTER REBUILD (session-1 fixes 7+8 may cover it,
-   e.g. via companion-object corruption). If still wrong, compare in-game vs PC video and
-   check the SHAKE_SCREEN_X handler (ANIM_BG_1F) and helpers used by RadialMoveOut_Slow.
+3. **Air Slash** — EXHAUSTIVELY AUDITED in session 2 after rebuild (user still saw
+   "2 tiny crescents at the bottom"). Verified byte-identical to PC at EVERY level,
+   including in the BUILT ROM via pokecrystal.sym + direct ROM byte reads:
+   script bytes (7b:52aa: all 8 anim_hiobj spawns, coords, params), banim indexing
+   (AIR_SLASH=276 -> row 277 ✓), object row $121 (21 ff 49 55 02 14 ✓),
+   frameset $49 (3-byte entries, flip flags bits 6-7, delanim $fcff ✓),
+   OAM sets 56/57/58 (shared OAMData_56, tile bases 0/2/4 ✓), whip.png (pixel-equal),
+   func jumptable [$55]->RadialMoveOut_Slow ($64a4 ✓, code bytes disassembled ✓),
+   InitBattleAnimation (id*6 with hi byte ✓), GetBattleAnimFrame flag extraction ✓,
+   OAM composer flag math ✓, both BG effects ($1f shake, $07 cycle-mid ✓),
+   anim loop cadence (1 DelayFrame/tick, same as PC) ✓, OAM window (c400-c4a0,
+   aligned, capacity fine: max ~22 sprites concurrent) ✓, object slots (max 9/10) ✓,
+   scanline limit not exceeded ✓. anim_hiobj path proven working (Stone Edge objs
+   are $160/$161 and render correctly).
+   A Python frame-by-frame simulation of the exact ROM data
+   (tools note: outputs/airslash_sim.py from the session) shows what this code
+   ACTUALLY produces: 8 crescents in 4 rapid pairs, each alive only ~13 frames,
+   flickering between flipped/unflipped frames over the slash + screen shake, and
+   ONLY the final pair getting clean screen time at the bottom after the slash ends —
+   i.e. the reported symptom IS this animation rendering correctly; the effect is
+   just subtle in real time. PENDING: user to frame-advance CC vs real Polished
+   3.2.3 to confirm parity. If a flashier look is wanted, double Frameset_49
+   durations (affects Razor Wind too, which shares OAM sets but not this frameset id).
 4. Intentionally NOT changed: BattleAnim_StatUp/StatDown (user's own redesign,
    commit d8d1e55e) and the three negative-ID pointer-pairing artifacts in the
    comparator report (verified fine by direct label comparison).
