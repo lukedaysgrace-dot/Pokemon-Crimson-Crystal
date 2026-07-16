@@ -881,6 +881,430 @@ UserHasMagicGuard_Core::
 	cp MAGIC_GUARD
 	ret
 
+; ==================================================================
+; Stat change messages (moved here from the full Effect Commands bank).
+;
+; Normal (single-stat) moves behave as before: anim + "X went up!" per
+; stat. Multi-stat moves (Bulk Up, Shell Smash, Close Combat, Curse,
+; Ancient Power, ...) wrap their stat changes in deferstatmessages /
+; flushstatmessages: each raise/drop is recorded in a bitmask, then the
+; flush plays the stat up anim ONCE with one combined message listing
+; every raised stat, and likewise the stat down anim once for the drops.
+; ==================================================================
+
+StatUpMessage_Core:
+	ld a, [wFailedMessage]
+	and a
+	ret nz
+	; bit 7 of wLoweredStat: Contrary already printed its own "fell"
+	ld a, [wLoweredStat]
+	bit 7, a
+	jr z, .show
+	and $7f
+	ld [wLoweredStat], a
+	ret
+.show
+	ld a, [wStatMsgDefer]
+	and a
+	jr nz, .defer
+	call PlayStatUpAnim_Core
+	ld a, [wLoweredStat]
+	and $f
+	ld b, a
+	inc b
+	callfar GetStatName
+	ld hl, .stat
+	jp BattleTextbox
+
+.defer
+	ld hl, wDeferredUps1
+	ld de, wDeferredUpSide
+	jp RecordDeferredStat
+
+.stat
+	text_far UnknownText_0x1c0cc6
+	text_asm
+	ld hl, .up
+	ld a, [wLoweredStat]
+	and $f0
+	ret z
+	ld hl, .wayup
+	ret
+
+.wayup
+	text_far UnknownText_0x1c0cd0
+	text_end
+
+.up
+	text_far UnknownText_0x1c0ce0
+	text_end
+
+StatDownMessage_Core:
+	ld a, [wFailedMessage]
+	and a
+	ret nz
+	ld a, [wStatMsgDefer]
+	and a
+	jr nz, .defer
+	call PlayStatDownAnim_Core
+	ld a, [wLoweredStat]
+	and $f
+	ld b, a
+	inc b
+	callfar GetStatName
+	ld hl, .stat
+	call BattleTextbox
+	; Defiant / Competitive react to the drop
+	farcall RunStatDropReaction
+	ret
+
+.defer
+	ld hl, wDeferredDowns1
+	ld de, wDeferredDownSide
+	jp RecordDeferredStat
+
+.stat
+	text_far UnknownText_0x1c0ceb
+	text_asm
+	ld hl, .fell
+	ld a, [wLoweredStat]
+	and $f0
+	ret z
+	ld hl, .sharplyfell
+	ret
+
+.sharplyfell
+	text_far UnknownText_0x1c0cf5
+	text_end
+
+.fell
+	text_far UnknownText_0x1c0d06
+	text_end
+
+RecordDeferredStat:
+; Record the stat change in wLoweredStat instead of printing it.
+; hl = "+1" bitmask (the "sharply" bitmask follows it), de = side byte.
+	ldh a, [hBattleTurn]
+	ld [de], a
+	ld a, [wLoweredStat]
+	and $f0
+	jr z, .got_mask
+	inc hl ; sharply mask
+.got_mask
+	ld a, [wLoweredStat]
+	and $f
+	inc a
+	ld c, a
+	xor a
+	scf
+.shift
+	rla
+	dec c
+	jr nz, .shift
+	or [hl]
+	ld [hl], a
+	ret
+
+DeferStatMessages_Core::
+	xor a
+	ld [wDeferredUps1], a
+	ld [wDeferredUps2], a
+	ld [wDeferredDowns1], a
+	ld [wDeferredDowns2], a
+	ld a, 1
+	ld [wStatMsgDefer], a
+	ret
+
+FlushStatMessages_Core::
+	xor a
+	ld [wStatMsgDefer], a
+; Raises first, then drops.
+	ld a, [wDeferredUps1]
+	ld b, a
+	ld a, [wDeferredUps2]
+	or b
+	call nz, .DoUps
+	ld a, [wDeferredDowns1]
+	ld b, a
+	ld a, [wDeferredDowns2]
+	or b
+	call nz, .DoDowns
+	xor a
+	ld [wDeferredUps1], a
+	ld [wDeferredUps2], a
+	ld [wDeferredDowns1], a
+	ld [wDeferredDowns2], a
+	ret
+
+.DoUps:
+	ldh a, [hBattleTurn]
+	push af
+	ld a, [wDeferredUpSide]
+	ldh [hBattleTurn], a
+	call .UpsBody
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
+.UpsBody:
+	; anim loops twice ("sharply") if any +2 was recorded
+	ld b, $00
+	ld a, [wDeferredUps2]
+	and a
+	jr z, .up_anim
+	ld b, $10
+.up_anim
+	ld a, b
+	ld [wLoweredStat], a
+	call PlayStatUpAnim_Core
+	ld a, [wDeferredUps2]
+	and a
+	jr z, .up_plain
+	ld b, a
+	ld de, SharplyRoseVerb
+	ld hl, DeferredUpListText
+	call PrintStatList
+.up_plain
+	ld a, [wDeferredUps1]
+	and a
+	ret z
+	ld b, a
+	ld de, RoseVerb
+	ld hl, DeferredUpListText
+	jp PrintStatList
+
+.DoDowns:
+	ldh a, [hBattleTurn]
+	push af
+	ld a, [wDeferredDownSide]
+	ldh [hBattleTurn], a
+	call .DownsBody
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
+.DownsBody:
+	ld b, $00
+	ld a, [wDeferredDowns2]
+	and a
+	jr z, .down_anim
+	ld b, $10
+.down_anim
+	ld a, b
+	ld [wLoweredStat], a
+	call PlayStatDownAnim_Core
+	ld a, [wDeferredDowns2]
+	and a
+	jr z, .down_plain
+	ld b, a
+	ld de, SharplyFellVerb
+	ld hl, DeferredDownListText
+	call PrintStatList
+.down_plain
+	ld a, [wDeferredDowns1]
+	and a
+	jr z, .reaction
+	ld b, a
+	ld de, FellVerb
+	ld hl, DeferredDownListText
+	call PrintStatList
+.reaction
+	; Defiant / Competitive react once to the whole batch of drops
+	farcall RunStatDropReaction
+	ret
+
+PrintStatList:
+; b = bitmask of stat ids, de = verb string ("@"-terminated),
+; hl = wrapper text (DeferredUpListText / DeferredDownListText)
+	push hl
+	ld a, e
+	ld [wDeferredVerb], a
+	ld a, d
+	ld [wDeferredVerb + 1], a
+	call BuildStatListString
+	pop hl
+	jp BattleTextbox
+
+BuildStatListString:
+; Build "NAME1,<CONT>NAME2 and<CONT>NAME3 verb!<PROMPT>" into wStringBuffer2.
+; b = bitmask of stat ids (must be nonzero).
+; Worst case ("ATTACK, DEFENSE, SPEED, SPCL.ATK and SPCL.DEF sharply rose!")
+; is 54 bytes, which fits in wStringBuffer2-4 (57 contiguous bytes).
+	; popcount of b -> wDeferredCount
+	push bc
+	ld c, 0
+	ld a, b
+.count
+	srl a
+	jr nc, .count_noinc
+	inc c
+.count_noinc
+	and a
+	jr nz, .count
+	ld a, c
+	ld [wDeferredCount], a
+	pop bc
+
+	ld hl, DeferredStatNames
+	ld de, wStringBuffer2
+.next_stat
+	srl b
+	jr c, .copy_name
+.skip_name
+	ld a, [hli]
+	cp "@"
+	jr nz, .skip_name
+	jr .next_stat
+
+.copy_name
+	push bc
+	ld c, 0
+.copy_char
+	ld a, [hli]
+	cp "@"
+	jr z, .copied
+	ld [de], a
+	inc de
+	inc c
+	jr .copy_char
+.copied
+	ld a, c
+	ld [wDeferredLastLen], a
+	pop bc
+	ld a, [wDeferredCount]
+	dec a
+	ld [wDeferredCount], a
+	jr z, .verb ; that was the last name
+	cp 1
+	jr z, .and_sep
+	; "NAME,"
+	ld a, ","
+	ld [de], a
+	inc de
+	jr .newline
+.and_sep
+	; "NAME and"
+	push hl
+	ld hl, .AndSep
+	call .Append
+	pop hl
+.newline
+	ld a, "<CONT>"
+	ld [de], a
+	inc de
+	jr .next_stat
+
+.verb
+	; measure the verb
+	ld a, [wDeferredVerb]
+	ld l, a
+	ld a, [wDeferredVerb + 1]
+	ld h, a
+	push hl
+	ld c, 0
+.verb_len
+	ld a, [hli]
+	cp "@"
+	jr z, .verb_measured
+	inc c
+	jr .verb_len
+.verb_measured
+	pop hl
+	; last name + space + verb on one line if it fits (18 chars)
+	ld a, [wDeferredLastLen]
+	add c
+	cp 18
+	jr c, .use_space
+	ld a, "<CONT>"
+	jr .put_sep
+.use_space
+	ld a, " "
+.put_sep
+	ld [de], a
+	inc de
+	call .Append
+	ld a, "<PROMPT>"
+	ld [de], a
+	inc de
+	ld a, "@"
+	ld [de], a
+	ret
+
+.Append
+; copy "@"-terminated string from hl to de (terminator not copied)
+	ld a, [hli]
+	cp "@"
+	ret z
+	ld [de], a
+	inc de
+	jr .Append
+
+.AndSep
+	db " and@"
+
+RoseVerb:        db "rose!@"
+SharplyRoseVerb: db "sharply rose!@"
+FellVerb:        db "fell!@"
+SharplyFellVerb: db "sharply fell!@"
+
+DeferredStatNames:
+; copy of data/battle/stat_names.asm (that copy must stay in the
+; Effect Commands bank for GetStatName)
+	db "ATTACK@"
+	db "DEFENSE@"
+	db "SPEED@"
+	db "SPCL.ATK@"
+	db "SPCL.DEF@"
+	db "ACCURACY@"
+	db "EVASION@"
+
+DeferredUpListText:
+; "<USER>'s" <line> [list from wStringBuffer2]
+	text_far UnknownText_0x1c0cc6
+	text_end
+
+DeferredDownListText:
+; "<TARGET>'s" <line> [list from wStringBuffer2]
+	text_far UnknownText_0x1c0ceb
+	text_end
+
+PlayStatUpAnim_Core:
+; Play the generic stat raise animation on the user's side.
+	ld de, ANIM_STAT_UP
+	jr PlayStatChangeAnim_Core
+
+PlayStatDownAnim_Core:
+; Play the generic stat drop animation on the opponent's side
+; (the same side StatDownMessage's text refers to).
+	call .SwitchTurn
+	ld de, ANIM_STAT_DOWN
+	call PlayStatChangeAnim_Core
+	; fallthrough
+.SwitchTurn:
+	ldh a, [hBattleTurn]
+	xor 1
+	ldh [hBattleTurn], a
+	ret
+
+PlayStatChangeAnim_Core:
+	push de
+	push bc
+	farcall CheckBattleScene
+	pop bc
+	pop de
+	ret c
+	xor a
+	ld [wNumHits], a
+	ld [wKickCounter], a
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	ld c, 3
+	call DelayFrames
+	callfar PlayBattleAnim
+	ret
+
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"

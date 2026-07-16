@@ -671,6 +671,22 @@ wWeatherCount:: ; c70b
 wLoweredStat:: db ; c70c
 wEffectFailed:: db ; c70d
 wFailedMessage:: db ; c70e
+
+; Deferred stat messages (multi-stat moves: one anim + one combined message
+; per direction). While wStatMsgDefer is nonzero, StatUpMessage/StatDownMessage
+; record changed stats here instead of printing; FlushStatMessages plays the
+; anim once and prints the combined list.
+wStatMsgDefer::     db ; nonzero: accumulate stat messages instead of printing
+wDeferredUps1::     db ; bitmask of stats that rose (+1); bit n = stat id n
+wDeferredUps2::     db ; bitmask of stats that rose sharply (+2)
+wDeferredDowns1::   db ; bitmask of stats that fell (-1)
+wDeferredDowns2::   db ; bitmask of stats that fell sharply (-2)
+wDeferredUpSide::   db ; hBattleTurn when the ups were recorded
+wDeferredDownSide:: db ; hBattleTurn when the downs were recorded
+wDeferredCount::    db ; scratch: stats left to list
+wDeferredLastLen::  db ; scratch: length of last stat name copied
+wDeferredVerb::     dw ; scratch: pointer to verb string
+
 wEnemyGoesFirst:: db ; c70f
 
 wPlayerIsSwitching:: db ; c710
