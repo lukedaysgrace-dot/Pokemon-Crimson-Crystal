@@ -17,6 +17,7 @@ BattleAnimOAMUpdate:
 	xor [hl]
 	and PRIORITY | Y_FLIP | X_FLIP
 	ld [hl], a
+	call .SetDynamicTileData
 	pop hl
 
 	push bc
@@ -123,6 +124,83 @@ BattleAnimOAMUpdate:
 	pop bc
 	scf
 	ret
+
+.SetDynamicTileData:
+; Ported from polishedcrystal (core.asm .SetDynamicTileData).
+; A few framesets ("dynamic" framesets in PC) pick their orientation at
+; runtime from BATTLEANIMSTRUCT_11 (PC's VAR3): bits 0-2 = direction octant,
+; bit 3 = BG priority. Their GFX contain three base orientations ordered
+; E (+$0 tiles), S (+$4), NE (+$8); the other five directions are produced
+; by x/y-flipping one of those. STRUCT_11 is written by RadialInit,
+; RadialMoveIn, DarkPulse and NightSlash. Without this hook Poison Jab /
+; Dark Pulse needles all render as the unflipped E sprite and Bug Buzz's
+; growing waves index the wrong tiles (offsets $fc/$f8 assume the NE +$8
+; base), so the waves never appear.
+; PC's dynamic framesets are a contiguous high range; CC's equivalents are
+; scattered, so match them explicitly. All four are object-referenced and
+; therefore < $100 (see POLISHED_ANIM_PORT_HANDOFF.md).
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID_HI
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret nz
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	add hl, bc
+	ld a, [hl]
+	cp BATTLEANIMFRAMESET_PC_BUG_BUZZ
+	jr z, .dynamic
+	cp BATTLEANIMFRAMESET_PC_POISON_JAB
+	jr z, .dynamic
+	cp BATTLEANIMFRAMESET_PC_CUT_HORIZONTAL
+	jr z, .dynamic
+	cp BATTLEANIMFRAMESET_PC_SUCKER_PUNCH
+	ret nz
+
+.dynamic
+	; Graphics are ordered in E S NE order.
+	ld hl, BATTLEANIMSTRUCT_11
+	add hl, bc
+	ld a, [hl]
+
+	; Perhaps set priority
+	bit 3, a
+	push af
+	and $7
+	add a
+	add LOW(.dynamic_tile_data)
+	ld l, a
+	adc HIGH(.dynamic_tile_data)
+	sub l
+	ld h, a
+	pop af
+
+	; First, set XY flip.
+	ld a, [hli]
+	jr z, .no_priority
+	or PRIORITY
+.no_priority
+	push hl
+	ld hl, wBattleAnimTempOAMFlags
+	xor [hl]
+	ld [hl], a
+	pop hl
+	ld a, [hl]
+
+	; Then, adjust tile ID
+	ld hl, wBattleAnimTempTileID
+	add [hl]
+	ld [hl], a
+	ret
+
+.dynamic_tile_data
+	db X_FLIP, $00 ; W
+	db X_FLIP, $08 ; NW
+	db Y_FLIP, $04 ; N
+	db 0, $08 ; NE
+	db Y_FLIP, $00 ; E
+	db Y_FLIP, $08 ; SE
+	db X_FLIP, $04 ; S
+	db X_FLIP | Y_FLIP, $08 ; SW
 
 InitBattleAnimBuffer:
 	ld hl, BATTLEANIMSTRUCT_01
@@ -298,7 +376,9 @@ GetBattleAnimFrame:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld e, [hl]
-	ld d, 0
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID_HI
+	add hl, bc
+	ld d, [hl]
 	ld hl, BattleAnimFrameData
 	add hl, de
 	add hl, de
@@ -331,7 +411,7 @@ InitBattleAnimation:
 	ld a, [wBattleObjectTempIDHi]
 	ld d, a
 	ld hl, BattleAnimObjects
-rept 6
+rept 7
 	add hl, de
 endr
 	ld e, l
@@ -348,7 +428,10 @@ endr
 	ld [hli], a ; 02
 	ld a, [de]
 	inc de
-	ld [hli], a ; Frameset ID
+	ld [hli], a ; Frameset ID (low)
+	ld a, [de]
+	inc de
+	push af ; Frameset ID (high); stored at the end since the struct slot is last
 	ld a, [de]
 	inc de
 	ld [hli], a ; Function
@@ -375,6 +458,10 @@ endr
 	ld [hli], a ; 0e
 	ld [hli], a ; 0f
 	ld [hl], a  ; 10
+	pop af
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID_HI
+	add hl, bc
+	ld [hl], a ; Frameset ID (high)
 	ret
 
 GetBattleAnimTileOffset:
