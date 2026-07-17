@@ -407,6 +407,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_SOLAR_BEAM_CHARGE
 	const ANIM_OBJ_WARP
 	const ANIM_OBJ_PURSUIT
+	const ANIM_OBJ_METEOR_BIG
+	const ANIM_OBJ_METEOR_SMALL
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -798,6 +800,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_PC_5C
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_BIG
 	const BATTLEANIMFRAMESET_AVALANCHE_ICE_SMALL
+	const BATTLEANIMFRAMESET_METEOR_BIG
+	const BATTLEANIMFRAMESET_METEOR_SMALL
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -1133,6 +1137,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_PC_STONE_EDGE
 	const BATTLEANIMOAMSET_PC_GYRO_BALL_2
 	const BATTLEANIMOAMSET_PC_GYRO_BALL_3
+; meteor.png (24x40): 24x24 big meteor on top (tiles $00-$08);
+; small meteor packed at tiles $09-$0c, drawn via BATTLEANIMOAMSET_03
+	const BATTLEANIMOAMSET_METEOR_BIG
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1298,6 +1305,8 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_WATER_BALL
 	const ANIM_GFX_BEAM_AURORA
 	const ANIM_GFX_BEAM_SOLAR
+; gfx ported from mae-pokeorange
+	const ANIM_GFX_METEOR
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def
