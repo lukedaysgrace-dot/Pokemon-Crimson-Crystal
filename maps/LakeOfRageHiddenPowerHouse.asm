@@ -17,12 +17,27 @@ HiddenPowerGuy:
 	iffalse .Done
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext HiddenPowerGuyText2
+	buttonsound
+.ChooseType:
+	writetext HiddenPowerGuyAskTypeText
+	buttonsound
+	special HiddenPowerTypeMenu
+	iffalse .NoChange
+	writetext HiddenPowerGuyChoseTypeText
+	waitbutton
+	closetext
+	end
+.NoChange:
+	writetext HiddenPowerGuyNoChangeText
 	waitbutton
 	closetext
 	end
 .AlreadyGotItem:
 	writetext HiddenPowerGuyText3
-	waitbutton
+	buttonsound
+	writetext HiddenPowerGuyRetuneText
+	yesorno
+	iftrue .ChooseType
 .Done:
 	closetext
 	end
@@ -55,14 +70,45 @@ HiddenPowerGuyText2:
 	line "power of #MON"
 	cont "for attacking."
 
-	para "Remember this: its"
-	line "type and power de-"
-	cont "pend on the #-"
-	cont "MON using it."
+	para "Through my medita-"
+	line "tion, I may shape"
+	cont "its type for you."
 	done
 
 HiddenPowerGuyText3:
 	text "I am meditating…"
+	done
+
+HiddenPowerGuyAskTypeText:
+	text "What type shall"
+	line "HIDDEN POWER"
+	cont "take?"
+	done
+
+HiddenPowerGuyChoseTypeText:
+	text_ram wStringBuffer3
+	text " type,"
+	line "@"
+	text_ram wStringBuffer4
+	text "…"
+
+	para "It is done. Your"
+	line "#MON's HIDDEN"
+	cont "POWER has been"
+	cont "reshaped."
+	done
+
+HiddenPowerGuyNoChangeText:
+	text "Hmm… You are not"
+	line "yet ready. Return"
+	cont "when you have"
+	cont "decided."
+	done
+
+HiddenPowerGuyRetuneText:
+	text "Shall I reshape"
+	line "your HIDDEN"
+	cont "POWER's type?"
 	done
 
 LakeOfRageHiddenPowerHouse_MapEvents:
