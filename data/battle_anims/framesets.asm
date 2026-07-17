@@ -316,6 +316,8 @@ BattleAnimFrameData:
 
 	dw .SET_AVALANCHE_ICE_BIG ; BATTLEANIMFRAMESET_AVALANCHE_ICE_BIG
 	dw .SET_AVALANCHE_ICE_SMALL ; BATTLEANIMFRAMESET_AVALANCHE_ICE_SMALL
+	dw .SET_METEOR_BIG ; BATTLEANIMFRAMESET_METEOR_BIG
+	dw .SET_METEOR_SMALL ; BATTLEANIMFRAMESET_METEOR_SMALL
 
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
@@ -1824,6 +1826,17 @@ BattleAnimFrameData:
 .SET_AVALANCHE_ICE_SMALL:
 	oamframe BATTLEANIMOAMSET_0F, 8
 	oamendanim
+
+.SET_METEOR_BIG:
+; 24x24 meteor (tiles $00-$08 of meteor.png)
+	oamframe BATTLEANIMOAMSET_METEOR_BIG, 14
+	oamdelanim
+
+.SET_METEOR_SMALL:
+; 16x16 meteor stored as 4 consecutive tiles ($09-$0c) in meteor.png,
+; matching the generic 2x2 oamset (same as SourApple's original)
+	oamframe BATTLEANIMOAMSET_03, 30
+	oamdelanim
 
 .Frameset_SmallBubble:
 	oamframe BATTLEANIMOAMSET_20, 8

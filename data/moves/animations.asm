@@ -533,12 +533,28 @@ BattleAnim_DrainingKiss:
 	anim_loop 5, .loop
 	anim_wait 32
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
-	anim_jump BattleAnimSub_Glimmer
+; BattleAnimSub_Glimmer lives in "Move Animations 2" (another bank); anim_jump
+; cannot cross banks, so the glimmer is inlined here (same fix as _PC4 copies).
+	anim_sound 0, 0, SFX_METRONOME
+	anim_obj ANIM_OBJ_GLIMMER,   5, 4,   8, 0, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER,   3, 0,  12, 0, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER,   7, 0,  13, 0, $0
+	anim_wait 21
+	anim_ret
 
 BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_SPEED
 	anim_sound 0, 0, SFX_MENU
-	anim_call BattleAnimSub_QuickAttack
+; BattleAnimSub_QuickAttack lives in "Move Animations 2" (another bank);
+; anim_call cannot cross banks, so its speed lines are inlined here.
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
 	anim_wait 12
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
 	anim_3gfx ANIM_GFX_STARS, ANIM_GFX_HIT, ANIM_GFX_HEARTS
@@ -6007,57 +6023,68 @@ BattleAnim_DragonClaw:
 	anim_ret
 
 BattleAnim_DracoMeteor:
-; Meteor shower, rock barrage, then a brutal crash on the foe
-	anim_3gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT, ANIM_GFX_EXPLOSION
-	anim_bgeffect ANIM_BG_1F, $c0, $1, $0
-	anim_sound 0, 0, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 24, 108, $20
-	anim_wait 4
-	anim_sound 0, 0, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 40, 100, $20
-	anim_wait 4
-	anim_sound 0, 0, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 56, 92, $20
-	anim_wait 4
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 72, 84, $20
-	anim_wait 4
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 88, 76, $20
-	anim_wait 4
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 104, 68, $20
-	anim_wait 4
-	anim_sound 0, 1, SFX_SPARK
-	anim_obj ANIM_OBJ_ANCIENTPOWER, 120, 60, $20
-	anim_wait 6
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_SMALL_ROCK, 128, 64, $40
-	anim_wait 3
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 136, 56, $30
-	anim_wait 3
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_SMALL_ROCK, 144, 68, $30
-	anim_wait 3
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 132, 52, $40
-	anim_wait 6
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $20
-	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_BIG_ROCK, 136, 24, $48
+; from SourApple: rain streaks on a darkened sky, small meteors streak past,
+; then large meteors crash down on the target with explosions
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_DRAGON_PULSE
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_DRAGON_PULSE
+	anim_3gfx ANIM_GFX_METEOR, ANIM_GFX_WATER, ANIM_GFX_EXPLOSION
+	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $8, $0
+	anim_bgp $1b
+	anim_sound 0, 1, SFX_MORNING_SUN
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
 	anim_wait 8
-	anim_bgeffect ANIM_BG_1F, $e0, $4, $10
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
+	anim_wait 32
+	anim_clearobjs
+	anim_obj ANIM_OBJ_METEOR_SMALL, 88, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_METEOR_SMALL, 238, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_METEOR_SMALL, 138, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_METEOR_SMALL, 188, 0, $2
+	anim_wait 8
+	anim_obj ANIM_OBJ_METEOR_SMALL, 38, 0, $2
+	anim_obj ANIM_OBJ_METEOR_BIG, 80, 0, $2
+	anim_wait 12
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $8, $3, $0
 	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_18, 136, 56, $0
-	anim_obj ANIM_OBJ_18, 128, 48, $0
-	anim_obj ANIM_OBJ_18, 144, 64, $0
+	anim_obj ANIM_OBJ_EXPLOSION2, 142, 64, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_METEOR_BIG, 64, 0, $2
+	anim_wait 12
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $8, $3, $0
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 136, 64, $0
 	anim_wait 4
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_03, 144, 48, $0
-	anim_obj ANIM_OBJ_04, 136, 36, $0
-	anim_obj ANIM_OBJ_05, 128, 52, $0
+	anim_obj ANIM_OBJ_METEOR_BIG, 88, 0, $2
+	anim_wait 12
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $3, $0
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 150, 64, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_METEOR_BIG, 68, 0, $2
+	anim_wait 12
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 130, 64, $0
+	anim_obj ANIM_OBJ_METEOR_BIG, 76, 0, $2
+	anim_wait 12
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 138, 64, $0
+	anim_obj ANIM_OBJ_METEOR_BIG, 88, 0, $2
+	anim_wait 12
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 142, 64, $0
+	anim_obj ANIM_OBJ_METEOR_BIG, 68, 0, $2
+	anim_wait 12
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 130, 64, $0
+	anim_obj ANIM_OBJ_METEOR_BIG, 76, 0, $2
+	anim_wait 12
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_EXPLOSION2, 138, 64, $0
 	anim_wait 32
 	anim_ret
 

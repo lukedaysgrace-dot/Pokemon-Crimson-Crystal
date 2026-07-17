@@ -334,6 +334,7 @@ BattleAnimOAMData:
 	dbbw $11,  2, .OAMData_PC_STONE_EDGE ; BATTLEANIMOAMSET_PC_STONE_EDGE
 	dbbw $0e, 13, .OAMData_PC_GYRO_BALL_2 ; BATTLEANIMOAMSET_PC_GYRO_BALL_2
 	dbbw $1b, 14, .OAMData_PC_GYRO_BALL_3 ; BATTLEANIMOAMSET_PC_GYRO_BALL_3
+	dbbw $00,  9, .OAMData_c3 ; BATTLEANIMOAMSET_METEOR_BIG
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -1701,6 +1702,7 @@ BattleAnimOAMData:
 	dbsprite  -1,   1, 0, 0, $0b, $0
 	dbsprite   0,   1, 0, 0, $0c, $0
 	dbsprite   1,   1, 0, 0, $0d, $0
+
 .OAMData_bd:
 	dbsprite  -2,  -2, 0, 0, $00, $0
 	dbsprite  -1,  -2, 0, 0, $01, $0
