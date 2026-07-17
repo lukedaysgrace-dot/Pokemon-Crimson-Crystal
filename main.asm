@@ -605,6 +605,7 @@ INCLUDE "mobile/mobile_46.asm"
 SECTION "Battle Tower", ROMX
 
 INCLUDE "engine/events/battle_tower/trainer_text.asm"
+INCLUDE "engine/events/hidden_power_type.asm"
 
 
 SECTION "bank5B", ROMX
