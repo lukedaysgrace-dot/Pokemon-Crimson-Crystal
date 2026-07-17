@@ -1,6 +1,31 @@
 HiddenPowerDamage:
-; Override Hidden Power's type and power based on the user's DVs.
+; Override Hidden Power's type and power.
+; The player's Pokémon use the type chosen at the Hidden Power Guy
+; (wHiddenPowerType) with a fixed 70 power. Enemies (and the player
+; before choosing a type) fall back to the DV-based formula.
 
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .dv_based ; enemy: keep DV-based behavior
+	ld a, [wHiddenPowerType]
+	and a
+	jr z, .dv_based ; no type chosen yet
+
+; Category: bit 7 set = physical, clear = special.
+	ld c, a
+	ld b, CATEGORIZE_SPECIAL
+	bit 7, c
+	jr z, .got_category
+	ld b, CATEGORIZE_PHYSICAL
+.got_category
+	ld a, b
+	ld [wPlayerMoveStructCategory], a
+	ld a, c
+	and %01111111 ; low bits hold the type
+	ld d, 70
+	jr .apply
+
+.dv_based
 	ld hl, wBattleMonDVs
 	ldh a, [hBattleTurn]
 	and a
@@ -90,6 +115,8 @@ HiddenPowerDamage:
 	add SPECIAL - UNUSED_TYPES
 
 .done
+.apply
+; a = type, d = power
 
 ; Overwrite the current move type.
 	push af
