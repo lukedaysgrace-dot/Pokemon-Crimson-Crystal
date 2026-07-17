@@ -441,10 +441,10 @@ TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
 	dbw 1, SCALD
-	dbw 1, DRAGON_CLAW
+	dbw 1, DRACO_METEOR
 	dbw 4, DRAGON_DANCE
 	dbw 5, DRAINING_KISS
-	dbw 6, PIXIE_PUNCH
+	dbw 6, WATERFALL
 	dbw 7, EXPLOSION
 	dbw 8, DRACO_METEOR
 	dbw 9, OCTAZOOKA
