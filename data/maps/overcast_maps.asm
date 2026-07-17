@@ -181,3 +181,17 @@ Route38SandMaps:
 RuinsSandMaps:
 	map_id RUINS_OF_ALPH_OUTSIDE
 	db -1
+Route3SandMaps:
+	map_id ROUTE_3
+	map_id ROUTE_4
+	map_id MOUNT_MOON_SQUARE
+	db -1
+Route9SandMaps:
+	map_id ROUTE_9
+	map_id ROUTE_10_NORTH
+	map_id ROUTE_10_SOUTH
+	db -1
+Route22SandMaps:
+	map_id ROUTE_22
+	map_id ROUTE_23
+	db -1
