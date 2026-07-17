@@ -2858,7 +2858,12 @@ wWeatherDailyKanto1:: db
 wWeatherDailyKanto2:: db
 wWeatherDailyKanto3:: db
 wWeatherDailyKanto4:: db
-	ds 8
+
+; Player-selected Hidden Power type (0 = not chosen; fall back to DV-based).
+; Bit 7 set = physical, clear = special; low bits hold the type constant.
+; Set by the Hidden Power Guy at Lake of Rage.
+wHiddenPowerType:: db
+	ds 7
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74
