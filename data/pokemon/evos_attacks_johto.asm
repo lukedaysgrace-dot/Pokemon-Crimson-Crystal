@@ -440,11 +440,11 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, SCALD
-	dbw 1, DRACO_METEOR
-	dbw 4, DRAGON_DANCE
-	dbw 5, DRAINING_KISS
-	dbw 6, WATERFALL
+	dbw 1, BUG_BUZZ
+	dbw 1, NIGHT_SLASH
+	dbw 4, SUCKER_PUNCH
+	dbw 5, POISON_JAB
+	dbw 6, DARK_PULSE
 	dbw 7, EXPLOSION
 	dbw 8, DRACO_METEOR
 	dbw 9, OCTAZOOKA

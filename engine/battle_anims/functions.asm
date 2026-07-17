@@ -1049,6 +1049,9 @@ BattleAnimFunction_4E:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID_HI
+	add hl, bc
+	ld [hl], 0
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
