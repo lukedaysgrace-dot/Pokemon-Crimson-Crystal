@@ -191,6 +191,23 @@ GenerateDailyWeather:
 	set WEATHER_DAILY_RUINS_SAND_F, b
 .no_sand
 
+	; Kanto sand mirrors the Johto roll on its own exposed rocky terrain.
+	call Random
+	cp 26 ; 10% on the Mt. Moon pass (Routes 3 and 4)
+	jr c, .route_3_sand
+	cp 64 ; another 15% on the Rock Tunnel ledges (Routes 9 and 10)
+	jr c, .route_9_sand
+	cp 102 ; another 15% on the dry Victory Road approach (Routes 22 and 23)
+	jr nc, .no_kanto_sand
+	set WEATHER_DAILY_ROUTE_22_SAND_F, b
+	jr .no_kanto_sand
+.route_9_sand
+	set WEATHER_DAILY_ROUTE_9_SAND_F, b
+	jr .no_kanto_sand
+.route_3_sand
+	set WEATHER_DAILY_ROUTE_3_SAND_F, b
+.no_kanto_sand
+
 	call Random
 	cp 26 ; 10% cherry blossoms after the early-game guarantee
 	jr nc, .no_blossoms
@@ -320,8 +337,29 @@ CheckSandstormWeather:
 .check_ruins
 	ld hl, wWeatherDailyFlags
 	bit WEATHER_DAILY_RUINS_SAND_F, [hl]
-	jr z, .no
+	jr z, .check_route_3
 	ld hl, RuinsSandMaps
+	call IsCurrentMapInWeatherArea
+	jr z, .sand
+.check_route_3
+	ld hl, wWeatherDailyFlags
+	bit WEATHER_DAILY_ROUTE_3_SAND_F, [hl]
+	jr z, .check_route_9
+	ld hl, Route3SandMaps
+	call IsCurrentMapInWeatherArea
+	jr z, .sand
+.check_route_9
+	ld hl, wWeatherDailyFlags
+	bit WEATHER_DAILY_ROUTE_9_SAND_F, [hl]
+	jr z, .check_route_22
+	ld hl, Route9SandMaps
+	call IsCurrentMapInWeatherArea
+	jr z, .sand
+.check_route_22
+	ld hl, wWeatherDailyFlags
+	bit WEATHER_DAILY_ROUTE_22_SAND_F, [hl]
+	jr z, .no
+	ld hl, Route22SandMaps
 	call IsCurrentMapInWeatherArea
 	jr nz, .no
 .sand
