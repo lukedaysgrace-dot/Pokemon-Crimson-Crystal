@@ -87,3 +87,4 @@ AnimObjGFX:
 	anim_obj_gfx 12, AnimObjWaterBallGFX
 	anim_obj_gfx 10, AnimObjBeamAuroraGFX
 	anim_obj_gfx 10, AnimObjBeamSolarGFX
+	anim_obj_gfx 13, AnimObjMeteorGFX

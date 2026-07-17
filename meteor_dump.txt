@@ -1,0 +1,98 @@
+meteor.2bpp: 240 bytes = 15 tiles
+
+== SHEET as stored (3 tiles per row, 24px wide) ==
+[00]      [01]      [02]    
+oo        oo                
+ooo        ooo              
+ oooo     # ooo             
+  ooooo   ##oooo#   oo      
+  oooooo  o##ooo##  ooo     
+   oo...  oooo.oo#  oooo    
+   oo...  ..oo..oo  oo.oo   
+    o...  ......##  oo..o   
+[03]      [04]      [05]    
+o ##oo..  .....#oo  ###.oo  
+oo ##o..  ....#ooo  oo##.oo 
+ ooo#oo.  ..##oooo  o#o#..o 
+ oooooo.  .#oooooo  #ooo#.oo
+  ooo...  .#ooooo#  ooooo#.o
+   ooo..  #ooo###o  oooooo#o
+   ##oo.  ####ooo#  ooooo##o
+    ##o.  #o#ooooo  #ooo#..o
+[06]      [07]      [08]    
+   ooooo  #oo#oooo  o#o#...o
+   ooooo  #oo##ooo  ###....o
+    oo..  #o######  ##.#..o 
+     oo.  .#######  #...#.o 
+      oo  o.######  #...#o  
+          oo.#####  ..##o   
+           ooo.###  ##oo    
+             ooooo  oo      
+[09]      [10]      [11]    
+oo                     oo...
+oooo                    o..#
+ ooooo                  o..#
+ oo..ooo  o              o.#
+  o....o  ooo            o..
+  oo....  ...oo           o.
+   o....  .....o           o
+   oo...  .####.o           
+[12]      [13]      [14]    
+#oooo#o                     
+#ooooo.o                    
+##ooo#.o                    
+###o#o.o                    
+####oo.o                    
+.###o.o                     
+o....oo                     
+ oooo                       
+
+== BIG meteor as the game draws it (tiles 0-8) ==
+[00]      [01]      [02]    
+oo        oo                
+ooo        ooo              
+ oooo     # ooo             
+  ooooo   ##oooo#   oo      
+  oooooo  o##ooo##  ooo     
+   oo...  oooo.oo#  oooo    
+   oo...  ..oo..oo  oo.oo   
+    o...  ......##  oo..o   
+[03]      [04]      [05]    
+o ##oo..  .....#oo  ###.oo  
+oo ##o..  ....#ooo  oo##.oo 
+ ooo#oo.  ..##oooo  o#o#..o 
+ oooooo.  .#oooooo  #ooo#.oo
+  ooo...  .#ooooo#  ooooo#.o
+   ooo..  #ooo###o  oooooo#o
+   ##oo.  ####ooo#  ooooo##o
+    ##o.  #o#ooooo  #ooo#..o
+[06]      [07]      [08]    
+   ooooo  #oo#oooo  o#o#...o
+   ooooo  #oo##ooo  ###....o
+    oo..  #o######  ##.#..o 
+     oo.  .#######  #...#.o 
+      oo  o.######  #...#o  
+          oo.#####  ..##o   
+           ooo.###  ##oo    
+             ooooo  oo      
+
+== SMALL meteor as the game draws it (tiles 9,10 / 12,13) ==
+[09]      [10]    
+oo                
+oooo              
+ ooooo            
+ oo..ooo  o       
+  o....o  ooo     
+  oo....  ...oo   
+   o....  .....o  
+   oo...  .####.o 
+[12]      [13]    
+#oooo#o           
+#ooooo.o          
+##ooo#.o          
+###o#o.o          
+####oo.o          
+.###o.o           
+o....oo           
+ oooo             
+
