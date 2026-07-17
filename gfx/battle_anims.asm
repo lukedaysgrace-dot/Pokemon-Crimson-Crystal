@@ -77,3 +77,5 @@ AnimObjTriangleGFX:   INCBIN "gfx/battle_anims/triangle.2bpp.lz"
 AnimObjWaterBallGFX:  INCBIN "gfx/battle_anims/waterball.2bpp.lz"
 AnimObjBeamAuroraGFX: INCBIN "gfx/battle_anims/beamaurora.2bpp.lz"
 AnimObjBeamSolarGFX:  INCBIN "gfx/battle_anims/beamsolar.2bpp.lz"
+; ported from mae-pokeorange
+AnimObjMeteorGFX:     INCBIN "gfx/battle_anims/meteor.2bpp.lz"
