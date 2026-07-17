@@ -110,7 +110,7 @@ AIChooseMove:
 
 	ld a, c
 	cp 16 ; up to 16 scoring layers
-	jr z, .DecrementScores
+	jr z, .UniversalLayer
 
 	push bc
 	ld d, BANK(TrainerClassAttributes)
@@ -138,6 +138,15 @@ AIChooseMove:
 	call FarCall_hl
 
 	jr .CheckLayer
+
+; Universal scoring layer, applied to ALL trainers regardless of AI flags.
+; Uses the real damage formula to prefer guaranteed KOs and the strongest
+; damaging move.
+.UniversalLayer:
+	ld hl, AI_SmartDamageKO
+	ld a, BANK(AIScoring)
+	call FarCall_hl
+	; fallthrough
 
 ; Decrement the scores of all moves one by one until one reaches 0.
 .DecrementScores:

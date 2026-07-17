@@ -116,6 +116,10 @@ AI_Setup:
 	and a
 	jr nz, .discourage
 
+; Don't waste a turn setting up while at low HP; attack instead.
+	call AICheckEnemyHalfHP
+	jr nc, .discourage
+
 	jr .encourage
 
 .statdown
@@ -3096,6 +3100,217 @@ AIDamageCalc:
 
 INCLUDE "data/battle/ai/constant_damage_effects.asm"
 
+AI_SmartDamageKO:
+; Universal layer applied to all trainers (called from AIChooseMove).
+; Uses the real damage formula:
+; - If the strongest damaging move is guaranteed to KO the player
+;   (even on a minimum damage roll), greatly encourage it.
+; - Otherwise, encourage the strongest damaging move and discourage
+;   damaging moves that deal less than half as much.
+
+; Pass 1: find the usable attack that does the most damage; index in c.
+	ld hl, wEnemyMonMoves
+	ld bc, 0
+	ld de, 0
+.checkmove
+	inc b
+	ld a, b
+	cp NUM_MOVES + 1
+	jr z, .gotstrongestmove
+
+	ld a, [hli]
+	and a
+	jr z, .gotstrongestmove
+
+	push hl
+	push de
+	push bc
+
+; Skip moves that other layers have dismissed as unusable (score 50+).
+	ld e, a
+	ld hl, wBuffer1 - 1
+	ld c, b
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	cp 50
+	jr nc, .nodamage
+
+	ld a, e
+	call AIGetEnemyMove
+
+; Skip non-damaging moves and self-destructive moves.
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .nodamage
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr z, .nodamage
+
+	call AIDamageCalc
+	pop bc
+	pop de
+	pop hl
+
+; Update the best move if this damage is the highest so far.
+	ld a, [wCurDamage + 1]
+	cp e
+	ld a, [wCurDamage]
+	sbc d
+	jr c, .checkmove
+
+	ld a, [wCurDamage + 1]
+	ld e, a
+	ld a, [wCurDamage]
+	ld d, a
+	ld c, b
+	jr .checkmove
+
+.nodamage
+	pop bc
+	pop de
+	pop hl
+	jr .checkmove
+
+.gotstrongestmove
+; Nothing to do if no move does damage.
+	ld a, c
+	and a
+	ret z
+; Nothing to do if the best damage is zero (player is immune to everything).
+	ld a, d
+	or e
+	ret z
+
+; Estimate the minimum damage roll as roughly 13/16 of max damage.
+	push de
+	ld h, d
+	ld l, e
+	srl h
+	rr l
+	srl h
+	rr l
+	srl h
+	rr l
+; hl = max damage / 8
+	ld a, e
+	sub l
+	ld e, a
+	ld a, d
+	sbc h
+	ld d, a
+	srl h
+	rr l
+; hl = max damage / 16
+	ld a, e
+	sub l
+	ld e, a
+	ld a, d
+	sbc h
+	ld d, a
+; de = 13/16 of max damage
+
+; Is that enough to KO the player?
+	ld a, [wBattleMonHP + 1]
+	ld l, a
+	ld a, [wBattleMonHP]
+	ld h, a
+	ld a, e
+	sub l
+	ld a, d
+	sbc h
+	pop de
+	jr c, .no_ko
+
+; Guaranteed KO: greatly encourage the strongest move.
+	ld hl, wBuffer1 - 1
+	ld b, 0
+	add hl, bc
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+
+.no_ko
+; Encourage the strongest damaging move.
+	ld hl, wBuffer1 - 1
+	ld b, 0
+	add hl, bc
+	dec [hl]
+
+; Pass 2: discourage damaging moves that deal
+; less than half as much as the strongest move.
+	srl d
+	rr e
+	ld hl, wEnemyMonMoves
+	ld b, 0
+.checkmove2
+	inc b
+	ld a, b
+	cp NUM_MOVES + 1
+	ret z
+
+	ld a, [hli]
+	and a
+	ret z
+
+	push hl
+	push de
+	push bc
+
+; Skip the strongest move itself.
+	ld e, a
+	ld a, b
+	cp c
+	jr z, .skip2
+
+; Skip dismissed moves.
+	ld hl, wBuffer1 - 1
+	ld c, b
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	cp 50
+	jr nc, .skip2
+
+	ld a, e
+	call AIGetEnemyMove
+
+; Ignore status moves and moves with variable base power
+; (Seismic Toss, Hidden Power, Counter, etc. have base power 0 or 1).
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	cp 2
+	jr c, .skip2
+
+	call AIDamageCalc
+	pop bc
+	pop de
+	pop hl
+
+; Carry if this move's damage is less than half the best move's.
+	ld a, [wCurDamage + 1]
+	cp e
+	ld a, [wCurDamage]
+	sbc d
+	jr nc, .checkmove2
+
+	push hl
+	push bc
+	ld hl, wBuffer1 - 1
+	ld c, b
+	ld b, 0
+	add hl, bc
+	inc [hl]
+	pop bc
+	pop hl
+	jr .checkmove2
+
+.skip2
+	pop bc
+	pop de
+	pop hl
+	jr .checkmove2
+
 AI_Cautious:
 ; 90% chance to discourage moves with residual effects after the first turn.
 
@@ -3293,13 +3508,15 @@ AIGetEnemyMove:
 	ret
 
 AI_80_20:
+; Was 80/20; now the AI takes the smart branch 95% of the time.
 	call Random
-	cp 20 percent - 1
+	cp 5 percent
 	ret
 
 AI_50_50:
+; Was a coin flip; now the AI takes the smart branch 85% of the time.
 	call Random
-	cp 50 percent + 1
+	cp 15 percent
 	ret
 
 AI_CheckMoveInList:

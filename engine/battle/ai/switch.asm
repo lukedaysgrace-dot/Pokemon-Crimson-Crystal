@@ -179,13 +179,7 @@ CheckAbleToSwitch:
 
 	; Perish count is 1
 
-	call FindAliveEnemyMons
-	call FindEnemyMonsWithAtLeastQuarterMaxHP
-	call FindEnemyMonsThatResistPlayer
-	call FindAliveEnemyMonsWithASuperEffectiveMove
-
-	ld a, e
-	cp 2
+	call .FindGoodCandidate
 	jr nz, .not_2
 
 	ld a, [wEnemyAISwitchScore]
@@ -210,6 +204,50 @@ CheckAbleToSwitch:
 	ret
 
 .no_perish
+; If the active mon's damaging moves are all ineffective against the
+; player, try to switch to something useful:
+; - No move affects the player at all: switch to a good candidate, or
+;   settle for any healthy teammate with at least neutral coverage.
+; - Best move is not very effective: switch ONLY if a clearly better
+;   teammate exists (resists the player AND has a super-effective move).
+	call CheckEnemyMoveEffectiveness
+	and a
+	jr z, .cant_damage
+	dec a
+	jr nz, .can_damage
+
+; only not very effective
+	call .FindGoodCandidate
+	jr nz, .can_damage
+
+	ld a, [wEnemyAISwitchScore]
+	add $20 ; high chance
+	ld [wEnemySwitchMonParam], a
+	ret
+
+.cant_damage
+	call .FindGoodCandidate
+	jr nz, .no_perfect_candidate
+
+	ld a, [wEnemyAISwitchScore]
+	add $30 ; maximum chance
+	ld [wEnemySwitchMonParam], a
+	ret
+
+.no_perfect_candidate
+; Settle for any healthy teammate with at least neutral coverage.
+	call FindAliveEnemyMons
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindAliveEnemyMonsWithASuperEffectiveMove
+	ld a, [wEnemyAISwitchScore]
+	cp $ff
+	jr z, .can_damage
+
+	add $20
+	ld [wEnemySwitchMonParam], a
+	ret
+
+.can_damage
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
 	cp 11
@@ -265,18 +303,24 @@ CheckAbleToSwitch:
 	cp 10
 	ret nc
 
-	call FindAliveEnemyMons
-	call FindEnemyMonsWithAtLeastQuarterMaxHP
-	call FindEnemyMonsThatResistPlayer
-	call FindAliveEnemyMonsWithASuperEffectiveMove
-
-	ld a, e
-	cp $2
+	call .FindGoodCandidate
 	ret nz
 
 	ld a, [wEnemyAISwitchScore]
 	add $10
 	ld [wEnemySwitchMonParam], a
+	ret
+
+.FindGoodCandidate:
+; Look for a healthy teammate that resists the player and
+; has a super-effective move.
+; Return z if one was found, with its index in wEnemyAISwitchScore.
+	call FindAliveEnemyMons
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatResistPlayer
+	call FindAliveEnemyMonsWithASuperEffectiveMove
+	ld a, e
+	cp 2
 	ret
 
 FindAliveEnemyMons:
@@ -629,6 +673,48 @@ FindEnemyMonsWithAtLeastQuarterMaxHP:
 	and c
 	ld c, a
 	ret
+
+CheckEnemyMoveEffectiveness:
+; Grade the active enemy mon's damaging moves against the player.
+; Return in a:
+;   2 if at least one damaging move is neutral or better
+;   1 if its best damaging move is not very effective
+;   0 if it has no damaging move that affects the player at all
+	push hl
+	push de
+	push bc
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES
+	ld c, 0
+.loop
+	ld a, [de]
+	and a
+	jr z, .done
+	inc de
+	call GetMoveTypeIfDamaging
+	jr z, .next
+	ld hl, wBattleMonType1
+	call CheckTypeMatchup
+	ld a, [wTypeMatchup]
+	and a
+	jr z, .next
+	cp EFFECTIVE
+	jr nc, .neutral_or_better
+	ld c, 1
+.next
+	dec b
+	jr nz, .loop
+.done
+	ld a, c
+.exit
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.neutral_or_better
+	ld a, 2
+	jr .exit
 
 GetMoveTypeIfDamaging:
 ; returns the type of move a in a, and sets the zero flag depending on whether the move causes damage
