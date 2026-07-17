@@ -107,6 +107,34 @@ BattlerObj_1Row/2Row bodies equal modulo temp-var names
 CC's `BGEffect_CheckFlyDigStatus` checks FLYING|UNDERGROUND only. Not portable,
 engine-substrate difference, no visual impact in CC's flow.
 
+## SESSION 3 (2026-07-16) — dynamic-frameset engine hook ported (Poison Jab mirrored needles / Bug Buzz missing waves)
+
+User reported after rebuild: Poison Jab's needle particles render mirrored ("backwards")
+and Bug Buzz shows only the green MID_GLOW_SHRINKING, no waves.
+
+Root cause: PC's OAM composer has a `.SetDynamicTileData` step (PC core.asm) that CC
+never ported. For framesets >= PC's `FIRST_DYNAMIC_FRAMESET` (BUG_BUZZ, POISON_JAB,
+CUT_HORIZONTAL, SUCKER_PUNCH), `BATTLEANIMSTRUCT_VAR3` (== CC STRUCT_11; bits 0-2
+direction octant, bit 3 priority) selects per-direction {x/y flip, tile delta} from an
+8-entry table (GFX drawn in E +$0 / S +$4 / NE +$8 orientations). CC's producer
+functions (RadialInit, RadialMoveIn, DarkPulse, NightSlash) already wrote STRUCT_11
+("kept for parity") but nothing consumed it, so:
+- Poison Jab / Dark Pulse / Sucker Punch needles all drew the unflipped E-orientation
+  tiles regardless of octant (the reported mirroring);
+- Bug Buzz's wave OAM sets (tile offsets $fc/$f8, authored assuming the NE +$8 delta)
+  indexed backwards into midglowclear's tiles, so the waves never appeared.
+
+Fix: ported `.SetDynamicTileData` + tile table verbatim into CC
+`engine/battle_anims/data_readers.asm` (BattleAnimOAMUpdate), called after the
+frame-flag XOR, before the OAM-set tile offset is applied. PC gates it with
+`cp FIRST_DYNAMIC_FRAMESET`; CC's four equivalent framesets are scattered low-index
+(PC_BUG_BUZZ, PC_POISON_JAB, PC_CUT_HORIZONTAL, PC_SUCKER_PUNCH), so the hook matches
+them explicitly (FRAMESET_ID_HI must be 0). Tile-math verified: Bug Buzz base 9 +
+delta 8 = 17 → BUG_BUZZ1 ($fc) tiles 13/14/16, BUG_BUZZ2 ($f8) tiles 9-15, all inside
+the bugbuzz set; Poison Jab $0a + {0,4,8} + 0-3 = $0a-$15, exactly objects2's 22 tiles.
+Also silently fixes Dark Pulse (all 8 octants), Night Slash's horizontal cut, and
+Sucker Punch orientations. Not build-verified in sandbox (no rgbds) — run `make`.
+
 ## REMAINING WORK
 1. ~~Vanilla motion functions~~ DONE (see above — no changes were needed).
 2. ~~Appended BG effect handlers~~ DONE (see above — no changes were needed).
