@@ -24,8 +24,6 @@ CeladonCity_Blocks:
 SaffronCity_Blocks:
 	INCBIN "maps/SaffronCity.ablk"
 
-Route2_Blocks:
-	INCBIN "maps/Route2.ablk"
 
 ElmsHouse_Blocks:
 	INCBIN "maps/ElmsHouse.ablk"
@@ -210,6 +208,8 @@ Route34IlexForestGate_Blocks:
 Route6SaffronGate_Blocks:
 Route40BattleTowerGate_Blocks:
 Route2Gate_Blocks:
+ViridianForestNorthGate_Blocks:
+ViridianForestSouthGate_Blocks:
 Route29Route46Gate_Blocks:
 Route5SaffronGate_Blocks:
 	INCBIN "maps/NorthSouthGate.ablk"
@@ -1053,3 +1053,12 @@ BetaBlank_Blocks:
 
 GoldenrodDeptStoreRoof_Blocks:
 	INCBIN "maps/GoldenrodDeptStoreRoof.ablk"
+
+
+SECTION "Map Blocks 4", ROMX
+
+Route2_Blocks:
+	INCBIN "maps/Route2.ablk"
+
+ViridianForest_Blocks:
+	INCBIN "maps/ViridianForest.ablk"

@@ -218,6 +218,33 @@ KantoGrassWildMons:
 	dbw 4, NOCTOWL
 	dbw 4, NOCTOWL
 
+	map_id VIRIDIAN_FOREST
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 4, WEEDLE
+	dbw 5, KAKUNA
+	dbw 3, WEEDLE
+	dbw 4, METAPOD
+	dbw 3, CATERPIE
+	dbw 3, PIKACHU
+	dbw 5, PIKACHU
+	; day
+	dbw 4, WEEDLE
+	dbw 5, KAKUNA
+	dbw 3, WEEDLE
+	dbw 4, METAPOD
+	dbw 3, CATERPIE
+	dbw 3, PIKACHU
+	dbw 5, PIKACHU
+	; nite
+	dbw 4, WEEDLE
+	dbw 5, KAKUNA
+	dbw 3, WEEDLE
+	dbw 4, METAPOD
+	dbw 3, CATERPIE
+	dbw 3, PIKACHU
+	dbw 5, PIKACHU
+
 	map_id ROUTE_3
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
