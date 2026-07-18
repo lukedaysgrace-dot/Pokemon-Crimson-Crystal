@@ -880,12 +880,12 @@ ApplyWeatherTint::
 
 	ldh a, [hCGB]
 	and a
-	jr z, .done
+	jp z, .done
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_OVERCAST
-	jr c, .done
+	jp c, .done
 	cp OW_WEATHER_SNOW
-	jr nc, .done
+	jp nc, .done
 
 	ldh a, [rSVBK]
 	push af
@@ -971,6 +971,23 @@ ApplyWeatherTint::
 	dec c
 	jr nz, .color_loop
 
+	; Rain and thunderstorms recolor the silver OBJ palette's color 2 to
+	; Polished Crystal's raindrop blue. wOBPals2 shares this WRAM bank with
+	; wBGPals2, so the rSVBK set above still holds. Emotes use only colors 1
+	; and 3, so the exclamation point above trainers keeps its white and black.
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_RAIN
+	jr z, .rain_blue
+	cp OW_WEATHER_THUNDERSTORM
+	jr nz, .no_rain_blue
+.rain_blue
+	ld hl, wOBPals2 + PAL_OW_SILVER * PALETTE_SIZE + 2 * PAL_COLOR_SIZE
+	ld bc, palred 16 + palgreen 22 + palblue 31 ; Polished raindrop blue
+	ld a, c
+	ld [hli], a
+	ld [hl], b
+.no_rain_blue
+
 	pop af
 	ldh [rSVBK], a
 .done
@@ -1004,23 +1021,33 @@ WeatherParticleSeeds:
 	db 152, 118
 
 ; Weather particles. Color 0 is always transparent. On the silver palette the
-; rain drop and its splash use color 1 (light blue) while snow uses color 2
-; (white), so rain reads blue without tinting the snow. Sand and cherry
-; blossoms use color 2 of their own palettes.
+; rain drop and its splash now use color 2, which ApplyWeatherTint recolors to
+; rain blue only while it is raining. Emotes use only colors 1 and 3, so the "!"
+; above trainers keeps its normal white/black. Snow also uses color 2, which
+; stays snow-white because ApplyWeatherTint does not run during snow. Sand and
+; cherry blossoms use color 2 of their own palettes.
 RainWeatherGFX:
 	db $00, $00
-	db $08, $00
-	db $08, $00
-	db $10, $00
-	db $10, $00
-	db $20, $00
+	db $00, $08
+	db $00, $08
+	db $00, $10
+	db $00, $10
+	db $00, $20
 	db $00, $00
 	db $00, $00
-; Ground splash animation from gfx/overworld/rain_splash.png. It must directly
-; follow RainWeatherGFX so the drop tile and every splash frame load together as
-; one contiguous fetch. The frame count is measured from the file at build time.
+; Ground splash (color 2), an inline copy of gfx/overworld/rain_splash.png so
+; the splash reads blue via silver color 2 like the drop. It must directly
+; follow RainWeatherGFX so the drop tile and the splash frame load together as
+; one contiguous fetch.
 RainSplashGFX:
-	INCBIN "gfx/overworld/rain_splash.2bpp"
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $42
+	db $00, $00
+	db $00, $24
 RainSplashGFXEnd:
 ; The drop tile plus every splash frame must fit between WEATHER_TILE
 ; and the emote tiles at $f8, or loading rain graphics corrupts emotes.
