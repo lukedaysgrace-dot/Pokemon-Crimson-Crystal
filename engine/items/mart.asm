@@ -22,6 +22,7 @@ OpenMartDialog::
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
+	dw CoupleShop
 
 MartDialog:
 	ld a, MARTTYPE_STANDARD
@@ -69,6 +70,15 @@ Pharmacist:
 	call MartTextbox
 	call BuyMenu
 	ld hl, Text_Pharmacist_ComeAgain
+	call MartTextbox
+	ret
+
+CoupleShop:
+; buy-only mart with no greeting; the NPC script provides its own intro text
+	call FarReadMart
+	call LoadStandardMenuHeader
+	call BuyMenu
+	ld hl, Text_Mart_ComeAgain
 	call MartTextbox
 	ret
 
@@ -388,11 +398,13 @@ GetMartDialogGroup:
 	ret
 
 .MartTextFunctionPointers:
+; entries correspond to MARTTYPE_* constants
 	dwb .StandardMartPointers, 0
 	dwb .HerbShopPointers, 0
 	dwb .BargainShopPointers, 1
 	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
+	dwb .StandardMartPointers, 0 ; MARTTYPE_COUPLE
 
 .StandardMartPointers:
 	dw Text_Mart_HowMany
