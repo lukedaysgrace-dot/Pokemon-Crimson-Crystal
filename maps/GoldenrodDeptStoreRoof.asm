@@ -101,7 +101,7 @@ GoldenrodDeptStoreRoofGrampsScript:
 	opentext
 	writetext GoldenrodDeptStoreRoofGrampsText
 	waitbutton
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_ROOF_GRAMPS
+	pokemart MARTTYPE_COUPLE, MART_GOLDENROD_ROOF_GRAMPS
 	closetext
 	end
 
@@ -112,7 +112,7 @@ GoldenrodDeptStoreRoofGrannyScript:
 	iffalse .NotWorthy
 	writetext GoldenrodDeptStoreRoofGrannyText
 	waitbutton
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_ROOF_GRANNY
+	pokemart MARTTYPE_COUPLE, MART_GOLDENROD_ROOF_GRANNY
 	closetext
 	end
 
@@ -327,5 +327,5 @@ GoldenrodDeptStoreRoof_MapEvents:
 	object_event  7,  0, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  5,  3, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  1,  6, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF
-	object_event  4,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrampsScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRAMPS
-	object_event  5,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrannyScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRANNY
+	object_event  4,  0, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrampsScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRAMPS
+	object_event  5,  0, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrannyScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRANNY
