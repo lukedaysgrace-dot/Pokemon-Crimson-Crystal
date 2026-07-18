@@ -431,7 +431,7 @@ ENDM
 
 	newgroup                                                      ; 23
 
-	map_const ROUTE_2,                                     10, 27 ;  1
+	map_const ROUTE_2,                                     10, 36 ;  1
 	map_const ROUTE_22,                                    20,  9 ;  2
 	map_const VIRIDIAN_CITY,                               20, 18 ;  3
 	map_const VIRIDIAN_GYM,                                 5,  9 ;  4
@@ -444,6 +444,9 @@ ENDM
 	map_const ROUTE_2_NUGGET_HOUSE,                         4,  4 ; 11
 	map_const ROUTE_2_GATE,                                 5,  4 ; 12
 	map_const VICTORY_ROAD_GATE,                           10,  9 ; 13
+	map_const VIRIDIAN_FOREST,                             17, 24 ; 14
+	map_const VIRIDIAN_FOREST_NORTH_GATE,                   5,  4 ; 15
+	map_const VIRIDIAN_FOREST_SOUTH_GATE,                   5,  4 ; 16
 
 	newgroup                                                      ; 24
 
