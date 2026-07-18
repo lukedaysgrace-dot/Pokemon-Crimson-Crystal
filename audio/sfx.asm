@@ -284,9 +284,6 @@ Sfx_SwordsDance:
 Sfx_Thunder:
 	musicheader 1, 8, Sfx_Thunder_Ch8
 
-Sfx_ThunderOW:
-	musicheader 1, 8, Sfx_ThunderOW_Ch8
-
 Sfx_Supersonic:
 	musicheader 3, 5, Sfx_Supersonic_Ch5
 	musicheader 1, 6, Sfx_Supersonic_Ch6
@@ -4321,16 +4318,6 @@ Sfx_Thunder_Ch8:
 	noise __,  7, $ff, $53
 	noise __,  9, $ff, $54
 	noise __, 16, $f2, $54
-	endchannel
-
-Sfx_ThunderOW_Ch8:
-	noise __, 11, $8f, $50
-	noise __, 16, $8f, $51
-	noise __,  9, $82, $51
-	noise __,  7, $8f, $52
-	noise __,  7, $8f, $53
-	noise __,  9, $8f, $54
-	noise __, 16, $82, $54
 	endchannel
 
 Sfx_Supersonic_Ch5:

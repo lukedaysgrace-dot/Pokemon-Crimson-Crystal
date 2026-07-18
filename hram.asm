@@ -163,8 +163,3 @@ hDMATransfer:: db ; ffe8
 hMobile:: db ; ffe9
 hSystemBooted:: db ; ffea
 hClockResetTrigger:: db ; ffeb
-
-; Low three bits: physical CGB OBJ palette selected from those unused by this
-; frame's map objects. Bit 7 means rain currently owns the slot and it must be
-; restored when rain ends.
-hWeatherPalette:: db ; ffec
