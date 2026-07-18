@@ -111,7 +111,6 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
-	"Events"
 ROMX $26
 	"Map Scripts 11"
 ROMX $27
@@ -215,6 +214,7 @@ ROMX $4f
 ROMX $50
 	"Pics 9"
 ROMX $51
+	"Map Blocks 4"
 	"Pics 10"
 ROMX $52
 	"Pics 11"
@@ -292,6 +292,7 @@ ROMX $73
 	"Pokedex Entries 129-192"
 ROMX $74
 	"Pokedex Entries 193-251"
+	"Tileset Data 7"
 ROMX $75
 	"16-bit ID stuff"
 	"Evolutions and Attacks Pointers"
@@ -299,8 +300,8 @@ ROMX $75
 ROMX $76
 	"Cries"
 ROMX $77
+	"Events"
 	"bank77"
-	"Tileset Data 7"
 	"bank77_2"
 ROMX $78
 	"Tileset Data 8"
