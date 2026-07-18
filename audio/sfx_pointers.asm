@@ -37,6 +37,7 @@ SFX:
 	dba Sfx_Transaction
 	dba Sfx_ExitBuilding
 	dba Sfx_Bump
+	dba Sfx_ThunderOW
 	dba Sfx_Save
 	dba Sfx_Pokeflute
 	dba Sfx_ElevatorEnd
