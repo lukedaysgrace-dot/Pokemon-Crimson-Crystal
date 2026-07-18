@@ -549,31 +549,7 @@ AnimateWeatherOnIdle::
 DoOverworldWeather::
 	ld a, [wVramState]
 	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
-	jr z, .weather_enabled
-	; Battle and menu transitions suppress weather before rebuilding OAM. Return
-	; rain's borrowed palette first so no transition frame inherits its colors.
-	ldh a, [hWeatherPalette]
-	bit 7, a
-	ret z
-	farcall RestoreRainPalette
-	ret
-.weather_enabled
-
-	; Rain uses Polished Crystal's persistent, randomly spawned OAM particles.
-	; Handle it before advancing the phase counters used by the other weather
-	; effects; hWeatherXTimer is the rain routine's 30-fps rolling counter.
-	ldh a, [hCurWeather]
-	cp OW_WEATHER_RAIN
-	jp z, DoOverworldRain
-	cp OW_WEATHER_THUNDERSTORM
-	jp z, DoOverworldRain
-
-	; Give back the dynamically borrowed OBJ palette as soon as rain ends.
-	ldh a, [hWeatherPalette]
-	bit 7, a
-	jr z, .rain_palette_restored
-	farcall RestoreRainPalette
-.rain_palette_restored
+	ret nz
 
 	; Independent screen-width and screen-height timers avoid positional
 	; jumps while particles wrap around the display.
@@ -594,394 +570,108 @@ DoOverworldWeather::
 	ldh [hWeatherYTimer], a
 
 	ldh a, [hCurWeather]
-	cp OW_WEATHER_SNOW
+	cp OW_WEATHER_RAIN
 	ret c ; none and overcast have no particles
-	jp z, RenderSnow
+	jr z, RenderRain
+	cp OW_WEATHER_THUNDERSTORM
+	jr z, .thunderstorm
+	cp OW_WEATHER_SNOW
+	jr z, RenderSnow
 	cp OW_WEATHER_SANDSTORM
 	jp z, RenderSandstorm
 	jp RenderCherryBlossoms
 
-
-; Polished Crystal-style rain
-
-DEF RAIN_DROP_TILE       EQU WEATHER_TILE
-DEF RAIN_SPLASH_TILE     EQU WEATHER_TILE + 1
-DEF WEATHER_OAM_HIDDEN   EQU SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
-DEF WEATHER_OAM_LIMIT    EQU NUM_SPRITE_OAM_STRUCTS * SPRITEOAMSTRUCT_LENGTH
-DEF WEATHER_OAM_FX_LIMIT EQU 28 * SPRITEOAMSTRUCT_LENGTH
-
-DoOverworldRain:
-	; Pick a physical OBJ palette not used by this frame's objects and install
-	; Polished Crystal's two rain shades there.
-	farcall SelectRainPalette
-	; Object sprites are rebuilt at the front of wVirtualOAM every frame. Keep
-	; the surviving rain entries after them, and discard anything the new object
-	; layout has displaced. This gives the older OAM engine the persistent rain
-	; state that Polished Crystal's split object/weather allocator provides.
-	call PrepareRainOAM
-
-	; Polished Crystal updates weather on every odd display frame (30 fps).
-	ldh a, [hWeatherXTimer]
-	and 1
-	jr z, .done
-
-	ldh a, [hCurWeather]
-	cp OW_WEATHER_THUNDERSTORM
-	jr nz, .no_lightning
-	; Match Polished Crystal's nested ~1% * 50% lightning roll.
-	call Random
-	cp 1 percent
-	jr nc, .no_lightning
-	call Random
-	cp 50 percent
-	call c, WeatherLightning
-.no_lightning
-
-	rept 3
-	; Try to spawn three new drops from the top or right edge each update.
-	call ScanForEmptyRainOAM
-	call nc, SpawnRainDrop
-	endr
-	call DoRainFall
-
-.done
-	ldh a, [hWeatherXTimer]
-	inc a
-	ldh [hWeatherXTimer], a
-	ret
-
-PrepareRainOAM:
-; Preserve valid rain particles after the current object OAM, clear stale
-; object slots inside the weather budget, and remember the object boundary in
-; hWeatherYTimer. The latter is otherwise only a motion phase for non-rain
-; weather.
-	assert LOW(wVirtualOAM) == 0
-	ldh a, [hUsedSpriteIndex]
-	ldh [hWeatherYTimer], a
-	ld e, a
-	ld d, HIGH(wVirtualOAM)
-	call GetRainOAMLimit
-	ld c, a
-	cp e
-	jr c, .outside_budget
-	jr z, .outside_budget
-
-.inside_loop
-	ld a, [de]
-	cp WEATHER_OAM_HIDDEN
-	jr nc, .clear_inside
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld a, [hli]
-	cp RAIN_DROP_TILE
-	jr z, .check_attributes
-	cp RAIN_SPLASH_TILE
-	jr nz, .clear_inside
-.check_attributes
-	ld a, [hl]
-	and VRAM_BANK_1
-	jr z, .clear_inside
-	; The unused palette can change as objects appear or disappear. Move every
-	; surviving particle to this frame's selected weather palette.
-	ldh a, [hWeatherPalette]
-	and PALETTE_MASK
-	or VRAM_BANK_1
-	ld [hl], a
-
-	; The scan is ascending, so this is the end of the last live weather slot.
-	ld a, e
-	add SPRITEOAMSTRUCT_LENGTH
-	ldh [hUsedSpriteIndex], a
-	jr .next_inside
-
-.clear_inside
-	call ClearRainOAMSlot
-.next_inside
-	ld a, e
-	add SPRITEOAMSTRUCT_LENGTH
-	ld e, a
-	cp c
-	jr c, .inside_loop
-
-.outside_budget
-	; Slots reserved by field-move OAM are left alone. Only remove unmistakable
-	; rain entries left over from a frame with the larger normal budget.
+.thunderstorm
+	; Check for lightning whenever the vertical timer wraps. 12.5% per
+	; wrap averages one flash roughly every nineteen seconds at 60 fps.
 	ldh a, [hWeatherYTimer]
-	cp c
-	jr nc, .got_outside_start
-	ld e, c
-.got_outside_start
-	ld a, e
-	cp WEATHER_OAM_LIMIT
-	ret nc
-.outside_loop
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld a, [hli]
-	cp RAIN_DROP_TILE
-	jr z, .outside_attributes
-	cp RAIN_SPLASH_TILE
-	jr nz, .next_outside
-.outside_attributes
-	ld a, [hl]
-	and VRAM_BANK_1
-	jr z, .next_outside
-	call ClearRainOAMSlot
-.next_outside
-	ld a, e
-	add SPRITEOAMSTRUCT_LENGTH
-	ld e, a
-	cp WEATHER_OAM_LIMIT
-	jr c, .outside_loop
-	ret
-
-GetRainOAMLimit:
-; Last byte offset available to ordinary overworld sprites. Some field-move
-; effects reserve the final twelve OAM entries via wVramState bit 1.
-	ld a, [wVramState]
-	bit 1, a
-	ld a, WEATHER_OAM_LIMIT
-	ret z
-	ld a, WEATHER_OAM_FX_LIMIT
-	ret
-
-ClearRainOAMSlot:
-; Input: de = OAM slot. Preserve de and bc.
-	ld h, d
-	ld l, e
-	ld [hl], WEATHER_OAM_HIDDEN
-	inc hl
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ret
-
-ScanForEmptyRainOAM:
-; Return an empty weather-budget OAM slot in hl, or carry if none is free.
-	push bc
-	call GetRainOAMLimit
-	ld c, a
-	ldh a, [hWeatherYTimer]
-	cp c
-	jr nc, .full
-	ld l, a
-	ld h, HIGH(wVirtualOAM)
-.loop
-	ld a, [hl]
-	cp WEATHER_OAM_HIDDEN
-	jr nc, .found
-	ld a, l
-	add SPRITEOAMSTRUCT_LENGTH
-	ld l, a
-	cp c
-	jr c, .loop
-.full
-	pop bc
-	scf
-	ret
-.found
-	pop bc
 	and a
-	ret
-
-SpawnRainDrop:
-; Input: hl = empty OAM slot. Spawn from the top or right edge with the same
-; 50/50 distribution and coordinate ranges as Polished Crystal.
+	jr nz, RenderRain
 	call Random
-	and 1
-	jr z, .spawn_on_right
+	cp 32
+	call c, WeatherLightning
+	jr RenderRain
 
-	; (y, x) = (0, RandomRange(0, 167) + 8)
-	xor a
-	ld [hli], a
-	ld a, SCREEN_WIDTH_PX + 7
-	call RandomRange
-	add TILE_WIDTH
-	ld [hli], a
-	jr .finish
+; Each particle salts these 32-pixel cells with its X seed and only splashes in
+; alternating cells. This scatters impacts without consuming the global RNG.
+DEF RAIN_SPLASH_CELL EQU 32
+DEF RAIN_SPEED EQU 2
 
-.spawn_on_right
-	; (y, x) = (RandomRange(0, 160), 168)
-	ld a, WEATHER_OAM_HIDDEN
-	call RandomRange
-	ld [hli], a
-	ld a, SCREEN_WIDTH_PX + TILE_WIDTH
-	ld [hli], a
-.finish
-	ld a, RAIN_DROP_TILE
-	ld [hli], a
-	ldh a, [hWeatherPalette]
-	and PALETTE_MASK
-	or VRAM_BANK_1
-	ld [hli], a
-	; fallthrough
-
-RecordRainOAMEnd:
-; Input: hl = byte immediately after a newly written OAM entry.
-	ldh a, [hUsedSpriteIndex]
-	cp l
-	ret nc
-	ld a, l
-	ldh [hUsedSpriteIndex], a
-	ret
-
-DoRainFall:
-	call GetRainOAMLimit
-	ld c, a
-	ldh a, [hWeatherYTimer]
-	cp c
-	ret nc
-	ld e, a
-	ld d, HIGH(wVirtualOAM)
-	ld a, c
-	sub e
-	srl a
-	srl a
-	ld b, a
-
+RenderRain:
+	ld hl, WeatherParticleSeeds
+	ld e, 16
 .loop
-	ld a, [de]
-	cp WEATHER_OAM_HIDDEN
-	jp nc, .next
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld a, [hli]
-	cp RAIN_SPLASH_TILE
-	jp z, .update_splash
-	cp RAIN_DROP_TILE
-	jp nz, .next
-
-	; Each live drop has a 5% chance per 30-fps update to become a splash.
-	call Random
-	cp 5 percent
-	jp c, .splash
-
-	; y -= 4 * player step y; y += 8 (+2 on alternating OAM slots).
-	ld a, [wPlayerStepVectorY]
-	add a
-	add a
-	ld c, a
-	ld h, d
-	ld l, e
-	ld a, [hl]
-	sub c
-	ld c, a
-	call IsEvenRainSpriteIndex
-	add a
-	add c
-	add 8
-	ld h, d
-	ld l, e
-	cp WEATHER_OAM_HIDDEN
-	ld [hl], a
-	jp nc, .despawn
-
-	; x -= 4 * player step x; x -= 4 (+2 on alternating OAM slots).
-	ld a, [wPlayerStepVectorX]
-	add a
-	add a
-	ld c, a
-	ld h, d
-	ld l, e
-	inc hl
-	ld a, [hl]
-	sub c
-	ld c, a
-	call IsEvenRainSpriteIndex
-	cpl
-	inc a
-	add a
-	add c
-	sub 4
-	ld h, d
-	ld l, e
-	inc hl
-	ld [hl], a
-	jp c, .despawn
-
-.next
-	ld a, e
-	add SPRITEOAMSTRUCT_LENGTH
-	ld e, a
-	dec b
-	jp nz, .loop
-
-	; Splashes persist until the same 16-display-frame cadence used by
-	; Polished Crystal. Rain itself only updates on odd display frames.
+	; x = seed - RAIN_SPEED * horizontal timer (mod screen width). The drop drifts left
+	; (top-right to bottom-left); horizontal and vertical speed are matched so a
+	; splash can be pinned exactly to the spot where the drop landed.
 	ldh a, [hWeatherXTimer]
-	and %1110
-	ret nz
-	call GetRainOAMLimit
-	ld c, a
+	ld b, a
+	ld a, SCREEN_WIDTH_PX
+	sub b
+	ld b, a ; b = SCREEN_WIDTH_PX - horizontal timer
+	ld a, [hli] ; seed x
+	ld d, a ; fixed per-particle salt for splash position and timing
+	rept RAIN_SPEED
+	add b
+	call WrapWeatherX
+	endr
+	add TILE_WIDTH
+	ld c, a ; c = moving OAM x
+
+	; y = seed + RAIN_SPEED * vertical timer (mod screen height)
+	ld a, [hli] ; seed y
+	ld b, a
+	rept RAIN_SPEED
 	ldh a, [hWeatherYTimer]
-	cp c
-	ret nc
-	ld e, a
-	ld d, HIGH(wVirtualOAM)
-.splash_loop
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld a, [hli]
-	cp RAIN_SPLASH_TILE
-	jr nz, .splash_next
-	ld h, d
-	ld l, e
-	ld [hl], WEATHER_OAM_HIDDEN
-.splash_next
-	ld a, e
-	add SPRITEOAMSTRUCT_LENGTH
-	ld e, a
-	cp c
-	jr c, .splash_loop
-	ret
+	add b
+	call WrapWeatherY
+	ld b, a
+	endr
+	; b = on-screen y (0 .. SCREEN_HEIGHT_PX - 1)
 
-.despawn
-	call ClearRainOAMSlot
-	jp .next
+	; Salt the impact row with the particle's X seed. Bit 5 selects alternating
+	; cells, making the gaps irregular while keeping each splash deterministic.
+	ld a, b
+	add d
+	ld d, a
+	and RAIN_SPLASH_CELL - 1
+	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * 4
+	jr nc, .falling
+	bit 5, d
+	jr nz, .falling
 
-.update_splash
-	; A splash is fixed to the ground, so only compensate for camera movement.
-	ld a, [wPlayerStepVectorY]
-	add a
-	ld c, a
-	ld h, d
-	ld l, e
-	ld a, [hl]
-	sub c
-	cp WEATHER_OAM_HIDDEN
-	jp nc, .despawn
-	ld [hli], a
-	ld a, [wPlayerStepVectorX]
-	add a
-	ld c, a
-	ld a, [hl]
-	sub c
-	ld [hl], a
-	jp .next
+	; Splash: animate frame = phase / 4 and pin it to the salted impact line so it
+	; holds still on the ground while the animation plays.
+	ld d, a ; d = phase
+	srl a
+	srl a
+	add WEATHER_TILE + 1 ; splash tile for this frame
+	push af ; save splash tile
+	ld a, c
+	add d
+	ld c, a ; pinned OAM x = moving x + phase
+	ld a, b
+	sub d
+	add 2 * TILE_WIDTH
+	ld b, a ; pinned OAM y = band's top line
+	ld d, VRAM_BANK_1 | PAL_OW_SILVER
+	pop af ; restore splash tile
+	call AppendWeatherParticle
+	ret c
+	jr .next
 
-.splash
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld [hl], RAIN_SPLASH_TILE
-	jp .next
-
-IsEvenRainSpriteIndex:
-; Input: e = low byte of a four-byte OAM entry. Output: slot index & 1.
-	ld a, e
-	rra
-	rra
-	and 1
+.falling
+	; Still on its way down: draw the streak at its moving position.
+	ld a, b
+	add 2 * TILE_WIDTH
+	ld b, a ; OAM y
+	ld d, VRAM_BANK_1 | PAL_OW_SILVER
+	ld a, WEATHER_TILE
+	call AppendWeatherParticle
+	ret c
+.next
+	dec e
+	jr nz, .loop
 	ret
 
 RenderSnow:
@@ -1139,7 +829,7 @@ WeatherLightning:
 	push de
 	push hl
 
-	ld de, SFX_THUNDER_OW
+	ld de, SFX_THUNDER
 	call PlaySFX
 
 	ldh a, [hCGB]
@@ -1173,9 +863,6 @@ WeatherLightning:
 .show
 	call DelayFrame
 	farcall _UpdateTimePals
-	; _UpdateTimePals rebuilds every OBJ palette, so reinstall the dedicated
-	; rain shades before the first post-flash frame is displayed.
-	farcall SelectRainPalette
 
 	pop hl
 	pop de
@@ -1284,6 +971,23 @@ ApplyWeatherTint::
 	dec c
 	jr nz, .color_loop
 
+	; Rain and thunderstorms recolor the silver OBJ palette's color 2 to
+	; Polished Crystal's raindrop blue. wOBPals2 shares this WRAM bank with
+	; wBGPals2, so the rSVBK set above still holds. Emotes use only colors 1
+	; and 3, so the exclamation point above trainers keeps its white and black.
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_RAIN
+	jr z, .rain_blue
+	cp OW_WEATHER_THUNDERSTORM
+	jr nz, .no_rain_blue
+.rain_blue
+	ld hl, wOBPals2 + PAL_OW_SILVER * PALETTE_SIZE + 2 * PAL_COLOR_SIZE
+	ld bc, palred 16 + palgreen 22 + palblue 31 ; Polished raindrop blue
+	ld a, c
+	ld [hli], a
+	ld [hl], b
+.no_rain_blue
+
 	pop af
 	ldh [rSVBK], a
 .done
@@ -1316,28 +1020,34 @@ WeatherParticleSeeds:
 	db 135,  18
 	db 152, 118
 
-; Weather particles. Rain uses Polished Crystal's exact two-tile, two-shade
-; drop/splash art; SelectRainPalette supplies its dedicated colors without
-; disturbing NPC or emote palettes. The other effects use color 2.
+; Weather particles. Color 0 is always transparent. On the silver palette the
+; rain drop and its splash now use color 2, which ApplyWeatherTint recolors to
+; rain blue only while it is raining. Emotes use only colors 1 and 3, so the "!"
+; above trainers keeps its normal white/black. Snow also uses color 2, which
+; stays snow-white because ApplyWeatherTint does not run during snow. Sand and
+; cherry blossoms use color 2 of their own palettes.
 RainWeatherGFX:
 	db $00, $00
 	db $00, $08
 	db $00, $08
 	db $00, $10
 	db $00, $10
-	db $20, $00
-	db $20, $00
+	db $00, $20
 	db $00, $00
-; It must directly follow RainWeatherGFX so both tiles load as one fetch.
+	db $00, $00
+; Ground splash (color 2), an inline copy of gfx/overworld/rain_splash.png so
+; the splash reads blue via silver color 2 like the drop. It must directly
+; follow RainWeatherGFX so the drop tile and the splash frame load together as
+; one contiguous fetch.
 RainSplashGFX:
 	db $00, $00
 	db $00, $00
 	db $00, $00
 	db $00, $00
 	db $00, $00
-	db $82, $00
+	db $00, $42
 	db $00, $00
-	db $44, $00
+	db $00, $24
 RainSplashGFXEnd:
 ; The drop tile plus every splash frame must fit between WEATHER_TILE
 ; and the emote tiles at $f8, or loading rain graphics corrupts emotes.
@@ -1367,208 +1077,3 @@ CherryBlossomWeatherGFX:
 	INCBIN "gfx/overworld/cherry_blossom.2bpp"
 CherryBlossomWeatherGFXEnd:
 	assert CherryBlossomWeatherGFXEnd - CherryBlossomWeatherGFX == LEN_2BPP_TILE, "cherry_blossom.png must be a single 8x8 tile"
-
-
-SECTION "Overworld Rain Palette", ROMX
-
-RestoreRainPalette::
-; Return the physical OBJ palette borrowed by rain to the map palette buffer.
-	ldh a, [hWeatherPalette]
-	bit 7, a
-	ret z
-	and PALETTE_MASK
-	ldh [hWeatherPalette], a ; clear the active flag but retain the slot index
-
-	ldh a, [hCGB]
-	and a
-	ret z
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wOBPals1)
-	ldh [rSVBK], a
-	ld hl, wOBPals1
-	ld bc, PALETTE_SIZE
-	ldh a, [hWeatherPalette]
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld bc, wOBPals2 - wOBPals1
-	add hl, bc
-	ld b, PALETTE_SIZE
-.restore_loop
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec b
-	jr nz, .restore_loop
-	pop af
-	ldh [rSVBK], a
-	ld a, 1
-	ldh [hCGBPalUpdate], a
-	ret
-
-SelectRainPalette::
-; Pick a physical OBJ palette that no visible non-weather sprite is using.
-; Polished Crystal has a dynamic palette slot for weather; this supplies the
-; same isolation without changing Crimson Crystal's fixed NPC palette indexes.
-	; First restore the slot weather owned last frame from the untinted map OBJ
-	; palette buffer. An NPC that starts using that slot this frame must see its
-	; normal colors before rain moves to a different free slot.
-	call RestoreRainPalette
-
-.scan
-	xor a
-	ld c, a ; used-palette bitmask
-	; Current map objects occupy the OAM prefix ending at hUsedSpriteIndex.
-	; Scan only that live range, not stale entries that PrepareRainOAM will clear.
-	ld hl, wVirtualOAM
-	ldh a, [hUsedSpriteIndex]
-	srl a
-	srl a
-	ld b, a
-	call .scan_range
-
-	; Field-move effects can reserve and populate the final twelve OAM entries.
-	ld a, [wVramState]
-	bit 1, a
-	jr z, .choose_palette
-	ld hl, wVirtualOAM + WEATHER_OAM_FX_LIMIT
-	ld b, NUM_SPRITE_OAM_STRUCTS - 28
-	call .scan_range
-
-.choose_palette
-	; Prefer silver because weather historically used it, then take any other
-	; free slot. The final silver fallback is only reachable if all eight
-	; palettes are simultaneously visible; it avoids recoloring the player.
-	bit PAL_OW_SILVER, c
-	ld a, PAL_OW_SILVER
-	jr z, .selected
-	bit PAL_OW_ROCK, c
-	ld a, PAL_OW_ROCK
-	jr z, .selected
-	bit PAL_OW_TREE, c
-	ld a, PAL_OW_TREE
-	jr z, .selected
-	bit PAL_OW_PINK, c
-	ld a, PAL_OW_PINK
-	jr z, .selected
-	bit PAL_OW_BROWN, c
-	ld a, PAL_OW_BROWN
-	jr z, .selected
-	bit PAL_OW_GREEN, c
-	ld a, PAL_OW_GREEN
-	jr z, .selected
-	bit PAL_OW_BLUE, c
-	ld a, PAL_OW_BLUE
-	jr z, .selected
-	ld a, PAL_OW_SILVER
-.selected
-	or 1 << 7 ; this slot must be restored when rain releases it
-	ldh [hWeatherPalette], a
-
-	; DMG uses OBP shades rather than CGB OBJ palettes.
-	ldh a, [hCGB]
-	and a
-	ret z
-
-	; Save time-of-day before selecting the palette-buffer WRAM bank.
-	ld a, [wTimeOfDay]
-	ld e, a
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wOBPals2)
-	ldh [rSVBK], a
-
-	ld hl, wOBPals2 + PAL_COLOR_SIZE ; transparent color 0 is irrelevant
-	ld bc, PALETTE_SIZE
-	ldh a, [hWeatherPalette]
-	and PALETTE_MASK
-	call AddNTimes
-
-	ld a, e
-	cp NITE
-	jr z, .night
-	; Polished Crystal's morning/day rain palette.
-	ld de, palred 21 + palgreen 21 + palblue 31
-	ld bc, palred 16 + palgreen 22 + palblue 31
-	jr .write_colors
-.night
-	; Polished Crystal's night/evening rain palette.
-	ld de, palred 16 + palgreen 14 + palblue 19
-	ld bc, palred 16 + palgreen 16 + palblue 31
-.write_colors
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	ld a, b
-	ld [hli], a
-	xor a ; color 3 is black
-	ld [hli], a
-	ld [hl], a
-
-	pop af
-	ldh [rSVBK], a
-	ld a, 1
-	ldh [hCGBPalUpdate], a
-	ret
-
-.scan_range
-	ld a, b
-	and a
-	ret z
-.scan_oam
-	ld a, [hli]
-	cp WEATHER_OAM_HIDDEN
-	jr nc, .hidden
-	inc hl ; x
-	ld a, [hli] ; tile
-	ld e, a
-	ld a, [hli] ; attributes
-	ld d, a
-
-	; Do not count persistent rain from the previous frame as an owner of its
-	; old palette, or the selection would unnecessarily bounce between slots.
-	ld a, e
-	cp RAIN_DROP_TILE
-	jr z, .maybe_weather
-	cp RAIN_SPLASH_TILE
-	jr nz, .mark_palette
-.maybe_weather
-	bit 3, d ; VRAM bank 1 is reserved for these weather tiles
-	jr nz, .next
-
-.mark_palette
-	ld a, d
-	and PALETTE_MASK
-	ld e, a
-	ld d, 0
-	push hl
-	ld hl, .PaletteBits
-	add hl, de
-	ld a, [hl]
-	pop hl
-	or c
-	ld c, a
-	jr .next
-
-.hidden
-	inc hl ; x
-	inc hl ; tile
-	inc hl ; attributes
-.next
-	dec b
-	jr nz, .scan_oam
-	ret
-
-.PaletteBits:
-	db 1 << PAL_OW_RED
-	db 1 << PAL_OW_BLUE
-	db 1 << PAL_OW_GREEN
-	db 1 << PAL_OW_BROWN
-	db 1 << PAL_OW_PINK
-	db 1 << PAL_OW_SILVER
-	db 1 << PAL_OW_TREE
-	db 1 << PAL_OW_ROCK
