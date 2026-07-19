@@ -1230,8 +1230,8 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, PIDGEY
-	dbw 3, SENTRET
+	dbw 3, MIMIKYU
+	dbw 3, MIMIKYU
 	dbw 3, RATTATA
 	dbw 3, HOPPIP
 	dbw 3, LEDYBA
