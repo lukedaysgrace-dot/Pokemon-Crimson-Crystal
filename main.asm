@@ -794,3 +794,8 @@ INCLUDE "data/abilities/descriptions.asm"
 SECTION "Overworld Weather", ROMX
 
 INCLUDE "engine/overworld/weather.asm"
+
+
+SECTION "Caught Ball Palettes", ROMX
+
+INCLUDE "engine/gfx/caught_ball_pals.asm"

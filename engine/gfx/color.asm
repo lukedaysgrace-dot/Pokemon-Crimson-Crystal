@@ -113,19 +113,9 @@ Unreferenced_Function8aa4:
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
-	call LoadCaughtBallBGPals
 	call InitPartyMenuOBPals
-	call LoadPartyMenuMonPals
+	call LoadPartyMenuMonPals ; also loads the caught ball BG pals
 	call WipeAttrMap
-	ret
-
-LoadCaughtBallBGPals::
-; Load the caught ball colors into BG palettes 4-6 for the party menu.
-	ld hl, CaughtBallBGPals
-	ld de, wBGPals1 palette 4
-	ld bc, 3 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
 	ret
 
 ; SGB layout for SCGB_PARTY_MENU_HP_PALS
@@ -701,7 +691,9 @@ SetFirstOBJPaletteFromMonColors::
 
 LoadPartyMenuMonPals::
 ; Load each party mon's actual battle palette colors into
-; OBJ palettes 2-7 for their menu icons.
+; OBJ palettes 2-7 for their menu icons. Also loads the caught ball
+; colors into BG palettes 4-6 (both party-menu palette paths call here).
+	farcall LoadCaughtBallBGPals
 	xor a
 .loop
 	ld hl, wPartyCount
@@ -1424,9 +1416,6 @@ INCLUDE "gfx/diploma/diploma.pal"
 
 PartyMenuOBPals:
 INCLUDE "gfx/stats/party_menu_ob.pal"
-
-CaughtBallBGPals:
-INCLUDE "gfx/stats/caught_balls.pal"
 
 UnusedGSTitleBGPals:
 INCLUDE "gfx/title/unused_gs_bg.pal"
