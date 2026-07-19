@@ -334,6 +334,7 @@ LYRA EQU __enum__
 	const ROXANNE
 	const CLARISSA
 	const SKIER_BIANCA
+	const SKIER_HEIDI
 
 	trainerclass TEACHER ; 22
 	const COLETTE
@@ -657,6 +658,7 @@ LYRA EQU __enum__
 	const DOUGLAS
 	const BOARDER_AIDAN
 	const BOARDER_NOEL
+	const BOARDER_SPENCER
 
 	trainerclass POKEFANM ; 3b
 	const WILLIAM

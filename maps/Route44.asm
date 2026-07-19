@@ -10,6 +10,8 @@
 	const ROUTE44_POKE_BALL1
 	const ROUTE44_POKE_BALL2
 	const ROUTE44_POKE_BALL3
+	const ROUTE44_SNOWBOARDER
+	const ROUTE44_SKIER
 
 Route44_MapScripts:
 	db 0 ; scene scripts
@@ -297,6 +299,28 @@ TrainerCooltrainermAllen:
 	closetext
 	end
 
+TrainerBoarderSpencer:
+	trainer BOARDER, BOARDER_SPENCER, EVENT_BEAT_BOARDER_SPENCER, BoarderSpencerSeenText, BoarderSpencerBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext BoarderSpencerAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerSkierHeidi:
+	trainer SKIER, SKIER_HEIDI, EVENT_BEAT_SKIER_HEIDI, SkierHeidiSeenText, SkierHeidiBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext SkierHeidiAfterBattleText
+	waitbutton
+	closetext
+	end
+
 Route44Sign1:
 	jumptext Route44Sign1Text
 
@@ -492,6 +516,40 @@ CooltrainerfCybilAfterBattleText:
 	cont "today--an elite."
 	done
 
+BoarderSpencerSeenText:
+	text "This slope's got"
+	line "no snow, but my"
+	cont "#MON bring it!"
+	done
+
+BoarderSpencerBeatenText:
+	text "Wiped out…"
+	line "Total wipeout."
+	done
+
+BoarderSpencerAfterBattleText:
+	text "ICE #MON keep"
+	line "their cool no"
+	cont "matter what."
+	done
+
+SkierHeidiSeenText:
+	text "Brrr! Feel that"
+	line "chill? My team"
+	cont "loves it!"
+	done
+
+SkierHeidiBeatenText:
+	text "I slipped up that"
+	line "time."
+	done
+
+SkierHeidiAfterBattleText:
+	text "Bundle up before"
+	line "the ICE PATH--it's"
+	cont "freezing!"
+	done
+
 Route44Sign1Text:
 	text "ROUTE 44"
 	line "ICE PATH AHEAD"
@@ -517,7 +575,7 @@ Route44_MapEvents:
 	bg_event  6, 10, BGEVENT_READ, Route44Sign2
 	bg_event 32,  9, BGEVENT_ITEM, Route44HiddenElixer
 
-	db 11 ; object events
+	db 13 ; object events
 	object_event 35,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherWilton1, -1
 	object_event 19, 13, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherEdgar, -1
 	object_event 10,  9, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicPhil, -1
@@ -529,3 +587,5 @@ Route44_MapEvents:
 	object_event 30,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route44MaxRevive, EVENT_ROUTE_44_MAX_REVIVE
 	object_event 45,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route44UltraBall, EVENT_ROUTE_44_ULTRA_BALL
 	object_event 14,  9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route44MaxRepel, EVENT_ROUTE_44_MAX_REPEL
+	object_event 44,  6, SPRITE_SNOWBOARDER_NEW, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBoarderSpencer, -1
+	object_event 25,  2, SPRITE_SKIER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSkierHeidi, -1
