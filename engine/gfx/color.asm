@@ -818,8 +818,7 @@ GetTrainerPalettePointer:
 	ret
 
 GetMonPalettePointer:
-	call _GetMonPalettePointer
-	ret
+	jp _GetMonPalettePointer
 
 Unreferenced_Function9779:
 	ret
