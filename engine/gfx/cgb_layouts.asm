@@ -594,9 +594,8 @@ _CGB_PartyMenu:
 	call CopyFourPalettes
 	call InitPartyMenuBGPal0
 	call InitPartyMenuBGPal7
-	call LoadCaughtBallBGPals
 	call InitPartyMenuOBPals
-	call LoadPartyMenuMonPals
+	call LoadPartyMenuMonPals ; also loads the caught ball BG pals
 	call ApplyAttrMap
 	ret
 
