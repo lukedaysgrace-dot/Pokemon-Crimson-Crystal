@@ -126,6 +126,9 @@ gfx/pokedex/question_mark.2bpp: rgbgfx += -h
 gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
 gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
+# The party-menu ball uses color index 2 for palette-based recoloring.
+gfx/stats/caught_ball.2bpp: rgbgfx += -c dmg=E4
+
 gfx/mystery_gift/mystery_gift.2bpp: tools/gfx += --trim-whitespace
 
 gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
