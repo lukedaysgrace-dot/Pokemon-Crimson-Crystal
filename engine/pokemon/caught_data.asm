@@ -247,3 +247,82 @@ SetEggMonCaughtData:
 	pop af
 	ld [wCurPartyLevel], a
 	ret
+
+; Caught ball: stored in Personality bits 0-4 (CAUGHT_BALL_MASK), so it
+; persists in the box struct through the PC, evolution and day-care.
+
+CaughtBallItems:
+; entries correspond to CAUGHTBALL_* constants
+	db POKE_BALL
+	db GREAT_BALL
+	db ULTRA_BALL
+	db MASTER_BALL
+	db HEAVY_BALL
+	db LEVEL_BALL
+	db LURE_BALL
+	db FAST_BALL
+	db FRIEND_BALL
+	db MOON_BALL
+	db LOVE_BALL
+	db PARK_BALL
+
+SetCaughtBall::
+; Store the ball in wCurItem into the Personality byte at bc,
+; preserving the ability bits. Farcall-safe.
+	ld a, [wCurItem]
+	call GetCaughtBallIndex
+	ld h, b
+	ld l, c
+	ld b, a
+	ld a, [hl]
+	and $ff ^ CAUGHT_BALL_MASK
+	or b
+	ld [hl], a
+	ld b, h
+	ld c, l
+	ret
+
+GetCaughtBallIndex:
+; a = ball item id -> a = CAUGHTBALL_* index (Poke Ball if unknown)
+	push bc
+	push hl
+	ld b, a
+	ld c, 0
+	ld hl, CaughtBallItems
+.loop
+	ld a, [hli]
+	cp b
+	jr z, .found
+	inc c
+	ld a, c
+	cp NUM_CAUGHT_BALLS
+	jr c, .loop
+	ld c, CAUGHTBALL_POKE_BALL
+.found
+	ld a, c
+	pop hl
+	pop bc
+	ret
+
+GetPartyMonCaughtBallItem::
+; e = party mon index -> c = ball item id. Farcall-safe.
+	ld a, e
+	ld hl, wPartyMon1Personality
+	call GetPartyLocation
+	ld a, [hl]
+	and CAUGHT_BALL_MASK
+	; fallthrough
+GetCaughtBallItem::
+; a = CAUGHTBALL_* index -> c = ball item id. Farcall-safe.
+	cp NUM_CAUGHT_BALLS
+	jr c, .valid
+	xor a ; CAUGHTBALL_POKE_BALL
+.valid
+	ld hl, CaughtBallItems
+	push de
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop de
+	ld c, [hl]
+	ret

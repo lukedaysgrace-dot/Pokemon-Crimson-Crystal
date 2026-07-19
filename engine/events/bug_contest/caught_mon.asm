@@ -30,7 +30,11 @@ BugContest_SetCaughtContestMon:
 	xor a
 	ld [wMonType], a
 	ld hl, wContestMon
-	jp GeneratePartyMonStats
+	call GeneratePartyMonStats
+	; Remember the ball (wCurItem is PARK_BALL here).
+	ld bc, wContestMonPersonality
+	farcall SetCaughtBall
+	ret
 
 .caughttext
 	; Caught @ !
