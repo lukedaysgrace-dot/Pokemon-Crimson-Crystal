@@ -542,7 +542,7 @@ PokeBallEffect:
 	predef TryAddMonToParty
 
 	farcall SetCaughtData
-	call SetCaughtMonBallColor
+	call SetCaughtMonBall
 
 	ld a, [wCurItem]
 	cp FRIEND_BALL
@@ -599,6 +599,14 @@ PokeBallEffect:
 	predef SendMonIntoBox
 
 	farcall SetBoxMonCaughtData
+
+	; Remember the ball the newly boxed mon was caught in.
+	; The captured mon is now first in the box.
+	ld a, BANK(sBoxCount)
+	call GetSRAMBank
+	ld bc, sBoxMon1Personality
+	farcall SetCaughtBall
+	call CloseSRAM
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -964,61 +972,16 @@ LoveBallMultiplier:
 	pop bc
 	ret
 
-SetCaughtMonBallColor:
-	ld a, [wCurItem]
-	call GetPokeBallColor
-	ld b, a
+SetCaughtMonBall:
+; Remember the ball the newly caught party mon was caught in.
 	ld a, [wPartyCount]
 	dec a
-	ld hl, wPartyMon1Unused
+	ld hl, wPartyMon1Personality
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	ld a, [hl]
-	and MON_SHINY_FLAG | MON_MALE_FLAG
-	or b
-	ld [hl], a
-	ret
-
-GetPokeBallColor:
-	cp MASTER_BALL
-	jr z, .green
-	cp ULTRA_BALL
-	jr z, .yellow
-	cp FRIEND_BALL
-	jr z, .yellow
-	cp GREAT_BALL
-	jr z, .blue
-	cp LURE_BALL
-	jr z, .blue
-	cp FAST_BALL
-	jr z, .yellow
-	cp HEAVY_BALL
-	jr z, .gray
-	cp MOON_BALL
-	jr z, .gray
-	cp LEVEL_BALL
-	jr z, .brown
-	xor a
-	ret
-
-.green
-	ld a, MON_BALL_COLOR_GREEN
-	ret
-
-.yellow
-	ld a, MON_BALL_COLOR_YELLOW
-	ret
-
-.blue
-	ld a, MON_BALL_COLOR_BLUE
-	ret
-
-.gray
-	ld a, MON_BALL_COLOR_GRAY
-	ret
-
-.brown
-	ld a, MON_BALL_COLOR_BROWN
+	ld b, h
+	ld c, l
+	farcall SetCaughtBall
 	ret
 
 FastBallMultiplier:
