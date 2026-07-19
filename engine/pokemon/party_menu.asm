@@ -38,7 +38,7 @@ LoadPartyMenuGFX:
 	call LoadFontsBattleExtra
 	ld de, PartyMenuBallGFX
 	ld hl, vTiles2 tile PARTYMENU_BALL_TILE
-	lb bc, BANK(PartyMenuBallGFX), NUM_CAUGHT_BALLS
+	lb bc, BANK(PartyMenuBallGFX), 1
 	call Get2bpp_2
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
@@ -97,6 +97,8 @@ PlacePartyNicknames:
 	ld hl, wPartyMonNicknames
 	ld a, b
 	call GetNick
+	ld a, "@"
+	ld [wStringBuffer1 + 9], a ; reserve room for the caught-ball icon
 	pop hl
 	call PlaceString
 	pop hl
@@ -553,7 +555,7 @@ PlacePartyMonCaughtBalls:
 	ret z
 	ld c, a
 	ld b, 0
-	hlcoord 0, 2
+	hlcoord 12, 1 ; right edge aligned with the HP label
 .loop
 	push bc
 	push hl
@@ -573,7 +575,7 @@ PlacePartyMonCaughtBalls:
 	xor a ; CAUGHTBALL_POKE_BALL
 .got_ball
 	ld e, a
-	add PARTYMENU_BALL_TILE
+	ld a, PARTYMENU_BALL_TILE
 	ld [hl], a ; tilemap
 	; color it in the attr map
 	ld d, 0
@@ -598,18 +600,18 @@ PlacePartyMonCaughtBalls:
 
 CaughtBallPalMap:
 ; entries correspond to CAUGHTBALL_* constants: BG palette for each ball
-	db 4 ; POKE (red)
-	db 5 ; GREAT (blue)
-	db 5 ; ULTRA (yellow)
-	db 4 ; MASTER (green)
-	db 6 ; HEAVY (gray)
+	db 3 ; POKE (red)
+	db 4 ; GREAT (blue)
+	db 2 ; ULTRA (yellow)
+	db 1 ; MASTER (green)
+	db 5 ; HEAVY (gray)
 	db 6 ; LEVEL (brown)
-	db 5 ; LURE (blue)
-	db 5 ; FAST (yellow)
-	db 5 ; FRIEND (yellow)
-	db 6 ; MOON (gray)
-	db 4 ; LOVE (red)
-	db 6 ; PARK (gray)
+	db 4 ; LURE (blue)
+	db 2 ; FAST (yellow)
+	db 2 ; FRIEND (yellow)
+	db 5 ; MOON (gray)
+	db 3 ; LOVE (red)
+	db 5 ; PARK (gray)
 
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
@@ -932,113 +934,7 @@ PrintPartyMenuActionText:
 	ret
 
 PartyMenuBallGFX:
-; 8x8 2bpp ball icons; entries correspond to CAUGHTBALL_* constants.
-; Color 0 = white, color 1/2 = ball color (see caught_balls.pal), 3 = black.
-; POKE (red: color 1)
-	db $3c, $3c
-	db $7e, $42
-	db $ff, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; GREAT (blue: color 2, white crest spots)
-	db $3c, $3c
-	db $42, $7e
-	db $81, $db
-	db $81, $ff
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; ULTRA (yellow: color 1, white markings)
-	db $3c, $3c
-	db $66, $42
-	db $db, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; MASTER (green: color 2, white "M" dots)
-	db $3c, $3c
-	db $42, $66
-	db $81, $e7
-	db $81, $ff
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; HEAVY (gray: color 1, black weight marks)
-	db $3c, $3c
-	db $7e, $42
-	db $ff, $a5
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; LEVEL (brown: color 2, white band)
-	db $3c, $3c
-	db $42, $7e
-	db $81, $81
-	db $81, $ff
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; LURE (blue: color 2, white diagonal stripe)
-	db $3c, $3c
-	db $42, $72
-	db $81, $cf
-	db $81, $ff
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; FAST (yellow: color 1, white zigzag)
-	db $3c, $3c
-	db $7e, $42
-	db $ab, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; FRIEND (yellow: color 1, white center dot)
-	db $3c, $3c
-	db $7e, $42
-	db $e7, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; MOON (gray: color 1, white crescent)
-	db $3c, $3c
-	db $72, $42
-	db $f9, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; LOVE (red: color 1, white heart)
-	db $3c, $3c
-	db $6a, $42
-	db $c7, $81
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
-; PARK (gray: color 1, black stripe)
-	db $3c, $3c
-	db $7e, $42
-	db $ff, $91
-	db $ff, $81
-	db $ff, $ff
-	db $99, $99
-	db $81, $81
-	db $3c, $3c
+; One editable 8x8 tile. Its fill uses color 2 for palette recoloring.
+INCBIN "gfx/stats/caught_ball.2bpp"
+.end
+	assert .end - PartyMenuBallGFX == LEN_2BPP_TILE
