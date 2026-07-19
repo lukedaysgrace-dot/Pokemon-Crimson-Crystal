@@ -139,7 +139,7 @@
 	tilecoll FLOOR, FLOOR, HOP_DOWN, FLOOR ; 8a
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 8b
 	tilecoll WALL, HOP_DOWN_LEFT, WALL, WALL ; 8c
-	tilecoll ICE, ICE, HOP_DOWN, HOP_DOWN ; 8d
+	tilecoll HOP_DOWN, HOP_DOWN, WALL, WALL ; 8d
 	tilecoll WALL, WALL, WALL, WALL ; 8e
 	tilecoll WALL, WALL, WALL, WALL ; 8f
 	tilecoll WALL, WALL, WALL, WALL ; 90
