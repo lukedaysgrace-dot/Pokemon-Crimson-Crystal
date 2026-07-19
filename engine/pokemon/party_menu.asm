@@ -582,7 +582,7 @@ PlacePartyMonCaughtBalls:
 	ld a, [hl]
 	pop hl
 	push hl
-	ld de, wAttrMap - wTilemap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	ld [hl], a ; attr map
 .next
