@@ -1,21 +1,20 @@
-; Party menu caught ball colors (BG palettes 4-6).
-; Each palette holds two ball "ink" colors between white and black,
-; so six ball colors fit in three palettes. Tiles pick color 1 or 2.
+; Extra party menu caught ball colors (BG palettes 4-6).
+; The icon uses color 2. Red, green, and yellow reuse HP palettes 1-3.
 
-; red / green
+; blue
 	RGB 31, 31, 31
-	RGB 30, 05, 04
-	RGB 07, 23, 03
-	RGB 00, 00, 00
-
-; yellow / blue
-	RGB 31, 31, 31
-	RGB 30, 24, 02
+	RGB 08, 10, 30
 	RGB 08, 10, 30
 	RGB 00, 00, 00
 
-; gray / brown
+; gray
 	RGB 31, 31, 31
 	RGB 16, 16, 17
+	RGB 16, 16, 17
+	RGB 00, 00, 00
+
+; brown
+	RGB 31, 31, 31
+	RGB 18, 11, 03
 	RGB 18, 11, 03
 	RGB 00, 00, 00
