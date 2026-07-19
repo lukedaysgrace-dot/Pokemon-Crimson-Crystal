@@ -60,3 +60,6 @@
 	const PAL_ICON_GRAY   ; 5
 	const PAL_ICON_TEAL   ; 6
 	const PAL_ICON_PURPLE ; 7
+
+; party menu caught ball icons (BG tiles in vTiles2; see PartyMenuBallGFX)
+PARTYMENU_BALL_TILE EQU $40

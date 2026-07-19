@@ -4156,7 +4156,7 @@ SendOutPlayerMon:
 	xor a
 	ld [wEnemyWrapCount], a
 	call SetPlayerTurn
-	call LoadBattleMonBallColor
+	call LoadBattleMonCaughtBall
 	xor a
 	ld [wNumHits], a
 	ld [wBattleAnimParam], a
@@ -4187,32 +4187,15 @@ SendOutPlayerMon:
 	ldh [hBGMapMode], a
 	ret
 
-LoadBattleMonBallColor:
+LoadBattleMonCaughtBall:
+; Make the send-out throw animation use the ball this mon was caught in.
+; GetBallAnimPal colors the thrown ball based on wCurItem.
 	ld a, [wCurBattleMon]
-	ld hl, wPartyMon1Unused
-	call GetPartyLocation
-	ld a, [hl]
-	and MON_BALL_COLOR_MASK
-	cp NUM_MON_BALL_COLORS
-	jr c, .got_color
-	xor a
-
-.got_color
-	ld hl, .BallColorItems
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
+	ld e, a
+	farcall GetPartyMonCaughtBallItem
+	ld a, c
 	ld [wCurItem], a
 	ret
-
-.BallColorItems:
-	db POKE_BALL
-	db MASTER_BALL
-	db ULTRA_BALL
-	db GREAT_BALL
-	db HEAVY_BALL
-	db LEVEL_BALL
 
 NewBattleMonStatus:
 	xor a
