@@ -2971,6 +2971,16 @@ SkierGroup:
 	dw SNORUNT
 	db -1 ; end
 
+	next_list_item ; SKIER (4) SKIER_HEIDI - Route 44
+	db "HEIDI@", TRAINERTYPE_NORMAL
+	db 37
+	dw SNOVER
+	db 38
+	dw DEWGONG
+	db 39
+	dw JYNX
+	db -1 ; end
+
 	end_list_items
 
 TeacherGroup:
@@ -5923,6 +5933,16 @@ BoarderGroup:
 	dw SNOVER
 	db 21
 	dw SPHEAL
+	db -1 ; end
+
+	next_list_item ; BOARDER (6) BOARDER_SPENCER - Route 44
+	db "SPENCER@", TRAINERTYPE_NORMAL
+	db 37
+	dw SNEASEL
+	db 38
+	dw DEWGONG
+	db 38
+	dw PILOSWINE
 	db -1 ; end
 
 	end_list_items
