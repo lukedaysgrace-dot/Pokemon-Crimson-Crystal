@@ -175,6 +175,17 @@ gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 gfx/overworld/gold_fish.2bpp: tools/gfx += --trim-whitespace
 gfx/overworld/lyra_fish.2bpp: tools/gfx += --trim-whitespace
 
+# The overworld raindrop is edited as gfx/overworld/rain.png. If the PNG does
+# not exist yet, bootstrap it with the original streak art.
+gfx/overworld/rain.png:
+	python3 tools/rain_png.py $@
+
+# Rain drop and splash may be drawn in any shade; every non-transparent pixel
+# is normalized to color 2, the slot ApplyWeatherTint recolors to rain blue.
+gfx/overworld/rain.2bpp gfx/overworld/rain_splash.2bpp: %.2bpp: %.png
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	python3 tools/rain_png.py --normalize $@
+
 gfx/battle/dude.2bpp: rgbgfx += -h
 
 gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
