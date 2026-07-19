@@ -39,11 +39,30 @@ ABILFLAG_NO_TRANSFORM  EQU %00100000
 ABILFLAG_NO_INTIMIDATE EQU %01000000
 
 ; Personality byte bit masks (party/box/battle struct Personality)
-; bits 5-6: ability slot; other bits reserved
+; bits 5-6: ability slot; bits 0-4: caught ball; bit 7 reserved
 ABILITY_MASK   EQU %01100000
 ABILITY_1      EQU %00100000
 ABILITY_2      EQU %01000000
 HIDDEN_ABILITY EQU %01100000
+
+; caught ball (Personality bits 0-4); indexes into CaughtBallItems,
+; PartyMenuBallGFX and CaughtBallPalMap. 0 (Poke Ball) is the default
+; for gift/traded/hatched mons, so new entries must only be appended.
+CAUGHT_BALL_MASK EQU %00011111
+	const_def
+	const CAUGHTBALL_POKE_BALL   ; 0
+	const CAUGHTBALL_GREAT_BALL  ; 1
+	const CAUGHTBALL_ULTRA_BALL  ; 2
+	const CAUGHTBALL_MASTER_BALL ; 3
+	const CAUGHTBALL_HEAVY_BALL  ; 4
+	const CAUGHTBALL_LEVEL_BALL  ; 5
+	const CAUGHTBALL_LURE_BALL   ; 6
+	const CAUGHTBALL_FAST_BALL   ; 7
+	const CAUGHTBALL_FRIEND_BALL ; 8
+	const CAUGHTBALL_MOON_BALL   ; 9
+	const CAUGHTBALL_LOVE_BALL   ; a
+	const CAUGHTBALL_PARK_BALL   ; b
+NUM_CAUGHT_BALLS EQU const_value
 
 ; gender ratio constants
 GENDER_F0      EQU 0 percent
@@ -104,14 +123,6 @@ PERFECT_SPDSPC_DV EQU $ff
 ; shiny/gender flags (party: Unused byte; box: PokerusStatus bits 6-7)
 MON_SHINY_FLAG EQU %10000000
 MON_MALE_FLAG  EQU %01000000
-MON_BALL_COLOR_MASK EQU %00000111
-MON_BALL_COLOR_RED    EQU 0
-MON_BALL_COLOR_GREEN  EQU 1
-MON_BALL_COLOR_YELLOW EQU 2
-MON_BALL_COLOR_BLUE   EQU 3
-MON_BALL_COLOR_GRAY   EQU 4
-MON_BALL_COLOR_BROWN  EQU 5
-NUM_MON_BALL_COLORS   EQU 6
 SHINY_PROBABILITY EQU 10 percent
 POKERUS_PROBABILITY EQU 5 percent
 PKRUS_OFFSET_FROM_DVS EQU 2 + NUM_MOVES + 1

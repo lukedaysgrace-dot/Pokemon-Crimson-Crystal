@@ -36,6 +36,10 @@ InitPartyMenuLayout:
 
 LoadPartyMenuGFX:
 	call LoadFontsBattleExtra
+	ld de, PartyMenuBallGFX
+	ld hl, vTiles2 tile PARTYMENU_BALL_TILE
+	lb bc, BANK(PartyMenuBallGFX), NUM_CAUGHT_BALLS
+	call Get2bpp_2
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
 	ret
@@ -62,6 +66,7 @@ WritePartyMenuTilemap:
 	pop hl
 	jr .loop
 .end
+	call PlacePartyMonCaughtBalls
 	pop af
 	ld [wOptions], a
 	ret
@@ -540,6 +545,72 @@ PlacePartyMonMobileBattleSelection:
 .Strings_1_2_3:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 
+PlacePartyMonCaughtBalls:
+; Show each party mon's caught ball at the left edge of its second row,
+; colored through BG palettes 4-6 (see gfx/stats/caught_balls.pal).
+	ld a, [wPartyCount]
+	and a
+	ret z
+	ld c, a
+	ld b, 0
+	hlcoord 0, 2
+.loop
+	push bc
+	push hl
+	call PartyMenuCheckEgg
+	jr z, .next ; eggs haven't been caught in anything yet
+	; a = this mon's caught ball
+	ld a, b
+	push hl
+	ld hl, wPartyMon1Personality
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	pop hl
+	and CAUGHT_BALL_MASK
+	cp NUM_CAUGHT_BALLS
+	jr c, .got_ball
+	xor a ; CAUGHTBALL_POKE_BALL
+.got_ball
+	ld e, a
+	add PARTYMENU_BALL_TILE
+	ld [hl], a ; tilemap
+	; color it in the attr map
+	ld d, 0
+	ld hl, CaughtBallPalMap
+	add hl, de
+	ld a, [hl]
+	pop hl
+	push hl
+	ld de, wAttrMap - wTilemap
+	add hl, de
+	ld [hl], a ; attr map
+.next
+	pop hl
+	ld de, 2 * SCREEN_WIDTH
+	add hl, de
+	pop bc
+	inc b
+	dec c
+	jr nz, .loop
+	farcall ApplyAttrMap
+	ret
+
+CaughtBallPalMap:
+; entries correspond to CAUGHTBALL_* constants: BG palette for each ball
+	db 4 ; POKE (red)
+	db 5 ; GREAT (blue)
+	db 5 ; ULTRA (yellow)
+	db 4 ; MASTER (green)
+	db 6 ; HEAVY (gray)
+	db 6 ; LEVEL (brown)
+	db 5 ; LURE (blue)
+	db 5 ; FAST (yellow)
+	db 5 ; FRIEND (yellow)
+	db 6 ; MOON (gray)
+	db 4 ; LOVE (red)
+	db 6 ; PARK (gray)
+
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
 	add b
@@ -859,3 +930,115 @@ PrintPartyMenuActionText:
 	pop af
 	ld [wOptions], a
 	ret
+
+PartyMenuBallGFX:
+; 8x8 2bpp ball icons; entries correspond to CAUGHTBALL_* constants.
+; Color 0 = white, color 1/2 = ball color (see caught_balls.pal), 3 = black.
+; POKE (red: color 1)
+	db $3c, $3c
+	db $7e, $42
+	db $ff, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; GREAT (blue: color 2, white crest spots)
+	db $3c, $3c
+	db $42, $7e
+	db $81, $db
+	db $81, $ff
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; ULTRA (yellow: color 1, white markings)
+	db $3c, $3c
+	db $66, $42
+	db $db, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; MASTER (green: color 2, white "M" dots)
+	db $3c, $3c
+	db $42, $66
+	db $81, $e7
+	db $81, $ff
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; HEAVY (gray: color 1, black weight marks)
+	db $3c, $3c
+	db $7e, $42
+	db $ff, $a5
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; LEVEL (brown: color 2, white band)
+	db $3c, $3c
+	db $42, $7e
+	db $81, $81
+	db $81, $ff
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; LURE (blue: color 2, white diagonal stripe)
+	db $3c, $3c
+	db $42, $72
+	db $81, $cf
+	db $81, $ff
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; FAST (yellow: color 1, white zigzag)
+	db $3c, $3c
+	db $7e, $42
+	db $ab, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; FRIEND (yellow: color 1, white center dot)
+	db $3c, $3c
+	db $7e, $42
+	db $e7, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; MOON (gray: color 1, white crescent)
+	db $3c, $3c
+	db $72, $42
+	db $f9, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; LOVE (red: color 1, white heart)
+	db $3c, $3c
+	db $6a, $42
+	db $c7, $81
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
+; PARK (gray: color 1, black stripe)
+	db $3c, $3c
+	db $7e, $42
+	db $ff, $91
+	db $ff, $81
+	db $ff, $ff
+	db $99, $99
+	db $81, $81
+	db $3c, $3c
