@@ -113,9 +113,19 @@ Unreferenced_Function8aa4:
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
+	call LoadCaughtBallBGPals
 	call InitPartyMenuOBPals
 	call LoadPartyMenuMonPals
 	call WipeAttrMap
+	ret
+
+LoadCaughtBallBGPals::
+; Load the caught ball colors into BG palettes 4-6 for the party menu.
+	ld hl, CaughtBallBGPals
+	ld de, wBGPals1 palette 4
+	ld bc, 3 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
 	ret
 
 ; SGB layout for SCGB_PARTY_MENU_HP_PALS
@@ -575,7 +585,7 @@ ApplyPals:
 	call FarCopyWRAM
 	ret
 
-ApplyAttrMap:
+ApplyAttrMap::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jr z, .UpdateVBank1
@@ -1414,6 +1424,9 @@ INCLUDE "gfx/diploma/diploma.pal"
 
 PartyMenuOBPals:
 INCLUDE "gfx/stats/party_menu_ob.pal"
+
+CaughtBallBGPals:
+INCLUDE "gfx/stats/caught_balls.pal"
 
 UnusedGSTitleBGPals:
 INCLUDE "gfx/title/unused_gs_bg.pal"
