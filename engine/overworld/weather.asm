@@ -592,14 +592,21 @@ DoOverworldWeather::
 	call c, WeatherLightning
 	jr RenderRain
 
-; Each particle salts these 32-pixel cells with its X seed and only splashes in
-; alternating cells. This scatters impacts without consuming the global RNG.
+; Each particle salts these 32-pixel cells with its X seed, staggering impacts
+; without consuming the global RNG. Within each cell a drop falls, splashes on
+; the salted impact line, then stays gone until the cell wraps and it re-seeds
+; as a fresh drop.
 DEF RAIN_SPLASH_CELL EQU 32
 DEF RAIN_SPEED EQU 2
+; Phases advance RAIN_SPEED per frame through the cell. Each splash frame is
+; shown for RAIN_SPLASH_FRAME_PHASES phases, then the spent drop spends
+; RAIN_GONE_PHASES invisible before re-seeding.
+DEF RAIN_SPLASH_FRAME_PHASES EQU 8
+DEF RAIN_GONE_PHASES EQU 8
 
 RenderRain:
 	ld hl, WeatherParticleSeeds
-	ld e, 16
+	ld e, 20 ; rain alone also reads the four extra seeds past the shared sixteen
 .loop
 	; x = seed - RAIN_SPEED * horizontal timer (mod screen width). The drop drifts left
 	; (top-right to bottom-left); horizontal and vertical speed are matched so a
@@ -629,20 +636,22 @@ RenderRain:
 	endr
 	; b = on-screen y (0 .. SCREEN_HEIGHT_PX - 1)
 
-	; Salt the impact row with the particle's X seed. Bit 5 selects alternating
-	; cells, making the gaps irregular while keeping each splash deterministic.
+	; Salt the impact row with the particle's X seed so the cells splash at
+	; staggered, irregular times. Phase 0 is the moment of impact.
 	ld a, b
 	add d
-	ld d, a
 	and RAIN_SPLASH_CELL - 1
-	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * 4
-	jr nc, .falling
-	bit 5, d
-	jr nz, .falling
+	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * RAIN_SPLASH_FRAME_PHASES
+	jr c, .splash
+	cp (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * RAIN_SPLASH_FRAME_PHASES + RAIN_GONE_PHASES
+	jr c, .next ; already splashed: the drop is spent until it re-seeds
+	jr .falling
 
-	; Splash: animate frame = phase / 4 and pin it to the salted impact line so it
-	; holds still on the ground while the animation plays.
+.splash
+	; Animate frame = phase / RAIN_SPLASH_FRAME_PHASES and pin it to the salted
+	; impact line so it holds still on the ground while the animation plays.
 	ld d, a ; d = phase
+	srl a
 	srl a
 	srl a
 	add WEATHER_TILE + 1 ; splash tile for this frame
@@ -1001,7 +1010,8 @@ ApplyWeatherTint::
 INCLUDE "data/maps/overcast_maps.asm"
 
 ; Seed coordinates (screen pixels, before OAM bias) scattered across the
-; screen. All weather types use the full set of sixteen seeds.
+; screen. All weather types use the shared set of sixteen seeds; rain also
+; reads the four extras beyond it for a denser shower.
 WeatherParticleSeeds:
 	db   4,  12
 	db  24,  96
@@ -1019,6 +1029,11 @@ WeatherParticleSeeds:
 	db 113,  60
 	db 135,  18
 	db 152, 118
+; Extra seeds read only while it rains.
+	db  10,  84
+	db  47,  16
+	db  88, 138
+	db 140,  34
 
 ; Weather particles. Color 0 is always transparent. On the silver palette the
 ; rain drop and its splash now use color 2, which ApplyWeatherTint recolors to
@@ -1026,29 +1041,26 @@ WeatherParticleSeeds:
 ; above trainers keeps its normal white/black. Snow also uses color 2, which
 ; stays snow-white because ApplyWeatherTint does not run during snow. Sand and
 ; cherry blossoms use color 2 of their own palettes.
+
+; Falling raindrop streak from gfx/overworld/rain.png. The Makefile normalizes
+; every non-transparent pixel to color 2, the slot ApplyWeatherTint recolors
+; to rain blue, so the PNG may be drawn in any shade. If the PNG is missing,
+; the Makefile bootstraps it with the original streak art via
+; tools/rain_png.py; edit the PNG to restyle the drop.
 RainWeatherGFX:
-	db $00, $00
-	db $00, $08
-	db $00, $08
-	db $00, $10
-	db $00, $10
-	db $00, $20
-	db $00, $00
-	db $00, $00
-; Ground splash (color 2), an inline copy of gfx/overworld/rain_splash.png so
-; the splash reads blue via silver color 2 like the drop. It must directly
-; follow RainWeatherGFX so the drop tile and the splash frame load together as
-; one contiguous fetch.
+	INCBIN "gfx/overworld/rain.2bpp"
+; Ground splash frames from gfx/overworld/rain_splash.png, normalized to
+; color 2 like the drop so the splash always matches the rain color. It must
+; directly follow RainWeatherGFX so the drop tile and the splash frames load
+; together as one contiguous fetch. Widen the PNG by 8 pixels to add a second
+; animation frame; the loader and RenderRain adapt to the frame count
+; automatically.
 RainSplashGFX:
-	db $00, $00
-	db $00, $00
-	db $00, $00
-	db $00, $00
-	db $00, $00
-	db $00, $42
-	db $00, $00
-	db $00, $24
+	INCBIN "gfx/overworld/rain_splash.2bpp"
 RainSplashGFXEnd:
+	assert RainSplashGFX - RainWeatherGFX == LEN_2BPP_TILE, "rain.png must be a single 8x8 tile"
+; Splash frames plus the gone window must leave falling time in each cell.
+	assert (RainSplashGFXEnd - RainSplashGFX) / LEN_2BPP_TILE * RAIN_SPLASH_FRAME_PHASES + RAIN_GONE_PHASES + 8 <= RAIN_SPLASH_CELL, "Too many rain_splash.png frames: drops need falling time inside each splash cell"
 ; The drop tile plus every splash frame must fit between WEATHER_TILE
 ; and the emote tiles at $f8, or loading rain graphics corrupts emotes.
 	assert RainSplashGFXEnd - RainSplashGFX <= ($f8 - WEATHER_TILE - 1) * LEN_2BPP_TILE, "Rain splash frames overflow into the emote tiles at $f8"
