@@ -19,7 +19,9 @@ SUMMARY_TILE_SIDE_B   EQU $46 ; side panel bottom edge
 SUMMARY_TILE_TAB_L    EQU $47 ; bottom tab left corner
 SUMMARY_TILE_TAB_FILL EQU $48 ; bottom tab top edge
 SUMMARY_TILE_TAB_R    EQU $49 ; bottom tab right corner
-SUMMARY_TILE_BALL     EQU $4a ; poke ball icon
+
+; OBJ tiles (vTiles0): $00 page square, $01 selected page square,
+; $02 caught ball icon (colored through OBJ palette 4)
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
@@ -147,7 +149,9 @@ StatsScreen_WaitAnim:
 .finish
 	ld hl, wcf64
 	res 5, [hl]
-	farcall HDMATransferTileMapToWRAMBank3
+	; transfer tiles and attributes together so page switches
+	; land in a single frame instead of colors changing first
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
 StatsScreen_SetJumptableIndex:
@@ -436,11 +440,17 @@ StatsScreen_PlaceGenderChar:
 LoadSummaryScreenGFX:
 	ld de, SummaryScreenTilesGFX
 	ld hl, vTiles2 tile SUMMARY_TILE_SIDE_TL
-	lb bc, BANK(SummaryScreenTilesGFX), 9
+	lb bc, BANK(SummaryScreenTilesGFX), 8
 	call Get2bpp
 	ld de, SummaryScreenSquareOBJGFX
 	ld hl, vTiles0 tile $00
 	lb bc, BANK(SummaryScreenSquareOBJGFX), 2
+	call Get2bpp
+	; the caught ball icon is the same graphic the party menu used
+	; (gfx/stats/caught_ball.png)
+	ld de, PartyMenuBallGFX
+	ld hl, vTiles0 tile $02
+	lb bc, BANK(PartyMenuBallGFX), 1
 	call Get2bpp
 	ret
 
@@ -565,25 +575,25 @@ StatsScreen_DrawFrames:
 	ret
 
 DrawSummaryTab:
-; Draw the bottom panel tab. b = label length, de = label string.
+; Draw the bottom panel tab and its label. de = label string.
+; The tab hump is always 6 cells wide (columns 1-6) so it never
+; overlaps the side panel's bottom-left corner; longer labels
+; simply spill onto the panel's top edge, like Polished's do.
 	push de
-	push bc
 	hlcoord 1, 11
 	ld [hl], SUMMARY_TILE_TAB_L
 	inc hl
 	ld a, SUMMARY_TILE_TAB_FILL
+	ld b, 4
 .hump
 	ld [hli], a
 	dec b
 	jr nz, .hump
 	ld [hl], SUMMARY_TILE_TAB_R
-	pop bc
 	; blank the tab interior on row 12
 	hlcoord 1, 12
-	ld a, b
-	add 2
-	ld b, a
 	ld a, " "
+	ld b, 6
 .blank
 	ld [hli], a
 	dec b
@@ -622,6 +632,33 @@ StatsScreen_PlacePageSquares:
 	ld a, b
 	cp NUM_STAT_PAGES + 1
 	jr nz, .loop
+
+	; sprite 4: caught ball icon on the pink and orange pages
+	ld hl, wVirtualOAMSprite04
+	ld a, [wcf64]
+	and STAT_PAGE_MASK
+	cp PINK_PAGE
+	lb de, 56, 152 ; y, x: right of the type badges at (18, 5)
+	jr z, .got_ball_pos
+	cp ORANGE_PAGE
+	lb de, 88, 72 ; y, x: at (8, 9), next to the ball name
+	jr z, .got_ball_pos
+	; other pages: hide it
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ret
+.got_ball_pos
+	ld a, d
+	ld [hli], a
+	ld a, e
+	ld [hli], a
+	ld a, $02 ; ball tile
+	ld [hli], a
+	ld a, 4 ; ball OBJ palette
+	ld [hl], a
 	ret
 
 PlaceTypeAbbreviation:
@@ -646,7 +683,6 @@ PlaceTypeAbbreviation:
 ; ================================
 
 StatsScreen_PinkPage:
-	ld b, 4
 	ld de, .ExpTabString
 	call DrawSummaryTab
 
@@ -661,7 +697,7 @@ StatsScreen_PinkPage:
 	ld hl, sp + 0
 	ld d, h
 	ld e, l
-	hlcoord 8, 1
+	hlcoord 8, 2
 	ld a, "№"
 	ld [hli], a
 	ld a, "."
@@ -670,23 +706,23 @@ StatsScreen_PinkPage:
 	call PrintNum
 	add sp, 2
 
-	; shiny star
+	; shiny indicator
 	ld bc, wTempMonDVs
 	farcall CheckShininess
 	jr nc, .not_shiny
-	hlcoord 18, 1
-	ld [hl], $3f ; shiny star icon
+	hlcoord 18, 2
+	ld [hl], $3f ; shiny sparkles icon
 .not_shiny
 
 	; nickname
 	ld hl, .NicknamePointers
 	call GetNicknamePointer
 	call CopyNickname
-	hlcoord 8, 2
+	hlcoord 8, 3
 	call PlaceString
 
 	; species
-	hlcoord 8, 3
+	hlcoord 8, 4
 	ld a, "/"
 	ld [hli], a
 	ld a, [wBaseSpecies]
@@ -696,30 +732,28 @@ StatsScreen_PinkPage:
 
 	; type badges
 	ld a, [wBaseType1]
-	hlcoord 8, 4
+	hlcoord 8, 5
 	call PlaceTypeAbbreviation
 	ld a, [wBaseType1]
 	ld b, a
 	ld a, [wBaseType2]
 	cp b
 	jr z, .one_type
-	hlcoord 13, 4
+	hlcoord 13, 5
 	call PlaceTypeAbbreviation
 .one_type
-
-	; caught ball icon
-	hlcoord 18, 4
-	ld [hl], SUMMARY_TILE_BALL
+	; (the caught ball icon at (18, 5) is an OAM sprite; see
+	; StatsScreen_PlacePageSquares)
 
 	; OT name
 	ld de, OTString
-	hlcoord 8, 6
+	hlcoord 8, 7
 	call PlaceString
 	ld hl, .OTNamePointers
 	call GetNicknamePointer
 	call CopyNickname
 	farcall CorrectNickErrors
-	hlcoord 11, 6
+	hlcoord 11, 7
 	call PlaceString
 	ld a, [wTempMonCaughtGender]
 	and a
@@ -731,15 +765,15 @@ StatsScreen_PinkPage:
 	jr z, .got_ot_gender
 	ld a, "♀"
 .got_ot_gender
-	hlcoord 18, 6
+	hlcoord 18, 7
 	ld [hl], a
 .ot_done
 
 	; ID number
 	ld de, IDNoString
-	hlcoord 8, 8
+	hlcoord 8, 9
 	call PlaceString
-	hlcoord 11, 8
+	hlcoord 11, 9
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, wTempMonID
 	call PrintNum
@@ -854,7 +888,6 @@ OTString:
 ; ==============================
 
 StatsScreen_BluePage:
-	ld b, 7
 	ld de, .AbilityTabString
 	call DrawSummaryTab
 
@@ -928,7 +961,8 @@ StatsScreen_BluePage:
 	hlcoord 18, 13
 	ld [hl], a
 	pop bc
-	hlcoord 1, 15
+	; note: farcall clobbers hl, so the coords are passed in de
+	decoord 1, 15
 	farcall PrintAbilityDescriptionStats
 	ret
 
@@ -955,7 +989,6 @@ StatsScreen_BluePage:
 ; ==============================
 
 StatsScreen_GreenPage:
-	ld b, 4
 	ld de, .ItemTabString
 	call DrawSummaryTab
 
@@ -978,11 +1011,11 @@ StatsScreen_GreenPage:
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
-	hlcoord 8, 1
+	hlcoord 8, 2
 	ld a, SCREEN_WIDTH * 2
 	ld [wBuffer1], a
 	predef ListMoves
-	hlcoord 12, 2
+	hlcoord 12, 3
 	ld a, SCREEN_WIDTH * 2
 	ld [wBuffer1], a
 	predef ListMovePP
@@ -1003,7 +1036,7 @@ StatsScreen_GreenPage:
 	pop bc
 	push bc
 	push af
-	hlcoord 8, 2
+	hlcoord 8, 3
 	ld a, c
 	and a
 	jr z, .got_row
@@ -1046,13 +1079,12 @@ StatsScreen_GreenPage:
 ; ====================================
 
 StatsScreen_OrangePage:
-	ld b, 6
 	ld de, .FriendTabString
 	call DrawSummaryTab
 
 	; --- side panel: met info ---
 	ld de, .WhereMetStr
-	hlcoord 8, 1
+	hlcoord 8, 2
 	call PlaceString
 
 	ld a, [wTempMonCaughtLocation]
@@ -1067,18 +1099,18 @@ StatsScreen_OrangePage:
 	jr .loc_done
 .gift
 	ld de, .ReceivedStr
-	hlcoord 8, 2
+	hlcoord 8, 3
 	call PlaceString
 	ld de, .AsGiftStr
-	hlcoord 8, 3
+	hlcoord 8, 4
 	call PlaceString
 	jr .loc_done
 .unknown_loc
 	ld de, .FarawayStr
-	hlcoord 8, 2
+	hlcoord 8, 3
 	call PlaceString
 	ld de, .PlaceStr
-	hlcoord 8, 3
+	hlcoord 8, 4
 	call PlaceString
 .loc_done
 
@@ -1089,7 +1121,7 @@ StatsScreen_OrangePage:
 	cp CAUGHT_EGG_LEVEL
 	jr z, .hatched
 	ld de, .MetAtStr
-	hlcoord 8, 5
+	hlcoord 8, 6
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -1104,23 +1136,32 @@ StatsScreen_OrangePage:
 	jr .level_done
 .hatched
 	ld de, .HatchedStr
-	hlcoord 8, 5
+	hlcoord 8, 6
 	call PlaceString
 .level_done
 
-	; caught ball
+	; shiny indicator
+	ld bc, wTempMonDVs
+	farcall CheckShininess
+	jr nc, .not_shiny
+	hlcoord 18, 2
+	ld [hl], $3f ; shiny sparkles icon
+.not_shiny
+
+	; caught ball (the icon at (8, 9) is an OAM sprite; see
+	; StatsScreen_PlacePageSquares)
 	ld de, .BallUsedStr
-	hlcoord 8, 7
-	call PlaceString
 	hlcoord 8, 8
-	ld [hl], SUMMARY_TILE_BALL
+	call PlaceString
 	ld a, [wTempMonPersonality]
 	and CAUGHT_BALL_MASK
-	farcall GetCaughtBallItem
+	; must be a plain call: farcall would clobber a (the ball index),
+	; which made every mon read as caught in a Poke Ball
+	call GetCaughtBallItem
 	ld a, c
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	hlcoord 9, 8
+	hlcoord 9, 9
 	call PlaceString
 
 	; --- bottom panel: friendship ---
@@ -1175,7 +1216,7 @@ StatsScreen_OrangePage:
 	ret
 
 .PrintLocationName:
-; Print the landmark name in wStringBuffer1 at (8, 2).
+; Print the landmark name in wStringBuffer1 at (8, 3).
 ; Names longer than 12 characters get split at the last space
 ; and continue on the next row.
 	ld hl, wStringBuffer1
@@ -1215,14 +1256,14 @@ StatsScreen_OrangePage:
 	inc hl
 	push hl
 	ld de, wStringBuffer1
-	hlcoord 8, 2
+	hlcoord 8, 3
 	call PlaceString
 	pop de
-	hlcoord 8, 3
+	hlcoord 8, 4
 	jp PlaceString
 .fits
 	ld de, wStringBuffer1
-	hlcoord 8, 2
+	hlcoord 8, 3
 	jp PlaceString
 
 .FriendTabString:
@@ -1598,16 +1639,16 @@ CheckFaintedFrzSlp:
 
 TypeAbbreviations:
 ; 5 bytes per entry ("@"-terminated), indexed by type constant
-	db "NRM @" ; NORMAL
-	db "FGT @" ; FIGHTING
-	db "FLY @" ; FLYING
-	db "PSN @" ; POISON
-	db "GRD @" ; GROUND
-	db "RCK @" ; ROCK
-	db "BRD @" ; BIRD
+	db "NORM@" ; NORMAL
+	db "FGHT@" ; FIGHTING
+	db "FLYG@" ; FLYING
+	db "POIS@" ; POISON
+	db "GRND@" ; GROUND
+	db "ROCK@" ; ROCK
+	db "BIRD@" ; BIRD
 	db "BUG @" ; BUG
-	db "GHT @" ; GHOST
-	db "STL @" ; STEEL
+	db "GHST@" ; GHOST
+	db "STEL@" ; STEEL
 	db "??? @" ; TYPE_10
 	db "??? @" ; TYPE_11
 	db "??? @" ; TYPE_12
@@ -1617,52 +1658,54 @@ TypeAbbreviations:
 	db "??? @" ; TYPE_16
 	db "??? @" ; TYPE_17
 	db "??? @" ; TYPE_18
-	db "CRS @" ; CURSE_T
-	db "FIR @" ; FIRE
-	db "WTR @" ; WATER
-	db "GRS @" ; GRASS
-	db "ELC @" ; ELECTRIC
-	db "PSY @" ; PSYCHIC
+	db "CURS@" ; CURSE_T
+	db "FIRE@" ; FIRE
+	db "WATR@" ; WATER
+	db "GRAS@" ; GRASS
+	db "ELEC@" ; ELECTRIC
+	db "PSYC@" ; PSYCHIC
 	db "ICE @" ; ICE
-	db "DRG @" ; DRAGON
-	db "DRK @" ; DARK
-	db "FRY @" ; FAIRY
+	db "DRGN@" ; DRAGON
+	db "DARK@" ; DARK
+	db "FARY@" ; FAIRY
 
 SummaryScreenTilesGFX:
-; 9 tiles, 2bpp. Color mapping (side panel palette): 0 = panel fill,
+; 8 tiles, 2bpp. Color mapping (side panel palette): 0 = panel fill,
 ; 1 = accent (page color), 2 = white/outside, 3 = black.
+; A white highlight line runs just inside the accent border to give
+; the panels a glossier, less flat look.
 	; $42 side panel top-left corner
 	db $00, $ff
 	db $0f, $f0
 	db $3f, $c0
 	db $7f, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
 	; $43 side panel top edge / bottom panel top edge
 	db $00, $ff
 	db $ff, $00
 	db $ff, $00
-	db $00, $00
+	db $00, $ff
 	db $00, $00
 	db $00, $00
 	db $00, $00
 	db $00, $00
 	; $44 side panel left edge
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
 	; $45 side panel bottom-left corner
-	db $60, $80
-	db $60, $80
-	db $60, $80
-	db $60, $80
+	db $60, $90
+	db $60, $90
+	db $60, $90
+	db $60, $90
 	db $7f, $80
 	db $3f, $c0
 	db $0f, $f0
@@ -1672,7 +1715,7 @@ SummaryScreenTilesGFX:
 	db $00, $00
 	db $00, $00
 	db $00, $00
-	db $00, $00
+	db $00, $ff
 	db $ff, $00
 	db $ff, $00
 	db $00, $ff
@@ -1691,7 +1734,7 @@ SummaryScreenTilesGFX:
 	db $00, $ff
 	db $00, $ff
 	db $ff, $00
-	db $00, $00
+	db $00, $ff
 	db $00, $00
 	db $00, $00
 	; $49 tab right corner
@@ -1703,19 +1746,11 @@ SummaryScreenTilesGFX:
 	db $08, $07
 	db $04, $03
 	db $02, $01
-	; $4a poke ball icon
-	db $00, $00
-	db $3c, $3c
-	db $7e, $42
-	db $ff, $81
-	db $ff, $ff
-	db $81, $ff
-	db $42, $7e
-	db $3c, $3c
 
 SummaryScreenSquareOBJGFX:
 ; 2 OBJ tiles: page square (unselected), page square (selected).
 ; Color mapping (OBJ palettes 0-3): 1 = white, 2 = page color, 3 = black.
+; (OBJ tile $02 is loaded separately from PartyMenuBallGFX.)
 	; tile $00: small filled square
 	db $00, $00
 	db $00, $7e

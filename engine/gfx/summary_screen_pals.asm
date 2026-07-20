@@ -74,7 +74,49 @@ LoadSummaryScreenPals::
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 
-	farcall ApplyAttrMap
+	; caught ball OBJ palette (slot 4). The party menu ball graphic
+	; keeps its white areas in color 0 (transparent here, so the panel
+	; shows through) and its fill in colors 1-2, matching the layout of
+	; gfx/stats/caught_balls.pal. Built in wSGBPals, which is free again
+	; now that the BG palettes have been committed.
+	ld a, $ff ; white (unused color 0)
+	ld [wSGBPals], a
+	ld a, $7f
+	ld [wSGBPals + 1], a
+	ld a, [wTempMonPersonality]
+	and CAUGHT_BALL_MASK
+	cp NUM_CAUGHT_BALLS
+	jr c, .ball_ok
+	xor a
+.ball_ok
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, SummaryBallColors
+	add hl, de
+	ld a, [hli]
+	ld [wSGBPals + 2], a
+	ld [wSGBPals + 4], a
+	ld a, [hl]
+	ld [wSGBPals + 3], a
+	ld [wSGBPals + 5], a
+	xor a ; black
+	ld [wSGBPals + 6], a
+	ld [wSGBPals + 7], a
+	ld hl, wSGBPals
+	ld de, wOBPals1 palette 4
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	ld hl, wSGBPals
+	ld de, wOBPals2 palette 4
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals2)
+	call FarCopyWRAM
+
+	; The attribute map is pushed together with the tilemap by
+	; HDMATransferAttrMapAndTileMapToWRAMBank3 (see StatsScreen_WaitAnim),
+	; so pages switch in a single clean frame.
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
@@ -111,24 +153,12 @@ LoadSummaryScreenPals::
 	lb bc, 6, 20
 	ld a, $4
 	call .FillAttrBox
-	; bottom tab hump
-	ld a, [wBuffer6]
-	ld hl, .TabLengths
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	add 2
-	ld c, a
-	ld b, 1
+	; bottom tab hump (fixed 6 cells, columns 1-6)
 	hlcoord 1, 11, wAttrMap
+	lb bc, 1, 6
 	ld a, $4
 	call .FillAttrBox
 	ret
-
-.TabLengths:
-; label lengths: "Exp.", "Ability", "Item", "Friend"
-	db 4, 7, 4, 6
 
 .PinkSetup:
 	; type badge palettes
@@ -139,7 +169,7 @@ LoadSummaryScreenPals::
 	ld de, wSGBPals + 32
 	call .SetBadgePal
 	; badge attributes
-	hlcoord 8, 4, wAttrMap
+	hlcoord 8, 5, wAttrMap
 	lb bc, 1, 4
 	ld a, $5
 	call .FillAttrBox
@@ -148,13 +178,13 @@ LoadSummaryScreenPals::
 	ld a, [wBaseType2]
 	cp b
 	jr z, .pink_one_type
-	hlcoord 13, 4, wAttrMap
+	hlcoord 13, 5, wAttrMap
 	lb bc, 1, 4
 	ld a, $6
 	call .FillAttrBox
 .pink_one_type
-	; shiny star cell
-	hlcoord 18, 1, wAttrMap
+	; shiny sparkles cell
+	hlcoord 18, 2, wAttrMap
 	ld [hl], $7
 	; exp bar row
 	hlcoord 1, 17, wAttrMap
@@ -210,7 +240,7 @@ LoadSummaryScreenPals::
 	ld [wBuffer1], a
 	push de
 	ld de, wSGBPals + 24
-	call .SetBadgePal_e
+	call .SetBadgePal
 	pop de
 	ld d, $5
 	jr .green_got_pal
@@ -222,7 +252,7 @@ LoadSummaryScreenPals::
 	ld [wBuffer2], a
 	push de
 	ld de, wSGBPals + 32
-	call .SetBadgePal_e
+	call .SetBadgePal
 	pop de
 	ld d, $6
 	jr .green_got_pal
@@ -235,7 +265,7 @@ LoadSummaryScreenPals::
 	ld [wBuffer3], a
 	push de
 	ld de, wSGBPals + 40
-	call .SetBadgePal_e
+	call .SetBadgePal
 	pop de
 	ld d, $7
 .green_got_pal
@@ -243,7 +273,7 @@ LoadSummaryScreenPals::
 	pop bc
 	push bc
 	push de
-	hlcoord 8, 2, wAttrMap
+	hlcoord 8, 3, wAttrMap
 	ld a, c
 	and a
 	jr z, .green_got_row
@@ -267,46 +297,16 @@ LoadSummaryScreenPals::
 	ret
 
 .OrangeSetup:
-	; caught ball palette (slot 5): panel fill, white, ball color, black
-	ld hl, wSGBPals + 8 ; side panel color 0
-	ld a, [hli]
-	ld [wSGBPals + 24], a
-	ld a, [hl]
-	ld [wSGBPals + 25], a
-	ld a, $ff ; white
-	ld [wSGBPals + 26], a
-	ld a, $7f
-	ld [wSGBPals + 27], a
-	ld a, [wTempMonPersonality]
-	and CAUGHT_BALL_MASK
-	cp NUM_CAUGHT_BALLS
-	jr c, .ball_ok
-	xor a
-.ball_ok
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, SummaryBallColors
-	add hl, de
-	ld a, [hli]
-	ld [wSGBPals + 28], a
-	ld a, [hl]
-	ld [wSGBPals + 29], a
-	xor a ; black
-	ld [wSGBPals + 30], a
-	ld [wSGBPals + 31], a
-	; attributes
-	hlcoord 8, 8, wAttrMap
-	ld [hl], $5
+	; shiny sparkles cell (the ball icon is an OAM sprite)
+	hlcoord 18, 2, wAttrMap
+	ld [hl], $7
+	; friendship bar row
 	hlcoord 1, 15, wAttrMap
 	lb bc, 1, 8
 	ld a, $2
 	call .FillAttrBox
 	ret
 
-.SetBadgePal_e:
-	ld a, e
-	; fallthrough
 .SetBadgePal:
 ; Build a type badge palette at de: badge color x3, then white text.
 ; a = type constant
@@ -380,7 +380,7 @@ SummaryPagePals:
 	RGB 0, 0, 0
 	RGB 31, 26, 30 ; star: pale pink bg
 	RGB 31, 31, 31
-	RGB 31, 27, 6  ; yellow star
+	RGB 4, 15, 31  ; blue shiny sparkles
 	RGB 0, 0, 0
 	; blue (cyan) page
 	RGB 24, 31, 31
@@ -393,7 +393,7 @@ SummaryPagePals:
 	RGB 0, 0, 0
 	RGB 24, 31, 31
 	RGB 31, 31, 31
-	RGB 31, 27, 6
+	RGB 4, 15, 31
 	RGB 0, 0, 0
 	; green page
 	RGB 27, 31, 23
@@ -406,7 +406,7 @@ SummaryPagePals:
 	RGB 0, 0, 0
 	RGB 27, 31, 23
 	RGB 31, 31, 31
-	RGB 31, 27, 6
+	RGB 4, 15, 31
 	RGB 0, 0, 0
 	; orange page
 	RGB 31, 28, 21
@@ -419,7 +419,7 @@ SummaryPagePals:
 	RGB 0, 0, 0
 	RGB 31, 28, 21
 	RGB 31, 31, 31
-	RGB 31, 27, 6
+	RGB 4, 15, 31
 	RGB 0, 0, 0
 
 SummarySquareOBPals:

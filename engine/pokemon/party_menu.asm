@@ -66,7 +66,8 @@ WritePartyMenuTilemap:
 	pop hl
 	jr .loop
 .end
-	call PlacePartyMonCaughtBalls
+	; Caught balls are no longer shown here; the summary screen's
+	; orange page displays the caught ball instead.
 	pop af
 	ld [wOptions], a
 	ret
