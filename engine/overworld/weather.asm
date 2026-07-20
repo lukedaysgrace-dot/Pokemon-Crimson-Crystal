@@ -11,6 +11,16 @@ _SetCurrentWeather::
 	; Keep the motion phase across map connections and reloads. HRAM is cleared
 	; at boot, and the render timers wrap themselves into range.
 
+	; A few interior maps are permanently snowy despite being caves. Check them
+	; before the outdoor-only gate so their snow is not skipped.
+	ld hl, SilverCaveIndoorSnowMaps
+	call IsCurrentMapInWeatherArea
+	jr nz, .not_indoor_snow
+	ld a, OW_WEATHER_SNOW
+	ldh [hCurWeather], a
+	jp LoadWeatherGraphics
+.not_indoor_snow
+
 	; Weather is an outdoor effect only.
 	ld a, [wEnvironment]
 	cp TOWN
