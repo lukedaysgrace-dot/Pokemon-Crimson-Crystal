@@ -257,43 +257,15 @@ _CGB_StatsScreenHPPals:
 	call LoadPalette_White_Col1_Col2_Black ; mon palette
 	ld hl, ExpBarPalette
 	call LoadPalette_White_Col1_Col2_Black ; exp palette
-	ld hl, StatsScreenPagePals
-	ld de, wBGPals1 palette 3
-	ld bc, 3 palettes ; pink, green, and blue page palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
 	call WipeAttrMap
 
+	; The Polished-style summary screen colors everything else per page
+	; (see engine/gfx/summary_screen_pals.asm). Only the pokepic area
+	; keeps the mon palette here, so the egg screen also works.
 	hlcoord 0, 0, wAttrMap
-	lb bc, 8, SCREEN_WIDTH
+	lb bc, 7, 7
 	ld a, $1 ; mon palette
 	call FillBoxCGB
-
-	hlcoord 10, 16, wAttrMap
-	ld bc, 10
-	ld a, $2 ; exp palette
-	call ByteFill
-
-	hlcoord 13, 5, wAttrMap
-	lb bc, 2, 2
-	ld a, $3 ; pink page palette
-	call FillBoxCGB
-
-	hlcoord 15, 5, wAttrMap
-	lb bc, 2, 2
-	ld a, $4 ; green page palette
-	call FillBoxCGB
-
-	hlcoord 17, 5, wAttrMap
-	lb bc, 2, 2
-	ld a, $5 ; blue page palette
-	call FillBoxCGB
-
-	; Color the shiny icon at (19, 0) using the blue page palette (slot 5:
-	; white background, blue foreground). Unlike the exp palette, this slot is
-	; not recolored per page, so the icon background stays white.
-	ld a, $5
-	ld [wAttrMap + 19], a
 
 	call ApplyAttrMap
 	call ApplyPals

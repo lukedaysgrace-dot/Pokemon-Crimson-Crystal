@@ -1,8 +1,25 @@
 	const_def 1
-	const PINK_PAGE  ; 1
-	const GREEN_PAGE ; 2
-	const BLUE_PAGE  ; 3
+	const PINK_PAGE   ; 1: overview (dex no, name, types, OT, ID) + experience
+	const BLUE_PAGE   ; 2: HP + stats + ability
+	const GREEN_PAGE  ; 3: moves + held item
+	const ORANGE_PAGE ; 4: met info + friendship
 NUM_STAT_PAGES EQU const_value + -1
+
+; Pages now use 3 bits of wcf64 (bit 2 was previously unused).
+STAT_PAGE_MASK EQU %00000111
+
+; Polished-style summary screen tiles, loaded at vTiles2 $42-$4a.
+; ($36-$3d, the old 2x2 page squares, are left loaded but unused;
+; the page squares are OAM sprites now.)
+SUMMARY_TILE_SIDE_TL  EQU $42 ; side panel top-left corner
+SUMMARY_TILE_SIDE_T   EQU $43 ; side panel top edge (also bottom panel top edge)
+SUMMARY_TILE_SIDE_L   EQU $44 ; side panel left edge
+SUMMARY_TILE_SIDE_BL  EQU $45 ; side panel bottom-left corner
+SUMMARY_TILE_SIDE_B   EQU $46 ; side panel bottom edge
+SUMMARY_TILE_TAB_L    EQU $47 ; bottom tab left corner
+SUMMARY_TILE_TAB_FILL EQU $48 ; bottom tab top edge
+SUMMARY_TILE_TAB_R    EQU $49 ; bottom tab right corner
+SUMMARY_TILE_BALL     EQU $4a ; poke ball icon
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
@@ -42,6 +59,7 @@ StatsScreenInit_gotaddress:
 	farcall StatsScreen_LoadFont
 	pop hl
 	call _hl_
+	call ClearSprites
 	call ClearBGPalettes
 	call ClearTileMap
 	pop bc
@@ -63,7 +81,7 @@ StatsScreenMain:
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and %11111100
+	and $ff ^ STAT_PAGE_MASK
 	or 1
 	ld [wcf64], a
 .loop
@@ -83,7 +101,7 @@ StatsScreenMobile:
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and %11111100
+	and $ff ^ STAT_PAGE_MASK
 	or 1
 	ld [wcf64], a
 .loop
@@ -149,12 +167,13 @@ MonStatsInit:
 	res 6, [hl]
 	call ClearBGPalettes
 	call ClearTileMap
+	call ClearSprites
 	farcall HDMATransferTileMapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
-	call StatsScreen_InitUpperHalf
+	call StatsScreen_InitStatics
 	ld hl, wcf64
 	set 4, [hl]
 	ld h, 4
@@ -276,7 +295,7 @@ StatsScreen_GetJoypad:
 StatsScreen_JoypadAction:
 	push af
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
+	and STAT_PAGE_MASK
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
@@ -334,11 +353,11 @@ StatsScreen_JoypadAction:
 
 .a_button
 	ld a, c
-	cp BLUE_PAGE ; last page
+	cp ORANGE_PAGE ; last page
 	jr z, .b_button
 .d_right
 	inc c
-	ld a, BLUE_PAGE ; last page
+	ld a, ORANGE_PAGE ; last page
 	cp c
 	jr nc, .set_page
 	ld c, PINK_PAGE ; first page
@@ -347,7 +366,7 @@ StatsScreen_JoypadAction:
 .d_left
 	dec c
 	jr nz, .set_page
-	ld c, BLUE_PAGE ; last page
+	ld c, ORANGE_PAGE ; last page
 	jr .set_page
 
 .done
@@ -355,7 +374,7 @@ StatsScreen_JoypadAction:
 
 .set_page
 	ld a, [wcf64]
-	and %11111100
+	and $ff ^ STAT_PAGE_MASK
 	or c
 	ld [wcf64], a
 	ld h, 4
@@ -372,47 +391,17 @@ StatsScreen_JoypadAction:
 	call StatsScreen_SetJumptableIndex
 	ret
 
-StatsScreen_InitUpperHalf:
+StatsScreen_InitStatics:
+; Load the summary tiles, compute the HP palette, and place the
+; level + gender below the pokepic. Everything else is per-page.
+	call LoadSummaryScreenGFX
 	call .PlaceHPBar
 	xor a
 	ldh [hBGMapMode], a
-	ld a, [wBaseSpecies]
-	ld [wCurSpecies], a
-	call GetPokemonIndexFromID
-	ld a, h
-	ld h, l
-	ld l, a
-	push hl
-	ld hl, sp + 0
-	ld d, h
-	ld e, l
-	hlcoord 8, 0
-	ld a, "№"
-	ld [hli], a
-	ld a, "."
-	ld [hli], a
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
-	call PrintNum
-	add sp, 2
-	hlcoord 14, 0
+	hlcoord 1, 8
 	call PrintLevel
-	ld hl, .NicknamePointers
-	call GetNicknamePointer
-	call CopyNickname
-	hlcoord 8, 2
-	call PlaceString
-	hlcoord 18, 0
-	call .PlaceGenderChar
-	hlcoord 9, 4
-	ld a, "/"
-	ld [hli], a
-	ld a, [wBaseSpecies]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
-	call PlaceString
-	call StatsScreen_PlaceHorizontalDivider
-	call StatsScreen_PlacePageSwitchArrows
-	call StatsScreen_PlaceShinyIcon
+	hlcoord 5, 8
+	call StatsScreen_PlaceGenderChar
 	ret
 
 .PlaceHPBar:
@@ -432,7 +421,7 @@ StatsScreen_InitUpperHalf:
 	call DelayFrame
 	ret
 
-.PlaceGenderChar:
+StatsScreen_PlaceGenderChar:
 	push hl
 	farcall GetGender
 	pop hl
@@ -444,22 +433,15 @@ StatsScreen_InitUpperHalf:
 	ld [hl], a
 	ret
 
-.NicknamePointers:
-	dw wPartyMonNicknames
-	dw wOTPartyMonNicknames
-	dw sBoxMonNicknames
-	dw wBufferMonNick
-
-Unreferenced_Function4df7f:
-	hlcoord 7, 0
-	ld bc, SCREEN_WIDTH
-	ld d, SCREEN_HEIGHT
-.loop
-	ld a, $31 ; vertical divider
-	ld [hl], a
-	add hl, bc
-	dec d
-	jr nz, .loop
+LoadSummaryScreenGFX:
+	ld de, SummaryScreenTilesGFX
+	ld hl, vTiles2 tile SUMMARY_TILE_SIDE_TL
+	lb bc, BANK(SummaryScreenTilesGFX), 9
+	call Get2bpp
+	ld de, SummaryScreenSquareOBJGFX
+	ld hl, vTiles0 tile $00
+	lb bc, BANK(SummaryScreenSquareOBJGFX), 2
+	call Get2bpp
 	ret
 
 StatsScreen_PlaceHorizontalDivider:
@@ -472,30 +454,18 @@ StatsScreen_PlaceHorizontalDivider:
 	jr nz, .loop
 	ret
 
-StatsScreen_PlacePageSwitchArrows:
-	hlcoord 12, 6
-	ld [hl], "◀"
-	hlcoord 19, 6
-	ld [hl], "▶"
-	ret
-
-StatsScreen_PlaceShinyIcon:
-	ld bc, wTempMonDVs
-	farcall CheckShininess
-	ret nc
-	hlcoord 19, 0
-	ld [hl], "⁂"
-	ret
-
 StatsScreen_LoadGFX:
 	ld a, [wBaseSpecies]
 	ld [wTempSpecies], a
 	ld [wCurSpecies], a
+	call GetBaseData
 	xor a
 	ldh [hBGMapMode], a
 	call .ClearBox
+	call StatsScreen_DrawFrames
 	call .PageTilemap
 	call .LoadPals
+	call StatsScreen_PlacePageSquares
 	ld hl, wcf64
 	bit 4, [hl]
 	jr nz, .place_frontpic
@@ -507,20 +477,29 @@ StatsScreen_LoadGFX:
 	ret
 
 .ClearBox:
-	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
-	ld c, a
-	call StatsScreen_LoadPageIndicators
-	hlcoord 0, 8
-	lb bc, 10, 20
+	; side panel area
+	hlcoord 7, 1
+	lb bc, 11, 13
+	call ClearBox
+	; old tab remnants left of the panel
+	hlcoord 0, 11
+	lb bc, 1, 7
+	call ClearBox
+	; bottom panel area
+	hlcoord 0, 12
+	lb bc, 6, 20
+	call ClearBox
+	; top row right of the pokepic
+	hlcoord 7, 0
+	lb bc, 1, 13
 	call ClearBox
 	ret
 
 .LoadPals:
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
+	and STAT_PAGE_MASK
 	ld c, a
-	farcall LoadStatsScreenPals
+	farcall LoadSummaryScreenPals
 	call DelayFrame
 	ld hl, wcf64
 	set 5, [hl]
@@ -528,7 +507,7 @@ StatsScreen_LoadGFX:
 
 .PageTilemap:
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
+	and STAT_PAGE_MASK
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable
@@ -536,92 +515,265 @@ StatsScreen_LoadGFX:
 
 .Jumptable:
 ; entries correspond to *_PAGE constants
-	dw .PinkPage
-	dw .GreenPage
-	dw .BluePage
+	dw StatsScreen_PinkPage
+	dw StatsScreen_BluePage
+	dw StatsScreen_GreenPage
+	dw StatsScreen_OrangePage
 
-.PinkPage:
-	hlcoord 0, 9
-	ld b, $0
-	predef DrawPlayerHP
-	hlcoord 8, 9
-	ld [hl], $41 ; right HP/exp bar end cap
-	ld de, .Status_Type
-	hlcoord 0, 12
-	call PlaceString
-	ld a, [wTempMonPokerusStatus]
-	ld b, a
-	and $f
-	jr nz, .HasPokerus
-	ld a, [wMonType]
-	cp BOXMON
-	ld a, b
-	jr nz, .check_pokerus_immunity
-	and $3f ; box mons store shiny/gender in bits 6-7
-.check_pokerus_immunity
-	and $f0
-	jr z, .NotImmuneToPkrs
-	hlcoord 8, 8
-	ld [hl], "." ; Pokérus immunity dot
-.NotImmuneToPkrs:
-	ld a, [wMonType]
-	cp BOXMON
-	jr z, .StatusOK
-	hlcoord 6, 13
-	push hl
-	ld de, wTempMonStatus
-	predef PlaceStatusString
-	pop hl
-	jr nz, .done_status
-	jr .StatusOK
-.HasPokerus:
-	ld de, .PkrsStr
-	hlcoord 1, 13
-	call PlaceString
-	jr .done_status
-.StatusOK:
-	ld de, .OK_str
-	call PlaceString
-.done_status
-	hlcoord 1, 15
-	predef PrintMonTypes
-	hlcoord 9, 8
+StatsScreen_DrawFrames:
+; Draw the side panel frame, the bottom panel top edge,
+; and the page switch arrows.
+	hlcoord 7, 1
+	ld [hl], SUMMARY_TILE_SIDE_TL
+	hlcoord 8, 1
+	ld a, SUMMARY_TILE_SIDE_T
+	ld b, 12
+.top
+	ld [hli], a
+	dec b
+	jr nz, .top
+	hlcoord 7, 2
 	ld de, SCREEN_WIDTH
-	ld b, 10
-	ld a, $31 ; vertical divider
-.vertical_divider
+	ld a, SUMMARY_TILE_SIDE_L
+	ld b, 9
+.left
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .vertical_divider
-	ld de, .ExpPointStr
-	hlcoord 10, 9
+	jr nz, .left
+	hlcoord 7, 11
+	ld [hl], SUMMARY_TILE_SIDE_BL
+	hlcoord 8, 11
+	ld a, SUMMARY_TILE_SIDE_B
+	ld b, 12
+.bottom
+	ld [hli], a
+	dec b
+	jr nz, .bottom
+	hlcoord 0, 12
+	ld a, SUMMARY_TILE_SIDE_T ; doubles as the bottom panel top edge
+	ld b, SCREEN_WIDTH
+.bottom_panel
+	ld [hli], a
+	dec b
+	jr nz, .bottom_panel
+	; page switch arrows
+	hlcoord 11, 0
+	ld [hl], "◀"
+	hlcoord 19, 0
+	ld [hl], "▶"
+	ret
+
+DrawSummaryTab:
+; Draw the bottom panel tab. b = label length, de = label string.
+	push de
+	push bc
+	hlcoord 1, 11
+	ld [hl], SUMMARY_TILE_TAB_L
+	inc hl
+	ld a, SUMMARY_TILE_TAB_FILL
+.hump
+	ld [hli], a
+	dec b
+	jr nz, .hump
+	ld [hl], SUMMARY_TILE_TAB_R
+	pop bc
+	; blank the tab interior on row 12
+	hlcoord 1, 12
+	ld a, b
+	add 2
+	ld b, a
+	ld a, " "
+.blank
+	ld [hli], a
+	dec b
+	jr nz, .blank
+	pop de
+	hlcoord 2, 12
+	jp PlaceString
+
+StatsScreen_PlacePageSquares:
+; Place the four page squares as OAM sprites along the top.
+	ld a, [wcf64]
+	and STAT_PAGE_MASK
+	ld d, a
+	ld hl, wVirtualOAM
+	ld b, 1   ; page counter
+	ld c, 104 ; x of first square
+.loop
+	ld a, 17 ; y
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	ld a, b
+	cp d
+	ld a, 0 ; normal square tile (preserves flags)
+	jr nz, .got_tile
+	inc a   ; selected square tile
+.got_tile
+	ld [hli], a
+	ld a, b
+	dec a   ; OBJ palette 0-3
+	ld [hli], a
+	ld a, c
+	add 16
+	ld c, a
+	inc b
+	ld a, b
+	cp NUM_STAT_PAGES + 1
+	jr nz, .loop
+	ret
+
+PlaceTypeAbbreviation:
+; Print the 4-character abbreviation for type a at hl.
+	push hl
+	ld l, a
+	ld h, 0
+	ld d, h
+	ld e, l
+	add hl, hl
+	add hl, hl
+	add hl, de ; x5
+	ld de, TypeAbbreviations
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	jp PlaceString
+
+; ================================
+; Pink page: overview + experience
+; ================================
+
+StatsScreen_PinkPage:
+	ld b, 4
+	ld de, .ExpTabString
+	call DrawSummaryTab
+
+	; dex number
+	ld a, [wBaseSpecies]
+	ld [wCurSpecies], a
+	call GetPokemonIndexFromID
+	ld a, h
+	ld h, l
+	ld l, a
+	push hl
+	ld hl, sp + 0
+	ld d, h
+	ld e, l
+	hlcoord 8, 1
+	ld a, "№"
+	ld [hli], a
+	ld a, "."
+	ld [hli], a
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
+	call PrintNum
+	add sp, 2
+
+	; shiny star
+	ld bc, wTempMonDVs
+	farcall CheckShininess
+	jr nc, .not_shiny
+	hlcoord 18, 1
+	ld [hl], $3f ; shiny star icon
+.not_shiny
+
+	; nickname
+	ld hl, .NicknamePointers
+	call GetNicknamePointer
+	call CopyNickname
+	hlcoord 8, 2
 	call PlaceString
-	hlcoord 17, 14
-	call .PrintNextLevel
-	hlcoord 13, 10
+
+	; species
+	hlcoord 8, 3
+	ld a, "/"
+	ld [hli], a
+	ld a, [wBaseSpecies]
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
+	call PlaceString
+
+	; type badges
+	ld a, [wBaseType1]
+	hlcoord 8, 4
+	call PlaceTypeAbbreviation
+	ld a, [wBaseType1]
+	ld b, a
+	ld a, [wBaseType2]
+	cp b
+	jr z, .one_type
+	hlcoord 13, 4
+	call PlaceTypeAbbreviation
+.one_type
+
+	; caught ball icon
+	hlcoord 18, 4
+	ld [hl], SUMMARY_TILE_BALL
+
+	; OT name
+	ld de, OTString
+	hlcoord 8, 6
+	call PlaceString
+	ld hl, .OTNamePointers
+	call GetNicknamePointer
+	call CopyNickname
+	farcall CorrectNickErrors
+	hlcoord 11, 6
+	call PlaceString
+	ld a, [wTempMonCaughtGender]
+	and a
+	jr z, .ot_done
+	cp $7f
+	jr z, .ot_done
+	and $80
+	ld a, "♂"
+	jr z, .got_ot_gender
+	ld a, "♀"
+.got_ot_gender
+	hlcoord 18, 6
+	ld [hl], a
+.ot_done
+
+	; ID number
+	ld de, IDNoString
+	hlcoord 8, 8
+	call PlaceString
+	hlcoord 11, 8
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
+	ld de, wTempMonID
+	call PrintNum
+
+	; --- bottom panel: experience ---
+	ld de, .ExpPointStr
+	hlcoord 1, 13
+	call PlaceString
+	hlcoord 12, 13
 	lb bc, 3, 7
 	ld de, wTempMonExp
 	call PrintNum
 	call .CalcExpToNextLevel
-	hlcoord 13, 13
+	ld de, .LevelUpStr
+	hlcoord 1, 15
+	call PlaceString
+	hlcoord 12, 15
 	lb bc, 3, 7
 	ld de, wBuffer1
 	call PrintNum
-	ld de, .LevelUpStr
-	hlcoord 10, 12
-	call PlaceString
 	ld de, .ToStr
-	hlcoord 14, 14
+	hlcoord 13, 17
 	call PlaceString
-	hlcoord 11, 16
+	hlcoord 16, 17
+	call .PrintNextLevel
+	; the original exp bar
+	hlcoord 2, 17
 	ld a, [wTempMonLevel]
 	ld b, a
 	ld de, wTempMonExp + 2
 	predef FillInExpBar
-	hlcoord 10, 16
+	hlcoord 1, 17
 	ld [hl], $40 ; left exp bar end cap
-	hlcoord 19, 16
+	hlcoord 10, 17
 	ld [hl], $41 ; right exp bar end cap
 	ret
 
@@ -646,7 +798,6 @@ StatsScreen_LoadGFX:
 	ld d, a
 	farcall CalcExpAtLevel
 	ld hl, wTempMonExp + 2
-	ld hl, wTempMonExp + 2
 	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
@@ -668,55 +819,212 @@ StatsScreen_LoadGFX:
 	ld [hl], a
 	ret
 
-.Status_Type:
-	db   "STATUS/"
-	next "TYPE/@"
+.NicknamePointers:
+	dw wPartyMonNicknames
+	dw wOTPartyMonNicknames
+	dw sBoxMonNicknames
+	dw wBufferMonNick
 
-.OK_str:
-	db "OK @"
+.OTNamePointers:
+	dw wPartyMonOT
+	dw wOTPartyMonOT
+	dw sBoxMonOT
+	dw wBufferMonOT
+
+.ExpTabString:
+	db "Exp.@"
 
 .ExpPointStr:
-	db "EXP POINTS@"
+	db "Exp.Points@"
 
 .LevelUpStr:
-	db "LEVEL UP@"
+	db "Level Up@"
 
 .ToStr:
-	db "TO@"
+	db "to@"
 
-.PkrsStr:
-	db "#RUS@"
+IDNoString:
+	db "<ID>№.@"
 
-.GreenPage:
-	ld de, .Item
-	hlcoord 0, 8
+OTString:
+	db "OT/@"
+
+; ==============================
+; Blue page: stats + ability
+; ==============================
+
+StatsScreen_BluePage:
+	ld b, 7
+	ld de, .AbilityTabString
+	call DrawSummaryTab
+
+	; the original HP bar (caps, bar, and HP numbers)
+	hlcoord 10, 2
+	ld b, $0
+	predef DrawPlayerHP
+
+	; stat labels
+	ld de, .AttackStr
+	hlcoord 8, 4
 	call PlaceString
-	call .GetItemName
+	ld de, .DefenseStr
+	hlcoord 8, 5
+	call PlaceString
+	ld de, .SpclAtkStr
+	hlcoord 8, 6
+	call PlaceString
+	ld de, .SpclDefStr
+	hlcoord 8, 7
+	call PlaceString
+	ld de, .SpeedStr
 	hlcoord 8, 8
 	call PlaceString
-	ld de, .AbilityLabel
-	hlcoord 0, 9
+
+	; stat values
+	ld de, wTempMonAttack
+	hlcoord 16, 4
+	lb bc, 2, 3
+	call PrintNum
+	ld de, wTempMonDefense
+	hlcoord 16, 5
+	lb bc, 2, 3
+	call PrintNum
+	ld de, wTempMonSpclAtk
+	hlcoord 16, 6
+	lb bc, 2, 3
+	call PrintNum
+	ld de, wTempMonSpclDef
+	hlcoord 16, 7
+	lb bc, 2, 3
+	call PrintNum
+	ld de, wTempMonSpeed
+	hlcoord 16, 8
+	lb bc, 2, 3
+	call PrintNum
+
+	; --- bottom panel: ability ---
+	ld a, [wTempMonPersonality]
+	ld b, a
+	ld a, [wTempMonSpecies]
+	ld c, a
+	call GetAbility
+	push bc
+	farcall GetAbilityName
+	ld de, wStringBuffer1
+	hlcoord 1, 13
 	call PlaceString
-	farcall PlaceAbilityNameStats
-	ld de, .Move
-	hlcoord 0, 10
+	; ability slot indicator
+	ld a, [wTempMonPersonality]
+	and ABILITY_MASK
+	cp HIDDEN_ABILITY
+	ld b, "H"
+	jr z, .got_slot
+	cp ABILITY_2
+	ld b, "2"
+	jr z, .got_slot
+	ld b, "1"
+.got_slot
+	ld a, b
+	hlcoord 18, 13
+	ld [hl], a
+	pop bc
+	hlcoord 1, 15
+	farcall PrintAbilityDescriptionStats
+	ret
+
+.AbilityTabString:
+	db "Ability@"
+
+.AttackStr:
+	db "Attack@"
+
+.DefenseStr:
+	db "Defense@"
+
+.SpclAtkStr:
+	db "Sp.Atk@"
+
+.SpclDefStr:
+	db "Sp.Def@"
+
+.SpeedStr:
+	db "Speed@"
+
+; ==============================
+; Green page: moves + held item
+; ==============================
+
+StatsScreen_GreenPage:
+	ld b, 4
+	ld de, .ItemTabString
+	call DrawSummaryTab
+
+	; --- bottom panel: held item ---
+	call .GetItemName
+	hlcoord 1, 13
 	call PlaceString
+	ld a, [wTempMonItem]
+	and a
+	jr z, .no_item_desc
+	ld [wCurSpecies], a
+	decoord 1, 15
+	farcall PrintItemDescription
+	ld a, [wBaseSpecies]
+	ld [wCurSpecies], a
+.no_item_desc
+
+	; --- side panel: moves ---
 	ld hl, wTempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
-	hlcoord 8, 10
+	hlcoord 8, 1
 	ld a, SCREEN_WIDTH * 2
 	ld [wBuffer1], a
 	predef ListMoves
-	hlcoord 12, 11
+	hlcoord 12, 2
 	ld a, SCREEN_WIDTH * 2
 	ld [wBuffer1], a
 	predef ListMovePP
+
+	; move type badges
+	ld c, 0
+.badge_loop
+	ld b, 0
+	ld hl, wTempMonMoves
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .badges_done
+	push bc
+	ld de, wStringBuffer2
+	call GetMoveData
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	pop bc
+	push bc
+	push af
+	hlcoord 8, 2
+	ld a, c
+	and a
+	jr z, .got_row
+	ld de, 2 * SCREEN_WIDTH
+.row_loop
+	add hl, de
+	dec a
+	jr nz, .row_loop
+.got_row
+	pop af
+	call PlaceTypeAbbreviation
+	pop bc
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr nz, .badge_loop
+.badges_done
 	ret
 
 .GetItemName:
-	ld de, .ThreeDashes
+	ld de, .NoItemString
 	ld a, [wTempMonItem]
 	and a
 	ret z
@@ -727,94 +1035,227 @@ StatsScreen_LoadGFX:
 	call GetItemName
 	ret
 
-.Item:
-	db "ITEM@"
+.ItemTabString:
+	db "Item@"
 
-.ThreeDashes:
-	db "---@"
+.NoItemString:
+	db "No held item@"
 
-.Move:
-	db "MOVE@"
+; ====================================
+; Orange page: met info + friendship
+; ====================================
 
-.AbilityLabel:
-	db "ABILITY@"
+StatsScreen_OrangePage:
+	ld b, 6
+	ld de, .FriendTabString
+	call DrawSummaryTab
 
-.BluePage:
-	call StatsScreen_PrintHappiness
-	call .PlaceOTInfo
-	hlcoord 10, 8
-	ld de, SCREEN_WIDTH
-	ld b, 10
-	ld a, $31 ; vertical divider
-.BluePageVerticalDivider:
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .BluePageVerticalDivider
-	hlcoord 11, 8
-	ld bc, 6
-	predef PrintTempMonStats
-	ret
-
-.PlaceOTInfo:
-	ld de, IDNoString
-	hlcoord 0, 9
+	; --- side panel: met info ---
+	ld de, .WhereMetStr
+	hlcoord 8, 1
 	call PlaceString
-	ld de, OTString
-	hlcoord 0, 12
-	call PlaceString
-	hlcoord 2, 10
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
-	ld de, wTempMonID
-	call PrintNum
-	ld hl, .OTNamePointers
-	call GetNicknamePointer
-	call CopyNickname
-	farcall CorrectNickErrors
-	hlcoord 2, 13
-	call PlaceString
-	ld a, [wTempMonCaughtGender]
+
+	ld a, [wTempMonCaughtLocation]
+	and CAUGHT_LOCATION_MASK
+	cp GIFT_LOCATION
+	jr z, .gift
 	and a
-	jr z, .done
-	cp $7f
-	jr z, .done
-	and $80
-	ld a, "♂"
-	jr z, .got_gender
-	ld a, "♀"
-.got_gender
-	hlcoord 9, 13
-	ld [hl], a
-.done
-	ret
+	jr z, .unknown_loc
+	ld e, a
+	farcall GetLandmarkName
+	call .PrintLocationName
+	jr .loc_done
+.gift
+	ld de, .ReceivedStr
+	hlcoord 8, 2
+	call PlaceString
+	ld de, .AsGiftStr
+	hlcoord 8, 3
+	call PlaceString
+	jr .loc_done
+.unknown_loc
+	ld de, .FarawayStr
+	hlcoord 8, 2
+	call PlaceString
+	ld de, .PlaceStr
+	hlcoord 8, 3
+	call PlaceString
+.loc_done
 
-.OTNamePointers:
-	dw wPartyMonOT
-	dw wOTPartyMonOT
-	dw sBoxMonOT
-	dw wBufferMonOT
+	; caught level
+	ld a, [wTempMonCaughtLevel]
+	and CAUGHT_LEVEL_MASK
+	jr z, .level_done
+	cp CAUGHT_EGG_LEVEL
+	jr z, .hatched
+	ld de, .MetAtStr
+	hlcoord 8, 5
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld a, [wTempMonLevel]
+	push af
+	ld a, [wTempMonCaughtLevel]
+	and CAUGHT_LEVEL_MASK
+	ld [wTempMonLevel], a
+	call PrintLevel
+	pop af
+	ld [wTempMonLevel], a
+	jr .level_done
+.hatched
+	ld de, .HatchedStr
+	hlcoord 8, 5
+	call PlaceString
+.level_done
 
-IDNoString:
-	db "<ID>№.@"
+	; caught ball
+	ld de, .BallUsedStr
+	hlcoord 8, 7
+	call PlaceString
+	hlcoord 8, 8
+	ld [hl], SUMMARY_TILE_BALL
+	ld a, [wTempMonPersonality]
+	and CAUGHT_BALL_MASK
+	farcall GetCaughtBallItem
+	ld a, c
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	hlcoord 9, 8
+	call PlaceString
 
-OTString:
-	db "OT/@"
-
-StatsScreen_PrintHappiness:
-	hlcoord 1, 15
+	; --- bottom panel: friendship ---
+	hlcoord 1, 13
 	ld [hl], $34 ; heart icon
-
-	hlcoord 3, 15
+	hlcoord 3, 13
 	lb bc, 1, 3
 	ld de, wTempMonHappiness
 	call PrintNum
-	ld de, .outofMaxLoveString
-	hlcoord 4, 16
+	ld de, .OutOf255Str
+	hlcoord 6, 13
 	call PlaceString
+	; friendship meter, original HP/exp bar style
+	hlcoord 1, 15
+	ld [hl], $40 ; left end cap
+	hlcoord 8, 15
+	ld [hl], $41 ; right end cap
+	ld a, [wTempMonHappiness]
+	ld c, a
+	ld b, 0
+	ld d, 0
+	ld e, 255
+	farcall ComputeHPBarPixels
+	hlcoord 2, 15
+	call .DrawFriendshipBar
 	ret
 
-.outofMaxLoveString:
+.DrawFriendshipBar:
+; Draw a 6-tile bar at hl filled to e pixels (0-48),
+; using the original HP/exp bar tiles.
+	ld c, 6
+.bar_loop
+	ld a, e
+	sub TILE_WIDTH
+	jr c, .partial
+	ld e, a
+	ld a, $6a ; full bar
+	jr .put
+.partial
+	ld a, e
+	and a
+	jr z, .empty
+	add $62 ; partially filled bar
+	ld e, 0
+	jr .put
+.empty
+	ld a, $62 ; empty bar
+.put
+	ld [hli], a
+	dec c
+	jr nz, .bar_loop
+	ret
+
+.PrintLocationName:
+; Print the landmark name in wStringBuffer1 at (8, 2).
+; Names longer than 12 characters get split at the last space
+; and continue on the next row.
+	ld hl, wStringBuffer1
+	ld b, 0
+.len_loop
+	ld a, [hli]
+	cp "@"
+	jr z, .got_len
+	inc b
+	ld a, b
+	cp 18
+	jr nz, .len_loop
+.got_len
+	ld a, b
+	cp 13
+	jr c, .fits
+	; find the last space at index 12 or lower
+	ld b, 12
+.space_loop
+	ld hl, wStringBuffer1
+	push bc
+	ld c, b
+	ld b, 0
+	add hl, bc
+	pop bc
+	ld a, [hl]
+	cp " "
+	jr z, .split
+	dec b
+	jr nz, .space_loop
+	; no space found: truncate
+	ld hl, wStringBuffer1 + 12
+	ld [hl], "@"
+	jr .fits
+.split
+	ld [hl], "@"
+	inc hl
+	push hl
+	ld de, wStringBuffer1
+	hlcoord 8, 2
+	call PlaceString
+	pop de
+	hlcoord 8, 3
+	jp PlaceString
+.fits
+	ld de, wStringBuffer1
+	hlcoord 8, 2
+	jp PlaceString
+
+.FriendTabString:
+	db "Friend@"
+
+.WhereMetStr:
+	db "Where met:@"
+
+.MetAtStr:
+	db "Met at @"
+
+.HatchedStr:
+	db "Hatched@"
+
+.BallUsedStr:
+	db "Ball used:@"
+
+.ReceivedStr:
+	db "Received as@"
+
+.AsGiftStr:
+	db "a gift@"
+
+.FarawayStr:
+	db "Faraway@"
+
+.PlaceStr:
+	db "place@"
+
+.OutOf255Str:
 	db "/255@"
+
+; ==============================
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
@@ -993,10 +1434,6 @@ StatsScreen_LoadTextboxSpaceGFX:
 	pop hl
 	ret
 
-Unreferenced_4e32a:
-; A blank space tile?
-	ds 16
-
 EggStatsScreen:
 	xor a
 	ldh [hBGMapMode], a
@@ -1104,38 +1541,6 @@ StatsScreen_AnimateEgg:
 	set 6, [hl]
 	ret
 
-StatsScreen_LoadPageIndicators:
-	hlcoord 13, 5
-	ld a, $36 ; first of 4 small square tiles
-	call .load_square
-	hlcoord 15, 5
-	ld a, $36 ; " " " "
-	call .load_square
-	hlcoord 17, 5
-	ld a, $36 ; " " " "
-	call .load_square
-	ld a, c
-	cp GREEN_PAGE
-	ld a, $3a ; first of 4 large square tiles
-	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
-	jr c, .load_square
-	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
-	jr z, .load_square
-	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
-.load_square
-	push bc
-	ld [hli], a
-	inc a
-	ld [hld], a
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	inc a
-	ld [hli], a
-	inc a
-	ld [hl], a
-	pop bc
-	ret
-
 CopyNickname:
 	ld de, wStringBuffer1
 	ld bc, MON_NAME_LENGTH
@@ -1190,3 +1595,142 @@ CheckFaintedFrzSlp:
 .fainted_frz_slp
 	scf
 	ret
+
+TypeAbbreviations:
+; 5 bytes per entry ("@"-terminated), indexed by type constant
+	db "NRM @" ; NORMAL
+	db "FGT @" ; FIGHTING
+	db "FLY @" ; FLYING
+	db "PSN @" ; POISON
+	db "GRD @" ; GROUND
+	db "RCK @" ; ROCK
+	db "BRD @" ; BIRD
+	db "BUG @" ; BUG
+	db "GHT @" ; GHOST
+	db "STL @" ; STEEL
+	db "??? @" ; TYPE_10
+	db "??? @" ; TYPE_11
+	db "??? @" ; TYPE_12
+	db "??? @" ; TYPE_13
+	db "??? @" ; TYPE_14
+	db "??? @" ; TYPE_15
+	db "??? @" ; TYPE_16
+	db "??? @" ; TYPE_17
+	db "??? @" ; TYPE_18
+	db "CRS @" ; CURSE_T
+	db "FIR @" ; FIRE
+	db "WTR @" ; WATER
+	db "GRS @" ; GRASS
+	db "ELC @" ; ELECTRIC
+	db "PSY @" ; PSYCHIC
+	db "ICE @" ; ICE
+	db "DRG @" ; DRAGON
+	db "DRK @" ; DARK
+	db "FRY @" ; FAIRY
+
+SummaryScreenTilesGFX:
+; 9 tiles, 2bpp. Color mapping (side panel palette): 0 = panel fill,
+; 1 = accent (page color), 2 = white/outside, 3 = black.
+	; $42 side panel top-left corner
+	db $00, $ff
+	db $0f, $f0
+	db $3f, $c0
+	db $7f, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	; $43 side panel top edge / bottom panel top edge
+	db $00, $ff
+	db $ff, $00
+	db $ff, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	; $44 side panel left edge
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	; $45 side panel bottom-left corner
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $60, $80
+	db $7f, $80
+	db $3f, $c0
+	db $0f, $f0
+	db $00, $ff
+	; $46 side panel bottom edge
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	db $ff, $00
+	db $ff, $00
+	db $00, $ff
+	; $47 tab left corner
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $0f, $f0
+	db $10, $e0
+	db $20, $c0
+	db $40, $80
+	; $48 tab top edge
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $ff, $00
+	db $00, $00
+	db $00, $00
+	db $00, $00
+	; $49 tab right corner
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $00, $ff
+	db $f0, $0f
+	db $08, $07
+	db $04, $03
+	db $02, $01
+	; $4a poke ball icon
+	db $00, $00
+	db $3c, $3c
+	db $7e, $42
+	db $ff, $81
+	db $ff, $ff
+	db $81, $ff
+	db $42, $7e
+	db $3c, $3c
+
+SummaryScreenSquareOBJGFX:
+; 2 OBJ tiles: page square (unselected), page square (selected).
+; Color mapping (OBJ palettes 0-3): 1 = white, 2 = page color, 3 = black.
+	; tile $00: small filled square
+	db $00, $00
+	db $00, $7e
+	db $00, $7e
+	db $00, $7e
+	db $00, $7e
+	db $00, $7e
+	db $00, $7e
+	db $00, $00
+	; tile $01: selected square (black outline)
+	db $ff, $ff
+	db $81, $ff
+	db $81, $ff
+	db $81, $ff
+	db $81, $ff
+	db $81, $ff
+	db $81, $ff
+	db $ff, $ff
