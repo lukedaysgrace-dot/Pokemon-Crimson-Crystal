@@ -1231,6 +1231,14 @@ RunNullificationAbilities::
 ; Called at the end of BattleCommand_Stab, on the attacker's turn, after
 ; wCurDamage and wTypeModifier are final. First checks type nullification;
 ; if the move goes through, applies ability damage modifiers to wCurDamage.
+	; The AI reuses BattleCommand_Stab to PREDICT damage for each move it
+	; is scoring (see AIDamageCalc). During that prediction we must not run
+	; the live absorb procs (banner + stat boost), or e.g. Motor Drive fires
+	; once per scored Electric move even though no move was used. Bail early
+	; so prediction stays a pure calculation.
+	ld a, [wAIDamagePrediction]
+	and a
+	ret nz
 	; clear a stale Disguise presentation flag (set by a move that missed
 	; after damage calc and never reached its kingsrock command)
 	ld hl, wDisguiseBusted + 1

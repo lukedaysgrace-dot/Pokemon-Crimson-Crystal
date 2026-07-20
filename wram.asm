@@ -1198,7 +1198,8 @@ wBGMapBufferEnd::
 NEXTU ; cd20
 ; credits
 wCreditsPos:: db
-wCreditsUnusedCD21:: db
+wCreditsUnusedCD21::
+wAIDamagePrediction:: db ; nonzero only while the AI predicts damage; suppresses absorb-ability procs in BattleCommand_Stab (credits-only slot, safe to reuse in battle)
 wCreditsTimer:: db
 
 NEXTU ; cd20
