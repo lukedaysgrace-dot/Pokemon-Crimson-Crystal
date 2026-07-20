@@ -788,6 +788,7 @@ INCLUDE "engine/battle/move_effects/perish_song_core.asm"
 
 SECTION "Ability Descriptions", ROMX
 
+INCLUDE "engine/pokemon/print_ability_description.asm"
 INCLUDE "data/abilities/descriptions.asm"
 
 
@@ -799,3 +800,8 @@ INCLUDE "engine/overworld/weather.asm"
 SECTION "Caught Ball Palettes", ROMX
 
 INCLUDE "engine/gfx/caught_ball_pals.asm"
+
+
+SECTION "Summary Screen Pals", ROMX
+
+INCLUDE "engine/gfx/summary_screen_pals.asm"
