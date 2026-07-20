@@ -170,6 +170,11 @@ SilverCaveSnowMaps:
 	map_id ROUTE_28
 	map_id SILVER_CAVE_OUTSIDE
 	db -1
+; Interior maps that stay snowy despite being caves. Checked before the
+; outdoor-only weather gate in _SetCurrentWeather.
+SilverCaveIndoorSnowMaps:
+	map_id SILVER_CAVE_ROOM_3
+	db -1
 Route45SandMaps:
 	map_id ROUTE_45
 	map_id ROUTE_46
