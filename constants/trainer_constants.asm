@@ -202,6 +202,8 @@ LYRA EQU __enum__
 	const DANA3
 	const DANA4
 	const DANA5
+	const DANIELLE
+	const KATHRYN
 
 	trainerclass JANINE ; 1a
 	const JANINE1
@@ -521,6 +523,8 @@ LYRA EQU __enum__
 	const DUNCAN
 	const EDDIE
 	const COREY
+	const MORTON
+	const VANCE
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS
@@ -531,6 +535,8 @@ LYRA EQU __enum__
 	const WALT
 	const RAY
 	const LYLE
+	const SCORCH
+	const TORCH
 
 	trainerclass JUGGLER ; 31
 	const IRWIN1
