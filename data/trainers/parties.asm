@@ -1775,6 +1775,26 @@ LassGroup:
 	dw HEADBUTT, THUNDERPUNCH, THUNDER_WAVE, COTTON_SPORE
 	db -1 ; end
 
+	next_list_item ; LASS (18) DANIELLE - Olivine Gym (after Jasmine returns)
+	db "DANIELLE@", TRAINERTYPE_NORMAL
+	db 31
+	dw MAGNEMITE
+	db 32
+	dw SKARMORY
+	db 33
+	dw STEELIX
+	db -1 ; end
+
+	next_list_item ; LASS (19) KATHRYN - Olivine Gym (after Jasmine returns)
+	db "KATHRYN@", TRAINERTYPE_NORMAL
+	db 32
+	dw MAGNETON
+	db 32
+	dw FORRETRESS
+	db 33
+	dw SCIZOR
+	db -1 ; end
+
 	end_list_items
 
 JanineGroup:
@@ -4790,6 +4810,26 @@ BurglarGroup:
 	dw KOFFING
 	db -1 ; end
 
+	next_list_item ; BURGLAR (4) MORTON - Seafoam Gym
+	db "MORTON@", TRAINERTYPE_NORMAL
+	db 42
+	dw GROWLITHE
+	db 42
+	dw PONYTA
+	db 44
+	dw MAGMAR
+	db -1 ; end
+
+	next_list_item ; BURGLAR (5) VANCE - Seafoam Gym
+	db "VANCE@", TRAINERTYPE_NORMAL
+	db 42
+	dw VULPIX
+	db 42
+	dw SLUGMA
+	db 44
+	dw MAGCARGO
+	db -1 ; end
+
 	end_list_items
 
 FirebreatherGroup:
@@ -4854,6 +4894,30 @@ FirebreatherGroup:
 	db 54
 	dw FLAREON
 	db 54
+	dw NINETALES
+	db -1 ; end
+
+	next_list_item ; FIREBREATHER (9) SCORCH - Seafoam Gym
+	db "SCORCH@", TRAINERTYPE_NORMAL
+	db 43
+	dw GROWLITHE
+	db 43
+	dw HOUNDOUR
+	db 45
+	dw RAPIDASH
+	db 46
+	dw ARCANINE
+	db -1 ; end
+
+	next_list_item ; FIREBREATHER (10) BLAZE - Seafoam Gym
+	db "BLAZE@", TRAINERTYPE_NORMAL
+	db 43
+	dw MAGMAR
+	db 43
+	dw MAGCARGO
+	db 45
+	dw FLAREON
+	db 46
 	dw NINETALES
 	db -1 ; end
 

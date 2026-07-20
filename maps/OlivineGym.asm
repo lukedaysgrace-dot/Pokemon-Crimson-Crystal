@@ -1,11 +1,28 @@
 	object_const_def ; object_event constants
 	const OLIVINEGYM_JASMINE
 	const OLIVINEGYM_GYM_GUY
+	const OLIVINEGYM_DANIELLE
+	const OLIVINEGYM_KATHRYN
 
 OlivineGym_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .LassesCallback
+
+.LassesCallback:
+; The gym trainers only appear once Jasmine has returned to the gym
+; from the lighthouse (after the sick Ampharos event).
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iftrue .ShowLasses
+	disappear OLIVINEGYM_DANIELLE
+	disappear OLIVINEGYM_KATHRYN
+	return
+
+.ShowLasses:
+	appear OLIVINEGYM_DANIELLE
+	appear OLIVINEGYM_KATHRYN
+	return
 
 OlivineGymJasmineScript:
 	faceplayer
@@ -96,6 +113,28 @@ OlivineGymGuyScript:
 .OlivineGymGuyPreScript:
 	opentext
 	writetext OlivineGymGuyPreText
+	waitbutton
+	closetext
+	end
+
+TrainerLassDanielle:
+	trainer LASS, DANIELLE, EVENT_BEAT_LASS_DANIELLE, LassDanielleSeenText, LassDanielleBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LassDanielleAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerLassKathryn:
+	trainer LASS, KATHRYN, EVENT_BEAT_LASS_KATHRYN, LassKathrynSeenText, LassKathrynBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LassKathrynAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -239,6 +278,59 @@ JasmineRematchWinText:
 	line "you next."
 	done
 
+LassDanielleSeenText:
+	text "Now that JASMINE"
+	line "is back, us GYM"
+	cont "TRAINERS are on"
+	cont "duty again!"
+
+	para "Let's see if you"
+	line "can get past my"
+	cont "steel-types!"
+	done
+
+LassDanielleBeatenText:
+	text "Ohh, my #MON"
+	line "got all scuffed"
+	cont "up!"
+	done
+
+LassDanielleAfterBattleText:
+	text "Steel-types have"
+	line "so few weak-"
+	cont "nesses."
+
+	para "That's why we love"
+	line "training them for"
+	cont "JASMINE!"
+	done
+
+LassKathrynSeenText:
+	text "Welcome back to"
+	line "the GYM! JASMINE"
+	cont "returned, so the"
+	cont "challenge is on!"
+
+	para "My steel-types"
+	line "won't rust so"
+	cont "easily!"
+	done
+
+LassKathrynBeatenText:
+	text "You polished right"
+	line "through my de-"
+	cont "fenses!"
+	done
+
+LassKathrynAfterBattleText:
+	text "JASMINE is waiting"
+	line "at the back of"
+	cont "the GYM."
+
+	para "You've earned your"
+	line "shot at her now."
+	done
+
 OlivineGym_MapEvents:
 	db 0, 0 ; filler
 
@@ -252,6 +344,8 @@ OlivineGym_MapEvents:
 	bg_event  3, 13, BGEVENT_READ, OlivineGymStatue
 	bg_event  6, 13, BGEVENT_READ, OlivineGymStatue
 
-	db 2 ; object events
+	db 4 ; object events
 	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
+	object_event  6,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassDanielle, EVENT_OLIVINE_GYM_LASS_DANIELLE
+	object_event  3, 11, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassKathryn, EVENT_OLIVINE_GYM_LASS_KATHRYN
