@@ -1649,7 +1649,11 @@ AI_Smart_PriorityHit:
 	push hl
 	callfar EnemyAttackDamage
 	callfar BattleCommand_DamageCalc
+	ld a, 1
+	ld [wAIDamagePrediction], a
 	callfar BattleCommand_Stab
+	xor a
+	ld [wAIDamagePrediction], a
 	pop hl
 	ld a, [wCurDamage + 1]
 	ld c, a
@@ -3095,7 +3099,11 @@ AIDamageCalc:
 .asm_39400
 	callfar EnemyAttackDamage
 	callfar BattleCommand_DamageCalc
+	ld a, 1
+	ld [wAIDamagePrediction], a
 	callfar BattleCommand_Stab
+	xor a
+	ld [wAIDamagePrediction], a
 	ret
 
 INCLUDE "data/battle/ai/constant_damage_effects.asm"
