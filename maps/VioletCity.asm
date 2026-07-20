@@ -8,7 +8,6 @@
 	const VIOLETCITY_POKE_BALL1
 	const VIOLETCITY_POKE_BALL2
 	const VIOLETCITY_CRYSTAL
-	const VIOLETCITY_CRYSTAL_GFX_LOADER
 
 VioletCity_MapScripts:
 	db 2 ; scene scripts
@@ -42,62 +41,6 @@ VioletCity_MapScripts:
 	setscene SCENE_FINISHED
 	return
 
-VioletCityCrystalSceneFarLeft:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarLeftMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalScene:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneTop:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneTopFarLeft:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarLeftMovement
-	sjump VioletCityCrystalBattleScript
-
 VioletCityCrystalSceneLow:
 	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
 	iftrue VioletCityCrystalSceneDone
@@ -110,104 +53,6 @@ VioletCityCrystalSceneLow:
 	special RefreshSprites
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneLowFarLeft:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarLeftMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneTopRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopRightMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachRightMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneLowRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowRightMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneTopFarRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachTopFarRightMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneFarRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachFarRightMovement
-	sjump VioletCityCrystalBattleScript
-
-VioletCityCrystalSceneLowFarRight:
-	checkevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
-	iftrue VioletCityCrystalSceneDone
-	special FadeOutMusic
-	pause 15
-	turnobject PLAYER, UP
-	moveobject VIOLETCITY_CRYSTAL, 30, 17
-	playsound SFX_EXIT_BUILDING
-	appear VIOLETCITY_CRYSTAL
-	special RefreshSprites
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	applymovement VIOLETCITY_CRYSTAL, VioletCityCrystalApproachLowFarRightMovement
 	sjump VioletCityCrystalBattleScript
 
 VioletCityCrystalSceneDone:
@@ -335,102 +180,10 @@ VioletCityFruitTree:
 VioletCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION
 
-VioletCityCrystalApproachMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachFarLeftMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachTopMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachTopFarLeftMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	turn_head DOWN
-	step_end
-
 VioletCityCrystalApproachLowMovement:
 	slow_step DOWN
 	slow_step LEFT
 	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachLowFarLeftMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachTopRightMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachRightMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachLowRightMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step LEFT
-	slow_step DOWN
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachTopFarRightMovement:
-	slow_step DOWN
-	slow_step LEFT
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachFarRightMovement:
-	slow_step DOWN
-	slow_step LEFT
-	slow_step DOWN
-	turn_head DOWN
-	step_end
-
-VioletCityCrystalApproachLowFarRightMovement:
-	slow_step DOWN
 	slow_step LEFT
 	slow_step DOWN
 	slow_step DOWN
@@ -706,19 +459,8 @@ VioletCity_MapEvents:
 	warp_event 39, 24, ROUTE_31_VIOLET_GATE, 1
 	warp_event 39, 25, ROUTE_31_VIOLET_GATE, 2
 
-	db 12 ; coord events
-	coord_event 26, 19, -1, VioletCityCrystalSceneTopFarLeft
-	coord_event 27, 19, -1, VioletCityCrystalSceneTop
-	coord_event 28, 19, -1, VioletCityCrystalSceneTopRight
-	coord_event 29, 19, -1, VioletCityCrystalSceneTopFarRight
-	coord_event 26, 20, -1, VioletCityCrystalSceneFarLeft
-	coord_event 27, 20, -1, VioletCityCrystalScene
-	coord_event 28, 20, -1, VioletCityCrystalSceneRight
-	coord_event 29, 20, -1, VioletCityCrystalSceneFarRight
-	coord_event 26, 21, -1, VioletCityCrystalSceneLowFarLeft
+	db 1 ; coord events
 	coord_event 27, 21, -1, VioletCityCrystalSceneLow
-	coord_event 28, 21, -1, VioletCityCrystalSceneLowRight
-	coord_event 29, 21, -1, VioletCityCrystalSceneLowFarRight
 
 	db 7 ; bg events
 	bg_event 24, 20, BGEVENT_READ, VioletCitySign
@@ -729,7 +471,7 @@ VioletCity_MapEvents:
 	bg_event 10, 17, BGEVENT_READ, VioletCityMartSign
 	bg_event 37, 14, BGEVENT_ITEM, VioletCityHiddenHyperPotion
 
-	db 10 ; object events
+	db 9 ; object events
 	object_event 13, 16, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletCityEarlScript, EVENT_VIOLET_CITY_EARL
 	object_event 28, 28, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletCityLassScript, -1
 	object_event 24, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletCitySuperNerdScript, -1
@@ -739,4 +481,3 @@ VioletCity_MapEvents:
 	object_event  4,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VioletCityPPUp, EVENT_VIOLET_CITY_PP_UP
 	object_event 35,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VioletCityRareCandy, EVENT_VIOLET_CITY_RARE_CANDY
 	object_event 30, 17, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_VIOLET_CITY_CRYSTAL
-	object_event  0,  0, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VioletCityCrystalSceneDone, EVENT_BEAT_CRYSTAL_VIOLET_CITY
