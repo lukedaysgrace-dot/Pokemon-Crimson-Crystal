@@ -1,6 +1,10 @@
 	object_const_def ; object_event constants
 	const SEAFOAMGYM_BLAINE
 	const SEAFOAMGYM_GYM_GUY
+	const SEAFOAMGYM_BURGLAR1
+	const SEAFOAMGYM_BURGLAR2
+	const SEAFOAMGYM_FIREBREATHER1
+	const SEAFOAMGYM_FIREBREATHER2
 
 SeafoamGym_MapScripts:
 	db 1 ; scene scripts
@@ -56,6 +60,50 @@ SeafoamGymGuyScript:
 
 .TalkedToSeafoamGymGuyScript:
 	writetext SeafoamGymGuyWinText2
+	waitbutton
+	closetext
+	end
+
+TrainerBurglarMorton:
+	trainer BURGLAR, MORTON, EVENT_BEAT_BURGLAR_MORTON, BurglarMortonSeenText, BurglarMortonBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext BurglarMortonAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerBurglarVance:
+	trainer BURGLAR, VANCE, EVENT_BEAT_BURGLAR_VANCE, BurglarVanceSeenText, BurglarVanceBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext BurglarVanceAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerFirebreatherScorch:
+	trainer FIREBREATHER, SCORCH, EVENT_BEAT_FIREBREATHER_SCORCH, FirebreatherScorchSeenText, FirebreatherScorchBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FirebreatherScorchAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerFirebreatherBlaze:
+	trainer FIREBREATHER, TORCH, EVENT_BEAT_FIREBREATHER_TORCH, FirebreatherBlazeSeenText, FirebreatherBlazeBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FirebreatherBlazeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -155,16 +203,93 @@ SeafoamGymGuyWinText2:
 	line "for a building."
 	done
 
+BurglarMortonSeenText:
+	text "The heat in here"
+	line "keeps my #MON"
+	cont "fired up!"
+	done
+
+BurglarMortonBeatenText:
+	text "You put out my"
+	line "flames!"
+	done
+
+BurglarMortonAfterBattleText:
+	text "BLAINE trains us"
+	line "hard. Only the"
+
+	para "hottest #MON"
+	line "survive here."
+	done
+
+BurglarVanceSeenText:
+	text "Think you can walk"
+	line "through this GYM"
+	cont "unburned?"
+	done
+
+BurglarVanceBeatenText:
+	text "Argh! Too hot to"
+	line "handle!"
+	done
+
+BurglarVanceAfterBattleText:
+	text "You've got the"
+	line "spark to face"
+	cont "BLAINE."
+	done
+
+FirebreatherScorchSeenText:
+	text "Feel the burn!"
+	line "My #MON breathe"
+	cont "fire!"
+	done
+
+FirebreatherScorchBeatenText:
+	text "I'm all burned"
+	line "out…"
+	done
+
+FirebreatherScorchAfterBattleText:
+	text "A true fire"
+	line "trainer never"
+
+	para "lets the flame"
+	line "die down."
+	done
+
+FirebreatherBlazeSeenText:
+	text "You'll be roasted"
+	line "before you reach"
+	cont "the LEADER!"
+	done
+
+FirebreatherBlazeBeatenText:
+	text "Snuffed out!"
+	done
+
+FirebreatherBlazeAfterBattleText:
+	text "BLAINE's fire is"
+	line "even fiercer than"
+
+	para "mine. Good luck"
+	line "in there!"
+	done
+
 SeafoamGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event  5,  5, ROUTE_20, 1
+	warp_event 14, 14, ROUTE_20, 1
 
 	db 0 ; coord events
 
 	db 0 ; bg events
 
-	db 2 ; object events
-	object_event  5,  2, SPRITE_BLAINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SeafoamGymBlaineScript, -1
-	object_event  6,  5, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	db 6 ; object events
+	object_event  8,  6, SPRITE_BLAINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SeafoamGymBlaineScript, -1
+	object_event 11, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	object_event 13, 11, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerBurglarMorton, -1
+	object_event  8,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerBurglarVance, -1
+	object_event  0,  5, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerFirebreatherScorch, -1
+	object_event  4, 15, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerFirebreatherBlaze, -1

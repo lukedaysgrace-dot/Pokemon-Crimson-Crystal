@@ -2753,7 +2753,7 @@ wErinFightCount::    db
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
 
-	ds 2 ; trimmed by 3: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE, and again for the Goldenrod rooftop couple events
+	ds 0 ; trimmed by 5: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE, again for the Goldenrod rooftop couple events, and again for the Seafoam Gym trainer flags
 
 wCurBox:: db ; db72
 
