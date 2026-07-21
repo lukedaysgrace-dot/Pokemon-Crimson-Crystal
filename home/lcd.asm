@@ -1,7 +1,9 @@
 ; LCD handling
 
 LCD::
-	push af
+LCDGeneric::
+; Default LCD interrupt handler, reached via hLCDInterruptFunction.
+; The lcd vector has already pushed af.
 	ldh a, [hLCDCPointer]
 	and a
 	jr z, .done
