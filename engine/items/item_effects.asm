@@ -206,12 +206,8 @@ PokeBallEffect:
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
 
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jp z, Ball_BoxIsFullMessage
+	farcall NewStorageBoxPointer
+	jp c, Ball_BoxIsFullMessage
 
 .room_in_party
 	xor a
@@ -602,30 +598,23 @@ PokeBallEffect:
 	farcall SetBoxMonCaughtData
 
 	; Remember the ball the newly boxed mon was caught in.
-	; The captured mon is now first in the box.
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld bc, sBoxMon1Personality
+	; The captured mon is in wTempMon (already committed to storage;
+	; it is recommitted below after all modifications).
+	ld bc, wTempMonPersonality
 	farcall SetCaughtBall
-	call CloseSRAM
 
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	jr nz, .BoxNotFullYet
+	; If that was the last free slot, flag the box as full.
+	farcall NewStorageBoxPointer
+	jr nc, .BoxNotFullYet
 	ld hl, wBattleResult
 	set BATTLERESULT_BOX_FULL, [hl]
 .BoxNotFullYet:
 	ld a, [wCurItem]
 	cp FRIEND_BALL
 	jr nz, .SkipBoxMonFriendBall
-	; The captured mon is now first in the box
 	ld a, FRIEND_BALL_HAPPINESS
-	ld [sBoxMon1Happiness], a
+	ld [wTempMonHappiness], a
 .SkipBoxMonFriendBall:
-	call CloseSRAM
 
 	ld hl, Text_AskNicknameNewlyCaughtMon
 	call PrintText
@@ -645,30 +634,22 @@ PokeBallEffect:
 	ld b, NAME_MON
 	farcall NamingScreen
 
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-
 	ld hl, wMonOrItemNameBuffer
-	ld de, sBoxMonNicknames
+	ld de, wTempMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	ld hl, sBoxMonNicknames
+	ld hl, wTempMonNickname
 	ld de, wStringBuffer1
 	call InitName
 
-	call CloseSRAM
-
 .SkipBoxMonNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-
-	ld hl, sBoxMonNicknames
+	; Commit all post-catch modifications to storage.
+	farcall UpdateStorageBoxMonFromTemp
+	ld hl, wTempMonNickname
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-
-	call CloseSRAM
 
 	ld hl, Text_SentToBillsPC
 	call PrintText

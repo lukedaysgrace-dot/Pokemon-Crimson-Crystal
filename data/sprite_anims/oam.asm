@@ -346,6 +346,13 @@ SpriteAnimOAMData:
 	dsprite  2,  0,  1,  0, $22, 0
 	dsprite  2,  0,  2,  0, $23, 0
 
+	dbw $00, .OAMData_PcCursor                 ; SPRITE_ANIM_OAMSET_PC_CURSOR
+	dbw $00, .OAMData_PcCursorItem             ; SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM
+	dbw $00, .OAMData_PcQuick                  ; SPRITE_ANIM_OAMSET_PC_QUICK
+	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
+	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
+	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
+
 .OAMData_RedWalk:
 	db 4
 	dsprite -1,  0, -1,  0, $00, PAL_OW_RED
@@ -1137,3 +1144,66 @@ SpriteAnimOAMData:
 	dsprite  0,  0, -1,  4, $51, 1
 	dsprite  0,  0,  0,  4, $52, 1
 	dsprite  0,  0,  1,  4, $53, 1
+
+.OAMData_PcCursor:
+	db 12
+	; Cursor
+	dsprite  0,  0,  0,  0, $04, $1 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $04, $2 | OAM_BANK1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, $1 | OAM_BANK1
+	dsprite  1,  0,  1,  0, $05, $2 | OAM_BANK1 | X_FLIP
+
+	; Mini
+	dsprite  1,  2,  0,  0, $08, $3 | OAM_BANK1
+	dsprite  1,  2,  1,  0, $09, $3 | OAM_BANK1
+	dsprite  2,  2,  0,  0, $0a, $3 | OAM_BANK1
+	dsprite  2,  2,  1,  0, $0b, $3 | OAM_BANK1
+
+	; Mini shadow
+	dsprite  1,  2,  0,  0, $0c, $6 | OAM_BANK1
+	dsprite  1,  2,  1,  0, $0d, $6 | OAM_BANK1
+	dsprite  2,  2,  0,  0, $0e, $6 | OAM_BANK1
+	dsprite  2,  2,  1,  0, $0f, $6 | OAM_BANK1
+
+.OAMData_PcCursorItem:
+	db 5
+	; Cursor
+	dsprite  0,  0,  0,  0, $04, $1 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $04, $2 | OAM_BANK1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, $1 | OAM_BANK1
+	dsprite  1,  0,  1,  0, $05, $2 | OAM_BANK1 | X_FLIP
+
+	; Item
+	dsprite  2,  0,  0,  4, $08, $0 | OAM_BANK1
+
+.OAMData_PcQuick:
+	db 8
+	; Mini or item (only uses 1 sprite with the rest blank)
+	dsprite  0,  0,  0,  0, $14, $5 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $15, $5 | OAM_BANK1
+	dsprite  1,  0,  0,  0, $16, $5 | OAM_BANK1
+	dsprite  1,  0,  1,  0, $17, $5 | OAM_BANK1
+
+	; Mini shadow if applicable
+	dsprite  0,  0,  0,  0, $18, $6 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $19, $6 | OAM_BANK1
+	dsprite  1,  0,  0,  0, $1a, $6 | OAM_BANK1
+	dsprite  1,  0,  1,  0, $1b, $6 | OAM_BANK1
+
+.OAMData_PcMode:
+	db 3
+	dsprite  0,  0,  2,  0, $26, $2 | OAM_BANK1
+	dsprite  0,  0,  3,  0, $27, $2 | OAM_BANK1
+	dsprite  0,  0,  4,  0, $28, $2 | OAM_BANK1
+
+.OAMData_PcMode2:
+	db 2
+	dsprite  0,  0,  0,  0, $24, $2 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $25, $2 | OAM_BANK1
+
+.OAMData_PcPack:
+	db 4
+	dsprite  0,  0,  0,  0, $2f, $4 | OAM_BANK1
+	dsprite  0,  0,  1,  0, $30, $4 | OAM_BANK1
+	dsprite  1,  0,  0,  0, $31, $4 | OAM_BANK1
+	dsprite  1,  0,  1,  0, $32, $4 | OAM_BANK1
