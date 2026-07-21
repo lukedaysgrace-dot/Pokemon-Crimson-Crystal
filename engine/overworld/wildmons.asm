@@ -406,15 +406,8 @@ LoadWildMonDataPointer:
 	call CheckOnWater
 	jr z, _WaterWildmonLookup
 
-; The SAFARI ZONE is split into three encounter areas.
-; Boundaries are in map tile coordinates (the same numbers
-; Polished Map shows for events) - tweak to fit the layout:
-; - ice area:   y < SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ICE_RIGHT_X
-; - rocky area: y >= SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ROCKY_RIGHT_X
-; - everywhere else uses the normal SAFARI_ZONE table in johto_grass.asm
-SAFARI_ZONE_ICE_RIGHT_X   EQU 28
-SAFARI_ZONE_ROCKY_RIGHT_X EQU 16
-SAFARI_ZONE_LEFT_AREAS_Y  EQU 14
+; The SAFARI ZONE area boundaries (SAFARI_ZONE_*) are defined in
+; constants/pokemon_data_constants.asm.
 
 _GrassWildmonLookup:
 	ld hl, SwarmGrassWildMons
