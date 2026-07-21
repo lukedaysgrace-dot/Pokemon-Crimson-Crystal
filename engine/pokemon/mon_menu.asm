@@ -590,6 +590,84 @@ MonMailAction:
 	text_far UnknownText_0x1c1cc4
 	text_end
 
+TakeMail::
+; Take mail from the mon in wCurPartyMon (party only).
+; Used by the PC storage UI. Returns carry if the mail was taken.
+	ld hl, .sendmailtopctext
+	call StartMenuYesNo
+	jr c, .RemoveMailToBag
+	ld a, [wCurPartyMon]
+	ld b, a
+	farcall SendMailToPC
+	jr c, .MailboxFull
+	ld hl, .sentmailtopctext
+	call MenuTextboxBackup
+	jr .TookMail
+
+.MailboxFull:
+	ld hl, .mailboxfulltext
+	call MenuTextboxBackup
+	jr .KeptMail
+
+.RemoveMailToBag:
+	ld hl, .mailwilllosemessagetext
+	call StartMenuYesNo
+	jr c, .KeptMail
+	call GetPartyItemLocation
+	ld a, [hl]
+	ld [wCurItem], a
+	call ReceiveItemFromPokemon
+	jr nc, .BagIsFull
+	call GetPartyItemLocation
+	ld [hl], $0
+	call GetCurNick
+	ld hl, .tookmailfrommontext
+	call MenuTextboxBackup
+	; fallthrough
+.TookMail:
+	scf
+	jr .finish
+
+.BagIsFull:
+	ld hl, .bagfulltext
+	call MenuTextboxBackup
+	; fallthrough
+.KeptMail:
+	and a
+.finish
+	ld a, $3
+	ret
+
+.mailwilllosemessagetext
+; The MAIL will lose its message. OK?
+	text_far UnknownText_0x1c1c22
+	text_end
+
+.tookmailfrommontext
+; MAIL detached from <POKEMON>.
+	text_far UnknownText_0x1c1c47
+	text_end
+
+.bagfulltext
+; There's no space for removing MAIL.
+	text_far UnknownText_0x1c1c62
+	text_end
+
+.sendmailtopctext
+; Send the removed MAIL to your PC?
+	text_far UnknownText_0x1c1c86
+	text_end
+
+.mailboxfulltext
+; Your PC's MAILBOX is full.
+	text_far UnknownText_0x1c1ca9
+	text_end
+
+.sentmailtopctext
+; The MAIL was sent to your PC.
+	text_far UnknownText_0x1c1cc4
+	text_end
+
 OpenPartyStats:
 	call LoadStandardMenuHeader
 	call ClearSprites

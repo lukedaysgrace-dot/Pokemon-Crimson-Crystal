@@ -38,7 +38,6 @@ INCLUDE "engine/items/items.asm"
 INCLUDE "engine/overworld/player_step.asm"
 INCLUDE "engine/battle/anim_hp_bar.asm"
 INCLUDE "engine/pokemon/move_mon.asm"
-INCLUDE "engine/pokemon/bills_pc_top.asm"
 INCLUDE "engine/pokemon/breedmon_level_growth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
 INCLUDE "engine/items/item_effects.asm"
@@ -527,7 +526,6 @@ INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/dummy_game.asm"
-INCLUDE "engine/pokemon/bills_pc.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
 
@@ -805,3 +803,11 @@ INCLUDE "engine/gfx/caught_ball_pals.asm"
 SECTION "Summary Screen Pals", ROMX
 
 INCLUDE "engine/gfx/summary_screen_pals.asm"
+
+
+SECTION "Bills PC", ROMX
+
+INCLUDE "engine/pc/pc_support.asm"
+INCLUDE "engine/pc/bills_pc.asm"
+INCLUDE "engine/pc/bills_pc_ui.asm"
+INCLUDE "data/pc/pc_text.asm"
