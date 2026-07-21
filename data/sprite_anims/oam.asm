@@ -143,6 +143,12 @@ SpriteAnimOAMData:
 	dbw $00, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
 	dbw $00, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_1
 	dbw $04, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_2
+	dbw $00, .OAMData_PcCursor                 ; SPRITE_ANIM_OAMSET_PC_CURSOR
+	dbw $00, .OAMData_PcCursorItem             ; SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM
+	dbw $00, .OAMData_PcQuick                  ; SPRITE_ANIM_OAMSET_PC_QUICK
+	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
+	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
+	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
 
 .OAMData_1x1_Palette0:
 	db 1
@@ -345,13 +351,6 @@ SpriteAnimOAMData:
 	dsprite  2,  0,  0,  0, $21, 0
 	dsprite  2,  0,  1,  0, $22, 0
 	dsprite  2,  0,  2,  0, $23, 0
-
-	dbw $00, .OAMData_PcCursor                 ; SPRITE_ANIM_OAMSET_PC_CURSOR
-	dbw $00, .OAMData_PcCursorItem             ; SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM
-	dbw $00, .OAMData_PcQuick                  ; SPRITE_ANIM_OAMSET_PC_QUICK
-	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
-	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
-	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
 
 .OAMData_RedWalk:
 	db 4
