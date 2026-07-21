@@ -406,6 +406,16 @@ LoadWildMonDataPointer:
 	call CheckOnWater
 	jr z, _WaterWildmonLookup
 
+; The SAFARI ZONE is split into three encounter areas.
+; Boundaries are in map tile coordinates (the same numbers
+; Polished Map shows for events) - tweak to fit the layout:
+; - ice area:   y < SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ICE_RIGHT_X
+; - rocky area: y >= SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ROCKY_RIGHT_X
+; - everywhere else uses the normal SAFARI_ZONE table in johto_grass.asm
+SAFARI_ZONE_ICE_RIGHT_X   EQU 28
+SAFARI_ZONE_ROCKY_RIGHT_X EQU 16
+SAFARI_ZONE_LEFT_AREAS_Y  EQU 14
+
 _GrassWildmonLookup:
 	ld hl, SwarmGrassWildMons
 	ld bc, GRASS_WILDDATA_LENGTH
@@ -415,7 +425,39 @@ _GrassWildmonLookup:
 	ld de, KantoGrassWildMons
 	call _JohtoWildmonCheck
 	ld bc, GRASS_WILDDATA_LENGTH
-	jr _NormalWildmonOK
+	call _NormalWildmonOK
+	ret nc
+	; fallthrough: found grass data - swap tables in the SAFARI ZONE areas
+_SafariZoneAreaCheck:
+	ld a, [wMapGroup]
+	cp GROUP_SAFARI_ZONE
+	jr nz, .done
+	ld a, [wMapNumber]
+	cp MAP_SAFARI_ZONE
+	jr nz, .done
+	ld a, [wPlayerStandingMapX]
+	sub 4 ; remove the map border offset
+	ld b, a
+	ld a, [wPlayerStandingMapY]
+	sub 4
+	cp SAFARI_ZONE_LEFT_AREAS_Y
+	jr nc, .bottom_half
+; top half: the icy field fills the top left
+	ld a, b
+	cp SAFARI_ZONE_ICE_RIGHT_X
+	jr nc, .done
+	ld hl, SafariZoneIceWildMons
+	jr .done
+
+.bottom_half
+; bottom half: the rocky pen fills the bottom left
+	ld a, b
+	cp SAFARI_ZONE_ROCKY_RIGHT_X
+	jr nc, .done
+	ld hl, SafariZoneRockyWildMons
+.done
+	scf
+	ret
 
 _WaterWildmonLookup:
 	ld hl, SwarmWaterWildMons

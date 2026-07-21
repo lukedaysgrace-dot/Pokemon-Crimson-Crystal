@@ -166,3 +166,5 @@
 	tilecoll WALL, WALL, WALL, WALL ; a5
 	tilecoll WALL, WALL, WALL, WALL ; a6
 	tilecoll WATER, WATER, WATER, WATER ; a7
+	tilecoll WALL, WALL, WALL, WALL ; a8
+	tilecoll TALL_GRASS, TALL_GRASS, TALL_GRASS, TALL_GRASS ; a9
