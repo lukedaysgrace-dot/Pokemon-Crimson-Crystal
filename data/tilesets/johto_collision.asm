@@ -167,4 +167,4 @@
 	tilecoll WALL, WALL, WALL, WALL ; a6
 	tilecoll WATER, WATER, WATER, WATER ; a7
 	tilecoll WALL, WALL, WALL, WALL ; a8
-	tilecoll TALL_GRASS, TALL_GRASS, TALL_GRASS, TALL_GRASS ; a9
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a9 ; safari dirt: encounters via CheckSafariZoneRockyArea, no grass rustle
