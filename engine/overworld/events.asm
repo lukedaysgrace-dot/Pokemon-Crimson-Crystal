@@ -1172,6 +1172,8 @@ CanUseSweetScent::
 	jr z, .ice_check
 	cp DUNGEON
 	jr z, .ice_check
+	call CheckSafariZoneRockyArea
+	jr c, .ice_check ; the rocky pen works like a cave: encounters on bare ground
 	farcall CheckGrassCollision
 	jr nc, .no
 
@@ -1183,6 +1185,31 @@ CanUseSweetScent::
 	ret
 
 .no
+	and a
+	ret
+
+CheckSafariZoneRockyArea::
+; The SAFARI ZONE's rocky pen gives cave-style encounters on bare
+; ground. Returns carry if the player is standing inside it.
+; Boundaries are defined in constants/pokemon_data_constants.asm.
+	ld a, [wMapGroup]
+	cp GROUP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wMapNumber]
+	cp MAP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wPlayerStandingMapY]
+	sub 4 ; remove the map border offset
+	cp SAFARI_ZONE_LEFT_AREAS_Y
+	jr c, .outside
+	ld a, [wPlayerStandingMapX]
+	sub 4
+	cp SAFARI_ZONE_ROCKY_RIGHT_X
+	jr nc, .outside
+	scf
+	ret
+
+.outside
 	and a
 	ret
 
