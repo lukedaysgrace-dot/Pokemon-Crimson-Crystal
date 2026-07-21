@@ -1681,28 +1681,88 @@ JohtoGrassWildMons:
 	map_id SAFARI_ZONE
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 15, RATTATA_ALOLAN
-	dbw 15, MEOWTH_GALARIAN
-	dbw 16, SANDSHREW_ALOLAN
-	dbw 16, WOOPER_PALDEAN
-	dbw 17, PONYTA_GALARIAN
-	dbw 17, GROWLITHE_HISUIAN
-	dbw 18, TAUROS_PALDEAN_FIRE
+	dbw 7, RATTATA_ALOLAN
+	dbw 7, MEOWTH_ALOLAN
+	dbw 8, PONYTA_GALARIAN
+	dbw 9, SLOWPOKE_GALARIAN
+	dbw 10, CORSOLA_GALARIAN
+	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%)
+	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%)
 	; day
-	dbw 15, MEOWTH_ALOLAN
-	dbw 15, DIGLETT_ALOLAN
-	dbw 16, GEODUDE_ALOLAN
-	dbw 16, SLOWPOKE_GALARIAN
-	dbw 17, VULPIX_ALOLAN
-	dbw 17, CORSOLA_GALARIAN
-	dbw 18, TAUROS_PALDEAN_WATER
+	dbw 7, MEOWTH_ALOLAN
+	dbw 7, RATTATA_ALOLAN
+	dbw 8, SLOWPOKE_GALARIAN
+	dbw 9, PONYTA_GALARIAN
+	dbw 10, CORSOLA_GALARIAN
+	dbw 11, TAUROS_PALDEAN_WATER ; rare (4%)
+	dbw 11, TAUROS_PALDEAN_FIRE ; rare (1%)
 	; nite
-	dbw 15, RATTATA_ALOLAN
-	dbw 15, GRIMER_ALOLAN
-	dbw 16, MEOWTH_ALOLAN
-	dbw 16, VOLTORB_HISUIAN
-	dbw 17, SNEASEL_HISUIAN
-	dbw 17, VULPIX_ALOLAN
-	dbw 18, GROWLITHE_HISUIAN
+	dbw 7, RATTATA_ALOLAN
+	dbw 7, MEOWTH_ALOLAN
+	dbw 8, GRIMER_ALOLAN
+	dbw 9, VOLTORB_HISUIAN
+	dbw 10, SNEASEL_HISUIAN
+	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%)
+	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%)
 
 	db -1 ; end
+
+; The SAFARI ZONE's icy and rocky areas swap these tables in
+; via _SafariZoneAreaCheck (engine/overworld/wildmons.asm).
+; They sit after the end marker so normal lookups never find them.
+
+SafariZoneIceWildMons:
+	map_id SAFARI_ZONE
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 7, SANDSHREW_ALOLAN
+	dbw 7, VULPIX_ALOLAN
+	dbw 8, SANDSHREW_ALOLAN
+	dbw 9, VULPIX_ALOLAN
+	dbw 10, SANDSHREW_ALOLAN
+	dbw 10, VULPIX_ALOLAN
+	dbw 11, VULPIX_ALOLAN
+	; day
+	dbw 7, VULPIX_ALOLAN
+	dbw 7, SANDSHREW_ALOLAN
+	dbw 8, VULPIX_ALOLAN
+	dbw 9, SANDSHREW_ALOLAN
+	dbw 10, VULPIX_ALOLAN
+	dbw 10, SANDSHREW_ALOLAN
+	dbw 11, SANDSHREW_ALOLAN
+	; nite
+	dbw 7, SANDSHREW_ALOLAN
+	dbw 7, VULPIX_ALOLAN
+	dbw 8, SANDSHREW_ALOLAN
+	dbw 9, VULPIX_ALOLAN
+	dbw 10, VULPIX_ALOLAN
+	dbw 10, SANDSHREW_ALOLAN
+	dbw 11, VULPIX_ALOLAN
+
+SafariZoneRockyWildMons:
+	map_id SAFARI_ZONE
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 7, DIGLETT_ALOLAN
+	dbw 7, GEODUDE_ALOLAN
+	dbw 8, MEOWTH_GALARIAN
+	dbw 9, WOOPER_PALDEAN
+	dbw 10, GROWLITHE_HISUIAN
+	dbw 10, GEODUDE_ALOLAN
+	dbw 11, GROWLITHE_HISUIAN
+	; day
+	dbw 7, GEODUDE_ALOLAN
+	dbw 7, DIGLETT_ALOLAN
+	dbw 8, MEOWTH_GALARIAN
+	dbw 9, GROWLITHE_HISUIAN
+	dbw 10, WOOPER_PALDEAN
+	dbw 10, DIGLETT_ALOLAN
+	dbw 11, MEOWTH_GALARIAN
+	; nite
+	dbw 7, DIGLETT_ALOLAN
+	dbw 7, GEODUDE_ALOLAN
+	dbw 8, WOOPER_PALDEAN
+	dbw 9, MEOWTH_GALARIAN
+	dbw 10, GROWLITHE_HISUIAN
+	dbw 10, WOOPER_PALDEAN
+	dbw 11, GEODUDE_ALOLAN
