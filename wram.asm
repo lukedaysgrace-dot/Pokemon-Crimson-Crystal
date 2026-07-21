@@ -381,7 +381,11 @@ NEXTU ; c608
 
 ; LCD hblank code block, copied here at PC init.
 ; Labels are defined as part of the code (see engine/pc/bills_pc_ui.asm).
-wBillsPC_LCDCodeBuffer:: ds $cf
+; NOTE: must be >= BillsPC_LCDCodeEnd - BillsPC_LCDCode ($d1 after the
+; rst->call conversion; Polished's original fit in $cf). Guarded by an
+; assertion at the copy site in bills_pc_ui.asm.
+wBillsPC_LCDCodeBuffer:: ds $d4
+wBillsPC_LCDCodeBufferEnd::
 
 ; If you change ordering of this, remember to fix LCD hblank code too.
 wBillsPC_CurPals::

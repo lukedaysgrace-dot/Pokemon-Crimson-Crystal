@@ -131,7 +131,7 @@ BillsPC_LoadUI:
 	; Cursor sprite OAM
 	lb de, -18, 0 ; fixed up by the animseq code
 	ld a, SPRITE_ANIM_INDEX_PC_CURSOR
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 	ld a, PCANIM_ANIMATE
 	ld [wBillsPC_CursorAnimFlag], a
 
@@ -139,10 +139,10 @@ BillsPC_LoadUI:
 	lb de, $98, $10
 	ld a, SPRITE_ANIM_INDEX_PC_MODE
 	push de
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 	pop af
 	ld a, SPRITE_ANIM_INDEX_PC_MODE2
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 
 	; Pack icon.
 	; TODO: Instead of a hack where we prevent the pack from claiming a slot,
@@ -152,7 +152,7 @@ BillsPC_LoadUI:
 	push hl
 	lb de, $58, $30
 	ld a, SPRITE_ANIM_INDEX_PC_PACK
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 	pop hl
 	dec [hl]
 
@@ -173,7 +173,7 @@ BillsPC_LoadUI:
 	ld [wBillsPC_ApplyThemePals], a
 	; fallthrough
 _BillsPC_GetCGBLayout:
-	ld a, SCGB_BILLS_PC
+	ld b, SCGB_BILLS_PC ; Crimson's GetSGBLayout takes the layout in b
 	jp GetSGBLayout
 
 BillsPC_RefreshTheme:
@@ -186,7 +186,7 @@ UseBillsPC:
 	call ClearPalettes
 	call BillsPC_WipeAttrMap
 	call ClearSprites
-	call ClearSpriteAnims
+	callfar ClearSpriteAnims
 	xor a
 	ld [wVramState], a
 
@@ -296,6 +296,8 @@ UseBillsPC:
 	call CopyTilemapAtOnce
 
 	; Copy LCD code to WRAM0
+	assert BillsPC_LCDCodeEnd - BillsPC_LCDCode <= wBillsPC_LCDCodeBufferEnd - wBillsPC_LCDCodeBuffer, \
+		"BillsPC_LCDCode too big for wBillsPC_LCDCodeBuffer"
 	ld hl, BillsPC_LCDCode
 	ld de, wBillsPC_LCDCodeBuffer
 	ld bc, BillsPC_LCDCodeEnd - BillsPC_LCDCode
@@ -600,7 +602,7 @@ PCIconLoop:
 	push hl
 	push de
 	push bc
-	farcall GetStorageMini_a
+	call GetStorageMini_a ; same bank
 	pop bc
 	pop de
 	pop hl
@@ -703,7 +705,7 @@ WriteIconPaletteData:
 	ld b, a
 .got_index_pal
 	ld a, [wTempMonUnused] ; shiny/gender flags
-	farcall GetMonPalInBCDE
+	call GetMonPalInBCDE ; same bank
 	ld h, b
 	ld l, c
 	pop bc
@@ -723,7 +725,7 @@ if !DEF(MONOCHROME)
 	ld [hld], a
 	dec hl
 	dec hl
-	farcall VaryBGPalByTempMonDVs
+	call VaryBGPalByTempMonDVs ; same bank
 else
 	ld [hl], LOW(PAL_MONOCHROME_WHITE) ; no-optimize *hl++|*hl-- = N
 	inc hl
@@ -1029,7 +1031,7 @@ _GetCursorMon:
 	ldh [rVBK], a
 .dont_switch_vbk
 	ld hl, vTiles2
-	farcall GetMonFrontpic
+	predef GetMonFrontpic ; predef preserves hl
 	xor a
 	ldh [rVBK], a
 	ld a, BANK(wBillsPC_ItemVWF)
@@ -1087,25 +1089,26 @@ _GetCursorMon:
 	ld bc, wTempMonPersonality
 	ld a, [wTempMonIsEgg]
 	bit MON_IS_EGG_F, a
-	ld a, EGG
-	jr nz, .egg
-	ld a, [wTempMonSpecies]
-.egg
-	farcall GetMonNormalOrShinyPalettePointer
-	ld de, wBillsPC_PokepicPal
-	push de
-	ld b, 4
-.loop
-	ld a, BANK(PokemonPalettes)
-	call GetFarByte
-	inc hl
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .loop
+	ld bc, PC_EGG_INDEX
+	jr nz, .got_pal_index
+	ld a, [wTempMonIndex]
+	ld c, a
+	ld a, [wTempMonIndex + 1]
+	ld b, a
+.got_pal_index
+	ld a, [wTempMonUnused] ; shiny/gender flags
+	call GetMonPalInBCDE ; same bank; shiny/egg-aware, 16-bit index
+	ld hl, wBillsPC_PokepicPal
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hli], a
+	ld a, e
+	ld [hli], a
+	ld [hl], d
 
-	pop hl
-	farcall VaryBGPalByTempMonDVs
+	ld hl, wBillsPC_PokepicPal
+	call VaryBGPalByTempMonDVs ; same bank
 
 	; Show or hide item icon
 	ld hl, wVirtualOAMSprite30
@@ -1171,7 +1174,7 @@ _GetCursorMon:
 
 	; Shiny
 	push hl
-	farcall GetShininess
+	call GetShininess ; same bank
 	pop hl
 	inc hl
 	jr z, .not_shiny
@@ -1564,7 +1567,7 @@ BillsPC_MenuJumptable:
 
 BillsPC_Stats:
 	call BillsPC_PrepareTransistion
-	farcall _OpenTempmonSummary
+	call _OpenTempmonSummary ; same bank
 	call BillsPC_MoveCursorAfterStatScreen
 	jp BillsPC_ReturnFromTransistion
 
@@ -1647,10 +1650,10 @@ BillsPC_SetIcon:
 	pop af
 	jr nz, .mask_done
 
-	farcall GetStorageMask
+	call GetStorageMask ; same bank
 
 .mask_done
-	farcall GetStorageMini
+	call GetStorageMini ; same bank
 	ret
 
 BillsPC_MoveIconData:
@@ -1915,7 +1918,7 @@ BillsPC_PrepareQuickAnim:
 
 	lb de, 0, 0
 	ld a, SPRITE_ANIM_INDEX_PC_QUICK
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 
 	call BillsPC_UpdateCursorLocation
 	pop bc
@@ -2203,7 +2206,7 @@ BillsPC_GiveItem:
 
 .entries_not_full
 	call BillsPC_PrepareTransistion
-	farcall PCGiveItem
+	call PCGiveItem ; same bank
 	; fallthrough
 
 BillsPC_ReturnFromTransistion:
@@ -2286,7 +2289,7 @@ BillsPC_MoveItem:
 	jr nz, .not_on_pack
 
 	call BillsPC_PrepareTransistion
-	farcall PCPickItem
+	call PCPickItem ; same bank
 	push af
 	call BillsPC_ReturnFromTransistion
 	pop af
@@ -2440,7 +2443,7 @@ _BillsPC_BagItem:
 
 	; Check if this is a Mail (can be invoked when placing using Item Mode).
 	ld d, a
-	call ItemIsMail
+	call ItemIsMail_d
 	jr nc, .put_in_pack
 
 	call BillsPC_TakeMail
@@ -2519,7 +2522,7 @@ BillsPC_UpdateStorage_CheckMewtwo:
 	ld [wCurIconForm], a
 	call BillsPC_GetMonTileAddr
 	push bc
-	farcall GetStorageMini
+	call GetStorageMini ; same bank
 	pop bc
 	call WriteIconPaletteData
 
@@ -2590,7 +2593,7 @@ BillsPC_Item:
 	ld de, .NoItemMenu
 	jr z, .got_menu
 	ld d, a
-	call ItemIsMail
+	call ItemIsMail_d
 	ld hl, .ItemIsSelected
 	ld de, .ItemMenu
 	jr nc, .got_menu
@@ -3049,7 +3052,7 @@ endr
 	cp -1
 	jr z, .current_theme
 	dec a
-	farcall BillsPC_PreviewTheme
+	call BillsPC_PreviewTheme ; same bank
 	ret
 .current_theme
 	farcall _CGB_BillsPC
@@ -3213,7 +3216,7 @@ BillsPC_SwapStorage:
 	jr z, .mail_ok
 	ld a, [wBillsPC_CursorItem]
 	ld d, a
-	call ItemIsMail
+	call ItemIsMail_d
 	ld a, PCSWAP_CANT_STORE_MAIL
 	jp c, .failed
 
@@ -3227,7 +3230,7 @@ BillsPC_SwapStorage:
 	jr z, .dest_is_itemless
 
 	ld d, a
-	call ItemIsMail
+	call ItemIsMail_d
 	ld a, PCSWAP_CANT_POCKET_MAIL
 	jp c, .failed
 
@@ -3244,7 +3247,7 @@ BillsPC_SwapStorage:
 	ld a, [wBillsPC_CursorItem]
 	ld [wCurItem], a
 	ld d, a
-	call ItemIsMail
+	call ItemIsMail_d
 	jr nc, .compose_check_done
 
 	push af
@@ -3304,7 +3307,7 @@ BillsPC_SwapStorage:
 
 	; Check if item d is a mail about to be given to a storage mon.
 	and a
-	call nz, ItemIsMail
+	call nz, ItemIsMail_d
 	ld a, PCSWAP_CANT_STORE_MAIL
 	jr c, .item_failed
 	push de
@@ -3313,7 +3316,7 @@ BillsPC_SwapStorage:
 	ld a, b
 	ld d, e
 	and a
-	call nz, ItemIsMail
+	call nz, ItemIsMail_d
 	ld a, PCSWAP_CANT_STORE_MAIL
 	jr c, .pop_de_item_failed
 
@@ -3596,7 +3599,7 @@ endc
 BillsPC_RestoreUI:
 	call ClearPalettes
 	call ClearSprites
-	call ClearSpriteAnims
+	callfar ClearSpriteAnims
 
 	; This needs to be done in case a frontpic anim overwrote data here.
 	ld a, 1
