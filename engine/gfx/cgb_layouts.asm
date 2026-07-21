@@ -318,59 +318,12 @@ INCLUDE "gfx/pokedex/question_mark.pal"
 .PokedexCursorPalette:
 INCLUDE "gfx/pokedex/cursor.pal"
 
+; New storage system layout, ported from Polished Crystal.
+; The real code+data lives in the "Bills PC" section (engine/pc/pc_support.asm)
+; because this bank is full; this is just a trampoline for GetSGBLayout.
 _CGB_BillsPC:
-	ld de, wBGPals1
-	ld a, PREDEFPAL_POKEDEX
-	call GetPredefPal
-	call LoadHLPaletteIntoDE
-	ld a, [wCurPartySpecies]
-	cp $ff
-	jr nz, .GetMonPalette
-	ld hl, .BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .Resume
-
-.GetMonPalette:
-	ld bc, wTempMonDVs
-	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-.Resume:
-	call WipeAttrMap
-	hlcoord 1, 4, wAttrMap
-	lb bc, 7, 7
-	ld a, $1
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrMap
-	call ApplyPals
-	ld a, $1
-	ldh [hCGBPalUpdate], a
+	farcall _CGB_BillsPC_Far
 	ret
-
-.Function9009:
-	ld hl, .BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .asm_901a
-
-.unused
-	ld bc, wTempMonDVs
-	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-.asm_901a
-	call WipeAttrMap
-	hlcoord 1, 1, wAttrMap
-	lb bc, 7, 7
-	ld a, $1
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrMap
-	call ApplyPals
-	ld a, $1
-	ldh [hCGBPalUpdate], a
-	ret
-
-.BillsPCOrangePalette:
-INCLUDE "gfx/pc/orange.pal"
 
 _CGB_PokedexUnownMode:
 	ld de, wBGPals1

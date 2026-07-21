@@ -92,6 +92,14 @@ Init::
 	ld a, -1
 	ldh [hSRAMBank], a
 
+; Install the LCD interrupt trampoline (jp LCDGeneric)
+	ld a, $c3 ; jp
+	ldh [hLCDInterruptFunctionJump], a
+	ld a, LOW(LCDGeneric)
+	ldh [hLCDInterruptFunctionTargetLo], a
+	ld a, HIGH(LCDGeneric)
+	ldh [hLCDInterruptFunctionTargetHi], a
+
 	call ClearWRAM
 	ld a, 1
 	ldh [rSVBK], a
