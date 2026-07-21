@@ -278,7 +278,11 @@ wGlobalAnimYOffset:: db
 wGlobalAnimXOffset:: db
 wSpriteAnimsEnd::
 
-	ds 11
+; high byte of the 16-bit species index for PC storage icon lookups
+; (claims a padding byte; keeps this section at exactly $100)
+wCurIconForm:: db
+
+	ds 10
 
 ; mobile data
 wc3cc:: ds 1
@@ -371,6 +375,67 @@ UNION ; c608
 ; it uses exactly 480 bytes.
 wBoxPartialData:: ds 480
 wBoxPartialDataEnd::
+
+NEXTU ; c608
+; Bill's PC (storage system UI)
+
+; LCD hblank code block, copied here at PC init.
+; Labels are defined as part of the code (see engine/pc/bills_pc_ui.asm).
+wBillsPC_LCDCodeBuffer:: ds $cf
+
+; If you change ordering of this, remember to fix LCD hblank code too.
+wBillsPC_CurPals::
+wBillsPC_CurPartyPals:: ds 2 * 2 * 2 ; 2 bytes per color, 2 colors, 2 mons
+wBillsPC_CurMonPals:: ds 2 * 2 * 4 ; 2 bytes per color, 2 colors, 4 mons
+
+; Stores palettes used for party+box.
+wBillsPC_PalList::
+wBillsPC_PokepicPal:: ds 2 * 2 * 1
+wBillsPC_PokerusShinyPal:: ds 2 * 2 * 1
+wBillsPC_MonPals1:: ds 2 * 2 * 4
+	ds 2 * 2 * 2 ; unused row2 BG2-3
+wBillsPC_MonPals2:: ds 2 * 2 * 4
+wBillsPC_PartyPals3:: ds 2 * 2 * 2
+wBillsPC_MonPals3:: ds 2 * 2 * 4
+wBillsPC_PartyPals4:: ds 2 * 2 * 2
+wBillsPC_MonPals4:: ds 2 * 2 * 4
+wBillsPC_PartyPals5:: ds 2 * 2 * 2
+wBillsPC_MonPals5:: ds 2 * 2 * 4
+
+; Species index lists
+wBillsPC_PartyList:: ds PARTY_LENGTH * 2
+wBillsPC_BoxList:: ds MONS_PER_BOX * 2
+
+wBillsPC_HeldIcon:: dw
+wBillsPC_QuickIcon:: dw
+
+; Cursor data
+wBillsPC_CursorItem:: db ; what item is selected.
+wBillsPC_CursorPos:: db ; 0-3 * 4*row, row 0 is title. Bit 7 means in party.
+wBillsPC_CursorHeldBox:: db ; 0 for party, 1-20 otherwise
+wBillsPC_CursorHeldSlot:: db ; 0 for nothing held, or 1-20 (1-6 if party)
+wBillsPC_CursorDestBox:: db ; 0 for party, 1-20 otherwise
+wBillsPC_CursorDestSlot:: db ; 0 for release, or 1-20 (1-6 if party)
+wBillsPC_CursorMode:: db ; 0 regular mode (red), 1 swap mode (blue), 2 item mode (green)
+wBillsPC_CursorAnimFlag:: db ; manage cursor behaviour
+
+; Quick-move sprite data.
+wBillsPC_QuickFrom::
+wBillsPC_QuickFromBox:: db
+wBillsPC_QuickFromSlot:: db
+wBillsPC_QuickFromX:: db
+wBillsPC_QuickFromY:: db
+
+wBillsPC_QuickTo::
+wBillsPC_QuickToBox:: db
+wBillsPC_QuickToSlot:: db
+wBillsPC_QuickToX:: db
+wBillsPC_QuickToY:: db
+wBillsPC_QuickFrames:: db
+
+wBillsPC_ApplyThemePals:: db ; used by _CGB_BillsPC
+
+wSwitchMonBuffer:: ds 48
 
 NEXTU ; c608
 ; battle tower temp struct
@@ -2359,6 +2424,21 @@ wOTPartyDataEnd::
 	ds 4
 
 NEXTU ; d288
+; Storage system (Bill's PC) temp mon encode/decode buffer.
+; This overlays the tail of the OT party OT/nickname area, which is never
+; in use at the same time as the storage system backend (storage ops happen
+; while catching a wild mon, in the PC, or in the overworld; never while an
+; enemy trainer party or link partner party is live).
+	ds wOTPartyDataEnd - wOTPartyMons + 4 - SAVEMON_STRUCT_LENGTH - 27
+wEncodedTempMon:: savemon_struct wEncodedTempMon
+wTempMonBox:: db
+wTempMonSlot:: db
+wTempMonIndex:: dw ; 16-bit species index of the mon in wTempMon
+wTempMonIsEgg:: db ; bit 0: mon in wTempMon is an egg
+wTempMonNickname:: ds MON_NAME_LENGTH
+wTempMonOT:: ds NAME_LENGTH
+
+NEXTU ; d288
 ; catch tutorial dude pack
 wDudeBag::
 wDudeNumItems:: db
@@ -2760,8 +2840,8 @@ wCurBox:: db ; db72
 
 	ds 2
 
-; 8 chars + $50
-wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES ; db75
+; Old wBoxNames space; box names now live in SRAM (sNewBoxNName).
+	ds BOX_NAME_LENGTH * 14
 
 wCelebiEvent:: ; dbf3
 ; bit 2: forest is restless
@@ -3122,6 +3202,22 @@ SECTION "Surrounding Data", WRAMX
 
 wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 wSurroundingAttributes:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
+
+
+SECTION "Used Storage", WRAMX
+
+; Bitmaps of which Pokémon database entries are in use.
+; Rebuilt by FlushStorageSystem; accessed via StackCallInWRAMBankA.
+wPokeDB1UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDB1UsedEntriesEnd::
+
+wPokeDB2UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDB2UsedEntriesEnd::
+
+; VWF compose buffer for the storage UI's item names.
+; Lives here (not WRAM0, which is full); the UI switches rSVBK
+; to BANK("Used Storage") around every access.
+wBillsPC_ItemVWF:: ds 10 tiles
 
 
 SECTION "GBC Video", WRAMX

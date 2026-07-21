@@ -83,7 +83,7 @@ endif
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL $@ ; # -r 5: 64KB SRAM (MBC30, like JP Crystal) for the storage system
 	sh tools/sort_symfile.sh pokecrystal.sym
 	python3 tools/generate_cheats.py
 
