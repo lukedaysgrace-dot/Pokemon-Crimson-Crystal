@@ -163,3 +163,12 @@ hDMATransfer:: db ; ffe8
 hMobile:: db ; ffe9
 hSystemBooted:: db ; ffea
 hClockResetTrigger:: db ; ffeb
+
+; LCD interrupt trampoline: a "jp target" instruction living in HRAM.
+; The lcd vector jumps here; rewriting the target installs a custom
+; hblank handler (used by the storage system UI).
+hLCDInterruptFunction::
+hLCDInterruptFunctionJump::     db ; $c3 (jp)
+hLCDInterruptFunctionTarget::
+hLCDInterruptFunctionTargetLo:: db ; LOW(target)
+hLCDInterruptFunctionTargetHi:: db ; HIGH(target)
