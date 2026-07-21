@@ -4170,6 +4170,8 @@ SendOutPlayerMon:
 	call Call_PlayBattleAnim
 
 .not_shiny
+	; undo the Master Ball purple tint, if the send-out ball used it
+	farcall RestoreBallOBPal
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld b, h
@@ -5250,6 +5252,10 @@ BattleMenuPKMN_Loop:
 	call ClearPalettes
 	call DelayFrame
 	call _LoadHPBar
+	; The party menu and the summary screen load tiles over the
+	; battle pics' VRAM, so both must be reloaded on the way out.
+	call GetBattleMonBackpic
+	call GetEnemyMonFrontpic
 	call CloseWindow
 	call LoadTileMapToTempTileMap
 	call GetMemSGBLayout
@@ -9479,6 +9485,7 @@ BattleStartMessage:
 	ld [wBattleAnimParam], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
+	farcall RestoreBallOBPal
 
 .not_shiny
 	farcall CheckSleepingTreeMon

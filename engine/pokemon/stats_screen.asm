@@ -19,6 +19,7 @@ SUMMARY_TILE_SIDE_B   EQU $46 ; side panel bottom edge
 SUMMARY_TILE_TAB_L    EQU $47 ; bottom tab left corner
 SUMMARY_TILE_TAB_FILL EQU $48 ; bottom tab top edge
 SUMMARY_TILE_TAB_R    EQU $49 ; bottom tab right corner
+SUMMARY_TILE_BALL_BG  EQU $4a ; white disc behind the ball sprite
 
 ; OBJ tiles (vTiles0): $00 page square, $01 selected page square,
 ; $02 caught ball icon (colored through OBJ palette 4)
@@ -440,7 +441,7 @@ StatsScreen_PlaceGenderChar:
 LoadSummaryScreenGFX:
 	ld de, SummaryScreenTilesGFX
 	ld hl, vTiles2 tile SUMMARY_TILE_SIDE_TL
-	lb bc, BANK(SummaryScreenTilesGFX), 8
+	lb bc, BANK(SummaryScreenTilesGFX), 9
 	call Get2bpp
 	ld de, SummaryScreenSquareOBJGFX
 	ld hl, vTiles0 tile $00
@@ -599,7 +600,7 @@ DrawSummaryTab:
 	dec b
 	jr nz, .blank
 	pop de
-	hlcoord 2, 12
+	hlcoord 1, 12 ; label starts right at the tab's left edge
 	jp PlaceString
 
 StatsScreen_PlacePageSquares:
@@ -638,10 +639,10 @@ StatsScreen_PlacePageSquares:
 	ld a, [wcf64]
 	and STAT_PAGE_MASK
 	cp PINK_PAGE
-	lb de, 56, 152 ; y, x: right of the type badges at (18, 5)
+	lb de, 56, 150 ; y, x: right of the type badges at (18, 5)
 	jr z, .got_ball_pos
 	cp ORANGE_PAGE
-	lb de, 88, 72 ; y, x: at (8, 9), next to the ball name
+	lb de, 88, 70 ; y, x: at (8, 9), nudged left of the ball name
 	jr z, .got_ball_pos
 	; other pages: hide it
 	xor a
@@ -742,8 +743,10 @@ StatsScreen_PinkPage:
 	hlcoord 13, 5
 	call PlaceTypeAbbreviation
 .one_type
-	; (the caught ball icon at (18, 5) is an OAM sprite; see
-	; StatsScreen_PlacePageSquares)
+	; white backing for the caught ball sprite at (18, 5)
+	; (the ball itself is an OAM sprite; see StatsScreen_PlacePageSquares)
+	hlcoord 18, 5
+	ld [hl], SUMMARY_TILE_BALL_BG
 
 	; OT name
 	ld de, OTString
@@ -944,7 +947,7 @@ StatsScreen_BluePage:
 	push bc
 	farcall GetAbilityName
 	ld de, wStringBuffer1
-	hlcoord 1, 13
+	hlcoord 1, 14
 	call PlaceString
 	; ability slot indicator
 	ld a, [wTempMonPersonality]
@@ -958,11 +961,11 @@ StatsScreen_BluePage:
 	ld b, "1"
 .got_slot
 	ld a, b
-	hlcoord 18, 13
+	hlcoord 18, 14
 	ld [hl], a
 	pop bc
 	; note: farcall clobbers hl, so the coords are passed in de
-	decoord 1, 15
+	decoord 1, 16
 	farcall PrintAbilityDescriptionStats
 	ret
 
@@ -1007,54 +1010,133 @@ StatsScreen_GreenPage:
 .no_item_desc
 
 	; --- side panel: moves ---
+	; Custom spaced-out layout: with up to three moves, each name+info
+	; pair sits 3 rows apart; with four moves, the pairs form two
+	; groups with a gap in the middle so they still have some air.
+	; (Keep the row tables in sync with .GreenSetup in
+	; engine/gfx/summary_screen_pals.asm!)
 	ld hl, wTempMonMoves
-	ld de, wListMoves_MoveIndicesBuffer
-	ld bc, NUM_MOVES
-	call CopyBytes
-	hlcoord 8, 2
-	ld a, SCREEN_WIDTH * 2
-	ld [wBuffer1], a
-	predef ListMoves
-	hlcoord 12, 3
-	ld a, SCREEN_WIDTH * 2
-	ld [wBuffer1], a
-	predef ListMovePP
-
-	; move type badges
+	ld b, 0
+.count_loop
+	ld a, [hli]
+	and a
+	jr z, .counted
+	inc b
+	ld a, b
+	cp NUM_MOVES
+	jr nz, .count_loop
+.counted
+	ld de, .SpacedMoveRows
+	ld a, b
+	cp NUM_MOVES
+	jr nz, .got_rows
+	ld de, .FourMoveRows
+.got_rows
 	ld c, 0
-.badge_loop
+.move_loop
 	ld b, 0
 	ld hl, wTempMonMoves
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .badges_done
+	ret z
+	push de
 	push bc
+	ld [wNamedObjectIndexBuffer], a
+	push af
+	; name row for this move
+	ld h, d
+	ld l, e
+	add hl, bc
+	ld a, [hl]
+	ld [wBuffer2], a
+	; move name
+	call GetMoveName
+	ld a, [wBuffer2]
+	call .RowCoord
+	call PlaceString
+	; info row below the name
+	ld a, [wBuffer2]
+	inc a
+	ld [wBuffer2], a
+	; type badge
+	pop af
 	ld de, wStringBuffer2
 	call GetMoveData
+	ld a, [wBuffer2]
+	call .RowCoord
 	ld a, [wStringBuffer2 + MOVE_TYPE]
+	call PlaceTypeAbbreviation
+	; "PP" label, nudged right of the badge
+	ld a, [wBuffer2]
+	call .RowCoord
+	ld de, 5
+	add hl, de
+	ld a, $3e ; "PP" tiles
+	ld [hli], a
+	ld [hl], a
+	; max PP (GetMaxPPOfMove reads the move index from wMenuCursorY)
 	pop bc
 	push bc
+	ld a, [wMenuCursorY]
 	push af
-	hlcoord 8, 3
 	ld a, c
-	and a
-	jr z, .got_row
-	ld de, 2 * SCREEN_WIDTH
-.row_loop
-	add hl, de
-	dec a
-	jr nz, .row_loop
-.got_row
+	ld [wMenuCursorY], a
+	farcall GetMaxPPOfMove
 	pop af
-	call PlaceTypeAbbreviation
+	ld [wMenuCursorY], a
+	; current PP
 	pop bc
+	push bc
+	ld b, 0
+	ld hl, wTempMonPP
+	add hl, bc
+	ld a, [hl]
+	and $3f
+	ld [wStringBuffer1 + 4], a
+	; print cur/max
+	ld a, [wBuffer2]
+	call .RowCoord
+	ld de, 7
+	add hl, de
+	ld de, wStringBuffer1 + 4
+	lb bc, 1, 2
+	call PrintNum
+	ld a, "/"
+	ld [hli], a
+	ld de, wTempPP
+	lb bc, 1, 2
+	call PrintNum
+	pop bc
+	pop de
 	inc c
 	ld a, c
 	cp NUM_MOVES
-	jr nz, .badge_loop
-.badges_done
+	jp nz, .move_loop
 	ret
+
+.RowCoord:
+; hl = wTileMap + row a * SCREEN_WIDTH + column 8
+	push de
+	ld l, a
+	ld h, 0
+	ld d, h
+	ld e, l
+	add hl, hl
+	add hl, hl
+	add hl, de ; x5
+	add hl, hl
+	add hl, hl ; x20
+	ld de, wTileMap + 8
+	add hl, de
+	pop de
+	ret
+
+.SpacedMoveRows:
+; name rows (standard compact layout)
+	db 2, 4, 6, 8
+.FourMoveRows:
+	db 2, 4, 6, 8
 
 .GetItemName:
 	ld de, .NoItemString
@@ -1140,19 +1222,14 @@ StatsScreen_OrangePage:
 	call PlaceString
 .level_done
 
-	; shiny indicator
-	ld bc, wTempMonDVs
-	farcall CheckShininess
-	jr nc, .not_shiny
-	hlcoord 18, 2
-	ld [hl], $3f ; shiny sparkles icon
-.not_shiny
-
 	; caught ball (the icon at (8, 9) is an OAM sprite; see
 	; StatsScreen_PlacePageSquares)
 	ld de, .BallUsedStr
 	hlcoord 8, 8
 	call PlaceString
+	; white backing for the ball sprite
+	hlcoord 8, 9
+	ld [hl], SUMMARY_TILE_BALL_BG
 	ld a, [wTempMonPersonality]
 	and CAUGHT_BALL_MASK
 	; must be a plain call: farcall would clobber a (the ball index),
@@ -1746,6 +1823,19 @@ SummaryScreenTilesGFX:
 	db $08, $07
 	db $04, $03
 	db $02, $01
+	; $4a white backing disc for the caught ball sprite
+	; (drawn in color 2, which is white in the side panel palette,
+	; so the ball's transparent areas show white instead of the panel;
+	; shifted 1px left to line up with the sprite's 2px-left nudge, and
+	; kept inside the ball outline so no white peeks out around it)
+	db $00, $00
+	db $00, $78
+	db $00, $fc
+	db $00, $fc
+	db $00, $fc
+	db $00, $78
+	db $00, $00
+	db $00, $00
 
 SummaryScreenSquareOBJGFX:
 ; 2 OBJ tiles: page square (unselected), page square (selected).
