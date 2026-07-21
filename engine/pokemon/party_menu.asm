@@ -35,11 +35,12 @@ InitPartyMenuLayout:
 	ret
 
 LoadPartyMenuGFX:
+	; clear any sprites left over from the summary screen (page squares,
+	; caught ball icon) so they can't leak into battle or the overworld
+	call ClearSprites
 	call LoadFontsBattleExtra
-	ld de, PartyMenuBallGFX
-	ld hl, vTiles2 tile PARTYMENU_BALL_TILE
-	lb bc, BANK(PartyMenuBallGFX), 1
-	call Get2bpp_2
+	; (the caught ball tile is no longer loaded here: party menu balls
+	; were removed, and the load overwrote a battle backpic tile)
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
 	ret

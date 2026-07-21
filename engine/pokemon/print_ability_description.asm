@@ -1,5 +1,5 @@
 PrintAbilityDescriptionStats::
-; Print the description for ability b at de (two lines, 2 rows apart).
+; Print the description for ability b at de (two consecutive rows).
 ;
 ; Coords are passed in de because the farcall macro clobbers a and hl.
 ;
@@ -33,9 +33,9 @@ PrintAbilityDescriptionStats::
 	inc de
 	jr .char_loop
 .line_break
-	; de = line start + 2 rows
+	; de = line start + 1 row
 	ld a, c
-	add 2 * SCREEN_WIDTH
+	add SCREEN_WIDTH
 	ld e, a
 	ld a, b
 	adc 0
