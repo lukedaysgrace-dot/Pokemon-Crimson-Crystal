@@ -202,6 +202,29 @@ LoadSummaryScreenPals::
 	ret
 
 .GreenSetup:
+	; count moves to pick the same layout rows as the stats screen
+	; (keep these tables in sync with StatsScreen_GreenPage!)
+	ld hl, wTempMonMoves
+	ld b, 0
+.green_count
+	ld a, [hli]
+	and a
+	jr z, .green_counted
+	inc b
+	ld a, b
+	cp NUM_MOVES
+	jr nz, .green_count
+.green_counted
+	ld hl, .GreenSpacedRows
+	ld a, b
+	cp NUM_MOVES
+	jr nz, .green_rows_ok
+	ld hl, .GreenFourRows
+.green_rows_ok
+	ld a, l
+	ld [wBuffer4], a
+	ld a, h
+	ld [wBuffer5], a
 	; assign badge palettes 5-7 to up to three distinct move types
 	ld a, $ff
 	ld [wBuffer1], a
@@ -273,16 +296,27 @@ LoadSummaryScreenPals::
 	pop bc
 	push bc
 	push de
-	hlcoord 8, 3, wAttrMap
-	ld a, c
-	and a
-	jr z, .green_got_row
-	ld de, 2 * SCREEN_WIDTH
-.green_row_loop
+	; badge row = layout row for move c, plus one
+	ld a, [wBuffer4]
+	ld l, a
+	ld a, [wBuffer5]
+	ld h, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	inc a
+	; hl = wAttrMap + row * SCREEN_WIDTH + column 8
+	ld l, a
+	ld h, 0
+	ld d, h
+	ld e, l
+	add hl, hl
+	add hl, hl
+	add hl, de ; x5
+	add hl, hl
+	add hl, hl ; x20
+	ld de, wAttrMap + 8
 	add hl, de
-	dec a
-	jr nz, .green_row_loop
-.green_got_row
 	pop de
 	ld a, d
 	ld [hli], a
@@ -296,11 +330,14 @@ LoadSummaryScreenPals::
 	jp nz, .green_loop
 	ret
 
+.GreenSpacedRows:
+; name rows (standard compact layout)
+	db 2, 4, 6, 8
+.GreenFourRows:
+	db 2, 4, 6, 8
+
 .OrangeSetup:
-	; shiny sparkles cell (the ball icon is an OAM sprite)
-	hlcoord 18, 2, wAttrMap
-	ld [hl], $7
-	; friendship bar row
+	; friendship bar row (the shiny indicator is pink-page only)
 	hlcoord 1, 15, wAttrMap
 	lb bc, 1, 8
 	ld a, $2
@@ -472,6 +509,60 @@ TypeBadgeColors:
 	RGB 13, 10, 28 ; DRAGON
 	RGB 11, 9, 9   ; DARK
 	RGB 29, 17, 24 ; FAIRY
+
+SetMasterBallOBPal::
+; If wCurItem is a Master Ball, tint the battle ball palette
+; (PAL_BATTLE_OB_GREEN, which BallColors assigns to it) purple.
+; Called from GetBallAnimPal, so it handles rSVBK for wCurItem.
+; Clobbers a, hl, de, bc.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wCurItem)
+	ldh [rSVBK], a
+	ld a, [wCurItem]
+	ld e, a
+	pop af
+	ldh [rSVBK], a
+	ld a, e
+	cp MASTER_BALL
+	ret nz
+	ld hl, MasterBallPurplePal
+	jr LoadBallAnimOBPal
+
+RestoreBallOBPal::
+; Restore the standard green battle object palette after a ball
+; animation is done. Harmless if it was never tinted purple.
+; Clobbers a, hl, de, bc.
+	ld hl, BallAnimGreenPal
+	; fallthrough
+
+LoadBallAnimOBPal:
+	push hl
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GREEN
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	pop hl
+	ld de, wOBPals2 palette PAL_BATTLE_OB_GREEN
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals2)
+	call FarCopyWRAM
+	ld a, $1
+	ldh [hCGBPalUpdate], a
+	ret
+
+MasterBallPurplePal:
+	RGB 31, 31, 31
+	RGB 24, 14, 31
+	RGB 14, 6, 22
+	RGB 0, 0, 0
+
+BallAnimGreenPal:
+; must match the green entry in gfx/battle_anims/battle_anims.pal
+	RGB 31, 31, 31
+	RGB 12, 25, 1
+	RGB 5, 14, 0
+	RGB 0, 0, 0
 
 SummaryBallColors:
 ; one color per CAUGHTBALL_* constant

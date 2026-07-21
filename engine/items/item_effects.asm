@@ -392,6 +392,7 @@ PokeBallEffect:
 	ld [wBuffer2], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
+	farcall RestoreBallOBPal
 
 	ld a, [wWildMon]
 	and a
@@ -2764,6 +2765,7 @@ UseBallInTrainerBattle:
 	ldh [hBattleTurn], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
+	farcall RestoreBallOBPal
 	ld hl, BlockedTheBallText
 	call PrintText
 	ld hl, DontBeAThiefText
