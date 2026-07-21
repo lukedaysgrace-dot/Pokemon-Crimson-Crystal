@@ -30,6 +30,17 @@ ItemIsMail_a::
 	ld a, d
 	jp PopBCDEHL
 
+ItemIsMail_d::
+; Returns carry if item in d is mail. Preserves registers (except f).
+; ItemIsMail itself is in another bank, so the UI can't `call` it directly.
+	push hl
+	push de
+	push bc
+	ld b, a
+	farcall ItemIsMail
+	ld a, b
+	jp PopBCDEHL
+
 GetBaseDataFromIndex::
 ; Like GetBaseData, but takes a 16-bit species index in hl directly.
 ; Does not update wBaseSpecies (callers set wCurSpecies themselves).
@@ -367,7 +378,9 @@ BillsPC_PreviewTheme::
 	call BillsPC_LoadOnePalette
 	ld hl, BillsPC_WhitePalette
 	ld de, wOBPals1 palette 6
-	jp BillsPC_LoadOnePalette
+	call BillsPC_LoadOnePalette
+	; Commit to hardware next vblank.
+	jp BillsPC_CommitPals
 
 BillsPC_LoadOneColor:
 ; Load one color (2 bytes) from hl to de
@@ -447,6 +460,35 @@ BillsPC_GenderShinyGFX:: INCBIN "gfx/pc/gender_shiny.2bpp"
 ; Mini icon subsystem (uses Crimson's per-species icon set)
 ; ============================================================
 
+GetIconPointerFromIndex::
+; PC storage system icon lookup: works for every species, including
+; Crimson-exclusive ones, because it takes the 16-bit index directly.
+; hl = 16-bit species index (or PC_EGG_INDEX for eggs)
+; Output: b = bank, hl = address of menu icon gfx
+; Uses far accessors only, so it can live in this bank.
+	ld a, h
+	inc a ; HIGH(PC_EGG_INDEX) == $ff -> 0
+	jr z, .egg
+	dec hl
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc ; hl = (species index - 1) * 3
+	ld bc, MenuIconPointers
+	add hl, bc
+	ld a, BANK(MenuIconPointers)
+	call GetFarByte
+	ld b, a ; icon gfx bank
+	inc hl
+	ld a, BANK(MenuIconPointers)
+	call GetFarHalfword ; hl = icon gfx address
+	ret
+
+.egg
+	ld b, BANK(EggMenuIcon)
+	ld hl, EggMenuIcon
+	ret
+
 GetStorageMini_a::
 ; Load frame 1 mini graphics into VRAM starting from tile a
 	ld l, a
@@ -468,7 +510,7 @@ GetStorageMini::
 	ld l, a
 	ld a, [wCurIconForm]
 	ld h, a
-	farcall GetIconPointerFromIndex ; b = bank, hl = src
+	call GetIconPointerFromIndex ; b = bank, hl = src
 	ld d, h
 	ld e, l
 	pop hl
@@ -488,7 +530,7 @@ GetStorageMask::
 	ld l, a
 	ld a, [wCurIconForm]
 	ld h, a
-	farcall GetIconPointerFromIndex ; b = bank, hl = src
+	call GetIconPointerFromIndex ; b = bank, hl = src
 	; Build the mask in wDecompressScratch: each row byte pair becomes
 	; (plane0 | plane1) in both planes, i.e. a solid silhouette.
 	ldh a, [rSVBK]
@@ -603,7 +645,22 @@ SetDefaultBGPAndOBP::
 	ldh [rBGP], a
 	ldh [rOBP0], a
 	ldh [rOBP1], a
-	ret
+	; fallthrough
+BillsPC_CommitPals::
+; Copy wBGPals1/wOBPals1 to the vblank commit buffers (wBGPals2/wOBPals2)
+; and request a hardware update. Polished's engine has no double buffer;
+; Crimson's vblank commits wBGPals2, so skipping this leaves pals white.
+	push hl
+	push de
+	push bc
+	ld hl, wBGPals1
+	ld de, wBGPals2
+	ld bc, 16 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+	jp PopBCDEHL
 
 ; ============================================================
 ; Menu / text helpers
@@ -762,7 +819,7 @@ BillsPC_HeldItemIcons:: INCBIN "gfx/pc/held_item_icons.2bpp"
 ; Sprite animation sequence handlers (called from DoAnimFrame stubs)
 BillsPC_AnimSeq_PcCursor::
 	; Switch frameset ID depending on item mode setting.
-	farcall BillsPC_CheckBagDisplay
+	call BillsPC_CheckBagDisplay
 	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM
 	jr z, .pc_got_frameset
 	dec a ; SPRITE_ANIM_FRAMESET_PC_CURSOR
@@ -772,8 +829,8 @@ BillsPC_AnimSeq_PcCursor::
 	ld [hl], a
 	push de
 	push bc
-	farcall BillsPC_GetCursorSlot
-	farcall BillsPC_GetXYFromStorageBox
+	call BillsPC_GetCursorSlot
+	call BillsPC_GetXYFromStorageBox
 	pop bc
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -835,7 +892,7 @@ BillsPC_AnimSeq_PcQuick::
 	jr .pc_quick_done
 
 .pc_finish_anim
-	farcall BillsPC_FinishQuickAnim
+	call BillsPC_FinishQuickAnim
 	; fallthrough
 .pc_quick_done
 	pop de
@@ -898,7 +955,7 @@ BillsPC_AnimSeq_PcMode::
 
 BillsPC_AnimSeq_PcPack::
 	; Hide pack outside Item mode
-	farcall BillsPC_CheckBagDisplay
+	call BillsPC_CheckBagDisplay
 	ld a, $80 ; move it out of view
 	jr nz, .pc_got_pack_y
 	xor a
