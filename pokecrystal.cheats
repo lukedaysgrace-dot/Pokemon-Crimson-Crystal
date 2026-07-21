@@ -1,23 +1,18 @@
 # Auto-generated from pokecrystal.sym by tools/generate_cheats.py
 # Re-run after rebuilding the ROM if cheats stop working.
-
-!disabled
 # walk through walls
 9100FAC2
 9100FBC2
 9100FCC2
 9100FDC2
 9100FEC2
-
 !disabled
 # no random encounters
 91FF83DC
-
 !disabled
 # all badges (16)
 91FF47D8
 91FF48D8
-
 !disabled
 # all hms
 91017BD8
@@ -27,7 +22,6 @@
 91017FD8
 910180D8
 910181D8
-
 !disabled
 # fly anywhere (needs a flying party mon)
 91FF47D8
@@ -38,29 +32,23 @@
 91FF88DC
 91FF89DC
 91FF8ADC
-
 !disabled
 # level 100 after battle (participants)
 9104CCC2
-
 !disabled
 # 100% catch rate (any ball)
 9101D1C2
-
 !disabled
 # master balls x99
 0101C7D8
 0101C8D8
 0163C9D8
-
 !disabled
 # johto badges only
 91FF47D8
-
 !disabled
 # restore kanto no badges
 010048D8
-
 !disabled
 # useful items x99 (master ball, rare candy, etc.)
 010C82D8
