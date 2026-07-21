@@ -492,3 +492,9 @@ SECTION "Map Scripts 26", ROMX
 INCLUDE "maps/Route9.asm"
 INCLUDE "maps/Route3.asm"
 INCLUDE "maps/Route4.asm"
+
+
+SECTION "Map Scripts 27", ROMX
+
+INCLUDE "maps/SafariZoneLobby.asm"
+INCLUDE "maps/SafariZone.asm"
