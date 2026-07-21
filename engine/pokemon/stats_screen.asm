@@ -476,15 +476,19 @@ StatsScreen_LoadGFX:
 	call StatsScreen_DrawFrames
 	call .PageTilemap
 	call .LoadPals
-	call StatsScreen_PlacePageSquares
 	ld hl, wcf64
 	bit 4, [hl]
 	jr nz, .place_frontpic
 	call SetPalettes
+	; the page squares and ball are OAM sprites, so they show up the
+	; moment they're written: place them last, right before the page's
+	; tile transfer, so the whole screen appears at once
+	call StatsScreen_PlacePageSquares
 	ret
 
 .place_frontpic
 	call StatsScreen_PlaceFrontpic
+	call StatsScreen_PlacePageSquares
 	ret
 
 .ClearBox:
