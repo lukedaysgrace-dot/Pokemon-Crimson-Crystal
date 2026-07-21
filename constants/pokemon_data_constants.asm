@@ -206,6 +206,17 @@ NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
 NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
 
 GRASS_WILDDATA_LENGTH EQU 2 + (1 + NUM_GRASSMON * 3) * 3
+
+; The SAFARI ZONE is split into three encounter areas.
+; Boundaries are in map tile coordinates (the same numbers
+; Polished Map shows for events) - tweak to fit the layout:
+; - ice area:   y < SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ICE_RIGHT_X
+; - rocky area: y >= SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ROCKY_RIGHT_X
+;   (cave-style encounters on bare ground; see CheckSafariZoneRockyArea)
+; - everywhere else uses the normal SAFARI_ZONE table in johto_grass.asm
+SAFARI_ZONE_ICE_RIGHT_X   EQU 28
+SAFARI_ZONE_ROCKY_RIGHT_X EQU 16
+SAFARI_ZONE_LEFT_AREAS_Y  EQU 14
 WATER_WILDDATA_LENGTH EQU 2 + (1 + NUM_WATERMON * 3) * 1
 FISHGROUP_DATA_LENGTH EQU 1 + 2 * 3
 
