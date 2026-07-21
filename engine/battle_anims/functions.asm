@@ -476,6 +476,10 @@ BattleAnimFunction_PokeBallBlocked:
 	ret
 
 GetBallAnimPal:
+	; a Master Ball tints its palette slot purple for the throw
+	push bc
+	farcall SetMasterBallOBPal
+	pop bc
 	ld hl, BallColors
 	ldh a, [rSVBK]
 	push af
