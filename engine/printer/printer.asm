@@ -642,10 +642,11 @@ PrintPCBox_Page1:
 	call PlaceString
 
 	ld a, [wWhichBoxToPrint]
-	inc a
-	ld b, a
-	farcall GetBoxName
-	ld de, wStringBuffer1
+	ld bc, BOX_NAME_LENGTH
+	ld hl, wBoxNames
+	call AddNTimes
+	ld d, h
+	ld e, l
 	hlcoord 6, 5
 	call PlaceString
 	ld a, 1
