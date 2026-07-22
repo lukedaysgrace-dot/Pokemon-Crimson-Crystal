@@ -345,7 +345,6 @@ WRAMX 3
 	"Battle Tower RAM"
 WRAMX 4
 	"Surrounding Data"
-	"Used Storage"
 WRAMX 5
 	"GBC Video"
 	org $d300
@@ -369,24 +368,18 @@ SRAM $00
 	"Backup Save"
 SRAM $01
 	"Save"
-	"Box metadata"
+	"Active Box"
 	"Link Battle Data"
 	"SRAM Hall of Fame"
 	"SRAM Crystal Data"
 	"SRAM Battle Tower"
 SRAM $02
-	"PokeDB bank 1A"
+	"Boxes 1-7"
 SRAM $03
-	"PokeDB bank 2A"
+	"Boxes 8-14"
 SRAM $04
 	"SRAM Mobile 1"
 SRAM $05
 	"SRAM Mobile 2"
-SRAM $06
-	"PokeDB bank 1B"
-	"PokeDB bank 1C"
-SRAM $07
-	"PokeDB bank 2B"
-	"PokeDB bank 2C"
 HRAM
 	"HRAM"

@@ -1,33 +1,42 @@
 InsertPokemonIntoBox:
-; Deposits wBufferMon (+ wBufferMonOT/wBufferMonNick) into the storage system.
-	farcall NewStorageBoxPointer
-	ret c
-	ld a, b
-	ld [wTempMonBox], a
-	ld a, c
-	ld [wTempMonSlot], a
-	ld hl, wBufferMon
-	ld de, wTempMon
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call CopyBytes
-	ld hl, wBufferMonNick
-	ld de, wTempMonNickname
+	ld a, BANK(sBoxCount)
+	call GetSRAMBank
+	ld hl, sBoxCount
+	call InsertSpeciesIntoBoxOrParty
+	ld a, [sBoxCount]
+	dec a
+	ld [wNextBoxOrPartyIndex], a
+	ld hl, sBoxMonNicknames
 	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-	ld hl, wBufferMonOT
-	ld de, wTempMonOT
+	ld de, wBufferMonNick
+	call InsertDataIntoBoxOrParty
+	ld a, [sBoxCount]
+	dec a
+	ld [wNextBoxOrPartyIndex], a
+	ld hl, sBoxMonOT
 	ld bc, NAME_LENGTH
+	ld de, wBufferMonOT
+	call InsertDataIntoBoxOrParty
+	ld a, [sBoxCount]
+	dec a
+	ld [wNextBoxOrPartyIndex], a
+	ld hl, sBoxMons
+	ld bc, BOXMON_STRUCT_LENGTH
+	ld de, wBufferMon
+	call InsertDataIntoBoxOrParty
+	call SyncBufferMonShinyGenderToBox
+	ld hl, wBufferMonMoves
+	ld de, wTempMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
-	xor a
-	ld [wTempMonIsEgg], a
-	ld a, [wTempMonSpecies]
-	call GetPokemonIndexFromID
-	ld a, l
-	ld [wTempMonIndex], a
-	ld a, h
-	ld [wTempMonIndex + 1], a
-	farcall UpdateStorageBoxMonFromTemp
-	ret
+	ld hl, wBufferMonPP
+	ld de, wTempMonPP
+	ld bc, NUM_MOVES
+	call CopyBytes
+	ld a, [wCurPartyMon]
+	ld b, a
+	farcall RestorePPOfDepositedPokemon
+	jp CloseSRAM
 
 InsertPokemonIntoParty:
 	ld hl, wPartyCount

@@ -86,8 +86,13 @@ CheckPartyFullAfterContest:
 	ret
 
 .TryAddToBox:
-	farcall NewStorageBoxPointer
-	jr c, .StorageFull
+	ld a, BANK(sBoxCount)
+	call GetSRAMBank
+	ld hl, sBoxCount
+	ld a, [hl]
+	cp MONS_PER_BOX
+	call CloseSRAM
+	jr nc, .BoxFull
 	xor a
 	ld [wCurPartyMon], a
 	ld hl, wContestMon
@@ -114,22 +119,29 @@ CheckPartyFullAfterContest:
 	ld hl, wMonOrItemNameBuffer
 
 .Box_SkipNickname:
-	ld de, wTempMonNickname
+	ld a, BANK(sBoxMonNicknames)
+	call GetSRAMBank
+	ld de, sBoxMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
+	call CloseSRAM
 
 .BoxFull:
-	ld a, [wTempMonLevel]
+	ld a, BANK(sBoxMon1Level)
+	call GetSRAMBank
+	ld a, [sBoxMon1Level]
 	ld [wCurPartyLevel], a
+	call CloseSRAM
 	call SetBoxMonCaughtData
-	ld hl, wTempMonCaughtData + 1
+	ld a, BANK(sBoxMon1CaughtLocation)
+	call GetSRAMBank
+	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
 	ld b, NATIONAL_PARK
 	or b
 	ld [hl], a
-	farcall UpdateStorageBoxMonFromTemp
-.StorageFull:
+	call CloseSRAM
 	xor a
 	ld [wContestMon], a
 	ld a, BUGCONTEST_BOXED_MON
@@ -190,15 +202,22 @@ SetBoxmonOrEggmonCaughtData:
 	ret
 
 SetBoxMonCaughtData:
-; Sets caught data on the just-deposited mon in wTempMon.
-; The caller is responsible for recommitting it to storage
-; (UpdateStorageBoxMonFromTemp) afterwards.
-	ld hl, wTempMonCaughtData
-	jp SetBoxmonOrEggmonCaughtData
+	ld a, BANK(sBoxMon1CaughtLevel)
+	call GetSRAMBank
+	ld hl, sBoxMon1CaughtLevel
+	call SetBoxmonOrEggmonCaughtData
+	call CloseSRAM
+	ret
 
 SetGiftBoxMonCaughtData:
-	ld hl, wTempMonCaughtData
-	jp SetGiftMonCaughtData
+	push bc
+	ld a, BANK(sBoxMon1CaughtLevel)
+	call GetSRAMBank
+	ld hl, sBoxMon1CaughtLevel
+	pop bc
+	call SetGiftMonCaughtData
+	call CloseSRAM
+	ret
 
 SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]
