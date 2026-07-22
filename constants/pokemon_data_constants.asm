@@ -169,48 +169,9 @@ CAUGHT_EGG_LEVEL EQU 1
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
-; boxes (Polished Crystal-style storage system)
+; boxes
 MONS_PER_BOX EQU 20
-
-; Pokérus status byte (days-left nibble; Polished Crystal values)
-POKERUS_CURED EQU %1101
-POKERUS_MASK  EQU %00001111
-
-; Pokémon database (storage system backend).
-; Two copies of the database exist (1 and 2), each split into three
-; sections (A, B, C) that are placed in leftover SRAM space.
-MONDB_ENTRIES_A EQU 143
-MONDB_ENTRIES_B EQU 53
-MONDB_ENTRIES_C EQU 10
-MONDB_ENTRIES   EQU MONDB_ENTRIES_A + MONDB_ENTRIES_B + MONDB_ENTRIES_C
-MIN_MONDB_SLACK EQU 10
-NUM_BOXES       EQU (MONDB_ENTRIES * 2 - MIN_MONDB_SLACK) / MONS_PER_BOX ; 20
-
-; savemon_struct members (see macros/wram.asm)
-; This is the stored-mon format used by the Pokémon database.
-; It is a box_struct with a 16-bit species index, an extra flags byte,
-; unterminated nickname+OT, and a 2-byte checksum.
-	rsreset
-SAVEMON_SPECIES        rw ; 16-bit species index (big-endian, like box moves)
-SAVEMON_ITEM           rb
-SAVEMON_MOVES          rb NUM_MOVES ; low bytes of 14-bit move indexes
-SAVEMON_ID             rw
-SAVEMON_EXP            rb 3
-SAVEMON_STAT_EXP       rb 10
-SAVEMON_DVS            rb 2
-SAVEMON_PP             rb NUM_MOVES ; PP Ups + high bits of move indexes
-SAVEMON_HAPPINESS      rb
-SAVEMON_PKRUS          rb
-SAVEMON_CAUGHTDATA     rb 2
-SAVEMON_LEVEL          rb
-SAVEMON_PERSONALITY    rb
-SAVEMON_FLAGS          rb ; bit 0: is egg
-SAVEMON_NICKNAME       rb MON_NAME_LENGTH + -1
-SAVEMON_OT             rb NAME_LENGTH + -1
-SAVEMON_CHECKSUM       rw
-SAVEMON_STRUCT_LENGTH EQU _RS
-
-SAVEMON_IS_EGG_F EQU 6
+NUM_BOXES    EQU 14
 
 ; hall of fame
 HOF_MON_LENGTH EQU 2 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick

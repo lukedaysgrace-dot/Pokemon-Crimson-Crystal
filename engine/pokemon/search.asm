@@ -76,7 +76,7 @@ CheckOwnMonAnywhere:
 	; The PC still has to be searched in that case.
 	ld a, [wPartyCount]
 	and a
-	jr z, .boxes
+	jr z, .current_box
 
 	ld d, a
 	ld e, 0
@@ -97,38 +97,104 @@ CheckOwnMonAnywhere:
 	dec d
 	jr nz, .partymon
 
-	; Run CheckOwnMon on each Pokémon in the PC storage system.
+	; Run CheckOwnMon on each Pokémon in the PC.
+.current_box
+	ld a, BANK(sBoxCount)
+	call GetSRAMBank
+	ld a, [sBoxCount]
+	and a
+	jr z, .boxes
+
+	ld d, a
+	ld hl, sBoxMon1Species
+	ld bc, sBoxMonOT
+.openboxmon
+	and a
+	call CheckOwnMon
+	jr nc, .loop
+
+	; found!
+	call CloseSRAM
+	ret
+
+.loop
+	push bc
+	ld bc, BOXMON_STRUCT_LENGTH
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .openboxmon
+
+	; Run CheckOwnMon on each monster in the other 13 PC boxes.
 .boxes
+	call CloseSRAM
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret z
 
-	ld b, 1
+	ld c, 0
+	ld a, [wScriptVar]
+	call GetPokemonIndexFromID
+	ld d, h
+	ld e, l
 .box
-	ld c, 1
-.slot
+	; Don't search the current box again.
+	ld a, [wCurBox]
+	and $f
+	cp c
+	jr z, .loopbox
+
+	; Load the box's indexes.
+	ld hl, BoxPokemonIndexesAddressTable
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ldh [hTemp], a
+	call GetSRAMBank
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+.boxmon
+	ld a, [hli]
+	cp e
+	ld a, [hli]
+	jr nz, .loopboxmon
+	cp d
+	jr nz, .loopboxmon
+
+	push hl
+	push de
 	push bc
-	farcall GetStorageBoxMon
+	call GetBoxMonPointers
+	ld a, [wTempSpecies]
+	call IsAPokemon
+	ccf
+	call c, CheckOwnMon ;calls with carry set (skips species check)
 	pop bc
-	jr z, .next_slot
-	push bc
-	ld hl, wTempMonSpecies
-	ld bc, wTempMonOT
-	and a
-	call CheckOwnMon
-	pop bc
-	ret c ; found!
-.next_slot
-	inc c
-	ld a, c
-	cp MONS_PER_BOX + 1
-	jr nz, .slot
+	pop de
+	pop hl
+	jp c, CloseSRAM ;preserves flags
+	ldh a, [hTemp]
+	call GetSRAMBank
+
+.loopboxmon
 	inc b
 	ld a, b
-	cp NUM_BOXES + 1
-	jr nz, .box
+	cp MONS_PER_BOX
+	jr c, .boxmon
+
+.loopbox
+	inc c
+	ld a, c
+	cp NUM_BOXES
+	jr c, .box
 
 	; not found
+	call CloseSRAM
 	and a
 	ret
 

@@ -1056,28 +1056,52 @@ DepositBreedmon:
 	jp CopyBytes
 
 SendMonIntoBox:
-; Sends the newly caught mon into the storage system.
-; The data comes mainly from wEnemyMon.
-; Returns carry on success, nc if the storage system is full.
-	; Find a free box slot; bail out if storage is full.
-	farcall NewStorageBoxPointer
-	jp c, .full
-	ld a, b
-	ld [wTempMonBox], a
-	ld a, c
-	ld [wTempMonSlot], a
+; Sends the mon into one of Bills Boxes
+; the data comes mainly from 'wEnemyMon:'
+	ld a, BANK(sBoxCount)
+	call GetSRAMBank
+	ld de, sBoxCount
+	ld a, [de]
+	cp MONS_PER_BOX
+	jp nc, .full
+	inc a
+	ld [de], a
 
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
-	call GetBaseData
+	ld c, a
+.loop
+	inc de
+	ld a, [de]
+	ld b, a
+	ld a, c
+	ld c, b
+	ld [de], a
+	inc a
+	jr nz, .loop
 
-	; Build wTempMon: species, item, moves
-	ld hl, wEnemyMon
-	ld de, wTempMon
-	ld bc, 1 + 1 + NUM_MOVES
+	call GetBaseData
+	call ShiftBoxMon
+
+	ld hl, wPlayerName
+	ld de, sBoxMonOT
+	ld bc, NAME_LENGTH
 	call CopyBytes
 
-	; ID
+	ld a, [wCurPartySpecies]
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
+
+	ld de, sBoxMonNicknames
+	ld hl, wStringBuffer1
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+
+	ld hl, wEnemyMon
+	ld de, sBoxMon1
+	ld bc, 1 + 1 + NUM_MOVES ; species + item + moves
+	call CopyBytes
+
 	ld hl, wPlayerID
 	ld a, [hli]
 	ld [de], a
@@ -1085,8 +1109,6 @@ SendMonIntoBox:
 	ld a, [hl]
 	ld [de], a
 	inc de
-
-	; Exp
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
@@ -1143,31 +1165,10 @@ SendMonIntoBox:
 	; Personality: keep the battle mon's ability
 	ld a, [wEnemyMonPersonality]
 	ld [de], a
-
-	; OT name and default nickname
-	ld hl, wPlayerName
-	ld de, wTempMonOT
-	ld bc, NAME_LENGTH
-	call CopyBytes
-	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
-	ld hl, wStringBuffer1
-	ld de, wTempMonNickname
-	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-
-	; Not an egg; record the species index.
-	xor a
-	ld [wTempMonIsEgg], a
 	ld a, [wCurPartySpecies]
 	call SetSeenAndCaughtMon
 	ld a, [wCurPartySpecies]
 	call GetPokemonIndexFromID
-	ld a, l
-	ld [wTempMonIndex], a
-	ld a, h
-	ld [wTempMonIndex + 1], a
 	ld a, l
 	sub LOW(UNOWN)
 	jr nz, .not_unown
@@ -1180,18 +1181,30 @@ SendMonIntoBox:
 		cp HIGH(UNOWN)
 	endc
 	jr nz, .not_unown
-	ld hl, wTempMonDVs
+	ld hl, sBoxMon1DVs
 	predef GetUnownLetter
 	callfar UpdateUnownDex
 
 .not_unown
-	; Commit the mon to storage.
-	farcall UpdateStorageBoxMonFromTemp
-	jr nz, .full
+	ld hl, sBoxMon1Moves
+	ld de, wTempMonMoves
+	ld bc, NUM_MOVES
+	call CopyBytes
+
+	ld hl, sBoxMon1PP
+	ld de, wTempMonPP
+	ld bc, NUM_MOVES
+	call CopyBytes
+
+	ld b, 0
+	call RestorePPOfDepositedPokemon
+
+	call CloseSRAM
 	scf
 	ret
 
 .full
+	call CloseSRAM
 	and a
 	ret
 
@@ -1783,7 +1796,7 @@ GivePoke::
 	and a
 	jr z, .done
 	ld a, [wCurItem]
-	ld [wTempMonItem], a
+	ld [sBoxMon1Item], a
 
 .done
 	ld a, [wCurPartySpecies]
@@ -1850,7 +1863,9 @@ GivePoke::
 	jr .skip_nickname
 
 .send_to_box
-	ld de, wTempMonOT
+	ld a, BANK(sBoxMonOT)
+	call GetSRAMBank
+	ld de, sBoxMonOT
 .loop
 	ld a, [wScriptBank]
 	call GetFarByte
@@ -1862,11 +1877,12 @@ GivePoke::
 	ld a, [wScriptBank]
 	call GetFarByte
 	ld b, a
-	ld hl, wTempMonID
+	ld hl, sBoxMon1ID
 	call Random
 	ld [hli], a
 	call Random
 	ld [hl], a
+	call CloseSRAM
 	farcall SetGiftBoxMonCaughtData
 	jr .skip_nickname
 
@@ -1897,11 +1913,13 @@ GivePoke::
 	ret z
 	ld hl, TextJump_WasSentToBillsPC
 	call PrintText
+	ld a, BANK(sBoxMonNicknames)
+	call GetSRAMBank
 	ld hl, wMonOrItemNameBuffer
-	ld de, wTempMonNickname
+	ld de, sBoxMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	farcall UpdateStorageBoxMonFromTemp
+	call CloseSRAM
 	ld b, $1
 	ret
 
