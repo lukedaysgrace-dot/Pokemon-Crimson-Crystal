@@ -204,10 +204,6 @@ gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
-# Storage system UI object sheet: cursor modes + item bags concatenated.
-gfx/pc/obj.2bpp: gfx/pc/modes.2bpp gfx/pc/bags.2bpp
-	cat $^ > $@
-
 
 ### Catch-all graphics rules
 
