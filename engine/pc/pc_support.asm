@@ -284,11 +284,10 @@ StatsScreenDPad::
 	call PrevStorageBoxMon
 .moved
 	jr z, .did_nothing
-	ld a, [wTempMonSpecies]
-	ld [wCurPartySpecies], a
-	ld [wCurSpecies], a
-	ld [wTempSpecies], a
-	ret
+	; Mirror the freshly loaded mon into the summary's buffer so the
+	; re-init (MonStatsInit -> StatsScreen_CopyToTempMon) reads it.
+	call BillsPC_SyncTempMonToBuffer
+	jp BillsPC_SetSummarySpecies
 
 .did_nothing
 	xor a
@@ -305,11 +304,28 @@ BillsPC_DoNothing::
 	ret
 
 PCGiveItem::
+	farcall _PCGiveItem
+	ret
+
 PCPickItem::
-; TODO: real port needs Polished's rewritten Pack engine
-; (DepositSellInitPackBuffers/_GetItemToGive). Until then, return z
-; ("cancelled") so the PC item menu degrades gracefully.
-	xor a
+	farcall _PCPickItem
+	ret
+
+NoYesBox::
+	farcall _NoYesBox
+	ret
+
+BillsPC_SafeCopyTilemapAtOnce::
+; Preserve the PC's STAT palette chain while uploading both maps. Crimson's
+; native HDMA path performs each transfer in VBlank instead of disabling
+; interrupts across the next visible frame like CopyTilemapAtOnce.
+	ld a, b
+	cp 2
+	call z, SetDefaultBGPAndOBP
+	ldh a, [hCGB]
+	and a
+	jp z, CopyTilemapAtOnce
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
 ; ============================================================
@@ -451,10 +467,42 @@ BillsPC_WhitePalette:
 ; Graphics assets
 ; ============================================================
 
+BillsPC_BlankGFX::
+; 4 guaranteed-blank tiles. Polished sources its blanks from vTiles5 tile $7f
+; (blank in its VRAM layout); in Crimson that VRAM is uninitialized garbage,
+; so blank from ROM instead.
+	ds 4 tiles, 0
+
 BillsPC_CursorGFX::      INCBIN "gfx/pc/cursor.2bpp"
 BillsPC_TileGFX::        INCBIN "gfx/pc/pc.2bpp"
 BillsPC_ObjGFX::         INCBIN "gfx/pc/obj.2bpp"
-BillsPC_GenderShinyGFX:: INCBIN "gfx/pc/gender_shiny.2bpp"
+BillsPC_GenderShinyGFX::
+; Male glyph in color 2 (dark), female glyph in color 1 (light), then the
+; same color-2 asterism used by Crimson's battle and summary screens.
+	db $00, $10
+	db $00, $38
+	db $00, $54
+	db $00, $92
+	db $00, $38
+	db $00, $44
+	db $00, $44
+	db $00, $38
+	db $38, $00
+	db $44, $00
+	db $44, $00
+	db $38, $00
+	db $10, $00
+	db $7c, $00
+	db $10, $00
+	db $10, $00
+	db $00, $40
+	db $00, $e2
+	db $00, $47
+	db $00, $02
+	db $00, $10
+	db $00, $38
+	db $00, $10
+	db $00, $00
 
 ; ============================================================
 ; Mini icon subsystem (uses Crimson's per-species icon set)
@@ -543,30 +591,36 @@ GetStorageMask::
 .loop
 	push bc
 	ld a, b
-	call GetFarByte
+	call GetFarByte ; plane 0
 	inc hl
 	ld c, a
 	ld a, b
-	call GetFarByte
+	call GetFarByte ; plane 1
 	inc hl
+	or c            ; silhouette = plane0 | plane1 — MUST happen before pop bc,
+	                ; which restores c to the row counter (was the bug: the OR
+	                ; ran against the counter, producing a garbage shadow)
 	pop bc
-	or c
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .loop
-	pop de
-	ld a, d
-	ldh [rSVBK], a
+	; Copy the mask to VRAM *while still in the Scratch RAM WRAM bank* —
+	; Get2bpp defers to the vblank copier, which reads the source with
+	; whatever rSVBK is live. Restore the caller's bank only afterwards.
+	pop de ; d = caller's rSVBK
 	pop hl
-	; copy the mask to VRAM
+	push de
 	ld de, wDecompressScratch
 	ldh a, [hROMBank]
 	ld b, a
 	ld c, 4
 	call Get2bpp
+	pop de
+	ld a, d
+	ldh [rSVBK], a
 	jp PopBCDEHL
 
 ; ============================================================
@@ -628,8 +682,7 @@ GetMonPalInBCDE::
 	ret
 
 .EggPal:
-	RGB 23, 23, 16
-	RGB 15, 14, 10
+	INCBIN "gfx/pokemon/egg/front.gbcpal", middle_colors
 
 GetShininess::
 ; Returns nz if the mon in wTempMon is shiny.
@@ -665,10 +718,6 @@ BillsPC_CommitPals::
 ; ============================================================
 ; Menu / text helpers
 ; ============================================================
-
-NoYesBox::
-; TODO: cursor should default to "No" like Polished Crystal.
-	jp YesNoBox
 
 CreateBoxBorders::
 ; Draws a box at hl with the 9-byte tile template at de.
@@ -803,12 +852,48 @@ PlaceFrontpicAtHL::
 	jr nz, .row
 	ret
 
-_OpenTempmonSummary::
-; Opens the stats screen for the mon in wTempMon.
+BillsPC_SyncTempMonToBuffer::
+; Crimson's summary screen sources a TEMPMON from the wBufferMon family
+; (see StatsScreen_CopyToTempMon + the Nickname/OT pointer tables), but the
+; storage system builds mons in wTempMon. Mirror wTempMon -> wBufferMon so
+; the stats screen shows the right data instead of stale buffer garbage.
+; wTempMon* and wBufferMon* are both in WRAMX bank 1 (the PC runs with
+; rSVBK = 1), so a plain copy is fine.
+	push hl
+	push de
+	push bc
+	ld hl, wTempMon
+	ld de, wBufferMon
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call CopyBytes
+	ld hl, wTempMonNickname
+	ld de, wBufferMonNick
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	ld hl, wTempMonOT
+	ld de, wBufferMonOT
+	ld bc, NAME_LENGTH
+	call CopyBytes
+	jp PopBCDEHL
+
+BillsPC_SetSummarySpecies::
+; Sets wCurSpecies/wTempSpecies/wCurPartySpecies from the current wTempMon,
+; using EGG for eggs so the summary picks the egg layout.
 	ld a, [wTempMonSpecies]
-	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	ld [wTempSpecies], a
+	ld [wCurPartySpecies], a
+	ld a, [wTempMonIsEgg]
+	bit MON_IS_EGG_F, a
+	ret z
+	ld a, EGG
+	ld [wCurPartySpecies], a
+	ret
+
+_OpenTempmonSummary::
+; Opens the stats screen for the mon in wTempMon.
+	call BillsPC_SyncTempMonToBuffer
+	call BillsPC_SetSummarySpecies
 	ld a, TEMPMON
 	ld [wMonType], a
 	predef StatsScreenInit
@@ -954,6 +1039,14 @@ BillsPC_AnimSeq_PcMode::
 	ret
 
 BillsPC_AnimSeq_PcPack::
+	; Select the male/female four-tile Pack frameset.
+	ld a, [wPlayerGender]
+	add a
+	add a
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
+	add hl, bc
+	ld [hl], a
+
 	; Hide pack outside Item mode
 	call BillsPC_CheckBagDisplay
 	ld a, $80 ; move it out of view
