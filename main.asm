@@ -811,8 +811,3 @@ INCLUDE "engine/pc/pc_support.asm"
 INCLUDE "engine/pc/bills_pc.asm"
 INCLUDE "engine/pc/bills_pc_ui.asm"
 INCLUDE "data/pc/pc_text.asm"
-
-
-SECTION "Bills PC Aux", ROMX
-
-INCLUDE "engine/pc/pc_aux.asm"
