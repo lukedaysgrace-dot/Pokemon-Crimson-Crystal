@@ -9,58 +9,6 @@ sEnemyFrontPicTileCount:: db ; a000
 sPaddedEnemyFrontPic:: ds 7 * 7 tiles ; a001
 ; a311
 
-NEXTU ; a000
-; Legacy box layout, overlaying scratch space.
-; The real storage system is the PokeDB (see "PokeDB bank" sections).
-; This only exists so that unreachable legacy code (mobile, etc.) that
-; still references the old active-box layout continues to assemble.
-sBox:: box sBox
-
-; More legacy aliases (all overlapping; only referenced by dead code).
-sBox1::
-sBox2::
-sBox3::
-sBox4::
-sBox5::
-sBox6::
-sBox7::
-sBox8::
-sBox9::
-sBox10::
-sBox11::
-sBox12::
-sBox13::
-sBox14::
-sBox1PokemonIndexes::
-sBox2PokemonIndexes::
-sBox3PokemonIndexes::
-sBox4PokemonIndexes::
-sBox5PokemonIndexes::
-sBox6PokemonIndexes::
-sBox7PokemonIndexes::
-sBox8PokemonIndexes::
-sBox9PokemonIndexes::
-sBox10PokemonIndexes::
-sBox11PokemonIndexes::
-sBox12PokemonIndexes::
-sBox13PokemonIndexes::
-sBox14PokemonIndexes:: ds 2 * MONS_PER_BOX
-
-sBox1End::
-sBox2End::
-sBox3End::
-sBox4End::
-sBox5End::
-sBox6End::
-sBox7End::
-sBox8End::
-sBox9End::
-sBox10End::
-sBox11End::
-sBox12End::
-sBox13End::
-sBox14End::
-
 ENDU ; a600
 
 SECTION "SRAM Bank 0", SRAM
@@ -199,53 +147,13 @@ sChecksum:: dw
 sCheckValue2:: db ; loaded with SAVE_CHECK_VALUE_2, used to check save corruption
 
 
-SECTION "Box metadata", SRAM
+SECTION "Active Box", SRAM
 
-; Storage system box metadata: per-box entry lists, database-copy bits,
-; box names and themes. The mons themselves live in the PokeDB sections.
-sNewBox1::  newbox sNewBox1
-sNewBox2::  newbox sNewBox2
-sNewBox3::  newbox sNewBox3
-sNewBox4::  newbox sNewBox4
-sNewBox5::  newbox sNewBox5
-sNewBox6::  newbox sNewBox6
-sNewBox7::  newbox sNewBox7
-sNewBox8::  newbox sNewBox8
-sNewBox9::  newbox sNewBox9
-sNewBox10:: newbox sNewBox10
-sNewBox11:: newbox sNewBox11
-sNewBox12:: newbox sNewBox12
-sNewBox13:: newbox sNewBox13
-sNewBox14:: newbox sNewBox14
-sNewBox15:: newbox sNewBox15
-sNewBox16:: newbox sNewBox16
-sNewBox17:: newbox sNewBox17
-sNewBox18:: newbox sNewBox18
-sNewBox19:: newbox sNewBox19
-sNewBox20:: newbox sNewBox20
-sNewBoxEnd::
+; ad10
+sBox:: box sBox
+; b160
 
-sBackupNewBox1::  newbox sBackupNewBox1
-sBackupNewBox2::  newbox sBackupNewBox2
-sBackupNewBox3::  newbox sBackupNewBox3
-sBackupNewBox4::  newbox sBackupNewBox4
-sBackupNewBox5::  newbox sBackupNewBox5
-sBackupNewBox6::  newbox sBackupNewBox6
-sBackupNewBox7::  newbox sBackupNewBox7
-sBackupNewBox8::  newbox sBackupNewBox8
-sBackupNewBox9::  newbox sBackupNewBox9
-sBackupNewBox10:: newbox sBackupNewBox10
-sBackupNewBox11:: newbox sBackupNewBox11
-sBackupNewBox12:: newbox sBackupNewBox12
-sBackupNewBox13:: newbox sBackupNewBox13
-sBackupNewBox14:: newbox sBackupNewBox14
-sBackupNewBox15:: newbox sBackupNewBox15
-sBackupNewBox16:: newbox sBackupNewBox16
-sBackupNewBox17:: newbox sBackupNewBox17
-sBackupNewBox18:: newbox sBackupNewBox18
-sBackupNewBox19:: newbox sBackupNewBox19
-sBackupNewBox20:: newbox sBackupNewBox20
-sBackupNewBoxEnd::
+	ds $f4
 
 
 SECTION "Link Battle Data", SRAM
@@ -338,34 +246,42 @@ sBTMonPrevPrevTrainer2:: dw
 sBTMonPrevPrevTrainer3:: dw
 
 
-SECTION "PokeDB bank 1A", SRAM, BANK [2]
+SECTION "Boxes 1-7",  SRAM, BANK [2]
 
-sBoxMons1A:: pokedb sBoxMons1A, MONDB_ENTRIES_A
+sBox1::  box sBox1
+sBox2::  box sBox2
+sBox3::  box sBox3
+sBox4::  box sBox4
+sBox5::  box sBox5
+sBox6::  box sBox6
+sBox7::  box sBox7
 
-
-SECTION "PokeDB bank 2A", SRAM, BANK [3]
-
-sBoxMons2A:: pokedb sBoxMons2A, MONDB_ENTRIES_A
-
-
-SECTION "PokeDB bank 1B", SRAM
-
-sBoxMons1B:: pokedb sBoxMons1B, MONDB_ENTRIES_B
-
-
-SECTION "PokeDB bank 1C", SRAM
-
-sBoxMons1C:: pokedb sBoxMons1C, MONDB_ENTRIES_C
-
-
-SECTION "PokeDB bank 2B", SRAM
-
-sBoxMons2B:: pokedb sBoxMons2B, MONDB_ENTRIES_B
+sBox1PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox2PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox3PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox4PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox5PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox6PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox7PokemonIndexes::  ds 2 * MONS_PER_BOX
 
 
-SECTION "PokeDB bank 2C", SRAM
+SECTION "Boxes 8-14", SRAM
 
-sBoxMons2C:: pokedb sBoxMons2C, MONDB_ENTRIES_C
+sBox8::  box sBox8
+sBox9::  box sBox9
+sBox10:: box sBox10
+sBox11:: box sBox11
+sBox12:: box sBox12
+sBox13:: box sBox13
+sBox14:: box sBox14
+
+sBox8PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox9PokemonIndexes::  ds 2 * MONS_PER_BOX
+sBox10PokemonIndexes:: ds 2 * MONS_PER_BOX
+sBox11PokemonIndexes:: ds 2 * MONS_PER_BOX
+sBox12PokemonIndexes:: ds 2 * MONS_PER_BOX
+sBox13PokemonIndexes:: ds 2 * MONS_PER_BOX
+sBox14PokemonIndexes:: ds 2 * MONS_PER_BOX
 
 SECTION "SRAM Mobile 1", SRAM
 

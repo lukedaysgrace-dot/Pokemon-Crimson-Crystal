@@ -115,46 +115,6 @@ box: MACRO
 \1End::             ds 2 ; padding
 ENDM
 
-; Polished Crystal-style storage system structures
-
-savemon_struct: MACRO
-\1Species::        dw ; 16-bit species index
-\1Item::           db
-\1Moves::          ds NUM_MOVES
-\1ID::             dw
-\1Exp::            ds 3
-\1StatExp::        ds 10
-\1DVs::            dw
-\1PP::             ds NUM_MOVES
-\1Happiness::      db
-\1PokerusStatus::  db
-\1CaughtData::     ds 2
-\1Level::          db
-\1Personality::    db
-\1Flags::          db
-\1Nickname::       ds MON_NAME_LENGTH + -1
-\1OT::             ds NAME_LENGTH + -1
-\1Checksum::       dw
-\1End::
-ENDM
-
-pokedb: MACRO
-\1Mons::
-_pokedb_n = 1
-rept \2
-\1Mon{d:_pokedb_n}:: savemon_struct \1Mon{d:_pokedb_n}
-_pokedb_n = _pokedb_n + 1
-endr
-\1End::
-ENDM
-
-newbox: MACRO
-\1Entries:: ds MONS_PER_BOX
-\1Banks::   flag_array MONS_PER_BOX
-\1Name::    ds BOX_NAME_LENGTH
-\1Theme::   db
-ENDM
-
 map_connection_struct: MACRO
 \1ConnectedMapGroup::       db
 \1ConnectedMapNumber::      db
