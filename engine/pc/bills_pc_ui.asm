@@ -42,30 +42,6 @@ _BillsPC:
 	push af
 	xor a
 	ldh [hMapAnims], a
-
-	; Polished's scanline palette multiplexer is timed for CGB double speed.
-	; Remember whether this session changed speed so an already-double caller
-	; is left alone on exit.
-	ldh a, [hCGB]
-	and a
-	jr z, .no_speed_up
-	ldh a, [rKEY1]
-	bit 7, a
-	jr nz, .no_speed_up
-	di
-	call DoubleSpeed
-	xor a
-	ldh [rIF], a
-	ld a, IE_DEFAULT
-	ldh [rIE], a
-	ei
-	ld a, 1
-	jr .save_speed_flag
-.no_speed_up
-	xor a
-.save_speed_flag
-	push af
-
 	ld a, 71
 	ldh [rLYC], a
 	call LoadStandardMenuHeader
@@ -73,25 +49,12 @@ _BillsPC:
 
 	; Disable hblank before restoring blockdata, since blockdata and hblank pals
 	; overlap.
-	pop af
-	ld b, a
-	di
 	ld hl, rIE
 	res 1, [hl] ; IE bit 1: LCD STAT
 	ld a, LOW(LCDGeneric)
 	ldh [hLCDInterruptFunctionTargetLo], a
 	ld a, HIGH(LCDGeneric)
 	ldh [hLCDInterruptFunctionTargetHi], a
-	ld a, b
-	and a
-	jr z, .skip_speed_down
-	call NormalSpeed
-	xor a
-	ldh [rIF], a
-	ld a, IE_DEFAULT
-	ldh [rIE], a
-.skip_speed_down
-	ei
 
 	call ReturnToMapFromSubmenu
 	pop af
@@ -118,12 +81,22 @@ BillsPC_LoadUI:
 	ldh [rVBK], a
 
 	; Reserve 4 blank tiles for empty slots
-	; (from ROM zeroes; Polished copied from vTiles5 tile $7f, which is
-	; only guaranteed blank in Polished's VRAM layout)
-	ld de, BillsPC_BlankGFX
+	ld a, 4
 	ld hl, vTiles3
-	lb bc, BANK(BillsPC_BlankGFX), 4
+.blank_loop
+	ld de, vTiles5 tile $7f
+	push af
+	ld c, 1
+	push hl
+	push de
 	call Get2bpp
+	pop de
+	pop hl
+	ld bc, 1 tiles
+	add hl, bc
+	pop af
+	dec a
+	jr nz, .blank_loop
 
 	; Load cursor tiles.
 	ld de, BillsPC_CursorGFX
@@ -320,7 +293,7 @@ UseBillsPC:
 
 	; Update attribute map data
 	ld b, 2
-	call BillsPC_SafeCopyTilemapAtOnce
+	call CopyTilemapAtOnce
 
 	; Copy LCD code to WRAM0
 	assert BillsPC_LCDCodeEnd - BillsPC_LCDCode <= wBillsPC_LCDCodeBufferEnd - wBillsPC_LCDCodeBuffer, \
@@ -442,18 +415,18 @@ UseBillsPC:
 
 BillsPC_BlankTiles:
 ; Used as input to blank a*4 tiles (mon icons typically use 4 tiles).
-; Sources from ROM zeroes rather than VRAM so the copy never depends on
-; VRAM state or on rVBK matching at vblank-serve time.
+	ld de, vTiles3 tile $00 ; Reserved blank tiles.
 	ld bc, 4 tiles
 .loop
 	push hl
+	push de
 	push bc
 	push af
-	ld de, BillsPC_BlankGFX
-	lb bc, BANK(BillsPC_BlankGFX), 4
+	ld c, 4
 	call BillsPC_SafeGet2bpp
 	pop af
 	pop bc
+	pop de
 	pop hl
 	add hl, bc
 	dec a
@@ -796,10 +769,6 @@ BillsPC_UpdateCursorLocation:
 	ldh a, [rLY]
 	cp $60
 	call nc, DelayFrame
-	ldh a, [hOAMUpdate]
-	push af
-	ld a, 1
-	ldh [hOAMUpdate], a
 	ld hl, wVirtualOAMSprite30
 	ld de, wStringBuffer3
 	ld bc, 8
@@ -809,8 +778,6 @@ BillsPC_UpdateCursorLocation:
 	ld de, wVirtualOAMSprite30
 	ld bc, 8
 	call CopyBytes
-	pop af
-	ldh [hOAMUpdate], a
 	jp PopBCDEHL
 
 BillsPC_GetCursorHeldSlot:
@@ -1026,9 +993,10 @@ _GetCursorMon:
 
 .not_clear
 	; Prepare frontpic.
-	ld a, [wTempMonIsEgg]
-	bit MON_IS_EGG_F, a
+	ld a, [wTempMonIndex + 1]
+	ld d, a
 	ld a, [wTempMonSpecies]
+	bit MON_IS_EGG_F, d
 	jr z, .not_egg
 	ld a, EGG
 .not_egg
@@ -1062,12 +1030,8 @@ _GetCursorMon:
 	inc a
 	ldh [rVBK], a
 .dont_switch_vbk
-	; Crimson's _GetFrontpic takes the destination in de (Polished's
-	; refactored version took hl). Passing hl sprayed 49 tiles at a
-	; garbage address — the source of the corrupted pokepic + shredded
-	; mini icon/VWF tiles.
-	ld de, vTiles2
-	predef GetMonFrontpic ; predef preserves de
+	ld hl, vTiles2
+	predef GetMonFrontpic ; predef preserves hl
 	xor a
 	ldh [rVBK], a
 	ld a, BANK(wBillsPC_ItemVWF)
@@ -1092,8 +1056,6 @@ _GetCursorMon:
 	ldh [rSVBK], a
 	ld hl, vTiles5 tile $31
 	ld de, wBillsPC_ItemVWF
-	ldh a, [hROMBank]
-	ld b, a ; source is WRAM; b just needs to be a valid ROM bank
 	ld c, 10
 	call Get2bpp
 	ld a, 1
@@ -1109,8 +1071,6 @@ _GetCursorMon:
 	ld e, l
 .got_item_tile
 	ld hl, vTiles3 tile $20
-	ldh a, [hROMBank]
-	ld b, a ; source is VRAM; b just needs to be a valid ROM bank
 	ld c, 1
 	call Get2bpp
 	xor a
@@ -1165,7 +1125,7 @@ _GetCursorMon:
 .item_icon_done
 
 	ld b, 0
-	call BillsPC_SafeCopyTilemapAtOnce
+	call CopyTilemapAtOnce
 
 	; Clear text
 	call .clear
@@ -1255,9 +1215,12 @@ BillsPC_GetItemIconOffset:
 	call ItemIsMail_a ; preserves a
 	ld e, HELDTYPE_MAIL tiles
 	ret c
-	call BillsPC_ItemIsBerry
+	cp FIRST_BERRY
+	jr c, .not_berry
+	cp FIRST_BERRY + NUM_BERRIES
 	ld e, HELDTYPE_BERRY tiles
 	ret c
+.not_berry
 	ld c, a
 	ld b, 0
 	ld hl, ItemAttributes + ITEMATTR_EFFECT
@@ -1270,32 +1233,6 @@ BillsPC_GetItemIconOffset:
 	ret z
 	ld e, HELDTYPE_ITEM tiles
 	ret
-
-BillsPC_ItemIsBerry:
-; Crimson's berries are not a contiguous item-ID range.
-; Preserves the item in a and returns carry when it is a berry.
-	ld c, a
-	ld hl, .Berries
-.loop
-	ld a, [hli]
-	and a
-	jr z, .not_found
-	cp c
-	jr nz, .loop
-	ld a, c
-	scf
-	ret
-.not_found
-	ld a, c
-	ret
-
-.Berries:
-	db PSNCUREBERRY, PRZCUREBERRY
-	db BURNT_BERRY, ICE_BERRY
-	db BITTER_BERRY, MINT_BERRY
-	db MIRACLEBERRY, MYSTERYBERRY
-	db BERRY, GOLD_BERRY
-	db 0
 
 BillsPC_CheckBagDisplay:
 ; Returns z if we should display the bag.
@@ -2428,8 +2365,6 @@ BillsPC_MoveItem:
 	ldh [rSVBK], a
 	ld hl, vTiles5 tile $3b
 	ld de, wBillsPC_ItemVWF
-	ldh a, [hROMBank]
-	ld b, a ; source is WRAM; b just needs to be a valid ROM bank
 	ld c, 10
 	call BillsPC_SafeGet2bpp
 	ld a, 1
@@ -2452,15 +2387,12 @@ BillsPC_MoveItem:
 BillsPC_LoadCursorItemIcon:
 	ld a, [wBillsPC_CursorItem]
 	call BillsPC_GetItemIconOffset
-	; Use the PC's own icon sheet: HELDTYPE_* offsets index Polished's
-	; sheet layout; Crimson's HeldItemIcons (mon_icons.asm) is a
-	; different, shorter sheet and reads past its end for some types.
-	ld hl, BillsPC_HeldItemIcons
+	ld hl, HeldItemIcons
 	add hl, de
 	ld d, h
 	ld e, l
 	ld hl, vTiles3 tile $08
-	lb bc, BANK(BillsPC_HeldItemIcons), 1
+	lb bc, BANK(HeldItemIcons), 1
 	jp BillsPC_SafeGet2bpp
 
 BillsPC_BagItem:
@@ -2517,7 +2449,7 @@ _BillsPC_BagItem:
 	call BillsPC_TakeMail
 	push af
 	ld b, 0
-	call BillsPC_SafeCopyTilemapAtOnce
+	call CopyTilemapAtOnce
 	pop af
 	sbc a
 	inc a
@@ -3194,7 +3126,7 @@ BillsPC_ChangeBox:
 	call DelayFrame ; Avoid screen tearing
 	call BillsPC_PrintBoxName
 	ld b, 0
-	call BillsPC_SafeCopyTilemapAtOnce
+	call CopyTilemapAtOnce
 	xor a
 	ldh [hBGMapMode], a
 	inc a
@@ -3687,20 +3619,7 @@ BillsPC_RestoreUI:
 	call BillsPC_ApplyPals
 	call GetCursorMon
 	ld b, 2
-	call BillsPC_SafeCopyTilemapAtOnce
-
-	; Re-copy the LCD code and reset the interrupt target to phase 1.
-	; The buffer lives in a WRAM union that sub-screens may clobber, and
-	; the hblank chain can be left pointing at phase 2/3 from before the
-	; transition. Do this before re-enabling the STAT interrupt.
-	ld hl, BillsPC_LCDCode
-	ld de, wBillsPC_LCDCodeBuffer
-	ld bc, BillsPC_LCDCodeEnd - BillsPC_LCDCode
-	call CopyBytes
-	ld a, LOW(wBillsPC_LCDCodeBuffer + (BillsPC_LCDCode_1 - BillsPC_LCDCode))
-	ldh [hLCDInterruptFunctionTargetLo], a
-	ld a, HIGH(wBillsPC_LCDCodeBuffer + (BillsPC_LCDCode_1 - BillsPC_LCDCode))
-	ldh [hLCDInterruptFunctionTargetHi], a
+	call CopyTilemapAtOnce
 
 	ld a, 71
 	ldh [rLYC], a
@@ -3862,8 +3781,10 @@ endr
 	ld de, wBillsPC_CurPals
 	ld c, 24
 	call CopyBytes
-	; Crimson's slower CopyBytes replaces Polished's calibrated busy delay.
-	nop
+	ld c, 17
+.busyloop
+	dec c
+	jr nz, .busyloop
 	ld a, LOW(wBillsPC_LCDCodeBuffer + (BillsPC_LCDCode_3 - BillsPC_LCDCode))
 	ldh [hLCDInterruptFunctionTargetLo], a
 	ld a, HIGH(wBillsPC_LCDCodeBuffer + (BillsPC_LCDCode_3 - BillsPC_LCDCode))
