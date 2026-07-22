@@ -82,11 +82,8 @@ OAM_BANK1    EQU %00001000
 
 ; held item icon types (see gfx/pc/held_item_icons.2bpp)
 	const_def
+	const HELDTYPE_ITEM
+	const HELDTYPE_INERT_ITEM
 	const HELDTYPE_MAIL
 	const HELDTYPE_BERRY
-	const HELDTYPE_INERT_ITEM
-	const HELDTYPE_ITEM
 NUM_HELD_ITEM_TYPES EQU const_value
-
-FIRST_BERRY EQU BERRY
-NUM_BERRIES EQU 1
