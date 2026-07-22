@@ -305,59 +305,6 @@ naming screen, no crashes.
   and the `FIRST_BERRY`/`NUM_BERRIES` stub from §5 still stand.
 - `PCGiveItem`/`PCPickItem` real port if item-mode give/pick is wanted.
 
-### Crash-fix addendum (same day, after Luke's in-game test)
-
-Opening the PC in-game caused a silent reset (wild jump → boot → "GBC only"
-screen, since `a` no longer holds $11 on a warm reset). Reproduced in PyBoy with
-a debug build (StartMenu hook → `_BillsPC`, memory-poked party) and execution
-hooks. FIVE distinct bugs, all mechanical-conversion fallout — worth reading
-before porting anything else from Polished:
-
-1. **Cross-bank `call`s.** The UI plain-`call`ed `InitSpriteAnimStruct` /
-   `ClearSpriteAnims` (bank 23) and `ItemIsMail` (bank 2e) — executes garbage
-   in the caller's bank. Fixed: `call _InitSpriteAnimStruct` (home wrapper),
-   `callfar ClearSpriteAnims`, new `ItemIsMail_d` shim in pc_support (item in
-   d, preserves regs; ItemIsMail reads d).
-2. **`farcall` clobbers `a` AND `hl`** (Crimson's macro is
-   `ld a, BANK / ld hl, target / rst FarCall`). The converted code farcalled
-   same-bank helpers passing args in a/hl (`GetStorageMini_a`,
-   `GetMonPalInBCDE`, `BillsPC_PreviewTheme`, `GetStorageMini/Mask`, …) — all
-   now plain `call` (marked "; same bank"). `GetIconPointerFromIndex` (hl arg)
-   moved from mon_icons.asm into pc_support.asm (it only uses far accessors,
-   so it's bank-agnostic) and is `call`ed. `GetMonFrontpic` (hl arg, bank 14)
-   → `predef GetMonFrontpic` (predef preserves hl). The pokepic palette site
-   was rewritten to use `GetMonPalInBCDE` (16-bit index + wTempMonUnused
-   shiny flag) instead of `GetMonNormalOrShinyPalettePointer`.
-3. **OAM pointer table corruption** (the actual reset): the six PC `dbw`
-   entries in `data/sprite_anims/oam.asm` had been inserted in the middle of
-   the OAM *data blobs*, not appended to the pointer *table* at the top. Icon
-   OAMSET $8e resolved to garbage → OAM count $100 → runaway writes marched
-   through WRAM into the MBC registers → bank switch under the running code →
-   reset. Entries moved to the real table end (after PARTY_MON_2).
-4. **LCD code buffer 2 bytes short**: the rst→call conversion grew
-   `BillsPC_LCDCode` to $d1 bytes; `wBillsPC_LCDCodeBuffer` was `ds $cf`, so
-   the trailing `pop af / reti` landed in `wBillsPC_CurPartyPals` and was
-   overwritten by palette data → hblank handler ran off into garbage. Buffer
-   is now `ds $d4` + a link-time assert at the copy site.
-5. **Palettes stayed white** after the crashes were fixed:
-   (a) Crimson's `GetSGBLayout` takes the layout in **b**, not a
-   (`ld b, SCGB_BILLS_PC`); (b) Crimson double-buffers palettes — vblank
-   commits `wBGPals2`, so pc_support now has `BillsPC_CommitPals`
-   (Pals1→Pals2 FarCopyWRAM + `hCGBPalUpdate`), reached from
-   `SetDefaultBGPAndOBP` (i.e. every `BillsPC_SetPals`) and the `_CGB` layout.
-
-**Verified in PyBoy:** PC opens from a real in-game context: box grid + Party
-panel render with theme palettes, mini sprite shows for the party mon, cursor
-moves, B-exit shows "Continue Box operations?" and returns cleanly. Zero
-resets across the whole interaction. (Deposit/withdraw/release still need
-human testing — the emulated party was memory-poked.)
-
-**Debugging recipe that worked** (for the next agent): PyBoy
-(`pip install pyboy`) + `hook_register(bank, addr, cb, None)` on symbols from
-pokecrystal.sym, `register_file` for regs, save_state right before the repro,
-and on a wild reset hook $0100 — SP is preserved, so dumping the stack there
-reconstructs the crash call chain.
-
 ### Files touched this session
 
 `wram.asm`, `constants/pokemon_data_constants.asm`, `engine/gfx/mon_icons.asm`,
