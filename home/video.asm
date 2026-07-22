@@ -156,28 +156,18 @@ UpdateBGMap::
 	ret
 
 .Attr:
-; The storage system UI runs with rVBK nonzero for long stretches, so
-; force the correct VRAM bank and restore the caller's afterwards.
-; Without this, a vblank during an rVBK=1 stretch writes tile data over
-; the attribute map (vBGMap0 bank 1).
-	hlcoord 0, 0, wAttrMap
 	ld a, 1
-	jr .go
+	ldh [rVBK], a
+
+	hlcoord 0, 0, wAttrMap
+	call .update
+
+	xor a
+	ldh [rVBK], a
+	ret
 
 .Tiles:
 	hlcoord 0, 0
-	xor a
-
-.go
-	ld c, a
-	ldh a, [rVBK]
-	push af
-	ld a, c
-	ldh [rVBK], a
-	call .update
-	pop af
-	ldh [rVBK], a
-	ret
 
 .update
 	ld [hSPBuffer], sp
