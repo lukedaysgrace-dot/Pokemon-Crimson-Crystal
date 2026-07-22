@@ -48,26 +48,6 @@ DoAnimFrame:
 	dw .IntroUnown
 	dw .IntroUnownF
 	dw .IntroSuicuneAway
-	dw .PcCursor
-	dw .PcQuick
-	dw .PcMode
-	dw .PcPack
-
-.PcCursor:
-	farcall BillsPC_AnimSeq_PcCursor
-	ret
-
-.PcQuick:
-	farcall BillsPC_AnimSeq_PcQuick
-	ret
-
-.PcMode:
-	farcall BillsPC_AnimSeq_PcMode
-	ret
-
-.PcPack:
-	farcall BillsPC_AnimSeq_PcPack
-	ret
 
 .Null:
 	ret
