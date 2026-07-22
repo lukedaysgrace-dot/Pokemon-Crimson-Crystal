@@ -4,10 +4,7 @@ SECTION "vblank", ROM0
 	jp VBlank
 
 SECTION "lcd", ROM0
-	; Dispatch through the HRAM trampoline (hLCDInterruptFunction),
-	; so that the storage system UI can install a custom hblank handler.
-	push af
-	jp hLCDInterruptFunction
+	jp LCD
 
 SECTION "timer", ROM0
 	jp Timer

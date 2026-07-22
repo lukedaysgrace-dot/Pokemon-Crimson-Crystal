@@ -2,11 +2,6 @@ CopyMonToTempMon:
 ; gets the BaseData of a mon
 ; and copies the party_struct to wTempMon
 
-	; Not a storage system mon: invalidate the storage slot so that
-	; stats-screen browsing does not walk the PC boxes.
-	xor a
-	ld [wTempMonSlot], a
-
 	ld a, [wCurPartyMon]
 	ld e, a
 	call GetMonSpecies
