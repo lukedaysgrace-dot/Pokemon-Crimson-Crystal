@@ -358,6 +358,151 @@ pokecrystal.sym, `register_file` for regs, save_state right before the repro,
 and on a wild reset hook $0100 — SP is preserved, so dumping the stack there
 reconstructs the crash call chain.
 
+## 10. BUGFIX PASS (2026-07-21, second session — Luke's in-game report)
+
+Symptoms reported: intermittent crash on opening the PC, and heavy tile garbage —
+party slots showing font letters ("CD GH / QR ST UV WX") instead of mini icons,
+junk tiles in the box grid. Root causes found by code audit (note: the WSL mount
+broke the sandbox this session — **fixes are unbuilt/untested**, verify with a
+build + emulator pass):
+
+1. **`home/video.asm UpdateBGMap` was not VRAM-bank-safe — THE core bug.**
+   Vanilla assumes `rVBK=0` at vblank. The PC UI runs with `rVBK=1` for long,
+   multi-frame stretches while `hBGMapMode=1` (left set by `ClearTileMap`/
+   `WaitBGMap`/every menu `CloseWindow`). Result: every vblank in those windows
+   copied a third of wTileMap over the **attribute map** (vBGMap0 bank 1) —
+   attr bank bits cleared → cells render VRAM bank 0 = the font (the "CD GH"
+   letters are literally tile IDs $80+ hitting the font). The mode-2 `.Attr`
+   path also force-reset `rVBK` to 0 behind the UI's back, sending later icon
+   loads into the bank-0 font region. Polished never hits this: its Get2bpp is
+   a synchronous hblank copier and its video core is VBK-aware. FIX: `.Tiles`
+   and `.Attr` now save/force/restore `rVBK` (behavior identical to vanilla
+   when rVBK=0).
+2. **Blank tiles were garbage.** `BillsPC_LoadUI` sourced its 4 "blank" tiles
+   from `vTiles5 tile $7f` (VRAM bank 1) — guaranteed blank in Polished's VRAM
+   layout, uninitialized garbage in Crimson. Every "blanked" slot then showed
+   junk (the box-grid junk cluster). FIX: new `BillsPC_BlankGFX` (4 zeroed
+   tiles in ROM, pc_support) is now the source for both the LoadUI reserve
+   and `BillsPC_BlankTiles`.
+3. **`GetStorageMask` restored `rSVBK` before its `Get2bpp`.** Crimson's
+   Get2bpp defers to the vblank copier, which reads the source with the *live*
+   rSVBK — so the mask was read from the wrong WRAM bank (garbage held-mon
+   silhouettes). FIX: keep Scratch RAM banked in until after the copy.
+4. **`BillsPC_RestoreUI` re-enabled the STAT interrupt without reinitializing
+   the hblank handler.** The WRAM code buffer lives in the c608 union (other
+   screens may clobber it) and `hLCDInterruptFunctionTarget` could still point
+   at chain phase 2/3 from before the transition → wild execution in an ISR =
+   the intermittent crash suspect for "open PC / view summary then crash".
+   FIX: RestoreUI re-copies `BillsPC_LCDCode` and resets the target to phase 1
+   before `set 1, [rIE]`.
+5. **Uninitialized bank `b` passed to Get2bpp** in 3 places (LoadUI blank
+   loop — now gone; item-VWF loads in `_GetCursorMon` and the item pickup
+   path). Each did `rst Bankswitch` to a garbage bank mid-copy. Survivable in
+   theory (all copy code is in home) but now set from `hROMBank`.
+6. **`BillsPC_LoadCursorItemIcon` used the wrong icon sheet** — Crimson's old
+   2-tile `HeldItemIcons` (mon_icons.asm) indexed with Polished's `HELDTYPE_*`
+   offsets read past the sheet's end. Now uses `BillsPC_HeldItemIcons`.
+
+7. **Frontpic loaded through the wrong register** (found after Luke's retest:
+   scrambled pokepic + shredded mini icons/VWF tiles/OAM). `_GetCursorMon`
+   did `ld hl, vTiles2 / predef GetMonFrontpic` — Polished's refactored
+   loader takes the destination in hl, but Crimson's `_GetFrontpic` takes it
+   in **de** (`push de … pop hl` before `Get2bpp`). The 49-tile pic was
+   sprayed at whatever de held — sometimes VRAM bank 1 over the mini
+   icon/item-name tiles, sometimes WRAM. Fixed to `ld de, vTiles2`
+   (Crimson's `Predef` preserves de).
+
+Files touched: `home/video.asm`, `home/game_time.asm` (freed a byte —
+ROM0 is now essentially full), `engine/pc/bills_pc_ui.asm`,
+`engine/pc/pc_support.asm`.
+
+## 11. STATS-SCREEN FIX (2026-07-21, third session — Luke's retest)
+
+Symptom: opening a mon's Summary from the PC showed all stats/HP/EXP as 0,
+a garbled nickname/dex header, and junk in the name fields (No.158 with
+"???…B" name). Frontpic itself was fine (the #7 fix held).
+
+Root cause: **Crimson's summary screen sources a `TEMPMON` from the
+`wBufferMon` family, not `wTempMon`.** See `StatsScreen_CopyToTempMon`
+(reads `wBufferMonSpecies`, copies `wBufferMon` -> `wTempMon`) and the
+`.NicknamePointers`/`.OTNamePointers` tables (TEMPMON entry = index 3 =
+`wBufferMonNick`/`wBufferMonOT`). The storage system builds mons in
+`wTempMon`, so the summary read stale `wBufferMon` garbage and then
+overwrote `wTempMon` with it.
+
+FIX (`engine/pc/pc_support.asm`):
+- New `BillsPC_SyncTempMonToBuffer` mirrors `wTempMon`/`wTempMonNickname`/
+  `wTempMonOT` -> `wBufferMon`/`wBufferMonNick`/`wBufferMonOT` (all in
+  WRAMX bank 1, PC runs with rSVBK=1, so a plain `CopyBytes` works).
+- New `BillsPC_SetSummarySpecies` sets `wCurSpecies`/`wTempSpecies`/
+  `wCurPartySpecies` (EGG for eggs, so the egg summary layout is chosen).
+- `_OpenTempmonSummary` calls both before `predef StatsScreenInit`.
+- `StatsScreenDPad` (the up/down browse inside the summary) re-syncs after
+  `Next/PrevStorageBoxMon`, so scrolling through box mons refreshes the
+  buffer the re-init reads from.
+
+Files touched: `engine/pc/pc_support.asm`.
+
+## 12. PICKUP-GARBAGE FIX (2026-07-21, fourth session)
+
+Symptom: picking a mon up in Switch mode drew garbage tiles "all around"
+the held sprite and a solid blue block in the box.
+
+Root cause: `GetStorageMask` (pc_support.asm) builds the held-mon silhouette
+by OR-ing the two bitplanes of each icon row. The row loop did
+`push bc … ld c, plane0 … read plane1 … pop bc … or c`, but `pop bc`
+restored `c` to the **row counter** before the `or`, so every mask byte was
+`plane1 | counter` — garbage. Moved the `or c` to *before* `pop bc`. The
+mask is only drawn while holding a mon, which is exactly when Luke saw the
+junk, so this should clear both the halo and the blue block.
+
+Files touched: `engine/pc/pc_support.asm`.
+
+### KNOWN — "empty ball" over the info panel
+
+The ring at col 8 / row 3 (OAM sprite 30, Y=40/X=72, tile $20) is the
+hovered mon's **held-item icon**. It appears because the mon is holding an
+item; the ring shape is the placeholder `held_item_icons.2bpp` art (still a
+stand-in — see §5). Replace that art to fix the looks. Its *blinking* is
+tracked below.
+
+### OPEN ISSUE — box "blinking" / item-icon flicker
+
+The blinking Luke reports is the held-item icon (OAM slot 30) flickering
+on/off while the cursor sits on a mon. Traced so far:
+- `PlaySpriteAnimations` (`engine/gfx/sprites.asm`, `DoNextFrameForAllSprites`
+  `.loop2`) zeroes every OAM slot from the last animated sprite through
+  `wVirtualOAMEnd` — i.e. it blanks slots 30-31 every call.
+- The PC's only `PlaySpriteAnimations` call (bills_pc_ui.asm:766, inside
+  `BillsPC_UpdateCursorLocation`) is wrapped by a save/restore of slots
+  30-31, so in the idle loop the icon should survive — matching Polished.
+- So a plain clear/restore race doesn't explain it on paper; whatever's
+  left is timing-sensitive (interrupt/DMA ordering) and needs a BGB/mGBA
+  trace to confirm rather than a blind edit to the ISR path. Suggested repro:
+  breakpoint on the OAM DMA and watch slot 30's Y byte across frames while
+  hovering a mon that holds an item.
+- Note the icon *art* is the `held_item_icons.2bpp` placeholder (§5), so
+  even once the flicker is gone it'll look like a plain ring until that art
+  is replaced.
+
+Luke also reports the whole box screen flickering. Ruled out by audit:
+double-speed (mobile-only; init forces NormalSpeed), the 60fps port
+(game-loop timing only, no rSTAT/hblank change), the LCD trampoline +
+rLYC chain (faithfully ported, hardware-identical to Polished, rLYC
+untouched elsewhere), and per-frame palette re-commit (the idle
+`ManageBoxes` loop calls neither `BillsPC_SetPals` nor `GetCursorMon`, so
+`hCGBPalUpdate` isn't set each frame). Plausibly a side effect of the #7
+frontpic spray that's already gone — **needs an emulator retest after this
+build.** If it persists, next suspects to trace under BGB/mGBA: the
+phase-2 STAT-ISR busyloop budget vs Crimson's exact hblank window, and
+whether `CopyTilemapAtOnce`'s `di` window is ever entered mid-frame while
+the box is idle (it would stall the palette chain for that frame).
+
+Still unproven: whether #4 was the actual open-crash. If crashes persist after
+this pass, next suspects (audited clean but re-check under a debugger):
+LCDCode_2's timing budget in the STAT ISR, and any DelayFrame while
+`rSVBK != 1` colliding with vblank consumers.
+
 ### Files touched this session
 
 `wram.asm`, `constants/pokemon_data_constants.asm`, `engine/gfx/mon_icons.asm`,
