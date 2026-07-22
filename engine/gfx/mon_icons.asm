@@ -581,8 +581,33 @@ GetMenuIconPointer:
 	ld hl, EggMenuIcon
 	ret
 
-; (PC storage icon lookup lives in engine/pc/pc_support.asm as
-; GetIconPointerFromIndex, so the PC UI can `call` it directly.)
+GetIconPointerFromIndex::
+; PC storage system icon lookup: works for every species, including
+; Crimson-exclusive ones, because it takes the 16-bit index directly.
+; hl = 16-bit species index (or PC_EGG_INDEX for eggs)
+; Output: b = bank, hl = address of menu icon gfx
+	ld a, h
+	inc a ; HIGH(PC_EGG_INDEX) == $ff -> 0
+	jr z, .egg
+	dec hl
+	ld b, h
+	ld c, l
+	add hl, hl
+	add hl, bc ; hl = (species index - 1) * 3
+	ld bc, MenuIconPointers
+	add hl, bc
+	ld a, BANK(MenuIconPointers)
+	call GetFarByte
+	ld b, a ; icon gfx bank
+	inc hl
+	ld a, BANK(MenuIconPointers)
+	call GetFarHalfword ; hl = icon gfx address
+	ret
+
+.egg
+	ld b, BANK(EggMenuIcon)
+	ld hl, EggMenuIcon
+	ret
 
 INCLUDE "data/icon_pointers.asm"
 
