@@ -35,7 +35,24 @@ _LoadStandardFont::
 	ld hl, vTiles1 tile $60
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bpp_2
+	; The "+" glyph (charmap $c0) has no tile in font.png, so load a hardcoded
+	; one over the blank $c0 slot. Used by the level-up stat-gain display.
+	ld de, PlusFontGFX
+	ld hl, vTiles1 tile $40 ; "+" ($c0)
+	lb bc, BANK(PlusFontGFX), 1
+	call Get1bpp_2
 	ret
+
+PlusFontGFX:
+; 8x8 1bpp "+" glyph, left-aligned and centered to match the digit glyphs.
+	db %00000000
+	db %00100000
+	db %00100000
+	db %11111000
+	db %00100000
+	db %00100000
+	db %00000000
+	db %00000000
 
 _LoadFontsExtra1::
 ; The ■/☎/bold glyphs formerly loaded here now live in the main font
