@@ -133,6 +133,8 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+	charmap "+",         $c0 ; level-up stat gains; glyph lives in font tile $c0
+
 	charmap "′",         $ce
 	charmap "″",         $cf
 

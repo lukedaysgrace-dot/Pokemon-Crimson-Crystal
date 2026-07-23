@@ -7590,6 +7590,18 @@ GiveExperiencePoints:
 	add hl, bc
 	ld d, h
 	ld e, l
+	; Save the pre-level-up stats (MaxHP, Atk, Def, Speed, SpclAtk, SpclDef)
+	; so PrintStatDifferences can show the gains before CalcMonStats overwrites
+	; them with the new totals.
+	push bc
+	push de
+	ld h, d
+	ld l, e
+	ld de, wStringBuffer3
+	ld bc, 2 * 6
+	call CopyBytes
+	pop de
+	pop bc
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	push bc
@@ -7671,16 +7683,7 @@ GiveExperiencePoints:
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
-	hlcoord 9, 0
-	ld b, 10
-	ld c, 9
-	call Textbox
-	hlcoord 11, 1
-	ld bc, 4
-	predef PrintTempMonStats
-	ld c, 30
-	call DelayFrames
-	call WaitPressAorB_BlinkCursor
+	callfar PrintStatDifferences
 	call Call_LoadTempTileMapToTileMap
 	xor a ; PARTYMON
 	ld [wMonType], a
@@ -7907,14 +7910,15 @@ AnimateExpBar:
 	ld d, a
 
 .LoopLevels:
-	ld a, e
-	ld b, a
+	; Compare the current level (e) against the level cap. Use c as scratch so
+	; that b is preserved -- b holds the exp bar's starting pixel, which the
+	; animation needs so a partially-filled bar continues from where it was
+	; instead of refilling from empty.
 	ld a, [wLevelCap]
 	ld c, a
-	ld a, b
+	ld a, e
 	cp c
 	jr nc, .FinishExpBar
-	ld a, e
 	cp d
 	jr z, .FinishExpBar
 	inc a
