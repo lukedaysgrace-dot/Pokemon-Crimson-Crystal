@@ -121,6 +121,226 @@ PrintTempMonStats:
 	next "SPEED"
 	next "@"
 
+PrintStatDifferences:
+; Level-up stat display, ported from Polished Crystal.
+; Shows two screens in a self-sizing box:
+;   1. old stat value with the "+gain" it just earned (e.g. "21+2")
+;   2. the new combined totals (e.g. "23")
+; Expects the pre-level-up stats (MaxHP, Atk, Def, Speed, SpclAtk, SpclDef,
+; big-endian, 12 bytes) already copied into wStringBuffer3, and the freshly
+; recalculated stats in wTempMon (via CopyMonToTempMon).
+
+	; Figure out the length of the largest modifier (+x, +xx or +xxx) so the
+	; box can be widened to fit it.
+	ld hl, wStringBuffer3
+	lb bc, 1, 6
+.digit_loop
+	call .ComputeStatDifference
+	inc hl
+	inc hl
+	ld a, [wStringBuffer3 + 12]
+	and a
+	ld a, [wStringBuffer3 + 13]
+	ld d, 4
+	jr nz, .got_digit_length
+	cp 100
+	jr nc, .got_digit_length
+	dec d
+	cp 10
+	jr nc, .got_digit_length
+	dec d
+.got_digit_length
+	ld a, b
+	cp d
+	jr nc, .digit_length_not_larger
+	ld b, d
+.digit_length_not_larger
+	dec c
+	jr nz, .digit_loop
+
+	ld a, b
+	ld [wStringBuffer3 + 14], a
+
+	; Screen 1: old stat + gain.
+	ld de, wStringBuffer3
+	ld b, 1 ; show stat+difference
+	call .PrintStatDisplay
+	ld c, 30
+	call DelayFrames
+	call WaitPressAorB_BlinkCursor
+
+	; Screen 2: new totals.
+	ld de, wTempMonMaxHP
+	ld b, 0 ; just show stat
+	call .PrintStatDisplay
+	ld c, 30
+	call DelayFrames
+	jp WaitPressAorB_BlinkCursor
+
+.ComputeStatDifference:
+; hl points at the old stat in wStringBuffer3. Computes (new - old) and stores
+; the result big-endian in wStringBuffer3 + 12. hl is preserved.
+	push de
+	push bc
+	ld a, [hli]
+	cpl
+	ld d, a
+	ld a, [hld]
+	cpl
+	inc a
+	jr nz, .dont_inc_d
+	inc d
+.dont_inc_d
+	ld e, a
+	ld bc, wTempMonMaxHP - wStringBuffer3
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	ld a, [hld]
+	ld c, a
+	push bc
+	ld bc, wStringBuffer3 - wTempMonMaxHP
+	add hl, bc
+	pop bc
+	push hl
+	ld h, b
+	ld l, c
+	add hl, de
+	ld a, h
+	ld [wStringBuffer3 + 12], a
+	ld a, l
+	ld [wStringBuffer3 + 13], a
+	pop hl
+	pop bc
+	pop de
+	ret
+
+.PrintStatDisplay:
+	push de
+	push bc
+	call .PrintStatNames
+	ld bc, 9
+	add hl, bc
+	pop bc
+	pop de
+	jp .PrintStats
+
+.PrintStatNames:
+; Draws the box and places the six stat names single-spaced, returning hl at the
+; top-left name coordinate.
+	ld a, [wStringBuffer3 + 14]
+	push af
+	hlcoord 6, 4
+.coord_loop
+	dec hl
+	dec a
+	jr nz, .coord_loop
+	pop af
+	push af
+	lb bc, 6, 12
+	add c
+	ld c, a
+	call Textbox
+	pop af
+	hlcoord 7, 5
+.coord_loop2
+	dec hl
+	dec a
+	jr nz, .coord_loop2
+	push hl
+	ld de, .DiffStatNames
+	ld b, 6
+.name_loop
+	push bc
+	push hl
+	call PlaceString
+	inc de
+	pop hl
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .name_loop
+	pop hl
+	ret
+
+.DiffStatNames:
+	db "Health@"
+	db "Attack@"
+	db "Defense@"
+	db "Sp.Atk@"
+	db "Sp.Def@"
+	db "Speed@"
+
+.PrintStats:
+	; Screen movement is done because the internal stat order differs from the
+	; order we want to display.
+	; Printing: HP, Atk, Def, SAtk, SDef, Speed
+	; Internal: HP, Atk, Def, Speed, SAtk, SDef
+	call .PrintStat ; HP
+	call .PrintStat ; Attack
+	call .PrintStat ; Defense
+
+	push bc
+	ld bc, SCREEN_WIDTH * 2
+	add hl, bc
+	pop bc
+	call .PrintStat ; Speed
+
+	push bc
+	ld bc, -SCREEN_WIDTH * 3
+	add hl, bc
+	pop bc
+	call .PrintStat ; Sp.Atk
+.PrintStat: ; falls through for Sp.Def
+	push bc
+	push hl
+	push de
+	ld a, b
+	lb bc, 2, 3
+	push af
+	call PrintNum
+	pop af
+	and a
+	jr z, .mod_done
+	pop hl
+	call .ComputeStatDifference
+	ld d, h
+	ld e, l
+	pop hl
+	push hl
+	inc hl
+	inc hl
+	inc hl
+	ld a, "+"
+	ld [hli], a
+
+	push de
+	ld a, [wStringBuffer3 + 14]
+	dec a ; field width = modifier length - 1
+	cp 2
+	jr c, .single_digit
+	; two- or three-digit gain: right-align it with PrintNum
+	ld b, 2
+	ld c, a
+	ld de, wStringBuffer3 + 12
+	call PrintNum
+	jr .mod_done
+.single_digit
+	; PrintNum can't print a single digit, so place it directly.
+	ld a, [wStringBuffer3 + 13]
+	add "0"
+	ld [hl], a
+.mod_done
+	pop de
+	pop hl
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	inc de
+	inc de
+	pop bc
+	ret
+
 GetGender:
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
 ; When calling this function, a should be set to an appropriate wMonType value.
