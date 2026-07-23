@@ -1232,17 +1232,21 @@ RunNullificationAbilities::
 ; wCurDamage and wTypeModifier are final. First checks type nullification;
 ; if the move goes through, applies ability damage modifiers to wCurDamage.
 	; The AI reuses BattleCommand_Stab to PREDICT damage for each move it
-	; is scoring (see AIDamageCalc). During that prediction we must not run
-	; the live absorb procs (banner + stat boost), or e.g. Motor Drive fires
-	; once per scored Electric move even though no move was used. Bail early
-	; so prediction stays a pure calculation.
+	; is scoring (see AIDamageCalc). During that prediction we STILL run the
+	; pure damage calc below - type/ability nullification and ability damage
+	; modifiers - so the AI won't pick a move the target absorbs and it
+	; accounts for boosts like Huge Power. Every LIVE side effect (banners,
+	; heals, stat boosts, ability activations, wAttackMissed and flag writes)
+	; is individually guarded by wAIDamagePrediction so it only fires on a
+	; real hit; e.g. Motor Drive won't proc once per scored Electric move.
 	ld a, [wAIDamagePrediction]
 	and a
-	ret nz
+	jr nz, .prediction
 	; clear a stale Disguise presentation flag (set by a move that missed
 	; after damage calc and never reached its kingsrock command)
 	ld hl, wDisguiseBusted + 1
 	res 7, [hl]
+.prediction
 	call CheckAirBalloonImmunity
 	ret c
 	call .CheckNullification
@@ -1293,6 +1297,12 @@ RunNullificationAbilities::
 	ld [wTypeModifier], a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
+	; AI prediction: damage is zeroed above; skip the live absorb proc,
+	; banner and miss flag so scoring stays a pure calculation.
+	ld a, [wAIDamagePrediction]
+	and a
+	scf ; nullified
+	ret nz
 	; run the absorb effect on the defender's side
 	ld a, [hli]
 	ld h, [hl]
@@ -1343,6 +1353,11 @@ RunNullificationAbilities::
 	ld [wTypeModifier], a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
+	; AI prediction: damage zeroed above; skip banner, effect and miss flag.
+	ld a, [wAIDamagePrediction]
+	and a
+	scf ; blocked
+	ret nz
 	call SwitchTurn
 	push hl
 	call ShowAbilityBannerBrief
@@ -2864,14 +2879,19 @@ CheckAirBalloonImmunity:
 	ld a, b
 	cp HELD_AIR_BALLOON
 	jr nz, .no
-	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
 	xor a
 	ld [wTypeModifier], a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
-	inc a
+	; AI prediction: immune, damage zeroed; skip item name, miss flag, banner.
+	ld a, [wAIDamagePrediction]
+	and a
+	scf
+	ret nz
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	ld a, 1
 	ld [wAttackMissed], a
 	ld hl, AirBalloonImmuneText
 	call StdBattleTextbox
@@ -4355,11 +4375,16 @@ DisguiseBlock:
 	and $80
 	or EFFECTIVE
 	ld [wTypeModifier], a
+	; AI prediction: block the damage but don't arm the real disguise bust.
+	ld a, [wAIDamagePrediction]
+	and a
+	jr nz, .predicted
 	; the bust + presentation are DEFERRED to DisguisePresentation (run
 	; from the kingsrock hook), so the move's animation plays first and a
 	; move that misses after damage calc doesn't break the disguise
 	ld hl, wDisguiseBusted + 1
 	set 7, [hl]
+.predicted
 	call SwitchTurn
 	scf
 	ret
