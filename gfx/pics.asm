@@ -1340,3 +1340,8 @@ WartortleCloneFrontpic: INCBIN "gfx/pokemon/wartortle_clone/front.animated.2bpp.
 WartortleCloneBackpic: INCBIN "gfx/pokemon/wartortle_clone/back.2bpp.lz"
 BlastoiseCloneFrontpic: INCBIN "gfx/pokemon/blastoise_clone/front.animated.2bpp.lz"
 BlastoiseCloneBackpic: INCBIN "gfx/pokemon/blastoise_clone/back.2bpp.lz"
+
+SECTION "New Trainer Pics", ROMX
+
+BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"
+TamerPic: INCBIN "gfx/trainers/tamer.2bpp.lz"
