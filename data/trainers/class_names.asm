@@ -82,3 +82,5 @@ TrainerClassNames::
 	db "RED@"
 	db "BLUE@"
 	db "GREEN@"
+	db "BATTLE GIRL@"
+	db "TAMER@"

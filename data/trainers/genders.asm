@@ -84,3 +84,5 @@ BTTrainerClassGenders:
 	db MALE   ; RED2
 	db MALE   ; BLUE_CLOAK
 	db FEMALE ; GREEN
+	db FEMALE ; BATTLE_GIRL
+	db MALE   ; TAMER
