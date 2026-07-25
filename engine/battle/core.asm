@@ -6456,8 +6456,22 @@ LoadEnemyMon:
 	ld [wEnemyMonLevel], a
 ; Fill stats
 	ld de, wEnemyMonMaxHP
+	ld a, [wBattleMode]
+	cp TRAINER_BATTLE
+	jr nz, .NoStatExp
+; Trainer mons use the stat exp stored in their party struct, so that these
+; stats match the ones TryAddMonToParty already calculated there.
+	ld hl, wOTPartyMon1StatExp - 1
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld b, TRUE
+	jr .GotStatExp
+
+.NoStatExp:
 	ld b, FALSE
 	ld hl, wEnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; wLinkBattleRNs + 7 ; ?
+
+.GotStatExp:
 	predef CalcMonStats
 
 ; If we're in a trainer battle,
