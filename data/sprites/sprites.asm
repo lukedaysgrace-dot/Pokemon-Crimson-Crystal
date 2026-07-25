@@ -141,3 +141,5 @@ OverworldSprites:
 	overworld_sprite LoreleiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_LORELEI
 	overworld_sprite BlueCloakSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BLUE_CLOAK
 	overworld_sprite GreenSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_GREEN
+	overworld_sprite BattleGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_BATTLE_GIRL
+	overworld_sprite TamerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_TAMER

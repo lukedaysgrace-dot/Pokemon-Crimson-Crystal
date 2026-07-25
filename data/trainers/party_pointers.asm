@@ -84,3 +84,5 @@ TrainerGroups:
 	dba Red2Group
 	dba BlueCloakGroup
 	dba GreenGroup
+	dba BattleGirlGroup
+	dba TamerGroup
