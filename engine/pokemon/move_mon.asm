@@ -368,6 +368,7 @@ endr
 .generatestats
 	pop hl
 	push hl
+	call ApplyTrainerStatExp
 	ld bc, MON_MAXHP
 	add hl, bc
 	ld d, h
@@ -376,7 +377,7 @@ endr
 	push hl
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, FALSE
+	ld b, TRUE
 	call CalcMonStats
 	pop hl
 	push hl
@@ -1525,6 +1526,37 @@ ComputeNPCTrademonStats:
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
+	ret
+
+ApplyTrainerStatExp:
+; Give the mon whose party struct starts at hl the stat exp of the trainer
+; class it belongs to (see data/trainers/stat_exp.asm). Player-owned mons are
+; left at zero, which is what TryAddMonToParty already filled in.
+; Preserves hl.
+
+	push hl
+	ld a, [wMonType]
+	and $f
+	cp OTPARTYMON
+	jr nz, .done
+
+	push hl
+	farcall GetTrainerStatExp ; big endian stat exp in bc
+	pop hl
+
+	ld de, MON_STAT_EXP
+	add hl, de
+	ld d, (MON_DVS - MON_STAT_EXP) / 2
+.loop
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hli], a
+	dec d
+	jr nz, .loop
+
+.done
+	pop hl
 	ret
 
 CalcMonStats:
