@@ -93,3 +93,5 @@ INCBIN "gfx/trainers/lorelei.gbcpal", middle_colors
 INCBIN "gfx/trainers/red2.gbcpal", middle_colors
 INCBIN "gfx/trainers/blue_cloak.gbcpal", middle_colors
 INCBIN "gfx/trainers/green.gbcpal", middle_colors
+INCBIN "gfx/trainers/battle_girl.gbcpal", middle_colors
+INCBIN "gfx/trainers/tamer.gbcpal", middle_colors

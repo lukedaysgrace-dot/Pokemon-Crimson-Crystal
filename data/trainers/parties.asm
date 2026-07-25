@@ -1795,6 +1795,14 @@ LassGroup:
 	dw SCIZOR
 	db -1 ; end
 
+	next_list_item ; LASS (20) PAIGE - Route 25
+	db "PAIGE@", TRAINERTYPE_NORMAL
+	db 57
+	dw WIGGLYTUFF
+	db 58
+	dw GRANBULL
+	db -1 ; end
+
 	end_list_items
 
 JanineGroup:
@@ -2049,13 +2057,13 @@ CooltrainerMGroup:
 
 	next_list_item ; COOLTRAINERM (17) KEVIN - Route 25
 	db "KEVIN@", TRAINERTYPE_NORMAL
-	db 58
-	dw RHYHORN
-	db 57
+	db 62
 	dw LANTURN
-	db 57
+	db 62
 	dw ESPEON
-	db 58
+	db 63
+	dw RHYDON
+	db 64
 	dw CHARIZARD
 	db -1 ; end
 
@@ -5008,6 +5016,16 @@ JugglerGroup:
 	dw HYPNO
 	db -1 ; end
 
+	next_list_item ; JUGGLER (9) SILAS - Route 25 (Nugget Bridge 2)
+	db "SILAS@", TRAINERTYPE_NORMAL
+	db 58
+	dw ELECTRODE
+	db 58
+	dw XATU
+	db 59
+	dw HYPNO
+	db -1 ; end
+
 	end_list_items
 
 BlackbeltGroup:
@@ -5539,6 +5557,14 @@ PicnickerGroup:
 	db 54
 	dw WIGGLYTUFF
 	dw SING, DOUBLESLAP, DEFENSE_CURL, HEADBUTT
+	db -1 ; end
+
+	next_list_item ; PICNICKER (22) NADIA - Route 25 (Nugget Bridge 3)
+	db "NADIA@", TRAINERTYPE_NORMAL
+	db 58
+	dw FURRET
+	db 59
+	dw NIDOQUEEN
 	db -1 ; end
 
 	end_list_items
@@ -6143,6 +6169,16 @@ PokefanMGroup:
 	db GOLD_BERRY
 	db -1 ; end
 
+	next_list_item ; POKEFANM (15) DUSTIN - Route 25
+	db "DUSTIN@", TRAINERTYPE_NORMAL
+	db 57
+	dw MILTANK
+	db 58
+	dw PERSIAN
+	db 58
+	dw STANTLER
+	db -1 ; end
+
 	end_list_items
 
 KimonoGirlGroup:
@@ -6700,6 +6736,16 @@ CosplayerGroup:
 	dw WOBBUFFET
 	db -1 ; end
 
+	next_list_item ; COSPLAYER (6) COSPLAYER6 - Route 25 (Nugget Bridge 1)
+	db "NOELLE@", TRAINERTYPE_NORMAL
+	db 57
+	dw SMEARGLE
+	db 58
+	dw MR__MIME
+	db 58
+	dw CLEFABLE
+	db -1 ; end
+
 	end_list_items
 
 NinjaGroup:
@@ -6830,6 +6876,58 @@ GreenGroup:
 	dw VICTREEBEL
 	db 80
 	dw BLASTOISE
+	db -1 ; end
+
+	end_list_items
+
+BattleGirlGroup:
+	next_list_item ; BATTLE_GIRL (1) BATTLE_GIRL1 - Route 7
+	db "MIHO@", TRAINERTYPE_NORMAL
+	db 58
+	dw MACHOKE
+	db 59
+	dw HITMONCHAN
+	db -1 ; end
+
+	next_list_item ; BATTLE_GIRL (2) BATTLE_GIRL2 - Route 7
+	db "AYA@", TRAINERTYPE_NORMAL
+	db 58
+	dw HITMONLEE
+	db 58
+	dw HITMONTOP
+	db 60
+	dw MACHAMP
+	db -1 ; end
+
+	end_list_items
+
+TamerGroup:
+	next_list_item ; TAMER (1) TAMER1 - Route 18
+	db "COLE@", TRAINERTYPE_NORMAL
+	db 59
+	dw ARBOK
+	db 59
+	dw SANDSLASH
+	db 60
+	dw PERSIAN
+	db -1 ; end
+
+	next_list_item ; TAMER (2) TAMER2 - Route 18
+	db "JAX@", TRAINERTYPE_NORMAL
+	db 59
+	dw PRIMEAPE
+	db 60
+	dw TAUROS
+	db -1 ; end
+
+	next_list_item ; TAMER (3) TAMER3 - Route 18
+	db "RIGBY@", TRAINERTYPE_NORMAL
+	db 58
+	dw DODRIO
+	db 60
+	dw RHYDON
+	db 61
+	dw KANGASKHAN
 	db -1 ; end
 
 	end_list_items

@@ -84,3 +84,5 @@ TrainerPicPointers::
 	dba Red2Pic
 	dba BlueCloakPic
 	dba GreenPic
+	dba BattleGirlPic
+	dba TamerPic
