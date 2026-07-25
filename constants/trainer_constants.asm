@@ -204,6 +204,7 @@ LYRA EQU __enum__
 	const DANA5
 	const DANIELLE
 	const KATHRYN
+	const PAIGE
 
 	trainerclass JANINE ; 1a
 	const JANINE1
@@ -547,6 +548,7 @@ LYRA EQU __enum__
 	const IRWIN4
 	const MARCO
 	const LEON
+	const SILAS
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1
@@ -606,6 +608,7 @@ LYRA EQU __enum__
 	const GINA4
 	const GINA5
 	const TIFFANY4
+	const NADIA
 
 	trainerclass CAMPER ; 36
 	const ROLAND
@@ -681,6 +684,7 @@ LYRA EQU __enum__
 	const ALEX
 	const REX
 	const ALLAN
+	const DUSTIN
 
 	trainerclass KIMONO_GIRL ; 3c
 	const NAOKO1
@@ -779,6 +783,7 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 	const COSPLAYER3
 	const COSPLAYER4
 	const COSPLAYER5
+	const COSPLAYER6
 
 	trainerclass NINJA ; 4d
 	const NINJA1
@@ -800,5 +805,14 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 
 	trainerclass GREEN ; 52
 	const GREEN1
+
+	trainerclass BATTLE_GIRL ; 53
+	const BATTLE_GIRL1
+	const BATTLE_GIRL2
+
+	trainerclass TAMER ; 54
+	const TAMER1
+	const TAMER2
+	const TAMER3
 
 NUM_TRAINER_CLASSES EQU __enum__

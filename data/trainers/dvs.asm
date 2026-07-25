@@ -83,3 +83,5 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; RED2
 	dn 15, 15, 15, 15 ; BLUE_CLOAK
 	dn 15, 15, 15, 15 ; GREEN
+	dn  9,  8,  8,  8 ; BATTLE_GIRL
+	dn  9,  8,  8,  8 ; TAMER

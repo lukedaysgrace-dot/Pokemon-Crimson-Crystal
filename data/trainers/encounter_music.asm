@@ -85,3 +85,5 @@ TrainerEncounterMusic::
 	db MUSIC_HIKER_ENCOUNTER       ; red2
 	db MUSIC_RIVAL_ENCOUNTER       ; blue_cloak
 	db MUSIC_RIVAL_ENCOUNTER       ; green
+	db MUSIC_LASS_ENCOUNTER        ; battle_girl
+	db MUSIC_HIKER_ENCOUNTER       ; tamer
