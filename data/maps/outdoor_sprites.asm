@@ -182,7 +182,7 @@ SaffronGroupSprites:
 
 CeladonGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_BATTLE_GIRL ; was SPRITE_SILVER_TROPHY (unused filler) - for Route 7 Battle Girls
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
@@ -257,7 +257,7 @@ VermilionGroupSprites:
 
 FuchsiaGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_TAMER ; was SPRITE_SILVER_TROPHY (unused filler) - for Route 18 Tamers
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
