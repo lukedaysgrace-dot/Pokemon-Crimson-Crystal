@@ -106,29 +106,42 @@ PewterGroupSprites:
 	db SPRITE_FRUIT_TREE
 
 CinnabarGroupSprites:
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
+; and OUTDOOR_SPRITE_VRAM_AUDIT.md). This group used to pack VRAM bank 0 to
+; exactly 128/128 - byte for byte the state CeruleanGroupSprites was in before
+; it started rendering NPCs as the player.
+; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
+;   1F maps, which are indoor and load their own sprites via AddIndoorSprites.
+;   Frees 24 tiles, so bank 0 now sits at 104/128.
+; - Walkers reordered. Only Routes 19/20/21 and Cinnabar Island are outdoor in
+;   this group, and their only NPCs are swimmers/fishers - which were dead last
+;   in the list, so their step frames landed in bank 0's font-shared table.
+;   Every swimmer here is SPRITEMOVEDATA_SPINRANDOM_FAST, i.e. animating
+;   nonstop, so they were the worst possible occupants of that bank.
 	db SPRITE_SUICUNE
-	db SPRITE_BLUE_CLOAK
-	db SPRITE_GREEN
-	db SPRITE_POKEDEX
+	db SPRITE_SWIMMER_GIRL ; Routes 19/20/21 trainers (spin constantly)
+	db SPRITE_SWIMMER_GUY ; Routes 19/20/21 trainers (spin constantly)
+	db SPRITE_FISHER ; Route 19 walker, Route 21 trainer
+	db SPRITE_BLUE_CLOAK ; Cinnabar Island
+	db SPRITE_GREEN ; Route 20
+	db SPRITE_BLUE ; Cinnabar Island (spinner)
+	db SPRITE_TEACHER
+	db SPRITE_YOUNGSTER
+	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
+	db SPRITE_GRAMPS
+	db SPRITE_BUG_CATCHER
+	db SPRITE_COOLTRAINER_F
 	db SPRITE_WILL
 	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_POKEDEX
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
-	db SPRITE_FISHER
-	db SPRITE_YOUNGSTER
-	db SPRITE_BLUE
-	db SPRITE_GRAMPS
-	db SPRITE_BUG_CATCHER
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_SWIMMER_GIRL
-	db SPRITE_SWIMMER_GUY
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
+	db SPRITE_NONE ; free slot (was SPRITE_NURSE; indoor maps self-load)
+	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
 
 CeruleanGroupSprites:
 ; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm):
@@ -367,14 +380,23 @@ CherrygroveGroupSprites:
 	db SPRITE_FRUIT_TREE
 
 SilverGroupSprites:
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
+; and OUTDOOR_SPRITE_VRAM_AUDIT.md). Like CinnabarGroupSprites, this group used
+; to pack VRAM bank 0 to exactly 128/128 - the pre-fix Cerulean state.
+; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
+;   1F maps, which are indoor and load their own sprites via AddIndoorSprites.
+;   Frees 24 tiles, so bank 0 now sits at 104/128.
+; - No reorder needed: Route 28 has no object events and Silver Cave Outside
+;   only uses AGATHA and LORELEI, which are already first among the walkers and
+;   so keep VRAM bank 1. (Both are SPRITEMOVEDATA_STANDING_DOWN anyway.)
 	db SPRITE_SUICUNE
-	db SPRITE_AGATHA
-	db SPRITE_LORELEI
+	db SPRITE_AGATHA ; Silver Cave Outside
+	db SPRITE_LORELEI ; Silver Cave Outside
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (was SPRITE_NURSE; indoor maps self-load)
+	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
