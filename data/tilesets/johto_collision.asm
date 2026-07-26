@@ -136,10 +136,10 @@
 	tilecoll WALL, WALL, WALL, WALL ; 87
 	tilecoll ICE, ICE, ICE, ICE ; 88
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 89
-	tilecoll FLOOR, FLOOR, HOP_DOWN, FLOOR ; 8a
+	tilecoll HOP_DOWN, FLOOR, WALL, FLOOR ; 8a
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 8b
 	tilecoll WALL, HOP_DOWN_LEFT, WALL, WALL ; 8c
-	tilecoll HOP_DOWN, HOP_DOWN, WALL, WALL ; 8d
+	tilecoll ICE, ICE, WALL, WALL ; 8d
 	tilecoll WALL, WALL, WALL, WALL ; 8e
 	tilecoll WALL, WALL, WALL, WALL ; 8f
 	tilecoll WALL, WALL, WALL, WALL ; 90
@@ -167,4 +167,11 @@
 	tilecoll WALL, WALL, WALL, WALL ; a6
 	tilecoll WATER, WATER, WATER, WATER ; a7
 	tilecoll WALL, WALL, WALL, WALL ; a8
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a9 ; safari dirt: encounters via CheckSafariZoneRockyArea, no grass rustle
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a9
+	tilecoll FLOOR, HEADBUTT_TREE, FLOOR, HEADBUTT_TREE ; aa
+	tilecoll HOP_RIGHT, WALL, HOP_RIGHT, WALL ; ab
+	tilecoll HOP_DOWN_RIGHT, WALL, WALL, WALL ; ac
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; ad
+	tilecoll HEADBUTT_TREE, HEADBUTT_TREE, FLOOR, FLOOR ; ae
+	tilecoll HOP_DOWN, HOP_DOWN, WALL, WALL ; af
+	tilecoll FLOOR, FLOOR, HEADBUTT_TREE, HEADBUTT_TREE ; b0
