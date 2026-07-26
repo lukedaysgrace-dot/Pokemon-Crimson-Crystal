@@ -206,9 +206,12 @@ FishGroups:
 	dbbw 100 percent,     40, REMORAID
 
 .Safari_Old:
-	dbbw  40 percent,     15, QWILFISH
-	dbbw  70 percent,     15, WOOPER_PALDEAN
-	dbbw 100 percent,     15, SLOWPOKE_GALARIAN
+	dbbw  30 percent,     15, QWILFISH
+	dbbw  55 percent,     15, WOOPER_PALDEAN
+	dbbw  80 percent,     15, SLOWPOKE_GALARIAN
+	dbbw  88 percent,     15, ANORITH
+	dbbw  94 percent,     15, KABUTO
+	dbbw 100 percent,     15, OMANYTE
 .Safari_Good:
 	dbbw  40 percent,     25, QWILFISH
 	dbbw  70 percent,     25, WOOPER_PALDEAN
