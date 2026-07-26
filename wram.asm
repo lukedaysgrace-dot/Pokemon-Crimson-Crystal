@@ -958,6 +958,9 @@ ENDU ; c7e8
 
 ; This was a buffer for map-related pointers in the 1997 G/S prototype.
 ; See wMapBuffer in pokegold-spaceworld's wram.asm.
+; It is also an unbanked staging buffer for dynamic battle names, so text
+; remains valid even when battle graphics select another WRAM bank.
+wBattleDynamicNameBuffer::
 wUnusedMapBuffer:: ds 24
 wUnusedMapBufferEnd::
 
