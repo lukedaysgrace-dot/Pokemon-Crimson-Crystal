@@ -40,16 +40,17 @@ NoLongerInfatuatedText:
 
 TraceActivationText:
 	text "<USER> traced"
-	line ""
-	text_ram wStringBuffer1
+	line "@"
+	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
 
 IntimidateResistedText:
 	text "<TARGET>'s"
-	line ""
-	text_ram wStringBuffer1
+	line "@"
+	text_ram wBattleDynamicNameBuffer
 
+	text_start
 	para "protects it from"
 	line "Intimidate!"
 	prompt
@@ -59,9 +60,25 @@ FriskedItemText:
 	line "frisked its foe"
 
 	para "and found a"
-	line ""
-	text_ram wStringBuffer1
+	line "@"
+	text_ram wBattleDynamicNameBuffer
 	text "!"
+	prompt
+
+CursedBodyDisabledText:
+	text "<TARGET>'s"
+	line "@"
+	text_ram wBattleDynamicNameBuffer
+	text " was"
+	cont "DISABLED!"
+	prompt
+
+AbilityItemActivatedText:
+	text "<USER>'s"
+	line "@"
+	text_ram wBattleDynamicNameBuffer
+	text_start
+	cont "activated!"
 	prompt
 
 IsHurtText:

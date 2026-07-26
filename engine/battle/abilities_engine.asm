@@ -204,44 +204,37 @@ AbilityCanBeTraced::
 	pop bc
 	ret
 
-; ==== Bank-safe name buffering and printing ===============================
+; ==== Bank-safe name buffering =============================================
 ; wStringBuffer1 and wNamedObjectIndexBuffer both live in banked WRAM
 ; ($D000+), so every access goes through whatever rSVBK currently selects.
 ; Ability messages print at points in the battle flow - switch-in, banner
 ; dismissal, post-damage held item handling - where rSVBK is not guaranteed
-; to be back on wStringBuffer1's bank. When it isn't, `text_ram
-; wStringBuffer1` renders whatever sits at that address in the other bank
-; (wTempTileMap, i.e. raw tile ids), which is the "traced <gibberish>" bug.
+; to be back on bank 1. Buffer names in bank 1, then copy them immediately
+; to unbanked wBattleDynamicNameBuffer for the eventual text_ram command.
 ;
-; Buffer names with AbilityBuffer*Name and print them with
-; AbilityStdBattleTextbox / AbilityPrintText so the bank is pinned across
-; both halves. Never split a buffer/print pair across a banner or an
-; animation: wNamedObjectIndexBuffer is a shared scratch byte.
+; This keeps the name safe across banners, animations, frame waits, and
+; rSVBK changes. Never park an id in wNamedObjectIndexBuffer across them:
+; it is a shared scratch byte.
 
-AbilityStdBattleTextbox::
-; hl = text. As StdBattleTextbox, with wStringBuffer1's WRAM bank selected.
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wStringBuffer1)
-	ldh [rSVBK], a
-	call StdBattleTextbox
-	pop af
-	ldh [rSVBK], a
-	ret
-
-AbilityPrintText::
-; hl = text. As PrintText, with wStringBuffer1's WRAM bank selected.
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wStringBuffer1)
-	ldh [rSVBK], a
-	call PrintText
-	pop af
-	ldh [rSVBK], a
+AbilityCopyBufferedName:
+; Copy wStringBuffer1 from WRAM bank 1 to unbanked battle text storage.
+; Called with bank 1 selected. Preserves bc, de, and hl.
+	push hl
+	push de
+	ld hl, wStringBuffer1
+	ld de, wBattleDynamicNameBuffer
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp "@"
+	jr nz, .loop
+	pop de
+	pop hl
 	ret
 
 AbilityBufferItemName::
-; a = item id. Its name -> wStringBuffer1. Returns de = wStringBuffer1.
+; a = item id. Its name -> wBattleDynamicNameBuffer.
 ; Preserves bc and hl, as GetItemName does.
 	push bc
 	ld b, a
@@ -252,13 +245,14 @@ AbilityBufferItemName::
 	ld a, b
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
+	call AbilityCopyBufferedName
 	pop af
 	ldh [rSVBK], a
 	pop bc
 	ret
 
 AbilityBufferMoveName::
-; a = move id. Its name -> wStringBuffer1. Returns de = wStringBuffer1.
+; a = move id. Its name -> wBattleDynamicNameBuffer.
 ; Preserves bc and hl, as GetMoveName does.
 	push bc
 	ld b, a
@@ -269,20 +263,20 @@ AbilityBufferMoveName::
 	ld a, b
 	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
+	call AbilityCopyBufferedName
 	pop af
 	ldh [rSVBK], a
 	pop bc
 	ret
 
 AbilityBufferAbilityName::
-; b = ability constant. Its name -> wStringBuffer1.
-; GetAbilityName selects the bank for its own copy, but restores whatever
-; was selected before; pin it here so the print that follows agrees.
+; b = ability constant. Its name -> wBattleDynamicNameBuffer.
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wStringBuffer1)
 	ldh [rSVBK], a
 	farcall GetAbilityName
+	call AbilityCopyBufferedName
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -486,7 +480,7 @@ TraceAbility:
 	ld b, a
 	call AbilityBufferAbilityName
 	ld hl, TraceActivationText
-	call AbilityStdBattleTextbox
+	call StdBattleTextbox
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVarAddr
 	pop af
@@ -605,7 +599,7 @@ IntimidateAbility:
 	ld b, a
 	call AbilityBufferAbilityName
 	ld hl, IntimidateResistedText
-	jp AbilityStdBattleTextbox
+	jp StdBattleTextbox
 
 .intimidate_ok
 	call ShowAbilityBannerBrief
@@ -627,12 +621,22 @@ IntimidateAbility:
 	jp EndAbility
 
 FriskAbility:
+	; wEnemyMonItem is in switchable WRAM, unlike wBattleMonItem. Select
+	; its bank explicitly so Frisk is safe in every entry/switch context.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wEnemyMonItem)
+	ldh [rSVBK], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wEnemyMonItem]
 	jr z, .got_item
 	ld a, [wBattleMonItem]
 .got_item
+	ld b, a
+	pop af
+	ldh [rSVBK], a
+	ld a, b
 	and a
 	ret z ; no item
 	; Carry the item on the stack, not in wNamedObjectIndexBuffer: that is a
@@ -643,7 +647,7 @@ FriskAbility:
 	pop af
 	call AbilityBufferItemName
 	ld hl, FriskedItemText
-	jp AbilityStdBattleTextbox
+	jp StdBattleTextbox
 
 ScreenCleanerAbility:
 	; only Reflect/Light Screen count - the screens bytes also hold
@@ -2978,7 +2982,7 @@ CheckAirBalloonImmunity:
 	ld a, 1
 	ld [wAttackMissed], a
 	ld hl, AirBalloonImmuneText
-	call AbilityStdBattleTextbox
+	call StdBattleTextbox
 	scf
 	ret
 .no
@@ -3078,7 +3082,7 @@ AirBalloonPop:
 	call AbilityBufferItemName
 	callfar ConsumeHeldItem
 	ld hl, AirBalloonPoppedText
-	jp AbilityStdBattleTextbox
+	jp StdBattleTextbox
 
 WeaknessPolicyBoost:
 	call OppHasFainted
@@ -3095,8 +3099,8 @@ WeaknessPolicyBoost:
 	call AbilityBufferItemName
 	callfar ConsumeHeldItem
 	call SwitchTurn
-	ld hl, BattleText_UsersStringBuffer1Activated
-	call AbilityStdBattleTextbox
+	ld hl, AbilityItemActivatedText
+	call StdBattleTextbox
 	; One stat up anim + "ATTACK and SPCL.ATK sharply rose!"
 	farcall DeferStatMessages_Core
 	xor a
@@ -3130,7 +3134,7 @@ RockyHelmetDamage:
 	call GetUserMaxHPFraction
 	farcall SubtractHPFromUser
 	ld hl, RockyHelmetText
-	jp AbilityStdBattleTextbox
+	jp StdBattleTextbox
 
 GetUserMaxHPFraction:
 ; d = divisor. Returns bc = max(1, max HP / d).
@@ -3522,8 +3526,8 @@ CursedBodyEffect:
 	ld a, b
 	call AbilityBufferMoveName
 	call SwitchTurn
-	ld hl, WasDisabledText
-	call AbilityStdBattleTextbox
+	ld hl, CursedBodyDisabledText
+	call StdBattleTextbox
 	jp SwitchTurn
 
 _RunDefenderContactAbilities:
@@ -4128,7 +4132,7 @@ AbilityCapCore::
 	call WaitSFX
 	pop de
 	ld hl, .BecameText
-	jp AbilityPrintText
+	jp PrintText
 
 .no_effect
 	ld hl, .NoEffectText
@@ -4137,7 +4141,7 @@ AbilityCapCore::
 .BecameText:
 	text "Its ability is"
 	line "now @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
 

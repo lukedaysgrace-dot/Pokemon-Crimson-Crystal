@@ -444,14 +444,14 @@ BattleText_ItemHealedConfusion:
 
 BattleText_AssaultVestPreventsMove:
 	text "The @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text " prevents"
 	line "status moves!"
 	prompt
 
 BattleText_ChoiceItemLocksMove:
 	text "The @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text " only"
 	line "allows one move!"
 	prompt
@@ -459,13 +459,13 @@ BattleText_ChoiceItemLocksMove:
 AirBalloonImmuneText:
 	text "<TARGET> floats with"
 	line "its @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
 
 AirBalloonPoppedText:
 	text "The @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text " popped!"
 	prompt
 
@@ -476,7 +476,7 @@ LifeOrbRecoilText:
 
 RockyHelmetText:
 	text "The @"
-	text_ram wStringBuffer1
+	text_ram wBattleDynamicNameBuffer
 	text " hurt"
 	line "<USER>!"
 	prompt
