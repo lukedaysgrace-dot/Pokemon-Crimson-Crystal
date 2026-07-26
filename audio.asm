@@ -165,6 +165,11 @@ SECTION "Extra Songs 7", ROMX
 INCLUDE "audio/music/route3839.asm"
 
 
+SECTION "Extra Songs 8", ROMX
+
+INCLUDE "audio/music/lavender.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
