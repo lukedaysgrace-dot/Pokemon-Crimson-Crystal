@@ -194,6 +194,8 @@ ENDM
 
 	map_attributes SilentCrypt, SILENT_CRYPT, $0a, 0
 
+	map_attributes GravekeepersHouse, GRAVEKEEPERS_HOUSE, $00, 0
+
 	map_attributes Route38, ROUTE_38, $05, WEST | EAST
 	connection west, Route39, ROUTE_39, 0
 	connection east, EcruteakCity, ECRUTEAK_CITY, -5

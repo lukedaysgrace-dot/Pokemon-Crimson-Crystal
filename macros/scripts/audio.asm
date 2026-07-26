@@ -119,7 +119,11 @@ ENDM
 	enum volume_cmd ; $e5
 volume: MACRO
 	db volume_cmd
+if _NARG >= 2
+	db (\1 << 4) | (\2) ; left, right
+else
 	db \1 ; volume
+endc
 ENDM
 
 	enum tone_cmd ; $e6
@@ -266,4 +270,51 @@ ENDM
 	enum endchannel_cmd ; $ff
 endchannel: MACRO
 	db endchannel_cmd
+ENDM
+
+
+; Compatibility aliases for songs written against modern pokecrystal syntax.
+; This repo uses the older command names; these let imported .asm songs
+; assemble unmodified.
+
+note_type: MACRO
+if _NARG >= 3
+	notetype \1, (\2 << 4) | (\3)
+else
+	notetype \1
+endc
+ENDM
+
+drum_speed: MACRO
+	notetype \1
+ENDM
+
+drum_note: MACRO
+	note \1, \2
+ENDM
+
+duty_cycle: MACRO
+	dutycycle \1
+ENDM
+
+rest: MACRO
+	note __, \1
+ENDM
+
+sound_loop: MACRO
+	loopchannel \1, \2
+ENDM
+
+sound_call: MACRO
+	callchannel \1
+ENDM
+
+sound_ret: MACRO
+	endchannel
+ENDM
+
+; The modern no-operand toggle_perfect_pitch has no equivalent here: this
+; engine's $e2 command reads an operand and is dummied out (see MusicE2 in
+; audio/engine.asm), so emitting it would desync the channel. Emit nothing.
+toggle_perfect_pitch: MACRO
 ENDM
