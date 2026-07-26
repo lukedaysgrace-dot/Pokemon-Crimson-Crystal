@@ -656,20 +656,27 @@ constants/names/flags/descriptions all extended in matching order).
   textbox, in both flows.
   FIX 2 (Lucas feedback, names still garbage): the reordering above was not
   enough. wStringBuffer1 (01:d061) and wNamedObjectIndexBuffer (01:d254)
-  are both in banked WRAM, so `text_ram wStringBuffer1` reads through
-  whatever rSVBK happens to select. Ability text prints at switch-in and
-  after banner dismissal, where rSVBK is not reliably back on bank 1, and
-  d061 in bank 2 lands inside wTempTileMap - raw tile ids, i.e. the
-  "traced <gibberish>" output. abilities_engine.asm now has bank-safe
-  wrappers (AbilityStdBattleTextbox, AbilityPrintText, AbilityBufferItemName,
-  AbilityBufferMoveName, AbilityBufferAbilityName) that pin
-  BANK(wStringBuffer1) across both the buffering and the printing, and every
-  buffered-name message in the file goes through them. Frisk additionally
-  stopped parking the item id in wNamedObjectIndexBuffer (a shared scratch
-  byte) across ~30 frames of banner animation - it carries it on the stack
-  and buffers the name after the banner, matching Polished.
-  RULE: buffer a name and print it inside the same bank-pinned pair; never
-  split them across a banner, an animation or a DelayFrames.
+  are both in banked WRAM, so a working `text_ram wStringBuffer1` would read
+  through whatever rSVBK happens to select. AbilityBufferItemName,
+  AbilityBufferMoveName, and AbilityBufferAbilityName now generate the name
+  in bank 1 and copy it immediately to unbanked
+  wBattleDynamicNameBuffer. Trace, Frisk, Intimidate resistance, Cursed
+  Body, Ability Cap, Assault Vest, Choice items, Air Balloon, Weakness
+  Policy, and Rocky Helmet all print from that stable buffer. Frisk also
+  carries its item id on the stack across the banner instead of parking it
+  in the shared wNamedObjectIndexBuffer.
+  FIX 3 (fresh build still showed pointer-dependent garbage): the affected
+  text scripts used `line ""` directly before `text_ram`. `text` and `line`
+  do not append the required "@" terminator, so PlaceString rendered the
+  TX_RAM opcode, its two address bytes, and the following TX_START as
+  characters; TX_RAM never ran. All five dynamic ability texts now end the
+  preceding literal with "@" and start any post-insertion continuation as
+  a new text command. This exactly accounts for both screenshots: moving
+  d061 to c7e8 changed the visible garbage because those pointer bytes were
+  what the engine was printing.
+  RULE: stage dynamic names in the unbanked battle buffer, terminate the
+  preceding TX_START string with "@", then emit text_ram; never rely on
+  banked scratch surviving a banner, animation, or frame wait.
 - **Storm Drain**: NullificationAbilities entry (WATER -> AbsorbRaiseSpAtk),
   i.e. water immunity + SpAtk+1. Same status-move limitation as Water Absorb.
 - **Stamina / Thermal Exchange**: RunContactAbilitiesHook restructured —
