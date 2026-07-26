@@ -104,6 +104,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN             ; 20
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F           ; 21
 	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY      ; 22
+	const SPRITE_ANIM_SEQ_CELEBI_FLYBY            ; 23
 
 ; SpriteAnimFrameData indexes (see data/sprite_anims/framesets.asm)
 	const_def
@@ -173,6 +174,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_FRAMESET_INTRO_UNOWN_F            ; 3f
 	const SPRITE_ANIM_FRAMESET_CELEBI_LEFT              ; 40
 	const SPRITE_ANIM_FRAMESET_CELEBI_RIGHT             ; 41
+	const SPRITE_ANIM_FRAMESET_CELEBI_FLYBY             ; 42
 
 ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
 	const_def

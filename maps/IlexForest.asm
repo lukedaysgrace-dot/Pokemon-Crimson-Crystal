@@ -492,7 +492,37 @@ IlexForestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL
 
 IlexForestHiddenRelicClock:
-	hiddenitem RELIC_CLOCK, EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK
+; Once the clock has been taken the tile stops responding entirely,
+; so it doesn't keep making the "talk" sound with nothing there.
+	conditional_event EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK, .Script
+
+.Script:
+	opentext
+	writetext IlexForestFoundRelicClockText
+	buttonsound
+	verbosegiveitem RELIC_CLOCK
+	iffalse .BagFull
+	setevent EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK
+	closetext
+	; The forest wakes up.
+	pause 20
+	showemote EMOTE_SHOCK, PLAYER, 20
+	special FadeOutMusic
+	setflag ENGINE_FOREST_IS_RESTLESS
+	pause 30
+	cry CELEBI
+	special CelebiFlybyEvent
+	special RefreshSprites
+	turnobject PLAYER, DOWN
+	pause 20
+	; ...and settles back down again.
+	clearflag ENGINE_FOREST_IS_RESTLESS
+	playmusic MUSIC_UNION_CAVE
+	end
+
+.BagFull:
+	closetext
+	end
 
 IlexForestBoulder:
 ; unused
@@ -500,6 +530,28 @@ IlexForestBoulder:
 
 IlexForestSignpost:
 	jumptext IlexForestSignpostText
+
+IlexForestTickingScript:
+	checkevent EVENT_ILEX_FOREST_HEARD_TICKING
+	iftrue .Done
+	setevent EVENT_ILEX_FOREST_HEARD_TICKING
+	opentext
+	writetext IlexForestTickingText
+	waitbutton
+	closetext
+.Done:
+	end
+
+IlexForestTickingFadesScript:
+	checkevent EVENT_ILEX_FOREST_TICKING_FADED
+	iftrue .Done
+	setevent EVENT_ILEX_FOREST_TICKING_FADED
+	opentext
+	writetext IlexForestTickingFadesText
+	waitbutton
+	closetext
+.Done:
+	end
 
 IlexForestShrineScript:
 	checkevent EVENT_FOREST_IS_RESTLESS
@@ -943,6 +995,26 @@ IlexForestSignpostText:
 	cont "have been dropped."
 	done
 
+IlexForestTickingText:
+	text "………"
+
+	para "You hear a faint"
+	line "ticking near the"
+	cont "SHRINE."
+	done
+
+IlexForestFoundRelicClockText:
+	text "What is this?"
+
+	para "It seems to be a"
+	line "very old clock."
+	done
+
+IlexForestTickingFadesText:
+	text "The ticking fades"
+	line "away."
+	done
+
 Text_IlexForestShrine:
 	text "ILEX FOREST"
 	line "SHRINE…"
@@ -1104,8 +1176,10 @@ IlexForest_MapEvents:
 	warp_event  3, 42, ILEX_FOREST_AZALEA_GATE, 1
 	warp_event  3, 43, ILEX_FOREST_AZALEA_GATE, 2
 
-	db 1 ; coord events
+	db 3 ; coord events
 	coord_event 15, 10, -1, IlexForestCrystalScene
+	coord_event  8, 24, -1, IlexForestTickingScript
+	coord_event  4, 24, -1, IlexForestTickingFadesScript
 
 	db 6 ; bg events
 	bg_event  3, 17, BGEVENT_READ, IlexForestSignpost
@@ -1113,7 +1187,7 @@ IlexForest_MapEvents:
 	bg_event 22, 14, BGEVENT_ITEM, IlexForestHiddenSuperPotion
 	bg_event  1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
 	bg_event  8, 22, BGEVENT_UP, IlexForestShrineScript
-	bg_event  8, 23, BGEVENT_ITEM, IlexForestHiddenRelicClock
+	bg_event  9, 22, BGEVENT_IFNOTSET, IlexForestHiddenRelicClock
 
 	db 15 ; object events
 	object_event 14, 31, SPRITE_FARFETCH_D_NPC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
