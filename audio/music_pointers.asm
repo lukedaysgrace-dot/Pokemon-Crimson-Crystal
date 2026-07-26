@@ -110,3 +110,4 @@ Music:
 	dba Music_CrystalBattle
 	dba Music_MahoganyTown
 	dba Music_Route38_39
+	dba Music_Lavender
