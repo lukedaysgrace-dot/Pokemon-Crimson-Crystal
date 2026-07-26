@@ -175,3 +175,11 @@
 	tilecoll HEADBUTT_TREE, HEADBUTT_TREE, FLOOR, FLOOR ; ae
 	tilecoll HOP_DOWN, HOP_DOWN, WALL, WALL ; af
 	tilecoll FLOOR, FLOOR, HEADBUTT_TREE, HEADBUTT_TREE ; b0
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; b1
+	tilecoll FLOOR, FLOOR, WALL, WALL ; b2
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; b3
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; b4
+	tilecoll FLOOR, FLOOR, WALL, WALL ; b5
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; b6
+	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WALL ; b7
+	tilecoll WALL, WALL, WALL, WALL ; b8
