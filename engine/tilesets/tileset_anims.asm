@@ -77,7 +77,7 @@ TilesetForestAnim:
 
 TilesetJohtoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateSilentCryptLights
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -912,6 +912,83 @@ AnimateWaterPalette:
 	ldh [rBGPD], a
 
 .end
+	pop af
+	ldh [rSVBK], a
+	ret
+
+; Anim frames per colour step. AnimateWaterPalette hardcodes 2; raise this
+; to slow the crypt lamps down, lower it to speed them up.
+SILENT_CRYPT_PULSE_TICKS EQU 3
+
+SILENT_CRYPT_PULSE_PAL EQU PAL_BG_YELLOW
+
+AnimateSilentCryptLights:
+; Cycle colour 0 of the lamp palette through that palette's colours 0-1-2-1,
+; but only inside Silent Crypt. Every other map using TILESET_JOHTO is left
+; alone, so overworld water and yellow tiles keep their flat palettes.
+	ld a, [wMapGroup]
+	cp GROUP_SILENT_CRYPT
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_SILENT_CRYPT
+	ret nz
+
+; No palette changes on DMG.
+	ldh a, [hCGB]
+	and a
+	ret z
+
+; We don't want to mess with non-standard palettes.
+	ldh a, [rBGP]
+	cp %11100100
+	ret nz
+
+; Run our own timer rather than wTileAnimationTimer, so the step rate isn't
+; locked to a power of two.
+	ld hl, wSilentCryptPulseTimer
+	ld a, [hl]
+	inc a
+	cp SILENT_CRYPT_PULSE_TICKS * 4
+	jr c, .store
+	xor a
+.store
+	ld [hl], a
+
+; Ready for BGPD input...
+	ld a, (1 << rBGPI_AUTO_INCREMENT) palette SILENT_CRYPT_PULSE_PAL
+	ldh [rBGPI], a
+
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals1)
+	ldh [rSVBK], a
+
+; Update colour 0 in order 0 1 2 1
+	ld a, [wSilentCryptPulseTimer]
+	cp SILENT_CRYPT_PULSE_TICKS
+	jr c, .color0
+	cp SILENT_CRYPT_PULSE_TICKS * 2
+	jr c, .color1
+	cp SILENT_CRYPT_PULSE_TICKS * 3
+	jr c, .color2
+
+.color1
+	ld hl, wBGPals1 palette SILENT_CRYPT_PULSE_PAL color 1
+	jr .load
+
+.color0
+	ld hl, wBGPals1 palette SILENT_CRYPT_PULSE_PAL color 0
+	jr .load
+
+.color2
+	ld hl, wBGPals1 palette SILENT_CRYPT_PULSE_PAL color 2
+
+.load
+	ld a, [hli]
+	ldh [rBGPD], a
+	ld a, [hli]
+	ldh [rBGPD], a
+
 	pop af
 	ldh [rSVBK], a
 	ret

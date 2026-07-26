@@ -253,7 +253,7 @@ Route37_MapEvents:
 	db 3 ; bg events
 	bg_event  5,  3, BGEVENT_READ, Route37Sign
 	bg_event  4,  2, BGEVENT_ITEM, Route37HiddenEther
-	bg_event 15,  8, BGEVENT_READ, Route37SilentCryptSign
+	bg_event 15,  7, BGEVENT_READ, Route37SilentCryptSign
 
 	db 7 ; object events
 	object_event  6, 12, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
