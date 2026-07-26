@@ -5940,10 +5940,14 @@ MediumGroup:
 	dw HAUNTER
 	db -1 ; end
 
-	next_list_item ; MEDIUM (3) BETHANY - not placed on any map
+	next_list_item ; MEDIUM (3) BETHANY - Silent Crypt
 	db "BETHANY@", TRAINERTYPE_NORMAL
-	db 25
+	db 17
 	dw HAUNTER
+	db 18
+	dw MISDREAVUS
+	db 19
+	dw DUSKULL
 	db -1 ; end
 
 	next_list_item ; MEDIUM (4) MARGRET - not placed on any map
@@ -6687,6 +6691,26 @@ HexManiacGroup:
 	dw DRIFLOON
 	db 22
 	dw MISDREAVUS
+	db -1 ; end
+
+	next_list_item ; HEX_MANIAC (2) ODESSA - Silent Crypt
+	db "ODESSA@", TRAINERTYPE_NORMAL
+	db 16
+	dw GASTLY
+	db 17
+	dw DRIFLOON
+	db 17
+	dw MISDREAVUS
+	db -1 ; end
+
+	next_list_item ; HEX_MANIAC (3) LILITH - Silent Crypt
+	db "LILITH@", TRAINERTYPE_NORMAL
+	db 16
+	dw DUSKULL
+	db 16
+	dw GOLETT
+	db 18
+	dw MIMIKYU
 	db -1 ; end
 
 	end_list_items
