@@ -453,7 +453,7 @@ JohtoGrassWildMons:
 	dbw 8, MACHOP
 	dbw 6, TRAPINCH
 	dbw 8, DRILBUR
-	dbw 8, SHIELDON
+	dbw 8, ARON
 	; nite
 	dbw 8, GEODUDE
 	dbw 6, ZUBAT
@@ -461,7 +461,7 @@ JohtoGrassWildMons:
 	dbw 8, MACHOP
 	dbw 6, RATTATA
 	dbw 8, SANDSHREW
-	dbw 8, CRANIDOS
+	dbw 8, GOLETT
 
 	map_id UNION_CAVE_B2F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
@@ -472,7 +472,7 @@ JohtoGrassWildMons:
 	dbw 21, RATICATE
 	dbw 20, MACHOP
 	dbw 23, RHYHORN
-	dbw 23, LILEEP
+	dbw 23, GLIGAR
 	; day
 	dbw 22, GOLBAT
 	dbw 22, GEODUDE
@@ -480,7 +480,7 @@ JohtoGrassWildMons:
 	dbw 21, TRAPINCH
 	dbw 20, ONIX
 	dbw 23, CUBONE
-	dbw 23, ANORITH
+	dbw 23, VIBRAVA
 	; nite
 	dbw 22, GOLBAT
 	dbw 22, GEODUDE
@@ -615,7 +615,7 @@ JohtoGrassWildMons:
 	dbw 14, MANKEY
 	dbw 15, ARON
 	dbw 15, ZUBAT
-	dbw 15, SHIELDON
+	dbw 15, DRILBUR
 	; nite
 	dbw 13, SCRAGGY
 	dbw 14, NUMEL
@@ -650,7 +650,7 @@ JohtoGrassWildMons:
 	dbw 30, GURDURR
 	dbw 28, MAROWAK
 	dbw 32, HITMONTOP
-	dbw 32, RAMPARDOS
+	dbw 32, SCRAFTY
 
 	map_id MOUNT_MORTAR_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -661,7 +661,7 @@ JohtoGrassWildMons:
 	dbw 16, MACHOP
 	dbw 16, GEODUDE
 	dbw 18, SUDOWOODO
-	dbw 18, TYRUNT
+	dbw 18, ARON
 	; day
 	dbw 15, ZUBAT
 	dbw 17, MANKEY
@@ -669,7 +669,7 @@ JohtoGrassWildMons:
 	dbw 16, MACHOP
 	dbw 16, GEODUDE
 	dbw 18, SUDOWOODO
-	dbw 18, TYRUNT
+	dbw 18, RIOLU
 	; nite
 	dbw 15, ZUBAT
 	dbw 17, SCRAGGY
@@ -831,7 +831,7 @@ JohtoGrassWildMons:
 	dbw 26, SNEASEL
 	dbw 22, SMOOCHUM
 	dbw 24, SNORUNT
-	dbw 26, AMAURA
+	dbw 26, CETODDLE
 	; nite
 	dbw 24, DELIBIRD
 	dbw 25, SNEASEL
@@ -931,7 +931,7 @@ JohtoGrassWildMons:
 	dbw 24, SHELLDER
 	dbw 25, GOLBAT
 	dbw 24, CORSOLA
-	dbw 24, KABUTO
+	dbw 24, CHINCHOU
 	; day
 	dbw 22, KRABBY
 	dbw 23, ZUBAT
@@ -974,7 +974,7 @@ JohtoGrassWildMons:
 	dbw 24, GRIMER
 	dbw 25, GASTLY
 	dbw 24, GOLBAT
-	dbw 24, OMANYTE
+	dbw 24, TENTACOOL
 
 	map_id WHIRL_ISLAND_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1144,7 +1144,7 @@ JohtoGrassWildMons:
 	dbw 48, WEEZING
 	dbw 46, NIDOKING
 	dbw 50, URSALUNABM
-	dbw 48, AERODACTYL
+	dbw 48, GLISCOR
 	dbw 48, SCIZOR
 	dbw 50, URSARINGBM
 	dbw 52, GLIMMORA
@@ -1462,6 +1462,33 @@ JohtoGrassWildMons:
 	dbw 15, MURKROW
 	dbw 15, LEDYBA
 
+	map_id SILENT_CRYPT
+	db 10 percent, 10 percent, 15 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 15, GASTLY
+	dbw 15, DUSKULL
+	dbw 16, MISDREAVUS
+	dbw 16, GOLETT
+	dbw 17, DRIFLOON
+	dbw 17, MIMIKYU
+	dbw 14, DREEPY
+	; day
+	dbw 15, DUSKULL
+	dbw 15, GASTLY
+	dbw 16, GOLETT
+	dbw 16, MISDREAVUS
+	dbw 17, DRIFLOON
+	dbw 17, MIMIKYU
+	dbw 14, DREEPY
+	; nite
+	dbw 16, GASTLY
+	dbw 16, MISDREAVUS
+	dbw 17, DUSKULL
+	dbw 17, DRIFLOON
+	dbw 18, GOLETT
+	dbw 18, MIMIKYU
+	dbw 15, DREEPY
+
 	map_id ROUTE_38
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
@@ -1691,7 +1718,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 7, MEOWTH_ALOLAN
 	dbw 7, RATTATA_ALOLAN
-	dbw 8, SLOWPOKE_GALARIAN
+	dbw 8, PONYTA_GALARIAN
 	dbw 9, FARFETCH_D
 	dbw 10, LILEEP ; rare (5%)
 	dbw 11, TAUROS_PALDEAN_WATER ; rare (4%)
@@ -1746,7 +1773,7 @@ SafariZoneRockyWildMons:
 	dbw 7, DIGLETT_ALOLAN
 	dbw 7, GEODUDE_ALOLAN
 	dbw 8, MEOWTH_GALARIAN
-	dbw 9, WOOPER_PALDEAN
+	dbw 9, ARON
 	dbw 10, GROWLITHE_HISUIAN
 	dbw 10, TYRUNT ; rare (4%)
 	dbw 11, GROWLITHE_HISUIAN
@@ -1755,13 +1782,13 @@ SafariZoneRockyWildMons:
 	dbw 7, DIGLETT_ALOLAN
 	dbw 8, MEOWTH_GALARIAN
 	dbw 9, GROWLITHE_HISUIAN
-	dbw 10, WOOPER_PALDEAN
+	dbw 10, ARON
 	dbw 10, TYRUNT ; rare (4%)
 	dbw 11, MEOWTH_GALARIAN
 	; nite
 	dbw 7, DIGLETT_ALOLAN
 	dbw 7, GEODUDE_ALOLAN
-	dbw 8, WOOPER_PALDEAN
+	dbw 8, ARON
 	dbw 9, MEOWTH_GALARIAN
 	dbw 10, GROWLITHE_HISUIAN
 	dbw 10, TYRUNT ; rare (4%)
