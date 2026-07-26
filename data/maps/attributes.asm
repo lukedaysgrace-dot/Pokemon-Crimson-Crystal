@@ -141,7 +141,7 @@ ENDM
 	connection south, Route45, ROUTE_45, 0
 	connection west, Route44, ROUTE_44, 9
 
-	map_attributes SilverCaveOutside, SILVER_CAVE_OUTSIDE, $2c, EAST
+	map_attributes SilverCaveOutside, SILVER_CAVE_OUTSIDE, $05, EAST
 	connection east, Route28, ROUTE_28, 9
 
 	map_attributes Route26, ROUTE_26, $05, WEST
@@ -151,7 +151,7 @@ ENDM
 	connection west, NewBarkTown, NEW_BARK_TOWN, 0
 	connection east, Route26, ROUTE_26, -45
 
-	map_attributes Route28, ROUTE_28, $2c, WEST
+	map_attributes Route28, ROUTE_28, $05, WEST
 	connection west, SilverCaveOutside, SILVER_CAVE_OUTSIDE, -9
 
 	map_attributes Route29, ROUTE_29, $05, NORTH | WEST | EAST
