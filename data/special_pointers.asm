@@ -185,3 +185,4 @@ SpecialsPointers::
 	add_special InitialClearDSTFlag
 	add_special DummySpecial_c224 ; $a8
 	add_special HiddenPowerTypeMenu
+	add_special CelebiFlybyEvent
