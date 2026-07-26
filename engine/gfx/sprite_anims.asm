@@ -48,6 +48,7 @@ DoAnimFrame:
 	dw .IntroUnown
 	dw .IntroUnownF
 	dw .IntroSuicuneAway
+	dw .CelebiFlyby
 
 .Null:
 	ret
@@ -841,6 +842,10 @@ DoAnimFrame:
 
 .Celebi
 	farcall UpdateCelebiPosition
+	ret
+
+.CelebiFlyby
+	farcall UpdateCelebiFlybyPosition
 	ret
 
 .AnonymousJumptable:

@@ -66,6 +66,7 @@ SpriteAnimFrameData:
 	dw .Frameset_IntroUnownF
 	dw .Frameset_CelebiLeft
 	dw .Frameset_CelebiRight
+	dw .Frameset_CelebiFlyby
 
 .Frameset_00:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
@@ -494,4 +495,10 @@ SpriteAnimFrameData:
 .Frameset_CelebiRight:
 	frame SPRITE_ANIM_OAMSET_CELEBI_1,  8, OAM_X_FLIP
 	frame SPRITE_ANIM_OAMSET_CELEBI_2,  8, OAM_X_FLIP
+	endanim
+
+; Just gfx/overworld/celebi/1.2bpp and 2.2bpp, flapping at a steady rate.
+.Frameset_CelebiFlyby:
+	frame SPRITE_ANIM_OAMSET_CELEBI_1,  4, OAM_X_FLIP
+	frame SPRITE_ANIM_OAMSET_CELEBI_2,  4, OAM_X_FLIP
 	endanim
