@@ -243,6 +243,7 @@ ENDM
 	map_const ROUTE_36_NATIONAL_PARK_GATE,                  5,  4 ; 17
 	map_const SAFARI_ZONE_LOBBY,                           10,  9 ; 18
 	map_const SAFARI_ZONE,                                 20, 18 ; 19
+	map_const SILENT_CRYPT,                                10,  9 ; 20
 
 	newgroup                                                      ; 11
 

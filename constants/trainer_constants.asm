@@ -776,6 +776,8 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 
 	trainerclass HEX_MANIAC ; 4b
 	const WINNIE
+	const ODESSA
+	const LILITH
 
 	trainerclass COSPLAYER ; 4c
 	const COSPLAYER1

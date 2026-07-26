@@ -88,7 +88,7 @@ BlackthornCooltrainerF2Script:
 SantosScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
+	checkevent EVENT_GOT_TWISTEDSPOON_FROM_SANTOS
 	iftrue .Saturday
 	readvar VAR_WEEKDAY
 	ifnotequal SATURDAY, .NotSaturday
@@ -100,9 +100,9 @@ SantosScript:
 .MetSantos:
 	writetext SantosGivesGiftText
 	buttonsound
-	verbosegiveitem SPELL_TAG
+	verbosegiveitem TWISTEDSPOON
 	iffalse .Done
-	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
+	setevent EVENT_GOT_TWISTEDSPOON_FROM_SANTOS
 	writetext SantosGaveGiftText
 	waitbutton
 	closetext
@@ -240,13 +240,13 @@ SantosGivesGiftText:
 SantosGaveGiftText:
 	text "SANTOS: …"
 
-	para "SPELL TAG…"
+	para "TWISTEDSPOON…"
 
-	para "Ghost-type moves"
+	para "Psychic-type moves"
 	line "get stronger…"
 
-	para "It will frighten"
-	line "you…"
+	para "It bent on its"
+	line "own…"
 	done
 
 SantosSaturdayText:
