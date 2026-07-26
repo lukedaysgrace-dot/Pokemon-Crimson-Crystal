@@ -654,6 +654,22 @@ constants/names/flags/descriptions all extended in matching order).
   printing garbage - the banner GFX clobbers wStringBuffer1, so
   GetAbilityName is now called AFTER the banners, right before the
   textbox, in both flows.
+  FIX 2 (Lucas feedback, names still garbage): the reordering above was not
+  enough. wStringBuffer1 (01:d061) and wNamedObjectIndexBuffer (01:d254)
+  are both in banked WRAM, so `text_ram wStringBuffer1` reads through
+  whatever rSVBK happens to select. Ability text prints at switch-in and
+  after banner dismissal, where rSVBK is not reliably back on bank 1, and
+  d061 in bank 2 lands inside wTempTileMap - raw tile ids, i.e. the
+  "traced <gibberish>" output. abilities_engine.asm now has bank-safe
+  wrappers (AbilityStdBattleTextbox, AbilityPrintText, AbilityBufferItemName,
+  AbilityBufferMoveName, AbilityBufferAbilityName) that pin
+  BANK(wStringBuffer1) across both the buffering and the printing, and every
+  buffered-name message in the file goes through them. Frisk additionally
+  stopped parking the item id in wNamedObjectIndexBuffer (a shared scratch
+  byte) across ~30 frames of banner animation - it carries it on the stack
+  and buffers the name after the banner, matching Polished.
+  RULE: buffer a name and print it inside the same bank-pinned pair; never
+  split them across a banner, an animation or a DelayFrames.
 - **Storm Drain**: NullificationAbilities entry (WATER -> AbsorbRaiseSpAtk),
   i.e. water immunity + SpAtk+1. Same status-move limitation as Water Absorb.
 - **Stamina / Thermal Exchange**: RunContactAbilitiesHook restructured —
