@@ -204,6 +204,89 @@ AbilityCanBeTraced::
 	pop bc
 	ret
 
+; ==== Bank-safe name buffering and printing ===============================
+; wStringBuffer1 and wNamedObjectIndexBuffer both live in banked WRAM
+; ($D000+), so every access goes through whatever rSVBK currently selects.
+; Ability messages print at points in the battle flow - switch-in, banner
+; dismissal, post-damage held item handling - where rSVBK is not guaranteed
+; to be back on wStringBuffer1's bank. When it isn't, `text_ram
+; wStringBuffer1` renders whatever sits at that address in the other bank
+; (wTempTileMap, i.e. raw tile ids), which is the "traced <gibberish>" bug.
+;
+; Buffer names with AbilityBuffer*Name and print them with
+; AbilityStdBattleTextbox / AbilityPrintText so the bank is pinned across
+; both halves. Never split a buffer/print pair across a banner or an
+; animation: wNamedObjectIndexBuffer is a shared scratch byte.
+
+AbilityStdBattleTextbox::
+; hl = text. As StdBattleTextbox, with wStringBuffer1's WRAM bank selected.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
+	call StdBattleTextbox
+	pop af
+	ldh [rSVBK], a
+	ret
+
+AbilityPrintText::
+; hl = text. As PrintText, with wStringBuffer1's WRAM bank selected.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
+	call PrintText
+	pop af
+	ldh [rSVBK], a
+	ret
+
+AbilityBufferItemName::
+; a = item id. Its name -> wStringBuffer1. Returns de = wStringBuffer1.
+; Preserves bc and hl, as GetItemName does.
+	push bc
+	ld b, a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
+	ld a, b
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	ret
+
+AbilityBufferMoveName::
+; a = move id. Its name -> wStringBuffer1. Returns de = wStringBuffer1.
+; Preserves bc and hl, as GetMoveName does.
+	push bc
+	ld b, a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
+	ld a, b
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	ret
+
+AbilityBufferAbilityName::
+; b = ability constant. Its name -> wStringBuffer1.
+; GetAbilityName selects the bank for its own copy, but restores whatever
+; was selected before; pin it here so the print that follows agrees.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wStringBuffer1)
+	ldh [rSVBK], a
+	farcall GetAbilityName
+	pop af
+	ldh [rSVBK], a
+	ret
+
 ; ==== Activation framework ================================================
 
 ShowAbilityBannerBrief::
@@ -401,9 +484,9 @@ TraceAbility:
 	pop af
 	push af
 	ld b, a
-	farcall GetAbilityName
+	call AbilityBufferAbilityName
 	ld hl, TraceActivationText
-	call StdBattleTextbox
+	call AbilityStdBattleTextbox
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVarAddr
 	pop af
@@ -520,9 +603,9 @@ IntimidateAbility:
 	call BannerHoldAndDismiss
 	pop af
 	ld b, a
-	farcall GetAbilityName
+	call AbilityBufferAbilityName
 	ld hl, IntimidateResistedText
-	jp StdBattleTextbox
+	jp AbilityStdBattleTextbox
 
 .intimidate_ok
 	call ShowAbilityBannerBrief
@@ -552,11 +635,15 @@ FriskAbility:
 .got_item
 	and a
 	ret z ; no item
-	ld [wNamedObjectIndexBuffer], a
+	; Carry the item on the stack, not in wNamedObjectIndexBuffer: that is a
+	; shared scratch byte and the banner runs ~30 frames of animation before
+	; we get back here. Buffer the name after the banner, like Polished does.
+	push af
 	call ShowAbilityBannerBrief
-	call GetItemName
+	pop af
+	call AbilityBufferItemName
 	ld hl, FriskedItemText
-	jp StdBattleTextbox
+	jp AbilityStdBattleTextbox
 
 ScreenCleanerAbility:
 	; only Reflect/Light Screen count - the screens bytes also hold
@@ -1439,8 +1526,7 @@ CheckPlayerAssaultVestMove_Core:
 	cp HELD_ASSAULT_VEST
 	jr nz, .ok
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	pop bc
 	ld l, b
 	ld a, MOVE_CATEGORY
@@ -1466,8 +1552,7 @@ CheckPlayerChoiceLock_Core:
 	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
 	jr nc, .not_choice
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	pop bc
 	ld a, [wPlayerChoiceLockedMove]
 	and a
@@ -2889,12 +2974,11 @@ CheckAirBalloonImmunity:
 	scf
 	ret nz
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	ld a, 1
 	ld [wAttackMissed], a
 	ld hl, AirBalloonImmuneText
-	call StdBattleTextbox
+	call AbilityStdBattleTextbox
 	scf
 	ret
 .no
@@ -2991,11 +3075,10 @@ AirBalloonPop:
 	cp HELD_AIR_BALLOON
 	ret nz
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	callfar ConsumeHeldItem
 	ld hl, AirBalloonPoppedText
-	jp StdBattleTextbox
+	jp AbilityStdBattleTextbox
 
 WeaknessPolicyBoost:
 	call OppHasFainted
@@ -3009,12 +3092,11 @@ WeaknessPolicyBoost:
 	cp HELD_WEAKNESS_POLICY
 	ret nz
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	callfar ConsumeHeldItem
 	call SwitchTurn
 	ld hl, BattleText_UsersStringBuffer1Activated
-	call StdBattleTextbox
+	call AbilityStdBattleTextbox
 	; One stat up anim + "ATTACK and SPCL.ATK sharply rose!"
 	farcall DeferStatMessages_Core
 	xor a
@@ -3043,13 +3125,12 @@ RockyHelmetDamage:
 	cp HELD_ROCKY_HELMET
 	ret nz
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetItemName
+	call AbilityBufferItemName
 	ld d, 6
 	call GetUserMaxHPFraction
 	farcall SubtractHPFromUser
 	ld hl, RockyHelmetText
-	jp StdBattleTextbox
+	jp AbilityStdBattleTextbox
 
 GetUserMaxHPFraction:
 ; d = divisor. Returns bc = max(1, max HP / d).
@@ -3439,11 +3520,10 @@ CursedBodyEffect:
 	; attacker, so print it from the defender's perspective)
 	call ShowEnemyAbilityBannerBrief
 	ld a, b
-	ld [wNamedObjectIndexBuffer], a
-	call GetMoveName
+	call AbilityBufferMoveName
 	call SwitchTurn
 	ld hl, WasDisabledText
-	call StdBattleTextbox
+	call AbilityStdBattleTextbox
 	jp SwitchTurn
 
 _RunDefenderContactAbilities:
@@ -4041,14 +4121,14 @@ AbilityCapCore::
 	; announce the new ability
 	ld b, a
 	call GetAbility
-	farcall GetAbilityName
+	call AbilityBufferAbilityName
 	push de
 	ld de, SFX_FULL_HEAL
 	call PlaySFX
 	call WaitSFX
 	pop de
 	ld hl, .BecameText
-	jp PrintText
+	jp AbilityPrintText
 
 .no_effect
 	ld hl, .NoEffectText
