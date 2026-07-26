@@ -214,12 +214,12 @@ FishGroups:
 	dbbw 100 percent,     15, OMANYTE
 .Safari_Good:
 	dbbw  40 percent,     25, QWILFISH
-	dbbw  70 percent,     25, WOOPER_PALDEAN
-	dbbw 100 percent,     25, SLOWPOKE_GALARIAN
+	dbbw  70 percent,     25, GOLDEEN
+	dbbw 100 percent,     25, CORSOLA_GALARIAN
 .Safari_Super:
 	dbbw  40 percent,     35, QWILFISH
-	dbbw  70 percent,     35, WOOPER_PALDEAN
-	dbbw 100 percent,     35, SLOWPOKE_GALARIAN
+	dbbw  70 percent,     35, SEAKING
+	dbbw 100 percent,     35, OVERQWIL
 
 TimeFishGroups:
 	;     day             nite
