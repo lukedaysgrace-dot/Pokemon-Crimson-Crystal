@@ -80,6 +80,9 @@ Route29_Blocks:
 Route37_Blocks:
 	INCBIN "maps/Route37.ablk"
 
+SilentCrypt_Blocks:
+	INCBIN "maps/SilentCrypt.ablk"
+
 LavenderTown_Blocks:
 	INCBIN "maps/LavenderTown.ablk"
 
