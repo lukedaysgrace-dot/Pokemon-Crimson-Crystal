@@ -66,6 +66,70 @@ endr
 	call ByteFill
 	ret
 
+CelebiFlybyEvent:
+; Celebi drifts across the screen from right to left, once, then leaves.
+; Unlike CelebiShrineEvent this does not set up a battle, and it holds a
+; single two-frame flap (celebi/1.2bpp and 2.2bpp) the whole way across
+; instead of cycling all four gfx frames.
+	call DelayFrame
+	ld a, [wVramState]
+	push af
+	xor a
+	ld [wVramState], a
+	call LoadCelebiGFX
+	depixel 14, 23, 0, 0 ; two tiles below the player, off the right edge
+	ld a, SPRITE_ANIM_INDEX_CELEBI
+	call _InitSpriteAnimStruct
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
+	add hl, bc
+	ld [hl], SPECIALCELEBIEVENT_CELEBI
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	add hl, bc
+	ld [hl], SPRITE_ANIM_SEQ_CELEBI_FLYBY
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	add hl, bc
+	ld a, SPRITE_ANIM_FRAMESET_CELEBI_FLYBY
+	call ReinitSpriteAnimFrame
+	ld a, 61 ; frame count: 61 * 3px == the full 184px sweep
+	ld [wFrameCounter], a
+.loop
+	ld a, [wJumptableIndex]
+	bit 7, a
+	jr nz, .done
+	push bc
+	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
+	ld [wCurSpriteOAMAddr], a
+	farcall DoNextFrameForAllSprites
+	call CelebiEvent_CountDown
+	ld c, 2
+	call DelayFrames
+	pop bc
+	jr .loop
+
+.done
+	pop af
+	ld [wVramState], a
+	call CelebiShrineEvent.RestorePlayerSprite_DespawnLeaves
+	ret
+
+UpdateCelebiFlybyPosition:
+; Slide left a few pixels per frame, bobbing gently up and down.
+	ld hl, SPRITEANIMSTRUCT_XCOORD
+	add hl, bc
+	ld a, [hl]
+	sub 3
+	ld [hl], a
+	ld hl, SPRITEANIMSTRUCT_0E
+	add hl, bc
+	ld a, [hl]
+	inc [hl]
+	ld d, 5
+	call CelebiEvent_Cosine
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	ret
+
 LoadCelebiGFX:
 	farcall ClearSpriteAnims
 	ld de, SpecialCelebiLeafGFX

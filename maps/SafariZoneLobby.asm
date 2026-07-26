@@ -158,7 +158,7 @@ SafariZoneLobbyTurnRightMovement:
 	step_end
 
 SafariZoneLobbyOfficerStopText:
-	text "OFFICER: Halt!"
+	text "OFFICER: Welcome!"
 
 	para "Beyond this gate"
 	line "lies the SAFARI"
@@ -173,6 +173,13 @@ SafariZoneLobbyOfficerStopText:
 SafariZoneLobbyPaidText:
 	text "OFFICER: Thank"
 	line "you very much!"
+
+	para "#MON that were"
+	line "once extinct have"
+	cont "even managed to"
+
+	para "thrive in our"
+	line "preserve!"
 
 	para "Watch your step"
 	line "out there, and"
