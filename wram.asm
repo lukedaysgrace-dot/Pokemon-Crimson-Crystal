@@ -1609,7 +1609,7 @@ wOBP1:: db
 
 wNumHits:: db
 
-	ds 1
+wSilentCryptPulseTimer:: db ; reclaimed padding byte; see AnimateSilentCryptLights
 
 wOptions:: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
@@ -2718,8 +2718,10 @@ wFastShipB1FSceneID::                             db ; d9bd
 wMountMoonSquareSceneID::                         db ; d9be
 wMobileTradeRoomSceneID::                         db ; d9bf
 wMobileBattleRoomSceneID::                        db ; d9c0
+wSilentCryptSceneID::                             db
+wGravekeepersHouseSceneID::                       db
 
-	ds 49
+	ds 47
 
 ; fight counts
 wJackFightCount::    db ; d9f2
@@ -2752,7 +2754,7 @@ wParryFightCount::   db
 wErinFightCount::    db
 ; da0e
 
-	ds 86 ; trimmed for expanded Pokedex caught/seen flag arrays
+	ds 82 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d

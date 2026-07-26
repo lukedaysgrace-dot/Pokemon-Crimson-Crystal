@@ -244,6 +244,7 @@ ENDM
 	map_const SAFARI_ZONE_LOBBY,                           10,  9 ; 18
 	map_const SAFARI_ZONE,                                 20, 18 ; 19
 	map_const SILENT_CRYPT,                                10,  9 ; 20
+	map_const GRAVEKEEPERS_HOUSE,                           4,  4 ; 21
 
 	newgroup                                                      ; 11
 

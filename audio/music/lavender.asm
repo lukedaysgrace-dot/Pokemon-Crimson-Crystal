@@ -1,3 +1,9 @@
+Music_Lavender:
+	musicheader 4, 1, Music_Lavender_Ch1
+	musicheader 1, 2, Music_Lavender_Ch2
+	musicheader 1, 3, Music_Lavender_Ch3
+	musicheader 1, 4, Music_Lavender_Ch4
+
 Music_Lavender_Ch1::
 	tempo 152
 	volume 7, 7

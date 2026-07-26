@@ -111,6 +111,7 @@
 	const MUSIC_CRYSTAL_BATTLE                ; 68
 	const MUSIC_MAHOGANY_TOWN                 ; 69
 	const MUSIC_ROUTE_38_39                   ; 6a
+	const MUSIC_LAVENDER                      ; 6b
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64

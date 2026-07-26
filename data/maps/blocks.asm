@@ -83,6 +83,9 @@ Route37_Blocks:
 SilentCrypt_Blocks:
 	INCBIN "maps/SilentCrypt.ablk"
 
+GravekeepersHouse_Blocks:
+	INCBIN "maps/GravekeepersHouse.ablk"
+
 LavenderTown_Blocks:
 	INCBIN "maps/LavenderTown.ablk"
 
