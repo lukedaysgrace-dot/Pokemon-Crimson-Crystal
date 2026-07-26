@@ -5,6 +5,8 @@ scene_var: MACRO
 ENDM
 
 MapScenes::
+	scene_var SILENT_CRYPT,                                wSilentCryptSceneID
+	scene_var GRAVEKEEPERS_HOUSE,                          wGravekeepersHouseSceneID
 	scene_var POKECENTER_2F,                               wPokecenter2FSceneID
 	scene_var TRADE_CENTER,                                wTradeCenterSceneID
 	scene_var COLOSSEUM,                                   wColosseumSceneID
