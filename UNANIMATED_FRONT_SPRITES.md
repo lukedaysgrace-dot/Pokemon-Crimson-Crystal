@@ -1,6 +1,6 @@
 # Pokémon with single-frame front sprites
 
-68 of 480 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
+67 of 480 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
 their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than a stacked sheet.
 
 **How this was determined:** a front sprite sheet's extra frames are the only thing
@@ -8,7 +8,7 @@ their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than 
 animation data that references `frame 0` and nothing else, in both files — so the PNG is one
 frame tall. All other 412 folders reference at least one higher frame.
 
-## Alphabetical (68)
+## Alphabetical (67)
 
 | # | Folder | Pokémon |
 |---|--------|---------|
@@ -55,31 +55,30 @@ frame tall. All other 412 folders reference at least one higher frame.
 | 41 | `morgrem` | Morgrem |
 | 42 | `munchlax` | Munchlax |
 | 43 | `numel` | Numel |
-| 44 | `orstryx` | Orstryx |
-| 45 | `pawniard` | Pawniard |
-| 46 | `rampardos` | Rampardos |
-| 47 | `riolu` | Riolu |
-| 48 | `scrafty` | Scrafty |
-| 49 | `scraggy` | Scraggy |
-| 50 | `sealeo` | Sealeo |
-| 51 | `shieldon` | Shieldon |
-| 52 | `shroomish` | Shroomish |
-| 53 | `snover` | Snover |
-| 54 | `spheal` | Spheal |
-| 55 | `spoink` | Spoink |
-| 56 | `timburr` | Timburr |
-| 57 | `tinkatink` | Tinkatink |
-| 58 | `tinkaton` | Tinkaton |
-| 59 | `tinkatuff` | Tinkatuff |
-| 60 | `toxicroak` | Toxicroak |
-| 61 | `trapinch` | Trapinch |
-| 62 | `tsareena` | Tsareena |
-| 63 | `tyrantrum` | Tyrantrum |
-| 64 | `tyrunt` | Tyrunt |
-| 65 | `vibrava` | Vibrava |
-| 66 | `vikavolt` | Vikavolt |
-| 67 | `walrein` | Walrein |
-| 68 | `watu` | Watu |
+| 44 | `pawniard` | Pawniard |
+| 45 | `rampardos` | Rampardos |
+| 46 | `riolu` | Riolu |
+| 47 | `scrafty` | Scrafty |
+| 48 | `scraggy` | Scraggy |
+| 49 | `sealeo` | Sealeo |
+| 50 | `shieldon` | Shieldon |
+| 51 | `shroomish` | Shroomish |
+| 52 | `snover` | Snover |
+| 53 | `spheal` | Spheal |
+| 54 | `spoink` | Spoink |
+| 55 | `timburr` | Timburr |
+| 56 | `tinkatink` | Tinkatink |
+| 57 | `tinkaton` | Tinkaton |
+| 58 | `tinkatuff` | Tinkatuff |
+| 59 | `toxicroak` | Toxicroak |
+| 60 | `trapinch` | Trapinch |
+| 61 | `tsareena` | Tsareena |
+| 62 | `tyrantrum` | Tyrantrum |
+| 63 | `tyrunt` | Tyrunt |
+| 64 | `vibrava` | Vibrava |
+| 65 | `vikavolt` | Vikavolt |
+| 66 | `walrein` | Walrein |
+| 67 | `watu` | Watu |
 
 ## Grouped by family (handy for batch spriting)
 
@@ -121,10 +120,10 @@ frame tall. All other 412 folders reference at least one higher frame.
 
 **Standalone**
 
-- Munchlax, Orstryx, Watu
+- Munchlax, Watu
 
 ## Verification notes
 
 - Counts cross-checked: 480 folders with `anim.asm`; 411 reference `frame 1-9`; 1
-  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 68.
-- `anim_idle.asm` for all 68 folders was also checked — none reference a frame above 0.
+  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 67.
+- `anim_idle.asm` for all 67 folders was also checked — none reference a frame above 0.

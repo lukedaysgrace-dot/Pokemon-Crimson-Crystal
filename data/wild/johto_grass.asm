@@ -1230,11 +1230,11 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, SALAZZLE
-	dbw 3, ARCHEOPS
-	dbw 3, MAWILE
-	dbw 3, NOIVERN
-	dbw 3, GALVANTULA
+	dbw 3, TORKOAL
+	dbw 3, TORKOAL
+	dbw 3, CARRACOSTA
+	dbw 3, TORKOAL
+	dbw 3, TORKOAL
 	dbw 3, BUNEARY
 	dbw 3, SENTRET
 	; nite
