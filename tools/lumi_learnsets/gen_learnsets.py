@@ -309,7 +309,6 @@ SPECIAL_SLUG = {
     "tapukoko": "tapu-koko", "wochien": "wo-chien",
     # aliases for SS-specific labels
     "drunsparce": "dudunsparce-two-segment",  # PokeAPI fallback if not in Lumi
-    "orstryx": None,   # fakemon
     "watu": None,      # fakemon
     "mesmeria": None,  # fakemon
 }
@@ -331,13 +330,6 @@ FAKEMON_OVERRIDES = {
         (12, "CONFUSION"), (16, "WING_ATTACK"), (20, "LIGHT_SCREEN"), (20, "REFLECT"),
         (24, "PSYBEAM"), (28, "FUTURE_SIGHT"), (32, "AIR_SLASH"), (36, "PSYCHIC_M"),
         (40, "ROOST"), (44, "EXTRASENSORY"),
-    ],
-    # Orstryx -- Psychic/Flying, bulky special legendary (Magic Bounce)
-    "orstryx": [
-        (1, "PECK"), (1, "CONFUSION"), (1, "LEER"), (7, "GUST"), (14, "PSYBEAM"),
-        (21, "LIGHT_SCREEN"), (21, "REFLECT"), (28, "AIR_SLASH"), (35, "ANCIENTPOWER"),
-        (42, "EXTRASENSORY"), (49, "ROOST"), (56, "PSYCHIC_M"), (63, "HURRICANE"),
-        (70, "FUTURE_SIGHT"), (77, "SKY_ATTACK"),
     ],
     # Mesmeria -- Ice/Psychic, special sweeper / mesmerist
     "mesmeria": [
