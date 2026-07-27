@@ -6,9 +6,17 @@ INCLUDE "constants.asm"
 
 ; The "Pics N" sections below are NOT pinned to banks in pokecrystal.link.
 ; Every pic is referenced by dba (bank + address), so rgblink is free to pack
-; them into whatever banks have room. To add sprites, just append to a section
-; or start a new "Pics N" one -- never add it to the linkerscript, or you'll
-; get "Sections would extend past the end of ROMX" the next time it grows.
+; them into whatever banks have room.
+;
+; TO ADD A NEW SPRITE: start a NEW section at the end of this file, following
+; the "Pics 70"/"Pics 71" pattern of one section per Pokemon. Do not append to
+; an existing section, and never list it in pokecrystal.link. The two errors
+; you get for breaking those rules are:
+;
+;   "Section 'Pics N' grew too big (max size = 0x4000 ...)"  -- rgbasm; one
+;       section exceeded 16 KB. Split it into two sections.
+;   "Sections would extend past the end of ROMX"             -- rgblink; the
+;       linkerscript pinned too much into one bank. Unpin it and let it float.
 
 SECTION "Pic Pointers", ROMX
 
@@ -181,6 +189,9 @@ PidgeottoFrontpic:   INCBIN "gfx/pokemon/pidgeotto/front.animated.2bpp.lz"
 LedybaFrontpic:      INCBIN "gfx/pokemon/ledyba/front.animated.2bpp.lz"
 GengarFrontpic:      INCBIN "gfx/pokemon/gengar/front.animated.2bpp.lz"
 OmastarFrontpic:     INCBIN "gfx/pokemon/omastar/front.animated.2bpp.lz"
+
+SECTION "Pics 7B", ROMX
+
 PiloswineFrontpic:   INCBIN "gfx/pokemon/piloswine/front.animated.2bpp.lz"
 DugtrioFrontpic:     INCBIN "gfx/pokemon/dugtrio/front.animated.2bpp.lz"
 
