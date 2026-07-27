@@ -3921,8 +3921,8 @@
       "Normal"
     ],
     "abilities": [
-      "Hustle",
-      "Guts",
+      "Frisk",
+      "Trace",
       "Technician"
     ],
     "learnset": [
@@ -19432,38 +19432,43 @@
     "learnset": [
       {
         "level": 1,
-        "const": "LEER",
-        "move": "Leer"
+        "const": "BUG_BUZZ",
+        "move": "Bug Buzz"
       },
       {
         "level": 1,
-        "const": "SCRATCH",
-        "move": "Scratch"
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 4,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
       },
       {
         "level": 5,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
+        "level": 6,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
+      },
+      {
+        "level": 7,
+        "const": "EXPLOSION",
+        "move": "Explosion"
       },
       {
         "level": 8,
-        "const": "MUD_SLAP",
-        "move": "Mud Slap"
+        "const": "DRACO_METEOR",
+        "move": "Draco Meteor"
       },
       {
-        "level": 11,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 14,
-        "const": "SCARY_FACE",
-        "move": "Scary Face"
-      },
-      {
-        "level": 17,
-        "const": "ICE_FANG",
-        "move": "Ice Fang"
+        "level": 9,
+        "const": "OCTAZOOKA",
+        "move": "Octazooka"
       },
       {
         "level": 20,
@@ -44680,6 +44685,112 @@
     "sprite": "assets/pokemon/munchlax.png"
   },
   {
+    "const": "TORKOAL",
+    "name": "Torkoal",
+    "number": 410,
+    "stats": {
+      "HP": 70,
+      "Attack": 85,
+      "Defense": 140,
+      "Speed": 20,
+      "Sp. Atk": 85,
+      "Sp. Def": 70
+    },
+    "types": [
+      "Fire"
+    ],
+    "abilities": [
+      "White Smoke",
+      "Drought",
+      "Shell Armor"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 1,
+        "const": "SMOKESCREEN",
+        "move": "Smokescreen"
+      },
+      {
+        "level": 4,
+        "const": "RAPID_SPIN",
+        "move": "Rapid Spin"
+      },
+      {
+        "level": 7,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 12,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 14,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 17,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 20,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 23,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 28,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 31,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 36,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 39,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 42,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      },
+      {
+        "level": 47,
+        "const": "HEAT_CRASH",
+        "move": "Heat Crash"
+      },
+      {
+        "level": 50,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/torkoal.png"
+  },
+  {
     "const": "RATTATA_ALOLAN",
     "name": "Rattata",
     "number": 411,
@@ -50294,5 +50405,1692 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/seviper.png"
+  },
+  {
+    "const": "SHUPPET",
+    "name": "Shuppet",
+    "number": 462,
+    "stats": {
+      "HP": 44,
+      "Attack": 75,
+      "Defense": 35,
+      "Speed": 45,
+      "Sp. Atk": 63,
+      "Sp. Def": 33
+    },
+    "types": [
+      "Ghost"
+    ],
+    "abilities": [
+      "Insomnia",
+      "Frisk",
+      "Cursed Body"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 4,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 8,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 11,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 15,
+        "const": "SPITE",
+        "move": "Spite"
+      },
+      {
+        "level": 18,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 22,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 25,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 29,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 32,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 36,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 39,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 43,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 46,
+        "const": "DESTINY_BOND",
+        "move": "Destiny Bond"
+      },
+      {
+        "level": 50,
+        "const": "TRICK",
+        "move": "Trick"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 37, BANETTE"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/shuppet.png"
+  },
+  {
+    "const": "BANETTE",
+    "name": "Banette",
+    "number": 463,
+    "stats": {
+      "HP": 64,
+      "Attack": 115,
+      "Defense": 65,
+      "Speed": 65,
+      "Sp. Atk": 83,
+      "Sp. Def": 63
+    },
+    "types": [
+      "Ghost"
+    ],
+    "abilities": [
+      "Insomnia",
+      "Frisk",
+      "Cursed Body"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 1,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 1,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
+        "level": 4,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 8,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 11,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 15,
+        "const": "SPITE",
+        "move": "Spite"
+      },
+      {
+        "level": 18,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 22,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 25,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 29,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 32,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 37,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
+        "level": 41,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 45,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 49,
+        "const": "DESTINY_BOND",
+        "move": "Destiny Bond"
+      },
+      {
+        "level": 53,
+        "const": "TRICK",
+        "move": "Trick"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/banette.png"
+  },
+  {
+    "const": "ARCHEN",
+    "name": "Archen",
+    "number": 464,
+    "stats": {
+      "HP": 55,
+      "Attack": 112,
+      "Defense": 45,
+      "Speed": 70,
+      "Sp. Atk": 74,
+      "Sp. Def": 45
+    },
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "abilities": [
+      "Reckless",
+      "Keen Eye"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 4,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 8,
+        "const": "DOUBLE_TEAM",
+        "move": "Double Team"
+      },
+      {
+        "level": 12,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 15,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 19,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 23,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 26,
+        "const": "ENDURE",
+        "move": "Endure"
+      },
+      {
+        "level": 30,
+        "const": "ACROBATICS",
+        "move": "Acrobatics"
+      },
+      {
+        "level": 34,
+        "const": "DRAGONBREATH",
+        "move": "Dragonbreath"
+      },
+      {
+        "level": 37,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 41,
+        "const": "U_TURN",
+        "move": "U-turn"
+      },
+      {
+        "level": 45,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 48,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 52,
+        "const": "THRASH",
+        "move": "Thrash"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 37, ARCHEOPS"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/archen.png"
+  },
+  {
+    "const": "ARCHEOPS",
+    "name": "Archeops",
+    "number": 465,
+    "stats": {
+      "HP": 75,
+      "Attack": 140,
+      "Defense": 65,
+      "Speed": 110,
+      "Sp. Atk": 112,
+      "Sp. Def": 65
+    },
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "abilities": [
+      "Reckless",
+      "Keen Eye"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 1,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 1,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 4,
+        "const": "ROCK_THROW",
+        "move": "Rock Throw"
+      },
+      {
+        "level": 8,
+        "const": "DOUBLE_TEAM",
+        "move": "Double Team"
+      },
+      {
+        "level": 12,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 15,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 19,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 23,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 26,
+        "const": "ENDURE",
+        "move": "Endure"
+      },
+      {
+        "level": 30,
+        "const": "ACROBATICS",
+        "move": "Acrobatics"
+      },
+      {
+        "level": 34,
+        "const": "DRAGONBREATH",
+        "move": "Dragonbreath"
+      },
+      {
+        "level": 39,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 45,
+        "const": "U_TURN",
+        "move": "U-turn"
+      },
+      {
+        "level": 51,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 57,
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
+        "level": 63,
+        "const": "STONE_EDGE",
+        "move": "Stone Edge"
+      },
+      {
+        "level": 69,
+        "const": "THRASH",
+        "move": "Thrash"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/archeops.png"
+  },
+  {
+    "const": "TIRTOUGA",
+    "name": "Tirtouga",
+    "number": 466,
+    "stats": {
+      "HP": 54,
+      "Attack": 78,
+      "Defense": 103,
+      "Speed": 22,
+      "Sp. Atk": 53,
+      "Sp. Def": 45
+    },
+    "types": [
+      "Water",
+      "Rock"
+    ],
+    "abilities": [
+      "Solid Rock",
+      "Sturdy",
+      "Swift Swim"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 4,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 8,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 12,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 15,
+        "const": "AQUA_JET",
+        "move": "Aqua Jet"
+      },
+      {
+        "level": 19,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 23,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 26,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 30,
+        "const": "SHELL_SMASH",
+        "move": "Shell Smash"
+      },
+      {
+        "level": 34,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 37,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 41,
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "level": 45,
+        "const": "HYDRO_PUMP",
+        "move": "Hydro Pump"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 37, CARRACOSTA"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/tirtouga.png"
+  },
+  {
+    "const": "CARRACOSTA",
+    "name": "Carracosta",
+    "number": 467,
+    "stats": {
+      "HP": 74,
+      "Attack": 108,
+      "Defense": 133,
+      "Speed": 32,
+      "Sp. Atk": 83,
+      "Sp. Def": 65
+    },
+    "types": [
+      "Water",
+      "Rock"
+    ],
+    "abilities": [
+      "Solid Rock",
+      "Sturdy",
+      "Swift Swim"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WATER_GUN",
+        "move": "Water Gun"
+      },
+      {
+        "level": 1,
+        "const": "WITHDRAW",
+        "move": "Withdraw"
+      },
+      {
+        "level": 1,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 1,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 4,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 8,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 12,
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "level": 15,
+        "const": "AQUA_JET",
+        "move": "Aqua Jet"
+      },
+      {
+        "level": 19,
+        "const": "ANCIENTPOWER",
+        "move": "Ancientpower"
+      },
+      {
+        "level": 23,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 26,
+        "const": "WATER_PULSE",
+        "move": "Water Pulse"
+      },
+      {
+        "level": 30,
+        "const": "SHELL_SMASH",
+        "move": "Shell Smash"
+      },
+      {
+        "level": 36,
+        "const": "AQUA_TAIL",
+        "move": "Aqua Tail"
+      },
+      {
+        "level": 41,
+        "const": "ROCK_SLIDE",
+        "move": "Rock Slide"
+      },
+      {
+        "level": 47,
+        "const": "LIQUIDATION",
+        "move": "Liquidation"
+      },
+      {
+        "level": 53,
+        "const": "STONE_EDGE",
+        "move": "Stone Edge"
+      },
+      {
+        "level": 59,
+        "const": "HYDRO_PUMP",
+        "move": "Hydro Pump"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/carracosta.png"
+  },
+  {
+    "const": "LITWICK",
+    "name": "Litwick",
+    "number": 468,
+    "stats": {
+      "HP": 50,
+      "Attack": 30,
+      "Defense": 55,
+      "Speed": 20,
+      "Sp. Atk": 65,
+      "Sp. Def": 55
+    },
+    "types": [
+      "Ghost",
+      "Fire"
+    ],
+    "abilities": [
+      "Flash Fire",
+      "Flame Body",
+      "Cursed Body"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 3,
+        "const": "MINIMIZE",
+        "move": "Minimize"
+      },
+      {
+        "level": 5,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 7,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 13,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 16,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 20,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 24,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 28,
+        "const": "PAIN_SPLIT",
+        "move": "Pain Split"
+      },
+      {
+        "level": 33,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 38,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      },
+      {
+        "level": 43,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 48,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 41, LAMPENT"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/litwick.png"
+  },
+  {
+    "const": "LAMPENT",
+    "name": "Lampent",
+    "number": 469,
+    "stats": {
+      "HP": 60,
+      "Attack": 40,
+      "Defense": 60,
+      "Speed": 55,
+      "Sp. Atk": 95,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Ghost",
+      "Fire"
+    ],
+    "abilities": [
+      "Flash Fire",
+      "Flame Body",
+      "Cursed Body"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 1,
+        "const": "MINIMIZE",
+        "move": "Minimize"
+      },
+      {
+        "level": 1,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 3,
+        "const": "MINIMIZE",
+        "move": "Minimize"
+      },
+      {
+        "level": 5,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 7,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 13,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 16,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 20,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 24,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 28,
+        "const": "PAIN_SPLIT",
+        "move": "Pain Split"
+      },
+      {
+        "level": 35,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 42,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      },
+      {
+        "level": 49,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 56,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_ITEM, MOON_STONE, CHANDELURE"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/lampent.png"
+  },
+  {
+    "const": "CHANDELURE",
+    "name": "Chandelure",
+    "number": 470,
+    "stats": {
+      "HP": 60,
+      "Attack": 55,
+      "Defense": 90,
+      "Speed": 80,
+      "Sp. Atk": 145,
+      "Sp. Def": 90
+    },
+    "types": [
+      "Ghost",
+      "Fire"
+    ],
+    "abilities": [
+      "Flash Fire",
+      "Flame Body",
+      "Cursed Body"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 1,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 1,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 1,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 1,
+        "const": "HEX",
+        "move": "Hex"
+      },
+      {
+        "level": 1,
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "level": 1,
+        "const": "PAIN_SPLIT",
+        "move": "Pain Split"
+      },
+      {
+        "level": 1,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 1,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 1,
+        "const": "INFESTATION",
+        "move": "Infestation"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/chandelure.png"
+  },
+  {
+    "const": "JOLTIK",
+    "name": "Joltik",
+    "number": 471,
+    "stats": {
+      "HP": 50,
+      "Attack": 47,
+      "Defense": 50,
+      "Speed": 65,
+      "Sp. Atk": 57,
+      "Sp. Def": 50
+    },
+    "types": [
+      "Bug",
+      "Electric"
+    ],
+    "abilities": [
+      "Compound Eyes",
+      "Unnerve",
+      "Swarm"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "STRING_SHOT",
+        "move": "String Shot"
+      },
+      {
+        "level": 1,
+        "const": "LEECH_LIFE",
+        "move": "Leech Life"
+      },
+      {
+        "level": 4,
+        "const": "SPIDER_WEB",
+        "move": "Spider Web"
+      },
+      {
+        "level": 8,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 12,
+        "const": "THUNDER_WAVE",
+        "move": "Thunder Wave"
+      },
+      {
+        "level": 16,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 20,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 24,
+        "const": "BUG_BITE",
+        "move": "Bug Bite"
+      },
+      {
+        "level": 28,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 32,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 36,
+        "const": "X_SCISSOR",
+        "move": "X-Scissor"
+      },
+      {
+        "level": 40,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 44,
+        "const": "BUG_BUZZ",
+        "move": "Bug Buzz"
+      },
+      {
+        "level": 48,
+        "const": "THUNDER",
+        "move": "Thunder"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 36, GALVANTULA"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/joltik.png"
+  },
+  {
+    "const": "GALVANTULA",
+    "name": "Galvantula",
+    "number": 472,
+    "stats": {
+      "HP": 70,
+      "Attack": 77,
+      "Defense": 60,
+      "Speed": 108,
+      "Sp. Atk": 97,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Bug",
+      "Electric"
+    ],
+    "abilities": [
+      "Compound Eyes",
+      "Unnerve",
+      "Swarm"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "STRING_SHOT",
+        "move": "String Shot"
+      },
+      {
+        "level": 1,
+        "const": "LEECH_LIFE",
+        "move": "Leech Life"
+      },
+      {
+        "level": 1,
+        "const": "SPIDER_WEB",
+        "move": "Spider Web"
+      },
+      {
+        "level": 1,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 4,
+        "const": "SPIDER_WEB",
+        "move": "Spider Web"
+      },
+      {
+        "level": 8,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 12,
+        "const": "THUNDER_WAVE",
+        "move": "Thunder Wave"
+      },
+      {
+        "level": 16,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 20,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 24,
+        "const": "BUG_BITE",
+        "move": "Bug Bite"
+      },
+      {
+        "level": 28,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 32,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 38,
+        "const": "X_SCISSOR",
+        "move": "X-Scissor"
+      },
+      {
+        "level": 43,
+        "const": "VOLT_SWITCH",
+        "move": "Volt Switch"
+      },
+      {
+        "level": 48,
+        "const": "BUG_BUZZ",
+        "move": "Bug Buzz"
+      },
+      {
+        "level": 53,
+        "const": "WILD_CHARGE",
+        "move": "Wild Charge"
+      },
+      {
+        "level": 58,
+        "const": "THUNDER",
+        "move": "Thunder"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/galvantula.png"
+  },
+  {
+    "const": "MAWILE",
+    "name": "Mawile",
+    "number": 473,
+    "stats": {
+      "HP": 50,
+      "Attack": 85,
+      "Defense": 85,
+      "Speed": 50,
+      "Sp. Atk": 55,
+      "Sp. Def": 55
+    },
+    "types": [
+      "Steel",
+      "Fairy"
+    ],
+    "abilities": [
+      "Hyper Cutter",
+      "Intimidate",
+      "Sheer Force"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 6,
+        "const": "VICEGRIP",
+        "move": "Vicegrip"
+      },
+      {
+        "level": 11,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 16,
+        "const": "SWEET_SCENT",
+        "move": "Sweet Scent"
+      },
+      {
+        "level": 21,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 26,
+        "const": "FAINT_ATTACK",
+        "move": "Faint Attack"
+      },
+      {
+        "level": 31,
+        "const": "BATON_PASS",
+        "move": "Baton Pass"
+      },
+      {
+        "level": 36,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 41,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 46,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 51,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/mawile.png"
+  },
+  {
+    "const": "NOIBAT",
+    "name": "Noibat",
+    "number": 474,
+    "stats": {
+      "HP": 40,
+      "Attack": 30,
+      "Defense": 35,
+      "Speed": 55,
+      "Sp. Atk": 45,
+      "Sp. Def": 40
+    },
+    "types": [
+      "Flying",
+      "Dragon"
+    ],
+    "abilities": [
+      "Frisk",
+      "Big Pecks",
+      "Soundproof"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "ABSORB",
+        "move": "Absorb"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 5,
+        "const": "GUST",
+        "move": "Gust"
+      },
+      {
+        "level": 9,
+        "const": "SUPERSONIC",
+        "move": "Supersonic"
+      },
+      {
+        "level": 13,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 17,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 21,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 25,
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
+      },
+      {
+        "level": 29,
+        "const": "WHIRLWIND",
+        "move": "Whirlwind"
+      },
+      {
+        "level": 33,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 37,
+        "const": "ROOST",
+        "move": "Roost"
+      },
+      {
+        "level": 41,
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
+        "level": 45,
+        "const": "HURRICANE",
+        "move": "Hurricane"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 48, NOIVERN"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/noibat.png"
+  },
+  {
+    "const": "NOIVERN",
+    "name": "Noivern",
+    "number": 475,
+    "stats": {
+      "HP": 85,
+      "Attack": 70,
+      "Defense": 80,
+      "Speed": 123,
+      "Sp. Atk": 97,
+      "Sp. Def": 80
+    },
+    "types": [
+      "Flying",
+      "Dragon"
+    ],
+    "abilities": [
+      "Frisk",
+      "Big Pecks",
+      "Soundproof"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "ABSORB",
+        "move": "Absorb"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 1,
+        "const": "GUST",
+        "move": "Gust"
+      },
+      {
+        "level": 1,
+        "const": "SUPERSONIC",
+        "move": "Supersonic"
+      },
+      {
+        "level": 1,
+        "const": "DRAGON_PULSE",
+        "move": "Dragon Pulse"
+      },
+      {
+        "level": 5,
+        "const": "GUST",
+        "move": "Gust"
+      },
+      {
+        "level": 9,
+        "const": "SUPERSONIC",
+        "move": "Supersonic"
+      },
+      {
+        "level": 13,
+        "const": "WING_ATTACK",
+        "move": "Wing Attack"
+      },
+      {
+        "level": 17,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 21,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 25,
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
+      },
+      {
+        "level": 29,
+        "const": "WHIRLWIND",
+        "move": "Whirlwind"
+      },
+      {
+        "level": 33,
+        "const": "SCREECH",
+        "move": "Screech"
+      },
+      {
+        "level": 37,
+        "const": "ROOST",
+        "move": "Roost"
+      },
+      {
+        "level": 43,
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
+        "level": 49,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
+      },
+      {
+        "level": 55,
+        "const": "HURRICANE",
+        "move": "Hurricane"
+      },
+      {
+        "level": 61,
+        "const": "OUTRAGE",
+        "move": "Outrage"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/noivern.png"
+  },
+  {
+    "const": "SALANDIT",
+    "name": "Salandit",
+    "number": 476,
+    "stats": {
+      "HP": 48,
+      "Attack": 44,
+      "Defense": 40,
+      "Speed": 77,
+      "Sp. Atk": 71,
+      "Sp. Def": 40
+    },
+    "types": [
+      "Poison",
+      "Fire"
+    ],
+    "abilities": [
+      "Poison Touch",
+      "Oblivious"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "POISON_GAS",
+        "move": "Poison Gas"
+      },
+      {
+        "level": 4,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 12,
+        "const": "DOUBLESLAP",
+        "move": "Doubleslap"
+      },
+      {
+        "level": 16,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 20,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 24,
+        "const": "DRAGON_RAGE",
+        "move": "Dragon Rage"
+      },
+      {
+        "level": 28,
+        "const": "VENOSHOCK",
+        "move": "Venoshock"
+      },
+      {
+        "level": 32,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 36,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 40,
+        "const": "POISON_FANG",
+        "move": "Poison Fang"
+      },
+      {
+        "level": 44,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 48,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL_FEMALE, 33, SALAZZLE"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/salandit.png"
+  },
+  {
+    "const": "SALAZZLE",
+    "name": "Salazzle",
+    "number": 477,
+    "stats": {
+      "HP": 68,
+      "Attack": 64,
+      "Defense": 60,
+      "Speed": 117,
+      "Sp. Atk": 111,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Poison",
+      "Fire"
+    ],
+    "abilities": [
+      "Poison Touch",
+      "Oblivious"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "POISON_GAS",
+        "move": "Poison Gas"
+      },
+      {
+        "level": 1,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 1,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 4,
+        "const": "EMBER",
+        "move": "Ember"
+      },
+      {
+        "level": 8,
+        "const": "SMOG",
+        "move": "Smog"
+      },
+      {
+        "level": 12,
+        "const": "DOUBLESLAP",
+        "move": "Doubleslap"
+      },
+      {
+        "level": 16,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 20,
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "level": 24,
+        "const": "DRAGON_RAGE",
+        "move": "Dragon Rage"
+      },
+      {
+        "level": 28,
+        "const": "VENOSHOCK",
+        "move": "Venoshock"
+      },
+      {
+        "level": 32,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
+        "level": 36,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 40,
+        "const": "POISON_FANG",
+        "move": "Poison Fang"
+      },
+      {
+        "level": 45,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "level": 50,
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "level": 55,
+        "const": "DRAGON_PULSE",
+        "move": "Dragon Pulse"
+      },
+      {
+        "level": 60,
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/salazzle.png"
   }
 ]
