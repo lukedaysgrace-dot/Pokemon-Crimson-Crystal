@@ -307,9 +307,9 @@ ToxapexFrames:  INCLUDE "gfx/pokemon/toxapex/frames.asm"
 ZangooseFrames:  INCLUDE "gfx/pokemon/zangoose/frames.asm"
 SeviperFrames:  INCLUDE "gfx/pokemon/seviper/frames.asm"
 
-; "Pic Animations 4" is pinned to bank $5b in pokecrystal.link and is full.
-; Frames are reached via dba in frame_pointers.asm, so this floating section
-; can be placed in any bank with room.
+; Frames are reached via dba in frame_pointers.asm, so these sections float and
+; rgblink packs them into any bank with room. If one fills up, just start a new
+; "Pic Animations N" section here -- do NOT pin it in pokecrystal.link.
 SECTION "Pic Animations 5", ROMX
 
 ShuppetFrames:  INCLUDE "gfx/pokemon/shuppet/frames.asm"

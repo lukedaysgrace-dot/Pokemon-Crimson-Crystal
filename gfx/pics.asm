@@ -4,6 +4,12 @@ INCLUDE "constants.asm"
 ; PokemonPicPointers and UnownPicPointers are assumed to start at the same
 ; address, but in different banks. This is enforced in pokecrystal.link.
 
+; The "Pics N" sections below are NOT pinned to banks in pokecrystal.link.
+; Every pic is referenced by dba (bank + address), so rgblink is free to pack
+; them into whatever banks have room. To add sprites, just append to a section
+; or start a new "Pics N" one -- never add it to the linkerscript, or you'll
+; get "Sections would extend past the end of ROMX" the next time it grows.
+
 SECTION "Pic Pointers", ROMX
 
 INCLUDE "data/pokemon/pic_pointers.asm"

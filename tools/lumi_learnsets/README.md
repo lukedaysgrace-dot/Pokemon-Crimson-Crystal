@@ -7,7 +7,7 @@ Two scripts, same approach and shared download cache:
   rewriting the `db TYPE1, TYPE2 ; type` line in every
   `data/pokemon/base_stats/*.asm`. Species/forms in Luminescent use its
   PersonalTable typing; anything not in Luminescent falls back to PokeAPI;
-  fakemon (Watu, Orstryx, Mesmeria) are left unchanged. Run it the same way:
+  fakemon (Watu, Mesmeria) are left unchanged. Run it the same way:
 
   ```bash
   python3 tools/lumi_learnsets/gen_types.py --dry-run   # shows every X/Y -> X/Y change
@@ -38,7 +38,7 @@ moves that exist in this ROM. Evolutions are never touched — only the
 2. **Not in Luminescent** (Gen 5–9 lines, evolved regional-only mons like
    Perrserker/Clodsire/Kleavor, etc.) → uses the canonical level-up learnset
    from the newest mainline game it appears in (via PokeAPI).
-3. **Fakemon** (Watu, Orstryx, Mesmeria) → hand-authored learnsets that fit
+3. **Fakemon** (Watu, Mesmeria) → hand-authored learnsets that fit
    their types/stats (see `FAKEMON_OVERRIDES` in the script).
 
 Moves that don't exist in `constants/move_constants.asm` are dropped
