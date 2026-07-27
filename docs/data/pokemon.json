@@ -20249,9 +20249,7 @@
         "move": "Hurricane"
       }
     ],
-    "evolutions": [
-      "dbbw EVOLVE_LEVEL, 36, ORSTRYX"
-    ],
+    "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/noctowl.png"
   },
@@ -44680,108 +44678,6 @@
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/munchlax.png"
-  },
-  {
-    "const": "ORSTRYX",
-    "name": "Orstryx",
-    "number": 410,
-    "stats": {
-      "HP": 110,
-      "Attack": 50,
-      "Defense": 70,
-      "Speed": 75,
-      "Sp. Atk": 91,
-      "Sp. Def": 104
-    },
-    "types": [
-      "Psychic",
-      "Flying"
-    ],
-    "abilities": [
-      "Pressure",
-      "Keen Eye",
-      "Magic Bounce"
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "PECK",
-        "move": "Peck"
-      },
-      {
-        "level": 1,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 7,
-        "const": "GUST",
-        "move": "Gust"
-      },
-      {
-        "level": 14,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 21,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
-      },
-      {
-        "level": 21,
-        "const": "REFLECT",
-        "move": "Reflect"
-      },
-      {
-        "level": 28,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
-      },
-      {
-        "level": 35,
-        "const": "ANCIENTPOWER",
-        "move": "Ancientpower"
-      },
-      {
-        "level": 42,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 49,
-        "const": "ROOST",
-        "move": "Roost"
-      },
-      {
-        "level": 56,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "level": 63,
-        "const": "HURRICANE",
-        "move": "Hurricane"
-      },
-      {
-        "level": 70,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 77,
-        "const": "SKY_ATTACK",
-        "move": "Sky Attack"
-      }
-    ],
-    "evolutions": [],
-    "egg_moves": [],
-    "sprite": "assets/pokemon/orstryx.png"
   },
   {
     "const": "RATTATA_ALOLAN",
