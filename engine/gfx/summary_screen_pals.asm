@@ -133,15 +133,34 @@ LoadSummaryScreenPals::
 	dw .OrangeSetup
 
 .BaseAttrs:
+	; While a mon animation is running, its frames live in VRAM bank 1
+	; and PokeAnim_SetVBank1 has flagged the pokepic cells accordingly
+	; (attribute bit 3). Rebuilding the attribute map from scratch would
+	; drop that flag, so the tilemap would keep pointing at animation
+	; frames while the PPU fetched them from bank 0 -- which is what
+	; corrupted the sprite when a page was switched mid-animation.
+	; Carry the flag over, but only if the animation both owns the pic
+	; (wcf64 bit 6) and has actually switched banks already.
+	hlcoord 0, 0, wAttrMap
+	ld a, [hl]
+	ld e, a
+	ld a, [wcf64]
+	rrca ; bit 6 -> bit 5
+	rrca ; -> bit 4
+	rrca ; -> bit 3
+	and e
+	and 1 << 3
+	or $1 ; pokepic palette
+	ld e, a
 	; everything defaults to palette 0
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	; pokepic area keeps the mon palette
+	; pokepic area keeps the mon palette (and the VRAM bank flag)
 	hlcoord 0, 0, wAttrMap
 	lb bc, 7, 7
-	ld a, $1
+	ld a, e
 	call .FillAttrBox
 	; side panel
 	hlcoord 7, 1, wAttrMap

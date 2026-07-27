@@ -138,20 +138,33 @@ StatsScreen_WaitAnim:
 	bit 6, [hl]
 	jr nz, .try_anim
 	bit 5, [hl]
-	jr nz, .finish
+	jr nz, .page_transfer
 	call DelayFrame
 	ret
 
 .try_anim
 	farcall SetUpPokeAnim
-	jr nc, .finish
+	jr nc, .check_page
 	ld hl, wcf64
 	res 6, [hl]
-.finish
+.check_page
+	ld hl, wcf64
+	bit 5, [hl]
+	jr nz, .page_transfer
+	; A plain animation step only ever rewrites the tilemap; the anim
+	; engine pushes the attribute map itself when it flips VRAM banks.
+	; Each HDMA transfer costs a frame, so sending the attribute map
+	; here too would make every step take two frames -- that is what
+	; made the menu animation run at half the speed of the battle one.
+	farcall HDMATransferTileMapToWRAMBank3
+	ret
+
+.page_transfer
+	; A page (re)load changed both maps: transfer tiles and attributes
+	; together so the switch lands in a single frame instead of the
+	; colors changing first.
 	ld hl, wcf64
 	res 5, [hl]
-	; transfer tiles and attributes together so page switches
-	; land in a single frame instead of colors changing first
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
