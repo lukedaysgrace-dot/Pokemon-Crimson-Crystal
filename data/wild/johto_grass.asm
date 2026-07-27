@@ -56,7 +56,7 @@ JohtoGrassWildMons:
 	dbw 4, ZUBAT
 	dbw 6, MURKROW
 	dbw 5, HOOTHOOT
-	dbw 5, GOLETT
+	dbw 5, SHUPPET
 
 	map_id TIN_TOWER_2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -291,14 +291,14 @@ JohtoGrassWildMons:
 	dbw 14, GROWLITHE
 	dbw 15, NUMEL
 	dbw 15, SIZZLIPEDE
-	dbw 15, LARVESTA
+	dbw 15, TORKOAL
 	; nite
 	dbw 13, HOUNDOUR
 	dbw 14, KOFFING
 	dbw 15, GASTLY
 	dbw 14, DRIFLOON
 	dbw 15, VULPIX
-	dbw 15, GASTLY
+	dbw 15, LITWICK
 	dbw 15, HOUNDOUR
 
 	map_id BURNED_TOWER_B1F
@@ -313,19 +313,19 @@ JohtoGrassWildMons:
 	dbw 16, MAGBY
 	; day
 	dbw 14, CHARCADET
-	dbw 14, KOFFING
+	dbw 14, SALANDIT
 	dbw 16, NUMEL
 	dbw 15, SIZZLIPEDE
 	dbw 12, LARVESTA
-	dbw 16, SLUGMA
+	dbw 16, TORKOAL
 	dbw 16, MAGBY
 	; nite
 	dbw 14, HOUNDOUR
-	dbw 14, KOFFING
+	dbw 14, SALANDIT
 	dbw 16, DRIFLOON
 	dbw 15, ZUBAT
 	dbw 12, GASTLY
-	dbw 16, GASTLY
+	dbw 16, LITWICK
 	dbw 16, VULPIX
 
 	map_id NATIONAL_PARK
@@ -364,7 +364,7 @@ JohtoGrassWildMons:
 	dbw 24, KADABRA
 	dbw 20, SMEARGLE
 	dbw 22, SPOINK
-	dbw 22, RALTS
+	dbw 22, ARCHEN
 	; day
 	dbw 20, NATU
 	dbw 22, KIRLIA
@@ -372,7 +372,7 @@ JohtoGrassWildMons:
 	dbw 24, WOBBUFFET
 	dbw 20, SMEARGLE
 	dbw 22, MR__MIME
-	dbw 22, STANTLER
+	dbw 22, ARCHEN
 	; nite
 	dbw 20, NATU
 	dbw 22, DROWZEE
@@ -486,8 +486,8 @@ JohtoGrassWildMons:
 	dbw 22, GEODUDE
 	dbw 22, MARILL
 	dbw 21, RATICATE
-	dbw 20, ONIX
-	dbw 23, GLIGAR
+	dbw 20, NOIBAT
+	dbw 23, NOIBAT
 	dbw 23, SANDSLASH
 
 	map_id SLOWPOKE_WELL_B1F
@@ -560,7 +560,7 @@ JohtoGrassWildMons:
 	dbw 7, TOGEPI
 	dbw 7, CLEFFA
 	dbw 7, EXEGGCUTE
-	dbw 6, PARAS
+	dbw 6, JOLTIK
 	dbw 6, IMPIDIMP
 	; nite
 	dbw 5, ODDISH
@@ -569,7 +569,7 @@ JohtoGrassWildMons:
 	dbw 7, SHROOMISH
 	dbw 7, HOOTHOOT
 	dbw 6, SPINARAK
-	dbw 6, PHANPY
+	dbw 6, JOLTIK
 
 	map_id MOUNT_MORTAR_1F_OUTSIDE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -674,9 +674,9 @@ JohtoGrassWildMons:
 	dbw 15, ZUBAT
 	dbw 17, SCRAGGY
 	dbw 17, RIOLU
-	dbw 16, MARILL
+	dbw 16, MAWILE
 	dbw 16, GEODUDE
-	dbw 18, SCRAGGY
+	dbw 18, GALVANTULA
 	dbw 18, GOLETT
 
 	map_id ICE_ISLAND
@@ -984,7 +984,7 @@ JohtoGrassWildMons:
 	dbw 23, SEEL
 	dbw 25, SHELLDER
 	dbw 26, GOLBAT
-	dbw 25, MARILL
+	dbw 25, TIRTOUGA
 	dbw 25, MANTINE
 	; day
 	dbw 23, KRABBY
@@ -992,7 +992,7 @@ JohtoGrassWildMons:
 	dbw 23, SEEL
 	dbw 25, KRABBY
 	dbw 26, CORSOLA
-	dbw 25, CLOYSTER
+	dbw 25, TIRTOUGA
 	dbw 25, PSYDUCK
 	; nite
 	dbw 23, KRABBY
@@ -1019,7 +1019,7 @@ JohtoGrassWildMons:
 	dbw 24, SEEL
 	dbw 26, KRABBY
 	dbw 27, CORSOLA
-	dbw 26, AZUMARILL
+	dbw 26, CARRACOSTA
 	dbw 26, GOLISOPOD
 	; nite
 	dbw 24, KRABBY
@@ -1097,17 +1097,17 @@ JohtoGrassWildMons:
 	; day
 	dbw 48, CONKELDURR
 	dbw 48, LUCARIO
-	dbw 47, SIRFETCH_D
+	dbw 47, ARCHEOPS
 	dbw 46, TANGROWTH
 	dbw 48, NINETALES
-	dbw 40, RAPIDASH
+	dbw 40, SALAZZLE
 	dbw 38, DUSKNOIR
 	; nite
 	dbw 48, SHUCKLE
 	dbw 48, GOLDUCK
-	dbw 46, GLISCOR
+	dbw 46, BANETTE
 	dbw 46, HOUNDOOM
-	dbw 48, TOXICROAK
+	dbw 48, CHANDELURE
 	dbw 45, TALONFLAME
 	dbw 45, ZWEILOUS
 
@@ -1132,7 +1132,7 @@ JohtoGrassWildMons:
 	; nite
 	dbw 51, URSALUNA
 	dbw 48, MAGCARGO
-	dbw 48, ORSTRYX
+	dbw 48, NOIVERN
 	dbw 49, BAXCALIBUR
 	dbw 45, CAMERUPT
 	dbw 53, ARCHALUDON
@@ -1216,7 +1216,7 @@ JohtoGrassWildMons:
 	dbw 25, PAWNIARD
 	dbw 20, UMBREON
 	dbw 25, MURKROW
-	dbw 23, GOLBAT
+	dbw 23, MAWILE
 	dbw 23, SNEASEL
 
 	map_id ROUTE_29
@@ -1230,11 +1230,11 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, CORVIKNIGHT
-	dbw 3, CORVIKNIGHT
-	dbw 3, RATTATA
-	dbw 3, HOPPIP
-	dbw 3, LEDYBA
+	dbw 3, SALAZZLE
+	dbw 3, ARCHEOPS
+	dbw 3, MAWILE
+	dbw 3, NOIVERN
+	dbw 3, GALVANTULA
 	dbw 3, BUNEARY
 	dbw 3, SENTRET
 	; nite
@@ -1475,17 +1475,17 @@ JohtoGrassWildMons:
 	; day
 	dbw 15, DUSKULL
 	dbw 15, GASTLY
-	dbw 16, GOLETT
+	dbw 16, SHUPPET
 	dbw 16, MISDREAVUS
-	dbw 17, DRIFLOON
+	dbw 17, LITWICK
 	dbw 17, MIMIKYU
 	dbw 14, DREEPY
 	; nite
 	dbw 16, GASTLY
-	dbw 16, MISDREAVUS
+	dbw 16, SHUPPET
 	dbw 17, DUSKULL
 	dbw 17, DRIFLOON
-	dbw 18, GOLETT
+	dbw 18, LITWICK
 	dbw 18, MIMIKYU
 	dbw 15, DREEPY
 

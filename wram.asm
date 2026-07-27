@@ -2034,7 +2034,8 @@ wMailboxEnd:: ; d0fe
 ENDU ; d100
 
 wListPointer:: dw ; d100
-wUnusedD102:: dw ; d102
+; wUnusedD102 (dw) removed to make room for the larger Pokedex flag arrays.
+; It was only ever written to, never read.
 wItemAttributesPtr:: dw ; d104
 
 wCurItem:: db ; d106
