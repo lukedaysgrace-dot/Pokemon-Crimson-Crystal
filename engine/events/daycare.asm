@@ -471,12 +471,30 @@ DayCareManOutside:
 	text_end
 
 DayCare_GiveEgg:
-	ld a, [wEggMonLevel]
+; wEggMon can be stale or zeroed by the time an egg is handed over: it is only
+; ever populated by DayCare_InitBreeding, while DAYCAREMAN_HAS_EGG_F is set
+; independently by DayCareStep. A zeroed struct yields a level 0 egg, and level
+; 0 breaks the stats screen's exp-to-next-level maths badly enough to hang it.
+;
+; Every egg hatches at EGG_LEVEL regardless, so don't trust the struct for any
+; of this. Write the level and a matching experience total unconditionally
+; here; both are copied into the party slot below.
+	ld a, EGG_LEVEL
+	ld [wEggMonLevel], a
 	ld [wCurPartyLevel], a
+	ld d, a
+	callfar CalcExpAtLevel
+	ld hl, wEggMonExp
+	ldh a, [hMultiplicand]
+	ld [hli], a
+	ldh a, [hMultiplicand + 1]
+	ld [hli], a
+	ldh a, [hMultiplicand + 2]
+	ld [hl], a
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
-	jr nc, .PartyFull
+	jp nc, .PartyFull
 	inc a
 	ld [hl], a
 
@@ -490,6 +508,12 @@ DayCare_GiveEgg:
 	ld [wCurPartySpecies], a
 	ld a, -1
 	ld [hl], a
+
+; wEggNick is zero-filled with no "@" terminator if DayCare_InitBreeding never
+; finished, which leaves the party menu printing past the end of the name.
+	ld hl, wEggNick
+	ld de, .EggName
+	call CopyName2
 
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
@@ -530,6 +554,14 @@ DayCare_GiveEgg:
 	ld b, FALSE
 	predef CalcMonStats
 	pop bc
+; wEggMon is a box-sized struct, so the CopyBytes above never reaches
+; MON_STATUS and it would otherwise keep whatever the previous occupant of this
+; party slot left there. A stale status byte makes the Egg take poison damage
+; in the overworld.
+	ld hl, MON_STATUS
+	add hl, bc
+	xor a
+	ld [hl], a
 	ld hl, MON_HP
 	add hl, bc
 	xor a
@@ -541,6 +573,9 @@ DayCare_GiveEgg:
 .PartyFull:
 	scf
 	ret
+
+.EggName:
+	db "EGG@"
 
 DayCare_GetCurrentPartyMember:
 	ld a, [wPartyCount]
