@@ -429,7 +429,7 @@ JOHTO_POKEMON EQU const_value
 	const AMAURA     ;
 	const AURORUS    ;
 	const MUNCHLAX   ;
-	const ORSTRYX    ;
+	const TORKOAL    ;
 	const RATTATA_ALOLAN    ;
 	const RATICATE_ALOLAN   ;
 	const RAICHU_ALOLAN     ;
@@ -481,6 +481,22 @@ JOHTO_POKEMON EQU const_value
 	const TOXAPEX           ;
 	const ZANGOOSE          ;
 	const SEVIPER           ;
+	const SHUPPET           ;
+	const BANETTE           ;
+	const ARCHEN            ;
+	const ARCHEOPS          ;
+	const TIRTOUGA          ;
+	const CARRACOSTA        ;
+	const LITWICK           ;
+	const LAMPENT           ;
+	const CHANDELURE        ;
+	const JOLTIK            ;
+	const GALVANTULA        ;
+	const MAWILE            ;
+	const NOIBAT            ;
+	const NOIVERN           ;
+	const SALANDIT          ;
+	const SALAZZLE          ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3
