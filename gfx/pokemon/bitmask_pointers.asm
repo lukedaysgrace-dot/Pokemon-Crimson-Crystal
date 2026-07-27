@@ -408,7 +408,7 @@ BitmasksPointers:
 	dw AmauraBitmasks
 	dw AurorusBitmasks
 	dw MunchlaxBitmasks
-	dw OrstryxBitmasks
+	dw TorkoalBitmasks
 	dw RattataAlolanBitmasks
 	dw RaticateAlolanBitmasks
 	dw RaichuAlolanBitmasks
@@ -460,3 +460,19 @@ BitmasksPointers:
 	dw ToxapexBitmasks
 	dw ZangooseBitmasks
 	dw SeviperBitmasks
+	dw ShuppetBitmasks
+	dw BanetteBitmasks
+	dw ArchenBitmasks
+	dw ArcheopsBitmasks
+	dw TirtougaBitmasks
+	dw CarracostaBitmasks
+	dw LitwickBitmasks
+	dw LampentBitmasks
+	dw ChandelureBitmasks
+	dw JoltikBitmasks
+	dw GalvantulaBitmasks
+	dw MawileBitmasks
+	dw NoibatBitmasks
+	dw NoivernBitmasks
+	dw SalanditBitmasks
+	dw SalazzleBitmasks

@@ -411,7 +411,7 @@ MenuIconPointers:
 	dba AmauraMenuIcon
 	dba AurorusMenuIcon
 	dba MunchlaxMenuIcon
-	dba OrstryxMenuIcon
+	dba TorkoalMenuIcon
 	dba RattataAlolanMenuIcon
 	dba RaticateAlolanMenuIcon
 	dba RaichuAlolanMenuIcon
@@ -463,3 +463,19 @@ MenuIconPointers:
 	dba ToxapexMenuIcon
 	dba ZangooseMenuIcon
 	dba SeviperMenuIcon
+	dba ShuppetMenuIcon
+	dba BanetteMenuIcon
+	dba ArchenMenuIcon
+	dba ArcheopsMenuIcon
+	dba TirtougaMenuIcon
+	dba CarracostaMenuIcon
+	dba LitwickMenuIcon
+	dba LampentMenuIcon
+	dba ChandelureMenuIcon
+	dba JoltikMenuIcon
+	dba GalvantulaMenuIcon
+	dba MawileMenuIcon
+	dba NoibatMenuIcon
+	dba NoivernMenuIcon
+	dba SalanditMenuIcon
+	dba SalazzleMenuIcon

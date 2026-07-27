@@ -422,7 +422,7 @@ TyrantrumMenuIcon:   INCBIN "gfx/menu_icons/tyrantrum.2bpp"
 AmauraMenuIcon:      INCBIN "gfx/menu_icons/amaura.2bpp"
 AurorusMenuIcon:     INCBIN "gfx/menu_icons/aurorus.2bpp"
 MunchlaxMenuIcon:    INCBIN "gfx/menu_icons/munchlax.2bpp"
-OrstryxMenuIcon:     INCBIN "gfx/menu_icons/noctowl.2bpp"
+TorkoalMenuIcon:     INCBIN "gfx/menu_icons/torkoal.2bpp"
 
 SECTION "Menu Icons 7", ROMX
 
@@ -480,5 +480,24 @@ SeviperMenuIcon: INCBIN "gfx/menu_icons/seviper.2bpp"
 GlimmoraMenuIcon: INCBIN "gfx/menu_icons/glimmora.2bpp"
 CetoddleMenuIcon: INCBIN "gfx/menu_icons/cetoddle.2bpp"
 CetitanMenuIcon: INCBIN "gfx/menu_icons/cetitan.2bpp"
+
+SECTION "Menu Icons 8", ROMX
+
+ShuppetMenuIcon: INCBIN "gfx/menu_icons/shuppet.2bpp"
+BanetteMenuIcon: INCBIN "gfx/menu_icons/banette.2bpp"
+ArchenMenuIcon: INCBIN "gfx/menu_icons/archen.2bpp"
+ArcheopsMenuIcon: INCBIN "gfx/menu_icons/archeops.2bpp"
+TirtougaMenuIcon: INCBIN "gfx/menu_icons/tirtouga.2bpp"
+CarracostaMenuIcon: INCBIN "gfx/menu_icons/carracosta.2bpp"
+LitwickMenuIcon: INCBIN "gfx/menu_icons/litwick.2bpp"
+LampentMenuIcon: INCBIN "gfx/menu_icons/lampent.2bpp"
+ChandelureMenuIcon: INCBIN "gfx/menu_icons/chandelure.2bpp"
+JoltikMenuIcon: INCBIN "gfx/menu_icons/joltik.2bpp"
+GalvantulaMenuIcon: INCBIN "gfx/menu_icons/galvantula.2bpp"
+MawileMenuIcon: INCBIN "gfx/menu_icons/mawile.2bpp"
+NoibatMenuIcon: INCBIN "gfx/menu_icons/noibat.2bpp"
+NoivernMenuIcon: INCBIN "gfx/menu_icons/noivern.2bpp"
+SalanditMenuIcon: INCBIN "gfx/menu_icons/salandit.2bpp"
+SalazzleMenuIcon: INCBIN "gfx/menu_icons/salazzle.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

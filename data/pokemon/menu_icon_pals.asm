@@ -417,7 +417,7 @@ MonMenuIconPals:
 	icon_pals BLUE,   GRAY   ; AMAURA
 	icon_pals BLUE,   GRAY   ; AURORUS
 	icon_pals BLUE,   BROWN  ; MUNCHLAX
-	icon_pals BROWN,  GREEN  ; ORSTRYX
+	icon_pals RED,    BROWN  ; TORKOAL
 	icon_pals GRAY  , GRAY   ; RATTATA_ALOLAN
 	icon_pals BROWN , BROWN  ; RATICATE_ALOLAN
 	icon_pals RED   , RED    ; RAICHU_ALOLAN
@@ -469,3 +469,19 @@ MonMenuIconPals:
 	icon_pals BLUE,   PURPLE   ; TOXAPEX
 	icon_pals GRAY,   RED   ; ZANGOOSE
 	icon_pals PURPLE, GREEN   ; SEVIPER
+	icon_pals PURPLE, PURPLE ; SHUPPET
+	icon_pals PURPLE, PURPLE ; BANETTE
+	icon_pals BLUE,   BROWN  ; ARCHEN
+	icon_pals BLUE,   BROWN  ; ARCHEOPS
+	icon_pals BLUE,   BROWN  ; TIRTOUGA
+	icon_pals BLUE,   BROWN  ; CARRACOSTA
+	icon_pals GRAY,   PURPLE ; LITWICK
+	icon_pals PURPLE, PURPLE ; LAMPENT
+	icon_pals PURPLE, PURPLE ; CHANDELURE
+	icon_pals BROWN,  BLUE   ; JOLTIK
+	icon_pals BROWN,  TEAL   ; GALVANTULA
+	icon_pals GRAY,   BROWN  ; MAWILE
+	icon_pals PURPLE, GREEN  ; NOIBAT
+	icon_pals PURPLE, GREEN  ; NOIVERN
+	icon_pals GRAY,   RED    ; SALANDIT
+	icon_pals PURPLE, RED    ; SALAZZLE
