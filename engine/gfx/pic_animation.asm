@@ -908,13 +908,13 @@ GetMonAnimPointer:
 	jr z, .egg
 
 	ld c, BANK(UnownAnimationPointers) ; aka BANK(UnownAnimationIdlePointers)
-	ld hl, UnownAnimationPointers - 2
-	ld de, UnownAnimationIdlePointers - 2
+	ld hl, UnownAnimationPointers - 3
+	ld de, UnownAnimationIdlePointers - 3
 	call PokeAnim_IsUnown
 	jr z, .unown
 	ld c, BANK(AnimationPointers) ; aka BANK(AnimationIdlePointers)
-	ld hl, AnimationPointers - 2
-	ld de, AnimationIdlePointers - 2
+	ld hl, AnimationPointers - 3
+	ld de, AnimationIdlePointers - 3
 .unown
 
 	ld a, [wPokeAnimIdleFlag]
@@ -929,10 +929,24 @@ GetMonAnimPointer:
 	ld l, a
 	ld h, 0
 	call nz, GetPokemonIndexFromID
+
+; Entries are dba, so the index is scaled by 3 rather than 2.
+	push de
+	ld d, h
+	ld e, l
 	add hl, hl
 	add hl, de
+	pop de
+	add hl, de
+
+; c holds the bank of the pointer table itself, which is only used to read the
+; entry. The script's own bank is the first byte of the entry, so the scripts
+; can live in any bank.
 	ld a, c
+	call GetFarByte
 	ld [wPokeAnimPointerBank], a
+	inc hl
+	ld a, c
 	call GetFarHalfword
 	ld a, l
 	ld [wPokeAnimPointerAddr], a
