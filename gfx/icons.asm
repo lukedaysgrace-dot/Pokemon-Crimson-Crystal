@@ -410,7 +410,7 @@ TyrantrumIcon: INCBIN "gfx/icons/tyrantrum.2bpp"
 AmauraIcon: INCBIN "gfx/icons/amaura.2bpp"
 AurorusIcon: INCBIN "gfx/icons/aurorus.2bpp"
 MunchlaxIcon: INCBIN "gfx/icons/munchlax.2bpp"
-OrstryxIcon:  INCBIN "gfx/icons/noctowl.2bpp"
+TorkoalIcon:  INCBIN "gfx/icons/shell.2bpp" ; TODO: gfx/icons/torkoal.png
 
 
 
@@ -468,5 +468,24 @@ ToxapexIcon: INCBIN "gfx/icons/jellyfish.2bpp" ; TODO: gfx/icons/toxapex.png
 ZangooseIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/zangoose.png
 SeviperIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/seviper.png
 GlimmoraIcon: INCBIN "gfx/icons/geodude.2bpp" ; TODO: gfx/icons/glimmora.png
+
+SECTION "Mon Icons 8", ROMX
+
+ShuppetIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/shuppet.png
+BanetteIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/banette.png
+ArchenIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/archen.png
+ArcheopsIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/archeops.png
+TirtougaIcon: INCBIN "gfx/icons/shell.2bpp" ; TODO: gfx/icons/tirtouga.png
+CarracostaIcon: INCBIN "gfx/icons/shell.2bpp" ; TODO: gfx/icons/carracosta.png
+LitwickIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/litwick.png
+LampentIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/lampent.png
+ChandelureIcon: INCBIN "gfx/icons/ghost.2bpp" ; TODO: gfx/icons/chandelure.png
+JoltikIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/joltik.png
+GalvantulaIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/galvantula.png
+MawileIcon: INCBIN "gfx/icons/monster.2bpp" ; TODO: gfx/icons/mawile.png
+NoibatIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noibat.png
+NoivernIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noivern.png
+SalanditIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salandit.png
+SalazzleIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salazzle.png
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

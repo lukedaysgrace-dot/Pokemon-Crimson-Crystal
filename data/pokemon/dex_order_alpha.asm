@@ -20,6 +20,8 @@ AlphabeticalPokedexOrder:
 	dw ARCANINE
 	dw ARCANINE_HISUIAN
 	dw ARCHALUDON
+	dw ARCHEN
+	dw ARCHEOPS
 	dw ARCTIBAX
 	dw ARIADOS
 	dw ARMALDO
@@ -30,6 +32,7 @@ AlphabeticalPokedexOrder:
 	dw AXEW
 	dw AZUMARILL
 	dw BAGON
+	dw BANETTE
 	dw BASTIODON
 	dw BAXCALIBUR
 	dw BAYLEEF
@@ -47,12 +50,14 @@ AlphabeticalPokedexOrder:
 	dw BUNEARY
 	dw BUTTERFREE
 	dw CAMERUPT
+	dw CARRACOSTA
 	dw CATERPIE
 	dw CELEBI
 	dw CENTISKORCH
 	dw CERULEDGE
 	dw CETITAN
 	dw CETODDLE
+	dw CHANDELURE
 	dw CHANSEY
 	dw CHARCADET
 	dw CHARIZARD
@@ -141,6 +146,7 @@ AlphabeticalPokedexOrder:
 	dw FROSLASS
 	dw FURRET
 	dw GALLADE
+	dw GALVANTULA
 	dw GARDEVOIR
 	dw GASTLY
 	dw GENGAR
@@ -195,6 +201,7 @@ AlphabeticalPokedexOrder:
 	dw IVYSAUR_CLONE
 	dw JIGGLYPUFF
 	dw JOLTEON
+	dw JOLTIK
 	dw JUMPLUFF
 	dw JYNX
 	dw KABUTO
@@ -210,6 +217,7 @@ AlphabeticalPokedexOrder:
 	dw KOFFING
 	dw KRABBY
 	dw LAIRON
+	dw LAMPENT
 	dw LANTURN
 	dw LAPRAS
 	dw LARVESTA
@@ -220,6 +228,7 @@ AlphabeticalPokedexOrder:
 	dw LICKILICKY
 	dw LICKITUNG
 	dw LILEEP
+	dw LITWICK
 	dw LOMBRE
 	dw LOPUNNY
 	dw LOTAD
@@ -246,6 +255,7 @@ AlphabeticalPokedexOrder:
 	dw MARILL
 	dw MAROWAK
 	dw MAROWAK_ALOLAN
+	dw MAWILE
 	dw MEGANIUM
 	dw MEOWTH
 	dw MEOWTH_ALOLAN
@@ -277,13 +287,14 @@ AlphabeticalPokedexOrder:
 	dw NINETALES
 	dw NINETALES_ALOLAN
 	dw NOCTOWL
+	dw NOIBAT
+	dw NOIVERN
 	dw NUMEL
 	dw OCTILLERY
 	dw ODDISH
 	dw OMANYTE
 	dw OMASTAR
 	dw ONIX
-	dw ORSTRYX
 	dw OVERQWIL
 	dw PARAS
 	dw PARASECT
@@ -333,6 +344,8 @@ AlphabeticalPokedexOrder:
 	dw RIOLU
 	dw ROOKIDEE
 	dw SALAMENCE
+	dw SALANDIT
+	dw SALAZZLE
 	dw SANDSHREW
 	dw SANDSHREW_ALOLAN
 	dw SANDSLASH
@@ -353,6 +366,7 @@ AlphabeticalPokedexOrder:
 	dw SHIELDON
 	dw SHROOMISH
 	dw SHUCKLE
+	dw SHUPPET
 	dw SIRFETCH_D
 	dw SIZZLIPEDE
 	dw SKARMORY
@@ -405,9 +419,11 @@ AlphabeticalPokedexOrder:
 	dw TINKATINK
 	dw TINKATON
 	dw TINKATUFF
+	dw TIRTOUGA
 	dw TOGEKISS
 	dw TOGEPI
 	dw TOGETIC
+	dw TORKOAL
 	dw TOTODILE
 	dw TOXAPEX
 	dw TOXICROAK
