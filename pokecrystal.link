@@ -197,46 +197,12 @@ ROMX $48
 	"Pic Pointers"
 ROMX $49
 	"Unown Pic Pointers"
-	"Pics 2"
 ROMX $4a
 	"Trainer Pic Pointers"
-	"Pics 3"
-ROMX $4b
-	"Pics 4"
-ROMX $4c
-	"Pics 5"
-ROMX $4d
-	"Pics 6"
-ROMX $4e
-	"Pics 7"
-ROMX $4f
-	"Pics 8"
-ROMX $50
-	"Pics 9"
 ROMX $51
 	"Map Blocks 4"
-	"Pics 10"
-ROMX $52
-	"Pics 11"
-ROMX $53
-	"Pics 12"
-ROMX $54
-	"Pics 13"
-ROMX $55
-	"Pics 14"
-ROMX $56
-	"Pics 15"
-ROMX $57
-	"Pics 16"
-ROMX $58
-	"Pics 17"
-ROMX $59
-	"Pics 18"
-ROMX $5a
-	"Pics 19"
 ROMX $5b
 	"bank5B"
-	"Pic Animations 4"
 ROMX $5c
 	"Mobile 5C"
 ROMX $5d
@@ -307,8 +273,6 @@ ROMX $78
 	"Tileset Data 8"
 ROMX $79
 	"Evolutions and Attacks 2"
-ROMX $7a
-	"Pics 1"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c
