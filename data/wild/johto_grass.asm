@@ -1230,8 +1230,8 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, TORKOAL
-	dbw 3, TORKOAL
+	dbw 3, MURKROW
+	dbw 3, MURKROW
 	dbw 3, CARRACOSTA
 	dbw 3, TORKOAL
 	dbw 3, TORKOAL
