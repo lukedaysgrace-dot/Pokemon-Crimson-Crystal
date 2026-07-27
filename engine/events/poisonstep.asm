@@ -57,6 +57,17 @@ DoPoisonStep::
 	ret
 
 .DamageMonIfPoisoned:
+; Eggs are built from a box-sized struct, so their status byte is not
+; guaranteed to be clean. Never apply poison damage to an Egg.
+	ld a, [wCurPartyMon]
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
+	ld a, [hl]
+	cp EGG
+	ret z
+
 ; check if mon is poisoned, return if not
 	ld a, MON_STATUS
 	call GetPartyParamLocation

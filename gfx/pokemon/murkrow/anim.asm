@@ -1,6 +1,5 @@
 ; Murkrow full front-sprite animation
-; 10 frames, each 48x48, stacked vertically
-; Frame order and timing follow the source GIF exactly.
+; 9 generated frames, each 48x48, stacked vertically.
 
 	frame 0, 7
 	frame 1, 6
