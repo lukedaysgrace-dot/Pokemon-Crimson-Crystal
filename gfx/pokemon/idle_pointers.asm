@@ -408,7 +408,7 @@ AnimationIdlePointers:
 	dw AmauraAnimationIdle
 	dw AurorusAnimationIdle
 	dw MunchlaxAnimationIdle
-	dw OrstryxAnimationIdle
+	dw TorkoalAnimationIdle
 	dw RattataAlolanAnimationIdle
 	dw RaticateAlolanAnimationIdle
 	dw RaichuAlolanAnimationIdle
@@ -460,3 +460,19 @@ AnimationIdlePointers:
 	dw ToxapexAnimationIdle
 	dw ZangooseAnimationIdle
 	dw SeviperAnimationIdle
+	dw ShuppetAnimationIdle
+	dw BanetteAnimationIdle
+	dw ArchenAnimationIdle
+	dw ArcheopsAnimationIdle
+	dw TirtougaAnimationIdle
+	dw CarracostaAnimationIdle
+	dw LitwickAnimationIdle
+	dw LampentAnimationIdle
+	dw ChandelureAnimationIdle
+	dw JoltikAnimationIdle
+	dw GalvantulaAnimationIdle
+	dw MawileAnimationIdle
+	dw NoibatAnimationIdle
+	dw NoivernAnimationIdle
+	dw SalanditAnimationIdle
+	dw SalazzleAnimationIdle

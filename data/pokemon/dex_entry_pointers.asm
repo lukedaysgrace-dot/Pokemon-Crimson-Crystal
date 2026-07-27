@@ -409,7 +409,7 @@ PokedexDataPointerTable:
 	dba AmauraPokedexEntry
 	dba AurorusPokedexEntry
 	dba MunchlaxPokedexEntry
-	dba OrstryxPokedexEntry
+	dba TorkoalPokedexEntry
 	dba RattataAlolanPokedexEntry
 	dba RaticateAlolanPokedexEntry
 	dba RaichuAlolanPokedexEntry
@@ -461,3 +461,19 @@ PokedexDataPointerTable:
 	dba ToxapexPokedexEntry
 	dba ZangoosePokedexEntry
 	dba SeviperPokedexEntry
+	dba ShuppetPokedexEntry
+	dba BanettePokedexEntry
+	dba ArchenPokedexEntry
+	dba ArcheopsPokedexEntry
+	dba TirtougaPokedexEntry
+	dba CarracostaPokedexEntry
+	dba LitwickPokedexEntry
+	dba LampentPokedexEntry
+	dba ChandelurePokedexEntry
+	dba JoltikPokedexEntry
+	dba GalvantulaPokedexEntry
+	dba MawilePokedexEntry
+	dba NoibatPokedexEntry
+	dba NoivernPokedexEntry
+	dba SalanditPokedexEntry
+	dba SalazzlePokedexEntry
