@@ -260,10 +260,14 @@ DiglettAlolanFrames:  INCLUDE "gfx/pokemon/diglett_alolan/frames.asm"
 DugtrioAlolanFrames:  INCLUDE "gfx/pokemon/dugtrio_alolan/frames.asm"
 MeowthAlolanFrames:  INCLUDE "gfx/pokemon/meowth_alolan/frames.asm"
 PersianAlolanFrames:  INCLUDE "gfx/pokemon/persian_alolan/frames.asm"
+
+SECTION "Pic Animations 3a", ROMX
+
 GeodudeAlolanFrames:  INCLUDE "gfx/pokemon/geodude_alolan/frames.asm"
 GravelerAlolanFrames:  INCLUDE "gfx/pokemon/graveler_alolan/frames.asm"
 GolemAlolanFrames:  INCLUDE "gfx/pokemon/golem_alolan/frames.asm"
 GrimerAlolanFrames:  INCLUDE "gfx/pokemon/grimer_alolan/frames.asm"
+
 MukAlolanFrames:  INCLUDE "gfx/pokemon/muk_alolan/frames.asm"
 ExeggutorAlolanFrames:  INCLUDE "gfx/pokemon/exeggutor_alolan/frames.asm"
 MarowakAlolanFrames:  INCLUDE "gfx/pokemon/marowak_alolan/frames.asm"
