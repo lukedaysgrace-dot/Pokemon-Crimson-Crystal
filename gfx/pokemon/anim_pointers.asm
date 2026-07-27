@@ -408,7 +408,7 @@ AnimationPointers:
 	dw AmauraAnimation
 	dw AurorusAnimation
 	dw MunchlaxAnimation
-	dw OrstryxAnimation
+	dw TorkoalAnimation
 	dw RattataAlolanAnimation
 	dw RaticateAlolanAnimation
 	dw RaichuAlolanAnimation
@@ -460,3 +460,19 @@ AnimationPointers:
 	dw ToxapexAnimation
 	dw ZangooseAnimation
 	dw SeviperAnimation
+	dw ShuppetAnimation
+	dw BanetteAnimation
+	dw ArchenAnimation
+	dw ArcheopsAnimation
+	dw TirtougaAnimation
+	dw CarracostaAnimation
+	dw LitwickAnimation
+	dw LampentAnimation
+	dw ChandelureAnimation
+	dw JoltikAnimation
+	dw GalvantulaAnimation
+	dw MawileAnimation
+	dw NoibatAnimation
+	dw NoivernAnimation
+	dw SalanditAnimation
+	dw SalazzleAnimation

@@ -20,10 +20,17 @@ INCLUDE "engine/events/haircut.asm"
 
 SECTION "bank2", ROMX
 
-INCLUDE "engine/overworld/player_object.asm"
 INCLUDE "engine/math/sine.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/gfx/color.asm"
+
+
+; Moved out of bank2 to make room for the Pokemon palette table.
+; Every external entry point here is reached via farcall, and every
+; call it makes is to home, so it is bank-independent.
+SECTION "Player Object", ROMX
+
+INCLUDE "engine/overworld/player_object.asm"
 
 
 SECTION "bank3", ROMX
@@ -505,6 +512,11 @@ INCLUDE "gfx/pokemon/bitmasks.asm"
 INCLUDE "gfx/pokemon/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pokemon/unown_bitmasks.asm"
 INCLUDE "gfx/pokemon/frame_pointers.asm"
+
+
+; Frames are referenced by dba (bank + address), so they can live anywhere.
+SECTION "Pic Animations 2B", ROMX
+
 INCLUDE "gfx/pokemon/kanto_frames.asm"
 
 
@@ -516,9 +528,14 @@ INCBIN "gfx/font/font_inversed.1bpp"
 
 SECTION "Pic Animations 3", ROMX
 
-INCLUDE "gfx/pokemon/johto_frames.asm"
+; unown_frame_pointers uses dw, so the unown frames must stay in this bank.
 INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
 INCLUDE "gfx/pokemon/unown_frames.asm"
+
+
+SECTION "Pic Animations 3B", ROMX
+
+INCLUDE "gfx/pokemon/johto_frames.asm"
 
 
 SECTION "bank38", ROMX
