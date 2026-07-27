@@ -492,16 +492,31 @@ INCLUDE "data/battle_anims/object_gfx.asm"
 INCLUDE "engine/battle_anims/data_readers.asm"
 
 
+; This section is pinned to bank $34 and holds only the engine code and the
+; pointer tables. The animation scripts themselves are referenced by dba, so
+; they live in the floating sections below and can be placed in any bank.
 SECTION "Pic Animations 1", ROMX
 
 INCLUDE "engine/gfx/pic_animation.asm"
 INCLUDE "gfx/pokemon/anim_pointers.asm"
-INCLUDE "gfx/pokemon/anims.asm"
 INCLUDE "gfx/pokemon/idle_pointers.asm"
-INCLUDE "gfx/pokemon/idles.asm"
 INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
-INCLUDE "gfx/pokemon/unown_anims.asm"
 INCLUDE "gfx/pokemon/unown_idle_pointers.asm"
+
+
+SECTION "Pokemon Anim Scripts", ROMX
+
+INCLUDE "gfx/pokemon/anims.asm"
+
+
+SECTION "Pokemon Idle Scripts", ROMX
+
+INCLUDE "gfx/pokemon/idles.asm"
+
+
+SECTION "Unown Anim Scripts", ROMX
+
+INCLUDE "gfx/pokemon/unown_anims.asm"
 INCLUDE "gfx/pokemon/unown_idles.asm"
 
 
