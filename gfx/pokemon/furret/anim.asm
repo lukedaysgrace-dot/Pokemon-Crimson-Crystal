@@ -1,6 +1,5 @@
 ; Furret full animation
-; Uses all 13 frames from the 56x728 vertical sprite sheet.
-; Each sheet frame is referenced once in GIF order.
+; Uses all 12 generated frames from the 56x728 vertical sprite sheet.
 
 	frame 0, 6
 	frame 1, 7
