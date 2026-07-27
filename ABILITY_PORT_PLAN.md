@@ -480,9 +480,8 @@ with rgbds 0.5.2 (`make` produces pokecrystal.gbc).
 ### Session 2h
 - Ability names are now ALL CAPS everywhere (single table in
   data/abilities/names.asm drives the banner, stats screen and Trace text).
-- Species audit: only mesmeria and orstryx lacked abilities; assigned
-  flavor picks (mesmeria: SYNCHRONIZE/ICE_BODY/BAD_DREAMS; orstryx:
-  PRESSURE/KEEN_EYE/MAGIC_BOUNCE) - marked "change freely" in their files.
+- Species audit: only mesmeria lacked abilities; assigned
+  flavor picks (mesmeria: SYNCHRONIZE/ICE_BODY/BAD_DREAMS) - marked "change freely" in their files.
   The 56 species with an empty slot 2 are canon single-regular-ability mons
   (GetAbility falls back to slot 1). data/pokemon/base_stats/rypherior.asm
   is an orphaned misspelled file, not in the build; the real rhyperior.asm
@@ -930,7 +929,7 @@ wInAbility/wEnemyAbility via pokecrystal.sym addresses to time captures.
   Run Away (wimpod); Supreme Overlord->Moxie (kingambit); Disguise->Multiscale
   (mimikyu); Simple dropped (numel); Strong Jaw->Tough Claws (tyrunt, tyrantrum).
 - CUSTOM MONS NEEDING LUCAS'S DECISION: mesmeria (NO_ABILITY placeholder),
-  orstryx (NO_ABILITY placeholder), teddiursabm/ursaringbm (given MINDS_EYE to
+  teddiursabm/ursaringbm (given MINDS_EYE to
   match Bloodmoon Ursaluna; confirm).
 
 ## Build & sandbox workflow (IMPORTANT for next session)

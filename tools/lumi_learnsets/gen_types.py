@@ -12,7 +12,7 @@ Resolution (same idea as gen_learnsets.py):
   * Species / regional forms that exist in Luminescent -> Luminescent's types
     (from PersonalTable type1/type2, named via english_ss_typename.json).
   * Anything not in Luminescent (rare) -> PokeAPI types.
-  * Fakemon (Watu, Orstryx, Mesmeria) -> left unchanged.
+  * Fakemon (Watu, Mesmeria) -> left unchanged.
   * Bloodmoon (*_bm) forms reuse their base species' typing.
 
 Usage (repo root, WSL):
@@ -155,7 +155,7 @@ SPECIAL_SLUG = {
     "mrrime": "mr-rime", "mimejr": "mime-jr", "hooh": "ho-oh",
     "porygonz": "porygon-z", "typenull": "type-null", "sirfetchd": "sirfetchd",
     "farfetchd": "farfetchd", "drunsparce": "dudunsparce-two-segment",
-    "orstryx": None, "watu": None, "mesmeria": None,
+    "watu": None, "mesmeria": None,
 }
 
 def parse_stem(stem):
