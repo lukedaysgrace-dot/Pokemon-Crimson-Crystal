@@ -410,7 +410,7 @@ IconPointers:
 	dba AmauraIcon
 	dba AurorusIcon
 	dba MunchlaxIcon
-	dba OrstryxIcon
+	dba TorkoalIcon
 	dba RattataAlolanIcon
 	dba RaticateAlolanIcon
 	dba RaichuAlolanIcon
@@ -462,3 +462,19 @@ IconPointers:
 	dba ToxapexIcon
 	dba ZangooseIcon
 	dba SeviperIcon
+	dba ShuppetIcon
+	dba BanetteIcon
+	dba ArchenIcon
+	dba ArcheopsIcon
+	dba TirtougaIcon
+	dba CarracostaIcon
+	dba LitwickIcon
+	dba LampentIcon
+	dba ChandelureIcon
+	dba JoltikIcon
+	dba GalvantulaIcon
+	dba MawileIcon
+	dba NoibatIcon
+	dba NoivernIcon
+	dba SalanditIcon
+	dba SalazzleIcon

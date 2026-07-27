@@ -408,7 +408,7 @@ FramesPointers:
 	dba AmauraFrames
 	dba AurorusFrames
 	dba MunchlaxFrames
-	dba OrstryxFrames
+	dba TorkoalFrames
 	dba RattataAlolanFrames
 	dba RaticateAlolanFrames
 	dba RaichuAlolanFrames
@@ -460,3 +460,19 @@ FramesPointers:
 	dba ToxapexFrames
 	dba ZangooseFrames
 	dba SeviperFrames
+	dba ShuppetFrames
+	dba BanetteFrames
+	dba ArchenFrames
+	dba ArcheopsFrames
+	dba TirtougaFrames
+	dba CarracostaFrames
+	dba LitwickFrames
+	dba LampentFrames
+	dba ChandelureFrames
+	dba JoltikFrames
+	dba GalvantulaFrames
+	dba MawileFrames
+	dba NoibatFrames
+	dba NoivernFrames
+	dba SalanditFrames
+	dba SalazzleFrames

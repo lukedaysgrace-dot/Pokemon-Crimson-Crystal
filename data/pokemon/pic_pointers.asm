@@ -831,8 +831,8 @@ PokemonPicPointers::
 	dba AurorusBackpic
 	dba MunchlaxFrontpic
 	dba MunchlaxBackpic
-	dba OrstryxFrontpic
-	dba OrstryxBackpic
+	dba TorkoalFrontpic
+	dba TorkoalBackpic
 	dba RattataAlolanFrontpic
 	dba RattataAlolanBackpic
 	dba RaticateAlolanFrontpic
@@ -935,3 +935,35 @@ PokemonPicPointers::
 	dba ZangooseBackpic
 	dba SeviperFrontpic
 	dba SeviperBackpic
+	dba ShuppetFrontpic
+	dba ShuppetBackpic
+	dba BanetteFrontpic
+	dba BanetteBackpic
+	dba ArchenFrontpic
+	dba ArchenBackpic
+	dba ArcheopsFrontpic
+	dba ArcheopsBackpic
+	dba TirtougaFrontpic
+	dba TirtougaBackpic
+	dba CarracostaFrontpic
+	dba CarracostaBackpic
+	dba LitwickFrontpic
+	dba LitwickBackpic
+	dba LampentFrontpic
+	dba LampentBackpic
+	dba ChandelureFrontpic
+	dba ChandelureBackpic
+	dba JoltikFrontpic
+	dba JoltikBackpic
+	dba GalvantulaFrontpic
+	dba GalvantulaBackpic
+	dba MawileFrontpic
+	dba MawileBackpic
+	dba NoibatFrontpic
+	dba NoibatBackpic
+	dba NoivernFrontpic
+	dba NoivernBackpic
+	dba SalanditFrontpic
+	dba SalanditBackpic
+	dba SalazzleFrontpic
+	dba SalazzleBackpic
