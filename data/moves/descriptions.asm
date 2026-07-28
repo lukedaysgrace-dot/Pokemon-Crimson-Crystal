@@ -354,6 +354,8 @@ MoveDescriptions1:
 	dw MortalSpinDescription
 	dw FirstImpressionDescription
 	dw LiquidationDescription
+	dw SlackOffDescription
+	dw VoltTackleDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -373,6 +375,14 @@ FirstImpressionDescription:
 LiquidationDescription:
 	db   "A watery blow that"
 	next "may lower DEFENSE.@"
+
+SlackOffDescription:
+	db   "Slacks off and re-"
+	next "stores half of HP.@"
+
+VoltTackleDescription:
+	db   "Dangerous tackle"
+	next "that hurts user.@"
 
 PoundDescription:
 	db   "Pounds with fore-"

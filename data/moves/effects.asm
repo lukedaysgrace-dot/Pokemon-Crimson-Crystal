@@ -2390,6 +2390,29 @@ SpeedUpHit:
 	buildopponentrage
 	endmove
 
+VoltTackle:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	recoil
+	paralyzetarget
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
 FlareBlitz:
 	checkobedience
 	usedmovetext
