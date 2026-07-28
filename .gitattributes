@@ -32,3 +32,21 @@
 *.lz binary   diff=hex
 *.2bpp binary diff=hex
 *.1bpp binary diff=hex
+
+# Archives and compiled binaries. Without these, the "* text eol=lf" rule above
+# applies newline normalization to them and silently corrupts the contents.
+# The extensionless rgbds/* executables are the important case: they have no
+# suffix, so no rule above matched them and they were committed damaged.
+*.xz binary
+*.gz binary
+*.zip binary
+*.tar binary
+*.dll binary
+*.exe binary
+*.gbc binary
+*.gb binary
+*.sym binary
+rgbds/rgbasm binary
+rgbds/rgblink binary
+rgbds/rgbfix binary
+rgbds/rgbgfx binary
