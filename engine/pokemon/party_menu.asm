@@ -96,11 +96,24 @@ PlacePartyNicknames:
 	push bc
 	push hl
 	push hl
+; Eggs always render as EGG rather than whatever sits in their nickname slot.
+; The stats screen already hardcodes the name the same way, and this is the
+; only screen that ever prints an Egg's stored nickname, so a slot written by
+; older code (or left half-initialised) can't show up as a truncated name here.
+	ld hl, wPartySpecies
+	ld e, b
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	cp EGG
+	ld de, .EGG
+	jr z, .got_name
 	ld hl, wPartyMonNicknames
 	ld a, b
 	call GetNick
 	ld a, "@"
-	ld [wStringBuffer1 + 9], a ; reserve room for the caught-ball icon
+	ld [wStringBuffer1 + 9], a ; cap the name so it can't run into the HP column
+.got_name
 	pop hl
 	call PlaceString
 	pop hl
@@ -117,6 +130,9 @@ PlacePartyNicknames:
 	ld de, .CANCEL
 	call PlaceString
 	ret
+
+.EGG:
+	db "EGG@"
 
 .CANCEL:
 	db "CANCEL@"

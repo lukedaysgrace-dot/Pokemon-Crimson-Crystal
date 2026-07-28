@@ -479,6 +479,13 @@ DayCare_GiveEgg:
 ; Every egg hatches at EGG_LEVEL regardless, so don't trust the struct for any
 ; of this. Write the level and a matching experience total unconditionally
 ; here; both are copied into the party slot below.
+;
+; CalcExpAtLevel reads wBaseGrowthRate, so the Egg's own base data has to be
+; loaded first. Without this it uses whatever species was loaded last and the
+; hatchling ends up with an experience total that doesn't match its level.
+	ld a, [wEggMonSpecies]
+	ld [wCurSpecies], a
+	call GetBaseData
 	ld a, EGG_LEVEL
 	ld [wEggMonLevel], a
 	ld [wCurPartyLevel], a
@@ -783,6 +790,12 @@ DayCare_InitBreeding:
 	ld a, PERFECT_SPDSPC_DV
 	ld [hl], a
 	ld de, wEggMonPokerusStatus
+; The DV inheritance above leaves wMonType as TEMPMON. InitMonShinyGender treats
+; any non-zero wMonType as a trainer's Pokemon, which shiny-locks the Egg and
+; rolls its gender out of BTTrainerClassGenders using whatever wOtherTrainerClass
+; was last set to. A bred Egg is a party mon, so say so.
+	xor a ; PARTYMON
+	ld [wMonType], a
 	farcall InitMonShinyGender
 	ret
 
