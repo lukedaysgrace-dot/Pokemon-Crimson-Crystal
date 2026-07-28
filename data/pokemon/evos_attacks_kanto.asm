@@ -826,7 +826,7 @@ ClefairyEvosAttacks:
 	dbw 23, METRONOME
 	dbw 29, MOONBLAST
 	dbw 31, MOONLIGHT
-	dbw 28, DISARM_VOICE
+	dbw 28, DISARMING_VOICE
 	db 0 ; no more level-up moves
 
 ClefableEvosAttacks:
@@ -848,7 +848,7 @@ ClefableEvosAttacks:
 	dbw 44, MOONBLAST
 	dbw 48, MOONLIGHT
 	dbw 59, SOFTBOILED
-	dbw 44, DAZZLINGLEAM
+	dbw 44, DAZZLING_GLEAM
 	db 0 ; no more level-up moves
 
 VulpixEvosAttacks:
@@ -917,7 +917,7 @@ JigglypuffEvosAttacks:
 	dbw 33, MIMIC
 	dbw 35, DOUBLE_EDGE
 	dbw 40, PLAY_ROUGH
-	dbw 26, DISARM_VOICE
+	dbw 26, DISARMING_VOICE
 	db 0 ; no more level-up moves
 
 WigglytuffEvosAttacks:
@@ -940,7 +940,7 @@ WigglytuffEvosAttacks:
 	dbw 69, GYRO_BALL
 	dbw 69, MIMIC
 	dbw 69, DOUBLE_EDGE
-	dbw 32, DISARM_VOICE
+	dbw 32, DISARMING_VOICE
 	db 0 ; no more level-up moves
 
 ZubatEvosAttacks:
