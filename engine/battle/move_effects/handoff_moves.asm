@@ -11,12 +11,11 @@ BattleCommand_StealthRock:
 	bit SCREENS_STEALTH_ROCK, [hl]
 	jr nz, .failed
 	set SCREENS_STEALTH_ROCK, [hl]
-	farcall AnimateCurrentMove
+	call AnimateCurrentMove
 	ld hl, StealthRockText
 	jp StdBattleTextbox
 .failed
-	farcall FailMove
-	ret
+	jp FailMove
 
 BattleCommand_StickyWeb:
 ; stickyweb
@@ -29,12 +28,11 @@ BattleCommand_StickyWeb:
 	bit SCREENS_STICKY_WEB, [hl]
 	jr nz, .failed
 	set SCREENS_STICKY_WEB, [hl]
-	farcall AnimateCurrentMove
+	call AnimateCurrentMove
 	ld hl, StickyWebText
 	jp StdBattleTextbox
 .failed
-	farcall FailMove
-	ret
+	jp FailMove
 
 BattleCommand_Defog:
 ; defog
@@ -75,7 +73,7 @@ BattleCommand_Defog:
 	call GetBattleVarAddr
 	res SUBSTATUS_MIST, [hl]
 
-	farcall AnimateCurrentMove
+	call AnimateCurrentMove
 	ld hl, DefogText
 	jp StdBattleTextbox
 
@@ -140,9 +138,62 @@ BattleCommand_FreezeDry:
 	ld [hl], a
 	ret
 
-; GetPhysicalAttackSource / ...Boosted moved to effect_commands.asm:
-; hl is both their input and output, so farcall cannot be used and the
-; callers in PlayerAttackDamage / EnemyAttackDamage must share their bank.
+GetPhysicalAttackSource::
+; hl = the user's unboosted Attack stat. Body Press substitutes the user's
+; Defense; Foul Play substitutes the target's Attack. Preserves everything else.
+	push af
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BODY_PRESS
+	jr z, .body_press
+	cp EFFECT_FOUL_PLAY
+	jr z, .foul_play
+.done
+	pop bc
+	pop af
+	ret
+
+.body_press
+	inc hl
+	inc hl ; Attack -> Defense
+	jr .done
+
+.foul_play
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wEnemyMonAttack
+	jr z, .done
+	ld hl, wBattleMonAttack
+	jr .done
+
+GetPhysicalAttackSourceBoosted::
+; As above, but for the stat-stage-modified copies used on a critical hit.
+	push af
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BODY_PRESS
+	jr z, .body_press
+	cp EFFECT_FOUL_PLAY
+	jr z, .foul_play
+.done
+	pop bc
+	pop af
+	ret
+
+.body_press
+	inc hl
+	inc hl ; Attack -> Defense
+	jr .done
+
+.foul_play
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wEnemyAttack
+	jr z, .done
+	ld hl, wPlayerAttack
+	jr .done
 
 GetPhysicalAttackStagesForCritical::
 ; Return b = the physical offensive stat stage actually used by the move,
@@ -504,7 +555,7 @@ StealthRockDamage_Core::
 	call StdBattleTextbox
 	pop de
 
-	farcall GetEighthMaxHP
+	call GetEighthMaxHP
 .scale
 	ld a, e
 	and a
@@ -529,7 +580,7 @@ StealthRockDamage_Core::
 	jr nz, .ok
 	ld c, 1
 .ok
-	farcall SubtractHPFromTarget
+	call SubtractHPFromTarget
 	jp WaitBGMap
 
 .RockVsType:
