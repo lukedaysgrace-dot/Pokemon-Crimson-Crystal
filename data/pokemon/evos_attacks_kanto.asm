@@ -606,6 +606,7 @@ PikachuEvosAttacks:
 	dbw 33, WILD_CHARGE
 	dbw 36, LIGHT_SCREEN
 	dbw 39, THUNDER
+	dbw 45, VOLT_TACKLE
 	db 0 ; no more level-up moves
 
 RaichuEvosAttacks:
@@ -628,6 +629,7 @@ RaichuEvosAttacks:
 	dbw 55, AGILITY
 	dbw 70, LIGHT_SCREEN
 	dbw 75, THUNDER
+	dbw 80, VOLT_TACKLE
 	db 0 ; no more level-up moves
 
 SandshrewEvosAttacks:
@@ -1761,6 +1763,7 @@ SlowpokeEvosAttacks:
 	dbw 40, PSYCH_UP
 	dbw 43, FUTURE_SIGHT
 	dbw 46, TRICK_ROOM
+	dbw 49, SLACK_OFF
 	db 0 ; no more level-up moves
 
 SlowbroEvosAttacks:
@@ -1787,6 +1790,7 @@ SlowbroEvosAttacks:
 	dbw 43, PSYCH_UP
 	dbw 47, FUTURE_SIGHT
 	dbw 51, TRICK_ROOM
+	dbw 55, SLACK_OFF
 	db 0 ; no more level-up moves
 
 MagnemiteEvosAttacks:
@@ -3192,6 +3196,7 @@ SnorlaxEvosAttacks:
 	dbw 36, CRUNCH
 	dbw 42, BELLY_DRUM
 	dbw 45, DOUBLE_EDGE
+	dbw 48, SLACK_OFF
 	dbw 51, GIGA_IMPACT
 	db 0 ; no more level-up moves
 
