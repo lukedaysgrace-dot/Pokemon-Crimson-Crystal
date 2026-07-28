@@ -1230,9 +1230,9 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, UNOWN
-	dbw 3, UNOWN
-	dbw 3, UNOWN
+	dbw 3, KOTORA
+	dbw 3, RAITORA
+	dbw 3, GOROTORA
 	dbw 3, TORKOAL
 	dbw 3, TORKOAL
 	dbw 3, BUNEARY
@@ -1263,7 +1263,7 @@ JohtoGrassWildMons:
 	dbw 4, PIDGEY
 	dbw 3, MAREEP
 	dbw 4, GROWLITHE
-	dbw 4, ELECTRIKE
+	dbw 4, KOTORA
 	; nite
 	dbw 3, SPINARAK
 	dbw 3, HOOTHOOT
@@ -1341,10 +1341,10 @@ JohtoGrassWildMons:
 	dbw 6, VOLTORB
 	dbw 6, EEVEE
 	dbw 6, PIKACHU
-	dbw 6, ELECTRIKE
+	dbw 6, KOTORA
 	dbw 7, EKANS
 	dbw 7, GROWLITHE
-	dbw 7, ELECTRIKE
+	dbw 7, KOTORA
 	; nite
 	dbw 6, MAREEP
 	dbw 6, ZUBAT
@@ -1641,7 +1641,7 @@ JohtoGrassWildMons:
 	dbw 28, DRIFBLIM
 	dbw 30, PERSIAN
 	dbw 27, JUMPLUFF
-	dbw 27, MANECTRIC
+	dbw 27, RAITORA
 	; nite
 	dbw 23, RAICHU
 	dbw 25, PHANPY

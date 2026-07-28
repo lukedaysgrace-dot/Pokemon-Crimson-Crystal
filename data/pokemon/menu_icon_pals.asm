@@ -365,8 +365,9 @@ MonMenuIconPals:
 	icon_pals PURPLE, GRAY   ; DRIFBLIM
 	icon_pals BROWN , GRAY   ; DRILBUR
 	icon_pals BROWN , GRAY   ; EXCADRILL
-	icon_pals GREEN , BROWN ; ELECTRIKE
-	icon_pals BROWN, BLUE   ; MANECTRIC
+	icon_pals RED,   BROWN  ; KOTORA
+	icon_pals RED,   BROWN  ; RAITORA
+	icon_pals RED,   BROWN  ; GOROTORA
 	icon_pals RED   , GRAY   ; FLETCHLING
 	icon_pals RED   , GRAY   ; FLETCHINDER
 	icon_pals RED   , GRAY   ; TALONFLAME

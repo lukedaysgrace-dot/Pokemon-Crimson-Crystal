@@ -207,6 +207,10 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
+	dw NoEggMoves2 ; KOTORA
+	dw NoEggMoves2 ; RAITORA
+	dw NoEggMoves2 ; GOROTORA
+	dw NoEggMoves2 ; FLETCHLING
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
@@ -308,10 +312,7 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
-	dw NoEggMoves2
-	dw NoEggMoves2
-	dw NoEggMoves2
-; SHUPPET through SALAZZLE (species 462-477). EggMovePointers2 is declared in
+; SHUPPET through SALAZZLE (species 463-478). EggMovePointers2 is declared in
 ; data/pokemon/egg_moves.asm as covering species 152-NUM_POKEMON, so it must
 ; have one entry per species or the last entries read past the end of the table.
 	dw NoEggMoves2 ; SHUPPET
