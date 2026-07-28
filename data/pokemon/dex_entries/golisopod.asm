@@ -1,5 +1,5 @@
 	db "HARD SCALE@" ; species name
-	dw 10, 2381 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This GOLISOPOD"
 	next "was newly added"

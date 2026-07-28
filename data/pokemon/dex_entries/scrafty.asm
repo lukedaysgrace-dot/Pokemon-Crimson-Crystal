@@ -1,5 +1,5 @@
 	db "HOODLUM@" ; species name
-	dw 10, 661 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This SCRAFTY"
 	next "was newly added"

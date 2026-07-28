@@ -12,9 +12,6 @@ CriticalHitMoves:
 	dw NIGHT_SLASH
 	dw DRILL_RUN
 	dw PSYCHO_CUT
-	dw BLAZE_KICK
 	dw AIR_CUTTER
 	dw CROSS_POISON
-	dw STONE_AXE
-	dw POISON_TAIL
 	dw -1

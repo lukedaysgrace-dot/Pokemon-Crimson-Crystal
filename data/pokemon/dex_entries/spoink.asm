@@ -1,5 +1,5 @@
 	db "BOUNCE@" ; species name
-	dw 10, 675 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This SPOINK"
 	next "was newly added"
