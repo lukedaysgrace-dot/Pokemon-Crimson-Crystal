@@ -1,5 +1,5 @@
 	db "TINY ROBIN@" ; species name
-	dw 10, 37 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This FLETCHLING"
 	next "was newly added"
