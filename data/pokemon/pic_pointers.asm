@@ -727,10 +727,12 @@ PokemonPicPointers::
 	dba DrilburBackpic
 	dba ExcadrillFrontpic
 	dba ExcadrillBackpic
-	dba ElectrikeFrontpic
-	dba ElectrikeBackpic
-	dba ManectricFrontpic
-	dba ManectricBackpic
+	dba KotoraFrontpic
+	dba KotoraBackpic
+	dba RaitoraFrontpic
+	dba RaitoraBackpic
+	dba GorotoraFrontpic
+	dba GorotoraBackpic
 	dba FletchlingFrontpic
 	dba FletchlingBackpic
 	dba FletchinderFrontpic

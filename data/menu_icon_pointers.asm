@@ -359,8 +359,9 @@ MenuIconPointers:
 	dba DrifblimMenuIcon
 	dba DrilburMenuIcon
 	dba ExcadrillMenuIcon
-	dba ElectrikeMenuIcon
-	dba ManectricMenuIcon
+	dba KotoraMenuIcon
+	dba RaitoraMenuIcon
+	dba GorotoraMenuIcon
 	dba FletchlingMenuIcon
 	dba FletchinderMenuIcon
 	dba TalonflameMenuIcon

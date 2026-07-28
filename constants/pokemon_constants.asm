@@ -377,8 +377,9 @@ JOHTO_POKEMON EQU const_value
 	const DRIFBLIM   ;
 	const DRILBUR    ;
 	const EXCADRILL  ;
-	const ELECTRIKE  ;
-	const MANECTRIC  ;
+	const KOTORA     ;
+	const RAITORA    ;
+	const GOROTORA   ;
 	const FLETCHLING ;
 	const FLETCHINDER ;
 	const TALONFLAME ;

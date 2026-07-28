@@ -356,8 +356,9 @@ AnimationIdlePointers:
 	dba DrifblimAnimationIdle
 	dba DrilburAnimationIdle
 	dba ExcadrillAnimationIdle
-	dba ElectrikeAnimationIdle
-	dba ManectricAnimationIdle
+	dba KotoraAnimationIdle
+	dba RaitoraAnimationIdle
+	dba GorotoraAnimationIdle
 	dba FletchlingAnimationIdle
 	dba FletchinderAnimationIdle
 	dba TalonflameAnimationIdle
