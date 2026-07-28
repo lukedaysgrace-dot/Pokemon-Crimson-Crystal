@@ -311,6 +311,25 @@ EggMovePointers2::
 	dw NoEggMoves2
 	dw NoEggMoves2
 	dw NoEggMoves2
+; SHUPPET through SALAZZLE (species 462-477). EggMovePointers2 is declared in
+; data/pokemon/egg_moves.asm as covering species 152-NUM_POKEMON, so it must
+; have one entry per species or the last entries read past the end of the table.
+	dw NoEggMoves2 ; SHUPPET
+	dw NoEggMoves2 ; BANETTE
+	dw NoEggMoves2 ; ARCHEN
+	dw NoEggMoves2 ; ARCHEOPS
+	dw NoEggMoves2 ; TIRTOUGA
+	dw NoEggMoves2 ; CARRACOSTA
+	dw NoEggMoves2 ; LITWICK
+	dw NoEggMoves2 ; LAMPENT
+	dw NoEggMoves2 ; CHANDELURE
+	dw NoEggMoves2 ; JOLTIK
+	dw NoEggMoves2 ; GALVANTULA
+	dw NoEggMoves2 ; MAWILE
+	dw NoEggMoves2 ; NOIBAT
+	dw NoEggMoves2 ; NOIVERN
+	dw NoEggMoves2 ; SALANDIT
+	dw NoEggMoves2 ; SALAZZLE
 
 
 ChikoritaEggMoves:
