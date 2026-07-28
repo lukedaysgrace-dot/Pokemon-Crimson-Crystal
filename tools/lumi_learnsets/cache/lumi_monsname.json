@@ -9285,66 +9285,6 @@
             ]
         },
         {
-            "labelIndex": 309,
-            "arrayIndex": 309,
-            "labelName": "MONSNAME_309",
-            "styleInfo": {
-                "styleIndex": 120,
-                "colorIndex": -1,
-                "fontSize": 42,
-                "maxWidth": 294,
-                "controlID": 0
-            },
-            "attributeValueArray": [
-                -1,
-                0,
-                0,
-                -1,
-                0
-            ],
-            "tagDataArray": [],
-            "wordDataArray": [
-                {
-                    "patternID": 0,
-                    "eventID": 7,
-                    "tagIndex": -1,
-                    "tagValue": 0.0,
-                    "str": "Electrike",
-                    "strWidth": 111.640625
-                }
-            ]
-        },
-        {
-            "labelIndex": 310,
-            "arrayIndex": 310,
-            "labelName": "MONSNAME_310",
-            "styleInfo": {
-                "styleIndex": 120,
-                "colorIndex": -1,
-                "fontSize": 42,
-                "maxWidth": 294,
-                "controlID": 0
-            },
-            "attributeValueArray": [
-                -1,
-                0,
-                0,
-                -1,
-                0
-            ],
-            "tagDataArray": [],
-            "wordDataArray": [
-                {
-                    "patternID": 0,
-                    "eventID": 7,
-                    "tagIndex": -1,
-                    "tagValue": 0.0,
-                    "str": "Manectric",
-                    "strWidth": 128.046875
-                }
-            ]
-        },
-        {
             "labelIndex": 311,
             "arrayIndex": 311,
             "labelName": "MONSNAME_311",
