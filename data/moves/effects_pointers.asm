@@ -190,20 +190,3 @@ MoveEffectsPointers:
 	dw MortalSpin ; EFFECT_MORTAL_SPIN
 	dw FirstImpression ; EFFECT_FIRST_IMPRESSION
 	dw VoltTackle ; EFFECT_VOLT_TACKLE
-	dw SpAtkUpHit
-	dw SpDefDown2Hit
-	dw QuiverDance
-	dw Coil
-	dw CosmicPower
-	dw WorkUp
-	dw Superpower
-	dw HammerArm
-	dw ClearSmog
-	dw CircleThrow
-	dw PsychoBoost
-	dw StealthRock
-	dw Defog
-	dw BodyPress
-	dw FreezeDry
-	dw FoulPlay
-	dw StickyWeb
