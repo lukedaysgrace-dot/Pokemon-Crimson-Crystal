@@ -1251,31 +1251,3 @@ BattleText_0x8188e:
 	done
 
 INCLUDE "data/text/ability_text.asm"
-
-StealthRockText::
-	text "Pointed stones"
-	line "float around"
-	cont "<TARGET>!"
-	prompt
-
-HurtByStealthRockText::
-	text "Pointed stones dug"
-	line "into <USER>!"
-	prompt
-
-StickyWebText::
-	text "A sticky web spread"
-	line "beneath <TARGET>!"
-	prompt
-
-CaughtInStickyWebText::
-	text "<USER> was caught"
-	line "in a sticky web!"
-	prompt
-
-DefogText::
-	text "The battlefield"
-	line "was cleared!"
-	prompt
-
-
