@@ -1097,7 +1097,6 @@ Transform:
 	endmove
 
 LightScreen:
-
 Reflect:
 	checkobedience
 	usedmovetext
@@ -1126,7 +1125,6 @@ TriAttack:
 	endmove
 
 Toxic:
-
 DoPoison:
 	checkobedience
 	usedmovetext
@@ -1325,9 +1323,7 @@ TrapTarget:
 	endmove
 
 SuperFang:
-
 Psywave:
-
 StaticDamage:
 	checkobedience
 	usedmovetext
@@ -2248,6 +2244,7 @@ DefenseCurl:
 	statupfailtext
 	endmove
 
+
 CloseCombat:
 	checkobedience
 	usedmovetext
@@ -2443,7 +2440,6 @@ FlareBlitz:
 ; The two-stat boost moves play the move animation only once (with the
 ; first boost), then apply the remaining stat changes one at a time.
 ; resetmiss keeps one maxed stat from cancelling the other boost.
-
 BulkUp:
 	checkobedience
 	usedmovetext
@@ -2600,339 +2596,3 @@ DoBurn:
 	checksafeguard
 	burn
 	endmove
-
-SpAtkUpHit:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	effectchance
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	specialattackup
-	statupmessage
-	checkfaint
-	buildopponentrage
-	endmove
-
-SpDefDown2Hit:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	effectchance
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	specialdefensedown2
-	statdownmessage
-	endmove
-
-QuiverDance:
-	checkobedience
-	usedmovetext
-	doturn
-	deferstatmessages
-	specialattackup
-	statupmessage
-	statupfailtext
-	resetmiss
-	specialdefenseup
-	statupmessage
-	statupfailtext
-	resetmiss
-	speedup
-	statupmessage
-	statupfailtext
-	resetmiss
-	flushstatmessages
-	endmove
-
-Coil:
-	checkobedience
-	usedmovetext
-	doturn
-	deferstatmessages
-	attackup
-	statupmessage
-	statupfailtext
-	resetmiss
-	defenseup
-	statupmessage
-	statupfailtext
-	resetmiss
-	accuracyup
-	statupmessage
-	statupfailtext
-	resetmiss
-	flushstatmessages
-	endmove
-
-CosmicPower:
-	checkobedience
-	usedmovetext
-	doturn
-	deferstatmessages
-	defenseup
-	statupmessage
-	statupfailtext
-	resetmiss
-	specialdefenseup
-	statupmessage
-	statupfailtext
-	resetmiss
-	flushstatmessages
-	endmove
-
-WorkUp:
-	checkobedience
-	usedmovetext
-	doturn
-	deferstatmessages
-	attackup
-	statupmessage
-	statupfailtext
-	resetmiss
-	specialattackup
-	statupmessage
-	statupfailtext
-	resetmiss
-	flushstatmessages
-	endmove
-
-Superpower:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	savemiss
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	deferstatmessages
-	switchturn
-	attackdown
-	switchturn
-	switchturn
-	statdownmessage
-	switchturn
-	restoremiss
-	switchturn
-	defensedown
-	switchturn
-	switchturn
-	statdownmessage
-	switchturn
-	restoremiss
-	flushstatmessages
-	checkfaint
-	buildopponentrage
-	kingsrock
-	endmove
-
-HammerArm:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	savemiss
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	deferstatmessages
-	switchturn
-	speeddown
-	switchturn
-	switchturn
-	statdownmessage
-	switchturn
-	restoremiss
-	flushstatmessages
-	checkfaint
-	buildopponentrage
-	kingsrock
-	endmove
-
-ClearSmog:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	resetstats
-	endmove
-
-CircleThrow:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	forceswitch
-	endmove
-
-PsychoBoost:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	savemiss
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	deferstatmessages
-	switchturn
-	specialattackdown2
-	switchturn
-	switchturn
-	statdownmessage
-	switchturn
-	restoremiss
-	flushstatmessages
-	checkfaint
-	buildopponentrage
-	kingsrock
-	endmove
-
-StealthRock:
-	checkobedience
-	usedmovetext
-	doturn
-	stealthrock
-	endmove
-
-Defog:
-	checkobedience
-	usedmovetext
-	doturn
-	defog
-	endmove
-
-
-BodyPress:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	endmove
-
-FreezeDry:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	freezedry
-	damagevariation
-	checkhit
-	effectchance
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	freezetarget
-	endmove
-
-FoulPlay:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	checkfaint
-	buildopponentrage
-	endmove
-
-StickyWeb:
-	checkobedience
-	usedmovetext
-	doturn
-	stickyweb
-	endmove
-
