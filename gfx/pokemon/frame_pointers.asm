@@ -356,8 +356,9 @@ FramesPointers:
 	dba DrifblimFrames
 	dba DrilburFrames
 	dba ExcadrillFrames
-	dba ElectrikeFrames
-	dba ManectricFrames
+	dba KotoraFrames
+	dba RaitoraFrames
+	dba GorotoraFrames
 	dba FletchlingFrames
 	dba FletchinderFrames
 	dba TalonflameFrames
