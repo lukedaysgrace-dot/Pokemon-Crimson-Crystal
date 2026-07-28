@@ -363,7 +363,6 @@
 	const SILVER_WIND
 	const DRAGON_RUSH
 	const DRILL_RUN
-	const DRAININGKISS
 	const METAL_SOUND
 	const SIGNAL_BEAM
 	const MAGICAL_LEAF
@@ -470,8 +469,6 @@
 	const PETAL_BLIZZ
 	const SNARL
 	const AIR_CUTTER
-	const DAZZLINGLEAM
-	const DISARM_VOICE
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
