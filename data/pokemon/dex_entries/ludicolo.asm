@@ -1,5 +1,5 @@
 	db "CAREFREE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 1213 ; height, weight
 
 	db   "This LUDICOLO"
 	next "was newly added"

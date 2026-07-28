@@ -1,5 +1,5 @@
 	db "BATTERY@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 231 ; height, weight
 
 	db   "This CHARJABUG"
 	next "was newly added"

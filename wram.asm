@@ -3189,6 +3189,7 @@ wBattleAnimAddress:: dw ; d410
 wBattleAnimScriptBank:: db ; bank of the currently playing anim script
 wBattleAnimDelay:: db ; d412
 wBattleAnimParent:: dw ; d413
+wBattleAnimParentBank:: db ; bank to restore after anim_farcall
 wBattleAnimLoops:: db ; d415
 wBattleAnimVar:: db ; d416
 wBattleAnimByte:: db ; d417
