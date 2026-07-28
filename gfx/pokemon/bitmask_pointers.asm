@@ -356,8 +356,9 @@ BitmasksPointers:
 	dw DrifblimBitmasks
 	dw DrilburBitmasks
 	dw ExcadrillBitmasks
-	dw ElectrikeBitmasks
-	dw ManectricBitmasks
+	dw KotoraBitmasks
+	dw RaitoraBitmasks
+	dw GorotoraBitmasks
 	dw FletchlingBitmasks
 	dw FletchinderBitmasks
 	dw TalonflameBitmasks
