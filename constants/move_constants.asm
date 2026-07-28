@@ -355,6 +355,8 @@
 	const MORTAL_SPIN
 	const FIRST_IMPRESSION
 	const LIQUIDATION
+	const SLACK_OFF
+	const VOLT_TACKLE
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

@@ -189,3 +189,4 @@ MoveEffectsPointers:
 	dw FlameWheel ; EFFECT_SCALD (thaws the user)
 	dw MortalSpin ; EFFECT_MORTAL_SPIN
 	dw FirstImpression ; EFFECT_FIRST_IMPRESSION
+	dw VoltTackle ; EFFECT_VOLT_TACKLE
