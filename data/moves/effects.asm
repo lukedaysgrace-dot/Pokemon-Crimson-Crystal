@@ -2865,10 +2865,7 @@ Defog:
 	checkobedience
 	usedmovetext
 	doturn
-	checkhit
 	defog
-	evasiondown
-	statdownmessage
 	endmove
 
 

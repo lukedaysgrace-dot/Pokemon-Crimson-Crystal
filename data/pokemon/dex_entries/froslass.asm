@@ -1,5 +1,5 @@
 	db "SNOW LAND@" ; species name
-	dw 10, 586 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This FROSLASS"
 	next "was newly added"
