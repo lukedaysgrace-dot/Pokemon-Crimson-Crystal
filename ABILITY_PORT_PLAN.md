@@ -923,8 +923,7 @@ wInAbility/wEnemyAbility via pokecrystal.sym addresses to time captures.
   (duraludon); Thermal Exchange->Flash Fire (frigibax line); Klutz dropped
   (buneary, lopunny, golett, golurk); Battery->Static (charjabug);
   Mirror Armor->Magic Bounce (corviknight); Storm Drain->Water Absorb (lileep,
-  cradily); Flare Boost->Guts (drifloon, drifblim); Minus dropped (electrike,
-  manectric); Gale Wings->Wind Rider (fletchling line, talonflame); Telepathy
+  cradily); Flare Boost->Guts (drifloon, drifblim); Gale Wings->Wind Rider (fletchling line, talonflame); Telepathy
   dropped (ralts line); Emergency Exit->Anticipation (golisopod); Wimp Out->
   Run Away (wimpod); Supreme Overlord->Moxie (kingambit); Disguise->Multiscale
   (mimikyu); Simple dropped (numel); Strong Jaw->Tough Claws (tyrunt, tyrantrum).

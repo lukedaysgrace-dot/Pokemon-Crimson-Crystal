@@ -276,7 +276,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -318,7 +318,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -332,7 +332,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3664,7 +3664,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3706,7 +3706,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3720,7 +3720,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -8886,7 +8886,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -8928,7 +8928,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -8942,7 +8942,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9432,7 +9432,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9474,7 +9474,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9488,7 +9488,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -16558,7 +16558,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -16908,7 +16908,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -16922,7 +16922,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -17804,7 +17804,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18266,7 +18266,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18280,7 +18280,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -19003,10 +19003,38 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 3,
-    "pokemon": "Carracosta",
-    "const": "CARRACOSTA",
+    "pokemon": "Gorotora",
+    "const": "GOROTORA",
     "rate": 10,
     "chance": 20,
+    "condition": null,
+    "group": null,
+    "source": "data/wild/johto_grass.asm"
+  },
+  {
+    "location_const": "ROUTE_29",
+    "location": "Route 29",
+    "method": "Grass / Cave",
+    "time": "Day",
+    "level": 3,
+    "pokemon": "Kotora",
+    "const": "KOTORA",
+    "rate": 10,
+    "chance": 30,
+    "condition": null,
+    "group": null,
+    "source": "data/wild/johto_grass.asm"
+  },
+  {
+    "location_const": "ROUTE_29",
+    "location": "Route 29",
+    "method": "Grass / Cave",
+    "time": "Day",
+    "level": 3,
+    "pokemon": "Raitora",
+    "const": "RAITORA",
+    "rate": 10,
+    "chance": 30,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -19021,20 +19049,6 @@
     "const": "SENTRET",
     "rate": 10,
     "chance": 1,
-    "condition": null,
-    "group": null,
-    "source": "data/wild/johto_grass.asm"
-  },
-  {
-    "location_const": "ROUTE_29",
-    "location": "Route 29",
-    "method": "Grass / Cave",
-    "time": "Day",
-    "level": 3,
-    "pokemon": "Torkoal",
-    "const": "TORKOAL",
-    "rate": 10,
-    "chance": 30,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -19997,10 +20011,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 4,
-    "pokemon": "Electrike",
-    "const": "ELECTRIKE",
+    "pokemon": "Growlithe",
+    "const": "GROWLITHE",
     "rate": 10,
-    "chance": 1,
+    "chance": 4,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -20011,10 +20025,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 4,
-    "pokemon": "Growlithe",
-    "const": "GROWLITHE",
+    "pokemon": "Kotora",
+    "const": "KOTORA",
     "rate": 10,
-    "chance": 4,
+    "chance": 1,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -21915,8 +21929,8 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 6,
-    "pokemon": "Electrike",
-    "const": "ELECTRIKE",
+    "pokemon": "Kotora",
+    "const": "KOTORA",
     "rate": 10,
     "chance": 10,
     "condition": null,
@@ -21971,10 +21985,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 7,
-    "pokemon": "Electrike",
-    "const": "ELECTRIKE",
+    "pokemon": "Growlithe",
+    "const": "GROWLITHE",
     "rate": 10,
-    "chance": 1,
+    "chance": 4,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -21985,10 +21999,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 7,
-    "pokemon": "Growlithe",
-    "const": "GROWLITHE",
+    "pokemon": "Kotora",
+    "const": "KOTORA",
     "rate": 10,
-    "chance": 4,
+    "chance": 1,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -27072,7 +27086,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -27548,7 +27562,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -27562,7 +27576,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -27744,7 +27758,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28206,7 +28220,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28220,7 +28234,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_POND",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28999,8 +29013,8 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 27,
-    "pokemon": "Manectric",
-    "const": "MANECTRIC",
+    "pokemon": "Raitora",
+    "const": "RAITORA",
     "rate": 10,
     "chance": 1,
     "condition": null,
@@ -40750,7 +40764,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -40792,7 +40806,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
@@ -40806,7 +40820,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_OCEAN",
     "source": "data/wild/fish.asm"
   },
   {
