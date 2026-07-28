@@ -1258,10 +1258,12 @@ BattleCommand_Critical:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	call GetMoveIndexFromID
+	ld de, 2
+	ld hl, CriticalHitMoves
 	push bc
 	ld b, h
 	ld c, l
-	farcall CheckCriticalHitMove_Core
+	call IsInHalfwordArray
 	pop bc
 	jr nc, .ScopeLens
 
@@ -1292,6 +1294,8 @@ BattleCommand_Critical:
 	ld a, 1
 	ld [wCriticalHit], a
 	ret
+
+INCLUDE "data/moves/critical_hit_moves.asm"
 
 INCLUDE "data/battle/critical_hit_chances.asm"
 
@@ -2668,7 +2672,6 @@ PlayerAttackDamage:
 
 .physicalcrit
 	ld hl, wBattleMonAttack
-	call GetPhysicalAttackSource
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
@@ -2677,7 +2680,6 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
-	call GetPhysicalAttackSourceBoosted
 	jr .thickclub
 
 .special
@@ -2963,7 +2965,6 @@ EnemyAttackDamage:
 
 .physicalcrit
 	ld hl, wEnemyMonAttack
-	call GetPhysicalAttackSource
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
@@ -2972,7 +2973,6 @@ EnemyAttackDamage:
 	ld b, a
 	ld c, [hl]
 	ld hl, wEnemyAttack
-	call GetPhysicalAttackSourceBoosted
 	jr .thickclub
 
 .Special:

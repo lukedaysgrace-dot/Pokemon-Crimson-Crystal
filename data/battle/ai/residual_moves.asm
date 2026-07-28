@@ -13,15 +13,4 @@ ResidualMoves:
 	dw CONVERSION
 	dw SUBSTITUTE
 	dw SPIKES
-	dw STEALTH_ROCK
-	dw STICKY_WEB
-	dw QUIVER_DANCE
-	dw IRON_DEFENSE
-	dw COIL
-	dw COSMIC_POWER
-	dw WORK_UP
-	dw ROCK_POLISH
-	dw HOWL
-	dw AQUA_RING
-	dw DEFOG
 	dw -1 ; end

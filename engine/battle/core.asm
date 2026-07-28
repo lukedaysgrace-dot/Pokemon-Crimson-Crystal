@@ -4249,8 +4249,6 @@ SpikesDamageAndEntryAbilities:
 SpikesDamage:
 	call .Spikes
 	farcall ToxicSpikesPoison
-	farcall StealthRockDamage_Core
-	farcall StickyWebSpeedDrop_Core
 	ret
 
 .Spikes:
