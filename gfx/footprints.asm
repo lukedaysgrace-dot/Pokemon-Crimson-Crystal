@@ -355,8 +355,9 @@ INCBIN "gfx/footprints/252.1bpp"
 INCBIN "gfx/footprints/252.1bpp"
 INCBIN "gfx/footprints/252.1bpp"
 INCBIN "gfx/footprints/252.1bpp" ; EXCADRILL
-INCBIN "gfx/footprints/252.1bpp" ; ELECTRIKE
-INCBIN "gfx/footprints/252.1bpp" ; MANECTRIC
+INCBIN "gfx/footprints/252.1bpp" ; KOTORA (placeholder)
+INCBIN "gfx/footprints/252.1bpp" ; RAITORA (placeholder)
+INCBIN "gfx/footprints/252.1bpp" ; GOROTORA (placeholder)
 INCBIN "gfx/footprints/252.1bpp" ; FLETCHLING
 INCBIN "gfx/footprints/252.1bpp" ; FLETCHINDER
 INCBIN "gfx/footprints/252.1bpp" ; TALONFLAME

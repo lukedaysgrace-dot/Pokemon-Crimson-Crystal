@@ -119,7 +119,6 @@ AlphabeticalPokedexOrder:
 	dw EKANS
 	dw ELECTABUZZ
 	dw ELECTIVIRE
-	dw ELECTRIKE
 	dw ELECTRODE
 	dw ELECTRODE_HISUIAN
 	dw ELEKID
@@ -167,6 +166,7 @@ AlphabeticalPokedexOrder:
 	dw GOLETT
 	dw GOLISOPOD
 	dw GOLURK
+	dw GOROTORA
 	dw GRANBULL
 	dw GRAVELER
 	dw GRAVELER_ALOLAN
@@ -215,6 +215,7 @@ AlphabeticalPokedexOrder:
 	dw KIRLIA
 	dw KLEAVOR
 	dw KOFFING
+	dw KOTORA
 	dw KRABBY
 	dw LAIRON
 	dw LAMPENT
@@ -247,7 +248,6 @@ AlphabeticalPokedexOrder:
 	dw MAGNETON
 	dw MAGNEZONE
 	dw MAMOSWINE
-	dw MANECTRIC
 	dw MANKEY
 	dw MANTINE
 	dw MAREANIE
@@ -329,6 +329,7 @@ AlphabeticalPokedexOrder:
 	dw RAICHU
 	dw RAICHU_ALOLAN
 	dw RAIKOU
+	dw RAITORA
 	dw RALTS
 	dw RAMPARDOS
 	dw RAPIDASH

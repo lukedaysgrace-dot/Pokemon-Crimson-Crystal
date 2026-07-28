@@ -1008,8 +1008,8 @@ SECTION "Pics 29", ROMX
 
 DuraludonFrontpic: INCBIN "gfx/pokemon/duraludon/front.animated.2bpp.lz"
 DuraludonBackpic:  INCBIN "gfx/pokemon/duraludon/back.2bpp.lz"
-ElectrikeFrontpic: INCBIN "gfx/pokemon/electrike/front.animated.2bpp.lz"
-ElectrikeBackpic:  INCBIN "gfx/pokemon/electrike/back.2bpp.lz"
+KotoraFrontpic: INCBIN "gfx/pokemon/kotora/front.animated.2bpp.lz"
+KotoraBackpic:  INCBIN "gfx/pokemon/kotora/back.2bpp.lz"
 ExcadrillFrontpic: INCBIN "gfx/pokemon/excadrill/front.animated.2bpp.lz"
 ExcadrillBackpic:  INCBIN "gfx/pokemon/excadrill/back.2bpp.lz"
 FlappleFrontpic: INCBIN "gfx/pokemon/flapple/front.animated.2bpp.lz"
@@ -1046,8 +1046,10 @@ SECTION "Pics 31", ROMX
 
 LudicoloFrontpic: INCBIN "gfx/pokemon/ludicolo/front.animated.2bpp.lz"
 LudicoloBackpic:  INCBIN "gfx/pokemon/ludicolo/back.2bpp.lz"
-ManectricFrontpic: INCBIN "gfx/pokemon/manectric/front.animated.2bpp.lz"
-ManectricBackpic:  INCBIN "gfx/pokemon/manectric/back.2bpp.lz"
+RaitoraFrontpic: INCBIN "gfx/pokemon/raitora/front.animated.2bpp.lz"
+RaitoraBackpic:  INCBIN "gfx/pokemon/raitora/back.2bpp.lz"
+GorotoraFrontpic: INCBIN "gfx/pokemon/gorotora/front.animated.2bpp.lz"
+GorotoraBackpic:  INCBIN "gfx/pokemon/gorotora/back.2bpp.lz"
 NumelFrontpic: INCBIN "gfx/pokemon/numel/front.animated.2bpp.lz"
 NumelBackpic:  INCBIN "gfx/pokemon/numel/back.2bpp.lz"
 OverqwilFrontpic: INCBIN "gfx/pokemon/overqwil/front.animated.2bpp.lz"
