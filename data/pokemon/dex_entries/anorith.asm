@@ -1,5 +1,5 @@
 	db "OLD SHRIMP@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 276 ; height, weight
 
 	db   "This ANORITH"
 	next "was newly added"
