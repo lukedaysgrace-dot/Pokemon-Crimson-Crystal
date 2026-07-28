@@ -369,6 +369,7 @@ MeganiumEvosAttacks:
 	dbw 55, SOLARBEAM
 	dbw 60, GIGA_DRAIN
 	dbw 65, EARTH_POWER
+	dbw 50, FRENZY_PLANT
 	db 0 ; no more level-up moves
 
 CyndaquilEvosAttacks:
@@ -436,6 +437,7 @@ TyphlosionEvosAttacks:
 	dbw 45, ROLLOUT
 	dbw 50, DOUBLE_EDGE
 	dbw 55, FLARE_BLITZ
+	dbw 54, OVERHEAT
 	db 0 ; no more level-up moves
 
 TotodileEvosAttacks:
@@ -510,6 +512,7 @@ FeraligatrEvosAttacks:
 	dbw 44, THRASH
 	dbw 49, DRAGON_DANCE
 	dbw 59, HYDRO_PUMP
+	dbw 50, HYDRO_CANNON
 	db 0 ; no more level-up moves
 
 SentretEvosAttacks:
@@ -702,6 +705,7 @@ AriadosEvosAttacks:
 	dbw 48, AGILITY
 	dbw 52, PSYCHIC_M
 	dbw 55, MEGAHORN
+	dbw 32, STICKY_WEB
 	db 0 ; no more level-up moves
 
 CrobatEvosAttacks:
@@ -726,6 +730,9 @@ CrobatEvosAttacks:
 	dbw 47, NASTY_PLOT
 	dbw 48, VENOSHOCK
 	dbw 51, BRAVE_BIRD
+	dbw 40, DEFOG
+	dbw 46, CROSS_POISON
+	dbw 34, AIR_CUTTER
 	db 0 ; no more level-up moves
 
 ChinchouEvosAttacks:
@@ -757,6 +764,7 @@ LanturnEvosAttacks:
 	dbw 37, THUNDERBOLT
 	dbw 41, TAKE_DOWN
 	dbw 49, HYDRO_PUMP
+	dbw 44, FLIP_TURN
 	db 0 ; no more level-up moves
 
 PichuEvosAttacks:
@@ -770,6 +778,7 @@ PichuEvosAttacks:
 	dbw 11, THUNDER_WAVE
 	dbw 13, NASTY_PLOT
 	dbw 15, DISARMING_VOICE
+	dbw 12, NUZZLE
 	db 0 ; no more level-up moves
 
 CleffaEvosAttacks:
@@ -945,6 +954,8 @@ BellossomEvosAttacks:
 	dbw 1, GIGA_DRAIN
 	dbw 27, EARTH_POWER
 	dbw 47, PETAL_DANCE
+	dbw 46, QUIVER_DANCE
+	dbw 40, PETAL_BLIZZ
 	db 0 ; no more level-up moves
 
 MarillEvosAttacks:
@@ -1014,6 +1025,7 @@ SudowoodoEvosAttacks:
 	dbw 36, SUCKER_PUNCH
 	dbw 39, DOUBLE_EDGE
 	dbw 42, STONE_EDGE
+	dbw 38, HEAD_SMASH
 	db 0 ; no more level-up moves
 
 PolitoedEvosAttacks:
@@ -1266,6 +1278,8 @@ UmbreonEvosAttacks:
 	dbw 37, GUNK_SHOT
 	dbw 40, DARK_PULSE
 	dbw 45, SCREECH
+	dbw 44, FOUL_PLAY
+	dbw 38, SNARL
 	db 0 ; no more level-up moves
 
 MurkrowEvosAttacks:
@@ -1412,6 +1426,8 @@ ForretressEvosAttacks:
 	dbw 42, EXPLOSION
 	dbw 50, DOUBLE_EDGE
 	dbw 58, ZAP_CANNON
+	dbw 36, STEALTH_ROCK
+	dbw 42, IRON_DEFENSE
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
@@ -1481,6 +1497,8 @@ SteelixEvosAttacks:
 	dbw 37, STONE_EDGE
 	dbw 40, DOUBLE_EDGE
 	dbw 43, SANDSTORM
+	dbw 40, STEALTH_ROCK
+	dbw 46, IRON_DEFENSE
 	db 0 ; no more level-up moves
 
 SnubbullEvosAttacks:
@@ -1580,6 +1598,7 @@ ScizorEvosAttacks:
 	dbw 43, SWORDS_DANCE
 	dbw 46, BATON_PASS
 	dbw 49, REVERSAL
+	dbw 44, METEOR_MASH
 	db 0 ; no more level-up moves
 
 ShuckleEvosAttacks:
@@ -1623,6 +1642,8 @@ HeracrossEvosAttacks:
 	dbw 47, COUNTER
 	dbw 50, SWORDS_DANCE
 	dbw 51, REVERSAL
+	dbw 44, BRICK_BREAK
+	dbw 50, SUPERPOWER
 	db 0 ; no more level-up moves
 
 SneaselEvosAttacks:
@@ -1693,6 +1714,7 @@ UrsaringEvosAttacks:
 	dbw 51, PLAY_ROUGH
 	dbw 55, CLOSE_COMBAT
 	dbw 59, DOUBLE_EDGE
+	dbw 46, SUPERPOWER
 	db 0 ; no more level-up moves
 
 SlugmaEvosAttacks:
@@ -1730,6 +1752,7 @@ MagcargoEvosAttacks:
 	dbw 38, POWER_GEM
 	dbw 42, BODY_SLAM
 	dbw 46, RECOVER
+	dbw 44, STEALTH_ROCK
 	db 0 ; no more level-up moves
 
 SwinubEvosAttacks:
@@ -1903,6 +1926,10 @@ SkarmoryEvosAttacks:
 	dbw 40, AIR_SLASH
 	dbw 49, COUNTER
 	dbw 52, BRAVE_BIRD
+	dbw 38, IRON_DEFENSE
+	dbw 44, BODY_PRESS
+	dbw 30, STEALTH_ROCK
+	dbw 34, AIR_CUTTER
 	db 0 ; no more level-up moves
 
 HoundourEvosAttacks:
@@ -1944,6 +1971,8 @@ HoundoomEvosAttacks:
 	dbw 41, FLAME_CHARGE
 	dbw 46, NASTY_PLOT
 	dbw 62, FLARE_BLITZ
+	dbw 48, FOUL_PLAY
+	dbw 42, SNARL
 	db 0 ; no more level-up moves
 
 KingdraEvosAttacks:
@@ -2018,6 +2047,8 @@ DonphanEvosAttacks:
 	dbw 42, ICE_SHARD
 	dbw 46, GIGA_IMPACT
 	dbw 50, PLAY_ROUGH
+	dbw 44, HIHORSEPOWER
+	dbw 36, STEALTH_ROCK
 	db 0 ; no more level-up moves
 
 Porygon2EvosAttacks:
@@ -2356,6 +2387,8 @@ TyranitarEvosAttacks:
 	dbw 48, STONE_EDGE
 	dbw 54, HYPER_BEAM
 	dbw 60, GIGA_IMPACT
+	dbw 46, STEALTH_ROCK
+	dbw 52, SUPERPOWER
 	db 0 ; no more level-up moves
 
 LugiaEvosAttacks:
@@ -2438,6 +2471,8 @@ AmbipomEvosAttacks:
 	dbw 26, SCREECH
 	dbw 29, AGILITY
 	dbw 44, NASTY_PLOT
+	dbw 37, FAKE_OUT
+	dbw 45, DOUBLE_HIT_M
 	db 0 ; no more level-up moves
 
 AnnihilapeEvosAttacks:
@@ -2456,6 +2491,7 @@ AnnihilapeEvosAttacks:
 	dbw 39, CLOSE_COMBAT
 	dbw 44, SCREECH
 	dbw 53, OUTRAGE
+	dbw 46, RAGE_FIST
 	db 0 ; no more level-up moves
 
 BagonEvosAttacks:
@@ -2556,6 +2592,7 @@ GardevoirEvosAttacks:
 	dbw 52, FUTURE_SIGHT
 	dbw 55, FOCUS_BLAST
 	dbw 57, DREAM_EATER
+	dbw 46, DAZZLINGLEAM
 	db 0 ; no more level-up moves
 
 GlaceonEvosAttacks:
@@ -2583,6 +2620,7 @@ GlaceonEvosAttacks:
 	dbw 34, ICE_BEAM
 	dbw 37, EARTH_POWER
 	dbw 43, BLIZZARD
+	dbw 50, FREEZE_DRY
 	db 0 ; no more level-up moves
 
 GliscorEvosAttacks:
@@ -2611,6 +2649,7 @@ GliscorEvosAttacks:
 	dbw 43, SWORDS_DANCE
 	dbw 45, CRABHAMMER
 	dbw 46, GUILLOTINE
+	dbw 44, DEFOG
 	db 0 ; no more level-up moves
 
 KirliaEvosAttacks:
@@ -2631,6 +2670,7 @@ KirliaEvosAttacks:
 	dbw 43, CHARM
 	dbw 47, DREAM_EATER
 	dbw 51, FUTURE_SIGHT
+	dbw 28, PSYCHO_CUT
 	db 0 ; no more level-up moves
 
 LeafeonEvosAttacks:
@@ -2658,6 +2698,8 @@ LeafeonEvosAttacks:
 	dbw 35, SUNNY_DAY
 	dbw 40, GIGA_DRAIN
 	dbw 43, POWER_WHIP
+	dbw 40, LEAF_STORM
+	dbw 46, WOOD_HAMMER
 	db 0 ; no more level-up moves
 
 LickilickyEvosAttacks:
@@ -2705,6 +2747,7 @@ MagmortarEvosAttacks:
 	dbw 53, FIRE_BLAST
 	dbw 57, HYPER_BEAM
 	dbw 58, FOCUS_BLAST
+	dbw 50, OVERHEAT
 	db 0 ; no more level-up moves
 
 MagnezoneEvosAttacks:
@@ -2750,6 +2793,7 @@ MamoswineEvosAttacks:
 	dbw 43, ICICLE_CRASH
 	dbw 47, SCARY_FACE
 	dbw 51, BLIZZARD
+	dbw 46, HIHORSEPOWER
 	db 0 ; no more level-up moves
 
 MesmeriaEvosAttacks:
@@ -2791,6 +2835,7 @@ MismagiusEvosAttacks:
 	dbw 55, HYPNOSIS
 	dbw 60, DESTINY_BOND
 	dbw 65, HYPER_VOICE
+	dbw 44, PHANTOMFORCE
 	db 0 ; no more level-up moves
 
 PorygonZEvosAttacks:
@@ -2853,6 +2898,9 @@ RhyperiorEvosAttacks:
 	dbw 42, EARTHQUAKE
 	dbw 54, STONE_EDGE
 	dbw 68, HORN_DRILL
+	dbw 48, DRILL_RUN
+	dbw 40, STEALTH_ROCK
+	dbw 56, HIHORSEPOWER
 	db 0 ; no more level-up moves
 
 SalamenceEvosAttacks:
@@ -2879,6 +2927,7 @@ SalamenceEvosAttacks:
 	dbw 54, HYDRO_PUMP
 	dbw 60, OUTRAGE
 	dbw 70, DRACO_METEOR
+	dbw 48, DRAGON_RUSH
 	db 0 ; no more level-up moves
 
 ScolipedeEvosAttacks:
@@ -2897,6 +2946,7 @@ ScolipedeEvosAttacks:
 	dbw 40, TOXIC
 	dbw 52, DOUBLE_EDGE
 	dbw 56, MEGAHORN
+	dbw 40, CROSS_POISON
 	db 0 ; no more level-up moves
 
 ShelgonEvosAttacks:
@@ -2939,6 +2989,7 @@ TangrowthEvosAttacks:
 	dbw 34, ANCIENTPOWER
 	dbw 37, SLAM
 	dbw 46, POWER_WHIP
+	dbw 48, LEAF_STORM
 	db 0 ; no more level-up moves
 
 TogekissEvosAttacks:
@@ -2965,6 +3016,7 @@ TogekissEvosAttacks:
 	dbw 62, EXTREMESPEED
 	dbw 65, NASTY_PLOT
 	dbw 70, DOUBLE_EDGE
+	dbw 48, DAZZLINGLEAM
 	db 0 ; no more level-up moves
 
 UrsalunaEvosAttacks:
@@ -2991,6 +3043,7 @@ UrsalunaEvosAttacks:
 	dbw 56, PLAY_ROUGH
 	dbw 59, CLOSE_COMBAT
 	dbw 63, DOUBLE_EDGE
+	dbw 50, HEADLONGRUSH
 	db 0 ; no more level-up moves
 
 VenipedeEvosAttacks:
@@ -3031,6 +3084,8 @@ WeavileEvosAttacks:
 	dbw 36, HONE_CLAWS
 	dbw 37, ICICLE_CRASH
 	dbw 46, DARK_PULSE
+	dbw 30, FAKE_OUT
+	dbw 46, PSYCHO_CUT
 	db 0 ; no more level-up moves
 
 WhirlipedeEvosAttacks:
@@ -3069,6 +3124,7 @@ WyrdeerEvosAttacks:
 	dbw 47, LUNGE
 	dbw 52, MEGAHORN
 	dbw 60, DOUBLE_EDGE
+	dbw 42, PSYSHIELD
 	db 0 ; no more level-up moves
 
 YanmegaEvosAttacks:
@@ -3092,6 +3148,7 @@ YanmegaEvosAttacks:
 	dbw 39, U_TURN
 	dbw 43, SCREECH
 	dbw 45, BUG_BUZZ
+	dbw 38, AIR_CUTTER
 	db 0 ; no more level-up moves
 
 LileepEvosAttacks:
@@ -3131,6 +3188,8 @@ CradilyEvosAttacks:
 	dbw 39, RECOVER
 	dbw 43, ENERGY_BALL
 	dbw 47, MIRROR_COAT
+	dbw 46, LEAF_STORM
+	dbw 30, STEALTH_ROCK
 	db 0 ; no more level-up moves
 
 ArmaldoEvosAttacks:
@@ -3299,6 +3358,8 @@ ConkeldurrEvosAttacks:
 	dbw 30, SCARY_FACE
 	dbw 36, DYNAMICPUNCH
 	dbw 48, STONE_EDGE
+	dbw 50, SUPERPOWER
+	dbw 44, HAMMER_ARM
 	db 0 ; no more level-up moves
 
 LarvestaEvosAttacks:
@@ -3339,6 +3400,8 @@ VolcaronaEvosAttacks:
 	dbw 54, AMNESIA
 	dbw 62, HURRICANE
 	dbw 70, FIRE_BLAST
+	dbw 40, QUIVER_DANCE
+	dbw 48, FIERY_DANCE
 	db 0 ; no more level-up moves
 
 DeinoEvosAttacks:
@@ -3398,6 +3461,8 @@ HydreigonEvosAttacks:
 	dbw 68, OUTRAGE
 	dbw 70, DRACO_METEOR
 	dbw 76, HYPER_BEAM
+	dbw 44, DRAGON_RUSH
+	dbw 50, SNARL
 	db 0 ; no more level-up moves
 
 DreepyEvosAttacks:
@@ -3442,6 +3507,7 @@ DragapultEvosAttacks:
 	dbw 54, TAKE_DOWN
 	dbw 70, DOUBLE_EDGE
 	dbw 70, DRACO_METEOR
+	dbw 48, DRAGON_DARTS
 	db 0 ; no more level-up moves
 
 ImpidimpEvosAttacks:
@@ -3476,6 +3542,7 @@ GrimmsnarlEvosAttacks:
 	dbw 41, DARK_PULSE
 	dbw 45, NASTY_PLOT
 	dbw 55, PLAY_ROUGH
+	dbw 46, FOUL_PLAY
 	db 0 ; no more level-up moves
 
 TinkatinkEvosAttacks:
@@ -3573,6 +3640,8 @@ BaxcaliburEvosAttacks:
 	dbw 48, ICE_BEAM
 	dbw 55, CRUNCH
 	dbw 62, ICICLE_CRASH
+	dbw 46, SCALE_SHOT
+	dbw 54, GLAIVE_RUSH
 	db 0 ; no more level-up moves
 
 CharcadetEvosAttacks:
@@ -3599,6 +3668,7 @@ ArmarougeEvosAttacks:
 	dbw 24, FLAME_CHARGE
 	dbw 37, CALM_MIND
 	dbw 48, FLAMETHROWER
+	dbw 50, ARMOR_CANNON
 	db 0 ; no more level-up moves
 
 CeruledgeEvosAttacks:
@@ -3643,6 +3713,8 @@ SylveonEvosAttacks:
 	dbw 34, SKILL_SWAP
 	dbw 37, AURA_SPHERE
 	dbw 43, MOONBLAST
+	dbw 44, DAZZLINGLEAM
+	dbw 30, DISARM_VOICE
 	db 0 ; no more level-up moves
 
 RookideeEvosAttacks:
@@ -3684,6 +3756,9 @@ CorviknightEvosAttacks:
 	dbw 42, SWAGGER
 	dbw 42, ROOST
 	dbw 50, BRAVE_BIRD
+	dbw 40, IRON_DEFENSE
+	dbw 46, DUALWINGBEAT
+	dbw 52, BODY_PRESS
 	db 0 ; no more level-up moves
 
 AbomasnowEvosAttacks:
@@ -3702,6 +3777,7 @@ AbomasnowEvosAttacks:
 	dbw 37, MIST
 	dbw 41, ICICLE_CRASH
 	dbw 45, BLIZZARD
+	dbw 52, WOOD_HAMMER
 	db 0 ; no more level-up moves
 
 AltariaEvosAttacks:
@@ -3763,6 +3839,8 @@ AppletunEvosAttacks:
 	dbw 36, RECOVER
 	dbw 44, ENERGY_BALL
 	dbw 48, SOLARBEAM
+	dbw 44, LEAF_STORM
+	dbw 38, APPLE_ACID
 	db 0 ; no more level-up moves
 
 ApplinEvosAttacks:
@@ -3783,6 +3861,8 @@ ArchaludonEvosAttacks:
 	dbw 54, FLASH_CANNON
 	dbw 66, HYPER_BEAM
 	dbw 70, DRACO_METEOR
+	dbw 44, IRON_DEFENSE
+	dbw 50, BODY_PRESS
 	db 0 ; no more level-up moves
 
 BreloomEvosAttacks:
@@ -3804,6 +3884,9 @@ BreloomEvosAttacks:
 	dbw 34, MIND_READER
 	dbw 42, COUNTER
 	dbw 46, DYNAMICPUNCH
+	dbw 38, BULLET_SEED
+	dbw 50, WOOD_HAMMER
+	dbw 44, LEAF_STORM
 	db 0 ; no more level-up moves
 
 BunearyEvosAttacks:
@@ -3847,6 +3930,7 @@ CameruptEvosAttacks:
 	dbw 47, DOUBLE_EDGE
 	dbw 52, HEAT_CRASH
 	dbw 55, FISSURE
+	dbw 52, OVERHEAT
 	db 0 ; no more level-up moves
 
 CentiskorchEvosAttacks:
@@ -3867,6 +3951,7 @@ CentiskorchEvosAttacks:
 	dbw 60, LEECH_LIFE
 	dbw 60, LUNGE
 	dbw 66, FLARE_BLITZ
+	dbw 48, OVERHEAT
 	db 0 ; no more level-up moves
 
 CharjabugEvosAttacks:
@@ -3919,6 +4004,7 @@ DipplinEvosAttacks:
 	dbw 36, RECOVER
 	dbw 40, ENERGY_BALL
 	dbw 44, SUBSTITUTE
+	dbw 34, APPLE_ACID
 	db 0 ; no more level-up moves
 
 DrifblimEvosAttacks:
@@ -4028,6 +4114,9 @@ ExcadrillEvosAttacks:
 	dbw 52, IRON_HEAD
 	dbw 58, EARTHQUAKE
 	dbw 64, FISSURE
+	dbw 36, DRILL_RUN
+	dbw 44, IRON_DEFENSE
+	dbw 52, HIHORSEPOWER
 	db 0 ; no more level-up moves
 
 FlappleEvosAttacks:
@@ -4046,6 +4135,8 @@ FlappleEvosAttacks:
 	dbw 28, DRAGON_PULSE
 	dbw 36, DRAGON_DANCE
 	dbw 48, FLY
+	dbw 40, SCALE_SHOT
+	dbw 36, GRAV_APPLE
 	db 0 ; no more level-up moves
 
 FletchinderEvosAttacks:
@@ -4105,6 +4196,7 @@ FlygonEvosAttacks:
 	dbw 51, DRAGON_PULSE
 	dbw 55, MEGAHORN
 	dbw 65, DRACO_METEOR
+	dbw 42, DRAGON_TAIL
 	db 0 ; no more level-up moves
 
 FroslassEvosAttacks:
@@ -4147,6 +4239,9 @@ GolisopodEvosAttacks:
 	dbw 36, PIN_MISSILE
 	dbw 40, SWORDS_DANCE
 	dbw 44, LIQUIDATION
+	dbw 44, DRILL_RUN
+	dbw 50, SUPERPOWER
+	dbw 38, FLIP_TURN
 	db 0 ; no more level-up moves
 
 GrubbinEvosAttacks:
@@ -4197,6 +4292,8 @@ HydrappleEvosAttacks:
 	dbw 40, ENERGY_BALL
 	dbw 44, SUBSTITUTE
 	dbw 54, POWER_WHIP
+	dbw 48, FICKLE_BEAM
+	dbw 42, APPLE_ACID
 	db 0 ; no more level-up moves
 
 KingambitEvosAttacks:
@@ -4211,6 +4308,8 @@ KingambitEvosAttacks:
 	dbw 57, IRON_HEAD
 	dbw 64, SWORDS_DANCE
 	dbw 71, GUILLOTINE
+	dbw 50, KOWTOW_CLEAVE
+	dbw 44, SACRED_SWORD
 	db 0 ; no more level-up moves
 
 LombreEvosAttacks:
@@ -4255,6 +4354,7 @@ LopunnyEvosAttacks:
 	dbw 36, DIZZY_PUNCH
 	dbw 37, FLAIL
 	dbw 49, HI_JUMP_KICK
+	dbw 33, FAKE_OUT
 	db 0 ; no more level-up moves
 
 LotadEvosAttacks:
@@ -4294,6 +4394,8 @@ LudicoloEvosAttacks:
 	dbw 59, ENERGY_BALL
 	dbw 64, RAIN_DANCE
 	dbw 69, HYDRO_PUMP
+	dbw 42, WOOD_HAMMER
+	dbw 48, LEAF_STORM
 	db 0 ; no more level-up moves
 
 RaitoraEvosAttacks:
@@ -4383,6 +4485,7 @@ OverqwilEvosAttacks:
 	dbw 49, DOUBLE_EDGE
 	dbw 54, GUNK_SHOT
 	dbw 60, EXPLOSION
+	dbw 40, BARB_BARRAGE
 	db 0 ; no more level-up moves
 
 ScraftyEvosAttacks:
@@ -4398,6 +4501,8 @@ ScraftyEvosAttacks:
 	dbw 36, SWAGGER
 	dbw 42, CRUNCH
 	dbw 48, HI_JUMP_KICK
+	dbw 31, FAKE_OUT
+	dbw 49, LOW_SWEEP
 	db 0 ; no more level-up moves
 
 ScraggyEvosAttacks:
@@ -4597,6 +4702,7 @@ TalonflameEvosAttacks:
 	dbw 65, ROOST
 	dbw 74, FLY
 	dbw 83, BRAVE_BIRD
+	dbw 40, DUALWINGBEAT
 	db 0 ; no more level-up moves
 
 ToxicroakEvosAttacks:
@@ -4616,6 +4722,8 @@ ToxicroakEvosAttacks:
 	dbw 43, CROSS_CHOP
 	dbw 47, SLUDGE_BOMB
 	dbw 55, GUNK_SHOT
+	dbw 40, CROSS_POISON
+	dbw 46, DIRE_CLAW
 	db 0 ; no more level-up moves
 
 TrapinchEvosAttacks:
@@ -4827,6 +4935,9 @@ HaxorusEvosAttacks:
 	dbw 46, OUTRAGE
 	dbw 53, GUILLOTINE
 	dbw 60, GIGA_IMPACT
+	dbw 52, SUPERPOWER
+	dbw 40, SCALE_SHOT
+	dbw 46, DUAL_CHOP
 	db 0 ; no more level-up moves
 
 CranidosEvosAttacks:
@@ -4866,6 +4977,7 @@ RampardosEvosAttacks:
 	dbw 35, CRUNCH
 	dbw 43, IRON_HEAD
 	dbw 47, STONE_EDGE
+	dbw 48, HEAD_SMASH
 	db 0 ; no more level-up moves
 
 ShieldonEvosAttacks:
@@ -4898,6 +5010,9 @@ BastiodonEvosAttacks:
 	dbw 43, EARTH_POWER
 	dbw 47, STONE_EDGE
 	dbw 51, IRON_HEAD
+	dbw 40, IRON_DEFENSE
+	dbw 52, BODY_PRESS
+	dbw 46, STEALTH_ROCK
 	db 0 ; no more level-up moves
 
 PawniardEvosAttacks:
@@ -4913,6 +5028,7 @@ PawniardEvosAttacks:
 	dbw 55, IRON_HEAD
 	dbw 60, SWORDS_DANCE
 	dbw 65, GUILLOTINE
+	dbw 30, SACRED_SWORD
 	db 0 ; no more level-up moves
 
 BisharpEvosAttacks:
@@ -4928,6 +5044,7 @@ BisharpEvosAttacks:
 	dbw 57, IRON_HEAD
 	dbw 64, SWORDS_DANCE
 	dbw 71, GUILLOTINE
+	dbw 42, SACRED_SWORD
 	db 0 ; no more level-up moves
 
 CetoddleEvosAttacks:
@@ -4970,6 +5087,7 @@ FeebasEvosAttacks:
 	dbw 1, TACKLE
 	dbw 1, FLAIL
 	dbw 15, WATER_PULSE
+	dbw 20, FLIP_TURN
 	db 0 ; no more level-up moves
 
 MiloticEvosAttacks:
@@ -4996,6 +5114,7 @@ MiloticEvosAttacks:
 	dbw 45, SAFEGUARD
 	dbw 48, MIRROR_COAT
 	dbw 51, HYDRO_PUMP
+	dbw 40, FLIP_TURN
 	db 0 ; no more level-up moves
 
 MimikyuEvosAttacks:
@@ -5039,6 +5158,7 @@ CursolaEvosAttacks:
 	dbw 51, FLAIL
 	dbw 53, WILL_O_WISP
 	dbw 60, DESTINY_BOND
+	dbw 44, BODY_PRESS
 	db 0 ; no more level-up moves
 
 GalladeEvosAttacks:
@@ -5068,6 +5188,8 @@ GalladeEvosAttacks:
 	dbw 32, SWORDS_DANCE
 	dbw 37, CLOSE_COMBAT
 	dbw 47, FALSE_SWIPE
+	dbw 32, PSYCHO_CUT
+	dbw 44, SACRED_SWORD
 	db 0 ; no more level-up moves
 
 MrRimeEvosAttacks:
@@ -5169,6 +5291,7 @@ LucarioEvosAttacks:
 	dbw 45, CLOSE_COMBAT
 	dbw 53, HI_JUMP_KICK
 	dbw 57, EXTREMESPEED
+	dbw 44, METEOR_MASH
 	db 0 ; no more level-up moves
 
 TyruntEvosAttacks:
@@ -5280,6 +5403,9 @@ TorkoalEvosAttacks:
 	dbw 42, FIRE_BLAST
 	dbw 47, HEAT_CRASH
 	dbw 50, EXPLOSION
+	dbw 46, OVERHEAT
+	dbw 30, STEALTH_ROCK
+	dbw 38, HEAT_WAVE
 	db 0 ; no more level-up moves
 
 RattataAlolanEvosAttacks:
@@ -6067,6 +6193,7 @@ SneaslerEvosAttacks:
 	dbw 47, COUNTER
 	dbw 48, AGILITY
 	dbw 52, SUCKER_PUNCH
+	dbw 44, DIRE_CLAW
 	db 0 ; no more level-up moves
 
 WooperPaldeanEvosAttacks:
@@ -6209,6 +6336,8 @@ TsareenaEvosAttacks:
 	dbw 28, STOMP
 	dbw 52, TRIPLE_AXEL
 	dbw 64, HI_JUMP_KICK
+	dbw 46, WOOD_HAMMER
+	dbw 40, PETAL_BLIZZ
 	db 0 ; no more level-up moves
 
 AronEvosAttacks:
@@ -6259,6 +6388,10 @@ AggronEvosAttacks:
 	dbw 30, TAKE_DOWN
 	dbw 38, IRON_TAIL
 	dbw 48, DOUBLE_EDGE
+	dbw 42, IRON_DEFENSE
+	dbw 50, HEAD_SMASH
+	dbw 56, BODY_PRESS
+	dbw 60, SUPERPOWER
 	db 0 ; no more level-up moves
 
 KleavorEvosAttacks:
@@ -6283,6 +6416,8 @@ KleavorEvosAttacks:
 	dbw 40, ROCK_SLIDE
 	dbw 46, BATON_PASS
 	dbw 49, REVERSAL
+	dbw 38, STONE_AXE
+	dbw 44, SACRED_SWORD
 	db 0 ; no more level-up moves
 
 GlimmetEvosAttacks:
@@ -6326,6 +6461,8 @@ ToxapexEvosAttacks:
 	dbw 35, LIQUIDATION
 	dbw 49, POISON_JAB
 	dbw 56, TOXIC
+	dbw 40, BANEFUL_BUNKER
+	dbw 46, BODY_PRESS
 	db 0 ; no more level-up moves
 
 ZangooseEvosAttacks:
@@ -6503,6 +6640,7 @@ ArcheopsEvosAttacks:
 	dbw 57, DRAGON_CLAW
 	dbw 63, STONE_EDGE
 	dbw 69, THRASH
+	dbw 50, HEAD_SMASH
 	db 0 ; no more level-up moves
 
 TirtougaEvosAttacks:
@@ -6601,6 +6739,7 @@ ChandelureEvosAttacks:
 	dbw 1, SHADOW_BALL
 	dbw 1, FLAMETHROWER
 	dbw 1, INFESTATION
+	dbw 52, OVERHEAT
 	db 0 ; no more level-up moves
 
 JoltikEvosAttacks:
@@ -6620,6 +6759,7 @@ JoltikEvosAttacks:
 	dbw 40, SUCKER_PUNCH
 	dbw 44, BUG_BUZZ
 	dbw 48, THUNDER
+	dbw 24, STICKY_WEB
 	db 0 ; no more level-up moves
 
 GalvantulaEvosAttacks:
@@ -6641,6 +6781,7 @@ GalvantulaEvosAttacks:
 	dbw 48, BUG_BUZZ
 	dbw 53, WILD_CHARGE
 	dbw 58, THUNDER
+	dbw 36, STICKY_WEB
 	db 0 ; no more level-up moves
 
 MawileEvosAttacks:
@@ -6697,6 +6838,8 @@ NoivernEvosAttacks:
 	dbw 49, HYPER_VOICE
 	dbw 55, HURRICANE
 	dbw 61, OUTRAGE
+	dbw 46, DUALWINGBEAT
+	dbw 38, AIR_CUTTER
 	db 0 ; no more level-up moves
 
 SalanditEvosAttacks:
@@ -6738,4 +6881,5 @@ SalazzleEvosAttacks:
 	dbw 50, SLUDGE_BOMB
 	dbw 55, DRAGON_PULSE
 	dbw 60, FIRE_BLAST
+	dbw 46, OVERHEAT
 	db 0 ; no more level-up moves
