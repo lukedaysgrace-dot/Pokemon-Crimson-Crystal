@@ -1,5 +1,5 @@
 	db "SNOW HAT@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 370 ; height, weight
 
 	db   "This SNORUNT"
 	next "was newly added"
