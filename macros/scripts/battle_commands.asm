@@ -200,6 +200,10 @@ ENDM
 	command firstimpressioncheck     ; c1
 	command deferstatmessages       ; c2
 	command flushstatmessages       ; c3
+	command stealthrock
+	command stickyweb
+	command defog
+	command freezedry
 
 	enum_start $fe
 	command endturn                 ; fe
