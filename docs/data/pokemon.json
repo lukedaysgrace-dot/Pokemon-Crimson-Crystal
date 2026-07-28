@@ -39343,134 +39343,27 @@
     "sprite": "assets/pokemon/excadrill.png"
   },
   {
-    "const": "ELECTRIKE",
-    "name": "Electrike",
+    "const": "KOTORA",
+    "name": "Kotora",
     "number": 358,
     "stats": {
-      "HP": 40,
-      "Attack": 45,
-      "Defense": 40,
-      "Speed": 65,
-      "Sp. Atk": 65,
-      "Sp. Def": 40
-    },
-    "types": [
-      "Electric"
-    ],
-    "abilities": [
-      "Static",
-      "Lightning Rod",
-      "Intimidate"
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "TACKLE",
-        "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
-      {
-        "level": 1,
-        "const": "THUNDER_WAVE",
-        "move": "Thunder Wave"
-      },
-      {
-        "level": 10,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 13,
-        "const": "SPARK",
-        "move": "Spark"
-      },
-      {
-        "level": 16,
-        "const": "BITE",
-        "move": "Bite"
-      },
-      {
-        "level": 22,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 25,
-        "const": "THUNDER_FANG",
-        "move": "Thunder Fang"
-      },
-      {
-        "level": 25,
-        "const": "ICE_FANG",
-        "move": "Ice Fang"
-      },
-      {
-        "level": 25,
-        "const": "FIRE_FANG",
-        "move": "Fire Fang"
-      },
-      {
-        "level": 28,
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "level": 33,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
-      },
-      {
-        "level": 34,
-        "const": "CRUNCH",
-        "move": "Crunch"
-      },
-      {
-        "level": 37,
-        "const": "WILD_CHARGE",
-        "move": "Wild Charge"
-      },
-      {
-        "level": 43,
-        "const": "THUNDER",
-        "move": "Thunder"
-      }
-    ],
-    "evolutions": [
-      "dbbw EVOLVE_LEVEL, 26, MANECTRIC"
-    ],
-    "egg_moves": [],
-    "sprite": "assets/pokemon/electrike.png"
-  },
-  {
-    "const": "MANECTRIC",
-    "name": "Manectric",
-    "number": 359,
-    "stats": {
-      "HP": 70,
-      "Attack": 75,
-      "Defense": 60,
-      "Speed": 105,
-      "Sp. Atk": 105,
+      "HP": 80,
+      "Attack": 55,
+      "Defense": 50,
+      "Speed": 40,
+      "Sp. Atk": 55,
       "Sp. Def": 60
     },
     "types": [
-      "Electric"
+      "Electric",
+      "Normal"
     ],
     "abilities": [
-      "Static",
-      "Lightning Rod",
-      "Intimidate"
+      "Volt Absorb",
+      "Intimidate",
+      "Moxie"
     ],
     "learnset": [
-      {
-        "level": 1,
-        "const": "LEER",
-        "move": "Leer"
-      },
       {
         "level": 1,
         "const": "TACKLE",
@@ -39478,6 +39371,16 @@
       },
       {
         "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 5,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 7,
         "const": "THUNDER_WAVE",
         "move": "Thunder Wave"
       },
@@ -39488,68 +39391,316 @@
       },
       {
         "level": 13,
-        "const": "SPARK",
-        "move": "Spark"
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
       },
       {
-        "level": 16,
+        "level": 18,
         "const": "BITE",
         "move": "Bite"
       },
       {
-        "level": 22,
-        "const": "ROAR",
-        "move": "Roar"
+        "level": 21,
+        "const": "SPARK",
+        "move": "Spark"
       },
       {
-        "level": 25,
+        "level": 26,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
+      },
+      {
+        "level": 29,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 34,
         "const": "THUNDER_FANG",
         "move": "Thunder Fang"
       },
       {
-        "level": 25,
-        "const": "ICE_FANG",
-        "move": "Ice Fang"
+        "level": 37,
+        "const": "REST",
+        "move": "Rest"
       },
       {
-        "level": 25,
-        "const": "FIRE_FANG",
-        "move": "Fire Fang"
+        "level": 42,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 45,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 50,
+        "const": "THUNDER",
+        "move": "Thunder"
+      },
+      {
+        "level": 53,
+        "const": "MEAN_LOOK",
+        "move": "Mean Look"
+      },
+      {
+        "level": 58,
+        "const": "WILD_CHARGE",
+        "move": "Wild Charge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 31, RAITORA"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/kotora.png"
+  },
+  {
+    "const": "RAITORA",
+    "name": "Raitora",
+    "number": 359,
+    "stats": {
+      "HP": 115,
+      "Attack": 85,
+      "Defense": 65,
+      "Speed": 70,
+      "Sp. Atk": 85,
+      "Sp. Def": 80
+    },
+    "types": [
+      "Electric",
+      "Normal"
+    ],
+    "abilities": [
+      "Volt Absorb",
+      "Intimidate",
+      "Moxie"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 5,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 7,
+        "const": "THUNDER_WAVE",
+        "move": "Thunder Wave"
+      },
+      {
+        "level": 10,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 13,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 18,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 21,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 26,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
       },
       {
         "level": 29,
-        "const": "ROAR",
-        "move": "Roar"
+        "const": "AGILITY",
+        "move": "Agility"
       },
       {
-        "level": 35,
-        "const": "FLAMETHROWER",
-        "move": "Flamethrower"
+        "level": 36,
+        "const": "THUNDER_FANG",
+        "move": "Thunder Fang"
       },
       {
-        "level": 37,
+        "level": 39,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 44,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 47,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 52,
+        "const": "THUNDER",
+        "move": "Thunder"
+      },
+      {
+        "level": 55,
+        "const": "MEAN_LOOK",
+        "move": "Mean Look"
+      },
+      {
+        "level": 60,
+        "const": "WILD_CHARGE",
+        "move": "Wild Charge"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 45, GOROTORA"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/raitora.png"
+  },
+  {
+    "const": "GOROTORA",
+    "name": "Gorotora",
+    "number": 360,
+    "stats": {
+      "HP": 120,
+      "Attack": 95,
+      "Defense": 65,
+      "Speed": 80,
+      "Sp. Atk": 95,
+      "Sp. Def": 80
+    },
+    "types": [
+      "Electric",
+      "Normal"
+    ],
+    "abilities": [
+      "Volt Absorb",
+      "Intimidate",
+      "Moxie"
+    ],
+    "learnset": [
+      {
+        "level": 1,
         "const": "CRUNCH",
         "move": "Crunch"
       },
       {
-        "level": 41,
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "TAIL_WHIP",
+        "move": "Tail Whip"
+      },
+      {
+        "level": 5,
+        "const": "THUNDERSHOCK",
+        "move": "Thundershock"
+      },
+      {
+        "level": 7,
+        "const": "THUNDER_WAVE",
+        "move": "Thunder Wave"
+      },
+      {
+        "level": 10,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 13,
+        "const": "SCARY_FACE",
+        "move": "Scary Face"
+      },
+      {
+        "level": 18,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 21,
+        "const": "SPARK",
+        "move": "Spark"
+      },
+      {
+        "level": 26,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
+      },
+      {
+        "level": 29,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 36,
+        "const": "THUNDER_FANG",
+        "move": "Thunder Fang"
+      },
+      {
+        "level": 39,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 44,
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "level": 48,
+        "const": "EXTREMESPEED",
+        "move": "Extremespeed"
+      },
+      {
+        "level": 50,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 55,
+        "const": "THUNDER",
+        "move": "Thunder"
+      },
+      {
+        "level": 58,
+        "const": "MEAN_LOOK",
+        "move": "Mean Look"
+      },
+      {
+        "level": 63,
         "const": "WILD_CHARGE",
         "move": "Wild Charge"
       },
       {
-        "level": 49,
-        "const": "THUNDER",
-        "move": "Thunder"
+        "level": 69,
+        "const": "GIGA_IMPACT",
+        "move": "Giga Impact"
       }
     ],
     "evolutions": [],
     "egg_moves": [],
-    "sprite": "assets/pokemon/manectric.png"
+    "sprite": "assets/pokemon/gorotora.png"
   },
   {
     "const": "FLETCHLING",
     "name": "Fletchling",
-    "number": 360,
+    "number": 361,
     "stats": {
       "HP": 45,
       "Attack": 50,
@@ -39633,7 +39784,7 @@
   {
     "const": "FLETCHINDER",
     "name": "Fletchindr",
-    "number": 361,
+    "number": 362,
     "stats": {
       "HP": 62,
       "Attack": 73,
@@ -39722,7 +39873,7 @@
   {
     "const": "TALONFLAME",
     "name": "Talonflame",
-    "number": 362,
+    "number": 363,
     "stats": {
       "HP": 78,
       "Attack": 81,
@@ -39819,7 +39970,7 @@
   {
     "const": "TRAPINCH",
     "name": "Trapinch",
-    "number": 363,
+    "number": 364,
     "stats": {
       "HP": 55,
       "Attack": 100,
@@ -39923,7 +40074,7 @@
   {
     "const": "VIBRAVA",
     "name": "Vibrava",
-    "number": 364,
+    "number": 365,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -40052,7 +40203,7 @@
   {
     "const": "FLYGON",
     "name": "Flygon",
-    "number": 365,
+    "number": 366,
     "stats": {
       "HP": 90,
       "Attack": 110,
@@ -40189,7 +40340,7 @@
   {
     "const": "SNORUNT",
     "name": "Snorunt",
-    "number": 366,
+    "number": 367,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -40296,7 +40447,7 @@
   {
     "const": "FROSLASS",
     "name": "Froslass",
-    "number": 367,
+    "number": 368,
     "stats": {
       "HP": 70,
       "Attack": 70,
@@ -40428,7 +40579,7 @@
   {
     "const": "WIMPOD",
     "name": "Wimpod",
-    "number": 368,
+    "number": 369,
     "stats": {
       "HP": 25,
       "Attack": 35,
@@ -40470,7 +40621,7 @@
   {
     "const": "GOLISOPOD",
     "name": "Golisopod",
-    "number": 369,
+    "number": 370,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -40560,7 +40711,7 @@
   {
     "const": "SPOINK",
     "name": "Spoink",
-    "number": 370,
+    "number": 371,
     "stats": {
       "HP": 60,
       "Attack": 25,
@@ -40667,7 +40818,7 @@
   {
     "const": "GRUMPIG",
     "name": "Grumpig",
-    "number": 371,
+    "number": 372,
     "stats": {
       "HP": 80,
       "Attack": 45,
@@ -40772,7 +40923,7 @@
   {
     "const": "PAWNIARD",
     "name": "Pawniard",
-    "number": 372,
+    "number": 373,
     "stats": {
       "HP": 45,
       "Attack": 85,
@@ -40851,7 +41002,7 @@
   {
     "const": "BISHARP",
     "name": "Bisharp",
-    "number": 373,
+    "number": 374,
     "stats": {
       "HP": 65,
       "Attack": 125,
@@ -40930,7 +41081,7 @@
   {
     "const": "KINGAMBIT",
     "name": "Kingambit",
-    "number": 374,
+    "number": 375,
     "stats": {
       "HP": 100,
       "Attack": 135,
@@ -41007,7 +41158,7 @@
   {
     "const": "LOTAD",
     "name": "Lotad",
-    "number": 375,
+    "number": 376,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -41106,7 +41257,7 @@
   {
     "const": "LOMBRE",
     "name": "Lombre",
-    "number": 376,
+    "number": 377,
     "stats": {
       "HP": 60,
       "Attack": 50,
@@ -41220,7 +41371,7 @@
   {
     "const": "LUDICOLO",
     "name": "Ludicolo",
-    "number": 377,
+    "number": 378,
     "stats": {
       "HP": 80,
       "Attack": 70,
@@ -41327,7 +41478,7 @@
   {
     "const": "OVERQWIL",
     "name": "Overqwil",
-    "number": 378,
+    "number": 379,
     "stats": {
       "HP": 85,
       "Attack": 115,
@@ -41449,7 +41600,7 @@
   {
     "const": "SCRAGGY",
     "name": "Scraggy",
-    "number": 379,
+    "number": 380,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -41533,7 +41684,7 @@
   {
     "const": "SCRAFTY",
     "name": "Scrafty",
-    "number": 380,
+    "number": 381,
     "stats": {
       "HP": 65,
       "Attack": 90,
@@ -41615,7 +41766,7 @@
   {
     "const": "SPHEAL",
     "name": "Spheal",
-    "number": 381,
+    "number": 382,
     "stats": {
       "HP": 70,
       "Attack": 40,
@@ -41734,7 +41885,7 @@
   {
     "const": "SEALEO",
     "name": "Sealeo",
-    "number": 382,
+    "number": 383,
     "stats": {
       "HP": 90,
       "Attack": 60,
@@ -41863,7 +42014,7 @@
   {
     "const": "WALREIN",
     "name": "Walrein",
-    "number": 383,
+    "number": 384,
     "stats": {
       "HP": 110,
       "Attack": 80,
@@ -42000,7 +42151,7 @@
   {
     "const": "TEDDIURSABM",
     "name": "Teddiursa",
-    "number": 384,
+    "number": 385,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -42078,7 +42229,7 @@
   {
     "const": "URSARINGBM",
     "name": "Ursaring",
-    "number": 385,
+    "number": 386,
     "stats": {
       "HP": 90,
       "Attack": 75,
@@ -42162,7 +42313,7 @@
   {
     "const": "URSALUNABM",
     "name": "Ursaluna",
-    "number": 386,
+    "number": 387,
     "stats": {
       "HP": 113,
       "Attack": 70,
@@ -42247,7 +42398,7 @@
   {
     "const": "AXEW",
     "name": "Axew",
-    "number": 387,
+    "number": 388,
     "stats": {
       "HP": 46,
       "Attack": 87,
@@ -42360,7 +42511,7 @@
   {
     "const": "FRAXURE",
     "name": "Fraxure",
-    "number": 388,
+    "number": 389,
     "stats": {
       "HP": 66,
       "Attack": 117,
@@ -42473,7 +42624,7 @@
   {
     "const": "HAXORUS",
     "name": "Haxorus",
-    "number": 389,
+    "number": 390,
     "stats": {
       "HP": 76,
       "Attack": 147,
@@ -42584,7 +42735,7 @@
   {
     "const": "CRANIDOS",
     "name": "Cranidos",
-    "number": 390,
+    "number": 391,
     "stats": {
       "HP": 67,
       "Attack": 125,
@@ -42687,7 +42838,7 @@
   {
     "const": "RAMPARDOS",
     "name": "Rampardos",
-    "number": 391,
+    "number": 392,
     "stats": {
       "HP": 97,
       "Attack": 155,
@@ -42788,7 +42939,7 @@
   {
     "const": "SHIELDON",
     "name": "Shieldon",
-    "number": 392,
+    "number": 393,
     "stats": {
       "HP": 30,
       "Attack": 22,
@@ -42872,7 +43023,7 @@
   {
     "const": "BASTIODON",
     "name": "Bastiodon",
-    "number": 393,
+    "number": 394,
     "stats": {
       "HP": 60,
       "Attack": 27,
@@ -42959,7 +43110,7 @@
   {
     "const": "CETODDLE",
     "name": "Cetoddle",
-    "number": 394,
+    "number": 395,
     "stats": {
       "HP": 108,
       "Attack": 68,
@@ -43047,7 +43198,7 @@
   {
     "const": "CETITAN",
     "name": "Cetitan",
-    "number": 395,
+    "number": 396,
     "stats": {
       "HP": 170,
       "Attack": 113,
@@ -43133,7 +43284,7 @@
   {
     "const": "FEEBAS",
     "name": "Feebas",
-    "number": 396,
+    "number": 397,
     "stats": {
       "HP": 20,
       "Attack": 15,
@@ -43181,7 +43332,7 @@
   {
     "const": "MILOTIC",
     "name": "Milotic",
-    "number": 397,
+    "number": 398,
     "stats": {
       "HP": 95,
       "Attack": 60,
@@ -43318,7 +43469,7 @@
   {
     "const": "MIMIKYU",
     "name": "Mimikyu",
-    "number": 398,
+    "number": 399,
     "stats": {
       "HP": 55,
       "Attack": 90,
@@ -43405,7 +43556,7 @@
   {
     "const": "CORSOLA_GALARIAN",
     "name": "Corsola",
-    "number": 399,
+    "number": 400,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -43543,7 +43694,7 @@
   {
     "const": "CURSOLA",
     "name": "Cursola",
-    "number": 400,
+    "number": 401,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -43684,7 +43835,7 @@
   {
     "const": "MR__RIME",
     "name": "Mr.rime",
-    "number": 401,
+    "number": 402,
     "stats": {
       "HP": 80,
       "Attack": 65,
@@ -43846,7 +43997,7 @@
   {
     "const": "SIRFETCH_D",
     "name": "Sirfetch'd",
-    "number": 402,
+    "number": 403,
     "stats": {
       "HP": 62,
       "Attack": 135,
@@ -43973,7 +44124,7 @@
   {
     "const": "RIOLU",
     "name": "Riolu",
-    "number": 403,
+    "number": 404,
     "stats": {
       "HP": 40,
       "Attack": 70,
@@ -44076,7 +44227,7 @@
   {
     "const": "LUCARIO",
     "name": "Lucario",
-    "number": 404,
+    "number": 405,
     "stats": {
       "HP": 70,
       "Attack": 110,
@@ -44213,7 +44364,7 @@
   {
     "const": "TYRUNT",
     "name": "Tyrunt",
-    "number": 405,
+    "number": 406,
     "stats": {
       "HP": 58,
       "Attack": 89,
@@ -44307,7 +44458,7 @@
   {
     "const": "TYRANTRUM",
     "name": "Tyrantrum",
-    "number": 406,
+    "number": 407,
     "stats": {
       "HP": 82,
       "Attack": 121,
@@ -44404,7 +44555,7 @@
   {
     "const": "AMAURA",
     "name": "Amaura",
-    "number": 407,
+    "number": 408,
     "stats": {
       "HP": 77,
       "Attack": 59,
@@ -44498,7 +44649,7 @@
   {
     "const": "AURORUS",
     "name": "Aurorus",
-    "number": 408,
+    "number": 409,
     "stats": {
       "HP": 123,
       "Attack": 77,
@@ -44595,7 +44746,7 @@
   {
     "const": "MUNCHLAX",
     "name": "Munchlax",
-    "number": 409,
+    "number": 410,
     "stats": {
       "HP": 135,
       "Attack": 85,
@@ -44687,7 +44838,7 @@
   {
     "const": "TORKOAL",
     "name": "Torkoal",
-    "number": 410,
+    "number": 411,
     "stats": {
       "HP": 70,
       "Attack": 85,
@@ -44793,7 +44944,7 @@
   {
     "const": "RATTATA_ALOLAN",
     "name": "Rattata",
-    "number": 411,
+    "number": 412,
     "stats": {
       "HP": 30,
       "Attack": 56,
@@ -44897,7 +45048,7 @@
   {
     "const": "RATICATE_ALOLAN",
     "name": "Raticate",
-    "number": 412,
+    "number": 413,
     "stats": {
       "HP": 80,
       "Attack": 78,
@@ -45014,7 +45165,7 @@
   {
     "const": "RAICHU_ALOLAN",
     "name": "Raichu",
-    "number": 413,
+    "number": 414,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -45136,7 +45287,7 @@
   {
     "const": "SANDSHREW_ALOLAN",
     "name": "Sandshrew",
-    "number": 414,
+    "number": 415,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -45275,7 +45426,7 @@
   {
     "const": "SANDSLASH_ALOLAN",
     "name": "Sandslash",
-    "number": 415,
+    "number": 416,
     "stats": {
       "HP": 75,
       "Attack": 100,
@@ -45412,7 +45563,7 @@
   {
     "const": "VULPIX_ALOLAN",
     "name": "Vulpix",
-    "number": 416,
+    "number": 417,
     "stats": {
       "HP": 38,
       "Attack": 41,
@@ -45550,7 +45701,7 @@
   {
     "const": "NINETALES_ALOLAN",
     "name": "Ninetales",
-    "number": 417,
+    "number": 418,
     "stats": {
       "HP": 73,
       "Attack": 67,
@@ -45682,7 +45833,7 @@
   {
     "const": "DIGLETT_ALOLAN",
     "name": "Diglett",
-    "number": 418,
+    "number": 419,
     "stats": {
       "HP": 10,
       "Attack": 55,
@@ -45791,7 +45942,7 @@
   {
     "const": "DUGTRIO_ALOLAN",
     "name": "Dugtrio",
-    "number": 419,
+    "number": 420,
     "stats": {
       "HP": 35,
       "Attack": 100,
@@ -45913,7 +46064,7 @@
   {
     "const": "MEOWTH_ALOLAN",
     "name": "Meowth",
-    "number": 420,
+    "number": 421,
     "stats": {
       "HP": 40,
       "Attack": 35,
@@ -46011,7 +46162,7 @@
   {
     "const": "PERSIAN_ALOLAN",
     "name": "Persian",
-    "number": 421,
+    "number": 422,
     "stats": {
       "HP": 65,
       "Attack": 70,
@@ -46127,7 +46278,7 @@
   {
     "const": "GEODUDE_ALOLAN",
     "name": "Geodude",
-    "number": 422,
+    "number": 423,
     "stats": {
       "HP": 40,
       "Attack": 80,
@@ -46226,7 +46377,7 @@
   {
     "const": "GRAVELER_ALOLAN",
     "name": "Graveler",
-    "number": 423,
+    "number": 424,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -46340,7 +46491,7 @@
   {
     "const": "GOLEM_ALOLAN",
     "name": "Golem",
-    "number": 424,
+    "number": 425,
     "stats": {
       "HP": 80,
       "Attack": 120,
@@ -46452,7 +46603,7 @@
   {
     "const": "GRIMER_ALOLAN",
     "name": "Grimer",
-    "number": 425,
+    "number": 426,
     "stats": {
       "HP": 80,
       "Attack": 80,
@@ -46564,7 +46715,7 @@
   {
     "const": "MUK_ALOLAN",
     "name": "Muk",
-    "number": 426,
+    "number": 427,
     "stats": {
       "HP": 105,
       "Attack": 105,
@@ -46684,7 +46835,7 @@
   {
     "const": "EXEGGUTOR_ALOLAN",
     "name": "Exeggutor",
-    "number": 427,
+    "number": 428,
     "stats": {
       "HP": 95,
       "Attack": 125,
@@ -46815,7 +46966,7 @@
   {
     "const": "MAROWAK_ALOLAN",
     "name": "Marowak",
-    "number": 428,
+    "number": 429,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -46957,7 +47108,7 @@
   {
     "const": "MEOWTH_GALARIAN",
     "name": "Meowth",
-    "number": 429,
+    "number": 430,
     "stats": {
       "HP": 50,
       "Attack": 65,
@@ -47055,7 +47206,7 @@
   {
     "const": "PERRSERKER",
     "name": "Perrserker",
-    "number": 430,
+    "number": 431,
     "stats": {
       "HP": 85,
       "Attack": 110,
@@ -47171,7 +47322,7 @@
   {
     "const": "PONYTA_GALARIAN",
     "name": "Ponyta",
-    "number": 431,
+    "number": 432,
     "stats": {
       "HP": 50,
       "Attack": 85,
@@ -47274,7 +47425,7 @@
   {
     "const": "RAPIDASH_GALARIAN",
     "name": "Rapidash",
-    "number": 432,
+    "number": 433,
     "stats": {
       "HP": 65,
       "Attack": 90,
@@ -47401,7 +47552,7 @@
   {
     "const": "SLOWPOKE_GALARIAN",
     "name": "Slowpoke",
-    "number": 433,
+    "number": 434,
     "stats": {
       "HP": 90,
       "Attack": 65,
@@ -47530,7 +47681,7 @@
   {
     "const": "SLOWBRO_GALARIAN",
     "name": "Slowbro",
-    "number": 434,
+    "number": 435,
     "stats": {
       "HP": 95,
       "Attack": 100,
@@ -47656,7 +47807,7 @@
   {
     "const": "SLOWKING_GALARIAN",
     "name": "Slowking",
-    "number": 435,
+    "number": 436,
     "stats": {
       "HP": 95,
       "Attack": 65,
@@ -47798,7 +47949,7 @@
   {
     "const": "WEEZING_GALARIAN",
     "name": "Weezing",
-    "number": 436,
+    "number": 437,
     "stats": {
       "HP": 65,
       "Attack": 80,
@@ -47920,7 +48071,7 @@
   {
     "const": "GROWLITHE_HISUIAN",
     "name": "Growlithe",
-    "number": 437,
+    "number": 438,
     "stats": {
       "HP": 60,
       "Attack": 75,
@@ -48024,7 +48175,7 @@
   {
     "const": "ARCANINE_HISUIAN",
     "name": "Arcanine",
-    "number": 438,
+    "number": 439,
     "stats": {
       "HP": 95,
       "Attack": 120,
@@ -48126,7 +48277,7 @@
   {
     "const": "VOLTORB_HISUIAN",
     "name": "Voltorb",
-    "number": 439,
+    "number": 440,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -48240,7 +48391,7 @@
   {
     "const": "ELECTRODE_HISUIAN",
     "name": "Electrode",
-    "number": 440,
+    "number": 441,
     "stats": {
       "HP": 60,
       "Attack": 50,
@@ -48352,7 +48503,7 @@
   {
     "const": "TYPHLOSION_HISUIAN",
     "name": "Typhlosion",
-    "number": 441,
+    "number": 442,
     "stats": {
       "HP": 73,
       "Attack": 84,
@@ -48484,7 +48635,7 @@
   {
     "const": "SNEASEL_HISUIAN",
     "name": "Sneasel",
-    "number": 442,
+    "number": 443,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -48603,7 +48754,7 @@
   {
     "const": "SNEASLER",
     "name": "Sneasler",
-    "number": 443,
+    "number": 444,
     "stats": {
       "HP": 80,
       "Attack": 130,
@@ -48750,7 +48901,7 @@
   {
     "const": "WOOPER_PALDEAN",
     "name": "Wooper",
-    "number": 444,
+    "number": 445,
     "stats": {
       "HP": 55,
       "Attack": 45,
@@ -48863,7 +49014,7 @@
   {
     "const": "CLODSIRE",
     "name": "Clodsire",
-    "number": 445,
+    "number": 446,
     "stats": {
       "HP": 130,
       "Attack": 75,
@@ -48964,7 +49115,7 @@
   {
     "const": "TAUROS_PALDEAN_FIRE",
     "name": "Tauros",
-    "number": 446,
+    "number": 447,
     "stats": {
       "HP": 75,
       "Attack": 110,
@@ -49090,7 +49241,7 @@
   {
     "const": "TAUROS_PALDEAN_WATER",
     "name": "Tauros",
-    "number": 447,
+    "number": 448,
     "stats": {
       "HP": 75,
       "Attack": 110,
@@ -49206,7 +49357,7 @@
   {
     "const": "WATU",
     "name": "Watu",
-    "number": 448,
+    "number": 449,
     "stats": {
       "HP": 55,
       "Attack": 60,
@@ -49304,7 +49455,7 @@
   {
     "const": "BOUNSWEET",
     "name": "Bounsweet",
-    "number": 449,
+    "number": 450,
     "stats": {
       "HP": 42,
       "Attack": 30,
@@ -49355,7 +49506,7 @@
   {
     "const": "STEENEE",
     "name": "Steenee",
-    "number": 450,
+    "number": 451,
     "stats": {
       "HP": 52,
       "Attack": 40,
@@ -49411,7 +49562,7 @@
   {
     "const": "TSAREENA",
     "name": "Tsareena",
-    "number": 451,
+    "number": 452,
     "stats": {
       "HP": 72,
       "Attack": 120,
@@ -49492,7 +49643,7 @@
   {
     "const": "ARON",
     "name": "Aron",
-    "number": 452,
+    "number": 453,
     "stats": {
       "HP": 50,
       "Attack": 70,
@@ -49580,7 +49731,7 @@
   {
     "const": "LAIRON",
     "name": "Lairon",
-    "number": 453,
+    "number": 454,
     "stats": {
       "HP": 60,
       "Attack": 90,
@@ -49668,7 +49819,7 @@
   {
     "const": "AGGRON",
     "name": "Aggron",
-    "number": 454,
+    "number": 455,
     "stats": {
       "HP": 70,
       "Attack": 110,
@@ -49754,7 +49905,7 @@
   {
     "const": "KLEAVOR",
     "name": "Kleavor",
-    "number": 455,
+    "number": 456,
     "stats": {
       "HP": 70,
       "Attack": 135,
@@ -49881,7 +50032,7 @@
   {
     "const": "GLIMMET",
     "name": "Glimmet",
-    "number": 456,
+    "number": 457,
     "stats": {
       "HP": 48,
       "Attack": 35,
@@ -49954,7 +50105,7 @@
   {
     "const": "GLIMMORA",
     "name": "Glimmora",
-    "number": 457,
+    "number": 458,
     "stats": {
       "HP": 83,
       "Attack": 55,
@@ -50036,7 +50187,7 @@
   {
     "const": "MAREANIE",
     "name": "Mareanie",
-    "number": 458,
+    "number": 459,
     "stats": {
       "HP": 50,
       "Attack": 53,
@@ -50115,7 +50266,7 @@
   {
     "const": "TOXAPEX",
     "name": "Toxapex",
-    "number": 459,
+    "number": 460,
     "stats": {
       "HP": 50,
       "Attack": 63,
@@ -50192,7 +50343,7 @@
   {
     "const": "ZANGOOSE",
     "name": "Zangoose",
-    "number": 460,
+    "number": 461,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -50308,7 +50459,7 @@
   {
     "const": "SEVIPER",
     "name": "Seviper",
-    "number": 461,
+    "number": 462,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -50409,7 +50560,7 @@
   {
     "const": "SHUPPET",
     "name": "Shuppet",
-    "number": 462,
+    "number": 463,
     "stats": {
       "HP": 44,
       "Attack": 75,
@@ -50512,7 +50663,7 @@
   {
     "const": "BANETTE",
     "name": "Banette",
-    "number": 463,
+    "number": 464,
     "stats": {
       "HP": 64,
       "Attack": 115,
@@ -50628,7 +50779,7 @@
   {
     "const": "ARCHEN",
     "name": "Archen",
-    "number": 464,
+    "number": 465,
     "stats": {
       "HP": 55,
       "Attack": 112,
@@ -50736,7 +50887,7 @@
   {
     "const": "ARCHEOPS",
     "name": "Archeops",
-    "number": 465,
+    "number": 466,
     "stats": {
       "HP": 75,
       "Attack": 140,
@@ -50857,7 +51008,7 @@
   {
     "const": "TIRTOUGA",
     "name": "Tirtouga",
-    "number": 466,
+    "number": 467,
     "stats": {
       "HP": 54,
       "Attack": 78,
@@ -50956,7 +51107,7 @@
   {
     "const": "CARRACOSTA",
     "name": "Carracosta",
-    "number": 467,
+    "number": 468,
     "stats": {
       "HP": 74,
       "Attack": 108,
@@ -51068,7 +51219,7 @@
   {
     "const": "LITWICK",
     "name": "Litwick",
-    "number": 468,
+    "number": 469,
     "stats": {
       "HP": 50,
       "Attack": 30,
@@ -51172,7 +51323,7 @@
   {
     "const": "LAMPENT",
     "name": "Lampent",
-    "number": 469,
+    "number": 470,
     "stats": {
       "HP": 60,
       "Attack": 40,
@@ -51286,7 +51437,7 @@
   {
     "const": "CHANDELURE",
     "name": "Chandelure",
-    "number": 470,
+    "number": 471,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -51373,7 +51524,7 @@
   {
     "const": "JOLTIK",
     "name": "Joltik",
-    "number": 471,
+    "number": 472,
     "stats": {
       "HP": 50,
       "Attack": 47,
@@ -51472,7 +51623,7 @@
   {
     "const": "GALVANTULA",
     "name": "Galvantula",
-    "number": 472,
+    "number": 473,
     "stats": {
       "HP": 70,
       "Attack": 77,
@@ -51584,7 +51735,7 @@
   {
     "const": "MAWILE",
     "name": "Mawile",
-    "number": 473,
+    "number": 474,
     "stats": {
       "HP": 50,
       "Attack": 85,
@@ -51671,7 +51822,7 @@
   {
     "const": "NOIBAT",
     "name": "Noibat",
-    "number": 474,
+    "number": 475,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -51765,7 +51916,7 @@
   {
     "const": "NOIVERN",
     "name": "Noivern",
-    "number": 475,
+    "number": 476,
     "stats": {
       "HP": 85,
       "Attack": 70,
@@ -51882,7 +52033,7 @@
   {
     "const": "SALANDIT",
     "name": "Salandit",
-    "number": 476,
+    "number": 477,
     "stats": {
       "HP": 48,
       "Attack": 44,
@@ -51980,7 +52131,7 @@
   {
     "const": "SALAZZLE",
     "name": "Salazzle",
-    "number": 477,
+    "number": 478,
     "stats": {
       "HP": 68,
       "Attack": 64,
