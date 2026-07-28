@@ -1,5 +1,5 @@
 	db "MANIPULATE@" ; species name
-	dw 10, 1576 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This GRUMPIG"
 	next "was newly added"
