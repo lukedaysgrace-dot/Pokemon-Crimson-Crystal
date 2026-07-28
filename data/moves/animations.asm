@@ -390,16 +390,12 @@ BattleAnimations::
 	banim BattleAnim_Liquidation ; LIQUIDATION
 	banim BattleAnim_SlackOff ; SLACK_OFF
 	banim BattleAnim_VoltTackle ; VOLT_TACKLE
-	banim BattleAnim_SweetScent2
-	banim BattleAnim_StatUp
-	banim BattleAnim_StatDown
 	banim BattleAnim_RockTomb ; ROCK_TOMB
 	banim BattleAnim_Featherdance ; FEATHERDANCE
 	banim BattleAnim_MirrorShot ; MIRROR_SHOT
 	banim BattleAnim_SilverWind ; SILVER_WIND
 	banim BattleAnim_DragonRush ; DRAGON_RUSH
 	banim BattleAnim_DrillRun ; DRILL_RUN
-	banim BattleAnim_DrainingKiss ; DRAININGKISS
 	banim BattleAnim_MetalSound ; METAL_SOUND
 	banim BattleAnim_SignalBeam ; SIGNAL_BEAM
 	banim BattleAnim_MagicalLeaf ; MAGICAL_LEAF
@@ -506,8 +502,13 @@ BattleAnimations::
 	banim BattleAnim_PetalBlizz ; PETAL_BLIZZ
 	banim BattleAnim_Snarl ; SNARL
 	banim BattleAnim_AirCutter ; AIR_CUTTER
-	banim BattleAnim_DazzlinGleam ; DAZZLINGLEAM
-	banim BattleAnim_DisarmVoice ; DISARM_VOICE
+
+; Non-move animation ids (ANIM_SWEET_SCENT_2, ANIM_STAT_UP, ANIM_STAT_DOWN).
+; These continue the constant list after NUM_ATTACKS, so they must stay at
+; the very end of this table - see constants/move_constants.asm.
+	banim BattleAnim_SweetScent2
+	banim BattleAnim_StatUp
+	banim BattleAnim_StatDown
 
 BattleAnim_0:
 BattleAnim_MirrorMove:

@@ -45,6 +45,6 @@ UsefulMoves:
 	dw HIHORSEPOWER
 	dw STONE_EDGE
 	dw HEAT_WAVE
-	dw DAZZLINGLEAM
+	dw DAZZLING_GLEAM
 	dw SNARL
 	dw -1 ; end
