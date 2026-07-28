@@ -2592,7 +2592,7 @@ GardevoirEvosAttacks:
 	dbw 52, FUTURE_SIGHT
 	dbw 55, FOCUS_BLAST
 	dbw 57, DREAM_EATER
-	dbw 46, DAZZLING_GLEAM
+	dbw 46, DAZZLINGLEAM
 	db 0 ; no more level-up moves
 
 GlaceonEvosAttacks:
@@ -3016,7 +3016,7 @@ TogekissEvosAttacks:
 	dbw 62, EXTREMESPEED
 	dbw 65, NASTY_PLOT
 	dbw 70, DOUBLE_EDGE
-	dbw 48, DAZZLING_GLEAM
+	dbw 48, DAZZLINGLEAM
 	db 0 ; no more level-up moves
 
 UrsalunaEvosAttacks:
@@ -3713,8 +3713,8 @@ SylveonEvosAttacks:
 	dbw 34, SKILL_SWAP
 	dbw 37, AURA_SPHERE
 	dbw 43, MOONBLAST
-	dbw 44, DAZZLING_GLEAM
-	dbw 30, DISARMING_VOICE
+	dbw 44, DAZZLINGLEAM
+	dbw 30, DISARM_VOICE
 	db 0 ; no more level-up moves
 
 RookideeEvosAttacks:
