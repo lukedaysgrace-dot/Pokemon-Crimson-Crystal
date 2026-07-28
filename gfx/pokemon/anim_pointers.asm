@@ -356,8 +356,9 @@ AnimationPointers:
 	dba DrifblimAnimation
 	dba DrilburAnimation
 	dba ExcadrillAnimation
-	dba ElectrikeAnimation
-	dba ManectricAnimation
+	dba KotoraAnimation
+	dba RaitoraAnimation
+	dba GorotoraAnimation
 	dba FletchlingAnimation
 	dba FletchinderAnimation
 	dba TalonflameAnimation
