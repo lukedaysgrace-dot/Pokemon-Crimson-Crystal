@@ -264,14 +264,19 @@ anim_purplepal: MACRO
 	db anim_0xf5_command
 ENDM
 
-	enum anim_0xf6_command ; $f6
-anim_0xf6: MACRO
-	db anim_0xf6_command
+	enum anim_farcall_command ; $f6
+; Call an animation subroutine in another ROM bank. Ordinary anim_call
+; remains the compact same-bank form used by the original scripts.
+anim_farcall: MACRO
+	db anim_farcall_command
+	dba \1
 ENDM
 
-	enum anim_0xf7_command ; $f7
-anim_0xf7: MACRO
-	db anim_0xf7_command
+	enum anim_farjump_command ; $f7
+; Tail-jump to an animation script in another ROM bank.
+anim_farjump: MACRO
+	db anim_farjump_command
+	dba \1
 ENDM
 
 	enum anim_if_param_equal_command ; $f8

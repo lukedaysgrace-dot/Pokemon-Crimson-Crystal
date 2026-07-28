@@ -1,5 +1,5 @@
 	db "NUMB@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 529 ; height, weight
 
 	db   "This NUMEL"
 	next "was newly added"
