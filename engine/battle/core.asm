@@ -1274,8 +1274,59 @@ HandleWrap:
 	call SetPlayerTurn
 
 .do_it
-	farcall HandleWrap_Core
-	ret
+	ld hl, wPlayerWrapCount
+	ld de, wPlayerTrappingMove
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_addrs
+	ld hl, wEnemyWrapCount
+	ld de, wEnemyTrappingMove
+
+.got_addrs
+	ld a, [hl]
+	and a
+	ret z
+
+	ld a, BATTLE_VARS_SUBSTATUS4
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret nz
+
+	ld a, [de]
+	ld [wNamedObjectIndexBuffer], a
+	push hl
+	call GetMoveIndexFromID
+	ld a, l
+	ld [wFXAnimID], a
+	ld a, h
+	ld [wFXAnimID + 1], a
+	pop hl
+	call GetMoveName
+	dec [hl]
+	jr z, .release_from_bounds
+
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jr nz, .skip_anim
+
+	call SwitchTurnCore
+	xor a
+	ld [wNumHits], a
+	predef PlayBattleAnim
+	call SwitchTurnCore
+
+.skip_anim
+	call GetSixteenthMaxHP
+	call SubtractHPFromUser
+	ld hl, BattleText_UsersHurtByStringBuffer1
+	jr .print_text
+
+.release_from_bounds
+	ld hl, BattleText_UserWasReleasedFromStringBuffer1
+
+.print_text
+	jp StdBattleTextbox
 
 SwitchTurnCore:
 	ldh a, [hBattleTurn]

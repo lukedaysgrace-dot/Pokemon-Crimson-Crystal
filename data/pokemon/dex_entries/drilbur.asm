@@ -1,5 +1,5 @@
 	db "MOLE@" ; species name
-	dw 10, 187 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This DRILBUR"
 	next "was newly added"
