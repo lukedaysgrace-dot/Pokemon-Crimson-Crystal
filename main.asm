@@ -155,6 +155,11 @@ INCLUDE "engine/pokemon/print_move_description.asm"
 INCLUDE "data/moves/descriptions.asm"
 
 
+SECTION "Move Descriptions 2", ROMX
+
+INCLUDE "data/moves/descriptions2.asm"
+
+
 SECTION "Effect Commands", ROMX
 
 INCLUDE "engine/battle/effect_commands.asm"
@@ -183,6 +188,11 @@ SECTION "bank10", ROMX
 
 INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "data/moves/moves.asm"
+
+
+SECTION "Move Data 2", ROMX
+
+INCLUDE "data/moves/moves2.asm"
 INCLUDE "engine/pokemon/evolve.asm"
 
 
@@ -462,6 +472,10 @@ INCLUDE "data/moves/animations3.asm"
 SECTION "Move Animations 4", ROMX
 
 INCLUDE "data/moves/animations4.asm"
+
+SECTION "Move Animations 5", ROMX
+
+INCLUDE "data/moves/animations5.asm"
 
 SECTION "Bug Contest Stats Display", ROMX
 
@@ -817,6 +831,10 @@ INCLUDE "engine/battle/abilities_engine.asm"
 SECTION "Perish Song Ability Core", ROMX
 
 INCLUDE "engine/battle/move_effects/perish_song_core.asm"
+
+SECTION "Handoff Move Effects", ROMX
+
+INCLUDE "engine/battle/move_effects/handoff_moves.asm"
 
 SECTION "Ability Descriptions", ROMX
 
