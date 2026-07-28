@@ -287,9 +287,69 @@ HatchEggs:
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc
-	ld a, [hl]
+; Every Egg hatches at EGG_LEVEL, so set it here rather than trusting the level
+; byte carried in the party slot. That byte comes out of the Day-Care Egg struct
+; and has been observed arriving wrong in both directions: 0 from an older build
+; (which hangs the stats screen's exp maths) and 8 from a struct that wasn't
+; fully regenerated. Writing it unconditionally makes the hatch self-consistent
+; with the exp total calculated just below.
+	ld a, EGG_LEVEL
+	ld [hl], a
 	ld [wCurPartyLevel], a
+; Rewrite the experience total to match the level we are hatching at. An Egg's
+; exp should always be exactly the exp for its hatch level, and the GetBaseData
+; above has already loaded the hatchling's own growth rate, so this also repairs
+; Eggs whose exp was calculated against the wrong species.
 	pop hl
+	push hl
+	push de ; CalcExpAtLevel clobbers de, which still holds the MaxHP pointer
+	ld d, a
+	callfar CalcExpAtLevel
+	pop de
+	pop hl
+	push hl
+	ld bc, MON_EXP
+	add hl, bc
+	ldh a, [hMultiplicand]
+	ld [hli], a
+	ldh a, [hMultiplicand + 1]
+	ld [hli], a
+	ldh a, [hMultiplicand + 2]
+	ld [hl], a
+	pop hl
+; Refill PP for the hatchling. The Egg's PP bytes are whatever the Day-Care Egg
+; struct happened to hold when the Egg was handed over, and nothing between there
+; and here rewrites them, so stale or partly written PP shows up as moves sitting
+; at 0 the moment the Egg hatches. GetBaseData above has already loaded the
+; hatchling, and FillPP reads the move data directly, so this is always correct.
+; FillPP borrows wStringBuffer1 as scratch space for GetMoveData, and right now
+; wStringBuffer1 still holds the species name that GetPokemonName loaded above.
+; That name is what the hatch text prints and what the mon is called if the
+; player declines to nickname it, so stash it across the call the same way
+; DayCare_InitBreeding does around its own FillPP.
+	push de ; still the MaxHP pointer CalcMonStats needs below
+	push hl
+	ld hl, wStringBuffer1
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	pop hl
+	push hl
+	ld bc, MON_PP
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	push hl
+	ld bc, MON_MOVES
+	add hl, bc
+	predef FillPP
+	ld hl, wMonOrItemNameBuffer
+	ld de, wStringBuffer1
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	pop hl
+	pop de
 	push hl
 	ld bc, MON_STATUS
 	add hl, bc
