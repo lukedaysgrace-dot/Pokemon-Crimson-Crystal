@@ -6,6 +6,7 @@ MoveDescriptions2:
 	dw SilverWindDescription
 	dw DragonRushDescription
 	dw DrillRunDescription
+	dw DrainingkissDescription
 	dw MetalSoundDescription
 	dw SignalBeamDescription
 	dw MagicalLeafDescription
@@ -112,6 +113,8 @@ MoveDescriptions2:
 	dw PetalBlizzDescription
 	dw SnarlDescription
 	dw AirCutterDescription
+	dw DazzlingleamDescription
+	dw DisarmVoiceDescription
 
 RockTombDescription:
 	db	 "Lowers Speed by"
