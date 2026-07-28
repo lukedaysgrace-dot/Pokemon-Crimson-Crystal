@@ -34905,36 +34905,6 @@
             ]
         },
         {
-            "labelIndex": 1163,
-            "arrayIndex": 1163,
-            "labelName": "ZKN_FORM_310_001",
-            "styleInfo": {
-                "styleIndex": 42,
-                "colorIndex": -1,
-                "fontSize": 42,
-                "maxWidth": 504,
-                "controlID": 0
-            },
-            "attributeValueArray": [
-                -1,
-                0,
-                0,
-                -1,
-                0
-            ],
-            "tagDataArray": [],
-            "wordDataArray": [
-                {
-                    "patternID": 0,
-                    "eventID": 7,
-                    "tagIndex": -1,
-                    "tagValue": 0.0,
-                    "str": "Mega Manectric",
-                    "strWidth": 250.0
-                }
-            ]
-        },
-        {
             "labelIndex": 1164,
             "arrayIndex": 1164,
             "labelName": "ZKN_FORM_319_001",
