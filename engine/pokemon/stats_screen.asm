@@ -799,6 +799,16 @@ StatsScreen_PinkPage:
 	call PrintNum
 
 	; --- bottom panel: experience ---
+; Everything below works off the level, and a level below MIN_LEVEL makes both
+; CalcExpToNextLevel and the exp bar operate on a negative exp span, which locks
+; the screen up with the music still running. wTempMon is a working copy, so
+; clamping here is display-only and can't corrupt the real party entry.
+	ld a, [wTempMonLevel]
+	cp MIN_LEVEL
+	jr nc, .exp_level_okay
+	ld a, MIN_LEVEL
+	ld [wTempMonLevel], a
+.exp_level_okay
 	ld de, .ExpPointStr
 	hlcoord 1, 13
 	call PlaceString
