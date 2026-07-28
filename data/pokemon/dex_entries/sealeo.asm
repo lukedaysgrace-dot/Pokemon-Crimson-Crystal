@@ -1,5 +1,5 @@
 	db "BALL ROLL@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 1931 ; height, weight
 
 	db   "This SEALEO"
 	next "was newly added"

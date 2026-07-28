@@ -481,9 +481,9 @@ BattleAnimations::
 	banim BattleAnim_ChipAway ; CHIP_AWAY
 	banim BattleAnim_DracoMeteor ; OVERHEAT
 	banim BattleAnim_PetalBlizz ; LEAF_STORM
-	banim BattleAnim_AquaJet ; FLIP_TURN
+	banim BattleAnim_UTurn_PC3 ; FLIP_TURN
 	banim BattleAnim_RockBlast ; SCALE_SHOT
-	banim BattleAnim_Spikes ; STEALTH_ROCK
+	banim BattleAnim_StealthRock ; STEALTH_ROCK
 	banim BattleAnim_Whirlwind ; DEFOG
 	banim BattleAnim_BrickBreak ; BODY_PRESS
 	banim BattleAnim_IceBeam ; FREEZE_DRY
@@ -498,7 +498,7 @@ BattleAnimations::
 	banim BattleAnim_NightSlash ; KOWTOW_CLEAVE
 	banim BattleAnim_ShadowBall ; INFERNAL_PARADE
 	banim BattleAnim_PoisonSting ; BARB_BARRAGE
-	banim BattleAnim_RockSlide ; STONE_AXE
+	banim BattleAnim_StoneBash ; STONE_AXE
 	banim BattleAnim_Acid ; APPLE_ACID
 	banim BattleAnim_SeedBomb ; GRAV_APPLE
 	banim BattleAnim_DragonPulse ; FICKLE_BEAM

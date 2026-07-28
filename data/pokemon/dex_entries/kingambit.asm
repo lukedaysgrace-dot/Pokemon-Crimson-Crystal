@@ -1,5 +1,5 @@
 	db "BIG BLADE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 2646 ; height, weight
 
 	db   "This KINGAMBIT"
 	next "was newly added"

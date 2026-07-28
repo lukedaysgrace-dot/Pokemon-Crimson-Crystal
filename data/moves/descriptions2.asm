@@ -129,20 +129,20 @@ MirrorShotDescription:
 	line "Lowers accuracy.@"
 
 SilverWindDescription:
-	db   "Powdery attack, c-"
-	line "an increase stats.@"
+	db   "Powdery attack may"
+	line "raise all stats.@"
 
 DragonRushDescription:
 	db   "Powerful tackle."
-	line "May cause finch.@"
+	line "May cause flinch.@"
 
 DrillRunDescription:
 	db   "Has a high criti-"
 	line "cal hit ratio.@"
 
 DrainingkissDescription:
-	db   "Sweet kiss that"
-	line "heals the user.@"
+	db   "Drains 3/4 damage"
+	line "to heal the user.@"
 
 MetalSoundDescription:
 	db   "Harsh sound that"
@@ -151,8 +151,8 @@ MetalSoundDescription:
 
 
 SignalBeamDescription:
-	db   "Beam that can can"
-	line "cause confusion.@"
+	db   "A beam that may"
+	line "confuse the foe.@"
 
 MagicalLeafDescription:
 	db   "Mystical leaves"
@@ -190,8 +190,8 @@ WoodHammerDescription:
 	line "into foe. Recoil.@"
 
 PaybackDescription:
-	db	 "Power is doubled"
-	line "after damaged.@"
+	db	 "Power doubles if"
+	line "foe moved first.@"
 
 
 
@@ -204,8 +204,8 @@ MudShotDescription:
 	line "lowers Speed.@"
 
 SandTombDescription:
-	db	 "Traps foe in sand"
-	line "for 2-5 turns.@"
+	db	 "Traps foe for 4-5"
+	line "turns; deals 1/8.@"
 
 LowSweepDescription:
 	db	 "Sweeping kick that"
@@ -217,11 +217,11 @@ CrossPoisonDescription:
 
 SmartStrikeDescription:
 	db	 "Never misses with"
-	line "with a sharp horn.@"
+	line "a sharp horn.@"
 
 BelchDescription:
-	db	 "A horrible belch"
-	line "that can poison.@"
+	db	 "Must have eaten a"
+	line "Berry; may poison.@"
 
 NuzzleDescription:
 	db	 "Nuzzles foe to"
@@ -233,8 +233,8 @@ CrushClawDescription:
 
 
 OdorSleuthDescription:
-	db   "Negates accuracy"
-	line "reduction moves.@"
+	db   "Exposes Ghosts and"
+	line "ignores evasion.@"
 
 HowlDescription:
 	db	 "Howls to raise"
@@ -261,12 +261,12 @@ BlazeKickDescription:
 	line "leave a burn.@"
 
 SheerColdDescription:
-	db   "A one-hit KO,"
-	line "freeze attack.@"
+	db   "One-hit KO. Fails"
+	line "against Ice foes.@"
 
 EchoedVoiceDescription:
-	db   "Successive hits"
-	line "raise power.@"
+	db   "Consecutive uses"
+	line "raise its power.@"
 
 
 
@@ -328,8 +328,8 @@ ForcePalmDescription:
 	line "can paralyze.@"
 
 SkyUppercutDescription:
-	db   "An uppercut thrown"
-	line "to the sky.@"
+	db   "Hits foes using"
+	line "Fly or Bounce.@"
 
 HeadSmashDescription:
 	db   "A reckless head-"
@@ -360,8 +360,8 @@ FieryWrathDescription:
 	line "that can flinch.@"
 
 ShellsidearmDescription:
-	db   "Quick draw poison"
-	line "shot.@"
+	db   "Uses stronger Atk;"
+	line "may poison foe.@"
 
 MeteoassaultDescription:
 	db   "1st turn: Attack"
@@ -372,8 +372,8 @@ CosmicPowerDescription:
 	line "Spcl.Def.@"
 
 StrengthSapDescription:
-	db   "Heals user and lo-"
-	line "wers foe's Attack.@"
+	db   "Heals by foe's Atk"
+	line "then lowers it.@"
 
 HammerArmDescription:
 	db	 "Heavy hit that lo-"
@@ -408,7 +408,7 @@ CircleThrowDescription:
 	line "switches target.@"
 
 BounceDescription:
-	db   "Bouncing attack,"
+	db   "Two-turn attack;"
 	line "may paralyze.@"
 
 ChargeBeamDescription:
@@ -420,23 +420,23 @@ DragonTailDescription:
 	line "foe.@"
 
 GrassKnotDescription:
-	db   "Damage depends on"
-	line "target's weight.@"
+	db   "Power rises with"
+	line "foe's weight.@"
 
 WorkUpDescription:
 	db   "Raises Attack and"
 	line "Spcl.Atk.@"
 
 FlatterDescription:
-	db   "Causes confusion"
-	line "and raises Sp.Atk.@"
+	db   "Confuses foe, but"
+	line "raises Sp.Atk 2.@"
 ;WakeUpSlapDescription:
 ;	db   "Wakes up sleeping"
 ;	line "foe, more damage.@"
 
 AquaRingDescription:
-	db	 "Restores HP each"
-	line "turn.@"
+	db	 "Restores 1/16 HP"
+	line "after each turn.@"
 
 CoilDescription:
 	db   "Raises ATK, DEF"
@@ -447,32 +447,32 @@ PsychoBoostDescription:
 	line "user's Sp.Atk.@"
 
 EerieSpellDescription:
-	db   "Odd incantation"
-	line "that lowers PP.@"
+	db   "Damages and drains"
+	line "3 PP of last move.@"
 
 ClearSmogDescription:
-	db   "Resets target's"
-	line "stats.@"
+	db   "Erases foe's stat"
+	line "stage changes.@"
 
 RagingBullDescription:
-	db   "Breaks screens,"
-	line "type varies.@"
+	db   "Form sets type;"
+	line "breaks screens.@"
 
 DireClawDescription:
-	db   "Causes poison, pa-"
-	line "ralysis or sleep.@"
+	db   "50%: poison, para-"
+	line "lyze, or sleep.@"
 
 PhantomforceDescription:
-	db   "1st turn: Vanish"
-	line "2nd turn: Attack@"
+	db   "Two-turn strike;"
+	line "bypasses Protect.@"
 
 SacredSwordDescription:
-	db   "Ignores foe's stat"
-	line "changes.@"
+	db   "Target's Def/evas."
+	line "stages ignored.@"
 
 ChipAwayDescription:
-	db   "Ignores foe's stat"
-	line "changes.@"
+	db   "Target's Def/evas."
+	line "stages ignored.@"
 
 OverheatDescription:
 	db   "A powerful attack"
@@ -487,16 +487,16 @@ FlipTurnDescription:
 	next "user switches.@"
 
 ScaleShotDescription:
-	db   "Fires scales 2-5"
-	next "times in a row.@"
+	db   "Hits 2-5; raises"
+	next "Speed, lowers Def.@"
 
 StealthRockDescription:
 	db   "Floating stones"
 	next "hurt switch-ins.@"
 
 DefogDescription:
-	db   "Blows away all"
-	next "hazards, screens.@"
+	db   "Lowers evasion;"
+	next "clears both sides.@"
 
 
 BodyPressDescription:
@@ -521,16 +521,16 @@ DragonDartsDescription:
 	next "darts in a row.@"
 
 GlaiveRushDescription:
-	db   "A reckless, all-out"
-	next "body slam.@"
+	db   "Next: 2x damage;"
+	next "foe cannot miss.@"
 
 BanefulBunkerDescription:
-	db   "Protects and may"
-	next "poison attackers.@"
+	db   "Protects; touching"
+	next "foes are poisoned.@"
 
 RageFistDescription:
-	db   "A punch fueled by"
-	next "stored rage.@"
+	db   "+50 power when hit"
+	next "persists; max 350.@"
 
 ArmorCannonDescription:
 	db   "A blast that drops"
@@ -545,16 +545,16 @@ KowtowCleaveDescription:
 	next "that never misses.@"
 
 InfernalParadeDescription:
-	db   "Doubles in power on"
-	next "a hurt foe.@"
+	db   "Doubles vs status;"
+	next "may burn the foe.@"
 
 BarbBarrageDescription:
-	db   "Toxic barbs that"
-	next "often poison.@"
+	db   "Doubles vs poison;"
+	next "50% to poison.@"
 
 StoneAxeDescription:
-	db   "A rock blade that"
-	next "scatters stones.@"
+	db   "High crit; leaves"
+	next "Stealth Rock.@"
 
 AppleAcidDescription:
 	db   "Acid that lowers"
@@ -565,8 +565,8 @@ GravAppleDescription:
 	next "cut DEFENSE.@"
 
 FickleBeamDescription:
-	db   "A beam that some-"
-	next "times goes all out.@"
+	db   "30% chance for"
+	next "double power.@"
 
 HeatWaveDescription:
 	db   "Hot breath can"

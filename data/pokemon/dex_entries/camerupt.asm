@@ -1,5 +1,5 @@
 	db "ERUPTION@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 4850 ; height, weight
 
 	db   "This CAMERUPT"
 	next "was newly added"

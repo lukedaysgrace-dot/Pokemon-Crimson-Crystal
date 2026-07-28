@@ -1,5 +1,5 @@
 	db "SUBTERRENE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 891 ; height, weight
 
 	db   "This EXCADRILL"
 	next "was newly added"

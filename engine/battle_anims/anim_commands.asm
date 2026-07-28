@@ -389,8 +389,8 @@ BattleAnimCommands::
 	dw BattleAnimCmd_OBP1
 	dw BattleAnimCmd_KeepSprites
 	dw BattleAnimCmd_F5
-	dw BattleAnimCmd_F6
-	dw BattleAnimCmd_F7
+	dw BattleAnimCmd_FarCall
+	dw BattleAnimCmd_FarJump
 	dw BattleAnimCmd_IfParamEqual
 	dw BattleAnimCmd_SetVar
 	dw BattleAnimCmd_IncVar
@@ -536,6 +536,8 @@ INCLUDE "gfx/battle_anims/custom.pal"
 BattleAnimCmd_Ret:
 	ld hl, wBattleAnimFlags
 	res BATTLEANIM_IN_SUBROUTINE_F, [hl]
+	ld a, [wBattleAnimParentBank]
+	ld [wBattleAnimScriptBank], a
 	ld hl, wBattleAnimParent
 	ld e, [hl]
 	inc hl
@@ -547,6 +549,8 @@ BattleAnimCmd_Ret:
 	ret
 
 BattleAnimCmd_Call:
+	ld a, [wBattleAnimScriptBank]
+	ld [wBattleAnimParentBank], a
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -1407,10 +1411,50 @@ DefaultAnimObjGreenPalette:
 	RGB 05, 14, 00
 	RGB 00, 00, 00
 
-BattleAnimCmd_F6:
+BattleAnimCmd_FarCall:
+; bank, address. The animation VM supports one subroutine level, just like
+; anim_call, so one saved parent bank is sufficient.
+	call .ReadTarget
+	push de
+	ld hl, wBattleAnimAddress
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, wBattleAnimParent
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop de
+	ld hl, wBattleAnimFlags
+	set BATTLEANIM_IN_SUBROUTINE_F, [hl]
+	jr BattleAnimCmd_FarJump.SetTarget
+
+.ReadTarget:
+	ld a, [wBattleAnimScriptBank]
+	ld [wBattleAnimParentBank], a
+	call GetBattleAnimByte
+	ld b, a
+	call GetBattleAnimByte
+	ld e, a
+	call GetBattleAnimByte
+	ld d, a
 	ret
 
-BattleAnimCmd_F7:
+BattleAnimCmd_FarJump:
+; bank, address
+	call GetBattleAnimByte
+	ld b, a
+	call GetBattleAnimByte
+	ld e, a
+	call GetBattleAnimByte
+	ld d, a
+.SetTarget:
+	ld a, b
+	ld [wBattleAnimScriptBank], a
+	ld hl, wBattleAnimAddress
+	ld [hl], e
+	inc hl
+	ld [hl], d
 	ret
 
 BattleAnimCmd_Sound:
