@@ -1,5 +1,5 @@
 	db "APPLE NECT@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 287 ; height, weight
 
 	db   "This APPLETUN"
 	next "was newly added"

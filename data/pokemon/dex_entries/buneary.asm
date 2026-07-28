@@ -1,5 +1,5 @@
 	db "RABBIT@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 121 ; height, weight
 
 	db   "This BUNEARY"
 	next "was newly added"

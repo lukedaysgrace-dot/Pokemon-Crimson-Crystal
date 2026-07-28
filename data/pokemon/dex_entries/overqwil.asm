@@ -1,5 +1,5 @@
 	db "PIN CLUSTE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 1334 ; height, weight
 
 	db   "This OVERQWIL"
 	next "was newly added"
