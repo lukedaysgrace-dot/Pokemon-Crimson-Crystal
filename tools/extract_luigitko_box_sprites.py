@@ -324,8 +324,6 @@ GEN3_SPECIES = [
     "aggron",
     "meditite",
     "medicham",
-    "electrike",
-    "manectric",
     "plusle",
     "minun",
     "volbeat",

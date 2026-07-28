@@ -1,14 +1,14 @@
 # Pokémon with single-frame front sprites
 
-67 of 480 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
+65 of 478 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
 their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than a stacked sheet.
 
 **How this was determined:** a front sprite sheet's extra frames are the only thing
 `frame 1`..`frame 9` in `anim.asm` / `anim_idle.asm` can point at. Every folder below has
 animation data that references `frame 0` and nothing else, in both files — so the PNG is one
-frame tall. All other 412 folders reference at least one higher frame.
+frame tall. All other 413 folders reference at least one higher frame.
 
-## Alphabetical (67)
+## Alphabetical (65)
 
 | # | Folder | Pokémon |
 |---|--------|---------|
@@ -32,53 +32,51 @@ frame tall. All other 412 folders reference at least one higher frame.
 | 18 | `drifblim` | Drifblim |
 | 19 | `drifloon` | Drifloon |
 | 20 | `drilbur` | Drilbur |
-| 21 | `electrike` | Electrike |
-| 22 | `fletchinder` | Fletchinder |
-| 23 | `fletchling` | Fletchling |
-| 24 | `flygon` | Flygon |
-| 25 | `fraxure` | Fraxure |
-| 26 | `frigibax` | Frigibax |
-| 27 | `golett` | Golett |
-| 28 | `golurk` | Golurk |
-| 29 | `grimmsnarl` | Grimmsnarl |
-| 30 | `grubbin` | Grubbin |
-| 31 | `grumpig` | Grumpig |
-| 32 | `gurdurr` | Gurdurr |
-| 33 | `haxorus` | Haxorus |
-| 34 | `impidimp` | Impidimp |
-| 35 | `kingambit` | Kingambit |
-| 36 | `lairon` | Lairon |
-| 37 | `lopunny` | Lopunny |
-| 38 | `lucario` | Lucario |
-| 39 | `manectric` | Manectric |
-| 40 | `milotic` | Milotic |
-| 41 | `morgrem` | Morgrem |
-| 42 | `munchlax` | Munchlax |
-| 43 | `numel` | Numel |
-| 44 | `pawniard` | Pawniard |
-| 45 | `rampardos` | Rampardos |
-| 46 | `riolu` | Riolu |
-| 47 | `scrafty` | Scrafty |
-| 48 | `scraggy` | Scraggy |
-| 49 | `sealeo` | Sealeo |
-| 50 | `shieldon` | Shieldon |
-| 51 | `shroomish` | Shroomish |
-| 52 | `snover` | Snover |
-| 53 | `spheal` | Spheal |
-| 54 | `spoink` | Spoink |
-| 55 | `timburr` | Timburr |
-| 56 | `tinkatink` | Tinkatink |
-| 57 | `tinkaton` | Tinkaton |
-| 58 | `tinkatuff` | Tinkatuff |
-| 59 | `toxicroak` | Toxicroak |
-| 60 | `trapinch` | Trapinch |
-| 61 | `tsareena` | Tsareena |
-| 62 | `tyrantrum` | Tyrantrum |
-| 63 | `tyrunt` | Tyrunt |
-| 64 | `vibrava` | Vibrava |
-| 65 | `vikavolt` | Vikavolt |
-| 66 | `walrein` | Walrein |
-| 67 | `watu` | Watu |
+| 21 | `fletchinder` | Fletchinder |
+| 22 | `fletchling` | Fletchling |
+| 23 | `flygon` | Flygon |
+| 24 | `fraxure` | Fraxure |
+| 25 | `frigibax` | Frigibax |
+| 26 | `golett` | Golett |
+| 27 | `golurk` | Golurk |
+| 28 | `grimmsnarl` | Grimmsnarl |
+| 29 | `grubbin` | Grubbin |
+| 30 | `grumpig` | Grumpig |
+| 31 | `gurdurr` | Gurdurr |
+| 32 | `haxorus` | Haxorus |
+| 33 | `impidimp` | Impidimp |
+| 34 | `kingambit` | Kingambit |
+| 35 | `lairon` | Lairon |
+| 36 | `lopunny` | Lopunny |
+| 37 | `lucario` | Lucario |
+| 38 | `milotic` | Milotic |
+| 39 | `morgrem` | Morgrem |
+| 40 | `munchlax` | Munchlax |
+| 41 | `numel` | Numel |
+| 42 | `pawniard` | Pawniard |
+| 43 | `rampardos` | Rampardos |
+| 44 | `riolu` | Riolu |
+| 45 | `scrafty` | Scrafty |
+| 46 | `scraggy` | Scraggy |
+| 47 | `sealeo` | Sealeo |
+| 48 | `shieldon` | Shieldon |
+| 49 | `shroomish` | Shroomish |
+| 50 | `snover` | Snover |
+| 51 | `spheal` | Spheal |
+| 52 | `spoink` | Spoink |
+| 53 | `timburr` | Timburr |
+| 54 | `tinkatink` | Tinkatink |
+| 55 | `tinkaton` | Tinkaton |
+| 56 | `tinkatuff` | Tinkatuff |
+| 57 | `toxicroak` | Toxicroak |
+| 58 | `trapinch` | Trapinch |
+| 59 | `tsareena` | Tsareena |
+| 60 | `tyrantrum` | Tyrantrum |
+| 61 | `tyrunt` | Tyrunt |
+| 62 | `vibrava` | Vibrava |
+| 63 | `vikavolt` | Vikavolt |
+| 64 | `walrein` | Walrein |
+| 65 | `watu` | Watu |
 
 ## Grouped by family (handy for batch spriting)
 
@@ -109,7 +107,6 @@ frame tall. All other 412 folders reference at least one higher frame.
 - Croagunk → Toxicroak
 - Numel *(Camerupt also here)* → Camerupt
 - Shroomish → Breloom
-- Electrike → Manectric
 - Riolu → Lucario
 - Drilbur *(Excadrill animated)*
 - Buneary → Lopunny
@@ -124,6 +121,6 @@ frame tall. All other 412 folders reference at least one higher frame.
 
 ## Verification notes
 
-- Counts cross-checked: 480 folders with `anim.asm`; 411 reference `frame 1-9`; 1
-  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 67.
-- `anim_idle.asm` for all 67 folders was also checked — none reference a frame above 0.
+- Counts cross-checked: 478 folders with `anim.asm`; 411 reference `frame 1-9`; 1
+  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 65.
+- `anim_idle.asm` for all 65 folders was also checked — none reference a frame above 0.
