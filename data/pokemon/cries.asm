@@ -362,8 +362,9 @@ PokemonCries::
 	mon_cry CRY_HOOTHOOT,    $080,  $1d0 ; DRIFBLIM
 	mon_cry CRY_DIGLETT,     $080,  $090 ; DRILBUR
 	mon_cry CRY_RHYDON,      $000,  $150 ; EXCADRILL
-	mon_cry CRY_GROWLITHE,   $080,  $0c0 ; ELECTRIKE
-	mon_cry CRY_RAIKOU,      $080,  $120 ; MANECTRIC
+	mon_cry CRY_PICHU,       $f60,  $200 ; KOTORA
+	mon_cry CRY_RAIKOU,      $db3,  $168 ; RAITORA
+	mon_cry CRY_RAIKOU,      $cb3,  $201 ; GOROTORA
 	mon_cry CRY_PIDGEY,      $0a0,  $088 ; FLETCHLING
 	mon_cry CRY_SPEAROW,     $040,  $120 ; FLETCHINDER
 	mon_cry CRY_FEAROW,     -$040,  $150 ; TALONFLAME

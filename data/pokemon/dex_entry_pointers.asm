@@ -357,8 +357,9 @@ PokedexDataPointerTable:
 	dba DrifblimPokedexEntry
 	dba DrilburPokedexEntry
 	dba ExcadrillPokedexEntry
-	dba ElectrikePokedexEntry
-	dba ManectricPokedexEntry
+	dba KotoraPokedexEntry
+	dba RaitoraPokedexEntry
+	dba GorotoraPokedexEntry
 	dba FletchlingPokedexEntry
 	dba FletchinderPokedexEntry
 	dba TalonflamePokedexEntry
