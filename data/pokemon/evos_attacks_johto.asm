@@ -1311,6 +1311,7 @@ SlowkingEvosAttacks:
 	dbw 43, FUTURE_SIGHT
 	dbw 46, TRICK_ROOM
 	dbw 49, AURA_SPHERE
+	dbw 55, SLACK_OFF
 	db 0 ; no more level-up moves
 
 MisdreavusEvosAttacks:
@@ -3993,8 +3994,8 @@ KotoraEvosAttacks:
 	dbbw EVOLVE_LEVEL, 31, RAITORA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, TAIL_WHIP
-	dbw 5, THUNDERSHOCK
+	dbw 1, SLACK_OFF
+	dbw 5, VOLT_TACKLE
 	dbw 7, THUNDER_WAVE
 	dbw 10, QUICK_ATTACK
 	dbw 13, SCARY_FACE
@@ -5258,6 +5259,7 @@ MunchlaxEvosAttacks:
 	dbw 42, BELLY_DRUM
 	dbw 44, FLAIL
 	dbw 45, DOUBLE_EDGE
+	dbw 48, SLACK_OFF
 	db 0 ; no more level-up moves
 
 TorkoalEvosAttacks:
@@ -5803,6 +5805,7 @@ SlowpokeGalarianEvosAttacks:
 	dbw 40, PSYCH_UP
 	dbw 43, FUTURE_SIGHT
 	dbw 46, TRICK_ROOM
+	dbw 49, SLACK_OFF
 	db 0 ; no more level-up moves
 
 SlowbroGalarianEvosAttacks:
@@ -5827,6 +5830,7 @@ SlowbroGalarianEvosAttacks:
 	dbw 43, PSYCH_UP
 	dbw 46, FUTURE_SIGHT
 	dbw 51, TRICK_ROOM
+	dbw 55, SLACK_OFF
 	db 0 ; no more level-up moves
 
 WeezingGalarianEvosAttacks:
@@ -5877,6 +5881,7 @@ SlowkingGalarianEvosAttacks:
 	dbw 43, PSYCH_UP
 	dbw 46, FUTURE_SIGHT
 	dbw 51, TRICK_ROOM
+	dbw 55, SLACK_OFF
 	db 0 ; no more level-up moves
 
 CorsolaGalarianEvosAttacks:

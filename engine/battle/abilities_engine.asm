@@ -2088,6 +2088,8 @@ RunDamageModifiers:
 	jr z, .reckless_boost
 	cp EFFECT_FLARE_BLITZ
 	jr z, .reckless_boost
+	cp EFFECT_VOLT_TACKLE
+	jr z, .reckless_boost
 	cp EFFECT_JUMP_KICK
 	jp nz, .defender
 .reckless_boost
