@@ -388,6 +388,8 @@ BattleAnimations::
 	banim BattleAnim_MortalSpin ; MORTAL_SPIN
 	banim BattleAnim_FirstImpression ; FIRST_IMPRESSION
 	banim BattleAnim_Liquidation ; LIQUIDATION
+	banim BattleAnim_SlackOff ; SLACK_OFF
+	banim BattleAnim_VoltTackle ; VOLT_TACKLE
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
