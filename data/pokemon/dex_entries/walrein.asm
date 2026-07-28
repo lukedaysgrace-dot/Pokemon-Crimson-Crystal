@@ -1,5 +1,5 @@
 	db "ICE BREAK@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 3320 ; height, weight
 
 	db   "This WALREIN"
 	next "was newly added"

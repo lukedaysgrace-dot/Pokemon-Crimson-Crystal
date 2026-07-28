@@ -1,5 +1,5 @@
 	db "TURN TAIL@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 265 ; height, weight
 
 	db   "This WIMPOD"
 	next "was newly added"

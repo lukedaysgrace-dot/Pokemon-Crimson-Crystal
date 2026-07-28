@@ -1,5 +1,5 @@
 	db "SCORCHING@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 540 ; height, weight
 
 	db   "This TALONFLAME"
 	next "was newly added"

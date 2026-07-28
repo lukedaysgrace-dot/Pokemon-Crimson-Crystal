@@ -1,5 +1,5 @@
 	db "VIBRATION@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 337 ; height, weight
 
 	db   "This VIBRAVA"
 	next "was newly added"
