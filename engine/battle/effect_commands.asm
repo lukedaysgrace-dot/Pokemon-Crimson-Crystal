@@ -1484,6 +1484,13 @@ BattleCommand_Stab:
 	and %10000000
 	or b
 	ld [wTypeModifier], a
+	; Freeze-Dry overrides Water's matchup after the normal type loop.
+	; Its scripted command applies that override, then runs this deferred
+	; nullification/item/ability modifier pass with the correct matchup.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FREEZE_DRY
+	ret z
 	farcall RunNullificationAbilities
 	ret
 
@@ -1834,6 +1841,7 @@ BattleCommand_CheckHit:
 	dw THUNDER
 	dw TWISTER
 	dw HURRICANE
+	dw SKY_UPPERCUT
 	dw -1
 
 .DigMoves:
@@ -1867,9 +1875,7 @@ BattleCommand_CheckHit:
 	ret
 
 .XAccuracy:
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVar
-	bit SUBSTATUS_X_ACCURACY, a
+	farcall BattleAlwaysHitChecks_Core
 	ret
 
 .StatModifiers:
@@ -1892,6 +1898,8 @@ BattleCommand_CheckHit:
 	ld c, a
 
 .got_acc_eva
+	farcall ApplyDefenseIgnoringEvasion_Core
+	ld a, c
 	cp b
 	jr c, .skip_foresight_check
 
@@ -2222,6 +2230,7 @@ BattleCommand_ApplyDamage_:
 ; (contact abilities run from the kingsrock command instead - running
 ; them from inside ApplyDamage stalled the battle; see ABILITY_PORT_PLAN.md)
 
+	farcall BreakScreensOnHit_Core
 	callfar EndureFocusSashInEffect_Core
 	jr c, .damage
 
@@ -2275,9 +2284,7 @@ BattleCommand_ApplyDamage_:
 	jp StdBattleTextbox
 
 .update_damage_taken
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
+	call CheckSubstituteOpp
 	ret nz
 
 	ld de, wPlayerDamageTaken + 1
@@ -2663,12 +2670,16 @@ PlayerAttackDamage:
 	ld a, [wEnemyScreens]
 	bit SCREENS_REFLECT, a
 	jr z, .physicalcrit
+	farcall MoveBreaksScreens_Core
+	jr c, .physicalcrit
 	sla c
 	rl b
 
 .physicalcrit
 	ld hl, wBattleMonAttack
 	call GetPhysicalAttackSource
+	farcall ApplyDefenseIgnoringPhysicalStats_Core
+	jr c, .thickclub
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
@@ -2799,49 +2810,7 @@ TruncateHL_BC:
 	ret
 
 CheckDamageStatsCritical:
-; Return carry if boosted stats should be used in damage calculations.
-; Unboosted stats should be used if the attack is a critical hit,
-;  and the stage of the opponent's defense is higher than the user's attack.
-
-	ld a, [wCriticalHit]
-	and a
-	scf
-	ret z
-
-	push hl
-	push bc
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wPlayerSAtkLevel]
-	ld b, a
-	ld a, [wEnemySDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wPlayerAtkLevel]
-	ld b, a
-	ld a, [wEnemyDefLevel]
-	jr .end
-
-.enemy
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wEnemySAtkLevel]
-	ld b, a
-	ld a, [wPlayerSDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wEnemyAtkLevel]
-	ld b, a
-	ld a, [wPlayerDefLevel]
-.end
-	cp b
-	pop bc
-	pop hl
+	farcall CheckDamageStatsCritical_Core
 	ret
 
 ThickClubBoost:
@@ -2958,12 +2927,16 @@ EnemyAttackDamage:
 	ld a, [wPlayerScreens]
 	bit SCREENS_REFLECT, a
 	jr z, .physicalcrit
+	farcall MoveBreaksScreens_Core
+	jr c, .physicalcrit
 	sla c
 	rl b
 
 .physicalcrit
 	ld hl, wEnemyMonAttack
 	call GetPhysicalAttackSource
+	farcall ApplyDefenseIgnoringPhysicalStats_Core
+	jr c, .thickclub
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
@@ -3584,9 +3557,8 @@ DoEnemyDamage:
 	or b
 	jr z, .did_no_damage
 
-	ld a, c
-	and a
-	jr nz, .ignore_substitute
+	farcall BattleMoveBypassesSubstitute_Core
+	jr c, .ignore_substitute
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, DoSubstituteDamage
@@ -3644,9 +3616,8 @@ DoPlayerDamage:
 	or b
 	jr z, .did_no_damage
 
-	ld a, c
-	and a
-	jr nz, .ignore_substitute
+	farcall BattleMoveBypassesSubstitute_Core
+	jr c, .ignore_substitute
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, DoSubstituteDamage
@@ -3765,6 +3736,7 @@ UpdateMoveData:
 	ld [wNamedObjectIndexBuffer], a
 
 	call GetMoveData
+	farcall ApplyRagingBullType_Core
 	farcall AbilityConvertMoveType
 	call GetMoveName
 	jp CopyName1
@@ -5776,6 +5748,11 @@ BattleCommand_Charge:
 	call CompareMove
 	ld a, 1 << SUBSTATUS_FLYING
 	jr z, .got_move_type
+	ld bc, BOUNCE
+	ld a, h
+	call CompareMove
+	ld a, 1 << SUBSTATUS_FLYING
+	jr z, .got_move_type
 	if HIGH(FLY) != HIGH(DIG)
 		ld bc, DIG
 	else
@@ -5851,6 +5828,7 @@ BattleCommand_Charge:
 	dw SKULL_BASH, .SkullBash
 	dw SKY_ATTACK, .SkyAttack
 	dw FLY,        .Fly
+	dw BOUNCE,     .Fly
 	dw DIG,        .Dig
 	dw -1
 
@@ -5912,65 +5890,8 @@ BattleCommand3c:
 
 BattleCommand_TrapTarget:
 ; traptarget
-
-	ld a, [wAttackMissed]
-	and a
-	ret nz
-	ld hl, wEnemyWrapCount
-	ld de, wEnemyTrappingMove
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_trap
-	ld hl, wPlayerWrapCount
-	ld de, wPlayerTrappingMove
-
-.got_trap
-	ld a, [hl]
-	and a
-	ret nz
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
-	ret nz
-	call BattleRandom
-	; trapped for 2-5 turns
-	and %11
-	inc a
-	inc a
-	inc a
-	ld [hl], a
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	ld [de], a
-	call GetMoveIndexFromID
-	ld b, h
-	ld c, l
-	ld hl, .Traps
-
-.find_trap_text
-	ld a, [hli]
-	cp c
-	ld a, [hli]
-	jr nz, .next_trap_text
-	cp b
-	jr z, .found_trap_text
-.next_trap_text
-	inc hl
-	inc hl
-	jr .find_trap_text
-
-.found_trap_text
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp StdBattleTextbox
-
-.Traps:
-	dw BIND,      UsedBindText      ; 'used BIND on'
-	dw WRAP,      WrappedByText     ; 'was WRAPPED by'
-	dw FIRE_SPIN, FireSpinTrapText  ; 'was trapped!'
-	dw CLAMP,     ClampedByText     ; 'was CLAMPED by'
-	dw WHIRLPOOL, WhirlpoolTrapText ; 'was trapped!'
+	farcall BattleTrapTarget_Core
+	ret
 
 INCLUDE "engine/battle/move_effects/mist.asm"
 
@@ -6426,9 +6347,7 @@ PrintParalyze:
 	jp StdBattleTextbox
 
 CheckSubstituteOpp:
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
+	farcall CheckSubstituteOpp_Core
 	ret
 
 INCLUDE "engine/battle/move_effects/selfdestruct.asm"

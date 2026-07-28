@@ -1,5 +1,5 @@
 	db "SHEDDING@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 260 ; height, weight
 
 	db   "This SCRAGGY"
 	next "was newly added"

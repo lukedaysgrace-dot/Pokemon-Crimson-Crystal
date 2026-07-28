@@ -1,5 +1,5 @@
 	db "APPLE CORE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 11 ; height, weight
 
 	db   "This APPLIN"
 	next "was newly added"

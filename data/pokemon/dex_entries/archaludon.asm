@@ -1,5 +1,5 @@
 	db "ALLOY@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 1323 ; height, weight
 
 	db   "This ARCHALUDON"
 	next "was newly added"

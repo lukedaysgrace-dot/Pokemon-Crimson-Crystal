@@ -1,5 +1,5 @@
 	db "MUSHROOM@" ; species name
-	dw 10, 100 ; height, weight
+	dw 10, 864 ; height, weight
 
 	db   "This BRELOOM"
 	next "was newly added"

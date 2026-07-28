@@ -5341,6 +5341,8 @@ BattleOHKO_Core::
 	pop de
 	ld bc, wEnemyMoveStruct + MOVE_ACC
 .got_move_accuracy
+	call .ApplySheerColdRules
+	jr c, .no_effect
 	ld a, [de]
 	sub [hl]
 	jr c, .no_effect
@@ -5370,70 +5372,69 @@ BattleOHKO_Core::
 	ld [wAttackMissed], a
 	ret
 
-BattleRecoil_Core::
-; Relocated from effect_commands.asm; adds Rock Head / Magic Guard.
-	call GetTrueUserAbility
-	cp ROCK_HEAD
-	ret z
-	cp MAGIC_GUARD
-	ret z
-	ld hl, wBattleMonMaxHP
+.ApplySheerColdRules:
+; Sheer Cold fails against Ice targets. Its base accuracy is 30% for
+; Ice-type users and 20% for all other users. Preserve the level and
+; move-accuracy pointers prepared by the caller.
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(SHEER_COLD)
+	jr nz, .not_sheer_cold
+	ld a, l
+	cp LOW(SHEER_COLD)
+	jr nz, .not_sheer_cold
+
+	ld hl, wEnemyMonType1
+	ld de, wBattleMonType1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .got_hp
-	ld hl, wEnemyMonMaxHP
-.got_hp
-; get 1/4 damage or 1 HP, whichever is higher
-	ld a, [wCurDamage]
-	ld b, a
-	ld a, [wCurDamage + 1]
-	ld c, a
-	srl b
-	rr c
-	srl b
-	rr c
-	ld a, b
-	or c
-	jr nz, .min_damage
-	inc c
-.min_damage
+	jr z, .got_types
+	ld hl, wBattleMonType1
+	ld de, wEnemyMonType1
+.got_types
 	ld a, [hli]
-	ld [wBuffer2], a
+	cp ICE
+	jr z, .ice_target
 	ld a, [hl]
-	ld [wBuffer1], a
-	dec hl
-	dec hl
-	ld a, [hl]
-	ld [wBuffer3], a
-	sub c
-	ld [hld], a
-	ld [wBuffer5], a
-	ld a, [hl]
-	ld [wBuffer4], a
-	sbc b
-	ld [hl], a
-	ld [wBuffer6], a
-	jr nc, .dont_ko
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld hl, wBuffer5
-	ld [hli], a
-	ld [hl], a
-.dont_ko
-	hlcoord 10, 9
-	ldh a, [hBattleTurn]
+	cp ICE
+	jr z, .ice_target
+
+	ld a, [de]
+	cp ICE
+	jr z, .ice_user
+	inc de
+	ld a, [de]
+	cp ICE
+	ld a, 20 percent
+	jr nz, .set_accuracy
+.ice_user
+	ld a, 30 percent
+.set_accuracy
+	pop bc
+	ld [bc], a
+	pop de
+	pop hl
 	and a
-	ld a, 1
-	jr z, .animate_hp_bar
-	hlcoord 2, 2
-	xor a
-.animate_hp_bar
-	ld [wWhichHPBar], a
-	predef AnimateHPBar
-	call RefreshBattleHuds
-	ld hl, RecoilText
-	jp StdBattleTextbox
+	ret
+
+.not_sheer_cold
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
+.ice_target
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
 
 PunchMoves:
 ; Iron Fist: punching moves in this game
@@ -5449,6 +5450,9 @@ PunchMoves:
 	dw BULLET_PUNCH
 	dw DRAIN_PUNCH
 	dw PIXIE_PUNCH
+	dw HEADLONGRUSH
+	dw METEOR_MASH
+	dw SKY_UPPERCUT
 	dw POWERUPPUNCH
 	dw HAMMER_ARM
 	dw RAGE_FIST
@@ -5482,7 +5486,6 @@ PulseMoves:
 	dw DRAGON_PULSE
 	dw WATER_PULSE
 	dw AURA_SPHERE
-	dw EERIE_SPELL
 	dw -1
 
 SoundMoves:
@@ -5501,7 +5504,6 @@ SoundMoves:
 	dw GRASSWHISTLE
 	dw METAL_SOUND
 	dw EERIE_SPELL
-	dw BELCH
 	dw SNARL
 	dw DISARM_VOICE
 	dw -1
@@ -5520,6 +5522,9 @@ BallBombMoves:
 	dw GYRO_BALL
 	dw ROCK_BLAST
 	dw SEED_BOMB
+	dw BULLET_SEED
+	dw MUD_BOMB
+	dw ROCK_WRECKER
 	dw -1
 
 WindMoves:
@@ -5533,6 +5538,9 @@ WindMoves:
 	dw TWISTER
 	dw FAIRY_WIND
 	dw HURRICANE
+	dw AIR_CUTTER
+	dw HEAT_WAVE
+	dw PETAL_BLIZZ
 	dw -1
 
 BiteMoves:
@@ -5617,6 +5625,9 @@ TriageMoves:
 	dw DREAM_EATER
 	dw DRAIN_PUNCH
 	dw DRAINING_KISS
+	dw DRAININGKISS
+	dw STRENGTH_SAP
+	dw AQUA_RING
 	dw BITTER_BLADE
 	dw RECOVER
 	dw SOFTBOILED
