@@ -2889,6 +2889,7 @@ CompareSpeedsWithAbilities::
 	pop hl
 	ret
 
+
 .GetEffectiveSpeed:
 ; hl = speed stat ptr, c = ability, b = status. Returns speed in hl.
 	ld a, [hli]
@@ -5448,6 +5449,9 @@ PunchMoves:
 	dw BULLET_PUNCH
 	dw DRAIN_PUNCH
 	dw PIXIE_PUNCH
+	dw POWERUPPUNCH
+	dw HAMMER_ARM
+	dw RAGE_FIST
 	dw -1
 
 SliceMoves:
@@ -5464,6 +5468,12 @@ SliceMoves:
 	dw SOLAR_BLADE
 	dw AERIAL_ACE
 	dw NIGHT_SLASH
+	dw PSYCHO_CUT
+	dw SACRED_SWORD
+	dw STONE_AXE
+	dw KOWTOW_CLEAVE
+	dw CROSS_POISON
+	dw AIR_CUTTER
 	dw -1
 
 PulseMoves:
@@ -5472,6 +5482,7 @@ PulseMoves:
 	dw DRAGON_PULSE
 	dw WATER_PULSE
 	dw AURA_SPHERE
+	dw EERIE_SPELL
 	dw -1
 
 SoundMoves:
@@ -5486,6 +5497,13 @@ SoundMoves:
 	dw BUG_BUZZ
 	dw HYPER_VOICE
 	dw DISARMING_VOICE
+	dw ECHOED_VOICE
+	dw GRASSWHISTLE
+	dw METAL_SOUND
+	dw EERIE_SPELL
+	dw BELCH
+	dw SNARL
+	dw DISARM_VOICE
 	dw -1
 
 BallBombMoves:
