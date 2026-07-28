@@ -207,8 +207,9 @@ EvosAttacksPointers2::
 	dw DrifblimEvosAttacks
 	dw DrilburEvosAttacks
 	dw ExcadrillEvosAttacks
-	dw ElectrikeEvosAttacks
-	dw ManectricEvosAttacks
+	dw KotoraEvosAttacks
+	dw RaitoraEvosAttacks
+	dw GorotoraEvosAttacks
 	dw FletchlingEvosAttacks
 	dw FletchinderEvosAttacks
 	dw TalonflameEvosAttacks
@@ -3988,24 +3989,26 @@ DuraludonEvosAttacks:
 	dbw 66, HYPER_BEAM
 	db 0 ; no more level-up moves
 
-ElectrikeEvosAttacks:
-	dbbw EVOLVE_LEVEL, 26, MANECTRIC
+KotoraEvosAttacks:
+	dbbw EVOLVE_LEVEL, 31, RAITORA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
-	dbw 1, LEER
-	dbw 1, THUNDER_WAVE
+	dbw 1, TAIL_WHIP
+	dbw 5, THUNDERSHOCK
+	dbw 7, THUNDER_WAVE
 	dbw 10, QUICK_ATTACK
-	dbw 13, SPARK
-	dbw 16, BITE
-	dbw 22, ROAR
-	dbw 25, THUNDER_FANG
-	dbw 25, ICE_FANG
-	dbw 25, FIRE_FANG
-	dbw 28, ROAR
-	dbw 33, FLAMETHROWER
-	dbw 34, CRUNCH
-	dbw 37, WILD_CHARGE
-	dbw 43, THUNDER
+	dbw 13, SCARY_FACE
+	dbw 18, BITE
+	dbw 21, SPARK
+	dbw 26, HYPER_VOICE
+	dbw 29, AGILITY
+	dbw 34, THUNDER_FANG
+	dbw 37, REST
+	dbw 42, THUNDERBOLT
+	dbw 45, PLAY_ROUGH
+	dbw 50, THUNDER
+	dbw 53, MEAN_LOOK
+	dbw 58, WILD_CHARGE
 	db 0 ; no more level-up moves
 
 ExcadrillEvosAttacks:
@@ -4292,23 +4295,50 @@ LudicoloEvosAttacks:
 	dbw 69, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
-ManectricEvosAttacks:
+RaitoraEvosAttacks:
+	dbbw EVOLVE_LEVEL, 45, GOROTORA
 	db 0 ; no more evolutions
-	dbw 1, LEER
 	dbw 1, TACKLE
-	dbw 1, THUNDER_WAVE
+	dbw 1, TAIL_WHIP
+	dbw 5, THUNDERSHOCK
+	dbw 7, THUNDER_WAVE
 	dbw 10, QUICK_ATTACK
-	dbw 13, SPARK
-	dbw 16, BITE
-	dbw 22, ROAR
-	dbw 25, THUNDER_FANG
-	dbw 25, ICE_FANG
-	dbw 25, FIRE_FANG
-	dbw 29, ROAR
-	dbw 35, FLAMETHROWER
-	dbw 37, CRUNCH
-	dbw 41, WILD_CHARGE
-	dbw 49, THUNDER
+	dbw 13, SCARY_FACE
+	dbw 18, BITE
+	dbw 21, SPARK
+	dbw 26, HYPER_VOICE
+	dbw 29, AGILITY
+	dbw 36, THUNDER_FANG
+	dbw 39, REST
+	dbw 44, THUNDERBOLT
+	dbw 47, PLAY_ROUGH
+	dbw 52, THUNDER
+	dbw 55, MEAN_LOOK
+	dbw 60, WILD_CHARGE
+	db 0 ; no more level-up moves
+
+GorotoraEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, CRUNCH
+	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
+	dbw 5, THUNDERSHOCK
+	dbw 7, THUNDER_WAVE
+	dbw 10, QUICK_ATTACK
+	dbw 13, SCARY_FACE
+	dbw 18, BITE
+	dbw 21, SPARK
+	dbw 26, HYPER_VOICE
+	dbw 29, AGILITY
+	dbw 36, THUNDER_FANG
+	dbw 39, REST
+	dbw 44, THUNDERBOLT
+	dbw 48, EXTREMESPEED
+	dbw 50, PLAY_ROUGH
+	dbw 55, THUNDER
+	dbw 58, MEAN_LOOK
+	dbw 63, WILD_CHARGE
+	dbw 69, GIGA_IMPACT
 	db 0 ; no more level-up moves
 
 NumelEvosAttacks:
