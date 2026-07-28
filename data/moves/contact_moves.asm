@@ -6,6 +6,4 @@ ContactMoves::
 	db $15, $21, $04, $45, $ac, $91, $88, $02
 	db $00, $61, $0e, $85, $b1, $43, $24, $92
 	db $eb, $2f, $25, $ff, $d3, $bf, $01, $4e
-	db $c1, $0a, $00, $be, $30, $08, $67, $66
-	db $13, $3c, $df, $c8, $63, $01, $3e, $51
-	db $4a, $0b, $00
+	db $c1, $0a, $00, $be ; bit 7 of the last byte = VOLT_TACKLE (contact)

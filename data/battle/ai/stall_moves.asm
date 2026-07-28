@@ -34,9 +34,4 @@ StallMoves:
 	dw CONVERSION
 	dw SUBSTITUTE
 	dw FLAME_WHEEL
-	dw AQUA_RING
-	dw STEALTH_ROCK
-	dw STICKY_WEB
-	dw DEFOG
-	dw BANEFUL_BUNKER
 	dw -1 ; end
