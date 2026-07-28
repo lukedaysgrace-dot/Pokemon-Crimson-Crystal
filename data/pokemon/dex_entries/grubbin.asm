@@ -1,5 +1,5 @@
 	db "LARVA@" ; species name
-	dw 10, 97 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This GRUBBIN"
 	next "was newly added"

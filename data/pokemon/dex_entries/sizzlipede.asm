@@ -1,5 +1,5 @@
 	db "RADIATOR@" ; species name
-	dw 10, 22 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This SIZZLIPEDE"
 	next "was newly added"

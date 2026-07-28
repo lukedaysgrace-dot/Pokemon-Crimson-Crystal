@@ -1,5 +1,5 @@
 	db "STAG BEETL@" ; species name
-	dw 10, 992 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This VIKAVOLT"
 	next "was newly added"

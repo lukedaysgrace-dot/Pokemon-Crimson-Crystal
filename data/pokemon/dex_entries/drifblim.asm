@@ -1,5 +1,5 @@
 	db "BLIMP@" ; species name
-	dw 10, 331 ; height, weight
+	dw 10, 100 ; height, weight
 
 	db   "This DRIFBLIM"
 	next "was newly added"
