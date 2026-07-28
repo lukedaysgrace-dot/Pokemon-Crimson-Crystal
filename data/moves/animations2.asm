@@ -1725,6 +1725,50 @@ BattleAnim_FirstImpression:
 	anim_wait 16
 	anim_ret
 
+BattleAnim_SlackOff:
+; Ported from Johto Legends: lazy "Z"s float up while the user recovers.
+	anim_1gfx ANIM_GFX_STATUS
+	anim_sound 0, 0, SFX_TAIL_WHIP
+.loop
+	anim_obj ANIM_OBJ_ASLEEP, 64, 80, $0
+	anim_wait 40
+	anim_loop 3, .loop
+	anim_wait 32
+	anim_ret
+
+BattleAnim_VoltTackle:
+; Ported from Johto Legends (Spark's flow), with a recoil jolt back on the user.
+	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
+	anim_obj ANIM_OBJ_THUNDER_WAVE, 48, 92, $0
+	anim_wait 24
+	anim_setobj $1, $3
+	anim_wait 1
+	anim_call BattleAnim_TargetObj_1Row_B
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_sound 0, 0, SFX_SPARK
+	anim_wait 16
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_wait 4
+	anim_incobj 2
+	anim_wait 1
+	anim_sound 0, 1, SFX_THUNDERSHOCK
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, 136, 56, $2
+	anim_obj ANIM_OBJ_33, 136, 56, $0
+	anim_wait 24
+; recoil: the charge arcs back into the user
+	anim_clearobjs
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_sound 0, 0, SFX_THUNDERSHOCK
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, 48, 96, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $10, $2, $0
+	anim_sound 0, 0, SFX_SPARK
+	anim_obj ANIM_OBJ_33, 48, 92, $0
+	anim_wait 32
+	anim_ret
+
 BattleAnim_Liquidation:
 ; Bubbles gather around the user before it becomes a rushing water blade.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_WATER

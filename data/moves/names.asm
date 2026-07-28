@@ -348,3 +348,5 @@ MoveNames::
 	db "MORTAL SPIN@"
 	db "FIRST STRIKE@"
 	db "LIQUIDATION@"
+	db "SLACK OFF@"
+	db "VOLT TACKLE@"
