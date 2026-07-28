@@ -25,40 +25,6 @@ BattleAnim_Wait96:
 	anim_wait 96
 	anim_ret
 
-BattleAnim_StoneBash:
-	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_2Row
-	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-	anim_wait 4
-	anim_sound 0, 1, SFX_TACKLE
-	anim_obj ANIM_OBJ_01, 136, 56, $0
-	anim_call .rock_debris
-	anim_farcall BattleAnim_ShowMon_0
-	anim_jump BattleAnim_Wait32
-
-.rock_debris:
-	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $5c
-	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $e8
-	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $d0
-	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $50
-	anim_ret
-
-BattleAnim_StealthRock:
-	anim_1gfx ANIM_GFX_ROCKS
-	anim_sound 6, 2, SFX_STRENGTH
-	anim_obj ANIM_OBJ_SMALL_ROCK, 120, 68, $30
-	anim_wait 8
-	anim_sound 6, 2, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 152, 68, $30
-	anim_wait 8
-	anim_sound 6, 2, SFX_STRENGTH
-	anim_obj ANIM_OBJ_SMALL_ROCK, 136, 64, $40
-	anim_wait 8
-	anim_sound 6, 2, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 144, 68, $30
-	anim_wait 64
-	anim_ret
-
 BattleAnim_Featherdance:
 	anim_1gfx ANIM_GFX_MISC
 	anim_sound 0, 0, SFX_MORNING_SUN
@@ -69,7 +35,7 @@ BattleAnim_Featherdance:
 	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $0, $40
 	anim_wait 96
 	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
-	anim_farjump BattleAnim_ShowMon_1
+	anim_jump BattleAnim_ShowMon_1
 
 ;BattleAnim_FakeTears:
 ;	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_WATER
@@ -90,7 +56,6 @@ BattleAnim_Featherdance:
 ;	anim_ret
 
 BattleAnim_MirrorShot:
-	anim_jump BattleAnim_DazzlinGleam
 
 BattleAnim_AgilityLoop:
 	anim_obj ANIM_OBJ_AGILITY, 8, 24, $10
@@ -110,7 +75,7 @@ BattleAnim_AgilityLoop:
 BattleAnim_SilverWind:
     anim_2gfx ANIM_GFX_WIND_BG, ANIM_GFX_HIT
     anim_obp0 $fc
-    anim_farcall BattleAnim_TargetObj_1Row
+    anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_18, $0, $1, $40
 	anim_call BattleAnim_AgilityLoop
 	anim_incbgeffect ANIM_BG_18
@@ -124,10 +89,9 @@ BattleAnim_SilverWind:
     anim_sound 0, 1, SFX_COMET_PUNCH
     anim_obj ANIM_OBJ_00, 136, 48, $0
     anim_wait 32
-    anim_farjump BattleAnim_ShowMon_0
+    anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_DragonRush:
-	anim_jump BattleAnim_DragonTail
 
 BattleAnim_DrillRun:
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
@@ -169,7 +133,6 @@ BattleAnim_MetalSound:
 
 BattleAnim_DisarmVoice:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PEACH
-	anim_farjump BattleAnim_Screech
 
 BattleAnim_DazzlinGleam:
 	anim_1gfx ANIM_GFX_SPEED
@@ -206,11 +169,9 @@ BattleAnim_SignalBeam:
 
 BattleAnim_MagicalLeaf:
 	anim_setobjpal PAL_BATTLE_OB_GREEN, PAL_BTLCUSTOM_RED
-	anim_farjump BattleAnim_RazorLeaf
 
 BattleAnim_MudBomb:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_BROWN
-	anim_farjump BattleAnim_Barrage
 
 BattleAnim_Revenge:
     anim_1gfx ANIM_GFX_WIND
@@ -220,12 +181,12 @@ BattleAnim_Revenge:
     anim_wait 64
     anim_loop 2, .loop
     anim_wait 16
-	anim_farjump BattleAnim_Waterfall
+	anim_jump BattleAnim_Waterfall
 
 BattleAnim_RockWrecker:
 	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT
-	anim_farcall BattleAnim_Strength
-	anim_farjump BattleAnim_DoubleEdge
+	anim_call BattleAnim_Strength
+	anim_jump BattleAnim_DoubleEdge
 
 BattleAnim_Wait16:
 	anim_wait 16
@@ -267,7 +228,6 @@ BattleAnim_Wait64:
 	anim_ret
 
 BattleAnim_IronDefense:
-	anim_jump BattleAnim_RockPolish
 
 BattleAnim_BulletSeed:
 	anim_2gfx ANIM_GFX_PLANT, ANIM_GFX_HIT
@@ -309,11 +269,10 @@ BattleAnim_Inferno:
 	anim_1gfx ANIM_GFX_FIRE
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_jump BattleAnim_SacredFireLoop
 
 BattleAnim_WoodHammer:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_GREEN
-	anim_farcall BattleAnim_KnockOff
+	anim_call BattleAnim_KnockOff
 	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $28
 	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $d0
 	anim_jump BattleAnim_Wait32
@@ -347,7 +306,7 @@ BattleAnim_RoarBranch:
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_cry $1
 .loop
-	anim_farcall BattleAnim_Roar_branch_cbbbc
+	anim_call BattleAnim_Roar_branch_cbbbc
 	anim_wait 16
 	anim_loop 3, .loop
 	anim_wait 16
@@ -363,15 +322,13 @@ BattleAnim_Snarl:
 
 BattleAnim_RoundM:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_AURORA
-	anim_jump BattleAnim_SingBranch
 
 BattleAnim_HiHorsepower:
-	anim_jump BattleAnim_HeadlongRush
 
 BattleAnim_MudShot:
 	anim_1gfx ANIM_GFX_SAND
 	anim_obp0 $fc
-	anim_farjump BattleAnim_MudSlap_branch_cbc5b
+	anim_jump BattleAnim_MudSlap_branch_cbc5b
 
 BattleAnim_SandTomb:
 	anim_1gfx ANIM_GFX_POWDER
@@ -416,23 +373,23 @@ BattleAnim_CrossPoison:
 	anim_sound 0, 1, SFX_VICEGRIP
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
 	anim_wait 16
-	anim_farcall BattleAnim_Sludge_branch_cbc15
+	anim_call BattleAnim_Sludge_branch_cbc15
 	anim_wait 56
 	anim_ret
 
 BattleAnim_SmartStrike:
 	anim_1gfx ANIM_GFX_REFLECT
 	anim_obp0 $0
-	anim_farcall BattleAnim_TargetObj_1Row
-	anim_farcall BattleAnim_Harden_branch_cbc43
-	anim_farcall BattleAnim_ShowMon_0
-	anim_farjump BattleAnim_Megahorn
+	anim_call BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_Harden_branch_cbc43
+	anim_call BattleAnim_ShowMon_0
+	anim_jump BattleAnim_Megahorn
 	anim_1gfx ANIM_GFX_REFLECT
 	anim_obp0 $0
 	anim_sound 0, 0, SFX_RAGE
-	anim_farcall BattleAnim_TargetObj_1Row
-	anim_farcall BattleAnim_IronTail_branch_cbc43
-	anim_farcall BattleAnim_ShowMon_0
+	anim_call BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_IronTail_branch_cbc43
+	anim_call BattleAnim_ShowMon_0
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
 	anim_obj ANIM_OBJ_HORN, 72, 80, $1
 	anim_wait 16
@@ -455,7 +412,6 @@ BattleAnim_Smog2:
 	anim_ret
 
 BattleAnim_Nuzzle:
-	anim_farjump BattleAnim_Thundershock
 
 BattleAnim_CrushClaw:
 	anim_1gfx ANIM_GFX_CUT
@@ -478,11 +434,11 @@ BattleAnim_AirCutter:
 	anim_wait 4
 	anim_obj ANIM_OBJ_3A, 152, 40, $0
 	anim_wait 8
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_OdorSleuth:
 	anim_1gfx ANIM_GFX_SHINE
-	anim_farcall BattleAnim_UserObj_1Row
+	anim_call BattleAnim_UserObj_1Row
 	anim_bgeffect ANIM_BG_07, $0, $0, $0
 	anim_sound 0, 1, SFX_FORESIGHT
 	anim_obj ANIM_OBJ_FORESIGHT, 132, 40, $0
@@ -490,12 +446,11 @@ BattleAnim_OdorSleuth:
 	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $0, $40
 	anim_wait 64
 	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
-	anim_farcall BattleAnim_ShowMon_1
+	anim_call BattleAnim_ShowMon_1
 	anim_jump BattleAnim_Wait8
 
 BattleAnim_Howl:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_RED
-	anim_jump BattleAnim_RoarBranch
 
 BattleAnim_PsychoCut:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
@@ -506,17 +461,15 @@ BattleAnim_PsychoCut:
 	anim_jump BattleAnim_Wait32
 
 BattleAnim_DualChop:
-	anim_farjump BattleAnim_Doubleslap
 
 BattleAnim_RockPolish:
 	anim_1gfx ANIM_GFX_REFLECT
 	anim_obp0 $0
-	anim_farcall BattleAnim_TargetObj_1Row
-	anim_farcall BattleAnim_Harden_branch_cbc43
-	anim_farjump BattleAnim_ShowMon_0
+	anim_call BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_Harden_branch_cbc43
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_DoubleHitM:
-	anim_farjump BattleAnim_Doubleslap
 
 BattleAnim_BlazeKick:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_FIRE
@@ -525,7 +478,7 @@ BattleAnim_BlazeKick:
 	anim_obj ANIM_OBJ_00, 136, 56, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_07, 136, 56, $0
-	anim_farcall BattleAnim_FirePunch_branch_cbbcc
+	anim_call BattleAnim_FirePunch_branch_cbbcc
 	anim_jump BattleAnim_Wait16
 
 BattleAnim_SheerCold:
@@ -554,11 +507,9 @@ BattleAnim_SheerCold:
 
 BattleAnim_EchoedVoice:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_YELLOW
-	anim_farjump BattleAnim_Growl
 
 BattleAnim_MuddyWater:
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_BROWN
-	anim_farjump BattleAnim_Surf
 
 BattleAnim_HeatWave:
 	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_FIRE
@@ -676,12 +627,12 @@ BattleAnim_SingBranch:
 BattleAnim_OminousWind:
     anim_2gfx ANIM_GFX_WIND_BG, ANIM_GFX_ANGELS
     anim_obp0 $fc
-    anim_farcall BattleAnim_TargetObj_1Row
+    anim_call BattleAnim_TargetObj_1Row
 	anim_bgp $1b
 	anim_obp0 $f
 	anim_call BattleAnim_AgilityLoop
     anim_wait 4
-    anim_farcall BattleAnim_ShowMon_0
+    anim_call BattleAnim_ShowMon_0
 	anim_obj ANIM_OBJ_NIGHTMARE, 132, 40, $0
 	anim_obj ANIM_OBJ_NIGHTMARE, 132, 40, $a0
 	anim_sound 0, 1, SFX_NIGHTMARE
@@ -737,11 +688,11 @@ BattleAnim_BlastBurn:
 	anim_bgeffect ANIM_BG_1F, $60, $4, $10
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $24
 	anim_if_param_equal $1, .loop3
-	anim_farcall BattleAnim_Explosion_branch_cbb8f
+	anim_call BattleAnim_Explosion_branch_cbb8f
 	anim_jump BattleAnim_Wait16
 
 .loop3
-	anim_farcall BattleAnim_Explosion_branch_cbb62
+	anim_call BattleAnim_Explosion_branch_cbb62
 	anim_wait 5
 	anim_loop 2, .loop3
 	anim_jump BattleAnim_Wait16
@@ -754,7 +705,7 @@ BattleAnim_HydroCannon:
 	anim_jump BattleAnim_HydroPumpJump
 
 BattleAnim_HydroPumpJump:
-	anim_farcall BattleAnim_UserObj_2Row
+	anim_call BattleAnim_UserObj_2Row
 	anim_sound 0, 1, SFX_HYDRO_PUMP
 	anim_obj ANIM_OBJ_HYDRO_PUMP, 108, 72, $0
 	anim_bgeffect ANIM_BG_31, $1c, $0, $0
@@ -783,14 +734,14 @@ BattleAnim_HydroPumpJump:
 	anim_obj ANIM_OBJ_HYDRO_PUMP, 156, 72, $0
 	anim_bgeffect ANIM_BG_31, $1c, $0, $0
 	anim_wait 32
-	anim_farcall BattleAnim_ShowMon_1
+	anim_call BattleAnim_ShowMon_1
 	anim_bgeffect ANIM_BG_32, $0, $0, $0
 	anim_jump BattleAnim_Wait16
 
 BattleAnim_WaveCrash:
 	anim_2gfx ANIM_GFX_BUBBLE, ANIM_GFX_HIT
-	anim_farcall BattleAnim_Surf
-	anim_farjump BattleAnim_DoubleEdge
+	anim_call BattleAnim_Surf
+	anim_jump BattleAnim_DoubleEdge
 
 BattleAnim_FakeOut:
 	anim_1gfx ANIM_GFX_OBJECTS
@@ -807,7 +758,6 @@ BattleAnim_FakeOut:
 
 BattleAnim_HeadlongRush:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_BROWN
-	anim_farjump BattleAnim_DoubleEdge
 
 BattleAnim_DualWingbeat:
 	anim_1gfx ANIM_GFX_HIT
@@ -844,24 +794,23 @@ BattleAnim_TwinBeam:
 	anim_jump BattleAnim_PsybeamLoop
 
 BattleAnim_Psyshield:
-	anim_farcall BattleAnim_LightScreen
+	anim_call BattleAnim_LightScreen
 	anim_wait 32
 	anim_1gfx ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_2Row
+	anim_call BattleAnim_TargetObj_2Row
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_TACKLE
 	anim_obj ANIM_OBJ_00, 136, 48, $0
 	anim_wait 8
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_MeteorMash:
 	anim_2gfx ANIM_GFX_OBJECTS, ANIM_GFX_HIT
-	anim_farcall BattleAnim_Swift
-	anim_farjump BattleAnim_MegaPunch
+	anim_call BattleAnim_Swift
+	anim_jump BattleAnim_MegaPunch
 
 BattleAnim_ForcePalm:
-	anim_farjump BattleAnim_Pound
 
 BattleAnim_SkyUppercut:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_YELLOW
@@ -869,10 +818,10 @@ BattleAnim_SkyUppercut:
 
 BattleAnim_Waterfall2:
 	anim_1gfx ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_2Row
+	anim_call BattleAnim_TargetObj_2Row
 	anim_bgeffect ANIM_BG_25, $0, $1, $0
 	anim_wait 16
-	anim_farcall BattleAnim_ShowMon_0
+	anim_call BattleAnim_ShowMon_0
 	anim_sound 0, 1, SFX_LICK
 	anim_obj ANIM_OBJ_01, 136, 56, $0
 	anim_wait 3
@@ -890,10 +839,8 @@ BattleAnim_Waterfall2:
 	anim_jump BattleAnim_Wait8
 
 BattleAnim_HeadSmash:
-	anim_jump BattleAnim_HiHorsepower
 
 BattleAnim_RagingFury:
-	anim_jump BattleAnim_Inferno
 
 BattleAnim_StrangeSteam:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_RED
@@ -903,7 +850,6 @@ BattleAnim_ShadowBone:
 	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_MISC
 	anim_bgp $1b
 	anim_obp0 $27
-	anim_farjump BattleAnim_BoneClub
 
 BattleAnim_PoisonTail:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
@@ -911,7 +857,7 @@ BattleAnim_PoisonTail:
 	anim_call BattleAnim_TailAttack
 	anim_wait 16
 	anim_1gfx ANIM_GFX_POISON
-	anim_farjump BattleAnim_Sludge_branch_cbc15
+	anim_jump BattleAnim_Sludge_branch_cbc15
 
 BattleAnim_TailAttack:
     anim_sound 0, 1, SFX_VICEGRIP
@@ -927,11 +873,11 @@ BattleAnim_TailAttack:
 BattleAnim_FreezeGlare:
 	anim_2gfx ANIM_GFX_BEAM, ANIM_GFX_ICE
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_PURPLE
-	anim_farcall BattleAnim_Glare_branch_cbadc
+	anim_call BattleAnim_Glare_branch_cbadc
 	anim_wait 32
 	anim_clearobjs
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ICE
-	anim_farjump BattleAnim_IcePunch_branch_cbbdf
+	anim_jump BattleAnim_IcePunch_branch_cbbdf
 
 BattleAnim_FieryWrath:
 	anim_1gfx ANIM_GFX_FIRE
@@ -947,7 +893,7 @@ BattleAnim_SacredFireLoop:
 	anim_wait 8
 	anim_loop 8, .loop
 	anim_wait 96
-	anim_farcall BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_EMBER
@@ -968,12 +914,11 @@ BattleAnim_ShellSideArm:
 	anim_wait 16
 	anim_sound 0, 1, SFX_KARATE_CHOP
 	anim_obj ANIM_OBJ_01, 136, 56, $0
-	anim_farjump BattleAnim_Toxic_branch_cbc15
+	anim_jump BattleAnim_Toxic_branch_cbc15
 
 BattleAnim_MeteoAssault:
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_YELLOW
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_YELLOW
-	anim_jump BattleAnim_Superpower
 
 BattleAnim_CosmicPower:
 	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_MOON
@@ -1001,16 +946,16 @@ BattleAnim_Growth_Branch:
 BattleAnim_StrengthSap:
 	anim_2gfx ANIM_GFX_BUBBLE, ANIM_GFX_SHINE
 	anim_sound 6, 3, SFX_WATER_GUN
-	anim_farcall BattleAnim_GigaDrain_branch_cbab3
+	anim_call BattleAnim_GigaDrain_branch_cbab3
 	anim_wait 128
 	anim_wait 48
 	anim_incbgeffect ANIM_BG_18
-	anim_farcall BattleAnim_ShowMon_0
+	anim_call BattleAnim_ShowMon_0
 	anim_if_param_equal $1, .one
-	anim_farjump BattleAnim_MorningSun_branch_cbc6a
+	anim_jump BattleAnim_MorningSun_branch_cbc6a
 
 .one
-	anim_farjump BattleAnim_MorningSun_branch_cbc80
+	anim_jump BattleAnim_MorningSun_branch_cbc80
 
 BattleAnim_HammerArm:
 	anim_1gfx ANIM_GFX_HIT
@@ -1055,19 +1000,16 @@ BattleAnim_Superpower:
 	anim_1gfx ANIM_GFX_SPEED
 	anim_call BattleAnim_EndureLoop
 	anim_1gfx ANIM_GFX_HIT
-	anim_farjump BattleAnim_DoubleEdge
+	anim_jump BattleAnim_DoubleEdge
 
 BattleAnim_PowerUpPunch:
 	anim_1gfx ANIM_GFX_HIT
-	anim_if_param_equal $1, .comet_punch
+	anim_if_param_equal $1, BattleAnim_CometPunch_branch_c9641
 	anim_sound 0, 1, SFX_COMET_PUNCH
 	anim_obj ANIM_OBJ_06, 144, 48, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_01, 144, 48, $0
 	anim_jump BattleAnim_Wait8
-
-.comet_punch
-	anim_farjump BattleAnim_CometPunch_branch_c9641
 
 BattleAnim_BrickBreak:
 	anim_1gfx ANIM_GFX_HIT
@@ -1089,7 +1031,7 @@ BattleAnim_BrickBreak:
 
 BattleAnim_QuiverDance:
 	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_SHINE
-	anim_farcall BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_2C, $0, $1, $0
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 .loop
@@ -1108,26 +1050,26 @@ BattleAnim_QuiverDance:
 	anim_obj ANIM_OBJ_GLIMMER, 56, 104, $0
 	anim_wait 32
 	anim_incbgeffect ANIM_BG_18
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_AcidSpray:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_1gfx ANIM_GFX_POISON
-	anim_farcall BattleAnim_Acid_branch_cbc35
+	anim_call BattleAnim_Acid_branch_cbc35
 	anim_jump BattleAnim_Wait64
 
 BattleAnim_PlayNice:
 	anim_1gfx ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_2Row
+	anim_call BattleAnim_TargetObj_2Row
 	anim_sound 0, 0, SFX_TAIL_WHIP
 	anim_bgeffect ANIM_BG_26, $0, $1, $0
 	anim_wait 32
 	anim_incbgeffect ANIM_BG_26
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_CircleThrow:
 	anim_1gfx ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_2F, $0, $1, $0
 	anim_wait 16
 	anim_sound 0, 0, SFX_MENU
@@ -1141,13 +1083,12 @@ BattleAnim_CircleThrow:
 	anim_wait 8
 	anim_incbgeffect ANIM_BG_2F
 	anim_wait 16
-	anim_farcall BattleAnim_ShowMon_0
+	anim_call BattleAnim_ShowMon_0
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_03, 132, 56, $0
 	anim_jump BattleAnim_Wait16
 
 BattleAnim_Bounce:
-	anim_farjump BattleAnim_Fly
 
 BattleAnim_ChargeBeam:
     anim_3gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION, ANIM_GFX_BEAM
@@ -1179,16 +1120,16 @@ BattleAnim_ChargeBeam:
 
 BattleAnim_DragonTail:
 	anim_1gfx ANIM_GFX_HIT
-	anim_farcall BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_1A, $0, $1, $20
 	anim_sound 0, 0, SFX_OUTRAGE
 	anim_wait 72
 	anim_incbgeffect ANIM_BG_1A
-	anim_farcall BattleAnim_ShowMon_0
+	anim_call BattleAnim_ShowMon_0
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
 	anim_wait 32
-	anim_farcall BattleAnim_TargetObj_1Row
+	anim_call BattleAnim_TargetObj_1Row
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $10
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 3
@@ -1198,7 +1139,7 @@ BattleAnim_DragonTail:
 	anim_sound 0, 1, SFX_TACKLE
 	anim_obj ANIM_OBJ_00, 144, 48, $0
 	anim_wait 3
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_GrassKnot:
 	anim_1gfx ANIM_GFX_PLANT
@@ -1226,7 +1167,7 @@ BattleAnim_GrassKnot:
 
 BattleAnim_WorkUp:
 	anim_1gfx ANIM_GFX_WIND
-	anim_farcall BattleAnim_TargetObj_2Row
+	anim_call BattleAnim_TargetObj_2Row
 	anim_sound 0, 0, SFX_AEROBLAST
 	anim_bgeffect ANIM_BG_18, $0, $1, $40
 .loop
@@ -1238,10 +1179,9 @@ BattleAnim_WorkUp:
 	anim_sound 0, 0, SFX_MENU
 	anim_obj ANIM_OBJ_SWAGGER, 72, 88, $44
 	anim_wait 32
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
 
 BattleAnim_Flatter:
-	anim_farjump BattleAnim_Encore
 
 BattleAnim_AquaRing:
 	anim_1gfx ANIM_GFX_BUBBLE
@@ -1276,11 +1216,9 @@ BattleAnim_PsychoBoost:
 	anim_1gfx ANIM_GFX_PSYCHIC
 	anim_bgp $1b
 	anim_obp0 $f
-	anim_farjump BattleAnim_PsychicM
 
 BattleAnim_EerieSpell:
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_PURPLE
-	anim_farjump BattleAnim_HiddenPower
 
 BattleAnim_ClearSmog:
 	anim_1gfx ANIM_GFX_HAZE
@@ -1299,11 +1237,10 @@ BattleAnim_RagingBull:
     anim_wait 64
     anim_loop 2, .loop
     anim_wait 16
-    anim_farjump BattleAnim_DoubleEdge
+    anim_jump BattleAnim_DoubleEdge
 
 BattleAnim_DireClaw:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
-	anim_jump BattleAnim_CrushClaw
 
 BattleAnim_PhantomForce:
 	anim_if_param_equal $1, BattleAnim_PhantomForceBranch
@@ -1313,10 +1250,6 @@ BattleAnim_PhantomForce:
 	anim_call BattleAnim_TailAttack
 	anim_wait 32
 
-BattleAnim_PhantomForceBranch2:
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
-	anim_jump BattleAnim_Wait32
-
 BattleAnim_PhantomForceBranch:
 	anim_bgp $1b
 	anim_obp1 $1b
@@ -1324,6 +1257,10 @@ BattleAnim_PhantomForceBranch:
 	anim_sound 0, 0, SFX_CURSE
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
 	anim_jump BattleAnim_Wait96
+
+BattleAnim_PhantomForceBranch2:
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_jump BattleAnim_Wait32
 
 BattleAnim_SacredSword:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_YELLOW
@@ -1340,11 +1277,11 @@ BattleAnim_Wait48:
 BattleAnim_ChipAway:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_SPARK
-	anim_farcall BattleAnim_TargetObj_2Row
+	anim_call BattleAnim_TargetObj_2Row
 	anim_bgeffect ANIM_BG_2E, $60, $1, $1
 	anim_bgeffect ANIM_BG_25, $0, $1, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_03, 136, 40, $0
 	anim_wait 8
-	anim_farjump BattleAnim_ShowMon_0
+	anim_jump BattleAnim_ShowMon_0
