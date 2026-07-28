@@ -77,6 +77,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -103,6 +104,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -112,6 +114,15 @@ OddEggs:
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
 	db "EGG@@@@@@@@"
+OddEggsEnd:
+
+; _GiveOddEgg indexes this table with a stride of NICKNAMED_MON_STRUCT_LENGTH and
+; copies each entry as a flat block into wOddEgg, so every entry must be exactly
+; that size. If a field is added to the mon struct without a matching byte here,
+; the copy lands short and every field from that point on is read from the wrong
+; offset - including the nickname, which is why the Egg showed up as "GG".
+;
+; TODO: restore a size assert here once the real PARTYMON_STRUCT_LENGTH is known.
 
 	db 0 ; Species, will be filled on load
 	db NO_ITEM
@@ -129,6 +140,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -155,6 +167,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -181,6 +194,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -207,6 +221,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -233,6 +248,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -259,6 +275,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -285,6 +302,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -311,6 +329,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -337,6 +356,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -363,6 +383,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -389,6 +410,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP
@@ -415,6 +437,7 @@ OddEggs:
 	db 20 ; Step cycles to hatch
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
+	db 0 ; Personality
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP

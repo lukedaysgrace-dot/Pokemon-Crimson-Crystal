@@ -1274,6 +1274,33 @@ GiveEgg::
 
 	call TryAddMonToParty
 
+; The pushes above were caught-first, then seen, so the first value popped is
+; the *seen* flag and the second is the *caught* flag. Vanilla mislabels these
+; and resets the wrong dex bit; the blocks below are paired with the value they
+; actually pop.
+;
+; FlagAction destroys de (it turns the bit number into a byte offset), so the
+; dex index has to be recomputed before every call. Relying on a push/pop pair
+; in the first block only leaves de undefined whenever that block is skipped,
+; which clears an arbitrary dex bit.
+
+; If we haven't seen this Pokemon before receiving
+; the Egg, reset the flag that was just set by
+; TryAddMonToParty.
+	pop bc
+	ld a, c
+	and a
+	jr nz, .skip_seen_flag
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld d, h
+	ld e, l
+	dec de
+	ld hl, wPokedexSeen
+	ld b, RESET_FLAG
+	call FlagAction
+
+.skip_seen_flag
 ; If we haven't caught this Pokemon before receiving
 ; the Egg, reset the flag that was just set by
 ; TryAddMonToParty.
@@ -1286,25 +1313,11 @@ GiveEgg::
 	ld d, h
 	ld e, l
 	dec de
-	push de
 	ld hl, wPokedexCaught
 	ld b, RESET_FLAG
 	call FlagAction
-	pop de
 
 .skip_caught_flag
-; If we haven't seen this Pokemon before receiving
-; the Egg, reset the flag that was just set by
-; TryAddMonToParty.
-	pop bc
-	ld a, c
-	and a
-	jr nz, .skip_seen_flag
-	ld hl, wPokedexSeen
-	ld b, RESET_FLAG
-	call FlagAction
-
-.skip_seen_flag
 	pop af
 	ld [wCurPartySpecies], a
 	ld a, [wPartyCount]
