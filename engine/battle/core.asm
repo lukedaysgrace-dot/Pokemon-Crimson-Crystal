@@ -1008,9 +1008,6 @@ EnemyTurn_EndOpponentProtectEndureDestinyBond:
 	jp EndOpponentProtectEndureDestinyBond
 
 EndOpponentProtectEndureDestinyBond:
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVarAddr
-	res SUBSTATUS_BANEFUL_BUNKER, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_PROTECT, [hl]
@@ -1021,10 +1018,6 @@ EndOpponentProtectEndureDestinyBond:
 	ret
 
 EndUserDestinyBond:
-; Also ends the Glaive Rush drawback - it lasts until the user acts again.
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	res SUBSTATUS_GLAIVE_RUSH, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	res SUBSTATUS_DESTINY_BOND, [hl]
@@ -1865,7 +1858,7 @@ HandleWeather:
 	dw BattleText_TheSandstormSubsided
 	dw BattleText_TheHailStopped
 
-SubtractHPFromTarget::
+SubtractHPFromTarget:
 	call SubtractHP
 	jp UpdateHPBar
 
@@ -1951,7 +1944,7 @@ GetQuarterMaxHP::
 .end
 	ret
 
-GetHalfMaxHP::
+GetHalfMaxHP:
 ; output: bc
 	call GetMaxHP
 
@@ -4254,7 +4247,6 @@ SpikesDamageAndEntryAbilities:
 	ret
 
 SpikesDamage:
-	farcall StealthRockDamage_Core
 	call .Spikes
 	farcall ToxicSpikesPoison
 	ret
