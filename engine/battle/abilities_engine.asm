@@ -1877,14 +1877,6 @@ RunDamageModifiers:
 	; fallthrough
 
 .defender
-; Glaive Rush: the flagged user takes double damage until its next turn.
-	push de
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVar
-	bit SUBSTATUS_GLAIVE_RUSH, a
-	call nz, DamageX2
-	pop de
-
 	; ---- defender's ability ----
 	call GetOpponentIgnorableAbility
 	ld d, a
@@ -2346,23 +2338,6 @@ DamagePercent:
 	ret
 
 DoubleDamage:
-	push hl
-	ld hl, wCurDamage
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-	add hl, hl
-	jr nc, .store
-	ld hl, $ffff
-.store
-	ld a, h
-	ld [wCurDamage], a
-	ld a, l
-	ld [wCurDamage + 1], a
-	pop hl
-	ret
-
-DamageX2:
 	push hl
 	ld hl, wCurDamage
 	ld a, [hli]
@@ -5472,8 +5447,6 @@ PunchMoves:
 	dw SHADOW_PUNCH
 	dw BULLET_PUNCH
 	dw DRAIN_PUNCH
-	dw HAMMER_ARM
-	dw RAGE_FIST
 	dw PIXIE_PUNCH
 	dw -1
 
@@ -5490,12 +5463,6 @@ SliceMoves:
 	dw X_SCISSOR
 	dw SOLAR_BLADE
 	dw AERIAL_ACE
-	dw PSYCHO_CUT
-	dw SACRED_SWORD
-	dw AIR_CUTTER
-	dw CROSS_POISON
-	dw KOWTOW_CLEAVE
-	dw STONE_AXE
 	dw NIGHT_SLASH
 	dw -1
 
@@ -5518,8 +5485,6 @@ SoundMoves:
 	dw PERISH_SONG
 	dw BUG_BUZZ
 	dw HYPER_VOICE
-	dw SNARL
-	dw EERIE_SPELL
 	dw DISARMING_VOICE
 	dw -1
 
@@ -5536,7 +5501,6 @@ BallBombMoves:
 	dw FOCUS_BLAST
 	dw GYRO_BALL
 	dw ROCK_BLAST
-	dw BULLET_SEED
 	dw SEED_BOMB
 	dw -1
 

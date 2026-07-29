@@ -23,21 +23,3 @@ homecall: MACRO
 	pop af
 	rst Bankswitch
 ENDM
-
-farcheckmatchup: MACRO
-; Cross-bank stand-in for `call CheckTypeMatchup`.
-; a = attacking type, hl = pointer to the defender's two types.
-; Preserves bc, de and hl, like the bank-local call does.
-; NOTE: `predef CheckTypeMatchup` does NOT work - Predef preserves bc/de/hl/f
-; but not a, because a is the predef ID. Use this instead.
-	push hl
-	push de
-	push bc
-	ld b, a
-	ld d, h
-	ld e, l
-	farcall CheckTypeMatchupFar
-	pop bc
-	pop de
-	pop hl
-ENDM
