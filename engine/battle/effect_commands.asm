@@ -164,6 +164,15 @@ BattleCommand_CheckTurn:
 	xor a
 	ld [hl], a
 
+	; Glaive Rush's vulnerability lasts until the user's next turn.
+	ld hl, wPlayerGlaiveRush
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_glaive_rush
+	inc hl ; wEnemyGlaiveRush
+.got_glaive_rush
+	ld [hl], 0
+
 	ldh a, [hBattleTurn]
 	and a
 	jp nz, CheckEnemyTurn
@@ -1386,7 +1395,7 @@ BattleCommand_Stab:
 	ld a, [hli]
 
 	cp -1
-	jr z, .end
+	jp z, .end
 
 	; foresight
 	cp -2
@@ -1394,13 +1403,13 @@ BattleCommand_Stab:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .end
+	jp nz, .end
 	; Scrappy / Mind's Eye pierce Ghost immunities like Foresight
 	; (push hl: the farcall macro clobbers the table pointer)
 	push hl
 	farcall AbilityPiercesGhosts
 	pop hl
-	jr c, .end
+	jp c, .end
 
 	jr .TypesLoop
 
@@ -1422,7 +1431,7 @@ BattleCommand_Stab:
 	and %10000000
 	ld b, a
 ; If the target is immune to the move, treat it as a miss and calculate the damage as 0
-	ld a, [hl]
+	call .GetMatchupValue
 	and a
 	jr nz, .NotImmune
 	inc a
@@ -1478,7 +1487,28 @@ BattleCommand_Stab:
 .SkipType:
 	inc hl
 	inc hl
-	jr .TypesLoop
+	jp .TypesLoop
+
+.GetMatchupValue:
+; a = this row's effectiveness. Freeze-Dry reads WATER rows as 2x.
+	dec hl
+	ld a, [hl]
+	inc hl
+	cp WATER
+	ld a, [hl]
+	ret nz
+	push hl
+	push bc
+	ld b, a
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FREEZE_DRY
+	ld a, b
+	pop bc
+	pop hl
+	ret nz
+	ld a, SUPER_EFFECTIVE
+	ret
 
 .end
 	call BattleCheckTypeMatchup
@@ -1555,7 +1585,8 @@ CheckTypeMatchup:
 	ldh [hDividend + 0], a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
-	ld a, [hli]
+	call .GetRowValue
+	inc hl
 	ldh [hMultiplicand + 2], a
 	ld a, [wTypeMatchup]
 	ldh [hMultiplier], a
@@ -1569,6 +1600,27 @@ CheckTypeMatchup:
 	ldh a, [hQuotient + 3]
 	ld [wTypeMatchup], a
 	jr .TypesLoop
+
+.GetRowValue:
+; a = this row's effectiveness. Freeze-Dry reads WATER rows as 2x.
+	dec hl
+	ld a, [hl]
+	inc hl
+	cp WATER
+	ld a, [hl]
+	ret nz
+	push hl
+	push bc
+	ld b, a
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FREEZE_DRY
+	ld a, b
+	pop bc
+	pop hl
+	ret nz
+	ld a, SUPER_EFFECTIVE
+	ret
 
 .End:
 	pop bc
@@ -1674,6 +1726,10 @@ BattleCommand_CheckHit:
 
 	call .BlizzardHail
 	ret z
+	; A Glaive Rush user can't avoid incoming attacks.
+	call .GlaiveRushTarget
+	ret z
+
 
 	call .XAccuracy
 	ret nz
@@ -1760,6 +1816,13 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_PROTECT, a
 	ret z
 
+	; Phantom Force strikes through Protect and Detect.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld bc, PHANTOMFORCE
+	call CompareMove
+	ret z
+
 	ld c, 40
 	call DelayFrames
 
@@ -1769,6 +1832,9 @@ BattleCommand_CheckHit:
 
 	ld c, 40
 	call DelayFrames
+
+	; Baneful Bunker poisons attackers that made contact
+	farcall BanefulBunkerPunish_Core
 
 	ld a, 1
 	and a
@@ -1819,9 +1885,14 @@ BattleCommand_CheckHit:
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
+	; A Phantom Force user sets both bits at once: while it has
+	; vanished, no move can reach it at all.
+	cp 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jr z, .phantom_force_unreachable
+
 	bit SUBSTATUS_FLYING, a
 	ld hl, .FlyMoves
-	jr z, .check_move_in_list
+	jr nz, .check_move_in_list ; FLYING set -> moves that hit flying mons
 	ld hl, .DigMoves
 .check_move_in_list
 	; returns z (and a = 0) if the current move is in a given list, or nz (and a = 1) if not
@@ -1830,6 +1901,29 @@ BattleCommand_CheckHit:
 	call CheckMoveInList
 	sbc a
 	inc a
+	ret
+
+.phantom_force_unreachable
+	ld a, 1
+	and a
+	ret
+
+.GlaiveRushTarget:
+; Return z if the defender used Glaive Rush and can't avoid this attack.
+	ld a, [wEnemyGlaiveRush]
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	ld a, b
+	jr z, .got_glaive_flag
+	ld a, [wPlayerGlaiveRush]
+.got_glaive_flag
+	and a
+	jr nz, .glaive_flagged
+	or 1
+	ret
+.glaive_flagged
+	xor a
 	ret
 
 .FlyMoves:
@@ -1896,6 +1990,20 @@ BattleCommand_CheckHit:
 	ld c, a
 
 .got_acc_eva
+	; Sacred Sword ignores the target's evasion stat stages.
+	push hl
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SACRED_SWORD
+	pop bc
+	pop hl
+	jr nz, .no_evasion_ignore
+	ld c, BASE_STAT_LEVEL
+	jr .skip_foresight_check
+
+.no_evasion_ignore
+	ld a, c
 	cp b
 	jr c, .skip_foresight_check
 
@@ -2284,6 +2392,21 @@ BattleCommand_ApplyDamage_:
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 
+	; Rage Fist: count hits taken by the defender
+	push de
+	ld de, wEnemyRageFistHits
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_rage_tally
+	ld de, wPlayerRageFistHits
+.got_rage_tally
+	ld a, [de]
+	inc a
+	jr z, .rage_tally_capped
+	ld [de], a
+.rage_tally_capped
+	pop de
+
 	ld de, wPlayerDamageTaken + 1
 	ldh a, [hBattleTurn]
 	and a
@@ -2544,6 +2667,10 @@ BattleCommand_CheckFaint:
 	call GetBattleVar
 	cp EFFECT_U_TURN
 	jr z, .u_turn_ko
+	cp EFFECT_SCALE_SHOT
+	jr z, .scale_shot_ko
+	cp EFFECT_STEALTH_ROCK_HIT
+	jr z, .stone_axe_ko
 	cp EFFECT_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_DOUBLE_HIT
@@ -2565,6 +2692,18 @@ BattleCommand_CheckFaint:
 	; Skip BuildOpponentRage for a fainted target, but still perform the
 	; pivot before ending the move script.
 	call BattleCommand_UTurn
+	jr .finish
+
+.scale_shot_ko
+	; Scale Shot's stat changes still apply when the final hit KOs
+	; (body in the Battle Effect Overflow bank).
+	call BattleCommand_RaiseSub
+	callfar BattleScaleShotKO_Core
+	jr .finish
+
+.stone_axe_ko
+	; Stone Axe still leaves stealth rocks when it KOs the target.
+	callfar BattleStealthRockHit_Core
 	jr .finish
 
 BattleCommand_BuildOpponentRage:
@@ -2635,128 +2774,18 @@ EndMoveEffect:
 
 BattleCommand_DamageStats:
 ; damagestats
-
-	ldh a, [hBattleTurn]
-	and a
-	jp nz, EnemyAttackDamage
-
-	; fallthrough
+; Body in the Battle Effect Overflow bank (relocated for bank space;
+; also implements Sacred Sword / Body Press / Foul Play stat swaps).
+	callfar BattleDamageStats_Core
+	ret
 
 PlayerAttackDamage:
 ; Return move power d, player level e, enemy defense c and player attack b.
+	callfar PlayerAttackDamage_Core
+	ret
 
-	call ResetDamage
-
-	ld hl, wPlayerMoveStructPower
-	ld a, [hli]
-	and a
-	ld d, a
-	ret z
-
-	inc hl ; wPlayerMoveStructType -> Category
-	ld a, [hl]
-	cp CATEGORIZE_SPECIAL
-	jr z, .special
-
-.physical
-	ld hl, wEnemyMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
-	jr z, .physicalcrit
-	sla c
-	rl b
-
-.physicalcrit
-	ld hl, wBattleMonAttack
-	call CheckDamageStatsCritical
-	jr c, .thickclub
-
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerAttack
-	jr .thickclub
-
-.special
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
-
-	ld hl, wEnemyMonSpclDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wEnemyScreens]
-	bit SCREENS_LIGHT_SCREEN, a
-	jr z, .specialcrit
-	sla c
-	rl b
-
-.specialcrit
-	ld hl, wBattleMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-
-	ld hl, wEnemySpDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerSpAtk
-	jr .lightball
-
-.psystrike
-; Psystrike is special but hits the target's physical Defense.
-	ld hl, wEnemyMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
-	jr z, .psystrikecrit
-	sla c
-	rl b
-
-.psystrikecrit
-	ld hl, wBattleMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerSpAtk
-
-.lightball
-; Note: Returns player special attack at hl in hl.
-	call LightBallBoost
-	jr .done
-
-.thickclub
-; Note: Returns player attack at hl in hl.
-	call ThickClubBoost
-
-.done
-	call ApplyWeatherDefenseBoost
-	push hl
-	callfar HeldDefenseBoost_Core
-	callfar DittoMetalPowder_Core
-	pop hl
-	call TruncateHL_BC
-
-	ld a, [wBattleMonLevel]
-	ld e, a
-
-	ld a, 1
-	and a
+EnemyAttackDamage:
+	callfar EnemyAttackDamage_Core
 	ret
 
 TruncateHL_BC:
@@ -2772,280 +2801,20 @@ TruncateHL_BC:
 	rr c
 	srl b
 	rr c
-
-	ld a, c
-	or b
-	jr nz, .done_bc
-	inc c
-
-.done_bc
 	srl h
 	rr l
 	srl h
 	rr l
-
-	ld a, l
-	or h
-	jr nz, .finish
-	inc l
+	jr .loop
 
 .finish
-; If we go back to the loop point,
-; it's the same as doing this exact
-; same check twice.
-	ld a, h
-	or b
-	jr nz, .loop
-
-	ld b, l
-	ret
-
-CheckDamageStatsCritical:
-; Return carry if boosted stats should be used in damage calculations.
-; Unboosted stats should be used if the attack is a critical hit,
-;  and the stage of the opponent's defense is higher than the user's attack.
-
-	ld a, [wCriticalHit]
-	and a
-	scf
-	ret z
-
-	push hl
-	push bc
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wPlayerSAtkLevel]
-	ld b, a
-	ld a, [wEnemySDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wPlayerAtkLevel]
-	ld b, a
-	ld a, [wEnemyDefLevel]
-	jr .end
-
-.enemy
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wEnemySAtkLevel]
-	ld b, a
-	ld a, [wPlayerSDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wEnemyAtkLevel]
-	ld b, a
-	ld a, [wPlayerDefLevel]
-.end
-	cp b
-	pop bc
-	pop hl
-	ret
-
-ThickClubBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is Cubone or Marowak and
-; it's holding a Thick Club, double it.
-	push bc
-	push de
-	ld bc, CUBONE
-	ld d, THICK_CLUB
-	call SpeciesItemBoost
-	if MAROWAK == (CUBONE + 1)
-		inc bc
-	else
-		ld bc, MAROWAK
-	endc
-	call DoubleStatIfSpeciesHoldingItem
-	pop de
-	pop bc
-	ret
-
-LightBallBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is Pikachu and it's
-; holding a Light Ball, double it.
-	push bc
-	push de
-	ld bc, PIKACHU
-	ld d, LIGHT_BALL
-	call SpeciesItemBoost
-	pop de
-	pop bc
-	ret
-
-SpeciesItemBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is species bc and
-; it's holding item d, double it.
-
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-	; fallthrough
-
-DoubleStatIfSpeciesHoldingItem:
-; If the attacking monster is species bc and
-; it's holding item d, double the stat in hl.
-
-	push hl
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr z, .CompareSpecies
-	ld a, [wTempEnemyMonSpecies]
-.CompareSpecies:
-
-	call GetPokemonIndexFromID
-	ld a, h
-	cp b
 	ld a, l
-	pop hl
-	ret nz
-	cp c
-	ret nz
-
-	push hl
-	call GetUserItem
-	ld a, [hl]
-	pop hl
-	cp d
-	ret nz
-
-; Double the stat
-	sla l
-	rl h
-	ld a, HIGH(MAX_STAT_VALUE)
-	cp h
-	jr c, .cap_boost
-	ret nz
-	ld a, LOW(MAX_STAT_VALUE)
-	cp l
-	ret nc
-.cap_boost
-	ld hl, MAX_STAT_VALUE
-	ret
-
-EnemyAttackDamage:
-	call ResetDamage
-
-; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStructPower
-	ld a, [hli] ; hl = wEnemyMoveStructType
-	ld d, a
-	and a
-	ret z
-
-	inc hl ; Type -> Category
-	ld a, [hl]
-	cp CATEGORIZE_SPECIAL
-	jr z, .Special
-
-.physical
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wPlayerScreens]
-	bit SCREENS_REFLECT, a
-	jr z, .physicalcrit
-	sla c
-	rl b
-
-.physicalcrit
-	ld hl, wEnemyMonAttack
-	call CheckDamageStatsCritical
-	jr c, .thickclub
-
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemyAttack
-	jr .thickclub
-
-.Special:
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
-
-	ld hl, wBattleMonSpclDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wPlayerScreens]
-	bit SCREENS_LIGHT_SCREEN, a
-	jr z, .specialcrit
-	sla c
-	rl b
-
-.specialcrit
-	ld hl, wEnemyMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-	ld hl, wPlayerSpDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemySpAtk
-	jr .lightball
-
-.psystrike
-; Psystrike is special but hits the target's physical Defense.
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, [wPlayerScreens]
-	bit SCREENS_REFLECT, a
-	jr z, .psystrikecrit
-	sla c
-	rl b
-
-.psystrikecrit
-	ld hl, wEnemyMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemySpAtk
-
-.lightball
-	call LightBallBoost
-	jr .done
-
-.thickclub
-	call ThickClubBoost
+	or c
+	jr nz, .done
+	inc c
 
 .done
-	call ApplyWeatherDefenseBoost
-	push hl
-	callfar HeldDefenseBoost_Core
-	callfar DittoMetalPowder_Core
-	pop hl
-	call TruncateHL_BC
-
-	ld a, [wEnemyMonLevel]
-	ld e, a
-
-	ld a, 1
-	and a
+	ld b, l
 	ret
 
 ApplyWeatherDefenseBoost:
@@ -3315,6 +3084,9 @@ ConfusionDamageCalc:
 	jr nc, .dont_floor
 	inc [hl]
 .dont_floor
+
+	; Glaive Rush users take double damage
+	farcall GlaiveRushIncomingDouble_Core
 
 	ld a, 1
 	and a
@@ -4762,6 +4534,14 @@ CheckSelfInflictedStatDrop:
 	ret z
 	cp EFFECT_DRACO_METEOR
 	ret z
+	cp EFFECT_SCALE_SHOT
+	ret z
+	cp EFFECT_HEADLONG_RUSH
+	ret z
+	cp EFFECT_SUPERPOWER
+	ret z
+	cp EFFECT_HAMMER_ARM
+	ret z
 	cp EFFECT_SHELL_SMASH
 	ret
 
@@ -5623,25 +5403,11 @@ BattleCommand_EndLoop:
 	ret
 
 BattleCommand_FakeOut:
-	ld a, [wAttackMissed]
-	and a
-	ret nz
+; The old vanilla fakeout command is unused now that Fake Out is a real
+; damaging move (its script uses firstimpressioncheck + flinchtarget),
+; so this label just falls through to FlinchTarget's logic.
 
-	call CheckSubstituteOpp
-	jr nz, .fail
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	and SLP ; frostbite doesn't stop the mon moving, so it can still flinch
-	jr nz, .fail
-
-	call CheckOpponentWentFirst
-	jr z, FlinchTarget
-
-.fail
-	ld a, 1
-	ld [wAttackMissed], a
-	ret
+	; fallthrough
 
 BattleCommand_FlinchTarget:
 	call CheckSubstituteOpp
@@ -5785,6 +5551,19 @@ BattleCommand_Charge:
 	call CompareMove
 	ld a, 1 << SUBSTATUS_UNDERGROUND
 	jr z, .got_move_type
+	; Phantom Force sets both bits so that nothing can hit the user
+	; while it has vanished (see CheckHit's .FlyDigMoves).
+	ld bc, PHANTOMFORCE
+	ld a, h
+	call CompareMove
+	ld a, 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jr z, .got_move_type
+	; Bounce springs up like Fly (Gust and Thunder can still hit).
+	ld bc, BOUNCE
+	ld a, h
+	call CompareMove
+	ld a, 1 << SUBSTATUS_FLYING
+	jr z, .got_move_type
 	call BattleCommand_RaiseSub
 	xor a
 
@@ -5852,6 +5631,8 @@ BattleCommand_Charge:
 	dw SKY_ATTACK, .SkyAttack
 	dw FLY,        .Fly
 	dw DIG,        .Dig
+	dw PHANTOMFORCE, .PhantomForce
+	dw BOUNCE,     .Bounce
 	dw -1
 
 .RazorWind:
@@ -5884,6 +5665,16 @@ BattleCommand_Charge:
 	text_far UnknownText_0x1c0d6c
 	text_end
 
+.PhantomForce:
+; 'vanished suddenly!'
+	text_far UnknownText_PhantomForceCharge
+	text_end
+
+.Bounce:
+; 'sprang up!'
+	text_far UnknownText_BounceCharge
+	text_end
+
 BattleCommand_GigaHammerCheck:
 ; Body in Battle Core bank (see BattleGigaHammer_CheckCore).
 	callfar BattleGigaHammer_CheckCore
@@ -5906,71 +5697,71 @@ BattleCommand_FirstImpressionCheck:
 	call StdBattleTextbox
 	jp EndMoveEffect
 
+BattleCommand_BrickBreak:
+; brickbreak
+; Body in the Battle Effect Overflow bank (see BattleBrickBreak_Core).
+	callfar BattleBrickBreak_Core
+	ret
+
+BattleCommand_BanefulBunker:
+; banefulbunker (body in the Battle Effect Overflow bank)
+	callfar BattleBanefulBunker_Core
+	ret
+
+BattleCommand_DireClaw:
+; direclaw (body in the Battle Effect Overflow bank)
+	callfar BattleDireClaw_Core
+	ret
+
+BattleCommand_StealthRock:
+; stealthrock (body in the Battle Effect Overflow bank)
+	callfar BattleStealthRock_Core
+	ret
+
+BattleCommand_StealthRockHit:
+; stealthrockhit (body in the Battle Effect Overflow bank)
+	callfar BattleStealthRockHit_Core
+	ret
+
+BattleCommand_Defog:
+; defog (body in the Battle Effect Overflow bank)
+	callfar BattleDefog_Core
+	ret
+
+BattleCommand_GlaiveRush:
+; glaiverush (body in the Battle Effect Overflow bank)
+	callfar BattleGlaiveRush_Core
+	ret
+
+BattleCommand_EerieSpell:
+; eeriespell (body in the Battle Effect Overflow bank)
+	callfar BattleEerieSpell_Core
+	ret
+
+BattleCommand_FickleBeam:
+; ficklebeam (body in the Battle Effect Overflow bank)
+	callfar BattleFickleBeam_Core
+	ret
+
+BattleCommand_ShellSideArm:
+; shellsidearm (body in the Battle Effect Overflow bank)
+	callfar BattleShellSideArm_Core
+	ret
+
+BattleCommand_RageFistPower:
+; ragefistpower (body in the Battle Effect Overflow bank)
+	callfar BattleRageFistPower_Core
+	ret
+
 BattleCommand3c:
 ; unused
 	ret
 
 BattleCommand_TrapTarget:
 ; traptarget
-
-	ld a, [wAttackMissed]
-	and a
-	ret nz
-	ld hl, wEnemyWrapCount
-	ld de, wEnemyTrappingMove
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_trap
-	ld hl, wPlayerWrapCount
-	ld de, wPlayerTrappingMove
-
-.got_trap
-	ld a, [hl]
-	and a
-	ret nz
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
-	ret nz
-	call BattleRandom
-	; trapped for 2-5 turns
-	and %11
-	inc a
-	inc a
-	inc a
-	ld [hl], a
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	ld [de], a
-	call GetMoveIndexFromID
-	ld b, h
-	ld c, l
-	ld hl, .Traps
-
-.find_trap_text
-	ld a, [hli]
-	cp c
-	ld a, [hli]
-	jr nz, .next_trap_text
-	cp b
-	jr z, .found_trap_text
-.next_trap_text
-	inc hl
-	inc hl
-	jr .find_trap_text
-
-.found_trap_text
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp StdBattleTextbox
-
-.Traps:
-	dw BIND,      UsedBindText      ; 'used BIND on'
-	dw WRAP,      WrappedByText     ; 'was WRAPPED by'
-	dw FIRE_SPIN, FireSpinTrapText  ; 'was trapped!'
-	dw CLAMP,     ClampedByText     ; 'was CLAMPED by'
-	dw WHIRLPOOL, WhirlpoolTrapText ; 'was trapped!'
+; Body in the Battle Effect Overflow bank (see BattleTrapTarget_Core).
+	callfar BattleTrapTarget_Core
+	ret
 
 INCLUDE "engine/battle/move_effects/mist.asm"
 

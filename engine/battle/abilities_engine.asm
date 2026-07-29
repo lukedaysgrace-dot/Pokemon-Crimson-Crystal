@@ -5448,6 +5448,8 @@ PunchMoves:
 	dw BULLET_PUNCH
 	dw DRAIN_PUNCH
 	dw PIXIE_PUNCH
+	dw RAGE_FIST
+	dw HAMMER_ARM
 	dw -1
 
 SliceMoves:
@@ -5464,6 +5466,12 @@ SliceMoves:
 	dw SOLAR_BLADE
 	dw AERIAL_ACE
 	dw NIGHT_SLASH
+	dw PSYCHO_CUT
+	dw SACRED_SWORD
+	dw AIR_CUTTER
+	dw CROSS_POISON
+	dw KOWTOW_CLEAVE
+	dw STONE_AXE
 	dw -1
 
 PulseMoves:
@@ -5486,6 +5494,8 @@ SoundMoves:
 	dw BUG_BUZZ
 	dw HYPER_VOICE
 	dw DISARMING_VOICE
+	dw SNARL
+	dw EERIE_SPELL
 	dw -1
 
 BallBombMoves:
@@ -5502,6 +5512,7 @@ BallBombMoves:
 	dw GYRO_BALL
 	dw ROCK_BLAST
 	dw SEED_BOMB
+	dw BULLET_SEED
 	dw -1
 
 WindMoves:
@@ -5515,6 +5526,8 @@ WindMoves:
 	dw TWISTER
 	dw FAIRY_WIND
 	dw HURRICANE
+	dw HEAT_WAVE
+	dw AIR_CUTTER
 	dw -1
 
 BiteMoves:

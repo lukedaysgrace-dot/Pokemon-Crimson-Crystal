@@ -609,6 +609,9 @@ HandleRoost:
 ToxicSpikesPoison:
 ; Poison a grounded mon switching in if toxic spikes lie on its side.
 ; Like SpikesDamage, the victim is the current turn holder.
+	; Stealth Rock shares this switch-in hook (same bank).
+	call StealthRockEntryDamage
+
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
 	ldh a, [hBattleTurn]

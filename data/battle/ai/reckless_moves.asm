@@ -6,4 +6,5 @@ RecklessMoves:
 	db EFFECT_RAMPAGE
 	db EFFECT_MULTI_HIT
 	db EFFECT_DOUBLE_HIT
+	db EFFECT_SCALE_SHOT
 	db -1 ; end
