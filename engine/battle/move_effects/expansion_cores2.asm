@@ -212,3 +212,52 @@ FreezeDryOverride_Core:
 	add a
 	ld [wTypeMatchup], a
 	ret
+
+FreezeDryDamage_Core:
+; BattleCommand_Stab walks the type chart itself and multiplies wCurDamage as
+; it goes; wTypeMatchup only drives the "super effective" message. So fixing
+; the matchup was never going to change the damage - this does.
+; The chart scores ICE vs WATER at 0.5x and Freeze-Dry wants 2x, which is
+; exactly x4 no matter what the target's other type is, because that other
+; type's multiplier is applied identically either way.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FREEZE_DRY
+	ret nz
+
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wBattleMonType1
+.got_types
+	ld a, [hli]
+	cp WATER
+	jr z, .water
+	ld a, [hl]
+	cp WATER
+	ret nz
+
+.water
+; wCurDamage is big-endian.
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	sla c
+	rl b
+	jr c, .cap
+	sla c
+	rl b
+	jr c, .cap
+	ld a, b
+	ld [wCurDamage], a
+	ld a, c
+	ld [wCurDamage + 1], a
+	ret
+
+.cap
+	ld a, $ff
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+	ret
