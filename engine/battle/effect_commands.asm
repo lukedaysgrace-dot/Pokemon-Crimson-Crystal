@@ -5968,6 +5968,8 @@ BattleCommand_Charge:
 	dw SKY_ATTACK, .SkyAttack
 	dw FLY,        .Fly
 	dw DIG,        .Dig
+	dw BOUNCE,     .Bounce
+	dw PHANTOMFORCE, .PhantomForce
 	dw -1
 
 .RazorWind:
@@ -5998,6 +6000,16 @@ BattleCommand_Charge:
 .Dig:
 ; 'dug a hole!'
 	text_far UnknownText_0x1c0d6c
+	text_end
+
+.Bounce:
+; 'sprang up!'
+	text_far BounceSprangUpText
+	text_end
+
+.PhantomForce:
+; 'vanished instantly!'
+	text_far PhantomForceVanishText
 	text_end
 
 BattleCommand_GigaHammerCheck:
