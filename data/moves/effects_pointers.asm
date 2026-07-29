@@ -167,7 +167,7 @@ MoveEffectsPointers:
 	dw CloseCombat
 	dw ConditionalBoostHit ; EFFECT_ACROBATICS
 	dw ConditionalBoostHit ; EFFECT_FACADE
-	dw ConditionalBoostHit ; EFFECT_HEX
+	dw HexHit ; EFFECT_HEX (Infernal Parade shares this with a burn chance)
 	dw ConditionalBoostHit ; EFFECT_AVALANCHE
 	dw BulkUp
 	dw CalmMind
@@ -190,3 +190,29 @@ MoveEffectsPointers:
 	dw MortalSpin ; EFFECT_MORTAL_SPIN
 	dw FirstImpression ; EFFECT_FIRST_IMPRESSION
 	dw VoltTackle ; EFFECT_VOLT_TACKLE
+	dw SacredSword ; EFFECT_SACRED_SWORD
+	dw BrickBreak ; EFFECT_BRICK_BREAK
+	dw ScaleShot ; EFFECT_SCALE_SHOT
+	dw CloseCombat ; EFFECT_HEADLONG_RUSH (same self Def/SpDef drop)
+	dw DireClaw ; EFFECT_DIRE_CLAW
+	dw BarbBarrage ; EFFECT_BARB_BARRAGE
+	dw ShellSideArm ; EFFECT_SHELL_SIDE_ARM
+	dw GlaiveRush ; EFFECT_GLAIVE_RUSH
+	dw EerieSpell ; EFFECT_EERIE_SPELL
+	dw BanefulBunker ; EFFECT_BANEFUL_BUNKER
+	dw BrickBreak ; EFFECT_RAGING_BULL (same screen-shattering hit)
+	dw FickleBeam ; EFFECT_FICKLE_BEAM
+	dw StoneAxe ; EFFECT_STEALTH_ROCK_HIT
+	dw QuiverDance ; EFFECT_QUIVER_DANCE
+	dw StealthRock ; EFFECT_STEALTH_ROCK
+	dw Defog ; EFFECT_DEFOG
+	dw NormalHit ; EFFECT_BODY_PRESS (stat swap in damagestats)
+	dw WorkUp ; EFFECT_WORK_UP
+	dw Superpower ; EFFECT_SUPERPOWER
+	dw SpAtkUpHit ; EFFECT_SP_ATK_UP_HIT
+	dw NormalHit ; EFFECT_FOUL_PLAY (stat swap in damagestats)
+	dw RageFist ; EFFECT_RAGE_FIST
+	dw HammerArm ; EFFECT_HAMMER_ARM
+	dw CircleThrow ; EFFECT_CIRCLE_THROW
+	dw FreezeHit ; EFFECT_FREEZE_DRY (type override in the matchup code)
+	dw Bounce ; EFFECT_BOUNCE
