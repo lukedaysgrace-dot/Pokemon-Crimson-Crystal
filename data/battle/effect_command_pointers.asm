@@ -199,3 +199,15 @@ BattleCommandPointers:
 	dw BattleCommand_FirstImpressionCheck
 	dw BattleCommand_DeferStatMessages
 	dw BattleCommand_FlushStatMessages
+; --- Move Expansion 2026-07 ---
+	dw BattleCommand_RageFist
+	dw BattleCommand_StealthRock
+	dw BattleCommand_StealthRockHit
+	dw BattleCommand_Defog
+; --- full-behaviour pass ---
+	dw BattleCommand_BreakScreens
+	dw BattleCommand_RagingBull
+	dw BattleCommand_DireClawStatus
+	dw BattleCommand_FickleBeam
+	dw BattleCommand_GlaiveRush
+	dw BattleCommand_BanefulBunker

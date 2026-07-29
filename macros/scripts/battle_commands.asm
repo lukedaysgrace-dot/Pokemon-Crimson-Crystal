@@ -200,6 +200,18 @@ ENDM
 	command firstimpressioncheck     ; c1
 	command deferstatmessages       ; c2
 	command flushstatmessages       ; c3
+; --- Move Expansion 2026-07 ---
+	command ragefist                ; c4
+	command stealthrock             ; c5
+	command stealthrockhit          ; c6
+	command defog                   ; c7
+; --- full-behaviour pass ---
+	command breakscreens            ; c8
+	command ragingbull              ; c9
+	command direclawstatus          ; ca
+	command ficklebeam              ; cb
+	command glaiverush              ; cc
+	command banefulbunker           ; cd
 
 	enum_start $fe
 	command endturn                 ; fe

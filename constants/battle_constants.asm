@@ -184,6 +184,8 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus2 or wEnemySubStatus2 bit flags
 SUBSTATUS_CURLED EQU 0
+SUBSTATUS_GLAIVE_RUSH EQU 1    ; user is wide open until its next turn
+SUBSTATUS_BANEFUL_BUNKER EQU 2 ; Protect that poisons on contact
 SUBSTATUS_FLASH_FIRE EQU 7 ; boost armed by a blocked Fire move; cleared
                            ; with the rest of SubStatus1-5 on switch-in
 
@@ -230,6 +232,7 @@ SUBSTATUS_FLASH_FIRE EQU 7 ; boost armed by a blocked Fire move; cleared
 SCREENS_TOXIC_SPIKES_1 EQU 5
 SCREENS_TOXIC_SPIKES_2 EQU 6
 SCREENS_TOXIC_SPIKES_MASK EQU (1 << SCREENS_TOXIC_SPIKES_1) | (1 << SCREENS_TOXIC_SPIKES_2)
+SCREENS_STEALTH_ROCK EQU 7
 
 ; values in wBattleWeather
 	const_def
