@@ -3,6 +3,9 @@ BattleCommand_Protect:
 	call ProtectChance
 	ret c
 
+	; a plain Protect is not a Baneful Bunker
+	call ClearBunkerFlag
+
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	set SUBSTATUS_PROTECT, [hl]
@@ -72,4 +75,19 @@ ProtectChance:
 	call AnimateFailedMove
 	call PrintButItFailed
 	scf
+	ret
+
+ClearBunkerFlag:
+; clear the current user's Baneful Bunker bit
+	push hl
+	ld hl, wBunkerFlags
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+	res 0, [hl]
+	pop hl
+	ret
+.enemy
+	res 1, [hl]
+	pop hl
 	ret

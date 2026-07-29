@@ -18,32 +18,39 @@ BattleCommand_ClearHazards:
 	ld hl, wEnemyScreens
 	ld de, wEnemyWrapCount
 .got_screens_wrap
-	bit SCREENS_SPIKES, [hl]
-	jr z, .no_spikes
-	; reload the screens pointer (hl may have been clobbered above)
-	ld hl, wPlayerScreens
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_screens_2
-	ld hl, wEnemyScreens
-.got_screens_2
+	; Each hazard is checked independently (toxic spikes used to be
+	; cleared only when regular spikes were also present).
 	ld a, [hl]
 	and SCREENS_TOXIC_SPIKES_MASK
 	jr z, .no_toxic_spikes
 	ld a, [hl]
 	and $ff ^ SCREENS_TOXIC_SPIKES_MASK
 	ld [hl], a
+	push hl
+	push de
 	ld hl, BlewToxicSpikesText
-	push de
 	call StdBattleTextbox
 	pop de
+	pop hl
 .no_toxic_spikes
+	bit SCREENS_SPIKES, [hl]
+	jr z, .no_spikes
 	res SCREENS_SPIKES, [hl]
-	ld hl, BlewSpikesText
+	push hl
 	push de
+	ld hl, BlewSpikesText
 	call StdBattleTextbox
 	pop de
+	pop hl
 .no_spikes
+	bit SCREENS_STEALTH_ROCK, [hl]
+	jr z, .no_stealth_rock
+	res SCREENS_STEALTH_ROCK, [hl]
+	push de
+	ld hl, BlewStealthRockText
+	call StdBattleTextbox
+	pop de
+.no_stealth_rock
 
 	ld a, [de]
 	and a

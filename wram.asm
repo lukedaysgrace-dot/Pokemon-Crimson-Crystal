@@ -711,6 +711,11 @@ wSkipCheckTurnOnce:: db ; c720: skip CheckTurn on next DoTurn (Giga Hammer re-pi
 wPlayerFirstImpressionFresh:: db ; set on entry, consumed at the mon's first action opportunity
 wEnemyFirstImpressionFresh:: db
 wFirstImpressionThisTurn:: db ; snapshot for the side currently taking its turn
+wPlayerGlaiveRush:: db ; nz: attacks against the player mon can't miss and deal double damage
+wEnemyGlaiveRush:: db
+wPlayerRageFistHits:: db ; times the player mon has been hit (Rage Fist power)
+wEnemyRageFistHits:: db
+wBunkerFlags:: db ; bit 0: player's Protect is Baneful Bunker; bit 1: enemy's
 
 wPlayerFutureSightCount:: db ; c721
 wEnemyFutureSightCount:: db ; c722
