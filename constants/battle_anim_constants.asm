@@ -409,11 +409,6 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_PURSUIT
 	const ANIM_OBJ_METEOR_BIG
 	const ANIM_OBJ_METEOR_SMALL
-; --- Move Expansion 2026-07 (ported from Johto Legends) ---
-	const ANIM_OBJ_HEAT_WAVE
-	const ANIM_OBJ_SHELLSIDEARM
-	const ANIM_OBJ_BULLET_SEED
-	const ANIM_OBJ_QUIVER_DANCE
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def

@@ -72,8 +72,6 @@ PredefPointers::
 	add_predef GetAnimatedFrontpic
 	add_predef GetTrainerPic
 	add_predef DecompressGet2bpp ; $40
-	; unused: Predef does not preserve a, so the attacking type never arrives.
-	; Use the farcheckmatchup macro instead. Kept only to hold the predef ID.
 	add_predef CheckTypeMatchup
 	add_predef ConvertMon_1to2
 	add_predef NewPokedexEntry

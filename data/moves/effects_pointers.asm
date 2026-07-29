@@ -190,31 +190,3 @@ MoveEffectsPointers:
 	dw MortalSpin ; EFFECT_MORTAL_SPIN
 	dw FirstImpression ; EFFECT_FIRST_IMPRESSION
 	dw VoltTackle ; EFFECT_VOLT_TACKLE
-; --- Move Expansion 2026-07 ---
-	dw WorkUp ; EFFECT_WORK_UP
-	dw QuiverDance ; EFFECT_QUIVER_DANCE
-	dw SpecialAttackUpHit ; EFFECT_SP_ATK_UP_HIT
-	dw Superpower ; EFFECT_SUPERPOWER
-	dw HammerArm ; EFFECT_HAMMER_ARM
-	dw NormalHit ; EFFECT_BODY_PRESS
-	dw NormalHit ; EFFECT_FOUL_PLAY
-	dw FreezeHit ; EFFECT_FREEZE_DRY
-	dw CircleThrow ; EFFECT_CIRCLE_THROW
-	dw RageFist ; EFFECT_RAGE_FIST
-	dw StealthRock ; EFFECT_STEALTH_ROCK
-	dw StealthRockHit ; EFFECT_STEALTH_ROCK_HIT
-	dw Defog ; EFFECT_DEFOG
-; --- Move Expansion: full-behaviour pass ---
-	dw NormalHit ; EFFECT_SACRED_SWORD
-	dw PoisonHit ; EFFECT_SHELL_SIDE_ARM
-	dw BrickBreak ; EFFECT_BRICK_BREAK
-	dw HeadlongRush ; EFFECT_HEADLONG_RUSH
-	dw RagingBull ; EFFECT_RAGING_BULL
-	dw DireClaw ; EFFECT_DIRE_CLAW
-	dw BarbBarrage ; EFFECT_BARB_BARRAGE
-	dw ScaleShot ; EFFECT_SCALE_SHOT
-	dw Bounce ; EFFECT_BOUNCE
-	dw FickleBeam ; EFFECT_FICKLE_BEAM
-	dw EerieSpell ; EFFECT_EERIE_SPELL
-	dw GlaiveRush ; EFFECT_GLAIVE_RUSH
-	dw BanefulBunker ; EFFECT_BANEFUL_BUNKER
