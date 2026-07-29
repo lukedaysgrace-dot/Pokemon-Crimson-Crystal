@@ -1482,6 +1482,7 @@ BattleCommand_Stab:
 
 .end
 	call BattleCheckTypeMatchup
+	farcall FreezeDryDamage_Core
 	ld a, [wTypeMatchup]
 	ld b, a
 	ld a, [wTypeModifier]
@@ -1841,9 +1842,12 @@ BattleCommand_CheckHit:
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
-	bit SUBSTATUS_FLYING, a
+	; A flying target is only reachable by the Fly list, an underground one
+	; only by the Dig list. These two were swapped, so Earthquake hit Fly and
+	; Thunder hit Dig.
 	ld hl, .FlyMoves
-	jr z, .check_move_in_list
+	bit SUBSTATUS_FLYING, a
+	jr nz, .check_move_in_list
 	ld hl, .DigMoves
 .check_move_in_list
 	; returns z (and a = 0) if the current move is in a given list, or nz (and a = 1) if not
@@ -5881,6 +5885,18 @@ BattleCommand_Charge:
 	else
 		ld c, LOW(DIG)
 	endc
+	ld a, h
+	call CompareMove
+	ld a, 1 << SUBSTATUS_UNDERGROUND
+	jr z, .got_move_type
+	ld bc, BOUNCE
+	ld a, h
+	call CompareMove
+	ld a, 1 << SUBSTATUS_FLYING
+	jr z, .got_move_type
+	; Phantom Force borrows the "underground" slot as its vanished state, so
+	; only the Dig list (Earthquake/Fissure/Magnitude) can reach it.
+	ld bc, PHANTOMFORCE
 	ld a, h
 	call CompareMove
 	ld a, 1 << SUBSTATUS_UNDERGROUND
