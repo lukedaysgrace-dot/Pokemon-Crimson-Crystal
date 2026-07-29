@@ -1420,7 +1420,7 @@ AI_Smart_Encore:
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, wEnemyMonType1
-	farcheckmatchup
+	predef CheckTypeMatchup
 
 	pop hl
 	ld a, [wTypeMatchup]

@@ -155,19 +155,9 @@ INCLUDE "engine/pokemon/print_move_description.asm"
 INCLUDE "data/moves/descriptions.asm"
 
 
-SECTION "Move Descriptions 2", ROMX
-
-INCLUDE "data/moves/descriptions2.asm"
-
-
 SECTION "Effect Commands", ROMX
 
 INCLUDE "engine/battle/effect_commands.asm"
-
-
-SECTION "AI Switch", ROMX
-
-INCLUDE "engine/battle/ai/switch.asm"
 
 
 SECTION "Enemy Trainers", ROMX
@@ -472,10 +462,6 @@ INCLUDE "data/moves/animations3.asm"
 SECTION "Move Animations 4", ROMX
 
 INCLUDE "data/moves/animations4.asm"
-
-SECTION "Move Animations 5", ROMX
-
-INCLUDE "data/moves/animations5.asm"
 
 SECTION "Bug Contest Stats Display", ROMX
 
@@ -831,14 +817,6 @@ INCLUDE "engine/battle/abilities_engine.asm"
 SECTION "Perish Song Ability Core", ROMX
 
 INCLUDE "engine/battle/move_effects/perish_song_core.asm"
-
-SECTION "Move Expansion Cores", ROMX
-
-INCLUDE "engine/battle/move_effects/expansion_cores.asm"
-
-SECTION "Move Expansion Cores 2", ROMX
-
-INCLUDE "engine/battle/move_effects/expansion_cores2.asm"
 
 SECTION "Ability Descriptions", ROMX
 
