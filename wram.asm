@@ -730,6 +730,10 @@ wBeatUpHitAtLeastOnce:: db ; c731
 
 wTrickRoomTimer:: db ; turns of Trick Room remaining (0 = inactive)
 
+wPlayerRageFistHits:: db ; hits taken this battle, for Rage Fist
+wEnemyRageFistHits:: db
+wFreezeDryTypeScratch:: ds 2 ; scratch type pair for the Freeze-Dry matchup
+
 wPlayerTrappingMove:: db ; c732
 wEnemyTrappingMove:: db ; c733
 wPlayerWrapCount:: db ; c734

@@ -23,7 +23,7 @@ CheckPlayerMoveTypeMatchups:
 	jr z, .next
 
 	ld hl, wEnemyMonType
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr nc, .super_effective
@@ -68,7 +68,7 @@ CheckPlayerMoveTypeMatchups:
 	ld a, [wBattleMonType1]
 	ld b, a
 	ld hl, wEnemyMonType1
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok
@@ -77,7 +77,7 @@ CheckPlayerMoveTypeMatchups:
 	ld a, [wBattleMonType2]
 	cp b
 	jr z, .ok2
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok2
@@ -111,7 +111,7 @@ CheckPlayerMoveTypeMatchups:
 	jr z, .loop2
 
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 
 	ld a, [wTypeMatchup]
 	; immune
@@ -411,7 +411,7 @@ FindEnemyMonsImmuneToLastCounterMove:
 
 	; and the Pokemon is immune to it...
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	jr nz, .next
@@ -496,7 +496,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 
 	; check type matchups
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 
 	; if immune or not very effective: continue
 	ld a, [wTypeMatchup]
@@ -591,7 +591,7 @@ FindEnemyMonsThatResistPlayer:
 .skip_move
 	ld a, [wBattleMonType1]
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
 	jr nc, .dont_choose_mon
@@ -599,7 +599,7 @@ FindEnemyMonsThatResistPlayer:
 
 .check_type
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1
 	jr nc, .dont_choose_mon
@@ -694,7 +694,7 @@ CheckEnemyMoveEffectiveness:
 	call GetMoveTypeIfDamaging
 	jr z, .next
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AICheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	jr z, .next
@@ -733,4 +733,12 @@ GetMoveTypeIfDamaging:
 	inc c
 	dec c
 	pop bc
+	ret
+
+AICheckTypeMatchup:
+; CheckTypeMatchup lives in the Effect Commands bank; this file does not.
+; Drop-in replacement for the old bank-local call: a = attacking type,
+; hl = defender's two types, and bc/de/hl all come back untouched
+; (.unknown_moves above relies on both hl and b surviving).
+	farcheckmatchup
 	ret
