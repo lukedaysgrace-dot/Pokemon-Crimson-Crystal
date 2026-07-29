@@ -1,7 +1,8 @@
 MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	indirect_table 2, 1
-	indirect_entries NUM_ATTACKS, MoveDescriptions1
+	indirect_entries VOLT_TACKLE, MoveDescriptions1
+	indirect_entries NUM_ATTACKS, MoveDescriptions2
 	indirect_table_end
 
 MoveDescriptions1:
