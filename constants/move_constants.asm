@@ -357,6 +357,68 @@
 	const LIQUIDATION
 	const SLACK_OFF
 	const VOLT_TACKLE
+	const OVERHEAT
+	const LEAF_STORM
+	const FAKE_OUT
+	const FLIP_TURN
+	const IRON_DEFENSE
+	const ROCK_POLISH
+	const WOOD_HAMMER
+	const HEAD_SMASH
+	const DRILL_RUN
+	const PSYCHO_CUT
+	const SACRED_SWORD
+	const BRICK_BREAK
+	const HEAT_WAVE
+	const SNARL
+	const NUZZLE
+	const BULLET_SEED
+	const DUALWINGBEAT
+	const ROCK_TOMB
+	const LOW_SWEEP
+	const MUD_SHOT
+	const AIR_CUTTER
+	const CROSS_POISON
+	const MAGICAL_LEAF
+	const SIGNAL_BEAM
+	const SCALE_SHOT
+	const PHANTOMFORCE
+	const HEADLONGRUSH
+	const SHADOW_BONE
+	const DIRE_CLAW
+	const BARB_BARRAGE
+	const INFERNAL_PARADE
+	const KOWTOW_CLEAVE
+	const ARMOR_CANNON
+	const SHELLSIDEARM
+	const GLAIVE_RUSH
+	const DRAGON_DARTS
+	const APPLE_ACID
+	const GRAV_APPLE
+	const PSYSHIELD
+	const RAGING_FURY
+	const STRANGESTEAM
+	const EERIE_SPELL
+	const BANEFUL_BUNKER
+	const RAGING_BULL
+	const FICKLE_BEAM
+	const STONE_AXE
+	const QUIVER_DANCE
+	const STEALTH_ROCK
+	const DEFOG
+	const BODY_PRESS
+	const WORK_UP
+	const SUPERPOWER
+	const FIERY_DANCE
+	const FOUL_PLAY
+	const RAGE_FIST
+	const CRUSH_CLAW
+	const FORCE_PALM
+	const HAMMER_ARM
+	const CIRCLE_THROW
+	const FREEZE_DRY
+	const BOUNCE
+	const DRAGON_TAIL
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

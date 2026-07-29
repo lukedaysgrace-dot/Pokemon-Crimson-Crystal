@@ -200,6 +200,17 @@ ENDM
 	command firstimpressioncheck     ; c1
 	command deferstatmessages       ; c2
 	command flushstatmessages       ; c3
+	command brickbreak              ; c4
+	command banefulbunker           ; c5
+	command direclaw                ; c6
+	command stealthrock             ; c7
+	command stealthrockhit          ; c8
+	command defog                   ; c9
+	command glaiverush              ; ca
+	command eeriespell              ; cb
+	command ficklebeam              ; cc
+	command shellsidearm            ; cd
+	command ragefistpower           ; ce
 
 	enum_start $fe
 	command endturn                 ; fe

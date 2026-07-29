@@ -767,6 +767,16 @@ UnknownText_0x1c0d6c::
 	line "dug a hole!"
 	prompt
 
+UnknownText_PhantomForceCharge::
+	text_start
+	line "vanished suddenly!"
+	prompt
+
+UnknownText_BounceCharge::
+	text_start
+	line "sprang up!"
+	prompt
+
 _ActorNameText::
 	text "<USER>@"
 	text_end
