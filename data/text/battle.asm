@@ -1044,38 +1044,6 @@ BlewToxicSpikesText:
 	cont "Spikes!"
 	prompt
 
-StealthRockText:
-	text "Pointed stones"
-	line "float around"
-	cont "<TARGET>!"
-	prompt
-
-BattleText_UserHurtByStealthRock:
-	text "Pointed stones dug"
-	line "into <USER>!"
-	prompt
-
-BlewStealthRockText:
-	text "<USER>"
-	line "blew away the"
-	cont "pointed stones!"
-	prompt
-
-DefogText:
-	text "<USER> blew"
-	line "the field clear!"
-	prompt
-
-BrokeScreensText:
-	text "The barrier"
-	line "shattered!"
-	prompt
-
-FickleBeamAllOutText:
-	text "<USER> is"
-	line "going all out!"
-	prompt
-
 TrickRoomText:
 	text "<USER>"
 	line "twisted the"

@@ -1500,10 +1500,7 @@ BattleCheckTypeMatchup:
 .get_type
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar ; preserves hl, de and bc
-	call CheckTypeMatchup
-	callfar FreezeDryOverride_Core
-	ret
-
+	; fallthrough
 CheckTypeMatchup:
 ; a = offensive type, hl = defender's two types. AI callers use this entry
 ; directly; BattleCheckTypeMatchup supplies the current move type above.
@@ -1579,16 +1576,6 @@ CheckTypeMatchup:
 	pop hl
 	ret
 
-CheckTypeMatchupFar::
-; Cross-bank entry point for CheckTypeMatchup, reached via the
-; `farcheckmatchup` macro. b = attacking type, de = defender's two types.
-; The farcall macro clobbers a and hl - which is exactly CheckTypeMatchup's
-; argument pair - so the arguments come in as b/de instead.
-	ld h, d
-	ld l, e
-	ld a, b
-	jp CheckTypeMatchup
-
 BattleCommand_ResetTypeMatchup:
 ; Reset the type matchup multiplier to 1.0, if the type matchup is not 0.
 ; If there is immunity in play, the move automatically misses.
@@ -1608,8 +1595,7 @@ BattleCommand_ResetTypeMatchup:
 	ld [wTypeMatchup], a
 	ret
 
-; engine/battle/ai/switch.asm lives in its own section (see main.asm):
-; this bank is full, and nothing here reaches it bank-locally.
+INCLUDE "engine/battle/ai/switch.asm"
 
 INCLUDE "data/types/type_matchups.asm"
 
@@ -1698,12 +1684,6 @@ BattleCommand_CheckHit:
 	cp EFFECT_ALWAYS_HIT
 	ret z
 
-; Glaive Rush leaves its user wide open - attacks against it cannot miss.
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVar
-	bit SUBSTATUS_GLAIVE_RUSH, a
-	ret nz
-
 	call .StatModifiers
 
 	ld a, [wPlayerMoveStruct + MOVE_ACC]
@@ -1786,8 +1766,6 @@ BattleCommand_CheckHit:
 ; 'protecting itself!'
 	ld hl, ProtectingItselfText
 	call StdBattleTextbox
-
-	callfar BanefulBunkerPoison_Core
 
 	ld c, 40
 	call DelayFrames
@@ -2306,22 +2284,6 @@ BattleCommand_ApplyDamage_:
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 
-; Count the hit for the defender's Rage Fist.
-	push de
-	ld de, wPlayerRageFistHits
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .got_rage_fist_counter
-	ld de, wEnemyRageFistHits
-.got_rage_fist_counter
-	ld a, [de]
-	cp 255
-	jr z, .rage_fist_capped
-	inc a
-	ld [de], a
-.rage_fist_capped
-	pop de
-
 	ld de, wPlayerDamageTaken + 1
 	ldh a, [hBattleTurn]
 	and a
@@ -2709,52 +2671,21 @@ PlayerAttackDamage:
 	rl b
 
 .physicalcrit
-; Body Press swaps in the user's DEFENSE; Foul Play swaps in the target's ATTACK.
 	ld hl, wBattleMonAttack
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar ; preserves hl
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_body_press
-	ld hl, wBattleMonDefense
-.not_body_press
-	cp EFFECT_FOUL_PLAY
-	jr nz, .not_foul_play
-	ld hl, wEnemyMonAttack
-.not_foul_play
-	push af
 	call CheckDamageStatsCritical
-	pop de ; d = move effect
 	jr c, .thickclub
 
-; Sacred Sword ignores the target's stat changes: bc already holds its
-; unmodified defense, so only the attacking stat is swapped for the boosted one.
-	ld a, d
-	cp EFFECT_SACRED_SWORD
-	jr nz, .load_modified_defense
-	ld hl, wPlayerAttack
-	jr .thickclub
-.load_modified_defense
 	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
-	ld a, d
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_body_press_mod
-	ld hl, wPlayerDefense
-.not_body_press_mod
-	cp EFFECT_FOUL_PLAY
-	jr nz, .thickclub
-	ld hl, wEnemyAttack
 	jr .thickclub
 
 .special
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
-	cp EFFECT_SHELL_SIDE_ARM ; strikes the target's physical DEFENSE
 	jr z, .psystrike
 
 	ld hl, wEnemyMonSpclDef
@@ -3033,52 +2964,21 @@ EnemyAttackDamage:
 	rl b
 
 .physicalcrit
-; Body Press swaps in the user's DEFENSE; Foul Play swaps in the target's ATTACK.
 	ld hl, wEnemyMonAttack
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar ; preserves hl
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_body_press
-	ld hl, wEnemyMonDefense
-.not_body_press
-	cp EFFECT_FOUL_PLAY
-	jr nz, .not_foul_play
-	ld hl, wBattleMonAttack
-.not_foul_play
-	push af
 	call CheckDamageStatsCritical
-	pop de ; d = move effect
 	jr c, .thickclub
 
-; Sacred Sword ignores the target's stat changes: bc already holds its
-; unmodified defense, so only the attacking stat is swapped for the boosted one.
-	ld a, d
-	cp EFFECT_SACRED_SWORD
-	jr nz, .load_modified_defense
-	ld hl, wEnemyAttack
-	jr .thickclub
-.load_modified_defense
 	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wEnemyAttack
-	ld a, d
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_body_press_mod
-	ld hl, wEnemyDefense
-.not_body_press_mod
-	cp EFFECT_FOUL_PLAY
-	jr nz, .thickclub
-	ld hl, wPlayerAttack
 	jr .thickclub
 
 .Special:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
-	cp EFFECT_SHELL_SIDE_ARM ; strikes the target's physical DEFENSE
 	jr z, .psystrike
 
 	ld hl, wBattleMonSpclDef
@@ -5404,7 +5304,7 @@ BattleCommand_ForceSwitch:
 	jp .succeed
 
 .trainer
-	farcall FindAliveEnemyMons ; preserves f, which carries the result
+	call FindAliveEnemyMons
 	jr c, .switch_fail
 	ld a, [wEnemyGoesFirst]
 	and a
@@ -6881,56 +6781,6 @@ BattleCommand_Trick:
 BattleCommand_ToxicSpikes:
 ; toxicspikes
 	callfar BattleToxicSpikes_Core
-	ret
-
-BattleCommand_StealthRock:
-; stealthrock
-	callfar BattleStealthRock_Core
-	ret
-
-BattleCommand_StealthRockHit:
-; stealthrockhit
-	callfar BattleStealthRockHit_Core
-	ret
-
-BattleCommand_Defog:
-; defog
-	callfar BattleDefog_Core
-	ret
-
-BattleCommand_RageFist:
-; ragefist
-	callfar BattleRageFist_Core
-	ret
-
-BattleCommand_BreakScreens:
-; breakscreens
-	callfar BattleBreakScreens_Core
-	ret
-
-BattleCommand_RagingBull:
-; ragingbull
-	callfar BattleRagingBull_Core
-	ret
-
-BattleCommand_FickleBeam:
-; ficklebeam
-	callfar BattleFickleBeam_Core
-	ret
-
-BattleCommand_GlaiveRush:
-; glaiverush
-	callfar BattleGlaiveRush_Core
-	ret
-
-BattleCommand_BanefulBunker:
-; banefulbunker
-	callfar BattleBanefulBunker_Core
-	ret
-
-BattleCommand_DireClawStatus:
-; direclawstatus
-	callfar BattleDireClawStatus_Core
 	ret
 
 BattleCommand_TrickRoom:
