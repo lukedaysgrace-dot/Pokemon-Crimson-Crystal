@@ -199,3 +199,14 @@ BattleCommandPointers:
 	dw BattleCommand_FirstImpressionCheck
 	dw BattleCommand_DeferStatMessages
 	dw BattleCommand_FlushStatMessages
+	dw BattleCommand_BrickBreak
+	dw BattleCommand_BanefulBunker
+	dw BattleCommand_DireClaw
+	dw BattleCommand_StealthRock
+	dw BattleCommand_StealthRockHit
+	dw BattleCommand_Defog
+	dw BattleCommand_GlaiveRush
+	dw BattleCommand_EerieSpell
+	dw BattleCommand_FickleBeam
+	dw BattleCommand_ShellSideArm
+	dw BattleCommand_RageFistPower

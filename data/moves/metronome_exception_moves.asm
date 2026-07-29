@@ -13,4 +13,5 @@ MetronomeExcepts:
 	dw DESTINY_BOND
 	dw SLEEP_TALK
 	dw THIEF
+	dw BANEFUL_BUNKER
 	dw -1

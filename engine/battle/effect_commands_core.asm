@@ -148,6 +148,695 @@ BattleMultiHitRoll_Core:
 	ld [wPredefTemp], a
 	ret
 
+
+
+; ==== 2026-07 move expansion cores ====
+
+BattleBanefulBunker_Core:
+; Protect variant: also poisons attackers that make contact.
+	callfar ProtectChance
+	ret c
+
+	; mark this side's protect as a Baneful Bunker
+	ld hl, wBunkerFlags
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+	set 0, [hl]
+	jr .protect
+.enemy
+	set 1, [hl]
+.protect
+	ld a, BATTLE_VARS_SUBSTATUS1
+	call GetBattleVarAddr
+	set SUBSTATUS_PROTECT, [hl]
+
+	callfar AnimateCurrentMove
+
+	ld hl, ProtectedItselfText
+	jp StdBattleTextbox
+
+BanefulBunkerPunish_Core:
+; Called from CheckHit's protect block: the current turn holder just got
+; its contact move blocked. Poison it if the block was a Baneful Bunker.
+	ld hl, wBunkerFlags
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .attacker_is_player
+	bit 0, [hl] ; defender is the player
+	ret z
+	jr .bunkered
+.attacker_is_player
+	bit 1, [hl] ; defender is the enemy
+	ret z
+.bunkered
+	farcall CheckContactMove
+	ret nc
+
+	; the victim here is the ATTACKER (the current turn holder)
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	ld a, [hl]
+	and a
+	ret nz ; already has a status
+
+	ld de, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld de, wEnemyMonType1
+.got_types
+	ld a, [de]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	inc de
+	ld a, [de]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+
+	push hl
+	farcall GetTrueUserAbility_b
+	pop hl
+	ld a, b
+	cp IMMUNITY
+	ret z
+	cp PASTEL_VEIL
+	ret z
+
+	; the attacker's own Safeguard protects it
+	push hl
+	ld hl, wPlayerScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_safeguard
+	ld hl, wEnemyScreens
+.got_safeguard
+	bit SCREENS_SAFEGUARD, [hl]
+	pop hl
+	ret nz
+
+	set PSN, [hl]
+	call UpdateUserInParty
+	ld de, ANIM_PSN
+	ld a, e
+	ld [wFXAnimID], a
+	ld a, d
+	ld [wFXAnimID + 1], a
+	xor a
+	ld [wNumHits], a
+	farcall PlayBattleAnim
+	call RefreshBattleHuds
+	ld hl, UserWasPoisonedText
+	jp StdBattleTextbox
+
+BattleDireClaw_Core:
+; 50% chance (the move's effect chance) of poison, paralysis or sleep.
+	callfar BattleCommand_EffectChance
+	ld a, [wEffectFailed]
+	and a
+	ret nz
+.roll
+	call BattleRandom
+	swap a
+	and %11
+	jr z, .roll
+	dec a
+	jr z, .paralyze
+	dec a
+	jr z, .poison
+	; sleep, applied silently on failure (unlike the sleeptarget command)
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	callfar CheckSubstituteOpp
+	ret nz
+	callfar SafeCheckSafeguard
+	ret nz
+	farcall AbilityPreventsSleep
+	ret c
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	ld a, [hl]
+	and a
+	ret nz
+.sleep_roll
+	call BattleRandom
+	and %11
+	jr z, .sleep_roll
+	ld [hl], a ; 1-3 turns of sleep
+	call UpdateOpponentInParty
+	call RefreshBattleHuds
+	ld hl, FellAsleepText
+	jp StdBattleTextbox
+
+.paralyze
+	callfar BattleCommand_ParalyzeTarget
+	ret
+
+.poison
+	callfar BattleCommand_PoisonTarget
+	ret
+
+SetStealthRockSide:
+; hl = the side's screens byte for the CURRENT TARGET
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	ret z
+	ld hl, wPlayerScreens
+	ret
+
+BattleStealthRock_Core:
+; Scatter pointed stones on the target's side. Fails if already set.
+	call SetStealthRockSide
+	bit SCREENS_STEALTH_ROCK, [hl]
+	jr nz, .failed
+	set SCREENS_STEALTH_ROCK, [hl]
+	callfar AnimateCurrentMove
+	ld hl, StealthRockText
+	jp StdBattleTextbox
+.failed
+	callfar FailMove
+	ret
+
+BattleStealthRockHit_Core:
+; Stone Axe: leave stealth rocks after a successful hit (silent if
+; stones are already floating).
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	call SetStealthRockSide
+	bit SCREENS_STEALTH_ROCK, [hl]
+	ret nz
+	set SCREENS_STEALTH_ROCK, [hl]
+	ld hl, StealthRockText
+	jp StdBattleTextbox
+
+StealthRockEntryDamage:
+; Hurt a mon switching in if pointed stones float on its side.
+; Like SpikesDamage, the victim is the current turn holder.
+	ld hl, wPlayerScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wEnemyScreens
+.got_side
+	bit SCREENS_STEALTH_ROCK, [hl]
+	ret z
+
+	; damage = 1/8 max HP scaled by ROCK's effectiveness on the victim
+	ld hl, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType1
+.got_types
+	ld a, ROCK
+	callfar CheckTypeMatchup
+
+	callfar GetEighthMaxHP
+	ld a, [wTypeMatchup]
+	cp 10
+	jr z, .apply
+	cp 20
+	jr nz, .not_double
+	sla c
+	rl b
+	jr .apply
+.not_double
+	cp 40
+	jr nz, .not_quadruple
+	sla c
+	rl b
+	sla c
+	rl b
+	jr .apply
+.not_quadruple
+	cp 5
+	jr nz, .quarter
+	srl b
+	rr c
+	jr .min_one
+.quarter
+	srl b
+	rr c
+	srl b
+	rr c
+.min_one
+	ld a, b
+	or c
+	jr nz, .apply
+	inc c
+.apply
+	push bc
+	ld hl, StealthRockHurtText
+	call StdBattleTextbox
+	pop bc
+	callfar SubtractHPFromTarget
+	call RefreshBattleHuds
+	ret
+
+BattleDefog_Core:
+; Blow away hazards on both sides and screens on the target's side.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld e, 0 ; "cleared anything" flag
+
+	ld hl, wPlayerScreens
+	call .clear_hazards
+	ld hl, wEnemyScreens
+	call .clear_hazards
+
+	ld hl, wEnemyScreens
+	ld bc, wEnemyLightScreenCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+	ld bc, wPlayerLightScreenCount
+.got_screens
+	ld a, [hl]
+	and 1 << SCREENS_LIGHT_SCREEN | 1 << SCREENS_REFLECT
+	jr z, .no_screens
+	ld e, 1
+	ld a, [hl]
+	and (1 << SCREENS_LIGHT_SCREEN | 1 << SCREENS_REFLECT) ^ $ff
+	ld [hl], a
+	xor a
+	ld [bc], a ; light screen count
+	inc bc
+	ld [bc], a ; reflect count
+.no_screens
+	ld a, e
+	and a
+	ret z
+	ld hl, DefogClearedText
+	jp StdBattleTextbox
+
+.clear_hazards
+	ld a, [hl]
+	ld d, a
+	and 1 << SCREENS_SPIKES | 1 << SCREENS_STEALTH_ROCK | SCREENS_TOXIC_SPIKES_MASK
+	ret z
+	ld e, 1
+	ld a, d
+	and (1 << SCREENS_SPIKES | 1 << SCREENS_STEALTH_ROCK | SCREENS_TOXIC_SPIKES_MASK) ^ $ff
+	ld [hl], a
+	ret
+
+BattleGlaiveRush_Core:
+; After a landed Glaive Rush, the user can't avoid attacks and takes
+; double damage until the start of its next turn.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld hl, wPlayerGlaiveRush
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_flag
+	inc hl ; wEnemyGlaiveRush
+.got_flag
+	ld [hl], 1
+	ret
+
+GlaiveRushIncomingDouble_Core:
+; Double the computed damage if the DEFENDER is in Glaive Rush recoil.
+	ld a, [wIsConfusionDamage]
+	and a
+	ret nz
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player_attacking
+	ld a, [wPlayerGlaiveRush]
+	jr .check
+.player_attacking
+	ld a, [wEnemyGlaiveRush]
+.check
+	and a
+	ret z
+	jp DoubleDamage_Core
+
+BattleFickleBeam_Core:
+; 30% of the time Fickle Beam fires at double power.
+	call BattleRandom
+	cp 30 percent
+	ret nc
+	call DoubleDamage_Core
+	ld hl, FickleBeamAllOutText
+	jp StdBattleTextbox
+
+BattleRageFistPower_Core:
+; d = move power. Add 50 per hit the user has taken (capped at 250).
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player
+	ld a, [wEnemyRageFistHits]
+	jr .got_hits
+.player
+	ld a, [wPlayerRageFistHits]
+.got_hits
+	cp 5
+	jr c, .capped
+	ld a, 4
+.capped
+	and a
+	ret z
+.loop
+	push af
+	ld a, d
+	add 50
+	ld d, a
+	pop af
+	dec a
+	jr nz, .loop
+	ret
+
+BattleShellSideArm_Core:
+; Become physical or special, whichever would hit harder:
+; physical if Atk * target SpDef > SpAtk * target Def (ties go special).
+; All four stats are halved together until they fit in 8 bits, which
+; preserves the comparison.
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_user
+	ld a, [wPlayerAttack]
+	ld [wBuffer1], a
+	ld a, [wPlayerAttack + 1]
+	ld [wBuffer2], a
+	ld a, [wPlayerSpAtk]
+	ld [wBuffer3], a
+	ld a, [wPlayerSpAtk + 1]
+	ld [wBuffer4], a
+	ld a, [wEnemyDefense]
+	ld [wBuffer5], a
+	ld a, [wEnemyDefense + 1]
+	ld [wBuffer6], a
+	ld a, [wEnemySpDef]
+	ld [wCurDamage], a
+	ld a, [wEnemySpDef + 1]
+	ld [wCurDamage + 1], a
+	jr .shift_loop
+.enemy_user
+	ld a, [wEnemyAttack]
+	ld [wBuffer1], a
+	ld a, [wEnemyAttack + 1]
+	ld [wBuffer2], a
+	ld a, [wEnemySpAtk]
+	ld [wBuffer3], a
+	ld a, [wEnemySpAtk + 1]
+	ld [wBuffer4], a
+	ld a, [wPlayerDefense]
+	ld [wBuffer5], a
+	ld a, [wPlayerDefense + 1]
+	ld [wBuffer6], a
+	ld a, [wPlayerSpDef]
+	ld [wCurDamage], a
+	ld a, [wPlayerSpDef + 1]
+	ld [wCurDamage + 1], a
+
+.shift_loop
+	ld a, [wBuffer1]
+	ld b, a
+	ld a, [wBuffer3]
+	or b
+	ld b, a
+	ld a, [wBuffer5]
+	or b
+	ld b, a
+	ld a, [wCurDamage]
+	or b
+	jr z, .small_enough
+	ld hl, wBuffer1
+	call .halve
+	ld hl, wBuffer3
+	call .halve
+	ld hl, wBuffer5
+	call .halve
+	ld hl, wCurDamage
+	call .halve
+	jr .shift_loop
+
+.halve
+	ld a, [hl]
+	srl a
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hld], a
+	ret
+
+.small_enough
+	; m1 = Atk * target SpDef
+	xor a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
+	ld a, [wBuffer2]
+	ldh [hMultiplicand + 2], a
+	ld a, [wCurDamage + 1]
+	ldh [hMultiplier], a
+	call Multiply
+	ldh a, [hProduct + 2]
+	ld d, a
+	ldh a, [hProduct + 3]
+	ld e, a
+	; m2 = SpAtk * target Def
+	xor a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
+	ld a, [wBuffer4]
+	ldh [hMultiplicand + 2], a
+	ld a, [wBuffer6]
+	ldh [hMultiplier], a
+	call Multiply
+	ldh a, [hProduct + 2]
+	ld b, a
+	ldh a, [hProduct + 3]
+	ld c, a
+	; physical iff de > bc
+	ld a, d
+	cp b
+	jr c, .special
+	jr nz, .physical
+	ld a, e
+	cp c
+	jr c, .special
+	jr z, .special
+.physical
+	ld b, CATEGORIZE_PHYSICAL
+	jr .store
+.special
+	ld b, CATEGORIZE_SPECIAL
+.store
+	ld hl, wPlayerMoveStructCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .store_it
+	ld hl, wEnemyMoveStructCategory
+.store_it
+	ld [hl], b
+	; wCurDamage was used as scratch; damagestats resets it anyway
+	xor a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
+	ret
+
+BattleEerieSpell_Core:
+; Sap 3 PP from the target's last used move (silent when impossible).
+; Adapted from BattleCommand_Spite.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wEnemyMonMoves
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_moves
+	ld hl, wBattleMonMoves
+.got_moves
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	call GetBattleVar
+	and a
+	ret z
+	ld b, a
+	push bc
+	push hl
+	ld bc, STRUGGLE
+	callfar CompareMove
+	pop hl
+	pop bc
+	ret z
+	ld c, -1
+.loop
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	ret nc ; not in the move list anymore (Mimic etc.) - no effect
+	ld a, [hli]
+	cp b
+	jr nz, .loop
+	ld [wNamedObjectIndexBuffer], a
+	dec hl
+	ld b, 0
+	push bc
+	ld c, wBattleMonPP - wBattleMonMoves
+	add hl, bc
+	pop bc
+	ld a, [hl]
+	and PP_MASK
+	ret z
+	push bc
+	call GetMoveName
+	ld b, 3 ; always saps 3 PP
+	ld a, [hl]
+	and PP_MASK
+	cp b
+	jr nc, .deplete_pp
+	ld b, a
+.deplete_pp
+	ld a, [hl]
+	sub b
+	ld [hl], a
+	push af
+	ld a, MON_PP
+	call OpponentPartyAttr
+	ld d, b
+	pop af
+	pop bc
+	add hl, bc
+	ld e, a
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	bit SUBSTATUS_TRANSFORMED, a
+	jr nz, .transformed
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .not_wildmon
+	ld a, [wBattleMode]
+	dec a
+	jr nz, .not_wildmon
+	ld hl, wWildMonPP
+	add hl, bc
+.not_wildmon
+	ld [hl], e
+.transformed
+	ld a, d
+	ld [wDeciramBuffer], a
+	ld hl, SpiteEffectText
+	jp StdBattleTextbox
+
+BattleTrapTarget_Core:
+; Body of BattleCommand_TrapTarget (moved here for bank space).
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld hl, wEnemyWrapCount
+	ld de, wEnemyTrappingMove
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_trap
+	ld hl, wPlayerWrapCount
+	ld de, wPlayerTrappingMove
+
+.got_trap
+	ld a, [hl]
+	and a
+	ret nz
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret nz
+	call BattleRandom
+	; trapped for 2-5 turns
+	and %11
+	inc a
+	inc a
+	inc a
+	ld [hl], a
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld [de], a
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, .Traps
+
+.find_trap_text
+	ld a, [hli]
+	cp c
+	ld a, [hli]
+	jr nz, .next_trap_text
+	cp b
+	jr z, .found_trap_text
+.next_trap_text
+	inc hl
+	inc hl
+	jr .find_trap_text
+
+.found_trap_text
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp StdBattleTextbox
+
+.Traps:
+	dw BIND,      UsedBindText      ; 'used BIND on'
+	dw WRAP,      WrappedByText     ; 'was WRAPPED by'
+	dw FIRE_SPIN, FireSpinTrapText  ; 'was trapped!'
+	dw CLAMP,     ClampedByText     ; 'was CLAMPED by'
+	dw WHIRLPOOL, WhirlpoolTrapText ; 'was trapped!'
+
+BattleScaleShotKO_Core:
+; Scale Shot still lowers the user's DEFENSE and raises its SPEED when
+; the final hit KOs the target (the script's endloop tail never runs in
+; that case). Called from BattleCommand_CheckFaint.
+	callfar BattleCommand_SaveMiss
+	callfar BattleCommand_SwitchTurn
+	callfar BattleCommand_DefenseDown
+	callfar BattleCommand_SwitchTurn
+	callfar BattleCommand_SwitchTurn
+	callfar BattleCommand_StatDownMessage
+	callfar BattleCommand_SwitchTurn
+	callfar BattleCommand_SpeedUp
+	callfar BattleCommand_StatUpMessage
+	callfar BattleCommand_RestoreMiss
+	ret
+
+BattleBrickBreak_Core:
+; Shatter Reflect and Light Screen on the target's side before the
+; damage is dealt. If the target is immune to the move (e.g. a Ghost
+; type against this Fighting move), the screens are spared.
+	callfar BattleCheckTypeMatchup
+	ld a, [wTypeMatchup]
+	and a
+	ret z
+
+	ld hl, wEnemyScreens
+	ld de, wEnemyLightScreenCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+	ld de, wPlayerLightScreenCount
+.got_screens
+	ld a, [hl]
+	and 1 << SCREENS_LIGHT_SCREEN | 1 << SCREENS_REFLECT
+	ret z
+
+	ld a, [hl]
+	and (1 << SCREENS_LIGHT_SCREEN | 1 << SCREENS_REFLECT) ^ $ff
+	ld [hl], a
+	xor a
+	ld [de], a ; light screen count
+	inc de
+	ld [de], a ; reflect count
+	ld hl, BrickBreakShatterText
+	jp StdBattleTextbox
+
 BattleCheckCharge_Core:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -1308,3 +1997,505 @@ PlayStatChangeAnim_Core:
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"
+
+BattleDamageStats_Core:
+; damagestats (body; see the stub in effect_commands.asm)
+
+	ldh a, [hBattleTurn]
+	and a
+	jp nz, EnemyAttackDamage_Core
+
+	; fallthrough
+
+PlayerAttackDamage_Core:
+; Return move power d, player level e, enemy defense c and player attack b.
+
+	call ResetDamage
+
+	ld hl, wPlayerMoveStructPower
+	ld a, [hli]
+	and a
+	ld d, a
+	ret z
+
+	inc hl ; wPlayerMoveStructType -> Category
+	ld a, [hl]
+	cp CATEGORIZE_SPECIAL
+	jr z, .special
+
+.physical
+	ld hl, wEnemyMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wEnemyScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .physicalcrit
+	sla c
+	rl b
+
+.physicalcrit
+	; pick the unboosted attacking-stat source (used on crits)
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, wBattleMonAttack
+	cp EFFECT_BODY_PRESS
+	jr nz, .not_bp_unboosted
+	ld hl, wBattleMonDefense ; Body Press attacks with the user's DEFENSE
+.not_bp_unboosted
+	cp EFFECT_FOUL_PLAY
+	jr nz, .not_fp_unboosted
+	ld hl, wEnemyMonAttack ; Foul Play uses the target's ATTACK
+.not_fp_unboosted
+	call CheckDamageStatsCritical
+	jp c, .thickclub
+
+	; boosted stats. Sacred Sword ignores the target's DEFENSE stat
+	; stages: keep the unmodified defense in bc, but use boosted attack.
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	pop bc
+	ld hl, wPlayerAttack
+	cp EFFECT_SACRED_SWORD
+	jr z, .thickclub
+
+	cp EFFECT_BODY_PRESS
+	jr nz, .not_bp_boosted
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerDefense
+	jr .thickclub
+.not_bp_boosted
+	cp EFFECT_FOUL_PLAY
+	jr nz, .not_fp_boosted
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemyAttack
+	jr .thickclub
+.not_fp_boosted
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerAttack
+	jr .thickclub
+
+.special
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .psystrike
+
+	ld hl, wEnemyMonSpclDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wEnemyScreens]
+	bit SCREENS_LIGHT_SCREEN, a
+	jr z, .specialcrit
+	sla c
+	rl b
+
+.specialcrit
+	ld hl, wBattleMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+
+	ld hl, wEnemySpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerSpAtk
+	jr .lightball
+
+.psystrike
+; Psystrike is special but hits the target's physical Defense.
+	ld hl, wEnemyMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wEnemyScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .psystrikecrit
+	sla c
+	rl b
+
+.psystrikecrit
+	ld hl, wBattleMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerSpAtk
+
+.lightball
+; Note: Returns player special attack at hl in hl.
+	call LightBallBoost
+	jr .done
+
+.thickclub
+; Note: Returns player attack at hl in hl.
+	call ThickClubBoost
+
+.done
+	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
+	; in this same bank, but callfar keeps the register contract identical)
+	push hl
+	callfar WeatherDefenseBoost_Core
+	pop hl
+	push hl
+	callfar HeldDefenseBoost_Core
+	callfar DittoMetalPowder_Core
+	pop hl
+	call TruncateHLBC_Ovf
+
+	ld a, [wBattleMonLevel]
+	ld e, a
+
+	ld a, 1
+	and a
+	ret
+
+TruncateHLBC_Ovf:
+.loop
+; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
+; b = hl, c = bc
+
+	ld a, h
+	or b
+	jr z, .finish
+
+	srl b
+	rr c
+	srl b
+	rr c
+
+	ld a, c
+	or b
+	jr nz, .done_bc
+	inc c
+
+.done_bc
+	srl h
+	rr l
+	srl h
+	rr l
+
+	ld a, l
+	or h
+	jr nz, .finish
+	inc l
+
+.finish
+; If we go back to the loop point,
+; it's the same as doing this exact
+; same check twice.
+	ld a, h
+	or b
+	jr nz, .loop
+
+	ld b, l
+	ret
+
+CheckDamageStatsCritical:
+; Return carry if boosted stats should be used in damage calculations.
+; Unboosted stats should be used if the attack is a critical hit,
+;  and the stage of the opponent's defense is higher than the user's attack.
+
+	ld a, [wCriticalHit]
+	and a
+	scf
+	ret z
+
+	push hl
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+; special
+	ld a, [wPlayerSAtkLevel]
+	ld b, a
+	ld a, [wEnemySDefLevel]
+	jr nc, .end
+; physical
+	ld a, [wPlayerAtkLevel]
+	ld b, a
+	ld a, [wEnemyDefLevel]
+	jr .end
+
+.enemy
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_SPECIAL
+; special
+	ld a, [wEnemySAtkLevel]
+	ld b, a
+	ld a, [wPlayerSDefLevel]
+	jr nc, .end
+; physical
+	ld a, [wEnemyAtkLevel]
+	ld b, a
+	ld a, [wPlayerDefLevel]
+.end
+	cp b
+	pop bc
+	pop hl
+	ret
+
+ThickClubBoost:
+; Return in hl the stat value at hl.
+
+; If the attacking monster is Cubone or Marowak and
+; it's holding a Thick Club, double it.
+	push bc
+	push de
+	ld bc, CUBONE
+	ld d, THICK_CLUB
+	call SpeciesItemBoost
+	if MAROWAK == (CUBONE + 1)
+		inc bc
+	else
+		ld bc, MAROWAK
+	endc
+	call DoubleStatIfSpeciesHoldingItem
+	pop de
+	pop bc
+	ret
+
+LightBallBoost:
+; Return in hl the stat value at hl.
+
+; If the attacking monster is Pikachu and it's
+; holding a Light Ball, double it.
+	push bc
+	push de
+	ld bc, PIKACHU
+	ld d, LIGHT_BALL
+	call SpeciesItemBoost
+	pop de
+	pop bc
+	ret
+
+SpeciesItemBoost:
+; Return in hl the stat value at hl.
+
+; If the attacking monster is species bc and
+; it's holding item d, double it.
+
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	; fallthrough
+
+DoubleStatIfSpeciesHoldingItem:
+; If the attacking monster is species bc and
+; it's holding item d, double the stat in hl.
+
+	push hl
+	ld a, MON_SPECIES
+	call BattlePartyAttr
+
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [hl]
+	jr z, .CompareSpecies
+	ld a, [wTempEnemyMonSpecies]
+.CompareSpecies:
+
+	call GetPokemonIndexFromID
+	ld a, h
+	cp b
+	ld a, l
+	pop hl
+	ret nz
+	cp c
+	ret nz
+
+	push hl
+	callfar GetUserItem
+	ld a, [hl]
+	pop hl
+	cp d
+	ret nz
+
+; Double the stat
+	sla l
+	rl h
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap_boost
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+.cap_boost
+	ld hl, MAX_STAT_VALUE
+	ret
+
+EnemyAttackDamage_Core:
+	call ResetDamage
+
+; No damage dealt with 0 power.
+	ld hl, wEnemyMoveStructPower
+	ld a, [hli] ; hl = wEnemyMoveStructType
+	ld d, a
+	and a
+	ret z
+
+	inc hl ; Type -> Category
+	ld a, [hl]
+	cp CATEGORIZE_SPECIAL
+	jr z, .Special
+
+.physical
+	ld hl, wBattleMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wPlayerScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .physicalcrit
+	sla c
+	rl b
+
+.physicalcrit
+	; pick the unboosted attacking-stat source (used on crits)
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, wEnemyMonAttack
+	cp EFFECT_BODY_PRESS
+	jr nz, .not_bp_unboosted
+	ld hl, wEnemyMonDefense ; Body Press attacks with the user's DEFENSE
+.not_bp_unboosted
+	cp EFFECT_FOUL_PLAY
+	jr nz, .not_fp_unboosted
+	ld hl, wBattleMonAttack ; Foul Play uses the target's ATTACK
+.not_fp_unboosted
+	call CheckDamageStatsCritical
+	jp c, .thickclub
+
+	; boosted stats. Sacred Sword ignores the target's DEFENSE stat
+	; stages: keep the unmodified defense in bc, but use boosted attack.
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	pop bc
+	ld hl, wEnemyAttack
+	cp EFFECT_SACRED_SWORD
+	jr z, .thickclub
+
+	cp EFFECT_BODY_PRESS
+	jr nz, .not_bp_boosted
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemyDefense
+	jr .thickclub
+.not_bp_boosted
+	cp EFFECT_FOUL_PLAY
+	jr nz, .not_fp_boosted
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wPlayerAttack
+	jr .thickclub
+.not_fp_boosted
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemyAttack
+	jr .thickclub
+
+.Special:
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .psystrike
+
+	ld hl, wBattleMonSpclDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wPlayerScreens]
+	bit SCREENS_LIGHT_SCREEN, a
+	jr z, .specialcrit
+	sla c
+	rl b
+
+.specialcrit
+	ld hl, wEnemyMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+	ld hl, wPlayerSpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemySpAtk
+	jr .lightball
+
+.psystrike
+; Psystrike is special but hits the target's physical Defense.
+	ld hl, wBattleMonDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+
+	ld a, [wPlayerScreens]
+	bit SCREENS_REFLECT, a
+	jr z, .psystrikecrit
+	sla c
+	rl b
+
+.psystrikecrit
+	ld hl, wEnemyMonSpclAtk
+	call CheckDamageStatsCritical
+	jr c, .lightball
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld hl, wEnemySpAtk
+
+.lightball
+	call LightBallBoost
+	jr .done
+
+.thickclub
+	call ThickClubBoost
+
+.done
+	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
+	; in this same bank, but callfar keeps the register contract identical)
+	push hl
+	callfar WeatherDefenseBoost_Core
+	pop hl
+	push hl
+	callfar HeldDefenseBoost_Core
+	callfar DittoMetalPowder_Core
+	pop hl
+	call TruncateHLBC_Ovf
+
+	ld a, [wEnemyMonLevel]
+	ld e, a
+
+	ld a, 1
+	and a
+	ret
+

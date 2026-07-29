@@ -3708,6 +3708,8 @@ endr
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
 	ld [wEnemyTurnsTaken], a
+	ld [wEnemyGlaiveRush], a
+	ld [wEnemyRageFistHits], a
 	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
@@ -4227,6 +4229,8 @@ endr
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
 	ld [wPlayerTurnsTaken], a
+	ld [wPlayerGlaiveRush], a
+	ld [wPlayerRageFistHits], a
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1

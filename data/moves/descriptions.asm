@@ -356,6 +356,68 @@ MoveDescriptions1:
 	dw LiquidationDescription
 	dw SlackOffDescription
 	dw VoltTackleDescription
+	dw OverheatDescription
+	dw LeafStormDescription
+	dw FakeOutDescription
+	dw FlipTurnDescription
+	dw IronDefenseDescription
+	dw RockPolishDescription
+	dw WoodHammerDescription
+	dw HeadSmashDescription
+	dw DrillRunDescription
+	dw PsychoCutDescription
+	dw SacredSwordDescription
+	dw BrickBreakDescription
+	dw HeatWaveDescription
+	dw SnarlDescription
+	dw NuzzleDescription
+	dw BulletSeedDescription
+	dw DualWingbeatDescription
+	dw RockTombDescription
+	dw LowSweepDescription
+	dw MudShotDescription
+	dw AirCutterDescription
+	dw CrossPoisonDescription
+	dw MagicalLeafDescription
+	dw SignalBeamDescription
+	dw ScaleShotDescription
+	dw PhantomForceDescription
+	dw HeadlongRushDescription
+	dw ShadowBoneDescription
+	dw DireClawDescription
+	dw BarbBarrageDescription
+	dw InfernalParadeDescription
+	dw KowtowCleaveDescription
+	dw ArmorCannonDescription
+	dw ShellSideArmDescription
+	dw GlaiveRushDescription
+	dw DragonDartsDescription
+	dw AppleAcidDescription
+	dw GravAppleDescription
+	dw PsyshieldBashDescription
+	dw RagingFuryDescription
+	dw StrangeSteamDescription
+	dw EerieSpellDescription
+	dw BanefulBunkerDescription
+	dw RagingBullDescription
+	dw FickleBeamDescription
+	dw StoneAxeDescription
+	dw QuiverDanceDescription
+	dw StealthRockDescription
+	dw DefogDescription
+	dw BodyPressDescription
+	dw WorkUpDescription
+	dw SuperpowerDescription
+	dw FieryDanceDescription
+	dw FoulPlayDescription
+	dw RageFistDescription
+	dw CrushClawDescription
+	dw ForcePalmDescription
+	dw HammerArmDescription
+	dw CircleThrowDescription
+	dw FreezeDryDescription
+	dw BounceDescription
+	dw DragonTailDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -383,6 +445,110 @@ SlackOffDescription:
 VoltTackleDescription:
 	db   "Dangerous tackle"
 	next "that hurts user.@"
+
+OverheatDescription:
+	db   "Huge blast. Cuts"
+	next "own SPCL.ATK.@"
+
+LeafStormDescription:
+	db   "Leaf storm. Cuts"
+	next "own SPCL.ATK.@"
+
+FakeOutDescription:
+	db   "1st-turn hit that"
+	next "makes foe flinch.@"
+
+FlipTurnDescription:
+	db   "Switches out after"
+	next "making its attack.@"
+
+IronDefenseDescription:
+	db   "Hardens body to"
+	next "sharply up DEF.@"
+
+RockPolishDescription:
+	db   "Polishes body to"
+	next "sharply up SPD.@"
+
+WoodHammerDescription:
+	db   "Timber slam that"
+	next "hurts user too.@"
+
+HeadSmashDescription:
+	db   "Reckless headbutt"
+	next "with awful recoil.@"
+
+DrillRunDescription:
+	db   "Drill stab. High"
+	next "critical rate.@"
+
+PsychoCutDescription:
+	db   "Psychic blades."
+	next "High crit rate.@"
+
+SacredSwordDescription:
+	db   "Slash that cuts"
+	next "thru stat boosts.@"
+
+BrickBreakDescription:
+	db   "Attack that busts"
+	next "barriers.@"
+
+HeatWaveDescription:
+	db   "Hot breath that"
+	next "may cause a burn.@"
+
+SnarlDescription:
+	db   "Yelling that cuts"
+	next "foe's SPCL.ATK.@"
+
+NuzzleDescription:
+	db   "Cheek rub that al-"
+	next "ways paralyzes.@"
+
+BulletSeedDescription:
+	db   "Fires seeds in a"
+	next "row 2-5 times.@"
+
+DualWingbeatDescription:
+	db   "Slams the foe with"
+	next "wings, twice.@"
+
+RockTombDescription:
+	db   "Drops rocks that"
+	next "cut the foe's SPD.@"
+
+LowSweepDescription:
+	db   "A swift kick that"
+	next "cuts foe's SPEED.@"
+
+MudShotDescription:
+	db   "Mud blast that"
+	next "cuts foe's SPEED.@"
+
+AirCutterDescription:
+	db   "Razor wind. High"
+	next "critical rate.@"
+
+CrossPoisonDescription:
+	db   "High-crit slash"
+	next "that may poison.@"
+
+MagicalLeafDescription:
+	db   "Homing leaves that"
+	next "never miss.@"
+
+SignalBeamDescription:
+	db   "Odd beam that may"
+	next "confuse the foe.@"
+
+ScaleShotDescription:
+	db   "2-5 hits. Ups SPD,"
+	next "cuts DEFENSE.@"
+
+PhantomForceDescription:
+	db   "Vanishes, then"
+	next "hits thru PROTECT.@"
 
 PoundDescription:
 	db   "Pounds with fore-"
@@ -1727,3 +1893,147 @@ VoltSwitchDescription:
 WillOWispDescription:
 	db   "A move that may"
 	next "burn the foe.@"
+
+HeadlongRushDescription:
+	db   "Reckless charge"
+	next "that cuts own DEF.@"
+
+ShadowBoneDescription:
+	db   "Spectral bone hit."
+	next "May lower DEFENSE.@"
+
+DireClawDescription:
+	db   "May poison, numb"
+	next "or drop asleep.@"
+
+BarbBarrageDescription:
+	db   "2x on poisoned"
+	next "foes. May poison.@"
+
+InfernalParadeDescription:
+	db   "2x on statused"
+	next "foes. May burn.@"
+
+KowtowCleaveDescription:
+	db   "A feinting slash"
+	next "that never misses.@"
+
+ArmorCannonDescription:
+	db   "Fires own armor."
+	next "Cuts own defenses.@"
+
+ShellSideArmDescription:
+	db   "Picks its stronger"
+	next "mode. May poison.@"
+
+GlaiveRushDescription:
+	db   "All-out charge but"
+	next "foe hits back 2x.@"
+
+DragonDartsDescription:
+	db   "Fires Dreepy darts"
+	next "twice in a row.@"
+
+AppleAcidDescription:
+	db   "Sour acid that"
+	next "cuts SPCL.DEF.@"
+
+GravAppleDescription:
+	db   "Dropped apple that"
+	next "cuts foe DEFENSE.@"
+
+PsyshieldBashDescription:
+	db   "Barrier bash that"
+	next "ups own DEFENSE.@"
+
+RagingFuryDescription:
+	db   "Rampages with fire"
+	next "for 2-3 turns.@"
+
+StrangeSteamDescription:
+	db   "Odd steam that may"
+	next "confuse the foe.@"
+
+EerieSpellDescription:
+	db   "Saps 3 PP from the"
+	next "foe's last move.@"
+
+BanefulBunkerDescription:
+	db   "Protects, poisons"
+	next "on contact.@"
+
+RagingBullDescription:
+	db   "A wild charge that"
+	next "breaks barriers.@"
+
+FickleBeamDescription:
+	db   "Sometimes fires at"
+	next "double power.@"
+
+StoneAxeDescription:
+	db   "Leaves floating"
+	next "stones on hit.@"
+
+QuiverDanceDescription:
+	db   "Ups SPCL. stats"
+	next "and SPEED.@"
+
+StealthRockDescription:
+	db   "Floating rocks"
+	next "hurt switch-ins.@"
+
+DefogDescription:
+	db   "Clears hazards and"
+	next "cuts foe evasion.@"
+
+BodyPressDescription:
+	db   "Attacks with its"
+	next "DEFENSE stat.@"
+
+WorkUpDescription:
+	db   "Ups both ATTACK"
+	next "and SPCL.ATK.@"
+
+SuperpowerDescription:
+	db   "Mighty blow that"
+	next "cuts own ATK/DEF.@"
+
+FieryDanceDescription:
+	db   "Fire dance. May up"
+	next "own SPCL.ATK.@"
+
+FoulPlayDescription:
+	db   "Uses the foe's own"
+	next "ATTACK stat.@"
+
+RageFistDescription:
+	db   "Grows by 50 power"
+	next "per hit taken.@"
+
+CrushClawDescription:
+	db   "Slashing claws."
+	next "May lower DEFENSE.@"
+
+ForcePalmDescription:
+	db   "A blow that may"
+	next "paralyze the foe.@"
+
+HammerArmDescription:
+	db   "Heavy blow that"
+	next "cuts own SPEED.@"
+
+CircleThrowDescription:
+	db   "Throws the foe out"
+	next "to force a switch.@"
+
+FreezeDryDescription:
+	db   "Freezes even WATER"
+	next "types. May freeze.@"
+
+BounceDescription:
+	db   "Bounces up, hits"
+	next "2nd turn. May par.@"
+
+DragonTailDescription:
+	db   "Bats the foe away"
+	next "to force a switch.@"
