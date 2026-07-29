@@ -152,7 +152,6 @@ INCLUDE "engine/events/move_deleter.asm"
 INCLUDE "engine/link/mystery_gift_2.asm"
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/pokemon/print_move_description.asm"
-INCLUDE "data/moves/descriptions.asm"
 
 
 SECTION "Effect Commands", ROMX
@@ -462,6 +461,14 @@ INCLUDE "data/moves/animations3.asm"
 SECTION "Move Animations 4", ROMX
 
 INCLUDE "data/moves/animations4.asm"
+
+SECTION "Move Animations 5", ROMX
+
+INCLUDE "data/moves/animations5.asm"
+
+SECTION "Move Descriptions", ROMX
+
+INCLUDE "data/moves/descriptions.asm"
 
 SECTION "Bug Contest Stats Display", ROMX
 

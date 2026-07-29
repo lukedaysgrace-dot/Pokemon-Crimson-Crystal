@@ -1250,4 +1250,34 @@ BattleText_0x8188e:
 	line "left today!"
 	done
 
+BrickBreakShatterText:
+	text "The wall"
+	line "shattered!"
+	prompt
+
+StealthRockText:
+	text "Pointed stones"
+	line "float in the air!"
+	prompt
+
+StealthRockHurtText:
+	text "<USER> is hurt"
+	line "by pointed stones!"
+	prompt
+
+BlewStealthRockText:
+	text "<USER> blew away"
+	line "pointed stones!"
+	prompt
+
+DefogClearedText:
+	text "The battlefield"
+	line "was cleared!"
+	prompt
+
+FickleBeamAllOutText:
+	text "<USER> is going"
+	line "all out!"
+	prompt
+
 INCLUDE "data/text/ability_text.asm"
