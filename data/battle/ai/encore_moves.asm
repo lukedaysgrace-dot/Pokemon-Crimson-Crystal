@@ -31,10 +31,4 @@ EncoreMoves:
 	dw AEROBLAST
 	dw COTTON_SPORE
 	dw POWDER_SNOW
-	dw QUIVER_DANCE
-	dw WORK_UP
-	dw IRON_DEFENSE
-	dw ROCK_POLISH
-	dw STEALTH_ROCK
-	dw DEFOG
 	dw -1 ; end
