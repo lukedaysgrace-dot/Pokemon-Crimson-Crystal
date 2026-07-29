@@ -13,7 +13,4 @@ MetronomeExcepts:
 	dw DESTINY_BOND
 	dw SLEEP_TALK
 	dw THIEF
-	dw STEALTH_ROCK
-	dw DEFOG
-	dw RAGE_FIST
 	dw -1
