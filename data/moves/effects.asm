@@ -1989,13 +1989,28 @@ SunnyDay:
 	endmove
 
 FakeOut:
+; 40 BP + priority hit that flinches; only works on the user's first
+; action opportunity after entering battle (same window as First
+; Impression). Priority comes from MoveEffectPriorities.
 	checkobedience
 	usedmovetext
 	doturn
+	firstimpressioncheck
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
 	checkhit
-	fakeout
+	effectchance
 	moveanim
 	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	flinchtarget
 	endmove
 
 BellyDrum:
@@ -2595,4 +2610,508 @@ DoBurn:
 	checkhit
 	checksafeguard
 	burn
+	endmove
+
+SacredSword:
+; Like NormalHit, but damagestats ignores the target's DEFENSE stat
+; stages and checkhit ignores the target's evasion stat stages
+; (both keyed off EFFECT_SACRED_SWORD in effect_commands.asm).
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+BrickBreak:
+; Shatters Reflect and Light Screen on the target's side before the
+; damage is calculated (unless the target is immune to the move).
+	checkobedience
+	usedmovetext
+	doturn
+	brickbreak
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+ScaleShot:
+; 2-5 hit multi-hit (Skill Link / Loaded Dice apply via endloop);
+; after the last hit the user's DEFENSE falls and its SPEED rises.
+; The KO-on-final-hit case is handled in BattleCommand_CheckFaint.
+	checkobedience
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	endloop
+	raisesub
+	kingsrock
+	savemiss
+	switchturn
+	defensedown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	speedup
+	statupmessage
+	restoremiss
+	endmove
+
+HexHit:
+; ConditionalBoostHit plus a burn chance: HEX has a 0% effect chance so
+; nothing changes for it, while INFERNAL PARADE burns 30% of the time.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	conditionalboost
+	damagevariation
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	burntarget
+	endmove
+
+DireClaw:
+; 50% chance to poison, paralyze or put the target to sleep.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	direclaw
+	endmove
+
+BarbBarrage:
+; Power doubles against a poisoned target; 50% chance to poison.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	venoshockdouble
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	poisontarget
+	endmove
+
+ShellSideArm:
+; Becomes physical or special, whichever hits harder; 20% poison chance.
+	checkobedience
+	usedmovetext
+	doturn
+	shellsidearm
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	poisontarget
+	endmove
+
+GlaiveRush:
+; After landing, the user can't avoid attacks and takes double damage
+; until the start of its next turn.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	glaiverush
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+EerieSpell:
+; Damages and saps 3 PP from the target's last used move.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	eeriespell
+	endmove
+
+BanefulBunker:
+; Protects, and poisons attackers that make contact.
+	checkobedience
+	usedmovetext
+	doturn
+	banefulbunker
+	endmove
+
+FickleBeam:
+; 30% of the time it fires with doubled power.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	ficklebeam
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+StoneAxe:
+; Damages and leaves stealth rocks on the target's side.
+; The KO case is handled in BattleCommand_CheckFaint.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	stealthrockhit
+	endmove
+
+QuiverDance:
+; Raises SPCL.ATK, SPCL.DEF and SPEED.
+	checkobedience
+	usedmovetext
+	doturn
+	deferstatmessages
+	specialattackup
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	resetmiss
+	specialdefenseup
+	statupmessage
+	statupfailtext
+	resetmiss
+	speedup
+	statupmessage
+	statupfailtext
+	flushstatmessages
+	endmove
+
+StealthRock:
+	checkobedience
+	usedmovetext
+	doturn
+	stealthrock
+	endmove
+
+Defog:
+; Lowers the target's evasion and clears hazards and screens.
+; savemiss/restoremiss: a failed evasion drop must not stop the
+; clearing, but a Protect block must.
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	savemiss
+	lowersub
+	evasiondown
+	statdownanim
+	raisesub
+	statdownmessage
+	statdownfailtext
+	restoremiss
+	defog
+	endmove
+
+WorkUp:
+; Raises ATTACK and SPCL.ATK.
+	checkobedience
+	usedmovetext
+	doturn
+	deferstatmessages
+	attackup
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	resetmiss
+	specialattackup
+	statupmessage
+	statupfailtext
+	flushstatmessages
+	endmove
+
+Superpower:
+; The user's ATTACK and DEFENSE fall after landing.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	savemiss
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	deferstatmessages
+	switchturn
+	attackdown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	restoremiss
+	switchturn
+	defensedown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	restoremiss
+	flushstatmessages
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+SpAtkUpHit:
+; 50% chance to raise the user's SPCL.ATK (Fiery Dance).
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	savemiss
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	specialattackup
+	statupmessage
+	restoremiss
+	checkfaint
+	buildopponentrage
+	endmove
+
+RageFist:
+; Power grows by 50 for every hit the user has taken.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	ragefistpower
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+HammerArm:
+; The user's SPEED falls after use.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	savemiss
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	switchturn
+	speeddown
+	switchturn
+	switchturn
+	statdownmessage
+	switchturn
+	restoremiss
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+CircleThrow:
+; Damages, then drags the target out (Circle Throw / Dragon Tail).
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	forceswitch
+	endmove
+
+Bounce:
+; Two-turn Fly clone with a 30% paralysis chance.
+	checkcharge
+	checkobedience
+	doturn
+	charge
+	usedmovetext
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanimnosub
+	raisesub
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	effectchance
+	checkfaint
+	buildopponentrage
+	paralyzetarget
+	kingsrock
 	endmove
