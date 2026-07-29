@@ -18,6 +18,16 @@ BattleCommand_ClearHazards:
 	ld hl, wEnemyScreens
 	ld de, wEnemyWrapCount
 .got_screens_wrap
+	bit SCREENS_STEALTH_ROCK, [hl]
+	jr z, .no_stealth_rock
+	res SCREENS_STEALTH_ROCK, [hl]
+	push hl
+	push de
+	ld hl, BlewStealthRockText
+	call StdBattleTextbox
+	pop de
+	pop hl
+.no_stealth_rock
 	bit SCREENS_SPIKES, [hl]
 	jr z, .no_spikes
 	; reload the screens pointer (hl may have been clobbered above)
