@@ -216,28 +216,29 @@ BattleAnim_PhantomForce:
 	anim_if_param_equal $1, BattleAnim_PhantomForceBranch
 	anim_if_param_equal $2, BattleAnim_PhantomForceBranch2
 
-; The strike: it tears back out of the dark before anything is visible.
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
+; The strike. This is deliberately BattleAnim_ShadowBall's exact GFX and palette
+; recipe with impacts appended - no anim_setobjpal and no anim_obp0. Those two
+; were what turned the shadow ball into a solid square: obp0 $c0 collapses three
+; of the four object shades into one, so anything drawn with it becomes a blob.
+; ANIM_GFX_HIT is appended last so EGG and SMOKE keep the same tile offsets
+; Shadow Ball relies on.
 	anim_3gfx ANIM_GFX_EGG, ANIM_GFX_SMOKE, ANIM_GFX_HIT
 	anim_bgp $1b
-	anim_obp0 $c0
 	anim_sound 0, 0, SFX_CURSE
 	anim_wait 12
 	anim_sound 6, 2, SFX_SLUDGE_BOMB
 	anim_obj ANIM_OBJ_SHADOW_BALL, 64, 92, $2
-	anim_wait 28
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+	anim_wait 32
+	anim_obj ANIM_OBJ_BALL_POOF, 132, 56, $10
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $c0, $1, $0
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
-	anim_wait 5
+	anim_wait 6
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_04, 124, 44, $0
-	anim_wait 5
+	anim_wait 6
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_04, 148, 64, $0
-	anim_wait 8
-	anim_obj ANIM_OBJ_BALL_POOF, 132, 56, $10
 	anim_wait 24
 
 BattleAnim_PhantomForceBranch2:
@@ -247,15 +248,20 @@ BattleAnim_PhantomForceBranch2:
 	anim_ret
 
 BattleAnim_PhantomForceBranch:
-; The charge turn: fade out and STAY out.
-; ANIM_BG_1D (what Faint Attack uses) fades down and then back up again, which
-; is why the sprite flashed back in for a moment before the engine hid it.
-; ANIM_BG_16 is the same ramp without the fade-back - its palette list ends
-; instead of reversing - so the mon is still dark when HIDE_MON lands.
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
-	anim_1gfx ANIM_GFX_HIT
+; Charge turn: fade out and stay out.
+;
+; ANIM_BG_16 is a scanline palette fade over the battler's own rows. It ends
+; instead of reversing (unlike ANIM_BG_1D, which is why the sprite used to flash
+; back in), so the mon is still dark when HIDE_MON lands.
+;
+; Deliberately NO anim_call BattleAnim_TargetObj_1Row here. That command
+; converts the battler pic from BG tiles into OAM objects and MUST be paired
+; with BattleAnim_ShowMon_0 to put it back. Leaving it unpaired is what was
+; chopping the bottom off the opponent and the top off your own back sprite -
+; the BG map kept pointing at rows that had been handed to OAM and never
+; restored. The fade does not need it; only effects that move the mon do.
+	anim_1gfx ANIM_GFX_SPEED
 	anim_sound 0, 0, SFX_CURSE
-	anim_call BattleAnim_TargetObj_1Row_5
 	anim_bgeffect ANIM_BG_16, $0, $1, $40
 	anim_wait 48
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
