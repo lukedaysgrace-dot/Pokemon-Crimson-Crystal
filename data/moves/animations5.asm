@@ -212,76 +212,83 @@ BattleAnim_SignalBeam:
 BattleAnim_PhantomForce:
 ; EFFECT_FLY, so the same three-way param split as BattleAnim_Fly:
 ; $1 = the charge turn, $2 = coming back without connecting,
-; anything else = the strike.
+; anything else = the strike (which falls through into the reappear).
 	anim_if_param_equal $1, BattleAnim_PhantomForceBranch
 	anim_if_param_equal $2, BattleAnim_PhantomForceBranch2
 
-; The strike: it comes back out of the dark and hits hard.
+; The strike: it tears back out of the dark before anything is visible.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_3gfx ANIM_GFX_EGG, ANIM_GFX_SMOKE, ANIM_GFX_HIT
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_bgp $1b
+	anim_obp0 $c0
+	anim_sound 0, 0, SFX_CURSE
+	anim_wait 12
 	anim_sound 6, 2, SFX_SLUDGE_BOMB
 	anim_obj ANIM_OBJ_SHADOW_BALL, 64, 92, $2
 	anim_wait 28
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $10, $1, $20
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $c0, $1, $0
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
-	anim_wait 8
+	anim_wait 5
 	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_04, 128, 48, $0
-	anim_wait 8
+	anim_obj ANIM_OBJ_04, 124, 44, $0
+	anim_wait 5
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_04, 148, 64, $0
-	anim_wait 32
-	anim_ret
+	anim_wait 8
+	anim_obj ANIM_OBJ_BALL_POOF, 132, 56, $10
+	anim_wait 24
 
 BattleAnim_PhantomForceBranch2:
-; Came back without striking.
+; Reappear - also the path taken when it comes back without striking.
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_wait 32
 	anim_ret
 
 BattleAnim_PhantomForceBranch:
-; The charge turn: fade out of the world the way Faint Attack does, then stay
-; gone. ANIM_BG_1D cycles the palette down to black and back up again, so the
-; fade is cut short with anim_incbgeffect while it is still dark and the mon is
-; hidden properly from there.
+; The charge turn: fade out and STAY out.
+; ANIM_BG_1D (what Faint Attack uses) fades down and then back up again, which
+; is why the sprite flashed back in for a moment before the engine hid it.
+; ANIM_BG_16 is the same ramp without the fade-back - its palette list ends
+; instead of reversing - so the mon is still dark when HIDE_MON lands.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_CURSE
 	anim_call BattleAnim_TargetObj_1Row_5
-	anim_bgeffect ANIM_BG_1D, $0, $1, $80
-	anim_wait 64
-	anim_incbgeffect ANIM_BG_1D
+	anim_bgeffect ANIM_BG_16, $0, $1, $40
+	anim_wait 48
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
-	anim_wait 16
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_16
 	anim_ret
 
 BattleAnim_HeadlongRush:
-; Kicks up ground, then throws its whole body at the target.
+; No wind-up. It just detonates on contact and takes the ground with it.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_BROWN
-	anim_2gfx ANIM_GFX_SAND, ANIM_GFX_HIT
-	anim_sound 0, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_56, 56, 104, $0
-	anim_wait 10
-	anim_sound 0, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_56, 72, 104, $0
-	anim_wait 16
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS
 	anim_call BattleAnim_TargetObj_1Row_5
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $10
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 3
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $10, $1, $20
-	anim_sound 0, 1, SFX_TACKLE
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+	anim_bgeffect ANIM_BG_1F, $c0, $1, $0
+	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
-	anim_wait 6
-	anim_sound 0, 1, SFX_TACKLE
-	anim_obj ANIM_OBJ_00, 128, 48, $0
-	anim_wait 6
+	anim_wait 4
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 128, 52, $40
+	anim_wait 4
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 128, 48, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_SMALL_ROCK, 148, 60, $30
+	anim_wait 4
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_BIG_ROCK, 140, 64, $48
+	anim_wait 12
 	anim_call BattleAnim_ShowMon_0_5
-	anim_wait 20
+	anim_wait 24
 	anim_ret
 
 BattleAnim_ShadowBone:
@@ -867,20 +874,28 @@ BattleAnim_FickleBeam:
 	anim_ret
 
 BattleAnim_StoneAxe:
-; A stone cleave that leaves jagged rocks strewn behind
+; A heavy cleave, then the rock it shears loose bursts up out of the target.
 	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_ROCKS, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
 	anim_sound 0, 1, SFX_CUT
-	anim_obj ANIM_OBJ_VERTICAL_CHOP, 136, 56, $30
-	anim_wait 10
+	anim_obj ANIM_OBJ_CUT_HORIZONTAL, 112, 48, $0
+	anim_wait 20
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $c0, $1, $0
 	anim_sound 0, 1, SFX_STRENGTH
 	anim_obj ANIM_OBJ_HIT_BIG, 136, 56, $0
-	anim_wait 10
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_STONE_EDGE_STILL, 120, 88, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_STONE_EDGE_STILL, 144, 92, $0
-	anim_wait 6
-	anim_obj ANIM_OBJ_STONE_EDGE_STILL, 132, 96, $0
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_AVALANCHE_BIG, 144, 250, $0e
+	anim_wait 3
+	anim_obj ANIM_OBJ_AVALANCHE_SMALL, 122, 250, $12
+	anim_wait 3
+	anim_sound 0, 1, SFX_STRENGTH
+	anim_obj ANIM_OBJ_AVALANCHE_BIG, 118, 250, $11
+	anim_wait 3
+	anim_obj ANIM_OBJ_AVALANCHE_SMALL, 154, 250, $0f
+	anim_wait 3
+	anim_obj ANIM_OBJ_AVALANCHE_SMALL, 134, 250, $10
 	anim_wait 32
 	anim_ret
 
