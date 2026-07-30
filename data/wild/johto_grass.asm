@@ -23,12 +23,12 @@ JohtoGrassWildMons:
 	dbw 5, HOPPIP
 	dbw 5, CATERPIE
 	; nite
-	dbw 3, GASTLY
+	dbw 3, BELLSPROUT
 	dbw 4, RATTATA
 	dbw 4, ZUBAT
 	dbw 3, BELLSPROUT
-	dbw 5, GOLETT
-	dbw 5, GASTLY
+	dbw 5, HOOTHOOT
+	dbw 5, RATTATA
 	dbw 5, HOOTHOOT
 
 	map_id SPROUT_TOWER_3F
@@ -50,13 +50,13 @@ JohtoGrassWildMons:
 	dbw 5, SPEAROW
 	dbw 4, CATERPIE
 	; nite
-	dbw 3, GASTLY
-	dbw 4, DUSKULL
-	dbw 5, GASTLY
+	dbw 3, BELLSPROUT
+	dbw 4, HOOTHOOT
+	dbw 5, RATTATA
 	dbw 4, ZUBAT
 	dbw 6, MURKROW
 	dbw 5, HOOTHOOT
-	dbw 5, SHUPPET
+	dbw 5, SPEAROW
 
 	map_id TIN_TOWER_2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -77,12 +77,12 @@ JohtoGrassWildMons:
 	dbw 24, STANTLER
 	dbw 24, AIPOM
 	; nite
-	dbw 20, GASTLY
-	dbw 21, DUSKULL
-	dbw 22, MISDREAVUS
+	dbw 20, NOCTOWL
+	dbw 21, FEAROW
+	dbw 22, AIPOM
 	dbw 22, MURKROW
-	dbw 23, GASTLY
-	dbw 24, MIMIKYU
+	dbw 23, STANTLER
+	dbw 24, FURRET
 	dbw 24, GOLBAT
 
 	map_id TIN_TOWER_3F
@@ -106,10 +106,10 @@ JohtoGrassWildMons:
 	; nite
 	dbw 20, DROWZEE
 	dbw 21, NATU
-	dbw 22, MISDREAVUS
-	dbw 22, DUSKULL
+	dbw 22, KADABRA
+	dbw 22, NATU
 	dbw 23, MURKROW
-	dbw 24, GASTLY
+	dbw 24, TOGETIC
 	dbw 24, MORGREM
 
 	map_id TIN_TOWER_4F
@@ -137,7 +137,7 @@ JohtoGrassWildMons:
 	dbw 22, ZUBAT
 	dbw 23, GOLBAT
 	dbw 24, MURKROW
-	dbw 24, GASTLY
+	dbw 24, NOCTOWL
 
 	map_id TIN_TOWER_5F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -188,37 +188,37 @@ JohtoGrassWildMons:
 	dbw 20, JIGGLYPUFF
 	dbw 21, TOGETIC
 	dbw 22, DROWZEE
-	dbw 22, MISDREAVUS
+	dbw 22, NATU
 	dbw 23, GRANBULL
 	dbw 24, MURKROW
-	dbw 24, MIMIKYU
+	dbw 24, KIRLIA
 
 	map_id TIN_TOWER_7F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 20, GASTLY
-	dbw 21, DUSKULL
-	dbw 22, MISDREAVUS
-	dbw 22, GASTLY
+	dbw 20, NOCTOWL
+	dbw 21, NATU
+	dbw 22, KADABRA
+	dbw 22, TOGETIC
 	dbw 23, MURKROW
-	dbw 24, GASTLY
-	dbw 24, MIMIKYU
+	dbw 24, PIDGEOTTO
+	dbw 24, SPOINK
 	; day
-	dbw 20, GASTLY
-	dbw 21, DUSKULL
-	dbw 22, MISDREAVUS
-	dbw 22, DRIFLOON
-	dbw 23, GASTLY
-	dbw 24, MIMIKYU
+	dbw 20, DROWZEE
+	dbw 21, KIRLIA
+	dbw 22, WOBBUFFET
+	dbw 22, GOLBAT
+	dbw 23, MURKROW
+	dbw 24, NOCTOWL
 	dbw 24, MURKROW
 	; nite
-	dbw 20, GASTLY
-	dbw 21, GASTLY
-	dbw 22, DUSKULL
-	dbw 22, MISDREAVUS
+	dbw 20, NATU
+	dbw 21, TOGETIC
+	dbw 22, PIDGEOTTO
+	dbw 22, KADABRA
 	dbw 23, MURKROW
-	dbw 24, GOLETT
-	dbw 24, DRIFLOON
+	dbw 24, DROWZEE
+	dbw 24, SPOINK
 
 	map_id TIN_TOWER_8F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -270,7 +270,7 @@ JohtoGrassWildMons:
 	dbw 21, KADABRA
 	dbw 22, NATU
 	dbw 22, WOBBUFFET
-	dbw 23, MISDREAVUS
+	dbw 23, KADABRA
 	dbw 24, SPOINK
 	dbw 24, MURKROW
 
@@ -295,10 +295,10 @@ JohtoGrassWildMons:
 	; nite
 	dbw 13, HOUNDOUR
 	dbw 14, KOFFING
-	dbw 15, GASTLY
-	dbw 14, DRIFLOON
+	dbw 15, GROWLITHE
+	dbw 14, SLUGMA
 	dbw 15, VULPIX
-	dbw 15, LITWICK
+	dbw 15, MAGBY
 	dbw 15, HOUNDOUR
 
 	map_id BURNED_TOWER_B1F
@@ -322,10 +322,10 @@ JohtoGrassWildMons:
 	; nite
 	dbw 14, HOUNDOUR
 	dbw 14, SALANDIT
-	dbw 16, DRIFLOON
+	dbw 16, VULPIX
 	dbw 15, ZUBAT
-	dbw 12, GASTLY
-	dbw 16, LITWICK
+	dbw 12, SIZZLIPEDE
+	dbw 16, HOUNDOUR
 	dbw 16, VULPIX
 
 	map_id NATIONAL_PARK
@@ -376,7 +376,7 @@ JohtoGrassWildMons:
 	; nite
 	dbw 20, NATU
 	dbw 22, DROWZEE
-	dbw 18, MISDREAVUS
+	dbw 18, NATU
 	dbw 24, NATU
 	dbw 22, WOBBUFFET
 	dbw 22, MURKROW
@@ -433,7 +433,7 @@ JohtoGrassWildMons:
 	dbw 5, ZUBAT
 	dbw 4, RATTATA
 	dbw 7, ONIX
-	dbw 6, GASTLY
+	dbw 6, ZUBAT
 	dbw 6, SANDSHREW
 
 	map_id UNION_CAVE_B1F
@@ -461,7 +461,7 @@ JohtoGrassWildMons:
 	dbw 8, MACHOP
 	dbw 6, RATTATA
 	dbw 8, SANDSHREW
-	dbw 8, GOLETT
+	dbw 8, GEODUDE
 
 	map_id UNION_CAVE_B2F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
@@ -538,7 +538,7 @@ JohtoGrassWildMons:
 	; nite
 	dbw 21, ZUBAT
 	dbw 23, GRIMER
-	dbw 19, GASTLY
+	dbw 19, ZUBAT
 	dbw 21, SLOWPOKE
 	dbw 23, GOLBAT
 	dbw 23, CROAGUNK
@@ -638,7 +638,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 31, MACHOKE
 	dbw 32, LUCARIO
-	dbw 31, STEELIX
+	dbw 31, ONIX
 	dbw 30, BRELOOM
 	dbw 28, MAROWAK
 	dbw 31, EXCADRILL
@@ -677,7 +677,7 @@ JohtoGrassWildMons:
 	dbw 16, MAWILE
 	dbw 16, GEODUDE
 	dbw 18, GALVANTULA
-	dbw 18, GOLETT
+	dbw 18, MACHOP
 
 	map_id ICE_ISLAND
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -863,10 +863,10 @@ JohtoGrassWildMons:
 	dbw 22, KRABBY
 	dbw 23, ZUBAT
 	dbw 22, SLOWPOKE
-	dbw 24, GASTLY
+	dbw 24, SHELLDER
 	dbw 25, CORSOLA
 	dbw 24, GOLBAT
-	dbw 24, DREEPY
+	dbw 24, GOLBAT
 
 	map_id WHIRL_ISLAND_NE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -891,7 +891,7 @@ JohtoGrassWildMons:
 	dbw 23, ZUBAT
 	dbw 22, SLOWPOKE
 	dbw 24, GRIMER
-	dbw 25, GASTLY
+	dbw 25, SHELLDER
 	dbw 24, GOLBAT
 	dbw 24, MAREANIE
 
@@ -917,10 +917,10 @@ JohtoGrassWildMons:
 	dbw 22, KRABBY
 	dbw 23, ZUBAT
 	dbw 22, SLOWPOKE
-	dbw 24, GASTLY
+	dbw 24, QWILFISH
 	dbw 25, GOLBAT
 	dbw 24, GRIMER
-	dbw 24, DREEPY
+	dbw 24, GOLBAT
 
 	map_id WHIRL_ISLAND_CAVE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -944,10 +944,10 @@ JohtoGrassWildMons:
 	dbw 22, KRABBY
 	dbw 23, ZUBAT
 	dbw 22, SLOWPOKE
-	dbw 24, DREEPY
-	dbw 25, GASTLY
+	dbw 24, SEEL
+	dbw 25, KRABBY
 	dbw 24, GOLBAT
-	dbw 24, GOLETT
+	dbw 24, GOLBAT
 
 	map_id WHIRL_ISLAND_SE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -972,7 +972,7 @@ JohtoGrassWildMons:
 	dbw 23, ZUBAT
 	dbw 22, SLOWPOKE
 	dbw 24, GRIMER
-	dbw 25, GASTLY
+	dbw 25, KRABBY
 	dbw 24, GOLBAT
 	dbw 24, TENTACOOL
 
@@ -998,10 +998,10 @@ JohtoGrassWildMons:
 	dbw 23, KRABBY
 	dbw 24, ZUBAT
 	dbw 23, SLOWPOKE
-	dbw 25, HAUNTER
+	dbw 25, SEEL
 	dbw 26, GOLBAT
-	dbw 25, GASTLY
-	dbw 25, DREEPY
+	dbw 25, SHELLDER
+	dbw 25, GOLBAT
 
 	map_id WHIRL_ISLAND_B2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1010,7 +1010,7 @@ JohtoGrassWildMons:
 	dbw 25, GOLBAT
 	dbw 24, SEEL
 	dbw 26, KRABBY
-	dbw 27, PINSIR
+	dbw 27, CORSOLA
 	dbw 26, MARILL
 	dbw 26, WIMPOD
 	; day
@@ -1025,10 +1025,10 @@ JohtoGrassWildMons:
 	dbw 24, KRABBY
 	dbw 25, GOLBAT
 	dbw 24, SLOWPOKE
-	dbw 26, HAUNTER
+	dbw 26, KRABBY
 	dbw 27, TENTACOOL
-	dbw 26, HAUNTER
-	dbw 26, DREEPY
+	dbw 26, SEEL
+	dbw 26, GOLBAT
 
 	map_id WHIRL_ISLAND_LUGIA_CHAMBER
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1044,25 +1044,25 @@ JohtoGrassWildMons:
 	dbw 25, KRABBY
 	dbw 26, GOLBAT
 	dbw 25, SEEL
-	dbw 27, CLOYSTER
+	dbw 27, SEEL
 	dbw 28, STARMIE
 	dbw 27, GOLISOPOD
 	dbw 27, TENTACOOL
 	; nite
 	dbw 25, KRABBY
-	dbw 26, HAUNTER
+	dbw 26, KRABBY
 	dbw 25, SLOWPOKE
-	dbw 27, HAUNTER
+	dbw 27, GOLBAT
 	dbw 28, GOLBAT
-	dbw 27, DRAKLOAK
-	dbw 27, GASTLY
+	dbw 27, SLOWPOKE
+	dbw 27, MANTINE
 
 	map_id SILVER_CAVE_ROOM_1
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 43, PIDGEOT
 	dbw 44, RHYDON
-	dbw 42, WEAVILE
+	dbw 42, MACHAMP
 	dbw 45, MACHAMP
 	dbw 45, ALAKAZAM
 	dbw 42, GOLEM
@@ -1076,11 +1076,11 @@ JohtoGrassWildMons:
 	dbw 46, RHYDON
 	dbw 46, TANGROWTH
 	; nite
-	dbw 43, DRAKLOAK
+	dbw 43, PUPITAR
 	dbw 44, SCRAFTY
 	dbw 42, PUPITAR
 	dbw 42, TOGEKISS
-	dbw 45, GOLURK
+	dbw 45, GOLEM
 	dbw 46, DURALUDON
 	dbw 46, ALTARIA
 
@@ -1092,7 +1092,7 @@ JohtoGrassWildMons:
 	dbw 47, DIPPLIN
 	dbw 46, VIBRAVA
 	dbw 48, TINKATON
-	dbw 40, ANNIHILAPE
+	dbw 40, HOUNDOOM
 	dbw 40, DRUNSPARCE
 	; day
 	dbw 48, CONKELDURR
@@ -1101,30 +1101,30 @@ JohtoGrassWildMons:
 	dbw 46, TANGROWTH
 	dbw 48, NINETALES
 	dbw 40, SALAZZLE
-	dbw 38, DUSKNOIR
+	dbw 38, GOLDUCK
 	; nite
 	dbw 48, SHUCKLE
 	dbw 48, GOLDUCK
-	dbw 46, BANETTE
+	dbw 46, TANGROWTH
 	dbw 46, HOUNDOOM
-	dbw 48, CHANDELURE
+	dbw 48, CONKELDURR
 	dbw 45, TALONFLAME
 	dbw 45, ZWEILOUS
 
 	map_id SILVER_CAVE_ROOM_3
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 51, GENGAR
+	dbw 51, URSARING
 	dbw 48, VIKAVOLT
 	dbw 48, WEEZING
 	dbw 50, URSARING
-	dbw 38, CURSOLA
+	dbw 38, MAGCARGO
 	dbw 38, MUK
 	dbw 46, AXEW
 	; day
 	dbw 55, DRAGONITE
-	dbw 48, HERACROSS
-	dbw 48, KLEAVOR
+	dbw 48, VIKAVOLT
+	dbw 48, GLISCOR
 	dbw 55, TYRANITAR
 	dbw 38, MUK
 	dbw 46, FRAXURE
@@ -1133,7 +1133,7 @@ JohtoGrassWildMons:
 	dbw 51, URSALUNA
 	dbw 48, MAGCARGO
 	dbw 48, NOIVERN
-	dbw 49, BAXCALIBUR
+	dbw 49, CAMERUPT
 	dbw 45, CAMERUPT
 	dbw 53, ARCHALUDON
 	dbw 53, APPLETUN
@@ -1145,25 +1145,25 @@ JohtoGrassWildMons:
 	dbw 46, NIDOKING
 	dbw 50, URSALUNABM
 	dbw 48, GLISCOR
-	dbw 48, SCIZOR
+	dbw 48, FORRETRESS
 	dbw 50, URSARINGBM
 	dbw 52, GLIMMORA
 	; day
-	dbw 48, SCYTHER
+	dbw 48, MAGNEZONE
 	dbw 46, NIDOQUEEN
 	dbw 50, HONCHKROW
 	dbw 46, SNEASLER
-	dbw 48, DRAGAPULT
+	dbw 48, NIDOKING
 	dbw 50, AGGRON
 	dbw 52, HYDRAPPLE
 	; nite
-	dbw 45, MISMAGIUS
+	dbw 45, GLISCOR
 	dbw 48, HYDREIGON
 	dbw 50, YANMEGA
 	dbw 46, EXCADRILL
 	dbw 48, SALAMENCE
-	dbw 50, MAMOSWINE
-	dbw 52, MR__RIME
+	dbw 50, AGGRON
+	dbw 52, EXCADRILL
 
 	map_id DARK_CAVE_VIOLET_ENTRANCE
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
@@ -1217,7 +1217,7 @@ JohtoGrassWildMons:
 	dbw 20, UMBREON
 	dbw 25, MURKROW
 	dbw 23, MAWILE
-	dbw 23, SNEASEL
+	dbw 23, GEODUDE
 
 	map_id ROUTE_29
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1271,7 +1271,7 @@ JohtoGrassWildMons:
 	dbw 4, HOOTHOOT
 	dbw 3, ZUBAT
 	dbw 4, SPINARAK
-	dbw 4, DRIFLOON
+	dbw 4, HOOTHOOT
 
 	map_id ROUTE_31
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1296,8 +1296,8 @@ JohtoGrassWildMons:
 	dbw 4, ZUBAT
 	dbw 5, BELLSPROUT
 	dbw 5, HOOTHOOT
-	dbw 4, GASTLY
-	dbw 5, GASTLY
+	dbw 4, HOOTHOOT
+	dbw 5, BELLSPROUT
 	dbw 5, RATTATA
 
 	map_id ROUTE_32
@@ -1324,8 +1324,8 @@ JohtoGrassWildMons:
 	dbw 7, BELLSPROUT
 	dbw 6, ZUBAT
 	dbw 7, HOOTHOOT
-	dbw 7, GASTLY
-	dbw 7, DRIFLOON
+	dbw 7, EKANS
+	dbw 7, MAREEP
 
 	map_id ROUTE_33
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1379,7 +1379,7 @@ JohtoGrassWildMons:
 	dbw 10, ABRA
 	dbw 12, JIGGLYPUFF
 	dbw 10, DITTO
-	dbw 10, GASTLY
+	dbw 10, DROWZEE
 
 	map_id ROUTE_35
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1431,8 +1431,8 @@ JohtoGrassWildMons:
 	dbw 4, HOOTHOOT
 	dbw 5, BELLSPROUT
 	dbw 5, HOOTHOOT
-	dbw 5, GASTLY
-	dbw 5, GASTLY
+	dbw 5, ODDISH
+	dbw 5, LEDYBA
 	dbw 5, ODDISH
 
 	map_id ROUTE_37
@@ -1594,8 +1594,8 @@ JohtoGrassWildMons:
 	dbw 16, MURKROW
 	dbw 17, MURKROW
 	dbw 17, VENONAT
-	dbw 17, GASTLY
-	dbw 17, DRIFLOON
+	dbw 17, VENONAT
+	dbw 17, FURRET
 
 	map_id ROUTE_44
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1638,7 +1638,7 @@ JohtoGrassWildMons:
 	dbw 23, CORVISQUIRE
 	dbw 30, AMPHAROS
 	dbw 24, RAICHU
-	dbw 28, DRIFBLIM
+	dbw 28, GLIGAR
 	dbw 30, PERSIAN
 	dbw 27, JUMPLUFF
 	dbw 27, RAITORA
