@@ -16,6 +16,26 @@ BattleAnim_ShowMon_0_CC:
 	anim_wait 1
 	anim_ret
 
+BattleAnim_TargetObj_2Row_CC:
+	anim_battlergfx_1row
+	anim_bgeffect ANIM_BG_BATTLEROBJ_2ROW, $0, $0, $0
+	anim_wait 6
+	anim_ret
+
+BattleAnim_UserObj_2Row_CC:
+	anim_battlergfx_1row
+	anim_bgeffect ANIM_BG_BATTLEROBJ_2ROW, $0, $1, $0
+	anim_wait 4
+	anim_ret
+
+BattleAnim_ShowMon_1_CC:
+	anim_wait 1
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 4
+	anim_incobj 1
+	anim_wait 1
+	anim_ret
+
 BattleAnimSub_SpeedLines_CC:
 	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
 	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
@@ -26,42 +46,54 @@ BattleAnimSub_SpeedLines_CC:
 	anim_ret
 
 BattleAnim_Overheat_CC:
-; Fiery power builds around the user, then a torrent of flame engulfs
-; the target and detonates.
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_FIRE
-	anim_2gfx ANIM_GFX_FIRE, ANIM_GFX_EXPLOSION
-	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $8, $0
-	anim_bgp $1b
+; (mae-pokeorange) Fire builds in the user until it erupts in a ring of
+; flame over the target, leaving both sides scorched under the smoke.
+	anim_2gfx ANIM_GFX_FIRE, ANIM_GFX_SMOKE_PUFF
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
+	anim_sound 0, 0, SFX_OUTRAGE
+	anim_wait 72
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_FIRE
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $44, $2, $0
 	anim_sound 0, 0, SFX_EMBER
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $0
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $20
-	anim_wait 4
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $10
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $30
-	anim_wait 4
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $8
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 64, 88, $38
-	anim_wait 16
-	anim_clearobjs
-	anim_wait 1
 .loop
-	anim_sound 6, 2, SFX_EMBER
-	anim_obj ANIM_OBJ_FLAMETHROWER, 72, 92, $0
-	anim_wait 4
-	anim_loop 6, .loop
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $0
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $28
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $30
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $38
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $20
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $8
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $18
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $4
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $2b
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $14
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $3b
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $24
+	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $b
+	anim_wait 12
+	anim_clearobjs
+	anim_loop 5, .loop
+	anim_sound 0, 0, SFX_BURN
+	anim_obj ANIM_OBJ_RADIAL_FLAME_SLOW, 136, 56, $6
+	anim_obj ANIM_OBJ_RADIAL_FLAME_SLOW, 136, 56, $2c
+	anim_obj ANIM_OBJ_RADIAL_FLAME_SLOW, 136, 56, $10
+	anim_obj ANIM_OBJ_RADIAL_FLAME_SLOW, 136, 56, $1d
+	anim_obj ANIM_OBJ_RADIAL_FLAME_SLOW, 136, 56, $39
+	anim_wait 16
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_obp0 $fc
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_CHARRED
+	anim_setobjpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_CHARRED
+	anim_sound 0, 0, SFX_BALL_POOF
+.loop2
+	anim_obj ANIM_OBJ_OVERHEAT_SMOKE, 36, 84, $30
+	anim_obj ANIM_OBJ_OVERHEAT_SMOKE, 120, 46, $30
+	anim_wait 1
+	anim_obj ANIM_OBJ_OVERHEAT_SMOKE, 60, 96, $30
+	anim_obj ANIM_OBJ_OVERHEAT_SMOKE, 144, 34, $30
 	anim_wait 8
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $24, $3, $0
-	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_EXPLOSION2, 136, 56, $0
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $0
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $20
-	anim_wait 8
-	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_EXPLOSION2, 130, 64, $0
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $10
-	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $30
-	anim_wait 24
+	anim_loop 6, .loop2
+	anim_wait 32
 	anim_ret
 
 BattleAnim_LeafStorm_CC:
@@ -115,16 +147,25 @@ BattleAnim_LeafStorm_CC:
 	anim_ret
 
 BattleAnim_FakeOut_CC:
-; A sudden clap right in the target's face.
-	anim_1gfx ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 122, 44, $0
-	anim_obj ANIM_OBJ_PALM, 148, 44, $0
-	anim_wait 4
-	anim_sound 0, 1, SFX_DOUBLESLAP
-	anim_obj ANIM_OBJ_HIT_YFIX, 136, 48, $0
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_wait 12
+; (mae-pokeorange) The little clapping hands snap shut right in the
+; target's face - startle, shock lines, then the flinch-flash.
+	anim_1gfx ANIM_GFX_OBJECTS
+	anim_obj ANIM_OBJ_FAKE_OUT_L, 112, 48, $0
+	anim_obj ANIM_OBJ_FAKE_OUT_R, 158, 48, $0
+	anim_wait 32
+	anim_clearobjs
+	anim_sound 0, 0, SFX_DOUBLESLAP
+	anim_obj ANIM_OBJ_SMELLINGSALT_L, 112, 48, $0
+	anim_obj ANIM_OBJ_SMELLINGSALT_R, 158, 48, $20
+	anim_wait 8
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_clearobjs
+	anim_wait 1
+	anim_sound 0, 0, SFX_RAGE
+	anim_obj ANIM_OBJ_FAKE_OUT_L, 112, 48, $0
+	anim_obj ANIM_OBJ_FAKE_OUT_R, 158, 48, $0
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
+	anim_wait 32
 	anim_ret
 
 BattleAnim_FlipTurn_CC:
@@ -156,43 +197,77 @@ BattleAnim_FlipTurn_CC:
 	anim_ret
 
 BattleAnim_IronDefense_CC:
-; The user's body takes on a hard metallic sheen.
+; (mae-pokeorange) The user's body flashes over and over as it takes on
+; a hard metallic sheen.
 	anim_1gfx ANIM_GFX_REFLECT
 	anim_obp0 $0
 	anim_call BattleAnim_TargetObj_1Row_CC
-	anim_setbgpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_METALLIC
-	anim_sound 0, 0, SFX_SHINE
-	anim_wait 8
-	anim_obj ANIM_OBJ_HARDEN,   6, 0,  10, 4, $0
-	anim_wait 32
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_HARDEN,   6, 0,  10, 4, $0
-	anim_wait 48
-	anim_setbgpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_DEFAULT
-	anim_call BattleAnim_ShowMon_0_CC
-	anim_ret
+.loop
+	anim_bgp $90
+	anim_sound 0, 0, SFX_FORESIGHT
+	anim_obj ANIM_OBJ_HARDEN, 48, 84, $0
+	anim_wait 6
+	anim_bgp $f8
+	anim_wait 6
+	anim_loop 5, .loop
+	anim_wait 6
+	anim_jump BattleAnim_ShowMon_0_CC
 
 BattleAnim_RockPolish_CC:
-; Rough stone chips grind away, leaving the user gleaming.
-	anim_3gfx ANIM_GFX_ROCKS, ANIM_GFX_SHINE, ANIM_GFX_SPEED
-	anim_sound 0, 0, SFX_SANDSTORM
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $28
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $5c
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $10
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $e8
-	anim_wait 12
-	anim_sound 0, 0, SFX_SANDSTORM
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $9c
-	anim_obj ANIM_OBJ_ROCK_SMASH, 64, 92, $d0
+; (mae-pokeorange) Grit sparks off the user's hide from every angle,
+; then it gleams with polished sparkles.
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GRAY
+	anim_2gfx ANIM_GFX_ROCK_POLISH, ANIM_GFX_SPEED
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK, $0, $1, $40
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_85DEG_R_YFLIP, 52, 88, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_5DEG_L_YFLIP, 40, 100, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_45DEG_R, 48, 96, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_5DEG_L, 56, 96, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_85DEG_L_YFLIP, 36, 84, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_45DEG_R_YFLIP, 60, 96, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_5DEG_R, 52, 88, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_85DEG_R, 40, 100, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_45DEG_L, 48, 96, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_85DEG_L, 56, 96, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_5DEG_R_YFLIP, 36, 84, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_SHINE
+	anim_obj ANIM_OBJ_ROCK_POLISH_45DEG_L_YFLIP, 60, 96, $0
+	anim_wait 8
+	anim_sound 0, 0, SFX_METRONOME
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 32, 72, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 64, 104, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 32, 104, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 64, 72, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 48, 88, $0
+	anim_wait 5
 	anim_wait 16
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_GLIMMER, 44, 76, $0
-	anim_obj ANIM_OBJ_GLIMMER, 84, 92, $0
-	anim_wait 16
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_GLIMMER, 64, 104, $0
-	anim_obj ANIM_OBJ_SHINY, 56, 84, $0
-	anim_wait 32
 	anim_ret
 
 BattleAnim_WoodHammer_CC:
@@ -309,52 +384,54 @@ BattleAnim_SacredSword_CC:
 	anim_ret
 
 BattleAnim_BrickBreak_CC:
-; A karate chop smashes clean through the barrier in front of the foe.
+; The chopping hand hangs poised above the foe (pokeorange), then comes
+; down through the screen with a glass-shattering blow.
 	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
 	anim_obp0 $0
 	anim_sound 0, 0, SFX_SHINE
 	anim_obj ANIM_OBJ_SCREEN, 136, 48, $0
+	anim_wait 8
+	anim_sound 6, 2, SFX_SHINE
+	anim_obj ANIM_OBJ_VERTICAL_CHOP_STILL, 136, 24, $30
 	anim_wait 16
-	anim_sound 0, 1, SFX_KARATE_CHOP
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $55, $2, $0
+	anim_wait 48
+	anim_clearobjs
+	anim_obj ANIM_OBJ_SCREEN, 136, 48, $0
 	anim_obj ANIM_OBJ_VERTICAL_CHOP, 136, 48, $0
 	anim_wait 4
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_sound 0, 1, SFX_KARATE_CHOP
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
-	anim_sound 0, 1, SFX_GLASS_TING
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
+	anim_wait 2
+	anim_sound 0, 1, SFX_GLASS_TING
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 52, $28
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 52, $5c
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 52, $10
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 52, $e8
-	anim_wait 24
+	anim_wait 32
 	anim_ret
 
 BattleAnim_HeatWave_CC:
-; A scorching wind fans embers across the field into the target.
-	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
-	anim_2gfx ANIM_GFX_FIRE, ANIM_GFX_WIND
-	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $8, $0
-	anim_sound 6, 2, SFX_EMBER
-	anim_obj ANIM_OBJ_EMBER,   8, 0,  12, 0, $12
+; (mae-pokeorange) A shimmering wall of superheated air washes over the
+; whole field.
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_HEAT_WAVE
+	anim_1gfx ANIM_GFX_HAZE
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $4, $0
+	anim_bgp $90
+	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
+	anim_sound 0, 0, SFX_EMBER
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 24, $10
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 48, $2
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 88, $8
 	anim_wait 4
-	anim_sound 6, 2, SFX_EMBER
-	anim_obj ANIM_OBJ_EMBER,   8, 0,  12, 4, $14
-	anim_wait 4
-	anim_sound 6, 2, SFX_EMBER
-	anim_obj ANIM_OBJ_EMBER,   8, 0,  10, 4, $13
-	anim_wait 8
-	anim_sound 0, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_GUST, 136, 72, $0
-	anim_wait 8
-	anim_incobj 1
-	anim_incobj 2
-	anim_incobj 3
-	anim_sound 0, 1, SFX_EMBER
-	anim_obj ANIM_OBJ_EMBER,  15, 0,   8, 4, $30
-	anim_obj ANIM_OBJ_EMBER, -16, 4,   8, 4, $30
-	anim_obj ANIM_OBJ_EMBER, -14, 0,   8, 4, $30
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_wait 32
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 32, $6
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 56, $c
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 80, $4
+	anim_obj ANIM_OBJ_MIST_BALL_BG, 8, 104, $e
+	anim_wait 160
+	anim_incbgeffect ANIM_BG_WHIRLPOOL
 	anim_ret
 
 BattleAnim_Snarl_CC:
@@ -396,16 +473,21 @@ BattleAnim_Nuzzle_CC:
 	anim_ret
 
 BattleAnim_BulletSeed_CC:
-; One quick burst of hard seeds per hit - kept short so the
-; multi-hit loop stays snappy.
+; (mae-pokeorange, shortened) A rattling burst of hard seeds per hit -
+; kept short so the multi-hit loop stays snappy.
 	anim_2gfx ANIM_GFX_PLANT, ANIM_GFX_HIT
-	anim_sound 16, 2, SFX_VINE_WHIP
-	anim_obj ANIM_OBJ_SEED_BOMB, 56, 72, $20
-	anim_obj ANIM_OBJ_SEED_BOMB, 48, 76, $30
-	anim_wait 8
-	anim_sound 0, 1, SFX_TACKLE
+	anim_sound 0, 1, SFX_BONE_CLUB
+	anim_obj ANIM_OBJ_BULLET_SEED, 64, 90, $6
+	anim_wait 4
+	anim_obj ANIM_OBJ_BULLET_SEED, 64, 90, $6
+	anim_wait 3
+	anim_sound 0, 1, SFX_HORN_ATTACK
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 56, $0
-	anim_wait 8
+	anim_obj ANIM_OBJ_BULLET_SEED, 64, 90, $6
+	anim_wait 3
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_HIT_YFIX, 136, 56, $0
+	anim_wait 6
 	anim_ret
 
 BattleAnim_DualWingbeat_CC:
@@ -422,23 +504,30 @@ BattleAnim_DualWingbeat_CC:
 	anim_ret
 
 BattleAnim_RockTomb_CC:
-; Boulders drop from above and box the target in.
-	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 136, 48, $48
-	anim_obj ANIM_OBJ_SMALL_ROCK, 148, 56, $30
-	anim_obj ANIM_OBJ_SMALL_ROCK, 124, 52, $50
-	anim_wait 8
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 128, 44, $38
-	anim_obj ANIM_OBJ_SMALL_ROCK, 144, 64, $40
-	anim_obj ANIM_OBJ_SMALL_ROCK, 132, 60, $28
-	anim_wait 8
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_sound 0, 1, SFX_STOMP
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 132, 56, $0
-	anim_wait 24
+; (mae-pokeorange) Boulders thud down one by one and box the target in,
+; stamped with a big flashing X.
+	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_OBJECTS
+	anim_obj ANIM_OBJ_ROCK_TOMB, 128, 70, $30
+	anim_wait 18
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $4, $2, $0
+	anim_obj ANIM_OBJ_ROCK_TOMB, 152, 68, $30
+	anim_wait 18
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $4, $2, $0
+	anim_obj ANIM_OBJ_ROCK_TOMB, 112, 68, $30
+	anim_wait 18
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $4, $2, $0
+	anim_obj ANIM_OBJ_ROCK_TOMB, 136, 66, $30
+	anim_wait 18
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $20, $2, $0
+	anim_wait 40
+	anim_clearobjs
+	anim_sound 6, 3, SFX_PLACE_PUZZLE_PIECE_DOWN
+	anim_obj ANIM_OBJ_RED_X, 132, 44, $2e
+	anim_wait 32
 	anim_ret
 
 BattleAnim_LowSweep_CC:
@@ -456,41 +545,57 @@ BattleAnim_LowSweep_CC:
 	anim_ret
 
 BattleAnim_MudShot_CC:
-; Globs of mud blast the target and mire it down.
+; (mae-pokeorange) A sustained stream of mud globs splatters over the
+; target.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_BROWN
-	anim_2gfx ANIM_GFX_POISON, ANIM_GFX_HIT
+	anim_1gfx ANIM_GFX_POISON
 .loop
-	anim_sound 6, 2, SFX_SLUDGE_BOMB
+	anim_sound 6, 2, SFX_BUBBLEBEAM
 	anim_obj ANIM_OBJ_MUD_SHOT, 64, 92, $4
-	anim_wait 6
-	anim_loop 3, .loop
-	anim_wait 8
-	anim_sound 0, 1, SFX_TACKLE
-	anim_obj ANIM_OBJ_HIT_YFIX, 136, 56, $0
 	anim_wait 4
-	anim_obj ANIM_OBJ_HIT_YFIX, 128, 60, $0
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
+	anim_obj ANIM_OBJ_MUD_SHOT, 64, 92, $4
+	anim_wait 4
+	anim_sound 6, 2, SFX_BUBBLEBEAM
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $5c
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $e8
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $d0
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $50
+	anim_obj ANIM_OBJ_MUD_SHOT, 64, 92, $4
+	anim_wait 4
+	anim_obj ANIM_OBJ_MUD_SHOT, 64, 92, $4
+	anim_wait 4
+	anim_loop 4, .loop
+	anim_wait 4
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $5c
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $e8
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $d0
+	anim_obj ANIM_OBJ_INK_SPLASH, 136, 56, $50
 	anim_wait 16
 	anim_ret
 
 BattleAnim_AirCutter_CC:
-; Razor-edged blades of wind slice across the target.
-	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_WHIP
-	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_sound 0, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_AIR_SLASH, 144, 40, $28
-	anim_obj ANIM_OBJ_AIR_SLASH, 152, 48, $8
+; (mae-pokeorange) Waves of razor wind stream off the user's wingbeats
+; and slice across the wobbling target.
+	anim_2gfx ANIM_GFX_WHIP, ANIM_GFX_HIT
+	anim_call BattleAnim_UserObj_2Row_CC
+	anim_bgeffect ANIM_BG_WOBBLE_MON, $0, $0, $0
+.loop
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_AIR_CUTTER, 64, 80, $18
 	anim_wait 4
-	anim_obj ANIM_OBJ_AIR_SLASH, 136, 48, $28
-	anim_obj ANIM_OBJ_AIR_SLASH, 144, 56, $8
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_AIR_CUTTER, 64, 96, $18
 	anim_wait 4
-	anim_obj ANIM_OBJ_AIR_SLASH, 128, 56, $28
-	anim_obj ANIM_OBJ_AIR_SLASH, 136, 64, $8
-	anim_wait 8
-	anim_sound 0, 1, SFX_CUT
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
-	anim_obj ANIM_OBJ_CUT_HORIZONTAL, 112, 48, $0
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_AIR_CUTTER, 64, 88, $18
+	anim_wait 4
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_AIR_CUTTER, 64, 104, $18
+	anim_wait 4
+	anim_loop 3, .loop
 	anim_wait 32
+	anim_incbgeffect ANIM_BG_WOBBLE_MON
+	anim_call BattleAnim_ShowMon_1_CC
 	anim_ret
 
 BattleAnim_CrossPoison_CC:
@@ -510,65 +615,97 @@ BattleAnim_CrossPoison_CC:
 	anim_ret
 
 BattleAnim_MagicalLeaf_CC:
-; Glittering leaves that curve unerringly into the target.
-	anim_2gfx ANIM_GFX_PLANT, ANIM_GFX_SHINE
+; (mae-pokeorange) Rainbow leaves swirl around the user, then every one
+; of them homes in on the target.
+	anim_setobjpal PAL_BATTLE_OB_GREEN, PAL_BTLCUSTOM_AURORA
+	anim_1gfx ANIM_GFX_PLANT
 	anim_sound 0, 0, SFX_VINE_WHIP
-	anim_obj ANIM_OBJ_RAZOR_LEAF,   6, 0,  10, 0, $28
-	anim_obj ANIM_OBJ_RAZOR_LEAF,   6, 0,  10, 0, $5c
-	anim_obj ANIM_OBJ_RAZOR_LEAF,   6, 0,  10, 0, $10
-	anim_obj ANIM_OBJ_RAZOR_LEAF,   6, 0,  10, 0, $e8
-	anim_wait 16
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_GLIMMER, 64, 88, $0
-	anim_wait 8
-	anim_sound 16, 2, SFX_VINE_WHIP
-	anim_incobj 1
-	anim_wait 2
-	anim_sound 16, 2, SFX_VINE_WHIP
-	anim_incobj 2
-	anim_wait 2
-	anim_sound 16, 2, SFX_VINE_WHIP
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $28
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $5c
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $10
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $e8
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $9c
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $d0
+	anim_wait 6
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $1c
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $50
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $dc
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $90
+	anim_wait 80
+	anim_sound 16, 2, SFX_SWEET_SCENT
 	anim_incobj 3
 	anim_wait 2
-	anim_sound 16, 2, SFX_VINE_WHIP
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 5
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 7
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 9
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 1
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 2
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
 	anim_incobj 4
-	anim_wait 32
-	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_GLIMMER, 136, 48, $0
-	anim_wait 24
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 6
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 8
+	anim_wait 2
+	anim_sound 16, 2, SFX_SWEET_SCENT
+	anim_incobj 10
+	anim_wait 64
 	anim_ret
 
 BattleAnim_SignalBeam_CC:
-; A sinister, flickering beam of light bores into the target.
+; (mae-pokeorange) Alternating red and blue orbs of sinister light pulse
+; into the target while the whole screen strobes.
+	anim_1gfx ANIM_GFX_GLOW
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_SIGNAL_BEAM_RED
-	anim_2gfx ANIM_GFX_GLOW, ANIM_GFX_HIT
-	anim_sound 0, 0, SFX_PSYBEAM
-	anim_obj ANIM_OBJ_SIGNAL_BEAM_R, 64, 92, $2
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_SIGNAL_BEAM_BLUE
+	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 .loop
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_SIGNAL_BEAM_BLUE
+	anim_sound 0, 0, SFX_SPITE
+	anim_obj ANIM_OBJ_SIGNAL_BEAM_R, 64, 92, $0
 	anim_wait 4
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_SIGNAL_BEAM_RED
+	anim_sound 0, 0, SFX_SPITE
+	anim_obj ANIM_OBJ_SIGNAL_BEAM_B, 64, 92, $0
+	anim_wait 4
+	anim_sound 0, 0, SFX_SPITE
+	anim_obj ANIM_OBJ_SIGNAL_BEAM_R, 64, 92, $0
+	anim_wait 4
+	anim_sound 0, 0, SFX_SPITE
+	anim_obj ANIM_OBJ_SIGNAL_BEAM_B, 64, 92, $0
 	anim_wait 4
 	anim_loop 4, .loop
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
-	anim_sound 0, 1, SFX_PSYBEAM
-	anim_obj ANIM_OBJ_HIT_YFIX, 136, 56, $0
-	anim_wait 4
-	anim_obj ANIM_OBJ_HIT_YFIX, 128, 48, $0
-	anim_wait 16
+	anim_wait 64
 	anim_ret
 
 BattleAnim_ScaleShot_CC:
-; A volley of hard, gleaming scales - kept short so the multi-hit
-; loop stays snappy.
+; A volley of hard, gleaming scales - several per hit, kept short so
+; the multi-hit loop stays snappy.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_DRAGON_PULSE
 	anim_2gfx ANIM_GFX_TRIANGLE, ANIM_GFX_HIT
 	anim_sound 6, 2, SFX_RAZOR_WIND
 	anim_obj ANIM_OBJ_SHOOTING_TRIANGLE, 48, 98, $2
-	anim_wait 12
+	anim_wait 3
+	anim_obj ANIM_OBJ_SHOOTING_TRIANGLE, 56, 90, $2
+	anim_wait 3
+	anim_obj ANIM_OBJ_SHOOTING_TRIANGLE, 48, 82, $2
+	anim_wait 8
 	anim_sound 0, 1, SFX_TACKLE
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 56, $0
-	anim_wait 8
+	anim_wait 4
+	anim_obj ANIM_OBJ_HIT_YFIX, 130, 62, $0
+	anim_wait 6
 	anim_ret
 
 BattleAnim_PhantomForce_CC:
@@ -591,19 +728,19 @@ BattleAnim_PhantomForce_CC:
 	anim_wait 16
 	anim_ret
 .turn1
-	anim_1gfx ANIM_GFX_SPEED
-	anim_bgp $1b
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $1, $0
+; the user slowly fades from sight (Faint Attack-style fade) and STAYS
+; gone: the pic is hidden before the fade effect is released, so nothing
+; comes back until the turn-2 strike.
+	anim_1gfx ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_CURSE
+	anim_call BattleAnim_TargetObj_1Row_CC
+	anim_bgeffect ANIM_BG_FADE_MON_TO_WHITE_WAIT_FADE_BACK, $0, $1, $80
+	anim_wait 96
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
-	anim_sound 0, 0, SFX_WARP_TO
-	anim_obj ANIM_OBJ_WARP,   5, 4,  13, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,  12, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,  11, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,  10, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,   9, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,   8, 4, $0
-	anim_obj ANIM_OBJ_WARP,   5, 4,   7, 4, $0
-	anim_wait 64
+	anim_wait 2
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_WHITE_WAIT_FADE_BACK
+	anim_call BattleAnim_ShowMon_0_CC
+	anim_wait 4
 	anim_ret
 
 ; ==== 2026-07 move expansion, batch 2 ====
@@ -961,16 +1098,22 @@ BattleAnim_RagingBull_CC:
 
 BattleAnim_FickleBeam_CC:
 ; A wavering draconic beam - sometimes every head fires at once.
+; Full Hyper Beam-style segment chain so the beam actually reaches
+; the target instead of stopping halfway.
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_DRAGON_PULSE
 	anim_2gfx ANIM_GFX_BEAM, ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_BEAM,   8, 0,  11, 4, $0
+	anim_obj ANIM_OBJ_BEAM, 64, 92, $0
 	anim_wait 4
 	anim_sound 0, 0, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_BEAM,  10, 0,  10, 4, $0
+	anim_obj ANIM_OBJ_BEAM, 80, 84, $0
 	anim_wait 4
-	anim_sound 0, 0, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_BEAM,  12, 0,   9, 4, $0
+	anim_sound 0, 1, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BEAM, 96, 76, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_HYPER_BEAM
+	anim_obj ANIM_OBJ_BEAM, 112, 68, $0
+	anim_obj ANIM_OBJ_28, 126, 62, $0
 	anim_wait 12
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_sound 0, 1, SFX_AEROBLAST
@@ -1081,25 +1224,50 @@ BattleAnim_WorkUp_CC:
 	anim_ret
 
 BattleAnim_Superpower_CC:
-; Every last bit of power thrown into one colossal blow.
-	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_EXPLOSION
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_RED
-	anim_sound 0, 0, SFX_RAGE
-	anim_wait 8
-	anim_call BattleAnim_TargetObj_1Row_CC
-	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-	anim_wait 8
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+; (mae-pokeorange) The user gathers glowing power lines, hurls itself
+; forward, and the screen erupts under three colossal blows.
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_FIRE
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_SPEED
+	anim_call BattleAnim_TargetObj_2Row_CC
+	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+.loop
+	anim_sound 0, 0, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_FOCUS, 44, 108, $6
 	anim_wait 2
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_obj ANIM_OBJ_FOCUS, 36, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 52, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 28, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 60, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 20, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 68, 108, $8
+	anim_wait 2
+	anim_loop 3, .loop
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING
+	anim_incbgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_sound 0, 0, SFX_SPARK
+	anim_wait 16
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_wait 4
 	anim_clearobjs
-	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $3, $0
-	anim_obj ANIM_OBJ_EXPLOSION2, 136, 56, $0
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 128, 52, $0
-	anim_wait 32
-	anim_call BattleAnim_ShowMon_0_CC
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 1
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $4, $10
+.loop2
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
+	anim_wait 20
+	anim_loop 3, .loop2
+	anim_wait 16
 	anim_ret
 
 BattleAnim_FieryDance_CC:
@@ -1165,44 +1333,70 @@ BattleAnim_RageFist_CC:
 	anim_ret
 
 BattleAnim_CrushClaw_CC:
-; Claws crush down and tear through the target.
-	anim_2gfx ANIM_GFX_TEAR, ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_SCRATCH
-	anim_obj ANIM_OBJ_CLAW_TEAR, 132, 48, $0
-	anim_wait 10
-	anim_sound 0, 1, SFX_VICEGRIP
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_wait 24
+; (mae-pokeorange) A triple raking slash, then the claws crush down.
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_GRAY
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_FIRE
+	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_TEAR
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
+	anim_sound 0, 1, SFX_CUT
+	anim_obj ANIM_OBJ_CUT_DOWN_LEFT, 144, 48, $0
+	anim_obj ANIM_OBJ_CUT_DOWN_LEFT, 140, 44, $0
+	anim_obj ANIM_OBJ_CUT_DOWN_LEFT, 136, 40, $0
+	anim_wait 8
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $30, $2, $0
+	anim_obj ANIM_OBJ_CLAW_TEAR, 144, 48, $0
+	anim_wait 64
+	anim_call BattleAnim_ShowMon_1_CC
 	anim_ret
 
 BattleAnim_ForcePalm_CC:
-; A palm strike that detonates with a shock wave.
-	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_LIGHTNING
+; (mae-pokeorange) The open palm presses in, then detonates a spiked
+; shockwave point-blank.
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_GRAY
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_PAYBACK
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_BIG_GLOW_SPIKED
+	anim_battlergfx_2row
+	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $1, $0
+	anim_obj ANIM_OBJ_PALM_STILL, 94, 48, $0
+	anim_wait 32
+	anim_clearobjs
+	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $1, $0
+	anim_obj ANIM_OBJ_FORCE_PALM, 94, 48, $0
+	anim_wait 6
 	anim_sound 0, 1, SFX_KARATE_CHOP
-	anim_obj ANIM_OBJ_PALM, 124, 44, $0
-	anim_wait 8
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_sound 0, 1, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
-	anim_obj ANIM_OBJ_SPARKS_CIRCLE, -15, 0,   7, 0, $0
-	anim_wait 40
+	anim_obj ANIM_OBJ_BIG_GLOW_SPIKED, 136, 48, $0
+	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
+	anim_wait 2
+	anim_clearobjs
+	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $1, $0
+	anim_obj ANIM_OBJ_PALM_STILL, 166, 48, $0
+	anim_wait 32
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_ret
 
 BattleAnim_HammerArm_CC:
-; A slow, crushing hammer blow.
-	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_EXPLOSION
-	anim_sound 0, 0, SFX_SWORDS_DANCE
-	anim_wait 12
-	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_PUNCH, 136, 40, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_STRENGTH
+; (mae-pokeorange) The hammering fist drops out of the sky and slams
+; down in a burst of smoke.
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_GRAY
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_BRIGHT
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_SMOKE_PUFF
+	anim_sound 0, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_HAMMER_ARM, 136, 68, $30
+	anim_wait 16
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 60, $0
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $24, $2, $0
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
-	anim_obj ANIM_OBJ_EXPLOSION2, 132, 60, $0
-	anim_wait 24
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $60, $2, $20
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
+	anim_wait 1
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
+	anim_wait 1
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
+	anim_wait 44
 	anim_ret
 
 BattleAnim_CircleThrow_CC:
@@ -1243,28 +1437,30 @@ BattleAnim_FreezeDry_CC:
 	anim_ret
 
 BattleAnim_Bounce_CC:
-; Turn 1: the user springs high out of sight.
-; Turn 2: it slams down onto the target.
+; (mae-pokeorange) Turn 1: the user springs high out of sight.
+; Turn 2: it drops out of the sky onto the target.
 	anim_if_param_equal $1, .turn1
 	anim_if_param_equal $2, .miss
-	anim_1gfx ANIM_GFX_HIT
+	anim_2gfx ANIM_GFX_U_TURN, ANIM_GFX_HIT
+	anim_sound 0, 0, SFX_KINESIS
+	anim_obj ANIM_OBJ_U_TURN_FALL, 136, 230, $10
+	anim_wait 16
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $10, $4, $0
 	anim_sound 0, 1, SFX_STOMP
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
-	anim_wait 8
-	anim_obj ANIM_OBJ_HIT_YFIX, -14, 4,   8, 0, $0
-	anim_wait 24
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_wait 16
 .miss
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_wait 16
 	anim_ret
 .turn1
 	anim_1gfx ANIM_GFX_U_TURN
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $1, $0
+	anim_sound 0, 0, SFX_POTION
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
-	anim_sound 0, 0, SFX_JUMP_KICK
-	anim_obj ANIM_OBJ_BLUR_VERTICAL_UP, 48, 30, $30
-	anim_wait 48
+	anim_obj ANIM_OBJ_U_TURN_RISE, 48, 88, $30
+	anim_wait 32
+	anim_clearobjs
+	anim_wait 1
 	anim_ret
 
 BattleAnim_DragonTail_CC:
