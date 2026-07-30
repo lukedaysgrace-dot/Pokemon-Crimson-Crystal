@@ -53,11 +53,24 @@ OlivineGymJasmineScript:
 	iffalse .NoRoomForIronTail
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext Jasmine_IronTailSpeech
+	buttonsound
+.GiveMetalCoat:
+	checkevent EVENT_GOT_METAL_COAT_FROM_JASMINE
+	iftrue .GotMetalCoat
+	writetext Jasmine_MetalCoatOffer
+	buttonsound
+	verbosegiveitem METAL_COAT
+	iffalse .NoRoomForMetalCoat
+	setevent EVENT_GOT_METAL_COAT_FROM_JASMINE
+	writetext Jasmine_MetalCoatSpeech
 	waitbutton
+.GotMetalCoat:
 	closetext
 	end
 
 .GotIronTail:
+	checkevent EVENT_GOT_METAL_COAT_FROM_JASMINE
+	iffalse .GiveMetalCoat
 	checkevent EVENT_BEAT_JASMINE_REMATCH
 	iftrue .RematchDone
 	checkevent EVENT_BEAT_CHUCK_REMATCH
@@ -77,6 +90,7 @@ OlivineGymJasmineScript:
 	writetext Jasmine_GoodLuck
 	waitbutton
 .NoRoomForIronTail:
+.NoRoomForMetalCoat:
 	closetext
 	end
 
@@ -209,6 +223,18 @@ Jasmine_IronTailSpeech:
 	text "…You could use"
 	line "that TM to teach"
 	cont "IRON TAIL."
+	done
+
+Jasmine_MetalCoatOffer:
+	text "Oh… And please,"
+	line "take this as well."
+	done
+
+Jasmine_MetalCoatSpeech:
+	text "It's a METAL COAT."
+	line "STEELIX was just"
+	cont "an ONIX that held"
+	cont "one."
 	done
 
 Jasmine_GoodLuck:
