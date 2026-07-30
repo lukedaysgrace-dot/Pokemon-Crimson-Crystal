@@ -291,93 +291,147 @@ ComputeAIContestantScores:
 
 ContestScore:
 ; Determine the player's score in the Bug Catching Contest.
+;
+;   score = species value    (ContestMonScoreValues, 40-145)
+;         + level * 3        (21-54 at contest levels)
+;         + condition bonus  (0-60, scaled by remaining HP)
+;         + park balls left * 2
+;
+; Nothing here reads stats or DVs. Every caught mon gets perfect DVs
+; (see .copywildmonDVs in engine/pokemon/move_mon.asm), so any stat-derived
+; term is the same constant for every catch and can't tell them apart.
+;
+; Result is stored big endian in hProduct for BugContest_JudgeContestants.
+
+	ld hl, 0
+
+	ld a, [wContestMonSpecies]
+	and a
+	jr z, .store ; nothing was caught
+
+	; Species value.
+	call GetPokemonIndexFromID
+	ld d, h
+	ld e, l
+	call .SpeciesValue
+	ld l, a
+	ld h, 0
+
+	; Level * 3.
+	ld a, [wContestMonLevel]
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+
+	; Park Balls left * 2. Rewards catching cleanly instead of spamming.
+	ld a, [wParkBallsRemaining]
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+
+	; Condition bonus. Rewards catching it without beating it half to death.
+	push hl
+	call .ConditionBonus
+	ld c, a
+	ld b, 0
+	pop hl
+	add hl, bc
+
+.store
+	ld a, h
+	ldh [hProduct], a
+	ld a, l
+	ldh [hProduct + 1], a
+	ret
+
+.SpeciesValue:
+; in: de = 16-bit species index
+; out: a = that species' contest value
+	ld hl, ContestMonScoreValues
+.loop
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .default ; a zero index terminates the table
+	ld a, [hli]
+	push af
+	ld a, c
+	cp e
+	jr nz, .next
+	ld a, b
+	cp d
+	jr z, .found
+.next
+	pop af
+	jr .loop
+
+.found
+	pop af
+	ret
+
+.default
+	ld a, [hl]
+	ret
+
+.ConditionBonus:
+; out: a = 0-60, scaled by the fraction of HP the caught mon has left
+	ld a, [wContestMonMaxHP + 1]
+	and a
+	ret z ; never divide by zero
+
+	ld b, a ; divisor, preserved across Multiply
 
 	xor a
-	ldh [hProduct], a
-	ldh [hMultiplicand], a
-
-	ld a, [wContestMonSpecies] ; Species
-	and a
-	jr z, .done
-
-	; Tally the following:
-
-	; Max HP * 4
-	ld a, [wContestMonMaxHP + 1]
-	call .AddContestStat
-	ld a, [wContestMonMaxHP + 1]
-	call .AddContestStat
-	ld a, [wContestMonMaxHP + 1]
-	call .AddContestStat
-	ld a, [wContestMonMaxHP + 1]
-	call .AddContestStat
-
-	; Stats
-	ld a, [wContestMonAttack  + 1]
-	call .AddContestStat
-	ld a, [wContestMonDefense + 1]
-	call .AddContestStat
-	ld a, [wContestMonSpeed   + 1]
-	call .AddContestStat
-	ld a, [wContestMonSpclAtk + 1]
-	call .AddContestStat
-	ld a, [wContestMonSpclDef + 1]
-	call .AddContestStat
-
-	; DVs
-	ld a, [wContestMonDVs + 0]
-	ld b, a
-	and %0010
-	add a
-	add a
-	ld c, a
-
-	swap b
-	ld a, b
-	and %0010
-	add a
-	add c
-	ld d, a
-
-	ld a, [wContestMonDVs + 1]
-	ld b, a
-	and %0010
-	ld c, a
-
-	swap b
-	ld a, b
-	and %0010
-	srl a
-	add c
-	add c
-	add d
-	add d
-
-	call .AddContestStat
-
-	; Remaining HP / 8
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wContestMonHP + 1]
-	srl a
-	srl a
-	srl a
-	call .AddContestStat
+	ldh [hMultiplicand + 2], a
+	ld a, 60
+	ldh [hMultiplier], a
+	call Multiply
 
-	; Whether it's holding an item
-	ld a, [wContestMonItem]
-	and a
-	jr z, .done
-
-	ld a, 1
-	call .AddContestStat
-
-.done
+	; hProduct and hDividend are the same four bytes, so the product is
+	; already in place as the dividend.
+	ld a, b
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 3]
 	ret
 
-.AddContestStat:
-	ld hl, hMultiplicand
-	add [hl]
-	ld [hl], a
-	ret nc
-	dec hl
-	inc [hl]
-	ret
+ContestMonScoreValues:
+; What each mon in the contest pool is worth to the judges.
+; Rarity and prestige, deliberately not base stats.
+	dw CATERPIE
+	db  40
+	dw WEEDLE
+	db  40
+	dw METAPOD
+	db  55
+	dw KAKUNA
+	db  55
+	dw PARAS
+	db  70
+	dw VENONAT
+	db  70
+	dw BUTTERFREE
+	db 100
+	dw BEEDRILL
+	db 100
+	dw SHUCKLE
+	db 110
+	dw VENOMOTH
+	db 115
+	dw SCYTHER
+	db 130
+	dw PINSIR
+	db 130
+	dw HERACROSS
+	db 145
+	dw 0 ; end
+	db  70 ; value for anything not listed above

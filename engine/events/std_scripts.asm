@@ -314,9 +314,9 @@ BugContestResultsScript:
 	clearflag ENGINE_BUG_CONTEST_TIMER
 	clearevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
+	clearevent EVENT_CONTEST_OFFICER_HAS_PP_UP
+	clearevent EVENT_CONTEST_OFFICER_HAS_APRICORN
 	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
@@ -328,8 +328,8 @@ BugContestResultsScript:
 	farwritetext ContestResults_ConsolationPrizeText
 	buttonsound
 	waitsfx
-	verbosegiveitem BERRY
-	iffalse BugContestResults_NoRoomForBerry
+	verbosegiveitem WHT_APRICORN
+	iffalse BugContestResults_NoRoomForApricorn
 
 BugContestResults_DidNotWin:
 	farwritetext ContestResults_DidNotWinText
@@ -390,20 +390,76 @@ BugContestResults_FirstPlace:
 	iffalse BugContestResults_NoRoomForSunStone
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
+; Second place cycles through the elemental stones in a fixed order.
+; wBugContestStonePrizeIndex only advances once the stone is actually
+; in the player's bag, so a full bag never skips one.
 BugContestResults_SecondPlace:
-	getitemname STRING_BUFFER_4, EVERSTONE
+	readmem wBugContestStonePrizeIndex
+	ifequal 1, .WaterStone
+	ifequal 2, .Thunderstone
+	ifequal 3, .LeafStone
+	ifequal 4, .MoonStone
+	ifequal 5, .IceStone
+.FireStone:
+	getitemname STRING_BUFFER_4, FIRE_STONE
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
-	verbosegiveitem EVERSTONE
-	iffalse BugContestResults_NoRoomForEverstone
+	verbosegiveitem FIRE_STONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 1
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.WaterStone:
+	getitemname STRING_BUFFER_4, WATER_STONE
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem WATER_STONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 2
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.Thunderstone:
+	getitemname STRING_BUFFER_4, THUNDERSTONE
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem THUNDERSTONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 3
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.LeafStone:
+	getitemname STRING_BUFFER_4, LEAF_STONE
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem LEAF_STONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 4
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.MoonStone:
+	getitemname STRING_BUFFER_4, MOON_STONE
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem MOON_STONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 5
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.IceStone:
+	getitemname STRING_BUFFER_4, ICE_STONE
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem ICE_STONE
+	iffalse BugContestResults_NoRoomForStone
+	loadmem wBugContestStonePrizeIndex, 0
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_ThirdPlace:
-	getitemname STRING_BUFFER_4, GOLD_BERRY
+	getitemname STRING_BUFFER_4, PP_UP
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
-	verbosegiveitem GOLD_BERRY
-	iffalse BugContestResults_NoRoomForGoldBerry
+	verbosegiveitem PP_UP
+	iffalse BugContestResults_NoRoomForPPUp
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForSunStone:
@@ -412,22 +468,22 @@ BugContestResults_NoRoomForSunStone:
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
-BugContestResults_NoRoomForEverstone:
+BugContestResults_NoRoomForStone:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
-	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
+	setevent EVENT_CONTEST_OFFICER_HAS_STONE
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
-BugContestResults_NoRoomForGoldBerry:
+BugContestResults_NoRoomForPPUp:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
-	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
+	setevent EVENT_CONTEST_OFFICER_HAS_PP_UP
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
-BugContestResults_NoRoomForBerry:
+BugContestResults_NoRoomForApricorn:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
-	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
+	setevent EVENT_CONTEST_OFFICER_HAS_APRICORN
 	sjump BugContestResults_DidNotWin
 
 BugContestResults_CopyContestantsToResults:
