@@ -233,12 +233,12 @@ Route36OfficerScriptContest:
 Route36Officer_ContestHasConcluded:
 	checkevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	iftrue .Sunstone
-	checkevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	iftrue .Everstone
-	checkevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	iftrue .GoldBerry
-	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	iftrue .Berry
+	checkevent EVENT_CONTEST_OFFICER_HAS_STONE
+	iftrue .Stone
+	checkevent EVENT_CONTEST_OFFICER_HAS_PP_UP
+	iftrue .PPUp
+	checkevent EVENT_CONTEST_OFFICER_HAS_APRICORN
+	iftrue .Apricorn
 	writetext Route36NationalParkGateOfficer1ContestIsOverText
 	waitbutton
 	closetext
@@ -253,30 +253,90 @@ Route36Officer_ContestHasConcluded:
 	closetext
 	end
 
-.Everstone:
+; The held stone is whichever one the cycle is currently up to. The index
+; only advances once the player actually takes it.
+.Stone:
+	readmem wBugContestStonePrizeIndex
+	ifequal 1, .WaterStone
+	ifequal 2, .Thunderstone
+	ifequal 3, .LeafStone
+	ifequal 4, .MoonStone
+	ifequal 5, .IceStone
+.FireStone:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
 	buttonsound
-	verbosegiveitem EVERSTONE
+	verbosegiveitem FIRE_STONE
 	iffalse .BagFull
-	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
+	loadmem wBugContestStonePrizeIndex, 1
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
 	closetext
 	end
 
-.GoldBerry:
+.WaterStone:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
 	buttonsound
-	verbosegiveitem GOLD_BERRY
+	verbosegiveitem WATER_STONE
 	iffalse .BagFull
-	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
+	loadmem wBugContestStonePrizeIndex, 2
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
 	closetext
 	end
 
-.Berry:
+.Thunderstone:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
 	buttonsound
-	verbosegiveitem BERRY
+	verbosegiveitem THUNDERSTONE
 	iffalse .BagFull
-	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
+	loadmem wBugContestStonePrizeIndex, 3
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
+	closetext
+	end
+
+.LeafStone:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	buttonsound
+	verbosegiveitem LEAF_STONE
+	iffalse .BagFull
+	loadmem wBugContestStonePrizeIndex, 4
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
+	closetext
+	end
+
+.MoonStone:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	buttonsound
+	verbosegiveitem MOON_STONE
+	iffalse .BagFull
+	loadmem wBugContestStonePrizeIndex, 5
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
+	closetext
+	end
+
+.IceStone:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	buttonsound
+	verbosegiveitem ICE_STONE
+	iffalse .BagFull
+	loadmem wBugContestStonePrizeIndex, 0
+	clearevent EVENT_CONTEST_OFFICER_HAS_STONE
+	closetext
+	end
+
+.PPUp:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	buttonsound
+	verbosegiveitem PP_UP
+	iffalse .BagFull
+	clearevent EVENT_CONTEST_OFFICER_HAS_PP_UP
+	closetext
+	end
+
+.Apricorn:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	buttonsound
+	verbosegiveitem WHT_APRICORN
+	iffalse .BagFull
+	clearevent EVENT_CONTEST_OFFICER_HAS_APRICORN
 	closetext
 	end
 

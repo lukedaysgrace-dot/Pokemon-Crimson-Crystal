@@ -2760,7 +2760,11 @@ wParryFightCount::   db
 wErinFightCount::    db
 ; da0e
 
-	ds 82 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags
+; Which elemental stone the Bug Contest 2nd place prize is up to.
+; Cycles 0-5: Fire, Water, Thunder, Leaf, Moon, Ice.
+wBugContestStonePrizeIndex:: db
+
+	ds 81 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags, then by 1 for wBugContestStonePrizeIndex
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d

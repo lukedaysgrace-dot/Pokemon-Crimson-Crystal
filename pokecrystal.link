@@ -199,6 +199,8 @@ ROMX $49
 	"Unown Pic Pointers"
 ROMX $4a
 	"Trainer Pic Pointers"
+ROMX $4b
+	"Map Scripts 28"
 ROMX $51
 	"Map Blocks 4"
 ROMX $5b
