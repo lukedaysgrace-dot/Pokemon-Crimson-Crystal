@@ -14,7 +14,6 @@ SometimesFleeMons:
 	dw UMBREON
 	dw UNOWN
 	dw SNUBBULL
-	dw HERACROSS
 	dw -1
 
 OftenFleeMons:

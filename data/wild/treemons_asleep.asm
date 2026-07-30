@@ -19,7 +19,6 @@ AsleepTreeMonsDay:
 	dw HOOTHOOT
 	dw NOCTOWL
 	dw SPINARAK
-	dw HERACROSS
 	dw -1 ; end
 
 AsleepTreeMonsMorn:
@@ -27,5 +26,4 @@ AsleepTreeMonsMorn:
 	dw HOOTHOOT
 	dw NOCTOWL
 	dw SPINARAK
-	dw HERACROSS
 	dw -1 ; end
