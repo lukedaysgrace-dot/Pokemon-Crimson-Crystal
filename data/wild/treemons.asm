@@ -25,8 +25,8 @@ TreeMonSet_Canyon:
 	db -1
 ; rare
 	dbbw 50, 10, SPEAROW
-	dbbw 15, 10, HERACROSS
-	dbbw 15, 10, HERACROSS
+	dbbw 15, 10, SHUCKLE
+	dbbw 15, 10, SHUCKLE
 	dbbw 10, 10, AIPOM
 	dbbw  5, 10, AIPOM
 	dbbw  5, 10, AIPOM
@@ -43,8 +43,8 @@ TreeMonSet_Town:
 	db -1
 ; rare
 	dbbw 50, 10, SPEAROW
-	dbbw 15, 10, HERACROSS
-	dbbw 15, 10, HERACROSS
+	dbbw 15, 10, PINECO
+	dbbw 15, 10, PINECO
 	dbbw 10, 10, AIPOM
 	dbbw  5, 10, AIPOM
 	dbbw  5, 10, AIPOM
