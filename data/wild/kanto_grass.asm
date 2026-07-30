@@ -78,7 +78,7 @@ KantoGrassWildMons:
 	dbw 12, ZUBAT
 	dbw 11, GEODUDE
 	dbw 12, GEODUDE
-	dbw 17, HAUNTER
+	dbw 17, MACHOP
 	dbw 15, ZUBAT
 	dbw 15, ZUBAT
 	dbw 15, ZUBAT
@@ -106,7 +106,7 @@ KantoGrassWildMons:
 	dbw 14, GEODUDE
 	dbw 16, ONIX
 	dbw 15, ZUBAT
-	dbw 15, HAUNTER
+	dbw 15, ZUBAT
 	dbw 15, GOLBAT
 	dbw 15, GOLBAT
 
@@ -402,7 +402,7 @@ KantoGrassWildMons:
 	dbw 17, MEOWTH
 	dbw 20, NOCTOWL
 	dbw 16, ABRA
-	dbw 17, HAUNTER
+	dbw 17, MEOWTH
 	dbw 16, JIGGLYPUFF
 	dbw 18, KADABRA
 	dbw 18, KADABRA
