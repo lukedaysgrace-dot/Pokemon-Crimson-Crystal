@@ -3506,6 +3506,16 @@ DoSubstituteDamage:
 	call z, AppearUserLowerSub
 	call BattleCommand_SwitchTurn
 
+	; Self-stat-change moves (Superpower, Hammer Arm, Close Combat,
+	; Headlong Rush, Scale Shot, Draco Meteor) must keep their effect
+	; byte. Zeroing it here (the vanilla "no secondary effects when the
+	; sub breaks" rule) made the later self stat drop take the normal
+	; opponent-drop path - including the 25% computer-miss roll and the
+	; Mist/ability checks - so Superpower & co. randomly failed to lower
+	; their user's stats whenever the hit broke a Substitute.
+	call CheckSelfInflictedStatDrop
+	jr z, .ok
+
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
 	cp EFFECT_MULTI_HIT

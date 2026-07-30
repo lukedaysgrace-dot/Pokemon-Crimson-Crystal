@@ -335,6 +335,21 @@ BattleAnimOAMData:
 	dbbw $0e, 13, .OAMData_PC_GYRO_BALL_2 ; BATTLEANIMOAMSET_PC_GYRO_BALL_2
 	dbbw $1b, 14, .OAMData_PC_GYRO_BALL_3 ; BATTLEANIMOAMSET_PC_GYRO_BALL_3
 	dbbw $00,  9, .OAMData_c3 ; BATTLEANIMOAMSET_METEOR_BIG
+; mae-pokeorange ports (2026-07 move expansion animations)
+	dbbw $06, 16, .OAMData_big_glow_spiked ; BATTLEANIMOAMSET_BIG_GLOW_SPIKED_1
+	dbbw $00, 24, .OAMData_big_glow_spiked_2 ; BATTLEANIMOAMSET_BIG_GLOW_SPIKED_2
+	dbbw $12, 16, .OAMData_big_red_x ; BATTLEANIMOAMSET_BIG_RED_X
+	dbbw $00,  1, .OAMData_rock_polish_5deg ; BATTLEANIMOAMSET_ROCK_POLISH_5DEG_1
+	dbbw $00,  2, .OAMData_rock_polish_5deg ; BATTLEANIMOAMSET_ROCK_POLISH_5DEG_2
+	dbbw $00,  3, .OAMData_rock_polish_5deg ; BATTLEANIMOAMSET_ROCK_POLISH_5DEG_3
+	dbbw $00,  4, .OAMData_rock_polish_5deg ; BATTLEANIMOAMSET_ROCK_POLISH_5DEG_4
+	dbbw $04,  2, .OAMData_rock_polish_45deg ; BATTLEANIMOAMSET_ROCK_POLISH_45DEG_1
+	dbbw $04,  4, .OAMData_rock_polish_45deg ; BATTLEANIMOAMSET_ROCK_POLISH_45DEG_2
+	dbbw $04,  6, .OAMData_rock_polish_45deg ; BATTLEANIMOAMSET_ROCK_POLISH_45DEG_3
+	dbbw $02,  1, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_1
+	dbbw $02,  2, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_2
+	dbbw $02,  3, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_3
+	dbbw $02,  4, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_4
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
@@ -2304,3 +2319,86 @@ BattleAnimOAMData:
 	dbsprite  -1,   1, 0, 0, $0b, $0
 	dbsprite   0,   1, 0, 0, $0c, $0
 	dbsprite   1,   1, 0, 0, $0d, $0
+
+; mae-pokeorange ports (2026-07 move expansion animations)
+.OAMData_big_glow_spiked:
+	dbsprite  -2,  -3, 0, 7, $00, $0
+	dbsprite  -1,  -3, 0, 7, $01, $0
+	dbsprite  -2,  -2, 0, 7, $02, $0
+	dbsprite  -1,  -2, 0, 7, $03, $0
+	dbsprite   1,  -3, 0, 7, $00, X_FLIP
+	dbsprite   0,  -3, 0, 7, $01, X_FLIP
+	dbsprite   1,  -2, 0, 7, $02, X_FLIP
+	dbsprite   0,  -2, 0, 7, $03, X_FLIP
+	dbsprite  -2,   0, 0, 7, $00, Y_FLIP
+	dbsprite  -1,   0, 0, 7, $01, Y_FLIP
+	dbsprite  -2,  -1, 0, 7, $02, Y_FLIP
+	dbsprite  -1,  -1, 0, 7, $03, Y_FLIP
+	dbsprite   1,   0, 0, 7, $00, X_FLIP | Y_FLIP
+	dbsprite   0,   0, 0, 7, $01, X_FLIP | Y_FLIP
+	dbsprite   1,  -1, 0, 7, $02, X_FLIP | Y_FLIP
+	dbsprite   0,  -1, 0, 7, $03, X_FLIP | Y_FLIP
+
+.OAMData_big_glow_spiked_2:
+	dbsprite  -1,  -4, 0, 7, $00, $0
+	dbsprite  -2,  -3, 0, 7, $01, $0
+	dbsprite  -1,  -3, 0, 7, $02, $0
+	dbsprite  -3,  -2, 0, 7, $03, $0
+	dbsprite  -2,  -2, 0, 7, $04, $0
+	dbsprite  -1,  -2, 0, 7, $05, $0
+	dbsprite   0,  -4, 0, 7, $00, X_FLIP
+	dbsprite   1,  -3, 0, 7, $01, X_FLIP
+	dbsprite   0,  -3, 0, 7, $02, X_FLIP
+	dbsprite   2,  -2, 0, 7, $03, X_FLIP
+	dbsprite   1,  -2, 0, 7, $04, X_FLIP
+	dbsprite   0,  -2, 0, 7, $05, X_FLIP
+	dbsprite  -1,   1, 0, 7, $00, Y_FLIP
+	dbsprite  -2,   0, 0, 7, $01, Y_FLIP
+	dbsprite  -1,   0, 0, 7, $02, Y_FLIP
+	dbsprite  -3,  -1, 0, 7, $03, Y_FLIP
+	dbsprite  -2,  -1, 0, 7, $04, Y_FLIP
+	dbsprite  -1,  -1, 0, 7, $05, Y_FLIP
+	dbsprite   0,   1, 0, 7, $00, X_FLIP | Y_FLIP
+	dbsprite   1,   0, 0, 7, $01, X_FLIP | Y_FLIP
+	dbsprite   0,   0, 0, 7, $02, X_FLIP | Y_FLIP
+	dbsprite   2,  -1, 0, 7, $03, X_FLIP | Y_FLIP
+	dbsprite   1,  -1, 0, 7, $04, X_FLIP | Y_FLIP
+	dbsprite   0,  -1, 0, 7, $05, X_FLIP | Y_FLIP
+
+.OAMData_big_red_x:
+	dbsprite  -2,  -1, 0, 0, $00, $0
+	dbsprite  -1,  -1, 0, 0, $02, X_FLIP | Y_FLIP
+	dbsprite  -2,   0, 0, 0, $02, $0
+	dbsprite  -1,   0, 0, 0, $01, $0
+	dbsprite   0,  -1, 0, 0, $02, Y_FLIP
+	dbsprite   1,  -1, 0, 0, $00, X_FLIP
+	dbsprite   0,   0, 0, 0, $01, $0
+	dbsprite   1,   0, 0, 0, $02, X_FLIP
+	dbsprite  -2,   1, 0, 0, $02, Y_FLIP
+	dbsprite  -1,   1, 0, 0, $01, $0
+	dbsprite  -2,   2, 0, 0, $00, Y_FLIP
+	dbsprite  -1,   2, 0, 0, $02, X_FLIP
+	dbsprite   0,   1, 0, 0, $01, $0
+	dbsprite   1,   1, 0, 0, $02, X_FLIP | Y_FLIP
+	dbsprite   0,   2, 0, 0, $02, $0
+	dbsprite   1,   2, 0, 0, $00, X_FLIP | Y_FLIP
+
+.OAMData_rock_polish_5deg:
+	dbsprite  -2,   0, 0, -2, $00, $0
+	dbsprite  -1,   0, 0, -2, $01, $0
+	dbsprite   0,  -1, 0,  3, $01, X_FLIP | Y_FLIP
+	dbsprite   1,  -1, 0,  3, $00, X_FLIP | Y_FLIP
+
+.OAMData_rock_polish_45deg:
+	dbsprite  -1,   1, 4, -4, $01, $0
+	dbsprite  -2,   1, 4, -4, $00, $0
+	dbsprite   0,   0, 4, -4, $01, $0
+	dbsprite  -1,   0, 4, -4, $00, $0
+	dbsprite   1,  -1, 4, -4, $01, $0
+	dbsprite   0,  -1, 4, -4, $00, $0
+
+.OAMData_rock_polish_85deg:
+	dbsprite  -2,   1, 6, -1, $00, X_FLIP | Y_FLIP
+	dbsprite  -1,   0, 6,  0, $00, $0
+	dbsprite  -1,  -1, 6,  0, $01, $0
+	dbsprite  -1,  -2, 6,  0, $00, X_FLIP | Y_FLIP
