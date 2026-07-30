@@ -231,12 +231,6 @@ INCLUDE "maps/CianwoodPharmacy.asm"
 INCLUDE "maps/CianwoodPhotoStudio.asm"
 INCLUDE "maps/CianwoodLugiaSpeechHouse.asm"
 INCLUDE "maps/PokeSeersHouse.asm"
-INCLUDE "maps/BattleTower1F.asm"
-INCLUDE "maps/BattleTowerBattleRoom.asm"
-INCLUDE "maps/BattleTowerElevator.asm"
-INCLUDE "maps/BattleTowerHallway.asm"
-INCLUDE "maps/Route40BattleTowerGate.asm"
-INCLUDE "maps/BattleTowerOutside.asm"
 
 
 SECTION "Map Scripts 13", ROMX
@@ -500,3 +494,14 @@ SECTION "Map Scripts 27", ROMX
 
 INCLUDE "maps/SafariZoneLobby.asm"
 INCLUDE "maps/SafariZone.asm"
+
+
+; Split out of "Map Scripts 12", which had filled its bank.
+SECTION "Map Scripts 28", ROMX
+
+INCLUDE "maps/BattleTower1F.asm"
+INCLUDE "maps/BattleTowerBattleRoom.asm"
+INCLUDE "maps/BattleTowerElevator.asm"
+INCLUDE "maps/BattleTowerHallway.asm"
+INCLUDE "maps/Route40BattleTowerGate.asm"
+INCLUDE "maps/BattleTowerOutside.asm"
