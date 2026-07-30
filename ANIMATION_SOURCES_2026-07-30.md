@@ -90,3 +90,20 @@ Overheat / Leaf Storm, Shell Smash) randomly skipped their stat changes
 in exactly that situation. Fixed in `DoSubstituteDamage`. Bonus fix:
 Defiant/Competitive no longer trigger off a mon's own self-inflicted
 drops.
+
+---
+
+## Second pass — every remaining custom animation upgraded (same day)
+
+All 42 moves marked "custom" above (everything except the pokeorange
+ports, plus the already-reworked Fickle Beam / Scale Shot / Phantom
+Force) were rebuilt to the same standard as the pokeorange ports:
+multi-phase choreography (wind-up on the user, transit, impact,
+aftermath), custom palettes, screen shakes/flashes, and battler-sprite
+lunges. Highlights: Leaf Storm's hanging cyclone that releases all at
+once, Dire Claw's poison/paralysis/drowse roulette, Armor Cannon
+blasting the user's own armor shards, Kowtow Cleave's bow-then-behead,
+Circle Throw's full judo arc using the Seismic Toss globe, Quiver
+Dance shimmering in the three boosted stats' colors, Freeze-Dry
+pulling the moisture out before the flash-freeze, and Raging Bull's
+anger-mark stamping charge.
