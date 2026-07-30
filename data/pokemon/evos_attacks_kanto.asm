@@ -2434,7 +2434,7 @@ WeezingEvosAttacks:
 	db 0 ; no more level-up moves
 
 RhyhornEvosAttacks:
-	dbbw EVOLVE_LEVEL, 42, RHYDON
+	dbbw EVOLVE_LEVEL, 35, RHYDON
 	db 0 ; no more evolutions
 	dbw 1, TAIL_WHIP
 	dbw 1, TACKLE
@@ -2455,7 +2455,7 @@ RhyhornEvosAttacks:
 	db 0 ; no more level-up moves
 
 RhydonEvosAttacks:
-	dbbw EVOLVE_ITEM, METAL_COAT, RHYPERIOR
+	dbbw EVOLVE_LEVEL, 45, RHYPERIOR
 	db 0 ; no more evolutions
 	dbw 1, TAIL_WHIP
 	dbw 1, TACKLE
