@@ -5157,6 +5157,25 @@ RunStatDropReaction::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	; Self-inflicted drops (Superpower & co. lower the user through
+	; switchturn, so the "victim" here is the move's own user) never
+	; trigger Defiant/Competitive - only opponent-caused drops do.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CLOSE_COMBAT
+	ret z
+	cp EFFECT_DRACO_METEOR
+	ret z
+	cp EFFECT_SCALE_SHOT
+	ret z
+	cp EFFECT_HEADLONG_RUSH
+	ret z
+	cp EFFECT_SUPERPOWER
+	ret z
+	cp EFFECT_HAMMER_ARM
+	ret z
+	cp EFFECT_SHELL_SMASH
+	ret z
 	call GetOpponentAbility
 	cp DEFIANT
 	ld b, $10 | ATTACK
