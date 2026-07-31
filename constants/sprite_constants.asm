@@ -137,11 +137,10 @@
 	const SPRITE_GREEN ; 87
 	const SPRITE_BATTLE_GIRL ; 88
 	const SPRITE_TAMER ; 89
-	const SPRITE_ENGINEER ; 8a
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
-	const_def $8b
+	const_def $8a
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_GEODUDE ; 81
