@@ -1732,6 +1732,33 @@ JohtoGrassWildMons:
 	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%)
 	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%)
 
+	map_id GOLDENROD_POWER_PLANT_B1F
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 15, PIKACHU
+	dbw 15, MAREEP
+	dbw 16, MAGNEMITE
+	dbw 16, KOTORA
+	dbw 17, JOLTIK
+	dbw 17, ELEKID
+	dbw 18, KOTORA
+	; day
+	dbw 15, PIKACHU
+	dbw 15, MAREEP
+	dbw 16, MAGNEMITE
+	dbw 16, KOTORA
+	dbw 17, JOLTIK
+	dbw 17, ELEKID
+	dbw 18, KOTORA
+	; nite
+	dbw 15, PIKACHU
+	dbw 15, MAREEP
+	dbw 16, MAGNEMITE
+	dbw 16, KOTORA
+	dbw 17, JOLTIK
+	dbw 17, ELEKID
+	dbw 18, KOTORA
+
 	db -1 ; end
 
 ; The SAFARI ZONE's icy and rocky areas swap these tables in

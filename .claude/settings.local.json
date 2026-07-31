@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd data/tilesets/facility_metatiles.bin)",
+      "Bash(xxd data/tilesets/facility_attributes.bin)"
+    ]
+  }
+}
