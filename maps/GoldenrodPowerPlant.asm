@@ -76,10 +76,9 @@ GoldenrodPowerPlantChiefText:
 GoldenrodPowerPlant_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	db 2 ; warp events
 	warp_event  6, 17, GOLDENROD_CITY, 16
 	warp_event  7, 17, GOLDENROD_CITY, 16
-	warp_event 18,  2, GOLDENROD_POWER_PLANT_B1F, 1
 
 	db 0 ; coord events
 
