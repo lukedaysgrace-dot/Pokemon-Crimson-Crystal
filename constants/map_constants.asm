@@ -273,6 +273,7 @@ ENDM
 	map_const ROUTE_34_ILEX_FOREST_GATE,                    5,  4 ; 23
 	map_const DAY_CARE,                                     5,  4 ; 24
 	map_const GOLDENROD_POWER_PLANT,                       10,  9 ; 25
+	map_const GOLDENROD_POWER_PLANT_B1F,                   10,  9 ; 26
 
 	newgroup                                                      ; 12
 
