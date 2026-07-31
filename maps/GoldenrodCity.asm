@@ -267,6 +267,9 @@ GoldenrodCityPokecenterSign:
 GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
 
+GoldenrodCityPowerPlantSign:
+	jumptext GoldenrodCityPowerPlantSignText
+
 GoldenrodCityMoveTutorEnterGameCornerMovement:
 	step RIGHT
 	step RIGHT
@@ -487,6 +490,14 @@ GoldenrodCityFlowerShopSignText:
 	line "FLOWER SHOP"
 	done
 
+GoldenrodCityPowerPlantSignText:
+	text "Powering the"
+	line "Festive City"
+
+	para "GOLDENROD"
+	line "POWER PLANT"
+	done
+
 GoldenrodCityMoveTutorAskTeachAMoveText:
 	text "I can teach your"
 	line "#MON amazing"
@@ -568,11 +579,11 @@ GoldenrodCity_MapEvents:
 	warp_event  9,  5, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 8
 	warp_event  9, 29, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 5
 	warp_event 15, 27, GOLDENROD_POKECENTER_1F, 1
-	warp_event 33, 21, GOLDENROD_POWER_PLANT, 1
+	warp_event 36, 31, GOLDENROD_POWER_PLANT, 1
 
 	db 0 ; coord events
 
-	db 12 ; bg events
+	db 13 ; bg events
 	bg_event 10, 14, BGEVENT_READ, GoldenrodCityStationSign
 	bg_event  4, 17, BGEVENT_READ, GoldenrodCityRadioTowerSign
 	bg_event 26, 27, BGEVENT_READ, GoldenrodDeptStoreSign
@@ -585,6 +596,7 @@ GoldenrodCity_MapEvents:
 	bg_event  8, 30, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
 	bg_event 16, 27, BGEVENT_UP, GoldenrodCityPokecenterSign
 	bg_event 30,  6, BGEVENT_READ, GoldenrodCityFlowerShopSign
+	bg_event 34, 32, BGEVENT_READ, GoldenrodCityPowerPlantSign
 
 	db 15 ; object events
 	object_event  7, 18, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityPokefanMScript, EVENT_GOLDENROD_CITY_CIVILIANS
