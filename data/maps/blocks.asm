@@ -1079,6 +1079,3 @@ Route2_Blocks:
 
 ViridianForest_Blocks:
 	INCBIN "maps/ViridianForest.ablk"
-
-GoldenrodPowerPlantB1F_Blocks:
-	INCBIN "maps/GoldenrodPowerPlantB1F.ablk"
