@@ -91,7 +91,7 @@ JohtoGrassWildMons:
 	dbw 20, SNUBBULL
 	dbw 21, JIGGLYPUFF
 	dbw 22, CLEFAIRY
-	dbw 22, GRANBULL
+	dbw 23, GRANBULL
 	dbw 23, TOGETIC
 	dbw 24, KIRLIA
 	dbw 24, SNUBBULL
@@ -180,7 +180,7 @@ JohtoGrassWildMons:
 	dbw 20, CLEFAIRY
 	dbw 21, JIGGLYPUFF
 	dbw 22, SNUBBULL
-	dbw 22, GRANBULL
+	dbw 23, GRANBULL
 	dbw 23, KIRLIA
 	dbw 24, SPOINK
 	dbw 24, TINKATUFF
@@ -364,7 +364,7 @@ JohtoGrassWildMons:
 	dbw 24, KADABRA
 	dbw 20, SMEARGLE
 	dbw 22, SPOINK
-	dbw 22, ARCHEN
+	dbw 22, MR__MIME
 	; day
 	dbw 20, NATU
 	dbw 22, KIRLIA
@@ -372,12 +372,12 @@ JohtoGrassWildMons:
 	dbw 24, WOBBUFFET
 	dbw 20, SMEARGLE
 	dbw 22, MR__MIME
-	dbw 22, ARCHEN
+	dbw 22, GIRAFARIG
 	; nite
 	dbw 20, NATU
 	dbw 22, DROWZEE
 	dbw 18, NATU
-	dbw 24, NATU
+	dbw 24, GIRAFARIG
 	dbw 22, WOBBUFFET
 	dbw 22, MURKROW
 	dbw 22, SPOINK
@@ -480,7 +480,7 @@ JohtoGrassWildMons:
 	dbw 21, TRAPINCH
 	dbw 20, ONIX
 	dbw 23, CUBONE
-	dbw 23, VIBRAVA
+	dbw 25, VIBRAVA
 	; nite
 	dbw 22, GOLBAT
 	dbw 22, GEODUDE
@@ -515,7 +515,7 @@ JohtoGrassWildMons:
 	dbw 6, CROAGUNK
 	dbw 8, SLOWPOKE
 	dbw 8, EKANS
-	dbw 8, MORGREM
+	dbw 8, IMPIDIMP
 
 	map_id SLOWPOKE_WELL_B2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -650,7 +650,7 @@ JohtoGrassWildMons:
 	dbw 30, GURDURR
 	dbw 28, MAROWAK
 	dbw 32, HITMONTOP
-	dbw 32, SCRAFTY
+	dbw 36, SCRAFTY
 
 	map_id MOUNT_MORTAR_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -676,7 +676,7 @@ JohtoGrassWildMons:
 	dbw 17, RIOLU
 	dbw 16, MAWILE
 	dbw 16, GEODUDE
-	dbw 18, GALVANTULA
+	dbw 18, JOLTIK
 	dbw 18, MACHOP
 
 	map_id ICE_ISLAND
@@ -984,7 +984,7 @@ JohtoGrassWildMons:
 	dbw 23, SEEL
 	dbw 25, SHELLDER
 	dbw 26, GOLBAT
-	dbw 25, TIRTOUGA
+	dbw 25, CHINCHOU
 	dbw 25, MANTINE
 	; day
 	dbw 23, KRABBY
@@ -992,7 +992,7 @@ JohtoGrassWildMons:
 	dbw 23, SEEL
 	dbw 25, KRABBY
 	dbw 26, CORSOLA
-	dbw 25, TIRTOUGA
+	dbw 25, REMORAID
 	dbw 25, PSYDUCK
 	; nite
 	dbw 23, KRABBY
@@ -1019,7 +1019,7 @@ JohtoGrassWildMons:
 	dbw 24, SEEL
 	dbw 26, KRABBY
 	dbw 27, CORSOLA
-	dbw 26, CARRACOSTA
+	dbw 26, QWILFISH
 	dbw 26, GOLISOPOD
 	; nite
 	dbw 24, KRABBY
@@ -1207,14 +1207,14 @@ JohtoGrassWildMons:
 	dbw 23, ZUBAT
 	dbw 25, GRAVELER
 	dbw 25, TINKATUFF
-	dbw 30, ESPEON
+	dbw 25, MAWILE
 	dbw 23, GOLBAT
 	dbw 23, BAGON
 	; nite
 	dbw 23, DEINO
 	dbw 23, ZUBAT
 	dbw 25, PAWNIARD
-	dbw 20, UMBREON
+	dbw 25, SCRAGGY
 	dbw 25, MURKROW
 	dbw 23, MAWILE
 	dbw 23, GEODUDE
@@ -1230,21 +1230,21 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 3, KOTORA
-	dbw 3, RAITORA
-	dbw 3, GOROTORA
-	dbw 3, TORKOAL
-	dbw 3, TORKOAL
-	dbw 3, BUNEARY
+	dbw 2, PIDGEY
 	dbw 3, SENTRET
+	dbw 3, RATTATA
+	dbw 3, LOTAD
+	dbw 2, HOPPIP
+	dbw 3, BUNEARY
+	dbw 3, KOTORA
 	; nite
 	dbw 2, RATTATA
 	dbw 2, HOOTHOOT
 	dbw 3, SPINARAK
 	dbw 3, RATTATA
-	dbw 2, HOOTHOOT
+	dbw 2, LOTAD
 	dbw 3, MEOWTH
-	dbw 3, HOOTHOOT
+	dbw 3, MURKROW
 
 	map_id ROUTE_30
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1271,7 +1271,7 @@ JohtoGrassWildMons:
 	dbw 4, HOOTHOOT
 	dbw 3, ZUBAT
 	dbw 4, SPINARAK
-	dbw 4, HOOTHOOT
+	dbw 4, VENONAT
 
 	map_id ROUTE_31
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1338,13 +1338,13 @@ JohtoGrassWildMons:
 	dbw 7, SPEAROW
 	dbw 7, ROOKIDEE
 	; day
-	dbw 6, VOLTORB
-	dbw 6, EEVEE
-	dbw 6, PIKACHU
-	dbw 6, KOTORA
+	dbw 6, SANDSHREW
+	dbw 6, SPEAROW
+	dbw 6, GEODUDE
+	dbw 6, MAREEP
 	dbw 7, EKANS
 	dbw 7, GROWLITHE
-	dbw 7, KOTORA
+	dbw 7, PIKACHU
 	; nite
 	dbw 6, MAREEP
 	dbw 6, ZUBAT
@@ -1363,7 +1363,7 @@ JohtoGrassWildMons:
 	dbw 10, ABRA
 	dbw 12, JIGGLYPUFF
 	dbw 10, DITTO
-	dbw 10, DITTO
+	dbw 12, EEVEE ; rare (1%)
 	; day
 	dbw 10, SNUBBULL
 	dbw 11, GROWLITHE
@@ -1424,8 +1424,8 @@ JohtoGrassWildMons:
 	dbw 5, BELLSPROUT
 	dbw 5, GROWLITHE
 	dbw 5, SUNKERN
-	dbw 6, SKIPLOOM
-	dbw 6, GROWLITHE
+	dbw 6, HOPPIP
+	dbw 6, MAREEP
 	; nite
 	dbw 4, SPINARAK
 	dbw 4, HOOTHOOT
@@ -1441,10 +1441,10 @@ JohtoGrassWildMons:
 	dbw 13, LEDYBA
 	dbw 14, GROWLITHE
 	dbw 15, PIDGEY
-	dbw 16, GROWLITHE
+	dbw 16, STANTLER
 	dbw 15, VULPIX
 	dbw 15, HOPPIP
-	dbw 15, SKIPLOOM
+	dbw 15, SUNKERN
 	; day
 	dbw 13, PIDGEY
 	dbw 14, GROWLITHE
@@ -1567,7 +1567,7 @@ JohtoGrassWildMons:
 	dbw 15, RATTATA
 	dbw 16, ZUBAT
 	dbw 15, MARILL
-	dbw 16, ZUBAT
+	dbw 16, WOOPER
 	dbw 16, MEOWTH
 
 	map_id ROUTE_43
@@ -1594,7 +1594,7 @@ JohtoGrassWildMons:
 	dbw 16, MURKROW
 	dbw 17, MURKROW
 	dbw 17, VENONAT
-	dbw 17, VENONAT
+	dbw 17, MAREEP
 	dbw 17, FURRET
 
 	map_id ROUTE_44
@@ -1627,29 +1627,29 @@ JohtoGrassWildMons:
 	map_id ROUTE_45
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 32, FARIGIRAF
-	dbw 32, GRUMPIG
-	dbw 24, GLIGAR
-	dbw 25, DONPHAN
-	dbw 31, WYRDEER
-	dbw 27, SKARMORY
-	dbw 30, WATU
-	; day
-	dbw 23, CORVISQUIRE
-	dbw 30, AMPHAROS
-	dbw 24, RAICHU
-	dbw 28, GLIGAR
-	dbw 30, PERSIAN
-	dbw 27, JUMPLUFF
-	dbw 27, RAITORA
-	; nite
-	dbw 23, RAICHU
-	dbw 25, PHANPY
-	dbw 24, FLETCHINDER
 	dbw 25, GLIGAR
-	dbw 27, JOLTEON
-	dbw 27, MURKROW
-	dbw 27, SKARMORY
+	dbw 26, PHANPY
+	dbw 27, STANTLER
+	dbw 28, SKARMORY
+	dbw 29, DONPHAN
+	dbw 30, WATU
+	dbw 32, FARIGIRAF
+	; day
+	dbw 25, CORVISQUIRE
+	dbw 26, AIPOM
+	dbw 27, JUMPLUFF
+	dbw 28, GLIGAR
+	dbw 30, AMPHAROS
+	dbw 31, RAITORA
+	dbw 32, GRUMPIG
+	; nite
+	dbw 25, PHANPY
+	dbw 26, MURKROW
+	dbw 27, GLIGAR
+	dbw 28, HOUNDOOM
+	dbw 29, SKARMORY
+	dbw 30, FLETCHINDER
+	dbw 31, WYRDEER
 
 	map_id ROUTE_46
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1775,21 +1775,21 @@ SafariZoneRockyWildMons:
 	dbw 8, MEOWTH_GALARIAN
 	dbw 9, ARON
 	dbw 10, GROWLITHE_HISUIAN
-	dbw 10, TYRUNT ; rare (4%)
-	dbw 11, GROWLITHE_HISUIAN
+	dbw 10, CRANIDOS ; rare (4%)
+	dbw 11, TYRUNT ; rare (1%)
 	; day
 	dbw 7, GEODUDE_ALOLAN
 	dbw 7, DIGLETT_ALOLAN
 	dbw 8, MEOWTH_GALARIAN
 	dbw 9, GROWLITHE_HISUIAN
 	dbw 10, ARON
-	dbw 10, TYRUNT ; rare (4%)
-	dbw 11, MEOWTH_GALARIAN
+	dbw 10, SHIELDON ; rare (4%)
+	dbw 11, TYRUNT ; rare (1%)
 	; nite
 	dbw 7, DIGLETT_ALOLAN
 	dbw 7, GEODUDE_ALOLAN
 	dbw 8, ARON
 	dbw 9, MEOWTH_GALARIAN
 	dbw 10, GROWLITHE_HISUIAN
-	dbw 10, TYRUNT ; rare (4%)
-	dbw 11, GEODUDE_ALOLAN
+	dbw 10, ARCHEN ; rare (4%)
+	dbw 12, AERODACTYL ; rare (1%)
