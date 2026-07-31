@@ -881,9 +881,6 @@ SaffronGym_Blocks:
 PowerPlant_Blocks:
 	INCBIN "maps/PowerPlant.ablk"
 
-GoldenrodPowerPlant_Blocks:
-	INCBIN "maps/GoldenrodPowerPlant.ablk"
-
 PokemonFanClub_Blocks:
 SafariZoneWardensHome_Blocks:
 	INCBIN "maps/PokemonFanClub.ablk"
