@@ -158,4 +158,3 @@ SECTION "Sprites 4", ROMX
 
 BattleGirlSpriteGFX::          INCBIN "gfx/sprites/battle_girl.2bpp"
 TamerSpriteGFX::               INCBIN "gfx/sprites/tamer.2bpp"
-EngineerSpriteGFX::            INCBIN "gfx/sprites/engineer_new.2bpp"
