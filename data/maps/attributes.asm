@@ -517,6 +517,7 @@ ENDM
 	map_attributes Route10Pokecenter2FBeta, ROUTE_10_POKECENTER_2F_BETA, $00, 0
 	map_attributes PowerPlant, POWER_PLANT, $00, 0
 	map_attributes GoldenrodPowerPlant, GOLDENROD_POWER_PLANT, $00, 0
+	map_attributes GoldenrodPowerPlantB1F, GOLDENROD_POWER_PLANT_B1F, $02, 0
 	map_attributes BillsHouse, BILLS_HOUSE, $00, 0
 	map_attributes AzaleaPokecenter1F, AZALEA_POKECENTER_1F, $00, 0
 	map_attributes CharcoalKiln, CHARCOAL_KILN, $00, 0
