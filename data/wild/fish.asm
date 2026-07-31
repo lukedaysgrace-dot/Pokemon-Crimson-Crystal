@@ -215,6 +215,7 @@ FishGroups:
 .Safari_Good:
 	dbbw  40 percent,     25, QWILFISH
 	dbbw  70 percent,     25, GOLDEEN
+	dbbw  85 percent,     25, TIRTOUGA
 	dbbw 100 percent,     25, CORSOLA_GALARIAN
 .Safari_Super:
 	dbbw  40 percent,     35, QWILFISH
