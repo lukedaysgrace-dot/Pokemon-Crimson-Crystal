@@ -969,3 +969,7 @@ PokemonPicPointers::
 	dba SalanditBackpic
 	dba SalazzleFrontpic
 	dba SalazzleBackpic
+	dba FlittleFrontpic
+	dba FlittleBackpic
+	dba EspathraFrontpic
+	dba EspathraBackpic

@@ -1444,7 +1444,7 @@ JohtoGrassWildMons:
 	dbw 16, STANTLER
 	dbw 15, VULPIX
 	dbw 15, HOPPIP
-	dbw 15, SUNKERN
+	dbw 15, FLITTLE
 	; day
 	dbw 13, PIDGEY
 	dbw 14, GROWLITHE
@@ -1452,7 +1452,7 @@ JohtoGrassWildMons:
 	dbw 16, NIDORINO
 	dbw 15, VULPIX
 	dbw 16, NIDORINA
-	dbw 15, HOPPIP
+	dbw 15, FLITTLE
 	; nite
 	dbw 13, SPINARAK
 	dbw 14, STANTLER
