@@ -4,15 +4,15 @@
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type
-	db 45 ; catch rate
-	db 64 ; base exp
+	db 25 ; catch rate
+	db 255 ; base exp
 	db NO_ITEM, MIRACLEBERRY ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
 	db 120 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mew/front.dimensions"
-	abilities_for MEW, SYNCHRONIZE, SYNCHRONIZE, TRACE
+	abilities_for MEW, SYNCHRONIZE, NO_ABILITY, TRACE
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

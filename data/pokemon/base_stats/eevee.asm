@@ -5,14 +5,14 @@
 
 	db NORMAL, NORMAL ; type
 	db 45 ; catch rate
-	db 92 ; base exp
+	db 65 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F12_5 ; gender ratio
 	db 100 ; unknown 1
 	db 35 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/eevee/front.dimensions"
-	abilities_for EEVEE, ADAPTABILITY, ADAPTABILITY, CLOUD_NINE
+	abilities_for EEVEE, ADAPTABILITY, NO_ABILITY, CLOUD_NINE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
