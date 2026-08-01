@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/torkoal/front.dimensions"
-	abilities_for TORKOAL, WHITE_SMOKE, DROUGHT, SHELL_ARMOR
+	abilities_for TORKOAL, DROUGHT, WHITE_SMOKE, SHELL_ARMOR
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tirtouga/front.dimensions"
-	abilities_for TIRTOUGA, SOLID_ROCK, STURDY, SWIFT_SWIM
+	abilities_for TIRTOUGA, STURDY, SHEER_FORCE, SWIFT_SWIM
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups
