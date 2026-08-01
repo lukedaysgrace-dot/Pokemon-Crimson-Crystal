@@ -487,5 +487,7 @@ NoibatIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noibat.png
 NoivernIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noivern.png
 SalanditIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salandit.png
 SalazzleIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salazzle.png
+FlittleIcon: INCBIN "gfx/icons/flittle.2bpp"
+EspathraIcon: INCBIN "gfx/icons/espathra.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

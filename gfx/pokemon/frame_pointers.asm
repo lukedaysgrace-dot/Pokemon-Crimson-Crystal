@@ -477,3 +477,5 @@ FramesPointers:
 	dba NoivernFrames
 	dba SalanditFrames
 	dba SalazzleFrames
+	dba FlittleFrames
+	dba EspathraFrames
