@@ -1,11 +1,11 @@
 	db 0 ; species ID placeholder
 
-	db  85,  85,  77,  94,  70, 105
+	db  85,  75,  77,  94,  70, 105
 	;  hp  atk  def  spd  sat  sdf
 
 	db FAIRY, STEEL ; type
 	db 45 ; catch rate
-	db 255 ; base exp
+	db 253 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F100 ; gender ratio (female only)
 	db 100 ; unknown 1

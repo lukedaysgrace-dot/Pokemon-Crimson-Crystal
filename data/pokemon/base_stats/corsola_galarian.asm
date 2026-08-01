@@ -5,14 +5,14 @@
 
 	db GHOST, GHOST ; type
 	db 60 ; catch rate
-	db 113 ; base exp
+	db 144 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F75 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/corsola_galarian/front.dimensions"
-	abilities_for CORSOLA_GALARIAN, WEAK_ARMOR, WEAK_ARMOR, CURSED_BODY
+	abilities_for CORSOLA_GALARIAN, WEAK_ARMOR, NO_ABILITY, CURSED_BODY
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups
