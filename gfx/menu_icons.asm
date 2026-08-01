@@ -500,5 +500,7 @@ NoibatMenuIcon: INCBIN "gfx/menu_icons/noibat.2bpp"
 NoivernMenuIcon: INCBIN "gfx/menu_icons/noivern.2bpp"
 SalanditMenuIcon: INCBIN "gfx/menu_icons/salandit.2bpp"
 SalazzleMenuIcon: INCBIN "gfx/menu_icons/salazzle.2bpp"
+FlittleMenuIcon: INCBIN "gfx/menu_icons/flittle.2bpp"
+EspathraMenuIcon: INCBIN "gfx/menu_icons/espathra.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

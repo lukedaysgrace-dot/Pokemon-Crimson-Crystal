@@ -466,6 +466,8 @@ NoibatAnimation:  INCLUDE "gfx/pokemon/noibat/anim.asm"
 NoivernAnimation:  INCLUDE "gfx/pokemon/noivern/anim.asm"
 SalanditAnimation:  INCLUDE "gfx/pokemon/salandit/anim.asm"
 SalazzleAnimation:  INCLUDE "gfx/pokemon/salazzle/anim.asm"
+FlittleAnimation:  INCLUDE "gfx/pokemon/flittle/anim.asm"
+EspathraAnimation:  INCLUDE "gfx/pokemon/espathra/anim.asm"
 GlimmoraAnimation:  INCLUDE "gfx/pokemon/glimmora/anim.asm"
 EggAnimation:        INCLUDE "gfx/pokemon/egg/anim.asm"
 BulbasaurCloneAnimation:

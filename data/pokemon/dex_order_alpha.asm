@@ -123,6 +123,7 @@ AlphabeticalPokedexOrder:
 	dw ELECTRODE_HISUIAN
 	dw ELEKID
 	dw ENTEI
+	dw ESPATHRA
 	dw ESPEON
 	dw EXCADRILL
 	dw EXEGGCUTE
@@ -138,6 +139,7 @@ AlphabeticalPokedexOrder:
 	dw FLAREON
 	dw FLETCHINDER
 	dw FLETCHLING
+	dw FLITTLE
 	dw FLYGON
 	dw FORRETRESS
 	dw FRAXURE
