@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 110, 115,  80,  90,  50,  90
+	db 110, 115,  80,  95,  60,  75
 	;  hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, GHOST ; type

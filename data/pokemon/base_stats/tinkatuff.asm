@@ -5,7 +5,7 @@
 
 	db FAIRY, STEEL ; type
 	db 90 ; catch rate
-	db 124 ; base exp
+	db 133 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F100 ; gender ratio (female only)
 	db 100 ; unknown 1

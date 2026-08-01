@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 120,  90,  70,  60, 110,  70
+	db 120,  90,  70,  85, 110,  70
 	;  hp  atk  def  spd  sat  sdf
 
 	db NORMAL, PSYCHIC ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/farigiraf/front.dimensions"
-	abilities_for FARIGIRAF, ARMOR_TAIL, ARMOR_TAIL, SAP_SIPPER
+	abilities_for FARIGIRAF, ARMOR_TAIL, NO_ABILITY, SAP_SIPPER
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

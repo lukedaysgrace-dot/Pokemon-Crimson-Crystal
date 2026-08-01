@@ -1,18 +1,18 @@
 	db 0 ; species ID placeholder
 
-	db  60,  80,  55,  70,  90,  55
+	db  60,  85,  55,  70,  85,  55
 	;  hp  atk  def  spd  sat  sdf
 
 	db BUG, DRAGON ; type
-	db 45 ; catch rate
-	db 100 ; base exp
+	db 120 ; catch rate
+	db 119 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/vibrava/front.dimensions"
-	abilities_for VIBRAVA, COMPOUND_EYES, LEVITATE, OVERCOAT
+	abilities_for VIBRAVA, COMPOUND_EYES, OVERCOAT, TINTED_LENS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_BUG, EGG_DRAGON ; egg groups

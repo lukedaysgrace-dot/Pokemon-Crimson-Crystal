@@ -5,7 +5,7 @@
 
 	db GRASS, PSYCHIC ; type
 	db 90 ; catch rate
-	db 98 ; base exp
+	db 65 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

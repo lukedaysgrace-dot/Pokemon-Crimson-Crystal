@@ -5,14 +5,14 @@
 
 	db BUG, ELECTRIC ; type
 	db 45 ; catch rate
-	db 100 ; base exp
+	db 225 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/vikavolt/front.dimensions"
-	abilities_for VIKAVOLT, LEVITATE, LEVITATE, LEVITATE
+	abilities_for VIKAVOLT, LEVITATE, HUSTLE, SPEED_BOOST
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
