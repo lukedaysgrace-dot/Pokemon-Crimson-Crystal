@@ -477,3 +477,5 @@ AnimationIdlePointers:
 	dba NoivernAnimationIdle
 	dba SalanditAnimationIdle
 	dba SalazzleAnimationIdle
+	dba FlittleAnimationIdle
+	dba EspathraAnimationIdle
