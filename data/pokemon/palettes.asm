@@ -986,3 +986,7 @@ INCBIN "gfx/pokemon/salandit/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/salandit/shiny.pal"
 INCBIN "gfx/pokemon/salazzle/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/salazzle/shiny.pal"
+INCBIN "gfx/pokemon/flittle/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/flittle/shiny.pal"
+INCBIN "gfx/pokemon/espathra/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/espathra/shiny.pal"

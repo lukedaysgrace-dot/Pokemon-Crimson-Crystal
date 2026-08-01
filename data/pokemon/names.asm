@@ -481,3 +481,5 @@ PokemonNames::
 	db "NOIVERN@@@"
 	db "SALANDIT@@"
 	db "SALAZZLE@@"
+	db "FLITTLE@@@"
+	db "ESPATHRA@@"

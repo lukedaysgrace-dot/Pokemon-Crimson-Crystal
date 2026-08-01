@@ -477,3 +477,5 @@ BitmasksPointers:
 	dw NoivernBitmasks
 	dw SalanditBitmasks
 	dw SalazzleBitmasks
+	dw FlittleBitmasks
+	dw EspathraBitmasks
