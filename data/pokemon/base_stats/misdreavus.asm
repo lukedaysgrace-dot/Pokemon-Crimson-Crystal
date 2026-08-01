@@ -5,14 +5,14 @@
 
 	db GHOST, FAIRY ; type
 	db 45 ; catch rate
-	db 147 ; base exp
+	db 87 ; base exp
 	db NO_ITEM, SPELL_TAG ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/misdreavus/front.dimensions"
-	abilities_for MISDREAVUS, LEVITATE, LEVITATE, PRANKSTER
+	abilities_for MISDREAVUS, LEVITATE, NO_ABILITY, PRANKSTER
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
