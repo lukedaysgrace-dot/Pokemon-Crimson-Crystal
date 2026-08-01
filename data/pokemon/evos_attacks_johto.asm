@@ -6418,6 +6418,8 @@ EvosAttacksPointers2C::
 	dw NoivernEvosAttacks
 	dw SalanditEvosAttacks
 	dw SalazzleEvosAttacks
+	dw FlittleEvosAttacks
+	dw EspathraEvosAttacks
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE
@@ -6738,4 +6740,41 @@ SalazzleEvosAttacks:
 	dbw 50, SLUDGE_BOMB
 	dbw 55, DRAGON_PULSE
 	dbw 60, FIRE_BLAST
+	db 0 ; no more level-up moves
+
+FlittleEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, ESPATHRA
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, CONFUSION
+	dbw 5, CHARM
+	dbw 10, CONFUSE_RAY
+	dbw 15, PSYBEAM
+	dbw 20, AIR_CUTTER
+	dbw 25, QUICK_ATTACK
+	dbw 30, AGILITY
+	dbw 35, HYPER_VOICE
+	dbw 40, CALM_MIND
+	dbw 45, PSYCHIC_M
+	dbw 50, DAZZLING_GLEAM
+	db 0 ; no more level-up moves
+
+EspathraEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, CONFUSION
+	dbw 1, CHARM
+	dbw 1, QUICK_ATTACK
+	dbw 5, CHARM
+	dbw 10, CONFUSE_RAY
+	dbw 15, PSYBEAM
+	dbw 20, AIR_CUTTER
+	dbw 25, QUICK_ATTACK
+	dbw 30, AGILITY
+	dbw 35, LIGHT_SCREEN
+	dbw 40, HYPER_VOICE
+	dbw 45, CALM_MIND
+	dbw 50, PSYCHIC_M
+	dbw 56, DAZZLING_GLEAM
+	dbw 62, PSYSTRIKE
 	db 0 ; no more level-up moves
