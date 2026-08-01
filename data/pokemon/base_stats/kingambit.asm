@@ -4,15 +4,15 @@
 	;  hp  atk  def  spd  sat  sdf
 
 	db DARK, STEEL ; type
-	db 45 ; catch rate
-	db 100 ; base exp
+	db 25 ; catch rate
+	db 255 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/kingambit/front.dimensions"
-	abilities_for KINGAMBIT, DEFIANT, SUPREME_OVERLORD, PRESSURE
+	abilities_for KINGAMBIT, DEFIANT, SUPREME_OVERLORD, SHARPNESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

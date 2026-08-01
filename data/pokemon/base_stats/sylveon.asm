@@ -12,7 +12,7 @@
 	db 35 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/sylveon/front.dimensions"
-	abilities_for SYLVEON, CUTE_CHARM, CUTE_CHARM, PIXILATE
+	abilities_for SYLVEON, CUTE_CHARM, NO_ABILITY, PIXILATE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups
