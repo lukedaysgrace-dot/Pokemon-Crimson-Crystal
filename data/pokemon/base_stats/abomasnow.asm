@@ -4,8 +4,8 @@
 	;  hp  atk  def  spd  sat  sdf
 
 	db GRASS, ICE ; type
-	db 45 ; catch rate
-	db 100 ; base exp
+	db 60 ; catch rate
+	db 173 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

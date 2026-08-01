@@ -1,11 +1,11 @@
 	db 0 ; species ID placeholder
 
-	db 130,  75,  60,  20,  45, 100
+	db 130,  75,  60,  20,  65, 100
 	;  hp  atk  def  spd  sat  sdf
 
 	db POISON, GROUND ; type
-	db 90 ; catch rate
-	db 137 ; base exp
+	db 45 ; catch rate
+	db 151 ; base exp
 	db NO_ITEM, MINT_BERRY ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
