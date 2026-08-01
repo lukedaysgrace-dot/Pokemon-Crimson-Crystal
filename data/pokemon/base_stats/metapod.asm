@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/metapod/front.dimensions"
-	abilities_for METAPOD, SHED_SKIN, SHED_SKIN, SHED_SKIN
+	abilities_for METAPOD, SHED_SKIN, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

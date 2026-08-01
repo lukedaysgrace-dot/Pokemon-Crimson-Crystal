@@ -5,7 +5,7 @@
 
 	db ICE, STEEL ; type
 	db 90 ; catch rate
-	db 163 ; base exp
+	db 158 ; base exp
 	db NO_ITEM, QUICK_CLAW ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

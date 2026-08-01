@@ -1,18 +1,18 @@
 	db 0 ; species ID placeholder
 
-	db  90,  75,  85,  65, 115,  90
+	db  90,  75,  85,  55, 115,  90
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, DRAGON ; type
 	db 45 ; catch rate
-	db 194 ; base exp
+	db 255 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ampharos/front.dimensions"
-	abilities_for AMPHAROS, STATIC, MOLD_BREAKER, MOLD_BREAKER
+	abilities_for AMPHAROS, STATIC, MOLD_BREAKER, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_GROUND ; egg groups

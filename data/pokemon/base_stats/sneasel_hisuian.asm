@@ -5,7 +5,7 @@
 
 	db FIGHTING, POISON ; type
 	db 60 ; catch rate
-	db 132 ; base exp
+	db 86 ; base exp
 	db QUICK_CLAW, QUICK_CLAW ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

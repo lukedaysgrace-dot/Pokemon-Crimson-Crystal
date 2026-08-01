@@ -5,7 +5,7 @@
 
 	db DARK, DARK ; type
 	db 255 ; catch rate
-	db 69 ; base exp
+	db 58 ; base exp
 	db NO_ITEM, AMULET_COIN ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  74, 108, 133,  32,  83,  65
+	db  70, 117, 123,  50,  80,  60
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ROCK ; type
@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/carracosta/front.dimensions"
-	abilities_for CARRACOSTA, SOLID_ROCK, STURDY, SWIFT_SWIM
+	abilities_for CARRACOSTA, STURDY, SHEER_FORCE, SWIFT_SWIM
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups

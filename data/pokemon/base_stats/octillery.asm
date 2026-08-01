@@ -5,14 +5,14 @@
 
 	db WATER, WATER ; type
 	db 75 ; catch rate
-	db 164 ; base exp
+	db 168 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/octillery/front.dimensions"
-	abilities_for OCTILLERY, SNIPER, SNIPER, NO_ABILITY
+	abilities_for OCTILLERY, SNIPER, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_2 ; egg groups

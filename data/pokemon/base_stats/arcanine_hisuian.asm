@@ -1,18 +1,18 @@
 	db 0 ; species ID placeholder
 
-	db  95, 120,  85,  90,  95,  85
+	db  95, 120,  85,  90,  80,  85
 	;  hp  atk  def  spd  sat  sdf
 
 	db FIRE, ROCK ; type
 	db 75 ; catch rate
-	db 213 ; base exp
+	db 194 ; base exp
 	db NO_ITEM, ICE_BERRY ; items
 	db GENDER_F25 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/arcanine_hisuian/front.dimensions"
-	abilities_for ARCANINE_HISUIAN, INTIMIDATE, ROCK_HEAD, DEFIANT
+	abilities_for ARCANINE_HISUIAN, INTIMIDATE, FLASH_FIRE, ROCK_HEAD
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
