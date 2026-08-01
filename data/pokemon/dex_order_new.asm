@@ -479,3 +479,5 @@ NewPokedexOrder:
 	dw NOIVERN
 	dw SALANDIT
 	dw SALAZZLE
+	dw FLITTLE
+	dw ESPATHRA
