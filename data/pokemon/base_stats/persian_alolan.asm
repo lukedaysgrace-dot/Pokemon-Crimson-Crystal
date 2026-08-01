@@ -5,7 +5,7 @@
 
 	db DARK, DARK ; type
 	db 90 ; catch rate
-	db 148 ; base exp
+	db 154 ; base exp
 	db NO_ITEM, QUICK_CLAW ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
