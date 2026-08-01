@@ -331,6 +331,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; NOIVERN
 	dw NoEggMoves2 ; SALANDIT
 	dw NoEggMoves2 ; SALAZZLE
+	dw FlittleEggMoves ; FLITTLE
+	dw NoEggMoves2 ; ESPATHRA
 
 
 ChikoritaEggMoves:
@@ -730,4 +732,12 @@ SquirtleCloneEggMoves:
 	dw CONFUSION
 	dw FORESIGHT
 	dw FLAIL
+	dw -1 ; end
+
+FlittleEggMoves:
+	dw ROOST
+	dw DISARMING_VOICE
+	dw FUTURE_SIGHT
+	dw MAGICAL_LEAF
+	dw HAZE
 	dw -1 ; end
