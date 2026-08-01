@@ -5,7 +5,7 @@
 
 	db FIGHTING, FIGHTING ; type
 	db 75 ; catch rate
-	db 72 ; base exp
+	db 57 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F12_5 ; gender ratio
 	db 100 ; unknown 1

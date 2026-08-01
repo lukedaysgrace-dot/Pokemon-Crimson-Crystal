@@ -5,7 +5,7 @@
 
 	db DRAGON, GHOST ; type
 	db 45 ; catch rate
-	db 147 ; base exp
+	db 144 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

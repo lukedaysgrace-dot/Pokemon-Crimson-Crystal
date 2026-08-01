@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  55,  90,  80,  96,  50, 105
+	db  55, 100,  80,  96,  50, 105
 	;  hp  atk  def  spd  sat  sdf
 
 	db GHOST, FAIRY ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mimikyu/front.dimensions"
-	abilities_for MIMIKYU, DISGUISE, DISGUISE, DISGUISE
+	abilities_for MIMIKYU, DISGUISE, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

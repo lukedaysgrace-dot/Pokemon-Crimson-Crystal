@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  48,  44,  40,  77,  71,  40
+	db  48,  44,  40,  77,  76,  40
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FIRE ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/salandit/front.dimensions"
-	abilities_for SALANDIT, POISON_TOUCH, NO_ABILITY, OBLIVIOUS
+	abilities_for SALANDIT, POISON_TOUCH, OBLIVIOUS, MERCILESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
