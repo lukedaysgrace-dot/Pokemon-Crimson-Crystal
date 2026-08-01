@@ -5,7 +5,7 @@
 
 	db DARK, FAIRY ; type
 	db 120 ; catch rate
-	db 128 ; base exp
+	db 130 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F0 ; gender ratio (male only)
 	db 100 ; unknown 1

@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/seviper/front.dimensions"
-	abilities_for SEVIPER, SHED_SKIN, NO_ABILITY, MERCILESS
+	abilities_for SEVIPER, SHED_SKIN, INTIMIDATE, MERCILESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_DRAGON ; egg groups

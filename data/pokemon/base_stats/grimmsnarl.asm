@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  95, 120,  65,  60,  95,  75
+	db  95, 120,  75,  60,  75,  85
 	;  hp  atk  def  spd  sat  sdf
 
 	db DARK, FAIRY ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/grimmsnarl/front.dimensions"
-	abilities_for GRIMMSNARL, PRANKSTER, INTIMIDATE, TOUGH_CLAWS
+	abilities_for GRIMMSNARL, PRANKSTER, FRISK, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_FAIRY ; egg groups

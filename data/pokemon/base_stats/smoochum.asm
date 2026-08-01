@@ -5,14 +5,14 @@
 
 	db ICE, PSYCHIC ; type
 	db 45 ; catch rate
-	db 87 ; base exp
+	db 61 ; base exp
 	db ICE_BERRY, ICE_BERRY ; items
 	db GENDER_F100 ; gender ratio
 	db 100 ; unknown 1
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/smoochum/front.dimensions"
-	abilities_for SMOOCHUM, HYDRATION, NO_ABILITY, HYDRATION
+	abilities_for SMOOCHUM, HYDRATION, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

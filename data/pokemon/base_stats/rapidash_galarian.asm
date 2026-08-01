@@ -1,18 +1,18 @@
 	db 0 ; species ID placeholder
 
-	db  65,  90,  70, 105,  90,  80
+	db  65, 105,  70, 115,  80,  80
 	;  hp  atk  def  spd  sat  sdf
 
 	db FAIRY, FIRE ; type
 	db 60 ; catch rate
-	db 192 ; base exp
+	db 175 ; base exp
 	db NO_ITEM, MIRACLEBERRY ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/rapidash_galarian/front.dimensions"
-	abilities_for RAPIDASH_GALARIAN, PASTEL_VEIL, PASTEL_VEIL, MAGIC_GUARD
+	abilities_for RAPIDASH_GALARIAN, PASTEL_VEIL, NO_ABILITY, MAGIC_GUARD
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

@@ -5,14 +5,14 @@
 
 	db ROCK, DARK ; type
 	db 45 ; catch rate
-	db 218 ; base exp
+	db 255 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tyranitar/front.dimensions"
-	abilities_for TYRANITAR, SAND_STREAM, SAND_STREAM, INTIMIDATE
+	abilities_for TYRANITAR, SAND_STREAM, NO_ABILITY, INTIMIDATE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

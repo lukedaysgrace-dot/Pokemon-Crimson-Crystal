@@ -5,14 +5,14 @@
 
 	db WATER, FLYING ; type
 	db 45 ; catch rate
-	db 214 ; base exp
+	db 189 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 5 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/gyarados/front.dimensions"
-	abilities_for GYARADOS, INTIMIDATE, INTIMIDATE, MOXIE
+	abilities_for GYARADOS, INTIMIDATE, NO_ABILITY, MOXIE
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_2, EGG_DRAGON ; egg groups
