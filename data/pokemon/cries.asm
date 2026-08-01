@@ -483,3 +483,5 @@ PokemonCries::
 	mon_cry CRY_SQUIRTLE,   -$060,  $1e0 ; NOIVERN
 	mon_cry CRY_EKANS,       $0a0,  $100 ; SALANDIT
 	mon_cry CRY_EKANS,      -$020,  $180 ; SALAZZLE
+	mon_cry CRY_NATU,        $060,  $0e0 ; FLITTLE
+	mon_cry CRY_FEAROW,     -$040,  $160 ; ESPATHRA

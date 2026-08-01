@@ -478,3 +478,5 @@ FirstEvoStages::
 	dw NOIBAT
 	dw SALANDIT
 	dw SALANDIT
+	dw FLITTLE
+	dw FLITTLE
