@@ -358,8 +358,9 @@ IconPointers:
 	dba DrifblimIcon
 	dba DrilburIcon
 	dba ExcadrillIcon
-	dba QuadrupedIcon
-	dba QuadrupedIcon
+	dba QuadrupedIcon ; KOTORA
+	dba QuadrupedIcon ; RAITORA
+	dba QuadrupedIcon ; GOROTORA
 	dba FletchlingIcon
 	dba FletchinderIcon
 	dba TalonflameIcon
@@ -478,3 +479,5 @@ IconPointers:
 	dba NoivernIcon
 	dba SalanditIcon
 	dba SalazzleIcon
+	dba FlittleIcon
+	dba EspathraIcon

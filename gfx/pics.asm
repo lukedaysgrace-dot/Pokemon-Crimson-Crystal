@@ -1406,6 +1406,16 @@ SECTION "Pics 72", ROMX
 SalazzleFrontpic: INCBIN "gfx/pokemon/salazzle/front.animated.2bpp.lz"
 SalazzleBackpic:  INCBIN "gfx/pokemon/salazzle/back.2bpp.lz"
 
+SECTION "Pics 73", ROMX
+
+FlittleFrontpic:  INCBIN "gfx/pokemon/flittle/front.animated.2bpp.lz"
+FlittleBackpic:   INCBIN "gfx/pokemon/flittle/back.2bpp.lz"
+
+SECTION "Pics 74", ROMX
+
+EspathraFrontpic: INCBIN "gfx/pokemon/espathra/front.animated.2bpp.lz"
+EspathraBackpic:  INCBIN "gfx/pokemon/espathra/back.2bpp.lz"
+
 SECTION "Rocket Executive Pics", ROMX
 
 ProtonPic: INCBIN "gfx/trainers/proton.2bpp.lz"

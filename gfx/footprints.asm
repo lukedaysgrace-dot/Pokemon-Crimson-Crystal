@@ -476,3 +476,5 @@ INCBIN "gfx/footprints/252.1bpp" ; NOIBAT
 INCBIN "gfx/footprints/252.1bpp" ; NOIVERN
 INCBIN "gfx/footprints/252.1bpp" ; SALANDIT
 INCBIN "gfx/footprints/252.1bpp" ; SALAZZLE
+INCBIN "gfx/footprints/252.1bpp" ; FLITTLE
+INCBIN "gfx/footprints/252.1bpp" ; ESPATHRA

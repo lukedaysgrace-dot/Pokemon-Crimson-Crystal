@@ -477,3 +477,5 @@ AnimationPointers:
 	dba NoivernAnimation
 	dba SalanditAnimation
 	dba SalazzleAnimation
+	dba FlittleAnimation
+	dba EspathraAnimation
