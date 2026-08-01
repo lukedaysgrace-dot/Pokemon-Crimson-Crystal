@@ -480,3 +480,5 @@ MenuIconPointers:
 	dba NoivernMenuIcon
 	dba SalanditMenuIcon
 	dba SalazzleMenuIcon
+	dba FlittleMenuIcon
+	dba EspathraMenuIcon
