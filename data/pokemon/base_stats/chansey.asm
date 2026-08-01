@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 250,  05,  05,  50,  35, 105
+	db 250,   5,   5,  50,  35, 105
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type
@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/chansey/front.dimensions"
-	abilities_for CHANSEY, SERENE_GRACE, NATURAL_CURE, NATURAL_CURE
+	abilities_for CHANSEY, SERENE_GRACE, NATURAL_CURE, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
