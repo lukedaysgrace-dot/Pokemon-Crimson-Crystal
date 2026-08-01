@@ -5,7 +5,7 @@
 
 	db BUG, GRASS ; type
 	db 190 ; catch rate
-	db 70 ; base exp
+	db 57 ; base exp
 	db TINYMUSHROOM, BIG_MUSHROOM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1

@@ -5,14 +5,14 @@
 
 	db GHOST, GHOST ; type
 	db 225 ; catch rate
-	db 97 ; base exp
+	db 59 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/shuppet/front.dimensions"
-	abilities_for SHUPPET, INSOMNIA, FRISK, CURSED_BODY
+	abilities_for SHUPPET, FRISK, CURSED_BODY, PRANKSTER
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups

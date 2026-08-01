@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/pawniard/front.dimensions"
-	abilities_for PAWNIARD, DEFIANT, INNER_FOCUS, PRESSURE
+	abilities_for PAWNIARD, DEFIANT, INNER_FOCUS, SHARPNESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
