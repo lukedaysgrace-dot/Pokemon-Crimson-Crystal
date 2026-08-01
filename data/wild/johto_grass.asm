@@ -1225,13 +1225,13 @@ JohtoGrassWildMons:
 	dbw 2, SENTRET
 	dbw 2, PIDGEY
 	dbw 3, RATTATA
-	dbw 3, SENTRET
+	dbw 3, KOTORA
 	dbw 2, HOPPIP
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 2, PIDGEY
-	dbw 3, SENTRET
+	dbw 2, FLITTLE
+	dbw 3, ESPATHRA
 	dbw 3, RATTATA
 	dbw 3, LOTAD
 	dbw 2, HOPPIP
@@ -1444,7 +1444,7 @@ JohtoGrassWildMons:
 	dbw 16, STANTLER
 	dbw 15, VULPIX
 	dbw 15, HOPPIP
-	dbw 15, FLITTLE
+	dbw 15, SUNKERN
 	; day
 	dbw 13, PIDGEY
 	dbw 14, GROWLITHE
@@ -1452,7 +1452,7 @@ JohtoGrassWildMons:
 	dbw 16, NIDORINO
 	dbw 15, VULPIX
 	dbw 16, NIDORINA
-	dbw 15, FLITTLE
+	dbw 15, HOPPIP
 	; nite
 	dbw 13, SPINARAK
 	dbw 14, STANTLER
