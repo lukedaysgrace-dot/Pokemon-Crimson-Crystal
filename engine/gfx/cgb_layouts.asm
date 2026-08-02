@@ -103,6 +103,12 @@ _CGB_BattleColors:
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER_HP
 	ld hl, ExpBarPalette
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_EXP
+	; The move info box's category/type icon palette normally mirrors the
+	; player mon's palette, so the backpic row it overlaps stays correct;
+	; MoveInfoBox overwrites colors 1-3 while the move menu is open.
+	call GetBattlemonBackpicPalettePointer
+	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_TYPE_CAT
 	ld de, wOBPals1
 	pop hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_ENEMY
@@ -135,6 +141,10 @@ _CGB_FinishBattleScreenLayout:
 	hlcoord 10, 11, wAttrMap
 	lb bc, 1, 9
 	ld a, PAL_BATTLE_BG_EXP
+	call FillBoxCGB
+	hlcoord 1, 9, wAttrMap
+	lb bc, 1, 6
+	ld a, PAL_BATTLE_BG_TYPE_CAT
 	call FillBoxCGB
 	hlcoord 0, 12, wAttrMap
 	ld bc, 6 * SCREEN_WIDTH
@@ -206,6 +216,11 @@ ReloadBattleAnimColors::
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER_HP
 	ld hl, ExpBarPalette
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_EXP
+	; Restore the move info icon palette to the player mon's colors too,
+	; since anim_setbgpal can also retint PAL_BATTLE_BG_TYPE_CAT.
+	call GetBattlemonBackpicPalettePointer
+	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
+	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_TYPE_CAT
 	ld de, wOBPals1
 	pop hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_ENEMY

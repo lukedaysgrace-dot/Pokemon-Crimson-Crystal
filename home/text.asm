@@ -71,7 +71,7 @@ TextboxBorder::
 	ld [hli], a
 	ld a, " "
 	call .PlaceChars
-	ld [hl], "│"
+	ld [hl], "┃" ; Polished-style frames: distinct right edge
 	pop hl
 
 	ld de, SCREEN_WIDTH
@@ -82,7 +82,7 @@ TextboxBorder::
 	; Bottom
 	ld a, "└"
 	ld [hli], a
-	ld a, "─"
+	ld a, "━" ; Polished-style frames: distinct bottom edge
 	call .PlaceChars
 	ld [hl], "┘"
 
