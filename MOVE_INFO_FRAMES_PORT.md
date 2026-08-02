@@ -99,16 +99,17 @@ Three responsiveness fixes after playtesting feedback:
      so no write can slide into mode 3 and get dropped on real hardware
      or accurate emulators (an early draft used unsynced 8-byte bursts,
      which chopped up glyphs and frame borders in SameBoy).
-   - `OpenAndCloseMenu_HDMATransferTileMapAndAttrMap` (runs twice per
-     textbox open/close) padded both maps into scratch WRAM and ran two
-     scanline-synced HDMA transfers (~3-4 frames per call). It now jumps
-     to `CGBOnly_CopyTilemapAtOnce` (~1 frame). Note: this no longer
-     blanks the offscreen columns (20-31) of the BG map; nothing scrolls
-     those columns into view in textbox/menu mode.
+   - `OpenAndCloseMenu_HDMATransferTileMapAndAttrMap`: an experiment
+     replaced its padded scanline-synced HDMA transfers with
+     `CGBOnly_CopyTilemapAtOnce`, but that helper assumes a $xx00-aligned
+     BG map anchor while this path also runs against re-anchored/scrolled
+     maps (starter pokepic, phone-number handouts, menu opens) - it
+     scrambled the screen on mGBA and caused a visible blink on menu
+     open. Reverted to the original padded transfer.
    - Also dropped a redundant frame load in `LoadFonts_NoOAMUpdate`
      (`_LoadStandardFont` already ends by reloading the frame).
    - Measured: A-press to first letter of an overworld textbox went from
-     38 to 23 frames; frame switching in OPTIONS is instant.
+     38 to 28 frames; frame switching in OPTIONS is instant.
 
 2. **No more palette flash when picking an attack.** The move info box's
    icon palette used to be restored while the box was still on screen.
