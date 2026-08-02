@@ -3164,9 +3164,10 @@ wMagnetTrainPlayerSpriteInitX:: db
 ; wPalFadeDelay must directly follow wPalFadeDelayFrames.
 wPalFadeDelayFrames:: db
 wPalFadeDelay:: db
+wPalFadeStepBase:: dw
 wPalFadeFrameStamp:: db
 
-	ds 103
+	ds 101
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::

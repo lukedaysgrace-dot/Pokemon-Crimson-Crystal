@@ -4,6 +4,13 @@ SECTION "Smooth Palette Fades", ROMX
 ; Instead of stepping through 4-shade DMG tables, this interpolates every
 ; CGB color channel (red, green, blue) toward its destination over up to
 ; 31 steps, one step per frame, producing smooth transitions on CGB.
+;
+; Unlike Polished (which always runs the CGB at double speed), Crimson runs
+; at single speed, so the per-step math is streamlined: channel step sizes
+; come from a precomputed table (data/fade_step_amounts.asm) indexed by a
+; per-step base pointer, keeping one full step well inside one frame. Each
+; step is fully computed before hCGBPalUpdate is raised, so the screen only
+; ever shows clean, complete fade steps - no palette tearing.
 
 _DoFadePalettes::
 ; Fades the active palettes (wBGPals2/wOBPals2) toward a destination,
@@ -50,10 +57,12 @@ _DoFadePalettes::
 	ret
 
 .FadeDelay:
-; Wait out this step's share of the requested duration. Frames that
-; already passed while FadePalettesStep was computing (it takes over a
-; frame at single speed) are credited against the wait, so steps are not
-; needlessly stretched.
+; Show the freshly computed step, then hold it so every step lasts exactly
+; the same number of frames (at least 2: one for the step computation, one
+; showing the uploaded result). A fixed cadence measured from the step's
+; start (wPalFadeFrameStamp) keeps the fade perfectly even no matter how
+; long the computation or the VBlank handler took - uneven step timing
+; reads as stutter on a detailed screen like the overworld.
 	ld a, [wPalFadeDelayFrames]
 	ld c, a
 	ld hl, wPalFadeDelay
@@ -72,18 +81,29 @@ _DoFadePalettes::
 	ld [hl], a
 .delay_finished
 	ldh [hCGBPalUpdate], a
-	; b = frames due; subtract frames spent computing this step
-	ld a, [wPalFadeFrameStamp]
-	ld c, a
-	ldh a, [hVBlankCounter]
-	sub c
-	cp b
-	ret nc ; computation already covered the wait
-	ld c, a
+	; c = this step's total length: at least 2 frames
 	ld a, b
-	sub c
+	cp 2
+	jr nc, .got_length
+	ld a, 2
+.got_length
 	ld c, a
-	jp DelayFrames
+.wait_loop
+	call DelayFrame
+	ld a, [wPalFadeFrameStamp]
+	ld b, a
+	ldh a, [hVBlankCounter]
+	sub b
+	jr z, .counter_dead
+	cp c
+	jr c, .wait_loop
+	ret
+
+.counter_dead
+; Not every VBlank routine ticks hVBlankCounter (only VBlank0/VBlank6 do).
+; If it isn't moving, just pace the step with one more frame instead of
+; waiting on it forever.
+	jp DelayFrame
 
 FadePalettesInit:
 ; No matter what, we always take up to 31 color fade steps.
@@ -116,6 +136,22 @@ FadePalettesInit:
 
 FadePalettesStep:
 ; Advance every fading color one step toward its destination.
+
+	; Point wPalFadeStepBase at this step's row of FadeStepAmounts
+	; (steps remaining * 32), so the per-channel lookup is just base + dist.
+	ld a, [wPalFadeDelayFrames]
+	ld l, a
+	ld h, 0
+rept 5
+	add hl, hl
+endr
+	ld de, FadeStepAmounts
+	add hl, de
+	ld a, l
+	ld [wPalFadeStepBase], a
+	ld a, h
+	ld [wPalFadeStepBase + 1], a
+
 	ldh a, [hPalFadeMode]
 	and PALFADE_WHICH
 	ld hl, wBGPals2
@@ -238,57 +274,48 @@ FadePalettesStep:
 	ret
 
 .fadeColorStep:
-; Perform a single color fading step
-; a: active color channel, l: channel value we're fading towards
+; Move the active channel one step toward the target channel.
+; a: active channel value, l: channel value we're fading towards
+; Returns the new active value in l. Preserves bc and de.
 	cp l
 	ret z
-	ld h, a
-	push bc
-	push de
-	ld b, 0
-	jr nc, .dec
-	ld h, l
-	ld l, a
-	inc b
-.dec
-	; Look up how far to move this step in FadeStepAmounts, indexed by
-	; [steps remaining][channel distance]. This replaces the division
-	; loops from Polished Crystal, which are too slow for single-speed
-	; CGB mode (they would push each fade step past one frame).
-	ld a, h
-	sub l
-	ld c, a ; c = channel distance (1-31)
-	ld a, [wPalFadeDelayFrames] ; steps remaining (1-31)
-	ld e, a
-	ld d, 0
-rept 5 ; de = steps * 32
-	sla e
-	rl d
-endr
-	ld a, e
-	add c
-	ld e, a
-	adc d
-	sub e
-	ld d, a
-	push hl
-	ld hl, FadeStepAmounts
-	add hl, de
-	ld a, [hl]
-	pop hl
+	jr c, .increasing
 
-	ld c, a
-	ld a, h
-	sub c
+	; decreasing: new = target + dist - move
+	sub l ; a = dist (1-31)
+	ld h, a
+	push hl ; h = dist, l = target
+	call .lookup
+	pop hl
+	cpl
+	inc a ; a = -move
+	add h
+	add l
+	ld l, a
+	ret
+
+.increasing
+	; increasing: new = active + move
 	ld h, a
 	ld a, l
-	add c
+	sub h ; a = dist (1-31)
+	push hl ; h = active
+	call .lookup
+	pop hl
+	add h
 	ld l, a
-	pop de
-	dec b
-	pop bc
-	ret z
-	ld l, h
+	ret
+
+.lookup:
+; a = distance (1-31) -> a = step amount from this step's table row
+	ld l, a
+	ld a, [wPalFadeStepBase]
+	add l
+	ld l, a
+	ld a, [wPalFadeStepBase + 1]
+	adc 0
+	ld h, a
+	ld a, [hl]
 	ret
 
 FadeStepAmounts:
