@@ -464,21 +464,42 @@ _Get2bpp::
 
 CopyScratchToVRAM:
 ; Copy c tiles (16 bytes each) from wScratchTileMap to VRAM at hl while the
-; LCD is on. Writes go out in 8-byte bursts started right after rSTAT
-; reports mode 0/1: a burst takes 48 cycles, which always fits within the
-; remaining hblank + OAM-scan window (VRAM stays writable through mode 2),
-; and bursts chain back-to-back during vblank. This streams a full font in
-; under two frames instead of costing 2+ frames per 16-tile chunk like the
-; old DelayFrame + HDMA path, which is what made textboxes feel laggy.
+; LCD is on. Writes go out in 4-byte bursts synced to the START of hblank
+; (or freely during early vblank): a burst takes 24 cycles and the worst
+; case window from an hblank's start is ~42 (shortest mode 0 plus the next
+; line's mode 2, during both of which VRAM is writable), so no write can
+; slide into mode 3 and get dropped - important on real hardware and
+; accurate emulators, which drop VRAM writes during mode 3. Still streams
+; a full font in ~3 frames instead of 2+ frames per 16-tile chunk like the
+; old DelayFrame + HDMA path.
 	ld de, wScratchTileMap
-	sla c ; 2 bursts per tile
-.burst_loop
+	ld b, c
+	sla b
+	sla b ; b = bursts (4 per tile; callers pass at most ~32 tiles)
+.next_burst
 	di
-.wait
+	ldh a, [rLY]
+	cp 144
+	jr c, .active_display
+	cp 151
+	jr c, .burst ; early vblank: 3+ lines of margin, write freely
+	; very end of vblank: fall through and sync to line 0's hblank
+.active_display
+	; wait until VRAM is busy (mode 2/3), bailing out if vblank starts
+.wait_busy
+	ldh a, [rLY]
+	cp 144
+	jr nc, .retry ; entered vblank: release interrupts and resync
 	ldh a, [rSTAT]
-	and %10 ; modes 0/1: VRAM accessible
-	jr nz, .wait
-rept 4
+	and %10
+	jr z, .wait_busy
+	; now wait for the falling edge: the very start of hblank (mode 0)
+.wait_free
+	ldh a, [rSTAT]
+	and %10
+	jr nz, .wait_free
+.burst
+rept 2
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -487,9 +508,13 @@ rept 4
 	inc de
 endr
 	ei
-	dec c
-	jr nz, .burst_loop
+	dec b
+	jr nz, .next_burst
 	ret
+
+.retry
+	ei
+	jr .next_burst
 
 _Get1bpp::
 	; 1bpp when [rLCDC] & $80
