@@ -57,6 +57,7 @@ MOVE_LENGTH EQU const_value
 	const CATEGORIZE_PHYSICAL
 	const CATEGORIZE_SPECIAL
 	const CATEGORIZE_STATUS
+NUM_CATEGORIES EQU const_value
 
 ; stat constants
 ; indexes for:
