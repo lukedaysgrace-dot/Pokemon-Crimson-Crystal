@@ -57,12 +57,11 @@ _DoFadePalettes::
 	ret
 
 .FadeDelay:
-; Show the freshly computed step, then hold it so every step lasts exactly
-; the same number of frames (at least 2: one for the step computation, one
-; showing the uploaded result). A fixed cadence measured from the step's
-; start (wPalFadeFrameStamp) keeps the fade perfectly even no matter how
-; long the computation or the VBlank handler took - uneven step timing
-; reads as stutter on a detailed screen like the overworld.
+; Show the freshly computed step, then hold it so every step lasts the
+; same number of frames. A fixed cadence measured from the step's start
+; (wPalFadeFrameStamp) keeps the fade perfectly even no matter how long
+; the computation or the VBlank handler took - uneven step timing reads
+; as stutter on a detailed screen like the overworld.
 	ld a, [wPalFadeDelayFrames]
 	ld c, a
 	ld hl, wPalFadeDelay
@@ -81,7 +80,10 @@ _DoFadePalettes::
 	ld [hl], a
 .delay_finished
 	ldh [hCGBPalUpdate], a
-	; c = this step's total length: at least 2 frames
+	; c = this step's total length: 2 frames (one computing, one showing).
+	; A full step's math takes most of a frame at single speed, so a fixed
+	; 2-frame cadence is the fastest EVEN pacing available; durations below
+	; are chosen so total fade time matches Polished (total = 2 * steps).
 	ld a, b
 	cp 2
 	jr nc, .got_length
