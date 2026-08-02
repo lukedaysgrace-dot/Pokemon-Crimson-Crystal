@@ -657,10 +657,10 @@ ParsePlayerAction:
 	cp BATTLEPLAYERACTION_SWITCH
 	jp z, .reset_rage
 	and a
-	jr nz, .reset_bide
+	jp nz, .reset_bide
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_BIDE
-	jr nz, .locked_in
+	jp nz, .locked_in
 	xor a
 	ld [wMoveSelectionMenuType], a
 	if HIGH(POUND)
@@ -676,9 +676,24 @@ ParsePlayerAction:
 	call MoveSelectionScreen
 	push af
 	call Call_LoadTempTileMapToTileMap
-	; The move info box borrowed PAL_BATTLE_BG_TYPE_CAT for its icons;
-	; give the player backpic row its own colors back.
+	; The move info box borrowed PAL_BATTLE_BG_TYPE_CAT for its icons; give
+	; the player backpic row its own colors back. First repair the attrmap
+	; rows the box's Textbox call dirtied (back to the battle scene values),
+	; then push tiles + attrs to the screen in one shot - the box vanishes
+	; instantly - and only then upload the palettes, so the icons never
+	; visibly recolor before the menu closes.
 	farcall RestoreBattleMoveInfoPals
+	hlcoord 0, 8, wAttrMap
+	lb bc, 4, 10
+	xor a ; PAL_BATTLE_BG_PLAYER
+	call FillBoxWithByte
+	hlcoord 10, 8, wAttrMap
+	lb bc, 4, 1
+	ld a, PAL_BATTLE_BG_PLAYER_HP
+	call FillBoxWithByte
+	call CGBOnly_CopyTilemapAtOnce
+	ld a, $1
+	ldh [hCGBPalUpdate], a
 	call UpdateBattleHuds
 	ld a, [wCurPlayerMove]
 	call GetMoveIndexFromID
