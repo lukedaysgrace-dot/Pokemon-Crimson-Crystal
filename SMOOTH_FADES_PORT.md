@@ -58,11 +58,12 @@ Crystal (Polished's menu/warp fades run ~10 frames total; ours previously
 ran 12-20). A full fade step's math takes most of a frame at single speed,
 so the 2-frame cadence is the fastest even pacing available - fewer, evenly
 paced steps is how the totals come down.
-- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 5 (10 frames total)
-- `FadeInQuickly`/`FadeBlackQuickly`: 4 (8 frames)
+- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 4 (8 frames total;
+  Polished runs ~10)
+- `FadeInQuickly`/`FadeBlackQuickly`: 3 (6 frames)
 - `BattleTowerFade`: 8 (16 frames; deliberately the slow one)
-- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 5 (10 frames)
-- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 4 (8 frames)
+- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 4 (8 frames)
+- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 3 (6 frames)
 
 Tune these `ld c, N` values to taste; total = 2N frames, N color steps.
 
