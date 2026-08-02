@@ -1433,3 +1433,63 @@ INCLUDE "gfx/beta_poker/beta_poker.pal"
 
 SlotMachinePals:
 INCLUDE "gfx/slots/slots.pal"
+
+; ---------------------------------------------------------------------------
+; Battle move info box icon palettes (ported from Polished Crystal).
+; The category icon uses colors 1-2 and the type colorbox uses color 3 of
+; PAL_BATTLE_BG_TYPE_CAT; color 0 stays white.
+
+LoadBattleCategoryAndTypePals::
+	ld a, [wPlayerMoveStructEffect]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .not_hidden_power
+	farcall GetHiddenPowerDisplayStats ; b = category, c = type
+	jr .got_stats
+.not_hidden_power
+	ld a, [wPlayerMoveStructCategory]
+	ld b, a
+	ld a, [wPlayerMoveStructType]
+	ld c, a
+.got_stats
+	push bc
+	ld hl, CategoryIconPals
+	ld a, b
+	add a
+	add a ; category * 4 bytes (2 colors)
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT + 2
+	ld bc, 4
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	pop bc
+	ld hl, TypeIconPals
+	ld a, c
+	add a ; type * 2 bytes (1 color)
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT + 6
+	ld bc, 2
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	jr _ApplyMoveInfoPals
+
+RestoreBattleMoveInfoPals::
+; Restore PAL_BATTLE_BG_TYPE_CAT to the player mon's palette when the move
+; menu closes; the palette also covers part of the player backpic row.
+	call GetBattlemonBackpicPalettePointer
+	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
+	call LoadPalette_White_Col1_Col2_Black
+_ApplyMoveInfoPals:
+	call ApplyPals
+	ld a, $1
+	ldh [hCGBPalUpdate], a
+	ret
+
+CategoryIconPals:
+INCLUDE "gfx/battle/categories.pal"
+
+TypeIconPals:
+INCLUDE "gfx/battle/types.pal"
