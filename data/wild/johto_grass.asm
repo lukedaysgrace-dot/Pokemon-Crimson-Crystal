@@ -1230,7 +1230,7 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 2, FLITTLE
+	dbw 2, AMPHAROS
 	dbw 3, ESPATHRA
 	dbw 3, RATTATA
 	dbw 3, LOTAD
