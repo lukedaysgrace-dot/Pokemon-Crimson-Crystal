@@ -344,6 +344,9 @@ INCLUDE "engine/gfx/sprites.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 
 
+INCLUDE "engine/gfx/fade.asm"
+
+
 SECTION "bank24", ROMX
 
 INCLUDE "engine/phone/phone.asm"
