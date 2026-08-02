@@ -441,7 +441,7 @@ TyphlosionEvosAttacks:
 TotodileEvosAttacks:
 	dbbw EVOLVE_LEVEL, 18, CROCONAW
 	db 0 ; no more evolutions
-	dbw 1, BUG_BUZZ
+	dbw 1, LUMINA_CRASH
 	dbw 1, NIGHT_SLASH
 	dbw 4, SUCKER_PUNCH
 	dbw 5, POISON_JAB
@@ -6765,6 +6765,7 @@ EspathraEvosAttacks:
 	dbw 1, CONFUSION
 	dbw 1, CHARM
 	dbw 1, QUICK_ATTACK
+	dbw 1, LUMINA_CRASH
 	dbw 5, CHARM
 	dbw 10, CONFUSE_RAY
 	dbw 15, PSYBEAM

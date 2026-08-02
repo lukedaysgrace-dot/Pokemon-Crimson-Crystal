@@ -730,6 +730,29 @@ SpecialDefenseDownHit:
 	statdownmessage
 	endmove
 
+SpecialDefenseDown2Hit:
+; as SpecialDefenseDownHit, but drops Sp.Def by two stages (LUMINA_CRASH)
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	specialdefensedown2
+	statdownmessage
+	endmove
+
 AccuracyDownHit:
 	checkobedience
 	usedmovetext

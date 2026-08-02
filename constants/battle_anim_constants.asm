@@ -442,6 +442,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_ROCK_POLISH_45DEG_L_YFLIP
 	const ANIM_OBJ_ROCK_POLISH_85DEG_L_YFLIP
 	const ANIM_OBJ_RADIAL_FLAME_RED
+; polishedcoral ports
+	const ANIM_OBJ_LUMINA_CRASH
+	const ANIM_OBJ_LUMINA_CRASH_TINY
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -854,6 +857,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_ROCK_POLISH_5DEG_L_YFLIP
 	const BATTLEANIMFRAMESET_ROCK_POLISH_45DEG_L_YFLIP
 	const BATTLEANIMFRAMESET_ROCK_POLISH_85DEG_L_YFLIP
+; polishedcoral ports
+	const BATTLEANIMFRAMESET_LUMINA_CRASH
+	const BATTLEANIMFRAMESET_LUMINA_CRASH_TINY
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -1207,6 +1213,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_ROCK_POLISH_85DEG_2
 	const BATTLEANIMOAMSET_ROCK_POLISH_85DEG_3
 	const BATTLEANIMOAMSET_ROCK_POLISH_85DEG_4
+; polishedcoral ports
+	const BATTLEANIMOAMSET_LUMINA_CRASH_1
+	const BATTLEANIMOAMSET_LUMINA_CRASH_2
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1376,6 +1385,8 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_METEOR
 	const ANIM_GFX_ROCK_POLISH
 	const ANIM_GFX_BIG_GLOW_SPIKED
+; gfx ported from polishedcoral
+	const ANIM_GFX_LUMINA_CRASH
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def
