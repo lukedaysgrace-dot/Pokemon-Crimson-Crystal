@@ -29,7 +29,14 @@ _LoadStandardFont::
 	call Get1bpp_2
 	ld de, Font + 64 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $40
-	lb bc, BANK(Font), 32 ; $c0 to "←"
+	lb bc, BANK(Font), 3 ; "+", "<BOLD_P>", "<PCT>"
+	call Get1bpp_2
+	; Skip $c3/$c4: those slots hold the "┃"/"━" frame-edge tiles (loaded by
+	; LoadFrame). Blanketing them here made the textbox border blink while
+	; the box was already on screen during OpenText's font load.
+	ld de, Font + 69 * LEN_1BPP_TILE
+	ld hl, vTiles1 tile $45
+	lb bc, BANK(Font), 27 ; $c5 to "←"
 	call Get1bpp_2
 	ld de, Font + 96 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $60
@@ -41,9 +48,7 @@ _LoadStandardFont::
 	ld hl, vTiles1 tile $40 ; "+" ($c0)
 	lb bc, BANK(PlusFontGFX), 1
 	call Get1bpp_2
-	; The "┃"/"━" frame-edge tiles ($c3/$c4) live in the font tile range and
-	; were just blanked by the font copy above, so reload the current frame.
-	jp LoadFrame
+	ret
 
 PlusFontGFX:
 ; 8x8 1bpp "+" glyph, left-aligned and centered to match the digit glyphs.
