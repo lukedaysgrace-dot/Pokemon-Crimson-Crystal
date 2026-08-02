@@ -101,15 +101,11 @@ EvosAttacksPointers2::
 	dw LugiaEvosAttacks
 	dw HoOhEvosAttacks
 	dw CelebiEvosAttacks
-	dw CharmanderCloneEvosAttacks
-	dw CharmeleonCloneEvosAttacks
-	dw CharizardCloneEvosAttacks
-	dw SquirtleCloneEvosAttacks
-	dw WartortleCloneEvosAttacks
-	dw BlastoiseCloneEvosAttacks
-	dw BulbasaurCloneEvosAttacks
-	dw IvysaurCloneEvosAttacks
-	dw VenusaurCloneEvosAttacks
+
+; CHARMANDER_CLONE through VENUSAUR_CLONE are handled by EvosAttacksPointers2D,
+; which lives in the same bank as their data (see "Evolutions and Attacks 2B").
+
+EvosAttacksPointers2E::
 	dw HonchkrowEvosAttacks
 	dw AmbipomEvosAttacks
 	dw AnnihilapeEvosAttacks
@@ -6384,8 +6380,7 @@ GlimmoraEvosAttacks:
 	dbw 44, ACID_ARMOR
 	db 0 ; no more level-up moves
 
-SECTION "Evolutions and Attacks 2B", ROMX
-
+; This pointer block must stay in the same bank as the data it points to.
 EvosAttacksPointers2B::
 	dw LaironEvosAttacks
 	dw AggronEvosAttacks
@@ -6396,6 +6391,20 @@ EvosAttacksPointers2B::
 	dw ToxapexEvosAttacks
 	dw ZangooseEvosAttacks
 	dw SeviperEvosAttacks
+
+SECTION "Evolutions and Attacks 2B", ROMX
+
+; This pointer block must stay in the same bank as the clone data below.
+EvosAttacksPointers2D::
+	dw CharmanderCloneEvosAttacks
+	dw CharmeleonCloneEvosAttacks
+	dw CharizardCloneEvosAttacks
+	dw SquirtleCloneEvosAttacks
+	dw WartortleCloneEvosAttacks
+	dw BlastoiseCloneEvosAttacks
+	dw BulbasaurCloneEvosAttacks
+	dw IvysaurCloneEvosAttacks
+	dw VenusaurCloneEvosAttacks
 
 INCLUDE "data/pokemon/evos_attacks_clones.asm"
 
