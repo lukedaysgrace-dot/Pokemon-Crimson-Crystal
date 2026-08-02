@@ -216,3 +216,4 @@ MoveEffectsPointers:
 	dw CircleThrow ; EFFECT_CIRCLE_THROW
 	dw FreezeHit ; EFFECT_FREEZE_DRY (type override in the matchup code)
 	dw Bounce ; EFFECT_BOUNCE
+	dw SpecialDefenseDown2Hit ; EFFECT_SP_DEF_DOWN_2_HIT

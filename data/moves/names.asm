@@ -412,3 +412,4 @@ MoveNames::
 	db "FREEZE-DRY@"
 	db "BOUNCE@"
 	db "DRAGON TAIL@"
+	db "LUMINA CRASH@"
