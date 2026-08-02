@@ -1842,3 +1842,56 @@ BattleAnim_DragonTail_CC:
 	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
 	anim_wait 32
 	anim_ret
+
+BattleAnim_LuminaCrash_CC:
+; (polishedcoral) The user gathers light, then a blinding starburst detonates
+; on itself and again on the target, sparks flying outward each time.
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PSYCHO_BOOST_2
+	anim_3gfx ANIM_GFX_LUMINA_CRASH, ANIM_GFX_SHINE, ANIM_GFX_CHARGE
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_sound 0, 0, SFX_PSYBEAM
+	anim_obj ANIM_OBJ_POWER_GEM, 48, 96, $0
+	anim_wait 16
+	anim_clearobjs
+	anim_obj ANIM_OBJ_LUMINA_CRASH, 48, 96, $0
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $0
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $28
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $30
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $38
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $20
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $18
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 48, 96, $4
+	anim_wait 64
+	anim_clearobjs
+	anim_sound 0, 0, SFX_RAGE
+	anim_obj ANIM_OBJ_GLIMMER, 48, 80, $0
+	anim_wait 16
+	anim_bgeffect ANIM_BG_CYCLE_BGPALS_INVERTED, $0, $4, $0
+	anim_sound 0, 0, SFX_BIND
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
+	anim_obj ANIM_OBJ_LUMINA_CRASH, 136, 56, $0
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $0
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $28
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $30
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $38
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $20
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $18
+	anim_wait 2
+	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $4
+	anim_wait 64
+	anim_ret
