@@ -83,3 +83,39 @@ Two features ported from Polished Crystal:
   colors (NORMAL/FIRE verified), power/accuracy/PP values, "---" for
   status moves, frame cycling 1-20 with wraparound in OPTIONS, and the
   player backpic palette restore when the move menu closes.
+
+## Follow-up (2026-08-02, round 2): snappiness + flash fixes
+
+Three responsiveness fixes after playtesting feedback:
+
+1. **Textbox/menu opens are much snappier.** Two causes of the old lag:
+   - `_Get1bpp`/`_Get2bpp` (LCD-on font/frame loading) burned a
+     `DelayFrame` plus a scanline-synced HBlank DMA per 16-tile chunk
+     (~2 frames each; a full font load cost ~9+ frames). Replaced with
+     `CopyScratchToVRAM` in `engine/gfx/dma_transfer.asm`: 8-byte bursts
+     written right after rSTAT reports mode 0/1, streaming a whole font in
+     under 2 frames.
+   - `OpenAndCloseMenu_HDMATransferTileMapAndAttrMap` (runs twice per
+     textbox open/close) padded both maps into scratch WRAM and ran two
+     scanline-synced HDMA transfers (~3-4 frames per call). It now jumps
+     to `CGBOnly_CopyTilemapAtOnce` (~1 frame). Note: this no longer
+     blanks the offscreen columns (20-31) of the BG map; nothing scrolls
+     those columns into view in textbox/menu mode.
+   - Also dropped a redundant frame load in `LoadFonts_NoOAMUpdate`
+     (`_LoadStandardFont` already ends by reloading the frame).
+   - Measured: A-press to first letter of an overworld textbox went from
+     38 to 23 frames; frame switching in OPTIONS is instant.
+
+2. **No more palette flash when picking an attack.** The move info box's
+   icon palette used to be restored while the box was still on screen.
+   Now, after move selection: palette buffers are refilled
+   (`RestoreBattleMoveInfoPals` no longer uploads by itself), the attrmap
+   rows the box dirtied are repaired to battle-scene values, the whole
+   tilemap+attrmap is pushed in one shot (`CGBOnly_CopyTilemapAtOnce`), and
+   only then is the palette upload flagged. The box now cuts straight to
+   the battle scene with no recolored frames (verified frame-by-frame).
+   Two `jr`s near the fight-menu code became `jp`s for range.
+
+3. **Fades now match Polished's total duration** — see
+   SMOOTH_FADES_PORT.md (step counts halved; menu/warp fades are 10 frames
+   total, evenly paced).
