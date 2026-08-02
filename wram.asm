@@ -3160,7 +3160,13 @@ wMagnetTrainHoldPosition:: db
 wMagnetTrainFinalPosition:: db
 wMagnetTrainPlayerSpriteInitX:: db
 
-	ds 106
+; Smooth palette fade engine (engine/gfx/fade.asm).
+; wPalFadeDelay must directly follow wPalFadeDelayFrames.
+wPalFadeDelayFrames:: db
+wPalFadeDelay:: db
+wPalFadeFrameStamp:: db
+
+	ds 103
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::
