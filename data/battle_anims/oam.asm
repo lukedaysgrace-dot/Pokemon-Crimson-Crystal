@@ -350,6 +350,28 @@ BattleAnimOAMData:
 	dbbw $02,  2, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_2
 	dbbw $02,  3, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_3
 	dbbw $02,  4, .OAMData_rock_polish_85deg ; BATTLEANIMOAMSET_ROCK_POLISH_85DEG_4
+; polishedcoral ports
+	dbbw $00, 16, .OAMData_lumina_crash ; BATTLEANIMOAMSET_LUMINA_CRASH_1
+	dbbw $04, 16, .OAMData_lumina_crash ; BATTLEANIMOAMSET_LUMINA_CRASH_2
+
+.OAMData_lumina_crash:
+; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
+	dbsprite  -2, -2,  0, -2, $00, $0
+	dbsprite  -1, -2,  0, -2, $01, $0
+	dbsprite   0, -2,  0, -2, $01, X_FLIP
+	dbsprite   1, -2,  0, -2, $00, X_FLIP
+	dbsprite  -2, -1,  0, -2, $02, $0
+	dbsprite  -1, -1,  0, -2, $03, $0
+	dbsprite   0, -1,  0, -2, $03, X_FLIP
+	dbsprite   1, -1,  0, -2, $02, X_FLIP
+	dbsprite  -2,  0,  0, -2, $02, Y_FLIP
+	dbsprite  -1,  0,  0, -2, $03, Y_FLIP
+	dbsprite   0,  0,  0, -2, $03, X_FLIP | Y_FLIP
+	dbsprite   1,  0,  0, -2, $02, X_FLIP | Y_FLIP
+	dbsprite  -2,  1,  0, -2, $00, Y_FLIP
+	dbsprite  -1,  1,  0, -2, $01, Y_FLIP
+	dbsprite   0,  1,  0, -2, $01, X_FLIP | Y_FLIP
+	dbsprite   1,  1,  0, -2, $00, X_FLIP | Y_FLIP
 
 .OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $0
