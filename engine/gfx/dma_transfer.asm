@@ -146,11 +146,40 @@ Mobile_ReloadMapPart:
 
 OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 ; OpenText
-; Push the tile + attr maps to the screen in a single frame. The old path
-; padded both maps into scratch WRAM and ran two scanline-synced HBlank
-; DMA transfers, costing 3-4 frames per call (and this runs twice per
-; textbox open/close) - the main source of the "laggy" textbox feel.
-	jp CGBOnly_CopyTilemapAtOnce
+; (An experiment replaced this with CGBOnly_CopyTilemapAtOnce for speed,
+; but that helper assumes a $xx00-aligned BG map anchor; this runs against
+; re-anchored/scrolled maps too and corrupted the screen. The padded HDMA
+; transfer below handles arbitrary anchors correctly.)
+	ld hl, .Function
+	jp CallInSafeGFXMode
+
+.Function:
+	; Transfer wAttrMap and Tilemap to BGMap
+	; Fill vBGAttrs with $00
+	; Fill vBGTiles with " "
+	decoord 0, 0, wAttrMap
+	ld hl, wScratchAttrMap
+	call PadAttrMapForHDMATransfer
+	decoord 0, 0
+	ld hl, wScratchTileMap
+	call PadTilemapForHDMATransfer
+	call DelayFrame
+
+	di
+	ldh a, [rVBK]
+	push af
+	ld a, $1
+	ldh [rVBK], a
+	ld hl, wScratchAttrMap
+	call HDMATransfer_Wait123Scanlines_toBGMap
+	ld a, $0
+	ldh [rVBK], a
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait123Scanlines_toBGMap
+	pop af
+	ldh [rVBK], a
+	ei
+	ret
 
 Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:
 	ld hl, .Function
