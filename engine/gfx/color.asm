@@ -1479,9 +1479,13 @@ LoadBattleCategoryAndTypePals::
 RestoreBattleMoveInfoPals::
 ; Restore PAL_BATTLE_BG_TYPE_CAT to the player mon's palette when the move
 ; menu closes; the palette also covers part of the player backpic row.
+; Only fills the buffers - the caller uploads (hCGBPalUpdate) after the
+; move info box tiles are off screen, so the icons never visibly recolor.
 	call GetBattlemonBackpicPalettePointer
 	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
 	call LoadPalette_White_Col1_Col2_Black
+	jp ApplyPals
+
 _ApplyMoveInfoPals:
 	call ApplyPals
 	ld a, $1
