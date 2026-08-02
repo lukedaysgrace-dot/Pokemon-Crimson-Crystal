@@ -259,15 +259,15 @@ MonMenuIconPals:
 	icon_pals RED,    BROWN  ; HO_OH
 	icon_pals GREEN,  PINK   ; CELEBI
 ; new species
-	icon_pals RED, RED ; CHARMANDER_CLONE
-	icon_pals RED, RED ; CHARMELEON_CLONE
-	icon_pals RED, RED ; CHARIZARD_CLONE
-	icon_pals BLUE, BLUE ; SQUIRTLE_CLONE
-	icon_pals BLUE, BLUE ; WARTORTLE_CLONE
-	icon_pals BLUE, BLUE ; BLASTOISE_CLONE
-	icon_pals TEAL, TEAL ; BULBASAUR_CLONE
-	icon_pals TEAL, TEAL ; IVYSAUR_CLONE
-	icon_pals TEAL, TEAL ; VENUSAUR_CLONE
+	icon_pals RED,    BROWN  ; CHARMANDER_CLONE
+	icon_pals RED,    BROWN  ; CHARMELEON_CLONE
+	icon_pals RED,    PURPLE ; CHARIZARD_CLONE
+	icon_pals BLUE,   TEAL   ; SQUIRTLE_CLONE
+	icon_pals BLUE,   TEAL   ; WARTORTLE_CLONE
+	icon_pals BLUE,   TEAL   ; BLASTOISE_CLONE
+	icon_pals TEAL,   GREEN  ; BULBASAUR_CLONE
+	icon_pals TEAL,   GREEN  ; IVYSAUR_CLONE
+	icon_pals TEAL,   GREEN  ; VENUSAUR_CLONE
 	icon_pals BLUE,   PINK   ; HONCHKROW
 	icon_pals PURPLE, PINK   ; AMBIPOM
 	icon_pals GRAY,   GREEN  ; ANNIHILAPE
