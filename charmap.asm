@@ -135,6 +135,11 @@
 
 	charmap "+",         $c0 ; level-up stat gains; glyph lives in font tile $c0
 
+	charmap "<BOLD_P>",  $c1 ; bold P for battle move info (power / PP)
+	charmap "<PCT>",     $c2 ; percent sign for battle move info accuracy
+	charmap "┃",         $c3 ; textbox frame: right edge (Polished-style frames)
+	charmap "━",         $c4 ; textbox frame: bottom edge (Polished-style frames)
+
 	charmap "′",         $ce
 	charmap "″",         $cf
 
