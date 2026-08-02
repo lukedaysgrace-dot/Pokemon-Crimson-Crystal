@@ -568,6 +568,8 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
     )
     second = (
         pointer_block(johto, "EvosAttacksPointers2")
+        + pointer_block(johto, "EvosAttacksPointers2D")
+        + pointer_block(johto, "EvosAttacksPointers2E")
         + pointer_block(johto, "EvosAttacksPointers2B")
     )
     pointers = first + second
