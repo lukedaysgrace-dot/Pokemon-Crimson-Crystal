@@ -28,7 +28,7 @@ RotateFourPalettesRight::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 5 ; 5 steps x 2 frames = 10 frames total
+	ld c, 4 ; 4 steps x 2 frames = 8 frames total
 	jr FadePalettes
 
 .dmg
@@ -41,7 +41,7 @@ RotateThreePalettesRight::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 4 ; 4 steps x 2 frames = 8 frames total
+	ld c, 3 ; 3 steps x 2 frames = 6 frames total
 	jr FadeToWhitePals
 
 .dmg
@@ -70,7 +70,7 @@ RotateFourPalettesLeft::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 5 ; 5 steps x 2 frames = 10 frames total
+	ld c, 4 ; 4 steps x 2 frames = 8 frames total
 	jr FadeToBlackPals
 
 .dmg
@@ -83,7 +83,7 @@ RotateThreePalettesLeft::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 4 ; 4 steps x 2 frames = 8 frames total
+	ld c, 3 ; 3 steps x 2 frames = 6 frames total
 	jr FadePalettes
 
 .dmg
