@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 110,  85,  80,  30, 100,  80
+	db 110,  85, 110,  35, 100, 100
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, DRAGON ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/appletun/front.dimensions"
-	abilities_for APPLETUN, THICK_FAT, NO_ABILITY, NO_ABILITY
+	abilities_for APPLETUN, THICK_FAT, REGENERATOR, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_DRAGON ; egg groups
