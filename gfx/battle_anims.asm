@@ -81,3 +81,5 @@ AnimObjBeamSolarGFX:  INCBIN "gfx/battle_anims/beamsolar.2bpp.lz"
 AnimObjMeteorGFX:     INCBIN "gfx/battle_anims/meteor.2bpp.lz"
 AnimObjRockPolishGFX: INCBIN "gfx/battle_anims/rockpolish.2bpp.lz"
 AnimObjBigGlowSpikedGFX: INCBIN "gfx/battle_anims/bigglowspiked.2bpp.lz"
+; ported from polishedcoral
+AnimObjLuminaCrashGFX: INCBIN "gfx/battle_anims/luminacrash.2bpp.lz"

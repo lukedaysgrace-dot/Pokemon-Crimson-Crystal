@@ -419,6 +419,7 @@
 	const FREEZE_DRY
 	const BOUNCE
 	const DRAGON_TAIL
+	const LUMINA_CRASH
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff
