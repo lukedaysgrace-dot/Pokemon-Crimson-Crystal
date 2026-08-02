@@ -676,6 +676,9 @@ ParsePlayerAction:
 	call MoveSelectionScreen
 	push af
 	call Call_LoadTempTileMapToTileMap
+	; The move info box borrowed PAL_BATTLE_BG_TYPE_CAT for its icons;
+	; give the player backpic row its own colors back.
+	farcall RestoreBattleMoveInfoPals
 	call UpdateBattleHuds
 	ld a, [wCurPlayerMove]
 	call GetMoveIndexFromID
@@ -5879,32 +5882,16 @@ MoveSelectionScreen:
 	jp MoveSelectionScreen
 
 MoveInfoBox:
+; Polished Crystal-style move info: category icon, type colorbox,
+; base power, accuracy, and PP for the selected move.
 	xor a
 	ldh [hBGMapMode], a
 
 	hlcoord 0, 8
-	ld b, 3
-	ld c, 9
+	lb bc, 3, 9
 	call Textbox
 	call MobileTextBorder
 
-	ld a, [wPlayerDisableCount]
-	and a
-	jr z, .not_disabled
-
-	swap a
-	and $f
-	ld b, a
-	ld a, [wMenuCursorY]
-	cp b
-	jr nz, .not_disabled
-
-	hlcoord 1, 10
-	ld de, .Disabled
-	call PlaceString
-	jr .done
-
-.not_disabled
 	ld hl, wMenuCursorY
 	dec [hl]
 	call SetPlayerTurn
@@ -5933,56 +5920,18 @@ MoveInfoBox:
 	ld [wStringBuffer1], a
 	call .PrintPP
 
-	hlcoord 1, 9
-	ld de, .Type
-	call PlaceString
-
-	hlcoord 7, 11
-	ld [hl], "/"
-
 	callfar UpdateMoveData
-	call .PrintMoveCategory
-	ld a, [wPlayerMoveStruct + MOVE_ANIM]
-	ld b, a
-	hlcoord 2, 10
-	predef PrintMoveType
-
-.done
+	; The rest (power/accuracy text, category icon, type colorbox) lives in
+	; bank3F; the battle core bank is packed tight.
+	callfar BattleMoveInfoStats
 	ret
-
-.Disabled:
-	db "Disabled!@"
-.Type:
-	db "     @"
-
-.PrintMoveCategory:
-	hlcoord 1, 9
-	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
-	and a
-	ld de, .Physical
-	jr z, .place
-	cp CATEGORIZE_SPECIAL
-	ld de, .Special
-	jr z, .place
-	ld de, .Status
-.place
-	call PlaceString
-	ret
-
-.Physical:
-	db "PHYSICAL/@"
-.Special:
-	db "SPECIAL/@"
-.Status:
-	db "STATUS/@"
 
 .PrintPP:
-	hlcoord 5, 11
-	ld a, [wLinkMode] ; What's the point of this check?
-	cp LINK_MOBILE
-	jr c, .ok
-	hlcoord 5, 11
-.ok
+	hlcoord 2, 11
+	ld a, "<BOLD_P>"
+	ld [hli], a
+	ld [hli], a
+	inc hl
 	push hl
 	ld de, wStringBuffer1
 	lb bc, 1, 2
@@ -5990,12 +5939,11 @@ MoveInfoBox:
 	pop hl
 	inc hl
 	inc hl
-	ld [hl], "/"
-	inc hl
+	ld a, "/"
+	ld [hli], a
 	ld de, wNamedObjectIndexBuffer
 	lb bc, 1, 2
-	call PrintNum
-	ret
+	jp PrintNum
 
 CheckPlayerHasUsableMoves:
 	ld hl, STRUGGLE
