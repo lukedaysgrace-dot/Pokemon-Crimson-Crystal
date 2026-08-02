@@ -452,6 +452,7 @@ BattleAnimations::
 	banim BattleAnim_FreezeDry_CC ; FREEZE_DRY
 	banim BattleAnim_Bounce_CC ; BOUNCE
 	banim BattleAnim_DragonTail_CC ; DRAGON_TAIL
+	banim BattleAnim_LuminaCrash_CC ; LUMINA_CRASH
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
