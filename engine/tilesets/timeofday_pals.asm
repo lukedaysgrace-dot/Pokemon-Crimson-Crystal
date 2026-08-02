@@ -113,6 +113,14 @@ _UpdateTimePals::
 	ret
 
 FadeInPalettes::
+; Fade in from white to the loaded palettes.
+	ldh a, [hCGB]
+	and a
+	jr z, .dmg
+	ld c, 10
+	jr FadeInSmooth
+
+.dmg
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -120,7 +128,15 @@ FadeInPalettes::
 	ret
 
 FadeOutPalettes::
+; Fade out to white.
 	call FillWhiteBGColor
+	ldh a, [hCGB]
+	and a
+	jr z, .dmg
+	ld c, 10
+	jp FadeToWhitePals
+
+.dmg
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -128,7 +144,15 @@ FadeOutPalettes::
 	ret
 
 BattleTowerFade:
+; Slower fade out to white.
 	call FillWhiteBGColor
+	ldh a, [hCGB]
+	and a
+	jr z, .dmg
+	ld c, 14
+	jp FadeToWhitePals
+
+.dmg
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -144,6 +168,14 @@ BattleTowerFade:
 	ret
 
 FadeInQuickly:
+; Fade in from black to the loaded palettes.
+	ldh a, [hCGB]
+	and a
+	jr z, .dmg
+	ld c, 8
+	jr FadeInSmooth
+
+.dmg
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
@@ -151,10 +183,28 @@ FadeInQuickly:
 	ret
 
 FadeBlackQuickly:
+; Fade out to black.
+	ldh a, [hCGB]
+	and a
+	jr z, .dmg
+	ld c, 8
+	jp FadeToBlackPals
+
+.dmg
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsDecHL
+	ret
+
+FadeInSmooth:
+; Smoothly fade the active palettes toward wBGPals1/wOBPals1 in c frames,
+; then reapply the weather tint (a no-op without overcast/rain weather),
+; since the fade lands on the untinted loaded palettes.
+	call FadePalettes
+	farcall ApplyWeatherTint
+	ld a, 1
+	ldh [hCGBPalUpdate], a
 	ret
 
 FillWhiteBGColor:
