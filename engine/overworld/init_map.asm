@@ -72,7 +72,8 @@ LoadFonts_NoOAMUpdate::
 	ret
 
 .LoadGFX:
-	call LoadFontsExtra
+	; (Dropped a redundant LoadFontsExtra here: it only loads the textbox
+	; frame, and LoadStandardFont below ends by reloading the frame anyway.)
 	ld a, $90
 	ldh [hWY], a
 	call SafeUpdateSprites
