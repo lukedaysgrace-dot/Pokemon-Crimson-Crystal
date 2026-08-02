@@ -28,7 +28,7 @@ RotateFourPalettesRight::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 16
+	ld c, 10
 	jr FadePalettes
 
 .dmg
@@ -41,7 +41,7 @@ RotateThreePalettesRight::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 12
+	ld c, 8
 	jr FadeToWhitePals
 
 .dmg
@@ -70,7 +70,7 @@ RotateFourPalettesLeft::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 16
+	ld c, 10
 	jr FadeToBlackPals
 
 .dmg
@@ -83,7 +83,7 @@ RotateThreePalettesLeft::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 12
+	ld c, 8
 	jr FadePalettes
 
 .dmg
