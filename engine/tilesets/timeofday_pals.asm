@@ -117,7 +117,7 @@ FadeInPalettes::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 10
+	ld c, 6
 	jr FadeInSmooth
 
 .dmg
@@ -133,7 +133,7 @@ FadeOutPalettes::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 10
+	ld c, 6
 	jp FadeToWhitePals
 
 .dmg
@@ -149,7 +149,7 @@ BattleTowerFade:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 14
+	ld c, 10
 	jp FadeToWhitePals
 
 .dmg
@@ -172,7 +172,7 @@ FadeInQuickly:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 8
+	ld c, 5
 	jr FadeInSmooth
 
 .dmg
@@ -187,7 +187,7 @@ FadeBlackQuickly:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 8
+	ld c, 5
 	jp FadeToBlackPals
 
 .dmg

@@ -53,11 +53,11 @@ the `FadeOutPalettes`/`FadeInPalettes`/`FadeBlackQuickly`/`FadeInQuickly`/
 - Constants: `PALFADE_*` in `constants/gfx_constants.asm`.
 
 ## Durations (`c` = step count; each step lasts 2 frames)
-- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 10
-- `FadeInQuickly`/`FadeBlackQuickly`: 8
-- `BattleTowerFade`: 14
-- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 16
-- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 12
+- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 6
+- `FadeInQuickly`/`FadeBlackQuickly`: 5
+- `BattleTowerFade`: 10
+- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 10
+- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 8
 
 Tune these `ld c, N` values to taste; total = 2N frames, N color steps.
 
