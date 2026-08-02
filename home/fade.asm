@@ -1,12 +1,35 @@
 ; Functions to fade the screen in and out.
 
+; On CGB, all of these use the smooth color fade engine ported from
+; Polished Crystal (engine/gfx/fade.asm), which interpolates every RGB
+; channel instead of stepping through 4-shade palette tables.
+; On DMG/SGB, the original 4-step table fades are kept.
+
+FadePalettes::
+; Fade active palettes (wBGPals2/wOBPals2) to wBGPals1/wOBPals1 in c frames.
+	xor a
+	jr DoFadePalettes
+
+FadeToBlackPals::
+; Fade active palettes to black in c frames. wBGPals1/wOBPals1 are untouched.
+	ld a, PALFADE_TO_BLACK
+	jr DoFadePalettes
+
+FadeToWhitePals::
+; Fade active palettes to white in c frames. wBGPals1/wOBPals1 are untouched.
+	ld a, PALFADE_TO_WHITE
+DoFadePalettes::
+	ldh [hPalFadeMode], a
+	farcall _DoFadePalettes
+	ret
+
 RotateFourPalettesRight::
+; Fade in from black.
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld hl, IncGradGBPalTable_00
-	ld b, 4
-	jr RotatePalettesRight
+	ld c, 16
+	jr FadePalettes
 
 .dmg
 	ld hl, IncGradGBPalTable_08
@@ -14,12 +37,12 @@ RotateFourPalettesRight::
 	jr RotatePalettesRight
 
 RotateThreePalettesRight::
+; Fade out to white.
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld hl, IncGradGBPalTable_05
-	ld b, 3
-	jr RotatePalettesRight
+	ld c, 12
+	jr FadeToWhitePals
 
 .dmg
 	ld hl, IncGradGBPalTable_13
@@ -43,12 +66,12 @@ RotatePalettesRight::
 	ret
 
 RotateFourPalettesLeft::
+; Fade out to black.
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld hl, IncGradGBPalTable_04 - 1
-	ld b, 4
-	jr RotatePalettesLeft
+	ld c, 16
+	jr FadeToBlackPals
 
 .dmg
 	ld hl, IncGradGBPalTable_12 - 1
@@ -56,12 +79,12 @@ RotateFourPalettesLeft::
 	jr RotatePalettesLeft
 
 RotateThreePalettesLeft::
+; Fade in from white.
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld hl, IncGradGBPalTable_07 - 1
-	ld b, 3
-	jr RotatePalettesLeft
+	ld c, 12
+	jr FadePalettes
 
 .dmg
 	ld hl, IncGradGBPalTable_15 - 1
