@@ -461,20 +461,31 @@ Options_Frame:
 .RightPressed:
 	ld a, [hl]
 	inc a
+	cp NUM_FRAMES
+	jr c, .Save
+	xor a ; wrap 20 -> 1
 	jr .Save
 
 .LeftPressed:
 	ld a, [hl]
 	dec a
+	cp -1
+	jr nz, .Save
+	ld a, NUM_FRAMES - 1 ; wrap 1 -> 20
 
 .Save:
-	maskbits NUM_FRAMES
 	ld [hl], a
 UpdateFrame:
 	ld a, [wTextboxFrame]
+	inc a ; frames are numbered 1-20 on screen
+	ld [wStringBuffer2], a
 	hlcoord 16, 15 ; where on the screen the number is drawn
-	add "1"
-	ld [hl], a
+	ld a, " "
+	ld [hli], a ; clear a stale leading digit (PrintNum skips lead positions)
+	ld [hld], a
+	ld de, wStringBuffer2
+	lb bc, 1, 2
+	call PrintNum
 	call LoadFontsExtra
 	and a
 	ret

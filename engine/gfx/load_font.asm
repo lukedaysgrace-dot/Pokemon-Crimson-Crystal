@@ -41,7 +41,9 @@ _LoadStandardFont::
 	ld hl, vTiles1 tile $40 ; "+" ($c0)
 	lb bc, BANK(PlusFontGFX), 1
 	call Get1bpp_2
-	ret
+	; The "┃"/"━" frame-edge tiles ($c3/$c4) live in the font tile range and
+	; were just blanked by the font copy above, so reload the current frame.
+	jp LoadFrame
 
 PlusFontGFX:
 ; 8x8 1bpp "+" glyph, left-aligned and centered to match the digit glyphs.
@@ -72,14 +74,26 @@ _LoadFontsBattleExtra::
 
 LoadFrame:
 	ld a, [wTextboxFrame]
-	maskbits NUM_FRAMES
-	ld bc, 6 * LEN_1BPP_TILE
+	cp NUM_FRAMES
+	jr c, .valid
+	xor a ; safety: out-of-range saves fall back to frame 1
+.valid
+	ld bc, 8 * LEN_1BPP_TILE ; 8 tiles per frame: "┌─┐│└┘" + "┃━"
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
+	push de
 	ld hl, vTiles0 tile "┌" ; $ba
 	lb bc, BANK(Frames), 6 ; "┌" to "┘"
+	call Get1bpp_2
+	pop de
+	ld hl, 6 * LEN_1BPP_TILE
+	add hl, de
+	ld d, h
+	ld e, l
+	ld hl, vTiles0 tile "┃" ; $c3
+	lb bc, BANK(Frames), 2 ; "┃" and "━" (Polished-style right/bottom edges)
 	call Get1bpp_2
 	ld hl, vTiles2 tile " " ; $7f
 	ld de, TextboxSpaceGFX

@@ -601,6 +601,7 @@ SECTION "bank3F", ROMX
 
 INCLUDE "engine/battle/misc.asm"
 INCLUDE "engine/battle/hidden_power.asm"
+INCLUDE "engine/battle/move_info_box.asm"
 INCLUDE "engine/events/play_slow_cry.asm"
 INCLUDE "engine/events/magikarp.asm"
 INCLUDE "engine/tilesets/tileset_anims.asm"
