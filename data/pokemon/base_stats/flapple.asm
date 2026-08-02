@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  70, 110,  80,  70,  95,  60
+	db  70, 135,  80, 100,  95,  60
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, DRAGON ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/flapple/front.dimensions"
-	abilities_for FLAPPLE, HUSTLE, NO_ABILITY, NO_ABILITY
+	abilities_for FLAPPLE, HUSTLE, MOXIE, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_DRAGON ; egg groups
