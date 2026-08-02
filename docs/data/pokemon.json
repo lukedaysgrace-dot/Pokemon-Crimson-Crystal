@@ -735,7 +735,6 @@
     ],
     "abilities": [
       "Chlorophyll",
-      "Thick Fat",
       "Thick Fat"
     ],
     "learnset": [
@@ -872,7 +871,6 @@
         ],
         "abilities": [
           "Chlorophyll",
-          "Thick Fat",
           "Thick Fat"
         ],
         "learnset": [
@@ -1009,7 +1007,6 @@
         ],
         "abilities": [
           "Chlorophyll",
-          "Thick Fat",
           "Thick Fat"
         ],
         "learnset": [
@@ -3212,8 +3209,6 @@
       "Bug"
     ],
     "abilities": [
-      "Shed Skin",
-      "Shed Skin",
       "Shed Skin"
     ],
     "learnset": [
@@ -3378,7 +3373,6 @@
       "Poison"
     ],
     "abilities": [
-      "Poison Point",
       "Poison Point"
     ],
     "learnset": [
@@ -3421,8 +3415,6 @@
       "Poison"
     ],
     "abilities": [
-      "Shed Skin",
-      "Shed Skin",
       "Shed Skin"
     ],
     "learnset": [
@@ -3921,8 +3913,8 @@
       "Normal"
     ],
     "abilities": [
-      "Frisk",
-      "Trace",
+      "Hustle",
+      "Guts",
       "Technician"
     ],
     "learnset": [
@@ -4659,6 +4651,11 @@
         "level": 39,
         "const": "THUNDER",
         "move": "Thunder"
+      },
+      {
+        "level": 45,
+        "const": "VOLT_TACKLE",
+        "move": "Volt Tackle"
       }
     ],
     "evolutions": [
@@ -4777,6 +4774,11 @@
         "level": 75,
         "const": "THUNDER",
         "move": "Thunder"
+      },
+      {
+        "level": 80,
+        "const": "VOLT_TACKLE",
+        "move": "Volt Tackle"
       }
     ],
     "evolutions": [],
@@ -5665,8 +5667,7 @@
     ],
     "abilities": [
       "Cute Charm",
-      "Magic Guard",
-      "Cute Charm"
+      "Magic Guard"
     ],
     "learnset": [
       {
@@ -6796,7 +6797,6 @@
     ],
     "abilities": [
       "Chlorophyll",
-      "Effect Spore",
       "Effect Spore"
     ],
     "learnset": [
@@ -10426,9 +10426,9 @@
     "number": 78,
     "stats": {
       "HP": 65,
-      "Attack": 100,
+      "Attack": 105,
       "Defense": 70,
-      "Speed": 105,
+      "Speed": 115,
       "Sp. Atk": 80,
       "Sp. Def": 80
     },
@@ -10657,6 +10657,11 @@
         "level": 46,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
+      },
+      {
+        "level": 49,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [
@@ -10797,6 +10802,11 @@
         "level": 51,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
+      },
+      {
+        "level": 55,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [],
@@ -11570,7 +11580,6 @@
       "Poison"
     ],
     "abilities": [
-      "Poison Touch",
       "Poison Touch"
     ],
     "learnset": [
@@ -11677,7 +11686,6 @@
       "Poison"
     ],
     "abilities": [
-      "Poison Touch",
       "Poison Touch"
     ],
     "learnset": [
@@ -12985,7 +12993,6 @@
     ],
     "abilities": [
       "Soundproof",
-      "Aftermath",
       "Aftermath"
     ],
     "learnset": [
@@ -13078,7 +13085,6 @@
     ],
     "abilities": [
       "Soundproof",
-      "Aftermath",
       "Aftermath"
     ],
     "learnset": [
@@ -14237,7 +14243,7 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_LEVEL, 42, RHYDON"
+      "dbbw EVOLVE_LEVEL, 35, RHYDON"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/rhyhorn.png"
@@ -14351,7 +14357,7 @@
       }
     ],
     "evolutions": [
-      "dbbw EVOLVE_ITEM, METAL_COAT, RHYPERIOR"
+      "dbbw EVOLVE_LEVEL, 45, RHYPERIOR"
     ],
     "egg_moves": [],
     "sprite": "assets/pokemon/rhydon.png"
@@ -14360,13 +14366,19 @@
     "const": "CHANSEY",
     "name": "Chansey",
     "number": 113,
-    "stats": {},
+    "stats": {
+      "HP": 250,
+      "Attack": 5,
+      "Defense": 5,
+      "Speed": 50,
+      "Sp. Atk": 35,
+      "Sp. Def": 105
+    },
     "types": [
       "Normal"
     ],
     "abilities": [
       "Serene Grace",
-      "Natural Cure",
       "Natural Cure"
     ],
     "learnset": [
@@ -15388,7 +15400,6 @@
     ],
     "abilities": [
       "Filter",
-      "Technician",
       "Technician"
     ],
     "learnset": [
@@ -15512,7 +15523,7 @@
     ],
     "abilities": [
       "Technician",
-      "Sharpness",
+      "Swarm",
       "Hyper Cutter"
     ],
     "learnset": [
@@ -15626,7 +15637,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Dry Skin",
       "Dry Skin"
     ],
     "learnset": [
@@ -16200,7 +16210,6 @@
     ],
     "abilities": [
       "Swift Swim",
-      "Swift Swim",
       "Rattled"
     ],
     "learnset": [
@@ -16243,7 +16252,6 @@
       "Flying"
     ],
     "abilities": [
-      "Intimidate",
       "Intimidate",
       "Moxie"
     ],
@@ -16501,8 +16509,6 @@
       "Normal"
     ],
     "abilities": [
-      "Imposter",
-      "Imposter",
       "Imposter"
     ],
     "learnset": [
@@ -16532,7 +16538,6 @@
       "Normal"
     ],
     "abilities": [
-      "Adaptability",
       "Adaptability",
       "Cloud Nine"
     ],
@@ -16753,7 +16758,6 @@
       "Electric"
     ],
     "abilities": [
-      "Volt Absorb",
       "Volt Absorb",
       "Competitive"
     ],
@@ -17500,7 +17504,7 @@
     "abilities": [
       "Swift Swim",
       "Battle Armor",
-      "Weak Armor"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -17859,6 +17863,11 @@
         "level": 45,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 48,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       },
       {
         "level": 51,
@@ -18551,7 +18560,6 @@
     ],
     "abilities": [
       "Pressure",
-      "Pressure",
       "Unnerve"
     ],
     "learnset": [
@@ -18651,7 +18659,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Synchronize",
       "Synchronize",
       "Trace"
     ],
@@ -18953,7 +18960,7 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Mega Sol",
+      "Overgrow",
       "Triage"
     ],
     "learnset": [
@@ -19809,7 +19816,6 @@
       "Normal"
     ],
     "abilities": [
-      "Keen Eye",
       "Keen Eye",
       "Frisk"
     ],
@@ -21172,8 +21178,7 @@
     ],
     "abilities": [
       "Cute Charm",
-      "Magic Guard",
-      "Cute Charm"
+      "Magic Guard"
     ],
     "learnset": [
       {
@@ -21685,8 +21690,7 @@
     ],
     "abilities": [
       "Static",
-      "Fluffy",
-      "Static"
+      "Fluffy"
     ],
     "learnset": [
       {
@@ -21778,8 +21782,7 @@
     ],
     "abilities": [
       "Static",
-      "Fluffy",
-      "Static"
+      "Fluffy"
     ],
     "learnset": [
       {
@@ -21862,7 +21865,7 @@
       "HP": 90,
       "Attack": 75,
       "Defense": 85,
-      "Speed": 65,
+      "Speed": 55,
       "Sp. Atk": 115,
       "Sp. Def": 90
     },
@@ -21872,7 +21875,6 @@
     ],
     "abilities": [
       "Static",
-      "Mold Breaker",
       "Mold Breaker"
     ],
     "learnset": [
@@ -21983,8 +21985,7 @@
     ],
     "abilities": [
       "Chlorophyll",
-      "Own Tempo",
-      "Chlorophyll"
+      "Own Tempo"
     ],
     "learnset": [
       {
@@ -22896,7 +22897,6 @@
     ],
     "abilities": [
       "Pickup",
-      "Pickup",
       "Skill Link"
     ],
     "learnset": [
@@ -23300,7 +23300,6 @@
       "Ground"
     ],
     "abilities": [
-      "Water Absorb",
       "Water Absorb"
     ],
     "learnset": [
@@ -23403,7 +23402,6 @@
       "Ground"
     ],
     "abilities": [
-      "Water Absorb",
       "Water Absorb"
     ],
     "learnset": [
@@ -23503,7 +23501,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Synchronize",
       "Synchronize",
       "Magic Bounce"
     ],
@@ -23631,7 +23628,7 @@
     "abilities": [
       "Synchronize",
       "Inner Focus",
-      "Regenerator"
+      "Immunity"
     ],
     "learnset": [
       {
@@ -23974,6 +23971,11 @@
         "level": 49,
         "const": "AURA_SPHERE",
         "move": "Aura Sphere"
+      },
+      {
+        "level": 55,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [],
@@ -23997,7 +23999,6 @@
       "Fairy"
     ],
     "abilities": [
-      "Levitate",
       "Levitate",
       "Prankster"
     ],
@@ -24107,7 +24108,7 @@
       "HP": 54,
       "Attack": 108,
       "Defense": 54,
-      "Speed": 64,
+      "Speed": 54,
       "Sp. Atk": 108,
       "Sp. Def": 54
     },
@@ -24115,8 +24116,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Levitate",
-      "Levitate",
       "Levitate"
     ],
     "learnset": [
@@ -24161,8 +24160,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Shadow Tag",
-      "Shadow Tag",
       "Shadow Tag"
     ],
     "learnset": [
@@ -24421,7 +24418,6 @@
     ],
     "abilities": [
       "Sturdy",
-      "Sturdy",
       "Overcoat"
     ],
     "learnset": [
@@ -24517,7 +24513,7 @@
     "stats": {
       "HP": 105,
       "Attack": 95,
-      "Defense": 95,
+      "Defense": 75,
       "Speed": 45,
       "Sp. Atk": 55,
       "Sp. Def": 55
@@ -24528,7 +24524,6 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Rattled",
       "Rattled"
     ],
     "learnset": [
@@ -25388,7 +25383,14 @@
     "const": "SHUCKLE",
     "name": "Shuckle",
     "number": 213,
-    "stats": {},
+    "stats": {
+      "HP": 20,
+      "Attack": 10,
+      "Defense": 230,
+      "Speed": 5,
+      "Sp. Atk": 10,
+      "Sp. Def": 230
+    },
     "types": [
       "Bug",
       "Rock"
@@ -26625,7 +26627,6 @@
       "Water"
     ],
     "abilities": [
-      "Sniper",
       "Sniper"
     ],
     "learnset": [
@@ -26958,8 +26959,8 @@
     "name": "Skarmory",
     "number": 227,
     "stats": {
-      "HP": 65,
-      "Attack": 80,
+      "HP": 85,
+      "Attack": 90,
       "Defense": 140,
       "Speed": 70,
       "Sp. Atk": 40,
@@ -26970,9 +26971,9 @@
       "Flying"
     ],
     "abilities": [
-      "Keen Eye",
+      "Iron Barbs",
       "Sturdy",
-      "Mirror Armor"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -28180,7 +28181,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Hydration",
       "Hydration"
     ],
     "learnset": [
@@ -28595,7 +28595,6 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Natural Cure",
       "Natural Cure"
     ],
     "learnset": [
@@ -29080,7 +29079,6 @@
     ],
     "abilities": [
       "Guts",
-      "Guts",
       "Intimidate"
     ],
     "learnset": [
@@ -29194,7 +29192,6 @@
     ],
     "abilities": [
       "Shed Skin",
-      "Shed Skin",
       "Intimidate"
     ],
     "learnset": [
@@ -29307,7 +29304,6 @@
       "Dark"
     ],
     "abilities": [
-      "Sand Stream",
       "Sand Stream",
       "Intimidate"
     ],
@@ -29440,7 +29436,6 @@
     ],
     "abilities": [
       "Pressure",
-      "Pressure",
       "Multiscale"
     ],
     "learnset": [
@@ -29532,7 +29527,6 @@
     ],
     "abilities": [
       "Pressure",
-      "Pressure",
       "Regenerator"
     ],
     "learnset": [
@@ -29623,8 +29617,6 @@
       "Grass"
     ],
     "abilities": [
-      "Natural Cure",
-      "Natural Cure",
       "Natural Cure"
     ],
     "learnset": [
@@ -29874,9 +29866,9 @@
       "HP": 110,
       "Attack": 115,
       "Defense": 80,
-      "Speed": 90,
-      "Sp. Atk": 50,
-      "Sp. Def": 90
+      "Speed": 95,
+      "Sp. Atk": 60,
+      "Sp. Def": 75
     },
     "types": [
       "Fighting",
@@ -30337,11 +30329,11 @@
     "number": 267,
     "stats": {
       "HP": 125,
-      "Attack": 100,
-      "Defense": 80,
+      "Attack": 110,
+      "Defense": 85,
       "Speed": 55,
       "Sp. Atk": 85,
-      "Sp. Def": 75
+      "Sp. Def": 80
     },
     "types": [
       "Normal",
@@ -30567,7 +30559,7 @@
       "HP": 120,
       "Attack": 90,
       "Defense": 70,
-      "Speed": 60,
+      "Speed": 85,
       "Sp. Atk": 110,
       "Sp. Def": 70
     },
@@ -30576,7 +30568,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Armor Tail",
       "Armor Tail",
       "Sap Sipper"
     ],
@@ -30846,9 +30837,9 @@
       "HP": 68,
       "Attack": 65,
       "Defense": 65,
-      "Speed": 105,
+      "Speed": 80,
       "Sp. Atk": 125,
-      "Sp. Def": 90
+      "Sp. Def": 115
     },
     "types": [
       "Psychic",
@@ -30968,7 +30959,7 @@
     ],
     "abilities": [
       "Steadfast",
-      "Justified",
+      "Sharpness",
       "Inner Focus"
     ],
     "learnset": [
@@ -31259,7 +31250,6 @@
       "Grass"
     ],
     "abilities": [
-      "Chlorophyll",
       "Chlorophyll"
     ],
     "learnset": [
@@ -31399,7 +31389,6 @@
       "Fairy"
     ],
     "abilities": [
-      "Cute Charm",
       "Cute Charm",
       "Pixilate"
     ],
@@ -31930,7 +31919,7 @@
     ],
     "abilities": [
       "Magnet Pull",
-      "Sturdy",
+      "Levitate",
       "Analytic"
     ],
     "learnset": [
@@ -32270,7 +32259,6 @@
       "Fairy"
     ],
     "abilities": [
-      "Levitate",
       "Levitate",
       "Prankster"
     ],
@@ -32781,7 +32769,7 @@
     "number": 288,
     "stats": {
       "HP": 60,
-      "Attack": 100,
+      "Attack": 110,
       "Defense": 89,
       "Speed": 112,
       "Sp. Atk": 55,
@@ -33614,7 +33602,6 @@
     ],
     "abilities": [
       "Storm Drain",
-      "Storm Drain",
       "Regenerator"
     ],
     "learnset": [
@@ -33713,7 +33700,6 @@
     ],
     "abilities": [
       "Storm Drain",
-      "Stamina",
       "Regenerator"
     ],
     "learnset": [
@@ -34031,9 +34017,9 @@
       "HP": 59,
       "Attack": 74,
       "Defense": 50,
-      "Speed": 35,
-      "Sp. Atk": 35,
-      "Sp. Def": 50
+      "Speed": 40,
+      "Sp. Atk": 40,
+      "Sp. Def": 40
     },
     "types": [
       "Ground",
@@ -34111,12 +34097,12 @@
     "name": "Golurk",
     "number": 300,
     "stats": {
-      "HP": 89,
+      "HP": 94,
       "Attack": 124,
-      "Defense": 80,
-      "Speed": 55,
+      "Defense": 90,
+      "Speed": 87,
       "Sp. Atk": 55,
-      "Sp. Def": 80
+      "Sp. Def": 55
     },
     "types": [
       "Ground",
@@ -34804,7 +34790,6 @@
     ],
     "abilities": [
       "Flame Body",
-      "Flame Body",
       "Swarm"
     ],
     "learnset": [
@@ -34897,7 +34882,6 @@
       "Fire"
     ],
     "abilities": [
-      "Flame Body",
       "Flame Body",
       "Swarm"
     ],
@@ -35014,8 +34998,6 @@
       "Dragon"
     ],
     "abilities": [
-      "Hustle",
-      "Hustle",
       "Hustle"
     ],
     "learnset": [
@@ -35113,8 +35095,6 @@
       "Dragon"
     ],
     "abilities": [
-      "Hustle",
-      "Hustle",
       "Hustle"
     ],
     "learnset": [
@@ -35212,8 +35192,6 @@
       "Dragon"
     ],
     "abilities": [
-      "Levitate",
-      "Levitate",
       "Levitate"
     ],
     "learnset": [
@@ -35662,10 +35640,10 @@
     "stats": {
       "HP": 95,
       "Attack": 120,
-      "Defense": 65,
+      "Defense": 75,
       "Speed": 60,
-      "Sp. Atk": 95,
-      "Sp. Def": 75
+      "Sp. Atk": 75,
+      "Sp. Def": 85
     },
     "types": [
       "Dark",
@@ -35673,7 +35651,7 @@
     ],
     "abilities": [
       "Prankster",
-      "Intimidate",
+      "Frisk",
       "Tough Claws"
     ],
     "learnset": [
@@ -35884,7 +35862,7 @@
     "number": 320,
     "stats": {
       "HP": 85,
-      "Attack": 85,
+      "Attack": 75,
       "Defense": 77,
       "Speed": 94,
       "Sp. Atk": 70,
@@ -35987,7 +35965,6 @@
     ],
     "abilities": [
       "Thermal Exchange",
-      "Thermal Exchange",
       "Ice Body"
     ],
     "learnset": [
@@ -36076,7 +36053,6 @@
     ],
     "abilities": [
       "Thermal Exchange",
-      "Thermal Exchange",
       "Ice Body"
     ],
     "learnset": [
@@ -36159,7 +36135,6 @@
       "Ice"
     ],
     "abilities": [
-      "Thermal Exchange",
       "Thermal Exchange",
       "Ice Body"
     ],
@@ -36250,7 +36225,6 @@
       "Fire"
     ],
     "abilities": [
-      "Flash Fire",
       "Flash Fire",
       "Flame Body"
     ],
@@ -37099,7 +37073,6 @@
       "Dragon"
     ],
     "abilities": [
-      "Bulletproof",
       "Bulletproof"
     ],
     "learnset": [
@@ -37125,20 +37098,18 @@
     "name": "Dipplin",
     "number": 335,
     "stats": {
-      "HP": 70,
-      "Attack": 70,
-      "Defense": 90,
+      "HP": 80,
+      "Attack": 80,
+      "Defense": 110,
       "Speed": 40,
-      "Sp. Atk": 75,
-      "Sp. Def": 60
+      "Sp. Atk": 95,
+      "Sp. Def": 80
     },
     "types": [
       "Grass",
       "Dragon"
     ],
-    "abilities": [
-      "Bulletproof"
-    ],
+    "abilities": [],
     "learnset": [
       {
         "level": 1,
@@ -37222,7 +37193,6 @@
     ],
     "abilities": [
       "Thick Fat",
-      "Triage",
       "Regenerator"
     ],
     "learnset": [
@@ -37328,9 +37298,8 @@
       "Dragon"
     ],
     "abilities": [
-      "Moxie",
-      "Technician",
-      "Hustle"
+      "Hustle",
+      "Moxie"
     ],
     "learnset": [
       {
@@ -37425,8 +37394,9 @@
       "Dragon"
     ],
     "abilities": [
+      "Regenerator",
       "Sheer Force",
-      "Regenerator"
+      "Multiscale"
     ],
     "learnset": [
       {
@@ -37960,7 +37930,7 @@
       "Attack": 106,
       "Defense": 84,
       "Speed": 105,
-      "Sp. Atk": 54,
+      "Sp. Atk": 44,
       "Sp. Def": 96
     },
     "types": [
@@ -38400,9 +38370,9 @@
     "stats": {
       "HP": 100,
       "Attack": 115,
-      "Defense": 65,
+      "Defense": 90,
       "Speed": 65,
-      "Sp. Atk": 90,
+      "Sp. Atk": 65,
       "Sp. Def": 90
     },
     "types": [
@@ -38517,8 +38487,8 @@
     ],
     "abilities": [
       "Swarm",
-      "Swarm",
-      "Swarm"
+      "Hustle",
+      "Hyper Cutter"
     ],
     "learnset": [
       {
@@ -38590,7 +38560,8 @@
       "Electric"
     ],
     "abilities": [
-      "Static"
+      "Static",
+      "Hustle"
     ],
     "learnset": [
       {
@@ -38663,8 +38634,8 @@
     ],
     "abilities": [
       "Levitate",
-      "Levitate",
-      "Levitate"
+      "Hustle",
+      "Speed Boost"
     ],
     "learnset": [
       {
@@ -38969,7 +38940,6 @@
     ],
     "abilities": [
       "Aftermath",
-      "Aftermath",
       "Guts"
     ],
     "learnset": [
@@ -39072,7 +39042,6 @@
       "Flying"
     ],
     "abilities": [
-      "Aftermath",
       "Aftermath",
       "Guts"
     ],
@@ -39263,7 +39232,7 @@
     ],
     "abilities": [
       "Sand Rush",
-      "Sand Force",
+      "Sturdy",
       "Mold Breaker"
     ],
     "learnset": [
@@ -39371,13 +39340,13 @@
       },
       {
         "level": 1,
-        "const": "TAIL_WHIP",
-        "move": "Tail Whip"
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       },
       {
         "level": 5,
-        "const": "THUNDERSHOCK",
-        "move": "Thundershock"
+        "const": "VOLT_TACKLE",
+        "move": "Volt Tackle"
       },
       {
         "level": 7,
@@ -39715,7 +39684,6 @@
     ],
     "abilities": [
       "Big Pecks",
-      "Big Pecks",
       "Gale Wings"
     ],
     "learnset": [
@@ -39798,7 +39766,6 @@
       "Flying"
     ],
     "abilities": [
-      "Flame Body",
       "Flame Body",
       "Gale Wings"
     ],
@@ -39887,7 +39854,6 @@
       "Flying"
     ],
     "abilities": [
-      "Flame Body",
       "Flame Body",
       "Gale Wings"
     ],
@@ -40077,10 +40043,10 @@
     "number": 365,
     "stats": {
       "HP": 60,
-      "Attack": 80,
+      "Attack": 85,
       "Defense": 55,
       "Speed": 70,
-      "Sp. Atk": 90,
+      "Sp. Atk": 85,
       "Sp. Def": 55
     },
     "types": [
@@ -40089,8 +40055,8 @@
     ],
     "abilities": [
       "Compound Eyes",
-      "Levitate",
-      "Overcoat"
+      "Overcoat",
+      "Tinted Lens"
     ],
     "learnset": [
       {
@@ -40206,10 +40172,10 @@
     "number": 366,
     "stats": {
       "HP": 90,
-      "Attack": 110,
+      "Attack": 115,
       "Defense": 85,
-      "Speed": 100,
-      "Sp. Atk": 130,
+      "Speed": 110,
+      "Sp. Atk": 115,
       "Sp. Def": 85
     },
     "types": [
@@ -40218,8 +40184,8 @@
     ],
     "abilities": [
       "Compound Eyes",
-      "Levitate",
-      "Overcoat"
+      "Overcoat",
+      "Tinted Lens"
     ],
     "learnset": [
       {
@@ -40939,7 +40905,7 @@
     "abilities": [
       "Defiant",
       "Inner Focus",
-      "Pressure"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -41018,7 +40984,7 @@
     "abilities": [
       "Defiant",
       "Inner Focus",
-      "Pressure"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -41097,7 +41063,7 @@
     "abilities": [
       "Defiant",
       "Supreme Overlord",
-      "Pressure"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -41686,7 +41652,7 @@
     "name": "Scrafty",
     "number": 381,
     "stats": {
-      "HP": 65,
+      "HP": 77,
       "Attack": 90,
       "Defense": 115,
       "Speed": 58,
@@ -42327,7 +42293,8 @@
       "Normal"
     ],
     "abilities": [
-      "Minds Eye"
+      "Guts",
+      "Bulletproof"
     ],
     "learnset": [
       {
@@ -43472,7 +43439,7 @@
     "number": 399,
     "stats": {
       "HP": 55,
-      "Attack": 90,
+      "Attack": 100,
       "Defense": 80,
       "Speed": 96,
       "Sp. Atk": 50,
@@ -43483,8 +43450,6 @@
       "Fairy"
     ],
     "abilities": [
-      "Disguise",
-      "Disguise",
       "Disguise"
     ],
     "learnset": [
@@ -43569,7 +43534,6 @@
       "Ghost"
     ],
     "abilities": [
-      "Weak Armor",
       "Weak Armor",
       "Cursed Body"
     ],
@@ -43707,7 +43671,6 @@
       "Ghost"
     ],
     "abilities": [
-      "Weak Armor",
       "Weak Armor",
       "Perish Body"
     ],
@@ -44007,8 +43970,7 @@
       "Sp. Def": 90
     },
     "types": [
-      "Fighting",
-      "Flying"
+      "Fighting"
     ],
     "abilities": [
       "Steadfast",
@@ -44379,7 +44341,7 @@
     ],
     "abilities": [
       "Strong Jaw",
-      "Strong Jaw",
+      "Reckless",
       "Sturdy"
     ],
     "learnset": [
@@ -44473,7 +44435,7 @@
     ],
     "abilities": [
       "Strong Jaw",
-      "Strong Jaw",
+      "Reckless",
       "Rock Head"
     ],
     "learnset": [
@@ -44570,7 +44532,7 @@
     ],
     "abilities": [
       "Refrigerate",
-      "Refrigerate",
+      "Solid Rock",
       "Snow Warning"
     ],
     "learnset": [
@@ -44664,7 +44626,7 @@
     ],
     "abilities": [
       "Refrigerate",
-      "Refrigerate",
+      "Solid Rock",
       "Snow Warning"
     ],
     "learnset": [
@@ -44827,6 +44789,11 @@
         "level": 45,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 48,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [
@@ -44851,8 +44818,8 @@
       "Fire"
     ],
     "abilities": [
-      "White Smoke",
       "Drought",
+      "White Smoke",
       "Shell Armor"
     ],
     "learnset": [
@@ -44959,8 +44926,7 @@
     ],
     "abilities": [
       "Hustle",
-      "Guts",
-      "Hustle"
+      "Guts"
     ],
     "learnset": [
       {
@@ -45063,8 +45029,7 @@
     ],
     "abilities": [
       "Hustle",
-      "Guts",
-      "Hustle"
+      "Guts"
     ],
     "learnset": [
       {
@@ -45179,9 +45144,7 @@
       "Psychic"
     ],
     "abilities": [
-      "Static",
-      "Static",
-      "Motor Drive"
+      "Static"
     ],
     "learnset": [
       {
@@ -45577,7 +45540,6 @@
     ],
     "abilities": [
       "Snow Cloak",
-      "Snow Cloak",
       "Snow Warning"
     ],
     "learnset": [
@@ -45715,7 +45677,6 @@
       "Fairy"
     ],
     "abilities": [
-      "Snow Cloak",
       "Snow Cloak",
       "Snow Warning"
     ],
@@ -47121,9 +47082,9 @@
       "Steel"
     ],
     "abilities": [
-      "Battle Armor",
+      "Pickup",
       "Tough Claws",
-      "Steely Spirit"
+      "Unnerve"
     ],
     "learnset": [
       {
@@ -47336,7 +47297,6 @@
     ],
     "abilities": [
       "Pastel Veil",
-      "Pastel Veil",
       "Magic Guard"
     ],
     "learnset": [
@@ -47428,10 +47388,10 @@
     "number": 433,
     "stats": {
       "HP": 65,
-      "Attack": 90,
+      "Attack": 105,
       "Defense": 70,
-      "Speed": 105,
-      "Sp. Atk": 90,
+      "Speed": 115,
+      "Sp. Atk": 80,
       "Sp. Def": 80
     },
     "types": [
@@ -47439,7 +47399,6 @@
       "Fire"
     ],
     "abilities": [
-      "Pastel Veil",
       "Pastel Veil",
       "Magic Guard"
     ],
@@ -47566,7 +47525,6 @@
     ],
     "abilities": [
       "Own Tempo",
-      "Own Tempo",
       "Regenerator"
     ],
     "learnset": [
@@ -47669,6 +47627,11 @@
         "level": 46,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
+      },
+      {
+        "level": 49,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [
@@ -47798,6 +47761,11 @@
         "level": 51,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
+      },
+      {
+        "level": 55,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [],
@@ -47821,7 +47789,6 @@
       "Psychic"
     ],
     "abilities": [
-      "Own Tempo",
       "Own Tempo",
       "Regenerator"
     ],
@@ -47940,6 +47907,11 @@
         "level": 51,
         "const": "TRICK_ROOM",
         "move": "Trick Room"
+      },
+      {
+        "level": 55,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       }
     ],
     "evolutions": [],
@@ -48086,8 +48058,8 @@
     ],
     "abilities": [
       "Intimidate",
-      "Rock Head",
-      "Justified"
+      "Flash Fire",
+      "Rock Head"
     ],
     "learnset": [
       {
@@ -48181,7 +48153,7 @@
       "Attack": 120,
       "Defense": 85,
       "Speed": 90,
-      "Sp. Atk": 95,
+      "Sp. Atk": 80,
       "Sp. Def": 85
     },
     "types": [
@@ -48190,8 +48162,8 @@
     ],
     "abilities": [
       "Intimidate",
-      "Rock Head",
-      "Defiant"
+      "Flash Fire",
+      "Rock Head"
     ],
     "learnset": [
       {
@@ -48768,7 +48740,7 @@
       "Poison"
     ],
     "abilities": [
-      "Merciless",
+      "Pressure",
       "Poison Touch",
       "Technician"
     ],
@@ -48904,8 +48876,8 @@
     "number": 445,
     "stats": {
       "HP": 55,
-      "Attack": 45,
-      "Defense": 45,
+      "Attack": 55,
+      "Defense": 55,
       "Speed": 15,
       "Sp. Atk": 25,
       "Sp. Def": 25
@@ -49020,7 +48992,7 @@
       "Attack": 75,
       "Defense": 60,
       "Speed": 20,
-      "Sp. Atk": 45,
+      "Sp. Atk": 65,
       "Sp. Def": 100
     },
     "types": [
@@ -49118,11 +49090,11 @@
     "number": 447,
     "stats": {
       "HP": 75,
-      "Attack": 110,
-      "Defense": 105,
+      "Attack": 115,
+      "Defense": 110,
       "Speed": 100,
-      "Sp. Atk": 30,
-      "Sp. Def": 70
+      "Sp. Atk": 40,
+      "Sp. Def": 80
     },
     "types": [
       "Fighting",
@@ -49130,7 +49102,7 @@
     ],
     "abilities": [
       "Intimidate",
-      "Anger Point"
+      "Reckless"
     ],
     "learnset": [
       {
@@ -49244,11 +49216,11 @@
     "number": 448,
     "stats": {
       "HP": 75,
-      "Attack": 110,
-      "Defense": 105,
+      "Attack": 115,
+      "Defense": 110,
       "Speed": 100,
-      "Sp. Atk": 30,
-      "Sp. Def": 70
+      "Sp. Atk": 40,
+      "Sp. Def": 80
     },
     "types": [
       "Fighting",
@@ -49256,7 +49228,7 @@
     ],
     "abilities": [
       "Intimidate",
-      "Anger Point"
+      "Reckless"
     ],
     "learnset": [
       {
@@ -49653,12 +49625,11 @@
       "Sp. Def": 40
     },
     "types": [
-      "Steel",
-      "Rock"
+      "Steel"
     ],
     "abilities": [
-      "Sturdy",
-      "Rock Head"
+      "Rock Head",
+      "Sturdy"
     ],
     "learnset": [
       {
@@ -49741,12 +49712,11 @@
       "Sp. Def": 50
     },
     "types": [
-      "Steel",
-      "Rock"
+      "Steel"
     ],
     "abilities": [
-      "Sturdy",
-      "Rock Head"
+      "Rock Head",
+      "Sturdy"
     ],
     "learnset": [
       {
@@ -49829,12 +49799,11 @@
       "Sp. Def": 60
     },
     "types": [
-      "Steel",
-      "Rock"
+      "Steel"
     ],
     "abilities": [
-      "Sturdy",
-      "Rock Head"
+      "Rock Head",
+      "Sturdy"
     ],
     "learnset": [
       {
@@ -50046,7 +50015,7 @@
       "Poison"
     ],
     "abilities": [
-      "Poison Point",
+      "Toxic Debris",
       "Merciless"
     ],
     "learnset": [
@@ -50119,8 +50088,6 @@
       "Poison"
     ],
     "abilities": [
-      "Toxic Debris",
-      "Toxic Debris",
       "Toxic Debris"
     ],
     "learnset": [
@@ -50357,7 +50324,7 @@
     ],
     "abilities": [
       "Immunity",
-      "Guts",
+      "Scrappy",
       "Tough Claws"
     ],
     "learnset": [
@@ -50474,6 +50441,7 @@
     ],
     "abilities": [
       "Shed Skin",
+      "Intimidate",
       "Merciless"
     ],
     "learnset": [
@@ -50573,9 +50541,9 @@
       "Ghost"
     ],
     "abilities": [
-      "Insomnia",
       "Frisk",
-      "Cursed Body"
+      "Cursed Body",
+      "Prankster"
     ],
     "learnset": [
       {
@@ -50666,19 +50634,20 @@
     "number": 464,
     "stats": {
       "HP": 64,
-      "Attack": 115,
+      "Attack": 125,
       "Defense": 65,
-      "Speed": 65,
-      "Sp. Atk": 83,
+      "Speed": 70,
+      "Sp. Atk": 93,
       "Sp. Def": 63
     },
     "types": [
-      "Ghost"
+      "Ghost",
+      "Normal"
     ],
     "abilities": [
-      "Insomnia",
       "Frisk",
-      "Cursed Body"
+      "Cursed Body",
+      "Prankster"
     ],
     "learnset": [
       {
@@ -51022,8 +50991,8 @@
       "Rock"
     ],
     "abilities": [
-      "Solid Rock",
       "Sturdy",
+      "Sheer Force",
       "Swift Swim"
     ],
     "learnset": [
@@ -51109,20 +51078,20 @@
     "name": "Carracosta",
     "number": 468,
     "stats": {
-      "HP": 74,
-      "Attack": 108,
-      "Defense": 133,
-      "Speed": 32,
-      "Sp. Atk": 83,
-      "Sp. Def": 65
+      "HP": 70,
+      "Attack": 117,
+      "Defense": 123,
+      "Speed": 50,
+      "Sp. Atk": 80,
+      "Sp. Def": 60
     },
     "types": [
       "Water",
       "Rock"
     ],
     "abilities": [
-      "Solid Rock",
       "Sturdy",
+      "Sheer Force",
       "Swift Swim"
     ],
     "learnset": [
@@ -51338,7 +51307,7 @@
     ],
     "abilities": [
       "Flash Fire",
-      "Flame Body",
+      "Levitate",
       "Cursed Body"
     ],
     "learnset": [
@@ -51452,7 +51421,7 @@
     ],
     "abilities": [
       "Flash Fire",
-      "Flame Body",
+      "Levitate",
       "Cursed Body"
     ],
     "learnset": [
@@ -51629,7 +51598,7 @@
       "Attack": 77,
       "Defense": 60,
       "Speed": 108,
-      "Sp. Atk": 97,
+      "Sp. Atk": 107,
       "Sp. Def": 60
     },
     "types": [
@@ -51737,19 +51706,19 @@
     "name": "Mawile",
     "number": 474,
     "stats": {
-      "HP": 50,
-      "Attack": 85,
-      "Defense": 85,
+      "HP": 60,
+      "Attack": 95,
+      "Defense": 115,
       "Speed": 50,
       "Sp. Atk": 55,
-      "Sp. Def": 55
+      "Sp. Def": 85
     },
     "types": [
       "Steel",
       "Fairy"
     ],
     "abilities": [
-      "Hyper Cutter",
+      "Huge Power",
       "Intimidate",
       "Sheer Force"
     ],
@@ -51919,10 +51888,10 @@
     "number": 476,
     "stats": {
       "HP": 85,
-      "Attack": 70,
+      "Attack": 60,
       "Defense": 80,
       "Speed": 123,
-      "Sp. Atk": 97,
+      "Sp. Atk": 107,
       "Sp. Def": 80
     },
     "types": [
@@ -52039,7 +52008,7 @@
       "Attack": 44,
       "Defense": 40,
       "Speed": 77,
-      "Sp. Atk": 71,
+      "Sp. Atk": 76,
       "Sp. Def": 40
     },
     "types": [
@@ -52048,7 +52017,8 @@
     ],
     "abilities": [
       "Poison Touch",
-      "Oblivious"
+      "Oblivious",
+      "Merciless"
     ],
     "learnset": [
       {
@@ -52137,7 +52107,7 @@
       "Attack": 64,
       "Defense": 60,
       "Speed": 117,
-      "Sp. Atk": 111,
+      "Sp. Atk": 116,
       "Sp. Def": 60
     },
     "types": [
@@ -52146,7 +52116,8 @@
     ],
     "abilities": [
       "Poison Touch",
-      "Oblivious"
+      "Oblivious",
+      "Merciless"
     ],
     "learnset": [
       {
@@ -52243,5 +52214,199 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/salazzle.png"
+  },
+  {
+    "const": "FLITTLE",
+    "name": "Flittle",
+    "number": 479,
+    "stats": {
+      "HP": 30,
+      "Attack": 35,
+      "Defense": 30,
+      "Speed": 75,
+      "Sp. Atk": 55,
+      "Sp. Def": 30
+    },
+    "types": [
+      "Psychic"
+    ],
+    "abilities": [
+      "Frisk",
+      "Keen Eye",
+      "Speed Boost"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 5,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 15,
+        "const": "PSYBEAM",
+        "move": "Psybeam"
+      },
+      {
+        "level": 20,
+        "const": "AIR_CUTTER",
+        "move": "Air Cutter"
+      },
+      {
+        "level": 25,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 30,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 35,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
+      },
+      {
+        "level": 40,
+        "const": "CALM_MIND",
+        "move": "Calm Mind"
+      },
+      {
+        "level": 45,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 50,
+        "const": "DAZZLING_GLEAM",
+        "move": "Dazzling Gleam"
+      }
+    ],
+    "evolutions": [
+      "dbbw EVOLVE_LEVEL, 35, ESPATHRA"
+    ],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/flittle.png"
+  },
+  {
+    "const": "ESPATHRA",
+    "name": "Espathra",
+    "number": 480,
+    "stats": {
+      "HP": 95,
+      "Attack": 60,
+      "Defense": 60,
+      "Speed": 105,
+      "Sp. Atk": 101,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Psychic"
+    ],
+    "abilities": [
+      "Competitive",
+      "Frisk",
+      "Speed Boost"
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "GROWL",
+        "move": "Growl"
+      },
+      {
+        "level": 1,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 1,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 1,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 5,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
+        "level": 10,
+        "const": "CONFUSE_RAY",
+        "move": "Confuse Ray"
+      },
+      {
+        "level": 15,
+        "const": "PSYBEAM",
+        "move": "Psybeam"
+      },
+      {
+        "level": 20,
+        "const": "AIR_CUTTER",
+        "move": "Air Cutter"
+      },
+      {
+        "level": 25,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 30,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 35,
+        "const": "LIGHT_SCREEN",
+        "move": "Light Screen"
+      },
+      {
+        "level": 40,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
+      },
+      {
+        "level": 45,
+        "const": "CALM_MIND",
+        "move": "Calm Mind"
+      },
+      {
+        "level": 50,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 56,
+        "const": "DAZZLING_GLEAM",
+        "move": "Dazzling Gleam"
+      },
+      {
+        "level": 62,
+        "const": "PSYSTRIKE",
+        "move": "Psystrike"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "sprite": "assets/pokemon/espathra.png"
   }
 ]
