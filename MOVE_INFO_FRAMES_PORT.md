@@ -92,9 +92,13 @@ Three responsiveness fixes after playtesting feedback:
    - `_Get1bpp`/`_Get2bpp` (LCD-on font/frame loading) burned a
      `DelayFrame` plus a scanline-synced HBlank DMA per 16-tile chunk
      (~2 frames each; a full font load cost ~9+ frames). Replaced with
-     `CopyScratchToVRAM` in `engine/gfx/dma_transfer.asm`: 8-byte bursts
-     written right after rSTAT reports mode 0/1, streaming a whole font in
-     under 2 frames.
+     `CopyScratchToVRAM` in `engine/gfx/dma_transfer.asm`: 4-byte bursts
+     synced to the start of each hblank (free-running during early
+     vblank), streaming a whole font in ~3 frames. The burst length is
+     chosen for the worst-case shortest hblank plus the following mode 2,
+     so no write can slide into mode 3 and get dropped on real hardware
+     or accurate emulators (an early draft used unsynced 8-byte bursts,
+     which chopped up glyphs and frame borders in SameBoy).
    - `OpenAndCloseMenu_HDMATransferTileMapAndAttrMap` (runs twice per
      textbox open/close) padded both maps into scratch WRAM and ran two
      scanline-synced HDMA transfers (~3-4 frames per call). It now jumps
