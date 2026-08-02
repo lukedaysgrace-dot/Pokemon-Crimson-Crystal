@@ -146,36 +146,11 @@ Mobile_ReloadMapPart:
 
 OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 ; OpenText
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function:
-	; Transfer wAttrMap and Tilemap to BGMap
-	; Fill vBGAttrs with $00
-	; Fill vBGTiles with " "
-	decoord 0, 0, wAttrMap
-	ld hl, wScratchAttrMap
-	call PadAttrMapForHDMATransfer
-	decoord 0, 0
-	ld hl, wScratchTileMap
-	call PadTilemapForHDMATransfer
-	call DelayFrame
-
-	di
-	ldh a, [rVBK]
-	push af
-	ld a, $1
-	ldh [rVBK], a
-	ld hl, wScratchAttrMap
-	call HDMATransfer_Wait123Scanlines_toBGMap
-	ld a, $0
-	ldh [rVBK], a
-	ld hl, wScratchTileMap
-	call HDMATransfer_Wait123Scanlines_toBGMap
-	pop af
-	ldh [rVBK], a
-	ei
-	ret
+; Push the tile + attr maps to the screen in a single frame. The old path
+; padded both maps into scratch WRAM and ran two scanline-synced HBlank
+; DMA transfers, costing 3-4 frames per call (and this runs twice per
+; textbox open/close) - the main source of the "laggy" textbox feel.
+	jp CGBOnly_CopyTilemapAtOnce
 
 Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:
 	ld hl, .Function
@@ -480,18 +455,40 @@ _Get2bpp::
 	pop hl
 	pop bc
 
-	push bc
-	call DelayFrame
-	pop bc
-
-	ld d, h
-	ld e, l
-	ld hl, wScratchTileMap
-	call HDMATransfer_Wait127Scanlines
+	call CopyScratchToVRAM
 
 	; restore the previous bank
 	pop af
 	ldh [rSVBK], a
+	ret
+
+CopyScratchToVRAM:
+; Copy c tiles (16 bytes each) from wScratchTileMap to VRAM at hl while the
+; LCD is on. Writes go out in 8-byte bursts started right after rSTAT
+; reports mode 0/1: a burst takes 48 cycles, which always fits within the
+; remaining hblank + OAM-scan window (VRAM stays writable through mode 2),
+; and bursts chain back-to-back during vblank. This streams a full font in
+; under two frames instead of costing 2+ frames per 16-tile chunk like the
+; old DelayFrame + HDMA path, which is what made textboxes feel laggy.
+	ld de, wScratchTileMap
+	sla c ; 2 bursts per tile
+.burst_loop
+	di
+.wait
+	ldh a, [rSTAT]
+	and %10 ; modes 0/1: VRAM accessible
+	jr nz, .wait
+rept 4
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	inc de
+endr
+	ei
+	dec c
+	jr nz, .burst_loop
 	ret
 
 _Get1bpp::
@@ -545,14 +542,7 @@ _Get1bpp::
 	pop hl
 	pop bc
 
-	push bc
-	call DelayFrame
-	pop bc
-
-	ld d, h
-	ld e, l
-	ld hl, wScratchTileMap
-	call HDMATransfer_Wait127Scanlines
+	call CopyScratchToVRAM
 
 	pop af
 	ldh [rSVBK], a

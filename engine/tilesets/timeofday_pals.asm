@@ -117,7 +117,7 @@ FadeInPalettes::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 6
+	ld c, 5 ; 5 steps x 2 frames = 10 frames total, same as Polished
 	jr FadeInSmooth
 
 .dmg
@@ -133,7 +133,7 @@ FadeOutPalettes::
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 6
+	ld c, 5 ; 5 steps x 2 frames = 10 frames total, same as Polished
 	jp FadeToWhitePals
 
 .dmg
@@ -149,7 +149,7 @@ BattleTowerFade:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 10
+	ld c, 8 ; deliberately slower fade (16 frames)
 	jp FadeToWhitePals
 
 .dmg
@@ -172,7 +172,7 @@ FadeInQuickly:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 5
+	ld c, 4 ; 8 frames total
 	jr FadeInSmooth
 
 .dmg
@@ -187,7 +187,7 @@ FadeBlackQuickly:
 	ldh a, [hCGB]
 	and a
 	jr z, .dmg
-	ld c, 5
+	ld c, 4 ; 8 frames total
 	jp FadeToBlackPals
 
 .dmg

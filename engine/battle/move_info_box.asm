@@ -52,7 +52,7 @@ BattleMoveInfoStats::
 	ld e, l
 	ld hl, vTiles2 tile $79
 	lb bc, BANK(CategoryIconGFX), 2
-	call Request2bpp
+	call Get2bpp_2
 	ld a, [wStringBuffer2 + 1]
 	ld hl, TypeIconGFX
 	ld bc, 4 * LEN_1BPP_TILE
@@ -61,7 +61,7 @@ BattleMoveInfoStats::
 	ld e, l
 	ld hl, vTiles2 tile $7b
 	lb bc, BANK(TypeIconGFX), 4
-	call Request1bpp
+	call Get1bpp_2
 	hlcoord 1, 9
 	ld b, 6
 	ld a, $79

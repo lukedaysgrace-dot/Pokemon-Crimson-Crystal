@@ -53,11 +53,16 @@ the `FadeOutPalettes`/`FadeInPalettes`/`FadeBlackQuickly`/`FadeInQuickly`/
 - Constants: `PALFADE_*` in `constants/gfx_constants.asm`.
 
 ## Durations (`c` = step count; each step lasts 2 frames)
-- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 6
-- `FadeInQuickly`/`FadeBlackQuickly`: 5
-- `BattleTowerFade`: 10
-- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 10
-- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 8
+Updated 2026-08-02: step counts halved so total fade time matches Polished
+Crystal (Polished's menu/warp fades run ~10 frames total; ours previously
+ran 12-20). A full fade step's math takes most of a frame at single speed,
+so the 2-frame cadence is the fastest even pacing available - fewer, evenly
+paced steps is how the totals come down.
+- `FadeOutPalettes`/`FadeInPalettes` (menus, warps): 5 (10 frames total)
+- `FadeInQuickly`/`FadeBlackQuickly`: 4 (8 frames)
+- `BattleTowerFade`: 8 (16 frames; deliberately the slow one)
+- `RotateFourPalettesRight/Left` (intro, timeset — black fades): 5 (10 frames)
+- `RotateThreePalettesRight/Left` (intro, HoF, link — white fades): 4 (8 frames)
 
 Tune these `ld c, N` values to taste; total = 2N frames, N color steps.
 
