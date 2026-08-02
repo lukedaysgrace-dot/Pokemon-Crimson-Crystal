@@ -418,6 +418,7 @@ MoveDescriptions1:
 	dw FreezeDryDescription
 	dw BounceDescription
 	dw DragonTailDescription
+	dw LuminaCrashDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2037,3 +2038,7 @@ BounceDescription:
 DragonTailDescription:
 	db   "Bats the foe away"
 	next "to force a switch.@"
+
+LuminaCrashDescription:
+	db   "Harsh light that"
+	next "cuts SP.DEF by 2.@"
