@@ -12,6 +12,21 @@ PALETTE_SIZE EQU NUM_PAL_COLORS * PAL_COLOR_SIZE
 
 PALRGB_WHITE EQUS "palred 31 + palgreen 31 + palblue 31" ; $7fff
 
+; smooth palette fade modes (hPalFadeMode; see engine/gfx/fade.asm)
+PALFADE_WHICH      EQU %11 ; which palettes to fade
+PALFADE_FLASH_F    EQU 2
+PALFADE_PARTIAL_F  EQU 3
+PALFADE_TO_BLACK_F EQU 4
+PALFADE_TO_WHITE_F EQU 5
+
+PALFADE_BOTH     EQU %00 ; fade BG and OBJ palettes
+PALFADE_BG       EQU %01 ; fade BG palettes only
+PALFADE_OBJ      EQU %10 ; fade OBJ palettes only
+PALFADE_FLASH    EQU 1 << PALFADE_FLASH_F    ; fade to black, then back
+PALFADE_PARTIAL  EQU 1 << PALFADE_PARTIAL_F
+PALFADE_TO_BLACK EQU 1 << PALFADE_TO_BLACK_F ; fade to black (keep wBGPals1)
+PALFADE_TO_WHITE EQU 1 << PALFADE_TO_WHITE_F ; fade to white (keep wBGPals1)
+
 SCREEN_WIDTH  EQU 20 ; tiles
 SCREEN_HEIGHT EQU 18 ; tiles
 SCREEN_WIDTH_PX  EQU SCREEN_WIDTH  * TILE_WIDTH ; pixels
