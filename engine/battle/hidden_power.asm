@@ -135,8 +135,11 @@ HiddenPowerDamage:
 	ret
 
 GetHiddenPowerDisplayStats::
-; Returns the values the battle move info box should display for the
-; player's Hidden Power: b = category, c = type, d = power.
+; Returns the values a move info box should display for Hidden Power:
+; b = category, c = type, d = power.
+; hl = pointer to the DVs to compute from (wBattleMonDVs in battle,
+; wTempMonDVs on the stats screen). Callers outside battle should
+; ignore b (it is read from a battle variable).
 ; Mirrors HiddenPowerDamage above without touching any battle variables.
 	ld a, [wHiddenPowerType]
 	and a
@@ -155,7 +158,7 @@ GetHiddenPowerDisplayStats::
 	ret
 
 .dv_based
-	ld hl, wBattleMonDVs
+; hl already points at the DVs (set by the caller)
 
 ; Power: take the top bit from each stat
 
