@@ -1443,6 +1443,7 @@ LoadBattleCategoryAndTypePals::
 	ld a, [wPlayerMoveStructEffect]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .not_hidden_power
+	ld hl, wBattleMonDVs
 	farcall GetHiddenPowerDisplayStats ; b = category, c = type
 	jr .got_stats
 .not_hidden_power
@@ -1491,6 +1492,78 @@ _ApplyMoveInfoPals:
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
+
+LoadStatsCategoryPal::
+; Load category a's two icon colors into colors 1-2 of BG palette 0.
+; Used by the stats screen move info view; pal 0 is the HP bar palette,
+; whose colors 1-2 are unused on the green page (no HP bar there).
+; Restore with RestoreStatsHPPal before the palette is needed again.
+	add a
+	add a ; category * 4 bytes (2 colors)
+	ld c, a
+	ld b, 0
+	ld hl, CategoryIconPals
+	add hl, bc
+	ld de, wBGPals1 palette 0 + 2
+	ld bc, 4
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	jr _ApplyMoveInfoPals
+
+RestoreStatsHPPal::
+; Undo LoadStatsCategoryPal: restore the HP bar colors (colors 1-2 of
+; BG palette 0) from the mon's current HP palette.
+	ld a, [wCurHPPal]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl ; * 4 bytes (2 colors)
+	ld bc, HPBarPals
+	add hl, bc
+	ld de, wBGPals1 palette 0 + 2
+	ld bc, 4
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	jr _ApplyMoveInfoPals
+
+LoadMoveScreenCategoryTypePals::
+; Party menu move screen icon palette: build BG palette 2 as
+; white / category color 1 / category color 2 / type color.
+; b = category, c = type.
+	push bc
+	ld hl, .White
+	ld de, wBGPals1 palette 2
+	ld bc, 2
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	pop bc
+	push bc
+	ld hl, CategoryIconPals
+	ld a, b
+	add a
+	add a ; category * 4 bytes (2 colors)
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld de, wBGPals1 palette 2 + 2
+	ld bc, 4
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	pop bc
+	ld hl, TypeIconPals
+	ld a, c
+	add a ; type * 2 bytes (1 color)
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld de, wBGPals1 palette 2 + 6
+	ld bc, 2
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	jp _ApplyMoveInfoPals
+
+.White:
+	RGB 31, 31, 31
 
 CategoryIconPals:
 INCLUDE "gfx/battle/categories.pal"
