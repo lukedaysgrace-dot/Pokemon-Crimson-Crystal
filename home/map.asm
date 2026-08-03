@@ -1311,59 +1311,10 @@ UpdateBGMapColumn::
 	ret
 
 LoadTilesetGFX::
-	ld hl, wTilesetAddress
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wTilesetBank]
-	ld e, a
-
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
-
-	ld a, e
-	ld de, wDecompressScratch
-	call FarDecompress
-
-	ld hl, wDecompressScratch
-	ld de, vTiles2
-	ld bc, $7f tiles
-	call CopyBytes
-
-	ldh a, [rVBK]
-	push af
-	ld a, BANK(vTiles5)
-	ldh [rVBK], a
-
-	ld hl, wDecompressScratch + $80 tiles
-	ld de, vTiles5
-	ld bc, $80 tiles
-	call CopyBytes
-
-	pop af
-	ldh [rVBK], a
-
-	pop af
-	ldh [rSVBK], a
-
-; These tilesets support dynamic per-mapgroup roof tiles.
-	ld a, [wMapTileset]
-	cp TILESET_JOHTO
-	jr z, .load_roof
-	cp TILESET_JOHTO_MODERN
-	jr z, .load_roof
-	cp TILESET_BATTLE_TOWER_OUTSIDE
-	jr z, .load_roof
-	jr .skip_roof
-
-.load_roof
-	farcall LoadMapGroupRoof
-
-.skip_roof
-	xor a
-	ldh [hTileAnimFrame], a
+; The tileset loader lives in the Overworld Weather bank to keep ROM0
+; small; this stub preserves the old ROM0 entry point for banked callers.
+	farcall _DecompressTilesetGFX
+	farcall _CopyTilesetGFX
 	ret
 
 BufferScreen::
@@ -1932,11 +1883,24 @@ ReturnToMapWithSpeechTextbox::
 	ret
 
 ReloadTilesetAndPalettes::
+	; Decompress the tileset while the LCD is still on: VBlank keeps the
+	; music playing through the slow decompression, and only the raw VRAM
+	; copies below actually need the screen off.
+	farcall _DecompressTilesetGFX
 	call DisableLCD
+	; With the LCD off the VBlank interrupt stops, so nothing drives the
+	; music engine; on the way out of the Pack/party/etc. this stretch is
+	; long enough that the song audibly hung on one note (the old
+	; "SkipMusic 9" then jumped it forward). The keepalive plays music
+	; frames in real time between the loads instead.
+	farcall _StartSoundKeepalive
 	call ClearSprites
 	farcall RefreshSprites
+	farcall _PollSoundKeepalive
 	call LoadStandardFont
+	farcall _PollSoundKeepalive
 	call LoadFontsExtra
+	farcall _PollSoundKeepalive
 	ldh a, [hROMBank]
 	push af
 	ld a, [wMapGroup]
@@ -1946,10 +1910,9 @@ ReloadTilesetAndPalettes::
 	call SwitchToAnyMapAttributesBank
 	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
-	call LoadTilesetGFX
+	farcall _CopyTilesetGFX
 	farcall LoadWeatherGraphics
-	ld a, 9
-	call SkipMusic
+	farcall _StopSoundKeepalive
 	pop af
 	rst Bankswitch
 	jp EnableLCD
