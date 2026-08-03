@@ -251,7 +251,15 @@ BanefulBunkerPunish_Core:
 	farcall PlayBattleAnim
 	call RefreshBattleHuds
 	ld hl, UserWasPoisonedText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	; The poisoned attacker is the current turn holder. Switch to the
+	; Bunker user's perspective so Synchronize/Poison Puppeteer and the
+	; shared held-item handler all see the poisoned mon as the opponent.
+	farcall SwitchTurn
+	farcall RunSynchronizePsn
+	farcall UseHeldStatusHealingItem
+	farcall SwitchTurn
+	ret
 
 BattleDireClaw_Core:
 ; 50% chance (the move's effect chance) of poison, paralysis or sleep.
@@ -289,9 +297,13 @@ BattleDireClaw_Core:
 	jr z, .sleep_roll
 	ld [hl], a ; 1-3 turns of sleep
 	call UpdateOpponentInParty
+	ld de, ANIM_SLP
+	farcall AbilityStatusAnim
 	call RefreshBattleHuds
 	ld hl, FellAsleepText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	farcall UseHeldStatusHealingItem
+	ret
 
 .paralyze
 	callfar BattleCommand_ParalyzeTarget
@@ -325,7 +337,21 @@ BattleStealthRock_Core:
 
 BattleStealthRockHit_Core:
 ; Stone Axe: leave stealth rocks after a successful hit (silent if
-; stones are already floating).
+; stones are already floating). Its guaranteed hazard is a removable
+; secondary effect, so Sheer Force suppresses it on both ordinary hits
+; and the KO hook. Do not use EffectChance here: Stone Axe intentionally
+; lays rocks through Substitute, matching its after-sub-damage behavior.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp SHEER_FORCE
+	jr nz, .apply
+	farcall CurrentMoveHasSheerForceEffect
+	ret c
+.apply
+	; Contact damage and Life Orb run from checkfaint before its Stone Axe
+	; KO hook. The hazard is not placed if those reactions fainted the user.
+	farcall UserHasFainted
+	ret z
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -346,6 +372,11 @@ StealthRockEntryDamage:
 	ld hl, wEnemyScreens
 .got_side
 	bit SCREENS_STEALTH_ROCK, [hl]
+	ret z
+
+	; Magic Guard prevents hazard damage, but not the Toxic Spikes
+	; processing that follows when this routine returns to its caller.
+	call UserHasMagicGuard_Core
 	ret z
 
 	; damage = 1/8 max HP scaled by ROCK's effectiveness on the victim
@@ -647,7 +678,16 @@ BattleShellSideArm_Core:
 
 BattleEerieSpell_Core:
 ; Sap 3 PP from the target's last used move (silent when impossible).
-; Adapted from BattleCommand_Spite.
+; It is a guaranteed additional effect: Sheer Force boosts the hit and
+; suppresses this PP loss. Keep the direct gate so Eerie Spell retains its
+; intentional ability to affect a target behind Substitute.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp SHEER_FORCE
+	jr nz, .apply
+	farcall CurrentMoveHasSheerForceEffect
+	ret c
+.apply
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -868,8 +908,7 @@ BattleDoubleUndergroundDamage_Core:
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
 	ret z
-
-	; fallthrough
+	jr DoubleDamage_Core
 
 BattleDoubleMinimizeDamage_Core:
 	ld hl, wEnemyMinimized
@@ -2498,4 +2537,3 @@ EnemyAttackDamage_Core:
 	ld a, 1
 	and a
 	ret
-
