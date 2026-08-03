@@ -33,6 +33,14 @@ TypeIconGFX::
 ; on a colorbox filled with the type's color (color 3 of the move info pal).
 INCBIN "gfx/battle/types.1bpp"
 
+SummaryTypeIconGFX::
+; Same pills as TypeIconGFX, but 2bpp so the rounded padding around the box
+; can take the summary screen's panel color instead of white:
+;   color 0 = padding (panel fill), color 1 = lettering (white),
+;   color 3 = pill body (the type color).
+; 4 tiles per type, indexed by type constant.
+INCBIN "gfx/stats/type_icons.2bpp"
+
 CategoryIconGFX::
 ; 2 tiles (2bpp) per move category (physical/special/status).
 INCBIN "gfx/battle/categories.2bpp"
@@ -48,7 +56,7 @@ INCBIN "gfx/battle/enemy_hp_bar_border.1bpp"
 HPExpBarBorderGFX:
 INCBIN "gfx/battle/hp_exp_bar_border.1bpp"
 
-ExpBarGFX:
+ExpBarGFX::
 INCBIN "gfx/battle/expbar.2bpp"
 
 TownMapGFX:
