@@ -250,6 +250,11 @@ AmauraFrames:  INCLUDE "gfx/pokemon/amaura/frames.asm"
 AurorusFrames:  INCLUDE "gfx/pokemon/aurorus/frames.asm"
 MunchlaxFrames:  INCLUDE "gfx/pokemon/munchlax/frames.asm"
 TorkoalFrames:  INCLUDE "gfx/pokemon/torkoal/frames.asm"
+
+SECTION "Pic Animations 3a", ROMX
+
+; Frames are referenced by dba, so this Alolan block was moved down here
+; from "Pic Animations 3B" when that section outgrew its bank.
 RattataAlolanFrames:  INCLUDE "gfx/pokemon/rattata_alolan/frames.asm"
 RaticateAlolanFrames:  INCLUDE "gfx/pokemon/raticate_alolan/frames.asm"
 RaichuAlolanFrames:  INCLUDE "gfx/pokemon/raichu_alolan/frames.asm"
@@ -261,8 +266,6 @@ DiglettAlolanFrames:  INCLUDE "gfx/pokemon/diglett_alolan/frames.asm"
 DugtrioAlolanFrames:  INCLUDE "gfx/pokemon/dugtrio_alolan/frames.asm"
 MeowthAlolanFrames:  INCLUDE "gfx/pokemon/meowth_alolan/frames.asm"
 PersianAlolanFrames:  INCLUDE "gfx/pokemon/persian_alolan/frames.asm"
-
-SECTION "Pic Animations 3a", ROMX
 
 GeodudeAlolanFrames:  INCLUDE "gfx/pokemon/geodude_alolan/frames.asm"
 GravelerAlolanFrames:  INCLUDE "gfx/pokemon/graveler_alolan/frames.asm"
