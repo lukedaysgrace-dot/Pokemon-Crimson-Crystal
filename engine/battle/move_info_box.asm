@@ -18,6 +18,7 @@ BattleMoveInfoStats::
 	ld a, [wPlayerMoveStructEffect]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .got_display_stats
+	ld hl, wBattleMonDVs
 	call GetHiddenPowerDisplayStats
 .got_display_stats
 	ld a, b
