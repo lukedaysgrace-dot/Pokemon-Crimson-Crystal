@@ -1839,22 +1839,32 @@ FadeToMenu::
 	jp DisableSpriteUpdates
 
 CloseSubmenu::
+	; Decompress with the old screen still visible so the white flash
+	; only lasts as long as the actual VRAM reload.
+	farcall _DecompressTilesetGFX
 	call ClearBGPalettes
-	call ReloadTilesetAndPalettes
+	call ReloadTilesetAndPalettesPredecomp
 	call UpdateSprites
 	call ExitMenu
 	jr FinishExitMenu
 
 ExitAllMenus::
+	farcall _DecompressTilesetGFX
 	call ClearBGPalettes
 	call ExitMenu
-	call ReloadTilesetAndPalettes
+	call ReloadTilesetAndPalettesPredecomp
 	call UpdateSprites
 FinishExitMenu::
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	call WaitBGMap2
+	; Push the whole tilemap and attrmap in one HDMA pass (~2 frames)
+	; instead of WaitBGMap2's third-of-a-screen-per-frame crawl (~8
+	; frames); the screen is a blank white flash the whole time, so
+	; every frame saved here makes leaving a menu feel snappier.
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	ld a, 1
+	ldh [hBGMapMode], a
 	farcall FadeInPalettes
 	jp EnableSpriteUpdates
 
@@ -1885,8 +1895,12 @@ ReturnToMapWithSpeechTextbox::
 ReloadTilesetAndPalettes::
 	; Decompress the tileset while the LCD is still on: VBlank keeps the
 	; music playing through the slow decompression, and only the raw VRAM
-	; copies below actually need the screen off.
+	; copies below actually need the screen off. Menu-exit paths call
+	; _DecompressTilesetGFX even earlier - before ClearBGPalettes whites
+	; the screen - and enter here to keep the white flash as short as
+	; possible.
 	farcall _DecompressTilesetGFX
+ReloadTilesetAndPalettesPredecomp::
 	call DisableLCD
 	; With the LCD off the VBlank interrupt stops, so nothing drives the
 	; music engine; on the way out of the Pack/party/etc. this stretch is
