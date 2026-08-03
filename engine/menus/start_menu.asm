@@ -13,6 +13,15 @@
 StartMenu::
 	call ClearWindowData
 
+	; Pause overworld weather for as long as the start menu (or any submenu
+	; reached from it) is open. Weather particles are OAM sprites, so idle
+	; redraws would otherwise scatter them on top of the menu window; the
+	; suppress bit makes DoOverworldWeather and AnimateWeatherOnIdle no-ops.
+	; SafeUpdateSprites below rebuilds OAM without particles, hiding any
+	; that were already on screen. Cleared again on every exit path.
+	ld hl, wVramState
+	set VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
+
 	ld de, SFX_MENU
 	call PlaySFX
 
@@ -88,6 +97,9 @@ StartMenu::
 .ReturnEnd:
 	call ExitMenu
 .ReturnEnd2:
+	; Back to the overworld: let the weather resume.
+	ld hl, wVramState
+	res VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
 	call CloseText
 	call UpdateTimePals
 	ret
@@ -139,6 +151,9 @@ StartMenu::
 
 .ExitMenuRunScript:
 	call ExitMenu
+	; This path skips .ReturnEnd2, so resume the weather here too.
+	ld hl, wVramState
+	res VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
 	ld a, HMENURETURN_SCRIPT
 	ldh [hMenuReturn], a
 	ret
