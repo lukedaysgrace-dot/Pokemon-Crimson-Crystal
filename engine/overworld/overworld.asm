@@ -687,6 +687,9 @@ GetUsedSprites:
 	push bc
 	push hl
 	call GetUsedSprite
+	; Keep music ticking during LCD-off sprite reloads (no-op otherwise;
+	; hl and af are dead here, so the farcall clobbers are harmless).
+	farcall _PollSoundKeepalive
 	pop hl
 	pop bc
 	dec c
