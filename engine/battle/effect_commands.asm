@@ -1036,7 +1036,7 @@ BattleCommand_DoTurn:
 
 	ld a, [de]
 	bit SUBSTATUS_TRANSFORMED, a
-	ret nz
+	jr nz, .check_target_block
 
 	ldh a, [hBattleTurn]
 	and a
@@ -1058,7 +1058,12 @@ BattleCommand_DoTurn:
 	push hl
 	call CheckMimicUsed
 	pop hl
-	ret c
+	jr c, .check_target_block
+	call .consume_pp
+	ld a, b
+	and a
+	jp nz, EndMoveEffect
+	jr .check_target_block
 
 .consume_pp
 	ldh a, [hBattleTurn]
@@ -1092,11 +1097,21 @@ BattleCommand_DoTurn:
 	add hl, de
 	ld a, [hl]
 	call CompareMove
-	ret z
+	jr z, .check_target_block
 
 .mimic
 	ld hl, wWildMonPP
 	call .consume_pp
+	ld a, b
+	and a
+	jp nz, EndMoveEffect
+	; fallthrough
+.check_target_block
+	; A few true foe-target status moves have no checkhit command. Run their
+	; priority-immunity gate only after every applicable PP copy is updated,
+	; then end immediately when Armor Tail / Queenly Majesty blocks them.
+	farcall AbilityPreExecutionTargetBlock
+	jp c, EndMoveEffect
 	ret
 
 .out_of_pp
@@ -1705,6 +1720,10 @@ BattleCommand_DamageVariation:
 
 BattleCommand_CheckHit:
 ; checkhit
+	; Targeting ability blocks must precede every unconditional-hit shortcut
+	; below (Lock-On, X Accuracy, always-hit effects, rain/hail, No Guard).
+	farcall AbilityPreHitTargetBlock
+	jp c, .Miss
 
 	call .DreamEater
 	jp z, .Miss
@@ -5134,6 +5153,10 @@ BattleCommand_ForceSwitch:
 	ld a, d
 	inc a
 	ld [wEnemySwitchMonIndex], a
+	; Forced switches still count as leaving battle for Natural Cure and
+	; Regenerator. ForceEnemySwitch bypasses EnemyMonEntrance, so run the
+	; outgoing enemy's switch-out hook explicitly.
+	farcall RunEnemySwitchOutAbilities
 	callfar ForceEnemySwitch
 
 	ld hl, DraggedOutText
@@ -5174,7 +5197,7 @@ BattleCommand_ForceSwitch:
 	jr nc, .wild_succeed_playeristarget
 
 .player_miss
-	jr .fail
+	jp .fail
 
 .wild_succeed_playeristarget
 	call UpdateBattleMonInParty
@@ -5230,6 +5253,11 @@ BattleCommand_ForceSwitch:
 
 	ld a, d
 	ld [wCurPartyMon], a
+	; SwitchPlayerMon records wLastPlayerMon itself, but an ability lookup
+	; after it runs would see the incoming mon. Run the outgoing ability first.
+	ld a, [wCurBattleMon]
+	ld [wLastPlayerMon], a
+	farcall RunPlayerSwitchOutAbilities
 	ld hl, SwitchPlayerMon
 	call CallBattleCore
 
@@ -5475,15 +5503,8 @@ BattleCommand_HeldFlinch:
 	ld a, b
 	cp SHEER_FORCE
 	jr nz, .not_sheer_force
-	ld hl, wPlayerMoveStruct + MOVE_CHANCE
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_move_chance
-	ld hl, wEnemyMoveStruct + MOVE_CHANCE
-.got_move_chance
-	ld a, [hl]
-	and a
-	ret nz
+	farcall CurrentMoveHasSheerForceEffect
+	ret c
 .not_sheer_force
 
 	call CheckSubstituteOpp
