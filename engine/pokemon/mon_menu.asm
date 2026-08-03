@@ -924,6 +924,9 @@ MoveScreenLoop:
 	hlcoord 1, 12
 	lb bc, 5, SCREEN_WIDTH - 2
 	call ClearBox
+	; the icon cells would tint the "Where?" text: back to palette 0
+	xor a
+	call MoveScreen_SetIconAttrs
 	hlcoord 1, 12
 	ld de, String_MoveWhere
 	call PlaceString
@@ -1188,25 +1191,67 @@ PrepareToPlaceMoveData:
 	jp ClearBox
 
 PlaceMoveData:
+; Polished-style move panel: category icon + type pill instead of the
+; old "TYPE/" text box.
 	xor a
 	ldh [hBGMapMode], a
-	hlcoord 0, 10
-	ld de, String_MoveType_Top
-	call PlaceString
-	hlcoord 0, 11
-	ld de, String_MoveType_Bottom
-	call PlaceString
+	ld a, [wCurSpecies] ; move id
+	ld de, wStringBuffer2
+	call GetMoveData
+	; Hidden Power displays its computed type and power
+	; (wTempMon holds the current mon on this screen)
+	ld a, [wStringBuffer2 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .not_hidden_power
+	ld hl, wTempMonDVs
+	farcall GetHiddenPowerDisplayStats ; c = type, d = power
+	ld a, c
+	ld [wStringBuffer2 + MOVE_TYPE], a
+	ld a, d
+	ld [wStringBuffer2 + MOVE_POWER], a
+.not_hidden_power
+	; palette 2 = white / category colors / type color
+	ld a, [wStringBuffer2 + MOVE_CATEGORY]
+	ld b, a
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	ld c, a
+	farcall LoadMoveScreenCategoryTypePals
+	; category icon (2 tiles, 2bpp) -> $79-$7a
+	ld a, [wStringBuffer2 + MOVE_CATEGORY]
+	ld hl, CategoryIconGFX
+	ld bc, 2 tiles
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $79
+	lb bc, BANK(CategoryIconGFX), 2
+	call Get2bpp_2
+	; type pill (4 tiles, 1bpp) -> $7b-$7e
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	ld hl, TypeIconGFX
+	ld bc, 4 * LEN_1BPP_TILE
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $7b
+	lb bc, BANK(TypeIconGFX), 4
+	call Get1bpp_2
+	; place the six icon tiles at (1, 12)
+	hlcoord 1, 12
+	ld b, 6
+	ld a, $79
+.icon_loop
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .icon_loop
+	ld a, $2
+	call MoveScreen_SetIconAttrs
+	; attack power
 	hlcoord 12, 12
 	ld de, String_MoveAtk
 	call PlaceString
-	ld a, [wCurSpecies]
-	ld b, a
-	hlcoord 2, 12
-	predef PrintMoveType
-	ld a, [wCurSpecies]
-	ld l, a
-	ld a, MOVE_POWER
-	call GetMoveAttribute
+	ld a, [wStringBuffer2 + MOVE_POWER]
 	hlcoord 16, 12
 	cp 2
 	jr c, .no_power
@@ -1227,10 +1272,40 @@ PlaceMoveData:
 	ldh [hBGMapMode], a
 	ret
 
-String_MoveType_Top:
-	db "┌─────┐@"
-String_MoveType_Bottom:
-	db "│TYPE/└@"
+MoveScreen_SetIconAttrs:
+; Point the six icon cells at (1, 12)-(6, 12) at palette a: update the
+; attr map and write the VRAM attributes directly (LCD-safe), since the
+; move screen never pushes the full attr map after setup.
+	push af
+	hlcoord 1, 12, wAttrMap
+	ld b, 6
+.wram_loop
+	ld [hli], a
+	dec b
+	jr nz, .wram_loop
+	ld a, $1
+	ldh [rVBK], a
+	pop af
+	ld d, a
+	ld hl, vBGMap0 + 12 * BG_MAP_WIDTH + 1
+	ld e, 6
+	ld b, 1 << 1 ; not in v/hblank
+	ld c, LOW(rSTAT)
+.vram_loop
+	di
+.vram_wait
+	ldh a, [c]
+	and b
+	jr nz, .vram_wait
+	ld a, d
+	ld [hli], a
+	ei
+	dec e
+	jr nz, .vram_loop
+	xor a
+	ldh [rVBK], a
+	ret
+
 String_MoveAtk:
 	db "ATK/@"
 String_MoveNoPower:

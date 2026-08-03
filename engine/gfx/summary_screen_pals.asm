@@ -4,12 +4,13 @@
 ; BG palette usage on the stats screen:
 ;   0: HP bar palette (also plain white/black text)
 ;   1: mon frontpic palette
-;   2: exp / friendship bar palette (original bar colors)
+;   2: exp / friendship bar palette (original bar colors);
+;      type icon 4 on the green page (no exp bar there)
 ;   3: side panel palette   (panel fill, accent, white, black)
 ;   4: bottom panel palette (accent, panel fill, white, black)
-;   5: type badge 1 / caught ball palette
-;   6: type badge 2 palette
-;   7: shiny star palette / type badge 3 on the green page
+;   5: type icon 1 / caught ball palette
+;   6: type icon 2 palette
+;   7: shiny star palette / type icon 3 on the green page
 ; OBJ palettes 0-3: the four page squares (pink, blue, green, orange).
 
 LoadSummaryScreenPals::
@@ -234,21 +235,12 @@ LoadSummaryScreenPals::
 	cp NUM_MOVES
 	jr nz, .green_count
 .green_counted
-	ld hl, .GreenSpacedRows
-	ld a, b
-	cp NUM_MOVES
-	jr nz, .green_rows_ok
-	ld hl, .GreenFourRows
-.green_rows_ok
-	ld a, l
-	ld [wBuffer4], a
-	ld a, h
-	ld [wBuffer5], a
-	; assign badge palettes 5-7 to up to three distinct move types
+	; assign icon palettes 5/6/7/2 to up to four distinct move types
 	ld a, $ff
 	ld [wBuffer1], a
 	ld [wBuffer2], a
 	ld [wBuffer3], a
+	ld [wBuffer4], a
 	ld c, 0
 .green_loop
 	ld b, 0
@@ -260,7 +252,7 @@ LoadSummaryScreenPals::
 	push bc
 	ld de, wStringBuffer2
 	call GetMoveData
-	ld a, [wStringBuffer2 + MOVE_TYPE]
+	call .GetDisplayType
 	ld e, a
 	ld a, [wBuffer1]
 	cp e
@@ -273,6 +265,10 @@ LoadSummaryScreenPals::
 	ld a, [wBuffer3]
 	cp e
 	ld d, $7
+	jr z, .green_got_pal
+	ld a, [wBuffer4]
+	cp e
+	ld d, $2
 	jr z, .green_got_pal
 	; new type: assign a free palette, if any
 	ld a, [wBuffer1]
@@ -301,8 +297,7 @@ LoadSummaryScreenPals::
 .green_try_3
 	ld a, [wBuffer3]
 	inc a
-	ld d, $3 ; no palette left: keep panel colors
-	jr nz, .green_got_pal
+	jr nz, .green_try_4
 	ld a, e
 	ld [wBuffer3], a
 	push de
@@ -310,20 +305,28 @@ LoadSummaryScreenPals::
 	call .SetBadgePal
 	pop de
 	ld d, $7
+	jr .green_got_pal
+.green_try_4
+	ld a, [wBuffer4]
+	inc a
+	ld d, $3 ; no palette left (can't happen: 4 moves, 4 slots)
+	jr nz, .green_got_pal
+	ld a, e
+	ld [wBuffer4], a
+	push de
+	ld de, wSGBPals + 0 ; palette 2: free on the green page (no exp bar)
+	call .SetBadgePal
+	pop de
+	ld d, $2
 .green_got_pal
-	; color the badge cells for move c with palette d
+	; color the icon cells for move c with palette d
 	pop bc
 	push bc
 	push de
-	; badge row = layout row for move c, plus one
-	ld a, [wBuffer4]
-	ld l, a
-	ld a, [wBuffer5]
-	ld h, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	inc a
+	; icon row = name row (2 + 2 * move index) + 1
+	ld a, c
+	add a
+	add 3
 	; hl = wAttrMap + row * SCREEN_WIDTH + column 8
 	ld l, a
 	ld h, 0
@@ -349,11 +352,18 @@ LoadSummaryScreenPals::
 	jp nz, .green_loop
 	ret
 
-.GreenSpacedRows:
-; name rows (standard compact layout)
-	db 2, 4, 6, 8
-.GreenFourRows:
-	db 2, 4, 6, 8
+.GetDisplayType:
+; Return the display type (in a) for the move struct in wStringBuffer2;
+; Hidden Power shows its computed type. Must match
+; StatsScreen_GetMoveDisplayType in engine/pokemon/stats_screen.asm.
+	ld a, [wStringBuffer2 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	ret nz
+	ld hl, wTempMonDVs
+	farcall GetHiddenPowerDisplayStats ; c = type
+	ld a, c
+	ret
 
 .OrangeSetup:
 	; friendship bar row (the shiny indicator is pink-page only)
@@ -364,38 +374,47 @@ LoadSummaryScreenPals::
 	ret
 
 .SetBadgePal:
-; Build a type badge palette at de: badge color x3, then white text.
+; Build a type icon palette at de to match SummaryTypeIconGFX (2bpp):
+;   color 0 = side panel fill, so the rounded padding around the pill
+;             blends into the page instead of showing as a white block
+;   color 1 = white (the pill's lettering)
+;   color 3 = the type color (the pill body)
+; The side panel palette is already staged at wSGBPals + 8 by the caller.
 ; a = type constant
 	cp TYPES_END
 	jr c, .type_ok
 	xor a
 .type_ok
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld bc, TypeBadgeColors
-	add hl, bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hl]
-	ld b, a
+	push af
 	ld h, d
 	ld l, e
-	ld a, c
+	; color 0: panel fill
+	ld a, [wSGBPals + 8]
 	ld [hli], a
-	ld a, b
+	ld a, [wSGBPals + 9]
 	ld [hli], a
-	ld a, c
-	ld [hli], a
-	ld a, b
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	ld a, b
-	ld [hli], a
-	ld a, $ff ; white
+	; colors 1-2: white
+	ld a, $ff
 	ld [hli], a
 	ld a, $7f
+	ld [hli], a
+	ld a, $ff
+	ld [hli], a
+	ld a, $7f
+	ld [hli], a
+	; color 3: the type color
+	pop af
+	ld c, a
+	ld b, 0
+	push hl
+	ld hl, TypeBadgeColors
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld b, [hl]
+	pop hl
+	ld [hli], a
+	ld a, b
 	ld [hl], a
 	ret
 
