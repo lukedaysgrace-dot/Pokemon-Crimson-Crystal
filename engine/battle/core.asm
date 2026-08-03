@@ -4270,6 +4270,11 @@ SpikesDamageAndEntryAbilities:
 
 SpikesDamage:
 	call .Spikes
+	; Do not run later entry hazards after Spikes knocked out the switch-in.
+	; Besides being nonsensical, Toxic Spikes could otherwise poison the
+	; fainted mon and consume its status-curing held item.
+	farcall UserHasFainted
+	ret z
 	farcall ToxicSpikesPoison
 	ret
 
