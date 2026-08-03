@@ -179,9 +179,11 @@ StartMenu::
 	jp .Reopen
 
 .Clear:
+	; Decompress before whiting the screen; see CloseSubmenu.
+	farcall _DecompressTilesetGFX
 	call ClearBGPalettes
 	call ExitMenu
-	call ReloadTilesetAndPalettes
+	call ReloadTilesetAndPalettesPredecomp
 	call .DrawMenuAccount
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatus
