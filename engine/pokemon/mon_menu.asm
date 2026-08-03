@@ -1204,7 +1204,13 @@ PlaceMoveData:
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .not_hidden_power
 	ld hl, wTempMonDVs
-	farcall GetHiddenPowerDisplayStats ; c = type, d = power
+	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
+	ld a, [wHiddenPowerType]
+	and a
+	jr z, .store_hidden_power_stats
+	ld a, b
+	ld [wStringBuffer2 + MOVE_CATEGORY], a
+.store_hidden_power_stats
 	ld a, c
 	ld [wStringBuffer2 + MOVE_TYPE], a
 	ld a, d
