@@ -496,8 +496,8 @@ LoadWeatherGraphics::
 	ret
 
 AnimateWeatherOnIdle::
-; Redraw overworld sprites so weather particles keep animating while
-; the game idles in a textbox or a window menu (farcalled from the
+; Redraw overworld sprites so weather stays consistent while the game
+; idles in a textbox or a window menu (farcalled from the
 ; UpdateWeatherSprites stub in home). Full-screen interfaces (Pokedex,
 ; party, Pack, Trainer Card, battles, ...) clear wVramState bit 0,
 ; which turns this into a no-op there. Runs at most once per frame no
@@ -516,14 +516,15 @@ AnimateWeatherOnIdle::
 	jr nz, .done
 	bit 0, a
 	jr z, .done
-	; A caller-owned OAM lock is only overridden while the overworld is in its
-	; reanchored text/window mode. Other interfaces keep ownership of OAM.
+	; Particles are hidden for as long as a textbox or menu window has the
+	; map reanchored (bit 6; see DoOverworldWeather), so there is nothing to
+	; animate on top of the window, and the caller's OAM lock must not be
+	; overridden while its text/menu frame is on screen.
 	bit 6, a
-	jr nz, .check_frame
+	jr nz, .done
 	ldh a, [hOAMUpdate]
 	and a
 	jr nz, .done
-.check_frame
 	ldh a, [hVBlankCounter]
 	ld b, a
 	ldh a, [hWeatherIdleFrame]
@@ -564,6 +565,15 @@ AnimateWeatherOnIdle::
 DoOverworldWeather::
 	ld a, [wVramState]
 	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
+	ret nz
+	; Weather particles are OAM sprites, so they would be drawn on top of
+	; any textbox or menu window. While the overworld is reanchored into
+	; text/window mode (bit 6, set by OpenText/RefreshScreen and cleared by
+	; CloseText and map loads), skip rendering entirely: the sprite rebuild
+	; in OpenText's SafeUpdateSprites then scrubs any particles that were
+	; already on screen, and the paused timers resume where they left off
+	; once the window closes.
+	bit 6, a
 	ret nz
 
 	; Independent screen-width and screen-height timers avoid positional
