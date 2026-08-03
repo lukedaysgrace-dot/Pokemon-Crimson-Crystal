@@ -164,3 +164,11 @@ hMobile:: db ; ffe9
 hSystemBooted:: db ; ffea
 hClockResetTrigger:: db ; ffeb
 hPalFadeMode:: db ; ffec
+
+; Music keepalive for long LCD-off graphics loads (see StartSoundKeepalive
+; in home/audio.asm). Cleared at boot along with the rest of HRAM.
+hSoundKeepaliveOn::    db ; ffed
+hSoundKeepaliveTima::  db ; ffee
+hSoundKeepaliveAccLo:: db ; ffef
+hSoundKeepaliveAccHi:: db ; fff0
+hSoundKeepaliveTac::   db ; fff1
