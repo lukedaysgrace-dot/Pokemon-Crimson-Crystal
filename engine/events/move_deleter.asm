@@ -206,6 +206,8 @@ MoveReminder_GetRemindableMoves:
 	xor a
 	ld [hli], a
 	dec a
+	ld [hli], a
+	xor a
 	ld [hl], a
 
 	ld a, MON_SPECIES
@@ -240,8 +242,8 @@ MoveReminder_GetRemindableMoves:
 	push hl
 	ldh a, [hTemp]
 	call GetFarHalfword
-	call GetMoveIDFromIndex
-	ld c, a
+	ld b, h
+	ld c, l
 	pop hl
 	inc hl
 	inc hl
@@ -249,7 +251,6 @@ MoveReminder_GetRemindableMoves:
 	jr c, .loop_moves
 	call MoveTutorShared_CheckPokemonAlreadyKnowsMove
 	jr c, .loop_moves
-	ld a, c
 	push hl
 	call MoveTutorShared_AddMoveToList
 	pop hl
@@ -307,11 +308,18 @@ MoveTutorShared_CheckAlreadyInList:
 
 .check_list_loop
 	ld a, [hli]
-	inc a
+	cp -1
 	jr z, .not_in_list
-	dec a
+	cp b
+	jr nz, .next_entry
+	ld a, [hl]
 	cp c
-	jr nz, .check_list_loop
+	jr z, .in_list
+.next_entry
+	inc hl
+	jr .check_list_loop
+
+.in_list
 	pop hl
 	scf
 	ret
@@ -326,42 +334,51 @@ MoveTutorShared_CheckPokemonAlreadyKnowsMove:
 	push bc
 	ld a, MON_MOVES
 	call GetPartyParamLocation
-	ld b, NUM_MOVES
+	pop bc
+	ld e, NUM_MOVES
 
 .check_known_loop
 	ld a, [hli]
+	push hl
+	call GetMoveIndexFromID
+	ld a, h
+	cp b
+	jr nz, .next_known_move
+	ld a, l
 	cp c
 	jr z, .knows_move
-	dec b
+.next_known_move
+	pop hl
+	dec e
 	jr nz, .check_known_loop
-	pop bc
 	pop hl
 	and a
 	ret
 
 .knows_move
-	pop bc
+	pop hl
 	pop hl
 	scf
 	ret
 
 MoveTutorShared_AddMoveToList:
-	push af
 	ld hl, wMoveReminderMoveList
 	ld a, [hl]
-	cp 53
-	jr nc, .full
+	cp MOVE_TUTOR_LIST_CAPACITY
+	ret nc
 	inc [hl]
-	ld e, [hl]
+	add a
+	inc a
+	ld e, a
 	ld d, 0
 	add hl, de
-	pop af
-	ld [hli], a
+	ld [hl], b
+	inc hl
+	ld [hl], c
+	inc hl
 	ld [hl], -1
-	ret
-
-.full
-	pop af
+	inc hl
+	ld [hl], 0
 	ret
 
 MoveTutorShared_ChooseMoveToLearn:
@@ -383,6 +400,11 @@ MoveTutorShared_ChooseMoveToLearn:
 	ld a, [wMenuSelection]
 	cp -1
 	jr z, .carry
+	ld h, a
+	ld a, [wMenuSelectionQuantity]
+	ld l, a
+	call GetMoveIDFromIndex
+	ld [wMenuSelection], a
 	ld [wPutativeTMHMMove], a
 	and a
 	ret
@@ -400,7 +422,7 @@ MoveTutorShared_MenuHeader:
 MoveTutorShared_MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
-	db SCROLLINGMENU_ITEMS_NORMAL ; item format
+	db SCROLLINGMENU_ITEMS_QUANTITY ; item format: 16-bit move index (high, low)
 	dbw 0, wMoveReminderMoveList
 	dba MoveTutorShared_PrintMoveName
 	dba NULL
@@ -409,6 +431,10 @@ MoveTutorShared_MenuData:
 MoveTutorShared_PrintMoveName:
 	push de
 	ld a, [wMenuSelection]
+	ld h, a
+	ld a, [wMenuSelectionQuantity]
+	ld l, a
+	call GetMoveIDFromIndex
 	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	ld de, wStringBuffer1
@@ -532,6 +558,8 @@ EggMoveTutor_GetTeachableMoves:
 	xor a
 	ld [hli], a
 	dec a
+	ld [hli], a
+	xor a
 	ld [hl], a
 
 	ld a, MON_SPECIES
@@ -554,23 +582,17 @@ EggMoveTutor_GetTeachableMoves:
 	ldh a, [hTemp]
 	push hl
 	call GetFarHalfword
-	ld d, h
-	ld e, l
-	ld a, d
+	ld b, h
+	ld c, l
+	ld a, b
 	cp HIGH(-1)
 	jr nz, .check_move
-	ld a, e
+	ld a, c
 	cp LOW(-1)
 	jr nz, .check_move
 	pop hl
 	jr .done_moves
 .check_move
-	push de
-	ld h, d
-	ld l, e
-	call GetMoveIDFromIndex
-	ld c, a
-	pop de
 	pop hl
 	inc hl
 	inc hl
@@ -578,7 +600,6 @@ EggMoveTutor_GetTeachableMoves:
 	jr c, .loop_moves
 	call MoveTutorShared_CheckPokemonAlreadyKnowsMove
 	jr c, .loop_moves
-	ld a, c
 	push hl
 	call MoveTutorShared_AddMoveToList
 	pop hl

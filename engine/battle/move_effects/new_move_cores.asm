@@ -2,6 +2,75 @@
 ; Lives in the Battle Effect Overflow bank; called via callfar stubs
 ; from the Effect Commands bank (same conventions as BattleParalyze_Core).
 
+AIPredictVariableMoveCategory_Core:
+; Shell Side Arm chooses its category before damage stats are loaded. Reuse the
+; live selector, but preserve the AI's six move-score bytes that it uses as
+; scratch space.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SHELL_SIDE_ARM
+	ret nz
+	ld hl, wBuffer1
+rept 6
+	ld a, [hli]
+	push af
+endr
+	call BattleShellSideArm_Core
+	ld hl, wBuffer6
+rept 5
+	pop af
+	ld [hld], a
+endr
+	pop af
+	ld [hl], a
+	ret
+
+AIPredictVariableMovePower_Core:
+; Called after EnemyAttackDamage has loaded b/c/d/e. These live power helpers
+; deliberately preserve b, c and e, so the normal damage formula can follow.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_GYRO_BALL
+	jp z, BattleGyroBall_Core
+	cp EFFECT_RAGE_FIST
+	jp z, BattleRageFistPower_Core
+	ret
+
+AIPredictVariableMoveDamage_Core:
+; Apply deterministic post-formula modifiers used by move scripts. Keep this
+; allowlist explicit: random and multi-hit effects need expected-value logic,
+; not execution of their stateful live commands during AI scoring. Avalanche
+; is also omitted because move selection happens before this turn's order and
+; hit state exist; its live helper would read stale previous-turn state.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_ACROBATICS
+	jr z, .conditional
+	cp EFFECT_FACADE
+	jr z, .conditional
+	cp EFFECT_HEX
+	jr z, .conditional
+	cp EFFECT_KNOCK_OFF
+	jr z, .conditional
+	cp EFFECT_VENOSHOCK
+	jr z, .poisoned
+	cp EFFECT_BARB_BARRAGE
+	jr z, .poisoned
+	cp EFFECT_GUST
+	jr z, .flying
+	cp EFFECT_TWISTER
+	jr z, .flying
+	cp EFFECT_EARTHQUAKE
+	jr z, .underground
+	cp EFFECT_STOMP
+	ret nz
+	jp BattleDoubleMinimizeDamage_Core
+.conditional
+	jp BattleConditionalBoost_Core
+.poisoned
+	jp BattleVenoshockDouble_Core
+.flying
+	jp BattleDoubleFlyingDamage_Core
+.underground
+	jp BattleDoubleUndergroundDamage_Core
+
 BattleConditionalBoost_Core:
 ; Damage modifiers keyed by move effect:
 ;  Acrobatics: x2 if the user holds no item
@@ -611,6 +680,10 @@ ToxicSpikesPoison:
 ; Like SpikesDamage, the victim is the current turn holder.
 	; Stealth Rock shares this switch-in hook (same bank).
 	call StealthRockEntryDamage
+	; Stealth Rock may have knocked out the switch-in. Toxic Spikes must not
+	; status a fainted mon or activate/consume its held status-curing item.
+	farcall UserHasFainted
+	ret z
 
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
@@ -718,13 +791,22 @@ ToxicSpikesPoison:
 	call .poison_anim
 	call RefreshBattleHuds
 	ld hl, UserBadlyPoisonedText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	jr .held_cure
 .not_toxic
 	call UpdateUserInParty
 	call .poison_anim
 	call RefreshBattleHuds
 	ld hl, UserWasPoisonedText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	; Held status-curing items operate on the turn holder's opponent.
+	; Toxic Spikes poisons the turn holder during entry, so reverse the
+	; perspective around the shared item handler.
+.held_cure
+	farcall SwitchTurn
+	farcall UseHeldStatusHealingItem
+	farcall SwitchTurn
+	ret
 
 .absorb
 	ld a, [hl]
