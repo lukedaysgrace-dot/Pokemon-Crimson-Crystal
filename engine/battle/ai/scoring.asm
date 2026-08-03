@@ -3088,20 +3088,23 @@ INCLUDE "data/battle/ai/reckless_moves.asm"
 AIDamageCalc:
 	ld a, 1
 	ldh [hBattleTurn], a
+	ld [wAIDamagePrediction], a
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld de, 1
 	ld hl, ConstantDamageEffects
 	call IsInArray
-	jr nc, .asm_39400
+	jr nc, .formula
 	callfar BattleCommand_ConstantDamage
-	ret
+	jr .done
 
-.asm_39400
+.formula
+	callfar AIPredictVariableMoveCategory_Core
 	callfar EnemyAttackDamage
+	callfar AIPredictVariableMovePower_Core
 	callfar BattleCommand_DamageCalc
-	ld a, 1
-	ld [wAIDamagePrediction], a
 	callfar BattleCommand_Stab
+	callfar AIPredictVariableMoveDamage_Core
+.done
 	xor a
 	ld [wAIDamagePrediction], a
 	ret
