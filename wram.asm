@@ -1830,7 +1830,7 @@ wd034:: ds 2
 wd036:: ds 2
 	ds 6
 
-UNION ; d03e
+	UNION ; d02c
 ; trainer data
 wSeenTrainerBank:: db
 wSeenTrainerDistance:: db
@@ -1846,31 +1846,31 @@ wScriptAfterPointer:: dw
 wRunningTrainerBattleScript:: db
 wTempTrainerEnd::
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; menu items list
-wMenuItemsList:: ds 16
+wMenuItemsList:: ds 16 ; d02c
 wMenuItemsListEnd::
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; fruit tree data
 wCurFruitTree:: db
 wCurFruit:: db
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; item ball data
 wItemBallData::
 wItemBallItemID:: db
 wItemBallQuantity:: db
 wItemBallDataEnd::
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; hidden item data
 wHiddenItemData::
 wHiddenItemEvent:: dw
 wHiddenItemID:: db
 wHiddenItemDataEnd::
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; elevator data
 wElevatorData::
 wElevatorPointerBank:: db
@@ -1878,7 +1878,7 @@ wElevatorPointer:: dw
 wElevatorOriginFloor:: db
 wElevatorDataEnd::
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; coord event data
 wCurCoordEvent::
 wCurCoordEventSceneID:: db
@@ -1887,7 +1887,7 @@ wCurCoordEventMapX:: db
 	ds 1
 wCurCoordEventScriptAddr:: dw
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; BG event data
 wCurBGEvent::
 wCurBGEventYCoord:: db
@@ -1895,7 +1895,7 @@ wCurBGEventXCoord:: db
 wCurBGEventType:: db
 wCurBGEventScriptAddr:: dw
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; mart data
 wMartType:: db
 wMartPointerBank:: db
@@ -1903,7 +1903,7 @@ wMartPointer:: dw
 wMartJumptableIndex:: db
 wBargainShopFlags:: db
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; player movement data
 wCurInput::
 wFacingTileID:: db
@@ -1919,52 +1919,56 @@ wWalkingTile:: db
 	ds 6
 wPlayerTurningDirection:: db
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; std script buffer
 	ds 1
 wJumpStdScriptBuffer:: ds 3
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; phone script data
 wCheckedTime:: db
 wPhoneListIndex:: db
 wNumAvailableCallers:: db
 wAvailableCallers:: ds CONTACT_LIST_SIZE
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; phone caller contact
 	ds 1
 wCallerContact:: ds PHONE_CONTACT_SIZE
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; backup menu data
 	ds 7
 wMenuCursorBufferBackup:: db
 wMenuScrollPositionBackup:: db
 
-NEXTU ; d03e
+NEXTU ; d02c
 ; poison step data
 wPoisonStepData::
 wPoisonStepFlagSum:: db
 wPoisonStepPartyFlags:: ds PARTY_LENGTH
 wPoisonStepDataEnd::
-ENDU ; d04f
+ENDU ; d03d
 
 	ds 23
-ENDU ; d066
+ENDU ; d054
 
-wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066
+wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d054
 
-wStringBuffer1:: ds 19 ; d073
-wStringBuffer2:: ds 19 ; d086
-wStringBuffer3:: ds 19 ; d099
-wStringBuffer4:: ds 19 ; d0ac
-wStringBuffer5:: ds 19 ; d0bf
+wStringBuffer1:: ds 19 ; d061
+wMoveReminderMoveList::
+wStringBuffer2:: ds 19 ; d074
+wStringBuffer3:: ds 19 ; d087
+wStringBuffer4:: ds 19 ; d09a
+wStringBuffer5:: ds 19 ; d0ad
 
-wBattleMenuCursorBuffer:: dw ; d0d2
+wBattleMenuCursorBuffer:: ; d0c0
+assert wBattleMenuCursorBuffer - wMoveReminderMoveList >= MOVE_TUTOR_LIST_BYTES, \
+	"Move tutor list exceeds its string-buffer scratch space"
+	dw
 
-wCurBattleMon:: db ; d0d4
-wCurMoveNum:: db ; d0d5
+wCurBattleMon:: db ; d0c2
+wCurMoveNum:: db ; d0c3
 
 wLastPocket:: db
 
