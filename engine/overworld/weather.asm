@@ -1224,31 +1224,50 @@ _CopyTilesetGFX::
 ; Copy the decompressed tileset from wDecompressScratch into VRAM.
 ; Requires the LCD to be off. Split from the decompression step so
 ; ReloadTilesetAndPalettes can decompress before turning the LCD off.
+; With the LCD off, general-purpose DMA runs immediately and moves each
+; 2KB half in a fraction of a frame, where the old CopyBytes loops took
+; about two frames each - this shortens the white flash when leaving
+; the Pack, party and other submenus. (The ROM is CGB-only, so HDMA
+; hardware is always present.)
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 
-	ld hl, wDecompressScratch
-	ld de, vTiles2
-	ld bc, $7f tiles
-	call .CopyBytesKeepalive
+	ld a, HIGH(wDecompressScratch)
+	ldh [rHDMA1], a
+	ld a, LOW(wDecompressScratch)
+	ldh [rHDMA2], a
+	ld a, HIGH(vTiles2 - $8000)
+	ldh [rHDMA3], a
+	ld a, LOW(vTiles2)
+	ldh [rHDMA4], a
+	ld a, $7f tiles / 16 - 1 ; 127 blocks of 16 bytes
+	ldh [rHDMA5], a ; general DMA: blocks until the copy completes
 
 	ldh a, [rVBK]
 	push af
 	ld a, BANK(vTiles5)
 	ldh [rVBK], a
 
-	ld hl, wDecompressScratch + $80 tiles
-	ld de, vTiles5
-	ld bc, $80 tiles
-	call .CopyBytesKeepalive
+	ld a, HIGH(wDecompressScratch + $80 tiles)
+	ldh [rHDMA1], a
+	ld a, LOW(wDecompressScratch + $80 tiles)
+	ldh [rHDMA2], a
+	ld a, HIGH(vTiles5 - $8000)
+	ldh [rHDMA3], a
+	ld a, LOW(vTiles5)
+	ldh [rHDMA4], a
+	ld a, $80 tiles / 16 - 1 ; 128 blocks of 16 bytes
+	ldh [rHDMA5], a
 
 	pop af
 	ldh [rVBK], a
 
 	pop af
 	ldh [rSVBK], a
+
+	call _PollSoundKeepalive
 
 ; These tilesets support dynamic per-mapgroup roof tiles.
 	ld a, [wMapTileset]
@@ -1267,25 +1286,3 @@ _CopyTilesetGFX::
 	xor a
 	ldh [hTileAnimFrame], a
 	ret
-
-.CopyBytesKeepalive:
-; Copy bc bytes from hl to de, like CopyBytes, but run the music keepalive
-; between 256-byte chunks so long LCD-off copies cannot stall the music.
-; Identical to CopyBytes when no keepalive is active.
-.pages
-	ld a, b
-	and a
-	jr z, .tail
-	push bc
-	ld bc, $100
-	call CopyBytes
-	call _PollSoundKeepalive
-	pop bc
-	dec b
-	jr .pages
-.tail
-	ld a, c
-	and a
-	ret z
-	ld b, 0
-	jp CopyBytes
