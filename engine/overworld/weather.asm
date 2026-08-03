@@ -509,6 +509,11 @@ AnimateWeatherOnIdle::
 	cp OW_WEATHER_RAIN
 	jr c, .done ; OW_WEATHER_NONE and OW_WEATHER_OVERCAST have no particles
 	ld a, [wVramState]
+	; The start menu (and anything else that sets the suppress bit) pauses
+	; weather completely: no idle particle redraws on top of the menu window,
+	; and no per-frame sprite rebuilds dragging down the menu input loop.
+	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
+	jr nz, .done
 	bit 0, a
 	jr z, .done
 	; A caller-owned OAM lock is only overridden while the overworld is in its
@@ -1099,3 +1104,188 @@ CherryBlossomWeatherGFX:
 	INCBIN "gfx/overworld/cherry_blossom.2bpp"
 CherryBlossomWeatherGFXEnd:
 	assert CherryBlossomWeatherGFXEnd - CherryBlossomWeatherGFX == LEN_2BPP_TILE, "cherry_blossom.png must be a single 8x8 tile"
+
+
+; Music keepalive for long LCD-off graphics loads, and the tileset loader
+; that uses it. These live in their own floating section (instead of ROM0
+; or the packed weather bank) purely for space; the LoadTilesetGFX stub in
+; home/map.asm preserves the old ROM0 entry point.
+SECTION "Sound Keepalive", ROMX
+
+_StartSoundKeepalive::
+; Keep music playing across a stretch of LCD-off graphics loading.
+; The VBlank interrupt normally drives UpdateSound; with the LCD disabled
+; it never fires, so long loads audibly froze the sequencer (the current
+; notes hang, then the song jumps). Program the free-running timer to
+; 4096 Hz as a real-time clock; _PollSoundKeepalive converts elapsed ticks
+; into UpdateSound calls at the right tempo. The timer interrupt is a
+; no-op outside mobile (see Timer in home/mobile.asm), and the previous
+; TAC value is restored by _StopSoundKeepalive.
+	push af
+	ldh a, [rTAC]
+	ldh [hSoundKeepaliveTac], a
+	xor a
+	ldh [rTMA], a
+	ldh [rTIMA], a
+	ldh [hSoundKeepaliveTima], a
+	ldh [hSoundKeepaliveAccLo], a
+	ldh [hSoundKeepaliveAccHi], a
+	ld a, (1 << rTAC_ON) | rTAC_4096_HZ
+	ldh [rTAC], a
+	ld a, 1
+	ldh [hSoundKeepaliveOn], a
+	pop af
+	ret
+
+_PollSoundKeepalive::
+; Run queued music frames while the LCD is off. One frame is 4096 / ~59.73
+; = ~68.6 timer ticks; the remainder carries over in a 16-bit accumulator,
+; so timing self-corrects no matter how unevenly this gets polled. Call it
+; at least every ~60ms (TIMA wraps at 62ms) during LCD-off work.
+; A no-op unless _StartSoundKeepalive is active, so it is safe to sprinkle
+; into loaders that are also used with the LCD on. Preserves all registers.
+	push af
+	ldh a, [hSoundKeepaliveOn]
+	and a
+	jr z, .off
+	push bc
+	ldh a, [rTIMA]
+	ld b, a
+	ldh a, [hSoundKeepaliveTima]
+	ld c, a
+	ld a, b
+	ldh [hSoundKeepaliveTima], a
+	sub c ; a = elapsed 4096 Hz ticks since the last poll (mod 256)
+	ld c, a
+	ldh a, [hSoundKeepaliveAccLo]
+	add c
+	ldh [hSoundKeepaliveAccLo], a
+	ldh a, [hSoundKeepaliveAccHi]
+	adc 0
+	ldh [hSoundKeepaliveAccHi], a
+.loop
+	; while accumulator >= 69 ticks: play one music frame
+	ldh a, [hSoundKeepaliveAccHi]
+	and a
+	jr nz, .tick
+	ldh a, [hSoundKeepaliveAccLo]
+	cp 69
+	jr c, .caught_up
+.tick
+	ldh a, [hSoundKeepaliveAccLo]
+	sub 69
+	ldh [hSoundKeepaliveAccLo], a
+	ldh a, [hSoundKeepaliveAccHi]
+	sbc 0
+	ldh [hSoundKeepaliveAccHi], a
+	call UpdateSound
+	jr .loop
+.caught_up
+	pop bc
+.off
+	pop af
+	ret
+
+_StopSoundKeepalive::
+; Final catch-up tick, then hand sound updates back to the VBlank interrupt.
+	call _PollSoundKeepalive
+	push af
+	xor a
+	ldh [hSoundKeepaliveOn], a
+	ldh a, [hSoundKeepaliveTac]
+	ldh [rTAC], a
+	pop af
+	ret
+
+_DecompressTilesetGFX::
+; Decompress the current map's tileset into wDecompressScratch.
+; Safe with the LCD on; does not touch VRAM.
+	ld hl, wTilesetAddress
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wTilesetBank]
+	ld e, a
+
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+
+	ld a, e
+	ld de, wDecompressScratch
+	call FarDecompress
+
+	pop af
+	ldh [rSVBK], a
+	ret
+
+_CopyTilesetGFX::
+; Copy the decompressed tileset from wDecompressScratch into VRAM.
+; Requires the LCD to be off. Split from the decompression step so
+; ReloadTilesetAndPalettes can decompress before turning the LCD off.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+
+	ld hl, wDecompressScratch
+	ld de, vTiles2
+	ld bc, $7f tiles
+	call .CopyBytesKeepalive
+
+	ldh a, [rVBK]
+	push af
+	ld a, BANK(vTiles5)
+	ldh [rVBK], a
+
+	ld hl, wDecompressScratch + $80 tiles
+	ld de, vTiles5
+	ld bc, $80 tiles
+	call .CopyBytesKeepalive
+
+	pop af
+	ldh [rVBK], a
+
+	pop af
+	ldh [rSVBK], a
+
+; These tilesets support dynamic per-mapgroup roof tiles.
+	ld a, [wMapTileset]
+	cp TILESET_JOHTO
+	jr z, .load_roof
+	cp TILESET_JOHTO_MODERN
+	jr z, .load_roof
+	cp TILESET_BATTLE_TOWER_OUTSIDE
+	jr z, .load_roof
+	jr .skip_roof
+
+.load_roof
+	farcall LoadMapGroupRoof
+
+.skip_roof
+	xor a
+	ldh [hTileAnimFrame], a
+	ret
+
+.CopyBytesKeepalive:
+; Copy bc bytes from hl to de, like CopyBytes, but run the music keepalive
+; between 256-byte chunks so long LCD-off copies cannot stall the music.
+; Identical to CopyBytes when no keepalive is active.
+.pages
+	ld a, b
+	and a
+	jr z, .tail
+	push bc
+	ld bc, $100
+	call CopyBytes
+	call _PollSoundKeepalive
+	pop bc
+	dec b
+	jr .pages
+.tail
+	ld a, c
+	and a
+	ret z
+	ld b, 0
+	jp CopyBytes
