@@ -143,7 +143,6 @@ ShortAnim_UpdateVariables:
 	ret
 
 LongAnim_UpdateVariables:
-.loop
 	ld hl, wCurHPAnimOldHP
 	ld a, [hli]
 	ld e, a
@@ -167,27 +166,10 @@ LongAnim_UpdateVariables:
 	ld [wCurHPAnimOldHP], a
 	ld a, h
 	ld [wCurHPAnimOldHP + 1], a
-	push hl
-	push de
-	push bc
-	ld hl, wCurHPAnimMaxHP
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	call ComputeHPBarPixels
-	ld a, e
-	pop bc
-	pop de
-	pop hl
-	ld hl, wCurHPBarPixels
-	cp [hl]
-	jr z, .loop
-	ld [hl], a
+	; Present every HP point as its own frame. Skipping values that map to
+	; the same one of the 48 bar pixels makes the number and bar drop in
+	; visible chunks for Pokemon with more than 48 max HP. The tile update
+	; below recomputes the bar pixels for this HP value.
 	and a
 	ret
 
