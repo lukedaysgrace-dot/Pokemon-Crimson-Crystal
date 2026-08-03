@@ -371,6 +371,8 @@ StatsScreen_JoypadAction:
 
 .a_button
 	ld a, c
+	cp GREEN_PAGE
+	jp z, StatsScreen_MoveInfo ; A on the moves page opens the move info view
 	cp ORANGE_PAGE ; last page
 	jr z, .b_button
 .d_right
@@ -466,7 +468,23 @@ LoadSummaryScreenGFX:
 	ld hl, vTiles0 tile $02
 	lb bc, BANK(PartyMenuBallGFX), 1
 	call Get2bpp
+	; selection arrow for the move info view
+	ld de, StatsScreenArrowGFX
+	ld hl, vTiles0 tile $03
+	lb bc, BANK(StatsScreenArrowGFX), 1
+	call Get1bpp
 	ret
+
+StatsScreenArrowGFX:
+; 8x8 1bpp "▶" cursor for the move info view
+	db %00000000
+	db %01000000
+	db %01100000
+	db %01111000
+	db %01111110
+	db %01111000
+	db %01100000
+	db %01000000
 
 StatsScreen_PlaceHorizontalDivider:
 	hlcoord 0, 7
@@ -487,6 +505,12 @@ StatsScreen_LoadGFX:
 	ldh [hBGMapMode], a
 	call .ClearBox
 	call StatsScreen_DrawFrames
+	; the green page overwrites the exp bar tiles ($55+) with type icons,
+	; so reload them on every page switch
+	ld de, ExpBarGFX
+	ld hl, vTiles2 tile $55
+	lb bc, BANK(ExpBarGFX), 8
+	call Get2bpp_2
 	call .PageTilemap
 	call .LoadPals
 	ld hl, wcf64
@@ -528,7 +552,12 @@ StatsScreen_LoadGFX:
 	and STAT_PAGE_MASK
 	ld c, a
 	farcall LoadSummaryScreenPals
-	call DelayFrame
+	; No DelayFrame here. LoadSummaryScreenPals only flags the palette
+	; upload (hCGBPalUpdate); waiting a frame let the new page's palettes
+	; reach the screen while the old page's tilemap and attributes were
+	; still up, which is what made the type pills flash wrong colors for
+	; a frame on every page switch. Flagging the page transfer straight
+	; away lands the palettes and both maps in the same vblank.
 	ld hl, wcf64
 	set 5, [hl]
 	ret
@@ -679,22 +708,57 @@ StatsScreen_PlacePageSquares:
 	ld [hl], a
 	ret
 
-PlaceTypeAbbreviation:
-; Print the 4-character abbreviation for type a at hl.
-	push hl
+StatsScreen_LoadTypeIcon:
+; Load the Polished-style type pill for type a (4 tiles, 1bpp) into
+; VRAM slot c (0-3; tiles $4b + c * 4, free on the stats screen).
+; Returns the first tile id in a.
+	push bc
+	ld hl, SummaryTypeIconGFX
+	ld bc, 4 tiles
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop bc
+	ld a, c
+	add a
+	add a
+	add $4b
+	push af
 	ld l, a
 	ld h, 0
-	ld d, h
-	ld e, l
 	add hl, hl
 	add hl, hl
-	add hl, de ; x5
-	ld de, TypeAbbreviations
-	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	jp PlaceString
+	add hl, hl
+	add hl, hl ; x16 (tile size)
+	ld bc, vTiles2
+	add hl, bc
+	lb bc, BANK(SummaryTypeIconGFX), 4
+	call Get2bpp_2
+	pop af
+	ret
+
+StatsScreen_PlaceTypeIcon:
+; Write tile ids a, a+1, a+2, a+3 at hl.
+	ld b, 4
+.loop
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .loop
+	ret
+
+StatsScreen_GetMoveDisplayType:
+; Return the display type (in a) for the move struct in wStringBuffer2.
+; Hidden Power shows its computed type (from wTempMonDVs, or the type
+; chosen at the Hidden Power Guy). Clobbers bc, d, hl.
+	ld a, [wStringBuffer2 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	ret nz
+	ld hl, wTempMonDVs
+	farcall GetHiddenPowerDisplayStats ; c = type
+	ld a, c
+	ret
 
 ; ================================
 ; Pink page: overview + experience
@@ -748,17 +812,21 @@ StatsScreen_PinkPage:
 	call GetPokemonName
 	call PlaceString
 
-	; type badges
+	; type icons (Polished-style pills)
 	ld a, [wBaseType1]
+	ld c, 0
+	call StatsScreen_LoadTypeIcon
 	hlcoord 8, 5
-	call PlaceTypeAbbreviation
+	call StatsScreen_PlaceTypeIcon
 	ld a, [wBaseType1]
 	ld b, a
 	ld a, [wBaseType2]
 	cp b
 	jr z, .one_type
+	ld c, 1
+	call StatsScreen_LoadTypeIcon
 	hlcoord 13, 5
-	call PlaceTypeAbbreviation
+	call StatsScreen_PlaceTypeIcon
 .one_type
 	; white backing for the caught ball sprite at (18, 5)
 	; (the ball itself is an OAM sprite; see StatsScreen_PlacePageSquares)
@@ -1023,25 +1091,13 @@ StatsScreen_GreenPage:
 	call DrawSummaryTab
 
 	; --- bottom panel: held item ---
-	call .GetItemName
-	hlcoord 1, 13
-	call PlaceString
-	ld a, [wTempMonItem]
-	and a
-	jr z, .no_item_desc
-	ld [wCurSpecies], a
-	decoord 1, 15
-	farcall PrintItemDescription
-	ld a, [wBaseSpecies]
-	ld [wCurSpecies], a
-.no_item_desc
+	call .PlaceItemInfo
 
 	; --- side panel: moves ---
-	; Custom spaced-out layout: with up to three moves, each name+info
-	; pair sits 3 rows apart; with four moves, the pairs form two
-	; groups with a gap in the middle so they still have some air.
-	; (Keep the row tables in sync with .GreenSetup in
-	; engine/gfx/summary_screen_pals.asm!)
+	; Load every move's type pill into its icon slot up front, so the
+	; move loop below only writes tile ids.
+	call .LoadMoveTypeIcons
+
 	ld hl, wTempMonMoves
 	ld b, 0
 .count_loop
@@ -1086,14 +1142,19 @@ StatsScreen_GreenPage:
 	ld a, [wBuffer2]
 	inc a
 	ld [wBuffer2], a
-	; type badge
-	pop af
-	ld de, wStringBuffer2
-	call GetMoveData
+	; type icon (Polished-style pill). The graphics were already loaded
+	; into the four icon slots by .LoadMoveTypeIcons, so this only has to
+	; place the tile ids -- no VRAM traffic inside this deep loop.
+	pop af ; move id, no longer needed
 	ld a, [wBuffer2]
 	call .RowCoord
-	ld a, [wStringBuffer2 + MOVE_TYPE]
-	call PlaceTypeAbbreviation
+	pop bc
+	push bc ; c = move slot
+	ld a, c
+	add a
+	add a
+	add $4b ; first icon tile for this slot
+	call StatsScreen_PlaceTypeIcon
 	; "PP" label, nudged right of the badge
 	ld a, [wBuffer2]
 	call .RowCoord
@@ -1142,6 +1203,32 @@ StatsScreen_GreenPage:
 	jp nz, .move_loop
 	ret
 
+.LoadMoveTypeIcons:
+; Copy each known move's type pill into icon slot 0-3 (VRAM tiles
+; $4b + slot * 4). One push/pop pair per iteration, and nothing else is
+; live across the calls.
+	ld c, 0
+.icon_loop
+	ld b, 0
+	ld hl, wTempMonMoves
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret z
+	push bc
+	ld de, wStringBuffer2
+	call GetMoveData
+	call StatsScreen_GetMoveDisplayType
+	pop bc
+	push bc
+	call StatsScreen_LoadTypeIcon
+	pop bc
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr nz, .icon_loop
+	ret
+
 .RowCoord:
 ; hl = wTileMap + row a * SCREEN_WIDTH + column 8
 	push de
@@ -1165,6 +1252,22 @@ StatsScreen_GreenPage:
 .FourMoveRows:
 	db 2, 4, 6, 8
 
+.PlaceItemInfo:
+; Held item name + description in the bottom panel (also used to
+; restore the panel when leaving the move info view).
+	call .GetItemName
+	hlcoord 1, 13
+	call PlaceString
+	ld a, [wTempMonItem]
+	and a
+	ret z
+	ld [wCurSpecies], a
+	decoord 1, 15
+	farcall PrintItemDescription
+	ld a, [wBaseSpecies]
+	ld [wCurSpecies], a
+	ret
+
 .GetItemName:
 	ld de, .NoItemString
 	ld a, [wTempMonItem]
@@ -1182,6 +1285,222 @@ StatsScreen_GreenPage:
 
 .NoItemString:
 	db "No held item@"
+
+; =====================================================
+; Move info view (A on the green page, Polished-style)
+; =====================================================
+
+StatsScreen_MoveInfo:
+; Up/Down selects a move; the bottom panel shows its category icon,
+; power, accuracy and description. A or B returns to the item view.
+	ld de, SFX_READ_TEXT_2
+	call PlaySFX
+	xor a
+	ld [wMenuCursorY], a
+	call .ShowMoveInfo
+.loop
+	call StatsScreen_WaitAnim
+	call GetJoypad
+	ldh a, [hJoyPressed]
+	bit B_BUTTON_F, a
+	jr nz, .exit
+	bit A_BUTTON_F, a
+	jr nz, .exit
+	bit D_UP_F, a
+	jr nz, .up
+	bit D_DOWN_F, a
+	jr nz, .down
+	jr .loop
+
+.up
+	ld a, [wMenuCursorY]
+	and a
+	jr nz, .up_ok
+	call .CountMoves
+.up_ok
+	dec a
+	jr .set_cursor
+
+.down
+	call .CountMoves
+	ld b, a
+	ld a, [wMenuCursorY]
+	inc a
+	cp b
+	jr c, .set_cursor
+	xor a
+.set_cursor
+	ld [wMenuCursorY], a
+	call .ShowMoveInfo
+	jr .loop
+
+.exit
+	ld de, SFX_READ_TEXT_2
+	call PlaySFX
+	; hide the selection arrow
+	ld hl, wVirtualOAMSprite05
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	; give the category icon cells back to the bottom panel palette
+	hlcoord 1, 13, wAttrMap
+	ld a, $4
+	ld [hli], a
+	ld [hl], a
+	; restore the HP bar colors the category icon borrowed
+	farcall RestoreStatsHPPal
+	; redraw the held item view
+	ld de, StatsScreen_GreenPage.ItemTabString
+	call DrawSummaryTab
+	hlcoord 0, 13
+	lb bc, 5, 20
+	call ClearBox
+	call StatsScreen_GreenPage.PlaceItemInfo
+	ld hl, wcf64
+	set 5, [hl]
+	jp StatsScreen_WaitAnim
+
+.CountMoves:
+; a = number of known moves (1-4); clobbers b, hl
+	ld hl, wTempMonMoves
+	ld b, 0
+.count_loop
+	ld a, [hli]
+	and a
+	jr z, .counted
+	inc b
+	ld a, b
+	cp NUM_MOVES
+	jr nz, .count_loop
+.counted
+	ld a, b
+	ret
+
+.ShowMoveInfo:
+	; tab label
+	ld de, .MoveTabString
+	call DrawSummaryTab
+	; clear the bottom panel
+	hlcoord 0, 13
+	lb bc, 5, 20
+	call ClearBox
+	; selection arrow (OAM sprite 5) next to the move name
+	ld a, [wMenuCursorY]
+	swap a ; rows are 16 px apart
+	add 32 ; first name row is tilemap row 2
+	ld hl, wVirtualOAMSprite05
+	ld [hli], a ; y
+	ld a, 60 ; x: over the side panel border, left of the names
+	ld [hli], a
+	ld a, $03 ; arrow tile
+	ld [hli], a
+	xor a ; OBJ palette 0 (black at color 3)
+	ld [hl], a
+	; fetch the selected move
+	ld a, [wMenuCursorY]
+	ld c, a
+	ld b, 0
+	ld hl, wTempMonMoves
+	add hl, bc
+	ld a, [hl]
+	push af
+	ld de, wStringBuffer2
+	call GetMoveData
+	; category icon: colors 1-2 of palette 0, tiles $5b-$5c
+	ld a, [wStringBuffer2 + MOVE_CATEGORY]
+	push af
+	farcall LoadStatsCategoryPal
+	pop af
+	ld hl, CategoryIconGFX
+	ld bc, 2 tiles
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, vTiles2 tile $5b
+	lb bc, BANK(CategoryIconGFX), 2
+	call Get2bpp_2
+	hlcoord 1, 13
+	ld a, $5b
+	ld [hli], a
+	inc a
+	ld [hl], a
+	hlcoord 1, 13, wAttrMap
+	xor a ; palette 0 (white bg + category colors)
+	ld [hli], a
+	ld [hl], a
+	; power / accuracy line
+	hlcoord 4, 13
+	ld de, .PowAccString
+	call PlaceString
+	; display power (Hidden Power shows its computed power)
+	ld a, [wStringBuffer2 + MOVE_POWER]
+	ld d, a
+	ld a, [wStringBuffer2 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .got_power
+	ld hl, wTempMonDVs
+	farcall GetHiddenPowerDisplayStats ; d = power
+.got_power
+	ld a, d
+	hlcoord 4, 13
+	cp 2
+	jr c, .no_power
+	ld [wStringBuffer1], a
+	ld de, wStringBuffer1
+	lb bc, 1, 3
+	call PrintNum
+	jr .accuracy
+.no_power
+	ld de, .NAString
+	call PlaceString
+.accuracy
+	; accuracy is stored 0-255 "percent"-scaled; convert to 0-100
+	xor a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
+	ld a, [wStringBuffer2 + MOVE_ACC]
+	ldh [hMultiplicand + 2], a
+	ld a, 100
+	ldh [hMultiplier], a
+	call Multiply
+	ldh a, [hProduct + 3]
+	add 128 ; round to nearest
+	ld d, a
+	ldh a, [hProduct + 2]
+	adc 0
+	ldh [hDividend + 0], a
+	ld a, d
+	ldh [hDividend + 1], a
+	ld a, 255
+	ldh [hDivisor], a
+	ld b, 2
+	call Divide
+	ldh a, [hQuotient + 3]
+	ld [wStringBuffer1], a
+	hlcoord 9, 13
+	ld de, wStringBuffer1
+	lb bc, 1, 3
+	call PrintNum
+	; description
+	pop af
+	ld [wCurSpecies], a
+	hlcoord 1, 15
+	predef PrintMoveDesc
+	ld a, [wBaseSpecies]
+	ld [wCurSpecies], a
+	; push the redraw (tiles + attributes) on the next frame
+	ld hl, wcf64
+	set 5, [hl]
+	ret
+
+.PowAccString:
+	db "   <BOLD_P>/   <PCT>@"
+.NAString:
+	db "---@"
+.MoveTabString:
+	db "Move@"
 
 ; ====================================
 ; Orange page: met info + friendship
@@ -1740,38 +2059,6 @@ CheckFaintedFrzSlp:
 .fainted_frz_slp
 	scf
 	ret
-
-TypeAbbreviations:
-; 5 bytes per entry ("@"-terminated), indexed by type constant
-	db "NORM@" ; NORMAL
-	db "FGHT@" ; FIGHTING
-	db "FLYG@" ; FLYING
-	db "POIS@" ; POISON
-	db "GRND@" ; GROUND
-	db "ROCK@" ; ROCK
-	db "BIRD@" ; BIRD
-	db "BUG @" ; BUG
-	db "GHST@" ; GHOST
-	db "STEL@" ; STEEL
-	db "??? @" ; TYPE_10
-	db "??? @" ; TYPE_11
-	db "??? @" ; TYPE_12
-	db "??? @" ; TYPE_13
-	db "??? @" ; TYPE_14
-	db "??? @" ; TYPE_15
-	db "??? @" ; TYPE_16
-	db "??? @" ; TYPE_17
-	db "??? @" ; TYPE_18
-	db "CURS@" ; CURSE_T
-	db "FIRE@" ; FIRE
-	db "WATR@" ; WATER
-	db "GRAS@" ; GRASS
-	db "ELEC@" ; ELECTRIC
-	db "PSYC@" ; PSYCHIC
-	db "ICE @" ; ICE
-	db "DRGN@" ; DRAGON
-	db "DARK@" ; DARK
-	db "FARY@" ; FAIRY
 
 SummaryScreenTilesGFX:
 ; 8 tiles, 2bpp. Color mapping (side panel palette): 0 = panel fill,
