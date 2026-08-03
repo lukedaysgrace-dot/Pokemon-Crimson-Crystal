@@ -1408,6 +1408,25 @@ StatsScreen_MoveInfo:
 	push af
 	ld de, wStringBuffer2
 	call GetMoveData
+	; Hidden Power may have a custom category as well as a computed type/power.
+	; The DV-based path's category comes from battle state, so only use b when
+	; the Hidden Power Guy's explicit choice is active.
+	ld a, [wStringBuffer2 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .got_move_data
+	ld hl, wTempMonDVs
+	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
+	ld a, [wHiddenPowerType]
+	and a
+	jr z, .store_hidden_power_stats
+	ld a, b
+	ld [wStringBuffer2 + MOVE_CATEGORY], a
+.store_hidden_power_stats
+	ld a, c
+	ld [wStringBuffer2 + MOVE_TYPE], a
+	ld a, d
+	ld [wStringBuffer2 + MOVE_POWER], a
+.got_move_data
 	; category icon: colors 1-2 of palette 0, tiles $5b-$5c
 	ld a, [wStringBuffer2 + MOVE_CATEGORY]
 	push af
@@ -1434,15 +1453,9 @@ StatsScreen_MoveInfo:
 	hlcoord 4, 13
 	ld de, .PowAccString
 	call PlaceString
-	; display power (Hidden Power shows its computed power)
+	; display power
 	ld a, [wStringBuffer2 + MOVE_POWER]
 	ld d, a
-	ld a, [wStringBuffer2 + MOVE_EFFECT]
-	cp EFFECT_HIDDEN_POWER
-	jr nz, .got_power
-	ld hl, wTempMonDVs
-	farcall GetHiddenPowerDisplayStats ; d = power
-.got_power
 	ld a, d
 	hlcoord 4, 13
 	cp 2

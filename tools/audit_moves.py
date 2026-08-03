@@ -82,6 +82,16 @@ def normalize(name: str) -> str:
     return re.sub(r"[^a-z0-9]", "", name.lower())
 
 
+def move_tutor_list_capacity(audit: Audit) -> int:
+    match = re.search(
+        r"^MOVE_TUTOR_LIST_CAPACITY\s+EQU\s+(\d+)\s*(?:;.*)?$",
+        read("constants/wram_constants.asm"),
+        re.MULTILINE,
+    )
+    audit.check(match is not None, "missing numeric MOVE_TUTOR_LIST_CAPACITY")
+    return int(match.group(1)) if match else 0
+
+
 def eval_simple_expr(expression: str, constants: dict[str, int]) -> int:
     tokens = re.findall(r"[A-Z][A-Z0-9_]*|\$[0-9a-fA-F]+|\d+|[+-]", expression)
     if not tokens:
@@ -185,6 +195,8 @@ def audit_move_tables(audit: Audit) -> tuple[list[str], dict[str, int], dict[str
     canonical_rows = {
         "FIRST_IMPRESSION": ["EFFECT_FIRST_IMPRESSION", "90", "BUG", "CATEGORIZE_PHYSICAL", "100", "10", "0"],
         "LIQUIDATION": ["EFFECT_DEFENSE_DOWN_HIT", "85", "WATER", "CATEGORIZE_PHYSICAL", "100", "10", "20"],
+        "EERIE_SPELL": ["EFFECT_EERIE_SPELL", "80", "PSYCHIC", "CATEGORIZE_SPECIAL", "100", "5", "100"],
+        "STONE_AXE": ["EFFECT_STEALTH_ROCK_HIT", "65", "ROCK", "CATEGORIZE_PHYSICAL", "90", "15", "100"],
     }
     for move, expected in canonical_rows.items():
         if move in move_rows:
@@ -235,7 +247,11 @@ def audit_move_tables(audit: Audit) -> tuple[list[str], dict[str, int], dict[str
 
 def audit_contact(audit: Audit, move_ids: dict[str, int]) -> None:
     text = read("data/moves/contact_moves.asm")
-    byte_values = [int(value, 16) for value in re.findall(r"\$([0-9a-fA-F]{2})", text)]
+    byte_values = [
+        int(value, 16)
+        for raw in text.splitlines()
+        for value in re.findall(r"\$([0-9a-fA-F]{2})", raw.split(";", 1)[0])
+    ]
     num_moves = max(move_ids[name] for name in move_ids if name != "NO_MOVE")
     audit.check(len(byte_values) == num_moves // 8 + 1, f"contact table has {len(byte_values)} bytes, expected {num_moves // 8 + 1}")
 
@@ -288,6 +304,36 @@ def audit_effects(audit: Audit, moves: list[str], scripts: dict[str, list[str]])
     for move, fields in zip(moves, move_rows):
         if fields:
             audit.check(fields[0] in effect_ids, f"move {move}: unknown effect {fields[0]}")
+
+    # MOVE_CHANCE is battle-significant even when an effect script forgets to
+    # consume it: the shared Sheer Force/Life Orb eligibility contract uses it
+    # alongside an effect allowlist. Keep it zero for pure user drawbacks, and
+    # require every nonzero damaging-move chance to reach a consuming command.
+    chance_commands = {
+        "effectchance",
+        "tristatuschance",
+        "direclaw",
+        "eeriespell",
+        "stealthrockhit",
+    }
+    effect_scripts = dict(zip(effect_order, effect_pointers))
+    for move, fields in zip(moves, move_rows):
+        if (
+            len(fields) != 7
+            or fields[3] == "CATEGORIZE_STATUS"
+            or number(fields[6]) == 0
+        ):
+            continue
+        script = effect_scripts.get(fields[0], "")
+        commands = {
+            raw.split(";", 1)[0].strip().split()[0]
+            for raw in scripts.get(script, [])
+            if raw.split(";", 1)[0].strip()
+        }
+        audit.check(
+            bool(commands & chance_commands),
+            f"move {move}: nonzero effect chance is unused by effect script {script}",
+        )
 
     for label, lines in scripts.items():
         commands = [
@@ -407,6 +453,28 @@ def audit_move_mechanics(audit: Audit) -> None:
         for move in sorted(required):
             audit.check(move in entries, f"{label} is missing {move}")
 
+    sheer_force_effects = {
+        match.group(1)
+        for raw in ability_blocks.get("SheerForceEffects", [])
+        if (match := re.fullmatch(r"\s*db\s+(EFFECT_[A-Z0-9_]+)\s*(?:;.*)?", raw))
+    }
+    audit.check(
+        "EFFECT_STEALTH_ROCK_HIT" in sheer_force_effects,
+        "SheerForceEffects is missing Stone Axe's removable hazard effect",
+    )
+    audit.check(
+        "EFFECT_EERIE_SPELL" in sheer_force_effects,
+        "SheerForceEffects is missing Eerie Spell's removable PP-loss effect",
+    )
+
+    contact_hook = "\n".join(ability_blocks.get("RunContactAbilitiesHook", []))
+    attacker_faint_check = contact_hook.find("call UserHasFainted")
+    parental_bond_hit = contact_hook.find("call z, ParentalBondSecondHit")
+    audit.check(
+        0 <= attacker_faint_check < parental_bond_hit,
+        "Parental Bond must not synthesize its second hit after Rocky Helmet KOs the attacker",
+    )
+
     core = read("engine/battle/move_effects/new_move_cores.asm")
     audit.check(
         re.search(
@@ -436,6 +504,131 @@ def audit_move_mechanics(audit: Audit) -> None:
             0 <= levitate < absorption,
             "Toxic Spikes must check Levitate before Poison-type absorption",
         )
+        audit.check(
+            "UseHeldStatusHealingItem" in body,
+            "Toxic Spikes poison must trigger held status-curing items",
+        )
+        stealth_rock_call = body.find("call StealthRockEntryDamage")
+        faint_gate = body.find("UserHasFainted")
+        audit.check(
+            0 <= stealth_rock_call < faint_gate,
+            "Toxic Spikes must stop when Stealth Rock KOs the switch-in",
+        )
+
+    battle_core = read("engine/battle/core.asm")
+    spikes_damage = "\n".join(global_blocks(battle_core).get("SpikesDamage", []))
+    spikes_call = spikes_damage.find("call .Spikes")
+    spikes_faint_gate = spikes_damage.find("UserHasFainted")
+    toxic_spikes_call = spikes_damage.find("ToxicSpikesPoison")
+    audit.check(
+        0 <= spikes_call < spikes_faint_gate < toxic_spikes_call,
+        "entry hazards must stop when Spikes KOs the switch-in",
+    )
+
+    ai = read("engine/battle/ai/scoring.asm")
+    ai_damage = "\n".join(global_blocks(ai).get("AIDamageCalc", []))
+    prediction_order = [
+        ai_damage.find("AIPredictVariableMoveCategory_Core"),
+        ai_damage.find("EnemyAttackDamage"),
+        ai_damage.find("AIPredictVariableMovePower_Core"),
+        ai_damage.find("BattleCommand_DamageCalc"),
+        ai_damage.find("BattleCommand_Stab"),
+        ai_damage.find("AIPredictVariableMoveDamage_Core"),
+    ]
+    audit.check(
+        all(index >= 0 for index in prediction_order)
+        and prediction_order == sorted(prediction_order),
+        "AI variable-move prediction commands are missing or out of order",
+    )
+    audit.check(
+        ai_damage.count("wAIDamagePrediction") >= 2
+        and ai_damage.find("wAIDamagePrediction") < prediction_order[0],
+        "AI damage prediction guard must cover reused move-effect cores",
+    )
+
+    category_prediction = "\n".join(
+        global_blocks(core).get("AIPredictVariableMoveCategory_Core", [])
+    )
+    audit.check(
+        "EFFECT_SHELL_SIDE_ARM" in category_prediction
+        and "wBuffer1" in category_prediction
+        and "wBuffer6" in category_prediction,
+        "Shell Side Arm AI prediction must preserve the AI score buffers",
+    )
+    power_prediction = "\n".join(
+        global_blocks(core).get("AIPredictVariableMovePower_Core", [])
+    )
+    for effect in ("EFFECT_GYRO_BALL", "EFFECT_RAGE_FIST"):
+        audit.check(effect in power_prediction, f"AI power prediction is missing {effect}")
+    damage_prediction = "\n".join(
+        global_blocks(core).get("AIPredictVariableMoveDamage_Core", [])
+    )
+    predicted_effects = set(re.findall(r"\bcp\s+(EFFECT_[A-Z0-9_]+)", damage_prediction))
+    required_predicted_effects = {
+        "EFFECT_ACROBATICS",
+        "EFFECT_FACADE",
+        "EFFECT_HEX",
+        "EFFECT_KNOCK_OFF",
+        "EFFECT_VENOSHOCK",
+        "EFFECT_BARB_BARRAGE",
+        "EFFECT_GUST",
+        "EFFECT_TWISTER",
+        "EFFECT_EARTHQUAKE",
+        "EFFECT_STOMP",
+    }
+    audit.check(
+        required_predicted_effects <= predicted_effects,
+        "AI post-formula prediction is missing: "
+        + ", ".join(sorted(required_predicted_effects - predicted_effects)),
+    )
+    audit.check(
+        "EFFECT_AVALANCHE" not in predicted_effects,
+        "AI must not predict Avalanche from stale previous-turn order/hit state",
+    )
+
+    effect_core = read("engine/battle/effect_commands_core.asm")
+    effect_blocks = global_blocks(effect_core)
+    underground = "\n".join(effect_blocks.get("BattleDoubleUndergroundDamage_Core", []))
+    audit.check(
+        re.search(r"bit SUBSTATUS_UNDERGROUND, a\s+ret z\s+jr DoubleDamage_Core", underground)
+        is not None,
+        "Earthquake/Magnitude must double damage against an underground target without also requiring Minimize",
+    )
+    stealth_rock = "\n".join(effect_blocks.get("StealthRockEntryDamage", []))
+    audit.check(
+        "UserHasMagicGuard_Core" in stealth_rock,
+        "Magic Guard must prevent Stealth Rock damage",
+    )
+    stone_axe = "\n".join(effect_blocks.get("BattleStealthRockHit_Core", []))
+    stone_axe_eligibility = stone_axe.find("CurrentMoveHasSheerForceEffect")
+    stone_axe_alive = stone_axe.find("UserHasFainted")
+    audit.check(
+        "GetTrueUserAbility_b" in stone_axe
+        and stone_axe_eligibility >= 0
+        and "BattleCommand_EffectChance" not in stone_axe,
+        "Stone Axe hazards must honor Sheer Force without being blocked by Substitute",
+    )
+    audit.check(
+        0 <= stone_axe_eligibility < stone_axe_alive,
+        "Stone Axe must not place hazards if post-hit reactions fainted its user",
+    )
+    eerie_spell = "\n".join(effect_blocks.get("BattleEerieSpell_Core", []))
+    audit.check(
+        "GetTrueUserAbility_b" in eerie_spell
+        and "CurrentMoveHasSheerForceEffect" in eerie_spell,
+        "Eerie Spell PP loss must be suppressed only for a Sheer Force user",
+    )
+    dire_claw = "\n".join(effect_blocks.get("BattleDireClaw_Core", []))
+    audit.check(
+        "ANIM_SLP" in dire_claw and "UseHeldStatusHealingItem" in dire_claw,
+        "Dire Claw sleep must animate and trigger held status-curing items",
+    )
+    baneful_bunker = "\n".join(effect_blocks.get("BanefulBunkerPunish_Core", []))
+    audit.check(
+        "RunSynchronizePsn" in baneful_bunker
+        and "UseHeldStatusHealingItem" in baneful_bunker,
+        "Baneful Bunker poison must trigger reactive abilities and held status-curing items",
+    )
 
     # FarCall restores the caller's a register. Helpers whose result normally
     # lives in a therefore need a _b wrapper before being called cross-bank.
@@ -451,7 +644,12 @@ def audit_move_mechanics(audit: Audit) -> None:
         r"\b(?:farcall|callfar)\s+(?:" + "|".join(unsafe_helpers) + r")\b"
     )
     for path in sorted(ROOT.rglob("*.asm")):
-        for line_number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        # Some generated graphics metadata retains legacy single-byte accents.
+        # This scan only looks for ASCII battle helper names, so replacement is
+        # safe and prevents unrelated asset text from aborting the move audit.
+        for line_number, raw in enumerate(
+            path.read_text(encoding="utf-8", errors="replace").splitlines(), 1
+        ):
             if unsafe_pattern.search(raw.split(";", 1)[0]):
                 audit.errors.append(
                     f"{path.relative_to(ROOT)}:{line_number}: unsafe FarCall to an a-return helper"
@@ -469,7 +667,11 @@ def audit_animations(audit: Audit, moves: list[str]) -> None:
         if (match := re.match(r"\s*banim\s+([A-Za-z][A-Za-z0-9_]*)", raw))
     ]
     audit.check(len(targets) == len(moves) + 4, f"battle animation pointers: got {len(targets)}, expected {len(moves) + 4}")
-    labels = set(re.findall(r"^(BattleAnim_[A-Za-z0-9_]+):", text + "\n" + read("data/moves/animations2.asm"), re.MULTILINE))
+    animation_sources = "\n".join(
+        read(f"data/moves/animations{suffix}.asm")
+        for suffix in ("", "2", "3", "4", "5")
+    )
+    labels = set(re.findall(r"^(BattleAnim_[A-Za-z0-9_]+):", animation_sources, re.MULTILINE))
     for target in targets:
         audit.check(target in labels, f"battle animation pointer has no script: {target}")
 
@@ -495,7 +697,9 @@ def audit_tmhm(audit: Audit, move_ids: dict[str, int]) -> None:
                 audit.check(move in legal, f"{path.relative_to(ROOT)}:{line_number}: tmhm references non-TM/HM/tutor move {move}")
 
 
-def audit_egg_moves(audit: Audit, move_ids: dict[str, int]) -> None:
+def audit_egg_moves(
+    audit: Audit, move_ids: dict[str, int], tutor_capacity: int
+) -> None:
     species_order, species_ids = parse_constants("constants/pokemon_constants.asm", "NUM_POKEMON")
     num_species = max(species_ids.values())
     kanto = read("data/pokemon/egg_moves_kanto.asm")
@@ -517,6 +721,7 @@ def audit_egg_moves(audit: Audit, move_ids: dict[str, int]) -> None:
             f"egg pointer species {species_id} {species}: points to {pointer}",
         )
 
+    largest_list = (0, "")
     for relative, text in (("data/pokemon/egg_moves_kanto.asm", kanto), ("data/pokemon/egg_moves_johto.asm", johto)):
         all_blocks = global_blocks(text)
         blocks = {
@@ -547,9 +752,19 @@ def audit_egg_moves(audit: Audit, move_ids: dict[str, int]) -> None:
             for move in entries:
                 audit.check(move in move_ids, f"{relative}:{label}: unknown egg move {move}")
             audit.check(len(entries) == len(set(entries)), f"{relative}:{label}: duplicate egg move")
+            if len(entries) > largest_list[0]:
+                largest_list = (len(entries), f"{relative}:{label}")
+    audit.check(
+        largest_list[0] <= tutor_capacity,
+        f"{largest_list[1]} has {largest_list[0]} raw egg moves, exceeding "
+        f"MOVE_TUTOR_LIST_CAPACITY {tutor_capacity}",
+    )
+    audit.count("max egg-move list", largest_list[0])
 
 
-def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
+def audit_learnsets(
+    audit: Audit, move_ids: dict[str, int], tutor_capacity: int
+) -> None:
     species_order, species_ids = parse_constants("constants/pokemon_constants.asm", "NUM_POKEMON")
     kanto = read("data/pokemon/evos_attacks_kanto.asm")
     johto = read("data/pokemon/evos_attacks_johto.asm")
@@ -571,6 +786,7 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
         + pointer_block(johto, "EvosAttacksPointers2D")
         + pointer_block(johto, "EvosAttacksPointers2E")
         + pointer_block(johto, "EvosAttacksPointers2B")
+        + pointer_block(johto, "EvosAttacksPointers2C")
     )
     pointers = first + second
     audit.check(len(first) == 151, f"Kanto evolution pointers: got {len(first)}, expected 151")
@@ -587,6 +803,7 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
         )
 
     total_blocks = 0
+    largest_learnset = (0, "")
     for relative in (
         "data/pokemon/evos_attacks_kanto.asm",
         "data/pokemon/evos_attacks_johto.asm",
@@ -619,7 +836,15 @@ def audit_learnsets(audit: Audit, move_ids: dict[str, int]) -> None:
             levels = [level for level, _ in learnset]
             audit.check(levels == sorted(levels), f"{relative}:{label}: learnset levels are not sorted")
             audit.check(len(learnset) == len(set(learnset)), f"{relative}:{label}: duplicate level/move row")
+            if len(learnset) > largest_learnset[0]:
+                largest_learnset = (len(learnset), f"{relative}:{label}")
+    audit.check(
+        largest_learnset[0] <= tutor_capacity,
+        f"{largest_learnset[1]} has {largest_learnset[0]} raw level-up moves, exceeding "
+        f"MOVE_TUTOR_LIST_CAPACITY {tutor_capacity}",
+    )
     audit.count("evolution/learnset blocks", total_blocks)
+    audit.count("max level-up list", largest_learnset[0])
 
 
 def audit_move_availability(audit: Audit, moves: list[str]) -> None:
@@ -642,7 +867,11 @@ def audit_move_availability(audit: Audit, moves: list[str]) -> None:
             re.findall(r"^\s*dw\s+([A-Z][A-Z0-9_]*)", read(relative), re.MULTILINE)
         )
 
-    intentionally_unlearnable = {"STRUGGLE"}
+    # The two 2026-07-29 expansion batches were deliberately implemented
+    # before their distribution pass (see NEW_MOVES_2026-07-29.md).
+    first_staged = moves.index("OVERHEAT")
+    last_staged = moves.index("DRAGON_TAIL") + 1
+    intentionally_unlearnable = {"STRUGGLE", *moves[first_staged:last_staged]}
     missing = sorted(set(moves) - available - intentionally_unlearnable)
     audit.check(not missing, "moves with no player learnset: " + ", ".join(missing))
     audit.count("player-available moves", len(set(moves) & available))
@@ -656,8 +885,9 @@ def main() -> int:
     audit_move_mechanics(audit)
     audit_animations(audit, moves)
     audit_tmhm(audit, move_ids)
-    audit_egg_moves(audit, move_ids)
-    audit_learnsets(audit, move_ids)
+    tutor_capacity = move_tutor_list_capacity(audit)
+    audit_egg_moves(audit, move_ids, tutor_capacity)
+    audit_learnsets(audit, move_ids, tutor_capacity)
     audit_move_availability(audit, moves)
 
     if audit.errors:

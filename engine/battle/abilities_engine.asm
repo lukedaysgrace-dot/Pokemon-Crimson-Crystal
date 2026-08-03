@@ -2008,19 +2008,10 @@ RunDamageModifiers:
 	jp .defender
 
 .sheer_force
-	; x1.3 if the move has a secondary effect chance (the effect itself is
-	; suppressed in BattleCommand_EffectChance_Core)
-	push hl
-	ld hl, wPlayerMoveStruct + MOVE_CHANCE
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .sheer_got_chance
-	ld hl, wEnemyMoveStruct + MOVE_CHANCE
-.sheer_got_chance
-	ld a, [hl]
-	pop hl
-	and a
-	jp z, .defender
+	; x1.3 only when the move has a removable secondary effect. MOVE_CHANCE
+	; alone is not enough: guaranteed self-drops and Thief also use that byte.
+	call CurrentMoveHasSheerForceEffect
+	jp nc, .defender
 	ld a, 130
 	call DamagePercent
 	jp .defender
@@ -2638,29 +2629,78 @@ WeatherImmune:
 	scf
 	ret
 
-AbilityAccuracyMods::
-; b = hit chance (0-255, -1 = never miss). Modify per abilities.
-	; Armor Tail / Queenly Majesty first: they fail increased-priority
-	; moves outright - even never-miss moves, and through No Guard - so
-	; they must precede those early exits. "Priority" is the EFFECTIVE
-	; priority, counting the attacker's Prankster/Gale Wings/Triage
-	; boosts.
+AbilityPreHitTargetBlock::
+; Carry if an opponent-targeted move is blocked before accuracy handling.
+; This must run at the very start of checkhit so Lock-On, X Accuracy,
+; always-hit effects and weather accuracy shortcuts cannot bypass it.
+	; Armor Tail / Queenly Majesty fail increased-priority moves outright.
+	; "Priority" is EFFECTIVE priority, counting Prankster/Gale Wings/Triage.
 	call GetOpponentIgnorableAbility
 	cp ARMOR_TAIL
 	jr z, .priority_block
 	cp QUEENLY_MAJESTY
-	jr nz, .no_priority_block
+	jr nz, AbilityAccuracyMods.status_class_block
 .priority_block
-	call .armor_tail_blocks
-	jr nc, .no_priority_block
+	call AbilityAccuracyMods.armor_tail_blocks
+	jr nc, AbilityAccuracyMods.status_class_block
 	call ShowEnemyAbilityBannerBrief
-	ld b, 0 ; can never hit
+	scf
 	ret
-.no_priority_block
-	; Damaging sound/wind moves are nullified after damage calculation, but
-	; status moves never reach that hook. Block them during accuracy setup.
-	call .status_class_block
-	ret c
+
+AbilityPreExecutionTargetBlock::
+; Some selected-foe status moves do not use checkhit. Carry if one of those
+; is blocked by Armor Tail / Queenly Majesty. Side-targeting hazards and
+; user-targeting moves (including Psych Up) deliberately are not listed.
+; Preserves bc, de and hl so BattleCommand_DoTurn can keep its PP/status
+; pointers live across this farcall.
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CURSE
+	jr z, .curse
+	ld hl, .effects
+	ld de, 1
+	call IsInArray
+	jr nc, .not_blocked
+	jr .check_ability
+.curse
+	; Curse targets the foe only when its user is a Ghost type.
+	ld hl, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType1
+.got_types
+	ld a, [hli]
+	cp GHOST
+	jr z, .check_ability
+	ld a, [hl]
+	cp GHOST
+	jr nz, .not_blocked
+.check_ability
+	call AbilityPreHitTargetBlock
+	jr .done
+.not_blocked
+	and a ; nc
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.effects
+	db EFFECT_MEAN_LOOK
+	db EFFECT_NIGHTMARE
+	db EFFECT_SKETCH
+	db EFFECT_TRANSFORM
+	db -1
+
+AbilityAccuracyMods::
+; b = hit chance (0-255, -1 = never miss). Modify per abilities.
+	; Priority immunities and status Soundproof/Wind Rider are handled by
+	; AbilityPreHitTargetBlock before checkhit's unconditional-hit exits.
 	ld a, b
 	cp -1
 	ret z
@@ -2690,6 +2730,8 @@ AbilityAccuracyMods::
 	ret
 
 .status_class_block
+	; Damaging sound/wind moves are nullified after damage calculation, but
+	; status moves never reach that hook. Block them during accuracy setup.
 	call GetMoveCategory
 	cp CATEGORIZE_STATUS
 	jr nz, .class_not_blocked
@@ -2991,8 +3033,7 @@ CheckAirBalloonImmunity:
 	and a
 	ret
 
-RunPostDamageHeldItems:
-	call LifeOrbRecoil
+RunPostDamageDefenderHeldItems:
 	; a hit taken by a Substitute doesn't touch the holder:
 	; no balloon pop, policy proc or helmet chip through a sub
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
@@ -3028,19 +3069,10 @@ LifeOrbRecoil:
 	ret z
 	cp SHEER_FORCE
 	jr nz, .do_recoil
-	; A Sheer Force-boosted move also suppresses Life Orb recoil. Keep the
-	; same eligibility test used by RunDamageModifiers: nonzero chance.
-	push hl
-	ld hl, wPlayerMoveStruct + MOVE_CHANCE
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_chance
-	ld hl, wEnemyMoveStruct + MOVE_CHANCE
-.got_chance
-	ld a, [hl]
-	pop hl
-	and a
-	ret nz
+	; A Sheer Force-boosted move also suppresses Life Orb recoil. Use the
+	; exact same eligibility test as the damage and effect-suppression paths.
+	call CurrentMoveHasSheerForceEffect
+	ret c
 .do_recoil
 	call UserHasFainted
 	ret z
@@ -3191,14 +3223,19 @@ RunContactAbilitiesHook::
 	ld a, [wCurDamage + 1]
 	or b
 	ret z
-	call RunPostDamageHeldItems
+	call RunPostDamageDefenderHeldItems
 	; no procs through a Substitute
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
-	ret nz
+	jp nz, .life_orb
 	; Parental Bond: a second hit at 25% power
+	; This implementation is synthetic: defender abilities and other reactions
+	; intentionally run once for the completed move, not once for each hit.
 	call OppHasFainted
+	jr z, .post_parental_bond
+	; Rocky Helmet resolves above and may have knocked out the attacker.
+	call UserHasFainted
 	jr z, .post_parental_bond
 	call GetTrueUserAbility
 	cp PARENTAL_BOND
@@ -3244,7 +3281,7 @@ RunContactAbilitiesHook::
 .check_aftermath
 	call OppHasFainted
 	jp z, .aftermath
-	ret
+	jp .life_orb
 
 .stamina
 	ld b, DEFENSE
@@ -3301,6 +3338,14 @@ RunContactAbilitiesHook::
 	jp .contact
 
 .berserk
+	; Sheer Force suppresses Berserk when its boosted secondary-effect move
+	; causes the threshold crossing; ordinary contact reactions still run.
+	call GetTrueUserAbility
+	cp SHEER_FORCE
+	jr nz, .berserk_can_activate
+	call CurrentMoveHasSheerForceEffect
+	jp c, .contact
+.berserk_can_activate
 	; SpA+1 when a hit drops the holder from >=1/2 to <1/2 of its max HP
 	call .berserk_check
 	jp nc, .contact
@@ -3424,23 +3469,26 @@ RunContactAbilitiesHook::
 	; the fainted defender's Aftermath hurts a contact attacker (1/4 max HP)
 	call GetOpponentAbility
 	cp AFTERMATH
-	ret nz
+	jr nz, .life_orb
 	; a Damp attacker suffers no Aftermath damage (canon)
 	call GetTrueUserAbility
 	cp DAMP
-	ret z
+	jr z, .life_orb
 	cp MAGIC_GUARD
-	ret z
+	jr z, .life_orb
 	call CheckContactMove
-	ret nc
+	jr nc, .life_orb
 	call UserHasFainted
-	ret z
+	jr z, .life_orb
 	call ShowEnemyAbilityBannerBrief
 	ld d, 4
 	call GetUserMaxHPFraction
 	farcall SubtractHPFromUser
 	ld hl, IsHurtText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+.life_orb
+	; Attacker recoil resolves after defender items and reactive abilities.
+	jp LifeOrbRecoil
 
 AngerPointEffect:
 ; Turn = attacker. Maximizes the crit victim's Attack.
@@ -3626,7 +3674,7 @@ TryParalyzeOpponent:
 	call AbilityStatusAnim
 	call UpdateBattleHuds
 	farcall PrintParalyze
-	jp EndAbility
+	jp FinishAbilityMajorStatus
 
 FlameBodyAbility:
 	call ContactChance
@@ -3656,7 +3704,7 @@ TryBurnOpponent:
 	call UpdateBattleHuds
 	ld hl, WasBurnedText
 	call StdBattleTextbox
-	jp EndAbility
+	jp FinishAbilityMajorStatus
 
 PoisonPointAbility:
 	call ContactChance
@@ -3680,7 +3728,7 @@ TryPoisonOpponentContact:
 	call UpdateBattleHuds
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
-	jp EndAbility
+	jp FinishAbilityMajorStatus
 
 TryToxicOpponent:
 ; Badly poison the turn holder's opponent. Used by Synchronize and Magic
@@ -3714,7 +3762,7 @@ TryToxicOpponent:
 	call UpdateBattleHuds
 	ld hl, BadlyPoisonedText
 	call StdBattleTextbox
-	jp EndAbility
+	jp FinishAbilityMajorStatus
 
 EffectSporeAbility:
 	call ContactChance
@@ -3760,6 +3808,13 @@ TrySleepOpponent:
 	call UpdateBattleHuds
 	ld hl, FellAsleepText
 	call StdBattleTextbox
+	jp FinishAbilityMajorStatus
+
+FinishAbilityMajorStatus:
+; Contact abilities, Synchronize and Magic Bounce all use the Try* helpers.
+; Status-curing held items must therefore activate here just as they do for
+; statuses inflicted by ordinary move commands.
+	farcall UseHeldStatusHealingItem
 	jp EndAbility
 
 TryConfuseOpponent:
@@ -3790,6 +3845,7 @@ TryConfuseOpponent:
 	call AbilityStatusAnim
 	ld hl, BecameConfusedText
 	call StdBattleTextbox
+	farcall UseConfusionHealingItem
 	jp EndAbility
 
 TryAttractOpponent:
@@ -4697,10 +4753,15 @@ AbilityEffectChanceMods::
 ; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
 	call GetTrueUserAbility
 	cp SHEER_FORCE
-	jr z, .suppress
+	jr z, .check_sheer_force
 	cp SERENE_GRACE
 	jr z, .double
 	and a ; nc
+	ret
+.check_sheer_force
+	call CurrentMoveHasSheerForceEffect
+	jr c, .suppress
+	and a ; this effect is not removable; nc
 	ret
 .double
 	sla b
@@ -4714,6 +4775,98 @@ AbilityEffectChanceMods::
 	ret z ; no chance to suppress; nc
 	scf
 	ret
+
+CurrentMoveHasSheerForceEffect::
+; Carry if the current damaging move has a removable secondary effect.
+; This is the single eligibility contract for Sheer Force's damage boost,
+; secondary suppression, Life Orb exception and King's Rock interaction.
+; Preserves bc, de and hl. All no-match paths return with carry clear.
+	push hl
+	push de
+	push bc
+	; A shared effect can back both an ordinary move and a secondary-effect
+	; move (HEX / INFERNAL PARADE), so a nonzero chance is still required.
+	ld hl, wPlayerMoveStruct + MOVE_CHANCE
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_chance
+	ld hl, wEnemyMoveStruct + MOVE_CHANCE
+.got_chance
+	ld a, [hl]
+	and a
+	jr z, .no
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVar
+	and a
+	jr z, .no ; status moves never receive Sheer Force's damage boost
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, SheerForceEffects
+	ld de, 1
+	call IsInArray
+	jr c, .yes
+.no
+	pop bc
+	pop de
+	pop hl
+	and a ; nc
+	ret
+.yes
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+SheerForceEffects:
+; Effect classes with a removable additional effect. Deliberately excludes
+; primary effects (such as Thief), recoil/thawing and user drawbacks. Mortal
+; Spin is included for poison; its primary hazard clearing remains active.
+	db EFFECT_POISON_HIT
+	db EFFECT_BURN_HIT
+	db EFFECT_FREEZE_HIT
+	db EFFECT_PARALYZE_HIT
+	db EFFECT_FLINCH_HIT
+	db EFFECT_TRI_ATTACK
+	db EFFECT_ATTACK_DOWN_HIT
+	db EFFECT_DEFENSE_DOWN_HIT
+	db EFFECT_SPEED_DOWN_HIT
+	db EFFECT_SP_ATK_DOWN_HIT
+	db EFFECT_SP_DEF_DOWN_HIT
+	db EFFECT_ACCURACY_DOWN_HIT
+	db EFFECT_EVASION_DOWN_HIT
+	db EFFECT_DEFENSE_UP_HIT
+	db EFFECT_ATTACK_UP_HIT
+	db EFFECT_ALL_UP_HIT
+	db EFFECT_SPEED_UP_HIT
+	db EFFECT_SP_ATK_UP_HIT
+	db EFFECT_SKY_ATTACK
+	db EFFECT_CONFUSE_HIT
+	db EFFECT_POISON_MULTI_HIT
+	db EFFECT_SNORE
+	db EFFECT_FLAME_WHEEL
+	db EFFECT_SACRED_FIRE
+	db EFFECT_TWISTER
+	db EFFECT_STOMP
+	db EFFECT_THUNDER
+	db EFFECT_POISON_FANG
+	db EFFECT_BLIZZARD
+	db EFFECT_FAKE_OUT
+	db EFFECT_FLARE_BLITZ
+	db EFFECT_HURRICANE
+	db EFFECT_SCALD
+	db EFFECT_MORTAL_SPIN
+	db EFFECT_VOLT_TACKLE
+	db EFFECT_DIRE_CLAW
+	db EFFECT_BARB_BARRAGE
+	db EFFECT_HEX
+	db EFFECT_SHELL_SIDE_ARM
+	db EFFECT_FREEZE_DRY
+	db EFFECT_BOUNCE
+	db EFFECT_SP_DEF_DOWN_2_HIT
+	db EFFECT_STEALTH_ROCK_HIT
+	db EFFECT_EERIE_SPELL
+	db -1
 
 GetTrueUserAbility_b::
 ; farcall-safe wrapper: the user's effective ability, returned in b.
