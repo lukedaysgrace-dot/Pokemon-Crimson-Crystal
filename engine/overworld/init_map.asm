@@ -72,8 +72,11 @@ LoadFonts_NoOAMUpdate::
 	ret
 
 .LoadGFX:
-	; (Dropped a redundant LoadFontsExtra here: it only loads the textbox
-	; frame, and LoadStandardFont below ends by reloading the frame anyway.)
+	; Map-name and bank-0 sprite graphics share this VRAM region with the
+	; overworld font. Reload all eight textbox-frame tiles before exposing a
+	; menu/textbox; LoadStandardFont deliberately preserves the two extended
+	; edge tiles at $c3/$c4 and therefore cannot repair them by itself.
+	call LoadFontsExtra
 	ld a, $90
 	ldh [hWY], a
 	call SafeUpdateSprites
