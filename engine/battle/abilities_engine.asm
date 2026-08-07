@@ -568,7 +568,8 @@ PlayPerTurnWeatherAnim::
 ; their animation; sandstorm and hail already animate via their own
 ; between-turn damage path, so they are skipped here.
 	ld a, [wBattleWeather]
-	and WEATHER_TYPE_MASK
+	; Raw compare (no mask): while Cloud Nine suppresses weather, the
+	; suppression bit makes these fail, matching every gameplay check.
 	cp WEATHER_RAIN
 	ld de, RAIN_DANCE
 	jr z, PlayWeatherAnimDE
@@ -772,12 +773,25 @@ AbilityLowerOppStat::
 	push hl
 	ld hl, wDisguiseBusted
 	set 6, [hl]
+	; wAbilityStatDropFlag marks the whole drop+message+reaction sequence
+	; as ability-driven: the move-effect byte is stale here, so StatDown
+	; must not use it for the self-drop/Mist shortcuts and
+	; RunStatDropReaction must not let it veto Defiant/Competitive.
+	; (Bit 6 above can't serve: .ComputerMiss consumes it mid-sequence;
+	; both wDisguiseBusted bytes' other bits are per-slot disguise data.)
+	ld hl, wAbilityStatDropFlag
+	ld [hl], 1
 	pop hl
 	farcall AbilityStatDown
 	ld a, [wFailedMessage]
 	and a
-	ret nz
+	jr nz, .done
 	farcall BattleCommand_StatDownMessage
+.done
+	push hl
+	ld hl, wAbilityStatDropFlag
+	ld [hl], 0
+	pop hl
 	ret
 
 ; ==== Status heal / prevention ============================================
@@ -821,9 +835,11 @@ HealStatusAbility:
 	pop bc
 	; Curing poison must also clear Toxic's field-only marker and counter;
 	; otherwise a later ordinary poison can inherit toxic escalation.
+	; Bit test, not equality: Shed Skin/Hydration cure with ALL_STATUS,
+	; which never equals 1 << PSN exactly.
 	ld a, b
-	cp 1 << PSN
-	call z, .clear_toxic
+	and 1 << PSN
+	call nz, .clear_toxic
 	ld hl, BecameHealthyText
 	; StdBattleTextbox runs the text engine, which clobbers bc; preserve the
 	; cured-status mask in b for the stat-recalc checks below.
@@ -2496,6 +2512,46 @@ HalveDamage:
 	pop hl
 	ret
 
+StatDropSubCheckExempt::
+; Carry if the opponent's Magic Bounce will reflect this stat-drop move:
+; the bounce works even from behind the holder's own Substitute, so the
+; caller must skip its Substitute bail and let AbilityProtectsStatDrop's
+; magic_bounce_drop path handle it. Secondary drops of damaging moves
+; (non-STATUS category) are still blocked by the sub, per canon.
+	call GetOpponentIgnorableAbility
+	cp MAGIC_BOUNCE
+	jr nz, .no
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .no
+	scf
+	ret
+.no
+	and a ; nc
+	ret
+
+ContraryInvertsSelfDrop::
+; Self-inflicted drops (Superpower & co.) arrive through switchturn, so
+; the drop's target is the turn holder's opponent = the move's own user.
+; Canon: Contrary inverts those drops into raises. Carry if inverted
+; (the raise is fully resolved; the caller silences the down-message).
+	ld a, [wAttackMissed]
+	and a
+	jr z, .try
+	; move missed / was absorbed: no drop happens, nothing to invert
+	and a ; nc
+	ret
+.try
+	ld a, [wEffectFailed]
+	and a
+	jr nz, .no
+	call GetOpponentAbility
+	cp CONTRARY
+	jp z, AbilityProtectsStatDrop.contrary
+.no
+	and a ; nc
+	ret
+
 AbilityProtectsStatDrop::
 ; Carry if the opponent's (stat-drop target's) ability protects the stat
 ; in wLoweredStat. Shows the ability banner when it does.
@@ -2639,7 +2695,7 @@ AbilityPreHitTargetBlock::
 	cp ARMOR_TAIL
 	jr z, .priority_block
 	cp QUEENLY_MAJESTY
-	jr nz, AbilityAccuracyMods.status_class_block
+	jp nz, AbilityAccuracyMods.status_class_block
 .priority_block
 	call AbilityAccuracyMods.armor_tail_blocks
 	jr nc, AbilityAccuracyMods.status_class_block
@@ -2707,31 +2763,38 @@ AbilityAccuracyMods::
 	; No Guard on either side: always hits
 	call GetTrueUserAbility
 	cp NO_GUARD
-	jr z, .always_hit
+	jp z, .always_hit
 	call GetOpponentAbility
 	cp NO_GUARD
-	jr z, .always_hit
-	; attacker mods
+	jp z, .always_hit
+	; attacker mods (jp: the status-class block is between here and there)
 	call GetTrueUserAbility
 	cp COMPOUND_EYES
-	jr z, .compound_eyes
+	jp z, .compound_eyes
 	cp HUSTLE
-	jr z, .hustle
+	jp z, .hustle
 .defender
 	call GetOpponentIgnorableAbility
 	cp SAND_VEIL
-	jr z, .sand_veil
+	jp z, .sand_veil
 	cp SNOW_CLOAK
-	jr z, .snow_cloak
+	jp z, .snow_cloak
 	cp TANGLED_FEET
-	jr z, .tangled_feet
+	jp z, .tangled_feet
 	cp WONDER_SKIN
-	jr z, .wonder_skin
+	jp z, .wonder_skin
 	ret
 
 .status_class_block
-	; Damaging sound/wind moves are nullified after damage calculation, but
-	; status moves never reach that hook. Block them during accuracy setup.
+	; Damaging sound/wind/Grass moves are nullified after damage
+	; calculation, but status moves never reach that hook. Block them
+	; during accuracy setup.
+	; If an earlier command already failed the move, don't block (and
+	; banner/boost) a second time: DoParalyze runs stab before checkhit,
+	; so Sap Sipper absorbs Stun Spore from the Stab nullification hook.
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .class_not_blocked
 	call GetMoveCategory
 	cp CATEGORIZE_STATUS
 	jr nz, .class_not_blocked
@@ -2740,10 +2803,19 @@ AbilityAccuracyMods::
 	jr z, .soundproof_status
 	cp WIND_RIDER
 	jr z, .wind_rider_status
+	cp SAP_SIPPER
+	jr z, .sap_sipper_status
+	cp OVERCOAT
+	jr z, .overcoat_status
 	jr .class_not_blocked
 .soundproof_status
-	push bc
 	ld hl, SoundMoves
+	jr .block_if_in_list
+.overcoat_status
+	; powder and spore moves don't affect an Overcoat holder
+	ld hl, PowderMoves
+.block_if_in_list
+	push bc
 	call CurrentMoveInList
 	pop bc
 	jr nc, .class_not_blocked
@@ -2751,12 +2823,23 @@ AbilityAccuracyMods::
 	ld b, 0
 	scf
 	ret
+.sap_sipper_status
+	; Sap Sipper absorbs any Grass move targeting the holder; the status
+	; ones (Sleep Powder, Spore, Cotton Spore, Leech Seed...) land here
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp GRASS
+	jr nz, .class_not_blocked
+	jr .absorb_status
 .wind_rider_status
 	push bc
 	ld hl, WindMoves
 	call CurrentMoveInList
 	pop bc
 	jr nc, .class_not_blocked
+.absorb_status
+	; same convention as RunNullificationAbilities.found: the banner and
+	; the +1 Atk absorb handler run from the defender's perspective
 	call SwitchTurn
 	call ShowAbilityBannerBrief
 	call AbsorbRaiseAttack
@@ -2782,13 +2865,13 @@ AbilityAccuracyMods::
 	ld a, $fe ; cap below the never-miss value
 .ce_ok
 	ld b, a
-	jr .defender
+	jp .defender ; jp: the status-class block pushed .defender out of jr range
 
 .hustle
 	; physical moves only: ~x0.8 (implemented as -25%)
 	call GetMoveCategory
 	and a ; CATEGORIZE_PHYSICAL
-	jr nz, .defender
+	jp nz, .defender
 	jr ReduceAccuracyQuarter_Defender
 
 .sand_veil
@@ -3268,6 +3351,12 @@ RunContactAbilitiesHook::
 .contact
 	call CheckContactMove
 	jr nc, .check_aftermath
+	; hold the Magic Bounce anti-rebounce guard set across the contact
+	; status procs (Poison Touch, Static, Flame Body, Poison Point, Effect
+	; Spore, Cute Charm) - see RunGuardedStatusProc. Both branches below
+	; converge on the matching clear.
+	ld hl, wDisguiseBusted + 1
+	set 6, [hl]
 	; attacker on-contact abilities
 	call OppHasFainted
 	jr z, .defender_contact ; don't try to status a fainted defender
@@ -3276,8 +3365,14 @@ RunContactAbilitiesHook::
 	call z, PoisonTouchAbility
 	; defender on-contact abilities (perspective switches to the defender)
 .defender_contact
-	call StackCallOpponentTurn
+	; Explicit SwitchTurn pair: StackCallOpponentTurn would leave the turn
+	; flipped until the enclosing ret, running .check_aftermath/.aftermath/
+	; .life_orb from the defender's perspective on every contact path.
+	call SwitchTurn
 	call _RunDefenderContactAbilities
+	call SwitchTurn
+	ld hl, wDisguiseBusted + 1
+	res 6, [hl]
 .check_aftermath
 	call OppHasFainted
 	jp z, .aftermath
@@ -4094,26 +4189,32 @@ CheckAteAbilityBoost:
 	push hl
 	push de
 	push bc
+	; Hidden Power is stored as Normal but its live type comes from DVs -
+	; it is never "-ate"-converted, so it never gets the boost.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_HIDDEN_POWER
+	jr z, .no_boost
+	; Original type straight from the move data via GetMoveAttribute (the
+	; Moves table is indirect with 7-byte entries; the old flat *9 read
+	; fetched garbage).
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	call GetMoveIndexFromID
-	dec hl
-	push hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	pop de
-	add hl, de ; index * 9 (MOVE_LENGTH)
-	ld de, Moves + MOVE_TYPE
-	add hl, de
-	ld a, BANK(Moves)
-	call GetFarByte
+	ld l, a
+	ld a, MOVE_TYPE
+	call GetMoveAttribute
 	cp NORMAL
 	pop bc
 	pop de
 	pop hl
 	scf
 	ret z
+	and a ; nc
+	ret
+.no_boost
+	pop bc
+	pop de
+	pop hl
 	and a ; nc
 	ret
 
@@ -4337,19 +4438,13 @@ AbilityCompareMovePriority::
 
 .gale_wings
 	; +1 priority for Flying-type moves (type as stored in the move data)
-	ld a, b
-	call GetMoveIndexFromID
-	dec hl
-	ld b, h
-	ld c, l
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, bc ; hl = (index - 1) * MOVE_LENGTH
-	ld bc, Moves + MOVE_TYPE
-	add hl, bc
-	ld a, BANK(Moves)
-	call GetFarByte
+	; Uses GetMoveAttribute: the Moves table is indirect with 7-byte entries,
+	; so the old flat (index-1)*9 read fetched garbage.
+	push hl
+	ld l, b
+	ld a, MOVE_TYPE
+	call GetMoveAttribute
+	pop hl
 	cp FLYING
 	ret nz
 	inc d
@@ -4735,7 +4830,7 @@ RunSynchronize:
 	cp SYNCHRONIZE
 	ret nz
 	call SwitchTurn
-	call _hl_
+	call RunGuardedStatusProc
 	jp SwitchTurn
 
 RunPoisonPuppeteer:
@@ -4746,7 +4841,43 @@ RunPoisonPuppeteer:
 	call GetTrueUserAbility
 	cp POISON_PUPPETEER
 	ret nz
-	jp TryConfuseOpponent
+	ld hl, TryConfuseOpponent
+	; fallthrough
+RunGuardedStatusProc:
+; Call the status helper at hl with bit 6 of wDisguiseBusted+1 (the Magic
+; Bounce anti-rebounce guard) held set: an ability-inflicted status has no
+; status move behind it, so CheckStatusPrevention's Magic Bounce path -
+; which decides move-ness from a (stale) move-category read - must not
+; "reflect" it back onto the ability holder. The clear below runs on every
+; body exit, so the bit can't leak set. StatDown's ability-drop flag is
+; bit 6 of the OTHER byte (wDisguiseBusted + 0), so the two can't collide.
+; res/ld don't touch flags: the helper's F flag reaches the caller intact.
+	push hl
+	ld hl, wDisguiseBusted + 1
+	set 6, [hl]
+	pop hl
+	call _hl_
+	ld hl, wDisguiseBusted + 1
+	res 6, [hl]
+	ret
+
+BerserkGeneConfusion_b::
+; Berserk Gene confusion, gated on Own Tempo (HandleBerserkGene applies
+; the Attack boost itself). Returns the holder's PRIOR SubStatus3 in b;
+; when Own Tempo blocks the confusion, the confused bit is faked into b
+; so the caller's tail skips the confusion anim/text either way.
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	ld b, [hl]
+	call GetTrueUserAbility
+	cp OWN_TEMPO
+	jr z, .blocked
+	set SUBSTATUS_CONFUSED, [hl]
+	farcall SetBerserkGeneConfusionDuration ; Battle Core Overflow bank
+	ret
+.blocked
+	set SUBSTATUS_CONFUSED, b
+	ret
 
 AbilityEffectChanceMods::
 ; b = secondary effect chance. Serene Grace doubles it; Sheer Force
@@ -5310,6 +5441,12 @@ RunStatDropReaction::
 	ld a, [wFailedMessage]
 	and a
 	ret nz
+	; Ability-driven drops (Intimidate & co.) always come from the
+	; opponent; the move-effect byte is stale then and must not be allowed
+	; to veto Defiant/Competitive (e.g. enemy's last move was Superpower).
+	ld a, [wAbilityStatDropFlag]
+	and a
+	jr nz, .from_opponent
 	; Self-inflicted drops (Superpower & co. lower the user through
 	; switchturn, so the "victim" here is the move's own user) never
 	; trigger Defiant/Competitive - only opponent-caused drops do.
@@ -5329,6 +5466,7 @@ RunStatDropReaction::
 	ret z
 	cp EFFECT_SHELL_SMASH
 	ret z
+.from_opponent
 	call GetOpponentAbility
 	cp DEFIANT
 	ld b, $10 | ATTACK
@@ -5702,6 +5840,17 @@ WindMoves:
 	dw AIR_CUTTER
 	dw -1
 
+PowderMoves:
+; Overcoat: powder and spore moves in this game (the same class Effect
+; Spore's proc immunity covers; Grass-type powder immunity is deliberately
+; deferred - see ABILITY_PORT_PLAN.md)
+	dw POISONPOWDER
+	dw STUN_SPORE
+	dw SLEEP_POWDER
+	dw SPORE
+	dw COTTON_SPORE
+	dw -1
+
 BiteMoves:
 ; Strong Jaw: biting moves (canon list, restricted to moves in this game)
 	dw BITE
@@ -5794,6 +5943,20 @@ TriageMoves:
 	dw SYNTHESIS
 	dw MOONLIGHT
 	dw -1
+
+UserCantRest::
+; carry if the user's own ability prevents Rest's self-sleep (canon:
+; Insomnia / Vital Spirit users fail Rest). Returns nc otherwise.
+	call GetTrueUserAbility
+	cp INSOMNIA
+	jr z, .prevented
+	cp VITAL_SPIRIT
+	jr z, .prevented
+	and a
+	ret
+.prevented
+	scf
+	ret
 
 INCLUDE "data/abilities/flags.asm"
 
