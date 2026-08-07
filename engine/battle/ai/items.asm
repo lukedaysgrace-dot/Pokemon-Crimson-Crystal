@@ -698,6 +698,11 @@ AI_Switch:
 	call PrintText
 
 .skiptext
+	; Natural Cure / Regenerator for the outgoing mon. This must run AFTER
+	; the battle->party status/HP copy above (which would overwrite the
+	; heal) and after Pursuit resolved, matching canon order. Covers every
+	; enemy switch path: AI switches, link switches, EnemyMonEntrance.
+	farcall RunEnemySwitchOutAbilities
 	ld a, 1
 	ld [wBattleHasJustStarted], a
 	callfar NewEnemyMonStatus
