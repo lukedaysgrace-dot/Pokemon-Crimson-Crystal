@@ -525,6 +525,12 @@ wEnemyAbility:: db
 ; Bit 7 of +1 = Disguise presentation pending (set at damage calc, acted
 ; on at the kingsrock hook after the move animation).
 wDisguiseBusted:: ds 2
+; nz while an ability-driven stat drop (Intimidate, Mirror Armor,
+; Tangling Hair) is resolving: StatDown must not trust the stale
+; move-effect byte and StatDropReaction must not let it veto Defiant.
+; (Both wDisguiseBusted bytes have no free bits: 0-5 are per-slot
+; busted-disguise markers, 6/7 are guard flags.)
+wAbilityStatDropFlag:: db
 
 wPlayerDamageTaken:: dw ; c682
 wEnemyDamageTaken:: dw ; c684
