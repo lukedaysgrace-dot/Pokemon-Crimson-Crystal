@@ -8,6 +8,7 @@ DoBattle:
 	ld [wBattleEnded], a
 	ld [wDisguiseBusted], a
 	ld [wDisguiseBusted + 1], a
+	ld [wAbilityStatDropFlag], a
 	inc a
 	ld [wBattleHasJustStarted], a
 	ld hl, wOTPartyMon1HP
@@ -432,11 +433,10 @@ HandleBerserkGene:
 	call GetPartyLocation
 	xor a
 	ld [hl], a
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	push af
-	set SUBSTATUS_CONFUSED, [hl]
-	farcall SetBerserkGeneConfusionDuration
+	; confusion, unless Own Tempo blocks it (the Attack boost below still
+	; applies); returns SubStatus3 in b for the confusion-text skip below
+	farcall BerserkGeneConfusion_b
+	push bc
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarAddr
 	push hl
@@ -453,8 +453,8 @@ HandleBerserkGene:
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
 	callfar BattleCommand_StatUpMessage
-	pop af
-	bit SUBSTATUS_CONFUSED, a
+	pop bc
+	bit SUBSTATUS_CONFUSED, b
 	ret nz
 	xor a
 	ld [wNumHits], a
@@ -5423,8 +5423,8 @@ PlayerSwitch:
 	ret
 
 EnemyMonEntrance:
-	; Natural Cure / Regenerator on the outgoing mon
-	farcall RunEnemySwitchOutAbilities
+	; Natural Cure / Regenerator runs inside AI_Switch (after the
+	; battle->party copy that used to overwrite it)
 	callfar AI_Switch
 	call SetEnemyTurn
 	jp SpikesDamageAndEntryAbilities

@@ -2874,8 +2874,10 @@ FickleBeam:
 	damagecalc
 	stab
 	damagevariation
-	ficklebeam
 	checkhit
+	; after checkhit so a miss can't trigger the "going all out!" roll;
+	; ficklebeam doubles wCurDamage, so it must stay before applydamage
+	ficklebeam
 	moveanim
 	failuretext
 	applydamage
