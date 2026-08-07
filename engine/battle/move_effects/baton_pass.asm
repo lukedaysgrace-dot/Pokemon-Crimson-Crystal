@@ -73,7 +73,10 @@ BattleCommand_BatonPass:
 	ld hl, ApplyStatLevelMultiplierOnAllStats
 	call CallBattleCore
 
-	ld hl, SpikesDamage
+	; Entry abilities must run for the passed-in mon (Intimidate, weather,
+	; Trace, ...) - the player path already does this via
+	; PassedBattleMonEntrance -> SpikesDamageAndEntryAbilities.
+	ld hl, SpikesDamageAndEntryAbilities
 	call CallBattleCore
 
 	jr ResetBatonPassStatus
@@ -157,6 +160,26 @@ ResetBatonPassStatus:
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
 	ld [hl], 0
+
+	; Per-mon state that is NOT passed: Glaive Rush's vulnerability window,
+	; the Rage Fist hit tally, and First Impression's entry-freshness
+	; (mirrors NewBattleMonStatus / NewEnemyMonStatus).
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_vars
+	xor a
+	ld [wPlayerGlaiveRush], a
+	ld [wPlayerRageFistHits], a
+	ld a, 1
+	ld [wPlayerFirstImpressionFresh], a
+	jr .new_vars_done
+.enemy_vars
+	xor a
+	ld [wEnemyGlaiveRush], a
+	ld [wEnemyRageFistHits], a
+	ld a, 1
+	ld [wEnemyFirstImpressionFresh], a
+.new_vars_done
 
 	xor a
 	ld [wPlayerWrapCount], a
