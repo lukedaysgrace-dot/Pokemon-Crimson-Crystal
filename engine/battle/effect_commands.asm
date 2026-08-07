@@ -2398,10 +2398,16 @@ BattleCommand_ApplyDamage_:
 	jp StdBattleTextbox
 
 .focus_band_text
+	; a = b - 1: 1 = Focus Band, 2 = Focus Sash. The Sash was consumed
+	; before damage (its slot is 0 now), so its name was buffered back in
+	; EndureFocusSashInEffect_Core; only the Band re-reads the item here.
+	dec a
+	jr nz, .print_hung_on
 	call GetOpponentItem
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
+.print_hung_on
 	ld hl, HungOnText
 	jp StdBattleTextbox
 
@@ -4407,14 +4413,49 @@ BattleCommand_StatDown::
 
 	ld [wLoweredStat], a
 
-	; NOTE: the label below starts a new local-label scope, so these two
+	; NOTE: the label below starts a new local-label scope, so these
 	; references must be fully qualified
+	; Ability-driven drops (Intimidate, Mirror Armor, Tangling Hair;
+	; wAbilityStatDropFlag) have no move behind them - the move-effect byte
+	; is stale - so skip the self-drop shortcut and test Mist directly.
+	ld a, [wAbilityStatDropFlag]
+	and a
+	jr nz, .AbilityDrivenDrop
 	; Self-inflicted drops (Close Combat, Draco Meteor, Shell Smash) skip
 	; Mist and stat-drop-protecting abilities: you can always lower your
-	; own stats.
+	; own stats... unless Contrary inverts the drop into a raise (canon).
 	call CheckSelfInflictedStatDrop
-	jr z, StatDownSkipProtect
+	jr nz, .NotSelfInflicted
+	farcall ContraryInvertsSelfDrop
+	jr nc, StatDownSkipProtect
+	; Inverted: the raise is resolved; silence the down-message without
+	; failing the move (Superpower's second drop must still run).
+	ld a, 1
+	ld [wFailedMessage], a
+	ret
+.NotSelfInflicted
+	; A Substitute blocks a move's stat drop outright, before the target's
+	; abilities can react to it (Contrary/Clear Body/Mirror Armor banners
+	; must not fire behind a sub). Exception: Magic Bounce reflects status
+	; moves even from behind its own Substitute (canon).
+	farcall StatDropSubCheckExempt
+	jr c, .SubChecked
+	call CheckSubstituteOpp
+	jp nz, StatDownSkipProtect.Failed
+.SubChecked
 	call CheckMist
+	jp nz, StatDownSkipProtect.Mist
+	farcall AbilityProtectsStatDrop
+	jp c, StatDownSkipProtect.Failed
+	jr StatDownSkipProtect
+.AbilityDrivenDrop
+	; A Substitute also blocks Intimidate & co. outright (canon) - no
+	; Contrary/Clear Body reaction fires behind it.
+	call CheckSubstituteOpp
+	jp nz, StatDownSkipProtect.Failed
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_MIST, a
 	jp nz, StatDownSkipProtect.Mist
 	farcall AbilityProtectsStatDrop
 	jp c, StatDownSkipProtect.Failed
@@ -5162,7 +5203,10 @@ BattleCommand_ForceSwitch:
 	ld hl, DraggedOutText
 	call StdBattleTextbox
 
-	ld hl, SpikesDamage
+	; Dragged-in mons run entry abilities too (Intimidate, weather, Trace,
+	; Cloud Nine refresh...). ForceEnemySwitch left the turn on the enemy
+	; (incoming) side via ShowSetEnemyMonAndSendOutAnimation's SetEnemyTurn.
+	ld hl, SpikesDamageAndEntryAbilities
 	jp CallBattleCore
 
 .switch_fail
@@ -5264,7 +5308,10 @@ BattleCommand_ForceSwitch:
 	ld hl, DraggedOutText
 	call StdBattleTextbox
 
-	ld hl, SpikesDamage
+	; Entry abilities for the dragged-in player mon. SwitchPlayerMon ->
+	; SendOutPlayerMon already ran SetPlayerTurn, so the turn holder is the
+	; incoming side here, matching every other entry-ability site.
+	ld hl, SpikesDamageAndEntryAbilities
 	jp CallBattleCore
 
 .fail
@@ -6065,6 +6112,11 @@ BattleCommand_Heal:
 	ld bc, REST
 	call CompareMove
 	jr nz, .not_rest
+
+	; Rest fails for Insomnia / Vital Spirit users (canon)
+	farcall UserCantRest
+	jp c, BattleEffect_ButItFailed
+	cp a ; restore z: the pushed flags below feed .not_rest's jr z
 
 	push hl
 	push de

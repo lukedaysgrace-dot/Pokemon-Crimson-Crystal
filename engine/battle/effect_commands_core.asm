@@ -30,6 +30,14 @@ BattleCheckRampage_Core:
 	pop af
 	jr nz, .continue_rampage
 
+	; Own Tempo prevents fatigue confusion (silently, like Safeguard)
+	push hl
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	cp OWN_TEMPO
+	jr z, .continue_rampage
+
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and %00000001
@@ -514,6 +522,10 @@ GlaiveRushIncomingDouble_Core:
 
 BattleFickleBeam_Core:
 ; 30% of the time Fickle Beam fires at double power.
+	; runs after checkhit: don't roll (or print) once the move has missed
+	ld a, [wAttackMissed]
+	and a
+	ret nz
 	call BattleRandom
 	cp 30 percent
 	ret nc
@@ -1076,9 +1088,9 @@ EndureFocusSashInEffect_Core:
 	jr z, .sturdy
 	farcall BattleCommand_FalseSwipe
 	ld b, 0
-	jr nc, .go_damage
+	jp nc, .go_damage
 	ld b, 1
-	jr .go_damage
+	jp .go_damage
 .sturdy
 	; Sturdy (Gen 5): survives any hit taken at full HP
 	farcall GetOppIgnorableAbility_b
@@ -1132,6 +1144,12 @@ EndureFocusSashInEffect_Core:
 	farcall BattleCommand_FalseSwipe
 	ld b, 0
 	jr nc, .go_damage
+	; buffer the Sash's name now: ConsumeHeldItem zeroes the item slot,
+	; so the hung-on text in ApplyDamage can't re-read it after damage
+	callfar GetOpponentItem
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
 	callfar ConsumeHeldItem
 	ld b, 3
 .go_damage
