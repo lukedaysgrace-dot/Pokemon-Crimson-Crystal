@@ -45,6 +45,10 @@ AI_Redundant:
 	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_FUTURE_SIGHT, .FutureSight
 	dbw EFFECT_HAIL,         .Hail
+	dbw EFFECT_STEALTH_ROCK, .StealthRock
+	dbw EFFECT_TOXIC_SPIKES, .ToxicSpikes
+	dbw EFFECT_TRICK_ROOM,   .TrickRoom
+	dbw EFFECT_ROOST,        .Heal
 	db -1
 
 .LightScreen:
@@ -115,7 +119,7 @@ AI_Redundant:
 .Nightmare:
 	ld a, [wBattleMonStatus]
 	and SLP
-	jr z, .Redundant
+	jp z, .Redundant
 	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_NIGHTMARE, a
 	ret
@@ -123,6 +127,24 @@ AI_Redundant:
 .Spikes:
 	ld a, [wPlayerScreens]
 	bit SCREENS_SPIKES, a
+	ret
+
+.StealthRock:
+; The enemy's Stealth Rock sets SCREENS_STEALTH_ROCK in wPlayerScreens.
+	ld a, [wPlayerScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	ret
+
+.ToxicSpikes:
+; Two layers can be laid; only redundant once the second layer is down.
+	ld a, [wPlayerScreens]
+	bit SCREENS_TOXIC_SPIKES_2, a
+	ret
+
+.TrickRoom:
+; Using Trick Room while it's active just ends it early.
+	ld a, [wTrickRoomTimer]
+	and a
 	ret
 
 .Foresight:
