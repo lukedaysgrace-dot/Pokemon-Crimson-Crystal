@@ -109,7 +109,30 @@ AI_Setup:
 	cp EFFECT_EVASION_DOWN_2 + 1
 	jr c, .statdown
 
+; Newer setup effects are not contiguous; check them in a list.
+	push hl
+	push de
+	push bc
+	ld hl, .SetupEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	jr c, .statup
 	jr .checkmove
+
+.SetupEffects:
+; new-generation effects that raise the user's own stats
+	db EFFECT_DEFENSE_CURL
+	db EFFECT_BULK_UP
+	db EFFECT_CALM_MIND
+	db EFFECT_DRAGON_DANCE
+	db EFFECT_HONE_CLAWS
+	db EFFECT_SHELL_SMASH
+	db EFFECT_QUIVER_DANCE
+	db EFFECT_WORK_UP
+	db -1 ; end
 
 .statup
 	ld a, [wEnemyTurnsTaken]
@@ -392,6 +415,7 @@ AI_Smart:
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
 	dbw EFFECT_HAIL,             AI_Smart_Hail
+	dbw EFFECT_BANEFUL_BUNKER,   AI_Smart_Protect
 	db -1 ; end
 
 AI_Smart_Sleep:
@@ -1198,7 +1222,7 @@ AI_Smart_SpeedDownHit:
 
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
 	push hl
-	call GetMoveIDFromIndex
+	call GetMoveIndexFromID ; was GetMoveIDFromIndex: wrong direction, ran on the score pointer
 	ld a, h
 	if HIGH(ICY_WIND)
 		cp HIGH(ICY_WIND)
@@ -3390,11 +3414,22 @@ AI_Status:
 	jr z, .typeimmunity
 	cp EFFECT_PARALYZE
 	jr z, .typeimmunity
+	cp EFFECT_BURN
+	jr z, .burnimmunity
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	jr z, .checkmove
 
+	jr .typeimmunity
+
+.burnimmunity
+	ld a, [wBattleMonType1]
+	cp FIRE
+	jr z, .immune
+	ld a, [wBattleMonType2]
+	cp FIRE
+	jr z, .immune
 	jr .typeimmunity
 
 .poisonimmunity
