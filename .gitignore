@@ -31,3 +31,12 @@ Thumbs.db
 
 # Documentation preview/cache
 docs/data/build-report.json
+
+# battle test harness artifacts
+tools/battletest/__pycache__/
+tools/battletest/fixtures/
+tools/battletest/failures/
+pokecrystal_debug.gbc
+pokecrystal_debug.sym
+pokecrystal_debug.map
+*_debug.o
