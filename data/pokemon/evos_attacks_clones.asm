@@ -68,6 +68,8 @@ VenusaurCloneEvosAttacks:
 	dbw 45, DOUBLE_EDGE
 	dbw 50, SYNTHESIS
 	dbw 55, SOLARBEAM
+	dbw 55, WOOD_HAMMER
+	dbw 62, LEAF_STORM
 	db 0 ; no more level-up moves
 
 CharmanderCloneEvosAttacks:
@@ -132,9 +134,12 @@ CharizardCloneEvosAttacks:
 	dbw 36, AIR_SLASH
 	dbw 39, CRUNCH
 	dbw 44, DRAGON_PULSE
+	dbw 44, DRAGON_TAIL
 	dbw 49, FIRE_SPIN
 	dbw 54, BELLY_DRUM
+	dbw 55, HEAT_WAVE
 	dbw 59, FLARE_BLITZ
+	dbw 62, OVERHEAT
 	db 0 ; no more level-up moves
 
 SquirtleCloneEvosAttacks:
