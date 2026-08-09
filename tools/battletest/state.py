@@ -5,7 +5,7 @@ in memory as 8-bit runtime IDs; the 16-bit truth is in the WRAMX bank-2
 conversion tables (engine/16/), which this module reads to translate.
 """
 
-from symbols import Symbols, Constants, STATE_MENU
+from symbols import Symbols, Constants, STATE_MENU, parse_substatus_bits
 
 DEBUG_BANK = 2  # WRAMX bank of wDebug* and the 16-bit conversion tables
 
@@ -20,7 +20,10 @@ DBG_DVS = 14
 DBG_HPPCT = 16
 DBG_STATUS = 17
 DBG_STATLEVELS = 18
-DBG_SIZE = 25
+DBG_SUBSTATUS = 25  # 5 bytes, ORed into SubStatus1-5 post-entry
+DBG_SIZE = 30
+
+SUBSTATUS_BITS = parse_substatus_bits()
 
 
 class Memory:
@@ -241,6 +244,11 @@ class Request:
             order = ["atk", "def", "spd", "satk", "sdef", "acc", "eva"]
             for i, key in enumerate(order):
                 blk[DBG_STATLEVELS + i] = 7 + stages.get(key, 0)
+        for name in spec.get("substatus", []):
+            # list of SUBSTATUS_* names (without the prefix), e.g. [MIST, TOXIC];
+            # applied post-entry to the active mon (player1/enemy only)
+            byte, bit = SUBSTATUS_BITS[name.upper().replace(" ", "_")]
+            blk[DBG_SUBSTATUS + byte] |= 1 << bit
         return blk
 
     def write(self, test):
@@ -275,5 +283,7 @@ class Request:
         m.write_bytes("wDebugPlayer1", self._side_bytes(test.get("player")))
         m.write_bytes("wDebugPlayer2", self._side_bytes(test.get("player2")))
         m.write_bytes("wDebugEnemy", self._side_bytes(test.get("enemy")))
+        # enemy2 present = trainer battle (2-mon enemy party, AI can switch)
+        m.write_bytes("wDebugEnemy2", self._side_bytes(test.get("enemy2")))
 
         m.write("wDebugMagic", 0xCC)  # last: arms the request
