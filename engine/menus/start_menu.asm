@@ -9,6 +9,9 @@
 	const STARTMENUITEM_EXIT     ; 6
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
+IF DEF(DEBUG_BATTLE)
+	const STARTMENUITEM_DEBUG    ; 9
+ENDC
 
 StartMenu::
 	call ClearWindowData
@@ -221,6 +224,9 @@ StartMenu::
 	dw StartMenu_Exit,     .ExitString,     .ExitDesc
 	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
 	dw StartMenu_Quit,     .QuitString,     .QuitDesc
+IF DEF(DEBUG_BATTLE)
+	dw StartMenu_DebugBattle, .DebugString, .DebugDesc
+ENDC
 
 .PokedexString:  db "#DEX@"
 .PartyString:    db "#MON@"
@@ -231,6 +237,9 @@ StartMenu::
 .ExitString:     db "EXIT@"
 .PokegearString: db "<POKE>GEAR@"
 .QuitString:     db "QUIT@"
+IF DEF(DEBUG_BATTLE)
+.DebugString:    db "DEBUG@"
+ENDC
 
 .PokedexDesc:
 	db   "#MON"
@@ -267,6 +276,12 @@ StartMenu::
 .QuitDesc:
 	db   "Quit and"
 	next "be judged.@"
+
+IF DEF(DEBUG_BATTLE)
+.DebugDesc:
+	db   "Set up a"
+	next "test battle.@"
+ENDC
 
 .OpenMenu:
 	ld a, [wMenuSelection]
@@ -373,6 +388,10 @@ endr
 
 	ld a, STARTMENUITEM_OPTION
 	call .AppendMenuList
+IF DEF(DEBUG_BATTLE)
+	ld a, STARTMENUITEM_DEBUG
+	call .AppendMenuList
+ENDC
 	ld a, STARTMENUITEM_EXIT
 	call .AppendMenuList
 	ld a, c
@@ -463,6 +482,24 @@ StartMenu_Quit:
 .EndTheContestText:
 	text_far UnknownText_0x1c1a6c
 	text_end
+
+IF DEF(DEBUG_BATTLE)
+StartMenu_DebugBattle:
+; Battle tester (debug builds only).
+	call FadeToMenu
+	farcall DebugBattleTesterUI
+	jr c, .launch
+	call CloseSubmenu
+	ld a, 0
+	ret
+.launch
+	ld a, BANK(DebugBattleScript)
+	ld hl, DebugBattleScript
+	call FarQueueScript
+	call ExitAllMenus
+	ld a, 4
+	ret
+ENDC
 
 StartMenu_Save:
 ; Save the game.
