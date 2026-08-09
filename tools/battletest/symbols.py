@@ -27,6 +27,18 @@ class Symbols:
     def __getitem__(self, name):
         return self.by_name[name]
 
+    def nearest(self, bank, addr):
+        """Name of the closest symbol at or below (bank, addr) - for
+        symbolizing a sampled PC when a battle hangs in a reroll loop."""
+        best, best_addr = None, -1
+        for name, (b, a) in self.by_name.items():
+            if b == bank and best_addr < a <= addr:
+                best, best_addr = name, a
+        if best is None:
+            return f"{bank:02x}:{addr:04x}"
+        off = addr - best_addr
+        return f"{best}+{off:#x}" if off else best
+
     def addr(self, name):
         return self.by_name[name][1]
 
@@ -67,11 +79,25 @@ class Constants:
         self.moves = _parse_constants(c / "move_constants.asm")
         self.items = _parse_constants(c / "item_constants.asm")
         self.abilities = _parse_constants(c / "ability_constants.asm")
-        # reverse maps
-        self.species_by_index = {v: k for k, v in self.species.items()}
-        self.moves_by_index = {v: k for k, v in self.moves.items()}
-        self.items_by_id = {v: k for k, v in self.items.items()}
-        self.abilities_by_id = {v: k for k, v in self.abilities.items()}
+        # reverse maps. pokemon_constants.asm restarts const_def after
+        # NUM_POKEMON for cosmetic forms (UNOWN_B..., PIKACHU_FLY...), whose
+        # values overlap real species - first definition wins, so RAICHU (26)
+        # is not shadowed by UNOWN_Z (also 26).
+        # first definition wins in every reverse map: the constants files
+        # restart const_def for secondary namespaces whose values overlap
+        # (species forms after NUM_POKEMON, BATTLEANIM_* after the moves).
+        self.species_by_index = {}
+        for k, v in self.species.items():
+            self.species_by_index.setdefault(v, k)
+        self.moves_by_index = {}
+        for k, v in self.moves.items():
+            self.moves_by_index.setdefault(v, k)
+        self.items_by_id = {}
+        for k, v in self.items.items():
+            self.items_by_id.setdefault(v, k)
+        self.abilities_by_id = {}
+        for k, v in self.abilities.items():
+            self.abilities_by_id.setdefault(v, k)
         # species constants files list forms after NUM_POKEMON; clamp to real dex
         self.num_pokemon = self.species.get("NUM_POKEMON")
         # species -> (ability1, ability2, hidden), from base stats
@@ -106,6 +132,37 @@ class Constants:
 
     def ability_id(self, name):
         return self.abilities[name.upper().replace(" ", "_")]
+
+
+def parse_substatus_bits(root=None):
+    """SUBSTATUS_* -> (byte_index 0-4, bit). Parsed from the enum blocks in
+    constants/battle_constants.asm; the comment above each block names the
+    wram byte ("wPlayerSubStatus3 or ..."). enum_start 7, -1 counts down."""
+    root = Path(root or ROOT)
+    out = {}
+    byte_idx = None
+    value = None
+    step = 1
+    hdr = re.compile(r"^; wPlayerSubStatus(\d)")
+    start = re.compile(r"^\tenum_start\s+(-?\d+)(?:,\s*(-?\d+))?")
+    entry = re.compile(r"^\tenum (SUBSTATUS_\w+)")
+    for line in (root / "constants" / "battle_constants.asm").open():
+        m = hdr.match(line)
+        if m:
+            byte_idx = int(m.group(1)) - 1
+            value = None
+            continue
+        if byte_idx is not None:
+            m = start.match(line)
+            if m:
+                value = int(m.group(1))
+                step = int(m.group(2)) if m.group(2) else 1
+                continue
+            m = entry.match(line)
+            if m and value is not None:
+                out[m.group(1)[len("SUBSTATUS_"):]] = (byte_idx, value)
+                value += step
+    return out
 
 
 # Status byte bits (constants/battle_constants.asm)
