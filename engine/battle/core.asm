@@ -854,6 +854,16 @@ TryEnemyFlee:
 ; Body + flee_mons tables relocated to the Abilities Engine bank to free
 ; Battle Core space (FastBallMultiplier reads the tables via BANK(FleeMons),
 ; so the data can live anywhere).
+IF DEF(DEBUG_BATTLE)
+; Battle tester: wild mons never flee (Quagsire, the beasts and every
+; other Often/AlwaysFleeMons entry would end forced-RNG tests early).
+	ldh a, [hDebugActive]
+	and a
+	jr z, .not_tester
+	and a ; nc = stay
+	ret
+.not_tester
+ENDC
 	farcall TryEnemyFlee_Core
 	ret
 
@@ -2960,6 +2970,15 @@ SelectBattleMon:
 	ret
 
 PickPartyMonInBattle:
+IF DEF(DEBUG_BATTLE)
+; Battle tester auto mode: pick the next fit mon without the party menu.
+; Covers the post-faint forced switch, Baton Pass and U-turn.
+	ldh a, [hDebugActive]
+	and a
+	jr z, .loop
+	farcall DebugPickPartyMon
+	ret
+ENDC
 .loop
 	ld a, PARTYMENUACTION_SWITCH ; Which PKMN?
 	ld [wPartyMenuActionText], a
@@ -8532,6 +8551,10 @@ InitEnemyTrainer:
 	ld [wTempEnemyMonSpecies], a
 	callfar GetTrainerAttributes
 	callfar ReadTrainerParty
+IF DEF(DEBUG_BATTLE)
+; Battle tester trainer mode: rebuild the OT party from the request.
+	farcall DebugModifyOTParty
+ENDC
 
 	; RIVAL1's first mon has no held item
 	ld a, [wTrainerClass]
