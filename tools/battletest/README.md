@@ -1,0 +1,96 @@
+# Battle test harness
+
+Automated battle testing for Crimson Crystal. The debug ROM
+(`make debug` → `pokecrystal_debug.gbc`) contains an in-ROM battle tester;
+this directory drives it headlessly with PyBoy and asserts on WRAM.
+
+## Quick start
+
+```bash
+make debug          # build pokecrystal_debug.gbc (release ROM untouched)
+make test           # run every YAML case in tools/battletest/tests/
+python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
+```
+
+Requires: `pip install pyboy pyyaml` — **with the MBC30 patch** (see below).
+
+First run bootstraps a fresh save into the DEBUG start-menu entry
+(~1 minute) and caches it as a save state in `fixtures/`, keyed on the ROM
+hash. Every test after that costs ~0.4s.
+
+## PyBoy MBC30 patch (required)
+
+Stock PyBoy masks MBC3 ROM banks to 7 bits, so banks ≥ $80 (where the
+tester and Pokémon names live) silently map to bank-$0F garbage. Patch
+`pyboy/core/cartridge/mbc3.py`, in `setitem`:
+
+```python
+elif 0x2000 <= address < 0x4000:
+    if self.external_rom_count > 128:
+        value &= 0b11111111          # MBC30: 8-bit bank select
+    else:
+        value &= 0b01111111
+```
+
+then `pip install .` from the PyBoy source tree. (Upstreaming this to
+PyBoy is worth a PR.)
+
+## Writing a test
+
+```yaml
+- name: Levitate blocks Earthquake
+  player: { species: GENGAR,  level: 50, ability: LEVITATE, moves: [LICK] }
+  enemy:  { species: MACHAMP, level: 50, moves: [EARTHQUAKE] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp == player.maxhp
+```
+
+Side fields: `species` (constant name), `level`, `ability` (auto-resolves
+to the species' legal slot so entry hooks fire; falls back to a post-entry
+override for illegal pairs), `ability_slot` (1/2/hidden), `item`, `moves`
+(up to 4; omit to keep the level-up learnset), `dvs` (16-bit, default
+$FFFF), `hp` (percent), `status_byte`, `stages` (`{atk: -1, spd: +2}`,
+applied after entry abilities). `player2` adds a second party mon.
+
+Test fields: `turns` (pause for assertions after N turns), `rng`
+(`forced_low` / `forced_high` / `seeded` / `off`), `rng_value`, `weather`,
+`move_script` (player move slot per turn, e.g. `[1, 2, 1]`), `skip`.
+
+Assertions are Python expressions over: `player` / `enemy` (`.hp`,
+`.maxhp`, `.status`, `.item`, `.ability`, `.species`, `.moves`, `.pp`,
+`.stats['attack'|'defense'|'speed'|'spclatk'|'spcldef']`, `.stat_levels`
+(7 = neutral), `.screens`, `.substatus`), plus `weather` and `turns_done`.
+`player.start_hp` etc. give the pre-turn-1 snapshot (after entry
+abilities, before any move).
+
+## RNG modes
+
+- `forced_low` (value $14): every chance-based effect procs, no crits,
+  damage pinned to the maximum roll → assert exact numbers.
+- `forced_high` (value $B4): nothing procs, moves still hit → isolates
+  the no-proc path.
+- `seeded`: deterministic PRNG stream from `rng_value` → same battle every
+  run; use for multi-hit counts, Metronome, and anything with a
+  pick-random-until-valid loop (those hang under a fixed forced value).
+
+The forced defaults were chosen against the engine's reroll loops (enemy
+move slot needs `&3==0`, sleep turns need `&7!=0`, tri-status needs
+`swap&3!=0`); override with `rng_value` only if you know the loop budget.
+
+## How it works (ROM side)
+
+`engine/debug/battle_tester.asm` (bank $8F, `DEBUG_BATTLE` builds only).
+The harness writes a request block in WRAMX bank 2 (`wDebugMagic`...)
+describing both sides by true 16-bit species/move indexes, then sets the
+magic byte. The in-ROM debug menu poll loop consumes it, builds the party
+through `TryAddMonToParty`, stages a wild battle, and rebuilds the wild
+mon from the request inside `InitEnemyWildmon` — before entry abilities,
+so overridden abilities fire like real ones. `wDebugState` milestones
+($01 menu, $02 init, $03 ready, $04 turn target reached, $05 done) are the
+sync protocol; never frame-count. In auto mode the battle menu is skipped
+and player moves come from `wDebugMoveScript`.
+
+The player's real party and pokédex flags are backed up before the battle
+and restored afterwards.
