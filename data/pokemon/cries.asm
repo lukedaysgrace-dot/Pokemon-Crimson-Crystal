@@ -485,3 +485,5 @@ PokemonCries::
 	mon_cry CRY_EKANS,      -$020,  $180 ; SALAZZLE
 	mon_cry CRY_NATU,        $060,  $0e0 ; FLITTLE
 	mon_cry CRY_FEAROW,     -$040,  $160 ; ESPATHRA
+	mon_cry CRY_SEEL,        $0c0,  $0e0 ; FINIZEN
+	mon_cry CRY_SEEL,       -$050,  $190 ; PALAFIN
