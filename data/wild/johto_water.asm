@@ -146,13 +146,13 @@ JohtoWaterWildMons:
 	db 6 percent ; encounter rate
 	dbw 20, TENTACOOL
 	dbw 15, CHINCHOU
-	dbw 20, MANTINE
+	dbw 20, FINIZEN
 
 	map_id ROUTE_41
 	db 6 percent ; encounter rate
 	dbw 20, TENTACOOL
 	dbw 20, MANTINE
-	dbw 20, WIMPOD
+	dbw 20, FINIZEN
 
 	map_id ROUTE_42
 	db 4 percent ; encounter rate

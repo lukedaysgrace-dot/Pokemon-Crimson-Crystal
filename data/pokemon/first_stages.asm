@@ -480,3 +480,5 @@ FirstEvoStages::
 	dw SALANDIT
 	dw FLITTLE
 	dw FLITTLE
+	dw FINIZEN
+	dw FINIZEN

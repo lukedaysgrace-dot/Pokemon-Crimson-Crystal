@@ -1416,6 +1416,13 @@ SECTION "Pics 74", ROMX
 EspathraFrontpic: INCBIN "gfx/pokemon/espathra/front.animated.2bpp.lz"
 EspathraBackpic:  INCBIN "gfx/pokemon/espathra/back.2bpp.lz"
 
+SECTION "Pics 75", ROMX
+
+FinizenFrontpic: INCBIN "gfx/pokemon/finizen/front.animated.2bpp.lz"
+FinizenBackpic:  INCBIN "gfx/pokemon/finizen/back.2bpp.lz"
+PalafinFrontpic: INCBIN "gfx/pokemon/palafin/front.animated.2bpp.lz"
+PalafinBackpic:  INCBIN "gfx/pokemon/palafin/back.2bpp.lz"
+
 SECTION "Rocket Executive Pics", ROMX
 
 ProtonPic: INCBIN "gfx/trainers/proton.2bpp.lz"
