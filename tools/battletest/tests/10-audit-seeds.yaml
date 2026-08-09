@@ -1,51 +1,58 @@
 # The August 2026 audit (CODE_AUDIT_2026-08.md) as regression tests.
-# Every case is written but marked skip until it has been run against
-# current main AND shown to fail on the pre-fix commit for its bug -
-# that acceptance step is what makes these worth having (handoff item 4).
-# Unskip one at a time, verify, adjust golden values, commit.
+#
+# Verified cases run unskipped. The remaining skips are blocked on missing
+# harness features (player2 switch flow, trainer battles, substatus setup)
+# or open engine questions - each notes exactly what it needs.
+# Full acceptance (fail-on-pre-fix-commit) is still to be done per test.
 
 - name: "Audit 1a: Aftermath triggers when holder is KOd by contact move"
-  skip: "not yet verified"
+  # Verified 2026-08-09: L50 Tauros (150 max HP) takes exactly 37 (25%)
+  # from KOing a 1-HP Aftermath Electrode with Body Slam.
   player: { species: TAUROS,  level: 50, moves: [BODY_SLAM] }
   enemy:  { species: ELECTRODE, level: 5, ability: AFTERMATH, hp: 1, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - player.hp < player.start_hp   # took Aftermath chip on the KO
+    - enemy.hp == 0
+    - player.start_hp - player.hp == 37   # maxhp 150 / 4
 
 - name: "Audit 1b: attacker's Life Orb recoils after contact, defender's does not"
-  skip: "not yet verified"
+  # Verified: attacker loses exactly 10% max HP; Splash-ing defender with
+  # its own Life Orb loses only the move damage.
   player: { species: TAUROS,  level: 50, item: LIFE_ORB, moves: [BODY_SLAM] }
   enemy:  { species: SNORLAX, level: 50, item: LIFE_ORB, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - player.hp < player.start_hp                  # attacker recoil
-    - enemy.start_hp - enemy.hp > 0                # move damage only
+    - player.start_hp - player.hp == 15   # maxhp 150 / 10
+    - enemy.start_hp - enemy.hp == 105    # golden: Body Slam + Life Orb boost
 
-- name: "Audit 2a: Gale Wings priority applies to Flying moves only"
-  skip: "needs move-order introspection; add wEnemyGoesFirst accessor first"
-  player: { species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [PECK] }
-  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+- name: "Audit 2b-i: Refrigerate turns Swift into Ice (4x OHKO on Gligar)"
+  # Normal-type Swift cannot OHKO L50 Gligar; Refrigerate-converted Ice
+  # Swift (x1.1875 and 4x effective) does. Control case below.
+  player: { species: AMAURA, level: 50, ability: REFRIGERATE, moves: [SWIFT] }
+  enemy:  { species: GLIGAR, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - turns_done == 1
+    - enemy.hp == 0
 
-- name: "Audit 2b: Refrigerate boosts Normal moves x1.1875, excludes Hidden Power"
-  skip: "not yet verified; needs golden damage values"
-  player: { species: GLACEON, level: 50, ability: REFRIGERATE, moves: [SWIFT] }
-  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
-  rng: forced_low
+- name: "Audit 2b-ii: without Refrigerate the same Swift stays Normal"
+  player: { species: AMAURA, level: 50, ability_slot: 2, moves: [SWIFT] } # Solid Rock
+  enemy:  { species: GLIGAR, level: 50, moves: [SPLASH] }
+  rng: forced_high
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp > 0
+    - enemy.start_hp - enemy.hp == 29   # golden, Normal Swift, max roll
+
+- name: "Audit 2a: Gale Wings priority applies to Flying moves only"
+  skip: "needs move-order introspection; add a wEnemyGoesFirst accessor"
 
 - name: "Audit 3: enemy Natural Cure heals status on voluntary AI switch"
   skip: "needs trainer-battle support (AI switching); wild mons never switch"
 
 - name: "Audit 4a: Roar-ing in an Intimidate mon activates Intimidate"
-  skip: "needs player2 switch-in flow verified; also see open Intimidate item"
+  skip: "needs player2 forced-switch flow in auto mode (switch menu hangs)"
   player:  { species: RAICHU,   level: 50, moves: [SPLASH] }
   player2: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
   enemy:   { species: MACHAMP,  level: 50, moves: [ROAR] }
@@ -55,73 +62,51 @@
     - enemy.stat_levels[0] == 6
 
 - name: "Audit 4b: Roar-ing out a Cloud Nine holder restores weather"
-  skip: "needs player2 switch verified"
-  player:  { species: GOLDUCK,  level: 50, ability: CLOUD_NINE, moves: [SPLASH] }
-  player2: { species: RAICHU,   level: 50, moves: [SPLASH] }
-  enemy:   { species: MACHAMP,  level: 50, moves: [ROAR] }
-  weather: rain
-  rng: forced_low
-  turns: 2
-  assert:
-    - weather == 1
+  skip: "needs player2 forced-switch flow"
 
 - name: "Audit 5a: Intimidate does not bypass Mist"
-  skip: "blocked on the open entry-Intimidate item"
-  player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
-  enemy:  { species: SUICUNE,  level: 50, moves: [MIST] }
-  rng: forced_high
-  turns: 1
-  assert:
-    - enemy.stat_levels[0] == 7
+  skip: "needs Mist up before the Intimidate entry -> player2 switch flow"
 
 - name: "Audit 5b: Defiant answers Intimidate regardless of enemy's previous move"
-  skip: "blocked on the open entry-Intimidate item"
+  # Verified 2026-08-09 (after the StatDown hl-clobber fix): Bisharp ends
+  # entry at attack stage 8 (-1 Intimidate, +2 Defiant).
   player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
   enemy:  { species: BISHARP,  level: 50, ability: DEFIANT, moves: [SPLASH] }
   rng: forced_high
   turns: 0
   assert:
-    - enemy.stat_levels[0] == 6   # -1 from Intimidate...
-    - enemy.stats['attack'] > enemy.start_stats['attack'] if False else True
-    # ...then +2 from Defiant -> net stage 8; refine once verified
+    - enemy.stat_levels[0] == 8   # -1 Intimidate, +2 Defiant
 
 - name: "Audit 6: Shed Skin curing Toxic clears SUBSTATUS_TOXIC and counter"
-  skip: "needs substatus poke support for toxic setup; add to Request"
-  player: { species: ARBOK, level: 50, ability: SHED_SKIN, status_byte: 8, moves: [SPLASH] }
-  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
-  rng: forced_low
-  turns: 3
-  assert:
-    - player.status == 0
+  skip: "needs substatus setup in the request block (or a harness poke at $03)"
 
 - name: "Audit 7: Magic Bounce does not reflect a Static proc onto the holder"
-  skip: "not yet verified"
+  # Verified: Espeon (Magic Bounce) gets paralyzed by Static on contact;
+  # nothing bounces back to Pikachu.
   player: { species: ESPEON,  level: 50, ability: MAGIC_BOUNCE, moves: [TACKLE] }
   enemy:  { species: PIKACHU, level: 50, ability: STATIC, moves: [SPLASH] }
   rng: forced_low
   turns: 1
   assert:
-    - (enemy.status & 64) == 0   # Static's paralysis must not bounce back
+    - (player.status & 64) != 0   # Static procced onto the attacker...
+    - (enemy.status & 64) == 0    # ...and was not reflected back
 
 - name: "Audit 8: Rest fails for Insomnia / Vital Spirit users"
-  skip: "not yet verified"
+  # Verified: Hypno at 50% stays awake and unhealed after Rest.
   player: { species: HYPNO, level: 50, ability: INSOMNIA, hp: 50, moves: [REST] }
   enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - (player.status & 7) == 0   # not asleep
-    - player.hp < player.maxhp   # and not healed
+    - (player.status & 7) == 0    # not asleep
+    - player.hp == player.start_hp  # and not healed
 
 - name: "Audit 9: Baton Pass resets Glaive Rush / Rage Fist / First Impression state"
   skip: "needs player2 switch flow + substate accessors"
 
 - name: "Audit 10: Own Tempo blocks Thrash fatigue and Berserk Gene confusion"
-  skip: "not yet verified"
-  player: { species: SLOWBRO, level: 50, ability: OWN_TEMPO, moves: [THRASH] }
-  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
-  rng: seeded
-  rng_value: 7
-  turns: 4
-  assert:
-    - (player.substatus[3] & 1) == 0   # placeholder; verify confusion bit
+  # SUSPICIOUS (2026-08-09): with seeded RNG, Thrash never fatigued within
+  # 7 turns for Own Tempo OR the Oblivious control (SUBSTATUS_RAMPAGE stays
+  # set, no confusion either way). Investigate whether Thrash fatigue works
+  # at all before trusting any assertion here.
+  skip: "blocked: Thrash fatigue never triggers - possible engine bug, investigate"
