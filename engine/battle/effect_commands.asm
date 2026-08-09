@@ -4500,9 +4500,16 @@ StatDownSkipProtect::
 .ComputerMiss:
 ; Computer opponents have a 25% chance of failing.
 	; ...but not ability-driven drops (Intimidate, Mirror Armor)
+	; NOTE: hl still points at the stat-level slot and is written through
+	; at .SelfInflicted below - it must survive this marker check. Without
+	; the push/pop, every stat drop wrote its new stage into
+	; wDisguiseBusted instead of the stat-level array (found 2026-08-09 by
+	; the battle tester's Intimidate smoke test).
+	push hl
 	ld hl, wDisguiseBusted
 	bit 6, [hl]
 	res 6, [hl]
+	pop hl
 	jr nz, .DidntMiss
 	; ...and not self-inflicted drops (the user "targets" itself via
 	; switchturn, which would wrongly enable the AI miss roll for the
