@@ -500,6 +500,8 @@ JOHTO_POKEMON EQU const_value
 	const SALAZZLE          ;
 	const FLITTLE           ;
 	const ESPATHRA          ;
+	const FINIZEN           ;
+	const PALAFIN           ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

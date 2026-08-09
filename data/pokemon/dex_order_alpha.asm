@@ -134,6 +134,7 @@ AlphabeticalPokedexOrder:
 	dw FEAROW
 	dw FEEBAS
 	dw FERALIGATR
+	dw FINIZEN
 	dw FLAAFFY
 	dw FLAPPLE
 	dw FLAREON
@@ -298,6 +299,7 @@ AlphabeticalPokedexOrder:
 	dw OMASTAR
 	dw ONIX
 	dw OVERQWIL
+	dw PALAFIN
 	dw PARAS
 	dw PARASECT
 	dw PAWNIARD
