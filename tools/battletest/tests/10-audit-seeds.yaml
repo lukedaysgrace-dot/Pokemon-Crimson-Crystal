@@ -45,27 +45,85 @@
   assert:
     - enemy.start_hp - enemy.hp == 29   # golden, Normal Swift, max roll
 
-- name: "Audit 2a: Gale Wings priority applies to Flying moves only"
-  skip: "needs move-order introspection; add a wEnemyGoesFirst accessor"
+# wEnemyGoesFirst (via the wram accessor) holds the LAST resolved turn's
+# order: 1 = enemy moved first, 0 = player moved first.
+- name: "Audit 2a-i: Gale Wings gives Flying moves +1 priority"
+  # Talonflame (base 126 Spd) is slower than Electrode (150); Gale Wings
+  # Peck moves first anyway.
+  player: { species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [PECK] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "Audit 2a-ii: Gale Wings does not boost non-Flying moves"
+  player: { species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [TACKLE] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 1
 
 - name: "Audit 3: enemy Natural Cure heals status on voluntary AI switch"
-  skip: "needs trainer-battle support (AI switching); wild mons never switch"
-
-- name: "Audit 4a: Roar-ing in an Intimidate mon activates Intimidate"
-  skip: "needs player2 forced-switch flow in auto mode (switch menu hangs)"
-  player:  { species: RAICHU,   level: 50, moves: [SPLASH] }
-  player2: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
-  enemy:   { species: MACHAMP,  level: 50, moves: [ROAR] }
-  rng: forced_low
-  turns: 2
+  # Trainer mode (enemy2 present; SCHOOLBOY class = SWITCH_OFTEN AI, no
+  # items). The poisoned Natural Cure Chansey's only move (Tackle) cannot
+  # touch Gengar at all, and Snorlax (immune to Ghost, Shadow Ball hits
+  # super-effectively) is a perfect switch candidate - the AI gets a
+  # near-certain voluntary-switch roll EVERY turn, so the switch converges
+  # within the 4-turn window regardless of exact Random stream timing.
+  # (Perish Song was tried first: it gives the AI only ONE roll at count 1,
+  # which made the test timeline-sensitive.)
+  player:  { species: GENGAR, level: 50, moves: [SPLASH] }
+  enemy:   { species: CHANSEY, level: 50, ability: NATURAL_CURE, status_byte: 8, moves: [TACKLE] }
+  enemy2:  { species: SNORLAX, level: 50, moves: [SHADOW_BALL] }
+  rng: seeded
+  turns: 4
   assert:
+    - enemy.species == 'SNORLAX'          # the AI switched voluntarily
+    - wram('wOTPartyMon1Status') == 0     # Natural Cure wiped the poison
+
+# NOTE on audit 4a/4b: the audit bug was specifically about Roar's drag-in
+# path, but a wild enemy's Roar ENDS the battle (forceswitch -> draw), so
+# the true repro needs trainer-battle support. These cover the same entry-
+# ability contract on the faint-replacement path, which the same fix serves.
+- name: "Audit 4a: entry abilities fire for a replacement sent in after a faint"
+  # Verified 2026-08-09 with the auto party-pick hook: Rattata faints turn
+  # 1, Gyarados auto-switches in, Intimidate drops Machamp to stage 6.
+  player:  { species: RATTATA,  level: 5, hp: 1, moves: [SPLASH] }
+  player2: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  enemy:   { species: MACHAMP,  level: 50, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'GYARADOS'
     - enemy.stat_levels[0] == 6
 
-- name: "Audit 4b: Roar-ing out a Cloud Nine holder restores weather"
-  skip: "needs player2 forced-switch flow"
+- name: "Audit 4b: weather effects resume when the Cloud Nine holder leaves"
+  # While Golduck (Cloud Nine) is in, wBattleWeather bit 7 (suppressed) is
+  # set; after it faints and Raichu replaces it, rain persists unsuppressed.
+  player:  { species: GOLDUCK, level: 5, ability: CLOUD_NINE, hp: 1, moves: [SPLASH] }
+  player2: { species: RAICHU,  level: 50, moves: [SPLASH] }
+  enemy:   { species: MACHAMP, level: 50, moves: [TACKLE] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 1                 # rain persisted...
+    - (weather_raw & 128) == 0     # ...and is no longer suppressed
 
 - name: "Audit 5a: Intimidate does not bypass Mist"
-  skip: "needs Mist up before the Intimidate entry -> player2 switch flow"
+  # Mist is pre-set on the enemy via the request's substatus field; the
+  # Intimidate mon enters via the post-faint switch, after Mist is up.
+  player:  { species: RATTATA,  level: 5, hp: 1, moves: [SPLASH] }
+  player2: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  # (not SUICUNE: roaming legendaries flee wild battles on turn 1)
+  enemy:   { species: SNORLAX,  level: 50, moves: [TACKLE], substatus: [MIST] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'GYARADOS'
+    - enemy.stat_levels[0] == 7   # Mist blocked the entry Intimidate
 
 - name: "Audit 5b: Defiant answers Intimidate regardless of enemy's previous move"
   # Verified 2026-08-09 (after the StatDown hl-clobber fix): Bisharp ends
@@ -78,7 +136,16 @@
     - enemy.stat_levels[0] == 8   # -1 Intimidate, +2 Defiant
 
 - name: "Audit 6: Shed Skin curing Toxic clears SUBSTATUS_TOXIC and counter"
-  skip: "needs substatus setup in the request block (or a harness poke at $03)"
+  # Toxic state is pre-set via status_byte (PSN) + the substatus field;
+  # forced_low makes Shed Skin's cure roll proc.
+  player: { species: ARBOK, level: 50, ability: SHED_SKIN, status_byte: 8, substatus: [TOXIC], moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.status == 0                  # poison cured
+    - (player.substatus[4] & 1) == 0      # SUBSTATUS_TOXIC cleared
+    - wram('wPlayerToxicCount') == 0      # counter cleared
 
 - name: "Audit 7: Magic Bounce does not reflect a Static proc onto the holder"
   # Verified: Espeon (Magic Bounce) gets paralyzed by Static on contact;
@@ -101,12 +168,71 @@
     - (player.status & 7) == 0    # not asleep
     - player.hp == player.start_hp  # and not healed
 
-- name: "Audit 9: Baton Pass resets Glaive Rush / Rage Fist / First Impression state"
-  skip: "needs player2 switch flow + substate accessors"
+# Glaive Rush's vulnerability window clears at the start of the user's next
+# turn anyway, so the pass-side observable here is the Rage Fist tally (and
+# First Impression freshness); the control shows the tally accumulating.
+- name: "Audit 9: Baton Pass resets the Rage Fist tally / First Impression"
+  # Electrode outspeeds: tackle -> tally 1, tackle -> tally 2, then the
+  # pass brings Raichu in with a clean slate.
+  player:  { species: CHANSEY, level: 50, moves: [SPLASH, BATON_PASS] }
+  player2: { species: RAICHU,  level: 50, moves: [SPLASH] }
+  enemy:   { species: ELECTRODE, level: 50, moves: [TACKLE] }
+  rng: forced_high
+  move_script: [1, 2, 1]
+  turns: 2
+  assert:
+    - player.species == 'RAICHU'
+    - wram('wPlayerRageFistHits') == 0        # tally is per-mon, not passed
+    - wram('wPlayerFirstImpressionFresh') == 1
 
-- name: "Audit 10: Own Tempo blocks Thrash fatigue and Berserk Gene confusion"
-  # SUSPICIOUS (2026-08-09): with seeded RNG, Thrash never fatigued within
-  # 7 turns for Own Tempo OR the Oblivious control (SUBSTATUS_RAMPAGE stays
-  # set, no confusion either way). Investigate whether Thrash fatigue works
-  # at all before trusting any assertion here.
-  skip: "blocked: Thrash fatigue never triggers - possible engine bug, investigate"
+- name: "Audit 9-control: the Rage Fist tally accumulates without Baton Pass"
+  player:  { species: CHANSEY, level: 50, moves: [SPLASH, BATON_PASS] }
+  enemy:   { species: ELECTRODE, level: 50, moves: [TACKLE] }
+  rng: forced_high
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    - wram('wPlayerRageFistHits') == 2
+
+- name: "Audit 10-control: Thrash fatigue confuses a non-Own-Tempo user"
+  # This test found a real engine bug on 2026-08-09: the callfar/farcall
+  # macros load their target address into hl, so BattleCheckRampage_Core's
+  # "set SUBSTATUS_CONFUSED, [hl]" (hl fetched before three callfars) wrote
+  # into ROM instead - Thrash fatigue confusion never landed for ANY user.
+  # Fixed by re-fetching the SUBSTATUS3 address after the calls.
+  # Seeded rng 7 -> 2-turn Thrash, fatigue at end of turn 2.
+  player: { species: SLOWBRO, level: 50, ability: OBLIVIOUS, moves: [THRASH] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 7
+  turns: 3
+  assert:
+    - (player.substatus[2] & 128) != 0   # SUBSTATUS_CONFUSED after fatigue
+
+- name: "Audit 10a: Own Tempo blocks Thrash fatigue confusion"
+  player: { species: SLOWBRO, level: 50, ability: OWN_TEMPO, moves: [THRASH] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 7
+  turns: 3
+  assert:
+    - (player.substatus[2] & 128) == 0   # fatigue confusion blocked, silently
+
+- name: "Audit 10b: Own Tempo blocks Berserk Gene confusion (Attack boost stays)"
+  player: { species: SLOWBRO, level: 50, ability: OWN_TEMPO, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.substatus[2] & 128) == 0   # no confusion...
+    - player.stat_levels[0] == 9         # ...but +2 Attack applied
+    - player.item == 'NO_ITEM'           # gene is consumed
+
+- name: "Audit 10b-control: Berserk Gene confuses a non-Own-Tempo holder"
+  player: { species: SLOWBRO, level: 50, ability: OBLIVIOUS, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.substatus[2] & 128) != 0
+    - player.stat_levels[0] == 9
