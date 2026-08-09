@@ -479,3 +479,5 @@ AnimationPointers:
 	dba SalazzleAnimation
 	dba FlittleAnimation
 	dba EspathraAnimation
+	dba FinizenAnimation
+	dba PalafinAnimation

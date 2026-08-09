@@ -489,5 +489,7 @@ SalanditIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salandit.png
 SalazzleIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salazzle.png
 FlittleIcon: INCBIN "gfx/icons/flittle.2bpp"
 EspathraIcon: INCBIN "gfx/icons/espathra.2bpp"
+FinizenIcon: INCBIN "gfx/icons/fish.2bpp" ; TODO: gfx/icons/finizen.png
+PalafinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/palafin.png
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

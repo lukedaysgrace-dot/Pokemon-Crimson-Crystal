@@ -479,3 +479,5 @@ BitmasksPointers:
 	dw SalazzleBitmasks
 	dw FlittleBitmasks
 	dw EspathraBitmasks
+	dw FinizenBitmasks
+	dw PalafinBitmasks
