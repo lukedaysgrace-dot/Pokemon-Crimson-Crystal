@@ -3292,6 +3292,46 @@ wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1
 
 
+IF DEF(DEBUG_BATTLE)
+
+SECTION "Debug Battle WRAM", WRAMX, BANK[2]
+
+; Battle tester state and request block (debug builds only).
+; Written by the in-ROM debug menu or by the Python harness
+; (tools/battletest/), consumed by engine/debug/battle_tester.asm.
+
+wDebugMagic::      db ; $CC = request pending; cleared when consumed
+wDebugBattleFlags::      db ; bit 0: auto battle (no menus, moves scripted)
+wDebugState::      db ; see DEBUGSTATE_* in battle_tester.asm
+wDebugControl::    db ; harness -> ROM while waiting: 1 = run more turns, 2 = end battle
+wDebugTurnTarget:: db ; auto mode: stop and wait after this many turns
+wDebugTurnsDone::  db
+wDebugRNGModeReq:: db ; 0 = normal, 1 = forced, 2 = seeded
+wDebugRNGValueReq::db ; forced value / stream seed
+
+wDebugWeather::    db ; $FF = no override, else WEATHER_* (applied post-entry)
+wDebugPScreens::   db ; ORed into wPlayerScreens post-entry (0 = none)
+wDebugEScreens::   db ; ORed into wEnemyScreens post-entry (0 = none)
+wDebugMoveScript:: ds 8 ; auto mode: player move slot (1-4) per turn; 0 = slot 1
+
+; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
+; engine/debug/battle_tester.asm.
+wDebugPlayer1::    ds 25
+wDebugPlayer2::    ds 25 ; species 0 = no second party mon
+wDebugEnemy::      ds 25
+
+wDebugPartyBackedUp:: db
+; One contiguous blob: party structs + names + dex caught/seen flags
+; (wPartyCount through wEndPokedexSeen).
+wDebugPartyBackup:: ds wEndPokedexSeen - wPartyCount
+
+; Debug menu scratch
+wDebugMenuPage::   db
+wDebugMenuRow::    db
+wDebugMenuStep::   db
+
+ENDC
+
 INCLUDE "sram.asm"
 
 INCLUDE "hram.asm"
