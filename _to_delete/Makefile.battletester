@@ -1,0 +1,244 @@
+roms := pokecrystal.gbc
+
+# `make debug` builds pokecrystal_debug.gbc with the in-ROM battle tester
+# (engine/debug/battle_tester.asm) compiled in. The regular ROM is untouched.
+debug_roms := pokecrystal_debug.gbc
+
+crystal_obj := \
+audio.o \
+home.o \
+main.o \
+wram.o \
+data/text/common.o \
+data/maps/map_data.o \
+data/pokemon/dex_entries.o \
+data/pokemon/egg_moves.o \
+data/pokemon/evos_attacks.o \
+engine/movie/credits.o \
+engine/overworld/events.o \
+gfx/pics.o \
+gfx/sprites.o \
+lib/mobile/main.o
+
+### Build tools
+
+# Optional: create local.mk with e.g. RGBDS := /opt/rgbds-0.5.2/bin/
+-include local.mk
+
+ifeq (,$(shell which sha1sum))
+SHA1 := shasum
+else
+SHA1 := sha1sum
+endif
+
+RGBDS ?=
+RGBASM  ?= $(RGBDS)rgbasm
+RGBFIX  ?= $(RGBDS)rgbfix
+RGBGFX  ?= $(RGBDS)rgbgfx
+RGBLINK ?= $(RGBDS)rgblink
+
+ifeq ($(OS),Windows_NT)
+EXEEXT := .exe
+endif
+
+
+crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
+
+
+### Build targets
+
+.SUFFIXES:
+.PHONY: all clean tidy tools debug test
+.SECONDEXPANSION:
+.PRECIOUS:
+.SECONDARY:
+
+all: pokecrystal.gbc
+
+debug: pokecrystal_debug.gbc
+
+test: pokecrystal_debug.gbc
+	python3 tools/battletest/runner.py
+
+clean: tidy
+	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
+	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
+
+tidy:
+	rm -f $(roms) $(crystal_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(debug_roms) $(crystal_debug_obj) $(debug_roms:.gbc=.map) $(debug_roms:.gbc=.sym)
+	$(MAKE) clean -C tools/
+
+tools:
+	$(MAKE) -C tools/
+
+
+$(crystal_obj): RGBASMFLAGS =
+$(crystal_debug_obj): RGBASMFLAGS = -DDEBUG_BATTLE=1
+
+# The dep rules have to be explicit or else missing files won't be reported.
+# As a side effect, they're evaluated immediately instead of when the rule is invoked.
+# It doesn't look like $(shell) can be deferred so there might not be a better way.
+define DEP
+$1: $2 $$(shell tools/scan_includes$(EXEEXT) $2)
+	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
+endef
+
+# Build tools when building the rom.
+# This has to happen before the rules are processed, since that's when scan_includes is run.
+ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
+
+$(info $(shell $(MAKE) -C tools))
+
+$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(crystal_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
+
+endif
+
+
+pokecrystal.gbc: $(crystal_obj) pokecrystal.link
+	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	sh tools/sort_symfile.sh pokecrystal.sym
+	python3 tools/generate_cheats.py
+
+pokecrystal_debug.gbc: $(crystal_debug_obj) pokecrystal.link
+	$(RGBLINK) -n pokecrystal_debug.sym -m pokecrystal_debug.map -l pokecrystal.link -o $@ $(crystal_debug_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	sh tools/sort_symfile.sh pokecrystal_debug.sym
+
+%.lz: %
+	tools/lzcomp$(EXEEXT) -- $< $@
+
+
+### Pokemon pic animation rules
+
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation_graphics$(EXEEXT) -o $@ $^
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation_graphics$(EXEEXT) -t $@ $^
+gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation$(EXEEXT) -b $^ > $@
+gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation$(EXEEXT) -f $^ > $@
+
+
+### Misc file-specific graphics rules
+
+gfx/pokemon/%/back.2bpp: rgbgfx += -h
+
+gfx/trainers/%.2bpp: rgbgfx += -h
+
+gfx/new_game/shrink1.2bpp: rgbgfx += -h
+gfx/new_game/shrink2.2bpp: rgbgfx += -h
+
+gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/surf_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/flower_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/litebluemail_border.1bpp: tools/gfx += --remove-whitespace
+
+gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/slowpoke.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/question_mark.2bpp: rgbgfx += -h
+
+gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
+gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
+# The party-menu ball uses color index 2 for palette-based recoloring.
+gfx/stats/caught_ball.2bpp: rgbgfx += -c dmg=E4
+
+gfx/mystery_gift/mystery_gift.2bpp: tools/gfx += --trim-whitespace
+
+gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
+gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
+gfx/title/logo.2bpp: rgbgfx += -x 4
+
+gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
+gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
+
+gfx/slots/slots_1.2bpp: tools/gfx += --trim-whitespace
+gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
+
+gfx/card_flip/card_flip_2.2bpp: tools/gfx += --remove-whitespace
+
+gfx/battle_anims/angels.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
+gfx/battle_anims/bubble.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/charge.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/egg.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/explosion.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/hit.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/hearts.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/horn.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/lightning.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/battle_anims/noise.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
+gfx/battle_anims/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_anims/reflect.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/rocks.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
+
+gfx/player/gold.2bpp: rgbgfx += -h
+gfx/player/gold_back.2bpp: rgbgfx += -h
+gfx/player/indigo.2bpp: rgbgfx += -h
+gfx/player/indigo_back.2bpp: rgbgfx += -h
+gfx/player/lyra.2bpp: rgbgfx += -h
+gfx/player/lyra_back.2bpp: rgbgfx += -h
+
+gfx/trainer_card/gold_card.2bpp: rgbgfx += -h
+gfx/trainer_card/indigo_card.2bpp: rgbgfx += -h
+gfx/trainer_card/lyra_card.2bpp: rgbgfx += -h
+gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
+
+gfx/overworld/gold_fish.2bpp: tools/gfx += --trim-whitespace
+gfx/overworld/lyra_fish.2bpp: tools/gfx += --trim-whitespace
+
+# The overworld raindrop is edited as gfx/overworld/rain.png. If the PNG does
+# not exist yet, bootstrap it with the original streak art.
+gfx/overworld/rain.png:
+	python3 tools/rain_png.py $@
+
+# Rain drop and splash may be drawn in any shade; every non-transparent pixel
+# is normalized to color 2, the slot ApplyWeatherTint recolors to rain blue.
+gfx/overworld/rain.2bpp gfx/overworld/rain_splash.2bpp: %.2bpp: %.png
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	python3 tools/rain_png.py --normalize $@
+
+gfx/battle/dude.2bpp: rgbgfx += -h
+
+gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
+
+gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
+
+gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/mobile_adapter.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
+
+gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
+
+
+### Catch-all graphics rules
+
+%.2bpp: %.png
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx$(EXEEXT) $(tools/gfx) -o $@ $@)
+
+%.1bpp: %.png
+	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx$(EXEEXT) $(tools/gfx) -d1 -o $@ $@)
+
+%.gbcpal: %.png
+	$(RGBGFX) -p $@ $<
+
+%.dimensions: %.png
+	tools/png_dimensions$(EXEEXT) $< $@
