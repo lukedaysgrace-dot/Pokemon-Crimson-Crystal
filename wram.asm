@@ -2854,7 +2854,7 @@ wBugContestStartTime:: ds 4 ; day, hour, min, sec ; dc35
 wUnusedTwoDayTimerOn:: db ; dc39
 wUnusedTwoDayTimer:: db
 wUnusedTwoDayTimerStartDate:: db
-	ds 4
+	ds 2 ; was 4; 2 bytes reclaimed for the expanded Pokedex flag arrays
 wMobileOrCable_LastSelection:: db
 wdc41:: ds 1
 wdc42:: ds 8

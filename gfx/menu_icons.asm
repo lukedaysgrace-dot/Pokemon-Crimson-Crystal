@@ -502,5 +502,7 @@ SalanditMenuIcon: INCBIN "gfx/menu_icons/salandit.2bpp"
 SalazzleMenuIcon: INCBIN "gfx/menu_icons/salazzle.2bpp"
 FlittleMenuIcon: INCBIN "gfx/menu_icons/flittle.2bpp"
 EspathraMenuIcon: INCBIN "gfx/menu_icons/espathra.2bpp"
+FinizenMenuIcon: INCBIN "gfx/menu_icons/fish.2bpp" ; TODO: gfx/menu_icons/finizen.png
+PalafinMenuIcon: INCBIN "gfx/menu_icons/dewgong.2bpp" ; TODO: gfx/menu_icons/palafin.png
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

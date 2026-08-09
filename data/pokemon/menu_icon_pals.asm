@@ -488,3 +488,5 @@ MonMenuIconPals:
 	icon_pals PURPLE, RED    ; SALAZZLE
 	icon_pals BROWN,  PINK   ; FLITTLE
 	icon_pals BROWN,  PURPLE ; ESPATHRA
+	icon_pals BLUE,   TEAL   ; FINIZEN
+	icon_pals BLUE,   PINK   ; PALAFIN
