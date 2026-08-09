@@ -172,3 +172,14 @@ hSoundKeepaliveTima::  db ; ffee
 hSoundKeepaliveAccLo:: db ; ffef
 hSoundKeepaliveAccHi:: db ; fff0
 hSoundKeepaliveTac::   db ; fff1
+
+IF DEF(DEBUG_BATTLE)
+; Battle tester (debug builds only; see engine/debug/battle_tester.asm).
+; HRAM so battle-bank hooks can test them without a WRAM bank switch.
+hDebugActive::   db ; fff2 ; nonzero = automated debug battle in progress
+hDebugRNGMode::  db ; fff3 ; 0 = normal, 1 = forced, 2 = seeded stream
+hDebugRNGValue:: db ; fff4 ; value returned by _BattleRandom in forced mode
+hDebugSVBK::     db ; fff5 ; caller's rSVBK, saved by tester routines
+hDebugNum::      dw ; fff6 ; scratch: PrintNum source / request base ptr
+hDebugPtr::      dw ; fff8 ; scratch: party struct base ptr
+ENDC

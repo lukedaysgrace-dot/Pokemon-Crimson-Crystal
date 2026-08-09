@@ -177,6 +177,13 @@ WildFled_EnemyFled_LinkBattleCanceled:
 
 BattleTurn:
 .loop
+IF DEF(DEBUG_BATTLE)
+; Battle tester: applies post-entry overrides on the first pass, counts
+; turns, and parks the battle at the requested turn so the harness can
+; read WRAM. Returns carry to end the battle on harness request.
+	farcall DebugBattleTurnHook
+	jp c, .quit
+ENDC
 	call Stubbed_Function3c1bf
 	call CheckContestBattleOver
 	jp c, .quit
@@ -205,6 +212,12 @@ BattleTurn:
 	call CheckPlayerLockedIn
 	jr c, .skip_iteration
 .loop1
+IF DEF(DEBUG_BATTLE)
+; Battle tester auto mode: no battle menu; ParsePlayerAction picks the move.
+	ldh a, [hDebugActive]
+	and a
+	jr nz, .skip_iteration
+ENDC
 	call BattleMenu
 	jr c, .quit
 	ld a, [wBattleEnded]
@@ -653,6 +666,16 @@ ParsePlayerAction:
 	jr .encored
 
 .not_encored
+IF DEF(DEBUG_BATTLE)
+; Battle tester auto mode: choose the scripted move without the menu,
+; then continue through the normal "move chosen" path.
+	ldh a, [hDebugActive]
+	and a
+	jr z, .no_debug_auto
+	farcall DebugChoosePlayerMove
+	jp .encored
+.no_debug_auto
+ENDC
 	ld a, [wBattlePlayerAction]
 	cp BATTLEPLAYERACTION_SWITCH
 	jp z, .reset_rage
@@ -6834,11 +6857,11 @@ BattleWinSlideInEnemyTrainerFrontpic:
 	pop hl
 	ret
 
-ApplyStatusEffectOnPlayerStats:
+ApplyStatusEffectOnPlayerStats::
 	ld a, 1
 	jr ApplyStatusEffectOnStats
 
-ApplyStatusEffectOnEnemyStats:
+ApplyStatusEffectOnEnemyStats::
 	xor a
 
 ApplyStatusEffectOnStats:
@@ -7197,11 +7220,27 @@ _BattleRandom::
 ; If the normal RNG is used in a link battle it'll desync.
 ; To circumvent this a shared PRNG is used instead.
 
+IF DEF(DEBUG_BATTLE)
+; Battle tester RNG control: forced mode returns a fixed value, seeded mode
+; runs the deterministic link-battle PRNG stream even out of link mode.
+	ldh a, [hDebugRNGMode]
+	and a
+	jr z, .no_debug_rng
+	dec a
+	jr nz, .debug_prng ; mode 2+: deterministic stream
+	ldh a, [hDebugRNGValue]
+	ret
+.no_debug_rng
+ENDC
+
 ; But if we're in a non-link battle we're safe to use it
 	ld a, [wLinkMode]
 	and a
 	jp z, Random
 
+IF DEF(DEBUG_BATTLE)
+.debug_prng
+ENDC
 ; The PRNG operates in streams of 10 values.
 
 ; Which value are we trying to pull?
@@ -8554,6 +8593,12 @@ InitEnemyWildmon:
 	ld de, wWildMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
+IF DEF(DEBUG_BATTLE)
+; Battle tester: rebuild the wild mon's item/DVs/moves/ability/status from
+; the request block. Runs before entry abilities, so overridden abilities
+; fire exactly as a real mon's would.
+	farcall DebugModifyWildMon
+ENDC
 	ld hl, wEnemyMonDVs
 	predef GetUnownLetter
 	ld a, [wCurPartySpecies]
