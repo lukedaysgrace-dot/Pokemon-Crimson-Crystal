@@ -3316,9 +3316,10 @@ wDebugMoveScript:: ds 8 ; auto mode: player move slot (1-4) per turn; 0 = slot 1
 
 ; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
 ; engine/debug/battle_tester.asm.
-wDebugPlayer1::    ds 25
-wDebugPlayer2::    ds 25 ; species 0 = no second party mon
-wDebugEnemy::      ds 25
+wDebugPlayer1::    ds 30
+wDebugPlayer2::    ds 30 ; species 0 = no second party mon
+wDebugEnemy::      ds 30
+wDebugEnemy2::     ds 30 ; species != 0 = trainer battle, 2-mon enemy party
 
 wDebugPartyBackedUp:: db
 ; One contiguous blob: party structs + names + dex caught/seen flags

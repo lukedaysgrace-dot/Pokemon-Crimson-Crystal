@@ -151,6 +151,19 @@ class Harness:
             frames += 4
         return None  # timed out
 
+    def where(self, samples=6):
+        """Sample the PC a few times and symbolize it - a timed-out battle
+        is almost always spinning in a BattleRandom reroll loop, and this
+        names it (see landmine 2 in BATTLE_TESTER_HANDOFF_2.md)."""
+        seen = []
+        for _ in range(samples):
+            pc = self.pb.register_file.PC
+            bank = self.battle.mem.read("hROMBank") if pc >= 0x4000 else 0
+            seen.append(self.sym.nearest(bank, pc))
+            self.tick(3)
+        # most common location first
+        return max(set(seen), key=seen.count)
+
     def screenshot(self, name):
         FAILDIR.mkdir(exist_ok=True)
         img = self.pb.screen.image
@@ -172,7 +185,9 @@ class AssertionContext:
             "player": SideView(b.player, self.snapshot.get("player")),
             "enemy": SideView(b.enemy, self.snapshot.get("enemy")),
             "weather": b.weather,
+            "weather_raw": b.mem.read("wBattleWeather"),
             "turns_done": b.turns_done,
+            "wram": lambda name, offset=0: b.mem.read(name, offset),
             "abs": abs, "min": min, "max": max,
         }
 
@@ -263,7 +278,8 @@ def main():
                     h.tick(4)
                     frames += 4
                 if st != STATE_WAIT:
-                    raise RuntimeError(f"never reached pre-turn snapshot (state={st})")
+                    raise RuntimeError(f"never reached pre-turn snapshot "
+                                       f"(state={st}, stuck at {h.where()})")
                 snapshot = {"player": snapshot_side(h.battle.player),
                             "enemy": snapshot_side(h.battle.enemy)}
                 # continue to the real turn target
@@ -284,7 +300,7 @@ def main():
                 st = h.run_battle(test)
 
             if st is None:
-                raise RuntimeError("battle timed out")
+                raise RuntimeError(f"battle timed out (stuck at {h.where()})")
             if st == STATE_ERROR:
                 raise RuntimeError("ROM rejected the request")
 
