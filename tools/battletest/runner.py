@@ -89,45 +89,45 @@ class Harness:
         self.fixture = io.BytesIO(buf.getvalue())
 
     def bootstrap(self):
-        """Fresh boot -> new game -> overworld -> START -> DEBUG (state $01)."""
+        """Fresh boot -> new game -> overworld -> START -> DEBUG (state $01).
+
+        Verified sequence: mash through title/main menu, then A (with
+        periodic STARTs to jump naming screens to END) through the intro.
+        The DEBUG start-menu entry is found by reading wMenuSelection and
+        stepping until it equals STARTMENUITEM_DEBUG (9)."""
         log = print if self.verbose else (lambda *a: None)
         log("bootstrap: booting")
-        self.tick(300)  # boot/logos
-        log("bootstrap: title/menus")
-        # Title screen -> main menu -> new game -> intro. The exact frame
-        # counts do not matter; we just mash through every prompt. Naming
-        # screens accept the default name with START then A on END.
-        for _ in range(40):
-            self.press("start", wait=8)
-            self.press("a", wait=8)
-        # Oak speech + naming: mash A with periodic STARTs to accept defaults
-        for _ in range(220):
-            self.press("a", wait=4)
-            if _ % 10 == 9:
-                self.press("start", wait=4)
-        # We should be in the bedroom now; give the map a moment
-        self.tick(120)
-        # Open the start menu and hunt for DEBUG: it is the entry right
-        # after OPTION. Simplest robust approach: open menu, then press
-        # d_up twice from the top (list wraps: EXIT, DEBUG) then A.
-        deadline = time.time() + 120
+        self.tick(400)
+        log("bootstrap: title -> new game")
+        for _ in range(30):
+            self.press("start", wait=10)
+            self.press("a", wait=10)
+        for _ in range(60):
+            self.press("a", wait=10)
+        log("bootstrap: intro/naming")
+        for i in range(320):
+            self.press("a", wait=6)
+            if i % 12 == 11:
+                self.press("start", wait=6)
+        # back out of anything accidentally opened (pack, menus)
+        for _ in range(6):
+            self.press("b", wait=10)
+        log("bootstrap: opening DEBUG")
+        deadline = time.time() + 180
         while self.state() != STATE_MENU:
             if time.time() > deadline:
                 self.screenshot("bootstrap-stuck")
                 raise RuntimeError(
                     "bootstrap never reached the DEBUG menu "
                     "(state=%02x); see failures/bootstrap-stuck.png" % self.state())
-            self.press("b", wait=6)          # close any stray dialog
-            self.press("start", wait=10)     # open start menu
-            self.press("d_up", wait=4)       # wrap to EXIT
-            self.press("d_up", wait=4)       # wrap to DEBUG
-            self.press("a", wait=10)
-            # if that selected something else (menu layout differs), the
-            # B at loop top backs out and we try a different offset
-            if self.state() == STATE_MENU:
-                break
-            self.press("d_down", wait=4)
-            self.press("a", wait=10)
+            self.press("b", wait=10)
+            self.press("start", hold=4, wait=14)
+            for _ in range(12):
+                if self.battle.mem.read("wMenuSelection") == 9:
+                    break
+                self.press("down", hold=4, wait=16)
+            self.press("a", hold=4, wait=40)
+            self.tick(120)
         log("bootstrap: DEBUG menu reached")
 
     # ---- per-test drive ----
@@ -237,9 +237,13 @@ def main():
     h.ensure_fixture()
     print(f"fixture ready in {time.time()-t0:.1f}s; running {len(tests)} tests")
 
-    passed = failed = errored = 0
+    passed = failed = errored = skipped = 0
     for test in tests:
         name = test.get("name", "<unnamed>")
+        if test.get("skip"):
+            skipped += 1
+            print(f"SKIP {name} ({test.get('skip') if isinstance(test.get('skip'), str) else 'skipped'})")
+            continue
         t1 = time.time()
         try:
             h.load_fixture()
@@ -319,7 +323,7 @@ def main():
             print(f"ERROR {name}: {e} (screenshot: {shot})")
 
     dt = time.time() - t0
-    print(f"\n{passed} passed, {failed} failed, {errored} errored in {dt:.1f}s")
+    print(f"\n{passed} passed, {failed} failed, {errored} errored, {skipped} skipped in {dt:.1f}s")
     h.pb.stop(save=False)
     sys.exit(0 if failed == errored == 0 else 1)
 
