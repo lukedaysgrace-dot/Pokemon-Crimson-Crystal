@@ -249,10 +249,12 @@ class Request:
                     "seeded": 2}[test.get("rng", "seeded")]
         rng_value = test.get("rng_value")
         if rng_value is None:
-            # forced_low $11: below every effect chance (procs), yet exits the
-            # engine's reroll loops (sleep turns, tri-status, protect counter).
-            # forced_high $B4: above every effect chance, still loop-safe.
-            rng_value = {"forced_low": 0x11, "forced_high": 0xB4}.get(test.get("rng"), 0x11)
+            # forced_low $14: below every effect chance (procs; no crit), and
+            # exits the engine's reroll loops: &3==0 picks enemy move slot 1,
+            # &7!=0 ends sleep rolls, swap&3!=0 ends tri-status rolls.
+            # forced_high $B4: above every effect chance, same loop guarantees.
+            # Multi-hit count rolls need &3!=0 -> use seeded mode for those.
+            rng_value = {"forced_low": 0x14, "forced_high": 0xB4}.get(test.get("rng"), 0x14)
 
         m.write("wDebugBattleFlags", 1)  # auto
         m.write("wDebugControl", 0)
