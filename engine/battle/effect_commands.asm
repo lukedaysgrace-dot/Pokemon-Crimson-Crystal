@@ -1695,12 +1695,23 @@ BattleCommand_DamageVariation:
 	ldh [hMultiplicand + 2], a
 
 ; Multiply by 85-100%...
+IF DEF(DEBUG_BATTLE)
+; Battle tester forced-RNG mode: the reroll loop below never terminates on
+; a fixed out-of-range value, so pin the roll to maximum (100%) damage.
+	ldh a, [hDebugRNGMode]
+	dec a ; 1 = forced
+	ld a, $ff
+	jr z, .got_roll
+ENDC
 .loop
 	call BattleRandom
 	rrca
 	cp 85 percent + 1
 	jr c, .loop
 
+IF DEF(DEBUG_BATTLE)
+.got_roll
+ENDC
 	ldh [hMultiplier], a
 	call Multiply
 
