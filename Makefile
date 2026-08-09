@@ -1,5 +1,9 @@
 roms := pokecrystal.gbc
 
+# `make debug` builds pokecrystal_debug.gbc with the in-ROM battle tester
+# (engine/debug/battle_tester.asm) compiled in. The regular ROM is untouched.
+debug_roms := pokecrystal_debug.gbc
+
 crystal_obj := \
 audio.o \
 home.o \
@@ -38,15 +42,23 @@ EXEEXT := .exe
 endif
 
 
+crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
+
+
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools
+.PHONY: all clean tidy tools debug test
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
 
 all: pokecrystal.gbc
+
+debug: pokecrystal_debug.gbc
+
+test: pokecrystal_debug.gbc
+	python3 tools/battletest/runner.py
 
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
@@ -54,6 +66,7 @@ clean: tidy
 
 tidy:
 	rm -f $(roms) $(crystal_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(debug_roms) $(crystal_debug_obj) $(debug_roms:.gbc=.map) $(debug_roms:.gbc=.sym)
 	$(MAKE) clean -C tools/
 
 tools:
@@ -61,6 +74,7 @@ tools:
 
 
 $(crystal_obj): RGBASMFLAGS =
+$(crystal_debug_obj): RGBASMFLAGS = -DDEBUG_BATTLE=1
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
@@ -77,6 +91,7 @@ ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
 $(info $(shell $(MAKE) -C tools))
 
 $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(crystal_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
 
 endif
 
@@ -86,6 +101,11 @@ pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	sh tools/sort_symfile.sh pokecrystal.sym
 	python3 tools/generate_cheats.py
+
+pokecrystal_debug.gbc: $(crystal_debug_obj) pokecrystal.link
+	$(RGBLINK) -n pokecrystal_debug.sym -m pokecrystal_debug.map -l pokecrystal.link -o $@ $(crystal_debug_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	sh tools/sort_symfile.sh pokecrystal_debug.sym
 
 %.lz: %
 	tools/lzcomp$(EXEEXT) -- $< $@
