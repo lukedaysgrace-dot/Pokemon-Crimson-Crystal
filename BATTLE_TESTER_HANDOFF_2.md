@@ -1,7 +1,23 @@
 # Battle Tester — status handoff #2
 
-**For:** the next Claude (Fable) session, continuing at home
-**From:** the session of 2026-08-09 (work PC)
+**For:** the next Claude (Fable) session
+**From:** the session of 2026-08-09 (work PC), updated same evening
+
+> **Update, evening session:** `make test` is now **14 passed / 0 failed
+> in ~5s** — the 7-test smoke suite plus audit regressions 1a, 1b, 2b(x2),
+> 5b, 7 and 8, all verified green. The skipped Intimidate case is UNSKIPPED
+> and passing: it exposed a real engine regression —
+> `BattleCommand_StatDown`'s ability-drop marker (`.ComputerMiss`,
+> wDisguiseBusted bit 6) clobbered `hl`, so **every stat drop wrote its new
+> stage into wDisguiseBusted instead of the stat-level array** (and
+> corrupted disguise state). Fixed with a push/pop in
+> `effect_commands.asm`; `Growl lowers attack` added as the move-path
+> canary. **This legitimately changed the release ROM** — new `make`
+> baseline md5: `d9142604b53563d98c94df927c2590da`.
+> New suspicious lead: **Thrash never fatigues** (7 turns, seeded RNG,
+> SUBSTATUS_RAMPAGE stays set, no confusion for Own Tempo OR the Oblivious
+> control) — see audit test 10's skip note. Sections below updated where
+> marked; the "Open items" list is current.
 **Supersedes:** the build plan in `BATTLE_TESTER_HANDOFF.md` — that doc's
 architecture was implemented with deviations noted below. Read this one
 first; read the original for background and the full seed-test rationale.
@@ -104,34 +120,37 @@ exactly. The harness auto-resolves `ability:` to the species' legal slot
 (parsed from `abilities_for` in base stats) so entry hooks run the real
 ability; illegal pairs become post-entry `wPlayerAbility` overrides.
 
-## Open items, in priority order
+## Open items, in priority order (updated)
 
-1. **The skipped Intimidate test — possibly a real engine bug.** With
-   player Gyarados/Intimidate entering a wild battle, PC hooks show
-   `IntimidateAbility.intimidate_ok` IS reached during player entry, but
-   `wEnemyStatLevels[ATTACK]` stays 7 at the $03/$04 snapshots. Either
-   `AbilityLowerOppStat` fails at battle start vs wilds (check
-   `wFailedMessage` and whatever gen-2 "can't lower yet" condition might
-   apply), or something re-inits enemy stat levels after player entry in
-   the wild flow, or the harness reads the wrong moment. Hook
-   `AbilityLowerOppStat`/`LowerStat` and step it. Given the August audit
-   fixed two Intimidate bugs already, do not assume the harness is wrong.
-2. **Verify the audit seed tests** (`tests/10-audit-seeds.yaml` — all 14
-   written, all skipped). Unskip one at a time; the acceptance bar is the
-   original handoff's item 4: each should fail on its bug's pre-fix
-   commit and pass on main. Tests tagged "needs player2 switch flow"
-   need the second party mon path exercised first (built but unverified).
-3. **Trainer-battle support** for audit test 3 (AI switch / Natural Cure)
+1. ~~The skipped Intimidate test~~ **RESOLVED — it was a real engine bug**
+   (StatDown hl clobber, see the update note at the top). The debugging
+   recipe that cracked it, for reuse: hook the `.Hit`/`.Failed` exits of
+   `StatDownSkipProtect` with PyBoy `hook_register`, then dump
+   `register_file.HL` at `.Hit` — HL pointed at wDisguiseBusted ($C687)
+   instead of wEnemyStatLevels ($C6DC).
+2. **Thrash fatigue never triggers** — new suspicious lead, same shape as
+   the Intimidate find. Seeded RNG, 7 turns of Thrash: SUBSTATUS_RAMPAGE
+   never clears and no fatigue confusion for Own Tempo OR the Oblivious
+   control. Check the rampage turn counter (wPlayerRolloutCount-family)
+   decrement path. If real, audit test 10 unblocks after the fix.
+3. **Player2 forced-switch flow** — unlocks audit 4a/4b/5a/9. Auto mode
+   currently hangs on the "use next mon?" switch menu after a faint. Add
+   a hook (or extend DebugChoosePlayerMove's approach) so a faint in auto
+   mode auto-confirms the next party slot.
+4. **Trainer-battle support** for audit test 3 (AI switch / Natural Cure)
    — wild mons never switch. Sketch: `Script_loadtrainer`-style setup vs
    a 2-mon trainer, then override `wOTPartyMon` structs post-init.
-4. **Toxic/substatus setup** for audit test 6: the request block has no
-   substatus field; either add one (post-entry apply, like stages) or
-   poke `wPlayerSubStatus*` from Python at the $03 snapshot.
-5. **Phase 4 backfill**: port `ability_testing_checklist.csv` (~150
-   abilities of test intent) into YAML once the seed suite is green.
-6. Quality-of-life: `wEnemyGoesFirst` accessor for move-order tests
-   (audit 2a); an in-ROM "watchdog" that flips `wDebugState` to $FF on
-   obviously-stuck battles would make hangs self-diagnosing.
+5. **Toxic/substatus setup** for audit test 6: add a substatus field to
+   the request block (post-entry apply, like stages) or poke
+   `wPlayerSubStatus*` from Python at the $03 snapshot.
+6. **Acceptance pass**: for each green audit test, check out the pre-fix
+   commit for its bug, `make debug`, and confirm the test fails there
+   (original handoff's item 4 — the bar for the whole suite).
+7. **Phase 4 backfill**: port `ability_testing_checklist.csv` (~150
+   abilities of test intent) into YAML.
+8. Quality-of-life: `wEnemyGoesFirst` accessor for move-order tests
+   (audit 2a); an in-ROM watchdog that flips `wDebugState` to $FF on
+   stuck battles would make reroll-loop hangs self-diagnosing.
 
 ## How to resume at home
 
