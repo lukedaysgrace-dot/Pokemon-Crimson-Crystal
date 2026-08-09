@@ -333,6 +333,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; SALAZZLE
 	dw FlittleEggMoves ; FLITTLE
 	dw NoEggMoves2 ; ESPATHRA
+	dw FinizenEggMoves ; FINIZEN
+	dw NoEggMoves2 ; PALAFIN
 
 
 ChikoritaEggMoves:
@@ -740,4 +742,12 @@ FlittleEggMoves:
 	dw FUTURE_SIGHT
 	dw MAGICAL_LEAF
 	dw HAZE
+	dw -1 ; end
+
+FinizenEggMoves:
+	dw AQUA_JET
+	dw HAZE
+	dw MIST
+	dw FAKE_OUT
+	dw SUPER_FANG
 	dw -1 ; end
