@@ -468,6 +468,8 @@ SalanditAnimation:  INCLUDE "gfx/pokemon/salandit/anim.asm"
 SalazzleAnimation:  INCLUDE "gfx/pokemon/salazzle/anim.asm"
 FlittleAnimation:  INCLUDE "gfx/pokemon/flittle/anim.asm"
 EspathraAnimation:  INCLUDE "gfx/pokemon/espathra/anim.asm"
+FinizenAnimation:  INCLUDE "gfx/pokemon/finizen/anim.asm"
+PalafinAnimation:  INCLUDE "gfx/pokemon/palafin/anim.asm"
 GlimmoraAnimation:  INCLUDE "gfx/pokemon/glimmora/anim.asm"
 EggAnimation:        INCLUDE "gfx/pokemon/egg/anim.asm"
 BulbasaurCloneAnimation:

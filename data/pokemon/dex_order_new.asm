@@ -481,3 +481,5 @@ NewPokedexOrder:
 	dw SALAZZLE
 	dw FLITTLE
 	dw ESPATHRA
+	dw FINIZEN
+	dw PALAFIN
