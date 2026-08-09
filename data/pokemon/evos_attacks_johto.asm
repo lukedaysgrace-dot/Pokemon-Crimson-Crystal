@@ -6429,6 +6429,8 @@ EvosAttacksPointers2C::
 	dw SalazzleEvosAttacks
 	dw FlittleEvosAttacks
 	dw EspathraEvosAttacks
+	dw FinizenEvosAttacks
+	dw PalafinEvosAttacks
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE
@@ -6787,4 +6789,43 @@ EspathraEvosAttacks:
 	dbw 50, PSYCHIC_M
 	dbw 56, DAZZLING_GLEAM
 	dbw 62, PSYSTRIKE
+	db 0 ; no more level-up moves
+
+
+FinizenEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, PALAFIN
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, WATER_GUN
+	dbw 5, SUPERSONIC
+	dbw 10, FOCUS_ENERGY
+	dbw 15, AQUA_JET
+	dbw 20, CHARM
+	dbw 25, DOUBLESLAP
+	dbw 30, WHIRLPOOL
+	dbw 35, HAZE
+	dbw 40, FLIP_TURN
+	dbw 45, SURF
+	dbw 50, PLAY_ROUGH
+	db 0 ; no more level-up moves
+
+PalafinEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, TACKLE
+	dbw 1, WATER_GUN
+	dbw 1, AQUA_JET
+	dbw 1, MACH_PUNCH
+	dbw 5, SUPERSONIC
+	dbw 10, FOCUS_ENERGY
+	dbw 15, AQUA_JET
+	dbw 20, CHARM
+	dbw 25, BULK_UP
+	dbw 30, WHIRLPOOL
+	dbw 35, HAZE
+	dbw 36, DRAIN_PUNCH
+	dbw 40, FLIP_TURN
+	dbw 45, SURF
+	dbw 50, CROSS_CHOP
+	dbw 56, LIQUIDATION
+	dbw 62, CLOSE_COMBAT
 	db 0 ; no more level-up moves

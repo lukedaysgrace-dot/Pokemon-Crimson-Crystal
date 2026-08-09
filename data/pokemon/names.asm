@@ -483,3 +483,5 @@ PokemonNames::
 	db "SALAZZLE@@"
 	db "FLITTLE@@@"
 	db "ESPATHRA@@"
+	db "FINIZEN@@@"
+	db "PALAFIN@@@"

@@ -973,3 +973,7 @@ PokemonPicPointers::
 	dba FlittleBackpic
 	dba EspathraFrontpic
 	dba EspathraBackpic
+	dba FinizenFrontpic
+	dba FinizenBackpic
+	dba PalafinFrontpic
+	dba PalafinBackpic
