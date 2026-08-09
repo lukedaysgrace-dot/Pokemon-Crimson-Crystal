@@ -480,3 +480,5 @@ PokedexDataPointerTable:
 	dba SalazzlePokedexEntry
 	dba FlittlePokedexEntry
 	dba EspathraPokedexEntry
+	dba FinizenPokedexEntry
+	dba PalafinPokedexEntry

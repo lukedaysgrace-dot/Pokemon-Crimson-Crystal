@@ -468,6 +468,8 @@ SalanditAnimationIdle:  INCLUDE "gfx/pokemon/salandit/anim_idle.asm"
 SalazzleAnimationIdle:  INCLUDE "gfx/pokemon/salazzle/anim_idle.asm"
 FlittleAnimationIdle:  INCLUDE "gfx/pokemon/flittle/anim_idle.asm"
 EspathraAnimationIdle:  INCLUDE "gfx/pokemon/espathra/anim_idle.asm"
+FinizenAnimationIdle:  INCLUDE "gfx/pokemon/finizen/anim_idle.asm"
+PalafinAnimationIdle:  INCLUDE "gfx/pokemon/palafin/anim_idle.asm"
 GlimmoraAnimationIdle:  INCLUDE "gfx/pokemon/glimmora/anim_idle.asm"
 EggAnimationIdle:        INCLUDE "gfx/pokemon/egg/anim_idle.asm"
 BulbasaurCloneAnimationIdle:

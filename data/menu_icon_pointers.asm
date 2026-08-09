@@ -482,3 +482,5 @@ MenuIconPointers:
 	dba SalazzleMenuIcon
 	dba FlittleMenuIcon
 	dba EspathraMenuIcon
+	dba FinizenMenuIcon
+	dba PalafinMenuIcon
