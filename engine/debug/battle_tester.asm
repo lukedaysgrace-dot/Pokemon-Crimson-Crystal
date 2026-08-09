@@ -49,7 +49,10 @@ dbg_DVS          EQU 14 ; dw
 dbg_HPPCT        EQU 16 ; 1-100; 0 = 100
 dbg_STATUS       EQU 17 ; raw status byte
 dbg_STATLEVELS   EQU 18 ; ds 7; [0] = 0 -> no stat stage override
-dbg_SIZE         EQU 25
+dbg_SUBSTATUS    EQU 25 ; ds 5; ORed into w{Player,Enemy}SubStatus1-5
+                        ; post-entry (player1/enemy only; player2's field
+                        ; is ignored - substatus belongs to the active mon)
+dbg_SIZE         EQU 30
 
 DEBUG_WRAM_BANK EQU 2
 
@@ -213,6 +216,7 @@ DebugBattleSetup::
 	; build the player's party from the request
 	xor a
 	ld [wPartyCount], a
+	ld [wMonType], a ; PARTYMON
 	ld hl, wPartyMon1Species ; not strictly needed; TryAddMonToParty appends
 	ld de, wDebugPlayer1
 	ld b, 0 ; party slot 0
@@ -225,12 +229,34 @@ DebugBattleSetup::
 	call DebugPeek
 	or b
 	jr z, .one_mon
+	xor a
+	ld [wMonType], a
 	ld de, wDebugPlayer2
 	ld b, 1
 	call DebugBuildPartyMon
 .one_mon
 
-	; stage the wild encounter
+	; enemy2 set -> trainer battle; else stage a wild encounter
+	ld hl, wDebugEnemy2 + dbg_SPECIES
+	call DebugPeek
+	ld b, a
+	inc hl
+	call DebugPeek
+	or b
+	jr z, .wild
+	; any existing class/ID works; the read party is replaced from the
+	; request by DebugModifyOTParty (hooked after ReadTrainerParty).
+	; SCHOOLBOY: SWITCH_OFTEN AI, no items - the AI will actually use
+	; its second mon, which is the point of trainer mode.
+	ld a, SCHOOLBOY
+	ld [wOtherTrainerClass], a
+	ld a, 1
+	ld [wOtherTrainerID], a
+	ld a, BATTLETYPE_NORMAL
+	ld [wBattleType], a
+	ret
+
+.wild
 	ld hl, wDebugEnemy + dbg_SPECIES
 	call DebugPeek
 	ld e, a
@@ -300,14 +326,18 @@ DebugBuildPartyMon:
 	ld c, dbg_LEVEL
 	call DebugReqByte
 	ld [wCurPartyLevel], a
-	xor a
-	ld [wMonType], a
+	; wMonType is set by the caller: PARTYMON or OTPARTYMON
 	predef TryAddMonToParty
 
 	; stash the party struct base for slot b
 	pop bc
-	ld a, b
+	ld a, [wMonType]
+	and a
 	ld hl, wPartyMon1Species
+	jr z, .got_base
+	ld hl, wOTPartyMon1Species
+.got_base
+	ld a, b
 	call GetPartyLocation
 	ld a, l
 	ldh [hDebugPtr], a
@@ -495,6 +525,42 @@ DebugHPFromPercent:
 	or b
 	ret nz
 	ld c, 1
+	ret
+
+; ==============================================================
+; Trainer-mode OT party (hooked from InitEnemyTrainer, after
+; ReadTrainerParty and before the first enemy send-out)
+; ==============================================================
+
+DebugModifyOTParty::
+; Replace the trainer's read party with the request's enemy mons. The
+; send-out then flows through the engine's own LoadEnemyMon, so entry
+; abilities, status and items behave exactly as a real trainer's would.
+	call DebugGetState
+	cp DEBUGSTATE_INIT
+	ret nz
+	ld hl, wDebugEnemy2 + dbg_SPECIES
+	call DebugPeek
+	ld b, a
+	inc hl
+	call DebugPeek
+	or b
+	ret z ; wild-mode request that stumbled into a trainer: leave it be
+
+	xor a
+	ld [wOTPartyCount], a
+	ld a, OTPARTYMON
+	ld [wMonType], a
+	ld de, wDebugEnemy
+	ld b, 0
+	call DebugBuildPartyMon
+	ld a, OTPARTYMON
+	ld [wMonType], a
+	ld de, wDebugEnemy2
+	ld b, 1
+	call DebugBuildPartyMon
+	xor a
+	ld [wMonType], a
 	ret
 
 ; ==============================================================
@@ -771,6 +837,14 @@ DebugApplyPostEntry:
 	ld [wEnemyReflectCount], a
 .no_e_screens
 
+	; substatus masks (Mist, Toxic, Substitute...) - ORed in, like screens
+	ld hl, wDebugPlayer1 + dbg_SUBSTATUS
+	ld de, wPlayerSubStatus1
+	call DebugApplySubstatus
+	ld hl, wDebugEnemy + dbg_SUBSTATUS
+	ld de, wEnemySubStatus1
+	call DebugApplySubstatus
+
 	; ability overrides (for testing an ability on a species that can't
 	; legally have it; entry abilities will already have run as the real
 	; ability, so prefer legal slots when that matters)
@@ -786,6 +860,56 @@ DebugApplyPostEntry:
 	jr z, .no_e_abil
 	ld [wEnemyAbility], a
 .no_e_abil
+	ret
+
+DebugApplySubstatus:
+; OR 5 request bytes at hl (debug bank) into the 5 substatus bytes at de.
+	ld c, 5
+.loop
+	call DebugPeek
+	inc hl
+	ld b, a
+	ld a, [de]
+	or b
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	ret
+
+; ==============================================================
+; Auto-mode party pick (hooked from PickPartyMonInBattle)
+; ==============================================================
+
+DebugPickPartyMon::
+; Replaces the in-battle party menu in auto mode: pick the first party
+; slot that is fit to fight and not already out, without any UI. Covers
+; the post-faint forced switch, Baton Pass and U-turn. Returns nc
+; ("a choice was made"; the interactive menu's cancel path is carry).
+	ld a, [wPartyCount]
+	ld c, a
+	ld b, 0 ; slot under consideration
+.loop
+	ld a, [wCurBattleMon]
+	cp b
+	jr z, .next ; already out (or just fainted in this slot)
+	push bc
+	ld a, b
+	ld hl, wPartyMon1HP
+	call GetPartyLocation
+	ld a, [hli]
+	or [hl]
+	pop bc
+	jr nz, .found
+.next
+	inc b
+	dec c
+	jr nz, .loop
+	ld b, 0 ; no fit mon (callers should have checked); fall back to 0
+.found
+	ld a, b
+	ld [wCurPartyMon], a
+	and a
 	ret
 
 ; ==============================================================
