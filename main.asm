@@ -848,3 +848,7 @@ INCLUDE "engine/gfx/caught_ball_pals.asm"
 SECTION "Summary Screen Pals", ROMX
 
 INCLUDE "engine/gfx/summary_screen_pals.asm"
+
+IF DEF(DEBUG_BATTLE)
+INCLUDE "engine/debug/battle_tester.asm"
+ENDC
