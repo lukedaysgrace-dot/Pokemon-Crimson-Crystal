@@ -37,17 +37,27 @@
     - enemy.start_hp - enemy.hp == 13   # golden value, max roll, no crit
 
 - name: Intimidate fires on entry
-  # OPEN QUESTION (2026-08-09): IntimidateAbility.intimidate_ok is reached
-  # (verified with PC hooks) but no stage drop lands on the enemy. Either a
-  # harness gap or a real engine bug in battle-start entry Intimidate vs
-  # wild mons. See BATTLE_TESTER_HANDOFF_2.md, "Open items".
-  skip: "under investigation - see handoff"
+  # This test found a real engine bug on 2026-08-09: BattleCommand_StatDown's
+  # ability-drop marker clobbered hl, so EVERY stat drop wrote its stage into
+  # wDisguiseBusted instead of the stat-level array. Fixed in
+  # effect_commands.asm (.ComputerMiss push/pop hl).
   player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
   enemy:  { species: MACHAMP,  level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 0
   assert:
     - enemy.stat_levels[0] == 6   # enemy attack dropped one stage
+
+- name: Growl lowers attack (move-based stat drop regression)
+  # Companion to the Intimidate case: the same hl-clobber bug broke plain
+  # move-based drops through a different call (CheckSelfInflictedStatDrop
+  # turned out hl-safe, but keep this canary for the whole StatDown path).
+  player: { species: PIKACHU, level: 50, moves: [GROWL] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 6
 
 - name: Weather override applies
   player: { species: GENGAR,  level: 50, moves: [SPLASH] }
