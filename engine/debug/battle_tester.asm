@@ -1070,7 +1070,7 @@ DebugBattleTesterUI::
 	and D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON
 	jr z, .loop
 	call DebugMenuInput
-	call DebugMenuRedraw
+	call DebugMenuRedrawSoft ; no full clear: navigation must not flash
 	jr .loop
 
 .next_page
@@ -1162,7 +1162,32 @@ DebugInitDefaults:
 ; ---- menu drawing ----
 
 DebugMenuRedraw:
+; Full redraw with a screen clear: first open and page switches only.
 	call ClearTileMap
+	; fallthrough
+DebugMenuRedrawSoft:
+; Redraw without ClearTileMap. Labels and values overwrite themselves
+; in place (fixed widths), so only the cursor column and the footer can
+; hold stale tiles - clear just those. The old code cleared the whole
+; tilemap on EVERY input, which blanked the screen for a frame and made
+; navigation strobe.
+	hlcoord 0, 1
+	ld de, SCREEN_WIDTH
+	ld b, 12
+.clear_cursor_col
+	ld [hl], " "
+	add hl, de
+	dec b
+	jr nz, .clear_cursor_col
+	hlcoord 0, 14
+	ld bc, SCREEN_WIDTH * 2
+.clear_footer
+	ld a, " "
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
+	jr nz, .clear_footer
 	ld hl, wDebugMenuPage
 	call DebugPeek
 	and a
@@ -1498,23 +1523,41 @@ DebugSpeciesNameByIndex:
 
 DebugMoveNameByIndex:
 ; hl = 16-bit move index -> wStringBuffer1
+; MUST NOT rst Bankswitch: this code executes in bank $8F's $4000-7FFF,
+; so switching that region out from under the PC lands in another bank's
+; bytes (the old version did exactly that and froze the menu the moment
+; a move row had a nonzero value). Walk MoveNames with GetFarByte, which
+; does its own switch-and-restore from the home bank.
 	ld a, l
 	or h
 	jr z, .bad
 	dec hl
-	ld c, l
 	ld b, h
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(MoveNames)
-	rst Bankswitch
+	ld c, l ; bc = strings to skip
 	ld hl, MoveNames
-	call GetNthString16
+.skip_strings
+	ld a, b
+	or c
+	jr z, .copy
+.next_char
+	ld a, BANK(MoveNames)
+	call GetFarByte
+	inc hl
+	cp "@"
+	jr nz, .next_char
+	dec bc
+	jr .skip_strings
+.copy
 	ld de, wStringBuffer1
-	ld bc, MOVE_NAME_LENGTH
-	call CopyBytes
-	pop af
-	rst Bankswitch
+	ld c, MOVE_NAME_LENGTH
+.copy_char
+	ld a, BANK(MoveNames)
+	call GetFarByte
+	ld [de], a
+	inc hl
+	inc de
+	dec c
+	jr nz, .copy_char
 	ret
 .bad
 	ld a, "@"
