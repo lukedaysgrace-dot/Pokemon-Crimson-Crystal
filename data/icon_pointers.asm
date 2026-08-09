@@ -481,3 +481,5 @@ IconPointers:
 	dba SalazzleIcon
 	dba FlittleIcon
 	dba EspathraIcon
+	dba FinizenIcon
+	dba PalafinIcon
