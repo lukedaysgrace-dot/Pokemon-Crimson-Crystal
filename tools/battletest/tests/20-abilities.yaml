@@ -1,0 +1,439 @@
+# Phase 4 backfill: ability_testing_checklist.csv as executable cases.
+#
+# Scope: the HIGH-priority section plus every MEDIUM entry with a clean
+# WRAM observable. Visual-only intents (banners, sprite corruption, text
+# wording) stay manual - see the csv. Skipped with reasons at the bottom.
+#
+# Conventions: forced RNG unless a proc is under test (forced_low = every
+# chance procs), directional assertions over golden damage numbers, and
+# the species chosen for each ability holds it LEGALLY so entry hooks run.
+
+# ---- entry abilities -------------------------------------------------
+
+- name: "Ability: Trace copies the foe's ability and triggers it if entry-triggered"
+  player: { species: PORYGON2, level: 50, ability: TRACE, moves: [SPLASH] }
+  enemy:  { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.ability == 'INTIMIDATE'   # copied...
+    - enemy.stat_levels[0] == 6        # ...and the traced Intimidate fired
+
+- name: "Ability: Imposter transforms into the foe on entry"
+  player: { species: DITTO, level: 50, ability: IMPOSTER }
+  enemy:  { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - "'KARATE_CHOP' in player.moves"
+
+- name: "Ability: Neutralizing Gas suppresses the foe's entry ability"
+  player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  enemy:  { species: KOFFING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - enemy.stat_levels[0] == 7   # Intimidate never landed
+
+- name: "Ability: Sand Stream starts a sandstorm on entry"
+  player: { species: GENGAR, level: 50, moves: [SPLASH] }
+  enemy:  { species: TYRANITAR, level: 50, ability: SAND_STREAM, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - weather == 3
+
+- name: "Ability: Drought starts sun on entry"
+  player: { species: VULPIX, level: 50, ability: DROUGHT, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - weather == 2
+
+- name: "Ability: Screen Cleaner clears both sides' screens on entry"
+  # Screens are pre-set via the request, then Mr. Rime enters through the
+  # post-faint switch and must wipe them.
+  player:  { species: RATTATA, level: 5, hp: 1, moves: [SPLASH] }
+  player2: { species: MR__RIME, level: 50, ability: SCREEN_CLEANER, moves: [SPLASH] }
+  enemy:   { species: MACHAMP, level: 50, moves: [TACKLE] }
+  enemy_screens: 24   # reflect | light screen
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MR__RIME'
+    - (enemy.screens & 24) == 0
+
+# ---- absorb / immunity abilities ------------------------------------
+
+- name: "Ability: Volt Absorb heals instead of Electric damage"
+  player: { species: GENGAR, level: 50, moves: [THUNDERBOLT] }
+  enemy:  { species: JOLTEON, level: 50, ability: VOLT_ABSORB, hp: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > enemy.start_hp
+
+- name: "Ability: Water Absorb heals instead of Water damage"
+  player: { species: GENGAR, level: 50, moves: [SURF] }
+  enemy:  { species: QUAGSIRE, level: 50, ability: WATER_ABSORB, hp: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > enemy.start_hp
+
+- name: "Ability: Storm Drain absorbs Water and raises Sp.Atk"
+  player: { species: GENGAR, level: 50, moves: [SURF] }
+  enemy:  { species: CRADILY, level: 50, ability: STORM_DRAIN, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 8
+
+- name: "Ability: Lightning Rod absorbs Electric and raises Sp.Atk"
+  # Goldeen is Water - without the rod this would be super effective
+  player: { species: GENGAR, level: 50, moves: [THUNDERBOLT] }
+  enemy:  { species: GOLDEEN, level: 50, ability: LIGHTNING_ROD, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 8
+
+- name: "Ability: Motor Drive absorbs Electric and raises Speed"
+  player: { species: GENGAR, level: 50, moves: [THUNDERBOLT] }
+  enemy:  { species: ELECTIVIRE, level: 50, ability: MOTOR_DRIVE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[2] == 8
+
+- name: "Ability: Sap Sipper absorbs Grass and raises Attack"
+  player: { species: GENGAR, level: 50, moves: [VINE_WHIP] }
+  enemy:  { species: AZUMARILL, level: 50, ability: SAP_SIPPER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[0] == 8
+
+- name: "Ability: Flash Fire makes the holder Fire-immune"
+  player: { species: GENGAR, level: 50, moves: [EMBER] }
+  enemy:  { species: LITWICK, level: 50, ability: FLASH_FIRE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Ability: Dry Skin heals from Water moves"
+  player: { species: TOXICROAK, level: 50, ability: DRY_SKIN, hp: 50, moves: [SPLASH] }
+  enemy:  { species: QUAGSIRE, level: 50, moves: [SURF] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+
+- name: "Ability: Mold Breaker ignores Levitate"
+  player: { species: NIDOQUEEN, level: 50, ability: MOLD_BREAKER, moves: [EARTHQUAKE] }
+  enemy:  { species: GENGAR, level: 50, ability: LEVITATE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+# ---- contact / on-hit abilities -------------------------------------
+
+- name: "Ability: Effect Spore statuses attackers on contact"
+  player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  enemy:  { species: PARAS, level: 50, ability: EFFECT_SPORE, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.status != 0
+
+- name: "Ability: Poison Point poisons attackers on contact"
+  player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  enemy:  { species: WHIRLIPEDE, level: 50, ability: POISON_POINT, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 8) != 0
+
+- name: "Ability: Poison Touch poisons the target of the user's contact moves"
+  player: { species: TOXICROAK, level: 50, ability: POISON_TOUCH, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+
+- name: "Ability: Tangling Hair lowers the attacker's Speed on contact"
+  player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  enemy:  { species: DUGTRIO_ALOLAN, level: 50, ability: TANGLING_HAIR, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[2] == 6
+
+- name: "Ability: Stamina raises Defense when hit"
+  player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  enemy:  { species: ARCHALUDON, level: 50, ability: STAMINA, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 8
+
+- name: "Ability: Thermal Exchange raises Attack when hit by Fire (and blocks burn)"
+  player: { species: BAXCALIBUR, level: 50, ability: THERMAL_EXCHANGE, moves: [SPLASH] }
+  enemy:  { species: VULPIX, level: 50, moves: [EMBER] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 8
+    - (player.status & 16) == 0   # no burn even under forced procs
+
+- name: "Ability: Disguise blocks the first damaging hit"
+  player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
+  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Ability: Sturdy survives a would-be OHKO at 1 HP"
+  player: { species: MACHAMP, level: 100, moves: [CROSS_CHOP] }
+  enemy:  { species: LAIRON, level: 5, ability: STURDY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 1
+
+# ---- stat-drop protection and reactions ------------------------------
+
+- name: "Ability: Mirror Armor bounces stat drops back"
+  player: { species: MACHAMP, level: 50, moves: [GROWL] }
+  enemy:  { species: CORVIKNIGHT, level: 50, ability: MIRROR_ARMOR, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 7    # drop refused...
+    - player.stat_levels[0] == 6   # ...and reflected onto the user
+
+- name: "Ability: Clear Body blocks stat drops"
+  player: { species: MACHAMP, level: 50, moves: [GROWL] }
+  enemy:  { species: DREEPY, level: 50, ability: CLEAR_BODY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 7
+
+- name: "Ability: White Smoke blocks stat drops"
+  player: { species: MACHAMP, level: 50, moves: [GROWL] }
+  enemy:  { species: TORKOAL, level: 50, ability: WHITE_SMOKE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 7
+
+- name: "Ability: Hyper Cutter protects Attack but not Defense"
+  player: { species: MACHAMP, level: 50, moves: [GROWL, TAIL_WHIP] }
+  enemy:  { species: SCYTHER, level: 50, ability: HYPER_CUTTER, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - enemy.stat_levels[0] == 7   # Growl blocked
+    - enemy.stat_levels[1] == 6   # Tail Whip still works
+
+- name: "Ability: Keen Eye protects accuracy"
+  player: { species: MACHAMP, level: 50, moves: [SAND_ATTACK] }
+  enemy:  { species: SPEAROW, level: 50, ability: KEEN_EYE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[5] == 7
+
+- name: "Ability: Big Pecks protects Defense"
+  player: { species: MACHAMP, level: 50, moves: [TAIL_WHIP] }
+  enemy:  { species: PIDGEOT, level: 50, ability: BIG_PECKS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 7
+
+- name: "Ability: Competitive answers a stat drop with +2 Sp.Atk"
+  player: { species: MACHAMP, level: 50, moves: [GROWL] }
+  enemy:  { species: JOLTEON, level: 50, ability: COMPETITIVE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 6
+    - enemy.stat_levels[3] == 9
+
+- name: "Ability: Contrary inverts stat changes"
+  player: { species: MACHAMP, level: 50, moves: [GROWL] }
+  enemy:  { species: GIRAFARIG, level: 50, ability: CONTRARY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 8   # Growl RAISED it
+
+# ---- status prevention ------------------------------------------------
+
+- name: "Ability: Limber prevents paralysis"
+  player: { species: GENGAR, level: 50, moves: [THUNDER_WAVE] }
+  enemy:  { species: PERSIAN, level: 50, ability: LIMBER, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+
+- name: "Ability: Immunity prevents poison"
+  player: { species: GENGAR, level: 50, moves: [TOXIC] }
+  enemy:  { species: SNORLAX, level: 50, ability: IMMUNITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+
+- name: "Ability: Pastel Veil prevents poison"
+  player: { species: GENGAR, level: 50, moves: [TOXIC] }
+  enemy:  { species: PONYTA_GALARIAN, level: 50, ability: PASTEL_VEIL, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+
+- name: "Ability: Water Veil prevents burns"
+  player: { species: GENGAR, level: 50, moves: [WILL_O_WISP] }
+  enemy:  { species: GOLDEEN, level: 50, ability: WATER_VEIL, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+
+- name: "Ability: Vital Spirit prevents sleep"
+  player: { species: GENGAR, level: 50, moves: [SPORE] }
+  enemy:  { species: ELECTABUZZ, level: 50, ability: VITAL_SPIRIT, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 7) == 0
+
+# ---- end-of-turn / weather-linked ------------------------------------
+
+- name: "Ability: Speed Boost raises Speed each turn"
+  player: { species: WHIRLIPEDE, level: 50, ability: SPEED_BOOST, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.stat_levels[2] == 9
+
+- name: "Ability: Moxie raises Attack after a KO"
+  player: { species: DODUO, level: 50, ability: MOXIE, moves: [TACKLE] }
+  enemy:  { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.stat_levels[0] == 8
+
+- name: "Ability: Rain Dish heals the holder in rain"
+  player: { species: WARTORTLE, level: 50, ability: RAIN_DISH, hp: 50, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+
+- name: "Ability: Ice Body heals the holder in hail"
+  player: { species: BAXCALIBUR, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+
+- name: "Ability: Solar Power costs HP in sun"
+  player: { species: SUNFLORA, level: 50, ability: SOLAR_POWER, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Ability: Hydration cures status in rain"
+  player: { species: GOLDUCK, level: 50, ability: HYDRATION, status_byte: 8, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status == 0
+
+- name: "Ability: Bad Dreams hurts sleeping foes"
+  player: { species: GENGAR, level: 50, status_byte: 4, moves: [SPLASH] }
+  enemy:  { species: MESMERIA, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Ability: Magic Guard blocks poison and sandstorm chip"
+  player: { species: PONYTA_GALARIAN, level: 50, ability: MAGIC_GUARD, status_byte: 8, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.maxhp
+
+# ---- turn order -------------------------------------------------------
+
+- name: "Ability: Swift Swim doubles Speed in rain (order)"
+  player: { species: GOLDEEN, level: 50, ability: SWIFT_SWIM, moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "Ability: Swift Swim control - without rain the faster foe moves first"
+  player: { species: GOLDEEN, level: 50, ability: SWIFT_SWIM, moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 1
+
+- name: "Ability: Triage gives healing moves +3 priority"
+  player: { species: MEGANIUM, level: 50, ability: TRIAGE, hp: 50, moves: [RECOVER] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - player.hp > player.start_hp
+
+# ---- not covered here (see ability_testing_checklist.csv) -------------
+# Pressure: implemented as an entry NOTIFICATION only in this engine (no
+#   extra PP drain), so there is no WRAM observable - checklist agrees
+#   ("Entry - notification"). If the PP mechanic is ever added, assert
+#   player.pp[0] == player.start_pp[0] - 2 after a move that targets it.
+# Banners/text/sprites (Frisk, Unnerve, Pressure text, Disguise sprites):
+#   visual - Lucas's manual DEBUG menu is the tool for those.
+# Download: no legal user in the dex yet.
+# Magma Armor: its only user is Fire-type, which cannot be frozen anyway.
+# Attract/Oblivious: needs gender control via DVs; harness sets DVs $FFFF.
+# Regenerator / player-side Natural Cure: needs a voluntary player switch,
+#   which auto mode does not script yet (only Baton Pass).
+# Merciless / Serene Grace / Sheer Force / Skill Link / damage multipliers
+#   (Guts, Quick Feet stat math, Dry Skin fire +25%): need golden damage
+#   values - add them the way audit 1b/2b did, one verified number at a time.

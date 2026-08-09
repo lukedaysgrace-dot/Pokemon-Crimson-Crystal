@@ -52,18 +52,36 @@ to the species' legal slot so entry hooks fire; falls back to a post-entry
 override for illegal pairs), `ability_slot` (1/2/hidden), `item`, `moves`
 (up to 4; omit to keep the level-up learnset), `dvs` (16-bit, default
 $FFFF), `hp` (percent), `status_byte`, `stages` (`{atk: -1, spd: +2}`,
-applied after entry abilities). `player2` adds a second party mon.
+applied after entry abilities), `substatus` (list of SUBSTATUS_* names
+without the prefix, e.g. `[MIST, TOXIC]` - ORed into the active mon's
+SubStatus1-5 after entry; player1/enemy only). `player2` adds a second
+party mon. `enemy2` makes it a TRAINER battle with a 2-mon enemy party
+(vs a SCHOOLBOY shell - SWITCH_OFTEN AI, no items - so the AI will
+actually use its bench; wild-mode rules like never-switching don't apply).
 
 Test fields: `turns` (pause for assertions after N turns), `rng`
 (`forced_low` / `forced_high` / `seeded` / `off`), `rng_value`, `weather`,
+`player_screens` / `enemy_screens` (raw screens byte, ORed in post-entry),
 `move_script` (player move slot per turn, e.g. `[1, 2, 1]`), `skip`.
 
 Assertions are Python expressions over: `player` / `enemy` (`.hp`,
 `.maxhp`, `.status`, `.item`, `.ability`, `.species`, `.moves`, `.pp`,
 `.stats['attack'|'defense'|'speed'|'spclatk'|'spcldef']`, `.stat_levels`
-(7 = neutral), `.screens`, `.substatus`), plus `weather` and `turns_done`.
+(7 = neutral), `.screens`, `.substatus`), plus `weather` (0-4),
+`weather_raw` (the full wBattleWeather byte - bit 7 = Cloud Nine
+suppression), `turns_done`, and `wram('wAnySymbol')` for any byte the
+sym file knows (e.g. `wram('wEnemyGoesFirst') == 0` = player moved first,
+`wram('wPlayerRageFistHits')`).
 `player.start_hp` etc. give the pre-turn-1 snapshot (after entry
 abilities, before any move).
+
+Auto-mode notes: a fainted player mon auto-switches to the next fit party
+slot (no menu), which also covers Baton Pass and U-turn - so multi-mon
+flows run unattended. Wild enemies never flee in tester battles (Quagsire
+and everything else in the flee tables would otherwise end forced-RNG
+tests on turn 1). If a battle times out, the error names the code the ROM
+is spinning in (PC sampled and symbolized) - it is almost always one of
+the BattleRandom reroll loops; switch that test to seeded mode.
 
 ## RNG modes
 

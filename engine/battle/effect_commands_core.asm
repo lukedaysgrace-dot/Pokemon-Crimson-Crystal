@@ -31,13 +31,20 @@ BattleCheckRampage_Core:
 	jr nz, .continue_rampage
 
 	; Own Tempo prevents fatigue confusion (silently, like Safeguard)
-	push hl
 	farcall GetTrueUserAbility_b
 	ld a, b
-	pop hl
 	cp OWN_TEMPO
 	jr z, .continue_rampage
 
+	; NOTE: the callfar/farcall macros above load their TARGET ADDRESS
+	; into hl, so the SUBSTATUS3 pointer fetched at the top of this
+	; routine is long gone by here - the old "set ..., [hl]" wrote bit 7
+	; into a ROM address (an MBC register poke) and fatigue confusion
+	; never landed on ANY rampage user (found 2026-08-09 by the battle
+	; tester's Thrash probe). Re-fetch the address. de (ConfuseCount
+	; pointer - 1) is not touched by these calls and survives.
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and %00000001
