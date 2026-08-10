@@ -266,6 +266,11 @@ class Request:
 
         m.write("wDebugBattleFlags", 1)  # auto
         m.write("wDebugControl", 0)
+        m.write("wDebugSwitchBlocked", 0)
+        # Permit effect-only runs against a pre-capture debug ROM while source
+        # changes are being rebuilt. Post-battle tests require the new symbol.
+        if "wDebugResultParty1Item" in m.sym.by_name:
+            m.write("wDebugResultParty1Item", 0)
         m.write("wDebugTurnTarget", test.get("turns", 1))
         m.write("wDebugTurnsDone", 0)
         m.write("wDebugRNGModeReq", rng_mode)
@@ -278,7 +283,13 @@ class Request:
 
         script = test.get("move_script") or []
         for i in range(8):
-            m.write("wDebugMoveScript", script[i] if i < len(script) else 0, i)
+            action = script[i] if i < len(script) else 0
+            if isinstance(action, str) and action.lower().startswith("switch:"):
+                slot = int(action.split(":", 1)[1])
+                if not 1 <= slot <= 4:
+                    raise ValueError(f"switch slot must be 1..4, got {slot}")
+                action = 0x80 | (slot - 1)
+            m.write("wDebugMoveScript", action, i)
 
         m.write_bytes("wDebugPlayer1", self._side_bytes(test.get("player")))
         m.write_bytes("wDebugPlayer2", self._side_bytes(test.get("player2")))

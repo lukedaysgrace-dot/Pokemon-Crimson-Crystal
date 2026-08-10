@@ -1,0 +1,290 @@
+# Canonical ability interaction coverage that was missing from the original
+# checklist. Damage tests use paired controls so they verify the modifier
+# without baking ROM-specific stat totals into golden numbers.
+
+# ---- entry, PP, status, and move-class gates -----------------------------
+
+- name: "Ability: Drizzle starts rain on entry"
+  player: { species: POLITOED, level: 50, ability: DRIZZLE, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["weather == 1"]
+
+- name: "Ability: Snow Warning starts hail on entry"
+  player: { species: ABOMASNOW, level: 50, ability: SNOW_WARNING, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["weather == 4"]
+
+- name: "Ability: Pressure consumes two PP from a targeted move"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+- name: "Ability: Soundproof blocks damaging sound moves"
+  player: { species: MEW, level: 50, moves: [HYPER_VOICE] }
+  enemy:  { species: ELECTRODE, level: 50, ability: SOUNDPROOF, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Soundproof blocks status sound moves"
+  player: { species: MEW, level: 50, moves: [GROWL] }
+  enemy:  { species: ELECTRODE, level: 50, ability: SOUNDPROOF, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7"]
+
+- name: "Ability: Bulletproof blocks ball and bomb moves"
+  player: { species: MEW, level: 50, moves: [SHADOW_BALL] }
+  enemy:  { species: URSALUNA, level: 50, ability: BULLETPROOF, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Wind Rider blocks wind moves and raises Attack"
+  player: { species: MEW, level: 50, moves: [GUST] }
+  enemy:  { species: SNORLAX, level: 50, ability: WIND_RIDER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[0] == 8
+
+- name: "Ability: Overcoat blocks powder and spore status moves"
+  player: { species: MEW, level: 50, moves: [SPORE] }
+  enemy:  { species: SHELGON, level: 50, ability: OVERCOAT, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status == 0"]
+
+- name: "Ability: Magma Armor prevents frostbite"
+  player: { species: MEW, level: 50, moves: [ICE_BEAM] }
+  enemy:  { species: SNORLAX, level: 50, ability: MAGMA_ARMOR, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.status & 32) == 0"]
+
+- name: "Ability: Damp prevents Explosion"
+  player: { species: MEW, level: 50, moves: [EXPLOSION] }
+  enemy:  { species: PARAS, level: 50, ability: DAMP, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.hp == enemy.start_hp
+
+- name: "Ability: Inner Focus prevents flinching and preserves the move"
+  player: { species: SNORLAX, level: 50, ability: INNER_FOCUS, moves: [TACKLE] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [HEADBUTT] }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Flame Body burns a contact attacker"
+  player: { species: MACHAMP, level: 50, moves: [TACKLE] }
+  enemy:  { species: MOLTRES, level: 50, ability: FLAME_BODY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 16) != 0"]
+
+- name: "Ability: Cute Charm infatuates an opposite-gender contact attacker"
+  player: { species: NIDORAN_M, level: 50, moves: [TACKLE] }
+  enemy:  { species: NIDORAN_F, level: 50, ability: CUTE_CHARM, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.substatus[0] & 128) != 0"]
+
+- name: "Ability: Rattled gains Speed from Dark, Ghost, and Bug hits"
+  player: { species: MEW, level: 20, moves: [BITE, LICK, FURY_CUTTER] }
+  enemy:  { species: MEW, level: 100, ability: RATTLED, moves: [SPLASH] }
+  move_script: [1, 2, 3]
+  rng: forced_high
+  turns: 3
+  assert: ["enemy.stat_levels[2] == 10"]
+
+- name: "Ability: Justified raises Attack after a Dark-type hit"
+  player: { species: MEW, level: 30, moves: [BITE] }
+  enemy:  { species: LUCARIO, level: 100, ability: JUSTIFIED, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 8"]
+
+- name: "Ability: Weak Armor trades Defense for two Speed stages"
+  player: { species: MEW, level: 30, moves: [TACKLE] }
+  enemy:  { species: KABUTO, level: 100, ability: WEAK_ARMOR, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 6
+    - enemy.stat_levels[2] == 9
+
+- name: "Ability: Cursed Body disables the move that hit it"
+  player: { species: MEW, level: 30, moves: [BITE] }
+  enemy:  { species: BANETTE, level: 100, ability: CURSED_BODY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wDisabledMove') != 0
+    - wram('wPlayerDisableCount') != 0
+
+- name: "Ability: Toxic Debris adds Toxic Spikes after a physical hit"
+  player: { species: MEW, level: 30, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: TOXIC_DEBRIS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.screens & 32) != 0"]
+
+- name: "Ability: Iron Barbs damages a contact attacker"
+  player: { species: MACHAMP, level: 50, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: IRON_BARBS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Ability: Perish Body gives both battlers perish counts on contact"
+  player: { species: MACHAMP, level: 50, moves: [BITE] }
+  enemy:  { species: CURSOLA, level: 100, ability: PERISH_BODY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerPerishCount') != 0
+    - wram('wEnemyPerishCount') != 0
+
+# ---- accuracy and move order ---------------------------------------------
+
+- name: "Ability: Compound Eyes turns a near-threshold Thunder miss into a hit"
+  player: { species: GALVANTULA, level: 50, ability: COMPOUND_EYES, moves: [THUNDER] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 180
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: No Guard makes an inaccurate move hit"
+  player: { species: HYPNO, level: 50, ability: NO_GUARD, moves: [DYNAMICPUNCH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Sand Veil makes a threshold attack miss in sand"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: PHANPY, level: 50, ability: SAND_VEIL, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced
+  rng_value: 200
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Snow Cloak makes a threshold attack miss in hail"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: VULPIX_ALOLAN, level: 50, ability: SNOW_CLOAK, moves: [SPLASH] }
+  weather: hail
+  rng: forced
+  rng_value: 200
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Tangled Feet makes a threshold attack miss while confused"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 50, ability: TANGLED_FEET, substatus: [CONFUSED], moves: [SPLASH] }
+  rng: forced
+  rng_value: 200
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Wonder Skin caps status move accuracy"
+  player: { species: MEW, level: 50, moves: [GROWL] }
+  enemy:  { species: SNORLAX, level: 50, ability: WONDER_SKIN, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7"]
+
+- name: "Ability: Prankster gives status moves priority"
+  player: { species: IMPIDIMP, level: 5, ability: PRANKSTER, moves: [GROWL] }
+  enemy:  { species: MEWTWO, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.stat_levels[0] == 6
+
+- name: "Ability: Armor Tail blocks opposing priority moves"
+  player: { species: MEW, level: 50, moves: [QUICK_ATTACK] }
+  enemy:  { species: FARIGIRAF, level: 50, ability: ARMOR_TAIL, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Queenly Majesty blocks opposing priority moves"
+  player: { species: MEW, level: 50, moves: [QUICK_ATTACK] }
+  enemy:  { species: TSAREENA, level: 50, ability: QUEENLY_MAJESTY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Ability: Quick Feet reverses turn order while statused"
+  player: { species: URSARING, level: 50, ability: QUICK_FEET, status_byte: 8, moves: [TACKLE] }
+  enemy:  { species: URSARING, level: 50, ability: GUTS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Ability: Chlorophyll reverses turn order in sun"
+  player: { species: SNORLAX, level: 100, ability: CHLOROPHYLL, moves: [TACKLE] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Ability: Sand Rush reverses turn order in sand"
+  player: { species: SNORLAX, level: 100, ability: SAND_RUSH, moves: [TACKLE] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Ability: Slush Rush reverses turn order in hail"
+  player: { species: SNORLAX, level: 100, ability: SLUSH_RUSH, moves: [TACKLE] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+# ---- critical-hit rules --------------------------------------------------
+
+- name: "Ability: Merciless guarantees a critical hit on poisoned targets"
+  player: { species: SNORLAX, level: 50, ability: MERCILESS, moves: [TACKLE] }
+  enemy:  { species: MEWTWO, level: 100, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wCriticalHit') != 0"]
+
+- name: "Ability: Battle Armor blocks Merciless critical hits"
+  player: { species: MEW, level: 50, ability: MERCILESS, moves: [TACKLE] }
+  enemy:  { species: ANORITH, level: 100, ability: BATTLE_ARMOR, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wCriticalHit') == 0"]
+
+- name: "Ability: Shell Armor blocks Merciless critical hits"
+  player: { species: MEW, level: 50, ability: MERCILESS, moves: [TACKLE] }
+  enemy:  { species: CLOYSTER, level: 100, ability: SHELL_ARMOR, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wCriticalHit') == 0"]
+
+- name: "Ability: Anger Point maximizes Attack after a critical hit"
+  player: { species: SNORLAX, level: 30, ability: MERCILESS, moves: [TACKLE] }
+  enemy:  { species: MEWTWO, level: 100, ability: ANGER_POINT, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 13"]
