@@ -673,6 +673,7 @@ IF DEF(DEBUG_BATTLE)
 	and a
 	jr z, .no_debug_auto
 	farcall DebugChoosePlayerMove
+	jp c, .reset_rage
 	jp .encored
 .no_debug_auto
 ENDC
