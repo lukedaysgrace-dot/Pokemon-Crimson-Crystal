@@ -122,7 +122,11 @@ TinTower1F_MapScripts:
 	applymovement PLAYER, TinTowerPlayerMovement2
 	applymovement TINTOWER1F_SUICUNE, TinTowerSuicuneMovement
 	cry ENTEI
-	pause 20
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
 	loadwildmon ENTEI, 40
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
