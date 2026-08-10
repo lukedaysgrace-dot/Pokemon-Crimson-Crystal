@@ -4643,12 +4643,18 @@ CheckSelfInflictedStatDrop:
 	ld a, [wPreStatScopeActive]
 	and a
 	jr z, .not_self
+	push bc
 	ldh a, [hBattleTurn]
 	ld b, a
 	ld a, [wPreStatTurn]
 	cp b
-	jr z, .not_self
+	jr z, .same_turn
 	ld a, [wPreStatMoveEffect]
+	pop bc
+	jr .IsSelfDropEffect
+.same_turn
+	pop bc
+	jr .not_self
 .IsSelfDropEffect
 	cp EFFECT_CLOSE_COMBAT
 	ret z
