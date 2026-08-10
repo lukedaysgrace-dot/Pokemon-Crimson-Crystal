@@ -48,7 +48,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test
+.PHONY: all clean tidy tools debug test test-all
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -59,6 +59,9 @@ debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc
 	python3 tools/battletest/runner.py
+
+test-all: pokecrystal_debug.gbc
+	python3 tools/battletest/runner.py --all-moves --all-effects
 
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
