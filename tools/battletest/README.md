@@ -9,6 +9,7 @@ this directory drives it headlessly with PyBoy and asserts on WRAM.
 ```bash
 make debug          # build pokecrystal_debug.gbc (release ROM untouched)
 make test           # run every YAML case in tools/battletest/tests/
+make test-all       # YAML assertions + every effect + execute every move
 python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
@@ -17,6 +18,12 @@ Requires: `pip install pyboy pyyaml` — **with the MBC30 patch** (see below).
 First run bootstraps a fresh save into the DEBUG start-menu entry
 (~1 minute) and caches it as a save state in `fixtures/`, keyed on the ROM
 hash. Every test after that costs ~0.4s.
+
+`make test-all` adds a generated smoke battle for every real move constant and
+a behavioral scenario for every distinct `EFFECT_*` routine. The former catches
+conversion-table gaps, rejected requests, crashes, and hangs; the latter and
+the YAML cases assert damage, status, stat stages, switching, weather, priority,
+post-battle effects, and move/ability interactions.
 
 ## PyBoy MBC30 patch (required)
 
@@ -63,6 +70,8 @@ Test fields: `turns` (pause for assertions after N turns), `rng`
 (`forced_low` / `forced_high` / `seeded` / `off`), `rng_value`, `weather`,
 `player_screens` / `enemy_screens` (raw screens byte, ORed in post-entry),
 `move_script` (player move slot per turn, e.g. `[1, 2, 1]`), `skip`.
+Use `switch:N` in that list for a voluntary switch to one-based party slot
+N (for example, `["switch:2"]`); normal trapping and switch-out hooks run.
 
 Assertions are Python expressions over: `player` / `enemy` (`.hp`,
 `.maxhp`, `.status`, `.item`, `.ability`, `.species`, `.moves`, `.pp`,
@@ -71,9 +80,16 @@ Assertions are Python expressions over: `player` / `enemy` (`.hp`,
 `weather_raw` (the full wBattleWeather byte - bit 7 = Cloud Nine
 suppression), `turns_done`, and `wram('wAnySymbol')` for any byte the
 sym file knows (e.g. `wram('wEnemyGoesFirst') == 0` = player moved first,
-`wram('wPlayerRageFistHits')`).
+`wram('wPlayerRageFistHits')`). `wram16('wAnyBigEndianWord')` reads a
+two-byte battle or party value such as `wPartyMon1HP`.
 `player.start_hp` etc. give the pre-turn-1 snapshot (after entry
 abilities, before any move).
+
+For paired control cases, give an earlier case an `id:` and read its retained
+result with `result('id')`. For example, an ability damage case can assert
+`enemy.start_hp - enemy.hp > result('control')['enemy']['damage']`. Retained
+side data includes `damage`, `healing`, HP, status, item, ability, species,
+moves, PP, stats, stat levels, screens, and substatus.
 
 Auto-mode notes: a fainted player mon auto-switches to the next fit party
 slot (no menu), which also covers Baton Pass and U-turn - so multi-mon

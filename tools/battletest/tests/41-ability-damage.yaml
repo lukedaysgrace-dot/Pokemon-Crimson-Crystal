@@ -1,0 +1,478 @@
+# Paired-control tests for ability damage modifiers. Each control is retained
+# by id, then the ability case runs with identical species, levels, move,
+# target, and deterministic RNG.
+
+- name: "Huge Power control damage"
+  id: huge_power_control
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Huge Power doubles physical power"
+  player: { species: SNORLAX, level: 50, ability: HUGE_POWER, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('huge_power_control')['enemy']['damage']"]
+
+- name: "Thick Fat control damage"
+  id: thick_fat_control
+  player: { species: MEW, level: 100, moves: [FLAMETHROWER] }
+  enemy: { species: SNORLAX, level: 50, ability_slot: 2, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.ability == 'IMMUNITY'"]
+- name: "Ability: Thick Fat halves Fire damage"
+  player: { species: MEW, level: 100, moves: [FLAMETHROWER] }
+  enemy: { species: SNORLAX, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('thick_fat_control')['enemy']['damage']"]
+
+- name: "Hustle control damage"
+  id: hustle_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Hustle raises physical damage"
+  player: { species: MEW, level: 50, ability: HUSTLE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('hustle_control')['enemy']['damage']"]
+
+- name: "Marvel Scale control damage"
+  id: marvel_scale_control
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, status_byte: 64, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Marvel Scale reduces physical damage while statused"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: MARVEL_SCALE, status_byte: 64, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('marvel_scale_control')['enemy']['damage']"]
+
+- name: "Overgrow control damage"
+  id: overgrow_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, hp: 30, moves: [VINE_WHIP] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Overgrow boosts Grass moves in a pinch"
+  player: { species: MEW, level: 50, ability: OVERGROW, hp: 30, moves: [VINE_WHIP] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('overgrow_control')['enemy']['damage']"]
+
+- name: "Blaze control damage"
+  id: blaze_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, hp: 30, moves: [EMBER] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Blaze boosts Fire moves in a pinch"
+  player: { species: MEW, level: 50, ability: BLAZE, hp: 30, moves: [EMBER] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('blaze_control')['enemy']['damage']"]
+
+- name: "Torrent control damage"
+  id: torrent_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, hp: 30, moves: [WATER_GUN] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Torrent boosts Water moves in a pinch"
+  player: { species: MEW, level: 50, ability: TORRENT, hp: 30, moves: [WATER_GUN] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('torrent_control')['enemy']['damage']"]
+
+- name: "Swarm control damage"
+  id: swarm_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, hp: 30, moves: [FURY_CUTTER] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Swarm boosts Bug moves in a pinch"
+  player: { species: MEW, level: 50, ability: SWARM, hp: 30, moves: [FURY_CUTTER] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('swarm_control')['enemy']['damage']"]
+
+- name: "Rivalry control damage"
+  id: rivalry_control
+  player: { species: NIDORAN_M, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: NIDORAN_M, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Rivalry boosts damage against the same gender"
+  player: { species: NIDORAN_M, level: 50, ability: RIVALRY, moves: [TACKLE] }
+  enemy: { species: NIDORAN_M, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('rivalry_control')['enemy']['damage']"]
+
+- name: "Iron Fist control damage"
+  id: iron_fist_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FIRE_PUNCH] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Iron Fist boosts punching moves"
+  player: { species: MEW, level: 50, ability: IRON_FIST, moves: [FIRE_PUNCH] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('iron_fist_control')['enemy']['damage']"]
+
+- name: "Adaptability control damage"
+  id: adaptability_control
+  player: { species: EEVEE, level: 100, ability_slot: hidden, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'CLOUD_NINE'"]
+- name: "Ability: Adaptability strengthens same-type attacks"
+  player: { species: EEVEE, level: 100, ability: ADAPTABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('adaptability_control')['enemy']['damage']"]
+
+- name: "Skill Link control damage"
+  id: skill_link_control
+  player: { species: CLOYSTER, level: 50, ability_slot: 2, moves: [ICICLE_SPEAR] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Skill Link forces maximum multi-hit damage"
+  player: { species: CLOYSTER, level: 50, ability: SKILL_LINK, moves: [ICICLE_SPEAR] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('skill_link_control')['enemy']['damage']"]
+
+- name: "Technician control damage"
+  id: technician_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Technician boosts moves at 60 power or below"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('technician_control')['enemy']['damage']"]
+
+- name: "Tinted Lens control damage"
+  id: tinted_lens_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [VINE_WHIP] }
+  enemy: { species: CHARIZARD, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Tinted Lens boosts resisted attacks"
+  player: { species: MEW, level: 50, ability: TINTED_LENS, moves: [VINE_WHIP] }
+  enemy: { species: CHARIZARD, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('tinted_lens_control')['enemy']['damage']"]
+
+- name: "Filter control damage"
+  id: filter_control
+  player: { species: MEW, level: 50, moves: [BRICK_BREAK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Filter reduces super-effective damage"
+  player: { species: MEW, level: 50, moves: [BRICK_BREAK] }
+  enemy: { species: SNORLAX, level: 100, ability: FILTER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('filter_control')['enemy']['damage']"]
+
+- name: "Solid Rock control damage"
+  id: solid_rock_control
+  player: { species: MEW, level: 50, moves: [BRICK_BREAK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Solid Rock reduces super-effective damage"
+  player: { species: MEW, level: 50, moves: [BRICK_BREAK] }
+  enemy: { species: SNORLAX, level: 100, ability: SOLID_ROCK, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('solid_rock_control')['enemy']['damage']"]
+
+- name: "Ability: Scrappy lets Normal moves hit Ghosts"
+  player: { species: MEW, level: 50, ability: SCRAPPY, moves: [TACKLE] }
+  enemy: { species: GENGAR, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Mind's Eye lets Normal moves hit Ghosts"
+  player: { species: MEW, level: 50, ability: MINDS_EYE, moves: [TACKLE] }
+  enemy: { species: GENGAR, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Reckless control damage"
+  id: reckless_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAKE_DOWN] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Reckless boosts recoil moves"
+  player: { species: MEW, level: 50, ability: RECKLESS, moves: [TAKE_DOWN] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('reckless_control')['enemy']['damage']"]
+
+- name: "Sheer Force control damage"
+  id: sheer_force_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SLUDGE_BOMB] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+- name: "Ability: Sheer Force boosts damage and suppresses the secondary"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [SLUDGE_BOMB] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('sheer_force_control')['enemy']['damage']
+    - enemy.status == 0
+
+- name: "Multiscale control damage"
+  id: multiscale_control
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: LUGIA, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Multiscale halves damage at full HP"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: LUGIA, level: 100, ability: MULTISCALE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('multiscale_control')['enemy']['damage']"]
+
+- name: "Analytic control damage"
+  id: analytic_control
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: MEWTWO, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Analytic boosts damage when moving last"
+  player: { species: SNORLAX, level: 50, ability: ANALYTIC, moves: [TACKLE] }
+  enemy: { species: MEWTWO, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('analytic_control')['enemy']['damage']"]
+
+- name: "Sand Force control damage"
+  id: sand_force_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ROCK_SLIDE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+- name: "Ability: Sand Force boosts Rock moves in sand"
+  player: { species: MEW, level: 50, ability: SAND_FORCE, moves: [ROCK_SLIDE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('sand_force_control')['enemy']['damage']"]
+
+- name: "Fur Coat control damage"
+  id: fur_coat_control
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Fur Coat halves physical damage"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: FUR_COAT, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('fur_coat_control')['enemy']['damage']"]
+
+- name: "Mega Launcher control damage"
+  id: mega_launcher_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [AURA_SPHERE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Mega Launcher boosts aura and pulse moves"
+  player: { species: MEW, level: 50, ability: MEGA_LAUNCHER, moves: [AURA_SPHERE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('mega_launcher_control')['enemy']['damage']"]
+
+- name: "Tough Claws control damage"
+  id: tough_claws_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Tough Claws boosts contact moves"
+  player: { species: MEW, level: 50, ability: TOUGH_CLAWS, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('tough_claws_control')['enemy']['damage']"]
+
+- name: "Pixilate control damage"
+  id: pixilate_control
+  player: { species: TOGEPI, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Pixilate converts and boosts Normal moves"
+  player: { species: TOGEPI, level: 50, ability: PIXILATE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('pixilate_control')['enemy']['damage']"]
+
+- name: "Galvanize control damage"
+  id: galvanize_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Galvanize converts and boosts Normal moves"
+  player: { species: MEW, level: 50, ability: GALVANIZE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('galvanize_control')['enemy']['damage']"]
+
+- name: "Aerilate control damage"
+  id: aerilate_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Aerilate converts and boosts Normal moves"
+  player: { species: MEW, level: 50, ability: AERILATE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('aerilate_control')['enemy']['damage']"]
+
+- name: "Parental Bond control damage"
+  id: parental_bond_control
+  player: { species: KANGASKHAN, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Parental Bond adds a weaker second hit"
+  player: { species: KANGASKHAN, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('parental_bond_control')['enemy']['damage']"]
+
+- name: "Fluffy control damage"
+  id: fluffy_control
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Fluffy halves contact damage"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: FLUFFY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('fluffy_control')['enemy']['damage']"]
+
+- name: "Steely Spirit control damage"
+  id: steely_spirit_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [METAL_CLAW] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Steely Spirit boosts Steel moves"
+  player: { species: MEW, level: 50, ability: STEELY_SPIRIT, moves: [METAL_CLAW] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('steely_spirit_control')['enemy']['damage']"]
+
+- name: "Sharpness control damage"
+  id: sharpness_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SLASH] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Sharpness boosts slicing moves"
+  player: { species: MEW, level: 50, ability: SHARPNESS, moves: [SLASH] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('sharpness_control')['enemy']['damage']"]
+
+- name: "Strong Jaw control damage"
+  id: strong_jaw_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [BITE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Ability: Strong Jaw boosts biting moves"
+  player: { species: MEW, level: 50, ability: STRONG_JAW, moves: [BITE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('strong_jaw_control')['enemy']['damage']"]
+
+- name: "Supreme Overlord control damage after one ally faints"
+  id: supreme_overlord_control
+  player: { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  player2: { species: KINGAMBIT, level: 50, ability_slot: 1, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [TACKLE] }
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+- name: "Ability: Supreme Overlord gains power for a fainted ally"
+  player: { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  player2: { species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [TACKLE] }
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  assert: ["enemy.start_hp - enemy.hp > result('supreme_overlord_control')['enemy']['damage']"]
+
+- name: "Ability: Super Luck raises a base-stage roll into a critical hit"
+  player: { species: SNORLAX, level: 50, ability: SUPER_LUCK, moves: [TACKLE] }
+  enemy: { species: MEWTWO, level: 100, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wCriticalHit') != 0"]
+
+- name: "Sniper control critical damage"
+  id: sniper_control
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [FOCUS_ENERGY, SLASH] }
+  enemy: { species: MEWTWO, level: 100, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_low
+  turns: 2
+- name: "Ability: Sniper increases critical-hit damage"
+  player: { species: SNORLAX, level: 50, ability: SNIPER, moves: [FOCUS_ENERGY, SLASH] }
+  enemy: { species: MEWTWO, level: 100, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_low
+  turns: 2
+  assert: ["enemy.start_hp - enemy.hp > result('sniper_control')['enemy']['damage']"]
