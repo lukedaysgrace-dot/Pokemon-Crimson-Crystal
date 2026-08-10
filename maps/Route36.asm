@@ -38,9 +38,8 @@ Route36SuicuneScript:
 	pause 15
 	turnobject PLAYER, UP
 	cry ENTEI
+	playsound SFX_EMBER
 	earthquake 50
-	waitsfx
-	playsound SFX_STRENGTH
 	earthquake 40
 	waitsfx
 	playsound SFX_WARP_FROM
