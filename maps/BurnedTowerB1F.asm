@@ -51,6 +51,11 @@ ReleaseTheBeasts:
 	disappear BURNEDTOWERB1F_ENTEI2
 	pause 15
 	cry ENTEI
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
 	turnobject PLAYER, LEFT
@@ -72,7 +77,11 @@ ReleaseTheBeasts:
 	turnobject PLAYER, UP
 	pause 20
 	cry ENTEI
-	pause 30
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
 	playsound SFX_WARP_FROM
 	applymovement BURNEDTOWERB1F_ENTEI1, BurnedTowerSuicuneMovement3
 	turnobject PLAYER, DOWN
