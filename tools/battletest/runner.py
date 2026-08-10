@@ -3,7 +3,9 @@
 
 Usage:
     python3 tools/battletest/runner.py [test-file-or-dir ...] [-k filter]
+    python3 tools/battletest/runner.py --all-moves
     make test
+    make test-all
 
 Boots pokecrystal_debug.gbc headless, walks a fresh save into the start
 menu's DEBUG entry once (cached as a save state keyed on the ROM hash),
@@ -12,8 +14,10 @@ ROM run the battle, read WRAM at the assertion point, evaluate.
 """
 
 import argparse
+from collections import Counter
 import hashlib
 import io
+import re
 import sys
 import time
 from pathlib import Path
@@ -25,6 +29,8 @@ from pyboy import PyBoy
 
 from symbols import Symbols, Constants, STATE_MENU, STATE_READY, STATE_WAIT, STATE_DONE, STATE_ERROR
 from state import Battle, Request
+from move_sweep import generate_move_smoke_tests
+from effect_sweep import generate_effect_semantic_tests
 
 ROOT = Path(__file__).resolve().parents[2]
 ROM = ROOT / "pokecrystal_debug.gbc"
@@ -151,7 +157,7 @@ class Harness:
             frames += 4
         return None  # timed out
 
-    def where(self, samples=6):
+    def where(self, samples=120):
         """Sample the PC a few times and symbolize it - a timed-out battle
         is almost always spinning in a BattleRandom reroll loop, and this
         names it (see landmine 2 in BATTLE_TESTER_HANDOFF_2.md)."""
@@ -161,13 +167,31 @@ class Harness:
             bank = self.battle.mem.read("hROMBank") if pc >= 0x4000 else 0
             seen.append(self.sym.nearest(bank, pc))
             self.tick(3)
-        # most common location first
-        return max(set(seen), key=seen.count)
+        # The main loop spends most samples in sound/vblank work. Return a
+        # short distribution so the less-frequent animation/battle routine is
+        # still visible when diagnosing a timeout.
+        return ", ".join(
+            f"{name} ({count})" for name, count in Counter(seen).most_common(8))
+
+    def animation_state(self):
+        """Compact WRAM state for animation timeouts."""
+        m = self.battle.mem
+        address = m.read_bytes("wBattleAnimAddress", 2)
+        return {
+            "flags": m.read("wBattleAnimFlags"),
+            "delay": m.read("wBattleAnimDelay"),
+            "address": f"{address[1]:02x}:{address[0]:02x}",
+            "byte": m.read("wBattleAnimByte"),
+            "bg": list(m.read_bytes("wActiveBGEffects", 5)),
+        }
 
     def screenshot(self, name):
         FAILDIR.mkdir(exist_ok=True)
         img = self.pb.screen.image
-        p = FAILDIR / f"{name}.png"
+        # Keep failure artifacts portable across Windows/WSL (generated test
+        # names include a colon between the move id and name).
+        safe_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", name).strip("_")
+        p = FAILDIR / f"{safe_name}.png"
         img.save(p)
         return p
 
@@ -175,9 +199,10 @@ class Harness:
 # ---- assertion evaluation ----
 
 class AssertionContext:
-    def __init__(self, battle, snapshot=None):
+    def __init__(self, battle, snapshot=None, results=None):
         self.battle = battle
         self.snapshot = snapshot or {}
+        self.results = results or {}
 
     def env(self):
         b = self.battle
@@ -188,6 +213,9 @@ class AssertionContext:
             "weather_raw": b.mem.read("wBattleWeather"),
             "turns_done": b.turns_done,
             "wram": lambda name, offset=0: b.mem.read(name, offset),
+            "wram16": lambda name, offset=0: b.mem.read_u16_be(name, offset),
+            "item_id": b.con.item_id,
+            "result": lambda name: self.results[name],
             "abs": abs, "min": min, "max": max,
         }
 
@@ -214,7 +242,37 @@ def snapshot_side(side):
     }
 
 
-def load_tests(paths, keyword=None):
+def result_side(side, start):
+    """Plain values retained for later paired-control assertions."""
+    start = start or {}
+    return {
+        "hp": side.hp,
+        "maxhp": side.maxhp,
+        "damage": max(0, start.get("hp", side.hp) - side.hp),
+        "healing": max(0, side.hp - start.get("hp", side.hp)),
+        "status": side.status,
+        "item": side.item,
+        "ability": side.ability,
+        "species": side.species,
+        "moves": side.moves,
+        "pp": side.pp,
+        "stats": side.stats,
+        "stat_levels": side.stat_levels,
+        "screens": side.screens,
+        "substatus": side.substatus,
+    }
+
+
+def capture_result(battle, snapshot):
+    return {
+        "player": result_side(battle.player, snapshot.get("player")),
+        "enemy": result_side(battle.enemy, snapshot.get("enemy")),
+        "weather": battle.weather,
+        "turns_done": battle.turns_done,
+    }
+
+
+def load_tests(paths, keyword=None, all_moves=False, all_effects=False):
     files = []
     default_dir = Path(__file__).resolve().parent / "tests"
     if not paths:
@@ -231,6 +289,10 @@ def load_tests(paths, keyword=None):
         for t in data:
             t["_file"] = f.name
             tests.append(t)
+    if all_moves:
+        tests.extend(generate_move_smoke_tests())
+    if all_effects:
+        tests.extend(generate_effect_semantic_tests())
     if keyword:
         tests = [t for t in tests if keyword.lower() in t.get("name", "").lower()]
     return tests
@@ -241,9 +303,13 @@ def main():
     ap.add_argument("paths", nargs="*")
     ap.add_argument("-k", dest="keyword", help="only tests whose name matches")
     ap.add_argument("-v", dest="verbose", action="store_true")
+    ap.add_argument("--all-moves", action="store_true",
+                    help="also execute one generated smoke battle per move")
+    ap.add_argument("--all-effects", action="store_true",
+                    help="also assert one generated scenario per move effect")
     args = ap.parse_args()
 
-    tests = load_tests(args.paths, args.keyword)
+    tests = load_tests(args.paths, args.keyword, args.all_moves, args.all_effects)
     if not tests:
         sys.exit("no tests found")
 
@@ -253,6 +319,7 @@ def main():
     print(f"fixture ready in {time.time()-t0:.1f}s; running {len(tests)} tests")
 
     passed = failed = errored = skipped = 0
+    results = {}
     for test in tests:
         name = test.get("name", "<unnamed>")
         if test.get("skip"):
@@ -300,11 +367,15 @@ def main():
                 st = h.run_battle(test)
 
             if st is None:
-                raise RuntimeError(f"battle timed out (stuck at {h.where()})")
+                raise RuntimeError(
+                    f"battle timed out (stuck at {h.where()}; "
+                    f"animation={h.animation_state()})")
             if st == STATE_ERROR:
                 raise RuntimeError("ROM rejected the request")
 
-            ctx = AssertionContext(h.battle, snapshot).env()
+            ctx = AssertionContext(h.battle, snapshot, results).env()
+            if "id" in test:
+                results[test["id"]] = capture_result(h.battle, snapshot)
             failures = []
             for expr in test.get("assert", []):
                 try:
@@ -325,6 +396,13 @@ def main():
                           ("player.maxhp", ctx["player"].maxhp),
                           ("enemy.hp", ctx["enemy"].hp),
                           ("enemy.maxhp", ctx["enemy"].maxhp),
+                          ("player.pp", ctx["player"].pp),
+                          ("enemy.pp", ctx["enemy"].pp),
+                          ("player.stages", ctx["player"].stat_levels),
+                          ("enemy.stages", ctx["enemy"].stat_levels),
+                          ("player.screens", ctx["player"].screens),
+                          ("enemy.screens", ctx["enemy"].screens),
+                          ("critical", h.battle.mem.read("wCriticalHit")),
                           ("player.ability", ctx["player"].ability),
                           ("enemy.ability", ctx["enemy"].ability),
                           ("weather", ctx["weather"]))}

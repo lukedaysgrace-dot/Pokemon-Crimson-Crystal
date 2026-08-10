@@ -444,6 +444,13 @@ CloudNineAbility:
 PressureAbility:
 	ld hl, NotifyPressureText
 	jr NotificationAbilities
+
+OpponentHasPressure::
+; Return z if the move target has Pressure. Pressure is not an ignorable
+; defensive ability, so Mold Breaker does not bypass its extra PP cost.
+	call GetOpponentAbility
+	cp PRESSURE
+	ret
 MoldBreakerAbility:
 	ld hl, NotifyMoldBreakerText
 	jr NotificationAbilities
@@ -2757,9 +2764,9 @@ AbilityAccuracyMods::
 ; b = hit chance (0-255, -1 = never miss). Modify per abilities.
 	; Priority immunities and status Soundproof/Wind Rider are handled by
 	; AbilityPreHitTargetBlock before checkhit's unconditional-hit exits.
-	ld a, b
-	cp -1
-	ret z
+	; True always-hit effects, Lock-On, X Accuracy, and weather guarantees
+	; have already returned in the caller. Here $ff can be an ordinary 100%
+	; move, which evasion and accuracy abilities must still modify.
 	; No Guard on either side: always hits
 	call GetTrueUserAbility
 	cp NO_GUARD
@@ -3342,6 +3349,8 @@ RunContactAbilitiesHook::
 	jr z, .thermal_exchange
 	cp JUSTIFIED
 	jr z, .justified
+	cp RATTLED
+	jr z, .rattled
 	cp WEAK_ARMOR
 	jp z, .weak_armor
 	cp BERSERK
@@ -3396,6 +3405,20 @@ RunContactAbilitiesHook::
 	cp DARK
 	jr nz, .contact
 	ld b, ATTACK
+	jr .on_hit_stat_up
+.rattled
+	; Dark-, Ghost-, and Bug-type hits raise Speed. Intimidate's separate
+	; Rattled trigger remains in IntimidateAbility above.
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp DARK
+	jr z, .rattled_raise
+	cp GHOST
+	jr z, .rattled_raise
+	cp BUG
+	jr nz, .contact
+.rattled_raise
+	ld b, SPEED
 .on_hit_stat_up
 	call SwitchTurn
 	call BeginAbility
