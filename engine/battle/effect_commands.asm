@@ -1080,6 +1080,18 @@ BattleCommand_DoTurn:
 	and PP_MASK
 	jr z, .out_of_pp
 	dec [hl]
+	; Pressure makes moves targeting its holder cost one additional PP.
+	; Apply this to both the live battler PP and the backing party copy:
+	; .consume_pp intentionally runs once for each of those structures.
+	push hl
+	farcall OpponentHasPressure
+	pop hl
+	jr nz, .pressure_done
+	ld a, [hl]
+	and PP_MASK
+	jr z, .pressure_done
+	dec [hl]
+.pressure_done
 	ld b, 0
 	ret
 
@@ -2572,8 +2584,8 @@ BattleCommand_CriticalText:
 	ld l, a
 	call StdBattleTextbox
 
-	xor a
-	ld [wCriticalHit], a
+	; Keep the result alive through post-damage ability processing (notably
+	; Anger Point). BattleCommand_Critical clears it before the next hit.
 
 .wait
 	ld c, 20
@@ -3909,6 +3921,11 @@ CheckIfTargetIsPoisonType:
 	ret z
 	dec b
 	jr nz, .type_loop
+	; `dec b` leaves Z set after the second nonmatching type. Callers use Z
+	; to mean "Poison/Steel immune", so explicitly return NZ for a valid
+	; poison target instead of accidentally making every dual-type check
+	; look immune.
+	or 1
 	ret
 
 PoisonOpponent:
@@ -4618,6 +4635,21 @@ CheckSelfInflictedStatDrop:
 ; the 25% AI miss roll and the substitute check.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	call .IsSelfDropEffect
+	ret z
+	; `switchturn` makes BATTLE_VARS_MOVE_EFFECT point at the other
+	; battler's move. Recover the originating effect saved by `savemiss`,
+	; but only while that scope is active and the turn has actually flipped.
+	ld a, [wPreStatScopeActive]
+	and a
+	jr z, .not_self
+	ldh a, [hBattleTurn]
+	ld b, a
+	ld a, [wPreStatTurn]
+	cp b
+	jr z, .not_self
+	ld a, [wPreStatMoveEffect]
+.IsSelfDropEffect
 	cp EFFECT_CLOSE_COMBAT
 	ret z
 	cp EFFECT_DRACO_METEOR
@@ -4631,6 +4663,9 @@ CheckSelfInflictedStatDrop:
 	cp EFFECT_HAMMER_ARM
 	ret z
 	cp EFFECT_SHELL_SMASH
+	ret
+.not_self
+	or 1
 	ret
 
 CheckMist:
@@ -4842,6 +4877,13 @@ BattleCommand_SaveMiss:
 ; afterward without this snapshot can turn a real miss into a false hit.
 	ld a, [wAttackMissed]
 	ld [wPreStatAttackMiss], a
+	ldh a, [hBattleTurn]
+	ld [wPreStatTurn], a
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld [wPreStatMoveEffect], a
+	ld a, 1
+	ld [wPreStatScopeActive], a
 	ret
 
 BattleCommand_RestoreMiss:
@@ -4852,6 +4894,7 @@ BattleCommand_RestoreMiss:
 	ld [wAttackMissed], a
 	xor a
 	ld [wEffectFailed], a
+	ld [wPreStatScopeActive], a
 	ret
 
 LowerStat:
@@ -6382,7 +6425,7 @@ BattleCommand_ArenaTrap:
 
 ; Don't trap if the opponent is already trapped.
 
-	ld a, BATTLE_VARS_SUBSTATUS5
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_CANT_RUN, [hl]
 	jr nz, .failed

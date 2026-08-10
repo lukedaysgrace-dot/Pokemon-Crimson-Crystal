@@ -1028,36 +1028,23 @@ BattleAnim_ArmorCannon_CC:
 ; target - devastating, but its defenses go with them.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_FIRE
 	anim_3gfx ANIM_GFX_FIRE, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION
-	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
 	anim_sound 0, 0, SFX_EMBER
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $0
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $20
 	anim_wait 24
-	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
 	anim_clearobjs
-	; its own armor shears off and fires
-	anim_sound 6, 2, SFX_EGG_BOMB
+	; Its own armor shears off and fires. Keep this as a single bounded object
+	; sequence: the former fade + six projectiles + flash + shake composition
+	; could deadlock VBlank before the first explosion finished.
 	anim_obj ANIM_OBJ_SHELL_SMASH_DEBRIS, 48, 106, $50
 	anim_obj ANIM_OBJ_SHELL_SMASH_DEBRIS, 48, 106, $5c
-	anim_obj ANIM_OBJ_EMBER,   8, 0,  11, 0, $12
-	anim_wait 6
-	anim_sound 6, 2, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_SHELL_SMASH_DEBRIS, 48, 106, $d0
-	anim_obj ANIM_OBJ_SHELL_SMASH_DEBRIS, 48, 106, $e8
-	anim_obj ANIM_OBJ_EMBER,   8, 0,  10, 0, $14
-	anim_wait 10
-	anim_incobj 3
-	anim_incobj 6
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $30, $3, $0
-	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_ROCK_SMASH, 80, 80, $28
+	anim_obj ANIM_OBJ_ROCK_SMASH, 80, 80, $5c
+	anim_wait 20
 	anim_obj ANIM_OBJ_EXPLOSION2, 136, 56, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_EXPLOSION2, 130, 64, $0
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $28
 	anim_obj ANIM_OBJ_ROCK_SMASH, 136, 56, $5c
-	anim_wait 24
+	anim_wait 32
 	anim_ret
 
 BattleAnim_ShellSideArm_CC:
