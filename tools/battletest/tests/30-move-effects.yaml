@@ -1,0 +1,13 @@
+# Focused move-effect regressions discovered or strengthened by the full
+# generated move sweep. The generated cases prove every move completes; these
+# cases also assert the effect's battle semantics.
+
+- name: "Move: Armor Cannon damages and lowers both defenses"
+  player: { species: MEW, level: 50, moves: [ARMOR_CANNON] }
+  enemy:  { species: LUGIA, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.stat_levels[1] == 6
+    - player.stat_levels[4] == 6
