@@ -1017,8 +1017,8 @@ AlreadyBurnedText:
 KnockedOffItemText:
 	text "<USER>"
 	line "knocked off"
-	cont ""
-	text_ram wStringBuffer1
+	cont "@"
+	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
 

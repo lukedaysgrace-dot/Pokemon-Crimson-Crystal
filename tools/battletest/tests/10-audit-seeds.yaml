@@ -227,6 +227,7 @@
     - (player.substatus[2] & 128) == 0   # no confusion...
     - player.stat_levels[0] == 9         # ...but +2 Attack applied
     - player.item == 'NO_ITEM'           # gene is consumed
+    - text_seen('BERSERK GENE')
 
 - name: "Audit 10b-control: Berserk Gene confuses a non-Own-Tempo holder"
   player: { species: SLOWBRO, level: 50, ability: OBLIVIOUS, item: BERSERK_GENE, moves: [SPLASH] }

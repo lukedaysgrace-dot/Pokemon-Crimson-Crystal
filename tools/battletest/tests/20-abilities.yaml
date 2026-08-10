@@ -18,6 +18,7 @@
   assert:
     - player.ability == 'INTIMIDATE'   # copied...
     - enemy.stat_levels[0] == 6        # ...and the traced Intimidate fired
+    - text_seen('INTIMIDATE')           # ...and the rendered name was valid
 
 - name: "Ability: Imposter transforms into the foe on entry"
   player: { species: DITTO, level: 50, ability: IMPOSTER }
