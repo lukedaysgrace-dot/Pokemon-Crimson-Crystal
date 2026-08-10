@@ -131,6 +131,7 @@
   assert:
     - wram('wDisabledMove') != 0
     - wram('wPlayerDisableCount') != 0
+    - text_seen('BITE')
 
 - name: "Ability: Toxic Debris adds Toxic Spikes after a physical hit"
   player: { species: MEW, level: 30, moves: [TACKLE] }
