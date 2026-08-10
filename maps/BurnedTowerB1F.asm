@@ -51,9 +51,8 @@ ReleaseTheBeasts:
 	disappear BURNEDTOWERB1F_ENTEI2
 	pause 15
 	cry ENTEI
+	playsound SFX_EMBER
 	earthquake 50
-	waitsfx
-	playsound SFX_STRENGTH
 	earthquake 40
 	waitsfx
 	pause 15
@@ -77,9 +76,8 @@ ReleaseTheBeasts:
 	turnobject PLAYER, UP
 	pause 20
 	cry ENTEI
+	playsound SFX_EMBER
 	earthquake 50
-	waitsfx
-	playsound SFX_STRENGTH
 	earthquake 40
 	waitsfx
 	playsound SFX_WARP_FROM
