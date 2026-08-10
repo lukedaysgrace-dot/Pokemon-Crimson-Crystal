@@ -55,9 +55,74 @@ dbg_SUBSTATUS    EQU 25 ; ds 5; ORed into w{Player,Enemy}SubStatus1-5
 dbg_SIZE         EQU 30
 
 DEBUG_WRAM_BANK EQU 2
+DEBUG_TEXT_RAM_LOG_ENTRIES EQU 16
+DEBUG_TEXT_RAM_ENTRY_SIZE EQU 20
 
 SECTION "Debug Battle Tester", ROMX, BANK[$8F]
 
+DebugLogTextRam::
+; de = the RAM string TextCommand_RAM is about to render. Record exactly the
+; bytes PlaceString will see, including the active WRAM bank. This routine is
+; debug-build-only and preserves every register.
+	ldh a, [hDebugActive]
+	and a
+	ret z
+	push af
+	push bc
+	push de
+	push hl
+	ldh a, [rSVBK]
+	ld b, a ; source WRAM bank
+	ld a, DEBUG_WRAM_BANK
+	ldh [rSVBK], a
+	ld a, [wDebugTextRamCount]
+	cp DEBUG_TEXT_RAM_LOG_ENTRIES
+	jr nc, .restore
+	ld c, a ; zero-based entry
+	inc a
+	ld [wDebugTextRamCount], a
+
+	; hl = wDebugTextRamLog + entry * 20, without losing source de.
+	push de
+	ld l, c
+	ld h, 0
+	add hl, hl ; * 2
+	add hl, hl ; * 4
+	ld d, h
+	ld e, l
+	add hl, hl ; * 8
+	add hl, hl ; * 16
+	add hl, de ; * 20
+	ld de, wDebugTextRamLog
+	add hl, de
+	pop de
+
+	ld c, DEBUG_TEXT_RAM_ENTRY_SIZE - 1
+.copy
+	ld a, b
+	ldh [rSVBK], a
+	ld a, [de]
+	inc de
+	push af
+	ld a, DEBUG_WRAM_BANK
+	ldh [rSVBK], a
+	pop af
+	ld [hli], a
+	cp "@"
+	jr z, .restore
+	dec c
+	jr nz, .copy
+	ld a, "@" ; malformed/long input: keep the trace itself bounded
+	ld [hl], a
+
+.restore
+	ld a, b
+	ldh [rSVBK], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 ; ==============================================================
 ; Small helpers for the banked request block
 ; ==============================================================
@@ -178,6 +243,7 @@ DebugBattleSetup::
 	xor a
 	ld [wDebugTurnsDone], a
 	ld [wDebugControl], a
+	ld [wDebugTextRamCount], a
 
 	; hot flags to HRAM
 	ld a, [wDebugBattleFlags]
