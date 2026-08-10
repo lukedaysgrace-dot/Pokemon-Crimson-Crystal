@@ -718,6 +718,9 @@ TextCommand_RAM::
 	push hl
 	ld h, b
 	ld l, c
+	IF DEF(DEBUG_BATTLE)
+		farcall DebugLogTextRam
+	ENDC
 	call PlaceString
 	pop hl
 	ret

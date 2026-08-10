@@ -241,18 +241,18 @@
 
 - name: "Sheer Force control damage"
   id: sheer_force_control
-  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SLUDGE_BOMB] }
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCHIC_M] }
   enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
   rng: forced_low
   turns: 1
 - name: "Ability: Sheer Force boosts damage and suppresses the secondary"
-  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [SLUDGE_BOMB] }
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [PSYCHIC_M] }
   enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
   rng: forced_low
   turns: 1
   assert:
     - enemy.start_hp - enemy.hp > result('sheer_force_control')['enemy']['damage']
-    - enemy.status == 0
+    - enemy.stat_levels[4] == 7
 
 - name: "Multiscale control damage"
   id: multiscale_control

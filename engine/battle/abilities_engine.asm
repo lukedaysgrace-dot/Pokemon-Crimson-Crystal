@@ -251,6 +251,11 @@ AbilityBufferItemName::
 	pop bc
 	ret
 
+AbilityBufferItemName_b::
+; b = item id. Far-callable form: the farcall macro uses a for the ROM bank.
+	ld a, b
+	jp AbilityBufferItemName
+
 AbilityBufferMoveName::
 ; a = move id. Its name -> wBattleDynamicNameBuffer.
 ; Preserves bc and hl, as GetMoveName does.
