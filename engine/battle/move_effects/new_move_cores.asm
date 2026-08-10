@@ -276,14 +276,17 @@ BattleKnockOff_Core:
 	and a
 	ret z
 	; Can't knock off mail
-	ld [wNamedObjectIndexBuffer], a
+	; Keep the item id on the stack across ItemIsMail and the party-struct
+	; lookup. wNamedObjectIndexBuffer is shared scratch and either call may
+	; overwrite it before GetItemName consumes it.
+	push af
 	push hl
 	push de
 	ld d, a
 	farcall ItemIsMail
 	pop de
 	pop hl
-	ret c
+	jr c, .mail
 	xor a
 	ld [hl], a
 	; Remove it from the target's party struct too
@@ -299,9 +302,15 @@ BattleKnockOff_Core:
 .remove
 	xor a
 	ld [hl], a
-	call GetItemName
+	pop af
+	ld b, a
+	farcall AbilityBufferItemName_b
 	ld hl, KnockedOffItemText
 	jp StdBattleTextbox
+
+.mail
+	pop af
+	ret
 
 BattleRoost_Core:
 ; Removes the user's Flying type until end of turn.
