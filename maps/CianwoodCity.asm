@@ -47,6 +47,12 @@ CianwoodCitySuicuneAndEusine:
 	playsound SFX_WARP_FROM
 	applymovement CIANWOODCITY_SUICUNE, CianwoodCitySuicuneApproachMovement
 	turnobject PLAYER, DOWN
+	cry ENTEI
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement CIANWOODCITY_SUICUNE, CianwoodCitySuicuneDepartMovement
@@ -238,10 +244,12 @@ CianwoodCitySuicuneApproachMovement:
 
 CianwoodCitySuicuneDepartMovement:
 	set_sliding
-	fast_jump_step RIGHT
 	fast_jump_step UP
-	fast_jump_step RIGHT
-	fast_jump_step RIGHT
+	fast_jump_step UP
+	fast_jump_step LEFT
+	fast_jump_step LEFT
+	fast_jump_step LEFT
+	fast_jump_step LEFT
 	remove_sliding
 	step_end
 
