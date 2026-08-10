@@ -36,8 +36,14 @@ Route36_MapScripts:
 Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
-	playsound SFX_WARP_FROM
 	turnobject PLAYER, UP
+	cry ENTEI
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
+	playsound SFX_WARP_FROM
 	applymovement ROUTE36_SUICUNE, Route36SuicuneMovement
 	disappear ROUTE36_SUICUNE
 	turnobject PLAYER, DOWN
