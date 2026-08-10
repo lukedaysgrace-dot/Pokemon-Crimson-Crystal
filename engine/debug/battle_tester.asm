@@ -933,6 +933,42 @@ DebugChoosePlayerMove::
 	ld hl, wDebugMoveScript
 	add hl, de
 	call DebugPeek
+	bit 7, a
+	jr z, .move
+	push af
+	farcall CheckPlayerIsTrapped
+	jr nc, .switch_allowed
+	pop af
+	push af
+	ld a, 1
+	ld hl, wDebugSwitchBlocked
+	call DebugPoke
+	pop af
+	ld a, 1 ; trapped: make a legal slot-1 move instead of looping menus
+	jr .move
+.switch_allowed
+	pop af
+	push af
+	xor a
+	ld hl, wDebugSwitchBlocked
+	call DebugPoke
+	pop af
+	; $80..$83 script a voluntary switch to party slot 1..4. The normal
+	; battle action path performs trapping checks and switch-out abilities.
+	and 3
+	ld [wCurPartyMon], a
+	ld a, BATTLEPLAYERACTION_SWITCH
+	ld [wBattlePlayerAction], a
+	; The retail party menu performs the switch immediately, before returning
+	; to ParsePlayerAction. Reproduce its non-UI state transition here.
+	ld a, [wCurBattleMon]
+	ld [wLastPlayerMon], a
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
+	farcall PlayerSwitch
+	scf
+	ret
+.move
 	and a
 	jr nz, .have_slot
 	inc a ; default slot 1
@@ -954,6 +990,9 @@ DebugChoosePlayerMove::
 	pop af
 .have_move
 	ld [wCurPlayerMove], a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
+	ld [wBattlePlayerAction], a
+	and a ; nc
 	ret
 
 ; ==============================================================
@@ -961,6 +1000,12 @@ DebugChoosePlayerMove::
 ; ==============================================================
 
 DebugBattleTeardown::
+	; Pickup and Honey Gather run after the battle state has been cleaned up.
+	; Preserve their party result before restoring the user's real party.
+	ld hl, wPartyMon1Item
+	ld de, wDebugResultParty1Item
+	ld c, 1
+	call DebugCopyToRequest
 	xor a
 	ldh [hDebugActive], a
 	ldh [hDebugRNGMode], a
