@@ -215,6 +215,8 @@ class AssertionContext:
             "wram": lambda name, offset=0: b.mem.read(name, offset),
             "wram16": lambda name, offset=0: b.mem.read_u16_be(name, offset),
             "item_id": b.con.item_id,
+            "text_seen": b.text_seen,
+            "buffer_is": b.buffer_is,
             "result": lambda name: self.results[name],
             "abs": abs, "min": min, "max": max,
         }
@@ -270,6 +272,15 @@ def capture_result(battle, snapshot):
         "weather": battle.weather,
         "turns_done": battle.turns_done,
     }
+
+
+def apply_wram_setup(battle, setup):
+    """Apply optional post-entry WRAM fixtures before the first turn."""
+    for symbol, value in (setup or {}).items():
+        if isinstance(value, list):
+            battle.mem.write_bytes(symbol, value)
+        else:
+            battle.mem.write(symbol, value)
 
 
 def load_tests(paths, keyword=None, all_moves=False, all_effects=False):
@@ -349,6 +360,7 @@ def main():
                                        f"(state={st}, stuck at {h.where()})")
                 snapshot = {"player": snapshot_side(h.battle.player),
                             "enemy": snapshot_side(h.battle.enemy)}
+                apply_wram_setup(h.battle, test.get("setup_wram"))
                 # continue to the real turn target
                 h.battle.mem.write("wDebugTurnTarget", test.get("turns", 1))
                 h.battle.mem.write("wDebugControl", 1)
@@ -405,6 +417,9 @@ def main():
                           ("critical", h.battle.mem.read("wCriticalHit")),
                           ("player.ability", ctx["player"].ability),
                           ("enemy.ability", ctx["enemy"].ability),
+                          ("text_ram", [raw.hex() for raw in h.battle.rendered_ram_texts]),
+                          ("dynamic_name", h.battle.mem.read_bytes(
+                              "wBattleDynamicNameBuffer", 24).hex()),
                           ("weather", ctx["weather"]))}
                 print(f"     state: {detail}")
                 print(f"     screenshot: {shot}")
