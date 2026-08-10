@@ -26,6 +26,12 @@ Route42_MapScripts:
 Route42SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
+	cry ENTEI
+	earthquake 50
+	waitsfx
+	playsound SFX_STRENGTH
+	earthquake 40
+	waitsfx
 	playsound SFX_WARP_FROM
 	applymovement ROUTE42_SUICUNE, Route42SuicuneMovement
 	disappear ROUTE42_SUICUNE
