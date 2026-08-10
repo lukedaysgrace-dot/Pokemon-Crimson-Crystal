@@ -1,0 +1,184 @@
+# Stateful, switching, and field-control ability interactions.
+
+- name: "Ability: Shadow Tag blocks an ordinary foe from switching"
+  player:  { species: MEW, level: 50, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: SHADOW_TAG, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 1
+    - player.species == 'MEW'
+
+- name: "Ability: Shadow Tag does not trap another Shadow Tag holder"
+  player:  { species: MEW, level: 50, ability: SHADOW_TAG, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: SHADOW_TAG, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 0
+    - player.species == 'SNORLAX'
+
+- name: "Ability: Magnet Pull traps Steel-type foes"
+  player:  { species: MAGNEMITE, level: 50, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: MAGNET_PULL, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 1
+    - player.species == 'MAGNEMITE'
+
+- name: "Ability: Magnet Pull permits non-Steel foes to switch"
+  player:  { species: MEW, level: 50, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: MAGNET_PULL, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 0
+    - player.species == 'SNORLAX'
+
+- name: "Ability: Arena Trap traps grounded foes"
+  player:  { species: MEW, level: 50, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: ARENA_TRAP, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 1
+    - player.species == 'MEW'
+
+- name: "Ability: Arena Trap permits Levitate users to switch"
+  player:  { species: GENGAR, level: 50, ability: LEVITATE, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: ARENA_TRAP, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 0
+    - player.species == 'SNORLAX'
+
+- name: "Ability: Natural Cure clears status on a voluntary switch"
+  player:  { species: CHANSEY, level: 50, ability: NATURAL_CURE, status_byte: 8, moves: [SPLASH] }
+  player2: { species: MEW, level: 50, moves: [SPLASH] }
+  enemy:   { species: SNORLAX, level: 50, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MEW'
+    - wram('wPartyMon1Status') == 0
+
+- name: "Ability: Regenerator restores one third HP on a voluntary switch"
+  player:  { species: DUSCLOPS, level: 50, ability: REGENERATOR, hp: 25, moves: [SPLASH] }
+  player2: { species: MEW, level: 50, moves: [SPLASH] }
+  enemy:   { species: SNORLAX, level: 50, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MEW'
+    - wram16('wPartyMon1HP') > player.start_hp
+
+- name: "Ability: Synchronize reflects poison to the move user"
+  player: { species: AIPOM, level: 50, ability: NO_ABILITY, moves: [SLUDGE_BOMB] }
+  enemy:  { species: ABRA, level: 100, ability: SYNCHRONIZE, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (player.status & 8) != 0
+
+- name: "Ability: Serene Grace doubles added-effect chance"
+  player: { species: TOGEPI, level: 50, ability: SERENE_GRACE, moves: [PSYCHIC_M] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.stat_levels[4] == 6"]
+
+- name: "Ability: Rock Head prevents recoil"
+  player: { species: AERODACTYL, level: 50, ability: ROCK_HEAD, moves: [DOUBLE_EDGE] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp == player.start_hp
+
+- name: "Ability: Steadfast gains Speed when flinched"
+  player: { species: SNORLAX, level: 50, ability: STEADFAST, moves: [TACKLE] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [HEADBUTT] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.stat_levels[2] == 8
+    - enemy.hp == enemy.start_hp
+
+- name: "Ability: Poison Heal restores HP instead of poison damage"
+  player: { species: MEW, level: 50, ability: POISON_HEAL, hp: 50, status_byte: 8, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp > player.start_hp"]
+
+- name: "Ability: Berserk raises Sp.Atk when a hit crosses half HP"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: MEW, level: 50, ability: BERSERK, hp: 55, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[3] == 8"]
+
+- name: "Ability: Mega Sol completes Solar Beam in one turn without sun"
+  player: { species: MEW, level: 50, ability: MEGA_SOL, moves: [SOLARBEAM] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Poison Puppeteer confuses a foe it poisons"
+  player: { species: MEW, level: 50, ability: POISON_PUPPETEER, moves: [SLUDGE_BOMB] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (enemy.substatus[2] & 128) != 0
+
+- name: "Ability: Unnerve prevents the foe from eating a healing Berry"
+  player: { species: MEW, level: 100, ability: UNNERVE, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 20, hp: 50, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.item == 'BERRY'"]
+
+- name: "Ability: Frisk activates on entry while identifying a held item"
+  player: { species: BANETTE, level: 50, ability: FRISK, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.ability == 'FRISK'
+    - enemy.item == 'BERRY'
+
+- name: "Ability: Pickup can obtain an item after battle"
+  player: { species: AIPOM, level: 100, ability: PICKUP, moves: [TACKLE] }
+  enemy:  { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wDebugResultParty1Item') == item_id('BERRY')"]
+
+- name: "Ability: Honey Gather can obtain the honey substitute after battle"
+  player: { species: TEDDIURSA, level: 100, ability: HONEY_GATHER, moves: [TACKLE] }
+  enemy:  { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wDebugResultParty1Item') == item_id('GOLD_BERRY')"]
