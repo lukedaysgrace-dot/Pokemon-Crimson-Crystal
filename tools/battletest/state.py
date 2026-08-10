@@ -8,6 +8,8 @@ conversion tables (engine/16/), which this module reads to translate.
 from symbols import Symbols, Constants, STATE_MENU, parse_substatus_bits
 
 DEBUG_BANK = 2  # WRAMX bank of wDebug* and the 16-bit conversion tables
+DEBUG_TEXT_RAM_LOG_ENTRIES = 16
+DEBUG_TEXT_RAM_ENTRY_SIZE = 20
 
 # request block field offsets (dbg_* in engine/debug/battle_tester.asm)
 DBG_SPECIES = 0
@@ -198,6 +200,54 @@ class Battle:
     @property
     def turns_done(self):
         return self.mem.read("wDebugTurnsDone")
+
+    @staticmethod
+    def _encode_text(value):
+        """Encode the English battle-name subset of the Gen 2 charmap."""
+        punctuation = {
+            " ": 0x7F, "(": 0x9A, ")": 0x9B, ":": 0x9C,
+            ";": 0x9D, "[": 0x9E, "]": 0x9F, "+": 0xC0,
+            "'": 0xE0, "-": 0xE3, "?": 0xE6, "!": 0xE7,
+            ".": 0xE8, "&": 0xE9, "/": 0xF3, ",": 0xF4,
+        }
+        out = bytearray()
+        for char in value:
+            if "A" <= char <= "Z":
+                out.append(0x80 + ord(char) - ord("A"))
+            elif "a" <= char <= "z":
+                out.append(0xA0 + ord(char) - ord("a"))
+            elif "0" <= char <= "9":
+                out.append(0xF6 + ord(char) - ord("0"))
+            elif char in punctuation:
+                out.append(punctuation[char])
+            else:
+                raise ValueError(f"unsupported game-text character {char!r}")
+        out.append(0x50)  # "@" terminator
+        return bytes(out)
+
+    @property
+    def rendered_ram_texts(self):
+        """Raw text_ram strings captured at the instant they were rendered."""
+        count = min(self.mem.read("wDebugTextRamCount"),
+                    DEBUG_TEXT_RAM_LOG_ENTRIES)
+        strings = []
+        for entry in range(count):
+            raw = self.mem.read_bytes(
+                "wDebugTextRamLog", DEBUG_TEXT_RAM_ENTRY_SIZE,
+                entry * DEBUG_TEXT_RAM_ENTRY_SIZE)
+            end = raw.find(b"\x50")
+            strings.append(raw if end < 0 else raw[:end + 1])
+        return strings
+
+    def text_seen(self, value):
+        return self._encode_text(value) in self.rendered_ram_texts
+
+    def buffer_is(self, symbol, value, max_length=24):
+        """Compare an @-terminated in-game string buffer by symbol name."""
+        raw = self.mem.read_bytes(symbol, max_length)
+        end = raw.find(b"\x50")
+        actual = raw if end < 0 else raw[:end + 1]
+        return actual == self._encode_text(value)
 
 
 class Request:
