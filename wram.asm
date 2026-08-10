@@ -565,6 +565,9 @@ wEnemySpeed:: dw
 wEnemySpAtk:: dw
 wEnemySpDef:: dw
 wPreStatAttackMiss:: db
+wPreStatTurn:: db
+wPreStatMoveEffect:: db
+wPreStatScopeActive:: db
 
 wPlayerStatLevels:: ; c6cc
 ; 07 neutral
@@ -3313,6 +3316,8 @@ wDebugWeather::    db ; $FF = no override, else WEATHER_* (applied post-entry)
 wDebugPScreens::   db ; ORed into wPlayerScreens post-entry (0 = none)
 wDebugEScreens::   db ; ORed into wEnemyScreens post-entry (0 = none)
 wDebugMoveScript:: ds 8 ; auto mode: player move slot (1-4) per turn; 0 = slot 1
+wDebugSwitchBlocked:: db ; last scripted switch was denied by trapping
+wDebugResultParty1Item:: db ; party-slot-1 item after post-battle abilities run
 
 ; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
 ; engine/debug/battle_tester.asm.
