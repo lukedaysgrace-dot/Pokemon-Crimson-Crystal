@@ -2306,7 +2306,7 @@ CloseCombat:
 	switchturn
 	statdownmessage
 	switchturn
-	restoremiss
+	resetmiss
 	switchturn
 	specialdefensedown
 	switchturn
@@ -2562,6 +2562,7 @@ ShellSmash:
 	statupanim
 	raisesub
 	deferstatmessages
+	savemiss
 	switchturn
 	defensedown
 	switchturn
@@ -2585,6 +2586,7 @@ ShellSmash:
 	speedup2
 	statupmessage
 	flushstatmessages
+	restoremiss
 	endmove
 
 Roost:
@@ -3003,7 +3005,7 @@ Superpower:
 	switchturn
 	statdownmessage
 	switchturn
-	restoremiss
+	resetmiss
 	switchturn
 	defensedown
 	switchturn
