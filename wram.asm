@@ -3319,6 +3319,12 @@ wDebugMoveScript:: ds 8 ; auto mode: player move slot (1-4) per turn; 0 = slot 1
 wDebugSwitchBlocked:: db ; last scripted switch was denied by trapping
 wDebugResultParty1Item:: db ; party-slot-1 item after post-battle abilities run
 
+; Every text_ram string actually consumed by the battle textbox, in order.
+; This is a debug-only render trace: the Python harness uses it to catch bad
+; item/ability/move buffers even when a later animation overwrites the source.
+wDebugTextRamCount:: db
+wDebugTextRamLog:: ds 16 * 20
+
 ; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
 ; engine/debug/battle_tester.asm.
 wDebugPlayer1::    ds 30
