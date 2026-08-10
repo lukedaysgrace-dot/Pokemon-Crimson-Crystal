@@ -112,7 +112,7 @@ PlacePartyNicknames:
 	ld a, b
 	call GetNick
 	ld a, "@"
-	ld [wStringBuffer1 + 9], a ; cap the name so it can't run into the HP column
+	ld [wStringBuffer1 + 10], a ; cap the name so it can't run into the HP column
 .got_name
 	pop hl
 	call PlaceString
