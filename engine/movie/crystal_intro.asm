@@ -1161,7 +1161,7 @@ IntroScene17:
 	ldh [hBGMapMode], a
 	ld a, $1
 	ldh [rVBK], a
-	ld hl, IntroTilemap011
+	ld hl, IntroSuicuneCloseAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
@@ -1169,18 +1169,18 @@ IntroScene17:
 	ld hl, IntroSuicuneCloseGFX
 	ld de, vTiles1 tile $00
 	call Intro_DecompressRequest2bpp_255Tiles
-	ld hl, IntroTilemap012
+	ld hl, IntroSuicuneCloseTilemap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
 	ldh [rSVBK], a
-	ld hl, IntroPalette4
+	ld hl, IntroSuicuneClosePalette
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, IntroPalette4
+	ld hl, IntroSuicuneClosePalette
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -2089,14 +2089,14 @@ INCLUDE "gfx/intro/intro_3.pal"
 IntroSuicuneCloseGFX:
 INCBIN "gfx/intro/suicune_close.2bpp.lz"
 
-IntroTilemap012:
-INCBIN "gfx/intro/012.tilemap.lz"
+IntroSuicuneCloseTilemap:
+INCBIN "gfx/intro/suicune_close.tilemap.lz"
 
-IntroTilemap011:
-INCBIN "gfx/intro/011.tilemap.lz"
+IntroSuicuneCloseAttrmap:
+INCBIN "gfx/intro/suicune_close.attrmap.lz"
 
-IntroPalette4:
-INCLUDE "gfx/intro/intro_4.pal"
+IntroSuicuneClosePalette:
+INCLUDE "gfx/intro/suicune_close.pal"
 
 IntroSuicuneJumpGFX:
 INCBIN "gfx/intro/suicune_jump.2bpp.lz"
