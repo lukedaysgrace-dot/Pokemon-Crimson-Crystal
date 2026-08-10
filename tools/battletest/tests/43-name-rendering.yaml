@@ -1,0 +1,158 @@
+# End-to-end battle name rendering. text_seen() reads a debug-only trace made
+# at TextCommand_RAM itself, so these assert what the textbox consumed rather
+# than merely checking a scratch buffer after the fact.
+
+- name: "Name rendering: the ability banner displays the full ability name"
+  player: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:  { species: KOFFING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - buffer_is('wAbilityName', 'NEUTRALIZING GAS', 17)
+
+- name: "Name rendering: Intimidate resistance identifies the blocking ability"
+  player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  enemy:  { species: SLOWBRO, level: 50, ability: OWN_TEMPO, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - enemy.stat_levels[0] == 7
+    - text_seen('OWN TEMPO')
+
+- name: "Name rendering: Air Balloon immunity identifies the item"
+  player: { species: MEW, level: 50, moves: [EARTHQUAKE] }
+  enemy:  { species: SNORLAX, level: 100, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.item == 'AIR_BALLOON'
+    - text_seen('AIR BALLOON')
+
+- name: "Name rendering: Air Balloon pop identifies the consumed item"
+  player: { species: MEW, level: 30, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - text_seen('AIR BALLOON')
+
+- name: "Name rendering: Weakness Policy activation identifies the item"
+  player: { species: SQUIRTLE, level: 10, moves: [WATER_GUN] }
+  enemy:  { species: CHARMANDER, level: 100, item: WEAK_POLICY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[0] == 9
+    - enemy.stat_levels[3] == 9
+    - text_seen('WEAK POLICY')
+
+- name: "Name rendering: Rocky Helmet damage identifies the item"
+  player: { species: MEW, level: 50, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, item: ROCKY_HELMET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - text_seen('ROCKY HELMET')
+
+- name: "Name rendering: Leftovers recovery identifies the item"
+  player: { species: SNORLAX, level: 50, hp: 50, item: LEFTOVERS, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+    - text_seen('LEFTOVERS')
+
+- name: "Name rendering: healing Berry recovery identifies the item"
+  player: { species: SNORLAX, level: 50, hp: 25, item: BERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > player.start_hp
+    - text_seen('BERRY')
+
+- name: "Name rendering: confusion-healing Berry identifies the item"
+  player: { species: MEW, level: 50, moves: [CONFUSE_RAY] }
+  enemy:  { species: SNORLAX, level: 100, item: BITTER_BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - (enemy.substatus[2] & 128) == 0
+    - text_seen('BITTER BERRY')
+
+- name: "Name rendering: PP-restoring Berry identifies the consumed item"
+  player: { species: MEW, level: 50, item: MYSTERYBERRY, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 0, 0, 0]
+    wPartyMon1PP: [1, 0, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.pp[0] > 0
+    - text_seen('MYSTERYBERRY')
+
+- name: "Name rendering: Focus Sash survival identifies the consumed item"
+  player: { species: MEW, level: 100, moves: [HYPER_BEAM] }
+  enemy:  { species: RATTATA, level: 5, item: FOCUS_SASH, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 1
+    - enemy.item == 'NO_ITEM'
+    - text_seen('FOCUS SASH')
+
+- name: "Name rendering: Focus Band survival identifies the item"
+  player: { species: MEW, level: 100, moves: [HYPER_BEAM] }
+  enemy:  { species: RATTATA, level: 5, item: FOCUS_BAND, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == 1
+    - enemy.item == 'FOCUS_BAND'
+    - text_seen('FOCUS BAND')
+
+- name: "Name rendering: Knock Off identifies the removed item"
+  player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
+  enemy:  { species: SNORLAX, level: 100, item: LEFTOVERS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - text_seen('LEFTOVERS')
+
+- name: "Name rendering: Thief identifies the stolen item"
+  player: { species: MEW, level: 30, moves: [THIEF] }
+  enemy:  { species: SNORLAX, level: 100, item: LEFTOVERS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'LEFTOVERS'
+    - enemy.item == 'NO_ITEM'
+    - text_seen('LEFTOVERS')
+
+- name: "Name rendering: Flame Orb status message identifies the item"
+  player: { species: SNORLAX, level: 50, item: FLAME_ORB, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.status & 16) != 0
+    - text_seen('FLAME ORB')
+
+- name: "Name rendering: Toxic Orb status message identifies the item"
+  player: { species: SNORLAX, level: 50, item: TOXIC_ORB, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.status & 8) != 0
+    - text_seen('TOXIC ORB')
