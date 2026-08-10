@@ -168,6 +168,7 @@
   assert:
     - player.ability == 'FRISK'
     - enemy.item == 'BERRY'
+    - text_seen('BERRY')
 
 - name: "Ability: Pickup can obtain an item after battle"
   player: { species: AIPOM, level: 100, ability: PICKUP, moves: [TACKLE] }
