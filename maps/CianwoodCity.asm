@@ -48,9 +48,8 @@ CianwoodCitySuicuneAndEusine:
 	applymovement CIANWOODCITY_SUICUNE, CianwoodCitySuicuneApproachMovement
 	turnobject PLAYER, DOWN
 	cry ENTEI
+	playsound SFX_EMBER
 	earthquake 50
-	waitsfx
-	playsound SFX_STRENGTH
 	earthquake 40
 	waitsfx
 	pause 15
