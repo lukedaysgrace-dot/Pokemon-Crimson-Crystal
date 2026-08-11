@@ -1,12 +1,14 @@
 	object_const_def ; object_event constants
 	const TOHJOFALLS_POKE_BALL
 	const TOHJOFALLS_CRYSTAL
+	const TOHJOFALLS_SUICUNE
 
 TohjoFalls_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .InitializeCrystal
+	callback MAPCALLBACK_OBJECTS, .Suicune
 
 .InitializeCrystal:
 	checkevent EVENT_CRYSTAL_TOHJO_FALLS_INITIALIZED
@@ -15,6 +17,19 @@ TohjoFalls_MapScripts:
 	clearevent EVENT_BEAT_CRYSTAL_TOHJO_FALLS
 	setevent EVENT_CRYSTAL_TOHJO_FALLS_INITIALIZED
 .Done:
+	return
+
+.Suicune:
+; SUICUNE waits by the water once the eighth Badge has been earned.
+	checkevent EVENT_FOUGHT_TOHJO_FALLS_SUICUNE
+	iftrue .NoSuicune
+	checkflag ENGINE_RISINGBADGE
+	iffalse .NoSuicune
+	appear TOHJOFALLS_SUICUNE
+	return
+
+.NoSuicune:
+	disappear TOHJOFALLS_SUICUNE
 	return
 
 TohjoFallsMoonStone:
@@ -218,6 +233,27 @@ TohjoFallsCrystalAfterText:
 	para "Until then, take"
 	line "care <PLAYER>."
 	done
+TohjoFallsSuicune:
+	faceplayer
+	opentext
+	writetext TohjoFallsSuicuneText
+	cry SUICUNE
+	pause 15
+	closetext
+	playsound SFX_SURF
+	waitsfx
+	setevent EVENT_FOUGHT_TOHJO_FALLS_SUICUNE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadwildmon SUICUNE, 40
+	startbattle
+	disappear TOHJOFALLS_SUICUNE
+	reloadmapafterbattle
+	end
+
+TohjoFallsSuicuneText:
+	text "Shuoooh!"
+	done
+
 TohjoFalls_MapEvents:
 	db 0, 0 ; filler
 
@@ -231,6 +267,7 @@ TohjoFalls_MapEvents:
 
 	db 0 ; bg events
 
-	db 2 ; object events
+	db 3 ; object events
 	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TohjoFallsMoonStone, EVENT_TOHJO_FALLS_MOON_STONE
 	object_event 25, 16, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TOHJO_FALLS_CRYSTAL
+	object_event  6,  6, SPRITE_SUICUNE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TohjoFallsSuicune, EVENT_TOHJO_FALLS_SUICUNE
