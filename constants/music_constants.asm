@@ -113,6 +113,13 @@
 	const MUSIC_ROUTE_38_39                   ; 6a
 	const MUSIC_LAVENDER                      ; 6b
 
+; new to Crimson Crystal
+	const MUSIC_GREEN_BATTLE                  ; 6c
+	const MUSIC_BLUE_CLOAK_BATTLE             ; 6d
+	const MUSIC_LUGIAS_SONG                   ; 6e
+	const MUSIC_SILENT_CRYPT                  ; 6f
+	const MUSIC_UNDERGROUND_PATH              ; 70
+
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64
 
