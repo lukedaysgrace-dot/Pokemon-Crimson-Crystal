@@ -24,6 +24,14 @@
 *.lz.* binary diff=hex
 *.bin binary diff=hex
 *.blk binary diff=hex
+# Polished Map formats. *.blk does NOT glob-match *.ablk, so without these
+# lines the "* text eol=lf" rule above strips a CR from any 0D 0A byte pair
+# in the map data. That silently deleted one block from TohjoFalls.ablk and
+# left it permanently un-committable (it normalized back to the stored blob,
+# so every commit came out empty).
+*.ablk binary diff=hex
+*.gbcpal binary diff=hex
+*.dimensions binary diff=hex
 *.rle binary diff=hex
 *.attrmap binary diff=hex
 *.tilemap binary diff=hex
@@ -50,3 +58,6 @@ rgbds/rgbasm binary
 rgbds/rgblink binary
 rgbds/rgbfix binary
 rgbds/rgbgfx binary
+*.tgz binary
+*.gif binary
+*.bundle binary
