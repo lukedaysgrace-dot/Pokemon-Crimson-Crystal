@@ -185,12 +185,25 @@ ResetOverworldDelay:
 	ret
 
 NextOverworldFrame:
+; 60fps: if a VBlank already elapsed while this iteration was still running,
+; the frame boundary has come and gone. Waiting for the next one would spend
+; a second frame on this single step, which reads as a hitch - the overworld
+; momentarily drops to 30fps. Skip the delay and let the loop catch back up,
+; so a heavy frame costs one dropped frame instead of two and never
+; cascades. (Ported from Polished Crystal's NextOverworldFrame.)
+	ldh a, [hVBlankLeaked]
+	inc a
+	jr nz, .delay
+	xor a
+	ldh [hVBlankLeaked], a
+	ret
+
+.delay
 	ld a, [wOverworldDelay]
 	and a
 	ret z
 	ld c, a
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 HandleMapTimeAndJoypad:
 	ld a, [wMapEventStatus]
