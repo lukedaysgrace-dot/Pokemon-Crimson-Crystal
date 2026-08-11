@@ -277,6 +277,51 @@ ENDM
 ; This repo uses the older command names; these let imported .asm songs
 ; assemble unmodified.
 
+_num_channels = 1
+
+channel_count: MACRO
+_num_channels = \1
+ENDM
+
+channel: MACRO
+	musicheader _num_channels, \1, \2
+ENDM
+
+; $d9: modern "transpose a, b" is this engine's "pitchoffset", which
+; subtracts 1 from its second operand.
+transpose: MACRO
+	pitchoffset \1, (\2) + 1
+ENDM
+
+; $dc: modern "volume_envelope volume, fade" packs into one intensity byte;
+; a negative fade sets bit 3 of the low nybble.
+volume_envelope: MACRO
+if (\2) < 0
+	intensity ((\1) << 4) | 8 | (-(\2))
+else
+	intensity ((\1) << 4) | (\2)
+endc
+ENDM
+
+; $e6: modern "pitch_offset" is this engine's "tone".
+pitch_offset: MACRO
+	tone \1
+ENDM
+
+; $e3: the operand is only read when switching noise sampling on, so the
+; modern no-operand form must emit no operand.
+toggle_noise: MACRO
+if _NARG >= 1
+	togglenoise \1
+else
+	db togglenoise_cmd
+endc
+ENDM
+
+sound_jump: MACRO
+	jumpchannel \1
+ENDM
+
 note_type: MACRO
 if _NARG >= 3
 	notetype \1, (\2 << 4) | (\3)

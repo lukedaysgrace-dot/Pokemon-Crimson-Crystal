@@ -170,6 +170,27 @@ SECTION "Extra Songs 8", ROMX
 INCLUDE "audio/music/lavender.asm"
 
 
+SECTION "Extra Songs 9", ROMX
+
+INCLUDE "audio/music/green.asm"
+
+
+SECTION "Extra Songs 10", ROMX
+
+INCLUDE "audio/music/bluecloak.asm"
+
+
+SECTION "Extra Songs 11", ROMX
+
+INCLUDE "audio/music/lugiassong.asm"
+INCLUDE "audio/music/silentcrypt.asm"
+
+
+SECTION "Extra Songs 12", ROMX
+
+INCLUDE "audio/music/undergroundpath.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
