@@ -111,3 +111,9 @@ Music:
 	dba Music_MahoganyTown
 	dba Music_Route38_39
 	dba Music_Lavender
+; new to Crimson Crystal
+	dba Music_GymLeaderBattlePrism ; MUSIC_GREEN_BATTLE
+	dba Music_WCSBattleBW          ; MUSIC_BLUE_CLOAK_BATTLE
+	dba Music_LugiasSong2000       ; MUSIC_LUGIAS_SONG
+	dba Music_PokemonTowerRBY      ; MUSIC_SILENT_CRYPT
+	dba Music_MtLavender           ; MUSIC_UNDERGROUND_PATH
