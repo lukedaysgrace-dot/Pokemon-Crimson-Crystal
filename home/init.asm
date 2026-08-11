@@ -63,6 +63,32 @@ Init::
 	xor a
 	ldh [rLCDC], a
 
+; 60fps: enter CGB double speed mode now, while the LCD is off. Switching
+; speeds with the LCD on collapses video output and can hang real hardware,
+; so this has to happen here rather than later in Init.
+;
+; This does NOT change the frame rate or any movement speed: the LCD still
+; refreshes at ~59.73Hz and every step, animation and timer is driven off
+; VBlank. It doubles the CPU clock, which is what the 60fps overworld loop
+; needs - that loop now runs once per frame instead of once per two frames,
+; so it has half the wall-clock budget vanilla gave it. Without the doubled
+; clock the loop overruns VBlank on busy maps and visibly judders.
+; Polished Crystal does exactly this (see its engine/init.asm).
+	ldh a, [hCGB]
+	and a
+	jr z, .no_double_speed
+	ld hl, rKEY1
+	bit 7, [hl]
+	jr nz, .no_double_speed
+	set 0, [hl] ; arm the speed switch
+	xor a
+	ldh [rIF], a
+	ldh [rIE], a
+	ld a, $30
+	ldh [rJOYP], a
+	stop ; rgbasm adds a nop after this instruction by default
+.no_double_speed
+
 ; Clear WRAM bank 0
 	ld hl, WRAM0_Begin
 	ld bc, WRAM0_End - WRAM0_Begin
@@ -148,11 +174,8 @@ Init::
 	ld [MBC3LatchClock], a
 	ld [MBC3SRamEnable], a
 
-	ldh a, [hCGB]
-	and a
-	jr z, .no_double_speed
-	call NormalSpeed
-.no_double_speed
+; (Double speed is enabled earlier in Init, with the LCD off. Vanilla called
+; NormalSpeed here; doing so now would undo it.)
 
 	xor a
 	ldh [rIF], a
