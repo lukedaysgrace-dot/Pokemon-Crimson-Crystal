@@ -1173,22 +1173,35 @@ _PollSoundKeepalive::
 	ldh a, [hSoundKeepaliveAccHi]
 	adc 0
 	ldh [hSoundKeepaliveAccHi], a
+	; One music frame is 4096 / ~59.73 = ~69 timer ticks. The timer is clocked
+	; off the CPU, so in CGB double speed it runs at 8192 Hz and a music frame
+	; costs ~137 ticks instead. Pick the threshold from the current speed, or
+	; the song plays at double tempo during LCD-off loads.
+	ld b, 69
+	ldh a, [hCGB]
+	and a
+	jr z, .loop
+	ldh a, [rKEY1]
+	bit 7, a
+	jr z, .loop
+	ld b, 137
 .loop
-	; while accumulator >= 69 ticks: play one music frame
 	ldh a, [hSoundKeepaliveAccHi]
 	and a
 	jr nz, .tick
 	ldh a, [hSoundKeepaliveAccLo]
-	cp 69
+	cp b
 	jr c, .caught_up
 .tick
 	ldh a, [hSoundKeepaliveAccLo]
-	sub 69
+	sub b
 	ldh [hSoundKeepaliveAccLo], a
 	ldh a, [hSoundKeepaliveAccHi]
 	sbc 0
 	ldh [hSoundKeepaliveAccHi], a
+	push bc
 	call UpdateSound
+	pop bc
 	jr .loop
 .caught_up
 	pop bc
