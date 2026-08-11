@@ -143,3 +143,5 @@ OverworldSprites:
 	overworld_sprite GreenSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_GREEN
 	overworld_sprite BattleGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_BATTLE_GIRL
 	overworld_sprite TamerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_TAMER
+	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN ; SPRITE_RAIKOU_NPC
+	overworld_sprite SuicuneSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE ; SPRITE_SUICUNE_NPC

@@ -105,6 +105,7 @@ KurtOutsideSpriteGFX::         INCBIN "gfx/sprites/kurt_outside.2bpp"
 LyraSurfSpriteGFX::            INCBIN "gfx/sprites/lyra_surf.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
+SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 StandingYoungsterSpriteGFX::   INCBIN "gfx/sprites/standing_youngster.2bpp"
 
 
