@@ -1808,6 +1808,7 @@ FlushStatMessages_Core::
 	ld b, $10
 .up_anim
 	ld a, b
+	or $0f ; several stats at once: no single color, stay gray
 	ld [wLoweredStat], a
 	call PlayStatUpAnim_Core
 	ld a, [wDeferredUps2]
@@ -1844,6 +1845,7 @@ FlushStatMessages_Core::
 	ld b, $10
 .down_anim
 	ld a, b
+	or $0f ; several stats at once: no single color, stay gray
 	ld [wLoweredStat], a
 	call PlayStatDownAnim_Core
 	ld a, [wDeferredDowns2]
@@ -2046,6 +2048,14 @@ PlayStatChangeAnim_Core:
 	pop bc
 	pop de
 	ret c
+	; Tell the animation which stat changed, so BattleAnimSub_StatChange can
+	; tint the arrows with that stat's palette (ported from Polished Crystal).
+	; The in-progress move's own anim param is saved and restored around it.
+	ld a, [wBattleAnimParam]
+	push af
+	ld a, [wLoweredStat]
+	and $f
+	ld [wBattleAnimParam], a
 	xor a
 	ld [wNumHits], a
 	ld [wKickCounter], a
@@ -2056,6 +2066,8 @@ PlayStatChangeAnim_Core:
 	ld c, 3
 	call DelayFrames
 	callfar PlayBattleAnim
+	pop af
+	ld [wBattleAnimParam], a
 	ret
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
