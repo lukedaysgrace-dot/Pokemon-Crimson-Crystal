@@ -8,7 +8,8 @@
 ; (Shadow Tag/Arena Trap/Magnet Pull), switch-out (Natural Cure/
 ; Regenerator), Serene Grace/Sheer Force/Skill Link/Prankster/Armor Tail/
 ; Analytic/Cursed Body/Berserk/Weak Armor/Justified/Aftermath/Cute Charm/
-; Iron Barbs. See ABILITY_PORT_PLAN.md for status and known limitations.
+; Iron Barbs. See _ai_artifacts/reports/ABILITY_PORT_PLAN.md for status and
+; known limitations.
 
 ; ==== Turn and jumptable helpers =========================================
 
@@ -5871,7 +5872,7 @@ WindMoves:
 PowderMoves:
 ; Overcoat: powder and spore moves in this game (the same class Effect
 ; Spore's proc immunity covers; Grass-type powder immunity is deliberately
-; deferred - see ABILITY_PORT_PLAN.md)
+; deferred - see _ai_artifacts/reports/ABILITY_PORT_PLAN.md)
 	dw POISONPOWDER
 	dw STUN_SPORE
 	dw SLEEP_POWDER
