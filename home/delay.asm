@@ -1,5 +1,7 @@
 DelayFrame::
 ; Wait for one frame
+	xor a
+	ldh [hVBlankLeaked], a ; we are about to wait, so the next VBlank is not a leak
 	ld a, 1
 	ld [wVBlankOccurred], a
 

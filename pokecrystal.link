@@ -43,7 +43,12 @@ ROMX $06
 ROMX $07
 	"Roofs"
 	"Tileset Data 2"
-	"Extra Songs 1"
+	; "Extra Songs 1" was pinned here, but the recent cave tileset edits
+	; (data/tilesets/cave_*) grew "Tileset Data 2" past the 15 bytes of
+	; slack this bank had left, overflowing it by 6. Unpinning lets
+	; rgblink place the songs in any bank with room; songs are referenced
+	; through dba/BANK() so the bank number is not load-bearing.
+	; Unrelated to the 60fps work - re-pin it here if you free up space.
 ROMX $08
 	"Clock Reset"
 	"Tileset Data 3"
