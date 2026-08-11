@@ -28,6 +28,5 @@ OftenFleeMons:
 	dw -1
 
 AlwaysFleeMons:
-	dw RAIKOU
-	dw SUICUNE
+; Raikou and Suicune are static encounters now, so they no longer flee.
 	dw -1
