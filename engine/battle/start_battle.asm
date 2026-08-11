@@ -102,6 +102,13 @@ PlayBattleMusic:
 	cp ARIANA
 	jr z, .done
 
+	ld de, MUSIC_GREEN_BATTLE
+	cp GREEN
+	jr z, .done
+	ld de, MUSIC_BLUE_CLOAK_BATTLE
+	cp BLUE_CLOAK
+	jr z, .done
+
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	farcall IsKantoGymLeader
 	jr c, .done
