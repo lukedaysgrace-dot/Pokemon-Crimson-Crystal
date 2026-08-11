@@ -115,12 +115,6 @@ DisguiseBustedText::
 	cont "busted!"
 	prompt
 
-FlashFireText::
-; Flash Fire activation (printed from the holder's perspective)
-	text "<USER>'s"
-	line "Fire power rose!"
-	prompt
-
 ToxicDebrisText::
 ; Toxic Debris (printed from the attacker's perspective)
 	text "Toxic Spikes were"

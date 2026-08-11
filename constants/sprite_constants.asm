@@ -207,6 +207,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_ELECTRODE ; bd
 	const SPRITE_MACHOKE ; be
 	const SPRITE_KANGASKHAN ; bf
+	const SPRITE_MEWTWO ; c0
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0
