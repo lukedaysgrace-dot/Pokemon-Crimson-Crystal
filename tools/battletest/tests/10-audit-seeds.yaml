@@ -1,4 +1,4 @@
-# The August 2026 audit (CODE_AUDIT_2026-08.md) as regression tests.
+# The August 2026 audit (_ai_artifacts/reports/CODE_AUDIT_2026-08.md) as regression tests.
 #
 # Verified cases run unskipped. The remaining skips are blocked on missing
 # harness features (player2 switch flow, trainer battles, substatus setup)
