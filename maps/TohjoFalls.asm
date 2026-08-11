@@ -240,10 +240,11 @@ TohjoFallsSuicune:
 	cry SUICUNE
 	pause 15
 	closetext
-	playsound SFX_SURF
+	playsound SFX_WHIRLWIND
+	earthquake 30
 	waitsfx
 	setevent EVENT_FOUGHT_TOHJO_FALLS_SUICUNE
-	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon SUICUNE, 40
 	startbattle
 	disappear TOHJOFALLS_SUICUNE
