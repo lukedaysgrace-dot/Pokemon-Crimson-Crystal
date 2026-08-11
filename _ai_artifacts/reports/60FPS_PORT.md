@@ -60,3 +60,79 @@ but the camera and sprites move 1px per frame: smooth 60fps.
   strength boulders into holes, wandering + spinning NPCs (rates should
   look unchanged), bumping into walls, grass rustle / boulder dust, big
   doll bounce in the player's room, whirlpool/waterfall, diagonal ledges.
+
+
+---
+
+## 2026-08-11 follow-up: it was still choppy next to Polished
+
+The port above got the *motion math* right (1px/frame, doubled durations) but
+missed the reason Polished can actually afford to run the loop every frame.
+
+**Root cause: Polished runs the whole game in CGB double speed; we did not.**
+Polished switches to double speed in `engine/init.asm`, with the LCD off, and
+never leaves it. Vanilla pokecrystal calls `NormalSpeed` at init and only ever
+uses double speed inside the (dead) mobile adapter code - and we inherited that.
+
+Vanilla's overworld iteration was written against a two-frame budget
+(~35,112 m-cycles at normal speed). Running it once per frame halves that to
+~17,556 while the work per iteration is unchanged, and on busy maps it does not
+fit. When it overruns, `DelayFrame` waits for the *next* vblank, so that single
+step costs two frames: the camera moves 1px, stalls, moves 1px. That is the
+judder. Polished never hits it because double speed hands the same loop
+~35,112 cycles inside one frame - exactly the budget vanilla always had.
+
+Double speed changes CPU clock only. The LCD still refreshes at ~59.73Hz and
+every step, animation and timer is vblank-driven, so no movement speed changes.
+
+### Changes
+- `home/init.asm`: enter double speed right after the LCD is turned off during
+  `Init` (switching with the LCD on collapses video and can hang hardware), and
+  drop the later `call NormalSpeed`, which would have undone it.
+- `home/vblank.asm`: at the top of `VBlank::`, before the handler clears it,
+  check `wVBlankOccurred`. It is only set while something is parked in
+  `DelayFrame`; if it is already clear, nobody was waiting, so the main loop
+  overran its frame. Record that in `hVBlankLeaked`.
+- `hram.asm`: `hVBlankLeaked` at $ff92 (was part of the `ds 2` gap after
+  `hRTCSeconds`). Polished's equivalent is `hDelayFrameLY`.
+- `home/delay.asm`: `DelayFrame` clears `hVBlankLeaked` on entry - we are about
+  to wait, so the next vblank is not a leak.
+- `engine/overworld/events.asm`: `NextOverworldFrame` consumes `hVBlankLeaked`.
+  If a vblank already went by, the frame boundary has passed, so it skips the
+  delay instead of burning a second frame. A heavy frame now costs one dropped
+  frame instead of two, and never cascades. (Polished does the same thing.)
+- `engine/overworld/weather.asm`: `_PollSoundKeepalive` derives music frames
+  from the hardware timer, which is clocked off the CPU. At double speed
+  rTAC_4096_HZ becomes 8192Hz, so the threshold is 137 ticks instead of 69;
+  it now picks the value from `hCGB` + `rKEY1` bit 7. Without this the music
+  played at double tempo during LCD-off tileset loads.
+
+### Not changed, and why
+- OAM DMA wait loop (`WriteOAMDMACodeToHRAM`): OAM DMA takes 160 m-cycles in
+  both speed modes, so the 40-iteration wait is still correct. Polished uses
+  the same count.
+- Battle animations already branch on `rKEY1` bit 7 to pick vblank mode 1 vs 3
+  (vanilla code) - it was written anticipating double speed.
+- Audio tempo, RTC and game time are all vblank-driven, so unaffected.
+- SGB border init is DMG-only; we only switch speed when `hCGB` is set.
+
+### Known remaining risks
+- `mobile/mobile_40.asm` and `mobile/mobile_46.asm` still `call NormalSpeed`
+  when they finish. That code is Japanese mobile-adapter leftovers and should
+  be unreachable, but if any of it ever runs the game silently drops back to
+  normal speed and the judder returns.
+- The RNG stream changes, because `hRandomAdd`/`hRandomSub` are seeded from
+  `rDIV`, which now ticks twice as fast. Not a bug, but any seed-dependent
+  behaviour you had memorised will differ.
+- Link cable timing: the serial clock doubles with the CPU. Fine when both
+  sides run this ROM (Polished ships this way), but it will not link against a
+  normal-speed build.
+- `_PollSoundKeepalive` must now be called at least every ~31ms during LCD-off
+  work rather than ~60ms, since TIMA wraps twice as fast.
+
+### What to playtest
+Walking and biking on a dense map (Goldenrod) side by side with Polished -
+that is where the old build juddered worst. Then: map connection edges while
+biking, ledge hops, ice/spin tiles, surf, fishing, the teleport/fly/dig
+animations, and a long tileset-loading transition with music playing (to
+confirm the keepalive tempo fix).
