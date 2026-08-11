@@ -6261,10 +6261,8 @@ BattleAnim_BulletPunch:
 BattleAnim_StatUp:
 ; Generic stat raise animation (ported from Polished Crystal).
 ; Rising bars + SFX; the mon pulses to black. Loops once per stage.
-; ANIM_BG_19 = fade mon to black repeating (Polished's ANIM_BG_FADE_MON_TO_BLACK_REPEATING)
-	anim_1gfx ANIM_GFX_STATS
-	anim_bgeffect ANIM_BG_19, $0, $1, $40
-	anim_obp0 $30
+; The arrows are tinted per stat by BattleAnimSub_StatChange.
+	anim_call BattleAnimSub_StatChange
 .loop
 	anim_sound 0, 0, SFX_STAT_UP
 	anim_obj ANIM_OBJ_STAT_UP, 44, 107, $30
@@ -6276,9 +6274,7 @@ BattleAnim_StatUp:
 
 BattleAnim_StatDown:
 ; Generic stat drop animation (ported from Polished Crystal).
-	anim_1gfx ANIM_GFX_STATS
-	anim_bgeffect ANIM_BG_19, $0, $1, $40
-	anim_obp0 $30
+	anim_call BattleAnimSub_StatChange
 .loop
 	anim_sound 0, 0, SFX_STAT_DOWN
 	anim_obj ANIM_OBJ_STAT_DOWN, 44, 56, $10
@@ -6286,6 +6282,48 @@ BattleAnim_StatDown:
 	anim_statloop .loop
 	anim_wait 8
 	anim_incbgeffect ANIM_BG_19
+	anim_ret
+
+BattleAnimSub_StatChange:
+; Shared setup for BattleAnim_StatUp/StatDown (ported from Polished Crystal).
+; wBattleAnimParam holds the stat that changed (set by PlayStatChangeAnim_Core);
+; each stat recolors the arrows with its own palette from
+; gfx/battle_anims/custom.pal. Multi-stat flushes pass $f and stay gray.
+; ANIM_BG_19 = fade mon to black repeating (Polished's ANIM_BG_FADE_MON_TO_BLACK_REPEATING)
+	anim_1gfx ANIM_GFX_STATS
+	anim_bgeffect ANIM_BG_19, $0, $1, $40
+	anim_if_param_equal ATTACK, .attack
+	anim_if_param_equal DEFENSE, .defense
+	anim_if_param_equal SP_ATTACK, .sp_atk
+	anim_if_param_equal SP_DEFENSE, .sp_def
+	anim_if_param_equal SPEED, .speed
+	anim_if_param_equal ACCURACY, .accuracy
+	anim_if_param_equal EVASION, .evasion
+.gray
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_GRAY
+	anim_jump .continue
+.attack
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_ATTACK
+	anim_jump .continue
+.defense
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_DEFENSE
+	anim_jump .continue
+.sp_atk
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_SP_ATTACK
+	anim_jump .continue
+.sp_def
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_SP_DEFENSE
+	anim_jump .continue
+.speed
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_SPEED
+	anim_jump .continue
+.accuracy
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_ACCURACY
+	anim_jump .continue
+.evasion
+	anim_setobjpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_EVASION
+.continue
+	anim_obp0 $30
 	anim_ret
 
 BattleAnim_DrainPunch:
