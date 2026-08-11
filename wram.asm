@@ -2777,7 +2777,7 @@ wErinFightCount::    db
 ; Cycles 0-5: Fire, Water, Thunder, Leaf, Moon, Ice.
 wBugContestStonePrizeIndex:: db
 
-	ds 81 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags, then by 1 for wBugContestStonePrizeIndex
+	ds 80 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags, then by 1 for wBugContestStonePrizeIndex, then by 1 for EVENT_SILVER_CAVE_ROOM_2_MEWTWO
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
