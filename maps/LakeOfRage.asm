@@ -11,15 +11,17 @@
 	const LAKEOFRAGE_WESLEY
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
+	const LAKEOFRAGE_RAIKOU
 
 LakeOfRage_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; unusable
 	scene_script .DummyScene1 ; unusable
 
-	db 2 ; callbacks
+	db 3 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 	callback MAPCALLBACK_OBJECTS, .Wesley
+	callback MAPCALLBACK_OBJECTS, .Raikou
 
 .DummyScene0:
 	end
@@ -39,6 +41,19 @@ LakeOfRage_MapScripts:
 
 .WesleyAppears:
 	appear LAKEOFRAGE_WESLEY
+	return
+
+.Raikou:
+; RAIKOU prowls the lakeshore once the eighth Badge has been earned.
+	checkevent EVENT_FOUGHT_LAKE_OF_RAGE_RAIKOU
+	iftrue .NoRaikou
+	checkflag ENGINE_RISINGBADGE
+	iffalse .NoRaikou
+	appear LAKEOFRAGE_RAIKOU
+	return
+
+.NoRaikou:
+	disappear LAKEOFRAGE_RAIKOU
 	return
 
 LakeOfRageLanceScript:
@@ -491,6 +506,28 @@ FishingGurusHouseSignText:
 	line "HOUSE"
 	done
 
+LakeOfRageRaikou:
+	faceplayer
+	opentext
+	writetext LakeOfRageRaikouText
+	cry RAIKOU
+	pause 15
+	closetext
+	playsound SFX_THUNDER
+	earthquake 30
+	waitsfx
+	setevent EVENT_FOUGHT_LAKE_OF_RAGE_RAIKOU
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadwildmon RAIKOU, 40
+	startbattle
+	disappear LAKEOFRAGE_RAIKOU
+	reloadmapafterbattle
+	end
+
+LakeOfRageRaikouText:
+	text "Rayoooh!"
+	done
+
 LakeOfRage_MapEvents:
 	db 0, 0 ; filler
 
@@ -505,18 +542,19 @@ LakeOfRage_MapEvents:
 	bg_event 25, 31, BGEVENT_READ, MagikarpHouseSignScript
 	bg_event 11, 28, BGEVENT_ITEM, LakeOfRageHiddenFullRestore
 	bg_event  4,  4, BGEVENT_ITEM, LakeOfRageHiddenRareCandy
-	bg_event 35,  5, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion
+	bg_event 39, 10, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion
 
-	db 12 ; object events
+	db 13 ; object events
 	object_event 21, 28, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageLanceScript, EVENT_LAKE_OF_RAGE_LANCE
 	object_event 20, 26, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageGrampsScript, -1
-	object_event 36, 13, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageSuperNerdScript, -1
+	object_event 32, 20, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageSuperNerdScript, -1
 	object_event 25, 29, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageCooltrainerFScript, -1
 	object_event 30, 23, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event 24, 26, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event  4, 15, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
-	object_event 36,  7, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event 36, 13, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event 18, 22, SPRITE_GYARADOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RedGyarados, EVENT_LAKE_OF_RAGE_RED_GYARADOS
 	object_event  4,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
 	object_event  7, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, LakeOfRageElixer, EVENT_LAKE_OF_RAGE_ELIXER
-	object_event 35,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, LakeOfRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT
+	object_event 36,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, LakeOfRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT
+	object_event 35,  2, SPRITE_RAIKOU, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, LakeOfRageRaikou, EVENT_LAKE_OF_RAGE_RAIKOU
