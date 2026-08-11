@@ -517,7 +517,7 @@ LakeOfRageRaikou:
 	earthquake 30
 	waitsfx
 	setevent EVENT_FOUGHT_LAKE_OF_RAGE_RAIKOU
-	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	loadwildmon RAIKOU, 40
 	startbattle
 	disappear LAKEOFRAGE_RAIKOU
