@@ -967,7 +967,7 @@ AbilityPreventsBurn::
 	jr nz, .ordinary
 	call SwitchTurn
 	call ShowAbilityBannerBrief
-	call FlashFireActivate
+	call FlashFireRaiseSpAtk
 	call SwitchTurn
 	scf
 	ret
@@ -1507,7 +1507,7 @@ NullificationAbilities:
 	db DRY_SKIN, WATER
 	dw AbsorbHealQuarter
 	db FLASH_FIRE, FIRE
-	dw FlashFireActivate
+	dw AbsorbRaiseSpAtk
 	db SAP_SIPPER, GRASS
 	dw AbsorbRaiseAttack
 	db LEVITATE, GROUND
@@ -1539,17 +1539,25 @@ AbsorbRaiseStat:
 AbsorbNothing:
 	ret
 
-FlashFireActivate:
-; Runs from the holder's perspective (the .found path SwitchTurns first).
-; Arms the x1.5 Fire boost in RunDamageModifiers; the bit lives in
-; SubStatus2 so it clears automatically when the mon leaves the field.
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	bit SUBSTATUS_FLASH_FIRE, [hl]
-	ret nz ; already activated: still immune, no second message
-	set SUBSTATUS_FLASH_FIRE, [hl]
-	ld hl, FlashFireText
-	jp StdBattleTextbox
+FlashFireRaiseSpAtk:
+; Flash Fire from the holder's perspective, for the Fire *status* move
+; path (Will-O-Wisp): raise Sp. Atk one stage like Storm Drain does.
+; The damaging path goes through AbsorbRaiseSpAtk directly.
+; wAttackMissed / wEffectFailed are preserved here because the caller
+; is mid-status-effect and still needs its own miss state; the damaging
+; path overwrites wAttackMissed right after the handler returns.
+	ld a, [wAttackMissed]
+	ld b, a
+	ld a, [wEffectFailed]
+	ld c, a
+	push bc
+	call AbsorbRaiseSpAtk
+	pop bc
+	ld a, b
+	ld [wAttackMissed], a
+	ld a, c
+	ld [wEffectFailed], a
+	ret
 
 CheckPlayerAssaultVestMove_Core:
 ; b = selected move. Carry if Assault Vest blocks it.
@@ -1802,8 +1810,6 @@ RunDamageModifiers:
 	jp z, .mega_sol
 	cp SAND_FORCE
 	jp z, .sand_force
-	cp FLASH_FIRE
-	jp z, .flash_fire
 	cp HUGE_POWER
 	jr z, .huge_power
 	cp GUTS
@@ -2200,21 +2206,6 @@ RunDamageModifiers:
 .mega_sol_rain_fire
 	call DoubleDamage
 	call DamageX1_5 ; x0.5 rain cut -> x1.5 net
-	jp .defender
-
-.flash_fire
-	; x1.5 for the user's Fire moves once Flash Fire has been activated
-	; (body lives at the end of the dispatch area - see the session 4
-	; note about jr ranges before .pinch_boost)
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVar
-	bit SUBSTATUS_FLASH_FIRE, a
-	jp z, .defender
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVar
-	cp FIRE
-	jp nz, .defender
-	call DamageX1_5
 	jp .defender
 
 ApplyHeldItemDamageModifiers:
