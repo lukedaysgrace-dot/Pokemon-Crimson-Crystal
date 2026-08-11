@@ -12,7 +12,13 @@ hRTCHours::   db ; ff8f
 hRTCMinutes:: db ; ff90
 hRTCSeconds:: db ; ff91
 
-	ds 2
+; 60fps frame pacing. Set to $ff by the VBlank handler when a VBlank fired
+; while nothing was waiting inside DelayFrame - i.e. the main loop overran
+; its frame. NextOverworldFrame consumes it to skip its delay and stay on a
+; one-iteration-per-frame cadence. (Polished Crystal calls this hDelayFrameLY.)
+hVBlankLeaked:: db ; ff92
+
+	ds 1
 
 hHours:: db ; ff94
 	ds 1
