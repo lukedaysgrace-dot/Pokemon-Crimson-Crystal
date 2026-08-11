@@ -107,7 +107,8 @@ PewterGroupSprites:
 
 CinnabarGroupSprites:
 ; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
-; and OUTDOOR_SPRITE_VRAM_AUDIT.md). This group used to pack VRAM bank 0 to
+; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md). This group used to
+; pack VRAM bank 0 to
 ; exactly 128/128 - byte for byte the state CeruleanGroupSprites was in before
 ; it started rendering NPCs as the player.
 ; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
@@ -381,7 +382,8 @@ CherrygroveGroupSprites:
 
 SilverGroupSprites:
 ; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
-; and OUTDOOR_SPRITE_VRAM_AUDIT.md). Like CinnabarGroupSprites, this group used
+; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md). Like
+; CinnabarGroupSprites, this group used
 ; to pack VRAM bank 0 to exactly 128/128 - the pre-fix Cerulean state.
 ; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
 ;   1F maps, which are indoor and load their own sprites via AddIndoorSprites.

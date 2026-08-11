@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Dump gfx/battle_anims/meteor.2bpp as ASCII art so we can see the real
-tile order. Writes meteor_dump.txt in the repo root. No dependencies.
+tile order. Writes meteor_dump.txt under _ai_artifacts/reports. No dependencies.
 Run from the repo root:  python3 tools/dump_meteor.py
 """
 import os, sys
 
 repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = os.path.join(repo, "gfx", "battle_anims", "meteor.2bpp")
-out_path = os.path.join(repo, "meteor_dump.txt")
+out_path = os.path.join(repo, "_ai_artifacts", "reports", "meteor_dump.txt")
 
 CHARS = " .o#"  # color 0..3
 
