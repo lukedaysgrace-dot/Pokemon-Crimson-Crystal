@@ -173,7 +173,7 @@ def main():
     for item in not_done:
         print(f"  ? {item}")
 
-    report = CRYSTAL_ROOT.parent.parent / "sprite_import_report.txt"
+    report = CRYSTAL_ROOT.parent.parent / "_ai_artifacts" / "reports" / "sprite_import_report.txt"
     with report.open("w", encoding="utf-8") as f:
         f.write("IMPORTED\n")
         f.write("\n".join(done))

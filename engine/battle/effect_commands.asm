@@ -2374,7 +2374,8 @@ BattleCommand_ApplyDamage:
 BattleCommand_ApplyDamage_:
 ; applydamage
 ; (contact abilities run from the kingsrock command instead - running
-; them from inside ApplyDamage stalled the battle; see ABILITY_PORT_PLAN.md)
+; them from inside ApplyDamage stalled the battle; see
+; _ai_artifacts/reports/ABILITY_PORT_PLAN.md)
 
 	callfar EndureFocusSashInEffect_Core
 	jr c, .damage
