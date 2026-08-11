@@ -590,6 +590,9 @@ InitRoamMons:
 
 CheckEncounterRoamMon:
 	push hl
+; Roaming beasts are disabled. Raikou and Suicune are now static overworld
+; encounters (Lake of Rage and Tohjo Falls), so never trigger a roam battle.
+	jr .DontEncounterRoamMon
 ; Don't trigger an encounter if we're on water.
 	call CheckOnWater
 	jr z, .DontEncounterRoamMon
