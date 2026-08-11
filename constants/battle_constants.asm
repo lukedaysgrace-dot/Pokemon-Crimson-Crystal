@@ -185,8 +185,8 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus2 or wEnemySubStatus2 bit flags
 SUBSTATUS_CURLED EQU 0
-SUBSTATUS_FLASH_FIRE EQU 7 ; boost armed by a blocked Fire move; cleared
-                           ; with the rest of SubStatus1-5 on switch-in
+; bit 7 is free (was SUBSTATUS_FLASH_FIRE before Flash Fire became a
+; Storm Drain-style Sp. Atk absorb)
 
 ; wPlayerSubStatus3 or wEnemySubStatus3 bit flags
 	enum_start 7, -1
