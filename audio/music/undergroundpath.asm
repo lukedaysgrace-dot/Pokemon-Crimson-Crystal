@@ -6,13 +6,13 @@ Music_MtLavender:
 	channel 4, Music_MtLavender_Ch4
 
 Music_MtLavender_Ch1:
-	tempo 333
+	tempo 290
 	volume 7, 7
 	note_type 12, 15, 8
 .mainLoop_Ch1:
 	duty_cycle 1
 	vibrato 1, 2, 1
-	tempo 208
+	tempo 181
 	octave 3
 	transpose 2, 0
 	sound_call .sub10
@@ -164,7 +164,7 @@ Music_MtLavender_Ch1:
 	sound_ret
 
 .sub10:
-	tempo 182
+	tempo 158
 	note C_, 2
 	rest 1
 	note C_, 1
