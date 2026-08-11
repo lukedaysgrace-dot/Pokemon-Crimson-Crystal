@@ -12,6 +12,18 @@ VBlank::
 	push de
 	push hl
 
+; 60fps frame pacing: wVBlankOccurred is only set while something is parked
+; inside DelayFrame waiting for us. If it is already clear, nobody was
+; waiting - the main loop was still busy and has overrun its frame. Record
+; that so NextOverworldFrame can skip its delay instead of stalling a second
+; full frame. Must run before the handler below, which clears the flag.
+	ld a, [wVBlankOccurred]
+	and a
+	jr nz, .no_vblank_leak
+	ld a, -1
+	ldh [hVBlankLeaked], a
+.no_vblank_leak
+
 	ldh a, [hVBlank]
 	and 7
 
