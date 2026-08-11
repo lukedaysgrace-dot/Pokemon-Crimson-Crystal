@@ -64,3 +64,4 @@ SpriteMons:
 	dw ELECTRODE
 	dw MACHOKE
 	dw KANGASKHAN
+	dw MEWTWO
