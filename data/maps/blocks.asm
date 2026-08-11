@@ -1010,12 +1010,7 @@ DragonsDenB1F_Blocks:
 	INCBIN "maps/DragonsDenB1F.ablk"
 
 TohjoFalls_Blocks:
-	; The converted block file lost the last block of its first 15-wide row.
-	; Restore it here so later rows stay aligned and the map loader does not
-	; read one byte past the asset.
-	INCBIN "maps/TohjoFalls.ablk", 0, 14
-	db $0d
-	INCBIN "maps/TohjoFalls.ablk", 14
+	INCBIN "maps/TohjoFalls.ablk"
 
 RuinsOfAlphHoOhItemRoom_Blocks:
 RuinsOfAlphKabutoItemRoom_Blocks:
