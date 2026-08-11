@@ -566,7 +566,7 @@ OlivineGroupSprites:
 	db SPRITE_ROCK
 
 LakeOfRageGroupSprites:
-	db SPRITE_SUICUNE
+	db SPRITE_RAIKOU ; was SPRITE_SUICUNE (roaming cameo, no longer used here)
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
