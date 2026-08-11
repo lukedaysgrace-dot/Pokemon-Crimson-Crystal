@@ -177,4 +177,4 @@ A note on committing from a Claude session on the work PC: git through
 the OneDrive-mounted folder is slow enough that plain `git commit` times
 out the bridge; `git add` first (it survives), then `git write-tree` /
 `git commit-tree` / `git update-ref` in separate calls worked. Stale
-`.lock` files from timed-out attempts were moved to `_to_delete/`.
+`.lock` files from timed-out attempts were moved to `_ai_artifacts/scratch/`.
