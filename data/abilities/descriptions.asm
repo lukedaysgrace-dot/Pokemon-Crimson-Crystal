@@ -235,8 +235,8 @@ PastelVeilDescription:
 	done
 
 FlashFireDescription:
-	text "Boosts Fire moves"
-	next "if hit by one."
+	text "Draws in fire,"
+	next "raising SpclAtk."
 	done
 
 OwnTempoDescription:
