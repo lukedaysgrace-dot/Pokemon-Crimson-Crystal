@@ -1115,6 +1115,19 @@ EndTurnAbilities:
 	dbw -1, -1
 
 SpeedBoostAbility:
+	; A holder that entered after its side's action has not been active for a
+	; full turn and must not receive Speed Boost yet. The First Impression
+	; freshness flag is consumed at the mon's first action opportunity even if
+	; sleep, flinching, paralysis, or an item prevents an actual move.
+	ld hl, wPlayerFirstImpressionFresh
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_freshness
+	inc hl ; wEnemyFirstImpressionFresh
+.got_freshness
+	ld a, [hl]
+	and a
+	ret nz
 	call BeginAbility
 	ld b, SPEED
 	call StatUpAbility
@@ -1125,11 +1138,11 @@ ShedSkinAbility:
 	call GetBattleVar
 	and a
 	ret z
-	; 30% chance to proc
-	ld a, 10
+	; One-in-three chance to proc (Gen V onward).
+	ld a, 3
 	call BattleRandomRange
-	cp 3
-	ret nc
+	and a
+	ret nz
 	jr HealAllStatusAbility
 
 HydrationAbility:
@@ -1956,7 +1969,7 @@ RunDamageModifiers:
 	jp HalveDamage
 
 .marvel_scale
-	; approximates the 1.5x Defense boost (x2/3 damage) as x0.6875
+	; A 1.5x Defense boost is equivalent to two-thirds physical damage.
 	ld a, e
 	and a
 	ret nz
@@ -1964,7 +1977,7 @@ RunDamageModifiers:
 	call GetBattleVar
 	and a
 	ret z
-	jp DamageX0_69
+	jp DamageX2_3
 
 .filter
 	ld a, [wTypeModifier]
@@ -2348,6 +2361,43 @@ DamagePercent:
 	pop hl
 	ret
 
+DamageX2_3:
+; Exact floor(2 * wCurDamage / 3), minimum 1. Preserves bc and de.
+	push hl
+	push bc
+	push de
+	xor a
+	ldh [hMultiplicand + 0], a
+	ld hl, wCurDamage
+	ld a, [hli]
+	ldh [hMultiplicand + 1], a
+	ld a, [hl]
+	ldh [hMultiplicand + 2], a
+	ld a, 2
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 3
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
+	ld c, a
+	ld a, b
+	or c
+	jr nz, .store
+	inc c
+.store
+	ld a, b
+	ld [wCurDamage], a
+	ld a, c
+	ld [wCurDamage + 1], a
+	pop de
+	pop bc
+	pop hl
+	ret
+
 DoubleDamage:
 	push hl
 	ld hl, wCurDamage
@@ -2389,37 +2439,9 @@ DamageX1_5:
 	ret
 
 DamageX1_2:
-; approximates x1.2 as +1/8 +1/16 (x1.1875)
-	push hl
-	push de
-	ld hl, wCurDamage
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-	ld d, h
-	ld e, l
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e ; 1/8
-	add hl, de
-	jr c, .cap
-	srl d
-	rr e ; 1/16
-	add hl, de
-	jr nc, .store
-.cap
-	ld hl, $ffff
-.store
-	ld a, h
-	ld [wCurDamage], a
-	ld a, l
-	ld [wCurDamage + 1], a
-	pop de
-	pop hl
-	ret
+; Exact 120% multiplier used by -ate abilities, Iron Fist and Reckless.
+	ld a, 120
+	jp DamagePercent
 
 DamageX1_25:
 	push hl
@@ -2693,6 +2715,21 @@ AbilityPreHitTargetBlock::
 ; Carry if an opponent-targeted move is blocked before accuracy handling.
 ; This must run at the very start of checkhit so Lock-On, X Accuracy,
 ; always-hit effects and weather accuracy shortcuts cannot bypass it.
+	; Since Gen VII, Dark-type opponents are immune to status moves whose
+	; priority was raised by Prankster. This hook only receives moves that
+	; actually target the opposing Pokemon, so self/side moves remain valid.
+	call GetTrueUserAbility
+	cp PRANKSTER
+	jr nz, .not_prankster
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .not_prankster
+	ld a, DARK
+	call OpponentIsType
+	jr nz, .not_prankster
+	scf
+	ret
+.not_prankster
 	; Armor Tail / Queenly Majesty fail increased-priority moves outright.
 	; "Priority" is EFFECTIVE priority, counting Prankster/Gale Wings/Triage.
 	call GetOpponentIgnorableAbility
@@ -2860,19 +2897,12 @@ AbilityAccuracyMods::
 	ret
 
 .compound_eyes
-	; ~x1.3 (implemented as +25%)
-	ld a, b
-	srl a
-	srl a
-	add b
-	jr nc, .ce_ok
-	ld a, $fe ; cap below the never-miss value
-.ce_ok
-	ld b, a
+	ld a, 130
+	call AccuracyPercent
 	jp .defender ; jp: the status-class block pushed .defender out of jr range
 
 .hustle
-	; physical moves only: ~x0.8 (implemented as -25%)
+	; physical moves only: x0.8
 	call GetMoveCategory
 	and a ; CATEGORIZE_PHYSICAL
 	jp nz, .defender
@@ -2948,18 +2978,51 @@ ReduceAccuracyQuarter_Defender:
 	call ReduceAccuracyQuarter
 	jp AbilityAccuracyMods.defender
 ReduceAccuracyQuarter:
-; approximates x0.8: b = b - b/8 - b/16 (= x0.8125)
+; Exact 80% accuracy multiplier.
+	ld a, 80
+	jr AccuracyPercent
+
+AccuracyPercent:
+; a = percent, b = hit chance. Returns floor(b * a / 100) in b,
+; capped below the engine's special never-miss value. Preserves c, de, hl.
+	push hl
+	push de
+	push bc
+	ldh [hMultiplier], a
+	xor a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, b
-	srl a
-	srl a
-	srl a
-	ld c, a ; b/8
-	srl a   ; b/16
-	add c
-	ld c, a
-	ld a, b
-	sub c
+	ldh [hMultiplicand + 2], a
+	call Multiply
+	ld a, 100
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	and a
+	jr nz, .cap
+	ldh a, [hQuotient + 3]
+	cp $ff
+	jr c, .done
+.cap
+	ld a, $fe
+.done
+	pop bc
 	ld b, a
+	pop de
+	pop hl
+	ret
+
+AbilityIgnoresOpponentEvasion::
+; Carry if the user's ability ignores positive opponent evasion stages.
+	call GetTrueUserAbility
+	cp KEEN_EYE
+	jr z, .yes
+	cp MINDS_EYE
+	ret nz
+.yes
+	scf
 	ret
 
 CompareSpeedsWithAbilities::
@@ -3603,7 +3666,8 @@ RunContactAbilitiesHook::
 	call StdBattleTextbox
 .life_orb
 	; Attacker recoil resolves after defender items and reactive abilities.
-	jp LifeOrbRecoil
+	call LifeOrbRecoil
+	jp RunMoveKOAbilities
 
 AngerPointEffect:
 ; Turn = attacker. Maximizes the crit victim's Attack.
@@ -3880,8 +3944,6 @@ TryToxicOpponent:
 	jp FinishAbilityMajorStatus
 
 EffectSporeAbility:
-	call ContactChance
-	ret nc
 	; Grass-types and Overcoat holders are immune to spores.
 	call OpponentIsGrassType
 	ret z
@@ -3892,14 +3954,17 @@ EffectSporeAbility:
 	call GetBattleVar
 	and a
 	ret nz
-	; 1/3 each: poison, paralysis, sleep
-	ld a, 3
+	; One 0-99 roll gives the main-series 30% total distribution:
+	; 0-8 poison (9%), 9-18 paralysis (10%), 19-29 sleep (11%).
+	ld a, 100
 	call BattleRandomRange
-	and a
-	jp z, TryPoisonOpponentContact
-	dec a
-	jp z, TryParalyzeOpponent
-	; fallthrough
+	cp 9
+	jp c, TryPoisonOpponentContact
+	cp 19
+	jp c, TryParalyzeOpponent
+	cp 30
+	ret nc
+	; fallthrough for sleep
 TrySleepOpponent:
 ; Puts the turn holder's opponent to sleep, with banner/anim/text.
 ; Shared by Effect Spore and Magic Bounce.
@@ -4329,11 +4394,14 @@ AbilityCapCore::
 	line "any effect."
 	prompt
 RunFaintAbilities::
-; Called when a battler faints. If the current turn holder is still alive
-; and its opponent just fainted, run its on-KO abilities (Moxie).
+	; Generic faint cleanup runs for direct and indirect KOs alike.
+	jp RefreshWeatherSuppression
+
+RunMoveKOAbilities:
+; Called only from the damaging-move post-hit hook, after recoil and reactive
+; damage resolve. If the attacker survived and its target fainted, run Moxie.
 	; A fainted Cloud Nine holder stops suppressing the underlying weather
-	; immediately, even before its replacement enters.
-	call RefreshWeatherSuppression
+	; via RunFaintAbilities later; this path is only for move-caused KO rewards.
 	call UserHasFainted
 	ret z
 	call OppHasFainted
@@ -4547,51 +4615,16 @@ CountFaintedAllies:
 	ret
 
 SupremeOverlordBoost:
-; Add a * (1/16 + 1/32) of the current damage to wCurDamage (a = 1-5).
-; Approximates the canon +10% per fainted ally as +9.375% each, additive.
-	push hl
-	push de
+; Multiply damage by (100 + 10 * fainted allies)% (a = 1-5).
 	push bc
 	ld b, a
-	ld hl, wCurDamage
-	ld a, [hli]
-	ld e, [hl]
-	ld d, a ; de = damage
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e ; de = damage / 16
-	ld h, d
-	ld l, e
-	srl h
-	rr l ; hl = damage / 32
-	add hl, de
-	ld d, h
-	ld e, l ; de = fraction per fainted ally
-	ld hl, wCurDamage
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-.add_loop
-	add hl, de
-	jr c, .cap
-	dec b
-	jr nz, .add_loop
-	jr .store
-.cap
-	ld hl, $ffff
-.store
-	ld a, h
-	ld [wCurDamage], a
-	ld a, l
-	ld [wCurDamage + 1], a
+	add a, a ; 2n
+	add a, a ; 4n
+	add a, b ; 5n
+	add a, a ; 10n
+	add 100
+	call DamagePercent
 	pop bc
-	pop de
-	pop hl
 	ret
 
 ; ==== Disguise (Sun/Moon behavior) ========================================
