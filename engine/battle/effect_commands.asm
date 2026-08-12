@@ -2038,13 +2038,19 @@ BattleCommand_CheckHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_SACRED_SWORD
+	jr z, .ignore_evasion
+	; Keen Eye and Mind's Eye also ignore positive target evasion stages.
+	farcall AbilityIgnoresOpponentEvasion
+	jr nc, .respect_evasion
+.ignore_evasion
 	pop bc
 	pop hl
-	jr nz, .no_evasion_ignore
 	ld c, BASE_STAT_LEVEL
 	jr .skip_foresight_check
 
-.no_evasion_ignore
+.respect_evasion
+	pop bc
+	pop hl
 	ld a, c
 	cp b
 	jr c, .skip_foresight_check
