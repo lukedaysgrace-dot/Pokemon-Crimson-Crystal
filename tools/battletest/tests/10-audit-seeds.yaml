@@ -137,10 +137,11 @@
 
 - name: "Audit 6: Shed Skin curing Toxic clears SUBSTATUS_TOXIC and counter"
   # Toxic state is pre-set via status_byte (PSN) + the substatus field;
-  # forced_low makes Shed Skin's cure roll proc.
+  # Raw 24 is divisible by 3, so the one-in-three cure roll procs.
   player: { species: ARBOK, level: 50, ability: SHED_SKIN, status_byte: 8, substatus: [TOXIC], moves: [SPLASH] }
   enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
-  rng: forced_low
+  rng: forced
+  rng_value: 24
   turns: 2
   assert:
     - player.status == 0                  # poison cured

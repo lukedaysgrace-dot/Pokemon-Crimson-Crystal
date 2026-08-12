@@ -183,3 +183,14 @@
   rng: forced_low
   turns: 1
   assert: ["wram('wDebugResultParty1Item') == item_id('GOLD_BERRY')"]
+# A replacement arriving after its side's action has not been active for a
+# complete turn and must not receive Speed Boost at that turn's end.
+- name: "Ability: Speed Boost skips a replacement's entry turn"
+  player: { species: RATTATA, level: 2, hp: 1, moves: [SPLASH] }
+  player2: { species: WHIRLIPEDE, level: 50, ability: SPEED_BOOST, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 100, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'WHIRLIPEDE'
+    - player.stat_levels[2] == 7
