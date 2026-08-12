@@ -112,7 +112,7 @@ FirstEvoStages::
 	dw KOFFING
 	dw RHYHORN
 	dw RHYHORN    ;70
-	dw CHANSEY
+	dw HAPPINY
 	dw TANGELA
 	dw KANGASKHAN
 	dw HORSEA
@@ -121,7 +121,7 @@ FirstEvoStages::
 	dw GOLDEEN
 	dw STARYU     ;78
 	dw STARYU
-	dw MR__MIME
+	dw MIME_JR_
 	dw SCYTHER
 	dw SMOOCHUM
 	dw ELEKID
@@ -182,9 +182,9 @@ FirstEvoStages::
 	dw MAREEP
 	dw MAREEP
 	dw ODDISH
-	dw MARILL
-	dw MARILL     ;b8
-	dw SUDOWOODO
+	dw AZURILL
+	dw AZURILL     ;b8
+	dw BONSLY
 	dw POLIWAG
 	dw HOPPIP
 	dw HOPPIP
@@ -201,7 +201,7 @@ FirstEvoStages::
 	dw SLOWPOKE
 	dw MISDREAVUS ;c8
 	dw UNOWN
-	dw WOBBUFFET
+	dw WYNAUT
 	dw GIRAFARIG
 	dw PINECO
 	dw PINECO
@@ -225,7 +225,7 @@ FirstEvoStages::
 	dw REMORAID
 	dw REMORAID   ;e0
 	dw DELIBIRD
-	dw MANTINE
+	dw MANTYKE
 	dw SKARMORY
 	dw HOUNDOUR
 	dw HOUNDOUR
@@ -241,7 +241,7 @@ FirstEvoStages::
 	dw ELEKID
 	dw MAGBY      ;f0
 	dw MILTANK
-	dw CHANSEY
+	dw HAPPINY
 	dw RAIKOU
 	dw ENTEI
 	dw SUICUNE
@@ -401,7 +401,7 @@ FirstEvoStages::
 	dw MIMIKYU
 	dw CORSOLA_GALARIAN
 	dw CORSOLA
-	dw MR__MIME
+	dw MIME_JR_
 	dw FARFETCH_D
 	dw RIOLU
 	dw RIOLU
@@ -482,3 +482,9 @@ FirstEvoStages::
 	dw FLITTLE
 	dw FINIZEN
 	dw FINIZEN
+	dw AZURILL
+	dw WYNAUT
+	dw BONSLY
+	dw MIME_JR_
+	dw HAPPINY
+	dw MANTYKE

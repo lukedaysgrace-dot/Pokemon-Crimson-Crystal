@@ -481,3 +481,9 @@ BitmasksPointers:
 	dw EspathraBitmasks
 	dw FinizenBitmasks
 	dw PalafinBitmasks
+	dw AzurillBitmasks
+	dw WynautBitmasks
+	dw BonslyBitmasks
+	dw MimeJrBitmasks
+	dw HappinyBitmasks
+	dw MantykeBitmasks
