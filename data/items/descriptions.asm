@@ -190,7 +190,7 @@ ItemDescriptions:
 	dw MusicMailDesc
 	dw MewMailDesc
 	dw ToxicOrbDesc
-	dw QuestionMarkDesc
+	dw OvalStoneDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
@@ -831,6 +831,11 @@ FlameOrbDesc:
 ToxicOrbDesc:
 	db   "Badly poisons the"
 	next "holder. (HOLD)@"
+
+OvalStoneDesc:
+	db   "A peculiar stone"
+	next "that makes HAPPINY"
+	next "evolve by day.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

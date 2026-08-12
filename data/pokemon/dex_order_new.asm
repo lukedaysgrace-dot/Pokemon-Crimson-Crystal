@@ -1,4 +1,7 @@
 ; Every Pokémon sorted in New Pokédex Order.
+;
+; Internal species constants remain unchanged. Families are grouped here so the
+; regional numbers can change without disturbing party data or existing species IDs.
 
 NewPokedexOrder:
 	dw CHIKORITA
@@ -49,11 +52,13 @@ NewPokedexOrder:
 	dw WIGGLYTUFF
 	dw TOGEPI
 	dw TOGETIC
+	dw TOGEKISS
 	dw SANDSHREW
 	dw SANDSLASH
 	dw EKANS
 	dw ARBOK
 	dw DUNSPARCE
+	dw DRUNSPARCE
 	dw MAREEP
 	dw FLAAFFY
 	dw AMPHAROS
@@ -105,16 +110,20 @@ NewPokedexOrder:
 	dw NIDORINO
 	dw NIDOKING
 	dw YANMA
+	dw YANMEGA
 	dw SUNKERN
 	dw SUNFLORA
 	dw EXEGGCUTE
 	dw EXEGGUTOR
+	dw BONSLY
 	dw SUDOWOODO
+	dw WYNAUT
 	dw WOBBUFFET
 	dw VENONAT
 	dw VENOMOTH
 	dw SCYTHER
 	dw SCIZOR
+	dw KLEAVOR
 	dw PINSIR
 	dw HERACROSS
 	dw KOFFING
@@ -123,9 +132,11 @@ NewPokedexOrder:
 	dw MUK
 	dw MAGNEMITE
 	dw MAGNETON
+	dw MAGNEZONE
 	dw VOLTORB
 	dw ELECTRODE
 	dw AIPOM
+	dw AMBIPOM
 	dw SNUBBULL
 	dw GRANBULL
 	dw VULPIX
@@ -133,12 +144,15 @@ NewPokedexOrder:
 	dw GROWLITHE
 	dw ARCANINE
 	dw STANTLER
+	dw WYRDEER
+	dw AZURILL
 	dw MARILL
 	dw AZUMARILL
 	dw DIGLETT
 	dw DUGTRIO
 	dw MANKEY
 	dw PRIMEAPE
+	dw ANNIHILAPE
 	dw MEOWTH
 	dw PERSIAN
 	dw PSYDUCK
@@ -151,14 +165,18 @@ NewPokedexOrder:
 	dw HITMONCHAN
 	dw HITMONTOP
 	dw GIRAFARIG
+	dw FARIGIRAF
 	dw TAUROS
 	dw MILTANK
 	dw MAGBY
 	dw MAGMAR
+	dw MAGMORTAR
 	dw SMOOCHUM
 	dw JYNX
 	dw ELEKID
 	dw ELECTABUZZ
+	dw ELECTIVIRE
+	dw MIME_JR_
 	dw MR__MIME
 	dw MR__RIME
 	dw SMEARGLE
@@ -168,6 +186,7 @@ NewPokedexOrder:
 	dw WATU
 	dw XATU
 	dw QWILFISH
+	dw OVERQWIL
 	dw TENTACOOL
 	dw TENTACRUEL
 	dw KRABBY
@@ -186,24 +205,33 @@ NewPokedexOrder:
 	dw SEEL
 	dw DEWGONG
 	dw LICKITUNG
+	dw LICKILICKY
 	dw TANGELA
+	dw TANGROWTH
 	dw EEVEE
 	dw VAPOREON
 	dw JOLTEON
 	dw FLAREON
 	dw ESPEON
 	dw UMBREON
+	dw GLACEON
+	dw LEAFEON
+	dw SYLVEON
 	dw HORSEA
 	dw SEADRA
 	dw KINGDRA
 	dw GLIGAR
+	dw GLISCOR
 	dw DELIBIRD
 	dw SWINUB
 	dw PILOSWINE
+	dw MAMOSWINE
 	dw TEDDIURSA
 	dw URSARING
+	dw URSALUNA
 	dw PHANPY
 	dw DONPHAN
+	dw MANTYKE
 	dw MANTINE
 	dw SKARMORY
 	dw DODUO
@@ -215,47 +243,33 @@ NewPokedexOrder:
 	dw KANGASKHAN
 	dw RHYHORN
 	dw RHYDON
+	dw RHYPERIOR
 	dw MURKROW
 	dw HONCHKROW
-	dw AMBIPOM
-	dw ANNIHILAPE
 	dw BAGON
 	dw SHELGON
 	dw SALAMENCE
 	dw AXEW
 	dw FRAXURE
 	dw HAXORUS
-	dw DRUNSPARCE
-	dw ELECTIVIRE
-	dw FARIGIRAF
 	dw RALTS
 	dw KIRLIA
 	dw GARDEVOIR
 	dw GALLADE
-	dw GLACEON
-	dw GLISCOR
-	dw LEAFEON
 	dw RIOLU
 	dw LUCARIO
-	dw LICKILICKY
-	dw MAGMORTAR
-	dw MAGNEZONE
-	dw MAMOSWINE
 	dw MESMERIA
 	dw MISDREAVUS
 	dw MISMAGIUS
 	dw MIMIKYU
+	dw PORYGON
+	dw PORYGON2
 	dw PORYGON_Z
-	dw RHYPERIOR
-	dw TANGROWTH
-	dw TOGEKISS
-	dw URSALUNA
 	dw VENIPEDE
 	dw WHIRLIPEDE
 	dw SCOLIPEDE
+	dw SNEASEL
 	dw WEAVILE
-	dw WYRDEER
-	dw YANMEGA
 	dw LILEEP
 	dw CRADILY
 	dw ANORITH
@@ -296,7 +310,6 @@ NewPokedexOrder:
 	dw CHARCADET
 	dw ARMAROUGE
 	dw CERULEDGE
-	dw SYLVEON
 	dw ROOKIDEE
 	dw CORVISQUIRE
 	dw CORVIKNIGHT
@@ -304,9 +317,7 @@ NewPokedexOrder:
 	dw HOUNDOOM
 	dw SLUGMA
 	dw MAGCARGO
-	dw SNEASEL
-	dw PORYGON
-	dw PORYGON2
+	dw HAPPINY
 	dw CHANSEY
 	dw BLISSEY
 	dw LAPRAS
@@ -401,7 +412,6 @@ NewPokedexOrder:
 	dw LOTAD
 	dw LOMBRE
 	dw LUDICOLO
-	dw OVERQWIL
 	dw SCRAGGY
 	dw SCRAFTY
 	dw SPHEAL
@@ -456,7 +466,6 @@ NewPokedexOrder:
 	dw ARON
 	dw LAIRON
 	dw AGGRON
-	dw KLEAVOR
 	dw GLIMMET
 	dw GLIMMORA
 	dw MAREANIE

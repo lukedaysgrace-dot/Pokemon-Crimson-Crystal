@@ -487,3 +487,9 @@ PokemonCries::
 	mon_cry CRY_FEAROW,     -$040,  $160 ; ESPATHRA
 	mon_cry CRY_SEEL,        $0c0,  $0e0 ; FINIZEN
 	mon_cry CRY_SEEL,       -$050,  $190 ; PALAFIN
+	mon_cry CRY_MARILL,      $11b,  $120 ; AZURILL
+	mon_cry CRY_AMPHAROS,    $27b,  $144 ; WYNAUT
+	mon_cry CRY_CLEFFA,      $f40,  $180 ; BONSLY (same cry slot as Polished's CRY_BELLOSSOM)
+	mon_cry CRY_KRABBY,      $008,  $0c0 ; MIME_JR_
+	mon_cry CRY_PIDGEOTTO,   $00a,  $140 ; HAPPINY
+	mon_cry CRY_MANTINE,    -$0be,  $0f0 ; MANTYKE
