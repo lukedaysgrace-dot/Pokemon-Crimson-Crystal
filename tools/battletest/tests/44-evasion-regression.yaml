@@ -1,0 +1,37 @@
+# Evasion-stage regression coverage for AbilityIgnoresOpponentEvasion.
+#
+# The Keen Eye / Mind's Eye checkhit hook returns "ignore evasion" via the
+# carry flag. These controls pin down the two ways that predicate can go
+# wrong: leaking carry for unrelated abilities (which would make raised
+# evasion useless against almost every attacker), and ignoring *lowered*
+# evasion (main-series Keen Eye only ignores increases).
+
+- name: "Evasion: raised evasion still works against an ordinary attacker"
+  # Tackle raw accuracy 242 becomes 242*25/100 = 60 at +6 target evasion;
+  # the forced roll 180 must therefore miss. An attacker with a random
+  # non-evasion ability must not get Keen Eye's exemption.
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Evasion: raised evasion works against an attacker with an unrelated ability"
+  player: { species: MEW, level: 50, ability: INTIMIDATE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Evasion: Keen Eye keeps the benefit of lowered target evasion"
+  # Zap Cannon raw accuracy 127 misses the forced 180 roll at neutral
+  # evasion, but -6 target evasion multiplies it to 255. Keen Eye only
+  # ignores INCREASED evasion, so the drop must still apply and hit.
+  player: { species: MEW, level: 50, ability: KEEN_EYE, moves: [ZAP_CANNON] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: -6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
