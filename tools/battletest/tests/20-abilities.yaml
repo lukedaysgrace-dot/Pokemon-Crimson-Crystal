@@ -120,13 +120,14 @@
     - enemy.hp == enemy.start_hp
     - enemy.stat_levels[0] == 8
 
-- name: "Ability: Flash Fire makes the holder Fire-immune"
+- name: "Ability: custom Flash Fire absorbs Fire and raises Sp. Atk"
   player: { species: GENGAR, level: 50, moves: [EMBER] }
   enemy:  { species: LITWICK, level: 50, ability: FLASH_FIRE, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
     - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 8
 
 - name: "Ability: Dry Skin heals from Water moves"
   player: { species: TOXICROAK, level: 50, ability: DRY_SKIN, hp: 50, moves: [SPLASH] }
@@ -146,13 +147,14 @@
 
 # ---- contact / on-hit abilities -------------------------------------
 
-- name: "Ability: Effect Spore statuses attackers on contact"
+- name: "Ability: Effect Spore uses the canonical outcome distribution"
   player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
   enemy:  { species: PARAS, level: 50, ability: EFFECT_SPORE, moves: [SPLASH] }
-  rng: forced_low
+  rng: forced
+  rng_value: 12
   turns: 1
   assert:
-    - player.status != 0
+    - (player.status & 64) != 0   # roll 12 is in the 10% paralysis band
 
 - name: "Ability: Poison Point poisons attackers on contact"
   player: { species: MACHAMP, level: 50, moves: [KARATE_CHOP] }
@@ -341,6 +343,15 @@
   assert:
     - enemy.hp == 0
     - player.stat_levels[0] == 8
+
+- name: "Ability: Moxie does not activate from a residual-damage KO"
+  player: { species: DODUO, level: 50, ability: MOXIE, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 2, hp: 1, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.stat_levels[0] == 7
 
 - name: "Ability: Rain Dish heals the holder in rain"
   player: { species: WARTORTLE, level: 50, ability: RAIN_DISH, hp: 50, moves: [SPLASH] }
