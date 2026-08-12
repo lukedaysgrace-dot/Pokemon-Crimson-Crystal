@@ -480,3 +480,9 @@ INCBIN "gfx/footprints/252.1bpp" ; FLITTLE
 INCBIN "gfx/footprints/252.1bpp" ; ESPATHRA
 INCBIN "gfx/footprints/252.1bpp" ; FINIZEN
 INCBIN "gfx/footprints/252.1bpp" ; PALAFIN
+INCBIN "gfx/footprints/azurill.1bpp" ; AZURILL
+INCBIN "gfx/footprints/wynaut.1bpp" ; WYNAUT
+INCBIN "gfx/footprints/bonsly.1bpp" ; BONSLY
+INCBIN "gfx/footprints/mime_jr_.1bpp" ; MIME_JR_
+INCBIN "gfx/footprints/happiny.1bpp" ; HAPPINY
+INCBIN "gfx/footprints/mantine.1bpp" ; MANTYKE has no footprint

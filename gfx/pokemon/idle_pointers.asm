@@ -481,3 +481,9 @@ AnimationIdlePointers:
 	dba EspathraAnimationIdle
 	dba FinizenAnimationIdle
 	dba PalafinAnimationIdle
+	dba AzurillAnimationIdle
+	dba WynautAnimationIdle
+	dba BonslyAnimationIdle
+	dba MimeJrAnimationIdle
+	dba HappinyAnimationIdle
+	dba MantykeAnimationIdle

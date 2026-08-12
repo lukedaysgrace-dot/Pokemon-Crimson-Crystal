@@ -492,4 +492,13 @@ EspathraIcon: INCBIN "gfx/icons/espathra.2bpp"
 FinizenIcon: INCBIN "gfx/icons/fish.2bpp" ; TODO: gfx/icons/finizen.png
 PalafinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/palafin.png
 
+SECTION "Mon Icons 9", ROMX
+
+AzurillIcon: INCBIN "gfx/icons/azurill.2bpp"
+WynautIcon:  INCBIN "gfx/icons/wynaut.2bpp"
+BonslyIcon:  INCBIN "gfx/icons/bonsly.2bpp"
+MimeJrIcon:  INCBIN "gfx/icons/mime_jr_.2bpp"
+HappinyIcon: INCBIN "gfx/icons/happiny.2bpp"
+MantykeIcon: INCBIN "gfx/icons/mantyke.2bpp"
+
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"
