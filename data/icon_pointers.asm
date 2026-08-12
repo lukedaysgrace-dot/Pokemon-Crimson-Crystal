@@ -483,3 +483,9 @@ IconPointers:
 	dba EspathraIcon
 	dba FinizenIcon
 	dba PalafinIcon
+	dba AzurillIcon
+	dba WynautIcon
+	dba BonslyIcon
+	dba MimeJrIcon
+	dba HappinyIcon
+	dba MantykeIcon

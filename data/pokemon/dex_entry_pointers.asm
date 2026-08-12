@@ -482,3 +482,9 @@ PokedexDataPointerTable:
 	dba EspathraPokedexEntry
 	dba FinizenPokedexEntry
 	dba PalafinPokedexEntry
+	dba AzurillPokedexEntry
+	dba WynautPokedexEntry
+	dba BonslyPokedexEntry
+	dba MimeJrPokedexEntry
+	dba HappinyPokedexEntry
+	dba MantykePokedexEntry

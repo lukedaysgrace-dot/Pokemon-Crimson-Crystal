@@ -1950,6 +1950,31 @@ INCLUDE "data/pokemon/dex_order_alpha.asm"
 
 INCLUDE "data/pokemon/dex_order_new.asm"
 
+; Return the 1-based regional dex number for a species index without changing
+; the internal species constants used by parties and save data.
+; in: hl = internal species index
+; out: hl = position in NewPokedexOrder
+GetRegionalDexNumber:
+	ld d, h
+	ld e, l
+	ld hl, NewPokedexOrder
+	ld bc, 1
+.loop
+	ld a, [hli]
+	cp e
+	jr nz, .next
+	ld a, [hl]
+	cp d
+	jr z, .found
+.next
+	inc hl
+	inc bc
+	jr .loop
+.found
+	ld h, b
+	ld l, c
+	ret
+
 Pokedex_DisplayModeDescription:
 	xor a
 	ldh [hBGMapMode], a
