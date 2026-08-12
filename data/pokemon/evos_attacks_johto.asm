@@ -2631,6 +2631,12 @@ EvosAttacksPointers2C::
 	dw EspathraEvosAttacks
 	dw FinizenEvosAttacks
 	dw PalafinEvosAttacks
+	dw AzurillEvosAttacks
+	dw WynautEvosAttacks
+	dw BonslyEvosAttacks
+	dw MimeJrEvosAttacks
+	dw HappinyEvosAttacks
+	dw MantykeEvosAttacks
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE
@@ -3084,6 +3090,109 @@ PalafinEvosAttacks:
 	dbw 50, CROSS_CHOP
 	dbw 56, LIQUIDATION
 	dbw 62, CLOSE_COMBAT
+	db 0 ; no more level-up moves
+
+AzurillEvosAttacks:
+	dbbw EVOLVE_HAPPINESS, TR_ANYTIME, MARILL
+	db 0 ; no more evolutions
+	dbw 1, SPLASH
+	dbw 1, WATER_GUN
+	dbw 2, GROWL
+	dbw 5, FORESIGHT
+	dbw 7, AQUA_JET
+	dbw 10, CHARM
+	dbw 13, BUBBLEBEAM
+	dbw 16, SING
+	dbw 20, ROLLOUT
+	dbw 23, BODY_SLAM
+	db 0 ; no more level-up moves
+
+WynautEvosAttacks:
+	dbbw EVOLVE_LEVEL, 15, WOBBUFFET
+	db 0 ; no more evolutions
+	dbw 1, SPLASH
+	dbw 1, CHARM
+	dbw 1, ENCORE
+	dbw 1, AMNESIA
+	dbw 1, COUNTER
+	dbw 1, MIRROR_COAT
+	dbw 1, SAFEGUARD
+	dbw 1, DESTINY_BOND
+	db 0 ; no more level-up moves
+
+BonslyEvosAttacks:
+	dbbw EVOLVE_MOVE, ROCK_THROW, SUDOWOODO
+	db 0 ; no more evolutions
+	dbw 1, CHARM
+	dbw 1, SUBSTITUTE
+	dbw 5, REVERSAL
+	dbw 8, LOW_KICK
+	dbw 12, LEER
+	dbw 15, ROCK_THROW
+	dbw 19, FAINT_ATTACK
+	dbw 22, ANCIENTPOWER
+	dbw 26, PROTECT
+	dbw 29, ROCK_SLIDE
+	dbw 33, COUNTER
+	dbw 36, SUCKER_PUNCH
+	dbw 40, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+MimeJrEvosAttacks:
+	dbbw EVOLVE_LEVEL, 30, MR__MIME
+	db 0 ; no more evolutions
+	dbw 1, BARRIER
+	dbw 1, CONFUSION
+	dbw 1, TACKLE
+	dbw 4, HYPNOSIS
+	dbw 8, CALM_MIND
+	dbw 11, DOUBLESLAP
+	dbw 13, PROTECT
+	dbw 15, METRONOME
+	dbw 18, ENCORE
+	dbw 22, LIGHT_SCREEN
+	dbw 22, REFLECT
+	dbw 25, PSYBEAM
+	dbw 29, SUBSTITUTE
+	dbw 32, CONFUSE_RAY
+	dbw 36, TRICK
+	dbw 39, PSYCHIC_M
+	dbw 43, FUTURE_SIGHT
+	dbw 46, BATON_PASS
+	dbw 50, SAFEGUARD
+	db 0 ; no more level-up moves
+
+HappinyEvosAttacks:
+	dbbw EVOLVE_HOLDING, OVAL_STONE, CHANSEY
+	db 0 ; no more evolutions
+	dbw 1, MINIMIZE
+	dbw 1, TACKLE
+	dbw 1, METRONOME
+	dbw 4, DEFENSE_CURL
+	dbw 8, SWEET_KISS
+	dbw 16, ROLLOUT
+	dbw 20, CHARM
+	db 0 ; no more level-up moves
+
+MantykeEvosAttacks:
+	dbbw EVOLVE_PARTY, REMORAID, MANTINE
+	db 0 ; no more evolutions
+	dbw 1, GUST
+	dbw 1, TACKLE
+	dbw 1, WATER_GUN
+	dbw 3, SUPERSONIC
+	dbw 7, BUBBLEBEAM
+	dbw 11, CONFUSE_RAY
+	dbw 14, WING_ATTACK
+	dbw 16, HEADBUTT
+	dbw 19, WATER_PULSE
+	dbw 23, AQUA_JET
+	dbw 27, TAKE_DOWN
+	dbw 32, AGILITY
+	dbw 36, AIR_SLASH
+	dbw 39, ROOST
+	dbw 46, MIRROR_COAT
+	dbw 49, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
 

@@ -977,3 +977,15 @@ PokemonPicPointers::
 	dba FinizenBackpic
 	dba PalafinFrontpic
 	dba PalafinBackpic
+	dba AzurillFrontpic
+	dba AzurillBackpic
+	dba WynautFrontpic
+	dba WynautBackpic
+	dba BonslyFrontpic
+	dba BonslyBackpic
+	dba MimeJrFrontpic
+	dba MimeJrBackpic
+	dba HappinyFrontpic
+	dba HappinyBackpic
+	dba MantykeFrontpic
+	dba MantykeBackpic

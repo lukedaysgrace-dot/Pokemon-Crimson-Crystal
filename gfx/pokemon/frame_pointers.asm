@@ -481,3 +481,9 @@ FramesPointers:
 	dba EspathraFrames
 	dba FinizenFrames
 	dba PalafinFrames
+	dba AzurillFrames
+	dba WynautFrames
+	dba BonslyFrames
+	dba MimeJrFrames
+	dba HappinyFrames
+	dba MantykeFrames

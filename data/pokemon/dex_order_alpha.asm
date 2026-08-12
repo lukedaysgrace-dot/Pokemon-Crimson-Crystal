@@ -31,6 +31,7 @@ AlphabeticalPokedexOrder:
 	dw AURORUS
 	dw AXEW
 	dw AZUMARILL
+	dw AZURILL
 	dw BAGON
 	dw BANETTE
 	dw BASTIODON
@@ -43,6 +44,7 @@ AlphabeticalPokedexOrder:
 	dw BLASTOISE
 	dw BLASTOISE_CLONE
 	dw BLISSEY
+	dw BONSLY
 	dw BOUNSWEET
 	dw BRELOOM
 	dw BULBASAUR
@@ -183,6 +185,7 @@ AlphabeticalPokedexOrder:
 	dw GURDURR
 	dw GYARADOS
 	dw HAUNTER
+	dw HAPPINY
 	dw HAXORUS
 	dw HERACROSS
 	dw HITMONCHAN
@@ -253,6 +256,7 @@ AlphabeticalPokedexOrder:
 	dw MAMOSWINE
 	dw MANKEY
 	dw MANTINE
+	dw MANTYKE
 	dw MAREANIE
 	dw MAREEP
 	dw MARILL
@@ -269,6 +273,7 @@ AlphabeticalPokedexOrder:
 	dw MEWTWO
 	dw MILOTIC
 	dw MILTANK
+	dw MIME_JR_
 	dw MIMIKYU
 	dw MISDREAVUS
 	dw MISMAGIUS
@@ -476,6 +481,7 @@ AlphabeticalPokedexOrder:
 	dw WOBBUFFET
 	dw WOOPER
 	dw WOOPER_PALDEAN
+	dw WYNAUT
 	dw WYRDEER
 	dw XATU
 	dw YANMA

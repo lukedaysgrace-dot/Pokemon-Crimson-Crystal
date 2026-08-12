@@ -499,3 +499,9 @@ WartortleCloneAnimationIdle:
 BlastoiseCloneAnimationIdle:
 	frame 0, 20
 	endanim
+AzurillAnimationIdle: INCLUDE "gfx/pokemon/azurill/anim_idle.asm"
+WynautAnimationIdle:  INCLUDE "gfx/pokemon/wynaut/anim_idle.asm"
+BonslyAnimationIdle:  INCLUDE "gfx/pokemon/bonsly/anim_idle.asm"
+MimeJrAnimationIdle:  INCLUDE "gfx/pokemon/mime_jr_/anim_idle.asm"
+HappinyAnimationIdle: INCLUDE "gfx/pokemon/happiny/anim_idle.asm"
+MantykeAnimationIdle: INCLUDE "gfx/pokemon/mantyke/anim_idle.asm"

@@ -481,3 +481,9 @@ AnimationPointers:
 	dba EspathraAnimation
 	dba FinizenAnimation
 	dba PalafinAnimation
+	dba AzurillAnimation
+	dba WynautAnimation
+	dba BonslyAnimation
+	dba MimeJrAnimation
+	dba HappinyAnimation
+	dba MantykeAnimation
