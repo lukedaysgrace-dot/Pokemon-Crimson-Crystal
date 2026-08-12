@@ -162,9 +162,17 @@
   player: { species: GALVANTULA, level: 50, ability: COMPOUND_EYES, moves: [THUNDER] }
   enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
   rng: forced
-  rng_value: 180
+  rng_value: 224
   turns: 1
   assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Hustle applies an exact 80 percent physical accuracy modifier"
+  player: { species: MEW, level: 50, ability: HUSTLE, moves: [POUND] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 204
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
 
 - name: "Ability: No Guard makes an inaccurate move hit"
   player: { species: HYPNO, level: 50, ability: NO_GUARD, moves: [DYNAMICPUNCH] }
@@ -178,7 +186,7 @@
   enemy:  { species: PHANPY, level: 50, ability: SAND_VEIL, moves: [SPLASH] }
   weather: sandstorm
   rng: forced
-  rng_value: 200
+  rng_value: 204
   turns: 1
   assert: ["enemy.hp == enemy.start_hp"]
 
@@ -187,7 +195,7 @@
   enemy:  { species: VULPIX_ALOLAN, level: 50, ability: SNOW_CLOAK, moves: [SPLASH] }
   weather: hail
   rng: forced
-  rng_value: 200
+  rng_value: 204
   turns: 1
   assert: ["enemy.hp == enemy.start_hp"]
 
@@ -214,6 +222,30 @@
   assert:
     - wram('wEnemyGoesFirst') == 0
     - enemy.stat_levels[0] == 6
+
+- name: "Ability: Dark types are immune to Prankster-boosted status moves"
+  player: { species: IMPIDIMP, level: 50, ability: PRANKSTER, moves: [GROWL] }
+  enemy:  { species: UMBREON, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7"]
+
+- name: "Ability: Gen 6 Gale Wings still works below full HP"
+  player: { species: TALONFLAME, level: 5, ability: GALE_WINGS, hp: 50, moves: [PECK] }
+  enemy:  { species: ELECTRODE, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.hp < enemy.start_hp
+
+- name: "Ability: Shed Skin has a one-in-three cure chance"
+  player: { species: ARBOK, level: 50, ability: SHED_SKIN, status_byte: 8, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 24
+  turns: 1
+  assert: ["player.status == 0"]
 
 - name: "Ability: Armor Tail blocks opposing priority moves"
   player: { species: MEW, level: 50, moves: [QUICK_ATTACK] }
