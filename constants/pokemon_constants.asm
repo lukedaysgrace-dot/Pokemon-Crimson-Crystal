@@ -502,6 +502,12 @@ JOHTO_POKEMON EQU const_value
 	const ESPATHRA          ;
 	const FINIZEN           ;
 	const PALAFIN           ;
+	const AZURILL           ; appended to preserve all existing species IDs
+	const WYNAUT            ;
+	const BONSLY            ;
+	const MIME_JR_          ;
+	const HAPPINY           ;
+	const MANTYKE           ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

@@ -490,3 +490,9 @@ MonMenuIconPals:
 	icon_pals BROWN,  PURPLE ; ESPATHRA
 	icon_pals BLUE,   TEAL   ; FINIZEN
 	icon_pals BLUE,   PINK   ; PALAFIN
+	icon_pals BLUE,   GREEN  ; AZURILL
+	icon_pals BLUE,   PURPLE ; WYNAUT
+	icon_pals GREEN,  RED    ; BONSLY
+	icon_pals BLUE,   GREEN  ; MIME_JR_
+	icon_pals RED,    PINK   ; HAPPINY
+	icon_pals BLUE,   TEAL   ; MANTYKE

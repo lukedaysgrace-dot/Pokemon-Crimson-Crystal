@@ -1457,6 +1457,21 @@ WartortleCloneBackpic: INCBIN "gfx/pokemon/wartortle_clone/back.2bpp.lz"
 BlastoiseCloneFrontpic: INCBIN "gfx/pokemon/blastoise_clone/front.animated.2bpp.lz"
 BlastoiseCloneBackpic: INCBIN "gfx/pokemon/blastoise_clone/back.2bpp.lz"
 
+SECTION "Baby Pokemon Pics", ROMX
+
+AzurillFrontpic: INCBIN "gfx/pokemon/azurill/front.animated.2bpp.lz"
+AzurillBackpic:  INCBIN "gfx/pokemon/azurill/back.2bpp.lz"
+WynautFrontpic: INCBIN "gfx/pokemon/wynaut/front.animated.2bpp.lz"
+WynautBackpic:  INCBIN "gfx/pokemon/wynaut/back.2bpp.lz"
+BonslyFrontpic: INCBIN "gfx/pokemon/bonsly/front.animated.2bpp.lz"
+BonslyBackpic:  INCBIN "gfx/pokemon/bonsly/back.2bpp.lz"
+MimeJrFrontpic: INCBIN "gfx/pokemon/mime_jr_/front.animated.2bpp.lz"
+MimeJrBackpic:  INCBIN "gfx/pokemon/mime_jr_/back.2bpp.lz"
+HappinyFrontpic: INCBIN "gfx/pokemon/happiny/front.animated.2bpp.lz"
+HappinyBackpic:  INCBIN "gfx/pokemon/happiny/back.2bpp.lz"
+MantykeFrontpic: INCBIN "gfx/pokemon/mantyke/front.animated.2bpp.lz"
+MantykeBackpic:  INCBIN "gfx/pokemon/mantyke/back.2bpp.lz"
+
 SECTION "New Trainer Pics", ROMX
 
 BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"
