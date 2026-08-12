@@ -499,3 +499,9 @@ WartortleCloneAnimation:
 BlastoiseCloneAnimation:
 	frame 0, 20
 	endanim
+AzurillAnimation: INCLUDE "gfx/pokemon/azurill/anim.asm"
+WynautAnimation:  INCLUDE "gfx/pokemon/wynaut/anim.asm"
+BonslyAnimation:  INCLUDE "gfx/pokemon/bonsly/anim.asm"
+MimeJrAnimation:  INCLUDE "gfx/pokemon/mime_jr_/anim.asm"
+HappinyAnimation: INCLUDE "gfx/pokemon/happiny/anim.asm"
+MantykeAnimation: INCLUDE "gfx/pokemon/mantyke/anim.asm"
