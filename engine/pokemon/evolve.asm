@@ -88,6 +88,12 @@ EvolveAfterBattle_MasterLoop:
 
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
+	cp EVOLVE_MOVE
+	jp z, .move
+	cp EVOLVE_HOLDING
+	jp z, .holding
+	cp EVOLVE_PARTY
+	jp z, .party
 
 ; EVOLVE_STAT
 	call GetNextEvoAttackByte
@@ -140,6 +146,59 @@ EvolveAfterBattle_MasterLoop:
 .happiness_daylight
 	ld a, [wTimeOfDay]
 	cp NITE_F
+	jp z, .skip_evolution_species
+	jp .proceed
+
+.move
+	call GetNextEvoAttackByte
+	ld c, a
+	push hl
+	ld hl, wTempMonMoves
+	ld b, NUM_MOVES
+.move_loop
+	ld a, [hli]
+	cp c
+	jr z, .move_found
+	dec b
+	jr nz, .move_loop
+	pop hl
+	jp .skip_evolution_species
+.move_found
+	pop hl
+	call IsMonHoldingEverstone
+	jp z, .skip_evolution_species
+	jp .proceed
+
+.holding
+	call GetNextEvoAttackByte
+	ld c, a
+	ld a, [wTempMonItem]
+	cp c
+	jp nz, .skip_evolution_species
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	jp z, .skip_evolution_species
+	xor a
+	ld [wTempMonItem], a
+	jp .proceed
+
+.party
+	call GetNextEvoAttackByte
+	ld c, a
+	push hl
+	ld hl, wPartySpecies
+	ld b, PARTY_LENGTH
+.party_loop
+	ld a, [hli]
+	cp c
+	jr z, .party_found
+	dec b
+	jr nz, .party_loop
+	pop hl
+	jp .skip_evolution_species
+.party_found
+	pop hl
+	call IsMonHoldingEverstone
 	jp z, .skip_evolution_species
 	jp .proceed
 
