@@ -53,7 +53,7 @@
   enemy: { species: MEW, level: 100, ability: MARVEL_SCALE, status_byte: 64, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["enemy.start_hp - enemy.hp < result('marvel_scale_control')['enemy']['damage']"]
+  assert: ["enemy.start_hp - enemy.hp == result('marvel_scale_control')['enemy']['damage'] * 2 // 3"]
 
 - name: "Overgrow control damage"
   id: overgrow_control
@@ -131,7 +131,7 @@
   enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["enemy.start_hp - enemy.hp > result('iron_fist_control')['enemy']['damage']"]
+  assert: ["enemy.start_hp - enemy.hp == result('iron_fist_control')['enemy']['damage'] * 120 // 100"]
 
 - name: "Adaptability control damage"
   id: adaptability_control
@@ -226,6 +226,20 @@
   turns: 1
   assert: ["enemy.hp < enemy.start_hp"]
 
+- name: "Ability: Keen Eye ignores positive target evasion"
+  player: { species: SPEAROW, level: 50, ability: KEEN_EYE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Ability: Mind's Eye ignores positive target evasion"
+  player: { species: MEW, level: 50, ability: MINDS_EYE, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
 - name: "Reckless control damage"
   id: reckless_control
   player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAKE_DOWN] }
@@ -237,7 +251,7 @@
   enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["enemy.start_hp - enemy.hp > result('reckless_control')['enemy']['damage']"]
+  assert: ["enemy.start_hp - enemy.hp == result('reckless_control')['enemy']['damage'] * 120 // 100"]
 
 - name: "Sheer Force control damage"
   id: sheer_force_control
@@ -453,7 +467,7 @@
   move_script: [1, 1]
   rng: forced_high
   turns: 2
-  assert: ["enemy.start_hp - enemy.hp > result('supreme_overlord_control')['enemy']['damage']"]
+  assert: ["enemy.start_hp - enemy.hp == result('supreme_overlord_control')['enemy']['damage'] * 110 // 100"]
 
 - name: "Ability: Super Luck raises a base-stage roll into a critical hit"
   player: { species: SNORLAX, level: 50, ability: SUPER_LUCK, moves: [TACKLE] }
