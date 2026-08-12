@@ -335,6 +335,12 @@ EggMovePointers2::
 	dw NoEggMoves2 ; ESPATHRA
 	dw FinizenEggMoves ; FINIZEN
 	dw NoEggMoves2 ; PALAFIN
+	dw AzurillEggMoves ; AZURILL
+	dw WynautEggMoves ; WYNAUT
+	dw BonslyEggMoves ; BONSLY
+	dw MimeJrEggMoves ; MIME_JR_
+	dw HappinyEggMoves ; HAPPINY
+	dw MantykeEggMoves ; MANTYKE
 
 
 ChikoritaEggMoves:
@@ -344,6 +350,47 @@ ChikoritaEggMoves:
 	dw ANCIENTPOWER
 	dw FLAIL
 	dw SWORDS_DANCE
+	dw -1 ; end
+
+AzurillEggMoves:
+	dw BELLY_DRUM
+	dw FORESIGHT
+	dw FUTURE_SIGHT
+	dw PERISH_SONG
+	dw SUPERSONIC
+	dw LIGHT_SCREEN
+	dw AMNESIA
+	dw CALM_MIND
+	dw -1 ; end
+
+WynautEggMoves:
+	dw CHARM
+	dw ENCORE
+	dw -1 ; end
+
+BonslyEggMoves:
+	dw DEFENSE_CURL
+	dw EXPLOSION
+	dw -1 ; end
+
+MimeJrEggMoves:
+	dw CONFUSE_RAY
+	dw FUTURE_SIGHT
+	dw HYPNOSIS
+	dw NASTY_PLOT
+	dw TRICK
+	dw -1 ; end
+
+HappinyEggMoves:
+	dw HEAL_BELL
+	dw -1 ; end
+
+MantykeEggMoves:
+	dw HAZE
+	dw MIRROR_COAT
+	dw SPLASH
+	dw HYDRO_PUMP
+	dw GUNK_SHOT
 	dw -1 ; end
 
 CyndaquilEggMoves:

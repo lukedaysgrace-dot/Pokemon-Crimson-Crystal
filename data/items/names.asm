@@ -189,7 +189,7 @@ ItemNames::
 	db "MUSIC MAIL@"
 	db "MIRAGE MAIL@"
 	db "TOXIC ORB@"
-	db "TERU-SAMA@"
+	db "OVAL STONE@"
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
 	db "TM01@"
