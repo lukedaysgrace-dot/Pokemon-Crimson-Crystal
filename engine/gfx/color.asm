@@ -766,9 +766,50 @@ GetBattlemonBackpicPalettePointer:
 	ld c, l
 	ld b, h
 	ld a, [wTempBattleMonSpecies]
-	call GetPlayerOrMonPalettePointer
+	call GetBackpicPalettePointer
 	pop de
 	ret
+
+GetBackpicPalettePointer:
+; a = species (0 for the player's own backpic), bc = DVs pointer.
+; A few mons are colored differently on their back pic than on their front
+; pic, so they can't share the one species palette; give them their own.
+	and a
+	jp z, GetPlayerOrMonPalettePointer
+	push af
+	call GetPokemonIndexFromID ; hl = 16-bit index; bc and de preserved
+	ld a, h
+	cp HIGH(FINIZEN)
+	jr nz, .not_finizen
+	ld a, l
+	cp LOW(FINIZEN)
+	jr nz, .not_finizen
+	ld hl, FinizenBackpicPalette
+	jr .custom_palette
+
+.not_finizen
+	ld a, h
+	cp HIGH(PALAFIN)
+	jr nz, .no_custom_palette
+	ld a, l
+	cp LOW(PALAFIN)
+	jr nz, .no_custom_palette
+	ld hl, PalafinBackpicPalette
+
+.custom_palette
+	pop af
+	push hl
+	call CheckShininess
+	pop hl
+	ret nc
+rept 4
+	inc hl
+endr
+	ret
+
+.no_custom_palette
+	pop af
+	jp GetPlayerOrMonPalettePointer
 
 GetEnemyFrontpicPalettePointer:
 	push de
@@ -1290,6 +1331,7 @@ ExpBarPalette:
 INCLUDE "gfx/battle/exp_bar.pal"
 
 INCLUDE "data/pokemon/palettes.asm"
+INCLUDE "data/pokemon/back_palettes.asm"
 
 INCLUDE "data/trainers/palettes.asm"
 
