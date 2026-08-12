@@ -3015,14 +3015,28 @@ AccuracyPercent:
 	ret
 
 AbilityIgnoresOpponentEvasion::
-; Carry if the user's ability ignores positive opponent evasion stages.
+; Carry if the user's ability ignores the opponent's evasion stage.
+; Keen Eye and Mind's Eye only ignore evasion INCREASES: a stage at or
+; below neutral still applies, so the user keeps the benefit of drops.
+; cp leaves carry set whenever a < the compared constant, so every
+; "no" path must clear carry explicitly before returning.
 	call GetTrueUserAbility
 	cp KEEN_EYE
-	jr z, .yes
+	jr z, .relevant_ability
 	cp MINDS_EYE
-	ret nz
-.yes
-	scf
+	jr z, .relevant_ability
+	and a ; clear carry: this ability does not touch evasion
+	ret
+.relevant_ability
+	ld hl, wEnemyEvaLevel
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_eva
+	ld hl, wPlayerEvaLevel
+.got_eva
+	ld a, [hl]
+	cp BASE_STAT_LEVEL + 1
+	ccf ; carry iff the stage is above neutral (raised)
 	ret
 
 CompareSpeedsWithAbilities::
