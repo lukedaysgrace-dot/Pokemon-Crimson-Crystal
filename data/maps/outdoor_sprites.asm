@@ -516,29 +516,37 @@ GoldenrodGroupSprites:
 	db SPRITE_SLOWPOKE
 
 CianwoodGroupSprites:
-	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
-	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
-	db SPRITE_STANDING_YOUNGSTER
-	db SPRITE_BIG_ONIX
-	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
-	db SPRITE_OLIVINE_RIVAL
-	db SPRITE_POKEFAN_M
-	db SPRITE_LASS
-	db SPRITE_BUENA
-	db SPRITE_SWIMMER_GIRL
-	db SPRITE_ENTEI
-	db SPRITE_SAILOR
-	db SPRITE_POKEFAN_F
-	db SPRITE_MYSTICALMAN
-	db SPRITE_CRYSTAL_SURF
-	db SPRITE_ROCK
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
+; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md).
+; Only four maps in this group are outdoor (ROUTE/TOWN) and so use this list:
+; Route 40, Route 41, Cianwood City, Battle Tower Outside. Everything else in
+; the group is INDOOR/CAVE/GATE and self-loads via AddIndoorSprites - including
+; Ice Island, which pulls SKIER_NEW/SNOWBOARDER_NEW without being listed here.
+; Eleven entries were dead weight for those four maps and are now SPRITE_NONE,
+; taking bank 0 from 116/128 to 24/128. Room for ~8 more 12-tile sprites.
+	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; the Cianwood City beast cameo uses SPRITE_ENTEI)
+	db SPRITE_NONE ; free slot (was SPRITE_SILVER_TROPHY; player's-room decor, indoor only)
+	db SPRITE_NONE ; free slot (was SPRITE_FAMICOM; player's-room decor, indoor only)
+	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; player's-room decor, indoor only)
+	db SPRITE_NONE ; free slot (was SPRITE_WILL; unused by any map in this group)
+	db SPRITE_NONE ; free slot (was SPRITE_KAREN; unused by any map in this group)
+	db SPRITE_NONE ; free slot (was SPRITE_NURSE; Cianwood Pokecenter 1F is indoor, self-loads)
+	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST; indoor only)
+	db SPRITE_STANDING_YOUNGSTER ; Cianwood City, Route 40, Battle Tower Outside
+	db SPRITE_NONE ; free slot (was SPRITE_BIG_ONIX; not on any outdoor map in this group)
+	db SPRITE_NONE ; free slot (was SPRITE_SUDOWOODO; not on any outdoor map in this group)
+	db SPRITE_NONE ; free slot (was SPRITE_BIG_SNORLAX; not on any outdoor map in this group)
+	db SPRITE_OLIVINE_RIVAL ; Route 40/41 swimmer trainers
+	db SPRITE_POKEFAN_M ; Cianwood City walker, Route 40
+	db SPRITE_LASS ; Cianwood City walker, Route 40, Battle Tower Outside
+	db SPRITE_BUENA ; Route 40 (Monica), Battle Tower Outside (wanders)
+	db SPRITE_SWIMMER_GIRL ; Route 40/41 trainers
+	db SPRITE_ENTEI ; Cianwood City beast cameo
+	db SPRITE_SAILOR ; Battle Tower Outside walker
+	db SPRITE_POKEFAN_F ; Cianwood City walker (Chuck's wife)
+	db SPRITE_MYSTICALMAN ; Cianwood City (Eusine; standing)
+	db SPRITE_CRYSTAL_SURF ; Cianwood City (standing)
+	db SPRITE_ROCK ; Cianwood City, Route 40 smashable rocks
 
 OlivineGroupSprites:
 	db SPRITE_SUICUNE
