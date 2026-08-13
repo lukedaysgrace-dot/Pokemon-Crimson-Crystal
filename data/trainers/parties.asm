@@ -5,6 +5,12 @@
 ;    * for TRAINERTYPE_MOVES:      db level; dw species, 4 moves
 ;    * for TRAINERTYPE_ITEM:       db level; dw species; db item
 ;    * for TRAINERTYPE_ITEM_MOVES: db level; dw species; db item; dw 4 moves
+;    * for TRAINERTYPE_ITEM_MOVES_ABILITY:
+;                                  db level; dw species; db item;
+;                                  db ability (ABILITY_1 / ABILITY_2 / HIDDEN_ABILITY);
+;                                  dw 4 moves
+;   (TRAINERTYPE_ABILITY can be OR'd with any combination; the ability byte
+;    always goes after the item byte and before the moves)
 ; - db -1 ; end
 
 

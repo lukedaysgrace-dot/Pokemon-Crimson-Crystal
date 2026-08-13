@@ -1505,6 +1505,126 @@ RunNullificationAbilities::
 	and a ; nc
 	ret
 
+; ==== Ability-aware switch AI cores (farcalled from engine/battle/ai/switch.asm)
+
+AISwitchAbilityAwareness:
+; carry if the current trainer class has SWITCH_ABILITIES.
+; Preserves bc, de. Clobbers a, hl.
+	push bc
+	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
+	; Battle Tower uses the first trainer class, like AI_SwitchOrTryItem
+	ld a, [wInBattleTowerBattle]
+	and a
+	jr nz, .got_attr
+	ld a, [wTrainerClass]
+	dec a
+	ld bc, NUM_TRAINER_ATTRIBUTES
+	call AddNTimes
+.got_attr
+	ld a, BANK(TrainerClassAttributes)
+	call GetFarByte
+	pop bc
+	bit SWITCH_ABILITIES_F, a
+	scf
+	ret nz
+	and a ; nc
+	ret
+
+AIActiveEnemyAbilityNullifiesTypeFar::
+; in: c = type of a player's move
+; out: carry if the ACTIVE enemy mon's effective ability nullifies that
+;      type (respecting the player's Mold Breaker and Neutralizing Gas).
+	call AISwitchAbilityAwareness
+	jr nc, .no
+	ld a, [wPlayerAbility]
+	cp MOLD_BREAKER
+	jr z, .no
+	push bc
+	call GetEnemyAbilityEffective
+	pop bc
+	ld b, a
+	jp AbilityNullifiesType
+.no
+	and a ; nc
+	ret
+
+AIPlayerAbilityNullifiesTypeFar::
+; in: c = type of an enemy's move
+; out: carry if the player's effective ability nullifies that type
+;      (respecting the enemy's Mold Breaker and Neutralizing Gas).
+	call AISwitchAbilityAwareness
+	jr nc, .no
+	ld a, [wEnemyAbility]
+	cp MOLD_BREAKER
+	jr z, .no
+	push bc
+	call GetPlayerAbilityEffective
+	pop bc
+	ld b, a
+	jp AbilityNullifiesType
+.no
+	and a ; nc
+	ret
+
+AIPartyIndexAbilityNullifiesTypeFar::
+; in: d = OT party index (0-5), c = move type
+; out: carry if that party mon's ability nullifies the type
+;      (respecting the player's Mold Breaker).
+	call AISwitchAbilityAwareness
+	jr nc, .no
+	ld a, [wPlayerAbility]
+	cp MOLD_BREAKER
+	jr z, .no
+	ld a, d
+	ld hl, wOTPartyMon1
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	pop bc
+	push bc ; save c = move type
+	ld c, [hl] ; species id
+	ld de, MON_PERSONALITY
+	add hl, de
+	ld b, [hl] ; personality
+	call GetAbility ; out: b = ability (clobbers c)
+	pop de ; e = saved move type
+	ld c, e
+	jp AbilityNullifiesType
+.no
+	and a ; nc
+	ret
+
+AbilityNullifiesType::
+; in: b = ability, c = move type
+; out: carry if the ability grants a full immunity to that move type.
+; Pure table lookup over NullificationAbilities (no live-battle state);
+; farcalled by the switch AI. Preserves bc, de.
+	push hl
+	ld hl, NullificationAbilities
+.loop
+	ld a, [hli]
+	cp -1
+	jr z, .no
+	cp b
+	jr z, .match_ability
+	inc hl ; skip type
+	inc hl ; skip handler
+	inc hl
+	jr .loop
+.match_ability
+	ld a, [hli] ; type
+	inc hl ; skip handler
+	inc hl
+	cp c
+	jr nz, .loop
+	scf
+	jr .done
+.no
+	and a
+.done
+	pop hl
+	ret
+
 NullificationAbilities:
 ; ability, move type, handler
 	db VOLT_ABSORB, ELECTRIC
@@ -3796,10 +3916,23 @@ TargetContactAbilities:
 CheckContactMove::
 ; carry if the current move makes contact
 	push hl
-	push de
 	push bc
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
+	ld c, a
+	call CheckContactMoveID
+	pop bc
+	pop hl
+	ret
+
+CheckContactMoveID::
+; carry if the move whose 8-bit ID is in c makes contact.
+; Used by the AI (farcalled from AI_Abilities), which scores moves that
+; are not the currently executing one. Preserves hl, de, bc.
+	push hl
+	push de
+	push bc
+	ld a, c
 	and a
 	jr z, .no ; no move (e.g. confusion self-hit)
 	call GetMoveIndexFromID
