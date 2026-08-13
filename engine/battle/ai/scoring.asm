@@ -416,6 +416,21 @@ AI_Smart:
 	dbw EFFECT_FLY,              AI_Smart_Fly
 	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_BANEFUL_BUNKER,   AI_Smart_Protect
+	dbw EFFECT_SPIKES,           AI_Smart_Spikes
+	dbw EFFECT_TOXIC_SPIKES,     AI_Smart_ToxicSpikes
+	dbw EFFECT_STEALTH_ROCK,     AI_Smart_StealthRock
+	dbw EFFECT_DEFOG,            AI_Smart_Defog
+	dbw EFFECT_U_TURN,           AI_Smart_UTurn
+	dbw EFFECT_TRICK_ROOM,       AI_Smart_TrickRoom
+	dbw EFFECT_KNOCK_OFF,        AI_Smart_KnockOff
+	dbw EFFECT_FOUL_PLAY,        AI_Smart_FoulPlay
+	dbw EFFECT_FREEZE_DRY,       AI_Smart_FreezeDry
+	dbw EFFECT_FAKE_OUT,         AI_Smart_FakeOut
+	dbw EFFECT_VENOSHOCK,        AI_Smart_Venoshock
+	dbw EFFECT_HEX,              AI_Smart_Hex
+	dbw EFFECT_FACADE,           AI_Smart_Facade
+	dbw EFFECT_CIRCLE_THROW,     AI_Smart_CircleThrow
+	dbw EFFECT_ROOST,            AI_Smart_Heal
 	db -1 ; end
 
 AI_Smart_Sleep:
@@ -3527,6 +3542,424 @@ endr
 	jr .checkmove
 
 INCLUDE "data/battle/ai/risky_effects.asm"
+
+
+; ==== AI_Smart handlers for the newer (Gen 4-9) move effects ==============
+
+AI_Smart_Spikes:
+; Dismiss if spikes are already down or the player is on their last mon.
+; Otherwise encourage strongly during the first couple of turns.
+	ld a, [wPlayerScreens]
+	bit SCREENS_SPIKES, a
+	jr z, .none_yet
+	jp AIDiscourageMove
+.none_yet
+	ld a, [wPartyCount]
+	cp 2
+	ret c ; no point vs the player's last mon
+	ld a, [wEnemyTurnsTaken]
+	cp 2
+	ret nc
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_ToxicSpikes:
+; Same idea, but two layers can be set.
+	ld a, [wPlayerScreens]
+	and SCREENS_TOXIC_SPIKES_MASK
+	cp SCREENS_TOXIC_SPIKES_MASK
+	jp z, AIDiscourageMove ; both layers already down
+	ld a, [wPartyCount]
+	cp 2
+	ret c
+	ld a, [wEnemyTurnsTaken]
+	cp 2
+	ret nc
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_StealthRock:
+	ld a, [wPlayerScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	jr z, .none_yet
+	jp AIDiscourageMove
+.none_yet
+	ld a, [wPartyCount]
+	cp 2
+	ret c
+	ld a, [wEnemyTurnsTaken]
+	cp 2
+	ret nc
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_Defog:
+; Defog clears hazards on BOTH sides plus the target's screens.
+; Encourage if our side has hazards or the player has screens up;
+; discourage if it would only blow away our own hazards.
+	ld a, [wEnemyScreens]
+	and SCREENS_HAZARDS_MASK
+	jr nz, .useful
+	ld a, [wPlayerScreens]
+	and (1 << SCREENS_LIGHT_SCREEN) | (1 << SCREENS_REFLECT)
+	jr nz, .useful
+	ld a, [wPlayerScreens]
+	and SCREENS_HAZARDS_MASK
+	ret z ; nothing anywhere: leave the default score
+	jp AIDiscourageMove
+.useful
+	ld a, [wPlayerScreens]
+	and SCREENS_HAZARDS_MASK
+	jr nz, .mild ; we'd also clear our own hazards off the player's side
+	dec [hl]
+	dec [hl]
+	ret
+.mild
+	dec [hl]
+	ret
+
+AI_Smart_UTurn:
+; Pivot out when weakened, if there is a teammate to pivot to.
+	ld a, [wOTPartyCount]
+	cp 2
+	ret c
+	call AICheckEnemyHalfHP
+	ret c ; above half HP: treat as a normal attack
+	dec [hl]
+	ret
+
+AI_Smart_TrickRoom:
+	ld a, [wTrickRoomTimer]
+	and a
+	jp nz, AIDiscourageMove ; would switch our own Trick Room off
+	call AICompareSpeed
+	jp c, AIDiscourageMove ; we're faster; don't invert the speed order
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_KnockOff:
+; Encourage if the player is actually holding something.
+	ld a, [wBattleMonItem]
+	and a
+	ret z
+	dec [hl]
+	ret
+
+AI_Smart_FoulPlay:
+; Encourage when the player's Attack has been boosted.
+	ld a, [wPlayerAtkLevel]
+	cp BASE_STAT_LEVEL + 1
+	ret c
+	dec [hl]
+	ret
+
+AI_Smart_FreezeDry:
+; Freeze-Dry is super effective against Water, which AI_Types cannot know.
+	ld a, [wBattleMonType1]
+	cp WATER
+	jr z, .water
+	ld a, [wBattleMonType2]
+	cp WATER
+	ret nz
+.water
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_FakeOut:
+	ld a, [wEnemyTurnsTaken]
+	and a
+	jr z, .first_turn
+	jp AIDiscourageMove ; fails after the user's first turn
+.first_turn
+	dec [hl]
+	ret
+
+AI_Smart_Venoshock:
+; Doubled power against a poisoned target.
+	ld a, [wBattleMonStatus]
+	bit PSN, a
+	ret z
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_Hex:
+; Doubled power against a statused target.
+	ld a, [wBattleMonStatus]
+	and a
+	ret z
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_Facade:
+; Doubled power while we are burned, poisoned or paralyzed.
+	ld a, [wEnemyMonStatus]
+	and (1 << PSN) | (1 << BRN) | (1 << PAR)
+	ret z
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_CircleThrow:
+; Phazing is worth more with hazards on the player's side of the field.
+	ld a, [wPartyCount]
+	cp 2
+	ret c
+	ld a, [wPlayerScreens]
+	and SCREENS_HAZARDS_MASK
+	ret z
+	dec [hl]
+	ret
+
+
+AI_Abilities:
+; Ability and held-item awareness (AI_ABILITIES flag; given to every class
+; that has AI_SMART):
+; - While Choice-locked, dismiss every move except the locked one.
+; - Dismiss damaging moves whose predicted damage is zero: the player's
+;   ability (Levitate, Flash Fire, Water/Volt Absorb, Dry Skin, Sap Sipper,
+;   Lightning Rod, Storm Drain, Motor Drive, Soundproof, Bulletproof,
+;   Wind Rider), Air Balloon or Disguise nullifies them. The prediction
+;   reuses the real damage formula, so Mold Breaker and Neutralizing Gas
+;   are respected automatically.
+; - Dismiss self-KO moves that the player's Damp would block.
+; - Discourage status moves aimed at a Magic Bounce user, or at a player
+;   protected by a Substitute.
+; - Mildly discourage contact moves when the player's ability or held
+;   Rocky Helmet punishes contact.
+
+	ld a, 1
+	ldh [hBattleTurn], a
+
+	ld hl, wBuffer1 - 1
+	ld de, wEnemyMonMoves
+	ld b, wEnemyMonMovesEnd - wEnemyMonMoves + 1
+.checkmove
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	push de
+	push bc
+	ld c, a ; c = current move id
+
+; While Choice-locked, dismiss every move except the locked one.
+	ld a, [wEnemyChoiceLockedMove]
+	and a
+	jr z, .no_choice_lock
+	cp c
+	jr z, .no_choice_lock
+	ld a, [hl]
+	add 30
+	ld [hl], a
+	jp .done
+.no_choice_lock
+
+	ld a, c
+	call AIGetEnemyMove
+
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .status_move
+
+; Damaging move: predict the real damage. RunNullificationAbilities runs
+; inside this calc and zeroes wCurDamage when the player's ability or item
+; nullifies the move.
+	push hl
+	push bc
+	call AIDamageCalc
+	pop bc
+	pop hl
+	ld a, [wCurDamage]
+	ld d, a
+	ld a, [wCurDamage + 1]
+	or d
+	jr nz, .not_nullified
+	ld a, [hl]
+	add 30
+	ld [hl], a
+	jp .done
+
+.not_nullified
+; Damp blocks self-KO moves outright.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jr nz, .no_boom
+	ld a, [wEnemyAbility]
+	cp MOLD_BREAKER
+	jr z, .no_boom
+	push hl
+	push bc
+	farcall GetPlayerAbilityEffective
+	pop bc
+	pop hl
+	cp DAMP
+	jr nz, .no_boom
+	ld a, [hl]
+	add 30
+	ld [hl], a
+	jr .done
+.no_boom
+
+; Contact punishment: Rocky Helmet and on-contact abilities.
+	push hl
+	push bc
+	farcall CheckContactMoveID ; c = move id
+	pop bc
+	pop hl
+	jr nc, .done
+	call .PlayerPunishesContact
+	jr nc, .done
+	inc [hl]
+	inc [hl]
+	jr .done
+
+.status_move
+; Magic Bounce reflects status moves aimed at the player or their side.
+	ld a, [wEnemyAbility]
+	cp MOLD_BREAKER
+	jr z, .no_bounce
+	push hl
+	push bc
+	farcall GetPlayerAbilityEffective
+	pop bc
+	pop hl
+	cp MAGIC_BOUNCE
+	jr nz, .no_bounce
+	call .TargetsPlayerStatus
+	jr nc, .done
+	call AIDiscourageMove
+	jr .done
+
+.no_bounce
+; A Substitute blocks direct status and stat-drop moves (hazards still work).
+	ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr z, .done
+	call .TargetsPlayerDirect
+	jr nc, .done
+	call AIDiscourageMove
+
+.done
+	pop bc
+	pop de
+	jp .checkmove
+
+.TargetsPlayerStatus:
+; carry if the scored move is a status/stat-drop/hazard move aimed at the
+; player's side, i.e. something Magic Bounce would reflect.
+	call .TargetsPlayerDirect
+	ret c
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	push hl
+	push de
+	push bc
+	ld hl, AIHazardEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.TargetsPlayerDirect:
+; carry if the scored move inflicts status, stat drops or other direct
+; conditions on the player (the class of moves a Substitute blocks).
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_ATTACK_DOWN
+	jr c, .direct_not_range1
+	cp EFFECT_EVASION_DOWN + 1
+	jr c, .direct_yes
+.direct_not_range1
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .direct_list
+	cp EFFECT_EVASION_DOWN_2 + 1
+	jr c, .direct_yes
+.direct_list
+	push hl
+	push de
+	push bc
+	ld hl, AIDirectStatusEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret
+.direct_yes
+	scf
+	ret
+
+.PlayerPunishesContact:
+; carry if the player's held item or ability punishes contact moves.
+	ld a, [wBattleMonItem]
+	cp ROCKY_HELMET
+	jr z, .punish_yes
+	push hl
+	push bc
+	farcall GetPlayerAbilityEffective
+	pop bc
+	pop hl
+	cp IRON_BARBS
+	jr z, .punish_yes
+	cp TANGLING_HAIR
+	jr z, .punish_yes
+	cp PERISH_BODY
+	jr z, .punish_yes
+; Status-inflicting contact abilities only matter if we can be afflicted.
+	ld d, a
+	ld a, [wEnemyMonStatus]
+	and a
+	ret nz ; nc: already statused, nothing to fear
+	ld a, d
+	cp STATIC
+	jr z, .punish_yes
+	cp FLAME_BODY
+	jr z, .punish_yes
+	cp POISON_POINT
+	jr z, .punish_yes
+	cp EFFECT_SPORE
+	jr z, .punish_yes
+	cp CUTE_CHARM
+	jr z, .punish_yes
+	and a ; nc
+	ret
+.punish_yes
+	scf
+	ret
+
+AIDirectStatusEffects:
+; status moves that directly afflict the player: reflected by Magic Bounce
+; and blocked by a Substitute
+	db EFFECT_SLEEP
+	db EFFECT_TOXIC
+	db EFFECT_POISON
+	db EFFECT_PARALYZE
+	db EFFECT_BURN
+	db EFFECT_CONFUSE
+	db EFFECT_ATTRACT
+	db EFFECT_LEECH_SEED
+	db EFFECT_MEAN_LOOK
+	db EFFECT_SWAGGER
+	db -1 ; end
+
+AIHazardEffects:
+; entry hazards: reflected by Magic Bounce, but NOT blocked by a Substitute
+	db EFFECT_SPIKES
+	db EFFECT_TOXIC_SPIKES
+	db EFFECT_STEALTH_ROCK
+	db -1 ; end
 
 
 AI_None:

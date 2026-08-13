@@ -1548,6 +1548,14 @@ BattleCommand_Stab:
 	farcall RunNullificationAbilities
 	ret
 
+CheckTypeMatchupFar::
+; FarCall_de-able entry for the switch AI (engine/battle/ai/switch.asm),
+; which lives in another bank: b = offensive type, hl = defender's types.
+; (A separate entry because both of CheckTypeMatchup's inputs live in
+; registers the farcall macro clobbers.)
+	ld a, b
+	jp CheckTypeMatchup
+
 BattleCheckTypeMatchup:
 	ld hl, wEnemyMonType1
 	ldh a, [hBattleTurn]
@@ -1674,7 +1682,8 @@ BattleCommand_ResetTypeMatchup:
 	ld [wTypeMatchup], a
 	ret
 
-INCLUDE "engine/battle/ai/switch.asm"
+; engine/battle/ai/switch.asm used to live here; it moved to the
+; "Enemy Trainers" section (see main.asm) when this bank filled up.
 
 INCLUDE "data/types/type_matchups.asm"
 
