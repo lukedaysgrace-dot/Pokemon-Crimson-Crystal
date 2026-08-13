@@ -17,6 +17,13 @@ _ObtainedFruitText::
 	text "!"
 	done
 
+_ObtainedThreeApricornsText::
+	text "Obtained 3"
+	line "@"
+	text_ram wStringBuffer3
+	text "S!"
+	done
+
 _FruitPackIsFullText::
 	text "But the PACK is"
 	line "full…"
@@ -1298,6 +1305,13 @@ UnknownText_0x1bd2e7::
 _RepelWoreOffText::
 	text "REPEL's effect"
 	line "wore off."
+	done
+
+_UseAnotherRepelText::
+	text "REPEL's effect"
+	line "wore off."
+
+	para "Use another one?"
 	done
 
 _PlayerFoundItemText::
