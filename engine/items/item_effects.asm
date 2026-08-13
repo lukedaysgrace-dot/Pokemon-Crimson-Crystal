@@ -2218,6 +2218,8 @@ UseRepel:
 	ld hl, TextJump_RepelUsedEarlierIsStillInEffect
 	jp nz, PrintText
 
+	ld a, [wCurItem]
+	ld [wLastRepelUsed], a
 	ld a, b
 	ld [wRepelEffect], a
 	jp UseItemText
