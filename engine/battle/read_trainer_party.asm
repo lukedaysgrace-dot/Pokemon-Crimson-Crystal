@@ -185,6 +185,26 @@ ReadTrainerPartyPieces:
 .no_item
 
 	ld a, [wOtherTrainerType]
+	and TRAINERTYPE_ABILITY
+	jr z, .no_ability
+	push hl
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1Personality
+	call GetPartyLocation
+	ld d, h
+	ld e, l
+	pop hl
+	call GetNextTrainerDataByte
+	and ABILITY_MASK ; ABILITY_1 / ABILITY_2 / HIDDEN_ABILITY
+	ld b, a
+	ld a, [de]
+	and ~ABILITY_MASK & $ff
+	or b
+	ld [de], a
+.no_ability
+
+	ld a, [wOtherTrainerType]
 	rra ; TRAINERTYPE_MOVES_F == 0
 	jr nc, .no_moves
 	push hl
