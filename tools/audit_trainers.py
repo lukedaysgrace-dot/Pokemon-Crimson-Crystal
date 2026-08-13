@@ -12,11 +12,15 @@ ROOT = Path(__file__).resolve().parent.parent
 ERRORS = []
 
 TRAINER_TYPES = {
-	"TRAINERTYPE_NORMAL": (False, False),
-	"TRAINERTYPE_MOVES": (False, True),
-	"TRAINERTYPE_ITEM": (True, False),
-	"TRAINERTYPE_ITEM_MOVES": (True, True),
+	# (has_item, has_moves, has_ability)
+	"TRAINERTYPE_NORMAL": (False, False, False),
+	"TRAINERTYPE_MOVES": (False, True, False),
+	"TRAINERTYPE_ITEM": (True, False, False),
+	"TRAINERTYPE_ITEM_MOVES": (True, True, False),
+	"TRAINERTYPE_ITEM_MOVES_ABILITY": (True, True, True),
 }
+
+ABILITY_SLOTS = {"ABILITY_1", "ABILITY_2", "HIDDEN_ABILITY"}
 
 JOHTO_LEADER_REMATCH_GROUPS = {
 	"FalknerGroup",
@@ -187,7 +191,7 @@ def parse_party_entry(path, entry, species, moves, items):
 	if trainer_type not in TRAINER_TYPES:
 		fail(path, header_line, f"unknown trainer type {trainer_type}")
 		return
-	has_item, has_moves = TRAINER_TYPES[trainer_type]
+	has_item, has_moves, has_ability = TRAINER_TYPES[trainer_type]
 	index = 1
 	mons = []
 	terminated = False
@@ -223,6 +227,19 @@ def parse_party_entry(path, entry, species, moves, items):
 			if kind != "db" or "," in item or item not in items:
 				fail(path, item_line, f"invalid held item {kind} {item}")
 			index += 1
+		ability = None
+		if has_ability:
+			if index >= len(directives):
+				fail(path, line_number, "party is truncated before its ability slot")
+				break
+			kind, ability, ability_line = directives[index]
+			if kind != "db" or "," in ability or ability not in ABILITY_SLOTS:
+				fail(
+					path,
+					ability_line,
+					f"invalid ability slot {kind} {ability} (expected ABILITY_1, ABILITY_2 or HIDDEN_ABILITY)",
+				)
+			index += 1
 		party_moves = []
 		if has_moves:
 			if index >= len(directives):
@@ -247,7 +264,9 @@ def parse_party_entry(path, entry, species, moves, items):
 				if len(known_moves) != len(set(known_moves)):
 					fail(path, move_line, "moveset contains a duplicate move")
 			index += 1
-		mons.append({"level": level, "species": mon, "item": item, "moves": party_moves})
+		mons.append(
+			{"level": level, "species": mon, "item": item, "moves": party_moves, "ability": ability}
+		)
 	if not terminated:
 		fail(path, entry["line"], "trainer party has no $ff terminator")
 	if index != len(directives):
@@ -256,7 +275,7 @@ def parse_party_entry(path, entry, species, moves, items):
 		fail(path, entry["line"], f"party contains {len(mons)} Pokémon; expected 1..6")
 	record_bytes = 1 + len(name) + 1 + 1
 	for _mon in mons:
-		record_bytes += 1 + 2 + int(has_item) + (8 if has_moves else 0)
+		record_bytes += 1 + 2 + int(has_item) + int(has_ability) + (8 if has_moves else 0)
 	if record_bytes > 0xFF:
 		fail(path, entry["line"], f"length-prefixed trainer record is {record_bytes} bytes")
 	entry.update(name=name, trainer_type=trainer_type, mons=mons, record_bytes=record_bytes)

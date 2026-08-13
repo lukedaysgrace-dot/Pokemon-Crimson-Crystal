@@ -1,3 +1,81 @@
+; ==== Ability-aware switching (SWITCH_ABILITIES classes) ==================
+; Gym leaders, rivals, the Elite Four, Rocket executives, Cooltrainers and
+; the other unique character classes factor abilities into switch decisions:
+; - a player move the active mon's own ability nullifies is not a threat;
+; - an enemy move the player's ability nullifies is treated as useless;
+; - bench mons whose ability blanks the player's last move count as
+;   immune/resistant switch-in candidates.
+
+; The heavy lifting lives in the Abilities Engine bank (AISwitch*Far
+; routines); these are thin register-shuffling wrappers.
+
+AISwitch_CheckTypeMatchup:
+; a = offensive type, hl = defender's two types; result in wTypeMatchup.
+; This file no longer shares a bank with CheckTypeMatchup (it moved here
+; when the Effect Commands bank filled up), and that routine takes inputs
+; in both a and hl - registers the farcall macro clobbers. Route through
+; the home FarCall_de trampoline instead, passing the type in b to the
+; CheckTypeMatchupFar shim. Preserves a, bc, de, hl.
+	push de
+	push bc
+	ld b, a
+	ld a, BANK(CheckTypeMatchupFar)
+	ld de, CheckTypeMatchupFar
+	call FarCall_de
+	ld a, b
+	pop bc
+	pop de
+	ret
+
+AIActiveEnemyAbilityNullifiesType:
+; in: a = type of a player's move
+; out: carry if the ACTIVE enemy mon's effective ability nullifies that
+;      type (respecting the player's Mold Breaker and Neutralizing Gas).
+; Preserves a, bc, de, hl. Returns nc for non-SWITCH_ABILITIES classes.
+	push hl
+	push bc
+	ld c, a
+	farcall AIActiveEnemyAbilityNullifiesTypeFar
+	jr AISwitchNullifyTail
+
+AIPlayerAbilityNullifiesType:
+; in: a = type of an enemy's move
+; out: carry if the player's effective ability nullifies that type
+;      (respecting the enemy's Mold Breaker and Neutralizing Gas).
+; Preserves a, bc, de, hl. Returns nc for non-SWITCH_ABILITIES classes.
+	push hl
+	push bc
+	ld c, a
+	farcall AIPlayerAbilityNullifiesTypeFar
+AISwitchNullifyTail:
+	ld a, c ; the Far cores preserve c = type
+	pop bc
+	pop hl
+	ret
+
+AIPartyIndexAbilityNullifiesCounterMove:
+; in: d = OT party index (0-5)
+; out: carry if that mon's ability nullifies the type of the player's
+;      last counter move. Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wLastPlayerCounterMove]
+	and a
+	jr z, .no
+	call GetMoveTypeIfDamaging
+	jr z, .no
+	ld c, a ; c = move type, d = party index
+	farcall AIPartyIndexAbilityNullifiesTypeFar
+	jr .done
+.no
+	and a ; nc
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
 CheckPlayerMoveTypeMatchups:
 ; Check how well the moves you've already used
 ; fare against the enemy's Pokemon.  Used to
@@ -22,8 +100,12 @@ CheckPlayerMoveTypeMatchups:
 	call GetMoveTypeIfDamaging
 	jr z, .next
 
+	; our own ability blanks this move: it is no reason to switch
+	call AIActiveEnemyAbilityNullifiesType
+	jr c, .next
+
 	ld hl, wEnemyMonType
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr nc, .super_effective
@@ -68,7 +150,7 @@ CheckPlayerMoveTypeMatchups:
 	ld a, [wBattleMonType1]
 	ld b, a
 	ld hl, wEnemyMonType1
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok
@@ -77,7 +159,7 @@ CheckPlayerMoveTypeMatchups:
 	ld a, [wBattleMonType2]
 	cp b
 	jr z, .ok2
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok2
@@ -110,8 +192,12 @@ CheckPlayerMoveTypeMatchups:
 	call GetMoveTypeIfDamaging
 	jr z, .loop2
 
+	; the player's ability absorbs this move: treat it as immune
+	call AIPlayerAbilityNullifiesType
+	jr c, .loop2
+
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 
 	ld a, [wTypeMatchup]
 	; immune
@@ -411,11 +497,17 @@ FindEnemyMonsImmuneToLastCounterMove:
 
 	; and the Pokemon is immune to it...
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
-	jr nz, .next
+	jr z, .immune
 
+	; not immune by type; its ability may still blank the move
+	; (d = this mon's party index)
+	call AIPartyIndexAbilityNullifiesCounterMove
+	jr nc, .next
+
+.immune
 	; ... encourage that Pokemon.
 	ld a, [wEnemyAISwitchScore]
 	or c
@@ -494,9 +586,13 @@ FindEnemyMonsWithASuperEffectiveMove:
 	call GetMoveTypeIfDamaging
 	jr z, .nope
 
+	; if the player's ability absorbs it: continue
+	call AIPlayerAbilityNullifiesType
+	jr c, .nope
+
 	; check type matchups
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 
 	; if immune or not very effective: continue
 	ld a, [wTypeMatchup]
@@ -572,6 +668,7 @@ FindEnemyMonsThatResistPlayer:
 	ld hl, wOTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
+	ld d, 0 ; party index, for the ability check
 
 .loop
 	ld a, [hli]
@@ -591,7 +688,7 @@ FindEnemyMonsThatResistPlayer:
 .skip_move
 	ld a, [wBattleMonType1]
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
 	jr nc, .dont_choose_mon
@@ -599,17 +696,25 @@ FindEnemyMonsThatResistPlayer:
 
 .check_type
 	ld hl, wBaseType
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1
-	jr nc, .dont_choose_mon
+	jr nc, .try_ability
 
+.choose_mon
 	ld a, b
 	or c
 	ld c, a
+	jr .dont_choose_mon
+
+.try_ability
+	; weak by type, but its ability may still blank the player's move
+	call AIPartyIndexAbilityNullifiesCounterMove
+	jr c, .choose_mon
 
 .dont_choose_mon
 	srl b
+	inc d
 	pop hl
 	jr .loop
 
@@ -693,8 +798,11 @@ CheckEnemyMoveEffectiveness:
 	inc de
 	call GetMoveTypeIfDamaging
 	jr z, .next
+	; the player's ability absorbs this move: it can't damage
+	call AIPlayerAbilityNullifiesType
+	jr c, .next
 	ld hl, wBattleMonType1
-	call CheckTypeMatchup
+	call AISwitch_CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	jr z, .next
