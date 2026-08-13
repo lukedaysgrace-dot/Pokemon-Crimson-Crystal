@@ -61,6 +61,7 @@ LoadSGBLayoutCGB:
 	dw _CGB_TrainerOrMonFrontpicPals
 	dw _CGB_MysteryGift
 	dw _CGB1e
+	dw _CGB_TrainerCardKanto
 
 _CGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale + 1
@@ -700,9 +701,15 @@ _CGB_TrainerCard:
 	ld a, PRYCE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, PREDEFPAL_CGB_BADGE
-	call GetPredefPal
+	; each badge has its own OBJ palette (Polished Crystal style)
+	ld hl, JohtoBadgePalettes
+	ld c, 8
+.badge_pal_loop
+	push bc
 	call LoadHLPaletteIntoDE
+	pop bc
+	dec c
+	jr nz, .badge_pal_loop
 
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, wAttrMap
@@ -714,10 +721,18 @@ _CGB_TrainerCard:
 	ld a, $0 ; gold
 .got_gender
 	call ByteFill
-	; fill trainer sprite area with Gold's player palette
+	; fill trainer sprite area with the player's own palette
 	hlcoord 14, 1, wAttrMap
 	lb bc, 7, 5
-	xor a ; gold
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr z, .pic_pal_player
+	bit PLAYERGENDER_FEMALE_F, a
+	ld a, $1 ; lyra
+	jr nz, .got_pic_pal
+.pic_pal_player
+	xor a ; gold/indigo
+.got_pic_pal
 	call FillBoxCGB
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrMap
@@ -773,6 +788,134 @@ _CGB_TrainerCard:
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
+
+_CGB_TrainerCardKanto:
+; Kanto badges page (Polished Crystal style)
+	ld de, wBGPals1
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr nz, .gold_palette
+	ld hl, IndigoPlayerPalette
+	jr .got_player_palette
+.gold_palette
+	xor a ; GOLD
+	call GetTrainerPalettePointer
+.got_player_palette
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, FALKNER ; LYRA
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, BROCK
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, SABRINA ; also BLAINE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, ERIKA ; also LT_SURGE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, MISTY
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, JANINE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	ld a, BLUE
+	call GetTrainerPalettePointer
+	call LoadPalette_White_Col1_Col2_Black
+	; each badge has its own OBJ palette (Polished Crystal style)
+	ld hl, KantoBadgePalettes
+	ld c, 8
+.badge_pal_loop
+	push bc
+	call LoadHLPaletteIntoDE
+	pop bc
+	dec c
+	jr nz, .badge_pal_loop
+
+	; fill screen with opposite-gender palette for the card border
+	hlcoord 0, 0, wAttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, [wPlayerGender]
+	bit PLAYERGENDER_FEMALE_F, a
+	ld a, $1 ; lyra
+	jr z, .got_gender
+	ld a, $0 ; gold
+.got_gender
+	call ByteFill
+	; fill trainer sprite area with the player's own palette
+	hlcoord 14, 1, wAttrMap
+	lb bc, 7, 5
+	ld a, [wPlayerGender]
+	cp PLAYERGENDER_INDIGO
+	jr z, .pic_pal_player
+	bit PLAYERGENDER_FEMALE_F, a
+	ld a, $1 ; lyra
+	jr nz, .got_pic_pal
+.pic_pal_player
+	xor a ; gold/indigo
+.got_pic_pal
+	call FillBoxCGB
+	; Lt.Surge (shares Erika's palette)
+	hlcoord 2, 11, wAttrMap
+	lb bc, 2, 4
+	ld a, $4
+	call FillBoxCGB
+	; Sabrina
+	hlcoord 6, 11, wAttrMap
+	lb bc, 2, 4
+	ld a, $3
+	call FillBoxCGB
+	; Misty
+	hlcoord 10, 11, wAttrMap
+	lb bc, 2, 4
+	ld a, $5
+	call FillBoxCGB
+	; Erika
+	hlcoord 14, 11, wAttrMap
+	lb bc, 2, 4
+	ld a, $4
+	call FillBoxCGB
+	; Janine
+	hlcoord 2, 14, wAttrMap
+	lb bc, 2, 4
+	ld a, $6
+	call FillBoxCGB
+	; Brock
+	hlcoord 6, 14, wAttrMap
+	lb bc, 2, 4
+	ld a, $2
+	call FillBoxCGB
+	; Blaine (shares Sabrina's palette)
+	hlcoord 10, 14, wAttrMap
+	lb bc, 2, 4
+	ld a, $3
+	call FillBoxCGB
+	; Blue
+	hlcoord 14, 14, wAttrMap
+	lb bc, 2, 4
+	ld a, $7
+	call FillBoxCGB
+	; top-right corner still uses the border's palette
+	ld a, [wPlayerGender]
+	bit PLAYERGENDER_FEMALE_F, a
+	ld a, $0
+	jr nz, .got_corner
+	ld a, $1
+.got_corner
+	hlcoord 18, 1, wAttrMap
+	ld [hl], a
+	call ApplyAttrMap
+	call ApplyPals
+	ld a, $1
+	ldh [hCGBPalUpdate], a
+	ret
+
+JohtoBadgePalettes:
+INCLUDE "gfx/trainer_card/johto_badges.pal"
+
+KantoBadgePalettes:
+INCLUDE "gfx/trainer_card/kanto_badges.pal"
 
 _CGB_MoveList:
 	ld de, wBGPals1
