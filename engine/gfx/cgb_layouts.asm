@@ -737,32 +737,35 @@ _CGB_TrainerCard:
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrMap
 	ld [hl], $1
-	hlcoord 2, 11, wAttrMap
-	lb bc, 2, 4
+	; leader faces get 3x3 boxes covering the whole mugshot,
+	; like Polished Crystal (the top face row was showing the
+	; border palette as a wrong-colored line over the hair)
+	hlcoord 3, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $1 ; falkner
 	call FillBoxCGB
-	hlcoord 6, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $2 ; bugsy
 	call FillBoxCGB
-	hlcoord 10, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $3 ; whitney
 	call FillBoxCGB
-	hlcoord 14, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $4 ; morty
 	call FillBoxCGB
-	hlcoord 2, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 3, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $5 ; chuck
 	call FillBoxCGB
-	hlcoord 6, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $6 ; jasmine
 	call FillBoxCGB
-	hlcoord 10, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $7 ; pryce
 	call FillBoxCGB
 	; clair uses lyra's palette
@@ -770,8 +773,8 @@ _CGB_TrainerCard:
 	bit PLAYERGENDER_FEMALE_F, a
 	push af
 	jr z, .got_gender3
-	hlcoord 14, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $1
 	call FillBoxCGB
 .got_gender3
@@ -857,43 +860,43 @@ _CGB_TrainerCardKanto:
 .got_pic_pal
 	call FillBoxCGB
 	; Lt.Surge (shares Erika's palette)
-	hlcoord 2, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 3, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $4
 	call FillBoxCGB
 	; Sabrina
-	hlcoord 6, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $3
 	call FillBoxCGB
 	; Misty
-	hlcoord 10, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $5
 	call FillBoxCGB
 	; Erika
-	hlcoord 14, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $4
 	call FillBoxCGB
 	; Janine
-	hlcoord 2, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 3, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $6
 	call FillBoxCGB
 	; Brock
-	hlcoord 6, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $2
 	call FillBoxCGB
 	; Blaine (shares Sabrina's palette)
-	hlcoord 10, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $3
 	call FillBoxCGB
 	; Blue
-	hlcoord 14, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $7
 	call FillBoxCGB
 	; top-right corner still uses the border's palette
