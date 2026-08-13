@@ -152,7 +152,8 @@ TeachTMHM:
 
 	ld c, HAPPINESS_LEARNMOVE
 	callfar ChangeHappiness
-	call ConsumeTM
+	; TMs are reusable: ConsumeTM intentionally not called (HMs were
+	; already exempt above via IsHM).
 	jr .learned_move
 
 .nope
