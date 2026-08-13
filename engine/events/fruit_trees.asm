@@ -15,10 +15,26 @@ FruitTreeScript::
 .fruit
 	writetext HeyItsFruitText
 	readmem wCurFruit
+	ifequal RED_APRICORN, .apricorn
+	ifequal BLU_APRICORN, .apricorn
+	ifequal YLW_APRICORN, .apricorn
+	ifequal GRN_APRICORN, .apricorn
+	ifequal WHT_APRICORN, .apricorn
+	ifequal BLK_APRICORN, .apricorn
+	ifequal PNK_APRICORN, .apricorn
 	giveitem ITEM_FROM_MEM
 	iffalse .packisfull
 	buttonsound
 	writetext ObtainedFruitText
+	sjump .picked
+
+.apricorn
+	giveitem ITEM_FROM_MEM, 3
+	iffalse .packisfull
+	buttonsound
+	writetext ObtainedThreeApricornsText
+
+.picked
 	callasm PickedFruitTree
 	specialsound
 	itemnotify
@@ -106,6 +122,10 @@ HeyItsFruitText:
 
 ObtainedFruitText:
 	text_far _ObtainedFruitText
+	text_end
+
+ObtainedThreeApricornsText:
+	text_far _ObtainedThreeApricornsText
 	text_end
 
 FruitPackIsFullText:
