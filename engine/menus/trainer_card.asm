@@ -74,8 +74,7 @@ TrainerCard:
 	xor a ; TRAINERCARDSTATE_PAGE1_LOADGFX
 	ld [hli], a ; wJumptableIndex
 	ld [hli], a ; wTrainerCardBadgeFrameCounter
-	ld [hli], a ; wTrainerCardBadgeTileID
-	ld [hl], a  ; wTrainerCardBadgeAttributes
+	ld [hl], a  ; wTrainerCardBadgeTileID
 	ret
 
 .RunJumptable:
@@ -107,6 +106,9 @@ TrainerCard_Page1_LoadGFX:
 	ld d, 6
 	call TrainerCard_InitBorder
 	call WaitBGMap
+	ld b, SCGB_TRAINER_CARD
+	call GetSGBLayout
+	call SetPalettes
 	ld de, CardStatusGFX
 	ld hl, vTiles2 tile $29
 	lb bc, BANK(CardStatusGFX), 86
@@ -128,20 +130,15 @@ TrainerCard_Page1_Joypad:
 	ld [wJumptableIndex], a
 	ret
 
-.Unreferenced_KantoCheck:
-	ld a, [wKantoBadges]
-	and a
-	ret z
-	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
-	ld [wJumptableIndex], a
-	ret
-
 TrainerCard_Page2_LoadGFX:
 	call ClearSprites
 	hlcoord 0, 8
 	ld d, 6
 	call TrainerCard_InitBorder
 	call WaitBGMap
+	ld b, SCGB_TRAINER_CARD
+	call GetSGBLayout
+	call SetPalettes
 	ld de, LeaderGFX
 	ld hl, vTiles2 tile $29
 	lb bc, BANK(LeaderGFX), 86
@@ -150,6 +147,7 @@ TrainerCard_Page2_LoadGFX:
 	ld hl, vTiles0 tile $00
 	lb bc, BANK(BadgeGFX), 44
 	call Request2bpp
+	ld hl, TrainerCard_JohtoBadgesOAM
 	call TrainerCard_Page2_3_InitObjectsAndStrings
 	call TrainerCard_IncrementJumptable
 	ret
@@ -159,8 +157,11 @@ TrainerCard_Page2_Joypad:
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
+	and D_RIGHT
+	jr nz, .pressed_right
+	ld a, [hl]
 	and A_BUTTON
-	jr nz, .Quit
+	jr nz, .pressed_a
 	ld a, [hl]
 	and D_LEFT
 	jr nz, .d_left
@@ -171,10 +172,18 @@ TrainerCard_Page2_Joypad:
 	ld [wJumptableIndex], a
 	ret
 
-.Unreferenced_KantoCheck:
+.pressed_right
 	ld a, [wKantoBadges]
 	and a
 	ret z
+	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
+	ld [wJumptableIndex], a
+	ret
+
+.pressed_a
+	ld a, [wKantoBadges]
+	and a
+	jr z, .Quit
 	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
 	ld [wJumptableIndex], a
 	ret
@@ -190,6 +199,9 @@ TrainerCard_Page3_LoadGFX:
 	ld d, 6
 	call TrainerCard_InitBorder
 	call WaitBGMap
+	ld b, SCGB_TRAINER_CARD_KANTO
+	call GetSGBLayout
+	call SetPalettes
 	ld de, LeaderGFX2
 	ld hl, vTiles2 tile $29
 	lb bc, BANK(LeaderGFX2), 86
@@ -198,29 +210,30 @@ TrainerCard_Page3_LoadGFX:
 	ld hl, vTiles0 tile $00
 	lb bc, BANK(BadgeGFX2), 44
 	call Request2bpp
+	ld hl, TrainerCard_KantoBadgesOAM
 	call TrainerCard_Page2_3_InitObjectsAndStrings
 	call TrainerCard_IncrementJumptable
 	ret
 
 TrainerCard_Page3_Joypad:
-	ld hl, TrainerCard_JohtoBadgesOAM
+	ld hl, TrainerCard_KantoBadgesOAM
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT
-	jr nz, .left
+	and A_BUTTON
+	jr nz, .Quit
 	ld a, [hl]
-	and D_RIGHT
-	jr nz, .right
+	and D_LEFT
+	jr nz, .d_left
 	ret
 
-.left
+.d_left
 	ld a, TRAINERCARDSTATE_PAGE2_LOADGFX
 	ld [wJumptableIndex], a
 	ret
 
-.right
-	ld a, TRAINERCARDSTATE_PAGE1_LOADGFX
+.Quit:
+	ld a, TRAINERCARDSTATE_QUIT
 	ld [wJumptableIndex], a
 	ret
 
@@ -312,6 +325,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	db $29, $2a, $2b, $2c, $2d, -1
 
 TrainerCard_Page2_3_InitObjectsAndStrings:
+	push hl
 	hlcoord 2, 8
 	ld de, .BadgesTilemap
 	call TrainerCardSetup_PlaceTilemapString
@@ -337,9 +351,8 @@ endr
 	jr nz, .loop2
 	xor a
 	ld [wTrainerCardBadgeFrameCounter], a
-	ld hl, TrainerCard_JohtoBadgesOAM
-	call TrainerCard_Page2_3_OAMUpdate
-	ret
+	pop hl
+	jp TrainerCard_Page2_3_OAMUpdate
 
 .BadgesTilemap:
 	db $79, $7a, $7b, $7c, $7d, -1 ; "BADGES"
@@ -471,6 +484,7 @@ TrainerCard_Page2_3_AnimateBadges:
 	jr TrainerCard_Page2_3_OAMUpdate
 
 TrainerCard_Page2_3_OAMUpdate:
+; hl = badge OAM template data (Polished Crystal format)
 ; copy flag array pointer
 	ld a, [hli]
 	ld e, a
@@ -490,20 +504,26 @@ TrainerCard_Page2_3_OAMUpdate:
 	ld b, a
 	ld a, [hli] ; x
 	ld c, a
-	ld a, [hli] ; pal
-	ld [wTrainerCardBadgeAttributes], a
+	ld a, h
+	ldh [hTrainerCardBadgePaletteAddr], a
+	ld a, l
+	ldh [hTrainerCardBadgePaletteAddr + 1], a
+rept 4
+	inc hl
+endr
 	ld a, [wTrainerCardBadgeFrameCounter]
+	; hl += a
 	add l
 	ld l, a
-	ld a, 0
 	adc h
+	sub l
 	ld h, a
 	ld a, [hl]
 	ld [wTrainerCardBadgeTileID], a
 	call .PrepOAM
 	pop hl
 .skip_badge
-	ld bc, $b ; 3 + 2 * 4
+	ld bc, $e ; 6 + 2 * 4
 	add hl, bc
 	pop bc
 	dec b
@@ -539,7 +559,23 @@ TrainerCard_Page2_3_OAMUpdate:
 	inc hl
 	inc de
 
-	ld a, [wTrainerCardBadgeAttributes]
+; read the next palette byte for this badge
+	push hl
+	push bc
+	ldh a, [hTrainerCardBadgePaletteAddr + 1]
+	ld l, a
+	ldh a, [hTrainerCardBadgePaletteAddr]
+	ld h, a
+	ld a, [hli]
+	ld b, a
+	ld a, h
+	ldh [hTrainerCardBadgePaletteAddr], a
+	ld a, l
+	ldh [hTrainerCardBadgePaletteAddr + 1], a
+	ld a, b
+	pop bc
+	pop hl
+
 	add [hl]
 	ld [de], a ; attributes
 	inc hl
@@ -563,58 +599,106 @@ TrainerCard_Page2_3_OAMUpdate:
 TrainerCard_JohtoBadgesOAM:
 ; Template OAM data for each badge on the trainer card.
 ; Format:
-	; y, x, palette
+	; y, x, palette1, palette2, palette3, palette4
 	; cycle 1: face tile, in1 tile, in2 tile, in3 tile
 	; cycle 2: face tile, in1 tile, in2 tile, in3 tile
 
 	dw wJohtoBadges
 
 	; Zephyrbadge
-	db $68, $18, 0
+	db $68, $18, 0, 0, 0, 0
 	db $00, $20, $24, $20 | (1 << 7)
 	db $00, $20, $24, $20 | (1 << 7)
 
 	; Hivebadge
-	db $68, $38, 0
+	db $68, $38, 1, 1, 1, 1
 	db $04, $20, $24, $20 | (1 << 7)
 	db $04, $20, $24, $20 | (1 << 7)
 
 	; Plainbadge
-	db $68, $58, 0
+	db $68, $58, 2, 2, 2, 2
 	db $08, $20, $24, $20 | (1 << 7)
 	db $08, $20, $24, $20 | (1 << 7)
 
 	; Fogbadge
-	db $68, $78, 0
+	db $68, $78, 3, 3, 3, 3
 	db $0c, $20, $24, $20 | (1 << 7)
-	db $0c, $20, $24, $20 | (1 << 7)
+	db $0c | (1 << 7), $20, $24, $20 | (1 << 7)
 
 	; Mineralbadge
-	db $80, $38, 0
+	db $80, $38, 4, 4, 4, 4
 	db $10, $20, $24, $20 | (1 << 7)
 	db $10, $20, $24, $20 | (1 << 7)
 
 	; Stormbadge
-	db $80, $18, 0
+	db $80, $18, 5, 5, 5, 5
 	db $14, $20, $24, $20 | (1 << 7)
-	db $14, $20, $24, $20 | (1 << 7)
+	db $14 | (1 << 7), $20, $24, $20 | (1 << 7)
 
 	; Glacierbadge
-	db $80, $58, 0
+	db $80, $58, 6, 6, 6, 6
 	db $18, $20, $24, $20 | (1 << 7)
 	db $18, $20, $24, $20 | (1 << 7)
 
 	; Risingbadge
-	; X-flips on alternate cycles.
-	db $80, $78, 0
-	db $1c,            $20, $24, $20 | (1 << 7)
+	db $80, $78, 7, 7, 7, 7
+	db $1c, $20, $24, $20 | (1 << 7)
+	db $1c, $20, $24, $20 | (1 << 7)
+
+TrainerCard_KantoBadgesOAM:
+; Template OAM data for each badge on the trainer card.
+; Format:
+	; y, x, palette1, palette2, palette3, palette4
+	; cycle 1: face tile, in1 tile, in2 tile, in3 tile
+	; cycle 2: face tile, in1 tile, in2 tile, in3 tile
+
+	dw wKantoBadges
+
+	; Boulderbadge
+	db $80, $38, 0, 0, 0, 0
+	db $00, $20, $24, $20 | (1 << 7)
+	db $00, $20, $24, $20 | (1 << 7)
+
+	; Cascadebadge
+	db $68, $58, 1, 1, 1, 1
+	db $04, $20, $24, $20 | (1 << 7)
+	db $04, $20, $24, $20 | (1 << 7)
+
+	; Thunderbadge
+	db $68, $18, 2, 2, 2, 2
+	db $08, $20, $24, $20 | (1 << 7)
+	db $08, $20, $24, $20 | (1 << 7)
+
+	; Rainbowbadge
+	db $68, $78, 6, 2, 1, 3
+	db $0c, $20, $24, $20 | (1 << 7)
+	db $0c, $20, $24, $20 | (1 << 7)
+
+	; Soulbadge
+	db $80, $18, 4, 4, 4, 4
+	db $10, $20, $24, $20 | (1 << 7)
+	db $10, $20, $24, $20 | (1 << 7)
+
+	; Marshbadge
+	db $68, $38, 5, 5, 5, 5
+	db $14, $20, $24, $20 | (1 << 7)
+	db $14, $20, $24, $20 | (1 << 7)
+
+	; Volcanobadge
+	db $80, $58, 6, 6, 6, 6
+	db $18, $20, $24, $20 | (1 << 7)
+	db $18, $20, $24, $20 | (1 << 7)
+
+	; Earthbadge
+	db $80, $78, 7, 7, 7, 7
+	db $1c, $20, $24, $20 | (1 << 7)
 	db $1c | (1 << 7), $20, $24, $20 | (1 << 7)
 
 CardStatusGFX: INCBIN "gfx/trainer_card/card_status.2bpp"
 
-LeaderGFX:  INCBIN "gfx/trainer_card/leaders.2bpp"
-LeaderGFX2: INCBIN "gfx/trainer_card/leaders.2bpp"
-BadgeGFX:   INCBIN "gfx/trainer_card/badges.2bpp"
-BadgeGFX2:  INCBIN "gfx/trainer_card/badges.2bpp"
+LeaderGFX: INCBIN "gfx/trainer_card/leaders.2bpp" ; must come after CardStatusGFX
 
 CardRightCornerGFX: INCBIN "gfx/trainer_card/card_right_corner.2bpp"
+
+; LeaderGFX2, BadgeGFX and BadgeGFX2 are in "Trainer Card Badge Graphics"
+; (see main.asm) because bank9 has no room for them.

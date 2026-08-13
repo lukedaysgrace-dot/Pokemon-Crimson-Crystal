@@ -852,3 +852,10 @@ INCLUDE "engine/gfx/summary_screen_pals.asm"
 IF DEF(DEBUG_BATTLE)
 INCLUDE "engine/debug/battle_tester.asm"
 ENDC
+
+
+SECTION "Trainer Card Badge Graphics", ROMX
+
+LeaderGFX2: INCBIN "gfx/trainer_card/kanto_leaders.2bpp"
+BadgeGFX:   INCBIN "gfx/trainer_card/badges.2bpp"
+BadgeGFX2:  INCBIN "gfx/trainer_card/kanto_badges.2bpp"
