@@ -53,6 +53,7 @@ LoadSGBLayout:
 	dw .SGB_TrainerOrMonFrontpicPals
 	dw .SGB_MysteryGift
 	dw .SGB1e
+	dw .SGB_TrainerCard ; SCGB_TRAINER_CARD_KANTO (SGB has no Kanto-specific colors)
 
 .SGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale
