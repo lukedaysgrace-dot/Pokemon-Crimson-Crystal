@@ -98,6 +98,11 @@ NEXTU ; ffb3
 hPrintNumBuffer:: ds 10 ; ffb3
 
 NEXTU ; ffb3
+; trainer card badge animation scratch
+; (only live within TrainerCard_Page2_3_OAMUpdate)
+hTrainerCardBadgePaletteAddr:: dw ; ffb3
+
+NEXTU ; ffb3
 ; miscellaneous
     ds 9
 hMGStatusFlags:: db ; ffbc
