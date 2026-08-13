@@ -2777,7 +2777,7 @@ wErinFightCount::    db
 ; Cycles 0-5: Fire, Water, Thunder, Leaf, Moon, Ice.
 wBugContestStonePrizeIndex:: db
 
-	ds 80 ; trimmed for expanded Pokedex caught/seen flag arrays, then by 4 more for the Silent Crypt / gravekeeper event flags, then by 1 for wBugContestStonePrizeIndex, then by 1 for EVENT_SILVER_CAVE_ROOM_2_MEWTWO
+	ds 40 ; trimmed by 40 more bytes to expand the item pocket from 20 to 40 slots
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
@@ -2892,7 +2892,8 @@ wWeatherDailyKanto4:: db
 ; Bit 7 set = physical, clear = special; low bits hold the type constant.
 ; Set by the Hidden Power Guy at Lake of Rage.
 wHiddenPowerType:: db
-	ds 7
+wLastRepelUsed:: db
+	ds 6
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74
