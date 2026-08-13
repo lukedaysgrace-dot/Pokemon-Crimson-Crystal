@@ -4,7 +4,6 @@
 	const PLAYERSHOUSE1F_MOM3
 	const PLAYERSHOUSE1F_MOM4
 	const PLAYERSHOUSE1F_POKEFAN_F
-	const PLAYERSHOUSE1F_POKE_BALL
 
 PlayersHouse1F_MapScripts:
 	db 2 ; scene scripts
@@ -191,31 +190,6 @@ NeighborScript:
 	turnobject PLAYERSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
-EeveePokeBallScript:
-	refreshscreen
-	pokepic EEVEE
-	cry EEVEE
-	waitbutton
-	closepokepic
-	opentext
-	writetext TakeEeveeText
-	yesorno
-	iffalse .Refused
-	disappear PLAYERSHOUSE1F_POKE_BALL
-	writetext GotEeveeText
-	playsound SFX_CAUGHT_MON
-	waitsfx
-	buttonsound
-	givepoke EEVEE, 5
-	closetext
-	end
-
-.Refused:
-	writetext LeftEeveeText
-	waitbutton
-	closetext
-	end
-
 TVScript:
 	jumptext TVText
 
@@ -385,24 +359,6 @@ NeighborText:
 	line "#MON!"
 	done
 
-TakeEeveeText:
-	text "A # BALL!"
-	line "Someone left it"
-	cont "here…"
-
-	para "Take it?"
-	done
-
-GotEeveeText:
-	text "<PLAYER> received"
-	line "an EEVEE!"
-	done
-
-LeftEeveeText:
-	text "<PLAYER> left the"
-	line "# BALL alone."
-	done
-
 StoveText:
 	text "Mom's specialty!"
 
@@ -453,13 +409,12 @@ PlayersHouse1F_MapEvents:
 	bg_event  2,  1, BGEVENT_READ, FridgeScript
 	bg_event  4,  1, BGEVENT_READ, TVScript
 
-	db 6 ; object events
+	db 5 ; object events
 	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_1
 	object_event  2,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  0,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  4,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NeighborScript, EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
-	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EeveePokeBallScript, EVENT_PLAYERS_HOUSE_1F_EEVEE_POKE_BALL
 
 MomGivesAbilityCapText:
 	text "MOM: Take this"
