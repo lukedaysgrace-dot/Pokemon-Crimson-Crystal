@@ -61,6 +61,24 @@ GetTrainerAttributes:
 	ld [de], a
 	ld a, [hl]
 	ld [wEnemyTrainerBaseReward], a
+
+; Cache the 16-bit AI flags word in wEnemyTrainerAIFlags so any bank can
+; test AI bits (notably AI_ELITE) without a far read. Battle Tower
+; trainers use the first trainer class's attributes, mirroring the
+; override in AIChooseMove/AI_SwitchOrTryItem.
+	ld hl, TrainerClassAttributes + TRNATTR_AI_MOVE_WEIGHTS
+	ld a, [wInBattleTowerBattle]
+	and a
+	jr nz, .cache
+	ld a, [wTrainerClass]
+	dec a
+	ld bc, NUM_TRAINER_ATTRIBUTES
+	call AddNTimes
+.cache
+	ld a, [hli]
+	ld [wEnemyTrainerAIFlags], a
+	ld a, [hl]
+	ld [wEnemyTrainerAIFlags + 1], a
 	ret
 
 INCLUDE "data/trainers/attributes.asm"
