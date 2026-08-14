@@ -70,7 +70,12 @@ wMusicID:: dw ; c29d
 wMusicBank:: db ; c29f
 wNoiseSampleAddress:: dw ; c2a0
 wNoiseSampleDelay:: db ; c2a2
-	ds 1 ; c2a3
+
+wDangerBeepCount:: db ; c2a3
+; Number of low-health alarm beeps played since HP entered the red zone.
+; Once it reaches DANGER_BEEP_LIMIT the alarm shuts up and stays quiet
+; until HP leaves the red zone (or the battle/mon changes).
+
 wMusicNoiseSampleSet:: db ; c2a4
 wSFXNoiseSampleSet:: db ; c2a5
 
