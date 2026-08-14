@@ -12,7 +12,7 @@
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/raticate_alolan/front.dimensions"
-	abilities_for RATICATE_ALOLAN, HUSTLE, GUTS, NO_ABILITY
+	abilities_for RATICATE_ALOLAN, HUSTLE, GUTS, THICK_FAT
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
