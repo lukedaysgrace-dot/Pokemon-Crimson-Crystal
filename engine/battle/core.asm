@@ -2381,6 +2381,7 @@ IsAnyMonHoldingExpShare:
 StopDangerSound:
 	xor a
 	ld [wLowHealthAlarm], a
+	ld [wDangerBeepCount], a
 	ret
 
 FaintYourPokemon:
@@ -2795,6 +2796,7 @@ UpdateFaintedPlayerMon:
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
 	ld [wLowHealthAlarm], a
+	ld [wDangerBeepCount], a
 	ld hl, wPlayerDamageTaken
 	ld [hli], a
 	ld [hl], a
@@ -4859,11 +4861,18 @@ CheckDanger:
 	jr z, .danger
 
 .no_danger
+	; out of the red zone: re-arm the alarm for next time
+	xor a
+	ld [wDangerBeepCount], a
 	ld hl, wLowHealthAlarm
 	res DANGER_ON_F, [hl]
 	jr .done
 
 .danger
+	; already used up this trip's beeps? stay silent until HP leaves red
+	ld a, [wDangerBeepCount]
+	cp DANGER_BEEP_LIMIT
+	jr nc, .done
 	ld hl, wLowHealthAlarm
 	set DANGER_ON_F, [hl]
 
@@ -8735,6 +8744,7 @@ CleanUpBattleRAM:
 	call BattleEnd_HandleRoamMons
 	xor a
 	ld [wLowHealthAlarm], a
+	ld [wDangerBeepCount], a
 	ld [wBattleMode], a
 	ld [wBattleType], a
 	ld [wAttackMissed], a
