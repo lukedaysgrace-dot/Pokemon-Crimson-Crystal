@@ -25,11 +25,16 @@ const_value = 0
 	shift_const AI_STATUS
 	shift_const AI_RISKY
 	shift_const AI_ABILITIES
-	shift_const AI_11
+	shift_const AI_ELITE
 	shift_const AI_12
 	shift_const AI_13
 	shift_const AI_14
 	shift_const AI_15
+
+; Bit index of AI_ELITE within the 16-bit AI flags word. The word is
+; cached in wEnemyTrainerAIFlags at battle start (GetTrainerAttributes),
+; so any bank can test the high byte with bit AI_ELITE_F - 8.
+AI_ELITE_F EQU 11
 
 ; TRNATTR_AI_ITEM_SWITCH bit flags
 CONTEXT_USE_F      EQU 6

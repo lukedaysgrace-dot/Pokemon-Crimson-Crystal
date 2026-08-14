@@ -2768,8 +2768,24 @@ AI_Smart_Thunder:
 
 AICompareSpeed:
 ; Return carry if enemy is faster than player.
+; Elite trainers compare true effective speeds - Choice Scarf, Quick
+; Feet/weather abilities, Unburden, paralysis and Trick Room - via the
+; same routine the engine uses for real move order. Everyone else keeps
+; the classic raw-stat comparison.
 
 	push bc
+	ld a, [wEnemyTrainerAIFlags + 1]
+	bit AI_ELITE_F - 8, a
+	jr z, .raw
+	push hl
+	push de
+	farcall CompareSpeedsWithAbilities
+	pop de
+	pop hl
+	pop bc
+	ret
+
+.raw
 	ld a, [wEnemyMonSpeed + 1]
 	ld b, a
 	ld a, [wBattleMonSpeed + 1]
@@ -3270,6 +3286,10 @@ AI_SmartDamageKO:
 	ld a, d
 	sbc h
 	pop de
+	jr c, .no_ko
+
+; Elite trainers know that a full-HP Focus Sash or Sturdy denies the KO.
+	call AIElitePlayerDeniesKO
 	jr c, .no_ko
 
 ; Guaranteed KO: greatly encourage the strongest move.
@@ -3959,6 +3979,445 @@ AIHazardEffects:
 	db EFFECT_SPIKES
 	db EFFECT_TOXIC_SPIKES
 	db EFFECT_STEALTH_ROCK
+	db -1 ; end
+
+
+AIElitePlayerDeniesKO:
+; carry if an elite trainer should assume the player survives a move
+; that would otherwise KO: full HP with a Focus Sash, or full HP with
+; Sturdy (as our moves experience it, so Mold Breaker pierces).
+; Returns nc for non-elite trainers. Preserves bc, de, hl.
+; Assumes hBattleTurn is the enemy's (every AI caller sets it).
+	ld a, [wEnemyTrainerAIFlags + 1]
+	bit AI_ELITE_F - 8, a
+	jr z, .no
+	call AICheckPlayerMaxHP
+	jr nc, .no
+	ld a, [wBattleMonItem]
+	cp FOCUS_SASH
+	jr z, .yes
+	push hl
+	push de
+	push bc
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp STURDY
+	jr z, .yes
+.no
+	and a
+	ret
+.yes
+	scf
+	ret
+
+AIElitePlayerLockedHarmless:
+; carry if the player is Choice-locked into a damaging move that cannot
+; touch the active enemy mon (type immunity, or an ability from the
+; nullification table). The lock is established state from previous
+; turns - this never reads the player's pending action, so a predicted
+; switch-out still beats us. Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wPlayerChoiceLockedMove]
+	and a
+	jr z, .no
+	call GetMoveTypeIfDamaging
+	jr z, .no ; locked into a status move: it can still cripple us
+	ld d, a ; d = locked move's type
+; Does our own ability swallow it? (Not if the player's Mold Breaker
+; ignores it.)
+	ld a, [wPlayerAbility]
+	cp MOLD_BREAKER
+	jr z, .type_only
+	push de
+	farcall GetEnemyAbilityEffective_b ; b = our effective ability
+	pop de
+	ld c, d
+	push de
+	farcall AbilityNullifiesType ; in: b = ability, c = type
+	pop de
+	jr c, .yes
+.type_only
+; Is the locked move's type simply immune against our typing?
+	ld a, d
+	ld hl, wEnemyMonType1
+	call AISwitch_CheckTypeMatchup
+	ld a, [wTypeMatchup]
+	and a
+	jr nz, .no
+.yes
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+.no
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
+AI_Elite:
+; Boss-trainer intelligence (AI_ELITE flag): gym leaders, rivals, the
+; Elite Four, Rocket executives, Red, and Battle Tower trainers.
+; Full knowledge of the player's ACTIVE mon - its real ability, held
+; item and typing - but NEVER the player's pending action this turn,
+; and never the player's bench. Predictions stay rewarded: switching an
+; immune mon into a telegraphed move always works.
+; - Dismiss status moves the player's ability or typing makes fail
+;   (sleep vs Insomnia, T-Wave vs Ground/Electric/Limber, Toxic vs
+;   Steel/Immunity, Will-O-Wisp vs Fire/Water Veil/Flash Fire, ...).
+; - Dismiss stat-drop moves that Clear Body-style abilities block, that
+;   Contrary inverts, or that Defiant/Competitive would exploit.
+; - Dismiss OHKO moves into Sturdy; don't Explode into a full-HP Focus
+;   Sash / Sturdy holder.
+; - If the player is Choice-locked into a move that cannot touch us,
+;   the turn is free: greatly encourage setup moves and Substitute.
+
+	ld a, 1
+	ldh [hBattleTurn], a
+
+	ld hl, wBuffer1 - 1
+	ld de, wEnemyMonMoves
+	ld b, wEnemyMonMovesEnd - wEnemyMonMoves + 1
+.checkmove
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	push de
+	push bc
+	call AIGetEnemyMove
+
+; OHKO moves first: Guillotine has 0 listed power (Horn Drill and
+; Fissure have 1), so the power test below would misroute it.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_OHKO
+	jr z, .ohko
+
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	and a
+	jr z, .status_move
+
+; --- Damaging moves ---
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SELFDESTRUCT
+	jp nz, .done
+; Don't trade the mon into a target a full-HP Sash/Sturdy keeps alive.
+	call AIElitePlayerDeniesKO
+	jp nc, .done
+	call AIDiscourageMove
+	jp .done
+
+.ohko
+; Sturdy blocks OHKO moves outright; a full-HP Sash survives at 1 HP.
+	call .GetPlayerAbility
+	ld a, e
+	cp STURDY
+	jp z, .dismiss
+	call AIElitePlayerDeniesKO
+	jp nc, .done
+	call AIDiscourageMove
+	jp .done
+
+.status_move
+	call .GetPlayerAbility ; e = player ability as our moves experience it
+
+; Sap Sipper absorbs Grass-type status moves (Spore, Stun Spore, ...).
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	cp GRASS
+	jr nz, .grass_ok
+	ld a, e
+	cp SAP_SIPPER
+	jp z, .dismiss
+.grass_ok
+
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SLEEP
+	jr z, .sleep
+	cp EFFECT_PARALYZE
+	jr z, .paralyze
+	cp EFFECT_TOXIC
+	jr z, .poison
+	cp EFFECT_POISON
+	jr z, .poison
+	cp EFFECT_BURN
+	jp z, .burn
+	cp EFFECT_CONFUSE
+	jp z, .confuse
+	cp EFFECT_SWAGGER
+	jp z, .confuse
+	cp EFFECT_ATTRACT
+	jp z, .attract
+	cp EFFECT_LEECH_SEED
+	jp z, .leech_seed
+	call .IsStatDown
+	jp c, .stat_down
+	jp .setup_check
+
+.sleep
+	ld a, e
+	cp INSOMNIA
+	jp z, .dismiss
+	cp VITAL_SPIRIT
+	jp z, .dismiss
+	jp .leaf_guard
+
+.paralyze
+	ld a, [wBattleMonType1]
+	cp ELECTRIC
+	jp z, .dismiss
+	ld a, [wBattleMonType2]
+	cp ELECTRIC
+	jp z, .dismiss
+	call .MoveTypeImmune
+	jp c, .dismiss
+	ld a, e
+	cp LIMBER
+	jp z, .dismiss
+	jp .leaf_guard
+
+.poison
+	ld a, e
+	cp IMMUNITY
+	jp z, .dismiss
+	cp PASTEL_VEIL
+	jp z, .dismiss
+; Our own Corrosion poisons straight through Poison/Steel typing
+; (effective ability, so Neutralizing Gas suppression is respected).
+	push hl
+	push de
+	push bc
+	farcall GetEnemyAbilityEffective_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp CORROSION
+	jp z, .leaf_guard
+	ld a, [wBattleMonType1]
+	cp POISON
+	jp z, .dismiss
+	cp STEEL
+	jp z, .dismiss
+	ld a, [wBattleMonType2]
+	cp POISON
+	jp z, .dismiss
+	cp STEEL
+	jp z, .dismiss
+	jp .leaf_guard
+
+.burn
+	ld a, e
+	cp WATER_VEIL
+	jp z, .dismiss
+	cp THERMAL_EXCHANGE
+	jp z, .dismiss
+	ld a, [wBattleMonType1]
+	cp FIRE
+	jp z, .dismiss
+	ld a, [wBattleMonType2]
+	cp FIRE
+	jp z, .dismiss
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	cp FIRE
+	jr nz, .leaf_guard
+	ld a, e
+	cp FLASH_FIRE
+	jp z, .dismiss
+	jr .leaf_guard
+
+.confuse
+	ld a, e
+	cp OWN_TEMPO
+	jp z, .dismiss
+	jp .done
+
+.attract
+	ld a, e
+	cp OBLIVIOUS
+	jp z, .dismiss
+	jp .done
+
+.leech_seed
+	ld a, [wBattleMonType1]
+	cp GRASS
+	jp z, .dismiss
+	ld a, [wBattleMonType2]
+	cp GRASS
+	jp z, .dismiss
+	jp .done
+
+.leaf_guard
+; Leaf Guard blocks major status while the sun is out.
+	ld a, e
+	cp LEAF_GUARD
+	jp nz, .done
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jp nz, .done
+.dismiss
+	ld a, [hl]
+	add 30
+	ld [hl], a
+	jr .done
+
+.stat_down
+; Clear Body/White Smoke/Mirror Armor block stat drops, Contrary inverts
+; them, and Defiant/Competitive punish them with free boosts.
+	ld a, e
+	cp CLEAR_BODY
+	jr z, .dismiss
+	cp WHITE_SMOKE
+	jr z, .dismiss
+	cp MIRROR_ARMOR
+	jr z, .dismiss
+	cp CONTRARY
+	jr z, .dismiss
+	cp DEFIANT
+	jr z, .dismiss
+	cp COMPETITIVE
+	jr z, .dismiss
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_ATTACK_DOWN
+	jr z, .atk_down
+	cp EFFECT_ATTACK_DOWN_2
+	jr z, .atk_down
+	cp EFFECT_DEFENSE_DOWN
+	jr z, .def_down
+	cp EFFECT_DEFENSE_DOWN_2
+	jr z, .def_down
+	cp EFFECT_ACCURACY_DOWN
+	jr z, .acc_down
+	cp EFFECT_ACCURACY_DOWN_2
+	jr z, .acc_down
+	jr .done
+.atk_down
+	ld a, e
+	cp HYPER_CUTTER
+	jr z, .dismiss
+	jr .done
+.def_down
+	ld a, e
+	cp BIG_PECKS
+	jr z, .dismiss
+	jr .done
+.acc_down
+	ld a, e
+	cp KEEN_EYE
+	jr z, .dismiss
+	cp MINDS_EYE
+	jr z, .dismiss
+	jr .done
+
+.setup_check
+; Free turn: the player is locked into a move that can't touch us.
+	call .IsSetupMove
+	jr nc, .done
+	call AIElitePlayerLockedHarmless
+	jr nc, .done
+	dec [hl]
+	dec [hl]
+	dec [hl]
+.done
+	pop bc
+	pop de
+	jp .checkmove
+
+.GetPlayerAbility:
+; e = the player's effective ability as the enemy's moves experience it
+; (Mold Breaker, Neutralizing Gas and suppression applied).
+	push hl
+	push bc
+	farcall GetOppIgnorableAbility_b
+	ld e, b
+	pop bc
+	pop hl
+	ret
+
+.MoveTypeImmune:
+; carry if the player's typing makes it immune to the scored status
+; move's type (the engine fails these, e.g. Thunder Wave vs Ground).
+	push hl
+	push de
+	push bc
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	ld hl, wBattleMonType1
+	call AISwitch_CheckTypeMatchup
+	ld a, [wTypeMatchup]
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret nz ; nc
+	scf
+	ret
+
+.IsStatDown:
+; carry if the effect in a is a pure stat-drop.
+	cp EFFECT_ATTACK_DOWN
+	jr c, .not_stat_down
+	cp EFFECT_EVASION_DOWN + 1
+	jr c, .stat_down_yes
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .not_stat_down
+	cp EFFECT_EVASION_DOWN_2 + 1
+	jr c, .stat_down_yes
+.not_stat_down
+	and a
+	ret
+.stat_down_yes
+	scf
+	ret
+
+.IsSetupMove:
+; carry if the scored move raises our own stats or sets a Substitute.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_SUBSTITUTE
+	jr z, .setup_yes
+	cp EFFECT_ATTACK_UP
+	jr c, .setup_list
+	cp EFFECT_EVASION_UP + 1
+	jr c, .setup_yes
+	cp EFFECT_ATTACK_UP_2
+	jr c, .setup_list
+	cp EFFECT_EVASION_UP_2 + 1
+	jr c, .setup_yes
+.setup_list
+	push hl
+	push de
+	push bc
+	ld hl, .SetupEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret
+.setup_yes
+	scf
+	ret
+
+.SetupEffects:
+; new-generation effects that raise the user's own stats
+	db EFFECT_DEFENSE_CURL
+	db EFFECT_BULK_UP
+	db EFFECT_CALM_MIND
+	db EFFECT_DRAGON_DANCE
+	db EFFECT_HONE_CLAWS
+	db EFFECT_SHELL_SMASH
+	db EFFECT_QUIVER_DANCE
+	db EFFECT_WORK_UP
 	db -1 ; end
 
 
