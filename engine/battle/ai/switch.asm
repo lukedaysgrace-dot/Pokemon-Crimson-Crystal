@@ -9,6 +9,66 @@
 ; The heavy lifting lives in the Abilities Engine bank (AISwitch*Far
 ; routines); these are thin register-shuffling wrappers.
 
+AIEliteCheck:
+; carry if the current trainer has the elite AI bit (cached at battle
+; start in wEnemyTrainerAIFlags; Battle Tower resolves to class 1).
+; Preserves all registers but a.
+	ld a, [wEnemyTrainerAIFlags + 1]
+	bit AI_ELITE_F - 8, a
+	scf
+	ret nz
+	and a
+	ret
+
+AIEliteSkipUnlessOwnLock:
+; While an elite trainer's active mon is Choice-locked, moves other than
+; the locked one cannot be selected, so switch logic must not count
+; them. in/out: a = move id. carry = ignore this move.
+	push bc
+	ld b, a
+	call AIEliteCheck
+	jr nc, .keep
+	ld a, [wEnemyChoiceLockedMove]
+	and a
+	jr z, .keep
+	cp b
+	jr nz, .skip
+.keep
+	ld a, b
+	pop bc
+	and a
+	ret
+.skip
+	ld a, b
+	pop bc
+	scf
+	ret
+
+AIEliteSkipUnlessPlayerLock:
+; Elite trainers know a Choice-locked player can only repeat the locked
+; move: when judging the player's revealed moves, only that one counts.
+; (The lock is state from previous turns - never a pending action.)
+; in/out: a = move id. carry = ignore this move.
+	push bc
+	ld b, a
+	call AIEliteCheck
+	jr nc, .keep
+	ld a, [wPlayerChoiceLockedMove]
+	and a
+	jr z, .keep
+	cp b
+	jr nz, .skip
+.keep
+	ld a, b
+	pop bc
+	and a
+	ret
+.skip
+	ld a, b
+	pop bc
+	scf
+	ret
+
 AISwitch_CheckTypeMatchup:
 ; a = offensive type, hl = defender's two types; result in wTypeMatchup.
 ; This file no longer shares a bank with CheckTypeMatchup (it moved here
@@ -96,6 +156,9 @@ CheckPlayerMoveTypeMatchups:
 	ld a, [hli]
 	and a
 	jr z, .exit
+	; a Choice-locked player can only repeat the locked move
+	call AIEliteSkipUnlessPlayerLock
+	jr c, .skip_unlocked
 	push hl
 	call GetMoveTypeIfDamaging
 	jr z, .next
@@ -132,6 +195,7 @@ CheckPlayerMoveTypeMatchups:
 
 .next
 	pop hl
+.skip_unlocked
 	dec d
 	jr nz, .loop
 
@@ -189,6 +253,9 @@ CheckPlayerMoveTypeMatchups:
 	jr z, .exit2
 
 	inc de
+	; while Choice-locked, only the locked move is available to us
+	call AIEliteSkipUnlessOwnLock
+	jr c, .loop2
 	call GetMoveTypeIfDamaging
 	jr z, .loop2
 
@@ -796,6 +863,9 @@ CheckEnemyMoveEffectiveness:
 	and a
 	jr z, .done
 	inc de
+	; while Choice-locked, only the locked move is available to us
+	call AIEliteSkipUnlessOwnLock
+	jr c, .next
 	call GetMoveTypeIfDamaging
 	jr z, .next
 	; the player's ability absorbs this move: it can't damage
@@ -841,4 +911,68 @@ GetMoveTypeIfDamaging:
 	inc c
 	dec c
 	pop bc
+	ret
+
+AIPickPostKOSwitchIn::
+; Choose the replacement after the enemy's mon faints (farcalled from
+; EnemyPartyMonEntrance in Battle Core). Elite trainers pick the best
+; switch-in with the full switch-AI heuristics - type matchups on both
+; sides, nullifying abilities, and HP - instead of the legacy
+; first-index scan. Writes wEnemySwitchMonIndex (1-based; 0 = let
+; FindMonInOTPartyToSwitchIntoBattle decide as before).
+; The player has already acted this turn, so this reads only the
+; current board state - never a pending choice.
+	xor a
+	ld [wEnemySwitchMonIndex], a
+	call AIEliteCheck
+	ret nc
+; matchup reads need a live player mon (not a double-KO)
+	ld hl, wBattleMonHP
+	ld a, [hli]
+	or [hl]
+	ret z
+; the matchup helpers assume the enemy's perspective, like every other
+; caller (AI_SwitchOrTryItem runs right after SetEnemyTurn)
+	call SetEnemyTurn
+; ideal: healthy, resists the player, and carries a super-effective move
+	call CheckAbleToSwitch.FindGoodCandidate
+	jr nz, .no_ideal
+	ld a, [wEnemyAISwitchScore]
+	jr .store
+.no_ideal
+; next best: healthy with a super-effective move (the finder also
+; settles for neutral coverage and stores that index the same way)
+	call FindAliveEnemyMons
+	ret c
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindAliveEnemyMonsWithASuperEffectiveMove
+	ld a, [wEnemyAISwitchScore]
+	cp $ff
+	jr nz, .store
+.resists_only
+; last resort: a healthy mon that resists the player
+	call FindAliveEnemyMons
+	ret c
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatResistPlayer
+	ld a, c
+	and a
+	ret z
+	call .FirstFromMask
+.store
+	inc a
+	ld [wEnemySwitchMonIndex], a
+	ret
+
+.FirstFromMask:
+; c = candidate bitmask (bit 5 = party slot 0); return the first set
+; slot's index in a. Must not be called with c = 0.
+	ld b, c
+	sla b
+	sla b
+	ld a, -1
+.mask_loop
+	inc a
+	sla b
+	jr nc, .mask_loop
 	ret
