@@ -18,3 +18,16 @@
 
 .evo-link{display:inline-block;background:var(--surface2);border:1px solid var(--line);padding:10px 12px;border-radius:9px;margin:4px 8px 4px 0;font-weight:800}
 .evo-link:hover{border-color:var(--crimson);color:var(--crimson2)}
+
+/* Aliases: later rules in this file use --surface/--crimson names. */
+:root{--surface:var(--s);--surface2:var(--s2);--crimson:var(--red);--crimson2:var(--red2)}
+.evolist{display:flex;flex-direction:column;gap:2px}
+.evorow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.evorow:last-child{border-bottom:0}
+.evorow .cond{color:var(--muted)}
+.evorow .arrow{color:var(--red2);font-weight:900}
+.evorow a{font-weight:800}
+.evorow a:hover{color:var(--red2)}
+.evofrom{margin:0 0 6px;color:var(--muted)}
+.evofrom a{color:var(--red2);font-weight:800}
+.noevo{margin:0;color:var(--muted)}
