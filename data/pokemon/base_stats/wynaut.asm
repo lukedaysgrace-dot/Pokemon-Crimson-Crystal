@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/wynaut/front.dimensions"
-	abilities_for WYNAUT, SHADOW_TAG, SHADOW_TAG, SHADOW_TAG
+	abilities_for WYNAUT, SHADOW_TAG, NO_ABILITY, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

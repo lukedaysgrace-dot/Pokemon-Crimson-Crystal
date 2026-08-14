@@ -275,6 +275,14 @@ BattleKnockOff_Core:
 	ld a, [hl]
 	and a
 	ret z
+	; Sticky Hold keeps the victim's item on (Mold Breaker pierces)
+	push hl
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STICKY_HOLD
+	pop hl
+	jr z, .sticky_hold
+	ld a, [hl]
 	; Can't knock off mail
 	; Keep the item id on the stack across ItemIsMail and the party-struct
 	; lookup. wNamedObjectIndexBuffer is shared scratch and either call may
@@ -302,6 +310,14 @@ BattleKnockOff_Core:
 .remove
 	xor a
 	ld [hl], a
+	; the victim lost its item (for Unburden)
+	ldh a, [hBattleTurn]
+	and a
+	ld c, 1
+	jr z, .got_side
+	dec c
+.got_side
+	farcall MarkSideLostItem_Core
 	pop af
 	ld b, a
 	farcall AbilityBufferItemName_b
@@ -310,6 +326,10 @@ BattleKnockOff_Core:
 
 .mail
 	pop af
+	ret
+
+.sticky_hold
+	farcall StickyHoldAnnounce_Core
 	ret
 
 BattleRoost_Core:
@@ -423,9 +443,15 @@ BattleTrick_Core:
 ; Swap held items with the target.
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .failed
+	jp nz, .failed
 	callfar CheckSubstituteOpp
-	jr nz, .failed
+	jp nz, .failed
+	; Sticky Hold prevents the target's item from being swapped away. As with
+	; Thief and Knock Off, Mold Breaker may ignore it.
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STICKY_HOLD
+	jp z, .failed
 
 	; A wild enemy can't use Trick
 	ldh a, [hBattleTurn]
@@ -468,6 +494,20 @@ BattleTrick_Core:
 	ld [wBattleMonItem], a
 	ld a, b
 	ld [wEnemyMonItem], a
+
+	; If Trick left either holder empty, arm that side's Unburden state.
+	ld a, [wBattleMonItem]
+	and a
+	jr nz, .player_still_holds
+	ld c, 0
+	farcall MarkSideLostItem_Core
+.player_still_holds
+	ld a, [wEnemyMonItem]
+	and a
+	jr nz, .enemy_still_holds
+	ld c, 1
+	farcall MarkSideLostItem_Core
+.enemy_still_holds
 
 	; Update the party structs
 	ld a, MON_ITEM
@@ -765,8 +805,14 @@ ToxicSpikesPoison:
 	ret z
 	cp PASTEL_VEIL
 	ret z
+	cp LEAF_GUARD
+	jr nz, .status_check
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	ret z
 
 	; Can't poison a mon that already has a status
+.status_check
 	push hl
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
