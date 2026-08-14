@@ -243,7 +243,7 @@ AIScoringPointers:
 	dw AI_Status
 	dw AI_Risky
 	dw AI_Abilities
-	dw AI_None
+	dw AI_Elite
 	dw AI_None
 	dw AI_None
 	dw AI_None
