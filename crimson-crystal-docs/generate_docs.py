@@ -65,6 +65,44 @@ def num(s):
 class Builder:
   def __init__(self, repo):
     self.r=repo; self.o=repo/'docs'; self.a=self.o/'assets'; self.report={'warnings':[],'unparsed':[]}
+    self.dex_numbers={}
+  def dex_order(self, order):
+    """Regional dex numbering from data/pokemon/dex_order_new.asm.
+
+    Internal species IDs (constants/pokemon_constants.asm) stay untouched, so
+    names.asm / base_stats / pics keep working. This table is what the game
+    itself uses for the New Pokedex order, with evolution families grouped
+    together, and it is what GetRegionalDexNumber prints in-game. The docs must
+    use the same numbering or the site disagrees with the ROM.
+    """
+    p=self.r/'data/pokemon/dex_order_new.asm'
+    nums={}
+    if p.exists():
+      known=set(order)
+      n=0
+      for raw in txt(p).splitlines():
+        l=strip(raw)
+        m=re.match(r'^dw\s+([A-Z0-9_]+)',l,re.I)
+        if not m: continue
+        c=m.group(1).upper()
+        if c in nums:
+          self.report['warnings'].append(f'dex_order_new.asm lists {c} more than once')
+          continue
+        if c not in known:
+          self.report['warnings'].append(f'dex_order_new.asm lists unknown species {c}')
+          continue
+        n+=1; nums[c]=n
+      missing=[c for c in order if c not in nums]
+      if missing:
+        self.report['warnings'].append(
+          f'{len(missing)} species missing from dex_order_new.asm, appended in declared order: '
+          +', '.join(missing[:20])+('…' if len(missing)>20 else ''))
+        for c in missing:
+          n+=1; nums[c]=n
+    else:
+      self.report['warnings'].append('Missing data/pokemon/dex_order_new.asm; falling back to internal species IDs')
+      nums={c:i for i,c in enumerate(order,1)}
+    return nums
   def species(self):
     """Use only the main Pokémon const block, in its exact declared order."""
     p=self.r/'constants/pokemon_constants.asm'; order=[]
@@ -129,7 +167,7 @@ class Builder:
         # Fallback for forks that store abilities on a normal db line.
         am=re.search(r'abilit(?:y|ies).*?(?:db\s+)?([A-Z][A-Z0-9_]*(?:\s*,\s*[A-Z][A-Z0-9_]*){0,2})',txt(p),re.I)
         if am: abilities=[disp(x) for x in am.group(1).split(',')]
-      out[c]={'const':c,'name':names[c],'number':i,'stats':stats,'types':types,'abilities':abilities,'learnset':[],'evolutions':[],'egg_moves':[],'sprite':None}
+      out[c]={'const':c,'name':names[c],'number':self.dex_numbers.get(c,i),'stats':stats,'types':types,'abilities':abilities,'learnset':[],'evolutions':[],'egg_moves':[],'sprite':None}
     return out
   def learnsets(self, mons):
     look={re.sub('[^a-z0-9]','',k.lower()):k for k in mons}
@@ -631,7 +669,7 @@ class Builder:
   def run(self):
     if self.o.exists(): shutil.rmtree(self.o)
     self.a.mkdir(parents=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
-    order,names=self.species(); mons=self.base_stats(order,names); self.learnsets(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons)); self.render(mons,moves,wild)
+    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons)); self.render(mons,moves,wild)
     summary=self.report.get('encounter_summary',{})
     print(f'Generated {len(mons)} Pokémon, {len(moves)} moves, {len(wild)} encounter slots across {summary.get("locations",0)} locations -> {self.o}')
     print(f'Validation: {len(self.report["warnings"])} warning(s), {len(self.report["unparsed"])} unparsed row(s). See docs/data/build-report.json.')
