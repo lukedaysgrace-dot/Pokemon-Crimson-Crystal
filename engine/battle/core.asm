@@ -2460,8 +2460,8 @@ HandleEnemySwitch:
 
 EnemyPartyMonEntrance:
 	push af
-	xor a
-	ld [wEnemySwitchMonIndex], a
+	; elite trainers pick the best replacement; others store 0 (legacy)
+	callfar AIPickPostKOSwitchIn
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
@@ -8615,6 +8615,9 @@ ENDC
 InitEnemyWildmon:
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
+	; wild mons carry no trainer AI: clear the cached AI flags
+	xor a
+	ld [wEnemyTrainerAIFlags + 1], a
 	farcall StubbedTrainerRankings_WildBattles
 	call LoadEnemyMon
 	ld hl, wEnemyMonMoves
