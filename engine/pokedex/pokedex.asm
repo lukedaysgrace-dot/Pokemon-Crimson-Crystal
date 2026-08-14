@@ -1650,7 +1650,7 @@ Pokedex_PrintListing:
 	ret z
 	ld a, BANK(wPokedexSeen)
 	ldh [rSVBK], a
-	call Pokedex_PrintNumberIfOldMode
+	call Pokedex_PrintDexNumber
 	call Pokedex_PlaceDefaultStringIfNotSeen
 	ret c
 	call Pokedex_PlaceCaughtSymbolIfCaught
@@ -1675,19 +1675,25 @@ Pokedex_PrintListing:
 	pop hl
 	jp PlaceString
 
-Pokedex_PrintNumberIfOldMode:
-	ld a, [wCurDexMode]
-	cp DEXMODE_OLD
-	ret nz
+; Print the regional (family-grouped) dex number above a listing entry, in every
+; dex mode. The row above each name is blank in all modes, so this never
+; overlaps, and the number now always matches the one on the dex entry screen
+; instead of the raw internal species index.
+Pokedex_PrintDexNumber:
 	push hl
 	push de
 	ld bc, -SCREEN_WIDTH
 	add hl, bc
-	ld a, e
+	push hl ; screen position for the number
+	ld h, d
+	ld l, e
+	call GetRegionalDexNumber
+	ld a, l
 	ld [wPokedexDisplayNumber + 1], a
-	ld a, d
+	ld a, h
+	ld [wPokedexDisplayNumber], a
+	pop hl
 	ld de, wPokedexDisplayNumber
-	ld [de], a
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
 	call PrintNum
 	pop de
@@ -1960,6 +1966,13 @@ GetRegionalDexNumber:
 	ld hl, NewPokedexOrder
 	ld bc, 1
 .loop
+	ld a, c
+	cp LOW(NUM_POKEMON + 1)
+	jr nz, .in_range
+	ld a, b
+	cp HIGH(NUM_POKEMON + 1)
+	jr z, .not_found
+.in_range
 	ld a, [hli]
 	cp e
 	jr nz, .next
@@ -1970,6 +1983,9 @@ GetRegionalDexNumber:
 	inc hl
 	inc bc
 	jr .loop
+.not_found
+	ld hl, 0
+	ret
 .found
 	ld h, b
 	ld l, c
