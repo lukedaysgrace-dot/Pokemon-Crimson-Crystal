@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/bounsweet/front.dimensions"
-	abilities_for BOUNSWEET, OBLIVIOUS, NO_ABILITY, NO_ABILITY
+	abilities_for BOUNSWEET, LEAF_GUARD, OBLIVIOUS, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups

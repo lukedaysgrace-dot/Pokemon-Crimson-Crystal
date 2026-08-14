@@ -223,16 +223,28 @@ BanefulBunkerPunish_Core:
 .got_types
 	ld a, [de]
 	cp POISON
-	ret z
+	jr z, .immune_type
 	cp STEEL
-	ret z
+	jr z, .immune_type
 	inc de
 	ld a, [de]
 	cp POISON
-	ret z
+	jr z, .immune_type
 	cp STEEL
-	ret z
+	jr nz, .ability_check
+.immune_type
+	; The Bunker holder is the current user's opponent and is the source of
+	; this poison; its Corrosion can poison an otherwise immune attacker.
+	push hl
+	push de
+	farcall GetOpponentAbility_b
+	ld a, b
+	pop de
+	pop hl
+	cp CORROSION
+	ret nz
 
+.ability_check
 	push hl
 	farcall GetTrueUserAbility_b
 	pop hl
@@ -241,6 +253,12 @@ BanefulBunkerPunish_Core:
 	ret z
 	cp PASTEL_VEIL
 	ret z
+	cp LEAF_GUARD
+	jr nz, .ability_allows
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	ret z
+.ability_allows
 
 	; the attacker's own Safeguard protects it
 	push hl
@@ -805,9 +823,12 @@ BattleTrapTarget_Core:
 	ld a, [hl]
 	and a
 	ret nz
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
+	; Infiltrator's binding hit reaches the holder through its Substitute.
+	push hl
+	push de
+	farcall CheckSubstituteOpp
+	pop de
+	pop hl
 	ret nz
 	call BattleRandom
 	; trapped for 2-5 turns
@@ -1490,6 +1511,12 @@ HandleStatusOrbs_Core:
 	ret z
 	cp THERMAL_EXCHANGE
 	ret z
+	cp LEAF_GUARD
+	jr nz, .flame_allowed
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	ret z
+.flame_allowed
 	call .GetOrbName
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
@@ -1528,6 +1555,12 @@ HandleStatusOrbs_Core:
 	ret z
 	cp PASTEL_VEIL
 	ret z
+	cp LEAF_GUARD
+	jr nz, .poison_allowed
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	ret z
+.poison_allowed
 	call .GetOrbName
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
@@ -2074,6 +2107,227 @@ INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"
 
+CheckDefScreenPierced:
+; a = screens mask. z = the screen has no effect: either it isn't up, or
+; the attacker's Infiltrator ignores it. Preserves de, hl; preserves bc.
+	push hl
+	push bc
+	ld b, a
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wPlayerScreens
+.got_side
+	ld a, [hl]
+	and b
+	jr z, .done
+	farcall GetTrueUserAbility_b
+	ld a, b
+	sub INFILTRATOR ; z when the attacker infiltrates the screen
+.done
+	pop bc
+	pop hl
+	ret
+
+UnawareStats_Player:
+; Runs right before the held-item boost in the player's damage-stat core.
+; hl = attacking stat ptr, bc = defending stat value, d = move power.
+; - the defender's Unaware ignores the attacker's stat stages: swap hl to
+;   the unmodified stat.
+; - the attacker's Unaware ignores the defender's stat stages: reload bc
+;   from the unmodified defense (re-applying any screen).
+	push de
+	push bc
+	push hl
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	pop hl
+	pop bc
+	cp UNAWARE
+	jr nz, .no_defender_unaware
+	call .SwapToUnboosted
+.no_defender_unaware
+	push bc
+	push hl
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	pop bc
+	cp UNAWARE
+	jr nz, .done
+	call .ReloadUnboostedDef
+.done
+	pop de
+	ret
+
+.SwapToUnboosted
+	ld de, .swap_table
+	jp UnawareSwapScan
+
+.swap_table
+	dw wBattleMonAttack,  wPlayerAttack
+	dw wBattleMonSpclAtk, wPlayerSpAtk
+	dw wBattleMonDefense, wPlayerDefense
+	dw wEnemyMonAttack,   wEnemyAttack
+	dw 0
+
+.ReloadUnboostedDef
+	; Psystrike is special but explicitly targets physical Defense.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .physical
+	; special when the attacking stat is a Sp.Atk pointer
+	ld a, h
+	cp HIGH(wPlayerSpAtk)
+	jr nz, .check_raw_spatk
+	ld a, l
+	cp LOW(wPlayerSpAtk)
+	jr z, .special
+.check_raw_spatk
+	ld a, h
+	cp HIGH(wBattleMonSpclAtk)
+	jr nz, .physical
+	ld a, l
+	cp LOW(wBattleMonSpclAtk)
+	jr z, .special
+.physical
+	push hl
+	ld hl, wEnemyDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	pop hl
+	ld a, 1 << SCREENS_REFLECT
+	jr .rescreen
+.special
+	push hl
+	ld hl, wEnemySpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	pop hl
+	ld a, 1 << SCREENS_LIGHT_SCREEN
+.rescreen
+	call CheckDefScreenPierced
+	ret z
+	sla c
+	rl b
+	ret
+
+UnawareStats_Enemy:
+; Enemy-core twin of UnawareStats_Player.
+	push de
+	push bc
+	push hl
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	pop hl
+	pop bc
+	cp UNAWARE
+	jr nz, .no_defender_unaware
+	call .SwapToUnboosted
+.no_defender_unaware
+	push bc
+	push hl
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	pop bc
+	cp UNAWARE
+	jr nz, .done
+	call .ReloadUnboostedDef
+.done
+	pop de
+	ret
+
+.SwapToUnboosted
+	ld de, .swap_table
+	jp UnawareSwapScan
+
+.swap_table
+	dw wEnemyMonAttack,   wEnemyAttack
+	dw wEnemyMonSpclAtk,  wEnemySpAtk
+	dw wEnemyMonDefense,  wEnemyDefense
+	dw wBattleMonAttack,  wPlayerAttack
+	dw 0
+
+.ReloadUnboostedDef
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	jr z, .physical
+	ld a, h
+	cp HIGH(wEnemySpAtk)
+	jr nz, .check_raw_spatk
+	ld a, l
+	cp LOW(wEnemySpAtk)
+	jr z, .special
+.check_raw_spatk
+	ld a, h
+	cp HIGH(wEnemyMonSpclAtk)
+	jr nz, .physical
+	ld a, l
+	cp LOW(wEnemyMonSpclAtk)
+	jr z, .special
+.physical
+	push hl
+	ld hl, wPlayerDefense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	pop hl
+	ld a, 1 << SCREENS_REFLECT
+	jr .rescreen
+.special
+	push hl
+	ld hl, wPlayerSpDef
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	pop hl
+	ld a, 1 << SCREENS_LIGHT_SCREEN
+.rescreen
+	call CheckDefScreenPierced
+	ret z
+	sla c
+	rl b
+	ret
+
+UnawareSwapScan:
+; de = table of (boosted ptr, unboosted ptr) pairs, 0-terminated.
+; If hl matches a boosted ptr, replace hl with its unboosted twin.
+	push bc
+.loop
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	or c
+	jr z, .no_match
+	ld a, h
+	cp b
+	jr nz, .next
+	ld a, l
+	cp c
+	jr z, .match
+.next
+	inc de
+	inc de
+	jr .loop
+.match
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a
+.no_match
+	pop bc
+	ret
+
 BattleDamageStats_Core:
 ; damagestats (body; see the stub in effect_commands.asm)
 
@@ -2105,8 +2359,8 @@ PlayerAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
+	ld a, 1 << SCREENS_REFLECT
+	call CheckDefScreenPierced
 	jr z, .physicalcrit
 	sla c
 	rl b
@@ -2135,7 +2389,7 @@ PlayerAttackDamage_Core:
 	pop bc
 	ld hl, wPlayerAttack
 	cp EFFECT_SACRED_SWORD
-	jr z, .thickclub
+	jp z, .thickclub
 
 	cp EFFECT_BODY_PRESS
 	jr nz, .not_bp_boosted
@@ -2173,8 +2427,8 @@ PlayerAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wEnemyScreens]
-	bit SCREENS_LIGHT_SCREEN, a
+	ld a, 1 << SCREENS_LIGHT_SCREEN
+	call CheckDefScreenPierced
 	jr z, .specialcrit
 	sla c
 	rl b
@@ -2198,8 +2452,8 @@ PlayerAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
+	ld a, 1 << SCREENS_REFLECT
+	call CheckDefScreenPierced
 	jr z, .psystrikecrit
 	sla c
 	rl b
@@ -2217,11 +2471,13 @@ PlayerAttackDamage_Core:
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
+	call UnawareStats_Player
 	call LightBallBoost
 	jr .done
 
 .thickclub
 ; Note: Returns player attack at hl in hl.
+	call UnawareStats_Player
 	call ThickClubBoost
 
 .done
@@ -2441,8 +2697,8 @@ EnemyAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wPlayerScreens]
-	bit SCREENS_REFLECT, a
+	ld a, 1 << SCREENS_REFLECT
+	call CheckDefScreenPierced
 	jr z, .physicalcrit
 	sla c
 	rl b
@@ -2471,7 +2727,7 @@ EnemyAttackDamage_Core:
 	pop bc
 	ld hl, wEnemyAttack
 	cp EFFECT_SACRED_SWORD
-	jr z, .thickclub
+	jp z, .thickclub
 
 	cp EFFECT_BODY_PRESS
 	jr nz, .not_bp_boosted
@@ -2509,8 +2765,8 @@ EnemyAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wPlayerScreens]
-	bit SCREENS_LIGHT_SCREEN, a
+	ld a, 1 << SCREENS_LIGHT_SCREEN
+	call CheckDefScreenPierced
 	jr z, .specialcrit
 	sla c
 	rl b
@@ -2533,8 +2789,8 @@ EnemyAttackDamage_Core:
 	ld b, a
 	ld c, [hl]
 
-	ld a, [wPlayerScreens]
-	bit SCREENS_REFLECT, a
+	ld a, 1 << SCREENS_REFLECT
+	call CheckDefScreenPierced
 	jr z, .psystrikecrit
 	sla c
 	rl b
@@ -2550,10 +2806,12 @@ EnemyAttackDamage_Core:
 	ld hl, wEnemySpAtk
 
 .lightball
+	call UnawareStats_Enemy
 	call LightBallBoost
 	jr .done
 
 .thickclub
+	call UnawareStats_Enemy
 	call ThickClubBoost
 
 .done

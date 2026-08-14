@@ -1,0 +1,3547 @@
+diff --git a/constants/ability_constants.asm b/constants/ability_constants.asm
+index 312d795..4a80a67 100644
+--- a/constants/ability_constants.asm
++++ b/constants/ability_constants.asm
+@@ -154,4 +154,27 @@
+ 	const POISON_PUPPETEER
+ 	const TOXIC_DEBRIS
+ 	const QUEENLY_MAJESTY
++	const GLUTTONY
++	const RUN_AWAY
++	const INFILTRATOR
++	const LEAF_GUARD
++	const EARLY_BIRD
++	const UNAWARE
++	const STENCH
++	const ANTICIPATION
++	const PICKPOCKET
++	const SHIELD_DUST
++	const CORROSION
++	const HARVEST
++	const HEAVY_METAL
++	const DOWNLOAD
++	const SUCTION_CUPS
++	const STICKY_HOLD
++	const UNBURDEN
++	const KLUTZ
++	const RIPEN
++	const CUD_CHEW
++	const FOREWARN
++	const SUPERSWEET_SYRUP
++	const LIGHT_METAL
+ NUM_ABILITIES EQU const_value
+diff --git a/data/abilities/descriptions.asm b/data/abilities/descriptions.asm
+index 0d219f9..c260f63 100644
+--- a/data/abilities/descriptions.asm
++++ b/data/abilities/descriptions.asm
+@@ -150,6 +150,29 @@ AbilityDescriptions::
+ 	dw PoisonPuppeteerDescription
+ 	dw ToxicDebrisDescription
+ 	dw QueenlyMajestyDescription
++	dw GluttonyDescription
++	dw RunAwayDescription
++	dw InfiltratorDescription
++	dw LeafGuardDescription
++	dw EarlyBirdDescription
++	dw UnawareDescription
++	dw StenchDescription
++	dw AnticipationDescription
++	dw PickpocketDescription
++	dw ShieldDustDescription
++	dw CorrosionDescription
++	dw HarvestDescription
++	dw HeavyMetalDescription
++	dw DownloadDescription
++	dw SuctionCupsDescription
++	dw StickyHoldDescription
++	dw UnburdenDescription
++	dw KlutzDescription
++	dw RipenDescription
++	dw CudChewDescription
++	dw ForewarnDescription
++	dw SupersweetSyrupDescription
++	dw LightMetalDescription
+ 
+ NoAbilityDescription:
+ 	text "Abilities are"
+@@ -889,3 +912,118 @@ QueenlyMajestyDescription:
+ 	text "Stops foes using"
+ 	next "priority moves."
+ 	done
++
++GluttonyDescription:
++	text "Eats a held Berry"
++	next "earlier than usual."
++	done
++
++RunAwayDescription:
++	text "Always flees from"
++	next "wild battles."
++	done
++
++InfiltratorDescription:
++	text "Ignores barriers"
++	next "like screens."
++	done
++
++LeafGuardDescription:
++	text "Blocks status in"
++	next "harsh sunlight."
++	done
++
++EarlyBirdDescription:
++	text "Awakens from sleep"
++	next "twice as fast."
++	done
++
++UnawareDescription:
++	text "Ignores the foe's"
++	next "stat changes."
++	done
++
++StenchDescription:
++	text "Its stink may make"
++	next "the foe flinch."
++	done
++
++AnticipationDescription:
++	text "Senses a foe's"
++	next "dangerous moves."
++	done
++
++PickpocketDescription:
++	text "Steals the item of"
++	next "a foe on contact."
++	done
++
++ShieldDustDescription:
++	text "Blocks the added"
++	next "effects of moves."
++	done
++
++CorrosionDescription:
++	text "Can poison even"
++	next "STEEL and POISON."
++	done
++
++HarvestDescription:
++	text "May restore a"
++	next "used Berry."
++	done
++
++HeavyMetalDescription:
++	text "Doubles the"
++	next "user's weight."
++	done
++
++DownloadDescription:
++	text "Adjusts power to"
++	next "the foe's defense."
++	done
++
++SuctionCupsDescription:
++	text "Anchors down and"
++	next "can't be forced out."
++	done
++
++StickyHoldDescription:
++	text "Its held item"
++	next "can't be stolen."
++	done
++
++UnburdenDescription:
++	text "Speeds up if its"
++	next "item is used or lost."
++	done
++
++KlutzDescription:
++	text "Can't use any"
++	next "held items."
++	done
++
++RipenDescription:
++	text "Doubles the effect"
++	next "of its Berries."
++	done
++
++CudChewDescription:
++	text "Eats a used Berry"
++	next "a second time."
++	done
++
++ForewarnDescription:
++	text "Reveals one of the"
++	next "foe's moves."
++	done
++
++SupersweetSyrupDescription:
++	text "Its scent lowers"
++	next "the foe's evasion."
++	done
++
++LightMetalDescription:
++	text "Halves the"
++	next "user's weight."
++	done
+diff --git a/data/abilities/flags.asm b/data/abilities/flags.asm
+index 8013340..865738d 100644
+--- a/data/abilities/flags.asm
++++ b/data/abilities/flags.asm
+@@ -151,3 +151,26 @@ AbilityFlags:
+ 	db $00 ; POISON_PUPPETEER
+ 	db $00 ; TOXIC_DEBRIS
+ 	db $10 ; QUEENLY_MAJESTY (IGNORABLE)
++	db $00 ; GLUTTONY
++	db $00 ; RUN_AWAY
++	db $00 ; INFILTRATOR
++	db $10 ; LEAF_GUARD (IGNORABLE)
++	db $00 ; EARLY_BIRD
++	db $10 ; UNAWARE (IGNORABLE)
++	db $00 ; STENCH
++	db $00 ; ANTICIPATION
++	db $00 ; PICKPOCKET
++	db $10 ; SHIELD_DUST (IGNORABLE)
++	db $00 ; CORROSION
++	db $00 ; HARVEST
++	db $10 ; HEAVY_METAL (IGNORABLE)
++	db $00 ; DOWNLOAD
++	db $10 ; SUCTION_CUPS (IGNORABLE)
++	db $10 ; STICKY_HOLD (IGNORABLE)
++	db $00 ; UNBURDEN
++	db $00 ; KLUTZ
++	db $00 ; RIPEN
++	db $00 ; CUD_CHEW
++	db $00 ; FOREWARN
++	db $00 ; SUPERSWEET_SYRUP
++	db $10 ; LIGHT_METAL (IGNORABLE)
+diff --git a/data/abilities/names.asm b/data/abilities/names.asm
+index 0d323c7..43208b7 100644
+--- a/data/abilities/names.asm
++++ b/data/abilities/names.asm
+@@ -150,3 +150,26 @@ AbilityNames::
+ 	db "POISON PUPPETEER@"
+ 	db "TOXIC DEBRIS@"
+ 	db "QUEENLY MAJESTY@"
++	db "GLUTTONY@"
++	db "RUN AWAY@"
++	db "INFILTRATOR@"
++	db "LEAF GUARD@"
++	db "EARLY BIRD@"
++	db "UNAWARE@"
++	db "STENCH@"
++	db "ANTICIPATION@"
++	db "PICKPOCKET@"
++	db "SHIELD DUST@"
++	db "CORROSION@"
++	db "HARVEST@"
++	db "HEAVY METAL@"
++	db "DOWNLOAD@"
++	db "SUCTION CUPS@"
++	db "STICKY HOLD@"
++	db "UNBURDEN@"
++	db "KLUTZ@"
++	db "RIPEN@"
++	db "CUD CHEW@"
++	db "FOREWARN@"
++	db "SUPERSWEET SYRUP@"
++	db "LIGHT METAL@"
+diff --git a/data/pokemon/base_stats/aggron.asm b/data/pokemon/base_stats/aggron.asm
+index abfd75b..652e031 100644
+--- a/data/pokemon/base_stats/aggron.asm
++++ b/data/pokemon/base_stats/aggron.asm
+@@ -12,7 +12,7 @@
+ 	db 35 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/aggron/front.dimensions"
+-	abilities_for AGGRON, ROCK_HEAD, STURDY, NO_ABILITY
++	abilities_for AGGRON, ROCK_HEAD, STURDY, HEAVY_METAL
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/aipom.asm b/data/pokemon/base_stats/aipom.asm
+index 55aa37f..145fcf5 100644
+--- a/data/pokemon/base_stats/aipom.asm
++++ b/data/pokemon/base_stats/aipom.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/aipom/front.dimensions"
+-	abilities_for AIPOM, PICKUP, NO_ABILITY, SKILL_LINK
++	abilities_for AIPOM, RUN_AWAY, PICKUP, SKILL_LINK
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/appletun.asm b/data/pokemon/base_stats/appletun.asm
+index c1b5c24..1f6cde7 100644
+--- a/data/pokemon/base_stats/appletun.asm
++++ b/data/pokemon/base_stats/appletun.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/appletun/front.dimensions"
+-	abilities_for APPLETUN, THICK_FAT, REGENERATOR, NO_ABILITY
++	abilities_for APPLETUN, RIPEN, GLUTTONY, THICK_FAT
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/applin.asm b/data/pokemon/base_stats/applin.asm
+index 594750e..423da26 100644
+--- a/data/pokemon/base_stats/applin.asm
++++ b/data/pokemon/base_stats/applin.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/applin/front.dimensions"
+-	abilities_for APPLIN, BULLETPROOF, NO_ABILITY, NO_ABILITY
++	abilities_for APPLIN, RIPEN, GLUTTONY, BULLETPROOF
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/aron.asm b/data/pokemon/base_stats/aron.asm
+index 237ed64..186a8d2 100644
+--- a/data/pokemon/base_stats/aron.asm
++++ b/data/pokemon/base_stats/aron.asm
+@@ -12,7 +12,7 @@
+ 	db 35 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/aron/front.dimensions"
+-	abilities_for ARON, ROCK_HEAD, STURDY, NO_ABILITY
++	abilities_for ARON, ROCK_HEAD, STURDY, HEAVY_METAL
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/bellsprout.asm b/data/pokemon/base_stats/bellsprout.asm
+index 5188100..d1df943 100644
+--- a/data/pokemon/base_stats/bellsprout.asm
++++ b/data/pokemon/base_stats/bellsprout.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/bellsprout/front.dimensions"
+-	abilities_for BELLSPROUT, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for BELLSPROUT, CHLOROPHYLL, NO_ABILITY, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/bounsweet.asm b/data/pokemon/base_stats/bounsweet.asm
+index 71326c8..7324b0a 100644
+--- a/data/pokemon/base_stats/bounsweet.asm
++++ b/data/pokemon/base_stats/bounsweet.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/bounsweet/front.dimensions"
+-	abilities_for BOUNSWEET, OBLIVIOUS, NO_ABILITY, NO_ABILITY
++	abilities_for BOUNSWEET, LEAF_GUARD, OBLIVIOUS, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/buneary.asm b/data/pokemon/base_stats/buneary.asm
+index 33f7171..2168d21 100644
+--- a/data/pokemon/base_stats/buneary.asm
++++ b/data/pokemon/base_stats/buneary.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/buneary/front.dimensions"
+-	abilities_for BUNEARY, LIMBER, NO_ABILITY, ADAPTABILITY
++	abilities_for BUNEARY, RUN_AWAY, KLUTZ, LIMBER
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/caterpie.asm b/data/pokemon/base_stats/caterpie.asm
+index afabb08..2a38fc6 100644
+--- a/data/pokemon/base_stats/caterpie.asm
++++ b/data/pokemon/base_stats/caterpie.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/caterpie/front.dimensions"
+-	abilities_for CATERPIE, SWARM, NO_ABILITY, NO_ABILITY
++	abilities_for CATERPIE, SWARM, SHIELD_DUST, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/clefable.asm b/data/pokemon/base_stats/clefable.asm
+index 83f754e..8187cb9 100644
+--- a/data/pokemon/base_stats/clefable.asm
++++ b/data/pokemon/base_stats/clefable.asm
+@@ -12,7 +12,7 @@
+ 	db 10 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/clefable/front.dimensions"
+-	abilities_for CLEFABLE, CUTE_CHARM, MAGIC_GUARD, NO_ABILITY
++	abilities_for CLEFABLE, CUTE_CHARM, MAGIC_GUARD, UNAWARE
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/clodsire.asm b/data/pokemon/base_stats/clodsire.asm
+index 1256045..d3413a5 100644
+--- a/data/pokemon/base_stats/clodsire.asm
++++ b/data/pokemon/base_stats/clodsire.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/clodsire/front.dimensions"
+-	abilities_for CLODSIRE, POISON_POINT, WATER_ABSORB, NO_ABILITY
++	abilities_for CLODSIRE, POISON_POINT, WATER_ABSORB, UNAWARE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_WATER_1, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/cradily.asm b/data/pokemon/base_stats/cradily.asm
+index 61d6112..644ece6 100644
+--- a/data/pokemon/base_stats/cradily.asm
++++ b/data/pokemon/base_stats/cradily.asm
+@@ -12,7 +12,7 @@
+ 	db 30 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/cradily/front.dimensions"
+-	abilities_for CRADILY, STORM_DRAIN, NO_ABILITY, REGENERATOR
++	abilities_for CRADILY, STORM_DRAIN, SUCTION_CUPS, REGENERATOR
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_WATER_3, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/croagunk.asm b/data/pokemon/base_stats/croagunk.asm
+index 7ce5e4a..e374cec 100644
+--- a/data/pokemon/base_stats/croagunk.asm
++++ b/data/pokemon/base_stats/croagunk.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/croagunk/front.dimensions"
+-	abilities_for CROAGUNK, DRY_SKIN, NO_ABILITY, POISON_TOUCH
++	abilities_for CROAGUNK, ANTICIPATION, DRY_SKIN, POISON_TOUCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/crobat.asm b/data/pokemon/base_stats/crobat.asm
+index 396f8d8..6f6894e 100644
+--- a/data/pokemon/base_stats/crobat.asm
++++ b/data/pokemon/base_stats/crobat.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/crobat/front.dimensions"
+-	abilities_for CROBAT, INNER_FOCUS, FRISK, NO_ABILITY
++	abilities_for CROBAT, INNER_FOCUS, FRISK, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/dipplin.asm b/data/pokemon/base_stats/dipplin.asm
+index 76f762b..74cff11 100644
+--- a/data/pokemon/base_stats/dipplin.asm
++++ b/data/pokemon/base_stats/dipplin.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/dipplin/front.dimensions"
+-	abilities_for DIPPLIN, NO_ABILITY, NO_ABILITY, NO_ABILITY
++	abilities_for DIPPLIN, SUPERSWEET_SYRUP, GLUTTONY, STICKY_HOLD
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/dodrio.asm b/data/pokemon/base_stats/dodrio.asm
+index 252615d..5b130a2 100644
+--- a/data/pokemon/base_stats/dodrio.asm
++++ b/data/pokemon/base_stats/dodrio.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/dodrio/front.dimensions"
+-	abilities_for DODRIO, TANGLED_FEET, NO_ABILITY, MOXIE
++	abilities_for DODRIO, RUN_AWAY, EARLY_BIRD, TANGLED_FEET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/doduo.asm b/data/pokemon/base_stats/doduo.asm
+index 32cffaa..8ef4354 100644
+--- a/data/pokemon/base_stats/doduo.asm
++++ b/data/pokemon/base_stats/doduo.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/doduo/front.dimensions"
+-	abilities_for DODUO, TANGLED_FEET, NO_ABILITY, MOXIE
++	abilities_for DODUO, RUN_AWAY, EARLY_BIRD, TANGLED_FEET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/dragapult.asm b/data/pokemon/base_stats/dragapult.asm
+index a4168d2..2f2dce3 100644
+--- a/data/pokemon/base_stats/dragapult.asm
++++ b/data/pokemon/base_stats/dragapult.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/dragapult/front.dimensions"
+-	abilities_for DRAGAPULT, CLEAR_BODY, NO_ABILITY, CURSED_BODY
++	abilities_for DRAGAPULT, CLEAR_BODY, INFILTRATOR, CURSED_BODY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/drakloak.asm b/data/pokemon/base_stats/drakloak.asm
+index c4bbf67..af6c7b2 100644
+--- a/data/pokemon/base_stats/drakloak.asm
++++ b/data/pokemon/base_stats/drakloak.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/drakloak/front.dimensions"
+-	abilities_for DRAKLOAK, CLEAR_BODY, NO_ABILITY, CURSED_BODY
++	abilities_for DRAKLOAK, CLEAR_BODY, INFILTRATOR, CURSED_BODY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/dreepy.asm b/data/pokemon/base_stats/dreepy.asm
+index 0b5868d..16c0db6 100644
+--- a/data/pokemon/base_stats/dreepy.asm
++++ b/data/pokemon/base_stats/dreepy.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/dreepy/front.dimensions"
+-	abilities_for DREEPY, CLEAR_BODY, NO_ABILITY, CURSED_BODY
++	abilities_for DREEPY, CLEAR_BODY, INFILTRATOR, CURSED_BODY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/drifblim.asm b/data/pokemon/base_stats/drifblim.asm
+index 6ab2dcb..e9f17dc 100644
+--- a/data/pokemon/base_stats/drifblim.asm
++++ b/data/pokemon/base_stats/drifblim.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/drifblim/front.dimensions"
+-	abilities_for DRIFBLIM, AFTERMATH, NO_ABILITY, GUTS
++	abilities_for DRIFBLIM, AFTERMATH, UNBURDEN, GUTS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/drifloon.asm b/data/pokemon/base_stats/drifloon.asm
+index de28a5f..b6a9200 100644
+--- a/data/pokemon/base_stats/drifloon.asm
++++ b/data/pokemon/base_stats/drifloon.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/drifloon/front.dimensions"
+-	abilities_for DRIFLOON, AFTERMATH, NO_ABILITY, GUTS
++	abilities_for DRIFLOON, AFTERMATH, UNBURDEN, GUTS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/drunsparce.asm b/data/pokemon/base_stats/drunsparce.asm
+index 17e2b3e..d0af536 100644
+--- a/data/pokemon/base_stats/drunsparce.asm
++++ b/data/pokemon/base_stats/drunsparce.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/drunsparce/front.dimensions"
+-	abilities_for DRUNSPARCE, SERENE_GRACE, RATTLED, NO_ABILITY
++	abilities_for DRUNSPARCE, SERENE_GRACE, RATTLED, RUN_AWAY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/dunsparce.asm b/data/pokemon/base_stats/dunsparce.asm
+index 7ee70cf..5210de3 100644
+--- a/data/pokemon/base_stats/dunsparce.asm
++++ b/data/pokemon/base_stats/dunsparce.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/dunsparce/front.dimensions"
+-	abilities_for DUNSPARCE, SERENE_GRACE, RATTLED, NO_ABILITY
++	abilities_for DUNSPARCE, SERENE_GRACE, RATTLED, RUN_AWAY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/duraludon.asm b/data/pokemon/base_stats/duraludon.asm
+index e830243..fd669be 100644
+--- a/data/pokemon/base_stats/duraludon.asm
++++ b/data/pokemon/base_stats/duraludon.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/duraludon/front.dimensions"
+-	abilities_for DURALUDON, STURDY, NO_ABILITY, STEADFAST
++	abilities_for DURALUDON, LIGHT_METAL, HEAVY_METAL, STEADFAST
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MINERAL, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/eevee.asm b/data/pokemon/base_stats/eevee.asm
+index 3954e25..8a7240e 100644
+--- a/data/pokemon/base_stats/eevee.asm
++++ b/data/pokemon/base_stats/eevee.asm
+@@ -12,7 +12,7 @@
+ 	db 35 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/eevee/front.dimensions"
+-	abilities_for EEVEE, ADAPTABILITY, NO_ABILITY, CLOUD_NINE
++	abilities_for EEVEE, RUN_AWAY, ADAPTABILITY, ANTICIPATION
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/electrode.asm b/data/pokemon/base_stats/electrode.asm
+index e3e13ee..cefe851 100644
+--- a/data/pokemon/base_stats/electrode.asm
++++ b/data/pokemon/base_stats/electrode.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/electrode/front.dimensions"
+-	abilities_for ELECTRODE, SOUNDPROOF, AFTERMATH, NO_ABILITY
++	abilities_for ELECTRODE, SOUNDPROOF, STATIC, AFTERMATH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/exeggcute.asm b/data/pokemon/base_stats/exeggcute.asm
+index 925618f..d3b1b13 100644
+--- a/data/pokemon/base_stats/exeggcute.asm
++++ b/data/pokemon/base_stats/exeggcute.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/exeggcute/front.dimensions"
+-	abilities_for EXEGGCUTE, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for EXEGGCUTE, CHLOROPHYLL, NO_ABILITY, HARVEST
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/exeggutor.asm b/data/pokemon/base_stats/exeggutor.asm
+index 1f8639c..221f5a0 100644
+--- a/data/pokemon/base_stats/exeggutor.asm
++++ b/data/pokemon/base_stats/exeggutor.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/exeggutor/front.dimensions"
+-	abilities_for EXEGGUTOR, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for EXEGGUTOR, CHLOROPHYLL, NO_ABILITY, HARVEST
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/exeggutor_alolan.asm b/data/pokemon/base_stats/exeggutor_alolan.asm
+index 75149a2..e74dd3f 100644
+--- a/data/pokemon/base_stats/exeggutor_alolan.asm
++++ b/data/pokemon/base_stats/exeggutor_alolan.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/exeggutor_alolan/front.dimensions"
+-	abilities_for EXEGGUTOR_ALOLAN, FRISK, NO_ABILITY, ROCK_HEAD
++	abilities_for EXEGGUTOR_ALOLAN, FRISK, HARVEST, ROCK_HEAD
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/farigiraf.asm b/data/pokemon/base_stats/farigiraf.asm
+index 334c474..bad5a42 100644
+--- a/data/pokemon/base_stats/farigiraf.asm
++++ b/data/pokemon/base_stats/farigiraf.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/farigiraf/front.dimensions"
+-	abilities_for FARIGIRAF, ARMOR_TAIL, NO_ABILITY, SAP_SIPPER
++	abilities_for FARIGIRAF, ARMOR_TAIL, CUD_CHEW, SAP_SIPPER
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/finizen.asm b/data/pokemon/base_stats/finizen.asm
+index 3cd9c70..25f5d46 100644
+--- a/data/pokemon/base_stats/finizen.asm
++++ b/data/pokemon/base_stats/finizen.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/finizen/front.dimensions"
+-	abilities_for FINIZEN, WATER_VEIL, WATER_VEIL, SWIFT_SWIM
++	abilities_for FINIZEN, WATER_VEIL, SWIFT_SWIM, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_WATER_2, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/flapple.asm b/data/pokemon/base_stats/flapple.asm
+index c3f3acc..0d70a9e 100644
+--- a/data/pokemon/base_stats/flapple.asm
++++ b/data/pokemon/base_stats/flapple.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/flapple/front.dimensions"
+-	abilities_for FLAPPLE, HUSTLE, MOXIE, NO_ABILITY
++	abilities_for FLAPPLE, RIPEN, GLUTTONY, HUSTLE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/gallade.asm b/data/pokemon/base_stats/gallade.asm
+index 901a901..ffcd890 100644
+--- a/data/pokemon/base_stats/gallade.asm
++++ b/data/pokemon/base_stats/gallade.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/gallade/front.dimensions"
+-	abilities_for GALLADE, STEADFAST, SHARPNESS, INNER_FOCUS
++	abilities_for GALLADE, STEADFAST, SHARPNESS, JUSTIFIED
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/glimmet.asm b/data/pokemon/base_stats/glimmet.asm
+index 96931fc..54a9f5b 100644
+--- a/data/pokemon/base_stats/glimmet.asm
++++ b/data/pokemon/base_stats/glimmet.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/glimmet/front.dimensions"
+-	abilities_for GLIMMET, TOXIC_DEBRIS, NO_ABILITY, MERCILESS
++	abilities_for GLIMMET, TOXIC_DEBRIS, CORROSION, MERCILESS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/glimmora.asm b/data/pokemon/base_stats/glimmora.asm
+index 9248038..00b96f2 100644
+--- a/data/pokemon/base_stats/glimmora.asm
++++ b/data/pokemon/base_stats/glimmora.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/glimmora/front.dimensions"
+-	abilities_for GLIMMORA, TOXIC_DEBRIS, NO_ABILITY, NO_ABILITY
++	abilities_for GLIMMORA, TOXIC_DEBRIS, CORROSION, MERCILESS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/gloom.asm b/data/pokemon/base_stats/gloom.asm
+index a0d1294..1f5b1f0 100644
+--- a/data/pokemon/base_stats/gloom.asm
++++ b/data/pokemon/base_stats/gloom.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/gloom/front.dimensions"
+-	abilities_for GLOOM, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for GLOOM, CHLOROPHYLL, NO_ABILITY, STENCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/golbat.asm b/data/pokemon/base_stats/golbat.asm
+index b4059e9..a53a40c 100644
+--- a/data/pokemon/base_stats/golbat.asm
++++ b/data/pokemon/base_stats/golbat.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/golbat/front.dimensions"
+-	abilities_for GOLBAT, INNER_FOCUS, FRISK, NO_ABILITY
++	abilities_for GOLBAT, INNER_FOCUS, FRISK, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/golett.asm b/data/pokemon/base_stats/golett.asm
+index 44f4843..2f6a274 100644
+--- a/data/pokemon/base_stats/golett.asm
++++ b/data/pokemon/base_stats/golett.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/golett/front.dimensions"
+-	abilities_for GOLETT, IRON_FIST, NO_ABILITY, NO_GUARD
++	abilities_for GOLETT, IRON_FIST, KLUTZ, NO_GUARD
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/golurk.asm b/data/pokemon/base_stats/golurk.asm
+index 3f30505..04d4b31 100644
+--- a/data/pokemon/base_stats/golurk.asm
++++ b/data/pokemon/base_stats/golurk.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/golurk/front.dimensions"
+-	abilities_for GOLURK, IRON_FIST, NO_ABILITY, NO_GUARD
++	abilities_for GOLURK, IRON_FIST, KLUTZ, NO_GUARD
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/grimer.asm b/data/pokemon/base_stats/grimer.asm
+index ccc13b9..480cb9b 100644
+--- a/data/pokemon/base_stats/grimer.asm
++++ b/data/pokemon/base_stats/grimer.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/grimer/front.dimensions"
+-	abilities_for GRIMER, POISON_TOUCH, NO_ABILITY, NO_ABILITY
++	abilities_for GRIMER, STENCH, STICKY_HOLD, POISON_TOUCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/grimer_alolan.asm b/data/pokemon/base_stats/grimer_alolan.asm
+index df2e2f5..a375e28 100644
+--- a/data/pokemon/base_stats/grimer_alolan.asm
++++ b/data/pokemon/base_stats/grimer_alolan.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/grimer_alolan/front.dimensions"
+-	abilities_for GRIMER_ALOLAN, POISON_TOUCH, NO_ABILITY, NO_ABILITY
++	abilities_for GRIMER_ALOLAN, POISON_TOUCH, GLUTTONY, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/grumpig.asm b/data/pokemon/base_stats/grumpig.asm
+index 3f3a776..f0435a4 100644
+--- a/data/pokemon/base_stats/grumpig.asm
++++ b/data/pokemon/base_stats/grumpig.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/grumpig/front.dimensions"
+-	abilities_for GRUMPIG, THICK_FAT, PRANKSTER, NO_ABILITY
++	abilities_for GRUMPIG, THICK_FAT, OWN_TEMPO, PRANKSTER
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/happiny.asm b/data/pokemon/base_stats/happiny.asm
+index 8610207..01d2c6a 100644
+--- a/data/pokemon/base_stats/happiny.asm
++++ b/data/pokemon/base_stats/happiny.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/happiny/front.dimensions"
+-	abilities_for HAPPINY, NATURAL_CURE, SERENE_GRACE, NATURAL_CURE
++	abilities_for HAPPINY, SERENE_GRACE, NATURAL_CURE, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_NONE, EGG_NONE ; egg groups
+diff --git a/data/pokemon/base_stats/hitmonlee.asm b/data/pokemon/base_stats/hitmonlee.asm
+index 201cc1a..16c523b 100644
+--- a/data/pokemon/base_stats/hitmonlee.asm
++++ b/data/pokemon/base_stats/hitmonlee.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/hitmonlee/front.dimensions"
+-	abilities_for HITMONLEE, RECKLESS, LIMBER, NO_ABILITY
++	abilities_for HITMONLEE, RECKLESS, LIMBER, UNBURDEN
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/hoppip.asm b/data/pokemon/base_stats/hoppip.asm
+index 49fc36c..f74fc97 100644
+--- a/data/pokemon/base_stats/hoppip.asm
++++ b/data/pokemon/base_stats/hoppip.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/hoppip/front.dimensions"
+-	abilities_for HOPPIP, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for HOPPIP, CHLOROPHYLL, LEAF_GUARD, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/impidimp.asm b/data/pokemon/base_stats/impidimp.asm
+index 35a833a..3d2de1d 100644
+--- a/data/pokemon/base_stats/impidimp.asm
++++ b/data/pokemon/base_stats/impidimp.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/impidimp/front.dimensions"
+-	abilities_for IMPIDIMP, PRANKSTER, FRISK, NO_ABILITY
++	abilities_for IMPIDIMP, PRANKSTER, FRISK, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/jolteon.asm b/data/pokemon/base_stats/jolteon.asm
+index a11fe58..7cf79cb 100644
+--- a/data/pokemon/base_stats/jolteon.asm
++++ b/data/pokemon/base_stats/jolteon.asm
+@@ -12,7 +12,7 @@
+ 	db 35 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/jolteon/front.dimensions"
+-	abilities_for JOLTEON, VOLT_ABSORB, NO_ABILITY, COMPETITIVE
++	abilities_for JOLTEON, VOLT_ABSORB, QUICK_FEET, COMPETITIVE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/jumpluff.asm b/data/pokemon/base_stats/jumpluff.asm
+index 15d1065..1bb9da5 100644
+--- a/data/pokemon/base_stats/jumpluff.asm
++++ b/data/pokemon/base_stats/jumpluff.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/jumpluff/front.dimensions"
+-	abilities_for JUMPLUFF, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for JUMPLUFF, CHLOROPHYLL, LEAF_GUARD, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/jynx.asm b/data/pokemon/base_stats/jynx.asm
+index 40e78be..1237d24 100644
+--- a/data/pokemon/base_stats/jynx.asm
++++ b/data/pokemon/base_stats/jynx.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/jynx/front.dimensions"
+-	abilities_for JYNX, DRY_SKIN, NO_ABILITY, NO_ABILITY
++	abilities_for JYNX, OBLIVIOUS, FOREWARN, DRY_SKIN
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/kakuna.asm b/data/pokemon/base_stats/kakuna.asm
+index 3936b88..44e0754 100644
+--- a/data/pokemon/base_stats/kakuna.asm
++++ b/data/pokemon/base_stats/kakuna.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/kakuna/front.dimensions"
+-	abilities_for KAKUNA, SHED_SKIN, NO_ABILITY, NO_ABILITY
++	abilities_for KAKUNA, SHED_SKIN, SHIELD_DUST, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/koffing.asm b/data/pokemon/base_stats/koffing.asm
+index 539452a..ce1ef8b 100644
+--- a/data/pokemon/base_stats/koffing.asm
++++ b/data/pokemon/base_stats/koffing.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/koffing/front.dimensions"
+-	abilities_for KOFFING, LEVITATE, NEUTRALIZING_GAS, NO_ABILITY
++	abilities_for KOFFING, LEVITATE, NEUTRALIZING_GAS, STENCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/lairon.asm b/data/pokemon/base_stats/lairon.asm
+index 0993e03..3385530 100644
+--- a/data/pokemon/base_stats/lairon.asm
++++ b/data/pokemon/base_stats/lairon.asm
+@@ -12,7 +12,7 @@
+ 	db 35 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/lairon/front.dimensions"
+-	abilities_for LAIRON, ROCK_HEAD, STURDY, NO_ABILITY
++	abilities_for LAIRON, ROCK_HEAD, STURDY, HEAVY_METAL
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/larvitar.asm b/data/pokemon/base_stats/larvitar.asm
+index 8a05134..09cc125 100644
+--- a/data/pokemon/base_stats/larvitar.asm
++++ b/data/pokemon/base_stats/larvitar.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/larvitar/front.dimensions"
+-	abilities_for LARVITAR, GUTS, NO_ABILITY, INTIMIDATE
++	abilities_for LARVITAR, GUTS, SAND_VEIL, INTIMIDATE
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/leafeon.asm b/data/pokemon/base_stats/leafeon.asm
+index 236ee46..9c7b91b 100644
+--- a/data/pokemon/base_stats/leafeon.asm
++++ b/data/pokemon/base_stats/leafeon.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/leafeon/front.dimensions"
+-	abilities_for LEAFEON, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for LEAFEON, LEAF_GUARD, NO_ABILITY, CHLOROPHYLL
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/lickilicky.asm b/data/pokemon/base_stats/lickilicky.asm
+index 7081739..2c3ede5 100644
+--- a/data/pokemon/base_stats/lickilicky.asm
++++ b/data/pokemon/base_stats/lickilicky.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/lickilicky/front.dimensions"
+-	abilities_for LICKILICKY, OBLIVIOUS, NO_ABILITY, CLOUD_NINE
++	abilities_for LICKILICKY, OWN_TEMPO, OBLIVIOUS, CLOUD_NINE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/lickitung.asm b/data/pokemon/base_stats/lickitung.asm
+index 3da0728..b998d70 100644
+--- a/data/pokemon/base_stats/lickitung.asm
++++ b/data/pokemon/base_stats/lickitung.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/lickitung/front.dimensions"
+-	abilities_for LICKITUNG, OBLIVIOUS, NO_ABILITY, CLOUD_NINE
++	abilities_for LICKITUNG, OWN_TEMPO, OBLIVIOUS, CLOUD_NINE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/lileep.asm b/data/pokemon/base_stats/lileep.asm
+index 6a7ce47..497e54e 100644
+--- a/data/pokemon/base_stats/lileep.asm
++++ b/data/pokemon/base_stats/lileep.asm
+@@ -12,7 +12,7 @@
+ 	db 30 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/lileep/front.dimensions"
+-	abilities_for LILEEP, STORM_DRAIN, NO_ABILITY, REGENERATOR
++	abilities_for LILEEP, STORM_DRAIN, SUCTION_CUPS, REGENERATOR
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_WATER_3, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/metapod.asm b/data/pokemon/base_stats/metapod.asm
+index af6a404..7734bb7 100644
+--- a/data/pokemon/base_stats/metapod.asm
++++ b/data/pokemon/base_stats/metapod.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/metapod/front.dimensions"
+-	abilities_for METAPOD, SHED_SKIN, NO_ABILITY, NO_ABILITY
++	abilities_for METAPOD, SHED_SKIN, SHIELD_DUST, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/morgrem.asm b/data/pokemon/base_stats/morgrem.asm
+index 720b634..f7d615a 100644
+--- a/data/pokemon/base_stats/morgrem.asm
++++ b/data/pokemon/base_stats/morgrem.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/morgrem/front.dimensions"
+-	abilities_for MORGREM, PRANKSTER, FRISK, NO_ABILITY
++	abilities_for MORGREM, PRANKSTER, FRISK, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/mr__mime.asm b/data/pokemon/base_stats/mr__mime.asm
+index 7b41a87..6818deb 100644
+--- a/data/pokemon/base_stats/mr__mime.asm
++++ b/data/pokemon/base_stats/mr__mime.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/mr__mime/front.dimensions"
+-	abilities_for MR__MIME, FILTER, TECHNICIAN, NO_ABILITY
++	abilities_for MR__MIME, SOUNDPROOF, FILTER, TECHNICIAN
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/muk.asm b/data/pokemon/base_stats/muk.asm
+index b603ee6..483d3be 100644
+--- a/data/pokemon/base_stats/muk.asm
++++ b/data/pokemon/base_stats/muk.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/muk/front.dimensions"
+-	abilities_for MUK, POISON_TOUCH, NO_ABILITY, NO_ABILITY
++	abilities_for MUK, STENCH, STICKY_HOLD, POISON_TOUCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/muk_alolan.asm b/data/pokemon/base_stats/muk_alolan.asm
+index da847ce..d92178c 100644
+--- a/data/pokemon/base_stats/muk_alolan.asm
++++ b/data/pokemon/base_stats/muk_alolan.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/muk_alolan/front.dimensions"
+-	abilities_for MUK_ALOLAN, POISON_TOUCH, NO_ABILITY, NO_ABILITY
++	abilities_for MUK_ALOLAN, POISON_TOUCH, GLUTTONY, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/munchlax.asm b/data/pokemon/base_stats/munchlax.asm
+index 969496b..2f827a1 100644
+--- a/data/pokemon/base_stats/munchlax.asm
++++ b/data/pokemon/base_stats/munchlax.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/munchlax/front.dimensions"
+-	abilities_for MUNCHLAX, THICK_FAT, PICKUP, NO_ABILITY
++	abilities_for MUNCHLAX, THICK_FAT, PICKUP, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_NONE, EGG_NONE ; egg groups
+diff --git a/data/pokemon/base_stats/natu.asm b/data/pokemon/base_stats/natu.asm
+index 940bdef..cba86f1 100644
+--- a/data/pokemon/base_stats/natu.asm
++++ b/data/pokemon/base_stats/natu.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/natu/front.dimensions"
+-	abilities_for NATU, SYNCHRONIZE, NO_ABILITY, MAGIC_BOUNCE
++	abilities_for NATU, SYNCHRONIZE, EARLY_BIRD, MAGIC_BOUNCE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/octillery.asm b/data/pokemon/base_stats/octillery.asm
+index bccc714..ba74af1 100644
+--- a/data/pokemon/base_stats/octillery.asm
++++ b/data/pokemon/base_stats/octillery.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/octillery/front.dimensions"
+-	abilities_for OCTILLERY, SNIPER, NO_ABILITY, NO_ABILITY
++	abilities_for OCTILLERY, SUCTION_CUPS, SNIPER, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_WATER_1, EGG_WATER_2 ; egg groups
+diff --git a/data/pokemon/base_stats/oddish.asm b/data/pokemon/base_stats/oddish.asm
+index 51c585f..e387323 100644
+--- a/data/pokemon/base_stats/oddish.asm
++++ b/data/pokemon/base_stats/oddish.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/oddish/front.dimensions"
+-	abilities_for ODDISH, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for ODDISH, CHLOROPHYLL, NO_ABILITY, RUN_AWAY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/ponyta_galarian.asm b/data/pokemon/base_stats/ponyta_galarian.asm
+index e09e199..e9788a2 100644
+--- a/data/pokemon/base_stats/ponyta_galarian.asm
++++ b/data/pokemon/base_stats/ponyta_galarian.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/ponyta_galarian/front.dimensions"
+-	abilities_for PONYTA_GALARIAN, PASTEL_VEIL, NO_ABILITY, MAGIC_GUARD
++	abilities_for PONYTA_GALARIAN, RUN_AWAY, PASTEL_VEIL, ANTICIPATION
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/porygon.asm b/data/pokemon/base_stats/porygon.asm
+index 21fcf99..6423c7f 100644
+--- a/data/pokemon/base_stats/porygon.asm
++++ b/data/pokemon/base_stats/porygon.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/porygon/front.dimensions"
+-	abilities_for PORYGON, TRACE, NO_ABILITY, ANALYTIC
++	abilities_for PORYGON, TRACE, DOWNLOAD, ANALYTIC
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/porygon2.asm b/data/pokemon/base_stats/porygon2.asm
+index 6a60317..5a26220 100644
+--- a/data/pokemon/base_stats/porygon2.asm
++++ b/data/pokemon/base_stats/porygon2.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/porygon2/front.dimensions"
+-	abilities_for PORYGON2, TRACE, NO_ABILITY, ANALYTIC
++	abilities_for PORYGON2, TRACE, DOWNLOAD, ANALYTIC
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/porygon_z.asm b/data/pokemon/base_stats/porygon_z.asm
+index 6b8faa9..c99121a 100644
+--- a/data/pokemon/base_stats/porygon_z.asm
++++ b/data/pokemon/base_stats/porygon_z.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/porygon_z/front.dimensions"
+-	abilities_for PORYGON_Z, ADAPTABILITY, NO_ABILITY, ANALYTIC
++	abilities_for PORYGON_Z, ADAPTABILITY, DOWNLOAD, ANALYTIC
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/quagsire.asm b/data/pokemon/base_stats/quagsire.asm
+index 8029cbe..dd6741e 100644
+--- a/data/pokemon/base_stats/quagsire.asm
++++ b/data/pokemon/base_stats/quagsire.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/quagsire/front.dimensions"
+-	abilities_for QUAGSIRE, WATER_ABSORB, NO_ABILITY, NO_ABILITY
++	abilities_for QUAGSIRE, DAMP, WATER_ABSORB, UNAWARE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_WATER_1, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/rapidash_galarian.asm b/data/pokemon/base_stats/rapidash_galarian.asm
+index 2b5efab..a36d1c0 100644
+--- a/data/pokemon/base_stats/rapidash_galarian.asm
++++ b/data/pokemon/base_stats/rapidash_galarian.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/rapidash_galarian/front.dimensions"
+-	abilities_for RAPIDASH_GALARIAN, PASTEL_VEIL, NO_ABILITY, MAGIC_GUARD
++	abilities_for RAPIDASH_GALARIAN, RUN_AWAY, PASTEL_VEIL, ANTICIPATION
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/raticate_alolan.asm b/data/pokemon/base_stats/raticate_alolan.asm
+index 9413529..2d5d15b 100644
+--- a/data/pokemon/base_stats/raticate_alolan.asm
++++ b/data/pokemon/base_stats/raticate_alolan.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/raticate_alolan/front.dimensions"
+-	abilities_for RATICATE_ALOLAN, HUSTLE, GUTS, NO_ABILITY
++	abilities_for RATICATE_ALOLAN, HUSTLE, GUTS, THICK_FAT
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/rattata_alolan.asm b/data/pokemon/base_stats/rattata_alolan.asm
+index 791d4d0..42245c2 100644
+--- a/data/pokemon/base_stats/rattata_alolan.asm
++++ b/data/pokemon/base_stats/rattata_alolan.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/rattata_alolan/front.dimensions"
+-	abilities_for RATTATA_ALOLAN, HUSTLE, GUTS, NO_ABILITY
++	abilities_for RATTATA_ALOLAN, HUSTLE, GUTS, THICK_FAT
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/rypherior.asm b/data/pokemon/base_stats/rypherior.asm
+deleted file mode 100644
+index 34eae4f..0000000
+--- a/data/pokemon/base_stats/rypherior.asm
++++ /dev/null
+@@ -1,22 +0,0 @@
+-	db 0 ; species ID placeholder
+-
+-	db 115, 140, 130,  40,  55,  55
+-	;  hp  atk  def  spd  sat  sdf
+-
+-	db GROUND, ROCK ; type
+-	db 30 ; catch rate
+-	db 255 ; base exp
+-	db NO_ITEM, NO_ITEM ; items
+-	db GENDER_F50 ; gender ratio
+-	db 100 ; unknown 1
+-	db 20 ; step cycles to hatch
+-	db 5 ; unknown 2
+-	INCBIN "gfx/pokemon/rypherior/front.dimensions"
+-	abilities_for RYPHERIOR, SOLID_ROCK, RECKLESS, SHEER_FORCE
+-	db 0 ; padding
+-	db GROWTH_MEDIUM_SLOW ; growth rate
+-	dn EGG_GROUND, EGG_GROUND ; egg groups
+-
+-	; tm/hm learnset
+-	tmhm CURSE, TOXIC, HIDDEN_POWER, SNORE, PROTECT, ENDURE, FRUSTRATION, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT
+-	; end
+diff --git a/data/pokemon/base_stats/salandit.asm b/data/pokemon/base_stats/salandit.asm
+index b19f923..1dfd348 100644
+--- a/data/pokemon/base_stats/salandit.asm
++++ b/data/pokemon/base_stats/salandit.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/salandit/front.dimensions"
+-	abilities_for SALANDIT, POISON_TOUCH, OBLIVIOUS, MERCILESS
++	abilities_for SALANDIT, CORROSION, OBLIVIOUS, MERCILESS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/salazzle.asm b/data/pokemon/base_stats/salazzle.asm
+index 17d7ac6..55b3b50 100644
+--- a/data/pokemon/base_stats/salazzle.asm
++++ b/data/pokemon/base_stats/salazzle.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/salazzle/front.dimensions"
+-	abilities_for SALAZZLE, POISON_TOUCH, OBLIVIOUS, MERCILESS
++	abilities_for SALAZZLE, CORROSION, OBLIVIOUS, MERCILESS
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
+diff --git a/data/pokemon/base_stats/sentret.asm b/data/pokemon/base_stats/sentret.asm
+index 8642065..99a7fda 100644
+--- a/data/pokemon/base_stats/sentret.asm
++++ b/data/pokemon/base_stats/sentret.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/sentret/front.dimensions"
+-	abilities_for SENTRET, KEEN_EYE, NO_ABILITY, FRISK
++	abilities_for SENTRET, RUN_AWAY, KEEN_EYE, FRISK
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/shuckle.asm b/data/pokemon/base_stats/shuckle.asm
+index bf45a82..e17d2e9 100644
+--- a/data/pokemon/base_stats/shuckle.asm
++++ b/data/pokemon/base_stats/shuckle.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/shuckle/front.dimensions"
+-	abilities_for SHUCKLE, STURDY, NO_ABILITY, CONTRARY
++	abilities_for SHUCKLE, STURDY, GLUTTONY, CONTRARY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/skiploom.asm b/data/pokemon/base_stats/skiploom.asm
+index 49561de..f988142 100644
+--- a/data/pokemon/base_stats/skiploom.asm
++++ b/data/pokemon/base_stats/skiploom.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/skiploom/front.dimensions"
+-	abilities_for SKIPLOOM, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for SKIPLOOM, CHLOROPHYLL, LEAF_GUARD, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/smoochum.asm b/data/pokemon/base_stats/smoochum.asm
+index f6d36b8..4f6aeb6 100644
+--- a/data/pokemon/base_stats/smoochum.asm
++++ b/data/pokemon/base_stats/smoochum.asm
+@@ -12,7 +12,7 @@
+ 	db 25 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/smoochum/front.dimensions"
+-	abilities_for SMOOCHUM, HYDRATION, NO_ABILITY, NO_ABILITY
++	abilities_for SMOOCHUM, OBLIVIOUS, FOREWARN, HYDRATION
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_NONE, EGG_NONE ; egg groups
+diff --git a/data/pokemon/base_stats/sneasel.asm b/data/pokemon/base_stats/sneasel.asm
+index 28bb892..aef7d75 100644
+--- a/data/pokemon/base_stats/sneasel.asm
++++ b/data/pokemon/base_stats/sneasel.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/sneasel/front.dimensions"
+-	abilities_for SNEASEL, TECHNICIAN, INNER_FOCUS, NO_ABILITY
++	abilities_for SNEASEL, TECHNICIAN, INNER_FOCUS, KEEN_EYE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/snorlax.asm b/data/pokemon/base_stats/snorlax.asm
+index eecb8a9..8ea2a4e 100644
+--- a/data/pokemon/base_stats/snorlax.asm
++++ b/data/pokemon/base_stats/snorlax.asm
+@@ -12,7 +12,7 @@
+ 	db 40 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/snorlax/front.dimensions"
+-	abilities_for SNORLAX, THICK_FAT, IMMUNITY, NO_ABILITY
++	abilities_for SNORLAX, THICK_FAT, IMMUNITY, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
+diff --git a/data/pokemon/base_stats/snubbull.asm b/data/pokemon/base_stats/snubbull.asm
+index 3848a4f..3936137 100644
+--- a/data/pokemon/base_stats/snubbull.asm
++++ b/data/pokemon/base_stats/snubbull.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/snubbull/front.dimensions"
+-	abilities_for SNUBBULL, INTIMIDATE, NO_ABILITY, RATTLED
++	abilities_for SNUBBULL, INTIMIDATE, RUN_AWAY, RATTLED
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/spoink.asm b/data/pokemon/base_stats/spoink.asm
+index 16d3608..7707b6a 100644
+--- a/data/pokemon/base_stats/spoink.asm
++++ b/data/pokemon/base_stats/spoink.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/spoink/front.dimensions"
+-	abilities_for SPOINK, THICK_FAT, OWN_TEMPO, NO_ABILITY
++	abilities_for SPOINK, THICK_FAT, OWN_TEMPO, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/steenee.asm b/data/pokemon/base_stats/steenee.asm
+index e940b19..e123655 100644
+--- a/data/pokemon/base_stats/steenee.asm
++++ b/data/pokemon/base_stats/steenee.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/steenee/front.dimensions"
+-	abilities_for STEENEE, OBLIVIOUS, NO_ABILITY, NO_ABILITY
++	abilities_for STEENEE, LEAF_GUARD, OBLIVIOUS, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/sunflora.asm b/data/pokemon/base_stats/sunflora.asm
+index 39be4af..7e3c7a7 100644
+--- a/data/pokemon/base_stats/sunflora.asm
++++ b/data/pokemon/base_stats/sunflora.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/sunflora/front.dimensions"
+-	abilities_for SUNFLORA, CHLOROPHYLL, SOLAR_POWER, NO_ABILITY
++	abilities_for SUNFLORA, CHLOROPHYLL, SOLAR_POWER, EARLY_BIRD
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/sunkern.asm b/data/pokemon/base_stats/sunkern.asm
+index f802553..c2c745a 100644
+--- a/data/pokemon/base_stats/sunkern.asm
++++ b/data/pokemon/base_stats/sunkern.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/sunkern/front.dimensions"
+-	abilities_for SUNKERN, CHLOROPHYLL, SOLAR_POWER, NO_ABILITY
++	abilities_for SUNKERN, CHLOROPHYLL, SOLAR_POWER, EARLY_BIRD
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/tangela.asm b/data/pokemon/base_stats/tangela.asm
+index 23b9ba2..eb079ab 100644
+--- a/data/pokemon/base_stats/tangela.asm
++++ b/data/pokemon/base_stats/tangela.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tangela/front.dimensions"
+-	abilities_for TANGELA, CHLOROPHYLL, NO_ABILITY, REGENERATOR
++	abilities_for TANGELA, CHLOROPHYLL, LEAF_GUARD, REGENERATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/tangrowth.asm b/data/pokemon/base_stats/tangrowth.asm
+index 1c6c384..d293c81 100644
+--- a/data/pokemon/base_stats/tangrowth.asm
++++ b/data/pokemon/base_stats/tangrowth.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tangrowth/front.dimensions"
+-	abilities_for TANGROWTH, CHLOROPHYLL, NO_ABILITY, REGENERATOR
++	abilities_for TANGROWTH, CHLOROPHYLL, LEAF_GUARD, REGENERATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/tauros_paldean_fire.asm b/data/pokemon/base_stats/tauros_paldean_fire.asm
+index b8bb792..b68c2c7 100644
+--- a/data/pokemon/base_stats/tauros_paldean_fire.asm
++++ b/data/pokemon/base_stats/tauros_paldean_fire.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tauros_paldean_fire/front.dimensions"
+-	abilities_for TAUROS_PALDEAN_FIRE, INTIMIDATE, RECKLESS, NO_ABILITY
++	abilities_for TAUROS_PALDEAN_FIRE, INTIMIDATE, ANGER_POINT, RECKLESS
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/tauros_paldean_water.asm b/data/pokemon/base_stats/tauros_paldean_water.asm
+index 1e61e33..9ba0de6 100644
+--- a/data/pokemon/base_stats/tauros_paldean_water.asm
++++ b/data/pokemon/base_stats/tauros_paldean_water.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tauros_paldean_water/front.dimensions"
+-	abilities_for TAUROS_PALDEAN_WATER, INTIMIDATE, RECKLESS, NO_ABILITY
++	abilities_for TAUROS_PALDEAN_WATER, INTIMIDATE, ANGER_POINT, RECKLESS
+ 	db 0 ; padding
+ 	db GROWTH_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/tinkatink.asm b/data/pokemon/base_stats/tinkatink.asm
+index b03b89b..273d45d 100644
+--- a/data/pokemon/base_stats/tinkatink.asm
++++ b/data/pokemon/base_stats/tinkatink.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tinkatink/front.dimensions"
+-	abilities_for TINKATINK, MOLD_BREAKER, OWN_TEMPO, NO_ABILITY
++	abilities_for TINKATINK, MOLD_BREAKER, OWN_TEMPO, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/tinkaton.asm b/data/pokemon/base_stats/tinkaton.asm
+index 76cf948..2324ef9 100644
+--- a/data/pokemon/base_stats/tinkaton.asm
++++ b/data/pokemon/base_stats/tinkaton.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tinkaton/front.dimensions"
+-	abilities_for TINKATON, MOLD_BREAKER, OWN_TEMPO, NO_ABILITY
++	abilities_for TINKATON, MOLD_BREAKER, OWN_TEMPO, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/tinkatuff.asm b/data/pokemon/base_stats/tinkatuff.asm
+index 85703af..276a3ce 100644
+--- a/data/pokemon/base_stats/tinkatuff.asm
++++ b/data/pokemon/base_stats/tinkatuff.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/tinkatuff/front.dimensions"
+-	abilities_for TINKATUFF, MOLD_BREAKER, OWN_TEMPO, NO_ABILITY
++	abilities_for TINKATUFF, MOLD_BREAKER, OWN_TEMPO, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_FAIRY, EGG_FAIRY ; egg groups
+diff --git a/data/pokemon/base_stats/toxicroak.asm b/data/pokemon/base_stats/toxicroak.asm
+index 7f456b9..c8914b9 100644
+--- a/data/pokemon/base_stats/toxicroak.asm
++++ b/data/pokemon/base_stats/toxicroak.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/toxicroak/front.dimensions"
+-	abilities_for TOXICROAK, DRY_SKIN, NO_ABILITY, POISON_TOUCH
++	abilities_for TOXICROAK, ANTICIPATION, DRY_SKIN, POISON_TOUCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
+diff --git a/data/pokemon/base_stats/ursalunabm.asm b/data/pokemon/base_stats/ursalunabm.asm
+index add21d1..4eee945 100644
+--- a/data/pokemon/base_stats/ursalunabm.asm
++++ b/data/pokemon/base_stats/ursalunabm.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/ursalunabm/front.dimensions"
+-	abilities_for URSALUNABM, GUTS, BULLETPROOF, NO_ABILITY
++	abilities_for URSALUNABM, GUTS, BULLETPROOF, MINDS_EYE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/venonat.asm b/data/pokemon/base_stats/venonat.asm
+index 25c1212..cdeefa9 100644
+--- a/data/pokemon/base_stats/venonat.asm
++++ b/data/pokemon/base_stats/venonat.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/venonat/front.dimensions"
+-	abilities_for VENONAT, TINTED_LENS, COMPOUND_EYES, NO_ABILITY
++	abilities_for VENONAT, TINTED_LENS, COMPOUND_EYES, RUN_AWAY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/venusaur.asm b/data/pokemon/base_stats/venusaur.asm
+index 0bb1cbc..395ca79 100644
+--- a/data/pokemon/base_stats/venusaur.asm
++++ b/data/pokemon/base_stats/venusaur.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/venusaur/front.dimensions"
+-	abilities_for VENUSAUR, CHLOROPHYLL, THICK_FAT, NO_ABILITY
++	abilities_for VENUSAUR, CHLOROPHYLL, OVERGROW, THICK_FAT
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_MONSTER, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/victreebel.asm b/data/pokemon/base_stats/victreebel.asm
+index ca9c9b9..c8fb2d0 100644
+--- a/data/pokemon/base_stats/victreebel.asm
++++ b/data/pokemon/base_stats/victreebel.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/victreebel/front.dimensions"
+-	abilities_for VICTREEBEL, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for VICTREEBEL, CHLOROPHYLL, NO_ABILITY, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/voltorb.asm b/data/pokemon/base_stats/voltorb.asm
+index 38c6009..daace48 100644
+--- a/data/pokemon/base_stats/voltorb.asm
++++ b/data/pokemon/base_stats/voltorb.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/voltorb/front.dimensions"
+-	abilities_for VOLTORB, SOUNDPROOF, AFTERMATH, NO_ABILITY
++	abilities_for VOLTORB, SOUNDPROOF, STATIC, AFTERMATH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
+diff --git a/data/pokemon/base_stats/watu.asm b/data/pokemon/base_stats/watu.asm
+index fcf5f65..4b8f02c 100644
+--- a/data/pokemon/base_stats/watu.asm
++++ b/data/pokemon/base_stats/watu.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/watu/front.dimensions"
+-	abilities_for WATU, SYNCHRONIZE, NO_ABILITY, MAGIC_BOUNCE
++	abilities_for WATU, SYNCHRONIZE, EARLY_BIRD, MAGIC_BOUNCE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/weavile.asm b/data/pokemon/base_stats/weavile.asm
+index 2cf6b9a..907bdd3 100644
+--- a/data/pokemon/base_stats/weavile.asm
++++ b/data/pokemon/base_stats/weavile.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/weavile/front.dimensions"
+-	abilities_for WEAVILE, TECHNICIAN, PRESSURE, NO_ABILITY
++	abilities_for WEAVILE, TECHNICIAN, PRESSURE, PICKPOCKET
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_GROUND, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/weedle.asm b/data/pokemon/base_stats/weedle.asm
+index a5d519f..a2b04ef 100644
+--- a/data/pokemon/base_stats/weedle.asm
++++ b/data/pokemon/base_stats/weedle.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/weedle/front.dimensions"
+-	abilities_for WEEDLE, POISON_POINT, NO_ABILITY, NO_ABILITY
++	abilities_for WEEDLE, POISON_POINT, SHIELD_DUST, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_BUG, EGG_BUG ; egg groups
+diff --git a/data/pokemon/base_stats/weepinbell.asm b/data/pokemon/base_stats/weepinbell.asm
+index 21f86bd..5a20dde 100644
+--- a/data/pokemon/base_stats/weepinbell.asm
++++ b/data/pokemon/base_stats/weepinbell.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/weepinbell/front.dimensions"
+-	abilities_for WEEPINBELL, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
++	abilities_for WEEPINBELL, CHLOROPHYLL, NO_ABILITY, GLUTTONY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_SLOW ; growth rate
+ 	dn EGG_PLANT, EGG_PLANT ; egg groups
+diff --git a/data/pokemon/base_stats/weezing.asm b/data/pokemon/base_stats/weezing.asm
+index e5342fd..0a43fe5 100644
+--- a/data/pokemon/base_stats/weezing.asm
++++ b/data/pokemon/base_stats/weezing.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/weezing/front.dimensions"
+-	abilities_for WEEZING, LEVITATE, NEUTRALIZING_GAS, NO_ABILITY
++	abilities_for WEEZING, LEVITATE, NEUTRALIZING_GAS, STENCH
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
+diff --git a/data/pokemon/base_stats/wooper.asm b/data/pokemon/base_stats/wooper.asm
+index 07fa22f..497cfdc 100644
+--- a/data/pokemon/base_stats/wooper.asm
++++ b/data/pokemon/base_stats/wooper.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/wooper/front.dimensions"
+-	abilities_for WOOPER, WATER_ABSORB, NO_ABILITY, NO_ABILITY
++	abilities_for WOOPER, DAMP, WATER_ABSORB, UNAWARE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_WATER_1, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/wooper_paldean.asm b/data/pokemon/base_stats/wooper_paldean.asm
+index 6e8528b..38acb5d 100644
+--- a/data/pokemon/base_stats/wooper_paldean.asm
++++ b/data/pokemon/base_stats/wooper_paldean.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/wooper_paldean/front.dimensions"
+-	abilities_for WOOPER_PALDEAN, POISON_POINT, WATER_ABSORB, NO_ABILITY
++	abilities_for WOOPER_PALDEAN, POISON_POINT, WATER_ABSORB, UNAWARE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_WATER_1, EGG_GROUND ; egg groups
+diff --git a/data/pokemon/base_stats/wynaut.asm b/data/pokemon/base_stats/wynaut.asm
+index 47254ca..31745a7 100644
+--- a/data/pokemon/base_stats/wynaut.asm
++++ b/data/pokemon/base_stats/wynaut.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/wynaut/front.dimensions"
+-	abilities_for WYNAUT, SHADOW_TAG, SHADOW_TAG, SHADOW_TAG
++	abilities_for WYNAUT, SHADOW_TAG, NO_ABILITY, NO_ABILITY
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_NONE, EGG_NONE ; egg groups
+diff --git a/data/pokemon/base_stats/xatu.asm b/data/pokemon/base_stats/xatu.asm
+index 5700bca..8a3533b 100644
+--- a/data/pokemon/base_stats/xatu.asm
++++ b/data/pokemon/base_stats/xatu.asm
+@@ -12,7 +12,7 @@
+ 	db 20 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/xatu/front.dimensions"
+-	abilities_for XATU, SYNCHRONIZE, NO_ABILITY, MAGIC_BOUNCE
++	abilities_for XATU, SYNCHRONIZE, EARLY_BIRD, MAGIC_BOUNCE
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/pokemon/base_stats/zubat.asm b/data/pokemon/base_stats/zubat.asm
+index 5b30466..188d4de 100644
+--- a/data/pokemon/base_stats/zubat.asm
++++ b/data/pokemon/base_stats/zubat.asm
+@@ -12,7 +12,7 @@
+ 	db 15 ; step cycles to hatch
+ 	db 5 ; unknown 2
+ 	INCBIN "gfx/pokemon/zubat/front.dimensions"
+-	abilities_for ZUBAT, INNER_FOCUS, FRISK, NO_ABILITY
++	abilities_for ZUBAT, INNER_FOCUS, FRISK, INFILTRATOR
+ 	db 0 ; padding
+ 	db GROWTH_MEDIUM_FAST ; growth rate
+ 	dn EGG_FLYING, EGG_FLYING ; egg groups
+diff --git a/data/text/ability_text.asm b/data/text/ability_text.asm
+index a5fcefa..fc9722d 100644
+--- a/data/text/ability_text.asm
++++ b/data/text/ability_text.asm
+@@ -121,3 +121,27 @@ ToxicDebrisText::
+ 	line "scattered on the"
+ 	cont "ground!"
+ 	prompt
++
++AnticipationShudderText:
++	text "<USER>"
++	line "shuddered!"
++	prompt
++
++ForewarnAlertText:
++	text "It was alerted to"
++	line "@"
++	text_ram wBattleDynamicNameBuffer
++	text "!"
++	prompt
++
++HarvestedBerryText:
++	text "<USER> harvested"
++	line "its @"
++	text_ram wBattleDynamicNameBuffer
++	text "!"
++	prompt
++
++AnchorsItselfText:
++	text "<TARGET>"
++	line "anchors itself!"
++	prompt
+diff --git a/engine/battle/abilities_engine.asm b/engine/battle/abilities_engine.asm
+index fa51dfc..c5a07c8 100644
+--- a/engine/battle/abilities_engine.asm
++++ b/engine/battle/abilities_engine.asm
+@@ -405,6 +405,10 @@ RunEntryAbilities::
+ 	ret z
+ 	; a busted Mimikyu keeps its broken sprite when it re-enters
+ 	call ReapplyBrokenDisguise
++	; a newly entering mon starts with clean held-item ability state
++	; (Unburden boost is lost on switching, Harvest/Cud Chew forget the
++	; previous mon's eaten Berry)
++	call ClearUserItemState
+ 	call OppHasFainted
+ 	ld hl, BattleEntryAbilities
+ 	jr z, .got_table
+@@ -419,6 +423,10 @@ BattleEntryAbilitiesNonfainted:
+ 	dbw INTIMIDATE, IntimidateAbility
+ 	dbw FRISK, FriskAbility
+ 	dbw UNNERVE, UnnerveAbility
++	dbw DOWNLOAD, DownloadAbility
++	dbw ANTICIPATION, AnticipationAbility
++	dbw FOREWARN, ForewarnAbility
++	dbw SUPERSWEET_SYRUP, SupersweetSyrupAbility
+ BattleEntryAbilities:
+ 	dbw DRIZZLE, DrizzleAbility
+ 	dbw DROUGHT, DroughtAbility
+@@ -939,21 +947,21 @@ AbilityPreventsSleep::
+ 	jr CheckStatusPrevention
+ .abilities
+ 	db BOUNCE_SLP
+-	db INSOMNIA, VITAL_SPIRIT, -1
++	db INSOMNIA, VITAL_SPIRIT, LEAF_GUARD, -1
+ 
+ AbilityPreventsParalysis::
+ 	ld hl, .abilities
+ 	jr CheckStatusPrevention
+ .abilities
+ 	db BOUNCE_PAR
+-	db LIMBER, -1
++	db LIMBER, LEAF_GUARD, -1
+ 
+ AbilityPreventsPoison::
+ 	ld hl, .abilities
+ 	jr CheckStatusPrevention
+ .abilities
+ 	db BOUNCE_PSN
+-	db IMMUNITY, PASTEL_VEIL, -1
++	db IMMUNITY, PASTEL_VEIL, LEAF_GUARD, -1
+ 
+ AbilityPreventsBurn::
+ 	; Flash Fire also blocks Fire-type status moves (notably Will-O-Wisp).
+@@ -976,14 +984,14 @@ AbilityPreventsBurn::
+ 	jr CheckStatusPrevention
+ .abilities
+ 	db BOUNCE_BRN
+-	db WATER_VEIL, THERMAL_EXCHANGE, -1
++	db WATER_VEIL, THERMAL_EXCHANGE, LEAF_GUARD, -1
+ 
+ AbilityPreventsFreeze::
+ 	ld hl, .abilities
+ 	jr CheckStatusPrevention
+ .abilities
+ 	db BOUNCE_NONE
+-	db MAGMA_ARMOR, -1
++	db MAGMA_ARMOR, LEAF_GUARD, -1
+ 
+ AbilityPreventsConfusion::
+ 	ld hl, .abilities
+@@ -1017,6 +1025,14 @@ CheckStatusPrevention:
+ 	jr z, .no_match
+ 	cp b
+ 	jr nz, .loop
++	; Leaf Guard only protects in harsh sunlight
++	cp LEAF_GUARD
++	jr nz, .not_leaf_guard
++	ld a, [wBattleWeather]
++	cp WEATHER_SUN
++	jr nz, .no_match
++	ld a, b
++.not_leaf_guard
+ 	; prevented. Thermal Exchange's Fire hit already shows its own Atk-up
+ 	; banner via the on-hit path, so suppress this (redundant) second
+ 	; banner for it - the burn is still blocked, just silently.
+@@ -1112,6 +1128,8 @@ EndTurnAbilities:
+ 	dbw DRY_SKIN, DrySkinAbility
+ 	dbw SOLAR_POWER, SolarPowerAbility
+ 	dbw BAD_DREAMS, BadDreamsAbility
++	dbw HARVEST, HarvestAbility
++	dbw CUD_CHEW, CudChewAbility
+ 	dbw -1, -1
+ 
+ SpeedBoostAbility:
+@@ -3145,6 +3163,8 @@ AbilityIgnoresOpponentEvasion::
+ 	jr z, .relevant_ability
+ 	cp MINDS_EYE
+ 	jr z, .relevant_ability
++	cp UNAWARE
++	jr z, .relevant_ability
+ 	and a ; clear carry: this ability does not touch evasion
+ 	ret
+ .relevant_ability
+@@ -3174,6 +3194,8 @@ CompareSpeedsWithAbilities::
+ 	call .GetEffectiveSpeed
+ 	ld a, [wBattleMonItem]
+ 	call .ChoiceScarfBoost
++	ld d, 0
++	call .UnburdenBoost
+ 	push hl
+ 	; enemy effective speed -> hl
+ 	call GetEnemyAbilityEffective
+@@ -3184,6 +3206,8 @@ CompareSpeedsWithAbilities::
+ 	call .GetEffectiveSpeed
+ 	ld a, [wEnemyMonItem]
+ 	call .ChoiceScarfBoost
++	ld d, 1
++	call .UnburdenBoost
+ 	ld d, h
+ 	ld e, l
+ 	pop hl
+@@ -3248,6 +3272,39 @@ CompareSpeedsWithAbilities::
+ 	ld hl, $ffff
+ 	ret
+ 
++.UnburdenBoost:
++; d = side (0 player, 1 enemy). Doubles the effective speed in hl if the
++; side's mon has Unburden, currently holds nothing, and has used or lost
++; an item since entering.
++	ld a, d
++	and a
++	jr nz, .unburden_enemy
++	call GetPlayerAbilityEffective
++	ld b, a
++	ld a, [wBattleMonItem]
++	jr .unburden_join
++.unburden_enemy
++	call GetEnemyAbilityEffective
++	ld b, a
++	ld a, [wEnemyMonItem]
++.unburden_join
++	and a
++	ret nz
++	ld a, b
++	cp UNBURDEN
++	ret nz
++	push bc
++	ld c, d
++	call ReadItemStateFlags
++	ld a, b
++	pop bc
++	and %00000011 ; ate or lost an item
++	ret z
++	add hl, hl
++	ret nc
++	ld hl, $ffff
++	ret
++
+ .ChoiceScarfBoost:
+ 	cp CHOICE_SCARF
+ 	ret nz
+@@ -3525,6 +3582,10 @@ RunContactAbilitiesHook::
+ 	cp PARENTAL_BOND
+ 	call z, ParentalBondSecondHit
+ .post_parental_bond
++	; Stench: the attacker's damaging hits have a 10% flinch chance
++	call GetTrueUserAbility
++	cp STENCH
++	call z, StenchAbility
+ 	; defender on-hit abilities (any damaging move, contact or not)
+ 	call GetOpponentAbility
+ 	; Cursed Body and Toxic Debris still have a useful effect when the hit
+@@ -3911,6 +3972,7 @@ TargetContactAbilities:
+ 	dbw CUTE_CHARM, CuteCharmAbility
+ 	dbw IRON_BARBS, IronBarbsAbility
+ 	dbw PERISH_BODY, PerishBodyAbility
++	dbw PICKPOCKET, PickpocketAbility
+ 	dbw -1, -1
+ 
+ CheckContactMove::
+@@ -5082,6 +5144,12 @@ BerserkGeneConfusion_b::
+ AbilityEffectChanceMods::
+ ; b = secondary effect chance. Serene Grace doubles it; Sheer Force
+ ; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
++; The defender's Shield Dust suppresses it outright.
++	push bc
++	call GetOpponentIgnorableAbility
++	pop bc
++	cp SHIELD_DUST
++	jr z, .suppress
+ 	call GetTrueUserAbility
+ 	cp SHEER_FORCE
+ 	jr z, .check_sheer_force
+@@ -6162,6 +6230,909 @@ INCLUDE "data/abilities/flags.asm"
+ 
+ ; Keep compressed art out of the nearly full executable ability bank. The
+ ; loader already uses BANK(label) + FarDecompress, so these are bank-safe.
++; ==== 2026-08-13 worklist batch ===========================================
++; Gluttony, Run Away, Infiltrator, Leaf Guard, Early Bird, Unaware, Stench,
++; Anticipation, Pickpocket, Shield Dust, Corrosion, Harvest, Heavy Metal,
++; Download, Suction Cups, Sticky Hold, Unburden, Klutz, Ripen, Cud Chew,
++; Forewarn, Supersweet Syrup, Light Metal.
++; (Heavy/Light Metal are data-only: no weight mechanics exist in this
++; engine, so they are flavor abilities.)
++
++; --- Banked item-state access ---------------------------------------------
++; wPlayer/wEnemyItemStateFlags + wPlayer/wEnemyConsumedItem live in WRAM
++; bank 2 (WRAM0 is full). All access goes through these helpers, which
++; save and restore rSVBK. c = side: 0 = player, 1 = enemy.
++
++GetItemStateAddrs:
++; c = side -> hl = flags addr, de = consumed-item addr
++	ld hl, wPlayerItemStateFlags
++	ld de, wPlayerConsumedItem
++	ld a, c
++	and a
++	ret z
++	ld hl, wEnemyItemStateFlags
++	ld de, wEnemyConsumedItem
++	ret
++
++ReadItemStateFlags::
++; c = side -> b = flags
++	push hl
++	push de
++	call GetItemStateAddrs
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wPlayerItemStateFlags)
++	ldh [rSVBK], a
++	ld b, [hl]
++	pop af
++	ldh [rSVBK], a
++	pop de
++	pop hl
++	ret
++
++WriteItemStateFlags::
++; c = side, b = flags
++	push hl
++	push de
++	call GetItemStateAddrs
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wPlayerItemStateFlags)
++	ldh [rSVBK], a
++	ld [hl], b
++	pop af
++	ldh [rSVBK], a
++	pop de
++	pop hl
++	ret
++
++ReadConsumedItem::
++; c = side -> b = recorded item id (0 = none)
++	push hl
++	push de
++	call GetItemStateAddrs
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wPlayerConsumedItem)
++	ldh [rSVBK], a
++	ld a, [de]
++	ld b, a
++	pop af
++	ldh [rSVBK], a
++	pop de
++	pop hl
++	ret
++
++WriteConsumedItem::
++; c = side, b = item id
++	push hl
++	push de
++	call GetItemStateAddrs
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wPlayerConsumedItem)
++	ldh [rSVBK], a
++	ld a, b
++	ld [de], a
++	pop af
++	ldh [rSVBK], a
++	pop de
++	pop hl
++	ret
++
++GetUserSide:
++; -> c = the turn holder's side (0 = player, 1 = enemy)
++	ldh a, [hBattleTurn]
++	and a
++	ld c, 0
++	ret z
++	inc c
++	ret
++
++InitAbilityItemState::
++; Farcalled from the battle-start send-out (replaces the plain wInAbility
++; clear there). Zeroes wInAbility and all four item-state bytes.
++	xor a
++	ld [wInAbility], a
++	ld b, a
++	ld c, 0
++	call WriteItemStateFlags
++	call WriteConsumedItem
++	ld b, 0
++	ld c, 1
++	call WriteItemStateFlags
++	jp WriteConsumedItem
++
++ClearUserItemState:
++; Clears the item state for the side whose mon is entering (turn holder).
++	push bc
++	call GetUserSide
++	ld b, 0
++	call WriteItemStateFlags
++	call WriteConsumedItem
++	pop bc
++	ret
++
++RecordConsumedItem::
++; Farcalled from ConsumeHeldItem right before it zeroes the item slot.
++; There, de points at the holder's battle item byte (the holder is the
++; turn holder's OPPONENT, per the Get*OpponentItem convention). Records
++; the item id, sets the "consumed" flag, and arms Cud Chew.
++	push hl
++	push de
++	push bc
++	; which side holds the item? de is either wBattleMonItem (WRAM0) or
++	; wEnemyMonItem (banked WRAM): the high bytes differ.
++	ld a, d
++	cp HIGH(wBattleMonItem)
++	ld c, 0
++	jr z, .got_side
++	ld c, 1
++.got_side
++	ld a, [de]
++	ld e, a ; e = item id
++	ld b, a
++	call WriteConsumedItem
++	call ReadItemStateFlags
++	set 0, b ; consumed a held item
++	; arm Cud Chew (replays at the end of the NEXT turn) if the holder
++	; has the ability and this was an HP-restoring Berry
++	push bc
++	ld a, c
++	and a
++	ld a, [wPlayerAbility]
++	jr z, .got_ability
++	ld a, [wEnemyAbility]
++.got_ability
++	cp CUD_CHEW
++	pop bc
++	jr nz, .store
++	push bc
++	ld b, e
++	farcall GetItemHeldEffect
++	ld a, b
++	pop bc
++	cp HELD_BERRY
++	jr nz, .store
++	set 2, b
++.store
++	call WriteItemStateFlags
++	pop bc
++	pop de
++	pop hl
++	ret
++
++; --- Entry abilities ------------------------------------------------------
++
++DownloadAbility:
++; Raises Atk or SpA depending on which of the foe's unmodified defenses
++; is lower (ties raise SpA, like the original games).
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wEnemyMonDefense)
++	ldh [rSVBK], a
++	ld hl, wEnemyMonDefense
++	ld de, wEnemyMonSpclDef
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_stats
++	ld hl, wBattleMonDefense
++	ld de, wBattleMonSpclDef
++.got_stats
++	; bc = Defense
++	ld a, [hli]
++	ld b, a
++	ld c, [hl]
++	; hl = Sp.Def
++	ld a, [de]
++	ld h, a
++	inc de
++	ld a, [de]
++	ld l, a
++	pop af
++	ldh [rSVBK], a
++	; Def < SpDef -> raise Attack, else raise Sp.Atk
++	ld a, b
++	cp h
++	jr c, .raise_attack
++	jr nz, .raise_spatk
++	ld a, c
++	cp l
++	jr c, .raise_attack
++.raise_spatk
++	ld b, SP_ATTACK
++	jr .raise
++.raise_attack
++	ld b, ATTACK
++.raise
++	call BeginAbility
++	call StatUpAbility
++	jp EndAbility
++
++SupersweetSyrupAbility:
++; The scent lowers the foe's evasion on entry (Intimidate pattern).
++	call ShowAbilityBannerBrief
++	xor a
++	ld [wAttackMissed], a
++	ld [wEffectFailed], a
++	ld b, EVASION
++	call AbilityLowerOppStat
++	jp EndAbility
++
++CopyOppMovesToBuffer:
++; Copies the opponent's four move ids to wBuffer1-4 (bank-safe).
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wEnemyMonMoves)
++	ldh [rSVBK], a
++	ld hl, wEnemyMonMoves
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_moves
++	ld hl, wBattleMonMoves
++.got_moves
++	ld de, wBuffer1
++	ld bc, NUM_MOVES
++	call CopyBytes
++	pop af
++	ldh [rSVBK], a
++	ret
++
++ForewarnAbility:
++; Reveals the foe's strongest move (highest base power; if the foe only
++; has status moves, the first move is revealed).
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wBuffer1)
++	ldh [rSVBK], a
++	call CopyOppMovesToBuffer
++	ld hl, wBuffer1
++	ld b, 0 ; best power
++	ld c, 0 ; best move id
++	ld e, NUM_MOVES
++.scan
++	ld a, [hli]
++	and a
++	jr z, .scanned
++	ld d, a
++	push hl
++	push de
++	push bc
++	ld l, a
++	ld a, MOVE_POWER
++	call GetMoveAttribute
++	pop bc
++	pop de
++	pop hl
++	cp b
++	jr c, .next
++	jr z, .next
++	ld b, a
++	ld c, d
++.next
++	dec e
++	jr nz, .scan
++.scanned
++	ld a, c
++	and a
++	jr nz, .got_move
++	ld a, [wBuffer1]
++	and a
++	jr nz, .use_first
++	pop af
++	ldh [rSVBK], a
++	ret ; no moves at all
++.use_first
++	ld c, a
++.got_move
++	pop af
++	ldh [rSVBK], a
++	push bc
++	call ShowAbilityBannerBrief
++	pop bc
++	ld a, c
++	call AbilityBufferMoveName
++	ld hl, ForewarnAlertText
++	jp StdBattleTextbox
++
++AnticipationAbility:
++; Shudders if the foe has a super-effective or OHKO move.
++	ldh a, [rSVBK]
++	push af
++	ld a, BANK(wBuffer1)
++	ldh [rSVBK], a
++	call CopyOppMovesToBuffer
++	; the holder's own types -> wBuffer5/6
++	ld hl, wBattleMonType1
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_types
++	ld hl, wEnemyMonType1
++.got_types
++	ld a, [hli]
++	ld [wBuffer5], a
++	ld a, [hl]
++	ld [wBuffer6], a
++	; scan the foe's moves
++	ld hl, wBuffer1
++.scan
++	ld a, [hli]
++	and a
++	jr z, .no_shudder
++	push hl
++	ld e, a ; e = move id
++	; OHKO moves always trigger
++	ld l, a
++	ld a, MOVE_EFFECT
++	call GetMoveAttribute
++	cp EFFECT_OHKO
++	jr z, .shudder
++	; only damaging moves count
++	ld l, e
++	ld a, MOVE_POWER
++	call GetMoveAttribute
++	and a
++	jr z, .next
++	; super effective vs the holder's typing?
++	ld l, e
++	ld a, MOVE_TYPE
++	call GetMoveAttribute
++	ld b, a
++	ld hl, wBuffer5
++	ld a, BANK(CheckTypeMatchupFar)
++	ld de, CheckTypeMatchupFar
++	call FarCall_de
++	ld a, [wTypeMatchup]
++	cp 10 + 1
++	jr nc, .shudder
++.next
++	pop hl
++	jr .scan
++.shudder
++	pop hl
++	pop af
++	ldh [rSVBK], a
++	call ShowAbilityBannerBrief
++	ld hl, AnticipationShudderText
++	jp StdBattleTextbox
++.no_shudder
++	pop af
++	ldh [rSVBK], a
++	ret
++
++; --- On-hit abilities -----------------------------------------------------
++
++StenchAbility:
++; 10% chance for the attacker's damaging hits to flinch. Doesn't stack
++; with moves that already have a flinch chance; Inner Focus blocks it.
++; Canon: silent (no banner or message until the flinch itself).
++	call OppHasFainted
++	ret z
++	ld a, BATTLE_VARS_MOVE_EFFECT
++	call GetBattleVar
++	cp EFFECT_FLINCH_HIT
++	ret z
++	ld a, 10
++	call BattleRandomRange
++	and a
++	ret nz
++	call AbilityPreventsFlinch
++	ret c
++	ld a, BATTLE_VARS_SUBSTATUS3_OPP
++	call GetBattleVarAddr
++	set SUBSTATUS_FLINCHED, [hl]
++	ret
++
++PickpocketAbility:
++; Contact chain, turn = the defending Pickpocket holder. Steals the
++; attacker's held item when the holder has none. Sticky Hold protects
++; the attacker; mail can't be taken.
++	call UserHasFainted
++	ret z
++	; the holder's item slot must be empty
++	ld hl, wBattleMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_holder_item
++	ld hl, wEnemyMonItem
++.got_holder_item
++	ld a, [hl]
++	and a
++	ret nz
++	; Sticky Hold keeps the attacker's item where it is
++	call GetOpponentAbility
++	cp STICKY_HOLD
++	ret z
++	; the attacker must have an item
++	ld hl, wEnemyMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_attacker_item
++	ld hl, wBattleMonItem
++.got_attacker_item
++	ld a, [hl]
++	and a
++	ret z
++	; no stealing mail
++	ld d, a
++	push de
++	farcall ItemIsMail
++	pop de
++	ret c
++	ldh a, [hBattleTurn]
++	and a
++	jr nz, .enemy_holder
++	; the player's mon steals the enemy's item.
++	; Mirror Thief's rule: no permanent theft in link non-trainer battles.
++	ld a, [wLinkMode]
++	and a
++	jr z, .take_from_enemy
++	ld a, [wBattleMode]
++	dec a
++	ret z
++.take_from_enemy
++	xor a
++	ld [wEnemyMonItem], a
++	push de
++	ld a, MON_ITEM
++	call OTPartyAttr
++	xor a
++	ld [hl], a
++	pop de
++	ld a, d
++	ld [wBattleMonItem], a
++	push de
++	ld a, MON_ITEM
++	call BattlePartyAttr
++	pop de
++	ld [hl], d
++	ld c, 1 ; the enemy side lost its item
++	jr .stole
++.enemy_holder
++	xor a
++	ld [wBattleMonItem], a
++	push de
++	ld a, MON_ITEM
++	call BattlePartyAttr
++	xor a
++	ld [hl], a
++	pop de
++	ld a, d
++	ld [wEnemyMonItem], a
++	push de
++	ld a, MON_ITEM
++	call OTPartyAttr
++	pop de
++	ld [hl], d
++	ld c, 0 ; the player side lost its item
++.stole
++	; mark the victim's side for Unburden
++	push de
++	call ReadItemStateFlags
++	set 1, b
++	call WriteItemStateFlags
++	pop de
++	; banner, then buffer the name (the banner clobbers wStringBuffer1)
++	push de
++	call ShowAbilityBannerBrief
++	pop de
++	ld a, d
++	ld [wNamedObjectIndexBuffer], a
++	call GetItemName
++	ld hl, StoleText
++	jp StdBattleTextbox
++
++; --- End-of-turn abilities ------------------------------------------------
++
++HarvestAbility:
++; 50% chance (100% in sun) to restore the holder's consumed Berry.
++	call GetUserSide
++	call ReadItemStateFlags
++	bit 0, b
++	ret z
++	; the holder must currently hold nothing
++	ld hl, wBattleMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_item
++	ld hl, wEnemyMonItem
++.got_item
++	ld a, [hl]
++	and a
++	ret nz
++	; the consumed item must have been a Berry
++	call ReadConsumedItem
++	ld a, b
++	and a
++	ret z
++	push bc
++	farcall GetItemHeldEffect
++	ld a, b
++	pop bc
++	push bc
++	ld hl, HarvestableEffects
++	ld de, 1
++	call IsInArray
++	pop bc
++	ret nc
++	; roll: guaranteed in sun, 50% otherwise
++	ld a, [wBattleWeather]
++	cp WEATHER_SUN
++	jr z, .restore
++	ld a, 2
++	call BattleRandomRange
++	and a
++	ret nz
++.restore
++	; put the Berry back: battle item...
++	ld hl, wBattleMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_item2
++	ld hl, wEnemyMonItem
++.got_item2
++	ld [hl], b
++	; ...and the party struct (skip the OT struct in wild battles)
++	push bc
++	ldh a, [hBattleTurn]
++	and a
++	jr nz, .enemy_struct
++	ld a, MON_ITEM
++	call BattlePartyAttr
++	jr .write_struct
++.enemy_struct
++	ld a, [wBattleMode]
++	dec a
++	jr z, .skip_struct
++	ld a, MON_ITEM
++	call OTPartyAttr
++.write_struct
++	pop bc
++	ld [hl], b
++	push bc
++	jr .cleared
++.skip_struct
++	pop bc
++	push bc
++.cleared
++	; forget the consumed record (the Berry is back)
++	call GetUserSide
++	ld b, 0
++	call WriteItemStateFlags
++	call WriteConsumedItem
++	pop bc
++	; banner + text with the item name
++	push bc
++	call ShowAbilityBannerBrief
++	pop bc
++	ld a, b
++	call AbilityBufferItemName
++	ld hl, HarvestedBerryText
++	jp StdBattleTextbox
++
++HarvestableEffects:
++	db HELD_BERRY
++	db HELD_HEAL_POISON
++	db HELD_HEAL_FREEZE
++	db HELD_HEAL_BURN
++	db HELD_HEAL_SLEEP
++	db HELD_HEAL_PARALYZE
++	db HELD_HEAL_STATUS
++	db HELD_HEAL_CONFUSION
++	db -1
++
++CudChewAbility:
++; The end of the turn after eating an HP Berry, eats it again.
++	call GetUserSide
++	call ReadItemStateFlags
++	bit 3, b
++	jr nz, .replay
++	bit 2, b
++	ret z
++	; armed this turn -> due at the next end of turn
++	res 2, b
++	set 3, b
++	jp WriteItemStateFlags
++.replay
++	res 3, b
++	call WriteItemStateFlags
++	call ReadConsumedItem
++	ld a, b
++	and a
++	ret z
++	push bc
++	farcall GetItemHeldEffect
++	ld a, b
++	pop de ; e = item id (unused; kept for clarity)
++	cp HELD_BERRY
++	ret nz
++	; bc = 0:param = the Berry's heal amount
++	ld b, 0
++	call CheckUserFullHP
++	ret z
++	push bc
++	call ShowAbilityBannerBrief
++	pop bc
++	call AbilityRestoreUserHP
++	ld hl, RegainedHealthText
++	call StdBattleTextbox
++	jp EndAbility
++
++; --- Escape / force-switch ------------------------------------------------
++
++StickyHoldAnnounce_Core::
++; Farcalled from Thief/Knock Off when the victim's Sticky Hold keeps its
++; item: just present the victim's banner.
++	jp ShowEnemyAbilityBannerBrief
++
++MarkSideLostItem_Core::
++; c = side that lost its held item (for Unburden).
++	call ReadItemStateFlags
++	set 1, b
++	jp WriteItemStateFlags
++
++CheckRunAwayEscape_Core::
++; Farcalled from TryToRunAwayFromBattle after the trainer-battle check.
++; Carry if the player's mon flees with Run Away (ignores trapping).
++	ld a, [wPlayerAbility]
++	cp RUN_AWAY
++	jr z, .escape
++	and a
++	ret
++.escape
++	call SetPlayerTurn
++	call ShowAbilityBannerBrief
++	scf
++	ret
++
++SuctionCupsBlock_Core::
++; Farcalled from BattleCommand_ForceSwitch. Carry if the force-switch
++; target (the turn holder's opponent) anchors itself.
++	call GetOpponentIgnorableAbility
++	cp SUCTION_CUPS
++	jr z, .block
++	and a
++	ret
++.block
++	call ShowEnemyAbilityBannerBrief
++	ld hl, AnchorsItselfText
++	call StdBattleTextbox
++	scf
++	ret
++
++; --- Relocated Effect Commands bodies -------------------------------------
++
++EarlyBirdPlayerSleep::
++; Replaces "dec a / ld [wBattleMonStatus], a / and SLP" in the player's
++; sleep path of BattleCommand_CheckTurn. Early Bird ticks twice.
++; Returns the remaining sleep count's flags (and the count in c).
++	ld a, [wBattleMonStatus]
++	and SLP
++	dec a
++	jr z, .store
++	ld b, a
++	ld a, [wPlayerAbility]
++	cp EARLY_BIRD
++	ld a, b
++	jr nz, .store
++	dec a
++.store
++	ld [wBattleMonStatus], a
++	and SLP
++	ld c, a
++	ret
++
++EarlyBirdEnemySleep::
++; Enemy-side twin of EarlyBirdPlayerSleep.
++	ld a, [wEnemyMonStatus]
++	and SLP
++	dec a
++	jr z, .store
++	ld b, a
++	ld a, [wEnemyAbility]
++	cp EARLY_BIRD
++	ld a, b
++	jr nz, .store
++	dec a
++.store
++	ld [wEnemyMonStatus], a
++	and SLP
++	ld c, a
++	ret
++
++CheckSubstituteOpp_Core::
++; Relocated body of CheckSubstituteOpp. nz = a Substitute is in the way.
++; The attacker's Infiltrator ignores it.
++	call GetTrueUserAbility
++	cp INFILTRATOR
++	jr z, .pierce
++	ld a, BATTLE_VARS_SUBSTATUS4_OPP
++	call GetBattleVar
++	bit SUBSTATUS_SUBSTITUTE, a
++	ret
++.pierce
++	xor a
++	ret
++
++AbilitySubBypass_Core::
++; Replaces "ld c, FALSE" before the damage application: c = TRUE when
++; the attacker's Infiltrator makes the hit go through a Substitute.
++	call GetTrueUserAbility
++	cp INFILTRATOR
++	ld c, FALSE
++	ret nz
++	inc c ; TRUE
++	ret
++
++SafeCheckSafeguard_Core::
++; Relocated body of SafeCheckSafeguard; nz = Safeguard protects the
++; opponent. The attacker's Infiltrator ignores Safeguard.
++	push hl
++	call GetTrueUserAbility
++	cp INFILTRATOR
++	jr z, .pierced
++	ld hl, wEnemyScreens
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_turn
++	ld hl, wPlayerScreens
++.got_turn
++	bit SCREENS_SAFEGUARD, [hl]
++	pop hl
++	ret
++.pierced
++	xor a
++	pop hl
++	ret
++
++CheckPoisonTypeImmunity_Core::
++; Relocated body of CheckIfTargetIsPoisonType.
++; z = the target's typing (Poison/Steel) blocks poison. The attacker's
++; Corrosion ignores that typing.
++	call GetTrueUserAbility
++	cp CORROSION
++	jr z, .corrosion
++	ld de, wEnemyMonType1
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .ok
++	ld de, wBattleMonType1
++.ok
++	ld b, 2
++.type_loop
++	ld a, [de]
++	inc de
++	cp POISON
++	ret z
++	cp STEEL
++	ret z
++	dec b
++	jr nz, .type_loop
++.corrosion
++	or 1
++	ret
++
++GetUserItem_Core::
++; Relocated GetUserItem: hl = item addr, bc = effect/param.
++; A Klutz holder's item has no effect (b = 0), though it stays held.
++	ld hl, wBattleMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .go
++	ld hl, wEnemyMonItem
++.go
++	call GetTrueUserAbility
++	cp KLUTZ
++	jr z, .klutz
++	ld b, [hl]
++	push hl ; the farcall macro clobbers hl; callers need the item addr
++	farcall GetItemHeldEffect
++	pop hl
++	ret
++.klutz
++	ld b, 0
++	ld c, 0
++	ret
++
++GetOpponentItem_Core::
++; Relocated GetOpponentItem: hl = item addr, bc = effect/param.
++; A Klutz holder's item has no effect (b = 0), though it stays held.
++	ld hl, wEnemyMonItem
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .go
++	ld hl, wBattleMonItem
++.go
++	call GetOpponentAbility
++	cp KLUTZ
++	jr z, .klutz
++	ld b, [hl]
++	push hl ; the farcall macro clobbers hl; callers need the item addr
++	farcall GetItemHeldEffect
++	pop hl
++	ret
++.klutz
++	ld b, 0
++	ld c, 0
++	ret
++
++BerryThresholdCheck_Core::
++; Farcalled from HandleHPHealingItem in place of its inline HP compare.
++; The holder is the turn holder's OPPONENT (held-item convention).
++; Returns carry when the Berry should be eaten: below 1/2 max HP, or
++; below 3/4 with Gluttony (Berries in this engine already trigger at 1/2,
++; so Gluttony eats even earlier). Doubles the heal amount (c) for Ripen.
++; Exit contract (the caller's heal code depends on it): hl = max HP ptr,
++; de = current HP low-byte ptr, current HP mirrored into wBuffer3/4.
++	ld de, wEnemyMonHP + 1
++	ld hl, wEnemyMonMaxHP
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_ptrs
++	ld de, wBattleMonHP + 1
++	ld hl, wBattleMonMaxHP
++.got_ptrs
++	push hl
++	push de
++	push bc
++	; current HP -> wBuffer3/4 and bc
++	ld a, [de]
++	ld [wBuffer3], a
++	ld c, a
++	dec de
++	ld a, [de]
++	ld [wBuffer4], a
++	ld b, a
++	; max HP -> de
++	ld a, [hli]
++	ld d, a
++	ld e, [hl]
++	call GetOpponentAbility
++	cp GLUTTONY
++	jr z, .gluttony
++	; eat when HP * 2 < max
++	sla c
++	rl b
++	jr .compare
++.gluttony
++	; eat when HP * 4 < max * 3
++	sla c
++	rl b
++	sla c
++	rl b
++	ld h, d
++	ld l, e
++	add hl, de
++	add hl, de
++	ld d, h
++	ld e, l
++.compare
++	ld a, b
++	cp d
++	jr c, .eat
++	jr nz, .no
++	ld a, c
++	cp e
++	jr c, .eat
++.no
++	pop bc
++	pop de
++	pop hl
++	and a
++	ret
++.eat
++	pop bc
++	; Ripen doubles the restored amount
++	call GetOpponentAbility
++	cp RIPEN
++	jr nz, .no_ripen
++	sla c
++.no_ripen
++	pop de
++	pop hl
++	scf
++	ret
++
+ SECTION "Mimikyu Broken Pics", ROMX
+ 
+ MimikyuBrokenFrontpic: INCBIN "gfx/pokemon/mimikyu-broken/front.animated.2bpp.lz"
+diff --git a/engine/battle/consume_held_item.asm b/engine/battle/consume_held_item.asm
+index c5e3b20..83306b9 100644
+--- a/engine/battle/consume_held_item.asm
++++ b/engine/battle/consume_held_item.asm
+@@ -33,6 +33,8 @@ ConsumeHeldItem:
+ 	ret
+ 
+ .ok
++	; record the consumed item for Harvest/Cud Chew/Unburden
++	farcall RecordConsumedItem
+ 	xor a
+ 	ld [de], a
+ 	pop af
+diff --git a/engine/battle/core.asm b/engine/battle/core.asm
+index 481bc54..567bcdd 100644
+--- a/engine/battle/core.asm
++++ b/engine/battle/core.asm
+@@ -87,8 +87,8 @@ DoBattle:
+ 	call SlideBattlePicOut
+ 	call LoadTileMapToTempTileMap
+ 	call ResetBattleParticipants
+-	xor a
+-	ld [wInAbility], a
++	; zeroes wInAbility and the held-item ability state
++	farcall InitAbilityItemState
+ 	call InitBattleMon
+ 	call ResetPlayerStatLevels
+ 	call SendOutMonText
+@@ -3858,6 +3858,10 @@ TryToRunAwayFromBattle:
+ 	dec a
+ 	jp nz, .cant_run_from_trainer
+ 
++	; Run Away always escapes wild battles, ignoring trapping
++	farcall CheckRunAwayEscape_Core
++	jp c, .can_escape
++
+ 	ld a, [wEnemySubStatus5]
+ 	bit SUBSTATUS_CANT_RUN, a
+ 	jp nz, .cant_escape
+@@ -4486,34 +4490,12 @@ HandleHPHealingItem:
+ 	ld hl, wBattleMonMaxHP
+ 
+ .go
+-; If, and only if, Pokemon's HP is less than half max, use the item.
+-; Store current HP in Buffer 3/4
+-	push bc
+-	ld a, [de]
+-	ld [wBuffer3], a
+-	add a
+-	ld c, a
+-	dec de
+-	ld a, [de]
+-	inc de
+-	ld [wBuffer4], a
+-	adc a
+-	ld b, a
+-	ld a, b
+-	cp [hl]
+-	ld a, c
+-	pop bc
+-	jr z, .equal
+-	jr c, .less
+-	ret
+-
+-.equal
+-	inc hl
+-	cp [hl]
+-	dec hl
++; Eat the Berry below half max HP (below 3/4 with Gluttony). Ripen
++; doubles the heal (c). The helper also stores current HP in wBuffer3/4
++; and returns with this routine's hl/de pointer contract intact.
++	farcall BerryThresholdCheck_Core
+ 	ret nc
+ 
+-.less
+ 	call ItemRecoveryAnim
+ 	; store max HP in wBuffer1/2
+ 	ld a, [hli]
+diff --git a/engine/battle/effect_commands.asm b/engine/battle/effect_commands.asm
+index ae04ac9..e2d25a0 100644
+--- a/engine/battle/effect_commands.asm
++++ b/engine/battle/effect_commands.asm
+@@ -195,9 +195,8 @@ CheckPlayerTurn:
+ 	and SLP
+ 	jr z, .not_asleep
+ 
+-	dec a
+-	ld [wBattleMonStatus], a
+-	and SLP
++	; Early Bird ticks the sleep counter twice (body relocated)
++	farcall EarlyBirdPlayerSleep
+ 	jr z, .woke_up
+ 
+ 	xor a
+@@ -420,9 +419,8 @@ CheckEnemyTurn:
+ 	and SLP
+ 	jr z, .not_asleep
+ 
+-	dec a
+-	ld [wEnemyMonStatus], a
+-	and a
++	; Early Bird ticks the sleep counter twice (body relocated)
++	farcall EarlyBirdEnemySleep
+ 	jr z, .woke_up
+ 
+ 	ld hl, FastAsleepText
+@@ -2413,7 +2411,8 @@ BattleCommand_ApplyDamage_:
+ .damage
+ 	push bc
+ 	call .update_damage_taken
+-	ld c, FALSE
++	; c = TRUE when the attacker's Infiltrator pierces a Substitute
++	farcall AbilitySubBypass_Core
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr nz, .damage_player
+@@ -3921,27 +3920,8 @@ BattleCommand_Poison:
+ 
+ CheckIfTargetIsPoisonType:
+ 	; z if the target is immune to poison by type (Poison or Steel).
+-	ld de, wEnemyMonType1
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .ok
+-	ld de, wBattleMonType1
+-.ok
+-	ld b, 2
+-.type_loop
+-	ld a, [de]
+-	inc de
+-	cp POISON
+-	ret z
+-	cp STEEL
+-	ret z
+-	dec b
+-	jr nz, .type_loop
+-	; `dec b` leaves Z set after the second nonmatching type. Callers use Z
+-	; to mean "Poison/Steel immune", so explicitly return NZ for a valid
+-	; poison target instead of accidentally making every dual-type check
+-	; look immune.
+-	or 1
++	; Corrosion ignores that typing (body relocated).
++	farcall CheckPoisonTypeImmunity_Core
+ 	ret
+ 
+ PoisonOpponent:
+@@ -5198,6 +5178,9 @@ BattleCommand_ForceSwitch:
+ 	jp z, .fail
+ 	cp BATTLETYPE_SUICUNE
+ 	jp z, .fail
++	; Suction Cups anchors the target in place
++	farcall SuctionCupsBlock_Core
++	jp c, .fail
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jp nz, .force_player_switch
+@@ -6383,9 +6366,8 @@ PrintParalyze:
+ 	jp StdBattleTextbox
+ 
+ CheckSubstituteOpp:
+-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+-	call GetBattleVar
+-	bit SUBSTATUS_SUBSTITUTE, a
++; nz = a Substitute is in the way (Infiltrator ignores it; body relocated)
++	farcall CheckSubstituteOpp_Core
+ 	ret
+ 
+ INCLUDE "engine/battle/move_effects/selfdestruct.asm"
+@@ -6531,27 +6513,13 @@ INCLUDE "engine/battle/move_effects/frustration.asm"
+ INCLUDE "engine/battle/move_effects/safeguard.asm"
+ 
+ SafeCheckSafeguard:
+-	push hl
+-	ld hl, wEnemyScreens
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .got_turn
+-	ld hl, wPlayerScreens
+-
+-.got_turn
+-	bit SCREENS_SAFEGUARD, [hl]
+-	pop hl
++; nz = Safeguard protects (Infiltrator ignores it; body relocated)
++	farcall SafeCheckSafeguard_Core
+ 	ret
+ 
+ BattleCommand_CheckSafeguard:
+ ; checksafeguard
+-	ld hl, wEnemyScreens
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .got_turn
+-	ld hl, wPlayerScreens
+-.got_turn
+-	bit SCREENS_SAFEGUARD, [hl]
++	call SafeCheckSafeguard
+ 	ret z
+ 	ld a, 1
+ 	ld [wAttackMissed], a
+@@ -6765,25 +6733,15 @@ CheckHiddenOpponent:
+ 
+ GetUserItem:
+ ; Return the effect of the user's item in bc, and its id at hl.
+-	ld hl, wBattleMonItem
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .go
+-	ld hl, wEnemyMonItem
+-.go
+-	ld b, [hl]
+-	jp GetItemHeldEffect
++; (Body relocated; a Klutz holder's item reports no effect.)
++	farcall GetUserItem_Core
++	ret
+ 
+ GetOpponentItem:
+ ; Return the effect of the opponent's item in bc, and its id at hl.
+-	ld hl, wEnemyMonItem
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .go
+-	ld hl, wBattleMonItem
+-.go
+-	ld b, [hl]
+-	jp GetItemHeldEffect
++; (Body relocated; a Klutz holder's item reports no effect.)
++	farcall GetOpponentItem_Core
++	ret
+ 
+ GetItemHeldEffect:
+ ; Return the effect of item b in bc.
+diff --git a/engine/battle/effect_commands_core.asm b/engine/battle/effect_commands_core.asm
+index e99b523..33822e5 100644
+--- a/engine/battle/effect_commands_core.asm
++++ b/engine/battle/effect_commands_core.asm
+@@ -2074,6 +2074,210 @@ INCLUDE "engine/battle/move_effects/triple_kick.asm"
+ INCLUDE "engine/battle/move_effects/new_move_cores.asm"
+ INCLUDE "engine/battle/move_effects/thief.asm"
+ 
++CheckDefScreenPierced:
++; a = screens mask. z = the screen has no effect: either it isn't up, or
++; the attacker's Infiltrator ignores it. Preserves de, hl; preserves bc.
++	push hl
++	push bc
++	ld b, a
++	ld hl, wEnemyScreens
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_side
++	ld hl, wPlayerScreens
++.got_side
++	ld a, [hl]
++	and b
++	jr z, .done
++	farcall GetTrueUserAbility_b
++	ld a, b
++	sub INFILTRATOR ; z when the attacker infiltrates the screen
++.done
++	pop bc
++	pop hl
++	ret
++
++UnawareStats_Player:
++; Runs right before the held-item boost in the player's damage-stat core.
++; hl = attacking stat ptr, bc = defending stat value, d = move power.
++; - the defender's Unaware ignores the attacker's stat stages: swap hl to
++;   the unmodified stat.
++; - the attacker's Unaware ignores the defender's stat stages: reload bc
++;   from the unmodified defense (re-applying any screen).
++	push de
++	push bc
++	farcall GetOppIgnorableAbility_b
++	ld a, b
++	pop bc
++	cp UNAWARE
++	jr nz, .no_defender_unaware
++	call .SwapToUnboosted
++.no_defender_unaware
++	push bc
++	farcall GetTrueUserAbility_b
++	ld a, b
++	pop bc
++	cp UNAWARE
++	jr nz, .done
++	call .ReloadUnboostedDef
++.done
++	pop de
++	ret
++
++.SwapToUnboosted
++	ld de, .swap_table
++	jp UnawareSwapScan
++
++.swap_table
++	dw wPlayerAttack,  wBattleMonAttack
++	dw wPlayerSpAtk,   wBattleMonSpclAtk
++	dw wPlayerDefense, wBattleMonDefense
++	dw wEnemyAttack,   wEnemyMonAttack
++	dw 0
++
++.ReloadUnboostedDef
++	; special when the attacking stat is a Sp.Atk pointer
++	ld a, h
++	cp HIGH(wPlayerSpAtk)
++	jr nz, .check_raw_spatk
++	ld a, l
++	cp LOW(wPlayerSpAtk)
++	jr z, .special
++.check_raw_spatk
++	ld a, h
++	cp HIGH(wBattleMonSpclAtk)
++	jr nz, .physical
++	ld a, l
++	cp LOW(wBattleMonSpclAtk)
++	jr z, .special
++.physical
++	push hl
++	ld hl, wEnemyMonDefense
++	ld a, [hli]
++	ld b, a
++	ld c, [hl]
++	pop hl
++	ld a, 1 << SCREENS_REFLECT
++	jr .rescreen
++.special
++	push hl
++	ld hl, wEnemyMonSpclDef
++	ld a, [hli]
++	ld b, a
++	ld c, [hl]
++	pop hl
++	ld a, 1 << SCREENS_LIGHT_SCREEN
++.rescreen
++	call CheckDefScreenPierced
++	ret z
++	sla c
++	rl b
++	ret
++
++UnawareStats_Enemy:
++; Enemy-core twin of UnawareStats_Player.
++	push de
++	push bc
++	farcall GetOppIgnorableAbility_b
++	ld a, b
++	pop bc
++	cp UNAWARE
++	jr nz, .no_defender_unaware
++	call .SwapToUnboosted
++.no_defender_unaware
++	push bc
++	farcall GetTrueUserAbility_b
++	ld a, b
++	pop bc
++	cp UNAWARE
++	jr nz, .done
++	call .ReloadUnboostedDef
++.done
++	pop de
++	ret
++
++.SwapToUnboosted
++	ld de, .swap_table
++	jp UnawareSwapScan
++
++.swap_table
++	dw wEnemyAttack,   wEnemyMonAttack
++	dw wEnemySpAtk,    wEnemyMonSpclAtk
++	dw wEnemyDefense,  wEnemyMonDefense
++	dw wPlayerAttack,  wBattleMonAttack
++	dw 0
++
++.ReloadUnboostedDef
++	ld a, h
++	cp HIGH(wEnemySpAtk)
++	jr nz, .check_raw_spatk
++	ld a, l
++	cp LOW(wEnemySpAtk)
++	jr z, .special
++.check_raw_spatk
++	ld a, h
++	cp HIGH(wEnemyMonSpclAtk)
++	jr nz, .physical
++	ld a, l
++	cp LOW(wEnemyMonSpclAtk)
++	jr z, .special
++.physical
++	push hl
++	ld hl, wBattleMonDefense
++	ld a, [hli]
++	ld b, a
++	ld c, [hl]
++	pop hl
++	ld a, 1 << SCREENS_REFLECT
++	jr .rescreen
++.special
++	push hl
++	ld hl, wBattleMonSpclDef
++	ld a, [hli]
++	ld b, a
++	ld c, [hl]
++	pop hl
++	ld a, 1 << SCREENS_LIGHT_SCREEN
++.rescreen
++	call CheckDefScreenPierced
++	ret z
++	sla c
++	rl b
++	ret
++
++UnawareSwapScan:
++; de = table of (boosted ptr, unboosted ptr) pairs, 0-terminated.
++; If hl matches a boosted ptr, replace hl with its unboosted twin.
++	push bc
++.loop
++	ld a, [de]
++	ld c, a
++	inc de
++	ld a, [de]
++	ld b, a
++	inc de
++	or c
++	jr z, .no_match
++	ld a, h
++	cp b
++	jr nz, .next
++	ld a, l
++	cp c
++	jr z, .match
++.next
++	inc de
++	inc de
++	jr .loop
++.match
++	ld a, [de]
++	ld l, a
++	inc de
++	ld a, [de]
++	ld h, a
++.no_match
++	pop bc
++	ret
++
+ BattleDamageStats_Core:
+ ; damagestats (body; see the stub in effect_commands.asm)
+ 
+@@ -2105,8 +2309,8 @@ PlayerAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wEnemyScreens]
+-	bit SCREENS_REFLECT, a
++	ld a, 1 << SCREENS_REFLECT
++	call CheckDefScreenPierced
+ 	jr z, .physicalcrit
+ 	sla c
+ 	rl b
+@@ -2135,7 +2339,7 @@ PlayerAttackDamage_Core:
+ 	pop bc
+ 	ld hl, wPlayerAttack
+ 	cp EFFECT_SACRED_SWORD
+-	jr z, .thickclub
++	jp z, .thickclub
+ 
+ 	cp EFFECT_BODY_PRESS
+ 	jr nz, .not_bp_boosted
+@@ -2173,8 +2377,8 @@ PlayerAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wEnemyScreens]
+-	bit SCREENS_LIGHT_SCREEN, a
++	ld a, 1 << SCREENS_LIGHT_SCREEN
++	call CheckDefScreenPierced
+ 	jr z, .specialcrit
+ 	sla c
+ 	rl b
+@@ -2198,8 +2402,8 @@ PlayerAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wEnemyScreens]
+-	bit SCREENS_REFLECT, a
++	ld a, 1 << SCREENS_REFLECT
++	call CheckDefScreenPierced
+ 	jr z, .psystrikecrit
+ 	sla c
+ 	rl b
+@@ -2217,11 +2421,13 @@ PlayerAttackDamage_Core:
+ 
+ .lightball
+ ; Note: Returns player special attack at hl in hl.
++	call UnawareStats_Player
+ 	call LightBallBoost
+ 	jr .done
+ 
+ .thickclub
+ ; Note: Returns player attack at hl in hl.
++	call UnawareStats_Player
+ 	call ThickClubBoost
+ 
+ .done
+@@ -2441,8 +2647,8 @@ EnemyAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wPlayerScreens]
+-	bit SCREENS_REFLECT, a
++	ld a, 1 << SCREENS_REFLECT
++	call CheckDefScreenPierced
+ 	jr z, .physicalcrit
+ 	sla c
+ 	rl b
+@@ -2471,7 +2677,7 @@ EnemyAttackDamage_Core:
+ 	pop bc
+ 	ld hl, wEnemyAttack
+ 	cp EFFECT_SACRED_SWORD
+-	jr z, .thickclub
++	jp z, .thickclub
+ 
+ 	cp EFFECT_BODY_PRESS
+ 	jr nz, .not_bp_boosted
+@@ -2509,8 +2715,8 @@ EnemyAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wPlayerScreens]
+-	bit SCREENS_LIGHT_SCREEN, a
++	ld a, 1 << SCREENS_LIGHT_SCREEN
++	call CheckDefScreenPierced
+ 	jr z, .specialcrit
+ 	sla c
+ 	rl b
+@@ -2533,8 +2739,8 @@ EnemyAttackDamage_Core:
+ 	ld b, a
+ 	ld c, [hl]
+ 
+-	ld a, [wPlayerScreens]
+-	bit SCREENS_REFLECT, a
++	ld a, 1 << SCREENS_REFLECT
++	call CheckDefScreenPierced
+ 	jr z, .psystrikecrit
+ 	sla c
+ 	rl b
+@@ -2550,10 +2756,12 @@ EnemyAttackDamage_Core:
+ 	ld hl, wEnemySpAtk
+ 
+ .lightball
++	call UnawareStats_Enemy
+ 	call LightBallBoost
+ 	jr .done
+ 
+ .thickclub
++	call UnawareStats_Enemy
+ 	call ThickClubBoost
+ 
+ .done
+diff --git a/engine/battle/move_effects/new_move_cores.asm b/engine/battle/move_effects/new_move_cores.asm
+index a424e78..bce625e 100644
+--- a/engine/battle/move_effects/new_move_cores.asm
++++ b/engine/battle/move_effects/new_move_cores.asm
+@@ -275,6 +275,14 @@ BattleKnockOff_Core:
+ 	ld a, [hl]
+ 	and a
+ 	ret z
++	; Sticky Hold keeps the victim's item on (Mold Breaker pierces)
++	push hl
++	farcall GetOppIgnorableAbility_b
++	ld a, b
++	cp STICKY_HOLD
++	pop hl
++	jr z, .sticky_hold
++	ld a, [hl]
+ 	; Can't knock off mail
+ 	; Keep the item id on the stack across ItemIsMail and the party-struct
+ 	; lookup. wNamedObjectIndexBuffer is shared scratch and either call may
+@@ -302,6 +310,14 @@ BattleKnockOff_Core:
+ .remove
+ 	xor a
+ 	ld [hl], a
++	; the victim lost its item (for Unburden)
++	ldh a, [hBattleTurn]
++	and a
++	ld c, 1
++	jr z, .got_side
++	dec c
++.got_side
++	farcall MarkSideLostItem_Core
+ 	pop af
+ 	ld b, a
+ 	farcall AbilityBufferItemName_b
+@@ -312,6 +328,10 @@ BattleKnockOff_Core:
+ 	pop af
+ 	ret
+ 
++.sticky_hold
++	farcall StickyHoldAnnounce_Core
++	ret
++
+ BattleRoost_Core:
+ ; Removes the user's Flying type until end of turn.
+ ; Type slot is marked with CURSE_T (???) and restored in HandleRoost.
+diff --git a/engine/battle/move_effects/thief.asm b/engine/battle/move_effects/thief.asm
+index 0df0520..f28c9a2 100644
+--- a/engine/battle/move_effects/thief.asm
++++ b/engine/battle/move_effects/thief.asm
+@@ -19,8 +19,18 @@ BattleThief_Core:
+ 	and a
+ 	ret z
+ 
++; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
++
++	push hl
++	farcall GetOppIgnorableAbility_b
++	ld a, b
++	cp STICKY_HOLD
++	pop hl
++	jr z, .sticky_hold
++
+ ; Can't steal mail.
+ 
++	ld a, [hl]
+ 	ld [wNamedObjectIndexBuffer], a
+ 	ld d, a
+ 	farcall ItemIsMail
+@@ -48,6 +58,9 @@ BattleThief_Core:
+ 	ld a, [wNamedObjectIndexBuffer]
+ 	ld [hl], a
+ 	ld [de], a
++	; the enemy side lost its item (for Unburden)
++	ld c, 1
++	farcall MarkSideLostItem_Core
+ 	jr .stole
+ 
+ .enemy
+@@ -66,8 +79,18 @@ BattleThief_Core:
+ 	and a
+ 	ret z
+ 
++; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
++
++	push hl
++	farcall GetOppIgnorableAbility_b
++	ld a, b
++	cp STICKY_HOLD
++	pop hl
++	jr z, .sticky_hold
++
+ ; Can't steal mail!
+ 
++	ld a, [hl]
+ 	ld [wNamedObjectIndexBuffer], a
+ 	ld d, a
+ 	farcall ItemIsMail
+@@ -89,12 +112,19 @@ BattleThief_Core:
+ 	ld a, [wNamedObjectIndexBuffer]
+ 	ld [hl], a
+ 	ld [de], a
++	; the player side lost its item (for Unburden)
++	ld c, 0
++	farcall MarkSideLostItem_Core
+ 
+ .stole
+ 	call GetItemName
+ 	ld hl, StoleText
+ 	jp StdBattleTextbox
+ 
++.sticky_hold
++	farcall StickyHoldAnnounce_Core
++	ret
++
+ .playeritem
+ 	ld a, 1
+ 	call BattlePartyAttr
+diff --git a/wram.asm b/wram.asm
+index feeb06b..f195b99 100644
+--- a/wram.asm
++++ b/wram.asm
+@@ -3082,6 +3082,17 @@ wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
+ wAbilityName:: ds 17 ; longest ability name + @
+ wAbilityAttrBackup:: ds SLIDEOUT_WIDTH * 2 * 2 ; original attrs under the banners (player, then enemy)
+ wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
++; Held-item ability state (Gluttony/Harvest/Cud Chew/Unburden/Pickpocket).
++; BANKED (bank 2): access only through the Read/WriteItemState helpers in
++; abilities_engine.asm. Zeroed at battle start; each side's pair is zeroed
++; again when a mon enters on that side.
++; flags: bit 0 = ate a held Berry, bit 1 = lost its item (Thief/Knock Off/
++; Pickpocket), bit 2 = Cud Chew is armed for the NEXT end of turn,
++; bit 3 = Cud Chew replay is due this end of turn
++wPlayerItemStateFlags:: db
++wEnemyItemStateFlags:: db
++wPlayerConsumedItem:: db
++wEnemyConsumedItem:: db
+ 
+ 
+ SECTION "16-bit WRAM tables", WRAMX

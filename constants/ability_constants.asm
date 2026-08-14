@@ -154,4 +154,25 @@
 	const POISON_PUPPETEER
 	const TOXIC_DEBRIS
 	const QUEENLY_MAJESTY
+	const GLUTTONY
+	const RUN_AWAY
+	const INFILTRATOR
+	const LEAF_GUARD
+	const EARLY_BIRD
+	const UNAWARE
+	const STENCH
+	const ANTICIPATION
+	const PICKPOCKET
+	const SHIELD_DUST
+	const CORROSION
+	const HARVEST
+	const DOWNLOAD
+	const SUCTION_CUPS
+	const STICKY_HOLD
+	const UNBURDEN
+	const KLUTZ
+	const RIPEN
+	const CUD_CHEW
+	const FOREWARN
+	const SUPERSWEET_SYRUP
 NUM_ABILITIES EQU const_value
