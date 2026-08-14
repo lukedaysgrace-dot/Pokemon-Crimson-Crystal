@@ -126,5 +126,9 @@ SOUND_INPUT_GLOBAL_F EQU 7
 DANGER_PITCH_F EQU 4
 DANGER_ON_F    EQU 7
 
+; wDangerBeepCount
+; How many times the low-health alarm beeps before going silent.
+DANGER_BEEP_LIMIT EQU 3
+
 ; wMusicFade
 MUSIC_FADE_IN_F EQU 7
