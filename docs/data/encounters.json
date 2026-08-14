@@ -16586,7 +16586,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -16936,7 +16936,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -16950,7 +16950,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -19017,8 +19017,8 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 2,
-    "pokemon": "Flittle",
-    "const": "FLITTLE",
+    "pokemon": "Finizen",
+    "const": "FINIZEN",
     "rate": 10,
     "chance": 30,
     "condition": null,
@@ -19059,10 +19059,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 3,
-    "pokemon": "Espathra",
-    "const": "ESPATHRA",
+    "pokemon": "Finizen",
+    "const": "FINIZEN",
     "rate": 10,
-    "chance": 30,
+    "chance": 20,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -19087,10 +19087,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 3,
-    "pokemon": "Lotad",
-    "const": "LOTAD",
+    "pokemon": "Palafin",
+    "const": "PALAFIN",
     "rate": 10,
-    "chance": 10,
+    "chance": 30,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -19101,10 +19101,10 @@
     "method": "Grass / Cave",
     "time": "Day",
     "level": 3,
-    "pokemon": "Rattata",
-    "const": "RATTATA",
+    "pokemon": "Palafin",
+    "const": "PALAFIN",
     "rate": 10,
-    "chance": 20,
+    "chance": 10,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_grass.asm"
@@ -21248,7 +21248,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_QWILFISH",
+    "group": "FISHGROUP_SHORE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -21724,7 +21724,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_QWILFISH",
+    "group": "FISHGROUP_SHORE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -21738,7 +21738,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_QWILFISH",
+    "group": "FISHGROUP_SHORE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -26787,8 +26787,8 @@
     "method": "Surf",
     "time": "Any",
     "level": 20,
-    "pokemon": "Mantine",
-    "const": "MANTINE",
+    "pokemon": "Finizen",
+    "const": "FINIZEN",
     "rate": 6,
     "chance": 10,
     "condition": null,
@@ -27053,6 +27053,20 @@
     "method": "Surf",
     "time": "Any",
     "level": 20,
+    "pokemon": "Finizen",
+    "const": "FINIZEN",
+    "rate": 6,
+    "chance": 10,
+    "condition": null,
+    "group": null,
+    "source": "data/wild/johto_water.asm"
+  },
+  {
+    "location_const": "ROUTE_41",
+    "location": "Route 41",
+    "method": "Surf",
+    "time": "Any",
+    "level": 20,
     "pokemon": "Mantine",
     "const": "MANTINE",
     "rate": 6,
@@ -27071,20 +27085,6 @@
     "const": "TENTACOOL",
     "rate": 6,
     "chance": 60,
-    "condition": null,
-    "group": null,
-    "source": "data/wild/johto_water.asm"
-  },
-  {
-    "location_const": "ROUTE_41",
-    "location": "Route 41",
-    "method": "Surf",
-    "time": "Any",
-    "level": 20,
-    "pokemon": "Wimpod",
-    "const": "WIMPOD",
-    "rate": 6,
-    "chance": 10,
     "condition": null,
     "group": null,
     "source": "data/wild/johto_water.asm"
@@ -27114,7 +27114,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -27590,7 +27590,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {
@@ -27604,7 +27604,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "FISHGROUP_SHORE",
+    "group": "FISHGROUP_LAKE",
     "source": "data/wild/fish.asm"
   },
   {

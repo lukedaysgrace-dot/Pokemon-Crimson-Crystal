@@ -1394,7 +1394,7 @@
     "category": "Categorize Physical",
     "accuracy": 100,
     "pp": 15,
-    "chance": 0
+    "chance": 20
   },
   {
     "const": "CLAMP",
@@ -1570,7 +1570,7 @@
     "category": "Categorize Physical",
     "accuracy": 90,
     "pp": 5,
-    "chance": 0
+    "chance": 30
   },
   {
     "const": "TRANSFORM",
@@ -3583,7 +3583,7 @@
     "category": "Categorize Physical",
     "accuracy": 100,
     "pp": 15,
-    "chance": 20
+    "chance": 30
   },
   {
     "const": "KNOCK_OFF",
@@ -3869,7 +3869,7 @@
     "category": "Categorize Special",
     "accuracy": 90,
     "pp": 5,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "LEAF_STORM",
@@ -3880,7 +3880,7 @@
     "category": "Categorize Special",
     "accuracy": 90,
     "pp": 5,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "FAKE_OUT",
@@ -4155,7 +4155,7 @@
     "category": "Categorize Physical",
     "accuracy": 100,
     "pp": 5,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "SHADOW_BONE",
@@ -4221,7 +4221,7 @@
     "category": "Categorize Special",
     "accuracy": 100,
     "pp": 5,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "SHELLSIDEARM",
@@ -4320,7 +4320,7 @@
     "category": "Categorize Special",
     "accuracy": 100,
     "pp": 5,
-    "chance": 0
+    "chance": 100
   },
   {
     "const": "BANEFUL_BUNKER",
@@ -4364,7 +4364,7 @@
     "category": "Categorize Physical",
     "accuracy": 90,
     "pp": 15,
-    "chance": 0
+    "chance": 100
   },
   {
     "const": "QUIVER_DANCE",
@@ -4430,7 +4430,7 @@
     "category": "Categorize Physical",
     "accuracy": 100,
     "pp": 5,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "FIERY_DANCE",
@@ -4496,7 +4496,7 @@
     "category": "Categorize Physical",
     "accuracy": 90,
     "pp": 10,
-    "chance": 100
+    "chance": 0
   },
   {
     "const": "CIRCLE_THROW",
@@ -4541,5 +4541,16 @@
     "accuracy": 90,
     "pp": 10,
     "chance": 0
+  },
+  {
+    "const": "LUMINA_CRASH",
+    "name": "LUMINA CRASH",
+    "effect": "Effect Sp Def Down 2 Hit",
+    "power": 80,
+    "type": "Psychic",
+    "category": "Categorize Special",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 100
   }
 ]
