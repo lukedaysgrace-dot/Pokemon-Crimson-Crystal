@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/vileplume/front.dimensions"
-	abilities_for VILEPLUME, CHLOROPHYLL, EFFECT_SPORE, NO_ABILITY
+	abilities_for VILEPLUME, CHLOROPHYLL, POISON_PUPPETEER, EFFECT_SPORE
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups
