@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/muk_alolan/front.dimensions"
-	abilities_for MUK_ALOLAN, POISON_TOUCH, GLUTTONY, NO_ABILITY
+	abilities_for MUK_ALOLAN, POISON_TOUCH, GLUTTONY, POISON_PUPPETEER
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
