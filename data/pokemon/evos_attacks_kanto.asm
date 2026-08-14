@@ -2936,6 +2936,7 @@ ScytherEvosAttacks:
 	db 0 ; no more level-up moves
 
 JynxEvosAttacks:
+	dbbw EVOLVE_LEVEL, 45, MESMERIA
 	db 0 ; no more evolutions
 	dbw 1, POWDER_SNOW
 	dbw 1, POUND
