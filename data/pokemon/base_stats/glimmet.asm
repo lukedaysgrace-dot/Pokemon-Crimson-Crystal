@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/glimmet/front.dimensions"
-	abilities_for GLIMMET, TOXIC_DEBRIS, NO_ABILITY, MERCILESS
+	abilities_for GLIMMET, TOXIC_DEBRIS, CORROSION, MERCILESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups

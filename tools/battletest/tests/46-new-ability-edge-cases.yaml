@@ -1,0 +1,191 @@
+# Canonical edge cases for the August 2026 ability batch.
+#
+# These deliberately pin interactions that a basic ability smoke test cannot
+# distinguish. Several cases are expected to fail until their corresponding
+# implementation bug is fixed; the assertions describe the intended behavior.
+
+# ---- Unaware --------------------------------------------------------------
+
+- name: "New ability edge: neutral Psystrike uses the target's raw Defense"
+  id: unaware_psystrike_raw_def_control
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [PSYSTRIKE] }
+  enemy: { species: CHANSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 0
+
+- name: "New ability edge: Unaware Psystrike ignores boosted Defense, not raw Sp Def"
+  player: { species: MEW, level: 30, ability: UNAWARE, moves: [PSYSTRIKE] }
+  enemy: { species: CHANSEY, level: 100, ability: NO_ABILITY, stages: { def: 6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('unaware_psystrike_raw_def_control')['enemy']['damage']
+
+- name: "New ability edge: Unaware ignores lowered target evasion too"
+  # At neutral evasion, Zap Cannon's 127 accuracy misses the forced 180 roll.
+  # A -6 evasion stage would make it hit unless Unaware ignores the drop.
+  player: { species: MEW, level: 50, ability: UNAWARE, moves: [ZAP_CANNON] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, stages: { eva: -6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.status == 0
+
+# ---- Shield Dust ----------------------------------------------------------
+
+- name: "New ability edge: Shield Dust blocks King's Rock flinching"
+  # Mew is faster, but Caterpie survives Tackle and must still take its turn.
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: KINGS_ROCK, moves: [TACKLE] }
+  enemy: { species: CATERPIE, level: 50, ability: SHIELD_DUST, moves: [TACKLE] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp < player.start_hp
+
+- name: "New ability edge: Shield Dust blocks Stench flinching"
+  # Level 75 Gloom is faster than level 50 Caterpie without KOing it.
+  player: { species: GLOOM, level: 75, ability: STENCH, moves: [TACKLE] }
+  enemy: { species: CATERPIE, level: 50, ability: SHIELD_DUST, moves: [TACKLE] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp < player.start_hp
+
+# ---- Leaf Guard -----------------------------------------------------------
+
+- name: "New ability edge: Leaf Guard blocks Toxic Orb in sun"
+  player: { species: TANGELA, level: 50, ability: LEAF_GUARD, item: TOXIC_ORB, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status == 0
+    - player.item == 'TOXIC_ORB'
+
+- name: "New ability edge: Leaf Guard blocks Toxic Spikes in sun"
+  # One Toxic Spikes layer is installed on the player's side after initial
+  # entry. Voluntarily switching initializes Tangela through the real hazard
+  # path, where Leaf Guard must prevent poison.
+  player: { species: SENTRET, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  player2: { species: TANGELA, level: 50, ability: LEAF_GUARD, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  player_screens: 32
+  weather: sun
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'TANGELA'
+    - player.status == 0
+
+# ---- Held-item ownership and escape --------------------------------------
+
+- name: "New ability edge: Sticky Hold blocks Trick"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: BERRY, moves: [TRICK] }
+  enemy: { species: GRIMER, level: 50, ability: STICKY_HOLD, item: GOLD_BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY'
+    - enemy.item == 'GOLD_BERRY'
+
+- name: "New ability edge: Neutralizing Gas suppresses Run Away"
+  # Sentret is far slower, so after Run Away is suppressed the forced-high
+  # ordinary escape roll must fail.
+  player: { species: SENTRET, level: 5, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy: { species: KOFFING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  move_script: [run]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wBattleResult') == 0
+    - not text_seen('RUN AWAY')
+
+- name: "New ability edge: Klutz suppresses Smoke Ball escape"
+  # Golett is far slower, so without an effective Smoke Ball the first
+  # forced-high ordinary escape roll must fail.
+  player: { species: GOLETT, level: 5, ability: KLUTZ, item: SMOKE_BALL, moves: [SPLASH] }
+  enemy: { species: MEWTWO, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [run]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wBattleResult') == 0
+    - player.item == 'SMOKE_BALL'
+    - not text_seen('SMOKE BALL')
+
+# ---- Barrier and force-switch timing -------------------------------------
+
+- name: "New ability edge: Infiltrator bypasses an initialized Substitute"
+  # The substatus bit alone is not a valid Substitute fixture; initialize its
+  # one-byte HP too. Infiltrator damages the holder without touching the sub.
+  player: { species: ZUBAT, level: 50, ability: INFILTRATOR, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram:
+    wEnemySubstituteHP: 255
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wEnemySubstituteHP') == 255
+    - (enemy.substatus[3] & 16) != 0
+
+- name: "New ability edge: a missed Roar does not activate Suction Cups"
+  player: { species: MEW, level: 100, ability: NO_ABILITY, stages: { acc: -6 }, moves: [ROAR] }
+  enemy: { species: OCTILLERY, level: 5, ability: SUCTION_CUPS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wBattleResult') == 0
+    - not text_seen('SUCTION CUPS')
+
+# ---- Once-per-battle entry state -----------------------------------------
+
+- name: "New ability edge: Supersweet Syrup activates only once per battle"
+  # Initial entry lowers evasion 7 -> 6. Switching away and back must not
+  # lower it to 5 a second time.
+  player: { species: DIPPLIN, level: 50, ability: SUPERSWEET_SYRUP, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: ["switch:2", "switch:1"]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.species == 'DIPPLIN'
+    - wram('wCurBattleMon') == 0
+    - wram('wPlayerSyrupUsedFlags') == 1
+    - enemy.stat_levels[6] == 6
+
+# ---- Post-review double-check probes --------------------------------------
+
+- name: "New ability edge: Harvest is guaranteed in harsh sunlight"
+  player: { species: EXEGGUTOR, level: 50, ability: HARVEST, item: GOLD_BERRY, hp: 35, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high   # the no-proc roll: only the sun guarantee can restore it
+  turns: 2
+  assert:
+    - player.item == 'GOLD_BERRY'
+
+- name: "New ability edge: Gluttony waits above three quarters"
+  player: { species: SNORLAX, level: 50, ability: GLUTTONY, item: GOLD_BERRY, hp: 90, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'GOLD_BERRY'
+
+- name: "New ability edge: Pickpocket does not steal while already holding"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: KINGS_ROCK, moves: [TACKLE] }
+  enemy:  { species: SNEASEL, level: 50, ability: PICKPOCKET, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'KINGS_ROCK'
+    - enemy.item == 'BERRY'
