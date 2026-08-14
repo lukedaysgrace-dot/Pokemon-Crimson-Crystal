@@ -195,9 +195,8 @@ CheckPlayerTurn:
 	and SLP
 	jr z, .not_asleep
 
-	dec a
-	ld [wBattleMonStatus], a
-	and SLP
+	; Early Bird ticks the sleep counter twice (body relocated)
+	farcall EarlyBirdPlayerSleep
 	jr z, .woke_up
 
 	xor a
@@ -420,9 +419,8 @@ CheckEnemyTurn:
 	and SLP
 	jr z, .not_asleep
 
-	dec a
-	ld [wEnemyMonStatus], a
-	and a
+	; Early Bird ticks the sleep counter twice (body relocated)
+	farcall EarlyBirdEnemySleep
 	jr z, .woke_up
 
 	ld hl, FastAsleepText
@@ -1214,8 +1212,18 @@ BattleCommand_Critical:
 	ld a, [wBattleMonSpecies]
 
 .Item:
-	ld c, 0
+	push af
+	push hl
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	ld b, 0
+	cp KLUTZ
+	jr z, .got_item
 	ld b, [hl]
+.got_item
+	pop af
+	ld c, 0
 	call GetPokemonIndexFromID
 
 	ld a, l
@@ -1461,9 +1469,26 @@ BattleCommand_Stab:
 	call .GetMatchupValue
 	and a
 	jr nz, .NotImmune
+	; Corrosion only pierces Poison's immunity against Steel for the purpose
+	; of inflicting poison. Keep damaging Poison attacks immune as normal.
+	push hl
+	push de
+	push bc
+	farcall CorrosionPiercesCurrentMove_Core
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	and a
+	jr nz, .corrosion_neutral
+.immune
+	xor a
 	inc a
 	ld [wAttackMissed], a
 	xor a
+	jr .NotImmune
+.corrosion_neutral
+	ld a, EFFECTIVE
 .NotImmune:
 	ldh [hMultiplier], a
 	add b
@@ -1539,6 +1564,18 @@ BattleCommand_Stab:
 
 .end
 	call BattleCheckTypeMatchup
+	; BattleCheckTypeMatchup recomputes the raw chart value. Preserve the
+	; Corrosion exception here as well so its neutral value is not overwritten.
+	ld a, [wTypeMatchup]
+	and a
+	jr nz, .merge_type_matchup
+	farcall CorrosionPiercesCurrentMove_Core
+	ld a, b
+	and a
+	jr z, .merge_type_matchup
+	ld a, EFFECTIVE
+	ld [wTypeMatchup], a
+.merge_type_matchup
 	ld a, [wTypeMatchup]
 	ld b, a
 	ld a, [wTypeModifier]
@@ -2413,7 +2450,8 @@ BattleCommand_ApplyDamage_:
 .damage
 	push bc
 	call .update_damage_taken
-	ld c, FALSE
+	; c = TRUE when the attacker's Infiltrator pierces a Substitute
+	farcall AbilitySubBypass_Core
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .damage_player
@@ -2451,10 +2489,19 @@ BattleCommand_ApplyDamage_:
 	jp StdBattleTextbox
 
 .update_damage_taken
+	; Infiltrator routes damage through a Substitute to the holder, so the
+	; hit still counts for damage-taken bookkeeping and Rage Fist.
+	push bc
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop bc
+	cp INFILTRATOR
+	jr z, .record_damage_taken
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
+.record_damage_taken
 
 	; Rage Fist: count hits taken by the defender
 	push de
@@ -3921,27 +3968,10 @@ BattleCommand_Poison:
 
 CheckIfTargetIsPoisonType:
 	; z if the target is immune to poison by type (Poison or Steel).
-	ld de, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld de, wBattleMonType1
-.ok
-	ld b, 2
-.type_loop
-	ld a, [de]
-	inc de
-	cp POISON
-	ret z
-	cp STEEL
-	ret z
-	dec b
-	jr nz, .type_loop
-	; `dec b` leaves Z set after the second nonmatching type. Callers use Z
-	; to mean "Poison/Steel immune", so explicitly return NZ for a valid
-	; poison target instead of accidentally making every dual-type check
-	; look immune.
-	or 1
+	; Corrosion ignores that typing (body relocated).
+	push hl
+	farcall CheckPoisonTypeImmunity_Core
+	pop hl
 	ret
 
 PoisonOpponent:
@@ -4710,6 +4740,11 @@ CheckMist:
 	ret
 
 .check_mist
+	; Infiltrator bypasses Mist just as it bypasses screens and Safeguard.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp INFILTRATOR
+	ret z
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_MIST, a
@@ -5198,12 +5233,16 @@ BattleCommand_ForceSwitch:
 	jp z, .fail
 	cp BATTLETYPE_SUICUNE
 	jp z, .fail
-	ldh a, [hBattleTurn]
-	and a
-	jp nz, .force_player_switch
+	; A missed move never reaches the target's anchoring ability.
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .missed
+	; Suction Cups anchors the target in place
+	farcall SuctionCupsBlock_Core
+	jp c, .fail
+	ldh a, [hBattleTurn]
+	and a
+	jp nz, .force_player_switch
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer
@@ -6383,9 +6422,10 @@ PrintParalyze:
 	jp StdBattleTextbox
 
 CheckSubstituteOpp:
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
+; nz = a Substitute is in the way (Infiltrator ignores it; body relocated)
+	push hl
+	farcall CheckSubstituteOpp_Core
+	pop hl
 	ret
 
 INCLUDE "engine/battle/move_effects/selfdestruct.asm"
@@ -6531,27 +6571,15 @@ INCLUDE "engine/battle/move_effects/frustration.asm"
 INCLUDE "engine/battle/move_effects/safeguard.asm"
 
 SafeCheckSafeguard:
+; nz = Safeguard protects (Infiltrator ignores it; body relocated)
 	push hl
-	ld hl, wEnemyScreens
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_turn
-	ld hl, wPlayerScreens
-
-.got_turn
-	bit SCREENS_SAFEGUARD, [hl]
+	farcall SafeCheckSafeguard_Core
 	pop hl
 	ret
 
 BattleCommand_CheckSafeguard:
 ; checksafeguard
-	ld hl, wEnemyScreens
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_turn
-	ld hl, wPlayerScreens
-.got_turn
-	bit SCREENS_SAFEGUARD, [hl]
+	call SafeCheckSafeguard
 	ret z
 	ld a, 1
 	ld [wAttackMissed], a
@@ -6765,25 +6793,15 @@ CheckHiddenOpponent:
 
 GetUserItem:
 ; Return the effect of the user's item in bc, and its id at hl.
-	ld hl, wBattleMonItem
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .go
-	ld hl, wEnemyMonItem
-.go
-	ld b, [hl]
-	jp GetItemHeldEffect
+; (Body relocated; a Klutz holder's item reports no effect.)
+	farcall GetUserItem_Core
+	ret
 
 GetOpponentItem:
 ; Return the effect of the opponent's item in bc, and its id at hl.
-	ld hl, wEnemyMonItem
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .go
-	ld hl, wBattleMonItem
-.go
-	ld b, [hl]
-	jp GetItemHeldEffect
+; (Body relocated; a Klutz holder's item reports no effect.)
+	farcall GetOpponentItem_Core
+	ret
 
 GetItemHeldEffect:
 ; Return the effect of item b in bc.
