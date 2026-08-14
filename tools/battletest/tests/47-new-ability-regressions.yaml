@@ -1,0 +1,338 @@
+# Focused interaction regressions for the August 2026 ability batch.
+#
+# These cases complement 45-new-abilities.yaml and
+# 46-new-ability-edge-cases.yaml. They favor stable state assertions over
+# presentation text and use paired controls where a fixture could otherwise
+# pass without exercising the intended interaction.
+
+# ---- Shield Dust ----------------------------------------------------------
+
+- name: "New ability regression: Shield Dust does not block Flame Charge's self-boost"
+  # Power-Up Punch is not present in this move set. Flame Charge exercises the
+  # same important distinction: its secondary effect benefits the attacker,
+  # so the defender's Shield Dust must not suppress it.
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FLAME_CHARGE] }
+  enemy: { species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.stat_levels[2] == 8
+
+# ---- Stench non-stacking --------------------------------------------------
+
+# Stench is intentionally silent and setting FLINCHED twice is idempotent, so
+# ordinary end-state assertions cannot tell whether it made an extra roll.
+# These paired seeded cases compare how many bytes the battle consumed. A
+# Stench implementation that stacks with the move or King's Rock consumes one
+# extra byte even though the duplicated FLINCHED bit looks identical.
+
+- name: "New ability regression control: native flinch move RNG count"
+  id: stench_native_rng_control
+  player: { species: AERODACTYL, level: 50, ability: NO_ABILITY, moves: [BITE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 20
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "New ability regression: Stench does not add a roll to a native flinch move"
+  player: { species: AERODACTYL, level: 50, ability: STENCH, moves: [BITE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 20
+  turns: 1
+  assert:
+    - wram('wLinkBattleRNCount') == result('stench_native_rng_control')['rng_count']
+
+- name: "New ability regression control: King's Rock RNG count"
+  id: stench_kings_rock_rng_control
+  player: { species: AERODACTYL, level: 50, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 20
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "New ability regression: Stench shares King's Rock's added-flinch slot"
+  player: { species: AERODACTYL, level: 50, ability: STENCH, item: KINGS_ROCK, moves: [AERIAL_ACE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 20
+  turns: 1
+  assert:
+    - wram('wLinkBattleRNCount') == result('stench_kings_rock_rng_control')['rng_count']
+
+# ---- Run Away / Early Bird suppression -----------------------------------
+
+- name: "New ability regression: Run Away cannot flee a trainer battle"
+  player: { species: SENTRET, level: 100, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy: { species: CATERPIE, level: 5, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy2: { species: WEEDLE, level: 5, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [run]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wBattleResult') == 0
+    - player.hp < player.start_hp
+
+- name: "New ability regression: Neutralizing Gas suppresses Early Bird"
+  player: { species: DODUO, level: 50, ability: EARLY_BIRD, status_byte: 7, moves: [SPLASH] }
+  enemy: { species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.status & 7) == 6
+
+# ---- Berry Juice is not a Berry ------------------------------------------
+
+- name: "New ability regression: Gluttony does not trigger Berry Juice early"
+  player: { species: SNORLAX, level: 50, ability: GLUTTONY, hp: 60, item: BERRY_JUICE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY_JUICE'
+    - player.hp == player.start_hp
+
+- name: "New ability regression: Ripen does not double Berry Juice recovery"
+  player: { species: APPLETUN, level: 50, ability: RIPEN, hp: 25, item: BERRY_JUICE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp - player.start_hp == 20
+
+- name: "New ability regression: Cud Chew does not replay Berry Juice"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, hp: 25, item: BERRY_JUICE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp - player.start_hp == 20
+
+- name: "New ability regression: Harvest does not restore Berry Juice"
+  player: { species: EXEGGUTOR, level: 50, ability: HARVEST, hp: 25, item: BERRY_JUICE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp - player.start_hp == 20
+
+# ---- Harvest records every real Berry consumer ---------------------------
+
+- name: "New ability regression: Harvest restores a consumed status Berry"
+  player: { species: EXEGGUTOR, level: 50, ability: HARVEST, status_byte: 8, item: PSNCUREBERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.status == 0
+    - player.item == 'PSNCUREBERRY'
+
+- name: "New ability regression: Harvest restores a consumed MysteryBerry"
+  player: { species: EXEGGUTOR, level: 30, ability: HARVEST, item: MYSTERYBERRY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 0, 0, 0]
+    wPartyMon1PP: [1, 0, 0, 0]
+  weather: sun
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.item == 'MYSTERYBERRY'
+    - player.pp[0] == 4
+
+# ---- Leaf Guard -----------------------------------------------------------
+
+- name: "New ability regression: Leaf Guard makes Rest fail in sun"
+  player: { species: TANGELA, level: 50, ability: LEAF_GUARD, hp: 50, moves: [REST] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status == 0
+    - player.hp == player.start_hp
+
+- name: "New ability regression control: Baneful Bunker poisons Leaf Guard outside sun"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [BANEFUL_BUNKER] }
+  enemy: { species: TANGELA, level: 50, ability: LEAF_GUARD, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - (enemy.status & 8) != 0
+
+- name: "New ability regression: Leaf Guard blocks Baneful Bunker poison in sun"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [BANEFUL_BUNKER] }
+  enemy: { species: TANGELA, level: 50, ability: LEAF_GUARD, moves: [TACKLE] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.status == 0
+
+# ---- Klutz ---------------------------------------------------------------
+
+- name: "New ability regression control: Lucky Punch raises Chansey's critical stage"
+  player: { species: CHANSEY, level: 50, ability: NO_ABILITY, item: LUCKY_PUNCH, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wCriticalHit') != 0
+
+- name: "New ability regression: Klutz suppresses Lucky Punch"
+  player: { species: CHANSEY, level: 50, ability: KLUTZ, item: LUCKY_PUNCH, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wCriticalHit') == 0
+
+- name: "New ability regression: Klutz suppresses Berserk Gene"
+  player: { species: GOLETT, level: 50, ability: KLUTZ, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERSERK_GENE'
+    - player.stat_levels[0] == 7
+    - (player.substatus[2] & 128) == 0
+
+# ---- Corrosion ------------------------------------------------------------
+
+- name: "New ability regression: Corrosion poisons Poison types"
+  player: { species: SALANDIT, level: 50, ability: CORROSION, moves: [TOXIC] }
+  enemy: { species: GRIMER, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+
+- name: "New ability regression: Corrosion does not make Poison damage hit Steel"
+  player: { species: SALANDIT, level: 50, ability: CORROSION, moves: [SLUDGE_BOMB] }
+  enemy: { species: MAGNEMITE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.status == 0
+
+- name: "New ability regression control: Air Balloon escapes Arena Trap"
+  player: { species: BUNEARY, level: 50, ability: NO_ABILITY, item: AIR_BALLOON, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: TRAPINCH, level: 50, ability: ARENA_TRAP, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 0
+    - player.species == 'SNORLAX'
+
+- name: "New ability regression: Klutz grounds Air Balloon against Arena Trap"
+  player: { species: BUNEARY, level: 50, ability: KLUTZ, item: AIR_BALLOON, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: TRAPINCH, level: 50, ability: ARENA_TRAP, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDebugSwitchBlocked') == 1
+    - player.species == 'BUNEARY'
+    - player.item == 'AIR_BALLOON'
+
+# ---- Unburden item-loss paths --------------------------------------------
+
+- name: "New ability regression: Berserk Gene consumption activates Unburden"
+  player: { species: HITMONLEE, level: 50, ability: UNBURDEN, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy: { species: AERODACTYL, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[0] == 9
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "New ability regression: Trick removing an item activates Unburden next turn"
+  # Aerodactyl is faster before the player uses Trick. On turn two, Unburden
+  # lets Hitmonlee KO it first; final ownership also proves that Trick really
+  # removed the holder's Berry and armed the bookkeeping bit.
+  player: { species: HITMONLEE, level: 60, ability: UNBURDEN, item: BERRY, moves: [TRICK, CLOSE_COMBAT] }
+  enemy: { species: AERODACTYL, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.hp == 0
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'BERRY'
+
+# ---- Pickpocket / Sticky Hold --------------------------------------------
+
+- name: "New ability regression: Sticky Hold blocks Pickpocket"
+  player: { species: GRIMER, level: 50, ability: STICKY_HOLD, item: BERRY, moves: [TACKLE] }
+  enemy: { species: WEAVILE, level: 100, ability: PICKPOCKET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY'
+    - enemy.item == 'NO_ITEM'
+
+- name: "New ability regression: Mold Breaker pierces Sticky Hold for Thief"
+  player: { species: MEW, level: 30, ability: MOLD_BREAKER, moves: [THIEF] }
+  enemy: { species: GRIMER, level: 100, ability: STICKY_HOLD, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY'
+    - enemy.item == 'NO_ITEM'
+
+# ---- Infiltrator and initialized Substitute ------------------------------
+
+- name: "New ability regression: Infiltrator applies binding through Substitute"
+  player: { species: ZUBAT, level: 50, ability: INFILTRATOR, moves: [BIND] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram:
+    wEnemySubstituteHP: 255
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wEnemySubstituteHP') == 255
+    - (enemy.substatus[3] & 16) != 0
+    - wram('wEnemyWrapCount') > 0
+
+- name: "New ability regression: Infiltrator reaches Disguise through Substitute"
+  player: { species: ZUBAT, level: 30, ability: INFILTRATOR, moves: [BITE] }
+  enemy: { species: MIMIKYU, level: 100, ability: DISGUISE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram:
+    wEnemySubstituteHP: 255
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - wram('wEnemySubstituteHP') == 255
+    - (wram('wDisguiseBusted', 1) & 1) != 0
+
+- name: "New ability regression: Infiltrator pops Air Balloon through Substitute"
+  player: { species: ZUBAT, level: 30, ability: INFILTRATOR, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, item: AIR_BALLOON, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram:
+    wEnemySubstituteHP: 255
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wEnemySubstituteHP') == 255
+    - enemy.item == 'NO_ITEM'

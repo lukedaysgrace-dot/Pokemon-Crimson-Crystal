@@ -238,6 +238,7 @@ class AssertionContext:
             "wram16": lambda name, offset=0: b.mem.read_u16_be(name, offset),
             "item_id": b.con.item_id,
             "text_seen": b.text_seen,
+            "ability_seen": b.ability_seen,
             "buffer_is": b.buffer_is,
             "result": lambda name: self.results[name],
             "abs": abs, "min": min, "max": max,
@@ -293,6 +294,8 @@ def capture_result(battle, snapshot):
         "enemy": result_side(battle.enemy, snapshot.get("enemy")),
         "weather": battle.weather,
         "turns_done": battle.turns_done,
+        "rng_count": battle.mem.read("wLinkBattleRNCount"),
+        "text_ram_count": battle.mem.read("wDebugTextRamCount"),
     }
 
 
@@ -397,6 +400,10 @@ def main():
                     h.pb.button("a", 2)
                     h.tick(4)
                     frames += 4
+                else:
+                    # Do not reuse the snapshot's prior STATE_WAIT when the
+                    # continuation itself exhausted the frame ceiling.
+                    st = None
             else:
                 st = h.run_battle(test)
 

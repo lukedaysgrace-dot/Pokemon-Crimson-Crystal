@@ -1,0 +1,326 @@
+# Regression coverage for the 23 abilities added in the August 2026 batch.
+# Heavy Metal and Light Metal are identity/data tests because this engine has
+# no weight-based battle mechanics; Low Kick and Heat Crash have fixed power.
+
+- name: "New ability: explicit NO_ABILITY override works"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["player.ability == 'NO_ABILITY'"]
+
+- name: "New ability: Gluttony consumes an HP Berry below three quarters"
+  player: { species: SNORLAX, level: 50, ability: GLUTTONY, hp: 70, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > player.start_hp
+
+- name: "New ability: ordinary HP Berry waits below half"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 70, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY'
+    - player.hp == player.start_hp
+
+- name: "New ability: Run Away escapes a wild battle"
+  player: { species: SENTRET, level: 5, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy: { species: MEWTWO, level: 100, ability: SHADOW_TAG, moves: [SPLASH] }
+  move_script: [run]
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wBattleResult') != 0"]
+
+- name: "New ability: Infiltrator ignores Reflect"
+  player: { species: ZUBAT, level: 50, ability: INFILTRATOR, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  enemy_screens: 16
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+  id: infiltrator_reflect
+
+- name: "New ability: Reflect reduces an ordinary attack"
+  player: { species: ZUBAT, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  enemy_screens: 16
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('infiltrator_reflect')['enemy']['damage']"]
+
+- name: "New ability: Infiltrator bypasses Safeguard"
+  player: { species: ZUBAT, level: 50, ability: INFILTRATOR, moves: [TOXIC] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH] }
+  enemy_screens: 4
+  rng: forced_high
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (enemy.substatus[4] & 1) != 0
+
+- name: "New ability: Infiltrator bypasses Mist"
+  player: { species: ZUBAT, level: 50, ability: INFILTRATOR, moves: [GROWL] }
+  enemy: { species: SNORLAX, level: 100, substatus: [MIST], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 6"]
+
+- name: "New ability: Leaf Guard blocks burn in sun"
+  player: { species: MEW, level: 50, moves: [WILL_O_WISP] }
+  enemy: { species: TANGELA, level: 50, ability: LEAF_GUARD, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.status == 0"]
+
+- name: "New ability: Leaf Guard is inactive outside sun"
+  player: { species: MEW, level: 50, moves: [WILL_O_WISP] }
+  enemy: { species: TANGELA, level: 50, ability: LEAF_GUARD, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(enemy.status & 16) != 0"]
+
+- name: "New ability: Early Bird decrements player sleep twice"
+  player: { species: DODUO, level: 50, ability: EARLY_BIRD, status_byte: 7, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.status & 7) == 5"]
+
+- name: "New ability: Early Bird decrements enemy sleep twice"
+  player: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy: { species: DODUO, level: 50, ability: EARLY_BIRD, status_byte: 7, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(enemy.status & 7) == 5"]
+
+- name: "New ability: Unaware defender ignores boosted Attack"
+  player: { species: MEW, level: 100, ability: NO_ABILITY, stages: { atk: 6 }, moves: [GIGA_IMPACT] }
+  enemy: { species: QUAGSIRE, level: 100, ability: UNAWARE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  id: unaware_defender
+
+- name: "New ability: boosted Attack hurts an ordinary defender more"
+  player: { species: MEW, level: 100, ability: NO_ABILITY, stages: { atk: 6 }, moves: [GIGA_IMPACT] }
+  enemy: { species: QUAGSIRE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('unaware_defender')['enemy']['damage']"]
+
+- name: "New ability: Unaware attacker ignores boosted Defense"
+  player: { species: QUAGSIRE, level: 100, ability: UNAWARE, moves: [GIGA_IMPACT] }
+  enemy: { species: MEW, level: 100, stages: { def: 6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  id: unaware_attacker
+
+- name: "New ability: boosted Defense reduces an ordinary attack"
+  player: { species: QUAGSIRE, level: 100, ability: NO_ABILITY, moves: [GIGA_IMPACT] }
+  enemy: { species: MEW, level: 100, stages: { def: 6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('unaware_attacker')['enemy']['damage']"]
+
+- name: "New ability: Stench flinches a slower target when it procs"
+  player: { species: MEW, level: 50, ability: STENCH, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 50, moves: [TACKLE] }
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == player.start_hp"]
+
+- name: "New ability: Stench cannot defer a flinch after moving second"
+  player: { species: GRIMER, level: 5, ability: STENCH, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.substatus[2] & 8) == 0"]
+
+- name: "New ability control: Anticipation stays quiet without a dangerous move"
+  id: anticipation_safe_control
+  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.ability == 'ANTICIPATION'
+    - not ability_seen('ANTICIPATION')
+
+- name: "New ability: Anticipation detects a super-effective move"
+  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [PSYCHIC_M, SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - ability_seen('ANTICIPATION')
+
+- name: "New ability: Anticipation detects an OHKO move"
+  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [GUILLOTINE, SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - ability_seen('ANTICIPATION')
+
+- name: "New ability: Pickpocket steals a contact attacker's item"
+  player: { species: MEW, level: 30, item: BERRY, moves: [TACKLE] }
+  enemy: { species: WEAVILE, level: 100, ability: PICKPOCKET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'BERRY'
+
+- name: "New ability: Shield Dust blocks a damaging move secondary"
+  player: { species: MEW, level: 30, moves: [SLUDGE_BOMB] }
+  enemy: { species: CATERPIE, level: 100, ability: SHIELD_DUST, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.status == 0
+
+- name: "New ability: Corrosion poisons Steel types"
+  player: { species: SALANDIT, level: 50, ability: CORROSION, moves: [TOXIC] }
+  enemy: { species: MAGNEMITE, level: 100, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (enemy.substatus[4] & 1) != 0
+
+- name: "New ability: Harvest restores a consumed HP Berry"
+  player: { species: EXEGGUTOR, level: 50, ability: HARVEST, hp: 49, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 2
+  assert: ["player.item == 'BERRY'"]
+
+- name: "New ability: Download raises Attack against lower Defense"
+  player: { species: PORYGON, level: 50, ability: DOWNLOAD, moves: [SPLASH] }
+  enemy: { species: CHANSEY, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 7
+
+- name: "New ability: Download raises Sp Atk on a defensive tie"
+  player: { species: PORYGON, level: 50, ability: DOWNLOAD, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 8
+
+- name: "New ability: Suction Cups blocks Roar"
+  player: { species: MEW, level: 100, moves: [ROAR] }
+  enemy: { species: OCTILLERY, level: 5, ability: SUCTION_CUPS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wBattleResult') == 0"]
+
+- name: "New ability: Sticky Hold blocks Thief"
+  player: { species: MEW, level: 30, moves: [THIEF] }
+  enemy: { species: GRIMER, level: 100, ability: STICKY_HOLD, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'BERRY'
+
+- name: "New ability: Sticky Hold blocks Knock Off"
+  player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
+  enemy: { species: GRIMER, level: 100, ability: STICKY_HOLD, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.item == 'BERRY'"]
+
+- name: "New ability: Unburden reverses order after Berry consumption"
+  player: { species: HITMONLEE, level: 50, ability: UNBURDEN, hp: 49, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "New ability: Klutz suppresses HP Berries"
+  player: { species: GOLETT, level: 50, ability: KLUTZ, hp: 25, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'BERRY'
+    - player.hp == player.start_hp
+
+- name: "New ability: Klutz suppresses Choice Scarf speed"
+  player: { species: MEW, level: 50, ability: KLUTZ, item: CHOICE_SCARF, moves: [SPLASH] }
+  enemy: { species: GENGAR, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 1"]
+
+- name: "New ability: Ripen doubles HP Berry recovery"
+  player: { species: APPLETUN, level: 50, ability: RIPEN, hp: 25, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp - player.start_hp == 20"]
+
+- name: "New ability: Cud Chew repeats an HP Berry next turn"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, hp: 25, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert: ["player.hp - player.start_hp == 20"]
+
+- name: "New ability: Forewarn reveals the strongest move"
+  player: { species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [TACKLE, HYPER_BEAM, SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('HYPER BEAM')"]
+
+- name: "New ability: Forewarn falls back to the first status move"
+  player: { species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [GROWL, SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('GROWL')"]
+
+- name: "New ability: Supersweet Syrup lowers evasion on entry"
+  player: { species: DIPPLIN, level: 50, ability: SUPERSWEET_SYRUP, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["enemy.stat_levels[6] == 6"]
+
+- name: "New ability: Clear Body occupies Duraludon slot one"
+  # Heavy Metal and Light Metal were removed (no weight mechanics in this
+  # engine); Duraludon now runs Clear Body / Stamina / Steadfast.
+  player: { species: DURALUDON, level: 50, ability_slot: 1, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["player.ability == 'CLEAR_BODY'"]
+
+- name: "New ability: Stamina occupies Duraludon slot two"
+  player: { species: DURALUDON, level: 50, ability_slot: 2, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["player.ability == 'STAMINA'"]
+
+- name: "New ability: Iron Barbs occupies the Aron line's hidden slot"
+  player: { species: AGGRON, level: 50, ability_slot: hidden, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["player.ability == 'IRON_BARBS'"]
