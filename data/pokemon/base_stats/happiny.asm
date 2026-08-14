@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/happiny/front.dimensions"
-	abilities_for HAPPINY, NATURAL_CURE, SERENE_GRACE, NATURAL_CURE
+	abilities_for HAPPINY, SERENE_GRACE, NATURAL_CURE, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

@@ -56,7 +56,8 @@ PyBoy is worth a PR.)
 
 Side fields: `species` (constant name), `level`, `ability` (auto-resolves
 to the species' legal slot so entry hooks fire; falls back to a post-entry
-override for illegal pairs), `ability_slot` (1/2/hidden), `item`, `moves`
+override for illegal pairs; `NO_ABILITY` explicitly forces none),
+`ability_slot` (1/2/hidden), `item`, `moves`
 (up to 4; omit to keep the level-up learnset), `dvs` (16-bit, default
 $FFFF), `hp` (percent), `status_byte`, `stages` (`{atk: -1, spd: +2}`,
 applied after entry abilities), `substatus` (list of SUBSTATUS_* names
@@ -69,9 +70,11 @@ actually use its bench; wild-mode rules like never-switching don't apply).
 Test fields: `turns` (pause for assertions after N turns), `rng`
 (`forced_low` / `forced_high` / `seeded` / `off`), `rng_value`, `weather`,
 `player_screens` / `enemy_screens` (raw screens byte, ORed in post-entry),
-`move_script` (player move slot per turn, e.g. `[1, 2, 1]`), `skip`.
+`move_script` (player move slot per turn, e.g. `[1, 2, 1]`), `setup_wram`
+(post-entry raw symbol/value fixtures), `skip`.
 Use `switch:N` in that list for a voluntary switch to one-based party slot
 N (for example, `["switch:2"]`); normal trapping and switch-out hooks run.
+Use `run` to attempt to flee through the normal battle escape path.
 
 Assertions are Python expressions over: `player` / `enemy` (`.hp`,
 `.maxhp`, `.status`, `.item`, `.ability`, `.species`, `.moves`, `.pp`,
@@ -84,12 +87,18 @@ sym file knows (e.g. `wram('wEnemyGoesFirst') == 0` = player moved first,
 two-byte battle or party value such as `wPartyMon1HP`.
 `player.start_hp` etc. give the pre-turn-1 snapshot (after entry
 abilities, before any move).
+`ability_seen('ANTICIPATION')` checks the debug-only semantic trace of
+ability banners that were actually presented; `text_seen('NAME')` checks
+dynamic `text_ram` strings rendered by battle text.
 
 For paired control cases, give an earlier case an `id:` and read its retained
 result with `result('id')`. For example, an ability damage case can assert
 `enemy.start_hp - enemy.hp > result('control')['enemy']['damage']`. Retained
 side data includes `damage`, `healing`, HP, status, item, ability, species,
 moves, PP, stats, stat levels, screens, and substatus.
+The top-level retained result also includes `weather`, `turns_done`, and the
+seeded stream's `rng_count`, which can expose an unintended extra RNG roll,
+plus `text_ram_count` for paired entry-message checks.
 
 Auto-mode notes: a fainted player mon auto-switches to the next fit party
 slot (no menu), which also covers Baton Pass and U-turn - so multi-mon

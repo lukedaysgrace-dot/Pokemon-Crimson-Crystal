@@ -10,6 +10,7 @@ from symbols import Symbols, Constants, STATE_MENU, parse_substatus_bits
 DEBUG_BANK = 2  # WRAMX bank of wDebug* and the 16-bit conversion tables
 DEBUG_TEXT_RAM_LOG_ENTRIES = 16
 DEBUG_TEXT_RAM_ENTRY_SIZE = 20
+DEBUG_ABILITY_LOG_ENTRIES = 16
 
 # request block field offsets (dbg_* in engine/debug/battle_tester.asm)
 DBG_SPECIES = 0
@@ -242,6 +243,16 @@ class Battle:
     def text_seen(self, value):
         return self._encode_text(value) in self.rendered_ram_texts
 
+    @property
+    def activated_abilities(self):
+        """Ability ids whose banners were actually presented, in order."""
+        count = min(self.mem.read("wDebugAbilityActivationCount"),
+                    DEBUG_ABILITY_LOG_ENTRIES)
+        return self.mem.read_bytes("wDebugAbilityActivationLog", count)
+
+    def ability_seen(self, value):
+        return self.con.ability_id(value) in self.activated_abilities
+
     def buffer_is(self, symbol, value, max_length=24):
         """Compare an @-terminated in-game string buffer by symbol name."""
         raw = self.mem.read_bytes(symbol, max_length)
@@ -275,7 +286,9 @@ class Request:
             if slot is not None and "ability_slot" not in spec:
                 blk[DBG_ABILSLOT] = slot
             else:
-                blk[DBG_ABILOVERRIDE] = self.con.ability_id(spec["ability"])
+                ability_id = self.con.ability_id(spec["ability"])
+                # Zero means "no override" in the ROM request protocol.
+                blk[DBG_ABILOVERRIDE] = 0xFF if ability_id == 0 else ability_id
         if "item" in spec:
             blk[DBG_ITEM] = self.con.item_id(spec["item"])
         moves = spec.get("moves") or []
@@ -334,11 +347,16 @@ class Request:
         script = test.get("move_script") or []
         for i in range(8):
             action = script[i] if i < len(script) else 0
-            if isinstance(action, str) and action.lower().startswith("switch:"):
-                slot = int(action.split(":", 1)[1])
-                if not 1 <= slot <= 4:
-                    raise ValueError(f"switch slot must be 1..4, got {slot}")
-                action = 0x80 | (slot - 1)
+            if isinstance(action, str):
+                if action.lower() == "run":
+                    action = 0xFF
+                elif action.lower().startswith("switch:"):
+                    slot = int(action.split(":", 1)[1])
+                    if not 1 <= slot <= 4:
+                        raise ValueError(f"switch slot must be 1..4, got {slot}")
+                    action = 0x80 | (slot - 1)
+                else:
+                    raise ValueError(f"unknown scripted action {action!r}")
             m.write("wDebugMoveScript", action, i)
 
         m.write_bytes("wDebugPlayer1", self._side_bytes(test.get("player")))
