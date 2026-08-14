@@ -1309,3 +1309,41 @@ _CopyTilesetGFX::
 	xor a
 	ldh [hTileAnimFrame], a
 	ret
+
+_RebuildTimePalBuffers::
+; CGB only; farcalled from DmgToCgbTimePals with bc/de/hl saved.
+; Rebuild wBGPals2/wOBPals2 from the loaded palettes using the orders
+; already written to rBGP/rOBP0, reapply the weather tint, and only then
+; request the VBlank palette upload.
+;
+; Cancelling the request up front and re-raising it only after the tint
+; is in place makes the whole rebuild atomic as far as VBlank's palette
+; upload is concerned: it can never push the intermediate untinted
+; buffers to the hardware. That race was visible as a one-frame bright
+; flash - or a screen stuck at full brightness - when the start menu
+; opened or closed during overcast, rain, or thunderstorm weather.
+	xor a
+	ldh [hCGBPalUpdate], a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals2)
+	ldh [rSVBK], a
+	ld hl, wBGPals2
+	ld de, wBGPals1
+	ldh a, [rBGP]
+	ld b, a
+	ld c, 8
+	call CopyPals
+	ld hl, wOBPals2
+	ld de, wOBPals1
+	ldh a, [rOBP0]
+	ld b, a
+	ld c, 8
+	call CopyPals
+	pop af
+	ldh [rSVBK], a
+	farcall ApplyWeatherTint
+	; The buffers are consistent again; let VBlank push them.
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+	ret
