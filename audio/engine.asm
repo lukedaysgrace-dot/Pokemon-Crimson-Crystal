@@ -526,6 +526,19 @@ PlayDanger:
 	bit DANGER_ON_F, a
 	ret z
 
+	; Once DANGER_BEEP_LIMIT beeps have played, switch the alarm off so
+	; channel 1 goes back to the music. wDangerBeepCount is only cleared
+	; when HP leaves the red zone, so it won't start up again before then.
+	ld d, a
+	ld a, [wDangerBeepCount]
+	cp DANGER_BEEP_LIMIT
+	ld a, d
+	jr c, .keep_beeping
+	ld hl, wLowHealthAlarm
+	res DANGER_ON_F, [hl]
+	ret
+
+.keep_beeping
 	; Don't do anything if SFX is being played
 	and $ff ^ (1 << DANGER_ON_F)
 	ld d, a
@@ -566,6 +579,10 @@ PlayDanger:
 	inc a
 	cp 30 ; Ending frame
 	jr c, .noreset
+	; a full beep just finished
+	ld a, [wDangerBeepCount]
+	inc a
+	ld [wDangerBeepCount], a
 	xor a
 .noreset
 	; Make sure the danger sound is kept on
