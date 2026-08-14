@@ -3082,6 +3082,20 @@ wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
 wAbilityName:: ds 17 ; longest ability name + @
 wAbilityAttrBackup:: ds SLIDEOUT_WIDTH * 2 * 2 ; original attrs under the banners (player, then enemy)
 wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
+; Held-item ability state (Gluttony/Harvest/Cud Chew/Unburden/Pickpocket).
+; BANKED (bank 2): access only through the Read/WriteItemState helpers in
+; abilities_engine.asm. Zeroed at battle start; each side's pair is zeroed
+; again when a mon enters on that side.
+; flags: bit 0 = ate a held Berry, bit 1 = lost its item (Thief/Knock Off/
+; Pickpocket), bit 2 = Cud Chew is armed for the NEXT end of turn,
+; bit 3 = Cud Chew replay is due this end of turn
+wPlayerItemStateFlags:: db
+wEnemyItemStateFlags:: db
+wPlayerConsumedItem:: db
+wEnemyConsumedItem:: db
+; Per-party-slot once-per-battle state for Supersweet Syrup.
+wPlayerSyrupUsedFlags:: db
+wEnemySyrupUsedFlags:: db
 
 
 SECTION "16-bit WRAM tables", WRAMX
@@ -3325,6 +3339,12 @@ wDebugResultParty1Item:: db ; party-slot-1 item after post-battle abilities run
 ; item/ability/move buffers even when a later animation overwrites the source.
 wDebugTextRamCount:: db
 wDebugTextRamLog:: ds 16 * 20
+
+; Ability banners actually presented during the battle. Unlike text_ram,
+; most banner text is drawn directly by the GFX code, so keep a small
+; semantic trace for entry abilities such as Anticipation.
+wDebugAbilityActivationCount:: db
+wDebugAbilityActivationLog:: ds 16
 
 ; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
 ; engine/debug/battle_tester.asm.

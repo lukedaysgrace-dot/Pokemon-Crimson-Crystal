@@ -121,3 +121,27 @@ ToxicDebrisText::
 	line "scattered on the"
 	cont "ground!"
 	prompt
+
+AnticipationShudderText:
+	text "<USER>"
+	line "shuddered!"
+	prompt
+
+ForewarnAlertText:
+	text "It was alerted to"
+	line "@"
+	text_ram wBattleDynamicNameBuffer
+	text "!"
+	prompt
+
+HarvestedBerryText:
+	text "<USER> harvested"
+	line "its @"
+	text_ram wBattleDynamicNameBuffer
+	text "!"
+	prompt
+
+AnchorsItselfText:
+	text "<TARGET>"
+	line "anchors itself!"
+	prompt

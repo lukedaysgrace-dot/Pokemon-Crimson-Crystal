@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/victreebel/front.dimensions"
-	abilities_for VICTREEBEL, CHLOROPHYLL, NO_ABILITY, NO_ABILITY
+	abilities_for VICTREEBEL, CHLOROPHYLL, NO_ABILITY, GLUTTONY
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups
