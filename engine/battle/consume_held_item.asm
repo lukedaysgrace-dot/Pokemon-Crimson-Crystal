@@ -33,6 +33,8 @@ ConsumeHeldItem:
 	ret
 
 .ok
+	; record the consumed item for Harvest/Cud Chew/Unburden
+	farcall RecordConsumedItem
 	xor a
 	ld [de], a
 	pop af

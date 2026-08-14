@@ -87,8 +87,8 @@ DoBattle:
 	call SlideBattlePicOut
 	call LoadTileMapToTempTileMap
 	call ResetBattleParticipants
-	xor a
-	ld [wInAbility], a
+	; zeroes wInAbility and the held-item ability state
+	farcall InitAbilityItemState
 	call InitBattleMon
 	call ResetPlayerStatLevels
 	call SendOutMonText
@@ -126,6 +126,7 @@ DoBattle:
 	jr z, .no_enemy_entry
 .run_enemy_entry
 	call SetEnemyTurn
+	farcall ClearUserItemState_Core
 	farcall RunEntryAbilities
 	call SetPlayerTurn
 .no_enemy_entry
@@ -229,6 +230,11 @@ ENDC
 .skip_iteration
 	call ParsePlayerAction
 	jr nz, .loop1
+	; Scripted debug actions (notably Run) can end the battle without passing
+	; through the retail BattleMenu return path.
+	ld a, [wBattleEnded]
+	and a
+	jr nz, .quit
 
 	call EnemyTriesToFlee
 	jr c, .quit
@@ -431,6 +437,16 @@ HandleBerserkGene:
 	push de
 	push bc
 	callfar GetUserItem
+	push hl
+	callfar GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	cp KLUTZ
+	jr nz, .check_gene
+	pop bc
+	pop de
+	ret
+.check_gene
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	sub BERSERK_GENE
@@ -446,6 +462,10 @@ HandleBerserkGene:
 	call GetPartyLocation
 	xor a
 	ld [hl], a
+	; Using the Gene leaves the holder itemless and activates Unburden.
+	ldh a, [hBattleTurn]
+	ld c, a
+	farcall MarkSideLostItem_Core
 	; confusion, unless Own Tempo blocks it (the Attack boost below still
 	; applies); returns SubStatus3 in b for the confusion-text skip below
 	farcall BerserkGeneConfusion_b
@@ -1561,22 +1581,12 @@ HandleMysteryberry:
 	callfar GetUserItem
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	xor a
-	ld [hl], a
-	call GetPartymonItem
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .consume_item
-	ld a, [wBattleMode]
-	dec a
-	jr z, .skip_consumption
-	call GetOTPartymonItem
-
-.consume_item
-	xor a
-	ld [hl], a
-
-.skip_consumption
+	; Centralized consumption records the Berry for Harvest and Unburden and
+	; keeps battle/party item copies synchronized. ConsumeHeldItem is
+	; opponent-oriented, while Mysteryberry is handling the turn holder.
+	call SwitchTurnCore
+	callfar ConsumeHeldItem
+	call SwitchTurnCore
 	call GetItemName
 	call SwitchTurnCore
 	call ItemRecoveryAnim
@@ -3834,6 +3844,13 @@ CheckIfCurPartyMonIsFitToFight:
 	xor a
 	ret
 
+DebugTryToRunAwayFromBattle::
+; Bank-safe entry used by the automated battle tester. A farcall consumes hl,
+; so the live speed pointers have to be constructed in this bank.
+	ld hl, wBattleMonSpeed
+	ld de, wEnemyMonSpeed
+	; fallthrough
+
 TryToRunAwayFromBattle:
 ; Run away from battle, with or without item
 	ld a, [wBattleType]
@@ -3857,6 +3874,17 @@ TryToRunAwayFromBattle:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, .cant_run_from_trainer
+
+	; Run Away always escapes wild battles, ignoring trapping
+	push hl
+	push de
+	farcall CheckRunAwayEscape_Core
+	pop de
+	pop hl
+	jp c, .can_escape
+	ld a, b ; helper also reports effective Klutz for the Smoke Ball gate
+	and a
+	jr nz, .no_flee_item
 
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
@@ -3886,8 +3914,10 @@ TryToRunAwayFromBattle:
 
 .no_flee_item
 	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull);
-	; CheckOpponentTrapAbility preserves hl/de (live speed pointers here)
+	; farcall itself consumes hl, so preserve the live player-speed pointer.
+	push hl
 	farcall CheckOpponentTrapAbility
+	pop hl
 	jp c, .cant_escape
 	ld a, [wNumFleeAttempts]
 	inc a
@@ -4214,7 +4244,7 @@ SendOutPlayerMon:
 	ld [wPlayerChoiceLockedMove], a
 	ld [wPlayerMustRechooseMove], a
 	ld [wSkipCheckTurnOnce], a
-	call CheckAmuletCoin
+	farcall CheckAmuletCoin_Core
 	call FinishBattleAnim
 	xor a
 	ld [wEnemyWrapCount], a
@@ -4307,6 +4337,9 @@ BreakAttraction:
 
 SpikesDamageAndEntryAbilities:
 ; Switch-in handling: spikes, then the incoming mon's entry abilities.
+	; A newly entering mon starts with clean held-item ability state. Reset it
+	; before hazards so a Toxic Spikes-curing Berry can arm Harvest/Unburden.
+	farcall ClearUserItemState_Core
 	call SpikesDamage
 	farcall RunEntryAbilities
 	ret
@@ -4486,34 +4519,12 @@ HandleHPHealingItem:
 	ld hl, wBattleMonMaxHP
 
 .go
-; If, and only if, Pokemon's HP is less than half max, use the item.
-; Store current HP in Buffer 3/4
-	push bc
-	ld a, [de]
-	ld [wBuffer3], a
-	add a
-	ld c, a
-	dec de
-	ld a, [de]
-	inc de
-	ld [wBuffer4], a
-	adc a
-	ld b, a
-	ld a, b
-	cp [hl]
-	ld a, c
-	pop bc
-	jr z, .equal
-	jr c, .less
-	ret
-
-.equal
-	inc hl
-	cp [hl]
-	dec hl
+; Eat the Berry below half max HP (below 3/4 with Gluttony). Ripen
+; doubles the heal (c). The helper also stores current HP in wBuffer3/4
+; and returns with this routine's hl/de pointer contract intact.
+	farcall BerryThresholdCheck_Core
 	ret nc
 
-.less
 	call ItemRecoveryAnim
 	; store max HP in wBuffer1/2
 	ld a, [hli]
@@ -4664,23 +4675,9 @@ UseConfusionHealingItem:
 	call ItemRecoveryAnim
 	ld hl, BattleText_ItemHealedConfusion
 	call StdBattleTextbox
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .do_partymon
-	call GetOTPartymonItem
-	xor a
-	ld [bc], a
-	ld a, [wBattleMode]
-	dec a
-	ret z
-	ld [hl], $0
-	ret
-
-.do_partymon
-	call GetPartymonItem
-	xor a
-	ld [bc], a
-	ld [hl], a
+	; Use the shared consumption path so Harvest and Unburden see confusion-
+	; healing Berries too.
+	callfar ConsumeHeldItem
 	ret
 
 HandleStatBoostingHeldItems:
@@ -4705,6 +4702,15 @@ HandleStatBoostingHeldItems:
 	ld a, $1
 .HandleItem:
 	ldh [hBattleTurn], a
+	; Klutz disables held-item effects without removing the item.
+	push hl
+	push bc
+	callfar GetTrueUserAbility_b
+	ld a, b
+	pop bc
+	pop hl
+	cp KLUTZ
+	ret z
 	ld d, h
 	ld e, l
 	push de
@@ -4740,6 +4746,10 @@ HandleStatBoostingHeldItems:
 	xor a
 	ld [bc], a
 	ld [de], a
+	; These one-shot held stat items also count as item use for Unburden.
+	ldh a, [hBattleTurn]
+	ld c, a
+	callfar MarkSideLostItem_Core
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
@@ -5545,17 +5555,6 @@ BattleMenu_Run:
 	and a ; BATTLEPLAYERACTION_USEMOVE?
 	ret nz
 	jp BattleMenu
-
-CheckAmuletCoin:
-	ld a, [wBattleMonItem]
-	ld b, a
-	callfar GetItemHeldEffect
-	ld a, b
-	cp HELD_AMULET_COIN
-	ret nz
-	ld a, 1
-	ld [wAmuletCoin], a
-	ret
 
 PlayerPickMoveAfterGigaHammerFail:
 ; After Giga Hammer fails in battle, let the player pick another move for the

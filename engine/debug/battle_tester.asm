@@ -34,6 +34,10 @@ DEBUGSTATE_ERROR EQU $FF
 
 DEBUGFLAG_AUTO EQU 0 ; bit of wDebugBattleFlags
 
+; Scripted actions in wDebugMoveScript. Values 1..4 select move slots and
+; $80..$83 switch to party slots 1..4; $ff attempts to run from battle.
+DEBUGACTION_RUN EQU $ff
+
 ; wDebugControl commands (written by the harness while state is WAIT)
 DEBUGCTL_CONTINUE EQU 1 ; raised wDebugTurnTarget; run more turns
 DEBUGCTL_END      EQU 2 ; end the battle now
@@ -42,7 +46,7 @@ DEBUGCTL_END      EQU 2 ; end the battle now
 dbg_SPECIES      EQU  0 ; dw, 16-bit index; 0 = slot unused (player 2 only)
 dbg_LEVEL        EQU  2
 dbg_ABILSLOT     EQU  3 ; 0 = slot 1, 1 = slot 2, 2 = hidden
-dbg_ABILOVERRIDE EQU  4 ; 0 = none, else ability constant forced post-entry
+dbg_ABILOVERRIDE EQU  4 ; 0 = none, $ff = NO_ABILITY, else forced post-entry
 dbg_ITEM         EQU  5
 dbg_MOVES        EQU  6 ; 4 x dw, 16-bit indexes; all zero = keep learnset
 dbg_DVS          EQU 14 ; dw
@@ -57,6 +61,7 @@ dbg_SIZE         EQU 30
 DEBUG_WRAM_BANK EQU 2
 DEBUG_TEXT_RAM_LOG_ENTRIES EQU 16
 DEBUG_TEXT_RAM_ENTRY_SIZE EQU 20
+DEBUG_ABILITY_LOG_ENTRIES EQU 16
 
 SECTION "Debug Battle Tester", ROMX, BANK[$8F]
 
@@ -117,6 +122,40 @@ DebugLogTextRam::
 
 .restore
 	ld a, b
+	ldh [rSVBK], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+DebugLogAbilityActivation::
+; b = ability id whose banner is about to be presented. Debug-only semantic
+; trace for banners, which do not pass their labels through TextCommand_RAM.
+; Preserve every register so this can be farcalled from the battle engine.
+	ldh a, [hDebugActive]
+	and a
+	ret z
+	push af
+	push bc
+	push de
+	push hl
+	ldh a, [rSVBK]
+	push af
+	ld a, DEBUG_WRAM_BANK
+	ldh [rSVBK], a
+	ld a, [wDebugAbilityActivationCount]
+	cp DEBUG_ABILITY_LOG_ENTRIES
+	jr nc, .restore
+	ld e, a
+	ld d, 0
+	ld hl, wDebugAbilityActivationLog
+	add hl, de
+	ld [hl], b
+	inc a
+	ld [wDebugAbilityActivationCount], a
+.restore
+	pop af
 	ldh [rSVBK], a
 	pop hl
 	pop de
@@ -244,6 +283,7 @@ DebugBattleSetup::
 	ld [wDebugTurnsDone], a
 	ld [wDebugControl], a
 	ld [wDebugTextRamCount], a
+	ld [wDebugAbilityActivationCount], a
 
 	; hot flags to HRAM
 	ld a, [wDebugBattleFlags]
@@ -854,6 +894,11 @@ DebugApplyPostEntry:
 	ld de, wPlayerStatLevels
 	ld c, NUM_LEVEL_STATS
 	call DebugCopyFromRequest
+	; Battle damage uses the derived stat words, not just the stage bytes.
+	; Recompute them so stage fixtures exercise the same state as real boosts.
+	xor a ; player
+	ld [wApplyStatLevelMultipliersToEnemy], a
+	farcall ApplyStatLevelMultiplierOnAllStats
 .no_p_stages
 	ld hl, wDebugEnemy + dbg_STATLEVELS
 	call DebugPeek
@@ -863,6 +908,9 @@ DebugApplyPostEntry:
 	ld de, wEnemyStatLevels
 	ld c, NUM_LEVEL_STATS
 	call DebugCopyFromRequest
+	ld a, TRUE ; enemy
+	ld [wApplyStatLevelMultipliersToEnemy], a
+	farcall ApplyStatLevelMultiplierOnAllStats
 .no_e_stages
 
 	; weather
@@ -918,12 +966,20 @@ DebugApplyPostEntry:
 	call DebugPeek
 	and a
 	jr z, .no_p_abil
+	cp $ff
+	jr nz, .set_p_abil
+	xor a
+.set_p_abil
 	ld [wPlayerAbility], a
 .no_p_abil
 	ld hl, wDebugEnemy + dbg_ABILOVERRIDE
 	call DebugPeek
 	and a
 	jr z, .no_e_abil
+	cp $ff
+	jr nz, .set_e_abil
+	xor a
+.set_e_abil
 	ld [wEnemyAbility], a
 .no_e_abil
 	ret
@@ -999,6 +1055,8 @@ DebugChoosePlayerMove::
 	ld hl, wDebugMoveScript
 	add hl, de
 	call DebugPeek
+	cp DEBUGACTION_RUN
+	jr z, .run
 	bit 7, a
 	jr z, .move
 	push af
@@ -1034,6 +1092,28 @@ DebugChoosePlayerMove::
 	farcall PlayerSwitch
 	scf
 	ret
+.run
+	; Exercise the retail escape path (including Run Away) without opening
+	; the battle menu. A successful escape returns carry and ends the battle.
+	; A chance-based failure spends the turn; a menu-level denial re-chooses.
+	farcall DebugTryToRunAwayFromBattle
+	jr nc, .run_failed
+	ld a, 1
+	ld [wBattleEnded], a
+	scf
+	ret
+.run_failed
+	; A failed random escape sets USEITEM and spends the turn. Trainer/trap
+	; failures leave USEMOVE because the retail menu lets the player choose
+	; again; auto mode deterministically chooses slot 1 for that re-prompt.
+	ld a, [wBattlePlayerAction]
+	and a
+	jr z, .run_rechoose
+	scf
+	ret
+.run_rechoose
+	ld a, 1
+	jr .move
 .move
 	and a
 	jr nz, .have_slot

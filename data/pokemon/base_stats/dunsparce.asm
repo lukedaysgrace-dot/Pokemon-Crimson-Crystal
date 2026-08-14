@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/dunsparce/front.dimensions"
-	abilities_for DUNSPARCE, SERENE_GRACE, RATTLED, NO_ABILITY
+	abilities_for DUNSPARCE, SERENE_GRACE, RATTLED, RUN_AWAY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

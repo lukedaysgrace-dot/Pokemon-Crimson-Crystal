@@ -135,11 +135,11 @@
 
 - name: "Adaptability control damage"
   id: adaptability_control
-  player: { species: EEVEE, level: 100, ability_slot: hidden, moves: [TACKLE] }
+  player: { species: EEVEE, level: 100, ability: NO_ABILITY, moves: [TACKLE] }
   enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["player.ability == 'CLOUD_NINE'"]
+  assert: ["player.ability == 'NO_ABILITY'"]
 - name: "Ability: Adaptability strengthens same-type attacks"
   player: { species: EEVEE, level: 100, ability: ADAPTABILITY, moves: [TACKLE] }
   enemy: { species: SNORLAX, level: 50, moves: [SPLASH] }
