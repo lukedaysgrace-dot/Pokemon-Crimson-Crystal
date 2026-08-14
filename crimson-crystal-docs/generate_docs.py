@@ -58,6 +58,49 @@ def form_label(const, name):
 
 def slug(s):
     return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
+
+def titlecase(s):
+    """ROM name tables are ALL CAPS. Capitalise words without mangling
+    apostrophes or hyphens: KING'S ROCK -> King's Rock, UP-GRADE -> Up-Grade."""
+    return re.sub(r"(^|[\s\-])([a-z])", lambda m: m.group(1)+m.group(2).upper(), s.lower())
+
+def pretty_group(const):
+    """FISHGROUP_QWILFISH_NO_SWARM -> Qwilfish (no swarm)"""
+    if not const: return None
+    name=re.sub(r'^FISHGROUP_','',const.upper())
+    if name.endswith('_NO_SWARM'): return disp(name[:-9])+' (no swarm)'
+    if name.endswith('_SWARM'):    return disp(name[:-6])+' (swarm)'
+    return disp(name)
+
+# Plain-English rendering of the evolution methods in
+# data/pokemon/evos_attacks_*.asm. Nothing on the site should show raw assembly.
+HAPPINESS_WHEN={'TR_ANYTIME':'','TR_MORNDAY':' during the day','TR_NITE':' at night'}
+STAT_COMPARE={
+    'ATK_GT_DEF':'Attack higher than Defense',
+    'ATK_LT_DEF':'Attack lower than Defense',
+    'ATK_EQ_DEF':'Attack equal to Defense',
+}
+NO_HELD_ITEM={'-1','$FF','255','NO_ITEM','NONE'}
+
+def describe_evolution(method, args, item, species):
+    """method: EVOLVE_* constant. args: the parameters before the target species.
+    item/species: callables turning a constant into a display name."""
+    a0=args[0] if args else ''
+    a1=args[1] if len(args)>1 else ''
+    if method=='EVOLVE_LEVEL':        return f'Level {a0}'
+    if method=='EVOLVE_LEVEL_MALE':   return f'Level {a0} (male only)'
+    if method=='EVOLVE_LEVEL_FEMALE': return f'Level {a0} (female only)'
+    if method=='EVOLVE_ITEM':         return f'Use {item(a0)}'
+    if method=='EVOLVE_TRADE':
+        return 'Trade' if a0.upper() in NO_HELD_ITEM else f'Trade holding {item(a0)}'
+    if method=='EVOLVE_HAPPINESS':
+        return 'Level up with high friendship'+HAPPINESS_WHEN.get(a0.upper(),'')
+    if method=='EVOLVE_STAT':
+        return f'Level {a0} with '+STAT_COMPARE.get(a1.upper(),disp(a1))
+    if method=='EVOLVE_MOVE':    return f'Level up knowing {disp(a0)}'
+    if method=='EVOLVE_HOLDING': return f'Level up holding {item(a0)} during the day'
+    if method=='EVOLVE_PARTY':   return f'Level up with {species(a0)} in the party'
+    return ' '.join(x for x in [disp(method.replace('EVOLVE_',''))]+[disp(x) for x in args] if x)
 def num(s):
     try:return int(s.strip().replace('$','0x'),0)
     except:return None
@@ -128,7 +171,11 @@ class Builder:
       raw=raw.split('PokemonNames::',1)[1] if 'PokemonNames::' in raw else raw
       found=[x.replace('@','') for x in re.findall(r'db\s+"([^"]+)"',raw)]
       for i,c in enumerate(order):
-        names[c]=disp(found[i]) if i<len(found) else disp(c)
+        # Prefer the hand-written display name keyed by constant; disp() on the
+        # raw ROM string mangles punctuation (PORYGON-Z -> "Porygon-z").
+        if c in SPECIAL_DISPLAY_NAMES: names[c]=SPECIAL_DISPLAY_NAMES[c]
+        elif i<len(found):             names[c]=titlecase(found[i])
+        else:                          names[c]=disp(c)
     else:
       names={c:disp(c) for c in order}
     return order,names
@@ -188,7 +235,17 @@ class Builder:
         if re.match(r'db\s+0\b',l,re.I):
           if mode=='evo': mode='move'
           continue
-        if mode=='evo' and 'EVOLVE_' in l.upper(): mons[cur]['evolutions'].append(l.replace('db ','',1))
+        if mode=='evo' and 'EVOLVE_' in l.upper():
+          # dbbw / dbbbw METHOD, param[, param], TARGET_SPECIES
+          m=re.match(r'^db+w\s+(EVOLVE_[A-Z_]+)\s*,\s*(.+)$',l,re.I)
+          if not m:
+            self.report['warnings'].append(f'Unparsed evolution for {cur}: {l}')
+            continue
+          parts=[x.strip() for x in m.group(2).split(',')]
+          mons[cur]['evolutions'].append({
+            'method':m.group(1).upper(),
+            'args':parts[:-1],
+            'target':parts[-1].upper()})
         elif mode=='move':
           # This 16-bit engine uses dbw for level + move ID. Accept db too.
           m=re.search(r'\bdbw?\s+(\d+)\s*,\s*([A-Z0-9_]+)',l,re.I)
@@ -197,6 +254,76 @@ class Builder:
               'level':int(m.group(1)),
               'const':m.group(2).upper(),
               'move':disp(m.group(2))})
+  def item_names(self):
+    """Map item constants to their in-game names (data/items/names.asm is
+    indexed by the item const block in constants/item_constants.asm)."""
+    cp=self.r/'constants/item_constants.asm'; np=self.r/'data/items/names.asm'
+    out={}
+    if not (cp.exists() and np.exists()):
+      self.report['warnings'].append('Item name tables not found; using constant names')
+      return out
+    ids={}; started=False; nxt=0
+    for raw in txt(cp).splitlines():
+      l=strip(raw)
+      m=re.match(r'^const_def(?:\s+(-?\w+))?\s*$',l,re.I)
+      if m:
+        if started: break  # a second const_def block (TMs) is not in ItemNames
+        started=True; nxt=int(m.group(1)) if m.group(1) else 0
+        continue
+      if not started: continue
+      if re.match(r'^\w+\s+EQU\b',l,re.I) and 'const_value' in l: break
+      m=re.match(r'^const\s+([A-Z0-9_]+)',l,re.I)
+      if m:
+        ids[m.group(1).upper()]=nxt; nxt+=1
+      elif re.match(r'^const_skip(?:\s+(\d+))?',l,re.I):
+        s=re.match(r'^const_skip(?:\s+(\d+))?',l,re.I)
+        nxt+=int(s.group(1)) if s.group(1) else 1
+    # ItemNames has no record for NO_ITEM (id 0), so item N is names[N - 1].
+    names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]*)"',txt(np))]
+    for c,i in ids.items():
+      if 1<=i<=len(names): out[c]=titlecase(names[i-1])
+    return out
+
+  def finish_evolutions(self, mons):
+    """Turn the parsed evolution records into display text, and give every
+    Pokemon a back-reference to what it evolves from."""
+    items=self.item_names()
+    def item(c):
+      c=c.strip().upper()
+      return items.get(c, disp(c))
+    def species(c):
+      c=c.strip().upper()
+      return form_label(c, mons[c]['name']) if c in mons else disp(c)
+    for c,m in mons.items():
+      m.setdefault('evolves_from',None)
+    for c,m in mons.items():
+      for e in m['evolutions']:
+        e['text']=describe_evolution(e['method'],e['args'],item,species)
+        e['target_name']=species(e['target'])
+        e['target_slug']=slug(e['target'])
+        tgt=mons.get(e['target'])
+        if tgt is not None and not tgt.get('evolves_from'):
+          tgt['evolves_from']={'const':c,'name':species(c),'slug':slug(c),'text':e['text']}
+        elif tgt is None:
+          self.report['warnings'].append(f'{c} evolves into unknown species {e["target"]}')
+
+  def evo_html(self, m, p=''):
+    parts=[]
+    src=m.get('evolves_from')
+    if src:
+      parts.append(f'<p class="evofrom">Evolves from <a href="{p}pokemon/{src["slug"]}.html">'
+                   f'{html.escape(src["name"])}</a> — {html.escape(src["text"])}</p>')
+    if m['evolutions']:
+      rows=''.join(
+        f'<div class="evorow"><span class="cond">{html.escape(e["text"])}</span>'
+        f'<span class="arrow">→</span>'
+        f'<a href="{p}pokemon/{e["target_slug"]}.html">{html.escape(e["target_name"])}</a></div>'
+        for e in m['evolutions'])
+      parts.append(f'<div class="evolist">{rows}</div>')
+    elif not src:
+      parts.append('<p class="noevo">Does not evolve.</p>')
+    return ''.join(parts)
+
   def moves(self):
     p=self.r/'data/moves/moves.asm'; n=self.r/'data/moves/names.asm'; out=[]
     names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]+)',txt(n))] if n.exists() else []
@@ -305,7 +432,7 @@ class Builder:
         'rate':rate,
         'chance':chance,
         'condition':condition,
-        'group':group,
+        'group':pretty_group(group),
         'source':source_name(source),
       })
 
@@ -630,8 +757,8 @@ class Builder:
         cstats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in c['stats'].items())
         clearn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(c['learnset'],key=lambda x:x['level']))
         toggle='<div class="form-toggle"><button class="active" data-form="normal">Normal</button><button data-form="clone">Clone</button></div>'
-        clone_panel=f'<div class="form-view" data-form-view="clone" hidden><section class="monhero">{csprite}<div><p class="eyebrow">CLONE FORM</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in c["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(c["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(c["stats"].values())}</em></h2>{cstats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in c["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{clearn or "<p>No moves detected.</p>"}</section></div>'
-      normal=f'<div class="form-view" data-form-view="normal"><section class="monhero">{sprite}<div><p class="eyebrow">#{m["number"]:03}</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in m["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(m["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(m["stats"].values())}</em></h2>{stats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2><div class="chips">{"".join(f"<code>{html.escape(e)}</code>" for e in m["evolutions"]) or "None detected."}</div></section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{learn or "<p>No moves detected.</p>"}</section></div>'
+        clone_panel=f'<div class="form-view" data-form-view="clone" hidden><section class="monhero">{csprite}<div><p class="eyebrow">CLONE FORM</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in c["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(c["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(c["stats"].values())}</em></h2>{cstats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2>{self.evo_html(c,"../")}</section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{clearn or "<p>No moves detected.</p>"}</section></div>'
+      normal=f'<div class="form-view" data-form-view="normal"><section class="monhero">{sprite}<div><p class="eyebrow">#{m["number"]:03}</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in m["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(m["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(m["stats"].values())}</em></h2>{stats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2>{self.evo_html(m,"../")}</section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{learn or "<p>No moves detected.</p>"}</section></div>'
       loc_entries=wild_by_const.get(m['const'],[])
       loc_html=''.join(f'<div class="location-row"><b><a href="../locations/{slug(e["location_const"])}.html">{html.escape(e["location"])}</a></b><span>{html.escape(e["method"])}</span><span>{html.escape(e["time"])}</span><span>Lv. {e["level"]}</span></div>' for e in loc_entries)
       locations=f'<section class="panel"><h2>Wild locations</h2><div class="locations">{loc_html or "<p>Not found in the parsed wild encounter tables.</p>"}</div></section>'
@@ -669,7 +796,7 @@ class Builder:
   def run(self):
     if self.o.exists(): shutil.rmtree(self.o)
     self.a.mkdir(parents=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
-    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons)); self.render(mons,moves,wild)
+    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.finish_evolutions(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons)); self.render(mons,moves,wild)
     summary=self.report.get('encounter_summary',{})
     print(f'Generated {len(mons)} Pokémon, {len(moves)} moves, {len(wild)} encounter slots across {summary.get("locations",0)} locations -> {self.o}')
     print(f'Validation: {len(self.report["warnings"])} warning(s), {len(self.report["unparsed"])} unparsed row(s). See docs/data/build-report.json.')

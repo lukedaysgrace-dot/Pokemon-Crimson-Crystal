@@ -281,7 +281,7 @@ FirstEvoStages::
 	dw MAGBY
 	dw MAGNEMITE
 	dw SWINUB
-	dw MESMERIA
+	dw SMOOCHUM
 	dw MISDREAVUS
 	dw PORYGON
 	dw RHYHORN
@@ -400,7 +400,7 @@ FirstEvoStages::
 	dw FEEBAS
 	dw MIMIKYU
 	dw CORSOLA_GALARIAN
-	dw CORSOLA
+	dw CORSOLA_GALARIAN
 	dw MIME_JR_
 	dw FARFETCH_D
 	dw RIOLU
