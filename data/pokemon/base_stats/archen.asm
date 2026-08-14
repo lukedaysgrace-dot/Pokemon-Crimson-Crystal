@@ -12,7 +12,7 @@
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/archen/front.dimensions"
-	abilities_for ARCHEN, RECKLESS, NO_ABILITY, KEEN_EYE
+	abilities_for ARCHEN, RECKLESS, WIND_RIDER, KEEN_EYE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_WATER_3 ; egg groups
