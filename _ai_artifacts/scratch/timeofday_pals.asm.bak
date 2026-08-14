@@ -317,33 +317,16 @@ GetTimePalette:
 	ret
 
 DmgToCgbTimePals:
-; Write the three DMG palette registers from the fade row at hl, then
-; (on CGB) rebuild the active palette buffers, reapply the weather tint,
-; and request the VBlank upload - strictly in that order.
-;
-; This used to go through DmgToCgbBGPals/DmgToCgbObjPals, which request
-; the upload themselves, before ApplyWeatherTint had re-darkened the
-; rebuilt buffers. If VBlank landed inside that window, the untinted
-; (full-brightness) map palettes reached the hardware: a one-frame
-; bright flash, or a screen stuck at full brightness when VBlank also
-; consumed the request before the tint was in place. Most visible when
-; opening or closing the start menu in overcast/rain/thunder weather.
-; See _RebuildTimePalBuffers in engine/overworld/weather.asm.
 	push hl
 	push de
-	push bc
 	ld a, [hli]
-	ldh [rBGP], a
+	call DmgToCgbBGPals
 	ld a, [hli]
-	ldh [rOBP0], a
+	ld e, a
 	ld a, [hli]
-	ldh [rOBP1], a
-	ldh a, [hCGB]
-	and a
-	jr z, .done
-	farcall _RebuildTimePalBuffers
-.done
-	pop bc
+	ld d, a
+	call DmgToCgbObjPals
+	farcall ApplyWeatherTint
 	pop de
 	pop hl
 	ret
