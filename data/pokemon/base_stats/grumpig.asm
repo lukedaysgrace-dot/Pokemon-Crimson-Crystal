@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/grumpig/front.dimensions"
-	abilities_for GRUMPIG, THICK_FAT, PRANKSTER, NO_ABILITY
+	abilities_for GRUMPIG, THICK_FAT, OWN_TEMPO, PRANKSTER
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups

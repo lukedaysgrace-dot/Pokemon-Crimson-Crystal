@@ -150,6 +150,27 @@ AbilityDescriptions::
 	dw PoisonPuppeteerDescription
 	dw ToxicDebrisDescription
 	dw QueenlyMajestyDescription
+	dw GluttonyDescription
+	dw RunAwayDescription
+	dw InfiltratorDescription
+	dw LeafGuardDescription
+	dw EarlyBirdDescription
+	dw UnawareDescription
+	dw StenchDescription
+	dw AnticipationDescription
+	dw PickpocketDescription
+	dw ShieldDustDescription
+	dw CorrosionDescription
+	dw HarvestDescription
+	dw DownloadDescription
+	dw SuctionCupsDescription
+	dw StickyHoldDescription
+	dw UnburdenDescription
+	dw KlutzDescription
+	dw RipenDescription
+	dw CudChewDescription
+	dw ForewarnDescription
+	dw SupersweetSyrupDescription
 
 NoAbilityDescription:
 	text "Abilities are"
@@ -888,4 +909,109 @@ ToxicDebrisDescription:
 QueenlyMajestyDescription:
 	text "Stops foes using"
 	next "priority moves."
+	done
+
+GluttonyDescription:
+	text "Eats a held Berry"
+	next "earlier."
+	done
+
+RunAwayDescription:
+	text "Always flees from"
+	next "wild battles."
+	done
+
+InfiltratorDescription:
+	text "Ignores barriers"
+	next "like screens."
+	done
+
+LeafGuardDescription:
+	text "Blocks status in"
+	next "harsh sunlight."
+	done
+
+EarlyBirdDescription:
+	text "Awakens from sleep"
+	next "twice as fast."
+	done
+
+UnawareDescription:
+	text "Ignores the foe's"
+	next "stat changes."
+	done
+
+StenchDescription:
+	text "Its stink may make"
+	next "the foe flinch."
+	done
+
+AnticipationDescription:
+	text "Senses a foe's"
+	next "dangerous moves."
+	done
+
+PickpocketDescription:
+	text "Steals the item of"
+	next "a foe on contact."
+	done
+
+ShieldDustDescription:
+	text "Blocks the added"
+	next "effects of moves."
+	done
+
+CorrosionDescription:
+	text "Can poison even"
+	next "STEEL and POISON."
+	done
+
+HarvestDescription:
+	text "May restore a"
+	next "used Berry."
+	done
+
+DownloadDescription:
+	text "Adjusts power to"
+	next "the foe's defense."
+	done
+
+SuctionCupsDescription:
+	text "Anchors down and"
+	next "can't be moved."
+	done
+
+StickyHoldDescription:
+	text "Its held item"
+	next "can't be stolen."
+	done
+
+UnburdenDescription:
+	text "Speeds up if its"
+	next "item is lost."
+	done
+
+KlutzDescription:
+	text "Can't use any"
+	next "held items."
+	done
+
+RipenDescription:
+	text "Doubles the effect"
+	next "of its Berries."
+	done
+
+CudChewDescription:
+	text "Eats a used Berry"
+	next "a second time."
+	done
+
+ForewarnDescription:
+	text "Reveals one of the"
+	next "foe's moves."
+	done
+
+SupersweetSyrupDescription:
+	text "Its scent lowers"
+	next "the foe's evasion."
 	done

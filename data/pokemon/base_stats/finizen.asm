@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/finizen/front.dimensions"
-	abilities_for FINIZEN, WATER_VEIL, WATER_VEIL, SWIFT_SWIM
+	abilities_for FINIZEN, WATER_VEIL, SWIFT_SWIM, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_2, EGG_GROUND ; egg groups

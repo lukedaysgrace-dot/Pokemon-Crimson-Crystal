@@ -349,6 +349,9 @@ ShowAbilityActivation::
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVar
 	ld b, a
+IF DEF(DEBUG_BATTLE)
+	farcall DebugLogAbilityActivation
+ENDC
 	farcall PerformAbilityGFX
 	pop bc
 	pop de
@@ -419,6 +422,10 @@ BattleEntryAbilitiesNonfainted:
 	dbw INTIMIDATE, IntimidateAbility
 	dbw FRISK, FriskAbility
 	dbw UNNERVE, UnnerveAbility
+	dbw DOWNLOAD, DownloadAbility
+	dbw ANTICIPATION, AnticipationAbility
+	dbw FOREWARN, ForewarnAbility
+	dbw SUPERSWEET_SYRUP, SupersweetSyrupAbility
 BattleEntryAbilities:
 	dbw DRIZZLE, DrizzleAbility
 	dbw DROUGHT, DroughtAbility
@@ -939,21 +946,21 @@ AbilityPreventsSleep::
 	jr CheckStatusPrevention
 .abilities
 	db BOUNCE_SLP
-	db INSOMNIA, VITAL_SPIRIT, -1
+	db INSOMNIA, VITAL_SPIRIT, LEAF_GUARD, -1
 
 AbilityPreventsParalysis::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
 	db BOUNCE_PAR
-	db LIMBER, -1
+	db LIMBER, LEAF_GUARD, -1
 
 AbilityPreventsPoison::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
 	db BOUNCE_PSN
-	db IMMUNITY, PASTEL_VEIL, -1
+	db IMMUNITY, PASTEL_VEIL, LEAF_GUARD, -1
 
 AbilityPreventsBurn::
 	; Flash Fire also blocks Fire-type status moves (notably Will-O-Wisp).
@@ -976,14 +983,14 @@ AbilityPreventsBurn::
 	jr CheckStatusPrevention
 .abilities
 	db BOUNCE_BRN
-	db WATER_VEIL, THERMAL_EXCHANGE, -1
+	db WATER_VEIL, THERMAL_EXCHANGE, LEAF_GUARD, -1
 
 AbilityPreventsFreeze::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
 	db BOUNCE_NONE
-	db MAGMA_ARMOR, -1
+	db MAGMA_ARMOR, LEAF_GUARD, -1
 
 AbilityPreventsConfusion::
 	ld hl, .abilities
@@ -1017,6 +1024,14 @@ CheckStatusPrevention:
 	jr z, .no_match
 	cp b
 	jr nz, .loop
+	; Leaf Guard only protects in harsh sunlight
+	cp LEAF_GUARD
+	jr nz, .not_leaf_guard
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr nz, .no_match
+	ld a, b
+.not_leaf_guard
 	; prevented. Thermal Exchange's Fire hit already shows its own Atk-up
 	; banner via the on-hit path, so suppress this (redundant) second
 	; banner for it - the burn is still blocked, just silently.
@@ -1112,6 +1127,8 @@ EndTurnAbilities:
 	dbw DRY_SKIN, DrySkinAbility
 	dbw SOLAR_POWER, SolarPowerAbility
 	dbw BAD_DREAMS, BadDreamsAbility
+	dbw HARVEST, HarvestAbility
+	dbw CUD_CHEW, CudChewAbility
 	dbw -1, -1
 
 SpeedBoostAbility:
@@ -3145,6 +3162,8 @@ AbilityIgnoresOpponentEvasion::
 	jr z, .relevant_ability
 	cp MINDS_EYE
 	jr z, .relevant_ability
+	cp UNAWARE
+	jr z, .always_ignore
 	and a ; clear carry: this ability does not touch evasion
 	ret
 .relevant_ability
@@ -3157,6 +3176,9 @@ AbilityIgnoresOpponentEvasion::
 	ld a, [hl]
 	cp BASE_STAT_LEVEL + 1
 	ccf ; carry iff the stage is above neutral (raised)
+	ret
+.always_ignore
+	scf
 	ret
 
 CompareSpeedsWithAbilities::
@@ -3173,7 +3195,15 @@ CompareSpeedsWithAbilities::
 	ld hl, wBattleMonSpeed
 	call .GetEffectiveSpeed
 	ld a, [wBattleMonItem]
+	ld b, a
+	call GetPlayerAbilityEffective
+	cp KLUTZ
+	ld a, b
+	jr z, .player_no_scarf
 	call .ChoiceScarfBoost
+.player_no_scarf
+	ld d, 0
+	call .UnburdenBoost
 	push hl
 	; enemy effective speed -> hl
 	call GetEnemyAbilityEffective
@@ -3183,7 +3213,15 @@ CompareSpeedsWithAbilities::
 	ld hl, wEnemyMonSpeed
 	call .GetEffectiveSpeed
 	ld a, [wEnemyMonItem]
+	ld b, a
+	call GetEnemyAbilityEffective
+	cp KLUTZ
+	ld a, b
+	jr z, .enemy_no_scarf
 	call .ChoiceScarfBoost
+.enemy_no_scarf
+	ld d, 1
+	call .UnburdenBoost
 	ld d, h
 	ld e, l
 	pop hl
@@ -3243,6 +3281,39 @@ CompareSpeedsWithAbilities::
 	ld a, [wBattleWeather]
 	cp d
 	ret nz
+	add hl, hl
+	ret nc
+	ld hl, $ffff
+	ret
+
+.UnburdenBoost:
+; d = side (0 player, 1 enemy). Doubles the effective speed in hl if the
+; side's mon has Unburden, currently holds nothing, and has used or lost
+; an item since entering.
+	ld a, d
+	and a
+	jr nz, .unburden_enemy
+	call GetPlayerAbilityEffective
+	ld b, a
+	ld a, [wBattleMonItem]
+	jr .unburden_join
+.unburden_enemy
+	call GetEnemyAbilityEffective
+	ld b, a
+	ld a, [wEnemyMonItem]
+.unburden_join
+	and a
+	ret nz
+	ld a, b
+	cp UNBURDEN
+	ret nz
+	push bc
+	ld c, d
+	call ReadItemStateFlags
+	ld a, b
+	pop bc
+	and %00000011 ; ate or lost an item
+	ret z
 	add hl, hl
 	ret nc
 	ld hl, $ffff
@@ -3319,11 +3390,16 @@ CheckAirBalloonImmunity:
 
 RunPostDamageDefenderHeldItems:
 	; a hit taken by a Substitute doesn't touch the holder:
-	; no balloon pop, policy proc or helmet chip through a sub
+	; no balloon pop, policy proc or helmet chip through a sub. Infiltrator
+	; routes damage to the holder, so those reactions apply normally.
+	call GetTrueUserAbility
+	cp INFILTRATOR
+	jr z, .hit_holder
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
+.hit_holder
 	call AirBalloonPop
 	call WeaknessPolicyBoost
 	jp RockyHelmetDamage
@@ -3508,11 +3584,15 @@ RunContactAbilitiesHook::
 	or b
 	ret z
 	call RunPostDamageDefenderHeldItems
-	; no procs through a Substitute
+	; no procs through a Substitute unless Infiltrator hit the holder
+	call GetTrueUserAbility
+	cp INFILTRATOR
+	jr z, .through_substitute
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, .life_orb
+.through_substitute
 	; Parental Bond: a second hit at 25% power
 	; This implementation is synthetic: defender abilities and other reactions
 	; intentionally run once for the completed move, not once for each hit.
@@ -3525,6 +3605,10 @@ RunContactAbilitiesHook::
 	cp PARENTAL_BOND
 	call z, ParentalBondSecondHit
 .post_parental_bond
+	; Stench: the attacker's damaging hits have a 10% flinch chance
+	call GetTrueUserAbility
+	cp STENCH
+	call z, StenchAbility
 	; defender on-hit abilities (any damaging move, contact or not)
 	call GetOpponentAbility
 	; Cursed Body and Toxic Debris still have a useful effect when the hit
@@ -3911,6 +3995,7 @@ TargetContactAbilities:
 	dbw CUTE_CHARM, CuteCharmAbility
 	dbw IRON_BARBS, IronBarbsAbility
 	dbw PERISH_BODY, PerishBodyAbility
+	dbw PICKPOCKET, PickpocketAbility
 	dbw -1, -1
 
 CheckContactMove::
@@ -4794,11 +4879,16 @@ DisguiseBlock:
 	ld a, h
 	cp HIGH(MIMIKYU)
 	jr nz, .no_block
-	; no trigger through a Substitute (canon)
+	; A normal hit is caught by the Substitute. Infiltrator reaches the
+	; holder, so Disguise still blocks that first direct hit.
+	call GetOpponentAbility
+	cp INFILTRATOR
+	jr z, .check_busted
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	jr nz, .no_block
+.check_busted
 	call GetDisguiseFlag
 	and [hl]
 	jr nz, .no_block ; already busted
@@ -5082,6 +5172,27 @@ BerserkGeneConfusion_b::
 AbilityEffectChanceMods::
 ; b = secondary effect chance. Serene Grace doubles it; Sheer Force
 ; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
+; The defender's Shield Dust suppresses it outright.
+	push bc
+	call GetOpponentIgnorableAbility
+	pop bc
+	cp SHIELD_DUST
+	jr nz, .check_user_ability
+	; Shield Dust blocks additional effects on its holder, not secondary
+	; effects that benefit the attacker itself.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_DEFENSE_UP_HIT
+	jr z, .check_user_ability
+	cp EFFECT_ATTACK_UP_HIT
+	jr z, .check_user_ability
+	cp EFFECT_ALL_UP_HIT
+	jr z, .check_user_ability
+	cp EFFECT_SPEED_UP_HIT
+	jr z, .check_user_ability
+	cp EFFECT_SP_ATK_UP_HIT
+	jr nz, .suppress
+.check_user_ability
 	call GetTrueUserAbility
 	cp SHEER_FORCE
 	jr z, .check_sheer_force
@@ -5205,6 +5316,12 @@ GetTrueUserAbility_b::
 	ld b, a
 	ret
 
+GetOpponentAbility_b::
+; farcall-safe wrapper: the opponent's effective ability, returned in b.
+	call GetOpponentAbility
+	ld b, a
+	ret
+
 GetPlayerAbilityEffective_b::
 ; farcall-safe wrapper: the player's effective ability, returned in b.
 	call GetPlayerAbilityEffective
@@ -5290,9 +5407,13 @@ CheckOpponentTrapAbility::
 	ld a, [wBattleMonType2]
 	cp FLYING
 	jr z, .free
+	call GetPlayerAbilityEffective
+	cp KLUTZ
+	jr z, .player_grounded
 	ld a, [wBattleMonItem]
 	cp AIR_BALLOON
 	jr z, .free
+.player_grounded
 	call GetPlayerAbilityEffective
 	cp LEVITATE
 	jr z, .free
@@ -5349,9 +5470,13 @@ CheckPlayerTrapsEnemy::
 	ld a, [wEnemyMonType2]
 	cp FLYING
 	jr z, .free
+	call GetEnemyAbilityEffective
+	cp KLUTZ
+	jr z, .enemy_grounded
 	ld a, [wEnemyMonItem]
 	cp AIR_BALLOON
 	jr z, .free
+.enemy_grounded
 	call GetEnemyAbilityEffective
 	cp LEVITATE
 	jr z, .free
@@ -5608,10 +5733,12 @@ AbilityCritLevelMods::
 	ret
 
 AbilityPreventsFlinch::
-; Carry if the defender's ability blocks flinching (Inner Focus).
+; Carry if the defender's ability blocks this additional flinch effect.
 ; Canon: no message is shown.
 	call GetOpponentIgnorableAbility
 	cp INNER_FOCUS
+	jr z, .block
+	cp SHIELD_DUST
 	jr z, .block
 	and a ; nc
 	ret
@@ -6152,6 +6279,12 @@ UserCantRest::
 	jr z, .prevented
 	cp VITAL_SPIRIT
 	jr z, .prevented
+	cp LEAF_GUARD
+	jr nz, .allowed
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr z, .prevented
+.allowed
 	and a
 	ret
 .prevented
@@ -6162,6 +6295,1069 @@ INCLUDE "data/abilities/flags.asm"
 
 ; Keep compressed art out of the nearly full executable ability bank. The
 ; loader already uses BANK(label) + FarDecompress, so these are bank-safe.
+; ==== 2026-08-13 worklist batch ===========================================
+; Gluttony, Run Away, Infiltrator, Leaf Guard, Early Bird, Unaware, Stench,
+; Anticipation, Pickpocket, Shield Dust, Corrosion, Harvest, Download,
+; Suction Cups, Sticky Hold, Unburden, Klutz, Ripen, Cud Chew, Forewarn,
+; Supersweet Syrup.
+; (Heavy Metal and Light Metal were removed from the game entirely: no
+; weight mechanics exist in this engine.)
+
+; --- Banked item-state access ---------------------------------------------
+; wPlayer/wEnemyItemStateFlags + wPlayer/wEnemyConsumedItem live in WRAM
+; bank 2 (WRAM0 is full). All access goes through these helpers, which
+; save and restore rSVBK. c = side: 0 = player, 1 = enemy.
+
+GetItemStateAddrs:
+; c = side -> hl = flags addr, de = consumed-item addr
+	ld hl, wPlayerItemStateFlags
+	ld de, wPlayerConsumedItem
+	ld a, c
+	and a
+	ret z
+	ld hl, wEnemyItemStateFlags
+	ld de, wEnemyConsumedItem
+	ret
+
+ReadItemStateFlags::
+; c = side -> b = flags
+	push hl
+	push de
+	call GetItemStateAddrs
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerItemStateFlags)
+	ldh [rSVBK], a
+	ld b, [hl]
+	pop af
+	ldh [rSVBK], a
+	pop de
+	pop hl
+	ret
+
+WriteItemStateFlags::
+; c = side, b = flags
+	push hl
+	push de
+	call GetItemStateAddrs
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerItemStateFlags)
+	ldh [rSVBK], a
+	ld [hl], b
+	pop af
+	ldh [rSVBK], a
+	pop de
+	pop hl
+	ret
+
+ReadConsumedItem::
+; c = side -> b = recorded item id (0 = none)
+	push hl
+	push de
+	call GetItemStateAddrs
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerConsumedItem)
+	ldh [rSVBK], a
+	ld a, [de]
+	ld b, a
+	pop af
+	ldh [rSVBK], a
+	pop de
+	pop hl
+	ret
+
+WriteConsumedItem::
+; c = side, b = item id
+	push hl
+	push de
+	call GetItemStateAddrs
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerConsumedItem)
+	ldh [rSVBK], a
+	ld a, b
+	ld [de], a
+	pop af
+	ldh [rSVBK], a
+	pop de
+	pop hl
+	ret
+
+GetUserSide:
+; -> c = the turn holder's side (0 = player, 1 = enemy)
+	ldh a, [hBattleTurn]
+	and a
+	ld c, 0
+	ret z
+	inc c
+	ret
+
+InitAbilityItemState::
+; Farcalled from the battle-start send-out (replaces the plain wInAbility
+; clear there). Zeroes held-item state and once-per-battle ability state.
+	xor a
+	ld [wInAbility], a
+	ld b, a
+	ld c, 0
+	call WriteItemStateFlags
+	call WriteConsumedItem
+	ld b, 0
+	ld c, 1
+	call WriteItemStateFlags
+	call WriteConsumedItem
+	; Supersweet Syrup is once per battle for each party member.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerSyrupUsedFlags)
+	ldh [rSVBK], a
+	xor a
+	ld [wPlayerSyrupUsedFlags], a
+	ld [wEnemySyrupUsedFlags], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+ClearUserItemState:
+; Clears the item state for the side whose mon is entering (turn holder).
+	push bc
+	call GetUserSide
+	ld b, 0
+	call WriteItemStateFlags
+	call WriteConsumedItem
+	pop bc
+	ret
+
+ClearUserItemState_Core::
+; Farcall entry used by the real switch-in path before entry hazards. Keeping
+; the reset out of RunEntryAbilities prevents Skill Swap from erasing state.
+	jp ClearUserItemState
+
+RecordConsumedItem::
+; Farcalled from ConsumeHeldItem right before it zeroes the item slot.
+; There, de points at the holder's battle item byte (the holder is the
+; turn holder's OPPONENT, per the Get*OpponentItem convention). Records
+; the item id, sets the "consumed" flag, and arms Cud Chew.
+	push hl
+	push de
+	push bc
+	; which side holds the item? de is either wBattleMonItem (WRAM0) or
+	; wEnemyMonItem (banked WRAM): the high bytes differ.
+	ld a, d
+	cp HIGH(wBattleMonItem)
+	ld c, 0
+	jr z, .got_side
+	ld c, 1
+.got_side
+	ld a, [de]
+	ld e, a ; e = item id
+	ld b, a
+	call WriteConsumedItem
+	call ReadItemStateFlags
+	set 0, b ; consumed a held item
+	; arm Cud Chew (replays at the end of the NEXT turn) if the holder
+	; has the ability and this was an HP-restoring Berry
+	push bc
+	ld a, c
+	and a
+	jr nz, .enemy_ability
+	call GetPlayerAbilityEffective
+	jr .got_ability
+.enemy_ability
+	call GetEnemyAbilityEffective
+.got_ability
+	cp CUD_CHEW
+	pop bc
+	jr nz, .store
+	; This engine can replay its two HP-restoring Berries. Match the actual
+	; item ids so Berry Juice is not mistaken for a Berry by held-effect code.
+	ld a, e
+	cp BERRY
+	jr z, .arm_cud_chew
+	cp GOLD_BERRY
+	jr nz, .store
+.arm_cud_chew
+	set 2, b
+.store
+	call WriteItemStateFlags
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; --- Entry abilities ------------------------------------------------------
+
+DownloadAbility:
+; Raises Atk or SpA depending on which of the foe's unmodified defenses
+; is lower (ties raise SpA, like the original games).
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wEnemyMonDefense)
+	ldh [rSVBK], a
+	ld hl, wEnemyMonDefense
+	ld de, wEnemyMonSpclDef
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_stats
+	ld hl, wBattleMonDefense
+	ld de, wBattleMonSpclDef
+.got_stats
+	; bc = Defense
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	; hl = Sp.Def
+	ld a, [de]
+	ld h, a
+	inc de
+	ld a, [de]
+	ld l, a
+	pop af
+	ldh [rSVBK], a
+	; Def < SpDef -> raise Attack, else raise Sp.Atk
+	ld a, b
+	cp h
+	jr c, .raise_attack
+	jr nz, .raise_spatk
+	ld a, c
+	cp l
+	jr c, .raise_attack
+.raise_spatk
+	ld b, SP_ATTACK
+	jr .raise
+.raise_attack
+	ld b, ATTACK
+.raise
+	call BeginAbility
+	call StatUpAbility
+	jp EndAbility
+
+SupersweetSyrupAbility:
+; The scent lowers the foe's evasion on entry, once per party member per
+; battle. The bitset survives switches but is reset by InitAbilityItemState.
+	call CheckAndMarkSupersweetSyrup
+	ret c
+	call ShowAbilityBannerBrief
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld b, EVASION
+	call AbilityLowerOppStat
+	jp EndAbility
+
+CheckAndMarkSupersweetSyrup:
+; Carry if this party member already activated Supersweet Syrup.
+	; wCurBattleMon is in WRAM bank 1, so read the slot before selecting the
+	; bank-2 bitset. wCurOTMon is unbanked.
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_index
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wCurBattleMon)
+	ldh [rSVBK], a
+	ld a, [wCurBattleMon]
+	ld c, a
+	jr .select_state_bank
+.enemy_index
+	ld a, [wCurOTMon]
+	ld c, a
+	ldh a, [rSVBK]
+	push af
+.select_state_bank
+	ld a, BANK(wPlayerSyrupUsedFlags)
+	ldh [rSVBK], a
+	ld hl, wPlayerSyrupUsedFlags
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	inc hl
+.got_side
+	ld a, c
+	ld b, 1
+	and a
+	jr z, .got_mask
+.mask_loop
+	sla b
+	dec a
+	jr nz, .mask_loop
+.got_mask
+	ld a, [hl]
+	and b
+	jr nz, .already_used
+	ld a, [hl]
+	or b
+	ld [hl], a
+	pop af
+	ldh [rSVBK], a
+	and a
+	ret
+.already_used
+	pop af
+	ldh [rSVBK], a
+	scf
+	ret
+
+CopyOppMovesToBuffer:
+; Copies the opponent's four move ids to wBuffer1-4 (bank-safe).
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wEnemyMonMoves)
+	ldh [rSVBK], a
+	ld hl, wEnemyMonMoves
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_moves
+	ld hl, wBattleMonMoves
+.got_moves
+	ld de, wBuffer1
+	ld bc, NUM_MOVES
+	call CopyBytes
+	pop af
+	ldh [rSVBK], a
+	ret
+
+ForewarnAbility:
+; Reveals the foe's strongest move (highest base power; if the foe only
+; has status moves, the first move is revealed).
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBuffer1)
+	ldh [rSVBK], a
+	call CopyOppMovesToBuffer
+	ld hl, wBuffer1
+	ld b, 0 ; best power
+	ld c, 0 ; best move id
+	ld e, NUM_MOVES
+.scan
+	ld a, [hli]
+	and a
+	jr z, .scanned
+	ld d, a
+	push hl
+	push de
+	push bc
+	ld l, a
+	ld a, MOVE_POWER
+	call GetMoveAttribute
+	pop bc
+	pop de
+	pop hl
+	cp b
+	jr c, .next
+	jr z, .next
+	ld b, a
+	ld c, d
+.next
+	dec e
+	jr nz, .scan
+.scanned
+	ld a, c
+	and a
+	jr nz, .got_move
+	ld a, [wBuffer1]
+	and a
+	jr nz, .use_first
+	pop af
+	ldh [rSVBK], a
+	ret ; no moves at all
+.use_first
+	ld c, a
+.got_move
+	pop af
+	ldh [rSVBK], a
+	push bc
+	call ShowAbilityBannerBrief
+	pop bc
+	ld a, c
+	call AbilityBufferMoveName
+	ld hl, ForewarnAlertText
+	jp StdBattleTextbox
+
+AnticipationAbility:
+; Shudders if the foe has a super-effective or OHKO move.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBuffer1)
+	ldh [rSVBK], a
+	call CopyOppMovesToBuffer
+	; the holder's own types -> wBuffer5/6
+	ld hl, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType1
+.got_types
+	ld a, [hli]
+	ld [wBuffer5], a
+	ld a, [hl]
+	ld [wBuffer6], a
+	; scan the foe's moves
+	ld hl, wBuffer1
+.scan
+	ld a, [hli]
+	and a
+	jr z, .no_shudder
+	push hl
+	ld e, a ; e = move id
+	; OHKO moves always trigger
+	ld l, a
+	ld a, MOVE_EFFECT
+	call GetMoveAttribute
+	cp EFFECT_OHKO
+	jr z, .shudder
+	; only damaging moves count
+	ld l, e
+	ld a, MOVE_POWER
+	call GetMoveAttribute
+	and a
+	jr z, .next
+	; super effective vs the holder's typing?
+	ld l, e
+	ld a, MOVE_TYPE
+	call GetMoveAttribute
+	ld b, a
+	ld hl, wBuffer5
+	ld a, BANK(CheckTypeMatchupFar)
+	ld de, CheckTypeMatchupFar
+	call FarCall_de
+	ld a, [wTypeMatchup]
+	cp 10 + 1
+	jr nc, .shudder
+.next
+	pop hl
+	jr .scan
+.shudder
+	pop hl
+	pop af
+	ldh [rSVBK], a
+	call ShowAbilityBannerBrief
+	ld hl, AnticipationShudderText
+	jp StdBattleTextbox
+.no_shudder
+	pop af
+	ldh [rSVBK], a
+	ret
+
+; --- On-hit abilities -----------------------------------------------------
+
+StenchAbility:
+; 10% chance for the attacker's damaging hits to flinch. Doesn't stack
+; with moves that already have a flinch chance; Inner Focus blocks it.
+; Canon: silent (no banner or message until the flinch itself).
+	call OppHasFainted
+	ret z
+	; A foe that already acted cannot flinch this turn. Leaving the bit set
+	; would instead steal its action on the following turn.
+	callfar CheckOpponentWentFirst
+	ret nz
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, .native_flinch_effects
+	ld de, 1
+	call IsInArray
+	ret c
+	; Stench and King's Rock/Razor Fang share the added-flinch slot.
+	call GetUserItem_Core
+	ld a, b
+	cp HELD_FLINCH
+	ret z
+	ld a, 10
+	call BattleRandomRange
+	and a
+	ret nz
+	; Reuse the regular handler for sleep, Substitute/Infiltrator, action
+	; order, Shield Dust/Inner Focus and recharge handling.
+	farcall BattleCommand_FlinchTarget
+	ret
+
+.native_flinch_effects
+	db EFFECT_FLINCH_HIT
+	db EFFECT_SNORE
+	db EFFECT_TWISTER
+	db EFFECT_STOMP
+	db EFFECT_FAKE_OUT
+	db EFFECT_SKY_ATTACK
+	db -1
+
+PickpocketAbility:
+; Contact chain, turn = the defending Pickpocket holder. Steals the
+; attacker's held item when the holder has none. Sticky Hold protects
+; the attacker; mail can't be taken.
+	call UserHasFainted
+	ret z
+	; the holder's item slot must be empty
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_holder_item
+	ld hl, wEnemyMonItem
+.got_holder_item
+	ld a, [hl]
+	and a
+	ret nz
+	; Sticky Hold keeps the attacker's item where it is
+	call GetOpponentAbility
+	cp STICKY_HOLD
+	ret z
+	; the attacker must have an item
+	ld hl, wEnemyMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_attacker_item
+	ld hl, wBattleMonItem
+.got_attacker_item
+	ld a, [hl]
+	and a
+	ret z
+	; no stealing mail
+	ld d, a
+	push de
+	farcall ItemIsMail
+	pop de
+	ret c
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_holder
+	; the player's mon steals the enemy's item.
+	; Mirror Thief's rule: no permanent theft in link non-trainer battles.
+	ld a, [wLinkMode]
+	and a
+	jr z, .take_from_enemy
+	ld a, [wBattleMode]
+	dec a
+	ret z
+.take_from_enemy
+	xor a
+	ld [wEnemyMonItem], a
+	push de
+	ld a, MON_ITEM
+	call OTPartyAttr
+	xor a
+	ld [hl], a
+	pop de
+	ld a, d
+	ld [wBattleMonItem], a
+	push de
+	ld a, MON_ITEM
+	call BattlePartyAttr
+	pop de
+	ld [hl], d
+	ld c, 1 ; the enemy side lost its item
+	jr .stole
+.enemy_holder
+	xor a
+	ld [wBattleMonItem], a
+	push de
+	ld a, MON_ITEM
+	call BattlePartyAttr
+	xor a
+	ld [hl], a
+	pop de
+	ld a, d
+	ld [wEnemyMonItem], a
+	push de
+	ld a, MON_ITEM
+	call OTPartyAttr
+	pop de
+	ld [hl], d
+	ld c, 0 ; the player side lost its item
+.stole
+	; mark the victim's side for Unburden
+	push de
+	call ReadItemStateFlags
+	set 1, b
+	call WriteItemStateFlags
+	pop de
+	; banner, then buffer the name (the banner clobbers wStringBuffer1)
+	push de
+	call ShowAbilityBannerBrief
+	pop de
+	ld a, d
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	ld hl, StoleText
+	jp StdBattleTextbox
+
+; --- End-of-turn abilities ------------------------------------------------
+
+HarvestAbility:
+; 50% chance (100% in sun) to restore the holder's consumed Berry.
+	call GetUserSide
+	call ReadItemStateFlags
+	bit 0, b
+	ret z
+	; the holder must currently hold nothing
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_item
+	ld hl, wEnemyMonItem
+.got_item
+	ld a, [hl]
+	and a
+	ret nz
+	; the consumed item must have been a Berry
+	call ReadConsumedItem
+	ld a, b
+	and a
+	ret z
+	push bc
+	ld hl, BerryItems
+	ld de, 1
+	call IsInArray
+	pop bc
+	ret nc
+	; roll: guaranteed in sun, 50% otherwise
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	jr z, .restore
+	ld a, 2
+	call BattleRandomRange
+	and a
+	ret nz
+.restore
+	; put the Berry back: battle item...
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_item2
+	ld hl, wEnemyMonItem
+.got_item2
+	ld [hl], b
+	; ...and the party struct (skip the OT struct in wild battles)
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_struct
+	ld a, MON_ITEM
+	call BattlePartyAttr
+	jr .write_struct
+.enemy_struct
+	ld a, [wBattleMode]
+	dec a
+	jr z, .skip_struct
+	ld a, MON_ITEM
+	call OTPartyAttr
+.write_struct
+	pop bc
+	ld [hl], b
+	push bc
+	jr .cleared
+.skip_struct
+	pop bc
+	push bc
+.cleared
+	; forget the consumed record (the Berry is back)
+	call GetUserSide
+	ld b, 0
+	call WriteItemStateFlags
+	call WriteConsumedItem
+	pop bc
+	; banner + text with the item name
+	push bc
+	call ShowAbilityBannerBrief
+	pop bc
+	ld a, b
+	call AbilityBufferItemName
+	ld hl, HarvestedBerryText
+	jp StdBattleTextbox
+
+BerryItems:
+	db PSNCUREBERRY
+	db PRZCUREBERRY
+	db BURNT_BERRY
+	db ICE_BERRY
+	db BITTER_BERRY
+	db MINT_BERRY
+	db MIRACLEBERRY
+	db MYSTERYBERRY
+	db BERRY
+	db GOLD_BERRY
+	db -1
+
+CudChewAbility:
+; The end of the turn after eating an HP Berry, eats it again.
+	call GetUserSide
+	call ReadItemStateFlags
+	bit 3, b
+	jr nz, .replay
+	bit 2, b
+	ret z
+	; Held Berries are consumed after end-turn abilities run. Seeing the armed
+	; bit here therefore already means one full end of turn has elapsed; replay
+	; now instead of delaying Cud Chew for an extra turn.
+.replay
+	res 2, b
+	res 3, b
+	call WriteItemStateFlags
+	call ReadConsumedItem
+	ld a, b
+	and a
+	ret z
+	push bc
+	farcall GetItemHeldEffect
+	ld a, b
+	pop de ; e = item id (unused; kept for clarity)
+	cp HELD_BERRY
+	ret nz
+	; bc = 0:param = the Berry's heal amount
+	ld b, 0
+	call CheckUserFullHP
+	ret z
+	push bc
+	call ShowAbilityBannerBrief
+	pop bc
+	call AbilityRestoreUserHP
+	ld hl, RegainedHealthText
+	call StdBattleTextbox
+	jp EndAbility
+
+; --- Escape / force-switch ------------------------------------------------
+
+StickyHoldAnnounce_Core::
+; Farcalled from Thief/Knock Off when the victim's Sticky Hold keeps its
+; item: just present the victim's banner.
+	jp ShowEnemyAbilityBannerBrief
+
+MarkSideLostItem_Core::
+; c = side that lost its held item (for Unburden).
+	call ReadItemStateFlags
+	set 1, b
+	jp WriteItemStateFlags
+
+CheckAmuletCoin_Core::
+; Post-battle money hook. Klutz disables the active battler's Amulet Coin.
+	call GetPlayerAbilityEffective
+	cp KLUTZ
+	ret z
+	ld a, [wBattleMonItem]
+	ld b, a
+	farcall GetItemHeldEffect
+	ld a, b
+	cp HELD_AMULET_COIN
+	ret nz
+	ld a, 1
+	ld [wAmuletCoin], a
+	ret
+
+CheckRunAwayEscape_Core::
+; Farcalled from TryToRunAwayFromBattle after the trainer-battle check.
+; Carry if the player's mon flees with Run Away (ignores trapping). When it
+; does not, b reports whether effective Klutz suppresses its Smoke Ball.
+	call GetPlayerAbilityEffective
+	cp RUN_AWAY
+	jr z, .escape
+	cp KLUTZ
+	jr z, .klutz
+	ld b, FALSE
+	and a
+	ret
+.klutz
+	ld b, TRUE
+	and a
+	ret
+.escape
+	call SetPlayerTurn
+	call ShowAbilityBannerBrief
+	scf
+	ret
+
+SuctionCupsBlock_Core::
+; Farcalled from BattleCommand_ForceSwitch. Carry if the force-switch
+; target (the turn holder's opponent) anchors itself.
+	call GetOpponentIgnorableAbility
+	cp SUCTION_CUPS
+	jr z, .block
+	and a
+	ret
+.block
+	call ShowEnemyAbilityBannerBrief
+	ld hl, AnchorsItselfText
+	call StdBattleTextbox
+	scf
+	ret
+
+; --- Relocated Effect Commands bodies -------------------------------------
+
+EarlyBirdPlayerSleep::
+; Replaces "dec a / ld [wBattleMonStatus], a / and SLP" in the player's
+; sleep path of BattleCommand_CheckTurn. Early Bird ticks twice.
+; Returns the remaining sleep count's flags (and the count in c).
+	ld a, [wBattleMonStatus]
+	and SLP
+	dec a
+	jr z, .store
+	ld b, a
+	call GetPlayerAbilityEffective
+	cp EARLY_BIRD
+	ld a, b
+	jr nz, .store
+	dec a
+.store
+	ld [wBattleMonStatus], a
+	and SLP
+	ld c, a
+	ret
+
+EarlyBirdEnemySleep::
+; Enemy-side twin of EarlyBirdPlayerSleep.
+	ld a, [wEnemyMonStatus]
+	and SLP
+	dec a
+	jr z, .store
+	ld b, a
+	call GetEnemyAbilityEffective
+	cp EARLY_BIRD
+	ld a, b
+	jr nz, .store
+	dec a
+.store
+	ld [wEnemyMonStatus], a
+	and SLP
+	ld c, a
+	ret
+
+CheckSubstituteOpp_Core::
+; Relocated body of CheckSubstituteOpp. nz = a Substitute is in the way.
+; The attacker's Infiltrator ignores it.
+	call GetTrueUserAbility
+	cp INFILTRATOR
+	jr z, .pierce
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret
+.pierce
+	xor a
+	ret
+
+AbilitySubBypass_Core::
+; Replaces "ld c, FALSE" before the damage application: c = TRUE when
+; the attacker's Infiltrator makes the hit go through a Substitute.
+	call GetTrueUserAbility
+	cp INFILTRATOR
+	ld c, FALSE
+	ret nz
+	inc c ; TRUE
+	ret
+
+SafeCheckSafeguard_Core::
+; Relocated body of SafeCheckSafeguard; nz = Safeguard protects the
+; opponent. The attacker's Infiltrator ignores Safeguard.
+	push hl
+	call GetTrueUserAbility
+	cp INFILTRATOR
+	jr z, .pierced
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_turn
+	ld hl, wPlayerScreens
+.got_turn
+	bit SCREENS_SAFEGUARD, [hl]
+	pop hl
+	ret
+.pierced
+	xor a
+	pop hl
+	ret
+
+CheckPoisonTypeImmunity_Core::
+; Relocated body of CheckIfTargetIsPoisonType.
+; z = the target's typing (Poison/Steel) blocks poison. The attacker's
+; Corrosion ignores that typing.
+	call GetTrueUserAbility
+	cp CORROSION
+	jr z, .corrosion
+	ld de, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, wBattleMonType1
+.ok
+	ld b, 2
+.type_loop
+	ld a, [de]
+	inc de
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	dec b
+	jr nz, .type_loop
+.corrosion
+	or 1
+	ret
+
+CorrosionPiercesCurrentMove_Core::
+; b = TRUE when Corrosion should neutralize Poison-vs-Steel immunity for the
+; current poison-inflicting move; damaging Poison attacks remain ineffective.
+	call GetTrueUserAbility
+	cp CORROSION
+	jr nz, .no
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp POISON
+	jr nz, .no
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_POISON
+	jr z, .yes
+	cp EFFECT_TOXIC
+	jr z, .yes
+.no
+	ld b, FALSE
+	ret
+.yes
+	ld b, TRUE
+	ret
+
+GetUserItem_Core::
+; Relocated GetUserItem: hl = item addr, bc = effect/param.
+; A Klutz holder's item has no effect (b = 0), though it stays held.
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .go
+	ld hl, wEnemyMonItem
+.go
+	call GetTrueUserAbility
+	cp KLUTZ
+	jr z, .klutz
+	ld b, [hl]
+	push hl ; the farcall macro clobbers hl; callers need the item addr
+	farcall GetItemHeldEffect
+	pop hl
+	ret
+.klutz
+	ld b, 0
+	ld c, 0
+	ret
+
+GetOpponentItem_Core::
+; Relocated GetOpponentItem: hl = item addr, bc = effect/param.
+; A Klutz holder's item has no effect (b = 0), though it stays held.
+	ld hl, wEnemyMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .go
+	ld hl, wBattleMonItem
+.go
+	call GetOpponentAbility
+	cp KLUTZ
+	jr z, .klutz
+	ld b, [hl]
+	push hl ; the farcall macro clobbers hl; callers need the item addr
+	farcall GetItemHeldEffect
+	pop hl
+	ret
+.klutz
+	ld b, 0
+	ld c, 0
+	ret
+
+BerryThresholdCheck_Core::
+; Farcalled from HandleHPHealingItem in place of its inline HP compare.
+; The holder is the turn holder's OPPONENT (held-item convention).
+; Returns carry when the Berry should be eaten: below 1/2 max HP, or
+; below 3/4 with Gluttony (Berries in this engine already trigger at 1/2,
+; so Gluttony eats even earlier). Doubles the heal amount (c) for Ripen.
+; Exit contract (the caller's heal code depends on it): hl = max HP ptr,
+; de = current HP low-byte ptr, current HP mirrored into wBuffer3/4.
+	ld de, wEnemyMonHP + 1
+	ld hl, wEnemyMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_ptrs
+	ld de, wBattleMonHP + 1
+	ld hl, wBattleMonMaxHP
+.got_ptrs
+	push hl
+	push de
+	push bc
+	; current HP -> wBuffer3/4 and bc
+	ld a, [de]
+	ld [wBuffer3], a
+	ld c, a
+	dec de
+	ld a, [de]
+	ld [wBuffer4], a
+	ld b, a
+	; max HP -> de
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	; HELD_BERRY is also used by Berry Juice. Keep the actual item id so
+	; Gluttony and Ripen only modify real Berries.
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMonItem]
+	jr z, .got_holder_item
+	ld a, [wBattleMonItem]
+.got_holder_item
+	ld h, a
+	call GetOpponentAbility
+	cp GLUTTONY
+	jr nz, .ordinary
+	ld a, h
+	cp BERRY_JUICE
+	jr nz, .gluttony
+.ordinary
+	ld a, h
+	push af
+	; eat when HP * 2 < max
+	sla c
+	rl b
+	jr .compare
+.gluttony
+	ld a, h
+	push af
+	; eat when HP * 4 < max * 3
+	sla c
+	rl b
+	sla c
+	rl b
+	ld h, d
+	ld l, e
+	add hl, de
+	add hl, de
+	ld d, h
+	ld e, l
+.compare
+	ld a, b
+	cp d
+	jr c, .eat
+	jr nz, .no
+	ld a, c
+	cp e
+	jr c, .eat
+.no
+	pop af ; actual held item
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.eat
+	pop af ; actual held item
+	ld h, a
+	pop bc
+	; Ripen doubles the restored amount
+	call GetOpponentAbility
+	cp RIPEN
+	jr nz, .no_ripen
+	ld a, h
+	cp BERRY_JUICE
+	jr z, .no_ripen
+	sla c
+.no_ripen
+	pop de
+	pop hl
+	scf
+	ret
+
 SECTION "Mimikyu Broken Pics", ROMX
 
 MimikyuBrokenFrontpic: INCBIN "gfx/pokemon/mimikyu-broken/front.animated.2bpp.lz"

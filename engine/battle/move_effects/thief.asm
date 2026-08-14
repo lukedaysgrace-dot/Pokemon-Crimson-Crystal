@@ -19,8 +19,18 @@ BattleThief_Core:
 	and a
 	ret z
 
+; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
+
+	push hl
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STICKY_HOLD
+	pop hl
+	jr z, .sticky_hold
+
 ; Can't steal mail.
 
+	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	ld d, a
 	farcall ItemIsMail
@@ -48,6 +58,9 @@ BattleThief_Core:
 	ld a, [wNamedObjectIndexBuffer]
 	ld [hl], a
 	ld [de], a
+	; the enemy side lost its item (for Unburden)
+	ld c, 1
+	farcall MarkSideLostItem_Core
 	jr .stole
 
 .enemy
@@ -66,8 +79,18 @@ BattleThief_Core:
 	and a
 	ret z
 
+; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
+
+	push hl
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STICKY_HOLD
+	pop hl
+	jr z, .sticky_hold
+
 ; Can't steal mail!
 
+	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	ld d, a
 	farcall ItemIsMail
@@ -89,11 +112,18 @@ BattleThief_Core:
 	ld a, [wNamedObjectIndexBuffer]
 	ld [hl], a
 	ld [de], a
+	; the player side lost its item (for Unburden)
+	ld c, 0
+	farcall MarkSideLostItem_Core
 
 .stole
 	call GetItemName
 	ld hl, StoleText
 	jp StdBattleTextbox
+
+.sticky_hold
+	farcall StickyHoldAnnounce_Core
+	ret
 
 .playeritem
 	ld a, 1
