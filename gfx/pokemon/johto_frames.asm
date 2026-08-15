@@ -237,6 +237,10 @@ CetoddleFrames:  INCLUDE "gfx/pokemon/cetoddle/frames.asm"
 CetitanFrames:  INCLUDE "gfx/pokemon/cetitan/frames.asm"
 FeebasFrames:  INCLUDE "gfx/pokemon/feebas/frames.asm"
 MiloticFrames:  INCLUDE "gfx/pokemon/milotic/frames.asm"
+; "Pic Animations 3B" filled its bank, so the tail of this list was split
+; into a new floating section. Frames are referenced by dba, so this is safe.
+SECTION "Pic Animations 3c", ROMX
+
 MimikyuFrames:  INCLUDE "gfx/pokemon/mimikyu/frames.asm"
 CursolaFrames:  INCLUDE "gfx/pokemon/cursola/frames.asm"
 GalladeFrames:  INCLUDE "gfx/pokemon/gallade/frames.asm"
