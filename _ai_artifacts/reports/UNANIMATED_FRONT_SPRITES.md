@@ -1,6 +1,6 @@
 # Pokémon with single-frame front sprites
 
-65 of 478 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
+63 of 478 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
 their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than a stacked sheet.
 
 **How this was determined:** a front sprite sheet's extra frames are the only thing
@@ -8,7 +8,7 @@ their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than 
 animation data that references `frame 0` and nothing else, in both files — so the PNG is one
 frame tall. All other 413 folders reference at least one higher frame.
 
-## Alphabetical (65)
+## Alphabetical (63)
 
 | # | Folder | Pokémon |
 |---|--------|---------|
@@ -37,46 +37,44 @@ frame tall. All other 413 folders reference at least one higher frame.
 | 23 | `flygon` | Flygon |
 | 24 | `fraxure` | Fraxure |
 | 25 | `frigibax` | Frigibax |
-| 26 | `golett` | Golett |
-| 27 | `golurk` | Golurk |
-| 28 | `grimmsnarl` | Grimmsnarl |
-| 29 | `grubbin` | Grubbin |
-| 30 | `grumpig` | Grumpig |
-| 31 | `gurdurr` | Gurdurr |
-| 32 | `haxorus` | Haxorus |
-| 33 | `impidimp` | Impidimp |
-| 34 | `kingambit` | Kingambit |
-| 35 | `lairon` | Lairon |
-| 36 | `lopunny` | Lopunny |
-| 37 | `lucario` | Lucario |
-| 38 | `milotic` | Milotic |
-| 39 | `morgrem` | Morgrem |
-| 40 | `munchlax` | Munchlax |
-| 41 | `numel` | Numel |
-| 42 | `pawniard` | Pawniard |
-| 43 | `rampardos` | Rampardos |
-| 44 | `riolu` | Riolu |
-| 45 | `scrafty` | Scrafty |
-| 46 | `scraggy` | Scraggy |
-| 47 | `sealeo` | Sealeo |
-| 48 | `shieldon` | Shieldon |
-| 49 | `shroomish` | Shroomish |
-| 50 | `snover` | Snover |
-| 51 | `spheal` | Spheal |
-| 52 | `spoink` | Spoink |
-| 53 | `timburr` | Timburr |
-| 54 | `tinkatink` | Tinkatink |
-| 55 | `tinkaton` | Tinkaton |
-| 56 | `tinkatuff` | Tinkatuff |
-| 57 | `toxicroak` | Toxicroak |
-| 58 | `trapinch` | Trapinch |
-| 59 | `tsareena` | Tsareena |
-| 60 | `tyrantrum` | Tyrantrum |
-| 61 | `tyrunt` | Tyrunt |
-| 62 | `vibrava` | Vibrava |
-| 63 | `vikavolt` | Vikavolt |
-| 64 | `walrein` | Walrein |
-| 65 | `watu` | Watu |
+| 26 | `grimmsnarl` | Grimmsnarl |
+| 27 | `grubbin` | Grubbin |
+| 28 | `grumpig` | Grumpig |
+| 29 | `gurdurr` | Gurdurr |
+| 30 | `haxorus` | Haxorus |
+| 31 | `impidimp` | Impidimp |
+| 32 | `kingambit` | Kingambit |
+| 33 | `lairon` | Lairon |
+| 34 | `lopunny` | Lopunny |
+| 35 | `lucario` | Lucario |
+| 36 | `milotic` | Milotic |
+| 37 | `morgrem` | Morgrem |
+| 38 | `munchlax` | Munchlax |
+| 39 | `numel` | Numel |
+| 40 | `pawniard` | Pawniard |
+| 41 | `rampardos` | Rampardos |
+| 42 | `riolu` | Riolu |
+| 43 | `scrafty` | Scrafty |
+| 44 | `scraggy` | Scraggy |
+| 45 | `sealeo` | Sealeo |
+| 46 | `shieldon` | Shieldon |
+| 47 | `shroomish` | Shroomish |
+| 48 | `snover` | Snover |
+| 49 | `spheal` | Spheal |
+| 50 | `spoink` | Spoink |
+| 51 | `timburr` | Timburr |
+| 52 | `tinkatink` | Tinkatink |
+| 53 | `tinkaton` | Tinkaton |
+| 54 | `tinkatuff` | Tinkatuff |
+| 55 | `toxicroak` | Toxicroak |
+| 56 | `trapinch` | Trapinch |
+| 57 | `tsareena` | Tsareena |
+| 58 | `tyrantrum` | Tyrantrum |
+| 59 | `tyrunt` | Tyrunt |
+| 60 | `vibrava` | Vibrava |
+| 61 | `vikavolt` | Vikavolt |
+| 62 | `walrein` | Walrein |
+| 63 | `watu` | Watu |
 
 ## Grouped by family (handy for batch spriting)
 
@@ -95,7 +93,6 @@ frame tall. All other 413 folders reference at least one higher frame.
 - Trapinch → Vibrava → Flygon
 - Tyrunt → Tyrantrum
 - Amaura → Aurorus
-- Golett → Golurk
 
 **Partial families (rest of the line already animated)**
 
@@ -122,5 +119,6 @@ frame tall. All other 413 folders reference at least one higher frame.
 ## Verification notes
 
 - Counts cross-checked: 478 folders with `anim.asm`; 411 reference `frame 1-9`; 1
-  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 65.
+  (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 65
+  (63 after Golett and Golurk were animated).
 - `anim_idle.asm` for all 65 folders was also checked — none reference a frame above 0.
