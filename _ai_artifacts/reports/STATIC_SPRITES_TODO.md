@@ -1,6 +1,6 @@
 # Static front sprites — still need animation
 
-37 of 499 Pokémon have a **single-frame front sprite** (front.png is one square
+35 of 499 Pokémon have a **single-frame front sprite** (front.png is one square
 tile block — 40x40 / 48x48 / 56x56 — with nothing stacked below it).
 
 Detection method: `gfx/pokemon/<name>/anim.asm` **and** `anim_idle.asm` both
@@ -18,7 +18,6 @@ Spot-checked against the actual PNGs (gyarados, tinkaton) — both single-frame.
 - Tinkatink → Tinkatuff → Tinkaton
 - Amaura → Aurorus
 - Cetoddle → Cetitan
-- Golett → Golurk
 
 **Partial families (rest of the line is already animated)**
 
@@ -49,6 +48,7 @@ Spot-checked against the actual PNGs (gyarados, tinkaton) — both single-frame.
 - ~~Ledian~~
 - ~~Teddiursa BM (`teddiursabm`)~~
 - ~~Ursaring BM (`ursaringbm`)~~
+- ~~Golett → Golurk~~
 
 ## Flat list (folder names)
 
@@ -56,11 +56,10 @@ Spot-checked against the actual PNGs (gyarados, tinkaton) — both single-frame.
 amaura        aurorus       axew          bastiodon     bisharp
 cetitan       cetoddle      ceruledge     conkeldurr    corvisquire
 dragonite     fletchinder   fletchling    fraxure       frigibax
-golett        golurk        grimmsnarl    gurdurr       gyarados
-houndoom      impidimp      kingambit     mesmeria      milotic
-morgrem       pawniard      rampardos     rookidee      sealeo
-spheal        timburr       tinkatink     tinkaton      tinkatuff
-tyranitar     walrein
+grimmsnarl    gurdurr       gyarados      houndoom      impidimp
+kingambit     mesmeria      milotic       morgrem       pawniard
+rampardos     rookidee      sealeo        spheal        timburr
+tinkatink     tinkaton      tinkatuff     tyranitar     walrein
 ```
 
 ## Note
