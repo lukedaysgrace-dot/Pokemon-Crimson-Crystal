@@ -1,6 +1,8 @@
+> **Superseded** by `STATIC_SPRITES_TODO.md` (full PNG-based rescan, 2026-08-15). This file is kept for history only; its counts are stale.
+
 # Pokémon with single-frame front sprites
 
-63 of 478 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
+60 of 478 `gfx/pokemon/*/` folders have a front sprite with **no extra animation frames** —
 their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than a stacked sheet.
 
 **How this was determined:** a front sprite sheet's extra frames are the only thing
@@ -8,7 +10,7 @@ their `front.png` is a plain N×N image (56×56, 48×48, or 40×40) rather than 
 animation data that references `frame 0` and nothing else, in both files — so the PNG is one
 frame tall. All other 413 folders reference at least one higher frame.
 
-## Alphabetical (63)
+## Alphabetical (60)
 
 | # | Folder | Pokémon |
 |---|--------|---------|
@@ -56,25 +58,22 @@ frame tall. All other 413 folders reference at least one higher frame.
 | 42 | `riolu` | Riolu |
 | 43 | `scrafty` | Scrafty |
 | 44 | `scraggy` | Scraggy |
-| 45 | `sealeo` | Sealeo |
-| 46 | `shieldon` | Shieldon |
-| 47 | `shroomish` | Shroomish |
-| 48 | `snover` | Snover |
-| 49 | `spheal` | Spheal |
-| 50 | `spoink` | Spoink |
-| 51 | `timburr` | Timburr |
-| 52 | `tinkatink` | Tinkatink |
-| 53 | `tinkaton` | Tinkaton |
-| 54 | `tinkatuff` | Tinkatuff |
-| 55 | `toxicroak` | Toxicroak |
-| 56 | `trapinch` | Trapinch |
-| 57 | `tsareena` | Tsareena |
-| 58 | `tyrantrum` | Tyrantrum |
-| 59 | `tyrunt` | Tyrunt |
-| 60 | `vibrava` | Vibrava |
-| 61 | `vikavolt` | Vikavolt |
-| 62 | `walrein` | Walrein |
-| 63 | `watu` | Watu |
+| 45 | `shieldon` | Shieldon |
+| 46 | `shroomish` | Shroomish |
+| 47 | `snover` | Snover |
+| 48 | `spoink` | Spoink |
+| 49 | `timburr` | Timburr |
+| 50 | `tinkatink` | Tinkatink |
+| 51 | `tinkaton` | Tinkaton |
+| 52 | `tinkatuff` | Tinkatuff |
+| 53 | `toxicroak` | Toxicroak |
+| 54 | `trapinch` | Trapinch |
+| 55 | `tsareena` | Tsareena |
+| 56 | `tyrantrum` | Tyrantrum |
+| 57 | `tyrunt` | Tyrunt |
+| 58 | `vibrava` | Vibrava |
+| 59 | `vikavolt` | Vikavolt |
+| 60 | `watu` | Watu |
 
 ## Grouped by family (handy for batch spriting)
 
@@ -96,7 +95,6 @@ frame tall. All other 413 folders reference at least one higher frame.
 
 **Partial families (rest of the line already animated)**
 
-- Spheal → Sealeo → Walrein *(Spheal line: all three here)*
 - Frigibax *(Arctibax / Baxcalibur animated)*
 - Grubbin → Vikavolt *(Charjabug animated)*
 - Shieldon → Bastiodon; Rampardos *(Cranidos animated)*
@@ -120,5 +118,5 @@ frame tall. All other 413 folders reference at least one higher frame.
 
 - Counts cross-checked: 478 folders with `anim.asm`; 411 reference `frame 1-9`; 1
   (`perrserker`) uses a double-space `frame  N` and is animated; leaving exactly 65
-  (63 after Golett and Golurk were animated).
+  (60 after Golett, Golurk and the Spheal line were animated).
 - `anim_idle.asm` for all 65 folders was also checked — none reference a frame above 0.
