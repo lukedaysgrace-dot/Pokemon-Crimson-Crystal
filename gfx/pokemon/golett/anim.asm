@@ -4,7 +4,6 @@
 ; GIF frame order: 0, 1, 0, 1, 0, 0, 2, 0, 3, 0, 2, 0
 ; 7 game frames ~= 116.7 ms (closest Crystal timing to 110 ms)
 
-GolettAnimation:
 	frame 0, 7
 	frame 1, 7
 	frame 0, 7
