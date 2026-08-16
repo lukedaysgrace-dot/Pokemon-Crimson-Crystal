@@ -5835,6 +5835,11 @@ BlackbeltGroup:
 
 	end_list_items
 
+; "Enemy Trainer Parties 2" is pinned to bank $11 in pokecrystal.link and
+; filled it, so the rest of the groups live in this floating section.
+; Groups are reached by dba in party_pointers.asm, so the bank is irrelevant.
+SECTION "Enemy Trainer Parties 4", ROMX
+
 ExecutiveMGroup:
 	next_list_item ; EXECUTIVEM (1) EXECUTIVEM_1 - not placed on any map
 	db "EXECUTIVE@", TRAINERTYPE_ITEM_MOVES
