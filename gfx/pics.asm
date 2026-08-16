@@ -836,6 +836,11 @@ DuskullFrontpic: INCBIN "gfx/pokemon/duskull/front.animated.2bpp.lz"
 DuskullBackpic:  INCBIN "gfx/pokemon/duskull/back.2bpp.lz"
 DusclopsFrontpic: INCBIN "gfx/pokemon/dusclops/front.animated.2bpp.lz"
 DusclopsBackpic:  INCBIN "gfx/pokemon/dusclops/back.2bpp.lz"
+; "Pics 25" was within 30 bytes of filling its bank, so its tail lives here.
+; Pics are reached by dba in data/pokemon/pic_pointers.asm and no "Pics"
+; section is pinned in pokecrystal.link, so this floats into any free bank.
+SECTION "Pics 25b", ROMX
+
 DusknoirFrontpic: INCBIN "gfx/pokemon/dusknoir/front.animated.2bpp.lz"
 DusknoirBackpic:  INCBIN "gfx/pokemon/dusknoir/back.2bpp.lz"
 TimburrFrontpic: INCBIN "gfx/pokemon/timburr/front.animated.2bpp.lz"
