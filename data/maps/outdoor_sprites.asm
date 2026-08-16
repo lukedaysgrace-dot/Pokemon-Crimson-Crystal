@@ -176,7 +176,7 @@ CeruleanGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
-	db SPRITE_NONE ; free slot (was SPRITE_NURSE; indoor maps self-load)
+	db SPRITE_CRYSTAL ; Route 25 cape (standing; never steps)
 	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
 	db SPRITE_NONE ; unused filler; Big Snorlax did not fit this group's VRAM
 

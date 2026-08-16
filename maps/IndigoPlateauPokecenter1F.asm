@@ -44,14 +44,8 @@ IndigoPlateauPokecenter1F_MapScripts:
 PlateauRivalBattle1:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse PlateauRivalScriptDone
-	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
+	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
-	readvar VAR_WEEKDAY
-	ifequal SUNDAY, PlateauRivalScriptDone
-	ifequal TUESDAY, PlateauRivalScriptDone
-	ifequal THURSDAY, PlateauRivalScriptDone
-	ifequal FRIDAY, PlateauRivalScriptDone
-	ifequal SATURDAY, PlateauRivalScriptDone
 	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	turnobject PLAYER, DOWN
@@ -66,14 +60,8 @@ PlateauRivalBattle1:
 PlateauRivalBattle2:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse PlateauRivalScriptDone
-	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
+	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
-	readvar VAR_WEEKDAY
-	ifequal SUNDAY, PlateauRivalScriptDone
-	ifequal TUESDAY, PlateauRivalScriptDone
-	ifequal THURSDAY, PlateauRivalScriptDone
-	ifequal FRIDAY, PlateauRivalScriptDone
-	ifequal SATURDAY, PlateauRivalScriptDone
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -134,7 +122,7 @@ PlateauRivalPostBattle:
 	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
 	setscene SCENE_DEFAULT
 	playmapmusic
-	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
+	setevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 PlateauRivalScriptDone:
 	end
 
