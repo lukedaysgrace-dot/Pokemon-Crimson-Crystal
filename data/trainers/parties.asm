@@ -4928,68 +4928,68 @@ CrystalGroup:
 	db NO_ITEM
 	db -1 ; end
 
-	next_list_item ; CRYSTAL (13) CRYSTAL_5_CHIKORITA - not placed on any map
+	next_list_item ; CRYSTAL (13) CRYSTAL_5_CHIKORITA - Route 25 (Cerulean Cape)
 	db "CRYSTAL@", TRAINERTYPE_ITEM
-	db 46
+	db 70
 	dw MEGANIUM
 	db NO_ITEM
-	db 44
+	db 67
 	dw HYDRAPPLE
 	db NO_ITEM
-	db 45
+	db 68
 	dw TYRANITAR
 	db NO_ITEM
-	db 45
+	db 68
 	dw URSALUNA
 	db NO_ITEM
-	db 43
+	db 66
 	dw XATU
 	db NO_ITEM
-	db 44
+	db 67
 	dw LANTURN
 	db NO_ITEM
 	db -1 ; end
 
-	next_list_item ; CRYSTAL (14) CRYSTAL_5_CYNDAQUIL - not placed on any map
+	next_list_item ; CRYSTAL (14) CRYSTAL_5_CYNDAQUIL - Route 25 (Cerulean Cape)
 	db "CRYSTAL@", TRAINERTYPE_ITEM
-	db 46
+	db 70
 	dw TYPHLOSION
 	db NO_ITEM
-	db 44
+	db 67
 	dw FLAPPLE
 	db NO_ITEM
-	db 45
+	db 68
 	dw TYRANITAR
 	db NO_ITEM
-	db 45
+	db 68
 	dw URSALUNA
 	db NO_ITEM
-	db 43
+	db 66
 	dw XATU
 	db NO_ITEM
-	db 44
+	db 67
 	dw LANTURN
 	db NO_ITEM
 	db -1 ; end
 
-	next_list_item ; CRYSTAL (15) CRYSTAL_5_TOTODILE - not placed on any map
+	next_list_item ; CRYSTAL (15) CRYSTAL_5_TOTODILE - Route 25 (Cerulean Cape)
 	db "CRYSTAL@", TRAINERTYPE_ITEM
-	db 46
+	db 70
 	dw FERALIGATR
 	db NO_ITEM
-	db 44
+	db 67
 	dw APPLETUN
 	db NO_ITEM
-	db 45
+	db 68
 	dw TYRANITAR
 	db NO_ITEM
-	db 45
+	db 68
 	dw URSALUNABM
 	db NO_ITEM
-	db 43
+	db 66
 	dw XATU
 	db NO_ITEM
-	db 44
+	db 67
 	dw VOLCARONA
 	db NO_ITEM
 	db -1 ; end

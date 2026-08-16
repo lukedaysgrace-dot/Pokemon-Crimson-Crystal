@@ -9,19 +9,32 @@
 	const ROUTE25_SUPER_NERD
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
+	const ROUTE25_CRYSTAL
 
 Route25_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .Crystal
 
 .DummyScene0:
 	end
 
 .DummyScene1:
 	end
+
+.Crystal:
+; CRYSTAL waits at the cape once the ELITE FOUR have been beaten.
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .NoCrystal
+	appear ROUTE25_CRYSTAL
+	return
+
+.NoCrystal:
+	disappear ROUTE25_CRYSTAL
+	return
 
 Route25MistyDate1Script:
 	showemote EMOTE_HEART, ROUTE25_MISTY, 15
@@ -73,6 +86,74 @@ Route25MistyDate2Script:
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	setscene SCENE_ROUTE25_NOTHING
 	special RestartMapMusic
+	end
+
+Route25CrystalApproachScript:
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .Done
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .Done
+	special FadeOutMusic
+	turnobject PLAYER, DOWN
+	showemote EMOTE_SHOCK, PLAYER, 15
+	turnobject ROUTE25_CRYSTAL, UP
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	sjump Route25CrystalBattle
+.Done:
+	end
+
+Route25CrystalScript:
+	faceplayer
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .AfterBattle
+	special FadeOutMusic
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	sjump Route25CrystalBattle
+
+.AfterBattle:
+	opentext
+	writetext Route25CrystalCapeText
+	waitbutton
+	closetext
+	end
+
+Route25CrystalBattle:
+	opentext
+	writetext Route25CrystalBeforeText
+	waitbutton
+	closetext
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .Cyndaquil
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .Cyndaquil
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .Totodile
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
+	iftrue .Totodile
+	loadtrainer CRYSTAL2, CRYSTAL2_CHIKORITA
+	sjump .StartBattle
+
+.Cyndaquil:
+	loadtrainer CRYSTAL2, CRYSTAL2_CYNDAQUIL
+	sjump .StartBattle
+
+.Totodile:
+	loadtrainer CRYSTAL2, CRYSTAL2_TOTODILE
+
+.StartBattle:
+	winlosstext Route25CrystalWinText, Route25CrystalLossText
+	setlasttalked ROUTE25_CRYSTAL
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	opentext
+	writetext Route25CrystalAfterText
+	waitbutton
+	closetext
+	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	turnobject ROUTE25_CRYSTAL, DOWN
+	playmapmusic
 	end
 
 TrainerCosplayerNoelle:
@@ -224,6 +305,121 @@ MovementData_0x19f000:
 	step LEFT
 	step LEFT
 	step_end
+
+Route25CrystalBeforeText:
+	text "CRYSTAL:"
+	line "I expected to find"
+	cont "you here."
+
+	para "When we first left"
+	line "New Bark Town, I"
+	cont "thought completing"
+
+	para "the #DEX was"
+	line "all that mattered."
+
+	para "But this journey"
+	line "has taught me"
+	cont "otherwise."
+
+	para "A Trainer can't"
+	line "understand #MON"
+	cont "by simply"
+
+	para "observing them."
+
+	para "They have to earn"
+	line "that"
+	cont "understanding."
+
+	para "And every time"
+	line "we've battled..."
+
+	para "I've been forced"
+	line "to confront that."
+
+	para "We've both come"
+	line "too far to hold"
+	cont "anything back now."
+
+	para "I want to see the"
+	line "result of"
+	cont "everything we've"
+
+	para "learned."
+
+	para "Show me your"
+	line "strength."
+	done
+
+Route25CrystalWinText:
+	text "....I understand"
+	line "now."
+	done
+
+Route25CrystalLossText:
+	text "My training paid"
+	line "off!"
+	done
+
+Route25CrystalAfterText:
+	text "CRYSTAL:"
+	line "I kept searching"
+	cont "for the difference"
+
+	para "between us."
+
+	para "I thought it was"
+	line "experience."
+
+	para "Or knowledge."
+
+	para "But it wasn't."
+
+	para "Your #MON"
+	line "trust you"
+	cont "completely."
+
+	para "And you trust"
+	line "them."
+
+	para "That's why you"
+	line "won."
+
+	para "That's something"
+	line "no #DEX can"
+	cont "measure."
+
+	para "I think I've found"
+	line "the answer I was"
+	cont "looking for."
+
+	para "...the next time"
+	line "we meet the"
+	cont "outcome may be"
+
+	para "different."
+
+	para "Until then, take"
+	line "care <PLAYER>."
+	done
+
+Route25CrystalCapeText:
+	text "CRYSTAL: BILL"
+	line "grew up looking"
+	cont "out at this."
+
+	para "No wonder he"
+	line "started asking"
+	cont "what #MON are."
+
+	para "I think I'll stay"
+	line "a while longer."
+
+	para "There's still so"
+	line "much I want to"
+	cont "understand."
+	done
 
 Route25MistyDateText:
 	text "MISTY: Aww! Why"
@@ -410,15 +606,17 @@ Route25_MapEvents:
 	db 1 ; warp events
 	warp_event 47,  5, BILLS_HOUSE, 1
 
-	db 2 ; coord events
+	db 4 ; coord events
 	coord_event 42,  6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script
 	coord_event 42,  7, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate2Script
+	coord_event 48,  7, -1, Route25CrystalApproachScript
+	coord_event 48,  8, -1, Route25CrystalApproachScript
 
 	db 2 ; bg events
 	bg_event 45,  5, BGEVENT_READ, BillsHouseSign
 	bg_event  4,  5, BGEVENT_ITEM, Route25HiddenPotion
 
-	db 10 ; object events
+	db 11 ; object events
 	object_event 46,  9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 12,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerNadia, -1
@@ -429,3 +627,4 @@ Route25_MapEvents:
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
+	object_event 48, 10, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route25CrystalScript, EVENT_ROUTE_25_CRYSTAL
