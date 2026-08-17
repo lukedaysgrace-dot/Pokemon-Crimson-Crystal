@@ -90,6 +90,16 @@ VioletCityCrystalBattleScript:
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	opentext
 	writetext VioletCityCrystalAfterText
+	buttonsound
+	writetext VioletCityCrystalNumberText
+	buttonsound
+	writetext VioletCityCrystalRegisteredText
+	playsound SFX_REGISTER_PHONE_NUMBER
+	waitsfx
+	buttonsound
+	addcellnum PHONE_CRYSTAL
+	setevent EVENT_GOT_CRYSTALS_NUMBER
+	writetext VioletCityCrystalCallMeText
 	waitbutton
 	closetext
 	setevent EVENT_BEAT_CRYSTAL_VIOLET_CITY
@@ -443,6 +453,49 @@ VioletCityCrystalAfterText:
 	para "Next time, I won't"
 	line "be as easy to"
 	cont "beat."
+	done
+
+VioletCityCrystalNumberText:
+	text "Wait--before you"
+	line "go."
+
+	para "Your #GEAR."
+	line "Give me the"
+	cont "number."
+
+	para "…Please. Sorry."
+	line "That came out as"
+	cont "an order."
+
+	para "If I turn up"
+	line "anything worth"
+	cont "knowing, you"
+	cont "should hear it"
+	cont "from me first."
+	done
+
+VioletCityCrystalRegisteredText:
+	text "<PLAYER> recorded"
+	line "CRYSTAL's number."
+	done
+
+VioletCityCrystalCallMeText:
+	text "Call whenever you"
+	line "like."
+
+	para "I'm in the field"
+	line "most days and"
+	cont "most nights, so"
+	cont "don't fuss about"
+	cont "the hour."
+
+	para "And <PLAY_G>--"
+
+	para "PROF.ELM picked"
+	line "you for a reason."
+
+	para "Don't make me the"
+	line "only one working."
 	done
 
 VioletCity_MapEvents:
