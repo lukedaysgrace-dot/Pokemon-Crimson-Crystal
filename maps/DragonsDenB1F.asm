@@ -51,17 +51,17 @@ DragonsDenB1F_ClairScene:
 	playmusic MUSIC_CLAIR
 	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksToYou
 	opentext
-	writetext ClairText_GiveDragonbreathDragonDen
+	writetext ClairText_GiveDragonPulseDragonDen
 	buttonsound
-	giveitem TM_DRAGONBREATH
+	giveitem TM_DRAGON_PULSE
 	iffalse .BagFull
-	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	writetext NotifyReceiveDragonbreath
+	getitemname STRING_BUFFER_3, TM_DRAGON_PULSE
+	writetext NotifyReceiveDragonPulse
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
-	setevent EVENT_GOT_TM24_DRAGONBREATH
-	writetext ClairText_DescribeDragonbreathDragonDen
+	setevent EVENT_GOT_TM24_DRAGON_CLAW
+	writetext ClairText_DescribeDragonPulseDragonDen
 	buttonsound
 	writetext ClairText_WhatsTheMatterDragonDen
 	waitbutton
@@ -206,7 +206,7 @@ ClairText_Wait:
 	text "Wait!"
 	done
 
-ClairText_GiveDragonbreathDragonDen:
+ClairText_GiveDragonPulseDragonDen:
 	text "CLAIR: I'm sorry"
 	line "about this."
 
@@ -214,18 +214,17 @@ ClairText_GiveDragonbreathDragonDen:
 	line "my apology."
 	done
 
-NotifyReceiveDragonbreath:
+NotifyReceiveDragonPulse:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM09."
 	done
 
-ClairText_DescribeDragonbreathDragonDen:
+ClairText_DescribeDragonPulseDragonDen:
 	text "That contains"
-	line "DRAGONBREATH."
+	line "DRAGON PULSE."
 
-	para "No, it doesn't"
-	line "have anything to"
-	cont "do with my breath."
+	para "The raw force of"
+	line "a DRAGON's spirit."
 
 	para "If you don't want"
 	line "it, you don't have"

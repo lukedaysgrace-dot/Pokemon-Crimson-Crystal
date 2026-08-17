@@ -9,13 +9,13 @@ MrPsychicsHouse_MapScripts:
 MrPsychic:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM29_PSYCHIC
+	checkevent EVENT_GOT_TM52_ZEN_HEADBUTT
 	iftrue .AlreadyGotItem
 	writetext MrPsychicText1
 	buttonsound
-	verbosegiveitem TM_PSYCHIC_M
+	verbosegiveitem TM_ZEN_HEADBUTT
 	iffalse .Done
-	setevent EVENT_GOT_TM29_PSYCHIC
+	setevent EVENT_GOT_TM52_ZEN_HEADBUTT
 .AlreadyGotItem:
 	writetext MrPsychicText2
 	waitbutton
@@ -39,10 +39,12 @@ MrPsychicText1:
 	done
 
 MrPsychicText2:
-	text "TM29 is PSYCHIC."
+	text "TM52 is ZEN"
+	line "HEADBUTT."
 
-	para "It may lower the"
-	line "target's SPCL.DEF."
+	para "A focused blow"
+	line "that may make the"
+	cont "foe flinch."
 	done
 
 MrPsychicsHouse_MapEvents:
