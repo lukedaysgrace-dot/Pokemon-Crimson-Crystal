@@ -31,6 +31,7 @@ ViridianGymBlueScript:
 	writetext LeaderBlueAfterText
 	waitbutton
 	closetext
+	specialphonecall SPECIALCALL_CRYSTAL_CAPE
 	end
 
 .FightDone:
