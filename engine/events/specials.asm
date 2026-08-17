@@ -53,6 +53,22 @@ CheckCaughtMew:
 	ld [wScriptVar], a
 	ret
 
+CheckCaughtWildMon:
+; Returns TRUE in wScriptVar if the last battle ended with the wild mon caught.
+; A wild battle reports WIN whether the mon was caught or knocked out, so
+; scripted encounters that only end on a catch need this instead.
+	ld a, [wBattleResult]
+	bit BATTLERESULT_CAUGHT, a
+	jr z, .not_caught
+	ld a, TRUE
+	ld [wScriptVar], a
+	ret
+
+.not_caught
+	xor a ; FALSE
+	ld [wScriptVar], a
+	ret
+
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
 	call SetSeenMon
