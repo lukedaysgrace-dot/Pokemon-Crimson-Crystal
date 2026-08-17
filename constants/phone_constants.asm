@@ -39,6 +39,7 @@
 	const PHONE_PICNICKER_ERIN
 	const PHONE_BUENA
 	const PHONE_OAK_CALL
+	const PHONE_CRYSTAL
 
 ; SpecialPhoneCallList indexes (see data/phone/special_calls.asm)
 	const_def

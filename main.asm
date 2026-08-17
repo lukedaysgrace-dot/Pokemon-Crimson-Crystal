@@ -392,6 +392,7 @@ INCLUDE "data/phone/text/wilton_overworld.asm"
 INCLUDE "data/phone/text/kenji_overworld.asm"
 INCLUDE "data/phone/text/parry_overworld.asm"
 INCLUDE "data/phone/text/erin_overworld.asm"
+INCLUDE "data/phone/text/crystal.asm"
 
 
 SECTION "bank2E", ROMX
@@ -416,6 +417,7 @@ INCLUDE "engine/phone/scripts/unused.asm"
 INCLUDE "engine/phone/scripts/mom.asm"
 INCLUDE "engine/phone/scripts/bill.asm"
 INCLUDE "engine/phone/scripts/elm.asm"
+INCLUDE "engine/phone/scripts/crystal.asm"
 INCLUDE "engine/phone/scripts/jack.asm"
 INCLUDE "engine/phone/scripts/beverly.asm"
 INCLUDE "engine/phone/scripts/huey.asm"
