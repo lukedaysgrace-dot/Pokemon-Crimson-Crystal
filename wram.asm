@@ -2663,8 +2663,9 @@ wTradeFlags:: flag_array NUM_NPC_TRADES ; d960
 wMooMooBerries:: db ; d962
 wUndergroundSwitchPositions:: db ; d963
 wFarfetchdPosition:: db ; d964
+wFinizenPosition:: db ; d965 - Route 41 FINIZEN chase step (1-3, 4 = gone for this visit)
 
-	ds 13
+	ds 12
 
 ; map scene ids
 wPokecenter2FSceneID::                            db ; d972
