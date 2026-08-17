@@ -139,6 +139,7 @@
 	const SPRITE_TAMER ; 89
 	const SPRITE_RAIKOU_NPC ; 8a
 	const SPRITE_SUICUNE_NPC ; 8b
+	const SPRITE_MEW ; 8c
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)

@@ -16,3 +16,4 @@ SpecialPhoneCallList:
 	specialcall SpecialCallWhereverYouAre,  PHONECONTACT_MOM,      MomPhoneLectureScript
 	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneCallerScript
 	specialcall SpecialCallOnlyWhenOutside, PHONE_OAK_CALL,          OakMtSilverPhoneCallerScript
+	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneCallerScript
