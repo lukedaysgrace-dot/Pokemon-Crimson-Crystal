@@ -526,7 +526,11 @@ CianwoodGroupSprites:
 ; the group is INDOOR/CAVE/GATE and self-loads via AddIndoorSprites - including
 ; Ice Island, which pulls SKIER_NEW/SNOWBOARDER_NEW without being listed here.
 ; Eleven entries were dead weight for those four maps and are now SPRITE_NONE,
-; taking bank 0 from 116/128 to 24/128. Room for ~8 more 12-tile sprites.
+; taking bank 0 from 116/128 down to 24/128.
+; SPRITE_FINIZEN (Route 41 Sunday event) was added in ENTEI's old slot so it
+; lands in bank 1 - it spins nonstop while it is on screen. ENTEI moved below
+; the bank-1 cutoff instead; its Cianwood City cameo is a short scripted beat.
+; Bank 0 now sits at 48/128, i.e. room for ~6 more 12-tile sprites.
 	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; the Cianwood City beast cameo uses SPRITE_ENTEI)
 	db SPRITE_NONE ; free slot (was SPRITE_SILVER_TROPHY; player's-room decor, indoor only)
 	db SPRITE_NONE ; free slot (was SPRITE_FAMICOM; player's-room decor, indoor only)
@@ -537,19 +541,20 @@ CianwoodGroupSprites:
 	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST; indoor only)
 	db SPRITE_STANDING_YOUNGSTER ; Cianwood City, Route 40, Battle Tower Outside
 	db SPRITE_NONE ; free slot (was SPRITE_BIG_ONIX; not on any outdoor map in this group)
-	db SPRITE_NONE ; free slot (was SPRITE_SUDOWOODO; not on any outdoor map in this group)
+	db SPRITE_ROCK ; Cianwood City, Route 40 smashable rocks (still sprite; sorts last regardless of slot)
 	db SPRITE_NONE ; free slot (was SPRITE_BIG_SNORLAX; not on any outdoor map in this group)
 	db SPRITE_OLIVINE_RIVAL ; Route 40/41 swimmer trainers
 	db SPRITE_POKEFAN_M ; Cianwood City walker, Route 40
 	db SPRITE_LASS ; Cianwood City walker, Route 40, Battle Tower Outside
 	db SPRITE_BUENA ; Route 40 (Monica), Battle Tower Outside (wanders)
 	db SPRITE_SWIMMER_GIRL ; Route 40/41 trainers
-	db SPRITE_ENTEI ; Cianwood City beast cameo
+	db SPRITE_FINIZEN ; Route 41 Sunday event (spins nonstop; must stay out of bank 0)
 	db SPRITE_SAILOR ; Battle Tower Outside walker
 	db SPRITE_POKEFAN_F ; Cianwood City walker (Chuck's wife)
 	db SPRITE_MYSTICALMAN ; Cianwood City (Eusine; standing)
 	db SPRITE_CRYSTAL_SURF ; Cianwood City (standing)
-	db SPRITE_ROCK ; Cianwood City, Route 40 smashable rocks
+	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
+	db SPRITE_ENTEI ; Cianwood City beast cameo (brief scripted appearance)
 
 OlivineGroupSprites:
 	db SPRITE_SUICUNE
