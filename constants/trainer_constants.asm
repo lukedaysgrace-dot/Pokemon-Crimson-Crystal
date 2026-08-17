@@ -24,6 +24,7 @@ GOLD EQU __enum__
 	const PHONECONTACT_ELM
 	const PHONECONTACT_BUENA
 	const PHONECONTACT_OAK
+	const PHONECONTACT_CRYSTAL
 
 LYRA EQU __enum__
 	trainerclass FALKNER ; 1

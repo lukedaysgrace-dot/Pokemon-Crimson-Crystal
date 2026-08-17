@@ -49,3 +49,4 @@ PhoneContacts:
 	phone PICNICKER,    ERIN1,                 ROUTE_46,                  ANYTIME, ErinPhoneCalleeScript,    ANYTIME, ErinPhoneCallerScript
 	phone TRAINER_NONE, PHONECONTACT_BUENA,    GOLDENROD_DEPT_STORE_ROOF, ANYTIME, BuenaPhoneCalleeScript,   ANYTIME, BuenaPhoneCallerScript
 	phone TRAINER_NONE, PHONECONTACT_OAK,      OAKS_LAB,                  0,       UnusedPhoneScript,        0,       OakMtSilverPhoneCallerScript
+	phone TRAINER_NONE, PHONECONTACT_CRYSTAL,  N_A,                       ANYTIME, CrystalPhoneCalleeScript, ANYTIME, CrystalPhoneCallerScript
