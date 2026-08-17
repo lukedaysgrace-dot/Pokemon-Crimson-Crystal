@@ -145,6 +145,9 @@ CinnabarGroupSprites:
 	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
 
 CeruleanGroupSprites:
+; - SPRITE_MEW (Route 25 cape) wanders nonstop, so it is first in line for
+;   bank 1. SPRITE_SUICUNE and SPRITE_POKEDEX were dropped to make room: no
+;   outdoor map in this group uses either one.
 ; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm):
 ; - Walking sprites are packed FIRST-COME after the player + Suicune into VRAM
 ;   bank 1 (holds player + Suicune + 7 more walkers). Walkers that overflow into
@@ -155,7 +158,7 @@ CeruleanGroupSprites:
 ; - NURSE and OLD_LINK_RECEPTIONIST were removed: indoor maps load their own
 ;   sprites (AddIndoorSprites) and no outdoor map in this group uses them.
 ;   Keeping them overflowed bank 0 and made NPCs render with player tiles.
-	db SPRITE_SUICUNE
+	db SPRITE_MEW ; Route 25 cape (wanders nonstop; must stay out of bank 0)
 	db SPRITE_COOLTRAINER_M ; Cerulean City wanderer (also Route 25)
 	db SPRITE_SUPER_NERD ; Cerulean City wanderer (also Route 25)
 	db SPRITE_FISHER ; Cerulean City walker
@@ -173,12 +176,12 @@ CeruleanGroupSprites:
 	db SPRITE_ROCKET ; Route 24
 	db SPRITE_MISTY ; Route 25
 	db SPRITE_POKEFAN_M ; Route 25
-	db SPRITE_POKEDEX
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
 	db SPRITE_CRYSTAL ; Route 25 cape (standing; never steps)
 	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
-	db SPRITE_NONE ; unused filler; Big Snorlax did not fit this group's VRAM
+	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
+	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
 
 SaffronGroupSprites:
 	db SPRITE_SUICUNE
