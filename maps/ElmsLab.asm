@@ -514,6 +514,11 @@ ElmAfterTheftScript:
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
+	buttonsound
+	writetext ElmGiveAbilityCapText1
+	buttonsound
+	verbosegiveitem ABILITY_CAP
+	writetext ElmGiveAbilityCapText2
 	waitbutton
 	closetext
 	setscene SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
@@ -1290,6 +1295,33 @@ ElmAfterTheftText6:
 	para "Before you leave,"
 	line "make sure that you"
 	cont "talk to your mom."
+	done
+
+ElmGiveAbilityCapText1:
+	text "Oh! And one more"
+	line "thing, <PLAY_G>."
+
+	para "Take this with"
+	line "you. It's a proto-"
+	cont "type from my lab."
+	done
+
+ElmGiveAbilityCapText2:
+	text "An ABILITY CAP"
+	line "draws out a #-"
+	cont "MON's hidden side."
+
+	para "Every #MON is"
+	line "born with differ-"
+	cont "ent ABILITIES."
+
+	para "Use it, and one of"
+	line "those will awaken"
+	cont "in place of its"
+	cont "current one."
+
+	para "Record what you"
+	line "find for me!"
 	done
 
 ElmStudyingEggText:

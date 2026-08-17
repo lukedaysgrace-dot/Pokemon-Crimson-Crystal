@@ -33,7 +33,7 @@ MahoganyGymPryceScript:
 	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM16_ICY_WIND
+	checkevent EVENT_GOT_TM16_ICICLE_CRASH
 	iftrue PryceScript_Defeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
@@ -42,10 +42,10 @@ MahoganyGymPryceScript:
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	writetext PryceText_GlacierBadgeSpeech
 	buttonsound
-	verbosegiveitem TM_ICY_WIND
-	iffalse MahoganyGym_NoRoomForIcyWind
-	setevent EVENT_GOT_TM16_ICY_WIND
-	writetext PryceText_IcyWindSpeech
+	verbosegiveitem TM_ICICLE_CRASH
+	iffalse MahoganyGym_NoRoomForIcicleCrash
+	setevent EVENT_GOT_TM16_ICICLE_CRASH
+	writetext PryceText_IcicleCrashSpeech
 	waitbutton
 	closetext
 	end
@@ -69,7 +69,7 @@ PryceScript_Defeat:
 .RematchDone:
 	writetext PryceText_CherishYourPokemon
 	waitbutton
-MahoganyGym_NoRoomForIcyWind:
+MahoganyGym_NoRoomForIcicleCrash:
 	closetext
 	end
 
@@ -227,12 +227,14 @@ PryceText_GlacierBadgeSpeech:
 	line "a gift from me!"
 	done
 
-PryceText_IcyWindSpeech:
+PryceText_IcicleCrashSpeech:
 	text "That TM contains"
-	line "ICY WIND."
+	line "ICICLE CRASH."
 
-	para "It inflicts damage"
-	line "and lowers speed."
+	para "It strikes hard"
+	line "and may make the"
+
+	para "foe flinch."
 
 	para "It demonstrates"
 	line "the harshness of"
