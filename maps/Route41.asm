@@ -209,12 +209,12 @@ Route41FinizenScript:
 	waitbutton
 	closetext
 	readvar VAR_FACING
-	ifequal UP, .SecondFleeFromBelow
+	ifequal RIGHT, .SecondFleeFromLeft
 	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2
 	sjump .SecondFleeDone
 
-.SecondFleeFromBelow:
-	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2Below
+.SecondFleeFromLeft:
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2Left
 
 .SecondFleeDone:
 	moveobject ROUTE41_FINIZEN, 14, 52
@@ -287,26 +287,29 @@ Route41FinizenFleeMovement1Below:
 	step_end
 
 Route41FinizenFleeMovement2:
-; 19,49 -> 14,52
+; 19,49 -> 14,52. Used from above, from the east and from the south.
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
-	big_step LEFT
-	big_step LEFT
-	big_step LEFT
-	big_step LEFT
-	big_step LEFT
 	step_end
 
-Route41FinizenFleeMovement2Below:
-; 19,49 -> 14,52 when the player talks to it from the south.
-	big_step LEFT
-	big_step LEFT
-	big_step DOWN
+Route41FinizenFleeMovement2Left:
+; 19,49 -> 14,52 when the player talks to it from the west. It ducks under them
+; and pops back up before running for open water.
 	big_step DOWN
 	big_step LEFT
 	big_step LEFT
 	big_step LEFT
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
 	big_step DOWN
 	step_end
 
@@ -536,12 +539,7 @@ Route41FinizenFinText:
 	done
 
 Route41FinizenCorneredText:
-	text "There's nothing but"
-	line "open sea ahead of"
-	cont "it now…"
-
-	para "FINIZEN turned to"
-	line "face you!"
+	text "Fin…."
 	done
 
 Route41_MapEvents:
