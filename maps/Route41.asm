@@ -176,13 +176,26 @@ Route41FinizenScript:
 	ifequal 3, .Cornered
 
 	opentext
-	writetext Route41FinizenAppearsText
-	buttonsound
-	writetext Route41FinizenFleesText
+	writetext Route41FinizenFinText
 	cry FINIZEN
 	waitbutton
 	closetext
+; It breaks away from whichever side the player is crowding it from, so it never
+; swims straight through them.
+	readvar VAR_FACING
+	ifequal RIGHT, .FirstFleeFromLeft
+	ifequal UP, .FirstFleeFromBelow
 	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement1
+	sjump .FirstFleeDone
+
+.FirstFleeFromLeft:
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement1Left
+	sjump .FirstFleeDone
+
+.FirstFleeFromBelow:
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement1Below
+
+.FirstFleeDone:
 	moveobject ROUTE41_FINIZEN, 19, 49
 	disappear ROUTE41_FINIZEN
 	appear ROUTE41_FINIZEN
@@ -191,11 +204,19 @@ Route41FinizenScript:
 
 .SecondFlee:
 	opentext
-	writetext Route41FinizenFleesAgainText
+	writetext Route41FinizenFinText
 	cry FINIZEN
 	waitbutton
 	closetext
+	readvar VAR_FACING
+	ifequal UP, .SecondFleeFromBelow
 	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2
+	sjump .SecondFleeDone
+
+.SecondFleeFromBelow:
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2Below
+
+.SecondFleeDone:
 	moveobject ROUTE41_FINIZEN, 14, 52
 	disappear ROUTE41_FINIZEN
 	appear ROUTE41_FINIZEN
@@ -236,6 +257,35 @@ Route41FinizenFleeMovement1:
 	big_step LEFT
 	step_end
 
+Route41FinizenFleeMovement1Left:
+; 26,46 -> 19,49 when the player talks to it from the west. Drops south first so
+; it isn't swimming through the player's tile.
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+Route41FinizenFleeMovement1Below:
+; 26,46 -> 19,49 when the player talks to it from the south.
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step LEFT
+	step_end
+
 Route41FinizenFleeMovement2:
 ; 19,49 -> 14,52
 	big_step DOWN
@@ -246,6 +296,18 @@ Route41FinizenFleeMovement2:
 	big_step LEFT
 	big_step LEFT
 	big_step LEFT
+	step_end
+
+Route41FinizenFleeMovement2Below:
+; 19,49 -> 14,52 when the player talks to it from the south.
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
 	step_end
 
 Route41Rock:
@@ -469,21 +531,8 @@ Route41IceIslandSignText:
 	text "ICE ISLAND"
 	done
 
-Route41FinizenAppearsText:
-	text "A FINIZEN broke the"
-	line "surface right"
-	cont "beside you!"
-	done
-
-Route41FinizenFleesText:
-	text "It slapped the"
-	line "water and shot off"
-	cont "across the swell!"
-	done
-
-Route41FinizenFleesAgainText:
-	text "FINIZEN doubled"
-	line "back and dived!"
+Route41FinizenFinText:
+	text "Fin!"
 	done
 
 Route41FinizenCorneredText:
