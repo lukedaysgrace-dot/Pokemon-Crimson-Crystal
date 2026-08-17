@@ -1,0 +1,30 @@
+Add Route 41 FINIZEN Sunday encounter
+
+FINIZEN appears at 26,46 on Sundays only. Talking to it makes it cry and
+bolt to a new patch of open water twice; the third interaction corners it
+and starts a level 30 wild battle. The chase resets on map entry, so all
+three have to happen in one visit.
+
+Losing the battle sets EVENT_ROUTE_41_FINIZEN_FOUGHT, which re-arms the
+encounter for the following Sunday without the chase. Catching it sets
+EVENT_ROUTE_41_CAUGHT_FINIZEN and retires it for good.
+
+A wild battle reports WIN for a knockout as well as a catch, so generalize
+the Celebi-only result bit into BATTLERESULT_CAUGHT, set by PokeBallEffect
+on any successful catch and cleared per battle by ClearBattleRAM, and add a
+CheckCaughtWildMon special to read it. The CheckCaughtMew approach does not
+work here: FINIZEN is already in Route 41's water encounters at level 20, so
+a dex-flag check would retire the event mon for anyone who had caught one.
+
+SPRITE_FINIZEN takes ENTEI's slot in CianwoodGroupSprites so its 12 tiles
+land in VRAM bank 1. It spins nonstop while on screen, which per the group's
+existing notes is the worst thing to leave in bank 0's font-shared step-frame
+region; ENTEI's Cianwood City cameo is a short scripted beat and moves down
+instead. Bank 0 goes from 36/128 to 48/128.
+
+wFinizenPosition comes out of the existing padding after wFarfetchdPosition
+(ds 13 -> ds 12), so nothing after it shifts and existing saves still load.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_017x6QVnZnniXvGumV8qYXGV
+
