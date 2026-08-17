@@ -45,14 +45,14 @@ OlivineGymJasmineScript:
 	readvar VAR_BADGES
 	scall OlivineGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM23_IRON_TAIL
-	iftrue .GotIronTail
+	checkevent EVENT_GOT_TM23_IRON_HEAD
+	iftrue .GotIronHead
 	writetext Jasmine_BadgeSpeech
 	buttonsound
-	verbosegiveitem TM_IRON_TAIL
-	iffalse .NoRoomForIronTail
-	setevent EVENT_GOT_TM23_IRON_TAIL
-	writetext Jasmine_IronTailSpeech
+	verbosegiveitem TM_IRON_HEAD
+	iffalse .NoRoomForIronHead
+	setevent EVENT_GOT_TM23_IRON_HEAD
+	writetext Jasmine_IronHeadSpeech
 	buttonsound
 .GiveMetalCoat:
 	checkevent EVENT_GOT_METAL_COAT_FROM_JASMINE
@@ -68,7 +68,7 @@ OlivineGymJasmineScript:
 	closetext
 	end
 
-.GotIronTail:
+.GotIronHead:
 	checkevent EVENT_GOT_METAL_COAT_FROM_JASMINE
 	iffalse .GiveMetalCoat
 	checkevent EVENT_BEAT_JASMINE_REMATCH
@@ -89,7 +89,7 @@ OlivineGymJasmineScript:
 .RematchDone:
 	writetext Jasmine_GoodLuck
 	waitbutton
-.NoRoomForIronTail:
+.NoRoomForIronHead:
 .NoRoomForMetalCoat:
 	closetext
 	end
@@ -219,10 +219,10 @@ Text_ReceivedTM09:
 	line "TM09."
 	done
 
-Jasmine_IronTailSpeech:
+Jasmine_IronHeadSpeech:
 	text "…You could use"
 	line "that TM to teach"
-	cont "IRON TAIL."
+	cont "IRON HEAD."
 	done
 
 Jasmine_MetalCoatOffer:
