@@ -10,6 +10,7 @@
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
 	const ROUTE25_CRYSTAL
+	const ROUTE25_MEW
 
 Route25_MapScripts:
 	db 2 ; scene scripts
@@ -17,7 +18,7 @@ Route25_MapScripts:
 	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
 
 	db 1 ; callbacks
-	callback MAPCALLBACK_OBJECTS, .Crystal
+	callback MAPCALLBACK_OBJECTS, .Objects
 
 .DummyScene0:
 	end
@@ -25,10 +26,32 @@ Route25_MapScripts:
 .DummyScene1:
 	end
 
-.Crystal:
-; CRYSTAL waits at the cape once the ELITE FOUR have been beaten.
-	checkevent EVENT_BEAT_ELITE_FOUR
+.Objects:
+; An object event flag reads as VISIBLE until something sets it, so both cape
+; objects have to be hidden explicitly on a fresh save. Losing to CRYSTAL also
+; whites the player out before her battle script can tidy up. So rather than
+; trust the flags, derive both objects' visibility from the event state on
+; every map load.
+	checkevent EVENT_ROUTE_25_CAUGHT_MEW
+	iftrue .MewIsGone
+	checkevent EVENT_CRYSTAL_CAUGHT_MEW
+	iftrue .MewIsGone
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
+	iffalse .MewIsGone
+	appear ROUTE25_MEW
+	sjump .CheckCrystal
+
+.MewIsGone:
+	disappear ROUTE25_MEW
+
+.CheckCrystal:
+	checkevent EVENT_ROUTE_25_CRYSTAL_LEFT
+	iftrue .NoCrystal
+	checkevent EVENT_CRYSTAL_CAUGHT_MEW
+	iftrue .ShowCrystal
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iffalse .NoCrystal
+.ShowCrystal:
 	appear ROUTE25_CRYSTAL
 	return
 
@@ -88,31 +111,73 @@ Route25MistyDate2Script:
 	special RestartMapMusic
 	end
 
-Route25CrystalApproachScript:
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+Route25MewAppearsScript:
+; MEW drifts out over the cape the first time the player comes this way after
+; taking BLUE's EARTHBADGE.
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iftrue .Done
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_EARTHBADGE
 	iffalse .Done
+	setevent EVENT_ROUTE_25_MEW_APPEARED
 	special FadeOutMusic
-	turnobject PLAYER, DOWN
-	showemote EMOTE_SHOCK, PLAYER, 15
-	turnobject ROUTE25_CRYSTAL, UP
-	playmusic MUSIC_CRYSTAL_ENCOUNTER
-	sjump Route25CrystalBattle
+	pause 20
+	appear ROUTE25_MEW
+	cry MEW
+	pause 20
+	showemote EMOTE_SHOCK, PLAYER, 20
+	applymovement ROUTE25_MEW, Route25MewDriftMovement
+	pause 15
+	cry MEW
+	pause 20
+	special RestartMapMusic
 .Done:
 	end
 
+Route25CrystalApproachScript:
+; Stepping onto the cape while MEW is still out there brings CRYSTAL running.
+	checkevent EVENT_CRYSTAL_CAUGHT_MEW
+	iftrue .Done
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .Done
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
+	iffalse .Done
+	sjump Route25CrystalMewScene
+.Done:
+	end
+
+Route25CrystalMewScene:
+	special FadeOutMusic
+	pause 10
+	cry MEW
+	pause 20
+	appear ROUTE25_CRYSTAL
+	showemote EMOTE_SHOCK, ROUTE25_CRYSTAL, 20
+	turnobject PLAYER, UP
+	turnobject ROUTE25_CRYSTAL, DOWN
+	pause 10
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	sjump Route25CrystalBattle
+
 Route25CrystalScript:
 	faceplayer
+	checkevent EVENT_CRYSTAL_CAUGHT_MEW
+	iftrue .CrystalHasMew
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iftrue .AfterBattle
+	iftrue .GoCatchIt
 	special FadeOutMusic
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	sjump Route25CrystalBattle
 
-.AfterBattle:
+.GoCatchIt:
 	opentext
-	writetext Route25CrystalCapeText
+	writetext Route25CrystalGoCatchItText
+	waitbutton
+	closetext
+	end
+
+.CrystalHasMew:
+	opentext
+	writetext Route25CrystalHasMewText
 	waitbutton
 	closetext
 	end
@@ -143,17 +208,62 @@ Route25CrystalBattle:
 .StartBattle:
 	winlosstext Route25CrystalWinText, Route25CrystalLossText
 	setlasttalked ROUTE25_CRYSTAL
+; Losing here means CRYSTAL catches MEW, and a loss whites the player out
+; before any script after reloadmapafterbattle can run. So assume the loss up
+; front and take it back the moment the battle reports a win.
+	setevent EVENT_CRYSTAL_CAUGHT_MEW
 	startbattle
+	ifequal LOSE, .LostMew
+	clearevent EVENT_CRYSTAL_CAUGHT_MEW
+	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+.LostMew:
 	dontrestartmapmusic
 	reloadmapafterbattle
+; Everything below this point only runs if the player won.
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	opentext
 	writetext Route25CrystalAfterText
 	waitbutton
 	closetext
-	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	turnobject ROUTE25_CRYSTAL, DOWN
 	playmapmusic
+	end
+
+Route25MewScript:
+	faceplayer
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iffalse Route25CrystalMewScene
+	opentext
+	writetext Route25MewText
+	cry MEW
+	pause 15
+	closetext
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadwildmon MEW, 60
+	startbattle
+; MEW only leaves the cape if it was actually caught - a KO or a run just
+; leaves it drifting around for another try. This has to be settled before
+; reloadmapafterbattle, because that reload re-runs .Objects.
+	special CheckCaughtMew
+	iffalse .StillOutThere
+	setevent EVENT_ROUTE_25_CAUGHT_MEW
+	disappear ROUTE25_MEW
+.StillOutThere:
+	reloadmapafterbattle
+	checkevent EVENT_ROUTE_25_CAUGHT_MEW
+	iffalse .Done
+	pause 20
+	special FadeOutMusic
+	playmusic MUSIC_CRYSTAL_ENCOUNTER
+	opentext
+	writetext Route25CrystalMewCaughtText
+	waitbutton
+	closetext
+	applymovement ROUTE25_CRYSTAL, Route25CrystalLeavesMovement
+	setevent EVENT_ROUTE_25_CRYSTAL_LEFT
+	disappear ROUTE25_CRYSTAL
+	special RestartMapMusic
+.Done:
 	end
 
 TrainerCosplayerNoelle:
@@ -262,6 +372,21 @@ Route25Protein:
 Route25HiddenPotion:
 	hiddenitem POTION, EVENT_ROUTE_25_HIDDEN_POTION
 
+Route25MewDriftMovement:
+	slow_step RIGHT
+	slow_step DOWN
+	slow_step LEFT
+	slow_step UP
+	step_end
+
+Route25CrystalLeavesMovement:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step_end
+
 MovementData_0x19efe8:
 	big_step DOWN
 	step_end
@@ -307,118 +432,171 @@ MovementData_0x19f000:
 	step_end
 
 Route25CrystalBeforeText:
-	text "CRYSTAL:"
-	line "I expected to find"
-	cont "you here."
+	text "CRYSTAL: Don't"
+	line "move."
 
-	para "When we first left"
-	line "New Bark Town, I"
-	cont "thought completing"
+	para "…Do you see it?"
 
-	para "the #DEX was"
-	line "all that mattered."
+	para "Do you actually"
+	line "see it?"
 
-	para "But this journey"
-	line "has taught me"
-	cont "otherwise."
+	para "I have read every"
+	line "paper ever writ-"
+	cont "ten about that"
 
-	para "A Trainer can't"
-	line "understand #MON"
-	cont "by simply"
+	para "#MON. All of"
+	line "them say the same"
+	cont "thing."
 
-	para "observing them."
+	para "MEW does not"
+	line "exist."
 
-	para "They have to earn"
-	line "that"
-	cont "understanding."
+	para "And it is right"
+	line "there."
 
-	para "And every time"
-	line "we've battled..."
+	para "…<PLAYER>."
 
-	para "I've been forced"
-	line "to confront that."
+	para "I have chased the"
+	line "#DEX since we"
+	cont "left NEW BARK."
 
-	para "We've both come"
-	line "too far to hold"
-	cont "anything back now."
+	para "That is the last"
+	line "page of it,"
+	cont "floating over the"
 
-	para "I want to see the"
-	line "result of"
-	cont "everything we've"
+	para "water."
 
-	para "learned."
+	para "I'm not going to"
+	line "let it simply be"
+	cont "handed to me."
 
-	para "Show me your"
-	line "strength."
+	para "So we settle it"
+	line "the way we always"
+	cont "have."
+
+	para "The winner earns"
+	line "the right to"
+	cont "catch MEW."
+
+	para "Everything you"
+	line "have, <PLAYER>."
 	done
 
 Route25CrystalWinText:
-	text "....I understand"
-	line "now."
+	text "…Then it's yours."
 	done
 
 Route25CrystalLossText:
-	text "My training paid"
-	line "off!"
+	text "…Then it's mine."
 	done
 
 Route25CrystalAfterText:
-	text "CRYSTAL:"
-	line "I kept searching"
-	cont "for the difference"
+	text "CRYSTAL: …Of"
+	line "course."
 
-	para "between us."
+	para "Of course it's"
+	line "you."
+
+	para "I kept searching"
+	line "for the differ-"
+	cont "ence between us."
 
 	para "I thought it was"
-	line "experience."
-
-	para "Or knowledge."
+	line "experience. Or"
+	cont "knowledge."
 
 	para "But it wasn't."
 
-	para "Your #MON"
-	line "trust you"
-	cont "completely."
+	para "Your #MON trust"
+	line "you completely."
 
 	para "And you trust"
 	line "them."
-
-	para "That's why you"
-	line "won."
 
 	para "That's something"
 	line "no #DEX can"
 	cont "measure."
 
-	para "I think I've found"
-	line "the answer I was"
-	cont "looking for."
+	para "Go on, then."
 
-	para "...the next time"
-	line "we meet the"
-	cont "outcome may be"
+	para "It's out there,"
+	line "and it's yours to"
+	cont "catch."
 
-	para "different."
-
-	para "Until then, take"
-	line "care <PLAYER>."
+	para "I'll wait right"
+	line "here. I want to"
+	cont "see it happen."
 	done
 
-Route25CrystalCapeText:
-	text "CRYSTAL: BILL"
-	line "grew up looking"
-	cont "out at this."
+Route25CrystalGoCatchItText:
+	text "CRYSTAL: It's"
+	line "still out there."
+
+	para "Go on. Walk up to"
+	line "it and see what"
+	cont "it does."
+
+	para "I'm not going any-"
+	line "where until I've"
+	cont "watched you catch"
+
+	para "it."
+	done
+
+Route25CrystalHasMewText:
+	text "CRYSTAL: I'm"
+	line "sorry, <PLAYER>."
+
+	para "MEW is in a BALL"
+	line "on my belt."
+
+	para "That was the deal"
+	line "we made, and I"
+	cont "won't undo it."
+
+	para "…It doesn't feel"
+	line "the way I thought"
+	cont "it would."
+
+	para "BILL grew up"
+	line "looking out at"
+	cont "this water."
 
 	para "No wonder he"
 	line "started asking"
 	cont "what #MON are."
 
-	para "I think I'll stay"
-	line "a while longer."
-
 	para "There's still so"
 	line "much I want to"
 	cont "understand."
+	done
+
+Route25CrystalMewCaughtText:
+	text "CRYSTAL: …You"
+	line "actually did it."
+
+	para "The last page."
+
+	para "I spent this whole"
+	line "journey chasing"
+	cont "the #DEX."
+
+	para "I thought that"
+	line "was the point."
+
+	para "Watching you just"
+	line "now, I don't"
+	cont "think it ever was."
+
+	para "Take care of it,"
+	line "<PLAYER>."
+
+	para "…I'll see you"
+	line "again."
+	done
+
+Route25MewText:
+	text "Myuu?"
 	done
 
 Route25MistyDateText:
@@ -606,17 +784,29 @@ Route25_MapEvents:
 	db 1 ; warp events
 	warp_event 47,  5, BILLS_HOUSE, 1
 
-	db 4 ; coord events
+	db 12 ; coord events
 	coord_event 42,  6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script
 	coord_event 42,  7, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate2Script
-	coord_event 48,  7, -1, Route25CrystalApproachScript
+; x=44 is the only gap in the cliff line, so the player has to cross one of
+; these two tiles to reach the cape at all.
+	coord_event 44,  6, -1, Route25MewAppearsScript
+	coord_event 44,  7, -1, Route25MewAppearsScript
+; Both ends of the stone jetty, so CRYSTAL cuts in whether the player comes
+; down past BILL'S HOUSE or up along the shore.
+	coord_event 46,  8, -1, Route25CrystalApproachScript
+	coord_event 47,  8, -1, Route25CrystalApproachScript
 	coord_event 48,  8, -1, Route25CrystalApproachScript
+	coord_event 49,  8, -1, Route25CrystalApproachScript
+	coord_event 46, 11, -1, Route25CrystalApproachScript
+	coord_event 47, 11, -1, Route25CrystalApproachScript
+	coord_event 48, 11, -1, Route25CrystalApproachScript
+	coord_event 49, 11, -1, Route25CrystalApproachScript
 
 	db 2 ; bg events
 	bg_event 45,  5, BGEVENT_READ, BillsHouseSign
 	bg_event  4,  5, BGEVENT_ITEM, Route25HiddenPotion
 
-	db 11 ; object events
+	db 12 ; object events
 	object_event 46,  9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 12,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerNadia, -1
@@ -627,4 +817,5 @@ Route25_MapEvents:
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN
-	object_event 48, 10, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route25CrystalScript, EVENT_ROUTE_25_CRYSTAL
+	object_event 48,  7, SPRITE_CRYSTAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route25CrystalScript, EVENT_ROUTE_25_CRYSTAL
+	object_event 47, 10, SPRITE_MEW, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_PINK, OBJECTTYPE_SCRIPT, 0, Route25MewScript, EVENT_ROUTE_25_MEW
