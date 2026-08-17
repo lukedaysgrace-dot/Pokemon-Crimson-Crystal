@@ -52,6 +52,7 @@
 	const SPECIALCALL_WORRIED
 	const SPECIALCALL_MASTERBALL
 	const SPECIALCALL_OAK_MT_SILVER
+	const SPECIALCALL_CRYSTAL_CAPE
 
 ; phone struct members
 	const_def

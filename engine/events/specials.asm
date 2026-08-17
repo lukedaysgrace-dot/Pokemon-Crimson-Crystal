@@ -37,6 +37,22 @@ GameCornerPrizeMonCheckDex:
 	call ExitAllMenus
 	ret
 
+CheckCaughtMew:
+; Returns TRUE in wScriptVar if MEW is registered as caught in the #DEX.
+; Used by the Route 25 cape event to tell "caught it" apart from "KO'd it or
+; ran away", since a wild battle reports WIN either way.
+	ld a, MEW
+	call CheckCaughtMon
+	jr z, .not_caught
+	ld a, TRUE
+	ld [wScriptVar], a
+	ret
+
+.not_caught
+	xor a ; FALSE
+	ld [wScriptVar], a
+	ret
+
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
 	call SetSeenMon
