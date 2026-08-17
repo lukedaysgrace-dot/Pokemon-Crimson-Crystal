@@ -1,0 +1,77 @@
+# Route 25 cape: MEW event (replaces the post-Elite-Four CRYSTAL fight)
+
+CRYSTAL's final battle no longer keys off `EVENT_BEAT_ELITE_FOUR`. It now keys
+off `ENGINE_EARTHBADGE` (BLUE's GYM), which in GSC's ordering is *later* than
+the Elite Four — so her level 66-70 cape team still lands at the right point.
+
+## Beats
+
+1. Beat BLUE. `specialphonecall SPECIALCALL_CRYSTAL_CAPE` fires; ELM rings as
+   soon as the player is outdoors, saying CRYSTAL was looking for them and had
+   found something on the CERULEAN coast.
+2. Walk east past `x=44` on Route 25 (the only gap in the cliff line, so it
+   can't be skipped). MEW fades in over the jetty, cries, drifts a lap, cries
+   again, then wanders on `SPRITEMOVEDATA_WANDER` within a 3x3 box.
+3. Step onto either end of the stone jetty. CRYSTAL appears at `48,7`, shocked,
+   and challenges the player: winner earns the right to catch MEW.
+4. Win → she stands aside and tells the player to go take it.
+   Lose → she catches MEW. **Permanent**: MEW never returns on that save.
+5. Talk to MEW → ordinary static-legendary encounter, level 60,
+   `BATTLETYPE_FORCEITEM` (same as LUGIA / HO-OH / MEWTWO here).
+   KO'ing it or running just leaves it drifting; only a capture removes it.
+6. On capture, CRYSTAL says goodbye and walks off west. Cape is empty after.
+
+## Event flags
+
+| Flag | Meaning |
+|---|---|
+| `EVENT_ROUTE_25_MEW` | MEW's object visibility |
+| `EVENT_ROUTE_25_MEW_APPEARED` | intro cutscene has played |
+| `EVENT_BEAT_CRYSTAL_CERULEAN_CAPE` | player won the battle (existing flag) |
+| `EVENT_CRYSTAL_CAUGHT_MEW` | player *lost*; MEW is gone for good |
+| `EVENT_ROUTE_25_CAUGHT_MEW` | player caught MEW |
+| `EVENT_ROUTE_25_CRYSTAL_LEFT` | CRYSTAL has walked off |
+
+## Three things that are easy to get wrong here
+
+- **Object event flags read as VISIBLE until set.** A fresh save would put MEW
+  and CRYSTAL on the cape from the start, so `Route25_MapScripts.Objects`
+  re-derives both objects' visibility from the event state on every map load
+  rather than trusting the flags.
+- **Losing whites the player out mid-script.** Nothing after
+  `reloadmapafterbattle` runs on a loss, so the battle sets
+  `EVENT_CRYSTAL_CAUGHT_MEW` up front and clears it again the moment
+  `startbattle` reports anything other than `LOSE`. `EVENT_BEAT_CRYSTAL_*` is
+  likewise set *before* `reloadmapafterbattle`, because that reload re-runs the
+  visibility callback and would otherwise hide CRYSTAL before her victory line.
+- **A wild battle reports `WIN` whether the mon was caught or KO'd.** New
+  special `CheckCaughtMew` (`engine/events/specials.asm`) reads MEW's #DEX
+  caught flag so "caught it" can be told apart from "KO'd it / ran".
+
+## Sprite VRAM
+
+`SPRITE_MEW` uses the existing `gfx/sprites/mew.png` (16x96, 4 greys, a normal
+6-frame walker) at `PAL_OW_PINK`.
+
+`MAX_OUTDOOR_SPRITES` is 23 and `CeruleanGroupSprites` was full, so
+`SPRITE_SUICUNE` and `SPRITE_POKEDEX` were dropped — neither is used by any
+outdoor map in the group (Routes 4 / 9 / 10 North / 24 / 25, Cerulean City).
+`SPRITE_MEW` is listed first so its constantly-animating step frames land in
+VRAM bank 1 instead of the font-shared bank 0.
+
+Group goes from **116/128 bank 0 (12 free)** to **120/128 (8 free)** — same
+margin as the Pallet / Pewter / Celadon groups.
+
+## Checkers
+
+- `_ai_artifacts/check_outdoor_vram.py` — re-implements `ArrangeUsedSprites`
+  and reports bank 0 headroom for all 26 groups. Agrees with
+  `reports/OUTDOOR_SPRITE_VRAM_AUDIT.md` on every group except Cerulean, where
+  the audit predates `SPRITE_CRYSTAL` being added and is stale by one walker.
+- `_ai_artifacts/check_mew_event.py` — 142 static checks: label resolution,
+  constant existence, declared-vs-actual event counts, tile collision under
+  every coord/object event, MEW's wander box, CRYSTAL's exit path, and text
+  line widths (counting `#` as the 4-wide POKe glyph).
+
+**Not compiled.** rgbds isn't present in the session VM this was written from.
+Run `make` and the two checkers above.
