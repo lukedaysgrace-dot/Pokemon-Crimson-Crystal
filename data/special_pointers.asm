@@ -187,3 +187,4 @@ SpecialsPointers::
 	add_special HiddenPowerTypeMenu
 	add_special CelebiFlybyEvent
 	add_special CheckCaughtMew
+	add_special CheckCaughtWildMon

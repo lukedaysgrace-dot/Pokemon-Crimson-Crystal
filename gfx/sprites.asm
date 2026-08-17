@@ -160,3 +160,4 @@ SECTION "Sprites 4", ROMX
 BattleGirlSpriteGFX::          INCBIN "gfx/sprites/battle_girl.2bpp"
 TamerSpriteGFX::               INCBIN "gfx/sprites/tamer.2bpp"
 MewSpriteGFX::                 INCBIN "gfx/sprites/mew.2bpp"
+FinizenNPCSpriteGFX::          INCBIN "gfx/sprites/finizen.2bpp"
