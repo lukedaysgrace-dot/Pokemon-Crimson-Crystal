@@ -523,6 +523,12 @@ PokeBallEffect:
 	predef NewPokedexEntry
 
 .skip_pokedex
+; Record that this battle ended in a catch rather than a KO or a run, so
+; scripted encounters can tell the two apart (wBattleResult reports WIN for
+; both). ClearBattleRAM zeroes this at the start of every battle.
+	ld hl, wBattleResult
+	set BATTLERESULT_CAUGHT, [hl]
+
 	ld a, [wBattleType]
 	cp BATTLETYPE_CONTEST
 	jp z, .catch_bug_contest_mon

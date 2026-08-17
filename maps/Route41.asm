@@ -9,11 +9,50 @@
 	const ROUTE41_SWIMMER_GIRL3
 	const ROUTE41_SWIMMER_GIRL4
 	const ROUTE41_SWIMMER_GIRL5
+	const ROUTE41_FINIZEN
 
 Route41_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 2 ; callbacks
+	callback MAPCALLBACK_NEWMAP, .ResetFinizen
+	callback MAPCALLBACK_OBJECTS, .PlaceFinizen
+
+.ResetFinizen:
+; The chase has to be finished in one visit, so arriving on the route always
+; puts FINIZEN back at its first spot. This runs on entry only - MAPCALLBACK_
+; OBJECTS also fires after every wild battle, which would otherwise reset the
+; count every time the player got jumped while surfing.
+	loadmem wFinizenPosition, 1
+	return
+
+.PlaceFinizen:
+; FINIZEN only shows up on Sundays, and only until it has been caught.
+	checkevent EVENT_ROUTE_41_CAUGHT_FINIZEN
+	iftrue .NoFinizen
+	readvar VAR_WEEKDAY
+	ifnotequal SUNDAY, .NoFinizen
+	readmem wFinizenPosition
+	ifequal 2, .SecondSpot
+	ifequal 3, .ThirdSpot
+	ifequal 4, .NoFinizen
+	moveobject ROUTE41_FINIZEN, 26, 46
+	appear ROUTE41_FINIZEN
+	return
+
+.SecondSpot:
+	moveobject ROUTE41_FINIZEN, 19, 49
+	appear ROUTE41_FINIZEN
+	return
+
+.ThirdSpot:
+	moveobject ROUTE41_FINIZEN, 14, 52
+	appear ROUTE41_FINIZEN
+	return
+
+.NoFinizen:
+	disappear ROUTE41_FINIZEN
+	return
 
 TrainerSwimmerfKaylee:
 	trainer SWIMMERF, KAYLEE, EVENT_BEAT_SWIMMERF_KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, .Script
@@ -124,6 +163,90 @@ TrainerSwimmermMathew:
 	waitbutton
 	closetext
 	end
+
+Route41FinizenScript:
+; Talk to it twice and it bolts to a new patch of open water. The third time it
+; has run out of room and battles. Losing it there re-arms the encounter for the
+; following Sunday, this time without the chase.
+	faceplayer
+	checkevent EVENT_ROUTE_41_FINIZEN_FOUGHT
+	iftrue .Cornered
+	readmem wFinizenPosition
+	ifequal 2, .SecondFlee
+	ifequal 3, .Cornered
+
+	opentext
+	writetext Route41FinizenAppearsText
+	buttonsound
+	writetext Route41FinizenFleesText
+	cry FINIZEN
+	waitbutton
+	closetext
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement1
+	moveobject ROUTE41_FINIZEN, 19, 49
+	disappear ROUTE41_FINIZEN
+	appear ROUTE41_FINIZEN
+	loadmem wFinizenPosition, 2
+	end
+
+.SecondFlee:
+	opentext
+	writetext Route41FinizenFleesAgainText
+	cry FINIZEN
+	waitbutton
+	closetext
+	applymovement ROUTE41_FINIZEN, Route41FinizenFleeMovement2
+	moveobject ROUTE41_FINIZEN, 14, 52
+	disappear ROUTE41_FINIZEN
+	appear ROUTE41_FINIZEN
+	loadmem wFinizenPosition, 3
+	end
+
+.Cornered:
+	opentext
+	writetext Route41FinizenCorneredText
+	cry FINIZEN
+	pause 15
+	closetext
+	loadwildmon FINIZEN, 30
+	startbattle
+	setevent EVENT_ROUTE_41_FINIZEN_FOUGHT
+; A wild battle reports WIN for a knockout as well as a catch, so ask outright.
+; This has to be settled before reloadmapafterbattle, which re-runs .PlaceFinizen.
+	special CheckCaughtWildMon
+	iffalse .GotAway
+	setevent EVENT_ROUTE_41_CAUGHT_FINIZEN
+.GotAway:
+	loadmem wFinizenPosition, 4
+	disappear ROUTE41_FINIZEN
+	reloadmapafterbattle
+	end
+
+Route41FinizenFleeMovement1:
+; 26,46 -> 19,49, keeping clear of the walls off the WHIRL ISLANDS
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+Route41FinizenFleeMovement2:
+; 19,49 -> 14,52
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
 
 Route41Rock:
 ; unused
@@ -346,6 +469,32 @@ Route41IceIslandSignText:
 	text "ICE ISLAND"
 	done
 
+Route41FinizenAppearsText:
+	text "A FINIZEN broke the"
+	line "surface right"
+	cont "beside you!"
+	done
+
+Route41FinizenFleesText:
+	text "It slapped the"
+	line "water and shot off"
+	cont "across the swell!"
+	done
+
+Route41FinizenFleesAgainText:
+	text "FINIZEN doubled"
+	line "back and dived!"
+	done
+
+Route41FinizenCorneredText:
+	text "There's nothing but"
+	line "open sea ahead of"
+	cont "it now…"
+
+	para "FINIZEN turned to"
+	line "face you!"
+	done
+
 Route41_MapEvents:
 	db 0, 0 ; filler
 
@@ -362,7 +511,7 @@ Route41_MapEvents:
 	bg_event  9, 35, BGEVENT_ITEM, Route41HiddenMaxEther
 	bg_event 42,  6, BGEVENT_READ, Route41IceIslandSign
 
-	db 10 ; object events
+	db 11 ; object events
 	object_event 32,  6, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCharlie, -1
 	object_event 48, 11, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermGeorge, -1
 	object_event 20, 26, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermBerke, -1
@@ -373,3 +522,4 @@ Route41_MapEvents:
 	object_event 27, 34, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfDenise, -1
 	object_event 44, 28, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerSwimmerfKara, -1
 	object_event  9, 50, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerSwimmerfWendy, -1
+	object_event 26, 46, SPRITE_FINIZEN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route41FinizenScript, EVENT_ROUTE_41_FINIZEN
