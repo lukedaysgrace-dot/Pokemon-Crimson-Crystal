@@ -34,14 +34,14 @@ CeladonGymErikaScript:
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
-	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue .GotGigaDrain
+	checkevent EVENT_GOT_TM19_ENERGY_BALL
+	iftrue .GotEnergyBall
 	writetext ErikaExplainTMText
 	buttonsound
-	verbosegiveitem TM_GIGA_DRAIN
-	iffalse .GotGigaDrain
-	setevent EVENT_GOT_TM19_GIGA_DRAIN
-.GotGigaDrain:
+	verbosegiveitem TM_ENERGY_BALL
+	iffalse .GotEnergyBall
+	setevent EVENT_GOT_TM19_ENERGY_BALL
+.GotEnergyBall:
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
@@ -162,7 +162,8 @@ ErikaExplainTMText:
 	line "Please, I wish you"
 	cont "to have this TM."
 
-	para "It is GIGA DRAIN."
+	para "It is ENERGY"
+	line "BALL."
 
 	para "It is a wonderful"
 	line "move that drains"
