@@ -2441,7 +2441,11 @@ wScriptTextAddr::
 	ds 1
 wWildEncounterCooldown:: db ; d452
 wXYComparePointer:: dw ; d453
-	ds 4
+	ds 0 ; trimmed by 4: WRAMX bank 1 ("WRAM 1" + "Enemy Party" + "Party") had
+	     ; overflowed $dfff by 2 bytes. These 4 were unused padding, and they sit
+	     ; BEFORE wGameData, so reclaiming them shifts only pre-save scratch -
+	     ; every offset inside wGameData/wPokemonData is unchanged, so .sav files
+	     ; still load. Bank 1 now sits at 4094/4096.
 
 wBattleScriptFlags:: dw ; d459
 wPlayerSpriteSetupFlags:: ; d45b

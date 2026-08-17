@@ -73,5 +73,48 @@ margin as the Pallet / Pewter / Celadon groups.
   every coord/object event, MEW's wander box, CRYSTAL's exit path, and text
   line widths (counting `#` as the 4-wide POKe glyph).
 
-**Not compiled.** rgbds isn't present in the session VM this was written from.
-Run `make` and the two checkers above.
+## WRAM bank 1 overflow (pre-existing, fixed here)
+
+The first `make` after this change died with:
+
+    pokecrystal.link(310): Sections would extend past the end of WRAMX ($e002 > $dfff)
+
+That is **not** caused by this event. `wEventFlags` is `flag_array NUM_EVENTS`,
+i.e. `(NUM_EVENTS + 7) / 8` bytes: 2066 events and 2071 events both round to 259
+bytes, so the five new flags cost zero. Confirmed by assembling `wram.asm` with
+every constant added here reverted — still 4098 bytes in a 4096-byte bank.
+WRAMX 1 was already packed to exactly `$dfff` in the last shipped build
+(`wGameDataEnd` = `$dfff`, zero slack), so whatever landed before this went in
+pushed it 2 bytes over.
+
+Fixed by reclaiming the 4 unused padding bytes between `wXYComparePointer` and
+`wBattleScriptFlags`. Those sit **before** `wGameData`, so only pre-save scratch
+moves: every offset inside `wGameData` and `wPokemonData` is byte-identical, and
+existing `.sav` files still load. Bank 1 now sits at **4094/4096**.
+
+(For future headroom: `NUM_EVENTS` is 2071, and `wEventFlags` grows another byte
+at 2073. There are 2 bytes of slack, so the next two events are free; after that,
+trim more of the padding before `wGameData` — `ds 2` at `wTimeCyclesSinceLastCall`
+and `ds 3` / `ds 2` above `wMapStatusEnd` are all reclaimable the same way.)
+
+## What was actually verified
+
+rgbds isn't installed on the machine this was written from, so a full `make`
+wasn't possible. Instead, rgbds 0.5.2 was run against the changed files in
+isolation:
+
+- `wram.asm` assembles, and all seven WRAMX banks fit (bank 1 at 4094/4096).
+- `maps/Route25.asm`, `maps/ViridianGym.asm`, `data/maps/outdoor_sprites.asm`,
+  `data/sprites/sprites.asm`, `data/sprites/sprite_mons.asm`,
+  `engine/phone/scripts/elm.asm`, `data/phone/text/elm.asm`,
+  `data/phone/special_calls.asm`, `engine/events/specials.asm` and
+  `data/special_pointers.asm` all assemble against the real constants/macros.
+- Linking that harness leaves 352 unresolved symbols; 351 are labels present in
+  the last shipped `pokecrystal.sym` and 1 is `CheckCaughtMew`, added here. No
+  typo'd label or constant.
+- `rgbgfx` converts `gfx/sprites/mew.png` to 384 bytes = 24 tiles, the normal
+  16x96 NPC sheet layout.
+
+Not covered by any of the above: whether `MewSpriteGFX`'s 384 bytes still fit in
+the ROM bank holding the "Sprites 4" section. If `rgblink` complains about ROMX
+space, move that `INCBIN` to another sprite section.
