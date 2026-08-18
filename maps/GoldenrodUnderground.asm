@@ -452,6 +452,9 @@ GoldenrodUndergroundThugScene:
 	closetext
 
 ; Now they notice you.
+	showemote EMOTE_SHOCK, GOLDENRODUNDERGROUND_THUG_PAULIE, 15
+	showemote EMOTE_SHOCK, GOLDENRODUNDERGROUND_THUG_BOBBY, 15
+	showemote EMOTE_SHOCK, GOLDENRODUNDERGROUND_THUG_TONY, 15
 	turnobject GOLDENRODUNDERGROUND_THUG_PAULIE, LEFT
 	turnobject GOLDENRODUNDERGROUND_THUG_BOBBY, LEFT
 	turnobject GOLDENRODUNDERGROUND_THUG_TONY, LEFT
@@ -588,8 +591,9 @@ GoldenrodUndergroundPlayerBacksDownMovement:
 GoldenrodUndergroundThugPaulieApproachMovement:
 	step LEFT
 	step LEFT
-	step LEFT
 	step DOWN
+	step LEFT
+	turn_head DOWN
 	step_end
 
 GoldenrodUndergroundThugBobbyApproachMovement:
@@ -656,8 +660,9 @@ GoldenrodUndergroundGirlApproachMovement:
 	step LEFT
 	step LEFT
 	step LEFT
-	step LEFT
 	step DOWN
+	step LEFT
+	turn_head DOWN
 	step_end
 
 GoldenrodUndergroundGirlLeavesMovement:
