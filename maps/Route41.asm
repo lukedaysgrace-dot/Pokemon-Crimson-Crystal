@@ -539,7 +539,7 @@ Route41FinizenFinText:
 	done
 
 Route41FinizenCorneredText:
-	text "Fin…."
+	text "Fin…"
 	done
 
 Route41_MapEvents:
