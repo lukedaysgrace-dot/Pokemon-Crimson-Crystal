@@ -1931,7 +1931,7 @@ LassGroup:
 	next_list_item ; LASS (12) CONNIE2 - Olivine Lighthouse 4F (rematch)
 	db "CONNIE@", TRAINERTYPE_NORMAL
 	db 21
-	dw FINIZEN
+	dw CHINCHOU
 	db -1 ; end
 
 	next_list_item ; LASS (13) CONNIE3 - Olivine Lighthouse 4F (rematch)
@@ -4009,7 +4009,7 @@ SwimmerMGroup:
 	db 25
 	dw GOLDEEN
 	db 25
-	dw FINIZEN
+	dw CHINCHOU
 	db -1 ; end
 
 	next_list_item ; SWIMMERM (4) CHARLIE - Route 41
@@ -4039,7 +4039,7 @@ SwimmerMGroup:
 	next_list_item ; SWIMMERM (7) KIRK - Route 41
 	db "KIRK@", TRAINERTYPE_NORMAL
 	db 24
-	dw FINIZEN
+	dw TENTACOOL
 	db 24
 	dw LOMBRE
 	db -1 ; end
@@ -4159,7 +4159,7 @@ SwimmerMGroup:
 	next_list_item ; SWIMMERM (19) JAMES - not placed on any map
 	db "JAMES@", TRAINERTYPE_NORMAL
 	db 13
-	dw FINIZEN
+	dw TENTACOOL
 	db 16
 	dw SPHEAL
 	db 18
@@ -4201,7 +4201,7 @@ SwimmerFGroup:
 	next_list_item ; SWIMMERF (2) PAULA - Route 40
 	db "PAULA@", TRAINERTYPE_NORMAL
 	db 25
-	dw FINIZEN
+	dw TENTACOOL
 	db 26
 	dw LOMBRE
 	db -1 ; end
@@ -4209,7 +4209,7 @@ SwimmerFGroup:
 	next_list_item ; SWIMMERF (3) KAYLEE - Route 41
 	db "KAYLEE@", TRAINERTYPE_NORMAL
 	db 24
-	dw FINIZEN
+	dw CHINCHOU
 	db 24
 	dw MAREANIE
 	db 24
@@ -4383,7 +4383,7 @@ SailorGroup:
 	next_list_item ; SAILOR (4) KENT - Olivine Lighthouse 4F
 	db "KENT@", TRAINERTYPE_NORMAL
 	db 23
-	dw FINIZEN
+	dw CHINCHOU
 	db 23
 	dw REMORAID
 	db -1 ; end
