@@ -2151,4 +2151,8 @@
 	const EVENT_ROUTE_41_FINIZEN_FOUGHT
 	const EVENT_ROUTE_41_CAUGHT_FINIZEN
 
+; Set when BLUE hands over the EARTHBADGE, cleared once CRYSTAL's call about
+; the CERULEAN coast has been delivered (see maps/ViridianCity.asm).
+	const EVENT_CRYSTAL_CAPE_CALL_PENDING
+
 NUM_EVENTS EQU const_value
