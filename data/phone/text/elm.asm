@@ -197,33 +197,6 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
-ElmPhoneCrystalCapeText:
-	text "ELM: <PLAY_G>!"
-	line "There you are!"
-
-	para "CRYSTAL called the"
-	line "LAB looking for"
-	cont "you."
-
-	para "She wouldn't say"
-	line "much. Only that"
-
-	para "she'd found some-"
-	line "thing out on the"
-	cont "CERULEAN coast."
-
-	para "Something she"
-	line "says shouldn't"
-	cont "exist at all."
-
-	para "She's waiting for"
-	line "you north of"
-	cont "CERULEAN CITY."
-
-	para "…Do be careful,"
-	line "won't you?"
-	done
-
 ElmPhoneUnusedText:
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"
