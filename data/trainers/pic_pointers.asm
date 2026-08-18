@@ -86,3 +86,4 @@ TrainerPicPointers::
 	dba GreenPic
 	dba BattleGirlPic
 	dba TamerPic
+	dba ThugPic
