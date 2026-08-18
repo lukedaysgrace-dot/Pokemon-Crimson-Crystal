@@ -84,3 +84,4 @@ BTTrainerClassSprites:
 	db SPRITE_GREEN
 	db SPRITE_BATTLE_GIRL
 	db SPRITE_TAMER
+	db SPRITE_THUG

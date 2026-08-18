@@ -504,3 +504,9 @@ TrainerClassAttributes:
 	db 14 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
+
+; Thug
+	db NO_ITEM, NO_ITEM ; items
+	db 12 ; base reward
+	dw AI_BASIC | AI_TYPES | AI_AGGRESSIVE | AI_STATUS | AI_RISKY
+	dw CONTEXT_USE | SWITCH_SOMETIMES
