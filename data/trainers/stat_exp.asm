@@ -98,3 +98,4 @@ TrainerClassStatExp:
 	dw 60000 ; GREEN
 	dw  5000 ; BATTLE_GIRL
 	dw  5000 ; TAMER
+	dw  5000 ; THUG

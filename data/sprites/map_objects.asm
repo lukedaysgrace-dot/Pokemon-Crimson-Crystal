@@ -304,3 +304,11 @@ SpriteMovementData::
 	db WONT_DELETE | FIXED_FACING | SLIDING | MOVE_ANYWHERE ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
+
+; SPRITEMOVEDATA_LOOK_DOWN_LEFT
+	db SPRITEMOVEFN_LOOK_DOWN_LEFT ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db 0 ; flags1
+	db 0 ; flags2
+	db 0 ; palette flags
