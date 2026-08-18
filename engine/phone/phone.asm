@@ -418,6 +418,17 @@ Script_ReceivePhoneCall:
 	callasm InitCallReceiveDelay
 	end
 
+Script_SpecialCrystalCall::
+; Rings CRYSTAL through straight away instead of waiting for the step-based
+; special call handler in CountStep.
+	callasm .LoadCrystalScript
+	pause 30
+	sjump Script_ReceivePhoneCall
+
+.LoadCrystalScript:
+	ld e, PHONE_CRYSTAL
+	jp LoadCallerScript
+
 Script_SpecialBillCall::
 	callasm .LoadBillScript
 	sjump Script_ReceivePhoneCall
