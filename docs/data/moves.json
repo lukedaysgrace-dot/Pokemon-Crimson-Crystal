@@ -2071,7 +2071,7 @@
     "const": "MUD_SLAP",
     "name": "MUD-SLAP",
     "effect": "Effect Accuracy Down Hit",
-    "power": 20,
+    "power": 40,
     "type": "Ground",
     "category": "Categorize Special",
     "accuracy": 100,
