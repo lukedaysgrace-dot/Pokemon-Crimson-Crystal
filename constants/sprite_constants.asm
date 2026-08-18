@@ -141,6 +141,8 @@
 	const SPRITE_SUICUNE_NPC ; 8b
 	const SPRITE_MEW ; 8c
 	const SPRITE_FINIZEN ; 8d
+	const SPRITE_THUG ; 8e
+	const SPRITE_AROMA_LADY ; 8f
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
