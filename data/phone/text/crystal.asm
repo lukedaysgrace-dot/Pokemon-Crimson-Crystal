@@ -424,3 +424,43 @@ CrystalPhoneTipRoute28Text:
 
 	para "I'd do it again."
 	done
+
+CrystalPhoneCapeCallText1:
+	text "<PLAY_G>. Don't"
+	line "hang up."
+
+	para "I heard about"
+	line "BLUE. The"
+	cont "EARTHBADGE."
+
+	para "Congratulations."
+	line "Truly."
+
+	para "Now put it in"
+	line "your bag and"
+	cont "listen."
+	done
+
+CrystalPhoneCapeCallText2:
+	text "I'm north of"
+	line "CERULEAN CITY,"
+	cont "out on the coast."
+
+	para "There's something"
+	line "over the water"
+	cont "here."
+
+	para "It matches no"
+	line "entry I have ever"
+	cont "logged."
+
+	para "I'm not calling"
+	line "the LAB about"
+	cont "this."
+
+	para "I'm calling you."
+
+	para "Come north. Now."
+
+	para "…Please."
+	done
