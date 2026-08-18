@@ -426,12 +426,6 @@ GoldenrodUndergroundHiddenAntidote:
 ; The whole thing is a one-shot: once EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 ; is set the trigger never fires again and all four objects are gone for good.
 
-GoldenrodUndergroundThugSceneFromRow17:
-	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	iftrue GoldenrodUndergroundThugScene_Done
-	applymovement PLAYER, GoldenrodUndergroundPlayerBacksDownTwiceMovement
-	sjump GoldenrodUndergroundThugScene
-
 GoldenrodUndergroundThugSceneFromRow18:
 	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 	iftrue GoldenrodUndergroundThugScene_Done
@@ -588,11 +582,6 @@ GoldenrodUndergroundThugScript:
 	end
 
 GoldenrodUndergroundPlayerBacksDownMovement:
-	step DOWN
-	step_end
-
-GoldenrodUndergroundPlayerBacksDownTwiceMovement:
-	step DOWN
 	step DOWN
 	step_end
 
@@ -1064,10 +1053,9 @@ GoldenrodUnderground_MapEvents:
 	warp_event 26, 35, GOLDENROD_UNDERGROUND, 3
 	warp_event 26, 31, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 1
 
-	db 3 ; coord events
-	coord_event 21, 17, SCENE_DEFAULT, GoldenrodUndergroundThugSceneFromRow17
-	coord_event 21, 18, SCENE_DEFAULT, GoldenrodUndergroundThugSceneFromRow18
-	coord_event 21, 19, SCENE_DEFAULT, GoldenrodUndergroundThugSceneTrigger
+	db 2 ; coord events
+	coord_event 21, 18, -1, GoldenrodUndergroundThugSceneFromRow18
+	coord_event 21, 19, -1, GoldenrodUndergroundThugSceneTrigger
 
 	db 5 ; bg events
 	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
