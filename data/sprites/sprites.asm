@@ -147,3 +147,5 @@ OverworldSprites:
 	overworld_sprite SuicuneSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE ; SPRITE_SUICUNE_NPC
 	overworld_sprite MewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PINK ; SPRITE_MEW
 	overworld_sprite FinizenNPCSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_FINIZEN
+	overworld_sprite ThugSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_THUG
+	overworld_sprite AromaLadySpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_AROMA_LADY

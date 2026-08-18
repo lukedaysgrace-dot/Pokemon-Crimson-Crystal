@@ -185,8 +185,6 @@ INCLUDE "maps/LavenderNameRater.asm"
 INCLUDE "maps/LavenderMart.asm"
 INCLUDE "maps/SoulHouse.asm"
 INCLUDE "maps/LavRadioTower1F.asm"
-INCLUDE "maps/Route8SaffronGate.asm"
-INCLUDE "maps/Route12SuperRodHouse.asm"
 
 
 SECTION "Map Scripts 11", ROMX
@@ -505,3 +503,10 @@ INCLUDE "maps/BattleTowerElevator.asm"
 INCLUDE "maps/BattleTowerHallway.asm"
 INCLUDE "maps/Route40BattleTowerGate.asm"
 INCLUDE "maps/BattleTowerOutside.asm"
+
+
+; Split out of "Map Scripts 10", which had filled its bank.
+SECTION "Map Scripts 29", ROMX
+
+INCLUDE "maps/Route8SaffronGate.asm"
+INCLUDE "maps/Route12SuperRodHouse.asm"
