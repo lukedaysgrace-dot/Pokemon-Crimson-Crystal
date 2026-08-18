@@ -1,4 +1,6 @@
 CrystalPhoneCalleeScript:
+	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
+	iftrue CrystalPhoneCapeCallScript
 	scall CrystalPhoneGreeting
 	checkevent EVENT_CRYSTAL_CAUGHT_MEW
 	iftrue .Mew
@@ -40,6 +42,10 @@ CrystalPhoneCalleeScript:
 	sjump CrystalPhoneTier5Tips
 
 CrystalPhoneCallerScript:
+; The EARTHBADGE call is CRYSTAL summoning the player to the CERULEAN
+; coast, so it skips the usual greeting-and-tips routine entirely.
+	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
+	iftrue CrystalPhoneCapeCallScript
 	scall CrystalPhoneGreeting
 	farwritetext CrystalPhoneReportIntroText
 	buttonsound
@@ -52,6 +58,16 @@ CrystalPhoneCallerScript:
 	checkevent EVENT_BEAT_CRYSTAL_ILEX_FOREST
 	iftrue CrystalPhoneTier2Tips
 	sjump CrystalPhoneTier1Tips
+
+CrystalPhoneCapeCallScript:
+; Also reachable from CrystalPhoneCalleeScript and the CountStep special call
+; handler, so it clears both halves of the pending state itself.
+	farwritetext CrystalPhoneCapeCallText1
+	buttonsound
+	farwritetext CrystalPhoneCapeCallText2
+	clearevent EVENT_CRYSTAL_CAPE_CALL_PENDING
+	specialphonecall SPECIALCALL_NONE
+	end
 
 CrystalPhoneGreeting:
 	checktime MORN

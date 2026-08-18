@@ -31,6 +31,7 @@ ViridianGymBlueScript:
 	writetext LeaderBlueAfterText
 	waitbutton
 	closetext
+	setevent EVENT_CRYSTAL_CAPE_CALL_PENDING
 	specialphonecall SPECIALCALL_CRYSTAL_CAPE
 	end
 
