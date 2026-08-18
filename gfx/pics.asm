@@ -1481,3 +1481,4 @@ SECTION "New Trainer Pics", ROMX
 
 BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"
 TamerPic: INCBIN "gfx/trainers/tamer.2bpp.lz"
+ThugPic: INCBIN "gfx/trainers/thug.2bpp.lz"
