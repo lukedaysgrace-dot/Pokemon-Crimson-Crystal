@@ -659,7 +659,7 @@ GoldenrodUnderground_MapEvents:
 	warp_event 18,  6, GOLDENROD_UNDERGROUND, 4
 	warp_event 25, 35, GOLDENROD_UNDERGROUND, 3
 	warp_event 26, 35, GOLDENROD_UNDERGROUND, 3
-	warp_event 25, 17, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 1
+	warp_event 26, 31, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 1
 
 	db 0 ; coord events
 
