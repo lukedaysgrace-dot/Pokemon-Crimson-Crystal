@@ -86,3 +86,4 @@ TrainerGroups:
 	dba GreenGroup
 	dba BattleGirlGroup
 	dba TamerGroup
+	dba ThugGroup

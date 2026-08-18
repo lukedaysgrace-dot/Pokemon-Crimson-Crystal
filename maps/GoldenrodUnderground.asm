@@ -11,6 +11,10 @@ GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
 	const GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	const GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	const GOLDENRODUNDERGROUND_GRANNY
+	const GOLDENRODUNDERGROUND_GIRL
+	const GOLDENRODUNDERGROUND_THUG_PAULIE
+	const GOLDENRODUNDERGROUND_THUG_BOBBY
+	const GOLDENRODUNDERGROUND_THUG_TONY
 
 GoldenrodUnderground_MapScripts:
 	db 0 ; scene scripts
@@ -418,8 +422,266 @@ GoldenrodUndergroundHiddenSuperPotion:
 GoldenrodUndergroundHiddenAntidote:
 	hiddenitem ANTIDOTE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE
 
-GoldenrodUndergroundHiddenLoadedDice:
-	hiddenitem LOADED_DICE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_LOADED_DICE
+; The three THUGs cornering the girl at the east end of the middle corridor.
+; The whole thing is a one-shot: once EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+; is set the trigger never fires again and all four objects are gone for good.
+
+GoldenrodUndergroundThugSceneFromRow17:
+	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	iftrue GoldenrodUndergroundThugScene_Done
+	applymovement PLAYER, GoldenrodUndergroundPlayerBacksDownTwiceMovement
+	sjump GoldenrodUndergroundThugScene
+
+GoldenrodUndergroundThugSceneFromRow18:
+	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	iftrue GoldenrodUndergroundThugScene_Done
+	applymovement PLAYER, GoldenrodUndergroundPlayerBacksDownMovement
+	sjump GoldenrodUndergroundThugScene
+
+GoldenrodUndergroundThugSceneTrigger:
+	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	iftrue GoldenrodUndergroundThugScene_Done
+GoldenrodUndergroundThugScene:
+	turnobject PLAYER, RIGHT
+	showemote EMOTE_SHOCK, PLAYER, 15
+	special FadeOutMusic
+	pause 15
+
+; The girl is still pleading with them; they have not noticed you yet.
+	opentext
+	writetext GoldenrodUndergroundGirlPleaText
+	waitbutton
+	closetext
+	opentext
+	writetext GoldenrodUndergroundThugsDemandText
+	waitbutton
+	closetext
+
+; Now they notice you.
+	turnobject GOLDENRODUNDERGROUND_THUG_PAULIE, LEFT
+	turnobject GOLDENRODUNDERGROUND_THUG_BOBBY, LEFT
+	turnobject GOLDENRODUNDERGROUND_THUG_TONY, LEFT
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	opentext
+	writetext GoldenrodUndergroundThugNoticeText
+	waitbutton
+	closetext
+
+; PAULIE comes at you from above.
+	applymovement GOLDENRODUNDERGROUND_THUG_PAULIE, GoldenrodUndergroundThugPaulieApproachMovement
+	turnobject PLAYER, UP
+	winlosstext GoldenrodUndergroundThugPaulieBeatenText, 0
+	setlasttalked GOLDENRODUNDERGROUND_THUG_PAULIE
+	loadtrainer THUG, THUG_PAULIE
+	startbattle
+	reloadmapafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	opentext
+	writetext GoldenrodUndergroundThugPaulieAfterText
+	waitbutton
+	closetext
+
+; BOBBY steps around and blocks you from the front.
+	applymovement GOLDENRODUNDERGROUND_THUG_BOBBY, GoldenrodUndergroundThugBobbyApproachMovement
+	turnobject PLAYER, RIGHT
+	winlosstext GoldenrodUndergroundThugBobbyBeatenText, 0
+	setlasttalked GOLDENRODUNDERGROUND_THUG_BOBBY
+	loadtrainer THUG, THUG_BOBBY
+	startbattle
+	reloadmapafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+	opentext
+	writetext GoldenrodUndergroundThugBobbyAfterText
+	waitbutton
+	closetext
+
+; TONY shoves BOBBY out of the way and takes his spot.
+	applymovement GOLDENRODUNDERGROUND_THUG_TONY, GoldenrodUndergroundThugTonyApproachMovement
+	playsound SFX_TACKLE
+	applymovement GOLDENRODUNDERGROUND_THUG_BOBBY, GoldenrodUndergroundThugBobbyShovedMovement
+	applymovement GOLDENRODUNDERGROUND_THUG_TONY, GoldenrodUndergroundThugTonyStepInMovement
+	turnobject PLAYER, RIGHT
+	opentext
+	writetext GoldenrodUndergroundThugTonyShoveText
+	waitbutton
+	closetext
+	winlosstext GoldenrodUndergroundThugTonyBeatenText, 0
+	setlasttalked GOLDENRODUNDERGROUND_THUG_TONY
+	loadtrainer THUG, THUG_TONY
+	startbattle
+	reloadmapafterbattle
+	playmusic MUSIC_ROCKET_ENCOUNTER
+
+; They give up on the ring and clear out around you.
+	opentext
+	writetext GoldenrodUndergroundThugTonyAfterText
+	waitbutton
+	closetext
+	opentext
+	writetext GoldenrodUndergroundThugBobbyRingText
+	waitbutton
+	closetext
+	opentext
+	writetext GoldenrodUndergroundThugTonyForgetItText
+	waitbutton
+	closetext
+	applymovement GOLDENRODUNDERGROUND_THUG_PAULIE, GoldenrodUndergroundThugLeavesFrom21Movement
+	disappear GOLDENRODUNDERGROUND_THUG_PAULIE
+	applymovement GOLDENRODUNDERGROUND_THUG_BOBBY, GoldenrodUndergroundThugLeavesFrom22Movement
+	disappear GOLDENRODUNDERGROUND_THUG_BOBBY
+	applymovement GOLDENRODUNDERGROUND_THUG_TONY, GoldenrodUndergroundThugTonyLeavesMovement
+	disappear GOLDENRODUNDERGROUND_THUG_TONY
+	setevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	special RestartMapMusic
+
+; The girl comes over to thank you.
+	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlApproachMovement
+	turnobject PLAYER, UP
+	opentext
+	writetext GoldenrodUndergroundGirlThanksText
+	buttonsound
+	verbosegiveitem LOADED_DICE
+	iffalse GoldenrodUndergroundThugScene_NoRoom
+	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	writetext GoldenrodUndergroundGirlFarewellText
+	waitbutton
+	closetext
+	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlLeavesMovement
+	disappear GOLDENRODUNDERGROUND_GIRL
+GoldenrodUndergroundThugScene_Done:
+	end
+
+GoldenrodUndergroundThugScene_NoRoom:
+	writetext GoldenrodUndergroundGirlNoRoomText
+	waitbutton
+	closetext
+	end
+
+; Fallback if you walk away before she can hand the ring's reward over.
+GoldenrodUndergroundGirlScript:
+	faceplayer
+	opentext
+	writetext GoldenrodUndergroundGirlThanksText
+	buttonsound
+	verbosegiveitem LOADED_DICE
+	iffalse .NoRoom
+	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	writetext GoldenrodUndergroundGirlFarewellText
+	waitbutton
+	closetext
+	disappear GOLDENRODUNDERGROUND_GIRL
+	end
+
+.NoRoom:
+	writetext GoldenrodUndergroundGirlNoRoomText
+	waitbutton
+	closetext
+	end
+
+; The THUGs are unreachable until the scene fires, but give them something.
+GoldenrodUndergroundThugScript:
+	faceplayer
+	opentext
+	writetext GoldenrodUndergroundThugsDemandText
+	waitbutton
+	closetext
+	end
+
+GoldenrodUndergroundPlayerBacksDownMovement:
+	step DOWN
+	step_end
+
+GoldenrodUndergroundPlayerBacksDownTwiceMovement:
+	step DOWN
+	step DOWN
+	step_end
+
+GoldenrodUndergroundThugPaulieApproachMovement:
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step_end
+
+GoldenrodUndergroundThugBobbyApproachMovement:
+	step DOWN
+	step LEFT
+	step LEFT
+	step_end
+
+GoldenrodUndergroundThugTonyApproachMovement:
+	step LEFT
+	step LEFT
+	step DOWN
+	step_end
+
+GoldenrodUndergroundThugBobbyShovedMovement:
+	big_step UP
+	turn_head DOWN
+	step_end
+
+GoldenrodUndergroundThugTonyStepInMovement:
+	step LEFT
+	step_end
+
+GoldenrodUndergroundThugLeavesFrom21Movement:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+GoldenrodUndergroundThugLeavesFrom22Movement:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+GoldenrodUndergroundThugTonyLeavesMovement:
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+GoldenrodUndergroundGirlApproachMovement:
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step_end
+
+GoldenrodUndergroundGirlLeavesMovement:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
 
 SupernerdEricSeenText:
 	text "I got booted out"
@@ -650,6 +912,147 @@ GoldenrodUndergroundNoEntryText:
 	line "THIS POINT"
 	done
 
+GoldenrodUndergroundGirlPleaText:
+	text "Leave me alone!"
+
+	para "You can't have my"
+	line "grandma's ring!"
+	done
+
+GoldenrodUndergroundThugsDemandText:
+	text "Will you just hand"
+	line "it over already?!"
+
+	para "I bet that thing's"
+	line "worth a fortune!"
+	done
+
+GoldenrodUndergroundThugNoticeText:
+	text "Well, what do we"
+	line "have here, boys?"
+
+	para "Seems like this"
+	line "kid wants to be a"
+	cont "hero."
+
+	para "Guess we'll have"
+	line "to show him not to"
+	cont "poke his nose into"
+	cont "other people's"
+	cont "business!"
+	done
+
+GoldenrodUndergroundThugPaulieBeatenText:
+	text "How?!"
+	done
+
+GoldenrodUndergroundThugPaulieAfterText:
+	text "You're not tough."
+
+	para "You just got"
+	line "lucky!"
+	done
+
+GoldenrodUndergroundThugBobbyBeatenText:
+	text "No, no, no…"
+	done
+
+GoldenrodUndergroundThugBobbyAfterText:
+	text "Rrrghhh…"
+
+	para "This is so"
+	line "embarrassing."
+	done
+
+GoldenrodUndergroundThugTonyShoveText:
+	text "Get out of my way,"
+	line "loser."
+
+	para "I can't believe"
+	line "you're getting"
+	cont "thrashed by this"
+	cont "little punk."
+	done
+
+GoldenrodUndergroundThugTonyBeatenText:
+	text "Heh… not bad."
+	done
+
+GoldenrodUndergroundThugTonyAfterText:
+	text "You know what?"
+
+	para "This kid's got"
+	line "moxie. I can"
+	cont "respect that…"
+
+	para "Let's get out of"
+	line "here, fellas."
+	done
+
+GoldenrodUndergroundThugBobbyRingText:
+	text "But boss, what"
+	line "about the ring?"
+	done
+
+GoldenrodUndergroundThugTonyForgetItText:
+	text "FORGET THE RING!"
+
+	para "There's a boatload"
+	line "more suckers"
+	cont "around here to"
+	cont "scam."
+
+	para "Let's just get out"
+	line "of here."
+	done
+
+GoldenrodUndergroundGirlThanksText:
+	text "Oh, thank you so"
+	line "much!"
+
+	para "I simply came down"
+	line "here to check out"
+	cont "some of the shops"
+	cont "that are only open"
+	cont "on certain days…"
+
+	para "They all led me to"
+	line "this hallway, and"
+	cont "then those three"
+	cont "cornered me."
+
+	para "This ring has been"
+	line "in my family for"
+	cont "generations. I'd"
+	cont "be heartbroken if"
+	cont "I lost it."
+
+	para "I saw one of them"
+	line "drop something"
+	cont "when they were"
+	cont "rushing at you."
+
+	para "I know it's not"
+	line "much, but I hope"
+	cont "you can use it!"
+	done
+
+GoldenrodUndergroundGirlFarewellText:
+	text "Thank you again!"
+
+	para "I'm getting out of"
+	line "here."
+	done
+
+GoldenrodUndergroundGirlNoRoomText:
+	text "Oh… your PACK is"
+	line "full."
+
+	para "I'll wait right"
+	line "here until you"
+	cont "make some room."
+	done
+
 GoldenrodUnderground_MapEvents:
 	db 0, 0 ; filler
 
@@ -661,17 +1064,19 @@ GoldenrodUnderground_MapEvents:
 	warp_event 26, 35, GOLDENROD_UNDERGROUND, 3
 	warp_event 26, 31, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 1
 
-	db 0 ; coord events
+	db 3 ; coord events
+	coord_event 21, 17, SCENE_DEFAULT, GoldenrodUndergroundThugSceneFromRow17
+	coord_event 21, 18, SCENE_DEFAULT, GoldenrodUndergroundThugSceneFromRow18
+	coord_event 21, 19, SCENE_DEFAULT, GoldenrodUndergroundThugSceneTrigger
 
-	db 6 ; bg events
+	db 5 ; bg events
 	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
 	bg_event 19,  6, BGEVENT_READ, GoldenrodUndergroundNoEntrySign
 	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
-	bg_event  5,  1, BGEVENT_ITEM, GoldenrodUndergroundHiddenLoadedDice
 
-	db 9 ; object events
+	db 13 ; object events
 	object_event  5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
 	object_event  6,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
 	object_event  3, 27, SPRITE_POKEMANIAC_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
@@ -681,3 +1086,7 @@ GoldenrodUnderground_MapEvents:
 	object_event  7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
 	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BitterMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRANNY
+	object_event 25, 17, SPRITE_AROMA_LADY, SPRITEMOVEDATA_LOOK_DOWN_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	object_event 24, 17, SPRITE_THUG, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 24, 18, SPRITE_THUG, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 25, 18, SPRITE_THUG, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
