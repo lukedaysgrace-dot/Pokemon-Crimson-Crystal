@@ -266,7 +266,7 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Overgrow",
+      "Mega Sol",
       "Triage"
     ],
     "learnset": [
@@ -4900,7 +4900,7 @@
       "Flying"
     ],
     "abilities": [
-      "Inner Focus",
+      "Merciless",
       "Frisk",
       "Infiltrator"
     ],
@@ -8417,6 +8417,7 @@
     ],
     "abilities": [
       "Chlorophyll",
+      "Poison Puppeteer",
       "Gluttony"
     ],
     "learnset": [
@@ -8540,6 +8541,7 @@
     ],
     "abilities": [
       "Chlorophyll",
+      "Poison Puppeteer",
       "Gluttony"
     ],
     "learnset": [
@@ -11039,6 +11041,7 @@
     ],
     "abilities": [
       "Chlorophyll",
+      "Poison Puppeteer",
       "Stench"
     ],
     "learnset": [
@@ -11172,6 +11175,7 @@
     ],
     "abilities": [
       "Chlorophyll",
+      "Poison Puppeteer",
       "Effect Spore"
     ],
     "learnset": [
@@ -21360,7 +21364,7 @@
     ],
     "abilities": [
       "Motor Drive",
-      "Vital Spirit",
+      "Sheer Force",
       "Iron Fist"
     ],
     "learnset": [
@@ -35749,7 +35753,7 @@
     ],
     "abilities": [
       "Levitate",
-      "Pressure",
+      "Prankster",
       "Regenerator"
     ],
     "learnset": [
@@ -35902,7 +35906,7 @@
     ],
     "abilities": [
       "Iron Fist",
-      "Pressure",
+      "Prankster",
       "Regenerator"
     ],
     "learnset": [
@@ -36916,7 +36920,8 @@
       "Dragon"
     ],
     "abilities": [
-      "Levitate"
+      "Levitate",
+      "Berserk"
     ],
     "learnset": [
       {
@@ -53272,7 +53277,7 @@
     ],
     "abilities": [
       "Guts",
-      "Bulletproof",
+      "Berserk",
       "Minds Eye"
     ],
     "learnset": [
@@ -55973,7 +55978,8 @@
     ],
     "abilities": [
       "Poison Touch",
-      "Gluttony"
+      "Gluttony",
+      "Poison Puppeteer"
     ],
     "learnset": [
       {
@@ -57990,7 +57996,7 @@
     ],
     "abilities": [
       "Cursed Body",
-      "Blaze",
+      "Berserk",
       "Flash Fire"
     ],
     "learnset": [
@@ -60522,6 +60528,7 @@
     ],
     "abilities": [
       "Reckless",
+      "Wind Rider",
       "Keen Eye"
     ],
     "learnset": [
@@ -60660,6 +60667,7 @@
     ],
     "abilities": [
       "Reckless",
+      "Wind Rider",
       "Keen Eye"
     ],
     "learnset": [
@@ -61815,7 +61823,7 @@
     ],
     "abilities": [
       "Frisk",
-      "Big Pecks",
+      "Wind Rider",
       "Soundproof"
     ],
     "learnset": [
@@ -61939,7 +61947,7 @@
     ],
     "abilities": [
       "Frisk",
-      "Big Pecks",
+      "Wind Rider",
       "Soundproof"
     ],
     "learnset": [
@@ -62087,7 +62095,7 @@
     ],
     "abilities": [
       "Corrosion",
-      "Oblivious",
+      "Poison Puppeteer",
       "Merciless"
     ],
     "learnset": [
@@ -62196,7 +62204,7 @@
     ],
     "abilities": [
       "Corrosion",
-      "Oblivious",
+      "Poison Puppeteer",
       "Merciless"
     ],
     "learnset": [
