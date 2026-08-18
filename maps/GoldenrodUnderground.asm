@@ -984,7 +984,7 @@ GoldenrodUndergroundThugTonyAfterText:
 	done
 
 GoldenrodUndergroundThugBobbyRingText:
-	text "But boss, what"
+	text "But TONY, what"
 	line "about the ring?"
 	done
 
