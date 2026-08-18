@@ -568,6 +568,7 @@ MapObjectMovementPattern:
 	dw .MovementBoulderDust ; 1a
 	dw .MovementShakingGrass ; 1b
 	dw .MovementSlowBouncing ; 1c
+	dw .LookDownLeft ; 1d
 
 .Null_00:
 	ret
@@ -615,6 +616,20 @@ MapObjectMovementPattern:
 .keep
 	ld [hl], a
 	jp RandomStepDuration_Fast
+
+.LookDownLeft:
+; Alternate between facing down and facing left, and nothing else.
+	ld hl, OBJECT_FACING
+	add hl, bc
+	ld a, [hl]
+	and %00001100
+	cp OW_DOWN
+	ld a, OW_LEFT
+	jr z, .LookDownLeftApply
+	ld a, OW_DOWN
+.LookDownLeftApply
+	ld [hl], a
+	jp RandomStepDuration_Slow
 
 .Standing:
 	call Function462a
