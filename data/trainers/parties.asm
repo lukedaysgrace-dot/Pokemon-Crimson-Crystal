@@ -8018,3 +8018,32 @@ TamerGroup:
 	db -1 ; end
 
 	end_list_items
+
+ThugGroup:
+	next_list_item ; THUG (1) THUG_PAULIE - Goldenrod Underground
+	db "PAULIE@", TRAINERTYPE_NORMAL
+	db 16
+	dw MANKEY
+	db 16
+	dw KOFFING
+	db -1 ; end
+
+	next_list_item ; THUG (2) THUG_BOBBY - Goldenrod Underground
+	db "BOBBY@", TRAINERTYPE_NORMAL
+	db 17
+	dw CROAGUNK
+	db 17
+	dw GRIMER
+	db -1 ; end
+
+	next_list_item ; THUG (3) THUG_TONY - Goldenrod Underground
+	db "TONY@", TRAINERTYPE_NORMAL
+	db 18
+	dw HOUNDOUR
+	db 18
+	dw MURKROW
+	db 19
+	dw SCRAGGY
+	db -1 ; end
+
+	end_list_items

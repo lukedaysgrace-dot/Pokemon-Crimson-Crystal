@@ -85,3 +85,4 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; GREEN
 	dn  9,  8,  8,  8 ; BATTLE_GIRL
 	dn  9,  8,  8,  8 ; TAMER
+	dn  9,  8,  8,  8 ; THUG

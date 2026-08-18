@@ -209,7 +209,7 @@
 	const EVENT_BEAT_COOLTRAINERM_SNOW
 	const EVENT_BEAT_COOLTRAINERM_CYANIDE
 	const EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK
-	const EVENT_GOLDENROD_UNDERGROUND_HIDDEN_LOADED_DICE
+	const EVENT_GOLDENROD_UNDERGROUND_HIDDEN_LOADED_DICE ; unused: replaced by the THUG scene reward
 ; Kanto story events
 	const EVENT_GOT_NUGGET_FROM_GUY
 	const EVENT_RETURNED_MACHINE_PART
@@ -2154,5 +2154,9 @@
 ; Set when BLUE hands over the EARTHBADGE, cleared once CRYSTAL's call about
 ; the CERULEAN coast has been delivered (see maps/ViridianCity.asm).
 	const EVENT_CRYSTAL_CAPE_CALL_PENDING
+
+; GOLDENROD UNDERGROUND thug mugging scene (see maps/GoldenrodUnderground.asm)
+	const EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	const EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
 
 NUM_EVENTS EQU const_value
