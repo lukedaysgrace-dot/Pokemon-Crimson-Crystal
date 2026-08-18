@@ -1230,10 +1230,10 @@ JohtoGrassWildMons:
 	dbw 3, PIDGEY
 	dbw 3, LOTAD
 	; day
-	dbw 2, FINIZEN
-	dbw 3, PALAFIN
-	dbw 3, FINIZEN
-	dbw 3, PALAFIN
+	dbw 2, SENTRET
+	dbw 3, PIDGEY
+	dbw 3, RATTATA
+	dbw 3, SENTRET
 	dbw 2, HOPPIP
 	dbw 3, BUNEARY
 	dbw 3, KOTORA
