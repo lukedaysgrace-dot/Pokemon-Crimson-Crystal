@@ -240,6 +240,10 @@ class AssertionContext:
             "text_seen": b.text_seen,
             "ability_seen": b.ability_seen,
             "buffer_is": b.buffer_is,
+            # name of the move the AI picked last (wCurEnemyMove, 8-bit ID)
+            "enemy_move": lambda: b.con.moves_by_index.get(
+                b.mem.move_index_of(b.mem.read("wCurEnemyMove")),
+                f"MOVE_{b.mem.read('wCurEnemyMove')}"),
             "result": lambda name: self.results[name],
             "abs": abs, "min": min, "max": max,
         }
