@@ -1216,6 +1216,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 ; polishedcoral ports
 	const BATTLEANIMOAMSET_LUMINA_CRASH_1
 	const BATTLEANIMOAMSET_LUMINA_CRASH_2
+; vanilla OAM sets whose original slots were redefined by polishedcrystal ports
+	const BATTLEANIMOAMSET_MORNING_SUN_SPARKLE ; vanilla BATTLEANIMOAMSET_BD
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1

@@ -1284,7 +1284,10 @@ BattleAnimFrameData:
 	oamendanim
 
 .Frameset_a3:
-	oamframe BATTLEANIMOAMSET_BD, 11
+; Morning Sun's sparkle. BATTLEANIMOAMSET_BD was redefined by the
+; polishedcrystal Gyro Ball port (14 sprites at vtile $29), which made this
+; vanilla frameset draw 14 tiles of garbage past the end of the shine gfx.
+	oamframe BATTLEANIMOAMSET_MORNING_SUN_SPARKLE, 11
 	oamframe BATTLEANIMOAMSET_BE, 11
 	oamframe BATTLEANIMOAMSET_1B, 11
 	oamdelanim
