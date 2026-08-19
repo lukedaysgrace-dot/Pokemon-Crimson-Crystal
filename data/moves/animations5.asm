@@ -455,7 +455,11 @@ BattleAnim_BrickBreak_CC:
 ; The chopping hand hangs poised above the foe (pokeorange), then comes
 ; down through the screen with a glass-shattering blow.
 	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
-	anim_obp0 $0
+; (The `anim_obp0 $0` that used to be here maps the gray/yellow object
+; palettes to all-white on CGB, so the glass pane and the chopping hand -
+; both gray-palette objects - were drawn white on white and never showed
+; up for the whole wind-up. It now only kicks in for the blow itself, so
+; the hit star flashes white against the inverted screen like Iron Head.)
 	anim_sound 0, 0, SFX_SHINE
 	anim_obj ANIM_OBJ_SCREEN, 136, 48, $0
 	anim_wait 8
@@ -469,6 +473,7 @@ BattleAnim_BrickBreak_CC:
 	anim_obj ANIM_OBJ_VERTICAL_CHOP, 136, 48, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_KARATE_CHOP
+	anim_obp0 $0
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
@@ -640,8 +645,13 @@ BattleAnim_LowSweep_CC:
 	; its legs go sluggish
 	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
 	anim_sound 0, 1, SFX_WHIRLWIND
-	anim_obj ANIM_OBJ_AGILITY, 116, 72, $10
-	anim_obj ANIM_OBJ_AGILITY, 140, 76, $10
+	; ANIM_OBJ_AGILITY keeps sliding right by its param every frame until the
+	; animation ends, so these used to start at x=116/140 with $10, run off
+	; the right edge within a few frames, wrap around and streak past the
+	; user on the left instead. Start them left of the target's feet and
+	; slow them down so they stay on it for the rest of the move.
+	anim_obj ANIM_OBJ_AGILITY, 88, 52, $4
+	anim_obj ANIM_OBJ_AGILITY, 80, 60, $4
 	anim_wait 24
 	anim_ret
 
@@ -707,10 +717,13 @@ BattleAnim_CrossPoison_CC:
 	anim_bgp $1b
 	anim_sound 0, 1, SFX_CUT
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
-	anim_obj ANIM_OBJ_CROSS_CHOP1,  15, 0,   9, 0, $0
+	; (the two blades had each other's coordinates, so the first one hung
+	; below and left of the target and the second was clipped off the top
+	; right corner; these are Cross Chop's positions)
+	anim_obj ANIM_OBJ_CROSS_CHOP1, -13, 0,   5, 0, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_CUT
-	anim_obj ANIM_OBJ_CROSS_CHOP2, -13, 0,   5, 0, $0
+	anim_obj ANIM_OBJ_CROSS_CHOP2,  15, 0,   9, 0, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_TOXIC
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
@@ -1082,7 +1095,10 @@ BattleAnim_ShellSideArm_CC:
 ; of filth, and fires whichever way will hurt more.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_3gfx ANIM_GFX_REFLECT, ANIM_GFX_POISON, ANIM_GFX_HIT
-	anim_obp0 $0
+; (removed `anim_obp0 $0`: on CGB it maps the gray/yellow object palettes to
+; all-white, which threw away the purple recolor above and made the shell,
+; the mud shots, the acid and the ink all draw white on white - the whole
+; move was invisible apart from the screen flash.)
 	anim_sound 0, 0, SFX_SHINE
 	anim_obj ANIM_OBJ_WITHDRAW, 44, 88, $0
 	anim_wait 20
@@ -1202,7 +1218,9 @@ BattleAnim_PsyshieldBash_CC:
 ; rams in behind it, shield-first.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
 	anim_4gfx ANIM_GFX_PSYCHIC, ANIM_GFX_REFLECT, ANIM_GFX_HIT, ANIM_GFX_BIG_RINGS
-	anim_obp0 $0
+; (removed `anim_obp0 $0`: on CGB it maps the gray/yellow object palettes to
+; all-white, which threw away the purple recolor above and made the psychic
+; wave, the barrier, the hit star and the ring all draw white on white.)
 	anim_sound 0, 0, SFX_PSYCHIC
 	anim_obj ANIM_OBJ_WAVE, 44, 88, $0
 	anim_wait 16
@@ -1265,11 +1283,14 @@ BattleAnim_StrangeSteam_CC:
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_BRIGHT_PINK
 	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_SMOKE_PUFF, ANIM_GFX_SPEED
 	anim_sound 0, 0, SFX_SWEET_SCENT
-	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 88, $0
+	; (the param is the mist's travel speed toward the target; with $0 the
+	; puffs just sat on the user and never reached the target - use Sweet
+	; Scent's $4)
+	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 88, $4
 	anim_wait 8
-	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 80, $0
+	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 80, $4
 	anim_wait 8
-	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 96, $0
+	anim_obj ANIM_OBJ_SHOOTING_MIST, 64, 96, $4
 	anim_wait 12
 	anim_sound 0, 1, SFX_SWEET_SCENT_2
 	anim_obj ANIM_OBJ_SCALD_STEAM, 120, 46, $30
@@ -1334,7 +1355,9 @@ BattleAnim_RagingBull_CC:
 ; Steam, stamping, seeing red - then the bull charges clean through
 ; whatever wall stands in its way.
 	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
-	anim_obp0 $0
+; (`anim_obp0 $0` moved down to the impact: on CGB it maps the gray/yellow
+; object palettes to all-white, so the wall (a gray-palette object) was
+; invisible until the flash; now it shows up gray and flashes white.)
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_sound 0, 0, SFX_RAGE
 	anim_obj ANIM_OBJ_ANGER, 40, 56, $0
@@ -1354,6 +1377,7 @@ BattleAnim_RagingBull_CC:
 	anim_obj ANIM_OBJ_SCREEN, 136, 48, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_GLASS_TING
+	anim_obp0 $0
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $30, $2, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
