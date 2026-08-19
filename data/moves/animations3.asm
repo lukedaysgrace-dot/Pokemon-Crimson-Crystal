@@ -954,7 +954,11 @@ BattleAnim_Crunch_PC3:
 	anim_ret
 
 BattleAnim_Curse_PC3:
-	anim_if_param_equal $1, .Ghost
+; Param convention differs from polishedcrystal: this engine's
+; BattleCommand_Curse sets wKickCounter to 1 for the NON-ghost (stat change)
+; branch and leaves it 0 for the ghost branch (vanilla behavior), so the
+; ported `anim_jumpif $1, .Ghost` picked the wrong animation for both.
+	anim_if_param_equal $0, .Ghost
 	anim_1gfx ANIM_GFX_SPEED
 	anim_call BattleAnim_TargetObj_1Row_PC3
 	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $1, $40
