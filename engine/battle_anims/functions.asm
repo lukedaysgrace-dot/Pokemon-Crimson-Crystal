@@ -4163,13 +4163,23 @@ Functionce70a:
 	ret
 
 BattleAnim_AnonJumptable:
-	pop de
+; Preserves de. The vanilla version popped the table address into de, which
+; clobbered parameters that ported polishedcrystal object functions pass in
+; de before calling this (BattleAnimFunction_RadialMoveOut* load their speed
+; and travel distance with `lb de, ...`). With de trashed, every radial object
+; (Acid/poison droplets, Spore powder, Scald steam, Avalanche snow, Seismic
+; Toss arcs, radial flames, ...) shot off-screen at ~50 px/frame instead of
+; drifting outward.
 	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX
 	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
+	ld a, [hl]
+	pop hl ; table address
+	push de
+	ld e, a
+	ld d, 0
 	add hl, de
+	add hl, de
+	pop de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
