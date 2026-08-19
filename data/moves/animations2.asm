@@ -352,7 +352,7 @@ BattleAnim_DragonPulse:
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_DRAGON_PULSE
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_DRAGON_PULSE
 	anim_call BattleAnimSub_BGCycleOBPalsGrayAndYellow_0_2_0
-	anim_2gfx ANIM_GFX_GLOW, ANIM_GFX_CHARGE,
+	anim_2gfx ANIM_GFX_GLOW, ANIM_GFX_CHARGE
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $55, $1, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_obj ANIM_OBJ_SMALL_GLOW, 48, 96, $0
