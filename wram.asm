@@ -3343,6 +3343,7 @@ wDebugEScreens::   db ; ORed into wEnemyScreens post-entry (0 = none)
 wDebugMoveScript:: ds 8 ; auto mode: player move slot (1-4) per turn; 0 = slot 1
 wDebugSwitchBlocked:: db ; last scripted switch was denied by trapping
 wDebugResultParty1Item:: db ; party-slot-1 item after post-battle abilities run
+wDebugEnemyClass:: db ; trainer battles: enemy trainer class (0 = SCHOOLBOY)
 
 ; Every text_ram string actually consumed by the battle textbox, in order.
 ; This is a debug-only render trace: the Python harness uses it to catch bad

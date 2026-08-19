@@ -136,9 +136,10 @@ sheet's skip list.
 
 `BERSERK`, `POISON_PUPPETEER`, `WIND_RIDER`, `MEGA_SOL` remain
 unassigned (the sheet only *suggests* homes — say the word and they're
-one-line edits). The AI has no awareness of the 23 new abilities (same
-as previous batches). Empty ability slots are now roughly 60, down from
-205.
+one-line edits). ~~The AI has no awareness of the 23 new abilities~~
+**Done 2026-08-19: the trainer AI now scores against this batch too —
+see `AI_NEW_ABILITIES_2026-08-19.md`.** Empty ability slots are now
+roughly 60, down from 205.
 
 ## Suggested test checklist
 

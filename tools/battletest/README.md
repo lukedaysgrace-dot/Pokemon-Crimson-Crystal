@@ -66,6 +66,10 @@ SubStatus1-5 after entry; player1/enemy only). `player2` adds a second
 party mon. `enemy2` makes it a TRAINER battle with a 2-mon enemy party
 (vs a SCHOOLBOY shell - SWITCH_OFTEN AI, no items - so the AI will
 actually use its bench; wild-mode rules like never-switching don't apply).
+`enemy_class` (a `trainerclass` constant, e.g. `FALKNER`) swaps that shell
+for another class, so its AI flags apply - FALKNER carries AI_SMART,
+AI_ABILITIES and AI_ELITE, which is how `48-ai-new-abilities.yaml` tests
+move scoring. The party is still replaced from the request.
 
 Test fields: `turns` (pause for assertions after N turns), `rng`
 (`forced_low` / `forced_high` / `seeded` / `off`), `rng_value`, `weather`,
@@ -90,6 +94,7 @@ abilities, before any move).
 `ability_seen('ANTICIPATION')` checks the debug-only semantic trace of
 ability banners that were actually presented; `text_seen('NAME')` checks
 dynamic `text_ram` strings rendered by battle text.
+`enemy_move()` names the move the AI picked on the last turn (wCurEnemyMove).
 
 For paired control cases, give an earlier case an `id:` and read its retained
 result with `result('id')`. For example, an ability damage case can assert
@@ -114,6 +119,13 @@ the BattleRandom reroll loops; switch that test to seeded mode.
   damage pinned to the maximum roll → assert exact numbers.
 - `forced_high` (value $B4): nothing procs, moves still hit → isolates
   the no-proc path.
+- The trainer AI's scoring rolls (AI_50_50, AI_80_20, the `cp N percent`
+  chances) and its move tie-break go through `BattleRandom` (2026-08-19;
+  identical to `Random` outside link battles), so forced modes pin AI move
+  choice too: the smart branches are always taken under `forced_high`
+  (always skipped under `forced_low`), and a tie is always broken in favour
+  of the LOWEST move slot (`& 3 == 0`). A tie that does not include slot 1
+  hangs the pick loop, so build AI cases around slot 1.
 - `seeded`: deterministic PRNG stream from `rng_value` → same battle every
   run; use for multi-hit counts, Metronome, and anything with a
   pick-random-until-valid loop (those hang under a fixed forced value).
