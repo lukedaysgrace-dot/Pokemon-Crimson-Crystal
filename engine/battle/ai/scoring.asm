@@ -53,9 +53,13 @@ AI_Basic:
 	and a
 	jr nz, .discourage
 
-; Dismiss Safeguard if it's already active.
+; Dismiss Safeguard if it's already active...
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
+	jr z, .checkmove
+; ...unless our Infiltrator goes straight through it.
+	call AIGetEnemyAbility
+	cp INFILTRATOR
 	jr z, .checkmove
 
 .discourage
@@ -159,7 +163,7 @@ AI_Setup:
 	jr .checkmove
 
 .discourage
-	call Random
+	call BattleRandom
 	cp 12 percent
 	jr c, .checkmove
 	inc [hl]
@@ -253,8 +257,19 @@ AI_Types:
 	jr .checkmove
 
 .immune
+; Our Corrosion poisons Steel-types straight through the type immunity.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_TOXIC
+	jr z, .poison_status
+	cp EFFECT_POISON
+	jr nz, .really_immune
+.poison_status
+	call AIGetEnemyAbility
+	cp CORROSION
+	jp z, .checkmove
+.really_immune
 	call AIDiscourageMove
-	jr .checkmove
+	jp .checkmove
 
 
 AI_Offensive:
@@ -479,7 +494,7 @@ AI_Smart_LeechHit:
 	ret
 
 .asm_38815
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	ret c
 
@@ -616,7 +631,7 @@ AI_Smart_Selfdestruct:
 
 ; If enemy's HP is between 25% and 50%,
 ; over 90% chance to greatly discourage this move.
-	call Random
+	call BattleRandom
 	cp 9 percent - 2
 	ret c
 
@@ -630,7 +645,7 @@ AI_Smart_DreamEater:
 ; 90% chance to greatly encourage this move.
 ; The AI_Basic layer will make sure that
 ; Dream Eater is only used against sleeping targets.
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 	dec [hl]
@@ -654,7 +669,7 @@ AI_Smart_EvasionUp:
 	jr nz, .asm_388ef
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
-	call Random
+	call BattleRandom
 	cp 70 percent
 	jr nc, .asm_38911
 
@@ -670,7 +685,7 @@ AI_Smart_EvasionUp:
 	jr nc, .asm_3890f
 
 ; If enemy's HP is above 25% but not full, 4% chance to greatly encourage this move.
-	call Random
+	call BattleRandom
 	cp 4 percent
 	jr c, .asm_388ef
 
@@ -730,7 +745,7 @@ AI_Smart_EvasionUp:
 ; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_38938
-	call Random
+	call BattleRandom
 	cp 31 percent + 1
 	ret c
 	dec [hl]
@@ -801,7 +816,7 @@ AI_Smart_MirrorMove:
 	call AICompareSpeed
 	ret nc
 
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 
@@ -823,7 +838,7 @@ AI_Smart_AccuracyDown:
 	jr nz, .asm_3899d
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
-	call Random
+	call BattleRandom
 	cp 70 percent
 	jr nc, .asm_389bf
 
@@ -839,7 +854,7 @@ AI_Smart_AccuracyDown:
 	jr nc, .asm_389bd
 
 ; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.
-	call Random
+	call BattleRandom
 	cp 4 percent
 	jr c, .asm_3899d
 
@@ -895,7 +910,7 @@ AI_Smart_AccuracyDown:
 ; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_389e6
-	call Random
+	call BattleRandom
 	cp 31 percent + 1
 	ret c
 	dec [hl]
@@ -927,6 +942,22 @@ AI_Smart_ResetStats:
 
 ; 85% chance to encourage this move if any of player's stat levels is higher than +2.
 .asm_38a05
+; An Unaware user ignores the player's Atk/Def/SpA/SpD stages both ways,
+; so only their Speed, accuracy and evasion boosts are worth resetting.
+	call AIGetEnemyAbility
+	cp UNAWARE
+	jr nz, .all_stats
+	ld a, [wPlayerSpdLevel]
+	cp $a
+	jr nc, .asm_38a12
+	ld a, [wPlayerAccLevel]
+	cp $a
+	jr nc, .asm_38a12
+	ld a, [wPlayerEvaLevel]
+	cp $a
+	jr nc, .asm_38a12
+	jr .asm_38a1b
+.all_stats
 	ld hl, wPlayerAtkLevel
 	ld c, $8
 .asm_38a0a
@@ -938,7 +969,7 @@ AI_Smart_ResetStats:
 
 .asm_38a12
 	pop hl
-	call Random
+	call BattleRandom
 	cp 16 percent
 	ret c
 	dec [hl]
@@ -957,7 +988,7 @@ AI_Smart_Bide:
 
 	call AICheckEnemyMaxHP
 	ret c
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 	inc [hl]
@@ -995,7 +1026,7 @@ AI_Smart_Moonlight:
 	ret
 
 .asm_38a45
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 	dec [hl]
@@ -1014,10 +1045,14 @@ AI_Smart_LeechSeed:
 AI_Smart_LightScreen:
 AI_Smart_Reflect:
 ; Over 90% chance to discourage this move unless enemy's HP is full.
+; Dismiss it if the player's Infiltrator attacks straight through screens.
 
+	call AIGetPlayerAbility
+	cp INFILTRATOR
+	jp z, AIDiscourageMove
 	call AICheckEnemyMaxHP
 	ret c
-	call Random
+	call BattleRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -1114,7 +1149,7 @@ AI_Smart_Unused2B:
 	ret c
 
 .asm_38acd
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	ret c
 
@@ -1133,7 +1168,7 @@ AI_Smart_Confuse:
 ; 90% chance to discourage this move if player's HP is between 25% and 50%.
 	call AICheckPlayerHalfHP
 	ret c
-	call Random
+	call BattleRandom
 	cp 10 percent
 	jr c, .asm_38ae7
 	inc [hl]
@@ -1249,6 +1284,10 @@ AI_Smart_SpeedDownHit:
 	ret nz
 	cp LOW(ICY_WIND)
 	ret nz
+; Shield Dust swallows the Speed drop, which is the whole reason to use it.
+	call AIGetPlayerAbility
+	cp SHIELD_DUST
+	ret z
 	call AICheckEnemyQuarterHP
 	ret nc
 	ld a, [wPlayerTurnsTaken]
@@ -1256,7 +1295,7 @@ AI_Smart_SpeedDownHit:
 	ret nz
 	call AICompareSpeed
 	ret c
-	call Random
+	call BattleRandom
 	cp 12 percent
 	ret c
 	dec [hl]
@@ -1264,8 +1303,12 @@ AI_Smart_SpeedDownHit:
 	ret
 
 AI_Smart_Substitute:
-; Dismiss this move if enemy's HP is below 50%.
+; Dismiss this move if enemy's HP is below 50%, or if the player's
+; Infiltrator hits straight through the doll.
 
+	call AIGetPlayerAbility
+	cp INFILTRATOR
+	jp z, AIDiscourageMove
 	call AICheckEnemyHalfHP
 	ret c
 	jp AIDiscourageMove
@@ -1284,7 +1327,7 @@ AI_Smart_HyperBeam:
 
 .asm_38b72
 ; If enemy's HP is above 50%, discourage this move at random
-	call Random
+	call BattleRandom
 	cp 16 percent
 	ret c
 	inc [hl]
@@ -1429,7 +1472,7 @@ AI_Smart_Counter:
 	jr nz, .asm_38c38
 
 .asm_38c30
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	jr c, .asm_38c38
 
@@ -1479,7 +1522,7 @@ AI_Smart_Encore:
 	jr nc, .asm_38c81
 
 .asm_38c78
-	call Random
+	call BattleRandom
 	cp 28 percent - 1
 	ret c
 	dec [hl]
@@ -1587,7 +1630,7 @@ AI_Smart_Spite:
 	cp $f
 	jr nc, .asm_38d0b
 
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	ret nc
 
@@ -1596,7 +1639,7 @@ AI_Smart_Spite:
 	ret
 
 .asm_38d0d
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -1752,7 +1795,7 @@ AI_Smart_Conversion2:
 	ret
 
 .asm_38dc9
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 	inc [hl]
@@ -1770,7 +1813,7 @@ AI_Smart_Disable:
 	pop hl
 	jr nc, .asm_38dee
 
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -1782,7 +1825,7 @@ AI_Smart_Disable:
 	ret nz
 
 .asm_38df3
-	call Random
+	call BattleRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -1997,7 +2040,7 @@ AI_Smart_Protect:
 	inc [hl]
 
 .asm_38f14
-	call Random
+	call BattleRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -2019,14 +2062,14 @@ AI_Smart_Foresight:
 	cp GHOST
 	jr z, .asm_38f41
 
-	call Random
+	call BattleRandom
 	cp 8 percent
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f41
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -2244,7 +2287,7 @@ AI_Smart_Rollout:
 	jr nc, .asm_39020
 
 ; Otherwise, 80% chance to greatly encourage this move.
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	ret nc
 	dec [hl]
@@ -2272,7 +2315,7 @@ AI_Smart_Attract:
 	ret
 
 .first_turn
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	ret nc
 	dec [hl]
@@ -2280,7 +2323,11 @@ AI_Smart_Attract:
 
 AI_Smart_Safeguard:
 ; 80% chance to discourage this move if player's HP is below 50%.
+; Dismiss it if the player's Infiltrator ignores Safeguard anyway.
 
+	call AIGetPlayerAbility
+	cp INFILTRATOR
+	jp z, AIDiscourageMove
 	call AICheckPlayerHalfHP
 	ret c
 	call AI_80_20
@@ -2643,7 +2690,7 @@ AI_Smart_MirrorCoat:
 	jr nz, .asm_391d2
 
 .asm_391ca
-	call Random
+	call BattleRandom
 	cp 100
 	jr c, .asm_391d2
 	dec [hl]
@@ -2735,7 +2782,7 @@ AI_Smart_Solarbeam:
 	cp WEATHER_RAIN
 	ret nz
 
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 
@@ -2759,7 +2806,7 @@ AI_Smart_Thunder:
 	cp WEATHER_SUN
 	ret nz
 
-	call Random
+	call BattleRandom
 	cp 10 percent
 	ret c
 
@@ -3412,7 +3459,7 @@ AI_Cautious:
 	pop hl
 	jr nc, .asm_39425
 
-	call Random
+	call BattleRandom
 	cp 90 percent + 1
 	jr nc, .asm_39425
 
@@ -3458,21 +3505,25 @@ AI_Status:
 
 	jr .typeimmunity
 
+.poisonimmunity
+; Our own Corrosion poisons Poison- and Steel-types regardless.
+	call AIGetEnemyAbility
+	cp CORROSION
+	jr z, .checkmove
+	ld a, [wBattleMonType1]
+	cp POISON
+	jr z, .immune
+	ld a, [wBattleMonType2]
+	cp POISON
+	jr z, .immune
+	jr .typeimmunity
+
 .burnimmunity
 	ld a, [wBattleMonType1]
 	cp FIRE
 	jr z, .immune
 	ld a, [wBattleMonType2]
 	cp FIRE
-	jr z, .immune
-	jr .typeimmunity
-
-.poisonimmunity
-	ld a, [wBattleMonType1]
-	cp POISON
-	jr z, .immune
-	ld a, [wBattleMonType2]
-	cp POISON
 	jr z, .immune
 
 .typeimmunity
@@ -3532,7 +3583,7 @@ AI_Risky:
 	jr c, .nextmove
 
 ; Else, 80% chance to exclude them.
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	jr c, .nextmove
 
@@ -3663,10 +3714,36 @@ AI_Smart_TrickRoom:
 
 AI_Smart_KnockOff:
 ; Encourage if the player is actually holding something.
+; - Sticky Hold keeps the item on: no bonus (Mold Breaker pierces it).
+; - Unburden: knocking the item off doubles their Speed. Discourage.
+; - Berry abilities (Gluttony, Ripen, Harvest, Cud Chew) make a held
+;   Berry worth a lot more to the player: extra encouragement to remove it.
 	ld a, [wBattleMonItem]
 	and a
 	ret z
+	call AIGetPlayerAbility ; as our moves experience it (Mold Breaker pierces)
+	cp STICKY_HOLD
+	ret z
+	cp UNBURDEN
+	jr z, .unburden
 	dec [hl]
+; Is the item a Berry the player's ability leans on?
+	cp GLUTTONY
+	jr z, .berry_ability
+	cp RIPEN
+	jr z, .berry_ability
+	cp HARVEST
+	jr z, .berry_ability
+	cp CUD_CHEW
+	ret nz
+.berry_ability
+	call AIPlayerHoldsBerry
+	ret nc
+	dec [hl]
+	ret
+.unburden
+	inc [hl]
+	inc [hl]
 	ret
 
 AI_Smart_FoulPlay:
@@ -3696,7 +3773,16 @@ AI_Smart_FakeOut:
 	jr z, .first_turn
 	jp AIDiscourageMove ; fails after the user's first turn
 .first_turn
+; The flinch is the whole point: Shield Dust and Inner Focus block it.
+	call AIGetPlayerAbility
+	cp SHIELD_DUST
+	jr z, .no_flinch
+	cp INNER_FOCUS
+	jr z, .no_flinch
 	dec [hl]
+	ret
+.no_flinch
+	inc [hl]
 	ret
 
 AI_Smart_Venoshock:
@@ -3728,9 +3814,13 @@ AI_Smart_Facade:
 
 AI_Smart_CircleThrow:
 ; Phazing is worth more with hazards on the player's side of the field.
+; (Not against Suction Cups: the drag-out part fails.)
 	ld a, [wPartyCount]
 	cp 2
 	ret c
+	call AIGetPlayerAbility
+	cp SUCTION_CUPS
+	ret z
 	ld a, [wPlayerScreens]
 	and SCREENS_HAZARDS_MASK
 	ret z
@@ -3749,10 +3839,12 @@ AI_Abilities:
 ;   reuses the real damage formula, so Mold Breaker and Neutralizing Gas
 ;   are respected automatically.
 ; - Dismiss self-KO moves that the player's Damp would block.
+; - Dismiss Roar/Whirlwind into Suction Cups.
 ; - Discourage status moves aimed at a Magic Bounce user, or at a player
-;   protected by a Substitute.
+;   protected by a Substitute (unless our Infiltrator pierces it).
 ; - Mildly discourage contact moves when the player's ability or held
-;   Rocky Helmet punishes contact.
+;   Rocky Helmet punishes contact (a Klutz holder's Helmet is inert), or
+;   when an empty-handed Pickpocket would take our item.
 
 	ld a, 1
 	ldh [hBattleTurn], a
@@ -3819,11 +3911,7 @@ AI_Abilities:
 	ld a, [wEnemyAbility]
 	cp MOLD_BREAKER
 	jr z, .no_boom
-	push hl
-	push bc
-	farcall GetPlayerAbilityEffective
-	pop bc
-	pop hl
+	call AIGetPlayerAbilityEffective
 	cp DAMP
 	jr nz, .no_boom
 	ld a, [hl]
@@ -3846,15 +3934,24 @@ AI_Abilities:
 	jr .done
 
 .status_move
+; Suction Cups anchors the player: Roar and Whirlwind fail outright.
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_FORCE_SWITCH
+	jr nz, .no_anchor
+	call AIGetPlayerAbility ; as our moves experience it (Mold Breaker pierces)
+	cp SUCTION_CUPS
+	jr nz, .no_anchor
+	ld a, [hl]
+	add 30
+	ld [hl], a
+	jr .done
+.no_anchor
+
 ; Magic Bounce reflects status moves aimed at the player or their side.
 	ld a, [wEnemyAbility]
 	cp MOLD_BREAKER
 	jr z, .no_bounce
-	push hl
-	push bc
-	farcall GetPlayerAbilityEffective
-	pop bc
-	pop hl
+	call AIGetPlayerAbilityEffective
 	cp MAGIC_BOUNCE
 	jr nz, .no_bounce
 	call .TargetsPlayerStatus
@@ -3863,9 +3960,13 @@ AI_Abilities:
 	jr .done
 
 .no_bounce
-; A Substitute blocks direct status and stat-drop moves (hazards still work).
+; A Substitute blocks direct status and stat-drop moves (hazards still
+; work) - unless our Infiltrator goes straight through it.
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
+	jr z, .done
+	call AIGetEnemyAbility
+	cp INFILTRATOR
 	jr z, .done
 	call .TargetsPlayerDirect
 	jr nc, .done
@@ -3925,18 +4026,32 @@ AI_Abilities:
 ; carry if the player's held item or ability punishes contact moves.
 	ld a, [wBattleMonItem]
 	cp ROCKY_HELMET
-	jr z, .punish_yes
-	push hl
-	push bc
-	farcall GetPlayerAbilityEffective
-	pop bc
-	pop hl
+	jr nz, .no_helmet
+; A Klutz holder's Rocky Helmet does nothing.
+	call AIGetPlayerAbility
+	cp KLUTZ
+	jr nz, .punish_yes
+.no_helmet
+	call AIGetPlayerAbilityEffective
 	cp IRON_BARBS
 	jr z, .punish_yes
 	cp TANGLING_HAIR
 	jr z, .punish_yes
 	cp PERISH_BODY
 	jr z, .punish_yes
+; Pickpocket steals our held item on contact if the player holds nothing.
+	cp PICKPOCKET
+	jr nz, .not_pickpocket
+	ld a, [wBattleMonItem]
+	and a
+	jr nz, .not_pickpocket_no ; their hands are full: nothing to fear
+	ld a, [wEnemyMonItem]
+	and a
+	jr nz, .punish_yes ; we'd lose our item
+.not_pickpocket_no
+	and a ; nc
+	ret
+.not_pickpocket
 ; Status-inflicting contact abilities only matter if we can be afflicted.
 	ld d, a
 	ld a, [wEnemyMonStatus]
@@ -3993,19 +4108,16 @@ AIElitePlayerDeniesKO:
 	jr z, .no
 	call AICheckPlayerMaxHP
 	jr nc, .no
-	ld a, [wBattleMonItem]
-	cp FOCUS_SASH
-	jr z, .yes
-	push hl
-	push de
-	push bc
-	farcall GetOppIgnorableAbility_b
-	ld a, b
-	pop bc
-	pop de
-	pop hl
+	call AIGetPlayerAbility ; as our moves experience it (Mold Breaker pierces)
 	cp STURDY
 	jr z, .yes
+	ld a, [wBattleMonItem]
+	cp FOCUS_SASH
+	jr nz, .no
+; A Klutz holder's Focus Sash never triggers.
+	call AIGetPlayerAbility
+	cp KLUTZ
+	jr nz, .yes
 .no
 	and a
 	ret
@@ -4075,7 +4187,10 @@ AI_Elite:
 ; - Dismiss stat-drop moves that Clear Body-style abilities block, that
 ;   Contrary inverts, or that Defiant/Competitive would exploit.
 ; - Dismiss OHKO moves into Sturdy; don't Explode into a full-HP Focus
-;   Sash / Sturdy holder.
+;   Sash / Sturdy holder (a Klutz holder's Sash never triggers).
+; - Sleep is worth less against Early Bird (wakes in half the time).
+; - Dismiss Atk/Def/SpA/SpD/evasion setup against Unaware (it ignores
+;   those stages both ways); only discourage mixed Speed boosts.
 ; - If the player is Choice-locked into a move that cannot touch us,
 ;   the turn is free: greatly encourage setup moves and Substitute.
 
@@ -4171,6 +4286,11 @@ AI_Elite:
 	jp z, .dismiss
 	cp VITAL_SPIRIT
 	jp z, .dismiss
+; Early Bird sleeps half as long: still worth it, but less so.
+	cp EARLY_BIRD
+	jp nz, .leaf_guard
+	inc [hl]
+	inc [hl]
 	jp .leaf_guard
 
 .paralyze
@@ -4321,6 +4441,31 @@ AI_Elite:
 	jr .done
 
 .setup_check
+; Unaware ignores our Atk/Def/SpA/SpD stages both ways and sees through
+; raised evasion, so boosting those is wasted against it. Pure boosts are
+; dismissed; mixed boosts that also raise Speed (Dragon Dance, Shell
+; Smash, Quiver Dance) are merely discouraged.
+	ld a, e
+	cp UNAWARE
+	jr nz, .not_unaware
+	call .IsUnawareWastedSetup
+	jr nc, .not_unaware
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_DRAGON_DANCE
+	jr z, .mixed_setup
+	cp EFFECT_SHELL_SMASH
+	jr z, .mixed_setup
+	cp EFFECT_QUIVER_DANCE
+	jr z, .mixed_setup
+	call AIDiscourageMove
+	jr .done
+.mixed_setup
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	jr .done
+.not_unaware
+
 ; Free turn: the player is locked into a move that can't touch us.
 	call .IsSetupMove
 	jr nc, .done
@@ -4333,6 +4478,70 @@ AI_Elite:
 	pop bc
 	pop de
 	jp .checkmove
+
+.IsUnawareWastedSetup:
+; carry if the scored move's boosts are ones an Unaware player ignores:
+; any Atk/Def/SpA/SpD raise, or evasion. (Speed and accuracy still count.)
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_CURSE
+	jr z, .curse
+	cp EFFECT_ATTACK_UP
+	jr c, .wasted_list
+	cp EFFECT_EVASION_UP + 1
+	jr c, .wasted_range
+	cp EFFECT_ATTACK_UP_2
+	jr c, .wasted_list
+	cp EFFECT_EVASION_UP_2 + 1
+	jr c, .wasted_range
+.wasted_list
+	push hl
+	push de
+	push bc
+	ld hl, .UnawareWastedEffects
+	ld de, 1
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	ret
+.wasted_range
+; Speed and accuracy raises still work against Unaware.
+	cp EFFECT_SPEED_UP
+	jr z, .wasted_no
+	cp EFFECT_ACCURACY_UP
+	jr z, .wasted_no
+	cp EFFECT_SPEED_UP_2
+	jr z, .wasted_no
+	cp EFFECT_ACCURACY_UP_2
+	jr z, .wasted_no
+	scf
+	ret
+.curse
+; A non-Ghost's Curse is an Atk/Def boost; a Ghost's Curse is not setup.
+	ld a, [wEnemyMonType1]
+	cp GHOST
+	jr z, .wasted_no
+	ld a, [wEnemyMonType2]
+	cp GHOST
+	jr z, .wasted_no
+	scf
+	ret
+.wasted_no
+	and a
+	ret
+
+.UnawareWastedEffects:
+; new-generation boosts an Unaware player ignores
+	db EFFECT_DEFENSE_CURL
+	db EFFECT_BULK_UP
+	db EFFECT_CALM_MIND
+	db EFFECT_DRAGON_DANCE
+	db EFFECT_HONE_CLAWS
+	db EFFECT_SHELL_SMASH
+	db EFFECT_QUIVER_DANCE
+	db EFFECT_WORK_UP
+	db EFFECT_BELLY_DRUM
+	db -1 ; end
 
 .GetPlayerAbility:
 ; e = the player's effective ability as the enemy's moves experience it
@@ -4430,6 +4639,77 @@ AIDiscourageMove:
 	ld [hl], a
 	ret
 
+AIGetPlayerAbility:
+; a = the player's effective ability as the enemy's moves experience it
+; (Mold Breaker, Neutralizing Gas and suppression applied). Preserves
+; bc, de, hl and hBattleTurn (the AI_Smart layer runs before the layers
+; that set the enemy's turn, so it is forced here for the lookup).
+	push hl
+	push de
+	push bc
+	ldh a, [hBattleTurn]
+	push af
+	ld a, 1
+	ldh [hBattleTurn], a
+	farcall GetOppIgnorableAbility_b
+	pop af
+	ldh [hBattleTurn], a
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	ret
+
+AIGetPlayerAbilityEffective:
+; a = the player's effective ability (Neutralizing Gas and suppression
+; applied, but NOT Mold Breaker - callers that care test it themselves).
+; Preserves bc, de, hl.
+; (farcall returns with a clobbered - ReturnFarCall leaves a = c - so the
+; _b wrapper is mandatory here; the old inline farcalls compared garbage.)
+	push hl
+	push de
+	push bc
+	farcall GetPlayerAbilityEffective_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	ret
+
+AIGetEnemyAbility:
+; a = the enemy's own effective ability (Neutralizing Gas and suppression
+; applied). Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	farcall GetEnemyAbilityEffective_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	ret
+
+AIPlayerHoldsBerry:
+; carry if the player's held item is an HP-restoring Berry (the kind
+; Gluttony, Ripen, Harvest and Cud Chew feed on). Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wBattleMonItem]
+	ld b, a
+	callfar GetItemHeldEffect
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp HELD_BERRY
+	jr z, .berry
+	and a ; nc
+	ret
+.berry
+	scf
+	ret
+
 AIGetEnemyMove:
 ; Load attributes of move a into ram
 
@@ -4447,13 +4727,13 @@ AIGetEnemyMove:
 
 AI_80_20:
 ; Was 80/20; now the AI takes the smart branch 95% of the time.
-	call Random
+	call BattleRandom
 	cp 5 percent
 	ret
 
 AI_50_50:
 ; Was a coin flip; now the AI takes the smart branch 85% of the time.
-	call Random
+	call BattleRandom
 	cp 15 percent
 	ret
 

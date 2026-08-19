@@ -1,0 +1,421 @@
+# Trainer-AI awareness of the 2026-08-14 ability batch.
+#
+# All cases run as TRAINER battles (enemy2 present) against the FALKNER
+# class (enemy_class) so every scoring layer - AI_SMART, AI_ABILITIES,
+# AI_ELITE - is active. rng: forced_high forces the home-bank Random
+# too, so the AI takes every "smart" branch deterministically (AI_50_50 /
+# AI_80_20 return nc) and always picks SLOT 1 among tied moves.
+# Each pair therefore puts the ability-sensitive move where a tie would
+# select it in the control case and asserts the fix flips the choice.
+# enemy_move() = the move the AI picked on the last turn (wCurEnemyMove).
+# Every player mon carries SUBSTATUS_CANT_RUN: AI_SwitchOrTryItem never
+# switches while the player is trapped, which keeps the lead mon in and the
+# test about move scoring rather than the switch heuristics.
+
+# ---- Suction Cups: Roar fails, so the AI stops picking it ---------------
+- name: "AI control: Roar is picked (tie, slot 1)"
+  # (no player bench: a forced drag-out under pinned RNG spins in the
+  # random party pick, and the AI's choice is all this case is about)
+  player:  { species: OCTILLERY, level: 50, ability: SNIPER, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: PIDGEY, level: 50, moves: [ROAR, HAZE] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'ROAR'
+
+- name: "AI: Roar is dismissed into Suction Cups"
+  player:  { species: OCTILLERY, level: 50, ability: SUCTION_CUPS, substatus: [CANT_RUN], moves: [SPLASH] }
+  player2: { species: RATTATA, level: 50, moves: [TACKLE] }
+  enemy:   { species: PIDGEY, level: 50, moves: [ROAR, HAZE] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+    - player.species == 'OCTILLERY'
+
+# ---- Knock Off vs Sticky Hold / Unburden / berry abilities -------------
+# Knock Off (slot 1) normally ties Swords Dance on turn 1 at 18 each
+# (-1 strongest attack, -1 AI_Smart_KnockOff vs -2 AI_Setup).
+- name: "AI control: Knock Off is picked against an ordinary item holder"
+  player:  { species: HITMONLEE, level: 100, ability: LIMBER, item: LEFTOVERS, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [KNOCK_OFF, SWORDS_DANCE] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'KNOCK_OFF'
+    - player.item == 'NO_ITEM'
+
+- name: "AI: Knock Off gets no item bonus against Sticky Hold"
+  player:  { species: HITMONLEE, level: 100, ability: STICKY_HOLD, item: LEFTOVERS, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [KNOCK_OFF, SWORDS_DANCE] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SWORDS_DANCE'
+    - player.item == 'LEFTOVERS'
+
+- name: "AI: Knock Off is discouraged against an Unburden item holder"
+  player:  { species: HITMONLEE, level: 100, ability: UNBURDEN, item: LEFTOVERS, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [KNOCK_OFF, SWORDS_DANCE] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SWORDS_DANCE'
+    - player.item == 'LEFTOVERS'
+
+# Against a berry ability the extra -1 beats Swords Dance outright; put
+# Knock Off in slot 2 so only the bonus (not the tie-break) can pick it.
+- name: "AI control: Swords Dance wins the turn-1 tie from slot 1"
+  player:  { species: HITMONLEE, level: 100, ability: LIMBER, item: BERRY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SWORDS_DANCE, KNOCK_OFF] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SWORDS_DANCE'
+
+- name: "AI: Knock Off is extra-encouraged vs a Gluttony Berry holder"
+  player:  { species: HITMONLEE, level: 100, ability: GLUTTONY, item: BERRY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SWORDS_DANCE, KNOCK_OFF] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'KNOCK_OFF'
+    - player.item == 'NO_ITEM'
+
+- name: "AI: Knock Off is extra-encouraged vs a Harvest Berry holder"
+  player:  { species: HITMONLEE, level: 100, ability: HARVEST, item: BERRY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SWORDS_DANCE, KNOCK_OFF] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'KNOCK_OFF'
+
+# ---- Unaware: offensive/defensive setup is wasted -----------------------
+- name: "AI control: Swords Dance on turn 1 beats Tackle"
+  player:  { species: QUAGSIRE, level: 50, ability: DAMP, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SWORDS_DANCE, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SWORDS_DANCE'
+    - enemy.stat_levels[0] == 9
+
+- name: "AI: Swords Dance is dismissed against Unaware"
+  player:  { species: QUAGSIRE, level: 50, ability: UNAWARE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SWORDS_DANCE, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PECK'
+    - enemy.stat_levels[0] == 7
+
+- name: "AI: Dragon Dance is only discouraged against Unaware (Speed still counts)"
+  # -2 setup +3 mixed-boost penalty = 21 vs Peck at 19: Peck wins, but the
+  # move was not dismissed (score stays far below 50).
+  player:  { species: QUAGSIRE, level: 50, ability: UNAWARE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [DRAGON_DANCE, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PECK'
+
+- name: "AI: Agility is still fine against Unaware"
+  player:  { species: QUAGSIRE, level: 50, ability: UNAWARE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [AGILITY, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'AGILITY'
+
+# ---- Our own Unaware: Haze only matters for Speed/acc/eva boosts --------
+- name: "AI control: Haze is encouraged when the player is at +3 Attack"
+  player:  { species: QUAGSIRE, level: 50, ability: DAMP, stages: { atk: +3 }, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, ability: INSOMNIA, moves: [HAZE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+    - player.stat_levels[0] == 7
+
+- name: "AI: an Unaware user does not bother Hazing the player's Attack boost"
+  player:  { species: QUAGSIRE, level: 50, ability: DAMP, stages: { atk: +3 }, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, ability: UNAWARE, moves: [HAZE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+    - player.stat_levels[0] == 10
+
+- name: "AI: an Unaware user still Hazes a Speed boost"
+  player:  { species: QUAGSIRE, level: 50, ability: DAMP, stages: { spd: +3 }, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, ability: UNAWARE, moves: [HAZE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+    - player.stat_levels[2] == 7
+
+# ---- Infiltrator: screens, Substitute and Safeguard are pointless -------
+- name: "AI control: Reflect at full HP ties Splash and is picked"
+  player:  { species: CROBAT, level: 50, ability: INNER_FOCUS, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [REFLECT, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'REFLECT'
+
+- name: "AI: Reflect is dismissed against Infiltrator"
+  player:  { species: CROBAT, level: 50, ability: INFILTRATOR, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [REFLECT, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: Substitute is dismissed against Infiltrator"
+  player:  { species: CROBAT, level: 50, ability: INFILTRATOR, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SUBSTITUTE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI control: Substitute at full HP is picked"
+  player:  { species: CROBAT, level: 50, ability: INNER_FOCUS, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SUBSTITUTE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SUBSTITUTE'
+
+- name: "AI: Safeguard is dismissed against Infiltrator"
+  player:  { species: CROBAT, level: 50, ability: INFILTRATOR, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SAFEGUARD, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+# ---- Our own Infiltrator: status goes through the player's Safeguard ----
+- name: "AI control: Toxic is dismissed into the player's Safeguard"
+  player:  { species: PIDGEY, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: CROBAT, level: 50, ability: INNER_FOCUS, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  player_screens: 4   # SCREENS_SAFEGUARD
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: an Infiltrator user still uses Toxic through Safeguard"
+  player:  { species: PIDGEY, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: CROBAT, level: 50, ability: INFILTRATOR, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  player_screens: 4   # SCREENS_SAFEGUARD
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TOXIC'
+    - player.status & 8 != 0
+
+# ---- Our own Infiltrator: status goes through the player's Substitute ---
+- name: "AI control: Toxic is discouraged into a Substitute"
+  player:  { species: PIDGEY, level: 50, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy:   { species: CROBAT, level: 50, ability: INNER_FOCUS, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: an Infiltrator user uses Toxic through a Substitute"
+  player:  { species: PIDGEY, level: 50, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy:   { species: CROBAT, level: 50, ability: INFILTRATOR, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TOXIC'
+
+# ---- Our own Corrosion: Toxic on Steel/Poison is fine -------------------
+- name: "AI control: Toxic is dismissed against a Steel-type"
+  player:  { species: MAGNEMITE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: SALANDIT, level: 50, ability: MERCILESS, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: a Corrosion user uses Toxic on a Steel-type"
+  player:  { species: MAGNEMITE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: SALANDIT, level: 50, ability: CORROSION, moves: [TOXIC, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TOXIC'
+    - player.status & 8 != 0
+
+# ---- Early Bird: sleep is worth less -----------------------------------
+- name: "AI control: Spore ties Splash and is picked"
+  player:  { species: DODUO, level: 50, ability: RUN_AWAY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: PARAS, level: 50, moves: [SPORE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPORE'
+
+- name: "AI: Spore is discouraged against Early Bird"
+  player:  { species: DODUO, level: 50, ability: EARLY_BIRD, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: PARAS, level: 50, moves: [SPORE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+# ---- Shield Dust: Fake Out's flinch is blocked --------------------------
+- name: "AI control: Fake Out is picked on turn 1"
+  player:  { species: CATERPIE, level: 50, ability: SWARM, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SPLASH, FAKE_OUT] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'FAKE_OUT'
+
+- name: "AI: Fake Out is not favoured against Shield Dust"
+  player:  { species: CATERPIE, level: 50, ability: SHIELD_DUST, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SPLASH, FAKE_OUT] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+# ---- Klutz: the player's Rocky Helmet is inert -------------------------
+- name: "AI control: contact is discouraged into a Rocky Helmet"
+  player:  { species: BUNEARY, level: 50, ability: LIMBER, item: ROCKY_HELMET, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SPLASH, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: a Klutz holder's Rocky Helmet does not deter contact"
+  player:  { species: BUNEARY, level: 50, ability: KLUTZ, item: ROCKY_HELMET, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SPLASH, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PECK'
+    - player.hp < player.maxhp
+
+# ---- Pickpocket: contact costs us our item -----------------------------
+- name: "AI control: contact into an empty-handed non-Pickpocket is fine"
+  player:  { species: IMPIDIMP, level: 50, ability: PRANKSTER, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, item: LEFTOVERS, moves: [SPLASH, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PECK'
+
+- name: "AI: contact is discouraged when an empty-handed Pickpocket would steal our item"
+  player:  { species: IMPIDIMP, level: 50, ability: PICKPOCKET, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, item: LEFTOVERS, moves: [SPLASH, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+    - enemy.item == 'LEFTOVERS'
+
+- name: "AI: Pickpocket is no threat when we hold nothing"
+  player:  { species: IMPIDIMP, level: 50, ability: PICKPOCKET, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MURKROW, level: 50, moves: [SPLASH, PECK] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PECK'
+
+# ---- Klutz: the player's Focus Sash never triggers ----------------------
+- name: "AI control: Fissure is discouraged into a full-HP Focus Sash"
+  player:  { species: BUNEARY, level: 50, ability: LIMBER, item: FOCUS_SASH, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: DUGTRIO, level: 50, moves: [FISSURE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "AI: a Klutz holder's Focus Sash does not protect it from Fissure"
+  player:  { species: BUNEARY, level: 50, ability: KLUTZ, item: FOCUS_SASH, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: DUGTRIO, level: 50, moves: [FISSURE, SPLASH] }
+  enemy2:  { species: MURKROW, level: 50, moves: [PECK] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'FISSURE'
