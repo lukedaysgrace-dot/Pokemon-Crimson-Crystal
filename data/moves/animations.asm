@@ -851,7 +851,7 @@ BattleAnim_WildCharge:
 
 BattleAnim_BitterBlade:
 ; Quick Attack–style vanish, slashes + foot embers + hit, user returns
-	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_FIRE
+	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_FIRE, ANIM_GFX_HIT
 	anim_bgp $1b
 	anim_obp0 $c0
 	anim_sound 0, 0, SFX_MENU
