@@ -130,37 +130,73 @@ SwimmermCameronAfterBattleText:
 	done
 
 Route20GreenBeforeText:
-	text "GREEN: Well, well!"
-	line "You're the one"
-	cont "who beat RED."
+	text "GREEN: There you"
+	line "are!"
 
-	para "I wanted to see"
-	line "what all the fuss"
-	cont "was about."
+	para "I've been hearing"
+	line "about you all"
+	cont "over KANTO."
 
-	para "But don't expect"
-	line "me to fight fair!"
+	para "Then you went and"
+	line "beat RED."
 
-	para "Try to keep up!"
+	para "That REALLY got"
+	line "my attention."
+
+	para "I know what it"
+	line "takes to stand"
+	cont "against him."
+
+	para "So I wanted to"
+	line "meet you myself,"
+
+	para "and see what all"
+	line "the fuss was"
+	cont "about."
+
+	para "Let's see how"
+	line "good you really"
+	cont "are."
 	done
 
 Route20GreenBeatenText:
-	text "Aw! You saw"
-	line "through my tricks!"
+	text "GREEN: Hehehe…"
+	line "Now I understand."
 	done
 
 Route20GreenAfterText:
-	text "GREEN: No wonder"
-	line "you beat RED!"
+	text "GREEN: You're"
+	line "good. REALLY"
+	cont "good."
 
-	para "Brains, nerve,"
-	line "and style--you've"
-	cont "got all three."
+	para "RED doesn't lose"
+	line "very often."
 
-	para "Keep a trick or"
-	line "two in reserve!"
+	para "Now I know why"
+	line "he lost to you."
 
-	para "See you around!"
+	para "But there's some-"
+	line "one else who"
+	cont "won't like"
+	cont "hearing that."
+
+	para "BLUE's been"
+	line "waiting for"
+	cont "another battle"
+	cont "with you."
+
+	para "I'd go find him."
+	line "He hates waiting."
+
+	para "Last I heard, he"
+	line "was hanging"
+	cont "around CINNABAR."
+
+	para "It was great"
+	line "meeting you!"
+
+	para "Thanks for a"
+	line "great battle!"
 	done
 
 CinnabarGymSignText:
