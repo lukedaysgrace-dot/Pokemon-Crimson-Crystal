@@ -353,6 +353,8 @@ BattleAnimOAMData:
 ; polishedcoral ports
 	dbbw $00, 16, .OAMData_lumina_crash ; BATTLEANIMOAMSET_LUMINA_CRASH_1
 	dbbw $04, 16, .OAMData_lumina_crash ; BATTLEANIMOAMSET_LUMINA_CRASH_2
+; vanilla OAM sets whose original slots were redefined by polishedcrystal ports
+	dbbw $08,  1, .OAMData_0f ; BATTLEANIMOAMSET_MORNING_SUN_SPARKLE (vanilla BATTLEANIMOAMSET_BD)
 
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
