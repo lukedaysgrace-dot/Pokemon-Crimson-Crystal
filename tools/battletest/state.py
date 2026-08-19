@@ -343,6 +343,11 @@ class Request:
                 {"none": 0, "rain": 1, "sun": 2, "sandstorm": 3, "hail": 4}[weather])
         m.write("wDebugPScreens", test.get("player_screens", 0))
         m.write("wDebugEScreens", test.get("enemy_screens", 0))
+        # trainer battles: optional enemy trainer class (default SCHOOLBOY)
+        if "wDebugEnemyClass" in m.sym.by_name:
+            klass = test.get("enemy_class")
+            m.write("wDebugEnemyClass",
+                    self.con.trainer_classes[klass] if klass else 0)
 
         script = test.get("move_script") or []
         for i in range(8):
