@@ -64,13 +64,14 @@ LoadSGBLayoutCGB:
 	dw _CGB_TrainerCardKanto
 
 _CGB_BattleGrayscale:
+	call LoadAllDefaultBattlePalettes ; anim object pals + text pal
 	ld hl, PalPacket_BattleGrayscale + 1
 	ld de, wBGPals1
 	ld c, 4
 	call CopyPalettes
 	ld hl, PalPacket_BattleGrayscale + 1
 	ld de, wBGPals1 palette PAL_BATTLE_BG_EXP
-	ld c, 4
+	ld c, 3 ; leave PAL_BATTLE_BG_TEXT as loaded above
 	call CopyPalettes
 	ld hl, PalPacket_BattleGrayscale + 1
 	ld de, wOBPals1
@@ -79,47 +80,11 @@ _CGB_BattleGrayscale:
 	jr _CGB_FinishBattleScreenLayout
 
 _CGB_BattleColors:
-	ld de, wBGPals1
-	call GetBattlemonBackpicPalettePointer
-	push hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER
-	call GetEnemyFrontpicPalettePointer
-	push hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
-	ld a, [wEnemyHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, HPBarPals
-	add hl, bc
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY_HP
-	ld a, [wPlayerHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, HPBarPals
-	add hl, bc
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER_HP
-	ld hl, ExpBarPalette
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_EXP
-	; The move info box's category/type icon palette normally mirrors the
-	; player mon's palette, so the backpic row it overlaps stays correct;
-	; MoveInfoBox overwrites colors 1-3 while the move menu is open.
-	call GetBattlemonBackpicPalettePointer
-	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_TYPE_CAT
-	ld de, wOBPals1
-	pop hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_ENEMY
-	pop hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_PLAYER
+	call LoadAllDefaultBattlePalettes
 	ld a, SCGB_BATTLE_COLORS
 	ld [wSGBPredef], a
 	call ApplyPals
 _CGB_FinishBattleScreenLayout:
-	call InitPartyMenuBGPal7
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, PAL_BATTLE_BG_ENEMY_HP
@@ -151,11 +116,6 @@ _CGB_FinishBattleScreenLayout:
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, PAL_BATTLE_BG_TEXT
 	call ByteFill
-	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
-	ld bc, 6 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
 	; Recolor the two shiny star icon tiles blue (exp bar palette). These tiles
 	; are blank unless the mon is shiny, so this is invisible for normal mons.
 	ld a, PAL_BATTLE_BG_EXP
@@ -191,52 +151,118 @@ InitPartyMenuBGPal0:
 
 ReloadBattleAnimColors::
 ; Reload every default battle palette. Used to undo the custom palettes set
-; by anim_setobjpal/anim_setbgpal (ported from polishedcrystal).
-	ld de, wBGPals1
-	call GetBattlemonBackpicPalettePointer
-	push hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER
-	call GetEnemyFrontpicPalettePointer
-	push hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
-	ld a, [wEnemyHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, HPBarPals
-	add hl, bc
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY_HP
-	ld a, [wPlayerHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, HPBarPals
-	add hl, bc
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER_HP
-	ld hl, ExpBarPalette
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_EXP
-	; Restore the move info icon palette to the player mon's colors too,
-	; since anim_setbgpal can also retint PAL_BATTLE_BG_TYPE_CAT.
-	call GetBattlemonBackpicPalettePointer
-	ld de, wBGPals1 palette PAL_BATTLE_BG_TYPE_CAT
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_TYPE_CAT
-	ld de, wOBPals1
-	pop hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_ENEMY
-	pop hl
-	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_PLAYER
-	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
-	ld bc, 6 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
-	call InitPartyMenuBGPal7
+; by anim_setobjpal/anim_setbgpal (ported from polishedcrystal) once a move
+; animation finishes.
+	call LoadAllDefaultBattlePalettes
 	call ApplyPals
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
+
+LoadAllDefaultBattlePalettes:
+; Load every battle palette's default colors into wBGPals1/wOBPals1.
+	ld c, 8 + 8
+.loop
+	push bc
+	dec c
+	call LoadDefaultBattlePalette
+	pop bc
+	dec c
+	jr nz, .loop
+	ret
+
+LoadDefaultBattlePalette::
+; c = palette slot: 0-7 = wBGPals1 slot, 8-15 = wOBPals1 slot (wOBPals1
+; directly follows wBGPals1).
+; Loads just that slot's default battle colors into the base palette buffer.
+; Shared by the battle screen setup, the end-of-animation reload, and
+; anim_setbgpal/anim_setobjpal with PAL_BTLCUSTOM_DEFAULT, which (like
+; polishedcrystal) restores only the slot it names so other custom palettes
+; set earlier in the same animation script survive.
+; Expects the main WRAM bank (it reads the battlers' species and DVs).
+	ld hl, wBGPals1
+	ld a, c
+	push bc
+	ld bc, 1 palettes
+	call AddNTimes
+	pop bc
+	ld d, h
+	ld e, l
+	ld hl, .Jumptable
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+.Jumptable:
+	dw .Player   ; PAL_BATTLE_BG_PLAYER
+	dw .Enemy    ; PAL_BATTLE_BG_ENEMY
+	dw .EnemyHP  ; PAL_BATTLE_BG_ENEMY_HP
+	dw .PlayerHP ; PAL_BATTLE_BG_PLAYER_HP
+	dw .Exp      ; PAL_BATTLE_BG_EXP
+	dw .Text     ; PAL_BATTLE_BG_5 (unused in battle)
+	dw .Player   ; PAL_BATTLE_BG_TYPE_CAT (mirrors the player mon's palette)
+	dw .Text     ; PAL_BATTLE_BG_TEXT
+	dw .Enemy    ; PAL_BATTLE_OB_ENEMY
+	dw .Player   ; PAL_BATTLE_OB_PLAYER
+	dw .Object   ; PAL_BATTLE_OB_GRAY
+	dw .Object   ; PAL_BATTLE_OB_YELLOW
+	dw .Object   ; PAL_BATTLE_OB_RED
+	dw .Object   ; PAL_BATTLE_OB_GREEN
+	dw .Object   ; PAL_BATTLE_OB_BLUE
+	dw .Object   ; PAL_BATTLE_OB_BROWN
+
+.Player:
+	call GetBattlemonBackpicPalettePointer
+	jp LoadPalette_White_Col1_Col2_Black
+
+.Enemy:
+	call GetEnemyFrontpicPalettePointer
+	jp LoadPalette_White_Col1_Col2_Black
+
+.EnemyHP:
+	ld a, [wEnemyHPPal]
+	jr .hp_bar
+.PlayerHP:
+	ld a, [wPlayerHPPal]
+.hp_bar
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, HPBarPals
+	add hl, bc
+	jp LoadPalette_White_Col1_Col2_Black
+
+.Exp:
+	ld hl, ExpBarPalette
+	jp LoadPalette_White_Col1_Col2_Black
+
+.Text:
+	push de
+	farcall Function100dc0
+	pop de
+	ld hl, PartyMenuBGPalette
+	jr nc, .copy
+	ld hl, PartyMenuBGMobilePalette
+	jr .copy
+
+.Object:
+	; BattleObjectPals holds the six anim object palettes, starting at
+	; PAL_BATTLE_OB_GRAY (the slots are contiguous and fit within one page).
+	ld a, e
+	sub LOW(wOBPals1 palette PAL_BATTLE_OB_GRAY)
+	ld c, a
+	ld b, 0
+	ld hl, BattleObjectPals
+	add hl, bc
+.copy
+	ld bc, 1 palettes
+	ld a, BANK(wBGPals1)
+	jp FarCopyWRAM
 
 _CGB_PokegearPals:
 	ld a, [wPlayerGender]

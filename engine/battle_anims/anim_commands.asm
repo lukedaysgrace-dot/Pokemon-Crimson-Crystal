@@ -464,7 +464,7 @@ SetBattleAnimPal:
 	; d = slot (0-7 bg, 8-15 obj), e = custom pal id (or $ff for default)
 	ld a, e
 	inc a ; cp PAL_BTLCUSTOM_DEFAULT
-	jp z, ReloadBattleAnimDefaultPals
+	jr z, .restore_default
 	push de
 	push bc
 	; hl = CustomBattlePalettes + e palettes
@@ -480,6 +480,40 @@ SetBattleAnimPal:
 	ld d, h
 	ld e, l
 	pop hl
+	call CopyAnimObjPalAndFlag
+	pop bc
+	pop de
+	ret
+
+.restore_default
+; PAL_BTLCUSTOM_DEFAULT restores only the named slot, like polishedcrystal.
+; This used to reload every battle palette, which also wiped out any other
+; custom palettes the script had set earlier (e.g. Iron Head's bright shards
+; and Gyro Ball's bright spin lines turned back to brown/gray after the
+; shared Metallic subroutine restored the user's palette).
+	push de
+	push bc
+	; The default palette loader reads the battlers' species/DVs from the
+	; main WRAM bank, but animations run with WRAM bank 5 active.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wTempBattleMonSpecies)
+	ldh [rSVBK], a
+	ld c, d
+	farcall LoadDefaultBattlePalette
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	pop de
+	push de
+	push bc
+	; Push the restored base palette through to the display buffer.
+	ld hl, wBGPals1
+	ld bc, 1 palettes
+	ld a, d
+	call AddNTimes
+	ld d, h
+	ld e, l
 	call CopyAnimObjPalAndFlag
 	pop bc
 	pop de
