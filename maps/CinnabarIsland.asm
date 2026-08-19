@@ -146,37 +146,87 @@ CinnabarIslandBlueText:
 	done
 
 CinnabarIslandBlueCloakBeforeText:
-	text "BLUE: So you're"
-	line "the Trainer who"
-	cont "beat RED..."
+	text "BLUE: Took you"
+	line "long enough."
 
-	para "Heh. Don't look"
-	line "so pleased."
+	para "GREEN told me"
+	line "you'd probably"
+	cont "show up. Good."
 
-	para "RED was never"
-	line "the finish line."
+	para "I almost couldn't"
+	line "believe it when I"
+	cont "heard you"
+	cont "defeated RED."
 
-	para "I've studied your"
-	line "battle style."
+	para "The last time we"
+	line "fought, I knew"
+	cont "there was some-"
+	cont "thing different"
+	cont "about you."
 
-	para "Now I'll tear it"
-	line "apart. Come on!"
+	para "I've wanted this"
+	line "since VIRIDIAN."
+
+	para "You beat me"
+	line "there. Fair and"
+	cont "square."
+
+	para "I've gone over"
+	line "that battle more"
+	cont "times than I'd"
+	cont "admit."
+
+	para "I know where I"
+	line "went wrong."
+
+	para "And I'm not the"
+	line "same Trainer you"
+	cont "fought before."
+
+	para "No GYM this time."
+	line "No BADGE."
+
+	para "Just a rematch."
+	line "Come on."
 	done
 
 CinnabarIslandBlueCloakBeatenText:
-	text "Tch... So that's"
-	line "how you beat RED."
+	text "BLUE: …"
+	line "So it wasn't"
+	cont "the team."
 	done
 
 CinnabarIslandBlueCloakAfterText:
-	text "BLUE: You beat RED"
-	line "and me. Fine."
+	text "BLUE: I used my"
+	line "original team."
 
-	para "But victory only"
-	line "shows your hand."
+	para "Changed my"
+	line "strategy."
 
-	para "Next time, I'll"
-	line "have the counter."
+	para "Didn't matter."
+
+	para "You're stronger"
+	line "than you were in"
+	cont "VIRIDIAN."
+
+	para "So am I."
+
+	para "You were just"
+	line "better today."
+
+	para "There's only one"
+	line "Trainer left who"
+
+	para "might have some-"
+	line "thing to say"
+	cont "about that."
+
+	para "I heard he came"
+	line "home recently."
+
+	para "Maybe you'll find"
+	line "him in the area,"
+	cont "if you're lucky."
 	done
 
 CinnabarIslandGymSignText:
