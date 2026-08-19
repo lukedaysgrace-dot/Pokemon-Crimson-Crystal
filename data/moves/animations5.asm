@@ -99,7 +99,7 @@ BattleAnim_Overheat_CC:
 BattleAnim_LeafStorm_CC:
 ; The sky darkens as a cyclone of leaves whips up around the user,
 ; hangs for a beat, then every leaf tears across the field at once.
-	anim_1gfx ANIM_GFX_PLANT
+	anim_3gfx ANIM_GFX_PLANT, ANIM_GFX_HURRICANE, ANIM_GFX_HIT
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_sound 0, 0, SFX_RAZOR_WIND
@@ -179,7 +179,7 @@ BattleAnim_FakeOut_CC:
 BattleAnim_FlipTurn_CC:
 ; The user rockets through the target on a jet of water, then flips
 ; up and out of the battle in a U-turn arc.
-	anim_3gfx ANIM_GFX_AQUA_JET, ANIM_GFX_HIT, ANIM_GFX_U_TURN
+	anim_3gfx ANIM_GFX_HIT_2, ANIM_GFX_AQUA_JET, ANIM_GFX_BUBBLE
 	anim_sound 6, 2, SFX_SURF
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
 	anim_obj ANIM_OBJ_AQUA_JET, 72, 89, $0
@@ -200,6 +200,9 @@ BattleAnim_FlipTurn_CC:
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 140, 64, $50
 	anim_wait 12
 	anim_clearobjs
+	anim_wait 1
+	; the water set is spent; swap in the U-turn blur for the exit
+	anim_1gfx ANIM_GFX_U_TURN
 	anim_wait 1
 	anim_sound 0, 0, SFX_RETURN
 	anim_obj ANIM_OBJ_U_TURN_RISE, 48, 88, $30
@@ -322,7 +325,7 @@ BattleAnim_WoodHammer_CC:
 BattleAnim_HeadSmash_CC:
 ; The user steels itself, then throws away its own safety in a
 ; skull-first crash that levels the field.
-	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION
+	anim_4gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION, ANIM_GFX_SPEED
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20
 	anim_sound 0, 0, SFX_RAGE
@@ -366,7 +369,7 @@ BattleAnim_HeadSmash_CC:
 BattleAnim_DrillRun_CC:
 ; The user whirls itself into a living drill, then bores in with
 ; three grinding strikes before the point punches through.
-	anim_4gfx ANIM_GFX_VORTEX, ANIM_GFX_HORN, ANIM_GFX_HIT, ANIM_GFX_ROCKS
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_VORTEX, ANIM_GFX_HORN, ANIM_GFX_ROCKS
 	anim_sound 0, 0, SFX_RAZOR_WIND
 	anim_obj ANIM_OBJ_VORTEX, 44, 88, $0
 	anim_wait 24
@@ -394,7 +397,7 @@ BattleAnim_PsychoCut_CC:
 ; Psychic power ripples outward, condenses into blades, and scythes
 ; across the target in two flickering arcs.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
-	anim_2gfx ANIM_GFX_PSYCHIC, ANIM_GFX_CUT
+	anim_3gfx ANIM_GFX_PSYCHIC, ANIM_GFX_CUT, ANIM_GFX_HIT
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_sound 0, 0, SFX_PSYCHIC
@@ -418,7 +421,7 @@ BattleAnim_SacredSword_CC:
 ; The blade is raised high and consecrated in light, then two holy
 ; slashes cross through the target - stat tricks mean nothing to it.
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GLOW_YELLOW
-	anim_4gfx ANIM_GFX_WHIP, ANIM_GFX_SHINE, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_WHIP, ANIM_GFX_SHINE, ANIM_GFX_CUT
 	anim_sound 0, 0, SFX_SWORDS_DANCE
 	anim_obj ANIM_OBJ_SWORDS_DANCE,   6, 0,  13, 4, $0
 	anim_obj ANIM_OBJ_MORNING_SUN, 16, 48, $88
@@ -530,7 +533,7 @@ BattleAnim_Snarl_CC:
 BattleAnim_Nuzzle_CC:
 ; The user scampers up and rubs its charged cheeks on the target -
 ; adorable, and completely paralyzing.
-	anim_3gfx ANIM_GFX_LIGHTNING, ANIM_GFX_HIT, ANIM_GFX_STATUS
+	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_STATUS
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 8
@@ -883,12 +886,17 @@ BattleAnim_ShadowBone_CC:
 ; A dead mon's spirit seeps out of the bone as it whirls in, and the
 ; haunted club comes down with the weight of the grave.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_SHADOW_BALL
-	anim_3gfx ANIM_GFX_MISC, ANIM_GFX_ANGELS, ANIM_GFX_HIT
+	anim_1gfx ANIM_GFX_ANGELS
 	anim_bgp $1b
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_sound 0, 0, SFX_SPITE
 	anim_obj ANIM_OBJ_IN_NIGHTMARE, 68, 80, $0
 	anim_wait 16
+	anim_clearobjs
+	anim_wait 1
+	; swap in the bone + impact set
+	anim_2gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC
+	anim_wait 1
 	anim_sound 0, 0, SFX_SPITE
 	anim_obj ANIM_OBJ_BONEMERANG, 88, 56, $1c
 	anim_wait 24
@@ -897,6 +905,11 @@ BattleAnim_ShadowBone_CC:
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $30, $2, $20
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 52, $0
 	anim_wait 8
+	anim_clearobjs
+	anim_wait 1
+	; and back to the spirit set for the closing wail
+	anim_1gfx ANIM_GFX_ANGELS
+	anim_wait 1
 	anim_obj ANIM_OBJ_IN_NIGHTMARE, 132, 40, $0
 	anim_wait 28
 	anim_ret
@@ -905,13 +918,16 @@ BattleAnim_DireClaw_CC:
 ; The claws flash with a killer's edge, rake the target twice, and
 ; leave poison, paralysis and drowsiness all fighting to set in.
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_PURPLE
-	anim_4gfx ANIM_GFX_TEAR, ANIM_GFX_HIT, ANIM_GFX_POISON, ANIM_GFX_STATUS
+	anim_1gfx ANIM_GFX_CUT
 	anim_bgp $1b
 	anim_sound 0, 0, SFX_SWORDS_DANCE
 	anim_obj ANIM_OBJ_HONE_CLAWS_LEFT, 72, 84, $0
 	anim_obj ANIM_OBJ_HONE_CLAWS_RIGHT, 24, 84, $0
 	anim_wait 16
 	anim_clearobjs
+	anim_wait 1
+	; the claws are done; swap in the rake + status set
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_TEAR, ANIM_GFX_POISON, ANIM_GFX_STATUS
 	anim_wait 1
 	anim_sound 0, 1, SFX_SCRATCH
 	anim_obj ANIM_OBJ_CLAW_TEAR, 132, 48, $0
@@ -1080,7 +1096,7 @@ BattleAnim_GlaiveRush_CC:
 ; The user hurls itself forward as a living blade - a blurring dash,
 ; two crossing slashes, and no thought at all for what comes back.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_DRAGON_PULSE
-	anim_4gfx ANIM_GFX_U_TURN, ANIM_GFX_SPEED, ANIM_GFX_CUT, ANIM_GFX_HIT
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_U_TURN, ANIM_GFX_SPEED, ANIM_GFX_CUT
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_call BattleAnimSub_SpeedLines_CC
 	anim_wait 8
@@ -1148,7 +1164,7 @@ BattleAnim_GravApple_CC:
 ; Gravity itself reaches up, plucks the apple, and drives it straight
 ; down through the target.
 	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_GREEN
-	anim_3gfx ANIM_GFX_MISC, ANIM_GFX_ROCKS, ANIM_GFX_HIT
+	anim_3gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC, ANIM_GFX_ROCKS
 	anim_sound 0, 0, SFX_PSYCHIC
 	anim_obj ANIM_OBJ_KINESIS, 132, 20, $0
 	anim_wait 16
@@ -1171,7 +1187,7 @@ BattleAnim_PsyshieldBash_CC:
 ; Psychic energy ripples into a barrier in front of the user, and it
 ; rams in behind it, shield-first.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
-	anim_3gfx ANIM_GFX_PSYCHIC, ANIM_GFX_REFLECT, ANIM_GFX_HIT
+	anim_4gfx ANIM_GFX_PSYCHIC, ANIM_GFX_REFLECT, ANIM_GFX_HIT, ANIM_GFX_BIG_RINGS
 	anim_obp0 $0
 	anim_sound 0, 0, SFX_PSYCHIC
 	anim_obj ANIM_OBJ_WAVE, 44, 88, $0
@@ -1303,7 +1319,7 @@ BattleAnim_BanefulBunker_CC:
 BattleAnim_RagingBull_CC:
 ; Steam, stamping, seeing red - then the bull charges clean through
 ; whatever wall stands in its way.
-	anim_4gfx ANIM_GFX_HIT, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS, ANIM_GFX_STATUS
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
 	anim_obp0 $0
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_sound 0, 0, SFX_RAGE
@@ -1363,7 +1379,7 @@ BattleAnim_FickleBeam_CC:
 BattleAnim_StoneAxe_CC:
 ; The stone axe cleaves through, and the shards it sheds hang in the
 ; air around the target, sharp side out.
-	anim_3gfx ANIM_GFX_CUT, ANIM_GFX_ROCKS, ANIM_GFX_HIT
+	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_CUT, ANIM_GFX_ROCKS, ANIM_GFX_SHINE
 	anim_sound 0, 1, SFX_CUT
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
 	anim_obj ANIM_OBJ_CUT_LONG_DOWN_LEFT, 150, 40, $0
@@ -1440,7 +1456,7 @@ BattleAnim_StealthRock_CC:
 BattleAnim_Defog_CC:
 ; Fog blankets the field... then one great clearing gust scours the
 ; whole battlefield spotless.
-	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_WIND, ANIM_GFX_WIND_BG
+	anim_4gfx ANIM_GFX_HAZE, ANIM_GFX_WIND, ANIM_GFX_WIND_BG, ANIM_GFX_SPEED
 	anim_obp0 $fc
 	anim_sound 0, 0, SFX_SURF
 	anim_obj ANIM_OBJ_HAZE, 48, 56, $0
@@ -1502,7 +1518,7 @@ BattleAnim_WorkUp_CC:
 ; The user psyches itself up - veins bulging, power lines streaming -
 ; until fighting spirit boils over.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_RED
-	anim_4gfx ANIM_GFX_BULK_UP, ANIM_GFX_SHINE, ANIM_GFX_SPEED, ANIM_GFX_STATUS
+	anim_3gfx ANIM_GFX_MISC, ANIM_GFX_BULK_UP, ANIM_GFX_SPEED
 	anim_sound 0, 0, SFX_RAGE
 	anim_obj ANIM_OBJ_ANGER, 72, 80, $0
 	anim_wait 12
@@ -1514,6 +1530,11 @@ BattleAnim_WorkUp_CC:
 	anim_wait 3
 	anim_obj ANIM_OBJ_FOCUS, 52, 108, $6
 	anim_wait 14
+	anim_clearobjs
+	anim_wait 1
+	; swap in the shine set for the payoff sparkle
+	anim_1gfx ANIM_GFX_SHINE
+	anim_wait 1
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $1
 	anim_sound 0, 0, SFX_SHINE
 	anim_obj ANIM_OBJ_GLIMMER, 48, 80, $0
@@ -1631,13 +1652,16 @@ BattleAnim_RageFist_CC:
 ; Every blow the user has ever taken pours into one spectral fist -
 ; it swells, glows, and detonates against the target.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_SHADOW_BALL
-	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_GLOW_SHADOW, ANIM_GFX_STATUS
+	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_GLOW_SHADOW
 	anim_bgp $1b
 	anim_sound 0, 0, SFX_RAGE
 	anim_obj ANIM_OBJ_ANGER, 72, 80, $0
 	anim_obj ANIM_OBJ_GROWING_BALL, 64, 92, $0
 	anim_wait 20
 	anim_clearobjs
+	anim_wait 1
+	; the fist is formed; swap in the punch set
+	anim_1gfx ANIM_GFX_HIT
 	anim_wait 1
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_PUNCH, 148, 56, $0
@@ -1752,8 +1776,9 @@ BattleAnim_CircleThrow_CC:
 BattleAnim_FreezeDry_CC:
 ; Every drop of moisture is wicked out of the target, then flash-
 ; frozen around it in a single crackling instant.
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ICE
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ICE
-	anim_3gfx ANIM_GFX_WATER, ANIM_GFX_ICE, ANIM_GFX_HIT
+	anim_3gfx ANIM_GFX_MISC_2, ANIM_GFX_ICE, ANIM_GFX_SHINE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
 	; the moisture rises out of it
 	anim_sound 0, 0, SFX_SURF
@@ -1769,13 +1794,15 @@ BattleAnim_FreezeDry_CC:
 	anim_obj ANIM_OBJ_ICE_SPLASH, 136, 56, $10
 	anim_obj ANIM_OBJ_ICE_SPLASH, 136, 56, $9c
 	anim_wait 8
+	; then it freezes solid
 	anim_sound 0, 1, SFX_SHINE
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_obj ANIM_OBJ_ICE_BUILDUP, 136, 56, $0
-	anim_wait 16
+	anim_obj ANIM_OBJ_ICE_BUILDUP, 136, 74, $10
+	anim_wait 32
+	anim_sound 0, 1, SFX_SHINE
 	anim_obj ANIM_OBJ_GLIMMER, 136, 44, $0
-	anim_wait 20
+	anim_wait 32
 	anim_ret
 
 BattleAnim_Bounce_CC:
@@ -1783,7 +1810,7 @@ BattleAnim_Bounce_CC:
 ; Turn 2: it drops out of the sky onto the target.
 	anim_if_param_equal $1, .turn1
 	anim_if_param_equal $2, .miss
-	anim_2gfx ANIM_GFX_U_TURN, ANIM_GFX_HIT
+	anim_2gfx ANIM_GFX_HIT_2, ANIM_GFX_U_TURN
 	anim_sound 0, 0, SFX_KINESIS
 	anim_obj ANIM_OBJ_U_TURN_FALL, 136, 230, $10
 	anim_wait 16
