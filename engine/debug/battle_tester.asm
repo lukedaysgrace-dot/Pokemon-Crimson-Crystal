@@ -353,8 +353,15 @@ DebugBattleSetup::
 	; any existing class/ID works; the read party is replaced from the
 	; request by DebugModifyOTParty (hooked after ReadTrainerParty).
 	; SCHOOLBOY: SWITCH_OFTEN AI, no items - the AI will actually use
-	; its second mon, which is the point of trainer mode.
+	; its second mon, which is the point of trainer mode. A request may
+	; name another class (wDebugEnemyClass, e.g. FALKNER for AI_ELITE) to
+	; exercise the smarter scoring layers; the party is still replaced.
+	ld hl, wDebugEnemyClass
+	call DebugPeek
+	and a
+	jr nz, .got_class
 	ld a, SCHOOLBOY
+.got_class
 	ld [wOtherTrainerClass], a
 	ld a, 1
 	ld [wOtherTrainerID], a

@@ -213,18 +213,49 @@ AIChooseMove:
 	dec c
 	jr nz, .loop2
 
-; Randomly choose one of the moves with a score of 1
+; Randomly choose one of the moves with a score of 1.
+; Uniform over the candidates (same distribution as the old rejection
+; loop), but without re-rolling: a pinned RNG - the battle tester's forced
+; modes - would otherwise spin forever whenever slot 1 is not a candidate.
 .ChooseMove:
 	ld hl, wBuffer1
-	call Random
-	maskbits NUM_MOVES
-	ld c, a
-	ld b, 0
-	add hl, bc
+	ld b, NUM_MOVES
+	ld c, 0
+.count_candidates
+	ld a, [hli]
+	and a
+	jr z, .next_count
+	inc c
+.next_count
+	dec b
+	jr nz, .count_candidates
+; c = number of candidate moves (always >= 1)
+	ld hl, wBuffer1
+	ld a, c
+	and a
+	jr z, .got_candidate ; can't happen; take slot 1 rather than hang
+	call BattleRandom
+.mod_count
+	sub c
+	jr nc, .mod_count
+	add c
+	ld b, a ; b = ordinal of the candidate to take (0-based)
+	ld c, 0 ; c = move slot
+.find_candidate
 	ld a, [hl]
 	and a
-	jr z, .ChooseMove
+	jr z, .next_candidate
+	ld a, b
+	and a
+	jr z, .got_candidate
+	dec b
+.next_candidate
+	inc hl
+	inc c
+	jr .find_candidate
 
+.got_candidate
+	ld a, [hl]
 	ld [wCurEnemyMove], a
 	ld a, c
 	ld [wCurEnemyMoveNum], a
