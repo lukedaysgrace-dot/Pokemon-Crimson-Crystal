@@ -209,6 +209,10 @@ BattleAnim_FlipTurn_CC:
 	anim_wait 32
 	anim_clearobjs
 	anim_wait 1
+	; put the backpic back (BattleAnim_UTurn ends the same way); without this
+	; the ANIM_BG_HIDE_MON above is never undone and the sprite stays gone
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 1
 	anim_ret
 
 BattleAnim_IronDefense_CC:
@@ -552,6 +556,11 @@ BattleAnim_Nuzzle_CC:
 	anim_obj ANIM_OBJ_PARALYZED, 104, 52, $42
 	anim_obj ANIM_OBJ_PARALYZED, 160, 52, $c2
 	anim_wait 24
+	; ANIM_OBJ_PARALYZED never deletes itself (BattleAnimFunction_28 just
+	; oscillates forever), and nothing clears OAM between anim_ret and the
+	; HUD restore - so drop the objects here or the sparks linger over the HUD.
+	anim_clearobjs
+	anim_wait 1
 	anim_ret
 
 BattleAnim_BulletSeed_CC:
@@ -947,6 +956,11 @@ BattleAnim_DireClaw_CC:
 	anim_wait 6
 	anim_obj ANIM_OBJ_ASLEEP, 146, 36, $0
 	anim_wait 24
+	; ANIM_OBJ_PARALYZED never deletes itself (BattleAnimFunction_28 just
+	; oscillates forever), and nothing clears OAM between anim_ret and the
+	; HUD restore - so drop the objects here or the sparks linger over the HUD.
+	anim_clearobjs
+	anim_wait 1
 	anim_ret
 
 BattleAnim_BarbBarrage_CC:
