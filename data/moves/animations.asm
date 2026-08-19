@@ -472,6 +472,11 @@ BattleAnim_GigaHammer:
 	anim_call BattleAnim_TargetObj_1Row
 	anim_call BattleAnim_MetalClaw_branch_cbc43
 	anim_call BattleAnim_ShowMon_0
+	; Restore the object palettes as soon as the shine is over (as Metal Claw
+	; does). `anim_obp0 $0` turns the gray object palette all-white on CGB,
+	; and it used to stay set until the end, so every hit star below was
+	; drawn as a white silhouette.
+	anim_resetobp0
 	anim_wait 16
 	anim_sound 0, 1, SFX_OUTRAGE
 	anim_wait 28
@@ -508,7 +513,6 @@ BattleAnim_GigaHammer:
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
 	anim_wait 8
 	anim_call BattleAnim_ShowMon_0
-	anim_resetobp0
 	anim_ret
 
 BattleAnim_DazzlingGleam:
@@ -685,14 +689,21 @@ BattleAnim_SpiritBreak:
 
 BattleAnim_FairyWind:
 ; Sparkling gust like Gust but with fairy shimmer
-	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_SHINE
+; (the shimmer used to be ANIM_OBJ_MOONLIGHT, which is the slanted solid
+; beam segment from Moonlight - it drew a yellow slab next to the target.
+; Use the Dazzling Gleam sparkles, tinted pink, instead.)
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_BRIGHT_PINK
+	anim_3gfx ANIM_GFX_WIND, ANIM_GFX_SPEED, ANIM_GFX_SHINE
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 .loop
 	anim_sound 0, 1, SFX_RAZOR_WIND
 	anim_obj ANIM_OBJ_GUST, 136, 72, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_SHINE
-	anim_obj ANIM_OBJ_MOONLIGHT, 112, 68, $0
+	anim_obj ANIM_OBJ_DAZZLE, 136, 56, $0
+	anim_obj ANIM_OBJ_DAZZLE, 136, 56, $10
+	anim_obj ANIM_OBJ_DAZZLE, 136, 56, $20
+	anim_obj ANIM_OBJ_DAZZLE, 136, 56, $30
 	anim_wait 4
 	anim_loop 8, .loop
 	anim_sound 0, 1, SFX_SPARK
