@@ -54,7 +54,7 @@ SwitchOften:
 
 	cp $10
 	jr nz, .not_10
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	jr c, .switch
 	jp DontSwitch
@@ -62,14 +62,14 @@ SwitchOften:
 
 	cp $20
 	jr nz, .not_20
-	call Random
+	call BattleRandom
 	cp 90 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
-	call Random
+	call BattleRandom
 	cp 4 percent
 	jp c, DontSwitch
 
@@ -89,7 +89,7 @@ SwitchRarely:
 
 	cp $10
 	jr nz, .not_10
-	call Random
+	call BattleRandom
 	cp 20 percent - 1
 	jr c, .switch
 	jp DontSwitch
@@ -97,14 +97,14 @@ SwitchRarely:
 
 	cp $20
 	jr nz, .not_20
-	call Random
+	call BattleRandom
 	cp 30 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, DontSwitch
 
@@ -123,7 +123,7 @@ SwitchSometimes:
 
 	cp $10
 	jr nz, .not_10
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jr c, .switch
 	jp DontSwitch
@@ -131,14 +131,14 @@ SwitchSometimes:
 
 	cp $20
 	jr nz, .not_20
-	call Random
+	call BattleRandom
 	cp 79 percent - 1
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
-	call Random
+	call BattleRandom
 	cp 8 percent
 	jp c, DontSwitch
 
@@ -311,7 +311,7 @@ AI_Items:
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
-	call Random
+	call BattleRandom
 	cp 20 percent - 1
 	jp c, .Use
 	jp .DontUse
@@ -323,7 +323,7 @@ AI_Items:
 	ld a, [wEnemyToxicCount]
 	cp 4
 	jr c, .FailToxicCheck
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, .Use
 .FailToxicCheck:
@@ -362,7 +362,7 @@ AI_Items:
 	jp nz, .CheckQuarterHP
 	callfar AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, .UseHealItem
 	jp .DontUse
@@ -370,7 +370,7 @@ AI_Items:
 .CheckQuarterHP:
 	callfar AICheckEnemyQuarterHP
 	jp c, .DontUse
-	call Random
+	call BattleRandom
 	cp 20 percent - 1
 	jp c, .DontUse
 	jr .UseHealItem
@@ -380,7 +380,7 @@ AI_Items:
 	jp c, .DontUse
 	callfar AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
-	call Random
+	call BattleRandom
 	cp 20 percent - 1
 	jp nc, .DontUse
 
@@ -434,7 +434,7 @@ AI_Items:
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .Use
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, .Use
 
@@ -446,7 +446,7 @@ AI_Items:
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .DontUse
-	call Random
+	call BattleRandom
 	cp 39 percent + 1
 	jp c, .Use
 	jp .DontUse
@@ -500,13 +500,13 @@ AI_Items:
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, .DontUse
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
 	jp nz, .Use
-	call Random
+	call BattleRandom
 	cp 50 percent + 1
 	jp c, .DontUse
 	jp .Use
@@ -514,7 +514,7 @@ AI_Items:
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
 	jp z, .DontUse
-	call Random
+	call BattleRandom
 	cp 20 percent - 1
 	jp nc, .DontUse
 	jp .Use

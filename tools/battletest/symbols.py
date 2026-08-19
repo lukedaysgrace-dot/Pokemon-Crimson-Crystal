@@ -79,6 +79,14 @@ class Constants:
         self.moves = _parse_constants(c / "move_constants.asm")
         self.items = _parse_constants(c / "item_constants.asm")
         self.abilities = _parse_constants(c / "ability_constants.asm")
+        # trainer classes: `trainerclass NAME ; N` (the macro restarts the
+        # trainer-ID namespace, so read the index from the comment)
+        self.trainer_classes = {}
+        pat_tc = re.compile(r"^\ttrainerclass (\w+)\s*;\s*(\d+)")
+        for line in (c / "trainer_constants.asm").open():
+            m = pat_tc.match(line)
+            if m:
+                self.trainer_classes[m.group(1)] = int(m.group(2))
         # reverse maps. pokemon_constants.asm restarts const_def after
         # NUM_POKEMON for cosmetic forms (UNOWN_B..., PIKACHU_FLY...), whose
         # values overlap real species - first definition wins, so RAICHU (26)
