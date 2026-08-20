@@ -217,3 +217,8 @@ MoveEffectsPointers:
 	dw FreezeHit ; EFFECT_FREEZE_DRY (type override in the matchup code)
 	dw Bounce ; EFFECT_BOUNCE
 	dw SpecialDefenseDown2Hit ; EFFECT_SP_DEF_DOWN_2_HIT
+	dw Torment ; EFFECT_TORMENT
+	dw Taunt ; EFFECT_TAUNT
+	dw Yawn ; EFFECT_YAWN
+	dw Wish ; EFFECT_WISH
+	dw StickyWeb ; EFFECT_STICKY_WEB

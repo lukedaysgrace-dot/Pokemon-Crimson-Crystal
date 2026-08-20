@@ -1858,6 +1858,7 @@ SlowpokeEvosAttacks:
 	dbbw EVOLVE_ITEM, KINGS_ROCK, SLOWKING
 	db 0 ; no more evolutions
 	dbw 1, CURSE
+	dbw 1, YAWN
 	dbw 1, TACKLE
 	dbw 1, TELEPORT
 	dbw 4, GROWL

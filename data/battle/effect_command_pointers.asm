@@ -210,3 +210,8 @@ BattleCommandPointers:
 	dw BattleCommand_FickleBeam
 	dw BattleCommand_ShellSideArm
 	dw BattleCommand_RageFistPower
+	dw BattleCommand_Torment
+	dw BattleCommand_Taunt
+	dw BattleCommand_Yawn
+	dw BattleCommand_Wish
+	dw BattleCommand_StickyWeb

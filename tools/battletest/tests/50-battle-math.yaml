@@ -1,0 +1,250 @@
+# Battle math pack (2026-08): modern battle mechanics regression suite.
+# BM1 crit x1.5, BM2 Gen7 crit table, BM3 sleep 1-3 turns, BM4 paralysis
+# halves speed, BM5 toxic persists across switches, BM6 berries fire
+# post-damage, BM7 Encore 3 / Disable 4 turns, BM8 Protect fixes.
+# (BM9 per-side crit stat-stage rule is deferred.)
+
+# ---- BM1: critical hits deal x1.5, not x2 -------------------------------
+
+- name: "BM1 control: golden damage, no crit"
+  id: bm1c
+  player: { species: GENGAR,  level: 50, moves: [LICK] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == 13
+
+- name: "BM1: Scope Lens crit is exactly 1.5x the control damage"
+  # forced_low $14 = 20: no crit at stage 0 (Gen7 threshold 11), crit at
+  # stage 1 (threshold 32). Same matchup, same damage roll -> exact ratio.
+  player: { species: GENGAR,  level: 50, item: SCOPE_LENS, moves: [LICK] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == (result('bm1c')['enemy']['damage'] - 2) + (result('bm1c')['enemy']['damage'] - 2) // 2 + 2
+
+# ---- BM2: Gen 7 critical hit chance table --------------------------------
+
+- name: "BM2 control: stage 0 does not crit on a roll of 12"
+  # Old Gen2 table: stage 0 = 7 percent = 17/256 -> a roll of 12 crit.
+  # New table: stage 0 = 11/256 -> 12 does not crit.
+  id: bm2c
+  player: { species: GENGAR,  level: 50, moves: [LICK] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 12
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "BM2: stage 1 crits on a roll of 12 (and control did not)"
+  # Same roll, +1 crit stage from Scope Lens (threshold 32): the 1.5x
+  # ratio against the control proves the control did NOT crit at stage 0.
+  player: { species: GENGAR,  level: 50, item: SCOPE_LENS, moves: [LICK] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 12
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == (result('bm2c')['enemy']['damage'] - 2) + (result('bm2c')['enemy']['damage'] - 2) // 2 + 2
+
+- name: "BM2 control: high-crit move at stage 2 does not crit under forced_high"
+  # Slash is a +2 crit-stage move: new threshold 128, $B4 = 180 -> no crit.
+  id: bm2h
+  player: { species: SCYTHER, level: 50, moves: [SLASH] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "BM2: stage 3 (high-crit move + Scope Lens) always crits"
+  # Stage 3 = 255 in the Gen7 table: even a roll of 180 crits. The old
+  # table had stage 3 = 85, where 180 would NOT crit.
+  player: { species: SCYTHER, level: 50, item: SCOPE_LENS, moves: [SLASH] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == (result('bm2h')['enemy']['damage'] - 2) + (result('bm2h')['enemy']['damage'] - 2) // 2 + 2
+
+# ---- BM3: sleep lasts 1-3 turns ------------------------------------------
+
+- name: "BM3: sleep counter is 1 on a swap&3==1 roll"
+  # swap($50) & 3 = 1 -> counter 1. The old roll ($50 & 7, +1) stored 1
+  # only 1 turn in 6; this pins the new roll deterministically. $50 = 80
+  # also satisfies the forced-RNG loop contract: &3 == 0 (enemy move
+  # pick), >= 65 (passes the enemy status-move 25% random-fail sample).
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: PARAS,  level: 50, moves: [SPORE] }
+  rng: forced
+  rng_value: 80
+  turns: 1
+  assert:
+    - player.status & 7 == 1
+
+- name: "BM3: sleep counter is 3 under forced_high"
+  # swap($B4) & 3 = 3. The old roll stored 5 here too.
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: PARAS,  level: 50, moves: [SPORE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status & 7 == 3
+
+# ---- BM4: paralysis halves Speed (was quartered) --------------------------
+
+- name: "BM4 control: unparalyzed speed snapshot"
+  id: bm4c
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stats['speed'] > 0
+
+- name: "BM4: paralysis cuts Speed to exactly half"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: PARAS,  level: 50, moves: [STUN_SPORE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status & 64 != 0
+    - player.stats['speed'] == result('bm4c')['player']['stats']['speed'] // 2
+
+# ---- BM5: bad poison persists across switches (counter resets) ------------
+
+- name: "BM5 control: toxic counter escalates while staying in"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: GRIMER, level: 50, moves: [TOXIC] }
+  rng: forced_high
+  turns: 3
+  assert:
+    # Residual poison runs after the victim acts (Gen 2 timing), so turn 1
+    # (poisoned after acting) deals no tick: counter is 2 after 3 turns.
+    - player.status & 8 != 0
+    - wram('wPlayerSubStatus5') & 1 != 0
+    - wram('wPlayerToxicCount') == 2
+
+- name: "BM5: toxic survives switching out and back, counter reset"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [TOXIC] }
+  rng: forced_high
+  move_script: [1, "switch:2", "switch:1"]
+  turns: 3
+  assert:
+    - player.status & 8 != 0                  # still poisoned
+    - wram('wPlayerSubStatus5') & 1 != 0      # still BADLY poisoned
+    - wram('wPlayerToxicCount') <= 1          # counter restarted
+
+# ---- BM6: berries fire immediately after damage ---------------------------
+# KO differential: Double Kick's first hit drops the holder below half, the
+# Gold Berry heals 30 between hits, and that heal is what survives hit 2.
+# With the old end-of-turn timing the second kick KOs before any berry.
+# (Nidoran M's kicks deal 26 each to this Snorlax under forced_low;
+# 20% of 235 = 47: 47-26 -> berry -> 51-26 = 25 alive; no berry -> KO.)
+
+- name: "BM6 control: without a berry, the second kick is lethal"
+  id: bm6c
+  player: { species: NIDORAN_M, level: 50, moves: [DOUBLE_KICK] }
+  enemy:  { species: SNORLAX,  level: 50, hp: 20, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == 0
+
+- name: "BM6: berry eaten between hits keeps the holder alive"
+  player: { species: NIDORAN_M, level: 50, moves: [DOUBLE_KICK] }
+  enemy:  { species: SNORLAX,  level: 50, hp: 20, item: GOLD_BERRY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - enemy.item == 'NO_ITEM'
+
+# ---- BM7: Encore lasts exactly 3 turns ------------------------------------
+# Slowbro moves after the enemy, so turn 1's Encore locks the Splash the
+# enemy just used. Counter is written as 4 and decremented at the end of
+# the Encore turn, leaving exactly 3 encored turns (2, 3 and 4).
+
+- name: "BM7: Encore still holds going into its final encored turn"
+  # Counter after end of turn 3 must be exactly 1 (encored turn 4 remains).
+  player: { species: SLOWBRO, level: 50, moves: [ENCORE] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 3
+  assert:
+    - wram('wEnemySubStatus5') & 16 != 0
+    - wram('wEnemyEncoreCount') == 1
+
+- name: "BM7: Encore releases after exactly 3 encored turns"
+  player: { species: SLOWBRO, level: 50, moves: [ENCORE] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 4
+  assert:
+    - wram('wEnemySubStatus5') & 16 == 0
+    - wram('wEnemyEncoreCount') == 0
+
+# ---- BM7: Disable lasts exactly 4 turns ------------------------------------
+
+- name: "BM7: Disable blocks the move for 4 turns then releases"
+  # Slowbro disables the enemy's only move on turn 1 (after it moved).
+  # Low nibble of wEnemyDisableCount = remaining turns; asserting the
+  # nibble sequence pins the fixed 4-turn duration.
+  player: { species: SLOWBRO, level: 50, moves: [DISABLE] }
+  enemy:  { species: RATTATA, level: 50, moves: [TACKLE] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - wram('wEnemyDisableCount') % 16 == 3    # 4-turn counter, one tick gone
+    - wram('wEnemyDisabledMove') != 0
+
+- name: "BM7: Disable has expired by the end of turn 5"
+  player: { species: SLOWBRO, level: 50, moves: [DISABLE] }
+  enemy:  { species: RATTATA, level: 50, moves: [TACKLE] }
+  rng: forced_low
+  turns: 5
+  assert:
+    - wram('wEnemyDisableCount') == 0
+    - wram('wEnemyDisabledMove') == 0
+
+# ---- BM8: Protect fixes ----------------------------------------------------
+
+- name: "BM8: Protect works behind the user's own Substitute"
+  # Old code failed Protect outright when the user had a Substitute.
+  # A successful Protect increments wPlayerProtectCount; a failed one
+  # zeroes it.
+  player: { species: SNORLAX, level: 50, moves: [SUBSTITUTE, PROTECT] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - wram('wPlayerProtectCount') == 1
+
+- name: "BM8 control: second consecutive Protect succeeds on a roll of 40"
+  # 2nd-use threshold is 85 (1/3): (40-1) < 85 -> success.
+  player: { species: SNORLAX, level: 50, moves: [PROTECT] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 40
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    - wram('wPlayerProtectCount') == 2
+
+- name: "BM8: third consecutive Protect fails on a roll of 40 (1/9 rule)"
+  # 3rd-use threshold is 28 (1/9): (40-1) >= 28 -> failure resets the
+  # count. The old halving table (63) would have let it succeed.
+  player: { species: SNORLAX, level: 50, moves: [PROTECT] }
+  enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 40
+  move_script: [1, 1, 1]
+  turns: 3
+  assert:
+    - wram('wPlayerProtectCount') == 0

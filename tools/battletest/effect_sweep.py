@@ -22,8 +22,8 @@ def _representatives():
         if match:
             effect, power, move = match.groups()
             effects.setdefault(effect, (move, int(power)))
-    if len(effects) != 197:
-        raise RuntimeError(f"expected 197 move effects, found {len(effects)}")
+    if len(effects) != 202:
+        raise RuntimeError(f"expected 202 move effects, found {len(effects)}")
     return effects
 
 
@@ -140,6 +140,10 @@ def _configure(effect, move, power):
         "EFFECT_SUPERPOWER": ["enemy.hp < enemy.start_hp", "player.stat_levels[0] == 6", "player.stat_levels[1] == 6"],
         "EFFECT_TOXIC_SPIKES": ["(enemy.screens & 32) != 0"],
         "EFFECT_TRICK_ROOM": ["wram('wTrickRoomTimer') != 0"],
+        "EFFECT_TORMENT": ["(enemy.substatus[1] & 2) != 0"],
+        "EFFECT_TAUNT": ["wram('wEnemyTauntCount') != 0"],
+        "EFFECT_YAWN": ["wram('wEnemyYawnCount') != 0"],
+        "EFFECT_STICKY_WEB": ["(enemy.screens & 2) != 0"],
     }
     assertions = special.get(effect, assertions)
 
@@ -153,6 +157,11 @@ def _configure(effect, move, power):
     # design on a neutral one-turn fixture.
     if effect in {"EFFECT_HEAL", "EFFECT_MOONLIGHT", "EFFECT_MORNING_SUN", "EFFECT_SYNTHESIS", "EFFECT_ROOST"}:
         test["player"]["hp"] = 40
+        assertions = ["player.hp > player.start_hp"]
+    elif effect == "EFFECT_WISH":
+        test["player"]["hp"] = 40
+        test["turns"] = 2
+        test["move_script"] = [1, 1]
         assertions = ["player.hp > player.start_hp"]
     elif effect == "EFFECT_DREAM_EATER":
         test["player"]["hp"] = 40

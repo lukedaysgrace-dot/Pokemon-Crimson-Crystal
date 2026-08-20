@@ -453,6 +453,11 @@ BattleAnimations::
 	banim BattleAnim_Bounce_CC ; BOUNCE
 	banim BattleAnim_DragonTail_CC ; DRAGON_TAIL
 	banim BattleAnim_LuminaCrash_CC ; LUMINA_CRASH
+	banim BattleAnim_Swagger_PC3 ; TORMENT (reused animation)
+	banim BattleAnim_Swagger_PC3 ; TAUNT (reused animation)
+	banim BattleAnim_SweetKiss_PC3 ; YAWN (reused animation)
+	banim BattleAnim_MorningSun ; WISH (reused animation)
+	banim BattleAnim_SpiderWeb ; STICKY_WEB (reused animation)
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown

@@ -1,0 +1,249 @@
+# New status/hazard moves (2026-08): Torment, Taunt, Yawn, Wish,
+# Sticky Web, multi-layer Spikes. Magic Coat was deliberately not added.
+
+# ---- Torment ---------------------------------------------------------------
+
+- name: "Torment: enemy alternates moves instead of repeating"
+  # Rattata moves first each turn. T1 it Tackles, then Slowbro Torments it.
+  # T2 the pick re-picks away from Tackle (Splash); T3 Tackle is legal again.
+  player: { species: SLOWBRO, level: 50, moves: [TORMENT] }
+  enemy:  { species: RATTATA, level: 50, moves: [TACKLE, SPLASH] }
+  rng: forced_low
+  turns: 3
+  assert:
+    - wram('wEnemySubStatus2') & 2 != 0
+    - enemy.pp[0] == 33   # Tackle used on turns 1 and 3
+    - enemy.pp[1] == 39   # Splash forced on turn 2
+
+- name: "Torment: the player cannot repeat its move"
+  # Tauros Tackles turn 1, then gets Tormented. The scripted turn-2 Tackle
+  # is refused at action time, so Grimer only ever takes one hit.
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [TACKLE] }
+  enemy:  { species: GRIMER, level: 50, moves: [TORMENT] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - wram('wPlayerSubStatus2') & 2 != 0
+    - player.pp[0] == 34  # only the turn-1 Tackle spent PP
+
+# ---- Taunt -----------------------------------------------------------------
+
+- name: "Taunt: blocks the player's status moves while active"
+  # Splash works on turn 1, is refused on turn 2 (taunted), and Tackle is
+  # still fine on turn 3.
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH, TACKLE] }
+  enemy:  { species: GRIMER, level: 50, moves: [TAUNT] }
+  rng: forced_high
+  move_script: [1, 1, 2]
+  turns: 3
+  assert:
+    - wram('wPlayerTauntCount') == 1
+    - player.pp[0] == 39      # turn-2 Splash was refused, no PP spent
+    - enemy.hp < enemy.maxhp  # turn-3 Tackle connected
+
+- name: "Taunt: wears off after exactly 3 taunted turns"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH, TACKLE] }
+  enemy:  { species: GRIMER, level: 50, moves: [TAUNT] }
+  rng: forced_high
+  move_script: [1, 2, 2, 2]
+  turns: 4
+  assert:
+    - wram('wPlayerTauntCount') == 0
+
+- name: "Taunt: a taunted AI swaps its status pick for a damaging move"
+  # Rattata is faster: T1 it Toxics Slowbro, then gets Taunted. T2 the
+  # forced pick lands on slot 1 (Toxic) and the lock handler swaps it to
+  # Tackle.
+  player: { species: SLOWBRO, level: 50, moves: [TAUNT] }
+  enemy:  { species: RATTATA, level: 50, moves: [TOXIC, TACKLE] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - wram('wEnemyTauntCount') == 2
+    - enemy_move() == 'TACKLE'
+
+# ---- Yawn ------------------------------------------------------------------
+
+- name: "Yawn: target is drowsy, not asleep, after one turn"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [YAWN] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status == 0
+    - wram('wPlayerYawnCount') == 1
+
+- name: "Yawn: target falls asleep at the end of the following turn"
+  # forced_high's swap&3 roll gives a 3-turn sleep counter (same roll as
+  # the sleep move effect).
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [YAWN] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.status & 7 == 3
+    - wram('wPlayerYawnCount') == 0
+
+- name: "Yawn: fails against a mon that already has a status"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, status_byte: 64, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [YAWN] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerYawnCount') == 0
+    - player.status == 64
+
+- name: "Yawn: Insomnia blocks the drowsiness up front"
+  player: { species: HOOTHOOT, level: 50, ability: INSOMNIA, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [YAWN] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerYawnCount') == 0
+
+- name: "Yawn: switching out shrugs the drowsiness off"
+  # Tauros is drowsy (count 1) after turn 1. If the switch did NOT clear
+  # it, Miltank would fall asleep at the end of turn 2. Instead the switch
+  # resets it and Rattata's turn-2 Yawn merely makes Miltank freshly
+  # drowsy (count 1 after the end-of-turn tick).
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: RATTATA, level: 50, moves: [YAWN] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.status == 0
+    - wram('wPlayerYawnCount') == 1
+
+# ---- Wish ------------------------------------------------------------------
+
+- name: "Wish: heals half the user's max HP at the end of the next turn"
+  player: { species: SLOWBRO, level: 50, hp: 40, moves: [WISH, SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - player.hp == player.start_hp + player.maxhp // 2
+    - wram('wPlayerWishCount') == 0
+
+- name: "Wish: has not resolved after only one turn"
+  player: { species: SLOWBRO, level: 50, hp: 40, moves: [WISH, SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - wram('wPlayerWishCount') == 1
+
+- name: "Wish: passes to the mon that switches into the slot"
+  # Slowbro wishes, Miltank (at 20%) switches in and receives the heal.
+  player:  { species: SLOWBRO, level: 50, moves: [WISH] }
+  player2: { species: MILTANK, level: 50, hp: 20, moves: [SPLASH] }
+  enemy:   { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.hp > player.maxhp // 2
+    - wram('wPlayerWishCount') == 0
+
+- name: "Wish: fails while another Wish is pending"
+  player: { species: SLOWBRO, level: 50, hp: 40, moves: [WISH] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    # the turn-2 Wish failed, so only one heal is ever queued; the pending
+    # wish resolved at the end of turn 2
+    - player.hp == player.start_hp + player.maxhp // 2
+
+# ---- Sticky Web ------------------------------------------------------------
+
+- name: "Sticky Web: lands on the opposing side"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  enemy:  { species: GRIMER, level: 50, moves: [STICKY_WEB] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerScreens') & 2 != 0
+
+- name: "Sticky Web: lowers the Speed of a grounded switch-in"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [STICKY_WEB] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.stat_levels[2] == 6
+
+- name: "Sticky Web: a Flying-type switch-in is unaffected"
+  player:  { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: FEAROW, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER, level: 50, moves: [STICKY_WEB] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.stat_levels[2] == 7
+
+- name: "Sticky Web: Rapid Spin clears it"
+  # Slowpoke is slower than Grimer: the web lands first, then the same
+  # turn's Rapid Spin clears it.
+  player: { species: SLOWPOKE, level: 50, moves: [RAPID_SPIN] }
+  enemy:  { species: GRIMER, level: 50, moves: [STICKY_WEB] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerScreens') & 2 == 0
+
+# ---- Spikes layers ---------------------------------------------------------
+
+- name: "Spikes: stack to exactly three layers"
+  player: { species: SLOWBRO, level: 50, moves: [SPIKES] }
+  enemy:  { species: RATTATA, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  move_script: [1, 1, 1, 1]
+  turns: 4
+  assert:
+    - wram('wEnemySpikesLayers') == 3
+
+- name: "Spikes: two layers deal 1/6 max HP on entry"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [SPIKES] }
+  rng: forced_high
+  move_script: [1, 1, "switch:2"]
+  turns: 3
+  assert:
+    # entry damage was taken at 2 layers; Grimer lays a third after the
+    # switch, so the counter reads 3 by assertion time
+    - wram('wPlayerSpikesLayers') == 3
+    - player.hp == player.maxhp - player.maxhp // 6
+
+- name: "Spikes: three layers deal 1/4 max HP on entry"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [SPIKES] }
+  rng: forced_high
+  move_script: [1, 1, 1, "switch:2"]
+  turns: 4
+  assert:
+    - wram('wPlayerSpikesLayers') == 3
+    - player.hp == player.maxhp - player.maxhp // 4
+
+- name: "Spikes: one layer still deals 1/8 max HP on entry"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: MILTANK, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [SPIKES] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    # entry damage was taken at 1 layer; Grimer lays a second afterwards
+    - wram('wPlayerSpikesLayers') == 2
+    - player.hp == player.maxhp - player.maxhp // 8
