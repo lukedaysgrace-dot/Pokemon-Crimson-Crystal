@@ -17,13 +17,13 @@ SlowpokeWellB1F_MapScripts:
 SlowpokeWellB1FKurtScript:
 	jumptextfaceplayer SlowpokeWellB1FKurtText
 
-TrainerGruntM29:
-	trainer GRUNTM, GRUNTM_29, EVENT_BEAT_ROCKET_GRUNTM_29, GruntM29SeenText, GruntM29BeatenText, 0, .Script
+TrainerGruntF15:
+	trainer GRUNTF, GRUNTF_15, EVENT_BEAT_ROCKET_GRUNTF_15, GruntF15SeenText, GruntF15BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM29AfterBattleText
+	writetext GruntF15AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -184,7 +184,7 @@ KurtLeaveSlowpokeWellText:
 	cont "of here."
 	done
 
-GruntM29SeenText:
+GruntF15SeenText:
 	text "Darn! I was stand-"
 	line "ing guard up top"
 
@@ -200,12 +200,12 @@ GruntM29SeenText:
 	cont "it out on you!"
 	done
 
-GruntM29BeatenText:
+GruntF15BeatenText:
 	text "Arrgh! This is NOT"
 	line "my day!"
 	done
 
-GruntM29AfterBattleText:
+GruntF15AfterBattleText:
 	text "Sure, we've been"
 	line "hacking the tails"
 
@@ -342,7 +342,7 @@ SlowpokeWellB1F_MapEvents:
 	db 0 ; bg events
 
 	db 9 ; object events
-	object_event 15,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	object_event 15,  7, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF15, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  5,  2, SPRITE_PROTON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerProton, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event 10,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
