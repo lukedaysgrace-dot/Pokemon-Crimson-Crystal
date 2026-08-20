@@ -38,11 +38,22 @@ BattleCommand_ClearHazards:
 	res SCREENS_SPIKES, [hl]
 	push hl
 	push de
+	call ClearUserSpikesLayers
 	ld hl, BlewSpikesText
 	call StdBattleTextbox
 	pop de
 	pop hl
 .no_spikes
+	bit SCREENS_STICKY_WEB, [hl]
+	jr z, .no_sticky_web
+	res SCREENS_STICKY_WEB, [hl]
+	push hl
+	push de
+	ld hl, BlewStickyWebText
+	call StdBattleTextbox
+	pop de
+	pop hl
+.no_sticky_web
 	bit SCREENS_STEALTH_ROCK, [hl]
 	jr z, .no_stealth_rock
 	res SCREENS_STEALTH_ROCK, [hl]
@@ -59,3 +70,17 @@ BattleCommand_ClearHazards:
 	ld [de], a
 	ld hl, ReleasedByText
 	jp StdBattleTextbox
+
+ClearUserSpikesLayers:
+; zero the spikes layer count on the user's side
+	push hl
+	ld hl, wPlayerSpikesLayers
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wEnemySpikesLayers
+.got_side
+	xor a
+	ld [hl], a
+	pop hl
+	ret

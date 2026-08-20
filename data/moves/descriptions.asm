@@ -419,6 +419,11 @@ MoveDescriptions1:
 	dw BounceDescription
 	dw DragonTailDescription
 	dw LuminaCrashDescription
+	dw TormentDescription
+	dw TauntDescription
+	dw YawnDescription
+	dw WishDescription
+	dw StickyWebDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2042,3 +2047,23 @@ DragonTailDescription:
 LuminaCrashDescription:
 	db   "Harsh light that"
 	next "cuts SP.DEF by 2.@"
+
+TormentDescription:
+	db   "Bars using the"
+	next "same move twice.@"
+
+TauntDescription:
+	db   "Goads the foe out"
+	next "of status moves.@"
+
+YawnDescription:
+	db   "Makes the foe fall"
+	next "asleep next turn.@"
+
+WishDescription:
+	db   "Heals the spot on"
+	next "the next turn.@"
+
+StickyWebDescription:
+	db   "Web that slows"
+	next "foes switching in.@"
