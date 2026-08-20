@@ -744,6 +744,7 @@ AI_HealStatus:
 	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
+	farcall ToxicClearEnemy_Core
 	farcall CalcEnemyStats
 	ret
 

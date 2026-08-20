@@ -1280,4 +1280,57 @@ FickleBeamAllOutText:
 	line "all out!"
 	prompt
 
+BattleText_UserSubjectedToTorment:
+	text "<USER> was"
+	line "subjected to"
+	cont "TORMENT!"
+	prompt
+
+BattleText_UserFellForTaunt:
+	text "<USER> fell for"
+	line "the TAUNT!"
+	prompt
+
+BattleText_CantUseAfterTaunt:
+	text "It can't use"
+	line "status moves"
+	cont "after the TAUNT!"
+	prompt
+
+BattleText_ShookOffTheTaunt:
+	text "<USER> shook off"
+	line "the TAUNT!"
+	prompt
+
+BattleText_UserGrewDrowsy:
+	text "<USER> grew"
+	line "drowsy!"
+	prompt
+
+BattleText_UserMadeAWish:
+	text "<USER> made"
+	line "a WISH!"
+	prompt
+
+BattleText_WishCameTrue:
+	text "The WISH came"
+	line "true!"
+	prompt
+
+BattleText_StickyWebSpread:
+	text "A STICKY WEB"
+	line "spreads out under"
+	cont "<TARGET>!"
+	prompt
+
+BattleText_CaughtInStickyWeb:
+	text "<USER> was caught"
+	line "in a STICKY WEB!"
+	prompt
+
+BlewStickyWebText:
+	text "<USER> blew away"
+	line "STICKY WEB!"
+	prompt
+
 INCLUDE "data/text/ability_text.asm"

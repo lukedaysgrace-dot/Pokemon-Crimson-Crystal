@@ -185,6 +185,8 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus2 or wEnemySubStatus2 bit flags
 SUBSTATUS_CURLED EQU 0
+SUBSTATUS_TORMENTED EQU 1 ; can't use the same move twice in a row
+; (Taunt needs no bit: wPlayerTauntCount / wEnemyTauntCount nonzero = taunted)
 ; bit 7 is free (was SUBSTATUS_FLASH_FIRE before Flash Fire became a
 ; Storm Drain-style Sp. Atk absorb)
 
@@ -226,13 +228,15 @@ SUBSTATUS_CURLED EQU 0
 	enum SCREENS_REFLECT
 	enum SCREENS_LIGHT_SCREEN
 	enum SCREENS_SAFEGUARD
-	enum SCREENS_UNUSED
+	enum SCREENS_STICKY_WEB ; was SCREENS_UNUSED
 	enum SCREENS_SPIKES
 SCREENS_TOXIC_SPIKES_1 EQU 5
 SCREENS_TOXIC_SPIKES_2 EQU 6
 SCREENS_TOXIC_SPIKES_MASK EQU (1 << SCREENS_TOXIC_SPIKES_1) | (1 << SCREENS_TOXIC_SPIKES_2)
 SCREENS_STEALTH_ROCK EQU 7
-SCREENS_HAZARDS_MASK EQU (1 << SCREENS_SPIKES) | SCREENS_TOXIC_SPIKES_MASK | (1 << SCREENS_STEALTH_ROCK)
+SCREENS_HAZARDS_MASK EQU (1 << SCREENS_SPIKES) | SCREENS_TOXIC_SPIKES_MASK | (1 << SCREENS_STEALTH_ROCK) | (1 << SCREENS_STICKY_WEB)
+; Spikes layer counts (1-3) live in wPlayerSpikesLayers / wEnemySpikesLayers;
+; SCREENS_SPIKES stays set as the "any spikes present" boolean.
 
 ; values in wBattleWeather
 	const_def

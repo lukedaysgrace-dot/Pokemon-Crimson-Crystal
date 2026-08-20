@@ -505,12 +505,16 @@ BattleDefog_Core:
 .clear_hazards
 	ld a, [hl]
 	ld d, a
-	and 1 << SCREENS_SPIKES | 1 << SCREENS_STEALTH_ROCK | SCREENS_TOXIC_SPIKES_MASK
+	and SCREENS_HAZARDS_MASK ; spikes, toxic spikes, stealth rock, sticky web
 	ret z
 	ld e, 1
 	ld a, d
-	and (1 << SCREENS_SPIKES | 1 << SCREENS_STEALTH_ROCK | SCREENS_TOXIC_SPIKES_MASK) ^ $ff
+	and SCREENS_HAZARDS_MASK ^ $ff
 	ld [hl], a
+	; both sides' hazards are being cleared; drop the spikes layer counts
+	xor a
+	ld [wPlayerSpikesLayers], a
+	ld [wEnemySpikesLayers], a
 	ret
 
 BattleGlaiveRush_Core:
@@ -1576,6 +1580,7 @@ HandleStatusOrbs_Core:
 .got_toxic_count
 	xor a
 	ld [hl], a
+	call ToxicMarkUser_Core
 	call UpdateUserInParty
 	ld de, ANIM_PSN
 	call .OrbAnim
@@ -2832,3 +2837,134 @@ EnemyAttackDamage_Core:
 	ld a, 1
 	and a
 	ret
+
+; ==== Toxic slot tracking (modern badly-poison persistence) ==============
+; Badly-poisoned state persists across switches (Gen 5+). One bit per party
+; slot, set when Toxic is applied, cleared when poison is cured, restored
+; (with a reset counter) when the mon re-enters. See wPlayerToxicSlots.
+
+ToxicMarkUser_Core::
+; Set the toxic slot bit for the side currently taking its turn.
+	ldh a, [hBattleTurn]
+	and a
+	jr z, ToxicMarkPlayer_Core
+	jr ToxicMarkEnemy_Core
+
+ToxicMarkOpp_Core::
+; Set the toxic slot bit for the opponent of the side taking its turn.
+	ldh a, [hBattleTurn]
+	and a
+	jr z, ToxicMarkEnemy_Core
+	; fallthrough
+
+ToxicMarkPlayer_Core::
+	ld a, [wCurBattleMon]
+	call ToxicSlotMask
+	ld hl, wPlayerToxicSlots
+	or [hl]
+	ld [hl], a
+	ret
+
+ToxicMarkEnemy_Core::
+	ld a, [wCurOTMon]
+	call ToxicSlotMask
+	ld hl, wEnemyToxicSlots
+	or [hl]
+	ld [hl], a
+	ret
+
+ToxicClearUser_Core::
+; Clear the toxic slot bit for the side currently taking its turn.
+	ldh a, [hBattleTurn]
+	and a
+	jr z, ToxicClearPlayer_Core
+	jr ToxicClearEnemy_Core
+
+ToxicClearOpp_Core::
+; Clear the toxic slot bit for the opponent of the side taking its turn.
+	ldh a, [hBattleTurn]
+	and a
+	jr z, ToxicClearEnemy_Core
+	; fallthrough
+
+ToxicClearPlayer_Core::
+	ld a, [wCurBattleMon]
+	call ToxicSlotMask
+	cpl
+	ld hl, wPlayerToxicSlots
+	and [hl]
+	ld [hl], a
+	ret
+
+ToxicClearEnemy_Core::
+	ld a, [wCurOTMon]
+	call ToxicSlotMask
+	cpl
+	ld hl, wEnemyToxicSlots
+	and [hl]
+	ld [hl], a
+	ret
+
+ToxicSlotMask:
+; a = party slot (0-5) -> a = 1 << slot
+	push bc
+	ld b, a
+	ld a, 1
+	inc b
+	jr .start
+.shift
+	add a
+.start
+	dec b
+	jr nz, .shift
+	pop bc
+	ret
+
+ToxicRestorePlayer_Core::
+; Called at the tail of NewBattleMonStatus, after the substatus wipe, with
+; the incoming mon's data already in wBattleMon and wCurBattleMon updated.
+; Also resets the per-mon Taunt and Yawn state for the incoming mon
+; (Wish is per-side and deliberately NOT touched).
+	xor a
+	ld [wPlayerTauntCount], a
+	ld [wPlayerYawnCount], a
+; If this slot was badly poisoned and is still poisoned, restore
+; SUBSTATUS_TOXIC and restart the toxic counter (canon: the counter
+; resets on switching). If the poison was cured while benched, drop the
+; stale slot bit instead.
+	ld a, [wCurBattleMon]
+	call ToxicSlotMask
+	ld hl, wPlayerToxicSlots
+	and [hl]
+	ret z ; slot was never badly poisoned
+	ld a, [wBattleMonStatus]
+	bit PSN, a
+	jr z, .stale
+	ld hl, wPlayerSubStatus5
+	set SUBSTATUS_TOXIC, [hl]
+	xor a
+	ld [wPlayerToxicCount], a
+	ret
+.stale
+	jr ToxicClearPlayer_Core
+
+ToxicRestoreEnemy_Core::
+; Enemy-side mirror of ToxicRestorePlayer_Core.
+	xor a
+	ld [wEnemyTauntCount], a
+	ld [wEnemyYawnCount], a
+	ld a, [wCurOTMon]
+	call ToxicSlotMask
+	ld hl, wEnemyToxicSlots
+	and [hl]
+	ret z
+	ld a, [wEnemyMonStatus]
+	bit PSN, a
+	jr z, .stale
+	ld hl, wEnemySubStatus5
+	set SUBSTATUS_TOXIC, [hl]
+	xor a
+	ld [wEnemyToxicCount], a
+	ret
+.stale
+	jr ToxicClearEnemy_Core
