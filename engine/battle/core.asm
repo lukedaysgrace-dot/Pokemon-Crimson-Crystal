@@ -326,6 +326,8 @@ HandleBetweenTurnEffects:
 	ret c
 	call HandleLeftovers
 	call HandleMysteryberry
+	; Wish resolution, Taunt wear-off and Yawn drowsiness
+	farcall HandleNewEndTurnEffects_Core
 	; Frostbite no longer self-thaws; it persists like burn until cured.
 	farcall HandleTrickRoom
 	farcall HandleRoost
@@ -2003,7 +2005,7 @@ GetQuarterMaxHP::
 .end
 	ret
 
-GetHalfMaxHP:
+GetHalfMaxHP::
 ; output: bc
 	call GetMaxHP
 
@@ -3784,6 +3786,8 @@ endr
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
 	ld [wEnemyFirstImpressionFresh], a
+	; badly-poisoned persists across switches (counter resets)
+	farcall ToxicRestoreEnemy_Core
 	ret
 
 ResetEnemyStatLevels:
@@ -4325,6 +4329,8 @@ endr
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
 	ld [wPlayerFirstImpressionFresh], a
+	; badly-poisoned persists across switches (counter resets)
+	farcall ToxicRestorePlayer_Core
 	ret
 
 BreakAttraction:
@@ -4377,7 +4383,8 @@ SpikesDamage:
 	ld hl, BattleText_UserHurtBySpikes ; "hurt by SPIKES!"
 	call StdBattleTextbox
 
-	call GetEighthMaxHP
+	; 1/8, 1/6 or 1/4 max HP depending on the number of layers
+	farcall SpikesLayerDamage_Core
 	call SubtractHPFromTarget
 
 	pop hl
@@ -4504,7 +4511,7 @@ HandleHealingItems:
 	call UseHeldStatusHealingItem
 	jp UseConfusionHealingItem
 
-HandleHPHealingItem:
+HandleHPHealingItem::
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_BERRY
@@ -4621,6 +4628,7 @@ UseHeldStatusHealingItem:
 	call GetBattleVarAddr
 	and [hl]
 	res SUBSTATUS_TOXIC, [hl]
+	farcall ToxicClearOpp_Core
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarAddr
 	and [hl]
@@ -5800,8 +5808,9 @@ MoveSelectionScreen:
 	add hl, bc
 	ld a, [hl]
 	ld b, a
-	callfar CheckPlayerAssaultVestMove_Core
-	jr c, .assault_vest_blocked
+	; Assault Vest, Taunt and Torment selection blocks (hl = text on carry)
+	callfar CheckPlayerMoveRestrictions_Core
+	jr c, .selection_blocked
 	callfar CheckPlayerChoiceLock_Core
 	jr c, .choice_locked
 	ld a, [wPlayerGigaHammerLock]
@@ -5819,8 +5828,8 @@ MoveSelectionScreen:
 	ld hl, BattleText_MoveCantBeUsedTwice
 	jr .place_textbox_start_over
 
-.assault_vest_blocked
-	ld hl, BattleText_AssaultVestPreventsMove
+.selection_blocked
+	; hl already holds the reason text
 	jr .place_textbox_start_over
 
 .choice_locked
@@ -6017,6 +6026,9 @@ CheckPlayerHasUsableMoves:
 	ld hl, STRUGGLE
 	call GetMoveIDFromIndex
 	ld [wCurPlayerMove], a
+	; Taunt/Torment can forbid everything that still has PP
+	farcall PlayerMustStruggleExtra_Core
+	jr c, .force_struggle
 	ld a, [wPlayerDisableCount]
 	and a
 	ld hl, wBattleMonPP
@@ -6895,9 +6907,7 @@ ApplyPrzEffectOnSpeed:
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	srl a
-	rr b
-	srl a
+	srl a ; modern paralysis: halve speed, not quarter
 	rr b
 	ld [hli], a
 	or b
@@ -6916,9 +6926,7 @@ ApplyPrzEffectOnSpeed:
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
-	srl a
-	rr b
-	srl a
+	srl a ; modern paralysis: halve speed, not quarter
 	rr b
 	ld [hli], a
 	or b

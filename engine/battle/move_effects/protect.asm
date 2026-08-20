@@ -26,30 +26,26 @@ ProtectChance:
 	call CheckOpponentWentFirst
 	jr nz, .failed
 
-; Can't have a substitute.
+; Protect works fine behind the user's own Substitute (the old bail here
+; was not a real rule).
 
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
-	jr nz, .failed
+; Modern rule: each consecutive use divides the success chance by 3
+; (1/3, 1/9, 1/27, ...), not by 2.
 
-; Halve the chance of a successful Protect for each consecutive use.
-
-	ld b, $ff
 	ld a, [de]
+	cp .SuccessChancesEnd - .SuccessChances
+	jr c, .got_index
+	ld a, .SuccessChancesEnd - .SuccessChances - 1
+.got_index
+	push hl
+	ld hl, .SuccessChances
+	push bc
 	ld c, a
-.loop
-	ld a, c
-	and a
-	jr z, .done
-	dec c
-
-	srl b
-	ld a, b
-	and a
-	jr nz, .loop
-	jr .failed
-.done
+	ld b, 0
+	add hl, bc
+	pop bc
+	ld b, [hl]
+	pop hl
 
 .rand
 	call BattleRandom
@@ -76,6 +72,16 @@ ProtectChance:
 	call PrintButItFailed
 	scf
 	ret
+
+.SuccessChances:
+; roll is `(BattleRandom nonzero) - 1 < value`, so value/255
+	db 255 ; 1st use   ~100%
+	db  85 ; 2nd use    1/3
+	db  28 ; 3rd use    1/9
+	db   9 ; 4th use    1/27
+	db   3 ; 5th use    1/81
+	db   1 ; 6th+       1/243
+.SuccessChancesEnd
 
 ClearBunkerFlag:
 ; clear the current user's Baneful Bunker bit
