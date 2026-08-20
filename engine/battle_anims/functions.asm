@@ -118,6 +118,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_Wrap ; 66
 	dw BattleAnimFunction_SolarBeam ; 67
 	dw BattleAnimFunction_BetaPursuit ; 68
+	dw BattleAnimFunction_ObjectHover ; 69 (ported from pokeorange; Wish)
 
 BattleAnimFunction_Stat:
 ; Stat up/down bars (ported from Polished Crystal).
@@ -5139,3 +5140,68 @@ rept 4
 endr
 	ret
 
+BattleAnimFunction_ObjectHover:
+; Ported from pokeorange (Wish stars): the object climbs slowly (16-bit
+; fixed-point y step of -0.5px/frame) until YOFFSET reaches -1, then bobs
+; in place. pokeorange's third stage (step to target) is unreachable from
+; this flow and was not ported.
+	call BattleAnim_AnonJumptable
+
+	dw .zero
+	dw .one
+	dw .two
+
+.zero
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld a, [hl]
+	cp -1
+	jr nz, .not_done_climbing
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], 2
+	ret
+
+.not_done_climbing
+	ld d, a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld e, [hl]
+	ld hl, -$80
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], d
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], e
+	ret
+
+.one
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .delay_done
+	dec [hl]
+	ret
+
+.delay_done
+	ld [hl], 4
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hl]
+	cpl
+	inc a
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	ret
+
+.two
+	ret
