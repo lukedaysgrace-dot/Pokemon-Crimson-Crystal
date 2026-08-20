@@ -6057,20 +6057,7 @@ PicnickerGroup:
 	dw MEOWTH
 	db -1 ; end
 
-	next_list_item ; PICNICKER (3) BROOKE - Route 35
-	db "BROOKE@", TRAINERTYPE_MOVES
-	db 18
-	dw CLEFAIRY
-	dw DRAINING_KISS, DISARMING_VOICE, POUND, ENCORE
-	db -1 ; end
-
-	next_list_item ; PICNICKER (4) KIM - Route 35
-	db "KIM@", TRAINERTYPE_NORMAL
-	db 18
-	dw MARILL
-	db -1 ; end
-
-	next_list_item ; PICNICKER (5) CINDY - not placed on any map
+	next_list_item ; PICNICKER (3) CINDY - not placed on any map
 	db "CINDY@", TRAINERTYPE_NORMAL
 	db 52
 	dw FORRETRESS
@@ -6078,37 +6065,7 @@ PicnickerGroup:
 	dw YANMEGA
 	db -1 ; end
 
-	next_list_item ; PICNICKER (6) HOPE - Route 4
-	db "HOPE@", TRAINERTYPE_MOVES
-	db 59
-	dw GOROTORA
-	dw EXTREMESPEED, THUNDERBOLT, EARTHQUAKE, QUICK_ATTACK
-	db 61
-	dw GARDEVOIR
-	dw MOONBLAST, PSYCHIC_M, FOCUS_BLAST, DAZZLING_GLEAM
-	db -1 ; end
-
-	next_list_item ; PICNICKER (7) SHARON - Route 4
-	db "SHARON@", TRAINERTYPE_MOVES
-	db 58
-	dw ARIADOS
-	dw MEGAHORN, POISON_JAB, NIGHT_SLASH, SHADOW_SNEAK
-	db 61
-	dw KINGLER
-	dw LIQUIDATION, X_SCISSOR, STRENGTH, METAL_CLAW
-	db -1 ; end
-
-	next_list_item ; PICNICKER (8) DEBRA - Fast Ship B1F
-	db "DEBRA@", TRAINERTYPE_MOVES
-	db 56
-	dw DRUNSPARCE
-	dw BODY_SLAM, FOUL_PLAY, CROSS_POISON, ROOST
-	db 58
-	dw PORYGON_Z
-	dw TRI_ATTACK, THUNDERBOLT, PSYCHIC_M, RECOVER
-	db -1 ; end
-
-	next_list_item ; PICNICKER (9) GINA2 - Route 34
+	next_list_item ; PICNICKER (4) GINA2 - Route 34
 	db "GINA@", TRAINERTYPE_NORMAL
 	db 25
 	dw AIPOM
@@ -6118,7 +6075,7 @@ PicnickerGroup:
 	dw QUAGSIRE
 	db -1 ; end
 
-	next_list_item ; PICNICKER (10) ERIN1 - Route 46
+	next_list_item ; PICNICKER (5) ERIN1 - Route 46
 	db "ERIN@", TRAINERTYPE_NORMAL
 	db 38
 	dw AMBIPOM
@@ -6130,7 +6087,7 @@ PicnickerGroup:
 	dw DODRIO
 	db -1 ; end
 
-	next_list_item ; PICNICKER (11) LIZ2 - Route 32
+	next_list_item ; PICNICKER (6) LIZ2 - Route 32
 	db "LIZ@", TRAINERTYPE_NORMAL
 	db 19
 	dw SLOWPOKE
@@ -6138,7 +6095,7 @@ PicnickerGroup:
 	dw TOGETIC
 	db -1 ; end
 
-	next_list_item ; PICNICKER (12) LIZ3 - Route 32
+	next_list_item ; PICNICKER (7) LIZ3 - Route 32
 	db "LIZ@", TRAINERTYPE_NORMAL
 	db 24
 	dw STARYU
@@ -6148,27 +6105,7 @@ PicnickerGroup:
 	dw REMORAID
 	db -1 ; end
 
-	next_list_item ; PICNICKER (13) HEIDI - Route 9
-	db "HEIDI@", TRAINERTYPE_MOVES
-	db 56
-	dw LOPUNNY
-	dw MEGA_KICK, HI_JUMP_KICK, QUICK_ATTACK, BRICK_BREAK
-	db 58
-	dw SNORLAX
-	dw BODY_SLAM, EARTHQUAKE, HAMMER_ARM, SLACK_OFF
-	db -1 ; end
-
-	next_list_item ; PICNICKER (14) EDNA - Route 9
-	db "EDNA@", TRAINERTYPE_MOVES
-	db 56
-	dw LOPUNNY
-	dw MEGA_KICK, HI_JUMP_KICK, QUICK_ATTACK, BRICK_BREAK
-	db 56
-	dw DRUNSPARCE
-	dw BODY_SLAM, FOUL_PLAY, HURRICANE, ROOST
-	db -1 ; end
-
-	next_list_item ; PICNICKER (15) GINA3 - Route 34
+	next_list_item ; PICNICKER (8) GINA3 - Route 34
 	db "GINA@", TRAINERTYPE_NORMAL
 	db 30
 	dw RATICATE_ALOLAN
@@ -6178,7 +6115,7 @@ PicnickerGroup:
 	dw SUNFLORA
 	db -1 ; end
 
-	next_list_item ; PICNICKER (16) TIFFANY1 - Route 43
+	next_list_item ; PICNICKER (9) TIFFANY1 - Route 43
 	db "TIFFANY@", TRAINERTYPE_MOVES
 	db 34
 	dw CHANSEY
@@ -6188,14 +6125,14 @@ PicnickerGroup:
 	dw PETAL_DANCE, MOONBLAST, EARTH_POWER, TOXIC
 	db -1 ; end
 
-	next_list_item ; PICNICKER (17) TIFFANY2 - Route 43
+	next_list_item ; PICNICKER (10) TIFFANY2 - Route 43
 	db "TIFFANY@", TRAINERTYPE_MOVES
 	db 32
 	dw JUMPLUFF
 	dw AIR_SLASH, GIGA_DRAIN, MEGA_DRAIN, SLEEP_POWDER
 	db -1 ; end
 
-	next_list_item ; PICNICKER (18) ERIN2 - Route 46
+	next_list_item ; PICNICKER (11) ERIN2 - Route 46
 	db "ERIN@", TRAINERTYPE_NORMAL
 	db 38
 	dw DUNSPARCE
@@ -6207,27 +6144,14 @@ PicnickerGroup:
 	dw FURRET
 	db -1 ; end
 
-	next_list_item ; PICNICKER (19) TANYA - Celadon Gym
-	db "TANYA@", TRAINERTYPE_MOVES
-	db 57
-	dw VILEPLUME
-	dw LEAF_STORM, SLUDGE_BOMB, EARTH_POWER, GROWTH
-	db 57
-	dw JUMPLUFF
-	dw LEAF_STORM, AIR_SLASH, SYNTHESIS, U_TURN
-	db 57
-	dw TANGROWTH
-	dw POWER_WHIP, ANCIENTPOWER, GROWTH, SLAM
-	db -1 ; end
-
-	next_list_item ; PICNICKER (20) TIFFANY3 - Route 43
+	next_list_item ; PICNICKER (12) TIFFANY3 - Route 43
 	db "TIFFANY@", TRAINERTYPE_MOVES
 	db 33
 	dw RATICATE_ALOLAN
 	dw CRUNCH, TAKE_DOWN, HYPER_FANG, SWORDS_DANCE
 	db -1 ; end
 
-	next_list_item ; PICNICKER (21) ERIN3 - Route 46
+	next_list_item ; PICNICKER (13) ERIN3 - Route 46
 	db "ERIN@", TRAINERTYPE_MOVES
 	db 36
 	dw LICKITUNG
@@ -6243,7 +6167,7 @@ PicnickerGroup:
 	dw MEGA_KICK, BRICK_BREAK, DIZZY_PUNCH, AGILITY
 	db -1 ; end
 
-	next_list_item ; PICNICKER (22) LIZ4 - Route 32
+	next_list_item ; PICNICKER (14) LIZ4 - Route 32
 	db "LIZ@", TRAINERTYPE_NORMAL
 	db 29
 	dw SNUBBULL
@@ -6253,7 +6177,7 @@ PicnickerGroup:
 	dw OCTILLERY
 	db -1 ; end
 
-	next_list_item ; PICNICKER (23) LIZ5 - Route 32
+	next_list_item ; PICNICKER (15) LIZ5 - Route 32
 	db "LIZ@", TRAINERTYPE_MOVES
 	db 45
 	dw BELLOSSOM
@@ -6266,7 +6190,7 @@ PicnickerGroup:
 	dw CLOSE_COMBAT, DOUBLE_EDGE, U_TURN, QUIVER_DANCE
 	db -1 ; end
 
-	next_list_item ; PICNICKER (24) GINA4 - Route 34
+	next_list_item ; PICNICKER (16) GINA4 - Route 34
 	db "GINA@", TRAINERTYPE_NORMAL
 	db 40
 	dw MILTANK
@@ -6276,7 +6200,7 @@ PicnickerGroup:
 	dw KANGASKHAN
 	db -1 ; end
 
-	next_list_item ; PICNICKER (25) GINA5 - Route 34
+	next_list_item ; PICNICKER (17) GINA5 - Route 34
 	db "GINA@", TRAINERTYPE_MOVES
 	db 47
 	dw GRANBULL
@@ -6289,7 +6213,7 @@ PicnickerGroup:
 	dw HYDRO_PUMP, BUBBLEBEAM, EARTH_POWER, BELLY_DRUM
 	db -1 ; end
 
-	next_list_item ; PICNICKER (26) TIFFANY4 - Route 43
+	next_list_item ; PICNICKER (18) TIFFANY4 - Route 43
 	db "TIFFANY@", TRAINERTYPE_MOVES
 	db 48
 	dw BELLOSSOM
@@ -6299,11 +6223,90 @@ PicnickerGroup:
 	dw BODY_SLAM, HEADBUTT, PLAY_ROUGH, MILK_DRINK
 	db -1 ; end
 
-	next_list_item ; PICNICKER (22) NADIA - Route 25 (Nugget Bridge 3)
+	end_list_items
+
+AromaLadyGroup:
+	next_list_item ; AROMA_LADY (1) BROOKE - Route 35
+	db "BROOKE@", TRAINERTYPE_MOVES
+	db 18
+	dw BELLSPROUT
+	dw VINE_WHIP, SLEEP_POWDER, ACID, GROWTH
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (2) KIM - Route 35
+	db "KIM@", TRAINERTYPE_NORMAL
+	db 18
+	dw ODDISH
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (3) HOPE - Route 4
+	db "HOPE@", TRAINERTYPE_MOVES
+	db 59
+	dw LEAFEON
+	dw LEAF_BLADE, X_SCISSOR, SWORDS_DANCE, QUICK_ATTACK
+	db 61
+	dw VENUSAUR
+	dw PETAL_DANCE, SLUDGE_BOMB, EARTHQUAKE, SYNTHESIS
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (4) SHARON - Route 4
+	db "SHARON@", TRAINERTYPE_MOVES
+	db 58
+	dw BRELOOM
+	dw SEED_BOMB, MACH_PUNCH, SPORE, SWORDS_DANCE
+	db 61
+	dw ABOMASNOW
+	dw WOOD_HAMMER, ICE_BEAM, EARTHQUAKE, LIGHT_SCREEN
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (5) DEBRA - Fast Ship B1F
+	db "DEBRA@", TRAINERTYPE_MOVES
+	db 56
+	dw LUDICOLO
+	dw GIGA_DRAIN, HYDRO_PUMP, ICE_BEAM, RAIN_DANCE
+	db 58
+	dw MEGANIUM
+	dw PETAL_DANCE, BODY_SLAM, SYNTHESIS, LIGHT_SCREEN
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (6) HEIDI - Route 9
+	db "HEIDI@", TRAINERTYPE_MOVES
+	db 56
+	dw SUNFLORA
+	dw SOLARBEAM, SUNNY_DAY, EARTH_POWER, GIGA_DRAIN
+	db 58
+	dw VICTREEBEL
+	dw LEAF_BLADE, SLUDGE_BOMB, SLEEP_POWDER, GROWTH
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (7) EDNA - Route 9
+	db "EDNA@", TRAINERTYPE_MOVES
+	db 56
+	dw JUMPLUFF
+	dw GIGA_DRAIN, AIR_SLASH, SLEEP_POWDER, U_TURN
+	db 56
+	dw BELLOSSOM
+	dw PETAL_DANCE, MOONBLAST, SUNNY_DAY, MOONLIGHT
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (8) TANYA - Celadon Gym
+	db "TANYA@", TRAINERTYPE_MOVES
+	db 57
+	dw VILEPLUME
+	dw LEAF_STORM, SLUDGE_BOMB, EARTH_POWER, GROWTH
+	db 57
+	dw JUMPLUFF
+	dw LEAF_STORM, AIR_SLASH, SYNTHESIS, U_TURN
+	db 57
+	dw TANGROWTH
+	dw POWER_WHIP, ANCIENTPOWER, GROWTH, SLAM
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (9) NADIA - Route 25 (Nugget Bridge 3)
 	db "NADIA@", TRAINERTYPE_MOVES
 	db 58
-	dw FLYGON
-	dw MEGAHORN, DRAGON_PULSE, EARTHQUAKE, ROCK_SLIDE
+	dw EXEGGUTOR
+	dw PSYCHIC_M, WOOD_HAMMER, SLEEP_POWDER, LIGHT_SCREEN
 	db 59
 	dw BELLOSSOM
 	dw LEAF_STORM, MOONBLAST, EARTH_POWER, MOONLIGHT

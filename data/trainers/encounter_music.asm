@@ -88,3 +88,4 @@ TrainerEncounterMusic::
 	db MUSIC_LASS_ENCOUNTER        ; battle_girl
 	db MUSIC_HIKER_ENCOUNTER       ; tamer
 	db MUSIC_ROCKET_ENCOUNTER      ; thug
+	db MUSIC_LASS_ENCOUNTER        ; aroma_lady
