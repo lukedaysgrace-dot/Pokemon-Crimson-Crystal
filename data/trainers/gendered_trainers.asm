@@ -42,4 +42,5 @@ FemaleTrainers:
 	db COOLTRAINERF
 	db COSPLAYER
 	db BATTLE_GIRL
+	db AROMA_LADY
 .End

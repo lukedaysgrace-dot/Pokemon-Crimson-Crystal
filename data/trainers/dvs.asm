@@ -86,3 +86,4 @@ TrainerClassDVs:
 	dn  9,  8,  8,  8 ; BATTLE_GIRL
 	dn  9,  8,  8,  8 ; TAMER
 	dn  9,  8,  8,  8 ; THUG
+	dn  6, 10, 10,  8 ; AROMA_LADY
