@@ -31,7 +31,7 @@ AnimObjGFX:
 	anim_obj_gfx 18, AnimObjRopeGFX
 	anim_obj_gfx 14, AnimObjPsychicGFX
 	anim_obj_gfx 10, AnimObjReflectGFX
-	anim_obj_gfx 27, AnimObjStatusGFX
+	anim_obj_gfx 31, AnimObjStatusGFX ; +4 Torment tiles (pokeorange)
 	anim_obj_gfx 12, AnimObjSandGFX
 	anim_obj_gfx 14, AnimObjWebGFX
 	anim_obj_gfx 16, AnimObjHazeGFX
@@ -64,7 +64,7 @@ AnimObjGFX:
 	anim_obj_gfx 16, AnimObjPsystrikeGFX
 	anim_obj_gfx  6, AnimObjRingsGFX
 	anim_obj_gfx  9, AnimObjSmokePuffGFX
-	anim_obj_gfx  5, AnimObjStarsGFX
+	anim_obj_gfx  7, AnimObjStarsGFX ; +2 Yawn drowziness tiles (pokeorange)
 	anim_obj_gfx 24, AnimObjSwirlGFX
 	anim_obj_gfx 14, AnimObjTrickRoomGFX
 	anim_obj_gfx 28, AnimObjVoltSwitchGFX
@@ -92,3 +92,4 @@ AnimObjGFX:
 	anim_obj_gfx 10, AnimObjBigGlowSpikedGFX
 ; ported from polishedcoral
 	anim_obj_gfx  8, AnimObjLuminaCrashGFX
+	anim_obj_gfx  8, AnimObjTauntGFX ; ported from pokeorange
