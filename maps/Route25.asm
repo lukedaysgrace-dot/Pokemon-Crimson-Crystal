@@ -288,13 +288,13 @@ TrainerJugglerSilas:
 	closetext
 	end
 
-TrainerPicnickerNadia:
-	trainer PICNICKER, NADIA, EVENT_BEAT_PICNICKER_NADIA, PicnickerNadiaSeenText, PicnickerNadiaBeatenText, 0, .Script
+TrainerAromaLadyNadia:
+	trainer AROMA_LADY, NADIA, EVENT_BEAT_AROMA_LADY_NADIA, AromaLadyNadiaSeenText, AromaLadyNadiaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerNadiaAfterBattleText
+	writetext AromaLadyNadiaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -633,7 +633,7 @@ Route25MistyDateText:
 	cont "CERULEAN."
 	done
 
-PicnickerNadiaSeenText:
+AromaLadyNadiaSeenText:
 	text "Beat the five of"
 	line "us to win a"
 	cont "fabulous prize!"
@@ -642,11 +642,11 @@ PicnickerNadiaSeenText:
 	line "what it takes?"
 	done
 
-PicnickerNadiaBeatenText:
+AromaLadyNadiaBeatenText:
 	text "Ow! Stomped flat!"
 	done
 
-PicnickerNadiaAfterBattleText:
+AromaLadyNadiaAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -809,7 +809,7 @@ Route25_MapEvents:
 	db 12 ; object events
 	object_event 46,  9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	object_event 12,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerNadia, -1
+	object_event 12,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyNadia, -1
 	object_event 16, 11, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokefanmDustin, -1
 	object_event 21,  8, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerNoelle, -1
 	object_event 26,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassPaige, -1
