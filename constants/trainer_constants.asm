@@ -575,23 +575,15 @@ LYRA EQU __enum__
 	trainerclass PICNICKER ; 35
 	const LIZ1
 	const GINA1
-	const BROOKE
-	const KIM
 	const CINDY
-	const HOPE
-	const SHARON
-	const DEBRA
 	const GINA2
 	const ERIN1
 	const LIZ2
 	const LIZ3
-	const HEIDI
-	const EDNA
 	const GINA3
 	const TIFFANY1
 	const TIFFANY2
 	const ERIN2
-	const TANYA
 	const TIFFANY3
 	const ERIN3
 	const LIZ4
@@ -599,7 +591,6 @@ LYRA EQU __enum__
 	const GINA4
 	const GINA5
 	const TIFFANY4
-	const NADIA
 
 	trainerclass CAMPER ; 36
 	const ROLAND
@@ -827,5 +818,16 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 	const THUG_PAULIE
 	const THUG_BOBBY
 	const THUG_TONY
+
+	trainerclass AROMA_LADY ; 56
+	const BROOKE
+	const KIM
+	const HOPE
+	const SHARON
+	const DEBRA
+	const HEIDI
+	const EDNA
+	const TANYA
+	const NADIA
 
 NUM_TRAINER_CLASSES EQU __enum__
