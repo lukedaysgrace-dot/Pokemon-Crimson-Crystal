@@ -352,6 +352,16 @@ CheckPlayerTurn:
 
 .no_disabled_move
 
+	; Taunt / Torment forbid the selected move even if it was chosen
+	; before the restriction landed this turn
+	farcall CheckTauntTormentCantMove_Core
+	jr nc, .no_taunt_torment
+	call StdBattleTextbox ; hl = text from the core
+	call CantMove
+	jp EndTurn
+
+.no_taunt_torment
+
 	ld hl, wBattleMonStatus
 	bit PAR, [hl]
 	ret z
@@ -596,6 +606,16 @@ CheckEnemyTurn:
 	jp EndTurn
 
 .no_disabled_move
+
+	; Taunt / Torment forbid the selected move even if it was chosen
+	; before the restriction landed this turn
+	farcall CheckTauntTormentCantMove_Core
+	jr nc, .no_taunt_torment
+	call StdBattleTextbox ; hl = text from the core
+	call CantMove
+	jp EndTurn
+
+.no_taunt_torment
 
 	ld hl, wEnemyMonStatus
 	bit PAR, [hl]
@@ -1301,12 +1321,16 @@ BattleCommand_Critical:
 .CheckCritical:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	call GetMoveIndexFromID
-	ld de, 2
-	ld hl, CriticalHitMoves
 	push bc
+	call GetMoveIndexFromID
+	; IsInHalfwordArray wants the search VALUE in bc and the list in hl.
+	; The old code loaded bc with the list's own address, so high-crit
+	; moves never actually got their +2 stage (found while testing the
+	; Gen 7 crit table, 2026-08).
 	ld b, h
 	ld c, l
+	ld de, 2
+	ld hl, CriticalHitMoves
 	call IsInHalfwordArray
 	pop bc
 	jr nc, .ScopeLens
@@ -2720,7 +2744,17 @@ BattleCommand_CheckFaint:
 .got_hp
 	ld a, [hli]
 	or [hl]
-	ret nz
+	jr z, .fainted
+	; Modern berry timing: a mon knocked below its berry threshold eats
+	; immediately after the hit (here, after checkfaint's HP read confirms
+	; it survived), not at end of turn. This covers every damaging move,
+	; and multi-hit moves eat between hits. The end-of-turn
+	; HandleHealingItems call still covers chip damage (weather, Leech
+	; Seed, poison, ...); consuming the item here is the double-eat guard.
+	farcall HandleHPHealingItem
+	ret
+
+.fainted
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
@@ -3208,22 +3242,31 @@ ConfusionDamageCalc:
 	and a
 	ret z
 
-; x2
-	ldh a, [hQuotient + 3]
-	add a
-	ldh [hProduct + 3], a
-
+; x1.5 (modern crit multiplier): damage + (damage >> 1), truncated
+	push hl
+	push de
+; hl = damage
 	ldh a, [hQuotient + 2]
-	rl a
-	ldh [hProduct + 2], a
-
+	ld h, a
+	ldh a, [hQuotient + 3]
+	ld l, a
+; de = damage >> 1
+	ld d, h
+	ld e, l
+	srl d
+	rr e
+; hl = damage * 3/2
+	add hl, de
+	jr nc, .no_crit_cap
 ; Cap at $ffff.
-	ret nc
-
-	ld a, $ff
+	ld hl, $ffff
+.no_crit_cap
+	ld a, h
 	ldh [hProduct + 2], a
+	ld a, l
 	ldh [hProduct + 3], a
-
+	pop de
+	pop hl
 	ret
 
 INCLUDE "data/types/type_boost_items.asm"
@@ -3705,19 +3748,16 @@ BattleCommand_SleepTarget:
 	jp c, PrintDidntAffect2
 
 	call AnimateCurrentMove
-	ld b, $7
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr z, .random_loop
-	ld b, $3
-
+; Modern sleep duration: 1-3 turns (the old roll was 2-7; the Battle
+; Tower's special shorter roll is gone with it). The roll uses the upper
+; nibble's low bits (swap) so the debug harness's forced RNG values
+; ($14/$B4, whose low bits are %00) exit the reject-zero loop - see the
+; rng contract comment in tools/battletest/state.py.
 .random_loop
 	call BattleRandom
-	and b
+	swap a
+	and %11
 	jr z, .random_loop
-	cp 7
-	jr z, .random_loop
-	inc a
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds
@@ -3841,6 +3881,7 @@ BattleCommand_ToxicTarget:
 	set SUBSTATUS_TOXIC, [hl]
 	xor a
 	ld [de], a
+	farcall ToxicMarkOpp_Core
 
 	call PoisonOpponent
 	ld de, ANIM_PSN
@@ -3931,6 +3972,7 @@ BattleCommand_Poison:
 	set SUBSTATUS_TOXIC, [hl]
 	xor a
 	ld [de], a
+	farcall ToxicMarkOpp_Core
 	call .apply_poison
 
 	ld hl, BadlyPoisonedText
@@ -6247,6 +6289,7 @@ BattleCommand_Heal:
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	res SUBSTATUS_TOXIC, [hl]
+	farcall ToxicClearUser_Core
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
 	ld a, [hl]
@@ -6766,6 +6809,31 @@ BattleCommand_Trick:
 BattleCommand_ToxicSpikes:
 ; toxicspikes
 	callfar BattleToxicSpikes_Core
+	ret
+
+BattleCommand_Torment:
+; torment (body in the Battle Effect Overflow bank)
+	callfar BattleTorment_Core
+	ret
+
+BattleCommand_Taunt:
+; taunt (body in the Battle Effect Overflow bank)
+	callfar BattleTaunt_Core
+	ret
+
+BattleCommand_Yawn:
+; yawn (body in the Battle Effect Overflow bank)
+	callfar BattleYawn_Core
+	ret
+
+BattleCommand_Wish:
+; wish (body in the Battle Effect Overflow bank)
+	callfar BattleWish_Core
+	ret
+
+BattleCommand_StickyWeb:
+; stickyweb (body in the Battle Effect Overflow bank)
+	callfar BattleStickyWeb_Core
 	ret
 
 BattleCommand_TrickRoom:

@@ -36,11 +36,9 @@ BattleCommand_Encore:
 	bit SUBSTATUS_ENCORED, [hl]
 	jp nz, .failed
 	set SUBSTATUS_ENCORED, [hl]
-	call BattleRandom
-	and $3
-	inc a
-	inc a
-	inc a
+; Modern Encore: fixed 3 turns (counter 4: HandleEncore decrements at the
+; end of the turn Encore is used, then once per encored turn).
+	ld a, 4
 	ld [de], a
 	call CheckOpponentWentFirst
 	jr nz, .finish_move

@@ -482,6 +482,7 @@ SpinarakEvosAttacks:
 	dbw 18, SHADOW_SNEAK
 	dbw 20, LEECH_LIFE
 	dbw 23, NIGHT_SLASH
+	dbw 25, STICKY_WEB
 	dbw 29, POISON_JAB
 	dbw 29, SPIDER_WEB
 	dbw 32, SUCKER_PUNCH
@@ -494,6 +495,7 @@ SpinarakEvosAttacks:
 AriadosEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, SWORDS_DANCE
+	dbw 1, STICKY_WEB
 	dbw 1, ABSORB
 	dbw 1, STRING_SHOT
 	dbw 1, POISON_STING
@@ -635,6 +637,7 @@ TogepiEvosAttacks:
 	dbw 8, SWEET_KISS
 	dbw 13, ENCORE
 	dbw 15, DRAINING_KISS
+	dbw 18, WISH
 	dbw 21, SAFEGUARD
 	dbw 23, ANCIENTPOWER
 	dbw 25, SOFTBOILED
@@ -1145,7 +1148,9 @@ MurkrowEvosAttacks:
 	dbw 13, WING_ATTACK
 	dbw 17, NIGHT_SHADE
 	dbw 25, DRILL_PECK
+	dbw 26, TAUNT
 	dbw 27, MEAN_LOOK
+	dbw 28, TORMENT
 	dbw 29, SUCKER_PUNCH
 	dbw 30, DUALWINGBEAT
 	dbw 30, SNARL
