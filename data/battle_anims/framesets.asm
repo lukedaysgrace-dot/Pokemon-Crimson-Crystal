@@ -340,6 +340,9 @@ BattleAnimFrameData:
 ; polishedcoral ports
 	dw .Frameset_LuminaCrash     ; BATTLEANIMFRAMESET_LUMINA_CRASH
 	dw .Frameset_LuminaCrashTiny ; BATTLEANIMFRAMESET_LUMINA_CRASH_TINY
+	dw .SET_TORMENT ; BATTLEANIMFRAMESET_TORMENT
+	dw .SET_TAUNT ; BATTLEANIMFRAMESET_TAUNT
+	dw .SET_DROWZINESS ; BATTLEANIMFRAMESET_DROWZINESS
 
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
@@ -2153,4 +2156,20 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_54, 2
 	oamframe BATTLEANIMOAMSET_20, 2
 	oamframe BATTLEANIMOAMSET_54, 2
+	oamdelanim
+
+; ported from pokeorange (new status moves)
+.SET_TORMENT:
+	oamframe BATTLEANIMOAMSET_TORMENT, 4
+	oamframe BATTLEANIMOAMSET_TORMENT, 4, OAM_X_FLIP
+	oamrestart
+
+.SET_TAUNT:
+	oamframe BATTLEANIMOAMSET_1B, 20
+	oamframe BATTLEANIMOAMSET_21, 10
+	oamrestart
+
+.SET_DROWZINESS:
+	oamframe BATTLEANIMOAMSET_10, 32
+	oamframe BATTLEANIMOAMSET_1E, 8
 	oamdelanim
