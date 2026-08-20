@@ -355,6 +355,7 @@ BattleAnimOAMData:
 	dbbw $04, 16, .OAMData_lumina_crash ; BATTLEANIMOAMSET_LUMINA_CRASH_2
 ; vanilla OAM sets whose original slots were redefined by polishedcrystal ports
 	dbbw $08,  1, .OAMData_0f ; BATTLEANIMOAMSET_MORNING_SUN_SPARKLE (vanilla BATTLEANIMOAMSET_BD)
+	dbbw $1b,  4, .OAMData_03 ; BATTLEANIMOAMSET_TORMENT (pokeorange OAMSET_D9)
 
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
