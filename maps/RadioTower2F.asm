@@ -64,13 +64,13 @@ TrainerGruntM4:
 	closetext
 	end
 
-TrainerGruntM5:
-	trainer GRUNTM, GRUNTM_5, EVENT_BEAT_ROCKET_GRUNTM_5, GruntM5SeenText, GruntM5BeatenText, 0, .Script
+TrainerGruntF7:
+	trainer GRUNTF, GRUNTF_7, EVENT_BEAT_ROCKET_GRUNTF_7, GruntF7SeenText, GruntF7BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM5AfterBattleText
+	writetext GruntF7AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -407,7 +407,7 @@ GruntM4AfterBattleText:
 	cont "for our comeback!"
 	done
 
-GruntM5SeenText:
+GruntF7SeenText:
 	text "We're TEAM ROCKET,"
 	line "the exploiters of"
 	cont "#MON!"
@@ -416,12 +416,12 @@ GruntM5SeenText:
 	line "evil! Scared?"
 	done
 
-GruntM5BeatenText:
+GruntF7BeatenText:
 	text "You think you're a"
 	line "hero?"
 	done
 
-GruntM5AfterBattleText:
+GruntF7AfterBattleText:
 	text "We're not always"
 	line "evil. We just do"
 	cont "whatever we like."
@@ -730,7 +730,7 @@ RadioTower2F_MapEvents:
 	object_event  6,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower2FSuperNerdScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 17,  2, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower2FTeacherScript, -1
 	object_event  1,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event  8,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  8,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  4,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 10,  5, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  0,  1, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTower2FBlackBelt1Script, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS

@@ -3163,17 +3163,7 @@ GruntMGroup:
 	dw CROAGUNK
 	db -1 ; end
 
-	next_list_item ; GRUNTM (3) GRUNTM_3 - Radio Tower 1F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 33
-	dw SALAZZLE
-	db 33
-	dw SCOLIPEDE
-	db 33
-	dw ARIADOS
-	db -1 ; end
-
-	next_list_item ; GRUNTM (4) GRUNTM_4 - Radio Tower 2F
+	next_list_item ; GRUNTM (3) GRUNTM_4 - Radio Tower 2F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 33
 	dw GLOOM
@@ -3181,17 +3171,7 @@ GruntMGroup:
 	dw SEVIPER
 	db -1 ; end
 
-	next_list_item ; GRUNTM (5) GRUNTM_5 - Radio Tower 2F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 34
-	dw GENGAR
-	db 34
-	dw QWILFISH
-	db 34
-	dw LICKITUNG
-	db -1 ; end
-
-	next_list_item ; GRUNTM (6) GRUNTM_6 - Radio Tower 2F
+	next_list_item ; GRUNTM (4) GRUNTM_6 - Radio Tower 2F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 34
 	dw FEAROW
@@ -3199,7 +3179,7 @@ GruntMGroup:
 	dw WEEPINBELL
 	db -1 ; end
 
-	next_list_item ; GRUNTM (7) GRUNTM_7 - Radio Tower 3F
+	next_list_item ; GRUNTM (5) GRUNTM_7 - Radio Tower 3F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 34
 	dw SNEASEL
@@ -3209,23 +3189,7 @@ GruntMGroup:
 	dw URSARING
 	db -1 ; end
 
-	next_list_item ; GRUNTM (8) GRUNTM_8 - Radio Tower 3F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 34
-	dw GENGAR
-	db 34
-	dw WEEZING
-	db -1 ; end
-
-	next_list_item ; GRUNTM (9) GRUNTM_9 - Radio Tower 3F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw ARIADOS
-	db 35
-	dw GENGAR
-	db -1 ; end
-
-	next_list_item ; GRUNTM (10) GRUNTM_10 - Radio Tower 4F
+	next_list_item ; GRUNTM (6) GRUNTM_10 - Radio Tower 4F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 35
 	dw URSARING
@@ -3235,21 +3199,13 @@ GruntMGroup:
 	dw MILTANK
 	db -1 ; end
 
-	next_list_item ; GRUNTM (11) GRUNTM_11 - Goldenrod Underground Switch Room Entrances
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 36
-	dw SCRAFTY
-	db 37
-	dw PILOSWINE
-	db -1 ; end
-
-	next_list_item ; GRUNTM (12) GRUNTM_12 - not placed on any map
+	next_list_item ; GRUNTM (7) GRUNTM_12 - not placed on any map
 	db "EXECUTIVE@", TRAINERTYPE_NORMAL
 	db 28
 	dw CLODSIRE
 	db -1 ; end
 
-	next_list_item ; GRUNTM (13) GRUNTM_13 - Goldenrod Underground Switch Room Entrances
+	next_list_item ; GRUNTM (8) GRUNTM_13 - Goldenrod Underground Switch Room Entrances
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 36
 	dw OVERQWIL
@@ -3257,7 +3213,7 @@ GruntMGroup:
 	dw PIDGEOT
 	db -1 ; end
 
-	next_list_item ; GRUNTM (14) GRUNTM_14 - Goldenrod Underground Warehouse
+	next_list_item ; GRUNTM (9) GRUNTM_14 - Goldenrod Underground Warehouse
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 35
 	dw ARIADOS
@@ -3267,7 +3223,7 @@ GruntMGroup:
 	dw STEELIX
 	db -1 ; end
 
-	next_list_item ; GRUNTM (15) GRUNTM_15 - Goldenrod Underground Warehouse
+	next_list_item ; GRUNTM (10) GRUNTM_15 - Goldenrod Underground Warehouse
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 36
 	dw PILOSWINE
@@ -3281,19 +3237,7 @@ GruntMGroup:
 	dw GLIGAR
 	db -1 ; end
 
-	next_list_item ; GRUNTM (16) GRUNTM_16 - Team Rocket Base B1F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw WEEPINBELL
-	db -1 ; end
-
-	next_list_item ; GRUNTM (17) GRUNTM_17 - Team Rocket Base B2F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw MISDREAVUS
-	db -1 ; end
-
-	next_list_item ; GRUNTM (18) GRUNTM_18 - Team Rocket Base B2F
+	next_list_item ; GRUNTM (11) GRUNTM_18 - Team Rocket Base B2F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 32
 	dw PERSIAN_ALOLAN
@@ -3303,13 +3247,7 @@ GruntMGroup:
 	dw DUSCLOPS
 	db -1 ; end
 
-	next_list_item ; GRUNTM (19) GRUNTM_19 - Team Rocket Base B2F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 37
-	dw SEVIPER
-	db -1 ; end
-
-	next_list_item ; GRUNTM (20) GRUNTM_20 - Team Rocket Base B1F
+	next_list_item ; GRUNTM (12) GRUNTM_20 - Team Rocket Base B1F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 26
 	dw ODDISH
@@ -3317,7 +3255,7 @@ GruntMGroup:
 	dw SEVIPER
 	db -1 ; end
 
-	next_list_item ; GRUNTM (21) GRUNTM_21 - Team Rocket Base B1F
+	next_list_item ; GRUNTM (13) GRUNTM_21 - Team Rocket Base B1F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 27
 	dw DRIFLOON
@@ -3327,25 +3265,19 @@ GruntMGroup:
 	dw GLIMMET
 	db -1 ; end
 
-	next_list_item ; GRUNTM (22) GRUNTM_22 - not placed on any map
+	next_list_item ; GRUNTM (14) GRUNTM_22 - not placed on any map
 	db "EXECUTIVE@", TRAINERTYPE_NORMAL
 	db 31
 	dw DUGTRIO_ALOLAN
 	db -1 ; end
 
-	next_list_item ; GRUNTM (23) GRUNTM_23 - not placed on any map
+	next_list_item ; GRUNTM (15) GRUNTM_23 - not placed on any map
 	db "EXECUTIVE@", TRAINERTYPE_NORMAL
 	db 25
 	dw GEODUDE
 	db -1 ; end
 
-	next_list_item ; GRUNTM (24) GRUNTM_24 - Goldenrod Underground Warehouse
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 37
-	dw QWILFISH
-	db -1 ; end
-
-	next_list_item ; GRUNTM (25) GRUNTM_25 - Goldenrod Underground Switch Room Entrances
+	next_list_item ; GRUNTM (16) GRUNTM_25 - Goldenrod Underground Switch Room Entrances
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 36
 	dw TOXICROAK
@@ -3353,7 +3285,7 @@ GruntMGroup:
 	dw ARBOK
 	db -1 ; end
 
-	next_list_item ; GRUNTM (26) GRUNTM_26 - not placed on any map
+	next_list_item ; GRUNTM (17) GRUNTM_26 - not placed on any map
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 20
 	dw SENTRET
@@ -3361,13 +3293,13 @@ GruntMGroup:
 	dw VENONAT
 	db -1 ; end
 
-	next_list_item ; GRUNTM (27) GRUNTM_27 - not placed on any map
+	next_list_item ; GRUNTM (18) GRUNTM_27 - not placed on any map
 	db "EXECUTIVE@", TRAINERTYPE_NORMAL
 	db 22
 	dw MUNCHLAX
 	db -1 ; end
 
-	next_list_item ; GRUNTM (28) GRUNTM_28 - Team Rocket Base B3F
+	next_list_item ; GRUNTM (19) GRUNTM_28 - Team Rocket Base B3F
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 35
 	dw MAROWAK_ALOLAN
@@ -3379,15 +3311,7 @@ GruntMGroup:
 	dw MURKROW
 	db -1 ; end
 
-	next_list_item ; GRUNTM (29) GRUNTM_29 - Slowpoke Well B1F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 9
-	dw MAREANIE
-	db 9
-	dw WEEDLE
-	db -1 ; end
-
-	next_list_item ; GRUNTM (30) GRUNTM_30 - not placed on any map
+	next_list_item ; GRUNTM (20) GRUNTM_30 - not placed on any map
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 20
 	dw DIGLETT_ALOLAN
@@ -3397,7 +3321,7 @@ GruntMGroup:
 	dw AIPOM
 	db -1 ; end
 
-	next_list_item ; GRUNTM (31) GRUNTM_31 - Route 24
+	next_list_item ; GRUNTM (21) GRUNTM_31 - Route 24
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 58
 	dw HOUNDOOM
@@ -7375,56 +7299,6 @@ OfficerGroup:
 
 	end_list_items
 
-GruntFGroup:
-	next_list_item ; GRUNTF (1) GRUNTF_1 - Slowpoke Well B1F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 9
-	dw NATU
-	db 11
-	dw SMOOCHUM
-	db -1 ; end
-
-	next_list_item ; GRUNTF (2) GRUNTF_2 - Radio Tower 2F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw STANTLER
-	db 35
-	dw SEVIPER
-	db -1 ; end
-
-	next_list_item ; GRUNTF (3) GRUNTF_3 - Goldenrod Underground Switch Room Entrances
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw AIPOM
-	db 35
-	dw DUNSPARCE
-	db 35
-	dw STANTLER
-	db 36
-	dw HOUNDOOM
-	db -1 ; end
-
-	next_list_item ; GRUNTF (4) GRUNTF_4 - Radio Tower 4F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw WEEZING_GALARIAN
-	db 36
-	dw FURRET
-	db 36
-	dw NIDORINA
-	db 36
-	dw PERSIAN
-	db -1 ; end
-
-	next_list_item ; GRUNTF (5) GRUNTF_5 - Team Rocket Base B3F
-	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 35
-	dw QWILFISH
-	db 35
-	dw MISDREAVUS
-	db -1 ; end
-
-	end_list_items
 
 MysticalmanGroup:
 	next_list_item ; MYSTICALMAN (1) EUSINE - Cianwood City
@@ -8056,6 +7930,135 @@ ThugGroup:
 	dw MURKROW
 	db 19
 	dw SCRAGGY
+	db -1 ; end
+
+	end_list_items
+
+
+SECTION "Enemy Trainer Parties 5", ROMX
+
+GruntFGroup:
+	next_list_item ; GRUNTF (1) GRUNTF_1 - Slowpoke Well B1F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 9
+	dw NATU
+	db 11
+	dw SMOOCHUM
+	db -1 ; end
+
+	next_list_item ; GRUNTF (2) GRUNTF_2 - Radio Tower 2F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw STANTLER
+	db 35
+	dw SEVIPER
+	db -1 ; end
+
+	next_list_item ; GRUNTF (3) GRUNTF_3 - Goldenrod Underground Switch Room Entrances
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw AIPOM
+	db 35
+	dw DUNSPARCE
+	db 35
+	dw STANTLER
+	db 36
+	dw HOUNDOOM
+	db -1 ; end
+
+	next_list_item ; GRUNTF (4) GRUNTF_4 - Radio Tower 4F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw WEEZING_GALARIAN
+	db 36
+	dw FURRET
+	db 36
+	dw NIDORINA
+	db 36
+	dw PERSIAN
+	db -1 ; end
+
+	next_list_item ; GRUNTF (5) GRUNTF_5 - Team Rocket Base B3F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw QWILFISH
+	db 35
+	dw MISDREAVUS
+	db -1 ; end
+	next_list_item ; GRUNTF (6) GRUNTF_6 - Radio Tower 1F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 33
+	dw SALAZZLE
+	db 33
+	dw SCOLIPEDE
+	db 33
+	dw ARIADOS
+	db -1 ; end
+
+	next_list_item ; GRUNTF (7) GRUNTF_7 - Radio Tower 2F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 34
+	dw GENGAR
+	db 34
+	dw QWILFISH
+	db 34
+	dw LICKITUNG
+	db -1 ; end
+
+	next_list_item ; GRUNTF (8) GRUNTF_8 - Radio Tower 3F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 34
+	dw GENGAR
+	db 34
+	dw WEEZING
+	db -1 ; end
+
+	next_list_item ; GRUNTF (9) GRUNTF_9 - Radio Tower 3F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw ARIADOS
+	db 35
+	dw GENGAR
+	db -1 ; end
+
+	next_list_item ; GRUNTF (10) GRUNTF_10 - Goldenrod Underground Switch Room Entrances
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 36
+	dw SCRAFTY
+	db 37
+	dw PILOSWINE
+	db -1 ; end
+
+	next_list_item ; GRUNTF (11) GRUNTF_11 - Team Rocket Base B1F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw WEEPINBELL
+	db -1 ; end
+
+	next_list_item ; GRUNTF (12) GRUNTF_12 - Team Rocket Base B2F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 35
+	dw MISDREAVUS
+	db -1 ; end
+
+	next_list_item ; GRUNTF (13) GRUNTF_13 - Team Rocket Base B2F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 37
+	dw SEVIPER
+	db -1 ; end
+
+	next_list_item ; GRUNTF (14) GRUNTF_14 - Goldenrod Underground Warehouse
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 37
+	dw QWILFISH
+	db -1 ; end
+
+	next_list_item ; GRUNTF (15) GRUNTF_15 - Slowpoke Well B1F
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 9
+	dw MAREANIE
+	db 9
+	dw WEEDLE
 	db -1 ; end
 
 	end_list_items
