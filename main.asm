@@ -316,6 +316,8 @@ INCLUDE "engine/printer/printer.asm"
 INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 
+INCLUDE "gfx/battle_anims2.asm"
+
 
 SECTION "Crystal Features 2", ROMX
 
