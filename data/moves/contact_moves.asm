@@ -17,3 +17,5 @@ ContactMoves::
 	; $ea = BODY_PRESS, SUPERPOWER, FOUL_PLAY, RAGE_FIST, CRUSH_CLAW
 	; $37 = FORCE_PALM, HAMMER_ARM, CIRCLE_THROW, BOUNCE, DRAGON_TAIL
 	db $cc, $4d, $25, $96, $44, $28, $ea, $37
+	; TORMENT..STICKY_WEB make no contact
+	db $00

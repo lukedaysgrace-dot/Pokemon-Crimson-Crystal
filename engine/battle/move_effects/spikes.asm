@@ -1,20 +1,26 @@
 BattleCommand_Spikes:
 ; spikes
+; Modern Spikes: up to three layers (entry damage 1/8, 1/6, 1/4 of max
+; HP - see SpikesLayerDamage_Core). SCREENS_SPIKES stays set as the
+; "any spikes present" boolean so existing readers keep working.
 
 	ld hl, wEnemyScreens
+	ld de, wEnemySpikesLayers
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .asm_3768e
+	jr z, .got_side
 	ld hl, wPlayerScreens
-.asm_3768e
+	ld de, wPlayerSpikesLayers
+.got_side
 
-; Fails if spikes are already down!
+; Fails at three layers.
 
-	bit SCREENS_SPIKES, [hl]
-	jr nz, .failed
+	ld a, [de]
+	cp 3
+	jr nc, .failed
 
-; Nothing else stops it from working.
-
+	inc a
+	ld [de], a
 	set SCREENS_SPIKES, [hl]
 
 	call AnimateCurrentMove
