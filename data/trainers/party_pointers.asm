@@ -87,3 +87,4 @@ TrainerGroups:
 	dba BattleGirlGroup
 	dba TamerGroup
 	dba ThugGroup
+	dba AromaLadyGroup
