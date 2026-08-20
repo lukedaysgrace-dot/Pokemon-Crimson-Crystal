@@ -445,6 +445,13 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 ; polishedcoral ports
 	const ANIM_OBJ_LUMINA_CRASH
 	const ANIM_OBJ_LUMINA_CRASH_TINY
+; ported from pokeorange (new status moves)
+	const ANIM_OBJ_TORMENT
+	const ANIM_OBJ_TAUNT
+	const ANIM_OBJ_YAWN_1
+	const ANIM_OBJ_YAWN_2
+	const ANIM_OBJ_WISH_1
+	const ANIM_OBJ_WISH_2
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -554,6 +561,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_WRAP
 	const BATTLEANIMFUNC_SOLAR_BEAM
 	const BATTLEANIMFUNC_PURSUIT
+	const BATTLEANIMFUNC_OBJECT_HOVER ; ported from pokeorange (Wish)
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
@@ -860,6 +868,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 ; polishedcoral ports
 	const BATTLEANIMFRAMESET_LUMINA_CRASH
 	const BATTLEANIMFRAMESET_LUMINA_CRASH_TINY
+	const BATTLEANIMFRAMESET_TORMENT ; ported from pokeorange
+	const BATTLEANIMFRAMESET_TAUNT
+	const BATTLEANIMFRAMESET_DROWZINESS
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -1218,6 +1229,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_LUMINA_CRASH_2
 ; vanilla OAM sets whose original slots were redefined by polishedcrystal ports
 	const BATTLEANIMOAMSET_MORNING_SUN_SPARKLE ; vanilla BATTLEANIMOAMSET_BD
+	const BATTLEANIMOAMSET_TORMENT ; ported from pokeorange
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1389,6 +1401,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_BIG_GLOW_SPIKED
 ; gfx ported from polishedcoral
 	const ANIM_GFX_LUMINA_CRASH
+	const ANIM_GFX_TAUNT ; ported from pokeorange
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

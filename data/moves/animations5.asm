@@ -1947,3 +1947,105 @@ BattleAnim_LuminaCrash_CC:
 	anim_obj ANIM_OBJ_LUMINA_CRASH_TINY, 136, 56, $4
 	anim_wait 64
 	anim_ret
+
+; ==== Ported from pokeorange (new status moves, 2026-08) ==================
+
+BattleAnim_Torment_PO:
+	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_STATUS
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 64, 106, $2
+	anim_wait 32
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 32, 62, $2
+	anim_wait 32
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 76, 84, $2
+	anim_wait 16
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 32, 106, $2
+	anim_wait 16
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 20, 84, $2
+	anim_wait 16
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_TORMENT, 64, 62, $2
+	anim_wait 48
+	anim_clearobjs
+	anim_sound 0, 1, SFX_KINESIS_2
+	anim_obj ANIM_OBJ_ANGER, 112, 50, $0
+	anim_wait 16
+	anim_sound 0, 1, SFX_KINESIS_2
+	anim_obj ANIM_OBJ_ANGER, 148, 32, $0
+	anim_wait 32
+	anim_ret
+
+BattleAnim_Taunt_PO:
+	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_TAUNT
+	anim_obj ANIM_OBJ_TAUNT, 72, 84, $0
+	anim_wait 16
+.loop
+	anim_sound 0, 0, SFX_SQUEAK
+	anim_wait 32
+	anim_loop 3, .loop
+	anim_clearobjs
+	anim_sound 0, 1, SFX_KINESIS_2
+	anim_obj ANIM_OBJ_ANGER, 112, 50, $0
+	anim_wait 16
+	anim_sound 0, 1, SFX_KINESIS_2
+	anim_obj ANIM_OBJ_ANGER, 148, 32, $0
+	anim_wait 32
+	anim_ret
+
+BattleAnim_Yawn_PO:
+	anim_2gfx ANIM_GFX_SMOKE_PUFF, ANIM_GFX_STARS
+	anim_obp0 $54
+	anim_sound 16, 2, SFX_CURSE
+.loop
+	anim_wait 8
+	anim_obj ANIM_OBJ_YAWN_1, 64, 88, $4
+	anim_wait 8
+	anim_obj ANIM_OBJ_YAWN_1, 64, 80, $4
+	anim_wait 8
+	anim_obj ANIM_OBJ_YAWN_1, 64, 96, $4
+	anim_wait 8
+	anim_loop 2, .loop
+	anim_wait 22
+	anim_obp0 $70
+	anim_sound 0, 1, SFX_TOXIC
+	anim_obj ANIM_OBJ_YAWN_2, 126, 46, $0
+	anim_wait 16
+	anim_sound 0, 1, SFX_TOXIC
+	anim_obj ANIM_OBJ_YAWN_2, 146, 46, $0
+	anim_wait 64
+	anim_ret
+
+BattleAnim_Wish_PO:
+; pokeorange's Wish, minus its Cosmic Power backdrop machinery (custom
+; cosmic palette, ANIM_GFX_COSMIC_POWER bg object and the clearenemyhud
+; opcode do not exist here); anim_bgp darkening + hidden mon + the star
+; shower and inverted-palette moonlight flash carry the effect.
+	anim_1gfx ANIM_GFX_STARS
+	anim_bgp $1b
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $0, $0
+	anim_wait 16
+	anim_sound 0, 1, SFX_GAME_FREAK_LOGO_GS
+	anim_obj ANIM_OBJ_WISH_1, 30, 46, $42
+	anim_wait 16
+	anim_obj ANIM_OBJ_WISH_2, 50, 50, $0
+	anim_wait 16
+	anim_obj ANIM_OBJ_WISH_2, 70, 52, $0
+	anim_wait 16
+	anim_obj ANIM_OBJ_WISH_2, 90, 56, $0
+	anim_wait 16
+	anim_obj ANIM_OBJ_WISH_2, 110, 60, $0
+	anim_wait 16
+	anim_obj ANIM_OBJ_WISH_2, 130, 64, $0
+	anim_wait 80
+	anim_clearobjs
+	anim_incbgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW
+	anim_bgeffect ANIM_BG_CYCLE_BGPALS_INVERTED, $0, $0, $0
+	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_wait 42
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_ret
