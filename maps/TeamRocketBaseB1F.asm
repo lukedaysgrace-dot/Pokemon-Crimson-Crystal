@@ -489,13 +489,13 @@ TrainerScientistJed:
 	closetext
 	end
 
-TrainerGruntM16:
-	trainer GRUNTM, GRUNTM_16, EVENT_BEAT_ROCKET_GRUNTM_16, GruntM16SeenText, GruntM16BeatenText, 0, .Script
+TrainerGruntF11:
+	trainer GRUNTF, GRUNTF_11, EVENT_BEAT_ROCKET_GRUNTF_11, GruntF11SeenText, GruntF11BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM16AfterBattleText
+	writetext GruntF11AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -681,7 +681,7 @@ ScientistJedAfterBattleText:
 	line "trance."
 	done
 
-GruntM16SeenText:
+GruntF11SeenText:
 	text "Heheh. Feeling"
 	line "lucky, punk?"
 
@@ -692,11 +692,11 @@ GruntM16SeenText:
 	line "set in the floor!"
 	done
 
-GruntM16BeatenText:
+GruntF11BeatenText:
 	text "Kaboom!"
 	done
 
-GruntM16AfterBattleText:
+GruntF11AfterBattleText:
 	text "I don't even know"
 	line "where the traps"
 	cont "are planted."
@@ -782,7 +782,7 @@ TeamRocketBaseB1F_MapEvents:
 
 	db 6 ; object events
 	object_event  0,  0, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
-	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  2,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF11, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 18, 12, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 27,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FHyperPotion, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
 	object_event 14, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FNugget, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
