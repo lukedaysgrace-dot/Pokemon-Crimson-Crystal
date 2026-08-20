@@ -85,3 +85,4 @@ TrainerClassNames::
 	db "BATTLE GIRL@"
 	db "TAMER@"
 	db "THUG@"
+	db "AROMA LADY@"
