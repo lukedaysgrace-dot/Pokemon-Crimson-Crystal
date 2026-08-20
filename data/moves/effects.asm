@@ -3142,3 +3142,41 @@ Bounce:
 	paralyzetarget
 	kingsrock
 	endmove
+
+Torment:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	torment
+	endmove
+
+Taunt:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	taunt
+	endmove
+
+Yawn:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	yawn
+	endmove
+
+Wish:
+	checkobedience
+	usedmovetext
+	doturn
+	wish
+	endmove
+
+StickyWeb:
+	checkobedience
+	usedmovetext
+	doturn
+	stickyweb
+	endmove

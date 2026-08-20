@@ -890,6 +890,7 @@ HealStatusAbility:
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	res SUBSTATUS_TOXIC, [hl]
+	farcall ToxicClearUser_Core
 	ld hl, wPlayerToxicCount
 	ldh a, [hBattleTurn]
 	and a
@@ -1709,13 +1710,15 @@ FlashFireRaiseSpAtk:
 	ld [wEffectFailed], a
 	ret
 
-CheckPlayerAssaultVestMove_Core:
-; b = selected move. Carry if Assault Vest blocks it.
+CheckPlayerMoveRestrictions_Core:
+; b = selected move. Carry + hl = reason text if the Assault Vest, Taunt
+; or Torment forbids selecting it. (Replaces the old Assault Vest-only
+; CheckPlayerAssaultVestMove_Core.)
 	push bc
 	callfar GetUserItem
 	ld a, b
 	cp HELD_ASSAULT_VEST
-	jr nz, .ok
+	jr nz, .no_vest
 	ld a, [hl]
 	call AbilityBufferItemName
 	pop bc
@@ -1723,14 +1726,101 @@ CheckPlayerAssaultVestMove_Core:
 	ld a, MOVE_CATEGORY
 	call GetMoveAttribute
 	cp CATEGORIZE_STATUS
-	jr z, .blocked
-	and a
-	ret
-.ok
+	jr z, .vest_blocked
+	jr .taunt
+.no_vest
 	pop bc
+.taunt
+	ld a, [wPlayerTauntCount]
+	and a
+	jr z, .no_taunt
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+	jr z, .taunt_blocked
+.no_taunt
+	ld a, [wPlayerSubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	jr z, .allowed
+	ld a, [wLastPlayerMove]
+	and a
+	jr z, .allowed
+	cp b
+	jr z, .torment_blocked
+.allowed
 	and a
 	ret
-.blocked
+.vest_blocked
+	ld hl, BattleText_AssaultVestPreventsMove
+	scf
+	ret
+.taunt_blocked
+	ld hl, BattleText_CantUseAfterTaunt
+	scf
+	ret
+.torment_blocked
+	ld hl, BattleText_MoveCantBeUsedTwice
+	scf
+	ret
+
+PlayerMustStruggleExtra_Core:
+; Carry if Taunt/Torment (on top of PP and Disable) leave the player
+; without a single selectable move, forcing Struggle.
+	ld a, [wPlayerTauntCount]
+	and a
+	jr nz, .restricted
+	ld a, [wPlayerSubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	jr nz, .restricted
+	and a
+	ret
+.restricted
+	ld hl, wBattleMonMoves
+	ld de, wBattleMonPP
+	ld c, 0
+.loop
+	ld a, [hl]
+	and a
+	jr z, .next
+	ld b, a
+	ld a, [de]
+	and PP_MASK
+	jr z, .next
+	ld a, [wDisabledMove]
+	cp b
+	jr z, .next
+	ld a, [wPlayerTauntCount]
+	and a
+	jr z, .not_taunted
+	push bc
+	push de
+	push hl
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	pop hl
+	pop de
+	pop bc
+	cp CATEGORIZE_STATUS
+	jr z, .next
+.not_taunted
+	ld a, [wPlayerSubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	jr z, .legal
+	ld a, [wLastPlayerMove]
+	cp b
+	jr z, .next
+.legal
+	and a
+	ret
+.next
+	inc hl
+	inc de
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .loop
 	scf
 	ret
 
@@ -1805,6 +1895,41 @@ CheckPlayerChoiceLock_Core:
 
 
 HandleEnemyHeldMoveLocks_Core:
+	call .item_locks
+	; Taunt: a taunted enemy must not pick a status move
+	ld a, [wEnemyTauntCount]
+	and a
+	jr z, .no_taunt
+	ld a, [wCurEnemyMove]
+	call EnemyMoveIsStatus
+	jr nc, .no_taunt
+	call FindFirstEnemyDamagingMove
+	jr c, .no_taunt
+	jp ForceEnemyStruggle
+.no_taunt
+	; Torment: not the same move twice in a row
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	ret z
+	push bc
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	ld b, a
+	ld a, [wCurEnemyMove]
+	cp b
+	pop bc
+	ret z ; Struggle is always legal
+	ld b, a
+	ld a, [wLastEnemyMove]
+	and a
+	ret z
+	cp b
+	ret nz
+	call FindEnemyMoveNotB
+	ret c
+	jp ForceEnemyStruggle
+
+.item_locks
 	call SetEnemyTurn
 	callfar GetUserItem
 	ld a, b
@@ -1876,6 +2001,60 @@ FindEnemyMoveWithPP:
 	and a
 	ret
 
+FindEnemyMoveNotB:
+; b = forbidden move id. Carry if a usable other move was found and
+; loaded into wCurEnemyMove(Num). Respects PP, Disable and Taunt.
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonPP
+	ld c, 0
+.loop
+	ld a, [hl]
+	and a
+	jr z, .next
+	cp b
+	jr z, .next
+	push bc
+	ld b, a
+	ld a, [wEnemyDisabledMove]
+	cp b
+	jr z, .next_pop
+	ld a, [de]
+	and PP_MASK
+	jr z, .next_pop
+	ld a, [wEnemyTauntCount]
+	and a
+	jr z, .usable
+	ld a, b
+	push hl
+	push de
+	call EnemyMoveIsStatus ; clobbers hl
+	pop de
+	pop hl
+	jr c, .next_pop
+.usable
+	ld a, c
+	pop bc
+	; a still holds c? no - reload slot below
+	ld a, [hl]
+	push af
+	ld a, c
+	ld [wCurEnemyMoveNum], a
+	pop af
+	ld [wCurEnemyMove], a
+	scf
+	ret
+.next_pop
+	pop bc
+.next
+	inc hl
+	inc de
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .loop
+	and a
+	ret
+
 FindFirstEnemyDamagingMove:
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyMonPP
@@ -1892,7 +2071,11 @@ FindFirstEnemyDamagingMove:
 	and PP_MASK
 	jr z, .next
 	ld a, b
-	call EnemyMoveIsStatus
+	push hl
+	push de
+	call EnemyMoveIsStatus ; clobbers hl (GetMoveAttribute)
+	pop de
+	pop hl
 	jr c, .next
 	ld a, c
 	ld [wCurEnemyMoveNum], a
@@ -4167,6 +4350,7 @@ TryToxicOpponent:
 .got_toxic_count
 	xor a
 	ld [bc], a
+	farcall ToxicMarkOpp_Core
 	call UpdateOpponentInParty
 	ld de, ANIM_PSN
 	call AbilityStatusAnim
