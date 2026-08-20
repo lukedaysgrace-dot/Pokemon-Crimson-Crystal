@@ -211,6 +211,11 @@ ENDM
 	command ficklebeam              ; cc
 	command shellsidearm            ; cd
 	command ragefistpower           ; ce
+	command torment                 ; cf
+	command taunt                   ; d0
+	command yawn                    ; d1
+	command wish                    ; d2
+	command stickyweb               ; d3
 
 	enum_start $fe
 	command endturn                 ; fe

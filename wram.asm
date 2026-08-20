@@ -767,6 +767,23 @@ wSomeoneIsRampaging:: db ; c742
 
 wPlayerJustGotFrozen:: db ; c743
 wEnemyJustGotFrozen:: db ; c744
+
+; New battle state (2026-08 battle math + status/hazard move pack).
+; Lives inside the wBattle..wBattleEnd union member (the 480-byte box save
+; buffer sizes the union, so these bytes are free) and is therefore zeroed
+; automatically by the ByteFill in start_battle.asm at battle start.
+wPlayerToxicSlots:: db ; bit N set = player party slot N is badly poisoned
+wEnemyToxicSlots:: db  ; bit N set = enemy party slot N is badly poisoned
+wPlayerTauntCount:: db ; turns of Taunt left on the player mon (0 = none)
+wEnemyTauntCount:: db  ; turns of Taunt left on the enemy mon (0 = none)
+wPlayerYawnCount:: db ; player mon's drowsy countdown (0 = not drowsy)
+wEnemyYawnCount:: db  ; enemy mon's drowsy countdown (0 = not drowsy)
+wPlayerSpikesLayers:: db ; Spikes layers on the player's side (0-3)
+wEnemySpikesLayers:: db  ; Spikes layers on the enemy's side (0-3)
+wPlayerWishCount:: db ; end-of-turn countdown for a pending Wish (0 = none)
+wEnemyWishCount:: db
+wPlayerWishHP:: dw ; half the wisher's max HP, recorded at use time
+wEnemyWishHP:: dw
 wBattleEnd::
 
 NEXTU ; c608

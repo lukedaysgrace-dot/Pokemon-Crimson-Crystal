@@ -413,3 +413,8 @@ MoveNames::
 	db "BOUNCE@"
 	db "DRAGON TAIL@"
 	db "LUMINA CRASH@"
+	db "TORMENT@"
+	db "TAUNT@"
+	db "YAWN@"
+	db "WISH@"
+	db "STICKY WEB@"
