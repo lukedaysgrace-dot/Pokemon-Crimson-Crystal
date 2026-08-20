@@ -727,12 +727,17 @@ HandleRoost:
 ToxicSpikesPoison:
 ; Poison a grounded mon switching in if toxic spikes lie on its side.
 ; Like SpikesDamage, the victim is the current turn holder.
-	; Stealth Rock shares this switch-in hook (same bank).
+	; Stealth Rock and Sticky Web share this switch-in hook (same bank).
 	call StealthRockEntryDamage
 	; Stealth Rock may have knocked out the switch-in. Toxic Spikes must not
 	; status a fainted mon or activate/consume its held status-curing item.
 	farcall UserHasFainted
 	ret z
+	call .toxic_spikes
+	; the poison cannot faint the switch-in, so Sticky Web can run directly
+	jp StickyWebEntry
+
+.toxic_spikes
 
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
@@ -786,10 +791,10 @@ ToxicSpikesPoison:
 
 	; Grounded Poison-types absorb the toxic spikes (even Poison/Steel)
 	cp POISON
-	jr z, .absorb
+	jp z, .absorb
 	ld a, b
 	cp POISON
-	jr z, .absorb
+	jp z, .absorb
 
 	; Steel-types can't be poisoned
 	ld a, [de]
@@ -842,6 +847,7 @@ ToxicSpikesPoison:
 .got_toxic_count
 	xor a
 	ld [hl], a
+	call ToxicMarkUser_Core ; same bank (included from effect_commands_core)
 	call UpdateUserInParty
 	call .poison_anim
 	call RefreshBattleHuds
@@ -881,4 +887,455 @@ ToxicSpikesPoison:
 	xor a
 	ld [wNumHits], a
 	farcall PlayBattleAnim
+	ret
+
+; ==== Modern status/hazard move pack (2026-08) ============================
+; Torment, Taunt, Yawn, Wish, Sticky Web, multi-layer Spikes.
+; All bodies live in this bank (Battle Effect Overflow); Battle Core and
+; Effect Commands only hold farcall stubs.
+
+BattleTorment_Core:
+; Target can't use the same move twice in a row until it leaves the field.
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
+	farcall CheckSubstituteOpp_Core
+	jr nz, .failed
+	ld a, BATTLE_VARS_SUBSTATUS2_OPP
+	call GetBattleVarAddr
+	bit SUBSTATUS_TORMENTED, [hl]
+	jr nz, .failed
+	set SUBSTATUS_TORMENTED, [hl]
+	callfar AnimateCurrentMove
+	call SwitchTurnForOppText
+	ld hl, BattleText_UserSubjectedToTorment
+	call StdBattleTextbox
+	jp SwitchTurnForOppText
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+BattleTaunt_Core:
+; Target can't use status moves for 3 turns (counter 4: decremented at the
+; end of the Taunt turn and then once per taunted turn, like Encore).
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
+	farcall CheckSubstituteOpp_Core
+	jr nz, .failed
+	; canon Gen 6+: Oblivious blocks Taunt
+	farcall GetOpponentIgnorableAbility_b
+	ld a, b
+	cp OBLIVIOUS
+	jr z, .failed
+	call GetOppTauntCountAddr
+	ld a, [hl]
+	and a
+	jr nz, .failed
+	ld [hl], 4
+	callfar AnimateCurrentMove
+	call SwitchTurnForOppText
+	ld hl, BattleText_UserFellForTaunt
+	call StdBattleTextbox
+	jp SwitchTurnForOppText
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+GetOppTauntCountAddr:
+; hl = opponent's taunt counter
+	ld hl, wEnemyTauntCount
+	ldh a, [hBattleTurn]
+	and a
+	ret z
+	ld hl, wPlayerTauntCount
+	ret
+
+SwitchTurnForOppText:
+; Battle texts address the turn holder as <USER>; flip the turn so a
+; message about the TARGET can use a <USER> string, then flip it back.
+	ldh a, [hBattleTurn]
+	xor 1
+	ldh [hBattleTurn], a
+	ret
+
+BattleYawn_Core:
+; The target falls asleep at the end of the next turn.
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
+	farcall CheckSubstituteOpp_Core
+	jr nz, .failed
+	; fails on a mon that already has a status
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	jr nz, .failed
+	; or is already drowsy
+	call GetOppYawnCountAddr
+	ld a, [hl]
+	and a
+	jr nz, .failed
+	; Safeguard and sleep-preventing abilities stop the drowsiness up front
+	farcall SafeCheckSafeguard_Core
+	jr nz, .failed
+	farcall AbilityPreventsSleep
+	jr c, .failed
+	call GetOppYawnCountAddr
+	ld [hl], 2
+	callfar AnimateCurrentMove
+	call SwitchTurnForOppText
+	ld hl, BattleText_UserGrewDrowsy
+	call StdBattleTextbox
+	jp SwitchTurnForOppText
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+GetOppYawnCountAddr:
+; hl = opponent's yawn countdown
+	ld hl, wEnemyYawnCount
+	ldh a, [hBattleTurn]
+	and a
+	ret z
+	ld hl, wPlayerYawnCount
+	ret
+
+BattleWish_Core:
+; Heal this side's active slot at the end of the NEXT turn for half the
+; user's max HP (recorded now - that is the point of the move).
+	ld hl, wPlayerWishCount
+	ld de, wPlayerWishHP
+	ld bc, wBattleMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wEnemyWishCount
+	ld de, wEnemyWishHP
+	ld bc, wEnemyMonMaxHP
+.got_side
+	ld a, [hl]
+	and a
+	jr nz, .failed ; a Wish is already pending on this side
+	ld [hl], 2
+	; store maxhp/2 (min 1)
+	ld a, [bc]
+	ld h, a
+	inc bc
+	ld a, [bc]
+	ld l, a
+	srl h
+	rr l
+	ld a, h
+	or l
+	jr nz, .nonzero
+	inc l
+.nonzero
+	ld a, h
+	ld [de], a
+	inc de
+	ld a, l
+	ld [de], a
+	callfar AnimateCurrentMove
+	ld hl, BattleText_UserMadeAWish
+	jp StdBattleTextbox
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+BattleStickyWeb_Core:
+; Lay a sticky web on the opponent's side of the field.
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wEnemyScreens
+	jr z, .got_screens
+	ld hl, wPlayerScreens
+.got_screens
+	bit SCREENS_STICKY_WEB, [hl]
+	jr nz, .failed
+	set SCREENS_STICKY_WEB, [hl]
+	callfar AnimateCurrentMove
+	ld hl, BattleText_StickyWebSpread
+	jp StdBattleTextbox
+.failed
+	callfar AnimateFailedMove
+	ld hl, ButItFailedText
+	jp StdBattleTextbox
+
+StickyWebEntry:
+; Switch-in hook (turn holder = the entering mon): grounded mons get their
+; Speed lowered one stage by a web on their side.
+	ld hl, wPlayerScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wEnemyScreens
+.got_side
+	bit SCREENS_STICKY_WEB, [hl]
+	ret z
+	farcall UserHasFainted
+	ret z
+	call CheckSpikesUngrounded_Core
+	ret c
+	ld hl, BattleText_CaughtInStickyWeb
+	call StdBattleTextbox
+	; lower the ENTERING mon's Speed: the stat-drop machinery targets the
+	; turn holder's opponent (like Intimidate), so flip the turn around it
+	call SwitchTurnForOppText
+	ld b, SPEED
+	callfar AbilityStatDown
+	jp SwitchTurnForOppText
+
+SpikesLayerDamage_Core:
+; bc = entry damage for the turn holder from the spikes layers on its
+; side: 1/8 max HP at one layer, 1/6 at two, 1/4 at three.
+	ld hl, wPlayerSpikesLayers
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_layers
+	ld hl, wEnemySpikesLayers
+.got_layers
+	ld a, [hl]
+	cp 2
+	jr c, .one_layer
+	jr z, .two_layers
+	farcall GetQuarterMaxHP
+	ret
+.one_layer
+	farcall GetEighthMaxHP
+	ret
+.two_layers
+	; 1/6 = (max HP / 2) / 3
+	farcall GetHalfMaxHP
+	ld h, b
+	ld l, c
+	ld bc, 0
+.div3
+	ld a, h
+	and a
+	jr nz, .big
+	ld a, l
+	cp 3
+	jr c, .done_div
+.big
+	ld de, 3
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc d
+	ld h, a
+	inc bc
+	jr .div3
+.done_div
+	ld a, b
+	or c
+	ret nz
+	inc c ; minimum 1
+	ret
+
+HandleNewEndTurnEffects_Core:
+; End-of-turn processing for Wish, Taunt and Yawn, in that order.
+; Runs both sides, player first (link battles resolve rarely enough on
+; these moves that strict serial ordering is not worth the bytes).
+	call .wish_player
+	call .wish_enemy
+	call .taunt_player
+	call .taunt_enemy
+	call .yawn_player
+	jp .yawn_enemy
+
+.wish_player
+	ld hl, wPlayerWishCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	; heal the player's active slot by the stored amount
+	; (RestoreHP heals the PLAYER when hBattleTurn is nonzero)
+	ld a, 1
+	ldh [hBattleTurn], a
+	ld a, [wPlayerWishHP]
+	ld b, a
+	ld a, [wPlayerWishHP + 1]
+	ld c, a
+	farcall RestoreHP
+	xor a
+	ldh [hBattleTurn], a
+	ld hl, BattleText_WishCameTrue
+	jp StdBattleTextbox
+
+.wish_enemy
+	ld hl, wEnemyWishCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	xor a
+	ldh [hBattleTurn], a
+	ld a, [wEnemyWishHP]
+	ld b, a
+	ld a, [wEnemyWishHP + 1]
+	ld c, a
+	farcall RestoreHP
+	ld a, 1
+	ldh [hBattleTurn], a
+	ld hl, BattleText_WishCameTrue
+	call StdBattleTextbox
+	xor a
+	ldh [hBattleTurn], a
+	ret
+
+.taunt_player
+	ld hl, wPlayerTauntCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	xor a
+	ldh [hBattleTurn], a
+	ld hl, BattleText_ShookOffTheTaunt
+	jp StdBattleTextbox
+
+.taunt_enemy
+	ld hl, wEnemyTauntCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	ld a, 1
+	ldh [hBattleTurn], a
+	ld hl, BattleText_ShookOffTheTaunt
+	call StdBattleTextbox
+	xor a
+	ldh [hBattleTurn], a
+	ret
+
+.yawn_player
+	ld hl, wPlayerYawnCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	; the player mon falls asleep: run from the ENEMY's perspective so the
+	; opponent-relative sleep helpers apply to the player mon
+	ld a, 1
+	ldh [hBattleTurn], a
+	call .yawn_apply
+	xor a
+	ldh [hBattleTurn], a
+	ret
+
+.yawn_enemy
+	ld hl, wEnemyYawnCount
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+	xor a
+	ldh [hBattleTurn], a
+	; fallthrough
+
+.yawn_apply
+; hBattleTurn holder = the awake side; its opponent falls asleep.
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	ld a, [hl]
+	and a
+	ret nz ; got a status in the meantime
+	push hl
+	farcall SafeCheckSafeguard_Core
+	pop hl
+	ret nz
+	push hl
+	farcall AbilityPreventsSleep
+	pop hl
+	ret c
+.sleep_roll
+	; modern 1-3 turn sleep; same swap-roll as the sleep move effect so
+	; the debug harness's forced RNG values exit the loop
+	call BattleRandom
+	swap a
+	and %11
+	jr z, .sleep_roll
+	ld [hl], a
+	call UpdateOpponentInParty
+	ld de, ANIM_SLP
+	farcall AbilityStatusAnim
+	call RefreshBattleHuds
+	call SwitchTurnForOppText
+	ld hl, FellAsleepText
+	call StdBattleTextbox
+	jp SwitchTurnForOppText
+
+CheckTauntTormentCantMove_Core:
+; Called from CheckTurn (turn holder = the acting mon). Carry + hl = text
+; if Taunt or Torment forbids the selected move. Struggle is always legal.
+	ld hl, wCurPlayerMove
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move
+	ld hl, wCurEnemyMove
+.got_move
+	ld a, [hl]
+	ld b, a
+	push bc
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	pop bc
+	cp b
+	jr z, .allowed
+	; Taunt: no status moves
+	ld hl, wPlayerTauntCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_taunt
+	ld hl, wEnemyTauntCount
+.got_taunt
+	ld a, [hl]
+	and a
+	jr z, .no_taunt
+	push bc
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	pop bc
+	cp CATEGORIZE_STATUS
+	jr z, .taunt_blocked
+.no_taunt
+	; Torment: not the same move twice in a row
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVar
+	bit SUBSTATUS_TORMENTED, a
+	jr z, .allowed
+	ld hl, wLastPlayerMove
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_last
+	ld hl, wLastEnemyMove
+.got_last
+	ld a, [hl]
+	and a
+	jr z, .allowed
+	cp b
+	jr nz, .allowed
+	ld hl, BattleText_MoveCantBeUsedTwice
+	scf
+	ret
+.taunt_blocked
+	ld hl, BattleText_CantUseAfterTaunt
+	scf
+	ret
+.allowed
+	and a
 	ret

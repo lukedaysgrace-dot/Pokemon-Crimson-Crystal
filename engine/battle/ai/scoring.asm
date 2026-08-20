@@ -434,6 +434,11 @@ AI_Smart:
 	dbw EFFECT_SPIKES,           AI_Smart_Spikes
 	dbw EFFECT_TOXIC_SPIKES,     AI_Smart_ToxicSpikes
 	dbw EFFECT_STEALTH_ROCK,     AI_Smart_StealthRock
+	dbw EFFECT_STICKY_WEB,       AI_Smart_StickyWeb
+	dbw EFFECT_TORMENT,          AI_Smart_Torment
+	dbw EFFECT_TAUNT,            AI_Smart_Taunt
+	dbw EFFECT_YAWN,             AI_Smart_Yawn
+	dbw EFFECT_WISH,             AI_Smart_Wish
 	dbw EFFECT_DEFOG,            AI_Smart_Defog
 	dbw EFFECT_U_TURN,           AI_Smart_UTurn
 	dbw EFFECT_TRICK_ROOM,       AI_Smart_TrickRoom
@@ -3618,11 +3623,11 @@ INCLUDE "data/battle/ai/risky_effects.asm"
 ; ==== AI_Smart handlers for the newer (Gen 4-9) move effects ==============
 
 AI_Smart_Spikes:
-; Dismiss if spikes are already down or the player is on their last mon.
-; Otherwise encourage strongly during the first couple of turns.
-	ld a, [wPlayerScreens]
-	bit SCREENS_SPIKES, a
-	jr z, .none_yet
+; Dismiss once all three layers are down or the player is on their last
+; mon. Otherwise encourage strongly during the first couple of turns.
+	ld a, [wPlayerSpikesLayers]
+	cp 3
+	jr c, .none_yet
 	jp AIDiscourageMove
 .none_yet
 	ld a, [wPartyCount]
@@ -3664,6 +3669,66 @@ AI_Smart_StealthRock:
 	cp 2
 	ret nc
 	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_StickyWeb:
+; Dismiss once a web is already down or the player is on their last mon.
+	ld a, [wPlayerScreens]
+	bit SCREENS_STICKY_WEB, a
+	jr z, .none_yet
+	jp AIDiscourageMove
+.none_yet
+	ld a, [wPartyCount]
+	cp 2
+	ret c
+	ld a, [wEnemyTurnsTaken]
+	cp 2
+	ret nc
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_Torment:
+; Useless against an already tormented target.
+	ld a, [wPlayerSubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	ret z
+	jp AIDiscourageMove
+
+AI_Smart_Taunt:
+; Useless against an already taunted target; mildly encourage early.
+	ld a, [wPlayerTauntCount]
+	and a
+	jr z, .not_taunted
+	jp AIDiscourageMove
+.not_taunted
+	ld a, [wEnemyTurnsTaken]
+	cp 2
+	ret nc
+	dec [hl]
+	ret
+
+AI_Smart_Yawn:
+; Useless if the player is statused or already drowsy.
+	ld a, [wBattleMonStatus]
+	and a
+	jr nz, .useless
+	ld a, [wPlayerYawnCount]
+	and a
+	ret z
+.useless
+	jp AIDiscourageMove
+
+AI_Smart_Wish:
+; Useless if a Wish is already pending; encourage when hurt.
+	ld a, [wEnemyWishCount]
+	and a
+	jr z, .no_wish_yet
+	jp AIDiscourageMove
+.no_wish_yet
+	call AICheckEnemyHalfHP
+	ret c ; healthy: leave the default score
 	dec [hl]
 	ret
 
