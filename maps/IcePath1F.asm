@@ -49,15 +49,15 @@ IcePath1FCrystalScene:
 	iftrue .Totodile
 	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .Totodile
-	loadtrainer CRYSTAL, CRYSTAL_4_CHIKORITA
+	loadtrainer CRYSTAL2, CRYSTAL2_4_CHIKORITA
 	sjump .StartBattle
 
 .Cyndaquil:
-	loadtrainer CRYSTAL, CRYSTAL_4_CYNDAQUIL
+	loadtrainer CRYSTAL2, CRYSTAL2_4_CYNDAQUIL
 	sjump .StartBattle
 
 .Totodile:
-	loadtrainer CRYSTAL, CRYSTAL_4_TOTODILE
+	loadtrainer CRYSTAL2, CRYSTAL2_4_TOTODILE
 
 .StartBattle:
 	winlosstext IcePath1FCrystalWinText, IcePath1FCrystalLossText
