@@ -18,7 +18,7 @@ VictoryRoadGate_MapScripts:
 	end
 
 .LockMtSilver:
-	checkevent EVENT_BEAT_LANCE_REMATCH
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .MtSilverLockDone
 	appear VICTORYROADGATE_BLACK_BELT1
 .MtSilverLockDone:

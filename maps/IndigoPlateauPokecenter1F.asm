@@ -44,6 +44,10 @@ IndigoPlateauPokecenter1F_MapScripts:
 PlateauRivalBattle1:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse PlateauRivalScriptDone
+; Silver only shows up once the Elite Four rematch is live, so this is the last
+; fight before Will's room reopens.
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
 	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
@@ -59,6 +63,10 @@ PlateauRivalBattle1:
 
 PlateauRivalBattle2:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	iffalse PlateauRivalScriptDone
+; Silver only shows up once the Elite Four rematch is live, so this is the last
+; fight before Will's room reopens.
+	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
@@ -87,7 +95,7 @@ PlateauRivalBattleCommon:
 	; Cyndaquil
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, RIVAL2_2_TOTODILE
+	loadtrainer RIVAL3, RIVAL3_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -96,7 +104,7 @@ PlateauRivalBattleCommon:
 .Totodile:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, RIVAL2_2_CHIKORITA
+	loadtrainer RIVAL3, RIVAL3_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -105,7 +113,7 @@ PlateauRivalBattleCommon:
 .Chikorita:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, RIVAL2_2_CYNDAQUIL
+	loadtrainer RIVAL3, RIVAL3_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
