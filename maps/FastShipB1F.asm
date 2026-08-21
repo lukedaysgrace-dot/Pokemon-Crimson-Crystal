@@ -102,13 +102,13 @@ TrainerSailorJeff:
 	closetext
 	end
 
-TrainerPicnickerDebra:
-	trainer PICNICKER, DEBRA, EVENT_BEAT_PICNICKER_DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, .Script
+TrainerAromaLadyDebra:
+	trainer AROMA_LADY, DEBRA, EVENT_BEAT_AROMA_LADY_DEBRA, AromaLadyDebraSeenText, AromaLadyDebraBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerDebraAfterBattleText
+	writetext AromaLadyDebraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -280,17 +280,17 @@ SailorJeffAfterBattleText:
 	cont "serious."
 	done
 
-PicnickerDebraSeenText:
+AromaLadyDebraSeenText:
 	text "I'm so bored."
 	line "Want to battle?"
 	done
 
-PicnickerDebraBeatenText:
+AromaLadyDebraBeatenText:
 	text "Yow! You're too"
 	line "strong!"
 	done
 
-PicnickerDebraAfterBattleText:
+AromaLadyDebraAfterBattleText:
 	text "SAFFRON, CELADON…"
 	line "I hear there are"
 
@@ -464,7 +464,7 @@ FastShipB1F_MapEvents:
 	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	object_event 31,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	object_event  9, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  6,  4, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event  6,  4, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event 26,  9, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event 17,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	object_event 25,  8, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
