@@ -2,6 +2,7 @@
 """Audit trainer overworld sprites and outdoor sprite-group VRAM usage."""
 
 import re
+import sys
 from pathlib import Path
 
 
@@ -248,6 +249,8 @@ def main():
 			status += f", unassigned {', '.join(failed)}"
 		print(f"{group:12} {status}")
 
+	return 1 if mismatches or issue_count else 0
+
 
 if __name__ == "__main__":
-	main()
+	sys.exit(main())

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Audit overworld sprite VRAM usage per map."""
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -185,6 +186,8 @@ def main():
             continue
         print(f"  {name}: {r['unique'] + 1} types, {r['tiles']} tiles")
 
+    return 1 if overflow or list_full else 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
