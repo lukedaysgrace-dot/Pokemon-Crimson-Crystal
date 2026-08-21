@@ -82,7 +82,7 @@ GoldenrodGymWhitneyScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext WhitneyRematchWinText, 0
-	loadtrainer WHITNEY, WHITNEY2
+	loadtrainer WHITNEY_REMATCH, WHITNEY2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY_REMATCH

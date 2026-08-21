@@ -70,24 +70,26 @@ UpdateLevelCap::
 	ret
 
 HardModeLevelCaps:
-	db 10 ; 0 badges
-	db 16 ; Zephyr
-	db 21 ; Hive
-	db 25 ; Plain
-	db 31 ; Fog
-	db 36 ; fifth Johto badge
-	db 38 ; sixth Johto badge
-	db 45 ; seventh Johto badge
-	db 50 ; Rising
-	db 60 ; Hall of Fame
-	db 62 ; 1 Kanto badge
-	db 63 ; 2 Kanto badges
-	db 64 ; 3 Kanto badges
-	db 66 ; 4 Kanto badges
-	db 66 ; 5 Kanto badges
-	db 67 ; 6 Kanto badges
-	db 69 ; 7 Kanto badges
-	db MAX_LEVEL ; 8 Kanto badges
+; Only the Johto run is capped. The eighth badge lifts it for good; everything
+; after is paced by the exp that is actually available.
+	db 10
+	db 16
+	db 21
+	db 25
+	db 31
+	db 36
+	db 38
+	db 45
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
+	db MAX_LEVEL
 
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e

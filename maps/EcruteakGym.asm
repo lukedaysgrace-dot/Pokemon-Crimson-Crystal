@@ -71,7 +71,7 @@ EcruteakGymMortyScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext MortyRematchWinText, 0
-	loadtrainer MORTY, MORTY2
+	loadtrainer MORTY_REMATCH, MORTY2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY_REMATCH
