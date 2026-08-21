@@ -2735,15 +2735,7 @@ BattleCommand_CheckFaint:
 ; spot, and before faint processing (the hook guards fainted sides itself).
 	farcall RunContactAbilitiesHook
 
-	ld hl, wEnemyMonHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_hp
-	ld hl, wBattleMonHP
-
-.got_hp
-	ld a, [hli]
-	or [hl]
+	farcall CheckTargetFaintedWithCheat
 	jr z, .fainted
 	; Modern berry timing: a mon knocked below its berry threshold eats
 	; immediately after the hit (here, after checkfaint's HP read confirms
