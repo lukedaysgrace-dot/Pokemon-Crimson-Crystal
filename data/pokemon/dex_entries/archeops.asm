@@ -5,6 +5,6 @@
 	next "speed, then leaps"
 	next "into the sky."
 
-	page "Highly intelligent,"
+	page "Very intelligent,"
 	next "it hunts in packs"
-	next "with clever tricks.@"
+	next "with smart tricks.@"

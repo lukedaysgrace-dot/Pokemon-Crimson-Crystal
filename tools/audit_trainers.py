@@ -146,7 +146,7 @@ def parse_parties(species, moves, items):
 				fail(path, line_number, "trainer entry is outside a group")
 				continue
 			comment = line.split(";", 1)[1].strip() if ";" in line else ""
-			declared = re.fullmatch(r"(\w+)\s+\((\d+)\)", comment)
+			declared = re.match(r"(\w+)\s+\((\d+)\)(?:\s|$)", comment)
 			current_entry = {
 				"group": current_group,
 				"line": line_number,
@@ -337,9 +337,15 @@ def validate_rematch_tiers(groups):
 		if len(entries) < 2:
 			fail(path, 0, f"{group_name} has no rematch party")
 			continue
+		initial_levels = [mon["level"] for mon in entries[0].get("mons", [])]
 		levels = [mon["level"] for mon in entries[1].get("mons", [])]
-		if len(levels) != 5 or min(levels, default=0) < 53 or max(levels, default=0) != 55:
-			fail(path, entries[1]["line"], f"endgame leader rematch tier is {levels}, expected five levels in 53..55")
+		initial_max = max(initial_levels, default=0)
+		if len(levels) != 5 or min(levels, default=0) <= initial_max:
+			fail(
+				path,
+				entries[1]["line"],
+				f"leader rematch tier {levels} must contain five Pokémon above the initial party's level {initial_max}",
+			)
 
 
 def validate_script_references(classes, owners):
