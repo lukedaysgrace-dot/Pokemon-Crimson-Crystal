@@ -60,7 +60,7 @@ PryceScript_Defeat:
 	iffalse .RematchDone
 	closetext
 	winlosstext PryceRematchWinText, 0
-	loadtrainer PRYCE, PRYCE2
+	loadtrainer PRYCE_REMATCH, PRYCE2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE_REMATCH

@@ -54,7 +54,7 @@ KogaScript_Battle:
 	loadtrainer KOGA, KOGA1
 	sjump .StartBattle
 .LoadRematchTeam:
-	loadtrainer KOGA, KOGA2
+	loadtrainer KOGA_REMATCH, KOGA2
 .StartBattle:
 	startbattle
 	reloadmapafterbattle

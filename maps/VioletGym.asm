@@ -49,14 +49,14 @@ VioletGymFalknerScript:
 .SpeechAfterTM:
 	checkevent EVENT_BEAT_FALKNER_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_BLUE
+	checkevent EVENT_BEAT_RED
 	iffalse .RematchDone
 	writetext FalknerRematchChallengeText
 	yesorno
 	iffalse .RematchDone
 	closetext
 	winlosstext FalknerRematchWinText, 0
-	loadtrainer FALKNER, FALKNER2
+	loadtrainer FALKNER_REMATCH, FALKNER2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER_REMATCH

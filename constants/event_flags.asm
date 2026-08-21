@@ -2159,4 +2159,9 @@
 	const EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 	const EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
 
+; Set when RED in SILVER CAVE has been beaten. Distinct from
+; EVENT_RED_IN_MT_SILVER, which is his object flag and gets cleared again by
+; the HALL OF FAME script so he can be refought.
+	const EVENT_BEAT_RED
+
 NUM_EVENTS EQU const_value
