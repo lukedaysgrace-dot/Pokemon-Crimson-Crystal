@@ -80,7 +80,7 @@ OlivineGymJasmineScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext JasmineRematchWinText, 0
-	loadtrainer JASMINE, JASMINE2
+	loadtrainer JASMINE_REMATCH, JASMINE2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE_REMATCH

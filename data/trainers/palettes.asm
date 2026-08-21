@@ -97,3 +97,18 @@ INCBIN "gfx/trainers/battle_girl.gbcpal", middle_colors
 INCBIN "gfx/trainers/tamer.gbcpal", middle_colors
 INCBIN "gfx/trainers/thug.gbcpal", middle_colors
 INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors
+INCBIN "gfx/trainers/crystal2.gbcpal", middle_colors ; CRYSTAL3
+INCBIN "gfx/trainers/rival2.gbcpal", middle_colors ; RIVAL3
+INCBIN "gfx/trainers/falkner.gbcpal", middle_colors ; FALKNER_REMATCH
+INCBIN "gfx/trainers/bugsy.gbcpal", middle_colors ; BUGSY_REMATCH
+INCBIN "gfx/trainers/whitney.gbcpal", middle_colors ; WHITNEY_REMATCH
+INCBIN "gfx/trainers/morty.gbcpal", middle_colors ; MORTY_REMATCH
+INCBIN "gfx/trainers/chuck.gbcpal", middle_colors ; CHUCK_REMATCH
+INCBIN "gfx/trainers/jasmine.gbcpal", middle_colors ; JASMINE_REMATCH
+INCBIN "gfx/trainers/pryce.gbcpal", middle_colors ; PRYCE_REMATCH
+INCBIN "gfx/trainers/clair.gbcpal", middle_colors ; CLAIR_REMATCH
+INCBIN "gfx/trainers/will.gbcpal", middle_colors ; WILL_REMATCH
+INCBIN "gfx/trainers/koga.gbcpal", middle_colors ; KOGA_REMATCH
+INCBIN "gfx/trainers/bruno.gbcpal", middle_colors ; BRUNO_REMATCH
+INCBIN "gfx/trainers/karen.gbcpal", middle_colors ; KAREN_REMATCH
+INCBIN "gfx/trainers/champion.gbcpal", middle_colors ; CHAMPION_REMATCH

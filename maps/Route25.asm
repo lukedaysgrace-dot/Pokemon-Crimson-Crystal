@@ -249,15 +249,15 @@ Route25CrystalBattle:
 	iftrue .Totodile
 	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .Totodile
-	loadtrainer CRYSTAL2, CRYSTAL2_CHIKORITA
+	loadtrainer CRYSTAL3, CRYSTAL3_CHIKORITA
 	sjump .StartBattle
 
 .Cyndaquil:
-	loadtrainer CRYSTAL2, CRYSTAL2_CYNDAQUIL
+	loadtrainer CRYSTAL3, CRYSTAL3_CYNDAQUIL
 	sjump .StartBattle
 
 .Totodile:
-	loadtrainer CRYSTAL2, CRYSTAL2_TOTODILE
+	loadtrainer CRYSTAL3, CRYSTAL3_TOTODILE
 
 .StartBattle:
 	winlosstext Route25CrystalWinText, Route25CrystalLossText
@@ -289,10 +289,10 @@ Route25MewScript:
 	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadwildmon MEW, 60
 	startbattle
-; MEW only leaves the cape if it was actually caught - a KO or a run just
-; leaves it drifting around for another try. This has to be settled before
-; reloadmapafterbattle, because that reload re-runs .Objects.
-	special CheckCaughtMew
+; MEW only leaves the cape if this battle actually ended in a catch - a KO or
+; a run leaves it drifting around for another try. Check the battle result
+; itself before reloadmapafterbattle, because that reload re-runs .Objects.
+	special CheckCaughtWildMon
 	iffalse .StillOutThere
 	setevent EVENT_ROUTE_25_CAUGHT_MEW
 	disappear ROUTE25_MEW
@@ -303,20 +303,92 @@ Route25MewScript:
 	pause 20
 	special FadeOutMusic
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
+
+; The wandering MEW can be caught from any walkable tile in the 4-by-5 cape
+; area. CRYSTAL starts at (48, 7), chooses the free tile immediately beside
+; the player's current column, then walks down to their current row.
+	readvar VAR_XCOORD
+	ifequal 46, .ApproachLeft
+	ifequal 48, .ApproachRight
+	sjump .ApproachVertically
+
+.ApproachLeft:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachLeftMovement
+	sjump .ApproachVertically
+
+.ApproachRight:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachRightMovement
+
+.ApproachVertically:
+	readvar VAR_YCOORD
+	ifequal 8, .ApproachDown1
+	ifequal 9, .ApproachDown2
+	ifequal 10, .ApproachDown3
+	ifequal 11, .ApproachDown4
+	ifequal 12, .ApproachDown5
+	sjump .CrystalApproached
+
+.ApproachDown1:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachDown1Movement
+	sjump .CrystalApproached
+
+.ApproachDown2:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachDown2Movement
+	sjump .CrystalApproached
+
+.ApproachDown3:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachDown3Movement
+	sjump .CrystalApproached
+
+.ApproachDown4:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachDown4Movement
+	sjump .CrystalApproached
+
+.ApproachDown5:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtApproachDown5Movement
+
+.CrystalApproached:
+	faceobject ROUTE25_CRYSTAL, PLAYER
+	faceobject PLAYER, ROUTE25_CRYSTAL
 	opentext
 	writetext Route25CrystalMewCaughtText
 	waitbutton
 	closetext
-; Respawn her in place before the walk west. Her object's *initial* coords
-; still point at wherever she appeared from, which can be outside the visible
-; window of the tile the player caught MEW from - and an object whose current
-; and initial coords both leave the window is deleted mid-walk
-; (.CheckObjectStillVisible), hanging the applymovement. writeobjectxy +
-; disappear + appear re-anchors her initial coords to the tile she stands on
-; (always near the player here), so the exit walk always runs to completion.
+
+; Re-anchor her beside the player so the visibility culler cannot delete her
+; during the exit. Return to the clearing row using the player's unchanged Y
+; coordinate, then leave west along the known-safe row.
 	writeobjectxy ROUTE25_CRYSTAL
 	disappear ROUTE25_CRYSTAL
 	appear ROUTE25_CRYSTAL
+	readvar VAR_YCOORD
+	ifequal 8, .ReturnUp1
+	ifequal 9, .ReturnUp2
+	ifequal 10, .ReturnUp3
+	ifequal 11, .ReturnUp4
+	ifequal 12, .ReturnUp5
+	sjump .Leave
+
+.ReturnUp1:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtReturnUp1Movement
+	sjump .Leave
+
+.ReturnUp2:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtReturnUp2Movement
+	sjump .Leave
+
+.ReturnUp3:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtReturnUp3Movement
+	sjump .Leave
+
+.ReturnUp4:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtReturnUp4Movement
+	sjump .Leave
+
+.ReturnUp5:
+	applymovement ROUTE25_CRYSTAL, Route25CrystalCaughtReturnUp5Movement
+
+.Leave:
 	applymovement ROUTE25_CRYSTAL, Route25CrystalLeavesMovement
 	setevent EVENT_ROUTE_25_CRYSTAL_LEFT
 	disappear ROUTE25_CRYSTAL
@@ -438,9 +510,8 @@ Route25MewDriftMovement:
 	step_end
 
 Route25CrystalLeavesMovement:
-; She leaves from wherever she stood for the battle: (46-49, 7) after an
-; approach, or (48, 7) after a map re-entry - all on the clearing row, so she
-; just heads off west through the gap in the cliff line.
+; She has returned to the clearing row at x=47-49, so she can head west
+; through the gap in the cliff line regardless of where MEW was caught.
 	step LEFT
 	step LEFT
 	step LEFT
@@ -463,6 +534,76 @@ Route25CrystalFallbackMovement:
 ; (44, 7) -> (46, 7), overlooking the jetty steps
 	step RIGHT
 	step RIGHT
+	step_end
+
+Route25CrystalCaughtApproachLeftMovement:
+; Player x=46: (48, 7) -> (47, 7), then approach down on their right.
+	step LEFT
+	step_end
+
+Route25CrystalCaughtApproachRightMovement:
+; Player x=48: (48, 7) -> (49, 7), then approach down on their right.
+	step RIGHT
+	step_end
+
+Route25CrystalCaughtApproachDown1Movement:
+	step DOWN
+	step_end
+
+Route25CrystalCaughtApproachDown2Movement:
+	step DOWN
+	step DOWN
+	step_end
+
+Route25CrystalCaughtApproachDown3Movement:
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+Route25CrystalCaughtApproachDown4Movement:
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+Route25CrystalCaughtApproachDown5Movement:
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+Route25CrystalCaughtReturnUp1Movement:
+	step UP
+	step_end
+
+Route25CrystalCaughtReturnUp2Movement:
+	step UP
+	step UP
+	step_end
+
+Route25CrystalCaughtReturnUp3Movement:
+	step UP
+	step UP
+	step UP
+	step_end
+
+Route25CrystalCaughtReturnUp4Movement:
+	step UP
+	step UP
+	step UP
+	step UP
+	step_end
+
+Route25CrystalCaughtReturnUp5Movement:
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x19efe8:
