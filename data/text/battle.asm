@@ -1287,8 +1287,9 @@ BattleText_UserSubjectedToTorment:
 	prompt
 
 BattleText_UserFellForTaunt:
-	text "<USER> fell for"
-	line "the TAUNT!"
+	text "<USER>"
+	line "fell for the"
+	cont "TAUNT!"
 	prompt
 
 BattleText_CantUseAfterTaunt:
@@ -1298,8 +1299,9 @@ BattleText_CantUseAfterTaunt:
 	prompt
 
 BattleText_ShookOffTheTaunt:
-	text "<USER> shook off"
-	line "the TAUNT!"
+	text "<USER>"
+	line "shook off the"
+	cont "TAUNT!"
 	prompt
 
 BattleText_UserGrewDrowsy:
