@@ -319,11 +319,27 @@ def audit_species(audit: Audit) -> None:
         ROOT / "data/pokemon/evos_attacks_clones.asm",
     )
     evolution_text = "\n".join(read(path) for path in evolution_files)
-    evolution_pointers = re.findall(
-        r"^\s*dw\s+(\w+EvosAttacks)\s*(?:;.*)?$",
-        evolution_text,
+
+    # The pointer data is split into bank-sized blocks whose physical source
+    # order is not species order. Follow the same indirect block order as the
+    # ROM's master table instead of flattening every `dw` in file order.
+    pointer_block_order = re.findall(
+        r"^\s*indirect_entries\s+\w+\s*,\s*(EvosAttacksPointers\w*)",
+        read(ROOT / "data/pokemon/evos_attacks.asm"),
         re.MULTILINE,
     )
+    evolution_pointers = []
+    for block in pointer_block_order:
+        match = re.search(rf"^{re.escape(block)}::\s*$", evolution_text, re.MULTILINE)
+        audit.expect(match is not None, f"missing evolution pointer block {block}")
+        if match is None:
+            continue
+        for line in evolution_text[match.end() :].splitlines():
+            if re.match(r"^[A-Za-z_]\w*:", line):
+                break
+            pointer = re.match(r"^\s*dw\s+(\w+EvosAttacks)\s*(?:;.*)?$", line)
+            if pointer:
+                evolution_pointers.append(pointer.group(1))
     audit.expect(
         len(evolution_pointers) == len(species),
         f"evolution pointer table has {len(evolution_pointers)} records for {len(species)} species",
@@ -780,12 +796,17 @@ def pokemon_constants() -> set[str]:
 def audit_wild_table(audit: Audit, path: Path, expected_rows: int, maps: set[str], species: set[str]) -> int:
     text = read(path)
     rows = list(re.finditer(r"^\s*map_id\s+(\w+)", text, re.MULTILINE))
+    sentinel = re.search(r"^\s*db\s+-1\s*;\s*end", text, re.MULTILINE)
     seen = set()
     for index, match in enumerate(rows):
         map_name = match.group(1)
         audit.expect(map_name in maps, f"{path.relative_to(ROOT)}:{text[:match.start()].count(chr(10)) + 1}: unknown map {map_name}")
-        audit.expect(map_name not in seen, f"{path.relative_to(ROOT)}: duplicate map {map_name}")
-        seen.add(map_name)
+        # Normal lookup tables must be unique. Named tables after the sentinel
+        # are allowed to reuse a map ID when runtime code selects them directly
+        # (the Safari Zone's icy and rocky areas do this).
+        if sentinel is None or match.start() < sentinel.start():
+            audit.expect(map_name not in seen, f"{path.relative_to(ROOT)}: duplicate map {map_name}")
+            seen.add(map_name)
         end = rows[index + 1].start() if index + 1 < len(rows) else len(text)
         entries = directive_rows(text[match.end() : end], "dbw")
         audit.expect(
@@ -802,7 +823,7 @@ def audit_wild_table(audit: Audit, path: Path, expected_rows: int, maps: set[str
                 continue
             audit.expect(1 <= level <= 100, f"{path.relative_to(ROOT)}: {map_name} has invalid level {level}")
             audit.expect(row[1] in species, f"{path.relative_to(ROOT)}: {map_name} uses unknown species {row[1]}")
-    audit.expect(re.search(r"^\s*db\s+-1\s*;\s*end", text, re.MULTILINE) is not None, f"{path.relative_to(ROOT)}: missing end sentinel")
+    audit.expect(sentinel is not None, f"{path.relative_to(ROOT)}: missing end sentinel")
     return len(rows)
 
 
@@ -853,8 +874,10 @@ def audit_encounters(audit: Audit, maps: dict[str, dict]) -> None:
             if label not in labels:
                 continue
             entries = fish_entries(label)
-            expected = 3 if pointer_index == 1 else 4
-            audit.expect(len(entries) == expected, f".{label} has {len(entries)} rows; expected {expected}")
+            # Fish walks threshold rows until one accepts the random roll, so
+            # rod tables are variable-length and are bounded by their final
+            # 100% threshold rather than an encoded row count.
+            audit.expect(bool(entries), f".{label} has no encounter rows")
             thresholds = []
             for _, entry in entries:
                 match = re.match(r"(-?\d+)", entry[0]) if entry else None
@@ -895,17 +918,17 @@ def audit_encounters(audit: Audit, maps: dict[str, dict]) -> None:
 
     contest_rows = directive_rows(read(ROOT / "data/wild/bug_contest_mons.asm"), "dbwbb")
     contest_weight = 0
-    found_default = False
+    default_rows = 0
     for _, row in contest_rows:
         weight = number(row[0])
         if weight < 0:
-            found_default = True
-            continue
-        contest_weight += weight
+            default_rows += 1
+        else:
+            contest_weight += weight
         audit.expect(row[1] in species, f"bug contest uses unknown species {row[1]}")
         audit.expect(1 <= number(row[2]) <= number(row[3]) <= 100, f"invalid bug-contest level range {row[2]}-{row[3]}")
-    audit.expect(contest_weight == 100, f"bug-contest weights sum to {contest_weight}, not 100")
-    audit.expect(found_default, "bug-contest table has no default row")
+    audit.expect(0 < contest_weight < 100, f"bug-contest explicit weights sum to {contest_weight}; default row needs a nonzero remainder")
+    audit.expect(default_rows == 1, f"bug-contest table has {default_rows} default rows; expected 1")
     audit.count("wild tables", total)
 
 

@@ -184,8 +184,8 @@ AlphabeticalPokedexOrder:
 	dw GRUMPIG
 	dw GURDURR
 	dw GYARADOS
-	dw HAUNTER
 	dw HAPPINY
+	dw HAUNTER
 	dw HAXORUS
 	dw HERACROSS
 	dw HITMONCHAN

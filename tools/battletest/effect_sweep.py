@@ -248,6 +248,12 @@ def _configure(effect, move, power):
     elif effect == "EFFECT_SKETCH":
         test["enemy"]["moves"] = ["SPLASH"]
         assertions = ["player.moves[0] == 'SPLASH'"]
+    elif effect == "EFFECT_CONVERSION2":
+        # Conversion2 rerolls until it finds a type resistant to the foe's
+        # last move. A fixed forced value can select the same unsuitable type
+        # forever, so use a deterministic stream for this intentional loop.
+        test["rng"] = "seeded"
+        test["rng_value"] = 0xE4
 
     test["assert"] = assertions
     return test

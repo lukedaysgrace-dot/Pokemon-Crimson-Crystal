@@ -1116,7 +1116,8 @@ DebugChoosePlayerMove::
 	ld a, [wBattlePlayerAction]
 	and a
 	jr z, .run_rechoose
-	scf
+	; nz/nc tells ParsePlayerAction to take its ordinary non-move action path,
+	; which selects the enemy move before the failed escape spends this turn.
 	ret
 .run_rechoose
 	ld a, 1
