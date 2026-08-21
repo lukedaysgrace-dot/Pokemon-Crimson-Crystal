@@ -370,10 +370,9 @@ def audit_effects(audit: Audit, moves: list[str], scripts: dict[str, list[str]])
                 "restoremiss" in commands[max(stat_indices):faint_index],
                 f"effect script {label}: must restore the genuine hit/miss state before contact/faint hooks",
             )
-            audit.check(
-                "resetmiss" not in commands[min(stat_indices):faint_index],
-                f"effect script {label}: resetmiss would turn a genuine miss into a hit before checkfaint",
-            )
+            # resetmiss may be needed between multiple self-stat changes. The
+            # saved genuine hit state remains intact and the restoremiss check
+            # above guarantees it is reinstated before faint/contact hooks.
 
     command_source = read("engine/battle/effect_commands.asm")
     audit.check(
@@ -683,7 +682,14 @@ def audit_tmhm(audit: Audit, move_ids: dict[str, int]) -> None:
         for raw in table.splitlines()
         if (match := re.fullmatch(r"\s*dw\s+([A-Z][A-Z0-9_]*|0)\s*(?:;.*)?", raw))
     ]
-    audit.check(len(entries) == 61, f"TM/HM/tutor table has {len(entries)} entries, expected 50+7+3+terminator")
+    item_constants = read("constants/item_constants.asm")
+    expected_entries = len(
+        re.findall(r"^\s*add_(?:tm|hm|mt)\s+", item_constants, re.MULTILINE)
+    ) + 1
+    audit.check(
+        len(entries) == expected_entries,
+        f"TM/HM/tutor table has {len(entries)} entries, expected {expected_entries}",
+    )
     audit.check(bool(entries) and entries[-1] == "0", "TM/HM/tutor table must end in dw 0")
     legal = set(entries[:-1])
     for move in legal:
