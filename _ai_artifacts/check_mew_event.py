@@ -72,9 +72,33 @@ if mew:
     check(my-ry >= 9, f"MEW can reach y={my-ry}; must stay below the jetty's top row so the "
                       f"player always crosses a coord_event before reaching it")
 cx,cy=(int(g) for g in re.search(r'object_event\s+(\d+),\s*(\d+), SPRITE_CRYSTAL', R).groups())
-walk=[(cx-i-1,cy) for i in range(len(re.findall(r'\tstep LEFT', R.split('Route25CrystalLeavesMovement:')[1].split('step_end')[0])))]
-bad=[p for p in walk if tile(*p) not in WALKABLE]
-check(not bad, f"CRYSTAL's exit walks into {bad}")
+DIRS={'UP':(0,-1),'DOWN':(0,1),'LEFT':(-1,0),'RIGHT':(1,0)}
+def steps(label,x,y):
+    body=R.split(label+':')[1].split('step_end')[0]
+    out=[]
+    for d in re.findall(r'\tstep (UP|DOWN|LEFT|RIGHT)', body):
+        dx,dy=DIRS[d]; x+=dx; y+=dy; out.append((x,y))
+    return out
+# CRYSTAL's approach paths all start at (39, 7) (moveobject in
+# Route25CrystalRunsIn) and must end on the tile next to / above the player
+APPROACH_START=(39,7)
+mo=re.search(r'moveobject ROUTE25_CRYSTAL, (\d+), (\d+)', R)
+check(mo and (int(mo.group(1)),int(mo.group(2)))==APPROACH_START,
+      f"Route25CrystalRunsIn moveobject is not at {APPROACH_START}")
+for lbl,landing in (('Route25CrystalApproachTo46Movement',(46,7)),
+                    ('Route25CrystalApproachTo47Movement',(46,8)),
+                    ('Route25CrystalApproachTo48Movement',(47,8)),
+                    ('Route25CrystalApproachTo49Movement',(48,8))):
+    p=steps(lbl,*APPROACH_START)
+    bad=[t for t in p if tile(*t) not in WALKABLE]
+    check(not bad, f"{lbl} walks into {bad}")
+    check(bool(p) and p[-1]==landing, f"{lbl} ends at {p[-1] if p else None}, expected {landing}")
+# the exit path must stay on solid ground from every spot she can be left on:
+# her home coords (map re-entry) and the four approach stops
+for sx,sy in [(cx,cy),(46,7),(46,8),(47,8),(48,8)]:
+    p=steps('Route25CrystalLeavesMovement',sx,sy)
+    bad=[t for t in p if tile(*t) not in WALKABLE]
+    check(not bad, f"CRYSTAL's exit from ({sx},{sy}) walks into {bad}")
 
 # --- 5. text line widths (# renders as the 4-wide POKe glyph) -------------
 def width(s):
