@@ -96,3 +96,4 @@ INCBIN "gfx/trainers/green.gbcpal", middle_colors
 INCBIN "gfx/trainers/battle_girl.gbcpal", middle_colors
 INCBIN "gfx/trainers/tamer.gbcpal", middle_colors
 INCBIN "gfx/trainers/thug.gbcpal", middle_colors
+INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors

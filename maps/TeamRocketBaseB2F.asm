@@ -186,13 +186,13 @@ LanceHealsCommon:
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
-TrainerGruntM17:
-	trainer GRUNTM, GRUNTM_17, EVENT_BEAT_ROCKET_GRUNTM_17, GruntM17SeenText, GruntM17BeatenText, 0, .Script
+TrainerGruntF12:
+	trainer GRUNTF, GRUNTF_12, EVENT_BEAT_ROCKET_GRUNTF_12, GruntF12SeenText, GruntF12BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM17AfterBattleText
+	writetext GruntF12AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -208,13 +208,13 @@ TrainerGruntM18:
 	closetext
 	end
 
-TrainerGruntM19:
-	trainer GRUNTM, GRUNTM_19, EVENT_BEAT_ROCKET_GRUNTM_19, GruntM19SeenText, GruntM19BeatenText, 0, .Script
+TrainerGruntF13:
+	trainer GRUNTF, GRUNTF_13, EVENT_BEAT_ROCKET_GRUNTF_13, GruntF13SeenText, GruntF13BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM19AfterBattleText
+	writetext GruntF13AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -801,7 +801,7 @@ LanceHealsText2:
 	cont "best for #MON."
 	done
 
-GruntM17SeenText:
+GruntF12SeenText:
 	text "The door won't"
 	line "open?"
 
@@ -812,11 +812,11 @@ GruntM17SeenText:
 	line "TEAM ROCKET knows."
 	done
 
-GruntM17BeatenText:
+GruntF12BeatenText:
 	text "What? I lost?"
 	done
 
-GruntM17AfterBattleText:
+GruntF12AfterBattleText:
 	text "Heh, I'm just a"
 	line "GRUNT."
 
@@ -852,16 +852,16 @@ GruntM18AfterBattleText:
 	line "creamed me…"
 	done
 
-GruntM19SeenText:
+GruntF13SeenText:
 	text "You rotten little"
 	line "pest!"
 	done
 
-GruntM19BeatenText:
+GruntF13BeatenText:
 	text "Grrrr…"
 	done
 
-GruntM19AfterBattleText:
+GruntF13AfterBattleText:
 	text "Heh, only the boss"
 	line "knows the password"
 	cont "for that door."
@@ -963,7 +963,7 @@ TeamRocketBaseB2F_MapEvents:
 	object_event 22,  5, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	object_event 22,  7, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	object_event 22,  9, SPRITE_ELECTRODE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	object_event 25, 13, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event 25, 13, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF12, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  1, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event 21, 14, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event 21, 14, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF13, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  3, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB2FTMThief, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF
