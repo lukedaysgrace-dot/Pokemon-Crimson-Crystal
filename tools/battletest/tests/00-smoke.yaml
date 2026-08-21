@@ -48,6 +48,19 @@
   assert:
     - enemy.stat_levels[0] == 6   # enemy attack dropped one stage
 
+- name: Invincibility keeps party HP synchronized
+  # Battle HP and party HP are separate copies. A lethal hit must restore
+  # both immediately so a back-to-back scripted encounter does not see the
+  # active party mon as fainted during the next battle's initialization.
+  player: { species: SHUCKLE, level: 5, hp: 1, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 100, moves: [QUICK_ATTACK] }
+  setup_wram: { wPlayerInvincibleCheat: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 1
+    - wram16('wPartyMon1HP') == 1
+
 - name: Growl lowers attack (move-based stat drop regression)
   # Companion to the Intimidate case: the same hl-clobber bug broke plain
   # move-based drops through a different call (CheckSelfInflictedStatDrop

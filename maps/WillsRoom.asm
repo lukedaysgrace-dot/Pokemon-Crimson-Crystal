@@ -54,7 +54,7 @@ WillScript_Battle:
 	loadtrainer WILL, WILL1
 	sjump .StartBattle
 .LoadRematchTeam:
-	loadtrainer WILL, WILL2
+	loadtrainer WILL_REMATCH, WILL2
 .StartBattle:
 	startbattle
 	reloadmapafterbattle

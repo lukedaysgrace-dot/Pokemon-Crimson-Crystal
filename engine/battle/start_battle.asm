@@ -78,16 +78,21 @@ PlayBattleMusic:
 
 .trainermusic
 	ld de, MUSIC_CRYSTAL_BATTLE
+; jp, not jr: with three Crystal classes to test, .done is out of jr range.
 	cp CRYSTAL
-	jr z, .done
+	jp z, .done
 	cp CRYSTAL2
-	jr z, .done
+	jp z, .done
+	cp CRYSTAL3
+	jp z, .done
 
 	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
-	jr z, .done
+	jp z, .done
+	cp CHAMPION_REMATCH
+	jp z, .done
 	cp RED
-	jr z, .done
+	jp z, .done
 
 	; They should have included EXECUTIVEM, EXECUTIVEF, and SCIENTIST too...
 	ld de, MUSIC_ROCKET_BATTLE
@@ -123,12 +128,15 @@ PlayBattleMusic:
 	ld a, [wOtherTrainerClass]
 	cp RIVAL1
 	jr z, .done
+	cp RIVAL3 ; Rival in Indigo Plateau
+	jr z, .championmusic
 	cp RIVAL2
 	jr nz, .othertrainer
 
 	ld a, [wOtherTrainerID]
-	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
+	cp RIVAL2_2_CHIKORITA
 	jr c, .done
+.championmusic
 	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
 

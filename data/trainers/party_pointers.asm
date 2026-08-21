@@ -88,3 +88,18 @@ TrainerGroups:
 	dba TamerGroup
 	dba ThugGroup
 	dba AromaLadyGroup
+	dba CrystalGroup ; CRYSTAL3
+	dba Rival2Group ; RIVAL3
+	dba FalknerGroup ; FALKNER_REMATCH
+	dba BugsyGroup ; BUGSY_REMATCH
+	dba WhitneyGroup ; WHITNEY_REMATCH
+	dba MortyGroup ; MORTY_REMATCH
+	dba ChuckGroup ; CHUCK_REMATCH
+	dba JasmineGroup ; JASMINE_REMATCH
+	dba PryceGroup ; PRYCE_REMATCH
+	dba ClairGroup ; CLAIR_REMATCH
+	dba WillGroup ; WILL_REMATCH
+	dba KogaGroup ; KOGA_REMATCH
+	dba BrunoGroup ; BRUNO_REMATCH
+	dba KarenGroup ; KAREN_REMATCH
+	dba ChampionGroup ; CHAMPION_REMATCH
