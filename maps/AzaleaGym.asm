@@ -59,7 +59,7 @@ AzaleaGymBugsyScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext BugsyRematchWinText, 0
-	loadtrainer BUGSY, BUGSY2
+	loadtrainer BUGSY_REMATCH, BUGSY2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BUGSY_REMATCH

@@ -22,11 +22,25 @@ GetTrainerStatExp:
 ; Return the stat exp of wOtherTrainerClass in bc, stored big endian
 ; (b = high byte, c = low byte) so it can be written straight into a
 ; party struct.
+; Trainer stat exp is a Hard Mode bonus only: in Normal mode every
+; trainer class returns 0, regardless of the table below.
+
+	push hl
+	push de
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	pop de
+	pop hl
+	ld a, c
+	and a
+	jr z, .no_stat_exp
 
 	ld a, [wOtherTrainerClass]
 	and a
 	jr nz, .got_class
 ; No trainer class to look up; give nothing rather than reading past the table.
+.no_stat_exp
 	ld bc, 0
 	ret
 

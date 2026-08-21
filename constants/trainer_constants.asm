@@ -749,9 +749,8 @@ LYRA EQU __enum__
 CRYSTAL2_4_CHIKORITA EQU CRYSTAL_4_CHIKORITA
 CRYSTAL2_4_CYNDAQUIL EQU CRYSTAL_4_CYNDAQUIL
 CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
-CRYSTAL2_CHIKORITA EQU CRYSTAL_5_CHIKORITA
-CRYSTAL2_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
-CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
+; CRYSTAL2's Route 25 battle moved to CRYSTAL3 (declared at the end of this
+; file) so the two fights can carry different stat exp.
 
 	trainerclass PROTON ; 46
 	const PROTON1
@@ -829,5 +828,71 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 	const EDNA
 	const TANYA
 	const NADIA
+
+	trainerclass CRYSTAL3
+; Crystal's final battle, on Route 25 (Cerulean Cape). CRYSTAL3 shares
+; CrystalGroup (see data/trainers/party_pointers.asm), so these are aliases
+; into the same party list - only the class differs. Splitting it out of
+; CRYSTAL2 lets the Lv66-70 fight carry its own stat exp without inflating the
+; Lv45-48 Ice Path fight (see data/trainers/stat_exp.asm).
+CRYSTAL3_CHIKORITA EQU CRYSTAL_5_CHIKORITA
+CRYSTAL3_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
+CRYSTAL3_TOTODILE EQU CRYSTAL_5_TOTODILE
+
+	trainerclass RIVAL3
+; Silver's final battle, at the Indigo Plateau Pokecenter. Shares Rival2Group
+; the same way, split off from RIVAL2 so it can outrank CRYSTAL3 without
+; buffing the Mt. Moon fight.
+RIVAL3_CHIKORITA EQU RIVAL2_2_CHIKORITA
+RIVAL3_CYNDAQUIL EQU RIVAL2_2_CYNDAQUIL
+RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
+
+; --- Rematch classes ---------------------------------------------------------
+; These share their base class's party group, so map scripts keep using the
+; existing party-index constants (FALKNER2, WILL2, LANCE2, ...) and only the
+; class changes. Splitting them out lets a rematch carry its own stat exp
+; instead of inheriting the value tuned for the first fight, which left the
+; Lv65-70 rematches far weaker than the Kanto gyms fought alongside them.
+; Named _REMATCH rather than *2 because FALKNER2, WILL2 etc. are already taken
+; by the party-index constants above.
+
+	trainerclass FALKNER_REMATCH
+; Rematch team for FALKNER (party index FALKNER2 in FalknerGroup).
+
+	trainerclass BUGSY_REMATCH
+; Rematch team for BUGSY (party index BUGSY2 in BugsyGroup).
+
+	trainerclass WHITNEY_REMATCH
+; Rematch team for WHITNEY (party index WHITNEY2 in WhitneyGroup).
+
+	trainerclass MORTY_REMATCH
+; Rematch team for MORTY (party index MORTY2 in MortyGroup).
+
+	trainerclass CHUCK_REMATCH
+; Rematch team for CHUCK (party index CHUCK2 in ChuckGroup).
+
+	trainerclass JASMINE_REMATCH
+; Rematch team for JASMINE (party index JASMINE2 in JasmineGroup).
+
+	trainerclass PRYCE_REMATCH
+; Rematch team for PRYCE (party index PRYCE2 in PryceGroup).
+
+	trainerclass CLAIR_REMATCH
+; Rematch team for CLAIR (party index CLAIR2 in ClairGroup).
+
+	trainerclass WILL_REMATCH
+; Rematch team for WILL (party index WILL2 in WillGroup).
+
+	trainerclass KOGA_REMATCH
+; Rematch team for KOGA (party index KOGA2 in KogaGroup).
+
+	trainerclass BRUNO_REMATCH
+; Rematch team for BRUNO (party index BRUNO2 in BrunoGroup).
+
+	trainerclass KAREN_REMATCH
+; Rematch team for KAREN (party index KAREN2 in KarenGroup).
+
+	trainerclass CHAMPION_REMATCH
+; Lance's rematch team (party index LANCE2 in ChampionGroup).
 
 NUM_TRAINER_CLASSES EQU __enum__

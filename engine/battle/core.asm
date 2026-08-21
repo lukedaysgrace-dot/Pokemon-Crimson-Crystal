@@ -1110,7 +1110,7 @@ HasPlayerFainted:
 	ld a, [hli]
 	or [hl]
 	ret nz
-	inc [hl] ; keep the player's active Pokemon at 1 HP
+	farcall KeepPlayerAtOneHP
 	ret
 
 CheckIfHPIsZero:

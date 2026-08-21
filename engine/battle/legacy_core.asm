@@ -52,12 +52,32 @@ CheckPlayerFaintedWithCheat::
 	ld a, [hli]
 	or [hl]
 	ret nz
-	inc [hl] ; keep the player's active Pokemon at 1 HP
+	call KeepPlayerAtOneHP
 	ret
 
 CheckBattleHPIsZero_Overflow:
 	ld a, [hli]
 	or [hl]
+	ret
+
+KeepPlayerAtOneHP::
+; The battle struct and party struct are separate copies. Keep both at 1 HP
+; immediately so ending one battle and starting another cannot make party
+; validation see a fainted active mon while the invincibility cheat says it
+; survived.
+	push bc
+	xor a
+	ld [wBattleMonHP], a
+	inc a
+	ld [wBattleMonHP + 1], a
+	ld hl, wPartyMon1HP
+	ld a, [wCurBattleMon]
+	call GetPartyLocation
+	xor a
+	ld [hli], a
+	inc a
+	ld [hl], a
+	pop bc
 	ret
 
 _BattleRandom::
