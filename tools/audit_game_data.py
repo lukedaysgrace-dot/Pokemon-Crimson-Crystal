@@ -553,9 +553,10 @@ def map_definitions(audit: Audit):
     return result
 
 
-def parse_map_events(audit: Audit, maps: dict[str, dict]) -> dict[str, int]:
+def parse_map_events(audit: Audit, maps: dict[str, dict]) -> tuple[dict[str, int], dict[str, list[tuple[int, int, int]]]]:
     counts = {}
     warp_rows = {}
+    warp_coordinates = {}
     object_exceptions = {
         ("GoldenrodPokecenter1F", 16, 8): "hidden GS Ball receptionist staging position",
     }
@@ -573,6 +574,23 @@ def parse_map_events(audit: Audit, maps: dict[str, dict]) -> dict[str, int]:
             continue
         text = read(path)
         audit.expect(f"{info['name']}_MapEvents:" in text, f"{path.relative_to(ROOT)} has no MapEvents label")
+        script_header = text.split(f"{info['name']}_MapEvents:", 1)[0]
+        scene_count = re.search(r"^\s*db\s+(\d+)\s*;\s*scene scripts\s*$", script_header, re.MULTILINE)
+        callback_count = re.search(r"^\s*db\s+(\d+)\s*;\s*callbacks\s*$", script_header, re.MULTILINE)
+        audit.expect(scene_count is not None, f"{path.relative_to(ROOT)}: missing scene-script count")
+        audit.expect(callback_count is not None, f"{path.relative_to(ROOT)}: missing callback count")
+        if scene_count:
+            actual = len(re.findall(r"^\s*scene_script\b", script_header, re.MULTILINE))
+            audit.expect(
+                actual == int(scene_count.group(1)),
+                f"{path.relative_to(ROOT)}: declares {scene_count.group(1)} scene scripts but has {actual}",
+            )
+        if callback_count:
+            actual = len(re.findall(r"^\s*callback\b", script_header, re.MULTILINE))
+            audit.expect(
+                actual == int(callback_count.group(1)),
+                f"{path.relative_to(ROOT)}: declares {callback_count.group(1)} callbacks but has {actual}",
+            )
         declarations = {
             match.group(2): int(match.group(1))
             for match in re.finditer(r"^\s*db\s+(\d+)\s*;\s*(warp|coord|bg|object) events\s*$", text, re.MULTILINE)
@@ -586,6 +604,20 @@ def parse_map_events(audit: Audit, maps: dict[str, dict]) -> dict[str, int]:
                     f"{path.relative_to(ROOT)}: declares {declarations[kind]} {kind} events but has {actual}",
                 )
         counts[constant] = declarations.get("warp", 0)
+        object_constant_block = re.search(
+            r"^\s*object_const_def[^\n]*\n(.*?)(?:\n\s*\n|\Z)", script_header, re.MULTILINE | re.DOTALL
+        )
+        object_constants = (
+            re.findall(r"^\s*const\s+([A-Z][A-Z0-9_]*)\b", object_constant_block.group(1), re.MULTILINE)
+            if object_constant_block
+            else []
+        )
+        if object_constant_block:
+            audit.expect(
+                len(object_constants) == declarations.get("object", 0),
+                f"{path.relative_to(ROOT)}: {len(object_constants)} object constants for "
+                f"{declarations.get('object', 0)} object events",
+            )
 
         width = info["width"] * 2
         height = info["height"] * 2
@@ -604,6 +636,13 @@ def parse_map_events(audit: Audit, maps: dict[str, dict]) -> dict[str, int]:
                 )
                 if kind == "warp" and len(row) >= 4:
                     warp_rows.setdefault(constant, []).append((line_number, row[2], row[3]))
+                    warp_coordinates.setdefault(constant, []).append((line_number, x, y))
+
+        positions = [(x, y) for _, x, y in warp_coordinates.get(constant, [])]
+        audit.expect(
+            len(positions) == len(set(positions)),
+            f"{path.relative_to(ROOT)}: duplicate warp_event coordinate",
+        )
 
     for constant, rows in warp_rows.items():
         path = ROOT / "maps" / f"{maps[constant]['name']}.asm"
@@ -618,7 +657,7 @@ def parse_map_events(audit: Audit, maps: dict[str, dict]) -> dict[str, int]:
                     1 <= warp_id <= counts[destination],
                     f"{path.relative_to(ROOT)}:{line_number}: warp {warp_id} exceeds {destination}'s {counts[destination]} warps",
                 )
-    return counts
+    return counts, warp_coordinates
 
 
 def parse_block_data(audit: Audit, label: str, positions: dict[str, int], lines: list[str]) -> bytes:
@@ -721,14 +760,22 @@ def tileset_files(audit: Audit):
             collision_rows >= metatiles,
             f"{collision.relative_to(ROOT)} has {collision_rows} rows for {metatiles} metatiles",
         )
-        result[constant] = (metatiles, meta)
+        collision_data = [
+            args(match.group(1))
+            for match in re.finditer(r"^\s*tilecoll\s+(.+?)(?:\s*;.*)?$", read(collision), re.MULTILINE)
+        ]
+        audit.expect(
+            all(len(row) == 4 for row in collision_data),
+            f"{collision.relative_to(ROOT)} contains a malformed tilecoll row",
+        )
+        result[constant] = (metatiles, meta, collision_data)
     audit.count("tilesets", len(result))
     return result
 
 
 def audit_maps(audit: Audit) -> dict[str, dict]:
     maps = map_definitions(audit)
-    parse_map_events(audit, maps)
+    _, warp_coordinates = parse_map_events(audit, maps)
     blocks_lines = read(ROOT / "data/maps/blocks.asm").splitlines()
     positions = {
         match.group(1): index
@@ -744,13 +791,56 @@ def audit_maps(audit: Audit) -> dict[str, dict]:
             f"{info['name']} has {len(block_data)} assembled block bytes; expected {expected}",
         )
         if info["tileset"] in tilesets:
-            metatiles, meta_path = tilesets[info["tileset"]]
+            metatiles, meta_path, collision_data = tilesets[info["tileset"]]
             invalid = [(index, value) for index, value in enumerate(block_data) if value >= metatiles]
             audit.expect(
                 not invalid,
                 f"{info['name']} uses block ${invalid[0][1]:02x} at offset {invalid[0][0]}, beyond "
                 f"{meta_path.name}'s {metatiles} blocks" if invalid else "",
             )
+            if not invalid:
+                recorded_warps = {(x, y) for _, x, y in warp_coordinates.get(constant, [])}
+                active_warps = set()
+                for y in range(info["height"] * 2):
+                    for x in range(info["width"] * 2):
+                        block = block_data[(y // 2) * info["width"] + (x // 2)]
+                        quadrant = (y % 2) * 2 + (x % 2)
+                        collision = collision_data[block][quadrant]
+                        is_warp = collision in {"PIT", "PIT_68"} or collision.startswith("WARP_") or collision in {
+                            "DOOR",
+                            "LADDER",
+                            "STAIRCASE_73",
+                            "CAVE_74",
+                            "DOOR_75",
+                            "DOOR_79",
+                            "STAIRCASE",
+                            "CAVE",
+                            "WARP_PANEL",
+                            "DOOR_7D",
+                        }
+                        if is_warp:
+                            active_warps.add((x, y))
+                suspect_shifts = []
+                for line_number, x, y in warp_coordinates.get(constant, []):
+                    if (x, y) in active_warps:
+                        continue
+                    neighbors = {
+                        (x - 1, y),
+                        (x + 1, y),
+                        (x, y - 1),
+                        (x, y + 1),
+                    }
+                    candidates = sorted((neighbors & active_warps) - recorded_warps)
+                    if candidates:
+                        suspect_shifts.append((line_number, x, y, candidates[0]))
+                audit.expect(
+                    not suspect_shifts,
+                    f"maps/{info['name']}.asm:{suspect_shifts[0][0]}: warp_event at "
+                    f"{suspect_shifts[0][1:3]} is next to unassigned active warp collision "
+                    f"{suspect_shifts[0][3]}"
+                    if suspect_shifts
+                    else "",
+                )
 
         directions = [row[0] for row in info["connections"]]
         expected_directions = [
@@ -783,6 +873,24 @@ def audit_maps(audit: Audit) -> dict[str, dict]:
             else:
                 length = min(info["height"] + 3 - offset, target["height"]) - source_skip
             audit.expect(length > 0, f"data/maps/attributes.asm:{line_number}: connection has no overlap")
+
+            opposite = {"north": "south", "south": "north", "west": "east", "east": "west"}[direction]
+            reciprocal = [row for row in target["connections"] if row[0] == opposite and row[2] == constant]
+            audit.expect(
+                len(reciprocal) == 1,
+                f"data/maps/attributes.asm:{line_number}: {direction} connection from {constant} to "
+                f"{target_constant} has no unique reciprocal {opposite} connection",
+            )
+            if len(reciprocal) == 1:
+                try:
+                    reciprocal_offset = number(reciprocal[0][3])
+                    audit.expect(
+                        reciprocal_offset == -offset,
+                        f"data/maps/attributes.asm:{line_number}: connection offset {offset} is not the inverse "
+                        f"of {target_constant}'s {reciprocal_offset}",
+                    )
+                except ValueError:
+                    pass
 
     audit.count("maps", len(maps))
     return maps
