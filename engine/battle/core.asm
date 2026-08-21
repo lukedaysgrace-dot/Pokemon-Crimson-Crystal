@@ -696,6 +696,7 @@ IF DEF(DEBUG_BATTLE)
 	jr z, .no_debug_auto
 	farcall DebugChoosePlayerMove
 	jp c, .reset_rage
+	jp nz, .reset_bide
 	jp .encored
 .no_debug_auto
 ENDC
@@ -794,12 +795,7 @@ ENDC
 	res SUBSTATUS_BIDE, [hl]
 
 .locked_in
-	xor a
-	ld [wPlayerFuryCutterCount], a
-	ld [wPlayerProtectCount], a
-	ld [wPlayerRageCounter], a
-	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
+	call .reset_lock_counters
 
 .continue_protect
 	call ParseEnemyAction
@@ -807,13 +803,17 @@ ENDC
 	ret
 
 .reset_rage
+	call .reset_lock_counters
+	xor a
+	ret
+
+.reset_lock_counters
 	xor a
 	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerRageCounter], a
 	ld hl, wPlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
-	xor a
 	ret
 
 HandleEncore:
