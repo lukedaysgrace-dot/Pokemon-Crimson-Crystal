@@ -48,6 +48,10 @@
 9101D1C2
 
 !disabled
+# player Pokemon invincible (cannot faint)
+9101D2C2
+
+!disabled
 # master balls x99
 0101ECD8
 0101EDD8
