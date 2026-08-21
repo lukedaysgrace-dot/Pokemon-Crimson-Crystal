@@ -26,6 +26,9 @@ prob_total = 0
 ; Tyrogue
 	prob 10
 	prob 1
+OddEggProbabilitiesEnd:
+	assert prob_total == 100, "Odd Egg probabilities must total 100 percent"
+	assert OddEggProbabilitiesEnd - OddEggProbabilities == 14 * 2, "Odd Egg probability table must have 14 rows"
 
 OddEggSpecies:
 	dw PICHU
@@ -42,6 +45,8 @@ OddEggSpecies:
 	dw ELEKID
 	dw TYROGUE
 	dw TYROGUE
+OddEggSpeciesEnd:
+	assert OddEggSpeciesEnd - OddEggSpecies == 14 * 2, "Odd Egg species table must have 14 rows"
 
 OddEggMoves:
 	dw THUNDERSHOCK, CHARM, DIZZY_PUNCH, NO_MOVE
@@ -58,6 +63,8 @@ OddEggMoves:
 	dw QUICK_ATTACK, LEER, DIZZY_PUNCH, NO_MOVE
 	dw TACKLE, DIZZY_PUNCH, NO_MOVE, NO_MOVE
 	dw TACKLE, DIZZY_PUNCH, NO_MOVE, NO_MOVE
+OddEggMovesEnd:
+	assert OddEggMovesEnd - OddEggMoves == 14 * NUM_MOVES * 2, "Odd Egg move table must have 14 rows"
 
 OddEggs:
 
@@ -114,7 +121,6 @@ OddEggs:
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
 	db "EGG@@@@@@@@"
-OddEggsEnd:
 
 ; _GiveOddEgg indexes this table with a stride of NICKNAMED_MON_STRUCT_LENGTH and
 ; copies each entry as a flat block into wOddEgg, so every entry must be exactly
@@ -122,7 +128,6 @@ OddEggsEnd:
 ; the copy lands short and every field from that point on is read from the wrong
 ; offset - including the nickname, which is why the Egg showed up as "GG".
 ;
-; TODO: restore a size assert here once the real PARTYMON_STRUCT_LENGTH is known.
 
 	db 0 ; Species, will be filled on load
 	db NO_ITEM
@@ -447,3 +452,5 @@ OddEggsEnd:
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
 	db "EGG@@@@@@@@"
+OddEggsEnd:
+	assert OddEggsEnd - OddEggs == 14 * NICKNAMED_MON_STRUCT_LENGTH, "Odd Egg records must match the party struct"
