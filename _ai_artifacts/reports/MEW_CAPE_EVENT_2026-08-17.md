@@ -15,7 +15,7 @@ the Elite Four — so her level 66-70 cape team still lands at the right point.
 3. Step onto either end of the stone jetty. CRYSTAL appears at `48,7`, shocked,
    and challenges the player: winner earns the right to catch MEW.
 4. Win → she stands aside and tells the player to go take it.
-   Lose → she catches MEW. **Permanent**: MEW never returns on that save.
+   Lose → the player whites out. MEW remains and the battle can be retried.
 5. Talk to MEW → ordinary static-legendary encounter, level 60,
    `BATTLETYPE_FORCEITEM` (same as LUGIA / HO-OH / MEWTWO here).
    KO'ing it or running just leaves it drifting; only a capture removes it.
@@ -28,7 +28,7 @@ the Elite Four — so her level 66-70 cape team still lands at the right point.
 | `EVENT_ROUTE_25_MEW` | MEW's object visibility |
 | `EVENT_ROUTE_25_MEW_APPEARED` | intro cutscene has played |
 | `EVENT_BEAT_CRYSTAL_CERULEAN_CAPE` | player won the battle (existing flag) |
-| `EVENT_CRYSTAL_CAUGHT_MEW` | player *lost*; MEW is gone for good |
+| `EVENT_CRYSTAL_CAUGHT_MEW` | legacy loss flag; cleared on Route 25 to repair older saves |
 | `EVENT_ROUTE_25_CAUGHT_MEW` | player caught MEW |
 | `EVENT_ROUTE_25_CRYSTAL_LEFT` | CRYSTAL has walked off |
 
@@ -38,12 +38,12 @@ the Elite Four — so her level 66-70 cape team still lands at the right point.
   and CRYSTAL on the cape from the start, so `Route25_MapScripts.Objects`
   re-derives both objects' visibility from the event state on every map load
   rather than trusting the flags.
-- **Losing whites the player out mid-script.** Nothing after
-  `reloadmapafterbattle` runs on a loss, so the battle sets
-  `EVENT_CRYSTAL_CAUGHT_MEW` up front and clears it again the moment
-  `startbattle` reports anything other than `LOSE`. `EVENT_BEAT_CRYSTAL_*` is
-  likewise set *before* `reloadmapafterbattle`, because that reload re-runs the
-  visibility callback and would otherwise hide CRYSTAL before her victory line.
+- **Losing whites the player out mid-script.** The battle does not change any
+  progression flags before `startbattle`, so a loss leaves MEW available and
+  the CRYSTAL fight retryable. The loss branch skips `EVENT_BEAT_CRYSTAL_*`;
+  that flag is set only after a win and before `reloadmapafterbattle`, because
+  the reload re-runs the visibility callback and would otherwise hide CRYSTAL
+  before her victory line.
 - **A wild battle reports `WIN` whether the mon was caught or KO'd.** New
   special `CheckCaughtMew` (`engine/events/specials.asm`) reads MEW's #DEX
   caught flag so "caught it" can be told apart from "KO'd it / ran".
