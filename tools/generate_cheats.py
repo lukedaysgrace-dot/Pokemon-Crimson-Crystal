@@ -15,6 +15,7 @@ MASTER_BALL = 0x01
 MAX_REPEL_STEPS = 0xFF
 DEBUG_LEVEL100 = 1 << 2  # DEBUG_LEVEL100_F in wDebugFlags
 ALWAYS_CATCH = 0x01  # nonzero in wAlwaysCatchCheat
+PLAYER_INVINCIBLE = 0x01  # bit 0 in wPlayerInvincibleCheat
 
 
 def parse_sym(path: Path) -> dict[str, int]:
@@ -217,6 +218,14 @@ def main() -> int:
         cheat_block(
             "100% catch rate (any ball)",
             [wram_code(w_always_catch, ALWAYS_CATCH, True)],
+        )
+    )
+
+    w_player_invincible = need("wPlayerInvincibleCheat")
+    blocks.append(
+        cheat_block(
+            "player Pokemon invincible (cannot faint)",
+            [wram_code(w_player_invincible, PLAYER_INVINCIBLE, True)],
         )
     )
 
