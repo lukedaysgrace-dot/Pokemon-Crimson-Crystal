@@ -1,446 +1,369 @@
 CrystalPhoneMornGreetingText:
-	text "Good morning!"
-	line "You're up early--"
+	text "Morning, <PLAY_G>!"
+	line "I've been out"
+	cont "since sunrise."
 
-	para "…No. I'm up early."
-	line "You just answered."
-
-	para "I've been out"
-	line "since four."
+	para "The early catches"
+	line "won't wait for us!"
 	done
 
 CrystalPhoneDayGreetingText:
-	text "Hello! CRYSTAL"
-	line "speaking."
+	text "Hi, <PLAY_G>!"
+	line "CRYSTAL here."
 
-	para "Sorry, one sec--"
-	line "I'm in the middle"
-	cont "of something."
+	para "Hold on..."
+	line "All right!"
 
-	para "…There. Go ahead."
+	para "Sorry. I was"
+	line "following tracks."
 	done
 
 CrystalPhoneNiteGreetingText:
-	text "Oh! Hello. Sorry,"
-	line "is it late there?"
+	text "Still awake,"
+	line "<PLAY_G>?"
 
-	para "It's late here"
-	line "too. I simply"
-	cont "haven't stopped."
+	para "Good! Half the"
+	line "#MON I'm after"
+	cont "only come out"
+	cont "at night."
 
-	para "One more sweep and"
-	line "then I'll sleep."
+	para "Who needs sleep?"
 	done
 
 CrystalPhoneReportIntroText:
-	text "It's CRYSTAL! Do"
-	line "you have a pen?"
+	text "I found something"
+	line "for your #DEX."
 
-	para "…No? Then listen"
-	line "properly. I'm"
-	cont "only saying this"
-	cont "once."
+	para "Listen closely--"
+	line "this should save"
+	cont "you some time."
 	done
 
 CrystalPhoneStatusVioletText:
-	text "Where am I? Let me"
-	line "check my own"
-	cont "notes--"
+	text "I'm working around"
+	line "VIOLET CITY."
 
-	para "SPROUT TOWER, and"
-	line "then UNION CAVE."
+	para "SPROUT TOWER is"
+	line "full of leads,"
+
+	para "and UNION CAVE is"
+	line "next."
 
 	para "PROF.OAK wants"
-	line "sixty entries by"
-	cont "the end of the"
-	cont "month."
+	line "sixty new entries."
 
-	para "Sixty! He says it"
-	line "like it's easy!"
-
-	para "…Sorry. Ignore"
-	line "that. I'll cope."
+	para "I'd better keep"
+	line "moving."
 	done
 
 CrystalPhoneStatusIlexText:
-	text "West of GOLDENROD"
-	line "now."
+	text "I made it through"
+	line "ILEX FOREST."
 
-	para "That forest is far"
-	line "darker than the"
-	cont "map lets on."
+	para "I've checked so"
+	line "many trees that"
 
-	para "I threw a BALL at"
-	line "a tree stump."
-	cont "Twice."
+	para "every branch looks"
+	line "suspicious now."
 
-	para "Twice, <PLAY_G>!"
-	line "Me!"
-
-	para "…It was a very"
-	line "stump-shaped"
-	cont "PIDGEY. Moving on."
+	para "Next stop:"
+	line "GOLDENROD."
 	done
 
 CrystalPhoneStatusCianwoodText:
-	text "I'm out on the"
-	line "coast."
+	text "CIANWOOD's coast"
+	line "keeps me busy."
 
-	para "There's salt in my"
-	line "hair, my bag and"
-	cont "all of my notes."
+	para "Sea #MON by day,"
+	line "caves at night."
 
-	para "But I'm two days"
-	line "ahead of schedule,"
-	cont "so I'm not"
-	cont "allowed to"
-	cont "complain."
+	para "My notes are full"
+	line "and my boots are"
+	cont "still soaked."
 
-	para "Bring a ROD if you"
-	line "come out this way."
+	para "Not a bad trade."
 	done
 
 CrystalPhoneStatusIcePathText:
-	text "It's f-freezing up"
-	line "here."
+	text "I'm near"
+	line "BLACKTHORN."
 
-	para "I can't feel my"
-	line "hands, which is a"
-	cont "problem when the"
-	cont "job is throwing"
-	cont "things."
+	para "ICE PATH froze my"
+	line "ink."
 
-	para "BLACKTHORN next,"
-	line "then the LEAGUE."
+	para "I'm working from"
+	line "memory."
 
-	para "Don't you dare get"
-	line "there before me."
+	para "The LEAGUE comes"
+	line "next."
+
+	para "Try to get there"
+	line "before I do!"
 	done
 
 CrystalPhoneStatusCapeText:
-	text "KANTO is quiet."
-	line "Too quiet."
+	text "I'm still near"
+	line "CERULEAN CAPE."
 
-	para "Ever since the"
-	line "CAPE I keep"
-	cont "looking up."
+	para "PROF.OAK has my"
+	line "report."
 
-	para "I've written that"
-	line "report three times"
-	cont "and thrown it out"
-	cont "three times."
+	para "Most of it,"
+	line "anyway."
 
-	para "How do you file"
-	line "something that"
-	cont "shouldn't be"
-	cont "there at all?"
+	para "Some discoveries"
+	line "don't fit neatly"
+	cont "in a #DEX."
 	done
 
 CrystalPhoneTipRoute31Text:
-	text "LEDYBA. ROUTE 31,"
-	line "just past VIOLET."
+	text "Here's one for"
+	line "your #DEX:"
 
-	para "Morning only--"
-	line "they're asleep by"
-	cont "lunch, and I am"
-	cont "not waking them."
+	para "LEDYBA gather on"
+	line "ROUTE 31 in the"
+	cont "morning."
 
-	para "…That sounded"
-	line "rude. They work"
-	cont "hard. Let them"
-	cont "rest."
+	para "Watch the trees"
+	line "after sunrise."
 
-	para "Six of them in"
-	line "one sweep. Write"
-	cont "that part down."
+	para "Once one appears,"
+	line "others are close."
 	done
 
 CrystalPhoneTipRoute32Text:
-	text "WOOPER. ROUTE 32,"
-	line "morning, in the"
-	cont "wet grass by the"
-	cont "water."
+	text "Try ROUTE 32"
+	line "tomorrow morning."
 
-	para "It looked at me."
-	line "I looked at it."
+	para "WOOPER hide in"
+	line "the damp grass by"
+	cont "the water."
 
-	para "Then it sat down"
-	line "in the BALL by"
-	cont "itself."
-
-	para "…That has never"
-	line "happened to me"
-	cont "before."
+	para "Don't rush past."
+	line "They're easy to"
+	cont "overlook."
 	done
 
 CrystalPhoneTipRoute33Text:
-	text "A PIKACHU! ROUTE"
-	line "33, daytime only."
+	text "I confirmed"
+	line "PIKACHU on"
+	cont "ROUTE 33."
 
-	para "I have wanted one"
-	line "since I was six"
-	cont "years old."
+	para "They only showed"
+	line "during the day."
 
-	para "It took eleven"
-	line "throws. Eleven!"
+	para "Listen before you"
+	line "enter the grass."
 
-	para "I am a trained"
-	line "professional and"
-	cont "I missed ten"
-	cont "times."
-
-	para "Don't tell"
-	line "PROF.OAK."
+	para "You'll hear one"
+	line "before you see it."
 	done
 
 CrystalPhoneTipRoute34Text:
-	text "Write this one"
-	line "down properly."
+	text "If you're patient,"
+	line "check ROUTE 34"
+	cont "in the morning."
 
-	para "EEVEE. ROUTE 34,"
-	line "morning."
+	para "EEVEE are there,"
+	line "but very rare."
 
-	para "One sighting in"
-	line "three days of"
-	cont "sitting perfectly"
-	cont "still in a bush."
+	para "Keep quiet and let"
+	line "one come to you."
 
-	para "Three days,"
-	line "<PLAY_G>. In a"
-	cont "bush. Not moving."
-
-	para "It was worth it."
+	para "Don't chase one."
 	done
 
 CrystalPhoneTipRoute35Text:
-	text "DROWZEE on ROUTE"
-	line "35, after dark."
+	text "DROWZEE gather on"
+	line "ROUTE 35 after"
+	cont "sunset."
 
-	para "Not a trace of"
-	line "them in daylight."
-	cont "I checked twice."
+	para "Take an AWAKENING"
+	line "or two."
 
-	para "It tried to put"
-	line "me to sleep."
-
-	para "I've been awake"
-	line "nineteen hours."
-
-	para "It didn't stand a"
-	line "chance."
+	para "I learned that"
+	line "part the hard way."
 	done
 
 CrystalPhoneTipRoute36Text:
-	text "SHROOMISH. ROUTE"
-	line "36, first light."
+	text "Set out early for"
+	line "ROUTE 36."
 
-	para "They come up with"
-	line "the dew and go"
-	cont "again by nine."
+	para "SHROOMISH appear"
+	line "with the morning"
+	cont "dew."
 
-	para "Set an alarm. I"
-	line "mean it."
+	para "By midmorning,"
+	line "they're gone."
 
-	para "I'll know if you"
-	line "sleep in."
+	para "Don't sleep in!"
 	done
 
 CrystalPhoneTipRoute38Text:
-	text "I need you to"
-	line "believe me."
+	text "This sounds wrong,"
+	line "but I checked"
+	cont "twice:"
 
-	para "PORYGON, on ROUTE"
-	line "38. Morning."
+	para "Wild PORYGON,"
+	line "ROUTE 38, in the"
+	cont "morning."
 
-	para "In a field. With"
+	para "They wander among"
 	line "the MILTANK."
 
-	para "It's a man-made"
-	line "#MON. It was"
-	cont "standing in a"
-	cont "field."
-
-	para "I caught it and I"
-	line "still have no"
-	cont "idea. None."
+	para "I caught one"
+	line "myself."
 	done
 
 CrystalPhoneTipRoute39Text:
-	text "A wild MILTANK on"
-	line "ROUTE 39."
+	text "Wild MILTANK roam"
+	line "ROUTE 39 early"
+	cont "in the morning."
 
-	para "Early, before the"
-	line "farm hands are"
-	cont "out."
+	para "They're strong, so"
+	line "don't mistake slow"
+	cont "for harmless."
 
-	para "It kicked me."
-
-	para "…I want that on"
-	line "the record. It"
-	cont "kicked ME."
+	para "Keep clear of"
+	line "their hind legs."
 	done
 
 CrystalPhoneTipRoute43Text:
-	text "MURKROW on ROUTE"
-	line "43. Night only."
+	text "MURKROW gather on"
+	line "ROUTE 43 at night."
 
-	para "It followed me for"
-	line "two solid hours."
+	para "Keep your pack"
+	line "closed."
 
-	para "Not attacking."
-	line "Just… following."
+	para "They'll steal any-"
+	line "thing that catches"
+	cont "the light."
 
-	para "I caught it in the"
-	line "end, mostly so it"
-	cont "would stop doing"
-	cont "that."
+	para "I lost two pens."
 	done
 
 CrystalPhoneTipRoute44Text:
-	text "CHANSEY on ROUTE"
-	line "44, after dark."
+	text "CHANSEY appear on"
+	line "ROUTE 44 after"
+	cont "dark."
 
-	para "Rare, and it runs"
-	line "the moment it"
-	cont "sees you."
+	para "They're rare and"
+	line "quick to flee."
 
-	para "So don't let it"
-	line "see you."
+	para "Stay out of sight"
+	line "until you're near."
 
-	para "I went in low"
-	line "through the reeds"
-	cont "and took it on"
-	cont "the first throw."
-
-	para "…I'm rather proud"
-	line "of that one."
+	para "Patience matters"
+	line "more than aim."
 	done
 
 CrystalPhoneTipRoute45Text:
-	text "DONPHAN on ROUTE"
-	line "45, morning."
+	text "ROUTE 45 has wild"
+	line "DONPHAN in the"
+	cont "morning."
 
-	para "Full grown. Wild."
+	para "Bring a rested"
+	line "team."
 
-	para "It went through a"
-	line "boulder. Not"
-	cont "around it."
+	para "That slope gives"
+	line "room to charge."
 
-	para "Do not go up there"
-	line "with a half-healed"
-	cont "team."
-
-	para "Please. I'm asking"
-	line "nicely."
+	para "And don't stand"
+	line "downhill."
 	done
 
 CrystalPhoneTipRoute46Text:
-	text "HOUNDOUR on ROUTE"
-	line "46. After dark."
+	text "HOUNDOUR hunt on"
+	line "ROUTE 46 after"
+	cont "dark."
 
-	para "They hunt as a"
-	line "pack, so don't"
-	cont "let them get"
-	cont "behind you."
+	para "They travel in"
+	line "packs."
 
-	para "I took four of"
-	line "them in one go."
+	para "Watch the grass"
+	line "behind you."
 
-	para "…I practised that"
-	line "for a month."
-
-	para "It isn't showing"
-	line "off if it works."
+	para "One distracts you"
+	line "while the others"
+	cont "close in."
 	done
 
 CrystalPhoneTipRoute9Text:
-	text "RHYHORN. ROUTE 9,"
-	line "in KANTO. Early."
+	text "RHYHORN roam"
+	line "ROUTE 9 early in"
+	cont "the day."
 
-	para "It won't run, so"
-	line "you can take your"
-	cont "time--"
+	para "They don't scare"
+	line "easily, and they"
+	cont "never stop."
 
-	para "--which is just as"
-	line "well, because it"
-	cont "won't stop"
-	cont "either."
-
-	para "Whittle it down."
-	line "Don't get clever."
+	para "Wear one down."
+	line "Don't rush the"
+	cont "throw."
 	done
 
 CrystalPhoneTipRoute24Text:
-	text "KADABRA on ROUTE"
-	line "24, morning."
+	text "Look for KADABRA"
+	line "on ROUTE 24 in"
+	cont "the morning."
 
-	para "Already evolved,"
-	line "out in the wild."
+	para "The instant they"
+	line "notice you, they"
+	cont "TELEPORT."
 
-	para "It teleports the"
-	line "instant you"
-	cont "hesitate."
+	para "Lead with a #MON"
+	line "that can stop"
+	cont "escape."
 
-	para "So don't."
-
-	para "…That's the whole"
-	line "trick, honestly."
+	para "Otherwise, you get"
+	line "one chance."
 	done
 
 CrystalPhoneTipRoute28Text:
-	text "KANGASKHAN. ROUTE"
-	line "28, daytime, just"
-	cont "under MT.SILVER."
+	text "KANGASKHAN roam"
+	line "ROUTE 28 during"
+	cont "the day."
 
-	para "She had a child in"
-	line "her pouch."
+	para "If one has a baby,"
+	line "stay well back."
 
-	para "…I logged the"
-	line "entry and I let"
-	cont "her go."
+	para "Log the sighting"
+	line "and move on."
 
-	para "Tell PROF.OAK if"
-	line "you like."
-
-	para "I'd do it again."
+	para "Not every entry"
+	line "needs a capture."
 	done
 
 CrystalPhoneCapeCallText1:
-	text "<PLAY_G>. Don't"
-	line "hang up."
+	text "<PLAY_G>, it's me."
+	line "Don't hang up."
 
-	para "I heard about"
-	line "BLUE. The"
-	cont "EARTHBADGE."
+	para "I heard you beat"
+	line "BLUE and earned"
+	cont "the EARTHBADGE."
 
-	para "Congratulations."
-	line "Truly."
+	para "Good work."
 
-	para "Now put it in"
-	line "your bag and"
-	cont "listen."
+	para "Now listen."
 	done
 
 CrystalPhoneCapeCallText2:
-	text "I'm north of"
-	line "CERULEAN CITY,"
-	cont "out on the coast."
+	text "I'm at CERULEAN"
+	line "CAPE, north of"
+	cont "the city."
 
-	para "There's something"
-	line "over the water"
-	cont "here."
+	para "There's a #MON"
+	line "over the water."
 
-	para "It matches no"
-	line "entry I have ever"
-	cont "logged."
+	para "My #DEX has no"
+	line "match for it."
 
-	para "I'm not calling"
-	line "the LAB about"
-	cont "this."
+	para "I haven't told"
+	line "PROF.OAK."
 
-	para "I'm calling you."
+	para "I want you to see"
+	line "it first."
 
-	para "Come north. Now."
-
-	para "…Please."
+	para "Come to the CAPE."
+	line "Hurry."
 	done
