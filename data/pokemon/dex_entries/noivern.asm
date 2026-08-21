@@ -3,7 +3,7 @@
 
 	db   "In the dark it is"
 	next "unbeatable. Its"
-	next "waves stun any foe."
+	next "waves stun foes."
 
 	page "It flies at night"
 	next "and turns violent"
