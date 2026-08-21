@@ -5,7 +5,9 @@
 
 **43 folders** have a single-frame `front.png` — a plain square block (40x40 /
 48x48 / 56x56) with no strip stacked below it. **34 are real Pokémon; 9 are the
-Kanto starter `_clone` folders.**
+Kanto starter `_clone` folders.** Tyranitar was dropped from the wanted list on
+2026-08-21 (still static, but no animated sprite is wanted), so **33** are
+actually queued for work.
 
 **Detection method (this pass):** read the actual PNG IHDR of every
 `gfx/pokemon/*/front.png`. `height / width` = number of frames on the sheet, so
@@ -16,7 +18,7 @@ max frame index for every folder.
 
 ---
 
-## Need a new animated sprite (34 Pokémon)
+## Need a new animated sprite (33 Pokémon)
 
 **Complete families still static**
 
@@ -44,10 +46,9 @@ max frame index for every folder.
 - Gyarados
 - Houndoom
 - Milotic
-- Tyranitar
 - Mesmeria (`mesmeria`)
 
-### Flat list (folder names, 34)
+### Flat list (folder names, 33)
 
 ```
 amaura        aurorus       axew          bastiodon     bisharp
@@ -56,7 +57,7 @@ dragonite     finizen       fletchinder   fletchling    fraxure
 frigibax      grimmsnarl    gurdurr       gyarados      houndoom
 impidimp      kingambit     mesmeria      milotic       morgrem
 palafin       pawniard      rampardos     rookidee      timburr
-tinkatink     tinkaton      tinkatuff     tyranitar
+tinkatink     tinkaton      tinkatuff
 ```
 
 ### Sizes (what the replacement sheet must be a multiple of)
@@ -65,7 +66,7 @@ tinkatink     tinkaton      tinkatuff     tyranitar
 |------|-------|---------|
 | 40x40 | 7 | axew, fletchling, frigibax, impidimp, pawniard, rookidee, tinkatink |
 | 48x48 | 5 | amaura, corvisquire, fletchinder, fraxure, timburr |
-| 56x56 | 22 | the rest |
+| 56x56 | 21 | the rest |
 
 ---
 
