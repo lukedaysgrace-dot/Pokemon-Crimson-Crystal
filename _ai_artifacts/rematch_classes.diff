@@ -1,0 +1,636 @@
+--- a/constants/trainer_constants.asm
++++ b/constants/trainer_constants.asm
+@@ -847,4 +847,52 @@
+ RIVAL3_CYNDAQUIL EQU RIVAL2_2_CYNDAQUIL
+ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
+ 
++; --- Rematch classes ---------------------------------------------------------
++; These share their base class's party group, so map scripts keep using the
++; existing party-index constants (FALKNER2, WILL2, LANCE2, ...) and only the
++; class changes. Splitting them out lets a rematch carry its own stat exp
++; instead of inheriting the value tuned for the first fight, which left the
++; Lv65-70 rematches far weaker than the Kanto gyms fought alongside them.
++; Named _REMATCH rather than *2 because FALKNER2, WILL2 etc. are already taken
++; by the party-index constants above.
++
++	trainerclass FALKNER_REMATCH
++; Rematch team for FALKNER (party index FALKNER2 in FalknerGroup).
++
++	trainerclass BUGSY_REMATCH
++; Rematch team for BUGSY (party index BUGSY2 in BugsyGroup).
++
++	trainerclass WHITNEY_REMATCH
++; Rematch team for WHITNEY (party index WHITNEY2 in WhitneyGroup).
++
++	trainerclass MORTY_REMATCH
++; Rematch team for MORTY (party index MORTY2 in MortyGroup).
++
++	trainerclass CHUCK_REMATCH
++; Rematch team for CHUCK (party index CHUCK2 in ChuckGroup).
++
++	trainerclass JASMINE_REMATCH
++; Rematch team for JASMINE (party index JASMINE2 in JasmineGroup).
++
++	trainerclass PRYCE_REMATCH
++; Rematch team for PRYCE (party index PRYCE2 in PryceGroup).
++
++	trainerclass CLAIR_REMATCH
++; Rematch team for CLAIR (party index CLAIR2 in ClairGroup).
++
++	trainerclass WILL_REMATCH
++; Rematch team for WILL (party index WILL2 in WillGroup).
++
++	trainerclass KOGA_REMATCH
++; Rematch team for KOGA (party index KOGA2 in KogaGroup).
++
++	trainerclass BRUNO_REMATCH
++; Rematch team for BRUNO (party index BRUNO2 in BrunoGroup).
++
++	trainerclass KAREN_REMATCH
++; Rematch team for KAREN (party index KAREN2 in KarenGroup).
++
++	trainerclass CHAMPION_REMATCH
++; Lance's rematch team (party index LANCE2 in ChampionGroup).
++
+ NUM_TRAINER_CLASSES EQU __enum__
+--- a/data/trainers/attributes.asm
++++ b/data/trainers/attributes.asm
+@@ -528,3 +528,81 @@
+ 	db 25 ; base reward
+ 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
+ 	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Falkner (rematch)
++	db NO_ITEM, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Bugsy (rematch)
++	db NO_ITEM, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Whitney (rematch)
++	db NO_ITEM, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Morty (rematch)
++	db NO_ITEM, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Chuck (rematch)
++	db FULL_HEAL, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Jasmine (rematch)
++	db HYPER_POTION, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Pryce (rematch)
++	db HYPER_POTION, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Clair (rematch)
++	db FULL_HEAL, HYPER_POTION ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Will (rematch)
++	db MAX_POTION, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Koga (rematch)
++	db FULL_HEAL, FULL_RESTORE ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Bruno (rematch)
++	db MAX_POTION, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Karen (rematch)
++	db FULL_HEAL, MAX_POTION ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Champion (rematch)
++	db FULL_HEAL, FULL_RESTORE ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
+--- a/data/trainers/class_names.asm
++++ b/data/trainers/class_names.asm
+@@ -88,3 +88,16 @@
+ 	db "AROMA LADY@"
+ 	db "CRYSTAL@"
+ 	db "RIVAL@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "LEADER@"
++	db "ELITE FOUR@"
++	db "ELITE FOUR@"
++	db "ELITE FOUR@"
++	db "ELITE FOUR@"
++	db "CHAMPION@"
+--- a/data/trainers/dvs.asm
++++ b/data/trainers/dvs.asm
+@@ -89,3 +89,16 @@
+ 	dn  6, 10, 10,  8 ; AROMA_LADY
+ 	dn 15, 15, 15, 15 ; CRYSTAL3
+ 	dn 15, 15, 15, 15 ; RIVAL3
++	dn 15, 15, 15, 15; FALKNER_REMATCH
++	dn 15, 15, 15, 15; BUGSY_REMATCH
++	dn 15, 15, 15, 15; WHITNEY_REMATCH
++	dn 15, 15, 15, 15; MORTY_REMATCH
++	dn 15, 15, 15, 15; CHUCK_REMATCH
++	dn 15, 15, 15, 15; JASMINE_REMATCH
++	dn 15, 15, 15, 15; PRYCE_REMATCH
++	dn 15, 15, 15, 15; CLAIR_REMATCH
++	dn 15, 15, 15, 15; WILL_REMATCH
++	dn 15, 15, 15, 15; KOGA_REMATCH
++	dn 15, 15, 15, 15; BRUNO_REMATCH
++	dn 15, 15, 15, 15; KAREN_REMATCH
++	dn 15, 15, 15, 15; CHAMPION_REMATCH
+--- a/data/trainers/encounter_music.asm
++++ b/data/trainers/encounter_music.asm
+@@ -91,3 +91,16 @@
+ 	db MUSIC_LASS_ENCOUNTER        ; aroma_lady
+ 	db MUSIC_CRYSTAL_ENCOUNTER     ; crystal3
+ 	db MUSIC_RIVAL_ENCOUNTER       ; rival3
++	db MUSIC_YOUNGSTER_ENCOUNTER; FALKNER_REMATCH
++	db MUSIC_YOUNGSTER_ENCOUNTER; BUGSY_REMATCH
++	db MUSIC_LASS_ENCOUNTER; WHITNEY_REMATCH
++	db MUSIC_OFFICER_ENCOUNTER; MORTY_REMATCH
++	db MUSIC_OFFICER_ENCOUNTER; CHUCK_REMATCH
++	db MUSIC_LASS_ENCOUNTER; JASMINE_REMATCH
++	db MUSIC_OFFICER_ENCOUNTER; PRYCE_REMATCH
++	db MUSIC_BEAUTY_ENCOUNTER; CLAIR_REMATCH
++	db MUSIC_HIKER_ENCOUNTER; WILL_REMATCH
++	db MUSIC_HIKER_ENCOUNTER; KOGA_REMATCH
++	db MUSIC_OFFICER_ENCOUNTER; BRUNO_REMATCH
++	db MUSIC_HIKER_ENCOUNTER; KAREN_REMATCH
++	db MUSIC_OFFICER_ENCOUNTER; CHAMPION_REMATCH
+--- a/data/trainers/genders.asm
++++ b/data/trainers/genders.asm
+@@ -90,3 +90,16 @@
+ 	db FEMALE ; AROMA_LADY
+ 	db FEMALE ; CRYSTAL3
+ 	db MALE   ; RIVAL3
++	db MALE; FALKNER_REMATCH
++	db MALE; BUGSY_REMATCH
++	db FEMALE; WHITNEY_REMATCH
++	db MALE; MORTY_REMATCH
++	db MALE; CHUCK_REMATCH
++	db FEMALE; JASMINE_REMATCH
++	db MALE; PRYCE_REMATCH
++	db FEMALE; CLAIR_REMATCH
++	db MALE; WILL_REMATCH
++	db MALE; KOGA_REMATCH
++	db MALE; BRUNO_REMATCH
++	db FEMALE; KAREN_REMATCH
++	db MALE; CHAMPION_REMATCH
+--- a/data/trainers/leaders.asm
++++ b/data/trainers/leaders.asm
+@@ -18,6 +18,19 @@
+ 	db KAREN
+ 	db KOGA
+ 	db CHAMPION
++	db FALKNER_REMATCH
++	db BUGSY_REMATCH
++	db WHITNEY_REMATCH
++	db MORTY_REMATCH
++	db CHUCK_REMATCH
++	db JASMINE_REMATCH
++	db PRYCE_REMATCH
++	db CLAIR_REMATCH
++	db WILL_REMATCH
++	db KOGA_REMATCH
++	db BRUNO_REMATCH
++	db KAREN_REMATCH
++	db CHAMPION_REMATCH
+ 	db RED
+ 	db RED2
+ 	db AGATHA
+--- a/data/trainers/palettes.asm
++++ b/data/trainers/palettes.asm
+@@ -99,3 +99,16 @@
+ INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors
+ INCBIN "gfx/trainers/crystal2.gbcpal", middle_colors ; CRYSTAL3
+ INCBIN "gfx/trainers/rival2.gbcpal", middle_colors ; RIVAL3
++INCBIN "gfx/trainers/falkner.gbcpal", middle_colors ; FALKNER_REMATCH
++INCBIN "gfx/trainers/bugsy.gbcpal", middle_colors ; BUGSY_REMATCH
++INCBIN "gfx/trainers/whitney.gbcpal", middle_colors ; WHITNEY_REMATCH
++INCBIN "gfx/trainers/morty.gbcpal", middle_colors ; MORTY_REMATCH
++INCBIN "gfx/trainers/chuck.gbcpal", middle_colors ; CHUCK_REMATCH
++INCBIN "gfx/trainers/jasmine.gbcpal", middle_colors ; JASMINE_REMATCH
++INCBIN "gfx/trainers/pryce.gbcpal", middle_colors ; PRYCE_REMATCH
++INCBIN "gfx/trainers/clair.gbcpal", middle_colors ; CLAIR_REMATCH
++INCBIN "gfx/trainers/will.gbcpal", middle_colors ; WILL_REMATCH
++INCBIN "gfx/trainers/koga.gbcpal", middle_colors ; KOGA_REMATCH
++INCBIN "gfx/trainers/bruno.gbcpal", middle_colors ; BRUNO_REMATCH
++INCBIN "gfx/trainers/karen.gbcpal", middle_colors ; KAREN_REMATCH
++INCBIN "gfx/trainers/champion.gbcpal", middle_colors ; CHAMPION_REMATCH
+--- a/data/trainers/party_pointers.asm
++++ b/data/trainers/party_pointers.asm
+@@ -90,3 +90,16 @@
+ 	dba AromaLadyGroup
+ 	dba CrystalGroup ; CRYSTAL3
+ 	dba Rival2Group ; RIVAL3
++	dba FalknerGroup ; FALKNER_REMATCH
++	dba BugsyGroup ; BUGSY_REMATCH
++	dba WhitneyGroup ; WHITNEY_REMATCH
++	dba MortyGroup ; MORTY_REMATCH
++	dba ChuckGroup ; CHUCK_REMATCH
++	dba JasmineGroup ; JASMINE_REMATCH
++	dba PryceGroup ; PRYCE_REMATCH
++	dba ClairGroup ; CLAIR_REMATCH
++	dba WillGroup ; WILL_REMATCH
++	dba KogaGroup ; KOGA_REMATCH
++	dba BrunoGroup ; BRUNO_REMATCH
++	dba KarenGroup ; KAREN_REMATCH
++	dba ChampionGroup ; CHAMPION_REMATCH
+--- a/data/trainers/pic_pointers.asm
++++ b/data/trainers/pic_pointers.asm
+@@ -90,3 +90,16 @@
+ 	dba AromaLadyPic
+ 	dba Crystal2Pic ; CRYSTAL3
+ 	dba Rival2Pic ; RIVAL3
++	dba FalknerPic ; FALKNER_REMATCH
++	dba BugsyPic ; BUGSY_REMATCH
++	dba WhitneyPic ; WHITNEY_REMATCH
++	dba MortyPic ; MORTY_REMATCH
++	dba ChuckPic ; CHUCK_REMATCH
++	dba JasminePic ; JASMINE_REMATCH
++	dba PrycePic ; PRYCE_REMATCH
++	dba ClairPic ; CLAIR_REMATCH
++	dba WillPic ; WILL_REMATCH
++	dba KogaPic ; KOGA_REMATCH
++	dba BrunoPic ; BRUNO_REMATCH
++	dba KarenPic ; KAREN_REMATCH
++	dba ChampionPic ; CHAMPION_REMATCH
+--- a/data/trainers/sprites.asm
++++ b/data/trainers/sprites.asm
+@@ -88,3 +88,16 @@
+ 	db SPRITE_AROMA_LADY
+ 	db SPRITE_CRYSTAL
+ 	db SPRITE_SILVER
++	db SPRITE_FALKNER ; FALKNER_REMATCH
++	db SPRITE_BUGSY ; BUGSY_REMATCH
++	db SPRITE_WHITNEY ; WHITNEY_REMATCH
++	db SPRITE_MORTY ; MORTY_REMATCH
++	db SPRITE_CHUCK ; CHUCK_REMATCH
++	db SPRITE_JASMINE ; JASMINE_REMATCH
++	db SPRITE_PRYCE ; PRYCE_REMATCH
++	db SPRITE_CLAIR ; CLAIR_REMATCH
++	db SPRITE_WILL ; WILL_REMATCH
++	db SPRITE_KOGA ; KOGA_REMATCH
++	db SPRITE_BRUNO ; BRUNO_REMATCH
++	db SPRITE_KAREN ; KAREN_REMATCH
++	db SPRITE_LANCE ; CHAMPION_REMATCH
+--- a/data/trainers/stat_exp.asm
++++ b/data/trainers/stat_exp.asm
+@@ -23,91 +23,104 @@
+ ;             12,544 -> 28 pts    38,416 -> 49 pts    60,000 -> 61 pts
+ ;             16,384 -> 32 pts    43,264 -> 52 pts    65,535 -> 63 pts (max)
+ 
+-	dw  6400 ; FALKNER         ; 20 pts, +2 @L10 / +13 @L65
+-	dw  9216 ; WHITNEY         ; 24 pts, +5 @L21 / +15 @L66
+-	dw  6400 ; BUGSY           ; 20 pts, +3 @L16 / +13 @L66
+-	dw 12544 ; MORTY           ; 28 pts, +7 @L25 / +18 @L67
+-	dw 16384 ; PRYCE           ; 32 pts, +13 @L41 / +22 @L69
+-	dw 15376 ; JASMINE         ; 31 pts, +11 @L36 / +21 @L68
+-	dw 14400 ; CHUCK           ; 30 pts, +9 @L31 / +20 @L67
+-	dw 20736 ; CLAIR           ; 36 pts, +16 @L45 / +25 @L70
+-	dw 16384 ; RIVAL1          ; 32 pts, +1 @L5 / +15 @L48
++	dw  6400 ; FALKNER          ; 20 pts, +2 @L10
++	dw  9216 ; WHITNEY          ; 24 pts, +5 @L21
++	dw  6400 ; BUGSY            ; 20 pts, +3 @L16
++	dw 12544 ; MORTY            ; 28 pts, +7 @L25
++	dw 16384 ; PRYCE            ; 32 pts, +13 @L41
++	dw 15376 ; JASMINE          ; 31 pts, +11 @L36
++	dw 14400 ; CHUCK            ; 30 pts, +9 @L31
++	dw 20736 ; CLAIR            ; 36 pts, +16 @L45
++	dw 16384 ; RIVAL1           ; 32 pts, +1 @L5 / +15 @L48
+ 	dw     0 ; POKEMON_PROF
+-	dw 25600 ; WILL            ; 40 pts, +20 @L50 / +27 @L68
+-	dw 16384 ; CAL             ; 32 pts, +3 @L10 / +22 @L70
+-	dw 29584 ; BRUNO           ; 43 pts, +23 @L54 / +29 @L68
+-	dw 32400 ; KAREN           ; 45 pts, +25 @L56 / +31 @L69
+-	dw 28224 ; KOGA            ; 42 pts, +21 @L52 / +28 @L68
+-	dw 38416 ; CHAMPION        ; 49 pts, +28 @L59 / +34 @L70
+-	dw 51984 ; BROCK           ; 57 pts, +38 @L67
+-	dw 46656 ; MISTY           ; 54 pts, +34 @L63
+-	dw 43264 ; LT_SURGE        ; 52 pts, +31 @L60
++	dw 25600 ; WILL             ; 40 pts, +20 @L50
++	dw 16384 ; CAL              ; 32 pts, +3 @L10 / +22 @L70
++	dw 29584 ; BRUNO            ; 43 pts, +23 @L54
++	dw 32400 ; KAREN            ; 45 pts, +25 @L56
++	dw 28224 ; KOGA             ; 42 pts, +21 @L52
++	dw 38416 ; CHAMPION         ; 49 pts, +28 @L59
++	dw 51984 ; BROCK            ; 57 pts, +38 @L67
++	dw 46656 ; MISTY            ; 54 pts, +34 @L63
++	dw 43264 ; LT_SURGE         ; 52 pts, +31 @L60
+ 	dw     0 ; SCIENTIST
+-	dw 44944 ; ERIKA           ; 53 pts, +32 @L62
++	dw 44944 ; ERIKA            ; 53 pts, +32 @L62
+ 	dw     0 ; YOUNGSTER
+ 	dw     0 ; SCHOOLBOY
+ 	dw     0 ; BIRD_KEEPER
+ 	dw     0 ; LASS
+-	dw 48400 ; JANINE          ; 55 pts, +35 @L64
+-	dw  7744 ; COOLTRAINERM    ; 22 pts, +3 @L15 / +14 @L66
+-	dw  7744 ; COOLTRAINERF    ; 22 pts, +5 @L24 / +13 @L61
++	dw 48400 ; JANINE           ; 55 pts, +35 @L64
++	dw  7744 ; COOLTRAINERM     ; 22 pts, +3 @L15 / +14 @L66
++	dw  7744 ; COOLTRAINERF     ; 22 pts, +5 @L24 / +13 @L61
+ 	dw     0 ; BEAUTY
+ 	dw     0 ; POKEMANIAC
+ 	dw     0 ; GRUNTM
+-	dw  5000 ; GENTLEMAN       ; 17 pts, +3 @L20 / +10 @L63
++	dw  5000 ; GENTLEMAN        ; 17 pts, +3 @L20 / +10 @L63
+ 	dw     0 ; SKIER
+ 	dw     0 ; TEACHER
+-	dw 50176 ; SABRINA         ; 56 pts, +36 @L66
++	dw 50176 ; SABRINA          ; 56 pts, +36 @L66
+ 	dw     0 ; BUG_CATCHER
+ 	dw     0 ; FISHER
+-	dw  5000 ; SWIMMERM        ; 17 pts, +3 @L18 / +10 @L64
+-	dw  5000 ; SWIMMERF        ; 17 pts, +3 @L20 / +10 @L63
++	dw  5000 ; SWIMMERM         ; 17 pts, +3 @L18 / +10 @L64
++	dw  5000 ; SWIMMERF         ; 17 pts, +3 @L20 / +10 @L63
+ 	dw     0 ; SAILOR
+ 	dw     0 ; SUPER_NERD
+-	dw 38416 ; RIVAL2          ; 49 pts, +31 @L65 / +34 @L70
++	dw 38416 ; RIVAL2           ; 49 pts, +31 @L65 / +34 @L70
+ 	dw     0 ; GUITARIST
+ 	dw     0 ; HIKER
+ 	dw     0 ; BIKER
+-	dw 51984 ; BLAINE          ; 57 pts, +38 @L67
++	dw 51984 ; BLAINE           ; 57 pts, +38 @L67
+ 	dw     0 ; BURGLAR
+ 	dw     0 ; FIREBREATHER
+-	dw  5000 ; JUGGLER         ; 17 pts, +2 @L16 / +10 @L59
+-	dw  5000 ; BLACKBELT_T     ; 17 pts, +4 @L24 / +10 @L60
+-	dw  6400 ; EXECUTIVEM      ; 20 pts, +5 @L25 / +7 @L35
+-	dw  5000 ; PSYCHIC_T       ; 17 pts, +3 @L18 / +10 @L60
++	dw  5000 ; JUGGLER          ; 17 pts, +2 @L16 / +10 @L59
++	dw  5000 ; BLACKBELT_T      ; 17 pts, +4 @L24 / +10 @L60
++	dw  6400 ; EXECUTIVEM       ; 20 pts, +5 @L25 / +7 @L35
++	dw  5000 ; PSYCHIC_T        ; 17 pts, +3 @L18 / +10 @L60
+ 	dw     0 ; PICNICKER
+ 	dw     0 ; CAMPER
+-	dw  6400 ; EXECUTIVEF      ; 20 pts, +5 @L26 / +7 @L35
++	dw  6400 ; EXECUTIVEF       ; 20 pts, +5 @L26 / +7 @L35
+ 	dw     0 ; SAGE
+ 	dw     0 ; MEDIUM
+ 	dw     0 ; BOARDER
+ 	dw     0 ; POKEFANM
+-	dw  4096 ; KIMONO_GIRL     ; 16 pts, +3 @L20 / +3 @L21
++	dw  4096 ; KIMONO_GIRL      ; 16 pts, +3 @L20 / +3 @L21
+ 	dw     0 ; TWINS
+ 	dw     0 ; POKEFANF
+-	dw 60000 ; RED             ; 61 pts, +48 @L80
+-	dw 55696 ; BLUE            ; 59 pts, +40 @L69
++	dw 60000 ; RED              ; 61 pts, +48 @L80
++	dw 55696 ; BLUE             ; 59 pts, +40 @L69
+ 	dw     0 ; OFFICER
+ 	dw     0 ; GRUNTF
+-	dw 12544 ; MYSTICALMAN     ; 28 pts, +7 @L27
+-	dw 14400 ; CRYSTAL         ; 30 pts, +3 @L11 / +10 @L36
+-	dw 23104 ; CRYSTAL2        ; 38 pts, +18 @L48   (Ice Path only)
+-	dw  9216 ; PROTON          ; 24 pts, +2 @L11 / +9 @L39
+-	dw  9216 ; PETREL          ; 24 pts, +8 @L37
+-	dw 12544 ; ARIANA          ; 28 pts, +10 @L37 / +11 @L40
+-	dw 20736 ; ARCHER          ; 36 pts, +10 @L30 / +14 @L40
+-	dw 14400 ; PETREL_DIRECTOR ; 30 pts, +11 @L38
+-	dw  5000 ; HEX_MANIAC      ; 17 pts, +2 @L17 / +3 @L22
+-	dw  5000 ; COSPLAYER       ; 17 pts, +3 @L23 / +10 @L61
+-	dw  4096 ; NINJA           ; 16 pts, +9 @L58 / +9 @L60
+-	dw 57600 ; AGATHA          ; 60 pts, +42 @L70
+-	dw 57600 ; LORELEI         ; 60 pts, +42 @L70
+-	dw 65535 ; RED2            ; 63 pts, +50 @L80
+-	dw 62500 ; BLUE_CLOAK      ; 62 pts, +49 @L80
+-	dw 62500 ; GREEN           ; 62 pts, +49 @L80
+-	dw  5000 ; BATTLE_GIRL     ; 17 pts, +10 @L59 / +10 @L60
+-	dw  5000 ; TAMER           ; 17 pts, +10 @L60 / +10 @L61
+-	dw  5000 ; THUG            ; 17 pts, +2 @L16 / +3 @L19
++	dw 12544 ; MYSTICALMAN      ; 28 pts, +7 @L27
++	dw 14400 ; CRYSTAL          ; 30 pts, +3 @L11 / +10 @L36
++	dw 23104 ; CRYSTAL2         ; 38 pts, +18 @L48   (Ice Path only)
++	dw  9216 ; PROTON           ; 24 pts, +2 @L11 / +9 @L39
++	dw  9216 ; PETREL           ; 24 pts, +8 @L37
++	dw 12544 ; ARIANA           ; 28 pts, +10 @L37 / +11 @L40
++	dw 20736 ; ARCHER           ; 36 pts, +10 @L30 / +14 @L40
++	dw 14400 ; PETREL_DIRECTOR  ; 30 pts, +11 @L38
++	dw  5000 ; HEX_MANIAC       ; 17 pts, +2 @L17 / +3 @L22
++	dw  5000 ; COSPLAYER        ; 17 pts, +3 @L23 / +10 @L61
++	dw  4096 ; NINJA            ; 16 pts, +9 @L58 / +9 @L60
++	dw 57600 ; AGATHA           ; 60 pts, +42 @L70
++	dw 57600 ; LORELEI          ; 60 pts, +42 @L70
++	dw 65535 ; RED2             ; 63 pts, +50 @L80
++	dw 62500 ; BLUE_CLOAK       ; 62 pts, +49 @L80
++	dw 62500 ; GREEN            ; 62 pts, +49 @L80
++	dw  5000 ; BATTLE_GIRL      ; 17 pts, +10 @L59 / +10 @L60
++	dw  5000 ; TAMER            ; 17 pts, +10 @L60 / +10 @L61
++	dw  5000 ; THUG             ; 17 pts, +2 @L16 / +3 @L19
+ 	dw     0 ; AROMA_LADY
+-	dw 46656 ; CRYSTAL3        ; 54 pts, +35 @L66 / +37 @L70
+-	dw 51984 ; RIVAL3          ; 57 pts, +37 @L66 / +39 @L70
++	dw 46656 ; CRYSTAL3         ; 54 pts, +35 @L66 / +37 @L70
++	dw 51984 ; RIVAL3           ; 57 pts, +37 @L66 / +39 @L70
++	dw 30976 ; FALKNER_REMATCH  ; 44 pts, +28 @L65
++	dw 32400 ; BUGSY_REMATCH    ; 45 pts, +29 @L66
++	dw 33856 ; WHITNEY_REMATCH  ; 46 pts, +30 @L66
++	dw 35344 ; MORTY_REMATCH    ; 47 pts, +31 @L67
++	dw 36864 ; CHUCK_REMATCH    ; 48 pts, +32 @L67
++	dw 38416 ; JASMINE_REMATCH  ; 49 pts, +33 @L68
++	dw 40000 ; PRYCE_REMATCH    ; 50 pts, +34 @L69
++	dw 43264 ; CLAIR_REMATCH    ; 52 pts, +36 @L70
++	dw 46656 ; WILL_REMATCH     ; 54 pts, +36 @L68
++	dw 48400 ; KOGA_REMATCH     ; 55 pts, +37 @L68
++	dw 50176 ; BRUNO_REMATCH    ; 56 pts, +38 @L68
++	dw 53824 ; KAREN_REMATCH    ; 58 pts, +40 @L69
++	dw 57600 ; CHAMPION_REMATCH ; 60 pts, +42 @L70
+--- a/engine/battle/start_battle.asm
++++ b/engine/battle/start_battle.asm
+@@ -88,9 +88,11 @@
+ 
+ 	ld de, MUSIC_CHAMPION_BATTLE
+ 	cp CHAMPION
+-	jr z, .done
++	jp z, .done
++	cp CHAMPION_REMATCH
++	jp z, .done
+ 	cp RED
+-	jr z, .done
++	jp z, .done
+ 
+ 	; They should have included EXECUTIVEM, EXECUTIVEF, and SCIENTIST too...
+ 	ld de, MUSIC_ROCKET_BATTLE
+--- a/maps/AzaleaGym.asm
++++ b/maps/AzaleaGym.asm
+@@ -59,7 +59,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext BugsyRematchWinText, 0
+-	loadtrainer BUGSY, BUGSY2
++	loadtrainer BUGSY_REMATCH, BUGSY2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_BUGSY_REMATCH
+--- a/maps/BlackthornGym1F.asm
++++ b/maps/BlackthornGym1F.asm
+@@ -94,7 +94,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext ClairRematchWinText, 0
+-	loadtrainer CLAIR, CLAIR2
++	loadtrainer CLAIR_REMATCH, CLAIR2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_CLAIR_REMATCH
+--- a/maps/BrunosRoom.asm
++++ b/maps/BrunosRoom.asm
+@@ -54,7 +54,7 @@
+ 	loadtrainer BRUNO, BRUNO1
+ 	sjump .StartBattle
+ .LoadRematchTeam:
+-	loadtrainer BRUNO, BRUNO2
++	loadtrainer BRUNO_REMATCH, BRUNO2
+ .StartBattle:
+ 	startbattle
+ 	reloadmapafterbattle
+--- a/maps/CianwoodGym.asm
++++ b/maps/CianwoodGym.asm
+@@ -76,7 +76,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext ChuckRematchWinText, 0
+-	loadtrainer CHUCK, CHUCK2
++	loadtrainer CHUCK_REMATCH, CHUCK2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_CHUCK_REMATCH
+--- a/maps/EcruteakGym.asm
++++ b/maps/EcruteakGym.asm
+@@ -71,7 +71,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext MortyRematchWinText, 0
+-	loadtrainer MORTY, MORTY2
++	loadtrainer MORTY_REMATCH, MORTY2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_MORTY_REMATCH
+--- a/maps/GoldenrodGym.asm
++++ b/maps/GoldenrodGym.asm
+@@ -82,7 +82,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext WhitneyRematchWinText, 0
+-	loadtrainer WHITNEY, WHITNEY2
++	loadtrainer WHITNEY_REMATCH, WHITNEY2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_WHITNEY_REMATCH
+--- a/maps/KarensRoom.asm
++++ b/maps/KarensRoom.asm
+@@ -54,7 +54,7 @@
+ 	loadtrainer KAREN, KAREN1
+ 	sjump .StartBattle
+ .LoadRematchTeam:
+-	loadtrainer KAREN, KAREN2
++	loadtrainer KAREN_REMATCH, KAREN2
+ .StartBattle:
+ 	startbattle
+ 	reloadmapafterbattle
+--- a/maps/KogasRoom.asm
++++ b/maps/KogasRoom.asm
+@@ -54,7 +54,7 @@
+ 	loadtrainer KOGA, KOGA1
+ 	sjump .StartBattle
+ .LoadRematchTeam:
+-	loadtrainer KOGA, KOGA2
++	loadtrainer KOGA_REMATCH, KOGA2
+ .StartBattle:
+ 	startbattle
+ 	reloadmapafterbattle
+--- a/maps/LancesRoom.asm
++++ b/maps/LancesRoom.asm
+@@ -62,7 +62,7 @@
+ 	loadtrainer CHAMPION, LANCE
+ 	sjump .StartBattle
+ .LoadRematchTeam:
+-	loadtrainer CHAMPION, LANCE2
++	loadtrainer CHAMPION_REMATCH, LANCE2
+ .StartBattle:
+ 	startbattle
+ 	dontrestartmapmusic
+--- a/maps/MahoganyGym.asm
++++ b/maps/MahoganyGym.asm
+@@ -60,7 +60,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext PryceRematchWinText, 0
+-	loadtrainer PRYCE, PRYCE2
++	loadtrainer PRYCE_REMATCH, PRYCE2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_PRYCE_REMATCH
+--- a/maps/OlivineGym.asm
++++ b/maps/OlivineGym.asm
+@@ -80,7 +80,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext JasmineRematchWinText, 0
+-	loadtrainer JASMINE, JASMINE2
++	loadtrainer JASMINE_REMATCH, JASMINE2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_JASMINE_REMATCH
+--- a/maps/VioletGym.asm
++++ b/maps/VioletGym.asm
+@@ -56,7 +56,7 @@
+ 	iffalse .RematchDone
+ 	closetext
+ 	winlosstext FalknerRematchWinText, 0
+-	loadtrainer FALKNER, FALKNER2
++	loadtrainer FALKNER_REMATCH, FALKNER2
+ 	startbattle
+ 	reloadmapafterbattle
+ 	setevent EVENT_BEAT_FALKNER_REMATCH
+--- a/maps/WillsRoom.asm
++++ b/maps/WillsRoom.asm
+@@ -54,7 +54,7 @@
+ 	loadtrainer WILL, WILL1
+ 	sjump .StartBattle
+ .LoadRematchTeam:
+-	loadtrainer WILL, WILL2
++	loadtrainer WILL_REMATCH, WILL2
+ .StartBattle:
+ 	startbattle
+ 	reloadmapafterbattle

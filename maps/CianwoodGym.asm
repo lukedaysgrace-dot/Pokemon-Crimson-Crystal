@@ -76,7 +76,7 @@ CianwoodGymChuckScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext ChuckRematchWinText, 0
-	loadtrainer CHUCK, CHUCK2
+	loadtrainer CHUCK_REMATCH, CHUCK2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK_REMATCH

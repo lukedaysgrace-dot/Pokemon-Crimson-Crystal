@@ -62,7 +62,7 @@ LancesRoomLanceScript:
 	loadtrainer CHAMPION, LANCE
 	sjump .StartBattle
 .LoadRematchTeam:
-	loadtrainer CHAMPION, LANCE2
+	loadtrainer CHAMPION_REMATCH, LANCE2
 .StartBattle:
 	startbattle
 	dontrestartmapmusic
@@ -71,6 +71,7 @@ LancesRoomLanceScript:
 	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iffalse .RegularVictoryText
 	setevent EVENT_BEAT_LANCE_REMATCH
+	clearevent EVENT_GREEN_IN_ROUTE20
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 	opentext
 	writetext LanceRematchAfterText
