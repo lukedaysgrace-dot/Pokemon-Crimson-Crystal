@@ -145,16 +145,20 @@ CinnabarGroupSprites:
 	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
 
 CeruleanGroupSprites:
-; - SPRITE_MEW (Route 25 cape) wanders nonstop, so it is first in line for
-;   bank 1. SPRITE_SUICUNE and SPRITE_POKEDEX were dropped to make room: no
-;   outdoor map in this group uses either one.
+; - SPRITE_MEW and SPRITE_CRYSTAL (Route 25 cape) must stay in bank 1. MEW
+;   wanders nonstop, while CRYSTAL is hidden when the overworld font reloads
+;   and only appears afterward for her scripted walk. If CRYSTAL is in bank 0,
+;   her hidden object misses ReloadBank0SpriteFacings and walks with font tiles.
+;   SPRITE_SUICUNE and SPRITE_POKEDEX were dropped to make room: no outdoor map
+;   in this group uses either one.
 ; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm):
-; - Walking sprites are packed FIRST-COME after the player + Suicune into VRAM
-;   bank 1 (holds player + Suicune + 7 more walkers). Walkers that overflow into
-;   bank 0 have their step frames in the region shared with the overworld font,
-;   so they can flicker letters while stepping during textboxes/map-name signs.
-; - Order walkers by how much they actually WALK on screen: Cerulean City
-;   wanderers and Route 9 trainers first; standing/spinning NPCs later.
+; - Walking sprites are packed FIRST-COME after the player into VRAM bank 1
+;   (the player + 8 more walkers fit). Walkers that overflow into bank 0 have
+;   their step frames in the region shared with the overworld font, so they can
+;   flicker letters while stepping during textboxes/map-name signs.
+; - Order walkers by how much they actually WALK on screen: the two Route 25
+;   event sprites, Cerulean City wanderers, and animated Route 9 trainers first;
+;   standing NPCs later.
 ; - NURSE and OLD_LINK_RECEPTIONIST were removed: indoor maps load their own
 ;   sprites (AddIndoorSprites) and no outdoor map in this group uses them.
 ;   Keeping them overflowed bank 0 and made NPCs render with player tiles.
@@ -164,14 +168,15 @@ CeruleanGroupSprites:
 ;   so the last walker in packing order got no VRAM and rendered with player
 ;   tiles - that was CRYSTAL appearing as the player on the Route 25 cape.
 	db SPRITE_MEW ; Route 25 cape (wanders nonstop; must stay out of bank 0)
+	db SPRITE_CRYSTAL ; Route 25 cape (appears after font reload; must be bank 1)
 	db SPRITE_COOLTRAINER_M ; Cerulean City wanderer (also Route 25)
 	db SPRITE_SUPER_NERD ; Cerulean City wanderer (also Route 25)
 	db SPRITE_FISHER ; Cerulean City walker
 	db SPRITE_YOUNGSTER ; Cerulean City spinner
 	db SPRITE_CAMPER_NEW ; Route 9 trainers
 	db SPRITE_JUGGLER_NEW ; Route 9/25 trainers
-	db SPRITE_HIKER ; Route 9 (standing trainers; only walk when engaging)
 	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
+	db SPRITE_HIKER ; Route 9 (visible at font reload; only walks when engaging)
 	db SPRITE_COOLTRAINER_F ; Cerulean City (standing; never steps)
 	db SPRITE_COSPLAYER ; Route 4/25
 	db SPRITE_BIRD_KEEPER_NEW ; Route 4
@@ -182,7 +187,6 @@ CeruleanGroupSprites:
 	db SPRITE_POKEFAN_M ; Route 25
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
-	db SPRITE_CRYSTAL ; Route 25 cape (steps only in the MEW scene, no textbox up)
 	db SPRITE_AROMA_LADY ; Routes 4/9/25
 	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
