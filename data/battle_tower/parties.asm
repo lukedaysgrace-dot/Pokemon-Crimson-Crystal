@@ -2809,9 +2809,9 @@ BattleTowerMons5:
 	db 50 ; Level
 	db ABILITY_2 ; Personality
 	db 0, 0 ; Status
-	bigdw 164 ; HP
-	bigdw 164 ; Max HP
-	bigdw 126 ; Atk
+	bigdw 184 ; HP
+	bigdw 184 ; Max HP
+	bigdw 136 ; Atk
 	bigdw 180 ; Def
 	bigdw 117 ; Spd
 	bigdw 83 ; SAtk
@@ -3288,9 +3288,9 @@ BattleTowerMons6:
 	db 60 ; Level
 	db ABILITY_2 ; Personality
 	db 0, 0 ; Status
-	bigdw 197 ; HP
-	bigdw 197 ; Max HP
-	bigdw 152 ; Atk
+	bigdw 221 ; HP
+	bigdw 221 ; Max HP
+	bigdw 164 ; Atk
 	bigdw 218 ; Def
 	bigdw 139 ; Spd
 	bigdw 99 ; SAtk
@@ -4526,9 +4526,9 @@ BattleTowerMons8:
 	db 80 ; Level
 	db ABILITY_2 ; Personality
 	db 0, 0 ; Status
-	bigdw 259 ; HP
-	bigdw 259 ; Max HP
-	bigdw 196 ; Atk
+	bigdw 291 ; HP
+	bigdw 291 ; Max HP
+	bigdw 212 ; Atk
 	bigdw 287 ; Def
 	bigdw 184 ; Spd
 	bigdw 137 ; SAtk
@@ -5173,9 +5173,9 @@ BattleTowerMons9:
 	db 90 ; Level
 	db ABILITY_1 ; Personality
 	db 0, 0 ; Status
-	bigdw 280 ; HP
-	bigdw 280 ; Max HP
-	bigdw 224 ; Atk
+	bigdw 316 ; HP
+	bigdw 316 ; Max HP
+	bigdw 242 ; Atk
 	bigdw 334 ; Def
 	bigdw 208 ; Spd
 	bigdw 140 ; SAtk

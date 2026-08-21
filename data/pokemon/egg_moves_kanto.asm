@@ -421,6 +421,7 @@ GastlyEggMoves:
 	dw PSYWAVE
 	dw PERISH_SONG
 	dw HAZE
+	dw NIGHTMARE
 	dw -1 ; end
 
 OnixEggMoves:
