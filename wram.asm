@@ -155,7 +155,8 @@ wUnusedScriptByteBuffer:: db
 wMapTimeOfDay:: db
 
 wAlwaysCatchCheat:: db ; nonzero = 100% catch rate with any ball
-	ds 2
+wPlayerInvincibleCheat:: db ; bit 0 = player battle Pokemon cannot drop below 1 HP
+	ds 1
 
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
