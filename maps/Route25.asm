@@ -28,13 +28,12 @@ Route25_MapScripts:
 
 .Objects:
 ; An object event flag reads as VISIBLE until something sets it, so both cape
-; objects have to be hidden explicitly on a fresh save. Losing to CRYSTAL also
-; whites the player out before her battle script can tidy up. So rather than
-; trust the flags, derive both objects' visibility from the event state on
-; every map load.
+; objects have to be hidden explicitly on a fresh save. Rather than trust the
+; flags, derive both objects' visibility from the event state on every map
+; load. Clear the old loss flag as a save migration so players who lost under
+; the previous permanent-loss behavior can retry the battle too.
+	clearevent EVENT_CRYSTAL_CAUGHT_MEW
 	checkevent EVENT_ROUTE_25_CAUGHT_MEW
-	iftrue .MewIsGone
-	checkevent EVENT_CRYSTAL_CAUGHT_MEW
 	iftrue .MewIsGone
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .MewIsGone
@@ -47,11 +46,8 @@ Route25_MapScripts:
 .CheckCrystal:
 	checkevent EVENT_ROUTE_25_CRYSTAL_LEFT
 	iftrue .NoCrystal
-	checkevent EVENT_CRYSTAL_CAUGHT_MEW
-	iftrue .ShowCrystal
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iffalse .NoCrystal
-.ShowCrystal:
 	appear ROUTE25_CRYSTAL
 	return
 
@@ -135,8 +131,6 @@ Route25MewAppearsScript:
 
 Route25CrystalApproachScript:
 ; Stepping onto the cape while MEW is still out there brings CRYSTAL running.
-	checkevent EVENT_CRYSTAL_CAUGHT_MEW
-	iftrue .Done
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
@@ -160,8 +154,6 @@ Route25CrystalMewScene:
 
 Route25CrystalScript:
 	faceplayer
-	checkevent EVENT_CRYSTAL_CAUGHT_MEW
-	iftrue .CrystalHasMew
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .GoCatchIt
 	special FadeOutMusic
@@ -171,13 +163,6 @@ Route25CrystalScript:
 .GoCatchIt:
 	opentext
 	writetext Route25CrystalGoCatchItText
-	waitbutton
-	closetext
-	end
-
-.CrystalHasMew:
-	opentext
-	writetext Route25CrystalHasMewText
 	waitbutton
 	closetext
 	end
@@ -208,18 +193,12 @@ Route25CrystalBattle:
 .StartBattle:
 	winlosstext Route25CrystalWinText, Route25CrystalLossText
 	setlasttalked ROUTE25_CRYSTAL
-; Losing here means CRYSTAL catches MEW, and a loss whites the player out
-; before any script after reloadmapafterbattle can run. So assume the loss up
-; front and take it back the moment the battle reports a win.
-	setevent EVENT_CRYSTAL_CAUGHT_MEW
 	startbattle
-	ifequal LOSE, .LostMew
-	clearevent EVENT_CRYSTAL_CAUGHT_MEW
+	ifequal LOSE, .Lost
 	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-.LostMew:
+.Lost:
 	dontrestartmapmusic
 	reloadmapafterbattle
-; Everything below this point only runs if the player won.
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	opentext
 	writetext Route25CrystalAfterText
@@ -487,7 +466,8 @@ Route25CrystalWinText:
 	done
 
 Route25CrystalLossText:
-	text "…Then it's mine."
+	text "We'll settle this"
+	line "another time."
 	done
 
 Route25CrystalAfterText:
@@ -541,34 +521,6 @@ Route25CrystalGoCatchItText:
 	cont "watched you catch"
 
 	para "it."
-	done
-
-Route25CrystalHasMewText:
-	text "CRYSTAL: I'm"
-	line "sorry, <PLAYER>."
-
-	para "MEW is in a BALL"
-	line "on my belt."
-
-	para "That was the deal"
-	line "we made, and I"
-	cont "won't undo it."
-
-	para "…It doesn't feel"
-	line "the way I thought"
-	cont "it would."
-
-	para "BILL grew up"
-	line "looking out at"
-	cont "this water."
-
-	para "No wonder he"
-	line "started asking"
-	cont "what #MON are."
-
-	para "There's still so"
-	line "much I want to"
-	cont "understand."
 	done
 
 Route25CrystalMewCaughtText:
