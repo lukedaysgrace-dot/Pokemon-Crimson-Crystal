@@ -321,9 +321,13 @@ PlaceEnemysName::
 	jr z, .name_only
 	cp RIVAL2
 	jr z, .name_only
+	cp RIVAL3
+	jr z, .name_only
 	cp CRYSTAL
 	jr z, .crystal_name
 	cp CRYSTAL2
+	jr z, .crystal_name
+	cp CRYSTAL3
 	jr z, .crystal_name
 
 	ld de, wOTClassName
