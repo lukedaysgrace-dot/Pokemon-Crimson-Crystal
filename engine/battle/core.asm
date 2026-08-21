@@ -2514,6 +2514,14 @@ WinTrainerBattle:
 	jr nz, .skip_heal
 	predef HealParty
 .skip_heal
+IF DEF(DEBUG_BATTLE)
+	; Generated trainer battles are not launched from a map trainer script,
+	; so wWinTextPointer/wLossTextPointer do not name valid text.  The test
+	; request has no custom-text channel; skip directly to the normal payout.
+	ldh a, [hDebugActive]
+	and a
+	jr nz, .skip_win_loss_text
+ENDC
 	ld a, [wDebugFlags]
 	bit DEBUG_BATTLE_F, a
 	jr nz, .skip_win_loss_text
@@ -3074,6 +3082,12 @@ LostBattle:
 	ld c, 40
 	call DelayFrames
 
+IF DEF(DEBUG_BATTLE)
+	; See WinTrainerBattle: generated trainers have no map-script loss text.
+	ldh a, [hDebugActive]
+	and a
+	jr nz, .skip_win_loss_text
+ENDC
 	ld a, [wDebugFlags]
 	bit DEBUG_BATTLE_F, a
 	jr nz, .skip_win_loss_text
@@ -3615,6 +3629,14 @@ LoadEnemyMonToSwitchTo:
 	ret
 
 CheckWhetherToAskSwitch:
+IF DEF(DEBUG_BATTLE)
+	; Automated battle tests have no yes/no input channel.  Treat them as Set
+	; mode here so the generic button driver cannot accidentally accept this
+	; prompt and replace the active test mon halfway through a move script.
+	ldh a, [hDebugActive]
+	and a
+	jp nz, .return_nc
+ENDC
 	ld a, [wBattleHasJustStarted]
 	dec a
 	jp z, .return_nc

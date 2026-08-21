@@ -31,6 +31,7 @@ from symbols import Symbols, Constants, STATE_MENU, STATE_READY, STATE_WAIT, STA
 from state import Battle, Request
 from move_sweep import generate_move_smoke_tests
 from effect_sweep import generate_effect_semantic_tests
+from interaction_sweep import generate_interaction_tests
 
 ROOT = Path(__file__).resolve().parents[2]
 ROM = ROOT / "pokecrystal_debug.gbc"
@@ -346,7 +347,7 @@ def apply_wram_setup(battle, setup):
             battle.mem.write(symbol, value)
 
 
-def load_tests(paths, keyword=None, all_moves=False, all_effects=False):
+def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interactions=0):
     files = []
     default_dir = Path(__file__).resolve().parent / "tests"
     if not paths:
@@ -367,6 +368,8 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False):
         tests.extend(generate_move_smoke_tests())
     if all_effects:
         tests.extend(generate_effect_semantic_tests())
+    if interactions:
+        tests.extend(generate_interaction_tests(interactions))
     if keyword:
         tests = [t for t in tests if keyword.lower() in t.get("name", "").lower()]
     return tests
@@ -381,9 +384,11 @@ def main():
                     help="also execute one generated smoke battle per move")
     ap.add_argument("--all-effects", action="store_true",
                     help="also assert one generated scenario per move effect")
+    ap.add_argument("--interactions", type=int, metavar="N", default=0,
+                    help="also run N deterministic mixed-mechanic stress battles")
     args = ap.parse_args()
 
-    tests = load_tests(args.paths, args.keyword, args.all_moves, args.all_effects)
+    tests = load_tests(args.paths, args.keyword, args.all_moves, args.all_effects, args.interactions)
     if not tests:
         sys.exit("no tests found")
 
