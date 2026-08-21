@@ -2,8 +2,6 @@ CrystalPhoneCalleeScript:
 	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
 	iftrue CrystalPhoneCapeCallScript
 	scall CrystalPhoneGreeting
-	checkevent EVENT_CRYSTAL_CAUGHT_MEW
-	iftrue .Mew
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .Cape
 	checkevent EVENT_BEAT_CRYSTAL_ICE_PATH
@@ -33,11 +31,6 @@ CrystalPhoneCalleeScript:
 
 .Cape
 	farwritetext CrystalPhoneStatusCapeText
-	buttonsound
-	sjump CrystalPhoneTier5Tips
-
-.Mew
-	farwritetext CrystalPhoneStatusMewText
 	buttonsound
 	sjump CrystalPhoneTier5Tips
 
