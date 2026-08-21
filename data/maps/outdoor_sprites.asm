@@ -158,16 +158,20 @@ CeruleanGroupSprites:
 ; - NURSE and OLD_LINK_RECEPTIONIST were removed: indoor maps load their own
 ;   sprites (AddIndoorSprites) and no outdoor map in this group uses them.
 ;   Keeping them overflowed bank 0 and made NPCs render with player tiles.
+; - PICNICKER_NEW removed too: no outdoor map in this group has a Picnicker
+;   (Route 9 uses CAMPER_NEW/HIKER/JUGGLER_NEW/AROMA_LADY). With it the group
+;   had 19 walkers for 18 walker slots (player + 8 in bank 1, 10 in bank 0),
+;   so the last walker in packing order got no VRAM and rendered with player
+;   tiles - that was CRYSTAL appearing as the player on the Route 25 cape.
 	db SPRITE_MEW ; Route 25 cape (wanders nonstop; must stay out of bank 0)
 	db SPRITE_COOLTRAINER_M ; Cerulean City wanderer (also Route 25)
 	db SPRITE_SUPER_NERD ; Cerulean City wanderer (also Route 25)
 	db SPRITE_FISHER ; Cerulean City walker
 	db SPRITE_YOUNGSTER ; Cerulean City spinner
-	db SPRITE_PICNICKER_NEW ; Route 9/4/25 trainers
 	db SPRITE_CAMPER_NEW ; Route 9 trainers
 	db SPRITE_JUGGLER_NEW ; Route 9/25 trainers
-	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
 	db SPRITE_HIKER ; Route 9 (standing trainers; only walk when engaging)
+	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
 	db SPRITE_COOLTRAINER_F ; Cerulean City (standing; never steps)
 	db SPRITE_COSPLAYER ; Route 4/25
 	db SPRITE_BIRD_KEEPER_NEW ; Route 4
@@ -178,10 +182,11 @@ CeruleanGroupSprites:
 	db SPRITE_POKEFAN_M ; Route 25
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
-	db SPRITE_CRYSTAL ; Route 25 cape (standing; never steps)
+	db SPRITE_CRYSTAL ; Route 25 cape (steps only in the MEW scene, no textbox up)
 	db SPRITE_AROMA_LADY ; Routes 4/9/25
 	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
+	db SPRITE_NONE ; free slot (was SPRITE_PICNICKER_NEW; no outdoor map in this group has one)
 
 SaffronGroupSprites:
 	db SPRITE_SUICUNE
