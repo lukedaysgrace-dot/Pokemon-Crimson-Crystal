@@ -761,7 +761,7 @@ PKMNTrainerGroup:
 	db 10
 	dw TEDDIURSA
 	db GOLD_BERRY
-	dw SCRATCH, FURY_SWIPES, LICK, LICK
+	dw SCRATCH, FURY_SWIPES, LICK, NO_MOVE
 	db 10
 	dw POLIWAG
 	db BERRY
@@ -1830,7 +1830,7 @@ LassGroup:
 	db "CARRIE@", TRAINERTYPE_MOVES
 	db 18
 	dw IMPIDIMP
-	dw BITE, LOW_SWEEP, LOW_SWEEP, LOW_SWEEP
+	dw BITE, LOW_SWEEP, NO_MOVE, NO_MOVE
 	db -1 ; end
 
 	next_list_item ; LASS (2) BRIDGET - Goldenrod Gym
@@ -2381,7 +2381,7 @@ CooltrainerMGroup:
 	db 19
 	dw APPLIN
 	db MIRACLE_SEED
-	dw ASTONISH, WITHDRAW, WITHDRAW, WITHDRAW
+	dw ASTONISH, WITHDRAW, NO_MOVE, NO_MOVE
 	db 19
 	dw GEODUDE_ALOLAN
 	db BERRY
@@ -2944,7 +2944,7 @@ BeautyGroup:
 	db "CARLENE@", TRAINERTYPE_MOVES
 	db 20
 	dw ABRA
-	dw TELEPORT, TELEPORT, TELEPORT, TELEPORT
+	dw TELEPORT, NO_MOVE, NO_MOVE, NO_MOVE
 	db -1 ; end
 
 	next_list_item ; BEAUTY (9) JESSICA - not placed on any map
@@ -5957,7 +5957,7 @@ PsychicGroup:
 	db 21
 	dw ABRA
 	db BERRY
-	dw TELEPORT, TELEPORT, TELEPORT, TELEPORT
+	dw TELEPORT, NO_MOVE, NO_MOVE, NO_MOVE
 	db -1 ; end
 
 	next_list_item ; PSYCHIC_T (8) PHIL - Route 44
@@ -7325,7 +7325,7 @@ ProtonGroup:
 	db 8
 	dw CROAGUNK
 	db POISON_BARB
-	dw ASTONISH, POISON_STING, MUD_SLAP, MUD_SLAP
+	dw ASTONISH, POISON_STING, MUD_SLAP, NO_MOVE
 	db 9
 	dw SPINARAK
 	db GOLD_BERRY

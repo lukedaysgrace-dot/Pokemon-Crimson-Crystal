@@ -179,7 +179,7 @@ CeruleanGroupSprites:
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
 	db SPRITE_CRYSTAL ; Route 25 cape (standing; never steps)
-	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
+	db SPRITE_AROMA_LADY ; Routes 4/9/25
 	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
 
@@ -426,7 +426,7 @@ VioletGroupSprites:
 	db SPRITE_SUPER_NERD
 	db SPRITE_GRAMPS
 	db SPRITE_CRYSTAL
-	db SPRITE_NONE
+	db SPRITE_AROMA_LADY ; Route 35
 	db SPRITE_PSYCHIC
 	db SPRITE_NONE
 	db SPRITE_TWIN

@@ -207,6 +207,40 @@ class Harness:
             "bg": list(m.read_bytes("wActiveBGEffects", 5)),
         }
 
+    def control_state(self):
+        """State-machine details for diagnosing a battle timeout."""
+        m = self.battle.mem
+        registers = self.pb.register_file
+        def move_name(runtime_id):
+            index = m.move_index_of(runtime_id)
+            return self.battle.con.moves_by_index.get(index, f"MOVE_{index}")
+        player_move = m.read("wCurPlayerMove")
+        enemy_move = m.read("wCurEnemyMove")
+        return {
+            "pc": f"{registers.PC:04x}",
+            "sp": f"{registers.SP:04x}",
+            "rom_bank": m.read("hROMBank"),
+            "svbk": self.pb.memory[0xFF70],
+            "ie": self.pb.memory[0xFFFF],
+            "if": self.pb.memory[0xFF0F],
+            "lcdc": self.pb.memory[0xFF40],
+            "vblank_pending": m.read("wVBlankOccurred"),
+            "vblank_mode": m.read("hVBlank"),
+            "battle_turn": m.read("hBattleTurn"),
+            "turn_ended": m.read("wTurnEnded"),
+            "player_status": m.read("wBattleMonStatus"),
+            "player_move": (player_move, move_name(player_move)),
+            "enemy_move": (enemy_move, move_name(enemy_move)),
+            "anim_bank": m.read("wBattleAnimScriptBank"),
+            "state": m.read("wDebugState"),
+            "turns_done": m.read("wDebugTurnsDone"),
+            "turn_target": m.read("wDebugTurnTarget"),
+            "control": m.read("wDebugControl"),
+            "player_action": m.read("wBattlePlayerAction"),
+            "battle_ended": m.read("wBattleEnded"),
+            "battle_result": m.read("wBattleResult"),
+        }
+
     def screenshot(self, name):
         FAILDIR.mkdir(exist_ok=True)
         img = self.pb.screen.image
@@ -414,6 +448,7 @@ def main():
             if st is None:
                 raise RuntimeError(
                     f"battle timed out (stuck at {h.where()}; "
+                    f"control={h.control_state()}; "
                     f"animation={h.animation_state()})")
             if st == STATE_ERROR:
                 raise RuntimeError("ROM rejected the request")
@@ -459,6 +494,8 @@ def main():
             else:
                 passed += 1
                 print(f"PASS {name} ({time.time()-t1:.1f}s)")
+                if h.verbose:
+                    print(f"     control: {h.control_state()}")
         except Exception as e:
             errored += 1
             shot = h.screenshot(("err-" + name.replace(" ", "_"))[:60])
