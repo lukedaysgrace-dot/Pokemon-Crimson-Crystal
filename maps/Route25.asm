@@ -129,25 +129,105 @@ Route25MewAppearsScript:
 .Done:
 	end
 
-Route25CrystalApproachScript:
-; Stepping onto the cape while MEW is still out there brings CRYSTAL running.
+; Stepping onto the top of the jetty while MEW is still out there brings
+; CRYSTAL running in from the west. One guard per trigger tile, so she can
+; walk up to the exact tile the player stopped on.
+
+Route25CrystalApproachScript46:
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .Done
-	sjump Route25CrystalMewScene
+	sjump Route25CrystalMewScene46
 .Done:
 	end
 
-Route25CrystalMewScene:
+Route25CrystalApproachScript47:
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .Done
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
+	iffalse .Done
+	sjump Route25CrystalMewScene47
+.Done:
+	end
+
+Route25CrystalApproachScript48:
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .Done
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
+	iffalse .Done
+	sjump Route25CrystalMewScene48
+.Done:
+	end
+
+Route25CrystalApproachScript49:
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iftrue .Done
+	checkevent EVENT_ROUTE_25_MEW_APPEARED
+	iffalse .Done
+	sjump Route25CrystalMewScene49
+.Done:
+	end
+
+Route25CrystalRunsIn:
+; Common opening for every approach: MEW cries, then CRYSTAL enters at
+; (39, 7) - off-screen left of all four trigger tiles - so she walks in
+; instead of materializing mid-cape. scall'd; returns to the caller at `end`.
 	special FadeOutMusic
 	pause 10
 	cry MEW
 	pause 20
+	moveobject ROUTE25_CRYSTAL, 39, 7
 	appear ROUTE25_CRYSTAL
-	showemote EMOTE_SHOCK, ROUTE25_CRYSTAL, 20
+	end
+
+Route25CrystalMewScene46:
+; Player stopped on (46, 8), the west end of the jetty's top step. (45, 8) is
+; the cliff corner over the water, so there is no tile beside them - CRYSTAL
+; stops directly above on (46, 7) and faces down at them instead.
+	scall Route25CrystalRunsIn
 	turnobject PLAYER, UP
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo46Movement
 	turnobject ROUTE25_CRYSTAL, DOWN
+	sjump Route25CrystalMewSceneFinish
+
+Route25CrystalMewScene47:
+; Player on (47, 8): CRYSTAL stops beside them on (46, 8) and faces right.
+	scall Route25CrystalRunsIn
+	turnobject PLAYER, LEFT
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo47Movement
+	turnobject ROUTE25_CRYSTAL, RIGHT
+	sjump Route25CrystalMewSceneFinish
+
+Route25CrystalMewScene48:
+; Player on (48, 8): CRYSTAL stops beside them on (47, 8) and faces right.
+	scall Route25CrystalRunsIn
+	turnobject PLAYER, LEFT
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo48Movement
+	turnobject ROUTE25_CRYSTAL, RIGHT
+	sjump Route25CrystalMewSceneFinish
+
+Route25CrystalMewScene49:
+; Player on (49, 8): CRYSTAL stops beside them on (48, 8) and faces right.
+	scall Route25CrystalRunsIn
+	turnobject PLAYER, LEFT
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo49Movement
+	turnobject ROUTE25_CRYSTAL, RIGHT
+	sjump Route25CrystalMewSceneFinish
+
+Route25CrystalMewScene:
+; Fallback: the player reached MEW without crossing the approach row (climbed
+; the jetty from the shore and talked to MEW straight away). They could be
+; anywhere around MEW, so CRYSTAL stops at the top of the steps and the two
+; face each other from there.
+	scall Route25CrystalRunsIn
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo46Movement
+	faceobject ROUTE25_CRYSTAL, PLAYER
+	faceobject PLAYER, ROUTE25_CRYSTAL
+	sjump Route25CrystalMewSceneFinish
+
+Route25CrystalMewSceneFinish:
+	showemote EMOTE_SHOCK, ROUTE25_CRYSTAL, 20
 	pause 10
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	sjump Route25CrystalBattle
@@ -359,11 +439,70 @@ Route25MewDriftMovement:
 	step_end
 
 Route25CrystalLeavesMovement:
+; She can be on the jetty's top step ((46-48, 8)), above it ((46, 7)), or back
+; at her home spot ((48, 7)) after a map re-entry. Row 8 west of the jetty is
+; the cliff edge, so she steps up onto solid ground first, then heads off west
+; through the gap in the cliff line.
+	step UP
 	step LEFT
 	step LEFT
 	step LEFT
 	step LEFT
 	step LEFT
+	step LEFT
+	step_end
+
+; CRYSTAL's approach paths. All start from (39, 7): east along the clearing,
+; then down onto the jetty's top step next to the player.
+
+Route25CrystalApproachTo46Movement:
+; (39, 7) -> (46, 7), the tile directly above the player
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step_end
+
+Route25CrystalApproachTo47Movement:
+; (39, 7) -> (46, 7) -> (46, 8), beside the player
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step_end
+
+Route25CrystalApproachTo48Movement:
+; (39, 7) -> (47, 7) -> (47, 8), beside the player
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step_end
+
+Route25CrystalApproachTo49Movement:
+; (39, 7) -> (48, 7) -> (48, 8), beside the player
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
 	step_end
 
 MovementData_0x19efe8:
@@ -736,23 +875,21 @@ Route25_MapEvents:
 	db 1 ; warp events
 	warp_event 47,  5, BILLS_HOUSE, 1
 
-	db 12 ; coord events
+	db 8 ; coord events
 	coord_event 42,  6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script
 	coord_event 42,  7, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate2Script
 ; x=44 is the only gap in the cliff line, so the player has to cross one of
 ; these two tiles to reach the cape at all.
 	coord_event 44,  6, -1, Route25MewAppearsScript
 	coord_event 44,  7, -1, Route25MewAppearsScript
-; Both ends of the stone jetty, so CRYSTAL cuts in whether the player comes
-; down past BILL'S HOUSE or up along the shore.
-	coord_event 46,  8, -1, Route25CrystalApproachScript
-	coord_event 47,  8, -1, Route25CrystalApproachScript
-	coord_event 48,  8, -1, Route25CrystalApproachScript
-	coord_event 49,  8, -1, Route25CrystalApproachScript
-	coord_event 46, 11, -1, Route25CrystalApproachScript
-	coord_event 47, 11, -1, Route25CrystalApproachScript
-	coord_event 48, 11, -1, Route25CrystalApproachScript
-	coord_event 49, 11, -1, Route25CrystalApproachScript
+; Top row of the stone jetty only - one guard per tile so CRYSTAL can walk to
+; whichever tile the player stopped on. A player who climbs the jetty from the
+; shore also crosses this row before reaching the clearing; if they talk to
+; MEW while still on the steps, the Route25MewScript fallback covers it.
+	coord_event 46,  8, -1, Route25CrystalApproachScript46
+	coord_event 47,  8, -1, Route25CrystalApproachScript47
+	coord_event 48,  8, -1, Route25CrystalApproachScript48
+	coord_event 49,  8, -1, Route25CrystalApproachScript49
 
 	db 2 ; bg events
 	bg_event 45,  5, BGEVENT_READ, BillsHouseSign
