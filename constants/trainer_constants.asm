@@ -297,33 +297,23 @@ LYRA EQU __enum__
 	trainerclass GRUNTM ; 1f
 	const GRUNTM_1
 	const GRUNTM_2
-	const GRUNTM_3
 	const GRUNTM_4
-	const GRUNTM_5
 	const GRUNTM_6
 	const GRUNTM_7
-	const GRUNTM_8
-	const GRUNTM_9
 	const GRUNTM_10
-	const GRUNTM_11
 	const GRUNTM_12
 	const GRUNTM_13
 	const GRUNTM_14
 	const GRUNTM_15
-	const GRUNTM_16
-	const GRUNTM_17
 	const GRUNTM_18
-	const GRUNTM_19
 	const GRUNTM_20
 	const GRUNTM_21
 	const GRUNTM_22
 	const GRUNTM_23
-	const GRUNTM_24
 	const GRUNTM_25
 	const GRUNTM_26
 	const GRUNTM_27
 	const GRUNTM_28
-	const GRUNTM_29
 	const GRUNTM_30
 	const GRUNTM_31
 
@@ -585,23 +575,15 @@ LYRA EQU __enum__
 	trainerclass PICNICKER ; 35
 	const LIZ1
 	const GINA1
-	const BROOKE
-	const KIM
 	const CINDY
-	const HOPE
-	const SHARON
-	const DEBRA
 	const GINA2
 	const ERIN1
 	const LIZ2
 	const LIZ3
-	const HEIDI
-	const EDNA
 	const GINA3
 	const TIFFANY1
 	const TIFFANY2
 	const ERIN2
-	const TANYA
 	const TIFFANY3
 	const ERIN3
 	const LIZ4
@@ -609,7 +591,6 @@ LYRA EQU __enum__
 	const GINA4
 	const GINA5
 	const TIFFANY4
-	const NADIA
 
 	trainerclass CAMPER ; 36
 	const ROLAND
@@ -731,6 +712,16 @@ LYRA EQU __enum__
 	const GRUNTF_3
 	const GRUNTF_4
 	const GRUNTF_5
+	const GRUNTF_6
+	const GRUNTF_7
+	const GRUNTF_8
+	const GRUNTF_9
+	const GRUNTF_10
+	const GRUNTF_11
+	const GRUNTF_12
+	const GRUNTF_13
+	const GRUNTF_14
+	const GRUNTF_15
 
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
@@ -753,6 +744,11 @@ LYRA EQU __enum__
 	const CRYSTAL_5_TOTODILE
 
 	trainerclass CRYSTAL2 ; 45
+; CRYSTAL2 shares CrystalGroup (see data/trainers/party_pointers.asm), so these
+; are aliases into the same party list - only the class (pic/palette) differs.
+CRYSTAL2_4_CHIKORITA EQU CRYSTAL_4_CHIKORITA
+CRYSTAL2_4_CYNDAQUIL EQU CRYSTAL_4_CYNDAQUIL
+CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
 CRYSTAL2_CHIKORITA EQU CRYSTAL_5_CHIKORITA
 CRYSTAL2_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
 CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
@@ -822,5 +818,16 @@ CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
 	const THUG_PAULIE
 	const THUG_BOBBY
 	const THUG_TONY
+
+	trainerclass AROMA_LADY ; 56
+	const BROOKE
+	const KIM
+	const HOPE
+	const SHARON
+	const DEBRA
+	const HEIDI
+	const EDNA
+	const TANYA
+	const NADIA
 
 NUM_TRAINER_CLASSES EQU __enum__
