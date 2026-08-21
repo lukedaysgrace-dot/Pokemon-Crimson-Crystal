@@ -13,7 +13,7 @@ GoldenrodBikeShopClerkScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_BICYCLE
-	iftrue .GotBicycle
+	iftrue .GotRide
 	writetext GoldenrodBikeShopClerkIntroText
 	yesorno
 	iffalse .Refused
@@ -36,7 +36,7 @@ GoldenrodBikeShopClerkScript:
 	itemnotify
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
-	sjump .GotBicycle
+	sjump .GotRide
 
 .GiveSkateboard:
 	waitsfx
@@ -47,8 +47,16 @@ GoldenrodBikeShopClerkScript:
 	itemnotify
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
-.GotBicycle:
+.GotRide:
+	checkitem SKATEBOARD
+	iftrue .GotSkateboard
 	writetext GoldenrodBikeShopClerkFirstRateBikesText
+	sjump .Finish
+
+.GotSkateboard:
+	writetext GoldenrodBikeShopClerkFirstRateSkateboardsText
+
+.Finish:
 	waitbutton
 	closetext
 	end
@@ -120,6 +128,14 @@ GoldenrodBikeShopClerkFirstRateBikesText:
 	line "first-rate! You"
 
 	para "can ride them"
+	line "anywhere."
+	done
+
+GoldenrodBikeShopClerkFirstRateSkateboardsText:
+	text "My SKATEBOARDS"
+	line "are first-rate!"
+
+	para "You can ride them"
 	line "anywhere."
 	done
 
