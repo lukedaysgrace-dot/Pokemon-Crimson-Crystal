@@ -1,0 +1,25 @@
+- name: Debug auto mode does not accept the Shift prompt
+  player:  { species: TINKATON, level: 100, moves: [SEISMIC_TOSS, SPLASH] }
+  player2: { species: HOPPIP, level: 50, moves: [TACKLE] }
+  enemy:   { species: WEEDLE, level: 5, hp: 1, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 100, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 31
+  turns: 2
+  move_script: [1, 2]
+  snapshot: false
+  assert:
+    - player.species == 'TINKATON'
+
+- name: Generated trainer victory has no uninitialized map text pointer
+  player: { species: TINKATON, level: 100, moves: [SEISMIC_TOSS] }
+  enemy:  { species: WEEDLE, level: 5, hp: 1, moves: [SPLASH] }
+  enemy2: { species: CATERPIE, level: 5, hp: 1, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 47
+  turns: 3
+  move_script: [1, 1, 1]
+  snapshot: false
+  assert: []
