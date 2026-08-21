@@ -183,13 +183,13 @@ RadioTower1FLassScript:
 RadioTower1FYoungsterScript:
 	jumptextfaceplayer RadioTower1FYoungsterText
 
-TrainerGruntM3:
-	trainer GRUNTM, GRUNTM_3, EVENT_BEAT_ROCKET_GRUNTM_3, GruntM3SeenText, GruntM3BeatenText, 0, .Script
+TrainerGruntF6:
+	trainer GRUNTF, GRUNTF_6, EVENT_BEAT_ROCKET_GRUNTF_6, GruntF6SeenText, GruntF6BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM3AfterBattleText
+	writetext GruntF6AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -420,7 +420,7 @@ RadioTower1FYoungsterText:
 	cont "though."
 	done
 
-GruntM3SeenText:
+GruntF6SeenText:
 	text "We've finally"
 	line "taken over the"
 	cont "RADIO TOWER!"
@@ -435,12 +435,12 @@ GruntM3SeenText:
 	line "how scary we are!"
 	done
 
-GruntM3BeatenText:
+GruntF6BeatenText:
 	text "Too strong! We"
 	line "must watch you…"
 	done
 
-GruntM3AfterBattleText:
+GruntF6AfterBattleText:
 	text "You're too strong."
 
 	para "Our plan could be"
@@ -488,6 +488,6 @@ RadioTower1F_MapEvents:
 	object_event  5,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionistScript, -1
 	object_event 16,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 15,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 14,  1, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FLuckyNumberManScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 12,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower1FRadioCardWomanScript, EVENT_GOLDENROD_CITY_CIVILIANS

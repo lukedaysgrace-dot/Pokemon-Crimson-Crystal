@@ -33,13 +33,13 @@ GoldenrodUndergroundWarehouse_MapScripts:
 	writemem wUndergroundSwitchPositions
 	return
 
-TrainerGruntM24:
-	trainer GRUNTM, GRUNTM_24, EVENT_BEAT_ROCKET_GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, .Script
+TrainerGruntF14:
+	trainer GRUNTF, GRUNTF_14, EVENT_BEAT_ROCKET_GRUNTF_14, GruntF14SeenText, GruntF14BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext GruntM24AfterBattleText
+	writetext GruntF14AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +95,7 @@ GoldenrodUndergroundWarehouseTMKnockOff:
 GoldenrodUndergroundWarehouseUltraBall:
 	itemball ULTRA_BALL
 
-GruntM24SeenText:
+GruntF14SeenText:
 	text "How did you get"
 	line "this far?"
 
@@ -104,11 +104,11 @@ GruntM24SeenText:
 	cont "dispose of you."
 	done
 
-GruntM24BeatenText:
+GruntF14BeatenText:
 	text "I got disposed of…"
 	done
 
-GruntM24AfterBattleText:
+GruntF14AfterBattleText:
 	text "TEAM ROCKET will"
 	line "keep going, wait-"
 	cont "ing for the return"
@@ -221,7 +221,7 @@ GoldenrodUndergroundWarehouse_MapEvents:
 	db 0 ; bg events
 
 	db 7 ; object events
-	object_event  9,  8, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  9,  8, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGruntF14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  8, 15, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 14,  3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 12,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundWarehouseDirectorScript, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
