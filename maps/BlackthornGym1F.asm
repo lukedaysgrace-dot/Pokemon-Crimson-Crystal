@@ -94,7 +94,7 @@ BlackthornGymClairScript:
 	iffalse .RematchDone
 	closetext
 	winlosstext ClairRematchWinText, 0
-	loadtrainer CLAIR, CLAIR2
+	loadtrainer CLAIR_REMATCH, CLAIR2
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR_REMATCH

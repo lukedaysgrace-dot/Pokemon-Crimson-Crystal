@@ -88,3 +88,18 @@ TrainerPicPointers::
 	dba TamerPic
 	dba ThugPic
 	dba AromaLadyPic
+	dba Crystal2Pic ; CRYSTAL3
+	dba Rival2Pic ; RIVAL3
+	dba FalknerPic ; FALKNER_REMATCH
+	dba BugsyPic ; BUGSY_REMATCH
+	dba WhitneyPic ; WHITNEY_REMATCH
+	dba MortyPic ; MORTY_REMATCH
+	dba ChuckPic ; CHUCK_REMATCH
+	dba JasminePic ; JASMINE_REMATCH
+	dba PrycePic ; PRYCE_REMATCH
+	dba ClairPic ; CLAIR_REMATCH
+	dba WillPic ; WILL_REMATCH
+	dba KogaPic ; KOGA_REMATCH
+	dba BrunoPic ; BRUNO_REMATCH
+	dba KarenPic ; KAREN_REMATCH
+	dba ChampionPic ; CHAMPION_REMATCH
