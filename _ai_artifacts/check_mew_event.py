@@ -79,23 +79,44 @@ def steps(label,x,y):
     for d in re.findall(r'\tstep (UP|DOWN|LEFT|RIGHT)', body):
         dx,dy=DIRS[d]; x+=dx; y+=dy; out.append((x,y))
     return out
-# CRYSTAL's approach paths all start at (39, 7) (moveobject in
-# Route25CrystalRunsIn) and must end on the tile next to / above the player
-APPROACH_START=(39,7)
-mo=re.search(r'moveobject ROUTE25_CRYSTAL, (\d+), (\d+)', R)
-check(mo and (int(mo.group(1)),int(mo.group(2)))==APPROACH_START,
-      f"Route25CrystalRunsIn moveobject is not at {APPROACH_START}")
-for lbl,landing in (('Route25CrystalApproachTo46Movement',(46,7)),
-                    ('Route25CrystalApproachTo47Movement',(46,8)),
-                    ('Route25CrystalApproachTo48Movement',(47,8)),
-                    ('Route25CrystalApproachTo49Movement',(48,8))):
-    p=steps(lbl,*APPROACH_START)
+# Each trigger tile's guard parks CRYSTAL via moveobject, then the shared
+# approach walk (RIGHT x5) must end at (trigger x, 7), directly above the
+# player. The spawn must be EXACTLY trigger x - 5: any further west and
+# .CheckObjectStillVisible (engine/overworld/map_objects.asm) deletes the
+# object the frame after `appear`, hanging the applymovement (soft-lock).
+approach=steps('Route25CrystalApproachMovement',0,0)
+for tx in (46,47,48,49):
+    body=R.split(f'Route25CrystalApproachScript{tx}:')[1].split('\n\n')[0]
+    mo=re.search(r'moveobject ROUTE25_CRYSTAL, (\d+), (\d+)', body)
+    if not mo:
+        err.append(f"ApproachScript{tx} has no moveobject"); continue
+    sx,sy=int(mo.group(1)),int(mo.group(2))
+    check(sx==tx-5, f"ApproachScript{tx} spawns at x={sx}; must be exactly {tx-5} "
+                    f"(player x - 5) or the engine despawns her and the script hangs")
+    p=steps('Route25CrystalApproachMovement',sx,sy)
     bad=[t for t in p if tile(*t) not in WALKABLE]
-    check(not bad, f"{lbl} walks into {bad}")
-    check(bool(p) and p[-1]==landing, f"{lbl} ends at {p[-1] if p else None}, expected {landing}")
+    check(not bad, f"approach from ({sx},{sy}) walks into {bad}")
+    check(bool(p) and p[-1]==(tx,7), f"approach from ({sx},{sy}) ends at {p[-1] if p else None}, expected {(tx,7)}")
+# fallback (talked to MEW first): spawn from its own moveobject, end at (46, 7)
+fb=re.search(r'moveobject ROUTE25_CRYSTAL, (\d+), (\d+)',
+             R.split('Route25CrystalMewScene:')[1].split('\n\n')[0])
+if fb:
+    sx,sy=int(fb.group(1)),int(fb.group(2))
+    check(sx>=44, f"fallback spawn x={sx} is outside the visible window when the player "
+                  f"talks to MEW from x=49 (needs x >= 44)")
+    p=steps('Route25CrystalFallbackMovement',sx,sy)
+    bad=[t for t in p if tile(*t) not in WALKABLE]
+    check(not bad, f"fallback approach walks into {bad}")
+    check(bool(p) and p[-1]==(46,7), f"fallback approach ends at {p[-1] if p else None}, expected (46, 7)")
+else:
+    err.append("Route25CrystalMewScene fallback has no moveobject")
+# the exit walk must run before her initial coords are re-anchored, or a
+# far-west spawn + far-east player deletes her mid-walk and hangs the script
+check(re.search(r'writeobjectxy ROUTE25_CRYSTAL\n\tdisappear ROUTE25_CRYSTAL\n\tappear ROUTE25_CRYSTAL\n\tapplymovement ROUTE25_CRYSTAL, Route25CrystalLeavesMovement', R) is not None,
+      "exit walk is not preceded by the writeobjectxy/disappear/appear re-anchor")
 # the exit path must stay on solid ground from every spot she can be left on:
-# her home coords (map re-entry) and the four approach stops
-for sx,sy in [(cx,cy),(46,7),(46,8),(47,8),(48,8)]:
+# her home coords (map re-entry), the four approach stops, and the fallback stop
+for sx,sy in [(cx,cy),(46,7),(47,7),(48,7),(49,7)]:
     p=steps('Route25CrystalLeavesMovement',sx,sy)
     bad=[t for t in p if tile(*t) not in WALKABLE]
     check(not bad, f"CRYSTAL's exit from ({sx},{sy}) walks into {bad}")

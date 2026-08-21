@@ -129,16 +129,27 @@ Route25MewAppearsScript:
 .Done:
 	end
 
-; Stepping onto the top of the jetty while MEW is still out there brings
-; CRYSTAL running in from the west. One guard per trigger tile, so she can
-; walk up to the exact tile the player stopped on.
+; Stepping down onto the top of the jetty while MEW is still out there brings
+; CRYSTAL walking in from the west along the clearing. One guard per trigger
+; tile: each one parks her hidden object 5 tiles due west of the player before
+; the shared scene runs, so a single RIGHT x5 walk always ends at (player x, 7),
+; directly above them.
+;
+; The 5-tile spacing is a hard engine limit, not a style choice: an object
+; whose current AND initial coords are both outside the player's visible
+; window (x within player +/-5ish; see .CheckObjectStillVisible in
+; engine/overworld/map_objects.asm) is DELETED the frame after `appear`, and
+; the applymovement below then waits forever for a walk that no object is
+; performing - the soft-lock this replaces. Spawning at exactly player x - 5
+; is both safe and one tile past the left edge of the screen.
 
 Route25CrystalApproachScript46:
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .Done
-	sjump Route25CrystalMewScene46
+	moveobject ROUTE25_CRYSTAL, 41, 7
+	sjump Route25CrystalMewApproachScene
 .Done:
 	end
 
@@ -147,7 +158,8 @@ Route25CrystalApproachScript47:
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .Done
-	sjump Route25CrystalMewScene47
+	moveobject ROUTE25_CRYSTAL, 42, 7
+	sjump Route25CrystalMewApproachScene
 .Done:
 	end
 
@@ -156,7 +168,8 @@ Route25CrystalApproachScript48:
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .Done
-	sjump Route25CrystalMewScene48
+	moveobject ROUTE25_CRYSTAL, 43, 7
+	sjump Route25CrystalMewApproachScene
 .Done:
 	end
 
@@ -165,63 +178,39 @@ Route25CrystalApproachScript49:
 	iftrue .Done
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iffalse .Done
-	sjump Route25CrystalMewScene49
+	moveobject ROUTE25_CRYSTAL, 44, 7
+	sjump Route25CrystalMewApproachScene
 .Done:
 	end
 
-Route25CrystalRunsIn:
-; Common opening for every approach: MEW cries, then CRYSTAL enters at
-; (39, 7) - off-screen left of all four trigger tiles - so she walks in
-; instead of materializing mid-cape. scall'd; returns to the caller at `end`.
+Route25CrystalMewApproachScene:
+; The guard already parked her at (player x - 5, 7). She appears just off the
+; west edge of the screen, walks right along the clearing, and stops at
+; (player x, 7) - directly above the player on the jetty's top step - facing
+; down at them.
 	special FadeOutMusic
 	pause 10
 	cry MEW
 	pause 20
-	moveobject ROUTE25_CRYSTAL, 39, 7
 	appear ROUTE25_CRYSTAL
-	end
-
-Route25CrystalMewScene46:
-; Player stopped on (46, 8), the west end of the jetty's top step. (45, 8) is
-; the cliff corner over the water, so there is no tile beside them - CRYSTAL
-; stops directly above on (46, 7) and faces down at them instead.
-	scall Route25CrystalRunsIn
 	turnobject PLAYER, UP
-	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo46Movement
+	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachMovement
 	turnobject ROUTE25_CRYSTAL, DOWN
-	sjump Route25CrystalMewSceneFinish
-
-Route25CrystalMewScene47:
-; Player on (47, 8): CRYSTAL stops beside them on (46, 8) and faces right.
-	scall Route25CrystalRunsIn
-	turnobject PLAYER, LEFT
-	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo47Movement
-	turnobject ROUTE25_CRYSTAL, RIGHT
-	sjump Route25CrystalMewSceneFinish
-
-Route25CrystalMewScene48:
-; Player on (48, 8): CRYSTAL stops beside them on (47, 8) and faces right.
-	scall Route25CrystalRunsIn
-	turnobject PLAYER, LEFT
-	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo48Movement
-	turnobject ROUTE25_CRYSTAL, RIGHT
-	sjump Route25CrystalMewSceneFinish
-
-Route25CrystalMewScene49:
-; Player on (49, 8): CRYSTAL stops beside them on (48, 8) and faces right.
-	scall Route25CrystalRunsIn
-	turnobject PLAYER, LEFT
-	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo49Movement
-	turnobject ROUTE25_CRYSTAL, RIGHT
 	sjump Route25CrystalMewSceneFinish
 
 Route25CrystalMewScene:
 ; Fallback: the player reached MEW without crossing the approach row (climbed
 ; the jetty from the shore and talked to MEW straight away). They could be
-; anywhere around MEW, so CRYSTAL stops at the top of the steps and the two
-; face each other from there.
-	scall Route25CrystalRunsIn
-	applymovement ROUTE25_CRYSTAL, Route25CrystalApproachTo46Movement
+; anywhere around MEW, so she walks to (46, 7) overlooking the steps and the
+; two face each other from there. (44, 7) is within the visible window for
+; every tile the player can talk to MEW from (x 46-49).
+	special FadeOutMusic
+	pause 10
+	cry MEW
+	pause 20
+	moveobject ROUTE25_CRYSTAL, 44, 7
+	appear ROUTE25_CRYSTAL
+	applymovement ROUTE25_CRYSTAL, Route25CrystalFallbackMovement
 	faceobject ROUTE25_CRYSTAL, PLAYER
 	faceobject PLAYER, ROUTE25_CRYSTAL
 	sjump Route25CrystalMewSceneFinish
@@ -318,6 +307,16 @@ Route25MewScript:
 	writetext Route25CrystalMewCaughtText
 	waitbutton
 	closetext
+; Respawn her in place before the walk west. Her object's *initial* coords
+; still point at wherever she appeared from, which can be outside the visible
+; window of the tile the player caught MEW from - and an object whose current
+; and initial coords both leave the window is deleted mid-walk
+; (.CheckObjectStillVisible), hanging the applymovement. writeobjectxy +
+; disappear + appear re-anchors her initial coords to the tile she stands on
+; (always near the player here), so the exit walk always runs to completion.
+	writeobjectxy ROUTE25_CRYSTAL
+	disappear ROUTE25_CRYSTAL
+	appear ROUTE25_CRYSTAL
 	applymovement ROUTE25_CRYSTAL, Route25CrystalLeavesMovement
 	setevent EVENT_ROUTE_25_CRYSTAL_LEFT
 	disappear ROUTE25_CRYSTAL
@@ -439,11 +438,9 @@ Route25MewDriftMovement:
 	step_end
 
 Route25CrystalLeavesMovement:
-; She can be on the jetty's top step ((46-48, 8)), above it ((46, 7)), or back
-; at her home spot ((48, 7)) after a map re-entry. Row 8 west of the jetty is
-; the cliff edge, so she steps up onto solid ground first, then heads off west
-; through the gap in the cliff line.
-	step UP
+; She leaves from wherever she stood for the battle: (46-49, 7) after an
+; approach, or (48, 7) after a map re-entry - all on the clearing row, so she
+; just heads off west through the gap in the cliff line.
 	step LEFT
 	step LEFT
 	step LEFT
@@ -452,13 +449,9 @@ Route25CrystalLeavesMovement:
 	step LEFT
 	step_end
 
-; CRYSTAL's approach paths. All start from (39, 7): east along the clearing,
-; then down onto the jetty's top step next to the player.
-
-Route25CrystalApproachTo46Movement:
-; (39, 7) -> (46, 7), the tile directly above the player
-	step RIGHT
-	step RIGHT
+Route25CrystalApproachMovement:
+; Relative walk, shared by all four triggers: from (player x - 5, 7) five
+; tiles east to (player x, 7), directly above the player.
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -466,43 +459,10 @@ Route25CrystalApproachTo46Movement:
 	step RIGHT
 	step_end
 
-Route25CrystalApproachTo47Movement:
-; (39, 7) -> (46, 7) -> (46, 8), beside the player
+Route25CrystalFallbackMovement:
+; (44, 7) -> (46, 7), overlooking the jetty steps
 	step RIGHT
 	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step DOWN
-	step_end
-
-Route25CrystalApproachTo48Movement:
-; (39, 7) -> (47, 7) -> (47, 8), beside the player
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step DOWN
-	step_end
-
-Route25CrystalApproachTo49Movement:
-; (39, 7) -> (48, 7) -> (48, 8), beside the player
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step DOWN
 	step_end
 
 MovementData_0x19efe8:
