@@ -24,13 +24,13 @@ TrainerCamperDean:
 	closetext
 	end
 
-TrainerPicnickerHeidi:
-	trainer PICNICKER, HEIDI, EVENT_BEAT_PICNICKER_HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, 0, .Script
+TrainerAromaLadyHeidi:
+	trainer AROMA_LADY, HEIDI, EVENT_BEAT_AROMA_LADY_HEIDI, AromaLadyHeidiSeenText, AromaLadyHeidiBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerHeidiAfterBattleText
+	writetext AromaLadyHeidiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,13 +46,13 @@ TrainerCamperSid:
 	closetext
 	end
 
-TrainerPicnickerEdna:
-	trainer PICNICKER, EDNA, EVENT_BEAT_PICNICKER_EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, 0, .Script
+TrainerAromaLadyEdna:
+	trainer AROMA_LADY, EDNA, EVENT_BEAT_AROMA_LADY_EDNA, AromaLadyEdnaSeenText, AromaLadyEdnaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerEdnaAfterBattleText
+	writetext AromaLadyEdnaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -128,24 +128,26 @@ CamperDeanAfterBattleText:
 	cont "CENTER right away."
 	done
 
-PicnickerHeidiSeenText:
-	text "Have you ever been"
-	line "to a picnic?"
+AromaLadyHeidiSeenText:
+	text "Do you like the"
+	line "scent of fresh"
+	cont "herbs?"
 
-	para "They're so much"
-	line "fun!"
+	para "It calms #MON"
+	line "right down!"
 	done
 
-PicnickerHeidiBeatenText:
+AromaLadyHeidiBeatenText:
 	text "Ohhhh!"
 	done
 
-PicnickerHeidiAfterBattleText:
-	text "We bake lots of"
-	line "goodies and share"
+AromaLadyHeidiAfterBattleText:
+	text "I dry petals and"
+	line "leaves to make"
 
-	para "them all around."
-	line "They're delicious!"
+	para "oils. The aroma"
+	line "soothes any"
+	cont "#MON."
 	done
 
 CamperSidSeenText:
@@ -164,17 +166,17 @@ CamperSidAfterBattleText:
 	cont "my mistake."
 	done
 
-PicnickerEdnaSeenText:
+AromaLadyEdnaSeenText:
 	text "People shouldn't"
 	line "leave any litter"
 	cont "behind."
 	done
 
-PicnickerEdnaBeatenText:
+AromaLadyEdnaBeatenText:
 	text "Ohh… I lost…"
 	done
 
-PicnickerEdnaAfterBattleText:
+AromaLadyEdnaAfterBattleText:
 	text "Conserving energy"
 	line "is important, but"
 
@@ -272,9 +274,9 @@ Route9_MapEvents:
 
 	db 8 ; object events
 	object_event 23, 11, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
-	object_event 39,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
+	object_event 39,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyHeidi, -1
 	object_event 11,  4, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
-	object_event 12, 15, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
+	object_event 12, 15, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyEdna, -1
 	object_event 28,  3, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
 	object_event 36, 15, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
 	object_event 31,  6, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerJugglerMarco, -1

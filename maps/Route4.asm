@@ -22,24 +22,24 @@ TrainerBirdKeeperHank:
 	closetext
 	end
 
-TrainerPicnickerHope:
-	trainer PICNICKER, HOPE, EVENT_BEAT_PICNICKER_HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, .Script
+TrainerAromaLadyHope:
+	trainer AROMA_LADY, HOPE, EVENT_BEAT_AROMA_LADY_HOPE, AromaLadyHopeSeenText, AromaLadyHopeBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerHopeAfterBattleText
+	writetext AromaLadyHopeAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerPicnickerSharon:
-	trainer PICNICKER, SHARON, EVENT_BEAT_PICNICKER_SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, .Script
+TrainerAromaLadySharon:
+	trainer AROMA_LADY, SHARON, EVENT_BEAT_AROMA_LADY_SHARON, AromaLadySharonSeenText, AromaLadySharonBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext PicnickerSharonAfterBattleText
+	writetext AromaLadySharonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -100,7 +100,7 @@ BirdKeeperHankAfterBattleText:
 	line "it."
 	done
 
-PicnickerHopeSeenText:
+AromaLadyHopeSeenText:
 	text "I have a feeling"
 	line "that I can win."
 
@@ -108,12 +108,12 @@ PicnickerHopeSeenText:
 	line "right!"
 	done
 
-PicnickerHopeBeatenText:
+AromaLadyHopeBeatenText:
 	text "Aww, you are too"
 	line "strong."
 	done
 
-PicnickerHopeAfterBattleText:
+AromaLadyHopeAfterBattleText:
 	text "I heard CLEFAIRY"
 	line "appear at MT.MOON."
 
@@ -121,16 +121,16 @@ PicnickerHopeAfterBattleText:
 	line "they be?"
 	done
 
-PicnickerSharonSeenText:
+AromaLadySharonSeenText:
 	text "Um…"
 	line "I…"
 	done
 
-PicnickerSharonBeatenText:
+AromaLadySharonBeatenText:
 	text "…"
 	done
 
-PicnickerSharonAfterBattleText:
+AromaLadySharonAfterBattleText:
 	text "<……>I'll go train"
 	line "some more…"
 	done
@@ -187,8 +187,8 @@ Route4_MapEvents:
 
 	db 6 ; object events
 	object_event 17,  9, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperHank, -1
-	object_event  9,  8, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerPicnickerHope, -1
-	object_event 21,  6, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerPicnickerSharon, -1
+	object_event  9,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerAromaLadyHope, -1
+	object_event 21,  6, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerAromaLadySharon, -1
 	object_event 26,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route4HPUp, EVENT_ROUTE_4_HP_UP
 	object_event 14,  6, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPearl, -1
 	object_event 22, 10, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPixie, -1
