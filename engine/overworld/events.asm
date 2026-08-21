@@ -1322,10 +1322,14 @@ DoBikeStep::
 	bit STATUSFLAGS2_BIKE_SHOP_CALL_F, [hl]
 	jr z, .NoCall
 
-	; If we're not on the bike, we don't have to be here.
+	; If we're not on the bike or skateboard, we don't have to be here.
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
+	jr z, .riding
+	cp PLAYER_SKATEBOARD
 	jr nz, .NoCall
+
+.riding
 
 	; If we're not in an area of phone service, we don't
 	; have to be here.
