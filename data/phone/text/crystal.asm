@@ -136,26 +136,6 @@ CrystalPhoneStatusCapeText:
 	cont "there at all?"
 	done
 
-CrystalPhoneStatusMewText:
-	text "It's asleep in my"
-	line "bag. Again."
-
-	para "I have captured"
-	line "hundreds of"
-	cont "#MON. I know"
-	cont "how a capture"
-	cont "feels."
-
-	para "This one let me."
-
-	para "PROF.OAK wants a"
-	line "#DEX entry."
-
-	para "He's getting one"
-	line "line, and he can"
-	cont "be happy with it."
-	done
-
 CrystalPhoneTipRoute31Text:
 	text "LEDYBA. ROUTE 31,"
 	line "just past VIOLET."
