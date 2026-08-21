@@ -48,7 +48,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all
+.PHONY: all clean tidy tools debug test test-all audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -62,6 +62,21 @@ test: pokecrystal_debug.gbc
 
 test-all: pokecrystal_debug.gbc
 	python3 tools/battletest/runner.py --all-moves --all-effects
+
+audit-static: pokecrystal.gbc pokecrystal_debug.gbc
+	python3 tools/audit_game_data.py
+	python3 tools/audit_moves.py
+	python3 tools/audit_trainers.py
+	python3 tools/audit_save.py
+	python3 tools/audit_resources.py
+	python3 tools/audit_mon_icons.py
+	python3 tools/audit_map_sprites.py
+	python3 tools/audit_trainer_sprites.py
+
+audit-stress: pokecrystal_debug.gbc
+	python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
+
+audit: audit-static test-all audit-stress
 
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete

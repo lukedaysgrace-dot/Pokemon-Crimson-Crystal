@@ -10,6 +10,7 @@ this directory drives it headlessly with PyBoy and asserts on WRAM.
 make debug          # build pokecrystal_debug.gbc (release ROM untouched)
 make test           # run every YAML case in tools/battletest/tests/
 make test-all       # YAML assertions + every effect + execute every move
+python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
 python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
@@ -24,6 +25,11 @@ a behavioral scenario for every distinct `EFFECT_*` routine. The former catches
 conversion-table gaps, rejected requests, crashes, and hangs; the latter and
 the YAML cases assert damage, status, stat stages, switching, weather, priority,
 post-battle effects, and move/ability interactions.
+
+`--interactions N` adds a deterministic generated sweep that mixes random
+species, four-move sets, abilities, held items, status, weather, trainer AI,
+benches, knockouts, and voluntary switches. It is intended as a broader
+state-transition/crash sweep after the exhaustive single-move checks.
 
 ## PyBoy MBC30 patch (required)
 
@@ -109,7 +115,9 @@ Auto-mode notes: a fainted player mon auto-switches to the next fit party
 slot (no menu), which also covers Baton Pass and U-turn - so multi-mon
 flows run unattended. Wild enemies never flee in tester battles (Quagsire
 and everything else in the flee tables would otherwise end forced-RNG
-tests on turn 1). If a battle times out, the error names the code the ROM
+tests on turn 1). The optional Shift-mode prompt and map trainer win/loss
+text are skipped because generated tests have no interactive response or
+map-script text pointers. If a battle times out, the error names the code the ROM
 is spinning in (PC sampled and symbolized) - it is almost always one of
 the BattleRandom reroll loops; switch that test to seeded mode.
 
