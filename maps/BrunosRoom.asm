@@ -54,7 +54,7 @@ BrunoScript_Battle:
 	loadtrainer BRUNO, BRUNO1
 	sjump .StartBattle
 .LoadRematchTeam:
-	loadtrainer BRUNO, BRUNO2
+	loadtrainer BRUNO_REMATCH, BRUNO2
 .StartBattle:
 	startbattle
 	reloadmapafterbattle

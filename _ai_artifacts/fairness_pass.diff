@@ -1,0 +1,1172 @@
+--- a/data/trainers/parties.asm
++++ b/data/trainers/parties.asm
+@@ -38,23 +38,23 @@
+ 
+ 	next_list_item ; FALKNER (2) FALKNER2 - Violet Gym
+ 	db "FALKNER@", TRAINERTYPE_ITEM_MOVES
+-	db 80
++	db 69
+ 	dw NOCTOWL
+ 	db GOLD_BERRY
+ 	dw PSYCHIC_M, WING_ATTACK, HYPNOSIS, DREAM_EATER
+-	db 80
++	db 69
+ 	dw SKARMORY
+ 	db NO_ITEM
+ 	dw SPIKES, DRILL_PECK, MUD_SLAP, STEEL_WING
+-	db 81
++	db 70
+ 	dw DODRIO
+ 	db FOCUS_BAND
+ 	dw ENDURE, FLAIL, DRILL_PECK, TRI_ATTACK
+-	db 81
++	db 70
+ 	dw MURKROW
+ 	db NO_ITEM
+ 	dw DRILL_PECK, FAINT_ATTACK, HAZE, ICY_WIND
+-	db 82
++	db 71
+ 	dw PIDGEOT
+ 	db NO_ITEM
+ 	dw SKY_ATTACK, EXTREMESPEED, DOUBLE_TEAM, STEEL_WING
+@@ -89,23 +89,23 @@
+ 
+ 	next_list_item ; WHITNEY (2) WHITNEY2 - Goldenrod Gym
+ 	db "WHITNEY@", TRAINERTYPE_ITEM_MOVES
+-	db 82
++	db 69
+ 	dw CLEFABLE
+ 	db NO_ITEM
+ 	dw ICE_PUNCH, FIRE_PUNCH, THUNDERPUNCH, ENCORE
+-	db 83
++	db 70
+ 	dw URSALUNA
+ 	db MINT_BERRY
+ 	dw STRENGTH, EARTHQUAKE, REST, METAL_CLAW
+-	db 82
++	db 69
+ 	dw BLISSEY
+ 	db NO_ITEM
+ 	dw EGG_BOMB, ATTRACT, SOFTBOILED, LIGHT_SCREEN
+-	db 83
++	db 70
+ 	dw TAUROS
+ 	db NO_ITEM
+ 	dw THRASH, EARTHQUAKE, RAGE, PURSUIT
+-	db 84
++	db 71
+ 	dw MILTANK
+ 	db PINK_BOW
+ 	dw IRON_TAIL, ATTRACT, BODY_SLAM, MILK_DRINK
+@@ -135,23 +135,23 @@
+ 
+ 	next_list_item ; BUGSY (2) BUGSY2 - Azalea Gym
+ 	db "BUGSY@", TRAINERTYPE_ITEM_MOVES
+-	db 81
++	db 69
+ 	dw LEDIAN
+ 	db FOCUS_BAND
+ 	dw GIGA_DRAIN, AGILITY, BATON_PASS, LIGHT_SCREEN
+-	db 81
++	db 69
+ 	dw FORRETRESS
+ 	db NO_ITEM
+ 	dw CURSE, EXPLOSION, PIN_MISSILE, SPIKE_CANNON
+-	db 81
++	db 69
+ 	dw SHUCKLE
+ 	db BERRY_JUICE
+ 	dw TOXIC, PROTECT, SANDSTORM, WRAP
+-	db 82
++	db 70
+ 	dw SCIZOR
+ 	db NO_ITEM
+ 	dw METAL_CLAW, TWINEEDLE, AGILITY, SUBSTITUTE
+-	db 83
++	db 71
+ 	dw SCYTHER
+ 	db SCOPE_LENS
+ 	dw SLASH, CUT, WING_ATTACK, SWORDS_DANCE
+@@ -186,23 +186,23 @@
+ 
+ 	next_list_item ; MORTY (2) MORTY2 - Ecruteak Gym
+ 	db "MORTY@", TRAINERTYPE_ITEM_MOVES
+-	db 83
++	db 70
+ 	dw GENGAR
+ 	db NO_ITEM
+ 	dw SHADOW_BALL, DESTINY_BOND, MEAN_LOOK, CONFUSE_RAY
+-	db 83
++	db 70
+ 	dw STANTLER
+ 	db PINK_BOW
+ 	dw SHADOW_BALL, HEADBUTT, HYPNOSIS, DREAM_EATER
+-	db 83
++	db 70
+ 	dw GENGAR
+ 	db SPELL_TAG
+ 	dw SHADOW_BALL, GIGA_DRAIN, SLUDGE_BOMB, PSYCHIC_M
+-	db 84
++	db 71
+ 	dw MISDREAVUS
+ 	db NO_ITEM
+ 	dw SHADOW_BALL, MEAN_LOOK, PAIN_SPLIT, PERISH_SONG
+-	db 85
++	db 72
+ 	dw GENGAR
+ 	db GOLD_BERRY
+ 	dw SHADOW_BALL, HYPNOSIS, THUNDERBOLT, DREAM_EATER
+@@ -213,32 +213,32 @@
+ PryceGroup:
+ 	next_list_item ; PRYCE (1) PRYCE1 - Mahogany Gym
+ 	db "PRYCE@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 38
++	db 35
+ 	dw NINETALES_ALOLAN
+ 	db NEVERMELTICE
+ 	db HIDDEN_ABILITY
+ 	dw ICE_BEAM, DAZZLING_GLEAM, CONFUSE_RAY, ICY_WIND
+-	db 38
++	db 35
+ 	dw DEWGONG
+ 	db NO_ITEM
+ 	db ABILITY_1
+ 	dw SURF, ICE_BEAM, REST, SLEEP_TALK
+-	db 39
++	db 36
+ 	dw WEAVILE
+ 	db SCOPE_LENS
+ 	db ABILITY_1
+ 	dw ICE_SHARD, FAINT_ATTACK, ICICLE_CRASH, METAL_CLAW
+-	db 39
++	db 36
+ 	dw AURORUS
+ 	db NO_ITEM
+ 	db ABILITY_1
+ 	dw SWIFT, ICE_BEAM, ANCIENTPOWER, THUNDER_WAVE
+-	db 40
++	db 37
+ 	dw ABOMASNOW
+ 	db NO_ITEM
+ 	db HIDDEN_ABILITY
+ 	dw BLIZZARD, GIGA_DRAIN, ICE_SHARD, ROCK_SLIDE
+-	db 41
++	db 38
+ 	dw MAMOSWINE
+ 	db GOLD_BERRY
+ 	db ABILITY_1
+@@ -247,23 +247,23 @@
+ 
+ 	next_list_item ; PRYCE (2) PRYCE2 - Mahogany Gym
+ 	db "PRYCE@", TRAINERTYPE_ITEM_MOVES
+-	db 86
++	db 71
+ 	dw CLOYSTER
+ 	db NO_ITEM
+ 	dw SURF, SPIKES, AURORA_BEAM, RAIN_DANCE
+-	db 86
++	db 71
+ 	dw SNEASEL
+ 	db NO_ITEM
+ 	dw FAINT_ATTACK, METAL_CLAW, REFLECT, ICE_PUNCH
+-	db 86
++	db 71
+ 	dw JYNX
+ 	db NO_ITEM
+ 	dw ICE_PUNCH, PSYCHIC_M, RAIN_DANCE, LOVELY_KISS
+-	db 87
++	db 72
+ 	dw DEWGONG
+ 	db NO_ITEM
+ 	dw SURF, AURORA_BEAM, SNORE, REST
+-	db 88
++	db 73
+ 	dw PILOSWINE
+ 	db GOLD_BERRY
+ 	dw HEADBUTT, EARTHQUAKE, ROCK_SMASH, BLIZZARD
+@@ -303,23 +303,23 @@
+ 
+ 	next_list_item ; JASMINE (2) JASMINE2 - Olivine Gym
+ 	db "JASMINE@", TRAINERTYPE_ITEM_MOVES
+-	db 85
++	db 71
+ 	dw SKARMORY
+ 	db NO_ITEM
+ 	dw SPIKES, DRILL_PECK, SWAGGER, STEEL_WING
+-	db 85
++	db 71
+ 	dw CORSOLA
+ 	db NO_ITEM
+ 	dw RAIN_DANCE, SURF, RECOVER, ANCIENTPOWER
+-	db 85
++	db 71
+ 	dw MAGNETON
+ 	db NO_ITEM
+ 	dw THUNDERBOLT, TRI_ATTACK, RAIN_DANCE, THUNDER
+-	db 86
++	db 72
+ 	dw SCIZOR
+ 	db FOCUS_BAND
+ 	dw TWINEEDLE, METAL_CLAW, AGILITY, SWORDS_DANCE
+-	db 87
++	db 73
+ 	dw STEELIX
+ 	db QUICK_CLAW
+ 	dw CRUNCH, EARTHQUAKE, ROCK_SLIDE, IRON_TAIL
+@@ -359,23 +359,23 @@
+ 
+ 	next_list_item ; CHUCK (2) CHUCK2 - Cianwood Gym
+ 	db "CHUCK@", TRAINERTYPE_ITEM_MOVES
+-	db 85
++	db 71
+ 	dw HITMONTOP
+ 	db NO_ITEM
+ 	dw TRIPLE_KICK, ROLLING_KICK, DIG, PURSUIT
+-	db 85
++	db 71
+ 	dw SUDOWOODO
+ 	db NO_ITEM
+ 	dw ROCK_SLIDE, THUNDERPUNCH, LOW_KICK, FAINT_ATTACK
+-	db 84
++	db 70
+ 	dw PRIMEAPE
+ 	db NO_ITEM
+ 	dw LOW_KICK, KARATE_CHOP, ICE_PUNCH, RAGE
+-	db 85
++	db 71
+ 	dw PINSIR
+ 	db NO_ITEM
+ 	dw ROCK_SMASH, TWINEEDLE, VICEGRIP, HARDEN
+-	db 86
++	db 72
+ 	dw POLIWRATH
+ 	db BLACKBELT
+ 	dw HYPNOSIS, MIND_READER, SURF, DYNAMICPUNCH
+@@ -420,23 +420,23 @@
+ 
+ 	next_list_item ; CLAIR (2) CLAIR2 - Blackthorn Gym 1F
+ 	db "CLAIR@", TRAINERTYPE_ITEM_MOVES
+-	db 87
++	db 71
+ 	dw DRAGONAIR
+ 	db GOLD_BERRY
+ 	dw THUNDER_WAVE, THUNDERBOLT, FLAMETHROWER, DRAGONBREATH
+-	db 87
++	db 71
+ 	dw GYARADOS
+ 	db FOCUS_BAND
+ 	dw BITE, SURF, FLY, TWISTER
+-	db 87
++	db 71
+ 	dw LAPRAS
+ 	db MIRACLEBERRY
+ 	dw SURF, ICE_BEAM, BODY_SLAM, REST
+-	db 88
++	db 72
+ 	dw DRAGONAIR
+ 	db GOLD_BERRY
+ 	dw THUNDER_WAVE, THUNDERBOLT, ICE_BEAM, DRAGONBREATH
+-	db 89
++	db 73
+ 	dw KINGDRA
+ 	db LEFTOVERS
+ 	dw AGILITY, HYDRO_PUMP, ICE_BEAM, DRAGONBREATH
+@@ -723,27 +723,27 @@
+ 
+ 	next_list_item ; WILL (2) WILL2 - Wills Room
+ 	db "WILL@", TRAINERTYPE_ITEM_MOVES
+-	db 90
++	db 72
+ 	dw STANTLER
+ 	db SCOPE_LENS
+ 	dw DOUBLE_EDGE, EARTHQUAKE, HIDDEN_POWER, REFLECT
+-	db 91
++	db 73
+ 	dw SLOWKING
+ 	db LEFTOVERS
+ 	dw FLAMETHROWER, SURF, REST, SLEEP_TALK
+-	db 91
++	db 73
+ 	dw EXEGGUTOR
+ 	db MIRACLEBERRY
+ 	dw ANCIENTPOWER, SLEEP_POWDER, DREAM_EATER, SOFTBOILED
+-	db 91
++	db 73
+ 	dw NINETALES
+ 	db CHARCOAL
+ 	dw FIRE_BLAST, SHADOW_BALL, CONFUSE_RAY, IRON_TAIL
+-	db 90
++	db 72
+ 	dw SLOWBRO
+ 	db QUICK_CLAW
+ 	dw FLAMETHROWER, CURSE, EARTHQUAKE, ROCK_SMASH
+-	db 92
++	db 74
+ 	dw XATU
+ 	db LEFTOVERS
+ 	dw FUTURE_SIGHT, FLY, CONFUSE_RAY, PROTECT
+@@ -817,32 +817,32 @@
+ BrunoGroup:
+ 	next_list_item ; BRUNO (1) BRUNO1 - Brunos Room
+ 	db "BRUNO@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 52
++	db 48
+ 	dw CONKELDURR
+ 	db LEFTOVERS
+ 	db HIDDEN_ABILITY
+ 	dw DRAIN_PUNCH, MACH_PUNCH, THUNDERPUNCH, ICE_PUNCH
+-	db 52
++	db 48
+ 	dw HITMONTOP
+ 	db MUSCLE_BAND
+ 	db ABILITY_1
+ 	dw TRIPLE_KICK, MACH_PUNCH, PURSUIT, CLOSE_COMBAT
+-	db 53
++	db 49
+ 	dw LUCARIO
+ 	db LIFE_ORB
+ 	db ABILITY_1
+ 	dw CLOSE_COMBAT, BULLET_PUNCH, EXTREMESPEED, SWORDS_DANCE
+-	db 53
++	db 49
+ 	dw TOXICROAK
+ 	db EXPERT_BELT
+ 	db ABILITY_2
+ 	dw POISON_JAB, DRAIN_PUNCH, SUCKER_PUNCH, ICE_PUNCH
+-	db 53
++	db 49
+ 	dw ANNIHILAPE
+ 	db LEFTOVERS
+ 	db HIDDEN_ABILITY
+ 	dw RAGE_FIST, CLOSE_COMBAT, SHADOW_CLAW, BULK_UP
+-	db 54
++	db 50
+ 	dw MACHAMP
+ 	db BLACKBELT
+ 	db ABILITY_2
+@@ -851,27 +851,27 @@
+ 
+ 	next_list_item ; BRUNO (2) BRUNO2 - Brunos Room
+ 	db "BRUNO@", TRAINERTYPE_ITEM_MOVES
+-	db 92
++	db 73
+ 	dw STEELIX
+ 	db QUICK_CLAW
+ 	dw CRUNCH, EARTHQUAKE, EXPLOSION, IRON_TAIL
+-	db 94
++	db 75
+ 	dw POLIWRATH
+ 	db SCOPE_LENS
+ 	dw SUBMISSION, BLIZZARD, HYDRO_PUMP, PSYCHIC_M
+-	db 92
++	db 73
+ 	dw HERACROSS
+ 	db QUICK_CLAW
+ 	dw CROSS_CHOP, MEGAHORN, REVERSAL, EARTHQUAKE
+-	db 94
++	db 75
+ 	dw DONPHAN
+ 	db SCOPE_LENS
+ 	dw CURSE, EARTHQUAKE, ANCIENTPOWER, ROCK_SMASH
+-	db 92
++	db 73
+ 	dw GRANBULL
+ 	db LEFTOVERS
+ 	dw HIDDEN_POWER, CRUNCH, REST, SNORE
+-	db 94
++	db 75
+ 	dw MACHAMP
+ 	db LEFTOVERS
+ 	dw ROCK_SLIDE, EARTHQUAKE, BODY_SLAM, CROSS_CHOP
+@@ -882,32 +882,32 @@
+ KarenGroup:
+ 	next_list_item ; KAREN (1) KAREN1 - Karens Room
+ 	db "KAREN@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 54
++	db 48
+ 	dw UMBREON
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw FOUL_PLAY, TOXIC, MOONLIGHT, PURSUIT
+-	db 54
++	db 48
+ 	dw HONCHKROW
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw BRAVE_BIRD, SUCKER_PUNCH, NIGHT_SLASH, HEAT_WAVE
+-	db 55
++	db 49
+ 	dw WEAVILE
+ 	db LIFE_ORB
+ 	db ABILITY_1
+ 	dw ICE_SHARD, FAINT_ATTACK, ICICLE_CRASH, LOW_KICK
+-	db 55
++	db 49
+ 	dw GRIMMSNARL
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw SPIRIT_BREAK, SUCKER_PUNCH, THUNDER_WAVE, BULK_UP
+-	db 55
++	db 49
+ 	dw HOUNDOOM
+ 	db BLACKGLASSES
+ 	db HIDDEN_ABILITY
+ 	dw FLAMETHROWER, DARK_PULSE, SLUDGE_BOMB, NASTY_PLOT
+-	db 56
++	db 50
+ 	dw KINGAMBIT
+ 	db LEFTOVERS
+ 	db ABILITY_2
+@@ -916,27 +916,27 @@
+ 
+ 	next_list_item ; KAREN (2) KAREN2 - Karens Room
+ 	db "KAREN@", TRAINERTYPE_ITEM_MOVES
+-	db 94
++	db 75
+ 	dw UMBREON
+ 	db MIRACLEBERRY
+ 	dw GROWTH, SHADOW_BALL, HIDDEN_POWER, BATON_PASS
+-	db 93
++	db 74
+ 	dw GENGAR
+ 	db SCOPE_LENS
+ 	dw SHADOW_BALL, PSYCHIC_M, GIGA_DRAIN, DESTINY_BOND
+-	db 94
++	db 75
+ 	dw PERSIAN
+ 	db SCOPE_LENS
+ 	dw SLASH, CUT, IRON_TAIL, HYPNOSIS
+-	db 94
++	db 75
+ 	dw MURKROW
+ 	db SHARP_BEAK
+ 	dw SKY_ATTACK, PURSUIT, SWAGGER, PSYCH_UP
+-	db 93
++	db 74
+ 	dw BLISSEY
+ 	db LEFTOVERS
+ 	dw PSYCHIC_M, SOFTBOILED, ATTRACT, ZAP_CANNON
+-	db 95
++	db 76
+ 	dw HOUNDOOM
+ 	db CHARCOAL
+ 	dw FLAMETHROWER, CRUNCH, IRON_TAIL, HIDDEN_POWER
+@@ -947,32 +947,32 @@
+ KogaGroup:
+ 	next_list_item ; KOGA (1) KOGA1 - Kogas Room
+ 	db "KOGA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 50
++	db 48
+ 	dw GLIMMORA
+ 	db FOCUS_SASH
+ 	db ABILITY_1
+ 	dw TOXIC_SPIKES, POWER_GEM, SLUDGE_BOMB, EARTH_POWER
+-	db 50
++	db 48
+ 	dw MUK_ALOLAN
+ 	db ASSAULT_VEST
+ 	db ABILITY_1
+ 	dw GUNK_SHOT, KNOCK_OFF, CRUNCH, SHADOW_SNEAK
+-	db 51
++	db 49
+ 	dw SCOLIPEDE
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw MEGAHORN, POISON_JAB, ROCK_SLIDE, SWORDS_DANCE
+-	db 51
++	db 49
+ 	dw TENTACRUEL
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw SURF, SLUDGE_BOMB, ICE_BEAM, KNOCK_OFF
+-	db 51
++	db 49
+ 	dw SALAZZLE
+ 	db LIFE_ORB
+ 	db ABILITY_2
+ 	dw FLAMETHROWER, SLUDGE_BOMB, TOXIC, NASTY_PLOT
+-	db 52
++	db 50
+ 	dw CROBAT
+ 	db BRIGHTPOWDER
+ 	db ABILITY_1
+@@ -981,27 +981,27 @@
+ 
+ 	next_list_item ; KOGA (2) KOGA2 - Kogas Room
+ 	db "KOGA@", TRAINERTYPE_ITEM_MOVES
+-	db 91
++	db 73
+ 	dw TENTACRUEL
+ 	db MINT_BERRY
+ 	dw WATERFALL, BLIZZARD, GIGA_DRAIN, REST
+-	db 91
++	db 73
+ 	dw MUK
+ 	db LEFTOVERS
+ 	dw MINIMIZE, FIRE_BLAST, SLUDGE_BOMB, TOXIC
+-	db 91
++	db 73
+ 	dw GLIGAR
+ 	db SCOPE_LENS
+ 	dw IRON_TAIL, SLUDGE_BOMB, EARTHQUAKE, FAINT_ATTACK
+-	db 91
++	db 73
+ 	dw NIDOKING
+ 	db QUICK_CLAW
+ 	dw LOVELY_KISS, FIRE_BLAST, SURF, EARTHQUAKE
+-	db 91
++	db 73
+ 	dw HYPNO
+ 	db BRIGHTPOWDER
+ 	dw FIRE_PUNCH, THUNDER_WAVE, PSYCHIC_M, SHADOW_BALL
+-	db 93
++	db 75
+ 	dw CROBAT
+ 	db LEFTOVERS
+ 	dw PROTECT, FLY, TOXIC, CONFUSE_RAY
+@@ -1012,32 +1012,32 @@
+ ChampionGroup:
+ 	next_list_item ; CHAMPION (1) LANCE - Lances Room
+ 	db "LANCE@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 57
++	db 48
+ 	dw HAXORUS
+ 	db LIFE_ORB
+ 	db ABILITY_2
+ 	dw OUTRAGE, EARTHQUAKE, POISON_JAB, DRAGON_DANCE
+-	db 57
++	db 48
+ 	dw ARCHALUDON
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw BODY_PRESS, FLASH_CANNON, DRAGON_PULSE, THUNDERBOLT
+-	db 58
++	db 49
+ 	dw SALAMENCE
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw DOUBLE_EDGE, DRAGON_CLAW, EARTHQUAKE, FIRE_BLAST
+-	db 58
++	db 49
+ 	dw DRAGAPULT
+ 	db SCOPE_LENS
+ 	db ABILITY_2
+ 	dw DRAGON_DARTS, SHADOW_BALL, U_TURN, THUNDERBOLT
+-	db 58
++	db 49
+ 	dw BAXCALIBUR
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw ICICLE_CRASH, DRAGON_CLAW, EARTHQUAKE, ICE_SHARD
+-	db 59
++	db 50
+ 	dw DRAGONITE
+ 	db GOLD_BERRY
+ 	db HIDDEN_ABILITY
+@@ -1046,27 +1046,27 @@
+ 
+ 	next_list_item ; CHAMPION (2) LANCE2 - Lances Room
+ 	db "LANCE@", TRAINERTYPE_ITEM_MOVES
+-	db 96
++	db 75
+ 	dw TYRANITAR
+ 	db MAGNET
+ 	dw CRUNCH, ROCK_SLIDE, EARTHQUAKE, THUNDERBOLT
+-	db 94
++	db 73
+ 	dw DRAGONITE
+ 	db MIRACLEBERRY
+ 	dw BLIZZARD, FIRE_BLAST, THUNDER, REST
+-	db 96
++	db 75
+ 	dw GYARADOS
+ 	db QUICK_CLAW
+ 	dw HIDDEN_POWER, HYPER_BEAM, HYDRO_PUMP, FIRE_BLAST
+-	db 94
++	db 73
+ 	dw CHARIZARD
+ 	db LEFTOVERS
+ 	dw FIRE_BLAST, CRUNCH, EARTHQUAKE, SWORDS_DANCE
+-	db 96
++	db 75
+ 	dw AERODACTYL
+ 	db SCOPE_LENS
+ 	dw SKY_ATTACK, ROCK_SLIDE, EARTHQUAKE, IRON_TAIL
+-	db 97
++	db 76
+ 	dw DRAGONITE
+ 	db PINK_BOW
+ 	dw IRON_TAIL, CURSE, EXTREMESPEED, HYPER_BEAM
+@@ -1077,32 +1077,32 @@
+ BrockGroup:
+ 	next_list_item ; BROCK (1) BROCK1 - Pewter Gym
+ 	db "BROCK@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 65
++	db 64
+ 	dw AERODACTYL
+ 	db FOCUS_SASH
+ 	db ABILITY_1
+ 	dw STEALTH_ROCK, HEAD_SMASH, EARTHQUAKE, CRUNCH
+-	db 65
++	db 64
+ 	dw CRADILY
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw GIGA_DRAIN, POWER_GEM, TOXIC, RECOVER
+-	db 65
++	db 64
+ 	dw STEELIX
+ 	db LEFTOVERS
+ 	db ABILITY_2
+ 	dw EARTHQUAKE, IRON_HEAD, BODY_PRESS, ROCK_SLIDE
+-	db 66
++	db 65
+ 	dw RAMPARDOS
+ 	db MUSCLE_BAND
+ 	db ABILITY_1
+ 	dw HEAD_SMASH, EARTHQUAKE, ZEN_HEADBUTT, CRUNCH
+-	db 66
++	db 65
+ 	dw ARMALDO
+ 	db EXPERT_BELT
+ 	db HIDDEN_ABILITY
+ 	dw X_SCISSOR, STONE_EDGE, EARTHQUAKE, SWORDS_DANCE
+-	db 67
++	db 66
+ 	dw GOLEM
+ 	db ROCKY_HELMET
+ 	db ABILITY_2
+@@ -4614,66 +4614,66 @@
+ 
+ 	next_list_item ; RIVAL2 (4) RIVAL2_2_CHIKORITA - Indigo Plateau Pokecenter 1F
+ 	db "?@", TRAINERTYPE_MOVES
+-	db 88
++	db 71
+ 	dw SNEASEL
+ 	dw QUICK_ATTACK, SCREECH, FAINT_ATTACK, FURY_CUTTER
+-	db 90
++	db 73
+ 	dw CROBAT
+ 	dw TOXIC, BITE, CONFUSE_RAY, WING_ATTACK
+-	db 88
++	db 71
+ 	dw MAGNETON
+ 	dw THUNDER, SONICBOOM, THUNDER_WAVE, SWIFT
+-	db 88
++	db 71
+ 	dw GENGAR
+ 	dw MEAN_LOOK, CURSE, SHADOW_BALL, CONFUSE_RAY
+-	db 88
++	db 71
+ 	dw ALAKAZAM
+ 	dw RECOVER, FUTURE_SIGHT, PSYCHIC_M, REFLECT
+-	db 91
++	db 74
+ 	dw MEGANIUM
+ 	dw GIGA_DRAIN, BODY_SLAM, LIGHT_SCREEN, SAFEGUARD
+ 	db -1 ; end
+ 
+ 	next_list_item ; RIVAL2 (5) RIVAL2_2_CYNDAQUIL - Indigo Plateau Pokecenter 1F
+ 	db "?@", TRAINERTYPE_MOVES
+-	db 88
++	db 71
+ 	dw SNEASEL
+ 	dw QUICK_ATTACK, SCREECH, FAINT_ATTACK, FURY_CUTTER
+-	db 90
++	db 73
+ 	dw CROBAT
+ 	dw TOXIC, BITE, CONFUSE_RAY, WING_ATTACK
+-	db 88
++	db 71
+ 	dw MAGNETON
+ 	dw THUNDER, SONICBOOM, THUNDER_WAVE, SWIFT
+-	db 88
++	db 71
+ 	dw GENGAR
+ 	dw MEAN_LOOK, CURSE, SHADOW_BALL, CONFUSE_RAY
+-	db 88
++	db 71
+ 	dw ALAKAZAM
+ 	dw RECOVER, FUTURE_SIGHT, PSYCHIC_M, REFLECT
+-	db 91
++	db 74
+ 	dw TYPHLOSION
+ 	dw SMOKESCREEN, QUICK_ATTACK, FIRE_BLAST, SWIFT
+ 	db -1 ; end
+ 
+ 	next_list_item ; RIVAL2 (6) RIVAL2_2_TOTODILE - Indigo Plateau Pokecenter 1F
+ 	db "?@", TRAINERTYPE_MOVES
+-	db 88
++	db 71
+ 	dw SNEASEL
+ 	dw QUICK_ATTACK, SCREECH, FAINT_ATTACK, FURY_CUTTER
+-	db 90
++	db 73
+ 	dw CROBAT
+ 	dw TOXIC, BITE, CONFUSE_RAY, WING_ATTACK
+-	db 88
++	db 71
+ 	dw MAGNETON
+ 	dw THUNDER, SONICBOOM, THUNDER_WAVE, SWIFT
+-	db 88
++	db 71
+ 	dw GENGAR
+ 	dw MEAN_LOOK, CURSE, SHADOW_BALL, CONFUSE_RAY
+-	db 88
++	db 71
+ 	dw ALAKAZAM
+ 	dw RECOVER, FUTURE_SIGHT, PSYCHIC_M, REFLECT
+-	db 91
++	db 74
+ 	dw FERALIGATR
+ 	dw SURF, RAIN_DANCE, SLASH, SCREECH
+ 	db -1 ; end
+@@ -4866,66 +4866,66 @@
+ 
+ 	next_list_item ; CRYSTAL (13) CRYSTAL_5_CHIKORITA - Route 25 (Cerulean Cape)
+ 	db "CRYSTAL@", TRAINERTYPE_ITEM
+-	db 72
++	db 69
+ 	dw MEGANIUM
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw HYDRAPPLE
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw TYRANITAR
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw URSALUNA
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw XATU
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw LANTURN
+ 	db NO_ITEM
+ 	db -1 ; end
+ 
+ 	next_list_item ; CRYSTAL (14) CRYSTAL_5_CYNDAQUIL - Route 25 (Cerulean Cape)
+ 	db "CRYSTAL@", TRAINERTYPE_ITEM
+-	db 72
++	db 69
+ 	dw TYPHLOSION
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw FLAPPLE
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw TYRANITAR
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw URSALUNA
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw XATU
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw LANTURN
+ 	db NO_ITEM
+ 	db -1 ; end
+ 
+ 	next_list_item ; CRYSTAL (15) CRYSTAL_5_TOTODILE - Route 25 (Cerulean Cape)
+ 	db "CRYSTAL@", TRAINERTYPE_ITEM
+-	db 72
++	db 69
+ 	dw FERALIGATR
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw APPLETUN
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw TYRANITAR
+ 	db NO_ITEM
+-	db 71
++	db 68
+ 	dw URSALUNABM
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw XATU
+ 	db NO_ITEM
+-	db 70
++	db 67
+ 	dw VOLCARONA
+ 	db NO_ITEM
+ 	db -1 ; end
+@@ -7214,32 +7214,32 @@
+ RedGroup:
+ 	next_list_item ; RED (1) RED1 - Silver Cave Room 3
+ 	db "@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 79
++	db 70
+ 	dw PIKACHU
+ 	db LIGHT_BALL
+ 	db HIDDEN_ABILITY
+ 	dw EXTREMESPEED, HYPER_VOICE, SURF, IRON_TAIL
+-	db 76
++	db 67
+ 	dw ESPEON
+ 	db TWISTEDSPOON
+ 	db HIDDEN_ABILITY
+ 	dw PSYCHIC_M, SHADOW_BALL, MORNING_SUN, CALM_MIND
+-	db 76
++	db 67
+ 	dw SNORLAX
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw CURSE, BODY_SLAM, EARTHQUAKE, REST
+-	db 76
++	db 67
+ 	dw VENUSAUR
+ 	db MIRACLE_SEED
+ 	db ABILITY_1
+ 	dw GIGA_DRAIN, SLUDGE_BOMB, SLEEP_POWDER, SYNTHESIS
+-	db 77
++	db 68
+ 	dw CHARIZARD
+ 	db CHARCOAL
+ 	db HIDDEN_ABILITY
+ 	dw FIRE_BLAST, SOLARBEAM, AIR_SLASH, DRAGON_PULSE
+-	db 79
++	db 70
+ 	dw BLASTOISE
+ 	db MYSTIC_WATER
+ 	db HIDDEN_ABILITY
+@@ -7676,17 +7676,17 @@
+ AgathaGroup:
+ 	next_list_item ; AGATHA (1) AGATHA1 - Silver Cave Outside
+ 	db "AGATHA@", TRAINERTYPE_NORMAL
+-	db 75
++	db 69
+ 	dw GENGAR
+-	db 75
++	db 69
+ 	dw MISDREAVUS
+-	db 75
++	db 69
+ 	dw ARBOK
+-	db 75
++	db 69
+ 	dw CROBAT
+-	db 75
++	db 69
+ 	dw HAUNTER
+-	db 75
++	db 69
+ 	dw GENGAR
+ 	db -1 ; end
+ 
+@@ -7695,17 +7695,17 @@
+ LoreleiGroup:
+ 	next_list_item ; LORELEI (1) LORELEI1 - Silver Cave Outside
+ 	db "LORELEI@", TRAINERTYPE_NORMAL
+-	db 75
++	db 70
+ 	dw DEWGONG
+-	db 75
++	db 70
+ 	dw CLOYSTER
+-	db 75
++	db 70
+ 	dw SLOWBRO
+-	db 75
++	db 70
+ 	dw JYNX
+-	db 75
++	db 70
+ 	dw LAPRAS
+-	db 75
++	db 70
+ 	dw ARTICUNO
+ 	db -1 ; end
+ 
+@@ -7714,32 +7714,32 @@
+ Red2Group:
+ 	next_list_item ; RED2 (1) RED2_1 - Pallet Town
+ 	db "@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 100
++	db 78
+ 	dw PIKACHU
+ 	db LIGHT_BALL
+ 	db HIDDEN_ABILITY
+ 	dw EXTREMESPEED, HYPER_VOICE, SURF, NASTY_PLOT
+-	db 100
++	db 78
+ 	dw SNORLAX
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw CURSE, BODY_SLAM, EARTHQUAKE, REST
+-	db 100
++	db 78
+ 	dw ESPEON
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw PSYCHIC_M, SHADOW_BALL, DAZZLING_GLEAM, CALM_MIND
+-	db 100
++	db 78
+ 	dw LAPRAS
+ 	db ASSAULT_VEST
+ 	db ABILITY_1
+ 	dw FREEZE_DRY, ICE_BEAM, THUNDERBOLT, BODY_SLAM
+-	db 100
++	db 78
+ 	dw VICTREEBEL
+ 	db LIFE_ORB
+ 	db ABILITY_2
+ 	dw POWER_WHIP, SLUDGE_BOMB, SUCKER_PUNCH, SWORDS_DANCE
+-	db 100
++	db 78
+ 	dw CHARIZARD
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+@@ -7751,32 +7751,32 @@
+ BlueCloakGroup:
+ 	next_list_item ; BLUE_CLOAK (1) BLUE_CLOAK1 - Cinnabar Island
+ 	db "@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 99
++	db 77
+ 	dw PIDGEOT
+ 	db LIFE_ORB
+ 	db ABILITY_1
+ 	dw HURRICANE, HEAT_WAVE, U_TURN, ROOST
+-	db 99
++	db 77
+ 	dw SCIZOR
+ 	db LIFE_ORB
+ 	db ABILITY_1
+ 	dw BULLET_PUNCH, X_SCISSOR, U_TURN, SWORDS_DANCE
+-	db 99
++	db 77
+ 	dw RHYPERIOR
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw BULLDOZE, ROCK_SLIDE, ICE_PUNCH, THUNDERPUNCH
+-	db 99
++	db 77
+ 	dw EXEGGUTOR
+ 	db GOLD_BERRY
+ 	db HIDDEN_ABILITY
+ 	dw PSYCHIC_M, GIGA_DRAIN, LEECH_SEED, SUBSTITUTE
+-	db 99
++	db 77
+ 	dw ELECTIVIRE
+ 	db LIFE_ORB
+ 	db ABILITY_2
+ 	dw THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH, CRUNCH
+-	db 99
++	db 77
+ 	dw BLASTOISE
+ 	db LIFE_ORB
+ 	db ABILITY_1
+@@ -7788,32 +7788,32 @@
+ GreenGroup:
+ 	next_list_item ; GREEN (1) GREEN1 - Route 20
+ 	db "@", TRAINERTYPE_ITEM_MOVES_ABILITY
+-	db 98
++	db 77
+ 	dw WIGGLYTUFF
+ 	db LIFE_ORB
+ 	db ABILITY_1
+ 	dw HYPER_VOICE, DAZZLING_GLEAM, THUNDERBOLT, ICE_BEAM
+-	db 98
++	db 77
+ 	dw UMBREON
+ 	db LEFTOVERS
+ 	db ABILITY_1
+ 	dw FOUL_PLAY, TOXIC, MOONLIGHT, PURSUIT
+-	db 98
++	db 77
+ 	dw NIDOQUEEN
+ 	db LIFE_ORB
+ 	db HIDDEN_ABILITY
+ 	dw EARTH_POWER, SLUDGE_BOMB, ICE_BEAM, FLAMETHROWER
+-	db 98
++	db 77
+ 	dw MESMERIA
+ 	db LEFTOVERS
+ 	db HIDDEN_ABILITY
+ 	dw HYPNOSIS, PSYCHIC_M, ICE_BEAM, DREAM_EATER
+-	db 98
++	db 77
+ 	dw LANTURN
+ 	db ASSAULT_VEST
+ 	db ABILITY_1
+ 	dw SURF, THUNDERBOLT, ICE_BEAM, FLASH_CANNON
+-	db 98
++	db 77
+ 	dw VENUSAUR
+ 	db LEFTOVERS
+ 	db HIDDEN_ABILITY
+--- a/data/trainers/stat_exp.asm
++++ b/data/trainers/stat_exp.asm
+@@ -23,32 +23,32 @@
+ ;             12,544 -> 28 pts    38,416 -> 49 pts    60,000 -> 61 pts
+ ;             16,384 -> 32 pts    43,264 -> 52 pts    65,535 -> 63 pts (max)
+ 
+-	dw  6400 ; FALKNER          ; 20 pts, +2 @L10
+-	dw  9216 ; WHITNEY          ; 24 pts, +5 @L21
+-	dw  6400 ; BUGSY            ; 20 pts, +3 @L16
+-	dw 12544 ; MORTY            ; 28 pts, +7 @L25
+-	dw 16384 ; PRYCE            ; 32 pts, +13 @L41
+-	dw 15376 ; JASMINE          ; 31 pts, +11 @L36
++	dw   784 ; FALKNER          ;  7 pts, +0 @L10
++	dw  7056 ; WHITNEY          ; 21 pts, +4 @L21
++	dw  2704 ; BUGSY            ; 13 pts, +2 @L16
++	dw 10000 ; MORTY            ; 25 pts, +6 @L25
++	dw 23104 ; PRYCE            ; 38 pts, +14 @L38
++	dw 19600 ; JASMINE          ; 35 pts, +12 @L36
+ 	dw 14400 ; CHUCK            ; 30 pts, +9 @L31
+-	dw 20736 ; CLAIR            ; 36 pts, +16 @L45
+-	dw 16384 ; RIVAL1           ; 32 pts, +1 @L5 / +15 @L48
++	dw 30976 ; CLAIR            ; 44 pts, +19 @L45
++	dw 33856 ; RIVAL1           ; 46 pts, +22 @L48
+ 	dw     0 ; POKEMON_PROF
+-	dw 25600 ; WILL             ; 40 pts, +20 @L50
+-	dw 16384 ; CAL              ; 32 pts, +3 @L10 / +22 @L70
+-	dw 29584 ; BRUNO            ; 43 pts, +23 @L54
+-	dw 32400 ; KAREN            ; 45 pts, +25 @L56
+-	dw 28224 ; KOGA             ; 42 pts, +21 @L52
+-	dw 38416 ; CHAMPION         ; 49 pts, +28 @L59
+-	dw 51984 ; BROCK            ; 57 pts, +38 @L67
+-	dw 46656 ; MISTY            ; 54 pts, +34 @L63
+-	dw 43264 ; LT_SURGE         ; 52 pts, +31 @L60
++	dw 36864 ; WILL             ; 48 pts, +24 @L50
++	dw 57600 ; CAL              ; 60 pts, +42 @L70
++	dw 35344 ; BRUNO            ; 47 pts, +23 @L50
++	dw 35344 ; KAREN            ; 47 pts, +23 @L50
++	dw 36864 ; KOGA             ; 48 pts, +24 @L50
++	dw 36864 ; CHAMPION         ; 48 pts, +24 @L50
++	dw 55696 ; BROCK            ; 59 pts, +38 @L66
++	dw 53824 ; MISTY            ; 58 pts, +36 @L63
++	dw 50176 ; LT_SURGE         ; 56 pts, +33 @L60
+ 	dw     0 ; SCIENTIST
+-	dw 44944 ; ERIKA            ; 53 pts, +32 @L62
++	dw 51984 ; ERIKA            ; 57 pts, +35 @L62
+ 	dw     0 ; YOUNGSTER
+ 	dw     0 ; SCHOOLBOY
+ 	dw     0 ; BIRD_KEEPER
+ 	dw     0 ; LASS
+-	dw 48400 ; JANINE           ; 55 pts, +35 @L64
++	dw 53824 ; JANINE           ; 58 pts, +37 @L64
+ 	dw  7744 ; COOLTRAINERM     ; 22 pts, +3 @L15 / +14 @L66
+ 	dw  7744 ; COOLTRAINERF     ; 22 pts, +5 @L24 / +13 @L61
+ 	dw     0 ; BEAUTY
+@@ -57,27 +57,27 @@
+ 	dw  5000 ; GENTLEMAN        ; 17 pts, +3 @L20 / +10 @L63
+ 	dw     0 ; SKIER
+ 	dw     0 ; TEACHER
+-	dw 50176 ; SABRINA          ; 56 pts, +36 @L66
++	dw 55696 ; SABRINA          ; 59 pts, +38 @L66
+ 	dw     0 ; BUG_CATCHER
+ 	dw     0 ; FISHER
+ 	dw  5000 ; SWIMMERM         ; 17 pts, +3 @L18 / +10 @L64
+ 	dw  5000 ; SWIMMERF         ; 17 pts, +3 @L20 / +10 @L63
+ 	dw     0 ; SAILOR
+ 	dw     0 ; SUPER_NERD
+-	dw 38416 ; RIVAL2           ; 49 pts, +31 @L65 / +34 @L70
++	dw 55696 ; RIVAL2           ; 59 pts, +38 @L65
+ 	dw     0 ; GUITARIST
+ 	dw     0 ; HIKER
+ 	dw     0 ; BIKER
+-	dw 51984 ; BLAINE           ; 57 pts, +38 @L67
++	dw 57600 ; BLAINE           ; 60 pts, +40 @L67
+ 	dw     0 ; BURGLAR
+ 	dw     0 ; FIREBREATHER
+ 	dw  5000 ; JUGGLER          ; 17 pts, +2 @L16 / +10 @L59
+ 	dw  5000 ; BLACKBELT_T      ; 17 pts, +4 @L24 / +10 @L60
+-	dw  6400 ; EXECUTIVEM       ; 20 pts, +5 @L25 / +7 @L35
++	dw 17424 ; EXECUTIVEM       ; 33 pts, +11 @L35
+ 	dw  5000 ; PSYCHIC_T        ; 17 pts, +3 @L18 / +10 @L60
+ 	dw     0 ; PICNICKER
+ 	dw     0 ; CAMPER
+-	dw  6400 ; EXECUTIVEF       ; 20 pts, +5 @L26 / +7 @L35
++	dw 17424 ; EXECUTIVEF       ; 33 pts, +11 @L35
+ 	dw     0 ; SAGE
+ 	dw     0 ; MEDIUM
+ 	dw     0 ; BOARDER
+@@ -85,42 +85,42 @@
+ 	dw  4096 ; KIMONO_GIRL      ; 16 pts, +3 @L20 / +3 @L21
+ 	dw     0 ; TWINS
+ 	dw     0 ; POKEFANF
+-	dw 51984 ; RED              ; 57 pts, +45 @L79
+-	dw 55696 ; BLUE             ; 59 pts, +40 @L69
++	dw 59536 ; RED              ; 61 pts, +42 @L70
++	dw 57600 ; BLUE             ; 60 pts, +41 @L69
+ 	dw     0 ; OFFICER
+ 	dw     0 ; GRUNTF
+-	dw 12544 ; MYSTICALMAN      ; 28 pts, +7 @L27
+-	dw 14400 ; CRYSTAL          ; 30 pts, +3 @L11 / +10 @L36
+-	dw 23104 ; CRYSTAL2         ; 38 pts, +18 @L48   (Ice Path only)
+-	dw  9216 ; PROTON           ; 24 pts, +2 @L11 / +9 @L39
+-	dw  9216 ; PETREL           ; 24 pts, +8 @L37
+-	dw 12544 ; ARIANA           ; 28 pts, +10 @L37 / +11 @L40
+-	dw 20736 ; ARCHER           ; 36 pts, +10 @L30 / +14 @L40
+-	dw 14400 ; PETREL_DIRECTOR  ; 30 pts, +11 @L38
++	dw 11664 ; MYSTICALMAN      ; 27 pts, +7 @L27
++	dw 18496 ; CRYSTAL          ; 34 pts, +12 @L36
++	dw 33856 ; CRYSTAL2         ; 46 pts, +22 @L48
++	dw 24336 ; PROTON           ; 39 pts, +15 @L39
++	dw 20736 ; PETREL           ; 36 pts, +13 @L37
++	dw 24336 ; ARIANA           ; 39 pts, +15 @L40
++	dw 24336 ; ARCHER           ; 39 pts, +15 @L40
++	dw 23104 ; PETREL_DIRECTOR  ; 38 pts, +14 @L38
+ 	dw  5000 ; HEX_MANIAC       ; 17 pts, +2 @L17 / +3 @L22
+ 	dw  5000 ; COSPLAYER        ; 17 pts, +3 @L23 / +10 @L61
+ 	dw  4096 ; NINJA            ; 16 pts, +9 @L58 / +9 @L60
+-	dw 53824 ; AGATHA           ; 58 pts, +43 @L75
+-	dw 53824 ; LORELEI          ; 58 pts, +43 @L75
+-	dw 65535 ; RED2             ; 63 pts, +63 @L100
+-	dw 65535 ; BLUE_CLOAK       ; 63 pts, +62 @L99
+-	dw 65535 ; GREEN            ; 63 pts, +61 @L98
++	dw 57600 ; AGATHA           ; 60 pts, +41 @L69
++	dw 59536 ; LORELEI          ; 61 pts, +42 @L70
++	dw 63504 ; RED2             ; 63 pts, +49 @L78
++	dw 63504 ; BLUE_CLOAK       ; 63 pts, +48 @L77
++	dw 63504 ; GREEN            ; 63 pts, +48 @L77
+ 	dw  5000 ; BATTLE_GIRL      ; 17 pts, +10 @L59 / +10 @L60
+ 	dw  5000 ; TAMER            ; 17 pts, +10 @L60 / +10 @L61
+ 	dw  5000 ; THUG             ; 17 pts, +2 @L16 / +3 @L19
+ 	dw     0 ; AROMA_LADY
+-	dw 51984 ; CRYSTAL3         ; 57 pts, +41 @L72
+-	dw 59536 ; RIVAL3           ; 61 pts, +55 @L91
+-	dw 51984 ; FALKNER_REMATCH  ; 57 pts, +46 @L82
+-	dw 51984 ; BUGSY_REMATCH    ; 57 pts, +47 @L83
+-	dw 53824 ; WHITNEY_REMATCH  ; 58 pts, +48 @L84
+-	dw 53824 ; MORTY_REMATCH    ; 58 pts, +49 @L85
+-	dw 55696 ; CHUCK_REMATCH    ; 59 pts, +50 @L86
+-	dw 55696 ; JASMINE_REMATCH  ; 59 pts, +51 @L87
+-	dw 57600 ; PRYCE_REMATCH    ; 60 pts, +52 @L88
+-	dw 57600 ; CLAIR_REMATCH    ; 60 pts, +53 @L89
+-	dw 59536 ; WILL_REMATCH     ; 61 pts, +56 @L92
+-	dw 61504 ; KOGA_REMATCH     ; 62 pts, +57 @L93
+-	dw 61504 ; BRUNO_REMATCH    ; 62 pts, +58 @L94
+-	dw 61504 ; KAREN_REMATCH    ; 62 pts, +58 @L95
+-	dw 61504 ; CHAMPION_REMATCH ; 62 pts, +60 @L97
++	dw 57600 ; CRYSTAL3         ; 60 pts, +41 @L69
++	dw 61504 ; RIVAL3           ; 62 pts, +45 @L74
++	dw 59536 ; FALKNER_REMATCH  ; 61 pts, +43 @L71
++	dw 59536 ; BUGSY_REMATCH    ; 61 pts, +43 @L71
++	dw 59536 ; WHITNEY_REMATCH  ; 61 pts, +43 @L71
++	dw 59536 ; MORTY_REMATCH    ; 61 pts, +43 @L72
++	dw 59536 ; CHUCK_REMATCH    ; 61 pts, +43 @L72
++	dw 59536 ; JASMINE_REMATCH  ; 61 pts, +44 @L73
++	dw 59536 ; PRYCE_REMATCH    ; 61 pts, +44 @L73
++	dw 59536 ; CLAIR_REMATCH    ; 61 pts, +44 @L73
++	dw 61504 ; WILL_REMATCH     ; 62 pts, +45 @L74
++	dw 61504 ; KOGA_REMATCH     ; 62 pts, +46 @L75
++	dw 61504 ; BRUNO_REMATCH    ; 62 pts, +46 @L75
++	dw 61504 ; KAREN_REMATCH    ; 62 pts, +47 @L76
++	dw 61504 ; CHAMPION_REMATCH ; 62 pts, +47 @L76

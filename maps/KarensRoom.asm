@@ -54,7 +54,7 @@ KarenScript_Battle:
 	loadtrainer KAREN, KAREN1
 	sjump .StartBattle
 .LoadRematchTeam:
-	loadtrainer KAREN, KAREN2
+	loadtrainer KAREN_REMATCH, KAREN2
 .StartBattle:
 	startbattle
 	reloadmapafterbattle

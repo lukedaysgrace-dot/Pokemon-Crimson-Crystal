@@ -1,0 +1,260 @@
+--- a/constants/trainer_constants.asm
++++ b/constants/trainer_constants.asm
+@@ -749,9 +749,8 @@
+ CRYSTAL2_4_CHIKORITA EQU CRYSTAL_4_CHIKORITA
+ CRYSTAL2_4_CYNDAQUIL EQU CRYSTAL_4_CYNDAQUIL
+ CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
+-CRYSTAL2_CHIKORITA EQU CRYSTAL_5_CHIKORITA
+-CRYSTAL2_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
+-CRYSTAL2_TOTODILE EQU CRYSTAL_5_TOTODILE
++; CRYSTAL2's Route 25 battle moved to CRYSTAL3 (declared at the end of this
++; file) so the two fights can carry different stat exp.
+ 
+ 	trainerclass PROTON ; 46
+ 	const PROTON1
+@@ -830,4 +829,22 @@
+ 	const TANYA
+ 	const NADIA
+ 
++	trainerclass CRYSTAL3
++; Crystal's final battle, on Route 25 (Cerulean Cape). CRYSTAL3 shares
++; CrystalGroup (see data/trainers/party_pointers.asm), so these are aliases
++; into the same party list - only the class differs. Splitting it out of
++; CRYSTAL2 lets the Lv66-70 fight carry its own stat exp without inflating the
++; Lv45-48 Ice Path fight (see data/trainers/stat_exp.asm).
++CRYSTAL3_CHIKORITA EQU CRYSTAL_5_CHIKORITA
++CRYSTAL3_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
++CRYSTAL3_TOTODILE EQU CRYSTAL_5_TOTODILE
++
++	trainerclass RIVAL3
++; Silver's final battle, at the Indigo Plateau Pokecenter. Shares Rival2Group
++; the same way, split off from RIVAL2 so it can outrank CRYSTAL3 without
++; buffing the Mt. Moon fight.
++RIVAL3_CHIKORITA EQU RIVAL2_2_CHIKORITA
++RIVAL3_CYNDAQUIL EQU RIVAL2_2_CYNDAQUIL
++RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
++
+ NUM_TRAINER_CLASSES EQU __enum__
+--- a/data/trainers/attributes.asm
++++ b/data/trainers/attributes.asm
+@@ -516,3 +516,15 @@
+ 	db 6 ; base reward
+ 	dw AI_BASIC | AI_TYPES | AI_CAUTIOUS | AI_STATUS
+ 	dw CONTEXT_USE | SWITCH_SOMETIMES
++
++; Crystal3
++	db NO_ITEM, NO_ITEM ; items
++	db 15 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
++
++; Rival3
++	db NO_ITEM, NO_ITEM ; items
++	db 25 ; base reward
++	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY | AI_ABILITIES | AI_ELITE
++	dw CONTEXT_USE | SWITCH_SOMETIMES | SWITCH_ABILITIES
+--- a/data/trainers/class_names.asm
++++ b/data/trainers/class_names.asm
+@@ -86,3 +86,5 @@
+ 	db "TAMER@"
+ 	db "THUG@"
+ 	db "AROMA LADY@"
++	db "CRYSTAL@"
++	db "RIVAL@"
+--- a/data/trainers/dvs.asm
++++ b/data/trainers/dvs.asm
+@@ -87,3 +87,5 @@
+ 	dn  9,  8,  8,  8 ; TAMER
+ 	dn  9,  8,  8,  8 ; THUG
+ 	dn  6, 10, 10,  8 ; AROMA_LADY
++	dn 15, 15, 15, 15 ; CRYSTAL3
++	dn 15, 15, 15, 15 ; RIVAL3
+--- a/data/trainers/encounter_music.asm
++++ b/data/trainers/encounter_music.asm
+@@ -89,3 +89,5 @@
+ 	db MUSIC_HIKER_ENCOUNTER       ; tamer
+ 	db MUSIC_ROCKET_ENCOUNTER      ; thug
+ 	db MUSIC_LASS_ENCOUNTER        ; aroma_lady
++	db MUSIC_CRYSTAL_ENCOUNTER     ; crystal3
++	db MUSIC_RIVAL_ENCOUNTER       ; rival3
+--- a/data/trainers/genders.asm
++++ b/data/trainers/genders.asm
+@@ -88,3 +88,5 @@
+ 	db MALE   ; TAMER
+ 	db MALE   ; THUG
+ 	db FEMALE ; AROMA_LADY
++	db FEMALE ; CRYSTAL3
++	db MALE   ; RIVAL3
+--- a/data/trainers/palettes.asm
++++ b/data/trainers/palettes.asm
+@@ -97,3 +97,5 @@
+ INCBIN "gfx/trainers/tamer.gbcpal", middle_colors
+ INCBIN "gfx/trainers/thug.gbcpal", middle_colors
+ INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors
++INCBIN "gfx/trainers/crystal2.gbcpal", middle_colors ; CRYSTAL3
++INCBIN "gfx/trainers/rival2.gbcpal", middle_colors ; RIVAL3
+--- a/data/trainers/party_pointers.asm
++++ b/data/trainers/party_pointers.asm
+@@ -88,3 +88,5 @@
+ 	dba TamerGroup
+ 	dba ThugGroup
+ 	dba AromaLadyGroup
++	dba CrystalGroup ; CRYSTAL3
++	dba Rival2Group ; RIVAL3
+--- a/data/trainers/pic_pointers.asm
++++ b/data/trainers/pic_pointers.asm
+@@ -88,3 +88,5 @@
+ 	dba TamerPic
+ 	dba ThugPic
+ 	dba AromaLadyPic
++	dba Crystal2Pic ; CRYSTAL3
++	dba Rival2Pic ; RIVAL3
+--- a/data/trainers/sprites.asm
++++ b/data/trainers/sprites.asm
+@@ -86,3 +86,5 @@
+ 	db SPRITE_TAMER
+ 	db SPRITE_THUG
+ 	db SPRITE_AROMA_LADY
++	db SPRITE_CRYSTAL
++	db SPRITE_SILVER
+--- a/data/trainers/stat_exp.asm
++++ b/data/trainers/stat_exp.asm
+@@ -91,7 +91,7 @@
+ 	dw     0 ; GRUNTF
+ 	dw 12544 ; MYSTICALMAN     ; 28 pts, +7 @L27
+ 	dw 14400 ; CRYSTAL         ; 30 pts, +3 @L11 / +10 @L36
+-	dw 33856 ; CRYSTAL2        ; 46 pts, +22 @L48 / +32 @L70
++	dw 23104 ; CRYSTAL2        ; 38 pts, +18 @L48   (Ice Path only)
+ 	dw  9216 ; PROTON          ; 24 pts, +2 @L11 / +9 @L39
+ 	dw  9216 ; PETREL          ; 24 pts, +8 @L37
+ 	dw 12544 ; ARIANA          ; 28 pts, +10 @L37 / +11 @L40
+@@ -109,3 +109,5 @@
+ 	dw  5000 ; TAMER           ; 17 pts, +10 @L60 / +10 @L61
+ 	dw  5000 ; THUG            ; 17 pts, +2 @L16 / +3 @L19
+ 	dw     0 ; AROMA_LADY
++	dw 46656 ; CRYSTAL3        ; 54 pts, +35 @L66 / +37 @L70
++	dw 51984 ; RIVAL3          ; 57 pts, +37 @L66 / +39 @L70
+--- a/engine/battle/start_battle.asm
++++ b/engine/battle/start_battle.asm
+@@ -78,10 +78,13 @@
+ 
+ .trainermusic
+ 	ld de, MUSIC_CRYSTAL_BATTLE
++; jp, not jr: with three Crystal classes to test, .done is out of jr range.
+ 	cp CRYSTAL
+-	jr z, .done
++	jp z, .done
+ 	cp CRYSTAL2
+-	jr z, .done
++	jp z, .done
++	cp CRYSTAL3
++	jp z, .done
+ 
+ 	ld de, MUSIC_CHAMPION_BATTLE
+ 	cp CHAMPION
+@@ -123,12 +126,15 @@
+ 	ld a, [wOtherTrainerClass]
+ 	cp RIVAL1
+ 	jr z, .done
++	cp RIVAL3 ; Rival in Indigo Plateau
++	jr z, .championmusic
+ 	cp RIVAL2
+ 	jr nz, .othertrainer
+ 
+ 	ld a, [wOtherTrainerID]
+-	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
++	cp RIVAL2_2_CHIKORITA
+ 	jr c, .done
++.championmusic
+ 	ld de, MUSIC_CHAMPION_BATTLE
+ 	jr .done
+ 
+--- a/home/text.asm
++++ b/home/text.asm
+@@ -321,10 +321,14 @@
+ 	jr z, .name_only
+ 	cp RIVAL2
+ 	jr z, .name_only
++	cp RIVAL3
++	jr z, .name_only
+ 	cp CRYSTAL
+ 	jr z, .crystal_name
+ 	cp CRYSTAL2
+ 	jr z, .crystal_name
++	cp CRYSTAL3
++	jr z, .crystal_name
+ 
+ 	ld de, wOTClassName
+ 	call PlaceString
+--- a/maps/IndigoPlateauPokecenter1F.asm
++++ b/maps/IndigoPlateauPokecenter1F.asm
+@@ -44,6 +44,10 @@
+ PlateauRivalBattle1:
+ 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+ 	iffalse PlateauRivalScriptDone
++; Silver only shows up once the Elite Four rematch is live, so this is the last
++; fight before Will's room reopens.
++	checkevent EVENT_BEAT_CLAIR_REMATCH
++	iffalse PlateauRivalScriptDone
+ 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
+ 	iftrue PlateauRivalScriptDone
+ 	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
+@@ -60,6 +64,10 @@
+ PlateauRivalBattle2:
+ 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+ 	iffalse PlateauRivalScriptDone
++; Silver only shows up once the Elite Four rematch is live, so this is the last
++; fight before Will's room reopens.
++	checkevent EVENT_BEAT_CLAIR_REMATCH
++	iffalse PlateauRivalScriptDone
+ 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
+ 	iftrue PlateauRivalScriptDone
+ 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
+@@ -87,7 +95,7 @@
+ 	; Cyndaquil
+ 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+ 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
+-	loadtrainer RIVAL2, RIVAL2_2_TOTODILE
++	loadtrainer RIVAL3, RIVAL3_TOTODILE
+ 	startbattle
+ 	dontrestartmapmusic
+ 	reloadmapafterbattle
+@@ -96,7 +104,7 @@
+ .Totodile:
+ 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+ 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
+-	loadtrainer RIVAL2, RIVAL2_2_CHIKORITA
++	loadtrainer RIVAL3, RIVAL3_CHIKORITA
+ 	startbattle
+ 	dontrestartmapmusic
+ 	reloadmapafterbattle
+@@ -105,7 +113,7 @@
+ .Chikorita:
+ 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
+ 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
+-	loadtrainer RIVAL2, RIVAL2_2_CYNDAQUIL
++	loadtrainer RIVAL3, RIVAL3_CYNDAQUIL
+ 	startbattle
+ 	dontrestartmapmusic
+ 	reloadmapafterbattle
+--- a/maps/Route25.asm
++++ b/maps/Route25.asm
+@@ -249,15 +249,15 @@
+ 	iftrue .Totodile
+ 	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
+ 	iftrue .Totodile
+-	loadtrainer CRYSTAL2, CRYSTAL2_CHIKORITA
++	loadtrainer CRYSTAL3, CRYSTAL3_CHIKORITA
+ 	sjump .StartBattle
+ 
+ .Cyndaquil:
+-	loadtrainer CRYSTAL2, CRYSTAL2_CYNDAQUIL
++	loadtrainer CRYSTAL3, CRYSTAL3_CYNDAQUIL
+ 	sjump .StartBattle
+ 
+ .Totodile:
+-	loadtrainer CRYSTAL2, CRYSTAL2_TOTODILE
++	loadtrainer CRYSTAL3, CRYSTAL3_TOTODILE
+ 
+ .StartBattle:
+ 	winlosstext Route25CrystalWinText, Route25CrystalLossText

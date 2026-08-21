@@ -110,10 +110,39 @@ if fb:
     check(bool(p) and p[-1]==(46,7), f"fallback approach ends at {p[-1] if p else None}, expected (46, 7)")
 else:
     err.append("Route25CrystalMewScene fallback has no moveobject")
-# the exit walk must run before her initial coords are re-anchored, or a
-# far-west spawn + far-east player deletes her mid-walk and hangs the script
-check(re.search(r'writeobjectxy ROUTE25_CRYSTAL\n\tdisappear ROUTE25_CRYSTAL\n\tappear ROUTE25_CRYSTAL\n\tapplymovement ROUTE25_CRYSTAL, Route25CrystalLeavesMovement', R) is not None,
-      "exit walk is not preceded by the writeobjectxy/disappear/appear re-anchor")
+# A successful catch must use the battle result rather than the Pokedex bit,
+# then remove MEW before the reload callback reconstructs the map objects.
+catch_branch=re.search(r'special CheckCaughtWildMon\n\tiffalse \.StillOutThere\n\tsetevent EVENT_ROUTE_25_CAUGHT_MEW\n\tdisappear ROUTE25_MEW\n\.StillOutThere:\n\treloadmapafterbattle', R)
+check(catch_branch is not None,
+      "MEW catch branch does not hide MEW from the explicit battle-caught result before reload")
+
+# CRYSTAL must be re-anchored beside the player before she returns north and
+# leaves; otherwise the visibility culler can delete her during a movement.
+check(re.search(r'writeobjectxy ROUTE25_CRYSTAL\n\tdisappear ROUTE25_CRYSTAL\n\tappear ROUTE25_CRYSTAL\n\treadvar VAR_YCOORD', R) is not None,
+      "post-catch exit is not preceded by the writeobjectxy/disappear/appear re-anchor")
+
+# Check every tile from which the wandering MEW can be caught. CRYSTAL starts
+# at (48,7), steps horizontally to a free adjacent column, walks to the
+# player's row for the dialogue, returns to row 7, and exits west.
+capture_tiles={(x,y) for x in range(46,50) for y in range(8,13)
+               if tile(x,y) in WALKABLE and
+               any(abs(x-mx)+abs(y-my)==1 for mx in range(46,49) for my in range(9,12))}
+for px,py in sorted(capture_tiles):
+    cx2 = 47 if px == 46 else 49 if px == 48 else 48
+    down=steps(f'Route25CrystalCaughtApproachDown{py-7}Movement',cx2,7)
+    check(bool(down) and down[-1]==(cx2,py),
+          f"post-catch approach for player at {(px,py)} ends at {down[-1] if down else None}")
+    check(abs(cx2-px)==1, f"CRYSTAL is not adjacent to player at {(px,py)} after approach")
+    bad=[t for t in down if tile(*t) not in WALKABLE or t==(px,py)]
+    check(not bad, f"post-catch approach for player at {(px,py)} walks into {bad}")
+    up=steps(f'Route25CrystalCaughtReturnUp{py-7}Movement',cx2,py)
+    check(bool(up) and up[-1]==(cx2,7),
+          f"post-catch return for player at {(px,py)} ends at {up[-1] if up else None}")
+    bad=[t for t in up if tile(*t) not in WALKABLE or t==(px,py)]
+    check(not bad, f"post-catch return for player at {(px,py)} walks into {bad}")
+    leave=steps('Route25CrystalLeavesMovement',cx2,7)
+    bad=[t for t in leave if tile(*t) not in WALKABLE]
+    check(not bad, f"post-catch exit for player at {(px,py)} walks into {bad}")
 # the exit path must stay on solid ground from every spot she can be left on:
 # her home coords (map re-entry), the four approach stops, and the fallback stop
 for sx,sy in [(cx,cy),(46,7),(47,7),(48,7),(49,7)]:
@@ -137,10 +166,10 @@ check(R.count('\n\tdone\n') == len(re.findall(r'^\t(?:text|db) "', R, re.M)) or 
 # --- 7. leftovers / new plumbing -----------------------------------------
 check('EVENT_BEAT_ELITE_FOUR' not in R, "Route25 still gates on EVENT_BEAT_ELITE_FOUR")
 check('Route25CrystalCapeText' not in R, "dead label Route25CrystalCapeText still referenced")
-check('CheckCaughtMew' in io.open('data/special_pointers.asm',encoding='utf-8').read(),
-      "CheckCaughtMew missing from data/special_pointers.asm")
-check('CheckCaughtMew:' in io.open('engine/events/specials.asm',encoding='utf-8').read(),
-      "CheckCaughtMew routine missing from engine/events/specials.asm")
+check('CheckCaughtWildMon' in io.open('data/special_pointers.asm',encoding='utf-8').read(),
+      "CheckCaughtWildMon missing from data/special_pointers.asm")
+check('CheckCaughtWildMon:' in io.open('engine/events/specials.asm',encoding='utf-8').read(),
+      "CheckCaughtWildMon routine missing from engine/events/specials.asm")
 sp=io.open('data/phone/special_calls.asm',encoding='utf-8').read()
 pc=io.open('constants/phone_constants.asm',encoding='utf-8').read()
 n_calls=len(re.findall(r'^\tspecialcall ', sp, re.M))
