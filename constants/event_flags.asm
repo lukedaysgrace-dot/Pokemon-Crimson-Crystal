@@ -2164,4 +2164,9 @@
 ; the HALL OF FAME script so he can be refought.
 	const EVENT_BEAT_RED
 
+; Object flag for the GRAMPS who blocks the INDIGO PLATEAU POKECENTER doors
+; on ROUTE 23 after the first ELITE FOUR clear, until the CLAIR rematch is
+; won and SILVER's ambush inside can commence (see maps/Route23.asm)
+	const EVENT_ROUTE_23_POKECENTER_GRAMPS
+
 NUM_EVENTS EQU const_value
