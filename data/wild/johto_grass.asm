@@ -1222,7 +1222,7 @@ JohtoGrassWildMons:
 	map_id ROUTE_29
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 2, SENTRET
+	dbw 2, TINKATINK
 	dbw 2, PIDGEY
 	dbw 3, RATTATA
 	dbw 3, KOTORA
