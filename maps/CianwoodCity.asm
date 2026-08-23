@@ -67,7 +67,7 @@ CianwoodCitySuicuneAndEusine:
 	appear CIANWOODCITY_EUSINE
 	applymovement CIANWOODCITY_EUSINE, CianwoodCityEusineApproachMovement
 	opentext
-	writetext EusineSuicuneText
+	writetext EusineEnteiText
 	waitbutton
 	closetext
 	winlosstext EusineBeatenText, 0
@@ -391,7 +391,7 @@ CianwoodCityUnusedText:
 	cont "ly lives there."
 	done
 
-EusineSuicuneText:
+EusineEnteiText:
 	text "EUSINE: Yo,"
 	line "<PLAYER>."
 
@@ -401,20 +401,25 @@ EusineSuicuneText:
 	para "I only caught a"
 	line "quick glimpse, but"
 
-	para "I thought I saw"
-	line "ENTEI running on"
-	cont "the waves."
+	para "the air turned hot"
+	line "when it roared."
 
-	para "ENTEI is fierce"
-	line "and grand."
+	para "Even the sea"
+	line "seemed to shudder!"
 
-	para "And it races"
-	line "through towns and"
+	para "The old tales say"
+	line "a volcano erupts"
 
-	para "roads at simply"
-	line "awesome speeds."
+	para "whenever ENTEI"
+	line "barks."
 
-	para "It's wonderful…"
+	para "It courses across"
+	line "the whole earth,"
+
+	para "never holding back"
+	line "its awesome power."
+
+	para "Magnificent…"
 
 	para "I want to see"
 	line "ENTEI up close…"
