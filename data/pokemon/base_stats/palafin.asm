@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 100, 140, 100,  90,  95,  75
+	db 100, 130, 100,  90,  95,  75
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, FIGHTING ; type
