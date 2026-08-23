@@ -12,7 +12,7 @@
 	db 10 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/raichu_alolan/front.dimensions"
-	abilities_for RAICHU_ALOLAN, STATIC, NO_ABILITY, NO_ABILITY
+	abilities_for RAICHU_ALOLAN, LIGHTNING_ROD, MOTOR_DRIVE, GALVANIZE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups

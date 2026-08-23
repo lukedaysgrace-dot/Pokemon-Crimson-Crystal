@@ -2259,7 +2259,7 @@ SuicuneEvosAttacks:
 	db 0 ; no more level-up moves
 
 LarvitarEvosAttacks:
-	dbbw EVOLVE_LEVEL, 30, PUPITAR
+	dbbw EVOLVE_LEVEL, 25, PUPITAR
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, TACKLE
@@ -2284,7 +2284,7 @@ LarvitarEvosAttacks:
 	db 0 ; no more level-up moves
 
 PupitarEvosAttacks:
-	dbbw EVOLVE_LEVEL, 55, TYRANITAR
+	dbbw EVOLVE_LEVEL, 45, TYRANITAR
 	db 0 ; no more evolutions
 	dbw 1, ROCK_THROW
 	dbw 1, LEER
@@ -3052,7 +3052,7 @@ EspathraEvosAttacks:
 
 
 FinizenEvosAttacks:
-	dbbw EVOLVE_LEVEL, 36, PALAFIN
+	dbbw EVOLVE_LEVEL, 38, PALAFIN
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, WATER_GUN
@@ -5992,7 +5992,7 @@ UrsalunabmEvosAttacks:
 	db 0 ; no more level-up moves
 
 VibravaEvosAttacks:
-	dbbw EVOLVE_LEVEL, 38, FLYGON
+	dbbw EVOLVE_LEVEL, 45, FLYGON
 	db 0 ; no more evolutions
 	dbw 1, DRAGONBREATH
 	dbw 1, BITE
