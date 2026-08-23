@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  75, 140,  65, 110, 112,  65
+	db  75, 135,  70, 105, 100,  65
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, FLYING ; type

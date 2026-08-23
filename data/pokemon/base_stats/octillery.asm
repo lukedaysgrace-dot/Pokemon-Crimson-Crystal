@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  75, 105,  75,  45, 105,  75
+	db  85,  70,  95,  45, 110,  85
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/octillery/front.dimensions"
-	abilities_for OCTILLERY, SUCTION_CUPS, SNIPER, NO_ABILITY
+	abilities_for OCTILLERY, SUCTION_CUPS, SNIPER, ANALYTIC
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_2 ; egg groups
