@@ -204,33 +204,36 @@ BurnedTowerB1FEusineText:
 
 	para "I was shocked!"
 
-	para "ENTEI raced by"
-	line "like a blur, right"
+	para "ENTEI stopped"
+	line "right before me!"
 
-	para "in front of my"
-	line "eyes!"
+	para "Its roar shook the"
+	line "whole tower…"
 
-	para "For ten years I"
+	para "The heat felt like"
+	line "a volcano!"
+
+	para "For ten years I've"
 	line "chased ENTEI,"
 
-	para "and I finally got"
-	line "to see it."
+	para "and I finally saw"
+	line "its power"
+	cont "up close."
 
-	para "I'm all choked up!"
+	para "I'm all fired up!"
 
 	para "<PLAYER>, I owe"
 	line "this all to you!"
 
 	para "Thank you!"
 
-	para "I heard that the"
-	line "legendary #MON"
+	para "ENTEI embodies the"
+	line "blaze that burned"
+	cont "this tower."
 
-	para "of ECRUTEAK test"
-	line "chosen humans by"
-
-	para "allowing them to"
-	line "get close."
+	para "Restless, it now"
+	line "courses across the"
+	cont "land."
 
 	para "I'm going to track"
 	line "ENTEI."
