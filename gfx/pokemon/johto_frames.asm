@@ -167,6 +167,12 @@ SylveonFrames:  INCLUDE "gfx/pokemon/sylveon/frames.asm"
 RookideeFrames:  INCLUDE "gfx/pokemon/rookidee/frames.asm"
 CorvisquireFrames:  INCLUDE "gfx/pokemon/corvisquire/frames.asm"
 CorviknightFrames:  INCLUDE "gfx/pokemon/corviknight/frames.asm"
+
+; "Pic Animations 3B" filled its bank again, so this block was split off
+; into another floating section. Frames are referenced by dba, so this is safe.
+; Do NOT pin this section in pokecrystal.link.
+SECTION "Pic Animations 6", ROMX
+
 AbomasnowFrames:  INCLUDE "gfx/pokemon/abomasnow/frames.asm"
 AltariaFrames:  INCLUDE "gfx/pokemon/altaria/frames.asm"
 AnorithFrames:  INCLUDE "gfx/pokemon/anorith/frames.asm"
