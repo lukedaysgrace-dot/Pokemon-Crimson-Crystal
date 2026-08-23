@@ -608,6 +608,7 @@ ArbokEvosAttacks:
 
 PikachuEvosAttacks:
 	dbbw EVOLVE_ITEM, THUNDERSTONE, RAICHU
+	dbbw EVOLVE_ITEM, SUN_STONE, RAICHU_ALOLAN
 	db 0 ; no more evolutions
 	dbw 1, GROWL
 	dbw 1, TAIL_WHIP
