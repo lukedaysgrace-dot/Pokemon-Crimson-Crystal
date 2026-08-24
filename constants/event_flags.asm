@@ -2169,4 +2169,8 @@
 ; won and SILVER's ambush inside can commence (see maps/Route23.asm)
 	const EVENT_ROUTE_23_POKECENTER_GRAMPS
 
+; Set when the ROUTE 25 MEW battle ends without a capture. MEW is gone for
+; good in that save; CRYSTAL says her goodbye and leaves (see maps/Route25.asm)
+	const EVENT_ROUTE_25_MEW_ESCAPED
+
 NUM_EVENTS EQU const_value
