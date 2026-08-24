@@ -334,36 +334,5 @@ CrystalPhoneTipRoute28Text:
 	line "needs a capture."
 	done
 
-CrystalPhoneCapeCallText1:
-	text "<PLAY_G>, it's me."
-	line "Don't hang up."
-
-	para "I heard you beat"
-	line "BLUE and earned"
-	cont "the EARTHBADGE."
-
-	para "Good work."
-
-	para "Now listen."
-	done
-
-CrystalPhoneCapeCallText2:
-	text "I'm at CERULEAN"
-	line "CAPE, north of"
-	cont "the city."
-
-	para "There's a #MON"
-	line "over the water."
-
-	para "My #DEX has no"
-	line "match for it."
-
-	para "I haven't told"
-	line "PROF.OAK."
-
-	para "I want you to see"
-	line "it first."
-
-	para "Come to the CAPE."
-	line "Hurry."
-	done
+; CrystalPhoneCapeCallText1/2 live in data/phone/text/crystal_cape_call.asm:
+; this bank has no room left for them. Both are read with farwritetext.

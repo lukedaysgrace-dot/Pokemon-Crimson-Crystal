@@ -859,6 +859,12 @@ INCLUDE "engine/debug/battle_tester.asm"
 ENDC
 
 
+SECTION "Crystal Cape Text", ROMX
+
+INCLUDE "data/text/route25_cape.asm"
+INCLUDE "data/phone/text/crystal_cape_call.asm"
+
+
 SECTION "Trainer Card Badge Graphics", ROMX
 
 LeaderGFX2: INCBIN "gfx/trainer_card/kanto_leaders.2bpp"
