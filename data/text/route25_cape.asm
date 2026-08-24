@@ -2,7 +2,7 @@
 ; Kept out of the map's own bank, which has no room left for it; the map
 ; script reaches these with farwritetext.
 
-Route25CrystalBeforeText:
+Route25CrystalBeforeText::
 	text "CRYSTAL: Quiet."
 	line "Look over there."
 
@@ -69,7 +69,7 @@ Route25CrystalBeforeText:
 	line "me."
 	done
 
-Route25CrystalAfterText:
+Route25CrystalAfterText::
 	text "CRYSTAL: I really"
 	line "thought I had you"
 	cont "this time."
@@ -102,7 +102,7 @@ Route25CrystalAfterText:
 	line "can catch MEW."
 	done
 
-Route25CrystalGoCatchItText:
+Route25CrystalGoCatchItText::
 	text "CRYSTAL: Why are"
 	line "you talking to me?"
 
@@ -120,7 +120,7 @@ Route25CrystalGoCatchItText:
 	line "observations."
 	done
 
-Route25CrystalMewCaughtText:
+Route25CrystalMewCaughtText::
 	text "CRYSTAL: …"
 
 	para "You did it."
@@ -214,7 +214,7 @@ Route25CrystalMewCaughtText:
 	line "<PLAYER>."
 	done
 
-Route25CrystalMewEscapedText:
+Route25CrystalMewEscapedText::
 	text "CRYSTAL: …"
 
 	para "It got away."
