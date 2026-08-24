@@ -181,53 +181,61 @@ LeaderBlueEpilogueText:
 	done
 
 CooltrainermLarrySeenText:
-	text "Ohhhhh waowww,"
-	line "another"
-	cont "challenger."
+	text "A trainer's real"
+	line "strength shows in"
+	cont "a long battle."
 	done
 
 CooltrainermLarryBeatenText:
-	text "THAT DIDN'T HIT"
-	line "ME."
+	text "You didn't slow"
+	line "down at all."
 	done
 
 CooltrainermLarryAfterBattleText:
-	text "There was"
-	line "something in my"
-	cont "eye, that's the"
-
-	para "only reason you"
-	line "won."
+	text "I keep my team's"
+	line "stamina up with"
+	cont "steady training."
 	done
 
 CooltrainermSnowSeenText:
-	text "You'll never get"
-	line "past me, Larry"
-	cont "and Cy."
+	text "I train here every"
+	line "day to sharpen my"
+	cont "battling skills."
 	done
 
 CooltrainermSnowBeatenText:
-	text "....Starting to"
-	line "get mad."
+	text "You're sharper"
+	line "than I am."
 	done
 
 CooltrainermSnowAfterBattleText:
-	text "You're garbage"
-	line "man."
+	text "Raw power isn't"
+	line "enough at this"
+	cont "level."
+
+	para "You have to know"
+	line "your #MON."
 	done
 
 CooltrainermCyanideSeenText:
-	text "OHOHOHO...baka."
+	text "I've battled every"
+	line "trainer who came"
+	cont "through this GYM."
 	done
 
 CooltrainermCyanideBeatenText:
-	text "Whatever dude."
+	text "That's a first."
 	done
 
 CooltrainermCyanideAfterBattleText:
-	text "Just go, you"
-	line "filthy casual."
+	text "You're the first"
+	line "one to get by me"
+	cont "in a long time."
+
+	para "Our LEADER is"
+	line "waiting."
 	done
+
 ViridianGymGuyText:
 	text "Yo, CHAMP in"
 	line "making!"
@@ -272,9 +280,13 @@ ViridianGym_MapEvents:
 	bg_event  3, 13, BGEVENT_READ, ViridianGymStatue
 	bg_event  6, 13, BGEVENT_READ, ViridianGymStatue
 
+; BLUE, his three COOLTRAINERs and the gym guy all share EVENT_VIRIDIAN_GYM_BLUE,
+; so the whole gym stays empty until BLUE teleports here from CINNABAR (the same
+; way CERULEAN GYM gates MISTY and her swimmers behind one flag). Each
+; COOLTRAINER keeps its own EVENT_BEAT_ flag, so none can be re-challenged.
 	db 5 ; object events
 	object_event  5,  3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
-	object_event  7,  9, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermLarry, -1
-	object_event  2, 11, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermSnow, -1
-	object_event  2,  7, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermCyanide, -1
+	object_event  7,  9, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermLarry, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  2, 11, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermSnow, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  2,  7, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermCyanide, EVENT_VIRIDIAN_GYM_BLUE
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

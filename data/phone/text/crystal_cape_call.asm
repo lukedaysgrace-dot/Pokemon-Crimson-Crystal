@@ -1,7 +1,7 @@
 ; CRYSTAL's EARTHBADGE call summoning the player to CERULEAN CAPE.
 ; Split out of data/phone/text/crystal.asm for bank space.
 
-CrystalPhoneCapeCallText1:
+CrystalPhoneCapeCallText1::
 	text "<PLAY_G>. CRYSTAL."
 
 	para "I've been hearing"
@@ -22,7 +22,7 @@ CrystalPhoneCapeCallText1:
 	line "came up."
 	done
 
-CrystalPhoneCapeCallText2:
+CrystalPhoneCapeCallText2::
 	text "I've been hearing"
 	line "rumors about a"
 
