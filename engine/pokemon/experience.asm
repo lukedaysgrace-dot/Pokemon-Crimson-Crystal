@@ -72,14 +72,14 @@ UpdateLevelCap::
 HardModeLevelCaps:
 ; Only the Johto run is capped. The eighth badge lifts it for good; everything
 ; after is paced by the exp that is actually available.
-	db 10
-	db 16
-	db 21
-	db 25
-	db 31
-	db 36
-	db 38
-	db 45
+	db 10 ; Falkner
+	db 16 ; Bugsy
+	db 21 ; Whitney
+	db 26 ; Morty
+	db 31 ; Chuck
+	db 36 ; Jasmine
+	db 40 ; Pryce
+	db 45 ; Clair
 	db MAX_LEVEL
 	db MAX_LEVEL
 	db MAX_LEVEL
