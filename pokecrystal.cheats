@@ -1,95 +1,82 @@
 # Auto-generated from pokecrystal.sym by tools/generate_cheats.py
 # Re-run after rebuilding the ROM if cheats stop working.
-
-!disabled
 # walk through walls
 9100FAC2
 9100FBC2
 9100FCC2
 9100FDC2
 9100FEC2
-
 !disabled
 # no random encounters
-91FF5ADC
-
+91FF61DC
 !disabled
 # all badges (16)
-91FF9CD8
-91FF9DD8
-
+91FFA4D8
+91FFA5D8
 !disabled
 # all hms
-9101D3D8
-9101D4D8
-9101D5D8
-9101D6D8
-9101D7D8
-9101D8D8
-9101D9D8
-
+9101DBD8
+9101DCD8
+9101DDD8
+9101DED8
+9101DFD8
+9101E0D8
+9101E1D8
 !disabled
 # fly anywhere (needs a flying party mon)
-91FF9CD8
-91FF9DD8
-9101D4D8
-9181C7D9
-91FF5EDC
-91FF5FDC
-91FF60DC
-91FF61DC
-
+91FFA4D8
+91FFA5D8
+9101DCD8
+9181CFD9
+91FF65DC
+91FF66DC
+91FF67DC
+91FF68DC
 !disabled
 # level 100 after battle (participants)
 9104CCC2
-
 !disabled
 # 100% catch rate (any ball)
 9101D1C2
-
 !disabled
 # player Pokemon invincible (cannot faint)
 9101D2C2
-
 !disabled
 # master balls x99
-010147D9
-010148D9
-016349D9
-
+01014FD9
+010150D9
+016351D9
 !disabled
 # johto badges only
-91FF9CD8
-
+91FFA4D8
 !disabled
 # restore kanto no badges
-01009DD8
-
+0100A5D8
 !disabled
 # useful items x99 (master ball, rare candy, etc.)
-010CDAD8
-0101DBD8
-0163DCD8
-0102DDD8
-0163DED8
-0104DFD8
-0163E0D8
-0105E1D8
-0163E2D8
-019DE3D8
+010CE2D8
+0101E3D8
 0163E4D8
-019FE5D8
+0102E5D8
 0163E6D8
-01A0E7D8
+0104E7D8
 0163E8D8
-01A1E9D8
+0105E9D8
 0163EAD8
-01A4EBD8
+019DEBD8
 0163ECD8
-01A5EDD8
+019FEDD8
 0163EED8
-01A6EFD8
+01A0EFD8
 0163F0D8
-01B1F1D8
+01A1F1D8
 0163F2D8
-01FFF3D8
+01A4F3D8
+0163F4D8
+01A5F5D8
+0163F6D8
+01A6F7D8
+0163F8D8
+01B1F9D8
+0163FAD8
+01FFFBD8

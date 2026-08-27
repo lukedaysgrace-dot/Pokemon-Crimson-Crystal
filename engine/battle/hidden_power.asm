@@ -1,249 +1,236 @@
-HiddenPowerDamage:
-; Override Hidden Power's type and power.
-; The player's Pokémon use the type chosen at the Hidden Power Guy
-; (wHiddenPowerType) with a fixed 70 power. Enemies (and the player
-; before choosing a type) fall back to the DV-based formula.
+; Hidden Power
+;
+; Every Pokémon stores its own Hidden Power type in its HiddenPowerType byte
+; (box_struct / party_struct / battle_struct; PC records pack it into
+; SAVEMON_FLAGS bits 1-5, see engine/pc/storage_codec.asm). The type is set per
+; Pokémon at the Hidden Power Guy (engine/events/hidden_power_type.asm). A
+; stored value of 0 means "never chosen" and resolves to
+; HIDDEN_POWER_DEFAULT_TYPE. DVs play no part in any of this.
+;
+; The base power is always HIDDEN_POWER_BASE_POWER. The damage category is
+; decided every time the move is used, from the user's current (stat-stage
+; modified) stats: physical - Attack vs Defense - when Attack is higher than
+; Sp.Atk, otherwise special - Sp.Atk vs Sp.Def (ties go special). The type
+; only governs STAB, type effectiveness, immunities and type-based effects.
+;
+; The user's move struct is patched in UpdateMoveData (type, power, category),
+; so every later check sees the real values; the hiddenpower effect command
+; refreshes the category right before damagestats. The AI patches
+; wEnemyMoveStruct the same way (HiddenPowerPatchEnemyMoveStruct).
 
+ResolveHiddenPowerType::
+; a = stored HiddenPowerType byte -> a = type constant (0 -> default)
+	and a
+	ret nz
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+	ret
+
+GetUserHiddenPowerType::
+; Return in a the type of the user's (hBattleTurn) Hidden Power.
+; Transform does not copy HiddenPowerType, so a transformed user keeps its own.
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, .dv_based ; enemy: keep DV-based behavior
-	ld a, [wHiddenPowerType]
-	and a
-	jr z, .dv_based ; no type chosen yet
+	ld a, [wBattleMonHiddenPowerType]
+	jr z, ResolveHiddenPowerType
+	ld a, [wEnemyMonHiddenPowerType]
+	jr ResolveHiddenPowerType
 
-; Category: bit 7 set = physical, clear = special.
-	ld c, a
-	ld b, CATEGORIZE_SPECIAL
-	bit 7, c
-	jr z, .got_category
-	ld b, CATEGORIZE_PHYSICAL
-.got_category
-	ld a, b
-	ld [wPlayerMoveStructCategory], a
-	ld a, c
-	and %01111111 ; low bits hold the type
-	ld d, 70
-	jr .apply
-
-.dv_based
-	ld hl, wBattleMonDVs
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_dvs
-	ld hl, wEnemyMonDVs
-.got_dvs
-
-; Power:
-
-; Take the top bit from each stat
-
-	; Attack
-	ld a, [hl]
-	swap a
-	and %1000
-
-	; Defense
-	ld b, a
+GetHiddenPowerCategory::
+; bc = pointer to a big-endian Attack stat that is followed by Defense, Speed
+; and Sp.Atk (a party or battle struct Stats block, wPlayerStats or wEnemyStats).
+; Returns a = CATEGORIZE_PHYSICAL if Attack > Sp.Atk, else CATEGORIZE_SPECIAL.
+; Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld h, b
+	ld l, c
 	ld a, [hli]
-	and %1000
-	srl a
-	or b
-
-	; Speed
-	ld b, a
-	ld a, [hl]
-	swap a
-	and %1000
-	srl a
-	srl a
-	or b
-
-	; Special
-	ld b, a
-	ld a, [hl]
-	and %1000
-	srl a
-	srl a
-	srl a
-	or b
-
-; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-
-; Add Special & 3
-	ld b, a
-	ld a, [hld]
-	and %0011
-	add b
-
-; Divide by 2 and add 30 + 1
-	srl a
-	add 30
-	inc a
-
-	ld d, a
-
-; Type:
-
-	; Def & 3
-	ld a, [hl]
-	and %0011
-	ld b, a
-
-	; + (Atk & 3) << 2
-	ld a, [hl]
-	and %0011 << 4
-	swap a
-	add a
-	add a
-	or b
-
-; Skip Normal
-	inc a
-
-; Skip Bird
-	cp BIRD
-	jr c, .done
-	inc a
-
-; Skip unused types
-	cp UNUSED_TYPES
-	jr c, .done
-	add SPECIAL - UNUSED_TYPES
-
+	ld d, a ; Attack (high)
+	ld a, [hli]
+	ld e, a ; Attack (low)
+	ld bc, wPlayerSpAtk - wPlayerDefense
+	add hl, bc
+	ld a, [hli]
+	ld b, a ; Sp.Atk (high)
+	ld c, [hl] ; Sp.Atk (low)
+	; physical iff de (Attack) > bc (Sp.Atk)
+	ld a, d
+	cp b
+	jr c, .special
+	jr nz, .physical
+	ld a, e
+	cp c
+	jr c, .special
+	jr z, .special
+.physical
+	ld a, CATEGORIZE_PHYSICAL
+	jr .done
+.special
+	ld a, CATEGORIZE_SPECIAL
 .done
-.apply
-; a = type, d = power
+	pop bc
+	pop de
+	pop hl
+	ret
 
-; Overwrite the current move type.
-	push af
+GetUserHiddenPowerCategory::
+; Return in a the category the user's (hBattleTurn) Hidden Power uses right
+; now, from its stat-stage modified stats. (ApplyStatLevelMultiplier writes
+; the boosted stats into the battle struct - wBattleMonAttack etc.; the
+; wPlayerStats / wEnemyStats blocks keep the unmodified originals.)
+	push bc
+	ldh a, [hBattleTurn]
+	and a
+	ld bc, wBattleMonAttack
+	jr z, .got_stats
+	ld bc, wEnemyMonAttack
+.got_stats
+	call GetHiddenPowerCategory
+	pop bc
+	ret
+
+HiddenPowerUpdateMoveStruct::
+; Called from UpdateMoveData after the user's move struct has been loaded.
+; If the move is Hidden Power, overwrite its type, power and category.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_HIDDEN_POWER
+	ret nz
+	call GetUserHiddenPowerType
+	ld b, a
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
-	pop af
-	ld [hl], a
+	ld [hl], b
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVarAddr
+	ld [hl], HIDDEN_POWER_BASE_POWER
+	; fallthrough
 
-; Get the rest of the damage formula variables
-; based on the new type, but keep base power.
-	ld a, d
-	push af
+HiddenPowerUpdateCategory::
+; Store the user's current Hidden Power category in its move struct.
+	call GetUserHiddenPowerCategory
+	ld hl, wPlayerMoveStructCategory
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_struct
+	ld hl, wEnemyMoveStructCategory
+.got_struct
+	ld [hl], b
+	ret
+
+HiddenPowerDamage::
+; Body of the hiddenpower effect command. The move struct already holds the
+; user's type and power (UpdateMoveData); re-pick the category from the stats
+; the user has at this moment, then run damagestats with it.
+; Returns b/c/d/e as damagestats does (attack, defense, power, level).
+	call HiddenPowerUpdateCategory
 	farcall BattleCommand_DamageStats ; damagestats
-	pop af
-	ld d, a
+	ret
+
+HiddenPowerPatchEnemyMoveStruct::
+; For the AI: if wEnemyMoveStruct holds Hidden Power, fill in the active enemy
+; mon's own type, the fixed power and the category its current stats give.
+; Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wEnemyMoveStructEffect]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .done
+	ld a, [wEnemyMonHiddenPowerType]
+	call ResolveHiddenPowerType
+	ld [wEnemyMoveStructType], a
+	ld a, HIDDEN_POWER_BASE_POWER
+	ld [wEnemyMoveStructPower], a
+	ld bc, wEnemyMonAttack ; stage-modified stats
+	call GetHiddenPowerCategory
+	ld [wEnemyMoveStructCategory], a
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+HiddenPowerPatchOTPartyMoveStruct::
+; Like HiddenPowerPatchEnemyMoveStruct, for a move of OT party mon b (0-5)
+; that is not necessarily in battle: its own type, the fixed power, and the
+; category its party stats give. Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wEnemyMoveStructEffect]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .done
+	push bc
+	ld hl, wOTPartyMon1HiddenPowerType
+	ld a, b
+	call GetPartyLocation ; clobbers bc
+	ld a, [hl]
+	call ResolveHiddenPowerType
+	ld [wEnemyMoveStructType], a
+	ld a, HIDDEN_POWER_BASE_POWER
+	ld [wEnemyMoveStructPower], a
+	pop bc
+	ld hl, wOTPartyMon1Attack
+	ld a, b
+	call GetPartyLocation
+	ld b, h
+	ld c, l
+	call GetHiddenPowerCategory
+	ld [wEnemyMoveStructCategory], a
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+
+HiddenPowerCounterCategory::
+; Counter / Mirror Coat: wStringBuffer1 holds the move data of the opponent's
+; last move. If that move is Hidden Power, its category is the one the
+; opponent's stats picked when it was used this turn, which its move struct
+; still holds - use that instead of the move table's fixed category.
+	ld a, [wStringBuffer1 + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	ret nz
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyMoveStructCategory] ; the player is countering the enemy
+	jr z, .got_category
+	ld a, [wPlayerMoveStructCategory]
+.got_category
+	ld [wStringBuffer1 + MOVE_CATEGORY], a
+	ret
+
+HiddenPowerPatchPlayerLastMoveCategory::
+; AI_Smart_Counter / AI_Smart_MirrorCoat load the PLAYER's last move into
+; wEnemyMoveStruct (through AIGetEnemyMove, which patches Hidden Power with
+; the enemy's data). If that move is Hidden Power, the category that matters
+; is the one the player's stats picked when it was used - its move struct
+; still holds it. Preserves bc, de, hl.
+	ld a, [wEnemyMoveStructEffect]
+	cp EFFECT_HIDDEN_POWER
+	ret nz
+	ld a, [wPlayerMoveStructCategory]
+	ld [wEnemyMoveStructCategory], a
 	ret
 
 GetHiddenPowerDisplayStats::
 ; Returns the values a move info box should display for Hidden Power:
 ; b = category, c = type, d = power.
-; hl = pointer to the DVs to compute from (wBattleMonDVs in battle,
-; wTempMonDVs on the stats screen). Callers outside battle should
-; ignore b (it is read from a battle variable).
-; Mirrors HiddenPowerDamage above without touching any battle variables.
-	ld a, [wHiddenPowerType]
-	and a
-	jr z, .dv_based
-
-; Type chosen at the Hidden Power Guy: fixed 70 power,
-; bit 7 set = physical, clear = special.
-	ld b, CATEGORIZE_SPECIAL
-	bit 7, a
-	jr z, .got_category
-	ld b, CATEGORIZE_PHYSICAL
-.got_category
-	and %01111111 ; low bits hold the type
-	ld c, a
-	ld d, 70
-	ret
-
-.dv_based
-; hl already points at the DVs (set by the caller)
-
-; Power: take the top bit from each stat
-
-	; Attack
-	ld a, [hl]
-	swap a
-	and %1000
-
-	; Defense
+; de = pointer to the mon's HiddenPowerType byte (wTempMonHiddenPowerType on
+;      the stats screen, wBattleMonHiddenPowerType in battle),
+; bc = pointer to the stats to compare (wTempMonAttack: the mon's own stats;
+;      wBattleMonAttack in battle: the stat-stage modified ones).
+; Passed in de/bc rather than hl because farcall clobbers hl on entry.
+	ld a, [de]
+	call ResolveHiddenPowerType
+	ld e, a
+	call GetHiddenPowerCategory
 	ld b, a
-	ld a, [hli]
-	and %1000
-	srl a
-	or b
-
-	; Speed
-	ld b, a
-	ld a, [hl]
-	swap a
-	and %1000
-	srl a
-	srl a
-	or b
-
-	; Special
-	ld b, a
-	ld a, [hl]
-	and %1000
-	srl a
-	srl a
-	srl a
-	or b
-
-; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-
-; Add Special & 3
-	ld b, a
-	ld a, [hld]
-	and %0011
-	add b
-
-; Divide by 2 and add 30 + 1
-	srl a
-	add 30
-	inc a
-
-	ld d, a
-
-; Type:
-
-	; Def & 3
-	ld a, [hl]
-	and %0011
-	ld b, a
-
-	; + (Atk & 3) << 2
-	ld a, [hl]
-	and %0011 << 4
-	swap a
-	add a
-	add a
-	or b
-
-; Skip Normal
-	inc a
-
-; Skip Bird
-	cp BIRD
-	jr c, .done
-
-	inc a
-
-; Skip unused types
-	cp UNUSED_TYPES
-	jr c, .done
-	add SPECIAL - UNUSED_TYPES
-
-.done
-	ld c, a
-	ld a, [wPlayerMoveStructCategory]
-	ld b, a
+	ld c, e
+	ld d, HIDDEN_POWER_BASE_POWER
 	ret
 
 PrintMoveAccuracyPercent::

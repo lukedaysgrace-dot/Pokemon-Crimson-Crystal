@@ -44,3 +44,10 @@ SPECIAL EQU const_value
 TYPES_END EQU const_value
 
 NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END
+
+; Hidden Power (see engine/battle/hidden_power.asm)
+; Every Pokémon stores its own HiddenPowerType (box_struct); 0 means "never
+; set at the Hidden Power Guy" and resolves to this default. Its category is
+; always chosen in battle from the user's current Attack vs Sp.Atk.
+HIDDEN_POWER_DEFAULT_TYPE EQU DARK
+HIDDEN_POWER_BASE_POWER   EQU 70

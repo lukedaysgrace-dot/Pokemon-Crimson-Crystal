@@ -1198,19 +1198,17 @@ PlaceMoveData:
 	ld a, [wCurSpecies] ; move id
 	ld de, wStringBuffer2
 	call GetMoveData
-	; Hidden Power displays its computed type and power
+	; Hidden Power displays this mon's own type, its fixed power, and the
+	; category its (unboosted) stats would give it right now
 	; (wTempMon holds the current mon on this screen)
 	ld a, [wStringBuffer2 + MOVE_EFFECT]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .not_hidden_power
-	ld hl, wTempMonDVs
-	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
-	ld a, [wHiddenPowerType]
-	and a
-	jr z, .store_hidden_power_stats
+	ld de, wTempMonHiddenPowerType
+	ld bc, wTempMonAttack
+	farcall GetHiddenPowerDisplayStats ; b = category, c = type, d = power
 	ld a, b
 	ld [wStringBuffer2 + MOVE_CATEGORY], a
-.store_hidden_power_stats
 	ld a, c
 	ld [wStringBuffer2 + MOVE_TYPE], a
 	ld a, d

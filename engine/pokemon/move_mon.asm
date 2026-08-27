@@ -271,6 +271,11 @@ endr
 	ld [de], a
 	inc de
 
+	; HiddenPowerType: default until the Hidden Power Guy sets it
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+	ld [de], a
+	inc de
+
 	xor a
 	; Status
 	ld [de], a
@@ -334,6 +339,11 @@ endr
 
 	; Personality: keep the battle mon's ability
 	ld a, [wEnemyMonPersonality]
+	ld [de], a
+	inc de
+
+	; HiddenPowerType: keep the battle mon's
+	ld a, [wEnemyMonHiddenPowerType]
 	ld [de], a
 	inc de
 
@@ -804,6 +814,10 @@ SendMonIntoBox:
 	inc de
 	; Personality: keep the battle mon's ability
 	ld a, [wEnemyMonPersonality]
+	ld [de], a
+	inc de
+	; HiddenPowerType: keep the battle mon's
+	ld a, [wEnemyMonHiddenPowerType]
 	ld [de], a
 	inc de
 	; Status

@@ -115,6 +115,7 @@ MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
 MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
 MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
 MON_PERSONALITY        EQUS "(wPartyMon1Personality - wPartyMon1)"
+MON_HIDDEN_POWER_TYPE  EQUS "(wPartyMon1HiddenPowerType - wPartyMon1)"
 
 ; perfect DVs (15 in every stat)
 PERFECT_ATKDEF_DV EQU $ff
@@ -208,6 +209,10 @@ SAVEMON_NAME_LENGTH EQU 10 ; stored nickname/OT bytes (terminator implied)
 
 ; SAVEMON_FLAGS bits
 SAVEMON_IS_EGG_F EQU 0
+; bits 1-5: the mon's Hidden Power type constant (MON_HIDDEN_POWER_TYPE),
+; 0 = default. Type constants are < 32 so five bits are enough.
+SAVEMON_HIDDEN_POWER_SHIFT EQU 1
+SAVEMON_HIDDEN_POWER_MASK  EQU %00111110
 
 ; hall of fame
 HOF_MON_LENGTH EQU 2 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick

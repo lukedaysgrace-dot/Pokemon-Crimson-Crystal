@@ -364,7 +364,8 @@ LoadSummaryScreenPals::
 	cp EFFECT_HIDDEN_POWER
 	ld a, [wStringBuffer2 + MOVE_TYPE]
 	ret nz
-	ld hl, wTempMonDVs
+	ld de, wTempMonHiddenPowerType
+	ld bc, wTempMonAttack
 	farcall GetHiddenPowerDisplayStats ; c = type
 	ld a, c
 	ret

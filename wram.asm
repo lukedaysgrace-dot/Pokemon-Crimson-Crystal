@@ -2976,10 +2976,8 @@ wWeatherDailyKanto2:: db
 wWeatherDailyKanto3:: db
 wWeatherDailyKanto4:: db
 
-; Player-selected Hidden Power type (0 = not chosen; fall back to DV-based).
-; Bit 7 set = physical, clear = special; low bits hold the type constant.
-; Set by the Hidden Power Guy at Lake of Rage.
-wHiddenPowerType:: db
+; (Hidden Power's type is stored per Pokémon: see HiddenPowerType in
+; macros/wram.asm and engine/battle/hidden_power.asm.)
 wLastRepelUsed:: db
 	ds 6
 
@@ -3238,7 +3236,7 @@ w3_d8a2:: ds 1
 w3_d8a3:: ds 1
 ENDU ; d8a4
 
-	ds $1c0 - 21 ; -21: battle_tower_structs grew (Personality byte in party_struct)
+	ds $1c0 - 21 - 21 ; -21 each: battle_tower_structs grew (Personality, then HiddenPowerType bytes in party_struct)
 
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT

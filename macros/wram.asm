@@ -27,6 +27,7 @@ box_struct: MACRO
 \1CaughtLocation:: db
 \1Level::          db
 \1Personality::    db
+\1HiddenPowerType:: db ; type constant chosen at the Hidden Power Guy (0 = default)
 \1End::
 ENDM
 
@@ -87,6 +88,7 @@ battle_struct: MACRO
 \1Happiness:: db
 \1Level::     db
 \1Personality:: db
+\1HiddenPowerType:: db ; mirrors the party struct (see box_struct)
 \1Status::    ds 2
 \1HP::        dw
 \1MaxHP::     dw

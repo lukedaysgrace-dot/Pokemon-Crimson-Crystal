@@ -1485,7 +1485,8 @@ LoadBattleCategoryAndTypePals::
 	ld a, [wPlayerMoveStructEffect]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .not_hidden_power
-	ld hl, wBattleMonDVs
+	ld de, wBattleMonHiddenPowerType
+	ld bc, wBattleMonAttack ; stage-modified stats
 	farcall GetHiddenPowerDisplayStats ; b = category, c = type
 	jr .got_stats
 .not_hidden_power
