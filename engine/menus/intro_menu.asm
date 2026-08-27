@@ -647,7 +647,7 @@ OakSpeech:
 	call RotateThreePalettesRight
 	call ClearTileMap
 
-	ld hl, WOOPER
+	ld hl, PHANPY
 	call GetPokemonIDFromIndex
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
@@ -663,6 +663,10 @@ OakSpeech:
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
+
+	decoord 6, 4
+	ld c, ANIM_MON_EGG1
+	predef HOF_AnimateFrontpic
 
 	ld hl, OakText2
 	call PrintText
@@ -708,9 +712,13 @@ OakText1:
 OakText2:
 	text_far _OakText2
 	text_asm
-	ld hl, WOOPER
+	ld hl, PHANPY
 	call GetPokemonIDFromIndex
-	call PlayMonCry
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
+	decoord 6, 4
+	ld c, ANIM_MON_MENU
+	predef HOF_AnimateFrontpic
 	call WaitSFX
 	ld hl, OakText3
 	ret
