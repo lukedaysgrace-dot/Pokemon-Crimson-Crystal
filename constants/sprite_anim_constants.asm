@@ -190,6 +190,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_FRAMESET_PC_MODE                  ; 46
 	const SPRITE_ANIM_FRAMESET_PC_MODE2                 ; 47
 	const SPRITE_ANIM_FRAMESET_PC_PACK                  ; 48
+	const SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY          ; 49
 
 ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
 	const_def
@@ -341,3 +342,4 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_OAMSET_PC_MODE                    ; 91
 	const SPRITE_ANIM_OAMSET_PC_MODE2                   ; 92
 	const SPRITE_ANIM_OAMSET_PC_PACK                    ; 93
+	const SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY            ; 94

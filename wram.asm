@@ -1059,8 +1059,10 @@ wLCDBillsPC:: ds $110
 wLCDBillsPCEnd::
 
 ; Palettes currently being written by the HBlank code for one icon row.
-; Order matters (the LCD code indexes into this): 2 party mons, then 4 box mons,
-; 2 colors (colors 1 and 2) of 2 bytes each.
+; Order matters (the LCD code indexes into this): BG 3 colour 0, then 2 party
+; mons and 4 box mons, 2 colors (colors 1 and 2) of 2 bytes each.
+wBillsPC_CurColor0:: dw ; BG 3 colour 0 for the next row: white, or the theme
+                        ; background below the last row (shiny/Pokérus symbols)
 wBillsPC_CurPals::
 wBillsPC_CurPartyPals:: ds 2 * 2 * 2
 wBillsPC_CurMonPals:: ds 2 * 2 * 4
@@ -1112,7 +1114,7 @@ wBillsPC_QuickToY:: db
 wBillsPC_QuickFrames:: db
 
 wBillsPC_ApplyThemePals:: db ; nonzero: BillsPC_LoadPalettes also rewrites the mon pals
-wBillsPC_HBlankPhase:: db ; scratch for the LCD code
+wBillsPC_BGColor0:: dw ; theme background colour, for the LCD code (BG 3 colour 0)
 wBillsPCDataEnd::
 
 NEXTU ; c800
