@@ -98,4 +98,4 @@ PCANIM_QUICKFRAMES EQU  9
 	const PAL_PC_SHADOW
 
 ; Save file format
-SAVE_FORMAT_VERSION EQU 1 ; bump whenever sram.asm / saved WRAM layout changes
+SAVE_FORMAT_VERSION EQU 2 ; 2: per-Pokémon HiddenPowerType byte in box_struct; bump whenever sram.asm / saved WRAM layout changes

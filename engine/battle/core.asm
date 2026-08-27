@@ -3453,6 +3453,8 @@ LookUpTheEffectivenessOfEveryMove:
 	push bc
 	ld de, wEnemyMoveStruct
 	call GetMoveData
+	; Hidden Power: that party mon's own type (b = its party index)
+	callfar HiddenPowerPatchOTPartyMoveStruct
 	call SetEnemyTurn
 	callfar BattleCheckTypeMatchup
 	pop bc
@@ -4933,7 +4935,7 @@ PrintPlayerHUD:
 	ld [de], a
 	ld hl, wBattleMonLevel
 	ld de, wTempMonLevel
-	ld bc, $11
+	ld bc, wBattleMonStatsEnd - wBattleMonLevel
 	call CopyBytes
 	ld a, [wCurBattleMon]
 	ld hl, wPartyMon1Species
@@ -6721,6 +6723,20 @@ LoadEnemyMon:
 .SetPersonality:
 	ld [wEnemyMonPersonality], a
 	call SetEnemyAbility
+
+; Hidden Power type: trainer mons carry their own; wild mons use the default
+	ld a, [wBattleMode]
+	cp TRAINER_BATTLE
+	jr nz, .WildHiddenPower
+	ld hl, wOTPartyMon1HiddenPowerType
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld a, [hl]
+	jr .SetHiddenPower
+.WildHiddenPower:
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+.SetHiddenPower:
+	ld [wEnemyMonHiddenPowerType], a
 
 ; Only the first five base stats are copied..
 	ld hl, wBaseStats

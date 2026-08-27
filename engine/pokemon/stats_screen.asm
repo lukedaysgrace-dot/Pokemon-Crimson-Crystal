@@ -758,13 +758,14 @@ StatsScreen_PlaceTypeIcon:
 
 StatsScreen_GetMoveDisplayType:
 ; Return the display type (in a) for the move struct in wStringBuffer2.
-; Hidden Power shows its computed type (from wTempMonDVs, or the type
-; chosen at the Hidden Power Guy). Clobbers bc, d, hl.
+; Hidden Power shows this mon's own type (its HiddenPowerType byte).
+; Clobbers bc, de.
 	ld a, [wStringBuffer2 + MOVE_EFFECT]
 	cp EFFECT_HIDDEN_POWER
 	ld a, [wStringBuffer2 + MOVE_TYPE]
 	ret nz
-	ld hl, wTempMonDVs
+	ld de, wTempMonHiddenPowerType
+	ld bc, wTempMonAttack
 	farcall GetHiddenPowerDisplayStats ; c = type
 	ld a, c
 	ret
@@ -1427,20 +1428,16 @@ StatsScreen_MoveInfo:
 	push af
 	ld de, wStringBuffer2
 	call GetMoveData
-	; Hidden Power may have a custom category as well as a computed type/power.
-	; The DV-based path's category comes from battle state, so only use b when
-	; the Hidden Power Guy's explicit choice is active.
+	; Hidden Power shows this mon's own type, its fixed power, and the
+	; category its (unboosted) stats would give it right now.
 	ld a, [wStringBuffer2 + MOVE_EFFECT]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .got_move_data
-	ld hl, wTempMonDVs
-	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
-	ld a, [wHiddenPowerType]
-	and a
-	jr z, .store_hidden_power_stats
+	ld de, wTempMonHiddenPowerType
+	ld bc, wTempMonAttack
+	farcall GetHiddenPowerDisplayStats ; b = category, c = type, d = power
 	ld a, b
 	ld [wStringBuffer2 + MOVE_CATEGORY], a
-.store_hidden_power_stats
 	ld a, c
 	ld [wStringBuffer2 + MOVE_TYPE], a
 	ld a, d

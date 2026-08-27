@@ -1467,6 +1467,7 @@ AI_Smart_Counter:
 	jr z, .asm_38c38
 
 	call AIGetEnemyMove
+	farcall HiddenPowerPatchPlayerLastMoveCategory
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
@@ -2441,8 +2442,9 @@ AI_Smart_HiddenPower:
 	ld a, 1
 	ldh [hBattleTurn], a
 
-; Calculate Hidden Power's type and base power based on enemy's DVs.
-	callfar HiddenPowerDamage
+; wEnemyMoveStruct already holds this mon's own Hidden Power type, its fixed
+; power and its current category (AIGetEnemyMove patches them in), so the
+; type matchup below uses the real type.
 	callfar BattleCheckTypeMatchup
 	pop hl
 
@@ -2451,22 +2453,8 @@ AI_Smart_HiddenPower:
 	cp EFFECTIVE
 	jr c, .bad
 
-; Discourage Hidden Power if its base power	is lower than 50.
-	ld a, d
-	cp 50
-	jr c, .bad
-
-; Encourage Hidden Power if super-effective.
-	ld a, [wTypeMatchup]
-	cp EFFECTIVE + 1
-	jr nc, .good
-
-; Encourage Hidden Power if its base power is 70.
-	ld a, d
-	cp 70
-	ret c
-
-.good
+; Encourage Hidden Power otherwise (its power is always
+; HIDDEN_POWER_BASE_POWER; super-effective is covered too).
 	dec [hl]
 	ret
 
@@ -2685,6 +2673,7 @@ AI_Smart_MirrorCoat:
 	jr z, .asm_391d2
 
 	call AIGetEnemyMove
+	farcall HiddenPowerPatchPlayerLastMoveCategory
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
@@ -4202,7 +4191,7 @@ AIElitePlayerLockedHarmless:
 	ld a, [wPlayerChoiceLockedMove]
 	and a
 	jr z, .no
-	call GetMoveTypeIfDamaging
+	call GetPlayerMoveTypeIfDamaging
 	jr z, .no ; locked into a status move: it can still cripple us
 	ld d, a ; d = locked move's type
 ; Does our own ability swallow it? (Not if the player's Mold Breaker
@@ -4784,6 +4773,9 @@ AIGetEnemyMove:
 
 	ld de, wEnemyMoveStruct
 	call GetMoveData
+	; Hidden Power: this mon's own type, fixed power, and the category its
+	; current stats give (so every type/category/damage check below is right)
+	farcall HiddenPowerPatchEnemyMoveStruct
 
 	pop bc
 	pop de

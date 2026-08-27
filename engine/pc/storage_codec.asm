@@ -104,11 +104,18 @@ EncodeSavedMon::
 	ld [hli], a
 	ld a, [wTempMonPersonality]
 	ld [hli], a
+	; Flags: bit 0 = egg, bits 1-5 = Hidden Power type
+	ld a, [wTempMonHiddenPowerType]
+rept SAVEMON_HIDDEN_POWER_SHIFT
+	add a
+endr
+	and SAVEMON_HIDDEN_POWER_MASK
+	ld d, a
 	ld a, [wTempMonIsEgg]
 	and a
-	ld a, 0
+	ld a, d
 	jr z, .not_egg
-	ld a, 1 << SAVEMON_IS_EGG_F
+	or 1 << SAVEMON_IS_EGG_F
 .not_egg
 	ld [hl], a
 	pop hl
@@ -284,8 +291,15 @@ DecodeSavedMon::
 	ld a, [hli]
 	ld [wTempMonPersonality], a
 	ld a, [hl]
+	ld d, a
 	and 1 << SAVEMON_IS_EGG_F
 	ld [wTempMonIsEgg], a
+	ld a, d
+	and SAVEMON_HIDDEN_POWER_MASK
+rept SAVEMON_HIDDEN_POWER_SHIFT
+	srl a
+endr
+	ld [wTempMonHiddenPowerType], a
 	pop hl
 
 	push hl

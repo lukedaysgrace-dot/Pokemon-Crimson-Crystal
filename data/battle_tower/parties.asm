@@ -1,8 +1,8 @@
 BattleTowerMons:
 ; 10 groups of 21 mons.
-; Each 65-byte source record is NICKNAMED_MON_STRUCT_LENGTH + 5: species and
+; Each 66-byte source record is NICKNAMED_MON_STRUCT_LENGTH + 5: species and
 ; moves are 16-bit here, and the loader converts them to the party struct's
-; 8-bit fields. Keep Personality between Level and Status.
+; 8-bit fields. Keep Personality and the Hidden Power type between Level and Status.
 
 BattleTowerMons1:
 
@@ -24,6 +24,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 41 ; HP
 	bigdw 41 ; Max HP
@@ -52,6 +53,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 39 ; HP
 	bigdw 39 ; Max HP
@@ -80,6 +82,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 46 ; HP
 	bigdw 46 ; Max HP
@@ -108,6 +111,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 66 ; HP
 	bigdw 66 ; Max HP
@@ -136,6 +140,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 47 ; HP
 	bigdw 47 ; Max HP
@@ -164,6 +169,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 40 ; HP
 	bigdw 40 ; Max HP
@@ -192,6 +198,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 46 ; HP
 	bigdw 46 ; Max HP
@@ -220,6 +227,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 43 ; HP
 	bigdw 43 ; Max HP
@@ -248,6 +256,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 52 ; HP
 	bigdw 52 ; Max HP
@@ -276,6 +285,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 38 ; HP
 	bigdw 38 ; Max HP
@@ -304,6 +314,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 44 ; HP
 	bigdw 44 ; Max HP
@@ -332,6 +343,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 37 ; HP
 	bigdw 37 ; Max HP
@@ -360,6 +372,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 36 ; HP
 	bigdw 36 ; Max HP
@@ -388,6 +401,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 39 ; HP
 	bigdw 39 ; Max HP
@@ -416,6 +430,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 77 ; HP
 	bigdw 77 ; Max HP
@@ -444,6 +459,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 57 ; HP
 	bigdw 57 ; Max HP
@@ -472,6 +488,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 45 ; HP
 	bigdw 45 ; Max HP
@@ -500,6 +517,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 43 ; HP
 	bigdw 43 ; Max HP
@@ -528,6 +546,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 38 ; HP
 	bigdw 38 ; Max HP
@@ -556,6 +575,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 40 ; HP
 	bigdw 40 ; Max HP
@@ -584,6 +604,7 @@ BattleTowerMons1:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 10 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 36 ; HP
 	bigdw 36 ; Max HP
@@ -615,6 +636,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 81 ; HP
 	bigdw 81 ; Max HP
@@ -643,6 +665,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 71 ; HP
 	bigdw 71 ; Max HP
@@ -671,6 +694,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 83 ; HP
 	bigdw 83 ; Max HP
@@ -699,6 +723,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 77 ; HP
 	bigdw 77 ; Max HP
@@ -727,6 +752,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 68 ; HP
 	bigdw 68 ; Max HP
@@ -755,6 +781,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 81 ; HP
 	bigdw 81 ; Max HP
@@ -783,6 +810,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 78 ; HP
 	bigdw 78 ; Max HP
@@ -811,6 +839,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 83 ; HP
 	bigdw 83 ; Max HP
@@ -839,6 +868,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 78 ; HP
 	bigdw 78 ; Max HP
@@ -867,6 +897,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 148 ; HP
 	bigdw 148 ; Max HP
@@ -895,6 +926,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 98 ; HP
 	bigdw 98 ; Max HP
@@ -923,6 +955,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 58 ; HP
 	bigdw 58 ; Max HP
@@ -951,6 +984,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 73 ; HP
 	bigdw 73 ; Max HP
@@ -979,6 +1013,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 67 ; HP
 	bigdw 67 ; Max HP
@@ -1007,6 +1042,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 76 ; HP
 	bigdw 76 ; Max HP
@@ -1035,6 +1071,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 86 ; HP
 	bigdw 86 ; Max HP
@@ -1063,6 +1100,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 83 ; HP
 	bigdw 83 ; Max HP
@@ -1091,6 +1129,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 98 ; HP
 	bigdw 98 ; Max HP
@@ -1119,6 +1158,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 97 ; HP
 	bigdw 97 ; Max HP
@@ -1147,6 +1187,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 74 ; HP
 	bigdw 74 ; Max HP
@@ -1175,6 +1216,7 @@ BattleTowerMons2:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 20 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 81 ; HP
 	bigdw 81 ; Max HP
@@ -1206,6 +1248,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 103 ; HP
 	bigdw 103 ; Max HP
@@ -1234,6 +1277,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 119 ; HP
 	bigdw 119 ; Max HP
@@ -1262,6 +1306,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 101 ; HP
 	bigdw 101 ; Max HP
@@ -1290,6 +1335,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 109 ; HP
 	bigdw 109 ; Max HP
@@ -1318,6 +1364,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 82 ; HP
 	bigdw 82 ; Max HP
@@ -1346,6 +1393,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 109 ; HP
 	bigdw 109 ; Max HP
@@ -1374,6 +1422,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 217 ; HP
 	bigdw 217 ; Max HP
@@ -1402,6 +1451,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 108 ; HP
 	bigdw 108 ; Max HP
@@ -1430,6 +1480,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 118 ; HP
 	bigdw 118 ; Max HP
@@ -1458,6 +1509,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 111 ; HP
 	bigdw 111 ; Max HP
@@ -1486,6 +1538,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 117 ; HP
 	bigdw 117 ; Max HP
@@ -1514,6 +1567,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 99 ; HP
 	bigdw 99 ; Max HP
@@ -1542,6 +1596,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 98 ; HP
 	bigdw 98 ; Max HP
@@ -1570,6 +1625,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 142 ; HP
 	bigdw 142 ; Max HP
@@ -1598,6 +1654,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 139 ; HP
 	bigdw 139 ; Max HP
@@ -1626,6 +1683,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 99 ; HP
 	bigdw 99 ; Max HP
@@ -1654,6 +1712,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 110 ; HP
 	bigdw 110 ; Max HP
@@ -1682,6 +1741,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 101 ; HP
 	bigdw 101 ; Max HP
@@ -1710,6 +1770,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 114 ; HP
 	bigdw 114 ; Max HP
@@ -1738,6 +1799,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 96 ; HP
 	bigdw 96 ; Max HP
@@ -1766,6 +1828,7 @@ BattleTowerMons3:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 30 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 99 ; HP
 	bigdw 99 ; Max HP
@@ -1797,6 +1860,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 143 ; HP
 	bigdw 143 ; Max HP
@@ -1825,6 +1889,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 142 ; HP
 	bigdw 142 ; Max HP
@@ -1853,6 +1918,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 206 ; HP
 	bigdw 206 ; Max HP
@@ -1881,6 +1947,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 186 ; HP
 	bigdw 186 ; Max HP
@@ -1909,6 +1976,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 138 ; HP
 	bigdw 138 ; Max HP
@@ -1937,6 +2005,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 126 ; HP
 	bigdw 126 ; Max HP
@@ -1965,6 +2034,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 131 ; HP
 	bigdw 131 ; Max HP
@@ -1993,6 +2063,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 233 ; HP
 	bigdw 233 ; Max HP
@@ -2021,6 +2092,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 145 ; HP
 	bigdw 145 ; Max HP
@@ -2049,6 +2121,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 139 ; HP
 	bigdw 139 ; Max HP
@@ -2077,6 +2150,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 108 ; HP
 	bigdw 108 ; Max HP
@@ -2105,6 +2179,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 157 ; HP
 	bigdw 157 ; Max HP
@@ -2133,6 +2208,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 147 ; HP
 	bigdw 147 ; Max HP
@@ -2161,6 +2237,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 153 ; HP
 	bigdw 153 ; Max HP
@@ -2189,6 +2266,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 141 ; HP
 	bigdw 141 ; Max HP
@@ -2217,6 +2295,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 134 ; HP
 	bigdw 134 ; Max HP
@@ -2245,6 +2324,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 142 ; HP
 	bigdw 142 ; Max HP
@@ -2273,6 +2353,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 158 ; HP
 	bigdw 158 ; Max HP
@@ -2301,6 +2382,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 146 ; HP
 	bigdw 146 ; Max HP
@@ -2329,6 +2411,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 161 ; HP
 	bigdw 161 ; Max HP
@@ -2357,6 +2440,7 @@ BattleTowerMons4:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 40 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 124 ; HP
 	bigdw 124 ; Max HP
@@ -2388,6 +2472,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 179 ; HP
 	bigdw 179 ; Max HP
@@ -2416,6 +2501,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 178 ; HP
 	bigdw 178 ; Max HP
@@ -2444,6 +2530,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 123 ; HP
 	bigdw 123 ; Max HP
@@ -2472,6 +2559,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 263 ; HP
 	bigdw 263 ; Max HP
@@ -2500,6 +2588,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 234 ; HP
 	bigdw 234 ; Max HP
@@ -2528,6 +2617,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 161 ; HP
 	bigdw 161 ; Max HP
@@ -2556,6 +2646,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 169 ; HP
 	bigdw 169 ; Max HP
@@ -2584,6 +2675,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 197 ; HP
 	bigdw 197 ; Max HP
@@ -2612,6 +2704,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 187 ; HP
 	bigdw 187 ; Max HP
@@ -2640,6 +2733,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 161 ; HP
 	bigdw 161 ; Max HP
@@ -2668,6 +2762,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 135 ; HP
 	bigdw 135 ; Max HP
@@ -2696,6 +2791,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 162 ; HP
 	bigdw 162 ; Max HP
@@ -2724,6 +2820,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 181 ; HP
 	bigdw 181 ; Max HP
@@ -2752,6 +2849,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 178 ; HP
 	bigdw 178 ; Max HP
@@ -2780,6 +2878,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 190 ; HP
 	bigdw 190 ; Max HP
@@ -2808,6 +2907,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 184 ; HP
 	bigdw 184 ; Max HP
@@ -2836,6 +2936,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 170 ; HP
 	bigdw 170 ; Max HP
@@ -2864,6 +2965,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 176 ; HP
 	bigdw 176 ; Max HP
@@ -2892,6 +2994,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 161 ; HP
 	bigdw 161 ; Max HP
@@ -2920,6 +3023,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 193 ; HP
 	bigdw 193 ; Max HP
@@ -2948,6 +3052,7 @@ BattleTowerMons5:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 50 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 181 ; HP
 	bigdw 181 ; Max HP
@@ -2979,6 +3084,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 211 ; HP
 	bigdw 211 ; Max HP
@@ -3007,6 +3113,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 240 ; HP
 	bigdw 240 ; Max HP
@@ -3035,6 +3142,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 212 ; HP
 	bigdw 212 ; Max HP
@@ -3063,6 +3171,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 223 ; HP
 	bigdw 223 ; Max HP
@@ -3091,6 +3200,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 227 ; HP
 	bigdw 227 ; Max HP
@@ -3119,6 +3229,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 229 ; HP
 	bigdw 229 ; Max HP
@@ -3147,6 +3258,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 347 ; HP
 	bigdw 347 ; Max HP
@@ -3175,6 +3287,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 215 ; HP
 	bigdw 215 ; Max HP
@@ -3203,6 +3316,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 229 ; HP
 	bigdw 229 ; Max HP
@@ -3231,6 +3345,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 233 ; HP
 	bigdw 233 ; Max HP
@@ -3259,6 +3374,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 228 ; HP
 	bigdw 228 ; Max HP
@@ -3287,6 +3403,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 221 ; HP
 	bigdw 221 ; Max HP
@@ -3315,6 +3432,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 425 ; HP
 	bigdw 425 ; Max HP
@@ -3343,6 +3461,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 307 ; HP
 	bigdw 307 ; Max HP
@@ -3371,6 +3490,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 215 ; HP
 	bigdw 215 ; Max HP
@@ -3399,6 +3519,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 209 ; HP
 	bigdw 209 ; Max HP
@@ -3427,6 +3548,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 210 ; HP
 	bigdw 210 ; Max HP
@@ -3455,6 +3577,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 246 ; HP
 	bigdw 246 ; Max HP
@@ -3483,6 +3606,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 201 ; HP
 	bigdw 201 ; Max HP
@@ -3511,6 +3635,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 171 ; HP
 	bigdw 171 ; Max HP
@@ -3539,6 +3664,7 @@ BattleTowerMons6:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 60 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 205 ; HP
 	bigdw 205 ; Max HP
@@ -3570,6 +3696,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 231 ; HP
 	bigdw 231 ; Max HP
@@ -3598,6 +3725,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 319 ; HP
 	bigdw 319 ; Max HP
@@ -3626,6 +3754,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 274 ; HP
 	bigdw 274 ; Max HP
@@ -3654,6 +3783,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 495 ; HP
 	bigdw 495 ; Max HP
@@ -3682,6 +3812,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 365 ; HP
 	bigdw 365 ; Max HP
@@ -3710,6 +3841,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 245 ; HP
 	bigdw 245 ; Max HP
@@ -3738,6 +3870,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 280 ; HP
 	bigdw 280 ; Max HP
@@ -3766,6 +3899,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 264 ; HP
 	bigdw 264 ; Max HP
@@ -3794,6 +3928,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 268 ; HP
 	bigdw 268 ; Max HP
@@ -3822,6 +3957,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 270 ; HP
 	bigdw 270 ; Max HP
@@ -3850,6 +3986,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 271 ; HP
 	bigdw 271 ; Max HP
@@ -3878,6 +4015,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 267 ; HP
 	bigdw 267 ; Max HP
@@ -3906,6 +4044,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 263 ; HP
 	bigdw 263 ; Max HP
@@ -3934,6 +4073,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 210 ; HP
 	bigdw 210 ; Max HP
@@ -3962,6 +4102,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 228 ; HP
 	bigdw 228 ; Max HP
@@ -3990,6 +4131,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 232 ; HP
 	bigdw 232 ; Max HP
@@ -4018,6 +4160,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 203 ; HP
 	bigdw 203 ; Max HP
@@ -4046,6 +4189,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 252 ; HP
 	bigdw 252 ; Max HP
@@ -4074,6 +4218,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 233 ; HP
 	bigdw 233 ; Max HP
@@ -4102,6 +4247,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 230 ; HP
 	bigdw 230 ; Max HP
@@ -4130,6 +4276,7 @@ BattleTowerMons7:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 70 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 231 ; HP
 	bigdw 231 ; Max HP
@@ -4161,6 +4308,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 263 ; HP
 	bigdw 263 ; Max HP
@@ -4189,6 +4337,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 415 ; HP
 	bigdw 415 ; Max HP
@@ -4217,6 +4366,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 280 ; HP
 	bigdw 280 ; Max HP
@@ -4245,6 +4395,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 277 ; HP
 	bigdw 277 ; Max HP
@@ -4273,6 +4424,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 366 ; HP
 	bigdw 366 ; Max HP
@@ -4301,6 +4453,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 318 ; HP
 	bigdw 318 ; Max HP
@@ -4329,6 +4482,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 248 ; HP
 	bigdw 248 ; Max HP
@@ -4357,6 +4511,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 273 ; HP
 	bigdw 273 ; Max HP
@@ -4385,6 +4540,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 273 ; HP
 	bigdw 273 ; Max HP
@@ -4413,6 +4569,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 304 ; HP
 	bigdw 304 ; Max HP
@@ -4441,6 +4598,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 293 ; HP
 	bigdw 293 ; Max HP
@@ -4469,6 +4627,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 280 ; HP
 	bigdw 280 ; Max HP
@@ -4497,6 +4656,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 288 ; HP
 	bigdw 288 ; Max HP
@@ -4525,6 +4685,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 291 ; HP
 	bigdw 291 ; Max HP
@@ -4553,6 +4714,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 301 ; HP
 	bigdw 301 ; Max HP
@@ -4581,6 +4743,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 283 ; HP
 	bigdw 283 ; Max HP
@@ -4609,6 +4772,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 251 ; HP
 	bigdw 251 ; Max HP
@@ -4637,6 +4801,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 214 ; HP
 	bigdw 214 ; Max HP
@@ -4665,6 +4830,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 260 ; HP
 	bigdw 260 ; Max HP
@@ -4693,6 +4859,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 241 ; HP
 	bigdw 241 ; Max HP
@@ -4721,6 +4888,7 @@ BattleTowerMons8:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 80 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 286 ; HP
 	bigdw 286 ; Max HP
@@ -4752,6 +4920,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 349 ; HP
 	bigdw 349 ; Max HP
@@ -4780,6 +4949,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 343 ; HP
 	bigdw 343 ; Max HP
@@ -4808,6 +4978,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 289 ; HP
 	bigdw 289 ; Max HP
@@ -4836,6 +5007,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 267 ; HP
 	bigdw 267 ; Max HP
@@ -4864,6 +5036,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 326 ; HP
 	bigdw 326 ; Max HP
@@ -4892,6 +5065,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 326 ; HP
 	bigdw 326 ; Max HP
@@ -4920,6 +5094,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 310 ; HP
 	bigdw 310 ; Max HP
@@ -4948,6 +5123,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 355 ; HP
 	bigdw 355 ; Max HP
@@ -4976,6 +5152,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 405 ; HP
 	bigdw 405 ; Max HP
@@ -5004,6 +5181,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 294 ; HP
 	bigdw 294 ; Max HP
@@ -5032,6 +5210,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 337 ; HP
 	bigdw 337 ; Max HP
@@ -5060,6 +5239,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 455 ; HP
 	bigdw 455 ; Max HP
@@ -5088,6 +5268,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 337 ; HP
 	bigdw 337 ; Max HP
@@ -5116,6 +5297,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 634 ; HP
 	bigdw 634 ; Max HP
@@ -5144,6 +5326,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 310 ; HP
 	bigdw 310 ; Max HP
@@ -5172,6 +5355,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 316 ; HP
 	bigdw 316 ; Max HP
@@ -5200,6 +5384,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 204 ; HP
 	bigdw 204 ; Max HP
@@ -5228,6 +5413,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 375 ; HP
 	bigdw 375 ; Max HP
@@ -5256,6 +5442,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 322 ; HP
 	bigdw 322 ; Max HP
@@ -5284,6 +5471,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 284 ; HP
 	bigdw 284 ; Max HP
@@ -5312,6 +5500,7 @@ BattleTowerMons9:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 90 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 342 ; HP
 	bigdw 342 ; Max HP
@@ -5343,6 +5532,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 347 ; HP
 	bigdw 347 ; Max HP
@@ -5371,6 +5561,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 377 ; HP
 	bigdw 377 ; Max HP
@@ -5399,6 +5590,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 349 ; HP
 	bigdw 349 ; Max HP
@@ -5427,6 +5619,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 324 ; HP
 	bigdw 324 ; Max HP
@@ -5455,6 +5648,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 342 ; HP
 	bigdw 342 ; Max HP
@@ -5483,6 +5677,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 374 ; HP
 	bigdw 374 ; Max HP
@@ -5511,6 +5706,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 344 ; HP
 	bigdw 344 ; Max HP
@@ -5539,6 +5735,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 309 ; HP
 	bigdw 309 ; Max HP
@@ -5567,6 +5764,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 404 ; HP
 	bigdw 404 ; Max HP
@@ -5595,6 +5793,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 344 ; HP
 	bigdw 344 ; Max HP
@@ -5623,6 +5822,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 324 ; HP
 	bigdw 324 ; Max HP
@@ -5651,6 +5851,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 309 ; HP
 	bigdw 309 ; Max HP
@@ -5679,6 +5880,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 302 ; HP
 	bigdw 302 ; Max HP
@@ -5707,6 +5909,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 334 ; HP
 	bigdw 334 ; Max HP
@@ -5735,6 +5938,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 704 ; HP
 	bigdw 704 ; Max HP
@@ -5763,6 +5967,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 388 ; HP
 	bigdw 388 ; Max HP
@@ -5791,6 +5996,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 376 ; HP
 	bigdw 376 ; Max HP
@@ -5819,6 +6025,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 332 ; HP
 	bigdw 332 ; Max HP
@@ -5847,6 +6054,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 329 ; HP
 	bigdw 329 ; Max HP
@@ -5875,6 +6083,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_1 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 265 ; HP
 	bigdw 265 ; Max HP
@@ -5903,6 +6112,7 @@ BattleTowerMons10:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 100 ; Level
 	db ABILITY_2 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 425 ; HP
 	bigdw 425 ; Max HP
