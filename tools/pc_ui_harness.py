@@ -42,7 +42,8 @@ def setup_default():
 
     # Box 1: a handful of species, one shiny, one holding an item, one egg
     mons = [
-        dict(species_index=6, moves_index=[1, 2, 3, 4], level=36, item=0x53, nick="CHARIZARD@@"),
+        dict(species_index=6, moves_index=[1, 2, 3, 4], level=36, item=0x53,
+             pokerus=0x21, shiny_gender=0xC0, nick="CHARIZARD@@"),
         dict(species_index=25, moves_index=[1, 0, 0, 0], level=12, shiny_gender=0xC0, nick="PIKACHU@@@@"),
         dict(species_index=150, moves_index=[5, 6, 7, 8], level=70, nick="MEWTWO@@@@@"),
         dict(species_index=1, moves_index=[1, 0, 0, 0], level=5, egg=1, nick="EGG@@@@@@@@"),

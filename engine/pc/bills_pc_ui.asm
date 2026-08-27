@@ -4386,20 +4386,26 @@ BillsPC_PlaceHeldMon:
 BillsPC_RestoreUI:
 ; Rebuilds the screen after another screen (summary, naming, pack, mail).
 	call ClearPalettes
+	call ClearTileMap
+	farcall WipeAttrMap
 	call ClearSprites
 	farcall ClearSpriteAnims
+	xor a
+	ldh [hBGMapMode], a
+
+	; Recreate the complete PC layout. Other screens overwrite cells that the
+	; PC normally leaves blank, including the unused edges around the frontpic;
+	; restoring only icons and text leaves those cells visible as debris.
+	call BillsPC_LoadUI
+	call BillsPC_DrawStaticLayout
 
 	; Another screen may have overwritten the icon tiles
 	ld a, 1
 	ldh [rVBK], a
-	xor a
-	ldh [hBGMapMode], a
 	call SetPartyIcons
 	call SetBoxIconsAndName
 	xor a
 	ldh [rVBK], a
-
-	call BillsPC_LoadUI
 
 	; Cursor palettes
 	ld a, [wBillsPC_CursorMode]
@@ -4417,6 +4423,11 @@ BillsPC_RestoreUI:
 	xor a
 	ldh [rVBK], a
 .no_item
+	; The screen we are returning from may have left OAM updates suppressed.
+	; Re-enable them before the final transfer so both the rebuilt PC sprites
+	; and the cleared unused entries reach hardware (and keep updating).
+	xor a
+	ldh [hOAMUpdate], a
 	call BillsPC_CopyTilemapAtOnce
 
 	call BillsPC_EnableHBlank

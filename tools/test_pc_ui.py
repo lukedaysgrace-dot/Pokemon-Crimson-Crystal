@@ -38,8 +38,14 @@ press("a", wait=30, label="menu")
 press("down", wait=10)
 press("a", wait=150, label="summary")
 press("down", hold=8, wait=160, label="summary_next")
+# Reproduce the hardware-only debris: leave a visible object in the final OAM
+# slot while updates are suppressed, as a returning menu can do.
+h.wr(0xfe00 + 39 * 4, [16, 16, 0, 0])
+h.wr(S("hOAMUpdate"), 1)
 press("b", hold=8, wait=150, label="summary_closed")
 check(h.rd(S("hLCDCPointer")) == 0xFF, "HBlank handler restored after the summary")
+check(h.rd(S("hOAMUpdate")) == 0, "OAM updates restored after the summary")
+check(h.rd(0xfe00 + 39 * 4) == 0, "stale summary sprite cleared from hardware OAM")
 
 print("[switch mode: pick up Charizard, swap with the egg]")
 press("left", wait=20)                     # the summary scrolled to Pikachu; back to $12
@@ -48,7 +54,7 @@ press("a", wait=40, label="picked")
 press("right"); press("right"); press("right", wait=20, label="carry")   # $15 (egg)
 press("a", wait=60, label="placed")
 r = h.rd(S("wBillsPC_BoxList"), 8)
-check(r[6] | (r[7] << 8) == 6, f"Charizard now in box slot 4 (entry {r[6:8].hex()})")
+check(r[6] | (r[7] << 8) == 0x4006, f"shiny Charizard now in box slot 4 (entry {r[6:8].hex()})")
 check(r[0] | (r[1] << 8) == 0x8001, f"egg now in box slot 1 (entry {r[0:2].hex()})")
 
 print("[deposit to party via swap mode]")

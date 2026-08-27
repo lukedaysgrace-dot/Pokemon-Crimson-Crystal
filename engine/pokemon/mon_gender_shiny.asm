@@ -74,14 +74,13 @@ GetGenderFromFlags:
 	ret
 
 InitMonPokerus:
-; Assign a 5% Pokerus infection to a new mon.
+; TEMPORARY TEST: Assign Pokerus to every new mon.
 ; de = destination PokerusStatus byte.
 
 	push bc
 	push de
-	call Random
-	cp POKERUS_PROBABILITY
-	jr nc, .no_pokerus
+	; The normal 5% Random/POKERUS_PROBABILITY check is bypassed so the
+	; summary-screen icon can be inspected reliably.
 .randomPokerusLoop
 	call Random
 	and a
