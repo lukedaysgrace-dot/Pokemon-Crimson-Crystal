@@ -149,6 +149,7 @@ SpriteAnimOAMData:
 	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
 	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
 	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
+	dbw $00, .OAMData_PcCursorEmpty            ; SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY
 
 .OAMData_1x1_Palette0:
 	db 1
@@ -1203,3 +1204,12 @@ SpriteAnimOAMData:
 	dsprite  0,  0,  1,  0, $30, PAL_PC_PACK | VRAM_BANK_1
 	dsprite  1,  0,  0,  0, $31, PAL_PC_PACK | VRAM_BANK_1
 	dsprite  1,  0,  1,  0, $32, PAL_PC_PACK | VRAM_BANK_1
+
+.OAMData_PcCursorEmpty:
+; Nothing held and no bag: just the cursor, so the lines it crosses carry
+; fewer sprites (shorter mode 3 = more HBlank for the palette code).
+	db 4
+	dsprite  0,  0,  0,  0, $04, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $04, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $05, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP

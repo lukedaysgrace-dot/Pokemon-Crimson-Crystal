@@ -52,9 +52,9 @@ press("up", wait=20)                          # $31 Golurk
 press("a", wait=30)
 press("down"); press("down"); press("down", wait=10)   # ITEM
 press("a", wait=40, label="item_menu")
-press("a", hold=2, wait=150, label="give_pack")       # GIVE -> pack
-press("down", hold=2, wait=30)                # second item: Potion
-press("a", hold=2, wait=150, label="given")
+press("a", hold=4, wait=150, label="give_pack")       # GIVE -> pack
+press("down", hold=4, wait=30)                # second item: Potion
+press("a", hold=4, wait=150, label="given")
 check(num_items() == 1, f"one item left in the bag (got {num_items()})")
 check(h.rd(S("wPartyMon2Item")) == 0x12, f"Golurk holds the Potion (item {h.rd(S('wPartyMon2Item')):02x})")
 
@@ -74,7 +74,7 @@ press("select"); press("select", wait=20)     # ITEM mode
 press("right"); press("up", wait=20)          # $31 -> $21 bag
 h.wr(S("wItemsPocketCursor"), 1)             # the pack remembers its cursor: back to the Mail
 h.wr(S("wItemsPocketScrollPosition"), 0)
-press("a", hold=2, wait=150, label="mail_pack")
+press("a", hold=4, wait=150, label="mail_pack")
 press("a", hold=4, wait=150, label="mail_picked")
 check(h.rd(S("wBillsPC_CursorItem")) == MAIL, f"holding the Mail (item {h.rd(S('wBillsPC_CursorItem')):02x})")
 press("down"); press("left", wait=20)         # $30 Eevee

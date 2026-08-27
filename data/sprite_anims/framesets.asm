@@ -73,6 +73,7 @@ SpriteAnimFrameData:
 	dw .Frameset_PcMode
 	dw .Frameset_PcMode2
 	dw .Frameset_PcPack
+	dw .Frameset_PcCursorEmpty
 
 .Frameset_00:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
@@ -532,4 +533,8 @@ SpriteAnimFrameData:
 
 .Frameset_PcPack:
 	frame SPRITE_ANIM_OAMSET_PC_PACK, 32
+	dorestart
+
+.Frameset_PcCursorEmpty:
+	frame SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY, 32
 	dorestart

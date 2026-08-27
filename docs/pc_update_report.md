@@ -34,11 +34,18 @@ Branch `polished-pc` on top of `6e539d60` (your `main`). Everything builds with
    * `"Overworld Weather"` is no longer pinned to bank $23 in `pokecrystal.link`
      (it didn't fit next to the sprite-animation additions); it floats like the new
      `"PC Storage"` / `"PC UI"` sections.
-3. **HBlank palette effect**: the per-row icon colours come from the STAT interrupt
-   (same code as Polished). PyBoy renders it correctly, but PyBoy is not
-   cycle-exact for STAT timing, so please give the PC a look in BGB or SameBoy;
-   if a row of icons ever shows the wrong colours, that's the place to look
-   (`BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`).
+3. **HBlank palette effect**: the per-row icon colours come from the STAT interrupt.
+   Unlike Polished (HBlank interrupt every line), the PC switches `rSTAT` to the
+   LYC interrupt and the handler waits for HBlank itself, so the palette writes
+   start at the top of the HBlank window instead of 40-50 cycles into it. That
+   is the fix for the blink / small white box above the Pokémon you reported:
+   on lines where the cursor, a carried mini and the mode icon overlapped, the
+   old timing pushed the last palette writes into mode 3, where the CGB ignores
+   them, so a row of icons or the shiny/Pokérus cells showed the wrong colours
+   for a frame (PyBoy doesn't model that, which is why it never showed up
+   here). The idle cursor also uses a 4-sprite frameset now instead of carrying
+   8 blank mini/shadow sprites around. If anything still flickers, it's
+   `BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`.
 4. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
    beast respawn when releasing your own beast, VWF item names (Crimson prints
    item names with the normal font; the icon of the item sits in column 7).
@@ -51,7 +58,7 @@ New: `engine/pc/storage.asm`, `engine/pc/storage_codec.asm`,
 `engine/pc/bills_pc_ui.asm`, `constants/pc_constants.asm`, `data/pc/*`,
 `gfx/pc/{pc,cursor,modes,bags,held_item_icons,shiny}.png` + `.pal` files,
 `docs/pc_storage_design.md` (design + API reference), `tools/pc_harness.py`,
-`tools/pc_ui_harness.py`, `tools/test_pc_*.py`.
+`tools/pc_ui_harness.py`, `tools/test_pc_*.py`, `tools/blink_probe.py`.
 
 Removed: `engine/pokemon/bills_pc.asm`, `engine/pokemon/bills_pc_top.asm`,
 `engine/pokemon/move_mon_wo_mail.asm`, `gfx/pc/orange.pal` (moved to
