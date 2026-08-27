@@ -44,7 +44,7 @@ press("down"); press("down"); press("down"); press("left"); press("left", wait=2
 press("a", wait=30, label="party_menu")
 press("a", wait=120, label="deposited")      # DEPOSIT
 check(h.rd(S("wPartyCount")) == 2, f"party count 2 after deposit (got {h.rd(S('wPartyCount'))})")
-check(box_entry(1) == 6, f"Charizard back in box slot 1 (entry {box_entry(1):04x})")
+check(box_entry(1) == 0x4006, f"shiny Charizard back in box slot 1 (entry {box_entry(1):04x})")
 
 print("[menu ITEM > GIVE: Potion to Golurk (party slot 2)]")
 press("right", wait=20)                       # $41 -> hmm: from $40 right = $41 (party slot 4, empty)

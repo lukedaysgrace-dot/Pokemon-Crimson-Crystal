@@ -204,6 +204,8 @@ LoadSummaryScreenPals::
 	call .FillAttrBox
 .pink_one_type
 	; Pokérus and shiny sparkles cells
+	hlcoord 16, 2, wAttrMap
+	ld [hl], $7
 	hlcoord 17, 2, wAttrMap
 	ld [hl], $7
 	hlcoord 18, 2, wAttrMap
