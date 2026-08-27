@@ -3694,6 +3694,9 @@ UpdateMoveData:
 
 	call GetMoveData
 	farcall AbilityConvertMoveType
+	; Hidden Power: the user's own type, fixed power, and the category its
+	; current stats give (engine/battle/hidden_power.asm)
+	farcall HiddenPowerUpdateMoveStruct
 	call GetMoveName
 	jp CopyName1
 

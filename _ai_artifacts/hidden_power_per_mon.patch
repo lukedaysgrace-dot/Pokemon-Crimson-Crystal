@@ -1,0 +1,3431 @@
+diff --git a/constants/pc_constants.asm b/constants/pc_constants.asm
+index 33eab4e..af5aa9e 100644
+--- a/constants/pc_constants.asm
++++ b/constants/pc_constants.asm
+@@ -98,4 +98,4 @@ PCANIM_QUICKFRAMES EQU  9
+ 	const PAL_PC_SHADOW
+ 
+ ; Save file format
+-SAVE_FORMAT_VERSION EQU 1 ; bump whenever sram.asm / saved WRAM layout changes
++SAVE_FORMAT_VERSION EQU 2 ; 2: per-Pokémon HiddenPowerType byte in box_struct; bump whenever sram.asm / saved WRAM layout changes
+diff --git a/constants/pokemon_data_constants.asm b/constants/pokemon_data_constants.asm
+index bd0fd5c..9d113d2 100644
+--- a/constants/pokemon_data_constants.asm
++++ b/constants/pokemon_data_constants.asm
+@@ -115,6 +115,7 @@ MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
+ MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
+ MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
+ MON_PERSONALITY        EQUS "(wPartyMon1Personality - wPartyMon1)"
++MON_HIDDEN_POWER_TYPE  EQUS "(wPartyMon1HiddenPowerType - wPartyMon1)"
+ 
+ ; perfect DVs (15 in every stat)
+ PERFECT_ATKDEF_DV EQU $ff
+@@ -208,6 +209,10 @@ SAVEMON_NAME_LENGTH EQU 10 ; stored nickname/OT bytes (terminator implied)
+ 
+ ; SAVEMON_FLAGS bits
+ SAVEMON_IS_EGG_F EQU 0
++; bits 1-5: the mon's Hidden Power type constant (MON_HIDDEN_POWER_TYPE),
++; 0 = default. Type constants are < 32 so five bits are enough.
++SAVEMON_HIDDEN_POWER_SHIFT EQU 1
++SAVEMON_HIDDEN_POWER_MASK  EQU %00111110
+ 
+ ; hall of fame
+ HOF_MON_LENGTH EQU 2 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick
+diff --git a/constants/type_constants.asm b/constants/type_constants.asm
+index 8d74fbd..3dd6afb 100644
+--- a/constants/type_constants.asm
++++ b/constants/type_constants.asm
+@@ -44,3 +44,10 @@ SPECIAL EQU const_value
+ TYPES_END EQU const_value
+ 
+ NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END
++
++; Hidden Power (see engine/battle/hidden_power.asm)
++; Every Pokémon stores its own HiddenPowerType (box_struct); 0 means "never
++; set at the Hidden Power Guy" and resolves to this default. Its category is
++; always chosen in battle from the user's current Attack vs Sp.Atk.
++HIDDEN_POWER_DEFAULT_TYPE EQU DARK
++HIDDEN_POWER_BASE_POWER   EQU 70
+diff --git a/data/battle_tower/parties.asm b/data/battle_tower/parties.asm
+index 2005f90..f81ff30 100644
+--- a/data/battle_tower/parties.asm
++++ b/data/battle_tower/parties.asm
+@@ -1,8 +1,8 @@
+ BattleTowerMons:
+ ; 10 groups of 21 mons.
+-; Each 65-byte source record is NICKNAMED_MON_STRUCT_LENGTH + 5: species and
++; Each 66-byte source record is NICKNAMED_MON_STRUCT_LENGTH + 5: species and
+ ; moves are 16-bit here, and the loader converts them to the party struct's
+-; 8-bit fields. Keep Personality between Level and Status.
++; 8-bit fields. Keep Personality and the Hidden Power type between Level and Status.
+ 
+ BattleTowerMons1:
+ 
+@@ -24,6 +24,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 41 ; HP
+ 	bigdw 41 ; Max HP
+@@ -52,6 +53,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 39 ; HP
+ 	bigdw 39 ; Max HP
+@@ -80,6 +82,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 46 ; HP
+ 	bigdw 46 ; Max HP
+@@ -108,6 +111,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 66 ; HP
+ 	bigdw 66 ; Max HP
+@@ -136,6 +140,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 47 ; HP
+ 	bigdw 47 ; Max HP
+@@ -164,6 +169,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 40 ; HP
+ 	bigdw 40 ; Max HP
+@@ -192,6 +198,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 46 ; HP
+ 	bigdw 46 ; Max HP
+@@ -220,6 +227,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 43 ; HP
+ 	bigdw 43 ; Max HP
+@@ -248,6 +256,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 52 ; HP
+ 	bigdw 52 ; Max HP
+@@ -276,6 +285,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 38 ; HP
+ 	bigdw 38 ; Max HP
+@@ -304,6 +314,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 44 ; HP
+ 	bigdw 44 ; Max HP
+@@ -332,6 +343,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 37 ; HP
+ 	bigdw 37 ; Max HP
+@@ -360,6 +372,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 36 ; HP
+ 	bigdw 36 ; Max HP
+@@ -388,6 +401,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 39 ; HP
+ 	bigdw 39 ; Max HP
+@@ -416,6 +430,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 77 ; HP
+ 	bigdw 77 ; Max HP
+@@ -444,6 +459,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 57 ; HP
+ 	bigdw 57 ; Max HP
+@@ -472,6 +488,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 45 ; HP
+ 	bigdw 45 ; Max HP
+@@ -500,6 +517,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 43 ; HP
+ 	bigdw 43 ; Max HP
+@@ -528,6 +546,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 38 ; HP
+ 	bigdw 38 ; Max HP
+@@ -556,6 +575,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 40 ; HP
+ 	bigdw 40 ; Max HP
+@@ -584,6 +604,7 @@ BattleTowerMons1:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 10 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 36 ; HP
+ 	bigdw 36 ; Max HP
+@@ -615,6 +636,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 81 ; HP
+ 	bigdw 81 ; Max HP
+@@ -643,6 +665,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 71 ; HP
+ 	bigdw 71 ; Max HP
+@@ -671,6 +694,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 83 ; HP
+ 	bigdw 83 ; Max HP
+@@ -699,6 +723,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 77 ; HP
+ 	bigdw 77 ; Max HP
+@@ -727,6 +752,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 68 ; HP
+ 	bigdw 68 ; Max HP
+@@ -755,6 +781,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 81 ; HP
+ 	bigdw 81 ; Max HP
+@@ -783,6 +810,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 78 ; HP
+ 	bigdw 78 ; Max HP
+@@ -811,6 +839,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 83 ; HP
+ 	bigdw 83 ; Max HP
+@@ -839,6 +868,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 78 ; HP
+ 	bigdw 78 ; Max HP
+@@ -867,6 +897,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 148 ; HP
+ 	bigdw 148 ; Max HP
+@@ -895,6 +926,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 98 ; HP
+ 	bigdw 98 ; Max HP
+@@ -923,6 +955,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 58 ; HP
+ 	bigdw 58 ; Max HP
+@@ -951,6 +984,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 73 ; HP
+ 	bigdw 73 ; Max HP
+@@ -979,6 +1013,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 67 ; HP
+ 	bigdw 67 ; Max HP
+@@ -1007,6 +1042,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 76 ; HP
+ 	bigdw 76 ; Max HP
+@@ -1035,6 +1071,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 86 ; HP
+ 	bigdw 86 ; Max HP
+@@ -1063,6 +1100,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 83 ; HP
+ 	bigdw 83 ; Max HP
+@@ -1091,6 +1129,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 98 ; HP
+ 	bigdw 98 ; Max HP
+@@ -1119,6 +1158,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 97 ; HP
+ 	bigdw 97 ; Max HP
+@@ -1147,6 +1187,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 74 ; HP
+ 	bigdw 74 ; Max HP
+@@ -1175,6 +1216,7 @@ BattleTowerMons2:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 20 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 81 ; HP
+ 	bigdw 81 ; Max HP
+@@ -1206,6 +1248,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 103 ; HP
+ 	bigdw 103 ; Max HP
+@@ -1234,6 +1277,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 119 ; HP
+ 	bigdw 119 ; Max HP
+@@ -1262,6 +1306,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 101 ; HP
+ 	bigdw 101 ; Max HP
+@@ -1290,6 +1335,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 109 ; HP
+ 	bigdw 109 ; Max HP
+@@ -1318,6 +1364,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 82 ; HP
+ 	bigdw 82 ; Max HP
+@@ -1346,6 +1393,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 109 ; HP
+ 	bigdw 109 ; Max HP
+@@ -1374,6 +1422,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 217 ; HP
+ 	bigdw 217 ; Max HP
+@@ -1402,6 +1451,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 108 ; HP
+ 	bigdw 108 ; Max HP
+@@ -1430,6 +1480,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 118 ; HP
+ 	bigdw 118 ; Max HP
+@@ -1458,6 +1509,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 111 ; HP
+ 	bigdw 111 ; Max HP
+@@ -1486,6 +1538,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 117 ; HP
+ 	bigdw 117 ; Max HP
+@@ -1514,6 +1567,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 99 ; HP
+ 	bigdw 99 ; Max HP
+@@ -1542,6 +1596,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 98 ; HP
+ 	bigdw 98 ; Max HP
+@@ -1570,6 +1625,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 142 ; HP
+ 	bigdw 142 ; Max HP
+@@ -1598,6 +1654,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 139 ; HP
+ 	bigdw 139 ; Max HP
+@@ -1626,6 +1683,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 99 ; HP
+ 	bigdw 99 ; Max HP
+@@ -1654,6 +1712,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 110 ; HP
+ 	bigdw 110 ; Max HP
+@@ -1682,6 +1741,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 101 ; HP
+ 	bigdw 101 ; Max HP
+@@ -1710,6 +1770,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 114 ; HP
+ 	bigdw 114 ; Max HP
+@@ -1738,6 +1799,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 96 ; HP
+ 	bigdw 96 ; Max HP
+@@ -1766,6 +1828,7 @@ BattleTowerMons3:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 30 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 99 ; HP
+ 	bigdw 99 ; Max HP
+@@ -1797,6 +1860,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 143 ; HP
+ 	bigdw 143 ; Max HP
+@@ -1825,6 +1889,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 142 ; HP
+ 	bigdw 142 ; Max HP
+@@ -1853,6 +1918,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 206 ; HP
+ 	bigdw 206 ; Max HP
+@@ -1881,6 +1947,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 186 ; HP
+ 	bigdw 186 ; Max HP
+@@ -1909,6 +1976,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 138 ; HP
+ 	bigdw 138 ; Max HP
+@@ -1937,6 +2005,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 126 ; HP
+ 	bigdw 126 ; Max HP
+@@ -1965,6 +2034,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 131 ; HP
+ 	bigdw 131 ; Max HP
+@@ -1993,6 +2063,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 233 ; HP
+ 	bigdw 233 ; Max HP
+@@ -2021,6 +2092,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 145 ; HP
+ 	bigdw 145 ; Max HP
+@@ -2049,6 +2121,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 139 ; HP
+ 	bigdw 139 ; Max HP
+@@ -2077,6 +2150,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 108 ; HP
+ 	bigdw 108 ; Max HP
+@@ -2105,6 +2179,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 157 ; HP
+ 	bigdw 157 ; Max HP
+@@ -2133,6 +2208,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 147 ; HP
+ 	bigdw 147 ; Max HP
+@@ -2161,6 +2237,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 153 ; HP
+ 	bigdw 153 ; Max HP
+@@ -2189,6 +2266,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 141 ; HP
+ 	bigdw 141 ; Max HP
+@@ -2217,6 +2295,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 134 ; HP
+ 	bigdw 134 ; Max HP
+@@ -2245,6 +2324,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 142 ; HP
+ 	bigdw 142 ; Max HP
+@@ -2273,6 +2353,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 158 ; HP
+ 	bigdw 158 ; Max HP
+@@ -2301,6 +2382,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 146 ; HP
+ 	bigdw 146 ; Max HP
+@@ -2329,6 +2411,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 161 ; HP
+ 	bigdw 161 ; Max HP
+@@ -2357,6 +2440,7 @@ BattleTowerMons4:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 40 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 124 ; HP
+ 	bigdw 124 ; Max HP
+@@ -2388,6 +2472,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 179 ; HP
+ 	bigdw 179 ; Max HP
+@@ -2416,6 +2501,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 178 ; HP
+ 	bigdw 178 ; Max HP
+@@ -2444,6 +2530,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 123 ; HP
+ 	bigdw 123 ; Max HP
+@@ -2472,6 +2559,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 263 ; HP
+ 	bigdw 263 ; Max HP
+@@ -2500,6 +2588,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 234 ; HP
+ 	bigdw 234 ; Max HP
+@@ -2528,6 +2617,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 161 ; HP
+ 	bigdw 161 ; Max HP
+@@ -2556,6 +2646,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 169 ; HP
+ 	bigdw 169 ; Max HP
+@@ -2584,6 +2675,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 197 ; HP
+ 	bigdw 197 ; Max HP
+@@ -2612,6 +2704,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 187 ; HP
+ 	bigdw 187 ; Max HP
+@@ -2640,6 +2733,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 161 ; HP
+ 	bigdw 161 ; Max HP
+@@ -2668,6 +2762,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 135 ; HP
+ 	bigdw 135 ; Max HP
+@@ -2696,6 +2791,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 162 ; HP
+ 	bigdw 162 ; Max HP
+@@ -2724,6 +2820,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 181 ; HP
+ 	bigdw 181 ; Max HP
+@@ -2752,6 +2849,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 178 ; HP
+ 	bigdw 178 ; Max HP
+@@ -2780,6 +2878,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 190 ; HP
+ 	bigdw 190 ; Max HP
+@@ -2808,6 +2907,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 184 ; HP
+ 	bigdw 184 ; Max HP
+@@ -2836,6 +2936,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 170 ; HP
+ 	bigdw 170 ; Max HP
+@@ -2864,6 +2965,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 176 ; HP
+ 	bigdw 176 ; Max HP
+@@ -2892,6 +2994,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 161 ; HP
+ 	bigdw 161 ; Max HP
+@@ -2920,6 +3023,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 193 ; HP
+ 	bigdw 193 ; Max HP
+@@ -2948,6 +3052,7 @@ BattleTowerMons5:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 50 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 181 ; HP
+ 	bigdw 181 ; Max HP
+@@ -2979,6 +3084,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 211 ; HP
+ 	bigdw 211 ; Max HP
+@@ -3007,6 +3113,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 240 ; HP
+ 	bigdw 240 ; Max HP
+@@ -3035,6 +3142,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 212 ; HP
+ 	bigdw 212 ; Max HP
+@@ -3063,6 +3171,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 223 ; HP
+ 	bigdw 223 ; Max HP
+@@ -3091,6 +3200,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 227 ; HP
+ 	bigdw 227 ; Max HP
+@@ -3119,6 +3229,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 229 ; HP
+ 	bigdw 229 ; Max HP
+@@ -3147,6 +3258,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 347 ; HP
+ 	bigdw 347 ; Max HP
+@@ -3175,6 +3287,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 215 ; HP
+ 	bigdw 215 ; Max HP
+@@ -3203,6 +3316,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 229 ; HP
+ 	bigdw 229 ; Max HP
+@@ -3231,6 +3345,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 233 ; HP
+ 	bigdw 233 ; Max HP
+@@ -3259,6 +3374,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 228 ; HP
+ 	bigdw 228 ; Max HP
+@@ -3287,6 +3403,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 221 ; HP
+ 	bigdw 221 ; Max HP
+@@ -3315,6 +3432,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 425 ; HP
+ 	bigdw 425 ; Max HP
+@@ -3343,6 +3461,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 307 ; HP
+ 	bigdw 307 ; Max HP
+@@ -3371,6 +3490,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 215 ; HP
+ 	bigdw 215 ; Max HP
+@@ -3399,6 +3519,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 209 ; HP
+ 	bigdw 209 ; Max HP
+@@ -3427,6 +3548,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 210 ; HP
+ 	bigdw 210 ; Max HP
+@@ -3455,6 +3577,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 246 ; HP
+ 	bigdw 246 ; Max HP
+@@ -3483,6 +3606,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 201 ; HP
+ 	bigdw 201 ; Max HP
+@@ -3511,6 +3635,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 171 ; HP
+ 	bigdw 171 ; Max HP
+@@ -3539,6 +3664,7 @@ BattleTowerMons6:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 60 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 205 ; HP
+ 	bigdw 205 ; Max HP
+@@ -3570,6 +3696,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 231 ; HP
+ 	bigdw 231 ; Max HP
+@@ -3598,6 +3725,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 319 ; HP
+ 	bigdw 319 ; Max HP
+@@ -3626,6 +3754,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 274 ; HP
+ 	bigdw 274 ; Max HP
+@@ -3654,6 +3783,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 495 ; HP
+ 	bigdw 495 ; Max HP
+@@ -3682,6 +3812,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 365 ; HP
+ 	bigdw 365 ; Max HP
+@@ -3710,6 +3841,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 245 ; HP
+ 	bigdw 245 ; Max HP
+@@ -3738,6 +3870,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 280 ; HP
+ 	bigdw 280 ; Max HP
+@@ -3766,6 +3899,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 264 ; HP
+ 	bigdw 264 ; Max HP
+@@ -3794,6 +3928,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 268 ; HP
+ 	bigdw 268 ; Max HP
+@@ -3822,6 +3957,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 270 ; HP
+ 	bigdw 270 ; Max HP
+@@ -3850,6 +3986,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 271 ; HP
+ 	bigdw 271 ; Max HP
+@@ -3878,6 +4015,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 267 ; HP
+ 	bigdw 267 ; Max HP
+@@ -3906,6 +4044,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 263 ; HP
+ 	bigdw 263 ; Max HP
+@@ -3934,6 +4073,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 210 ; HP
+ 	bigdw 210 ; Max HP
+@@ -3962,6 +4102,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 228 ; HP
+ 	bigdw 228 ; Max HP
+@@ -3990,6 +4131,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 232 ; HP
+ 	bigdw 232 ; Max HP
+@@ -4018,6 +4160,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 203 ; HP
+ 	bigdw 203 ; Max HP
+@@ -4046,6 +4189,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 252 ; HP
+ 	bigdw 252 ; Max HP
+@@ -4074,6 +4218,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 233 ; HP
+ 	bigdw 233 ; Max HP
+@@ -4102,6 +4247,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 230 ; HP
+ 	bigdw 230 ; Max HP
+@@ -4130,6 +4276,7 @@ BattleTowerMons7:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 70 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 231 ; HP
+ 	bigdw 231 ; Max HP
+@@ -4161,6 +4308,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 263 ; HP
+ 	bigdw 263 ; Max HP
+@@ -4189,6 +4337,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 415 ; HP
+ 	bigdw 415 ; Max HP
+@@ -4217,6 +4366,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 280 ; HP
+ 	bigdw 280 ; Max HP
+@@ -4245,6 +4395,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 277 ; HP
+ 	bigdw 277 ; Max HP
+@@ -4273,6 +4424,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 366 ; HP
+ 	bigdw 366 ; Max HP
+@@ -4301,6 +4453,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 318 ; HP
+ 	bigdw 318 ; Max HP
+@@ -4329,6 +4482,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 248 ; HP
+ 	bigdw 248 ; Max HP
+@@ -4357,6 +4511,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 273 ; HP
+ 	bigdw 273 ; Max HP
+@@ -4385,6 +4540,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 273 ; HP
+ 	bigdw 273 ; Max HP
+@@ -4413,6 +4569,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 304 ; HP
+ 	bigdw 304 ; Max HP
+@@ -4441,6 +4598,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 293 ; HP
+ 	bigdw 293 ; Max HP
+@@ -4469,6 +4627,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 280 ; HP
+ 	bigdw 280 ; Max HP
+@@ -4497,6 +4656,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 288 ; HP
+ 	bigdw 288 ; Max HP
+@@ -4525,6 +4685,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 291 ; HP
+ 	bigdw 291 ; Max HP
+@@ -4553,6 +4714,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 301 ; HP
+ 	bigdw 301 ; Max HP
+@@ -4581,6 +4743,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 283 ; HP
+ 	bigdw 283 ; Max HP
+@@ -4609,6 +4772,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 251 ; HP
+ 	bigdw 251 ; Max HP
+@@ -4637,6 +4801,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 214 ; HP
+ 	bigdw 214 ; Max HP
+@@ -4665,6 +4830,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 260 ; HP
+ 	bigdw 260 ; Max HP
+@@ -4693,6 +4859,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 241 ; HP
+ 	bigdw 241 ; Max HP
+@@ -4721,6 +4888,7 @@ BattleTowerMons8:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 80 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 286 ; HP
+ 	bigdw 286 ; Max HP
+@@ -4752,6 +4920,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 349 ; HP
+ 	bigdw 349 ; Max HP
+@@ -4780,6 +4949,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 343 ; HP
+ 	bigdw 343 ; Max HP
+@@ -4808,6 +4978,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 289 ; HP
+ 	bigdw 289 ; Max HP
+@@ -4836,6 +5007,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 267 ; HP
+ 	bigdw 267 ; Max HP
+@@ -4864,6 +5036,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 326 ; HP
+ 	bigdw 326 ; Max HP
+@@ -4892,6 +5065,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 326 ; HP
+ 	bigdw 326 ; Max HP
+@@ -4920,6 +5094,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 310 ; HP
+ 	bigdw 310 ; Max HP
+@@ -4948,6 +5123,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 355 ; HP
+ 	bigdw 355 ; Max HP
+@@ -4976,6 +5152,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 405 ; HP
+ 	bigdw 405 ; Max HP
+@@ -5004,6 +5181,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 294 ; HP
+ 	bigdw 294 ; Max HP
+@@ -5032,6 +5210,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 337 ; HP
+ 	bigdw 337 ; Max HP
+@@ -5060,6 +5239,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 455 ; HP
+ 	bigdw 455 ; Max HP
+@@ -5088,6 +5268,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 337 ; HP
+ 	bigdw 337 ; Max HP
+@@ -5116,6 +5297,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 634 ; HP
+ 	bigdw 634 ; Max HP
+@@ -5144,6 +5326,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 310 ; HP
+ 	bigdw 310 ; Max HP
+@@ -5172,6 +5355,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 316 ; HP
+ 	bigdw 316 ; Max HP
+@@ -5200,6 +5384,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 204 ; HP
+ 	bigdw 204 ; Max HP
+@@ -5228,6 +5413,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 375 ; HP
+ 	bigdw 375 ; Max HP
+@@ -5256,6 +5442,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 322 ; HP
+ 	bigdw 322 ; Max HP
+@@ -5284,6 +5471,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 284 ; HP
+ 	bigdw 284 ; Max HP
+@@ -5312,6 +5500,7 @@ BattleTowerMons9:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 90 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 342 ; HP
+ 	bigdw 342 ; Max HP
+@@ -5343,6 +5532,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 347 ; HP
+ 	bigdw 347 ; Max HP
+@@ -5371,6 +5561,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 377 ; HP
+ 	bigdw 377 ; Max HP
+@@ -5399,6 +5590,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 349 ; HP
+ 	bigdw 349 ; Max HP
+@@ -5427,6 +5619,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 324 ; HP
+ 	bigdw 324 ; Max HP
+@@ -5455,6 +5648,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 342 ; HP
+ 	bigdw 342 ; Max HP
+@@ -5483,6 +5677,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 374 ; HP
+ 	bigdw 374 ; Max HP
+@@ -5511,6 +5706,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 344 ; HP
+ 	bigdw 344 ; Max HP
+@@ -5539,6 +5735,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 309 ; HP
+ 	bigdw 309 ; Max HP
+@@ -5567,6 +5764,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 404 ; HP
+ 	bigdw 404 ; Max HP
+@@ -5595,6 +5793,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 344 ; HP
+ 	bigdw 344 ; Max HP
+@@ -5623,6 +5822,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 324 ; HP
+ 	bigdw 324 ; Max HP
+@@ -5651,6 +5851,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 309 ; HP
+ 	bigdw 309 ; Max HP
+@@ -5679,6 +5880,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 302 ; HP
+ 	bigdw 302 ; Max HP
+@@ -5707,6 +5909,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 334 ; HP
+ 	bigdw 334 ; Max HP
+@@ -5735,6 +5938,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 704 ; HP
+ 	bigdw 704 ; Max HP
+@@ -5763,6 +5967,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 388 ; HP
+ 	bigdw 388 ; Max HP
+@@ -5791,6 +5996,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 376 ; HP
+ 	bigdw 376 ; Max HP
+@@ -5819,6 +6025,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 332 ; HP
+ 	bigdw 332 ; Max HP
+@@ -5847,6 +6054,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 329 ; HP
+ 	bigdw 329 ; Max HP
+@@ -5875,6 +6083,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_1 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 265 ; HP
+ 	bigdw 265 ; Max HP
+@@ -5903,6 +6112,7 @@ BattleTowerMons10:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 100 ; Level
+ 	db ABILITY_2 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 425 ; HP
+ 	bigdw 425 ; Max HP
+diff --git a/data/events/odd_eggs.asm b/data/events/odd_eggs.asm
+index 1b1d531..167acc4 100644
+--- a/data/events/odd_eggs.asm
++++ b/data/events/odd_eggs.asm
+@@ -85,6 +85,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 17 ; Max HP
+@@ -112,6 +113,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 17 ; Max HP
+@@ -146,6 +148,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 20 ; Max HP
+@@ -173,6 +176,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 20 ; Max HP
+@@ -200,6 +204,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 24 ; Max HP
+@@ -227,6 +232,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 24 ; Max HP
+@@ -254,6 +260,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -281,6 +288,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -308,6 +316,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -335,6 +344,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -362,6 +372,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -389,6 +400,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 19 ; Max HP
+@@ -416,6 +428,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 18 ; Max HP
+@@ -443,6 +456,7 @@ OddEggs:
+ 	db 0, 0, 0 ; Pokerus, Caught data
+ 	db 5 ; Level
+ 	db 0 ; Personality
++	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
+ 	db 0, 0 ; Status
+ 	bigdw 0 ; HP
+ 	bigdw 18 ; Max HP
+diff --git a/data/special_pointers.asm b/data/special_pointers.asm
+index 3db4241..ceacfcb 100644
+--- a/data/special_pointers.asm
++++ b/data/special_pointers.asm
+@@ -185,6 +185,7 @@ SpecialsPointers::
+ 	add_special InitialClearDSTFlag
+ 	add_special DummySpecial_c224 ; $a8
+ 	add_special HiddenPowerTypeMenu
++	add_special HiddenPowerSelectMon
+ 	add_special CelebiFlybyEvent
+ 	add_special CheckCaughtMew
+ 	add_special CheckCaughtWildMon
+diff --git a/docs/pc_storage_design.md b/docs/pc_storage_design.md
+index fb5e16f..889412c 100644
+--- a/docs/pc_storage_design.md
++++ b/docs/pc_storage_design.md
+@@ -39,7 +39,7 @@ first 24 bytes are byte-identical to the live `box_struct` except species/moves.
+ | `$1e` | 2 | `CaughtData` | time/level, gender/location |
+ | `$20` | 1 | `Level` | |
+ | `$21` | 1 | `Personality` | ability slot + caught ball |
+-| `$22` | 1 | `Flags` | bit 0 = IS_EGG; others reserved (0) |
++| `$22` | 1 | `Flags` | bit 0 = IS_EGG; bits 1-5 = the mon's Hidden Power type constant (`HiddenPowerType`, 0 = default); bits 6-7 reserved (0) |
+ | `$23` | 10 | `Nickname` | no terminator |
+ | `$2d` | 10 | `OT` | no terminator |
+ | `$37` | 2 | `Checksum` | 16-bit, see §1.1 |
+diff --git a/engine/battle/abilities_engine.asm b/engine/battle/abilities_engine.asm
+index da3a3e4..8f221e9 100644
+--- a/engine/battle/abilities_engine.asm
++++ b/engine/battle/abilities_engine.asm
+@@ -4690,8 +4690,8 @@ CheckAteAbilityBoost:
+ 	push hl
+ 	push de
+ 	push bc
+-	; Hidden Power is stored as Normal but its live type comes from DVs -
+-	; it is never "-ate"-converted, so it never gets the boost.
++	; Hidden Power is stored as Normal but its live type is the user's own
++	; chosen type - it is never "-ate"-converted, so it never gets the boost.
+ 	ld a, BATTLE_VARS_MOVE_EFFECT
+ 	call GetBattleVar
+ 	cp EFFECT_HIDDEN_POWER
+diff --git a/engine/battle/ai/scoring.asm b/engine/battle/ai/scoring.asm
+index 05bf618..bc7a3f3 100644
+--- a/engine/battle/ai/scoring.asm
++++ b/engine/battle/ai/scoring.asm
+@@ -1467,6 +1467,7 @@ AI_Smart_Counter:
+ 	jr z, .asm_38c38
+ 
+ 	call AIGetEnemyMove
++	farcall HiddenPowerPatchPlayerLastMoveCategory
+ 
+ 	ld a, [wEnemyMoveStruct + MOVE_POWER]
+ 	and a
+@@ -2441,8 +2442,9 @@ AI_Smart_HiddenPower:
+ 	ld a, 1
+ 	ldh [hBattleTurn], a
+ 
+-; Calculate Hidden Power's type and base power based on enemy's DVs.
+-	callfar HiddenPowerDamage
++; wEnemyMoveStruct already holds this mon's own Hidden Power type, its fixed
++; power and its current category (AIGetEnemyMove patches them in), so the
++; type matchup below uses the real type.
+ 	callfar BattleCheckTypeMatchup
+ 	pop hl
+ 
+@@ -2451,22 +2453,8 @@ AI_Smart_HiddenPower:
+ 	cp EFFECTIVE
+ 	jr c, .bad
+ 
+-; Discourage Hidden Power if its base power	is lower than 50.
+-	ld a, d
+-	cp 50
+-	jr c, .bad
+-
+-; Encourage Hidden Power if super-effective.
+-	ld a, [wTypeMatchup]
+-	cp EFFECTIVE + 1
+-	jr nc, .good
+-
+-; Encourage Hidden Power if its base power is 70.
+-	ld a, d
+-	cp 70
+-	ret c
+-
+-.good
++; Encourage Hidden Power otherwise (its power is always
++; HIDDEN_POWER_BASE_POWER; super-effective is covered too).
+ 	dec [hl]
+ 	ret
+ 
+@@ -2685,6 +2673,7 @@ AI_Smart_MirrorCoat:
+ 	jr z, .asm_391d2
+ 
+ 	call AIGetEnemyMove
++	farcall HiddenPowerPatchPlayerLastMoveCategory
+ 
+ 	ld a, [wEnemyMoveStruct + MOVE_POWER]
+ 	and a
+@@ -4202,7 +4191,7 @@ AIElitePlayerLockedHarmless:
+ 	ld a, [wPlayerChoiceLockedMove]
+ 	and a
+ 	jr z, .no
+-	call GetMoveTypeIfDamaging
++	call GetPlayerMoveTypeIfDamaging
+ 	jr z, .no ; locked into a status move: it can still cripple us
+ 	ld d, a ; d = locked move's type
+ ; Does our own ability swallow it? (Not if the player's Mold Breaker
+@@ -4784,6 +4773,9 @@ AIGetEnemyMove:
+ 
+ 	ld de, wEnemyMoveStruct
+ 	call GetMoveData
++	; Hidden Power: this mon's own type, fixed power, and the category its
++	; current stats give (so every type/category/damage check below is right)
++	farcall HiddenPowerPatchEnemyMoveStruct
+ 
+ 	pop bc
+ 	pop de
+diff --git a/engine/battle/ai/switch.asm b/engine/battle/ai/switch.asm
+index 5d9383f..8f8a890 100644
+--- a/engine/battle/ai/switch.asm
++++ b/engine/battle/ai/switch.asm
+@@ -123,7 +123,7 @@ AIPartyIndexAbilityNullifiesCounterMove:
+ 	ld a, [wLastPlayerCounterMove]
+ 	and a
+ 	jr z, .no
+-	call GetMoveTypeIfDamaging
++	call GetPlayerMoveTypeIfDamaging
+ 	jr z, .no
+ 	ld c, a ; c = move type, d = party index
+ 	farcall AIPartyIndexAbilityNullifiesTypeFar
+@@ -160,7 +160,7 @@ CheckPlayerMoveTypeMatchups:
+ 	call AIEliteSkipUnlessPlayerLock
+ 	jr c, .skip_unlocked
+ 	push hl
+-	call GetMoveTypeIfDamaging
++	call GetPlayerMoveTypeIfDamaging
+ 	jr z, .next
+ 
+ 	; our own ability blanks this move: it is no reason to switch
+@@ -256,7 +256,7 @@ CheckPlayerMoveTypeMatchups:
+ 	; while Choice-locked, only the locked move is available to us
+ 	call AIEliteSkipUnlessOwnLock
+ 	jr c, .loop2
+-	call GetMoveTypeIfDamaging
++	call GetEnemyMoveTypeIfDamaging
+ 	jr z, .loop2
+ 
+ 	; the player's ability absorbs this move: treat it as immune
+@@ -559,7 +559,7 @@ FindEnemyMonsImmuneToLastCounterMove:
+ 
+ 	; the player's last move is damaging...
+ 	ld a, [wLastPlayerCounterMove]
+-	call GetMoveTypeIfDamaging
++	call GetPlayerMoveTypeIfDamaging
+ 	jr z, .next
+ 
+ 	; and the Pokemon is immune to it...
+@@ -640,8 +640,13 @@ FindEnemyMonsWithASuperEffectiveMove:
+ 	push hl
+ 	push bc
+ 	; for move on mon:
++	; c = this mon's stored Hidden Power type (hl = its MON_MOVES)
++	push hl
++	ld bc, MON_HIDDEN_POWER_TYPE - MON_MOVES
++	add hl, bc
++	ld c, [hl]
++	pop hl
+ 	ld b, NUM_MOVES
+-	ld c, 0
+ .loop3
+ 	; if move is None: break
+ 	ld a, [hli]
+@@ -749,7 +754,7 @@ FindEnemyMonsThatResistPlayer:
+ 	and a
+ 	jr z, .skip_move
+ 
+-	call GetMoveTypeIfDamaging
++	call GetPlayerMoveTypeIfDamaging
+ 	jr nz, .check_type
+ 
+ .skip_move
+@@ -866,7 +871,7 @@ CheckEnemyMoveEffectiveness:
+ 	; while Choice-locked, only the locked move is available to us
+ 	call AIEliteSkipUnlessOwnLock
+ 	jr c, .next
+-	call GetMoveTypeIfDamaging
++	call GetEnemyMoveTypeIfDamaging
+ 	jr z, .next
+ 	; the player's ability absorbs this move: it can't damage
+ 	call AIPlayerAbilityNullifiesType
+@@ -896,13 +901,21 @@ CheckEnemyMoveEffectiveness:
+ 
+ GetMoveTypeIfDamaging:
+ ; returns the type of move a in a, and sets the zero flag depending on whether the move causes damage
++; Hidden Power's type belongs to its user: c must hold the user's stored
++; HiddenPowerType byte (0 = default). Use one of the wrappers below unless
++; c has been set up for the mon whose move this is.
+ ; clobbers hl
+ 	push bc
+ 	call GetMoveAddress
+ 	ld b, a
+-	rept MOVE_POWER - 1
++	; GetMoveAddress skips the animation byte, so hl points at MOVE_EFFECT
++	call GetFarByte
++	cp EFFECT_HIDDEN_POWER
++	jr z, .hidden_power
++	rept MOVE_POWER - MOVE_EFFECT
+ 		inc hl
+ 	endr
++	ld a, b
+ 	call GetFarByte
+ 	ld c, a
+ 	ld a, b
+@@ -913,6 +926,40 @@ GetMoveTypeIfDamaging:
+ 	pop bc
+ 	ret
+ 
++.hidden_power
++; always damaging (nz); the type is the user's own
++	pop bc
++	ld a, c
++	and a
++	ret nz
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++	and a ; nz
++	ret
++
++GetPlayerMoveTypeIfDamaging:
++; GetMoveTypeIfDamaging for a move of the player's active mon
++	push bc
++	ld c, a
++	ld a, [wBattleMonHiddenPowerType]
++	ld b, a
++	ld a, c
++	ld c, b
++	call GetMoveTypeIfDamaging
++	pop bc
++	ret
++
++GetEnemyMoveTypeIfDamaging:
++; GetMoveTypeIfDamaging for a move of the enemy's active mon
++	push bc
++	ld c, a
++	ld a, [wEnemyMonHiddenPowerType]
++	ld b, a
++	ld a, c
++	ld c, b
++	call GetMoveTypeIfDamaging
++	pop bc
++	ret
++
+ AIPickPostKOSwitchIn::
+ ; Choose the replacement after the enemy's mon faints (farcalled from
+ ; EnemyPartyMonEntrance in Battle Core). Elite trainers pick the best
+diff --git a/engine/battle/core.asm b/engine/battle/core.asm
+index 233dc8c..0f4a627 100644
+--- a/engine/battle/core.asm
++++ b/engine/battle/core.asm
+@@ -3453,6 +3453,8 @@ LookUpTheEffectivenessOfEveryMove:
+ 	push bc
+ 	ld de, wEnemyMoveStruct
+ 	call GetMoveData
++	; Hidden Power: that party mon's own type (b = its party index)
++	callfar HiddenPowerPatchOTPartyMoveStruct
+ 	call SetEnemyTurn
+ 	callfar BattleCheckTypeMatchup
+ 	pop bc
+@@ -4933,7 +4935,7 @@ PrintPlayerHUD:
+ 	ld [de], a
+ 	ld hl, wBattleMonLevel
+ 	ld de, wTempMonLevel
+-	ld bc, $11
++	ld bc, wBattleMonStatsEnd - wBattleMonLevel
+ 	call CopyBytes
+ 	ld a, [wCurBattleMon]
+ 	ld hl, wPartyMon1Species
+@@ -6722,6 +6724,20 @@ LoadEnemyMon:
+ 	ld [wEnemyMonPersonality], a
+ 	call SetEnemyAbility
+ 
++; Hidden Power type: trainer mons carry their own; wild mons use the default
++	ld a, [wBattleMode]
++	cp TRAINER_BATTLE
++	jr nz, .WildHiddenPower
++	ld hl, wOTPartyMon1HiddenPowerType
++	ld a, [wCurPartyMon]
++	call GetPartyLocation
++	ld a, [hl]
++	jr .SetHiddenPower
++.WildHiddenPower:
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++.SetHiddenPower:
++	ld [wEnemyMonHiddenPowerType], a
++
+ ; Only the first five base stats are copied..
+ 	ld hl, wBaseStats
+ 	ld de, wEnemyMonBaseStats
+diff --git a/engine/battle/effect_commands.asm b/engine/battle/effect_commands.asm
+index 5ba837c..911adb8 100644
+--- a/engine/battle/effect_commands.asm
++++ b/engine/battle/effect_commands.asm
+@@ -3694,6 +3694,9 @@ UpdateMoveData:
+ 
+ 	call GetMoveData
+ 	farcall AbilityConvertMoveType
++	; Hidden Power: the user's own type, fixed power, and the category its
++	; current stats give (engine/battle/hidden_power.asm)
++	farcall HiddenPowerUpdateMoveStruct
+ 	call GetMoveName
+ 	jp CopyName1
+ 
+diff --git a/engine/battle/hidden_power.asm b/engine/battle/hidden_power.asm
+index 56eccf5..b5502a9 100644
+--- a/engine/battle/hidden_power.asm
++++ b/engine/battle/hidden_power.asm
+@@ -1,249 +1,236 @@
+-HiddenPowerDamage:
+-; Override Hidden Power's type and power.
+-; The player's Pokémon use the type chosen at the Hidden Power Guy
+-; (wHiddenPowerType) with a fixed 70 power. Enemies (and the player
+-; before choosing a type) fall back to the DV-based formula.
+-
+-	ldh a, [hBattleTurn]
++; Hidden Power
++;
++; Every Pokémon stores its own Hidden Power type in its HiddenPowerType byte
++; (box_struct / party_struct / battle_struct; PC records pack it into
++; SAVEMON_FLAGS bits 1-5, see engine/pc/storage_codec.asm). The type is set per
++; Pokémon at the Hidden Power Guy (engine/events/hidden_power_type.asm). A
++; stored value of 0 means "never chosen" and resolves to
++; HIDDEN_POWER_DEFAULT_TYPE. DVs play no part in any of this.
++;
++; The base power is always HIDDEN_POWER_BASE_POWER. The damage category is
++; decided every time the move is used, from the user's current (stat-stage
++; modified) stats: physical - Attack vs Defense - when Attack is higher than
++; Sp.Atk, otherwise special - Sp.Atk vs Sp.Def (ties go special). The type
++; only governs STAB, type effectiveness, immunities and type-based effects.
++;
++; The user's move struct is patched in UpdateMoveData (type, power, category),
++; so every later check sees the real values; the hiddenpower effect command
++; refreshes the category right before damagestats. The AI patches
++; wEnemyMoveStruct the same way (HiddenPowerPatchEnemyMoveStruct).
++
++ResolveHiddenPowerType::
++; a = stored HiddenPowerType byte -> a = type constant (0 -> default)
+ 	and a
+-	jr nz, .dv_based ; enemy: keep DV-based behavior
+-	ld a, [wHiddenPowerType]
+-	and a
+-	jr z, .dv_based ; no type chosen yet
+-
+-; Category: bit 7 set = physical, clear = special.
+-	ld c, a
+-	ld b, CATEGORIZE_SPECIAL
+-	bit 7, c
+-	jr z, .got_category
+-	ld b, CATEGORIZE_PHYSICAL
+-.got_category
+-	ld a, b
+-	ld [wPlayerMoveStructCategory], a
+-	ld a, c
+-	and %01111111 ; low bits hold the type
+-	ld d, 70
+-	jr .apply
++	ret nz
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++	ret
+ 
+-.dv_based
+-	ld hl, wBattleMonDVs
++GetUserHiddenPowerType::
++; Return in a the type of the user's (hBattleTurn) Hidden Power.
++; Transform does not copy HiddenPowerType, so a transformed user keeps its own.
+ 	ldh a, [hBattleTurn]
+ 	and a
+-	jr z, .got_dvs
+-	ld hl, wEnemyMonDVs
+-.got_dvs
+-
+-; Power:
+-
+-; Take the top bit from each stat
+-
+-	; Attack
+-	ld a, [hl]
+-	swap a
+-	and %1000
+-
+-	; Defense
+-	ld b, a
++	ld a, [wBattleMonHiddenPowerType]
++	jr z, ResolveHiddenPowerType
++	ld a, [wEnemyMonHiddenPowerType]
++	jr ResolveHiddenPowerType
++
++GetHiddenPowerCategory::
++; bc = pointer to a big-endian Attack stat that is followed by Defense, Speed
++; and Sp.Atk (a party or battle struct Stats block, wPlayerStats or wEnemyStats).
++; Returns a = CATEGORIZE_PHYSICAL if Attack > Sp.Atk, else CATEGORIZE_SPECIAL.
++; Preserves bc, de, hl.
++	push hl
++	push de
++	push bc
++	ld h, b
++	ld l, c
+ 	ld a, [hli]
+-	and %1000
+-	srl a
+-	or b
+-
+-	; Speed
+-	ld b, a
+-	ld a, [hl]
+-	swap a
+-	and %1000
+-	srl a
+-	srl a
+-	or b
++	ld d, a ; Attack (high)
++	ld a, [hli]
++	ld e, a ; Attack (low)
++	ld bc, wPlayerSpAtk - wPlayerDefense
++	add hl, bc
++	ld a, [hli]
++	ld b, a ; Sp.Atk (high)
++	ld c, [hl] ; Sp.Atk (low)
++	; physical iff de (Attack) > bc (Sp.Atk)
++	ld a, d
++	cp b
++	jr c, .special
++	jr nz, .physical
++	ld a, e
++	cp c
++	jr c, .special
++	jr z, .special
++.physical
++	ld a, CATEGORIZE_PHYSICAL
++	jr .done
++.special
++	ld a, CATEGORIZE_SPECIAL
++.done
++	pop bc
++	pop de
++	pop hl
++	ret
+ 
+-	; Special
+-	ld b, a
+-	ld a, [hl]
+-	and %1000
+-	srl a
+-	srl a
+-	srl a
+-	or b
++GetUserHiddenPowerCategory::
++; Return in a the category the user's (hBattleTurn) Hidden Power uses right
++; now, from its stat-stage modified stats. (ApplyStatLevelMultiplier writes
++; the boosted stats into the battle struct - wBattleMonAttack etc.; the
++; wPlayerStats / wEnemyStats blocks keep the unmodified originals.)
++	push bc
++	ldh a, [hBattleTurn]
++	and a
++	ld bc, wBattleMonAttack
++	jr z, .got_stats
++	ld bc, wEnemyMonAttack
++.got_stats
++	call GetHiddenPowerCategory
++	pop bc
++	ret
+ 
+-; Multiply by 5
++HiddenPowerUpdateMoveStruct::
++; Called from UpdateMoveData after the user's move struct has been loaded.
++; If the move is Hidden Power, overwrite its type, power and category.
++	ld a, BATTLE_VARS_MOVE_EFFECT
++	call GetBattleVar
++	cp EFFECT_HIDDEN_POWER
++	ret nz
++	call GetUserHiddenPowerType
+ 	ld b, a
+-	add a
+-	add a
+-	add b
++	ld a, BATTLE_VARS_MOVE_TYPE
++	call GetBattleVarAddr
++	ld [hl], b
++	ld a, BATTLE_VARS_MOVE_POWER
++	call GetBattleVarAddr
++	ld [hl], HIDDEN_POWER_BASE_POWER
++	; fallthrough
+ 
+-; Add Special & 3
++HiddenPowerUpdateCategory::
++; Store the user's current Hidden Power category in its move struct.
++	call GetUserHiddenPowerCategory
++	ld hl, wPlayerMoveStructCategory
+ 	ld b, a
+-	ld a, [hld]
+-	and %0011
+-	add b
+-
+-; Divide by 2 and add 30 + 1
+-	srl a
+-	add 30
+-	inc a
+-
+-	ld d, a
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_struct
++	ld hl, wEnemyMoveStructCategory
++.got_struct
++	ld [hl], b
++	ret
+ 
+-; Type:
++HiddenPowerDamage::
++; Body of the hiddenpower effect command. The move struct already holds the
++; user's type and power (UpdateMoveData); re-pick the category from the stats
++; the user has at this moment, then run damagestats with it.
++; Returns b/c/d/e as damagestats does (attack, defense, power, level).
++	call HiddenPowerUpdateCategory
++	farcall BattleCommand_DamageStats ; damagestats
++	ret
+ 
+-	; Def & 3
+-	ld a, [hl]
+-	and %0011
+-	ld b, a
++HiddenPowerPatchEnemyMoveStruct::
++; For the AI: if wEnemyMoveStruct holds Hidden Power, fill in the active enemy
++; mon's own type, the fixed power and the category its current stats give.
++; Preserves bc, de, hl.
++	push hl
++	push de
++	push bc
++	ld a, [wEnemyMoveStructEffect]
++	cp EFFECT_HIDDEN_POWER
++	jr nz, .done
++	ld a, [wEnemyMonHiddenPowerType]
++	call ResolveHiddenPowerType
++	ld [wEnemyMoveStructType], a
++	ld a, HIDDEN_POWER_BASE_POWER
++	ld [wEnemyMoveStructPower], a
++	ld bc, wEnemyMonAttack ; stage-modified stats
++	call GetHiddenPowerCategory
++	ld [wEnemyMoveStructCategory], a
++.done
++	pop bc
++	pop de
++	pop hl
++	ret
+ 
+-	; + (Atk & 3) << 2
++HiddenPowerPatchOTPartyMoveStruct::
++; Like HiddenPowerPatchEnemyMoveStruct, for a move of OT party mon b (0-5)
++; that is not necessarily in battle: its own type, the fixed power, and the
++; category its party stats give. Preserves bc, de, hl.
++	push hl
++	push de
++	push bc
++	ld a, [wEnemyMoveStructEffect]
++	cp EFFECT_HIDDEN_POWER
++	jr nz, .done
++	push bc
++	ld hl, wOTPartyMon1HiddenPowerType
++	ld a, b
++	call GetPartyLocation ; clobbers bc
+ 	ld a, [hl]
+-	and %0011 << 4
+-	swap a
+-	add a
+-	add a
+-	or b
+-
+-; Skip Normal
+-	inc a
+-
+-; Skip Bird
+-	cp BIRD
+-	jr c, .done
+-	inc a
+-
+-; Skip unused types
+-	cp UNUSED_TYPES
+-	jr c, .done
+-	add SPECIAL - UNUSED_TYPES
+-
++	call ResolveHiddenPowerType
++	ld [wEnemyMoveStructType], a
++	ld a, HIDDEN_POWER_BASE_POWER
++	ld [wEnemyMoveStructPower], a
++	pop bc
++	ld hl, wOTPartyMon1Attack
++	ld a, b
++	call GetPartyLocation
++	ld b, h
++	ld c, l
++	call GetHiddenPowerCategory
++	ld [wEnemyMoveStructCategory], a
+ .done
+-.apply
+-; a = type, d = power
+-
+-; Overwrite the current move type.
+-	push af
+-	ld a, BATTLE_VARS_MOVE_TYPE
+-	call GetBattleVarAddr
+-	pop af
+-	ld [hl], a
+-
+-; Get the rest of the damage formula variables
+-; based on the new type, but keep base power.
+-	ld a, d
+-	push af
+-	farcall BattleCommand_DamageStats ; damagestats
+-	pop af
+-	ld d, a
++	pop bc
++	pop de
++	pop hl
+ 	ret
+ 
+-GetHiddenPowerDisplayStats::
+-; Returns the values a move info box should display for Hidden Power:
+-; b = category, c = type, d = power.
+-; hl = pointer to the DVs to compute from (wBattleMonDVs in battle,
+-; wTempMonDVs on the stats screen). Callers outside battle should
+-; ignore b (it is read from a battle variable).
+-; Mirrors HiddenPowerDamage above without touching any battle variables.
+-	ld a, [wHiddenPowerType]
++HiddenPowerCounterCategory::
++; Counter / Mirror Coat: wStringBuffer1 holds the move data of the opponent's
++; last move. If that move is Hidden Power, its category is the one the
++; opponent's stats picked when it was used this turn, which its move struct
++; still holds - use that instead of the move table's fixed category.
++	ld a, [wStringBuffer1 + MOVE_EFFECT]
++	cp EFFECT_HIDDEN_POWER
++	ret nz
++	ldh a, [hBattleTurn]
+ 	and a
+-	jr z, .dv_based
+-
+-; Type chosen at the Hidden Power Guy: fixed 70 power,
+-; bit 7 set = physical, clear = special.
+-	ld b, CATEGORIZE_SPECIAL
+-	bit 7, a
++	ld a, [wEnemyMoveStructCategory] ; the player is countering the enemy
+ 	jr z, .got_category
+-	ld b, CATEGORIZE_PHYSICAL
++	ld a, [wPlayerMoveStructCategory]
+ .got_category
+-	and %01111111 ; low bits hold the type
+-	ld c, a
+-	ld d, 70
++	ld [wStringBuffer1 + MOVE_CATEGORY], a
+ 	ret
+ 
+-.dv_based
+-; hl already points at the DVs (set by the caller)
+-
+-; Power: take the top bit from each stat
+-
+-	; Attack
+-	ld a, [hl]
+-	swap a
+-	and %1000
+-
+-	; Defense
+-	ld b, a
+-	ld a, [hli]
+-	and %1000
+-	srl a
+-	or b
+-
+-	; Speed
+-	ld b, a
+-	ld a, [hl]
+-	swap a
+-	and %1000
+-	srl a
+-	srl a
+-	or b
+-
+-	; Special
+-	ld b, a
+-	ld a, [hl]
+-	and %1000
+-	srl a
+-	srl a
+-	srl a
+-	or b
+-
+-; Multiply by 5
+-	ld b, a
+-	add a
+-	add a
+-	add b
+-
+-; Add Special & 3
+-	ld b, a
+-	ld a, [hld]
+-	and %0011
+-	add b
+-
+-; Divide by 2 and add 30 + 1
+-	srl a
+-	add 30
+-	inc a
+-
+-	ld d, a
+-
+-; Type:
+-
+-	; Def & 3
+-	ld a, [hl]
+-	and %0011
+-	ld b, a
+-
+-	; + (Atk & 3) << 2
+-	ld a, [hl]
+-	and %0011 << 4
+-	swap a
+-	add a
+-	add a
+-	or b
+-
+-; Skip Normal
+-	inc a
+-
+-; Skip Bird
+-	cp BIRD
+-	jr c, .done
+-
+-	inc a
+-
+-; Skip unused types
+-	cp UNUSED_TYPES
+-	jr c, .done
+-	add SPECIAL - UNUSED_TYPES
+-
+-.done
+-	ld c, a
++HiddenPowerPatchPlayerLastMoveCategory::
++; AI_Smart_Counter / AI_Smart_MirrorCoat load the PLAYER's last move into
++; wEnemyMoveStruct (through AIGetEnemyMove, which patches Hidden Power with
++; the enemy's data). If that move is Hidden Power, the category that matters
++; is the one the player's stats picked when it was used - its move struct
++; still holds it. Preserves bc, de, hl.
++	ld a, [wEnemyMoveStructEffect]
++	cp EFFECT_HIDDEN_POWER
++	ret nz
+ 	ld a, [wPlayerMoveStructCategory]
++	ld [wEnemyMoveStructCategory], a
++	ret
++
++GetHiddenPowerDisplayStats::
++; Returns the values a move info box should display for Hidden Power:
++; b = category, c = type, d = power.
++; de = pointer to the mon's HiddenPowerType byte (wTempMonHiddenPowerType on
++;      the stats screen, wBattleMonHiddenPowerType in battle),
++; bc = pointer to the stats to compare (wTempMonAttack: the mon's own stats;
++;      wBattleMonAttack in battle: the stat-stage modified ones).
++; Passed in de/bc rather than hl because farcall clobbers hl on entry.
++	ld a, [de]
++	call ResolveHiddenPowerType
++	ld e, a
++	call GetHiddenPowerCategory
+ 	ld b, a
++	ld c, e
++	ld d, HIDDEN_POWER_BASE_POWER
+ 	ret
+ 
+ PrintMoveAccuracyPercent::
+diff --git a/engine/battle/move_effects/counter.asm b/engine/battle/move_effects/counter.asm
+index abe2ae9..435a75e 100644
+--- a/engine/battle/move_effects/counter.asm
++++ b/engine/battle/move_effects/counter.asm
+@@ -26,6 +26,9 @@ BattleCommand_Counter:
+ 	call GetBattleVar
+ 	ld de, wStringBuffer1
+ 	call GetMoveData
++	; Hidden Power's category is whatever the opponent's stats picked when
++	; it was used, not the move table's
++	farcall HiddenPowerCounterCategory
+ 
+ 	ld a, [wStringBuffer1 + MOVE_POWER]
+ 	and a
+diff --git a/engine/battle/move_effects/hidden_power.asm b/engine/battle/move_effects/hidden_power.asm
+index 3b40a6c..7cbf77a 100644
+--- a/engine/battle/move_effects/hidden_power.asm
++++ b/engine/battle/move_effects/hidden_power.asm
+@@ -4,5 +4,6 @@ BattleCommand_HiddenPower:
+ 	ld a, [wAttackMissed]
+ 	and a
+ 	ret nz
++	; picks the category from the user's current stats, then damagestats
+ 	farcall HiddenPowerDamage
+ 	ret
+diff --git a/engine/battle/move_effects/mirror_coat.asm b/engine/battle/move_effects/mirror_coat.asm
+index 84384bb..480474d 100644
+--- a/engine/battle/move_effects/mirror_coat.asm
++++ b/engine/battle/move_effects/mirror_coat.asm
+@@ -27,6 +27,9 @@ BattleCommand_MirrorCoat:
+ 	call GetBattleVar
+ 	ld de, wStringBuffer1
+ 	call GetMoveData
++	; Hidden Power's category is whatever the opponent's stats picked when
++	; it was used, not the move table's
++	farcall HiddenPowerCounterCategory
+ 
+ 	ld a, [wStringBuffer1 + MOVE_POWER]
+ 	and a
+diff --git a/engine/battle/move_effects/mirror_move.asm b/engine/battle/move_effects/mirror_move.asm
+index 437247a..8ed0ce4 100644
+--- a/engine/battle/move_effects/mirror_move.asm
++++ b/engine/battle/move_effects/mirror_move.asm
+@@ -34,6 +34,8 @@ BattleCommand_MirrorMove:
+ 	pop af
+ 
+ 	call GetMoveData
++	; Hidden Power: the user's own type/power/category (as UpdateMoveData does)
++	farcall HiddenPowerUpdateMoveStruct
+ 	call GetMoveName
+ 	call CopyName1
+ 	call CheckUserIsCharging
+diff --git a/engine/battle/move_effects/new_move_cores.asm b/engine/battle/move_effects/new_move_cores.asm
+index f084693..50f0816 100644
+--- a/engine/battle/move_effects/new_move_cores.asm
++++ b/engine/battle/move_effects/new_move_cores.asm
+@@ -3,10 +3,17 @@
+ ; from the Effect Commands bank (same conventions as BattleParalyze_Core).
+ 
+ AIPredictVariableMoveCategory_Core:
++; Hidden Power: type, power and category all come from the user; the same
++; patch AIGetEnemyMove applies (idempotent, in case the struct was reloaded).
++	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
++	cp EFFECT_HIDDEN_POWER
++	jr nz, .not_hidden_power
++	farcall HiddenPowerPatchEnemyMoveStruct
++	ret
++.not_hidden_power
+ ; Shell Side Arm chooses its category before damage stats are loaded. Reuse the
+ ; live selector, but preserve the AI's six move-score bytes that it uses as
+ ; scratch space.
+-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+ 	cp EFFECT_SHELL_SIDE_ARM
+ 	ret nz
+ 	ld hl, wBuffer1
+diff --git a/engine/battle/move_info_box.asm b/engine/battle/move_info_box.asm
+index 57e8c39..f2ba3bb 100644
+--- a/engine/battle/move_info_box.asm
++++ b/engine/battle/move_info_box.asm
+@@ -18,7 +18,9 @@ BattleMoveInfoStats::
+ 	ld a, [wPlayerMoveStructEffect]
+ 	cp EFFECT_HIDDEN_POWER
+ 	jr nz, .got_display_stats
+-	ld hl, wBattleMonDVs
++	; this mon's own type; category from its current (boosted) stats
++	ld de, wBattleMonHiddenPowerType
++	ld bc, wBattleMonAttack ; stage-modified stats
+ 	call GetHiddenPowerDisplayStats
+ .got_display_stats
+ 	ld a, b
+diff --git a/engine/events/daycare.asm b/engine/events/daycare.asm
+index 4b55e6f..0614202 100644
+--- a/engine/events/daycare.asm
++++ b/engine/events/daycare.asm
+@@ -669,6 +669,8 @@ DayCare_InitBreeding:
+ 	call GetBaseData
+ 	call GetRandomAbilitySlot
+ 	ld [wEggMonPersonality], a
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++	ld [wEggMonHiddenPowerType], a
+ 	ld hl, wEggNick
+ 	ld de, .String_EGG
+ 	call CopyName2
+diff --git a/engine/events/hidden_power_type.asm b/engine/events/hidden_power_type.asm
+index 32fd76d..0799a5d 100644
+--- a/engine/events/hidden_power_type.asm
++++ b/engine/events/hidden_power_type.asm
+@@ -1,10 +1,63 @@
++HiddenPowerSelectMon:
++; Hidden Power Guy, step 1: pick the party Pokémon whose Hidden Power he
++; will reshape (each Pokémon keeps its own type in its HiddenPowerType byte).
++; wScriptVar: 0 = cancelled, 1 = chosen (wCurPartyMon), 2 = it is an Egg.
++; On success wStringBuffer3 holds its nickname and wStringBuffer4 the name
++; of its current Hidden Power type (both for text_ram).
++	farcall SelectMonFromParty
++	jr c, .cancel
++	ld a, [wCurPartySpecies]
++	cp EGG
++	jr z, .egg
++	call .CopyNickToBuffer3
++	; current type name -> wStringBuffer4
++	ld a, MON_HIDDEN_POWER_TYPE
++	call GetPartyParamLocation
++	ld a, [hl]
++	and a
++	jr nz, .got_type
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++.got_type
++	call .CopyTypeNameToBuffer4
++	ld a, 1
++	ld [wScriptVar], a
++	ret
++
++.egg
++	ld a, 2
++	ld [wScriptVar], a
++	ret
++
++.cancel
++	xor a
++	ld [wScriptVar], a
++	ret
++
++.CopyNickToBuffer3:
++	call GetCurNick ; -> wStringBuffer1
++	ld hl, wStringBuffer1
++	ld de, wStringBuffer3
++	ld bc, MON_NAME_LENGTH
++	jp CopyBytes
++
++.CopyTypeNameToBuffer4:
++; a = type
++	ld [wNamedObjectIndexBuffer], a
++	predef GetTypeName ; -> wStringBuffer1
++	ld hl, wStringBuffer1
++	ld de, wStringBuffer4
++	ld bc, MOVE_NAME_LENGTH
++	jp CopyBytes
++
+ HiddenPowerTypeMenu:
+-; Let the player pick the type and category their Hidden Power will use.
+-; On success: stores the type in wHiddenPowerType (bit 7 set = physical,
+-; clear = special), leaves the type name in wStringBuffer3 and the
+-; category name in wStringBuffer4 (both for text_ram), and sets
+-; wScriptVar to TRUE. On cancel (B in either menu), sets wScriptVar
+-; to FALSE and changes nothing.
++; Hidden Power Guy, step 2: let the player pick the new type for the
++; Pokémon chosen by HiddenPowerSelectMon (wCurPartyMon). The category is
++; never chosen here - in battle Hidden Power always uses whichever of the
++; user's Attack / Sp.Atk is currently higher.
++; On success: stores the type in that Pokémon's HiddenPowerType byte only,
++; leaves its nickname in wStringBuffer3 and the type name in wStringBuffer4
++; (both for text_ram), and sets wScriptVar to TRUE. On cancel (B), sets
++; wScriptVar to FALSE and changes nothing.
+ 
+ 	ld hl, .TypeList
+ 	ld de, wStringBuffer2
+@@ -24,43 +77,15 @@ HiddenPowerTypeMenu:
+ 	cp B_BUTTON
+ 	jr z, .cancel
+ 
+-; Type chosen; now the category.
++; Type chosen: store it on this Pokémon only.
+ 	ld a, [wMenuSelection]
+ 	push af
+-	ld hl, .CategoryMenuHeader
+-	call LoadMenuHeader
+-	call VerticalMenu
+-	push af ; save carry (set if B was pressed)
+-	call CloseWindow
++	ld a, MON_HIDDEN_POWER_TYPE
++	call GetPartyParamLocation
+ 	pop af
+-	pop bc ; b = chosen type
+-	jr c, .cancel
+-
+-	ld a, b
+-	ld [wNamedObjectIndexBuffer], a
+-	ld a, [wMenuCursorY]
+-	dec a ; 1 = physical, 2 = special
+-	jr z, .physical
+-	ld de, .SpecialString
+-	ld a, b
+-	jr .store
+-
+-.physical
+-	ld de, .PhysicalString
+-	ld a, b
+-	or 1 << 7 ; physical flag
+-
+-.store
+-	ld [wHiddenPowerType], a
+-	; Category name -> wStringBuffer4 (de = source).
+-	ld hl, wStringBuffer4
+-	call CopyName2
+-	; Type name -> wStringBuffer3.
+-	predef GetTypeName ; -> wStringBuffer1
+-	ld hl, wStringBuffer1
+-	ld de, wStringBuffer3
+-	ld bc, MOVE_NAME_LENGTH
+-	call CopyBytes
++	ld [hl], a
++	call HiddenPowerSelectMon.CopyTypeNameToBuffer4
++	call HiddenPowerSelectMon.CopyNickToBuffer3
+ 	ld a, TRUE
+ 	ld [wScriptVar], a
+ 	ret
+@@ -119,17 +144,3 @@ HiddenPowerTypeMenu:
+ 	pop hl
+ 	ld de, wStringBuffer1
+ 	jp PlaceString
+-
+-.CategoryMenuHeader:
+-	db MENU_BACKUP_TILES ; flags
+-	menu_coords 9, 5, 19, 9
+-	dw .CategoryMenuData
+-	db 1 ; default option
+-
+-.CategoryMenuData:
+-	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+-	db 2 ; items
+-.PhysicalString:
+-	db "PHYSICAL@"
+-.SpecialString:
+-	db "SPECIAL@"
+diff --git a/engine/gfx/color.asm b/engine/gfx/color.asm
+index 7835d56..3a69171 100644
+--- a/engine/gfx/color.asm
++++ b/engine/gfx/color.asm
+@@ -1485,7 +1485,8 @@ LoadBattleCategoryAndTypePals::
+ 	ld a, [wPlayerMoveStructEffect]
+ 	cp EFFECT_HIDDEN_POWER
+ 	jr nz, .not_hidden_power
+-	ld hl, wBattleMonDVs
++	ld de, wBattleMonHiddenPowerType
++	ld bc, wBattleMonAttack ; stage-modified stats
+ 	farcall GetHiddenPowerDisplayStats ; b = category, c = type
+ 	jr .got_stats
+ .not_hidden_power
+diff --git a/engine/gfx/summary_screen_pals.asm b/engine/gfx/summary_screen_pals.asm
+index ac4a821..93de0d9 100644
+--- a/engine/gfx/summary_screen_pals.asm
++++ b/engine/gfx/summary_screen_pals.asm
+@@ -364,7 +364,8 @@ LoadSummaryScreenPals::
+ 	cp EFFECT_HIDDEN_POWER
+ 	ld a, [wStringBuffer2 + MOVE_TYPE]
+ 	ret nz
+-	ld hl, wTempMonDVs
++	ld de, wTempMonHiddenPowerType
++	ld bc, wTempMonAttack
+ 	farcall GetHiddenPowerDisplayStats ; c = type
+ 	ld a, c
+ 	ret
+diff --git a/engine/pc/storage_codec.asm b/engine/pc/storage_codec.asm
+index 3b76518..fecf9ad 100644
+--- a/engine/pc/storage_codec.asm
++++ b/engine/pc/storage_codec.asm
+@@ -104,11 +104,18 @@ EncodeSavedMon::
+ 	ld [hli], a
+ 	ld a, [wTempMonPersonality]
+ 	ld [hli], a
++	; Flags: bit 0 = egg, bits 1-5 = Hidden Power type
++	ld a, [wTempMonHiddenPowerType]
++rept SAVEMON_HIDDEN_POWER_SHIFT
++	add a
++endr
++	and SAVEMON_HIDDEN_POWER_MASK
++	ld d, a
+ 	ld a, [wTempMonIsEgg]
+ 	and a
+-	ld a, 0
++	ld a, d
+ 	jr z, .not_egg
+-	ld a, 1 << SAVEMON_IS_EGG_F
++	or 1 << SAVEMON_IS_EGG_F
+ .not_egg
+ 	ld [hl], a
+ 	pop hl
+@@ -284,8 +291,15 @@ DecodeSavedMon::
+ 	ld a, [hli]
+ 	ld [wTempMonPersonality], a
+ 	ld a, [hl]
++	ld d, a
+ 	and 1 << SAVEMON_IS_EGG_F
+ 	ld [wTempMonIsEgg], a
++	ld a, d
++	and SAVEMON_HIDDEN_POWER_MASK
++rept SAVEMON_HIDDEN_POWER_SHIFT
++	srl a
++endr
++	ld [wTempMonHiddenPowerType], a
+ 	pop hl
+ 
+ 	push hl
+diff --git a/engine/pokemon/mon_menu.asm b/engine/pokemon/mon_menu.asm
+index 964192e..c58e2e7 100644
+--- a/engine/pokemon/mon_menu.asm
++++ b/engine/pokemon/mon_menu.asm
+@@ -1198,19 +1198,17 @@ PlaceMoveData:
+ 	ld a, [wCurSpecies] ; move id
+ 	ld de, wStringBuffer2
+ 	call GetMoveData
+-	; Hidden Power displays its computed type and power
++	; Hidden Power displays this mon's own type, its fixed power, and the
++	; category its (unboosted) stats would give it right now
+ 	; (wTempMon holds the current mon on this screen)
+ 	ld a, [wStringBuffer2 + MOVE_EFFECT]
+ 	cp EFFECT_HIDDEN_POWER
+ 	jr nz, .not_hidden_power
+-	ld hl, wTempMonDVs
+-	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
+-	ld a, [wHiddenPowerType]
+-	and a
+-	jr z, .store_hidden_power_stats
++	ld de, wTempMonHiddenPowerType
++	ld bc, wTempMonAttack
++	farcall GetHiddenPowerDisplayStats ; b = category, c = type, d = power
+ 	ld a, b
+ 	ld [wStringBuffer2 + MOVE_CATEGORY], a
+-.store_hidden_power_stats
+ 	ld a, c
+ 	ld [wStringBuffer2 + MOVE_TYPE], a
+ 	ld a, d
+diff --git a/engine/pokemon/move_mon.asm b/engine/pokemon/move_mon.asm
+index c2b5749..c8eaa90 100644
+--- a/engine/pokemon/move_mon.asm
++++ b/engine/pokemon/move_mon.asm
+@@ -271,6 +271,11 @@ endr
+ 	ld [de], a
+ 	inc de
+ 
++	; HiddenPowerType: default until the Hidden Power Guy sets it
++	ld a, HIDDEN_POWER_DEFAULT_TYPE
++	ld [de], a
++	inc de
++
+ 	xor a
+ 	; Status
+ 	ld [de], a
+@@ -337,6 +342,11 @@ endr
+ 	ld [de], a
+ 	inc de
+ 
++	; HiddenPowerType: keep the battle mon's
++	ld a, [wEnemyMonHiddenPowerType]
++	ld [de], a
++	inc de
++
+ 	ld hl, wEnemyMonStatus
+ 	; Copy wEnemyMonStatus
+ 	ld a, [hli]
+@@ -806,6 +816,10 @@ SendMonIntoBox:
+ 	ld a, [wEnemyMonPersonality]
+ 	ld [de], a
+ 	inc de
++	; HiddenPowerType: keep the battle mon's
++	ld a, [wEnemyMonHiddenPowerType]
++	ld [de], a
++	inc de
+ 	; Status
+ 	xor a
+ 	ld [de], a
+diff --git a/engine/pokemon/stats_screen.asm b/engine/pokemon/stats_screen.asm
+index 464fa01..0ec466c 100644
+--- a/engine/pokemon/stats_screen.asm
++++ b/engine/pokemon/stats_screen.asm
+@@ -758,13 +758,14 @@ StatsScreen_PlaceTypeIcon:
+ 
+ StatsScreen_GetMoveDisplayType:
+ ; Return the display type (in a) for the move struct in wStringBuffer2.
+-; Hidden Power shows its computed type (from wTempMonDVs, or the type
+-; chosen at the Hidden Power Guy). Clobbers bc, d, hl.
++; Hidden Power shows this mon's own type (its HiddenPowerType byte).
++; Clobbers bc, de.
+ 	ld a, [wStringBuffer2 + MOVE_EFFECT]
+ 	cp EFFECT_HIDDEN_POWER
+ 	ld a, [wStringBuffer2 + MOVE_TYPE]
+ 	ret nz
+-	ld hl, wTempMonDVs
++	ld de, wTempMonHiddenPowerType
++	ld bc, wTempMonAttack
+ 	farcall GetHiddenPowerDisplayStats ; c = type
+ 	ld a, c
+ 	ret
+@@ -1427,20 +1428,16 @@ StatsScreen_MoveInfo:
+ 	push af
+ 	ld de, wStringBuffer2
+ 	call GetMoveData
+-	; Hidden Power may have a custom category as well as a computed type/power.
+-	; The DV-based path's category comes from battle state, so only use b when
+-	; the Hidden Power Guy's explicit choice is active.
++	; Hidden Power shows this mon's own type, its fixed power, and the
++	; category its (unboosted) stats would give it right now.
+ 	ld a, [wStringBuffer2 + MOVE_EFFECT]
+ 	cp EFFECT_HIDDEN_POWER
+ 	jr nz, .got_move_data
+-	ld hl, wTempMonDVs
+-	farcall GetHiddenPowerDisplayStats ; b = custom category, c = type, d = power
+-	ld a, [wHiddenPowerType]
+-	and a
+-	jr z, .store_hidden_power_stats
++	ld de, wTempMonHiddenPowerType
++	ld bc, wTempMonAttack
++	farcall GetHiddenPowerDisplayStats ; b = category, c = type, d = power
+ 	ld a, b
+ 	ld [wStringBuffer2 + MOVE_CATEGORY], a
+-.store_hidden_power_stats
+ 	ld a, c
+ 	ld [wStringBuffer2 + MOVE_TYPE], a
+ 	ld a, d
+diff --git a/macros/wram.asm b/macros/wram.asm
+index e1f894b..58854e8 100644
+--- a/macros/wram.asm
++++ b/macros/wram.asm
+@@ -27,6 +27,7 @@ box_struct: MACRO
+ \1CaughtLocation:: db
+ \1Level::          db
+ \1Personality::    db
++\1HiddenPowerType:: db ; type constant chosen at the Hidden Power Guy (0 = default)
+ \1End::
+ ENDM
+ 
+@@ -87,6 +88,7 @@ battle_struct: MACRO
+ \1Happiness:: db
+ \1Level::     db
+ \1Personality:: db
++\1HiddenPowerType:: db ; mirrors the party struct (see box_struct)
+ \1Status::    ds 2
+ \1HP::        dw
+ \1MaxHP::     dw
+diff --git a/maps/LakeOfRageHiddenPowerHouse.asm b/maps/LakeOfRageHiddenPowerHouse.asm
+index 4f48060..30379ab 100644
+--- a/maps/LakeOfRageHiddenPowerHouse.asm
++++ b/maps/LakeOfRageHiddenPowerHouse.asm
+@@ -19,7 +19,14 @@ HiddenPowerGuy:
+ 	writetext HiddenPowerGuyText2
+ 	buttonsound
+ .ChooseType:
+-	writetext HiddenPowerGuyAskTypeText
++; Each Pokémon keeps its own Hidden Power type: pick one, hear its current
++; type, then choose the new one (see engine/events/hidden_power_type.asm).
++	writetext HiddenPowerGuyWhichMonText
++	buttonsound
++	special HiddenPowerSelectMon
++	ifequal 0, .NoChange
++	ifequal 2, .Egg
++	writetext HiddenPowerGuyCurrentTypeText
+ 	buttonsound
+ 	special HiddenPowerTypeMenu
+ 	iffalse .NoChange
+@@ -32,6 +39,11 @@ HiddenPowerGuy:
+ 	waitbutton
+ 	closetext
+ 	end
++.Egg:
++	writetext HiddenPowerGuyEggText
++	waitbutton
++	closetext
++	end
+ .AlreadyGotItem:
+ 	writetext HiddenPowerGuyText3
+ 	buttonsound
+@@ -79,23 +91,40 @@ HiddenPowerGuyText3:
+ 	text "I am meditating…"
+ 	done
+ 
+-HiddenPowerGuyAskTypeText:
+-	text "What type shall"
+-	line "HIDDEN POWER"
+-	cont "take?"
++HiddenPowerGuyWhichMonText:
++	text "Which #MON's"
++	line "HIDDEN POWER shall"
++	cont "I reshape?"
+ 	done
+ 
+-HiddenPowerGuyChoseTypeText:
++HiddenPowerGuyCurrentTypeText:
+ 	text_ram wStringBuffer3
+-	text " type,"
+-	line "@"
+-	text_ram wStringBuffer4
+ 	text "…"
++	line "Its HIDDEN POWER"
++	cont "is @"
++	text_ram wStringBuffer4
++	text " type."
+ 
+-	para "It is done. Your"
+-	line "#MON's HIDDEN"
+-	cont "POWER has been"
+-	cont "reshaped."
++	para "What type shall"
++	line "it take?"
++	done
++
++HiddenPowerGuyChoseTypeText:
++	text_ram wStringBuffer4
++	text " type…"
++
++	para "It is done."
++	line "@"
++	text_ram wStringBuffer3
++	text "'s"
++	cont "HIDDEN POWER has"
++	cont "been reshaped."
++	done
++
++HiddenPowerGuyEggText:
++	text "An EGG holds no"
++	line "power I can shape"
++	cont "yet."
+ 	done
+ 
+ HiddenPowerGuyNoChangeText:
+@@ -106,9 +135,9 @@ HiddenPowerGuyNoChangeText:
+ 	done
+ 
+ HiddenPowerGuyRetuneText:
+-	text "Shall I reshape"
+-	line "your HIDDEN"
+-	cont "POWER's type?"
++	text "Shall I reshape a"
++	line "#MON's HIDDEN"
++	cont "POWER type?"
+ 	done
+ 
+ LakeOfRageHiddenPowerHouse_MapEvents:
+diff --git a/tools/battletest/tests/53-hidden-power.yaml b/tools/battletest/tests/53-hidden-power.yaml
+new file mode 100644
+index 0000000..9bf41a0
+--- /dev/null
++++ b/tools/battletest/tests/53-hidden-power.yaml
+@@ -0,0 +1,219 @@
++# Hidden Power (2026-08-27 rework): every Pokémon carries its own type in its
++# HiddenPowerType byte (box/party/battle struct), 0 = HIDDEN_POWER_DEFAULT_TYPE
++# (DARK). Power is fixed at 70. The category is picked when the move is used:
++# physical if the user's current (stage-modified) Attack is higher than its
++# Sp.Atk, special otherwise (ties go special). DVs are never consulted.
++#
++# Type constants used below: FIGHTING=1, GHOST=8, FIRE=20, GRASS=22, DARK=27.
++# Category constants: CATEGORIZE_PHYSICAL=0, CATEGORIZE_SPECIAL=1.
++# setup_wram is applied post-entry, so wBattleMonHiddenPowerType (already
++# copied from the party by InitBattleMon) must be written for the lead mon;
++# a bench mon only needs its wPartyMonN byte set (InitBattleMon copies it on
++# switch-in).
++
++# ---- per-mon type -------------------------------------------------------
++- name: "Hidden Power: a never-set mon defaults to DARK, 70 power"
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wPartyMon1HiddenPowerType') == 27
++    - wram('wBattleMonHiddenPowerType') == 27
++    - wram('wPlayerMoveStructType') == 27
++    - wram('wPlayerMoveStructPower') == 70
++    - enemy.hp < enemy.start_hp
++
++- name: "Hidden Power: stored GRASS type is used (4x vs Quagsire)"
++  id: hp_grass
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 22 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wPlayerMoveStructType') == 22
++    - wram('wPlayerMoveStructPower') == 70
++    - enemy.hp < enemy.start_hp
++
++- name: "Hidden Power: the same mon stored as FIRE does far less (0.5x vs Quagsire)"
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wPlayerMoveStructType') == 20
++    - (enemy.start_hp - enemy.hp) * 4 < result('hp_grass')['enemy']['damage']
++
++- name: "Hidden Power: two party mons keep different types at once"
++  # lead = GRASS, bench = FIRE; switch in the bench mon and attack with it
++  # (Shuckle takes both neutrally and survives three turns of it)
++  player:  { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
++  player2: { species: MAGNETON, level: 50, moves: [HIDDEN_POWER] }
++  enemy:   { species: SHUCKLE, level: 100, moves: [SPLASH] }
++  setup_wram: { wPartyMon1HiddenPowerType: 22, wBattleMonHiddenPowerType: 22, wPartyMon2HiddenPowerType: 20 }
++  move_script: [1, "switch:2", 1]
++  rng: forced_low
++  turns: 3
++  assert:
++    - player.species == 'MAGNETON'
++    - wram('wBattleMonHiddenPowerType') == 20
++    - wram('wPlayerMoveStructType') == 20
++    - wram('wPartyMon1HiddenPowerType') == 22
++    - wram('wPartyMon2HiddenPowerType') == 20
++
++# ---- category from the higher offensive stat ---------------------------
++- name: "Hidden Power is special when Sp.Atk is higher (Alakazam)"
++  id: hp_kazam_special
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - player.stats['spclatk'] > player.stats['attack']
++    - wram('wPlayerMoveStructCategory') == 1
++    - enemy.hp < enemy.start_hp
++
++- name: "Hidden Power turns physical once +6 Attack beats Sp.Atk (Alakazam)"
++  # Cloyster: Def 180 / Sp.Def 45, so the switch to Attack vs Defense also
++  # changes the damage against the same target
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER], stages: { atk: +6 } }
++  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wPlayerMoveStructCategory') == 0
++    - enemy.hp < enemy.start_hp
++    - (enemy.start_hp - enemy.hp) != result('hp_kazam_special')['enemy']['damage']
++
++- name: "Hidden Power is physical when Attack is higher (Machamp)"
++  player: { species: MACHAMP, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - player.stats['attack'] > player.stats['spclatk']
++    - wram('wPlayerMoveStructCategory') == 0
++
++- name: "Hidden Power turns special once +6 Sp.Atk beats Attack (Machamp)"
++  player: { species: MACHAMP, level: 50, moves: [HIDDEN_POWER], stages: { satk: +6 } }
++  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wPlayerMoveStructCategory') == 1
++
++- name: "Hidden Power ties go special (Mew: Attack == Sp.Atk)"
++  player: { species: MEW, level: 50, moves: [HIDDEN_POWER] }
++  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - player.stats['attack'] == player.stats['spclatk']
++    - wram('wPlayerMoveStructCategory') == 1
++
++- name: "Hidden Power switches back to special after the boost is erased (Haze)"
++  # +6 Attack turn 1 makes it physical; the enemy's Haze resets stages, so the
++  # turn-2 Hidden Power must be special again
++  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER], stages: { atk: +6 } }
++  enemy:  { species: CLOYSTER, level: 50, moves: [HAZE] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  rng: forced_low
++  turns: 2
++  assert:
++    - player.stat_levels[0] == 7
++    - wram('wPlayerMoveStructCategory') == 1
++
++# ---- enemy side / AI ----------------------------------------------------
++- name: "Enemy Hidden Power uses the enemy mon's own type and stat comparison"
++  player: { species: SHUCKLE, level: 50, moves: [SPLASH] }
++  enemy:  { species: MACHAMP, level: 50, moves: [HIDDEN_POWER] }
++  setup_wram: { wEnemyMonHiddenPowerType: 22 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wEnemyMoveStructType') == 22
++    - wram('wEnemyMoveStructPower') == 70
++    - wram('wEnemyMoveStructCategory') == 0
++    - player.hp < player.start_hp
++
++- name: "Enemy Hidden Power goes special when the enemy's Sp.Atk is boosted"
++  player: { species: SHUCKLE, level: 50, moves: [SPLASH] }
++  enemy:  { species: MACHAMP, level: 50, moves: [HIDDEN_POWER], stages: { satk: +6 } }
++  setup_wram: { wEnemyMonHiddenPowerType: 22 }
++  rng: forced_low
++  turns: 1
++  assert:
++    - wram('wEnemyMoveStructCategory') == 1
++
++- name: "AI control: Hidden Power (slot 1) is picked when its type hits"
++  # GHOST-type Hidden Power is super-effective on Gengar
++  player:  { species: GENGAR, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
++  enemy:   { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER, SPLASH] }
++  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
++  enemy_class: FALKNER
++  setup_wram: { wEnemyMonHiddenPowerType: 8 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy_move() == 'HIDDEN_POWER'
++    - player.hp < player.start_hp
++
++- name: "AI: Hidden Power is dismissed when this mon's type can't touch the target"
++  # the same mon stored as FIGHTING: Gengar is immune, so the AI must not use it
++  player:  { species: GENGAR, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
++  enemy:   { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER, SPLASH] }
++  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
++  enemy_class: FALKNER
++  setup_wram: { wEnemyMonHiddenPowerType: 1 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy_move() == 'SPLASH'
++    - player.hp == player.start_hp
++
++- name: "Hidden Power turns physical after two real Swords Dances"
++  # in-battle stat change path (ApplyStatLevelMultiplier), not the fixture:
++  # Alakazam Atk 70 -> x3 = 210 beats its 155 Sp.Atk after +4
++  player: { species: ALAKAZAM, level: 50, moves: [SWORDS_DANCE, HIDDEN_POWER] }
++  enemy:  { species: SHUCKLE, level: 100, moves: [SPLASH] }
++  setup_wram: { wBattleMonHiddenPowerType: 20 }
++  move_script: [1, 1, 2]
++  rng: forced_low
++  turns: 3
++  assert:
++    - player.stat_levels[0] == 11
++    - wram16('wBattleMonAttack') > wram16('wBattleMonSpclAtk')
++    - wram('wPlayerMoveStructCategory') == 0
++    - enemy.hp < enemy.start_hp
++
++- name: "AI damage prediction: a 4x Hidden Power (slot 2) beats STAB Psychic (slot 1)"
++  # ties go to slot 1, so picking slot 2 means AIDamageCalc rated this mon's
++  # GRASS Hidden Power (70 power, 4x vs Quagsire) above a STAB Psychic
++  player:  { species: QUAGSIRE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
++  enemy:   { species: ALAKAZAM, level: 50, moves: [PSYCHIC_M, HIDDEN_POWER] }
++  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
++  enemy_class: FALKNER
++  setup_wram: { wEnemyMonHiddenPowerType: 22 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy_move() == 'HIDDEN_POWER'
++
++- name: "AI damage prediction: a 0.25x Hidden Power (slot 2) loses to STAB Psychic"
++  # the same mon stored as FIRE: 0.25x vs Quagsire, so Psychic is the pick
++  player:  { species: QUAGSIRE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
++  enemy:   { species: ALAKAZAM, level: 50, moves: [PSYCHIC_M, HIDDEN_POWER] }
++  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
++  enemy_class: FALKNER
++  setup_wram: { wEnemyMonHiddenPowerType: 20 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy_move() == 'PSYCHIC_M'
+diff --git a/wram.asm b/wram.asm
+index 2d2d2db..10a4f02 100644
+--- a/wram.asm
++++ b/wram.asm
+@@ -2976,10 +2976,8 @@ wWeatherDailyKanto2:: db
+ wWeatherDailyKanto3:: db
+ wWeatherDailyKanto4:: db
+ 
+-; Player-selected Hidden Power type (0 = not chosen; fall back to DV-based).
+-; Bit 7 set = physical, clear = special; low bits hold the type constant.
+-; Set by the Hidden Power Guy at Lake of Rage.
+-wHiddenPowerType:: db
++; (Hidden Power's type is stored per Pokémon: see HiddenPowerType in
++; macros/wram.asm and engine/battle/hidden_power.asm.)
+ wLastRepelUsed:: db
+ 	ds 6
+ 
+@@ -3238,7 +3236,7 @@ w3_d8a2:: ds 1
+ w3_d8a3:: ds 1
+ ENDU ; d8a4
+ 
+-	ds $1c0 - 21 ; -21: battle_tower_structs grew (Personality byte in party_struct)
++	ds $1c0 - 21 - 21 ; -21 each: battle_tower_structs grew (Personality, then HiddenPowerType bytes in party_struct)
+ 
+ w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+ w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT

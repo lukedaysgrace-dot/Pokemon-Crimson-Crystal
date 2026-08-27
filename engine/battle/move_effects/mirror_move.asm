@@ -34,6 +34,8 @@ BattleCommand_MirrorMove:
 	pop af
 
 	call GetMoveData
+	; Hidden Power: the user's own type/power/category (as UpdateMoveData does)
+	farcall HiddenPowerUpdateMoveStruct
 	call GetMoveName
 	call CopyName1
 	call CheckUserIsCharging

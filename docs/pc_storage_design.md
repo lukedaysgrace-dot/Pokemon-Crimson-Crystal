@@ -39,7 +39,7 @@ first 24 bytes are byte-identical to the live `box_struct` except species/moves.
 | `$1e` | 2 | `CaughtData` | time/level, gender/location |
 | `$20` | 1 | `Level` | |
 | `$21` | 1 | `Personality` | ability slot + caught ball |
-| `$22` | 1 | `Flags` | bit 0 = IS_EGG; others reserved (0) |
+| `$22` | 1 | `Flags` | bit 0 = IS_EGG; bits 1-5 = the mon's Hidden Power type constant (`HiddenPowerType`, 0 = default); bits 6-7 reserved (0) |
 | `$23` | 10 | `Nickname` | no terminator |
 | `$2d` | 10 | `OT` | no terminator |
 | `$37` | 2 | `Checksum` | 16-bit, see §1.1 |

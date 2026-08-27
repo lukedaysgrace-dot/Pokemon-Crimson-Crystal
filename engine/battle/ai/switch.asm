@@ -123,7 +123,7 @@ AIPartyIndexAbilityNullifiesCounterMove:
 	ld a, [wLastPlayerCounterMove]
 	and a
 	jr z, .no
-	call GetMoveTypeIfDamaging
+	call GetPlayerMoveTypeIfDamaging
 	jr z, .no
 	ld c, a ; c = move type, d = party index
 	farcall AIPartyIndexAbilityNullifiesTypeFar
@@ -160,7 +160,7 @@ CheckPlayerMoveTypeMatchups:
 	call AIEliteSkipUnlessPlayerLock
 	jr c, .skip_unlocked
 	push hl
-	call GetMoveTypeIfDamaging
+	call GetPlayerMoveTypeIfDamaging
 	jr z, .next
 
 	; our own ability blanks this move: it is no reason to switch
@@ -256,7 +256,7 @@ CheckPlayerMoveTypeMatchups:
 	; while Choice-locked, only the locked move is available to us
 	call AIEliteSkipUnlessOwnLock
 	jr c, .loop2
-	call GetMoveTypeIfDamaging
+	call GetEnemyMoveTypeIfDamaging
 	jr z, .loop2
 
 	; the player's ability absorbs this move: treat it as immune
@@ -559,7 +559,7 @@ FindEnemyMonsImmuneToLastCounterMove:
 
 	; the player's last move is damaging...
 	ld a, [wLastPlayerCounterMove]
-	call GetMoveTypeIfDamaging
+	call GetPlayerMoveTypeIfDamaging
 	jr z, .next
 
 	; and the Pokemon is immune to it...
@@ -640,8 +640,13 @@ FindEnemyMonsWithASuperEffectiveMove:
 	push hl
 	push bc
 	; for move on mon:
+	; c = this mon's stored Hidden Power type (hl = its MON_MOVES)
+	push hl
+	ld bc, MON_HIDDEN_POWER_TYPE - MON_MOVES
+	add hl, bc
+	ld c, [hl]
+	pop hl
 	ld b, NUM_MOVES
-	ld c, 0
 .loop3
 	; if move is None: break
 	ld a, [hli]
@@ -749,7 +754,7 @@ FindEnemyMonsThatResistPlayer:
 	and a
 	jr z, .skip_move
 
-	call GetMoveTypeIfDamaging
+	call GetPlayerMoveTypeIfDamaging
 	jr nz, .check_type
 
 .skip_move
@@ -866,7 +871,7 @@ CheckEnemyMoveEffectiveness:
 	; while Choice-locked, only the locked move is available to us
 	call AIEliteSkipUnlessOwnLock
 	jr c, .next
-	call GetMoveTypeIfDamaging
+	call GetEnemyMoveTypeIfDamaging
 	jr z, .next
 	; the player's ability absorbs this move: it can't damage
 	call AIPlayerAbilityNullifiesType
@@ -896,13 +901,21 @@ CheckEnemyMoveEffectiveness:
 
 GetMoveTypeIfDamaging:
 ; returns the type of move a in a, and sets the zero flag depending on whether the move causes damage
+; Hidden Power's type belongs to its user: c must hold the user's stored
+; HiddenPowerType byte (0 = default). Use one of the wrappers below unless
+; c has been set up for the mon whose move this is.
 ; clobbers hl
 	push bc
 	call GetMoveAddress
 	ld b, a
-	rept MOVE_POWER - 1
+	; GetMoveAddress skips the animation byte, so hl points at MOVE_EFFECT
+	call GetFarByte
+	cp EFFECT_HIDDEN_POWER
+	jr z, .hidden_power
+	rept MOVE_POWER - MOVE_EFFECT
 		inc hl
 	endr
+	ld a, b
 	call GetFarByte
 	ld c, a
 	ld a, b
@@ -910,6 +923,40 @@ GetMoveTypeIfDamaging:
 	call GetFarByte
 	inc c
 	dec c
+	pop bc
+	ret
+
+.hidden_power
+; always damaging (nz); the type is the user's own
+	pop bc
+	ld a, c
+	and a
+	ret nz
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+	and a ; nz
+	ret
+
+GetPlayerMoveTypeIfDamaging:
+; GetMoveTypeIfDamaging for a move of the player's active mon
+	push bc
+	ld c, a
+	ld a, [wBattleMonHiddenPowerType]
+	ld b, a
+	ld a, c
+	ld c, b
+	call GetMoveTypeIfDamaging
+	pop bc
+	ret
+
+GetEnemyMoveTypeIfDamaging:
+; GetMoveTypeIfDamaging for a move of the enemy's active mon
+	push bc
+	ld c, a
+	ld a, [wEnemyMonHiddenPowerType]
+	ld b, a
+	ld a, c
+	ld c, b
+	call GetMoveTypeIfDamaging
 	pop bc
 	ret
 

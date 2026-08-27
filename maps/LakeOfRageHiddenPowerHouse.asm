@@ -19,7 +19,14 @@ HiddenPowerGuy:
 	writetext HiddenPowerGuyText2
 	buttonsound
 .ChooseType:
-	writetext HiddenPowerGuyAskTypeText
+; Each Pokémon keeps its own Hidden Power type: pick one, hear its current
+; type, then choose the new one (see engine/events/hidden_power_type.asm).
+	writetext HiddenPowerGuyWhichMonText
+	buttonsound
+	special HiddenPowerSelectMon
+	ifequal 0, .NoChange
+	ifequal 2, .Egg
+	writetext HiddenPowerGuyCurrentTypeText
 	buttonsound
 	special HiddenPowerTypeMenu
 	iffalse .NoChange
@@ -29,6 +36,11 @@ HiddenPowerGuy:
 	end
 .NoChange:
 	writetext HiddenPowerGuyNoChangeText
+	waitbutton
+	closetext
+	end
+.Egg:
+	writetext HiddenPowerGuyEggText
 	waitbutton
 	closetext
 	end
@@ -79,23 +91,40 @@ HiddenPowerGuyText3:
 	text "I am meditating…"
 	done
 
-HiddenPowerGuyAskTypeText:
-	text "What type shall"
-	line "HIDDEN POWER"
-	cont "take?"
+HiddenPowerGuyWhichMonText:
+	text "Which #MON's"
+	line "HIDDEN POWER shall"
+	cont "I reshape?"
+	done
+
+HiddenPowerGuyCurrentTypeText:
+	text_ram wStringBuffer3
+	text "…"
+	line "Its HIDDEN POWER"
+	cont "is @"
+	text_ram wStringBuffer4
+	text " type."
+
+	para "What type shall"
+	line "it take?"
 	done
 
 HiddenPowerGuyChoseTypeText:
-	text_ram wStringBuffer3
-	text " type,"
-	line "@"
 	text_ram wStringBuffer4
-	text "…"
+	text " type…"
 
-	para "It is done. Your"
-	line "#MON's HIDDEN"
-	cont "POWER has been"
-	cont "reshaped."
+	para "It is done."
+	line "@"
+	text_ram wStringBuffer3
+	text "'s"
+	cont "HIDDEN POWER has"
+	cont "been reshaped."
+	done
+
+HiddenPowerGuyEggText:
+	text "An EGG holds no"
+	line "power I can shape"
+	cont "yet."
 	done
 
 HiddenPowerGuyNoChangeText:
@@ -106,9 +135,9 @@ HiddenPowerGuyNoChangeText:
 	done
 
 HiddenPowerGuyRetuneText:
-	text "Shall I reshape"
-	line "your HIDDEN"
-	cont "POWER's type?"
+	text "Shall I reshape a"
+	line "#MON's HIDDEN"
+	cont "POWER type?"
 	done
 
 LakeOfRageHiddenPowerHouse_MapEvents:

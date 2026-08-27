@@ -1,0 +1,219 @@
+# Hidden Power (2026-08-27 rework): every Pokémon carries its own type in its
+# HiddenPowerType byte (box/party/battle struct), 0 = HIDDEN_POWER_DEFAULT_TYPE
+# (DARK). Power is fixed at 70. The category is picked when the move is used:
+# physical if the user's current (stage-modified) Attack is higher than its
+# Sp.Atk, special otherwise (ties go special). DVs are never consulted.
+#
+# Type constants used below: FIGHTING=1, GHOST=8, FIRE=20, GRASS=22, DARK=27.
+# Category constants: CATEGORIZE_PHYSICAL=0, CATEGORIZE_SPECIAL=1.
+# setup_wram is applied post-entry, so wBattleMonHiddenPowerType (already
+# copied from the party by InitBattleMon) must be written for the lead mon;
+# a bench mon only needs its wPartyMonN byte set (InitBattleMon copies it on
+# switch-in).
+
+# ---- per-mon type -------------------------------------------------------
+- name: "Hidden Power: a never-set mon defaults to DARK, 70 power"
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPartyMon1HiddenPowerType') == 27
+    - wram('wBattleMonHiddenPowerType') == 27
+    - wram('wPlayerMoveStructType') == 27
+    - wram('wPlayerMoveStructPower') == 70
+    - enemy.hp < enemy.start_hp
+
+- name: "Hidden Power: stored GRASS type is used (4x vs Quagsire)"
+  id: hp_grass
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 22 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 22
+    - wram('wPlayerMoveStructPower') == 70
+    - enemy.hp < enemy.start_hp
+
+- name: "Hidden Power: the same mon stored as FIRE does far less (0.5x vs Quagsire)"
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: QUAGSIRE, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 20
+    - (enemy.start_hp - enemy.hp) * 4 < result('hp_grass')['enemy']['damage']
+
+- name: "Hidden Power: two party mons keep different types at once"
+  # lead = GRASS, bench = FIRE; switch in the bench mon and attack with it
+  # (Shuckle takes both neutrally and survives three turns of it)
+  player:  { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
+  player2: { species: MAGNETON, level: 50, moves: [HIDDEN_POWER] }
+  enemy:   { species: SHUCKLE, level: 100, moves: [SPLASH] }
+  setup_wram: { wPartyMon1HiddenPowerType: 22, wBattleMonHiddenPowerType: 22, wPartyMon2HiddenPowerType: 20 }
+  move_script: [1, "switch:2", 1]
+  rng: forced_low
+  turns: 3
+  assert:
+    - player.species == 'MAGNETON'
+    - wram('wBattleMonHiddenPowerType') == 20
+    - wram('wPlayerMoveStructType') == 20
+    - wram('wPartyMon1HiddenPowerType') == 22
+    - wram('wPartyMon2HiddenPowerType') == 20
+
+# ---- category from the higher offensive stat ---------------------------
+- name: "Hidden Power is special when Sp.Atk is higher (Alakazam)"
+  id: hp_kazam_special
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.stats['spclatk'] > player.stats['attack']
+    - wram('wPlayerMoveStructCategory') == 1
+    - enemy.hp < enemy.start_hp
+
+- name: "Hidden Power turns physical once +6 Attack beats Sp.Atk (Alakazam)"
+  # Cloyster: Def 180 / Sp.Def 45, so the switch to Attack vs Defense also
+  # changes the damage against the same target
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER], stages: { atk: +6 } }
+  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructCategory') == 0
+    - enemy.hp < enemy.start_hp
+    - (enemy.start_hp - enemy.hp) != result('hp_kazam_special')['enemy']['damage']
+
+- name: "Hidden Power is physical when Attack is higher (Machamp)"
+  player: { species: MACHAMP, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.stats['attack'] > player.stats['spclatk']
+    - wram('wPlayerMoveStructCategory') == 0
+
+- name: "Hidden Power turns special once +6 Sp.Atk beats Attack (Machamp)"
+  player: { species: MACHAMP, level: 50, moves: [HIDDEN_POWER], stages: { satk: +6 } }
+  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructCategory') == 1
+
+- name: "Hidden Power ties go special (Mew: Attack == Sp.Atk)"
+  player: { species: MEW, level: 50, moves: [HIDDEN_POWER] }
+  enemy:  { species: CLOYSTER, level: 50, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.stats['attack'] == player.stats['spclatk']
+    - wram('wPlayerMoveStructCategory') == 1
+
+- name: "Hidden Power switches back to special after the boost is erased (Haze)"
+  # +6 Attack turn 1 makes it physical; the enemy's Haze resets stages, so the
+  # turn-2 Hidden Power must be special again
+  player: { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER], stages: { atk: +6 } }
+  enemy:  { species: CLOYSTER, level: 50, moves: [HAZE] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.stat_levels[0] == 7
+    - wram('wPlayerMoveStructCategory') == 1
+
+# ---- enemy side / AI ----------------------------------------------------
+- name: "Enemy Hidden Power uses the enemy mon's own type and stat comparison"
+  player: { species: SHUCKLE, level: 50, moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 50, moves: [HIDDEN_POWER] }
+  setup_wram: { wEnemyMonHiddenPowerType: 22 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wEnemyMoveStructType') == 22
+    - wram('wEnemyMoveStructPower') == 70
+    - wram('wEnemyMoveStructCategory') == 0
+    - player.hp < player.start_hp
+
+- name: "Enemy Hidden Power goes special when the enemy's Sp.Atk is boosted"
+  player: { species: SHUCKLE, level: 50, moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 50, moves: [HIDDEN_POWER], stages: { satk: +6 } }
+  setup_wram: { wEnemyMonHiddenPowerType: 22 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wEnemyMoveStructCategory') == 1
+
+- name: "AI control: Hidden Power (slot 1) is picked when its type hits"
+  # GHOST-type Hidden Power is super-effective on Gengar
+  player:  { species: GENGAR, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER, SPLASH] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  setup_wram: { wEnemyMonHiddenPowerType: 8 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HIDDEN_POWER'
+    - player.hp < player.start_hp
+
+- name: "AI: Hidden Power is dismissed when this mon's type can't touch the target"
+  # the same mon stored as FIGHTING: Gengar is immune, so the AI must not use it
+  player:  { species: GENGAR, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: ALAKAZAM, level: 50, moves: [HIDDEN_POWER, SPLASH] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  setup_wram: { wEnemyMonHiddenPowerType: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+    - player.hp == player.start_hp
+
+- name: "Hidden Power turns physical after two real Swords Dances"
+  # in-battle stat change path (ApplyStatLevelMultiplier), not the fixture:
+  # Alakazam Atk 70 -> x3 = 210 beats its 155 Sp.Atk after +4
+  player: { species: ALAKAZAM, level: 50, moves: [SWORDS_DANCE, HIDDEN_POWER] }
+  enemy:  { species: SHUCKLE, level: 100, moves: [SPLASH] }
+  setup_wram: { wBattleMonHiddenPowerType: 20 }
+  move_script: [1, 1, 2]
+  rng: forced_low
+  turns: 3
+  assert:
+    - player.stat_levels[0] == 11
+    - wram16('wBattleMonAttack') > wram16('wBattleMonSpclAtk')
+    - wram('wPlayerMoveStructCategory') == 0
+    - enemy.hp < enemy.start_hp
+
+- name: "AI damage prediction: a 4x Hidden Power (slot 2) beats STAB Psychic (slot 1)"
+  # ties go to slot 1, so picking slot 2 means AIDamageCalc rated this mon's
+  # GRASS Hidden Power (70 power, 4x vs Quagsire) above a STAB Psychic
+  player:  { species: QUAGSIRE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: ALAKAZAM, level: 50, moves: [PSYCHIC_M, HIDDEN_POWER] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  setup_wram: { wEnemyMonHiddenPowerType: 22 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HIDDEN_POWER'
+
+- name: "AI damage prediction: a 0.25x Hidden Power (slot 2) loses to STAB Psychic"
+  # the same mon stored as FIRE: 0.25x vs Quagsire, so Psychic is the pick
+  player:  { species: QUAGSIRE, level: 50, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: ALAKAZAM, level: 50, moves: [PSYCHIC_M, HIDDEN_POWER] }
+  enemy2:  { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  setup_wram: { wEnemyMonHiddenPowerType: 20 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'PSYCHIC_M'
