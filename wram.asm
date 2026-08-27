@@ -1050,24 +1050,70 @@ wPrinterExposureTime:: db ; cbfb
 wGameboyPrinterRAMEnd::
 
 NEXTU ; c800
-; bill's pc data
+; Bill's PC (graphical storage system) workspace; see engine/pc/bills_pc_ui.asm.
+; Everything the HBlank palette interrupt touches must stay in WRAM0.
 wBillsPCData::
-wBillsPCPokemonList::
-; (species, box number, list index) x30
-	ds 4 * 30
-	ds 690
-wBillsPC_ScrollPosition:: db
-wBillsPC_CursorPosition:: db
-wBillsPC_NumMonsInBox:: db
-wBillsPC_NumMonsOnScreen:: db
-wBillsPC_LoadedBox:: db ; 0 if party, 1 - 14 if box, 15 if active box
-wBillsPC_BackupScrollPosition:: db
-wBillsPC_BackupCursorPosition:: db
-wBillsPC_BackupLoadedBox:: db
-wBillsPC_MonHasMail:: db
-	ds 5
-wBillsPCDataEnd::
+; Copied HBlank palette code (BillsPC_LCDCode). Reserve is asserted at link
+; time against the real code size.
+wLCDBillsPC:: ds $110
+wLCDBillsPCEnd::
 
+; Palettes currently being written by the HBlank code for one icon row.
+; Order matters (the LCD code indexes into this): 2 party mons, then 4 box mons,
+; 2 colors (colors 1 and 2) of 2 bytes each.
+wBillsPC_CurPals::
+wBillsPC_CurPartyPals:: ds 2 * 2 * 2
+wBillsPC_CurMonPals:: ds 2 * 2 * 4
+
+; Staged palettes for every visible mon (party + box), plus the pokepic and
+; shiny/pokerus colors that share the top rows.
+wBillsPC_PalList::
+wBillsPC_PokepicPal:: ds 2 * 2 * 1
+wBillsPC_PokerusShinyPal:: ds 2 * 2 * 1
+wBillsPC_MonPals1:: ds 2 * 2 * 4
+	ds 2 * 2 * 2 ; unused row 2 party (BG2-3 hold the pokepic/pokerus pals there)
+wBillsPC_MonPals2:: ds 2 * 2 * 4
+wBillsPC_PartyPals3:: ds 2 * 2 * 2
+wBillsPC_MonPals3:: ds 2 * 2 * 4
+wBillsPC_PartyPals4:: ds 2 * 2 * 2
+wBillsPC_MonPals4:: ds 2 * 2 * 4
+wBillsPC_PartyPals5:: ds 2 * 2 * 2
+wBillsPC_MonPals5:: ds 2 * 2 * 4
+wBillsPC_PalListEnd::
+
+; Species lists: 2 bytes per slot, 0 = empty; bits 0-9 = true species index,
+; bit 14 = shiny, bit 15 = egg.
+wBillsPC_PartyList:: ds PARTY_LENGTH * 2
+wBillsPC_BoxList:: ds MONS_PER_BOX * 2
+wBillsPC_HeldIcon:: dw
+wBillsPC_QuickIcon:: dw
+
+; Cursor data
+wBillsPC_CursorItem:: db ; item held by the cursor in item mode
+wBillsPC_CursorPos:: db ; $yx: row 0 = box title, rows 1-5 columns 0-1 party / 2-5 box
+wBillsPC_CursorHeldBox:: db ; 0 party, 1-NUM_BOXES box; bit 7 set = holding an item
+wBillsPC_CursorHeldSlot:: db ; 0 = nothing held, else 1-based slot; -1 = from the bag
+wBillsPC_CursorDestBox:: db
+wBillsPC_CursorDestSlot:: db
+wBillsPC_CursorMode:: db ; PC_MENU_MODE / PC_SWAP_MODE / PC_ITEM_MODE
+wBillsPC_CursorAnimFlag:: db ; PCANIM_*
+
+; Quick-move sprite data
+wBillsPC_QuickFrom::
+wBillsPC_QuickFromBox:: db
+wBillsPC_QuickFromSlot:: db
+wBillsPC_QuickFromX:: db
+wBillsPC_QuickFromY:: db
+wBillsPC_QuickTo::
+wBillsPC_QuickToBox:: db
+wBillsPC_QuickToSlot:: db
+wBillsPC_QuickToX:: db
+wBillsPC_QuickToY:: db
+wBillsPC_QuickFrames:: db
+
+wBillsPC_ApplyThemePals:: db ; nonzero: BillsPC_LoadPalettes also rewrites the mon pals
+wBillsPC_HBlankPhase:: db ; scratch for the LCD code
+wBillsPCDataEnd::
 
 NEXTU ; c800
 ; Hall of Fame data
@@ -1792,11 +1838,7 @@ wMovementBuffer:: ds 55
 
 NEXTU ; d002
 ; box printing
-wWhichBoxMonToPrint:: db
-wFinishedPrintingBox:: db
-wAddrOfBoxToPrint:: dw
-wBankOfBoxToPrint:: db
-wWhichBoxToPrint:: db
+	ds 6 ; formerly the PC box printing variables
 
 NEXTU ; d002
 ; trainer HUD data
@@ -2108,6 +2150,24 @@ wItemQuantityChangeBuffer:: db
 wItemQuantityBuffer:: db
 
 wTempMon:: party_struct wTempMon ; d10e
+; Storage-system temp mon extension (see engine/pc/storage.asm). wTempMon holds
+; the live party_struct (runtime species/move IDs); these carry the rest.
+wTempMonNickname:: ds MON_NAME_LENGTH
+wTempMonOT:: ds NAME_LENGTH
+wTempMonSpeciesIndex:: dw ; true 16-bit species index
+wTempMonIsEgg:: db ; nonzero if the mon is an Egg
+; Where GetStorageBoxMon loaded the mon from: box (0 = party, 1-NUM_BOXES) and
+; 1-based slot. Slot is 0 if the requested slot was empty.
+wTempMonBox:: db
+wTempMonSlot:: db
+wTempMonExtensionEnd::
+
+; PokeDB allocation bitmaps: one bit per physical record, rebuilt by
+; FlushStorageSystem from the active and backup box metadata.
+wPokeDB1UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDB1UsedEntriesEnd::
+wPokeDB2UsedEntries:: flag_array MONDB_ENTRIES
+wPokeDB2UsedEntriesEnd::
 
 wSpriteFlags:: db ; d13e
 
@@ -2355,6 +2415,7 @@ wChosenCableClubRoom::
 wBreedingCompatibility::
 wApplyStatLevelMultipliersToEnemy::
 wUsePPUp::
+wTextDecimalByte::
 wd265:: ; mobile
 	db
 
@@ -2812,12 +2873,9 @@ wEventFlags:: flag_array NUM_EVENTS ; da72
 
 	ds 0 ; trimmed by 5: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE, again for the Goldenrod rooftop couple events, and again for the Seafoam Gym trainer flags
 
-wCurBox:: db ; db72
+wCurBox:: db ; db72 ; 0-based index of the current storage box
 
 	ds 2
-
-; 8 chars + $50
-wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES ; db75
 
 wCelebiEvent:: ; dbf3
 ; bit 2: forest is restless

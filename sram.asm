@@ -147,15 +147,6 @@ sChecksum:: dw
 sCheckValue2:: db ; loaded with SAVE_CHECK_VALUE_2, used to check save corruption
 
 
-SECTION "Active Box", SRAM
-
-; ad10
-sBox:: box sBox
-; b160
-
-	ds $f4
-
-
 SECTION "Link Battle Data", SRAM
 
 sLinkBattleResults:: ds $c
@@ -246,48 +237,65 @@ sBTMonPrevPrevTrainer2:: dw
 sBTMonPrevPrevTrainer3:: dw
 
 
-SECTION "Boxes 1-7",  SRAM, BANK [2]
+SECTION "Save Format", SRAM
 
-sBox1::  box sBox1
-sBox2::  box sBox2
-sBox3::  box sBox3
-sBox4::  box sBox4
-sBox5::  box sBox5
-sBox6::  box sBox6
-sBox7::  box sBox7
+; Checked before anything else in the save is trusted (CheckPrimarySaveFile).
+sSaveVersion:: db ; SAVE_FORMAT_VERSION
+; 1 while the backup copy (mail, storage snapshot, backup game data) is being
+; written after the main copy has been validated; 0 otherwise.
+sWritingBackup:: db
 
-sBox1PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox2PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox3PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox4PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox5PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox6PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox7PokemonIndexes::  ds 2 * MONS_PER_BOX
-
-
-SECTION "Boxes 8-14", SRAM
-
-sBox8::  box sBox8
-sBox9::  box sBox9
-sBox10:: box sBox10
-sBox11:: box sBox11
-sBox12:: box sBox12
-sBox13:: box sBox13
-sBox14:: box sBox14
-
-sBox8PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox9PokemonIndexes::  ds 2 * MONS_PER_BOX
-sBox10PokemonIndexes:: ds 2 * MONS_PER_BOX
-sBox11PokemonIndexes:: ds 2 * MONS_PER_BOX
-sBox12PokemonIndexes:: ds 2 * MONS_PER_BOX
-sBox13PokemonIndexes:: ds 2 * MONS_PER_BOX
-sBox14PokemonIndexes:: ds 2 * MONS_PER_BOX
 
 SECTION "SRAM Mobile 1", SRAM
 
-	ds $13
+; Former JP-mobile block (was SRAM bank 4, $a013). Only battle_tower.asm reads it.
+s4_a013:: ds 36
 
-s4_a013:: ds 36 ; a013
+
+SECTION "Box Metadata", SRAM
+
+; Pointer-based storage (see docs/pc_storage_design.md).
+; Active snapshot: edited freely by gameplay and the PC.
+for n, 1, NUM_BOXES + 1
+sNewBox{d:n}:: newbox sNewBox{d:n}
+endr
+sNewBoxEnd::
+
+; Backup snapshot: only written by SaveStorageSystem (during a save) and only
+; read by LoadStorageSystem (on load). Records referenced here are immutable.
+for n, 1, NUM_BOXES + 1
+sBackupNewBox{d:n}:: newbox sBackupNewBox{d:n}
+endr
+sBackupNewBoxEnd::
+
+if MONDB_ENTRIES_C > 0
+SECTION "PokeDB 1C", SRAM
+sBoxMons1C:: pokedb sBoxMons1C, MONDB_ENTRIES_C
+
+SECTION "PokeDB 2C", SRAM
+sBoxMons2C:: pokedb sBoxMons2C, MONDB_ENTRIES_C
+endc
+
+
+SECTION "PokeDB 1A", SRAM
+
+sBoxMons1A:: pokedb sBoxMons1A, MONDB_ENTRIES_A
+
+
+SECTION "PokeDB 1B", SRAM
+
+sBoxMons1B:: pokedb sBoxMons1B, MONDB_ENTRIES_B
+
+
+SECTION "PokeDB 2A", SRAM
+
+sBoxMons2A:: pokedb sBoxMons2A, MONDB_ENTRIES_A
+
+
+SECTION "PokeDB 2B", SRAM
+
+sBoxMons2B:: pokedb sBoxMons2B, MONDB_ENTRIES_B
+
 
 SECTION "SRAM Mobile 2", SRAM
 

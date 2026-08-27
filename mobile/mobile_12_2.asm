@@ -20,73 +20,39 @@ MobileCheckOwnMonAnywhere:
 	call .CopyName
 	dec d
 	jr nz, .asm_4a851
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld a, [sBoxCount]
-	and a
-	jr z, .asm_4a888
-	ld d, a
-	ld hl, sBoxMon1Species
-	ld bc, sBoxMonOT
-.asm_4a873
-	call .CheckMatch
-	jr nc, .asm_4a87c
-	call CloseSRAM
-	ret
-
-.asm_4a87c
-	push bc
-	ld bc, BOXMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	call .CopyName
-	dec d
-	jr nz, .asm_4a873
-
-.asm_4a888
-	call CloseSRAM
-	ld c, 0
+	; Every stored mon (species only).
 	ld a, [wScriptVar]
 	call GetPokemonIndexFromID
 	ld d, h
 	ld e, l
-.asm_4a88d
-	ld a, [wCurBox]
-	and $f
-	cp c
-	jr z, .asm_4a8d1
-	ld hl, .BoxAddrs
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	call GetSRAMBank
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld b, MONS_PER_BOX
-.box_search_loop
-	ld a, [hli]
+	ld b, 1
+.box_loop
+	ld c, 1
+.slot_loop
+	push de
+	push bc
+	farcall GetStorageBoxSpecies ; hl = species index
+	pop bc
+	pop de
+	ld a, l
 	cp e
-	ld a, [hli]
 	jr nz, .next_box_mon
+	ld a, h
 	cp d
 	jr z, .found_in_box
 .next_box_mon
-	dec b
-	jr nz, .box_search_loop
-.asm_4a8d1
 	inc c
 	ld a, c
-	cp NUM_BOXES
-	jr c, .asm_4a88d
-	call CloseSRAM
+	cp MONS_PER_BOX + 1
+	jr c, .slot_loop
+	inc b
+	ld a, b
+	cp NUM_BOXES + 1
+	jr c, .box_loop
 	and a
 	ret
 
 .found_in_box
-	call CloseSRAM
 	scf
 	ret
 
@@ -115,22 +81,6 @@ MobileCheckOwnMonAnywhere:
 	pop bc
 	scf
 	ret
-
-.BoxAddrs:
-	dba sBox1PokemonIndexes
-	dba sBox2PokemonIndexes
-	dba sBox3PokemonIndexes
-	dba sBox4PokemonIndexes
-	dba sBox5PokemonIndexes
-	dba sBox6PokemonIndexes
-	dba sBox7PokemonIndexes
-	dba sBox8PokemonIndexes
-	dba sBox9PokemonIndexes
-	dba sBox10PokemonIndexes
-	dba sBox11PokemonIndexes
-	dba sBox12PokemonIndexes
-	dba sBox13PokemonIndexes
-	dba sBox14PokemonIndexes
 
 .CopyName:
 	push hl

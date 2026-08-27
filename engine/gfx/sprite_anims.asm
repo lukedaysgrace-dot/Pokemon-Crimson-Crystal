@@ -49,6 +49,10 @@ DoAnimFrame:
 	dw .IntroUnownF
 	dw .IntroSuicuneAway
 	dw .CelebiFlyby
+	dw .PcCursor
+	dw .PcQuick
+	dw .PcMode
+	dw .PcPack
 
 .Null:
 	ret
@@ -846,6 +850,24 @@ DoAnimFrame:
 
 .CelebiFlyby
 	farcall UpdateCelebiFlybyPosition
+	ret
+
+; Bill's PC sprites: the logic lives with the UI (engine/pc/bills_pc_ui.asm)
+; so it can read the PC workspace directly; bc = sprite anim struct.
+.PcCursor
+	farcall BillsPC_AnimSeq_Cursor
+	ret
+
+.PcQuick
+	farcall BillsPC_AnimSeq_Quick
+	ret
+
+.PcMode
+	farcall BillsPC_AnimSeq_Mode
+	ret
+
+.PcPack
+	farcall BillsPC_AnimSeq_Pack
 	ret
 
 .AnonymousJumptable:

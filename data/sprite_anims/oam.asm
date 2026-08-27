@@ -143,6 +143,12 @@ SpriteAnimOAMData:
 	dbw $00, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
 	dbw $00, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_1
 	dbw $04, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_2
+	dbw $00, .OAMData_PcCursor                 ; SPRITE_ANIM_OAMSET_PC_CURSOR
+	dbw $00, .OAMData_PcCursorItem             ; SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM
+	dbw $00, .OAMData_PcQuick                  ; SPRITE_ANIM_OAMSET_PC_QUICK
+	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
+	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
+	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
 
 .OAMData_1x1_Palette0:
 	db 1
@@ -1137,3 +1143,63 @@ SpriteAnimOAMData:
 	dsprite  0,  0, -1,  4, $51, 1
 	dsprite  0,  0,  0,  4, $52, 1
 	dsprite  0,  0,  1,  4, $53, 1
+
+; Bill's PC (engine/pc/bills_pc_ui.asm). All tiles live in VRAM bank 1 (vTiles3).
+.OAMData_PcCursor:
+	db 12
+	; Cursor
+	dsprite  0,  0,  0,  0, $04, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $04, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $05, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
+	; Held mini
+	dsprite  1,  2,  0,  0, $08, PAL_PC_MINI_ICON | VRAM_BANK_1
+	dsprite  1,  2,  1,  0, $09, PAL_PC_MINI_ICON | VRAM_BANK_1
+	dsprite  2,  2,  0,  0, $0a, PAL_PC_MINI_ICON | VRAM_BANK_1
+	dsprite  2,  2,  1,  0, $0b, PAL_PC_MINI_ICON | VRAM_BANK_1
+	; Mini shadow
+	dsprite  1,  2,  0,  0, $0c, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  1,  2,  1,  0, $0d, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  2,  2,  0,  0, $0e, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  2,  2,  1,  0, $0f, PAL_PC_SHADOW | VRAM_BANK_1
+
+.OAMData_PcCursorItem:
+	db 5
+	; Cursor
+	dsprite  0,  0,  0,  0, $04, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $04, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $05, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
+	; Held item
+	dsprite  2,  0,  0,  4, $08, 0 | VRAM_BANK_1
+
+.OAMData_PcQuick:
+	db 8
+	; Mini or item (an item only uses the first sprite; the rest are blank)
+	dsprite  0,  0,  0,  0, $14, PAL_PC_QUICK | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $15, PAL_PC_QUICK | VRAM_BANK_1
+	dsprite  1,  0,  0,  0, $16, PAL_PC_QUICK | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $17, PAL_PC_QUICK | VRAM_BANK_1
+	; Mini shadow
+	dsprite  0,  0,  0,  0, $18, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $19, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  1,  0,  0,  0, $1a, PAL_PC_SHADOW | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $1b, PAL_PC_SHADOW | VRAM_BANK_1
+
+.OAMData_PcMode:
+	db 3
+	dsprite  0,  0,  2,  0, $26, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1
+	dsprite  0,  0,  3,  0, $27, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1
+	dsprite  0,  0,  4,  0, $28, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1
+
+.OAMData_PcMode2:
+	db 2
+	dsprite  0,  0,  0,  0, $24, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $25, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1
+
+.OAMData_PcPack:
+	db 4
+	dsprite  0,  0,  0,  0, $2f, PAL_PC_PACK | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $30, PAL_PC_PACK | VRAM_BANK_1
+	dsprite  1,  0,  0,  0, $31, PAL_PC_PACK | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $32, PAL_PC_PACK | VRAM_BANK_1

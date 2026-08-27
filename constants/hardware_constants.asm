@@ -25,7 +25,13 @@ MBC3RTC        EQU $a000
 SRAM_DISABLE EQU $00
 SRAM_ENABLE  EQU $0a
 
-NUM_SRAM_BANKS EQU 4
+NUM_SRAM_BANKS EQU 8 ; 64 KiB SRAM (MBC30-style); rgbfix -r 5
+; Bank number handed to GetSRAMBank by dead JP-mobile code: out of range, so
+; SRAM is disabled instead of written (the same no-op it was with 4 banks).
+MOBILE_DEAD_SRAM_BANK EQU NUM_SRAM_BANKS
+
+; hLCDCPointer value selecting hLCDInterruptFunctionTarget (see home/lcd.asm)
+LCD_CUSTOM_HANDLER EQU $ff
 
 RTC_S  EQU $08 ; Seconds   0-59 (0-3Bh)
 RTC_M  EQU $09 ; Minutes   0-59 (0-3Bh)

@@ -111,7 +111,6 @@ ROMX $22
 ROMX $23
 	"bank23"
 	"Evolutions and Attacks 1B"
-	"Overworld Weather"
 ROMX $24
 	"bank24"
 ROMX $25
@@ -339,18 +338,23 @@ SRAM $00
 	"Backup Save"
 SRAM $01
 	"Save"
-	"Active Box"
 	"Link Battle Data"
 	"SRAM Hall of Fame"
 	"SRAM Crystal Data"
 	"SRAM Battle Tower"
-SRAM $02
-	"Boxes 1-7"
-SRAM $03
-	"Boxes 8-14"
-SRAM $04
+	"Save Format"
 	"SRAM Mobile 1"
+SRAM $02
+	"Box Metadata"
+SRAM $03
+	"PokeDB 1A"
+SRAM $04
+	"PokeDB 1B"
 SRAM $05
+	"PokeDB 2A"
+SRAM $06
+	"PokeDB 2B"
+SRAM $07
 	"SRAM Mobile 2"
 HRAM
 	"HRAM"

@@ -23,3 +23,9 @@ homecall: MACRO
 	pop af
 	rst Bankswitch
 ENDM
+
+farcall_a: MACRO ; address
+; farcall that passes a through to the callee (see FarCall_hl / hFarCallReturnA)
+	ldh [hFarCallReturnA], a
+	farcall \1
+ENDM

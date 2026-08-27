@@ -67,6 +67,12 @@ SpriteAnimFrameData:
 	dw .Frameset_CelebiLeft
 	dw .Frameset_CelebiRight
 	dw .Frameset_CelebiFlyby
+	dw .Frameset_PcCursor
+	dw .Frameset_PcCursorItem
+	dw .Frameset_PcQuick
+	dw .Frameset_PcMode
+	dw .Frameset_PcMode2
+	dw .Frameset_PcPack
 
 .Frameset_00:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
@@ -502,3 +508,28 @@ SpriteAnimFrameData:
 	frame SPRITE_ANIM_OAMSET_CELEBI_1,  4, OAM_X_FLIP
 	frame SPRITE_ANIM_OAMSET_CELEBI_2,  4, OAM_X_FLIP
 	endanim
+
+; Bill's PC (engine/pc/bills_pc_ui.asm)
+.Frameset_PcCursor:
+	frame SPRITE_ANIM_OAMSET_PC_CURSOR, 32
+	dorestart
+
+.Frameset_PcCursorItem:
+	frame SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM, 32
+	dorestart
+
+.Frameset_PcQuick:
+	frame SPRITE_ANIM_OAMSET_PC_QUICK, 8
+	delanim
+
+.Frameset_PcMode:
+	frame SPRITE_ANIM_OAMSET_PC_MODE, 32
+	dorestart
+
+.Frameset_PcMode2:
+	frame SPRITE_ANIM_OAMSET_PC_MODE2, 32
+	dorestart
+
+.Frameset_PcPack:
+	frame SPRITE_ANIM_OAMSET_PC_PACK, 32
+	dorestart

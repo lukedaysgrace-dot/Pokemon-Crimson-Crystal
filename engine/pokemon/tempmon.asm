@@ -18,8 +18,8 @@ CopyMonToTempMon:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	cp OTPARTYMON
 	jr z, .copywholestruct
-	ld bc, BOXMON_STRUCT_LENGTH
-	callfar CopyBoxmonToTempMon
+	; BOXMON: stored mons are decoded into wTempMon by the storage backend
+	; (GetStorageBoxMon) before any consumer runs, so there is nothing to copy.
 	jr .done
 
 .copywholestruct
@@ -106,12 +106,13 @@ GetMonSpecies:
 	jr .done
 
 .boxmon
-	ld a, BANK(sBoxSpecies)
-	call GetSRAMBank
-	ld hl, sBoxSpecies
-	call .done
-	call CloseSRAM
-	ret
+	; wTempMon already holds the decoded stored mon
+	ld a, [wTempMonIsEgg]
+	and a
+	ld a, EGG
+	jr nz, .done2
+	ld a, [wTempMonSpecies]
+	jr .done2
 
 .breedmon
 	ld a, [wBreedMon1Species]
