@@ -664,10 +664,6 @@ OakSpeech:
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 
-	decoord 6, 4
-	ld c, ANIM_MON_EGG1
-	predef HOF_AnimateFrontpic
-
 	ld hl, OakText2
 	call PrintText
 	ld hl, OakText4
@@ -716,6 +712,8 @@ OakText2:
 	call GetPokemonIDFromIndex
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
+	ld a, 1
+	ld [wBoxAlignment], a
 	decoord 6, 4
 	ld c, ANIM_MON_MENU
 	predef HOF_AnimateFrontpic
