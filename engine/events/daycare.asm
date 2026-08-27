@@ -669,6 +669,8 @@ DayCare_InitBreeding:
 	call GetBaseData
 	call GetRandomAbilitySlot
 	ld [wEggMonPersonality], a
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+	ld [wEggMonHiddenPowerType], a
 	ld hl, wEggNick
 	ld de, .String_EGG
 	call CopyName2

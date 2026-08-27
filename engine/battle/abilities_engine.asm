@@ -4690,8 +4690,8 @@ CheckAteAbilityBoost:
 	push hl
 	push de
 	push bc
-	; Hidden Power is stored as Normal but its live type comes from DVs -
-	; it is never "-ate"-converted, so it never gets the boost.
+	; Hidden Power is stored as Normal but its live type is the user's own
+	; chosen type - it is never "-ate"-converted, so it never gets the boost.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_HIDDEN_POWER

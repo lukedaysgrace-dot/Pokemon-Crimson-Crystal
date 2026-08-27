@@ -18,7 +18,9 @@ BattleMoveInfoStats::
 	ld a, [wPlayerMoveStructEffect]
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .got_display_stats
-	ld hl, wBattleMonDVs
+	; this mon's own type; category from its current (boosted) stats
+	ld de, wBattleMonHiddenPowerType
+	ld bc, wBattleMonAttack ; stage-modified stats
 	call GetHiddenPowerDisplayStats
 .got_display_stats
 	ld a, b

@@ -85,6 +85,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -112,6 +113,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
@@ -146,6 +148,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -173,6 +176,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
@@ -200,6 +204,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -227,6 +232,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
@@ -254,6 +260,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -281,6 +288,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -308,6 +316,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -335,6 +344,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -362,6 +372,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -389,6 +400,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
@@ -416,6 +428,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP
@@ -443,6 +456,7 @@ OddEggs:
 	db 0, 0, 0 ; Pokerus, Caught data
 	db 5 ; Level
 	db 0 ; Personality
+	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP

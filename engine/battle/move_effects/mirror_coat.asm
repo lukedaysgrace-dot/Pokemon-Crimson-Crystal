@@ -27,6 +27,9 @@ BattleCommand_MirrorCoat:
 	call GetBattleVar
 	ld de, wStringBuffer1
 	call GetMoveData
+	; Hidden Power's category is whatever the opponent's stats picked when
+	; it was used, not the move table's
+	farcall HiddenPowerCounterCategory
 
 	ld a, [wStringBuffer1 + MOVE_POWER]
 	and a

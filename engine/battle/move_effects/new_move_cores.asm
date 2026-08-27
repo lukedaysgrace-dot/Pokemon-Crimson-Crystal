@@ -3,10 +3,17 @@
 ; from the Effect Commands bank (same conventions as BattleParalyze_Core).
 
 AIPredictVariableMoveCategory_Core:
+; Hidden Power: type, power and category all come from the user; the same
+; patch AIGetEnemyMove applies (idempotent, in case the struct was reloaded).
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .not_hidden_power
+	farcall HiddenPowerPatchEnemyMoveStruct
+	ret
+.not_hidden_power
 ; Shell Side Arm chooses its category before damage stats are loaded. Reuse the
 ; live selector, but preserve the AI's six move-score bytes that it uses as
 ; scratch space.
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_SHELL_SIDE_ARM
 	ret nz
 	ld hl, wBuffer1
