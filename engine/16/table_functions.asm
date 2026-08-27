@@ -41,13 +41,7 @@ PokemonTableGarbageCollection:
 	                                            wBattleMonSpecies, wEnemyMonSpecies, wOddEggSpecies, wBaseSpecies
 	pop af
 	ldh [rSVBK], a
-	ldh a, [hSRAMBank]
-	push af
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	___conversion_bitmap_check_structs sBoxMons, BOXMON_STRUCT_LENGTH, MONS_PER_BOX, .set_bit
-	pop af
-	call GetSRAMBank ;will close SRAM if hSRAMBank was -1
+	; Stored (boxed) mons keep true 16-bit indexes in SRAM and are not roots.
 	___conversion_bitmap_free_unused wPokemonIndexTable, MON_TABLE
 	pop de
 	ret
@@ -93,17 +87,7 @@ ___move = ___move + 1
 	                                            wPutativeTMHMMove
 	pop af
 	ldh [rSVBK], a
-	ldh a, [hSRAMBank]
-	push af
-	ld a, BANK(sBox)
-	call GetSRAMBank
-___move = 0
-	rept NUM_MOVES
-		___conversion_bitmap_check_structs sBoxMon1Moves + ___move, BOXMON_STRUCT_LENGTH, MONS_PER_BOX, .set_bit
-___move = ___move + 1
-	endr
-	pop af
-	call GetSRAMBank
+	; Stored (boxed) mons keep true 14-bit move indexes in SRAM and are not roots.
 	___conversion_bitmap_free_unused wMoveIndexTable, MOVE_TABLE
 	pop de
 	ret

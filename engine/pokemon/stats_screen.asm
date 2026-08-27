@@ -954,13 +954,13 @@ StatsScreen_PinkPage:
 .NicknamePointers:
 	dw wPartyMonNicknames
 	dw wOTPartyMonNicknames
-	dw sBoxMonNicknames
+	dw wTempMonNickname
 	dw wBufferMonNick
 
 .OTNamePointers:
 	dw wPartyMonOT
 	dw wOTPartyMonOT
-	dw sBoxMonOT
+	dw wTempMonOT
 	dw wBufferMonOT
 
 .ExpTabString:
@@ -1850,19 +1850,9 @@ StatsScreen_GetAnimationParam:
 	ret
 
 .BoxMon:
-	ld hl, sBoxMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wCurPartyMon]
-	call AddNTimes
-	ld b, h
-	ld c, l
-	ld a, BANK(sBoxMons)
-	call GetSRAMBank
-	call .CheckEggFaintedFrzSlp
-	push af
-	call CloseSRAM
-	pop af
-	ret
+	; stored mons are decoded into wTempMon by the storage backend
+	ld bc, wTempMonSpecies
+	jr .CheckEggFaintedFrzSlp
 
 .Tempmon:
 	ld bc, wTempMonSpecies
@@ -2023,18 +2013,6 @@ CopyNickname:
 	ld bc, MON_NAME_LENGTH
 	jr .okay ; utterly pointless
 .okay
-	ld a, [wMonType]
-	cp BOXMON
-	jr nz, .partymon
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-	push de
-	call CopyBytes
-	pop de
-	call CloseSRAM
-	ret
-
-.partymon
 	push de
 	call CopyBytes
 	pop de
@@ -2051,6 +2029,8 @@ GetNicknamePointer:
 	ld l, a
 	ld a, [wMonType]
 	cp TEMPMON
+	ret z
+	cp BOXMON
 	ret z
 	ld a, [wCurPartyMon]
 	jp SkipNames

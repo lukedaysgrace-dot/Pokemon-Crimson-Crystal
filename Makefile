@@ -116,13 +116,13 @@ endif
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL $@
 	sh tools/sort_symfile.sh pokecrystal.sym
 	python3 tools/generate_cheats.py
 
 pokecrystal_debug.gbc: $(crystal_debug_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal_debug.sym -m pokecrystal_debug.map -l pokecrystal.link -o $@ $(crystal_debug_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL $@
 	sh tools/sort_symfile.sh pokecrystal_debug.sym
 
 %.lz: %
@@ -243,6 +243,9 @@ gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
+
+gfx/pc/obj.2bpp: gfx/pc/modes.2bpp gfx/pc/bags.2bpp
+	cat $^ > $@
 
 ### Catch-all graphics rules
 

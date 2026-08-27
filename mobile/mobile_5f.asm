@@ -2462,12 +2462,14 @@ Function17ded9:
 	jp asm_17e0ee
 
 Function17e026:
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld a, [sBoxCount]
-	call CloseSRAM
-	cp $14
-	jp nc, .asm_17e0ea
+; Mobile gift mon into storage (dead code in the English game; kept on the
+; storage API so it can never touch box SRAM directly).
+	push bc
+	push hl
+	farcall CheckStorageSpaceForCapture
+	pop hl
+	pop bc
+	jp c, .asm_17e0ea
 	bit 0, b
 	jp z, .asm_17e0ea
 	push bc
@@ -2477,13 +2479,11 @@ Function17e026:
 	farcall SetBoxMonCaughtData
 	pop hl
 	pop bc
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
 	bit 1, b
 	jr z, .asm_17e067
 	push bc
 	ld bc, $b
-	ld de, sBoxMonNicknames
+	ld de, wTempMonNickname
 	call CopyBytes
 	pop bc
 	jr .asm_17e06b
@@ -2497,15 +2497,12 @@ Function17e026:
 	jr z, .asm_17e08e
 	push bc
 	ld bc, $6
-	ld de, sBoxMonOT
+	ld de, wTempMonOT
 	call CopyBytes
 	ld a, [hli]
 	ld b, a
 	push hl
-	call CloseSRAM
 	farcall SetGiftBoxMonCaughtData
-	ld a, $1
-	call GetSRAMBank
 	pop hl
 	pop bc
 	jr .asm_17e092
@@ -2518,7 +2515,7 @@ Function17e026:
 	bit 3, b
 	jr z, .asm_17e0a2
 	push bc
-	ld de, sBoxMon1ID
+	ld de, wTempMonID
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -2535,7 +2532,7 @@ Function17e026:
 	bit 4, b
 	jr z, .asm_17e0b4
 	push bc
-	ld de, sBoxMon1DVs
+	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -2552,28 +2549,27 @@ Function17e026:
 	bit 5, b
 	ld a, [hli]
 	jr z, .asm_17e0be
-	ld [sBoxMon1Item], a
+	ld [wTempMonItem], a
 
 .asm_17e0be
 	bit 6, b
 	jr z, .asm_17e0e1
 	push bc
-	ld de, sBoxMon1Moves
+	ld de, wTempMonMoves
 	ld bc, $4
 	call CopyBytes
-	push hl
-	ld hl, sBoxMon1Moves
-	ld de, sBoxMon1PP
-	predef FillPP
-	call CloseSRAM
-	pop hl
 	pop bc
 	inc hl
 	inc hl
+	push hl
+	farcall UpdateStorageBoxMonFromTemp
+	pop hl
 	jr asm_17e0ee
 
 .asm_17e0e1
-	call CloseSRAM
+	push hl
+	farcall UpdateStorageBoxMonFromTemp
+	pop hl
 	ld de, $6
 	add hl, de
 	jr asm_17e0ee
@@ -2984,7 +2980,9 @@ IncCrashCheckPointer_SaveAfterLinkTrade:
 	inc_crash_check_pointer_farcall SaveAfterLinkTrade
 
 IncCrashCheckPointer_SaveBox:
-	inc_crash_check_pointer_farcall SaveBox
+	; The active box is no longer a separate SRAM blob; the storage snapshot is
+	; written by SaveGameData. Dead JP-mobile code; kept linkable.
+	inc_crash_check_pointer_farcall SaveStorageSystem
 
 IncCrashCheckPointer_SaveChecksum:
 	inc_crash_check_pointer_farcall SaveChecksum

@@ -14,6 +14,32 @@ DMATransfer::
 
 	xor a
 	ldh [hDMATransfer], a
+
+; Optional second transfer (see hram.asm)
+	ldh a, [hDMATransfer2]
+	and a
+	jr z, .done
+	ld c, a
+	xor a
+	ldh [hDMATransfer2], a
+	ldh a, [rVBK]
+	ld b, a
+	xor 1
+	ldh [rVBK], a
+	ld a, HIGH(wScratchAttrMap)
+	ldh [rHDMA1], a
+	ld a, LOW(wScratchAttrMap)
+	ldh [rHDMA2], a
+	ldh a, [hBGMapAddress + 1]
+	and $1f
+	ldh [rHDMA3], a
+	ldh a, [hBGMapAddress]
+	ldh [rHDMA4], a
+	ld a, c
+	ldh [rHDMA5], a
+	ld a, b
+	ldh [rVBK], a
+.done
 	scf
 	ret
 

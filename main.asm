@@ -45,7 +45,6 @@ INCLUDE "engine/items/items.asm"
 INCLUDE "engine/overworld/player_step.asm"
 INCLUDE "engine/battle/anim_hp_bar.asm"
 INCLUDE "engine/pokemon/move_mon.asm"
-INCLUDE "engine/pokemon/bills_pc_top.asm"
 INCLUDE "engine/pokemon/breedmon_level_growth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
 INCLUDE "engine/items/item_effects.asm"
@@ -270,7 +269,6 @@ INCLUDE "engine/link/init_list.asm"
 INCLUDE "engine/pokemon/experience.asm"
 INCLUDE "engine/pokemon/switchpartymons.asm"
 INCLUDE "engine/gfx/load_pics.asm"
-INCLUDE "engine/pokemon/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 
 UnknownEggPic::
@@ -574,7 +572,6 @@ INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/dummy_game.asm"
-INCLUDE "engine/pokemon/bills_pc.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
 
@@ -870,3 +867,13 @@ SECTION "Trainer Card Badge Graphics", ROMX
 LeaderGFX2: INCBIN "gfx/trainer_card/kanto_leaders.2bpp"
 BadgeGFX:   INCBIN "gfx/trainer_card/badges.2bpp"
 BadgeGFX2:  INCBIN "gfx/trainer_card/kanto_badges.2bpp"
+
+
+SECTION "PC Storage", ROMX
+
+INCLUDE "engine/pc/storage.asm"
+
+
+SECTION "PC UI", ROMX
+
+INCLUDE "engine/pc/bills_pc_ui.asm"
