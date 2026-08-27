@@ -20,7 +20,8 @@ SUMMARY_TILE_TAB_L    EQU $47 ; bottom tab left corner
 SUMMARY_TILE_TAB_FILL EQU $48 ; bottom tab top edge
 SUMMARY_TILE_TAB_R    EQU $49 ; bottom tab right corner
 SUMMARY_TILE_BALL_BG  EQU $4a ; white disc behind the ball sprite
-SUMMARY_TILE_POKERUS  EQU $5b ; after the four type-icon slots ($4b-$5a)
+SUMMARY_TILE_POKERUS_L EQU $5d ; after exp-bar tiles ($55-$5c), before font tiles ($60+)
+SUMMARY_TILE_POKERUS_R EQU $5e
 
 ; OBJ tiles (vTiles0): $00 page square, $01 selected page square,
 ; $02 caught ball icon (colored through OBJ palette 4)
@@ -470,10 +471,11 @@ LoadSummaryScreenGFX:
 	lb bc, BANK(PartyMenuBallGFX), 1
 	call Get2bpp
 	; Reuse Bill's PC Pokérus symbol in color 1 so it can share palette 7
-	; with the shiny sparkles, which use color 2.
+	; with the shiny sparkles, which use color 2. Two tiles let the symbol sit
+	; one pixel left of the normal grid position without moving a full tile.
 	ld de, StatsScreenPokerusGFX
-	ld hl, vTiles2 tile SUMMARY_TILE_POKERUS
-	lb bc, BANK(StatsScreenPokerusGFX), 1
+	ld hl, vTiles2 tile SUMMARY_TILE_POKERUS_L
+	lb bc, BANK(StatsScreenPokerusGFX), 2
 	call Get2bpp
 	; selection arrow for the move info view
 	ld de, StatsScreenArrowGFX
@@ -799,8 +801,10 @@ StatsScreen_PinkPage:
 	ld a, [wTempMonPokerusStatus]
 	and $0f
 	jr z, .not_pokerus
-	hlcoord 17, 2
-	ld [hl], SUMMARY_TILE_POKERUS
+	hlcoord 16, 2
+	ld [hl], SUMMARY_TILE_POKERUS_L
+	inc hl
+	ld [hl], SUMMARY_TILE_POKERUS_R
 .not_pokerus
 
 	; shiny indicator
@@ -2162,13 +2166,23 @@ SummaryScreenTilesGFX:
 StatsScreenPokerusGFX:
 ; Bill's PC infected Pokérus tile, remapped from color 2 to color 1 so the
 ; pink symbol and blue shiny sparkles can share summary-screen palette 7.
+; Split across two cells to shift it one pixel left: the first tile contains
+; the leftmost spill pixel and the second contains the remaining seven pixels.
 	db %00000000, %00000000
-	db %10111101, %00000000
-	db %01011010, %00000000
-	db %01011010, %00000000
-	db %01111110, %00000000
-	db %01100110, %00000000
-	db %10111101, %00000000
+	db %00000001, %00000000
+	db %00000000, %00000000
+	db %00000000, %00000000
+	db %00000000, %00000000
+	db %00000000, %00000000
+	db %00000001, %00000000
+	db %00000000, %00000000
+	db %00000000, %00000000
+	db %01111010, %00000000
+	db %10110100, %00000000
+	db %10110100, %00000000
+	db %11111100, %00000000
+	db %11001100, %00000000
+	db %01111010, %00000000
 	db %00000000, %00000000
 
 SummaryScreenSquareOBJGFX:
