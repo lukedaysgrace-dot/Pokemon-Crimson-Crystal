@@ -219,7 +219,7 @@ index 818352b0..bd0fd5cd 100644
  ; hall of fame
  HOF_MON_LENGTH EQU 2 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick
 diff --git a/constants/sprite_anim_constants.asm b/constants/sprite_anim_constants.asm
-index 9129c199..9a7181bb 100644
+index 9129c199..4887a106 100644
 --- a/constants/sprite_anim_constants.asm
 +++ b/constants/sprite_anim_constants.asm
 @@ -66,6 +66,11 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
@@ -245,7 +245,7 @@ index 9129c199..9a7181bb 100644
  
  ; SpriteAnimFrameData indexes (see data/sprite_anims/framesets.asm)
  	const_def
-@@ -175,6 +184,12 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
+@@ -175,6 +184,13 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
  	const SPRITE_ANIM_FRAMESET_CELEBI_LEFT              ; 40
  	const SPRITE_ANIM_FRAMESET_CELEBI_RIGHT             ; 41
  	const SPRITE_ANIM_FRAMESET_CELEBI_FLYBY             ; 42
@@ -255,10 +255,11 @@ index 9129c199..9a7181bb 100644
 +	const SPRITE_ANIM_FRAMESET_PC_MODE                  ; 46
 +	const SPRITE_ANIM_FRAMESET_PC_MODE2                 ; 47
 +	const SPRITE_ANIM_FRAMESET_PC_PACK                  ; 48
++	const SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY          ; 49
  
  ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
  	const_def
-@@ -320,3 +335,9 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
+@@ -320,3 +336,10 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
  	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11          ; 8b
  	const SPRITE_ANIM_OAMSET_PARTY_MON_1                ; 8c
  	const SPRITE_ANIM_OAMSET_PARTY_MON_2                ; 8d
@@ -268,6 +269,7 @@ index 9129c199..9a7181bb 100644
 +	const SPRITE_ANIM_OAMSET_PC_MODE                    ; 91
 +	const SPRITE_ANIM_OAMSET_PC_MODE2                   ; 92
 +	const SPRITE_ANIM_OAMSET_PC_PACK                    ; 93
++	const SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY            ; 94
 diff --git a/data/pc/default_box_themes.asm b/data/pc/default_box_themes.asm
 new file mode 100644
 index 00000000..0c474e34
@@ -398,10 +400,10 @@ index 79897c79..5b9d2e72 100644
  	add_predef GiveEgg
  	add_predef AnimateHPBar
 diff --git a/data/sprite_anims/framesets.asm b/data/sprite_anims/framesets.asm
-index f38688c5..929ff537 100644
+index f38688c5..ef77b388 100644
 --- a/data/sprite_anims/framesets.asm
 +++ b/data/sprite_anims/framesets.asm
-@@ -67,6 +67,12 @@ SpriteAnimFrameData:
+@@ -67,6 +67,13 @@ SpriteAnimFrameData:
  	dw .Frameset_CelebiLeft
  	dw .Frameset_CelebiRight
  	dw .Frameset_CelebiFlyby
@@ -411,10 +413,11 @@ index f38688c5..929ff537 100644
 +	dw .Frameset_PcMode
 +	dw .Frameset_PcMode2
 +	dw .Frameset_PcPack
++	dw .Frameset_PcCursorEmpty
  
  .Frameset_00:
  	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
-@@ -502,3 +508,28 @@ SpriteAnimFrameData:
+@@ -502,3 +509,32 @@ SpriteAnimFrameData:
  	frame SPRITE_ANIM_OAMSET_CELEBI_1,  4, OAM_X_FLIP
  	frame SPRITE_ANIM_OAMSET_CELEBI_2,  4, OAM_X_FLIP
  	endanim
@@ -443,11 +446,15 @@ index f38688c5..929ff537 100644
 +.Frameset_PcPack:
 +	frame SPRITE_ANIM_OAMSET_PC_PACK, 32
 +	dorestart
++
++.Frameset_PcCursorEmpty:
++	frame SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY, 32
++	dorestart
 diff --git a/data/sprite_anims/oam.asm b/data/sprite_anims/oam.asm
-index 1100e053..4fe3e0d4 100644
+index 1100e053..8eaf48bb 100644
 --- a/data/sprite_anims/oam.asm
 +++ b/data/sprite_anims/oam.asm
-@@ -143,6 +143,12 @@ SpriteAnimOAMData:
+@@ -143,6 +143,13 @@ SpriteAnimOAMData:
  	dbw $00, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
  	dbw $00, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_1
  	dbw $04, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_2
@@ -457,10 +464,11 @@ index 1100e053..4fe3e0d4 100644
 +	dbw $00, .OAMData_PcMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
 +	dbw $00, .OAMData_PcMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
 +	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
++	dbw $00, .OAMData_PcCursorEmpty            ; SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY
  
  .OAMData_1x1_Palette0:
  	db 1
-@@ -1137,3 +1143,63 @@ SpriteAnimOAMData:
+@@ -1137,3 +1144,72 @@ SpriteAnimOAMData:
  	dsprite  0,  0, -1,  4, $51, 1
  	dsprite  0,  0,  0,  4, $52, 1
  	dsprite  0,  0,  1,  4, $53, 1
@@ -524,6 +532,15 @@ index 1100e053..4fe3e0d4 100644
 +	dsprite  0,  0,  1,  0, $30, PAL_PC_PACK | VRAM_BANK_1
 +	dsprite  1,  0,  0,  0, $31, PAL_PC_PACK | VRAM_BANK_1
 +	dsprite  1,  0,  1,  0, $32, PAL_PC_PACK | VRAM_BANK_1
++
++.OAMData_PcCursorEmpty:
++; Nothing held and no bag: just the cursor, so the lines it crosses carry
++; fewer sprites (shorter mode 3 = more HBlank for the palette code).
++	db 4
++	dsprite  0,  0,  0,  0, $04, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
++	dsprite  0,  0,  1,  0, $04, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
++	dsprite  1,  0,  0,  0, $05, PAL_PC_CURSOR_MODE1 | VRAM_BANK_1
++	dsprite  1,  0,  1,  0, $05, PAL_PC_CURSOR_MODE2 | VRAM_BANK_1 | X_FLIP
 diff --git a/data/sprite_anims/sequences.asm b/data/sprite_anims/sequences.asm
 index 77171bb8..43d42b5e 100644
 --- a/data/sprite_anims/sequences.asm
@@ -539,10 +556,10 @@ index 77171bb8..43d42b5e 100644
 +	db SPRITE_ANIM_FRAMESET_PC_PACK,                  SPRITE_ANIM_SEQ_PC_PACK,                 $00 ; SPRITE_ANIM_INDEX_PC_PACK
 diff --git a/docs/pc_storage_design.md b/docs/pc_storage_design.md
 new file mode 100644
-index 00000000..4dc4801a
+index 00000000..e2faa694
 --- /dev/null
 +++ b/docs/pc_storage_design.md
-@@ -0,0 +1,227 @@
+@@ -0,0 +1,245 @@
 +# Crimson Crystal — Polished-style PC storage system (design & implementation record)
 +
 +Status: implemented (backend, save integration, gameplay rewiring and the
@@ -733,10 +750,24 @@ index 00000000..4dc4801a
 +  falls back to `CopyTilemapAtOnce`).
 +* **HBlank palettes.** `BillsPC_LCDCode` (copied to `wLCDBillsPC`, WRAM0) runs from the
 +  STAT interrupt through `hLCDCPointer = LCD_CUSTOM_HANDLER` /
-+  `hLCDInterruptFunctionTarget` (home/lcd.asm). Three phases per icon row (LYC 71, 87,
-+  103, 119, 135): box columns 2-4, then party columns + box column 1 and the next row's
-+  staging, then BG palette 3 colour 0. The last row restages row 0, which restores the
++  `hLCDInterruptFunctionTarget` (home/lcd.asm). While the PC is open `rSTAT` is set to
++  the **LYC interrupt only** (`BillsPC_EnableHBlank`; `BillsPC_DisableHBlank` restores
++  the game's HBlank-interrupt setting), so each phase starts at the top of scanline
++  `rLYC`, busy-waits for that line's HBlank and writes its palettes right at the start
++  of the HBlank + OAM-scan window. Two phases per icon row (LYC 71, 87, 103, 119, 135):
++  box columns 2-4 (12 bytes, then LYC+1); BG palette 3 colour 0 + party columns + box
++  column 1 (14 bytes), then the next LYC, the next row's palettes and its colour 0
++  (`wBillsPC_CurColor0`: white inside the boxes, the theme background from LYC 135 so
++  the shiny/Pokérus symbols at the top of the next frame sit on the background). A
++  phase that finds `rLY != rLYC` (interrupts were off for over a line) does nothing
++  and the row is picked up next frame. The last row restages row 0, which restores the
 +  top-of-screen palettes for the next frame, exactly as in Polished.
++  Why not Polished's HBlank-interrupt version: Crimson's LCD dispatch is ~17 cycles
++  slower, and a line with the cursor, a held mini and the mode icon on it shortens
++  HBlank enough that the last writes landed in mode 3, where the CGB drops them — rows
++  or the symbol cells then showed the wrong colours for a frame (the reported "blink" /
++  "white box"). The bare cursor now also uses a 4-sprite frameset
++  (`SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY`) so idle lines carry fewer sprites.
 +* **Fonts/tiles.** VRAM bank 0: frontpic $00-$30, frame/“PARTY”/Pokérus $31-$41,
 +  shiny star $42, coloured ♂/♀ $43-$44 (built from the 1bpp font), battle-extra font at
 +  $60+ (`<LV>`, ◀). Bank 1: object tiles $00-$3e, party minis $80+, box minis $98+,
@@ -757,9 +788,13 @@ index 00000000..4dc4801a
 +## 9. Emulator notes
 +Icons, palettes and the HBlank effect were verified in PyBoy (rebuilt with 8 SRAM
 +banks and 8-bit MBC30 ROM banks: stock PyBoy masks ROM banks to 7 bits, so anything in
-+banks ≥ $80 read garbage). PyBoy is not cycle-accurate for STAT timing; the palette
-+phases are the same instruction sequences as Polished's and fit the HBlank + OAM-scan
-+window in double-speed mode, but a check in BGB/SameBoy is still worthwhile.
++banks ≥ $80 read garbage). PyBoy is not cycle-accurate for STAT timing and does not
++model the CGB ignoring palette writes during mode 3, which is why the original
++HBlank-interrupt version looked fine there but blinked in accurate emulators; the
++LYC + wait-for-HBlank version (§8) starts writing within ~15 double-speed cycles of
++HBlank, well inside the worst-case (10 sprites on the line) window.
++`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and reports
++frames that differ from both neighbours.
 +
 +## 10. Tests (tools/)
 +* `pc_harness.py` — PyBoy harness; calls ROM routines by symbol (parks on a
@@ -772,10 +807,10 @@ index 00000000..4dc4801a
 +  the database is exhausted.
 diff --git a/docs/pc_update_report.md b/docs/pc_update_report.md
 new file mode 100644
-index 00000000..343f9371
+index 00000000..767f1d5f
 --- /dev/null
 +++ b/docs/pc_update_report.md
-@@ -0,0 +1,92 @@
+@@ -0,0 +1,99 @@
 +# Polished-style PC storage — delivery notes
 +
 +Branch `polished-pc` on top of `6e539d60` (your `main`). Everything builds with
@@ -812,11 +847,18 @@ index 00000000..343f9371
 +   * `"Overworld Weather"` is no longer pinned to bank $23 in `pokecrystal.link`
 +     (it didn't fit next to the sprite-animation additions); it floats like the new
 +     `"PC Storage"` / `"PC UI"` sections.
-+3. **HBlank palette effect**: the per-row icon colours come from the STAT interrupt
-+   (same code as Polished). PyBoy renders it correctly, but PyBoy is not
-+   cycle-exact for STAT timing, so please give the PC a look in BGB or SameBoy;
-+   if a row of icons ever shows the wrong colours, that's the place to look
-+   (`BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`).
++3. **HBlank palette effect**: the per-row icon colours come from the STAT interrupt.
++   Unlike Polished (HBlank interrupt every line), the PC switches `rSTAT` to the
++   LYC interrupt and the handler waits for HBlank itself, so the palette writes
++   start at the top of the HBlank window instead of 40-50 cycles into it. That
++   is the fix for the blink / small white box above the Pokémon you reported:
++   on lines where the cursor, a carried mini and the mode icon overlapped, the
++   old timing pushed the last palette writes into mode 3, where the CGB ignores
++   them, so a row of icons or the shiny/Pokérus cells showed the wrong colours
++   for a frame (PyBoy doesn't model that, which is why it never showed up
++   here). The idle cursor also uses a 4-sprite frameset now instead of carrying
++   8 blank mini/shadow sprites around. If anything still flickers, it's
++   `BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`.
 +4. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
 +   beast respawn when releasing your own beast, VWF item names (Crimson prints
 +   item names with the normal font; the icon of the item sits in column 7).
@@ -829,7 +871,7 @@ index 00000000..343f9371
 +`engine/pc/bills_pc_ui.asm`, `constants/pc_constants.asm`, `data/pc/*`,
 +`gfx/pc/{pc,cursor,modes,bags,held_item_icons,shiny}.png` + `.pal` files,
 +`docs/pc_storage_design.md` (design + API reference), `tools/pc_harness.py`,
-+`tools/pc_ui_harness.py`, `tools/test_pc_*.py`.
++`tools/pc_ui_harness.py`, `tools/test_pc_*.py`, `tools/blink_probe.py`.
 +
 +Removed: `engine/pokemon/bills_pc.asm`, `engine/pokemon/bills_pc_top.asm`,
 +`engine/pokemon/move_mon_wo_mail.asm`, `gfx/pc/orange.pal` (moved to
@@ -2317,10 +2359,10 @@ index 3210a7e1..775f773d 100644
  .BattleResult:
 diff --git a/engine/pc/bills_pc_ui.asm b/engine/pc/bills_pc_ui.asm
 new file mode 100644
-index 00000000..fdc7d27f
+index 00000000..1fc7fd9d
 --- /dev/null
 +++ b/engine/pc/bills_pc_ui.asm
-@@ -0,0 +1,4771 @@
+@@ -0,0 +1,4822 @@
 +; Graphical Bill's PC (Polished Crystal-style storage interface), written for
 +; Crimson Crystal's engine on top of engine/pc/storage.asm.
 +;
@@ -2446,9 +2488,12 @@ index 00000000..fdc7d27f
 +	text_end
 +
 +BillsPC_DisableHBlank:
-+; Stops the HBlank palette code. Safe to call repeatedly.
++; Stops the HBlank palette code and puts the STAT interrupt back to the
++; game's default (HBlank, for hLCDCPointer users). Safe to call repeatedly.
 +	xor a
 +	ldh [hLCDCPointer], a
++	ld a, 1 << 3 ; HBlank interrupt (home/init.asm)
++	ldh [rSTAT], a
 +	ret
 +
 +BillsPC_EnableHBlank:
@@ -2460,19 +2505,29 @@ index 00000000..fdc7d27f
 +	ld de, wLCDBillsPC
 +	ld bc, BillsPC_LCDCode.End - BillsPC_LCDCode
 +	call CopyBytes
-+	ld a, PC_LYC_FIRST_ROW
-+	ldh [rLYC], a
-+	; Stage row 1 so the very first scanline switch doesn't show garbage
++	; Stage row 1 (and a white BG 3 colour 0) so the very first scanline
++	; switch doesn't show garbage
 +	ld hl, wBillsPC_PalList + (wBillsPC_MonPals2 - wBillsPC_MonPals1)
 +	ld de, wBillsPC_CurPals
 +	ld bc, wBillsPC_MonPals2 - wBillsPC_MonPals1
 +	call CopyBytes
++	ld hl, wBillsPC_CurColor0
++	ld a, LOW(PALRGB_WHITE)
++	ld [hli], a
++	ld a, HIGH(PALRGB_WHITE)
++	ld [hl], a
 +	ld a, LOW(wLCDBillsPC)
 +	ldh [hLCDInterruptFunctionTargetLo], a
 +	ld a, HIGH(wLCDBillsPC)
 +	ldh [hLCDInterruptFunctionTargetHi], a
++	; LYC interrupt only (the code waits for HBlank itself); set LYC last so
++	; a match can't fire before the handler is in place.
++	ld a, 1 << 6
++	ldh [rSTAT], a
 +	ld a, LCD_CUSTOM_HANDLER
 +	ldh [hLCDCPointer], a
++	ld a, PC_LYC_FIRST_ROW
++	ldh [rLYC], a
 +	ret
 +
 +BillsPC_LoadUI:
@@ -3139,14 +3194,17 @@ index 00000000..fdc7d27f
 +	ld [hli], a
 +	dec c
 +	jr nz, .loop
-+	; BG 3 color 0 is shared with the main background
++	; BG 3 color 0 is shared with the main background (the HBlank code
++	; restores it after the last icon row from wBillsPC_BGColor0)
 +	ld hl, wBGPals1
 +	ld de, wBGPals1 palette 3
 +	ld a, [hli]
 +	ld [de], a
++	ld [wBillsPC_BGColor0], a
 +	inc de
 +	ld a, [hl]
 +	ld [de], a
++	ld [wBillsPC_BGColor0 + 1], a
 +	pop af
 +	ldh [rSVBK], a
 +	ret
@@ -3564,25 +3622,47 @@ index 00000000..fdc7d27f
 +	call BillsPC_HideCursor
 +	; fallthrough
 +BillsPC_HideModeIcon:
-+; The mode icon's 5 sprites follow the cursor's (12 sprites, or 5 with the bag).
-+	call BillsPC_CheckBagDisplay
-+	ld hl, wVirtualOAMSprite05
-+	jr z, .got_mode_area
-+	ld hl, wVirtualOAMSprite12
-+.got_mode_area
++; The mode icon's 5 sprites follow the cursor's.
++	call BillsPC_GetCursorSpriteBytes
++	ld hl, wVirtualOAM
++	add hl, bc
 +	ld bc, 5 * SPRITEOAMSTRUCT_LENGTH
 +	xor a
 +	jp ByteFill
 +
 +BillsPC_HideCursor:
-+	call BillsPC_CheckBagDisplay
++	call BillsPC_GetCursorSpriteBytes
 +	ld hl, wVirtualOAM
-+	ld bc, 12 * SPRITEOAMSTRUCT_LENGTH
-+	jr nz, .got_bytecount
-+	ld c, 5 * SPRITEOAMSTRUCT_LENGTH
-+.got_bytecount
 +	xor a
 +	jp ByteFill
++
++BillsPC_GetCursorFrameset:
++; Returns a = the cursor's frameset and c = its sprite count: cursor + held
++; item with the bag shown, cursor + held mini + shadow while carrying a mon,
++; the bare cursor otherwise (fewer sprites on a line = more HBlank time for
++; the palette code, see BillsPC_LCDCode).
++	call BillsPC_CheckBagDisplay
++	ld c, 5
++	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM
++	ret z
++	ld a, [wBillsPC_CursorHeldSlot]
++	and a
++	ld c, 12
++	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR
++	ret nz
++	ld c, 4
++	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY
++	ret
++
++BillsPC_GetCursorSpriteBytes:
++; bc = size of the cursor's sprites in wVirtualOAM
++	call BillsPC_GetCursorFrameset
++	ld a, c
++	add a
++	add a
++	ld c, a
++	ld b, 0
++	ret
 +
 +BillsPC_UpdateCursorLocation:
 +; Runs the sprite animations (cursor bop, mode icon, pack, quick move) while
@@ -6747,13 +6827,10 @@ index 00000000..fdc7d27f
 +
 +BillsPC_AnimSeq_Cursor::
 +; bc = sprite anim struct
-+	; Frameset depends on whether the bag is shown
-+	call BillsPC_CheckBagDisplay
-+	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM
-+	jr z, .got_frameset
-+	assert SPRITE_ANIM_FRAMESET_PC_CURSOR == SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM - 1
-+	dec a
-+.got_frameset
++	; Frameset depends on the bag and on what the cursor carries
++	push bc
++	call BillsPC_GetCursorFrameset
++	pop bc
 +	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 +	add hl, bc
 +	ld [hl], a
@@ -6903,26 +6980,42 @@ index 00000000..fdc7d27f
 +; HBlank palette code (copied to WRAM0; runs from the STAT interrupt)
 +; ---------------------------------------------------------------------------
 +
-+; The STAT interrupt fires on every HBlank. Phase 1 waits for the LYC match
-+; (rows at lines 71, 87, 103, 119, 135), writes box columns 2-4 for the next
-+; icon row, then phase 2 (next HBlank) writes the party columns + box column
-+; 1, sets the next LYC and stages the row after next, and phase 3 fixes BG 3
-+; color 0. Every phase ends "pop hl / pop af / reti" (see home/lcd.asm).
++; The STAT interrupt is set to LYC only (rSTAT = $40) while the PC is open,
++; so it fires at the *start* of scanline rLYC (rows at lines 71, 87, 103, 119,
++; 135). Each phase then waits for that line's HBlank and writes its palettes
++; right at the top of the window (HBlank + the next line's OAM scan), so a
++; sprite-heavy line can't push the writes into mode 3, where the CGB ignores
++; palette writes. (Taking the HBlank interrupt instead - as vanilla and
++; Polished do - starts the writes 40-50 cycles into the window; with the
++; cursor, held mini and mode icon on one line that overran, and rows or the
++; symbol cells showed the wrong colours for a frame: the "blink".)
++; Phase 1 writes box columns 2-4 for the next icon row; phase 2 (LYC + 1)
++; writes BG palette 3 colour 0, the party columns and box column 1, sets the
++; next LYC and stages that row's palettes + colour 0. A phase that finds
++; rLY != rLYC (interrupts were disabled for over a scanline) leaves everything
++; alone for the next frame. Both phases end "pop hl / pop af / reti".
 +
 +; Phase labels are ROM addresses; the WRAM copy lives at
 +; wLCDBillsPC + (label - BillsPC_LCDCode).
 +BillsPC_LCDCode:
 +.Phase1:
-+	ldh a, [rSTAT]
-+	bit 2, a ; LYC coincidence
-+	jr z, .donepc
++	; Late?
++	ldh a, [rLYC]
++	ld l, a
++	ldh a, [rLY]
++	cp l
++	jr nz, .donepc
 +	push bc
 +	ld c, LOW(rBGPD)
 +	ld hl, wBillsPC_CurMonPals + 4
-+
-+	; second box mon
++	; second box mon (the index register can be set at any time)
 +	ld a, %10000000 | (5 palettes + 2) ; autoinc, palette 5 color 1
 +	ldh [rBGPI], a
++.wait1
++	ldh a, [rSTAT]
++	and %11
++	jr nz, .wait1
++	; HBlank: 12 palette bytes, ~65 cycles
 +rept 4
 +	ld a, [hli]
 +	ldh [c], a
@@ -6944,7 +7037,9 @@ index 00000000..fdc7d27f
 +	ldh [c], a
 +endr
 +
-+	; next: party mons
++	; phase 2 on the next scanline
++	ld hl, rLYC
++	inc [hl]
 +	ld a, LOW(wLCDBillsPC + (BillsPC_LCDCode.Phase2 - BillsPC_LCDCode))
 +	ldh [hLCDInterruptFunctionTargetLo], a
 +	ld a, HIGH(wLCDBillsPC + (BillsPC_LCDCode.Phase2 - BillsPC_LCDCode))
@@ -6956,11 +7051,32 @@ index 00000000..fdc7d27f
 +	reti
 +
 +.Phase2:
++	; Late?
++	ldh a, [rLYC]
++	ld l, a
++	ldh a, [rLY]
++	cp l
++	jr nz, .donepc
 +	push bc
++	push de
 +	ld c, LOW(rBGPD)
-+	ld hl, wBillsPC_CurPartyPals
++	ld hl, wBillsPC_CurColor0
++	; BG palette 3 colour 0 first: white inside the boxes (party column 2),
++	; the theme background below the last row so the shiny/Pokérus symbols
++	; at the top of the next frame sit on the background.
++	ld a, %10000000 | (3 palettes) ; autoinc, palette 3 color 0
++	ldh [rBGPI], a
++.wait2
++	ldh a, [rSTAT]
++	and %11
++	jr nz, .wait2
++	; HBlank: 14 palette bytes, ~76 cycles
++	ld a, [hli]
++	ldh [c], a
++	ld a, [hli]
++	ldh [c], a
 +
-+	; first party mon
++	; first party mon (hl = wBillsPC_CurPartyPals)
 +	ld a, %10000000 | (2 palettes + 2)
 +	ldh [rBGPI], a
 +rept 4
@@ -6983,10 +7099,11 @@ index 00000000..fdc7d27f
 +	ld a, [hli]
 +	ldh [c], a
 +endr
++	; end of the time-critical part
 +
-+	; next scanline
-+	push de
++	; next row's scanline (rLYC is the row line + 1 here)
 +	ldh a, [rLYC]
++	dec a
 +	cp PC_LYC_FIRST_ROW + 4 * PC_ICON_ROW_HEIGHT
 +	jr nz, .increase_lyc
 +	sub 5 * PC_ICON_ROW_HEIGHT
@@ -6994,8 +7111,24 @@ index 00000000..fdc7d27f
 +	add PC_ICON_ROW_HEIGHT
 +	ldh [rLYC], a
 +
-+	; Stage the palettes of the row after the next one (the last row
-+	; restages row 0, which restores the top of the screen for next frame).
++	; Colour 0 for the next phase 2
++	ld hl, wBillsPC_CurColor0
++	cp PC_LYC_FIRST_ROW + 4 * PC_ICON_ROW_HEIGHT
++	jr z, .bottom
++	ld [hl], LOW(PALRGB_WHITE)
++	inc hl
++	ld [hl], HIGH(PALRGB_WHITE)
++	jr .stage
++.bottom
++	ld a, [wBillsPC_BGColor0]
++	ld [hli], a
++	ld a, [wBillsPC_BGColor0 + 1]
++	ld [hl], a
++	ldh a, [rLYC]
++
++.stage
++	; Stage the palettes for the next row (LYC 135 stages row 0, which
++	; restores the top of the screen for the next frame).
 +	sub 55
 +	cp $50
 +	jr c, .got_result
@@ -7018,46 +7151,6 @@ index 00000000..fdc7d27f
 +	inc de
 +	dec c
 +	jr nz, .copy
-+	ld c, 17
-+.busyloop
-+	dec c
-+	jr nz, .busyloop
-+	ld a, LOW(wLCDBillsPC + (BillsPC_LCDCode.Phase3 - BillsPC_LCDCode))
-+	ldh [hLCDInterruptFunctionTargetLo], a
-+	ld a, HIGH(wLCDBillsPC + (BillsPC_LCDCode.Phase3 - BillsPC_LCDCode))
-+	ldh [hLCDInterruptFunctionTargetHi], a
-+	pop de
-+	pop bc
-+	pop hl
-+	pop af
-+	reti
-+
-+.Phase3:
-+; BG 3 color 0: white inside the boxes, the theme background below them
-+	push bc
-+	push de
-+	ldh a, [rSVBK]
-+	push af
-+	ld a, BANK(wBGPals1)
-+	ldh [rSVBK], a
-+
-+	ld c, LOW(rBGPD)
-+	ldh a, [rLY]
-+	cp $8a
-+	ld hl, wBGPals1
-+	jr nc, .got_pal
-+	ld hl, wBGPals1 palette 4
-+.got_pal
-+
-+	ld a, %10000000 | (3 palettes)
-+	ldh [rBGPI], a
-+rept 2
-+	ld a, [hli]
-+	ldh [c], a
-+endr
-+
-+	pop af
-+	ldh [rSVBK], a
 +	ld a, LOW(wLCDBillsPC)
 +	ldh [hLCDInterruptFunctionTargetLo], a
 +	ld a, HIGH(wLCDBillsPC)
@@ -7068,7 +7161,7 @@ index 00000000..fdc7d27f
 +	pop af
 +	reti
 +.End:
-+	assert BillsPC_LCDCode.End - BillsPC_LCDCode <= $110, \
++	assert BillsPC_LCDCode.End - BillsPC_LCDCode <= wLCDBillsPCEnd - wLCDBillsPC, \
 +		"BillsPC_LCDCode doesn't fit in wLCDBillsPC"
 +
 +; ---------------------------------------------------------------------------
@@ -14327,18 +14420,18 @@ index 10246066..ee365872 100644
  
  FarJump_hl::
 diff --git a/home/lcd.asm b/home/lcd.asm
-index 8bcc0858..9a85f779 100644
+index 8bcc0858..55536c58 100644
 --- a/home/lcd.asm
 +++ b/home/lcd.asm
-@@ -5,6 +5,8 @@ LCD::
+@@ -3,6 +3,8 @@
+ LCD::
+ 	push af
  	ldh a, [hLCDCPointer]
- 	and a
- 	jr z, .done
 +	cp LCD_CUSTOM_HANDLER
 +	jr z, .custom
+ 	and a
+ 	jr z, .done
  
- ; At this point it's assumed we're in WRAM bank 5!
- 	push bc
 @@ -23,6 +25,17 @@ LCD::
  	pop af
  	reti
@@ -15272,6 +15365,93 @@ index 0b27ab15..c63e1c7b 100644
  
  
  def main() -> int:
+diff --git a/tools/blink_probe.py b/tools/blink_probe.py
+new file mode 100644
+index 00000000..fa1d599f
+--- /dev/null
++++ b/tools/blink_probe.py
+@@ -0,0 +1,81 @@
++#!/usr/bin/env python3
++"""Records every frame of a swap / deposit in the PC and reports frames that
++differ a lot from their neighbours (a "blink")."""
++import os
++import sys
++
++import numpy as np
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++from pc_ui_harness import *  # noqa: E402,F401,F403
++
++setup_default()
++OUTD = os.environ.get("PC_UI_OUT", "/tmp/blink")
++os.makedirs(OUTD, exist_ok=True)
++
++log = []
++
++
++def grab():
++    return np.array(py.screen.image.convert("RGB"))
++
++
++def run(n, tag):
++    for i in range(n):
++        py.tick(1, True)
++        log.append((tag, grab()))
++
++
++def press_rec(btn, hold=8, wait=16, tag=""):
++    py.button_press(btn)
++    run(hold, tag + ":" + btn + "-hold")
++    py.button_release(btn)
++    run(wait, tag + ":" + btn)
++
++
++enter()
++run(180, "open")
++seq = os.environ.get("SEQ", "swap")
++if seq == "swap":
++    press_rec("select", tag="swapmode")
++    press_rec("a", wait=40, tag="pick")
++    press_rec("right", tag="carry1")
++    press_rec("right", tag="carry2")
++    press_rec("a", wait=80, tag="place")
++    press_rec("a", wait=40, tag="pick2")
++    press_rec("down", tag="c1"); press_rec("down", tag="c2"); press_rec("down", tag="c3")
++    press_rec("left", tag="c4"); press_rec("left", tag="c5"); press_rec("left", tag="c6"); press_rec("left", tag="c7")
++    press_rec("a", wait=100, tag="place_party")
++    press_rec("a", wait=40, tag="pick3")
++    press_rec("up", tag="d1")
++    press_rec("a", wait=100, tag="swap_party")
++elif seq == "menu":
++    press_rec("a", wait=30, tag="menu")
++    press_rec("a", wait=120, tag="withdraw")
++    press_rec("down", tag="e1"); press_rec("down", tag="e2"); press_rec("down", tag="e3")
++    press_rec("left", tag="e4"); press_rec("left", tag="e5")
++    press_rec("a", wait=30, tag="pmenu")
++    press_rec("a", wait=120, tag="deposit")
++elif seq == "idle":
++    run(600, "idle")
++
++prev = None
++big = []
++for i, (tag, img) in enumerate(log):
++    if prev is not None:
++        d = int((np.abs(img.astype(int) - prev.astype(int)).sum(axis=2) > 0).sum())
++        if d > 300:
++            big.append((i, tag, d))
++    prev = img
++print("frames:", len(log))
++for i, tag, d in big:
++    # does it revert on the next frame?
++    nxt = log[i + 1][1] if i + 1 < len(log) else None
++    back = None
++    if nxt is not None:
++        back = int((np.abs(nxt.astype(int) - log[i - 1][1].astype(int)).sum(axis=2) > 0).sum())
++    print(f"{i:4d} {tag:24s} diff={d:6d} next-vs-prev={back}")
++    if back is not None and back < d // 4:
++        from PIL import Image
++        for k in (i - 1, i, i + 1):
++            Image.fromarray(log[k][1]).save(f"{OUTD}/f{k:04d}.png")
 diff --git a/tools/pc_harness.py b/tools/pc_harness.py
 new file mode 100644
 index 00000000..f0d53a45
@@ -16312,10 +16492,10 @@ index 00000000..1a2d5e97
 +sys.exit(1 if FAIL else 0)
 diff --git a/tools/test_pc_ui.py b/tools/test_pc_ui.py
 new file mode 100644
-index 00000000..06e1e652
+index 00000000..1b4bcda0
 --- /dev/null
 +++ b/tools/test_pc_ui.py
-@@ -0,0 +1,87 @@
+@@ -0,0 +1,88 @@
 +#!/usr/bin/env python3
 +"""Smoke test for the graphical Bill's PC (engine/pc/bills_pc_ui.asm).
 +
@@ -16333,7 +16513,8 @@ index 00000000..06e1e652
 +enter()
 +frames(180, "open")
 +check(h.rd(S("hLCDCPointer")) == 0xFF, "HBlank handler installed")
-+check(h.rd(0xFF45) in (71, 87, 103, 119, 135), f"LYC in icon rows (got {h.rd(0xFF45)})")
++check(h.rd(0xFF45) in (71, 72, 87, 88, 103, 104, 119, 120, 135, 136), f"LYC in icon rows (got {h.rd(0xFF45)})")
++check(h.rd(0xFF41) & 0x78 == 0x40, f"STAT = LYC interrupt only (got {h.rd(0xFF41):02x})")
 +# VRAM bank must be 0 while idle with hBGMapMode set
 +check(h.rd(0xFF4F) & 1 == 0, "rVBK is 0 while idle")
 +check(h.rd(S("hBGMapMode")) == 1, "hBGMapMode = 1 in the main loop")
@@ -16508,7 +16689,7 @@ index 00000000..515c7d5d
 +finish()
 diff --git a/tools/test_pc_ui3.py b/tools/test_pc_ui3.py
 new file mode 100644
-index 00000000..61bbdb62
+index 00000000..13961805
 --- /dev/null
 +++ b/tools/test_pc_ui3.py
 @@ -0,0 +1,131 @@
@@ -16566,9 +16747,9 @@ index 00000000..61bbdb62
 +press("a", wait=30)
 +press("down"); press("down"); press("down", wait=10)   # ITEM
 +press("a", wait=40, label="item_menu")
-+press("a", hold=2, wait=150, label="give_pack")       # GIVE -> pack
-+press("down", hold=2, wait=30)                # second item: Potion
-+press("a", hold=2, wait=150, label="given")
++press("a", hold=4, wait=150, label="give_pack")       # GIVE -> pack
++press("down", hold=4, wait=30)                # second item: Potion
++press("a", hold=4, wait=150, label="given")
 +check(num_items() == 1, f"one item left in the bag (got {num_items()})")
 +check(h.rd(S("wPartyMon2Item")) == 0x12, f"Golurk holds the Potion (item {h.rd(S('wPartyMon2Item')):02x})")
 +
@@ -16588,7 +16769,7 @@ index 00000000..61bbdb62
 +press("right"); press("up", wait=20)          # $31 -> $21 bag
 +h.wr(S("wItemsPocketCursor"), 1)             # the pack remembers its cursor: back to the Mail
 +h.wr(S("wItemsPocketScrollPosition"), 0)
-+press("a", hold=2, wait=150, label="mail_pack")
++press("a", hold=4, wait=150, label="mail_pack")
 +press("a", hold=4, wait=150, label="mail_picked")
 +check(h.rd(S("wBillsPC_CursorItem")) == MAIL, f"holding the Mail (item {h.rd(S('wBillsPC_CursorItem')):02x})")
 +press("down"); press("left", wait=20)         # $30 Eevee
@@ -16719,10 +16900,10 @@ index 00000000..d969efce
 +check(h.rd(MARKER) == 1, "UseBillsPC returned")
 +finish()
 diff --git a/wram.asm b/wram.asm
-index d871137c..cb61ea5f 100644
+index d871137c..2d2d2db5 100644
 --- a/wram.asm
 +++ b/wram.asm
-@@ -1050,25 +1050,71 @@ wPrinterExposureTime:: db ; cbfb
+@@ -1050,25 +1050,73 @@ wPrinterExposureTime:: db ; cbfb
  wGameboyPrinterRAMEnd::
  
  NEXTU ; c800
@@ -16750,8 +16931,10 @@ index d871137c..cb61ea5f 100644
 +wLCDBillsPCEnd::
 +
 +; Palettes currently being written by the HBlank code for one icon row.
-+; Order matters (the LCD code indexes into this): 2 party mons, then 4 box mons,
-+; 2 colors (colors 1 and 2) of 2 bytes each.
++; Order matters (the LCD code indexes into this): BG 3 colour 0, then 2 party
++; mons and 4 box mons, 2 colors (colors 1 and 2) of 2 bytes each.
++wBillsPC_CurColor0:: dw ; BG 3 colour 0 for the next row: white, or the theme
++                        ; background below the last row (shiny/Pokérus symbols)
 +wBillsPC_CurPals::
 +wBillsPC_CurPartyPals:: ds 2 * 2 * 2
 +wBillsPC_CurMonPals:: ds 2 * 2 * 4
@@ -16803,14 +16986,14 @@ index d871137c..cb61ea5f 100644
 +wBillsPC_QuickFrames:: db
 +
 +wBillsPC_ApplyThemePals:: db ; nonzero: BillsPC_LoadPalettes also rewrites the mon pals
-+wBillsPC_HBlankPhase:: db ; scratch for the LCD code
++wBillsPC_BGColor0:: dw ; theme background colour, for the LCD code (BG 3 colour 0)
  wBillsPCDataEnd::
  
 -
  NEXTU ; c800
  ; Hall of Fame data
  wHallOfFamePokemonList:: hall_of_fame wHallOfFamePokemonList
-@@ -1792,11 +1838,7 @@ wMovementBuffer:: ds 55
+@@ -1792,11 +1840,7 @@ wMovementBuffer:: ds 55
  
  NEXTU ; d002
  ; box printing
@@ -16823,7 +17006,7 @@ index d871137c..cb61ea5f 100644
  
  NEXTU ; d002
  ; trainer HUD data
-@@ -2108,6 +2150,24 @@ wItemQuantityChangeBuffer:: db
+@@ -2108,6 +2152,24 @@ wItemQuantityChangeBuffer:: db
  wItemQuantityBuffer:: db
  
  wTempMon:: party_struct wTempMon ; d10e
@@ -16848,7 +17031,7 @@ index d871137c..cb61ea5f 100644
  
  wSpriteFlags:: db ; d13e
  
-@@ -2355,6 +2415,7 @@ wChosenCableClubRoom::
+@@ -2355,6 +2417,7 @@ wChosenCableClubRoom::
  wBreedingCompatibility::
  wApplyStatLevelMultipliersToEnemy::
  wUsePPUp::
@@ -16856,7 +17039,7 @@ index d871137c..cb61ea5f 100644
  wd265:: ; mobile
  	db
  
-@@ -2812,13 +2873,10 @@ wEventFlags:: flag_array NUM_EVENTS ; da72
+@@ -2812,13 +2875,10 @@ wEventFlags:: flag_array NUM_EVENTS ; da72
  
  	ds 0 ; trimmed by 5: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE, again for the Goldenrod rooftop couple events, and again for the Seafoam Gym trainer flags
  

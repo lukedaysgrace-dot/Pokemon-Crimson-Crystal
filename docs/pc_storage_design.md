@@ -188,10 +188,24 @@ positions, modes, menus, quick-move animation, themes) on Crimson's engine:
   falls back to `CopyTilemapAtOnce`).
 * **HBlank palettes.** `BillsPC_LCDCode` (copied to `wLCDBillsPC`, WRAM0) runs from the
   STAT interrupt through `hLCDCPointer = LCD_CUSTOM_HANDLER` /
-  `hLCDInterruptFunctionTarget` (home/lcd.asm). Three phases per icon row (LYC 71, 87,
-  103, 119, 135): box columns 2-4, then party columns + box column 1 and the next row's
-  staging, then BG palette 3 colour 0. The last row restages row 0, which restores the
+  `hLCDInterruptFunctionTarget` (home/lcd.asm). While the PC is open `rSTAT` is set to
+  the **LYC interrupt only** (`BillsPC_EnableHBlank`; `BillsPC_DisableHBlank` restores
+  the game's HBlank-interrupt setting), so each phase starts at the top of scanline
+  `rLYC`, busy-waits for that line's HBlank and writes its palettes right at the start
+  of the HBlank + OAM-scan window. Two phases per icon row (LYC 71, 87, 103, 119, 135):
+  box columns 2-4 (12 bytes, then LYC+1); BG palette 3 colour 0 + party columns + box
+  column 1 (14 bytes), then the next LYC, the next row's palettes and its colour 0
+  (`wBillsPC_CurColor0`: white inside the boxes, the theme background from LYC 135 so
+  the shiny/Pokérus symbols at the top of the next frame sit on the background). A
+  phase that finds `rLY != rLYC` (interrupts were off for over a line) does nothing
+  and the row is picked up next frame. The last row restages row 0, which restores the
   top-of-screen palettes for the next frame, exactly as in Polished.
+  Why not Polished's HBlank-interrupt version: Crimson's LCD dispatch is ~17 cycles
+  slower, and a line with the cursor, a held mini and the mode icon on it shortens
+  HBlank enough that the last writes landed in mode 3, where the CGB drops them — rows
+  or the symbol cells then showed the wrong colours for a frame (the reported "blink" /
+  "white box"). The bare cursor now also uses a 4-sprite frameset
+  (`SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY`) so idle lines carry fewer sprites.
 * **Fonts/tiles.** VRAM bank 0: frontpic $00-$30, frame/“PARTY”/Pokérus $31-$41,
   shiny star $42, coloured ♂/♀ $43-$44 (built from the 1bpp font), battle-extra font at
   $60+ (`<LV>`, ◀). Bank 1: object tiles $00-$3e, party minis $80+, box minis $98+,
@@ -212,9 +226,13 @@ positions, modes, menus, quick-move animation, themes) on Crimson's engine:
 ## 9. Emulator notes
 Icons, palettes and the HBlank effect were verified in PyBoy (rebuilt with 8 SRAM
 banks and 8-bit MBC30 ROM banks: stock PyBoy masks ROM banks to 7 bits, so anything in
-banks ≥ $80 read garbage). PyBoy is not cycle-accurate for STAT timing; the palette
-phases are the same instruction sequences as Polished's and fit the HBlank + OAM-scan
-window in double-speed mode, but a check in BGB/SameBoy is still worthwhile.
+banks ≥ $80 read garbage). PyBoy is not cycle-accurate for STAT timing and does not
+model the CGB ignoring palette writes during mode 3, which is why the original
+HBlank-interrupt version looked fine there but blinked in accurate emulators; the
+LYC + wait-for-HBlank version (§8) starts writing within ~15 double-speed cycles of
+HBlank, well inside the worst-case (10 sprites on the line) window.
+`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and reports
+frames that differ from both neighbours.
 
 ## 10. Tests (tools/)
 * `pc_harness.py` — PyBoy harness; calls ROM routines by symbol (parks on a

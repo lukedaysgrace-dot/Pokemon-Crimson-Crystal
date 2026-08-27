@@ -3,10 +3,10 @@
 LCD::
 	push af
 	ldh a, [hLCDCPointer]
-	and a
-	jr z, .done
 	cp LCD_CUSTOM_HANDLER
 	jr z, .custom
+	and a
+	jr z, .done
 
 ; At this point it's assumed we're in WRAM bank 5!
 	push bc

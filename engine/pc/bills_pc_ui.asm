@@ -123,9 +123,12 @@ _BillsPC::
 	text_end
 
 BillsPC_DisableHBlank:
-; Stops the HBlank palette code. Safe to call repeatedly.
+; Stops the HBlank palette code and puts the STAT interrupt back to the
+; game's default (HBlank, for hLCDCPointer users). Safe to call repeatedly.
 	xor a
 	ldh [hLCDCPointer], a
+	ld a, 1 << 3 ; HBlank interrupt (home/init.asm)
+	ldh [rSTAT], a
 	ret
 
 BillsPC_EnableHBlank:
@@ -137,19 +140,29 @@ BillsPC_EnableHBlank:
 	ld de, wLCDBillsPC
 	ld bc, BillsPC_LCDCode.End - BillsPC_LCDCode
 	call CopyBytes
-	ld a, PC_LYC_FIRST_ROW
-	ldh [rLYC], a
-	; Stage row 1 so the very first scanline switch doesn't show garbage
+	; Stage row 1 (and a white BG 3 colour 0) so the very first scanline
+	; switch doesn't show garbage
 	ld hl, wBillsPC_PalList + (wBillsPC_MonPals2 - wBillsPC_MonPals1)
 	ld de, wBillsPC_CurPals
 	ld bc, wBillsPC_MonPals2 - wBillsPC_MonPals1
 	call CopyBytes
+	ld hl, wBillsPC_CurColor0
+	ld a, LOW(PALRGB_WHITE)
+	ld [hli], a
+	ld a, HIGH(PALRGB_WHITE)
+	ld [hl], a
 	ld a, LOW(wLCDBillsPC)
 	ldh [hLCDInterruptFunctionTargetLo], a
 	ld a, HIGH(wLCDBillsPC)
 	ldh [hLCDInterruptFunctionTargetHi], a
+	; LYC interrupt only (the code waits for HBlank itself); set LYC last so
+	; a match can't fire before the handler is in place.
+	ld a, 1 << 6
+	ldh [rSTAT], a
 	ld a, LCD_CUSTOM_HANDLER
 	ldh [hLCDCPointer], a
+	ld a, PC_LYC_FIRST_ROW
+	ldh [rLYC], a
 	ret
 
 BillsPC_LoadUI:
@@ -816,14 +829,17 @@ BillsPC_ApplyPals:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	; BG 3 color 0 is shared with the main background
+	; BG 3 color 0 is shared with the main background (the HBlank code
+	; restores it after the last icon row from wBillsPC_BGColor0)
 	ld hl, wBGPals1
 	ld de, wBGPals1 palette 3
 	ld a, [hli]
 	ld [de], a
+	ld [wBillsPC_BGColor0], a
 	inc de
 	ld a, [hl]
 	ld [de], a
+	ld [wBillsPC_BGColor0 + 1], a
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1241,25 +1257,47 @@ BillsPC_HideCursorAndMode:
 	call BillsPC_HideCursor
 	; fallthrough
 BillsPC_HideModeIcon:
-; The mode icon's 5 sprites follow the cursor's (12 sprites, or 5 with the bag).
-	call BillsPC_CheckBagDisplay
-	ld hl, wVirtualOAMSprite05
-	jr z, .got_mode_area
-	ld hl, wVirtualOAMSprite12
-.got_mode_area
+; The mode icon's 5 sprites follow the cursor's.
+	call BillsPC_GetCursorSpriteBytes
+	ld hl, wVirtualOAM
+	add hl, bc
 	ld bc, 5 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 	jp ByteFill
 
 BillsPC_HideCursor:
-	call BillsPC_CheckBagDisplay
+	call BillsPC_GetCursorSpriteBytes
 	ld hl, wVirtualOAM
-	ld bc, 12 * SPRITEOAMSTRUCT_LENGTH
-	jr nz, .got_bytecount
-	ld c, 5 * SPRITEOAMSTRUCT_LENGTH
-.got_bytecount
 	xor a
 	jp ByteFill
+
+BillsPC_GetCursorFrameset:
+; Returns a = the cursor's frameset and c = its sprite count: cursor + held
+; item with the bag shown, cursor + held mini + shadow while carrying a mon,
+; the bare cursor otherwise (fewer sprites on a line = more HBlank time for
+; the palette code, see BillsPC_LCDCode).
+	call BillsPC_CheckBagDisplay
+	ld c, 5
+	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM
+	ret z
+	ld a, [wBillsPC_CursorHeldSlot]
+	and a
+	ld c, 12
+	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR
+	ret nz
+	ld c, 4
+	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY
+	ret
+
+BillsPC_GetCursorSpriteBytes:
+; bc = size of the cursor's sprites in wVirtualOAM
+	call BillsPC_GetCursorFrameset
+	ld a, c
+	add a
+	add a
+	ld c, a
+	ld b, 0
+	ret
 
 BillsPC_UpdateCursorLocation:
 ; Runs the sprite animations (cursor bop, mode icon, pack, quick move) while
@@ -4424,13 +4462,10 @@ BillsPC_CursorPosValid:
 
 BillsPC_AnimSeq_Cursor::
 ; bc = sprite anim struct
-	; Frameset depends on whether the bag is shown
-	call BillsPC_CheckBagDisplay
-	ld a, SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM
-	jr z, .got_frameset
-	assert SPRITE_ANIM_FRAMESET_PC_CURSOR == SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM - 1
-	dec a
-.got_frameset
+	; Frameset depends on the bag and on what the cursor carries
+	push bc
+	call BillsPC_GetCursorFrameset
+	pop bc
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
@@ -4580,26 +4615,42 @@ BillsPC_AnimSeq_Pack::
 ; HBlank palette code (copied to WRAM0; runs from the STAT interrupt)
 ; ---------------------------------------------------------------------------
 
-; The STAT interrupt fires on every HBlank. Phase 1 waits for the LYC match
-; (rows at lines 71, 87, 103, 119, 135), writes box columns 2-4 for the next
-; icon row, then phase 2 (next HBlank) writes the party columns + box column
-; 1, sets the next LYC and stages the row after next, and phase 3 fixes BG 3
-; color 0. Every phase ends "pop hl / pop af / reti" (see home/lcd.asm).
+; The STAT interrupt is set to LYC only (rSTAT = $40) while the PC is open,
+; so it fires at the *start* of scanline rLYC (rows at lines 71, 87, 103, 119,
+; 135). Each phase then waits for that line's HBlank and writes its palettes
+; right at the top of the window (HBlank + the next line's OAM scan), so a
+; sprite-heavy line can't push the writes into mode 3, where the CGB ignores
+; palette writes. (Taking the HBlank interrupt instead - as vanilla and
+; Polished do - starts the writes 40-50 cycles into the window; with the
+; cursor, held mini and mode icon on one line that overran, and rows or the
+; symbol cells showed the wrong colours for a frame: the "blink".)
+; Phase 1 writes box columns 2-4 for the next icon row; phase 2 (LYC + 1)
+; writes BG palette 3 colour 0, the party columns and box column 1, sets the
+; next LYC and stages that row's palettes + colour 0. A phase that finds
+; rLY != rLYC (interrupts were disabled for over a scanline) leaves everything
+; alone for the next frame. Both phases end "pop hl / pop af / reti".
 
 ; Phase labels are ROM addresses; the WRAM copy lives at
 ; wLCDBillsPC + (label - BillsPC_LCDCode).
 BillsPC_LCDCode:
 .Phase1:
-	ldh a, [rSTAT]
-	bit 2, a ; LYC coincidence
-	jr z, .donepc
+	; Late?
+	ldh a, [rLYC]
+	ld l, a
+	ldh a, [rLY]
+	cp l
+	jr nz, .donepc
 	push bc
 	ld c, LOW(rBGPD)
 	ld hl, wBillsPC_CurMonPals + 4
-
-	; second box mon
+	; second box mon (the index register can be set at any time)
 	ld a, %10000000 | (5 palettes + 2) ; autoinc, palette 5 color 1
 	ldh [rBGPI], a
+.wait1
+	ldh a, [rSTAT]
+	and %11
+	jr nz, .wait1
+	; HBlank: 12 palette bytes, ~65 cycles
 rept 4
 	ld a, [hli]
 	ldh [c], a
@@ -4621,7 +4672,9 @@ rept 4
 	ldh [c], a
 endr
 
-	; next: party mons
+	; phase 2 on the next scanline
+	ld hl, rLYC
+	inc [hl]
 	ld a, LOW(wLCDBillsPC + (BillsPC_LCDCode.Phase2 - BillsPC_LCDCode))
 	ldh [hLCDInterruptFunctionTargetLo], a
 	ld a, HIGH(wLCDBillsPC + (BillsPC_LCDCode.Phase2 - BillsPC_LCDCode))
@@ -4633,11 +4686,32 @@ endr
 	reti
 
 .Phase2:
+	; Late?
+	ldh a, [rLYC]
+	ld l, a
+	ldh a, [rLY]
+	cp l
+	jr nz, .donepc
 	push bc
+	push de
 	ld c, LOW(rBGPD)
-	ld hl, wBillsPC_CurPartyPals
+	ld hl, wBillsPC_CurColor0
+	; BG palette 3 colour 0 first: white inside the boxes (party column 2),
+	; the theme background below the last row so the shiny/Pokérus symbols
+	; at the top of the next frame sit on the background.
+	ld a, %10000000 | (3 palettes) ; autoinc, palette 3 color 0
+	ldh [rBGPI], a
+.wait2
+	ldh a, [rSTAT]
+	and %11
+	jr nz, .wait2
+	; HBlank: 14 palette bytes, ~76 cycles
+	ld a, [hli]
+	ldh [c], a
+	ld a, [hli]
+	ldh [c], a
 
-	; first party mon
+	; first party mon (hl = wBillsPC_CurPartyPals)
 	ld a, %10000000 | (2 palettes + 2)
 	ldh [rBGPI], a
 rept 4
@@ -4660,10 +4734,11 @@ rept 4
 	ld a, [hli]
 	ldh [c], a
 endr
+	; end of the time-critical part
 
-	; next scanline
-	push de
+	; next row's scanline (rLYC is the row line + 1 here)
 	ldh a, [rLYC]
+	dec a
 	cp PC_LYC_FIRST_ROW + 4 * PC_ICON_ROW_HEIGHT
 	jr nz, .increase_lyc
 	sub 5 * PC_ICON_ROW_HEIGHT
@@ -4671,8 +4746,24 @@ endr
 	add PC_ICON_ROW_HEIGHT
 	ldh [rLYC], a
 
-	; Stage the palettes of the row after the next one (the last row
-	; restages row 0, which restores the top of the screen for next frame).
+	; Colour 0 for the next phase 2
+	ld hl, wBillsPC_CurColor0
+	cp PC_LYC_FIRST_ROW + 4 * PC_ICON_ROW_HEIGHT
+	jr z, .bottom
+	ld [hl], LOW(PALRGB_WHITE)
+	inc hl
+	ld [hl], HIGH(PALRGB_WHITE)
+	jr .stage
+.bottom
+	ld a, [wBillsPC_BGColor0]
+	ld [hli], a
+	ld a, [wBillsPC_BGColor0 + 1]
+	ld [hl], a
+	ldh a, [rLYC]
+
+.stage
+	; Stage the palettes for the next row (LYC 135 stages row 0, which
+	; restores the top of the screen for the next frame).
 	sub 55
 	cp $50
 	jr c, .got_result
@@ -4695,46 +4786,6 @@ endr
 	inc de
 	dec c
 	jr nz, .copy
-	ld c, 17
-.busyloop
-	dec c
-	jr nz, .busyloop
-	ld a, LOW(wLCDBillsPC + (BillsPC_LCDCode.Phase3 - BillsPC_LCDCode))
-	ldh [hLCDInterruptFunctionTargetLo], a
-	ld a, HIGH(wLCDBillsPC + (BillsPC_LCDCode.Phase3 - BillsPC_LCDCode))
-	ldh [hLCDInterruptFunctionTargetHi], a
-	pop de
-	pop bc
-	pop hl
-	pop af
-	reti
-
-.Phase3:
-; BG 3 color 0: white inside the boxes, the theme background below them
-	push bc
-	push de
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
-
-	ld c, LOW(rBGPD)
-	ldh a, [rLY]
-	cp $8a
-	ld hl, wBGPals1
-	jr nc, .got_pal
-	ld hl, wBGPals1 palette 4
-.got_pal
-
-	ld a, %10000000 | (3 palettes)
-	ldh [rBGPI], a
-rept 2
-	ld a, [hli]
-	ldh [c], a
-endr
-
-	pop af
-	ldh [rSVBK], a
 	ld a, LOW(wLCDBillsPC)
 	ldh [hLCDInterruptFunctionTargetLo], a
 	ld a, HIGH(wLCDBillsPC)
@@ -4745,7 +4796,7 @@ endr
 	pop af
 	reti
 .End:
-	assert BillsPC_LCDCode.End - BillsPC_LCDCode <= $110, \
+	assert BillsPC_LCDCode.End - BillsPC_LCDCode <= wLCDBillsPCEnd - wLCDBillsPC, \
 		"BillsPC_LCDCode doesn't fit in wLCDBillsPC"
 
 ; ---------------------------------------------------------------------------
