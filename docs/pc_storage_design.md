@@ -231,8 +231,12 @@ model the CGB ignoring palette writes during mode 3, which is why the original
 HBlank-interrupt version looked fine there but blinked in accurate emulators; the
 LYC + wait-for-HBlank version (§8) starts writing within ~15 double-speed cycles of
 HBlank, well inside the worst-case (10 sprites on the line) window.
-`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and reports
-frames that differ from both neighbours.
+`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and fails on
+frames that differ from both neighbours (`THRESH=40 SEQ=swap|menu|idle`). It caught the
+drop blink: `BillsPC_BlankTiles` used to queue 4 tiles per frame, so the held/quick
+mini was blanked a frame before its white mask and the mask covered the freshly landed
+icon for one frame. It now zero-fills `wDecompressScratch` and blanks all tiles with
+one DMA in a single VBlank.
 
 ## 10. Tests (tools/)
 * `pc_harness.py` — PyBoy harness; calls ROM routines by symbol (parks on a

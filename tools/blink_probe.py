@@ -61,10 +61,11 @@ elif seq == "idle":
 
 prev = None
 big = []
+transients = 0
 for i, (tag, img) in enumerate(log):
     if prev is not None:
         d = int((np.abs(img.astype(int) - prev.astype(int)).sum(axis=2) > 0).sum())
-        if d > 300:
+        if d > int(os.environ.get('THRESH', '300')):
             big.append((i, tag, d))
     prev = img
 print("frames:", len(log))
@@ -75,7 +76,15 @@ for i, tag, d in big:
     if nxt is not None:
         back = int((np.abs(nxt.astype(int) - log[i - 1][1].astype(int)).sum(axis=2) > 0).sum())
     print(f"{i:4d} {tag:24s} diff={d:6d} next-vs-prev={back}")
-    if back is not None and back < d // 4:
+    if back is not None and back < d // 2:
         from PIL import Image
+        m = (np.abs(img.astype(int) - prev_img.astype(int)).sum(axis=2) > 0) if False else None
+        a = log[i - 1][1].astype(int); b = log[i][1].astype(int)
+        mm = (np.abs(a - b).sum(axis=2) > 0)
+        ys, xs = np.where(mm)
+        print(f"      transient region: y {ys.min()}-{ys.max()} x {xs.min()}-{xs.max()}")
+        transients += 1
         for k in (i - 1, i, i + 1):
             Image.fromarray(log[k][1]).save(f"{OUTD}/f{k:04d}.png")
+print(f"{transients} transient frame(s)")
+sys.exit(1 if transients else 0)

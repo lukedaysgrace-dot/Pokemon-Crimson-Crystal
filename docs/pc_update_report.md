@@ -44,12 +44,21 @@ Branch `polished-pc` on top of `6e539d60` (your `main`). Everything builds with
    them, so a row of icons or the shiny/Pokérus cells showed the wrong colours
    for a frame (PyBoy doesn't model that, which is why it never showed up
    here). The idle cursor also uses a 4-sprite frameset now instead of carrying
-   8 blank mini/shadow sprites around. If anything still flickers, it's
-   `BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`.
-4. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
+   8 blank mini/shadow sprites around.
+4. **Blink when a Pokémon is dropped / deposited / swapped**: this one was a
+   real one-frame gap, visible in every emulator (I had only been diffing
+   whole screens and missed it). The carried mini is a sprite plus a white
+   "shadow" mask behind it; when the icon lands, the mini tiles were blanked
+   one frame before the mask tiles (Crimson's tile queue does 4 tiles per
+   frame), so for that frame the white mask sat on top of the icon that had
+   just landed in the box. `BillsPC_BlankTiles` now blanks everything in one
+   VBlank with a single DMA. `tools/blink_probe.py` records every frame of a
+   swap / deposit / idle run and fails on any frame that differs from both
+   its neighbours; it's clean now for all three.
+5. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
    beast respawn when releasing your own beast, VWF item names (Crimson prints
    item names with the normal font; the icon of the item sits in column 7).
-5. ROM: 146 banks used (4 MiB); ROM0 slack $136 bytes; last bank ($92) has
+6. ROM: 146 banks used (4 MiB); ROM0 slack $136 bytes; last bank ($92) has
    $33c0 bytes free. `"PC UI"` is $2144 bytes, `"PC Storage"` $0b0a bytes.
 
 ## Files

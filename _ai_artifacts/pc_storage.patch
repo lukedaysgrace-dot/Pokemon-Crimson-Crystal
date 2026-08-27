@@ -556,10 +556,10 @@ index 77171bb8..43d42b5e 100644
 +	db SPRITE_ANIM_FRAMESET_PC_PACK,                  SPRITE_ANIM_SEQ_PC_PACK,                 $00 ; SPRITE_ANIM_INDEX_PC_PACK
 diff --git a/docs/pc_storage_design.md b/docs/pc_storage_design.md
 new file mode 100644
-index 00000000..e2faa694
+index 00000000..fb5e16fd
 --- /dev/null
 +++ b/docs/pc_storage_design.md
-@@ -0,0 +1,245 @@
+@@ -0,0 +1,249 @@
 +# Crimson Crystal — Polished-style PC storage system (design & implementation record)
 +
 +Status: implemented (backend, save integration, gameplay rewiring and the
@@ -793,8 +793,12 @@ index 00000000..e2faa694
 +HBlank-interrupt version looked fine there but blinked in accurate emulators; the
 +LYC + wait-for-HBlank version (§8) starts writing within ~15 double-speed cycles of
 +HBlank, well inside the worst-case (10 sprites on the line) window.
-+`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and reports
-+frames that differ from both neighbours.
++`tools/blink_probe.py` records every frame of a swap/deposit/idle sequence and fails on
++frames that differ from both neighbours (`THRESH=40 SEQ=swap|menu|idle`). It caught the
++drop blink: `BillsPC_BlankTiles` used to queue 4 tiles per frame, so the held/quick
++mini was blanked a frame before its white mask and the mask covered the freshly landed
++icon for one frame. It now zero-fills `wDecompressScratch` and blanks all tiles with
++one DMA in a single VBlank.
 +
 +## 10. Tests (tools/)
 +* `pc_harness.py` — PyBoy harness; calls ROM routines by symbol (parks on a
@@ -807,10 +811,10 @@ index 00000000..e2faa694
 +  the database is exhausted.
 diff --git a/docs/pc_update_report.md b/docs/pc_update_report.md
 new file mode 100644
-index 00000000..767f1d5f
+index 00000000..63c1c38e
 --- /dev/null
 +++ b/docs/pc_update_report.md
-@@ -0,0 +1,99 @@
+@@ -0,0 +1,108 @@
 +# Polished-style PC storage — delivery notes
 +
 +Branch `polished-pc` on top of `6e539d60` (your `main`). Everything builds with
@@ -857,12 +861,21 @@ index 00000000..767f1d5f
 +   them, so a row of icons or the shiny/Pokérus cells showed the wrong colours
 +   for a frame (PyBoy doesn't model that, which is why it never showed up
 +   here). The idle cursor also uses a 4-sprite frameset now instead of carrying
-+   8 blank mini/shadow sprites around. If anything still flickers, it's
-+   `BillsPC_LCDCode` in `engine/pc/bills_pc_ui.asm`.
-+4. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
++   8 blank mini/shadow sprites around.
++4. **Blink when a Pokémon is dropped / deposited / swapped**: this one was a
++   real one-frame gap, visible in every emulator (I had only been diffing
++   whole screens and missed it). The carried mini is a sprite plus a white
++   "shadow" mask behind it; when the icon lands, the mini tiles were blanked
++   one frame before the mask tiles (Crimson's tile queue does 4 tiles per
++   frame), so for that frame the white mask sat on top of the icon that had
++   just landed in the box. `BillsPC_BlankTiles` now blanks everything in one
++   VBlank with a single DMA. `tools/blink_probe.py` records every frame of a
++   swap / deposit / idle run and fails on any frame that differs from both
++   its neighbours; it's clean now for all three.
++5. Not ported (Polished-specific): Mewtwo form refresh on item change, roaming
 +   beast respawn when releasing your own beast, VWF item names (Crimson prints
 +   item names with the normal font; the icon of the item sits in column 7).
-+5. ROM: 146 banks used (4 MiB); ROM0 slack $136 bytes; last bank ($92) has
++6. ROM: 146 banks used (4 MiB); ROM0 slack $136 bytes; last bank ($92) has
 +   $33c0 bytes free. `"PC UI"` is $2144 bytes, `"PC Storage"` $0b0a bytes.
 +
 +## Files
@@ -2359,10 +2372,10 @@ index 3210a7e1..775f773d 100644
  .BattleResult:
 diff --git a/engine/pc/bills_pc_ui.asm b/engine/pc/bills_pc_ui.asm
 new file mode 100644
-index 00000000..1fc7fd9d
+index 00000000..bb1c8db3
 --- /dev/null
 +++ b/engine/pc/bills_pc_ui.asm
-@@ -0,0 +1,4822 @@
+@@ -0,0 +1,4831 @@
 +; Graphical Bill's PC (Polished Crystal-style storage interface), written for
 +; Crimson Crystal's engine on top of engine/pc/storage.asm.
 +;
@@ -2627,24 +2640,33 @@ index 00000000..1fc7fd9d
 +	ret
 +
 +BillsPC_BlankTiles:
-+; Blanks a * 4 tiles at hl (VRAM bank 1 selected by the caller).
-+	ld de, BillsPC_BlankTileGFX
-+	ld bc, 4 tiles
-+.loop
++; Blanks a * 4 tiles at hl (VRAM bank 1 selected by the caller) in a single
++; VBlank: zeros in wDecompressScratch pushed with one DMA. This must not be
++; split over frames - the held/quick sprite is mini + white mask, and
++; blanking the mini a frame before the mask leaves the mask covering the
++; icon that just landed underneath: a one-frame blink on every drop.
++	add a
++	add a
++	ld c, a ; tiles
 +	push hl
-+	push de
 +	push bc
++	ldh a, [rSVBK]
 +	push af
-+	lb bc, BANK(BillsPC_BlankTileGFX), 4
-+	call BillsPC_SafeGet2bpp
++	ld a, BANK(wDecompressScratch)
++	ldh [rSVBK], a
++	ld b, 0
++rept 4
++	sla c
++	rl b
++endr
++	ld hl, wDecompressScratch
++	xor a
++	call ByteFill
 +	pop af
++	ldh [rSVBK], a
 +	pop bc
-+	pop de
 +	pop hl
-+	add hl, bc
-+	dec a
-+	jr nz, .loop
-+	ret
++	jp BillsPC_DMAFromScratch
 +
 +BillsPC_SafeGet2bpp:
 +; Get2bpp for small ROM copies. With the LCD on, Crimson's Get2bpp queues the
@@ -15367,10 +15389,10 @@ index 0b27ab15..c63e1c7b 100644
  def main() -> int:
 diff --git a/tools/blink_probe.py b/tools/blink_probe.py
 new file mode 100644
-index 00000000..fa1d599f
+index 00000000..ef03cf56
 --- /dev/null
 +++ b/tools/blink_probe.py
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,90 @@
 +#!/usr/bin/env python3
 +"""Records every frame of a swap / deposit in the PC and reports frames that
 +differ a lot from their neighbours (a "blink")."""
@@ -15434,10 +15456,11 @@ index 00000000..fa1d599f
 +
 +prev = None
 +big = []
++transients = 0
 +for i, (tag, img) in enumerate(log):
 +    if prev is not None:
 +        d = int((np.abs(img.astype(int) - prev.astype(int)).sum(axis=2) > 0).sum())
-+        if d > 300:
++        if d > int(os.environ.get('THRESH', '300')):
 +            big.append((i, tag, d))
 +    prev = img
 +print("frames:", len(log))
@@ -15448,10 +15471,18 @@ index 00000000..fa1d599f
 +    if nxt is not None:
 +        back = int((np.abs(nxt.astype(int) - log[i - 1][1].astype(int)).sum(axis=2) > 0).sum())
 +    print(f"{i:4d} {tag:24s} diff={d:6d} next-vs-prev={back}")
-+    if back is not None and back < d // 4:
++    if back is not None and back < d // 2:
 +        from PIL import Image
++        m = (np.abs(img.astype(int) - prev_img.astype(int)).sum(axis=2) > 0) if False else None
++        a = log[i - 1][1].astype(int); b = log[i][1].astype(int)
++        mm = (np.abs(a - b).sum(axis=2) > 0)
++        ys, xs = np.where(mm)
++        print(f"      transient region: y {ys.min()}-{ys.max()} x {xs.min()}-{xs.max()}")
++        transients += 1
 +        for k in (i - 1, i, i + 1):
 +            Image.fromarray(log[k][1]).save(f"{OUTD}/f{k:04d}.png")
++print(f"{transients} transient frame(s)")
++sys.exit(1 if transients else 0)
 diff --git a/tools/pc_harness.py b/tools/pc_harness.py
 new file mode 100644
 index 00000000..f0d53a45

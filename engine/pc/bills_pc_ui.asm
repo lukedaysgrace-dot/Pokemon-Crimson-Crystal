@@ -262,24 +262,33 @@ BillsPC_LoadUI:
 	ret
 
 BillsPC_BlankTiles:
-; Blanks a * 4 tiles at hl (VRAM bank 1 selected by the caller).
-	ld de, BillsPC_BlankTileGFX
-	ld bc, 4 tiles
-.loop
+; Blanks a * 4 tiles at hl (VRAM bank 1 selected by the caller) in a single
+; VBlank: zeros in wDecompressScratch pushed with one DMA. This must not be
+; split over frames - the held/quick sprite is mini + white mask, and
+; blanking the mini a frame before the mask leaves the mask covering the
+; icon that just landed underneath: a one-frame blink on every drop.
+	add a
+	add a
+	ld c, a ; tiles
 	push hl
-	push de
 	push bc
+	ldh a, [rSVBK]
 	push af
-	lb bc, BANK(BillsPC_BlankTileGFX), 4
-	call BillsPC_SafeGet2bpp
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	ld b, 0
+rept 4
+	sla c
+	rl b
+endr
+	ld hl, wDecompressScratch
+	xor a
+	call ByteFill
 	pop af
+	ldh [rSVBK], a
 	pop bc
-	pop de
 	pop hl
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
+	jp BillsPC_DMAFromScratch
 
 BillsPC_SafeGet2bpp:
 ; Get2bpp for small ROM copies. With the LCD on, Crimson's Get2bpp queues the
