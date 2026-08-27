@@ -20,6 +20,7 @@ SUMMARY_TILE_TAB_L    EQU $47 ; bottom tab left corner
 SUMMARY_TILE_TAB_FILL EQU $48 ; bottom tab top edge
 SUMMARY_TILE_TAB_R    EQU $49 ; bottom tab right corner
 SUMMARY_TILE_BALL_BG  EQU $4a ; white disc behind the ball sprite
+SUMMARY_TILE_POKERUS  EQU $5b ; after the four type-icon slots ($4b-$5a)
 
 ; OBJ tiles (vTiles0): $00 page square, $01 selected page square,
 ; $02 caught ball icon (colored through OBJ palette 4)
@@ -468,6 +469,12 @@ LoadSummaryScreenGFX:
 	ld hl, vTiles0 tile $02
 	lb bc, BANK(PartyMenuBallGFX), 1
 	call Get2bpp
+	; Reuse Bill's PC Pokérus symbol in color 1 so it can share palette 7
+	; with the shiny sparkles, which use color 2.
+	ld de, StatsScreenPokerusGFX
+	ld hl, vTiles2 tile SUMMARY_TILE_POKERUS
+	lb bc, BANK(StatsScreenPokerusGFX), 1
+	call Get2bpp
 	; selection arrow for the move info view
 	ld de, StatsScreenArrowGFX
 	ld hl, vTiles0 tile $03
@@ -787,6 +794,14 @@ StatsScreen_PinkPage:
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
 	call PrintNum
 	add sp, 2
+
+	; active Pokérus indicator (immediately left of the shiny sparkles)
+	ld a, [wTempMonPokerusStatus]
+	and $0f
+	jr z, .not_pokerus
+	hlcoord 17, 2
+	ld [hl], SUMMARY_TILE_POKERUS
+.not_pokerus
 
 	; shiny indicator
 	ld bc, wTempMonDVs
@@ -2143,6 +2158,18 @@ SummaryScreenTilesGFX:
 	db $00, $78
 	db $00, $00
 	db $00, $00
+
+StatsScreenPokerusGFX:
+; Bill's PC infected Pokérus tile, remapped from color 2 to color 1 so the
+; pink symbol and blue shiny sparkles can share summary-screen palette 7.
+	db %00000000, %00000000
+	db %10111101, %00000000
+	db %01011010, %00000000
+	db %01011010, %00000000
+	db %01111110, %00000000
+	db %01100110, %00000000
+	db %10111101, %00000000
+	db %00000000, %00000000
 
 SummaryScreenSquareOBJGFX:
 ; 2 OBJ tiles: page square (unselected), page square (selected).

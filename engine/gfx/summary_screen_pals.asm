@@ -10,7 +10,7 @@
 ;   4: bottom panel palette (accent, panel fill, white, black)
 ;   5: type icon 1 / caught ball palette
 ;   6: type icon 2 palette
-;   7: shiny star palette / type icon 3 on the green page
+;   7: Pokérus + shiny palette / type icon 3 on the green page
 ; OBJ palettes 0-3: the four page squares (pink, blue, green, orange).
 
 LoadSummaryScreenPals::
@@ -203,7 +203,9 @@ LoadSummaryScreenPals::
 	ld a, $6
 	call .FillAttrBox
 .pink_one_type
-	; shiny sparkles cell
+	; Pokérus and shiny sparkles cells
+	hlcoord 17, 2, wAttrMap
+	ld [hl], $7
 	hlcoord 18, 2, wAttrMap
 	ld [hl], $7
 	; exp bar row
@@ -453,8 +455,8 @@ SummaryPagePals:
 	RGB 31, 26, 30
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 31, 26, 30 ; star: pale pink bg
-	RGB 31, 31, 31
+	RGB 31, 26, 30 ; symbols: pale pink bg
+	RGB 29, 07, 22 ; Pokérus
 	RGB 4, 15, 31  ; blue shiny sparkles
 	RGB 0, 0, 0
 	; blue (cyan) page
