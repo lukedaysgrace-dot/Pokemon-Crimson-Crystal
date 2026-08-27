@@ -5,6 +5,8 @@ LCD::
 	ldh a, [hLCDCPointer]
 	and a
 	jr z, .done
+	cp LCD_CUSTOM_HANDLER
+	jr z, .custom
 
 ; At this point it's assumed we're in WRAM bank 5!
 	push bc
@@ -22,6 +24,17 @@ LCD::
 .done
 	pop af
 	reti
+
+.custom
+; hLCDCPointer == LCD_CUSTOM_HANDLER: jump to the handler at
+; hLCDInterruptFunctionTarget (a WRAM0 routine, e.g. the Bill's PC HBlank
+; palette code). The handler must end with "pop hl / pop af / reti".
+	push hl
+	ldh a, [hLCDInterruptFunctionTargetHi]
+	ld h, a
+	ldh a, [hLCDInterruptFunctionTargetLo]
+	ld l, a
+	jp hl
 
 DisableLCD::
 ; Turn the LCD off

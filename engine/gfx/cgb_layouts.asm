@@ -361,58 +361,9 @@ INCLUDE "gfx/pokedex/question_mark.pal"
 INCLUDE "gfx/pokedex/cursor.pal"
 
 _CGB_BillsPC:
-	ld de, wBGPals1
-	ld a, PREDEFPAL_POKEDEX
-	call GetPredefPal
-	call LoadHLPaletteIntoDE
-	ld a, [wCurPartySpecies]
-	cp $ff
-	jr nz, .GetMonPalette
-	ld hl, .BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .Resume
-
-.GetMonPalette:
-	ld bc, wTempMonDVs
-	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-.Resume:
-	call WipeAttrMap
-	hlcoord 1, 4, wAttrMap
-	lb bc, 7, 7
-	ld a, $1
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrMap
-	call ApplyPals
-	ld a, $1
-	ldh [hCGBPalUpdate], a
+; The graphical storage system manages its own palettes (engine/pc/bills_pc_ui.asm).
+	farcall BillsPC_LoadPalettes
 	ret
-
-.Function9009:
-	ld hl, .BillsPCOrangePalette
-	call LoadHLPaletteIntoDE
-	jr .asm_901a
-
-.unused
-	ld bc, wTempMonDVs
-	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-.asm_901a
-	call WipeAttrMap
-	hlcoord 1, 1, wAttrMap
-	lb bc, 7, 7
-	ld a, $1
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrMap
-	call ApplyPals
-	ld a, $1
-	ldh [hCGBPalUpdate], a
-	ret
-
-.BillsPCOrangePalette:
-INCLUDE "gfx/pc/orange.pal"
 
 _CGB_PokedexUnownMode:
 	ld de, wBGPals1

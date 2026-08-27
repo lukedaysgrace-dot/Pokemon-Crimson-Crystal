@@ -86,65 +86,67 @@ CheckPartyFullAfterContest:
 	ret
 
 .TryAddToBox:
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld hl, sBoxCount
-	ld a, [hl]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jr nc, .BoxFull
-	xor a
-	ld [wCurPartyMon], a
+	; Build the caught mon in wTempMon and store it.
 	ld hl, wContestMon
-	ld de, wBufferMon
+	ld de, wTempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	xor a ; REMOVE_PARTY
-	ld [wPokemonWithdrawDepositParameter], a
+	xor a
+	ld [wTempMonIsEgg], a
+	ld [wCurPartyMon], a
 	ld hl, wPlayerName
-	ld de, wBufferMonOT
+	ld de, wTempMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	callfar InsertPokemonIntoBox
 	ld a, [wCurPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	call GiveANickname_YesNo
 	ld hl, wStringBuffer1
-	jr c, .Box_SkipNickname
-	ld a, BOXMON
-	ld [wMonType], a
-	ld de, wMonOrItemNameBuffer
-	callfar InitNickname
-	ld hl, wMonOrItemNameBuffer
-
-.Box_SkipNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-	ld de, sBoxMonNicknames
+	ld de, wTempMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	call CloseSRAM
-
-.BoxFull:
-	ld a, BANK(sBoxMon1Level)
-	call GetSRAMBank
-	ld a, [sBoxMon1Level]
+	ld hl, wStringBuffer1
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	ld a, [wTempMonLevel]
 	ld [wCurPartyLevel], a
-	call CloseSRAM
-	call SetBoxMonCaughtData
-	ld a, BANK(sBoxMon1CaughtLocation)
-	call GetSRAMBank
-	ld hl, sBoxMon1CaughtLocation
+	ld hl, wTempMonCaughtLevel
+	call SetBoxmonOrEggmonCaughtData
+	ld hl, wTempMonCaughtLocation
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
 	ld b, NATIONAL_PARK
 	or b
 	ld [hl], a
-	call CloseSRAM
+	farcall AddTempMonToStorage
+	cp PCSTORE_FULL
+	jr nc, .BoxFull
+	call GiveANickname_YesNo
+	jr c, .Box_SkipNickname
+	ld a, TEMPMON
+	ld [wMonType], a
+	ld de, wMonOrItemNameBuffer
+	callfar InitNickname
+	ld hl, wMonOrItemNameBuffer
+	ld de, wTempMonNickname
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	farcall UpdateStorageBoxMonFromTemp
+
+.Box_SkipNickname:
+	farcall CurBoxFullCheck
 	xor a
 	ld [wContestMon], a
 	ld a, BUGCONTEST_BOXED_MON
+	ld [wScriptVar], a
+	ret
+
+.BoxFull:
+	; No room anywhere: the mon could not be kept.
+	xor a
+	ld [wContestMon], a
+	ld a, BUGCONTEST_NO_CATCH
 	ld [wScriptVar], a
 	ret
 
@@ -202,22 +204,13 @@ SetBoxmonOrEggmonCaughtData:
 	ret
 
 SetBoxMonCaughtData:
-	ld a, BANK(sBoxMon1CaughtLevel)
-	call GetSRAMBank
-	ld hl, sBoxMon1CaughtLevel
-	call SetBoxmonOrEggmonCaughtData
-	call CloseSRAM
-	ret
+; Boxed mons are built in wTempMon before being stored.
+	ld hl, wTempMonCaughtLevel
+	jp SetBoxmonOrEggmonCaughtData
 
 SetGiftBoxMonCaughtData:
-	push bc
-	ld a, BANK(sBoxMon1CaughtLevel)
-	call GetSRAMBank
-	ld hl, sBoxMon1CaughtLevel
-	pop bc
-	call SetGiftMonCaughtData
-	call CloseSRAM
-	ret
+	ld hl, wTempMonCaughtLevel
+	jp SetGiftMonCaughtData
 
 SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]

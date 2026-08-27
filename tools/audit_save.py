@@ -85,8 +85,16 @@ def audit_layout(audit: Audit, symbols: dict[str, tuple[int, int]]) -> None:
         "sSaveDataEnd",
         "sChecksum",
         "sCheckValue2",
-        "sBox",
-        "sBoxEnd",
+        "sSaveVersion",
+        "sWritingBackup",
+        "sNewBox1",
+        "sNewBoxEnd",
+        "sBackupNewBox1",
+        "sBackupNewBoxEnd",
+        "sBoxMons1A",
+        "sBoxMons1B",
+        "sBoxMons2A",
+        "sBoxMons2B",
         "wPokemonIndexTable",
         "wPokemonIndexTableEnd",
         "wMoveIndexTable",
@@ -128,27 +136,32 @@ def audit_layout(audit: Audit, symbols: dict[str, tuple[int, int]]) -> None:
             f"{prefix}CheckValue2 does not immediately follow its 16-bit checksum",
         )
 
-    # Banks 4-5 retain inaccessible Japanese-mobile compatibility labels from
-    # pokecrystal. Only live save/box regions must fit the four advertised banks.
+    # The storage system (docs/pc_storage_design.md) spans SRAM banks 2-6;
+    # bank 7 keeps the Japanese-mobile compatibility labels. All eight banks
+    # are advertised in the header (rgbfix -r 5).
     live_symbols = {name for name in required if name.startswith("s")}
-    live_symbols.update(
-        name
-        for name in symbols
-        if re.fullmatch(r"sBox(?:[1-9]|1[0-4])(?:End|PokemonIndexes)?", name)
-    )
     for name in sorted(live_symbols):
         bank, address = symbols[name]
-        audit.expect(0 <= bank < 4, f"{name} uses unavailable SRAM bank {bank}")
+        audit.expect(0 <= bank < 8, f"{name} uses unavailable SRAM bank {bank}")
         audit.expect(SRAM_START <= address < SRAM_END, f"{name} lies outside SRAM address space")
 
-    active_box_size = span("sBox", "sBoxEnd")
-    box_sizes = []
-    for number in range(1, 15):
-        start, end = f"sBox{number}", f"sBox{number}End"
-        audit.expect(start in symbols and end in symbols, f"missing linked box symbols for box {number}")
-        if start in symbols and end in symbols:
-            box_sizes.append(span(start, end))
-    audit.expect(all(size == active_box_size for size in box_sizes), "stored box size differs from active box size")
+    # Box metadata: active and backup snapshots must be equal-sized and contiguous.
+    active_size = span("sNewBox1", "sNewBoxEnd")
+    backup_size = span("sBackupNewBox1", "sBackupNewBoxEnd")
+    audit.expect(active_size == backup_size, "active/backup box metadata sizes differ")
+    audit.expect(active_size % 33 == 0, "box metadata is not a whole number of 33-byte boxes")
+    audit.expect(symbols["sNewBoxEnd"] == symbols["sBackupNewBox1"], "backup snapshot must directly follow the active metadata")
+    # PokeDB sections: 57-byte records, whole banks never overrun.
+    for pool in ("1", "2"):
+        for section in ("A", "B"):
+            start = symbols[f"sBoxMons{pool}{section}"]
+            end = symbols[f"sBoxMons{pool}{section}End"]
+            audit.expect(start[0] == end[0], f"PokeDB {pool}{section} crosses a bank")
+            size = end[1] - start[1]
+            audit.expect(size % 57 == 0 and size > 0, f"PokeDB {pool}{section} is not a whole number of 57-byte records")
+            audit.expect(end[1] <= SRAM_END, f"PokeDB {pool}{section} extends past the end of its bank")
+    audit.expect(span("sBoxMons1A", "sBoxMons1AEnd") == span("sBoxMons2A", "sBoxMons2AEnd"), "pool 1/2 section A sizes differ")
+    audit.expect(span("sBoxMons1B", "sBoxMons1BEnd") == span("sBoxMons2B", "sBoxMons2BEnd"), "pool 1/2 section B sizes differ")
 
     pokemon_index_size = symbols["wPokemonIndexTableEnd"][1] - symbols["wPokemonIndexTable"][1]
     move_index_size = symbols["wMoveIndexTableEnd"][1] - symbols["wMoveIndexTable"][1]
@@ -167,14 +180,9 @@ def audit_source(audit: Audit) -> None:
         "SavePlayerData",
         "SavePokemonData",
         "SaveIndexTables",
-        "SaveBox",
+        "SetSavePhase",
         "SaveChecksum",
-        "ValidateBackupSave",
-        "SaveBackupOptions",
-        "SaveBackupPlayerData",
-        "SaveBackupPokemonData",
-        "SaveBackupIndexTables",
-        "SaveBackupChecksum",
+        "WriteBackupSave",
     ]
     positions = [save_calls.index(name) if name in save_calls else -1 for name in expected_save_order]
     audit.expect(-1 not in positions, "SaveGameData is missing a primary or backup save stage")
@@ -216,10 +224,15 @@ def audit_source(audit: Audit) -> None:
         audit.expect(checksum_field in body, f"{routine} does not use {checksum_field}")
         audit.expect(save_range in body and save_range + "End" in body, f"{routine} does not cover the full save range")
 
-    box_address_rows = re.findall(r"^\s*dbww\s+BANK\(sBox\d+\),\s+sBox\d+,\s+sBox\d+End", text, re.MULTILINE)
-    box_index_rows = re.findall(r"^\s*dba\s+sBox\d+PokemonIndexes", text, re.MULTILINE)
-    audit.expect(len(box_address_rows) == 14, f"BoxAddresses has {len(box_address_rows)} box rows, expected 14")
-    audit.expect(len(box_index_rows) == 14, f"BoxAddresses has {len(box_index_rows)} index rows, expected 14")
+    backup_calls = calls(function_body(text, "WriteBackupSave"))
+    for name in ("SaveStorageSystem", "ValidateBackupSave", "SaveBackupOptions", "SaveBackupPlayerData",
+                 "SaveBackupPokemonData", "SaveBackupIndexTables", "SaveBackupChecksum", "SetSavePhase"):
+        audit.expect(name in backup_calls, f"WriteBackupSave is missing {name}")
+    if "SaveStorageSystem" in backup_calls and "SaveBackupChecksum" in backup_calls:
+        audit.expect(backup_calls.index("SaveStorageSystem") < backup_calls.index("SaveBackupChecksum"),
+                     "storage snapshot must be committed before the backup checksum")
+    audit.expect("WasMidSaveAborted" in load_calls and "LoadStorageSystem" in load_calls,
+                 "TryLoadSaveFile must repair an interrupted backup write and load the storage snapshot")
 
     audit.expect(
         "sBackupSaveData::" in sram and "sSaveData::" in sram,
@@ -235,7 +248,7 @@ def audit_rom_header(audit: Audit) -> None:
     data = rom.read_bytes()
     audit.expect(len(data) > 0x149, "ROM is too short to contain a cartridge header")
     if len(data) > 0x149:
-        audit.expect(data[0x149] == 0x03, f"ROM advertises RAM-size code ${data[0x149]:02x}, expected $03 (4 banks)")
+        audit.expect(data[0x149] == 0x05, f"ROM advertises RAM-size code ${data[0x149]:02x}, expected $05 (8 banks, 64 KiB)")
 
 
 def main() -> int:

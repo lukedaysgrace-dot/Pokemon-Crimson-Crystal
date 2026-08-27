@@ -1249,7 +1249,7 @@ Function1007f6:
 	ld hl, wcd74
 	ld de, wcd71
 	call Function1006dc
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	ld hl, $a802
 	call Function100826
@@ -2444,7 +2444,7 @@ endr
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, $07
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $07
 	call GetSRAMBank
 	ld hl, wc608
 	ld de, $a001
@@ -2670,7 +2670,7 @@ LoadSelectedPartiesForColosseum:
 	ret
 
 Function1011f1:
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	ld a, [$a60c]
 	ld [wdc41], a
@@ -4681,7 +4681,7 @@ Function1020bf:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	call Function10208e
 	call Function102068
@@ -4717,7 +4717,7 @@ Function1020ea:
 	ret
 
 Function102112:
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	ld hl, $a041
 	ld c, 40
@@ -6961,7 +6961,7 @@ Function103309:
 	ld bc, 10
 	xor a
 	call ByteFill
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	ld a, [wdc41]
 	ld [$a60c], a
@@ -7013,7 +7013,7 @@ Function103362:
 	ld hl, wBuffer2
 	bit 6, [hl]
 	jr z, .asm_103398
-	ld a, $04
+	ld a, MOBILE_DEAD_SRAM_BANK ; was $04
 	call GetSRAMBank
 	ld a, [wBuffer1]
 	ld [$a60c], a

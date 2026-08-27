@@ -160,13 +160,10 @@ _ResetWRAM:
 	ld [wCurBox], a
 	ld [wSavedAtLeastOnce], a
 
-	call SetDefaultBoxNames
-
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld hl, sBoxCount
-	call .InitList
-	call CloseSRAM
+	; Empty the active storage boxes (names, themes, pointers). The backup
+	; snapshot is left alone until the first save so an abandoned new game
+	; cannot damage the previous save file.
+	farcall InitializeBoxes
 
 	ld hl, wNumItems
 	call .InitList
@@ -250,38 +247,6 @@ endc
 	dec a
 	ld [hl], a
 	ret
-
-SetDefaultBoxNames:
-	ld hl, wBoxNames
-	ld c, 0
-.loop
-	push hl
-	ld de, .Box
-	call CopyName2
-	dec hl
-	ld a, c
-	inc a
-	cp 10
-	jr c, .less
-	sub 10
-	ld [hl], "1"
-	inc hl
-
-.less
-	add "0"
-	ld [hli], a
-	ld [hl], "@"
-	pop hl
-	ld de, 9
-	add hl, de
-	inc c
-	ld a, c
-	cp NUM_BOXES
-	jr c, .loop
-	ret
-
-.Box:
-	db "BOX@"
 
 InitializeMagikarpHouse:
 	ld hl, wBestMagikarpLengthFeet

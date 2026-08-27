@@ -66,6 +66,11 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_INDEX_INTRO_UNOWN_F            ; 2a
 	const SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY       ; 2b
 	const SPRITE_ANIM_INDEX_CELEBI                   ; 2c
+	const SPRITE_ANIM_INDEX_PC_CURSOR                ; 2d
+	const SPRITE_ANIM_INDEX_PC_QUICK                 ; 2e
+	const SPRITE_ANIM_INDEX_PC_MODE                  ; 2f
+	const SPRITE_ANIM_INDEX_PC_MODE2                 ; 30
+	const SPRITE_ANIM_INDEX_PC_PACK                  ; 31
 
 ; DoAnimFrame.Jumptable indexes (see engine/gfx/sprite_anims.asm)
 	const_def
@@ -105,6 +110,10 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F           ; 21
 	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY      ; 22
 	const SPRITE_ANIM_SEQ_CELEBI_FLYBY            ; 23
+	const SPRITE_ANIM_SEQ_PC_CURSOR               ; 24
+	const SPRITE_ANIM_SEQ_PC_QUICK                ; 25
+	const SPRITE_ANIM_SEQ_PC_MODE                 ; 26
+	const SPRITE_ANIM_SEQ_PC_PACK                 ; 27
 
 ; SpriteAnimFrameData indexes (see data/sprite_anims/framesets.asm)
 	const_def
@@ -175,6 +184,12 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_FRAMESET_CELEBI_LEFT              ; 40
 	const SPRITE_ANIM_FRAMESET_CELEBI_RIGHT             ; 41
 	const SPRITE_ANIM_FRAMESET_CELEBI_FLYBY             ; 42
+	const SPRITE_ANIM_FRAMESET_PC_CURSOR                ; 43
+	const SPRITE_ANIM_FRAMESET_PC_CURSOR_ITEM           ; 44
+	const SPRITE_ANIM_FRAMESET_PC_QUICK                 ; 45
+	const SPRITE_ANIM_FRAMESET_PC_MODE                  ; 46
+	const SPRITE_ANIM_FRAMESET_PC_MODE2                 ; 47
+	const SPRITE_ANIM_FRAMESET_PC_PACK                  ; 48
 
 ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
 	const_def
@@ -320,3 +335,9 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11          ; 8b
 	const SPRITE_ANIM_OAMSET_PARTY_MON_1                ; 8c
 	const SPRITE_ANIM_OAMSET_PARTY_MON_2                ; 8d
+	const SPRITE_ANIM_OAMSET_PC_CURSOR                  ; 8e
+	const SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM             ; 8f
+	const SPRITE_ANIM_OAMSET_PC_QUICK                   ; 90
+	const SPRITE_ANIM_OAMSET_PC_MODE                    ; 91
+	const SPRITE_ANIM_OAMSET_PC_MODE2                   ; 92
+	const SPRITE_ANIM_OAMSET_PC_PACK                    ; 93
