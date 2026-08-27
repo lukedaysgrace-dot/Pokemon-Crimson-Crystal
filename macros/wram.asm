@@ -103,16 +103,52 @@ battle_struct: MACRO
 \1StructEnd::
 ENDM
 
-box: MACRO
-\1Count::           db
-\1Species::         ds MONS_PER_BOX + 1
+savemon_struct: MACRO
+; Encoded PokeDB record. Offsets are mirrored by the SAVEMON_* constants
+; (constants/pokemon_data_constants.asm) and documented in docs/pc_storage_design.md.
+\1SpeciesIndex::   dw ; true 16-bit species index
+\1Item::           db
+\1Moves::          ds NUM_MOVES ; low 8 bits of true move indexes
+\1ID::             dw
+\1Exp::            ds 3
+\1StatExp::
+\1HPExp::          dw
+\1AtkExp::         dw
+\1DefExp::         dw
+\1SpdExp::         dw
+\1SpcExp::         dw
+\1DVs::            dw
+\1MovesHiPPUps::   ds NUM_MOVES ; bits 0-5: move index bits 8-13; bits 6-7: PP Ups
+\1Happiness::      db
+\1PokerusStatus::  db ; bits 0-5 pokerus, bit 6 male flag, bit 7 shiny flag
+\1CaughtData::
+\1CaughtTime::
+\1CaughtLevel::    db
+\1CaughtGender::
+\1CaughtLocation:: db
+\1Level::          db
+\1Personality::    db
+\1Flags::          db ; bit 0: is egg
+\1Nickname::       ds SAVEMON_NAME_LENGTH
+\1OT::             ds SAVEMON_NAME_LENGTH
+\1Checksum::       dw
+\1End::
+ENDM
+
+pokedb: MACRO
+; \1 = label prefix, \2 = entry count
 \1Mons::
-\1Mon1::            box_struct \1Mon1
-\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX + -1)
-\1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
-\1MonNicknames::    ds MON_NAME_LENGTH * MONS_PER_BOX
-\1MonNicknamesEnd::
-\1End::             ds 2 ; padding
+	ds SAVEMON_STRUCT_LENGTH * (\2)
+\1End::
+ENDM
+
+newbox: MACRO
+; Box metadata: one PokeDB pointer per slot plus name and theme.
+\1Entries:: ds MONS_PER_BOX ; 0 = empty, else PokeDB entry number
+\1Banks::   flag_array MONS_PER_BOX ; bit clear = pool 1, set = pool 2
+\1Name::    ds BOX_NAME_LENGTH ; no terminator
+\1Theme::   db
+\1End::
 ENDM
 
 map_connection_struct: MACRO

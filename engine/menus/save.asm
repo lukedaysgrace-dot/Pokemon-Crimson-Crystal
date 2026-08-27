@@ -37,29 +37,6 @@ SaveAfterLinkTrade:
 	call ResumeGameLogic
 	ret
 
-ChangeBoxSaveGame:
-	push de
-	ld hl, Text_SaveOnBoxSwitch
-	call MenuTextbox
-	call YesNoBox
-	call ExitMenu
-	jr c, .refused
-	call AskOverwriteSaveFile
-	jr c, .refused
-	call PauseGameLogic
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	call LoadBox
-	call SavedTheGame
-	call ResumeGameLogic
-	and a
-	ret
-.refused
-	pop de
-	ret
-
 Link_SaveGame:
 	call AskOverwriteSaveFile
 	jr c, .refused
@@ -69,66 +46,6 @@ Link_SaveGame:
 	and a
 
 .refused
-	ret
-
-MoveMonWOMail_SaveGame:
-	call PauseGameLogic
-	push de
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	call LoadBox
-	call ResumeGameLogic
-	ret
-
-MoveMonWOMail_InsertMon_SaveGame:
-	call PauseGameLogic
-	push de
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	ld a, TRUE
-	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
-	farcall BackupMysteryGift
-	call ValidateSave
-	call SaveOptions
-	call SavePlayerData
-	call SavePokemonData
-	call SaveIndexTables
-	call SaveChecksum
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupIndexTables
-	call SaveBackupChecksum
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
-	farcall SaveRTC
-	call LoadBox
-	call ResumeGameLogic
-	ld de, SFX_SAVE
-	jp PlaySFX
-
-StartMoveMonWOMail_SaveGame:
-	ld hl, Text_SaveOnMoveMonWOMail
-	call MenuTextbox
-	call YesNoBox
-	call ExitMenu
-	jr c, .refused
-	call AskOverwriteSaveFile
-	jr c, .refused
-	call PauseGameLogic
-	call SavedTheGame
-	call ResumeGameLogic
-	and a
-	ret
-
-.refused
-	scf
 	ret
 
 PauseGameLogic:
@@ -230,6 +147,13 @@ SavedTheGame:
 	text "Saving…"
 	done
 
+ForceGameSave::
+; Saves without asking (Bill's PC: the storage database needs a snapshot).
+; Prints the usual "Saving…" / "saved the game" text.
+	call PauseGameLogic
+	call SavedTheGame
+	jp ResumeGameLogic
+
 SaveGameData:
 	ld a, TRUE
 	ld [wSaveFileExists], a
@@ -240,17 +164,14 @@ SaveGameData:
 	call SavePlayerData
 	call SavePokemonData
 	call SaveIndexTables
-	call SaveBox
+	; Mark the backup copy as being (re)written. Set only now: earlier it could
+	; make the load routine use a half-written main copy; later and the main
+	; copy could be valid with a stale backup snapshot.
+	ld a, 1
+	call SetSavePhase
 	call SaveChecksum
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupIndexTables
-	call SaveBackupChecksum
+	call WriteBackupSave
 	call UpdateStackTop
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
 	farcall SaveRTC
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
@@ -262,6 +183,39 @@ SaveGameData:
 .ok
 	call CloseSRAM
 	ret
+
+WriteBackupSave:
+; Runs after the main copy is valid: commits the storage snapshot and mail,
+; then writes the backup game data. Rerun on load if it was interrupted.
+	farcall SaveStorageSystem ; active box metadata -> backup snapshot
+	farcall BackupPartyMonMail
+	farcall BackupMobileEventIndex
+	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupIndexTables
+	call SaveBackupChecksum
+	xor a
+	call SetSavePhase
+	jp CloseSRAM
+
+SetSavePhase:
+; a = 1 while the backup copy is being written, 0 otherwise.
+	push af
+	ld a, BANK(sWritingBackup)
+	call GetSRAMBank
+	pop af
+	ld [sWritingBackup], a
+	jp CloseSRAM
+
+WasMidSaveAborted:
+; Returns z if the game was reset while the backup copy was being written.
+	ld a, BANK(sWritingBackup)
+	call GetSRAMBank
+	ld a, [sWritingBackup]
+	dec a
+	jp CloseSRAM
 
 UpdateStackTop:
 ; sStackTop appears to be unused.
@@ -303,7 +257,6 @@ FindStackTop:
 	jr .loop
 
 ErasePreviousSave:
-	call EraseBoxes
 	call EraseHallOfFame
 	call EraseLinkBattleStats
 	call EraseMysteryGift
@@ -348,7 +301,7 @@ EraseHallOfFame:
 
 Unreferenced_Function14d18:
 ; copy .Data to SRA4:a007
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, MOBILE_DEAD_SRAM_BANK ; MBC30 bank used by JP Crystal; kept inaccessible (SRAM disabled) now that we have 8 banks
 	call GetSRAMBank
 	ld hl, .Data
 	ld de, $a007 ; address of MBC30 bank
@@ -379,7 +332,7 @@ SaveData:
 	ret
 
 Unreferenced_Function14d6c:
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, MOBILE_DEAD_SRAM_BANK ; MBC30 bank used by JP Crystal; kept inaccessible (SRAM disabled) now that we have 8 banks
 	call GetSRAMBank
 	ld a, [$a60b] ; address of MBC30 bank
 	ld b, $0
@@ -394,7 +347,7 @@ Unreferenced_Function14d6c:
 	ret
 
 Unreferenced_Function14d83:
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, MOBILE_DEAD_SRAM_BANK ; MBC30 bank used by JP Crystal; kept inaccessible (SRAM disabled) now that we have 8 banks
 	call GetSRAMBank
 	xor a
 	ld [$a60c], a ; address of MBC30 bank
@@ -403,7 +356,7 @@ Unreferenced_Function14d83:
 	ret
 
 Unreferenced_Function14d93:
-	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, MOBILE_DEAD_SRAM_BANK ; MBC30 bank used by JP Crystal; kept inaccessible (SRAM disabled) now that we have 8 banks
 	call GetSRAMBank
 	xor a
 	ld [$a000], a ; address of MBC30 bank
@@ -418,12 +371,14 @@ HallOfFame_InitSaveIfNeeded:
 	ret
 
 ValidateSave:
-	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
+	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2), BANK(sSaveVersion)
 	call GetSRAMBank
 	ld a, SAVE_CHECK_VALUE_1
 	ld [sCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sCheckValue2], a
+	ld a, SAVE_FORMAT_VERSION
+	ld [sSaveVersion], a
 	jp CloseSRAM
 
 SaveOptions:
@@ -482,28 +437,6 @@ SaveIndexTables:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	jp CloseSRAM
-
-SaveBox:
-	call GetBoxAddress
-	push de
-	push af
-	call SaveBoxAddress
-	pop af
-	call GetSRAMBank
-	pop hl
-	call ComputeSavedBoxIndexTable
-	call GetBoxPokemonIndexesAddress
-	call GetSRAMBank
-	ld d, h
-	ld e, l
-	ld hl, wBoxPartialData
-	ld bc, 2 * MONS_PER_BOX
-	call CopyBytes
-	call GetBoxAddress
-	ld b, a
-	ld c, 0
-	farcall BillsPC_ConvertBoxData
 	jp CloseSRAM
 
 SaveChecksum:
@@ -621,16 +554,16 @@ TryLoadSaveFile:
 	call LoadPlayerData
 	call LoadPokemonData
 	call LoadIndexTables
-	call LoadBox
+	; If the reset happened while the backup copy was being written, finish it
+	; now (the main copy is good and the storage snapshot must match it).
+	call WasMidSaveAborted
+	call z, WriteBackupSave
+	farcall LoadStorageSystem
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex
 	farcall RestoreMysteryGift
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupIndexTables
-	call SaveBackupChecksum
+	; Refresh the backup copy from the loaded main copy.
+	call WriteBackupSave
 	and a
 	ret
 
@@ -640,16 +573,19 @@ TryLoadSaveFile:
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
 	call LoadBackupIndexTables
-	call LoadBox
+	farcall LoadStorageSystem
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex
 	farcall RestoreMysteryGift
+	; Repair the main copy from the backup.
 	call ValidateSave
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
 	call SaveIndexTables
 	call SaveChecksum
+	xor a
+	call SetSavePhase
 	and a
 	ret
 
@@ -716,8 +652,11 @@ TryLoadSaveData:
 INCLUDE "data/default_options.asm"
 
 CheckPrimarySaveFile:
-	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
+	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2), BANK(sSaveVersion)
 	call GetSRAMBank
+	ld a, [sSaveVersion]
+	cp SAVE_FORMAT_VERSION
+	jr nz, .nope ; older/newer layout: treat as no save (clean break)
 	ld a, [sCheckValue1]
 	cp SAVE_CHECK_VALUE_1
 	jr nz, .nope
@@ -737,6 +676,11 @@ CheckPrimarySaveFile:
 	ret
 
 CheckBackupSaveFile:
+	ld a, BANK(sSaveVersion)
+	call GetSRAMBank
+	ld a, [sSaveVersion]
+	cp SAVE_FORMAT_VERSION
+	jr nz, .nope
 	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
 	call GetSRAMBank
 	ld a, [sBackupCheckValue1]
@@ -808,25 +752,6 @@ LoadIndexTables:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	jp CloseSRAM
-
-LoadBox:
-	call GetBoxAddress
-	call LoadBoxAddress
-	lb bc, BANK(sBox), 1
-	ld de, sBox
-	farcall BillsPC_ConvertBoxData
-	call GetBoxPokemonIndexesAddress
-	call GetSRAMBank
-	ld de, wBoxPartialData
-	ld bc, 2 * MONS_PER_BOX
-	call CopyBytes
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	call ClearIndexesForLoadedBox
-	; GC the table now that lots of entries are free
-	farcall ForceGarbageCollection
-	call UpdateIndexesForLoadedBox
 	jp CloseSRAM
 
 VerifyChecksum:
@@ -987,372 +912,6 @@ _LoadData:
 
 	jp CloseSRAM
 
-GetBoxAddress:
-	ld a, [wCurBox]
-	cp NUM_BOXES
-	jr c, .ok
-	xor a
-	ld [wCurBox], a
-
-.ok
-	ld e, a
-	ld d, 0
-	ld hl, BoxAddresses
-rept 5
-	add hl, de
-endr
-	ld a, [hli]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop af
-	ret
-
-GetBoxPokemonIndexesAddress:
-	ld a, [wCurBox]
-	ld e, a
-	ld d, 0
-	ld hl, BoxAddresses + 5 * NUM_BOXES
-	add hl, de
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	push af
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop af
-	ret
-	ret
-
-SaveBoxAddress:
-; Save box via wBoxPartialData.
-; We do this in three steps because the size of wBoxPartialData is less than
-; the size of sBox.
-	push hl
-; Load the first part of the active box.
-	push af
-	push de
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, sBox
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-; Save it to the target box.
-	push af
-	push de
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-
-; Load the second part of the active box.
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData)
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-
-	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	ld e, l
-	ld d, h
-; Save it to the next part of the target box.
-	push af
-	push de
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-
-; Load the third and final part of the active box.
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
-	ld de, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-
-	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	ld e, l
-	ld d, h
-; Save it to the final part of the target box.
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-
-	pop hl
-	ret
-
-ComputeSavedBoxIndexTable:
-	push hl
-	ld a, [hl]
-	ld de, wBoxPartialData
-	and a
-	jr z, .empty_box
-	cp MONS_PER_BOX
-	jr c, .valid_count
-	ld a, MONS_PER_BOX
-.valid_count
-	ld bc, sBoxMons - sBox
-	add hl, bc
-	ld [wTempLoopCounter], a
-	ld c, BOXMON_STRUCT_LENGTH
-.loop
-	ld a, [hl]
-	add hl, bc
-	push hl
-	call GetPokemonIndexFromID
-	ld a, l
-	ld [de], a
-	inc de
-	ld a, h
-	ld [de], a
-	inc de
-	ld hl, wTempLoopCounter
-	dec [hl]
-	pop hl
-	jr nz, .loop
-.empty_box
-	pop hl
-	ld a, MONS_PER_BOX
-	sub [hl]
-	ret c
-	add a, a
-	ld h, d
-	ld l, e
-	ld c, a
-	xor a
-	ld b, a
-	jp ByteFill
-
-LoadBoxAddress:
-; Load box via wBoxPartialData.
-; We do this in three steps because the size of wBoxPartialData is less than
-; the size of sBox.
-	push hl
-	ld l, e
-	ld h, d
-; Load part 1
-	push af
-	push hl
-	call GetSRAMBank
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld de, sBox
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop hl
-	pop af
-
-	ld de, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-; Load part 2
-	push af
-	push hl
-	call GetSRAMBank
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData)
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop hl
-	pop af
-; Load part 3
-	ld de, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	call GetSRAMBank
-	ld de, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call GetSRAMBank
-	ld hl, wBoxPartialData
-	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-
-	pop hl
-	ret
-
-ClearIndexesForLoadedBox:
-	ld hl, sBoxMon1Species
-	ld bc, BOXMON_STRUCT_LENGTH
-	ld a, MONS_PER_BOX
-.loop
-	ld [hl], 0
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
-
-UpdateIndexesForLoadedBox:
-	ld de, sBox
-	ld a, [de]
-	cp MONS_PER_BOX
-	jr c, .count_OK
-	ld a, MONS_PER_BOX
-	ld [de], a
-.count_OK
-	inc de
-	and a
-	jr z, .done
-	ld [wTempLoopCounter], a
-	ld bc, sBoxMon1Species
-	ld hl, wBoxPartialData - 1
-.loop
-	inc hl
-	ld a, [hli]
-	push hl
-	ld h, [hl]
-	ld l, a
-	call GetPokemonIDFromIndex
-	ld [bc], a
-	ld a, [de]
-	cp EGG
-	jr z, .is_egg
-	ld a, [bc]
-	ld [de], a
-.is_egg
-	ld hl, BOXMON_STRUCT_LENGTH
-	add hl, bc
-	ld b, h
-	ld c, l
-	inc de
-	ld hl, wTempLoopCounter
-	dec [hl]
-	pop hl
-	jr nz, .loop
-.done
-	ld a, -1
-	ld [de], a
-	ret
-
-EraseBoxes:
-	ld hl, BoxAddresses
-	ld c, NUM_BOXES
-.next
-	push bc
-	ld a, [hli]
-	call GetSRAMBank
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	xor a
-	ld [de], a
-	inc de
-	ld a, -1
-	ld [de], a
-	inc de
-	ld bc, sBoxEnd - (sBox + 2)
-.clear
-	xor a
-	ld [de], a
-	inc de
-	dec bc
-	ld a, b
-	or c
-	jr nz, .clear
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, -1
-	ld [de], a
-	inc de
-	xor a
-	ld [de], a
-	call CloseSRAM
-	pop bc
-	dec c
-	jr nz, .next
-	ld e, NUM_BOXES
-.index_loop
-	ld a, [hli]
-	call GetSRAMBank
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	push hl
-	ld h, a
-	ld l, b
-	xor a
-	ld bc, 2 * MONS_PER_BOX
-	call ByteFill
-	pop hl
-	dec e
-	jr nz, .index_loop
-	ret
-
-BoxAddresses:
-; dbww bank, address, address
-	dbww BANK(sBox1),  sBox1,  sBox1End
-	dbww BANK(sBox2),  sBox2,  sBox2End
-	dbww BANK(sBox3),  sBox3,  sBox3End
-	dbww BANK(sBox4),  sBox4,  sBox4End
-	dbww BANK(sBox5),  sBox5,  sBox5End
-	dbww BANK(sBox6),  sBox6,  sBox6End
-	dbww BANK(sBox7),  sBox7,  sBox7End
-	dbww BANK(sBox8),  sBox8,  sBox8End
-	dbww BANK(sBox9),  sBox9,  sBox9End
-	dbww BANK(sBox10), sBox10, sBox10End
-	dbww BANK(sBox11), sBox11, sBox11End
-	dbww BANK(sBox12), sBox12, sBox12End
-	dbww BANK(sBox13), sBox13, sBox13End
-	dbww BANK(sBox14), sBox14, sBox14End
-
-	; index addresses
-	dba sBox1PokemonIndexes
-	dba sBox2PokemonIndexes
-	dba sBox3PokemonIndexes
-	dba sBox4PokemonIndexes
-	dba sBox5PokemonIndexes
-	dba sBox6PokemonIndexes
-	dba sBox7PokemonIndexes
-	dba sBox8PokemonIndexes
-	dba sBox9PokemonIndexes
-	dba sBox10PokemonIndexes
-	dba sBox11PokemonIndexes
-	dba sBox12PokemonIndexes
-	dba sBox13PokemonIndexes
-	dba sBox14PokemonIndexes
-
 Checksum:
 	ld de, 0
 .loop
@@ -1388,12 +947,3 @@ Text_SaveFileCorrupted:
 	text_far UnknownText_0x1c460d
 	text_end
 
-Text_SaveOnBoxSwitch:
-	; When you change a #MON BOX, data will be saved. OK?
-	text_far UnknownText_0x1c462a
-	text_end
-
-Text_SaveOnMoveMonWOMail:
-	; Each time you move a #MON, data will be saved. OK?
-	text_far UnknownText_0x1c465f
-	text_end

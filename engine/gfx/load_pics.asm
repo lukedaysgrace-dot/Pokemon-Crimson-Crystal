@@ -116,6 +116,33 @@ _GetFrontpic:
 	pop hl
 	ret
 
+PrepareFrontpicInScratch::
+; Bill's PC: decompresses wCurPartySpecies' frontpic and pads it to 7x7 at
+; wDecompressScratch + $800 (16-byte aligned for DMA). Leaves rSVBK set to
+; BANK(wDecompressScratch); the caller copies the 49 tiles to VRAM itself.
+; Returns carry if the species has no picture.
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
+	call IsAPokemon
+	ret c
+	call GetBaseData
+	ld a, [wBasePicSize]
+	and $f
+	ld b, a
+	push bc
+	call GetFrontpicPointer
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	ld a, b
+	ld de, wDecompressScratch
+	call FarDecompress
+	pop bc
+	ld hl, wDecompressScratch + $800
+	ld de, wDecompressScratch
+	call PadFrontpic
+	and a
+	ret
+
 GetPicIndirectPointer:
 	ld a, [wCurPartySpecies]
 	call GetPokemonIndexFromID

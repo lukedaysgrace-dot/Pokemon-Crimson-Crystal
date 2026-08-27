@@ -370,14 +370,12 @@ GetGender:
 	dec a
 	jr z, .PartyMon
 
-; 2: sBoxMon
-	ld hl, sBoxMon1DVs
-	ld bc, BOXMON_STRUCT_LENGTH
+; 2: BoxMon (decoded into wTempMon by the storage backend)
+	ld hl, wTempMonDVs
 	dec a
-	jr z, .sBoxMon
+	jr z, .TempMon
 
 ; 3: TempMon
-	ld hl, wTempMonDVs
 	dec a
 	jr z, .TempMon
 
@@ -398,32 +396,12 @@ GetGender:
 	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
 	jr .LoadShinyGenderByte
 
-.sBoxMon
-	ld a, [wCurPartyMon]
-	call AddNTimes
-	ld bc, PKRUS_OFFSET_FROM_DVS
-	jr .LoadShinyGenderByte
-
 .TempMon:
 	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
 
 .LoadShinyGenderByte:
 	add hl, bc
-
-; sBoxMon data is read directly from SRAM.
-	ld a, [wMonType]
-	cp BOXMON
-	ld a, BANK(sBox)
-	call z, GetSRAMBank
-
 	ld a, [hl]
-
-; Close SRAM if we were dealing with a sBoxMon.
-	push af
-	ld a, [wMonType]
-	cp BOXMON
-	call z, CloseSRAM
-	pop af
 	ld b, a
 
 .SpeciesRatio:

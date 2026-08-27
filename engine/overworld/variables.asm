@@ -138,15 +138,14 @@ _GetVarAction::
 	ret
 
 .BoxFreeSpace:
-; Remaining slots in the current box.
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld hl, sBoxCount
-	ld a, MONS_PER_BOX
-	sub [hl]
-	ld b, a
-	call CloseSRAM
-	ld a, b
+; Nonzero if a caught mon can be stored right now (a free slot in some box
+; and enough database room); 0 if the storage system is full or the game
+; must be saved first. Scripts only compare this against 0.
+	farcall CheckStorageSpaceForCapture
+	ld a, 0
+	jr c, .got_box_space
+	inc a
+.got_box_space
 	jp .loadstringbuffer2
 
 .BattleResult:

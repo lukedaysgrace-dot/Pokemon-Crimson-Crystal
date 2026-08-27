@@ -666,3 +666,23 @@ PokecenterPCText_LinkClosed:
 	; … Link closed…
 	text_far UnknownText_0x1c1505
 	text_end
+
+ClearPCItemScreen::
+	call DisableSpriteUpdates
+	xor a
+	ldh [hBGMapMode], a
+	call ClearBGPalettes
+	call ClearSprites
+	hlcoord 0, 0
+	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld a, " "
+	call ByteFill
+	hlcoord 0, 0
+	lb bc, 10, 18
+	call Textbox
+	hlcoord 0, 12
+	lb bc, 4, 18
+	call Textbox
+	call WaitBGMap2
+	call SetPalettes ; load regular palettes?
+	ret

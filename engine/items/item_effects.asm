@@ -206,12 +206,10 @@ PokeBallEffect:
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
 
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jp z, Ball_BoxIsFullMessage
+	; Party is full: the catch would go to a box. Make sure there is a free
+	; slot somewhere and enough database room to store and then edit it.
+	farcall CheckStorageSpaceForCapture
+	jp c, Ball_BoxIsFullMessage
 
 .room_in_party
 	xor a
@@ -603,35 +601,21 @@ PokeBallEffect:
 .SendToPC:
 	call ClearSprites
 
-	predef SendMonIntoBox
+	predef SendMonIntoBox ; builds wTempMon and stores it
+	push af ; a = PCSTORE_CUR_BOX / PCSTORE_OTHER_BOX
 
-	farcall SetBoxMonCaughtData
+	farcall SetBoxMonCaughtData ; on wTempMon
 
 	; Remember the ball the newly boxed mon was caught in.
-	; The captured mon is now first in the box.
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-	ld bc, sBoxMon1Personality
+	ld bc, wTempMonPersonality
 	farcall SetCaughtBall
-	call CloseSRAM
 
-	ld a, BANK(sBoxCount)
-	call GetSRAMBank
-
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	jr nz, .BoxNotFullYet
-	ld hl, wBattleResult
-	set BATTLERESULT_BOX_FULL, [hl]
-.BoxNotFullYet:
 	ld a, [wCurItem]
 	cp FRIEND_BALL
 	jr nz, .SkipBoxMonFriendBall
-	; The captured mon is now first in the box
 	ld a, FRIEND_BALL_HAPPINESS
-	ld [sBoxMon1Happiness], a
+	ld [wTempMonHappiness], a
 .SkipBoxMonFriendBall:
-	call CloseSRAM
 
 	ld hl, Text_AskNicknameNewlyCaughtMon
 	call PrintText
@@ -645,37 +629,43 @@ PokeBallEffect:
 
 	xor a
 	ld [wCurPartyMon], a
-	ld a, BOXMON
+	ld a, TEMPMON
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	ld b, NAME_MON
 	farcall NamingScreen
 
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-
 	ld hl, wMonOrItemNameBuffer
-	ld de, sBoxMonNicknames
+	ld de, wTempMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	ld hl, sBoxMonNicknames
+	ld hl, wTempMonNickname
 	ld de, wStringBuffer1
 	call InitName
 
-	call CloseSRAM
-
 .SkipBoxMonNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
-
-	ld hl, sBoxMonNicknames
+	ld hl, wTempMonNickname
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	call CloseSRAM
+	; Commit caught data / ball / happiness / nickname to storage.
+	farcall UpdateStorageBoxMonFromTemp
 
+	; Flag a full storage system for the battle result (Bill's phone call).
+	farcall NewStorageBoxPointer
+	jr nc, .BoxNotFullYet
+	ld hl, wBattleResult
+	set BATTLERESULT_BOX_FULL, [hl]
+.BoxNotFullYet:
+
+	pop af
+	farcall CurBoxFullCheck
+	jr z, .cur_box_not_full
+	ld hl, Text_CurBoxFull
+	call PrintText
+.cur_box_not_full
 	ld hl, Text_SentToBillsPC
 	call PrintText
 
@@ -1122,6 +1112,11 @@ Text_SentToBillsPC:
 	; was sent to BILL's PC.
 	text_far UnknownText_0x1c5b38
 	text_end
+
+Text_CurBoxFull:
+	text_ram wStringBuffer1
+	text " is full."
+	prompt
 
 Text_AddedToPokedex:
 	; 's data was newly added to the #DEX.@ @
@@ -2795,7 +2790,12 @@ LooksBitterMessage:
 	jp PrintText
 
 Ball_BoxIsFullMessage:
+; a = PCSTORE_FULL or PCSTORE_SAVE_REQUIRED (from CheckStorageSpaceForCapture)
 	ld hl, Ball_BoxIsFullText
+	cp PCSTORE_SAVE_REQUIRED
+	jr nz, .print
+	ld hl, Ball_DatabaseFullText
+.print
 	call PrintText
 
 	; Item wasn't used.
@@ -2881,6 +2881,12 @@ Ball_BoxIsFullText:
 	; The #MON BOX is full. That can't be used now.
 	text_far UnknownText_0x1c5e3a
 	text_end
+
+Ball_DatabaseFullText:
+	text "The PC database is"
+	line "overtaxed. Please"
+	cont "save the game."
+	prompt
 
 UsedItemText:
 	; used the@ .

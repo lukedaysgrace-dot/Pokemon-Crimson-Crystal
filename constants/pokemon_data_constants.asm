@@ -169,9 +169,45 @@ CAUGHT_EGG_LEVEL EQU 1
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
-; boxes
+; boxes (Polished-style pointer storage; see docs/pc_storage_design.md)
 MONS_PER_BOX EQU 20
-NUM_BOXES    EQU 14
+NUM_BOXES    EQU 25
+; Physical PokeDB records per pool. Two shared pools; records are addressed as
+; (pool 1-2, entry 1-MONDB_ENTRIES). Sections A/B/C are physical packing units.
+MONDB_ENTRIES_A EQU 143 ; one full 8 KiB SRAM bank of 57-byte records (143 * 57 = 8151)
+MONDB_ENTRIES_B EQU 111 ; 143 + 111 = 254, the most a one-byte entry number allows
+MONDB_ENTRIES_C EQU 0
+MONDB_ENTRIES   EQU MONDB_ENTRIES_A + MONDB_ENTRIES_B + MONDB_ENTRIES_C
+if MONDB_ENTRIES > 254
+	fail "MONDB_ENTRIES must fit in a byte (0 = null, $ff reserved)"
+endc
+if MONDB_ENTRIES * 2 < NUM_BOXES * MONS_PER_BOX + 8
+	fail "PokeDB needs spare records beyond the logical box slots (copy-on-write reserve)"
+endc
+
+; savemon_struct members (see macros/wram.asm)
+SAVEMON_SPECIES     EQU $00
+SAVEMON_ITEM        EQU $02
+SAVEMON_MOVES       EQU $03
+SAVEMON_ID          EQU $07
+SAVEMON_EXP         EQU $09
+SAVEMON_STAT_EXP    EQU $0c
+SAVEMON_DVS         EQU $16
+SAVEMON_MOVES_HI    EQU $18 ; bits 0-5: move index bits 8-13; bits 6-7: PP Ups
+SAVEMON_HAPPINESS   EQU $1c
+SAVEMON_PKRUS       EQU $1d ; bits 0-5 pokerus; bit 6 male flag; bit 7 shiny flag
+SAVEMON_CAUGHTDATA  EQU $1e
+SAVEMON_LEVEL       EQU $20
+SAVEMON_PERSONALITY EQU $21
+SAVEMON_FLAGS       EQU $22
+SAVEMON_NICKNAME    EQU $23
+SAVEMON_OT          EQU $2d
+SAVEMON_CHECKSUM    EQU $37
+SAVEMON_STRUCT_LENGTH EQU $39
+SAVEMON_NAME_LENGTH EQU 10 ; stored nickname/OT bytes (terminator implied)
+
+; SAVEMON_FLAGS bits
+SAVEMON_IS_EGG_F EQU 0
 
 ; hall of fame
 HOF_MON_LENGTH EQU 2 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick

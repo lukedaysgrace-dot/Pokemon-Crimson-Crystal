@@ -184,13 +184,28 @@ hSoundKeepaliveAccLo:: db ; ffef
 hSoundKeepaliveAccHi:: db ; fff0
 hSoundKeepaliveTac::   db ; fff1
 
+; When hLCDCPointer == LCD_CUSTOM_HANDLER, the LCD (STAT) interrupt jumps here.
+hLCDInterruptFunctionTarget::
+hLCDInterruptFunctionTargetLo:: db ; fff2
+hLCDInterruptFunctionTargetHi:: db ; fff3
+
+; ReturnFarCall keeps the callee's a here so farcall returns a intact
+; (vanilla returned a = c). Dedicated byte: hBuffer is used by other home code.
+hFarCallReturnA:: db ; fff4
+
+; Optional second general-purpose DMA run by DMATransfer right after the
+; hDMATransfer one (Bill's PC pushes the tilemap and the attribute map in a
+; single VBlank): wScratchAttrMap -> [hBGMapAddress] in the other VRAM bank.
+; hDMATransfer2 = blocks - 1, 0 = none.
+hDMATransfer2:: db ; fff5
+
 IF DEF(DEBUG_BATTLE)
 ; Battle tester (debug builds only; see engine/debug/battle_tester.asm).
 ; HRAM so battle-bank hooks can test them without a WRAM bank switch.
-hDebugActive::   db ; fff2 ; nonzero = automated debug battle in progress
-hDebugRNGMode::  db ; fff3 ; 0 = normal, 1 = forced, 2 = seeded stream
-hDebugRNGValue:: db ; fff4 ; value returned by _BattleRandom in forced mode
-hDebugSVBK::     db ; fff5 ; caller's rSVBK, saved by tester routines
-hDebugNum::      dw ; fff6 ; scratch: PrintNum source / request base ptr
-hDebugPtr::      dw ; fff8 ; scratch: party struct base ptr
+hDebugActive::   db ; fff6 ; nonzero = automated debug battle in progress
+hDebugRNGMode::  db ; fff7 ; 0 = normal, 1 = forced, 2 = seeded stream
+hDebugRNGValue:: db ; fff8 ; value returned by _BattleRandom in forced mode
+hDebugSVBK::     db ; fff9 ; caller's rSVBK, saved by tester routines
+hDebugNum::      dw ; fffa ; scratch: PrintNum source / request base ptr
+hDebugPtr::      dw ; fffc ; scratch: party struct base ptr
 ENDC

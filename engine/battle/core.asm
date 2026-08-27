@@ -268,7 +268,7 @@ ENDC
 
 Stubbed_Function3c1bf:
 	ret
-	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, MOBILE_DEAD_SRAM_BANK ; MBC30 bank used by JP Crystal; kept inaccessible (SRAM disabled) now that we have 8 banks
 	call GetSRAMBank
 	ld hl, $a89b ; address of MBC30 bank
 	inc [hl]
