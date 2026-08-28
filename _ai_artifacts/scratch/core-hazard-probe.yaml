@@ -1,0 +1,11 @@
+- name: "Core probe: hazard KO during AI switch resolves before queued move"
+  player:  { species: GENGAR, level: 50, moves: [SHADOW_BALL] }
+  enemy:   { species: CHANSEY, level: 50, moves: [TACKLE] }
+  enemy2:  { species: SNORLAX, level: 50, hp: 1, moves: [SHADOW_BALL] }
+  enemy_screens: 16
+  setup_wram: { wEnemySpikesLayers: 1 }
+  rng: forced_low
+  turns: 1
+  snapshot: true
+  assert:
+    - player.pp[0] == player.start_pp[0]

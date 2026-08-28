@@ -234,12 +234,31 @@
     - player.item == 'NO_ITEM'
     - enemy.item == 'BERRY'
 
+- name: "Knock Off damage control: no held item gets base power"
+  id: knock_off_no_item
+  player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
+  enemy: { species: GRIMER, level: 100, ability: STENCH, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Knock Off damage control: removable item gets the 1.5x boost"
+  player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
+  enemy: { species: GRIMER, level: 100, ability: STENCH, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('knock_off_no_item')['enemy']['damage']
+    - enemy.item == 'NO_ITEM'
+
 - name: "New ability: Sticky Hold blocks Knock Off"
   player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
   enemy: { species: GRIMER, level: 100, ability: STICKY_HOLD, item: BERRY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["enemy.item == 'BERRY'"]
+  assert:
+    - enemy.start_hp - enemy.hp == result('knock_off_no_item')['enemy']['damage']
+    - enemy.item == 'BERRY'
 
 - name: "New ability: Unburden reverses order after Berry consumption"
   player: { species: HITMONLEE, level: 50, ability: UNBURDEN, hp: 49, item: BERRY, moves: [SPLASH] }

@@ -181,6 +181,16 @@
   assert:
     - player.stat_levels[2] == 6
 
+- name: "Sticky Web: Magic Guard does not prevent the Speed drop"
+  player:  { species: TAUROS,   level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: CLEFABLE, level: 50, ability: MAGIC_GUARD, moves: [SPLASH] }
+  enemy:   { species: GRIMER,   level: 50, moves: [STICKY_WEB] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.stat_levels[2] == 6
+
 - name: "Sticky Web: a Flying-type switch-in is unaffected"
   player:  { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
   player2: { species: FEAROW, level: 50, moves: [SPLASH] }
