@@ -290,9 +290,18 @@ FieldHMNeedHMText:
 	text_end
 
 TryTownMapFlyEligibility:
+; Output: carry if the player may fly right now.
 	ld hl, FLY
 	call CheckFieldHMAllow
 	jr c, .no
+	ld a, [wPlayerState]
+	cp PLAYER_SURF
+	jr z, .no
+	cp PLAYER_SURF_PIKA
+	jr z, .no
+	call GetMapEnvironment
+	call CheckOutdoorMap
+	jr nz, .no
 	scf
 	ret
 .no
@@ -322,14 +331,6 @@ FieldHMOpenFlyMap:
 ; Returns spawn point in a, or -1 if fly map unavailable/cancelled.
 	call TryTownMapFlyEligibility
 	jr nc, .cancel
-	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .cancel
-	cp PLAYER_SURF_PIKA
-	jr z, .cancel
-	call GetMapEnvironment
-	call CheckOutdoorMap
-	jr nz, .cancel
 	xor a
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
