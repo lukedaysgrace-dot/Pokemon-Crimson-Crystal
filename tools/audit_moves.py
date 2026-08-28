@@ -423,6 +423,62 @@ def audit_effects(audit: Audit, moves: list[str], scripts: dict[str, list[str]])
         audit.check(bool(guaranteed), "100% secondary effects still have a 1/256 failure chance")
 
 
+def audit_effect_command_dispatch(audit: Audit) -> None:
+    """Keep command byte definitions and their indirect-call table aligned."""
+    macro_text = read("macros/scripts/battle_commands.asm")
+    commands = [
+        (match.group(1), int(match.group(2), 16))
+        for raw in macro_text.splitlines()
+        if (match := re.fullmatch(
+            r"\s*command\s+([a-z0-9]+)\s*;\s*([0-9a-fA-F]{2})\s*", raw
+        ))
+        and int(match.group(2), 16) <= 0xD3
+    ]
+    pointer_text = read("data/battle/effect_command_pointers.asm")
+    pointer_body = pointer_text.split("BattleCommandPointers:", 1)
+    audit.check(len(pointer_body) == 2, "missing BattleCommandPointers table")
+    pointers = (
+        re.findall(r"^\s*dw\s+([A-Za-z][A-Za-z0-9_]*)", pointer_body[1], re.MULTILINE)
+        if len(pointer_body) == 2
+        else []
+    )
+
+    audit.count("battle commands", len(commands))
+    audit.check(
+        [value for _, value in commands] == list(range(1, 0xD4)),
+        "battle command macros must cover every byte from $01 through $d3 in order",
+    )
+    audit.check(
+        len(pointers) == len(commands),
+        f"battle command pointers: got {len(pointers)}, expected {len(commands)}",
+    )
+
+    aliases = {
+        "kingsrock": "heldflinch",
+        "effect0x5d": "5d",
+        "gigahammerset": "gigahammersetlock",
+    }
+    for (command, value), pointer in zip(commands, pointers):
+        normalized_pointer = normalize(re.sub(r"^BattleCommand_?", "", pointer))
+        expected = aliases.get(command, command)
+        audit.check(
+            normalized_pointer == expected,
+            f"battle command ${value:02x} {command}: pointer is {pointer}",
+        )
+
+    battle_labels: set[str] = set()
+    for path in (ROOT / "engine/battle").rglob("*.asm"):
+        battle_labels.update(
+            re.findall(
+                r"^([A-Za-z][A-Za-z0-9_]*):{1,2}",
+                path.read_text(encoding="utf-8", errors="replace"),
+                re.MULTILINE,
+            )
+        )
+    for pointer in pointers:
+        audit.check(pointer in battle_labels, f"battle command pointer has no implementation: {pointer}")
+
+
 def audit_move_mechanics(audit: Audit) -> None:
     abilities = read("engine/battle/abilities_engine.asm")
     ability_blocks = global_blocks(abilities)
@@ -477,12 +533,31 @@ def audit_move_mechanics(audit: Audit) -> None:
     core = read("engine/battle/move_effects/new_move_cores.asm")
     audit.check(
         re.search(
-            r"BattleConditionalBoost_Core:.*?cp EFFECT_KNOCK_OFF.*?farcall ItemIsMail.*?\.no_knock_off_item",
+            r"BattleConditionalBoost_Core:.*?cp EFFECT_KNOCK_OFF.*?farcall ItemIsMail.*?"
+            r"farcall GetOppIgnorableAbility_b.*?cp STICKY_HOLD.*?\.no_knock_off_item",
             core,
             re.DOTALL,
         )
         is not None,
-        "Knock Off must not receive its item boost against unremovable mail",
+        "Knock Off must not receive its item boost against unremovable mail or Sticky Hold",
+    )
+
+    sticky_web = "\n".join(global_blocks(core).get("StickyWebEntry", []))
+    audit.check(
+        "cp LEVITATE" in sticky_web
+        and "cp HELD_AIR_BALLOON" in sticky_web
+        and "MAGIC_GUARD" not in sticky_web,
+        "Sticky Web must test groundedness without treating Magic Guard as airborne",
+    )
+
+    end_turn = "\n".join(global_blocks(core).get("HandleNewEndTurnEffects_Core", []))
+    enemy_first = end_turn.find(".enemy_first")
+    audit.check(
+        "hSerialConnectionStatus" in end_turn
+        and "USING_EXTERNAL_CLOCK" in end_turn
+        and enemy_first >= 0
+        and end_turn.find("call .yawn_enemy", enemy_first) < end_turn.find("call .yawn_player", enemy_first),
+        "simultaneous Yawn expiry must use shared serial-clock ordering in link battles",
     )
     audit.check(
         re.search(
@@ -888,6 +963,7 @@ def main() -> int:
     moves, move_ids, scripts = audit_move_tables(audit)
     audit_contact(audit, move_ids)
     audit_effects(audit, moves, scripts)
+    audit_effect_command_dispatch(audit)
     audit_move_mechanics(audit)
     audit_animations(audit, moves)
     audit_tmhm(audit, move_ids)

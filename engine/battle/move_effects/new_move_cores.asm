@@ -109,6 +109,12 @@ BattleConditionalBoost_Core:
 	ld d, a
 	farcall ItemIsMail
 	jr c, .no_knock_off_item
+	; Sticky Hold makes the item unremovable, so it also suppresses the
+	; power boost. Mold Breaker is handled by the ignorable-ability helper.
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp STICKY_HOLD
+	jr z, .no_knock_off_item
 	ld a, 1
 	jr .got_knock_off_item
 .no_knock_off_item
@@ -1086,7 +1092,7 @@ StickyWebEntry:
 	ret z
 	farcall UserHasFainted
 	ret z
-	call CheckSpikesUngrounded_Core
+	call .check_ungrounded
 	ret c
 	ld hl, BattleText_CaughtInStickyWeb
 	call StdBattleTextbox
@@ -1096,6 +1102,35 @@ StickyWebEntry:
 	ld b, SPEED
 	callfar AbilityStatDown
 	jp SwitchTurnForOppText
+
+.check_ungrounded
+; Carry if the switch-in is not grounded. Magic Guard is deliberately not
+; checked here: it prevents hazard damage, but Sticky Web only changes a stat.
+	ld hl, wBattleMonType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType
+.got_types
+	ld a, [hli]
+	cp FLYING
+	jr z, .ungrounded
+	ld a, [hl]
+	cp FLYING
+	jr z, .ungrounded
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp LEVITATE
+	jr z, .ungrounded
+	callfar GetUserItem
+	ld a, b
+	cp HELD_AIR_BALLOON
+	jr z, .ungrounded
+	and a
+	ret
+.ungrounded
+	scf
+	ret
 
 SpikesLayerDamage_Core:
 ; bc = entry damage for the turn holder from the spikes layers on its
@@ -1147,14 +1182,25 @@ SpikesLayerDamage_Core:
 
 HandleNewEndTurnEffects_Core:
 ; End-of-turn processing for Wish, Taunt and Yawn, in that order.
-; Runs both sides, player first (link battles resolve rarely enough on
-; these moves that strict serial ordering is not worth the bytes).
+; Match the link battle's shared serial-clock ordering. In particular, Yawn
+; rolls a sleep counter, so assigning the first RNG value to each console's
+; local player would desynchronize simultaneous Yawn expirations.
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .enemy_first
 	call .wish_player
 	call .wish_enemy
 	call .taunt_player
 	call .taunt_enemy
 	call .yawn_player
 	jp .yawn_enemy
+.enemy_first
+	call .wish_enemy
+	call .wish_player
+	call .taunt_enemy
+	call .taunt_player
+	call .yawn_enemy
+	jp .yawn_player
 
 .wish_player
 	ld hl, wPlayerWishCount
