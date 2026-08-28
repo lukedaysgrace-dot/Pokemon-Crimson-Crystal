@@ -453,21 +453,31 @@ AlreadySurfingText:
 	text_end
 
 GetSurfType:
-; Surfing on Pikachu uses an alternate sprite.
+; Surfing on Pikachu, Raichu or Alolan Raichu uses an alternate sprite.
 ; This is done by using a separate movement type.
 
 	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
-	ld hl, PIKACHU
-	call GetPokemonIDFromIndex
 	ld hl, wPartySpecies
 	add hl, de
-	cp [hl]
+	ld a, [hl]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, .SurfPikaMons
+	ld de, 2
+	call IsInHalfwordArray
 	ld a, PLAYER_SURF_PIKA
-	ret z
+	ret c
 	ld a, PLAYER_SURF
 	ret
+
+.SurfPikaMons:
+	dw PIKACHU
+	dw RAICHU
+	dw RAICHU_ALOLAN
+	dw -1 ; end
 
 CheckDirection:
 ; Return carry if a tile permission prevents you
