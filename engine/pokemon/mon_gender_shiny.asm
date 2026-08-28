@@ -123,6 +123,13 @@ InitMonShinyGender:
 
 	call IsClonePokemon
 	jr c, .not_shiny
+	; Elm's starters use the shininess that was rolled when the player
+	; first looked at them, so the Pokepic and the received mon agree.
+	call GetStarterShininess
+	jr nc, .roll
+	ld b, a
+	jr .not_shiny
+.roll
 	call Random
 	cp SHINY_PROBABILITY
 	jr nc, .not_shiny
@@ -220,3 +227,108 @@ IsClonePokemon:
 .not_clone
 	and a
 	ret
+
+NUM_ELM_STARTERS EQU 6
+
+GetStarterShininess::
+; If wCurPartySpecies is one of Elm's starters and the player hasn't
+; received a starter yet, return carry and a = MON_SHINY_FLAG or 0,
+; using the shininess pre-rolled in wStarterShinyFlags (rolling it now
+; if this is the first time a starter is looked at).
+; Otherwise return no carry.
+; Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+
+	ld de, EVENT_GOT_A_POKEMON_FROM_ELM
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .not_starter
+
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld de, ElmStarterShinyTable
+	ld c, 0
+.loop
+	ld a, [de]
+	inc de
+	cp l
+	jr nz, .skip
+	ld a, [de]
+	cp h
+	jr z, .found
+.skip
+	inc de
+	inc c
+	ld a, c
+	cp NUM_ELM_STARTERS
+	jr c, .loop
+
+.not_starter
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
+.found
+	call RollStarterShininess
+	; a = 1 << c
+	ld a, 1
+	inc c
+.shift
+	dec c
+	jr z, .shifted
+	add a
+	jr .shift
+.shifted
+	ld hl, wStarterShinyFlags
+	and [hl]
+	ld a, 0
+	jr z, .done
+	ld a, MON_SHINY_FLAG
+.done
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+RollStarterShininess:
+; Roll each starter's shininess once and remember the result.
+; Preserves c.
+	ld hl, wStarterShinyFlags
+	bit 7, [hl]
+	ret nz
+	push bc
+	ld b, NUM_ELM_STARTERS
+	ld c, 0
+.loop
+	; each roll is independent, so which starter lands in which bit
+	; doesn't matter; just fill bits 0-5 one at a time
+	sla c
+	call Random
+	cp SHINY_PROBABILITY
+	jr nc, .not_shiny
+	inc c
+.not_shiny
+	dec b
+	jr nz, .loop
+	ld a, c
+	or 1 << 7 ; rolled flag
+	ld [hl], a
+	pop bc
+	ret
+
+ElmStarterShinyTable:
+; 16-bit species indices, in wStarterShinyFlags bit order
+	dw CYNDAQUIL
+	dw TOTODILE
+	dw CHIKORITA
+	dw CHARMANDER
+	dw SQUIRTLE
+	dw BULBASAUR
+	assert (@ - ElmStarterShinyTable) / 2 == NUM_ELM_STARTERS
