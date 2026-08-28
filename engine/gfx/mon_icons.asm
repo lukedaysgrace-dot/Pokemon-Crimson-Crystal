@@ -294,7 +294,16 @@ SetPartyMonIconAnimSpeed:
 	db $80 ; HP_RED
 
 NamingScreen_InitAnimatedMonIcon:
+	; Party mons (newly received, caught, hatched, or at the Name Rater)
+	; haven't been copied to wTempMon, so read their shininess straight
+	; from the party struct; box mons are already in wTempMon.
+	ld a, [wMonType]
+	and a ; PARTYMON
 	ld hl, wTempMonDVs
+	jr nz, .got_dvs
+	ld a, MON_DVS
+	call GetPartyParamLocation
+.got_dvs
 	call SetMenuMonIconColor
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
