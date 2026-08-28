@@ -999,6 +999,27 @@ INCLUDE "gfx/pack/pack_f.pal"
 
 _CGB_Pokepic:
 	call _CGB_MapPals
+	; Show the mon in its own colors (or its shiny colors, for a starter
+	; that pre-rolled shiny) by borrowing the two middle colors of the
+	; text palette, which the font and textbox frames never use.
+	ld a, [wCurPartySpecies]
+	call _GetMonPalettePointer
+	push hl
+	farcall GetStarterShininess ; farcall clobbers hl
+	pop hl
+	jr nc, .got_palette
+	and a
+	jr z, .got_palette
+rept 4
+	inc hl
+endr
+.got_palette
+	ld de, wBGPals1 palette PAL_BG_TEXT
+	call LoadPalette_White_Col1_Col2_Black
+	call ApplyPals
+	farcall ApplyWeatherTint
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
 	ld de, SCREEN_WIDTH
 	hlcoord 0, 0, wAttrMap
 	ld a, [wMenuBorderTopCoord]
@@ -1026,7 +1047,7 @@ _CGB_Pokepic:
 	sub c
 	inc a
 	ld c, a
-	ld a, $0
+	ld a, PAL_BG_TEXT
 	call FillBoxCGB
 	call ApplyAttrMap
 	ret

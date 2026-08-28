@@ -2979,7 +2979,12 @@ wWeatherDailyKanto4:: db
 ; (Hidden Power's type is stored per Pokémon: see HiddenPowerType in
 ; macros/wram.asm and engine/battle/hidden_power.asm.)
 wLastRepelUsed:: db
-	ds 6
+wStarterShinyFlags:: db
+; Pre-rolled shininess for the starters in Elm's lab, so the Pokepic shown
+; when looking at a ball matches the mon you actually receive.
+; bit 7: set once the rolls have been made
+; bits 0-5: shiny flag per starter (see ElmStarterShinyTable)
+	ds 5
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74
