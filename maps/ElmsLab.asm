@@ -1683,7 +1683,7 @@ ElmsLab_MapEvents:
 	bg_event  0, 11, BGEVENT_READ, ElmsLabTravelTip1
 	bg_event  1, 11, BGEVENT_READ, ElmsLabTravelTip2
 	bg_event  2, 11, BGEVENT_READ, ElmsLabTravelTip3
-	bg_event  1,  0, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event  7,  0, BGEVENT_READ, ElmsLabTravelTip4
 	bg_event  6, 11, BGEVENT_READ, ElmsLabBookshelf
 	bg_event  8, 11, BGEVENT_READ, ElmsLabBookshelf
 	bg_event  9, 11, BGEVENT_READ, ElmsLabBookshelf
