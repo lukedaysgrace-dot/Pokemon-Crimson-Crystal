@@ -33,6 +33,16 @@ ClosePokepic::
 	call ClearMenuBoxInterior
 	call WaitBGMap
 	call GetMemSGBLayout
+	; Pokepic borrowed the text palette for the mon's colors; put it back.
+	ldh a, [hCGB]
+	and a
+	jr z, .no_cgb
+	farcall LoadOW_BGPal7
+	farcall ApplyPals
+	farcall ApplyWeatherTint
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+.no_cgb
 	xor a
 	ldh [hBGMapMode], a
 	call OverworldTextModeSwitch
