@@ -3,6 +3,10 @@ BattleCommand_Counter:
 
 	ld a, 1
 	ld [wAttackMissed], a
+	; these scripts have no checkhit, so Protect / Detect / Baneful Bunker
+	; never blocked them (audit 2026-08-28 #24)
+	call BattleCommand_CheckHit.Protect
+	jp nz, EndMoveEffect
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a

@@ -44,6 +44,12 @@ DoTurn:
 	call UpdateMoveData
 
 DoMove:
+	; A self-drop move that missed / was Protected exits at failuretext
+	; before restoremiss, leaving wPreStatScopeActive stale; the other side's
+	; stat drops would then be treated as self-inflicted and bypass Mist,
+	; Clear Body, Substitute and the AI miss roll (audit 2026-08-28 #6).
+	xor a
+	ld [wPreStatScopeActive], a
 ; Get the user's move effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -544,6 +550,11 @@ CheckEnemyTurn:
 
 	ld hl, HurtItselfText
 	call StdBattleTextbox
+
+	; a confusion self-hit is never a crit; the player's branch
+	; (HitConfusion) clears this, the inline enemy one didn't (audit #19)
+	xor a
+	ld [wCriticalHit], a
 
 	call HitSelfInConfusion
 	call ConfusionDamageCalc
@@ -1373,8 +1384,20 @@ BattleCommand_Stab:
 	call GetBattleVar
 	ld bc, STRUGGLE
 	call CompareMove
-	ret z
+	jr nz, .not_struggle
+	; Struggle is typeless: no STAB and no type chart, but it must still
+	; go through the nullification / damage-modifier hooks (Disguise,
+	; Multiscale, Huge Power, Guts, item boosts...) - audit 2026-08-28 #17.
+	ld a, [wTypeModifier]
+	and %10000000
+	or EFFECTIVE
+	ld [wTypeModifier], a
+	ld a, EFFECTIVE
+	ld [wTypeMatchup], a
+	farcall RunNullificationAbilities
+	ret
 
+.not_struggle
 	ld hl, wBattleMonType1
 	ld a, [hli]
 	ld b, a
@@ -2907,6 +2930,9 @@ EndMoveEffect:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+	; close any savemiss scope the aborted script left open (audit #6)
+	xor a
+	ld [wPreStatScopeActive], a
 	ret
 
 BattleCommand_DamageStats:
@@ -3166,7 +3192,7 @@ ConfusionDamageCalc:
 	ldh a, [hProduct]
 	ld b, a
 	ldh a, [hProduct + 1]
-	or a
+	or b ; vanilla tested a dead register here (audit #26)
 	jr nz, .Cap
 
 	ldh a, [hProduct + 2]
@@ -3728,6 +3754,13 @@ BattleCommand_SleepTarget:
 	and a
 	jp nz, PrintDidntAffect2
 
+	; Magic Bounce reflects a status move even from behind the bouncer's
+	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
+	farcall StatDropSubCheckExempt
+	jr nc, .no_bounce
+	farcall AbilityPreventsSleep
+	jp c, PrintDidntAffect2
+.no_bounce
 	ld hl, DidntAffect1Text
 	call .CheckAIRandomFail
 	jr c, .fail
@@ -3916,7 +3949,7 @@ BattleCommand_Poison:
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, ProtectedByText
-	jr .failed
+	jp .failed
 
 .do_poison
 	ld hl, DidntAffect1Text
@@ -3924,7 +3957,18 @@ BattleCommand_Poison:
 	call GetBattleVar
 	and a
 	jr nz, .failed
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
 
+	; Magic Bounce reflects a status move even from behind the bouncer's
+	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
+	farcall StatDropSubCheckExempt
+	jr nc, .no_bounce
+	farcall AbilityPreventsPoison
+	jp c, PrintDidntAffect2
+.no_bounce
+	ld hl, DidntAffect1Text
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .dont_sample_failure
@@ -4610,7 +4654,11 @@ StatDownSkipProtect::
 	bit 6, [hl]
 	res 6, [hl]
 	pop hl
-	jr nz, .DidntMiss
+	; Both bit-6 setters (AbilityLowerOppStat via .AbilityDrivenDrop, and
+	; ContraryCheckRaise for the holder's own raise) already resolved the
+	; Substitute question; re-checking here made a Contrary holder's own
+	; sub swallow its Swords Dance (audit 2026-08-28 #12).
+	jr nz, .SelfInflicted
 	; ...and not self-inflicted drops (the user "targets" itself via
 	; switchturn, which would wrongly enable the AI miss roll for the
 	; player's own Close Combat / Draco Meteor / Shell Smash)
@@ -4712,10 +4760,13 @@ StatDownSkipProtect::
 	res 6, [hl]
 	ret
 
-CheckSelfInflictedStatDrop:
+CheckSelfInflictedStatDrop::
 ; Returns z if the current move's stat drop hits the user itself
 ; (applied through switchturn). These skip Mist, protective abilities,
 ; the 25% AI miss roll and the substitute check.
+; Also farcalled by RunStatDropReaction (Defiant/Competitive must not
+; react to the user's own drops) - the self-drop scripts keep the savemiss
+; scope open across flushstatmessages for exactly this reason.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	call .IsSelfDropEffect
@@ -4750,6 +4801,8 @@ CheckSelfInflictedStatDrop:
 	cp EFFECT_SUPERPOWER
 	ret z
 	cp EFFECT_HAMMER_ARM
+	ret z
+	cp EFFECT_CURSE
 	ret z
 	cp EFFECT_SHELL_SMASH
 	ret
@@ -5604,7 +5657,18 @@ BattleCommand_EndLoop:
 	ld a, [de]
 	dec a
 	ld [de], a
+	jr z, .done_loop
+	; Rough Skin / Iron Barbs / Rocky Helmet can reduce the attacker to 0
+	; HP mid-loop; a fainted attacker must not keep hitting (audit
+	; 2026-08-28 #8).
+	farcall UserHasFainted
 	jr nz, .loop_back_to_critical
+	; "Hit N times!" should count the hits that actually landed
+	ld a, [de]
+	ld h, a
+	ld a, [bc]
+	sub h
+	ld [bc], a
 .done_loop
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -5656,6 +5720,9 @@ BattleCommand_FakeOut:
 BattleCommand_FlinchTarget:
 	call CheckSubstituteOpp
 	ret nz
+	; a user KO'd by contact recoil can't flinch anyone (audit #21)
+	farcall UserHasFainted
+	ret z
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
@@ -5698,6 +5765,9 @@ BattleCommand_HeldFlinch:
 	ld a, [wAttackMissed]
 	and a
 	ret nz
+	; a user KO'd by contact recoil can't flinch anyone (audit #21)
+	farcall UserHasFainted
+	ret z
 
 	call GetUserItem
 	ld a, b
@@ -6057,10 +6127,17 @@ BattleCommand_Confuse:
 	jp StdBattleTextbox
 
 .not_already_confused
-	call CheckSubstituteOpp
-	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
 	ld a, [wAttackMissed]
 	and a
+	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+	; Magic Bounce reflects a status move even from behind the bouncer's
+	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
+	farcall StatDropSubCheckExempt
+	jr nc, .no_bounce
+	farcall AbilityPreventsConfusion
+	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+.no_bounce
+	call CheckSubstituteOpp
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
 	farcall AbilityPreventsConfusion
 	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit

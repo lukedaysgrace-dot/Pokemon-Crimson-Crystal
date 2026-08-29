@@ -1,0 +1,305 @@
+# Regression cases for the 2026-08-28 code audit
+# (_ai_artifacts/reports/CODE_AUDIT_2026-08-28.md). Numbers match the
+# report's findings.
+
+# ---- #1 Spite scans past the move slots after Metronome ---------------------
+
+- name: "Audit 2026-08-28 #1: Spite fails against a Metronome'd move instead of scanning off the moveset"
+  # Electrode is faster: T1 Spite (no last move -> fails), Clefable
+  # Metronomes into some move X. T2 Spite targets X, which is not in
+  # Clefable's slots; the bounded scan must fail the move rather than walk
+  # into party data. Metronome's own PP is the observable: 2 uses = 8.
+  player: { species: CLEFABLE, level: 50, moves: [METRONOME, SPLASH, SPLASH, SPLASH] }
+  enemy:  { species: ELECTRODE, level: 50, moves: [SPITE] }
+  rng: seeded
+  rng_value: 7
+  turns: 2
+  assert:
+    - player.pp[0] == 8
+    - player.pp[1] == 40
+    - player.pp[2] == 40
+    - player.pp[3] == 40
+
+# ---- #2 Enemy U-turn does the full send-out ---------------------------------
+
+- name: "Audit 2026-08-28 #2: enemy U-turn replacement takes hazards and drops stat stages"
+  # Trainer battle. Cloyster lays Spikes first (faster), then Slowpoke
+  # U-turns out: Snorlax must arrive through the normal entrance path -
+  # Spikes damage, fresh stat stages - and must not be Slowpoke again.
+  player:  { species: CLOYSTER, level: 50, moves: [SPIKES] }
+  enemy:   { species: SLOWPOKE, level: 50, stages: { atk: +2 }, moves: [U_TURN] }
+  enemy2:  { species: SNORLAX,  level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'
+    - enemy.hp == enemy.maxhp - enemy.maxhp // 8
+    - enemy.stat_levels[0] == 7
+
+# ---- #3 Stealth Rock type scaling ------------------------------------------
+
+- name: "Audit 2026-08-28 #3: Stealth Rock hits a Bug/Flying type for 4x (half its HP)"
+  # (Charizard is Fire/Dragon in this hack, so Butterfree is the 4x case.)
+  player:  { species: TAUROS,     level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: BUTTERFREE, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,    level: 50, moves: [STEALTH_ROCK] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.species == 'BUTTERFREE'
+    - player.hp == player.maxhp - (player.maxhp // 8) * 4
+
+- name: "Audit 2026-08-28 #3: Stealth Rock hits Steel/Ground for 1/4 of the usual 1/8"
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: STEELIX, level: 50, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [STEALTH_ROCK] }
+  rng: forced_high
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.species == 'STEELIX'
+    - player.hp == player.maxhp - (player.maxhp // 8) // 4
+
+# ---- #4 Defiant / Competitive vs the user's own self-drops -----------------
+
+- name: "Audit 2026-08-28 #4: Defiant does not fire on the user's own Close Combat drops"
+  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [CLOSE_COMBAT] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 7
+    - player.stat_levels[1] == 6
+    - player.stat_levels[4] == 6
+
+- name: "Audit 2026-08-28 #4: Competitive does not fire on the user's own Draco Meteor drop"
+  player: { species: MILOTIC, level: 50, ability: COMPETITIVE, moves: [DRACO_METEOR] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[3] == 5
+
+- name: "Audit 2026-08-28 #4: Defiant does not fire on a non-Ghost Curse's Speed drop"
+  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [CURSE] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 8
+    - player.stat_levels[1] == 8
+    - player.stat_levels[2] == 6
+
+- name: "Audit 2026-08-28 #4 control: Defiant still answers an opponent's Growl"
+  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, moves: [GROWL] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 8
+
+# ---- #5 Disguise's deferred bust leaking out of status moves ---------------
+
+- name: "Audit 2026-08-28 #5: a status move does not arm Disguise; the disguise still absorbs the first hit"
+  # Thunder Wave (stab, no checkfaint) used to arm the deferred bust flag;
+  # Night Shade (checkfaint, no stab) then consumed it and busted Mimikyu
+  # for free. With the fix Shadow Ball on turn 3 is still absorbed.
+  player: { species: GENGAR,  level: 50, moves: [THUNDER_WAVE, NIGHT_SHADE, SHADOW_BALL] }
+  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH] }
+  rng: forced_high
+  move_script: [1, 2, 3]
+  turns: 3
+  assert:
+    - (enemy.status & 64) != 0
+    - enemy.hp == enemy.maxhp - 50
+
+# ---- #6 stale savemiss scope after a failed self-drop move -----------------
+
+- name: "Audit 2026-08-28 #6: Clear Body still blocks Growl after the holder's Close Combat failed"
+  # Gengar is faster. T1: Growl (blocked), Dreepy's Close Combat can't hit
+  # a Ghost -> the script aborts at failuretext. T2: Growl must still be
+  # blocked - the stale scope used to make it read as self-inflicted.
+  player: { species: DREEPY, level: 50, ability: CLEAR_BODY, moves: [CLOSE_COMBAT] }
+  enemy:  { species: GENGAR, level: 50, moves: [GROWL] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.stat_levels[0] == 7
+
+# ---- #7 enemy toxic bookkeeping runs against the incoming mon --------------
+
+- name: "Audit 2026-08-28 #7: an AI switch does not carry the outgoing mon's Toxic flag onto the replacement"
+  # Same convergence setup as Audit 3 (10-audit-seeds): Chansey's Tackle
+  # can't touch Gengar, so the AI switches to Snorlax within 4 turns.
+  # Chansey is badly poisoned (slot bit set); Snorlax must arrive without
+  # SUBSTATUS_TOXIC.
+  player:  { species: GENGAR,  level: 50, moves: [SPLASH] }
+  enemy:   { species: CHANSEY, level: 50, status_byte: 8, substatus: [TOXIC], moves: [TACKLE] }
+  enemy2:  { species: SNORLAX, level: 50, moves: [SHADOW_BALL] }
+  setup_wram: { wEnemyToxicSlots: 1 }
+  rng: seeded
+  turns: 4
+  assert:
+    - enemy.species == 'SNORLAX'
+    - (enemy.substatus[4] & 1) == 0
+
+# ---- #8 multi-hit moves stop when the attacker is KO'd mid-loop ------------
+
+- name: "Audit 2026-08-28 #8 control: Fury Swipes hit count under this seed"
+  id: fury_control
+  player:  { species: PERSIAN,    level: 50, moves: [FURY_SWIPES] }
+  enemy:   { species: AGGRON,     level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 3
+  turns: 1
+  assert:
+    - enemy.hp < enemy.maxhp
+
+- name: "Audit 2026-08-28 #8: Fury Swipes stops after Iron Barbs KOs the attacker"
+  # Persian at 20% loses 1/8 per hit to Iron Barbs: it drops to 0 on hit 2
+  # and must not land hits 3+. Same seed as the control, so the control's
+  # full-count damage is the upper bound the test must stay strictly under.
+  player:  { species: PERSIAN,    level: 50, hp: 20, moves: [FURY_SWIPES] }
+  player2: { species: SNORLAX,    level: 50, moves: [SPLASH] }
+  enemy:   { species: AGGRON,     level: 50, ability: IRON_BARBS, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 3
+  turns: 1
+  assert:
+    - wram16('wPartyMon1HP') == 0
+    - enemy.maxhp - enemy.hp < result('fury_control')['enemy']['damage']
+
+# ---- #9 Heal Bell clears the Toxic bookkeeping ------------------------------
+
+- name: "Audit 2026-08-28 #9: Heal Bell clears SUBSTATUS_TOXIC, the counter and the slot bits"
+  player: { species: MILTANK, level: 50, status_byte: 8, substatus: [TOXIC], moves: [HEAL_BELL] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  setup_wram: { wPlayerToxicSlots: 1, wPlayerToxicCount: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status == 0
+    - (player.substatus[4] & 1) == 0
+    - wram('wPlayerToxicCount') == 0
+    - wram('wPlayerToxicSlots') == 0
+
+# ---- #10 ability-inflicted status respects Safeguard -----------------------
+
+- name: "Audit 2026-08-28 #10: Safeguard blocks Static"
+  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SAFEGUARD, TACKLE] }
+  enemy:  { species: PIKACHU, level: 50, ability: STATIC, moves: [SPLASH] }
+  rng: forced_low
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - (player.screens & 4) != 0
+    - (player.status & 64) == 0
+
+- name: "Audit 2026-08-28 #10 control: Static lands without Safeguard"
+  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH, TACKLE] }
+  enemy:  { species: PIKACHU, level: 50, ability: STATIC, moves: [SPLASH] }
+  rng: forced_low
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - (player.status & 64) != 0
+
+# ---- #11 Sticky Web goes through the ability-drop wrapper ------------------
+
+- name: "Audit 2026-08-28 #11: Sticky Web always slows the player's switch-in (no AI-miss roll) and Defiant answers it"
+  # forced_low used to make the vanilla 25% computer-miss roll eat the
+  # web for the player's switch-in.
+  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
+  player2: { species: BISHARP, level: 50, ability: DEFIANT, moves: [SPLASH] }
+  enemy:   { species: GRIMER,  level: 50, moves: [STICKY_WEB] }
+  rng: forced_low
+  move_script: [1, "switch:2"]
+  turns: 2
+  assert:
+    - player.species == 'BISHARP'
+    - player.stat_levels[2] == 6
+    - player.stat_levels[0] == 9
+
+# ---- #12 Contrary behind the holder's own Substitute -----------------------
+
+- name: "Audit 2026-08-28 #12: a Contrary holder behind its own Substitute still inverts Swords Dance"
+  player: { species: SHUCKLE, level: 50, ability: CONTRARY, substatus: [SUBSTITUTE], moves: [SWORDS_DANCE] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  setup_wram: { wPlayerSubstituteHP: 20 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 5
+
+# ---- #13 Anticipation's bounded scan ---------------------------------------
+
+- name: "Audit 2026-08-28 #13: Anticipation stays quiet against four neutral moves"
+  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
+  enemy:  { species: RATTATA,  level: 50, moves: [TACKLE, SCRATCH, POUND, BITE] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - not ability_seen('ANTICIPATION')
+
+- name: "Audit 2026-08-28 #13 control: Anticipation shudders at a super-effective fourth move"
+  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
+  enemy:  { species: RATTATA,  level: 50, moves: [TACKLE, SCRATCH, POUND, CONFUSION] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - ability_seen('ANTICIPATION')
+
+# ---- #14 Magic Bounce vs status moves --------------------------------------
+
+- name: "Audit 2026-08-28 #14: Magic Bounce reflects Will-O-Wisp from behind its own Substitute"
+  player: { species: GENGAR, level: 50, moves: [WILL_O_WISP] }
+  enemy:  { species: ESPEON, level: 50, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 255 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (player.status & 16) != 0
+    - enemy.status == 0
+
+- name: "Audit 2026-08-28 #14: an enemy Toxic is bounced before the AI 25% fail roll"
+  # forced_low makes the vanilla AI roll fail; the bounce must come first.
+  player: { species: ESPEON,  level: 50, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [TOXIC] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (enemy.substatus[4] & 1) != 0
+    - player.status == 0
+
+# ---- #17 Struggle still goes through nullification -------------------------
+
+- name: "Audit 2026-08-28 #17: Disguise absorbs Struggle"
+  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [STRUGGLE] }
+  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.hp < player.maxhp
+
+# ---- #20 Rock Head does not cancel Struggle recoil -------------------------
+
+- name: "Audit 2026-08-28 #20: a Rock Head user still takes Struggle recoil"
+  player: { species: RHYDON,  level: 50, ability: ROCK_HEAD, moves: [STRUGGLE] }
+  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.maxhp
+
+# ---- #22 wild First Impression -----------------------------------------------
+
+- name: "Audit 2026-08-28 #22: a wild Golisopod's First Impression works on its first turn"
+  player: { species: SNORLAX,   level: 50, moves: [SPLASH] }
+  enemy:  { species: GOLISOPOD, level: 50, moves: [FIRST_IMPRESSION] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.maxhp

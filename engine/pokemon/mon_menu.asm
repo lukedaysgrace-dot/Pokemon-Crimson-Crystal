@@ -1030,19 +1030,25 @@ MoveScreenLoop:
 	push hl
 	call .copy_move
 	pop hl
-	ld bc, $15
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	call .copy_move
+	; In battle, mirror the swap into the active battle struct - but only
+	; when the reordered mon IS the active one. The vanilla code tested a
+	; stale flag and stepped wBattleMon by a fixed $20 stride (audit #31).
 	ld a, [wBattleMode]
+	and a
 	jr z, .swap_moves
-	ld hl, wBattleMonMoves
-	ld bc, $20
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	ld b, a
+	ld a, [wCurBattleMon]
+	cp b
+	jr nz, .swap_moves
+	ld hl, wBattleMonMoves
 	push hl
 	call .copy_move
 	pop hl
-	ld bc, 6
+	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
 	call .copy_move
 

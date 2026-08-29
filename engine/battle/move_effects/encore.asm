@@ -18,10 +18,16 @@ BattleCommand_Encore:
 	pop hl
 	jp c, .failed
 
+; Bounded scan (audit 2026-08-28 #1): the last move may not be in the slots.
+	ld c, NUM_MOVES
 .got_move
 	ld a, [hli]
 	cp b
+	jr z, .found_move
+	dec c
 	jr nz, .got_move
+	jp .failed
+.found_move
 
 	ld bc, wBattleMonPP - wBattleMonMoves - 1
 	add hl, bc

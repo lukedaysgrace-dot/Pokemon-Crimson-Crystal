@@ -44,6 +44,9 @@ BattleCommand_Curse:
 	; One stat up anim + "ATTACK and DEFENSE rose!", then one stat down
 	; anim + "SPEED fell!".
 	call BattleCommand_DeferStatMessages
+	; savemiss scope so the deferred Speed drop is recognised as
+	; self-inflicted (no Defiant/Competitive) - audit 2026-08-28 #4
+	call BattleCommand_SaveMiss
 	ld a, SPEED
 	call LowerStat
 	call BattleCommand_SwitchTurn
@@ -55,7 +58,8 @@ BattleCommand_Curse:
 	call ResetMiss
 	call BattleCommand_DefenseUp
 	call BattleCommand_StatUpMessage
-	jp BattleCommand_FlushStatMessages
+	call BattleCommand_FlushStatMessages
+	jp BattleCommand_RestoreMiss
 
 .ghost
 
