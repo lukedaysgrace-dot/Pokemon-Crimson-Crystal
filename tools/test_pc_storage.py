@@ -117,7 +117,7 @@ check(rec[0x22] == 0, "egg flag clear")
 check(rec[0x23:0x2D] == enc("ROUNDTRIP@"), f"nickname bytes {dec(rec[0x23:0x2D])}")
 check(rec[0x2D:0x37] == enc("ABCDEFGHIJ"), "OT bytes")
 # scramble wTempMon then reload
-h.wr(S("wTempMon"), bytes(49))
+h.wr(S("wTempMon"), bytes(50))
 h.wr(S("wTempMonNickname"), bytes(22))
 r = h.call("GetStorageBoxMon", bc=(1 << 8) | 1)
 check(not r["z"] and not r["c_flag"], "GetStorageBoxMon returns nz|nc")
@@ -199,7 +199,7 @@ check(r["a"] == 0, f"withdraw ok (a={r['a']})")
 check(party_count() == 1, f"party count 1 (got {party_count()})")
 pool, entry = h.box_pointer(1, 1)
 check(entry == 0, "box slot emptied")
-pm = h.rd(S("wPartyMon1"), 49)
+pm = h.rd(S("wPartyMon1"), 50)
 check(pm[1] == 77, "party mon has the updated item")
 check(h.rd(S("wPartySpecies")) == pm[0] and h.rd(S("wPartySpecies") + 1) == 0xFF, "party species list + terminator")
 nick = h.rd(S("wPartyMonNicknames"), 11)
@@ -431,7 +431,7 @@ for (b, sl), idx in live.items():
     if r["hl"] != idx:
         check(False, f"final: slot {(b, sl)} species {r['hl']} != {idx}")
 for i, idx in enumerate(party):
-    sid = h.rd(S("wPartyMon1") + 49 * i)
+    sid = h.rd(S("wPartyMon1") + 50 * i)
     check(h.species_index(sid) == idx, f"final party slot {i} species")
 # every live pointer must be allocated and unique
 h.call("FlushStorageSystem")

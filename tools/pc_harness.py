@@ -76,7 +76,11 @@ class Sym:
 
 class Harness:
     def __init__(self, rom=ROM, sym=SYM, headless=True):
-        self.pyboy = PyBoy(rom, window="null" if headless else "SDL2", sound_emulated=False)
+        # File-like ROM input prevents PyBoy from silently loading adjacent
+        # emulator .ram/.rtc sidecars. Every harness run needs a clean cartridge
+        # so a developer's last play session cannot change test outcomes.
+        with open(rom, "rb") as rom_file:
+            self.pyboy = PyBoy(rom_file, window="null" if headless else "SDL2", sound_emulated=False)
         self.pyboy.set_emulation_speed(0)
         self.sym = Sym(sym)
         self.mem = self.pyboy.memory
@@ -178,13 +182,14 @@ class Harness:
     # --- domain helpers -------------------------------------------------------
     def temp_mon(self):
         base = self.s("wTempMon")
-        d = self.rd(base, 49)
+        d = self.rd(base, 50)
         return {
             "species": d[0], "item": d[1], "moves": list(d[2:6]), "id": d[6] | (d[7] << 8),
             "exp": list(d[8:11]), "statexp": list(d[11:21]), "dvs": list(d[21:23]),
             "pp": list(d[23:27]), "happiness": d[27], "pokerus": d[28], "caught": list(d[29:31]),
-            "level": d[31], "personality": d[32], "status": d[33], "unused": d[34],
-            "hp": (d[35] << 8) | d[36], "maxhp": (d[37] << 8) | d[38],
+            "level": d[31], "personality": d[32], "hidden_power": d[33],
+            "status": d[34], "unused": d[35],
+            "hp": (d[36] << 8) | d[37], "maxhp": (d[38] << 8) | d[39],
             "nick": self.rd(self.s("wTempMonNickname"), 11),
             "ot": self.rd(self.s("wTempMonOT"), 11),
             "idx": self.rd16(self.s("wTempMonSpeciesIndex")),
@@ -207,11 +212,11 @@ class Harness:
     def build_temp_mon(self, species_index, moves_index, level=50, item=0, ot_id=0x1234,
                        nick="TESTMON@@@@", ot="LUKE@@@@@@@", dvs=(0xFF, 0xFF), ppups=(0, 0, 0, 0),
                        statexp=None, happiness=70, pokerus=0, shiny_gender=0x40, caught=(0x32, 0x05),
-                       personality=0x21, egg=0):
+                       personality=0x21, hidden_power=0, egg=0):
         base = self.s("wTempMon")
         sid = self.species_id(species_index)
         mids = [self.move_id(m) if m else 0 for m in moves_index]
-        d = bytearray(49)
+        d = bytearray(50)
         d[0] = sid
         d[1] = item
         d[2:6] = mids
@@ -226,8 +231,9 @@ class Harness:
         d[29:31] = caught
         d[31] = level
         d[32] = personality
-        d[33] = 0
-        d[34] = shiny_gender
+        d[33] = hidden_power
+        d[34] = 0
+        d[35] = shiny_gender
         self.wr(base, d)
         self.wr(self.s("wTempMonNickname"), enc(nick) if isinstance(nick, str) else nick)
         self.wr(self.s("wTempMonOT"), enc(ot) if isinstance(ot, str) else ot)
