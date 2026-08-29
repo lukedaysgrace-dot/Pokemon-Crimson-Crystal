@@ -967,7 +967,7 @@ _CGB_PackPals:
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .tutorial_male
 
-	ld hl, .GoldPackPals
+	ld hl, .LyraPackPals
 	jr .got_gender
 
 .tutorial_male
@@ -975,7 +975,7 @@ _CGB_PackPals:
 
 .got_gender
 	ld de, wBGPals1
-	ld bc, 8 palettes ; 6 palettes?
+	ld bc, 6 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrMap
