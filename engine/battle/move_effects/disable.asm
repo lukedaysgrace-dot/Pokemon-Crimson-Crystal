@@ -29,9 +29,13 @@ BattleCommand_Disable:
 	pop bc
 	jr z, .failed
 
+; Bounded scan (audit 2026-08-28 #1): the last move may not be in the slots.
 	ld c, $ff
 .loop
 	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr nc, .failed
 	ld a, [hli]
 	cp b
 	jr nz, .loop

@@ -34,6 +34,9 @@ BattleCommand_MirrorMove:
 	pop af
 
 	call GetMoveData
+	; -ate abilities (Pixilate & co.) convert the copied move's type, as
+	; UpdateMoveData does for Metronome / Sleep Talk (audit 2026-08-28 #18)
+	farcall AbilityConvertMoveType
 	; Hidden Power: the user's own type/power/category (as UpdateMoveData does)
 	farcall HiddenPowerUpdateMoveStruct
 	call GetMoveName

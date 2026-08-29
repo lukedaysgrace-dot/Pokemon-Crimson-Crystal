@@ -625,6 +625,20 @@ BattleBurn_Core:
 	jp .didnt_affect
 
 .no_item_protection
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	and a
+	jp nz, .failed
+	ld a, [wAttackMissed]
+	and a
+	jp nz, .failed
+	; Magic Bounce reflects a status move even from behind the bouncer's
+	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
+	farcall StatDropSubCheckExempt
+	jr nc, .no_bounce
+	farcall AbilityPreventsBurn
+	jp c, .failed
+.no_bounce
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .dont_sample_failure
@@ -646,13 +660,6 @@ BattleBurn_Core:
 	jp c, .failed
 
 .dont_sample_failure
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	and a
-	jp nz, .failed
-	ld a, [wAttackMissed]
-	and a
-	jp nz, .failed
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	farcall AbilityPreventsBurn
@@ -1098,9 +1105,14 @@ StickyWebEntry:
 	call StdBattleTextbox
 	; lower the ENTERING mon's Speed: the stat-drop machinery targets the
 	; turn holder's opponent (like Intimidate), so flip the turn around it
+	; Go through the ability-drop wrapper so the drop is flagged as
+	; ability-driven (no 25% AI-miss roll against the player's switch-in,
+	; no stale move-effect byte for the Mist / self-drop shortcuts) and
+	; the fell message + Defiant/Competitive reaction run
+	; (audit 2026-08-28 #11).
 	call SwitchTurnForOppText
 	ld b, SPEED
-	callfar AbilityStatDown
+	farcall AbilityLowerOppStat
 	jp SwitchTurnForOppText
 
 .check_ungrounded

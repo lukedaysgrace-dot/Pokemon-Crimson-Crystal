@@ -21,9 +21,15 @@ BattleCommand_Spite:
 	call CompareMove
 	pop bc
 	jr z, .failed
+; Bounded scan: after Metronome / Mirror Move the target's last move can be
+; one it doesn't know, and an unbounded scan would walk past the move slots
+; and index a PP write into arbitrary party data (audit 2026-08-28 #1).
 	ld c, -1
 .loop
 	inc c
+	ld a, c
+	cp NUM_MOVES
+	jp nc, .failed
 	ld a, [hli]
 	cp b
 	jr nz, .loop

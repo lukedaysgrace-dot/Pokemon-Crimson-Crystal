@@ -35,10 +35,15 @@ BattleCommand_Mimic:
 	ld hl, MIMIC
 	call GetMoveIDFromIndex
 	pop hl
+	ld c, NUM_MOVES
 .find_mimic
 	dec hl
 	cp [hl]
+	jr z, .found_mimic
+	dec c
 	jr nz, .find_mimic
+	jr .fail ; bounded (audit 2026-08-28 #1): Sleep Talk -> Mimic
+.found_mimic
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	ld [hl], a
