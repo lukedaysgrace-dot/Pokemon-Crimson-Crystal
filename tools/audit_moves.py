@@ -556,7 +556,12 @@ def audit_move_mechanics(audit: Audit) -> None:
         "hSerialConnectionStatus" in end_turn
         and "USING_EXTERNAL_CLOCK" in end_turn
         and enemy_first >= 0
-        and end_turn.find("call .yawn_enemy", enemy_first) < end_turn.find("call .yawn_player", enemy_first),
+        and re.search(
+            r"\.enemy_first.*?call \.yawn_enemy.*?(?:call|jp) \.yawn_player",
+            end_turn,
+            re.DOTALL,
+        )
+        is not None,
         "simultaneous Yawn expiry must use shared serial-clock ordering in link battles",
     )
     audit.check(

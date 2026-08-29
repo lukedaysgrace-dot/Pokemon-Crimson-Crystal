@@ -110,11 +110,21 @@ if fb:
     check(bool(p) and p[-1]==(46,7), f"fallback approach ends at {p[-1] if p else None}, expected (46, 7)")
 else:
     err.append("Route25CrystalMewScene fallback has no moveobject")
-# A successful catch must use the battle result rather than the Pokedex bit,
-# then remove MEW before the reload callback reconstructs the map objects.
-catch_branch=re.search(r'special CheckCaughtWildMon\n\tiffalse \.StillOutThere\n\tsetevent EVENT_ROUTE_25_CAUGHT_MEW\n\tdisappear ROUTE25_MEW\n\.StillOutThere:\n\treloadmapafterbattle', R)
+# A successful catch must use the battle result rather than the Pokedex bit.
+# Both outcomes remove MEW before the reload callback reconstructs the map
+# objects, while distinct flags preserve whether it was caught or escaped.
+catch_branch=re.search(
+    r'special CheckCaughtWildMon\n'
+    r'\tiffalse (?P<escaped>\.\w+)\n'
+    r'\tsetevent EVENT_ROUTE_25_CAUGHT_MEW\n'
+    r'\tsjump (?P<gone>\.\w+)\n\n'
+    r'(?P=escaped):\n'
+    r'\tsetevent EVENT_ROUTE_25_MEW_ESCAPED\n\n'
+    r'(?P=gone):\n'
+    r'\tdisappear ROUTE25_MEW\n'
+    r'\treloadmapafterbattle', R)
 check(catch_branch is not None,
-      "MEW catch branch does not hide MEW from the explicit battle-caught result before reload")
+      "MEW result branches do not record caught/escaped and hide MEW before reload")
 
 # CRYSTAL must be re-anchored beside the player before she returns north and
 # leaves; otherwise the visibility culler can delete her during a movement.

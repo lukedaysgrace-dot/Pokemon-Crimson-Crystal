@@ -16,6 +16,7 @@ TRAINER_TYPES = {
 	"TRAINERTYPE_NORMAL": (False, False, False),
 	"TRAINERTYPE_MOVES": (False, True, False),
 	"TRAINERTYPE_ITEM": (True, False, False),
+	"TRAINERTYPE_ABILITY": (False, False, True),
 	"TRAINERTYPE_ITEM_MOVES": (True, True, False),
 	"TRAINERTYPE_ITEM_MOVES_ABILITY": (True, True, True),
 }
@@ -181,17 +182,24 @@ def parse_party_entry(path, entry, species, moves, items):
 		fail(path, entry["line"], "empty trainer entry")
 		return
 	header_kind, header, header_line = directives[0]
-	header_match = re.fullmatch(r'"(.*)",\s*(TRAINERTYPE_\w+)', header)
+	header_match = re.fullmatch(
+		r'"(.*)",\s*(TRAINERTYPE_\w+(?:\s*\|\s*TRAINERTYPE_\w+)*)',
+		header,
+	)
 	if header_kind != "db" or not header_match:
 		fail(path, header_line, "malformed trainer name/type header")
 		return
 	name, trainer_type = header_match.groups()
 	if not name.endswith("@") or len(name[:-1]) > 10:
 		fail(path, header_line, f"invalid trainer name {name!r}")
-	if trainer_type not in TRAINER_TYPES:
-		fail(path, header_line, f"unknown trainer type {trainer_type}")
+	type_parts = [part.strip() for part in trainer_type.split("|")]
+	unknown_types = [part for part in type_parts if part not in TRAINER_TYPES]
+	if unknown_types:
+		fail(path, header_line, f"unknown trainer type {', '.join(unknown_types)}")
 		return
-	has_item, has_moves, has_ability = TRAINER_TYPES[trainer_type]
+	has_item = any(TRAINER_TYPES[part][0] for part in type_parts)
+	has_moves = any(TRAINER_TYPES[part][1] for part in type_parts)
+	has_ability = any(TRAINER_TYPES[part][2] for part in type_parts)
 	index = 1
 	mons = []
 	terminated = False
@@ -291,9 +299,11 @@ def validate_group_pointers(classes, trainer_ids, aliases, owners, groups):
 	actual_classes = classes[1:]
 	if len(pointers) != len(actual_classes):
 		fail(path, 0, f"found {len(pointers)} group pointers for {len(actual_classes)} classes")
-	class_pointer = {}
+	class_pointer = {
+		trainer_class: group_name
+		for trainer_class, (group_name, _line_number) in zip(actual_classes, pointers)
+	}
 	for trainer_class, (group_name, line_number) in zip(actual_classes, pointers):
-		class_pointer[trainer_class] = group_name
 		if group_name not in groups:
 			fail(path, line_number, f"{trainer_class} points to missing {group_name}")
 			continue
@@ -304,11 +314,17 @@ def validate_group_pointers(classes, trainer_ids, aliases, owners, groups):
 				line_number,
 				f"{trainer_class} declares {len(trainer_ids[trainer_class])} IDs but {group_name} has {len(entries)} entries",
 			)
-		if not trainer_ids[trainer_class] and not aliases[trainer_class] and entries:
+		shared_owners = [
+			other_class
+			for other_class, other_group in class_pointer.items()
+			if other_group == group_name
+			and (trainer_ids[other_class] or aliases[other_class])
+		]
+		if not trainer_ids[trainer_class] and not aliases[trainer_class] and entries and not shared_owners:
 			fail(path, line_number, f"{trainer_class} has party data but no trainer IDs")
 		if entries and not aliases[trainer_class]:
 			declared = entries[0]["declared_class"]
-			if declared != trainer_class:
+			if declared != trainer_class and declared not in shared_owners:
 				fail(path, line_number, f"{trainer_class} points to a group declared for {declared}")
 
 	for trainer_class, class_aliases in aliases.items():
@@ -328,6 +344,7 @@ def validate_group_pointers(classes, trainer_ids, aliases, owners, groups):
 	for group_name, entries in groups.items():
 		if entries and group_name not in pointed:
 			fail(path, 0, f"populated {group_name} is not in TrainerGroups")
+	return class_pointer
 
 
 def validate_rematch_tiers(groups):
@@ -340,15 +357,15 @@ def validate_rematch_tiers(groups):
 		initial_levels = [mon["level"] for mon in entries[0].get("mons", [])]
 		levels = [mon["level"] for mon in entries[1].get("mons", [])]
 		initial_max = max(initial_levels, default=0)
-		if len(levels) != 5 or min(levels, default=0) <= initial_max:
+		if len(levels) != 6 or min(levels, default=0) <= initial_max:
 			fail(
 				path,
 				entries[1]["line"],
-				f"leader rematch tier {levels} must contain five Pokémon above the initial party's level {initial_max}",
+				f"leader rematch tier {levels} must contain six Pokémon above the initial party's level {initial_max}",
 			)
 
 
-def validate_script_references(classes, owners):
+def validate_script_references(classes, owners, class_pointer):
 	actual_classes = set(classes[1:])
 	reference_count = 0
 	patterns = (
@@ -369,7 +386,7 @@ def validate_script_references(classes, owners):
 					owner = owners.get(trainer_id)
 					if owner is None:
 						fail(path, line_number, f"unknown {trainer_class} trainer ID {trainer_id}")
-					elif owner != trainer_class:
+					elif owner != trainer_class and class_pointer.get(owner) != class_pointer.get(trainer_class):
 						fail(path, line_number, f"{trainer_id} belongs to {owner}, not {trainer_class}")
 					break
 				match = re.match(r"gettrainerclassname\s+[^,]+,\s*(\w+)", code)
@@ -440,8 +457,26 @@ def validate_parallel_tables(classes, items):
 			pics.append((match.group(1), line_number))
 	if len(pics) != len(actual):
 		fail(path, 0, f"found {len(pics)} pic pointers for {len(actual)} classes")
+	pic_aliases = {
+		"CRYSTAL3": "CRYSTAL2",
+		"RIVAL3": "RIVAL2",
+		"FALKNER_REMATCH": "FALKNER",
+		"BUGSY_REMATCH": "BUGSY",
+		"WHITNEY_REMATCH": "WHITNEY",
+		"MORTY_REMATCH": "MORTY",
+		"CHUCK_REMATCH": "CHUCK",
+		"JASMINE_REMATCH": "JASMINE",
+		"PRYCE_REMATCH": "PRYCE",
+		"CLAIR_REMATCH": "CLAIR",
+		"WILL_REMATCH": "WILL",
+		"KOGA_REMATCH": "KOGA",
+		"BRUNO_REMATCH": "BRUNO",
+		"KAREN_REMATCH": "KAREN",
+		"CHAMPION_REMATCH": "CHAMPION",
+	}
 	for trainer_class, (pic, line_number) in zip(actual, pics):
-		if key(pic) != key(trainer_class):
+		expected = pic_aliases.get(trainer_class, trainer_class)
+		if key(pic) != key(expected):
 			fail(path, line_number, f"{pic}Pic is in {trainer_class}'s slot")
 
 	path = ROOT / "data/trainers/sprites.asm"
@@ -457,7 +492,11 @@ def validate_parallel_tables(classes, items):
 			palettes.append((match.group(1), line_number))
 	if len(palettes) != len(classes):
 		fail(path, 0, f"found {len(palettes)} palettes for {len(classes)} class indexes")
-	palette_aliases = {"TRAINER_NONE": "CAL", "POKEMON_PROF": "OAK"}
+	palette_aliases = {
+		"TRAINER_NONE": "CAL",
+		"POKEMON_PROF": "OAK",
+		**pic_aliases,
+	}
 	for trainer_class, (palette, line_number) in zip(classes, palettes):
 		expected = palette_aliases.get(trainer_class, trainer_class)
 		if key(palette) != key(expected):
@@ -627,7 +666,7 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 	expected_kinds = (
 		["dw", "db", "dw", "dw", "dt"]
 		+ ["bigdw"] * 5
-		+ ["dn", "db", "db", "db", "db", "db", "db"]
+		+ ["dn", "db", "db", "db", "db", "db", "db", "db"]
 		+ ["bigdw"] * 7
 		+ ["db"]
 	)
@@ -635,8 +674,8 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 		fail(path, entry["line"], "Battle Tower mon fields do not match the party-struct layout")
 		return
 	record_size = sum(directive_size(kind, value) for kind, value, _line in directives)
-	if record_size != 65:
-		fail(path, entry["line"], f"Battle Tower source record is {record_size} bytes; expected 65")
+	if record_size != 66:
+		fail(path, entry["line"], f"Battle Tower source record is {record_size} bytes; expected 66")
 
 	mon = directives[0][1]
 	item = directives[1][1]
@@ -661,9 +700,10 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 	caught_data = args(directives[13][1])
 	level = decimal(directives[14][1])
 	personality = directives[15][1]
-	status = args(directives[16][1])
-	stored_stats = [decimal(directives[index][1]) for index in range(17, 24)]
-	nickname_match = re.fullmatch(r'"(.*)"', directives[24][1])
+	hidden_power_type = directives[16][1]
+	status = args(directives[17][1])
+	stored_stats = [decimal(directives[index][1]) for index in range(18, 25)]
+	nickname_match = re.fullmatch(r'"(.*)"', directives[25][1])
 
 	if len(dvs) != 4 or any(not 0 <= value <= 15 for value in dvs):
 		fail(path, directives[10][2], f"invalid Battle Tower DVs {dvs}")
@@ -681,16 +721,18 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 	expected_personality = "ABILITY_2" if dvs[0] & 1 else "ABILITY_1"
 	if personality != expected_personality:
 		fail(path, directives[15][2], f"personality {personality} disagrees with Attack DV {dvs[0]}")
+	if hidden_power_type != "HIDDEN_POWER_DEFAULT_TYPE":
+		fail(path, directives[16][2], f"unexpected Hidden Power type {hidden_power_type}")
 	if status != ["0", "0"]:
-		fail(path, directives[16][2], f"invalid Battle Tower status bytes {status}")
+		fail(path, directives[17][2], f"invalid Battle Tower status bytes {status}")
 	if not nickname_match or len(nickname_match.group(1)) != 11:
-		fail(path, directives[24][2], "Battle Tower nickname must be exactly 11 bytes")
+		fail(path, directives[25][2], "Battle Tower nickname must be exactly 11 bytes")
 
 	calculated = calculate_battle_tower_stats(
 		base_stats[mon], stat_exp, dvs, level
 	)
 	if stored_stats != calculated:
-		fail(path, directives[17][2], f"stored stats {stored_stats} should be {calculated} for {mon}")
+		fail(path, directives[18][2], f"stored stats {stored_stats} should be {calculated} for {mon}")
 
 
 def calculate_battle_tower_stats(base, stat_exp, dvs, level):
@@ -768,9 +810,9 @@ def main():
 	items = set(constant_list("constants/item_constants.asm", "NUM_ITEMS"))
 	classes, trainer_ids, aliases, owners = parse_trainer_constants()
 	groups = parse_parties(species, moves, items)
-	validate_group_pointers(classes, trainer_ids, aliases, owners, groups)
+	class_pointer = validate_group_pointers(classes, trainer_ids, aliases, owners, groups)
 	validate_rematch_tiers(groups)
-	references = validate_script_references(classes, owners)
+	references = validate_script_references(classes, owners, class_pointer)
 	validate_parallel_tables(classes, items)
 	battle_tower_mons = validate_battle_tower(species_list, move_list, items)
 
