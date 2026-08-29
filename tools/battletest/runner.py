@@ -49,6 +49,11 @@ class Harness:
         self.sym = Symbols()
         self.con = Constants()
         self.pb = PyBoy(str(ROM), window="null", cgb=True, sound_emulated=False)
+        # PyBoy's fast stepping path can mishandle this ROM's CGB double-speed
+        # transitions and reboot into GBCOnlyScreen.  Registering a hook makes
+        # PyBoy use its accurate stepping path; the cartridge entry point is a
+        # safe one-shot location and the hook preserves the original opcode.
+        self.pb.hook_register(0, 0x100, lambda _context: None, None)
         self.pb.set_emulation_speed(0)
         self.battle = Battle(self.pb, self.sym, self.con)
         self.fixture = None  # BytesIO of the DEBUG-menu state

@@ -46,13 +46,17 @@ class Symbols:
         return self.by_name[name][0]
 
 
-def _parse_constants(path, const_re=r"^\tconst (\w+)"):
-    """Return {NAME: value} honouring const_def [start] directives."""
+def _parse_constants(path, const_re=r"^\tconst (\w+)", const_value_equs=()):
+    """Return {NAME: value} honouring const_def and selected EQU markers."""
     out = {}
     value = None
     pat_def = re.compile(r"^\tconst_def(?:\s+(\d+))?")
     pat_const = re.compile(const_re)
     pat_skip = re.compile(r"^\tconst_skip(?:\s+(\d+))?")
+    equ_names = "|".join(re.escape(name) for name in const_value_equs)
+    pat_equ = re.compile(
+        rf"^({equ_names})\s+EQU\s+const_value(?:\s*\+\s*(-?\d+))?"
+    ) if equ_names else None
     with open(path) as f:
         for line in f:
             line = line.split(";")[0].rstrip()
@@ -68,6 +72,10 @@ def _parse_constants(path, const_re=r"^\tconst (\w+)"):
             if m and value is not None:
                 out[m.group(1)] = value
                 value += 1
+                continue
+            m = pat_equ.match(line) if pat_equ else None
+            if m and value is not None:
+                out[m.group(1)] = value + int(m.group(2) or 0)
     return out
 
 
@@ -75,8 +83,10 @@ class Constants:
     def __init__(self, root=None):
         root = Path(root or ROOT)
         c = root / "constants"
-        self.species = _parse_constants(c / "pokemon_constants.asm")
-        self.moves = _parse_constants(c / "move_constants.asm")
+        self.species = _parse_constants(
+            c / "pokemon_constants.asm", const_value_equs=("NUM_POKEMON",))
+        self.moves = _parse_constants(
+            c / "move_constants.asm", const_value_equs=("NUM_ATTACKS",))
         self.items = _parse_constants(c / "item_constants.asm")
         self.abilities = _parse_constants(c / "ability_constants.asm")
         # trainer classes: `trainerclass NAME ; N` (the macro restarts the
@@ -108,6 +118,7 @@ class Constants:
             self.abilities_by_id.setdefault(v, k)
         # species constants files list forms after NUM_POKEMON; clamp to real dex
         self.num_pokemon = self.species.get("NUM_POKEMON")
+        self.num_attacks = self.moves.get("NUM_ATTACKS")
         # species -> (ability1, ability2, hidden), from base stats
         self.species_abilities = {}
         pat = re.compile(r"^\tabilities_for (\w+),\s*(\w+),\s*(\w+),\s*(\w+)")
