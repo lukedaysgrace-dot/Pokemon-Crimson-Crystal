@@ -969,6 +969,12 @@ AbilityPreventsBurn::
 	call GetOpponentIgnorableAbility
 	cp FLASH_FIRE
 	jr nz, .ordinary
+	; Ability-inflicted burns (Flame Body, Synchronize) have no move behind
+	; them: the turn-keyed move type read below would be the holder's own
+	; stale last move (audit 2026-08-28 #15). The guard bit marks those.
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .ordinary
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	cp FIRE
@@ -1415,7 +1421,20 @@ RunNullificationAbilities::
 	and a
 	ret z
 	cp DISGUISE
-	jp z, DisguiseBlock
+	jr nz, .not_disguise
+	; Disguise only blocks damage. Status scripts run `stab` but never
+	; `checkfaint`, so arming the deferred bust from Toxic/Thunder Wave
+	; leaked the flag onto the next checkfaint-only move and busted the
+	; wrong Pokemon (audit 2026-08-28 #5).
+	push bc
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	pop bc
+	jp nz, DisguiseBlock
+.not_immune_done
+	and a ; nc: not nullified
+	ret
+.not_disguise
 	ld b, a
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
@@ -4251,6 +4270,8 @@ TryParalyzeOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
 	call OpponentIsElectricType
 	ret z ; Electric-types cannot be paralyzed
 	call AbilityPreventsParalysis
@@ -4281,6 +4302,8 @@ TryBurnOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
 	call OpponentIsFireType
 	ret z ; Fire-types can't be burned (move burns already ensure this
 	      ; via CheckMoveTypeMatchesTarget; this covers the ability paths)
@@ -4308,6 +4331,8 @@ TryPoisonOpponentContact:
 	call GetBattleVar
 	and a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
 	call OpponentIsPoisonImmuneType
 	ret z
 	call AbilityPreventsPoison
@@ -4331,6 +4356,8 @@ TryToxicOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
 	call OpponentIsPoisonImmuneType
 	ret z
 	call AbilityPreventsPoison
@@ -4388,6 +4415,8 @@ TrySleepOpponent:
 	call GetBattleVar
 	and a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
 	call AbilityPreventsSleep
 	ret c
 	call ShowAbilityBannerBrief
@@ -4419,6 +4448,8 @@ TryConfuseOpponent:
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
+	call SafeCheckSafeguard_Core
+	ret nz ; Safeguard blocks confusion (audit 2026-08-28 #10)
 	call AbilityPreventsConfusion
 	ret c
 	call ShowAbilityBannerBrief
@@ -5114,8 +5145,26 @@ DisguisePresentation:
 	and a
 	ret nz
 	call SwitchTurn ; the Disguise holder's side
+	; guard: only ever bust an actual Mimikyu with an intact disguise
+	; (audit 2026-08-28 #5)
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .got_species
+	ld a, [wEnemyMonSpecies]
+.got_species
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(MIMIKYU)
+	jp nz, SwitchTurn
+	ld a, h
+	cp HIGH(MIMIKYU)
+	jp nz, SwitchTurn
 	call GetDisguiseFlag
 	ld b, a
+	ld a, [hl]
+	and b
+	jp nz, SwitchTurn ; already busted
 	ld a, [hl]
 	or b
 	ld [hl], a ; mark this slot's disguise as busted
@@ -5882,6 +5931,20 @@ ParentalBondSecondHit:
 .got_damage
 	; hit the defender
 	call SwitchTurn
+	; refresh the HP-bar max with the DEFENDER's max HP: a Rocky Helmet
+	; proc on hit 1 leaves the attacker's max in wBuffer1-2 (audit #25)
+	push bc
+	ld hl, wBattleMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_max_hp
+	ld hl, wEnemyMonMaxHP
+.got_max_hp
+	ld a, [hli]
+	ld [wBuffer2], a
+	ld a, [hl]
+	ld [wBuffer1], a
+	pop bc
 	farcall SubtractHPFromUser
 	call SwitchTurn
 	call UpdateBattleHuds
@@ -5961,21 +6024,11 @@ RunStatDropReaction::
 	; Self-inflicted drops (Superpower & co. lower the user through
 	; switchturn, so the "victim" here is the move's own user) never
 	; trigger Defiant/Competitive - only opponent-caused drops do.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_CLOSE_COMBAT
-	ret z
-	cp EFFECT_DRACO_METEOR
-	ret z
-	cp EFFECT_SCALE_SHOT
-	ret z
-	cp EFFECT_HEADLONG_RUSH
-	ret z
-	cp EFFECT_SUPERPOWER
-	ret z
-	cp EFFECT_HAMMER_ARM
-	ret z
-	cp EFFECT_SHELL_SMASH
+	; The message runs with the turn flipped, so a raw read of
+	; BATTLE_VARS_MOVE_EFFECT would be the OPPONENT's move (audit
+	; 2026-08-28 #4); CheckSelfInflictedStatDrop recovers the originating
+	; effect from the savemiss snapshot instead.
+	farcall CheckSelfInflictedStatDrop
 	ret z
 .from_opponent
 	call GetOpponentAbility
@@ -6193,10 +6246,28 @@ BattleOHKO_Core::
 BattleRecoil_Core::
 ; Relocated from effect_commands.asm; adds Rock Head / Magic Guard.
 	call GetTrueUserAbility
-	cp ROCK_HEAD
-	ret z
 	cp MAGIC_GUARD
 	ret z
+	cp ROCK_HEAD
+	jr nz, .no_rock_head
+	; Rock Head does not cancel Struggle's recoil (canon; Magic Guard
+	; does) - audit 2026-08-28 #20
+	push hl
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(STRUGGLE)
+	jr nz, .rock_head_blocks
+	ld a, l
+	cp LOW(STRUGGLE)
+	jr nz, .rock_head_blocks
+	pop hl
+	jr .no_rock_head
+.rock_head_blocks
+	pop hl
+	ret
+.no_rock_head
 	ld hl, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
@@ -6877,13 +6948,17 @@ AnticipationAbility:
 	ld [wBuffer5], a
 	ld a, [hl]
 	ld [wBuffer6], a
-	; scan the foe's moves
+	; scan the foe's moves (bounded to NUM_MOVES, like Forewarn: with a
+	; full moveset the old zero-terminated scan ran into wBuffer5/6 and
+	; live WRAM beyond - audit 2026-08-28 #13)
 	ld hl, wBuffer1
+	ld c, NUM_MOVES
 .scan
 	ld a, [hli]
 	and a
 	jr z, .no_shudder
 	push hl
+	push bc
 	ld e, a ; e = move id
 	; OHKO moves always trigger
 	ld l, a
@@ -6910,9 +6985,13 @@ AnticipationAbility:
 	cp 10 + 1
 	jr nc, .shudder
 .next
+	pop bc
 	pop hl
-	jr .scan
+	dec c
+	jr nz, .scan
+	jr .no_shudder
 .shudder
+	pop bc
 	pop hl
 	pop af
 	ldh [rSVBK], a
