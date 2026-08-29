@@ -2,6 +2,10 @@ IndigoPlayerPalette:
 	RGB 25, 18, 12
 	RGB 15, 07, 26
 
+MintPlayerPalette:
+	RGB 30, 20, 17 ; skin
+	RGB 03, 15, 30 ; blue (for a mint-green Mint, use RGB 10, 26, 19)
+
 TrainerPalettes:
 ; entries correspond to trainer classes
 

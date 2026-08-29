@@ -207,10 +207,13 @@ gfx/player/indigo.2bpp: rgbgfx += -h
 gfx/player/indigo_back.2bpp: rgbgfx += -h
 gfx/player/lyra.2bpp: rgbgfx += -h
 gfx/player/lyra_back.2bpp: rgbgfx += -h
+gfx/player/mint.2bpp: rgbgfx += -h
+gfx/player/mintb.2bpp: rgbgfx += -h
 
 gfx/trainer_card/gold_card.2bpp: rgbgfx += -h
 gfx/trainer_card/indigo_card.2bpp: rgbgfx += -h
 gfx/trainer_card/lyra_card.2bpp: rgbgfx += -h
+gfx/trainer_card/mint_card.2bpp: rgbgfx += -h
 gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 gfx/trainer_card/kanto_leaders.2bpp: tools/gfx += --trim-whitespace
 

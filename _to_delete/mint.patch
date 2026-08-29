@@ -1,0 +1,591 @@
+diff --git a/Makefile b/Makefile
+index 8f9a5da..2219294 100644
+--- a/Makefile
++++ b/Makefile
+@@ -207,10 +207,13 @@ gfx/player/indigo.2bpp: rgbgfx += -h
+ gfx/player/indigo_back.2bpp: rgbgfx += -h
+ gfx/player/lyra.2bpp: rgbgfx += -h
+ gfx/player/lyra_back.2bpp: rgbgfx += -h
++gfx/player/mint.2bpp: rgbgfx += -h
++gfx/player/mintb.2bpp: rgbgfx += -h
+ 
+ gfx/trainer_card/gold_card.2bpp: rgbgfx += -h
+ gfx/trainer_card/indigo_card.2bpp: rgbgfx += -h
+ gfx/trainer_card/lyra_card.2bpp: rgbgfx += -h
++gfx/trainer_card/mint_card.2bpp: rgbgfx += -h
+ gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
+ gfx/trainer_card/kanto_leaders.2bpp: tools/gfx += --trim-whitespace
+ 
+diff --git a/constants/wram_constants.asm b/constants/wram_constants.asm
+index eddeb8c..4e50b1e 100644
+--- a/constants/wram_constants.asm
++++ b/constants/wram_constants.asm
+@@ -158,6 +158,10 @@ PLAYERSPRITESETUP_RESET_ACTION_F    EQU 7
+ ; wPlayerGender:: ; d472
+ PLAYERGENDER_FEMALE_F EQU 0
+ PLAYERGENDER_INDIGO EQU 2
++; Mint is 3, so bit 0 is set: every generic "bit PLAYERGENDER_FEMALE_F"
++; check treats her as female, and only the explicit "cp PLAYERGENDER_MINT"
++; checks give her her own graphics and palette.
++PLAYERGENDER_MINT EQU 3
+ 
+ ; wMapStatus:: ; d432
+ 	const_def
+diff --git a/data/player_names.asm b/data/player_names.asm
+index 92caee5..46c1673 100644
+--- a/data/player_names.asm
++++ b/data/player_names.asm
+@@ -36,6 +36,25 @@ IndigoPlayerNameArray:
+ 	db 2 ; displacement
+ 	db " NAME @" ; title
+ 
++MintNameMenuHeader:
++	db MENU_BACKUP_TILES ; flags
++	menu_coords 0, 0, 10, TEXTBOX_Y - 1
++	dw .MintNames
++	db 1 ; ????
++	db 0 ; default option
++
++.MintNames:
++	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
++	db 5 ; items
++	db "NEW NAME@"
++MintPlayerNameArray:
++	db "MINT@"
++	db "SAGE@"
++	db "IVY@"
++	db "JADE@"
++	db 2 ; displacement
++	db " NAME @" ; title
++
+ LyraNameMenuHeader:
+ 	db MENU_BACKUP_TILES ; flags
+ 	menu_coords 0, 0, 10, TEXTBOX_Y - 1
+diff --git a/data/trainers/palettes.asm b/data/trainers/palettes.asm
+index 2194b9e..e65d0c5 100644
+--- a/data/trainers/palettes.asm
++++ b/data/trainers/palettes.asm
+@@ -2,6 +2,10 @@ IndigoPlayerPalette:
+ 	RGB 25, 18, 12
+ 	RGB 15, 07, 26
+ 
++MintPlayerPalette:
++	RGB 30, 20, 17 ; skin
++	RGB 03, 15, 30 ; blue (for a mint-green Mint, use RGB 10, 26, 19)
++
+ TrainerPalettes:
+ ; entries correspond to trainer classes
+ 
+diff --git a/engine/battle/core.asm b/engine/battle/core.asm
+index ed12fec..708e987 100644
+--- a/engine/battle/core.asm
++++ b/engine/battle/core.asm
+@@ -9399,6 +9399,8 @@ GetTrainerBackpic:
+ 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
+ 	jr nz, .Gold
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .Mint
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .Indigo
+ 	bit PLAYERGENDER_FEMALE_F, a
+@@ -9412,6 +9414,10 @@ GetTrainerBackpic:
+ 	farcall GetIndigoBackpic
+ 	ret
+ 
++.Mint:
++	farcall GetMintBackpic
++	ret
++
+ .Gold:
+ ; It's a boy.
+ 	ld b, BANK(GoldBackpic)
+diff --git a/engine/gfx/cgb_layouts.asm b/engine/gfx/cgb_layouts.asm
+index 7b334d1..4695ef3 100644
+--- a/engine/gfx/cgb_layouts.asm
++++ b/engine/gfx/cgb_layouts.asm
+@@ -648,6 +648,11 @@ _CGB_UnownPuzzle:
+ _CGB_TrainerCard:
+ 	ld de, wBGPals1
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .check_indigo_palette
++	ld hl, MintPlayerPalette
++	jr .got_player_palette
++.check_indigo_palette
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .gold_palette
+ 	ld hl, IndigoPlayerPalette
+@@ -702,13 +707,15 @@ _CGB_TrainerCard:
+ 	hlcoord 14, 1, wAttrMap
+ 	lb bc, 7, 5
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .pic_pal_player
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .pic_pal_player
+ 	bit PLAYERGENDER_FEMALE_F, a
+ 	ld a, $1 ; lyra
+ 	jr nz, .got_pic_pal
+ .pic_pal_player
+-	xor a ; gold/indigo
++	xor a ; gold/indigo/mint
+ .got_pic_pal
+ 	call FillBoxCGB
+ 	; top-right corner still uses the border's palette
+@@ -773,6 +780,11 @@ _CGB_TrainerCardKanto:
+ ; Kanto badges page (Polished Crystal style)
+ 	ld de, wBGPals1
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .check_indigo_palette
++	ld hl, MintPlayerPalette
++	jr .got_player_palette
++.check_indigo_palette
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .gold_palette
+ 	ld hl, IndigoPlayerPalette
+@@ -827,13 +839,15 @@ _CGB_TrainerCardKanto:
+ 	hlcoord 14, 1, wAttrMap
+ 	lb bc, 7, 5
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .pic_pal_player
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .pic_pal_player
+ 	bit PLAYERGENDER_FEMALE_F, a
+ 	ld a, $1 ; lyra
+ 	jr nz, .got_pic_pal
+ .pic_pal_player
+-	xor a ; gold/indigo
++	xor a ; gold/indigo/mint
+ .got_pic_pal
+ 	call FillBoxCGB
+ 	; Lt.Surge (shares Erika's palette)
+diff --git a/engine/gfx/color.asm b/engine/gfx/color.asm
+index 3a69171..3b91f77 100644
+--- a/engine/gfx/color.asm
++++ b/engine/gfx/color.asm
+@@ -828,6 +828,8 @@ GetPlayerOrMonPalettePointer:
+ 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
+ 	jr nz, .male
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .mint
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .indigo
+ 	and a
+@@ -844,6 +846,10 @@ GetPlayerOrMonPalettePointer:
+ 	ld hl, IndigoPlayerPalette
+ 	ret
+ 
++.mint
++	ld hl, MintPlayerPalette
++	ret
++
+ GetFrontpicPalettePointer:
+ 	and a
+ 	jp nz, GetMonNormalOrShinyPalettePointer
+diff --git a/engine/gfx/player_gfx.asm b/engine/gfx/player_gfx.asm
+index 41143c7..a5ed535 100644
+--- a/engine/gfx/player_gfx.asm
++++ b/engine/gfx/player_gfx.asm
+@@ -46,6 +46,11 @@ MovePlayerPic:
+ ShowPlayerNamingChoices:
+ 	ld hl, GoldNameMenuHeader
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigo
++	ld hl, MintNameMenuHeader
++	jr .GotGender
++.CheckIndigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemale
+ 	ld hl, IndigoNameMenuHeader
+@@ -73,6 +78,12 @@ GetPlayerIcon:
+ 	ld b, BANK(GoldSpriteGFX)
+ 
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigo
++	ld de, MintSpriteGFX
++	ld b, BANK(MintSpriteGFX)
++	jr .done
++.CheckIndigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemale
+ 	ld de, IndigoSpriteGFX
+@@ -91,19 +102,28 @@ GetPlayerIcon:
+ 
+ GetCardPic:
+ 	ld hl, GoldCardPic
++	ld b, BANK(GoldCardPic)
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigo
++	ld hl, MintCardPic
++	ld b, BANK(MintCardPic)
++	jr .GotClass
++.CheckIndigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemale
+ 	ld hl, IndigoCardPic
++	ld b, BANK(IndigoCardPic)
+ 	jr .GotClass
+ .CheckFemale
+ 	bit PLAYERGENDER_FEMALE_F, a
+ 	jr z, .GotClass
+ 	ld hl, LyraCardPic
++	ld b, BANK(LyraCardPic)
+ .GotClass:
++	ld a, b ; bank of the card pic (must be set before bc is clobbered)
+ 	ld de, vTiles2 tile $00
+ 	ld bc, $23 tiles
+-	ld a, BANK(GoldCardPic) ; aka BANK(LyraCardPic)
+ 	call FarCopyBytes
+ 	ld hl, CardGFX
+ 	ld de, vTiles2 tile $23
+@@ -126,6 +146,8 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
+ 
+ GetPlayerBackpic:
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jp z, GetMintBackpic
+ 	cp PLAYERGENDER_INDIGO
+ 	jp z, GetIndigoBackpic
+ 	bit PLAYERGENDER_FEMALE_F, a
+@@ -146,6 +168,8 @@ HOF_LoadTrainerFrontpic:
+ 	ldh [hBGMapMode], a
+ 	ld e, 0
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .GotClass
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .GotClass
+ 	bit PLAYERGENDER_FEMALE_F, a
+@@ -156,7 +180,14 @@ HOF_LoadTrainerFrontpic:
+ 	ld a, e
+ 	ld [wTrainerClass], a
+ 	ld de, GoldPic
++	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigoPic
++	ld de, MintPic
++	ld b, BANK(MintPic)
++	jr .GotPic
++.CheckIndigoPic
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemalePic
+ 	ld de, IndigoPic
+@@ -168,7 +199,6 @@ HOF_LoadTrainerFrontpic:
+ 
+ .GotPic:
+ 	ld hl, vTiles2
+-	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
+ 	ld c, 7 * 7
+ 	call Get2bpp
+ 	call WaitBGMap
+@@ -182,6 +212,8 @@ DrawIntroPlayerPic:
+ ; Get class
+ 	ld e, GOLD
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .GotClass
+ 	cp PLAYERGENDER_INDIGO
+ 	jr z, .GotClass
+ 	bit PLAYERGENDER_FEMALE_F, a
+@@ -193,7 +225,14 @@ DrawIntroPlayerPic:
+ 
+ ; Load pic
+ 	ld de, GoldPic
++	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigoPic
++	ld de, MintPic
++	ld b, BANK(MintPic)
++	jr .GotPic
++.CheckIndigoPic
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemalePic
+ 	ld de, IndigoPic
+@@ -204,7 +243,6 @@ DrawIntroPlayerPic:
+ 	ld de, LyraPic
+ .GotPic:
+ 	ld hl, vTiles2
+-	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
+ 	ld c, 7 * 7 ; dimensions
+ 	call Get2bpp
+ 
+@@ -225,6 +263,12 @@ INCBIN "gfx/player/lyra.2bpp"
+ IndigoPic:
+ INCBIN "gfx/player/indigo.2bpp"
+ 
++GetMintBackpic:
++; Mint's backpic is uncompressed.
++	ld de, MintBackpic
++	lb bc, BANK(MintBackpic), 7 * 7 ; dimensions
++	jr GetUncompressedPlayerBackpic
++
+ GetLyraBackpic:
+ ; Lyra's backpic is uncompressed.
+ 	ld de, LyraBackpic
+@@ -241,5 +285,3 @@ GetUncompressedPlayerBackpic:
+ 	call Get2bpp
+ 	ret
+ 
+-LyraBackpic:
+-INCBIN "gfx/player/lyra_back.2bpp"
+diff --git a/engine/menus/init_gender.asm b/engine/menus/init_gender.asm
+index 346665a..fb548b1 100644
+--- a/engine/menus/init_gender.asm
++++ b/engine/menus/init_gender.asm
+@@ -36,9 +36,14 @@ InitGender:
+ 	call CloseWindow
+ 	ld a, [wMenuCursorY]
+ 	dec a
+-	jr z, .got_choice
++	jr z, .got_choice ; Gold
+ 	cp 1
+-	jr nz, .girl
++	jr z, .indigo
++	cp 2
++	jr z, .girl
++	ld a, PLAYERGENDER_MINT
++	jr .got_choice
++.indigo
+ 	ld a, PLAYERGENDER_INDIGO
+ 	jr .got_choice
+ .girl
+@@ -51,16 +56,17 @@ InitGender:
+ 
+ .MenuHeader:
+ 	db MENU_BACKUP_TILES ; flags
+-	menu_coords 5, 4, 14, 11
++	menu_coords 5, 2, 14, 11
+ 	dw .MenuData
+ 	db 1 ; default option
+ 
+ .MenuData:
+ 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+-	db 3 ; items
++	db 4 ; items
+ 	db "Gold@"
+ 	db "Indigo@"
+ 	db "Lyra@"
++	db "Mint@"
+ 
+ TextJump_AreYouABoyOrAreYouAGirl:
+ 	; Which trainer are you?
+diff --git a/engine/menus/intro_menu.asm b/engine/menus/intro_menu.asm
+index 60c8056..b6d842a 100644
+--- a/engine/menus/intro_menu.asm
++++ b/engine/menus/intro_menu.asm
+@@ -774,6 +774,11 @@ NamePlayer:
+ 	ld hl, wPlayerName
+ 	ld de, .Gold
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigo
++	ld de, .Mint
++	jr .Male
++.CheckIndigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemale
+ 	ld de, .Indigo
+@@ -792,6 +797,8 @@ NamePlayer:
+ 	db "LYRA@@@@@@@"
+ .Indigo:
+ 	db "INDIGO@@@@@"
++.Mint:
++	db "MINT@@@@@@@"
+ 
+ Unreferenced_Function60e9:
+ 	call LoadMenuHeader
+@@ -946,6 +953,11 @@ Intro_PlacePlayerSprite:
+ 
+ 	ld b, PAL_OW_RED
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .CheckIndigo
++	ld b, PAL_OW_BLUE
++	jr .male
++.CheckIndigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .CheckFemale
+ 	ld b, PAL_OW_PURPLE
+diff --git a/engine/overworld/overworld.asm b/engine/overworld/overworld.asm
+index 163b519..d405aa5 100644
+--- a/engine/overworld/overworld.asm
++++ b/engine/overworld/overworld.asm
+@@ -225,6 +225,8 @@ GetSprite:
+ GetIndigoPlayerSprite:
+ 	ld d, a
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jp z, GetMintPlayerSprite
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .not_indigo
+ 	ld a, d
+@@ -268,6 +270,49 @@ GetIndigoPlayerSprite:
+ 	scf
+ 	ret
+ 
++GetMintPlayerSprite:
++; Mint counts as female, so she walks in off LyraStateSprites; swap in her
++; own graphics for each of Lyra's player sprites. d holds the sprite id.
++	ld a, d
++	cp SPRITE_LYRA
++	jr z, .normal
++	cp SPRITE_LYRA_BIKE
++	jr z, .bike
++	cp SPRITE_LYRA_SURF
++	jr z, .surf
++	cp SPRITE_LYRA_SKATEBOARD
++	jr z, .skateboard
++
++	ld a, d
++	and a
++	ret
++
++.normal
++	ld de, MintSpriteGFX
++	ld b, BANK(MintSpriteGFX)
++	jr .done
++
++.bike
++	ld de, MintBikeSpriteGFX
++	ld b, BANK(MintBikeSpriteGFX)
++	jr .done
++
++.surf
++	ld de, MintSurfSpriteGFX
++	ld b, BANK(MintSurfSpriteGFX)
++	jr .done
++
++.skateboard
++	ld de, MintSkateboardSpriteGFX
++	ld b, BANK(MintSkateboardSpriteGFX)
++
++.done
++	ld c, 12
++	ld h, b
++	ld l, WALKING_SPRITE
++	scf
++	ret
++
+ GetMonSprite:
+ ; Return carry if a monster sprite was loaded.
+ 
+@@ -374,6 +419,8 @@ _GetSpritePalette::
+ 	; bounds and painted the Olivine Gym rival barf green.
+ 	ld b, a
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr z, .check_mint
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .not_indigo
+ 	ld a, c
+@@ -390,6 +437,21 @@ _GetSpritePalette::
+ 	ld c, PAL_OW_PURPLE
+ 	ret
+ 
++.check_mint
++	ld a, c
++	cp SPRITE_LYRA
++	jr z, .mint
++	cp SPRITE_LYRA_BIKE
++	jr z, .mint
++	cp SPRITE_LYRA_SURF
++	jr z, .mint
++	cp SPRITE_LYRA_SKATEBOARD
++	jr nz, .not_indigo
++
++.mint
++	ld c, PAL_OW_BLUE
++	ret
++
+ .not_indigo
+ 	ld a, b ; the resolved sprite id, NOT c (see above)
+ 
+diff --git a/engine/overworld/player_object.asm b/engine/overworld/player_object.asm
+index 02d0bdf..2cbc25b 100644
+--- a/engine/overworld/player_object.asm
++++ b/engine/overworld/player_object.asm
+@@ -31,6 +31,11 @@ SpawnPlayer:
+ 	add hl, bc
+ 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .check_indigo
++	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
++	jr .ok
++.check_indigo
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .check_female
+ 	ln e, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT
+diff --git a/engine/pokegear/pokegear.asm b/engine/pokegear/pokegear.asm
+index ef6860f..b545fc8 100644
+--- a/engine/pokegear/pokegear.asm
++++ b/engine/pokegear/pokegear.asm
+@@ -2632,6 +2632,11 @@ Pokedex_GetArea:
+ 	push bc
+ 	ld c, PAL_OW_RED
+ 	ld a, [wPlayerGender]
++	cp PLAYERGENDER_MINT
++	jr nz, .check_indigo_player_oam
++	ld c, PAL_OW_BLUE
++	jr .got_player_oam_palette
++.check_indigo_player_oam
+ 	cp PLAYERGENDER_INDIGO
+ 	jr nz, .check_female_player_oam
+ 	ld c, PAL_OW_PURPLE
+diff --git a/gfx/sprites.asm b/gfx/sprites.asm
+index 4bcae64..649c16f 100644
+--- a/gfx/sprites.asm
++++ b/gfx/sprites.asm
+@@ -155,6 +155,14 @@ IndigoSurfSpriteGFX::          INCBIN "gfx/sprites/indigo_surf.2bpp"
+ IndigoSkateboardSpriteGFX::    INCBIN "gfx/sprites/indigo_skateboard.2bpp"
+ 
+ 
++SECTION "Mint Sprites", ROMX
++
++MintSpriteGFX::                INCBIN "gfx/sprites/mint.2bpp"
++MintBikeSpriteGFX::            INCBIN "gfx/sprites/mint_bike.2bpp"
++MintSurfSpriteGFX::            INCBIN "gfx/sprites/mint_surf.2bpp"
++MintSkateboardSpriteGFX::      INCBIN "gfx/sprites/mint_skateboard.2bpp"
++
++
+ SECTION "Sprites 4", ROMX
+ 
+ BattleGirlSpriteGFX::          INCBIN "gfx/sprites/battle_girl.2bpp"
+diff --git a/main.asm b/main.asm
+index b2b8f74..6b962d9 100644
+--- a/main.asm
++++ b/main.asm
+@@ -334,6 +334,24 @@ IndigoBackpic:
+ INCBIN "gfx/player/indigo_back.2bpp"
+ 
+ 
++SECTION "Lyra Player Backpic", ROMX
++
++LyraBackpic:
++INCBIN "gfx/player/lyra_back.2bpp"
++
++
++SECTION "Mint Player Graphics", ROMX
++
++MintPic:
++INCBIN "gfx/player/mint.2bpp"
++
++MintBackpic:
++INCBIN "gfx/player/mintb.2bpp"
++
++MintCardPic:
++INCBIN "gfx/trainer_card/mint_card.2bpp"
++
++
+ SECTION "bank23", ROMX
+ 
+ INCLUDE "engine/tilesets/timeofday_pals.asm"
