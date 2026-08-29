@@ -33,6 +33,7 @@ CherrygroveCityGuideGent:
 .Yes:
 	writetext GuideGentTourText1
 	waitbutton
+.StartTour:
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow CHERRYGROVECITY_GRAMPS, PLAYER
@@ -93,10 +94,9 @@ CherrygroveCityGuideGent:
 	db "MAP CARD@"
 
 .No:
-	writetext GuideGentNoText
+	writetext GuideGentInsistText
 	waitbutton
-	closetext
-	end
+	sjump .StartTour
 
 CherrygroveSilverSceneSouth:
 	moveobject CHERRYGROVECITY_SILVER, 39, 7
@@ -426,12 +426,15 @@ GuideGentPokegearText:
 	line "your journey!"
 	done
 
-GuideGentNoText:
-	text "Oh… It's something"
-	line "I enjoy doing…"
+GuideGentInsistText:
+	text "Nonsense! Come"
+	line "along!"
 
-	para "Fine. Come see me"
-	line "when you like."
+	para "I won't take no"
+	line "for an answer!"
+
+	para "It'll only take a"
+	line "minute. Follow me!"
 	done
 
 CherrygroveRivalText_Seen:
