@@ -25,6 +25,7 @@ CherrygroveCity_MapScripts:
 
 CherrygroveCityGuideGent:
 	faceplayer
+.Ask:
 	opentext
 	writetext GuideGentIntroText
 	yesorno
@@ -98,6 +99,18 @@ CherrygroveCityGuideGent:
 	waitbutton
 	sjump .StartTour
 
+CherrygroveGuideGentApproach:
+	checkflag ENGINE_MAP_CARD
+	iftrue .Done
+	checkevent EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	iftrue .Done
+	turnobject CHERRYGROVECITY_GRAMPS, DOWN
+	turnobject PLAYER, UP
+	sjump CherrygroveCityGuideGent.Ask
+
+.Done:
+	end
+
 CherrygroveSilverSceneSouth:
 	moveobject CHERRYGROVECITY_SILVER, 39, 7
 CherrygroveSilverSceneNorth:
@@ -169,7 +182,15 @@ CherrygroveSilverSceneNorth:
 	closetext
 .FinishRival:
 	playsound SFX_TACKLE
+	readvar VAR_YCOORD
+	ifequal 7, .ShoveUp
 	applymovement PLAYER, CherrygroveCity_RivalPushesYouOutOfTheWay
+	sjump .RivalLeaves
+
+.ShoveUp:
+	applymovement PLAYER, CherrygroveCity_RivalShovesYouAside
+
+.RivalLeaves:
 	turnobject PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
@@ -240,6 +261,7 @@ CherrygroveCityMartSign:
 	jumpstd martsign
 
 GuideGentMovement1:
+	step LEFT
 	step LEFT
 	step LEFT
 	step UP
@@ -313,12 +335,16 @@ CherrygroveCity_RivalWalksToYou:
 	step LEFT
 	step LEFT
 	step LEFT
-	step LEFT
 	step_end
 
 CherrygroveCity_RivalPushesYouOutOfTheWay:
 	big_step DOWN
 	turn_head UP
+	step_end
+
+CherrygroveCity_RivalShovesYouAside:
+	big_step UP
+	turn_head DOWN
 	step_end
 
 CherrygroveCity_UnusedMovementData:
@@ -561,7 +587,9 @@ CherrygroveCity_MapEvents:
 	warp_event 25,  9, GUIDE_GENTS_HOUSE, 1
 	warp_event 31, 11, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, 1
 
-	db 2 ; coord events
+	db 4 ; coord events
+	coord_event 33,  7, SCENE_CHERRYGROVECITY_NOTHING, CherrygroveGuideGentApproach
+	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveGuideGentApproach
 	coord_event 34,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneNorth
 	coord_event 34,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneSouth
 
