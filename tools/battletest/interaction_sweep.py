@@ -30,7 +30,9 @@ def generate_interaction_tests(count=128, constants=None):
     rng = random.Random(0xC11A0)
     last_species = con.num_pokemon or max(con.species_by_index)
     species = [con.species_by_index[index] for index in range(1, last_species + 1)]
-    last_move = con.moves["LUMINA_CRASH"]
+    last_move = con.num_attacks
+    if last_move is None:
+        raise RuntimeError("NUM_ATTACKS was not parsed from move constants")
     moves = [con.moves_by_index[index] for index in range(1, last_move + 1)]
     abilities = [
         name

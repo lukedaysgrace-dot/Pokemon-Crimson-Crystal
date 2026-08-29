@@ -605,10 +605,10 @@ DetermineMoveOrder:
 .player_2b
 	call BattleRandom
 	cp e
-	jp c, .player_first
+	jr c, .player_first
 	call BattleRandom
 	cp c
-	jp c, .enemy_first
+	jr c, .enemy_first
 	jr .speed_check
 
 .speed_check
@@ -623,13 +623,13 @@ DetermineMoveOrder:
 	jr z, .player_2c
 	call BattleRandom
 	cp 50 percent + 1
-	jp c, .player_first
-	jp .enemy_first
+	jr c, .player_first
+	jr .enemy_first
 
 .player_2c
 	call BattleRandom
 	cp 50 percent + 1
-	jp c, .enemy_first
+	jr c, .enemy_first
 .player_first
 	scf
 	ret
@@ -701,7 +701,7 @@ IF DEF(DEBUG_BATTLE)
 	farcall DebugChoosePlayerMove
 	jp c, .reset_rage
 	jp nz, .reset_bide
-	jp .encored
+	jr .encored
 .no_debug_auto
 ENDC
 	ld a, [wBattlePlayerAction]
