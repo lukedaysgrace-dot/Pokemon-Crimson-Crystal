@@ -36,9 +36,14 @@ InitGender:
 	call CloseWindow
 	ld a, [wMenuCursorY]
 	dec a
-	jr z, .got_choice
+	jr z, .got_choice ; Gold
 	cp 1
-	jr nz, .girl
+	jr z, .indigo
+	cp 2
+	jr z, .girl
+	ld a, PLAYERGENDER_MINT
+	jr .got_choice
+.indigo
 	ld a, PLAYERGENDER_INDIGO
 	jr .got_choice
 .girl
@@ -51,16 +56,17 @@ InitGender:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 4, 14, 11
+	menu_coords 5, 2, 14, 11
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 3 ; items
+	db 4 ; items
 	db "Gold@"
 	db "Indigo@"
 	db "Lyra@"
+	db "Mint@"
 
 TextJump_AreYouABoyOrAreYouAGirl:
 	; Which trainer are you?

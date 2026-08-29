@@ -158,6 +158,10 @@ PLAYERSPRITESETUP_RESET_ACTION_F    EQU 7
 ; wPlayerGender:: ; d472
 PLAYERGENDER_FEMALE_F EQU 0
 PLAYERGENDER_INDIGO EQU 2
+; Mint is 3, so bit 0 is set: every generic "bit PLAYERGENDER_FEMALE_F"
+; check treats her as female, and only the explicit "cp PLAYERGENDER_MINT"
+; checks give her her own graphics and palette.
+PLAYERGENDER_MINT EQU 3
 
 ; wMapStatus:: ; d432
 	const_def

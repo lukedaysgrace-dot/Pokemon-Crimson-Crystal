@@ -9399,6 +9399,8 @@ GetTrainerBackpic:
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .Gold
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .Mint
 	cp PLAYERGENDER_INDIGO
 	jr z, .Indigo
 	bit PLAYERGENDER_FEMALE_F, a
@@ -9410,6 +9412,10 @@ GetTrainerBackpic:
 
 .Indigo:
 	farcall GetIndigoBackpic
+	ret
+
+.Mint:
+	farcall GetMintBackpic
 	ret
 
 .Gold:

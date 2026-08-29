@@ -648,6 +648,11 @@ _CGB_UnownPuzzle:
 _CGB_TrainerCard:
 	ld de, wBGPals1
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .check_indigo_palette
+	ld hl, MintPlayerPalette
+	jr .got_player_palette
+.check_indigo_palette
 	cp PLAYERGENDER_INDIGO
 	jr nz, .gold_palette
 	ld hl, IndigoPlayerPalette
@@ -702,13 +707,15 @@ _CGB_TrainerCard:
 	hlcoord 14, 1, wAttrMap
 	lb bc, 7, 5
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .pic_pal_player
 	cp PLAYERGENDER_INDIGO
 	jr z, .pic_pal_player
 	bit PLAYERGENDER_FEMALE_F, a
 	ld a, $1 ; lyra
 	jr nz, .got_pic_pal
 .pic_pal_player
-	xor a ; gold/indigo
+	xor a ; gold/indigo/mint
 .got_pic_pal
 	call FillBoxCGB
 	; top-right corner still uses the border's palette
@@ -773,6 +780,11 @@ _CGB_TrainerCardKanto:
 ; Kanto badges page (Polished Crystal style)
 	ld de, wBGPals1
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .check_indigo_palette
+	ld hl, MintPlayerPalette
+	jr .got_player_palette
+.check_indigo_palette
 	cp PLAYERGENDER_INDIGO
 	jr nz, .gold_palette
 	ld hl, IndigoPlayerPalette
@@ -827,13 +839,15 @@ _CGB_TrainerCardKanto:
 	hlcoord 14, 1, wAttrMap
 	lb bc, 7, 5
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .pic_pal_player
 	cp PLAYERGENDER_INDIGO
 	jr z, .pic_pal_player
 	bit PLAYERGENDER_FEMALE_F, a
 	ld a, $1 ; lyra
 	jr nz, .got_pic_pal
 .pic_pal_player
-	xor a ; gold/indigo
+	xor a ; gold/indigo/mint
 .got_pic_pal
 	call FillBoxCGB
 	; Lt.Surge (shares Erika's palette)

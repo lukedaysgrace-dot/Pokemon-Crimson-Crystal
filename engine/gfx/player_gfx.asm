@@ -46,6 +46,11 @@ MovePlayerPic:
 ShowPlayerNamingChoices:
 	ld hl, GoldNameMenuHeader
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .CheckIndigo
+	ld hl, MintNameMenuHeader
+	jr .GotGender
+.CheckIndigo
 	cp PLAYERGENDER_INDIGO
 	jr nz, .CheckFemale
 	ld hl, IndigoNameMenuHeader
@@ -73,6 +78,12 @@ GetPlayerIcon:
 	ld b, BANK(GoldSpriteGFX)
 
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .CheckIndigo
+	ld de, MintSpriteGFX
+	ld b, BANK(MintSpriteGFX)
+	jr .done
+.CheckIndigo
 	cp PLAYERGENDER_INDIGO
 	jr nz, .CheckFemale
 	ld de, IndigoSpriteGFX
@@ -91,19 +102,28 @@ GetPlayerIcon:
 
 GetCardPic:
 	ld hl, GoldCardPic
+	ld b, BANK(GoldCardPic)
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .CheckIndigo
+	ld hl, MintCardPic
+	ld b, BANK(MintCardPic)
+	jr .GotClass
+.CheckIndigo
 	cp PLAYERGENDER_INDIGO
 	jr nz, .CheckFemale
 	ld hl, IndigoCardPic
+	ld b, BANK(IndigoCardPic)
 	jr .GotClass
 .CheckFemale
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
 	ld hl, LyraCardPic
+	ld b, BANK(LyraCardPic)
 .GotClass:
+	ld a, b ; bank of the card pic (must be set before bc is clobbered)
 	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
-	ld a, BANK(GoldCardPic) ; aka BANK(LyraCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
 	ld de, vTiles2 tile $23
@@ -126,6 +146,8 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jp z, GetMintBackpic
 	cp PLAYERGENDER_INDIGO
 	jp z, GetIndigoBackpic
 	bit PLAYERGENDER_FEMALE_F, a
@@ -146,6 +168,8 @@ HOF_LoadTrainerFrontpic:
 	ldh [hBGMapMode], a
 	ld e, 0
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .GotClass
 	cp PLAYERGENDER_INDIGO
 	jr z, .GotClass
 	bit PLAYERGENDER_FEMALE_F, a
@@ -156,7 +180,14 @@ HOF_LoadTrainerFrontpic:
 	ld a, e
 	ld [wTrainerClass], a
 	ld de, GoldPic
+	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .CheckIndigoPic
+	ld de, MintPic
+	ld b, BANK(MintPic)
+	jr .GotPic
+.CheckIndigoPic
 	cp PLAYERGENDER_INDIGO
 	jr nz, .CheckFemalePic
 	ld de, IndigoPic
@@ -168,7 +199,6 @@ HOF_LoadTrainerFrontpic:
 
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld c, 7 * 7
 	call Get2bpp
 	call WaitBGMap
@@ -182,6 +212,8 @@ DrawIntroPlayerPic:
 ; Get class
 	ld e, GOLD
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .GotClass
 	cp PLAYERGENDER_INDIGO
 	jr z, .GotClass
 	bit PLAYERGENDER_FEMALE_F, a
@@ -193,7 +225,14 @@ DrawIntroPlayerPic:
 
 ; Load pic
 	ld de, GoldPic
+	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .CheckIndigoPic
+	ld de, MintPic
+	ld b, BANK(MintPic)
+	jr .GotPic
+.CheckIndigoPic
 	cp PLAYERGENDER_INDIGO
 	jr nz, .CheckFemalePic
 	ld de, IndigoPic
@@ -204,7 +243,6 @@ DrawIntroPlayerPic:
 	ld de, LyraPic
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(GoldPic) ; aka BANK(LyraPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
@@ -225,6 +263,12 @@ INCBIN "gfx/player/lyra.2bpp"
 IndigoPic:
 INCBIN "gfx/player/indigo.2bpp"
 
+GetMintBackpic:
+; Mint's backpic is uncompressed.
+	ld de, MintBackpic
+	lb bc, BANK(MintBackpic), 7 * 7 ; dimensions
+	jr GetUncompressedPlayerBackpic
+
 GetLyraBackpic:
 ; Lyra's backpic is uncompressed.
 	ld de, LyraBackpic
@@ -241,5 +285,3 @@ GetUncompressedPlayerBackpic:
 	call Get2bpp
 	ret
 
-LyraBackpic:
-INCBIN "gfx/player/lyra_back.2bpp"

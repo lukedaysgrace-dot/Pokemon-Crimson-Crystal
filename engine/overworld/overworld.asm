@@ -225,6 +225,8 @@ GetSprite:
 GetIndigoPlayerSprite:
 	ld d, a
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jp z, GetMintPlayerSprite
 	cp PLAYERGENDER_INDIGO
 	jr nz, .not_indigo
 	ld a, d
@@ -260,6 +262,49 @@ GetIndigoPlayerSprite:
 .skateboard
 	ld de, IndigoSkateboardSpriteGFX
 	ld b, BANK(IndigoSkateboardSpriteGFX)
+
+.done
+	ld c, 12
+	ld h, b
+	ld l, WALKING_SPRITE
+	scf
+	ret
+
+GetMintPlayerSprite:
+; Mint counts as female, so she walks in off LyraStateSprites; swap in her
+; own graphics for each of Lyra's player sprites. d holds the sprite id.
+	ld a, d
+	cp SPRITE_LYRA
+	jr z, .normal
+	cp SPRITE_LYRA_BIKE
+	jr z, .bike
+	cp SPRITE_LYRA_SURF
+	jr z, .surf
+	cp SPRITE_LYRA_SKATEBOARD
+	jr z, .skateboard
+
+	ld a, d
+	and a
+	ret
+
+.normal
+	ld de, MintSpriteGFX
+	ld b, BANK(MintSpriteGFX)
+	jr .done
+
+.bike
+	ld de, MintBikeSpriteGFX
+	ld b, BANK(MintBikeSpriteGFX)
+	jr .done
+
+.surf
+	ld de, MintSurfSpriteGFX
+	ld b, BANK(MintSurfSpriteGFX)
+	jr .done
+
+.skateboard
+	ld de, MintSkateboardSpriteGFX
+	ld b, BANK(MintSkateboardSpriteGFX)
 
 .done
 	ld c, 12
@@ -374,6 +419,8 @@ _GetSpritePalette::
 	; bounds and painted the Olivine Gym rival barf green.
 	ld b, a
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .check_mint
 	cp PLAYERGENDER_INDIGO
 	jr nz, .not_indigo
 	ld a, c
@@ -388,6 +435,21 @@ _GetSpritePalette::
 
 .indigo
 	ld c, PAL_OW_PURPLE
+	ret
+
+.check_mint
+	ld a, c
+	cp SPRITE_LYRA
+	jr z, .mint
+	cp SPRITE_LYRA_BIKE
+	jr z, .mint
+	cp SPRITE_LYRA_SURF
+	jr z, .mint
+	cp SPRITE_LYRA_SKATEBOARD
+	jr nz, .not_indigo
+
+.mint
+	ld c, PAL_OW_BLUE
 	ret
 
 .not_indigo
