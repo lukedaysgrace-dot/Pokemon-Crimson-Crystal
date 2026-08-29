@@ -828,6 +828,8 @@ GetPlayerOrMonPalettePointer:
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .male
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr z, .mint
 	cp PLAYERGENDER_INDIGO
 	jr z, .indigo
 	and a
@@ -842,6 +844,10 @@ GetPlayerOrMonPalettePointer:
 
 .indigo
 	ld hl, IndigoPlayerPalette
+	ret
+
+.mint
+	ld hl, MintPlayerPalette
 	ret
 
 GetFrontpicPalettePointer:

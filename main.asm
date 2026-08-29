@@ -334,6 +334,24 @@ IndigoBackpic:
 INCBIN "gfx/player/indigo_back.2bpp"
 
 
+SECTION "Lyra Player Backpic", ROMX
+
+LyraBackpic:
+INCBIN "gfx/player/lyra_back.2bpp"
+
+
+SECTION "Mint Player Graphics", ROMX
+
+MintPic:
+INCBIN "gfx/player/mint.2bpp"
+
+MintBackpic:
+INCBIN "gfx/player/mintb.2bpp"
+
+MintCardPic:
+INCBIN "gfx/trainer_card/mint_card.2bpp"
+
+
 SECTION "bank23", ROMX
 
 INCLUDE "engine/tilesets/timeofday_pals.asm"
