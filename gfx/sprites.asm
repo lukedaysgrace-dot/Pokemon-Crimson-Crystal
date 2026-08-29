@@ -155,6 +155,14 @@ IndigoSurfSpriteGFX::          INCBIN "gfx/sprites/indigo_surf.2bpp"
 IndigoSkateboardSpriteGFX::    INCBIN "gfx/sprites/indigo_skateboard.2bpp"
 
 
+SECTION "Mint Sprites", ROMX
+
+MintSpriteGFX::                INCBIN "gfx/sprites/mint.2bpp"
+MintBikeSpriteGFX::            INCBIN "gfx/sprites/mint_bike.2bpp"
+MintSurfSpriteGFX::            INCBIN "gfx/sprites/mint_surf.2bpp"
+MintSkateboardSpriteGFX::      INCBIN "gfx/sprites/mint_skateboard.2bpp"
+
+
 SECTION "Sprites 4", ROMX
 
 BattleGirlSpriteGFX::          INCBIN "gfx/sprites/battle_girl.2bpp"

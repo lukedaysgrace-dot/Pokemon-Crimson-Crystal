@@ -31,6 +31,11 @@ SpawnPlayer:
 	add hl, bc
 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .check_indigo
+	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
+	jr .ok
+.check_indigo
 	cp PLAYERGENDER_INDIGO
 	jr nz, .check_female
 	ln e, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT

@@ -2632,6 +2632,11 @@ Pokedex_GetArea:
 	push bc
 	ld c, PAL_OW_RED
 	ld a, [wPlayerGender]
+	cp PLAYERGENDER_MINT
+	jr nz, .check_indigo_player_oam
+	ld c, PAL_OW_BLUE
+	jr .got_player_oam_palette
+.check_indigo_player_oam
 	cp PLAYERGENDER_INDIGO
 	jr nz, .check_female_player_oam
 	ld c, PAL_OW_PURPLE
