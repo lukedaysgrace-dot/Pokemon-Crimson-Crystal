@@ -419,8 +419,13 @@ StealthRockEntryDamage:
 	jr z, .got_types
 	ld hl, wEnemyMonType1
 .got_types
-	ld a, ROCK
-	callfar CheckTypeMatchup
+	; callfar clobbers a and hl, so CheckTypeMatchup never saw its inputs
+	; and the scaling was dead (audit 2026-08-28 #3). Use the FarCall_de
+	; trampoline into CheckTypeMatchupFar (b = type, hl = types).
+	ld b, ROCK
+	ld a, BANK(CheckTypeMatchupFar)
+	ld de, CheckTypeMatchupFar
+	call FarCall_de
 
 	callfar GetEighthMaxHP
 	ld a, [wTypeMatchup]
@@ -1330,9 +1335,23 @@ BattleUTurn_Core:
 	farcall CheckMobileBattleError
 	ret c
 
-	ld hl, EnemySwitch
+	; Audit 2026-08-28 #2: this used to jump straight to EnemySwitch, which
+	; only loads the mon. Do the full send-out bookkeeping every other enemy
+	; entrance path does (EnemyPartyMonEntrance / AI_Switch / Baton Pass):
+	; pick the replacement fresh (never reuse a stale wEnemySwitchMonIndex,
+	; which could re-send the pivoting mon as itself), clear volatile
+	; status and stat stages, and run hazards + entry abilities.
+	; EnemySwitch_SetMode also avoids the Shift-mode prompt mid-script.
+	callfar AIPickPostKOSwitchIn
+	callfar NewEnemyMonStatus
+	callfar ResetEnemyStatLevels
+	callfar BreakAttraction
+	ld hl, EnemySwitch_SetMode
 	ld a, BANK("Battle Core")
 	rst FarCall
+	callfar ResetBattleParticipants
+	callfar SetEnemyTurn
+	callfar SpikesDamageAndEntryAbilities
 	ret
 
 BattleParalyze_Core:
@@ -1358,6 +1377,20 @@ BattleParalyze_Core:
 	jp StdBattleTextbox
 
 .no_item_protection
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	and a
+	jp nz, .failed
+	ld a, [wAttackMissed]
+	and a
+	jp nz, .failed
+	; Magic Bounce reflects a status move even from behind the bouncer's
+	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
+	farcall StatDropSubCheckExempt
+	jr nc, .no_bounce
+	farcall AbilityPreventsParalysis
+	jp c, .failed
+.no_bounce
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .dont_sample_failure
@@ -1379,13 +1412,6 @@ BattleParalyze_Core:
 	jp c, .failed
 
 .dont_sample_failure
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	and a
-	jp nz, .failed
-	ld a, [wAttackMissed]
-	and a
-	jp nz, .failed
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	; ability check (Limber)
@@ -2215,6 +2241,13 @@ UnawareStats_Player:
 	pop hl
 	ld a, 1 << SCREENS_LIGHT_SCREEN
 .rescreen
+	; On the unboosted (crit) branch the damage core deliberately drops
+	; the screen doubling; mirror that here (audit 2026-08-28 #16).
+	; de is free: both UnawareStats_* callers bracket us with push/pop de.
+	ld e, a
+	call CheckDamageStatsCritical
+	ret nc
+	ld a, e
 	call CheckDefScreenPierced
 	ret z
 	sla c
@@ -2294,6 +2327,13 @@ UnawareStats_Enemy:
 	pop hl
 	ld a, 1 << SCREENS_LIGHT_SCREEN
 .rescreen
+	; On the unboosted (crit) branch the damage core deliberately drops
+	; the screen doubling; mirror that here (audit 2026-08-28 #16).
+	; de is free: both UnawareStats_* callers bracket us with push/pop de.
+	ld e, a
+	call CheckDamageStatsCritical
+	ret nc
+	ld a, e
 	call CheckDefScreenPierced
 	ret z
 	sla c
@@ -2949,7 +2989,10 @@ ToxicRestorePlayer_Core::
 	jr ToxicClearPlayer_Core
 
 ToxicRestoreEnemy_Core::
-; Enemy-side mirror of ToxicRestorePlayer_Core.
+; Enemy-side mirror of ToxicRestorePlayer_Core. Must run with the incoming
+; mon already in wEnemyMon and wCurOTMon updated (called from
+; Function_SetEnemyMonAndSendOutAnimation since audit 2026-08-28 #7).
+; Also resets the per-mon Taunt and Yawn state for the incoming mon.
 	xor a
 	ld [wEnemyTauntCount], a
 	ld [wEnemyYawnCount], a

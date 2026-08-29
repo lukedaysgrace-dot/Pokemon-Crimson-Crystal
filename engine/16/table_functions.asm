@@ -75,7 +75,7 @@ ___move = 0
 		___conversion_bitmap_check_structs wOTPartyMon1Moves + ___move, PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
 		___conversion_bitmap_check_values .set_bit, wBufferMonMoves + ___move, wTempMonMoves + ___move, wContestMonMoves + ___move, \
 		                                            wBattleMonMoves + ___move, wEnemyMonMoves + ___move, wWildMonMoves + ___move, \
-		                                            wPlayerUsedMoves + ___move
+		                                            wPlayerUsedMoves + ___move, wOddEggMoves + ___move
 ___move = ___move + 1
 	endr
 	ld a, [wNamedObjectIndexBuffer] ;or any of its aliases...
@@ -84,7 +84,7 @@ ___move = ___move + 1
 	___conversion_bitmap_check_values .set_bit, wCurPlayerMove, wCurEnemyMove, wDisabledMove, wEnemyDisabledMove, wPlayerChoiceLockedMove, \
 	                                            wEnemyChoiceLockedMove, wLastPlayerMove, wLastEnemyMove, wLastPlayerCounterMove, wLastEnemyCounterMove, \
 	                                            wPlayerTrappingMove, wEnemyTrappingMove, wPlayerMoveStructAnimation, wEnemyMoveStructAnimation, \
-	                                            wPutativeTMHMMove
+	                                            wPutativeTMHMMove, wPlayerGigaHammerLock, wEnemyGigaHammerLock
 	pop af
 	ldh [rSVBK], a
 	; Stored (boxed) mons keep true 14-bit move indexes in SRAM and are not roots.

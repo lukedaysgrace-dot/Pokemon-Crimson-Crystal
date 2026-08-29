@@ -1,0 +1,1388 @@
+diff --git a/_ai_artifacts/reports/CODE_AUDIT_2026-08-28_FIXES.md b/_ai_artifacts/reports/CODE_AUDIT_2026-08-28_FIXES.md
+new file mode 100644
+index 0000000..7007da8
+--- /dev/null
++++ b/_ai_artifacts/reports/CODE_AUDIT_2026-08-28_FIXES.md
+@@ -0,0 +1,80 @@
++# Fix log for the 28 Aug 2026 code audit
++
++Companion to `CODE_AUDIT_2026-08-28.md`. Baseline: commit `3ca6ecd4`
++("code audit update"). Every finding below was fixed in source, the release
++and debug ROMs were rebuilt, and the battle-test harness was run: the full
++existing YAML suite (420 cases) plus `--all-moves --all-effects`, and a new
++file `tools/battletest/tests/54-audit-2026-08-28.yaml` (25 cases). All new
++cases pass on the fixed ROM; 18 of them fail on the baseline ROM (the rest
++are controls or guards for findings whose symptom the harness cannot see
++directly).
++
++One pre-existing failure is unrelated to this work and was already failing
++on the baseline: "Name rendering: Intimidate resistance identifies the
++blocking ability" (`43-name-rendering.yaml`) buffers OBLIVIOUS instead of
++OWN TEMPO. Left alone.
++
++## Applied
++
++| # | Fix | Where |
++|---|-----|-------|
++| 1 | Spite / Disable / Encore move scans bounded to `NUM_MOVES`, fail the move on overrun. Sketch and Mimic's backwards scans bounded too (Sleep Talk reach). | `move_effects/spite.asm`, `disable.asm`, `encore.asm`, `sketch.asm`, `mimic.asm` |
++| 2 | Enemy U-turn / Volt Switch / Flip Turn now does the full send-out: `AIPickPostKOSwitchIn` (fresh replacement pick, zeroes `wEnemySwitchMonIndex`), `NewEnemyMonStatus`, `ResetEnemyStatLevels`, `BreakAttraction`, `EnemySwitch_SetMode` (no Shift prompt), `ResetBattleParticipants`, `SetEnemyTurn` + `SpikesDamageAndEntryAbilities`. | `effect_commands_core.asm` `BattleUTurn_Core.enemy` |
++| 3 | Stealth Rock entry damage routes through `CheckTypeMatchupFar` via `FarCall_de` (b = ROCK, hl = types) so the 4x / 2x / ½ / ¼ scaling is live. | `effect_commands_core.asm` `StealthRockEntryDamage` |
++| 4 | `RunStatDropReaction` uses `CheckSelfInflictedStatDrop` (now exported) instead of a raw turn-keyed effect read. `EFFECT_CURSE` added to the self-drop list and Curse's Speed drop wrapped in a `savemiss`/`restoremiss` scope. Close Combat / Superpower scripts moved `restoremiss` after `flushstatmessages` so the scope is still open when the deferred drop message (and the Defiant check) runs. | `abilities_engine.asm`, `effect_commands.asm`, `curse.asm`, `data/moves/effects.asm` |
++| 5 | Disguise no longer arms its deferred bust for STATUS-category moves; `DisguisePresentation` only busts a Mimikyu whose disguise is still intact. | `abilities_engine.asm` |
++| 6 | `wPreStatScopeActive` cleared at the top of `DoMove` and in `EndMoveEffect`. | `effect_commands.asm` |
++| 7 | `ToxicRestoreEnemy_Core` (with its Taunt/Yawn clears) moved out of `NewEnemyMonStatus` into `Function_SetEnemyMonAndSendOutAnimation`, where the incoming mon is always loaded. | `core.asm`, `effect_commands_core.asm` |
++| 8 | Multi-hit loop stops when the attacker has fainted (contact recoil); "Hit N times!" counts the hits that landed. | `effect_commands.asm` `BattleCommand_EndLoop.in_loop` |
++| 9 | Heal Bell / Aromatherapy clears `SUBSTATUS_TOXIC`, the side's toxic counter and the whole toxic-slots byte. | `heal_bell.asm` |
++| 10 | `SafeCheckSafeguard_Core` inserted in `TryParalyze/Burn/PoisonContact/Toxic/Sleep/ConfuseOpponent` (covers Static, Flame Body, Poison Point, Effect Spore, Poison Touch, Synchronize, Magic Bounce reflections). Attraction (Cute Charm) deliberately not gated - Safeguard doesn't block infatuation. | `abilities_engine.asm` |
++| 11 | Sticky Web's Speed drop goes through `AbilityLowerOppStat` (ability-drop flag, no AI-miss roll, no stale effect byte, fell message + Defiant/Competitive). | `new_move_cores.asm` |
++| 12 | `BattleCommand_StatDown`'s bit-6 (ability/Contrary) branch lands on `.SelfInflicted`, skipping the redundant sub check that ate a Contrary holder's own raises behind its Substitute. Both bit-6 setters resolve the Substitute question themselves. | `effect_commands.asm` |
++| 13 | Anticipation's scan bounded to `NUM_MOVES`. | `abilities_engine.asm` |
++| 14 | Status moves (sleep, poison/Toxic, paralysis, burn, confusion) check Magic Bounce (`StatDropSubCheckExempt` + `AbilityPrevents*`) before the Substitute check and the AI 25% roll. | `effect_commands.asm`, `effect_commands_core.asm`, `new_move_cores.asm` |
++| 15 | Flash Fire's Fire-status special case skipped while the ability-proc guard bit (`wDisguiseBusted+1` bit 6) is set. | `abilities_engine.asm` |
++| 16 | Unaware's `.ReloadUnboostedDef` skips the screen re-doubling when `CheckDamageStatsCritical` says the unboosted (crit) branch is in use. | `effect_commands_core.asm` |
++| 17 | Struggle still runs `RunNullificationAbilities` (Disguise, Multiscale, item/ability modifiers), skipping only STAB and the type chart. | `effect_commands.asm` `BattleCommand_Stab` |
++| 18 | Mirror Move runs `AbilityConvertMoveType` (-ate abilities). | `mirror_move.asm` |
++| 19 | Enemy confusion self-hit clears `wCriticalHit` like the player path. | `effect_commands.asm` |
++| 20 | Rock Head no longer cancels Struggle recoil (Magic Guard still does). | `abilities_engine.asm` `BattleRecoil_Core` |
++| 21 | `kingsrock` and `flinchtarget` bail when the user has fainted. | `effect_commands.asm` |
++| 22 | Wild battles set `wEnemyFirstImpressionFresh` at battle start. | `core.asm` `DoBattle.wild` |
++| 25 | Parental Bond's second hit refreshes the HP-bar max with the defender's max HP. | `abilities_engine.asm` |
++| 26 | Damage cap test `or a` -> `or b`. | `effect_commands.asm` |
++| 27 | `wOddEggMoves` and both Giga Hammer locks added to the move-table GC roots. | `engine/16/table_functions.asm` |
++| 29 | The five `add 30` AI score bumps saturate at $ff. | `ai/scoring.asm` |
++| 31 | Move reorder in battle: real `wBattleMode` test, only mirrors into `wBattleMon` when the reordered mon is the active one, `MON_PP - MON_MOVES` / `wBattleMonPP - wBattleMonMoves` offsets instead of `$15` / `$20`. | `engine/pokemon/mon_menu.asm` |
++| 24 | Counter and Mirror Coat run `BattleCommand_CheckHit.Protect` first, so Protect / Detect / Baneful Bunker block them (with the normal "protecting itself" text). | `counter.asm`, `mirror_coat.asm` |
++
++## Not applied
++
++- **#23 weather text under Cloud Nine / Air Lock.** Implemented, then
++  backed out: the "Battle Core" bank is now full to within 5 bytes in the
++  debug build (the tester lives there), and this cosmetic item was the
++  cheapest thing to drop. Re-add when something else moves out of that
++  bank. (Same reason the defensive `wEnemySwitchMonIndex` clear in
++  `LoadEnemyMonToSwitchTo` was left out - the U-turn path now zeroes it via
++  `AIPickPostKOSwitchIn`, which is what matters.)
++- **#28 Mystery Gift trainer format** - link-only, per the standing
++  "no link play" call.
++- **#30 Pickpocket item-name buffering** - `StoleText` reads
++  `wStringBuffer1` directly (like Thief, which works); switching to
++  `AbilityBufferItemName` would also mean re-pointing the text. Harmless as
++  is.
++
++## Notes for next time
++
++- `engine/battle/core.asm` ("Battle Core") has ~5 bytes of headroom in the
++  debug build. The next change there will need to relocate something.
++- The #7 regression case passes on the baseline too; the harness setup
++  (`substatus: [TOXIC]` + `wEnemyToxicSlots`) apparently doesn't reproduce
++  the exact stale-read the audit describes, but the relocation is correct
++  by construction and the case guards it going forward.
++- The #1 case can't observe the out-of-bounds write directly (Spite's PP
++  outcome is the same either way); it guards the bounded scan's "fails
++  cleanly" contract.
++- Magic Bounce reflecting Will-O-Wisp onto a Flash Fire holder now burns
++  the holder instead of absorbing (the #15 guard bit is also set during a
++  bounce). Pre-existing in spirit - the bounced move type read was already
++  the bouncer's stale move - and very rare.
+diff --git a/data/moves/effects.asm b/data/moves/effects.asm
+index 69e5622..ac9fca2 100755
+--- a/data/moves/effects.asm
++++ b/data/moves/effects.asm
+@@ -2313,8 +2313,8 @@ CloseCombat:
+ 	switchturn
+ 	statdownmessage
+ 	switchturn
+-	restoremiss
+ 	flushstatmessages
++	restoremiss
+ 	checkfaint
+ 	buildopponentrage
+ 	kingsrock
+@@ -3012,8 +3012,8 @@ Superpower:
+ 	switchturn
+ 	statdownmessage
+ 	switchturn
+-	restoremiss
+ 	flushstatmessages
++	restoremiss
+ 	checkfaint
+ 	buildopponentrage
+ 	kingsrock
+diff --git a/engine/16/table_functions.asm b/engine/16/table_functions.asm
+index ca62fda..0328fb4 100755
+--- a/engine/16/table_functions.asm
++++ b/engine/16/table_functions.asm
+@@ -75,7 +75,7 @@ ___move = 0
+ 		___conversion_bitmap_check_structs wOTPartyMon1Moves + ___move, PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+ 		___conversion_bitmap_check_values .set_bit, wBufferMonMoves + ___move, wTempMonMoves + ___move, wContestMonMoves + ___move, \
+ 		                                            wBattleMonMoves + ___move, wEnemyMonMoves + ___move, wWildMonMoves + ___move, \
+-		                                            wPlayerUsedMoves + ___move
++		                                            wPlayerUsedMoves + ___move, wOddEggMoves + ___move
+ ___move = ___move + 1
+ 	endr
+ 	ld a, [wNamedObjectIndexBuffer] ;or any of its aliases...
+@@ -84,7 +84,7 @@ ___move = ___move + 1
+ 	___conversion_bitmap_check_values .set_bit, wCurPlayerMove, wCurEnemyMove, wDisabledMove, wEnemyDisabledMove, wPlayerChoiceLockedMove, \
+ 	                                            wEnemyChoiceLockedMove, wLastPlayerMove, wLastEnemyMove, wLastPlayerCounterMove, wLastEnemyCounterMove, \
+ 	                                            wPlayerTrappingMove, wEnemyTrappingMove, wPlayerMoveStructAnimation, wEnemyMoveStructAnimation, \
+-	                                            wPutativeTMHMMove
++	                                            wPutativeTMHMMove, wPlayerGigaHammerLock, wEnemyGigaHammerLock
+ 	pop af
+ 	ldh [rSVBK], a
+ 	; Stored (boxed) mons keep true 14-bit move indexes in SRAM and are not roots.
+diff --git a/engine/battle/abilities_engine.asm b/engine/battle/abilities_engine.asm
+index 8f221e9..1427926 100755
+--- a/engine/battle/abilities_engine.asm
++++ b/engine/battle/abilities_engine.asm
+@@ -969,6 +969,12 @@ AbilityPreventsBurn::
+ 	call GetOpponentIgnorableAbility
+ 	cp FLASH_FIRE
+ 	jr nz, .ordinary
++	; Ability-inflicted burns (Flame Body, Synchronize) have no move behind
++	; them: the turn-keyed move type read below would be the holder's own
++	; stale last move (audit 2026-08-28 #15). The guard bit marks those.
++	ld a, [wDisguiseBusted + 1]
++	bit 6, a
++	jr nz, .ordinary
+ 	ld a, BATTLE_VARS_MOVE_TYPE
+ 	call GetBattleVar
+ 	cp FIRE
+@@ -1415,7 +1421,20 @@ RunNullificationAbilities::
+ 	and a
+ 	ret z
+ 	cp DISGUISE
+-	jp z, DisguiseBlock
++	jr nz, .not_disguise
++	; Disguise only blocks damage. Status scripts run `stab` but never
++	; `checkfaint`, so arming the deferred bust from Toxic/Thunder Wave
++	; leaked the flag onto the next checkfaint-only move and busted the
++	; wrong Pokemon (audit 2026-08-28 #5).
++	push bc
++	call GetMoveCategory
++	cp CATEGORIZE_STATUS
++	pop bc
++	jp nz, DisguiseBlock
++.not_immune_done
++	and a ; nc: not nullified
++	ret
++.not_disguise
+ 	ld b, a
+ 	ld a, BATTLE_VARS_MOVE_TYPE
+ 	call GetBattleVar
+@@ -4251,6 +4270,8 @@ TryParalyzeOpponent:
+ 	call GetBattleVar
+ 	and a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
+ 	call OpponentIsElectricType
+ 	ret z ; Electric-types cannot be paralyzed
+ 	call AbilityPreventsParalysis
+@@ -4281,6 +4302,8 @@ TryBurnOpponent:
+ 	call GetBattleVar
+ 	and a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
+ 	call OpponentIsFireType
+ 	ret z ; Fire-types can't be burned (move burns already ensure this
+ 	      ; via CheckMoveTypeMatchesTarget; this covers the ability paths)
+@@ -4308,6 +4331,8 @@ TryPoisonOpponentContact:
+ 	call GetBattleVar
+ 	and a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
+ 	call OpponentIsPoisonImmuneType
+ 	ret z
+ 	call AbilityPreventsPoison
+@@ -4331,6 +4356,8 @@ TryToxicOpponent:
+ 	call GetBattleVar
+ 	and a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
+ 	call OpponentIsPoisonImmuneType
+ 	ret z
+ 	call AbilityPreventsPoison
+@@ -4388,6 +4415,8 @@ TrySleepOpponent:
+ 	call GetBattleVar
+ 	and a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks ability-inflicted status too (audit 2026-08-28 #10)
+ 	call AbilityPreventsSleep
+ 	ret c
+ 	call ShowAbilityBannerBrief
+@@ -4419,6 +4448,8 @@ TryConfuseOpponent:
+ 	call GetBattleVar
+ 	bit SUBSTATUS_CONFUSED, a
+ 	ret nz
++	call SafeCheckSafeguard_Core
++	ret nz ; Safeguard blocks confusion (audit 2026-08-28 #10)
+ 	call AbilityPreventsConfusion
+ 	ret c
+ 	call ShowAbilityBannerBrief
+@@ -5114,9 +5145,27 @@ DisguisePresentation:
+ 	and a
+ 	ret nz
+ 	call SwitchTurn ; the Disguise holder's side
++	; guard: only ever bust an actual Mimikyu with an intact disguise
++	; (audit 2026-08-28 #5)
++	ldh a, [hBattleTurn]
++	and a
++	ld a, [wBattleMonSpecies]
++	jr z, .got_species
++	ld a, [wEnemyMonSpecies]
++.got_species
++	call GetPokemonIndexFromID
++	ld a, l
++	cp LOW(MIMIKYU)
++	jp nz, SwitchTurn
++	ld a, h
++	cp HIGH(MIMIKYU)
++	jp nz, SwitchTurn
+ 	call GetDisguiseFlag
+ 	ld b, a
+ 	ld a, [hl]
++	and b
++	jp nz, SwitchTurn ; already busted
++	ld a, [hl]
+ 	or b
+ 	ld [hl], a ; mark this slot's disguise as busted
+ 	call ShowAbilityBannerBrief
+@@ -5882,6 +5931,20 @@ ParentalBondSecondHit:
+ .got_damage
+ 	; hit the defender
+ 	call SwitchTurn
++	; refresh the HP-bar max with the DEFENDER's max HP: a Rocky Helmet
++	; proc on hit 1 leaves the attacker's max in wBuffer1-2 (audit #25)
++	push bc
++	ld hl, wBattleMonMaxHP
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_max_hp
++	ld hl, wEnemyMonMaxHP
++.got_max_hp
++	ld a, [hli]
++	ld [wBuffer2], a
++	ld a, [hl]
++	ld [wBuffer1], a
++	pop bc
+ 	farcall SubtractHPFromUser
+ 	call SwitchTurn
+ 	call UpdateBattleHuds
+@@ -5961,21 +6024,11 @@ RunStatDropReaction::
+ 	; Self-inflicted drops (Superpower & co. lower the user through
+ 	; switchturn, so the "victim" here is the move's own user) never
+ 	; trigger Defiant/Competitive - only opponent-caused drops do.
+-	ld a, BATTLE_VARS_MOVE_EFFECT
+-	call GetBattleVar
+-	cp EFFECT_CLOSE_COMBAT
+-	ret z
+-	cp EFFECT_DRACO_METEOR
+-	ret z
+-	cp EFFECT_SCALE_SHOT
+-	ret z
+-	cp EFFECT_HEADLONG_RUSH
+-	ret z
+-	cp EFFECT_SUPERPOWER
+-	ret z
+-	cp EFFECT_HAMMER_ARM
+-	ret z
+-	cp EFFECT_SHELL_SMASH
++	; The message runs with the turn flipped, so a raw read of
++	; BATTLE_VARS_MOVE_EFFECT would be the OPPONENT's move (audit
++	; 2026-08-28 #4); CheckSelfInflictedStatDrop recovers the originating
++	; effect from the savemiss snapshot instead.
++	farcall CheckSelfInflictedStatDrop
+ 	ret z
+ .from_opponent
+ 	call GetOpponentAbility
+@@ -6193,10 +6246,28 @@ BattleOHKO_Core::
+ BattleRecoil_Core::
+ ; Relocated from effect_commands.asm; adds Rock Head / Magic Guard.
+ 	call GetTrueUserAbility
+-	cp ROCK_HEAD
+-	ret z
+ 	cp MAGIC_GUARD
+ 	ret z
++	cp ROCK_HEAD
++	jr nz, .no_rock_head
++	; Rock Head does not cancel Struggle's recoil (canon; Magic Guard
++	; does) - audit 2026-08-28 #20
++	push hl
++	ld a, BATTLE_VARS_MOVE_ANIM
++	call GetBattleVar
++	call GetMoveIndexFromID
++	ld a, h
++	cp HIGH(STRUGGLE)
++	jr nz, .rock_head_blocks
++	ld a, l
++	cp LOW(STRUGGLE)
++	jr nz, .rock_head_blocks
++	pop hl
++	jr .no_rock_head
++.rock_head_blocks
++	pop hl
++	ret
++.no_rock_head
+ 	ld hl, wBattleMonMaxHP
+ 	ldh a, [hBattleTurn]
+ 	and a
+@@ -6877,13 +6948,17 @@ AnticipationAbility:
+ 	ld [wBuffer5], a
+ 	ld a, [hl]
+ 	ld [wBuffer6], a
+-	; scan the foe's moves
++	; scan the foe's moves (bounded to NUM_MOVES, like Forewarn: with a
++	; full moveset the old zero-terminated scan ran into wBuffer5/6 and
++	; live WRAM beyond - audit 2026-08-28 #13)
+ 	ld hl, wBuffer1
++	ld c, NUM_MOVES
+ .scan
+ 	ld a, [hli]
+ 	and a
+ 	jr z, .no_shudder
+ 	push hl
++	push bc
+ 	ld e, a ; e = move id
+ 	; OHKO moves always trigger
+ 	ld l, a
+@@ -6910,9 +6985,13 @@ AnticipationAbility:
+ 	cp 10 + 1
+ 	jr nc, .shudder
+ .next
++	pop bc
+ 	pop hl
+-	jr .scan
++	dec c
++	jr nz, .scan
++	jr .no_shudder
+ .shudder
++	pop bc
+ 	pop hl
+ 	pop af
+ 	ldh [rSVBK], a
+diff --git a/engine/battle/ai/scoring.asm b/engine/battle/ai/scoring.asm
+index bc7a3f3..38a457c 100755
+--- a/engine/battle/ai/scoring.asm
++++ b/engine/battle/ai/scoring.asm
+@@ -3928,6 +3928,9 @@ AI_Abilities:
+ 	jr z, .no_choice_lock
+ 	ld a, [hl]
+ 	add 30
++	jr nc, .no_wrap_1
++	ld a, $ff ; saturate (audit #29)
++.no_wrap_1
+ 	ld [hl], a
+ 	jp .done
+ .no_choice_lock
+@@ -3954,6 +3957,9 @@ AI_Abilities:
+ 	jr nz, .not_nullified
+ 	ld a, [hl]
+ 	add 30
++	jr nc, .no_wrap_3
++	ld a, $ff ; saturate (audit #29)
++.no_wrap_3
+ 	ld [hl], a
+ 	jp .done
+ 
+@@ -3970,6 +3976,9 @@ AI_Abilities:
+ 	jr nz, .no_boom
+ 	ld a, [hl]
+ 	add 30
++	jr nc, .no_wrap_5
++	ld a, $ff ; saturate (audit #29)
++.no_wrap_5
+ 	ld [hl], a
+ 	jr .done
+ .no_boom
+@@ -3997,6 +4006,9 @@ AI_Abilities:
+ 	jr nz, .no_anchor
+ 	ld a, [hl]
+ 	add 30
++	jr nc, .no_wrap_7
++	ld a, $ff ; saturate (audit #29)
++.no_wrap_7
+ 	ld [hl], a
+ 	jr .done
+ .no_anchor
+@@ -4443,6 +4455,9 @@ AI_Elite:
+ .dismiss
+ 	ld a, [hl]
+ 	add 30
++	jr nc, .no_wrap_9
++	ld a, $ff ; saturate (audit #29)
++.no_wrap_9
+ 	ld [hl], a
+ 	jr .done
+ 
+diff --git a/engine/battle/core.asm b/engine/battle/core.asm
+index 0f4a627..ed12fec 100755
+--- a/engine/battle/core.asm
++++ b/engine/battle/core.asm
+@@ -45,6 +45,10 @@ DoBattle:
+ 	call EnemySwitch
+ 
+ .wild
++	; wild mons never go through NewEnemyMonStatus, so give them their
++	; First Impression entry-turn window here too (audit 2026-08-28 #22)
++	ld a, 1
++	ld [wEnemyFirstImpressionFresh], a
+ 	ld c, 40
+ 	call DelayFrames
+ 
+@@ -3739,6 +3743,9 @@ Function_BattleTextEnemySentOut:
+ 	jp WaitBGMap
+ 
+ Function_SetEnemyMonAndSendOutAnimation:
++	; badly-poisoned persists across switches (counter resets); the
++	; incoming mon is loaded by now (audit 2026-08-28 #7)
++	farcall ToxicRestoreEnemy_Core
+ 	ld a, [wTempEnemyMonSpecies]
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+@@ -3818,8 +3825,11 @@ endr
+ 	res SUBSTATUS_CANT_RUN, [hl]
+ 	ld a, 1
+ 	ld [wEnemyFirstImpressionFresh], a
+-	; badly-poisoned persists across switches (counter resets)
+-	farcall ToxicRestoreEnemy_Core
++	; Audit 2026-08-28 #7: the badly-poisoned restore used to run here, but
++	; on the AI-switch and post-KO paths this routine runs BEFORE the new
++	; mon is loaded, so it read the outgoing mon's slot bit and status.
++	; It now runs from Function_SetEnemyMonAndSendOutAnimation, where
++	; wEnemyMon / wCurOTMon are always the incoming mon.
+ 	ret
+ 
+ ResetEnemyStatLevels:
+diff --git a/engine/battle/effect_commands.asm b/engine/battle/effect_commands.asm
+index 911adb8..94bf4bf 100755
+--- a/engine/battle/effect_commands.asm
++++ b/engine/battle/effect_commands.asm
+@@ -44,6 +44,12 @@ DoTurn:
+ 	call UpdateMoveData
+ 
+ DoMove:
++	; A self-drop move that missed / was Protected exits at failuretext
++	; before restoremiss, leaving wPreStatScopeActive stale; the other side's
++	; stat drops would then be treated as self-inflicted and bypass Mist,
++	; Clear Body, Substitute and the AI miss roll (audit 2026-08-28 #6).
++	xor a
++	ld [wPreStatScopeActive], a
+ ; Get the user's move effect.
+ 	ld a, BATTLE_VARS_MOVE_EFFECT
+ 	call GetBattleVar
+@@ -545,6 +551,11 @@ CheckEnemyTurn:
+ 	ld hl, HurtItselfText
+ 	call StdBattleTextbox
+ 
++	; a confusion self-hit is never a crit; the player's branch
++	; (HitConfusion) clears this, the inline enemy one didn't (audit #19)
++	xor a
++	ld [wCriticalHit], a
++
+ 	call HitSelfInConfusion
+ 	call ConfusionDamageCalc
+ 	call BattleCommand_LowerSub
+@@ -1373,8 +1384,20 @@ BattleCommand_Stab:
+ 	call GetBattleVar
+ 	ld bc, STRUGGLE
+ 	call CompareMove
+-	ret z
++	jr nz, .not_struggle
++	; Struggle is typeless: no STAB and no type chart, but it must still
++	; go through the nullification / damage-modifier hooks (Disguise,
++	; Multiscale, Huge Power, Guts, item boosts...) - audit 2026-08-28 #17.
++	ld a, [wTypeModifier]
++	and %10000000
++	or EFFECTIVE
++	ld [wTypeModifier], a
++	ld a, EFFECTIVE
++	ld [wTypeMatchup], a
++	farcall RunNullificationAbilities
++	ret
+ 
++.not_struggle
+ 	ld hl, wBattleMonType1
+ 	ld a, [hli]
+ 	ld b, a
+@@ -2907,6 +2930,9 @@ EndMoveEffect:
+ 	ld [hli], a
+ 	ld [hli], a
+ 	ld [hl], a
++	; close any savemiss scope the aborted script left open (audit #6)
++	xor a
++	ld [wPreStatScopeActive], a
+ 	ret
+ 
+ BattleCommand_DamageStats:
+@@ -3166,7 +3192,7 @@ ConfusionDamageCalc:
+ 	ldh a, [hProduct]
+ 	ld b, a
+ 	ldh a, [hProduct + 1]
+-	or a
++	or b ; vanilla tested a dead register here (audit #26)
+ 	jr nz, .Cap
+ 
+ 	ldh a, [hProduct + 2]
+@@ -3728,6 +3754,13 @@ BattleCommand_SleepTarget:
+ 	and a
+ 	jp nz, PrintDidntAffect2
+ 
++	; Magic Bounce reflects a status move even from behind the bouncer's
++	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
++	farcall StatDropSubCheckExempt
++	jr nc, .no_bounce
++	farcall AbilityPreventsSleep
++	jp c, PrintDidntAffect2
++.no_bounce
+ 	ld hl, DidntAffect1Text
+ 	call .CheckAIRandomFail
+ 	jr c, .fail
+@@ -3916,7 +3949,7 @@ BattleCommand_Poison:
+ 	ld [wNamedObjectIndexBuffer], a
+ 	call GetItemName
+ 	ld hl, ProtectedByText
+-	jr .failed
++	jp .failed
+ 
+ .do_poison
+ 	ld hl, DidntAffect1Text
+@@ -3924,7 +3957,18 @@ BattleCommand_Poison:
+ 	call GetBattleVar
+ 	and a
+ 	jr nz, .failed
++	ld a, [wAttackMissed]
++	and a
++	jr nz, .failed
+ 
++	; Magic Bounce reflects a status move even from behind the bouncer's
++	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
++	farcall StatDropSubCheckExempt
++	jr nc, .no_bounce
++	farcall AbilityPreventsPoison
++	jp c, PrintDidntAffect2
++.no_bounce
++	ld hl, DidntAffect1Text
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, .dont_sample_failure
+@@ -4610,7 +4654,11 @@ StatDownSkipProtect::
+ 	bit 6, [hl]
+ 	res 6, [hl]
+ 	pop hl
+-	jr nz, .DidntMiss
++	; Both bit-6 setters (AbilityLowerOppStat via .AbilityDrivenDrop, and
++	; ContraryCheckRaise for the holder's own raise) already resolved the
++	; Substitute question; re-checking here made a Contrary holder's own
++	; sub swallow its Swords Dance (audit 2026-08-28 #12).
++	jr nz, .SelfInflicted
+ 	; ...and not self-inflicted drops (the user "targets" itself via
+ 	; switchturn, which would wrongly enable the AI miss roll for the
+ 	; player's own Close Combat / Draco Meteor / Shell Smash)
+@@ -4712,10 +4760,13 @@ StatDownSkipProtect::
+ 	res 6, [hl]
+ 	ret
+ 
+-CheckSelfInflictedStatDrop:
++CheckSelfInflictedStatDrop::
+ ; Returns z if the current move's stat drop hits the user itself
+ ; (applied through switchturn). These skip Mist, protective abilities,
+ ; the 25% AI miss roll and the substitute check.
++; Also farcalled by RunStatDropReaction (Defiant/Competitive must not
++; react to the user's own drops) - the self-drop scripts keep the savemiss
++; scope open across flushstatmessages for exactly this reason.
+ 	ld a, BATTLE_VARS_MOVE_EFFECT
+ 	call GetBattleVar
+ 	call .IsSelfDropEffect
+@@ -4751,6 +4802,8 @@ CheckSelfInflictedStatDrop:
+ 	ret z
+ 	cp EFFECT_HAMMER_ARM
+ 	ret z
++	cp EFFECT_CURSE
++	ret z
+ 	cp EFFECT_SHELL_SMASH
+ 	ret
+ .not_self
+@@ -5604,7 +5657,18 @@ BattleCommand_EndLoop:
+ 	ld a, [de]
+ 	dec a
+ 	ld [de], a
++	jr z, .done_loop
++	; Rough Skin / Iron Barbs / Rocky Helmet can reduce the attacker to 0
++	; HP mid-loop; a fainted attacker must not keep hitting (audit
++	; 2026-08-28 #8).
++	farcall UserHasFainted
+ 	jr nz, .loop_back_to_critical
++	; "Hit N times!" should count the hits that actually landed
++	ld a, [de]
++	ld h, a
++	ld a, [bc]
++	sub h
++	ld [bc], a
+ .done_loop
+ 	ld a, BATTLE_VARS_SUBSTATUS3
+ 	call GetBattleVarAddr
+@@ -5656,6 +5720,9 @@ BattleCommand_FakeOut:
+ BattleCommand_FlinchTarget:
+ 	call CheckSubstituteOpp
+ 	ret nz
++	; a user KO'd by contact recoil can't flinch anyone (audit #21)
++	farcall UserHasFainted
++	ret z
+ 
+ 	ld a, BATTLE_VARS_STATUS_OPP
+ 	call GetBattleVar
+@@ -5698,6 +5765,9 @@ BattleCommand_HeldFlinch:
+ 	ld a, [wAttackMissed]
+ 	and a
+ 	ret nz
++	; a user KO'd by contact recoil can't flinch anyone (audit #21)
++	farcall UserHasFainted
++	ret z
+ 
+ 	call GetUserItem
+ 	ld a, b
+@@ -6057,11 +6127,18 @@ BattleCommand_Confuse:
+ 	jp StdBattleTextbox
+ 
+ .not_already_confused
+-	call CheckSubstituteOpp
+-	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+ 	ld a, [wAttackMissed]
+ 	and a
+ 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
++	; Magic Bounce reflects a status move even from behind the bouncer's
++	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
++	farcall StatDropSubCheckExempt
++	jr nc, .no_bounce
++	farcall AbilityPreventsConfusion
++	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
++.no_bounce
++	call CheckSubstituteOpp
++	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+ 	farcall AbilityPreventsConfusion
+ 	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+ BattleCommand_FinishConfusingTarget:
+diff --git a/engine/battle/effect_commands_core.asm b/engine/battle/effect_commands_core.asm
+index f8f344c..6974117 100755
+--- a/engine/battle/effect_commands_core.asm
++++ b/engine/battle/effect_commands_core.asm
+@@ -419,8 +419,13 @@ StealthRockEntryDamage:
+ 	jr z, .got_types
+ 	ld hl, wEnemyMonType1
+ .got_types
+-	ld a, ROCK
+-	callfar CheckTypeMatchup
++	; callfar clobbers a and hl, so CheckTypeMatchup never saw its inputs
++	; and the scaling was dead (audit 2026-08-28 #3). Use the FarCall_de
++	; trampoline into CheckTypeMatchupFar (b = type, hl = types).
++	ld b, ROCK
++	ld a, BANK(CheckTypeMatchupFar)
++	ld de, CheckTypeMatchupFar
++	call FarCall_de
+ 
+ 	callfar GetEighthMaxHP
+ 	ld a, [wTypeMatchup]
+@@ -1330,9 +1335,23 @@ BattleUTurn_Core:
+ 	farcall CheckMobileBattleError
+ 	ret c
+ 
+-	ld hl, EnemySwitch
++	; Audit 2026-08-28 #2: this used to jump straight to EnemySwitch, which
++	; only loads the mon. Do the full send-out bookkeeping every other enemy
++	; entrance path does (EnemyPartyMonEntrance / AI_Switch / Baton Pass):
++	; pick the replacement fresh (never reuse a stale wEnemySwitchMonIndex,
++	; which could re-send the pivoting mon as itself), clear volatile
++	; status and stat stages, and run hazards + entry abilities.
++	; EnemySwitch_SetMode also avoids the Shift-mode prompt mid-script.
++	callfar AIPickPostKOSwitchIn
++	callfar NewEnemyMonStatus
++	callfar ResetEnemyStatLevels
++	callfar BreakAttraction
++	ld hl, EnemySwitch_SetMode
+ 	ld a, BANK("Battle Core")
+ 	rst FarCall
++	callfar ResetBattleParticipants
++	callfar SetEnemyTurn
++	callfar SpikesDamageAndEntryAbilities
+ 	ret
+ 
+ BattleParalyze_Core:
+@@ -1358,6 +1377,20 @@ BattleParalyze_Core:
+ 	jp StdBattleTextbox
+ 
+ .no_item_protection
++	ld a, BATTLE_VARS_STATUS_OPP
++	call GetBattleVarAddr
++	and a
++	jp nz, .failed
++	ld a, [wAttackMissed]
++	and a
++	jp nz, .failed
++	; Magic Bounce reflects a status move even from behind the bouncer's
++	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
++	farcall StatDropSubCheckExempt
++	jr nc, .no_bounce
++	farcall AbilityPreventsParalysis
++	jp c, .failed
++.no_bounce
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, .dont_sample_failure
+@@ -1379,13 +1412,6 @@ BattleParalyze_Core:
+ 	jp c, .failed
+ 
+ .dont_sample_failure
+-	ld a, BATTLE_VARS_STATUS_OPP
+-	call GetBattleVarAddr
+-	and a
+-	jp nz, .failed
+-	ld a, [wAttackMissed]
+-	and a
+-	jp nz, .failed
+ 	callfar CheckSubstituteOpp
+ 	jp nz, .failed
+ 	; ability check (Limber)
+@@ -2215,6 +2241,13 @@ UnawareStats_Player:
+ 	pop hl
+ 	ld a, 1 << SCREENS_LIGHT_SCREEN
+ .rescreen
++	; On the unboosted (crit) branch the damage core deliberately drops
++	; the screen doubling; mirror that here (audit 2026-08-28 #16).
++	; de is free: both UnawareStats_* callers bracket us with push/pop de.
++	ld e, a
++	call CheckDamageStatsCritical
++	ret nc
++	ld a, e
+ 	call CheckDefScreenPierced
+ 	ret z
+ 	sla c
+@@ -2294,6 +2327,13 @@ UnawareStats_Enemy:
+ 	pop hl
+ 	ld a, 1 << SCREENS_LIGHT_SCREEN
+ .rescreen
++	; On the unboosted (crit) branch the damage core deliberately drops
++	; the screen doubling; mirror that here (audit 2026-08-28 #16).
++	; de is free: both UnawareStats_* callers bracket us with push/pop de.
++	ld e, a
++	call CheckDamageStatsCritical
++	ret nc
++	ld a, e
+ 	call CheckDefScreenPierced
+ 	ret z
+ 	sla c
+@@ -2949,7 +2989,10 @@ ToxicRestorePlayer_Core::
+ 	jr ToxicClearPlayer_Core
+ 
+ ToxicRestoreEnemy_Core::
+-; Enemy-side mirror of ToxicRestorePlayer_Core.
++; Enemy-side mirror of ToxicRestorePlayer_Core. Must run with the incoming
++; mon already in wEnemyMon and wCurOTMon updated (called from
++; Function_SetEnemyMonAndSendOutAnimation since audit 2026-08-28 #7).
++; Also resets the per-mon Taunt and Yawn state for the incoming mon.
+ 	xor a
+ 	ld [wEnemyTauntCount], a
+ 	ld [wEnemyYawnCount], a
+diff --git a/engine/battle/move_effects/counter.asm b/engine/battle/move_effects/counter.asm
+index 435a75e..1900ba7 100755
+--- a/engine/battle/move_effects/counter.asm
++++ b/engine/battle/move_effects/counter.asm
+@@ -3,6 +3,10 @@ BattleCommand_Counter:
+ 
+ 	ld a, 1
+ 	ld [wAttackMissed], a
++	; these scripts have no checkhit, so Protect / Detect / Baneful Bunker
++	; never blocked them (audit 2026-08-28 #24)
++	call BattleCommand_CheckHit.Protect
++	jp nz, EndMoveEffect
+ 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+ 	call GetBattleVar
+ 	and a
+diff --git a/engine/battle/move_effects/curse.asm b/engine/battle/move_effects/curse.asm
+index 2b15c67..468b9f2 100755
+--- a/engine/battle/move_effects/curse.asm
++++ b/engine/battle/move_effects/curse.asm
+@@ -44,6 +44,9 @@ BattleCommand_Curse:
+ 	; One stat up anim + "ATTACK and DEFENSE rose!", then one stat down
+ 	; anim + "SPEED fell!".
+ 	call BattleCommand_DeferStatMessages
++	; savemiss scope so the deferred Speed drop is recognised as
++	; self-inflicted (no Defiant/Competitive) - audit 2026-08-28 #4
++	call BattleCommand_SaveMiss
+ 	ld a, SPEED
+ 	call LowerStat
+ 	call BattleCommand_SwitchTurn
+@@ -55,7 +58,8 @@ BattleCommand_Curse:
+ 	call ResetMiss
+ 	call BattleCommand_DefenseUp
+ 	call BattleCommand_StatUpMessage
+-	jp BattleCommand_FlushStatMessages
++	call BattleCommand_FlushStatMessages
++	jp BattleCommand_RestoreMiss
+ 
+ .ghost
+ 
+diff --git a/engine/battle/move_effects/disable.asm b/engine/battle/move_effects/disable.asm
+index 9fffe6a..bb6b6e0 100755
+--- a/engine/battle/move_effects/disable.asm
++++ b/engine/battle/move_effects/disable.asm
+@@ -29,9 +29,13 @@ BattleCommand_Disable:
+ 	pop bc
+ 	jr z, .failed
+ 
++; Bounded scan (audit 2026-08-28 #1): the last move may not be in the slots.
+ 	ld c, $ff
+ .loop
+ 	inc c
++	ld a, c
++	cp NUM_MOVES
++	jr nc, .failed
+ 	ld a, [hli]
+ 	cp b
+ 	jr nz, .loop
+diff --git a/engine/battle/move_effects/encore.asm b/engine/battle/move_effects/encore.asm
+index 0bbe93f..bc8dabc 100755
+--- a/engine/battle/move_effects/encore.asm
++++ b/engine/battle/move_effects/encore.asm
+@@ -18,10 +18,16 @@ BattleCommand_Encore:
+ 	pop hl
+ 	jp c, .failed
+ 
++; Bounded scan (audit 2026-08-28 #1): the last move may not be in the slots.
++	ld c, NUM_MOVES
+ .got_move
+ 	ld a, [hli]
+ 	cp b
++	jr z, .found_move
++	dec c
+ 	jr nz, .got_move
++	jp .failed
++.found_move
+ 
+ 	ld bc, wBattleMonPP - wBattleMonMoves - 1
+ 	add hl, bc
+diff --git a/engine/battle/move_effects/heal_bell.asm b/engine/battle/move_effects/heal_bell.asm
+index 62309f1..554dc46 100755
+--- a/engine/battle/move_effects/heal_bell.asm
++++ b/engine/battle/move_effects/heal_bell.asm
+@@ -23,6 +23,23 @@ BattleCommand_HealBell:
+ 	add hl, bc
+ 	dec d
+ 	jr nz, .loop
++	; The whole party is cured, so the badly-poisoned bookkeeping must go
++	; too, or the counter re-arms on the next plain poison / switch-in
++	; (audit 2026-08-28 #9).
++	ld a, BATTLE_VARS_SUBSTATUS5
++	call GetBattleVarAddr
++	res SUBSTATUS_TOXIC, [hl]
++	ld hl, wPlayerToxicCount
++	ld de, wPlayerToxicSlots
++	ldh a, [hBattleTurn]
++	and a
++	jr z, .got_toxic
++	ld hl, wEnemyToxicCount
++	ld de, wEnemyToxicSlots
++.got_toxic
++	xor a
++	ld [hl], a
++	ld [de], a
+ 	call AnimateCurrentMove
+ 
+ 	ld hl, BellChimedText
+diff --git a/engine/battle/move_effects/mimic.asm b/engine/battle/move_effects/mimic.asm
+index bf39296..d3330b2 100755
+--- a/engine/battle/move_effects/mimic.asm
++++ b/engine/battle/move_effects/mimic.asm
+@@ -35,10 +35,15 @@ BattleCommand_Mimic:
+ 	ld hl, MIMIC
+ 	call GetMoveIDFromIndex
+ 	pop hl
++	ld c, NUM_MOVES
+ .find_mimic
+ 	dec hl
+ 	cp [hl]
++	jr z, .found_mimic
++	dec c
+ 	jr nz, .find_mimic
++	jr .fail ; bounded (audit 2026-08-28 #1): Sleep Talk -> Mimic
++.found_mimic
+ 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+ 	call GetBattleVar
+ 	ld [hl], a
+diff --git a/engine/battle/move_effects/mirror_coat.asm b/engine/battle/move_effects/mirror_coat.asm
+index 480474d..c3e1a0a 100755
+--- a/engine/battle/move_effects/mirror_coat.asm
++++ b/engine/battle/move_effects/mirror_coat.asm
+@@ -3,6 +3,10 @@ BattleCommand_MirrorCoat:
+ 
+ 	ld a, 1
+ 	ld [wAttackMissed], a
++	; these scripts have no checkhit, so Protect / Detect / Baneful Bunker
++	; never blocked them (audit 2026-08-28 #24)
++	call BattleCommand_CheckHit.Protect
++	jp nz, EndMoveEffect
+ 
+ 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+ 	call GetBattleVar
+diff --git a/engine/battle/move_effects/mirror_move.asm b/engine/battle/move_effects/mirror_move.asm
+index 8ed0ce4..a0068a8 100755
+--- a/engine/battle/move_effects/mirror_move.asm
++++ b/engine/battle/move_effects/mirror_move.asm
+@@ -34,6 +34,9 @@ BattleCommand_MirrorMove:
+ 	pop af
+ 
+ 	call GetMoveData
++	; -ate abilities (Pixilate & co.) convert the copied move's type, as
++	; UpdateMoveData does for Metronome / Sleep Talk (audit 2026-08-28 #18)
++	farcall AbilityConvertMoveType
+ 	; Hidden Power: the user's own type/power/category (as UpdateMoveData does)
+ 	farcall HiddenPowerUpdateMoveStruct
+ 	call GetMoveName
+diff --git a/engine/battle/move_effects/new_move_cores.asm b/engine/battle/move_effects/new_move_cores.asm
+index cf61343..bd1b859 100755
+--- a/engine/battle/move_effects/new_move_cores.asm
++++ b/engine/battle/move_effects/new_move_cores.asm
+@@ -625,6 +625,20 @@ BattleBurn_Core:
+ 	jp .didnt_affect
+ 
+ .no_item_protection
++	ld a, BATTLE_VARS_STATUS_OPP
++	call GetBattleVarAddr
++	and a
++	jp nz, .failed
++	ld a, [wAttackMissed]
++	and a
++	jp nz, .failed
++	; Magic Bounce reflects a status move even from behind the bouncer's
++	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
++	farcall StatDropSubCheckExempt
++	jr nc, .no_bounce
++	farcall AbilityPreventsBurn
++	jp c, .failed
++.no_bounce
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, .dont_sample_failure
+@@ -646,13 +660,6 @@ BattleBurn_Core:
+ 	jp c, .failed
+ 
+ .dont_sample_failure
+-	ld a, BATTLE_VARS_STATUS_OPP
+-	call GetBattleVarAddr
+-	and a
+-	jp nz, .failed
+-	ld a, [wAttackMissed]
+-	and a
+-	jp nz, .failed
+ 	callfar CheckSubstituteOpp
+ 	jp nz, .failed
+ 	farcall AbilityPreventsBurn
+@@ -1098,9 +1105,14 @@ StickyWebEntry:
+ 	call StdBattleTextbox
+ 	; lower the ENTERING mon's Speed: the stat-drop machinery targets the
+ 	; turn holder's opponent (like Intimidate), so flip the turn around it
++	; Go through the ability-drop wrapper so the drop is flagged as
++	; ability-driven (no 25% AI-miss roll against the player's switch-in,
++	; no stale move-effect byte for the Mist / self-drop shortcuts) and
++	; the fell message + Defiant/Competitive reaction run
++	; (audit 2026-08-28 #11).
+ 	call SwitchTurnForOppText
+ 	ld b, SPEED
+-	callfar AbilityStatDown
++	farcall AbilityLowerOppStat
+ 	jp SwitchTurnForOppText
+ 
+ .check_ungrounded
+diff --git a/engine/battle/move_effects/sketch.asm b/engine/battle/move_effects/sketch.asm
+index 8151ed3..ec7b4fc 100755
+--- a/engine/battle/move_effects/sketch.asm
++++ b/engine/battle/move_effects/sketch.asm
+@@ -59,12 +59,18 @@ BattleCommand_Sketch:
+ 	ld hl, SKETCH
+ 	call GetMoveIDFromIndex
+ 	pop hl
++; Bounded (audit 2026-08-28 #1): via Sleep Talk the user need not know
++; Sketch, and an unbounded backwards scan would walk out of the move slots.
+ 	ld c, NUM_MOVES
+ .find_sketch
+-	dec c
+ 	dec hl
+ 	cp [hl]
++	jr z, .found_sketch
++	dec c
+ 	jr nz, .find_sketch
++	jp .fail
++.found_sketch
++	dec c ; c = slot index (0-based)
+ ; The Sketched move is loaded to that slot.
+ 	ld a, b
+ 	ld [hl], a
+diff --git a/engine/battle/move_effects/spite.asm b/engine/battle/move_effects/spite.asm
+index 543300e..89b0a14 100755
+--- a/engine/battle/move_effects/spite.asm
++++ b/engine/battle/move_effects/spite.asm
+@@ -21,9 +21,15 @@ BattleCommand_Spite:
+ 	call CompareMove
+ 	pop bc
+ 	jr z, .failed
++; Bounded scan: after Metronome / Mirror Move the target's last move can be
++; one it doesn't know, and an unbounded scan would walk past the move slots
++; and index a PP write into arbitrary party data (audit 2026-08-28 #1).
+ 	ld c, -1
+ .loop
+ 	inc c
++	ld a, c
++	cp NUM_MOVES
++	jp nc, .failed
+ 	ld a, [hli]
+ 	cp b
+ 	jr nz, .loop
+diff --git a/engine/pokemon/mon_menu.asm b/engine/pokemon/mon_menu.asm
+index c58e2e7..856df2b 100755
+--- a/engine/pokemon/mon_menu.asm
++++ b/engine/pokemon/mon_menu.asm
+@@ -1030,19 +1030,25 @@ MoveScreenLoop:
+ 	push hl
+ 	call .copy_move
+ 	pop hl
+-	ld bc, $15
++	ld bc, MON_PP - MON_MOVES
+ 	add hl, bc
+ 	call .copy_move
++	; In battle, mirror the swap into the active battle struct - but only
++	; when the reordered mon IS the active one. The vanilla code tested a
++	; stale flag and stepped wBattleMon by a fixed $20 stride (audit #31).
+ 	ld a, [wBattleMode]
++	and a
+ 	jr z, .swap_moves
+-	ld hl, wBattleMonMoves
+-	ld bc, $20
+ 	ld a, [wCurPartyMon]
+-	call AddNTimes
++	ld b, a
++	ld a, [wCurBattleMon]
++	cp b
++	jr nz, .swap_moves
++	ld hl, wBattleMonMoves
+ 	push hl
+ 	call .copy_move
+ 	pop hl
+-	ld bc, 6
++	ld bc, wBattleMonPP - wBattleMonMoves
+ 	add hl, bc
+ 	call .copy_move
+ 
+diff --git a/tools/battletest/tests/54-audit-2026-08-28.yaml b/tools/battletest/tests/54-audit-2026-08-28.yaml
+new file mode 100644
+index 0000000..9626658
+--- /dev/null
++++ b/tools/battletest/tests/54-audit-2026-08-28.yaml
+@@ -0,0 +1,305 @@
++# Regression cases for the 2026-08-28 code audit
++# (_ai_artifacts/reports/CODE_AUDIT_2026-08-28.md). Numbers match the
++# report's findings.
++
++# ---- #1 Spite scans past the move slots after Metronome ---------------------
++
++- name: "Audit 2026-08-28 #1: Spite fails against a Metronome'd move instead of scanning off the moveset"
++  # Electrode is faster: T1 Spite (no last move -> fails), Clefable
++  # Metronomes into some move X. T2 Spite targets X, which is not in
++  # Clefable's slots; the bounded scan must fail the move rather than walk
++  # into party data. Metronome's own PP is the observable: 2 uses = 8.
++  player: { species: CLEFABLE, level: 50, moves: [METRONOME, SPLASH, SPLASH, SPLASH] }
++  enemy:  { species: ELECTRODE, level: 50, moves: [SPITE] }
++  rng: seeded
++  rng_value: 7
++  turns: 2
++  assert:
++    - player.pp[0] == 8
++    - player.pp[1] == 40
++    - player.pp[2] == 40
++    - player.pp[3] == 40
++
++# ---- #2 Enemy U-turn does the full send-out ---------------------------------
++
++- name: "Audit 2026-08-28 #2: enemy U-turn replacement takes hazards and drops stat stages"
++  # Trainer battle. Cloyster lays Spikes first (faster), then Slowpoke
++  # U-turns out: Snorlax must arrive through the normal entrance path -
++  # Spikes damage, fresh stat stages - and must not be Slowpoke again.
++  player:  { species: CLOYSTER, level: 50, moves: [SPIKES] }
++  enemy:   { species: SLOWPOKE, level: 50, stages: { atk: +2 }, moves: [U_TURN] }
++  enemy2:  { species: SNORLAX,  level: 50, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy.species == 'SNORLAX'
++    - enemy.hp == enemy.maxhp - enemy.maxhp // 8
++    - enemy.stat_levels[0] == 7
++
++# ---- #3 Stealth Rock type scaling ------------------------------------------
++
++- name: "Audit 2026-08-28 #3: Stealth Rock hits a Bug/Flying type for 4x (half its HP)"
++  # (Charizard is Fire/Dragon in this hack, so Butterfree is the 4x case.)
++  player:  { species: TAUROS,     level: 50, ability: RUN_AWAY, moves: [SPLASH] }
++  player2: { species: BUTTERFREE, level: 50, moves: [SPLASH] }
++  enemy:   { species: GRIMER,    level: 50, moves: [STEALTH_ROCK] }
++  rng: forced_high
++  move_script: [1, "switch:2"]
++  turns: 2
++  assert:
++    - player.species == 'BUTTERFREE'
++    - player.hp == player.maxhp - (player.maxhp // 8) * 4
++
++- name: "Audit 2026-08-28 #3: Stealth Rock hits Steel/Ground for 1/4 of the usual 1/8"
++  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
++  player2: { species: STEELIX, level: 50, moves: [SPLASH] }
++  enemy:   { species: GRIMER,  level: 50, moves: [STEALTH_ROCK] }
++  rng: forced_high
++  move_script: [1, "switch:2"]
++  turns: 2
++  assert:
++    - player.species == 'STEELIX'
++    - player.hp == player.maxhp - (player.maxhp // 8) // 4
++
++# ---- #4 Defiant / Competitive vs the user's own self-drops -----------------
++
++- name: "Audit 2026-08-28 #4: Defiant does not fire on the user's own Close Combat drops"
++  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [CLOSE_COMBAT] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.stat_levels[0] == 7
++    - player.stat_levels[1] == 6
++    - player.stat_levels[4] == 6
++
++- name: "Audit 2026-08-28 #4: Competitive does not fire on the user's own Draco Meteor drop"
++  player: { species: MILOTIC, level: 50, ability: COMPETITIVE, moves: [DRACO_METEOR] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.stat_levels[3] == 5
++
++- name: "Audit 2026-08-28 #4: Defiant does not fire on a non-Ghost Curse's Speed drop"
++  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [CURSE] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.stat_levels[0] == 8
++    - player.stat_levels[1] == 8
++    - player.stat_levels[2] == 6
++
++- name: "Audit 2026-08-28 #4 control: Defiant still answers an opponent's Growl"
++  player: { species: BISHARP, level: 50, ability: DEFIANT, moves: [SPLASH] }
++  enemy:  { species: SNORLAX, level: 50, moves: [GROWL] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.stat_levels[0] == 8
++
++# ---- #5 Disguise's deferred bust leaking out of status moves ---------------
++
++- name: "Audit 2026-08-28 #5: a status move does not arm Disguise; the disguise still absorbs the first hit"
++  # Thunder Wave (stab, no checkfaint) used to arm the deferred bust flag;
++  # Night Shade (checkfaint, no stab) then consumed it and busted Mimikyu
++  # for free. With the fix Shadow Ball on turn 3 is still absorbed.
++  player: { species: GENGAR,  level: 50, moves: [THUNDER_WAVE, NIGHT_SHADE, SHADOW_BALL] }
++  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH] }
++  rng: forced_high
++  move_script: [1, 2, 3]
++  turns: 3
++  assert:
++    - (enemy.status & 64) != 0
++    - enemy.hp == enemy.maxhp - 50
++
++# ---- #6 stale savemiss scope after a failed self-drop move -----------------
++
++- name: "Audit 2026-08-28 #6: Clear Body still blocks Growl after the holder's Close Combat failed"
++  # Gengar is faster. T1: Growl (blocked), Dreepy's Close Combat can't hit
++  # a Ghost -> the script aborts at failuretext. T2: Growl must still be
++  # blocked - the stale scope used to make it read as self-inflicted.
++  player: { species: DREEPY, level: 50, ability: CLEAR_BODY, moves: [CLOSE_COMBAT] }
++  enemy:  { species: GENGAR, level: 50, moves: [GROWL] }
++  rng: forced_high
++  turns: 2
++  assert:
++    - player.stat_levels[0] == 7
++
++# ---- #7 enemy toxic bookkeeping runs against the incoming mon --------------
++
++- name: "Audit 2026-08-28 #7: an AI switch does not carry the outgoing mon's Toxic flag onto the replacement"
++  # Same convergence setup as Audit 3 (10-audit-seeds): Chansey's Tackle
++  # can't touch Gengar, so the AI switches to Snorlax within 4 turns.
++  # Chansey is badly poisoned (slot bit set); Snorlax must arrive without
++  # SUBSTATUS_TOXIC.
++  player:  { species: GENGAR,  level: 50, moves: [SPLASH] }
++  enemy:   { species: CHANSEY, level: 50, status_byte: 8, substatus: [TOXIC], moves: [TACKLE] }
++  enemy2:  { species: SNORLAX, level: 50, moves: [SHADOW_BALL] }
++  setup_wram: { wEnemyToxicSlots: 1 }
++  rng: seeded
++  turns: 4
++  assert:
++    - enemy.species == 'SNORLAX'
++    - (enemy.substatus[4] & 1) == 0
++
++# ---- #8 multi-hit moves stop when the attacker is KO'd mid-loop ------------
++
++- name: "Audit 2026-08-28 #8 control: Fury Swipes hit count under this seed"
++  id: fury_control
++  player:  { species: PERSIAN,    level: 50, moves: [FURY_SWIPES] }
++  enemy:   { species: AGGRON,     level: 50, ability: NO_ABILITY, moves: [SPLASH] }
++  rng: seeded
++  rng_value: 3
++  turns: 1
++  assert:
++    - enemy.hp < enemy.maxhp
++
++- name: "Audit 2026-08-28 #8: Fury Swipes stops after Iron Barbs KOs the attacker"
++  # Persian at 20% loses 1/8 per hit to Iron Barbs: it drops to 0 on hit 2
++  # and must not land hits 3+. Same seed as the control, so the control's
++  # full-count damage is the upper bound the test must stay strictly under.
++  player:  { species: PERSIAN,    level: 50, hp: 20, moves: [FURY_SWIPES] }
++  player2: { species: SNORLAX,    level: 50, moves: [SPLASH] }
++  enemy:   { species: AGGRON,     level: 50, ability: IRON_BARBS, moves: [SPLASH] }
++  rng: seeded
++  rng_value: 3
++  turns: 1
++  assert:
++    - wram16('wPartyMon1HP') == 0
++    - enemy.maxhp - enemy.hp < result('fury_control')['enemy']['damage']
++
++# ---- #9 Heal Bell clears the Toxic bookkeeping ------------------------------
++
++- name: "Audit 2026-08-28 #9: Heal Bell clears SUBSTATUS_TOXIC, the counter and the slot bits"
++  player: { species: MILTANK, level: 50, status_byte: 8, substatus: [TOXIC], moves: [HEAL_BELL] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  setup_wram: { wPlayerToxicSlots: 1, wPlayerToxicCount: 3 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.status == 0
++    - (player.substatus[4] & 1) == 0
++    - wram('wPlayerToxicCount') == 0
++    - wram('wPlayerToxicSlots') == 0
++
++# ---- #10 ability-inflicted status respects Safeguard -----------------------
++
++- name: "Audit 2026-08-28 #10: Safeguard blocks Static"
++  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SAFEGUARD, TACKLE] }
++  enemy:  { species: PIKACHU, level: 50, ability: STATIC, moves: [SPLASH] }
++  rng: forced_low
++  move_script: [1, 2]
++  turns: 2
++  assert:
++    - (player.screens & 4) != 0
++    - (player.status & 64) == 0
++
++- name: "Audit 2026-08-28 #10 control: Static lands without Safeguard"
++  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH, TACKLE] }
++  enemy:  { species: PIKACHU, level: 50, ability: STATIC, moves: [SPLASH] }
++  rng: forced_low
++  move_script: [1, 2]
++  turns: 2
++  assert:
++    - (player.status & 64) != 0
++
++# ---- #11 Sticky Web goes through the ability-drop wrapper ------------------
++
++- name: "Audit 2026-08-28 #11: Sticky Web always slows the player's switch-in (no AI-miss roll) and Defiant answers it"
++  # forced_low used to make the vanilla 25% computer-miss roll eat the
++  # web for the player's switch-in.
++  player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }
++  player2: { species: BISHARP, level: 50, ability: DEFIANT, moves: [SPLASH] }
++  enemy:   { species: GRIMER,  level: 50, moves: [STICKY_WEB] }
++  rng: forced_low
++  move_script: [1, "switch:2"]
++  turns: 2
++  assert:
++    - player.species == 'BISHARP'
++    - player.stat_levels[2] == 6
++    - player.stat_levels[0] == 9
++
++# ---- #12 Contrary behind the holder's own Substitute -----------------------
++
++- name: "Audit 2026-08-28 #12: a Contrary holder behind its own Substitute still inverts Swords Dance"
++  player: { species: SHUCKLE, level: 50, ability: CONTRARY, substatus: [SUBSTITUTE], moves: [SWORDS_DANCE] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  setup_wram: { wPlayerSubstituteHP: 20 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.stat_levels[0] == 5
++
++# ---- #13 Anticipation's bounded scan ---------------------------------------
++
++- name: "Audit 2026-08-28 #13: Anticipation stays quiet against four neutral moves"
++  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
++  enemy:  { species: RATTATA,  level: 50, moves: [TACKLE, SCRATCH, POUND, BITE] }
++  rng: forced_high
++  turns: 0
++  assert:
++    - not ability_seen('ANTICIPATION')
++
++- name: "Audit 2026-08-28 #13 control: Anticipation shudders at a super-effective fourth move"
++  player: { species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [SPLASH] }
++  enemy:  { species: RATTATA,  level: 50, moves: [TACKLE, SCRATCH, POUND, CONFUSION] }
++  rng: forced_high
++  turns: 0
++  assert:
++    - ability_seen('ANTICIPATION')
++
++# ---- #14 Magic Bounce vs status moves --------------------------------------
++
++- name: "Audit 2026-08-28 #14: Magic Bounce reflects Will-O-Wisp from behind its own Substitute"
++  player: { species: GENGAR, level: 50, moves: [WILL_O_WISP] }
++  enemy:  { species: ESPEON, level: 50, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
++  setup_wram: { wEnemySubstituteHP: 255 }
++  rng: forced_high
++  turns: 1
++  assert:
++    - (player.status & 16) != 0
++    - enemy.status == 0
++
++- name: "Audit 2026-08-28 #14: an enemy Toxic is bounced before the AI 25% fail roll"
++  # forced_low makes the vanilla AI roll fail; the bounce must come first.
++  player: { species: ESPEON,  level: 50, ability: MAGIC_BOUNCE, moves: [SPLASH] }
++  enemy:  { species: RATTATA, level: 50, moves: [TOXIC] }
++  rng: forced_low
++  turns: 1
++  assert:
++    - (enemy.status & 8) != 0
++    - (enemy.substatus[4] & 1) != 0
++    - player.status == 0
++
++# ---- #17 Struggle still goes through nullification -------------------------
++
++- name: "Audit 2026-08-28 #17: Disguise absorbs Struggle"
++  player: { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [STRUGGLE] }
++  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - enemy.hp == enemy.start_hp
++    - player.hp < player.maxhp
++
++# ---- #20 Rock Head does not cancel Struggle recoil -------------------------
++
++- name: "Audit 2026-08-28 #20: a Rock Head user still takes Struggle recoil"
++  player: { species: RHYDON,  level: 50, ability: ROCK_HEAD, moves: [STRUGGLE] }
++  enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.hp < player.maxhp
++
++# ---- #22 wild First Impression -----------------------------------------------
++
++- name: "Audit 2026-08-28 #22: a wild Golisopod's First Impression works on its first turn"
++  player: { species: SNORLAX,   level: 50, moves: [SPLASH] }
++  enemy:  { species: GOLISOPOD, level: 50, moves: [FIRST_IMPRESSION] }
++  rng: forced_high
++  turns: 1
++  assert:
++    - player.hp < player.maxhp

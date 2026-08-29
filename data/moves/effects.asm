@@ -2313,8 +2313,8 @@ CloseCombat:
 	switchturn
 	statdownmessage
 	switchturn
-	restoremiss
 	flushstatmessages
+	restoremiss
 	checkfaint
 	buildopponentrage
 	kingsrock
@@ -3012,8 +3012,8 @@ Superpower:
 	switchturn
 	statdownmessage
 	switchturn
-	restoremiss
 	flushstatmessages
+	restoremiss
 	checkfaint
 	buildopponentrage
 	kingsrock

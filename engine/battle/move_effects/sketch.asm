@@ -59,12 +59,18 @@ BattleCommand_Sketch:
 	ld hl, SKETCH
 	call GetMoveIDFromIndex
 	pop hl
+; Bounded (audit 2026-08-28 #1): via Sleep Talk the user need not know
+; Sketch, and an unbounded backwards scan would walk out of the move slots.
 	ld c, NUM_MOVES
 .find_sketch
-	dec c
 	dec hl
 	cp [hl]
+	jr z, .found_sketch
+	dec c
 	jr nz, .find_sketch
+	jp .fail
+.found_sketch
+	dec c ; c = slot index (0-based)
 ; The Sketched move is loaded to that slot.
 	ld a, b
 	ld [hl], a

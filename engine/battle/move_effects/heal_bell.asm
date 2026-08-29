@@ -23,6 +23,23 @@ BattleCommand_HealBell:
 	add hl, bc
 	dec d
 	jr nz, .loop
+	; The whole party is cured, so the badly-poisoned bookkeeping must go
+	; too, or the counter re-arms on the next plain poison / switch-in
+	; (audit 2026-08-28 #9).
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVarAddr
+	res SUBSTATUS_TOXIC, [hl]
+	ld hl, wPlayerToxicCount
+	ld de, wPlayerToxicSlots
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_toxic
+	ld hl, wEnemyToxicCount
+	ld de, wEnemyToxicSlots
+.got_toxic
+	xor a
+	ld [hl], a
+	ld [de], a
 	call AnimateCurrentMove
 
 	ld hl, BellChimedText

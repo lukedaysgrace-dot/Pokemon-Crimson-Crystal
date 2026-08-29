@@ -45,6 +45,10 @@ DoBattle:
 	call EnemySwitch
 
 .wild
+	; wild mons never go through NewEnemyMonStatus, so give them their
+	; First Impression entry-turn window here too (audit 2026-08-28 #22)
+	ld a, 1
+	ld [wEnemyFirstImpressionFresh], a
 	ld c, 40
 	call DelayFrames
 
@@ -3739,6 +3743,9 @@ Function_BattleTextEnemySentOut:
 	jp WaitBGMap
 
 Function_SetEnemyMonAndSendOutAnimation:
+	; badly-poisoned persists across switches (counter resets); the
+	; incoming mon is loaded by now (audit 2026-08-28 #7)
+	farcall ToxicRestoreEnemy_Core
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
@@ -3818,8 +3825,11 @@ endr
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
 	ld [wEnemyFirstImpressionFresh], a
-	; badly-poisoned persists across switches (counter resets)
-	farcall ToxicRestoreEnemy_Core
+	; Audit 2026-08-28 #7: the badly-poisoned restore used to run here, but
+	; on the AI-switch and post-KO paths this routine runs BEFORE the new
+	; mon is loaded, so it read the outgoing mon's slot bit and status.
+	; It now runs from Function_SetEnemyMonAndSendOutAnimation, where
+	; wEnemyMon / wCurOTMon are always the incoming mon.
 	ret
 
 ResetEnemyStatLevels:

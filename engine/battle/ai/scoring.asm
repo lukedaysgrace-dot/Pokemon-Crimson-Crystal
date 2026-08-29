@@ -3928,6 +3928,9 @@ AI_Abilities:
 	jr z, .no_choice_lock
 	ld a, [hl]
 	add 30
+	jr nc, .no_wrap_1
+	ld a, $ff ; saturate (audit #29)
+.no_wrap_1
 	ld [hl], a
 	jp .done
 .no_choice_lock
@@ -3954,6 +3957,9 @@ AI_Abilities:
 	jr nz, .not_nullified
 	ld a, [hl]
 	add 30
+	jr nc, .no_wrap_3
+	ld a, $ff ; saturate (audit #29)
+.no_wrap_3
 	ld [hl], a
 	jp .done
 
@@ -3970,6 +3976,9 @@ AI_Abilities:
 	jr nz, .no_boom
 	ld a, [hl]
 	add 30
+	jr nc, .no_wrap_5
+	ld a, $ff ; saturate (audit #29)
+.no_wrap_5
 	ld [hl], a
 	jr .done
 .no_boom
@@ -3997,6 +4006,9 @@ AI_Abilities:
 	jr nz, .no_anchor
 	ld a, [hl]
 	add 30
+	jr nc, .no_wrap_7
+	ld a, $ff ; saturate (audit #29)
+.no_wrap_7
 	ld [hl], a
 	jr .done
 .no_anchor
@@ -4443,6 +4455,9 @@ AI_Elite:
 .dismiss
 	ld a, [hl]
 	add 30
+	jr nc, .no_wrap_9
+	ld a, $ff ; saturate (audit #29)
+.no_wrap_9
 	ld [hl], a
 	jr .done
 
