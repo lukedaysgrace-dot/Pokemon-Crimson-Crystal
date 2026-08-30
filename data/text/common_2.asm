@@ -1008,6 +1008,17 @@ ContestJudging_FirstPlaceScoreText::
 	text " points!"
 	prompt
 
+ContestJudging_PlayerScoreText::
+	text_start
+
+	para "Your @"
+	text_ram wStringBuffer1
+	text " scored"
+	line "@"
+	text_decimal wBugContestPlayerScore, 2, 3
+	text " points!"
+	prompt
+
 ContestJudging_SecondPlaceText::
 	text "Placing second was"
 	line "@"

@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pc_harness import Harness, enc  # noqa: E402
 
 PASS = FAIL = 0
+SAVE_FORMAT_VERSION = 2
 
 
 def check(cond, msg):
@@ -59,7 +60,10 @@ h.wr(S("wSavedAtLeastOnce"), 1)
 
 print("[SaveGameData writes both copies and the snapshot]")
 h.call("SaveGameData", max_frames=600)
-check(sram_sym("sSaveVersion") == 1, f"save version byte = 1 (got {sram_sym('sSaveVersion')})")
+check(
+    sram_sym("sSaveVersion") == SAVE_FORMAT_VERSION,
+    f"save version byte = {SAVE_FORMAT_VERSION} (got {sram_sym('sSaveVersion')})",
+)
 check(sram_sym("sWritingBackup") == 0, "save phase cleared after a complete save")
 check(sram_sym("sCheckValue1") == 0x63 and sram_sym("sBackupCheckValue1") == 0x63, "check values written")
 check(active_metadata() == backup_metadata(), "backup snapshot equals active metadata")
@@ -74,7 +78,7 @@ check(h.rd(S("wSaveFileExists")) == 0, "old/unknown version is rejected")
 h.wr(S("wSaveFileExists"), 0)
 h.call("CheckBackupSaveFile", max_frames=60)
 check(h.rd(S("wSaveFileExists")) == 0, "backup also rejected on version mismatch")
-set_sram_sym("sSaveVersion", 1)
+set_sram_sym("sSaveVersion", SAVE_FORMAT_VERSION)
 
 print("[unsaved edits are discarded on load]")
 h.call("GetStorageBoxMon", bc=(1 << 8) | 1)
