@@ -1,6 +1,8 @@
 GiveParkBalls:
 	xor a
 	ld [wContestMon], a
+	ld [wContestBallsThisMon], a
+	ld [wContestMonBallsUsed], a
 	ld a, 20
 	ld [wParkBallsRemaining], a
 	farcall StartBugContestTimer
