@@ -236,7 +236,7 @@ JohtoGrassWildMons:
 	dbw 38, NOCTOWL
 	dbw 38, SKIPLOOM
 	dbw 39, FEAROW
-	dbw 40, YANMA
+	dbw 40, RATICATE
 	dbw 40, NATU
 	; nite
 	dbw 36, HOOTHOOT
@@ -1390,14 +1390,14 @@ JohtoGrassWildMons:
 	dbw 17, ABRA
 	dbw 19, JIGGLYPUFF
 	dbw 17, DITTO
-	dbw 19, YANMA
+	dbw 19, VENONAT
 	; day
 	dbw 19, SNUBBULL
 	dbw 21, PIDGEY
 	dbw 20, NIDORAN_M
 	dbw 17, ABRA
 	dbw 19, GRUBBIN
-	dbw 17, YANMA
+	dbw 17, VENONAT
 	dbw 19, DITTO
 	; nite
 	dbw 19, DROWZEE
@@ -1587,7 +1587,7 @@ JohtoGrassWildMons:
 	dbw 33, FURRET
 	dbw 35, TANGELA
 	dbw 35, FURRET
-	dbw 35, YANMA
+	dbw 35, MAREEP
 	; nite
 	dbw 33, VENONAT
 	dbw 34, HOOTHOOT

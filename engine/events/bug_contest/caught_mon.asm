@@ -34,6 +34,9 @@ BugContest_SetCaughtContestMon:
 	; Remember the ball (wCurItem is PARK_BALL here).
 	ld bc, wContestMonPersonality
 	farcall SetCaughtBall
+	; Remember what it cost, for ContestScore's clean catch bonus.
+	ld a, [wContestBallsThisMon]
+	ld [wContestMonBallsUsed], a
 	ret
 
 .caughttext

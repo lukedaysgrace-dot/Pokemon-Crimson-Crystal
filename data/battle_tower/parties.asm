@@ -552,7 +552,7 @@ BattleTowerMons1:
 	bigdw 38 ; Max HP
 	bigdw 33 ; Atk
 	bigdw 23 ; Def
-	bigdw 23 ; Spd
+	bigdw 27 ; Spd
 	bigdw 33 ; SAtk
 	bigdw 23 ; SDef
 	db "ANNO-N@@@@@"
@@ -1399,8 +1399,8 @@ BattleTowerMons3:
 	bigdw 109 ; Max HP
 	bigdw 76 ; Atk
 	bigdw 87 ; Def
-	bigdw 60 ; Spd
-	bigdw 82 ; SAtk
+	bigdw 66 ; Spd
+	bigdw 88 ; SAtk
 	bigdw 88 ; SDef
 	db "KIREIHANA@@"
 
@@ -1661,7 +1661,7 @@ BattleTowerMons3:
 	bigdw 62 ; Atk
 	bigdw 71 ; Def
 	bigdw 66 ; Spd
-	bigdw 70 ; SAtk
+	bigdw 76 ; SAtk
 	bigdw 70 ; SDef
 	db "RANTA-N@@@@"
 
@@ -6119,6 +6119,6 @@ BattleTowerMons10:
 	bigdw 178 ; Atk
 	bigdw 200 ; Def
 	bigdw 192 ; Spd
-	bigdw 214 ; SAtk
+	bigdw 234 ; SAtk
 	bigdw 214 ; SDef
 	db "RANTA-N@@@@"

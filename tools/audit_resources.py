@@ -40,8 +40,8 @@ def audit_rom(audit: Audit, stem: str) -> tuple[int, int]:
     audit.check(rom[0x143] in (0x80, 0xC0), f"{stem}: not marked GBC compatible")
     audit.check(rom[0x147] == 0x10,
                 f"{stem}: expected MBC3+timer+RAM+battery ($10), got ${rom[0x147]:02x}")
-    audit.check(rom[0x149] == 0x03,
-                f"{stem}: expected 32 KiB/4-bank SRAM ($03), got ${rom[0x149]:02x}")
+    audit.check(rom[0x149] == 0x05,
+                f"{stem}: expected 64 KiB/8-bank SRAM ($05), got ${rom[0x149]:02x}")
 
     header_sum = 0
     for value in rom[0x134:0x14D]:
@@ -140,7 +140,7 @@ def audit_audio(audit: Audit) -> None:
 def audit_binary_references(audit: Audit) -> int:
     references: set[str] = set()
     for source in ROOT.rglob("*.asm"):
-        if any(part in {".git", "_to_delete"} for part in source.parts):
+        if any(part in {".git", ".tmpbuild", "_to_delete"} for part in source.parts):
             continue
         text = source.read_text(encoding="utf-8", errors="replace")
         references.update(re.findall(r'^\s*INCBIN\s+"([^"]+)"', text, re.M))
@@ -150,11 +150,43 @@ def audit_binary_references(audit: Audit) -> int:
     return len(literal)
 
 
+def audit_pack_palettes(audit: Audit) -> None:
+    """Keep the pack's gender branch and copy length aligned with its data."""
+    layout = (ROOT / "engine/gfx/cgb_layouts.asm").read_text(encoding="utf-8")
+    parts = layout.split("_CGB_PackPals:", 1)
+    audit.check(len(parts) == 2, "missing _CGB_PackPals")
+    block = parts[1].split("_CGB_Pokepic:", 1)[0] if len(parts) == 2 else ""
+    audit.check(
+        re.search(
+            r"bit PLAYERGENDER_FEMALE_F, a\s+jr z, \.tutorial_male\s+"
+            r"ld hl, \.LyraPackPals",
+            block,
+        )
+        is not None,
+        "female characters must select .LyraPackPals",
+    )
+
+    palette_rows = []
+    for relative in ("gfx/pack/pack.pal", "gfx/pack/pack_f.pal"):
+        rows = len(re.findall(r"^\s*RGB\b", (ROOT / relative).read_text(encoding="utf-8"), re.M))
+        palette_rows.append(rows)
+        audit.check(rows % 4 == 0, f"{relative}: RGB rows do not form complete palettes")
+    audit.check(
+        palette_rows == [24, 24],
+        f"pack palette sources contain {palette_rows}; expected six four-color palettes each",
+    )
+    audit.check(
+        "ld bc, 6 palettes" in block,
+        "_CGB_PackPals must copy exactly the six palettes present in each source",
+    )
+
+
 def main() -> int:
     audit = Audit()
     release_bank, release_slack = audit_rom(audit, "pokecrystal")
     debug_bank, debug_slack = audit_rom(audit, "pokecrystal_debug")
     audit_audio(audit)
+    audit_pack_palettes(audit)
     asset_count = audit_binary_references(audit)
     if audit.errors:
         print("RESOURCE AUDIT FAILED")

@@ -1289,7 +1289,10 @@ ChooseWildEncounter_BugContest::
 .GotLevel:
 	ld [wCurPartyLevel], a
 
+	; Start counting Park Balls over for this encounter, so ContestScore's
+	; clean catch bonus only charges you for the mon you actually keep.
 	xor a
+	ld [wContestBallsThisMon], a
 	ret
 
 TryWildEncounter_BugContest:
