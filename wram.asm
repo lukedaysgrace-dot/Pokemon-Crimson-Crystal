@@ -2998,7 +2998,12 @@ wSafariTimeRemaining:: dw ; dc7a
 
 wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
 ; dc86
-	ds 23
+	ds 19
+
+; Bug Catching Contest scoring.
+wContestBallsThisMon:: db ; Park Balls thrown at the mon you are battling now.
+wContestMonBallsUsed:: db ; Park Balls it took to catch the mon you are keeping.
+wBugContestPlayerScore:: dw ; big endian, so it can be printed with text_decimal
 
 wLuckyNumberShowFlag:: db ; dc9d
 	ds 1
