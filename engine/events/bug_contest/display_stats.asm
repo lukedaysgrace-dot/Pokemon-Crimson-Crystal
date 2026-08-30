@@ -27,12 +27,12 @@ DisplayCaughtContestMonStats:
 	ld de, .This
 	call PlaceString
 
-	hlcoord 5, 4
-	ld de, .Health
+	hlcoord 2, 4
+	ld de, .Size
 	call PlaceString
 
-	hlcoord 5, 10
-	ld de, .Health
+	hlcoord 2, 10
+	ld de, .Size
 	call PlaceString
 
 	ld a, [wContestMon]
@@ -58,14 +58,26 @@ DisplayCaughtContestMonStats:
 	ld [wTempMonLevel], a
 	call PrintLevel
 
-	hlcoord 11, 4
-	ld de, wContestMonMaxHP
-	lb bc, 2, 3
-	call PrintNum
+	; Max HP used to sit here, back when ContestScore paid for a full-HP
+	; catch. It doesn't any more, so show the thing that actually scores:
+	; how well grown each mon is for its own species.
+	ld a, [wContestMon]
+	ld b, a
+	ld a, [wContestMonLevel]
+	ld c, a
+	farcall GetContestMonLevelPercent
+	call .SizeRating
+	hlcoord 7, 4
+	call PlaceString
 
-	hlcoord 11, 10
-	ld de, wEnemyMonMaxHP
-	call PrintNum
+	ld a, [wEnemyMonSpecies]
+	ld b, a
+	ld a, [wEnemyMonLevel]
+	ld c, a
+	farcall GetContestMonLevelPercent
+	call .SizeRating
+	hlcoord 7, 10
+	call PlaceString
 
 	ld hl, SwitchMonText
 	call PrintText
@@ -79,8 +91,36 @@ DisplayCaughtContestMonStats:
 	call SetPalettes
 	ret
 
-.Health:
-	db "HEALTH@"
+.SizeRating:
+; in:  a  = 0-150, from GetContestMonLevelPercent
+; out: de = what the judges would call a mon that size
+	ld de, .Runt
+	cp 30
+	ret c
+	ld de, .Small
+	cp 60
+	ret c
+	ld de, .Average
+	cp 90
+	ret c
+	ld de, .Big
+	cp 120
+	ret c
+	ld de, .Giant
+	ret
+
+.Size:
+	db "SIZE@"
+.Runt:
+	db "RUNT   @"
+.Small:
+	db "SMALL  @"
+.Average:
+	db "AVERAGE@"
+.Big:
+	db "BIG    @"
+.Giant:
+	db "GIANT  @"
 .Stock:
 	db " STOCK <PKMN> @"
 .This:

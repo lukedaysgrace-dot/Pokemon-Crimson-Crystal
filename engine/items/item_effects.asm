@@ -709,6 +709,8 @@ PokeBallEffect:
 .used_park_ball
 	ld hl, wParkBallsRemaining
 	dec [hl]
+	ld hl, wContestBallsThisMon
+	inc [hl]
 	ret
 
 BallMultiplierFunctionTable:
