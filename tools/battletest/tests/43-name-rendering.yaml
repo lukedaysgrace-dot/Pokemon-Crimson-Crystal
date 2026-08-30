@@ -12,11 +12,12 @@
 
 - name: "Name rendering: Intimidate resistance identifies the blocking ability"
   player: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
-  enemy:  { species: SLOWBRO, level: 50, ability: OWN_TEMPO, moves: [SPLASH] }
+  enemy:  { species: SLOWBRO_GALARIAN, level: 50, ability: OWN_TEMPO, moves: [SPLASH] }
   rng: forced_high
   turns: 0
   assert:
     - enemy.stat_levels[0] == 7
+    - buffer_is('wAbilityName', 'OWN TEMPO', 17)
     - text_seen('OWN TEMPO')
 
 - name: "Name rendering: Air Balloon immunity identifies the item"
