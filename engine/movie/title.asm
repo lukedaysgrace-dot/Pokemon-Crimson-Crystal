@@ -222,21 +222,21 @@ SuicuneFrameIterator:
 	ld a, [hl]
 	ld c, a
 	inc a
-	cp 52
+	cp 4 * 8
 	jr c, .store_counter
 	xor a
 .store_counter
 	ld [hl], a
 
-; Hold each title Suicune frame for 13 frames.
+; Hold each title Suicune frame for 8 frames (matches vanilla Crystal).
 	ld a, c
 	and a
 	jr z, .frame0
-	cp 13
+	cp 1 * 8
 	jr z, .frame1
-	cp 26
+	cp 2 * 8
 	jr z, .frame2
-	cp 39
+	cp 3 * 8
 	jr z, .frame3
 	ret
 
