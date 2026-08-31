@@ -621,3 +621,4 @@ SummaryBallColors:
 	RGB 9, 10, 22  ; MOON (dark blue)
 	RGB 30, 12, 20 ; LOVE (pink)
 	RGB 24, 20, 12 ; PARK (tan)
+	RGB 12, 25, 1  ; SAFARI (green)

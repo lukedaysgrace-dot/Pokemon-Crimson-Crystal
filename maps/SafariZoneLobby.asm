@@ -21,8 +21,11 @@ SafariZoneLobby_MapScripts:
 	end
 
 ; The fee is per visit, just like GEN 1 - it resets every time the map loads.
+; Coming back through this room also ends the game and hands back any
+; SAFARI BALLS the player did not use.
 .ResetFee:
 	clearevent EVENT_PAID_SAFARI_ZONE_FEE
+	special EndSafariGame
 	return
 
 ; Left officer (at 6,3): triggers at 8,3 and 9,3.
@@ -73,6 +76,22 @@ SafariZoneLobbyGateTrigger2:
 .Skip:
 	end
 
+; Between the officers and the door. Stops anyone who has just come back
+; out of the preserve from walking straight back in without paying again.
+SafariZoneLobbyInnerGateTrigger:
+	checkevent EVENT_PAID_SAFARI_ZONE_FEE
+	iftrue .Skip
+	readvar VAR_FACING
+	ifnotequal UP, .Skip
+	applymovement PLAYER, SafariZoneLobbyStepBackMovement
+	opentext
+	writetext SafariZoneLobbyComeBackText
+	waitbutton
+	closetext
+
+.Skip:
+	end
+
 SafariZoneLobbyFeeScript:
 	opentext
 	writetext SafariZoneLobbyOfficerStopText
@@ -91,6 +110,10 @@ SafariZoneLobbyFeeScript:
 	playsound SFX_TRANSACTION
 	waitsfx
 	writetext SafariZoneLobbyPaidText
+	waitbutton
+	playsound SFX_GOT_SAFARI_BALLS
+	waitsfx
+	writetext SafariZoneLobbyGotBallsText
 	waitbutton
 	closetext
 	setevent EVENT_PAID_SAFARI_ZONE_FEE
@@ -164,7 +187,9 @@ SafariZoneLobbyOfficerStopText:
 	line "lies the SAFARI"
 	cont "ZONE."
 
-	para "Entry costs ¥500."
+	para "¥500 gets you 30"
+	line "SAFARI BALLS and"
+	cont "300 steps."
 
 	para "Would you like to"
 	line "pay the fee?"
@@ -181,9 +206,36 @@ SafariZoneLobbyPaidText:
 	para "thrive in our"
 	line "preserve!"
 
-	para "Watch your step"
-	line "out there, and"
-	cont "have fun!"
+	para "We only use a"
+	line "special BALL out"
+	cont "in the preserve."
+	done
+
+SafariZoneLobbyGotBallsText:
+	text "OFFICER: Here are"
+	line "30 SAFARI BALLS."
+
+	para "You may take 300"
+	line "steps out there."
+
+	para "When your steps"
+	line "or your BALLS run"
+
+	para "out, we'll call"
+	line "you back in."
+
+	para "Good luck!"
+	done
+
+SafariZoneLobbyComeBackText:
+	text "OFFICER: Sorry!"
+
+	para "Your SAFARI GAME"
+	line "is finished."
+
+	para "Come see me at"
+	line "the counter if"
+	cont "you want another."
 	done
 
 SafariZoneLobbyNotEnoughMoneyText:
@@ -213,9 +265,12 @@ SafariZoneLobbyOfficerInfoText:
 	para "roam the preserve"
 	line "out back."
 
-	para "Entry costs ¥500."
-	line "Pay at the gate"
-	cont "if you want in."
+	para "¥500 buys you 30"
+	line "SAFARI BALLS and"
+	cont "300 steps."
+
+	para "Pay at the gate"
+	line "if you want in."
 	done
 
 SafariZoneLobbyOfficerEnjoyText:
@@ -305,11 +360,13 @@ SafariZoneLobby_MapEvents:
 	warp_event  9, 17, ROUTE_36, 5
 	warp_event 10, 17, ROUTE_36, 5
 
-	db 4 ; coord events
+	db 6 ; coord events
 	coord_event  8,  3, -1, SafariZoneLobbyGateTrigger1
 	coord_event  9,  3, -1, SafariZoneLobbyGateTrigger1Approach
 	coord_event 10,  3, -1, SafariZoneLobbyGateTrigger2Approach
 	coord_event 11,  3, -1, SafariZoneLobbyGateTrigger2
+	coord_event  9,  1, -1, SafariZoneLobbyInnerGateTrigger
+	coord_event 10,  1, -1, SafariZoneLobbyInnerGateTrigger
 
 	db 0 ; bg events
 

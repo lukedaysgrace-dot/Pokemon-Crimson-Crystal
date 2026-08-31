@@ -189,3 +189,5 @@ SpecialsPointers::
 	add_special CelebiFlybyEvent
 	add_special CheckCaughtMew
 	add_special CheckCaughtWildMon
+	add_special StartSafariGame
+	add_special EndSafariGame

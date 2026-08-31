@@ -191,7 +191,7 @@ ItemDescriptions:
 	dw MewMailDesc
 	dw ToxicOrbDesc
 	dw OvalStoneDesc
-	dw QuestionMarkDesc
+	dw SafariBallDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
@@ -944,6 +944,10 @@ GoldBerryDesc:
 SquirtBottleDesc:
 	db   "A bottle used for"
 	next "watering plants.@"
+
+SafariBallDesc:
+	db   "A BALL for use in\n"
+	next "the SAFARI ZONE.@"
 
 ParkBallDesc:
 	db   "The Bug-Catching"

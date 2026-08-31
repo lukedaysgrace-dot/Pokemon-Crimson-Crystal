@@ -62,6 +62,7 @@ CAUGHT_BALL_MASK EQU %00011111
 	const CAUGHTBALL_MOON_BALL   ; 9
 	const CAUGHTBALL_LOVE_BALL   ; a
 	const CAUGHTBALL_PARK_BALL   ; b
+	const CAUGHTBALL_SAFARI_BALL ; c
 NUM_CAUGHT_BALLS EQU const_value
 
 ; gender ratio constants

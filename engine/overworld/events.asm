@@ -884,6 +884,10 @@ CountStep:
 	call DoRepelStep
 	jr c, .doscript
 
+	; Burn a step off the SAFARI ZONE allowance.
+	farcall DoSafariStep
+	jr c, .doscript
+
 	; Count the step for poison and total steps
 	ld hl, wPoisonStepCount
 	inc [hl]
@@ -1143,6 +1147,9 @@ RandomEncounter::
 	jr nz, .bug_contest
 	farcall TryWildEncounter
 	jr nz, .nope
+	ld hl, wStatusFlags2
+	bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
+	jr nz, .ok_safari
 	jr .ok
 
 .bug_contest
@@ -1163,6 +1170,11 @@ RandomEncounter::
 .ok_bug_contest
 	ld a, BANK(BugCatchingContestBattleScript)
 	ld hl, BugCatchingContestBattleScript
+	jr .done
+
+.ok_safari
+	ld a, BANK(SafariZoneBattleScript)
+	ld hl, SafariZoneBattleScript
 	jr .done
 
 .done
