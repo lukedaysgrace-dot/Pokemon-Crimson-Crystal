@@ -1013,8 +1013,7 @@ ContestJudging_PlayerScoreText::
 
 	para "Your @"
 	text_ram wStringBuffer1
-	text " scored"
-	line "@"
+	line "scored @"
 	text_decimal wBugContestPlayerScore, 2, 3
 	text " points!"
 	prompt
