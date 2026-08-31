@@ -2994,6 +2994,9 @@ wHappinessStepCount:: db
 
 wParkBallsRemaining::
 wSafariBallsRemaining:: db ; dc79
+; Steps left in the SAFARI ZONE game. Stored big endian so PrintNum can
+; read it directly.
+wSafariStepsRemaining::
 wSafariTimeRemaining:: dw ; dc7a
 
 wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c

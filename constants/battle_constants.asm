@@ -104,6 +104,7 @@ SPDSPCDV_SHINY EQU $AA
 	const BATTLETYPE_FORCEITEM
 	const BATTLETYPE_CELEBI
 	const BATTLETYPE_SUICUNE
+	const BATTLETYPE_SAFARI
 
 ; BattleVarPairs indexes (see home/battle.asm)
 	const_def

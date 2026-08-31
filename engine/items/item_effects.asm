@@ -193,6 +193,18 @@ ItemEffects:
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; FLAME_ORB
 	dw EvoStoneEffect      ; BRICK_PIECE
+	dw NoEffect            ; SURF_MAIL
+	dw NoEffect            ; LITEBLUEMAIL
+	dw NoEffect            ; PORTRAITMAIL
+	dw NoEffect            ; LOVELY_MAIL
+	dw NoEffect            ; EON_MAIL
+	dw NoEffect            ; MORPH_MAIL
+	dw NoEffect            ; BLUESKY_MAIL
+	dw NoEffect            ; MUSIC_MAIL
+	dw NoEffect            ; MIRAGE_MAIL
+	dw NoEffect            ; TOXIC_ORB
+	dw NoEffect            ; OVAL_STONE
+	dw PokeBallEffect      ; SAFARI_BALL
 
 PokeBallEffect:
 	ld a, [wBattleMode]
@@ -216,7 +228,11 @@ PokeBallEffect:
 	ld [wWildMon], a
 	ld a, [wBattleType]
 	cp BATTLETYPE_CONTEST
-	call nz, ReturnToBattle_UseBall
+	jr z, .thrown_from_battle_menu
+	cp BATTLETYPE_SAFARI
+	jr z, .thrown_from_battle_menu
+	call ReturnToBattle_UseBall
+.thrown_from_battle_menu
 
 	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
@@ -690,6 +706,8 @@ PokeBallEffect:
 	ret z
 	cp BATTLETYPE_DEBUG
 	ret z
+	cp BATTLETYPE_SAFARI
+	jr z, .used_safari_ball
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
 
@@ -711,6 +729,22 @@ PokeBallEffect:
 	dec [hl]
 	ld hl, wContestBallsThisMon
 	inc [hl]
+	ret
+
+.used_safari_ball
+; Safari Balls are not carried in the pack - the gate officer's 30 live in
+; wSafariBallsRemaining, so there is nothing to toss.
+	ld hl, wSafariBallsRemaining
+	ld a, [hl]
+	and a
+	jr z, .safari_screen
+	dec [hl]
+.safari_screen
+	ld a, [wWildMon]
+	and a
+	ret z
+	call ClearBGPalettes
+	call ClearTileMap
 	ret
 
 BallMultiplierFunctionTable:
