@@ -47,14 +47,6 @@ BattleText_WildFled:
 	line "fled!"
 	prompt
 
-BattleText_SafariMonIsWatching:
-	text "Wild @"
-	text_ram wEnemyMonNick
-	text_start
-	line "is watching"
-	cont "carefully!"
-	prompt
-
 BattleText_EnemyFled:
 	text "Enemy @"
 	text_ram wEnemyMonNick

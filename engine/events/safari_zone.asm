@@ -90,31 +90,6 @@ DoSafariStep::
 	scf
 	ret
 
-SafariMonTurn::
-; The wild mon's turn in a SAFARI ZONE battle. Straight out of Red/Blue:
-; the flee threshold is twice the mon's Speed, checked against a random
-; byte, so fast mons bolt constantly and slow ones hang around.
-; Returns carry if the mon ran off.
-	ld a, [wEnemyMonSpeed] ; high byte
-	and a
-	jr nz, .flee
-	ld a, [wEnemyMonSpeed + 1]
-	add a
-	jr c, .flee ; Speed over 127: always bolts
-	ld b, a
-	call BattleRandom
-	cp b
-	jr c, .flee
-
-	ld hl, BattleText_SafariMonIsWatching
-	call StdBattleTextbox
-	and a
-	ret
-
-.flee
-	scf
-	ret
-
 SafariZoneBattleScript::
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SAFARI
 	randomwildmon

@@ -54,18 +54,20 @@ SafariBattleMenuHeader:
 
 SafariBattleMenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
-	dn 2, 1 ; rows, columns
-	db 0 ; spacing
+	dn 2, 2 ; rows, columns
+	db 10 ; spacing
 	dba SafariBattleMenuStrings
 	dba SafariBattleMenuPrintBallCount
 
 SafariBattleMenuStrings:
-	db "SAFARI BALL×  @"
+	db "FIGHT@"
+	db "<PKMN>@"
+	db "BALL×  @"
 	db "RUN@"
 
 SafariBattleMenuPrintBallCount:
-; The strings above start at (2, 14); "SAFARI BALL×" ends at x = 13.
-	hlcoord 14, 14
+; BALL is the lower-left choice; show the gate's remaining ball count in it.
+	hlcoord 7, 16
 	ld de, wSafariBallsRemaining
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
