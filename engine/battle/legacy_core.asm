@@ -1,5 +1,27 @@
 ; Small helpers kept out of the full Battle Core bank.
 
+CheckContestBattleOver:
+; Also covers the SAFARI ZONE, which shares the ball counter.
+	ld a, [wBattleType]
+	cp BATTLETYPE_CONTEST
+	jr z, .check_balls
+	cp BATTLETYPE_SAFARI
+	jr nz, .contest_not_over
+.check_balls
+	ld a, [wParkBallsRemaining]
+	and a
+	jr nz, .contest_not_over
+	ld a, [wBattleResult]
+	and BATTLERESULT_BITMASK
+	add DRAW
+	ld [wBattleResult], a
+	scf
+	ret
+
+.contest_not_over
+	and a
+	ret
+
 SetBerserkGeneConfusionDuration:
 	ldh a, [hBattleTurn]
 	and a
