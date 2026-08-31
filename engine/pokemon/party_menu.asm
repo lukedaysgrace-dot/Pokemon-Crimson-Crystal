@@ -630,6 +630,7 @@ CaughtBallPalMap:
 	db 5 ; MOON (gray)
 	db 3 ; LOVE (red)
 	db 5 ; PARK (gray)
+	db 1 ; SAFARI (green)
 
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)

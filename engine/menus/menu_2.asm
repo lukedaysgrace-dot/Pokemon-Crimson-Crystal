@@ -110,38 +110,42 @@ CoinString:
 ShowMoney_TerminatorString:
 	db "@"
 
-Unreferenced_Function24b8f:
-; related to safari?
+StartMenu_DrawSafariStatusBox:
+	hlcoord 0, 0
+	ld b, 3
+	ld c, 10
+	call Textbox
+	ret
+
+StartMenu_PrintSafariStatus:
+; Steps and balls left in the SAFARI ZONE game.
 	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	hlcoord 0, 0
-	ld b, 3
-	ld c, 7
-	call Textbox
+	call StartMenu_DrawSafariStatusBox
 	hlcoord 1, 1
-	ld de, wSafariTimeRemaining
-	lb bc, 2, 3
-	call PrintNum
-	hlcoord 4, 1
-	ld de, .slash_500
+	ld de, .Balls
 	call PlaceString
-	hlcoord 1, 3
-	ld de, .booru_ko
-	call PlaceString
-	hlcoord 5, 3
+	hlcoord 8, 1
 	ld de, wSafariBallsRemaining
-	lb bc, 1, 2
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	call PrintNum
+	hlcoord 1, 3
+	ld de, .Steps
+	call PlaceString
+	hlcoord 7, 3
+	ld de, wSafariStepsRemaining
+	lb bc, PRINTNUM_RIGHTALIGN | 2, 3
 	call PrintNum
 	pop af
 	ld [wOptions], a
 	ret
 
-.slash_500
-	db "／５００@"
-.booru_ko
-	db "ボール　　　こ@"
+.Balls:
+	db "BALLS:@"
+.Steps:
+	db "STEPS:@"
 
 StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0

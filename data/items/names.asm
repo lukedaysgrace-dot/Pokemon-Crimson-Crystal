@@ -190,7 +190,7 @@ ItemNames::
 	db "MIRAGE MAIL@"
 	db "TOXIC ORB@"
 	db "OVAL STONE@"
-	db "TERU-SAMA@"
+	db "SAFARI BALL@"
 	db "TERU-SAMA@"
 	db "TM01@"
 	db "TM02@"

@@ -10,8 +10,7 @@ LoadBattleMenu:
 	ret
 
 SafariBattleMenu:
-; untranslated
-	ld hl, MenuHeader_0x24f4e
+	ld hl, SafariBattleMenuHeader
 	call LoadMenuHeader
 	jr Function24f19
 
@@ -47,27 +46,26 @@ Strings24f3d:
 	db "PACK@"
 	db "RUN@"
 
-MenuHeader_0x24f4e:
+SafariBattleMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw MenuData_0x24f56
+	dw SafariBattleMenuData
 	db 1 ; default option
 
-MenuData_0x24f56:
+SafariBattleMenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
-	dn 2, 2 ; rows, columns
-	db 11 ; spacing
-	dba Strings24f5f
-	dba Function24f7c
+	dn 2, 1 ; rows, columns
+	db 0 ; spacing
+	dba SafariBattleMenuStrings
+	dba SafariBattleMenuPrintBallCount
 
-Strings24f5f:
-	db "サファりボール×　　@" ; "SAFARI BALL×  @"
-	db "エサをなげる@" ; "THROW BAIT"
-	db "いしをなげる@" ; "THROW ROCK"
-	db "にげる@" ; "RUN"
+SafariBattleMenuStrings:
+	db "SAFARI BALL×  @"
+	db "RUN@"
 
-Function24f7c:
-	hlcoord 17, 13
+SafariBattleMenuPrintBallCount:
+; The strings above start at (2, 14); "SAFARI BALL×" ends at x = 13.
+	hlcoord 14, 14
 	ld de, wSafariBallsRemaining
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum

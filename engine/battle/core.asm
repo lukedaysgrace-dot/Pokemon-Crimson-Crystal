@@ -231,6 +231,17 @@ ENDC
 	ld a, [wForcedSwitch] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
+
+	; SAFARI ZONE battles have no moves and no enemy attack: the wild mon
+	; either bolts or stands there watching you.
+	ld a, [wBattleType]
+	cp BATTLETYPE_SAFARI
+	jr nz, .skip_iteration
+	farcall SafariMonTurn
+	jp nc, .loop
+	call WildFled_EnemyFled_LinkBattleCanceled
+	jr .quit
+
 .skip_iteration
 	call ParsePlayerAction
 	jr nz, .loop1
@@ -639,9 +650,13 @@ DetermineMoveOrder:
 	ret
 
 CheckContestBattleOver:
+; Also covers the SAFARI ZONE, which shares the ball counter.
 	ld a, [wBattleType]
 	cp BATTLETYPE_CONTEST
+	jr z, .check_balls
+	cp BATTLETYPE_SAFARI
 	jr nz, .contest_not_over
+.check_balls
 	ld a, [wParkBallsRemaining]
 	and a
 	jr nz, .contest_not_over
@@ -3903,6 +3918,8 @@ TryToRunAwayFromBattle:
 	jp z, .can_escape
 	cp BATTLETYPE_CONTEST
 	jp z, .can_escape
+	cp BATTLETYPE_SAFARI
+	jp z, .can_escape
 	cp BATTLETYPE_TRAP
 	jp z, .cant_escape
 	cp BATTLETYPE_CELEBI
@@ -5190,6 +5207,17 @@ BattleMenu:
 	jr .next
 .not_contest
 
+	cp BATTLETYPE_SAFARI
+	jr nz, .not_safari
+	farcall SafariBattleMenu
+	ld a, $1
+	ldh [hBGMapMode], a
+	ld a, [wBattleMenuCursorBuffer]
+	dec a
+	jp z, BattleMenu_SafariBall
+	jp BattleMenu_Run
+.not_safari
+
 	; Auto input: choose "ITEM"
 	ld a, [wInputType]
 	or a
@@ -5244,6 +5272,16 @@ LoadBattleMenu2:
 .error
 	scf
 	ret
+
+BattleMenu_SafariBall:
+; The SAFARI ZONE's only item, thrown straight from the battle menu.
+; The turn loop skips ParsePlayerAction for safari battles, so there is
+; no player action to record.
+	call LoadStandardMenuHeader
+	ld a, SAFARI_BALL
+	ld [wCurItem], a
+	call DoItemEffect
+	jp BattleMenu_Pack.UseItem
 
 BattleMenu_Pack:
 	ld a, [wLinkMode]

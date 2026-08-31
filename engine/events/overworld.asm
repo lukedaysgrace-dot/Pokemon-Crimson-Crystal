@@ -1557,6 +1557,11 @@ FishFunction:
 	ld a, e
 	ld [wCurPartyLevel], a
 	ld a, BATTLETYPE_FISH
+	ld hl, wStatusFlags2
+	bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
+	jr z, .not_safari
+	ld a, BATTLETYPE_SAFARI
+.not_safari
 	ld [wBattleType], a
 	ld a, $2
 	ret
