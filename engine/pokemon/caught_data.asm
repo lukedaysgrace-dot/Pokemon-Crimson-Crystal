@@ -258,6 +258,7 @@ CaughtBallItems:
 	db MOON_BALL
 	db LOVE_BALL
 	db PARK_BALL
+	db SAFARI_BALL
 
 SetCaughtBall::
 ; Store the ball in wCurItem into the Personality byte at bc,

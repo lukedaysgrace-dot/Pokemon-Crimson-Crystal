@@ -197,7 +197,7 @@
 	const MIRAGE_MAIL  ; bd
 	const TOXIC_ORB    ; be
 	const OVAL_STONE   ; bf
-	const ITEM_C3      ; c0
+	const SAFARI_BALL  ; c0
 	const ITEM_FA      ; c1
 
 add_tm: MACRO
@@ -297,6 +297,5 @@ USE_SCRIPT_VAR EQU $00
 ITEM_FROM_MEM  EQU $ff
 
 ; leftovers from red
-SAFARI_BALL    EQU $08 ; MOON_STONE
 MOON_STONE_RED EQU $0a ; BURN_HEAL
 FULL_HEAL_RED  EQU $34 ; X_SPEED

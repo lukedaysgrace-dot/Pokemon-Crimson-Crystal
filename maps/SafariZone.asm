@@ -1,7 +1,14 @@
 SafariZone_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_NEWMAP, .StartGame
+
+; Hands out the balls and the step allowance on the way in. Does nothing
+; if a game is already running, so this is safe on a save-and-reload.
+.StartGame:
+	special StartSafariGame
+	return
 
 SafariZone_MapEvents:
 	db 0, 0 ; filler
