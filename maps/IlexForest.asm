@@ -543,6 +543,8 @@ IlexForestTickingScript:
 	end
 
 IlexForestTickingFadesScript:
+	checkevent EVENT_ILEX_FOREST_HIDDEN_RELIC_CLOCK
+	iftrue .Done
 	checkevent EVENT_ILEX_FOREST_TICKING_FADED
 	iftrue .Done
 	setevent EVENT_ILEX_FOREST_TICKING_FADED
