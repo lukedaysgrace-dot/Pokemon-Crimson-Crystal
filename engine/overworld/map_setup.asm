@@ -39,20 +39,10 @@ ReadMapSetupScript:
 	ld h, [hl]
 	ld l, a
 
-	; Bit 7 of the bank indicates a parameter.
-	; This is left unused.
-	bit 7, b
-	jr z, .go
-
-	pop de
-	ld a, [de]
-	ld c, a
-	inc de
-	push de
-
-.go
+	; Map setup commands do not use parameters. Keep all eight bank bits so
+	; command routines can live in the upper half of a 4 MiB MBC30 ROM.
+	; Masking bit 7 here made a routine in bank $80 execute from bank $00.
 	ld a, b
-	and $7f
 	rst FarCall
 
 	pop hl
