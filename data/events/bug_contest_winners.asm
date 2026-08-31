@@ -19,7 +19,7 @@ BugContestantPointers:
 ;   dw 3rd-place mon, score
 ;
 ; ComputeAIContestantScores picks one of the three rows at uniform random and
-; adds 0-7, so these are three possible results for that trainer, not a ranking
+; adds 0-15, so these are three possible results for that trainer, not a ranking
 ; they work through. They must still descend within a row, or the "1st" row
 ; stops meaning anything.
 ;
