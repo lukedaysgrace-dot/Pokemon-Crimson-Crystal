@@ -190,7 +190,7 @@ IF DEF(DEBUG_BATTLE)
 	jp c, .quit
 ENDC
 	call Stubbed_Function3c1bf
-	call CheckContestBattleOver
+	farcall CheckContestBattleOver
 	jp c, .quit
 
 	xor a
@@ -231,16 +231,6 @@ ENDC
 	ld a, [wForcedSwitch] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
-
-	; SAFARI ZONE battles have no moves and no enemy attack: the wild mon
-	; either bolts or stands there watching you.
-	ld a, [wBattleType]
-	cp BATTLETYPE_SAFARI
-	jr nz, .skip_iteration
-	farcall SafariMonTurn
-	jp nc, .loop
-	call WildFled_EnemyFled_LinkBattleCanceled
-	jr .quit
 
 .skip_iteration
 	call ParsePlayerAction
@@ -646,28 +636,6 @@ DetermineMoveOrder:
 	ret
 
 .enemy_first
-	and a
-	ret
-
-CheckContestBattleOver:
-; Also covers the SAFARI ZONE, which shares the ball counter.
-	ld a, [wBattleType]
-	cp BATTLETYPE_CONTEST
-	jr z, .check_balls
-	cp BATTLETYPE_SAFARI
-	jr nz, .contest_not_over
-.check_balls
-	ld a, [wParkBallsRemaining]
-	and a
-	jr nz, .contest_not_over
-	ld a, [wBattleResult]
-	and BATTLERESULT_BITMASK
-	add DRAW
-	ld [wBattleResult], a
-	scf
-	ret
-
-.contest_not_over
 	and a
 	ret
 
@@ -5210,12 +5178,7 @@ BattleMenu:
 	cp BATTLETYPE_SAFARI
 	jr nz, .not_safari
 	farcall SafariBattleMenu
-	ld a, $1
-	ldh [hBGMapMode], a
-	ld a, [wBattleMenuCursorBuffer]
-	dec a
-	jp z, BattleMenu_SafariBall
-	jp BattleMenu_Run
+	jr .next
 .not_safari
 
 	; Auto input: choose "ITEM"
@@ -5273,16 +5236,6 @@ LoadBattleMenu2:
 	scf
 	ret
 
-BattleMenu_SafariBall:
-; The SAFARI ZONE's only item, thrown straight from the battle menu.
-; The turn loop skips ParsePlayerAction for safari battles, so there is
-; no player action to record.
-	call LoadStandardMenuHeader
-	ld a, SAFARI_BALL
-	ld [wCurItem], a
-	call DoItemEffect
-	jp BattleMenu_Pack.UseItem
-
 BattleMenu_Pack:
 	ld a, [wLinkMode]
 	and a
@@ -5299,6 +5252,8 @@ BattleMenu_Pack:
 	jr z, .tutorial
 	cp BATTLETYPE_CONTEST
 	jr z, .contest
+	cp BATTLETYPE_SAFARI
+	jr z, .safari
 
 	farcall BattlePack
 	ld a, [wBattlePlayerAction]
@@ -5315,12 +5270,19 @@ BattleMenu_Pack:
 
 .contest
 	ld a, PARK_BALL
+	jr .use_special_ball
+
+.safari
+; The pack is locked during a Safari Game. Selecting BALL throws one of
+; the gate's Safari Balls without exposing any carried items or other balls.
+	ld a, SAFARI_BALL
+
+.use_special_ball
 	ld [wCurItem], a
 	call DoItemEffect
 
 .got_item
-	call .UseItem
-	ret
+	jp .UseItem
 
 .didnt_use_item
 	call ClearPalettes
