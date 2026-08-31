@@ -1180,6 +1180,8 @@ CanUseSweetScent::
 	ld hl, wStatusFlags
 	bit STATUSFLAGS_NO_WILD_ENCOUNTERS_F, [hl]
 	jr nz, .no
+	call CheckSafariZoneNoEncounterBlock
+	jr c, .no
 	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .ice_check
@@ -1198,6 +1200,29 @@ CanUseSweetScent::
 	ret
 
 .no
+	and a
+	ret
+
+CheckSafariZoneNoEncounterBlock:
+; Block $01 is the SAFARI ZONE's encounter-free path.
+	ld a, [wMapGroup]
+	cp GROUP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wMapNumber]
+	cp MAP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wPlayerStandingMapX]
+	ld d, a
+	ld a, [wPlayerStandingMapY]
+	ld e, a
+	call GetBlockLocation
+	ld a, [hl]
+	cp SAFARI_ZONE_NO_ENCOUNTER_BLOCK
+	jr nz, .outside
+	scf
+	ret
+
+.outside
 	and a
 	ret
 
