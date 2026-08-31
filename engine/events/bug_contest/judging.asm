@@ -170,9 +170,11 @@ BugContest_JudgeContestants:
 	ld [hli], a
 	ld a, [wContestMon]
 	ld [hli], a
-	ldh a, [hProduct]
+	; ContestScore saved this before the ranking and AI calls.  Do not depend
+	; on those calls preserving the shared multiply/divide scratch registers.
+	ld a, [wBugContestPlayerScore]
 	ld [hli], a
-	ldh a, [hProduct + 1]
+	ld a, [wBugContestPlayerScore + 1]
 	ld [hl], a
 	call DetermineContestWinners
 	ret
