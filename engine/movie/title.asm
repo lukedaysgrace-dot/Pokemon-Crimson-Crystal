@@ -326,7 +326,7 @@ DrawTitleGraphic:
 
 InitializeBackground:
 	ld hl, wVirtualOAMSprite00
-	ld d, -$22
+	ld d, -$10
 	ld e, $0
 	ld c, 5
 .loop
@@ -341,8 +341,8 @@ InitializeBackground:
 	ret
 
 .InitColumn:
-	ld c, $6
-	ld b, $40
+	ld c, $8
+	ld b, $38
 .loop2
 	ld a, d
 	ld [hli], a ; y
