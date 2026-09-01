@@ -619,6 +619,9 @@ LYRA EQU __enum__
 	const ZUKI
 	const KUNI
 	const MIKI
+	const FUYU
+	const HANA
+	const YUMI
 
 	trainerclass TWINS ; 3d
 	const AMYANDMAY1

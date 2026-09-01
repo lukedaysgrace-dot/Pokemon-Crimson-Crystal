@@ -2950,6 +2950,10 @@ InitSprites:
 	ld a, [wPlayerBGMapOffsetX]
 	add e
 	ldh [hFFBF], a
+	; Active object structs extend beyond the visible screen. Do not let
+	; fully off-screen objects consume the limited hardware OAM slots.
+	cp SCREEN_WIDTH_PX + TILE_WIDTH
+	jp nc, .done
 	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
@@ -2961,6 +2965,8 @@ InitSprites:
 	ld a, [wPlayerBGMapOffsetY]
 	add e
 	ldh [hFFC0], a
+	cp SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
+	jp nc, .done
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]

@@ -193,7 +193,6 @@ INCLUDE "maps/EcruteakTinTowerEntrance.asm"
 INCLUDE "maps/WiseTriosRoom.asm"
 INCLUDE "maps/EcruteakPokecenter1F.asm"
 INCLUDE "maps/EcruteakLugiaSpeechHouse.asm"
-INCLUDE "maps/DanceTheatre.asm"
 INCLUDE "maps/EcruteakMart.asm"
 INCLUDE "maps/EcruteakGym.asm"
 INCLUDE "maps/EcruteakItemfinderHouse.asm"
@@ -205,7 +204,6 @@ INCLUDE "maps/ViridianMart.asm"
 INCLUDE "maps/ViridianPokecenter1F.asm"
 INCLUDE "maps/ViridianPokecenter2FBeta.asm"
 INCLUDE "maps/Route2NuggetHouse.asm"
-INCLUDE "maps/Route2Gate.asm"
 INCLUDE "maps/VictoryRoadGate.asm"
 
 
@@ -510,3 +508,5 @@ SECTION "Map Scripts 29", ROMX
 
 INCLUDE "maps/Route8SaffronGate.asm"
 INCLUDE "maps/Route12SuperRodHouse.asm"
+INCLUDE "maps/Route2Gate.asm"
+INCLUDE "maps/DanceTheatre.asm"
