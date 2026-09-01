@@ -1711,26 +1711,26 @@ JohtoGrassWildMons:
 	dbw 7, RATTATA_ALOLAN
 	dbw 7, MEOWTH_ALOLAN
 	dbw 8, PONYTA_GALARIAN
-	dbw 9, FARFETCH_D
-	dbw 10, CORSOLA_GALARIAN
-	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%)
-	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%)
+	dbw 9, RIOLU ; uncommon (10%)
+	dbw 10, RHYHORN ; rare (5%)
+	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%); unlocks at 5 Johto badges
+	dbw 11, KANGASKHAN ; rare (1%); unlocks at 5 Johto badges
 	; day
 	dbw 7, MEOWTH_ALOLAN
 	dbw 7, RATTATA_ALOLAN
 	dbw 8, PONYTA_GALARIAN
 	dbw 9, FARFETCH_D
 	dbw 10, LILEEP ; rare (5%)
-	dbw 11, TAUROS_PALDEAN_WATER ; rare (4%)
-	dbw 11, TAUROS_PALDEAN_FIRE ; rare (1%)
+	dbw 11, TAUROS_PALDEAN_WATER ; rare (4%); unlocks at 5 Johto badges
+	dbw 11, CHANSEY ; rare (1%)
 	; nite
 	dbw 7, RATTATA_ALOLAN
 	dbw 7, MEOWTH_ALOLAN
 	dbw 8, GRIMER_ALOLAN
 	dbw 9, VOLTORB_HISUIAN
 	dbw 10, SNEASEL_HISUIAN
-	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%)
-	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%)
+	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%); unlocks at 5 Johto badges
+	dbw 11, TAUROS_PALDEAN_WATER ; rare (1%); unlocks at 5 Johto badges
 
 	db -1 ; end
 
@@ -1748,7 +1748,7 @@ SafariZoneIceWildMons:
 	dbw 9, VULPIX_ALOLAN
 	dbw 10, SANDSHREW_ALOLAN
 	dbw 10, AMAURA ; rare (4%)
-	dbw 11, VULPIX_ALOLAN
+	dbw 11, SMOOCHUM ; rare (1%)
 	; day
 	dbw 7, VULPIX_ALOLAN
 	dbw 7, SANDSHREW_ALOLAN
@@ -1756,7 +1756,7 @@ SafariZoneIceWildMons:
 	dbw 9, SANDSHREW_ALOLAN
 	dbw 10, VULPIX_ALOLAN
 	dbw 10, AMAURA ; rare (4%)
-	dbw 11, SANDSHREW_ALOLAN
+	dbw 11, CETODDLE ; rare (1%)
 	; nite
 	dbw 7, SANDSHREW_ALOLAN
 	dbw 7, VULPIX_ALOLAN
@@ -1764,7 +1764,7 @@ SafariZoneIceWildMons:
 	dbw 9, VULPIX_ALOLAN
 	dbw 10, VULPIX_ALOLAN
 	dbw 10, AMAURA ; rare (4%)
-	dbw 11, VULPIX_ALOLAN
+	dbw 11, FRIGIBAX ; rare (1%)
 
 SafariZoneRockyWildMons:
 	map_id SAFARI_ZONE
@@ -1776,7 +1776,7 @@ SafariZoneRockyWildMons:
 	dbw 9, ARON
 	dbw 10, GROWLITHE_HISUIAN
 	dbw 10, CRANIDOS ; rare (4%)
-	dbw 11, TYRUNT ; rare (1%)
+	dbw 11, BAGON ; rare (1%)
 	; day
 	dbw 7, GEODUDE_ALOLAN
 	dbw 7, DIGLETT_ALOLAN
@@ -1784,7 +1784,7 @@ SafariZoneRockyWildMons:
 	dbw 9, GROWLITHE_HISUIAN
 	dbw 10, ARON
 	dbw 10, SHIELDON ; rare (4%)
-	dbw 11, TYRUNT ; rare (1%)
+	dbw 11, AXEW ; rare (1%)
 	; nite
 	dbw 7, DIGLETT_ALOLAN
 	dbw 7, GEODUDE_ALOLAN
@@ -1792,4 +1792,4 @@ SafariZoneRockyWildMons:
 	dbw 9, MEOWTH_GALARIAN
 	dbw 10, GROWLITHE_HISUIAN
 	dbw 10, ARCHEN ; rare (4%)
-	dbw 12, AERODACTYL ; rare (1%)
+	dbw 11, AERODACTYL ; rare (1%); unlocks at 5 Johto badges

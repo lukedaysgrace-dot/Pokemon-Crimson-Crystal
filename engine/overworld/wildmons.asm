@@ -335,6 +335,7 @@ ChooseWildEncounter:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	call ApplySafariBadgeEncounterGate
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
@@ -367,6 +368,69 @@ ChooseWildEncounter:
 .nowildbattle
 	ld a, 1
 	and a
+	ret
+
+ApplySafariBadgeEncounterGate:
+; Keep the Safari Zone's strongest standalone species out of the early game.
+; Once the player owns five Johto badges, return the selected species unchanged.
+	ld a, [wMapGroup]
+	cp GROUP_SAFARI_ZONE
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_SAFARI_ZONE
+	ret nz
+
+	push hl
+	ld hl, wJohtoBadges
+	ld b, 1
+	call CountSetBits
+	cp 5
+	pop hl
+	ret nc
+
+	ld a, h
+	cp HIGH(KANGASKHAN)
+	jr nz, .check_fire_tauros
+	ld a, l
+	cp LOW(KANGASKHAN)
+	jr z, .kangaskhan
+
+.check_fire_tauros
+	ld a, h
+	cp HIGH(TAUROS_PALDEAN_FIRE)
+	jr nz, .check_water_tauros
+	ld a, l
+	cp LOW(TAUROS_PALDEAN_FIRE)
+	jr z, .fire_tauros
+
+.check_water_tauros
+	ld a, h
+	cp HIGH(TAUROS_PALDEAN_WATER)
+	jr nz, .check_aerodactyl
+	ld a, l
+	cp LOW(TAUROS_PALDEAN_WATER)
+	jr z, .water_tauros
+
+.check_aerodactyl
+	ld a, h
+	cp HIGH(AERODACTYL)
+	ret nz
+	ld a, l
+	cp LOW(AERODACTYL)
+	ret nz
+	ld hl, TYRUNT
+	ret
+
+.kangaskhan
+	ld hl, FARFETCH_D
+	ret
+
+.fire_tauros
+	ld hl, PONYTA_GALARIAN
+	ret
+
+.water_tauros
+	ld hl, SLOWPOKE_GALARIAN
 	ret
 
 INCLUDE "data/wild/probabilities.asm"
