@@ -824,23 +824,21 @@ SpriteAnimOAMData:
 	dsprite  1,  0,  1,  0, $00, 1 | X_FLIP | Y_FLIP
 
 .OAMData_IntroSuicune1:
-	db 33
-	dsprite -3,  0,  1,  0, $05, 0
+	db 31
 	dsprite -3,  0,  2,  0, $06, 0
-	dsprite -3,  0,  3,  0, $07, 0
 	dsprite -2,  0, -3,  0, $11, 0
 	dsprite -2,  0, -2,  0, $12, 0
 	dsprite -2,  0, -1,  0, $13, 0
 	dsprite -2,  0,  0,  0, $14, 0
 	dsprite -2,  0,  1,  0, $15, 0
 	dsprite -2,  0,  2,  0, $16, 0
-	dsprite -2,  0,  3,  0, $17, 0
 	dsprite -1,  0, -3,  0, $21, 0
 	dsprite -1,  0, -2,  0, $22, 0
 	dsprite -1,  0, -1,  0, $23, 0
 	dsprite -1,  0,  0,  0, $24, 0
 	dsprite -1,  0,  1,  0, $25, 0
 	dsprite -1,  0,  2,  0, $26, 0
+	dsprite -1,  0,  3,  0, $27, 0
 	dsprite  0,  0, -3,  0, $31, 0
 	dsprite  0,  0, -2,  0, $32, 0
 	dsprite  0,  0, -1,  0, $33, 0
@@ -866,8 +864,6 @@ SpriteAnimOAMData:
 	dsprite -2,  0, -1,  0, $13, 0
 	dsprite -2,  0,  0,  0, $14, 0
 	dsprite -2,  0,  1,  0, $15, 0
-	dsprite -2,  0,  2,  0, $16, 0
-	dsprite -2,  0,  3,  0, $17, 0
 	dsprite -1,  0, -3,  0, $21, 0
 	dsprite -1,  0, -2,  0, $22, 0
 	dsprite -1,  0, -1,  0, $23, 0
@@ -880,6 +876,8 @@ SpriteAnimOAMData:
 	dsprite  0,  0, -1,  0, $33, 0
 	dsprite  0,  0,  0,  0, $34, 0
 	dsprite  0,  0,  1,  0, $35, 0
+	dsprite  0,  0,  2,  0, $36, 0
+	dsprite  0,  0,  3,  0, $37, 0
 	dsprite  1,  0, -3,  0, $41, 0
 	dsprite  1,  0, -2,  0, $42, 0
 	dsprite  1,  0, -1,  0, $43, 0
@@ -891,20 +889,14 @@ SpriteAnimOAMData:
 	dsprite  2,  0,  1,  0, $55, 0
 
 .OAMData_IntroSuicune3:
-	db 37
-	dsprite -3,  0, -3,  0, $01, 0
-	dsprite -3,  0, -2,  0, $02, 0
-	dsprite -3,  0,  0,  0, $04, 0
+	db 33
 	dsprite -3,  0,  1,  0, $05, 0
-	dsprite -3,  0,  2,  0, $06, 0
-	dsprite -2,  0, -4,  0, $10, 0
 	dsprite -2,  0, -3,  0, $11, 0
 	dsprite -2,  0, -2,  0, $12, 0
 	dsprite -2,  0, -1,  0, $13, 0
 	dsprite -2,  0,  0,  0, $14, 0
 	dsprite -2,  0,  1,  0, $15, 0
 	dsprite -2,  0,  2,  0, $16, 0
-	dsprite -2,  0,  3,  0, $17, 0
 	dsprite -1,  0, -4,  0, $20, 0
 	dsprite -1,  0, -3,  0, $21, 0
 	dsprite -1,  0, -2,  0, $22, 0
@@ -919,6 +911,7 @@ SpriteAnimOAMData:
 	dsprite  0,  0,  0,  0, $34, 0
 	dsprite  0,  0,  1,  0, $35, 0
 	dsprite  0,  0,  2,  0, $36, 0
+	dsprite  0,  0,  3,  0, $37, 0
 	dsprite  1,  0, -3,  0, $41, 0
 	dsprite  1,  0, -2,  0, $42, 0
 	dsprite  1,  0, -1,  0, $43, 0
@@ -928,17 +921,17 @@ SpriteAnimOAMData:
 	dsprite  2,  0, -2,  0, $52, 0
 	dsprite  2,  0, -1,  0, $53, 0
 	dsprite  2,  0,  0,  0, $54, 0
+	dsprite  2,  0,  1,  0, $55, 0
 	dsprite  2,  0,  2,  0, $56, 0
 
 .OAMData_IntroSuicune4:
-	db 34
+	db 35
 	dsprite -2,  0, -3,  0, $11, 0
 	dsprite -2,  0, -2,  0, $12, 0
 	dsprite -2,  0, -1,  0, $13, 0
 	dsprite -2,  0,  0,  0, $14, 0
 	dsprite -2,  0,  1,  0, $15, 0
-	dsprite -2,  0,  2,  0, $16, 0
-	dsprite -2,  0,  3,  0, $17, 0
+	dsprite -1,  0, -4,  0, $20, 0
 	dsprite -1,  0, -3,  0, $21, 0
 	dsprite -1,  0, -2,  0, $22, 0
 	dsprite -1,  0, -1,  0, $23, 0
@@ -946,6 +939,7 @@ SpriteAnimOAMData:
 	dsprite -1,  0,  1,  0, $25, 0
 	dsprite -1,  0,  2,  0, $26, 0
 	dsprite -1,  0,  3,  0, $27, 0
+	dsprite  0,  0, -4,  0, $30, 0
 	dsprite  0,  0, -3,  0, $31, 0
 	dsprite  0,  0, -2,  0, $32, 0
 	dsprite  0,  0, -1,  0, $33, 0
@@ -964,7 +958,8 @@ SpriteAnimOAMData:
 	dsprite  2,  0, -4,  0, $50, 0
 	dsprite  2,  0, -3,  0, $51, 0
 	dsprite  2,  0, -2,  0, $52, 0
-	dsprite  2,  0, -1,  0, $53, 0
+	dsprite  2,  0,  1,  0, $55, 0
+	dsprite  2,  0,  2,  0, $56, 0
 	dsprite  2,  0,  3,  0, $57, 0
 
 .OAMData_IntroPichu:

@@ -1412,6 +1412,7 @@ LoadMapPals:
 	ld bc, 8 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
+	call LoadDanceTheatreObjectPalette
 
 	ld a, [wEnvironment]
 	cp TOWN
@@ -1441,6 +1442,21 @@ endr
 	call FarCopyWRAM
 	ret
 
+LoadDanceTheatreObjectPalette:
+; The Dance Theatre has no rock-paletted objects, so reuse that OBJ slot for
+; Yumi's pink kimono without changing the rock palette anywhere else.
+	ld a, [wMapGroup]
+	cp GROUP_DANCE_THEATRE
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_DANCE_THEATRE
+	ret nz
+	ld hl, DanceTheatrePinkPalette
+	ld de, wOBPals1 palette PAL_OW_ROCK
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	jp FarCopyWRAM
+
 INCLUDE "data/maps/environment_colors.asm"
 
 PartyMenuBGMobilePalette:
@@ -1454,6 +1470,9 @@ INCLUDE "gfx/tilesets/bg_tiles.pal"
 
 MapObjectPals::
 INCLUDE "gfx/overworld/npc_sprites.pal"
+
+DanceTheatrePinkPalette:
+	RGB 31,31,31, 31,19,10, 31,15,26, 00,00,00
 
 RoofPals:
 INCLUDE "gfx/tilesets/roofs.pal"
