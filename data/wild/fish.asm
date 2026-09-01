@@ -206,21 +206,25 @@ FishGroups:
 	dbbw 100 percent,     40, REMORAID
 
 .Safari_Old:
-	dbbw  30 percent,     15, QWILFISH
-	dbbw  55 percent,     15, WOOPER_PALDEAN
-	dbbw  80 percent,     15, SLOWPOKE_GALARIAN
-	dbbw  88 percent,     15, ANORITH
-	dbbw  94 percent,     15, KABUTO
-	dbbw 100 percent,     15, OMANYTE
+	dbbw  26 percent,      8, QWILFISH
+	dbbw  47 percent,      8, WOOPER_PALDEAN
+	dbbw  72 percent,      9, SLOWPOKE_GALARIAN
+	dbbw  80 percent,     10, ANORITH
+	dbbw  86 percent,     10, KABUTO
+	dbbw  92 percent,     10, OMANYTE
+	dbbw  97 percent,      9, WIMPOD
+	dbbw  98 percent,     11, MANTYKE
+	dbbw  99 percent,     11, FEEBAS
+	dbbw 100 percent,     11, DRATINI
 .Safari_Good:
-	dbbw  40 percent,     25, QWILFISH
-	dbbw  70 percent,     25, GOLDEEN
-	dbbw  85 percent,     25, TIRTOUGA
-	dbbw 100 percent,     25, CORSOLA_GALARIAN
+	dbbw  40 percent,      9, QWILFISH
+	dbbw  70 percent,      9, GOLDEEN
+	dbbw  85 percent,     10, TIRTOUGA
+	dbbw 100 percent,     11, CORSOLA_GALARIAN
 .Safari_Super:
-	dbbw  40 percent,     35, QWILFISH
-	dbbw  70 percent,     35, SEAKING
-	dbbw 100 percent,     35, OVERQWIL
+	dbbw  40 percent,     10, QWILFISH
+	dbbw  70 percent,     11, SEAKING
+	dbbw 100 percent,     11, OVERQWIL
 
 TimeFishGroups:
 	;     day             nite
