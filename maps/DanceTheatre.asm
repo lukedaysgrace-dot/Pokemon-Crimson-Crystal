@@ -4,6 +4,9 @@
 	const DANCETHEATRE_KIMONO_GIRL3
 	const DANCETHEATRE_KIMONO_GIRL4
 	const DANCETHEATRE_KIMONO_GIRL5
+	const DANCETHEATRE_KIMONO_GIRL6
+	const DANCETHEATRE_KIMONO_GIRL7
+	const DANCETHEATRE_KIMONO_GIRL8
 	const DANCETHEATRE_GENTLEMAN
 	const DANCETHEATRE_RHYDON
 	const DANCETHEATRE_COOLTRAINER_M
@@ -69,6 +72,39 @@ TrainerKimonoGirlMiki:
 	closetext
 	end
 
+TrainerKimonoGirlFuyu:
+	trainer KIMONO_GIRL, FUYU, EVENT_BEAT_KIMONO_GIRL_FUYU, KimonoGirlFuyuSeenText, KimonoGirlFuyuBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext KimonoGirlFuyuAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerKimonoGirlHana:
+	trainer KIMONO_GIRL, HANA, EVENT_BEAT_KIMONO_GIRL_HANA, KimonoGirlHanaSeenText, KimonoGirlHanaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext KimonoGirlHanaAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerKimonoGirlYumi:
+	trainer KIMONO_GIRL, YUMI, EVENT_BEAT_KIMONO_GIRL_YUMI, KimonoGirlYumiSeenText, KimonoGirlYumiBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext KimonoGirlYumiAfterBattleText
+	waitbutton
+	closetext
+	end
+
 DanceTheaterSurfGuy:
 	faceplayer
 	opentext
@@ -85,6 +121,12 @@ DanceTheaterSurfGuy:
 	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
 	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
+	iffalse .KimonoGirlsUndefeated
+	checkevent EVENT_BEAT_KIMONO_GIRL_FUYU
+	iffalse .KimonoGirlsUndefeated
+	checkevent EVENT_BEAT_KIMONO_GIRL_HANA
+	iffalse .KimonoGirlsUndefeated
+	checkevent EVENT_BEAT_KIMONO_GIRL_YUMI
 	iffalse .KimonoGirlsUndefeated
 	sjump .GetSurf
 
@@ -233,6 +275,66 @@ KimonoGirlMikiAfterBattleText:
 	line "spirits up too."
 	done
 
+KimonoGirlFuyuSeenText:
+	text "I practice dancing"
+	line "every day with my"
+	cont "#MON."
+
+	para "Would you care for"
+	line "a battle?"
+	done
+
+KimonoGirlFuyuBeatenText:
+	text "Your rhythm never"
+	line "faltered."
+	done
+
+KimonoGirlFuyuAfterBattleText:
+	text "A graceful dance"
+	line "takes patience and"
+	cont "trust in your"
+	cont "#MON."
+	done
+
+KimonoGirlHanaSeenText:
+	text "Do you feel the"
+	line "rhythm in the air?"
+
+	para "My #MON and I"
+	line "dance to it."
+
+	para "Would you like to"
+	line "battle?"
+	done
+
+KimonoGirlHanaBeatenText:
+	text "You swept me away!"
+	done
+
+KimonoGirlHanaAfterBattleText:
+	text "Dancing with my"
+	line "#MON always makes"
+	cont "me smile."
+	done
+
+KimonoGirlYumiSeenText:
+	text "Ribbons make every"
+	line "dance look lovely."
+
+	para "Oh! Would you like"
+	line "to battle?"
+	done
+
+KimonoGirlYumiBeatenText:
+	text "A lovely dance!"
+	done
+
+KimonoGirlYumiAfterBattleText:
+	text "I express myself"
+	line "through dance and"
+	cont "#MON battles."
+	done
+
 SurfGuyNeverLeftAScratchText:
 	text "Not only are the"
 	line "KIMONO GIRLS great"
@@ -348,13 +450,17 @@ DanceTheatre_MapEvents:
 	bg_event  5,  6, BGEVENT_UP, DanceTheatreFancyPanel
 	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
 
-	db 9 ; object events
-	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
-	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
-	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1
+	db 12 ; object events
+	object_event  1,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
+	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
+	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1
 	object_event  9,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlKuni, -1
-	object_event 11,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlMiki, -1
-	object_event  7, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterSurfGuy, -1
+	object_event 10,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlMiki, -1
+	object_event  4,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlFuyu, -1
+	object_event  3,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlHana, -1
+	; This map replaces the otherwise-unused rock OBJ slot with pink.
+	object_event  7,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlYumi, -1
+	object_event  7, 11, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterSurfGuy, -1
 	object_event  6,  8, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DanceTheaterRhydon, -1
-	object_event 10, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1
-	object_event  3,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheatreGrannyScript, -1
+	object_event 10, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1
+	object_event  3, 11, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheatreGrannyScript, -1
