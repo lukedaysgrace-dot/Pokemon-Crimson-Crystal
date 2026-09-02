@@ -1,0 +1,47 @@
+[
+  {
+    "class": "RIVAL1",
+    "id": "RIVAL1_1_TOTODILE",
+    "id_num": 3,
+    "name": "?",
+    "map": "CherrygroveCity",
+    "event": "",
+    "enemy_levels": [
+      5
+    ],
+    "enemy_species": [
+      "TOTODILE"
+    ],
+    "player_level": 5,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 14,
+    "faints": 2,
+    "seen_enemy": [
+      "TOTODILE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 3,
+      "MAREEP:TACKLE": 4,
+      "MAREEP:THUNDER_WAVE": 1,
+      "BELLSPROUT:ACID": 6
+    },
+    "frames": 12164,
+    "index": 1
+  }
+]

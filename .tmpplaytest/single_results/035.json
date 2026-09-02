@@ -1,0 +1,48 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "AL",
+    "id_num": 6,
+    "name": "AL",
+    "map": "AzaleaGym",
+    "event": "EVENT_BEAT_BUG_CATCHER_AL",
+    "enemy_levels": [
+      12,
+      15
+    ],
+    "enemy_species": [
+      "SIZZLIPEDE",
+      "JOLTIK"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 20,
+    "faints": 1,
+    "seen_enemy": [
+      "SIZZLIPEDE",
+      "JOLTIK"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 8,
+      "FLAAFFY:THUNDERSHOCK": 9,
+      "FLAAFFY:NUZZLE": 3
+    },
+    "frames": 15248,
+    "index": 1
+  }
+]

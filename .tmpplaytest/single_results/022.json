@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "PETER",
+    "id_num": 13,
+    "name": "PETER",
+    "map": "Route32",
+    "event": "EVENT_BEAT_BIRD_KEEPER_PETER",
+    "enemy_levels": [
+      12,
+      12
+    ],
+    "enemy_species": [
+      "SPEAROW",
+      "HOOTHOOT"
+    ],
+    "player_level": 12,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "SPEAROW",
+      "HOOTHOOT"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 3,
+      "MAREEP:THUNDERSHOCK": 4
+    },
+    "frames": 6680,
+    "index": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "THUG",
+    "id": "THUG_PAULIE",
+    "id_num": 1,
+    "name": "PAULIE",
+    "map": "GoldenrodUnderground",
+    "event": "",
+    "enemy_levels": [
+      20,
+      20
+    ],
+    "enemy_species": [
+      "MANKEY",
+      "KOFFING"
+    ],
+    "player_level": 20,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "MANKEY",
+      "KOFFING"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "FLAAFFY:THUNDERSHOCK": 4
+    },
+    "frames": 5972,
+    "index": 1
+  }
+]

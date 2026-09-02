@@ -1,0 +1,47 @@
+[
+  {
+    "class": "TWINS",
+    "id": "AMYANDMAY1",
+    "id_num": 1,
+    "name": "AMY & MAY",
+    "map": "AzaleaGym",
+    "event": "EVENT_BEAT_TWINS_AMY_AND_MAY",
+    "enemy_levels": [
+      15,
+      15
+    ],
+    "enemy_species": [
+      "PINECO",
+      "SPINARAK"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 1,
+    "seen_enemy": [
+      "PINECO",
+      "SPINARAK"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 7,
+      "FLAAFFY:THUNDERSHOCK": 5
+    },
+    "frames": 10180,
+    "index": 1
+  }
+]

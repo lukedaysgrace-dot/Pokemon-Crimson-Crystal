@@ -1,0 +1,48 @@
+[
+  {
+    "class": "SUPER_NERD",
+    "id": "ERIC",
+    "id_num": 2,
+    "name": "ERIC",
+    "map": "GoldenrodUnderground",
+    "event": "EVENT_BEAT_SUPER_NERD_ERIC",
+    "enemy_levels": [
+      20,
+      20
+    ],
+    "enemy_species": [
+      "MAGNEMITE",
+      "VOLTORB"
+    ],
+    "player_level": 20,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 1,
+    "seen_enemy": [
+      "MAGNEMITE",
+      "VOLTORB",
+      "MAGNEMITE"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4,
+      "FLAAFFY:THUNDERSHOCK": 9
+    },
+    "frames": 9520,
+    "index": 1
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "BUG_CATCHER_BENNY",
+    "id_num": 5,
+    "name": "BENNY",
+    "map": "AzaleaGym",
+    "event": "EVENT_BEAT_BUG_CATCHER_BENNY",
+    "enemy_levels": [
+      12,
+      15
+    ],
+    "enemy_species": [
+      "TRAPINCH",
+      "PINECO"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "TRAPINCH",
+      "PINECO"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "FLAAFFY:THUNDERSHOCK": 2,
+      "BELLSPROUT:RAZOR_LEAF": 4,
+      "GASTLY:SMOG": 3
+    },
+    "frames": 10500,
+    "index": 1
+  }
+]

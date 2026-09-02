@@ -1,0 +1,42 @@
+[
+  {
+    "class": "FIREBREATHER",
+    "id": "RAY",
+    "id_num": 5,
+    "name": "RAY",
+    "map": "UnionCave1F",
+    "event": "EVENT_BEAT_FIREBREATHER_RAY",
+    "enemy_levels": [
+      12
+    ],
+    "enemy_species": [
+      "VULPIX"
+    ],
+    "player_level": 12,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 0,
+    "seen_enemy": [
+      "VULPIX"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 5
+    },
+    "frames": 3608,
+    "index": 1
+  }
+]

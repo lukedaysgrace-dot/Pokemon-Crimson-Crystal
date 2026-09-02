@@ -1,0 +1,59 @@
+[
+  {
+    "class": "RIVAL1",
+    "id": "RIVAL1_2_TOTODILE",
+    "id_num": 6,
+    "name": "?",
+    "map": "AzaleaTown",
+    "event": "",
+    "enemy_levels": [
+      13,
+      14,
+      16
+    ],
+    "enemy_species": [
+      "GLIGAR",
+      "MAGNEMITE",
+      "CROCONAW"
+    ],
+    "player_level": 16,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 21,
+    "faints": 6,
+    "seen_enemy": [
+      "GLIGAR"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4,
+      "FLAAFFY:THUNDERSHOCK": 3,
+      "FLAAFFY:NUZZLE": 2,
+      "BELLSPROUT:RAZOR_LEAF": 2,
+      "GASTLY:SMOG": 2,
+      "GEODUDE:BULLDOZE": 3,
+      "GEODUDE:MUD_SHOT": 2,
+      "ZUBAT:WING_ATTACK": 2,
+      "ZUBAT:BITE": 1
+    },
+    "frames": 13376,
+    "index": 1
+  }
+]

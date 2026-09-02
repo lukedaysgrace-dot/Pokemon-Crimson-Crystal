@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "WAYNE",
+    "id_num": 19,
+    "name": "WAYNE",
+    "map": "IlexForest",
+    "event": "EVENT_BEAT_BUG_CATCHER_WAYNE",
+    "enemy_levels": [
+      18,
+      18
+    ],
+    "enemy_species": [
+      "SIZZLIPEDE",
+      "VENIPEDE"
+    ],
+    "player_level": 18,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 1,
+    "seen_enemy": [
+      "SIZZLIPEDE",
+      "VENIPEDE"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 5,
+      "FLAAFFY:THUNDERSHOCK": 3
+    },
+    "frames": 7176,
+    "index": 1
+  }
+]
