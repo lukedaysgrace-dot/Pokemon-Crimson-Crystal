@@ -28,6 +28,7 @@ Landmarks:
 	landmark  52,  60, NationalParkName
 	landmark  64,  60, Route36Name
 	landmark  68,  52, Route37Name
+	landmark  68,  50, SilentHollowName
 	landmark  68,  44, EcruteakCityName
 	landmark  70,  42, TinTowerName
 	landmark  66,  42, BurnedTowerName
@@ -53,6 +54,7 @@ Landmarks:
 	landmark 112,  72, DarkCaveName
 	landmark 124,  88, Route46Name
 	landmark 148,  68, SilverCaveName
+	landmark  34,  68, IceIslandName
 	landmark  52, 108, PalletTownName
 	landmark  52,  92, Route1Name
 	landmark  52,  76, ViridianCityName
@@ -110,6 +112,7 @@ VioletCityName:      db "VIOLET CITY@"
 AzaleaTownName:      db "AZALEA TOWN@"
 GoldenrodCityName:   db "GOLDENROD¯CITY@"
 EcruteakCityName:    db "ECRUTEAK¯CITY@"
+SilentHollowName:    db "SILENT HOLLOW@"
 OlivineCityName:     db "OLIVINE¯CITY@"
 CianwoodCityName:    db "CIANWOOD¯CITY@"
 MahoganyTownName:    db "MAHOGANY¯TOWN@"
@@ -129,6 +132,7 @@ WhirlIslandsName:    db "WHIRL¯ISLANDS@"
 MtMortarName:        db "MT.MORTAR@"
 DragonsDenName:      db "DRAGON'S¯DEN@"
 IcePathName:         db "ICE PATH@"
+IceIslandName:       db "ICE ISLAND@"
 NotApplicableName:   db "N/A@" ; "オバケやしき" ("HAUNTED HOUSE") in Japanese
 PalletTownName:      db "PALLET TOWN@"
 ViridianCityName:    db "VIRIDIAN¯CITY@"
