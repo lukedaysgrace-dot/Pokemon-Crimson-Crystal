@@ -15,17 +15,6 @@ MAP_NONE   EQU 0
 	const MAP_PALETTE            ; 7
 	const MAP_FISHGROUP          ; 8
 
-; map landmark name signs (high nybble of MAP_ENVIRONMENT)
-	const_def
-	const SIGN_WOOD
-	const SIGN_CITY
-	const SIGN_FOREST
-	const SIGN_CAVE
-	const SIGN_ROUTE
-	const SIGN_WATER
-	const SIGN_BUILDING
-NUM_SIGNS EQU const_value
-
 ; map environments (wEnvironment)
 	const_def 1
 	const TOWN

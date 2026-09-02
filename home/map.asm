@@ -2036,16 +2036,6 @@ CopyMapPartial::
 	ld bc, wMapPartialEnd - wMapPartial
 	call CopyBytes
 
-	; The map environment and location-sign style share one header byte.
-	ld a, [wEnvironment]
-	ld c, a
-	and $f
-	ld [wEnvironment], a
-	ld a, c
-	swap a
-	and $f
-	ld [wSign], a
-
 	pop af
 	rst Bankswitch
 	ret
@@ -2101,7 +2091,15 @@ GetMapAttributesPointer::
 	ret
 
 GetMapEnvironment::
-	ld a, [wEnvironment]
+	push hl
+	push de
+	push bc
+	ld de, MAP_ENVIRONMENT
+	call GetMapField
+	ld a, c
+	pop bc
+	pop de
+	pop hl
 	ret
 
 GetAnyMapEnvironment::
@@ -2111,7 +2109,6 @@ GetAnyMapEnvironment::
 	ld de, MAP_ENVIRONMENT
 	call GetAnyMapField
 	ld a, c
-	and $f
 	pop bc
 	pop de
 	pop hl
