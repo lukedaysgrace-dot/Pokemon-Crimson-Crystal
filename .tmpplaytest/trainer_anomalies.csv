@@ -1,0 +1,25 @@
+severity,category,map,trainer_class,trainer_id,trainer,level,species,detail
+high,moveset/cap,CianwoodGym,CHUCK,CHUCK1,CHUCK,34,BRELOOM,Spore is on a level-34 mon while the player is capped at 31
+high,moveset/cap,CianwoodGym,CHUCK,CHUCK1,CHUCK,35,POLIWRATH,"level 35 versus cap 31, with Hypnosis + Mind Reader + DynamicPunch"
+high,item synergy,FastShipCabins_NNW_NNE_NE,COOLTRAINERF,CAROL,CAROL,54,LANTURN,CHOICE_SPECS conflicts with status move(s): THUNDER_WAVE
+high,item synergy,FastShipB1F,BLACKBELT_T,WAI,WAI,56,LEDIAN,CHOICE_SCARF conflicts with status move(s): QUIVER_DANCE
+high,item synergy,Route25,COOLTRAINERM,KEVIN,KEVIN,63,ALAKAZAM,CHOICE_SPECS conflicts with status move(s): CALM_MIND
+high,item synergy,Route25,COOLTRAINERM,KEVIN,KEVIN,64,ESPEON,CHOICE_SPECS conflicts with status move(s): MORNING_SUN
+high,item synergy,Route7,BATTLE_GIRL,BATTLE_GIRL2,AYA,69,LUCARIO,CHOICE_SPECS conflicts with status move(s): CALM_MIND
+high,item synergy,FuchsiaGym,NINJA,NINJA1,KANE,72,ARBOK,CHOICE_SCARF conflicts with status move(s): GLARE
+high,item synergy,FuchsiaGym,NINJA,NINJA4,RYU,73,VENOMOTH,CHOICE_SPECS conflicts with status move(s): QUIVER_DANCE
+high,item synergy,SaffronGym,PSYCHIC_T,FRANKLIN,FRANKLIN,73,EXEGGUTOR,CHOICE_SCARF conflicts with status move(s): SYNTHESIS
+high,item synergy,FuchsiaGym,NINJA,NINJA2,SHIRO,74,VILEPLUME,CHOICE_SPECS conflicts with status move(s): TOXIC
+high,item synergy,Route18,TAMER,TAMER2,JAX,74,ARCHALUDON,CHOICE_SCARF conflicts with status move(s): HONE_CLAWS
+high,item synergy,TrainerHouseB1F,CAL,CAL3,CAL,92,VENOMOTH,CHOICE_SPECS conflicts with status move(s): QUIVER_DANCE
+medium,moveset,AzaleaGym,TWINS,AMYANDMAY1,AMY & MAY,15,PINECO,default level-up set includes Selfdestruct this early
+medium,moveset,AzaleaGym,TWINS,AMYANDMAY2,AMY & MAY,15,PINECO,default level-up set includes Selfdestruct this early
+medium,moveset,AzaleaGym,BUG_CATCHER,BUG_CATCHER_BENNY,BENNY,15,PINECO,default level-up set includes Selfdestruct this early
+medium,theming,GoldenrodGym,WHITNEY,WHITNEY1,WHITNEY,19,CLEFAIRY,custom set has no damaging STAB move
+medium,moveset,GoldenrodUnderground,THUG,THUG_PAULIE,PAULIE,20,KOFFING,default level-up set includes Selfdestruct this early
+medium,theming,Route37,TWINS,ANNANDANNE2,ANN & ANNE,25,SNUBBULL,custom set has no damaging STAB move
+medium,moveset,EcruteakGym,MORTY,MORTY1,MORTY,26,GENGAR,sleep + Dream Eater package can be oppressive this early
+medium,theming,VermilionGym,LT_SURGE,LT_SURGE1,LT.SURGE,62,RAICHU,custom set has no damaging STAB move
+medium,theming,SilverCaveRoom3,RED,RED1,,90,PIKACHU,custom set has no damaging STAB move
+medium,moveset,SilverCaveRoom3,RED,RED1,,91,ESPEON,setup plus reliable recovery can snowball
+medium,theming,PalletTown,RED2,RED2_1,,98,PIKACHU,custom set has no damaging STAB move

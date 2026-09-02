@@ -1,0 +1,58 @@
+[
+  {
+    "class": "HIKER",
+    "id": "RUSSELL",
+    "id_num": 2,
+    "name": "RUSSELL",
+    "map": "UnionCave1F",
+    "event": "EVENT_BEAT_HIKER_RUSSELL",
+    "enemy_levels": [
+      11,
+      12
+    ],
+    "enemy_species": [
+      "NUMEL",
+      "WOOPER"
+    ],
+    "player_level": 12,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 20,
+    "faints": 6,
+    "seen_enemy": [
+      "NUMEL",
+      "WOOPER"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 1,
+      "MAREEP:THUNDERSHOCK": 3,
+      "MAREEP:NUZZLE": 2,
+      "BELLSPROUT:WRAP": 2,
+      "GASTLY:SMOG": 3,
+      "GASTLY:HYPNOSIS": 1,
+      "GEODUDE:ROCK_THROW": 3,
+      "GEODUDE:HARDEN": 1,
+      "ZUBAT:WING_ATTACK": 4
+    },
+    "frames": 15340,
+    "index": 1
+  }
+]

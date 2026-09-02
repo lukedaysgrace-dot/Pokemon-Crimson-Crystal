@@ -1,0 +1,59 @@
+[
+  {
+    "class": "BUGSY",
+    "id": "BUGSY1",
+    "id_num": 1,
+    "name": "BUGSY",
+    "map": "AzaleaGym",
+    "event": "EVENT_BEAT_BUGSY",
+    "enemy_levels": [
+      14,
+      15,
+      16
+    ],
+    "enemy_species": [
+      "SIZZLIPEDE",
+      "JOLTIK",
+      "SCYTHER"
+    ],
+    "player_level": 16,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 29,
+    "faints": 6,
+    "seen_enemy": [
+      "SIZZLIPEDE",
+      "JOLTIK",
+      "SCYTHER"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 7,
+      "FLAAFFY:THUNDERSHOCK": 11,
+      "BELLSPROUT:RAZOR_LEAF": 5,
+      "GASTLY:SMOG": 1,
+      "GEODUDE:BULLDOZE": 3,
+      "GEODUDE:MUD_SHOT": 1,
+      "ZUBAT:WING_ATTACK": 1
+    },
+    "frames": 22168,
+    "index": 1
+  }
+]

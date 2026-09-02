@@ -1,0 +1,48 @@
+[
+  {
+    "class": "SAGE",
+    "id": "LI",
+    "id_num": 9,
+    "name": "LI",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_LI",
+    "enemy_levels": [
+      7,
+      8,
+      9
+    ],
+    "enemy_species": [
+      "HOPPIP",
+      "FLITTLE",
+      "EXEGGCUTE"
+    ],
+    "player_level": 9,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 0,
+    "seen_enemy": [
+      "HOPPIP",
+      "FLITTLE",
+      "EXEGGCUTE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 6
+    },
+    "frames": 5988,
+    "index": 1
+  }
+]

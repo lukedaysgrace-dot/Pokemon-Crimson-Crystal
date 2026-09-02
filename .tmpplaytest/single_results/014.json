@@ -1,0 +1,42 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "ABE",
+    "id_num": 2,
+    "name": "ABE",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_BIRD_KEEPER_ABE",
+    "enemy_levels": [
+      9
+    ],
+    "enemy_species": [
+      "ROOKIDEE"
+    ],
+    "player_level": 9,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "ROOKIDEE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 2564,
+    "index": 1
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "MIKEY",
+    "id_num": 2,
+    "name": "MIKEY",
+    "map": "Route30",
+    "event": "EVENT_BEAT_YOUNGSTER_MIKEY",
+    "enemy_levels": [
+      5,
+      6
+    ],
+    "enemy_species": [
+      "DRILBUR",
+      "GOLETT"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 19,
+    "faints": 5,
+    "seen_enemy": [
+      "DRILBUR",
+      "GOLETT"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 4,
+      "MAREEP:TACKLE": 2,
+      "MAREEP:THUNDER_WAVE": 1,
+      "BELLSPROUT:ACID": 4,
+      "GASTLY:HYPNOSIS": 2,
+      "GEODUDE:TACKLE": 2,
+      "ZUBAT:ABSORB": 4
+    },
+    "frames": 17004,
+    "index": 1
+  }
+]

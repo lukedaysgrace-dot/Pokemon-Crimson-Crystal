@@ -1,0 +1,47 @@
+[
+  {
+    "class": "CRYSTAL",
+    "id": "CRYSTAL_1_CYNDAQUIL",
+    "id_num": 2,
+    "name": "CRYSTAL",
+    "map": "VioletCity",
+    "event": "",
+    "enemy_levels": [
+      10,
+      10
+    ],
+    "enemy_species": [
+      "CYNDAQUIL",
+      "NATU"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 1,
+    "seen_enemy": [
+      "CYNDAQUIL",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 7,
+      "MAREEP:THUNDERSHOCK": 3
+    },
+    "frames": 8400,
+    "index": 1
+  }
+]

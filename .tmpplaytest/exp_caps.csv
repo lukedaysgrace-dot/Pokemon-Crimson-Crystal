@@ -1,0 +1,9 @@
+leader,cap,available_first_encounters,trainer_exp_total,three_mon_need_from_level_5,four_mon_need_from_level_5,six_mon_need_from_level_5,surplus,coverage_pct,average_possible_level_note
+Falkner,10,15,2262,1275,1700,3000,-738,75.4,trainer-only; wild encounters excluded
+Bugsy,16,44,11377,7200,9600,15971,-4594,71.2,trainer-only; wild encounters excluded
+Whitney,21,73,27346,18969,25292,40751,-13405,67.1,trainer-only; wild encounters excluded
+Morty,26,106,56150,39828,53104,83831,-27681,67.0,trainer-only; wild encounters excluded
+Chuck,31,139,92804,72477,96636,150461,-57657,61.7,trainer-only; wild encounters excluded
+Jasmine,36,169,150733,119616,159488,245891,-95158,61.3,trainer-only; wild encounters excluded
+Pryce,40,206,255494,169575,226100,346500,-91006,73.7,trainer-only; wild encounters excluded
+Clair,45,243,444428,249600,332800,507000,-62572,87.7,trainer-only; wild encounters excluded

@@ -1,0 +1,44 @@
+[
+  {
+    "class": "FISHER",
+    "id": "RALPH1",
+    "id_num": 2,
+    "name": "RALPH",
+    "map": "Route32",
+    "event": "EVENT_BEAT_FISHER_RALPH",
+    "enemy_levels": [
+      12
+    ],
+    "enemy_species": [
+      "MARILL"
+    ],
+    "player_level": 12,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "MARILL"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 2,
+      "MAREEP:THUNDERSHOCK": 2
+    },
+    "frames": 4424,
+    "index": 1
+  }
+]

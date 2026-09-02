@@ -1,0 +1,45 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "DON",
+    "id_num": 1,
+    "name": "DON",
+    "map": "Route30",
+    "event": "EVENT_BEAT_BUG_CATCHER_DON",
+    "enemy_levels": [
+      5,
+      5
+    ],
+    "enemy_species": [
+      "PINECO",
+      "TRAPINCH"
+    ],
+    "player_level": 5,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "PINECO",
+      "TRAPINCH"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 3504,
+    "index": 1
+  }
+]

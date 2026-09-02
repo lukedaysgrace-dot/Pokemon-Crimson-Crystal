@@ -1,0 +1,44 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "JOSH",
+    "id_num": 7,
+    "name": "JOSH",
+    "map": "AzaleaGym",
+    "event": "EVENT_BEAT_BUG_CATCHER_JOSH",
+    "enemy_levels": [
+      15
+    ],
+    "enemy_species": [
+      "LEDYBA"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "LEDYBA"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 5,
+      "FLAAFFY:THUNDERSHOCK": 1
+    },
+    "frames": 5108,
+    "index": 1
+  }
+]

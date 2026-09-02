@@ -1,0 +1,45 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "WADE1",
+    "id_num": 4,
+    "name": "WADE",
+    "map": "Route31",
+    "event": "EVENT_BEAT_BUG_CATCHER_WADE",
+    "enemy_levels": [
+      6,
+      7
+    ],
+    "enemy_species": [
+      "VENIPEDE",
+      "PINECO"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "VENIPEDE",
+      "PINECO"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 3496,
+    "index": 1
+  }
+]

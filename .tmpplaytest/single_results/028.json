@@ -1,0 +1,47 @@
+[
+  {
+    "class": "GRUNTF",
+    "id": "GRUNTF_15",
+    "id_num": 15,
+    "name": "GRUNT",
+    "map": "SlowpokeWellB1F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTF_15",
+    "enemy_levels": [
+      13,
+      13
+    ],
+    "enemy_species": [
+      "MAREANIE",
+      "WEEDLE"
+    ],
+    "player_level": 13,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 9,
+    "faints": 1,
+    "seen_enemy": [
+      "MAREANIE",
+      "WEEDLE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 5,
+      "MAREEP:THUNDERSHOCK": 4
+    },
+    "frames": 7188,
+    "index": 1
+  }
+]

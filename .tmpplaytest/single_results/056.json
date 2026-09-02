@@ -1,0 +1,42 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "TODD1",
+    "id_num": 2,
+    "name": "TODD",
+    "map": "Route34",
+    "event": "EVENT_BEAT_CAMPER_TODD",
+    "enemy_levels": [
+      19
+    ],
+    "enemy_species": [
+      "SHROOMISH"
+    ],
+    "player_level": 19,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "SHROOMISH"
+    ],
+    "seen_player": [
+      "QUILAVA"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4
+    },
+    "frames": 3524,
+    "index": 1
+  }
+]

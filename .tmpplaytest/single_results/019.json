@@ -1,0 +1,44 @@
+[
+  {
+    "class": "FISHER",
+    "id": "JUSTIN",
+    "id_num": 1,
+    "name": "JUSTIN",
+    "map": "Route32",
+    "event": "EVENT_BEAT_FISHER_JUSTIN",
+    "enemy_levels": [
+      11
+    ],
+    "enemy_species": [
+      "GOLDEEN"
+    ],
+    "player_level": 11,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "GOLDEEN"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 4,
+      "MAREEP:THUNDERSHOCK": 1
+    },
+    "frames": 4488,
+    "index": 1
+  }
+]

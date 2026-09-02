@@ -1,0 +1,42 @@
+[
+  {
+    "class": "POKEMANIAC",
+    "id": "ISSAC",
+    "id_num": 11,
+    "name": "ISSAC",
+    "map": "GoldenrodUnderground",
+    "event": "EVENT_BEAT_POKEMANIAC_ISSAC",
+    "enemy_levels": [
+      19
+    ],
+    "enemy_species": [
+      "SENTRET"
+    ],
+    "player_level": 19,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "SENTRET"
+    ],
+    "seen_player": [
+      "QUILAVA"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2
+    },
+    "frames": 2380,
+    "index": 1
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "GORDON",
+    "id_num": 4,
+    "name": "GORDON",
+    "map": "Route32",
+    "event": "EVENT_BEAT_YOUNGSTER_GORDON",
+    "enemy_levels": [
+      14
+    ],
+    "enemy_species": [
+      "NUMEL"
+    ],
+    "player_level": 14,
+    "player_team": [
+      "QUILAVA",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 2,
+    "seen_enemy": [
+      "NUMEL"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "MAREEP",
+      "BELLSPROUT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "MAREEP:THUNDERSHOCK": 2,
+      "BELLSPROUT:RAZOR_LEAF": 1
+    },
+    "frames": 6300,
+    "index": 1
+  }
+]

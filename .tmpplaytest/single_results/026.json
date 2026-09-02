@@ -1,0 +1,50 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "ROLAND",
+    "id_num": 1,
+    "name": "ROLAND",
+    "map": "Route32",
+    "event": "EVENT_BEAT_CAMPER_ROLAND",
+    "enemy_levels": [
+      13
+    ],
+    "enemy_species": [
+      "KOTORA"
+    ],
+    "player_level": 13,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 17,
+    "faints": 3,
+    "seen_enemy": [
+      "KOTORA"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 5,
+      "MAREEP:THUNDERSHOCK": 4,
+      "BELLSPROUT:RAZOR_LEAF": 3,
+      "BELLSPROUT:BULLET_SEED": 1,
+      "GASTLY:SMOG": 3,
+      "GASTLY:CONFUSE_RAY": 1
+    },
+    "frames": 11056,
+    "index": 1
+  }
+]

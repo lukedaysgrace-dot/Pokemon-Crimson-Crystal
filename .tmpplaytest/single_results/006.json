@@ -1,0 +1,62 @@
+[
+  {
+    "class": "SAGE",
+    "id": "EDMOND",
+    "id_num": 7,
+    "name": "EDMOND",
+    "map": "SproutTower2F",
+    "event": "EVENT_BEAT_SAGE_EDMOND",
+    "enemy_levels": [
+      6,
+      6,
+      6
+    ],
+    "enemy_species": [
+      "VOLTORB_HISUIAN",
+      "NOIBAT",
+      "NATU"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 29,
+    "faints": 6,
+    "seen_enemy": [
+      "VOLTORB_HISUIAN",
+      "NOIBAT",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5,
+      "MAREEP:TACKLE": 3,
+      "MAREEP:THUNDERSHOCK": 4,
+      "BELLSPROUT:ACID": 2,
+      "BELLSPROUT:VINE_WHIP": 1,
+      "GASTLY:HYPNOSIS": 3,
+      "GASTLY:SPITE": 2,
+      "GEODUDE:TACKLE": 3,
+      "GEODUDE:SANDSTORM": 1,
+      "ZUBAT:ABSORB": 5
+    },
+    "frames": 21256,
+    "index": 1
+  }
+]

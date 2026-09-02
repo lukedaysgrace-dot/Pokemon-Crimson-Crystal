@@ -1,0 +1,45 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "ROD",
+    "id_num": 1,
+    "name": "ROD",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_BIRD_KEEPER_ROD",
+    "enemy_levels": [
+      7,
+      7
+    ],
+    "enemy_species": [
+      "FLETCHLING",
+      "NATU"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 0,
+    "seen_enemy": [
+      "FLETCHLING",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5
+    },
+    "frames": 5596,
+    "index": 1
+  }
+]
