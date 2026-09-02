@@ -77,5 +77,17 @@ INCBIN "gfx/font/unused_up_arrow.1bpp"
 MobilePhoneTilesGFX:
 INCBIN "gfx/mobile/phone_tiles.2bpp"
 
-MapEntryFrameGFX:
-INCBIN "gfx/frames/map_entry_sign.2bpp"
+WoodSignGFX::
+INCBIN "gfx/signs/wood.2bpp.lz"
+CitySignGFX::
+INCBIN "gfx/signs/city.2bpp.lz"
+ForestSignGFX::
+INCBIN "gfx/signs/forest.2bpp.lz"
+CaveSignGFX::
+INCBIN "gfx/signs/cave.2bpp.lz"
+RouteSignGFX::
+INCBIN "gfx/signs/route.2bpp.lz"
+WaterSignGFX::
+INCBIN "gfx/signs/water.2bpp.lz"
+BuildingSignGFX::
+INCBIN "gfx/signs/building.2bpp.lz"
