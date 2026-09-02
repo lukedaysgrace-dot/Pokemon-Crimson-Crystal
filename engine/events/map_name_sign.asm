@@ -1,4 +1,5 @@
 MAP_NAME_SIGN_START EQU $c0
+MAP_NAME_SIGN_TILES EQU 8
 
 ReturnFromMapSetupScript::
 	xor a
@@ -110,8 +111,7 @@ PlaceMapNameSign::
 	call PlaceMapNameCenterAlign
 	farcall HDMATransfer_OnlyTopFourRows
 .skip2
-	ld a, $80
-	ld a, $70
+	ld a, SCREEN_HEIGHT_PX - 3 * TILE_WIDTH
 	ldh [rWY], a
 	ldh [hWY], a
 	ret
@@ -125,20 +125,90 @@ PlaceMapNameSign::
 	ret
 
 LoadMapNameSignGFX:
-; The sign now lives at tiles $c0-$cd (formerly $60-$6d) so that $60-$7e are
-; free for map graphics. Tile IDs >= $80 read from bank 0 vTiles1 via signed
-; addressing, which "vTiles0 tile $c0" points at.
-	ld de, MapEntryFrameGFX
-	ld hl, vTiles0 tile MAP_NAME_SIGN_START
-	lb bc, BANK(MapEntryFrameGFX), 14
-	call Get2bpp
+	ld a, [wSign]
+	ld hl, MapNameSignGFXPointers
+	ld bc, 3
+	call AddNTimes
+	ld b, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, vTiles0 tile MAP_NAME_SIGN_START
+	ld c, MAP_NAME_SIGN_TILES
+	call DecompressRequest2bpp
+	call LoadMapNameSignPalette
 	ret
 
+LoadMapNameSignPalette:
+	ld a, [wSign]
+	ld hl, MapNameSignPals
+	ld bc, 1 palettes
+	call AddNTimes
+
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals1)
+	ldh [rSVBK], a
+
+	push hl
+	ld de, wBGPals1 palette PAL_BG_TEXT
+	ld bc, 1 palettes
+	call CopyBytes
+	pop hl
+	ld de, wBGPals2 palette PAL_BG_TEXT
+	ld bc, 1 palettes
+	call CopyBytes
+
+	pop af
+	ldh [rSVBK], a
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	ret
+
+MapNameSignGFXPointers:
+	db BANK(WoodSignGFX)
+	dw WoodSignGFX
+	db BANK(CitySignGFX)
+	dw CitySignGFX
+	db BANK(ForestSignGFX)
+	dw ForestSignGFX
+	db BANK(CaveSignGFX)
+	dw CaveSignGFX
+	db BANK(RouteSignGFX)
+	dw RouteSignGFX
+	db BANK(WaterSignGFX)
+	dw WaterSignGFX
+	db BANK(BuildingSignGFX)
+	dw BuildingSignGFX
+.end
+	assert .end - MapNameSignGFXPointers == NUM_SIGNS * 3
+
+MapNameSignPals:
+INCLUDE "gfx/signs/signs.pal"
+
 InitMapNameFrame:
+	; Attribute map: mirror the right edge of Polished Crystal's sign art.
 	hlcoord 0, 0
-	ld b, 2
-	ld c, 18
-	call InitMapSignAttrMap
+	ld de, wAttrMap - wTileMap
+	add hl, de
+	ld a, PAL_BG_TEXT | PRIORITY
+	ld bc, SCREEN_WIDTH - 1
+	call ByteFill
+	or X_FLIP
+	ld [hli], a
+	and ~X_FLIP
+	ld [hli], a
+	ld bc, SCREEN_WIDTH - 2
+	call ByteFill
+	or X_FLIP
+	ld [hli], a
+	and ~X_FLIP
+	ld bc, SCREEN_WIDTH - 1
+	call ByteFill
+	or X_FLIP
+	ld [hl], a
+
 	call PlaceMapNameFrame
 	ret
 
@@ -152,7 +222,7 @@ PlaceMapNameCenterAlign:
 	srl a
 	ld b, $0
 	ld c, a
-	hlcoord 0, 2
+	hlcoord 0, 1
 	add hl, bc
 	ld de, wStringBuffer1
 	call PlaceString
@@ -161,7 +231,7 @@ PlaceMapNameCenterAlign:
 
 RemapMapNameFont::
 	hlcoord 0, 0
-	ld c, SCREEN_WIDTH * 4
+	ld c, SCREEN_WIDTH * 3
 .loop
 	ld a, [hl]
 	cp "A"
@@ -218,78 +288,40 @@ GetMapNameLength::
 	pop hl
 	ret
 
-InitMapSignAttrMap:
-	ld de, wAttrMap - wTileMap
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	ld a, PAL_BG_TEXT | PRIORITY
-.loop
-	push bc
-	push hl
-.inner_loop
-	ld [hli], a
-	dec c
-	jr nz, .inner_loop
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	pop bc
-	dec b
-	jr nz, .loop
-	ret
-
 PlaceMapNameFrame:
 	hlcoord 0, 0
 	; top left
-	ld a, MAP_NAME_SIGN_START + 1
+	ld a, MAP_NAME_SIGN_START
 	ld [hli], a
 	; top row
-	ld a, MAP_NAME_SIGN_START + 2
+	inc a
 	call .FillTopBottom
 	; top right
+	dec a
+	ld [hli], a
+	; middle left
+	ld a, MAP_NAME_SIGN_START + 3
+	ld [hli], a
+	; blank name field
+	ld a, " "
+	ld bc, SCREEN_WIDTH - 2
+	call ByteFill
+	; middle right
 	ld a, MAP_NAME_SIGN_START + 4
 	ld [hli], a
-	; left, first line
-	ld a, MAP_NAME_SIGN_START + 5
-	ld [hli], a
-	; first line
-	call .FillMiddle
-	; right, first line
-	ld a, MAP_NAME_SIGN_START + 11
-	ld [hli], a
-	; left, second line
-	ld a, MAP_NAME_SIGN_START + 6
-	ld [hli], a
-	; second line
-	call .FillMiddle
-	; right, second line
-	ld a, MAP_NAME_SIGN_START + 12
-	ld [hli], a
 	; bottom left
-	ld a, MAP_NAME_SIGN_START + 7
+	inc a
 	ld [hli], a
 	; bottom
-	ld a, MAP_NAME_SIGN_START + 8
+	inc a
 	call .FillTopBottom
 	; bottom right
-	ld a, MAP_NAME_SIGN_START + 10
+	dec a
 	ld [hl], a
 	ret
 
-.FillMiddle:
-	ld c, SCREEN_WIDTH - 2
-	ld a, MAP_NAME_SIGN_START + 13
-.loop
-	ld [hli], a
-	dec c
-	jr nz, .loop
-	ret
-
 .FillTopBottom:
-	ld c, (SCREEN_WIDTH - 2) / 4 + 1
+	ld c, 5
 	jr .enterloop
 
 .continueloop
