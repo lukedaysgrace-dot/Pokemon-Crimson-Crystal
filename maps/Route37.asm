@@ -239,7 +239,7 @@ Route37SignText:
 	done
 
 Route37SilentCryptSignText:
-	text "SILENT CRYPT"
+	text "SILENT HOLLOW"
 	done
 
 Route37_MapEvents:
