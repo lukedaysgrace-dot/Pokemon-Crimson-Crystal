@@ -1,0 +1,42 @@
+[
+  {
+    "class": "SAGE",
+    "id": "NEAL",
+    "id_num": 8,
+    "name": "NEAL",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_NEAL",
+    "enemy_levels": [
+      6
+    ],
+    "enemy_species": [
+      "RALTS"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "RALTS"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 3
+    },
+    "frames": 3404,
+    "index": 1
+  }
+]

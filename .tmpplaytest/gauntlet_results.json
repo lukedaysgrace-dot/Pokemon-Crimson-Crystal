@@ -1,0 +1,922 @@
+[
+  {
+    "class": "RIVAL1",
+    "id": "RIVAL1_1_TOTODILE",
+    "id_num": 3,
+    "name": "?",
+    "map": "CherrygroveCity",
+    "event": "",
+    "enemy_levels": [
+      5
+    ],
+    "enemy_species": [
+      "TOTODILE"
+    ],
+    "player_level": 5,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 14,
+    "faints": 2,
+    "seen_enemy": [
+      "TOTODILE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 3,
+      "MAREEP:TACKLE": 4,
+      "MAREEP:THUNDER_WAVE": 1,
+      "BELLSPROUT:ACID": 6
+    },
+    "frames": 12164,
+    "index": 1
+  },
+  {
+    "class": "BUG_CATCHER",
+    "id": "DON",
+    "id_num": 1,
+    "name": "DON",
+    "map": "Route30",
+    "event": "EVENT_BEAT_BUG_CATCHER_DON",
+    "enemy_levels": [
+      5,
+      5
+    ],
+    "enemy_species": [
+      "PINECO",
+      "TRAPINCH"
+    ],
+    "player_level": 5,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "PINECO",
+      "TRAPINCH"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 3504,
+    "index": 2
+  },
+  {
+    "class": "YOUNGSTER",
+    "id": "JOEY1",
+    "id_num": 1,
+    "name": "JOEY",
+    "map": "Route30",
+    "event": "EVENT_BEAT_YOUNGSTER_JOEY",
+    "enemy_levels": [
+      6
+    ],
+    "enemy_species": [
+      "SPINARAK"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "SPINARAK"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 2948,
+    "index": 3
+  },
+  {
+    "class": "YOUNGSTER",
+    "id": "MIKEY",
+    "id_num": 2,
+    "name": "MIKEY",
+    "map": "Route30",
+    "event": "EVENT_BEAT_YOUNGSTER_MIKEY",
+    "enemy_levels": [
+      5,
+      6
+    ],
+    "enemy_species": [
+      "DRILBUR",
+      "GOLETT"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 19,
+    "faints": 5,
+    "seen_enemy": [
+      "DRILBUR",
+      "GOLETT"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2,
+      "MAREEP:TACKLE": 2,
+      "MAREEP:THUNDER_WAVE": 1,
+      "BELLSPROUT:ACID": 6,
+      "GASTLY:HYPNOSIS": 2,
+      "GEODUDE:TACKLE": 2,
+      "ZUBAT:ABSORB": 4
+    },
+    "frames": 17440,
+    "index": 4
+  },
+  {
+    "class": "SAGE",
+    "id": "CHOW",
+    "id_num": 1,
+    "name": "CHOW",
+    "map": "SproutTower1F",
+    "event": "EVENT_BEAT_SAGE_CHOW",
+    "enemy_levels": [
+      6,
+      6,
+      6
+    ],
+    "enemy_species": [
+      "SUNKERN",
+      "SMOOCHUM",
+      "ZUBAT"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 23,
+    "faints": 2,
+    "seen_enemy": [
+      "SUNKERN",
+      "SMOOCHUM",
+      "ZUBAT"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5,
+      "MAREEP:TACKLE": 6,
+      "MAREEP:THUNDER_WAVE": 5,
+      "BELLSPROUT:ACID": 7
+    },
+    "frames": 16276,
+    "index": 5
+  },
+  {
+    "class": "SAGE",
+    "id": "EDMOND",
+    "id_num": 7,
+    "name": "EDMOND",
+    "map": "SproutTower2F",
+    "event": "EVENT_BEAT_SAGE_EDMOND",
+    "enemy_levels": [
+      6,
+      6,
+      6
+    ],
+    "enemy_species": [
+      "VOLTORB_HISUIAN",
+      "NOIBAT",
+      "NATU"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 25,
+    "faints": 5,
+    "seen_enemy": [
+      "VOLTORB_HISUIAN",
+      "NOIBAT",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5,
+      "MAREEP:TACKLE": 5,
+      "MAREEP:THUNDERSHOCK": 3,
+      "BELLSPROUT:ACID": 2,
+      "BELLSPROUT:VINE_WHIP": 1,
+      "GASTLY:HYPNOSIS": 4,
+      "GEODUDE:TACKLE": 4,
+      "ZUBAT:ABSORB": 1
+    },
+    "frames": 20464,
+    "index": 6
+  },
+  {
+    "class": "SAGE",
+    "id": "JIN",
+    "id_num": 3,
+    "name": "JIN",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_JIN",
+    "enemy_levels": [
+      6
+    ],
+    "enemy_species": [
+      "HOPPIP"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "HOPPIP"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 2808,
+    "index": 7
+  },
+  {
+    "class": "SAGE",
+    "id": "NEAL",
+    "id_num": 8,
+    "name": "NEAL",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_NEAL",
+    "enemy_levels": [
+      6
+    ],
+    "enemy_species": [
+      "RALTS"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "RALTS"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 3
+    },
+    "frames": 3520,
+    "index": 8
+  },
+  {
+    "class": "BUG_CATCHER",
+    "id": "WADE1",
+    "id_num": 4,
+    "name": "WADE",
+    "map": "Route31",
+    "event": "EVENT_BEAT_BUG_CATCHER_WADE",
+    "enemy_levels": [
+      6,
+      7
+    ],
+    "enemy_species": [
+      "VENIPEDE",
+      "PINECO"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "VENIPEDE",
+      "PINECO"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 3
+    },
+    "frames": 4220,
+    "index": 9
+  },
+  {
+    "class": "SAGE",
+    "id": "NICO",
+    "id_num": 2,
+    "name": "NICO",
+    "map": "SproutTower2F",
+    "event": "EVENT_BEAT_SAGE_NICO",
+    "enemy_levels": [
+      6,
+      6,
+      7
+    ],
+    "enemy_species": [
+      "ROOKIDEE",
+      "SUNKERN",
+      "NATU"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 0,
+    "seen_enemy": [
+      "ROOKIDEE",
+      "NATU",
+      "SUNKERN"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 6
+    },
+    "frames": 6676,
+    "index": 10
+  },
+  {
+    "class": "SAGE",
+    "id": "TROY",
+    "id_num": 4,
+    "name": "TROY",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_TROY",
+    "enemy_levels": [
+      7,
+      7
+    ],
+    "enemy_species": [
+      "SUNKERN",
+      "SMOOCHUM"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "SUNKERN",
+      "SMOOCHUM"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 4
+    },
+    "frames": 5024,
+    "index": 11
+  },
+  {
+    "class": "BIRD_KEEPER",
+    "id": "ROD",
+    "id_num": 1,
+    "name": "ROD",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_BIRD_KEEPER_ROD",
+    "enemy_levels": [
+      7,
+      7
+    ],
+    "enemy_species": [
+      "FLETCHLING",
+      "NATU"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 0,
+    "seen_enemy": [
+      "FLETCHLING",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5
+    },
+    "frames": 5556,
+    "index": 12
+  },
+  {
+    "class": "SAGE",
+    "id": "LI",
+    "id_num": 9,
+    "name": "LI",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_LI",
+    "enemy_levels": [
+      7,
+      8,
+      9
+    ],
+    "enemy_species": [
+      "HOPPIP",
+      "FLITTLE",
+      "EXEGGCUTE"
+    ],
+    "player_level": 9,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 0,
+    "seen_enemy": [
+      "HOPPIP",
+      "FLITTLE",
+      "EXEGGCUTE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5
+    },
+    "frames": 5628,
+    "index": 13
+  },
+  {
+    "class": "BIRD_KEEPER",
+    "id": "ABE",
+    "id_num": 2,
+    "name": "ABE",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_BIRD_KEEPER_ABE",
+    "enemy_levels": [
+      9
+    ],
+    "enemy_species": [
+      "ROOKIDEE"
+    ],
+    "player_level": 9,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "ROOKIDEE"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 2800,
+    "index": 14
+  },
+  {
+    "class": "CRYSTAL",
+    "id": "CRYSTAL_1_CHIKORITA",
+    "id_num": 1,
+    "name": "CRYSTAL",
+    "map": "VioletCity",
+    "event": "",
+    "enemy_levels": [
+      10,
+      10
+    ],
+    "enemy_species": [
+      "CHIKORITA",
+      "NATU"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "CHIKORITA",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 5,
+      "MAREEP:THUNDERSHOCK": 1
+    },
+    "frames": 5612,
+    "index": 15
+  },
+  {
+    "class": "CRYSTAL",
+    "id": "CRYSTAL_1_CYNDAQUIL",
+    "id_num": 2,
+    "name": "CRYSTAL",
+    "map": "VioletCity",
+    "event": "",
+    "enemy_levels": [
+      10,
+      10
+    ],
+    "enemy_species": [
+      "CYNDAQUIL",
+      "NATU"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 22,
+    "faints": 5,
+    "seen_enemy": [
+      "CYNDAQUIL",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 6,
+      "MAREEP:THUNDERSHOCK": 4,
+      "BELLSPROUT:WRAP": 2,
+      "BELLSPROUT:STUN_SPORE": 1,
+      "GASTLY:SMOG": 2,
+      "GASTLY:HYPNOSIS": 1,
+      "GEODUDE:ROCK_THROW": 4,
+      "ZUBAT:WING_ATTACK": 2
+    },
+    "frames": 16220,
+    "index": 16
+  },
+  {
+    "class": "CRYSTAL",
+    "id": "CRYSTAL_1_TOTODILE",
+    "id_num": 3,
+    "name": "CRYSTAL",
+    "map": "VioletCity",
+    "event": "",
+    "enemy_levels": [
+      10,
+      10
+    ],
+    "enemy_species": [
+      "TOTODILE",
+      "NATU"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 9,
+    "faints": 1,
+    "seen_enemy": [
+      "TOTODILE",
+      "NATU"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 7,
+      "MAREEP:THUNDERSHOCK": 2
+    },
+    "frames": 8128,
+    "index": 17
+  },
+  {
+    "class": "FALKNER",
+    "id": "FALKNER1",
+    "id_num": 1,
+    "name": "FALKNER",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_FALKNER",
+    "enemy_levels": [
+      8,
+      9,
+      10
+    ],
+    "enemy_species": [
+      "HOOTHOOT",
+      "FLETCHLING",
+      "PIDGEOTTO"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 1,
+    "seen_enemy": [
+      "HOOTHOOT",
+      "FLETCHLING",
+      "PIDGEOTTO"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 7,
+      "MAREEP:THUNDERSHOCK": 5
+    },
+    "frames": 11208,
+    "index": 18
+  },
+  {
+    "class": "FISHER",
+    "id": "JUSTIN",
+    "id_num": 1,
+    "name": "JUSTIN",
+    "map": "Route32",
+    "event": "EVENT_BEAT_FISHER_JUSTIN",
+    "enemy_levels": [
+      11
+    ],
+    "enemy_species": [
+      "GOLDEEN"
+    ],
+    "player_level": 11,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "GOLDEEN"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 4,
+      "MAREEP:THUNDERSHOCK": 1
+    },
+    "frames": 4668,
+    "index": 19
+  },
+  {
+    "class": "FISHER",
+    "id": "HENRY",
+    "id_num": 5,
+    "name": "HENRY",
+    "map": "Route32",
+    "event": "EVENT_BEAT_FISHER_HENRY",
+    "enemy_levels": [
+      11,
+      11
+    ],
+    "enemy_species": [
+      "CHINCHOU",
+      "REMORAID"
+    ],
+    "player_level": 11,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 13,
+    "faints": 6,
+    "seen_enemy": [
+      "CHINCHOU",
+      "REMORAID"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 2,
+      "MAREEP:THUNDERSHOCK": 4,
+      "BELLSPROUT:WRAP": 2,
+      "GASTLY:SMOG": 2,
+      "GEODUDE:ROCK_THROW": 1,
+      "ZUBAT:WING_ATTACK": 2
+    },
+    "frames": 11700,
+    "index": 20
+  }
+]

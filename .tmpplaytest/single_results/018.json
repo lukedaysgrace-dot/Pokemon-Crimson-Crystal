@@ -1,0 +1,50 @@
+[
+  {
+    "class": "FALKNER",
+    "id": "FALKNER1",
+    "id_num": 1,
+    "name": "FALKNER",
+    "map": "VioletGym",
+    "event": "EVENT_BEAT_FALKNER",
+    "enemy_levels": [
+      8,
+      9,
+      10
+    ],
+    "enemy_species": [
+      "HOOTHOOT",
+      "FLETCHLING",
+      "PIDGEOTTO"
+    ],
+    "player_level": 10,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 1,
+    "seen_enemy": [
+      "HOOTHOOT",
+      "FLETCHLING",
+      "PIDGEOTTO"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 7,
+      "MAREEP:THUNDERSHOCK": 4
+    },
+    "frames": 9640,
+    "index": 1
+  }
+]

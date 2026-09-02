@@ -1,0 +1,49 @@
+[
+  {
+    "class": "HIKER",
+    "id": "LEONARD",
+    "id_num": 4,
+    "name": "LEONARD",
+    "map": "UnionCaveB1F",
+    "event": "EVENT_BEAT_HIKER_LEONARD",
+    "enemy_levels": [
+      13,
+      15
+    ],
+    "enemy_species": [
+      "GEODUDE_ALOLAN",
+      "PHANPY"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 2,
+    "seen_enemy": [
+      "GEODUDE_ALOLAN",
+      "PHANPY"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "FLAAFFY:THUNDERSHOCK": 2,
+      "BELLSPROUT:RAZOR_LEAF": 1
+    },
+    "frames": 6188,
+    "index": 1
+  }
+]

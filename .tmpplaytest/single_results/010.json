@@ -1,0 +1,48 @@
+[
+  {
+    "class": "SAGE",
+    "id": "NICO",
+    "id_num": 2,
+    "name": "NICO",
+    "map": "SproutTower2F",
+    "event": "EVENT_BEAT_SAGE_NICO",
+    "enemy_levels": [
+      6,
+      6,
+      7
+    ],
+    "enemy_species": [
+      "ROOKIDEE",
+      "SUNKERN",
+      "NATU"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 0,
+    "seen_enemy": [
+      "ROOKIDEE",
+      "NATU",
+      "SUNKERN"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 7
+    },
+    "frames": 7020,
+    "index": 1
+  }
+]

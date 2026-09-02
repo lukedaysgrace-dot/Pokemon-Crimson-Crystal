@@ -1,0 +1,55 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_2",
+    "id_num": 1,
+    "name": "GRUNT",
+    "map": "SlowpokeWellB1F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTM_2",
+    "enemy_levels": [
+      15,
+      15,
+      15
+    ],
+    "enemy_species": [
+      "GASTLY",
+      "GRIMER_ALOLAN",
+      "CROAGUNK"
+    ],
+    "player_level": 15,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 3,
+    "seen_enemy": [
+      "GASTLY",
+      "CROAGUNK",
+      "GRIMER_ALOLAN"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4,
+      "QUILAVA:FLAME_WHEEL": 1,
+      "FLAAFFY:THUNDERSHOCK": 5,
+      "BELLSPROUT:RAZOR_LEAF": 2,
+      "GASTLY:SMOG": 1
+    },
+    "frames": 11228,
+    "index": 1
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "SAMUEL",
+    "id_num": 5,
+    "name": "SAMUEL",
+    "map": "Route34",
+    "event": "EVENT_BEAT_YOUNGSTER_SAMUEL",
+    "enemy_levels": [
+      15,
+      17,
+      17
+    ],
+    "enemy_species": [
+      "SENTRET",
+      "PIDGEY",
+      "AIPOM"
+    ],
+    "player_level": 17,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "SENTRET",
+      "AIPOM",
+      "PIDGEY"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 6,
+      "FLAAFFY:THUNDERSHOCK": 1
+    },
+    "frames": 6676,
+    "index": 1
+  }
+]

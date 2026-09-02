@@ -1,0 +1,42 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "JOEY1",
+    "id_num": 1,
+    "name": "JOEY",
+    "map": "Route30",
+    "event": "EVENT_BEAT_YOUNGSTER_JOEY",
+    "enemy_levels": [
+      6
+    ],
+    "enemy_species": [
+      "SPINARAK"
+    ],
+    "player_level": 6,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "SPINARAK"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 2
+    },
+    "frames": 2948,
+    "index": 1
+  }
+]

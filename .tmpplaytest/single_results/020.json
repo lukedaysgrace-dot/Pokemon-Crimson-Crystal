@@ -1,0 +1,55 @@
+[
+  {
+    "class": "FISHER",
+    "id": "HENRY",
+    "id_num": 5,
+    "name": "HENRY",
+    "map": "Route32",
+    "event": "EVENT_BEAT_FISHER_HENRY",
+    "enemy_levels": [
+      11,
+      11
+    ],
+    "enemy_species": [
+      "CHINCHOU",
+      "REMORAID"
+    ],
+    "player_level": 11,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 12,
+    "faints": 6,
+    "seen_enemy": [
+      "CHINCHOU",
+      "REMORAID"
+    ],
+    "seen_player": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "CYNDAQUIL:QUICK_ATTACK": 2,
+      "MAREEP:THUNDERSHOCK": 4,
+      "BELLSPROUT:WRAP": 1,
+      "GASTLY:SMOG": 2,
+      "GEODUDE:ROCK_THROW": 1,
+      "ZUBAT:WING_ATTACK": 2
+    },
+    "frames": 11864,
+    "index": 1
+  }
+]

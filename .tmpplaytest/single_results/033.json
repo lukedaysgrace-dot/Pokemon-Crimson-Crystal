@@ -1,0 +1,58 @@
+[
+  {
+    "class": "HIKER",
+    "id": "PHILLIP",
+    "id_num": 3,
+    "name": "PHILLIP",
+    "map": "UnionCaveB1F",
+    "event": "EVENT_BEAT_HIKER_PHILLIP",
+    "enemy_levels": [
+      13,
+      13,
+      14
+    ],
+    "enemy_species": [
+      "GLIGAR",
+      "PHANPY",
+      "GEODUDE"
+    ],
+    "player_level": 14,
+    "player_team": [
+      "QUILAVA",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 27,
+    "faints": 6,
+    "seen_enemy": [
+      "GLIGAR"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "MAREEP:THUNDERSHOCK": 3,
+      "MAREEP:NUZZLE": 1,
+      "BELLSPROUT:RAZOR_LEAF": 1,
+      "GASTLY:SMOG": 2,
+      "GEODUDE:BULLDOZE": 8,
+      "GEODUDE:ROCK_THROW": 6,
+      "ZUBAT:WING_ATTACK": 3
+    },
+    "frames": 16420,
+    "index": 1
+  }
+]

@@ -1,0 +1,45 @@
+[
+  {
+    "class": "SAGE",
+    "id": "TROY",
+    "id_num": 4,
+    "name": "TROY",
+    "map": "SproutTower3F",
+    "event": "EVENT_BEAT_SAGE_TROY",
+    "enemy_levels": [
+      7,
+      7
+    ],
+    "enemy_species": [
+      "SUNKERN",
+      "SMOOCHUM"
+    ],
+    "player_level": 7,
+    "player_team": [
+      "CYNDAQUIL",
+      "MAREEP",
+      "BELLSPROUT",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "SUNKERN",
+      "SMOOCHUM"
+    ],
+    "seen_player": [
+      "CYNDAQUIL"
+    ],
+    "move_log": {
+      "CYNDAQUIL:EMBER": 4
+    },
+    "frames": 5028,
+    "index": 1
+  }
+]
