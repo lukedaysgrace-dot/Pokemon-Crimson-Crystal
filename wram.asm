@@ -166,8 +166,7 @@ wPrinterOpcode:: db
 wDisableTextAcceleration:: db
 wPrevLandmark:: db
 wCurLandmark:: db
-wLandmarkSignTimer:: db
-wSign:: db
+wLandmarkSignTimer:: dw
 
 wLinkMode::
 ; a LINK_* value for the link type
