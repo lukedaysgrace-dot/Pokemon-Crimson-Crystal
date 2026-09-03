@@ -1,0 +1,63 @@
+[
+  {
+    "class": "WILL",
+    "id": "WILL1",
+    "id_num": 1,
+    "name": "WILL",
+    "map": "WillsRoom",
+    "event": "EVENT_BEAT_ELITE_4_WILL",
+    "enemy_levels": [
+      49,
+      50,
+      50,
+      51,
+      51,
+      52
+    ],
+    "enemy_species": [
+      "XATU",
+      "FARIGIRAF",
+      "GALLADE",
+      "SLOWKING",
+      "GRUMPIG",
+      "ESPATHRA"
+    ],
+    "player_level": 52,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "XATU",
+      "FARIGIRAF"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 2,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:WOOD_HAMMER": 1,
+      "GENGAR:DREAM_EATER": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 12644,
+    "index": 1
+  }
+]

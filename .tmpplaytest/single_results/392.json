@@ -1,0 +1,55 @@
+[
+  {
+    "class": "SUPER_NERD",
+    "id": "TOM",
+    "id_num": 4,
+    "name": "TOM",
+    "map": "Route8",
+    "event": "EVENT_BEAT_SUPER_NERD_TOM",
+    "enemy_levels": [
+      65,
+      65,
+      65
+    ],
+    "enemy_species": [
+      "HYPNO",
+      "ARCANINE_HISUIAN",
+      "AGGRON"
+    ],
+    "player_level": 65,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "HYPNO",
+      "ARCANINE_HISUIAN",
+      "AGGRON"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "TYPHLOSION:DOUBLE_EDGE": 1,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 3,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 14508,
+    "index": 1
+  }
+]

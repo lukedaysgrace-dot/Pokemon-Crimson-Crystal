@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SAILOR",
+    "id": "HUEY3",
+    "id_num": 12,
+    "name": "HUEY",
+    "map": "OlivineLighthouse2F",
+    "event": "",
+    "enemy_levels": [
+      56,
+      56
+    ],
+    "enemy_species": [
+      "MAREANIE",
+      "REMORAID"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "MAREANIE",
+      "REMORAID"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 1
+    },
+    "frames": 6664,
+    "index": 1
+  }
+]

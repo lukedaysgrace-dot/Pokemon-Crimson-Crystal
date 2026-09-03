@@ -1,0 +1,57 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "JOSE1",
+    "id_num": 12,
+    "name": "JOSE",
+    "map": "Route27",
+    "event": "EVENT_BEAT_ELITE_FOUR",
+    "enemy_levels": [
+      56,
+      56,
+      56,
+      56
+    ],
+    "enemy_species": [
+      "TALONFLAME",
+      "HONCHKROW",
+      "SKARMORY",
+      "TOGEKISS"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 3,
+    "seen_enemy": [
+      "TALONFLAME",
+      "HONCHKROW",
+      "SKARMORY",
+      "TOGEKISS"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDERBOLT": 4,
+      "VICTREEBEL:WOOD_HAMMER": 3,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 15100,
+    "index": 1
+  }
+]

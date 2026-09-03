@@ -1,0 +1,46 @@
+[
+  {
+    "class": "KIMONO_GIRL",
+    "id": "SAYO",
+    "id_num": 3,
+    "name": "SAYO",
+    "map": "DanceTheatre",
+    "event": "EVENT_BEAT_KIMONO_GIRL_SAYO",
+    "enemy_levels": [
+      24
+    ],
+    "enemy_species": [
+      "ESPEON"
+    ],
+    "player_level": 24,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 2,
+    "seen_enemy": [
+      "ESPEON"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 6,
+      "FLAAFFY:THUNDERSHOCK": 3,
+      "WEEPINBELL:RAZOR_LEAF": 1
+    },
+    "frames": 8648,
+    "index": 1
+  }
+]

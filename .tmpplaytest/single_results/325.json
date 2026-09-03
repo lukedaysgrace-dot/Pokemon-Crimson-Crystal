@@ -1,0 +1,47 @@
+[
+  {
+    "class": "TWINS",
+    "id": "MEGANDPEG1",
+    "id_num": 7,
+    "name": "MEG & PEG",
+    "map": "FastShipCabins_SE_SSE_CaptainsCabin",
+    "event": "EVENT_BEAT_TWINS_MEG_AND_PEG",
+    "enemy_levels": [
+      55,
+      55
+    ],
+    "enemy_species": [
+      "LOPUNNY",
+      "ZANGOOSE"
+    ],
+    "player_level": 55,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "LOPUNNY",
+      "ZANGOOSE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 1
+    },
+    "frames": 5676,
+    "index": 1
+  }
+]

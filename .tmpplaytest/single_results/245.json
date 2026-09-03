@@ -1,0 +1,52 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "RYAN",
+    "id_num": 8,
+    "name": "RYAN",
+    "map": "Route45",
+    "event": "EVENT_BEAT_COOLTRAINERM_RYAN",
+    "enemy_levels": [
+      42,
+      42,
+      42
+    ],
+    "enemy_species": [
+      "GLIGAR",
+      "RHYDON",
+      "CONKELDURR"
+    ],
+    "player_level": 42,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 2,
+    "seen_enemy": [
+      "GLIGAR",
+      "RHYDON",
+      "CONKELDURR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 5,
+      "AMPHAROS:DRAGON_PULSE": 4,
+      "VICTREEBEL:LEAF_BLADE": 2
+    },
+    "frames": 11920,
+    "index": 1
+  }
+]

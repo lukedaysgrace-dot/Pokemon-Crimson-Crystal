@@ -1,0 +1,58 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "ALAN5",
+    "id_num": 22,
+    "name": "ALAN",
+    "map": "Route36",
+    "event": "",
+    "enemy_levels": [
+      64,
+      65,
+      66,
+      66
+    ],
+    "enemy_species": [
+      "BISHARP",
+      "TAUROS",
+      "LANTURN",
+      "CORSOLA"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "BISHARP",
+      "LANTURN",
+      "TAUROS",
+      "CORSOLA",
+      "BISHARP"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 5,
+      "GENGAR:AURA_SPHERE": 1
+    },
+    "frames": 15268,
+    "index": 1
+  }
+]

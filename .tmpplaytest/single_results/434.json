@@ -1,0 +1,54 @@
+[
+  {
+    "class": "PSYCHIC_T",
+    "id": "JARED",
+    "id_num": 11,
+    "name": "JARED",
+    "map": "SaffronGym",
+    "event": "EVENT_BEAT_PSYCHIC_JARED",
+    "enemy_levels": [
+      70,
+      70,
+      70
+    ],
+    "enemy_species": [
+      "NOCTOWL",
+      "EXEGGUTOR",
+      "SLOWBRO"
+    ],
+    "player_level": 70,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 9,
+    "faints": 3,
+    "seen_enemy": [
+      "NOCTOWL",
+      "SLOWBRO",
+      "EXEGGUTOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 4,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1
+    },
+    "frames": 13228,
+    "index": 1
+  }
+]

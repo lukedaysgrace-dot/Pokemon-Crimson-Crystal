@@ -1,0 +1,51 @@
+[
+  {
+    "class": "HIKER",
+    "id": "JIM",
+    "id_num": 17,
+    "name": "JIM",
+    "map": "Route10South",
+    "event": "EVENT_BEAT_HIKER_JIM",
+    "enemy_levels": [
+      62,
+      64
+    ],
+    "enemy_species": [
+      "CLODSIRE",
+      "NIDOQUEEN"
+    ],
+    "player_level": 64,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 3,
+    "seen_enemy": [
+      "CLODSIRE",
+      "NIDOQUEEN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 4,
+      "GENGAR:AURA_SPHERE": 3
+    },
+    "frames": 11848,
+    "index": 1
+  }
+]

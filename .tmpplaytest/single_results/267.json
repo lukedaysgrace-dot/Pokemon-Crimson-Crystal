@@ -1,0 +1,48 @@
+[
+  {
+    "class": "HIKER",
+    "id": "PARRY3",
+    "id_num": 20,
+    "name": "PARRY",
+    "map": "Route45",
+    "event": "EVENT_BEAT_HIKER_PARRY",
+    "enemy_levels": [
+      43,
+      43,
+      43
+    ],
+    "enemy_species": [
+      "GURDURR",
+      "GLIMMORA",
+      "LUCARIO"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "GURDURR",
+      "GLIMMORA",
+      "LUCARIO"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4
+    },
+    "frames": 5568,
+    "index": 1
+  }
+]

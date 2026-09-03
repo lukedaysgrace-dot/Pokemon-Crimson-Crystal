@@ -1,0 +1,61 @@
+[
+  {
+    "class": "FISHER",
+    "id": "STEPHEN",
+    "id_num": 14,
+    "name": "STEPHEN",
+    "map": "Route12",
+    "event": "EVENT_BEAT_FISHER_STEPHEN",
+    "enemy_levels": [
+      68,
+      68,
+      68,
+      69
+    ],
+    "enemy_species": [
+      "MANTINE",
+      "POLITOED",
+      "TENTACRUEL",
+      "TOXAPEX"
+    ],
+    "player_level": 69,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 14,
+    "faints": 5,
+    "seen_enemy": [
+      "MANTINE",
+      "POLITOED",
+      "TENTACRUEL",
+      "TOXAPEX"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 4
+    },
+    "frames": 18000,
+    "index": 1
+  }
+]

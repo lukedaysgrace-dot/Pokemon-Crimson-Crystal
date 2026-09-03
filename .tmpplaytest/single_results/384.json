@@ -1,0 +1,50 @@
+[
+  {
+    "class": "SWIMMERM",
+    "id": "PARKER",
+    "id_num": 13,
+    "name": "PARKER",
+    "map": "CeruleanGym",
+    "event": "EVENT_BEAT_SWIMMERM_PARKER",
+    "enemy_levels": [
+      64,
+      64,
+      64
+    ],
+    "enemy_species": [
+      "SLOWBRO",
+      "OCTILLERY",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "player_level": 64,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "SLOWBRO",
+      "OCTILLERY",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 3
+    },
+    "frames": 7632,
+    "index": 1
+  }
+]

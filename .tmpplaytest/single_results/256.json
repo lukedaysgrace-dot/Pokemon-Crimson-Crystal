@@ -1,0 +1,48 @@
+[
+  {
+    "class": "PICNICKER",
+    "id": "GINA3",
+    "id_num": 8,
+    "name": "GINA",
+    "map": "Route34",
+    "event": "",
+    "enemy_levels": [
+      42,
+      43,
+      43
+    ],
+    "enemy_species": [
+      "RATICATE_ALOLAN",
+      "SCIZOR",
+      "SUNFLORA"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "RATICATE_ALOLAN",
+      "SCIZOR",
+      "SUNFLORA"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4
+    },
+    "frames": 5440,
+    "index": 1
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "class": "PSYCHIC_T",
+    "id": "FRANKLIN",
+    "id_num": 2,
+    "name": "FRANKLIN",
+    "map": "SaffronGym",
+    "event": "EVENT_BEAT_PSYCHIC_FRANKLIN",
+    "enemy_levels": [
+      69,
+      71,
+      73
+    ],
+    "enemy_species": [
+      "SLOWBRO_GALARIAN",
+      "HYPNO",
+      "EXEGGUTOR"
+    ],
+    "player_level": 73,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 5,
+    "seen_enemy": [
+      "SLOWBRO_GALARIAN",
+      "HYPNO",
+      "EXEGGUTOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 14952,
+    "index": 1
+  }
+]

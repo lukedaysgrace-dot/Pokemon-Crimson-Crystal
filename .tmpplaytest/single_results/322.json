@@ -1,0 +1,61 @@
+[
+  {
+    "class": "POKEFANF",
+    "id": "GEORGIA",
+    "id_num": 5,
+    "name": "GEORGIA",
+    "map": "FastShipCabins_SE_SSE_CaptainsCabin",
+    "event": "EVENT_BEAT_POKEFANF_GEORGIA",
+    "enemy_levels": [
+      53,
+      53,
+      53,
+      53,
+      55
+    ],
+    "enemy_species": [
+      "ZANGOOSE",
+      "FEAROW",
+      "MILTANK",
+      "PORYGON2",
+      "SNORLAX"
+    ],
+    "player_level": 55,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 25,
+    "faints": 3,
+    "seen_enemy": [
+      "ZANGOOSE",
+      "MILTANK",
+      "PORYGON2",
+      "FEAROW",
+      "SNORLAX"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:WOOD_HAMMER": 2,
+      "GENGAR:AURA_SPHERE": 14,
+      "GENGAR:DARK_PULSE": 3
+    },
+    "frames": 27280,
+    "index": 1
+  }
+]

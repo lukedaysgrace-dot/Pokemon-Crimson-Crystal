@@ -1,0 +1,64 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_31",
+    "id_num": 14,
+    "name": "GRUNT",
+    "map": "Route24",
+    "event": "",
+    "enemy_levels": [
+      63,
+      63,
+      63,
+      63,
+      63
+    ],
+    "enemy_species": [
+      "HOUNDOOM",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "STEELIX",
+      "MUK"
+    ],
+    "player_level": 63,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 14,
+    "faints": 4,
+    "seen_enemy": [
+      "HOUNDOOM",
+      "STEELIX",
+      "HOUNDOOM",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "MUK"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 3,
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 2
+    },
+    "frames": 16300,
+    "index": 1
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "BORIS",
+    "id_num": 10,
+    "name": "BORIS",
+    "map": "Route18",
+    "event": "EVENT_BEAT_BIRD_KEEPER_BORIS",
+    "enemy_levels": [
+      71,
+      73,
+      73
+    ],
+    "enemy_species": [
+      "PIDGEOT",
+      "SKARMORY",
+      "HONCHKROW"
+    ],
+    "player_level": 73,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "PIDGEOT",
+      "SKARMORY",
+      "HONCHKROW"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3
+    },
+    "frames": 8824,
+    "index": 1
+  }
+]

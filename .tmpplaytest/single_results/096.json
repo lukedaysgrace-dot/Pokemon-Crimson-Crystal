@@ -1,0 +1,45 @@
+[
+  {
+    "class": "KIMONO_GIRL",
+    "id": "MIKI",
+    "id_num": 6,
+    "name": "MIKI",
+    "map": "DanceTheatre",
+    "event": "EVENT_BEAT_KIMONO_GIRL_MIKI",
+    "enemy_levels": [
+      24
+    ],
+    "enemy_species": [
+      "JOLTEON"
+    ],
+    "player_level": 24,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 1,
+    "seen_enemy": [
+      "JOLTEON"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "FLAAFFY:CONFUSE_RAY": 6,
+      "FLAAFFY:COTTON_SPORE": 1
+    },
+    "frames": 7660,
+    "index": 1
+  }
+]

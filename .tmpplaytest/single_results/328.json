@@ -1,0 +1,52 @@
+[
+  {
+    "class": "BLACKBELT_T",
+    "id": "WAI",
+    "id_num": 9,
+    "name": "WAI",
+    "map": "FastShipB1F",
+    "event": "EVENT_BEAT_BLACKBELT_WAI",
+    "enemy_levels": [
+      52,
+      54,
+      56
+    ],
+    "enemy_species": [
+      "HITMONTOP",
+      "LUCARIO",
+      "LEDIAN"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 2,
+    "seen_enemy": [
+      "HITMONTOP",
+      "LUCARIO",
+      "LEDIAN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 1
+    },
+    "frames": 9920,
+    "index": 1
+  }
+]

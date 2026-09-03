@@ -1,0 +1,54 @@
+[
+  {
+    "class": "FISHER",
+    "id": "KYLE",
+    "id_num": 4,
+    "name": "KYLE",
+    "map": "Route12",
+    "event": "EVENT_BEAT_FISHER_KYLE",
+    "enemy_levels": [
+      68,
+      68,
+      69
+    ],
+    "enemy_species": [
+      "TOXAPEX",
+      "LAPRAS",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "player_level": 69,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 3,
+    "seen_enemy": [
+      "TOXAPEX",
+      "TAUROS_PALDEAN_WATER",
+      "LAPRAS"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 4,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 13444,
+    "index": 1
+  }
+]

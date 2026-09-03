@@ -1,0 +1,45 @@
+[
+  {
+    "class": "AROMA_LADY",
+    "id": "NADIA",
+    "id_num": 9,
+    "name": "NADIA",
+    "map": "Route25",
+    "event": "EVENT_BEAT_AROMA_LADY_NADIA",
+    "enemy_levels": [
+      63,
+      64
+    ],
+    "enemy_species": [
+      "EXEGGUTOR",
+      "BELLOSSOM"
+    ],
+    "player_level": 64,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "EXEGGUTOR",
+      "BELLOSSOM"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2
+    },
+    "frames": 3864,
+    "index": 1
+  }
+]

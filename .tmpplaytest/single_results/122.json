@@ -1,0 +1,59 @@
+[
+  {
+    "class": "BLACKBELT_T",
+    "id": "LUNG",
+    "id_num": 7,
+    "name": "LUNG",
+    "map": "CianwoodGym",
+    "event": "EVENT_BEAT_BLACKBELT_LUNG",
+    "enemy_levels": [
+      28,
+      28,
+      28
+    ],
+    "enemy_species": [
+      "GURDURR",
+      "HITMONTOP",
+      "LEDIAN"
+    ],
+    "player_level": 28,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 15,
+    "faints": 6,
+    "seen_enemy": [
+      "GURDURR",
+      "HITMONTOP",
+      "LEDIAN"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 1,
+      "FLAAFFY:TAKE_DOWN": 2,
+      "WEEPINBELL:POISON_JAB": 5,
+      "HAUNTER:SUCKER_PUNCH": 2,
+      "GRAVELER:SELFDESTRUCT": 2,
+      "GRAVELER:ROCK_SLIDE": 1,
+      "GOLBAT:CRUNCH": 2
+    },
+    "frames": 15724,
+    "index": 1
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "class": "RIVAL3",
+    "id": "RIVAL3_TOTODILE",
+    "id_num": 6,
+    "name": "?",
+    "map": "IndigoPlateauPokecenter1F",
+    "event": "",
+    "enemy_levels": [
+      93,
+      94,
+      94,
+      94,
+      94,
+      96
+    ],
+    "enemy_species": [
+      "GLISCOR",
+      "MAGNEZONE",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "CERULEDGE",
+      "FERALIGATR"
+    ],
+    "player_level": 96,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 13,
+    "faints": 6,
+    "seen_enemy": [
+      "GLISCOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 1,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 3,
+      "CROBAT:ZEN_HEADBUTT": 1
+    },
+    "frames": 14212,
+    "index": 1
+  }
+]

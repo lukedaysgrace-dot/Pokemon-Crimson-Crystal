@@ -1,0 +1,60 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_15",
+    "id_num": 8,
+    "name": "GRUNT",
+    "map": "GoldenrodUndergroundWarehouse",
+    "event": "EVENT_BEAT_ROCKET_GRUNTM_15",
+    "enemy_levels": [
+      39,
+      39,
+      39,
+      39,
+      39
+    ],
+    "enemy_species": [
+      "PILOSWINE",
+      "QWILFISH",
+      "SNEASEL",
+      "STEELIX",
+      "GLIGAR"
+    ],
+    "player_level": 39,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 3,
+    "seen_enemy": [
+      "PILOSWINE",
+      "SNEASEL",
+      "QWILFISH",
+      "STEELIX",
+      "GLIGAR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 1,
+      "AMPHAROS:DRAGON_PULSE": 3,
+      "VICTREEBEL:RAZOR_LEAF": 4,
+      "GENGAR:DREAM_EATER": 5
+    },
+    "frames": 12772,
+    "index": 1
+  }
+]

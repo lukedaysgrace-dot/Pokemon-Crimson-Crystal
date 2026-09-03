@@ -1,0 +1,53 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_7",
+    "id_num": 4,
+    "name": "GRUNT",
+    "map": "RadioTower3F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTM_7",
+    "enemy_levels": [
+      38,
+      38,
+      38
+    ],
+    "enemy_species": [
+      "SNEASEL",
+      "GIRAFARIG",
+      "URSARING"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "SNEASEL",
+      "URSARING",
+      "SNEASEL",
+      "GIRAFARIG"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 2,
+      "AMPHAROS:DRAGON_PULSE": 5,
+      "VICTREEBEL:RAZOR_LEAF": 1
+    },
+    "frames": 9584,
+    "index": 1
+  }
+]

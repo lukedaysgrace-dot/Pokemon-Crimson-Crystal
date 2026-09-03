@@ -1,0 +1,45 @@
+[
+  {
+    "class": "TWINS",
+    "id": "JOANDZOE1",
+    "id_num": 5,
+    "name": "JO & ZOE",
+    "map": "CeladonGym",
+    "event": "EVENT_BEAT_TWINS_JO_AND_ZOE",
+    "enemy_levels": [
+      68,
+      68
+    ],
+    "enemy_species": [
+      "JUMPLUFF",
+      "PARASECT"
+    ],
+    "player_level": 68,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "JUMPLUFF",
+      "PARASECT"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2
+    },
+    "frames": 4376,
+    "index": 1
+  }
+]

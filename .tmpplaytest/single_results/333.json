@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BEAUTY",
+    "id": "CASSIE",
+    "id_num": 3,
+    "name": "CASSIE",
+    "map": "FastShipCabins_SW_SSW_NW",
+    "event": "EVENT_BEAT_BEAUTY_CASSIE",
+    "enemy_levels": [
+      54,
+      56
+    ],
+    "enemy_species": [
+      "PORYGON2",
+      "MILOTIC"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "PORYGON2",
+      "MILOTIC"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 2
+    },
+    "frames": 7924,
+    "index": 1
+  }
+]

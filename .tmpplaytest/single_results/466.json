@@ -1,0 +1,55 @@
+[
+  {
+    "class": "SWIMMERM",
+    "id": "TUCKER",
+    "id_num": 10,
+    "name": "TUCKER",
+    "map": "Route19",
+    "event": "EVENT_BEAT_SWIMMERM_TUCKER",
+    "enemy_levels": [
+      78,
+      78
+    ],
+    "enemy_species": [
+      "SEAKING",
+      "STARMIE"
+    ],
+    "player_level": 78,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 7,
+    "faints": 6,
+    "seen_enemy": [
+      "SEAKING",
+      "STARMIE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 11124,
+    "index": 1
+  }
+]

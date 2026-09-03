@@ -1,0 +1,42 @@
+[
+  {
+    "class": "GRUNTF",
+    "id": "GRUNTF_12",
+    "id_num": 12,
+    "name": "GRUNT",
+    "map": "TeamRocketBaseB2F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTF_12",
+    "enemy_levels": [
+      36
+    ],
+    "enemy_species": [
+      "MISDREAVUS"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "MISDREAVUS"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 3
+    },
+    "frames": 3748,
+    "index": 1
+  }
+]

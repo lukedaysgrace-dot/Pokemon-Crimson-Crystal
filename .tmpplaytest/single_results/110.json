@@ -1,0 +1,49 @@
+[
+  {
+    "class": "SAGE",
+    "id": "PING",
+    "id_num": 6,
+    "name": "PING",
+    "map": "EcruteakGym",
+    "event": "EVENT_BEAT_SAGE_PING",
+    "enemy_levels": [
+      25
+    ],
+    "enemy_species": [
+      "MISDREAVUS"
+    ],
+    "player_level": 25,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 3,
+    "seen_enemy": [
+      "MISDREAVUS"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "QUILAVA:FLAME_WHEEL": 1,
+      "FLAAFFY:TAKE_DOWN": 2,
+      "WEEPINBELL:RAZOR_LEAF": 2,
+      "HAUNTER:SUCKER_PUNCH": 1
+    },
+    "frames": 7088,
+    "index": 1
+  }
+]

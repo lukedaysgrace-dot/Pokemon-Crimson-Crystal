@@ -1,0 +1,48 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "ARNIE3",
+    "id_num": 14,
+    "name": "ARNIE",
+    "map": "Route35",
+    "event": "",
+    "enemy_levels": [
+      43,
+      44,
+      44
+    ],
+    "enemy_species": [
+      "VIBRAVA",
+      "HERACROSS",
+      "SCIZOR"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "VIBRAVA",
+      "HERACROSS",
+      "SCIZOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3
+    },
+    "frames": 4500,
+    "index": 1
+  }
+]

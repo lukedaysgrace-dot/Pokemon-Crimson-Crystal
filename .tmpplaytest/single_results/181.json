@@ -1,0 +1,45 @@
+[
+  {
+    "class": "FISHER",
+    "id": "MARVIN",
+    "id_num": 6,
+    "name": "MARVIN",
+    "map": "Route43",
+    "event": "EVENT_BEAT_FISHER_MARVIN",
+    "enemy_levels": [
+      36,
+      36
+    ],
+    "enemy_species": [
+      "SEALEO",
+      "PSYDUCK"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 0,
+    "seen_enemy": [
+      "SEALEO",
+      "PSYDUCK"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 5
+    },
+    "frames": 5816,
+    "index": 1
+  }
+]

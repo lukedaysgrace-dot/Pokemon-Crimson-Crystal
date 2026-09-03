@@ -1,0 +1,44 @@
+[
+  {
+    "class": "FISHER",
+    "id": "ANDRE",
+    "id_num": 8,
+    "name": "ANDRE",
+    "map": "LakeOfRage",
+    "event": "EVENT_BEAT_FISHER_ANDRE",
+    "enemy_levels": [
+      36
+    ],
+    "enemy_species": [
+      "CORSOLA"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "CORSOLA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 2,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 4848,
+    "index": 1
+  }
+]

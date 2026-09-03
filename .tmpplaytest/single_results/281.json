@@ -1,0 +1,63 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "GWEN",
+    "id_num": 1,
+    "name": "GWEN",
+    "map": "UnionCaveB2F",
+    "event": "EVENT_BEAT_COOLTRAINERF_GWEN",
+    "enemy_levels": [
+      42,
+      43,
+      44,
+      45
+    ],
+    "enemy_species": [
+      "PHANPY",
+      "WHIRLIPEDE",
+      "ONIX",
+      "GRAVELER"
+    ],
+    "player_level": 45,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 23,
+    "faints": 6,
+    "seen_enemy": [
+      "PHANPY",
+      "ONIX",
+      "WHIRLIPEDE",
+      "GRAVELER"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "AMPHAROS:DRAGON_PULSE": 1,
+      "VICTREEBEL:LEAF_BLADE": 4,
+      "GENGAR:DREAM_EATER": 3,
+      "GENGAR:SLUDGE_BOMB": 1,
+      "GOLEM:HAMMER_ARM": 5,
+      "CROBAT:ZEN_HEADBUTT": 4
+    },
+    "frames": 21268,
+    "index": 1
+  }
+]

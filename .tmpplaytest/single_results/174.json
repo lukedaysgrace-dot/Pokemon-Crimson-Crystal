@@ -1,0 +1,54 @@
+[
+  {
+    "class": "LASS",
+    "id": "KATHRYN",
+    "id_num": 17,
+    "name": "KATHRYN",
+    "map": "OlivineGym",
+    "event": "EVENT_BEAT_LASS_KATHRYN",
+    "enemy_levels": [
+      34,
+      34,
+      35
+    ],
+    "enemy_species": [
+      "MAGNETON",
+      "SKARMORY",
+      "FORRETRESS"
+    ],
+    "player_level": 35,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "MAGNETON",
+      "SKARMORY",
+      "FORRETRESS"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER"
+    ],
+    "move_log": {
+      "QUILAVA:EXTRASENSORY": 2,
+      "AMPHAROS:DRAGON_PULSE": 4,
+      "VICTREEBEL:RAZOR_LEAF": 2,
+      "HAUNTER:SLUDGE_BOMB": 3
+    },
+    "frames": 13012,
+    "index": 1
+  }
+]

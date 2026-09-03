@@ -1,0 +1,55 @@
+[
+  {
+    "class": "HIKER",
+    "id": "TIMOTHY",
+    "id_num": 10,
+    "name": "TIMOTHY",
+    "map": "Route45",
+    "event": "EVENT_BEAT_HIKER_TIMOTHY",
+    "enemy_levels": [
+      43,
+      43,
+      43,
+      44
+    ],
+    "enemy_species": [
+      "GLIMMORA",
+      "GRAVELER",
+      "CAMERUPT",
+      "GOLURK"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "GLIMMORA",
+      "GRAVELER",
+      "GOLURK",
+      "GRAVELER"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:LEAF_BLADE": 3
+    },
+    "frames": 10452,
+    "index": 1
+  }
+]

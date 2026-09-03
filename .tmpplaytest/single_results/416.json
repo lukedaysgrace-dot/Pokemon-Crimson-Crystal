@@ -1,0 +1,49 @@
+[
+  {
+    "class": "BIKER",
+    "id": "HARRIS",
+    "id_num": 2,
+    "name": "HARRIS",
+    "map": "Route8",
+    "event": "EVENT_BEAT_BIKER_HARRIS",
+    "enemy_levels": [
+      64,
+      66
+    ],
+    "enemy_species": [
+      "FLAREON",
+      "GOLEM"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 2,
+    "seen_enemy": [
+      "FLAREON",
+      "GOLEM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1
+    },
+    "frames": 9152,
+    "index": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BOARDER",
+    "id": "RONALD",
+    "id_num": 1,
+    "name": "RONALD",
+    "map": "MahoganyGym",
+    "event": "EVENT_BEAT_BOARDER_RONALD",
+    "enemy_levels": [
+      37,
+      38
+    ],
+    "enemy_species": [
+      "DELIBIRD",
+      "SMOOCHUM"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "DELIBIRD",
+      "SMOOCHUM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 5,
+      "AMPHAROS:DRAGON_PULSE": 1
+    },
+    "frames": 7168,
+    "index": 1
+  }
+]

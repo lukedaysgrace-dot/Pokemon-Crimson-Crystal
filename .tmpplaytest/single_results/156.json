@@ -1,0 +1,42 @@
+[
+  {
+    "class": "FISHER",
+    "id": "TULLY1",
+    "id_num": 7,
+    "name": "TULLY",
+    "map": "Route42",
+    "event": "EVENT_BEAT_FISHER_TULLY",
+    "enemy_levels": [
+      33
+    ],
+    "enemy_species": [
+      "LOMBRE"
+    ],
+    "player_level": 33,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "LOMBRE"
+    ],
+    "seen_player": [
+      "QUILAVA"
+    ],
+    "move_log": {
+      "QUILAVA:FLAME_WHEEL": 2
+    },
+    "frames": 3020,
+    "index": 1
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "class": "JUGGLER",
+    "id": "IRWIN1",
+    "id_num": 1,
+    "name": "IRWIN",
+    "map": "Route35",
+    "event": "EVENT_BEAT_JUGGLER_IRWIN",
+    "enemy_levels": [
+      21,
+      21,
+      21
+    ],
+    "enemy_species": [
+      "ABRA",
+      "MAGNEMITE",
+      "LITWICK"
+    ],
+    "player_level": 21,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "ZUBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 18,
+    "faints": 1,
+    "seen_enemy": [
+      "ABRA",
+      "LITWICK",
+      "ABRA",
+      "MAGNEMITE"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "QUILAVA:FLAME_WHEEL": 1,
+      "FLAAFFY:THUNDERSHOCK": 14
+    },
+    "frames": 12324,
+    "index": 1
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "class": "JUGGLER",
+    "id": "FRITZ",
+    "id_num": 2,
+    "name": "FRITZ",
+    "map": "FastShipB1F",
+    "event": "EVENT_BEAT_JUGGLER_FRITZ",
+    "enemy_levels": [
+      52,
+      52,
+      54
+    ],
+    "enemy_species": [
+      "GOROTORA",
+      "NOCTOWL",
+      "ESPEON"
+    ],
+    "player_level": 54,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 11,
+    "faints": 6,
+    "seen_enemy": [
+      "GOROTORA",
+      "NOCTOWL"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 2,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 2,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 14608,
+    "index": 1
+  }
+]

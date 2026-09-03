@@ -1,0 +1,53 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "AARON",
+    "id_num": 2,
+    "name": "AARON",
+    "map": "LakeOfRage",
+    "event": "EVENT_BEAT_COOLTRAINERM_AARON",
+    "enemy_levels": [
+      36,
+      36,
+      36
+    ],
+    "enemy_species": [
+      "CROCONAW",
+      "POLIWHIRL",
+      "AZUMARILL"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 2,
+    "seen_enemy": [
+      "CROCONAW",
+      "AZUMARILL",
+      "POLIWHIRL"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 2,
+      "TYPHLOSION:SWIFT": 1,
+      "AMPHAROS:DRAGON_PULSE": 3,
+      "VICTREEBEL:RAZOR_LEAF": 5
+    },
+    "frames": 11260,
+    "index": 1
+  }
+]

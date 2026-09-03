@@ -1,0 +1,48 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "TODD3",
+    "id_num": 11,
+    "name": "TODD",
+    "map": "Route34",
+    "event": "",
+    "enemy_levels": [
+      43,
+      43,
+      44
+    ],
+    "enemy_species": [
+      "TEDDIURSA",
+      "VIBRAVA",
+      "FURRET"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "TEDDIURSA",
+      "VIBRAVA",
+      "FURRET"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4
+    },
+    "frames": 5556,
+    "index": 1
+  }
+]

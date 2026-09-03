@@ -1,0 +1,47 @@
+[
+  {
+    "class": "POKEMANIAC",
+    "id": "SHANE",
+    "id_num": 4,
+    "name": "SHANE",
+    "map": "Route42",
+    "event": "EVENT_BEAT_POKEMANIAC_SHANE",
+    "enemy_levels": [
+      33,
+      33
+    ],
+    "enemy_species": [
+      "DUNSPARCE",
+      "PHANPY"
+    ],
+    "player_level": 33,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "DUNSPARCE",
+      "PHANPY"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "QUILAVA:FLAME_WHEEL": 2,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 5168,
+    "index": 1
+  }
+]

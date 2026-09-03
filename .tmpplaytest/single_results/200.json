@@ -1,0 +1,54 @@
+[
+  {
+    "class": "BOARDER",
+    "id": "DOUGLAS",
+    "id_num": 3,
+    "name": "DOUGLAS",
+    "map": "MahoganyGym",
+    "event": "EVENT_BEAT_BOARDER_DOUGLAS",
+    "enemy_levels": [
+      37,
+      37,
+      38
+    ],
+    "enemy_species": [
+      "DELIBIRD",
+      "JYNX",
+      "SNORUNT"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 3,
+    "seen_enemy": [
+      "DELIBIRD",
+      "SNORUNT",
+      "JYNX"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 6,
+      "AMPHAROS:DRAGON_PULSE": 2,
+      "VICTREEBEL:RAZOR_LEAF": 1,
+      "GENGAR:DREAM_EATER": 1
+    },
+    "frames": 10488,
+    "index": 1
+  }
+]

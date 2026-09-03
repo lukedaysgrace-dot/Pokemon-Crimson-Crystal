@@ -1,0 +1,47 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "SPENCER",
+    "id_num": 13,
+    "name": "SPENCER",
+    "map": "Route43",
+    "event": "EVENT_BEAT_CAMPER_SPENCER",
+    "enemy_levels": [
+      36,
+      36
+    ],
+    "enemy_species": [
+      "SKIPLOOM",
+      "SUNFLORA"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "SKIPLOOM",
+      "SUNFLORA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 6,
+      "AMPHAROS:DRAGON_PULSE": 1
+    },
+    "frames": 8268,
+    "index": 1
+  }
+]

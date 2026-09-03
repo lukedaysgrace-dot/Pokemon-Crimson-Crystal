@@ -1,0 +1,64 @@
+[
+  {
+    "class": "CRYSTAL2",
+    "id": "CRYSTAL2_4_CYNDAQUIL",
+    "id_num": 11,
+    "name": "CRYSTAL",
+    "map": "IcePath1F",
+    "event": "",
+    "enemy_levels": [
+      41,
+      42,
+      42,
+      42,
+      44
+    ],
+    "enemy_species": [
+      "XATU",
+      "MAROWAK",
+      "FLAPPLE",
+      "PUPITAR",
+      "TYPHLOSION"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 19,
+    "faints": 5,
+    "seen_enemy": [
+      "XATU",
+      "MAROWAK",
+      "TYPHLOSION",
+      "FLAPPLE",
+      "PUPITAR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:LEAF_BLADE": 2,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:HAMMER_ARM": 4,
+      "CROBAT:ZEN_HEADBUTT": 7
+    },
+    "frames": 19348,
+    "index": 1
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "class": "HIKER",
+    "id": "ANTHONY3",
+    "id_num": 12,
+    "name": "ANTHONY",
+    "map": "Route33",
+    "event": "",
+    "enemy_levels": [
+      42,
+      43,
+      43
+    ],
+    "enemy_species": [
+      "CORSOLA",
+      "SANDSLASH",
+      "URSARING"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "CORSOLA",
+      "SANDSLASH",
+      "URSARING"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:DRAGON_PULSE": 3,
+      "VICTREEBEL:LEAF_BLADE": 2
+    },
+    "frames": 9140,
+    "index": 1
+  }
+]

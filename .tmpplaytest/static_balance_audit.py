@@ -132,18 +132,20 @@ def trainer_mon_exp(mon):
 
 
 def exp_cap_table():
-    caps = [("Falkner", 10, "FALKNER"), ("Bugsy", 16, "BUGSY"),
-            ("Whitney", 21, "WHITNEY"), ("Morty", 26, "MORTY"),
-            ("Chuck", 31, "CHUCK"), ("Jasmine", 36, "JASMINE"),
-            ("Pryce", 40, "PRYCE"), ("Clair", 45, "CLAIR")]
+    # available_ceiling is the current leader's cap/ace.
+    caps = [("Falkner", 10, 10, "FALKNER"), ("Bugsy", 16, 16, "BUGSY"),
+            ("Whitney", 21, 21, "WHITNEY"), ("Morty", 26, 26, "MORTY"),
+            ("Chuck", 35, 35, "CHUCK"), ("Jasmine", 36, 36, "JASMINE"),
+            ("Pryce", 40, 40, "PRYCE"), ("Clair", 45, 45, "CLAIR")]
     family = ["CYNDAQUIL", "MAREEP", "BELLSPROUT", "GASTLY", "GEODUDE", "ZUBAT"]
     out = []
-    for name, cap, klass in caps:
-        available = [r for r in FIRST if r["max_level"] <= cap and not (r["class"] == klass and r["id_num"] == 1)]
+    for name, cap, available_ceiling, klass in caps:
+        available = [r for r in FIRST if r["max_level"] <= available_ceiling and not (r["class"] == klass and r["id_num"] == 1)]
         total = sum(trainer_mon_exp(mon) for row in available for mon in row["mons"])
         needs = [exp_at(cap, SPECIES[s]["growth"]) - exp_at(5, SPECIES[s]["growth"]) for s in family]
         need_total = sum(needs)
-        out.append({"leader": name, "cap": cap, "available_first_encounters": len(available),
+        out.append({"leader": name, "cap": cap, "available_level_ceiling": available_ceiling,
+                    "available_first_encounters": len(available),
                     "trainer_exp_total": total,
                     "three_mon_need_from_level_5": sum(needs[:3]),
                     "four_mon_need_from_level_5": sum(needs[:4]),
@@ -215,10 +217,6 @@ def anomaly_rows():
             if level <= 25 and SPECIES.get(mon["species"], {}).get("bst", 0) >= 540:
                 add(row, mon, "medium", "power curve", f"BST {SPECIES[mon['species']]['bst']} species appears at level {level}")
 
-            if row["class"] == "CHUCK" and row["id_num"] == 1 and mon["species"] == "BRELOOM":
-                add(row, mon, "high", "moveset/cap", "Spore is on a level-34 mon while the player is capped at 31")
-            if row["class"] == "CHUCK" and row["id_num"] == 1 and mon["species"] == "POLIWRATH":
-                add(row, mon, "high", "moveset/cap", "level 35 versus cap 31, with Hypnosis + Mind Reader + DynamicPunch")
 
     order = {"critical": 0, "high": 1, "medium": 2, "low": 3}
     return sorted(flags, key=lambda x: (order[x["severity"]], x["level"], x["map"], x["trainer_id"]))
@@ -231,7 +229,7 @@ def leader_audit():
                    "JANINE": "POISON", "SABRINA": "PSYCHIC", "BLAINE": "FIRE", "BLUE": None}
     out = []
     hard_caps = {"FALKNER": 10, "BUGSY": 16, "WHITNEY": 21, "MORTY": 26,
-                 "CHUCK": 31, "JASMINE": 36, "PRYCE": 40, "CLAIR": 45}
+                 "CHUCK": 35, "JASMINE": 36, "PRYCE": 40, "CLAIR": 45}
     by_key = {(r["class"], r["id_num"]): r for r in ROWS}
     for klass, typ in specialties.items():
         row = by_key.get((klass, 1))

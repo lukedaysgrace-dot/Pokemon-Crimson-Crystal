@@ -1,0 +1,51 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "JASON",
+    "id_num": 12,
+    "name": "JASON",
+    "map": "Route11",
+    "event": "EVENT_BEAT_YOUNGSTER_JASON",
+    "enemy_levels": [
+      60,
+      60
+    ],
+    "enemy_species": [
+      "STEELIX",
+      "DODRIO"
+    ],
+    "player_level": 60,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 3,
+    "seen_enemy": [
+      "STEELIX",
+      "DODRIO"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 1
+    },
+    "frames": 9048,
+    "index": 1
+  }
+]

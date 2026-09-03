@@ -1,0 +1,59 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "FRAN",
+    "id_num": 3,
+    "name": "FRAN",
+    "map": "BlackthornGym2F",
+    "event": "EVENT_BEAT_COOLTRAINERF_FRAN",
+    "enemy_levels": [
+      41,
+      41,
+      41
+    ],
+    "enemy_species": [
+      "KINGDRA",
+      "APPLETUN",
+      "ARCTIBAX"
+    ],
+    "player_level": 41,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 15,
+    "faints": 6,
+    "seen_enemy": [
+      "KINGDRA",
+      "ARCTIBAX"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:DRAGON_PULSE": 2,
+      "VICTREEBEL:RAZOR_LEAF": 2,
+      "GENGAR:DREAM_EATER": 2,
+      "GENGAR:SLUDGE_BOMB": 1,
+      "GOLEM:EARTHQUAKE": 2,
+      "GOLEM:ROCK_BLAST": 1,
+      "CROBAT:AIR_SLASH": 2
+    },
+    "frames": 14620,
+    "index": 1
+  }
+]

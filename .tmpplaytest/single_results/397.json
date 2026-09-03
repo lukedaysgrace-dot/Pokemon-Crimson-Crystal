@@ -1,0 +1,64 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "GAVEN2",
+    "id_num": 7,
+    "name": "GAVEN",
+    "map": "Route26",
+    "event": "",
+    "enemy_levels": [
+      66,
+      66,
+      66,
+      66,
+      66
+    ],
+    "enemy_species": [
+      "ELECTRODE",
+      "DONPHAN",
+      "XATU",
+      "GOLEM",
+      "POLITOED"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 13,
+    "faints": 6,
+    "seen_enemy": [
+      "ELECTRODE",
+      "DONPHAN",
+      "XATU",
+      "DONPHAN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 3,
+      "CROBAT:ZEN_HEADBUTT": 1
+    },
+    "frames": 15420,
+    "index": 1
+  }
+]

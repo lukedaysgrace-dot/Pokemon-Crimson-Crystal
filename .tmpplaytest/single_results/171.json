@@ -1,0 +1,50 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_21",
+    "id_num": 11,
+    "name": "GRUNT",
+    "map": "TeamRocketBaseB1F",
+    "event": "",
+    "enemy_levels": [
+      34,
+      34,
+      34
+    ],
+    "enemy_species": [
+      "DRIFLOON",
+      "SNEASEL",
+      "GLIMMET"
+    ],
+    "player_level": 34,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "DRIFLOON",
+      "GLIMMET",
+      "SNEASEL"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "QUILAVA:FLAME_WHEEL": 4,
+      "AMPHAROS:DRAGON_PULSE": 3
+    },
+    "frames": 8716,
+    "index": 1
+  }
+]

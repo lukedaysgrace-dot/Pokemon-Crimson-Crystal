@@ -1,0 +1,44 @@
+[
+  {
+    "class": "SAILOR",
+    "id": "HARRY",
+    "id_num": 10,
+    "name": "HARRY",
+    "map": "Route38",
+    "event": "EVENT_BEAT_SAILOR_HARRY",
+    "enemy_levels": [
+      28
+    ],
+    "enemy_species": [
+      "POLIWHIRL"
+    ],
+    "player_level": 28,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "POLIWHIRL"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "FLAAFFY:TAKE_DOWN": 2
+    },
+    "frames": 5128,
+    "index": 1
+  }
+]
