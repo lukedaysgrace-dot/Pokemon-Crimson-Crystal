@@ -1,0 +1,48 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "ED",
+    "id_num": 3,
+    "name": "ED",
+    "map": "ViridianForest",
+    "event": "EVENT_BEAT_BUG_CATCHER_ED",
+    "enemy_levels": [
+      80,
+      80,
+      80
+    ],
+    "enemy_species": [
+      "PARASECT",
+      "PINSIR",
+      "YANMEGA"
+    ],
+    "player_level": 80,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "PARASECT",
+      "YANMEGA",
+      "PINSIR"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3
+    },
+    "frames": 5704,
+    "index": 1
+  }
+]

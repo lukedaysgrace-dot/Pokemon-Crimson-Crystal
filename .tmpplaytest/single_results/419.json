@@ -1,0 +1,50 @@
+[
+  {
+    "class": "LASS",
+    "id": "MICHELLE",
+    "id_num": 7,
+    "name": "MICHELLE",
+    "map": "CeladonGym",
+    "event": "EVENT_BEAT_LASS_MICHELLE",
+    "enemy_levels": [
+      67,
+      67,
+      68
+    ],
+    "enemy_species": [
+      "VILEPLUME",
+      "LUDICOLO",
+      "JUMPLUFF"
+    ],
+    "player_level": 68,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "VILEPLUME",
+      "LUDICOLO",
+      "JUMPLUFF"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDER": 2
+    },
+    "frames": 7348,
+    "index": 1
+  }
+]

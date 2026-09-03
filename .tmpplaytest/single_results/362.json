@@ -1,0 +1,47 @@
+[
+  {
+    "class": "POKEFANM",
+    "id": "ALLAN",
+    "id_num": 14,
+    "name": "ALLAN",
+    "map": "Route6",
+    "event": "EVENT_BEAT_POKEFANM_ALLAN",
+    "enemy_levels": [
+      56,
+      58
+    ],
+    "enemy_species": [
+      "SNORLAX",
+      "ELECTRODE"
+    ],
+    "player_level": 58,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "SNORLAX",
+      "ELECTRODE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDERBOLT": 4
+    },
+    "frames": 8152,
+    "index": 1
+  }
+]

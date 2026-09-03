@@ -1,0 +1,58 @@
+[
+  {
+    "class": "FISHER",
+    "id": "BARNEY",
+    "id_num": 15,
+    "name": "BARNEY",
+    "map": "Route12",
+    "event": "EVENT_BEAT_FISHER_BARNEY",
+    "enemy_levels": [
+      68,
+      68,
+      68
+    ],
+    "enemy_species": [
+      "KINGDRA",
+      "KINGLER",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "player_level": 68,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 11,
+    "faints": 6,
+    "seen_enemy": [
+      "KINGDRA",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 2,
+      "CROBAT:ZEN_HEADBUTT": 1
+    },
+    "frames": 13408,
+    "index": 1
+  }
+]

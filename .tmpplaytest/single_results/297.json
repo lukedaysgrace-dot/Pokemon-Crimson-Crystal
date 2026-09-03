@@ -1,0 +1,63 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "REENA1",
+    "id_num": 10,
+    "name": "REENA",
+    "map": "Route27",
+    "event": "EVENT_BEAT_COOLTRAINERF_REENA",
+    "enemy_levels": [
+      46,
+      46,
+      47,
+      47,
+      48
+    ],
+    "enemy_species": [
+      "PUPITAR",
+      "MILTANK",
+      "GLIGAR",
+      "TOGETIC",
+      "FURRET"
+    ],
+    "player_level": 48,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 18,
+    "faints": 6,
+    "seen_enemy": [
+      "PUPITAR",
+      "MILTANK",
+      "GLIGAR",
+      "MILTANK"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:LEAF_BLADE": 2,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:SUPERPOWER": 4,
+      "CROBAT:ZEN_HEADBUTT": 7
+    },
+    "frames": 18552,
+    "index": 1
+  }
+]

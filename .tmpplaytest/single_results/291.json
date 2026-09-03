@@ -1,0 +1,62 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "BETH1",
+    "id_num": 9,
+    "name": "BETH",
+    "map": "Route26",
+    "event": "EVENT_BEAT_COOLTRAINERF_BETH",
+    "enemy_levels": [
+      47,
+      47,
+      47,
+      47,
+      47
+    ],
+    "enemy_species": [
+      "PORYGON2",
+      "VICTREEBEL",
+      "VAPOREON",
+      "FERALIGATR",
+      "HYDRAPPLE"
+    ],
+    "player_level": 47,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 12,
+    "faints": 6,
+    "seen_enemy": [
+      "PORYGON2",
+      "VAPOREON",
+      "FERALIGATR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:LEAF_BLADE": 2,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:HAMMER_ARM": 1,
+      "CROBAT:ZEN_HEADBUTT": 3
+    },
+    "frames": 14444,
+    "index": 1
+  }
+]

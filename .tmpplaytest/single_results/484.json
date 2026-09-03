@@ -1,0 +1,66 @@
+[
+  {
+    "class": "BLAINE",
+    "id": "BLAINE1",
+    "id_num": 1,
+    "name": "BLAINE",
+    "map": "SeafoamGym",
+    "event": "EVENT_BEAT_BLAINE",
+    "enemy_levels": [
+      79,
+      80,
+      80,
+      81,
+      81,
+      82
+    ],
+    "enemy_species": [
+      "NINETALES",
+      "ARCANINE",
+      "ARMAROUGE",
+      "TORKOAL",
+      "RAPIDASH",
+      "MAGMORTAR"
+    ],
+    "player_level": 82,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 12,
+    "faints": 6,
+    "seen_enemy": [
+      "NINETALES",
+      "TORKOAL",
+      "ARCANINE",
+      "NINETALES",
+      "ARMAROUGE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 20096,
+    "index": 1
+  }
+]

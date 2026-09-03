@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BIKER",
+    "id": "RILEY",
+    "id_num": 5,
+    "name": "RILEY",
+    "map": "Route17",
+    "event": "EVENT_BEAT_BIKER_RILEY",
+    "enemy_levels": [
+      73,
+      75
+    ],
+    "enemy_species": [
+      "WEEZING",
+      "HOUNDOOM"
+    ],
+    "player_level": 75,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "WEEZING",
+      "HOUNDOOM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 4
+    },
+    "frames": 7600,
+    "index": 1
+  }
+]

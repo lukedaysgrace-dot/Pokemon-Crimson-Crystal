@@ -1,0 +1,51 @@
+[
+  {
+    "class": "HIKER",
+    "id": "SIDNEY",
+    "id_num": 15,
+    "name": "SIDNEY",
+    "map": "Route9",
+    "event": "EVENT_BEAT_HIKER_SIDNEY",
+    "enemy_levels": [
+      62,
+      62
+    ],
+    "enemy_species": [
+      "GOLEM",
+      "MAMOSWINE"
+    ],
+    "player_level": 62,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 3,
+    "seen_enemy": [
+      "GOLEM",
+      "MAMOSWINE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 9288,
+    "index": 1
+  }
+]

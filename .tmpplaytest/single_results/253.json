@@ -1,0 +1,51 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "WADE4",
+    "id_num": 15,
+    "name": "WADE",
+    "map": "Route31",
+    "event": "",
+    "enemy_levels": [
+      41,
+      42,
+      42,
+      43
+    ],
+    "enemy_species": [
+      "FORRETRESS",
+      "VIBRAVA",
+      "LEDIAN",
+      "SHUCKLE"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 0,
+    "seen_enemy": [
+      "FORRETRESS",
+      "SHUCKLE",
+      "FORRETRESS",
+      "LEDIAN"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 6
+    },
+    "frames": 7960,
+    "index": 1
+  }
+]

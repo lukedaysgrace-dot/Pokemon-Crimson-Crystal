@@ -1,0 +1,54 @@
+[
+  {
+    "class": "SWIMMERM",
+    "id": "GEORGE",
+    "id_num": 5,
+    "name": "GEORGE",
+    "map": "Route41",
+    "event": "EVENT_BEAT_SWIMMERM_GEORGE",
+    "enemy_levels": [
+      29,
+      29,
+      29
+    ],
+    "enemy_species": [
+      "CHINCHOU",
+      "TENTACOOL",
+      "PSYDUCK"
+    ],
+    "player_level": 29,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "CHINCHOU",
+      "TENTACOOL",
+      "PSYDUCK"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "FLAAFFY:TAKE_DOWN": 3,
+      "WEEPINBELL:POISON_JAB": 4,
+      "HAUNTER:SUCKER_PUNCH": 2
+    },
+    "frames": 11992,
+    "index": 1
+  }
+]

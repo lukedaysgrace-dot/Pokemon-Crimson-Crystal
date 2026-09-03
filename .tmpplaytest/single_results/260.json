@@ -1,0 +1,58 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "CYBIL",
+    "id_num": 16,
+    "name": "CYBIL",
+    "map": "Route44",
+    "event": "EVENT_BEAT_COOLTRAINERF_CYBIL",
+    "enemy_levels": [
+      40,
+      41,
+      43
+    ],
+    "enemy_species": [
+      "PRIMEAPE",
+      "CORSOLA",
+      "SCIZOR"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 15,
+    "faints": 6,
+    "seen_enemy": [
+      "PRIMEAPE",
+      "CORSOLA",
+      "SCIZOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:DRAGON_PULSE": 4,
+      "VICTREEBEL:LEAF_BLADE": 2,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:HAMMER_ARM": 2,
+      "CROBAT:ZEN_HEADBUTT": 2
+    },
+    "frames": 14828,
+    "index": 1
+  }
+]

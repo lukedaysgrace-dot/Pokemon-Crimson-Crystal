@@ -1,0 +1,47 @@
+[
+  {
+    "class": "POKEFANM",
+    "id": "REX",
+    "id_num": 13,
+    "name": "REX",
+    "map": "Route6",
+    "event": "EVENT_BEAT_POKEFANM_REX",
+    "enemy_levels": [
+      57,
+      59
+    ],
+    "enemy_species": [
+      "PERSIAN",
+      "RATICATE"
+    ],
+    "player_level": 59,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 1,
+    "seen_enemy": [
+      "PERSIAN",
+      "RATICATE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 1
+    },
+    "frames": 6072,
+    "index": 1
+  }
+]

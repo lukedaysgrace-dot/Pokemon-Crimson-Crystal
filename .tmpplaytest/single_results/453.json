@@ -1,0 +1,47 @@
+[
+  {
+    "class": "TEACHER",
+    "id": "HILLARY",
+    "id_num": 2,
+    "name": "HILLARY",
+    "map": "Route15",
+    "event": "EVENT_BEAT_TEACHER_HILLARY",
+    "enemy_levels": [
+      74,
+      74
+    ],
+    "enemy_species": [
+      "WYRDEER",
+      "BANETTE"
+    ],
+    "player_level": 74,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "WYRDEER",
+      "BANETTE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 3
+    },
+    "frames": 7484,
+    "index": 1
+  }
+]

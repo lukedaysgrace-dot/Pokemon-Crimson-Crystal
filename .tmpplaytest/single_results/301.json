@@ -1,0 +1,53 @@
+[
+  {
+    "class": "FISHER",
+    "id": "SCOTT",
+    "id_num": 21,
+    "name": "SCOTT",
+    "map": "Route26",
+    "event": "EVENT_BEAT_FISHER_SCOTT",
+    "enemy_levels": [
+      47,
+      47,
+      48,
+      49
+    ],
+    "enemy_species": [
+      "GOLDUCK",
+      "POLIWRATH",
+      "VAPOREON",
+      "OCTILLERY"
+    ],
+    "player_level": 49,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 1,
+    "seen_enemy": [
+      "GOLDUCK",
+      "VAPOREON",
+      "OCTILLERY",
+      "POLIWRATH"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4,
+      "AMPHAROS:THUNDERBOLT": 4
+    },
+    "frames": 11216,
+    "index": 1
+  }
+]

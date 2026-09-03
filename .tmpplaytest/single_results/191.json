@@ -1,0 +1,51 @@
+[
+  {
+    "class": "POKEMANIAC",
+    "id": "BEN",
+    "id_num": 5,
+    "name": "BEN",
+    "map": "Route43",
+    "event": "EVENT_BEAT_POKEMANIAC_BEN",
+    "enemy_levels": [
+      37,
+      37
+    ],
+    "enemy_species": [
+      "URSARING",
+      "GIRAFARIG"
+    ],
+    "player_level": 37,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 3,
+    "seen_enemy": [
+      "URSARING",
+      "GIRAFARIG"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 1,
+      "AMPHAROS:DRAGON_PULSE": 3,
+      "VICTREEBEL:RAZOR_LEAF": 1,
+      "GENGAR:SLUDGE_BOMB": 2
+    },
+    "frames": 8444,
+    "index": 1
+  }
+]

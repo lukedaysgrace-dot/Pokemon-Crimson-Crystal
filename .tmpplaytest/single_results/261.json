@@ -1,0 +1,50 @@
+[
+  {
+    "class": "POKEMANIAC",
+    "id": "ZACH",
+    "id_num": 13,
+    "name": "ZACH",
+    "map": "Route44",
+    "event": "EVENT_BEAT_POKEMANIAC_ZACH",
+    "enemy_levels": [
+      40,
+      41,
+      43
+    ],
+    "enemy_species": [
+      "GALLADE",
+      "GRAVELER",
+      "GRUMPIG"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "GALLADE",
+      "GRAVELER",
+      "GRUMPIG"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:DRAGON_PULSE": 4
+    },
+    "frames": 8600,
+    "index": 1
+  }
+]

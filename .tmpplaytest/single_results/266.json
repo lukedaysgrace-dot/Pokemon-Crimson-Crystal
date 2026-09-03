@@ -1,0 +1,48 @@
+[
+  {
+    "class": "HIKER",
+    "id": "MICHAEL",
+    "id_num": 8,
+    "name": "MICHAEL",
+    "map": "Route45",
+    "event": "EVENT_BEAT_HIKER_MICHAEL",
+    "enemy_levels": [
+      43,
+      43,
+      43
+    ],
+    "enemy_species": [
+      "HERACROSS",
+      "EXCADRILL",
+      "SIRFETCH_D"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "HERACROSS",
+      "EXCADRILL",
+      "SIRFETCH_D"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3
+    },
+    "frames": 5168,
+    "index": 1
+  }
+]

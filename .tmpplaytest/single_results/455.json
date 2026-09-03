@@ -1,0 +1,50 @@
+[
+  {
+    "class": "NINJA",
+    "id": "NINJA1",
+    "id_num": 1,
+    "name": "KANE",
+    "map": "FuchsiaGym",
+    "event": "EVENT_BEAT_LASS_ALICE",
+    "enemy_levels": [
+      72,
+      74,
+      75
+    ],
+    "enemy_species": [
+      "ARBOK",
+      "GOLBAT",
+      "TENTACRUEL"
+    ],
+    "player_level": 75,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "ARBOK",
+      "TENTACRUEL",
+      "GOLBAT"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3
+    },
+    "frames": 9140,
+    "index": 1
+  }
+]

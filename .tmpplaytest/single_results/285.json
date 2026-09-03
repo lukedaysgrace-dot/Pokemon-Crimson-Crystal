@@ -1,0 +1,51 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "JOSE2",
+    "id_num": 14,
+    "name": "JOSE",
+    "map": "Route27",
+    "event": "EVENT_BEAT_BIRD_KEEPER_JOSE2",
+    "enemy_levels": [
+      45,
+      46,
+      46,
+      46
+    ],
+    "enemy_species": [
+      "FLETCHINDER",
+      "TOGETIC",
+      "CORVISQUIRE",
+      "MURKROW"
+    ],
+    "player_level": 46,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 0,
+    "seen_enemy": [
+      "FLETCHINDER",
+      "TOGETIC",
+      "CORVISQUIRE",
+      "MURKROW"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 6
+    },
+    "frames": 7308,
+    "index": 1
+  }
+]

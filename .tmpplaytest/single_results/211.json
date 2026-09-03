@@ -1,0 +1,45 @@
+[
+  {
+    "class": "GRUNTF",
+    "id": "GRUNTF_13",
+    "id_num": 13,
+    "name": "GRUNT",
+    "map": "TeamRocketBaseB2F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTF_13",
+    "enemy_levels": [
+      38
+    ],
+    "enemy_species": [
+      "SEVIPER"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "SEVIPER"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 2,
+      "TYPHLOSION:SWIFT": 1,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 5404,
+    "index": 1
+  }
+]

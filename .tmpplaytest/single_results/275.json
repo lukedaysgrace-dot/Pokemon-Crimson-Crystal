@@ -1,0 +1,52 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "TED",
+    "id_num": 9,
+    "name": "TED",
+    "map": "Route46",
+    "event": "EVENT_BEAT_CAMPER_TED",
+    "enemy_levels": [
+      44,
+      44,
+      44
+    ],
+    "enemy_species": [
+      "MAROWAK",
+      "LAMPENT",
+      "URSARING"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "MAROWAK",
+      "LAMPENT",
+      "URSARING"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 5,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:LEAF_BLADE": 1
+    },
+    "frames": 8908,
+    "index": 1
+  }
+]

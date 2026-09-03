@@ -1,0 +1,45 @@
+[
+  {
+    "class": "TEACHER",
+    "id": "COLETTE",
+    "id_num": 1,
+    "name": "COLETTE",
+    "map": "Route15",
+    "event": "EVENT_BEAT_TEACHER_COLETTE",
+    "enemy_levels": [
+      70,
+      72
+    ],
+    "enemy_species": [
+      "BELLOSSOM",
+      "WIGGLYTUFF"
+    ],
+    "player_level": 72,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "BELLOSSOM",
+      "WIGGLYTUFF"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2
+    },
+    "frames": 4112,
+    "index": 1
+  }
+]

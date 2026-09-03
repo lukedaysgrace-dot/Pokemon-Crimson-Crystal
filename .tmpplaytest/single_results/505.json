@@ -1,0 +1,68 @@
+[
+  {
+    "class": "CRYSTAL3",
+    "id": "CRYSTAL3_TOTODILE",
+    "id_num": 15,
+    "name": "CRYSTAL",
+    "map": "Route25",
+    "event": "EVENT_BEAT_CRYSTAL_CERULEAN_CAPE",
+    "enemy_levels": [
+      89,
+      87,
+      88,
+      88,
+      87,
+      87
+    ],
+    "enemy_species": [
+      "FERALIGATR",
+      "APPLETUN",
+      "TYRANITAR",
+      "URSALUNABM",
+      "XATU",
+      "VOLCARONA"
+    ],
+    "player_level": 89,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 16,
+    "faints": 6,
+    "seen_enemy": [
+      "FERALIGATR",
+      "XATU",
+      "URSALUNABM",
+      "TYRANITAR",
+      "APPLETUN",
+      "VOLCARONA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "AMPHAROS",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 3
+    },
+    "frames": 23976,
+    "index": 1
+  }
+]

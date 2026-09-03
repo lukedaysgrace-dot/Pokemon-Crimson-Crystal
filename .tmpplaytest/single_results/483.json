@@ -1,0 +1,51 @@
+[
+  {
+    "class": "COSPLAYER",
+    "id": "COSPLAYER5",
+    "id_num": 5,
+    "name": "PIXIE",
+    "map": "Route4",
+    "event": "EVENT_BEAT_COSPLAYER_PIXIE",
+    "enemy_levels": [
+      81,
+      82
+    ],
+    "enemy_species": [
+      "GOLDUCK",
+      "TAUROS"
+    ],
+    "player_level": 82,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 3,
+    "seen_enemy": [
+      "GOLDUCK",
+      "TAUROS"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 10564,
+    "index": 1
+  }
+]

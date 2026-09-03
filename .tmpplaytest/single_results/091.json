@@ -1,0 +1,63 @@
+[
+  {
+    "class": "HEX_MANIAC",
+    "id": "WINNIE",
+    "id_num": 1,
+    "name": "WINNIE",
+    "map": "BurnedTower1F",
+    "event": "EVENT_BEAT_HEX_MANIAC_WINNIE",
+    "enemy_levels": [
+      22,
+      23,
+      23,
+      24
+    ],
+    "enemy_species": [
+      "SCRAGGY",
+      "GRIMER_ALOLAN",
+      "GASTLY",
+      "SNEASEL"
+    ],
+    "player_level": 24,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 22,
+    "faints": 5,
+    "seen_enemy": [
+      "SCRAGGY",
+      "GASTLY",
+      "SCRAGGY",
+      "SNEASEL",
+      "GRIMER_ALOLAN"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4,
+      "QUILAVA:FLAME_WHEEL": 1,
+      "FLAAFFY:THUNDERSHOCK": 3,
+      "WEEPINBELL:RAZOR_LEAF": 3,
+      "GASTLY:SUCKER_PUNCH": 1,
+      "GEODUDE:SELFDESTRUCT": 3,
+      "GOLBAT:CRUNCH": 7
+    },
+    "frames": 18220,
+    "index": 1
+  }
+]

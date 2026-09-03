@@ -1,0 +1,49 @@
+[
+  {
+    "class": "HIKER",
+    "id": "NOLAND",
+    "id_num": 14,
+    "name": "NOLAND",
+    "map": "FastShipCabins_NNW_NNE_NE",
+    "event": "EVENT_BEAT_HIKER_NOLAND",
+    "enemy_levels": [
+      54,
+      54
+    ],
+    "enemy_species": [
+      "GOLEM",
+      "POLIWRATH"
+    ],
+    "player_level": 54,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 2,
+    "seen_enemy": [
+      "GOLEM",
+      "POLIWRATH"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 1,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 2
+    },
+    "frames": 7028,
+    "index": 1
+  }
+]

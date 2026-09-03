@@ -1,0 +1,47 @@
+[
+  {
+    "class": "POKEFANM",
+    "id": "TREVOR",
+    "id_num": 6,
+    "name": "TREVOR",
+    "map": "Route14",
+    "event": "EVENT_BEAT_POKEFANM_TREVOR",
+    "enemy_levels": [
+      71,
+      73
+    ],
+    "enemy_species": [
+      "PORYGON2",
+      "PERSIAN"
+    ],
+    "player_level": 73,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "PORYGON2",
+      "PERSIAN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 1
+    },
+    "frames": 6912,
+    "index": 1
+  }
+]

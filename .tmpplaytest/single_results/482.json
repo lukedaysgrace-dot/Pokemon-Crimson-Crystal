@@ -1,0 +1,49 @@
+[
+  {
+    "class": "FIREBREATHER",
+    "id": "BURT",
+    "id_num": 2,
+    "name": "BURT",
+    "map": "Route3",
+    "event": "EVENT_BEAT_FIREBREATHER_BURT",
+    "enemy_levels": [
+      82,
+      82
+    ],
+    "enemy_species": [
+      "FLAREON",
+      "MAGCARGO"
+    ],
+    "player_level": 82,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 2,
+    "seen_enemy": [
+      "FLAREON",
+      "MAGCARGO"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1
+    },
+    "frames": 8876,
+    "index": 1
+  }
+]

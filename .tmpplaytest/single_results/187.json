@@ -1,0 +1,47 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "LOIS",
+    "id_num": 2,
+    "name": "LOIS",
+    "map": "LakeOfRage",
+    "event": "EVENT_BEAT_COOLTRAINERF_LOIS",
+    "enemy_levels": [
+      36,
+      37
+    ],
+    "enemy_species": [
+      "LOMBRE",
+      "SLOWPOKE"
+    ],
+    "player_level": 37,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "LOMBRE",
+      "SLOWPOKE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 3,
+      "AMPHAROS:DRAGON_PULSE": 4
+    },
+    "frames": 8176,
+    "index": 1
+  }
+]

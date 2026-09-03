@@ -1,0 +1,58 @@
+[
+  {
+    "class": "PICNICKER",
+    "id": "ERIN2",
+    "id_num": 11,
+    "name": "ERIN",
+    "map": "Route46",
+    "event": "EVENT_BEAT_ELITE_FOUR",
+    "enemy_levels": [
+      54,
+      54,
+      56,
+      56
+    ],
+    "enemy_species": [
+      "DUNSPARCE",
+      "URSARING",
+      "RAITORA",
+      "FURRET"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 3,
+    "seen_enemy": [
+      "DUNSPARCE",
+      "URSARING",
+      "RAITORA",
+      "FURRET"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "AMPHAROS:DAZZLING_GLEAM": 1,
+      "VICTREEBEL:WOOD_HAMMER": 4,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 13660,
+    "index": 1
+  }
+]

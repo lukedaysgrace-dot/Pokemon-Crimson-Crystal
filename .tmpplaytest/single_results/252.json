@@ -1,0 +1,44 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "JOEY4",
+    "id_num": 13,
+    "name": "JOEY",
+    "map": "Route30",
+    "event": "",
+    "enemy_levels": [
+      43
+    ],
+    "enemy_species": [
+      "URSARING"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 1,
+    "seen_enemy": [
+      "URSARING"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 1,
+      "AMPHAROS:DRAGON_PULSE": 1
+    },
+    "frames": 3596,
+    "index": 1
+  }
+]

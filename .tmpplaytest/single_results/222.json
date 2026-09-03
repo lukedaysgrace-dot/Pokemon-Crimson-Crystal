@@ -1,0 +1,45 @@
+[
+  {
+    "class": "GRUNTM",
+    "id": "GRUNTM_25",
+    "id_num": 12,
+    "name": "GRUNT",
+    "map": "GoldenrodUndergroundSwitchRoomEntrances",
+    "event": "EVENT_BEAT_ROCKET_GRUNTM_25",
+    "enemy_levels": [
+      39,
+      40
+    ],
+    "enemy_species": [
+      "TOXICROAK",
+      "ARBOK"
+    ],
+    "player_level": 40,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "TOXICROAK",
+      "ARBOK"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2
+    },
+    "frames": 3312,
+    "index": 1
+  }
+]

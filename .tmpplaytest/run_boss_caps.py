@@ -4,6 +4,7 @@
 import json
 import statistics
 import sys
+import csv
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -11,7 +12,7 @@ sys.path.insert(0, str(HERE))
 import run_gauntlet as g
 
 CAPS = [("FALKNER", 10), ("BUGSY", 16), ("WHITNEY", 21), ("MORTY", 26),
-        ("CHUCK", 31), ("JASMINE", 36), ("PRYCE", 40), ("CLAIR", 45)]
+        ("CHUCK", 35), ("JASMINE", 36), ("PRYCE", 40), ("CLAIR", 45)]
 SEEDS = [0x19, 0x43, 0x71, 0xA7, 0xD3]
 
 
@@ -24,7 +25,7 @@ def main():
     for klass, cap in CAPS:
         row = by_key[(klass, 1)]
         for seed in SEEDS:
-            result = g.run_one(h, row, cap, seed)
+            result = g.run_one(h, row, cap, seed, tactical_switching=True)
             result["seed"] = seed
             trials.append(result)
             print(f"{klass} cap {cap} vs {row['max_level']}: {result['outcome']} "
@@ -41,6 +42,8 @@ def main():
             "median_faints": statistics.median(r["faints"] for r in group),
         })
     (HERE / "boss_cap_results.json").write_text(json.dumps({"summary": summary, "trials": trials}, indent=2))
+    with (HERE / "boss_cap_summary.csv").open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=summary[0].keys()); w.writeheader(); w.writerows(summary)
     print(json.dumps(summary, indent=2))
 
 

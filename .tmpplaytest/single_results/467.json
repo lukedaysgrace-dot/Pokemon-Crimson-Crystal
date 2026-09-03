@@ -1,0 +1,55 @@
+[
+  {
+    "class": "SWIMMERF",
+    "id": "LORI",
+    "id_num": 10,
+    "name": "LORI",
+    "map": "Route20",
+    "event": "EVENT_BEAT_SWIMMERF_LORI",
+    "enemy_levels": [
+      78,
+      78
+    ],
+    "enemy_species": [
+      "WALREIN",
+      "MILOTIC"
+    ],
+    "player_level": 78,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "WALREIN",
+      "MILOTIC"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 14480,
+    "index": 1
+  }
+]

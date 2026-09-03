@@ -1,0 +1,49 @@
+[
+  {
+    "class": "SWIMMERM",
+    "id": "CHARLIE",
+    "id_num": 4,
+    "name": "CHARLIE",
+    "map": "Route41",
+    "event": "EVENT_BEAT_SWIMMERM_CHARLIE",
+    "enemy_levels": [
+      29,
+      29
+    ],
+    "enemy_species": [
+      "LOMBRE",
+      "KRABBY"
+    ],
+    "player_level": 29,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "LOMBRE",
+      "KRABBY"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2,
+      "FLAAFFY:TAKE_DOWN": 3,
+      "WEEPINBELL:POISON_JAB": 3
+    },
+    "frames": 8364,
+    "index": 1
+  }
+]

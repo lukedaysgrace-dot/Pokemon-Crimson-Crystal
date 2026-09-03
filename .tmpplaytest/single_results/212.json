@@ -1,0 +1,63 @@
+[
+  {
+    "class": "PETREL",
+    "id": "PETREL1",
+    "id_num": 1,
+    "name": "PETREL",
+    "map": "TeamRocketBaseB3F",
+    "event": "EVENT_BEAT_ROCKET_EXECUTIVEM_4",
+    "enemy_levels": [
+      37,
+      38,
+      38,
+      38
+    ],
+    "enemy_species": [
+      "ARBOK",
+      "HAUNTER",
+      "MURKROW",
+      "HOUNDOUR"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 19,
+    "faints": 6,
+    "seen_enemy": [
+      "ARBOK",
+      "MURKROW",
+      "HAUNTER",
+      "HOUNDOUR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 4,
+      "TYPHLOSION:SWIFT": 1,
+      "AMPHAROS:DRAGON_PULSE": 5,
+      "VICTREEBEL:RAZOR_LEAF": 2,
+      "GENGAR:DREAM_EATER": 1,
+      "GOLEM:EARTHQUAKE": 3,
+      "CROBAT:AIR_SLASH": 2,
+      "CROBAT:DUALWINGBEAT": 1
+    },
+    "frames": 17180,
+    "index": 1
+  }
+]

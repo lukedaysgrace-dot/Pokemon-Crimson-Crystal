@@ -1,0 +1,62 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "BETH3",
+    "id_num": 18,
+    "name": "BETH",
+    "map": "Route26",
+    "event": "",
+    "enemy_levels": [
+      66,
+      66,
+      66,
+      66,
+      66
+    ],
+    "enemy_species": [
+      "DONPHAN",
+      "SCYTHER",
+      "MIMIKYU",
+      "HITMONTOP",
+      "PILOSWINE"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 13,
+    "faints": 6,
+    "seen_enemy": [
+      "DONPHAN",
+      "SCYTHER",
+      "PILOSWINE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 1,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 4,
+      "CROBAT:BRAVE_BIRD": 3
+    },
+    "frames": 15332,
+    "index": 1
+  }
+]

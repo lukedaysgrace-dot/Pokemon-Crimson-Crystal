@@ -1,0 +1,42 @@
+[
+  {
+    "class": "SUPER_NERD",
+    "id": "MARKUS",
+    "id_num": 9,
+    "name": "MARKUS",
+    "map": "MountMortar1FInside",
+    "event": "EVENT_BEAT_SUPER_NERD_MARKUS",
+    "enemy_levels": [
+      29
+    ],
+    "enemy_species": [
+      "MAGNEMITE"
+    ],
+    "player_level": 29,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "MAGNEMITE"
+    ],
+    "seen_player": [
+      "QUILAVA"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 2
+    },
+    "frames": 2340,
+    "index": 1
+  }
+]

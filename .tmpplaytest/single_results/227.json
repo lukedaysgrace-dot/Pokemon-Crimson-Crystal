@@ -1,0 +1,50 @@
+[
+  {
+    "class": "GRUNTF",
+    "id": "GRUNTF_7",
+    "id_num": 7,
+    "name": "GRUNT",
+    "map": "RadioTower2F",
+    "event": "EVENT_BEAT_ROCKET_GRUNTF_7",
+    "enemy_levels": [
+      40,
+      40,
+      40
+    ],
+    "enemy_species": [
+      "GENGAR",
+      "QWILFISH",
+      "LICKITUNG"
+    ],
+    "player_level": 40,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "GENGAR",
+      "QWILFISH",
+      "LICKITUNG"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:DRAGON_PULSE": 3
+    },
+    "frames": 7168,
+    "index": 1
+  }
+]

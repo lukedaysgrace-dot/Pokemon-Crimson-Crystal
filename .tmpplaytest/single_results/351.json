@@ -1,0 +1,49 @@
+[
+  {
+    "class": "LASS",
+    "id": "DANA4",
+    "id_num": 14,
+    "name": "DANA",
+    "map": "Route38",
+    "event": "",
+    "enemy_levels": [
+      55,
+      56
+    ],
+    "enemy_species": [
+      "AZUMARILL",
+      "DEWGONG"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 2,
+    "seen_enemy": [
+      "AZUMARILL",
+      "DEWGONG"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:WOOD_HAMMER": 1
+    },
+    "frames": 8240,
+    "index": 1
+  }
+]

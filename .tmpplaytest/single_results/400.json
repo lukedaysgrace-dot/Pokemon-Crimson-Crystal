@@ -1,0 +1,55 @@
+[
+  {
+    "class": "FISHER",
+    "id": "RALPH5",
+    "id_num": 24,
+    "name": "RALPH",
+    "map": "Route32",
+    "event": "",
+    "enemy_levels": [
+      63,
+      63,
+      66
+    ],
+    "enemy_species": [
+      "TENTACRUEL",
+      "LANTURN",
+      "QUAGSIRE"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 3,
+    "seen_enemy": [
+      "TENTACRUEL",
+      "QUAGSIRE",
+      "TENTACRUEL",
+      "LANTURN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 5,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 15480,
+    "index": 1
+  }
+]

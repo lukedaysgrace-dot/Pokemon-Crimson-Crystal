@@ -1,0 +1,56 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "SEAN",
+    "id_num": 13,
+    "name": "SEAN",
+    "map": "FastShipCabins_NNW_NNE_NE",
+    "event": "EVENT_BEAT_COOLTRAINERM_SEAN",
+    "enemy_levels": [
+      55,
+      55,
+      55
+    ],
+    "enemy_species": [
+      "WALREIN",
+      "GYARADOS",
+      "BLISSEY"
+    ],
+    "player_level": 55,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 4,
+    "seen_enemy": [
+      "WALREIN",
+      "GYARADOS",
+      "BLISSEY"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:WOOD_HAMMER": 3,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 3
+    },
+    "frames": 14380,
+    "index": 1
+  }
+]

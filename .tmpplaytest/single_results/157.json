@@ -1,0 +1,47 @@
+[
+  {
+    "class": "HIKER",
+    "id": "BENJAMIN",
+    "id_num": 6,
+    "name": "BENJAMIN",
+    "map": "Route42",
+    "event": "EVENT_BEAT_HIKER_BENJAMIN",
+    "enemy_levels": [
+      33,
+      33
+    ],
+    "enemy_species": [
+      "NUMEL",
+      "SANDSHREW"
+    ],
+    "player_level": 33,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "NUMEL",
+      "SANDSHREW"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "QUILAVA:FLAME_WHEEL": 2,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 5100,
+    "index": 1
+  }
+]

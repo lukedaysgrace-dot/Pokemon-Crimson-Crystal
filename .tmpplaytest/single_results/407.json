@@ -1,0 +1,45 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "CHAD5",
+    "id_num": 24,
+    "name": "CHAD",
+    "map": "Route38",
+    "event": "",
+    "enemy_levels": [
+      62,
+      66
+    ],
+    "enemy_species": [
+      "SCIZOR",
+      "ESPEON"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "SCIZOR",
+      "ESPEON"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2
+    },
+    "frames": 4428,
+    "index": 1
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "class": "MISTY",
+    "id": "MISTY1",
+    "id_num": 1,
+    "name": "MISTY",
+    "map": "CeruleanGym",
+    "event": "EVENT_BEAT_MISTY",
+    "enemy_levels": [
+      63,
+      64,
+      64,
+      65,
+      65,
+      66
+    ],
+    "enemy_species": [
+      "MILOTIC",
+      "WALREIN",
+      "GYARADOS",
+      "AZUMARILL",
+      "LANTURN",
+      "STARMIE"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 12,
+    "faints": 6,
+    "seen_enemy": [
+      "MILOTIC",
+      "LANTURN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "AMPHAROS:DAZZLING_GLEAM": 1,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 16144,
+    "index": 1
+  }
+]

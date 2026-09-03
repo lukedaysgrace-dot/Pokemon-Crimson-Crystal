@@ -1,0 +1,51 @@
+[
+  {
+    "class": "LASS",
+    "id": "DANA5",
+    "id_num": 15,
+    "name": "DANA",
+    "map": "Route38",
+    "event": "",
+    "enemy_levels": [
+      65,
+      66
+    ],
+    "enemy_species": [
+      "GRANBULL",
+      "ALTARIA"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 3,
+    "seen_enemy": [
+      "GRANBULL",
+      "ALTARIA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 1
+    },
+    "frames": 10744,
+    "index": 1
+  }
+]

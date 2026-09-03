@@ -1,0 +1,57 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "TODD5",
+    "id_num": 15,
+    "name": "TODD",
+    "map": "Route34",
+    "event": "",
+    "enemy_levels": [
+      65,
+      65,
+      66,
+      66
+    ],
+    "enemy_species": [
+      "CLODSIRE",
+      "MAROWAK_ALOLAN",
+      "PILOSWINE",
+      "KANGASKHAN"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 17,
+    "faints": 2,
+    "seen_enemy": [
+      "CLODSIRE",
+      "MAROWAK_ALOLAN",
+      "CLODSIRE",
+      "KANGASKHAN",
+      "CLODSIRE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDER": 6,
+      "AMPHAROS:DAZZLING_GLEAM": 3,
+      "VICTREEBEL:LEAF_STORM": 4
+    },
+    "frames": 17048,
+    "index": 1
+  }
+]

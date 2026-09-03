@@ -1,0 +1,59 @@
+[
+  {
+    "class": "BURGLAR",
+    "id": "VANCE",
+    "id_num": 5,
+    "name": "VANCE",
+    "map": "SeafoamGym",
+    "event": "EVENT_BEAT_BURGLAR_VANCE",
+    "enemy_levels": [
+      78,
+      78,
+      80
+    ],
+    "enemy_species": [
+      "MAGMAR",
+      "TYPHLOSION_HISUIAN",
+      "FLAREON"
+    ],
+    "player_level": 80,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 5,
+    "seen_enemy": [
+      "MAGMAR",
+      "TYPHLOSION_HISUIAN",
+      "FLAREON"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 2,
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 15108,
+    "index": 1
+  }
+]

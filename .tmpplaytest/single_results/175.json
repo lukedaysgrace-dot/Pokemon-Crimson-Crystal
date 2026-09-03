@@ -1,0 +1,44 @@
+[
+  {
+    "class": "PICNICKER",
+    "id": "TIFFANY3",
+    "id_num": 12,
+    "name": "TIFFANY",
+    "map": "Route43",
+    "event": "EVENT_BEAT_PICNICKER_TIFFANY",
+    "enemy_levels": [
+      35
+    ],
+    "enemy_species": [
+      "RATICATE_ALOLAN"
+    ],
+    "player_level": 35,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "RATICATE_ALOLAN"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "QUILAVA:EXTRASENSORY": 4,
+      "AMPHAROS:DRAGON_PULSE": 1
+    },
+    "frames": 4728,
+    "index": 1
+  }
+]

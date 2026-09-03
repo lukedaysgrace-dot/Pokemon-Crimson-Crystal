@@ -1,0 +1,61 @@
+[
+  {
+    "class": "JUGGLER",
+    "id": "HORTON",
+    "id_num": 3,
+    "name": "HORTON",
+    "map": "VermilionGym",
+    "event": "EVENT_BEAT_JUGGLER_HORTON",
+    "enemy_levels": [
+      59,
+      59,
+      60,
+      61
+    ],
+    "enemy_species": [
+      "ELECTIVIRE",
+      "AMPHAROS",
+      "GOROTORA",
+      "LANTURN"
+    ],
+    "player_level": 61,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 16,
+    "faints": 6,
+    "seen_enemy": [
+      "ELECTIVIRE",
+      "AMPHAROS",
+      "GOROTORA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 3,
+      "GENGAR:AURA_SPHERE": 2,
+      "GENGAR:DARK_PULSE": 1,
+      "GOLEM:SUPERPOWER": 3,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 18012,
+    "index": 1
+  }
+]

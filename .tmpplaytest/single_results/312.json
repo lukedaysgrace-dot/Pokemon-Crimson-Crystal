@@ -1,0 +1,64 @@
+[
+  {
+    "class": "BRUNO",
+    "id": "BRUNO1",
+    "id_num": 1,
+    "name": "BRUNO",
+    "map": "BrunosRoom",
+    "event": "EVENT_BEAT_ELITE_4_BRUNO",
+    "enemy_levels": [
+      51,
+      52,
+      52,
+      53,
+      53,
+      54
+    ],
+    "enemy_species": [
+      "CONKELDURR",
+      "HITMONTOP",
+      "LUCARIO",
+      "TOXICROAK",
+      "ANNIHILAPE",
+      "MACHAMP"
+    ],
+    "player_level": 54,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 12,
+    "faints": 6,
+    "seen_enemy": [
+      "CONKELDURR",
+      "ANNIHILAPE",
+      "CONKELDURR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 2,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 1,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 3
+    },
+    "frames": 14880,
+    "index": 1
+  }
+]

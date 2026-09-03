@@ -1,0 +1,48 @@
+[
+  {
+    "class": "MEDIUM",
+    "id": "GRACE",
+    "id_num": 2,
+    "name": "GRACE",
+    "map": "EcruteakGym",
+    "event": "EVENT_BEAT_MEDIUM_GRACE",
+    "enemy_levels": [
+      23,
+      23
+    ],
+    "enemy_species": [
+      "GASTLY",
+      "SHUPPET"
+    ],
+    "player_level": 23,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "GASTLY",
+      "SHUPPET"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 3,
+      "QUILAVA:FLAME_WHEEL": 1,
+      "FLAAFFY:THUNDERSHOCK": 3
+    },
+    "frames": 6204,
+    "index": 1
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "class": "PICNICKER",
+    "id": "ERIN1",
+    "id_num": 5,
+    "name": "ERIN",
+    "map": "Route46",
+    "event": "EVENT_BEAT_PICNICKER_ERIN",
+    "enemy_levels": [
+      42,
+      42,
+      44,
+      44
+    ],
+    "enemy_species": [
+      "AMBIPOM",
+      "GIRAFARIG",
+      "DUNSPARCE",
+      "DODRIO"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "AMBIPOM",
+      "DODRIO",
+      "GIRAFARIG",
+      "DUNSPARCE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4,
+      "AMPHAROS:THUNDERBOLT": 2
+    },
+    "frames": 8364,
+    "index": 1
+  }
+]

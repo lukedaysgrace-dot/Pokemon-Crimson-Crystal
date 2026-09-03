@@ -1,0 +1,42 @@
+[
+  {
+    "class": "KIMONO_GIRL",
+    "id": "FUYU",
+    "id_num": 7,
+    "name": "FUYU",
+    "map": "DanceTheatre",
+    "event": "EVENT_BEAT_KIMONO_GIRL_FUYU",
+    "enemy_levels": [
+      24
+    ],
+    "enemy_species": [
+      "GLACEON"
+    ],
+    "player_level": 24,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "GASTLY",
+      "GEODUDE",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "GLACEON"
+    ],
+    "seen_player": [
+      "QUILAVA"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 4
+    },
+    "frames": 3436,
+    "index": 1
+  }
+]

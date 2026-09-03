@@ -1,0 +1,58 @@
+[
+  {
+    "class": "JUGGLER",
+    "id": "LEON",
+    "id_num": 8,
+    "name": "LEON",
+    "map": "Route9",
+    "event": "EVENT_BEAT_JUGGLER_LEON",
+    "enemy_levels": [
+      62,
+      62,
+      64
+    ],
+    "enemy_species": [
+      "XATU",
+      "RAPIDASH_GALARIAN",
+      "WIGGLYTUFF"
+    ],
+    "player_level": 64,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 11,
+    "faints": 6,
+    "seen_enemy": [
+      "XATU",
+      "RAPIDASH_GALARIAN",
+      "WIGGLYTUFF"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 1,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 15864,
+    "index": 1
+  }
+]

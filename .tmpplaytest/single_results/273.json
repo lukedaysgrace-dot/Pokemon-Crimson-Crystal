@@ -1,0 +1,53 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "ALAN3",
+    "id_num": 16,
+    "name": "ALAN",
+    "map": "Route36",
+    "event": "",
+    "enemy_levels": [
+      40,
+      41,
+      42,
+      44
+    ],
+    "enemy_species": [
+      "PORYGON",
+      "RHYHORN",
+      "WOBBUFFET",
+      "NATU"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "PORYGON",
+      "RHYHORN",
+      "WOBBUFFET",
+      "NATU"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 4,
+      "AMPHAROS:THUNDERBOLT": 2
+    },
+    "frames": 8396,
+    "index": 1
+  }
+]

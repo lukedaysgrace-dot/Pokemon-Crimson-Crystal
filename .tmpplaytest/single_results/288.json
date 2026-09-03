@@ -1,0 +1,47 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "EMMA",
+    "id_num": 15,
+    "name": "EMMA",
+    "map": "UnionCaveB2F",
+    "event": "EVENT_BEAT_COOLTRAINERF_EMMA",
+    "enemy_levels": [
+      46
+    ],
+    "enemy_species": [
+      "PUPITAR"
+    ],
+    "player_level": 46,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 2,
+    "seen_enemy": [
+      "PUPITAR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "AMPHAROS:DRAGON_PULSE": 1,
+      "VICTREEBEL:LEAF_BLADE": 1
+    },
+    "frames": 7880,
+    "index": 1
+  }
+]
