@@ -1,0 +1,47 @@
+[
+  {
+    "class": "POKEMANIAC",
+    "id": "BRENT4",
+    "id_num": 14,
+    "name": "BRENT",
+    "map": "Route43",
+    "event": "",
+    "enemy_levels": [
+      64,
+      66
+    ],
+    "enemy_species": [
+      "BLISSEY",
+      "TAUROS"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 1,
+    "seen_enemy": [
+      "BLISSEY",
+      "TAUROS"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 1
+    },
+    "frames": 5780,
+    "index": 1
+  }
+]

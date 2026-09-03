@@ -1,0 +1,47 @@
+[
+  {
+    "class": "GENTLEMAN",
+    "id": "GREGORY",
+    "id_num": 3,
+    "name": "GREGORY",
+    "map": "VermilionGym",
+    "event": "EVENT_BEAT_GENTLEMAN_GREGORY",
+    "enemy_levels": [
+      58,
+      59
+    ],
+    "enemy_species": [
+      "RAICHU",
+      "ELECTABUZZ"
+    ],
+    "player_level": 59,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "RAICHU",
+      "ELECTABUZZ"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 2
+    },
+    "frames": 7072,
+    "index": 1
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "class": "CRYSTAL3",
+    "id": "CRYSTAL3_CHIKORITA",
+    "id_num": 13,
+    "name": "CRYSTAL",
+    "map": "Route25",
+    "event": "",
+    "enemy_levels": [
+      89,
+      87,
+      88,
+      88,
+      87,
+      87
+    ],
+    "enemy_species": [
+      "MEGANIUM",
+      "HYDRAPPLE",
+      "TYRANITAR",
+      "URSALUNA",
+      "XATU",
+      "LANTURN"
+    ],
+    "player_level": 89,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 14,
+    "faints": 6,
+    "seen_enemy": [
+      "MEGANIUM",
+      "TYRANITAR",
+      "XATU",
+      "HYDRAPPLE",
+      "LANTURN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 3,
+      "CROBAT:BRAVE_BIRD": 3
+    },
+    "frames": 21444,
+    "index": 1
+  }
+]

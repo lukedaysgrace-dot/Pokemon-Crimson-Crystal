@@ -1,0 +1,60 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "MEGAN",
+    "id_num": 11,
+    "name": "MEGAN",
+    "map": "Route27",
+    "event": "EVENT_BEAT_COOLTRAINERF_MEGAN",
+    "enemy_levels": [
+      47,
+      47,
+      47,
+      47
+    ],
+    "enemy_species": [
+      "YANMEGA",
+      "WALREIN",
+      "LICKILICKY",
+      "FERALIGATR"
+    ],
+    "player_level": 47,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "YANMEGA",
+      "FERALIGATR",
+      "WALREIN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:LEAF_BLADE": 1,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:HAMMER_ARM": 1,
+      "CROBAT:ZEN_HEADBUTT": 2
+    },
+    "frames": 12148,
+    "index": 1
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "class": "KAREN",
+    "id": "KAREN1",
+    "id_num": 1,
+    "name": "KAREN",
+    "map": "KarensRoom",
+    "event": "EVENT_BEAT_ELITE_4_KAREN",
+    "enemy_levels": [
+      52,
+      53,
+      53,
+      54,
+      54,
+      55
+    ],
+    "enemy_species": [
+      "UMBREON",
+      "HONCHKROW",
+      "WEAVILE",
+      "GRIMMSNARL",
+      "HOUNDOOM",
+      "KINGAMBIT"
+    ],
+    "player_level": 55,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 9,
+    "faints": 6,
+    "seen_enemy": [
+      "UMBREON",
+      "WEAVILE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:WOOD_HAMMER": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 11020,
+    "index": 1
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "class": "FISHER",
+    "id": "TULLY3",
+    "id_num": 19,
+    "name": "TULLY",
+    "map": "Route42",
+    "event": "",
+    "enemy_levels": [
+      53,
+      53,
+      56
+    ],
+    "enemy_species": [
+      "POLITOED",
+      "LUDICOLO",
+      "SLOWKING"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "POLITOED",
+      "LUDICOLO",
+      "SLOWKING"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDERBOLT": 5
+    },
+    "frames": 8940,
+    "index": 1
+  }
+]

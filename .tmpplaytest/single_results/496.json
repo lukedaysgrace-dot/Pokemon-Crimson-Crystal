@@ -1,0 +1,63 @@
+[
+  {
+    "class": "RIVAL2",
+    "id": "RIVAL2_1_TOTODILE",
+    "id_num": 3,
+    "name": "?",
+    "map": "MountMoon",
+    "event": "",
+    "enemy_levels": [
+      82,
+      83,
+      84,
+      84,
+      84,
+      86
+    ],
+    "enemy_species": [
+      "GLISCOR",
+      "MAGNEZONE",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "CERULEDGE",
+      "FERALIGATR"
+    ],
+    "player_level": 86,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 13,
+    "faints": 6,
+    "seen_enemy": [
+      "GLISCOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 1,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 3,
+      "CROBAT:ZEN_HEADBUTT": 1
+    },
+    "frames": 13816,
+    "index": 1
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "class": "YOUNGSTER",
+    "id": "WARREN",
+    "id_num": 9,
+    "name": "WARREN",
+    "map": "Route3",
+    "event": "EVENT_BEAT_YOUNGSTER_WARREN",
+    "enemy_levels": [
+      82,
+      84
+    ],
+    "enemy_species": [
+      "CAMERUPT",
+      "VICTREEBEL"
+    ],
+    "player_level": 84,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 5,
+    "seen_enemy": [
+      "CAMERUPT",
+      "VICTREEBEL"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 4,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 16908,
+    "index": 1
+  }
+]

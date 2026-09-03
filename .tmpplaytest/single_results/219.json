@@ -1,0 +1,65 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "PAUL",
+    "id_num": 3,
+    "name": "PAUL",
+    "map": "BlackthornGym1F",
+    "event": "EVENT_BEAT_COOLTRAINERM_PAUL",
+    "enemy_levels": [
+      36,
+      40,
+      40,
+      40
+    ],
+    "enemy_species": [
+      "DRAGONAIR",
+      "ZWEILOUS",
+      "DUNSPARCE",
+      "DRAKLOAK"
+    ],
+    "player_level": 40,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 21,
+    "faints": 6,
+    "seen_enemy": [
+      "DRAGONAIR",
+      "DUNSPARCE",
+      "DRAKLOAK"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "GENGAR",
+      "CROBAT",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 5,
+      "AMPHAROS:DRAGON_PULSE": 3,
+      "VICTREEBEL:RAZOR_LEAF": 2,
+      "VICTREEBEL:BULLET_SEED": 1,
+      "GENGAR:DREAM_EATER": 3,
+      "GOLEM:EARTHQUAKE": 2,
+      "GOLEM:ROCK_BLAST": 1,
+      "CROBAT:AIR_SLASH": 3,
+      "CROBAT:DUALWINGBEAT": 1
+    },
+    "frames": 19136,
+    "index": 1
+  }
+]

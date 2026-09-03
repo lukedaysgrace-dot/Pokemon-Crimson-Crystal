@@ -1,0 +1,57 @@
+[
+  {
+    "class": "BIKER",
+    "id": "CHARLES",
+    "id_num": 4,
+    "name": "CHARLES",
+    "map": "Route17",
+    "event": "EVENT_BEAT_BIKER_CHARLES",
+    "enemy_levels": [
+      72,
+      72,
+      72
+    ],
+    "enemy_species": [
+      "WEEZING_GALARIAN",
+      "MAGMAR",
+      "ARMAROUGE"
+    ],
+    "player_level": 72,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 4,
+    "seen_enemy": [
+      "WEEZING_GALARIAN",
+      "MAGMAR",
+      "ARMAROUGE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 5,
+      "AMPHAROS:DAZZLING_GLEAM": 1,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 1
+    },
+    "frames": 15772,
+    "index": 1
+  }
+]

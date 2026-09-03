@@ -1,0 +1,60 @@
+[
+  {
+    "class": "BURGLAR",
+    "id": "COREY",
+    "id_num": 3,
+    "name": "COREY",
+    "map": "FastShipCabins_NNW_NNE_NE",
+    "event": "EVENT_BEAT_BURGLAR_COREY",
+    "enemy_levels": [
+      49,
+      49,
+      51,
+      53
+    ],
+    "enemy_species": [
+      "CROBAT",
+      "NINETALES",
+      "MAGCARGO",
+      "HOUNDOOM"
+    ],
+    "player_level": 53,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 4,
+    "seen_enemy": [
+      "CROBAT",
+      "MAGCARGO",
+      "CROBAT",
+      "NINETALES",
+      "HOUNDOOM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 2,
+      "AMPHAROS:THUNDERBOLT": 7,
+      "VICTREEBEL:WOOD_HAMMER": 1,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:SUPERPOWER": 1
+    },
+    "frames": 15644,
+    "index": 1
+  }
+]

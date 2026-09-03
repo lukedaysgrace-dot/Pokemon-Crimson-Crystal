@@ -1,0 +1,45 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "NATE",
+    "id_num": 11,
+    "name": "NATE",
+    "map": "FastShipB1F",
+    "event": "EVENT_BEAT_SCHOOLBOY_NATE",
+    "enemy_levels": [
+      56,
+      56
+    ],
+    "enemy_species": [
+      "PORYGON2",
+      "BLISSEY"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "PORYGON2",
+      "BLISSEY"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3
+    },
+    "frames": 5488,
+    "index": 1
+  }
+]

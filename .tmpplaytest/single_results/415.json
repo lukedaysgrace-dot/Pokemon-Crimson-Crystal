@@ -1,0 +1,59 @@
+[
+  {
+    "class": "BATTLE_GIRL",
+    "id": "BATTLE_GIRL1",
+    "id_num": 1,
+    "name": "MIHO",
+    "map": "Route7",
+    "event": "EVENT_BEAT_BATTLE_GIRL_MIHO",
+    "enemy_levels": [
+      63,
+      65,
+      66
+    ],
+    "enemy_species": [
+      "SNEASLER",
+      "ANNIHILAPE",
+      "HITMONTOP"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 16,
+    "faints": 5,
+    "seen_enemy": [
+      "SNEASLER",
+      "HITMONTOP",
+      "ANNIHILAPE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 1,
+      "VICTREEBEL:LEAF_STORM": 5,
+      "VICTREEBEL:KNOCK_OFF": 2,
+      "GENGAR:AURA_SPHERE": 2,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 2
+    },
+    "frames": 19388,
+    "index": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SAILOR",
+    "id": "JEFF",
+    "id_num": 6,
+    "name": "JEFF",
+    "map": "FastShipB1F",
+    "event": "EVENT_BEAT_SAILOR_JEFF",
+    "enemy_levels": [
+      53,
+      53
+    ],
+    "enemy_species": [
+      "AZUMARILL",
+      "HITMONCHAN"
+    ],
+    "player_level": 53,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "AZUMARILL",
+      "HITMONCHAN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 1,
+      "AMPHAROS:THUNDERBOLT": 3
+    },
+    "frames": 6024,
+    "index": 1
+  }
+]

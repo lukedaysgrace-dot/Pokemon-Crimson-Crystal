@@ -1,0 +1,63 @@
+[
+  {
+    "class": "RIVAL1",
+    "id": "RIVAL1_4_TOTODILE",
+    "id_num": 12,
+    "name": "?",
+    "map": "GoldenrodUndergroundSwitchRoomEntrances",
+    "event": "",
+    "enemy_levels": [
+      40,
+      41,
+      41,
+      41,
+      41,
+      42
+    ],
+    "enemy_species": [
+      "GLISCOR",
+      "MAGNETON",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "CERULEDGE",
+      "FERALIGATR"
+    ],
+    "player_level": 42,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "GLISCOR",
+      "WEAVILE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 1,
+      "AMPHAROS:DRAGON_PULSE": 1,
+      "VICTREEBEL:LEAF_BLADE": 2,
+      "GENGAR:DREAM_EATER": 3,
+      "GOLEM:HAMMER_ARM": 2,
+      "CROBAT:AIR_SLASH": 1
+    },
+    "frames": 9216,
+    "index": 1
+  }
+]

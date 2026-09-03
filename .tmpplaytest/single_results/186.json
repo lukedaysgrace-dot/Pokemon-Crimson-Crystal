@@ -1,0 +1,44 @@
+[
+  {
+    "class": "SCIENTIST",
+    "id": "MITCH",
+    "id_num": 2,
+    "name": "MITCH",
+    "map": "TeamRocketBaseB3F",
+    "event": "EVENT_BEAT_SCIENTIST_MITCH",
+    "enemy_levels": [
+      36
+    ],
+    "enemy_species": [
+      "MAGNETON"
+    ],
+    "player_level": 36,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "MAGNETON"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 5,
+      "AMPHAROS:DRAGON_PULSE": 1
+    },
+    "frames": 7020,
+    "index": 1
+  }
+]

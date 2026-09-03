@@ -1,0 +1,45 @@
+[
+  {
+    "class": "BOARDER",
+    "id": "BOARDER_AIDAN",
+    "id_num": 4,
+    "name": "AIDAN",
+    "map": "IceIsland",
+    "event": "EVENT_BEAT_BOARDER_AIDAN",
+    "enemy_levels": [
+      43,
+      45
+    ],
+    "enemy_species": [
+      "SWINUB",
+      "SNEASEL"
+    ],
+    "player_level": 45,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 2,
+    "faints": 0,
+    "seen_enemy": [
+      "SWINUB",
+      "SNEASEL"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2
+    },
+    "frames": 3724,
+    "index": 1
+  }
+]

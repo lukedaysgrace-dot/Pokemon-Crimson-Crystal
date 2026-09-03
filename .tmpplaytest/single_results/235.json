@@ -1,0 +1,51 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "VANCE1",
+    "id_num": 7,
+    "name": "VANCE",
+    "map": "Route44",
+    "event": "EVENT_BEAT_BIRD_KEEPER_VANCE",
+    "enemy_levels": [
+      40,
+      40,
+      40,
+      41
+    ],
+    "enemy_species": [
+      "FLETCHINDER",
+      "NOCTOWL",
+      "CORVISQUIRE",
+      "SKARMORY"
+    ],
+    "player_level": 41,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 0,
+    "seen_enemy": [
+      "FLETCHINDER",
+      "SKARMORY",
+      "NOCTOWL",
+      "CORVISQUIRE"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 7
+    },
+    "frames": 8812,
+    "index": 1
+  }
+]

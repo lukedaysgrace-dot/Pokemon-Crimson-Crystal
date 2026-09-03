@@ -1,0 +1,58 @@
+[
+  {
+    "class": "FISHER",
+    "id": "WILTON3",
+    "id_num": 22,
+    "name": "WILTON",
+    "map": "Route44",
+    "event": "",
+    "enemy_levels": [
+      64,
+      64,
+      66
+    ],
+    "enemy_species": [
+      "TAUROS_PALDEAN_WATER",
+      "MANTINE",
+      "WALREIN"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 5,
+    "seen_enemy": [
+      "TAUROS_PALDEAN_WATER",
+      "WALREIN",
+      "MANTINE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 5,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 15968,
+    "index": 1
+  }
+]

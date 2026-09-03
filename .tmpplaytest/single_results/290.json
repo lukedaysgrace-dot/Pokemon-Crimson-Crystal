@@ -1,0 +1,62 @@
+[
+  {
+    "class": "TWINS",
+    "id": "LEAANDPIA1",
+    "id_num": 9,
+    "name": "LEA & PIA",
+    "map": "DragonsDenB1F",
+    "event": "EVENT_BEAT_TWINS_LEA_AND_PIA",
+    "enemy_levels": [
+      46,
+      46,
+      47,
+      47
+    ],
+    "enemy_species": [
+      "DUNSPARCE",
+      "APPLETUN",
+      "AMPHAROS",
+      "KINGDRA"
+    ],
+    "player_level": 47,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 16,
+    "faints": 6,
+    "seen_enemy": [
+      "DUNSPARCE",
+      "AMPHAROS",
+      "KINGDRA",
+      "APPLETUN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:LEAF_BLADE": 3,
+      "GENGAR:DREAM_EATER": 2,
+      "GENGAR:SLUDGE_BOMB": 1,
+      "GOLEM:HAMMER_ARM": 1,
+      "CROBAT:ZEN_HEADBUTT": 4
+    },
+    "frames": 15688,
+    "index": 1
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "class": "BIKER",
+    "id": "DWAYNE",
+    "id_num": 1,
+    "name": "DWAYNE",
+    "map": "Route8",
+    "event": "EVENT_BEAT_BIKER_DWAYNE",
+    "enemy_levels": [
+      65,
+      66,
+      67,
+      68
+    ],
+    "enemy_species": [
+      "TOXICROAK",
+      "UMBREON",
+      "CHANDELURE",
+      "ARCANINE"
+    ],
+    "player_level": 68,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 3,
+    "seen_enemy": [
+      "TOXICROAK",
+      "UMBREON",
+      "CHANDELURE",
+      "ARCANINE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 13628,
+    "index": 1
+  }
+]

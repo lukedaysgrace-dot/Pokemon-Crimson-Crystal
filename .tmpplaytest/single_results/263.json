@@ -1,0 +1,55 @@
+[
+  {
+    "class": "CAMPER",
+    "id": "QUENTIN",
+    "id_num": 16,
+    "name": "QUENTIN",
+    "map": "Route45",
+    "event": "EVENT_BEAT_CAMPER_QUENTIN",
+    "enemy_levels": [
+      43,
+      43,
+      43,
+      43
+    ],
+    "enemy_species": [
+      "EXCADRILL",
+      "GOLEM",
+      "PILOSWINE",
+      "MAROWAK"
+    ],
+    "player_level": 43,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "EXCADRILL",
+      "PILOSWINE",
+      "MAROWAK",
+      "GOLEM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 1,
+      "AMPHAROS:DRAGON_PULSE": 2,
+      "VICTREEBEL:LEAF_BLADE": 5
+    },
+    "frames": 10080,
+    "index": 1
+  }
+]

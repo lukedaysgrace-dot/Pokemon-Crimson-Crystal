@@ -1,0 +1,55 @@
+[
+  {
+    "class": "BURGLAR",
+    "id": "MORTON",
+    "id_num": 4,
+    "name": "MORTON",
+    "map": "SeafoamGym",
+    "event": "EVENT_BEAT_BURGLAR_MORTON",
+    "enemy_levels": [
+      78,
+      78,
+      80
+    ],
+    "enemy_species": [
+      "MAGCARGO",
+      "MAROWAK_ALOLAN",
+      "PONYTA"
+    ],
+    "player_level": 80,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 9,
+    "faints": 3,
+    "seen_enemy": [
+      "MAGCARGO",
+      "MAROWAK_ALOLAN",
+      "PONYTA"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2,
+      "AMPHAROS:DAZZLING_GLEAM": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 2
+    },
+    "frames": 12528,
+    "index": 1
+  }
+]

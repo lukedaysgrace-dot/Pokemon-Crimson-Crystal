@@ -1,0 +1,54 @@
+[
+  {
+    "class": "COOLTRAINERF",
+    "id": "CARA",
+    "id_num": 21,
+    "name": "CARA",
+    "map": "DragonsDenB1F",
+    "event": "EVENT_BEAT_COOLTRAINERF_CARA",
+    "enemy_levels": [
+      44,
+      45,
+      46
+    ],
+    "enemy_species": [
+      "DUNSPARCE",
+      "DRAGONAIR",
+      "DIPPLIN"
+    ],
+    "player_level": 46,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 3,
+    "seen_enemy": [
+      "DUNSPARCE",
+      "DRAGONAIR",
+      "DIPPLIN"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 2,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:LEAF_BLADE": 3,
+      "GENGAR:DREAM_EATER": 5
+    },
+    "frames": 12120,
+    "index": 1
+  }
+]

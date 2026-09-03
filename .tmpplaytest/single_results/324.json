@@ -1,0 +1,54 @@
+[
+  {
+    "class": "SUPER_NERD",
+    "id": "SHAWN",
+    "id_num": 6,
+    "name": "SHAWN",
+    "map": "FastShipCabins_SE_SSE_CaptainsCabin",
+    "event": "EVENT_BEAT_SUPER_NERD_SHAWN",
+    "enemy_levels": [
+      53,
+      54,
+      55
+    ],
+    "enemy_species": [
+      "WEEZING",
+      "ELECTIVIRE",
+      "PORYGON2"
+    ],
+    "player_level": 55,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 3,
+    "seen_enemy": [
+      "WEEZING",
+      "ELECTIVIRE",
+      "PORYGON2"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 2,
+      "GENGAR:AURA_SPHERE": 1
+    },
+    "frames": 11020,
+    "index": 1
+  }
+]

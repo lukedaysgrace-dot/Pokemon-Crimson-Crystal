@@ -1,0 +1,58 @@
+[
+  {
+    "class": "MEDIUM",
+    "id": "REBECCA",
+    "id_num": 4,
+    "name": "REBECCA",
+    "map": "SaffronGym",
+    "event": "EVENT_BEAT_MEDIUM_REBECCA",
+    "enemy_levels": [
+      71,
+      71,
+      71
+    ],
+    "enemy_species": [
+      "ESPATHRA",
+      "GOLDUCK",
+      "ALAKAZAM"
+    ],
+    "player_level": 71,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 10,
+    "faints": 5,
+    "seen_enemy": [
+      "ESPATHRA",
+      "GOLDUCK",
+      "ALAKAZAM"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 13640,
+    "index": 1
+  }
+]

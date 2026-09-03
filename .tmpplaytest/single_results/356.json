@@ -1,0 +1,53 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "VANCE2",
+    "id_num": 18,
+    "name": "VANCE",
+    "map": "Route44",
+    "event": "EVENT_BEAT_ELITE_FOUR",
+    "enemy_levels": [
+      53,
+      54,
+      55,
+      56
+    ],
+    "enemy_species": [
+      "TOGEKISS",
+      "SKARMORY",
+      "MURKROW",
+      "DODRIO"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "TOGEKISS",
+      "SKARMORY",
+      "MURKROW",
+      "DODRIO"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDERBOLT": 1
+    },
+    "frames": 7964,
+    "index": 1
+  }
+]

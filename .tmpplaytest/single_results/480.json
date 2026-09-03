@@ -1,0 +1,60 @@
+[
+  {
+    "class": "FIREBREATHER",
+    "id": "SCORCH",
+    "id_num": 7,
+    "name": "SCORCH",
+    "map": "SeafoamGym",
+    "event": "EVENT_BEAT_FIREBREATHER_SCORCH",
+    "enemy_levels": [
+      78,
+      78,
+      80,
+      81
+    ],
+    "enemy_species": [
+      "ARMAROUGE",
+      "MAGMORTAR",
+      "NINETALES",
+      "ARCANINE"
+    ],
+    "player_level": 81,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 13,
+    "faints": 4,
+    "seen_enemy": [
+      "ARMAROUGE",
+      "NINETALES",
+      "MAGMORTAR",
+      "ARCANINE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3,
+      "TYPHLOSION:DOUBLE_EDGE": 1,
+      "AMPHAROS:THUNDER": 4,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 1
+    },
+    "frames": 19168,
+    "index": 1
+  }
+]

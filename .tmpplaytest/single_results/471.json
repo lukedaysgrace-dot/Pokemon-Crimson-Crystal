@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SWIMMERF",
+    "id": "NICOLE",
+    "id_num": 9,
+    "name": "NICOLE",
+    "map": "Route20",
+    "event": "EVENT_BEAT_SWIMMERF_NICOLE",
+    "enemy_levels": [
+      77,
+      80
+    ],
+    "enemy_species": [
+      "TAUROS_PALDEAN_WATER",
+      "OCTILLERY"
+    ],
+    "player_level": 80,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 1,
+    "seen_enemy": [
+      "TAUROS_PALDEAN_WATER",
+      "OCTILLERY"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2
+    },
+    "frames": 6648,
+    "index": 1
+  }
+]

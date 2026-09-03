@@ -1,0 +1,58 @@
+[
+  {
+    "class": "HIKER",
+    "id": "ANTHONY4",
+    "id_num": 21,
+    "name": "ANTHONY",
+    "map": "Route33",
+    "event": "",
+    "enemy_levels": [
+      54,
+      54,
+      56
+    ],
+    "enemy_species": [
+      "GLIMMORA",
+      "NIDOKING",
+      "GLISCOR"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 12,
+    "faints": 5,
+    "seen_enemy": [
+      "GLIMMORA",
+      "NIDOKING",
+      "GLISCOR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 3,
+      "GENGAR:AURA_SPHERE": 3,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 14712,
+    "index": 1
+  }
+]

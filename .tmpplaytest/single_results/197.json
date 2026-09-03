@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BURGLAR",
+    "id": "EDDIE",
+    "id_num": 2,
+    "name": "EDDIE",
+    "map": "GoldenrodUndergroundSwitchRoomEntrances",
+    "event": "EVENT_BEAT_BURGLAR_EDDIE",
+    "enemy_levels": [
+      38,
+      38
+    ],
+    "enemy_species": [
+      "NIDORINA",
+      "MURKROW"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 6,
+    "faints": 1,
+    "seen_enemy": [
+      "NIDORINA",
+      "MURKROW"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 4,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 6808,
+    "index": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "TOMMY",
+    "id_num": 6,
+    "name": "TOMMY",
+    "map": "Route15",
+    "event": "EVENT_BEAT_SCHOOLBOY_TOMMY",
+    "enemy_levels": [
+      72,
+      74
+    ],
+    "enemy_species": [
+      "LOPUNNY",
+      "CHANSEY"
+    ],
+    "player_level": 74,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 1,
+    "seen_enemy": [
+      "LOPUNNY",
+      "CHANSEY"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 6
+    },
+    "frames": 8248,
+    "index": 1
+  }
+]

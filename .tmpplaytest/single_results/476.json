@@ -1,0 +1,47 @@
+[
+  {
+    "class": "FISHER",
+    "id": "ARNOLD",
+    "id_num": 3,
+    "name": "ARNOLD",
+    "map": "Route21",
+    "event": "EVENT_BEAT_FISHER_ARNOLD",
+    "enemy_levels": [
+      81,
+      81
+    ],
+    "enemy_species": [
+      "KINGLER",
+      "POLIWRATH"
+    ],
+    "player_level": 81,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 1,
+    "seen_enemy": [
+      "KINGLER",
+      "POLIWRATH"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 2
+    },
+    "frames": 6624,
+    "index": 1
+  }
+]

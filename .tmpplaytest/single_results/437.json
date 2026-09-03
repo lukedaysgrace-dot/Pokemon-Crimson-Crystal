@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "KIPP",
+    "id_num": 2,
+    "name": "KIPP",
+    "map": "Route15",
+    "event": "EVENT_BEAT_SCHOOLBOY_KIP",
+    "enemy_levels": [
+      71,
+      71
+    ],
+    "enemy_species": [
+      "FURRET",
+      "LOPUNNY"
+    ],
+    "player_level": 71,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "FURRET",
+      "LOPUNNY"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4,
+      "AMPHAROS:THUNDER": 1
+    },
+    "frames": 7032,
+    "index": 1
+  }
+]

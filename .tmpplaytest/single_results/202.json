@@ -1,0 +1,44 @@
+[
+  {
+    "class": "SUPER_NERD",
+    "id": "HUGH",
+    "id_num": 8,
+    "name": "HUGH",
+    "map": "MountMortar2FInside",
+    "event": "EVENT_BEAT_SUPER_NERD_HUGH",
+    "enemy_levels": [
+      38
+    ],
+    "enemy_species": [
+      "MAGNETON"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 1,
+    "seen_enemy": [
+      "MAGNETON"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 3,
+      "AMPHAROS:DRAGON_PULSE": 2
+    },
+    "frames": 5984,
+    "index": 1
+  }
+]

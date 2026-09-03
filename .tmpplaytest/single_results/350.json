@@ -1,0 +1,57 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "ALAN4",
+    "id_num": 21,
+    "name": "ALAN",
+    "map": "Route36",
+    "event": "",
+    "enemy_levels": [
+      53,
+      53,
+      56,
+      56
+    ],
+    "enemy_species": [
+      "FLAAFFY",
+      "MAWILE",
+      "SUDOWOODO",
+      "NOCTOWL"
+    ],
+    "player_level": 56,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 11,
+    "faints": 3,
+    "seen_enemy": [
+      "FLAAFFY",
+      "SUDOWOODO",
+      "MAWILE",
+      "NOCTOWL"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:WOOD_HAMMER": 3,
+      "GENGAR:AURA_SPHERE": 3
+    },
+    "frames": 13928,
+    "index": 1
+  }
+]

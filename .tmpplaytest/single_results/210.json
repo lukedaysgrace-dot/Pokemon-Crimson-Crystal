@@ -1,0 +1,62 @@
+[
+  {
+    "class": "ARIANA",
+    "id": "ARIANA1",
+    "id_num": 1,
+    "name": "ARIANA",
+    "map": "TeamRocketBaseB2F",
+    "event": "EVENT_BEAT_ROCKET_EXECUTIVEF_2",
+    "enemy_levels": [
+      37,
+      37,
+      38,
+      38
+    ],
+    "enemy_species": [
+      "HOUNDOUR",
+      "DEINO",
+      "ARIADOS",
+      "MURKROW"
+    ],
+    "player_level": 38,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 19,
+    "faints": 5,
+    "seen_enemy": [
+      "HOUNDOUR",
+      "DEINO",
+      "ARIADOS",
+      "MURKROW"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 3,
+      "TYPHLOSION:SWIFT": 1,
+      "AMPHAROS:DRAGON_PULSE": 6,
+      "VICTREEBEL:RAZOR_LEAF": 2,
+      "GENGAR:DREAM_EATER": 1,
+      "GOLEM:EARTHQUAKE": 1,
+      "CROBAT:AIR_SLASH": 5
+    },
+    "frames": 16496,
+    "index": 1
+  }
+]

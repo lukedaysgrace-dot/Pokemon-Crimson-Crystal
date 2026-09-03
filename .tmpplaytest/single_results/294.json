@@ -1,0 +1,52 @@
+[
+  {
+    "class": "SAGE",
+    "id": "MASA",
+    "id_num": 11,
+    "name": "MASA",
+    "map": "WiseTriosRoom",
+    "event": "EVENT_BEAT_SAGE_MASA",
+    "enemy_levels": [
+      47,
+      47,
+      47
+    ],
+    "enemy_species": [
+      "VIBRAVA",
+      "DUNSPARCE",
+      "AMPHAROS"
+    ],
+    "player_level": 47,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 2,
+    "seen_enemy": [
+      "VIBRAVA",
+      "AMPHAROS",
+      "DUNSPARCE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 3,
+      "VICTREEBEL:LEAF_BLADE": 2
+    },
+    "frames": 10016,
+    "index": 1
+  }
+]

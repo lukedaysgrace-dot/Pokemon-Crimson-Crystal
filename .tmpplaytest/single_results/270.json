@@ -1,0 +1,64 @@
+[
+  {
+    "class": "CRYSTAL2",
+    "id": "CRYSTAL2_4_TOTODILE",
+    "id_num": 12,
+    "name": "CRYSTAL",
+    "map": "IcePath1F",
+    "event": "",
+    "enemy_levels": [
+      41,
+      42,
+      42,
+      42,
+      44
+    ],
+    "enemy_species": [
+      "XATU",
+      "MAROWAK",
+      "APPLETUN",
+      "PUPITAR",
+      "FERALIGATR"
+    ],
+    "player_level": 44,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 17,
+    "faints": 6,
+    "seen_enemy": [
+      "XATU",
+      "MAROWAK",
+      "APPLETUN",
+      "PUPITAR"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:LEAF_BLADE": 4,
+      "GENGAR:DREAM_EATER": 3,
+      "GENGAR:SLUDGE_BOMB": 1,
+      "GOLEM:HAMMER_ARM": 1,
+      "CROBAT:ZEN_HEADBUTT": 4
+    },
+    "frames": 15916,
+    "index": 1
+  }
+]

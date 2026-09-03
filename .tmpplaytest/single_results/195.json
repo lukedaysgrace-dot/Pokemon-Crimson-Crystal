@@ -1,0 +1,45 @@
+[
+  {
+    "class": "SCIENTIST",
+    "id": "JED",
+    "id_num": 3,
+    "name": "JED",
+    "map": "TeamRocketBaseB1F",
+    "event": "EVENT_BEAT_SCIENTIST_JED",
+    "enemy_levels": [
+      37,
+      37
+    ],
+    "enemy_species": [
+      "QWILFISH",
+      "MAREANIE"
+    ],
+    "player_level": 37,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "QWILFISH",
+      "MAREANIE"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:EXTRASENSORY": 3
+    },
+    "frames": 4196,
+    "index": 1
+  }
+]

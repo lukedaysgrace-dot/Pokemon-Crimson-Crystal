@@ -1,0 +1,51 @@
+[
+  {
+    "class": "BUG_CATCHER",
+    "id": "ARNIE5",
+    "id_num": 18,
+    "name": "ARNIE",
+    "map": "Route35",
+    "event": "",
+    "enemy_levels": [
+      64,
+      64,
+      65,
+      66
+    ],
+    "enemy_species": [
+      "LEDIAN",
+      "PINSIR",
+      "ARIADOS",
+      "HERACROSS"
+    ],
+    "player_level": 66,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 4,
+    "faints": 0,
+    "seen_enemy": [
+      "LEDIAN",
+      "ARIADOS",
+      "HERACROSS",
+      "PINSIR"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 4
+    },
+    "frames": 6668,
+    "index": 1
+  }
+]

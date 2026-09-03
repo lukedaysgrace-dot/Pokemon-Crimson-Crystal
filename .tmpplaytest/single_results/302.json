@@ -1,0 +1,64 @@
+[
+  {
+    "class": "COOLTRAINERM",
+    "id": "JAKE",
+    "id_num": 9,
+    "name": "JAKE",
+    "map": "Route26",
+    "event": "EVENT_BEAT_COOLTRAINERM_JAKE",
+    "enemy_levels": [
+      48,
+      48,
+      48,
+      48,
+      50
+    ],
+    "enemy_species": [
+      "MILTANK",
+      "UMBREON",
+      "NIDOKING",
+      "PORYGON2",
+      "FERALIGATR"
+    ],
+    "player_level": 50,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 19,
+    "faints": 6,
+    "seen_enemy": [
+      "MILTANK",
+      "UMBREON",
+      "NIDOKING",
+      "UMBREON"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 3,
+      "AMPHAROS:THUNDERBOLT": 5,
+      "VICTREEBEL:WOOD_HAMMER": 3,
+      "GENGAR:DREAM_EATER": 2,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:ZEN_HEADBUTT": 3,
+      "CROBAT:CROSS_POISON": 1
+    },
+    "frames": 18456,
+    "index": 1
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "class": "BATTLE_GIRL",
+    "id": "BATTLE_GIRL2",
+    "id_num": 2,
+    "name": "AYA",
+    "map": "Route7",
+    "event": "EVENT_BEAT_BATTLE_GIRL_AYA",
+    "enemy_levels": [
+      67,
+      67,
+      69
+    ],
+    "enemy_species": [
+      "HITMONLEE",
+      "ELECTIVIRE",
+      "LUCARIO"
+    ],
+    "player_level": 69,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "HITMONLEE",
+      "ELECTIVIRE",
+      "LUCARIO"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 3
+    },
+    "frames": 5236,
+    "index": 1
+  }
+]

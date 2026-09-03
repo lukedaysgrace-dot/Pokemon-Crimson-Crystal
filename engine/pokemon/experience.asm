@@ -76,7 +76,7 @@ HardModeLevelCaps:
 	db 16 ; Bugsy
 	db 21 ; Whitney
 	db 26 ; Morty
-	db 31 ; Chuck
+	db 35 ; Chuck
 	db 36 ; Jasmine
 	db 40 ; Pryce
 	db 45 ; Clair

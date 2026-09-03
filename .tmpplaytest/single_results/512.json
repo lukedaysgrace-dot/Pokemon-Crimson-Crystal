@@ -1,0 +1,64 @@
+[
+  {
+    "class": "BLUE_CLOAK",
+    "id": "BLUE_CLOAK1",
+    "id_num": 1,
+    "name": "",
+    "map": "CinnabarIsland",
+    "event": "EVENT_BEAT_BLUE_CLOAK",
+    "enemy_levels": [
+      97,
+      98,
+      98,
+      99,
+      99,
+      99
+    ],
+    "enemy_species": [
+      "PIDGEOT",
+      "SCIZOR",
+      "RHYPERIOR",
+      "EXEGGUTOR",
+      "ELECTIVIRE",
+      "BLASTOISE"
+    ],
+    "player_level": 99,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "PIDGEOT",
+      "RHYPERIOR",
+      "ELECTIVIRE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 2,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 14060,
+    "index": 1
+  }
+]

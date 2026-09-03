@@ -1,0 +1,63 @@
+[
+  {
+    "class": "RIVAL1",
+    "id": "RIVAL1_5_TOTODILE",
+    "id_num": 15,
+    "name": "?",
+    "map": "VictoryRoad",
+    "event": "",
+    "enemy_levels": [
+      48,
+      49,
+      49,
+      49,
+      49,
+      51
+    ],
+    "enemy_species": [
+      "GLISCOR",
+      "MAGNEZONE",
+      "SLOWKING_GALARIAN",
+      "WEAVILE",
+      "CERULEDGE",
+      "FERALIGATR"
+    ],
+    "player_level": 51,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 10,
+    "faints": 6,
+    "seen_enemy": [
+      "GLISCOR",
+      "WEAVILE"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 1,
+      "AMPHAROS:THUNDERBOLT": 1,
+      "VICTREEBEL:WOOD_HAMMER": 2,
+      "GENGAR:DREAM_EATER": 3,
+      "GOLEM:SUPERPOWER": 2,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 9572,
+    "index": 1
+  }
+]

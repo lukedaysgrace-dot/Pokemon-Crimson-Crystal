@@ -1,0 +1,52 @@
+[
+  {
+    "class": "SWIMMERF",
+    "id": "BRIANA",
+    "id_num": 13,
+    "name": "BRIANA",
+    "map": "CeruleanGym",
+    "event": "EVENT_BEAT_SWIMMERF_BRIANA",
+    "enemy_levels": [
+      65,
+      65,
+      65
+    ],
+    "enemy_species": [
+      "LUDICOLO",
+      "TOXAPEX",
+      "TAUROS_PALDEAN_WATER"
+    ],
+    "player_level": 65,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 5,
+    "faints": 2,
+    "seen_enemy": [
+      "LUDICOLO",
+      "TAUROS_PALDEAN_WATER",
+      "TOXAPEX"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 1,
+      "AMPHAROS:THUNDER": 3,
+      "VICTREEBEL:LEAF_STORM": 1
+    },
+    "frames": 8900,
+    "index": 1
+  }
+]

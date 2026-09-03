@@ -1,0 +1,55 @@
+[
+  {
+    "class": "COSPLAYER",
+    "id": "COSPLAYER3",
+    "id_num": 3,
+    "name": "MIMI",
+    "map": "Route3",
+    "event": "EVENT_BEAT_COSPLAYER_MIMI",
+    "enemy_levels": [
+      81,
+      83
+    ],
+    "enemy_species": [
+      "PIDGEOT",
+      "MR__RIME"
+    ],
+    "player_level": 83,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 1,
+    "outcome": "loss",
+    "turns": 8,
+    "faints": 6,
+    "seen_enemy": [
+      "PIDGEOT",
+      "MR__RIME"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 2,
+      "VICTREEBEL:LEAF_STORM": 1,
+      "GENGAR:AURA_SPHERE": 1,
+      "GOLEM:SUPERPOWER": 1,
+      "CROBAT:BRAVE_BIRD": 1
+    },
+    "frames": 11888,
+    "index": 1
+  }
+]

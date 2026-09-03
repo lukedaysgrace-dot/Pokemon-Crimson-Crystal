@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SAILOR",
+    "id": "HUEY1",
+    "id_num": 2,
+    "name": "HUEY",
+    "map": "OlivineLighthouse2F",
+    "event": "EVENT_BEAT_SAILOR_HUEY",
+    "enemy_levels": [
+      32,
+      34
+    ],
+    "enemy_species": [
+      "CHINCHOU",
+      "LOMBRE"
+    ],
+    "player_level": 34,
+    "player_team": [
+      "QUILAVA",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 1,
+    "seen_enemy": [
+      "CHINCHOU",
+      "LOMBRE"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "QUILAVA:FLAME_WHEEL": 3,
+      "AMPHAROS:DRAGON_PULSE": 5
+    },
+    "frames": 8820,
+    "index": 1
+  }
+]

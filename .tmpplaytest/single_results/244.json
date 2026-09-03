@@ -1,0 +1,48 @@
+[
+  {
+    "class": "SKIER",
+    "id": "SKIER_HEIDI",
+    "id_num": 4,
+    "name": "HEIDI",
+    "map": "Route44",
+    "event": "EVENT_BEAT_SKIER_HEIDI",
+    "enemy_levels": [
+      40,
+      41,
+      42
+    ],
+    "enemy_species": [
+      "VULPIX_ALOLAN",
+      "SNOVER",
+      "PILOSWINE"
+    ],
+    "player_level": 42,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 0,
+    "seen_enemy": [
+      "VULPIX_ALOLAN",
+      "PILOSWINE",
+      "SNOVER"
+    ],
+    "seen_player": [
+      "TYPHLOSION"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLAMETHROWER": 3
+    },
+    "frames": 4520,
+    "index": 1
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "class": "SCHOOLBOY",
+    "id": "JACK2",
+    "id_num": 13,
+    "name": "JACK",
+    "map": "NationalPark",
+    "event": "",
+    "enemy_levels": [
+      28,
+      29
+    ],
+    "enemy_species": [
+      "DODUO",
+      "KOTORA"
+    ],
+    "player_level": 29,
+    "player_team": [
+      "QUILAVA",
+      "FLAAFFY",
+      "WEEPINBELL",
+      "HAUNTER",
+      "GRAVELER",
+      "GOLBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 8,
+    "faints": 1,
+    "seen_enemy": [
+      "DODUO",
+      "KOTORA"
+    ],
+    "seen_player": [
+      "QUILAVA",
+      "FLAAFFY"
+    ],
+    "move_log": {
+      "QUILAVA:DOUBLE_KICK": 6,
+      "FLAAFFY:TAKE_DOWN": 2
+    },
+    "frames": 7880,
+    "index": 1
+  }
+]

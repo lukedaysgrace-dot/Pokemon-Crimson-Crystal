@@ -1,0 +1,49 @@
+[
+  {
+    "class": "POKEFANM",
+    "id": "COLIN",
+    "id_num": 9,
+    "name": "COLIN",
+    "map": "FastShipCabins_SE_SSE_CaptainsCabin",
+    "event": "EVENT_BEAT_POKEFANM_COLIN",
+    "enemy_levels": [
+      51,
+      53
+    ],
+    "enemy_species": [
+      "RATICATE_ALOLAN",
+      "PORYGON_Z"
+    ],
+    "player_level": 53,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 7,
+    "faints": 2,
+    "seen_enemy": [
+      "RATICATE_ALOLAN",
+      "PORYGON_Z"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL"
+    ],
+    "move_log": {
+      "TYPHLOSION:DOUBLE_EDGE": 4,
+      "AMPHAROS:THUNDERBOLT": 2,
+      "VICTREEBEL:WOOD_HAMMER": 1
+    },
+    "frames": 9440,
+    "index": 1
+  }
+]

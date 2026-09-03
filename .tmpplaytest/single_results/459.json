@@ -1,0 +1,47 @@
+[
+  {
+    "class": "BIRD_KEEPER",
+    "id": "BOB",
+    "id_num": 11,
+    "name": "BOB",
+    "map": "Route18",
+    "event": "EVENT_BEAT_BIRD_KEEPER_BOB",
+    "enemy_levels": [
+      74,
+      76
+    ],
+    "enemy_species": [
+      "DODRIO",
+      "NOCTOWL"
+    ],
+    "player_level": 76,
+    "player_team": [
+      "TYPHLOSION",
+      "AMPHAROS",
+      "VICTREEBEL",
+      "GENGAR",
+      "GOLEM",
+      "CROBAT"
+    ],
+    "hard_mode": true,
+    "state": 5,
+    "result": 0,
+    "outcome": "win",
+    "turns": 3,
+    "faints": 1,
+    "seen_enemy": [
+      "DODRIO",
+      "NOCTOWL"
+    ],
+    "seen_player": [
+      "TYPHLOSION",
+      "AMPHAROS"
+    ],
+    "move_log": {
+      "TYPHLOSION:FLARE_BLITZ": 2,
+      "AMPHAROS:THUNDER": 1
+    },
+    "frames": 5308,
+    "index": 1
+  }
+]
