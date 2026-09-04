@@ -1,4 +1,6 @@
 severity,category,map,trainer_class,trainer_id,trainer,level,species,detail
+high,moveset/cap,CianwoodGym,CHUCK,CHUCK1,CHUCK,34,BRELOOM,Spore is on a level-34 mon while the player is capped at 31
+high,moveset/cap,CianwoodGym,CHUCK,CHUCK1,CHUCK,35,POLIWRATH,"level 35 versus cap 31, with Hypnosis + Mind Reader + DynamicPunch"
 high,item synergy,FastShipCabins_NNW_NNE_NE,COOLTRAINERF,CAROL,CAROL,54,LANTURN,CHOICE_SPECS conflicts with status move(s): THUNDER_WAVE
 high,item synergy,FastShipB1F,BLACKBELT_T,WAI,WAI,56,LEDIAN,CHOICE_SCARF conflicts with status move(s): QUIVER_DANCE
 high,item synergy,Route25,COOLTRAINERM,KEVIN,KEVIN,63,ALAKAZAM,CHOICE_SPECS conflicts with status move(s): CALM_MIND
