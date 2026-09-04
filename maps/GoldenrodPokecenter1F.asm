@@ -1,9 +1,13 @@
+GOLDENRODPOKECENTER1F_FEEBAS_PRICE EQU 2000
+GOLDENRODPOKECENTER1F_FEEBAS_LEVEL EQU 10
+
 	object_const_def ; object_event constants
 	const GOLDENRODPOKECENTER1F_NURSE
 	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	const GOLDENRODPOKECENTER1F_GAMEBOY_KID
 	const GOLDENRODPOKECENTER1F_LASS
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
+	const GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN
 
 GoldenrodPokecenter1F_MapScripts:
 	db 0 ; scene scripts
@@ -116,6 +120,50 @@ GoldenrodPokecenter1FPokefanF:
 	waitbutton
 	closetext
 	end
+
+GoldenrodPokecenter1FFeebasSalesmanScript:
+	faceplayer
+	opentext
+	writetext GoldenrodPokecenter1FFeebasSalesmanOfferText
+	yesorno
+	iffalse .Refused
+	checkmoney YOUR_MONEY, GOLDENRODPOKECENTER1F_FEEBAS_PRICE
+	ifequal HAVE_LESS, .NotEnoughMoney
+	writetext GoldenrodPokecenter1FFeebasSalesmanSoldText
+	buttonsound
+	takemoney YOUR_MONEY, GOLDENRODPOKECENTER1F_FEEBAS_PRICE
+	playsound SFX_TRANSACTION
+	waitsfx
+	givepoke FEEBAS, GOLDENRODPOKECENTER1F_FEEBAS_LEVEL
+	writetext GoldenrodPokecenter1FFeebasSalesmanSuckerText
+	waitbutton
+	closetext
+	applymovement GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN, GoldenrodPokecenter1FFeebasSalesmanLeavesMovement
+	playsound SFX_EXIT_BUILDING
+	disappear GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN
+	setevent EVENT_GOLDENROD_POKECENTER_FEEBAS_SALESMAN_LEFT
+	waitsfx
+	end
+
+.Refused:
+	writetext GoldenrodPokecenter1FFeebasSalesmanRefusedText
+	waitbutton
+	closetext
+	end
+
+.NotEnoughMoney:
+	writetext GoldenrodPokecenter1FFeebasSalesmanNoMoneyText
+	waitbutton
+	closetext
+	end
+
+GoldenrodPokecenter1FFeebasSalesmanLeavesMovement:
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
 
 GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtLeftDoorwayTileMovement:
 	step UP
@@ -802,6 +850,48 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
 	line "the EON MAIL."
 	done
 
+GoldenrodPokecenter1FFeebasSalesmanOfferText:
+	text "Well hello there!"
+
+	para "How would you like"
+	line "to purchase this"
+	cont "swell FEEBAS for"
+	cont "¥2000?"
+
+	para "This is a once in"
+	line "a lifetime kind of"
+	cont "deal!"
+
+	para "What do you say???"
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanRefusedText:
+	text "……fine."
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanNoMoneyText:
+	text "Hey now! You don't"
+	line "even have ¥2000."
+
+	para "Come back when"
+	line "you're loaded."
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanSoldText:
+	text "Wonderful!"
+	line "You won't regret"
+	cont "this!"
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanSuckerText:
+	text "Heheh…sucker."
+
+	para "That thing is"
+	line "worthless, I'm"
+	cont "heading to the"
+	cont "SLOTS!"
+	done
+
 GoldenrodPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
@@ -817,9 +907,10 @@ GoldenrodPokecenter1F_MapEvents:
 
 	db 0 ; bg events
 
-	db 5 ; object events
+	db 6 ; object events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1
 	object_event 16,  8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
 	object_event  1,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
 	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1
+	object_event  5,  3, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FFeebasSalesmanScript, EVENT_GOLDENROD_POKECENTER_FEEBAS_SALESMAN_LEFT

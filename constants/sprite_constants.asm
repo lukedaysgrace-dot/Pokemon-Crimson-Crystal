@@ -143,6 +143,7 @@
 	const SPRITE_FINIZEN ; 8d
 	const SPRITE_THUG ; 8e
 	const SPRITE_AROMA_LADY ; 8f
+	const SPRITE_FAT_GUY ; 90
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)

@@ -2173,4 +2173,9 @@
 ; good in that save; CRYSTAL says her goodbye and leaves (see maps/Route25.asm)
 	const EVENT_ROUTE_25_MEW_ESCAPED
 
+; Object flag for the shady FEEBAS salesman in the GOLDENROD #MON CENTER.
+; Set once he has sold his level 10 FEEBAS and walked out (see
+; maps/GoldenrodPokecenter1F.asm)
+	const EVENT_GOLDENROD_POKECENTER_FEEBAS_SALESMAN_LEFT
+
 NUM_EVENTS EQU const_value
