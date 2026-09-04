@@ -138,7 +138,19 @@ GoldenrodPokecenter1FFeebasSalesmanScript:
 	writetext GoldenrodPokecenter1FFeebasSalesmanSuckerText
 	waitbutton
 	closetext
-	applymovement GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN, GoldenrodPokecenter1FFeebasSalesmanLeavesMovement
+; He stands at (5, 3), so he can only have been spoken to from (4, 3),
+; (6, 3) or (5, 4). Leave by whichever route does not walk through the
+; player: down his own column first if they are on his left, otherwise
+; straight into column 4.
+	readvar VAR_XCOORD
+	ifequal 4, .LeaveDownFirst
+	applymovement GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN, GoldenrodPokecenter1FFeebasSalesmanLeavesLeftFirstMovement
+	sjump .LeaveDone
+
+.LeaveDownFirst:
+	applymovement GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN, GoldenrodPokecenter1FFeebasSalesmanLeavesDownFirstMovement
+
+.LeaveDone:
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODPOKECENTER1F_FEEBAS_SALESMAN
 	setevent EVENT_GOLDENROD_POKECENTER_FEEBAS_SALESMAN_LEFT
@@ -157,11 +169,21 @@ GoldenrodPokecenter1FFeebasSalesmanScript:
 	closetext
 	end
 
-GoldenrodPokecenter1FFeebasSalesmanLeavesMovement:
+GoldenrodPokecenter1FFeebasSalesmanLeavesLeftFirstMovement:
+; player is at (6, 3) or (5, 4): cut into column 4 and walk down to the door
 	step LEFT
 	step DOWN
 	step DOWN
 	step DOWN
+	step DOWN
+	step_end
+
+GoldenrodPokecenter1FFeebasSalesmanLeavesDownFirstMovement:
+; player is at (4, 3): stay in column 5 until past them, then cut across
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
 	step DOWN
 	step_end
 
