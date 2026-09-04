@@ -562,7 +562,39 @@ AnimateWeatherOnIdle::
 	pop bc
 	ret
 
+PetalsDrawInFront:
+; Carry if this frame's weather is cherry blossoms AND they are the copy drawn
+; ahead of the map objects. Petals are the one weather that belongs in front of
+; the player and NPCs, so they are built into the lowest OAM indices before
+; InitSprites fills the rest - on CGB the lower index wins. Reduced-budget mode
+; (wVramState bit 1) gives the whole overworld only 28 objects; there the
+; petals go back to layering behind the map so a crowded scripted scene cannot
+; lose an NPC to them.
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_CHERRY_BLOSSOMS
+	jr nz, .behind
+	ld a, [wVramState]
+	bit 1, a
+	jr nz, .behind
+	scf
+	ret
+.behind
+	and a
+	ret
+
+DoOverworldWeatherInFront::
+; Called from _UpdateSprites before InitSprites. Only the petals answer here;
+; whichever of the two passes owns the current weather is also the one that
+; advances its timers, so they still tick exactly once a frame.
+	call PetalsDrawInFront
+	ret nc
+	jr _DoOverworldWeather
+
 DoOverworldWeather::
+; Called after InitSprites, for every weather that layers behind the map.
+	call PetalsDrawInFront
+	ret c
+_DoOverworldWeather:
 	ld a, [wVramState]
 	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
 	ret nz
@@ -600,16 +632,17 @@ DoOverworldWeather::
 	jr .particles
 
 .petal_timers
-; Petals fall far more slowly than rain or snow: one pixel down every other
-; frame, and one pixel left on PETAL_DRIFT_STEPS frames out of every
-; PETAL_DRIFT_PERIOD, which is the shallow leftward angle they fall at. The
-; sub-frame cadence is read from the free-running VBlank counter so the two
-; position timers stay plain pixel offsets and no extra timer state is
-; needed; the counter's 256-frame period is a whole multiple of both
-; patterns, so neither cadence stutters where it wraps.
+; Petals fall far more slowly than rain or snow. These two timers run at the
+; slowest petal's pace - one pixel down every PETAL_FALL_PERIOD frames and one
+; pixel left on PETAL_DRIFT_STEPS frames out of every PETAL_DRIFT_PERIOD - and
+; RenderCherryBlossoms reads each of them once, twice or three times per petal
+; to spread the sixteen of them across six speeds and angles. The sub-frame
+; cadence comes from the free-running VBlank counter, so the timers stay plain
+; pixel offsets and need no extra state; the counter's 256-frame period is a
+; whole multiple of both patterns, so neither cadence stutters where it wraps.
 	ldh a, [hVBlankCounter]
 	ld b, a
-	and 1
+	and PETAL_FALL_PERIOD - 1
 	jr nz, .no_fall_step
 	ldh a, [hWeatherYTimer]
 	inc a
@@ -815,47 +848,83 @@ RenderSandstorm:
 	ret
 
 RenderCherryBlossoms:
-	ld hl, WeatherParticleSeeds
-	ld e, 16
+; Every petal reads the same two timers, but folds each one in one, two or
+; three times depending on its params byte: more helpings of the fall timer
+; means it drops faster, more of the drift timer means it slides further
+; sideways per pixel fallen. That is where the variety comes from - sixteen
+; petals at six different speeds and fall angles, none of them storing a byte
+; of their own. Scaling a timer that wraps at a screen dimension is safe,
+; because a whole number of screens is still no movement at all, so the petals
+; keep wrapping seamlessly no matter how many helpings they take.
+	ld hl, CherryBlossomSeeds
 .loop
-	; x = seed - drift timer (mod screen width): petals slide left as they
-	; fall. DoOverworldWeather advances both timers at the petals' own slow
-	; cadence, so here they are plain pixel offsets like every other weather.
-	ldh a, [hWeatherXTimer]
-	ld b, a
-	ld a, SCREEN_WIDTH_PX
-	sub b
-	ld b, a ; b = SCREEN_WIDTH_PX - drift timer
-	ld a, [hli] ; seed x
-	ld d, a ; fixed per-particle salt for the tumble phase
-	add b
-	call WrapWeatherX
-	add TILE_WIDTH
+	ld a, [hli] ; params
 	ld c, a
 
-	; y = seed + fall timer (mod screen height)
+	; y = seed + one to three helpings of the fall timer (mod screen height)
 	ld a, [hli] ; seed y
 	ld b, a
 	ldh a, [hWeatherYTimer]
 	add b
 	call WrapWeatherY
+	ld b, a
+	bit PETAL_FALL_2_F, c
+	jr z, .no_faster
+	ldh a, [hWeatherYTimer]
+	add b
+	call WrapWeatherY
+	ld b, a
+.no_faster
+	bit PETAL_FALL_3_F, c
+	jr z, .no_fastest
+	ldh a, [hWeatherYTimer]
+	add b
+	call WrapWeatherY
+	ld b, a
+.no_fastest
+	ld a, b
 	add 2 * TILE_WIDTH
 	ld b, a
 
-	; Rotation frame = tumble phase + this petal's X seed, so the petals on
-	; screen are never all showing the same face at once. The phase advances
-	; once every PETAL_SPIN_FRAMES frames and wraps with the VBlank counter.
+	; Rotation frame. Bits 0-1 of the params offset the tumble and the reverse
+	; bit turns it the other way, so neighbouring petals never spin in step.
 	ldh a, [hVBlankCounter]
 rept 3 ; / PETAL_SPIN_FRAMES; the rotated-in high bits are masked off below
 	rrca
 endr
-	add d
+	bit PETAL_REVERSE_F, c
+	jr z, .tumble_forward
+	cpl ; walks the frames backwards through the cycle
+.tumble_forward
+	add c ; only the phase bits survive the mask below
 	and NUM_PETAL_FRAMES - 1
 	add WEATHER_TILE
+	push af ; the tile, while c is still the params byte
+
+	; x = seed - one or two helpings of the drift timer (mod screen width):
+	; petals slide left as they fall.
+	ldh a, [hWeatherXTimer]
+	ld d, a
+	ld a, SCREEN_WIDTH_PX
+	sub d
+	ld d, a ; d = SCREEN_WIDTH_PX - drift timer
+	ld a, [hli] ; seed x
+	add d
+	call WrapWeatherX
+	bit PETAL_DRIFT_2_F, c
+	jr z, .no_wider_drift
+	add d
+	call WrapWeatherX
+.no_wider_drift
+	add TILE_WIDTH
+	ld c, a
+
+	pop af ; tile
 	ld d, VRAM_BANK_1 | PAL_OW_PINK
 	call AppendWeatherParticle
 	ret c
-	dec e
+	ld a, l
+	cp LOW(CherryBlossomSeedsEnd)
 	jr nz, .loop
 	ret
 
@@ -1148,16 +1217,40 @@ WeatherParticleSeeds:
 	db  88, 138
 	db 140,  34
 
+; Cherry blossoms get their own scatter instead of the shared weather seeds,
+; whose x values climb in even steps - fine for rain, but petals linger long
+; enough for that regularity to read as falling columns. Each entry is a params
+; byte (see the PETAL_*_F constants), then the petal's starting y and x.
+CherryBlossomSeeds:
+	db $02,  38,  82 ; fall x1, drift x1, forward, phase 2
+	db $14,  12, 101 ; fall x2, drift x2, forward, phase 0
+	db $0d, 137,  18 ; fall x3, drift x1, forward, phase 1
+	db $29,  93,  24 ; fall x2, drift x1, reverse, phase 1
+	db $3b,  14, 149 ; fall x2, drift x2, reverse, phase 3
+	db $3f,  54, 129 ; fall x3, drift x2, reverse, phase 3
+	db $2c, 107, 111 ; fall x3, drift x1, reverse, phase 0
+	db $2b,  61,  17 ; fall x2, drift x1, reverse, phase 3
+	db $20,  15,  57 ; fall x1, drift x1, reverse, phase 0
+	db $01, 101, 147 ; fall x1, drift x1, forward, phase 1
+	db $26, 136, 127 ; fall x2, drift x1, reverse, phase 2
+	db $0f,  80, 109 ; fall x3, drift x1, forward, phase 3
+	db $05, 127, 152 ; fall x2, drift x1, forward, phase 1
+	db $12,  23,  17 ; fall x1, drift x2, forward, phase 2
+	db $0e, 121,  69 ; fall x3, drift x1, forward, phase 2
+	db $30,  73,  55 ; fall x1, drift x2, reverse, phase 0
+CherryBlossomSeedsEnd:
+	assert CherryBlossomSeedsEnd - CherryBlossomSeeds < $100, "RenderCherryBlossoms ends its loop on the low byte of the table's end"
+
 ; Frames inside each PETAL_DRIFT_PERIOD-frame window on which a falling
 ; petal takes its single pixel step to the left, spread as evenly as the
-; window allows so the drift reads as one constant shallow angle rather
-; than a stutter. PETAL_DRIFT_STEPS of the entries are set; raising that
-; count steepens the fall, lowering it straightens the petals out.
+; window allows so the drift reads as a steady slide rather than a stutter.
+; PETAL_DRIFT_STEPS of the entries are set; raising that count leans every
+; petal further over, lowering it straightens them all up.
 PetalDriftPattern:
-	db 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0
-	db 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0
-	db 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
-	db 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0
+	db 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0
+	db 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0
+	db 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
 PetalDriftPatternEnd:
 	assert PetalDriftPatternEnd - PetalDriftPattern == PETAL_DRIFT_PERIOD, "PetalDriftPattern must have one entry per frame of PETAL_DRIFT_PERIOD"
 ; RenderCherryBlossoms divides the VBlank counter by PETAL_SPIN_FRAMES with
@@ -1172,7 +1265,7 @@ PetalDriftPatternEnd:
 ; Red stays high and blue stays under green's neighborhood: let blue climb past
 ; green and the petals slide from pink into purple.
 CherryBlossomPals:
-	RGB 31, 24, 26 ; lit rim
+	RGB 31, 20, 23 ; lit rim
 	RGB 30, 14, 18 ; body
 	RGB 21, 05, 10 ; shaded trailing edge
 CherryBlossomPalsEnd:
