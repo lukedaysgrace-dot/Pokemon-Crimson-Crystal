@@ -398,8 +398,8 @@ MenuIconPointers:
 	dba BastiodonMenuIcon
 	dba CetoddleMenuIcon
 	dba CetitanMenuIcon
-	dba MagikarpMenuIcon
-	dba GyaradosMenuIcon
+	dba FeebasMenuIcon
+	dba MiloticMenuIcon
 	dba MimikyuMenuIcon
 	dba CorsolaGalarianMenuIcon
 	dba CursolaMenuIcon

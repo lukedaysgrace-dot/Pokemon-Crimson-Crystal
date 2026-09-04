@@ -1669,8 +1669,23 @@ StatsScreen_OrangePage:
 
 .PrintLocationName:
 ; Print the landmark name in wStringBuffer1 at (8, 3).
-; Names longer than 12 characters get split at the last space
-; and continue on the next row.
+; Only 12 columns are free here (8-19), so long names wrap onto row 4.
+; Landmark names carry a soft linebreak ("¯") marking where they are meant
+; to split (see data/maps/landmarks.asm); prefer that. Names without one
+; (e.g. "SILENT HOLLOW") fall back to splitting at the last space that fits,
+; and anything with neither gets truncated.
+	ld hl, wStringBuffer1
+	ld b, 18
+.softbreak_loop
+	ld a, [hl]
+	cp "@"
+	jr z, .no_softbreak
+	cp "¯"
+	jr z, .split
+	inc hl
+	dec b
+	jr nz, .softbreak_loop
+.no_softbreak
 	ld hl, wStringBuffer1
 	ld b, 0
 .len_loop
