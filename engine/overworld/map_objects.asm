@@ -2749,6 +2749,11 @@ _UpdateSprites::
 	push af
 	ld a, 1
 	ldh [hOAMUpdate], a
+	; Cherry blossom petals claim the lowest OAM indices so they fall in front
+	; of the player and NPCs; every other weather layers behind the map objects
+	; and is drawn after them. Whichever call owns the current weather is also
+	; the one that ticks its timers, so nothing advances twice.
+	farcall DoOverworldWeatherInFront
 	call InitSprites
 	farcall DoOverworldWeather
 	call .fill
