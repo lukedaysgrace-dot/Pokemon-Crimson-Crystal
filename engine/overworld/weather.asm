@@ -852,7 +852,7 @@ endr
 	add d
 	and NUM_PETAL_FRAMES - 1
 	add WEATHER_TILE
-	ld d, VRAM_BANK_1 | PAL_OW_SILVER
+	ld d, VRAM_BANK_1 | PAL_OW_PINK
 	call AppendWeatherParticle
 	ret c
 	dec e
@@ -1091,18 +1091,25 @@ ApplyWeatherTint::
 
 .petal_pink
 ; Cherry blossoms leave the map's own palettes alone - the sky is clear -
-; and only recolor the silver OBJ palette's color 2, the shade the petal
-; tiles are built in, to the pink they fall in. Emotes use colors 1 and 3,
-; so the exclamation point above trainers keeps its white and black.
+; and instead hand the petals all three colors of the pink OBJ palette, which
+; the petal tiles are drawn in. That palette is free to borrow: the only
+; sprite that asks for it is Mew, and the only map blossoms fall on is
+; Cherrygrove City, so nothing else on screen can be wearing it. Petals need
+; the full ramp because a flat one-color petal reads as a chunk of confetti;
+; the lit rim and the shaded trailing edge are what make it a petal.
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wOBPals2)
 	ldh [rSVBK], a
-	ld hl, wOBPals2 + PAL_OW_SILVER * PALETTE_SIZE + 2 * PAL_COLOR_SIZE
-	ld bc, palred 22 + palgreen 12 + palblue 18 ; cherry blossom pink
-	ld a, c
+	ld hl, wOBPals2 + PAL_OW_PINK * PALETTE_SIZE + 1 * PAL_COLOR_SIZE
+	ld de, CherryBlossomPals
+	ld c, 3 * PAL_COLOR_SIZE
+.petal_color_loop
+	ld a, [de]
+	inc de
 	ld [hli], a
-	ld [hl], b
+	dec c
+	jr nz, .petal_color_loop
 	pop af
 	ldh [rSVBK], a
 .done
@@ -1160,6 +1167,17 @@ PetalDriftPatternEnd:
 	assert PETAL_DRIFT_PERIOD & (PETAL_DRIFT_PERIOD - 1) == 0, "PETAL_DRIFT_PERIOD must be a power of two"
 	assert NUM_PETAL_FRAMES & (NUM_PETAL_FRAMES - 1) == 0, "NUM_PETAL_FRAMES must be a power of two"
 
+; Colors 1-3 of the pink OBJ palette while blossoms are falling, matching the
+; shades the petal tiles are drawn in. ApplyWeatherTint copies them in whole.
+; Red stays high and blue stays under green's neighborhood: let blue climb past
+; green and the petals slide from pink into purple.
+CherryBlossomPals:
+	RGB 31, 24, 26 ; lit rim
+	RGB 30, 14, 18 ; body
+	RGB 21, 05, 10 ; shaded trailing edge
+CherryBlossomPalsEnd:
+	assert CherryBlossomPalsEnd - CherryBlossomPals == 3 * PAL_COLOR_SIZE, "CherryBlossomPals must fill colors 1-3"
+
 ; Weather particles. Color 0 is always transparent. On the silver palette the
 ; rain drop and its splash now use color 2, which ApplyWeatherTint recolors to
 ; rain blue only while it is raining. Emotes use only colors 1 and 3, so the "!"
@@ -1211,10 +1229,11 @@ SandWeatherGFX:
 ; Cherry blossom petal rotation from gfx/overworld/cherry_blossom.png: four
 ; 8x8 frames side by side in tumble order - broad face, three-quarter, edge
 ; on, the other three-quarter - which RenderCherryBlossoms cycles through.
-; Every lit pixel builds as color 2, the silver palette slot ApplyWeatherTint
-; recolors to blossom pink while petals are falling, so the PNG may be drawn
-; in any shade. Add frames by widening the PNG and raising NUM_PETAL_FRAMES;
-; they must still fit between WEATHER_TILE and the emote tiles at $f8.
+; The three lit shades build as colors 1-3, which ApplyWeatherTint fills with
+; CherryBlossomPals while petals are falling: lightest pixel is the rim, then
+; the body, then the shaded trailing edge. Add frames by widening the PNG and
+; raising NUM_PETAL_FRAMES; they must still fit between WEATHER_TILE and the
+; emote tiles at $f8.
 CherryBlossomWeatherGFX:
 	INCBIN "gfx/overworld/cherry_blossom.2bpp"
 CherryBlossomWeatherGFXEnd:
