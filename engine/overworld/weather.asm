@@ -482,7 +482,7 @@ LoadWeatherGraphics::
 	jr .load
 .blossoms
 	ld de, CherryBlossomWeatherGFX
-	ld c, 1
+	ld c, NUM_PETAL_FRAMES
 .load
 	ldh a, [rVBK]
 	push af
@@ -578,6 +578,10 @@ DoOverworldWeather::
 
 	; Independent screen-width and screen-height timers avoid positional
 	; jumps while particles wrap around the display.
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_CHERRY_BLOSSOMS
+	jr z, .petal_timers
+
 	ldh a, [hWeatherXTimer]
 	inc a
 	cp SCREEN_WIDTH_PX
@@ -593,7 +597,46 @@ DoOverworldWeather::
 	xor a
 .store_y
 	ldh [hWeatherYTimer], a
+	jr .particles
 
+.petal_timers
+; Petals fall far more slowly than rain or snow: one pixel down every other
+; frame, and one pixel left on PETAL_DRIFT_STEPS frames out of every
+; PETAL_DRIFT_PERIOD, which is the shallow leftward angle they fall at. The
+; sub-frame cadence is read from the free-running VBlank counter so the two
+; position timers stay plain pixel offsets and no extra timer state is
+; needed; the counter's 256-frame period is a whole multiple of both
+; patterns, so neither cadence stutters where it wraps.
+	ldh a, [hVBlankCounter]
+	ld b, a
+	and 1
+	jr nz, .no_fall_step
+	ldh a, [hWeatherYTimer]
+	inc a
+	cp SCREEN_HEIGHT_PX
+	jr c, .store_fall
+	xor a
+.store_fall
+	ldh [hWeatherYTimer], a
+.no_fall_step
+	ld a, b
+	and PETAL_DRIFT_PERIOD - 1
+	ld e, a
+	ld d, 0
+	ld hl, PetalDriftPattern
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .particles
+	ldh a, [hWeatherXTimer]
+	inc a
+	cp SCREEN_WIDTH_PX
+	jr c, .store_drift
+	xor a
+.store_drift
+	ldh [hWeatherXTimer], a
+
+.particles
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_RAIN
 	ret c ; none and overcast have no particles
@@ -775,23 +818,41 @@ RenderCherryBlossoms:
 	ld hl, WeatherParticleSeeds
 	ld e, 16
 .loop
-	; Petals drift gently down and right.
-	ld a, [hli]
-	ld c, a
+	; x = seed - drift timer (mod screen width): petals slide left as they
+	; fall. DoOverworldWeather advances both timers at the petals' own slow
+	; cadence, so here they are plain pixel offsets like every other weather.
 	ldh a, [hWeatherXTimer]
-	add c
+	ld b, a
+	ld a, SCREEN_WIDTH_PX
+	sub b
+	ld b, a ; b = SCREEN_WIDTH_PX - drift timer
+	ld a, [hli] ; seed x
+	ld d, a ; fixed per-particle salt for the tumble phase
+	add b
 	call WrapWeatherX
 	add TILE_WIDTH
 	ld c, a
-	ld a, [hli]
+
+	; y = seed + fall timer (mod screen height)
+	ld a, [hli] ; seed y
 	ld b, a
 	ldh a, [hWeatherYTimer]
 	add b
 	call WrapWeatherY
 	add 2 * TILE_WIDTH
 	ld b, a
-	ld d, VRAM_BANK_1 | PAL_OW_RED
-	ld a, WEATHER_TILE
+
+	; Rotation frame = tumble phase + this petal's X seed, so the petals on
+	; screen are never all showing the same face at once. The phase advances
+	; once every PETAL_SPIN_FRAMES frames and wraps with the VBlank counter.
+	ldh a, [hVBlankCounter]
+rept 3 ; / PETAL_SPIN_FRAMES; the rotated-in high bits are masked off below
+	rrca
+endr
+	add d
+	and NUM_PETAL_FRAMES - 1
+	add WEATHER_TILE
+	ld d, VRAM_BANK_1 | PAL_OW_SILVER
 	call AppendWeatherParticle
 	ret c
 	dec e
@@ -918,6 +979,8 @@ ApplyWeatherTint::
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_OVERCAST
 	jp c, .done
+	cp OW_WEATHER_CHERRY_BLOSSOMS
+	jr z, .petal_pink
 	cp OW_WEATHER_SNOW
 	jp nc, .done
 
@@ -1024,6 +1087,24 @@ ApplyWeatherTint::
 
 	pop af
 	ldh [rSVBK], a
+	jr .done
+
+.petal_pink
+; Cherry blossoms leave the map's own palettes alone - the sky is clear -
+; and only recolor the silver OBJ palette's color 2, the shade the petal
+; tiles are built in, to the pink they fall in. Emotes use colors 1 and 3,
+; so the exclamation point above trainers keeps its white and black.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wOBPals2)
+	ldh [rSVBK], a
+	ld hl, wOBPals2 + PAL_OW_SILVER * PALETTE_SIZE + 2 * PAL_COLOR_SIZE
+	ld bc, palred 22 + palgreen 12 + palblue 18 ; cherry blossom pink
+	ld a, c
+	ld [hli], a
+	ld [hl], b
+	pop af
+	ldh [rSVBK], a
 .done
 	pop hl
 	pop de
@@ -1060,12 +1141,32 @@ WeatherParticleSeeds:
 	db  88, 138
 	db 140,  34
 
+; Frames inside each PETAL_DRIFT_PERIOD-frame window on which a falling
+; petal takes its single pixel step to the left, spread as evenly as the
+; window allows so the drift reads as one constant shallow angle rather
+; than a stutter. PETAL_DRIFT_STEPS of the entries are set; raising that
+; count steepens the fall, lowering it straightens the petals out.
+PetalDriftPattern:
+	db 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0
+	db 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0
+	db 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
+	db 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0
+PetalDriftPatternEnd:
+	assert PetalDriftPatternEnd - PetalDriftPattern == PETAL_DRIFT_PERIOD, "PetalDriftPattern must have one entry per frame of PETAL_DRIFT_PERIOD"
+; RenderCherryBlossoms divides the VBlank counter by PETAL_SPIN_FRAMES with
+; a fixed three-bit rotate, and both cadences ride the counter's 256-frame
+; wrap, so these two must stay powers of two.
+	assert PETAL_SPIN_FRAMES == 8, "RenderCherryBlossoms' rotate count must match PETAL_SPIN_FRAMES"
+	assert PETAL_DRIFT_PERIOD & (PETAL_DRIFT_PERIOD - 1) == 0, "PETAL_DRIFT_PERIOD must be a power of two"
+	assert NUM_PETAL_FRAMES & (NUM_PETAL_FRAMES - 1) == 0, "NUM_PETAL_FRAMES must be a power of two"
+
 ; Weather particles. Color 0 is always transparent. On the silver palette the
 ; rain drop and its splash now use color 2, which ApplyWeatherTint recolors to
 ; rain blue only while it is raining. Emotes use only colors 1 and 3, so the "!"
 ; above trainers keeps its normal white/black. Snow also uses color 2, which
-; stays snow-white because ApplyWeatherTint does not run during snow. Sand and
-; cherry blossoms use color 2 of their own palettes.
+; stays snow-white because ApplyWeatherTint leaves it alone during snow, and
+; cherry blossom petals use that slot recolored to blossom pink. Sand uses
+; color 2 of its own palette.
 
 ; Falling raindrop streak from gfx/overworld/rain.png. The Makefile normalizes
 ; every non-transparent pixel to color 2, the slot ApplyWeatherTint recolors
@@ -1107,13 +1208,18 @@ SandWeatherGFX:
 	db $00, $38
 	db $00, $10
 	db $00, $00
-; Cherry blossom petal from gfx/overworld/cherry_blossom.png. Its darkest
-; shade builds as color 2, matching the PAL_OW_RED color used by
-; RenderCherryBlossoms, so the petal reads pink without any palette change.
+; Cherry blossom petal rotation from gfx/overworld/cherry_blossom.png: four
+; 8x8 frames side by side in tumble order - broad face, three-quarter, edge
+; on, the other three-quarter - which RenderCherryBlossoms cycles through.
+; Every lit pixel builds as color 2, the silver palette slot ApplyWeatherTint
+; recolors to blossom pink while petals are falling, so the PNG may be drawn
+; in any shade. Add frames by widening the PNG and raising NUM_PETAL_FRAMES;
+; they must still fit between WEATHER_TILE and the emote tiles at $f8.
 CherryBlossomWeatherGFX:
 	INCBIN "gfx/overworld/cherry_blossom.2bpp"
 CherryBlossomWeatherGFXEnd:
-	assert CherryBlossomWeatherGFXEnd - CherryBlossomWeatherGFX == LEN_2BPP_TILE, "cherry_blossom.png must be a single 8x8 tile"
+	assert CherryBlossomWeatherGFXEnd - CherryBlossomWeatherGFX == NUM_PETAL_FRAMES * LEN_2BPP_TILE, "cherry_blossom.png must be NUM_PETAL_FRAMES 8x8 tiles wide"
+	assert NUM_PETAL_FRAMES <= $f8 - WEATHER_TILE, "Cherry blossom frames overflow into the emote tiles at $f8"
 
 
 ; Music keepalive for long LCD-off graphics loads, and the tileset loader
