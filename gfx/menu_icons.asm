@@ -504,5 +504,7 @@ FlittleMenuIcon: INCBIN "gfx/menu_icons/flittle.2bpp"
 EspathraMenuIcon: INCBIN "gfx/menu_icons/espathra.2bpp"
 FinizenMenuIcon: INCBIN "gfx/menu_icons/finizen.2bpp"
 PalafinMenuIcon: INCBIN "gfx/menu_icons/palafin.2bpp"
+FeebasMenuIcon: INCBIN "gfx/menu_icons/feebas.2bpp"
+MiloticMenuIcon: INCBIN "gfx/menu_icons/milotic.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"
