@@ -7451,7 +7451,7 @@ GiveExperiencePoints:
 	ld [wStringBuffer2 + 2], a
 	ld a, [wBattleMode]
 	dec a
-	call nz, BoostExp
+	call nz, TrainerBoostExp
 ; Boost experience for Lucky Egg
 	push bc
 	ld a, MON_ITEM
@@ -7790,6 +7790,24 @@ GiveExperiencePoints:
 	jr nz, .base_stat_division_loop
 	ret
 
+TrainerBoostExp:
+; Trainer battles give 1.5x exp normally, 2x on Hard Mode. Hard Mode caps
+; levels per badge, so without the larger share the player cannot reach the
+; cap from trainer battles alone and is forced to grind wild Pokemon.
+	push hl
+	push de
+	push bc
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	and a
+	jr nz, DoubleExp
+	; fallthrough to BoostExp
+
 BoostExp:
 ; Multiply experience by 1.5x
 	push bc
@@ -7808,6 +7826,21 @@ BoostExp:
 	adc b
 	ldh [hProduct + 2], a
 	pop bc
+	ret
+
+DoubleExp:
+; Multiply experience by 2x, saturating rather than wrapping.
+	ldh a, [hProduct + 3]
+	add a
+	ldh [hProduct + 3], a
+	ldh a, [hProduct + 2]
+	adc a
+	ldh [hProduct + 2], a
+	ret nc
+; overflowed 16 bits; clamp to the largest value the exp bar can show
+	ld a, $ff
+	ldh [hProduct + 2], a
+	ldh [hProduct + 3], a
 	ret
 
 Text_MonGainedExpPoint:
