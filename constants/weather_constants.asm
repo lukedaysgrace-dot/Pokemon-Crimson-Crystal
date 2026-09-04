@@ -33,6 +33,18 @@ NUM_DAILY_WEATHER_AREAS_PER_REGION EQU 4
 	const WEATHER_DAILY_ROUTE_9_SAND_F
 	const WEATHER_DAILY_ROUTE_22_SAND_F
 
-; One tile in VRAM bank 1 is reserved for the active weather particle.
+; Cherry blossom petals tumble through NUM_PETAL_FRAMES rotation frames,
+; holding each one for PETAL_SPIN_FRAMES frames, and step one pixel to the
+; left on PETAL_DRIFT_STEPS frames out of every PETAL_DRIFT_PERIOD (the
+; shallow leftward fall angle). PETAL_SPIN_FRAMES and PETAL_DRIFT_PERIOD are
+; powers of two so the free-running VBlank counter drives both cadences
+; without stuttering when it wraps.
+DEF NUM_PETAL_FRAMES    EQU 4
+DEF PETAL_SPIN_FRAMES   EQU 8
+DEF PETAL_DRIFT_PERIOD  EQU 64
+DEF PETAL_DRIFT_STEPS   EQU 13
+
+; Tiles in VRAM bank 1 reserved for the active weather particle: the rain
+; drop and its splash frames, or the cherry blossom rotation frames.
 ; Tiles $f8-$ff are already reserved by overworld emotes.
 WEATHER_TILE EQU $f4
