@@ -5,7 +5,6 @@
     {
       "leader": "Falkner",
       "cap": 10,
-      "available_level_ceiling": 10,
       "available_first_encounters": 15,
       "trainer_exp_total": 2262,
       "three_mon_need_from_level_5": 1275,
@@ -18,7 +17,6 @@
     {
       "leader": "Bugsy",
       "cap": 16,
-      "available_level_ceiling": 16,
       "available_first_encounters": 44,
       "trainer_exp_total": 11377,
       "three_mon_need_from_level_5": 7200,
@@ -31,7 +29,6 @@
     {
       "leader": "Whitney",
       "cap": 21,
-      "available_level_ceiling": 21,
       "available_first_encounters": 73,
       "trainer_exp_total": 27346,
       "three_mon_need_from_level_5": 18969,
@@ -44,7 +41,6 @@
     {
       "leader": "Morty",
       "cap": 26,
-      "available_level_ceiling": 26,
       "available_first_encounters": 106,
       "trainer_exp_total": 56150,
       "three_mon_need_from_level_5": 39828,
@@ -56,21 +52,19 @@
     },
     {
       "leader": "Chuck",
-      "cap": 35,
-      "available_level_ceiling": 35,
-      "available_first_encounters": 159,
-      "trainer_exp_total": 128103,
-      "three_mon_need_from_level_5": 108900,
-      "four_mon_need_from_level_5": 145200,
-      "six_mon_need_from_level_5": 224250,
-      "surplus": -96147,
-      "coverage_pct": 57.1,
+      "cap": 31,
+      "available_first_encounters": 139,
+      "trainer_exp_total": 92804,
+      "three_mon_need_from_level_5": 72477,
+      "four_mon_need_from_level_5": 96636,
+      "six_mon_need_from_level_5": 150461,
+      "surplus": -57657,
+      "coverage_pct": 61.7,
       "average_possible_level_note": "trainer-only; wild encounters excluded"
     },
     {
       "leader": "Jasmine",
       "cap": 36,
-      "available_level_ceiling": 36,
       "available_first_encounters": 169,
       "trainer_exp_total": 150733,
       "three_mon_need_from_level_5": 119616,
@@ -83,7 +77,6 @@
     {
       "leader": "Pryce",
       "cap": 40,
-      "available_level_ceiling": 40,
       "available_first_encounters": 206,
       "trainer_exp_total": 255494,
       "three_mon_need_from_level_5": 169575,
@@ -96,7 +89,6 @@
     {
       "leader": "Clair",
       "cap": 45,
-      "available_level_ceiling": 45,
       "available_first_encounters": 243,
       "trainer_exp_total": 444428,
       "three_mon_need_from_level_5": 249600,
@@ -185,8 +177,8 @@
     {
       "leader": "CHUCK",
       "specialty": "FIGHTING",
-      "hard_cap": 35,
-      "ace_minus_cap": 0,
+      "hard_cap": 31,
+      "ace_minus_cap": 4,
       "levels": [
         33,
         33,
@@ -458,6 +450,28 @@
     }
   ],
   "anomalies": [
+    {
+      "severity": "high",
+      "category": "moveset/cap",
+      "map": "CianwoodGym",
+      "trainer_class": "CHUCK",
+      "trainer_id": "CHUCK1",
+      "trainer": "CHUCK",
+      "level": 34,
+      "species": "BRELOOM",
+      "detail": "Spore is on a level-34 mon while the player is capped at 31"
+    },
+    {
+      "severity": "high",
+      "category": "moveset/cap",
+      "map": "CianwoodGym",
+      "trainer_class": "CHUCK",
+      "trainer_id": "CHUCK1",
+      "trainer": "CHUCK",
+      "level": 35,
+      "species": "POLIWRATH",
+      "detail": "level 35 versus cap 31, with Hypnosis + Mind Reader + DynamicPunch"
+    },
     {
       "severity": "high",
       "category": "item synergy",
