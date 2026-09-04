@@ -134,6 +134,12 @@ GoldenrodPokecenter1FFeebasSalesmanScript:
 	takemoney YOUR_MONEY, GOLDENRODPOKECENTER1F_FEEBAS_PRICE
 	playsound SFX_TRANSACTION
 	waitsfx
+; same presentation as verbosegiveitem: the "received" line, then the
+; item jingle, then the nickname prompt that givepoke raises
+	writetext GoldenrodPokecenter1FFeebasSalesmanReceivedFeebasText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
 	givepoke FEEBAS, GOLDENRODPOKECENTER1F_FEEBAS_LEVEL
 	writetext GoldenrodPokecenter1FFeebasSalesmanSuckerText
 	waitbutton
@@ -903,6 +909,11 @@ GoldenrodPokecenter1FFeebasSalesmanSoldText:
 	text "Wonderful!"
 	line "You won't regret"
 	cont "this!"
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanReceivedFeebasText:
+	text "<PLAYER> received"
+	line "FEEBAS!"
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanSuckerText:
