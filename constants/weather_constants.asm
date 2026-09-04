@@ -34,29 +34,51 @@ NUM_DAILY_WEATHER_AREAS_PER_REGION EQU 4
 	const WEATHER_DAILY_ROUTE_22_SAND_F
 
 ; Cherry blossom petals tumble through NUM_PETAL_FRAMES rotation frames,
-; holding each one for PETAL_SPIN_FRAMES frames. The two shared timers they
-; read run at the SLOWEST petal's pace - one pixel down every
-; PETAL_FALL_PERIOD frames, one pixel left on PETAL_DRIFT_STEPS frames out of
-; every PETAL_DRIFT_PERIOD - and each petal folds a timer in more than once to
-; go faster (see CherryBlossomSeeds). PETAL_SPIN_FRAMES, PETAL_FALL_PERIOD and
-; PETAL_DRIFT_PERIOD are powers of two so the free-running VBlank counter can
-; drive every cadence without stuttering where it wraps.
+; holding each one for PETAL_SPIN_FRAMES frames.
+;
+; Every petal moves in single-pixel steps; what differs between them is how
+; often a step lands. Each speed tier owns a shared timer that counts pixels at
+; its own pace, and the tiers step on frames that never coincide, so a petal
+; that reads two of them still only ever moves one pixel in a frame:
+;
+;   fall, slow tier   hWeatherYTimer     one pixel every PETAL_FALL_PERIOD
+;                                        frames (the base pace)
+;   fall, mid tier    hPetalFallTimerB   one pixel every other frame, on the
+;                                        frames the slow tier skips
+;   fall, fast petals read both timers, so they step on three frames out of
+;                                        every four
+;   drift             hWeatherXTimer     one pixel sideways on PETAL_DRIFT_STEPS
+;                                        frames out of every PETAL_DRIFT_PERIOD
+;   drift, wide       hPetalDriftTimerB  the same again, interleaved between
+;                                        those frames
+;
+; The alternative - one timer per axis, read two or three times over - is what
+; this replaced: reading a timer twice moves the petal two pixels at once and
+; then holds it still for the rest of the window, and at these speeds that
+; stutter is plainly visible. All cadences ride the free-running VBlank
+; counter, whose 256-frame period is a whole multiple of each pattern, so
+; nothing jolts where it wraps; PETAL_SPIN_FRAMES, PETAL_FALL_PERIOD and
+; PETAL_DRIFT_PERIOD are powers of two so the counter can drive them with a
+; mask.
 DEF NUM_PETAL_FRAMES    EQU 4
 DEF PETAL_SPIN_FRAMES   EQU 8
 DEF PETAL_FALL_PERIOD   EQU 4
 DEF PETAL_DRIFT_PERIOD  EQU 64
-DEF PETAL_DRIFT_STEPS   EQU 7
+DEF PETAL_DRIFT_STEPS   EQU 7 ; per drift timer; wide petals read two of them
+
+; Which timer a frame of PetalDriftPattern steps.
+DEF PETAL_DRIFT_STEP_A_F EQU 0 ; hWeatherXTimer, read by every petal
+DEF PETAL_DRIFT_STEP_B_F EQU 1 ; hPetalDriftTimerB, read only by wide drifters
 
 ; Per-petal variation, packed into the params byte of each CherryBlossomSeeds
 ; entry. Bits 0-1 offset the tumble so neighbours are never on the same frame.
-; Each of the three speed bits folds a shared timer in one more time, which is
-; what gives sixteen petals six different fall speeds and drift angles without
-; a byte of per-petal state; multiplying a timer that wraps at the screen
-; dimension stays seamless, since any whole number of screens is still zero.
+; The speed bits pick which shared timers the petal reads, which is what gives
+; the petals six different fall speeds and drift angles without a byte of
+; per-petal state.
 	const_def 2
-	const PETAL_FALL_2_F  ; drops at twice the base speed
-	const PETAL_FALL_3_F  ; with FALL_2, three times
-	const PETAL_DRIFT_2_F ; slides sideways twice as far per pixel fallen
+	const PETAL_FALL_2_F  ; reads the mid fall timer instead of the slow one
+	const PETAL_FALL_3_F  ; with FALL_2, reads both; on its own it does nothing
+	const PETAL_DRIFT_2_F ; also reads the second drift timer, leaning it over
 	const PETAL_REVERSE_F ; tumbles backwards
 
 ; Tiles in VRAM bank 1 reserved for the active weather particle: the rain
