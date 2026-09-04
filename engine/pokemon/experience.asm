@@ -70,26 +70,33 @@ UpdateLevelCap::
 	ret
 
 HardModeLevelCaps:
-; Only the Johto run is capped. The eighth badge lifts it for good; everything
-; after is paced by the exp that is actually available.
+; Each entry is the level a player who fights most (not all) trainers actually
+; reaches by that point, solved against the real EXP in the game with the Hard
+; Mode 2x trainer bonus -- see tools/audit_exp_economy.py. Gym leader aces are
+; set to the same numbers, so every profile arrives at parity: a thorough
+; player is clamped down to the cap rather than running away with it.
+; Indexed by badge count, +1 once the Hall of Fame flag is set at 8+ badges,
+; so the cap now runs the whole game rather than lifting after Clair. Kanto
+; compresses hard because the EXP curve is cubic while the amount of content
+; per badge is flat -- these are the levels Kanto can actually pay for.
 	db 10 ; Falkner
-	db 16 ; Bugsy
-	db 21 ; Whitney
-	db 26 ; Morty
-	db 31 ; Chuck
-	db 36 ; Jasmine
-	db 40 ; Pryce
+	db 13 ; Bugsy
+	db 20 ; Whitney
+	db 25 ; Morty
+	db 30 ; Chuck
+	db 34 ; Jasmine
+	db 38 ; Pryce
 	db 45 ; Clair
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
-	db MAX_LEVEL
+	db 57 ; Elite Four (one step: no badge is earned until the Hall of Fame)
+	db 58 ; Kanto, 0 badges
+	db 63 ; Kanto, 1 badge
+	db 65 ; Kanto, 2 badges
+	db 67 ; Kanto, 3 badges
+	db 68 ; Kanto, 4 badges
+	db 69 ; Kanto, 5 badges
+	db 70 ; Kanto, 6 badges
+	db 71 ; Kanto, 7 badges
+	db 73 ; Kanto, 8 badges -- Red
 
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
