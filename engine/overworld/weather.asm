@@ -632,35 +632,49 @@ _DoOverworldWeather:
 	jr .particles
 
 .petal_timers
-; Petals fall far more slowly than rain or snow. These two timers run at the
-; slowest petal's pace - one pixel down every PETAL_FALL_PERIOD frames and one
-; pixel left on PETAL_DRIFT_STEPS frames out of every PETAL_DRIFT_PERIOD - and
-; RenderCherryBlossoms reads each of them once, twice or three times per petal
-; to spread the sixteen of them across six speeds and angles. The sub-frame
-; cadence comes from the free-running VBlank counter, so the timers stay plain
-; pixel offsets and need no extra state; the counter's 256-frame period is a
-; whole multiple of both patterns, so neither cadence stutters where it wraps.
+; Petals fall far more slowly than rain or snow, and each speed tier gets a
+; timer of its own rather than one timer counted twice over: every tier steps a
+; single pixel at a time, and no two of them step on the same frame, so a petal
+; that reads two timers still never jumps. The slow fall timer steps once every
+; PETAL_FALL_PERIOD frames and the mid one on the odd frames in between, which
+; is two steps in the same window; a petal reading both moves on three frames
+; out of every four. Sideways, PetalDriftPattern says which of the two drift
+; timers steps on this frame, PETAL_DRIFT_STEPS frames apiece out of every
+; PETAL_DRIFT_PERIOD, interleaved so a wide drifter also slides one pixel at a
+; time. Every cadence comes off the free-running VBlank counter, so the timers
+; stay plain pixel offsets; the counter's 256-frame period is a whole multiple
+; of each pattern, so none of them stutters where it wraps.
 	ldh a, [hVBlankCounter]
 	ld b, a
 	and PETAL_FALL_PERIOD - 1
-	jr nz, .no_fall_step
+	jr nz, .no_slow_fall_step
 	ldh a, [hWeatherYTimer]
 	inc a
 	cp SCREEN_HEIGHT_PX
-	jr c, .store_fall
+	jr c, .store_slow_fall
 	xor a
-.store_fall
+.store_slow_fall
 	ldh [hWeatherYTimer], a
-.no_fall_step
+.no_slow_fall_step
+	bit 0, b ; the odd frames, which the slow timer always skips
+	jr z, .no_mid_fall_step
+	ldh a, [hPetalFallTimerB]
+	inc a
+	cp SCREEN_HEIGHT_PX
+	jr c, .store_mid_fall
+	xor a
+.store_mid_fall
+	ldh [hPetalFallTimerB], a
+.no_mid_fall_step
 	ld a, b
 	and PETAL_DRIFT_PERIOD - 1
 	ld e, a
 	ld d, 0
 	ld hl, PetalDriftPattern
 	add hl, de
-	ld a, [hl]
-	and a
-	jr z, .particles
+	ld b, [hl]
+	bit PETAL_DRIFT_STEP_A_F, b
+	jr z, .no_drift_step
 	ldh a, [hWeatherXTimer]
 	inc a
 	cp SCREEN_WIDTH_PX
@@ -668,6 +682,16 @@ _DoOverworldWeather:
 	xor a
 .store_drift
 	ldh [hWeatherXTimer], a
+.no_drift_step
+	bit PETAL_DRIFT_STEP_B_F, b
+	jr z, .particles
+	ldh a, [hPetalDriftTimerB]
+	inc a
+	cp SCREEN_WIDTH_PX
+	jr c, .store_wide_drift
+	xor a
+.store_wide_drift
+	ldh [hPetalDriftTimerB], a
 
 .particles
 	ldh a, [hCurWeather]
@@ -848,40 +872,37 @@ RenderSandstorm:
 	ret
 
 RenderCherryBlossoms:
-; Every petal reads the same two timers, but folds each one in one, two or
-; three times depending on its params byte: more helpings of the fall timer
-; means it drops faster, more of the drift timer means it slides further
-; sideways per pixel fallen. That is where the variety comes from - sixteen
-; petals at six different speeds and fall angles, none of them storing a byte
-; of their own. Scaling a timer that wraps at a screen dimension is safe,
-; because a whole number of screens is still no movement at all, so the petals
-; keep wrapping seamlessly no matter how many helpings they take.
+; A petal's params byte says which of the shared timers it reads, and that is
+; where the whole variety comes from: three fall speeds and two drift angles
+; over four tumble phases and two spin directions, without a single petal
+; storing a byte of its own. Each timer is a plain pixel offset that wraps at a
+; screen dimension, and adding two of them is still seamless, because a whole
+; number of screens is no movement at all.
 	ld hl, CherryBlossomSeeds
 .loop
 	ld a, [hli] ; params
 	ld c, a
 
-	; y = seed + one to three helpings of the fall timer (mod screen height)
+	; y = seed + the fall timers this petal reads (mod screen height). The slow
+	; and mid timers step on different frames and each step is one pixel, so
+	; reading both makes the petal fall faster without ever moving it two pixels
+	; in a frame.
 	ld a, [hli] ; seed y
 	ld b, a
-	ldh a, [hWeatherYTimer]
-	add b
-	call WrapWeatherY
-	ld b, a
 	bit PETAL_FALL_2_F, c
-	jr z, .no_faster
-	ldh a, [hWeatherYTimer]
+	jr z, .add_slow_fall
+	ldh a, [hPetalFallTimerB]
 	add b
 	call WrapWeatherY
 	ld b, a
-.no_faster
 	bit PETAL_FALL_3_F, c
-	jr z, .no_fastest
+	jr z, .fall_done
+.add_slow_fall
 	ldh a, [hWeatherYTimer]
 	add b
 	call WrapWeatherY
 	ld b, a
-.no_fastest
+.fall_done
 	ld a, b
 	add 2 * TILE_WIDTH
 	ld b, a
@@ -901,21 +922,30 @@ endr
 	add WEATHER_TILE
 	push af ; the tile, while c is still the params byte
 
-	; x = seed - one or two helpings of the drift timer (mod screen width):
-	; petals slide left as they fall.
+	; x = seed - the drift timers this petal reads (mod screen width): petals
+	; slide left as they fall, and the ones that lean furthest read the second
+	; drift timer as well, again a pixel at a time. Subtracting is done by
+	; adding the timer's distance from the right edge.
+	ld a, [hli] ; seed x
+	ld e, a
 	ldh a, [hWeatherXTimer]
 	ld d, a
 	ld a, SCREEN_WIDTH_PX
 	sub d
-	ld d, a ; d = SCREEN_WIDTH_PX - drift timer
-	ld a, [hli] ; seed x
-	add d
+	add e
 	call WrapWeatherX
+	ld e, a
 	bit PETAL_DRIFT_2_F, c
 	jr z, .no_wider_drift
-	add d
+	ldh a, [hPetalDriftTimerB]
+	ld d, a
+	ld a, SCREEN_WIDTH_PX
+	sub d
+	add e
 	call WrapWeatherX
+	ld e, a
 .no_wider_drift
+	ld a, e
 	add TILE_WIDTH
 	ld c, a
 
@@ -1221,37 +1251,41 @@ WeatherParticleSeeds:
 ; whose x values climb in even steps - fine for rain, but petals linger long
 ; enough for that regularity to read as falling columns. Each entry is a params
 ; byte (see the PETAL_*_F constants), then the petal's starting y and x.
+; Ten petals is a drift rather than a shower: enough to keep something moving
+; in every part of the screen without the map disappearing behind them. Adding
+; or removing entries needs nothing else changed. Set FALL_3 only alongside
+; FALL_2 - on its own the render loop ignores it.
 CherryBlossomSeeds:
 	db $02,  38,  82 ; fall x1, drift x1, forward, phase 2
 	db $14,  12, 101 ; fall x2, drift x2, forward, phase 0
 	db $0d, 137,  18 ; fall x3, drift x1, forward, phase 1
-	db $29,  93,  24 ; fall x2, drift x1, reverse, phase 1
-	db $3b,  14, 149 ; fall x2, drift x2, reverse, phase 3
+	db $25,  93,  40 ; fall x2, drift x1, reverse, phase 1
 	db $3f,  54, 129 ; fall x3, drift x2, reverse, phase 3
-	db $2c, 107, 111 ; fall x3, drift x1, reverse, phase 0
-	db $2b,  61,  17 ; fall x2, drift x1, reverse, phase 3
 	db $20,  15,  57 ; fall x1, drift x1, reverse, phase 0
-	db $01, 101, 147 ; fall x1, drift x1, forward, phase 1
-	db $26, 136, 127 ; fall x2, drift x1, reverse, phase 2
+	db $26, 136, 143 ; fall x2, drift x1, reverse, phase 2
 	db $0f,  80, 109 ; fall x3, drift x1, forward, phase 3
-	db $05, 127, 152 ; fall x2, drift x1, forward, phase 1
-	db $12,  23,  17 ; fall x1, drift x2, forward, phase 2
-	db $0e, 121,  69 ; fall x3, drift x1, forward, phase 2
-	db $30,  73,  55 ; fall x1, drift x2, reverse, phase 0
+	db $16,  23, 148 ; fall x2, drift x2, forward, phase 2
+	db $30,  73,   5 ; fall x1, drift x2, reverse, phase 0
 CherryBlossomSeedsEnd:
 	assert CherryBlossomSeedsEnd - CherryBlossomSeeds < $100, "RenderCherryBlossoms ends its loop on the low byte of the table's end"
 
-; Frames inside each PETAL_DRIFT_PERIOD-frame window on which a falling
-; petal takes its single pixel step to the left, spread as evenly as the
-; window allows so the drift reads as a steady slide rather than a stutter.
-; PETAL_DRIFT_STEPS of the entries are set; raising that count leans every
+; Frames inside each PETAL_DRIFT_PERIOD-frame window on which a drift timer
+; takes its single pixel step to the left, spread as evenly as the window
+; allows so the slide reads as steady rather than as a stutter. Bit 0 steps the
+; timer every petal reads, bit 1 the second one that only the wide drifters
+; add; the two sets are interleaved and never share a frame, so a wide drifter
+; leans twice as far while still moving a pixel at a time. Each timer gets
+; PETAL_DRIFT_STEPS of the sixty-four frames - raising that count leans every
 ; petal further over, lowering it straightens them all up.
+DEF DRIFT_A EQU 1 << PETAL_DRIFT_STEP_A_F
+DEF DRIFT_B EQU 1 << PETAL_DRIFT_STEP_B_F
 PetalDriftPattern:
-	db 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
-	db 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0
-	db 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0
-	db 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	db DRIFT_A, 0, 0, 0, DRIFT_B, 0, 0, 0, 0, DRIFT_A, 0, 0, 0, DRIFT_B, 0, 0
+	db 0, 0, DRIFT_A, 0, 0, 0, DRIFT_B, 0, 0, 0, 0, DRIFT_A, 0, 0, 0, DRIFT_B
+	db 0, 0, 0, 0, DRIFT_A, 0, 0, 0, DRIFT_B, 0, 0, 0, 0, DRIFT_A, 0, 0
+	db 0, DRIFT_B, 0, 0, 0, 0, DRIFT_A, 0, 0, 0, DRIFT_B, 0, 0, 0, 0, 0
 PetalDriftPatternEnd:
+	PURGE DRIFT_A, DRIFT_B
 	assert PetalDriftPatternEnd - PetalDriftPattern == PETAL_DRIFT_PERIOD, "PetalDriftPattern must have one entry per frame of PETAL_DRIFT_PERIOD"
 ; RenderCherryBlossoms divides the VBlank counter by PETAL_SPIN_FRAMES with
 ; a fixed three-bit rotate, and both cadences ride the counter's 256-frame

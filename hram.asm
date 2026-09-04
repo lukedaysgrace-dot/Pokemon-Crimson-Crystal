@@ -21,9 +21,23 @@ hVBlankLeaked:: db ; ff92
 	ds 1
 
 hHours:: db ; ff94
-	ds 1
+
+; Second cherry blossom fall timer, in the padding byte that has always sat
+; between the clock values. A petal that falls at two or three times the base
+; speed used to read the one fall timer twice or three times over, which moved
+; it two or three pixels in a single frame and then held it still for the rest
+; of the window - the stutter that reads as lag. Instead each speed tier steps
+; its own timer a single pixel at a time, on frames the other tiers skip, and a
+; fast petal simply reads both. See RenderCherryBlossoms.
+hPetalFallTimerB:: db ; ff95
+
 hMinutes:: db ; ff96
-	ds 1
+
+; Second cherry blossom drift timer, for the same reason: petals that lean
+; further over add this one to hWeatherXTimer rather than counting that timer
+; twice, so their sideways slide also moves one pixel at a time.
+hPetalDriftTimerB:: db ; ff97
+
 hSeconds:: db ; ff98
 
 hWeatherXTimer:: db ; ff99
