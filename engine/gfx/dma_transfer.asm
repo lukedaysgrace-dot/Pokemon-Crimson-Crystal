@@ -163,7 +163,7 @@ OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 	decoord 0, 0
 	ld hl, wScratchTileMap
 	call PadTilemapForHDMATransfer
-	call DelayFrame
+	call WeatherDelayFrame ; the map redraw a conversation opens with
 
 	di
 	ldh a, [rVBK]
