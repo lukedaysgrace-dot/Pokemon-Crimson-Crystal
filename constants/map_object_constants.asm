@@ -170,6 +170,7 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_SWIM_WANDER          ; 24
 	const SPRITEMOVEDATA_SLOW_POKEMON         ; 25
 	const SPRITEMOVEDATA_LOOK_DOWN_LEFT       ; 26
+	const SPRITEMOVEDATA_SNORLAX_SLEEP        ; 27
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -204,6 +205,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const SPRITEMOVEFN_GRASS                 ; 1b
 	const SPRITEMOVEFN_SLOW_BOUNCE           ; 1c
 	const SPRITEMOVEFN_LOOK_DOWN_LEFT        ; 1d
+	const SPRITEMOVEFN_SNORLAX_SLEEP         ; 1e
 
 ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
 	const_def
@@ -254,6 +256,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
 	const OBJECT_ACTION_SKYFALL       ; 10
 	const OBJECT_ACTION_SLOW_BOUNCE   ; 11
+	const OBJECT_ACTION_SNORLAX_SLEEP ; 12
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def
@@ -289,6 +292,12 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const FACING_BOULDER_DUST_2 ; 1d
 	const FACING_GRASS_1        ; 1e
 	const FACING_GRASS_2        ; 1f
+; sleeping SNORLAX: 32x24 body (mirrored) + rising Zzz, see data/sprites/facings.asm
+	const FACING_SNORLAX_SLEEP_0 ; 20
+	const FACING_SNORLAX_SLEEP_1 ; 21
+	const FACING_SNORLAX_SLEEP_2 ; 22
+	const FACING_SNORLAX_SLEEP_3 ; 23
+	const FACING_SNORLAX_STILL   ; 24
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def

@@ -18,6 +18,7 @@ ObjectActionPairPointers:
 	dw SetFacingGrassShake,            SetFacingStanding
 	dw SetFacingSkyfall,               SetFacingCurrent
 	dw SetFacingSlowBounce,            SetFacingFreezeBounce
+	dw SetFacingSnorlaxSleep,          SetFacingSnorlaxSleep
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -206,6 +207,29 @@ SetFacingBigDollSym:
 	ld [hl], FACING_BIG_DOLL_SYM
 	ret
 
+SetFacingSnorlaxSleep:
+; Cycle FACING_SNORLAX_SLEEP_0-3 every 32 frames, so the belly goes
+; out-in-in-out and the Zzz puffs on the two middle frames.
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	and %01100000
+	rlca
+	rlca
+	rlca
+	add FACING_SNORLAX_SLEEP_0
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], a
+	ret
+
+SetFacingSnorlaxStill:
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], FACING_SNORLAX_STILL
+	ret
+
 SetFacingBounce:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
@@ -263,9 +287,10 @@ SetFacingBigDollAsym:
 
 SetFacingBigDoll:
 	ld a, [wVariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS]
-	ld d, FACING_BIG_DOLL_SYM ; symmetric
+	ld d, FACING_SNORLAX_STILL ; SNORLAX gfx is now the 32x24 sleeping sprite
 	cp SPRITE_BIG_SNORLAX
 	jr z, .ok
+	ld d, FACING_BIG_DOLL_SYM ; symmetric
 	cp SPRITE_BIG_LAPRAS
 	jr z, .ok
 	ld d, FACING_BIG_DOLL_ASYM ; asymmetric
