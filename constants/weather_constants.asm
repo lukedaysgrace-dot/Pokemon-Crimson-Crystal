@@ -14,6 +14,15 @@ NUM_OW_WEATHERS EQU const_value
 ; while temporarily preventing its overworld OAM particles from being drawn.
 DEF VRAMSTATE_SUPPRESS_WEATHER_F EQU 2
 
+; Set by OpenText and cleared by CloseText: the plain speech textbox is up, and
+; nothing else. Bit 6 alone only says the map has been reanchored for some
+; window or other, and there is no telling where that window sits on screen -
+; a mart list or a yes/no box lands in the top half, right where the particles
+; are. The speech textbox is the one whose shape is known: the bottom six rows,
+; leaving the map visible above it. That is what lets weather keep falling
+; through a conversation, clipped to SPEECH_TEXTBOX_CLIP_Y.
+DEF VRAMSTATE_SPEECH_TEXTBOX_F EQU 3
+
 ; Each daily selection packs a weather-area id into the low six bits and
 ; its overcast intensity into the high two bits.
 WEATHER_AREA_MASK            EQU %00111111

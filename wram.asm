@@ -2087,6 +2087,7 @@ wSolvedUnownPuzzle::
 wVramState:: ; d0ed
 ; bit 0: overworld sprite updating on/off
 ; bit 2: suppress overworld weather particles (used by battle transitions)
+; bit 3: the plain speech textbox is open (weather keeps falling above it)
 ; bit 6: something to do with text
 ; bit 7: on when surf initiates
 ;        flickers when climbing waterfall

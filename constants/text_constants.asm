@@ -28,6 +28,12 @@ TEXTBOX_INNERX EQU TEXTBOX_X + 1
 TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
+; The first OAM y a weather particle may NOT take while the speech textbox is
+; up. An 8-pixel sprite at OAM y Y covers screen rows Y - 16 through Y - 9, so
+; this is the lowest y whose bottom row would land on the box's top border; a
+; particle at or past it is dropped and reads as having slipped behind the box.
+DEF SPEECH_TEXTBOX_CLIP_Y EQU TEXTBOX_Y * TILE_WIDTH + 2 * TILE_WIDTH - (TILE_WIDTH - 1)
+
 ; PrintNum bit flags
 	const_def 5
 	const PRINTNUM_MONEY_F        ; 5

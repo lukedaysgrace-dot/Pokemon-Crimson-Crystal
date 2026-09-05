@@ -25,6 +25,7 @@ CloseText::
 	ldh [hOAMUpdate], a
 	ld hl, wVramState
 	res 6, [hl]
+	res VRAMSTATE_SPEECH_TEXTBOX_F, [hl]
 	ret
 
 .CloseText:
@@ -57,6 +58,13 @@ OpenText::
 	call LoadFonts_NoOAMUpdate ; load font
 	pop af
 	rst Bankswitch
+
+; The map is still on screen above the textbox, so overworld weather carries on
+; falling there instead of freezing for the length of the conversation. The
+; reanchor above already set bit 6, which by itself only means some window is
+; up; this says which one, so the particles know they have the top twelve rows.
+	ld hl, wVramState
+	set VRAMSTATE_SPEECH_TEXTBOX_F, [hl]
 
 	ret
 
