@@ -4,15 +4,24 @@
 ; selection receives a 25% overcast / 40% rain / 12% thunderstorm /
 ; 23% harsh sunlight intensity. Every other area is plainly sunny, which is
 ; the default and carries no battle weather at all - only an area that drew
-; harsh sunlight brings WEATHER_SUN into its battles.
+; harsh sunlight brings WEATHER_SUN into its battles, and then only between
+; sunrise and dusk (see the .gate branch of SelectCurrentWeather).
 ; Nearby maps are grouped into areas so crossing
 ; a connection does not reroll or abruptly change the day's regional weather.
 
 _SetCurrentWeather::
-	xor a
-	ldh [hCurWeather], a
 	; Keep the motion phase across map connections and reloads. HRAM is cleared
 	; at boot, and the render timers wrap themselves into range.
+	call SelectCurrentWeather
+	ldh [hCurWeather], a
+	jp LoadWeatherGraphics
+
+SelectCurrentWeather:
+; Work out what this map should be showing right now and return it in a.
+; Nothing is written to hCurWeather here, so the time-of-day refresh below can
+; ask the same question mid-map and compare the answer against what is already
+; on screen. LoadWeatherGraphics is a plain ret for OW_WEATHER_NONE, so the
+; indoor paths cost nothing by falling through to it in the caller.
 
 	; A few interior maps are permanently snowy despite being caves. Check them
 	; before the outdoor-only gate so their snow is not skipped.
@@ -20,8 +29,7 @@ _SetCurrentWeather::
 	call IsCurrentMapInWeatherArea
 	jr nz, .not_indoor_snow
 	ld a, OW_WEATHER_SNOW
-	ldh [hCurWeather], a
-	jp LoadWeatherGraphics
+	ret
 .not_indoor_snow
 
 	; Weather is an outdoor effect only.
@@ -29,30 +37,88 @@ _SetCurrentWeather::
 	cp TOWN
 	jr z, .outdoors
 	cp ROUTE
-	ret nz
+	jr z, .outdoors
+	xor a ; OW_WEATHER_NONE
+	ret
 
 .outdoors
 	call EnsureDailyWeather
 
 	call CheckCherrygroveWeather
-	jr c, .set
+	jr c, .gate
 	call CheckLakeOfRageWeather
-	jr c, .set
+	jr c, .gate
 	call CheckOlivineWeather
-	jr c, .set
+	jr c, .gate
 	call CheckAzaleaWeather
-	jr c, .set
+	jr c, .gate
 	call CheckSnowWeather
-	jr c, .set
+	jr c, .gate
 	call CheckSandstormWeather
-	jr c, .set
+	jr c, .gate
 	call CheckGenericDailyWeather
-	jr c, .set
+	jr c, .gate
 
 	xor a ; OW_WEATHER_NONE
-.set
+	ret
+
+.gate
+	; Harsh sunlight is the one condition that answers to the clock. It is
+	; overhead noon light, and the tint it applies - highlights lifted toward
+	; white, midtones stripped of blue - is built to fight the day palette. Run
+	; it over the night palette instead and the blue it takes out is most of
+	; what is there, so the map goes muddy brown rather than bright.
+	;
+	; The day's roll is deliberately left alone: the area still counts as having
+	; drawn harsh sun, and reverts to it at dawn without rerolling. It simply
+	; shows, and battles, as a plain sunny day until then.
+	cp OW_WEATHER_HARSH_SUN
+	ret nz
+	call IsHarshSunAllowed
+	ld a, OW_WEATHER_HARSH_SUN
+	ret c
+	xor a ; OW_WEATHER_NONE
+	ret
+
+IsHarshSunAllowed:
+; Return carry if harsh sunlight may be on screen right now. MORN_F and DAY_F
+; qualify; NITE_F and DARKNESS_F do not. Clobbers a, so callers that still
+; need the weather reload it afterwards.
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	ret
+
+RefreshTimeGatedWeather::
+; The clock has just moved to a new time of day. Harsh sunlight is the only
+; weather that cares, and it only ever trades places with plain sunny - both
+; are particle-free, so no tiles have to be loaded or freed and the weather
+; byte can be swapped where it stands. Farcalled from _TimeOfDayPals before it
+; rebuilds the palettes, so the tint that gets reapplied is the right one.
+;
+; Anything with particles on screen is left exactly as it is: the day's roll
+; has not changed, only the hour, and the next map load will resettle it.
+;
+; Return carry if hCurWeather changed and the palettes must be rebuilt.
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_OVERCAST
+	jr nc, .unchanged ; rain, snow, sand and blossoms have particles loaded
+	call SelectCurrentWeather
+	cp OW_WEATHER_OVERCAST
+	jr nc, .unchanged ; the day rolled over on the same step; leave it to map load
+	; The answer only reaches b after the call: IsCurrentMapInWeatherArea builds
+	; the map it is looking for in bc, so nothing survives SelectCurrentWeather
+	; in a register.
+	ld b, a
+	ldh a, [hCurWeather]
+	cp b
+	jr z, .unchanged
+	ld a, b
 	ldh [hCurWeather], a
-	jp LoadWeatherGraphics
+	scf
+	ret
+.unchanged
+	and a
+	ret
 
 EnsureDailyWeather:
 	ld a, [wCurDay]
