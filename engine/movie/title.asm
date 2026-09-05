@@ -217,29 +217,26 @@ _TitleScreen:
 
 	ret
 
-; Hold each title Suicune frame for this many game frames.
-; 6 frames ~= 100 ms per frame at ~60 fps (vanilla Crystal uses 8).
-TITLE_SUICUNE_FRAME_LENGTH EQU 6
-
 SuicuneFrameIterator:
 	ld hl, wSuicuneFrame
 	ld a, [hl]
 	ld c, a
 	inc a
-	cp 4 * TITLE_SUICUNE_FRAME_LENGTH
+	cp 4 * 8
 	jr c, .store_counter
 	xor a
 .store_counter
 	ld [hl], a
 
+; Hold each title Suicune frame for 8 frames (matches vanilla Crystal).
 	ld a, c
 	and a
 	jr z, .frame0
-	cp 1 * TITLE_SUICUNE_FRAME_LENGTH
+	cp 1 * 8
 	jr z, .frame1
-	cp 2 * TITLE_SUICUNE_FRAME_LENGTH
+	cp 2 * 8
 	jr z, .frame2
-	cp 3 * TITLE_SUICUNE_FRAME_LENGTH
+	cp 3 * 8
 	jr z, .frame3
 	ret
 
