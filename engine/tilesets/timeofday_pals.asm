@@ -28,6 +28,15 @@ _TimeOfDayPals::
 	ld a, [wTimeOfDay]
 	ld [wCurTimeOfDay], a
 
+; Harsh sunlight is a morning-and-day condition, so crossing into or out of
+; night can change the weather with no map reload behind it. Settle that first:
+; the SCGB_MAPPALS layout below reapplies the weather tint and has to see the
+; new value. Carry means the weather byte actually moved, which forces the
+; rebuild even in the corner case where the new time of day shares a palette
+; id with the one it replaced.
+	farcall RefreshTimeGatedWeather
+	jr c, .force_rebuild
+
 ; get palette id
 	call GetTimePalette
 
@@ -35,7 +44,12 @@ _TimeOfDayPals::
 	ld hl, wTimeOfDayPal
 	cp [hl]
 	jr z, .dontchange
+	jr .rebuild
 
+.force_rebuild
+	call GetTimePalette
+
+.rebuild
 ; update palette id
 	ld [wTimeOfDayPal], a
 
