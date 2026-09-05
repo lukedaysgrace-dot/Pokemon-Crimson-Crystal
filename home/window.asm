@@ -14,6 +14,16 @@ RefreshScreen::
 	ret
 
 CloseText::
+; Stop holding the particles above the textbox before the close begins rather
+; than after it ends. .CloseText erases the box in its first few instructions
+; but then spends a dozen-odd frames restoring VRAM, and it rebuilds the
+; sprites partway through; with the clip still on, that rebuild would leave the
+; bottom third of the map bare for the whole of it, and the weather would then
+; visibly flood back in. Permission to draw at all (bit 3) has to outlast the
+; close, so it is still cleared at the bottom.
+	ld hl, wVramState
+	res VRAMSTATE_TEXTBOX_DRAWN_F, [hl]
+
 	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -53,11 +63,6 @@ OpenText::
 	rst Bankswitch
 
 	call ReanchorBGMap_NoOAMUpdate ; clear bgmap
-	call SpeechTextbox
-	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap ; anchor bgmap
-	call LoadFonts_NoOAMUpdate ; load font
-	pop af
-	rst Bankswitch
 
 ; The map is still on screen above the textbox, so overworld weather carries on
 ; falling there instead of freezing for the length of the conversation. The
@@ -65,6 +70,13 @@ OpenText::
 ; up; this says which one, so the particles know they have the top twelve rows.
 	ld hl, wVramState
 	set VRAMSTATE_SPEECH_TEXTBOX_F, [hl]
+	set VRAMSTATE_TEXTBOX_DRAWN_F, [hl]
+
+	call SpeechTextbox
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap ; anchor bgmap
+	call LoadFonts_NoOAMUpdate ; load font
+	pop af
+	rst Bankswitch
 
 	ret
 
