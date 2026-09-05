@@ -569,6 +569,7 @@ MapObjectMovementPattern:
 	dw .MovementShakingGrass ; 1b
 	dw .MovementSlowBouncing ; 1c
 	dw .LookDownLeft ; 1d
+	dw .MovementSnorlaxSleep ; 1e
 
 .Null_00:
 	ret
@@ -797,6 +798,20 @@ MapObjectMovementPattern:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_BIG_DOLL_SYM
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_04
+	ret
+
+.MovementSnorlaxSleep:
+; as .MovementBigStanding, but keeps the sleeping SNORLAX animating
+	call EndSpriteMovement
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], STANDING
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_SNORLAX_SLEEP
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04

@@ -153,7 +153,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "HURRICANE",
-"TWISTER",
+"HYPER_VOICE",
 "HYPER_BEAM",
 "ROOST"
 ],
@@ -178,10 +178,10 @@
 "item": "NO_ITEM",
 "abilslot": "ABILITY_2",
 "moves": [
-"HEADBUTT",
-"ENCORE",
-"ICE_PUNCH",
-"LIGHT_SCREEN"
+"FAIRY_WIND",
+"FIRE_PUNCH",
+"THUNDERPUNCH",
+"ENCORE"
 ],
 "ability": "MAGIC_GUARD",
 "types": [
@@ -389,7 +389,7 @@
 "item": "BERRY_JUICE",
 "abilslot": "ABILITY_1",
 "moves": [
-"FURY_CUTTER",
+"BUG_BITE",
 "QUICK_ATTACK",
 "PURSUIT",
 "WING_ATTACK"
@@ -500,7 +500,7 @@
 "moves": [
 "SWORDS_DANCE",
 "BULLET_PUNCH",
-"X_SCISSOR",
+"BUG_BITE",
 "KNOCK_OFF"
 ],
 "ability": "TECHNICIAN",
@@ -526,8 +526,8 @@
 "moves": [
 "SHADOW_PUNCH",
 "ICE_PUNCH",
-"MUD_SLAP",
-"ASTONISH"
+"BULLDOZE",
+"LOW_SWEEP"
 ],
 "ability": "IRON_FIST",
 "types": [
@@ -544,7 +544,7 @@
 "SHADOW_BALL",
 "CONFUSE_RAY",
 "PAIN_SPLIT",
-"PSYWAVE"
+"FAIRY_WIND"
 ],
 "ability": "LEVITATE",
 "types": [
@@ -575,8 +575,8 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "SHADOW_BALL",
-"HYPNOSIS",
-"DREAM_EATER",
+"SLUDGE",
+"CONFUSE_RAY",
 "MEAN_LOOK"
 ],
 "ability": "LEVITATE",
@@ -616,7 +616,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "SHADOW_PUNCH",
-"ICE_PUNCH",
+"PAIN_SPLIT",
 "THUNDERPUNCH",
 "FIRE_PUNCH"
 ],
@@ -760,7 +760,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "SWIFT",
-"ICE_BEAM",
+"HYPER_VOICE",
 "ANCIENTPOWER",
 "THUNDER_WAVE"
 ],
@@ -776,7 +776,7 @@
 "item": "NO_ITEM",
 "abilslot": "HIDDEN_ABILITY",
 "moves": [
-"BLIZZARD",
+"ICE_BEAM",
 "GIGA_DRAIN",
 "ICE_SHARD",
 "ROCK_SLIDE"
@@ -930,7 +930,7 @@
 "STEEL_WING",
 "DRILL_PECK",
 "PURSUIT",
-"ROOST"
+"U_TURN"
 ],
 "ability": "MIRROR_ARMOR",
 "types": [
@@ -1082,18 +1082,18 @@
 },
 {
 "level": 77,
-"species": "KINGAMBIT",
-"item": "LEFTOVERS",
-"abilslot": "HIDDEN_ABILITY",
+"species": "TINKATON",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
 "moves": [
-"SWORDS_DANCE",
-"KOWTOW_CLEAVE",
-"IRON_HEAD",
-"SACRED_SWORD"
+"GIGA_HAMMER",
+"PLAY_ROUGH",
+"KNOCK_OFF",
+"IRON_HEAD"
 ],
-"ability": "SHARPNESS",
+"ability": "MOLD_BREAKER",
 "types": [
-"DARK",
+"FAIRY",
 "STEEL"
 ]
 },
@@ -1130,7 +1130,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "TRIPLE_KICK",
-"ROLLING_KICK",
+"TRIPLE_AXEL",
 "DIG",
 "PURSUIT"
 ],
@@ -1164,7 +1164,7 @@
 "MACH_PUNCH",
 "BULLET_SEED",
 "HEADBUTT",
-"SPORE"
+"DRAIN_PUNCH"
 ],
 "ability": "TECHNICIAN",
 "types": [
@@ -1327,7 +1327,7 @@
 "item": "NO_ITEM",
 "abilslot": "HIDDEN_ABILITY",
 "moves": [
-"DRAGONBREATH",
+"DRAGON_PULSE",
 "THUNDER_WAVE",
 "ICE_BEAM",
 "THUNDERBOLT"
@@ -1345,7 +1345,7 @@
 "moves": [
 "AIR_SLASH",
 "DRAGON_PULSE",
-"BITE",
+"DARK_PULSE",
 "AGILITY"
 ],
 "ability": "WIND_RIDER",
@@ -1411,7 +1411,7 @@
 "abilslot": "ABILITY_2",
 "moves": [
 "SURF",
-"DRAGONBREATH",
+"DRAGON_PULSE",
 "ICE_BEAM",
 "AGILITY"
 ],
@@ -1534,1009 +1534,6 @@
 "ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
-"Rival1": [
-{
-"comment": "RIVAL1 (1) RIVAL1_1_CHIKORITA - Cherrygrove City",
-"mons": [
-{
-"level": 5,
-"species": "CHIKORITA",
-"abilslot": "ABILITY_1",
-"ability": "SERENE_GRACE",
-"types": [
-"GRASS"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (2) RIVAL1_1_CYNDAQUIL - Cherrygrove City",
-"mons": [
-{
-"level": 5,
-"species": "CYNDAQUIL",
-"abilslot": "ABILITY_1",
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (3) RIVAL1_1_TOTODILE - Cherrygrove City",
-"mons": [
-{
-"level": 5,
-"species": "TOTODILE",
-"abilslot": "HIDDEN_ABILITY",
-"ability": "SHEER_FORCE",
-"types": [
-"WATER"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (4) RIVAL1_2_CHIKORITA - Azalea Town",
-"mons": [
-{
-"level": 11,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 12,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 14,
-"species": "BAYLEEF",
-"abilslot": "ABILITY_1",
-"ability": "SERENE_GRACE",
-"types": [
-"GRASS"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (5) RIVAL1_2_CYNDAQUIL - Azalea Town",
-"mons": [
-{
-"level": 11,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 12,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 14,
-"species": "QUILAVA",
-"abilslot": "ABILITY_1",
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (6) RIVAL1_2_TOTODILE - Azalea Town",
-"mons": [
-{
-"level": 11,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 12,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 14,
-"species": "CROCONAW",
-"abilslot": "HIDDEN_ABILITY",
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (7) RIVAL1_3_CHIKORITA - Burned Tower 1F",
-"mons": [
-{
-"level": 22,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"WING_ATTACK",
-"BULLDOZE",
-"QUICK_ATTACK",
-"SAND_ATTACK"
-],
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 22,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERSHOCK",
-"SONICBOOM",
-"THUNDER_WAVE",
-"SWIFT"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 23,
-"species": "SLOWPOKE",
-"abilslot": "ABILITY_2",
-"moves": [
-"CONFUSION",
-"WATER_GUN",
-"HEADBUTT",
-"DISABLE"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 24,
-"species": "BAYLEEF",
-"abilslot": "ABILITY_1",
-"moves": [
-"MEGA_DRAIN",
-"RAZOR_LEAF",
-"TACKLE",
-"LEECH_SEED"
-],
-"ability": "SERENE_GRACE",
-"types": [
-"GRASS"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (8) RIVAL1_3_CYNDAQUIL - Burned Tower 1F",
-"mons": [
-{
-"level": 22,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"WING_ATTACK",
-"BULLDOZE",
-"QUICK_ATTACK",
-"SAND_ATTACK"
-],
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 22,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERSHOCK",
-"SONICBOOM",
-"THUNDER_WAVE",
-"SWIFT"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 23,
-"species": "SLOWPOKE",
-"abilslot": "ABILITY_2",
-"moves": [
-"CONFUSION",
-"WATER_GUN",
-"HEADBUTT",
-"DISABLE"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 24,
-"species": "QUILAVA",
-"abilslot": "ABILITY_1",
-"moves": [
-"FLAME_WHEEL",
-"DIG",
-"QUICK_ATTACK",
-"SMOKESCREEN"
-],
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (9) RIVAL1_3_TOTODILE - Burned Tower 1F",
-"mons": [
-{
-"level": 22,
-"species": "GLIGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"WING_ATTACK",
-"BULLDOZE",
-"QUICK_ATTACK",
-"SAND_ATTACK"
-],
-"ability": "IMMUNITY",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 22,
-"species": "MAGNEMITE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERSHOCK",
-"SONICBOOM",
-"THUNDER_WAVE",
-"SWIFT"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 23,
-"species": "SLOWPOKE_GALARIAN",
-"abilslot": "ABILITY_2",
-"moves": [
-"CONFUSION",
-"ACID",
-"HEADBUTT",
-"DISABLE"
-],
-"ability": "UNAWARE",
-"types": [
-"PSYCHIC"
-]
-},
-{
-"level": 24,
-"species": "CROCONAW",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITE",
-"ICE_PUNCH",
-"WATER_GUN",
-"MUD_SLAP"
-],
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (10) RIVAL1_4_CHIKORITA - Goldenrod Underground Switch Room Entrances",
-"mons": [
-{
-"level": 40,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 41,
-"species": "MAGNETON",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 41,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 41,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 41,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 42,
-"species": "MEGANIUM",
-"abilslot": "ABILITY_2",
-"moves": [
-"GIGA_DRAIN",
-"BODY_SLAM",
-"SYNTHESIS",
-"REFLECT"
-],
-"ability": "MEGA_SOL",
-"types": [
-"GRASS",
-"FAIRY"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (11) RIVAL1_4_CYNDAQUIL - Goldenrod Underground Switch Room Entrances",
-"mons": [
-{
-"level": 40,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 41,
-"species": "MAGNETON",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 41,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 41,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 41,
-"species": "GENGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"SHADOW_BALL",
-"SLUDGE_BOMB",
-"THUNDERBOLT",
-"CONFUSE_RAY"
-],
-"ability": "LEVITATE",
-"types": [
-"GHOST",
-"POISON"
-]
-},
-{
-"level": 42,
-"species": "TYPHLOSION",
-"abilslot": "ABILITY_1",
-"moves": [
-"FLAMETHROWER",
-"THUNDERPUNCH",
-"EARTH_POWER",
-"QUICK_ATTACK"
-],
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (12) RIVAL1_4_TOTODILE - Goldenrod Underground Switch Room Entrances",
-"mons": [
-{
-"level": 40,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 41,
-"species": "MAGNETON",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 41,
-"species": "SLOWKING_GALARIAN",
-"abilslot": "ABILITY_2",
-"moves": [
-"PSYCHIC_M",
-"SLUDGE_BOMB",
-"FLAMETHROWER",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"POISON",
-"PSYCHIC"
-]
-},
-{
-"level": 41,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 41,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 42,
-"species": "FERALIGATR",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"WATERFALL",
-"ICE_PUNCH",
-"CRUNCH",
-"ROCK_SLIDE"
-],
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL1 (13) RIVAL1_5_CHIKORITA - Victory Road",
-"mons": [
-{
-"level": 48,
-"species": "GLISCOR",
-"item": "TOXIC_ORB",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 49,
-"species": "MAGNEZONE",
-"item": "MAGNET",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 49,
-"species": "SLOWKING",
-"item": "LEFTOVERS",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 49,
-"species": "WEAVILE",
-"item": "NEVERMELTICE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 49,
-"species": "CERULEDGE",
-"item": "CHARCOAL",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 51,
-"species": "MEGANIUM",
-"item": "MIRACLE_SEED",
-"abilslot": "ABILITY_2",
-"moves": [
-"GIGA_DRAIN",
-"BODY_SLAM",
-"SYNTHESIS",
-"REFLECT"
-],
-"ability": "MEGA_SOL",
-"types": [
-"GRASS",
-"FAIRY"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
-},
-{
-"comment": "RIVAL1 (14) RIVAL1_5_CYNDAQUIL - Victory Road",
-"mons": [
-{
-"level": 48,
-"species": "GLISCOR",
-"item": "TOXIC_ORB",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 49,
-"species": "MAGNEZONE",
-"item": "MAGNET",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 49,
-"species": "SLOWKING",
-"item": "LEFTOVERS",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 49,
-"species": "WEAVILE",
-"item": "NEVERMELTICE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 49,
-"species": "GENGAR",
-"item": "SPELL_TAG",
-"abilslot": "ABILITY_1",
-"moves": [
-"SHADOW_BALL",
-"SLUDGE_BOMB",
-"THUNDERBOLT",
-"DESTINY_BOND"
-],
-"ability": "LEVITATE",
-"types": [
-"GHOST",
-"POISON"
-]
-},
-{
-"level": 51,
-"species": "TYPHLOSION",
-"item": "CHARCOAL",
-"abilslot": "ABILITY_1",
-"moves": [
-"FLAMETHROWER",
-"THUNDERPUNCH",
-"EARTH_POWER",
-"QUICK_ATTACK"
-],
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
-},
-{
-"comment": "RIVAL1 (15) RIVAL1_5_TOTODILE - Victory Road",
-"mons": [
-{
-"level": 48,
-"species": "GLISCOR",
-"item": "TOXIC_ORB",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 49,
-"species": "MAGNEZONE",
-"item": "MAGNET",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 49,
-"species": "SLOWKING_GALARIAN",
-"item": "LEFTOVERS",
-"abilslot": "ABILITY_2",
-"moves": [
-"PSYCHIC_M",
-"SLUDGE_BOMB",
-"FLAMETHROWER",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"POISON",
-"PSYCHIC"
-]
-},
-{
-"level": 49,
-"species": "WEAVILE",
-"item": "NEVERMELTICE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 49,
-"species": "CERULEDGE",
-"item": "CHARCOAL",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 51,
-"species": "FERALIGATR",
-"item": "MYSTIC_WATER",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"WATERFALL",
-"ICE_PUNCH",
-"CRUNCH",
-"ROCK_SLIDE"
-],
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
-}
-],
 "Will": [
 {
 "comment": "WILL (1) WILL1 - Wills Room",
@@ -2627,17 +1624,18 @@
 },
 {
 "level": 52,
-"species": "ESPATHRA",
-"item": "LEFTOVERS",
-"abilslot": "HIDDEN_ABILITY",
+"species": "WYRDEER",
+"item": "MUSCLE_BAND",
+"abilslot": "ABILITY_1",
 "moves": [
-"PSYCHIC_M",
-"DAZZLING_GLEAM",
-"SHADOW_BALL",
-"CALM_MIND"
+"ZEN_HEADBUTT",
+"DOUBLE_EDGE",
+"MEGAHORN",
+"AGILITY"
 ],
-"ability": "SPEED_BOOST",
+"ability": "INTIMIDATE",
 "types": [
+"NORMAL",
 "PSYCHIC"
 ]
 }
@@ -2650,14 +1648,33 @@
 "mons": [
 {
 "level": 78,
-"species": "WYRDEER",
-"item": "SCOPE_LENS",
+"species": "XATU",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"DOUBLE_EDGE",
-"ZEN_HEADBUTT",
-"EARTHQUAKE",
-"REFLECT"
+"CALM_MIND",
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST"
 ],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 79,
+"species": "FARIGIRAF",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"PSYCHIC_M",
+"HYPER_VOICE",
+"CRUNCH",
+"THUNDERBOLT"
+],
+"ability": "ARMOR_TAIL",
 "types": [
 "NORMAL",
 "PSYCHIC"
@@ -2665,59 +1682,33 @@
 },
 {
 "level": 79,
+"species": "GALLADE",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_2",
+"moves": [
+"SWORDS_DANCE",
+"PSYCHO_CUT",
+"SACRED_SWORD",
+"NIGHT_SLASH"
+],
+"ability": "SHARPNESS",
+"types": [
+"PSYCHIC",
+"FIGHTING"
+]
+},
+{
+"level": 80,
 "species": "SLOWKING",
 "item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"FLAMETHROWER",
-"SURF",
-"REST",
-"SLEEP_TALK"
-],
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 79,
-"species": "EXEGGUTOR",
-"item": "MIRACLEBERRY",
-"moves": [
-"ANCIENTPOWER",
-"SLEEP_POWDER",
-"DREAM_EATER",
-"SOFTBOILED"
-],
-"types": [
-"GRASS",
-"PSYCHIC"
-]
-},
-{
-"level": 80,
-"species": "GARDEVOIR",
-"item": "WISE_GLASSES",
-"moves": [
+"CALM_MIND",
 "PSYCHIC_M",
-"MOONBLAST",
-"SHADOW_BALL",
-"CALM_MIND"
+"SURF",
+"SLACK_OFF"
 ],
-"types": [
-"PSYCHIC",
-"FAIRY"
-]
-},
-{
-"level": 80,
-"species": "SLOWBRO",
-"item": "QUICK_CLAW",
-"moves": [
-"FLAMETHROWER",
-"CURSE",
-"EARTHQUAKE",
-"ROCK_SMASH"
-],
+"ability": "REGENERATOR",
 "types": [
 "WATER",
 "PSYCHIC"
@@ -2725,22 +1716,39 @@
 },
 {
 "level": 80,
-"species": "XATU",
-"item": "LEFTOVERS",
+"species": "GRUMPIG",
+"item": "WISE_GLASSES",
+"abilslot": "ABILITY_1",
 "moves": [
-"FUTURE_SIGHT",
-"FLY",
-"CONFUSE_RAY",
-"PROTECT"
+"CALM_MIND",
+"PSYCHIC_M",
+"SHADOW_BALL",
+"THUNDERBOLT"
 ],
+"ability": "THICK_FAT",
 "types": [
-"PSYCHIC",
-"FLYING"
+"PSYCHIC"
+]
+},
+{
+"level": 80,
+"species": "ESPATHRA",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"CALM_MIND",
+"PSYCHIC_M",
+"DAZZLING_GLEAM",
+"SHADOW_BALL"
+],
+"ability": "SPEED_BOOST",
+"types": [
+"PSYCHIC"
 ]
 }
 ],
 "name": "WILL",
-"ttype": "TRAINERTYPE_ITEM_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Bruno": [
@@ -2855,60 +1863,67 @@
 "mons": [
 {
 "level": 78,
+"species": "CONKELDURR",
+"item": "FLAME_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"FACADE",
+"DRAIN_PUNCH",
+"MACH_PUNCH",
+"KNOCK_OFF"
+],
+"ability": "GUTS",
+"types": [
+"FIGHTING"
+]
+},
+{
+"level": 79,
+"species": "HITMONTOP",
+"item": "MUSCLE_BAND",
+"abilslot": "ABILITY_1",
+"moves": [
+"TRIPLE_KICK",
+"CLOSE_COMBAT",
+"MACH_PUNCH",
+"SUCKER_PUNCH"
+],
+"ability": "TECHNICIAN",
+"types": [
+"FIGHTING"
+]
+},
+{
+"level": 79,
 "species": "LUCARIO",
 "item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
 "moves": [
+"SWORDS_DANCE",
 "CLOSE_COMBAT",
-"IRON_TAIL",
-"EARTHQUAKE",
-"BULLET_PUNCH"
+"BULLET_PUNCH",
+"EXTREMESPEED"
 ],
+"ability": "ADAPTABILITY",
 "types": [
 "FIGHTING",
 "STEEL"
 ]
 },
 {
-"level": 79,
-"species": "POLIWRATH",
-"item": "SCOPE_LENS",
-"moves": [
-"SUBMISSION",
-"BLIZZARD",
-"HYDRO_PUMP",
-"PSYCHIC_M"
-],
-"types": [
-"WATER",
-"FIGHTING"
-]
-},
-{
-"level": 79,
-"species": "HERACROSS",
-"item": "QUICK_CLAW",
-"moves": [
-"CROSS_CHOP",
-"MEGAHORN",
-"REVERSAL",
-"EARTHQUAKE"
-],
-"types": [
-"BUG",
-"FIGHTING"
-]
-},
-{
 "level": 80,
-"species": "CONKELDURR",
-"item": "FLAME_ORB",
+"species": "TOXICROAK",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_2",
 "moves": [
-"CLOSE_COMBAT",
-"EARTHQUAKE",
-"ROCK_SLIDE",
-"MACH_PUNCH"
+"SWORDS_DANCE",
+"DRAIN_PUNCH",
+"POISON_JAB",
+"SUCKER_PUNCH"
 ],
+"ability": "DRY_SKIN",
 "types": [
+"POISON",
 "FIGHTING"
 ]
 },
@@ -2916,12 +1931,14 @@
 "level": 80,
 "species": "ANNIHILAPE",
 "item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"CLOSE_COMBAT",
-"RAGE_FIST",
 "BULK_UP",
-"NIGHT_SLASH"
+"RAGE_FIST",
+"DRAIN_PUNCH",
+"SHADOW_CLAW"
 ],
+"ability": "DEFIANT",
 "types": [
 "FIGHTING",
 "GHOST"
@@ -2930,20 +1947,22 @@
 {
 "level": 80,
 "species": "MACHAMP",
-"item": "LEFTOVERS",
+"item": "EXPERT_BELT",
+"abilslot": "ABILITY_2",
 "moves": [
-"ROCK_SLIDE",
-"EARTHQUAKE",
-"BODY_SLAM",
-"CROSS_CHOP"
+"DYNAMICPUNCH",
+"STONE_EDGE",
+"ICE_PUNCH",
+"KNOCK_OFF"
 ],
+"ability": "NO_GUARD",
 "types": [
 "FIGHTING"
 ]
 }
 ],
 "name": "BRUNO",
-"ttype": "TRAINERTYPE_ITEM_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Karen": [
@@ -2959,7 +1978,7 @@
 "FOUL_PLAY",
 "TOXIC",
 "MOONLIGHT",
-"PURSUIT"
+"CONFUSE_RAY"
 ],
 "ability": "SYNCHRONIZE",
 "types": [
@@ -3007,7 +2026,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "SPIRIT_BREAK",
-"SUCKER_PUNCH",
+"CRUNCH",
 "THUNDER_WAVE",
 "BULK_UP"
 ],
@@ -3061,94 +2080,107 @@
 {
 "level": 78,
 "species": "UMBREON",
-"item": "MIRACLEBERRY",
-"moves": [
-"GROWTH",
-"SHADOW_BALL",
-"HIDDEN_POWER",
-"BATON_PASS"
-],
-"types": [
-"DARK"
-]
-},
-{
-"level": 79,
-"species": "GENGAR",
-"item": "SCOPE_LENS",
-"moves": [
-"SHADOW_BALL",
-"PSYCHIC_M",
-"GIGA_DRAIN",
-"DESTINY_BOND"
-],
-"types": [
-"GHOST",
-"POISON"
-]
-},
-{
-"level": 79,
-"species": "PERSIAN_ALOLAN",
-"item": "SCOPE_LENS",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
 "moves": [
 "FOUL_PLAY",
-"NIGHT_SLASH",
-"HYPNOSIS",
-"U_TURN"
+"TOXIC",
+"MOONLIGHT",
+"CONFUSE_RAY"
 ],
+"ability": "SYNCHRONIZE",
 "types": [
 "DARK"
 ]
 },
 {
-"level": 80,
-"species": "MURKROW",
-"item": "SHARP_BEAK",
+"level": 79,
+"species": "HONCHKROW",
+"item": "LIFE_ORB",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"SKY_ATTACK",
-"PURSUIT",
-"SWAGGER",
-"PSYCH_UP"
+"BRAVE_BIRD",
+"SUCKER_PUNCH",
+"NIGHT_SLASH",
+"HEAT_WAVE"
 ],
+"ability": "MOXIE",
 "types": [
 "DARK",
 "FLYING"
 ]
 },
 {
-"level": 80,
-"species": "TYRANITAR",
-"item": "LEFTOVERS",
+"level": 79,
+"species": "WEAVILE",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
 "moves": [
-"CRUNCH",
-"ROCK_SLIDE",
-"EARTHQUAKE",
-"DRAGON_DANCE"
+"ICICLE_CRASH",
+"KNOCK_OFF",
+"ICE_SHARD",
+"LOW_KICK"
 ],
+"ability": "TECHNICIAN",
 "types": [
-"ROCK",
-"DARK"
+"DARK",
+"ICE"
+]
+},
+{
+"level": 80,
+"species": "GRIMMSNARL",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"BULK_UP",
+"SPIRIT_BREAK",
+"CRUNCH",
+"THUNDER_WAVE"
+],
+"ability": "PRANKSTER",
+"types": [
+"DARK",
+"FAIRY"
 ]
 },
 {
 "level": 80,
 "species": "HOUNDOOM",
-"item": "CHARCOAL",
+"item": "LIFE_ORB",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"FLAMETHROWER",
-"CRUNCH",
-"IRON_TAIL",
-"HIDDEN_POWER"
+"NASTY_PLOT",
+"DARK_PULSE",
+"FIRE_BLAST",
+"SLUDGE_BOMB"
 ],
+"ability": "ADAPTABILITY",
 "types": [
 "DARK",
 "FIRE"
 ]
+},
+{
+"level": 80,
+"species": "KINGAMBIT",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SWORDS_DANCE",
+"KOWTOW_CLEAVE",
+"SUCKER_PUNCH",
+"IRON_HEAD"
+],
+"ability": "SUPREME_OVERLORD",
+"types": [
+"DARK",
+"STEEL"
+]
 }
 ],
 "name": "KAREN",
-"ttype": "TRAINERTYPE_ITEM_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Koga": [
@@ -3266,88 +2298,101 @@
 "mons": [
 {
 "level": 78,
-"species": "TENTACRUEL",
-"item": "MINT_BERRY",
+"species": "GLIMMORA",
+"item": "FOCUS_SASH",
+"abilslot": "ABILITY_1",
 "moves": [
-"WATERFALL",
-"BLIZZARD",
-"GIGA_DRAIN",
-"REST"
+"TOXIC_SPIKES",
+"STEALTH_ROCK",
+"SLUDGE_BOMB",
+"EARTH_POWER"
 ],
+"ability": "TOXIC_DEBRIS",
+"types": [
+"ROCK",
+"POISON"
+]
+},
+{
+"level": 79,
+"species": "MUK_ALOLAN",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"GUNK_SHOT",
+"KNOCK_OFF",
+"ICE_PUNCH",
+"SHADOW_SNEAK"
+],
+"ability": "POISON_TOUCH",
+"types": [
+"POISON",
+"DARK"
+]
+},
+{
+"level": 79,
+"species": "SCOLIPEDE",
+"item": "LIFE_ORB",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"SWORDS_DANCE",
+"MEGAHORN",
+"POISON_JAB",
+"ROCK_SLIDE"
+],
+"ability": "SPEED_BOOST",
+"types": [
+"BUG",
+"POISON"
+]
+},
+{
+"level": 80,
+"species": "TENTACRUEL",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"SCALD",
+"SLUDGE_BOMB",
+"ICE_BEAM",
+"KNOCK_OFF"
+],
+"ability": "CLEAR_BODY",
 "types": [
 "WATER",
 "POISON"
 ]
 },
 {
-"level": 79,
-"species": "MUK",
-"item": "LEFTOVERS",
+"level": 80,
+"species": "SALAZZLE",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
 "moves": [
-"MINIMIZE",
+"NASTY_PLOT",
 "FIRE_BLAST",
 "SLUDGE_BOMB",
 "TOXIC"
 ],
-"types": [
-"POISON"
-]
-},
-{
-"level": 79,
-"species": "ARIADOS",
-"item": "SCOPE_LENS",
-"moves": [
-"POISON_JAB",
-"X_SCISSOR",
-"SUCKER_PUNCH",
-"TOXIC"
-],
-"types": [
-"BUG",
-"POISON"
-]
-},
-{
-"level": 80,
-"species": "NIDOKING",
-"item": "QUICK_CLAW",
-"moves": [
-"LOVELY_KISS",
-"FIRE_BLAST",
-"SURF",
-"EARTHQUAKE"
-],
+"ability": "CORROSION",
 "types": [
 "POISON",
-"GROUND"
-]
-},
-{
-"level": 80,
-"species": "VENOMOTH",
-"item": "BRIGHTPOWDER",
-"moves": [
-"PSYCHIC_M",
-"SLUDGE_BOMB",
-"BUG_BUZZ",
-"SLEEP_POWDER"
-],
-"types": [
-"BUG",
-"POISON"
+"FIRE"
 ]
 },
 {
 "level": 80,
 "species": "CROBAT",
 "item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"PROTECT",
-"FLY",
-"TOXIC",
-"CONFUSE_RAY"
+"BRAVE_BIRD",
+"CROSS_POISON",
+"U_TURN",
+"ROOST"
 ],
+"ability": "INFILTRATOR",
 "types": [
 "POISON",
 "FLYING"
@@ -3355,7 +2400,7 @@
 }
 ],
 "name": "KOGA",
-"ttype": "TRAINERTYPE_ITEM_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Champion": [
@@ -3472,89 +2517,100 @@
 "mons": [
 {
 "level": 80,
-"species": "TYRANITAR",
-"item": "MAGNET",
+"species": "HAXORUS",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_2",
 "moves": [
-"CRUNCH",
-"ROCK_SLIDE",
+"DRAGON_DANCE",
+"OUTRAGE",
 "EARTHQUAKE",
-"THUNDERBOLT"
+"POISON_JAB"
 ],
+"ability": "MOLD_BREAKER",
 "types": [
-"ROCK",
-"DARK"
+"DRAGON"
 ]
 },
 {
 "level": 81,
-"species": "DRAGONITE",
-"item": "MIRACLEBERRY",
+"species": "ARCHALUDON",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
 "moves": [
-"BLIZZARD",
-"FIRE_BLAST",
-"THUNDER",
-"REST"
+"BODY_PRESS",
+"FLASH_CANNON",
+"DRACO_METEOR",
+"THUNDERBOLT"
 ],
+"ability": "STAMINA",
+"types": [
+"STEEL",
+"DRAGON"
+]
+},
+{
+"level": 81,
+"species": "SALAMENCE",
+"item": "LIFE_ORB",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"DRAGON_DANCE",
+"DOUBLE_EDGE",
+"DRAGON_CLAW",
+"EARTHQUAKE"
+],
+"ability": "AERILATE",
 "types": [
 "DRAGON",
 "FLYING"
 ]
 },
 {
-"level": 81,
-"species": "GYARADOS",
-"item": "QUICK_CLAW",
-"moves": [
-"HIDDEN_POWER",
-"HYPER_BEAM",
-"HYDRO_PUMP",
-"FIRE_BLAST"
-],
-"types": [
-"WATER",
-"FLYING"
-]
-},
-{
 "level": 82,
-"species": "CHARIZARD",
-"item": "LEFTOVERS",
+"species": "DRAGAPULT",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_2",
 "moves": [
+"DRAGON_DARTS",
+"SHADOW_BALL",
 "FIRE_BLAST",
-"CRUNCH",
-"EARTHQUAKE",
-"SWORDS_DANCE"
+"U_TURN"
 ],
+"ability": "INFILTRATOR",
 "types": [
-"FIRE",
-"DRAGON"
+"DRAGON",
+"GHOST"
 ]
 },
 {
 "level": 82,
-"species": "AERODACTYL",
-"item": "SCOPE_LENS",
+"species": "BAXCALIBUR",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
 "moves": [
-"SKY_ATTACK",
-"ROCK_SLIDE",
-"EARTHQUAKE",
-"IRON_TAIL"
+"DRAGON_DANCE",
+"ICICLE_CRASH",
+"DRAGON_CLAW",
+"EARTHQUAKE"
 ],
+"ability": "THERMAL_EXCHANGE",
 "types": [
-"ROCK",
-"FLYING"
+"DRAGON",
+"ICE"
 ]
 },
 {
 "level": 82,
 "species": "DRAGONITE",
-"item": "PINK_BOW",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
 "moves": [
-"IRON_TAIL",
-"CURSE",
+"DRAGON_DANCE",
+"OUTRAGE",
 "EXTREMESPEED",
-"HYPER_BEAM"
+"EARTHQUAKE"
 ],
+"ability": "MULTISCALE",
 "types": [
 "DRAGON",
 "FLYING"
@@ -3562,7 +2618,7 @@
 }
 ],
 "name": "LANCE",
-"ttype": "TRAINERTYPE_ITEM_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Brock": [
@@ -4224,1310 +3280,6 @@
 "ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
-"Rival2": [
-{
-"comment": "RIVAL2 (1) RIVAL2_1_CHIKORITA - Mount Moon",
-"mons": [
-{
-"level": 65,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 66,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 67,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 67,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 67,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 69,
-"species": "MEGANIUM",
-"abilslot": "ABILITY_2",
-"moves": [
-"GIGA_DRAIN",
-"BODY_SLAM",
-"SYNTHESIS",
-"REFLECT"
-],
-"ability": "MEGA_SOL",
-"types": [
-"GRASS",
-"FAIRY"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL2 (2) RIVAL2_1_CYNDAQUIL - Mount Moon",
-"mons": [
-{
-"level": 65,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 66,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 67,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 67,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 67,
-"species": "GENGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"SHADOW_BALL",
-"SLUDGE_BOMB",
-"THUNDERBOLT",
-"DESTINY_BOND"
-],
-"ability": "LEVITATE",
-"types": [
-"GHOST",
-"POISON"
-]
-},
-{
-"level": 69,
-"species": "TYPHLOSION",
-"abilslot": "ABILITY_1",
-"moves": [
-"FLAMETHROWER",
-"THUNDERPUNCH",
-"EARTH_POWER",
-"QUICK_ATTACK"
-],
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL2 (3) RIVAL2_1_TOTODILE - Mount Moon",
-"mons": [
-{
-"level": 65,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 66,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 67,
-"species": "SLOWKING_GALARIAN",
-"abilslot": "ABILITY_2",
-"moves": [
-"PSYCHIC_M",
-"SLUDGE_BOMB",
-"FLAMETHROWER",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"POISON",
-"PSYCHIC"
-]
-},
-{
-"level": 67,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 67,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 69,
-"species": "FERALIGATR",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"WATERFALL",
-"ICE_PUNCH",
-"CRUNCH",
-"ROCK_SLIDE"
-],
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL2 (4) RIVAL2_2_CHIKORITA - Indigo Plateau Pokecenter 1F",
-"mons": [
-{
-"level": 77,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 78,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 78,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 78,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 78,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 80,
-"species": "MEGANIUM",
-"abilslot": "ABILITY_2",
-"moves": [
-"GIGA_DRAIN",
-"BODY_SLAM",
-"SYNTHESIS",
-"REFLECT"
-],
-"ability": "MEGA_SOL",
-"types": [
-"GRASS",
-"FAIRY"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL2 (5) RIVAL2_2_CYNDAQUIL - Indigo Plateau Pokecenter 1F",
-"mons": [
-{
-"level": 77,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 78,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 78,
-"species": "SLOWKING",
-"abilslot": "ABILITY_2",
-"moves": [
-"SURF",
-"PSYCHIC_M",
-"ICE_BEAM",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"WATER",
-"PSYCHIC"
-]
-},
-{
-"level": 78,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 78,
-"species": "GENGAR",
-"abilslot": "ABILITY_1",
-"moves": [
-"SHADOW_BALL",
-"SLUDGE_BOMB",
-"THUNDERBOLT",
-"DESTINY_BOND"
-],
-"ability": "LEVITATE",
-"types": [
-"GHOST",
-"POISON"
-]
-},
-{
-"level": 80,
-"species": "TYPHLOSION",
-"abilslot": "ABILITY_1",
-"moves": [
-"FLAMETHROWER",
-"THUNDERPUNCH",
-"EARTH_POWER",
-"QUICK_ATTACK"
-],
-"ability": "ADAPTABILITY",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-},
-{
-"comment": "RIVAL2 (6) RIVAL2_2_TOTODILE - Indigo Plateau Pokecenter 1F",
-"mons": [
-{
-"level": 77,
-"species": "GLISCOR",
-"abilslot": "ABILITY_1",
-"moves": [
-"EARTHQUAKE",
-"AERIAL_ACE",
-"X_SCISSOR",
-"ROOST"
-],
-"ability": "POISON_HEAL",
-"types": [
-"GROUND",
-"FLYING"
-]
-},
-{
-"level": 78,
-"species": "MAGNEZONE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"THUNDERBOLT",
-"FLASH_CANNON",
-"TRI_ATTACK",
-"THUNDER_WAVE"
-],
-"ability": "LEVITATE",
-"types": [
-"ELECTRIC",
-"STEEL"
-]
-},
-{
-"level": 78,
-"species": "SLOWKING_GALARIAN",
-"abilslot": "ABILITY_2",
-"moves": [
-"PSYCHIC_M",
-"SLUDGE_BOMB",
-"FLAMETHROWER",
-"RECOVER"
-],
-"ability": "UNAWARE",
-"types": [
-"POISON",
-"PSYCHIC"
-]
-},
-{
-"level": 78,
-"species": "WEAVILE",
-"abilslot": "ABILITY_1",
-"moves": [
-"ICE_SHARD",
-"FAINT_ATTACK",
-"ICICLE_CRASH",
-"LOW_KICK"
-],
-"ability": "TECHNICIAN",
-"types": [
-"DARK",
-"ICE"
-]
-},
-{
-"level": 78,
-"species": "CERULEDGE",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"BITTER_BLADE",
-"PHANTOMFORCE",
-"PSYCHO_CUT",
-"SHADOW_SNEAK"
-],
-"ability": "SHARPNESS",
-"types": [
-"FIRE",
-"GHOST"
-]
-},
-{
-"level": 80,
-"species": "FERALIGATR",
-"abilslot": "HIDDEN_ABILITY",
-"moves": [
-"WATERFALL",
-"ICE_PUNCH",
-"CRUNCH",
-"ROCK_SLIDE"
-],
-"ability": "SHEER_FORCE",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "?",
-"ttype": "TRAINERTYPE_MOVES | TRAINERTYPE_ABILITY"
-}
-],
-"Crystal": [
-{
-"comment": "CRYSTAL (1) CRYSTAL_1_CHIKORITA - Violet City",
-"mons": [
-{
-"level": 10,
-"species": "CHIKORITA",
-"moves": [
-"TACKLE",
-"GROWL",
-"RAZOR_LEAF",
-"NO_MOVE"
-],
-"types": [
-"GRASS"
-]
-},
-{
-"level": 10,
-"species": "NATU",
-"moves": [
-"PECK",
-"LEER",
-"NIGHT_SHADE",
-"NO_MOVE"
-],
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_MOVES"
-},
-{
-"comment": "CRYSTAL (2) CRYSTAL_1_CYNDAQUIL - Violet City",
-"mons": [
-{
-"level": 10,
-"species": "CYNDAQUIL",
-"moves": [
-"TACKLE",
-"LEER",
-"SMOKESCREEN",
-"EMBER"
-],
-"types": [
-"FIRE"
-]
-},
-{
-"level": 10,
-"species": "NATU",
-"moves": [
-"PECK",
-"LEER",
-"NIGHT_SHADE",
-"NO_MOVE"
-],
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_MOVES"
-},
-{
-"comment": "CRYSTAL (3) CRYSTAL_1_TOTODILE - Violet City",
-"mons": [
-{
-"level": 10,
-"species": "TOTODILE",
-"moves": [
-"SCRATCH",
-"LEER",
-"RAGE",
-"NO_MOVE"
-],
-"types": [
-"WATER"
-]
-},
-{
-"level": 10,
-"species": "NATU",
-"moves": [
-"PECK",
-"LEER",
-"NIGHT_SHADE",
-"NO_MOVE"
-],
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_MOVES"
-},
-{
-"comment": "CRYSTAL (4) CRYSTAL_2_CHIKORITA - Ilex Forest",
-"mons": [
-{
-"level": 16,
-"species": "NATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 17,
-"species": "APPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 17,
-"species": "CUBONE",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 20,
-"species": "BAYLEEF",
-"item": "NO_ITEM",
-"types": [
-"GRASS"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (5) CRYSTAL_2_CYNDAQUIL - Ilex Forest",
-"mons": [
-{
-"level": 16,
-"species": "NATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 17,
-"species": "APPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 17,
-"species": "CUBONE",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 20,
-"species": "QUILAVA",
-"item": "NO_ITEM",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (6) CRYSTAL_2_TOTODILE - Ilex Forest",
-"mons": [
-{
-"level": 16,
-"species": "NATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 17,
-"species": "APPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 17,
-"species": "CUBONE",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 20,
-"species": "CROCONAW",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (7) CRYSTAL_3_CHIKORITA - Cianwood City",
-"mons": [
-{
-"level": 30,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 32,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 31,
-"species": "DIPPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 32,
-"species": "BAYLEEF",
-"item": "NO_ITEM",
-"types": [
-"GRASS"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (8) CRYSTAL_3_CYNDAQUIL - Cianwood City",
-"mons": [
-{
-"level": 30,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 32,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 31,
-"species": "DIPPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 32,
-"species": "QUILAVA",
-"item": "NO_ITEM",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (9) CRYSTAL_3_TOTODILE - Cianwood City",
-"mons": [
-{
-"level": 30,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 32,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 31,
-"species": "DIPPLIN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 32,
-"species": "CROCONAW",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (10) CRYSTAL_4_CHIKORITA - Ice Path 1F",
-"mons": [
-{
-"level": 41,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 42,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 42,
-"species": "HYDRAPPLE",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 42,
-"species": "PUPITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"GROUND"
-]
-},
-{
-"level": 44,
-"species": "MEGANIUM",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"FAIRY"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (11) CRYSTAL_4_CYNDAQUIL - Ice Path 1F",
-"mons": [
-{
-"level": 41,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 42,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 42,
-"species": "FLAPPLE",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 42,
-"species": "PUPITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"GROUND"
-]
-},
-{
-"level": 44,
-"species": "TYPHLOSION",
-"item": "NO_ITEM",
-"types": [
-"FIRE"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (12) CRYSTAL_4_TOTODILE - Ice Path 1F",
-"mons": [
-{
-"level": 41,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 42,
-"species": "MAROWAK",
-"item": "THICK_CLUB",
-"types": [
-"GROUND"
-]
-},
-{
-"level": 42,
-"species": "APPLETUN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 42,
-"species": "PUPITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"GROUND"
-]
-},
-{
-"level": 44,
-"species": "FERALIGATR",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"DARK"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (13) CRYSTAL_5_CHIKORITA - Route 25 (Cerulean Cape)",
-"mons": [
-{
-"level": 70,
-"species": "MEGANIUM",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"FAIRY"
-]
-},
-{
-"level": 68,
-"species": "HYDRAPPLE",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 69,
-"species": "TYRANITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"DARK"
-]
-},
-{
-"level": 69,
-"species": "URSALUNA",
-"item": "NO_ITEM",
-"types": [
-"GROUND",
-"NORMAL"
-]
-},
-{
-"level": 68,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 68,
-"species": "LANTURN",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"ELECTRIC"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (14) CRYSTAL_5_CYNDAQUIL - Route 25 (Cerulean Cape)",
-"mons": [
-{
-"level": 70,
-"species": "TYPHLOSION",
-"item": "NO_ITEM",
-"types": [
-"FIRE"
-]
-},
-{
-"level": 68,
-"species": "FLAPPLE",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 69,
-"species": "TYRANITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"DARK"
-]
-},
-{
-"level": 69,
-"species": "URSALUNA",
-"item": "NO_ITEM",
-"types": [
-"GROUND",
-"NORMAL"
-]
-},
-{
-"level": 68,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 68,
-"species": "LANTURN",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"ELECTRIC"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-},
-{
-"comment": "CRYSTAL (15) CRYSTAL_5_TOTODILE - Route 25 (Cerulean Cape)",
-"mons": [
-{
-"level": 70,
-"species": "FERALIGATR",
-"item": "NO_ITEM",
-"types": [
-"WATER",
-"DARK"
-]
-},
-{
-"level": 68,
-"species": "APPLETUN",
-"item": "NO_ITEM",
-"types": [
-"GRASS",
-"DRAGON"
-]
-},
-{
-"level": 69,
-"species": "TYRANITAR",
-"item": "NO_ITEM",
-"types": [
-"ROCK",
-"DARK"
-]
-},
-{
-"level": 69,
-"species": "URSALUNABM",
-"item": "NO_ITEM",
-"types": [
-"GROUND",
-"NORMAL"
-]
-},
-{
-"level": 68,
-"species": "XATU",
-"item": "NO_ITEM",
-"types": [
-"PSYCHIC",
-"FLYING"
-]
-},
-{
-"level": 68,
-"species": "VOLCARONA",
-"item": "NO_ITEM",
-"types": [
-"BUG",
-"FIRE"
-]
-}
-],
-"name": "CRYSTAL",
-"ttype": "TRAINERTYPE_ITEM"
-}
-],
 "Blaine": [
 {
 "comment": "BLAINE (1) BLAINE1 - Seafoam Gym",
@@ -5755,7 +3507,7 @@
 "moves": [
 "HURRICANE",
 "HEAT_WAVE",
-"U_TURN",
+"SIGNAL_BEAM",
 "ROOST"
 ],
 "ability": "NO_GUARD",
@@ -5821,7 +3573,7 @@
 "abilslot": "ABILITY_1",
 "moves": [
 "BULLET_PUNCH",
-"X_SCISSOR",
+"BUG_BITE",
 "U_TURN",
 "SWORDS_DANCE"
 ],
@@ -5837,7 +3589,7 @@
 "item": "LIFE_ORB",
 "abilslot": "ABILITY_2",
 "moves": [
-"THUNDERPUNCH",
+"WILD_CHARGE",
 "ICE_PUNCH",
 "FIRE_PUNCH",
 "CRUNCH"
@@ -5860,12 +3612,15 @@
 {
 "level": 33,
 "species": "HYPNO",
+"item": "TWISTEDSPOON",
+"abilslot": "ABILITY_1",
 "moves": [
 "PSYCHIC_M",
 "HYPNOSIS",
 "DREAM_EATER",
 "REFLECT"
 ],
+"ability": "INSOMNIA",
 "types": [
 "PSYCHIC"
 ]
@@ -5873,12 +3628,15 @@
 {
 "level": 33,
 "species": "HAUNTER",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
 "moves": [
 "SHADOW_BALL",
 "HYPNOSIS",
 "CONFUSE_RAY",
 "SUCKER_PUNCH"
 ],
+"ability": "LEVITATE",
 "types": [
 "GHOST",
 "POISON"
@@ -5887,19 +3645,22 @@
 {
 "level": 34,
 "species": "ELECTRODE",
+"item": "MAGNET",
+"abilslot": "ABILITY_2",
 "moves": [
 "THUNDERBOLT",
 "THUNDER_WAVE",
 "SELFDESTRUCT",
 "LIGHT_SCREEN"
 ],
+"ability": "STATIC",
 "types": [
 "ELECTRIC"
 ]
 }
 ],
 "name": "EUSINE",
-"ttype": "TRAINERTYPE_MOVES"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Agatha": [
@@ -5909,6 +3670,15 @@
 {
 "level": 77,
 "species": "GENGAR",
+"item": "FOCUS_SASH",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"THUNDERBOLT",
+"DESTINY_BOND"
+],
+"ability": "LEVITATE",
 "types": [
 "GHOST",
 "POISON"
@@ -5917,6 +3687,15 @@
 {
 "level": 78,
 "species": "MISDREAVUS",
+"item": "EVIOLITE",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WILL_O_WISP",
+"SHADOW_BALL",
+"CONFUSE_RAY",
+"PAIN_SPLIT"
+],
+"ability": "PRANKSTER",
 "types": [
 "GHOST",
 "FAIRY"
@@ -5925,6 +3704,15 @@
 {
 "level": 78,
 "species": "ARBOK",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"GUNK_SHOT",
+"CRUNCH",
+"EARTHQUAKE",
+"GLARE"
+],
+"ability": "INTIMIDATE",
 "types": [
 "POISON"
 ]
@@ -5932,6 +3720,15 @@
 {
 "level": 79,
 "species": "CROBAT",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"CROSS_POISON",
+"BRAVE_BIRD",
+"U_TURN",
+"ROOST"
+],
+"ability": "INFILTRATOR",
 "types": [
 "POISON",
 "FLYING"
@@ -5940,6 +3737,15 @@
 {
 "level": 79,
 "species": "HAUNTER",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
+"moves": [
+"HYPNOSIS",
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"DREAM_EATER"
+],
+"ability": "LEVITATE",
 "types": [
 "GHOST",
 "POISON"
@@ -5948,6 +3754,15 @@
 {
 "level": 79,
 "species": "GENGAR",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"NASTY_PLOT",
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"FOCUS_BLAST"
+],
+"ability": "LEVITATE",
 "types": [
 "GHOST",
 "POISON"
@@ -5955,7 +3770,7 @@
 }
 ],
 "name": "AGATHA",
-"ttype": "TRAINERTYPE_NORMAL"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Lorelei": [
@@ -5965,6 +3780,15 @@
 {
 "level": 77,
 "species": "DEWGONG",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"SURF",
+"ICE_BEAM",
+"REST",
+"SLEEP_TALK"
+],
+"ability": "THICK_FAT",
 "types": [
 "WATER",
 "ICE"
@@ -5973,6 +3797,15 @@
 {
 "level": 78,
 "species": "CLOYSTER",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHELL_SMASH",
+"ICICLE_SPEAR",
+"ROCK_BLAST",
+"ICE_SHARD"
+],
+"ability": "SKILL_LINK",
 "types": [
 "WATER",
 "ICE"
@@ -5981,6 +3814,15 @@
 {
 "level": 78,
 "species": "SLOWBRO",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"CALM_MIND",
+"SURF",
+"PSYCHIC_M",
+"SLACK_OFF"
+],
+"ability": "REGENERATOR",
 "types": [
 "WATER",
 "PSYCHIC"
@@ -5989,6 +3831,15 @@
 {
 "level": 79,
 "species": "JYNX",
+"item": "WISE_GLASSES",
+"abilslot": "ABILITY_1",
+"moves": [
+"NASTY_PLOT",
+"ICE_BEAM",
+"PSYCHIC_M",
+"LOVELY_KISS"
+],
+"ability": "OBLIVIOUS",
 "types": [
 "ICE",
 "PSYCHIC"
@@ -5997,6 +3848,15 @@
 {
 "level": 79,
 "species": "LAPRAS",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_BEAM",
+"SURF",
+"THUNDERBOLT",
+"FREEZE_DRY"
+],
+"ability": "WATER_ABSORB",
 "types": [
 "WATER",
 "ICE"
@@ -6005,6 +3865,15 @@
 {
 "level": 79,
 "species": "ARTICUNO",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_BEAM",
+"HURRICANE",
+"FREEZE_DRY",
+"ROOST"
+],
+"ability": "PRESSURE",
 "types": [
 "ICE",
 "FLYING"
@@ -6012,7 +3881,7 @@
 }
 ],
 "name": "LORELEI",
-"ttype": "TRAINERTYPE_NORMAL"
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ],
 "Red2": [
@@ -6341,6 +4210,2937 @@
 }
 ],
 "name": "",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+}
+],
+"Rival1": [
+{
+"comment": "RIVAL1 (1) RIVAL1_1_CHIKORITA - Cherrygrove City",
+"mons": [
+{
+"level": 5,
+"species": "CHIKORITA",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"TACKLE",
+"GROWL",
+"NO_MOVE",
+"NO_MOVE"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (2) RIVAL1_1_CYNDAQUIL - Cherrygrove City",
+"mons": [
+{
+"level": 5,
+"species": "CYNDAQUIL",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"TACKLE",
+"LEER",
+"NO_MOVE",
+"NO_MOVE"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (3) RIVAL1_1_TOTODILE - Cherrygrove City",
+"mons": [
+{
+"level": 5,
+"species": "TOTODILE",
+"item": "BERRY",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"SCRATCH",
+"LEER",
+"NO_MOVE",
+"NO_MOVE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (4) RIVAL1_2_CHIKORITA - Azalea Town",
+"mons": [
+{
+"level": 11,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"QUICK_ATTACK",
+"SAND_ATTACK",
+"WING_ATTACK",
+"BULLDOZE"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 12,
+"species": "MAGNEMITE",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 14,
+"species": "BAYLEEF",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"RAZOR_LEAF",
+"TACKLE",
+"LEECH_SEED",
+"REFLECT"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (5) RIVAL1_2_CYNDAQUIL - Azalea Town",
+"mons": [
+{
+"level": 11,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"QUICK_ATTACK",
+"SAND_ATTACK",
+"WING_ATTACK",
+"BULLDOZE"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 12,
+"species": "MAGNEMITE",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 14,
+"species": "QUILAVA",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"EMBER",
+"QUICK_ATTACK",
+"SMOKESCREEN",
+"LEER"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (6) RIVAL1_2_TOTODILE - Azalea Town",
+"mons": [
+{
+"level": 11,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"QUICK_ATTACK",
+"SAND_ATTACK",
+"WING_ATTACK",
+"BULLDOZE"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 12,
+"species": "MAGNEMITE",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 14,
+"species": "CROCONAW",
+"item": "BERRY",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATER_GUN",
+"BITE",
+"RAGE",
+"LEER"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (7) RIVAL1_3_CHIKORITA - Burned Tower 1F",
+"mons": [
+{
+"level": 22,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"WING_ATTACK",
+"BULLDOZE",
+"QUICK_ATTACK",
+"SAND_ATTACK"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 22,
+"species": "MAGNEMITE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 23,
+"species": "SLOWPOKE",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_2",
+"moves": [
+"CONFUSION",
+"WATER_GUN",
+"HEADBUTT",
+"DISABLE"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 24,
+"species": "BAYLEEF",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"MEGA_DRAIN",
+"RAZOR_LEAF",
+"TACKLE",
+"LEECH_SEED"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (8) RIVAL1_3_CYNDAQUIL - Burned Tower 1F",
+"mons": [
+{
+"level": 22,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"WING_ATTACK",
+"BULLDOZE",
+"QUICK_ATTACK",
+"SAND_ATTACK"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 22,
+"species": "MAGNEMITE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 23,
+"species": "SLOWPOKE",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_2",
+"moves": [
+"CONFUSION",
+"WATER_GUN",
+"HEADBUTT",
+"DISABLE"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 24,
+"species": "QUILAVA",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAME_WHEEL",
+"DIG",
+"QUICK_ATTACK",
+"SMOKESCREEN"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (9) RIVAL1_3_TOTODILE - Burned Tower 1F",
+"mons": [
+{
+"level": 22,
+"species": "GLIGAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"WING_ATTACK",
+"BULLDOZE",
+"QUICK_ATTACK",
+"SAND_ATTACK"
+],
+"ability": "IMMUNITY",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 22,
+"species": "MAGNEMITE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERSHOCK",
+"SONICBOOM",
+"THUNDER_WAVE",
+"SWIFT"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 23,
+"species": "SLOWPOKE_GALARIAN",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_2",
+"moves": [
+"CONFUSION",
+"ACID",
+"HEADBUTT",
+"DISABLE"
+],
+"ability": "UNAWARE",
+"types": [
+"PSYCHIC"
+]
+},
+{
+"level": 24,
+"species": "CROCONAW",
+"item": "BERRY",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITE",
+"ICE_PUNCH",
+"WATER_GUN",
+"MUD_SLAP"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (10) RIVAL1_4_CHIKORITA - Goldenrod Underground Switch Room Entrances",
+"mons": [
+{
+"level": 40,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 41,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 41,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 41,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 41,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 42,
+"species": "MEGANIUM",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_2",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "MEGA_SOL",
+"types": [
+"GRASS",
+"FAIRY"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (11) RIVAL1_4_CYNDAQUIL - Goldenrod Underground Switch Room Entrances",
+"mons": [
+{
+"level": 40,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 41,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 41,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 41,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 41,
+"species": "GENGAR",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"THUNDERBOLT",
+"DESTINY_BOND"
+],
+"ability": "LEVITATE",
+"types": [
+"GHOST",
+"POISON"
+]
+},
+{
+"level": 42,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"THUNDERPUNCH",
+"EARTH_POWER",
+"QUICK_ATTACK"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (12) RIVAL1_4_TOTODILE - Goldenrod Underground Switch Room Entrances",
+"mons": [
+{
+"level": 40,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 41,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 41,
+"species": "SLOWKING_GALARIAN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"PSYCHIC_M",
+"SLUDGE_BOMB",
+"FLAMETHROWER",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"POISON",
+"PSYCHIC"
+]
+},
+{
+"level": 41,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 41,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 42,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATERFALL",
+"ICE_PUNCH",
+"CRUNCH",
+"ROCK_SLIDE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (13) RIVAL1_5_CHIKORITA - Victory Road",
+"mons": [
+{
+"level": 48,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 49,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 49,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 49,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 49,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 51,
+"species": "MEGANIUM",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_2",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "MEGA_SOL",
+"types": [
+"GRASS",
+"FAIRY"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (14) RIVAL1_5_CYNDAQUIL - Victory Road",
+"mons": [
+{
+"level": 48,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 49,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 49,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 49,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 49,
+"species": "GENGAR",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"THUNDERBOLT",
+"DESTINY_BOND"
+],
+"ability": "LEVITATE",
+"types": [
+"GHOST",
+"POISON"
+]
+},
+{
+"level": 51,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"THUNDERPUNCH",
+"EARTH_POWER",
+"QUICK_ATTACK"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL1 (15) RIVAL1_5_TOTODILE - Victory Road",
+"mons": [
+{
+"level": 48,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 49,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 49,
+"species": "SLOWKING_GALARIAN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"PSYCHIC_M",
+"SLUDGE_BOMB",
+"FLAMETHROWER",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"POISON",
+"PSYCHIC"
+]
+},
+{
+"level": 49,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 49,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 51,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATERFALL",
+"ICE_PUNCH",
+"CRUNCH",
+"ROCK_SLIDE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+}
+],
+"Rival2": [
+{
+"comment": "RIVAL2 (1) RIVAL2_1_CHIKORITA - Mount Moon",
+"mons": [
+{
+"level": 65,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 66,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 67,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 67,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 67,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 69,
+"species": "MEGANIUM",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_2",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "MEGA_SOL",
+"types": [
+"GRASS",
+"FAIRY"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL2 (2) RIVAL2_1_CYNDAQUIL - Mount Moon",
+"mons": [
+{
+"level": 65,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 66,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 67,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 67,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 67,
+"species": "GENGAR",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"THUNDERBOLT",
+"DESTINY_BOND"
+],
+"ability": "LEVITATE",
+"types": [
+"GHOST",
+"POISON"
+]
+},
+{
+"level": 69,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"THUNDERPUNCH",
+"EARTH_POWER",
+"QUICK_ATTACK"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL2 (3) RIVAL2_1_TOTODILE - Mount Moon",
+"mons": [
+{
+"level": 65,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 66,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 67,
+"species": "SLOWKING_GALARIAN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"PSYCHIC_M",
+"SLUDGE_BOMB",
+"FLAMETHROWER",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"POISON",
+"PSYCHIC"
+]
+},
+{
+"level": 67,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 67,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 69,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATERFALL",
+"ICE_PUNCH",
+"CRUNCH",
+"ROCK_SLIDE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL2 (4) RIVAL2_2_CHIKORITA - Indigo Plateau Pokecenter 1F",
+"mons": [
+{
+"level": 77,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 78,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 78,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 78,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 78,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 80,
+"species": "MEGANIUM",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_2",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "MEGA_SOL",
+"types": [
+"GRASS",
+"FAIRY"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL2 (5) RIVAL2_2_CYNDAQUIL - Indigo Plateau Pokecenter 1F",
+"mons": [
+{
+"level": 77,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 78,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 78,
+"species": "SLOWKING",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"SURF",
+"PSYCHIC_M",
+"ICE_BEAM",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"WATER",
+"PSYCHIC"
+]
+},
+{
+"level": 78,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 78,
+"species": "GENGAR",
+"item": "SPELL_TAG",
+"abilslot": "ABILITY_1",
+"moves": [
+"SHADOW_BALL",
+"SLUDGE_BOMB",
+"THUNDERBOLT",
+"DESTINY_BOND"
+],
+"ability": "LEVITATE",
+"types": [
+"GHOST",
+"POISON"
+]
+},
+{
+"level": 80,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"THUNDERPUNCH",
+"EARTH_POWER",
+"QUICK_ATTACK"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "RIVAL2 (6) RIVAL2_2_TOTODILE - Indigo Plateau Pokecenter 1F",
+"mons": [
+{
+"level": 77,
+"species": "GLISCOR",
+"item": "TOXIC_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"EARTHQUAKE",
+"AERIAL_ACE",
+"X_SCISSOR",
+"ROOST"
+],
+"ability": "POISON_HEAL",
+"types": [
+"GROUND",
+"FLYING"
+]
+},
+{
+"level": 78,
+"species": "MAGNEZONE",
+"item": "MAGNET",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"THUNDERBOLT",
+"FLASH_CANNON",
+"TRI_ATTACK",
+"THUNDER_WAVE"
+],
+"ability": "LEVITATE",
+"types": [
+"ELECTRIC",
+"STEEL"
+]
+},
+{
+"level": 78,
+"species": "SLOWKING_GALARIAN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_2",
+"moves": [
+"PSYCHIC_M",
+"SLUDGE_BOMB",
+"FLAMETHROWER",
+"RECOVER"
+],
+"ability": "UNAWARE",
+"types": [
+"POISON",
+"PSYCHIC"
+]
+},
+{
+"level": 78,
+"species": "WEAVILE",
+"item": "NEVERMELTICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ICE_SHARD",
+"FAINT_ATTACK",
+"ICICLE_CRASH",
+"LOW_KICK"
+],
+"ability": "TECHNICIAN",
+"types": [
+"DARK",
+"ICE"
+]
+},
+{
+"level": 78,
+"species": "CERULEDGE",
+"item": "CHARCOAL",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"BITTER_BLADE",
+"PHANTOMFORCE",
+"PSYCHO_CUT",
+"SHADOW_SNEAK"
+],
+"ability": "SHARPNESS",
+"types": [
+"FIRE",
+"GHOST"
+]
+},
+{
+"level": 80,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATERFALL",
+"ICE_PUNCH",
+"CRUNCH",
+"ROCK_SLIDE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "?",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+}
+],
+"Crystal": [
+{
+"comment": "CRYSTAL (1) CRYSTAL_1_CHIKORITA - Violet City",
+"mons": [
+{
+"level": 10,
+"species": "CHIKORITA",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"TACKLE",
+"GROWL",
+"RAZOR_LEAF",
+"REFLECT"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+},
+{
+"level": 10,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PECK",
+"LEER",
+"NIGHT_SHADE",
+"CONFUSION"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (2) CRYSTAL_1_CYNDAQUIL - Violet City",
+"mons": [
+{
+"level": 10,
+"species": "CYNDAQUIL",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"TACKLE",
+"LEER",
+"SMOKESCREEN",
+"EMBER"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+},
+{
+"level": 10,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PECK",
+"LEER",
+"NIGHT_SHADE",
+"CONFUSION"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (3) CRYSTAL_1_TOTODILE - Violet City",
+"mons": [
+{
+"level": 10,
+"species": "TOTODILE",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"SCRATCH",
+"LEER",
+"RAGE",
+"WATER_GUN"
+],
+"ability": "STRONG_JAW",
+"types": [
+"WATER"
+]
+},
+{
+"level": 10,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PECK",
+"LEER",
+"NIGHT_SHADE",
+"CONFUSION"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (4) CRYSTAL_2_CHIKORITA - Ilex Forest",
+"mons": [
+{
+"level": 16,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"CONFUSION",
+"NIGHT_SHADE",
+"PECK",
+"LEER"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 17,
+"species": "APPLIN",
+"item": "BERRY_JUICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ASTONISH",
+"WITHDRAW",
+"DRAGONBREATH",
+"GROWTH"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 17,
+"species": "CUBONE",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONE_CLUB",
+"HEADBUTT",
+"MUD_SHOT",
+"FOCUS_ENERGY"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 20,
+"species": "BAYLEEF",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"RAZOR_LEAF",
+"BODY_SLAM",
+"REFLECT",
+"SYNTHESIS"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (5) CRYSTAL_2_CYNDAQUIL - Ilex Forest",
+"mons": [
+{
+"level": 16,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"CONFUSION",
+"NIGHT_SHADE",
+"PECK",
+"LEER"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 17,
+"species": "APPLIN",
+"item": "BERRY_JUICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ASTONISH",
+"WITHDRAW",
+"DRAGONBREATH",
+"GROWTH"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 17,
+"species": "CUBONE",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONE_CLUB",
+"HEADBUTT",
+"MUD_SHOT",
+"FOCUS_ENERGY"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 20,
+"species": "QUILAVA",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAME_WHEEL",
+"QUICK_ATTACK",
+"SMOKESCREEN",
+"DIG"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (6) CRYSTAL_2_TOTODILE - Ilex Forest",
+"mons": [
+{
+"level": 16,
+"species": "NATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"CONFUSION",
+"NIGHT_SHADE",
+"PECK",
+"LEER"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 17,
+"species": "APPLIN",
+"item": "BERRY_JUICE",
+"abilslot": "ABILITY_1",
+"moves": [
+"ASTONISH",
+"WITHDRAW",
+"DRAGONBREATH",
+"GROWTH"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 17,
+"species": "CUBONE",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONE_CLUB",
+"HEADBUTT",
+"MUD_SHOT",
+"FOCUS_ENERGY"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 20,
+"species": "CROCONAW",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"WATER_GUN",
+"BITE",
+"HEADBUTT",
+"RAGE"
+],
+"ability": "STRONG_JAW",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (7) CRYSTAL_3_CHIKORITA - Cianwood City",
+"mons": [
+{
+"level": 30,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"CONFUSE_RAY",
+"NIGHT_SHADE"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 32,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"HEADBUTT"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 31,
+"species": "DIPPLIN",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"DRAGON_PULSE",
+"DRAGONBREATH",
+"GROWTH",
+"PROTECT"
+],
+"ability": "SUPERSWEET_SYRUP",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 32,
+"species": "BAYLEEF",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_1",
+"moves": [
+"RAZOR_LEAF",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (8) CRYSTAL_3_CYNDAQUIL - Cianwood City",
+"mons": [
+{
+"level": 30,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"CONFUSE_RAY",
+"NIGHT_SHADE"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 32,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"HEADBUTT"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 31,
+"species": "DIPPLIN",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"DRAGON_PULSE",
+"DRAGONBREATH",
+"GROWTH",
+"PROTECT"
+],
+"ability": "SUPERSWEET_SYRUP",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 32,
+"species": "QUILAVA",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAME_WHEEL",
+"QUICK_ATTACK",
+"DIG",
+"SMOKESCREEN"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (9) CRYSTAL_3_TOTODILE - Cianwood City",
+"mons": [
+{
+"level": 30,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"CONFUSE_RAY",
+"NIGHT_SHADE"
+],
+"ability": "SYNCHRONIZE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 32,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"HEADBUTT"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 31,
+"species": "DIPPLIN",
+"item": "BERRY",
+"abilslot": "ABILITY_1",
+"moves": [
+"DRAGON_PULSE",
+"DRAGONBREATH",
+"GROWTH",
+"PROTECT"
+],
+"ability": "SUPERSWEET_SYRUP",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 32,
+"species": "CROCONAW",
+"item": "MYSTIC_WATER",
+"abilslot": "ABILITY_1",
+"moves": [
+"BITE",
+"ICE_PUNCH",
+"WATER_GUN",
+"HEADBUTT"
+],
+"ability": "STRONG_JAW",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (10) CRYSTAL_4_CHIKORITA - Ice Path 1F",
+"mons": [
+{
+"level": 41,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"CONFUSE_RAY"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 42,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"IRON_HEAD"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 42,
+"species": "HYDRAPPLE",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"APPLE_ACID",
+"DRAGON_PULSE",
+"RECOVER",
+"ENERGY_BALL"
+],
+"ability": "REGENERATOR",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 42,
+"species": "PUPITAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"ROCK_SLIDE",
+"CRUNCH",
+"EARTHQUAKE",
+"ANCIENTPOWER"
+],
+"ability": "SHED_SKIN",
+"types": [
+"ROCK",
+"GROUND"
+]
+},
+{
+"level": 44,
+"species": "MEGANIUM",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_1",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"REFLECT"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS",
+"FAIRY"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (11) CRYSTAL_4_CYNDAQUIL - Ice Path 1F",
+"mons": [
+{
+"level": 41,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"CONFUSE_RAY"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 42,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"IRON_HEAD"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 42,
+"species": "FLAPPLE",
+"item": "MIRACLE_SEED",
+"abilslot": "ABILITY_1",
+"moves": [
+"DRAGON_DANCE",
+"GRAV_APPLE",
+"DRAGON_PULSE",
+"ACROBATICS"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 42,
+"species": "PUPITAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"ROCK_SLIDE",
+"CRUNCH",
+"EARTHQUAKE",
+"ANCIENTPOWER"
+],
+"ability": "SHED_SKIN",
+"types": [
+"ROCK",
+"GROUND"
+]
+},
+{
+"level": 44,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"QUICK_ATTACK",
+"DIG",
+"SMOKESCREEN"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (12) CRYSTAL_4_TOTODILE - Ice Path 1F",
+"mons": [
+{
+"level": 41,
+"species": "XATU",
+"item": "NO_ITEM",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"CONFUSE_RAY"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 42,
+"species": "MAROWAK",
+"item": "THICK_CLUB",
+"abilslot": "ABILITY_1",
+"moves": [
+"BONEMERANG",
+"SWORDS_DANCE",
+"KNOCK_OFF",
+"IRON_HEAD"
+],
+"ability": "ROCK_HEAD",
+"types": [
+"GROUND"
+]
+},
+{
+"level": 42,
+"species": "APPLETUN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"APPLE_ACID",
+"DRAGON_PULSE",
+"RECOVER",
+"BODY_SLAM"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 42,
+"species": "PUPITAR",
+"item": "NO_ITEM",
+"abilslot": "ABILITY_1",
+"moves": [
+"ROCK_SLIDE",
+"CRUNCH",
+"EARTHQUAKE",
+"ANCIENTPOWER"
+],
+"ability": "SHED_SKIN",
+"types": [
+"ROCK",
+"GROUND"
+]
+},
+{
+"level": 44,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "ABILITY_1",
+"moves": [
+"CRUNCH",
+"ICE_PUNCH",
+"WATERFALL",
+"ROCK_SLIDE"
+],
+"ability": "STRONG_JAW",
+"types": [
+"WATER",
+"DARK"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (13) CRYSTAL_5_CHIKORITA - Route 25 (Cerulean Cape)",
+"mons": [
+{
+"level": 70,
+"species": "MEGANIUM",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"GIGA_DRAIN",
+"BODY_SLAM",
+"SYNTHESIS",
+"LEECH_SEED"
+],
+"ability": "SERENE_GRACE",
+"types": [
+"GRASS",
+"FAIRY"
+]
+},
+{
+"level": 68,
+"species": "HYDRAPPLE",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"APPLE_ACID",
+"DRAGON_PULSE",
+"RECOVER",
+"SUBSTITUTE"
+],
+"ability": "REGENERATOR",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 69,
+"species": "TYRANITAR",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"CRUNCH",
+"ROCK_SLIDE",
+"EARTHQUAKE",
+"ICE_PUNCH"
+],
+"ability": "SAND_STREAM",
+"types": [
+"ROCK",
+"DARK"
+]
+},
+{
+"level": 69,
+"species": "URSALUNA",
+"item": "FLAME_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"FACADE",
+"HEADLONGRUSH",
+"CLOSE_COMBAT",
+"CRUNCH"
+],
+"ability": "GUTS",
+"types": [
+"GROUND",
+"NORMAL"
+]
+},
+{
+"level": 68,
+"species": "XATU",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"THUNDER_WAVE"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 68,
+"species": "LANTURN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"SURF",
+"THUNDERBOLT",
+"ICE_BEAM",
+"CONFUSE_RAY"
+],
+"ability": "VOLT_ABSORB",
+"types": [
+"WATER",
+"ELECTRIC"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (14) CRYSTAL_5_CYNDAQUIL - Route 25 (Cerulean Cape)",
+"mons": [
+{
+"level": 70,
+"species": "TYPHLOSION",
+"item": "CHARCOAL",
+"abilslot": "ABILITY_1",
+"moves": [
+"FLAMETHROWER",
+"EARTH_POWER",
+"THUNDERPUNCH",
+"QUICK_ATTACK"
+],
+"ability": "ADAPTABILITY",
+"types": [
+"FIRE"
+]
+},
+{
+"level": 68,
+"species": "FLAPPLE",
+"item": "LIFE_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"DRAGON_DANCE",
+"GRAV_APPLE",
+"SCALE_SHOT",
+"ACROBATICS"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 69,
+"species": "TYRANITAR",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"CRUNCH",
+"ROCK_SLIDE",
+"EARTHQUAKE",
+"ICE_PUNCH"
+],
+"ability": "SAND_STREAM",
+"types": [
+"ROCK",
+"DARK"
+]
+},
+{
+"level": 69,
+"species": "URSALUNA",
+"item": "FLAME_ORB",
+"abilslot": "ABILITY_1",
+"moves": [
+"FACADE",
+"HEADLONGRUSH",
+"CLOSE_COMBAT",
+"CRUNCH"
+],
+"ability": "GUTS",
+"types": [
+"GROUND",
+"NORMAL"
+]
+},
+{
+"level": 68,
+"species": "XATU",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"THUNDER_WAVE"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 68,
+"species": "LANTURN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"SURF",
+"THUNDERBOLT",
+"ICE_BEAM",
+"CONFUSE_RAY"
+],
+"ability": "VOLT_ABSORB",
+"types": [
+"WATER",
+"ELECTRIC"
+]
+}
+],
+"name": "CRYSTAL",
+"ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
+},
+{
+"comment": "CRYSTAL (15) CRYSTAL_5_TOTODILE - Route 25 (Cerulean Cape)",
+"mons": [
+{
+"level": 70,
+"species": "FERALIGATR",
+"item": "MYSTIC_WATER",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"WATERFALL",
+"ICE_PUNCH",
+"CRUNCH",
+"ROCK_SLIDE"
+],
+"ability": "SHEER_FORCE",
+"types": [
+"WATER",
+"DARK"
+]
+},
+{
+"level": 68,
+"species": "APPLETUN",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"APPLE_ACID",
+"DRAGON_PULSE",
+"RECOVER",
+"BODY_SLAM"
+],
+"ability": "RIPEN",
+"types": [
+"GRASS",
+"DRAGON"
+]
+},
+{
+"level": 69,
+"species": "TYRANITAR",
+"item": "ASSAULT_VEST",
+"abilslot": "ABILITY_1",
+"moves": [
+"CRUNCH",
+"ROCK_SLIDE",
+"EARTHQUAKE",
+"ICE_PUNCH"
+],
+"ability": "SAND_STREAM",
+"types": [
+"ROCK",
+"DARK"
+]
+},
+{
+"level": 69,
+"species": "URSALUNABM",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"CALM_MIND",
+"EARTH_POWER",
+"HYPER_VOICE",
+"BODY_SLAM"
+],
+"ability": "GUTS",
+"types": [
+"GROUND",
+"NORMAL"
+]
+},
+{
+"level": 68,
+"species": "XATU",
+"item": "LEFTOVERS",
+"abilslot": "HIDDEN_ABILITY",
+"moves": [
+"PSYCHIC_M",
+"AIR_SLASH",
+"ROOST",
+"THUNDER_WAVE"
+],
+"ability": "MAGIC_BOUNCE",
+"types": [
+"PSYCHIC",
+"FLYING"
+]
+},
+{
+"level": 68,
+"species": "VOLCARONA",
+"item": "LEFTOVERS",
+"abilslot": "ABILITY_1",
+"moves": [
+"QUIVER_DANCE",
+"FIERY_DANCE",
+"BUG_BUZZ",
+"GIGA_DRAIN"
+],
+"ability": "FLAME_BODY",
+"types": [
+"BUG",
+"FIRE"
+]
+}
+],
+"name": "CRYSTAL",
 "ttype": "TRAINERTYPE_ITEM_MOVES_ABILITY"
 }
 ]

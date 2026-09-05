@@ -2178,4 +2178,10 @@
 ; maps/GoldenrodPokecenter1F.asm)
 	const EVENT_GOLDENROD_POKECENTER_FEEBAS_SALESMAN_LEFT
 
+; COOLTRAINER CHANTZ, the guy who was trying to catch the VERMILION CITY
+; SNORLAX. He picks a fight once the flute wakes it (see maps/VermilionCity.asm).
+; The second flag is his object flag: set when he storms off for good.
+	const EVENT_BEAT_COOLTRAINERM_CHANTZ
+	const EVENT_VERMILION_CITY_CHANTZ_LEFT
+
 NUM_EVENTS EQU const_value
