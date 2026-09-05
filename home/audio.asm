@@ -227,6 +227,11 @@ WaitSFX::
 	push hl
 
 .wait
+; Receiving an item, and every other jingle a conversation waits on, spins here
+; for the length of the sound without yielding to anything, so the weather stood
+; still for it. This throttles itself to once a frame and does nothing at all
+; outside a conversation, so every other caller keeps its timing.
+	call UpdateWeatherSprites
 	ld hl, wChannel5Flags1
 	bit 0, [hl]
 	jr nz, .wait

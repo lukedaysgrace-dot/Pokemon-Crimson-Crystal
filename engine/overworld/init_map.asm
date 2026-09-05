@@ -1,5 +1,5 @@
 ReanchorBGMap_NoOAMUpdate::
-	call DelayFrame
+	call WeatherDelayFrame
 	ldh a, [hOAMUpdate]
 	push af
 
@@ -103,7 +103,7 @@ HDMATransfer_FillBGMap0WithBlack:
 	ldh [rHDMA4], a
 	ld a, $3f
 	ldh [hDMATransfer], a
-	call DelayFrame
+	call WeatherDelayFrame
 
 	pop af
 	ldh [rSVBK], a

@@ -62,14 +62,20 @@ OpenText::
 	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; aka BANK(LoadFonts_NoOAMUpdate)
 	rst Bankswitch
 
-	call ReanchorBGMap_NoOAMUpdate ; clear bgmap
-
 ; The map is still on screen above the textbox, so overworld weather carries on
-; falling there instead of freezing for the length of the conversation. The
-; reanchor above already set bit 6, which by itself only means some window is
-; up; this says which one, so the particles know they have the top twelve rows.
+; falling there instead of freezing for the length of the conversation. This is
+; set before the reanchor rather than after it because the reanchor is itself
+; five or six frames of map redraw and BG map transfers, and those frames are
+; the pause at the start of a conversation. Nothing clips yet - bit 6 is still
+; clear at this point, so the particles simply have the whole screen, which is
+; right, because the textbox has not been drawn.
 	ld hl, wVramState
 	set VRAMSTATE_SPEECH_TEXTBOX_F, [hl]
+
+	call ReanchorBGMap_NoOAMUpdate ; clear bgmap
+
+; Now the box is about to go down, so hold the particles above it.
+	ld hl, wVramState
 	set VRAMSTATE_TEXTBOX_DRAWN_F, [hl]
 
 	call SpeechTextbox
