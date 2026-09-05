@@ -10,7 +10,6 @@ WeatherAreaPointers:
 	dw WeatherArea_NationalPark
 	dw WeatherArea_EcruteakEast
 	dw WeatherArea_EcruteakWest
-	dw WeatherArea_OlivineCoast
 	dw WeatherArea_Cianwood
 	dw WeatherArea_TohjoFalls
 	dw WeatherArea_Blackthorn
@@ -63,12 +62,6 @@ WeatherArea_EcruteakEast:
 WeatherArea_EcruteakWest:
 	map_id ROUTE_38
 	map_id ROUTE_39
-	db -1
-WeatherArea_OlivineCoast:
-	map_id OLIVINE_CITY
-	map_id OLIVINE_PORT
-	map_id ROUTE_40
-	map_id BATTLE_TOWER_OUTSIDE
 	db -1
 WeatherArea_Cianwood:
 	map_id ROUTE_41
@@ -160,6 +153,9 @@ LakeOfRageWeatherMaps:
 	db -1
 OlivineWeatherMaps:
 	map_id OLIVINE_CITY
+	map_id OLIVINE_PORT
+	map_id ROUTE_40
+	map_id BATTLE_TOWER_OUTSIDE
 	db -1
 MahoganySnowMaps:
 	map_id ROUTE_42

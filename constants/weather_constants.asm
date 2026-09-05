@@ -1,6 +1,14 @@
 ; Overworld weather types (hCurWeather)
+;
+; Order matters. Several checks are range comparisons rather than equality:
+; everything below OW_WEATHER_RAIN is particle-free, and RenderWeather's
+; dispatch falls through to cherry blossoms for anything it does not name.
+; OW_WEATHER_HARSH_SUN therefore sits between NONE and OVERCAST, where it
+; inherits "no particles" from both of those tests for free. Do not append
+; new particle-free weather to the end of this list.
 	const_def
-	const OW_WEATHER_NONE
+	const OW_WEATHER_NONE     ; plain sunny: no tint, no battle weather
+	const OW_WEATHER_HARSH_SUN
 	const OW_WEATHER_OVERCAST
 	const OW_WEATHER_RAIN
 	const OW_WEATHER_THUNDERSTORM
@@ -38,6 +46,7 @@ WEATHER_INTENSITY_MASK       EQU %11000000
 WEATHER_INTENSITY_OVERCAST   EQU %00000000
 WEATHER_INTENSITY_RAIN       EQU %01000000
 WEATHER_INTENSITY_THUNDER    EQU %10000000
+WEATHER_INTENSITY_HARSH_SUN  EQU %11000000
 NUM_DAILY_WEATHER_AREAS_PER_REGION EQU 4
 
 ; wWeatherDailyFlags
@@ -97,6 +106,34 @@ DEF PETAL_DRIFT_STEP_B_F EQU 1 ; hPetalDriftTimerB, read only by wide drifters
 	const PETAL_FALL_3_F  ; with FALL_2, reads both; on its own it does nothing
 	const PETAL_DRIFT_2_F ; also reads the second drift timer, leaning it over
 	const PETAL_REVERSE_F ; tumbles backwards
+
+; How harsh sunlight tints the seven map BG palettes, and why it is shaped
+; the way it is.
+;
+; The morning lighting set in the tileset .pal files differs from day in
+; exactly one way: the lightest color of each palette drops its blue (27 -> 16
+; in gfx/tilesets/johto.pal) while the midtones and shadows are left alone.
+; That is what makes morning read as a pale, creamy, low sun. Harsh noon has
+; to do the opposite or it is indistinguishable from it, so:
+;
+;   - the highlight (color 0 of each palette) only ever gains, moving a
+;     fraction of its remaining headroom toward white. Blue is lifted along
+;     with everything else, so whites blow out instead of going cream.
+;   - the midtones and shadows (colors 1-3) lose blue and a little green,
+;     which warms them and deepens them.
+;
+; Highlights up, shadows warm and down: that is contrast, which is what
+; strong overhead light actually looks like, and it cannot be confused with
+; morning's uniform wash. Red is never cut anywhere.
+;
+; All four are shift counts, so a SMALLER number is a STRONGER effect.
+; SUN_SHADOW_BLUE_SHIFT is the one to reach for first; 3 is a gentle haze
+; and 1 is aggressively orange. Bright water is the color most sensitive to
+; it, so check a coastline before settling on anything below 2.
+DEF SUN_HILIGHT_LIFT_SHIFT  EQU 2 ; highlights gain 1/4 of their headroom
+DEF SUN_HILIGHT_RED_SHIFT   EQU 3 ; and red gains another 1/8 on top of that
+DEF SUN_SHADOW_BLUE_SHIFT   EQU 2 ; midtones and shadows give up 1/4 blue
+DEF SUN_SHADOW_GREEN_SHIFT  EQU 4 ; and 1/16 green
 
 ; Tiles in VRAM bank 1 reserved for the active weather particle: the rain
 ; drop and its splash frames, or the cherry blossom rotation frames.
