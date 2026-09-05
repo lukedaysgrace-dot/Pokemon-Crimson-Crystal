@@ -1269,7 +1269,13 @@ RelicClockTimeDistortion:
 	call PushLYOverrides
 	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
-	call DelayFrame
+; One distortion step every two frames. Building a step costs more than a
+; frame's worth of work at the original clock, so each step always landed on
+; the second VBlank; under CGB double speed it fits inside one and the whole
+; effect ran at twice the speed. Waiting two frames outright keeps the
+; original rate whatever the CPU speed is.
+	ld c, 2
+	call DelayFrames
 	pop bc
 	dec b
 	jr nz, .frame
