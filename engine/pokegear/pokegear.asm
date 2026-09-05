@@ -2062,6 +2062,14 @@ _FlyMap:
 	ld a, [hl]
 	push af
 	ld [hl], $1
+; Turn off overworld sprite updates for the duration, exactly as _TownMap
+; does. This is a full-screen interface with its own OBJ tiles, so anything
+; that rebuilds the overworld's OAM here draws map objects out of town map
+; graphics -- stray boxes and letters in the corner.
+	ld a, [wVramState]
+	push af
+	xor a
+	ld [wVramState], a
 	xor a
 	ldh [hBGMapMode], a
 	farcall ClearSpriteAnims
@@ -2104,6 +2112,8 @@ _FlyMap:
 	ld a, [hl]
 .exit
 	ld [wTownMapPlayerIconLandmark], a
+	pop af
+	ld [wVramState], a
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
