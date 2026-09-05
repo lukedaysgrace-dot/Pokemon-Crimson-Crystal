@@ -2643,7 +2643,7 @@ Script_pause:
 	ld [wScriptDelay], a
 .loop
 	ld c, 2
-	call DelayFrames
+	call WeatherDelayFrames ; scripts pause mid-conversation; the map should not
 	ld hl, wScriptDelay
 	dec [hl]
 	jr nz, .loop

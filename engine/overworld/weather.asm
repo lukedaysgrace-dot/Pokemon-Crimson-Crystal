@@ -516,15 +516,22 @@ AnimateWeatherOnIdle::
 	jr nz, .done
 	bit 0, a
 	jr z, .done
-	; Idle redraws belong to conversations and nothing else. Every caller that
-	; reaches here - the text printer, the wait-for-A loops, the pauses inside
-	; text rendering, and the frame-at-a-time VRAM streaming in Request2bpp and
-	; Request1bpp - can fire outside one too, during a map load, a battle or a
-	; menu, where rebuilding sprites would be at best wasted work and at worst a
-	; rebuild on top of half-initialised objects. Whether the particles may then
-	; fall over the window that is up stays DoOverworldWeather's decision.
+	; Two kinds of caller are allowed through. A conversation is one, and it may
+	; take the OAM lock over (see below). The other is the plain overworld with no
+	; window up at all, which is where a script sits when it pauses or plays a cry
+	; between textboxes; there the lock is respected exactly as it always was, so
+	; nothing that deliberately froze OAM has its floor pulled out. Anything else -
+	; a menu, a mart, a battle, a map load - is some other window's business, and
+	; a rebuild there would be wasted work at best and a rebuild on top of
+	; half-initialised objects at worst.
 	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
-	jr z, .done
+	jr nz, .may_take_oam_lock
+	bit 6, a
+	jr nz, .done
+	ldh a, [hOAMUpdate]
+	and a
+	jr nz, .done
+.may_take_oam_lock
 	; hOAMUpdate is the VBlank handler's "don't DMA OAM this frame" lock, and a
 	; conversation holds it at 1 for most of its length: the wait-for-A loop after
 	; every line, and the whole of CloseText while it streams the overworld font
