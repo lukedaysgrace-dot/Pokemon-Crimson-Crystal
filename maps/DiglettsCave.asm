@@ -1,5 +1,6 @@
 	object_const_def ; object_event constants
 	const DIGLETTSCAVE_POKEFAN_M
+	const DIGLETTSCAVE_LADDER_BLOCKER
 
 DiglettsCave_MapScripts:
 	db 0 ; scene scripts
@@ -20,6 +21,25 @@ DiglettsCavePokefanMText:
 	line "shocking."
 	done
 
+DiglettsCaveLadderBlockerScript:
+	jumptextfaceplayer DiglettsCaveLadderBlockerText
+
+DiglettsCaveLadderBlockerText:
+	text "Hold it, kid."
+
+	para "The DIGLETT are"
+	line "in a frenzy."
+
+	para "One wrong move"
+	line "down there and"
+	cont "there could be a"
+	cont "cave in."
+
+	para "Try MT.MOON if"
+	line "you're heading"
+	cont "to PEWTER."
+	done
+
 DiglettsCave_MapEvents:
 	db 0, 0 ; filler
 
@@ -36,5 +56,6 @@ DiglettsCave_MapEvents:
 	db 1 ; bg events
 	bg_event  6, 11, BGEVENT_ITEM, DiglettsCaveHiddenMaxRevive
 
-	db 1 ; object events
-	object_event  3, 31, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1
+	db 2 ; object events
+	object_event  2, 31, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1
+	object_event  4, 31, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCaveLadderBlockerScript, EVENT_BEAT_RIVAL_IN_MT_MOON
