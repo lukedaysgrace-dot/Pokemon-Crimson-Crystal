@@ -242,6 +242,7 @@ LoadMapTimeOfDay:
 	ld hl, wVramState
 	res 6, [hl]
 	res VRAMSTATE_SPEECH_TEXTBOX_F, [hl]
+	res VRAMSTATE_TEXTBOX_DRAWN_F, [hl]
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	farcall ReplaceTimeOfDayPals

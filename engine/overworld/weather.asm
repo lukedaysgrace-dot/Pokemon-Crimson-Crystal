@@ -1008,7 +1008,7 @@ AppendWeatherParticle:
 ; same as running out of OAM: return without carry so the caller keeps going
 ; through the rest of them, and the ones still in open sky are unaffected.
 	ld a, [wVramState]
-	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
+	bit VRAMSTATE_TEXTBOX_DRAWN_F, a
 	jr z, .not_behind_textbox
 	ld a, b
 	cp SPEECH_TEXTBOX_CLIP_Y
