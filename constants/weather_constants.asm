@@ -23,6 +23,14 @@ DEF VRAMSTATE_SUPPRESS_WEATHER_F EQU 2
 ; through a conversation, clipped to SPEECH_TEXTBOX_CLIP_Y.
 DEF VRAMSTATE_SPEECH_TEXTBOX_F EQU 3
 
+; Set once the speech textbox has actually been drawn and cleared as soon as
+; CloseText starts taking it away, which is several frames before the
+; conversation is over. Only this one holds the particles above the box.
+; Keeping the two apart is what stops the weather from either drawing over a
+; box that is still on screen or, worse, deserting the bottom third of the map
+; for the whole of a close that has already erased the box.
+DEF VRAMSTATE_TEXTBOX_DRAWN_F EQU 4
+
 ; Each daily selection packs a weather-area id into the low six bits and
 ; its overcast intensity into the high two bits.
 WEATHER_AREA_MASK            EQU %00111111
