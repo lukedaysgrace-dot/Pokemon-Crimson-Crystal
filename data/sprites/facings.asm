@@ -32,6 +32,11 @@ Facings:
 	dw FacingBoulderDust2
 	dw FacingGrass1
 	dw FacingGrass2
+	dw FacingSnorlaxSleep0
+	dw FacingSnorlaxSleep1
+	dw FacingSnorlaxSleep2
+	dw FacingSnorlaxSleep3
+	dw FacingSnorlaxStill
 .End
 	dw 0
 
@@ -213,6 +218,77 @@ FacingBigDollAsymmetric: ; big doll other than snorlax or lapras
 	db 16, 16, 0, $08
 	db 24, 24, X_FLIP, $04
 	db 24, 16, 0, $0b
+
+; Sleeping SNORLAX (gfx/overworld/snorlax.png, 12 tiles):
+;   $00-$01 head strip, $02-$03 / $04-$05 / $06-$07 belly strips (breathing),
+;   $08-$09 feet strip, $0a-$0b rising Zzz.
+; The left half is mirrored to build a 32x24 body, sat on the bottom of the
+; object's 32x32 box so the Zzz has room above it.
+
+FacingSnorlaxSleep0:
+FacingSnorlaxStill: ; belly out, no Zzz
+	db 12 ; #
+	db  8,  0, 0, $00
+	db  8,  8, 0, $01
+	db 16,  0, 0, $02
+	db 16,  8, 0, $03
+	db 24,  0, 0, $08
+	db 24,  8, 0, $09
+	db  8, 24, X_FLIP, $00
+	db  8, 16, X_FLIP, $01
+	db 16, 24, X_FLIP, $02
+	db 16, 16, X_FLIP, $03
+	db 24, 24, X_FLIP, $08
+	db 24, 16, X_FLIP, $09
+
+FacingSnorlaxSleep1: ; breathing in
+	db 14 ; #
+	db  8,  0, 0, $00
+	db  8,  8, 0, $01
+	db 16,  0, 0, $04
+	db 16,  8, 0, $05
+	db 24,  0, 0, $08
+	db 24,  8, 0, $09
+	db  8, 24, X_FLIP, $00
+	db  8, 16, X_FLIP, $01
+	db 16, 24, X_FLIP, $04
+	db 16, 16, X_FLIP, $05
+	db 24, 24, X_FLIP, $08
+	db 24, 16, X_FLIP, $09
+	db  0, 16, 0, $0a
+	db  0, 24, 0, $0b
+
+FacingSnorlaxSleep2: ; belly in
+	db 14 ; #
+	db  8,  0, 0, $00
+	db  8,  8, 0, $01
+	db 16,  0, 0, $06
+	db 16,  8, 0, $07
+	db 24,  0, 0, $08
+	db 24,  8, 0, $09
+	db  8, 24, X_FLIP, $00
+	db  8, 16, X_FLIP, $01
+	db 16, 24, X_FLIP, $06
+	db 16, 16, X_FLIP, $07
+	db 24, 24, X_FLIP, $08
+	db 24, 16, X_FLIP, $09
+	db  0, 16, 0, $0a
+	db  0, 24, 0, $0b
+
+FacingSnorlaxSleep3: ; breathing out
+	db 12 ; #
+	db  8,  0, 0, $00
+	db  8,  8, 0, $01
+	db 16,  0, 0, $04
+	db 16,  8, 0, $05
+	db 24,  0, 0, $08
+	db 24,  8, 0, $09
+	db  8, 24, X_FLIP, $00
+	db  8, 16, X_FLIP, $01
+	db 16, 24, X_FLIP, $04
+	db 16, 16, X_FLIP, $05
+	db 24, 24, X_FLIP, $08
+	db 24, 16, X_FLIP, $09
 
 FacingBoulderDust1: ; boulder dust 1
 	db 4 ; #
