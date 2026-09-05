@@ -5,6 +5,7 @@
 	const VERMILIONCITY_SUPER_NERD
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_POKEFAN_M
+	const VERMILIONCITY_CHANTZ
 
 VermilionCity_MapScripts:
 	db 0 ; scene scripts
@@ -58,7 +59,62 @@ VermilionSnorlax:
 	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
 	reloadmapafterbattle
+	sjump VermilionCityChantzChallenge
+
+VermilionCityChantzScript:
+	faceplayer
+	checkevent EVENT_BEAT_COOLTRAINERM_CHANTZ
+	iftrue .AlreadyBeaten
+	checkevent EVENT_FOUGHT_SNORLAX
+	iftrue VermilionCityChantzChallenge
+	opentext
+	writetext VermilionCityChantzText
+	waitbutton
+	closetext
+	turnobject VERMILIONCITY_CHANTZ, LEFT
 	end
+
+.AlreadyBeaten:
+	opentext
+	writetext CooltrainermChantzAfterBattleText
+	waitbutton
+	closetext
+	turnobject VERMILIONCITY_CHANTZ, LEFT
+	end
+
+VermilionCityChantzChallenge:
+; Runs straight off the back of the SNORLAX battle, and again if the player
+; talks to him after losing to him.
+	checkevent EVENT_BEAT_COOLTRAINERM_CHANTZ
+	iftrue .Done
+	checkevent EVENT_VERMILION_CITY_CHANTZ_LEFT
+	iftrue .Done
+	setlasttalked VERMILIONCITY_CHANTZ
+	showemote EMOTE_SHOCK, VERMILIONCITY_CHANTZ, 15
+	faceplayer
+	opentext
+	writetext CooltrainermChantzSeenText
+	waitbutton
+	closetext
+	winlosstext CooltrainermChantzBeatenText, 0
+	loadtrainer COOLTRAINERM, CHANTZ
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_COOLTRAINERM_CHANTZ
+	opentext
+	writetext CooltrainermChantzAfterBattleText
+	waitbutton
+	closetext
+	applymovement VERMILIONCITY_CHANTZ, VermilionCityChantzLeavesMovement
+	disappear VERMILIONCITY_CHANTZ
+.Done:
+	end
+
+VermilionCityChantzLeavesMovement:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step_end
 
 VermilionGymBadgeGuy:
 	faceplayer
@@ -233,6 +289,42 @@ UnknownText_0x1aad4a:
 	cont "help you."
 	done
 
+VermilionCityChantzText:
+	text "man...i threw a"
+	line "pokeball at it but"
+	cont "all it did was"
+	cont "bounce off it's"
+	cont "belly,"
+
+	para "how am i supposed"
+	line "to catch it?"
+	done
+
+CooltrainermChantzSeenText:
+	text "Hey! I was trying"
+	line "to catch that"
+	cont "snorlax...."
+
+	para "you better be"
+	line "ready to put up a"
+	cont "fight after being"
+	cont "so rude!"
+	done
+
+CooltrainermChantzBeatenText:
+	text "oh..."
+	done
+
+CooltrainermChantzAfterBattleText:
+	text "i probably"
+	line "would've never"
+	cont "caught it"
+	cont "anyways...."
+
+	para "i'm out of here,"
+	line "later nerd."
+	done
+
 VermilionCitySignText:
 	text "VERMILION CITY"
 
@@ -292,10 +384,11 @@ VermilionCity_MapEvents:
 	bg_event 22, 13, BGEVENT_READ, VermilionCityMartSign
 	bg_event 12, 19, BGEVENT_ITEM, VermilionCityHiddenFullHeal
 
-	db 6 ; object events
+	db 7 ; object events
 	object_event 18,  9, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
 	object_event 23,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMachopOwner, -1
 	object_event 26,  7, SPRITE_MACHOP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionMachop, -1
 	object_event 14, 16, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1
-	object_event 34,  8, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_BIGDOLLSYM, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
+	object_event 34,  8, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX_SLEEP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	object_event 31, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1
+	object_event 36,  8, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionCityChantzScript, EVENT_VERMILION_CITY_CHANTZ_LEFT

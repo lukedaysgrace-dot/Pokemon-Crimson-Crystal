@@ -228,6 +228,7 @@ LYRA EQU __enum__
 	const LARRY2
 	const SNOW
 	const CYANIDE
+	const CHANTZ
 
 	trainerclass COOLTRAINERF ; 1c
 	const GWEN

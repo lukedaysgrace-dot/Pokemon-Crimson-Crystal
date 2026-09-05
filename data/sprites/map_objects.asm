@@ -312,3 +312,12 @@ SpriteMovementData::
 	db 0 ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
+
+; SPRITEMOVEDATA_SNORLAX_SLEEP
+; like SPRITEMOVEDATA_BIGDOLLSYM, but the sprite breathes and puffs Zzz forever
+	db SPRITEMOVEFN_SNORLAX_SLEEP ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_SNORLAX_SLEEP ; action
+	db WONT_DELETE | FIXED_FACING | SLIDING | MOVE_ANYWHERE ; flags1
+	db LOW_PRIORITY ; flags2
+	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags
