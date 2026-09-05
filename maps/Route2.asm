@@ -4,6 +4,7 @@
 	const ROUTE2_POKE_BALL3
 	const ROUTE2_POKE_BALL4
 	const ROUTE2_FRUIT_TREE
+	const ROUTE2_DIGLETTS_CAVE_BLOCKER
 
 Route2_MapScripts:
 	db 0 ; scene scripts
@@ -54,6 +55,27 @@ Route2DiglettsCaveSignText:
 	text "DIGLETT'S CAVE"
 	done
 
+Route2DiglettsCaveBlockerScript:
+	jumptextfaceplayer Route2DiglettsCaveBlockerText
+
+Route2DiglettsCaveBlockerText:
+	text "Whoa, hold up!"
+
+	para "DIGLETT are boil-"
+	line "ing up out of the"
+	cont "tunnel floor."
+
+	para "Nobody's getting"
+	line "through until they"
+	cont "settle down."
+
+	para "If you're headed"
+	line "for CERULEAN, go"
+
+	para "around through"
+	line "MT.MOON."
+	done
+
 Route2_MapEvents:
 	db 0, 0 ; filler
 
@@ -75,9 +97,10 @@ Route2_MapEvents:
 	bg_event 16, 50, BGEVENT_ITEM, Route2HiddenFullRestore
 	bg_event  4, 66, BGEVENT_ITEM, Route2HiddenRevive
 
-	db 5 ; object events
+	db 6 ; object events
 	object_event 13, 54, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
 	object_event  6,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
 	object_event 13, 45, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS
 	object_event 17, 64, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Elixer, EVENT_ROUTE_2_ELIXER
 	object_event  9, 57, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route2FruitTree, -1
+	object_event 12, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route2DiglettsCaveBlockerScript, EVENT_BEAT_RIVAL_IN_MT_MOON
