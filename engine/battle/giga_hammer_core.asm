@@ -51,9 +51,13 @@ BattleGigaHammer_SetLockCore:
 
 ApplyOverworldBattleWeather:
 ; Carry the current overworld weather into the battle, Gen 3-style.
-; Rain and thunderstorms rain, sandstorms rage, snow becomes hail, and
-; clear daytime skies outdoors bring strong sunlight. Weather-summoning
-; abilities on send-out still override this, as they should.
+; Rain and thunderstorms rain, sandstorms rage, snow becomes hail, and a
+; day of harsh sunlight brings strong sunlight. Plain sunny days and
+; overcast ones are deliberately neutral: only weather the player can
+; actually see on the map should be rewriting the type chart, and making
+; ordinary daylight mean WEATHER_SUN put sun up in most battles in the
+; game. Weather-summoning abilities on send-out still override this, as
+; they should.
 ; Farcalled from BattleIntro; lives here because the Battle Core bank
 ; is full.
 	ld a, [wLinkMode]
@@ -68,19 +72,8 @@ ApplyOverworldBattleWeather:
 	jr z, .hail
 	cp OW_WEATHER_SANDSTORM
 	jr z, .sandstorm
-	cp OW_WEATHER_OVERCAST
-	ret z
-; No particle weather (or cherry blossoms) means clear skies:
-; strong sunlight, but only outdoors during the day.
-	ld a, [wEnvironment]
-	cp TOWN
-	jr z, .clear_skies
-	cp ROUTE
-	ret nz
-.clear_skies
-	ld a, [wTimeOfDay]
-	cp NITE_F
-	ret nc ; no bright sun at night or in darkness
+	cp OW_WEATHER_HARSH_SUN
+	ret nz ; plain sunny, overcast and cherry blossoms stay neutral
 	ld a, WEATHER_SUN
 	ld de, ANIM_INTRO_SUN
 	ld hl, SunGotBrightText
