@@ -8,7 +8,7 @@
 ; new particle-free weather to the end of this list.
 	const_def
 	const OW_WEATHER_NONE     ; plain sunny: no tint, no battle weather
-	const OW_WEATHER_HARSH_SUN
+	const OW_WEATHER_HARSH_SUN ; daytime only; falls back to NONE at night
 	const OW_WEATHER_OVERCAST
 	const OW_WEATHER_RAIN
 	const OW_WEATHER_THUNDERSTORM
@@ -125,6 +125,13 @@ DEF PETAL_DRIFT_STEP_B_F EQU 1 ; hPetalDriftTimerB, read only by wide drifters
 ; Highlights up, shadows warm and down: that is contrast, which is what
 ; strong overhead light actually looks like, and it cannot be confused with
 ; morning's uniform wash. Red is never cut anywhere.
+;
+; All of this is built against the morning and day palettes, which is why
+; harsh sun is gated to those two times of day. The night palette is dark and
+; heavily blue, so taking a quarter of its blue out is taking out most of what
+; the palette has, and the map lands on muddy brown instead of bright. A day
+; that rolls harsh sun therefore shows as plain sun until sunrise; the roll
+; itself is untouched and comes back on its own.
 ;
 ; All four are shift counts, so a SMALLER number is a STRONGER effect.
 ; SUN_SHADOW_BLUE_SHIFT is the one to reach for first; 3 is a gentle haze
