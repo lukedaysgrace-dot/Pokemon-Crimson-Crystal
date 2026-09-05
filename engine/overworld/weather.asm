@@ -516,12 +516,10 @@ AnimateWeatherOnIdle::
 	jr nz, .done
 	bit 0, a
 	jr z, .done
-	; Particles are hidden for as long as a textbox or menu window has the
-	; map reanchored (bit 6; see DoOverworldWeather), so there is nothing to
-	; animate on top of the window, and the caller's OAM lock must not be
-	; overridden while its text/menu frame is on screen.
-	bit 6, a
-	jr nz, .done
+	; Which windows the particles may fall over is DoOverworldWeather's decision
+	; (a conversation yes, a mart list no); this only has to get the sprite
+	; rebuild there. The OAM lock below is still respected either way, so an idle
+	; redraw never lands in the middle of a caller's own text or menu frame.
 	ldh a, [hOAMUpdate]
 	and a
 	jr nz, .done
@@ -598,15 +596,21 @@ _DoOverworldWeather:
 	ld a, [wVramState]
 	bit VRAMSTATE_SUPPRESS_WEATHER_F, a
 	ret nz
-	; Weather particles are OAM sprites, so they would be drawn on top of
-	; any textbox or menu window. While the overworld is reanchored into
-	; text/window mode (bit 6, set by OpenText/RefreshScreen and cleared by
-	; CloseText and map loads), skip rendering entirely: the sprite rebuild
-	; in OpenText's SafeUpdateSprites then scrubs any particles that were
-	; already on screen, and the paused timers resume where they left off
-	; once the window closes.
+	; Weather particles are OAM sprites, so they are drawn on top of whatever
+	; window is up. Bit 6 says the overworld has been reanchored for one, but not
+	; where it sits, and most of them - marts, yes/no boxes, the Pokegear - land
+	; in the top half of the screen where the particles are. So bit 6 on its own
+	; still means stop; only the speech textbox, whose shape is known, lets the
+	; weather carry on, and only while nothing is stacked over it. Particles are
+	; then held above the box by SPEECH_TEXTBOX_CLIP_Y in AppendWeatherParticle.
 	bit 6, a
-	ret nz
+	jr z, .visible
+	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
+	ret z
+	ld a, [wWindowStackSize]
+	and a
+	ret nz ; a menu is open over the textbox, and it could be anywhere
+.visible
 
 	; Independent screen-width and screen-height timers avoid positional
 	; jumps while particles wrap around the display.
@@ -983,6 +987,21 @@ AppendWeatherParticle:
 ; Preserves hl.
 	push hl
 	push af ; stash the tile id for the write below
+
+; While a conversation is up the map only owns the rows above the speech
+; textbox, so a particle that has fallen far enough to touch the box is
+; dropped rather than drawn over the text. It disappears at the box's top
+; edge, which reads as falling behind it. Dropping one particle is not the
+; same as running out of OAM: return without carry so the caller keeps going
+; through the rest of them, and the ones still in open sky are unaffected.
+	ld a, [wVramState]
+	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
+	jr z, .not_behind_textbox
+	ld a, b
+	cp SPEECH_TEXTBOX_CLIP_Y
+	jr nc, .clipped
+.not_behind_textbox
+
 	ld a, [wVramState]
 	bit 1, a
 	jr z, .full_budget
@@ -1015,6 +1034,12 @@ AppendWeatherParticle:
 	pop af ; discard stashed tile id
 	pop hl
 	scf
+	ret
+
+.clipped
+	pop af ; discard stashed tile id
+	pop hl
+	and a ; there is still room in OAM; this one just had nowhere to go
 	ret
 
 WeatherLightning:
