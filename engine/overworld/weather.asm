@@ -1,7 +1,10 @@
 ; Daily overworld weather for vanilla Johto and Kanto.
 ;
 ; A new in-game day chooses four Johto areas and four Kanto areas. Each
-; selection receives a 20% overcast / 65% rain / 15% thunderstorm intensity.
+; selection receives a 25% overcast / 40% rain / 12% thunderstorm /
+; 23% harsh sunlight intensity. Every other area is plainly sunny, which is
+; the default and carries no battle weather at all - only an area that drew
+; harsh sunlight brings WEATHER_SUN into its battles.
 ; Nearby maps are grouped into areas so crossing
 ; a connection does not reroll or abruptly change the day's regional weather.
 
@@ -53,7 +56,7 @@ _SetCurrentWeather::
 
 EnsureDailyWeather:
 	ld a, [wCurDay]
-	or $90 ; versioned key distinguishes this larger pool from old save data
+	or $B0 ; versioned key distinguishes this pool from old save data
 	ld b, a
 	ld a, [wWeatherRandomDay]
 	cp b
@@ -62,7 +65,7 @@ EnsureDailyWeather:
 
 GenerateDailyWeather:
 	ld a, [wCurDay]
-	or $90
+	or $B0
 	ld [wWeatherRandomDay], a
 
 	ld hl, wWeatherDailySelections
@@ -235,12 +238,15 @@ GenerateDailyWeather:
 	ld e, a
 	ld d, WEATHER_INTENSITY_OVERCAST
 	call Random
-	cp 51 ; about 20%
+	cp 64 ; 25%
 	jr c, .got_intensity
 	ld d, WEATHER_INTENSITY_RAIN
-	cp 217 ; next 65%
+	cp 166 ; next 40%
 	jr c, .got_intensity
-	ld d, WEATHER_INTENSITY_THUNDER ; remaining 15%
+	ld d, WEATHER_INTENSITY_THUNDER
+	cp 197 ; next 12%
+	jr c, .got_intensity
+	ld d, WEATHER_INTENSITY_HARSH_SUN ; remaining 23%
 .got_intensity
 	ld a, e
 	or d
@@ -288,7 +294,9 @@ CheckOlivineWeather:
 	ld hl, OlivineWeatherMaps
 	call IsCurrentMapInWeatherArea
 	jr nz, .no
-	; Olivine City is permanently stormy.
+	; The whole Olivine coastline - the city, the port, Route 40 and the
+	; Battle Tower approach - is permanently stormy, so it is kept out of
+	; the generic daily pool entirely.
 	ld a, OW_WEATHER_THUNDERSTORM
 	scf
 	ret
@@ -403,6 +411,12 @@ CheckGenericDailyWeather:
 	jr z, .overcast
 	cp WEATHER_INTENSITY_RAIN
 	jr z, .rain
+	cp WEATHER_INTENSITY_THUNDER
+	jr z, .thunderstorm
+	ld a, OW_WEATHER_HARSH_SUN
+	scf
+	ret
+.thunderstorm
 	ld a, OW_WEATHER_THUNDERSTORM
 	scf
 	ret
@@ -507,7 +521,7 @@ AnimateWeatherOnIdle::
 	push de
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_RAIN
-	jr c, .done ; OW_WEATHER_NONE and OW_WEATHER_OVERCAST have no particles
+	jr c, .done ; NONE, HARSH_SUN and OVERCAST have no particles
 	ld a, [wVramState]
 	; The start menu (and anything else that sets the suppress bit) pauses
 	; weather completely: no idle particle redraws on top of the menu window,
@@ -717,7 +731,7 @@ _DoOverworldWeather:
 .particles
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_RAIN
-	ret c ; none and overcast have no particles
+	ret c ; none, harsh sun and overcast have no particles
 	jr z, RenderRain
 	cp OW_WEATHER_THUNDERSTORM
 	jr z, .thunderstorm
@@ -1107,8 +1121,11 @@ WeatherLightning:
 	ret
 
 ApplyWeatherTint::
-; Darken the seven map BG palettes to 75% brightness for overcast, rain,
-; and thunderstorms. Palette 7 is text/UI and is intentionally untouched.
+; Overcast, rain and thunderstorms darken the seven map BG palettes to 75%
+; brightness. Harsh sunlight instead lifts each palette's highlight toward
+; white and warms its midtones and shadows; see the SUN_* constants for why
+; it is shaped that way rather than as a straight brightness increase.
+; Palette 7 is text/UI and is intentionally untouched.
 	push af
 	push bc
 	push de
@@ -1118,12 +1135,15 @@ ApplyWeatherTint::
 	and a
 	jp z, .done
 	ldh a, [hCurWeather]
+	cp OW_WEATHER_HARSH_SUN
+	jr z, .tint_map
 	cp OW_WEATHER_OVERCAST
 	jp c, .done
 	cp OW_WEATHER_CHERRY_BLOSSOMS
-	jr z, .petal_pink
+	jp z, .petal_pink
 	cp OW_WEATHER_SNOW
 	jp nc, .done
+.tint_map
 
 	ldh a, [rSVBK]
 	push af
@@ -1138,26 +1158,40 @@ ApplyWeatherTint::
 	ld d, a ; RGB555 high byte
 	push bc
 
-	; Extract green before reusing d and e.
+	; Unpack the color into b = red, e = green, c = blue, each 0-31.
+	; Green straddles the two bytes, so it comes out first, into b, and
+	; trades places with red once red is safely out of e.
 	ld a, e
 	and %11100000
 	swap a
 	srl a
-	ld c, a
+	ld b, a
 	ld a, d
 	and %00000011
 	add a
 	add a
 	add a
-	or c
-	push af ; raw green component
-
-	; blue = blue - blue / 4
+	or b
+	ld b, a ; green, parked
 	ld a, d
 	srl a
 	srl a
 	and %00011111
-	ld c, a
+	ld c, a ; blue
+	ld a, e
+	and %00011111
+	ld d, a ; red
+	ld a, b
+	ld e, a ; green
+	ld a, d
+	ld b, a ; red
+
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_HARSH_SUN
+	jp z, .sun_color
+
+	; Overcast, rain, thunderstorm: every component gives up a quarter.
+	ld a, c
 	srl a
 	srl a
 	ld d, a
@@ -1165,10 +1199,7 @@ ApplyWeatherTint::
 	sub d
 	ld c, a
 
-	; red = red - red / 4
-	ld a, e
-	and %00011111
-	ld b, a
+	ld a, b
 	srl a
 	srl a
 	ld d, a
@@ -1176,16 +1207,83 @@ ApplyWeatherTint::
 	sub d
 	ld b, a
 
-	; green = green - green / 4
-	pop af
-	ld e, a
+	ld a, e
 	srl a
 	srl a
 	ld d, a
 	ld a, e
 	sub d
 	ld e, a
+	jp .repack
 
+.sun_color
+	; hl currently points at this color's high byte, so l - 1 is its offset
+	; from the palette base. wBGPals2 is PALETTE_SIZE-aligned (asserted
+	; below), so those low bits alone say which of the four colors this is,
+	; with no extra counter to carry through the loop. Color 0 is the
+	; highlight; colors 1-3 are the midtones and shadows.
+	ld a, l
+	dec a
+	and PALETTE_SIZE - 2
+	jp nz, .sun_shadow
+
+	; Highlight: gain a fraction of the headroom left before white, red
+	; gaining the most. Every channel moves up, blue included, so a white
+	; stays white instead of creaming over into the morning palette's look.
+	; Adding a fraction of (31 - x) to x can never pass 31, so no clamp.
+	ld a, 31 ; a full RGB555 component
+	sub b
+	ld d, a
+rept SUN_HILIGHT_RED_SHIFT
+	srl d
+endr
+rept SUN_HILIGHT_LIFT_SHIFT
+	srl a
+endr
+	add d
+	add b
+	ld b, a
+
+	ld a, 31 ; a full RGB555 component
+	sub e
+rept SUN_HILIGHT_LIFT_SHIFT
+	srl a
+endr
+	add e
+	ld e, a
+
+	ld a, 31 ; a full RGB555 component
+	sub c
+rept SUN_HILIGHT_LIFT_SHIFT
+	srl a
+endr
+	add c
+	ld c, a
+	jp .repack
+
+.sun_shadow
+	; Midtones and shadows lose blue and a little green, which warms and
+	; deepens them against the lifted highlight. Red is left untouched:
+	; cutting it is what would drag the whole map toward morning's yellow.
+	ld a, c
+rept SUN_SHADOW_BLUE_SHIFT
+	srl a
+endr
+	ld d, a
+	ld a, c
+	sub d
+	ld c, a
+
+	ld a, e
+rept SUN_SHADOW_GREEN_SHIFT
+	srl a
+endr
+	ld d, a
+	ld a, e
+	sub d
+	ld e, a
+
+.repack
 	; Reassemble the RGB555 color.
 	ld a, e
 	and %00000111
@@ -1207,8 +1305,11 @@ ApplyWeatherTint::
 
 	pop bc
 	dec c
-	jr nz, .color_loop
+	; The loop body carries both the darkening and the two harsh sun paths,
+	; which puts the top of it out of jr range.
+	jp nz, .color_loop
 
+.after_colors
 	; Rain and thunderstorms recolor the silver OBJ palette's color 2 to
 	; Polished Crystal's raindrop blue. wOBPals2 shares this WRAM bank with
 	; wBGPals2, so the rSVBK set above still holds. Emotes use only colors 1
@@ -1228,7 +1329,7 @@ ApplyWeatherTint::
 
 	pop af
 	ldh [rSVBK], a
-	jr .done
+	jp .done
 
 .petal_pink
 ; Cherry blossoms leave the map's own palettes alone - the sky is clear -
@@ -1260,6 +1361,12 @@ ApplyWeatherTint::
 	pop af
 	ret
 
+
+; .sun_color picks the highlight out of each palette from the low bits of
+; the palette pointer alone, which only works while the table starts on a
+; palette boundary.
+ASSERT wBGPals2 % PALETTE_SIZE == 0, \
+	"ApplyWeatherTint's harsh sun path needs wBGPals2 palette-aligned"
 
 INCLUDE "data/maps/overcast_maps.asm"
 
