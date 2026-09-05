@@ -518,11 +518,24 @@ AnimateWeatherOnIdle::
 	jr z, .done
 	; Which windows the particles may fall over is DoOverworldWeather's decision
 	; (a conversation yes, a mart list no); this only has to get the sprite
-	; rebuild there. The OAM lock below is still respected either way, so an idle
-	; redraw never lands in the middle of a caller's own text or menu frame.
+	; rebuild there.
+	;
+	; hOAMUpdate is the VBlank handler's "don't DMA OAM this frame" lock, and the
+	; wait-for-A loop at the end of every line of dialogue holds it at 1 for its
+	; whole duration - which is most of a conversation. Honouring it there is what
+	; leaves the particles sitting frozen on screen until the player presses A:
+	; the loop is spinning, the timers want to advance, and the finished frame
+	; never reaches OAM. So for the speech textbox the lock is deliberately taken
+	; over, and released at the bottom of this routine so the rebuild is displayed;
+	; the waiting loop restores its own saved value when it exits. Every other
+	; caller still gets the lock respected, and is skipped while it holds it.
 	ldh a, [hOAMUpdate]
 	and a
-	jr nz, .done
+	jr z, .oam_free
+	ld a, [wVramState]
+	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
+	jr z, .done
+.oam_free
 	ldh a, [hVBlankCounter]
 	ld b, a
 	ldh a, [hWeatherIdleFrame]
