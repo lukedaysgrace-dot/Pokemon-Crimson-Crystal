@@ -516,26 +516,23 @@ AnimateWeatherOnIdle::
 	jr nz, .done
 	bit 0, a
 	jr z, .done
-	; Which windows the particles may fall over is DoOverworldWeather's decision
-	; (a conversation yes, a mart list no); this only has to get the sprite
-	; rebuild there.
-	;
-	; hOAMUpdate is the VBlank handler's "don't DMA OAM this frame" lock, and the
-	; wait-for-A loop at the end of every line of dialogue holds it at 1 for its
-	; whole duration - which is most of a conversation. Honouring it there is what
-	; leaves the particles sitting frozen on screen until the player presses A:
-	; the loop is spinning, the timers want to advance, and the finished frame
-	; never reaches OAM. So for the speech textbox the lock is deliberately taken
-	; over, and released at the bottom of this routine so the rebuild is displayed;
-	; the waiting loop restores its own saved value when it exits. Every other
-	; caller still gets the lock respected, and is skipped while it holds it.
-	ldh a, [hOAMUpdate]
-	and a
-	jr z, .oam_free
-	ld a, [wVramState]
+	; Idle redraws belong to conversations and nothing else. Every caller that
+	; reaches here - the text printer, the wait-for-A loops, the pauses inside
+	; text rendering, and the frame-at-a-time VRAM streaming in Request2bpp and
+	; Request1bpp - can fire outside one too, during a map load, a battle or a
+	; menu, where rebuilding sprites would be at best wasted work and at worst a
+	; rebuild on top of half-initialised objects. Whether the particles may then
+	; fall over the window that is up stays DoOverworldWeather's decision.
 	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
 	jr z, .done
-.oam_free
+	; hOAMUpdate is the VBlank handler's "don't DMA OAM this frame" lock, and a
+	; conversation holds it at 1 for most of its length: the wait-for-A loop after
+	; every line, and the whole of CloseText while it streams the overworld font
+	; and sprite tiles back into VRAM eight tiles a frame. Honouring it is what
+	; left the particles frozen - the loops spin, the timers want to advance, and
+	; the finished frame never reaches OAM. So it is taken over here and released
+	; at the bottom of this routine, and each of those callers restores its own
+	; saved value on the way out.
 	ldh a, [hVBlankCounter]
 	ld b, a
 	ldh a, [hWeatherIdleFrame]
