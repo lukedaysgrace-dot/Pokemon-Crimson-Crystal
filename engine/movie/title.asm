@@ -98,6 +98,15 @@ _TitleScreen:
 	ld de, vTiles0
 	call Decompress
 
+; Blank the "space" tile.
+; The title screen fills every empty cell with " " ($7f), but nothing loaded
+; here writes that tile, so it would otherwise display whatever the previous
+; screen left in VRAM -- the stray glyphs that showed up on some boots.
+	ld hl, vTiles2 tile " "
+	ld bc, 1 tiles
+	xor a
+	call ByteFill
+
 ; Clear screen tiles
 	hlbgcoord 0, 0
 	ld bc, 64 * BG_MAP_WIDTH
