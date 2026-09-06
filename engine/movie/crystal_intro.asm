@@ -1407,6 +1407,10 @@ IntroScene26:
 	ld hl, IntroTilemap015
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
+	ld de, IntroCrimsonUnownAttrmap
+	hlbgcoord 0, 10
+	lb bc, BANK(IntroCrimsonUnownAttrmap), 4
+	call Request2bpp
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroCrystalUnownsGFX
@@ -1415,6 +1419,10 @@ IntroScene26:
 	ld hl, IntroTilemap017
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
+	ld de, IntroCrimsonUnownTilemap
+	hlbgcoord 0, 10
+	lb bc, BANK(IntroCrimsonUnownTilemap), 4
+	call Request2bpp
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
@@ -1445,7 +1453,7 @@ IntroScene26:
 	ret
 
 IntroScene27:
-; Spell out C R Y S T A L with Unown.
+; Spell out C R Y S T A L and C R I M S O N with Unown.
 	ld hl, wIntroSceneTimer
 	inc [hl]
 	ld hl, wIntroSceneFrameCounter
@@ -2076,6 +2084,21 @@ INCLUDE "gfx/intro/intro_2.pal"
 
 IntroCrystalUnownsGFX:
 INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
+
+; The original tilemaps only cover the first two rows of crystal_unowns.png.
+; Add its second word beneath CRYSTAL, sharing palettes by letter position so
+; both words fade in together.
+IntroCrimsonUnownAttrmap:
+	db $00, $00, $00, $01, $01, $02, $02, $03, $03, $04, $04, $05, $05, $06, $06, $07
+	db $07, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+	db $00, $00, $00, $01, $01, $02, $02, $03, $03, $04, $04, $05, $05, $06, $06, $07
+	db $07, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+
+IntroCrimsonUnownTilemap:
+	db $00, $00, $00, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c, $2d
+	db $2e, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+	db $00, $00, $00, $31, $32, $33, $34, $35, $36, $37, $38, $39, $3a, $3b, $3c, $3d
+	db $3e, $00, $00, $00, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
 
 IntroTilemap017:
 INCBIN "gfx/intro/017.tilemap.lz"
