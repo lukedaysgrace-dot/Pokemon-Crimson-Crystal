@@ -1456,6 +1456,8 @@ IntroScene27:
 ; Spell out C R Y S T A L and C R I M S O N with Unown.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
+	cp 7 * $20
+	jr nc, .done
 	inc [hl]
 	ld c, a
 	and $1f
@@ -1465,10 +1467,9 @@ IntroScene27:
 	and $e0
 	swap a
 	srl a
+	inc a ; palette 0 belongs to the white background
 	call Intro_FadeUnownWordPals
-	ld a, [wIntroSceneFrameCounter]
-	and a
-	ret nz
+	ret
 
 .done
 	call NextIntroScene
