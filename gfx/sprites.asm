@@ -54,7 +54,30 @@ GrampsSpriteGFX::              INCBIN "gfx/sprites/gramps.2bpp"
 GrannySpriteGFX::              INCBIN "gfx/sprites/granny.2bpp"
 SwimmerGuySpriteGFX::          INCBIN "gfx/sprites/swimmer_guy.2bpp"
 SwimmerGirlSpriteGFX::         INCBIN "gfx/sprites/swimmer_girl.2bpp"
-BigSnorlaxSpriteGFX::          INCBIN "gfx/overworld/snorlax.2bpp"
+BigSnorlaxSpriteGFX::
+	; Keep gfx/overworld/snorlax.png unchanged while packing the corrected face:
+	; separated eyes above the mouth, blue outer eye corners raised two pixels,
+	; and the third frame's top-of-stomach segment drawn in black.
+	INCBIN "gfx/overworld/snorlax.2bpp",   0, 12
+	db $16, $19 ; tile $00 row 6: raise the outer blue eye corner
+	INCBIN "gfx/overworld/snorlax.2bpp",  14,  2
+	INCBIN "gfx/overworld/snorlax.2bpp",  16, 12
+	INCBIN "gfx/overworld/snorlax.2bpp",  48,  2
+	INCBIN "gfx/overworld/snorlax.2bpp",  30,  2
+	db $13, $1c ; tile $02 row 0: clear the old blue eye-corner position
+	INCBIN "gfx/overworld/snorlax.2bpp",  34, 14
+	INCBIN "gfx/overworld/snorlax.2bpp",  28,  2
+	INCBIN "gfx/overworld/snorlax.2bpp",  50, 14
+	db $13, $1c ; tile $04 row 0: clear the old blue eye-corner position
+	INCBIN "gfx/overworld/snorlax.2bpp",  66, 14
+	INCBIN "gfx/overworld/snorlax.2bpp",  28,  2
+	INCBIN "gfx/overworld/snorlax.2bpp",  82, 14
+	db $13, $1c ; tile $06 row 0: clear the old blue eye-corner position
+	INCBIN "gfx/overworld/snorlax.2bpp",  98, 14
+	db $ff, $cf ; tile $07 row 0: raised center of the stomach border
+	db $ff, $00 ; tile $07 row 1: orange center, black side pairs come from tile $06
+	INCBIN "gfx/overworld/snorlax.2bpp", 116, 12
+	INCBIN "gfx/overworld/snorlax.2bpp", 128, 64
 SurfingPikachuSpriteGFX::      INCBIN "gfx/sprites/surfing_pikachu.2bpp"
 RocketSpriteGFX::              INCBIN "gfx/sprites/rocket.2bpp"
 RocketGirlSpriteGFX::          INCBIN "gfx/sprites/rocket_girl.2bpp"
