@@ -287,7 +287,7 @@ SetFacingBigDollAsym:
 
 SetFacingBigDoll:
 	ld a, [wVariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS]
-	ld d, FACING_SNORLAX_STILL ; SNORLAX gfx is now the 32x24 sleeping sprite
+	ld d, FACING_SNORLAX_STILL ; sleeping SNORLAX metasprite
 	cp SPRITE_BIG_SNORLAX
 	jr z, .ok
 	ld d, FACING_BIG_DOLL_SYM ; symmetric

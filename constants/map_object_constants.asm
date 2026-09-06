@@ -292,7 +292,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const FACING_BOULDER_DUST_2 ; 1d
 	const FACING_GRASS_1        ; 1e
 	const FACING_GRASS_2        ; 1f
-; sleeping SNORLAX: 32x24 body (mirrored) + rising Zzz, see data/sprites/facings.asm
+; sleeping SNORLAX: compact 32x24 body (mirrored) + rising Zzz
 	const FACING_SNORLAX_SLEEP_0 ; 20
 	const FACING_SNORLAX_SLEEP_1 ; 21
 	const FACING_SNORLAX_SLEEP_2 ; 22
