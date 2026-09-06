@@ -241,8 +241,8 @@ FacingSnorlaxStill: ; belly out, no Zzz
 	db 24, 20, X_FLIP, $08
 	db 24, 16, X_FLIP, $09
 
-FacingSnorlaxSleep1: ; breathing in, Zzz appears
-	db 14 ; #
+FacingSnorlaxSleep1: ; breathing in, first Z appears
+	db 13 ; #
 	db  8,  4, 0, $00
 	db  8,  8, 0, $01
 	db 16,  4, 0, $04
@@ -256,9 +256,8 @@ FacingSnorlaxSleep1: ; breathing in, Zzz appears
 	db 24, 20, X_FLIP, $08
 	db 24, 16, X_FLIP, $09
 	db  0, 16, 0, $0a
-	db  0, 24, 0, $0b
 
-FacingSnorlaxSleep2: ; belly in, Zzz rises
+FacingSnorlaxSleep2: ; belly in, all three Zs appear
 	db 14 ; #
 	db  8,  4, 0, $00
 	db  8,  8, 0, $01
@@ -275,8 +274,8 @@ FacingSnorlaxSleep2: ; belly in, Zzz rises
 	db  0, 16, 0, $0a
 	db  0, 24, 0, $0b
 
-FacingSnorlaxSleep3: ; breathing out, no Zzz
-	db 12 ; #
+FacingSnorlaxSleep3: ; breathing out, last Z remains
+	db 13 ; #
 	db  8,  4, 0, $00
 	db  8,  8, 0, $01
 	db 16,  4, 0, $04
@@ -289,6 +288,7 @@ FacingSnorlaxSleep3: ; breathing out, no Zzz
 	db 16, 16, X_FLIP, $05
 	db 24, 20, X_FLIP, $08
 	db 24, 16, X_FLIP, $09
+	db  0, 16, 0, $0a
 
 FacingBoulderDust1: ; boulder dust 1
 	db 4 ; #
