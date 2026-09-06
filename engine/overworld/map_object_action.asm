@@ -209,7 +209,7 @@ SetFacingBigDollSym:
 
 SetFacingSnorlaxSleep:
 ; Cycle FACING_SNORLAX_SLEEP_0-3 every 32 frames, so the belly goes
-; out-in-in-out and the Zzz puffs on the two middle frames.
+; out-in-in-out while the Zs loop through none, one, three, one.
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
