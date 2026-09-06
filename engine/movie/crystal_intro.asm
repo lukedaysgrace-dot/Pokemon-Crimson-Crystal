@@ -1454,22 +1454,21 @@ IntroScene26:
 
 IntroScene27:
 ; Spell out C R Y S T A L and C R I M S O N with Unown.
-	ld hl, wIntroSceneTimer
-	inc [hl]
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
-	cp $80
-	jr nc, .done
-
 	ld c, a
-	and $f
+	and $1f
+	srl a ; hold each fade shade for two frames
 	ld [wIntroSceneTimer], a
 	ld a, c
-	and $70
+	and $e0
 	swap a
+	srl a
 	call Intro_FadeUnownWordPals
-	ret
+	ld a, [wIntroSceneFrameCounter]
+	and a
+	ret nz
 
 .done
 	call NextIntroScene
