@@ -2873,6 +2873,24 @@ GruntMGroup:
 	dw MUK
 	db -1 ; end
 
+	next_list_item ; GRUNTM (15) GRUNTM_GOLDENROD_RIOLU - Goldenrod Underground
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 20
+	dw MANKEY
+	db 20
+	dw KOFFING
+	db -1 ; end
+
+	next_list_item ; GRUNTM (16) GRUNTM_GOLDENROD_RIOLU_LEADER - Goldenrod Underground
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 21
+	dw HOUNDOUR
+	db 21
+	dw MURKROW
+	db 22
+	dw SCRAGGY
+	db -1 ; end
+
 	end_list_items
 
 GentlemanGroup:
@@ -6692,36 +6710,6 @@ TamerGroup:
 
 	end_list_items
 
-ThugGroup:
-	next_list_item ; THUG (1) THUG_PAULIE - Goldenrod Underground
-	db "PAULIE@", TRAINERTYPE_NORMAL
-	db 20
-	dw MANKEY
-	db 20
-	dw KOFFING
-	db -1 ; end
-
-	next_list_item ; THUG (2) THUG_BOBBY - Goldenrod Underground
-	db "BOBBY@", TRAINERTYPE_NORMAL
-	db 21
-	dw CROAGUNK
-	db 21
-	dw GRIMER
-	db -1 ; end
-
-	next_list_item ; THUG (3) THUG_TONY - Goldenrod Underground
-	db "TONY@", TRAINERTYPE_NORMAL
-	db 21
-	dw HOUNDOUR
-	db 21
-	dw MURKROW
-	db 22
-	dw SCRAGGY
-	db -1 ; end
-
-	end_list_items
-
-
 SECTION "Enemy Trainer Parties 5", ROMX
 
 GruntFGroup:
@@ -6846,6 +6834,14 @@ GruntFGroup:
 	dw MAREANIE
 	db 13
 	dw WEEDLE
+	db -1 ; end
+
+	next_list_item ; GRUNTF (16) GRUNTF_GOLDENROD_RIOLU - Goldenrod Underground
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 21
+	dw CROAGUNK
+	db 21
+	dw GRIMER
 	db -1 ; end
 
 	end_list_items
