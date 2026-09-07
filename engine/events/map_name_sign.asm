@@ -1,4 +1,6 @@
 MAP_NAME_SIGN_START EQU $c0
+MAP_NAME_SIGN_GFX_TIMER EQU 62
+MAP_NAME_SIGN_LOAD_DELAY EQU 2
 
 ReturnFromMapSetupScript::
 	xor a
@@ -39,12 +41,12 @@ ReturnFromMapSetupScript::
 	call .CheckSpecialMap
 	jr z, .dont_do_map_sign
 
-; Prepare the graphics, name, and tilemap in separate passes, then display
-; for 59 frames.  Keeping these passes hidden avoids dropped input frames,
-; even for the longest landmark names.
+; As in Polished Crystal, wait briefly so banner loading does not overlap the
+; map-connection handoff. Then prepare the graphics, name, and tilemap in
+; separate hidden passes and display the completed sign for 59 frames.
 	ld a, SPRITE_GFX_LIST_CAPACITY
 	ld [wLandmarkSignCleanupIndex], a
-	ld a, 62
+	ld a, MAP_NAME_SIGN_GFX_TIMER + MAP_NAME_SIGN_LOAD_DELAY
 	ld [wLandmarkSignTimer], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [rWY], a
@@ -107,13 +109,17 @@ PlaceMapNameSign::
 	and a
 	jr z, .disappear
 	dec [hl]
-	cp 62
+	; Keep the window hidden while the connection finishes settling. Loading
+	; immediately here causes a small player-motion hitch on map boundaries.
+	cp MAP_NAME_SIGN_GFX_TIMER + 1
+	ret nc
+	cp MAP_NAME_SIGN_GFX_TIMER
 	jr nz, .name_gfx
 	call LoadMapNameSignGFX
 	ret
 
 .name_gfx
-	cp 61
+	cp MAP_NAME_SIGN_GFX_TIMER - 1
 	jr nz, .finish_name_gfx
 	ld a, [wCurLandmark]
 	ld e, a
@@ -123,7 +129,7 @@ PlaceMapNameSign::
 	ret
 
 .finish_name_gfx
-	cp 60
+	cp MAP_NAME_SIGN_GFX_TIMER - 2
 	jr nz, .draw_sign
 	ld a, [wCurLandmark]
 	ld e, a
