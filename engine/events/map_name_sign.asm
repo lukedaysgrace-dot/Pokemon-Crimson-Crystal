@@ -39,12 +39,16 @@ ReturnFromMapSetupScript::
 	call .CheckSpecialMap
 	jr z, .dont_do_map_sign
 
-; Display for 60 frames
-	ld a, 60
+; Prepare the graphics, name, and tilemap in separate passes, then display
+; for 59 frames.  Keeping these passes hidden avoids dropped input frames,
+; even for the longest landmark names.
+	ld a, SPRITE_GFX_LIST_CAPACITY
+	ld [wLandmarkSignCleanupIndex], a
+	ld a, 62
 	ld [wLandmarkSignTimer], a
-	call LoadMapNameSignGFX
-	call InitMapNameFrame
-	farcall HDMATransfer_OnlyTopFourRows
+	ld a, SCREEN_HEIGHT_PX
+	ldh [rWY], a
+	ldh [hWY], a
 	ret
 
 .dont_do_map_sign
@@ -55,6 +59,7 @@ ReturnFromMapSetupScript::
 	ldh [hWY], a
 	xor a
 	ldh [hLCDCPointer], a
+	ld [wLandmarkSignTimer], a
 	ret
 
 .CheckMovingWithinLandmark:
@@ -102,16 +107,39 @@ PlaceMapNameSign::
 	and a
 	jr z, .disappear
 	dec [hl]
+	cp 62
+	jr nz, .name_gfx
+	call LoadMapNameSignGFX
+	ret
+
+.name_gfx
+	cp 61
+	jr nz, .finish_name_gfx
+	ld a, [wCurLandmark]
+	ld e, a
+	farcall GetLandmarkName
+	xor a
+	call LoadMapNameSignFontChunk
+	ret
+
+.finish_name_gfx
 	cp 60
-	ret z
+	jr nz, .draw_sign
+	ld a, [wCurLandmark]
+	ld e, a
+	farcall GetLandmarkName
+	ld a, 1
+	call LoadMapNameSignFontChunk
+	ret
+.draw_sign
 	cp 59
-	jr nz, .skip2
+	jr nz, .graphics_ok
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
 	farcall HDMATransfer_OnlyTopFourRows
-.skip2
-	ld a, $80
-	ld a, $70
+
+.graphics_ok
+	ld a, SCREEN_HEIGHT_PX - 4 * TILE_WIDTH
 	ldh [rWY], a
 	ldh [hWY], a
 	ret
@@ -122,6 +150,9 @@ PlaceMapNameSign::
 	ldh [hWY], a
 	xor a
 	ldh [hLCDCPointer], a
+	; Restore at most one current-map sprite per frame.  This reverses the
+	; temporary font/sprite VRAM swap without another multi-frame pause.
+	call ReloadNextMapNameSignSpriteFacing
 	ret
 
 LoadMapNameSignGFX:
@@ -131,7 +162,157 @@ LoadMapNameSignGFX:
 	ld de, MapEntryFrameGFX
 	ld hl, vTiles0 tile MAP_NAME_SIGN_START
 	lb bc, BANK(MapEntryFrameGFX), 14
-	call Get2bpp
+	jp Get2bpp_2
+
+LoadMapNameSignFontChunk:
+; Copy only the glyphs used by one eight-character half of this landmark.
+; Keeping each pass short guarantees that it completes within one frame's
+; HBlank budget regardless of when HandleMapBackground begins.
+	and a
+	jr nz, .second_half
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer1 + 8
+	jr .loop
+
+.second_half
+	ld hl, wStringBuffer1 + 8
+	ld de, wStringBuffer1 + 16
+.loop
+	ld a, h
+	cp d
+	jr nz, .read
+	ld a, l
+	cp e
+	ret z
+.read
+	ld a, [hli]
+	cp "@"
+	ret z
+	cp "é"
+	jr z, .e_acute
+	cp "A"
+	jr c, .punctuation
+	cp "Z" + 1
+	jr nc, .digits
+	sub "A"
+	jr .load
+
+.punctuation
+	cp "'"
+	jr z, .shared_punctuation
+	cp "."
+	jr z, .shared_punctuation
+	cp "/"
+	jr z, .shared_punctuation
+	cp "#"
+	jr z, .pokemon
+	jr .loop
+
+.shared_punctuation
+	ld a, 16
+	jr .load
+
+.e_acute
+	ld a, "E" - "A"
+	jr .load
+
+.pokemon
+	push hl
+	push de
+	ld a, "P" - "A"
+	call .LoadGlyph
+	ld a, "O" - "A"
+	call .LoadGlyph
+	ld a, "K" - "A"
+	call .LoadGlyph
+	ld a, "E" - "A"
+	call .LoadGlyph
+	pop de
+	pop hl
+	jr .loop
+
+.digits
+	cp "0"
+	jr c, .loop
+	sub "0"
+	add 26
+.load
+	push hl
+	push de
+	call .LoadGlyph
+	pop de
+	pop hl
+	jr .loop
+
+.LoadGlyph
+	ld c, a
+	ld b, 0
+rept 4
+	sla c
+	rl b
+endr
+	ld hl, MapNameFontGFX
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, vTiles1 tile (MAP_NAME_FONT_TILE_START - $80)
+	add hl, bc
+	lb bc, BANK(MapNameFontGFX), 1
+	jp Get2bpp_2
+
+ReloadNextMapNameSignSpriteFacing:
+; Work backward so the highest bank-0 tiles (the ones overlapping the map
+; font at $dc-$ff) are restored first. Skip sprites not used by this map.
+.loop
+	ld a, [wLandmarkSignCleanupIndex]
+	and a
+	ret z
+	dec a
+	ld [wLandmarkSignCleanupIndex], a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, wUsedSprites
+	add hl, de
+	ld a, [hli]
+	and a
+	jr z, .loop
+	ldh [hUsedSpriteIndex], a
+	ld a, [hl]
+	bit 7, a
+	jr z, .loop
+	ldh [hUsedSpriteTile], a
+	ldh a, [hUsedSpriteIndex]
+	call .IsUsedByCurrentMap
+	jr nc, .loop
+
+	ld hl, wSpriteFlags
+	ld a, [hl]
+	push af
+	set 7, [hl] ; skip the first facing
+	res 6, [hl]
+	set 5, [hl] ; load VRAM bank 0
+	farcall GetUsedSprite
+	pop af
+	ld [wSpriteFlags], a
+	ret
+
+.IsUsedByCurrentMap
+	ld b, a
+	ld hl, wMap1ObjectSprite
+	ld c, NUM_OBJECTS - 1
+.find
+	ld a, [hl]
+	cp b
+	jr z, .found
+	ld de, OBJECT_LENGTH
+	add hl, de
+	dec c
+	jr nz, .find
+	and a
+	ret
+.found
+	scf
 	ret
 
 InitMapNameFrame:

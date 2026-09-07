@@ -71,7 +71,7 @@ VermilionCityChantzScript:
 	writetext VermilionCityChantzText
 	waitbutton
 	closetext
-	turnobject VERMILIONCITY_CHANTZ, LEFT
+	turnobject VERMILIONCITY_CHANTZ, UP
 	end
 
 .AlreadyBeaten:
@@ -79,7 +79,7 @@ VermilionCityChantzScript:
 	writetext CooltrainermChantzAfterBattleText
 	waitbutton
 	closetext
-	turnobject VERMILIONCITY_CHANTZ, LEFT
+	turnobject VERMILIONCITY_CHANTZ, UP
 	end
 
 VermilionCityChantzChallenge:
@@ -105,15 +105,35 @@ VermilionCityChantzChallenge:
 	writetext CooltrainermChantzAfterBattleText
 	waitbutton
 	closetext
-	applymovement VERMILIONCITY_CHANTZ, VermilionCityChantzLeavesMovement
+	readvar VAR_XCOORD
+	ifequal 34, .LeaveDownFirst
+	applymovement VERMILIONCITY_CHANTZ, VermilionCityChantzLeavesLeftFirstMovement
+	sjump .Disappear
+
+.LeaveDownFirst:
+	applymovement VERMILIONCITY_CHANTZ, VermilionCityChantzLeavesDownFirstMovement
+
+.Disappear:
 	disappear VERMILIONCITY_CHANTZ
 .Done:
 	end
 
-VermilionCityChantzLeavesMovement:
-	step RIGHT
-	step RIGHT
-	step RIGHT
+VermilionCityChantzLeavesLeftFirstMovement:
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step_end
+
+VermilionCityChantzLeavesDownFirstMovement:
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 VermilionGymBadgeGuy:
@@ -290,7 +310,7 @@ UnknownText_0x1aad4a:
 	done
 
 VermilionCityChantzText:
-	text "man...i threw a"
+	text "Man...i threw a"
 	line "pokeball at it but"
 	cont "all it did was"
 	cont "bounce off it's"
@@ -303,26 +323,26 @@ VermilionCityChantzText:
 CooltrainermChantzSeenText:
 	text "Hey! I was trying"
 	line "to catch that"
-	cont "snorlax...."
+	cont "SNORLAX...."
 
-	para "you better be"
-	line "ready to put up a"
-	cont "fight after being"
-	cont "so rude!"
+	para "If you're going"
+	line "to steal my catch,"
+	cont "you'd better prove"
+	cont "you deserve it!"
 	done
 
 CooltrainermChantzBeatenText:
-	text "oh..."
+	text "Oh..."
 	done
 
 CooltrainermChantzAfterBattleText:
-	text "i probably"
+	text "I probably"
 	line "would've never"
 	cont "caught it"
 	cont "anyways...."
 
-	para "i'm out of here,"
-	line "later nerd."
+	para "I'm out of here,"
+	line "later."
 	done
 
 VermilionCitySignText:
@@ -391,4 +411,4 @@ VermilionCity_MapEvents:
 	object_event 14, 16, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1
 	object_event 34,  8, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX_SLEEP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	object_event 31, 12, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1
-	object_event 35, 10, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionCityChantzScript, EVENT_VERMILION_CITY_CHANTZ_UP
+	object_event 35, 10, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionCityChantzScript, EVENT_VERMILION_CITY_CHANTZ_LEFT
