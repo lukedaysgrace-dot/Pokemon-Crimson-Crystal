@@ -110,7 +110,6 @@ TrainerClassStatExp:
 	dw 46656 ; GREEN            ; 54 pts, +52 @L98
 	dw  5000 ; BATTLE_GIRL      ; 17 pts, +11 @L66 / +11 @L69
 	dw  5000 ; TAMER            ; 17 pts, +12 @L75 / +12 @L76
-	dw  5000 ; THUG             ; 17 pts, +3 @L20 / +3 @L22
 	dw     0 ; AROMA_LADY
 	dw 43264 ; CRYSTAL3         ; 52 pts, +46 @L89
 	dw 44944 ; RIVAL3           ; 53 pts, +50 @L96

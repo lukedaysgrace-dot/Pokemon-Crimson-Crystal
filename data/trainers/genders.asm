@@ -86,7 +86,6 @@ BTTrainerClassGenders:
 	db FEMALE ; GREEN
 	db FEMALE ; BATTLE_GIRL
 	db MALE   ; TAMER
-	db MALE   ; THUG
 	db FEMALE ; AROMA_LADY
 	db FEMALE ; CRYSTAL3
 	db MALE   ; RIVAL3

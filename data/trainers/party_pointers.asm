@@ -86,7 +86,6 @@ TrainerGroups:
 	dba GreenGroup
 	dba BattleGirlGroup
 	dba TamerGroup
-	dba ThugGroup
 	dba AromaLadyGroup
 	dba CrystalGroup ; CRYSTAL3
 	dba Rival2Group ; RIVAL3

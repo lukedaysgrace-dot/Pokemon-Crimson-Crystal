@@ -456,3 +456,18 @@ TrainerHouse:
 	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [wScriptVar], a
 	jp CloseSRAM
+
+SetLastPartyMonMale:
+; Force the most recently added party Pokemon to be male while preserving
+; its shiny flag. The caller must ensure that the party is not empty.
+	ld a, [wPartyCount]
+	dec a
+	ld hl, wPartyMon1DVs
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
+	add hl, bc
+	ld a, [hl]
+	or MON_MALE_FLAG
+	ld [hl], a
+	ret
