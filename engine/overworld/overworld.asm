@@ -850,6 +850,18 @@ endr
 	call _DoesSpriteHaveFacings
 	jr c, .done
 
+	; Bank 0's additional sprite facings occupy the same upper VRAM tiles as
+	; the location banner. Connection setup can reach this path after the
+	; banner has streamed its font; defer the conflicting copy until the sign
+	; is fully hidden, when its incremental cleanup restores these facings.
+	ld a, [wSpriteFlags]
+	bit 5, a
+	jr z, .copy_second_facing
+	ld a, [wLandmarkSignTimer]
+	and a
+	jr nz, .done
+
+.copy_second_facing
 	ld a, h
 	add HIGH(vTiles1 - vTiles0)
 	ld h, a
