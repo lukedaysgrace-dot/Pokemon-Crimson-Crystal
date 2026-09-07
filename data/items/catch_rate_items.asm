@@ -12,7 +12,7 @@ TimeCapsule_CatchRateItems:
 	db ABILITY_CAP, BERRY
 	db TOXIC_ORB, BERRY
 	db SAFARI_BALL, BERRY
-	db OVAL_STONE, BERRY
+	db ITEM_BF, BERRY
 	db ITEM_FA, BERRY
 	db -1,      BERRY
 	db 0 ; end
