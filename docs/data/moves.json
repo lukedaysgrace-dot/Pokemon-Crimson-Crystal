@@ -3765,7 +3765,7 @@
     "const": "WATER_PULSE",
     "name": "WATER PULSE",
     "effect": "Effect Confuse Hit",
-    "power": 60,
+    "power": 80,
     "type": "Water",
     "category": "Categorize Special",
     "accuracy": 100,
@@ -4552,5 +4552,60 @@
     "accuracy": 100,
     "pp": 10,
     "chance": 100
+  },
+  {
+    "const": "TORMENT",
+    "name": "TORMENT",
+    "effect": "Effect Torment",
+    "power": 0,
+    "type": "Dark",
+    "category": "Categorize Status",
+    "accuracy": 100,
+    "pp": 15,
+    "chance": 0
+  },
+  {
+    "const": "TAUNT",
+    "name": "TAUNT",
+    "effect": "Effect Taunt",
+    "power": 0,
+    "type": "Dark",
+    "category": "Categorize Status",
+    "accuracy": 100,
+    "pp": 20,
+    "chance": 0
+  },
+  {
+    "const": "YAWN",
+    "name": "YAWN",
+    "effect": "Effect Yawn",
+    "power": 0,
+    "type": "Normal",
+    "category": "Categorize Status",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 0
+  },
+  {
+    "const": "WISH",
+    "name": "WISH",
+    "effect": "Effect Wish",
+    "power": 0,
+    "type": "Normal",
+    "category": "Categorize Status",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 0
+  },
+  {
+    "const": "STICKY_WEB",
+    "name": "STICKY WEB",
+    "effect": "Effect Sticky Web",
+    "power": 0,
+    "type": "Bug",
+    "category": "Categorize Status",
+    "accuracy": 100,
+    "pp": 20,
+    "chance": 0
   }
 ]

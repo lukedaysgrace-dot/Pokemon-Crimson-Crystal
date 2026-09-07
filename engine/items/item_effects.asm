@@ -203,7 +203,7 @@ ItemEffects:
 	dw NoEffect            ; MUSIC_MAIL
 	dw NoEffect            ; MIRAGE_MAIL
 	dw NoEffect            ; TOXIC_ORB
-	dw NoEffect            ; OVAL_STONE
+	dw NoEffect            ; ITEM_BF
 	dw PokeBallEffect      ; SAFARI_BALL
 
 PokeBallEffect:
