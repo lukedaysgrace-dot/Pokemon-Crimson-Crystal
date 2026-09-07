@@ -196,7 +196,7 @@
 	const MUSIC_MAIL   ; bc
 	const MIRAGE_MAIL  ; bd
 	const TOXIC_ORB    ; be
-	const OVAL_STONE   ; bf
+	const ITEM_BF      ; bf
 	const SAFARI_BALL  ; c0
 	const ITEM_FA      ; c1
 

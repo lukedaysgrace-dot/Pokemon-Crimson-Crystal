@@ -807,28 +807,28 @@
     "learnset": [
       {
         "level": 1,
-        "const": "LUMINA_CRASH",
-        "move": "Lumina Crash"
+        "const": "WOOD_HAMMER",
+        "move": "Wood Hammer"
       },
       {
         "level": 1,
-        "const": "NIGHT_SLASH",
-        "move": "Night Slash"
+        "const": "TORMENT",
+        "move": "Torment"
       },
       {
         "level": 4,
-        "const": "SUCKER_PUNCH",
-        "move": "Sucker Punch"
+        "const": "TAUNT",
+        "move": "Taunt"
       },
       {
         "level": 5,
-        "const": "POISON_JAB",
-        "move": "Poison Jab"
+        "const": "YAWN",
+        "move": "Yawn"
       },
       {
         "level": 6,
-        "const": "DARK_PULSE",
-        "move": "Dark Pulse"
+        "const": "STICKY_WEB",
+        "move": "Sticky Web"
       },
       {
         "level": 7,
@@ -2916,6 +2916,16 @@
         "text": "Use Thunderstone",
         "target_name": "Raichu",
         "target_slug": "raichu"
+      },
+      {
+        "method": "EVOLVE_ITEM",
+        "args": [
+          "SUN_STONE"
+        ],
+        "target": "RAICHU_ALOLAN",
+        "text": "Use Sun Stone",
+        "target_name": "Raichu (Alolan)",
+        "target_slug": "raichu-alolan"
       }
     ],
     "egg_moves": [],
@@ -3709,10 +3719,10 @@
     "name": "Ledian",
     "number": 32,
     "stats": {
-      "HP": 65,
+      "HP": 75,
       "Attack": 105,
-      "Defense": 50,
-      "Speed": 85,
+      "Defense": 60,
+      "Speed": 90,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -3950,6 +3960,11 @@
         "move": "Night Slash"
       },
       {
+        "level": 25,
+        "const": "STICKY_WEB",
+        "move": "Sticky Web"
+      },
+      {
         "level": 29,
         "const": "POISON_JAB",
         "move": "Poison Jab"
@@ -4027,6 +4042,11 @@
         "level": 1,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
+      },
+      {
+        "level": 1,
+        "const": "STICKY_WEB",
+        "move": "Sticky Web"
       },
       {
         "level": 1,
@@ -5775,6 +5795,11 @@
         "move": "Draining Kiss"
       },
       {
+        "level": 18,
+        "const": "WISH",
+        "move": "Wish"
+      },
+      {
         "level": 21,
         "const": "SAFEGUARD",
         "move": "Safeguard"
@@ -7182,7 +7207,8 @@
     ],
     "abilities": [
       "Static",
-      "Mold Breaker"
+      "Mold Breaker",
+      "Galvanize"
     ],
     "learnset": [
       {
@@ -7922,7 +7948,7 @@
       "HP": 54,
       "Attack": 108,
       "Defense": 54,
-      "Speed": 54,
+      "Speed": 75,
       "Sp. Atk": 108,
       "Sp. Def": 54
     },
@@ -10468,7 +10494,7 @@
     ],
     "abilities": [
       "Oblivious",
-      "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -10476,6 +10502,11 @@
         "level": 1,
         "const": "CURSE",
         "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "YAWN",
+        "move": "Yawn"
       },
       {
         "level": 1,
@@ -10612,7 +10643,7 @@
     ],
     "abilities": [
       "Oblivious",
-      "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -10760,7 +10791,7 @@
     ],
     "abilities": [
       "Oblivious",
-      "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -11288,16 +11319,18 @@
       "HP": 75,
       "Attack": 80,
       "Defense": 95,
-      "Speed": 50,
-      "Sp. Atk": 90,
+      "Speed": 60,
+      "Sp. Atk": 100,
       "Sp. Def": 100
     },
     "types": [
-      "Grass"
+      "Grass",
+      "Fairy"
     ],
     "abilities": [
       "Chlorophyll",
-      "Own Tempo"
+      "Own Tempo",
+      "Triage"
     ],
     "learnset": [
       {
@@ -13330,7 +13363,7 @@
     "abilities": [
       "Chlorophyll",
       "Solar Power",
-      "Early Bird"
+      "Drought"
     ],
     "learnset": [
       {
@@ -13793,12 +13826,12 @@
     ],
     "evolutions": [
       {
-        "method": "EVOLVE_MOVE",
+        "method": "EVOLVE_HAPPINESS",
         "args": [
-          "ROCK_THROW"
+          "TR_ANYTIME"
         ],
         "target": "SUDOWOODO",
-        "text": "Level up knowing Rock Throw",
+        "text": "Level up with high friendship",
         "target_name": "Sudowoodo",
         "target_slug": "sudowoodo"
       }
@@ -13931,7 +13964,7 @@
       "const": "BONSLY",
       "name": "Bonsly",
       "slug": "bonsly",
-      "text": "Level up knowing Rock Throw"
+      "text": "Level up with high friendship"
     }
   },
   {
@@ -15589,9 +15622,9 @@
       "Steel"
     ],
     "abilities": [
-      "Magnet Pull",
       "Sturdy",
-      "Analytic"
+      "Analytic",
+      "Levitate"
     ],
     "learnset": [
       {
@@ -15688,9 +15721,9 @@
       "Steel"
     ],
     "abilities": [
-      "Magnet Pull",
       "Sturdy",
-      "Analytic"
+      "Analytic",
+      "Levitate"
     ],
     "learnset": [
       {
@@ -15812,9 +15845,9 @@
       "Steel"
     ],
     "abilities": [
-      "Magnet Pull",
-      "Levitate",
-      "Analytic"
+      "Sturdy",
+      "Analytic",
+      "Levitate"
     ],
     "learnset": [
       {
@@ -24382,19 +24415,20 @@
     "name": "Octillery",
     "number": 196,
     "stats": {
-      "HP": 75,
-      "Attack": 105,
-      "Defense": 75,
+      "HP": 85,
+      "Attack": 70,
+      "Defense": 95,
       "Speed": 45,
-      "Sp. Atk": 105,
-      "Sp. Def": 75
+      "Sp. Atk": 110,
+      "Sp. Def": 85
     },
     "types": [
       "Water"
     ],
     "abilities": [
       "Suction Cups",
-      "Sniper"
+      "Sniper",
+      "Analytic"
     ],
     "learnset": [
       {
@@ -24616,7 +24650,7 @@
       "Attack": 58,
       "Defense": 70,
       "Speed": 67,
-      "Sp. Atk": 76,
+      "Sp. Atk": 86,
       "Sp. Def": 76
     },
     "types": [
@@ -28957,12 +28991,12 @@
     ],
     "evolutions": [
       {
-        "method": "EVOLVE_PARTY",
+        "method": "EVOLVE_HAPPINESS",
         "args": [
-          "REMORAID"
+          "TR_ANYTIME"
         ],
         "target": "MANTINE",
-        "text": "Level up with Remoraid in the party",
+        "text": "Level up with high friendship",
         "target_name": "Mantine",
         "target_slug": "mantine"
       }
@@ -29106,7 +29140,7 @@
       "const": "MANTYKE",
       "name": "Mantyke",
       "slug": "mantyke",
-      "text": "Level up with Remoraid in the party"
+      "text": "Level up with high friendship"
     }
   },
   {
@@ -29378,7 +29412,7 @@
       "Flying"
     ],
     "abilities": [
-      "Run Away",
+      "Reckless",
       "Early Bird",
       "Tangled Feet"
     ],
@@ -30665,9 +30699,19 @@
         "move": "Drill Peck"
       },
       {
+        "level": 26,
+        "const": "TAUNT",
+        "move": "Taunt"
+      },
+      {
         "level": 27,
         "const": "MEAN_LOOK",
         "move": "Mean Look"
+      },
+      {
+        "level": 28,
+        "const": "TORMENT",
+        "move": "Torment"
       },
       {
         "level": 29,
@@ -39464,12 +39508,12 @@
     ],
     "evolutions": [
       {
-        "method": "EVOLVE_HOLDING",
+        "method": "EVOLVE_HAPPINESS",
         "args": [
-          "OVAL_STONE"
+          "TR_ANYTIME"
         ],
         "target": "CHANSEY",
-        "text": "Level up holding Oval Stone during the day",
+        "text": "Level up with high friendship",
         "target_name": "Chansey",
         "target_slug": "chansey"
       }
@@ -39622,7 +39666,7 @@
       "const": "HAPPINY",
       "name": "Happiny",
       "slug": "happiny",
-      "text": "Level up holding Oval Stone during the day"
+      "text": "Level up with high friendship"
     }
   },
   {
@@ -45212,10 +45256,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "30"
+          "25"
         ],
         "target": "DRAGONAIR",
-        "text": "Level 30",
+        "text": "Level 25",
         "target_name": "Dragonair",
         "target_slug": "dragonair"
       }
@@ -45340,10 +45384,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "55"
+          "45"
         ],
         "target": "DRAGONITE",
-        "text": "Level 55",
+        "text": "Level 45",
         "target_name": "Dragonite",
         "target_slug": "dragonite"
       }
@@ -45354,7 +45398,7 @@
       "const": "DRATINI",
       "name": "Dratini",
       "slug": "dratini",
-      "text": "Level 30"
+      "text": "Level 25"
     }
   },
   {
@@ -45527,7 +45571,7 @@
       "const": "DRAGONAIR",
       "name": "Dragonair",
       "slug": "dragonair",
-      "text": "Level 55"
+      "text": "Level 45"
     }
   },
   {
@@ -45657,10 +45701,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "30"
+          "25"
         ],
         "target": "PUPITAR",
-        "text": "Level 30",
+        "text": "Level 25",
         "target_name": "Pupitar",
         "target_slug": "pupitar"
       }
@@ -45795,10 +45839,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "55"
+          "45"
         ],
         "target": "TYRANITAR",
-        "text": "Level 55",
+        "text": "Level 45",
         "target_name": "Tyranitar",
         "target_slug": "tyranitar"
       }
@@ -45809,7 +45853,7 @@
       "const": "LARVITAR",
       "name": "Larvitar",
       "slug": "larvitar",
-      "text": "Level 30"
+      "text": "Level 25"
     }
   },
   {
@@ -45981,7 +46025,7 @@
       "const": "PUPITAR",
       "name": "Pupitar",
       "slug": "pupitar",
-      "text": "Level 55"
+      "text": "Level 45"
     }
   },
   {
@@ -47418,7 +47462,7 @@
     "abilities": [
       "Regenerator",
       "Sheer Force",
-      "Multiscale"
+      "Supersweet Syrup"
     ],
     "learnset": [
       {
@@ -50809,10 +50853,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "38"
+          "45"
         ],
         "target": "FLYGON",
-        "text": "Level 38",
+        "text": "Level 45",
         "target_name": "Flygon",
         "target_slug": "flygon"
       }
@@ -50971,7 +51015,7 @@
       "const": "VIBRAVA",
       "name": "Vibrava",
       "slug": "vibrava",
-      "text": "Level 38"
+      "text": "Level 45"
     }
   },
   {
@@ -51534,7 +51578,7 @@
       "Attack": 45,
       "Defense": 65,
       "Speed": 80,
-      "Sp. Atk": 90,
+      "Sp. Atk": 100,
       "Sp. Def": 110
     },
     "types": [
@@ -54189,7 +54233,9 @@
       "Psychic"
     ],
     "abilities": [
-      "Static"
+      "Lightning Rod",
+      "Motor Drive",
+      "Galvanize"
     ],
     "learnset": [
       {
@@ -54296,7 +54342,12 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/raichu-alolan.png",
-    "evolves_from": null
+    "evolves_from": {
+      "const": "PIKACHU",
+      "name": "Pikachu",
+      "slug": "pikachu",
+      "text": "Use Sun Stone"
+    }
   },
   {
     "const": "SANDSHREW_ALOLAN",
@@ -56789,7 +56840,7 @@
       "Fire"
     ],
     "abilities": [
-      "Run Away",
+      "Flash Fire",
       "Pastel Veil",
       "Anticipation"
     ],
@@ -56922,6 +56973,7 @@
     ],
     "abilities": [
       "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -57075,6 +57127,7 @@
     ],
     "abilities": [
       "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -57217,6 +57270,7 @@
     ],
     "abilities": [
       "Own Tempo",
+      "Unaware",
       "Regenerator"
     ],
     "learnset": [
@@ -60655,10 +60709,10 @@
     "number": 472,
     "stats": {
       "HP": 75,
-      "Attack": 140,
-      "Defense": 65,
-      "Speed": 110,
-      "Sp. Atk": 112,
+      "Attack": 135,
+      "Defense": 70,
+      "Speed": 105,
+      "Sp. Atk": 100,
       "Sp. Def": 65
     },
     "types": [
@@ -61708,7 +61762,7 @@
     "number": 480,
     "stats": {
       "HP": 60,
-      "Attack": 95,
+      "Attack": 80,
       "Defense": 115,
       "Speed": 50,
       "Sp. Atk": 55,
@@ -62624,10 +62678,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "36"
+          "38"
         ],
         "target": "PALAFIN",
-        "text": "Level 36",
+        "text": "Level 38",
         "target_name": "Palafin",
         "target_slug": "palafin"
       }
@@ -62642,7 +62696,7 @@
     "number": 488,
     "stats": {
       "HP": 100,
-      "Attack": 140,
+      "Attack": 130,
       "Defense": 100,
       "Speed": 90,
       "Sp. Atk": 95,
@@ -62786,7 +62840,7 @@
       "const": "FINIZEN",
       "name": "Finizen",
       "slug": "finizen",
-      "text": "Level 36"
+      "text": "Level 38"
     }
   }
 ]

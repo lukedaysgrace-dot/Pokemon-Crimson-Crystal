@@ -3125,7 +3125,7 @@ WynautEvosAttacks:
 	db 0 ; no more level-up moves
 
 BonslyEvosAttacks:
-	dbbw EVOLVE_MOVE, ROCK_THROW, SUDOWOODO
+	dbbw EVOLVE_HAPPINESS, TR_ANYTIME, SUDOWOODO
 	db 0 ; no more evolutions
 	dbw 1, CHARM
 	dbw 1, SUBSTITUTE
@@ -3167,7 +3167,7 @@ MimeJrEvosAttacks:
 	db 0 ; no more level-up moves
 
 HappinyEvosAttacks:
-	dbbw EVOLVE_HOLDING, OVAL_STONE, CHANSEY
+	dbbw EVOLVE_HAPPINESS, TR_ANYTIME, CHANSEY
 	db 0 ; no more evolutions
 	dbw 1, MINIMIZE
 	dbw 1, TACKLE
@@ -3179,7 +3179,7 @@ HappinyEvosAttacks:
 	db 0 ; no more level-up moves
 
 MantykeEvosAttacks:
-	dbbw EVOLVE_PARTY, REMORAID, MANTINE
+	dbbw EVOLVE_HAPPINESS, TR_ANYTIME, MANTINE
 	db 0 ; no more evolutions
 	dbw 1, GUST
 	dbw 1, TACKLE
