@@ -178,18 +178,18 @@ INCLUDE "maps/IcePathB2FMahoganySide.asm"
 INCLUDE "maps/IcePathB2FBlackthornSide.asm"
 INCLUDE "maps/IcePathB3F.asm"
 INCLUDE "maps/LavenderPokecenter1F.asm"
-INCLUDE "maps/LavenderPokecenter2FBeta.asm"
 INCLUDE "maps/MrFujisHouse.asm"
 INCLUDE "maps/LavenderSpeechHouse.asm"
 INCLUDE "maps/LavenderNameRater.asm"
 INCLUDE "maps/LavenderMart.asm"
 INCLUDE "maps/SoulHouse.asm"
-INCLUDE "maps/LavRadioTower1F.asm"
 
 
 SECTION "Map Scripts 11", ROMX
 
 INCLUDE "maps/EcruteakTinTowerEntrance.asm"
+INCLUDE "maps/LavenderPokecenter2FBeta.asm"
+INCLUDE "maps/LavRadioTower1F.asm"
 INCLUDE "maps/WiseTriosRoom.asm"
 INCLUDE "maps/EcruteakPokecenter1F.asm"
 INCLUDE "maps/EcruteakLugiaSpeechHouse.asm"

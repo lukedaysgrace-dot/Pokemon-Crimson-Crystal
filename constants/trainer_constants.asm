@@ -293,6 +293,8 @@ LYRA EQU __enum__
 	const GRUNTM_25
 	const GRUNTM_28
 	const GRUNTM_31
+	const GRUNTM_GOLDENROD_RIOLU
+	const GRUNTM_GOLDENROD_RIOLU_LEADER
 
 	trainerclass GENTLEMAN ; 20
 	const PRESTON
@@ -670,6 +672,7 @@ LYRA EQU __enum__
 	const GRUNTF_13
 	const GRUNTF_14
 	const GRUNTF_15
+	const GRUNTF_GOLDENROD_RIOLU
 
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
@@ -761,12 +764,7 @@ CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
 	const TAMER2
 	const TAMER3
 
-	trainerclass THUG ; 55
-	const THUG_PAULIE
-	const THUG_BOBBY
-	const THUG_TONY
-
-	trainerclass AROMA_LADY ; 56
+	trainerclass AROMA_LADY ; 55
 	const BROOKE
 	const KIM
 	const HOPE
