@@ -191,3 +191,4 @@ SpecialsPointers::
 	add_special CheckCaughtWildMon
 	add_special StartSafariGame
 	add_special EndSafariGame
+	add_special SetLastPartyMonMale

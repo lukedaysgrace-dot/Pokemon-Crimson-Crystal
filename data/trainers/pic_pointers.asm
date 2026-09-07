@@ -86,7 +86,6 @@ TrainerPicPointers::
 	dba GreenPic
 	dba BattleGirlPic
 	dba TamerPic
-	dba ThugPic
 	dba AromaLadyPic
 	dba Crystal2Pic ; CRYSTAL3
 	dba Rival2Pic ; RIVAL3

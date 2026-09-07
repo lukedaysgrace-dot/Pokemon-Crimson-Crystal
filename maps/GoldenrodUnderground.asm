@@ -422,7 +422,7 @@ GoldenrodUndergroundHiddenSuperPotion:
 GoldenrodUndergroundHiddenAntidote:
 	hiddenitem ANTIDOTE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE
 
-; The three THUGs cornering the girl at the east end of the middle corridor.
+; The three TEAM ROCKET grunts cornering the girl at the east end of the middle corridor.
 ; The whole thing is a one-shot: once EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 ; is set the trigger never fires again and all four objects are gone for good.
 
@@ -469,7 +469,7 @@ GoldenrodUndergroundThugScene:
 	turnobject PLAYER, UP
 	winlosstext GoldenrodUndergroundThugPaulieBeatenText, 0
 	setlasttalked GOLDENRODUNDERGROUND_THUG_PAULIE
-	loadtrainer THUG, THUG_PAULIE
+	loadtrainer GRUNTM, GRUNTM_GOLDENROD_RIOLU
 	startbattle
 	reloadmapafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -483,7 +483,7 @@ GoldenrodUndergroundThugScene:
 	turnobject PLAYER, RIGHT
 	winlosstext GoldenrodUndergroundThugBobbyBeatenText, 0
 	setlasttalked GOLDENRODUNDERGROUND_THUG_BOBBY
-	loadtrainer THUG, THUG_BOBBY
+	loadtrainer GRUNTF, GRUNTF_GOLDENROD_RIOLU
 	startbattle
 	reloadmapafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -504,12 +504,12 @@ GoldenrodUndergroundThugScene:
 	closetext
 	winlosstext GoldenrodUndergroundThugTonyBeatenText, 0
 	setlasttalked GOLDENRODUNDERGROUND_THUG_TONY
-	loadtrainer THUG, THUG_TONY
+	loadtrainer GRUNTM, GRUNTM_GOLDENROD_RIOLU_LEADER
 	startbattle
 	reloadmapafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
 
-; They give up on the ring and clear out around you.
+; They give up on RIOLU and clear out around you.
 	opentext
 	writetext GoldenrodUndergroundThugTonyAfterText
 	waitbutton
@@ -535,47 +535,75 @@ GoldenrodUndergroundThugScene:
 	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlApproachMovement
 	turnobject PLAYER, UP
 	opentext
-	writetext GoldenrodUndergroundGirlThanksText
-	buttonsound
-	verbosegiveitem LOADED_DICE
-	iffalse GoldenrodUndergroundThugScene_NoRoom
-	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
-	writetext GoldenrodUndergroundGirlFarewellText
-	waitbutton
+	scall GoldenrodUndergroundGirlRewardScript
+	iffalse GoldenrodUndergroundThugScene_RewardPending
 	closetext
 	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlLeavesMovement
 	disappear GOLDENRODUNDERGROUND_GIRL
 GoldenrodUndergroundThugScene_Done:
 	end
 
-GoldenrodUndergroundThugScene_NoRoom:
-	writetext GoldenrodUndergroundGirlNoRoomText
-	waitbutton
+GoldenrodUndergroundThugScene_RewardPending:
 	closetext
 	end
 
-; Fallback if you walk away before she can hand the ring's reward over.
+; Fallback if you walk away before she can hand the rewards over.
 GoldenrodUndergroundGirlScript:
 	faceplayer
 	opentext
-	writetext GoldenrodUndergroundGirlThanksText
-	buttonsound
-	verbosegiveitem LOADED_DICE
-	iffalse .NoRoom
-	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
-	writetext GoldenrodUndergroundGirlFarewellText
-	waitbutton
+	scall GoldenrodUndergroundGirlRewardScript
+	iffalse .RewardPending
 	closetext
 	disappear GOLDENRODUNDERGROUND_GIRL
 	end
 
-.NoRoom:
-	writetext GoldenrodUndergroundGirlNoRoomText
-	waitbutton
+.RewardPending:
 	closetext
 	end
 
-; The THUGs are unreachable until the scene fires, but give them something.
+GoldenrodUndergroundGirlRewardScript:
+	checkevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
+	iftrue .GiveLoadedDice
+	writetext GoldenrodUndergroundGirlThanksText
+	yesorno
+	iffalse .DeclinedRiolu
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFull
+	writetext GoldenrodUndergroundGirlAcceptedText
+	waitbutton
+	givepoke RIOLU, 15
+	special SetLastPartyMonMale
+	setevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
+	sjump .GiveLoadedDice
+
+.DeclinedRiolu:
+	writetext GoldenrodUndergroundGirlDeclinedText
+	waitbutton
+
+.GiveLoadedDice:
+	writetext GoldenrodUndergroundGirlLoadedDiceText
+	buttonsound
+	verbosegiveitem LOADED_DICE
+	iffalse .BagFull
+	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	writetext GoldenrodUndergroundGirlFarewellText
+	waitbutton
+	setval TRUE
+	return
+
+.PartyFull:
+	writetext GoldenrodUndergroundGirlPartyFullText
+	waitbutton
+	setval FALSE
+	return
+
+.BagFull:
+	writetext GoldenrodUndergroundGirlBagFullText
+	waitbutton
+	setval FALSE
+	return
+
+; The ROCKET grunts are unreachable until the scene fires, but give them something.
 GoldenrodUndergroundThugScript:
 	faceplayer
 	opentext
@@ -909,126 +937,176 @@ GoldenrodUndergroundNoEntryText:
 GoldenrodUndergroundGirlPleaText:
 	text "Leave me alone!"
 
-	para "You can't have my"
-	line "grandma's ring!"
+	para "You can't take my"
+	line "grandma's RIOLU!"
 	done
 
 GoldenrodUndergroundThugsDemandText:
-	text "Will you just hand"
-	line "it over already?!"
+	text "Hand it over"
+	line "already!"
 
-	para "I bet that thing's"
-	line "worth a fortune!"
+	para "That rare #MON"
+	line "will make TEAM"
+	cont "ROCKET a fortune!"
 	done
 
 GoldenrodUndergroundThugNoticeText:
 	text "Well, what do we"
-	line "have here, boys?"
+	line "have here?"
 
 	para "Seems like this"
 	line "kid wants to be a"
 	cont "hero."
 
 	para "Guess we'll have"
-	line "to show him not to"
-	cont "poke his nose into"
-	cont "other people's"
-	cont "business!"
+	line "to show em not to"
+	cont "poke their nose"
+	cont "into other"
+	cont "people's business!"
 	done
 
 GoldenrodUndergroundThugPaulieBeatenText:
-	text "How?!"
+	text "No way!"
 	done
 
 GoldenrodUndergroundThugPaulieAfterText:
-	text "You're not tough."
+	text "I was caught off"
+	line "guard!"
 
-	para "You just got"
-	line "lucky!"
+	para "You're no match"
+	line "for the others!"
 	done
 
 GoldenrodUndergroundThugBobbyBeatenText:
-	text "No, no, no…"
+	text "What? I lost?!"
 	done
 
 GoldenrodUndergroundThugBobbyAfterText:
-	text "Rrrghhh…"
-
-	para "This is so"
-	line "embarrassing."
+	text "How humiliating…"
 	done
 
 GoldenrodUndergroundThugTonyShoveText:
-	text "Get out of my way,"
-	line "loser."
+	text "Out of my way."
 
-	para "I can't believe"
-	line "you're getting"
-	cont "thrashed by this"
-	cont "little punk."
+	para "I knew you two"
+	line "were too weak for"
+	cont "this job."
+
+	para "I'll crush this"
+	line "brat myself!"
 	done
 
 GoldenrodUndergroundThugTonyBeatenText:
-	text "Heh… not bad."
+	text "Tch… Impossible!"
 	done
 
 GoldenrodUndergroundThugTonyAfterText:
-	text "You know what?"
+	text "This kid's tougher"
+	line "than I thought…"
 
-	para "This kid's got"
-	line "moxie. I can"
-	cont "respect that…"
-
-	para "Let's get out of"
-	line "here, fellas."
+	para "We're pulling out."
 	done
 
 GoldenrodUndergroundThugBobbyRingText:
-	text "But TONY, what"
-	line "about the ring?"
+	text "But what about"
+	line "the #MON?"
 	done
 
 GoldenrodUndergroundThugTonyForgetItText:
-	text "FORGET THE RING!"
+	text "FORGET THE RIOLU!"
 
-	para "There's a boatload"
-	line "more suckers"
-	cont "around here to"
-	cont "scam."
+	para "We can't take it"
+	line "with this brat in"
+	cont "the way."
 
-	para "Let's just get out"
-	line "of here."
+	para "Move out, now!"
 	done
 
 GoldenrodUndergroundGirlThanksText:
 	text "Oh, thank you so"
 	line "much!"
 
-	para "I simply came down"
-	line "here to check out"
-	cont "some of the shops"
-	cont "that are only open"
-	cont "on certain days…"
+	para "I came down here"
+	line "with RIOLU"
+	cont "to check out some"
+	cont "of the shops that"
+	cont "only open on"
+	cont "certain days…"
 
-	para "They all led me to"
-	line "this hallway, and"
-	cont "then those three"
+	para "Those TEAM ROCKET"
+	line "members saw him"
+	cont "and immediately"
+	cont "chased me down"
+	cont "this hallway and"
 	cont "cornered me."
 
-	para "This ring has been"
-	line "in my family for"
-	cont "generations. I'd"
-	cont "be heartbroken if"
-	cont "I lost it."
+	para "To think that they"
+	line "wanted to steal"
+	cont "him…"
 
-	para "I saw one of them"
-	line "drop something"
-	cont "when they were"
-	cont "rushing at you."
+	para "I don't know"
+	line "what I would've"
+	cont "done if you hadn't"
+	cont "shown up."
 
-	para "I know it's not"
-	line "much, but I hope"
-	cont "you can use it!"
+	para "You know, I've"
+	line "been thinking of"
+	cont "something."
+
+	para "RIOLU belonged to"
+	line "my grandma. He's"
+	cont "always been really"
+	cont "special to me."
+
+	para "But maybe keeping"
+	line "him with me isn't"
+	cont "what is best for"
+	cont "him anymore."
+
+	para "After seeing how"
+	line "you stood up for"
+	cont "us…"
+
+	para "I think Grandma"
+	line "would've trusted"
+	cont "you with him, too."
+
+	para "He's incredibly"
+	line "brave for his size"
+	cont "and I know you'll"
+	cont "protect him better"
+	cont "than I can."
+
+	para "Would you please"
+	line "take him?"
+	done
+
+GoldenrodUndergroundGirlAcceptedText:
+	text "Wonderful! I know"
+	line "you'll take good"
+	cont "care of him."
+	done
+
+GoldenrodUndergroundGirlDeclinedText:
+	text "That's all right."
+
+	para "It was a lot"
+	line "to ask of you."
+
+	para "I'll just have to"
+	line "be more careful"
+	cont "taking him out"
+	cont "from now on."
+	done
+
+GoldenrodUndergroundGirlLoadedDiceText:
+	text "I also saw one of"
+	line "them drop these"
+	cont "LOADED DICE when"
+	cont "they rushed at"
+	cont "you."
+
+	para "Please take them!"
 	done
 
 GoldenrodUndergroundGirlFarewellText:
@@ -1038,7 +1116,16 @@ GoldenrodUndergroundGirlFarewellText:
 	line "here."
 	done
 
-GoldenrodUndergroundGirlNoRoomText:
+GoldenrodUndergroundGirlPartyFullText:
+	text "Oh… Your party is"
+	line "full."
+
+	para "Make room for"
+	line "RIOLU, then come"
+	cont "talk to me again."
+	done
+
+GoldenrodUndergroundGirlBagFullText:
 	text "Oh… your PACK is"
 	line "full."
 
@@ -1080,6 +1167,6 @@ GoldenrodUnderground_MapEvents:
 	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BitterMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRANNY
 	object_event 25, 17, SPRITE_AROMA_LADY, SPRITEMOVEDATA_LOOK_DOWN_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
-	object_event 24, 17, SPRITE_THUG, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	object_event 24, 18, SPRITE_THUG, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	object_event 25, 18, SPRITE_THUG, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 24, 17, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 24, 18, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 25, 18, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
