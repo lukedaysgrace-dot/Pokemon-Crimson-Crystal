@@ -136,6 +136,94 @@ TextJump_SelectDifficultyHard:
 	text_far Text_SelectDifficultyHard
 	text_end
 
+InitPokemonTyping:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetPalettes
+	ld hl, TextJump_SelectPokemonTyping
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld hl, wGameplayRules
+	ld a, [wMenuCursorY]
+	dec a
+	jr nz, .revamped
+	set GAMEPLAYRULES_ORIGINAL_TYPES_F, [hl]
+	jr .done
+
+.revamped
+	res GAMEPLAYRULES_ORIGINAL_TYPES_F, [hl]
+
+.done
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 4, 15, 9
+	dw .MenuData
+	db 2 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "Original@"
+	db "Revamped@"
+
+TextJump_SelectPokemonTyping:
+	text_far Text_SelectPokemonTyping
+	text_end
+
+InitPokemonStats:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetPalettes
+	ld hl, TextJump_SelectPokemonStats
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld hl, wGameplayRules
+	ld a, [wMenuCursorY]
+	dec a
+	jr nz, .updated
+	set GAMEPLAYRULES_ORIGINAL_STATS_F, [hl]
+	jr .done
+
+.updated
+	res GAMEPLAYRULES_ORIGINAL_STATS_F, [hl]
+
+.done
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 4, 15, 9
+	dw .MenuData
+	db 2 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "Original@"
+	db "Updated@"
+
+TextJump_SelectPokemonStats:
+	text_far Text_SelectPokemonStats
+	text_end
+
 InitGenderScreen:
 	ld a, $10
 	ld [wMusicFade], a

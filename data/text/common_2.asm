@@ -699,6 +699,16 @@ Text_SelectDifficultyHard::
 	cont "GYM LVL caps."
 	done
 
+Text_SelectPokemonTyping::
+	text "Choose #MON"
+	line "typings."
+	done
+
+Text_SelectPokemonStats::
+	text "Choose #MON"
+	line "base stats."
+	done
+
 UnknownText_0x1c0cc6::
 	text "<USER>'s"
 	line "@"
