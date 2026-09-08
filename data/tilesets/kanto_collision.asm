@@ -156,4 +156,4 @@
 	tilecoll WALL, WALL, WATER, WALL ; 9b
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 9c
 	tilecoll WALL, WALL, WALL, WALL ; 9d
-	tilecoll FLOOR, FLOOR, WALL, WALL ; 9e sealed Route 19 island cliff
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 9e
