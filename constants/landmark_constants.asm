@@ -50,7 +50,7 @@
 	const DARK_CAVE         ; 2d
 	const ROUTE_46          ; 2e
 	const SILVER_CAVE       ; 2f
-	const ICE_ISLAND        ; 30
+	const SHIVER_ISLE       ; 30
 
 KANTO_LANDMARK EQU const_value
 	const PALLET_TOWN       ; 31
@@ -103,6 +103,9 @@ KANTO_LANDMARK EQU const_value
 	const ROUTE_28          ; 60
 	const FAST_SHIP         ; 61
 	const VIRIDIAN_FOREST   ; 62
+	const FIRE_ISLAND       ; 63
+	const THUNDER_ISLAND    ; 64
+	const ICE_ISLAND        ; 65
 
 ; used in CaughtData
 GIFT_LOCATION  EQU $7e

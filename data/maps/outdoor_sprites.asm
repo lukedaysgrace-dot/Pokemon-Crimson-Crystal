@@ -113,13 +113,13 @@ CinnabarGroupSprites:
 ; it started rendering NPCs as the player.
 ; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
 ;   1F maps, which are indoor and load their own sprites via AddIndoorSprites.
-;   Frees 24 tiles, so bank 0 now sits at 104/128.
+;   Their slots now hold Route 19's three legendary bird icons.
 ; - Walkers reordered. Only Routes 19/20/21 and Cinnabar Island are outdoor in
 ;   this group, and their only NPCs are swimmers/fishers - which were dead last
 ;   in the list, so their step frames landed in bank 0's font-shared table.
 ;   Every swimmer here is SPRITEMOVEDATA_SPINRANDOM_FAST, i.e. animating
 ;   nonstop, so they were the worst possible occupants of that bank.
-	db SPRITE_SUICUNE
+	db SPRITE_MOLTRES ; Route 19 Elemental Sphere cutscene
 	db SPRITE_SWIMMER_GIRL ; Routes 19/20/21 trainers (spin constantly)
 	db SPRITE_SWIMMER_GUY ; Routes 19/20/21 trainers (spin constantly)
 	db SPRITE_FISHER ; Route 19 walker, Route 21 trainer
@@ -141,8 +141,8 @@ CinnabarGroupSprites:
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
-	db SPRITE_NONE ; free slot (was SPRITE_NURSE; indoor maps self-load)
-	db SPRITE_NONE ; free slot (was SPRITE_OLD_LINK_RECEPTIONIST)
+	db SPRITE_ARTICUNO ; Route 19 Elemental Sphere cutscene
+	db SPRITE_ZAPDOS ; Route 19 Elemental Sphere cutscene
 
 CeruleanGroupSprites:
 ; - SPRITE_MEW and SPRITE_CRYSTAL (Route 25 cape) must stay in bank 1. MEW
@@ -533,7 +533,7 @@ CianwoodGroupSprites:
 ; Only four maps in this group are outdoor (ROUTE/TOWN) and so use this list:
 ; Route 40, Route 41, Cianwood City, Battle Tower Outside. Everything else in
 ; the group is INDOOR/CAVE/GATE and self-loads via AddIndoorSprites - including
-; Ice Island, which pulls SKIER_NEW/SNOWBOARDER_NEW without being listed here.
+; Shiver Isle, which pulls SKIER_NEW/SNOWBOARDER_NEW without being listed here.
 ; Eleven entries were dead weight for those four maps and are now SPRITE_NONE,
 ; taking bank 0 from 116/128 down to 24/128.
 ; SPRITE_FINIZEN (Route 41 Sunday event) was added in ENTEI's old slot so it

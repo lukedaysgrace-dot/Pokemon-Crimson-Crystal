@@ -2946,7 +2946,7 @@ SkierGroup:
 	dw SNEASEL
 	db -1 ; end
 
-	next_list_item ; SKIER (3) SKIER_BIANCA - Ice Island
+	next_list_item ; SKIER (3) SKIER_BIANCA - Shiver Isle
 	db "BIANCA@", TRAINERTYPE_NORMAL
 	db 44
 	dw SNORUNT
@@ -5643,7 +5643,7 @@ BoarderGroup:
 	dw SNORUNT
 	db -1 ; end
 
-	next_list_item ; BOARDER (4) BOARDER_AIDAN - Ice Island
+	next_list_item ; BOARDER (4) BOARDER_AIDAN - Shiver Isle
 	db "AIDAN@", TRAINERTYPE_NORMAL
 	db 43
 	dw SWINUB
@@ -5651,7 +5651,7 @@ BoarderGroup:
 	dw SNEASEL
 	db -1 ; end
 
-	next_list_item ; BOARDER (5) BOARDER_NOEL - Ice Island
+	next_list_item ; BOARDER (5) BOARDER_NOEL - Shiver Isle
 	db "NOEL@", TRAINERTYPE_NORMAL
 	db 43
 	dw CETODDLE

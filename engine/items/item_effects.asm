@@ -203,7 +203,7 @@ ItemEffects:
 	dw NoEffect            ; SMOOTH_ROCK
 	dw NoEffect            ; ICY_ROCK
 	dw NoEffect            ; TOXIC_ORB
-	dw NoEffect            ; ITEM_BF
+	dw NoEffect            ; ELEMENTAL_SPHERE
 	dw PokeBallEffect      ; SAFARI_BALL
 
 PokeBallEffect:
