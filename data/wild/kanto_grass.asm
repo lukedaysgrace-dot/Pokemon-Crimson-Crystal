@@ -6,7 +6,7 @@
 ; Slot rates are 30/30/20/10/5/4/1 percent, so slots 6 and 7 are the rare ones.
 ; Evolved forms never appear below the level at which they would have evolved.
 ; Scyther, Pinsir and Heracross are Bug Contest exclusives; ice types are
-; Ice Island / Ice Path only; ghost types are Silent Crypt only.
+; Shiver Isle / Ice Path only; ghost types are Silent Crypt only.
 
 KantoGrassWildMons:
 

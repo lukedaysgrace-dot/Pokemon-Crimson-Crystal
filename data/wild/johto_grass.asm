@@ -679,7 +679,7 @@ JohtoGrassWildMons:
 	dbw 32, JOLTIK
 	dbw 32, MACHOP
 
-	map_id ICE_ISLAND
+	map_id SHIVER_ISLE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 38, SNEASEL

@@ -393,6 +393,9 @@ INCLUDE "maps/Route43.asm"
 INCLUDE "maps/Route44.asm"
 INCLUDE "maps/Route45.asm"
 INCLUDE "maps/Route19.asm"
+INCLUDE "maps/FireIsland.asm"
+INCLUDE "maps/ThunderIsland.asm"
+INCLUDE "maps/IceIsland.asm"
 INCLUDE "maps/Route25.asm"
 
 
@@ -422,7 +425,7 @@ INCLUDE "maps/Route31.asm"
 INCLUDE "maps/Route39.asm"
 INCLUDE "maps/Route40.asm"
 INCLUDE "maps/Route41.asm"
-INCLUDE "maps/IceIsland.asm"
+INCLUDE "maps/ShiverIsle.asm"
 INCLUDE "maps/Route12.asm"
 
 
