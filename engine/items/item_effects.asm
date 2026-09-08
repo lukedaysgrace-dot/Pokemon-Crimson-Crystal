@@ -198,10 +198,10 @@ ItemEffects:
 	dw NoEffect            ; PORTRAITMAIL
 	dw NoEffect            ; LOVELY_MAIL
 	dw NoEffect            ; EON_MAIL
-	dw NoEffect            ; MORPH_MAIL
-	dw NoEffect            ; BLUESKY_MAIL
-	dw NoEffect            ; MUSIC_MAIL
-	dw NoEffect            ; MIRAGE_MAIL
+	dw NoEffect            ; DAMP_ROCK
+	dw NoEffect            ; HEAT_ROCK
+	dw NoEffect            ; SMOOTH_ROCK
+	dw NoEffect            ; ICY_ROCK
 	dw NoEffect            ; TOXIC_ORB
 	dw NoEffect            ; ITEM_BF
 	dw PokeBallEffect      ; SAFARI_BALL

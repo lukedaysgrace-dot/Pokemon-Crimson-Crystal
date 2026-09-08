@@ -167,21 +167,26 @@ CamperSidAfterBattleText:
 	done
 
 AromaLadyEdnaSeenText:
-	text "People shouldn't"
-	line "leave any litter"
-	cont "behind."
+	text "Even beside the"
+	line "POWER PLANT, these"
+	cont "wildflowers bloom."
+
+	para "Let's see if your"
+	line "team is as hardy!"
 	done
 
 AromaLadyEdnaBeatenText:
-	text "Ohh… I lost…"
+	text "You uprooted my"
+	line "whole strategy!"
 	done
 
 AromaLadyEdnaAfterBattleText:
-	text "Conserving energy"
-	line "is important, but"
+	text "Clean energy and"
+	line "healthy habitats"
+	cont "belong together."
 
-	para "the environment is"
-	line "even more vital."
+	para "We should nurture"
+	line "both."
 	done
 
 HikerTimSeenText:

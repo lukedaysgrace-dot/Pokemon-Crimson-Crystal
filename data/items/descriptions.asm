@@ -185,10 +185,10 @@ ItemDescriptions:
 	dw PortraitMailDesc
 	dw LovelyMailDesc
 	dw EonMailDesc
-	dw MorphMailDesc
-	dw BlueSkyMailDesc
-	dw MusicMailDesc
-	dw MewMailDesc
+	dw DampRockDesc
+	dw HeatRockDesc
+	dw SmoothRockDesc
+	dw IcyRockDesc
 	dw ToxicOrbDesc
 	dw OvalStoneDesc
 	dw SafariBallDesc
@@ -988,21 +988,21 @@ EonMailDesc:
 	db   "EEVEE-print MAIL."
 	next "(HOLD)@"
 
-MorphMailDesc:
-	db   "DITTO-print MAIL."
-	next "(HOLD)@"
+DampRockDesc:
+	db   "Extends rain to 8"
+	next "turns. (HOLD)@"
 
-BlueSkyMailDesc:
-	db   "Sky-print MAIL."
-	next "(HOLD)@"
+HeatRockDesc:
+	db   "Extends sun to 8"
+	next "turns. (HOLD)@"
 
-MusicMailDesc:
-	db   "NATU-print MAIL."
-	next "(HOLD)@"
+SmoothRockDesc:
+	db   "Extends sandstorm"
+	next "8 turns. (HOLD)@"
 
-MewMailDesc:
-	db   "MEW-print MAIL."
-	next "(HOLD)@"
+IcyRockDesc:
+	db   "Extends hail/snow"
+	next "8 turns. (HOLD)@"
 
 TartAppleDesc:
 	db   "A very tart apple."
