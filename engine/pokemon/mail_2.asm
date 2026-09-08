@@ -117,10 +117,6 @@ MailGFXPointers:
 	dbw PORTRAITMAIL, LoadPortraitMailGFX
 	dbw LOVELY_MAIL,  LoadLovelyMailGFX
 	dbw EON_MAIL,     LoadEonMailGFX
-	dbw MORPH_MAIL,   LoadMorphMailGFX
-	dbw BLUESKY_MAIL, LoadBlueSkyMailGFX
-	dbw MUSIC_MAIL,   LoadMusicMailGFX
-	dbw MIRAGE_MAIL,  LoadMirageMailGFX
 	db -1
 
 LoadSurfMailGFX:
@@ -700,9 +696,6 @@ MailGFX_PlaceMessage:
 	ld a, [wBuffer3]
 	hlcoord 8, 14
 	cp $3 ; PORTRAITMAIL
-	jr z, .place_author
-	hlcoord 6, 14
-	cp $6 ; MORPH_MAIL
 	jr z, .place_author
 	hlcoord 5, 14
 

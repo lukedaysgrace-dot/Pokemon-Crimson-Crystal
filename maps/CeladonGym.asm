@@ -204,21 +204,24 @@ LassMichelleAfterBattleText:
 	done
 
 AromaLadyTanyaSeenText:
-	text "Oh, a battle?"
-	line "That's kind of"
-	cont "scary, but OK!"
+	text "ERIKA taught me"
+	line "that grace and"
+	cont "strength can bloom"
+
+	para "side by side."
 	done
 
 AromaLadyTanyaBeatenText:
-	text "Oh, that's it?"
+	text "You cut through my"
+	line "whole garden!"
 	done
 
 AromaLadyTanyaAfterBattleText:
-	text "Oh, look at all"
-	line "your BADGES. No"
+	text "Even hardy plants"
+	line "need pruning."
 
-	para "wonder I couldn't"
-	line "win!"
+	para "Losing will help"
+	line "me grow stronger."
 	done
 
 BeautyJuliaSeenText:
