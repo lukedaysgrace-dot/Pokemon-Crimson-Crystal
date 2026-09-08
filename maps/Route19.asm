@@ -27,10 +27,15 @@ Route19_MapScripts:
 	changeblock 10, 10, $7a ; rock
 .CheckIslandEntrances:
 	checkevent EVENT_ROUTE_19_ELEMENTAL_SPHERE_PLACED
-	iffalse .Done
-	changeblock  6, 26, $70 ; Fire Island cave
-	changeblock 14, 26, $70 ; Thunder Island cave
-	changeblock 10, 32, $70 ; Ice Island cave
+	iftrue .OpenIslandEntrances
+	changeblock  6, 26, $9e ; sealed Fire Island cliff
+	changeblock 14, 26, $9e ; sealed Thunder Island cliff
+	changeblock 10, 32, $9e ; sealed Ice Island cliff
+	return
+.OpenIslandEntrances:
+	changeblock  6, 26, $06 ; Fire Island cave
+	changeblock 14, 26, $06 ; Thunder Island cave
+	changeblock 10, 32, $06 ; Ice Island cave
 .Done:
 	return
 
@@ -58,9 +63,9 @@ Route19BirdStatue:
 	setevent EVENT_ROUTE_19_ELEMENTAL_SPHERE_PLACED
 	playsound SFX_STRENGTH
 	earthquake 60
-	changeblock  6, 26, $70 ; Fire Island cave
-	changeblock 14, 26, $70 ; Thunder Island cave
-	changeblock 10, 32, $70 ; Ice Island cave
+	changeblock  6, 26, $06 ; Fire Island cave
+	changeblock 14, 26, $06 ; Thunder Island cave
+	changeblock 10, 32, $06 ; Ice Island cave
 	reloadmappart
 	waitsfx
 	pause 15
@@ -376,10 +381,10 @@ Route19_MapEvents:
 	bg_event 11, 27, BGEVENT_READ, Route19BirdStatue
 
 	db 9 ; object events
-	object_event  9, 23, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
-	object_event 13, 28, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
+	object_event  3, 20, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
+	object_event 12, 21, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 11, 17, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
-	object_event  8, 23, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
+	object_event  2, 20, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
 	object_event  9,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
 	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1
 	object_event  8, 26, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
