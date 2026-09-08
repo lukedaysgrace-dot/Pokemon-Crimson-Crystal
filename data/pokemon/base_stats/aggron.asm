@@ -3,7 +3,7 @@
 	db  70, 110, 180,  50,  60,  60
 	;   hp  atk  def  spd  sat  sdf
 
-	db STEEL, STEEL ; type
+	db STEEL, ROCK ; type
 	db 45 ; catch rate
 	db 255 ; base exp
 	db NO_ITEM, HARD_STONE ; items

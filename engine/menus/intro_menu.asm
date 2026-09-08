@@ -64,6 +64,8 @@ NewGame:
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
 	call SelectDifficulty
+	call SelectPokemonTyping
+	call SelectPokemonStats
 	farcall UpdateLevelCap
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
@@ -98,6 +100,14 @@ SelectDifficulty:
 .ok
 	ld c, 0
 	farcall InitMobileProfile ; mobile
+	ret
+
+SelectPokemonTyping:
+	farcall InitPokemonTyping
+	ret
+
+SelectPokemonStats:
+	farcall InitPokemonStats
 	ret
 
 ResetWRAM:

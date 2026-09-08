@@ -2987,7 +2987,10 @@ wStarterShinyFlags:: db
 ; when looking at a ball matches the mon you actually receive.
 ; bit 7: set once the rolls have been made
 ; bits 0-5: shiny flag per starter (see ElmStarterShinyTable)
-	ds 5
+wGameplayRules:: db
+; bit 0: use original Pokemon typings instead of the revamped typings
+; bit 1: use original base stats instead of the updated base stats
+	ds 4
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74
