@@ -3467,19 +3467,7 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	call GetPokemonIndexFromID
-	ld b, h
-	ld c, l
-	ld hl, BaseData
-	ld a, BANK(BaseData)
-	call LoadIndirectPointer
-	jr z, .done
-	ld bc, BASE_TYPES
-	add hl, bc
-	ld de, wEnemyMonType
-	ld c, BASE_CATCH_RATE - BASE_TYPES
-	ld a, BANK(BaseData)
-	call FarCopyBytes
+	farcall SetEnemyGameplayTypesBySpecies
 	ld a, [wBattleMonType1]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn

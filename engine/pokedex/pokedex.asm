@@ -2216,17 +2216,8 @@ Pokedex_SearchForMons:
 	pop de
 	pop bc
 	jr z, .next_mon
-	; instead of going through an index conversion and GetBaseData (which would end up GC'ing the
-	; index table several times!), just load the base data pointer directly and do a far read
-	ld a, BANK(BaseData)
-	ld hl, BaseData
-	push bc
-	call LoadIndirectPointer
-	ld bc, BASE_TYPES
-	add hl, bc
-	pop bc
-	jr z, .next_mon
-	call GetFarHalfword ;load both types in hl
+	; Use the per-save typing rules without converting this index back to an ID.
+	farcall GetGameplayTypesByIndex
 	ld a, [wDexConvertedMonType]
 	cp h
 	jr z, .match_found
