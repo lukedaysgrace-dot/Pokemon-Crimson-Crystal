@@ -182,6 +182,9 @@ ENDM
 	map_const ROUTE_20,                                    30,  9 ;  6
 	map_const ROUTE_21,                                    10, 18 ;  7
 	map_const CINNABAR_ISLAND,                             10,  9 ;  8
+	map_const FIRE_ISLAND,                                  8,  8 ;  9
+	map_const THUNDER_ISLAND,                              10,  9 ; 10
+	map_const ICE_ISLAND,                                  10, 10 ; 11
 
 	newgroup                                                      ;  7
 
@@ -431,7 +434,7 @@ ENDM
 	map_const BATTLE_TOWER_HALLWAY,                        11,  2 ; 14
 	map_const ROUTE_40_BATTLE_TOWER_GATE,                   5,  4 ; 15
 	map_const BATTLE_TOWER_OUTSIDE,                        10, 14 ; 16
-	map_const ICE_ISLAND,                                  10, 10 ; 17
+	map_const SHIVER_ISLE,                                 10, 10 ; 17
 
 	newgroup                                                      ; 23
 

@@ -196,7 +196,7 @@
 	const SMOOTH_ROCK  ; bc
 	const ICY_ROCK     ; bd
 	const TOXIC_ORB    ; be
-	const ITEM_BF      ; bf
+	const ELEMENTAL_SPHERE ; bf
 	const SAFARI_BALL  ; c0
 	const ITEM_FA      ; c1
 

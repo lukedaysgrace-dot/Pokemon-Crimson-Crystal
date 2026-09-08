@@ -212,7 +212,7 @@ ENDM
 	connection north, Route40, ROUTE_40, 15
 	connection west, CianwoodCity, CIANWOOD_CITY, 0
 
-	map_attributes IceIsland, ICE_ISLAND, $19, 0
+	map_attributes ShiverIsle, SHIVER_ISLE, $19, 0
 
 	map_attributes Route42, ROUTE_42, $05, WEST | EAST
 	connection west, EcruteakCity, ECRUTEAK_CITY, -9
@@ -273,6 +273,10 @@ ENDM
 	map_attributes Route19, ROUTE_19, $43, NORTH | WEST
 	connection north, FuchsiaCity, FUCHSIA_CITY, 0
 	connection west, Route20, ROUTE_20, 9
+
+	map_attributes FireIsland, FIRE_ISLAND, $00, 0
+	map_attributes ThunderIsland, THUNDER_ISLAND, $00, 0
+	map_attributes IceIsland, ICE_ISLAND, $19, 0
 
 	map_attributes FuchsiaCity, FUCHSIA_CITY, $0f, SOUTH | WEST | EAST
 	connection south, Route19, ROUTE_19, 0

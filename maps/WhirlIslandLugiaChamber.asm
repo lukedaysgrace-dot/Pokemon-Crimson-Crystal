@@ -35,6 +35,10 @@ Lugia:
 	startbattle
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
 	reloadmapafterbattle
+	checkitem ELEMENTAL_SPHERE
+	iftrue .Done
+	verbosegiveitem ELEMENTAL_SPHERE
+.Done:
 	end
 
 LugiaText:

@@ -785,6 +785,15 @@ OlivineLighthouse6F_Blocks:
 
 SECTION "Map Blocks 3", ROMX
 
+ShiverIsle_Blocks:
+	INCBIN "maps/ShiverIsle.ablk"
+
+FireIsland_Blocks:
+	INCBIN "maps/FireIsland.ablk"
+
+ThunderIsland_Blocks:
+	INCBIN "maps/ThunderIsland.ablk"
+
 IceIsland_Blocks:
 	INCBIN "maps/IceIsland.ablk"
 

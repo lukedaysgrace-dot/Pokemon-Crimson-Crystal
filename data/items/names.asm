@@ -189,7 +189,7 @@ ItemNames::
 	db "SMOOTH ROCK@"
 	db "ICY ROCK@"
 	db "TOXIC ORB@"
-	db "TERU-SAMA@"
+	db "ELEM. SPHERE@"
 	db "SAFARI BALL@"
 	db "TERU-SAMA@"
 	db "TM01@"
