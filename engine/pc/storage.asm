@@ -1605,8 +1605,4 @@ StorageItemIsMail::
 	db PORTRAITMAIL
 	db LOVELY_MAIL
 	db EON_MAIL
-	db MORPH_MAIL
-	db BLUESKY_MAIL
-	db MUSIC_MAIL
-	db MIRAGE_MAIL
 	db -1

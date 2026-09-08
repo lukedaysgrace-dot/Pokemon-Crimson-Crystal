@@ -732,12 +732,18 @@ AromaLadyNadiaSeenText:
 	done
 
 AromaLadyNadiaBeatenText:
-	text "Ow! Stomped flat!"
+	text "You swept me aside"
+	line "like a leaf!"
 	done
 
 AromaLadyNadiaAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "You cleared the"
+	line "first challenge,"
+	cont "but four trainers"
+
+	para "still wait ahead."
+	line "Don't let your"
+	cont "focus wilt!"
 	done
 
 PokefanmDustinSeenText:

@@ -1208,8 +1208,8 @@ BattleStartHail_Core:
 
 	ld b, WEATHER_HAIL
 	farcall SetBattleWeatherFromB
-	ld a, 5
-	ld [wWeatherCount], a
+	ld b, WEATHER_HAIL
+	farcall SetWeatherDurationFromUserItem
 	callfar AnimateCurrentMove
 	ld hl, ItStartedToHailText
 	jp StdBattleTextbox

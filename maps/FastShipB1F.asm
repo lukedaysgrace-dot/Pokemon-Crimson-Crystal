@@ -281,21 +281,28 @@ SailorJeffAfterBattleText:
 	done
 
 AromaLadyDebraSeenText:
-	text "I'm so bored."
-	line "Want to battle?"
+	text "The sea breeze is"
+	line "lovely up on deck,"
+	cont "but it's awfully"
+
+	para "stale down here."
+	line "A battle should"
+	cont "liven the air!"
 	done
 
 AromaLadyDebraBeatenText:
-	text "Yow! You're too"
-	line "strong!"
+	text "Whew! That was a"
+	line "gale-force battle!"
 	done
 
 AromaLadyDebraAfterBattleText:
-	text "SAFFRON, CELADON…"
-	line "I hear there are"
+	text "I want to visit"
+	line "every garden from"
+	cont "OLIVINE to"
 
-	para "many big cities"
-	line "in KANTO."
+	para "VERMILION."
+	line "Imagine all the"
+	cont "flowers I'll find!"
 	done
 
 JugglerFritzSeenText:

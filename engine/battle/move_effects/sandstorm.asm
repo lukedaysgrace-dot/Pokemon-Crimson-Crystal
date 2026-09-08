@@ -8,8 +8,8 @@ BattleCommand_StartSandstorm:
 
 	ld b, WEATHER_SANDSTORM
 	farcall SetBattleWeatherFromB
-	ld a, 5
-	ld [wWeatherCount], a
+	ld b, WEATHER_SANDSTORM
+	farcall SetWeatherDurationFromUserItem
 	call AnimateCurrentMove
 	ld hl, SandstormBrewedText
 	jp StdBattleTextbox
