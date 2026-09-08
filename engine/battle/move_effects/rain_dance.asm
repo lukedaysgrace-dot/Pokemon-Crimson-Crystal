@@ -2,8 +2,8 @@ BattleCommand_StartRain:
 ; startrain
 	ld b, WEATHER_RAIN
 	farcall SetBattleWeatherFromB
-	ld a, 5
-	ld [wWeatherCount], a
+	ld b, WEATHER_RAIN
+	farcall SetWeatherDurationFromUserItem
 	call AnimateCurrentMove
 	ld hl, DownpourText
 	jp StdBattleTextbox

@@ -104,13 +104,13 @@ TrainerCamperElliot:
 	closetext
 	end
 
-TrainerAromaLadyBrooke:
-	trainer AROMA_LADY, BROOKE, EVENT_BEAT_AROMA_LADY_BROOKE, AromaLadyBrookeSeenText, AromaLadyBrookeBeatenText, 0, .Script
+TrainerPicnickerBrooke:
+	trainer PICNICKER, BROOKE, EVENT_BEAT_PICNICKER_BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyBrookeAfterBattleText
+	writetext PicnickerBrookeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -309,37 +309,42 @@ CamperElliotAfterBattleText:
 	cont "girlfriend…"
 	done
 
-AromaLadyBrookeSeenText:
+PicnickerBrookeSeenText:
 	text "My boyfriend's"
 	line "weak, so I can't"
 	cont "rely on him."
 	done
 
-AromaLadyBrookeBeatenText:
+PicnickerBrookeBeatenText:
 	text "Oh, my! You're so"
 	line "strong!"
 	done
 
-AromaLadyBrookeAfterBattleText:
+PicnickerBrookeAfterBattleText:
 	text "I can count on my"
 	line "#MON more than"
 	cont "my boyfriend."
 	done
 
 AromaLadyKimSeenText:
-	text "Are you going to"
-	line "the GYM? Me too!"
+	text "The GOLDENROD GYM"
+	line "is just ahead!"
+
+	para "I can almost smell"
+	line "victory!"
 	done
 
 AromaLadyKimBeatenText:
-	text "Oh. I couldn't"
-	line "win…"
+	text "My confidence"
+	line "wilted…"
 	done
 
 AromaLadyKimAfterBattleText:
-	text "The GYM BADGES are"
-	line "pretty. I collect"
-	cont "them."
+	text "I press a flower"
+	line "for every BADGE."
+
+	para "Someday, I'll have"
+	line "a whole bouquet!"
 	done
 
 BirdKeeperBryanSeenText:
@@ -477,7 +482,7 @@ Route35_MapEvents:
 	db 11 ; object events
 	object_event  4, 19, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperIvan, -1
 	object_event  8, 20, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperElliot, -1
-	object_event  7, 20, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyBrooke, -1
+	object_event  7, 20, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerBrooke, -1
 	object_event 10, 26, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyKim, -1
 	object_event 14, 28, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerBirdKeeperBryan, -1
 	object_event  2, 10, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherWalt, -1

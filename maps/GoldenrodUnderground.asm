@@ -571,6 +571,10 @@ GoldenrodUndergroundGirlRewardScript:
 	ifequal PARTY_LENGTH, .PartyFull
 	writetext GoldenrodUndergroundGirlAcceptedText
 	waitbutton
+	writetext GoldenrodUndergroundGirlReceivedRioluText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
 	givepoke RIOLU, 15
 	special SetLastPartyMonMale
 	setevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
@@ -1085,6 +1089,11 @@ GoldenrodUndergroundGirlAcceptedText:
 	text "Wonderful! I know"
 	line "you'll take good"
 	cont "care of him."
+	done
+
+GoldenrodUndergroundGirlReceivedRioluText:
+	text "<PLAYER> received"
+	line "RIOLU!"
 	done
 
 GoldenrodUndergroundGirlDeclinedText:

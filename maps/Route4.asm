@@ -101,38 +101,50 @@ BirdKeeperHankAfterBattleText:
 	done
 
 AromaLadyHopeSeenText:
-	text "I have a feeling"
-	line "that I can win."
+	text "The moonflowers"
+	line "opened last night."
 
-	para "Let's see if I'm"
-	line "right!"
+	para "That's a lucky"
+	line "sign for me!"
 	done
 
 AromaLadyHopeBeatenText:
-	text "Aww, you are too"
-	line "strong."
+	text "Perhaps I read the"
+	line "petals wrong…"
 	done
 
 AromaLadyHopeAfterBattleText:
 	text "I heard CLEFAIRY"
-	line "appear at MT.MOON."
+	line "dance on MT.MOON"
 
-	para "But where could"
-	line "they be?"
+	para "when the flowers"
+	line "glow in moonlight."
+
+	para "I hope I see it!"
 	done
 
 AromaLadySharonSeenText:
-	text "Um…"
-	line "I…"
+	text "Um… I grew these"
+	line "flowers myself."
+	cont "My #MON helped."
+
+	para "We'd like to show"
+	line "you… if that's OK."
 	done
 
 AromaLadySharonBeatenText:
-	text "…"
+	text "Oh…"
+	line "We almost bloomed."
 	done
 
 AromaLadySharonAfterBattleText:
-	text "<……>I'll go train"
-	line "some more…"
+	text "I don't say much,"
+	line "but my #MON"
+	cont "understand me."
+
+	para "Next time, our"
+	line "battle will speak"
+	cont "for us."
 	done
 
 CosplayerPearlSeenText:

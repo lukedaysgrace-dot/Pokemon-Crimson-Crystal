@@ -191,10 +191,10 @@
 	const PORTRAITMAIL ; b7
 	const LOVELY_MAIL  ; b8
 	const EON_MAIL     ; b9
-	const MORPH_MAIL   ; ba
-	const BLUESKY_MAIL ; bb
-	const MUSIC_MAIL   ; bc
-	const MIRAGE_MAIL  ; bd
+	const DAMP_ROCK    ; ba
+	const HEAT_ROCK    ; bb
+	const SMOOTH_ROCK  ; bc
+	const ICY_ROCK     ; bd
 	const TOXIC_ORB    ; be
 	const ITEM_BF      ; bf
 	const SAFARI_BALL  ; c0

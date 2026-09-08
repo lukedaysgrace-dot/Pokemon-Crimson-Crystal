@@ -547,8 +547,7 @@ WeatherAbility:
 	pop bc
 	ld a, b
 	call SetBattleWeatherPreservingSuppression
-	ld a, 5
-	ld [wWeatherCount], a
+	call SetWeatherDurationFromUserItem
 	pop hl
 	call StdBattleTextbox
 	; show the weather itself, right after the "it started" text
@@ -727,6 +726,28 @@ SetBattleWeatherPreservingSuppression::
 	and WEATHER_SUPPRESSED
 	or b
 	ld [wBattleWeather], a
+	pop bc
+	ret
+
+SetWeatherDurationFromUserItem::
+; b = WEATHER_*. Weather lasts 8 turns when its summoner holds the
+; matching weather rock, and 5 turns otherwise.
+	ld a, 5
+	ld [wWeatherCount], a
+	push bc
+	call GetUserItem_Core
+	ld a, b
+	cp HELD_WEATHER_ROCK
+	jr nz, .normal_duration
+	ld a, c
+	pop bc
+	cp b
+	ret nz
+	ld a, 8
+	ld [wWeatherCount], a
+	ret
+
+.normal_duration
 	pop bc
 	ret
 
