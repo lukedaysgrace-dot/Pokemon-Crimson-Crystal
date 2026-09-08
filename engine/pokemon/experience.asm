@@ -80,7 +80,7 @@ HardModeLevelCaps:
 ; compresses hard because the EXP curve is cubic while the amount of content
 ; per badge is flat -- these are the levels Kanto can actually pay for.
 	db 10 ; Falkner
-	db 13 ; Bugsy
+	db 16 ; Bugsy
 	db 20 ; Whitney
 	db 25 ; Morty
 	db 30 ; Chuck
