@@ -749,13 +749,13 @@ Link_PrepPartyData_Gen1:
 .skip_steel
 	ld b, h
 	ld c, l
-	ld hl, BaseData
-	ld a, BANK(BaseData)
-	call LoadIndirectPointer
-	ld bc, BASE_TYPES
-	add hl, bc
-	ld c, BASE_CATCH_RATE - BASE_TYPES
-	call nz, FarCopyBytes
+	farcall GetGameplayTypesByIndex
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	inc de
 
 .done_steel
 	pop bc
