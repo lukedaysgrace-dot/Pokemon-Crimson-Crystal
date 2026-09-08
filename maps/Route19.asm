@@ -70,6 +70,7 @@ Route19BirdStatue:
 	waitsfx
 	pause 15
 
+	moveobject ROUTE19_MOLTRES, 8, 22
 	appear ROUTE19_MOLTRES
 	cry MOLTRES
 	pause 15
@@ -79,15 +80,19 @@ Route19BirdStatue:
 	waitsfx
 	pause 15
 
+	disappear ROUTE19_SWIMMER_GUY1
+	moveobject ROUTE19_ZAPDOS, 13, 22
 	appear ROUTE19_ZAPDOS
 	cry ZAPDOS
 	pause 15
 	applymovement ROUTE19_ZAPDOS, Route19ZapdosEntersCaveMovement
 	playsound SFX_WARP_FROM
 	disappear ROUTE19_ZAPDOS
+	appear ROUTE19_SWIMMER_GUY1
 	waitsfx
 	pause 15
 
+	moveobject ROUTE19_ARTICUNO, 3, 29
 	appear ROUTE19_ARTICUNO
 	cry ARTICUNO
 	pause 15
@@ -108,22 +113,50 @@ Route19BirdCutsceneDummy:
 	end
 
 Route19MoltresEntersCaveMovement:
+	remove_sliding
+	big_step RIGHT
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
 	big_step LEFT
 	big_step LEFT
 	big_step DOWN
+	big_step DOWN
+	set_sliding
 	step_end
 
 Route19ZapdosEntersCaveMovement:
+	remove_sliding
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	big_step DOWN
+	big_step DOWN
+	set_sliding
 	step_end
 
 Route19ArticunoEntersCaveMovement:
+	remove_sliding
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
+	big_step RIGHT
+	big_step RIGHT
+	set_sliding
 	step_end
 
 TrainerSwimmerfDawn:
@@ -382,11 +415,11 @@ Route19_MapEvents:
 
 	db 9 ; object events
 	object_event  3, 20, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
-	object_event 12, 21, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
+	object_event  1, 25, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 11, 17, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
 	object_event  2, 20, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
 	object_event  9,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
 	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1
-	object_event  8, 26, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event 12, 26, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	object_event 10, 29, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
+	object_event  8, 22, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event 13, 22, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3, 29, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
