@@ -320,8 +320,8 @@ Route41Rock:
 Route41HiddenMaxEther:
 	hiddenitem MAX_ETHER, EVENT_ROUTE_41_HIDDEN_MAX_ETHER
 
-Route41IceIslandSign:
-	jumptext Route41IceIslandSignText
+Route41ShiverIsleSign:
+	jumptext Route41ShiverIsleSignText
 
 SwimmermCharlieSeenText:
 	text "The water's warm"
@@ -530,8 +530,8 @@ SwimmerfWendyAfterBattleText:
 	line "it's scary."
 	done
 
-Route41IceIslandSignText:
-	text "ICE ISLAND"
+Route41ShiverIsleSignText:
+	text "SHIVER ISLE"
 	done
 
 Route41FinizenFinText:
@@ -550,13 +550,13 @@ Route41_MapEvents:
 	warp_event 36, 19, WHIRL_ISLAND_NE, 1
 	warp_event 12, 37, WHIRL_ISLAND_SW, 1
 	warp_event 36, 45, WHIRL_ISLAND_SE, 1
-	warp_event 44,  5, ICE_ISLAND, 1
+	warp_event 44,  5, SHIVER_ISLE, 1
 
 	db 0 ; coord events
 
 	db 2 ; bg events
 	bg_event  9, 35, BGEVENT_ITEM, Route41HiddenMaxEther
-	bg_event 42,  6, BGEVENT_READ, Route41IceIslandSign
+	bg_event 42,  6, BGEVENT_READ, Route41ShiverIsleSign
 
 	db 11 ; object events
 	object_event 32,  6, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCharlie, -1

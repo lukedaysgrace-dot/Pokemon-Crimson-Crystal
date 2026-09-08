@@ -65,3 +65,5 @@ SpriteMons:
 	dw MACHOKE
 	dw KANGASKHAN
 	dw MEWTWO
+	dw ARTICUNO
+	dw ZAPDOS

@@ -54,7 +54,7 @@ Landmarks:
 	landmark 112,  72, DarkCaveName
 	landmark 124,  88, Route46Name
 	landmark 148,  68, SilverCaveName
-	landmark  34,  68, IceIslandName
+	landmark  34,  68, ShiverIsleName
 	landmark  52, 108, PalletTownName
 	landmark  52,  92, Route1Name
 	landmark  52,  76, ViridianCityName
@@ -105,6 +105,9 @@ Landmarks:
 	landmark  20,  68, Route28Name
 	landmark 140, 116, FastShipName
 	landmark  52,  68, ViridianForestName
+	landmark  92, 128, FireIslandName
+	landmark  92, 128, ThunderIslandName
+	landmark  92, 128, IceIslandName
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"
 CherrygroveCityName: db "CHERRYGROVE¯CITY@"
@@ -132,6 +135,9 @@ WhirlIslandsName:    db "WHIRL¯ISLANDS@"
 MtMortarName:        db "MT.MORTAR@"
 DragonsDenName:      db "DRAGON'S¯DEN@"
 IcePathName:         db "ICE PATH@"
+ShiverIsleName:      db "SHIVER ISLE@"
+FireIslandName:      db "FIRE ISLAND@"
+ThunderIslandName:   db "THUNDER ISLAND@"
 IceIslandName:       db "ICE ISLAND@"
 NotApplicableName:   db "N/A@" ; "オバケやしき" ("HAUNTED HOUSE") in Japanese
 PalletTownName:      db "PALLET TOWN@"

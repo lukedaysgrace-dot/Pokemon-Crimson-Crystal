@@ -5,24 +5,121 @@
 	const ROUTE19_SWIMMER_GUY3
 	const ROUTE19_FISHER1
 	const ROUTE19_FISHER2
+	const ROUTE19_MOLTRES
+	const ROUTE19_ZAPDOS
+	const ROUTE19_ARTICUNO
 
 Route19_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_TILES, .ClearRocks
+	callback MAPCALLBACK_OBJECTS, .HideLegendaryBirds
 
 .ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue .Done
+	iftrue .CheckIslandEntrances
 	changeblock  6,  6, $7a ; rock
 	changeblock  8,  6, $7a ; rock
 	changeblock 10,  6, $7a ; rock
 	changeblock 12,  8, $7a ; rock
 	changeblock  4,  8, $7a ; rock
 	changeblock 10, 10, $7a ; rock
+.CheckIslandEntrances:
+	checkevent EVENT_ROUTE_19_ELEMENTAL_SPHERE_PLACED
+	iffalse .Done
+	changeblock  6, 26, $70 ; Fire Island cave
+	changeblock 14, 26, $70 ; Thunder Island cave
+	changeblock 10, 32, $70 ; Ice Island cave
 .Done:
 	return
+
+.HideLegendaryBirds:
+	disappear ROUTE19_MOLTRES
+	disappear ROUTE19_ZAPDOS
+	disappear ROUTE19_ARTICUNO
+	return
+
+Route19BirdStatue:
+	opentext
+	checkevent EVENT_ROUTE_19_ELEMENTAL_SPHERE_PLACED
+	iftrue .SpherePlaced
+	writetext Route19BirdStatueText
+	waitbutton
+	checkitem ELEMENTAL_SPHERE
+	iffalse .CloseText
+	writetext Route19PlaceElementalSphereText
+	yesorno
+	iffalse .CloseText
+	takeitem ELEMENTAL_SPHERE
+	writetext Route19ElementalSpherePlacedText
+	waitbutton
+	closetext
+	setevent EVENT_ROUTE_19_ELEMENTAL_SPHERE_PLACED
+	playsound SFX_STRENGTH
+	earthquake 60
+	changeblock  6, 26, $70 ; Fire Island cave
+	changeblock 14, 26, $70 ; Thunder Island cave
+	changeblock 10, 32, $70 ; Ice Island cave
+	reloadmappart
+	waitsfx
+	pause 15
+
+	appear ROUTE19_MOLTRES
+	cry MOLTRES
+	pause 15
+	applymovement ROUTE19_MOLTRES, Route19MoltresEntersCaveMovement
+	playsound SFX_WARP_FROM
+	disappear ROUTE19_MOLTRES
+	waitsfx
+	pause 15
+
+	appear ROUTE19_ZAPDOS
+	cry ZAPDOS
+	pause 15
+	applymovement ROUTE19_ZAPDOS, Route19ZapdosEntersCaveMovement
+	playsound SFX_WARP_FROM
+	disappear ROUTE19_ZAPDOS
+	waitsfx
+	pause 15
+
+	appear ROUTE19_ARTICUNO
+	cry ARTICUNO
+	pause 15
+	applymovement ROUTE19_ARTICUNO, Route19ArticunoEntersCaveMovement
+	playsound SFX_WARP_FROM
+	disappear ROUTE19_ARTICUNO
+	waitsfx
+	end
+
+.SpherePlaced:
+	writetext Route19BirdStatueActivatedText
+.CloseText:
+	waitbutton
+	closetext
+	end
+
+Route19BirdCutsceneDummy:
+	end
+
+Route19MoltresEntersCaveMovement:
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	step_end
+
+Route19ZapdosEntersCaveMovement:
+	big_step RIGHT
+	big_step RIGHT
+	big_step DOWN
+	step_end
+
+Route19ArticunoEntersCaveMovement:
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	step_end
 
 TrainerSwimmerfDawn:
 	trainer SWIMMERF, DAWN, EVENT_BEAT_SWIMMERF_DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, .Script
@@ -232,22 +329,59 @@ CarefulSwimmingSignText:
 	para "FUCHSIA POLICE"
 	done
 
+Route19BirdStatueText:
+	text "It's an ancient"
+	line "bird statue."
+
+	para "There seems to be"
+	line "a hole in the"
+	cont "center to place"
+	cont "something."
+	done
+
+Route19PlaceElementalSphereText:
+	text "Do you want to"
+	line "place the"
+	cont "ELEMENTAL SPHERE"
+	cont "here?"
+	done
+
+Route19ElementalSpherePlacedText:
+	text "The ELEMENTAL"
+	line "SPHERE fits"
+	cont "perfectly!"
+	done
+
+Route19BirdStatueActivatedText:
+	text "The ELEMENTAL"
+	line "SPHERE glows in"
+	cont "the statue."
+	done
+
 Route19_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	db 4 ; warp events
 	warp_event  7,  3, ROUTE_19_FUCHSIA_GATE, 3
+	warp_event  6, 27, FIRE_ISLAND, 1
+	warp_event 14, 27, THUNDER_ISLAND, 1
+	warp_event 10, 33, ICE_ISLAND, 1
 
 	db 0 ; coord events
 
-	db 2 ; bg events
+	db 4 ; bg events
 	bg_event 11, 13, BGEVENT_READ, Route19Sign
 	bg_event 11,  1, BGEVENT_READ, CarefulSwimmingSign
+	bg_event 10, 27, BGEVENT_READ, Route19BirdStatue
+	bg_event 11, 27, BGEVENT_READ, Route19BirdStatue
 
-	db 6 ; object events
+	db 9 ; object events
 	object_event  9, 23, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
 	object_event 13, 28, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 11, 17, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
 	object_event  8, 23, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
 	object_event  9,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
 	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1
+	object_event  8, 26, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event 12, 26, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event 10, 29, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19BirdCutsceneDummy, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3

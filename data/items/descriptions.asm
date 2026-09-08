@@ -190,7 +190,7 @@ ItemDescriptions:
 	dw SmoothRockDesc
 	dw IcyRockDesc
 	dw ToxicOrbDesc
-	dw OvalStoneDesc
+	dw ElementalSphereDesc
 	dw SafariBallDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
@@ -832,10 +832,10 @@ ToxicOrbDesc:
 	db   "Badly poisons the"
 	next "holder. (HOLD)@"
 
-OvalStoneDesc:
-	db   "A peculiar stone"
-	next "that makes HAPPINY"
-	next "evolve by day.@"
+ElementalSphereDesc:
+	db   "A sphere pulsing"
+	next "with fire,"
+	next "lightning and ice.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"
