@@ -677,6 +677,7 @@ LYRA EQU __enum__
 
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
+	const EUSINE2
 
 	trainerclass CRYSTAL ; 44
 	const CRYSTAL_1_CHIKORITA
