@@ -179,7 +179,16 @@ _ResetWRAM:
 	call .InitList
 
 	ld hl, wNumKeyItems
-	call .InitList
+	ld a, 3
+	ld [hli], a
+	ld a, SKATEBOARD
+	ld [hli], a
+	ld a, BICYCLE
+	ld [hli], a
+	ld a, OLD_ROD
+	ld [hli], a
+	ld a, -1
+	ld [hl], a
 
 	ld hl, wNumBalls
 	call .InitList
