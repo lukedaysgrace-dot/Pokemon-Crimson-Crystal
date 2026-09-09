@@ -110,7 +110,7 @@ OverworldSprites:
 	overworld_sprite StandingYoungsterSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite GoldSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite LyraSkateboardSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite MysticalmanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite MysticalmanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite CrystalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CooltrainerMNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite CooltrainerFNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED

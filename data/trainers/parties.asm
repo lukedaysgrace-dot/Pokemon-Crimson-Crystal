@@ -6163,6 +6163,20 @@ MysticalmanGroup:
 	dw THUNDERBOLT, THUNDER_WAVE, SELFDESTRUCT, LIGHT_SCREEN
 	db -1 ; end
 
+	next_list_item ; MYSTICALMAN (2) EUSINE2 - Ecruteak City
+	db "EUSINE@", TRAINERTYPE_NORMAL
+	db 38
+	dw HYPNO
+	db 38
+	dw HAUNTER
+	db 39
+	dw ELECTRODE
+	db 39
+	dw NOCTOWL
+	db 40
+	dw ESPEON
+	db -1 ; end
+
 	end_list_items
 
 ProtonGroup:
