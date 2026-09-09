@@ -68,7 +68,7 @@ ViridianGroupSprites:
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_TEACHER
+	db SPRITE_POKEFAN_M ; Route 2 blocker
 	db SPRITE_FAT_GUY ; Viridian City non-trainer NPC
 	db SPRITE_YOUNGSTER
 	db SPRITE_BLUE
@@ -176,18 +176,18 @@ CeruleanGroupSprites:
 	db SPRITE_CAMPER_NEW ; Route 9 trainers
 	db SPRITE_JUGGLER_NEW ; Route 9/25 trainers
 	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
+	db SPRITE_AROMA_LADY ; Route 9 spinner; keep before the font tile range
+	db SPRITE_ROCKET ; Route 24 spinner; keep before the font tile range
 	db SPRITE_HIKER ; Route 9 (visible at font reload; only walks when engaging)
 	db SPRITE_COOLTRAINER_F ; Cerulean City (standing; never steps)
 	db SPRITE_COSPLAYER ; Route 4/25
 	db SPRITE_BIRD_KEEPER_NEW ; Route 4
 	db SPRITE_LASS ; Route 25
 	db SPRITE_COOLTRAINER_M_NEW ; Route 25
-	db SPRITE_ROCKET ; Route 24
 	db SPRITE_MISTY ; Route 25
 	db SPRITE_POKEFAN_M ; Route 25
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
-	db SPRITE_AROMA_LADY ; Routes 4/9/25
 	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_PICNICKER_NEW; no outdoor map in this group has one)
@@ -438,16 +438,17 @@ VioletGroupSprites:
 	db SPRITE_AROMA_LADY ; Route 35
 	db SPRITE_PSYCHIC
 	db SPRITE_NONE
-	db SPRITE_TWIN
+	db SPRITE_FIREBREATHER_NEW ; Route 35 spinner; keep in VRAM bank 1
+	db SPRITE_JUGGLER_NEW ; Route 35 spinner; keep below the font tile range
 	db SPRITE_FAT_GUY ; non-trainer NPCs (was unused BIG_SNORLAX)
 	db SPRITE_FISHER
 	db SPRITE_LASS
-	db SPRITE_OFFICER
 	db SPRITE_CAMPER_NEW
 	db SPRITE_PICNICKER_NEW
 	db SPRITE_BIRD_KEEPER_NEW
-	db SPRITE_FIREBREATHER_NEW
-	db SPRITE_JUGGLER_NEW
+	; Stationary sprites can safely occupy the font-shared tail of bank 0.
+	db SPRITE_OFFICER
+	db SPRITE_TWIN
 	db SPRITE_WEIRD_TREE
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
