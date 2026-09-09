@@ -217,8 +217,7 @@ gfx/trainer_card/mint_card.2bpp: rgbgfx += -h
 gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 gfx/trainer_card/kanto_leaders.2bpp: tools/gfx += --trim-whitespace
 
-gfx/overworld/gold_fish.2bpp: tools/gfx += --trim-whitespace
-gfx/overworld/lyra_fish.2bpp: tools/gfx += --trim-whitespace
+gfx/overworld/gold_fish.2bpp gfx/overworld/lyra_fish.2bpp gfx/overworld/indigo_fish.2bpp gfx/overworld/mint_fish.2bpp: tools/gfx += --trim-whitespace
 
 # The overworld raindrop is edited as gfx/overworld/rain.png. If the PNG does
 # not exist yet, bootstrap it with the original streak art.
