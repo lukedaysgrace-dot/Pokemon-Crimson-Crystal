@@ -5125,8 +5125,7 @@ DrawEnemyHUD:
 
 UpdateEnemyHPPal:
 	ld hl, wEnemyHPPal
-	call UpdateHPPal
-	ret
+	jp UpdateHPPal
 
 UpdateHPPal:
 	ld b, [hl]
@@ -6571,7 +6570,7 @@ LoadEnemyMon:
 
 .TreeMon:
 ; If we're headbutting trees, some monsters enter battle asleep
-	call CheckSleepingTreeMon
+	farcall CheckSleepingTreeMon
 	ld a, TREEMON_SLEEP_TURNS
 	jr c, .UpdateStatus
 ; Otherwise, no status
@@ -6782,41 +6781,6 @@ LoadEnemyMon:
 	; paralysis and frostbite stat reductions as initially loaded/link mons.
 	call ApplyStatusEffectOnEnemyStats
 	ret
-
-CheckSleepingTreeMon:
-; Return carry if species is in the list
-; for the current time of day
-
-; Don't do anything if this isn't a tree encounter
-	ld a, [wBattleType]
-	cp BATTLETYPE_TREE
-	jr nz, .NotSleeping
-
-	ld a, [wTempEnemyMonSpecies]
-	call GetPokemonIndexFromID
-	ld b, h
-	ld c, l
-
-; Get list for the time of day
-	ld hl, AsleepTreeMonsMorn
-	ld a, [wTimeOfDay]
-	cp DAY_F
-	jr c, .Check
-	ld hl, AsleepTreeMonsDay
-	jr z, .Check
-	ld hl, AsleepTreeMonsNite
-
-.Check:
-	ld de, 2 ; length of species id
-	call IsInHalfwordArray
-; If it's a match, the opponent is asleep
-	ret c
-
-.NotSleeping:
-	and a
-	ret
-
-INCLUDE "data/wild/treemons_asleep.asm"
 
 CheckUnownLetter:
 ; Return carry if the Unown letter hasn't been unlocked yet
