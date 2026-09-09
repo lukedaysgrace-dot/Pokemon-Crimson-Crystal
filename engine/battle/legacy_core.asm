@@ -1,5 +1,40 @@
 ; Small helpers kept out of the full Battle Core bank.
 
+CheckSleepingTreeMon:
+; Return carry if species is in the list
+; for the current time of day
+
+; Don't do anything if this isn't a tree encounter
+	ld a, [wBattleType]
+	cp BATTLETYPE_TREE
+	jr nz, .NotSleeping
+
+	ld a, [wTempEnemyMonSpecies]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+
+; Get list for the time of day
+	ld hl, AsleepTreeMonsMorn
+	ld a, [wTimeOfDay]
+	cp DAY_F
+	jr c, .Check
+	ld hl, AsleepTreeMonsDay
+	jr z, .Check
+	ld hl, AsleepTreeMonsNite
+
+.Check:
+	ld de, 2 ; length of species id
+	call IsInHalfwordArray
+; If it's a match, the opponent is asleep
+	ret c
+
+.NotSleeping:
+	and a
+	ret
+
+INCLUDE "data/wild/treemons_asleep.asm"
+
 CheckContestBattleOver:
 ; Also covers the SAFARI ZONE, which shares the ball counter.
 	ld a, [wBattleType]
