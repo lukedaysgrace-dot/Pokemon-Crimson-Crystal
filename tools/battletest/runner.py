@@ -19,6 +19,7 @@ import hashlib
 import io
 import re
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -48,12 +49,22 @@ class Harness:
         self.verbose = verbose
         self.sym = Symbols()
         self.con = Constants()
-        # The test harness must always start from a clean cartridge. Passing a
-        # path makes PyBoy auto-load adjacent .ram/.rtc sidecars; those are
-        # ordinary emulator state, can be stale or from another PyBoy version,
-        # and must not decide whether the regression suite can boot.
-        with ROM.open("rb") as rom_file:
-            self.pb = PyBoy(rom_file, window="null", cgb=True, sound_emulated=False)
+        # PyBoy's MBC3 implementation masks ROM bank numbers to seven bits,
+        # but this is a 4 MiB MBC30-style ROM with eight-bit bank numbers.
+        # Run a private, header-only MBC5 surrogate: its low bank register has
+        # the same behavior this game uses, so banks $80-$ff remain reachable.
+        # The release/debug ROM on disk is never modified.
+        rom_data = bytearray(ROM.read_bytes())
+        if len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
+            rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
+            checksum = 0
+            for value in rom_data[0x134:0x14d]:
+                checksum = (checksum - value - 1) & 0xff
+            rom_data[0x14d] = checksum
+        self._rom_tempdir = tempfile.TemporaryDirectory(prefix="battletest-")
+        clean_rom = Path(self._rom_tempdir.name) / ROM.name
+        clean_rom.write_bytes(rom_data)
+        self.pb = PyBoy(str(clean_rom), window="null", cgb=True, sound_emulated=False)
         # PyBoy's fast stepping path can mishandle this ROM's CGB double-speed
         # transitions and reboot into GBCOnlyScreen.  Registering a hook makes
         # PyBoy use its accurate stepping path; the cartridge entry point is a

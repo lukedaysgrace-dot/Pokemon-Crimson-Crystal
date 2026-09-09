@@ -18,6 +18,7 @@ TRAINER_TYPES = {
 	"TRAINERTYPE_ITEM": (True, False, False),
 	"TRAINERTYPE_ABILITY": (False, False, True),
 	"TRAINERTYPE_ITEM_MOVES": (True, True, False),
+	"TRAINERTYPE_MOVES_ABILITY": (False, True, True),
 	"TRAINERTYPE_ITEM_MOVES_ABILITY": (True, True, True),
 }
 

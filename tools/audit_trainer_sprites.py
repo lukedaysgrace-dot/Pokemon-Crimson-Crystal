@@ -19,6 +19,13 @@ ALLOWED_CLASS_SPRITES = {
 	("TWINS", "SPRITE_WEIRD_TREE"),
 }
 
+AUTONOMOUS_MOVEMENT_PREFIXES = (
+	"SPRITEMOVEDATA_SPIN",
+	"SPRITEMOVEDATA_WALK",
+	"SPRITEMOVEDATA_WANDER",
+)
+MAP_NAME_FONT_TILE_START = 0xDC
+
 
 def trainer_sprite_expectations():
 	classes = []
@@ -66,6 +73,7 @@ def parse_map(path):
 			{
 				"line": line_number,
 				"sprite": sprite,
+				"movement": parts[3],
 				"script": script,
 				"trainer_class": script_classes.get(script),
 			}
@@ -118,7 +126,7 @@ def sprite_size(sprite, ids, types):
 		return None
 	if sprite_id is None or sprite_id >= 0xF0:
 		return 1, 12
-	if sprite_id >= 0x80:
+	if sprite_id >= ids["SPRITE_POKEMON"]:
 		return 3, 8
 	return types.get(sprite_id, (1, 12))
 
@@ -240,6 +248,33 @@ def main():
 		for group, failed in unused_failures:
 			print(f"{group}: {', '.join(failed)}")
 
+	print("\n=== FONT-SHARED ANIMATION RISKS ===")
+	font_risks = set()
+	for map_name, group in map_groups.items():
+		assignments = {
+			sprite: (tile, size, type_id)
+			for sprite, tile, size, type_id in packed_sprite_tiles(
+				groups[group], ids, types
+			)[2]
+		}
+		for obj in all_objects.get(map_name, []):
+			assignment = assignments.get(obj["sprite"])
+			if assignment is None:
+				continue
+			tile, size, type_id = assignment
+			if (
+				type_id < 4
+				and tile >= 0x80
+				and tile + size > MAP_NAME_FONT_TILE_START
+				and obj["movement"].startswith(AUTONOMOUS_MOVEMENT_PREFIXES)
+			):
+				font_risks.add(
+					(map_name, obj["line"], obj["sprite"], obj["movement"], tile)
+				)
+	for map_name, line, sprite, movement, tile in sorted(font_risks):
+		print(f"maps/{map_name}.asm:{line}: {sprite} at ${tile:02x} uses {movement}")
+	print(f"Total: {len(font_risks)}")
+
 	print("\n=== OUTDOOR GROUP PACKING ===")
 	for group, sprites in groups.items():
 		bank1, bank0, assignments, failed = packed_sprite_tiles(sprites, ids, types)
@@ -249,7 +284,7 @@ def main():
 			status += f", unassigned {', '.join(failed)}"
 		print(f"{group:12} {status}")
 
-	return 1 if mismatches or issue_count else 0
+	return 1 if mismatches or issue_count or font_risks else 0
 
 
 if __name__ == "__main__":
