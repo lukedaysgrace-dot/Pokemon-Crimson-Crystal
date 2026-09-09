@@ -44,7 +44,7 @@ PalletGroupSprites:
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_TEACHER
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Pallet Town non-trainer NPC
 	db SPRITE_YOUNGSTER
 	db SPRITE_BLUE
 	db SPRITE_GRAMPS
@@ -69,7 +69,7 @@ ViridianGroupSprites:
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
 	db SPRITE_TEACHER
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Viridian City non-trainer NPC
 	db SPRITE_YOUNGSTER
 	db SPRITE_BLUE
 	db SPRITE_GRAMPS
@@ -122,14 +122,14 @@ CinnabarGroupSprites:
 	db SPRITE_MOLTRES ; Route 19 Elemental Sphere cutscene
 	db SPRITE_SWIMMER_GIRL ; Routes 19/20/21 trainers (spin constantly)
 	db SPRITE_SWIMMER_GUY ; Routes 19/20/21 trainers (spin constantly)
-	db SPRITE_FISHER ; Route 19 walker, Route 21 trainer
+	db SPRITE_FISHER ; Route 21 trainer
 	db SPRITE_BLUE_CLOAK ; Cinnabar Island
 	db SPRITE_GREEN ; Route 20
 	db SPRITE_BLUE ; Cinnabar Island (spinner)
 	db SPRITE_TEACHER
 	db SPRITE_YOUNGSTER
 	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
-	db SPRITE_GRAMPS
+	db SPRITE_FAT_GUY ; Route 19 non-trainer NPCs (was unused GRAMPS)
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_WILL
@@ -171,7 +171,7 @@ CeruleanGroupSprites:
 	db SPRITE_CRYSTAL ; Route 25 cape (appears after font reload; must be bank 1)
 	db SPRITE_COOLTRAINER_M ; Cerulean City wanderer (also Route 25)
 	db SPRITE_SUPER_NERD ; Cerulean City wanderer (also Route 25)
-	db SPRITE_FISHER ; Cerulean City walker
+	db SPRITE_FAT_GUY ; Cerulean City non-trainer NPC
 	db SPRITE_YOUNGSTER ; Cerulean City spinner
 	db SPRITE_CAMPER_NEW ; Route 9 trainers
 	db SPRITE_JUGGLER_NEW ; Route 9/25 trainers
@@ -208,7 +208,7 @@ SaffronGroupSprites:
 	db SPRITE_COOLTRAINER_M
 	db SPRITE_SUPER_NERD
 	db SPRITE_COOLTRAINER_F
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Saffron City non-trainer NPC
 	db SPRITE_YOUNGSTER
 	db SPRITE_LASS
 	db SPRITE_POKEFAN_M
@@ -230,7 +230,7 @@ CeladonGroupSprites:
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Celadon City non-trainer NPC
 	db SPRITE_POLIWRATH_NPC
 	db SPRITE_TEACHER
 	db SPRITE_GRAMPS
@@ -349,7 +349,7 @@ NewBarkGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_PSYCHIC
-	db SPRITE_NURSE
+	db SPRITE_FAT_GUY ; non-trainer NPCs (was indoor-only NURSE)
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
@@ -382,7 +382,7 @@ CherrygroveGroupSprites:
 	db SPRITE_PIDGEY
 	db SPRITE_SILVER
 	db SPRITE_TEACHER
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Cherrygrove/Route 31 non-trainer NPCs
 	db SPRITE_COOLTRAINER_M
 	db SPRITE_YOUNGSTER
 	db SPRITE_RATTATA_UP
@@ -432,14 +432,14 @@ VioletGroupSprites:
 	db SPRITE_YOUNGSTER
 	db SPRITE_COOLTRAINER_M
 	db SPRITE_BUG_CATCHER
-	db SPRITE_SUPER_NERD
+	db SPRITE_NONE ; freed: Violet City's generic NPC reuses COOLTRAINER_M
 	db SPRITE_GRAMPS
 	db SPRITE_CRYSTAL
 	db SPRITE_AROMA_LADY ; Route 35
 	db SPRITE_PSYCHIC
 	db SPRITE_NONE
 	db SPRITE_TWIN
-	db SPRITE_BIG_SNORLAX
+	db SPRITE_FAT_GUY ; non-trainer NPCs (was unused BIG_SNORLAX)
 	db SPRITE_FISHER
 	db SPRITE_LASS
 	db SPRITE_OFFICER
@@ -459,13 +459,13 @@ EcruteakGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN
-	db SPRITE_NURSE
+	db SPRITE_MYSTICALMAN ; Ecruteak City Eusine event (was unused outdoor NURSE)
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
 	db SPRITE_BIG_SNORLAX
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Ecruteak City non-trainer NPC
 	db SPRITE_LASS
 	db SPRITE_OFFICER
 	db SPRITE_GRAMPS
@@ -622,7 +622,7 @@ MahoganyGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_SKIER_NEW ; was SPRITE_WILL (unused filler) - for Route 44 Skier
 	db SPRITE_HIKER
-	db SPRITE_NURSE
+	db SPRITE_FAT_GUY ; non-trainer NPCs (was indoor-only NURSE)
 	db SPRITE_SNOWBOARDER_NEW ; was SPRITE_OLD_LINK_RECEPTIONIST (unused filler) - for Route 44 Boarder
 	db SPRITE_ENTEI
 	db SPRITE_LANCE
@@ -685,7 +685,7 @@ DungeonsGroupSprites:
 	db SPRITE_PERSIAN
 	db SPRITE_POKEFAN_M
 	db SPRITE_ROCKER
-	db SPRITE_FISHER
+	db SPRITE_FAT_GUY ; Ruins of Alph non-trainer NPC
 	db SPRITE_SCIENTIST
 	db SPRITE_POKE_BALL
 	db SPRITE_BOULDER
