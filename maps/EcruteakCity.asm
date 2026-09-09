@@ -6,16 +6,82 @@
 	const ECRUTEAKCITY_FISHER
 	const ECRUTEAKCITY_YOUNGSTER
 	const ECRUTEAKCITY_GRAMPS3
+	const ECRUTEAKCITY_EUSINE
 
 EcruteakCity_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .Eusine
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
 	return
+
+.Eusine:
+	checkevent EVENT_FOUGHT_SUICUNE
+	iftrue .HideEusine
+	checkevent EVENT_BEAT_EUSINE_IN_ECRUTEAK_CITY
+	iffalse .HideEusine
+	clearevent EVENT_ECRUTEAK_CITY_EUSINE
+	return
+
+.HideEusine:
+	setevent EVENT_ECRUTEAK_CITY_EUSINE
+	return
+
+EcruteakCityEusineTrigger:
+	checkevent EVENT_FOUGHT_SUICUNE
+	iftrue .Done
+	checkevent EVENT_BEAT_EUSINE_IN_ECRUTEAK_CITY
+	iftrue .Done
+	appear ECRUTEAKCITY_EUSINE
+	turnobject PLAYER, LEFT
+	showemote EMOTE_SHOCK, PLAYER, 15
+	special FadeOutMusic
+	pause 15
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
+	applymovement ECRUTEAKCITY_EUSINE, EcruteakCityEusineApproachMovement
+	opentext
+	writetext EcruteakCityEusineBeforeText
+	waitbutton
+	closetext
+	winlosstext EcruteakCityEusineBeatenText, 0
+	setlasttalked ECRUTEAKCITY_EUSINE
+	loadtrainer MYSTICALMAN, EUSINE2
+	startbattle
+	ifequal LOSE, .Lost
+	setevent EVENT_BEAT_EUSINE_IN_ECRUTEAK_CITY
+	dontrestartmapmusic
+	reloadmapafterbattle
+	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
+	opentext
+	writetext EcruteakCityEusineAfterText
+	waitbutton
+	closetext
+	playmapmusic
+.Done:
+	end
+
+.Lost:
+	dontrestartmapmusic
+	reloadmapafterbattle
+	end
+
+EcruteakCityEusineScript:
+	jumptextfaceplayer EcruteakCityEusineWaitingText
+
+EcruteakCityEusineApproachMovement:
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step RIGHT
+	step_end
 
 EcruteakCityGramps1Script:
 	jumptextfaceplayer EcruteakCityGramps1Text
@@ -257,6 +323,53 @@ BurnedTowerSignText:
 	line "as it is unsafe."
 	done
 
+EcruteakCityEusineBeforeText:
+	text "EUSINE: Wait,"
+	line "<PLAYER>."
+
+	para "I know that ENTEI"
+	line "is waiting within"
+	cont "the tower."
+
+	para "Before you go in,"
+	line "I need to know if"
+	cont "you're ready to"
+	cont "face its awesome"
+	cont "power."
+
+	para "Battle me and show"
+	line "me your strength!"
+	done
+
+EcruteakCityEusineBeatenText:
+	text "So this is your"
+	line "true strength…"
+	done
+
+EcruteakCityEusineAfterText:
+	text "EUSINE: Amazing!"
+
+	para "ENTEI's power is"
+	line "fierce and proud."
+
+	para "But the bond with"
+	line "your #MON is"
+	cont "just as strong."
+
+	para "Go on, <PLAYER>."
+	line "ENTEI awaits you!"
+	done
+
+EcruteakCityEusineWaitingText:
+	text "EUSINE: ENTEI is"
+	line "waiting inside."
+
+	para "Go on, <PLAYER>."
+	line "Show ENTEI the"
+	cont "bond you have with"
+	cont "your #MON!"
+	done
+
 EcruteakCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -277,7 +390,8 @@ EcruteakCity_MapEvents:
 	warp_event  0, 18, ROUTE_38_ECRUTEAK_GATE, 3
 	warp_event  0, 19, ROUTE_38_ECRUTEAK_GATE, 4
 
-	db 0 ; coord events
+	db 1 ; coord events
+	coord_event 36, 9, -1, EcruteakCityEusineTrigger
 
 	db 8 ; bg events
 	bg_event 15, 21, BGEVENT_READ, EcruteakCitySign
@@ -289,11 +403,12 @@ EcruteakCity_MapEvents:
 	bg_event 30, 21, BGEVENT_READ, EcruteakCityMartSign
 	bg_event 23, 14, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
 
-	db 7 ; object events
+	db 8 ; object events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
 	object_event 20, 21, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
 	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass1Script, -1
 	object_event  3,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass2Script, -1
-	object_event  9, 22, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityFisherScript, -1
+	object_event  9, 22, SPRITE_FAT_GUY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityFisherScript, -1
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
 	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
+	object_event 31,  5, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, EcruteakCityEusineScript, EVENT_ECRUTEAK_CITY_EUSINE

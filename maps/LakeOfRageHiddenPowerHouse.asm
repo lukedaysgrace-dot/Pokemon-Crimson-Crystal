@@ -154,4 +154,4 @@ LakeOfRageHiddenPowerHouse_MapEvents:
 	bg_event  1,  1, BGEVENT_READ, HiddenPowerHouseBookshelf
 
 	db 1 ; object events
-	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, HiddenPowerGuy, -1
+	object_event  2,  3, SPRITE_FAT_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, HiddenPowerGuy, -1
