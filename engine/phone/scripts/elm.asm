@@ -76,6 +76,25 @@ ElmPhoneCallerScript:
 	farwritetext ElmPhoneDisasterText
 	specialphonecall SPECIALCALL_NONE
 	setevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
+; the rival made off with the starter that counters yours,
+; so take its Poke Ball off the table in Elm's Lab too
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .stole_chikorita
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .stole_chikorita
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .stole_cyndaquil
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
+	iftrue .stole_cyndaquil
+	clearevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	end
+
+.stole_chikorita
+	clearevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	end
+
+.stole_cyndaquil
+	clearevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
 .assistant
