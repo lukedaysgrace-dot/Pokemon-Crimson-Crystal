@@ -28,8 +28,7 @@ ThunderIslandZapdosText:
 ThunderIsland_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
-	warp_event  2, 17, ROUTE_19, 3
+	db 1 ; warp events
 	warp_event  3, 17, ROUTE_19, 3
 
 	db 0 ; coord events
@@ -37,4 +36,4 @@ ThunderIsland_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 14, 10, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ThunderIslandZapdos, EVENT_FOUGHT_ZAPDOS
+	object_event  3,  1, SPRITE_ZAPDOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ThunderIslandZapdos, EVENT_FOUGHT_ZAPDOS
