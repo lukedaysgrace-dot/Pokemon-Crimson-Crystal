@@ -41,6 +41,29 @@ ElmsLab_MapScripts:
 	end
 
 .MoveElmCallback:
+; once the rival has robbed the lab, his stolen starter's
+; Poke Ball is gone from the table as well
+	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
+	iffalse .CheckElm
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
+	iftrue .StoleChikorita
+	checkevent EVENT_GOT_SQUIRTLE_FROM_ELM
+	iftrue .StoleChikorita
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+	iftrue .StoleCyndaquil
+	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
+	iftrue .StoleCyndaquil
+	clearevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	sjump .CheckElm
+
+.StoleChikorita:
+	clearevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	sjump .CheckElm
+
+.StoleCyndaquil:
+	clearevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+
+.CheckElm:
 	checkscene
 	iftrue .Skip ; not SCENE_DEFAULT
 	moveobject ELMSLAB_ELM, 3, 8
