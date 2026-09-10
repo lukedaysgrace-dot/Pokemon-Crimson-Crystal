@@ -806,10 +806,14 @@ MeetCopScript2_StepLeft:
 MeetCopScript_WalkUp:
 	step UP
 	step UP
+	step UP
+	step UP
 	turn_head RIGHT
 	step_end
 
 OfficerLeavesMovement:
+	step DOWN
+	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
