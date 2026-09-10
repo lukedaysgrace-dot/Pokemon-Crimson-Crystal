@@ -901,3 +901,8 @@ INCLUDE "engine/pc/bills_pc_ui.asm"
 SECTION "Safari Zone", ROMX
 
 INCLUDE "engine/events/safari_zone.asm"
+
+
+SECTION "Original Pokemon Stats", ROMX
+
+INCLUDE "data/pokemon/original_stats.asm"

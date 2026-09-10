@@ -364,10 +364,30 @@ EvolveAfterBattle_MasterLoop:
 .check_armarouge_target
 	ld a, d
 	cp HIGH(ARMAROUGE)
-	jr nz, .check_ursaring
+	jr nz, .check_typhlosion_hisuian
 	ld a, e
 	cp LOW(ARMAROUGE)
 	jp z, .target_day
+
+; Quilava -> Hisuian Typhlosion only inside the Burned Tower.
+; Otherwise this evolution is skipped and the next entry
+; (the regular Typhlosion) is checked instead.
+.check_typhlosion_hisuian
+	ld a, d
+	cp HIGH(TYPHLOSION_HISUIAN)
+	jr nz, .check_ursaring
+	ld a, e
+	cp LOW(TYPHLOSION_HISUIAN)
+	jr nz, .check_ursaring
+	ld a, [wMapGroup]
+	cp GROUP_BURNED_TOWER_1F
+	jp nz, .skip_evolution_species
+	ld a, [wMapNumber]
+	cp MAP_BURNED_TOWER_1F
+	jp z, .proceed
+	cp MAP_BURNED_TOWER_B1F
+	jp nz, .skip_evolution_species
+	jp .proceed
 
 .check_ursaring
 	push hl
