@@ -27,9 +27,8 @@ INCLUDE "mobile/mobile_12.asm"
 ; Each pic is 7x7 tiles, but four of those would need 196 tiles and only 128
 ; are addressable for the BG. The middle five columns of each pic are used
 ; instead (5 * 7 = 35 tiles each, 20 tiles wide on screen, exactly the width
-; of the screen). Three of them fit in VRAM bank 0 after the light blue
-; background tile; the fourth is loaded into VRAM bank 1 and reached through
-; the bank bit in the attribute map.
+; of the screen). Three of them fit in VRAM bank 0; the fourth is loaded into
+; VRAM bank 1 and reached through the bank bit in the attribute map.
 ;
 ; Each character gets its own BG palette so everyone keeps their own colors.
 ; The three that are not selected have their colors blended halfway to white,
@@ -43,14 +42,15 @@ CHARSELECT_PIC_LEFT_COLUMN EQU 7 ; tiles skipped: the pic's blank left column
 CHARSELECT_PIC_ROW         EQU 4
 CHARSELECT_ARROW_ROW       EQU CHARSELECT_PIC_ROW - 1
 
-CHARSELECT_TILE_0 EQU $01 ; tile $00 is the light blue background tile
+CHARSELECT_TILE_0 EQU $01 ; tile $00 is left alone for the other setup screens
 CHARSELECT_TILE_1 EQU CHARSELECT_TILE_0 + CHARSELECT_PIC_TILES
 CHARSELECT_TILE_2 EQU CHARSELECT_TILE_1 + CHARSELECT_PIC_TILES
 CHARSELECT_TILE_3 EQU $01 ; in VRAM bank 1
 
-; the light blue of the screen background, so the pics sit flush on it
-; instead of each showing a white box (this is gender_screen.pal's color 1)
-CHARSELECT_BG_COLOR EQU palred 9 + palgreen 30 + palblue 31
+; This screen uses a plain white background, so every character palette shares
+; white as its color 0 and the pics sit flush on it with no box around them.
+; The background is drawn with the blank textbox tile, which is solid color 0.
+CHARSELECT_BG_COLOR EQU palred 31 + palgreen 31 + palblue 31
 
 InitGender:
 ; keep the current choice across a "no" at the confirmation prompt
@@ -66,7 +66,7 @@ InitGender:
 
 	call LoadGenderScreenPal
 	call CharSelect_LoadTextPalette
-	call LoadGenderScreenLightBlueTile
+	call CharSelect_FillBackground
 	call CharSelect_LoadPics
 	call CharSelect_PlacePics
 	call CharSelect_PlaceArrow
@@ -198,16 +198,8 @@ CharSelect_PlacePics:
 	ld a, 4 | (1 << 3) ; palette 4, VRAM bank 1
 	call CharSelect_FillPicAttrs
 
-; The cursor cells borrow the palette of the character underneath, whose
-; color 0 is the screen's light blue, so the arrow has no white box round it.
-	ld a, 1
-	ldcoord_a 2, CHARSELECT_ARROW_ROW, wAttrMap
-	ld a, 2
-	ldcoord_a 7, CHARSELECT_ARROW_ROW, wAttrMap
-	ld a, 3
-	ldcoord_a 12, CHARSELECT_ARROW_ROW, wAttrMap
-	ld a, 4
-	ldcoord_a 17, CHARSELECT_ARROW_ROW, wAttrMap
+; The cursor row keeps palette 0, which is white through black: a black arrow
+; on the white background, and nothing showing in the slots that are empty.
 	ret
 
 CharSelect_FillPicAttrs:
@@ -229,7 +221,7 @@ CharSelect_FillPicAttrs:
 
 CharSelect_PlaceArrow:
 ; erase every cursor slot, then place one over the current choice
-	xor a ; the light blue background tile
+	ld a, " "
 	ldcoord_a 2, CHARSELECT_ARROW_ROW
 	ldcoord_a 7, CHARSELECT_ARROW_ROW
 	ldcoord_a 12, CHARSELECT_ARROW_ROW
@@ -247,6 +239,15 @@ CharSelect_PlaceArrow:
 	hlcoord 0, CHARSELECT_ARROW_ROW
 	add hl, de
 	ld [hl], "▼"
+	ret
+
+CharSelect_FillBackground:
+; InitGenderScreen fills the screen with the light blue tile; this screen wants
+; plain white instead.
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, " " ; the blank textbox tile: solid color 0, i.e. white
+	call ByteFill
 	ret
 
 CharSelect_ClearAttrMap:
