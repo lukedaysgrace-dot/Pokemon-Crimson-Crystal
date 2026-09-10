@@ -130,15 +130,15 @@ KantoWaterWildMons:
 
 	map_id CELADON_CITY
 	db 2 percent ; encounter rate
-	dbw 68, GRIMER
 	dbw 63, GRIMER
-	dbw 63, MUK
+	dbw 66, GRIMER
+	dbw 68, MUK
 
 	map_id FUCHSIA_CITY
 	db 2 percent ; encounter rate
-	dbw 74, MAGIKARP
-	dbw 69, MAGIKARP
 	dbw 66, MAGIKARP
+	dbw 70, MAGIKARP
+	dbw 74, GYARADOS
 
 	map_id CINNABAR_ISLAND
 	db 6 percent ; encounter rate

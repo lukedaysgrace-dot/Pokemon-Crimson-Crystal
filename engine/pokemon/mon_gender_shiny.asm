@@ -74,13 +74,20 @@ GetGenderFromFlags:
 	ret
 
 InitMonPokerus:
-; TEMPORARY TEST: Assign Pokerus to every new mon.
+; Roll Pokerus for a newly created mon.
 ; de = destination PokerusStatus byte.
 
 	push bc
 	push de
-	; The normal 5% Random/POKERUS_PROBABILITY check is bypassed so the
-	; summary-screen icon can be inspected reliably.
+	; POKERUS_PROBABILITY out of 65536 (~0.5%).
+	call Random
+	ldh a, [hRandomAdd]
+	cp HIGH(POKERUS_PROBABILITY)
+	jr c, .randomPokerusLoop
+	jr nz, .no_pokerus
+	ldh a, [hRandomSub]
+	cp LOW(POKERUS_PROBABILITY)
+	jr nc, .no_pokerus
 .randomPokerusLoop
 	call Random
 	and a
@@ -108,7 +115,7 @@ InitMonPokerus:
 	ret
 
 InitMonShinyGender:
-; Assign a 10% shiny chance and species gender ratio.
+; Assign a 2% shiny chance and species gender ratio.
 ; Trainer Pokemon cannot be shiny. Their gender matches their trainer unless
 ; their species is fixed-gender or genderless.
 ; de = destination shiny/gender flags byte.

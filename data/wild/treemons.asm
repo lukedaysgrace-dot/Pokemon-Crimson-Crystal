@@ -8,6 +8,7 @@ TreeMons:
 	dw TreeMonSet_Lake
 	dw TreeMonSet_Forest
 	dw TreeMonSet_Rock
+	dw TreeMonSet_RockCave
 
 ; Two tables each (common, rare).
 ; Structure:
@@ -25,8 +26,8 @@ TreeMonSet_Canyon:
 	db -1
 ; rare
 	dbbw 50, 10, SPEAROW
-	dbbw 15, 10, SHUCKLE
-	dbbw 15, 10, SHUCKLE
+	dbbw 15, 10, PINECO
+	dbbw 15, 10, PINECO
 	dbbw 10, 10, AIPOM
 	dbbw  5, 10, AIPOM
 	dbbw  5, 10, AIPOM
@@ -123,6 +124,15 @@ TreeMonSet_Forest:
 	db -1
 
 TreeMonSet_Rock:
+; Coastal rocks only - Krabby is a shore crab.
 	dbbw 90, 15, KRABBY
-	dbbw 10, 15, SHUCKLE
+	dbbw 10, 15, GEODUDE
+	db -1
+
+TreeMonSet_RockCave:
+; Inland caves. Krabby has no business here, and Dark Cave's Violet side is a
+; level 4-6 area, so a level 15 encounter was an 11-level spike over everything
+; around it.
+	dbbw 90,  6, GEODUDE
+	dbbw 10,  6, ONIX
 	db -1

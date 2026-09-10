@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  90, 115,  85, 110, 115,  85
+	db  80, 115,  85, 100, 95,  85
 	;  hp  atk  def  spd  sat  sdf
 
 	db BUG, DRAGON ; type
