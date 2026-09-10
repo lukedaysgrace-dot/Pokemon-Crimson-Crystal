@@ -50,6 +50,11 @@ MAP_NONE   EQU 0
 	const FISHGROUP_REMORAID
 	const FISHGROUP_QWILFISH_NO_SWARM
 	const FISHGROUP_SAFARI
+	const FISHGROUP_OCEAN_KANTO
+	const FISHGROUP_LAKE_KANTO
+	const FISHGROUP_POND_KANTO
+	const FISHGROUP_SILVER_CAVE
+	const FISHGROUP_ICE
 
 ; connection directions (see data/maps/data.asm)
 	const_def

@@ -128,7 +128,7 @@ JohtoGrassWildMons:
 	dbw 38, NOCTOWL
 	dbw 38, SWABLU
 	dbw 39, CORVISQUIRE
-	dbw 40, FARFETCH_D
+	dbw 40, ALTARIA
 	dbw 40, DODUO
 	; nite
 	dbw 36, HOOTHOOT
@@ -364,14 +364,14 @@ JohtoGrassWildMons:
 	dbw 24, KADABRA
 	dbw 20, SMEARGLE
 	dbw 22, SPOINK
-	dbw 22, MR__MIME
+	dbw 22, MIME_JR_
 	; day
 	dbw 20, NATU
 	dbw 22, KIRLIA
 	dbw 18, ABRA
 	dbw 24, WOBBUFFET
 	dbw 20, SMEARGLE
-	dbw 22, MR__MIME
+	dbw 22, MIME_JR_
 	dbw 22, GIRAFARIG
 	; nite
 	dbw 20, NATU
@@ -499,7 +499,7 @@ JohtoGrassWildMons:
 	dbw 11, SLOWPOKE
 	dbw 13, NIDORAN_M
 	dbw 13, EKANS
-	dbw 13, MAREANIE
+	dbw 13, CROAGUNK
 	; day
 	dbw 10, WOOPER
 	dbw 11, ZUBAT
@@ -507,7 +507,7 @@ JohtoGrassWildMons:
 	dbw 11, SLOWPOKE
 	dbw 13, NIDORAN_F
 	dbw 13, GRIMER
-	dbw 13, MAREANIE
+	dbw 13, CROAGUNK
 	; nite
 	dbw 10, ZUBAT
 	dbw 11, GRIMER
@@ -552,12 +552,12 @@ JohtoGrassWildMons:
 	dbw 17, METAPOD
 	dbw 17, KAKUNA
 	dbw 17, PIDGEY
-	dbw 16, PARAS
 	dbw 16, RALTS
+	dbw 16, FARFETCH_D ; rare (1%), morning only
 	; day
 	dbw 15, SIZZLIPEDE
 	dbw 15, GRUBBIN
-	dbw 17, TOGEPI
+	dbw 17, BOUNSWEET
 	dbw 17, CLEFFA
 	dbw 17, EXEGGCUTE
 	dbw 16, JOLTIK
@@ -579,12 +579,12 @@ JohtoGrassWildMons:
 	dbw 29, MACHOP
 	dbw 28, GEODUDE
 	dbw 29, MANKEY
-	dbw 31, TYROGUE
-	dbw 31, RIOLU
+	dbw 31, TIMBURR
+	dbw 31, SCRAGGY
 	; day
-	dbw 29, RIOLU
+	dbw 29, MACHOP
 	dbw 28, GEODUDE
-	dbw 29, TYROGUE
+	dbw 29, TIMBURR
 	dbw 28, TINKATINK
 	dbw 29, ARON
 	dbw 31, DIGLETT
@@ -656,7 +656,7 @@ JohtoGrassWildMons:
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 29, ZUBAT
-	dbw 31, TYROGUE
+	dbw 31, MANKEY
 	dbw 31, ONIX
 	dbw 30, MACHOP
 	dbw 30, GEODUDE
@@ -669,11 +669,11 @@ JohtoGrassWildMons:
 	dbw 30, MACHOP
 	dbw 30, GEODUDE
 	dbw 32, SUDOWOODO
-	dbw 32, RIOLU
+	dbw 32, GURDURR
 	; nite
 	dbw 29, ZUBAT
 	dbw 31, SCRAGGY
-	dbw 31, RIOLU
+	dbw 31, TIMBURR
 	dbw 30, MAWILE
 	dbw 30, GEODUDE
 	dbw 32, JOLTIK
@@ -693,7 +693,7 @@ JohtoGrassWildMons:
 	dbw 46, ABOMASNOW
 	dbw 46, WEAVILE
 	dbw 45, GLACEON
-	dbw 45, LAPRAS
+	dbw 45, WALREIN
 	dbw 43, CETITAN
 	dbw 38, FRIGIBAX
 	dbw 43, PILOSWINE
@@ -767,7 +767,7 @@ JohtoGrassWildMons:
 	dbw 40, SNOVER
 	dbw 40, SNEASEL
 	dbw 41, SNORUNT
-	dbw 42, MESMERIA
+	dbw 45, MESMERIA
 	dbw 38, SMOOCHUM
 	dbw 40, CETODDLE
 	; day
@@ -775,7 +775,7 @@ JohtoGrassWildMons:
 	dbw 40, SNOVER
 	dbw 40, SPHEAL
 	dbw 41, SWINUB
-	dbw 42, MESMERIA
+	dbw 45, MESMERIA
 	dbw 38, SMOOCHUM
 	dbw 40, SNORUNT
 	; nite
@@ -783,7 +783,7 @@ JohtoGrassWildMons:
 	dbw 40, SNEASEL
 	dbw 40, SNOVER
 	dbw 41, SNORUNT
-	dbw 42, MESMERIA
+	dbw 45, MESMERIA
 	dbw 38, SNEASEL
 	dbw 40, SMOOCHUM
 
@@ -796,7 +796,7 @@ JohtoGrassWildMons:
 	dbw 41, SNOVER
 	dbw 42, FRIGIBAX
 	dbw 38, SMOOCHUM
-	dbw 42, LAPRAS
+	dbw 42, SEALEO
 	; day
 	dbw 39, SWINUB
 	dbw 41, ARCTIBAX
@@ -820,7 +820,7 @@ JohtoGrassWildMons:
 	dbw 41, SWINUB
 	dbw 42, SNOVER
 	dbw 42, SNEASEL
-	dbw 43, MESMERIA
+	dbw 45, MESMERIA
 	dbw 39, SMOOCHUM
 	dbw 41, SNORUNT
 	dbw 43, ARCTIBAX
@@ -836,7 +836,7 @@ JohtoGrassWildMons:
 	dbw 41, DELIBIRD
 	dbw 42, SNEASEL
 	dbw 42, SNOVER
-	dbw 43, MESMERIA
+	dbw 45, MESMERIA
 	dbw 39, SNEASEL
 	dbw 41, SNORUNT
 	dbw 43, SPHEAL
@@ -847,34 +847,33 @@ JohtoGrassWildMons:
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
-	dbw 32, SHELLDER
+	dbw 32, WIMPOD
 	dbw 33, GOLBAT
-	dbw 32, CORSOLA
-	dbw 32, MANTINE
+	dbw 32, CORSOLA_GALARIAN
+	dbw 32, GOLISOPOD
 	; day
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
 	dbw 32, KRABBY
-	dbw 33, CORSOLA
+	dbw 33, GRAVELER
 	dbw 32, PSYDUCK
-	dbw 32, MAREANIE
+	dbw 32, GRIMER
 	; nite
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SLOWPOKE
-	dbw 32, SHELLDER
-	dbw 33, CORSOLA
+	dbw 32, WIMPOD
+	dbw 33, CORSOLA_GALARIAN
 	dbw 32, GOLBAT
-	dbw 32, GOLBAT
-
+	dbw 32, CROBAT
 	map_id WHIRL_ISLAND_NE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
-	dbw 32, SHELLDER
+	dbw 32, KRABBY
 	dbw 33, GOLBAT
 	dbw 32, MARILL
 	dbw 32, WIMPOD
@@ -882,8 +881,8 @@ JohtoGrassWildMons:
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
-	dbw 32, SHELLDER
-	dbw 33, CORSOLA
+	dbw 32, WIMPOD
+	dbw 33, CORSOLA_GALARIAN
 	dbw 32, PSYDUCK
 	dbw 32, AZUMARILL
 	; nite
@@ -891,10 +890,9 @@ JohtoGrassWildMons:
 	dbw 31, ZUBAT
 	dbw 30, SLOWPOKE
 	dbw 32, GRIMER
-	dbw 33, SHELLDER
+	dbw 33, KRABBY
 	dbw 32, GOLBAT
-	dbw 32, MAREANIE
-
+	dbw 32, CROAGUNK
 	map_id WHIRL_ISLAND_SW
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
@@ -904,42 +902,41 @@ JohtoGrassWildMons:
 	dbw 32, WIMPOD
 	dbw 33, GOLBAT
 	dbw 32, MARILL
-	dbw 32, TENTACOOL
+	dbw 32, GOLISOPOD
 	; day
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
 	dbw 32, KRABBY
 	dbw 33, AZUMARILL
-	dbw 32, QWILFISH
+	dbw 32, GRAVELER
 	dbw 32, PSYDUCK
 	; nite
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SLOWPOKE
-	dbw 32, QWILFISH
+	dbw 32, CROAGUNK
 	dbw 33, GOLBAT
 	dbw 32, GRIMER
-	dbw 32, GOLBAT
-
+	dbw 32, CROBAT
 	map_id WHIRL_ISLAND_CAVE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
-	dbw 32, SHELLDER
+	dbw 32, WIMPOD
 	dbw 33, GOLBAT
-	dbw 32, CORSOLA
-	dbw 32, CHINCHOU
+	dbw 32, CORSOLA_GALARIAN
+	dbw 32, MARILL
 	; day
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
 	dbw 32, KRABBY
-	dbw 33, QWILFISH
+	dbw 33, PSYDUCK
 	dbw 32, WIMPOD
-	dbw 32, MANTINE
+	dbw 32, GOLISOPOD
 	; nite
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
@@ -947,8 +944,7 @@ JohtoGrassWildMons:
 	dbw 32, SEEL
 	dbw 33, KRABBY
 	dbw 32, GOLBAT
-	dbw 32, GOLBAT
-
+	dbw 32, CROAGUNK
 	map_id WHIRL_ISLAND_SE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
@@ -957,14 +953,14 @@ JohtoGrassWildMons:
 	dbw 30, SEEL
 	dbw 32, KRABBY
 	dbw 33, GOLBAT
-	dbw 32, SHELLDER
-	dbw 32, CORSOLA
+	dbw 32, WIMPOD
+	dbw 32, GRAVELER
 	; day
 	dbw 30, KRABBY
 	dbw 31, ZUBAT
 	dbw 30, SEEL
 	dbw 32, KRABBY
-	dbw 33, CORSOLA
+	dbw 33, CORSOLA_GALARIAN
 	dbw 32, PSYDUCK
 	dbw 32, MARILL
 	; nite
@@ -973,26 +969,25 @@ JohtoGrassWildMons:
 	dbw 30, SLOWPOKE
 	dbw 32, GRIMER
 	dbw 33, KRABBY
-	dbw 32, GOLBAT
-	dbw 32, TENTACOOL
-
+	dbw 32, CORSOLA_GALARIAN
+	dbw 32, CROBAT
 	map_id WHIRL_ISLAND_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 31, KRABBY
 	dbw 32, ZUBAT
 	dbw 31, SEEL
-	dbw 33, SHELLDER
+	dbw 33, WIMPOD
 	dbw 34, GOLBAT
-	dbw 33, CHINCHOU
-	dbw 33, MANTINE
+	dbw 33, CORSOLA_GALARIAN
+	dbw 33, GOLISOPOD
 	; day
 	dbw 31, KRABBY
 	dbw 32, ZUBAT
 	dbw 31, SEEL
 	dbw 33, KRABBY
-	dbw 34, CORSOLA
-	dbw 33, REMORAID
+	dbw 34, GRAVELER
+	dbw 33, MARILL
 	dbw 33, PSYDUCK
 	; nite
 	dbw 31, KRABBY
@@ -1000,9 +995,8 @@ JohtoGrassWildMons:
 	dbw 31, SLOWPOKE
 	dbw 33, SEEL
 	dbw 34, GOLBAT
-	dbw 33, SHELLDER
-	dbw 33, GOLBAT
-
+	dbw 33, GRIMER
+	dbw 33, CROBAT
 	map_id WHIRL_ISLAND_B2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
@@ -1010,7 +1004,7 @@ JohtoGrassWildMons:
 	dbw 32, GOLBAT
 	dbw 31, SEEL
 	dbw 33, KRABBY
-	dbw 34, CORSOLA
+	dbw 34, CORSOLA_GALARIAN
 	dbw 33, MARILL
 	dbw 33, WIMPOD
 	; day
@@ -1018,45 +1012,43 @@ JohtoGrassWildMons:
 	dbw 32, GOLBAT
 	dbw 31, SEEL
 	dbw 33, KRABBY
-	dbw 34, CORSOLA
-	dbw 33, QWILFISH
+	dbw 34, GRAVELER
+	dbw 33, AZUMARILL
 	dbw 33, GOLISOPOD
 	; nite
 	dbw 31, KRABBY
 	dbw 32, GOLBAT
 	dbw 31, SLOWPOKE
 	dbw 33, KRABBY
-	dbw 34, TENTACOOL
+	dbw 34, CROAGUNK
 	dbw 33, SEEL
-	dbw 33, GOLBAT
-
+	dbw 33, CROBAT
 	map_id WHIRL_ISLAND_LUGIA_CHAMBER
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 32, KRABBY
 	dbw 33, GOLBAT
 	dbw 32, SEEL
-	dbw 34, CORSOLA
+	dbw 34, WIMPOD
 	dbw 35, KINGLER
-	dbw 34, STARMIE
-	dbw 34, MANTINE
+	dbw 34, DEWGONG
+	dbw 34, GOLISOPOD
 	; day
 	dbw 32, KRABBY
 	dbw 33, GOLBAT
 	dbw 32, SEEL
 	dbw 34, SEEL
-	dbw 35, STARMIE
+	dbw 35, KINGLER
 	dbw 34, GOLISOPOD
-	dbw 34, TENTACOOL
+	dbw 34, CROBAT
 	; nite
 	dbw 32, KRABBY
-	dbw 33, KRABBY
+	dbw 33, GOLBAT
 	dbw 32, SLOWPOKE
 	dbw 34, GOLBAT
-	dbw 35, GOLBAT
+	dbw 35, KINGLER
 	dbw 34, SLOWPOKE
-	dbw 34, MANTINE
-
+	dbw 34, CROBAT
 	map_id SILVER_CAVE_ROOM_1
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
@@ -1103,7 +1095,7 @@ JohtoGrassWildMons:
 	dbw 68, SALAZZLE
 	dbw 68, GOLDUCK
 	; nite
-	dbw 76, SHUCKLE
+	dbw 76, STEELIX
 	dbw 76, GOLDUCK
 	dbw 74, TANGROWTH
 	dbw 74, HOUNDOOM
@@ -1363,7 +1355,7 @@ JohtoGrassWildMons:
 	dbw 15, ABRA
 	dbw 17, JIGGLYPUFF
 	dbw 15, DITTO
-	dbw 17, EEVEE ; rare (1%)
+	dbw 17, SMEARGLE ; rare (1%)
 	; day
 	dbw 15, SNUBBULL
 	dbw 16, GROWLITHE
@@ -1575,7 +1567,7 @@ JohtoGrassWildMons:
 	; morn
 	dbw 33, SENTRET
 	dbw 34, PIDGEY
-	dbw 34, FARFETCH_D
+	dbw 34, NOCTOWL
 	dbw 33, FURRET
 	dbw 35, RATTATA
 	dbw 35, FURRET
@@ -1583,7 +1575,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 33, SENTRET
 	dbw 34, PIDGEY
-	dbw 34, FARFETCH_D
+	dbw 34, PIDGEOTTO
 	dbw 33, FURRET
 	dbw 35, TANGELA
 	dbw 35, FURRET
@@ -1699,7 +1691,7 @@ JohtoGrassWildMons:
 	; nite
 	dbw 69, KINGAMBIT
 	dbw 70, GRIMMSNARL
-	dbw 70, OVERQWIL
+	dbw 70, SNEASLER
 	dbw 72, MAGMORTAR
 	dbw 68, HOUNDOOM
 	dbw 72, BISHARP
@@ -1711,7 +1703,7 @@ JohtoGrassWildMons:
 	dbw 7, RATTATA_ALOLAN
 	dbw 7, MEOWTH_ALOLAN
 	dbw 8, PONYTA_GALARIAN
-	dbw 9, RIOLU ; uncommon (10%)
+	dbw 9, SLOWPOKE_GALARIAN ; uncommon (10%)
 	dbw 10, RHYHORN ; rare (5%)
 	dbw 11, TAUROS_PALDEAN_FIRE ; rare (4%); unlocks at 5 Johto badges
 	dbw 11, KANGASKHAN ; rare (1%); unlocks at 5 Johto badges
@@ -1719,8 +1711,8 @@ JohtoGrassWildMons:
 	dbw 7, MEOWTH_ALOLAN
 	dbw 7, RATTATA_ALOLAN
 	dbw 8, PONYTA_GALARIAN
-	dbw 9, FARFETCH_D
-	dbw 10, LILEEP ; rare (5%)
+	dbw 9, SLOWPOKE_GALARIAN ; uncommon (10%)
+	dbw 10, WOOPER_PALDEAN ; rare (5%)
 	dbw 11, TAUROS_PALDEAN_WATER ; rare (4%); unlocks at 5 Johto badges
 	dbw 11, CHANSEY ; rare (1%)
 	; nite

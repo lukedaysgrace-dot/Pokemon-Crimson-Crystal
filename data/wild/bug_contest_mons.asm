@@ -1,7 +1,8 @@
 ContestMons:
-; Yanma, Scyther, Pinsir and Heracross are exclusive to the Bug Catching
-; Contest.
-; They appear in no other wild table anywhere in the game.
+; Scyther, Pinsir and Heracross are exclusive to the Bug Catching Contest and
+; appear in no other wild table anywhere in the game.
+; Yanma is NOT exclusive: it also has the Route 35 swarm (data/wild/swarm_grass.asm),
+; and Yanmega is in SILVER_CAVE_ITEM_ROOMS.
 ;
 ; ChooseWildEncounter_BugContest rolls 0-99 and subtracts each percentage in
 ; turn, so the listed rates MUST sum to less than 100 or the -1 entry can never

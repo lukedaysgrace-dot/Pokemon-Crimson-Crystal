@@ -74,6 +74,7 @@ ApplyGameplayRulesToBaseData::
 	ld a, [wGameplayRules]
 	bit GAMEPLAYRULES_ORIGINAL_STATS_F, a
 	jr z, .done
+	ld a, BANK(OriginalPokemonStats)
 	ld hl, OriginalPokemonStats
 	call CopyGameplayStatsFromTable
 
@@ -167,15 +168,22 @@ ReplaceGameplayTypePair:
 	pop de
 	ret
 
-; in: bc = true 16-bit Pokemon index, hl = stats table
+; in: a:hl = stats table, bc = true 16-bit Pokemon index
 CopyGameplayStatsFromTable:
 .loop
-	ld a, [hli]
+	push af
+	call GetFarByte
 	ld e, a
-	ld a, [hli]
+	pop af
+	inc hl
+	push af
+	call GetFarByte
 	ld d, a
 	or e
-	ret z
+	jr z, .done
+	pop af
+	inc hl
+	push af
 	ld a, c
 	cp e
 	jr nz, .next
@@ -184,14 +192,20 @@ CopyGameplayStatsFromTable:
 	jr z, .found
 
 .next
+	pop af
 	ld de, 6
 	add hl, de
 	jr .loop
 
 .found
+	pop af
 	ld de, wBaseStats
 	ld bc, 6
-	jp CopyBytes
+	jp FarCopyBytes
+
+.done
+	pop af
+	ret
 
 OriginalPokemonTypes:
 	dw ALTARIA
@@ -202,18 +216,20 @@ OriginalPokemonTypes:
 	db STEEL, ROCK
 	dw BANETTE
 	db GHOST, GHOST
+	dw BELLOSSOM
+	db GRASS, GRASS
 	dw BLASTOISE
 	db WATER, WATER
 	dw CHARIZARD
 	db FIRE, FLYING
 	dw CROCONAW
 	db WATER, WATER
+	dw DRUNSPARCE
+	db NORMAL, NORMAL
 	dw DUNSPARCE
 	db NORMAL, NORMAL
 	dw ELECTIVIRE
 	db ELECTRIC, ELECTRIC
-	dw FARFETCH_D
-	db NORMAL, FLYING
 	dw FERALIGATR
 	db WATER, WATER
 	dw FLYGON
@@ -248,6 +264,8 @@ OriginalPokemonTypes:
 	db PSYCHIC, FAIRY
 	dw SEVIPER
 	db POISON, POISON
+	dw SIRFETCH_D
+	db FIGHTING, FIGHTING
 	dw SWABLU
 	db NORMAL, FLYING
 	dw TRAPINCH
@@ -278,7 +296,7 @@ RevampedPokemonTypes:
 	dw ELECTIVIRE
 	db ELECTRIC, FIGHTING
 	dw FARFETCH_D
-	db FIGHTING, FLYING
+	db NORMAL, FLYING
 	dw FERALIGATR
 	db WATER, DARK
 	dw FLYGON
@@ -321,69 +339,4 @@ RevampedPokemonTypes:
 	db GROUND, NORMAL
 	dw VIBRAVA
 	db BUG, DRAGON
-	dw 0
-
-; Bulbapedia lists HP, Attack, Defense, Sp. Atk, Sp. Def, Speed.
-; BaseData stores HP, Attack, Defense, Speed, Sp. Atk, Sp. Def.
-OriginalPokemonStats:
-	dw ALTARIA
-	db  75,  70,  90,  80,  70, 105
-	dw AMPHAROS
-	db  90,  75,  85,  55, 115,  90
-	dw ARON
-	db  50,  70, 100,  30,  40,  40
-	dw BANETTE
-	db  64, 115,  65,  65,  83,  63
-	dw BLASTOISE
-	db  79,  83, 100,  78,  85, 105
-	dw CHARIZARD
-	db  78,  84,  78, 100, 109,  85
-	dw CROCONAW
-	db  65,  80,  80,  58,  59,  63
-	dw DUNSPARCE
-	db 100,  70,  70,  45,  65,  65
-	dw ELECTIVIRE
-	db  75, 123,  67,  95,  95,  85
-	dw FARFETCH_D
-	db  52,  90,  55,  60,  58,  62
-	dw FERALIGATR
-	db  85, 105, 100,  78,  79,  83
-	dw FLYGON
-	db  80, 100,  80, 100,  80,  80
-	dw GOLDUCK
-	db  80,  82,  78,  85,  95,  80
-	dw LAIRON
-	db  60,  90, 140,  40,  50,  50
-	dw LEDIAN
-	db  55,  35,  50,  85,  55, 110
-	dw LEDYBA
-	db  40,  20,  30,  55,  40,  80
-	dw LOPUNNY
-	db  65,  76,  84, 105,  54,  96
-	dw MEGANIUM
-	db  80,  82, 100,  80,  83, 100
-	dw MILOTIC
-	db  95,  60,  79,  81, 100, 125
-	dw MISDREAVUS
-	db  60,  60,  60,  85,  85,  85
-	dw MISMAGIUS
-	db  60,  60,  60, 105, 105, 105
-	dw NINETALES
-	db  73,  76,  75, 100,  81, 100
-	dw NOCTOWL
-	db 100,  50,  50,  70,  86,  96
-	dw PONYTA_GALARIAN
-	db  50,  85,  55,  90,  65,  65
-	dw RAPIDASH_GALARIAN
-	db  65, 100,  70, 105,  80,  80
-	dw SEVIPER
-	db  73, 100,  60,  65, 100,  60
-	dw SWABLU
-	db  45,  40,  60,  50,  40,  75
-	dw TRAPINCH
-	db  45, 100,  45,  10,  45,  45
-	dw URSARING
-	db  90, 130,  75,  55,  75,  75
-	dw VIBRAVA
-	db  50,  70,  50,  70,  50,  50
 	dw 0
