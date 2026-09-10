@@ -21,52 +21,419 @@ InitCrystalData:
 
 INCLUDE "mobile/mobile_12.asm"
 
+; Character select screen, in the style of Polished Crystal: all four player
+; trainer pics are drawn side by side and a ▼ cursor picks between them.
+;
+; Each pic is 7x7 tiles, but four of those would need 196 tiles and only 128
+; are addressable for the BG. The middle five columns of each pic are used
+; instead (5 * 7 = 35 tiles each, 20 tiles wide on screen, exactly the width
+; of the screen). Three of them fit in VRAM bank 0 after the light blue
+; background tile; the fourth is loaded into VRAM bank 1 and reached through
+; the bank bit in the attribute map.
+;
+; Each character gets its own BG palette so everyone keeps their own colors.
+; The three that are not selected have their colors blended halfway to white,
+; which is how Polished Crystal dims the choices you are not on.
+
+NUM_CHARSELECT_CHOICES     EQU 4
+CHARSELECT_PIC_WIDTH       EQU 5 ; tiles
+CHARSELECT_PIC_HEIGHT      EQU 7 ; tiles
+CHARSELECT_PIC_TILES       EQU CHARSELECT_PIC_WIDTH * CHARSELECT_PIC_HEIGHT
+CHARSELECT_PIC_LEFT_COLUMN EQU 7 ; tiles skipped: the pic's blank left column
+CHARSELECT_PIC_ROW         EQU 4
+CHARSELECT_ARROW_ROW       EQU CHARSELECT_PIC_ROW - 1
+
+CHARSELECT_TILE_0 EQU $01 ; tile $00 is the light blue background tile
+CHARSELECT_TILE_1 EQU CHARSELECT_TILE_0 + CHARSELECT_PIC_TILES
+CHARSELECT_TILE_2 EQU CHARSELECT_TILE_1 + CHARSELECT_PIC_TILES
+CHARSELECT_TILE_3 EQU $01 ; in VRAM bank 1
+
+; the light blue of the screen background, so the pics sit flush on it
+; instead of each showing a white box (this is gender_screen.pal's color 1)
+CHARSELECT_BG_COLOR EQU palred 9 + palgreen 30 + palblue 31
+
 InitGender:
-	call InitGenderScreen
+; keep the current choice across a "no" at the confirmation prompt
+	ld a, [wPlayerGender]
+	push af
+	call InitGenderScreen ; this zeroes wPlayerGender
+	pop af
+	cp NUM_CHARSELECT_CHOICES
+	jr c, .valid
+	xor a
+.valid
+	ld [wPlayerGender], a
+
 	call LoadGenderScreenPal
+	call CharSelect_LoadTextPalette
 	call LoadGenderScreenLightBlueTile
+	call CharSelect_LoadPics
+	call CharSelect_PlacePics
+	call CharSelect_PlaceArrow
+	call CharSelect_LoadCharPals
 	call WaitBGMap2
 	call SetPalettes
 	ld hl, TextJump_AreYouABoyOrAreYouAGirl
 	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	jr z, .got_choice ; Gold
-	cp 1
-	jr z, .indigo
-	cp 2
-	jr z, .girl
-	ld a, PLAYERGENDER_MINT
-	jr .got_choice
-.indigo
-	ld a, PLAYERGENDER_INDIGO
-	jr .got_choice
-.girl
-	ld a, 1 << PLAYERGENDER_FEMALE_F
-.got_choice
-	ld [wPlayerGender], a
+	call CharSelect_Loop
+	call CharSelect_ClearAttrMap
 	ld c, 10
 	call DelayFrames
 	ret
 
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 2, 14, 11
-	dw .MenuData
-	db 1 ; default option
+CharSelect_Loop:
+	ld a, 1
+	ldh [hBGMapMode], a
+.loop
+	call DelayFrame
+	call GetJoypad
+	ldh a, [hJoyPressed]
+	and A_BUTTON
+	ret nz
+	ldh a, [hJoyPressed]
+	bit D_RIGHT_F, a
+	jr nz, .right
+	bit D_LEFT_F, a
+	jr z, .loop
 
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 4 ; items
-	db "Gold@"
-	db "Indigo@"
-	db "Lyra@"
-	db "Mint@"
+; left
+	ld a, [wPlayerGender]
+	call CharSelectOrderLookup
+	and a
+	jr z, .loop ; already on the leftmost choice
+	dec a
+	jr .move
+
+.right
+	ld a, [wPlayerGender]
+	call CharSelectOrderLookup
+	cp NUM_CHARSELECT_CHOICES - 1
+	jr z, .loop ; already on the rightmost choice
+	inc a
+
+.move
+	call CharSelectOrderLookup ; index back to a wPlayerGender value
+	ld [wPlayerGender], a
+	call CharSelect_PlaceArrow
+	call CharSelect_LoadCharPals
+	ld a, %11100100
+	call DmgToCgbBGPals
+	jr .loop
+
+CharSelect_LoadPics:
+; VRAM is written directly with the LCD off, so the fourth pic can go into
+; VRAM bank 1 (the vblank tile-request handler always writes to bank 0).
+	call DisableLCD
+
+	ld c, 0
+	ld hl, vTiles2 tile CHARSELECT_TILE_0
+	call .LoadOne
+	ld c, 1
+	ld hl, vTiles2 tile CHARSELECT_TILE_1
+	call .LoadOne
+	ld c, 2
+	ld hl, vTiles2 tile CHARSELECT_TILE_2
+	call .LoadOne
+
+	ld a, 1
+	ldh [rVBK], a
+	ld c, 3
+	ld hl, vTiles2 tile CHARSELECT_TILE_3
+	call .LoadOne
+	xor a
+	ldh [rVBK], a
+
+	call EnableLCD
+	ret
+
+.LoadOne:
+; c = choice index, hl = destination in VRAM
+	push hl
+	ld a, c
+	call CharSelectPicLookup ; de = pic data, b = its bank
+	pop hl
+	ld c, CHARSELECT_PIC_TILES
+	jp Get2bpp
+
+CharSelect_PlacePics:
+	xor a
+	ld [wBoxAlignment], a
+
+	ld a, CHARSELECT_TILE_0
+	ldh [hGraphicStartTile], a
+	hlcoord 0, CHARSELECT_PIC_ROW
+	lb bc, CHARSELECT_PIC_WIDTH, CHARSELECT_PIC_HEIGHT
+	predef PlaceGraphic
+
+	ld a, CHARSELECT_TILE_1
+	ldh [hGraphicStartTile], a
+	hlcoord 5, CHARSELECT_PIC_ROW
+	lb bc, CHARSELECT_PIC_WIDTH, CHARSELECT_PIC_HEIGHT
+	predef PlaceGraphic
+
+	ld a, CHARSELECT_TILE_2
+	ldh [hGraphicStartTile], a
+	hlcoord 10, CHARSELECT_PIC_ROW
+	lb bc, CHARSELECT_PIC_WIDTH, CHARSELECT_PIC_HEIGHT
+	predef PlaceGraphic
+
+	ld a, CHARSELECT_TILE_3
+	ldh [hGraphicStartTile], a
+	hlcoord 15, CHARSELECT_PIC_ROW
+	lb bc, CHARSELECT_PIC_WIDTH, CHARSELECT_PIC_HEIGHT
+	predef PlaceGraphic
+
+; One BG palette per character. The fourth pic's tiles are in VRAM bank 1,
+; so its cells set the bank bit as well.
+	hlcoord 0, CHARSELECT_PIC_ROW, wAttrMap
+	ld a, 1
+	call CharSelect_FillPicAttrs
+	hlcoord 5, CHARSELECT_PIC_ROW, wAttrMap
+	ld a, 2
+	call CharSelect_FillPicAttrs
+	hlcoord 10, CHARSELECT_PIC_ROW, wAttrMap
+	ld a, 3
+	call CharSelect_FillPicAttrs
+	hlcoord 15, CHARSELECT_PIC_ROW, wAttrMap
+	ld a, 4 | (1 << 3) ; palette 4, VRAM bank 1
+	call CharSelect_FillPicAttrs
+
+; The cursor cells borrow the palette of the character underneath, whose
+; color 0 is the screen's light blue, so the arrow has no white box round it.
+	ld a, 1
+	ldcoord_a 2, CHARSELECT_ARROW_ROW, wAttrMap
+	ld a, 2
+	ldcoord_a 7, CHARSELECT_ARROW_ROW, wAttrMap
+	ld a, 3
+	ldcoord_a 12, CHARSELECT_ARROW_ROW, wAttrMap
+	ld a, 4
+	ldcoord_a 17, CHARSELECT_ARROW_ROW, wAttrMap
+	ret
+
+CharSelect_FillPicAttrs:
+; fill one pic-sized box of wAttrMap at hl with a
+	ld b, CHARSELECT_PIC_HEIGHT
+.row
+	push hl
+	ld c, CHARSELECT_PIC_WIDTH
+.col
+	ld [hli], a
+	dec c
+	jr nz, .col
+	pop hl
+	ld de, SCREEN_WIDTH
+	add hl, de
+	dec b
+	jr nz, .row
+	ret
+
+CharSelect_PlaceArrow:
+; erase every cursor slot, then place one over the current choice
+	xor a ; the light blue background tile
+	ldcoord_a 2, CHARSELECT_ARROW_ROW
+	ldcoord_a 7, CHARSELECT_ARROW_ROW
+	ldcoord_a 12, CHARSELECT_ARROW_ROW
+	ldcoord_a 17, CHARSELECT_ARROW_ROW
+
+	ld a, [wPlayerGender]
+	call CharSelectOrderLookup
+	ld e, a
+	add a
+	add a
+	add e ; index * 5, one pic width apart
+	add 2 ; centred over the pic
+	ld e, a
+	ld d, 0
+	hlcoord 0, CHARSELECT_ARROW_ROW
+	add hl, de
+	ld [hl], "▼"
+	ret
+
+CharSelect_ClearAttrMap:
+	hlcoord 0, 0, wAttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	xor a
+	call ByteFill
+	ret
+
+CharSelect_LoadTextPalette:
+; The textbox draws itself with PAL_BG_TEXT, so give that palette something
+; readable rather than leaving whatever the last screen happened to have.
+	ld hl, .Palette
+	ld de, wBGPals1 palette PAL_BG_TEXT
+	ld bc, 1 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	ret
+
+.Palette:
+	RGB 31, 31, 31
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+CharSelect_LoadCharPals:
+; Rebuild BG palettes 1-4, dimming everyone except the current choice.
+; wPlayerGender is read here, before rSVBK is switched to the palette bank.
+	ld a, [wPlayerGender]
+	call CharSelectOrderLookup
+	ld b, a
+	ld c, 0
+.loop
+	push bc
+	call CharSelect_LoadOneCharPal
+	pop bc
+	inc c
+	ld a, c
+	cp NUM_CHARSELECT_CHOICES
+	jr nz, .loop
+	ret
+
+CharSelect_LoadOneCharPal:
+; b = the selected choice, c = the choice being loaded
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals1)
+	ldh [rSVBK], a
+
+; hl = wBGPals1 palette (c + 1)
+	ld a, c
+	inc a
+	add a
+	add a
+	add a ; * PALETTE_SIZE
+	ld l, a
+	ld h, 0
+	ld de, wBGPals1
+	add hl, de
+
+; color 0 is the screen background rather than white
+	ld a, LOW(CHARSELECT_BG_COLOR)
+	ld [hli], a
+	ld a, HIGH(CHARSELECT_BG_COLOR)
+	ld [hli], a
+
+; colors 1 and 2 come from the character's own palette, in another bank
+	push hl
+	ld d, h
+	ld e, l
+	ld a, c
+	push bc
+	call CharSelectCharPaletteLookup
+	ld bc, 2 * PAL_COLOR_SIZE
+	ld a, BANK(TrainerPalettes)
+	call FarCopyBytes
+	pop bc
+; color 3 is black
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	pop hl ; back to color 1
+
+	ld a, b
+	cp c
+	jr z, .selected
+	ld a, NUM_PAL_COLORS - 1
+	call CharSelect_LightenColors
+.selected
+	pop af
+	ldh [rSVBK], a
+	ret
+
+CharSelect_LightenColors:
+; Blend a colors at hl halfway to white: every 5-bit channel becomes
+; channel / 2 + 16, which is one masked shift and one or on the whole word.
+	push bc
+	ld b, a
+.loop
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+	srl a
+	rr c
+	and $3d
+	or $42
+	ld [hld], a
+	ld a, c
+	and $ef
+	or $10
+	ld [hli], a
+	inc hl
+	dec b
+	jr nz, .loop
+	pop bc
+	ret
+
+CharSelectOrderLookup:
+; Maps a choice index to its wPlayerGender value and back again: swapping
+; Indigo and Lyra is its own inverse, so one table serves both directions.
+	push hl
+	push de
+	ld l, a
+	ld h, 0
+	ld de, CharSelectOrder
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+
+CharSelectCharPaletteLookup:
+; a = choice index; returns hl = that character's two middle colors
+	push de
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, CharSelectPalettes
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop de
+	ret
+
+CharSelectPicLookup:
+; a = choice index; returns de = pic data, b = its bank
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	ld de, CharSelectPicPointers
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld b, [hl]
+	ret
+
+CharSelectOrder:
+	db 0                          ; Gold
+	db PLAYERGENDER_INDIGO        ; Indigo
+	db 1 << PLAYERGENDER_FEMALE_F ; Lyra
+	db PLAYERGENDER_MINT          ; Mint
+
+CharSelectPalettes:
+	dw PlayerPalette       ; Gold
+	dw IndigoPlayerPalette ; Indigo
+	dw PlayerPalette       ; Lyra, who shares Gold's colors everywhere else
+	dw MintPlayerPalette   ; Mint
+
+CharSelectPicPointers:
+; pointer to the pic's second tile column, then the bank it lives in
+	dw GoldPic tile CHARSELECT_PIC_LEFT_COLUMN
+	db BANK(GoldPic)
+	db 0
+	dw IndigoPic tile CHARSELECT_PIC_LEFT_COLUMN
+	db BANK(IndigoPic)
+	db 0
+	dw LyraPic tile CHARSELECT_PIC_LEFT_COLUMN
+	db BANK(LyraPic)
+	db 0
+	dw MintPic tile CHARSELECT_PIC_LEFT_COLUMN
+	db BANK(MintPic)
+	db 0
 
 TextJump_AreYouABoyOrAreYouAGirl:
 	; Which trainer are you?

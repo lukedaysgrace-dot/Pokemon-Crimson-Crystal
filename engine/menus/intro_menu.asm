@@ -83,13 +83,37 @@ NewGame:
 AreYouABoyOrAreYouAGirl:
 	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
 	jr c, .ok
+.select
 	farcall InitGender
+	call ConfirmPlayerChoice
+	jr c, .select
 	ret
 
 .ok
 	ld c, 0
 	farcall InitMobileProfile ; mobile
 	ret
+
+ConfirmPlayerChoice:
+; Show the chosen trainer full size and ask whether that is really them.
+; Returns carry if they want to pick again.
+	call RotateThreePalettesRight
+	call ClearTileMap
+	call LoadFontsExtra
+	call WaitBGMap
+	xor a
+	ld [wCurPartySpecies], a
+	farcall DrawIntroPlayerPic
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call RotateThreePalettesLeft
+	ld hl, SoThisIsYouText
+	call PrintText
+	jp YesNoBox
+
+SoThisIsYouText:
+	text_far Text_SoThisIsYou
+	text_end
 
 SelectDifficulty:
 	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
