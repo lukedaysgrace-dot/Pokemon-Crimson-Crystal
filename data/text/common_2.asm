@@ -680,6 +680,10 @@ Text_AreYouABoyOrAreYouAGirl::
 	line "are you?"
 	done
 
+Text_SoThisIsYou::
+	text "So, this is you?"
+	done
+
 Text_SelectDifficulty::
 	text "Select difficulty."
 	done
