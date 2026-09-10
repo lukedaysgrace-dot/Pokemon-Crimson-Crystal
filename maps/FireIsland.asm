@@ -36,4 +36,4 @@ FireIsland_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  8,  6, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FireIslandMoltres, EVENT_FOUGHT_MOLTRES
+	object_event  4,  4, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FireIslandMoltres, EVENT_FOUGHT_MOLTRES

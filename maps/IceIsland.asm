@@ -37,4 +37,4 @@ IceIsland_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 10,  5, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, IceIslandArticuno, EVENT_FOUGHT_ARTICUNO
+	object_event  2,  2, SPRITE_ARTICUNO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, IceIslandArticuno, EVENT_FOUGHT_ARTICUNO
