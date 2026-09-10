@@ -197,6 +197,7 @@ CyndaquilEvosAttacks:
 	db 0 ; no more level-up moves
 
 QuilavaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 36, TYPHLOSION_HISUIAN ; only inside the Burned Tower (see engine/pokemon/evolve.asm)
 	dbbw EVOLVE_LEVEL, 36, TYPHLOSION
 	db 0 ; no more evolutions
 	dbw 1, LEER

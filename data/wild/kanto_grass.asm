@@ -5,8 +5,21 @@
 ; Route 26/27 remain on the first-League curve; Route 28 is late postgame.
 ; Slot rates are 30/30/20/10/5/4/1 percent, so slots 6 and 7 are the rare ones.
 ; Evolved forms never appear below the level at which they would have evolved.
-; Scyther, Pinsir and Heracross are Bug Contest exclusives; ice types are
-; Shiver Isle / Ice Path only; ghost types are Silent Crypt only.
+; Scyther, Pinsir and Heracross are Bug Contest exclusives.
+; Ice types are Shiver Isle / Ice Path / the Safari Zone's ice area only, plus
+; Walrein in SILVER_CAVE_ROOM_2's water.
+; Ghost types are Silent Crypt only, with one deliberate exception: Galarian
+; Corsola on the Whirl Islands' night tables. It is bleached dead coral -
+; "areas oceans once covered" - so it belongs on a tide line, not inland.
+;
+; GIFT / EVENT POKEMON APPEAR IN NO WILD TABLE:
+;   Lapras (Union Cave B2F event), Finizen (Route 41 event),
+;   Palafin, Riolu (Goldenrod Underground girl), Eevee, Tyrogue (Kiyo),
+;   Shuckle (Shuckie), Togepi (Elm's aide egg), Feebas (Goldenrod salesman),
+;   and the six starters.
+; Dratini is a gift too (Dragon's Den elder) but stays wild in DRAGONS_DEN_B1F
+;   only - not Blackthorn, not the Safari rods, not Route 45.
+; Farfetch'd is a 1% morning-only slot in ILEX_FOREST and nowhere else.
 
 KantoGrassWildMons:
 

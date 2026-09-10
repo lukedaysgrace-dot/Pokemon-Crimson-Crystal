@@ -26,13 +26,13 @@ JohtoWaterWildMons:
 	db 4 percent ; encounter rate
 	dbw 38, TENTACOOL
 	dbw 40, QUAGSIRE
-	dbw 38, MARILL
+	dbw 42, TENTACRUEL
 
 	map_id SLOWPOKE_WELL_B1F
 	db 2 percent ; encounter rate
 	dbw 19, SLOWPOKE
+	dbw 21, WOOPER
 	dbw 24, MAREANIE
-	dbw 16, SLOWPOKE
 
 	map_id SLOWPOKE_WELL_B2F
 	db 2 percent ; encounter rate
@@ -49,8 +49,8 @@ JohtoWaterWildMons:
 	map_id MOUNT_MORTAR_1F_OUTSIDE
 	db 4 percent ; encounter rate
 	dbw 26, GOLDEEN
-	dbw 31, MARILL
-	dbw 31, GOLDEEN
+	dbw 29, MARILL
+	dbw 33, SEAKING
 
 	map_id MOUNT_MORTAR_2F_INSIDE
 	db 2 percent ; encounter rate
@@ -61,20 +61,20 @@ JohtoWaterWildMons:
 	map_id MOUNT_MORTAR_B1F
 	db 2 percent ; encounter rate
 	dbw 27, GOLDEEN
-	dbw 32, MARILL
-	dbw 32, GOLDEEN
+	dbw 30, MARILL
+	dbw 34, SEAKING
 
 	map_id WHIRL_ISLAND_SW
 	db 4 percent ; encounter rate
 	dbw 31, TENTACOOL
 	dbw 26, HORSEA
-	dbw 33, MANTINE
+	dbw 33, CORSOLA
 
 	map_id WHIRL_ISLAND_B2F
 	db 4 percent ; encounter rate
 	dbw 30, HORSEA
 	dbw 32, TENTACOOL
-	dbw 34, WIMPOD
+	dbw 34, STARMIE
 
 	map_id WHIRL_ISLAND_LUGIA_CHAMBER
 	db 4 percent ; encounter rate
@@ -90,15 +90,15 @@ JohtoWaterWildMons:
 
 	map_id DARK_CAVE_VIOLET_ENTRANCE
 	db 2 percent ; encounter rate
-	dbw 24, MAGIKARP
-	dbw 19, WOOPER
-	dbw 16, FEEBAS
+	dbw 19, MAGIKARP
+	dbw 21, WOOPER
+	dbw 24, QUAGSIRE
 
 	map_id DARK_CAVE_BLACKTHORN_ENTRANCE
 	db 2 percent ; encounter rate
-	dbw 35, MAGIKARP
 	dbw 30, MAGIKARP
-	dbw 27, FEEBAS
+	dbw 33, QUAGSIRE
+	dbw 36, GYARADOS
 
 	map_id DRAGONS_DEN_B1F
 	db 4 percent ; encounter rate
@@ -114,9 +114,9 @@ JohtoWaterWildMons:
 
 	map_id ROUTE_30
 	db 2 percent ; encounter rate
-	dbw 24, POLIWAG
-	dbw 19, MARILL
-	dbw 24, POLIWAG
+	dbw 19, POLIWAG
+	dbw 22, MARILL
+	dbw 26, POLIWHIRL
 
 	map_id ROUTE_31
 	db 2 percent ; encounter rate
@@ -162,9 +162,9 @@ JohtoWaterWildMons:
 
 	map_id ROUTE_43
 	db 2 percent ; encounter rate
-	dbw 35, MAGIKARP
-	dbw 30, CHINCHOU
-	dbw 27, STARYU
+	dbw 30, MAGIKARP
+	dbw 32, MARILL
+	dbw 35, POLIWHIRL
 
 	map_id ROUTE_44
 	db 2 percent ; encounter rate
@@ -175,8 +175,8 @@ JohtoWaterWildMons:
 	map_id ROUTE_45
 	db 2 percent ; encounter rate
 	dbw 35, MAGIKARP
-	dbw 42, LANTURN
-	dbw 34, MAGIKARP
+	dbw 38, POLIWHIRL
+	dbw 42, GYARADOS
 
 	map_id NEW_BARK_TOWN
 	db 6 percent ; encounter rate
@@ -192,9 +192,9 @@ JohtoWaterWildMons:
 
 	map_id VIOLET_CITY
 	db 2 percent ; encounter rate
-	dbw 24, POLIWAG
-	dbw 19, WOOPER
-	dbw 24, POLIWAG
+	dbw 19, POLIWAG
+	dbw 22, WOOPER
+	dbw 25, QUAGSIRE
 
 	map_id CIANWOOD_CITY
 	db 6 percent ; encounter rate
@@ -217,19 +217,19 @@ JohtoWaterWildMons:
 	map_id LAKE_OF_RAGE
 	db 6 percent ; encounter rate
 	dbw 27, MAGIKARP
-	dbw 27, FEEBAS
+	dbw 30, POLIWAG
 	dbw 35, GYARADOS
 
 	map_id BLACKTHORN_CITY
 	db 4 percent ; encounter rate
 	dbw 37, MAGIKARP
-	dbw 34, DRATINI
-	dbw 42, HORSEA
+	dbw 38, POLIWHIRL
+	dbw 42, GYARADOS
 
 	map_id SILVER_CAVE_OUTSIDE
 	db 2 percent ; encounter rate
-	dbw 69, SLOWBRO
-	dbw 72, KINGDRA
-	dbw 68, POLIWRATH
+	dbw 68, SLOWBRO
+	dbw 70, POLIWRATH
+	dbw 73, GYARADOS
 
 	db -1 ; end

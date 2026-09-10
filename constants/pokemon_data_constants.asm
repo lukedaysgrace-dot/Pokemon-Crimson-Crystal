@@ -125,8 +125,10 @@ PERFECT_SPDSPC_DV EQU $ff
 ; shiny/gender flags (party: Unused byte; box: PokerusStatus bits 6-7)
 MON_SHINY_FLAG EQU %10000000
 MON_MALE_FLAG  EQU %01000000
-SHINY_PROBABILITY EQU 10 percent
-POKERUS_PROBABILITY EQU 5 percent
+; ~2% shiny (5 out of 256)
+SHINY_PROBABILITY EQU 2 percent
+; ~0.5% Pokerus (328 out of 65536), checked as a 16-bit value
+POKERUS_PROBABILITY EQU 328
 PKRUS_OFFSET_FROM_DVS EQU 2 + NUM_MOVES + 1
 MON_DVs                          EQUS "(wPartyMon1DVs - wPartyMon1)"
 MON_SHINY_GENDER_OFFSET_FROM_DVS EQUS "(MON_UNUSED - MON_DVs)"
@@ -279,6 +281,7 @@ NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
 	const TREEMON_SET_LAKE
 	const TREEMON_SET_FOREST
 	const TREEMON_SET_ROCK
+	const TREEMON_SET_ROCK_CAVE
 NUM_TREEMON_SETS EQU const_value
 
 ; treemon scores
