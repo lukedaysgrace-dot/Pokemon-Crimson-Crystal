@@ -177,8 +177,8 @@ TilesetDarkCaveAnim:
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw vTiles2 tile $14, WriteTileFromBuffer
-	dw NULL,  FlickeringCaveEntrancePalette
-	dw NULL,  WaitTileAnimation
+	dw vTiles2 tile $41, AnimateCaveLavaTile
+	dw vTiles2 tile $42, AnimateCaveLavaTileOffset
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw vTiles2 tile $40, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -189,7 +189,8 @@ TilesetDarkCaveAnim:
 	dw wTileAnimBuffer, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw vTiles2 tile $40, WriteTileFromBuffer
-	dw NULL,  FlickeringCaveEntrancePalette
+	dw vTiles2 tile $41, AnimateCaveLavaTile
+	dw vTiles2 tile $42, AnimateCaveLavaTileOffset
 	dw NULL,  DoneTileAnimation
 
 TilesetIcePathAnim:
@@ -700,6 +701,51 @@ LavaBubbleFrames:
 	INCBIN "gfx/tilesets/lava/2.2bpp"
 	INCBIN "gfx/tilesets/lava/3.2bpp"
 	INCBIN "gfx/tilesets/lava/4.2bpp"
+
+AnimateCaveLavaTile:
+; Animate cave tile $41 with the existing lava frames.
+	xor a
+	jr AnimateCaveLavaTileWithPhase
+
+AnimateCaveLavaTileOffset:
+; Run cave tile $42 on a slower offset cycle for uneven bubbling.
+	ld a, 1
+
+AnimateCaveLavaTileWithPhase:
+	ld [wTileAnimBuffer + 2], a
+	ld a, e
+	ld [wTileAnimBuffer], a
+	ld a, d
+	ld [wTileAnimBuffer + 1], a
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+	ldh a, [hVBlankCounter]
+	ld e, a
+	ld a, [wTileAnimBuffer + 2]
+	and a
+	ld a, e
+	jr nz, .offset
+	and %11000
+	add a
+	jr .got_frame
+
+.offset
+	and %110000
+	add $10
+	and %110000
+
+.got_frame
+	ld e, a
+	ld d, 0
+	ld hl, LavaBubbleFrames
+	add hl, de
+	ld sp, hl
+	ld a, [wTileAnimBuffer]
+	ld l, a
+	ld a, [wTileAnimBuffer + 1]
+	ld h, a
+	jp WriteTile
 
 AnimateTowerPillarTile:
 ; Read from struct at de:
