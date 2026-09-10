@@ -27,9 +27,14 @@ to bank 0.
 
 Everyone keeps their own colors: BG palettes 1-4 hold Gold's, Indigo's, Lyra's and
 Mint's real palettes, and the three you are *not* on get every channel blended
-halfway to white (`c / 2 + 16`, one masked shift and one or). Color 0 of each is
-set to the screen's light blue instead of white, so the pics sit flush on the
-background instead of each showing a white box.
+halfway to white (`c / 2 + 16`, one masked shift and one or).
+
+The background is plain white on this screen only — the other setup screens
+(difficulty, typing, stats) keep the light blue. `CharSelect_FillBackground`
+paints the screen with the blank textbox tile, which is solid color 0, and every
+character palette shares white as its color 0, so the pics sit flush with no box
+around them. The cursor row stays on palette 0, so an empty cursor slot is blank
+white rather than showing color 1 of a character's palette.
 
 ## Things to know
 
