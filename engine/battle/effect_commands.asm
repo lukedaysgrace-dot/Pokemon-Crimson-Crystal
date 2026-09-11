@@ -3719,6 +3719,9 @@ UpdateMoveData:
 	ld [wNamedObjectIndexBuffer], a
 
 	call GetMoveData
+	; Weather Ball must resolve after turn order and earlier actions can change
+	; the weather, but before any type-sensitive ability or damage logic.
+	farcall WeatherBallUpdateMoveStruct
 	farcall AbilityConvertMoveType
 	; Hidden Power: the user's own type, fixed power, and the category its
 	; current stats give (engine/battle/hidden_power.asm)

@@ -4788,6 +4788,9 @@ AIGetEnemyMove:
 
 	ld de, wEnemyMoveStruct
 	call GetMoveData
+	; Give scoring the same live Weather Ball type/power and "-ate" conversion
+	; that execution receives from UpdateMoveData.
+	farcall WeatherBallPatchEnemyMoveStruct
 	; Hidden Power: this mon's own type, fixed power, and the category its
 	; current stats give (so every type/category/damage check below is right)
 	farcall HiddenPowerPatchEnemyMoveStruct

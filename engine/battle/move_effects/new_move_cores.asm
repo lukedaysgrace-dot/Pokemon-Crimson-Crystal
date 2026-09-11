@@ -2,6 +2,82 @@
 ; Lives in the Battle Effect Overflow bank; called via callfar stubs
 ; from the Effect Commands bank (same conventions as BattleParalyze_Core).
 
+WeatherBallUpdateMoveStruct::
+; Resolve Weather Ball from the weather that exists when the move actually
+; begins. Reading the raw weather byte deliberately treats Cloud Nine's
+; suppression bit as clear weather while leaving the underlying weather live.
+	push bc
+	push de
+	push hl
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(WEATHER_BALL)
+	jr nz, .done
+	ld a, l
+	cp LOW(WEATHER_BALL)
+	jr nz, .done
+
+	; Clear weather: 50-power Normal, and animation parameter 0.
+	xor a
+	ld [wBattleAnimParam], a
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVarAddr
+	ld [hl], 50
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	ld [hl], NORMAL
+
+	; Mega Sol's other hooks (Solar Beam, recovery and damage) treat the
+	; user's moves as if harsh sun is active without changing field weather.
+	; Weather Ball follows the same rule, unless Neutralizing Gas suppresses it.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MEGA_SOL
+	ld a, WEATHER_SUN
+	jr z, .check_weather
+	ld a, [wBattleWeather]
+.check_weather
+	cp WEATHER_RAIN
+	ld c, WATER
+	jr z, .weather
+	cp WEATHER_SUN
+	ld c, FIRE
+	jr z, .weather
+	cp WEATHER_SANDSTORM
+	ld c, ROCK
+	jr z, .weather
+	cp WEATHER_HAIL
+	ld c, ICE
+	jr nz, .done
+.weather
+	ld [wBattleAnimParam], a
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVarAddr
+	ld [hl], 100
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	ld [hl], c
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+WeatherBallPatchEnemyMoveStruct::
+; AIGetEnemyMove may run from either turn context. Temporarily select the
+; enemy struct, then mirror the normal UpdateMoveData ability conversion.
+	ldh a, [hBattleTurn]
+	push af
+	ld a, 1
+	ldh [hBattleTurn], a
+	call WeatherBallUpdateMoveStruct
+	farcall AbilityConvertMoveType
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
 AIPredictVariableMoveCategory_Core:
 ; Hidden Power: type, power and category all come from the user; the same
 ; patch AIGetEnemyMove applies (idempotent, in case the struct was reloaded).
