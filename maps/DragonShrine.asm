@@ -197,13 +197,19 @@ DragonShrineElder1Script:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
-	iffalse .GiveDratini
+	iffalse .ChooseReward
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .BeatRivalInMtMoon
 	writetext DragonShrineClairsGrandfatherText
 	waitbutton
 	closetext
 	end
+
+.ChooseReward:
+; Offer to teach EXTREMESPEED instead of handing out a DRATINI if the player
+; already has one of its line.
+	special CheckPartyForDratiniLine
+	ifequal TRUE, .OfferExtremeSpeed
 
 .GiveDratini:
 	writetext DragonShrineTakeThisDratiniText
@@ -225,6 +231,26 @@ DragonShrineElder1Script:
 
 .PartyFull:
 	writetext DragonShrinePartyFullText
+	waitbutton
+	closetext
+	end
+
+.OfferExtremeSpeed:
+	writetext DragonShrineTeachExtremeSpeedText
+	yesorno
+	iffalse .DeclinedExtremeSpeed
+	setval MOVETUTOR_EXTREMESPEED
+	writetext DragonShrineMoveTutorBlankText
+	special MoveTutor
+	ifnotequal FALSE, .DeclinedExtremeSpeed
+	writetext DragonShrineExtremeSpeedTaughtText
+	waitbutton
+	closetext
+	setevent EVENT_GOT_DRATINI
+	end
+
+.DeclinedExtremeSpeed:
+	writetext DragonShrineExtremeSpeedDeclinedText
 	waitbutton
 	closetext
 	end
@@ -518,6 +544,28 @@ DragonShrinePlayerReceivedDratiniText:
 DragonShrinePartyFullText:
 	text "Hm? Your #MON"
 	line "party is full."
+	done
+
+DragonShrineTeachExtremeSpeedText:
+	text "Hm… I see you"
+	line "already raise a"
+	cont "dragon."
+
+	para "Shall I teach it"
+	line "EXTREMESPEED?"
+	done
+
+DragonShrineMoveTutorBlankText:
+	text_start
+	done
+
+DragonShrineExtremeSpeedTaughtText:
+	text "It is done."
+	done
+
+DragonShrineExtremeSpeedDeclinedText:
+	text "Hm… Another time,"
+	line "then."
 	done
 
 DragonShrineSymbolicDragonText:

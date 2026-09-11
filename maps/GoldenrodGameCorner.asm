@@ -1,8 +1,8 @@
 GOLDENRODGAMECORNER_TM25_COINS EQU 5500
 GOLDENRODGAMECORNER_TM14_COINS EQU 5500
 GOLDENRODGAMECORNER_TM38_COINS EQU 5500
-GOLDENRODGAMECORNER_RIOLU_COINS     EQU 500
-GOLDENRODGAMECORNER_CHARCADET_COINS EQU 1000
+GOLDENRODGAMECORNER_BAGON_COINS     EQU 4000
+GOLDENRODGAMECORNER_DEINO_COINS     EQU 6000
 GOLDENRODGAMECORNER_MUNCHLAX_COINS  EQU 1500
 GOLDENRODGAMECORNER_DRATINI_COINS   EQU 2000
 GOLDENRODGAMECORNER_PORYGON_COINS   EQU 3000
@@ -172,47 +172,47 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .Riolu
-	ifequal 2, .Charcadet
+	ifequal 1, .Bagon
+	ifequal 2, .Deino
 	ifequal 3, .Munchlax
 	ifequal 4, .Dratini
 	ifequal 5, .Porygon
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
-.Riolu:
-	checkcoins GOLDENRODGAMECORNER_RIOLU_COINS
+.Bagon:
+	checkcoins GOLDENRODGAMECORNER_BAGON_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, RIOLU
+	getmonname STRING_BUFFER_3, BAGON
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	loadmonindex 1, RIOLU
+	loadmonindex 1, BAGON
 	special GameCornerPrizeMonCheckDex
-	givepoke RIOLU, 10
-	takecoins GOLDENRODGAMECORNER_RIOLU_COINS
+	givepoke BAGON, 10
+	takecoins GOLDENRODGAMECORNER_BAGON_COINS
 	sjump .loop
 
-.Charcadet:
-	checkcoins GOLDENRODGAMECORNER_CHARCADET_COINS
+.Deino:
+	checkcoins GOLDENRODGAMECORNER_DEINO_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, CHARCADET
+	getmonname STRING_BUFFER_3, DEINO
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	loadmonindex 2, CHARCADET
+	loadmonindex 2, DEINO
 	special GameCornerPrizeMonCheckDex
-	givepoke CHARCADET, 15
-	takecoins GOLDENRODGAMECORNER_CHARCADET_COINS
+	givepoke DEINO, 15
+	takecoins GOLDENRODGAMECORNER_DEINO_COINS
 	sjump .loop
 
 .Munchlax:
@@ -278,8 +278,8 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 5 ; items
-	db "RIOLU       500@"
-	db "CHARCADET  1000@"
+	db "BAGON      4000@"
+	db "DEINO      6000@"
 	db "MUNCHLAX   1500@"
 	db "DRATINI    2000@"
 	db "PORYGON    3000@"

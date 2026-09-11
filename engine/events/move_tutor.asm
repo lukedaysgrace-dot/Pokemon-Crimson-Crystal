@@ -41,8 +41,11 @@ MoveTutor:
 	cp MOVETUTOR_THUNDERBOLT
 	ld hl, THUNDERBOLT
 	jr z, .ok
-	; MOVETUTOR_ICE_BEAM
+	cp MOVETUTOR_ICE_BEAM
 	ld hl, ICE_BEAM
+	jr z, .ok
+	; MOVETUTOR_EXTREMESPEED
+	ld hl, EXTREMESPEED
 .ok
 	jp GetMoveIDFromIndex
 
@@ -50,7 +53,7 @@ CheckCanLearnMoveTutorMove:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 
-	predef CanLearnTMHMMove
+	call .CheckCompatibility
 
 	push bc
 	ld a, [wCurPartyMon]
@@ -91,6 +94,25 @@ CheckCanLearnMoveTutorMove:
 .learned
 	call ExitMenu
 	scf
+	ret
+
+.CheckCompatibility:
+; Returns compatibility in c, the same way CanLearnTMHMMove does.
+; EXTREMESPEED is not a TM or HM, so it has no learnset flag to check against;
+; anything the tutor is offered to can be taught it.
+	ld a, [wPutativeTMHMMove]
+	call GetMoveIndexFromID ; out: hl = 16-bit move index
+	ld a, l
+	cp LOW(EXTREMESPEED)
+	jr nz, .use_tmhm_learnset
+	ld a, h
+	cp HIGH(EXTREMESPEED)
+	jr nz, .use_tmhm_learnset
+	ld c, TRUE
+	ret
+
+.use_tmhm_learnset
+	predef CanLearnTMHMMove
 	ret
 
 .MenuHeader:
