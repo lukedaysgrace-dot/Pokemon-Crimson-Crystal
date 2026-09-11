@@ -2344,6 +2344,7 @@ TyranitarEvosAttacks:
 LugiaEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, RAIN_DANCE
+	dbw 1, WEATHER_BALL
 	dbw 1, WHIRLWIND
 	dbw 1, GUST
 	dbw 6, CALM_MIND
@@ -2362,6 +2363,7 @@ LugiaEvosAttacks:
 HoOhEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, SUNNY_DAY
+	dbw 1, WEATHER_BALL
 	dbw 1, WHIRLWIND
 	dbw 1, GUST
 	dbw 6, CALM_MIND
