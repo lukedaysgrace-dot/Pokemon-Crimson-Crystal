@@ -2385,6 +2385,7 @@ ElectrodeEvosAttacks:
 
 ExeggcuteEvosAttacks:
 	dbbw EVOLVE_ITEM, LEAF_STONE, EXEGGUTOR
+	dbbw EVOLVE_ITEM, SUN_STONE, EXEGGUTOR_ALOLAN
 	db 0 ; no more evolutions
 	dbw 1, HYPNOSIS
 	dbw 1, ABSORB
@@ -2431,6 +2432,7 @@ ExeggutorEvosAttacks:
 	db 0 ; no more level-up moves
 
 CuboneEvosAttacks:
+	dbbw EVOLVE_LEVEL, 28, MAROWAK_ALOLAN ; only inside the Burned Tower (see engine/pokemon/evolve.asm)
 	dbbw EVOLVE_LEVEL, 28, MAROWAK
 	db 0 ; no more evolutions
 	dbw 1, GROWL
@@ -2548,6 +2550,7 @@ LickitungEvosAttacks:
 	db 0 ; no more level-up moves
 
 KoffingEvosAttacks:
+	dbbw EVOLVE_LEVEL, 35, WEEZING_GALARIAN ; only when it knows Fairy Wind (see engine/pokemon/evolve.asm)
 	dbbw EVOLVE_LEVEL, 35, WEEZING
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
@@ -2560,6 +2563,7 @@ KoffingEvosAttacks:
 	dbw 22, HAZE
 	dbw 25, GYRO_BALL
 	dbw 28, SLUDGE_BOMB
+	dbw 32, FAIRY_WIND
 	dbw 34, DESTINY_BOND
 	dbw 36, TOXIC
 	dbw 37, DARK_PULSE

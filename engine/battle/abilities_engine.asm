@@ -6385,6 +6385,7 @@ SliceMoves:
 	dw CROSS_POISON
 	dw KOWTOW_CLEAVE
 	dw STONE_AXE
+	dw CRUSH_CLAW
 	dw -1
 
 PulseMoves:
