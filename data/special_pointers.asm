@@ -192,3 +192,4 @@ SpecialsPointers::
 	add_special StartSafariGame
 	add_special EndSafariGame
 	add_special SetLastPartyMonMale
+	add_special CheckPartyForDratiniLine
