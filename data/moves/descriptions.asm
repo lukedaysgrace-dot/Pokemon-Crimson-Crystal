@@ -424,6 +424,7 @@ MoveDescriptions1:
 	dw YawnDescription
 	dw WishDescription
 	dw StickyWebDescription
+	dw WeatherBallDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2067,3 +2068,7 @@ WishDescription:
 StickyWebDescription:
 	db   "Web that slows"
 	next "foes switching in.@"
+
+WeatherBallDescription:
+	db   "Changes type and"
+	next "power with weather.@"

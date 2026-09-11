@@ -1,0 +1,519 @@
+# Weather Ball: live weather resolution, animation parameter inputs, and every
+# type/power-sensitive ability class present in Crimson Crystal.
+
+# ---- core forms ---------------------------------------------------------
+- name: "Weather Ball: clear weather is 50-power Normal"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 50
+    - wram('wPlayerMoveStructType') == 0
+    - enemy.hp < enemy.start_hp
+
+- name: "Weather Ball: rain is 100-power Water"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 21
+
+- name: "Weather Ball: sun is 100-power Fire"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 20
+
+- name: "Weather Ball: sandstorm is 100-power Rock"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: STEELIX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 5
+
+- name: "Weather Ball: hail is 100-power Ice"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: WALREIN, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 25
+
+# ---- weather-setting and suppressing abilities -------------------------
+- name: "Weather Ball: Drizzle supplies the rain form"
+  player: { species: POLITOED, level: 50, ability: DRIZZLE, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 1
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 21
+
+- name: "Weather Ball: Drought supplies the sun form"
+  player: { species: VULPIX, level: 50, ability: DROUGHT, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 2
+    - wram('wPlayerMoveStructType') == 20
+
+- name: "Weather Ball: Sand Stream supplies the Rock form"
+  player: { species: TYRANITAR, level: 50, ability: SAND_STREAM, moves: [WEATHER_BALL] }
+  enemy:  { species: STEELIX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 3
+    - wram('wPlayerMoveStructType') == 5
+
+- name: "Weather Ball: Snow Warning supplies the Ice form"
+  player: { species: ABOMASNOW, level: 50, ability: SNOW_WARNING, moves: [WEATHER_BALL] }
+  enemy:  { species: WALREIN, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 4
+    - wram('wPlayerMoveStructType') == 25
+
+- name: "Weather Ball: Cloud Nine suppresses weather into the Normal form"
+  player: { species: GOLDUCK, level: 50, ability: CLOUD_NINE, moves: [WEATHER_BALL] }
+  enemy:  { species: POLITOED, level: 100, ability: DRIZZLE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather_raw == 129
+    - wram('wPlayerMoveStructPower') == 50
+    - wram('wPlayerMoveStructType') == 0
+
+- name: "Weather Ball: Neutralizing Gas turns off Cloud Nine suppression"
+  player: { species: GOLDUCK, level: 50, ability: CLOUD_NINE, moves: [WEATHER_BALL] }
+  enemy:  { species: KOFFING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather_raw == 1
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 21
+
+- name: "Weather Ball: same-turn Sunny Day changes a slower foe's form"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, moves: [SUNNY_DAY] }
+  enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 2
+    - wram('wEnemyMoveStructPower') == 100
+    - wram('wEnemyMoveStructType') == 20
+
+# Mega Sol is a custom ability in this game whose documented contract is that
+# the user's moves act as if harsh sun is active.
+- name: "Weather Ball: Mega Sol supplies its personal sun form"
+  player: { species: MEGANIUM, level: 50, ability: MEGA_SOL, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 0
+    - wram('wPlayerMoveStructPower') == 100
+    - wram('wPlayerMoveStructType') == 20
+
+- name: "Weather Ball: Mega Sol overrides real rain for its user"
+  player: { species: MEGANIUM, level: 50, ability: MEGA_SOL, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - weather == 1
+    - wram('wPlayerMoveStructType') == 20
+
+# ---- type-conversion abilities -----------------------------------------
+- name: "Weather Ball: Galvanize converts only the clear-weather form"
+  player: { species: AMPHAROS, level: 50, ability: GALVANIZE, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 50
+    - wram('wPlayerMoveStructType') == 23
+
+- name: "Weather Ball: Pixilate converts only the clear-weather form"
+  player: { species: SYLVEON, level: 50, ability: PIXILATE, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 28
+
+- name: "Weather Ball: Refrigerate converts only the clear-weather form"
+  player: { species: AURORUS, level: 50, ability: REFRIGERATE, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 25
+
+- name: "Weather Ball: Aerilate converts only the clear-weather form"
+  player: { species: ALTARIA, level: 50, ability: AERILATE, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 2
+
+- name: "Weather Ball: rain form takes precedence over Pixilate"
+  player: { species: SYLVEON, level: 50, ability: PIXILATE, moves: [WEATHER_BALL] }
+  enemy:  { species: QUAGSIRE, level: 100, ability: WATER_ABSORB, hp: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 21
+    - enemy.hp > enemy.start_hp
+
+# ---- power/type-sensitive offensive abilities -------------------------
+- name: "Weather Ball: clear-weather Technician control"
+  id: weather_ball_technician_clear_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Technician boosts the 50-power clear form"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_technician_clear_control')['enemy']['damage']
+
+- name: "Weather Ball: rain Technician control"
+  id: weather_ball_technician_rain_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Technician does not boost a 100-power weather form"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('weather_ball_technician_rain_control')['enemy']['damage']
+
+- name: "Weather Ball: Sand Force control"
+  id: weather_ball_sand_force_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: STEELIX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Sand Force boosts the Rock form"
+  player: { species: MEW, level: 50, ability: SAND_FORCE, moves: [WEATHER_BALL] }
+  enemy:  { species: STEELIX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_sand_force_control')['enemy']['damage']
+
+- name: "Weather Ball: Adaptability Fire-STAB control"
+  id: weather_ball_adaptability_control
+  player: { species: CYNDAQUIL, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Adaptability recognizes Fire form STAB"
+  player: { species: CYNDAQUIL, level: 50, ability: ADAPTABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_adaptability_control')['enemy']['damage']
+
+- name: "Weather Ball: Blaze Fire-form control"
+  id: weather_ball_blaze_control
+  player: { species: CYNDAQUIL, level: 50, ability: NO_ABILITY, hp: 25, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Blaze boosts the Fire form at low HP"
+  player: { species: CYNDAQUIL, level: 50, ability: BLAZE, hp: 25, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_blaze_control')['enemy']['damage']
+
+- name: "Weather Ball: Torrent Water-form control"
+  id: weather_ball_torrent_control
+  player: { species: SQUIRTLE, level: 50, ability: NO_ABILITY, hp: 25, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Torrent boosts the Water form at low HP"
+  player: { species: SQUIRTLE, level: 50, ability: TORRENT, hp: 25, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_torrent_control')['enemy']['damage']
+
+- name: "Weather Ball: Solar Power sun-form control"
+  id: weather_ball_solar_power_control
+  player: { species: CHARMANDER, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Solar Power boosts the special sun form"
+  player: { species: CHARMANDER, level: 50, ability: SOLAR_POWER, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_solar_power_control')['enemy']['damage']
+
+# ---- defensive type reactions -----------------------------------------
+- name: "Weather Ball: Water Absorb catches the rain form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: QUAGSIRE, level: 100, ability: WATER_ABSORB, hp: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > enemy.start_hp
+
+- name: "Weather Ball: Storm Drain catches the rain form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: CRADILY, level: 100, ability: STORM_DRAIN, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 8
+
+- name: "Weather Ball: Dry Skin catches the rain form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: TOXICROAK, level: 100, ability: DRY_SKIN, hp: 50, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > enemy.start_hp
+
+- name: "Weather Ball: Flash Fire catches the sun form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: LITWICK, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 8
+
+- name: "Weather Ball: Bulletproof blocks every form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: URSALUNA, level: 100, ability: BULLETPROOF, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Weather Ball: Mold Breaker bypasses Bulletproof"
+  player: { species: MEW, level: 50, ability: MOLD_BREAKER, moves: [WEATHER_BALL] }
+  enemy:  { species: URSALUNA, level: 100, ability: BULLETPROOF, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Weather Ball: Thick Fat Fire-form control"
+  id: weather_ball_thick_fat_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Thick Fat halves the Fire form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: THICK_FAT, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp < result('weather_ball_thick_fat_control')['enemy']['damage']
+
+- name: "Weather Ball: Cloud Nine prevents a rain-form Water Absorb proc"
+  player:  { species: POLITOED, level: 50, ability: DRIZZLE, moves: [SPLASH] }
+  player2: { species: GOLDUCK, level: 50, ability: CLOUD_NINE, moves: [WEATHER_BALL] }
+  enemy:  { species: QUAGSIRE, level: 100, ability: WATER_ABSORB, hp: 50, moves: [SPLASH] }
+  move_script: ["switch:2", 1]
+  rng: forced_high
+  turns: 2
+  assert:
+    - wram('wPlayerMoveStructType') == 0
+    - enemy.hp < enemy.start_hp
+
+- name: "Weather Ball: Scrappy lets the clear Normal form hit Ghosts"
+  player: { species: MEW, level: 50, ability: SCRAPPY, moves: [WEATHER_BALL] }
+  enemy:  { species: GENGAR, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 0
+    - enemy.hp < enemy.start_hp
+
+- name: "Weather Ball: Mind's Eye lets the clear Normal form hit Ghosts"
+  player: { species: MEW, level: 50, ability: MINDS_EYE, moves: [WEATHER_BALL] }
+  enemy:  { species: GENGAR, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Weather Ball: Galvanize form triggers Volt Absorb"
+  player: { species: AMPHAROS, level: 50, ability: GALVANIZE, moves: [WEATHER_BALL] }
+  enemy:  { species: JOLTEON, level: 100, ability: VOLT_ABSORB, hp: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructType') == 23
+    - enemy.hp > enemy.start_hp
+
+- name: "Weather Ball: Neutralizing Gas suppresses Mega Sol"
+  player: { species: MEGANIUM, level: 50, ability: MEGA_SOL, moves: [WEATHER_BALL] }
+  enemy:  { species: KOFFING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerMoveStructPower') == 50
+    - wram('wPlayerMoveStructType') == 0
+
+- name: "Weather Ball: Thick Fat Ice-form control"
+  id: weather_ball_thick_fat_ice_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Thick Fat also halves the Ice form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: SNORLAX, level: 100, ability: THICK_FAT, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp < result('weather_ball_thick_fat_ice_control')['enemy']['damage']
+
+- name: "Weather Ball: Fluffy Fire-form control"
+  id: weather_ball_fluffy_fire_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: FLAAFFY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Fluffy doubles the non-contact Fire form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: FLAAFFY, level: 100, ability: FLUFFY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_fluffy_fire_control')['enemy']['damage']
+
+- name: "Weather Ball: Dry Skin Fire-form control"
+  id: weather_ball_dry_skin_fire_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: TOXICROAK, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Dry Skin increases damage from the Fire form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: TOXICROAK, level: 100, ability: DRY_SKIN, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_dry_skin_fire_control')['enemy']['damage']
+
+- name: "Weather Ball: Thermal Exchange reacts to the Fire form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: FRIGIBAX, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[0] == 8
+
+- name: "Weather Ball: resisted-form Tinted Lens control"
+  id: weather_ball_tinted_lens_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: QUAGSIRE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Tinted Lens boosts a resisted Fire form"
+  player: { species: MEW, level: 50, ability: TINTED_LENS, moves: [WEATHER_BALL] }
+  enemy:  { species: QUAGSIRE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('weather_ball_tinted_lens_control')['enemy']['damage']
+
+- name: "Weather Ball: super-effective-form Filter control"
+  id: weather_ball_filter_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: DRAGONITE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+- name: "Weather Ball: Filter reduces a super-effective Ice form"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  enemy:  { species: DRAGONITE, level: 100, ability: FILTER, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp < result('weather_ball_filter_control')['enemy']['damage']
+
+# ---- AI -----------------------------------------------------------------
+- name: "Weather Ball: trainer AI recognizes the live rain form"
+  player:  { species: GOLEM, level: 100, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:   { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE, WEATHER_BALL] }
+  enemy2:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'WEATHER_BALL'

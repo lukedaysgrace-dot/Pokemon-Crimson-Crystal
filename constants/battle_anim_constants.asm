@@ -452,6 +452,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_YAWN_2
 	const ANIM_OBJ_WISH_1
 	const ANIM_OBJ_WISH_2
+	const ANIM_OBJ_WEATHER_BALL_RISE
+	const ANIM_OBJ_WEATHER_BALL_FALL
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -1402,6 +1404,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 ; gfx ported from polishedcoral
 	const ANIM_GFX_LUMINA_CRASH
 	const ANIM_GFX_TAUNT ; ported from pokeorange
+	const ANIM_GFX_WEATHER_BALL ; ported from mae-pokeorange
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

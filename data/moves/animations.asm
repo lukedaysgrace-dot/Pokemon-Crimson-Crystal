@@ -458,6 +458,7 @@ BattleAnimations::
 	banim BattleAnim_Yawn_PO ; YAWN (ported from pokeorange)
 	banim BattleAnim_Wish_PO ; WISH (ported from pokeorange)
 	banim BattleAnim_SpiderWeb ; STICKY_WEB (reused animation)
+	banim BattleAnim_WeatherBall_PO ; WEATHER_BALL (ported from mae-pokeorange)
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
