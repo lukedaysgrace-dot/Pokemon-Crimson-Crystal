@@ -370,15 +370,25 @@ EvolveAfterBattle_MasterLoop:
 	jp z, .target_day
 
 ; Quilava -> Hisuian Typhlosion only inside the Burned Tower.
-; Otherwise this evolution is skipped and the next entry
-; (the regular Typhlosion) is checked instead.
+; Cubone -> Alolan Marowak follows the same rule. Otherwise the regional
+; evolution is skipped and the next, regular evolution is checked instead.
 .check_typhlosion_hisuian
 	ld a, d
 	cp HIGH(TYPHLOSION_HISUIAN)
-	jr nz, .check_ursaring
+	jr nz, .check_marowak_alolan
 	ld a, e
 	cp LOW(TYPHLOSION_HISUIAN)
-	jr nz, .check_ursaring
+	jr z, .check_burned_tower
+
+.check_marowak_alolan
+	ld a, d
+	cp HIGH(MAROWAK_ALOLAN)
+	jr nz, .check_weezing_galarian
+	ld a, e
+	cp LOW(MAROWAK_ALOLAN)
+	jr nz, .check_weezing_galarian
+
+.check_burned_tower
 	ld a, [wMapGroup]
 	cp GROUP_BURNED_TOWER_1F
 	jp nz, .skip_evolution_species
@@ -387,6 +397,31 @@ EvolveAfterBattle_MasterLoop:
 	jp z, .proceed
 	cp MAP_BURNED_TOWER_B1F
 	jp nz, .skip_evolution_species
+	jp .proceed
+
+.check_weezing_galarian
+	ld a, d
+	cp HIGH(WEEZING_GALARIAN)
+	jr nz, .check_ursaring
+	ld a, e
+	cp LOW(WEEZING_GALARIAN)
+	jr nz, .check_ursaring
+	push hl
+	ld hl, FAIRY_WIND
+	call GetMoveIDFromIndex
+	ld c, a
+	ld hl, wTempMonMoves
+	ld b, NUM_MOVES
+.fairy_wind_loop
+	ld a, [hli]
+	cp c
+	jr z, .fairy_wind_found
+	dec b
+	jr nz, .fairy_wind_loop
+	pop hl
+	jp .skip_evolution_species
+.fairy_wind_found
+	pop hl
 	jp .proceed
 
 .check_ursaring

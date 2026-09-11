@@ -115,3 +115,48 @@ GiveDratini:
 .EmptyParty:
 	scf
 	ret
+
+CheckPartyForDratiniLine::
+; Sets wScriptVar to TRUE if the player's party holds a Dratini, Dragonair or
+; Dragonite, FALSE otherwise. Eggs never match: wPartySpecies stores EGG for
+; them, not the species inside.
+	xor a ; FALSE
+	ld [wScriptVar], a
+	ld hl, wPartySpecies
+.next_mon
+	ld a, [hl]
+	cp -1
+	ret z
+	inc hl
+	push hl
+	call GetPokemonIndexFromID ; out: hl = 16-bit species index
+	ld d, h
+	ld e, l
+	ld hl, .DragonLine
+.check
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .not_this_one ; end of the list
+	ld a, c
+	cp e
+	jr nz, .check
+	ld a, b
+	cp d
+	jr nz, .check
+	pop hl
+	ld a, TRUE
+	ld [wScriptVar], a
+	ret
+
+.not_this_one
+	pop hl
+	jr .next_mon
+
+.DragonLine:
+	dw DRATINI
+	dw DRAGONAIR
+	dw DRAGONITE
+	dw 0
