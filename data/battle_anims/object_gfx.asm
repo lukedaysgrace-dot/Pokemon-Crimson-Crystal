@@ -93,3 +93,4 @@ AnimObjGFX:
 ; ported from polishedcoral
 	anim_obj_gfx  8, AnimObjLuminaCrashGFX
 	anim_obj_gfx  8, AnimObjTauntGFX ; ported from pokeorange
+	anim_obj_gfx 16, AnimObjWeatherBallGFX ; ported from mae-pokeorange

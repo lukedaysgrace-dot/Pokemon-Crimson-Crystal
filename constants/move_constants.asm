@@ -425,6 +425,7 @@
 	const YAWN
 	const WISH
 	const STICKY_WEB
+	const WEATHER_BALL
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

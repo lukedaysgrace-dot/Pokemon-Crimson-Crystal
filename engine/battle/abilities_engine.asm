@@ -4726,28 +4726,36 @@ AbilityConvertMoveType::
 
 CheckAteAbilityBoost:
 ; carry if the attacker has an "-ate" ability and this move was converted
-; (its original type in the move data is Normal)
+; (its original type is Normal and its live type matches that ability).
+; The live-type check matters for Weather Ball under active weather.
+	push bc
 	call GetTrueUserAbility
+	ld c, ELECTRIC
 	cp GALVANIZE
-	jr z, .check_original
+	jr z, .check_live
+	ld c, FAIRY
 	cp PIXILATE
-	jr z, .check_original
+	jr z, .check_live
+	ld c, ICE
 	cp REFRIGERATE
-	jr z, .check_original
+	jr z, .check_live
+	ld c, FLYING
 	cp AERILATE
-	jr z, .check_original
-	and a ; nc
-	ret
+	jr nz, .no_boost
+.check_live
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp c
+	jr nz, .no_boost
 .check_original
 	push hl
 	push de
-	push bc
 	; Hidden Power is stored as Normal but its live type is the user's own
 	; chosen type - it is never "-ate"-converted, so it never gets the boost.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_HIDDEN_POWER
-	jr z, .no_boost
+	jr z, .no_boost_after_push
 	; Original type straight from the move data via GetMoveAttribute (the
 	; Moves table is indirect with 7-byte entries; the old flat *9 read
 	; fetched garbage).
@@ -4757,17 +4765,21 @@ CheckAteAbilityBoost:
 	ld a, MOVE_TYPE
 	call GetMoveAttribute
 	cp NORMAL
-	pop bc
 	pop de
 	pop hl
+	pop bc
 	scf
 	ret z
 	and a ; nc
 	ret
-.no_boost
-	pop bc
+.no_boost_after_push
 	pop de
 	pop hl
+	pop bc
+	and a ; nc
+	ret
+.no_boost
+	pop bc
 	and a ; nc
 	ret
 
@@ -6427,6 +6439,7 @@ BallBombMoves:
 	dw ROCK_BLAST
 	dw SEED_BOMB
 	dw BULLET_SEED
+	dw WEATHER_BALL
 	dw -1
 
 WindMoves:

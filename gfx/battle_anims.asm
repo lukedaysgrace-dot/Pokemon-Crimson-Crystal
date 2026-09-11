@@ -83,3 +83,5 @@ AnimObjRockPolishGFX: INCBIN "gfx/battle_anims/rockpolish.2bpp.lz"
 AnimObjBigGlowSpikedGFX: INCBIN "gfx/battle_anims/bigglowspiked.2bpp.lz"
 ; ported from polishedcoral
 AnimObjLuminaCrashGFX: INCBIN "gfx/battle_anims/luminacrash.2bpp.lz"
+; ported from mae-pokeorange
+AnimObjWeatherBallGFX: INCBIN "gfx/battle_anims/weatherball.2bpp.lz"
