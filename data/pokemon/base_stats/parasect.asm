@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  60, 115, 100,  30,  55,  90
+	db  70, 115, 100,  30,  55,  90
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, GRASS ; type
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/parasect/front.dimensions"
-	abilities_for PARASECT, EFFECT_SPORE, DAMP, TOUGH_CLAWS
+	abilities_for PARASECT, EFFECT_SPORE, REGENERATOR, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_PLANT ; egg groups
