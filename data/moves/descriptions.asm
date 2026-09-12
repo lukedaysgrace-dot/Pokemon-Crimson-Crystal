@@ -2071,4 +2071,4 @@ StickyWebDescription:
 
 WeatherBallDescription:
 	db   "Changes type and"
-	next "power with weather.@"
+	next "power in weather.@"

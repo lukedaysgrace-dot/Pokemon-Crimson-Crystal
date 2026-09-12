@@ -207,7 +207,7 @@ GetTMHMName::
 	callfar GetTMHMNumber
 	pop de
 
-; HM numbers start from 51, not 1
+; HM numbers follow the last TM, but are displayed starting from 1
 	pop af
 	ld a, c
 	jr c, .asm_34b9

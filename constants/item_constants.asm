@@ -264,6 +264,7 @@ ENDM
 	add_tm NIGHT_SLASH
 	add_tm ZEN_HEADBUTT
 	add_tm POWER_GEM
+	add_tm WEATHER_BALL
 NUM_TMS EQU const_value - TM01
 
 add_hm: MACRO
@@ -275,13 +276,13 @@ endc
 	enum \1_TMNUM
 ENDM
 
-	add_hm CUT          ; f4
-	add_hm FLY          ; f5
-	add_hm SURF         ; f6
-	add_hm STRENGTH     ; f7
-	add_hm FLASH        ; f8
-	add_hm WHIRLPOOL    ; f9
-	add_hm WATERFALL    ; fa
+	add_hm CUT          ; f8
+	add_hm FLY          ; f9
+	add_hm SURF         ; fa
+	add_hm STRENGTH     ; fb
+	add_hm FLASH        ; fc
+	add_hm WHIRLPOOL    ; fd
+	add_hm WATERFALL    ; fe
 NUM_HMS EQU const_value - HM01
 
 add_mt: MACRO
