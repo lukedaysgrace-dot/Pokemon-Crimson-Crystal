@@ -276,7 +276,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -318,7 +318,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -332,7 +332,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -1438,7 +1438,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -1536,7 +1536,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -1550,7 +1550,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3930,7 +3930,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3972,7 +3972,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -3986,7 +3986,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -8956,7 +8956,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -8998,7 +8998,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9012,7 +9012,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9208,7 +9208,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9250,7 +9250,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -9264,7 +9264,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -13660,7 +13660,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -13996,7 +13996,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -14010,7 +14010,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "None",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -17608,7 +17608,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18070,7 +18070,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18084,7 +18084,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18280,7 +18280,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18742,7 +18742,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -18756,7 +18756,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Ocean",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -20506,7 +20506,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -20968,7 +20968,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -20982,7 +20982,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -21150,7 +21150,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -21612,7 +21612,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -21626,7 +21626,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -23614,7 +23614,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -24370,7 +24370,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -24384,7 +24384,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28416,7 +28416,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28878,7 +28878,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -28892,7 +28892,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -42570,7 +42570,7 @@
     "rate": null,
     "chance": 35,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -42612,7 +42612,7 @@
     "rate": null,
     "chance": 70,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
@@ -42626,7 +42626,7 @@
     "rate": null,
     "chance": 15,
     "condition": null,
-    "group": "Pond",
+    "group": "Shore",
     "source": "data/wild/fish.asm"
   },
   {
