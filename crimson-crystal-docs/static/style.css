@@ -31,3 +31,6 @@
 .evofrom{margin:0 0 6px;color:var(--muted)}
 .evofrom a{color:var(--red2);font-weight:800}
 .noevo{margin:0;color:var(--muted)}
+img.animatable{cursor:pointer}
+.monhero img.big.animatable{transition:filter .15s}
+.monhero img.big.animatable:hover{filter:drop-shadow(0 0 14px #dd315488)}
