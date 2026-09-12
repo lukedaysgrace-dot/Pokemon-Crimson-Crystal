@@ -73,3 +73,44 @@ Cries:
 	dba Cry_Kirlia
 	dba Cry_Gallade
 	dba Cry_Sneasler
+
+; imported from Polished Coral
+; Hoenn (gen 3)
+	dba Cry_Aron
+	dba Cry_Lairon
+	dba Cry_Aggron
+	dba Cry_Numel
+	dba Cry_Camerupt
+	dba Cry_Swablu
+	dba Cry_Altaria
+	dba Cry_Snorunt
+; Sinnoh (gen 4)
+	dba Cry_Drifloon
+	dba Cry_Drifblim
+	dba Cry_Buneary
+	dba Cry_Lopunny
+	dba Cry_Snover
+	dba Cry_Abomasnow
+	dba Cry_Froslass
+; Unova (gen 5)
+	dba Cry_Drilbur
+	dba Cry_Excadrill
+	dba Cry_Venipede
+	dba Cry_Whirlipede
+	dba Cry_Scolipede
+	dba Cry_Scraggy
+	dba Cry_Scrafty
+	dba Cry_Joltik
+	dba Cry_Galvantula
+	dba Cry_Litwick
+	dba Cry_Lampent
+	dba Cry_Chandelure
+	dba Cry_Larvesta
+	dba Cry_Volcarona
+; Kalos (gen 6)
+	dba Cry_Noibat
+	dba Cry_Noivern
+; Galar (gen 8)
+	dba Cry_Dreepy
+	dba Cry_Drakloak
+	dba Cry_Dragapult
