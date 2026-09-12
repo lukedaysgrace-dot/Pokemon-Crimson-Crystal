@@ -25,7 +25,7 @@ CeladonGymErikaScript:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
 	setevent EVENT_BEAT_LASS_MICHELLE
-	setevent EVENT_BEAT_AROMA_LADY_TANYA
+	setevent EVENT_BEAT_SCHOOL_GIRL_TANYA
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	opentext
@@ -58,13 +58,13 @@ TrainerLassMichelle:
 	closetext
 	end
 
-TrainerAromaLadyTanya:
-	trainer AROMA_LADY, TANYA, EVENT_BEAT_AROMA_LADY_TANYA, AromaLadyTanyaSeenText, AromaLadyTanyaBeatenText, 0, .Script
+TrainerSchoolGirlTanya:
+	trainer SCHOOL_GIRL, TANYA, EVENT_BEAT_SCHOOL_GIRL_TANYA, SchoolGirlTanyaSeenText, SchoolGirlTanyaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyTanyaAfterBattleText
+	writetext SchoolGirlTanyaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -203,25 +203,26 @@ LassMichelleAfterBattleText:
 	line "less, that's all!"
 	done
 
-AromaLadyTanyaSeenText:
-	text "ERIKA taught me"
-	line "that grace and"
-	cont "strength can bloom"
+SchoolGirlTanyaSeenText:
+	text "ERIKA leads our"
+	line "botany club!"
 
-	para "side by side."
+	para "Let's see what"
+	line "I've learned!"
 	done
 
-AromaLadyTanyaBeatenText:
-	text "You cut through my"
-	line "whole garden!"
+SchoolGirlTanyaBeatenText:
+	text "My field notes"
+	line "need revising!"
 	done
 
-AromaLadyTanyaAfterBattleText:
-	text "Even hardy plants"
-	line "need pruning."
+SchoolGirlTanyaAfterBattleText:
+	text "Each of my #MON"
+	line "uses GRASS moves"
+	cont "in different ways."
 
-	para "Losing will help"
-	line "me grow stronger."
+	para "That's bio-"
+	line "diversity!"
 	done
 
 BeautyJuliaSeenText:
@@ -285,7 +286,7 @@ CeladonGym_MapEvents:
 	db 6 ; object events
 	object_event  5,  3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGymErikaScript, -1
 	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
-	object_event  2,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerAromaLadyTanya, -1
+	object_event  2,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSchoolGirlTanya, -1
 	object_event  3,  5, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyJulia, -1
 	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe1, -1
 	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe2, -1
