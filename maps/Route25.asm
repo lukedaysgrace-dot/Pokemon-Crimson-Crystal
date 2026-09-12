@@ -433,13 +433,13 @@ TrainerJugglerSilas:
 	closetext
 	end
 
-TrainerAromaLadyNadia:
-	trainer AROMA_LADY, NADIA, EVENT_BEAT_AROMA_LADY_NADIA, AromaLadyNadiaSeenText, AromaLadyNadiaBeatenText, 0, .Script
+TrainerSchoolGirlNadia:
+	trainer SCHOOL_GIRL, NADIA, EVENT_BEAT_SCHOOL_GIRL_NADIA, SchoolGirlNadiaSeenText, SchoolGirlNadiaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyNadiaAfterBattleText
+	writetext SchoolGirlNadiaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -722,28 +722,27 @@ Route25MistyDateText:
 	cont "CERULEAN."
 	done
 
-AromaLadyNadiaSeenText:
+SchoolGirlNadiaSeenText:
 	text "Beat the five of"
 	line "us to win a"
 	cont "fabulous prize!"
 
-	para "Think you've got"
-	line "what it takes?"
+	para "I built my team"
+	line "to surprise you."
 	done
 
-AromaLadyNadiaBeatenText:
-	text "You swept me aside"
-	line "like a leaf!"
+SchoolGirlNadiaBeatenText:
+	text "My design needs"
+	line "a redesign!"
 	done
 
-AromaLadyNadiaAfterBattleText:
-	text "You cleared the"
-	line "first challenge,"
-	cont "but four trainers"
+SchoolGirlNadiaAfterBattleText:
+	text "I mix strength,"
+	line "style and support."
 
-	para "still wait ahead."
-	line "Don't let your"
-	cont "focus wilt!"
+	para "A good team is"
+	line "like a group"
+	cont "project."
 	done
 
 PokefanmDustinSeenText:
@@ -902,7 +901,7 @@ Route25_MapEvents:
 	db 12 ; object events
 	object_event 46,  9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	object_event 12,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyNadia, -1
+	object_event 12,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolGirlNadia, -1
 	object_event 16, 11, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokefanmDustin, -1
 	object_event 21,  8, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerNoelle, -1
 	object_event 26,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassPaige, -1

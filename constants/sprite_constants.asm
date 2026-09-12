@@ -142,7 +142,7 @@
 	const SPRITE_MEW ; 8c
 	const SPRITE_FINIZEN ; 8d
 	const SPRITE_THUG ; 8e
-	const SPRITE_AROMA_LADY ; 8f
+	const SPRITE_SCHOOL_GIRL ; 8f
 	const SPRITE_FAT_GUY ; 90
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)

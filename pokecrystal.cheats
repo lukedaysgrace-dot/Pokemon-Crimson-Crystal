@@ -11,7 +11,7 @@
 
 !disabled
 # no random encounters
-91FF63DC
+91FF64DC
 
 !disabled
 # all badges (16)
@@ -34,10 +34,10 @@
 91FFA5D8
 9101DDD8
 9181D0D9
-91FF67DC
 91FF68DC
 91FF69DC
 91FF6ADC
+91FF6BDC
 
 !disabled
 # level 100 after battle (participants)

@@ -86,7 +86,7 @@ TrainerGroups:
 	dba GreenGroup
 	dba BattleGirlGroup
 	dba TamerGroup
-	dba AromaLadyGroup
+	dba SchoolGirlGroup
 	dba CrystalGroup ; CRYSTAL3
 	dba Rival2Group ; RIVAL3
 	dba FalknerGroup ; FALKNER_REMATCH

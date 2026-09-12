@@ -5,6 +5,12 @@
 	const VICTORYROAD_POKE_BALL3
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
+	const VICTORYROAD_TAMER_DEVIN
+	const VICTORYROAD_TAMER_ROLF
+	const VICTORYROAD_BATTLE_GIRL_KIRA
+	const VICTORYROAD_BATTLE_GIRL_MINA
+	const VICTORYROAD_COOLTRAINER_M_ADRIAN
+	const VICTORYROAD_COOLTRAINER_F_SELENE
 
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts
@@ -98,6 +104,48 @@ VictoryRoadRivalNext:
 	closetext
 	end
 
+TrainerTamerDevin:
+	trainer TAMER, DEVIN, EVENT_BEAT_TAMER_DEVIN, TamerDevinSeenText, TamerDevinBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer TamerDevinAfterBattleText
+
+TrainerTamerRolf:
+	trainer TAMER, ROLF, EVENT_BEAT_TAMER_ROLF, TamerRolfSeenText, TamerRolfBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer TamerRolfAfterBattleText
+
+TrainerBattleGirlKira:
+	trainer BATTLE_GIRL, KIRA, EVENT_BEAT_BATTLE_GIRL_KIRA, BattleGirlKiraSeenText, BattleGirlKiraBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer BattleGirlKiraAfterBattleText
+
+TrainerBattleGirlMina:
+	trainer BATTLE_GIRL, MINA, EVENT_BEAT_BATTLE_GIRL_MINA, BattleGirlMinaSeenText, BattleGirlMinaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer BattleGirlMinaAfterBattleText
+
+TrainerCooltrainerMAdrian:
+	trainer COOLTRAINERM, ADRIAN, EVENT_BEAT_COOLTRAINERM_ADRIAN, CooltrainerMAdrianSeenText, CooltrainerMAdrianBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer CooltrainerMAdrianAfterBattleText
+
+TrainerCooltrainerFSelene:
+	trainer COOLTRAINERF, SELENE, EVENT_BEAT_COOLTRAINERF_SELENE, CooltrainerFSeleneSeenText, CooltrainerFSeleneBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer CooltrainerFSeleneAfterBattleText
+
 VictoryRoadTMEarthquake:
 	itemball TM_EARTHQUAKE
 
@@ -164,6 +212,102 @@ MovementData_0x74555:
 	step DOWN
 	step DOWN
 	step_end
+
+TamerDevinSeenText:
+	text "I've raised fierce"
+	line "#MON to face"
+	cont "any danger!"
+	done
+
+TamerDevinBeatenText:
+	text "They respect your"
+	line "strength!"
+	done
+
+TamerDevinAfterBattleText:
+	text "A strong #MON"
+	line "needs trust too."
+	cont "as discipline."
+	done
+
+TamerRolfSeenText:
+	text "Ancient beasts are"
+	line "the true rulers of"
+	cont "these caves!"
+	done
+
+TamerRolfBeatenText:
+	text "Even giants can"
+	line "be brought down!"
+	done
+
+TamerRolfAfterBattleText:
+	text "Power means little"
+	line "without control."
+	done
+
+BattleGirlKiraSeenText:
+	text "Every step through"
+	line "this cave honed"
+	cont "my technique!"
+	done
+
+BattleGirlKiraBeatenText:
+	text "You broke through"
+	line "my guard!"
+	done
+
+BattleGirlKiraAfterBattleText:
+	text "Training never"
+	line "ends. The LEAGUE"
+	cont "is only the start!"
+	done
+
+BattleGirlMinaSeenText:
+	text "No shortcuts!"
+
+	para "Fight with spirit!"
+	done
+
+BattleGirlMinaBeatenText:
+	text "Your form is"
+	line "incredible!"
+	done
+
+BattleGirlMinaAfterBattleText:
+	text "A clear mind makes"
+	line "each strike count."
+	done
+
+CooltrainerMAdrianSeenText:
+	text "My team has an"
+	line "answer for every"
+	cont "challenge!"
+	done
+
+CooltrainerMAdrianBeatenText:
+	text "I couldn't find"
+	line "your weak point!"
+	done
+
+CooltrainerMAdrianAfterBattleText:
+	text "Coverage matters,"
+	line "but so does trust."
+	done
+
+CooltrainerFSeleneSeenText:
+	text "The LEAGUE tests"
+	line "more than power."
+	done
+
+CooltrainerFSeleneBeatenText:
+	text "You've passed!"
+	done
+
+CooltrainerFSeleneAfterBattleText:
+	text "Keep that focus."
+	line "The exit is near."
+	done
 
 VictoryRoadRivalBeforeText:
 	text "Hold it."
@@ -263,10 +407,16 @@ VictoryRoad_MapEvents:
 	bg_event  3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
 	bg_event  3, 65, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
-	db 6 ; object events
+	db 12 ; object events
 	object_event 18, 13, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
 	object_event  3, 28, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
 	object_event 12, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
 	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
 	object_event 15, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
 	object_event  7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+	object_event  9, 60, SPRITE_TAMER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerTamerDevin, -1
+	object_event  2, 48, SPRITE_TAMER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerTamerRolf, -1
+	object_event 14, 34, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerBattleGirlKira, -1
+	object_event 16, 42, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerBattleGirlMina, -1
+	object_event 12, 12, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerMAdrian, -1
+	object_event  4, 14, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerFSelene, -1

@@ -22,24 +22,24 @@ TrainerBirdKeeperHank:
 	closetext
 	end
 
-TrainerAromaLadyHope:
-	trainer AROMA_LADY, HOPE, EVENT_BEAT_AROMA_LADY_HOPE, AromaLadyHopeSeenText, AromaLadyHopeBeatenText, 0, .Script
+TrainerSchoolGirlHope:
+	trainer SCHOOL_GIRL, HOPE, EVENT_BEAT_SCHOOL_GIRL_HOPE, SchoolGirlHopeSeenText, SchoolGirlHopeBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyHopeAfterBattleText
+	writetext SchoolGirlHopeAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerAromaLadySharon:
-	trainer AROMA_LADY, SHARON, EVENT_BEAT_AROMA_LADY_SHARON, AromaLadySharonSeenText, AromaLadySharonBeatenText, 0, .Script
+TrainerSchoolGirlSharon:
+	trainer SCHOOL_GIRL, SHARON, EVENT_BEAT_SCHOOL_GIRL_SHARON, SchoolGirlSharonSeenText, SchoolGirlSharonBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadySharonAfterBattleText
+	writetext SchoolGirlSharonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -100,51 +100,45 @@ BirdKeeperHankAfterBattleText:
 	line "it."
 	done
 
-AromaLadyHopeSeenText:
-	text "The moonflowers"
-	line "opened last night."
+SchoolGirlHopeSeenText:
+	text "I programmed a"
+	line "battle plan."
 
-	para "That's a lucky"
-	line "sign for me!"
+	para "My lucky #MON"
+	line "will test it!"
 	done
 
-AromaLadyHopeBeatenText:
-	text "Perhaps I read the"
-	line "petals wrong…"
+SchoolGirlHopeBeatenText:
+	text "That's a bug I"
+	line "didn't expect!"
 	done
 
-AromaLadyHopeAfterBattleText:
-	text "I heard CLEFAIRY"
-	line "dance on MT.MOON"
+SchoolGirlHopeAfterBattleText:
+	text "Luck and logic"
+	line "both matter."
 
-	para "when the flowers"
-	line "glow in moonlight."
-
-	para "I hope I see it!"
+	para "That's my theory!"
 	done
 
-AromaLadySharonSeenText:
-	text "Um… I grew these"
-	line "flowers myself."
-	cont "My #MON helped."
+SchoolGirlSharonSeenText:
+	text "My sketchbook is"
+	line "full of #MON."
 
-	para "We'd like to show"
-	line "you… if that's OK."
+	para "Let's make this"
+	line "a masterpiece!"
 	done
 
-AromaLadySharonBeatenText:
-	text "Oh…"
-	line "We almost bloomed."
+SchoolGirlSharonBeatenText:
+	text "You colored beyond"
+	line "my plan…"
 	done
 
-AromaLadySharonAfterBattleText:
-	text "I don't say much,"
-	line "but my #MON"
-	cont "understand me."
+SchoolGirlSharonAfterBattleText:
+	text "SMEARGLE paints;"
+	line "ALTARIA sings."
 
-	para "Next time, our"
-	line "battle will speak"
-	cont "for us."
+	para "Our art club never"
+	line "runs out of ideas."
 	done
 
 CosplayerPearlSeenText:
@@ -199,8 +193,8 @@ Route4_MapEvents:
 
 	db 6 ; object events
 	object_event 17,  9, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperHank, -1
-	object_event  9,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerAromaLadyHope, -1
-	object_event 21,  6, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerAromaLadySharon, -1
+	object_event  9,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolGirlHope, -1
+	object_event 21,  6, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolGirlSharon, -1
 	object_event 26,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route4HPUp, EVENT_ROUTE_4_HP_UP
 	object_event 14,  6, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPearl, -1
 	object_event 22, 10, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPixie, -1
