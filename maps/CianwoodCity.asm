@@ -11,6 +11,7 @@
 	const CIANWOODCITY_POKEFAN_F
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
+	const CIANWOODCITY_WEATHER_GRAMPS
 
 CianwoodCity_MapScripts:
 	db 2 ; scene scripts
@@ -202,6 +203,23 @@ CianwoodCityPokefanM:
 CianwoodCityLass:
 	jumptextfaceplayer CianwoodCityLassText
 
+CianwoodCityWeatherGramps:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_TM54_WEATHER_BALL
+	iftrue .AlreadyGotTM
+	writetext CianwoodCityWeatherGrampsIntroText
+	buttonsound
+	verbosegiveitem TM_WEATHER_BALL
+	iffalse .Done
+	setevent EVENT_GOT_TM54_WEATHER_BALL
+.AlreadyGotTM:
+	writetext CianwoodCityWeatherGrampsAfterText
+	waitbutton
+.Done:
+	closetext
+	end
+
 CianwoodCityUnusedScript:
 ; unreferenced
 	jumptextfaceplayer CianwoodCityUnusedText
@@ -378,6 +396,31 @@ CianwoodCityLassText:
 
 	para "his fighting #-"
 	line "MON."
+	done
+
+CianwoodCityWeatherGrampsIntroText:
+	text "I just love the"
+	line "weather!"
+
+	para "Sun, rain, hail or"
+	line "even a sandstorm…"
+
+	para "Every forecast"
+	line "makes me smile."
+
+	para "Here, take this!"
+	done
+
+CianwoodCityWeatherGrampsAfterText:
+	text "WEATHER BALL gets"
+	line "stronger whenever"
+	cont "weather is active,"
+
+	para "and even changes"
+	line "its type!"
+
+	para "Keep an eye on"
+	line "the sky!"
 	done
 
 CianwoodCityUnusedText:
@@ -632,7 +675,7 @@ CianwoodCity_MapEvents:
 	bg_event  4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
 	bg_event  5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
 
-	db 12 ; object events
+	db 13 ; object events
 	object_event 21, 37, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
 	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
 	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
@@ -645,3 +688,4 @@ CianwoodCity_MapEvents:
 	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
 	object_event 11, 21, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
 	object_event 10, 14, SPRITE_ENTEI, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	object_event 15, 28, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CianwoodCityWeatherGramps, -1
