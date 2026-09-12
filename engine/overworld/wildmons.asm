@@ -45,8 +45,11 @@ FindNest:
 	call .FindGrass
 	ld hl, JohtoWaterWildMons
 	call .FindWater
-	call .RoamMon1
-	call .RoamMon2
+; Roaming is disabled game-wide (see CheckEncounterRoamMon below): Raikou and
+; Suicune are static encounters at Lake of Rage and Tohjo Falls. The roam
+; structs are still written by InitRoamMons, so listing their nests here would
+; point AREA at Route 42 and Route 37, where neither beast can be found.
+; .RoamMon1 / .RoamMon2 are left in place for if roaming is ever restored.
 	ret
 
 .kanto
