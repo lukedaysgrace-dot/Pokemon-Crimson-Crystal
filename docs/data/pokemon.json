@@ -21068,10 +21068,10 @@
     "number": 170,
     "stats": {
       "HP": 75,
-      "Attack": 60,
+      "Attack": 50,
       "Defense": 45,
       "Speed": 105,
-      "Sp. Atk": 125,
+      "Sp. Atk": 135,
       "Sp. Def": 105
     },
     "types": [

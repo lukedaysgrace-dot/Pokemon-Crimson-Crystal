@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  75,  60,  45, 105, 125, 105
+	db  75,  50,  45, 105, 135, 105
 	;  hp  atk  def  spd  sat  sdf
 
 	db ICE, PSYCHIC ; type
