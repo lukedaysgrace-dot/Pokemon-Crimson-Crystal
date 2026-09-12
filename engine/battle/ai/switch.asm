@@ -391,6 +391,7 @@ CheckAbleToSwitch:
 ; Settle for any healthy teammate with at least neutral coverage.
 	call FindAliveEnemyMons
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatSurviveOwnHazards
 	call FindAliveEnemyMonsWithASuperEffectiveMove
 	ld a, [wEnemyAISwitchScore]
 	cp $ff
@@ -470,6 +471,7 @@ CheckAbleToSwitch:
 ; Return z if one was found, with its index in wEnemyAISwitchScore.
 	call FindAliveEnemyMons
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatSurviveOwnHazards
 	call FindEnemyMonsThatResistPlayer
 	call FindAliveEnemyMonsWithASuperEffectiveMove
 	ld a, e
@@ -819,9 +821,14 @@ FindEnemyMonsWithAtLeastQuarterMaxHP:
 	inc hl
 ; hl = MaxHP + 1
 ; bc = [CurHP] * 4
-	srl c
+; A 16-bit left shift of b:c is `sla c / rl b`. This read `srl c / rl b`,
+; which for any HP below 256 produced roughly CurHP / 4 instead, so the
+; "max < bc" test below could never pass for a healthy mon, and could pass
+; for a nearly-dead one (3 HP shifts out to 768). The filter returned an
+; empty mask, which silently disabled every switch path that uses it.
+	sla c
 	rl b
-	srl c
+	sla c
 	rl b
 ; if bc >= [hl], encourage
 	ld a, [hld]
@@ -849,6 +856,149 @@ FindEnemyMonsWithAtLeastQuarterMaxHP:
 	pop bc
 	and c
 	ld c, a
+	ret
+
+FindEnemyMonsThatSurviveOwnHazards:
+; Drop switch-in candidates that would arrive crippled by the hazards on the
+; AI's OWN side of the field. wEnemyScreens / wEnemySpikesLayers hold the
+; enemy-side hazards - the ones an incoming enemy mon walks into. Both
+; StealthRockEntryDamage (effect_commands_core.asm) and BattleCommand_Spikes
+; use that convention: the setter writes to the victim's side.
+; In:  c = candidate bitmask (bit 5 = party slot 0)
+; Out: c = the same mask with the crippled slots cleared. If that would clear
+;      every candidate the mask is returned untouched - a bad switch still
+;      beats no switch at all.
+; Preserves de.
+	ld a, [wEnemyScreens]
+	and SCREENS_HAZARDS_MASK
+	ret z
+
+	push de
+	push bc
+	ld hl, wOTPartySpecies
+	ld b, 1 << (PARTY_LENGTH - 1)
+	ld c, 0
+	ld d, 0 ; party index
+
+.loop
+	ld a, b
+	and a
+	jr z, .done
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+
+	push hl
+	ld [wCurSpecies], a
+	call GetBaseData
+	call .Crippled
+	jr c, .skip
+
+	ld a, b
+	or c
+	ld c, a
+
+.skip
+	srl b
+	inc d
+	pop hl
+	jr .loop
+
+.done
+	ld a, c
+	pop bc
+	and c
+	jr z, .keep_original
+	ld c, a
+
+.keep_original
+	pop de
+	ret
+
+.Crippled:
+; carry if this bench mon would arrive in bad shape.
+; in: d = party index, wBaseType = its types (GetBaseData has just run)
+	push bc
+	push de
+	push hl
+
+	ld a, [wEnemyScreens]
+	bit SCREENS_STEALTH_ROCK, a
+	jr z, .spikes
+
+	ld a, ROCK
+	ld hl, wBaseType
+	call AISwitch_CheckTypeMatchup
+	ld a, [wTypeMatchup]
+	cp 40
+	jr nc, .yes ; 4x weak: it arrives at half HP whatever we do
+	cp 20
+	jr c, .spikes
+	ld e, 1 ; 2x weak: only a problem if it is already under half
+	call .BelowFraction
+	jr c, .yes
+
+.spikes
+	ld a, [wEnemySpikesLayers]
+	and a
+	jr z, .no
+	ld a, [wBaseType1]
+	cp FLYING
+	jr z, .no
+	ld a, [wBaseType2]
+	cp FLYING
+	jr z, .no
+	ld e, 2 ; grounded into Spikes: a problem under a quarter
+	call .BelowFraction
+	jr c, .yes
+
+.no
+	and a
+	jr .out
+
+.yes
+	scf
+
+.out
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.BelowFraction:
+; carry if this mon's current HP shifted left by e is still below its max
+; (e = 1 tests "under half", e = 2 tests "under a quarter").
+; in: d = party index, e = shift count. Preserves bc, de, hl.
+	push bc
+	push de
+	push hl
+	ld hl, wOTPartyMon1HP
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld a, d
+	call AddNTimes
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	inc hl
+; hl = MaxHP (big-endian), bc = current HP
+
+.shift
+	sla c
+	rl b
+	dec e
+	jr nz, .shift
+
+; carry if bc < MaxHP
+	inc hl
+	ld a, c
+	sub [hl]
+	dec hl
+	ld a, b
+	sbc [hl]
+
+	pop hl
+	pop de
+	pop bc
 	ret
 
 CheckEnemyMoveEffectiveness:
@@ -992,6 +1142,7 @@ AIPickPostKOSwitchIn::
 	call FindAliveEnemyMons
 	ret c
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatSurviveOwnHazards
 	call FindAliveEnemyMonsWithASuperEffectiveMove
 	ld a, [wEnemyAISwitchScore]
 	cp $ff
@@ -1001,6 +1152,7 @@ AIPickPostKOSwitchIn::
 	call FindAliveEnemyMons
 	ret c
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
+	call FindEnemyMonsThatSurviveOwnHazards
 	call FindEnemyMonsThatResistPlayer
 	ld a, c
 	and a
