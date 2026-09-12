@@ -54,6 +54,7 @@ TMHMMoves:
 	dw NIGHT_SLASH
 	dw ZEN_HEADBUTT
 	dw POWER_GEM
+	dw WEATHER_BALL
 ; HMs
 	dw CUT
 	dw FLY

@@ -2190,4 +2190,7 @@
 	const EVENT_FOUGHT_ZAPDOS
 	const EVENT_FOUGHT_ARTICUNO
 
+; Cianwood City weather enthusiast's TM gift
+	const EVENT_GOT_TM54_WEATHER_BALL
+
 NUM_EVENTS EQU const_value
