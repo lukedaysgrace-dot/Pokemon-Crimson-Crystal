@@ -16,7 +16,8 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Overgrow"
+      "Overgrow",
+      "Mega Sol"
     ],
     "learnset": [
       {
@@ -138,7 +139,8 @@
     ],
     "abilities": [
       "Serene Grace",
-      "Overgrow"
+      "Overgrow",
+      "Mega Sol"
     ],
     "learnset": [
       {
@@ -617,6 +619,16 @@
       }
     ],
     "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "36"
+        ],
+        "target": "TYPHLOSION_HISUIAN",
+        "text": "Level 36",
+        "target_name": "Typhlosion (Hisuian)",
+        "target_slug": "typhlosion-hisuian"
+      },
       {
         "method": "EVOLVE_LEVEL",
         "args": [
@@ -3109,10 +3121,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "7"
+          "10"
         ],
         "target": "METAPOD",
-        "text": "Level 7",
+        "text": "Level 10",
         "target_name": "Metapod",
         "target_slug": "metapod"
       }
@@ -3156,10 +3168,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "10"
+          "16"
         ],
         "target": "BUTTERFREE",
-        "text": "Level 10",
+        "text": "Level 16",
         "target_name": "Butterfree",
         "target_slug": "butterfree"
       }
@@ -3170,7 +3182,7 @@
       "const": "CATERPIE",
       "name": "Caterpie",
       "slug": "caterpie",
-      "text": "Level 7"
+      "text": "Level 10"
     }
   },
   {
@@ -3318,7 +3330,7 @@
       "const": "METAPOD",
       "name": "Metapod",
       "slug": "metapod",
-      "text": "Level 10"
+      "text": "Level 16"
     }
   },
   {
@@ -3362,10 +3374,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "7"
+          "10"
         ],
         "target": "KAKUNA",
-        "text": "Level 7",
+        "text": "Level 10",
         "target_name": "Kakuna",
         "target_slug": "kakuna"
       }
@@ -3410,10 +3422,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "10"
+          "16"
         ],
         "target": "BEEDRILL",
-        "text": "Level 10",
+        "text": "Level 16",
         "target_name": "Beedrill",
         "target_slug": "beedrill"
       }
@@ -3424,7 +3436,7 @@
       "const": "WEEDLE",
       "name": "Weedle",
       "slug": "weedle",
-      "text": "Level 7"
+      "text": "Level 10"
     }
   },
   {
@@ -3572,7 +3584,7 @@
       "const": "KAKUNA",
       "name": "Kakuna",
       "slug": "kakuna",
-      "text": "Level 10"
+      "text": "Level 16"
     }
   },
   {
@@ -9222,7 +9234,7 @@
     "name": "Parasect",
     "number": 74,
     "stats": {
-      "HP": 60,
+      "HP": 70,
       "Attack": 115,
       "Defense": 100,
       "Speed": 30,
@@ -9235,7 +9247,7 @@
     ],
     "abilities": [
       "Effect Spore",
-      "Damp",
+      "Regenerator",
       "Tough Claws"
     ],
     "learnset": [
@@ -11580,7 +11592,7 @@
     "abilities": [
       "Insomnia",
       "No Guard",
-      "Inner Focus"
+      "Bad Dreams"
     ],
     "learnset": [
       {
@@ -13599,6 +13611,16 @@
         "text": "Use Leaf Stone",
         "target_name": "Exeggutor",
         "target_slug": "exeggutor"
+      },
+      {
+        "method": "EVOLVE_ITEM",
+        "args": [
+          "SUN_STONE"
+        ],
+        "target": "EXEGGUTOR_ALOLAN",
+        "text": "Use Sun Stone",
+        "target_name": "Exeggutor (Alolan)",
+        "target_slug": "exeggutor-alolan"
       }
     ],
     "egg_moves": [],
@@ -14424,7 +14446,7 @@
     "abilities": [
       "Technician",
       "Swarm",
-      "Hyper Cutter"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -15207,6 +15229,11 @@
         "move": "Sludge Bomb"
       },
       {
+        "level": 32,
+        "const": "FAIRY_WIND",
+        "move": "Fairy Wind"
+      },
+      {
         "level": 34,
         "const": "DESTINY_BOND",
         "move": "Destiny Bond"
@@ -15233,6 +15260,16 @@
       }
     ],
     "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "35"
+        ],
+        "target": "WEEZING_GALARIAN",
+        "text": "Level 35",
+        "target_name": "Weezing (Galarian)",
+        "target_slug": "weezing-galarian"
+      },
       {
         "method": "EVOLVE_LEVEL",
         "args": [
@@ -20781,7 +20818,7 @@
     "abilities": [
       "Oblivious",
       "Forewarn",
-      "Hydration"
+      "Bad Dreams"
     ],
     "learnset": [
       {
@@ -20900,7 +20937,7 @@
     "abilities": [
       "Oblivious",
       "Forewarn",
-      "Dry Skin"
+      "Bad Dreams"
     ],
     "learnset": [
       {
@@ -22084,15 +22121,15 @@
     "name": "Farfetch'd",
     "number": 178,
     "stats": {
-      "HP": 55,
-      "Attack": 110,
-      "Defense": 60,
-      "Speed": 110,
-      "Sp. Atk": 55,
-      "Sp. Def": 60
+      "HP": 52,
+      "Attack": 90,
+      "Defense": 55,
+      "Speed": 60,
+      "Sp. Atk": 58,
+      "Sp. Def": 62
     },
     "types": [
-      "Fighting",
+      "Normal",
       "Flying"
     ],
     "abilities": [
@@ -22231,7 +22268,8 @@
       "Sp. Def": 90
     },
     "types": [
-      "Fighting"
+      "Fighting",
+      "Flying"
     ],
     "abilities": [
       "Steadfast",
@@ -26208,7 +26246,7 @@
     "abilities": [
       "Synchronize",
       "Inner Focus",
-      "Immunity"
+      "Magic Guard"
     ],
     "learnset": [
       {
@@ -26354,7 +26392,7 @@
     ],
     "abilities": [
       "Snow Cloak",
-      "Ice Body",
+      "Refrigerate",
       "Slush Rush"
     ],
     "learnset": [
@@ -26506,6 +26544,7 @@
     ],
     "abilities": [
       "Leaf Guard",
+      "Sharpness",
       "Chlorophyll"
     ],
     "learnset": [
@@ -29901,6 +29940,16 @@
       }
     ],
     "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "28"
+        ],
+        "target": "MAROWAK_ALOLAN",
+        "text": "Level 28",
+        "target_name": "Marowak (Alolan)",
+        "target_slug": "marowak-alolan"
+      },
       {
         "method": "EVOLVE_LEVEL",
         "args": [
@@ -35798,7 +35847,7 @@
     "abilities": [
       "Levitate",
       "Prankster",
-      "Regenerator"
+      "Pressure"
     ],
     "learnset": [
       {
@@ -46056,6 +46105,11 @@
       },
       {
         "level": 1,
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
+      },
+      {
+        "level": 1,
         "const": "WHIRLWIND",
         "move": "Whirlwind"
       },
@@ -46150,6 +46204,11 @@
         "level": 1,
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
+      },
+      {
+        "level": 1,
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
       },
       {
         "level": 1,
@@ -50875,11 +50934,11 @@
     "name": "Flygon",
     "number": 395,
     "stats": {
-      "HP": 90,
+      "HP": 80,
       "Attack": 115,
       "Defense": 85,
-      "Speed": 110,
-      "Sp. Atk": 115,
+      "Speed": 100,
+      "Sp. Atk": 95,
       "Sp. Def": 85
     },
     "types": [
@@ -56280,7 +56339,12 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/exeggutor-alolan.png",
-    "evolves_from": null
+    "evolves_from": {
+      "const": "EXEGGCUTE",
+      "name": "Exeggcute",
+      "slug": "exeggcute",
+      "text": "Use Sun Stone"
+    }
   },
   {
     "const": "MAROWAK_ALOLAN",
@@ -56443,7 +56507,12 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/marowak-alolan.png",
-    "evolves_from": null
+    "evolves_from": {
+      "const": "CUBONE",
+      "name": "Cubone",
+      "slug": "cubone",
+      "text": "Level 28"
+    }
   },
   {
     "const": "MEOWTH_GALARIAN",
@@ -57541,7 +57610,12 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/weezing-galarian.png",
-    "evolves_from": null
+    "evolves_from": {
+      "const": "KOFFING",
+      "name": "Koffing",
+      "slug": "koffing",
+      "text": "Level 35"
+    }
   },
   {
     "const": "GROWLITHE_HISUIAN",
@@ -58188,7 +58262,12 @@
     "evolutions": [],
     "egg_moves": [],
     "sprite": "assets/pokemon/typhlosion-hisuian.png",
-    "evolves_from": null
+    "evolves_from": {
+      "const": "QUILAVA",
+      "name": "Quilava",
+      "slug": "quilava",
+      "text": "Level 36"
+    }
   },
   {
     "const": "SNEASEL_HISUIAN",
@@ -59309,7 +59388,8 @@
       "Sp. Def": 40
     },
     "types": [
-      "Steel"
+      "Steel",
+      "Rock"
     ],
     "abilities": [
       "Rock Head",
@@ -59422,7 +59502,8 @@
       "Sp. Def": 50
     },
     "types": [
-      "Steel"
+      "Steel",
+      "Rock"
     ],
     "abilities": [
       "Rock Head",
@@ -59540,7 +59621,8 @@
       "Sp. Def": 60
     },
     "types": [
-      "Steel"
+      "Steel",
+      "Rock"
     ],
     "abilities": [
       "Rock Head",
@@ -60081,7 +60163,7 @@
     "abilities": [
       "Immunity",
       "Scrappy",
-      "Tough Claws"
+      "Sharpness"
     ],
     "learnset": [
       {
@@ -60198,8 +60280,8 @@
       "HP": 75,
       "Attack": 115,
       "Defense": 60,
-      "Speed": 80,
-      "Sp. Atk": 80,
+      "Speed": 90,
+      "Sp. Atk": 90,
       "Sp. Def": 60
     },
     "types": [
@@ -60720,7 +60802,7 @@
       "Flying"
     ],
     "abilities": [
-      "Reckless",
+      "Unnerve",
       "Wind Rider",
       "Keen Eye"
     ],
@@ -61762,8 +61844,8 @@
     "number": 480,
     "stats": {
       "HP": 60,
-      "Attack": 80,
-      "Defense": 115,
+      "Attack": 60,
+      "Defense": 95,
       "Speed": 50,
       "Sp. Atk": 55,
       "Sp. Def": 85
@@ -62695,11 +62777,11 @@
     "name": "Palafin",
     "number": 488,
     "stats": {
-      "HP": 100,
-      "Attack": 130,
+      "HP": 90,
+      "Attack": 120,
       "Defense": 100,
       "Speed": 90,
-      "Sp. Atk": 95,
+      "Sp. Atk": 85,
       "Sp. Def": 75
     },
     "types": [
