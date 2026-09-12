@@ -10,6 +10,75 @@ def txt(p):
     return p.read_text(encoding='utf-8', errors='ignore')
 def strip(line):
     return line.split(';',1)[0].strip()
+# ---------------------------------------------------------------------------
+# Front-pic animations (gfx/pokemon/<mon>/anim.asm + anim_idle.asm)
+#
+# Mirrors engine/gfx/pic_animation.asm. The stats screen plays ANIM_MON_MENU:
+#   pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+# i.e. run anim.asm once, hold 18 frames (PokeAnim_SetWait), run anim_idle.asm
+# once, then settle back on the static frame.
+#
+# front.png is authored as the static frame followed by each animation frame,
+# stacked vertically in blocks of <width> x <width> pixels, so frame index N in
+# the scripts is simply block N of the sheet.
+# ---------------------------------------------------------------------------
+ANIM_GAP_FRAMES = 18      # PokeAnim_SetWait
+ANIM_MAX_STEPS = 600      # guard against malformed / cyclic scripts
+
+def parse_pic_anim(path):
+  """Flatten an anim.asm script into [(frame, duration), ...].
+
+  Supports the pic-animation command set: `frame`, `setrepeat`, `dorepeat`,
+  `endanim`. `dorepeat`'s operand is a command index (wPokeAnimFrame), matching
+  PokeAnim_GetPointer. Returns (steps, warning_or_None).
+  """
+  cmds=[]
+  for raw in txt(path).splitlines():
+    line=strip(raw)
+    if not line: continue
+    parts=line.replace(',',' ').split()
+    op=parts[0].lower(); args=parts[1:]
+    def val(s):
+      s=s.strip()
+      try:
+        if s.startswith('$'): return int(s[1:],16)
+        if s.startswith('%'): return int(s[1:],2)
+        return int(s,10)
+      except ValueError:
+        return None
+    if op=='frame' and len(args)>=2:
+      f,d=val(args[0]),val(args[1])
+      if f is None or d is None: return [],f'unreadable frame command in {path}'
+      cmds.append(('frame',f,d))
+    elif op=='setrepeat' and args:
+      cmds.append(('setrepeat',val(args[0]),0))
+    elif op=='dorepeat' and args:
+      cmds.append(('dorepeat',val(args[0]),0))
+    elif op=='endanim':
+      cmds.append(('endanim',0,0))
+    elif op in ('dowait','dorestart','delanim'):
+      # OAM-animation commands; not used by pic animations.
+      return [],f'unsupported pic-anim command "{op}" in {path}'
+    else:
+      return [],f'unrecognised line "{line}" in {path}'
+  steps=[]; pc=0; repeat=0; guard=0
+  while 0<=pc<len(cmds):
+    guard+=1
+    if guard>ANIM_MAX_STEPS: return steps,f'animation script did not terminate: {path}'
+    op,a,b=cmds[pc]; pc+=1
+    if op=='endanim': break
+    if op=='frame':
+      if a is None or b is None or b<=0: continue
+      steps.append((a,b))
+    elif op=='setrepeat':
+      repeat=a or 0
+    elif op=='dorepeat':
+      # PokeAnim .DoRepeat: fall through on 0, else decrement and jump while non-zero.
+      if repeat:
+        repeat-=1
+        if repeat: pc=a or 0
+  return steps,None
+
 SPECIAL_DISPLAY_NAMES = {
     # Internal constants whose code-safe names differ from their proper display names.
     'PSYCHIC_M': 'Psychic',
@@ -370,6 +439,43 @@ class Builder:
     except Exception as e:
       self.report['warnings'].append(f'Could not process sprite {src}: {e}')
       return False
+  def export_pic_animation(self, m, d, dst):
+    """Export the front-pic sheet and the flattened anim/anim_idle timelines."""
+    src=d/'front.png'
+    if Image is None or not src.exists(): return
+    try:
+      with Image.open(src) as im:
+        im.load(); w,h=im.size
+    except Exception as e:
+      self.report['warnings'].append(f'Could not read animation sheet {src}: {e}'); return
+    if w<8 or h<=w or h%w: return          # single static frame, nothing to animate
+    frames=h//w
+    main,warn=parse_pic_anim(d/'anim.asm') if (d/'anim.asm').exists() else ([],None)
+    if warn: self.report['warnings'].append(warn)
+    idle,warn=parse_pic_anim(d/'anim_idle.asm') if (d/'anim_idle.asm').exists() else ([],None)
+    if warn: self.report['warnings'].append(warn)
+    steps=main+idle
+    if not steps: return
+    bad=[f for f,_ in steps if not 0<=f<frames]
+    if bad:
+      self.report['warnings'].append(f'{m["const"]}: animation references frame(s) {sorted(set(bad))} but front.png only has {frames}')
+      return
+    sheet=dst/(slug(m['const'])+'.sheet.png')
+    try:
+      shutil.copy2(src,sheet)
+    except Exception as e:
+      self.report['warnings'].append(f'Could not copy animation sheet {src}: {e}'); return
+    m['anim']={'sheet':'assets/pokemon/'+sheet.name,'size':w,'frames':frames,
+               'main':[list(x) for x in main],'idle':[list(x) for x in idle],
+               'gap':ANIM_GAP_FRAMES if (main and idle) else 0}
+  def anim_attrs(self, m, p=''):
+    """data-* attributes consumed by the sprite player in app.js."""
+    a=m.get('anim')
+    if not a: return ''
+    seq=lambda xs: ','.join(f'{f}:{d}' for f,d in xs)
+    return (f' data-anim-sheet="{p}{a["sheet"]}" data-anim-size="{a["size"]}"'
+            f' data-anim-frames="{a["frames"]}" data-anim-gap="{a["gap"]}"'
+            f' data-anim-main="{seq(a["main"])}" data-anim-idle="{seq(a["idle"])}"')
   def sprites(self, mons):
     src=self.r/'gfx/pokemon'; dst=self.a/'pokemon'; dst.mkdir(parents=True,exist_ok=True)
     if not src.exists(): return
@@ -394,6 +500,7 @@ class Builder:
         if self.export_static_sprite(q,target):
           m['sprite']='assets/pokemon/'+target.name
           break
+      self.export_pic_animation(m,d,dst)
 
   def wild(self, valid_species):
     """Parse every explicitly mapped wild-encounter source used by Crimson Crystal.
@@ -748,12 +855,12 @@ class Builder:
     for m in ms:
       stats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in m['stats'].items())
       learn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(m['learnset'],key=lambda x:x['level']))
-      sprite=f'<img class="big" src="../{m["sprite"]}">' if m['sprite'] else '<div class="big placeholder">◆</div>'
+      sprite=f'<img class="big" src="../{m["sprite"]}"{self.anim_attrs(m,"../")}>' if m['sprite'] else '<div class="big placeholder">◆</div>'
       toggle=''
       clone_panel=''
       if 'forms' in m:
         c=m['forms']['clone']
-        csprite=f'<img class="big" src="../{c["sprite"]}">' if c.get('sprite') else '<div class="big placeholder">◆</div>'
+        csprite=f'<img class="big" src="../{c["sprite"]}"{self.anim_attrs(c,"../")}>' if c.get('sprite') else '<div class="big placeholder">◆</div>'
         cstats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in c['stats'].items())
         clearn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(c['learnset'],key=lambda x:x['level']))
         toggle='<div class="form-toggle"><button class="active" data-form="normal">Normal</button><button data-form="clone">Clone</button></div>'
