@@ -763,7 +763,7 @@
     "name": "STRENGTH",
     "effect": "Effect Normal Hit",
     "power": 80,
-    "type": "Normal",
+    "type": "Fighting",
     "category": "Categorize Physical",
     "accuracy": 100,
     "pp": 15,
@@ -4469,10 +4469,10 @@
     "const": "CRUSH_CLAW",
     "name": "CRUSH CLAW",
     "effect": "Effect Defense Down Hit",
-    "power": 75,
+    "power": 90,
     "type": "Normal",
     "category": "Categorize Physical",
-    "accuracy": 95,
+    "accuracy": 100,
     "pp": 10,
     "chance": 50
   },
@@ -4606,6 +4606,17 @@
     "category": "Categorize Status",
     "accuracy": 100,
     "pp": 20,
+    "chance": 0
+  },
+  {
+    "const": "WEATHER_BALL",
+    "name": "WEATHER BALL",
+    "effect": "Effect Normal Hit",
+    "power": 50,
+    "type": "Normal",
+    "category": "Categorize Special",
+    "accuracy": 100,
+    "pp": 10,
     "chance": 0
   }
 ]
