@@ -229,6 +229,7 @@ LYRA EQU __enum__
 	const SNOW
 	const CYANIDE
 	const CHANTZ
+	const ADRIAN
 
 	trainerclass COOLTRAINERF ; 1c
 	const GWEN
@@ -252,6 +253,7 @@ LYRA EQU __enum__
 	const REENA2
 	const REENA3
 	const CARA
+	const SELENE
 
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
@@ -760,13 +762,17 @@ CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
 	trainerclass BATTLE_GIRL ; 53
 	const BATTLE_GIRL1
 	const BATTLE_GIRL2
+	const KIRA
+	const MINA
 
 	trainerclass TAMER ; 54
 	const TAMER1
 	const TAMER2
 	const TAMER3
+	const DEVIN
+	const ROLF
 
-	trainerclass AROMA_LADY ; 55
+	trainerclass SCHOOL_GIRL ; 55
 	const KIM
 	const HOPE
 	const SHARON

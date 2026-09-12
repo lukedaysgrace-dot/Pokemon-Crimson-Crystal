@@ -41,7 +41,7 @@ This cleaned reference keeps the same trainer data while reducing repeated metad
 | [Youngster](#youngster) | 14 | [Team Rocket Executive M](#team-rocket-executive-m) | 4 | [Blue Cloak](#blue-cloak) | 1 |
 | [Schoolboy](#schoolboy) | 24 | [Psychic](#psychic) | 12 | [Green](#green) | 1 |
 | [Bird Keeper](#bird-keeper) | 19 | [Picnicker](#picnicker) | 19 | [Battle Girl](#battle-girl) | 2 |
-| [Lass](#lass) | 18 | [Aroma Lady](#aroma-lady) | 8 | [Tamer](#tamer) | 3 |
+| [Lass](#lass) | 18 | [School Girl](#school-girl) | 8 | [Tamer](#tamer) | 3 |
 | [Janine](#janine) | 1 | [Camper](#camper) | 16 | [Team Rocket Grunt F](#team-rocket-grunt-f) | 16 |
 | [Cooltrainer M](#cooltrainer-m) | 20 | [Team Rocket Executive F](#team-rocket-executive-f) | 2 | [Rival — Main Story](#rival--main-story) | 15 |
 | [Cooltrainer F](#cooltrainer-f) | 21 | [Sage](#sage) | 12 | [Rival — Postgame](#rival--postgame) | 6 |
@@ -5003,97 +5003,97 @@ This cleaned reference keeps the same trainer data while reducing repeated metad
 | 2 | **Miltank** (`MILTANK`) | 63 | — | Thick Fat *(slot 1, class default)* | Body Slam, Headbutt, Play Rough, Milk Drink |
 
 
-## Aroma Lady
+## School Girl
 
-> **Group:** `AromaLadyGroup` · **Battle IDs:** `AROMA_LADY` · **8 parties**
+> **Group:** `SchoolGirlGroup` · **Battle IDs:** `SCHOOL_GIRL` · **8 parties**
 
 ### Kim — Route 35 (`KIM`)
 
 **1 Pokémon, Lv. 23**  
-*automatic level-up moves, class-default abilities*  
-<sub>Source: [parties.asm:L5165](data/trainers/parties.asm#L5165) · Map: [Route35.asm:L119](maps/Route35.asm#L119)</sub>
+*custom moves, class-default abilities*
+<sub>Source: [parties.asm:L5277](data/trainers/parties.asm#L5277) · Map: [Route35.asm:L119](maps/Route35.asm#L119)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Oddish** (`ODDISH`) | 23 | — | Chlorophyll *(slot 1, class default)* | Mega Drain, Bullet Seed, Sludge, Moonlight |
+| 1 | **Kirlia** (`KIRLIA`) | 23 | — | Synchronize *(slot 1, class default)* | Psybeam, Draining Kiss, Hypnosis, Double Team |
 
 ### Hope — Route 4 (`HOPE`)
 
 **2 Pokémon, Lv. 69–70**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5171](data/trainers/parties.asm#L5171) · Map: [Route4.asm:L26](maps/Route4.asm#L26)</sub>
+<sub>Source: [parties.asm:L5284](data/trainers/parties.asm#L5284) · Map: [Route4.asm:L26](maps/Route4.asm#L26)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Leafeon** (`LEAFEON`) | 69 | — | Leaf Guard *(slot 1, class default)* | Leaf Blade, X-Scissor, Swords Dance, Quick Attack |
-| 2 | **Venusaur** (`VENUSAUR`) | 70 | — | Chlorophyll *(slot 1, class default)* | Petal Dance, Sludge Bomb, Earthquake, Synthesis |
+| 1 | **Porygon-Z** (`PORYGON_Z`) | 69 | — | Adaptability *(slot 1, class default)* | Tri Attack, Thunderbolt, Psychic, Recover |
+| 2 | **Togekiss** (`TOGEKISS`) | 70 | — | Super Luck *(slot 1, class default)* | Air Slash, Moonblast, Aura Sphere, Nasty Plot |
 
 ### Sharon — Route 4 (`SHARON`)
 
 **2 Pokémon, Lv. 69–70**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5181](data/trainers/parties.asm#L5181) · Map: [Route4.asm:L37](maps/Route4.asm#L37)</sub>
+<sub>Source: [parties.asm:L5294](data/trainers/parties.asm#L5294) · Map: [Route4.asm:L37](maps/Route4.asm#L37)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Breloom** (`BRELOOM`) | 69 | — | Technician *(slot 1, class default)* | Seed Bomb, Mach Punch, Spore, Swords Dance |
-| 2 | **Abomasnow** (`ABOMASNOW`) | 70 | — | Snow Warning *(slot 1, class default)* | Wood Hammer, Ice Beam, Earthquake, Light Screen |
+| 1 | **Smeargle** (`SMEARGLE`) | 69 | — | Technician *(slot 1, class default)* | Spore, Shell Smash, Baton Pass, Extremespeed |
+| 2 | **Altaria** (`ALTARIA`) | 70 | — | Cloud Nine *(slot 1, class default)* | Dragon Dance, Dual Wingbeat, Moonblast, Roost |
 
 ### Debra — Fast Ship B1F (`DEBRA`)
 
 **2 Pokémon, Lv. 51–53**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5191](data/trainers/parties.asm#L5191) · Map: [FastShipB1F.asm:L106](maps/FastShipB1F.asm#L106)</sub>
+<sub>Source: [parties.asm:L5304](data/trainers/parties.asm#L5304) · Map: [FastShipB1F.asm:L106](maps/FastShipB1F.asm#L106)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Ludicolo** (`LUDICOLO`) | 51 | — | Swift Swim *(slot 1, class default)* | Giga Drain, Hydro Pump, Ice Beam, Rain Dance |
-| 2 | **Meganium** (`MEGANIUM`) | 53 | — | Serene Grace *(slot 1, class default)* | Petal Dance, Body Slam, Synthesis, Light Screen |
+| 1 | **Lanturn** (`LANTURN`) | 51 | — | Volt Absorb *(slot 1, class default)* | Hydro Pump, Thunderbolt, Signal Beam, Thunder Wave |
+| 2 | **Milotic** (`MILOTIC`) | 53 | — | Marvel Scale *(slot 1, class default)* | Surf, Moonblast, Recover, Mirror Coat |
 
 ### Heidi — Route 9 (`HEIDI`)
 
 **2 Pokémon, Lv. 58–59**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5201](data/trainers/parties.asm#L5201) · Map: [Route9.asm:L28](maps/Route9.asm#L28)</sub>
+<sub>Source: [parties.asm:L5314](data/trainers/parties.asm#L5314) · Map: [Route9.asm:L28](maps/Route9.asm#L28)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Sunflora** (`SUNFLORA`) | 58 | — | Chlorophyll *(slot 1, class default)* | Solarbeam, Sunny Day, Earth Power, Giga Drain |
-| 2 | **Victreebel** (`VICTREEBEL`) | 59 | — | Chlorophyll *(slot 1, class default)* | Leaf Blade, Sludge Bomb, Sleep Powder, Growth |
+| 1 | **Cradily** (`CRADILY`) | 58 | — | Storm Drain *(slot 1, class default)* | Giga Drain, Rock Slide, Earth Power, Recover |
+| 2 | **Armaldo** (`ARMALDO`) | 59 | — | Battle Armor *(slot 1, class default)* | X-Scissor, Rock Slide, Liquidation, Superpower |
 
 ### Edna — Route 9 (`EDNA`)
 
 **2 Pokémon, Lv. 58**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5211](data/trainers/parties.asm#L5211) · Map: [Route9.asm:L50](maps/Route9.asm#L50)</sub>
+<sub>Source: [parties.asm:L5324](data/trainers/parties.asm#L5324) · Map: [Route9.asm:L50](maps/Route9.asm#L50)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Jumpluff** (`JUMPLUFF`) | 58 | — | Chlorophyll *(slot 1, class default)* | Giga Drain, Air Slash, Sleep Powder, U-Turn |
-| 2 | **Bellossom** (`BELLOSSOM`) | 58 | — | Chlorophyll *(slot 1, class default)* | Petal Dance, Moonblast, Sunny Day, Moonlight |
+| 1 | **Froslass** (`FROSLASS`) | 58 | — | Levitate *(slot 1, class default)* | Ice Beam, Shadow Ball, Will-O-Wisp, Destiny Bond |
+| 2 | **Mismagius** (`MISMAGIUS`) | 58 | — | Levitate *(slot 1, class default)* | Shadow Ball, Moonblast, Nasty Plot, Power Gem |
 
 ### Tanya — Celadon Gym (`TANYA`)
 
 **3 Pokémon, Lv. 64**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5221](data/trainers/parties.asm#L5221) · Map: [CeladonGym.asm:L62](maps/CeladonGym.asm#L62)</sub>
+<sub>Source: [parties.asm:L5334](data/trainers/parties.asm#L5334) · Map: [CeladonGym.asm:L62](maps/CeladonGym.asm#L62)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Vileplume** (`VILEPLUME`) | 64 | — | Chlorophyll *(slot 1, class default)* | Leaf Storm, Sludge Bomb, Earth Power, Growth |
-| 2 | **Jumpluff** (`JUMPLUFF`) | 64 | — | Chlorophyll *(slot 1, class default)* | Leaf Storm, Air Slash, Synthesis, U-Turn |
-| 3 | **Tangrowth** (`TANGROWTH`) | 64 | — | Chlorophyll *(slot 1, class default)* | Power Whip, Ancientpower, Growth, Slam |
+| 1 | **Leafeon** (`LEAFEON`) | 64 | — | Leaf Guard *(slot 1, class default)* | Leaf Blade, X-Scissor, Swords Dance, Synthesis |
+| 2 | **Breloom** (`BRELOOM`) | 64 | — | Technician *(slot 1, class default)* | Seed Bomb, Mach Punch, Spore, Swords Dance |
+| 3 | **Abomasnow** (`ABOMASNOW`) | 64 | — | Snow Warning *(slot 1, class default)* | Wood Hammer, Ice Beam, Earth Power, Light Screen |
 
 ### Nadia — Route 25 (Nugget Bridge 3) (`NADIA`)
 
 **2 Pokémon, Lv. 59–60**  
 *custom moves, class-default abilities*  
-<sub>Source: [parties.asm:L5234](data/trainers/parties.asm#L5234) · Map: [Route25.asm:L437](maps/Route25.asm#L437)</sub>
+<sub>Source: [parties.asm:L5347](data/trainers/parties.asm#L5347) · Map: [Route25.asm:L437](maps/Route25.asm#L437)</sub>
 
 | # | Pokémon | Level | Held item | Ability | Moves |
 |---:|---|---:|---|---|---|
-| 1 | **Exeggutor** (`EXEGGUTOR`) | 59 | — | Chlorophyll *(slot 1, class default)* | Psychic, Wood Hammer, Sleep Powder, Light Screen |
-| 2 | **Bellossom** (`BELLOSSOM`) | 60 | — | Chlorophyll *(slot 1, class default)* | Leaf Storm, Moonblast, Earth Power, Moonlight |
+| 1 | **Tinkaton** (`TINKATON`) | 59 | — | Mold Breaker *(slot 1, class default)* | Giga Hammer, Play Rough, Knock Off, Swords Dance |
+| 2 | **Sylveon** (`SYLVEON`) | 60 | — | Cute Charm *(slot 1, class default)* | Moonblast, Aura Sphere, Shadow Ball, Light Screen |
 
 
 ## Camper

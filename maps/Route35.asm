@@ -115,13 +115,13 @@ TrainerPicnickerBrooke:
 	closetext
 	end
 
-TrainerAromaLadyKim:
-	trainer AROMA_LADY, KIM, EVENT_BEAT_AROMA_LADY_KIM, AromaLadyKimSeenText, AromaLadyKimBeatenText, 0, .Script
+TrainerSchoolGirlKim:
+	trainer SCHOOL_GIRL, KIM, EVENT_BEAT_SCHOOL_GIRL_KIM, SchoolGirlKimSeenText, SchoolGirlKimBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyKimAfterBattleText
+	writetext SchoolGirlKimAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -326,25 +326,26 @@ PicnickerBrookeAfterBattleText:
 	cont "my boyfriend."
 	done
 
-AromaLadyKimSeenText:
+SchoolGirlKimSeenText:
 	text "The GOLDENROD GYM"
 	line "is just ahead!"
 
-	para "I can almost smell"
-	line "victory!"
+	para "I've been taking"
+	line "battle notes all"
+	cont "day. Quiz me!"
 	done
 
-AromaLadyKimBeatenText:
-	text "My confidence"
-	line "wilted…"
+SchoolGirlKimBeatenText:
+	text "I need to study"
+	line "that matchup!"
 	done
 
-AromaLadyKimAfterBattleText:
-	text "I press a flower"
-	line "for every BADGE."
+SchoolGirlKimAfterBattleText:
+	text "KIRLIA helps me"
+	line "read expressions."
 
-	para "Someday, I'll have"
-	line "a whole bouquet!"
+	para "That's useful in"
+	line "battles and exams!"
 	done
 
 BirdKeeperBryanSeenText:
@@ -483,7 +484,7 @@ Route35_MapEvents:
 	object_event  4, 19, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerCamperIvan, -1
 	object_event  8, 20, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperElliot, -1
 	object_event  7, 20, SPRITE_PICNICKER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerBrooke, -1
-	object_event 10, 26, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyKim, -1
+	object_event 10, 26, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolGirlKim, -1
 	object_event 14, 28, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerBirdKeeperBryan, -1
 	object_event  2, 10, SPRITE_FIREBREATHER_NEW, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherWalt, -1
 	object_event 16,  7, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 2, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherArnie, -1

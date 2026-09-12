@@ -84,7 +84,7 @@ TrainerClassNames::
 	db "GREEN@"
 	db "BATTLE GIRL@"
 	db "TAMER@"
-	db "AROMA LADY@"
+	db "SCHOOL GIRL@"
 	db "CRYSTAL@"
 	db "RIVAL@"
 	db "LEADER@"

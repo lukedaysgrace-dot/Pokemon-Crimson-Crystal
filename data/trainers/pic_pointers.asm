@@ -86,7 +86,7 @@ TrainerPicPointers::
 	dba GreenPic
 	dba BattleGirlPic
 	dba TamerPic
-	dba AromaLadyPic
+	dba SchoolGirlPic
 	dba Crystal2Pic ; CRYSTAL3
 	dba Rival2Pic ; RIVAL3
 	dba FalknerPic ; FALKNER_REMATCH
