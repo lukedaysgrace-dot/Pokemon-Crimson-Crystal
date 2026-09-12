@@ -24,13 +24,13 @@ TrainerCamperDean:
 	closetext
 	end
 
-TrainerAromaLadyHeidi:
-	trainer AROMA_LADY, HEIDI, EVENT_BEAT_AROMA_LADY_HEIDI, AromaLadyHeidiSeenText, AromaLadyHeidiBeatenText, 0, .Script
+TrainerSchoolGirlHeidi:
+	trainer SCHOOL_GIRL, HEIDI, EVENT_BEAT_SCHOOL_GIRL_HEIDI, SchoolGirlHeidiSeenText, SchoolGirlHeidiBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyHeidiAfterBattleText
+	writetext SchoolGirlHeidiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,13 +46,13 @@ TrainerCamperSid:
 	closetext
 	end
 
-TrainerAromaLadyEdna:
-	trainer AROMA_LADY, EDNA, EVENT_BEAT_AROMA_LADY_EDNA, AromaLadyEdnaSeenText, AromaLadyEdnaBeatenText, 0, .Script
+TrainerSchoolGirlEdna:
+	trainer SCHOOL_GIRL, EDNA, EVENT_BEAT_SCHOOL_GIRL_EDNA, SchoolGirlEdnaSeenText, SchoolGirlEdnaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext AromaLadyEdnaAfterBattleText
+	writetext SchoolGirlEdnaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -128,26 +128,25 @@ CamperDeanAfterBattleText:
 	cont "CENTER right away."
 	done
 
-AromaLadyHeidiSeenText:
-	text "Do you like the"
-	line "scent of fresh"
-	cont "herbs?"
+SchoolGirlHeidiSeenText:
+	text "I joined the"
+	line "fossil club!"
 
-	para "It calms #MON"
-	line "right down!"
+	para "Want to see our"
+	line "living history?"
 	done
 
-AromaLadyHeidiBeatenText:
-	text "Ohhhh!"
+SchoolGirlHeidiBeatenText:
+	text "That's one for"
+	line "the history books!"
 	done
 
-AromaLadyHeidiAfterBattleText:
-	text "I dry petals and"
-	line "leaves to make"
+SchoolGirlHeidiAfterBattleText:
+	text "CRADILY and"
+	line "ARMALDO teach us"
 
-	para "oils. The aroma"
-	line "soothes any"
-	cont "#MON."
+	para "how ancient #MON"
+	line "used to battle."
 	done
 
 CamperSidSeenText:
@@ -166,27 +165,26 @@ CamperSidAfterBattleText:
 	cont "my mistake."
 	done
 
-AromaLadyEdnaSeenText:
-	text "Even beside the"
-	line "POWER PLANT, these"
-	cont "wildflowers bloom."
+SchoolGirlEdnaSeenText:
+	text "I collect spooky"
+	line "stories after"
+	cont "class."
 
-	para "Let's see if your"
-	line "team is as hardy!"
+	para "Want to star in"
+	line "one?"
 	done
 
-AromaLadyEdnaBeatenText:
-	text "You uprooted my"
-	line "whole strategy!"
+SchoolGirlEdnaBeatenText:
+	text "That ending was"
+	line "a surprise!"
 	done
 
-AromaLadyEdnaAfterBattleText:
-	text "Clean energy and"
-	line "healthy habitats"
-	cont "belong together."
+SchoolGirlEdnaAfterBattleText:
+	text "FROSLASS and"
+	line "MISMAGIUS make"
 
-	para "We should nurture"
-	line "both."
+	para "every ghost story"
+	line "feel real."
 	done
 
 HikerTimSeenText:
@@ -279,9 +277,9 @@ Route9_MapEvents:
 
 	db 8 ; object events
 	object_event 23, 11, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
-	object_event 39,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyHeidi, -1
+	object_event 39,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolGirlHeidi, -1
 	object_event 11,  4, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
-	object_event 12, 15, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyEdna, -1
+	object_event 12, 15, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolGirlEdna, -1
 	object_event 28,  3, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
 	object_event 36, 15, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
 	object_event 31,  6, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerJugglerMarco, -1

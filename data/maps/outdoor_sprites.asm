@@ -163,7 +163,7 @@ CeruleanGroupSprites:
 ;   sprites (AddIndoorSprites) and no outdoor map in this group uses them.
 ;   Keeping them overflowed bank 0 and made NPCs render with player tiles.
 ; - PICNICKER_NEW removed too: no outdoor map in this group has a Picnicker
-;   (Route 9 uses CAMPER_NEW/HIKER/JUGGLER_NEW/AROMA_LADY). With it the group
+;   (Route 9 uses CAMPER_NEW/HIKER/JUGGLER_NEW/SCHOOL_GIRL). With it the group
 ;   had 19 walkers for 18 walker slots (player + 8 in bank 1, 10 in bank 0),
 ;   so the last walker in packing order got no VRAM and rendered with player
 ;   tiles - that was CRYSTAL appearing as the player on the Route 25 cape.
@@ -176,7 +176,7 @@ CeruleanGroupSprites:
 	db SPRITE_CAMPER_NEW ; Route 9 trainers
 	db SPRITE_JUGGLER_NEW ; Route 9/25 trainers
 	; --- walkers below here land in VRAM bank 0 (font-shared step frames) ---
-	db SPRITE_AROMA_LADY ; Route 9 spinner; keep before the font tile range
+	db SPRITE_SCHOOL_GIRL ; Route 9 spinner; keep before the font tile range
 	db SPRITE_ROCKET ; Route 24 spinner; keep before the font tile range
 	db SPRITE_HIKER ; Route 9 (visible at font reload; only walks when engaging)
 	db SPRITE_COOLTRAINER_F ; Cerulean City (standing; never steps)
@@ -435,7 +435,7 @@ VioletGroupSprites:
 	db SPRITE_NONE ; freed: Violet City's generic NPC reuses COOLTRAINER_M
 	db SPRITE_GRAMPS
 	db SPRITE_CRYSTAL
-	db SPRITE_AROMA_LADY ; Route 35
+	db SPRITE_SCHOOL_GIRL ; Route 35
 	db SPRITE_PSYCHIC
 	db SPRITE_NONE
 	db SPRITE_FIREBREATHER_NEW ; Route 35 spinner; keep in VRAM bank 1

@@ -87,7 +87,7 @@ TrainerEncounterMusic::
 	db MUSIC_RIVAL_ENCOUNTER       ; green
 	db MUSIC_LASS_ENCOUNTER        ; battle_girl
 	db MUSIC_HIKER_ENCOUNTER       ; tamer
-	db MUSIC_LASS_ENCOUNTER        ; aroma_lady
+	db MUSIC_LASS_ENCOUNTER        ; school_girl
 	db MUSIC_CRYSTAL_ENCOUNTER     ; crystal3
 	db MUSIC_RIVAL_ENCOUNTER       ; rival3
 	db MUSIC_YOUNGSTER_ENCOUNTER; FALKNER_REMATCH
