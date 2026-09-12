@@ -80,3 +80,44 @@
 	const CRY_KIRLIA
 	const CRY_GALLADE
 	const CRY_SNEASLER
+
+; imported from Polished Coral
+; Hoenn (gen 3)
+	const CRY_ARON
+	const CRY_LAIRON
+	const CRY_AGGRON
+	const CRY_NUMEL
+	const CRY_CAMERUPT
+	const CRY_SWABLU
+	const CRY_ALTARIA
+	const CRY_SNORUNT
+; Sinnoh (gen 4)
+	const CRY_DRIFLOON
+	const CRY_DRIFBLIM
+	const CRY_BUNEARY
+	const CRY_LOPUNNY
+	const CRY_SNOVER
+	const CRY_ABOMASNOW
+	const CRY_FROSLASS
+; Unova (gen 5)
+	const CRY_DRILBUR
+	const CRY_EXCADRILL
+	const CRY_VENIPEDE
+	const CRY_WHIRLIPEDE
+	const CRY_SCOLIPEDE
+	const CRY_SCRAGGY
+	const CRY_SCRAFTY
+	const CRY_JOLTIK
+	const CRY_GALVANTULA
+	const CRY_LITWICK
+	const CRY_LAMPENT
+	const CRY_CHANDELURE
+	const CRY_LARVESTA
+	const CRY_VOLCARONA
+; Kalos (gen 6)
+	const CRY_NOIBAT
+	const CRY_NOIVERN
+; Galar (gen 8)
+	const CRY_DREEPY
+	const CRY_DRAKLOAK
+	const CRY_DRAGAPULT

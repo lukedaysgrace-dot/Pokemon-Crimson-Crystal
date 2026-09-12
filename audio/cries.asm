@@ -2044,67 +2044,71 @@ Cry_Rattata_Ch8:
 	noise __,  9, $91, $49
 	endchannel
 
-; --- imported from Johto Legends ---
+; --- imported from Polished Coral ---
 
 Cry_Shroomish:
-	musicheader 3, 5, Cry_Shroomish_Ch5
-	musicheader 1, 6, Cry_Shroomish_Ch6
-	musicheader 1, 8, Cry_Shroomish_Ch8
+	channel_count 3
+	channel 5, Cry_Shroomish_Ch5
+	channel 6, Cry_Shroomish_Ch6
+	channel 8, Cry_Shroomish_Ch8
 
 Cry_Shroomish_Ch5:
-	sound_duty 0, 0, 1, 0
-	sound __,  4, $f9, $0698
-	sound __,  7, $f1, $06a4
-	sound __, 16, $f0, $068d
-	sound __, 16, $d0, $068d
-	sound __,  6, $c0, $068d
-	sound __,  2, $00, $068d
-	endchannel
+	duty_cycle_pattern 0, 2, 0, 1
+	square_note 4, 15, 2, 1715
+	square_note 5, 15, 2, 1710
+	square_note 15, 15, 0, 1679
+	square_note 16, 14, 0, 1678
+	square_note 4, 13, 2, 1677
+	square_note 1, 0, 0, 1677
+	sound_ret
 
 Cry_Shroomish_Ch6:
-	sound_duty 0, 0, 2, 0
-	sound __,  4, $69, $03fc
-	sound __,  7, $56, $04fd
-	sound __,  6, $75, $04fd
-	sound __,  5, $64, $04fd
-	sound __, 13, $40, $04fd
-	sound __,  3, $00, $04fd
-	endchannel
+	duty_cycle_pattern 0, 2, 0, 0
+	square_note 4, 6, 4, 1020
+	square_note 5, 5, 6, 1020
+	square_note 5, 7, 5, 1277
+	square_note 4, 6, 4, 1277
+	square_note 12, 4, 0, 1277
+	square_note 2, 0, 0, 1277
+	sound_ret
 
 Cry_Shroomish_Ch8:
-	noise __,  8, $a5, $0d
-	noise __, 16, $54, $0f
-	endchannel
+	noise_note 7, 10, 5, 13
+	noise_note 15, 5, 4, 15
+	sound_ret
 
 Cry_Breloom:
-	musicheader 3, 5, Cry_Breloom_Ch5
-	musicheader 1, 6, Cry_Breloom_Ch6
-	musicheader 1, 8, Cry_Breloom_Ch8
+	channel_count 3
+	channel 5, Cry_Breloom_Ch5
+	channel 6, Cry_Breloom_Ch6
+	channel 8, Cry_Breloom_Ch8
 
 Cry_Breloom_Ch5:
-	sound_duty 0, 3, 0, 1
-	sound __,  4, $d9, $06c9
-	sound __,  6, $f3, $06d0
-	sound __, 16, $f0, $068d
-	sound __,  4, $e0, $068d
-	sound __,  4, $e0, $0689
-	sound __,  2, $00, $068d
-	endchannel
+	duty_cycle_pattern 0, 2, 0, 1
+	square_note 2, 15, 3, 1872
+	square_note 4, 13, 2, 1863
+	square_note 15, 15, 0, 1826
+	square_note 3, 14, 0, 1825
+	square_note 2, 14, 2, 1823
+	square_note 1, 0, 0, 1830
+	sound_ret
 
 Cry_Breloom_Ch6:
-	sound_duty 2, 1, 0, 3
-	sound __,  4, $79, $03fc
-	sound __,  6, $66, $03fc
-	sound __,  6, $65, $0583
-	sound __,  5, $54, $057c
-	sound __, 12, $50, $0583
-	sound __,  3, $00, $0583
-	endchannel
+	duty_cycle_pattern 3, 0, 1, 2
+	square_note 2, 11, 3, 1020
+	square_note 4, 10, 6, 1020
+	square_note 5, 10, 5, 1411
+	square_note 4, 9, 4, 1404
+	square_note 11, 9, 0, 1411
+	square_note 2, 0, 0, 1411
+	sound_ret
 
 Cry_Breloom_Ch8:
-	noise __,  9, $b5, $02
-	noise __, 16, $a7, $03
-	endchannel
+	noise_note 6, 15, 5, 2
+	noise_note 24, 14, 5, 3
+	sound_ret
+
+; --- imported from Johto Legends ---
 
 Cry_Ralts:
 	musicheader 3, 5, Cry_Ralts_Ch5

@@ -285,6 +285,9 @@ ENDM
 
 channel: MACRO
 	musicheader _num_channels, \1, \2
+; only the first header of a song carries the channel count; the rest must
+; emit 1 so bits 6-7 come out clear, as vanilla's musicheader lines do.
+_num_channels = 1
 ENDM
 
 ; $d9: modern "transpose a, b" is this engine's "pitchoffset", which
@@ -362,4 +365,48 @@ ENDM
 ; engine's $e2 command reads an operand and is dummied out (see MusicE2 in
 ; audio/engine.asm), so emitting it would desync the channel. Emit nothing.
 toggle_perfect_pitch: MACRO
+ENDM
+
+; --- modern-syntax note commands (for cries imported from Polished Coral) ---
+
+; $de: modern "duty_cycle_pattern a, b, c, d" packs the four 2-bit steps in the
+; opposite order from this engine's four-argument "sound_duty".
+duty_cycle_pattern: MACRO
+	db sound_duty_cmd
+	db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
+ENDM
+
+; $dd: modern "pitch_sweep length, change" is this engine's "soundinput";
+; a negative change sets bit 3 of the low nybble.
+pitch_sweep: MACRO
+	db soundinput_cmd
+if (\2) < 0
+	dn \1, 8 | (-(\2))
+else
+	dn \1, \2
+endc
+ENDM
+
+; modern "square_note length, volume, fade, frequency": the length byte is
+; emitted raw (this engine's "sound" macro takes length + 1 and packs it with a
+; pitch nybble), and volume/fade pack into one intensity byte.
+square_note: MACRO
+	db \1 ; length
+if (\3) < 0
+	dn \2, 8 | (-(\3))
+else
+	dn \2, \3
+endc
+	dw \4 ; frequency
+ENDM
+
+; modern "noise_note length, volume, fade, frequency"
+noise_note: MACRO
+	db \1 ; length
+if (\3) < 0
+	dn \2, 8 | (-(\3))
+else
+	dn \2, \3
+endc
+	db \4 ; frequency
 ENDM
