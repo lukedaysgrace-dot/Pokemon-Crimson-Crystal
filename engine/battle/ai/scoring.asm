@@ -3822,11 +3822,17 @@ AI_Smart_FreezeDry:
 	ret
 
 AI_Smart_FakeOut:
-	ld a, [wEnemyTurnsTaken]
+; Fake Out is gated by firstimpressioncheck, the same one-shot post-entry
+; window as First Impression (see BattleCommand_FirstImpressionCheck).
+; wEnemyTurnsTaken is NOT a valid proxy for that window: the freshness flag
+; is consumed at the mon's first action opportunity even when sleep,
+; paralysis, freeze, confusion or a flinch stops it from actually moving,
+; while wEnemyTurnsTaken only ticks when a move really executes. Reading the
+; counter made the AI pick Fake Out on the turn after it was flinched or
+; fully paralyzed, and the move just failed. Read the real flag instead.
+	ld a, [wEnemyFirstImpressionFresh]
 	and a
-	jr z, .first_turn
-	jp AIDiscourageMove ; fails after the user's first turn
-.first_turn
+	jp z, AIDiscourageMove ; the one post-entry opportunity is gone
 ; The flinch is the whole point: Shield Dust and Inner Focus block it.
 	call AIGetPlayerAbility
 	cp SHIELD_DUST

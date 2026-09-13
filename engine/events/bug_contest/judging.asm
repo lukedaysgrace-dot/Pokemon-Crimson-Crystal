@@ -498,17 +498,17 @@ ContestMonScoreData:
 	dw WEEDLE
 	db      0,   7, 18
 	dw METAPOD
-	db     25,   9, 18
+	db     25,  10, 18
 	dw KAKUNA
-	db     25,   9, 18
+	db     25,  10, 18
 	dw PARAS
 	db     25,  10, 18
 	dw VENONAT
 	db     25,  10, 18
 	dw BUTTERFREE
-	db     50,  11, 18
+	db     50,  16, 18
 	dw BEEDRILL
-	db     50,  11, 18
+	db     50,  16, 18
 	dw YANMA
 	db     55,  11, 18
 	dw SCYTHER
