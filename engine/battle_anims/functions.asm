@@ -119,6 +119,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_SolarBeam ; 67
 	dw BattleAnimFunction_BetaPursuit ; 68
 	dw BattleAnimFunction_ObjectHover ; 69 (ported from pokeorange; Wish)
+	dw BattleAnimFunction_WeatherBallArc ; 6a
 
 BattleAnimFunction_Stat:
 ; Stat up/down bars (ported from Polished Crystal).
@@ -4303,6 +4304,13 @@ BattleAnimFunction_RadialMoveOut:
 
 BattleAnimFunction_RadialMoveOut_Slow:
 	lb de, 3, 80
+	jp BattleAnimFunc_DoRadialMoveOut
+
+BattleAnimFunction_WeatherBallArc:
+; Weather Ball was authored against mae-pokeorange's slow radial function,
+; which travels 120 pixels. Keep that distance local to Weather Ball so the
+; shorter, shared slow-radial behavior remains unchanged for other moves.
+	lb de, 3, 120
 	jp BattleAnimFunc_DoRadialMoveOut
 
 BattleAnimFunction_RadialMoveOut_VerySlow:
