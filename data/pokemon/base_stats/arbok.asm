@@ -3,7 +3,7 @@
 	db  60, 110,  70,  80,  55,  80
 	;   hp  atk  def  spd  sat  sdf
 
-	db POISON, POISON ; type
+	db POISON, DARK ; type
 	db 90 ; catch rate
 	db 157 ; base exp
 	db NO_ITEM, NO_ITEM ; items

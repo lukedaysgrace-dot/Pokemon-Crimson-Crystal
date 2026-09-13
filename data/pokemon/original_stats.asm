@@ -35,6 +35,8 @@ OriginalPokemonStats:
 	db  75,  80,  95,  50,  90, 100
 	dw BLASTOISE
 	db  79,  83, 100,  78,  85, 105
+	dw BLASTOISE_CLONE
+	db  79,  83, 100,  78,  85, 105
 	dw BONSLY
 	db  50,  80,  95,  10,  10,  45
 	dw BUTTERFREE
@@ -44,6 +46,8 @@ OriginalPokemonStats:
 	dw CENTISKORCH
 	db 100, 115,  65,  65,  90,  90
 	dw CHARIZARD
+	db  78,  84,  78, 100, 109,  85
+	dw CHARIZARD_CLONE
 	db  78,  84,  78, 100, 109,  85
 	dw CLEFABLE
 	db  95,  70,  73,  60,  95,  90
@@ -254,6 +258,8 @@ OriginalPokemonStats:
 	dw VENOMOTH
 	db  70,  65,  60,  90,  90,  75
 	dw VENUSAUR
+	db  80,  82,  83,  80, 100, 100
+	dw VENUSAUR_CLONE
 	db  80,  82,  83,  80, 100, 100
 	dw VIBRAVA
 	db  50,  70,  50,  70,  50,  50

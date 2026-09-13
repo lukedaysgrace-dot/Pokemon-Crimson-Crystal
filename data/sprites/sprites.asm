@@ -131,7 +131,7 @@ OverworldSprites:
 	overworld_sprite PetrelSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite ArianaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ArcherSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite PoliwrathSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
+	overworld_sprite PoliwrathSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_BLUE
 	overworld_sprite FarfetchDNPCSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite HexManiacSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite CosplayerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_COSPLAYER
@@ -150,3 +150,4 @@ OverworldSprites:
 	overworld_sprite ThugSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_THUG
 	overworld_sprite SchoolGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_SCHOOL_GIRL
 	overworld_sprite FatGuySpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE ; SPRITE_FAT_GUY
+	overworld_sprite BurglarSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BURGLAR

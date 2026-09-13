@@ -204,7 +204,7 @@ CrystalPhoneTipRoute38Text:
 	line "but I checked"
 	cont "twice:"
 
-	para "Wild PORYGON,"
+	para "Wild GIRAFARIG,"
 	line "ROUTE 38, in the"
 	cont "morning."
 
