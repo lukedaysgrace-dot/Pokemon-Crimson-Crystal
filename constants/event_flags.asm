@@ -2201,4 +2201,7 @@
 	const EVENT_BEAT_COOLTRAINERM_ADRIAN
 	const EVENT_BEAT_COOLTRAINERF_SELENE
 
+; Object flag for the independently encounterable sleeping Snorlax on Route 16.
+	const EVENT_ROUTE_16_SNORLAX
+
 NUM_EVENTS EQU const_value
