@@ -17,12 +17,12 @@ ContestMons:
 	;      %, species,   min, max
 	dbwbb 15, CATERPIE,    7, 18
 	dbwbb 15, WEEDLE,      7, 18
-	dbwbb 10, METAPOD,     9, 18
-	dbwbb 10, KAKUNA,      9, 18
+	dbwbb 10, METAPOD,    10, 18
+	dbwbb 10, KAKUNA,     10, 18
 	dbwbb  9, PARAS,      10, 18
 	dbwbb  9, VENONAT,    10, 18
-	dbwbb  5, BUTTERFREE, 11, 18
-	dbwbb  5, BEEDRILL,   11, 18
+	dbwbb  5, BUTTERFREE, 16, 18
+	dbwbb  5, BEEDRILL,   16, 18
 	dbwbb  6, YANMA,      11, 18
 	dbwbb  6, SCYTHER,    12, 18
 	dbwbb  6, PINSIR,     12, 18
