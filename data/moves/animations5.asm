@@ -2077,7 +2077,6 @@ BattleAnim_WeatherBall_PO:
 
 .water
 	anim_3gfx ANIM_GFX_WEATHER_BALL, ANIM_GFX_HIT, ANIM_GFX_BUBBLE
-	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_WATER
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_BUBBLE
 	anim_sound 0, 0, SFX_SWEET_KISS
@@ -2104,7 +2103,6 @@ BattleAnim_WeatherBall_PO:
 
 .fire
 	anim_3gfx ANIM_GFX_WEATHER_BALL, ANIM_GFX_HIT, ANIM_GFX_FIRE
-	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_FIRE
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_sound 0, 0, SFX_SWEET_KISS
@@ -2129,7 +2127,6 @@ BattleAnim_WeatherBall_PO:
 
 .rock
 	anim_3gfx ANIM_GFX_WEATHER_BALL, ANIM_GFX_HIT, ANIM_GFX_ROCKS
-	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_BROWN
 	anim_sound 0, 0, SFX_SWEET_KISS
 	anim_obj ANIM_OBJ_WEATHER_BALL_FALL, 112, 188, $0e
@@ -2155,7 +2152,6 @@ BattleAnim_WeatherBall_PO:
 
 .ice
 	anim_3gfx ANIM_GFX_WEATHER_BALL, ANIM_GFX_HIT, ANIM_GFX_ICE
-	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ICE
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ICE
 	anim_sound 0, 0, SFX_SWEET_KISS
