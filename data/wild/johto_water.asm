@@ -24,9 +24,9 @@ JohtoWaterWildMons:
 
 	map_id UNION_CAVE_B2F
 	db 4 percent ; encounter rate
-	dbw 38, TENTACOOL
-	dbw 40, QUAGSIRE
-	dbw 42, TENTACRUEL
+	dbw 28, TENTACOOL
+	dbw 29, QUAGSIRE
+	dbw 31, TENTACRUEL
 
 	map_id SLOWPOKE_WELL_B1F
 	db 2 percent ; encounter rate
@@ -36,9 +36,9 @@ JohtoWaterWildMons:
 
 	map_id SLOWPOKE_WELL_B2F
 	db 2 percent ; encounter rate
-	dbw 34, SLOWPOKE
-	dbw 38, QWILFISH
-	dbw 36, MAREANIE
+	dbw 28, SLOWPOKE
+	dbw 30, QWILFISH
+	dbw 29, MAREANIE
 
 	map_id ILEX_FOREST
 	db 2 percent ; encounter rate

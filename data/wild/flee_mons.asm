@@ -7,7 +7,6 @@ SometimesFleeMons:
 	dw TANGELA
 	dw MR__MIME
 	dw EEVEE
-	dw PORYGON
 	dw DRATINI
 	dw DRAGONAIR
 	dw TOGETIC
