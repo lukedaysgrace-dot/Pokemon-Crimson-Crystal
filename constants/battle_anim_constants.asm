@@ -564,6 +564,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_SOLAR_BEAM
 	const BATTLEANIMFUNC_PURSUIT
 	const BATTLEANIMFUNC_OBJECT_HOVER ; ported from pokeorange (Wish)
+	const BATTLEANIMFUNC_WEATHER_BALL_ARC
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
