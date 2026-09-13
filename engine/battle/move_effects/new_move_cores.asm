@@ -9,14 +9,7 @@ WeatherBallUpdateMoveStruct::
 	push bc
 	push de
 	push hl
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	call GetMoveIndexFromID
-	ld a, h
-	cp HIGH(WEATHER_BALL)
-	jr nz, .done
-	ld a, l
-	cp LOW(WEATHER_BALL)
+	call WeatherBallIsCurrentMove
 	jr nz, .done
 
 	; Clear weather: 50-power Normal, and animation parameter 0.
@@ -29,29 +22,9 @@ WeatherBallUpdateMoveStruct::
 	call GetBattleVarAddr
 	ld [hl], NORMAL
 
-	; Mega Sol's other hooks (Solar Beam, recovery and damage) treat the
-	; user's moves as if harsh sun is active without changing field weather.
-	; Weather Ball follows the same rule, unless Neutralizing Gas suppresses it.
-	farcall GetTrueUserAbility_b
-	ld a, b
-	cp MEGA_SOL
-	ld a, WEATHER_SUN
-	jr z, .check_weather
-	ld a, [wBattleWeather]
-.check_weather
-	cp WEATHER_RAIN
-	ld c, WATER
-	jr z, .weather
-	cp WEATHER_SUN
-	ld c, FIRE
-	jr z, .weather
-	cp WEATHER_SANDSTORM
-	ld c, ROCK
-	jr z, .weather
-	cp WEATHER_HAIL
-	ld c, ICE
-	jr nz, .done
-.weather
+	call WeatherBallGetWeather
+	jr z, .done
+
 	ld [wBattleAnimParam], a
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVarAddr
@@ -63,6 +36,71 @@ WeatherBallUpdateMoveStruct::
 	pop hl
 	pop de
 	pop bc
+	ret
+
+WeatherBallRestoreAnimParam::
+; BattleCommand_MoveAnimNoSub clears wBattleAnimParam (under its wKickCounter
+; alias) immediately before the move animation plays, which wiped the value
+; UpdateMoveData had stored and forced Weather Ball down its plain NORMAL
+; impact branch. Recompute the parameter here so the weather-specific impact
+; plays; every other move still ends up with the counter cleared as before.
+	push bc
+	push de
+	push hl
+	xor a
+	ld [wBattleAnimParam], a
+	call WeatherBallIsCurrentMove
+	jr nz, .done
+	call WeatherBallGetWeather
+	jr z, .done
+	ld [wBattleAnimParam], a
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+WeatherBallIsCurrentMove:
+; Return z if the move being used right now is Weather Ball.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(WEATHER_BALL)
+	ret nz
+	ld a, l
+	cp LOW(WEATHER_BALL)
+	ret
+
+WeatherBallGetWeather:
+; Return the weather Weather Ball should use in a (WEATHER_* value, 0 when no
+; weather applies) and the type it becomes in c. z is set when there is none.
+; Mega Sol's other hooks (Solar Beam, recovery and damage) treat the user's
+; moves as if harsh sun is active without changing field weather. Weather Ball
+; follows the same rule, unless Neutralizing Gas suppresses it.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp MEGA_SOL
+	ld a, WEATHER_SUN
+	jr z, .check_weather
+	ld a, [wBattleWeather]
+.check_weather
+	cp WEATHER_RAIN
+	ld c, WATER
+	jr z, .got_weather
+	cp WEATHER_SUN
+	ld c, FIRE
+	jr z, .got_weather
+	cp WEATHER_SANDSTORM
+	ld c, ROCK
+	jr z, .got_weather
+	cp WEATHER_HAIL
+	ld c, ICE
+	jr z, .got_weather
+	xor a
+	ret
+.got_weather
+	and a
 	ret
 
 WeatherBallPatchEnemyMoveStruct::
