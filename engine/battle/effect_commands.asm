@@ -2325,8 +2325,10 @@ BattleCommand_MoveAnimNoSub:
 	jr z, .alternate_anim
 	cp EFFECT_TRIPLE_KICK
 	jr z, .triplekick
-	xor a
-	ld [wKickCounter], a
+	; Weather Ball's animation branches on wBattleAnimParam, which is this same
+	; byte, so recompute it from the weather here instead of just clearing it.
+	; Every other move still leaves this call with the counter cleared.
+	farcall WeatherBallRestoreAnimParam
 
 .triplekick
 	ld a, BATTLE_VARS_MOVE_ANIM
