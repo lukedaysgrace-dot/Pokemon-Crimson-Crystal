@@ -890,11 +890,11 @@ BaxcaliburFrontpic: INCBIN "gfx/pokemon/baxcalibur/front.animated.2bpp.lz"
 BaxcaliburBackpic:  INCBIN "gfx/pokemon/baxcalibur/back.2bpp.lz"
 CharcadetFrontpic: INCBIN "gfx/pokemon/charcadet/front.animated.2bpp.lz"
 CharcadetBackpic:  INCBIN "gfx/pokemon/charcadet/back.2bpp.lz"
-ArmarougeFrontpic: INCBIN "gfx/pokemon/armarouge/front.animated.2bpp.lz"
-ArmarougeBackpic:  INCBIN "gfx/pokemon/armarouge/back.2bpp.lz"
 
 SECTION "Pics 26 Overflow", ROMX
 
+ArmarougeFrontpic: INCBIN "gfx/pokemon/armarouge/front.animated.2bpp.lz"
+ArmarougeBackpic:  INCBIN "gfx/pokemon/armarouge/back.2bpp.lz"
 CeruledgeFrontpic: INCBIN "gfx/pokemon/ceruledge/front.animated.2bpp.lz"
 CeruledgeBackpic:  INCBIN "gfx/pokemon/ceruledge/back.2bpp.lz"
 SylveonFrontpic: INCBIN "gfx/pokemon/sylveon/front.animated.2bpp.lz"
