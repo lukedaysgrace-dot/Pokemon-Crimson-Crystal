@@ -58,6 +58,9 @@ NewPokedexOrder:
 	dw TOGEKISS
 	dw SANDSHREW
 	dw SANDSLASH
+	dw SANDILE
+	dw KROKOROK
+	dw KROOKODILE
 	dw EKANS
 	dw ARBOK
 	dw DUNSPARCE

@@ -2647,6 +2647,9 @@ EvosAttacksPointers2C::
 	dw StarlyEvosAttacks
 	dw StaraviaEvosAttacks
 	dw StaraptorEvosAttacks
+	dw SandileEvosAttacks
+	dw KrokorokEvosAttacks
+	dw KrookodileEvosAttacks
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE
@@ -3258,6 +3261,60 @@ StaraptorEvosAttacks:
 	dbw 45, AGILITY
 	dbw 50, BRAVE_BIRD
 	dbw 55, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+SandileEvosAttacks:
+	dbbw EVOLVE_LEVEL, 29, KROKOROK
+	db 0 ; no more evolutions
+	dbw 1, LEER
+	dbw 3, SAND_ATTACK
+	dbw 6, HONE_CLAWS
+	dbw 12, SCARY_FACE
+	dbw 15, BITE
+	dbw 18, TORMENT
+	dbw 21, DIG
+	dbw 24, SWAGGER
+	dbw 27, CRUNCH
+	dbw 30, SANDSTORM
+	dbw 33, FOUL_PLAY
+	dbw 36, EARTHQUAKE
+	dbw 39, THRASH
+	db 0 ; no more level-up moves
+
+KrokorokEvosAttacks:
+	dbbw EVOLVE_LEVEL, 40, KROOKODILE
+	db 0 ; no more evolutions
+	dbw 1, HONE_CLAWS
+	dbw 1, LEER
+	dbw 1, SAND_ATTACK
+	dbw 12, SCARY_FACE
+	dbw 15, BITE
+	dbw 18, TORMENT
+	dbw 21, DIG
+	dbw 24, SWAGGER
+	dbw 27, CRUNCH
+	dbw 32, SANDSTORM
+	dbw 35, FOUL_PLAY
+	dbw 42, EARTHQUAKE
+	dbw 47, THRASH
+	db 0 ; no more level-up moves
+
+KrookodileEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, HONE_CLAWS
+	dbw 1, LEER
+	dbw 1, SAND_ATTACK
+	dbw 12, SCARY_FACE
+	dbw 15, BITE
+	dbw 18, TORMENT
+	dbw 21, DIG
+	dbw 24, SWAGGER
+	dbw 27, CRUNCH
+	dbw 32, SANDSTORM
+	dbw 35, FOUL_PLAY
+	dbw 44, EARTHQUAKE
+	dbw 51, THRASH
+	dbw 58, OUTRAGE
 	db 0 ; no more level-up moves
 
 
