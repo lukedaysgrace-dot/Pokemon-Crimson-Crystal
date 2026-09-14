@@ -2046,9 +2046,9 @@ SmeargleEvosAttacks:
 	db 0 ; no more level-up moves
 
 TyrogueEvosAttacks:
+	dbbbw EVOLVE_HOLDING, 20, BRICK_PIECE, HITMONTOP
 	dbbbw EVOLVE_STAT, 20, ATK_LT_DEF, HITMONCHAN
 	dbbbw EVOLVE_STAT, 20, ATK_GT_DEF, HITMONLEE
-	dbbw EVOLVE_ITEM, BRICK_PIECE, HITMONTOP
 	db 0 ; no more evolutions
 	dbw 1, FOCUS_ENERGY
 	dbw 1, TACKLE
@@ -2644,6 +2644,9 @@ EvosAttacksPointers2C::
 	dw MimeJrEvosAttacks
 	dw HappinyEvosAttacks
 	dw MantykeEvosAttacks
+	dw StarlyEvosAttacks
+	dw StaraviaEvosAttacks
+	dw StaraptorEvosAttacks
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE
@@ -3200,6 +3203,61 @@ MantykeEvosAttacks:
 	dbw 39, ROOST
 	dbw 46, MIRROR_COAT
 	dbw 49, HYDRO_PUMP
+	db 0 ; no more level-up moves
+
+StarlyEvosAttacks:
+	dbbw EVOLVE_LEVEL, 14, STARAVIA
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 5, QUICK_ATTACK
+	dbw 8, WING_ATTACK
+	dbw 11, DOUBLE_TEAM
+	dbw 17, AERIAL_ACE
+	dbw 20, FACADE
+	dbw 26, WHIRLWIND
+	dbw 29, TAKE_DOWN
+	dbw 32, ROOST
+	dbw 35, AGILITY
+	dbw 38, BRAVE_BIRD
+	dbw 41, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+StaraviaEvosAttacks:
+	dbbw EVOLVE_LEVEL, 34, STARAPTOR
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 5, QUICK_ATTACK
+	dbw 8, WING_ATTACK
+	dbw 11, DOUBLE_TEAM
+	dbw 18, AERIAL_ACE
+	dbw 22, FACADE
+	dbw 30, WHIRLWIND
+	dbw 34, TAKE_DOWN
+	dbw 38, ROOST
+	dbw 42, AGILITY
+	dbw 46, BRAVE_BIRD
+	dbw 50, DOUBLE_EDGE
+	db 0 ; no more level-up moves
+
+StaraptorEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, GROWL
+	dbw 1, TACKLE
+	dbw 1, CLOSE_COMBAT
+	dbw 5, QUICK_ATTACK
+	dbw 8, WING_ATTACK
+	dbw 11, DOUBLE_TEAM
+	dbw 18, AERIAL_ACE
+	dbw 22, FACADE
+	dbw 30, WHIRLWIND
+	dbw 34, CLOSE_COMBAT
+	dbw 35, TAKE_DOWN
+	dbw 40, ROOST
+	dbw 45, AGILITY
+	dbw 50, BRAVE_BIRD
+	dbw 55, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 

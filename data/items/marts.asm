@@ -402,26 +402,21 @@ MartUnderground:
 	db -1 ; end
 
 MartGoldenrodRoofGramps:
-	db 8 ; # items
+	db 5 ; # items
 	db EVIOLITE
 	db ROCKY_HELMET
 	db AIR_BALLOON
 	db MUSCLE_BAND
 	db WISE_GLASSES
-	db EXPERT_BELT
-	db FLAME_ORB
-	db TOXIC_ORB
 	db -1 ; end
 
 MartGoldenrodRoofGranny:
-	db 7 ; # items
-	db CHOICE_BAND
-	db CHOICE_SPECS
-	db CHOICE_SCARF
-	db FOCUS_SASH
-	db LIFE_ORB
+	db 5 ; # items
+	db EXPERT_BELT
+	db FLAME_ORB
+	db TOXIC_ORB
 	db ASSAULT_VEST
-	db WEAK_POLICY
+	db LIFE_ORB
 	db -1 ; end
 
 DefaultMart:

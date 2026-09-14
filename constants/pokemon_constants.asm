@@ -508,6 +508,9 @@ JOHTO_POKEMON EQU const_value
 	const MIME_JR_          ;
 	const HAPPINY           ;
 	const MANTYKE           ;
+	const STARLY            ;
+	const STARAVIA          ;
+	const STARAPTOR         ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3
