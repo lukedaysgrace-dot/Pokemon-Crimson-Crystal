@@ -172,12 +172,14 @@ EvolveAfterBattle_MasterLoop:
 .holding
 	call GetNextEvoAttackByte
 	ld c, a
+	ld a, [wTempMonLevel]
+	cp c
+	jp c, .skip_evolution_species_parameter
+	call GetNextEvoAttackByte
+	ld c, a
 	ld a, [wTempMonItem]
 	cp c
 	jp nz, .skip_evolution_species
-	ld a, [wTimeOfDay]
-	cp NITE_F
-	jp z, .skip_evolution_species
 	xor a
 	ld [wTempMonItem], a
 	jp .proceed
@@ -610,7 +612,10 @@ EvolveAfterBattle_MasterLoop:
 .dont_evolve_check
 	ld a, b
 	cp EVOLVE_STAT
+	jr z, .skip_extra_evolution_parameter
+	cp EVOLVE_HOLDING
 	jr nz, .skip_evolution_species_parameter
+.skip_extra_evolution_parameter
 	inc hl
 .skip_evolution_species_parameter
 	inc hl
@@ -921,7 +926,10 @@ SkipEvolutions::
 	and a
 	ret z
 	cp EVOLVE_STAT
+	jr z, .extra_skip
+	cp EVOLVE_HOLDING
 	jr nz, .no_extra_skip
+.extra_skip
 	inc hl
 .no_extra_skip
 	inc hl
@@ -942,6 +950,8 @@ DetermineEvolutionItemResults::
 	and a
 	ret z
 	cp EVOLVE_STAT
+	jr z, .skip_species_two_parameters
+	cp EVOLVE_HOLDING
 	jr z, .skip_species_two_parameters
 	cp EVOLVE_ITEM
 	jr nz, .skip_species_parameter

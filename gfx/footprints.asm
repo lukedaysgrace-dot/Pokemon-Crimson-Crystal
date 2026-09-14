@@ -486,3 +486,6 @@ INCBIN "gfx/footprints/bonsly.1bpp" ; BONSLY
 INCBIN "gfx/footprints/mime_jr_.1bpp" ; MIME_JR_
 INCBIN "gfx/footprints/happiny.1bpp" ; HAPPINY
 INCBIN "gfx/footprints/mantine.1bpp" ; MANTYKE has no footprint
+INCBIN "gfx/footprints/pidgey.1bpp" ; STARLY
+INCBIN "gfx/footprints/pidgey.1bpp" ; STARAVIA
+INCBIN "gfx/footprints/pidgey.1bpp" ; STARAPTOR

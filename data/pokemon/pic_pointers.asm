@@ -989,3 +989,9 @@ PokemonPicPointers::
 	dba HappinyBackpic
 	dba MantykeFrontpic
 	dba MantykeBackpic
+	dba StarlyFrontpic
+	dba StarlyBackpic
+	dba StaraviaFrontpic
+	dba StaraviaBackpic
+	dba StaraptorFrontpic
+	dba StaraptorBackpic

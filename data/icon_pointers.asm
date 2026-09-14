@@ -489,3 +489,6 @@ IconPointers:
 	dba MimeJrIcon
 	dba HappinyIcon
 	dba MantykeIcon
+	dba PidgeyIcon ; STARLY
+	dba PidgeottoIcon ; STARAVIA
+	dba PidgeotIcon ; STARAPTOR

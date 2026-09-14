@@ -404,6 +404,9 @@ AlphabeticalPokedexOrder:
 	dw SQUIRTLE
 	dw SQUIRTLE_CLONE
 	dw STANTLER
+	dw STARAPTOR
+	dw STARAVIA
+	dw STARLY
 	dw STARMIE
 	dw STARYU
 	dw STEELIX

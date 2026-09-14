@@ -99,9 +99,17 @@ GoldenrodDeptStoreRoofBugCatcherScript:
 GoldenrodDeptStoreRoofGrampsScript:
 	faceplayer
 	opentext
+	checkevent EVENT_BEAT_PRYCE
+	iffalse .NotWorthy
 	writetext GoldenrodDeptStoreRoofGrampsText
 	waitbutton
 	pokemart MARTTYPE_COUPLE, MART_GOLDENROD_ROOF_GRAMPS
+	closetext
+	end
+
+.NotWorthy:
+	writetext GoldenrodDeptStoreRoofCoupleLockedText
+	waitbutton
 	closetext
 	end
 
@@ -117,7 +125,7 @@ GoldenrodDeptStoreRoofGrannyScript:
 	end
 
 .NotWorthy:
-	writetext GoldenrodDeptStoreRoofGrannyLockedText
+	writetext GoldenrodDeptStoreRoofCoupleLockedText
 	waitbutton
 	closetext
 	end
@@ -170,10 +178,10 @@ GoldenrodDeptStoreRoofGrannyText:
 	cont "real contenders."
 	done
 
-GoldenrodDeptStoreRoofGrannyLockedText:
+GoldenrodDeptStoreRoofCoupleLockedText:
 	text "Oh, hello, dear."
 
-	para "My goods are only"
+	para "Our goods are only"
 	line "for trainers with"
 	cont "real grit."
 
@@ -181,10 +189,7 @@ GoldenrodDeptStoreRoofGrannyLockedText:
 	line "MAHOGANY TOWN"
 	cont "what you're made"
 	cont "of, then come"
-	cont "back and see me."
-
-	para "Until then, chat"
-	line "with my husband!"
+	cont "back and see us."
 	done
 
 GoldenrodDeptStoreRoofPokefanFText:

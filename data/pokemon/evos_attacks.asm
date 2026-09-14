@@ -14,7 +14,7 @@ SECTION "Evolutions and Attacks Pointers", ROMX
 ;    * dbbw EVOLVE_HAPPINESS, TR_* constant (ANYTIME, MORNDAY, NITE), species
 ;    * dbbbw EVOLVE_STAT, level, ATK_*_DEF constant (LT, GT, EQ), species
 ;    * dbbw EVOLVE_MOVE, move, species
-;    * dbbw EVOLVE_HOLDING, held item (during the day), species
+;    * dbbbw EVOLVE_HOLDING, level, held item, species
 ;    * dbbw EVOLVE_PARTY, required party species, species
 ; - db 0 ; no more evolutions
 ; - Learnset (in increasing level order):
