@@ -493,3 +493,6 @@ PokemonCries::
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MIME_JR_
 	mon_cry CRY_PIDGEOTTO,   $00a,  $140 ; HAPPINY
 	mon_cry CRY_MANTINE,     $000,  $056 ; MANTYKE
+	mon_cry CRY_PIDGEY,      $0c0,  $088 ; STARLY
+	mon_cry CRY_PIDGEOTTO,   $020,  $130 ; STARAVIA
+	mon_cry CRY_FEAROW,     -$080,  $180 ; STARAPTOR

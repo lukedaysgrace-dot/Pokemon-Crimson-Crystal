@@ -16,6 +16,9 @@ NewPokedexOrder:
 	dw PIDGEY
 	dw PIDGEOTTO
 	dw PIDGEOT
+	dw STARLY
+	dw STARAVIA
+	dw STARAPTOR
 	dw SPEAROW
 	dw FEAROW
 	dw HOOTHOOT

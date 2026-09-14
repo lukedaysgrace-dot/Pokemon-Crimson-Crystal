@@ -491,3 +491,6 @@ PokemonNames::
 	db "MIME JR.@@"
 	db "HAPPINY@@@"
 	db "MANTYKE@@@"
+	db "STARLY@@@@"
+	db "STARAVIA@@"
+	db "STARAPTOR@"

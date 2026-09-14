@@ -1477,6 +1477,15 @@ HappinyBackpic:  INCBIN "gfx/pokemon/happiny/back.2bpp.lz"
 MantykeFrontpic: INCBIN "gfx/pokemon/mantyke/front.animated.2bpp.lz"
 MantykeBackpic:  INCBIN "gfx/pokemon/mantyke/back.2bpp.lz"
 
+SECTION "Starly Line Pics", ROMX
+
+StarlyFrontpic: INCBIN "gfx/pokemon/starly/front.animated.2bpp.lz"
+StarlyBackpic:  INCBIN "gfx/pokemon/starly/back.2bpp.lz"
+StaraviaFrontpic: INCBIN "gfx/pokemon/staravia/front.animated.2bpp.lz"
+StaraviaBackpic:  INCBIN "gfx/pokemon/staravia/back.2bpp.lz"
+StaraptorFrontpic: INCBIN "gfx/pokemon/staraptor/front.animated.2bpp.lz"
+StaraptorBackpic:  INCBIN "gfx/pokemon/staraptor/back.2bpp.lz"
+
 SECTION "New Trainer Pics", ROMX
 
 BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"

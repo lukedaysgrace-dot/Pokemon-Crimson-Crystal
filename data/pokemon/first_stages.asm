@@ -488,3 +488,6 @@ FirstEvoStages::
 	dw MIME_JR_
 	dw HAPPINY
 	dw MANTYKE
+	dw STARLY
+	dw STARLY
+	dw STARLY

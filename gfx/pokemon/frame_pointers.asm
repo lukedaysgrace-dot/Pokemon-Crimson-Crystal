@@ -487,3 +487,6 @@ FramesPointers:
 	dba MimeJrFrames
 	dba HappinyFrames
 	dba MantykeFrames
+	dba StarlyFrames
+	dba StaraviaFrames
+	dba StaraptorFrames

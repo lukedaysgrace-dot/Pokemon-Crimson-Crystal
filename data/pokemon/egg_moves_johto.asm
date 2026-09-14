@@ -341,6 +341,9 @@ EggMovePointers2::
 	dw MimeJrEggMoves ; MIME_JR_
 	dw HappinyEggMoves ; HAPPINY
 	dw MantykeEggMoves ; MANTYKE
+	dw StarlyEggMoves ; STARLY
+	dw NoEggMoves2 ; STARAVIA
+	dw NoEggMoves2 ; STARAPTOR
 
 
 ChikoritaEggMoves:
@@ -391,6 +394,15 @@ MantykeEggMoves:
 	dw SPLASH
 	dw HYDRO_PUMP
 	dw GUNK_SHOT
+	dw -1 ; end
+
+StarlyEggMoves:
+	dw FURY_ATTACK
+	dw ASTONISH
+	dw SAND_ATTACK
+	dw DOUBLE_EDGE
+	dw DETECT
+	dw FORESIGHT
 	dw -1 ; end
 
 CyndaquilEggMoves:

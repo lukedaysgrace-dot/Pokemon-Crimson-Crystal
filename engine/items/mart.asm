@@ -258,6 +258,22 @@ GetMartItemPrice:
 	push hl
 	ld [wCurItem], a
 	farcall GetItemPrice
+	ld a, [wMartType]
+	cp MARTTYPE_COUPLE
+	jr nz, .got_price
+; The retired rooftop battlers charge ten times the normal item price.
+	sla e
+	rl d
+	ld h, d
+	ld l, e
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+	ld d, h
+	ld e, l
+.got_price
 	pop hl
 
 GetMartPrice:

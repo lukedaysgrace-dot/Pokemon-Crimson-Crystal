@@ -363,3 +363,9 @@ BonslyFrames:  INCLUDE "gfx/pokemon/bonsly/frames.asm"
 MimeJrFrames:  INCLUDE "gfx/pokemon/mime_jr_/frames.asm"
 HappinyFrames: INCLUDE "gfx/pokemon/happiny/frames.asm"
 MantykeFrames: INCLUDE "gfx/pokemon/mantyke/frames.asm"
+
+SECTION "Pic Animations 7", ROMX
+
+StarlyFrames: INCLUDE "gfx/pokemon/starly/frames.asm"
+StaraviaFrames: INCLUDE "gfx/pokemon/staravia/frames.asm"
+StaraptorFrames: INCLUDE "gfx/pokemon/staraptor/frames.asm"
