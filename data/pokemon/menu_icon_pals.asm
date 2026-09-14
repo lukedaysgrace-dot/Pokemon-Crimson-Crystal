@@ -499,3 +499,6 @@ MonMenuIconPals:
 	icon_pals GRAY,   BROWN  ; STARLY
 	icon_pals GRAY,   BROWN  ; STARAVIA
 	icon_pals GRAY,   BROWN  ; STARAPTOR
+	icon_pals BROWN,  BLUE   ; SANDILE
+	icon_pals BROWN,  BLUE   ; KROKOROK
+	icon_pals BROWN,  BLUE   ; KROOKODILE

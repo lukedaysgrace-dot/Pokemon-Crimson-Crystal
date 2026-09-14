@@ -515,5 +515,8 @@ MantykeMenuIcon: INCBIN "gfx/menu_icons/mantyke.2bpp"
 StarlyMenuIcon: INCBIN "gfx/menu_icons/starly.2bpp"
 StaraviaMenuIcon: INCBIN "gfx/menu_icons/staravia.2bpp"
 StaraptorMenuIcon: INCBIN "gfx/menu_icons/staraptor.2bpp"
+SandileMenuIcon: INCBIN "gfx/menu_icons/sandile.2bpp"
+KrokorokMenuIcon: INCBIN "gfx/menu_icons/krokorok.2bpp"
+KrookodileMenuIcon: INCBIN "gfx/menu_icons/krookodile.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

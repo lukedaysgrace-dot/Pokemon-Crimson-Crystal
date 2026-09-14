@@ -494,3 +494,6 @@ PokemonNames::
 	db "STARLY@@@@"
 	db "STARAVIA@@"
 	db "STARAPTOR@"
+	db "SANDILE@@@"
+	db "KROKOROK@@"
+	db "KROOKODILE"

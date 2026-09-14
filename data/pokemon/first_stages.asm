@@ -491,3 +491,6 @@ FirstEvoStages::
 	dw STARLY
 	dw STARLY
 	dw STARLY
+	dw SANDILE
+	dw SANDILE
+	dw SANDILE

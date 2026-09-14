@@ -1486,6 +1486,15 @@ StaraviaBackpic:  INCBIN "gfx/pokemon/staravia/back.2bpp.lz"
 StaraptorFrontpic: INCBIN "gfx/pokemon/staraptor/front.animated.2bpp.lz"
 StaraptorBackpic:  INCBIN "gfx/pokemon/staraptor/back.2bpp.lz"
 
+SECTION "Sandile Line Pics", ROMX
+
+SandileFrontpic: INCBIN "gfx/pokemon/sandile/front.animated.2bpp.lz"
+SandileBackpic:  INCBIN "gfx/pokemon/sandile/back.2bpp.lz"
+KrokorokFrontpic: INCBIN "gfx/pokemon/krokorok/front.animated.2bpp.lz"
+KrokorokBackpic:  INCBIN "gfx/pokemon/krokorok/back.2bpp.lz"
+KrookodileFrontpic: INCBIN "gfx/pokemon/krookodile/front.animated.2bpp.lz"
+KrookodileBackpic:  INCBIN "gfx/pokemon/krookodile/back.2bpp.lz"
+
 SECTION "New Trainer Pics", ROMX
 
 BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"

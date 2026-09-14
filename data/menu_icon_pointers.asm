@@ -493,3 +493,6 @@ MenuIconPointers:
 	dba StarlyMenuIcon
 	dba StaraviaMenuIcon
 	dba StaraptorMenuIcon
+	dba SandileMenuIcon
+	dba KrokorokMenuIcon
+	dba KrookodileMenuIcon

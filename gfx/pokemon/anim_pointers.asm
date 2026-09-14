@@ -490,3 +490,6 @@ AnimationPointers:
 	dba StarlyAnimation
 	dba StaraviaAnimation
 	dba StaraptorAnimation
+	dba SandileAnimation
+	dba KrokorokAnimation
+	dba KrookodileAnimation
