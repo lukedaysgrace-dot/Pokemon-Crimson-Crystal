@@ -995,3 +995,9 @@ PokemonPicPointers::
 	dba StaraviaBackpic
 	dba StaraptorFrontpic
 	dba StaraptorBackpic
+	dba SandileFrontpic
+	dba SandileBackpic
+	dba KrokorokFrontpic
+	dba KrokorokBackpic
+	dba KrookodileFrontpic
+	dba KrookodileBackpic

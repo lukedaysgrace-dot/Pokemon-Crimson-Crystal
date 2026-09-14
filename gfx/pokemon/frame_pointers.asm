@@ -490,3 +490,6 @@ FramesPointers:
 	dba StarlyFrames
 	dba StaraviaFrames
 	dba StaraptorFrames
+	dba SandileFrames
+	dba KrokorokFrames
+	dba KrookodileFrames

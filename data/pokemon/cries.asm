@@ -496,3 +496,6 @@ PokemonCries::
 	mon_cry CRY_PIDGEY,      $0c0,  $088 ; STARLY
 	mon_cry CRY_PIDGEOTTO,   $020,  $130 ; STARAVIA
 	mon_cry CRY_FEAROW,     -$080,  $180 ; STARAPTOR
+	mon_cry CRY_TOTODILE,    $580,  $0a0 ; SANDILE
+	mon_cry CRY_TOTODILE,    $400,  $120 ; KROKOROK
+	mon_cry CRY_TOTODILE,    $280,  $180 ; KROOKODILE

@@ -344,6 +344,9 @@ EggMovePointers2::
 	dw StarlyEggMoves ; STARLY
 	dw NoEggMoves2 ; STARAVIA
 	dw NoEggMoves2 ; STARAPTOR
+	dw SandileEggMoves ; SANDILE
+	dw NoEggMoves2 ; KROKOROK
+	dw NoEggMoves2 ; KROOKODILE
 
 
 ChikoritaEggMoves:
@@ -403,6 +406,13 @@ StarlyEggMoves:
 	dw DOUBLE_EDGE
 	dw DETECT
 	dw FORESIGHT
+	dw -1 ; end
+
+SandileEggMoves:
+	dw DOUBLE_EDGE
+	dw COUNTER
+	dw SPITE
+	dw AQUA_TAIL
 	dw -1 ; end
 
 CyndaquilEggMoves:

@@ -369,3 +369,9 @@ SECTION "Pic Animations 7", ROMX
 StarlyFrames: INCLUDE "gfx/pokemon/starly/frames.asm"
 StaraviaFrames: INCLUDE "gfx/pokemon/staravia/frames.asm"
 StaraptorFrames: INCLUDE "gfx/pokemon/staraptor/frames.asm"
+
+SECTION "Pic Animations 8", ROMX
+
+SandileFrames: INCLUDE "gfx/pokemon/sandile/frames.asm"
+KrokorokFrames: INCLUDE "gfx/pokemon/krokorok/frames.asm"
+KrookodileFrames: INCLUDE "gfx/pokemon/krookodile/frames.asm"

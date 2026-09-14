@@ -511,6 +511,9 @@ JOHTO_POKEMON EQU const_value
 	const STARLY            ;
 	const STARAVIA          ;
 	const STARAPTOR         ;
+	const SANDILE           ;
+	const KROKOROK          ;
+	const KROOKODILE        ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

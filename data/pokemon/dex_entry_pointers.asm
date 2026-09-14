@@ -491,3 +491,6 @@ PokedexDataPointerTable:
 	dba StarlyPokedexEntry
 	dba StaraviaPokedexEntry
 	dba StaraptorPokedexEntry
+	dba SandilePokedexEntry
+	dba KrokorokPokedexEntry
+	dba KrookodilePokedexEntry
