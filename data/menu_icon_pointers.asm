@@ -484,3 +484,12 @@ MenuIconPointers:
 	dba EspathraMenuIcon
 	dba FinizenMenuIcon
 	dba PalafinMenuIcon
+	dba AzurillMenuIcon
+	dba WynautMenuIcon
+	dba BonslyMenuIcon
+	dba MimeJrMenuIcon
+	dba HappinyMenuIcon
+	dba MantykeMenuIcon
+	dba StarlyMenuIcon
+	dba StaraviaMenuIcon
+	dba StaraptorMenuIcon

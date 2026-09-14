@@ -496,3 +496,6 @@ MonMenuIconPals:
 	icon_pals BLUE,   GREEN  ; MIME_JR_
 	icon_pals RED,    PINK   ; HAPPINY
 	icon_pals BLUE,   TEAL   ; MANTYKE
+	icon_pals GRAY,   BROWN  ; STARLY
+	icon_pals GRAY,   BROWN  ; STARAVIA
+	icon_pals GRAY,   BROWN  ; STARAPTOR

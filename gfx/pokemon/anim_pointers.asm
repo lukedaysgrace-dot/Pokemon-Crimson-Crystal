@@ -487,3 +487,6 @@ AnimationPointers:
 	dba MimeJrAnimation
 	dba HappinyAnimation
 	dba MantykeAnimation
+	dba StarlyAnimation
+	dba StaraviaAnimation
+	dba StaraptorAnimation

@@ -487,3 +487,6 @@ AnimationIdlePointers:
 	dba MimeJrAnimationIdle
 	dba HappinyAnimationIdle
 	dba MantykeAnimationIdle
+	dba StarlyAnimationIdle
+	dba StaraviaAnimationIdle
+	dba StaraptorAnimationIdle

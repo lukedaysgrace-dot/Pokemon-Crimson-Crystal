@@ -488,3 +488,6 @@ PokedexDataPointerTable:
 	dba MimeJrPokedexEntry
 	dba HappinyPokedexEntry
 	dba MantykePokedexEntry
+	dba StarlyPokedexEntry
+	dba StaraviaPokedexEntry
+	dba StaraptorPokedexEntry

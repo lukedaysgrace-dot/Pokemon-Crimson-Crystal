@@ -93,8 +93,6 @@ Script_ChooseChallenge:
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	closetext
-	setval BATTLETOWERACTION_CHOOSEREWARD
-	special BattleTowerAction
 	sjump Script_WalkToBattleTowerElevator
 
 Script_ResumeBattleTowerChallenge:
@@ -120,16 +118,64 @@ Script_WalkToBattleTowerElevator:
 Script_GivePlayerHisPrize:
 	setval BATTLETOWERACTION_1C
 	special BattleTowerAction
-	setval BATTLETOWERACTION_GIVEREWARD
-	special BattleTowerAction
-	ifequal POTION, Script_YourPackIsStuffedFull
+	writetext Text_ChooseBattleTowerPrize
+	loadmenu BattleTowerPrizeMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .ChoiceBand
+	ifequal 2, .ChoiceSpecs
+	ifequal 3, .ChoiceScarf
+	ifequal 4, .FocusSash
+	ifequal 5, .WeaknessPolicy
+	writetext Text_BattleTowerWillHoldPrize
+	waitbutton
+	closetext
+	end
+
+.ChoiceBand:
+	setval CHOICE_BAND
+	sjump .GivePrize
+
+.ChoiceSpecs:
+	setval CHOICE_SPECS
+	sjump .GivePrize
+
+.ChoiceScarf:
+	setval CHOICE_SCARF
+	sjump .GivePrize
+
+.FocusSash:
+	setval FOCUS_SASH
+	sjump .GivePrize
+
+.WeaknessPolicy:
+	setval WEAK_POLICY
+
+.GivePrize:
 	getitemname STRING_BUFFER_4, USE_SCRIPT_VAR
-	giveitem ITEM_FROM_MEM, 5
-	writetext Text_PlayerGotFive
+	giveitem ITEM_FROM_MEM
+	iffalse Script_YourPackIsStuffedFull
+	writetext Text_PlayerGotBattleTowerPrize
 	setval BATTLETOWERACTION_1D
 	special BattleTowerAction
 	closetext
 	end
+
+BattleTowerPrizeMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 0, 17, 13
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 6 ; items
+	db "CHOICE BAND@"
+	db "CHOICE SPECS@"
+	db "CHOICE SCARF@"
+	db "FOCUS SASH@"
+	db "WEAK POLICY@"
+	db "CANCEL@"
 
 Script_YourPackIsStuffedFull:
 	writetext Text_YourPackIsStuffedFull
@@ -508,8 +554,8 @@ Text_CongratulationsYouveBeatenAllTheTrainers:
 	para "You've beaten all"
 	line "the trainers!"
 
-	para "For that, you get"
-	line "this great prize!"
+	para "For that, you may"
+	line "choose a prize!"
 
 	para ""
 	done
@@ -522,14 +568,27 @@ Text_AskRegisterRecord_Mobile:
 	line "CENTER?"
 	done
 
-Text_PlayerGotFive:
-	text "<PLAYER> got five"
+Text_ChooseBattleTowerPrize:
+	text "Please choose your"
+	line "prize."
+	done
+
+Text_PlayerGotBattleTowerPrize:
+	text "<PLAYER> got"
 	line "@"
 	text_ram wStringBuffer4
 	text "!@"
 	sound_item
 	text_waitbutton
 	text_end
+
+Text_BattleTowerWillHoldPrize:
+	text "We'll hold your"
+	line "prize for you."
+
+	para "Please come back"
+	line "when you're ready."
+	done
 
 Text_YourPackIsStuffedFull:
 	text "Oops, your PACK is"

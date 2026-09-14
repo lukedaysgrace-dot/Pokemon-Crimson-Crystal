@@ -487,3 +487,6 @@ BitmasksPointers:
 	dw MimeJrBitmasks
 	dw HappinyBitmasks
 	dw MantykeBitmasks
+	dw StarlyBitmasks
+	dw StaraviaBitmasks
+	dw StaraptorBitmasks
