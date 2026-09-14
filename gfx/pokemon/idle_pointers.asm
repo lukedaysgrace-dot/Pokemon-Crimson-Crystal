@@ -490,3 +490,6 @@ AnimationIdlePointers:
 	dba StarlyAnimationIdle
 	dba StaraviaAnimationIdle
 	dba StaraptorAnimationIdle
+	dba SandileAnimationIdle
+	dba KrokorokAnimationIdle
+	dba KrookodileAnimationIdle

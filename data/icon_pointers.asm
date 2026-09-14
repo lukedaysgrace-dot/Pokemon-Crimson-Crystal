@@ -492,3 +492,6 @@ IconPointers:
 	dba PidgeyIcon ; STARLY
 	dba PidgeottoIcon ; STARAVIA
 	dba PidgeotIcon ; STARAPTOR
+	dba TotodileIcon ; SANDILE
+	dba CroconawIcon ; KROKOROK
+	dba FeraligatrIcon ; KROOKODILE

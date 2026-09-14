@@ -489,3 +489,6 @@ INCBIN "gfx/footprints/mantine.1bpp" ; MANTYKE has no footprint
 INCBIN "gfx/footprints/pidgey.1bpp" ; STARLY
 INCBIN "gfx/footprints/pidgey.1bpp" ; STARAVIA
 INCBIN "gfx/footprints/pidgey.1bpp" ; STARAPTOR
+INCBIN "gfx/footprints/totodile.1bpp" ; SANDILE
+INCBIN "gfx/footprints/croconaw.1bpp" ; KROKOROK
+INCBIN "gfx/footprints/feraligatr.1bpp" ; KROOKODILE

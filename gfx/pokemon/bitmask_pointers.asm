@@ -490,3 +490,6 @@ BitmasksPointers:
 	dw StarlyBitmasks
 	dw StaraviaBitmasks
 	dw StaraptorBitmasks
+	dw SandileBitmasks
+	dw KrokorokBitmasks
+	dw KrookodileBitmasks

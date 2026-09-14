@@ -223,6 +223,8 @@ AlphabeticalPokedexOrder:
 	dw KOFFING
 	dw KOTORA
 	dw KRABBY
+	dw KROKOROK
+	dw KROOKODILE
 	dw LAIRON
 	dw LAMPENT
 	dw LANTURN
@@ -356,6 +358,7 @@ AlphabeticalPokedexOrder:
 	dw SALAMENCE
 	dw SALANDIT
 	dw SALAZZLE
+	dw SANDILE
 	dw SANDSHREW
 	dw SANDSHREW_ALOLAN
 	dw SANDSLASH
