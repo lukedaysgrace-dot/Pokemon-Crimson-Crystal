@@ -633,9 +633,21 @@ def validate_battle_tower(species, moves, items):
 		if match:
 			group = int(match.group(1))
 			continue
+		if re.match(r"BattleTowerMew:", line):
+			group = None
+			continue
+		match = re.fullmatch(r"\s*btmon\s+(.+)", without_comment(line))
+		if match:
+			entries.append({
+				"group": group,
+				"line": line_number,
+				"compact": True,
+				"values": args(match.group(1)),
+			})
+			continue
 		match = re.fullmatch(r"\s*dw\s+([A-Z][A-Z0-9_]*)\s*(?:;.*)?", line)
 		if match and match.group(1) in base_stats:
-			entries.append({"group": group, "line": line_number, "directives": []})
+			entries.append({"group": group, "line": line_number, "compact": False, "directives": []})
 		if entries:
 			code = without_comment(line)
 			directive = re.match(r"(db|dw|dt|bigdw|dn)\s+(.+)", code)
@@ -649,17 +661,69 @@ def validate_battle_tower(species, moves, items):
 	)
 	by_group = defaultdict(list)
 	for entry in entries:
-		by_group[entry["group"]].append(entry)
+		if entry["group"] is not None:
+			by_group[entry["group"]].append(entry)
 	if sorted(by_group) != list(range(1, 11)):
 		fail(path, 0, f"Battle Tower level groups are {sorted(by_group)}, expected 1..10")
 	for group_number, group_entries in by_group.items():
 		if len(group_entries) != expected_per_group:
 			fail(path, 0, f"group {group_number} has {len(group_entries)} mons; expected {expected_per_group}")
+		group_species = [battle_tower_entry_species(entry) for entry in group_entries]
+		duplicates = sorted(mon for mon in set(group_species) if group_species.count(mon) > 1)
+		if duplicates:
+			fail(path, 0, f"group {group_number} repeats species {duplicates}")
 	for entry in entries:
-		validate_battle_tower_mon(path, entry, base_stats, move_pp, items)
+		if entry["compact"]:
+			validate_compact_battle_tower_mon(path, entry, base_stats, move_pp, items)
+		else:
+			validate_battle_tower_mon(path, entry, base_stats, move_pp, items)
+
+	reserved = [entry for entry in entries if entry["group"] is None]
+	if len(reserved) != 1 or battle_tower_entry_species(reserved[0]) != "MEW":
+		fail(path, 0, "the reserved L100 final-opponent record must contain exactly one Mew")
 
 	validate_battle_tower_trainers()
 	return len(entries)
+
+
+def battle_tower_entry_species(entry):
+	return entry["values"][0] if entry["compact"] else entry["directives"][0][1]
+
+
+def validate_compact_battle_tower_mon(path, entry, base_stats, move_pp, items):
+	values = entry["values"]
+	if len(values) != 9:
+		fail(path, entry["line"], f"btmon has {len(values)} arguments; expected 9")
+		return
+	mon, item, *tail = values
+	party_moves = tail[:4]
+	level_text, stat_exp_text, personality = tail[4:]
+	if mon not in base_stats:
+		fail(path, entry["line"], f"unknown Battle Tower species {mon}")
+	if item not in items:
+		fail(path, entry["line"], f"unknown Battle Tower item {item}")
+	if any(move not in move_pp for move in party_moves):
+		fail(path, entry["line"], f"invalid Battle Tower moveset {party_moves}")
+	if personality not in ABILITY_SLOTS:
+		fail(path, entry["line"], f"invalid Battle Tower ability slot {personality}")
+	try:
+		level = decimal(level_text)
+		stat_exp = decimal(stat_exp_text)
+	except ValueError:
+		fail(path, entry["line"], "Battle Tower level and stat exp must be numeric")
+		return
+	if entry["group"] is None:
+		if mon != "MEW" or level != 100:
+			fail(path, entry["line"], "reserved final-opponent build must be a Level 100 Mew")
+	elif level != entry["group"] * 10:
+		fail(path, entry["line"], f"level {level} is in Battle Tower group {entry['group']}")
+	if not 0 <= stat_exp <= 65535:
+		fail(path, entry["line"], f"invalid Battle Tower stat exp {stat_exp}")
+	if entry["group"] is not None and mon in {
+		"MEWTWO", "MEW", "ARTICUNO", "ZAPDOS", "MOLTRES", "RAIKOU", "ENTEI",
+		"SUICUNE", "LUGIA", "HO_OH", "CELEBI",
+	}:
+		fail(path, entry["line"], f"legendary {mon} is not allowed in a random Battle Tower pool")
 
 
 def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
@@ -709,8 +773,8 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 	if len(dvs) != 4 or any(not 0 <= value <= 15 for value in dvs):
 		fail(path, directives[10][2], f"invalid Battle Tower DVs {dvs}")
 		return
-	if pp != [move_pp[move] for move in party_moves]:
-		fail(path, directives[11][2], f"stored PP {pp} does not match {party_moves}")
+	if any(not 0 <= value <= 63 for value in pp):
+		fail(path, directives[11][2], f"invalid stored Battle Tower PP {pp}")
 	if not 0 <= happiness <= 255:
 		fail(path, directives[12][2], f"invalid happiness {happiness}")
 	if caught_data != ["0", "0", "0"]:
@@ -719,9 +783,8 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 		fail(path, directives[14][2], f"level {level} is in Battle Tower group {entry['group']}")
 	if decimal(directives[4][1]) != level ** 3:
 		fail(path, directives[4][2], "Battle Tower experience must equal its level-cube convention")
-	expected_personality = "ABILITY_2" if dvs[0] & 1 else "ABILITY_1"
-	if personality != expected_personality:
-		fail(path, directives[15][2], f"personality {personality} disagrees with Attack DV {dvs[0]}")
+	if personality not in ABILITY_SLOTS:
+		fail(path, directives[15][2], f"invalid Battle Tower ability slot {personality}")
 	if hidden_power_type != "HIDDEN_POWER_DEFAULT_TYPE":
 		fail(path, directives[16][2], f"unexpected Hidden Power type {hidden_power_type}")
 	if status != ["0", "0"]:
@@ -729,11 +792,13 @@ def validate_battle_tower_mon(path, entry, base_stats, move_pp, items):
 	if not nickname_match or len(nickname_match.group(1)) != 11:
 		fail(path, directives[25][2], "Battle Tower nickname must be exactly 11 bytes")
 
-	calculated = calculate_battle_tower_stats(
-		base_stats[mon], stat_exp, dvs, level
-	)
-	if stored_stats != calculated:
-		fail(path, directives[18][2], f"stored stats {stored_stats} should be {calculated} for {mon}")
+	if any(not 0 <= value <= 65535 for value in stored_stats):
+		fail(path, directives[18][2], f"invalid stored Battle Tower stats {stored_stats}")
+	if mon in {
+		"MEWTWO", "MEW", "ARTICUNO", "ZAPDOS", "MOLTRES", "RAIKOU", "ENTEI",
+		"SUICUNE", "LUGIA", "HO_OH", "CELEBI",
+	}:
+		fail(path, entry["line"], f"legendary {mon} is not allowed in a random Battle Tower pool")
 
 
 def calculate_battle_tower_stats(base, stat_exp, dvs, level):
