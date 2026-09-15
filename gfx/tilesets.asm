@@ -296,8 +296,16 @@ TilesetBetaWordRoomColl:
 TilesetHoOhWordRoomColl:
 TilesetKabutoWordRoomColl:
 TilesetOmanyteWordRoomColl:
-TilesetAerodactylWordRoomColl:
 INCLUDE "data/tilesets/beta_word_room_collision.asm"
+
+
+; The Aerodactyl word room adds blocks $40-$41 (the crumbling fossil walls),
+; so it needs its own collision table instead of sharing the beta one, which
+; only covers blocks $00-$3f.
+SECTION "Tileset Data 16", ROMX
+
+TilesetAerodactylWordRoomColl:
+INCLUDE "data/tilesets/aerodactyl_word_room_collision.asm"
 
 
 SECTION "Tileset Data 7", ROMX
