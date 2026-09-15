@@ -293,19 +293,24 @@ TilesetBetaWordRoomMeta:
 INCBIN "data/tilesets/beta_word_room_metatiles.bin"
 
 TilesetBetaWordRoomColl:
-TilesetHoOhWordRoomColl:
 TilesetKabutoWordRoomColl:
 TilesetOmanyteWordRoomColl:
 INCLUDE "data/tilesets/beta_word_room_collision.asm"
 
 
-; The Aerodactyl word room adds blocks $40-$41 (the crumbling fossil walls),
-; so it needs its own collision table instead of sharing the beta one, which
-; only covers blocks $00-$3f.
+; The Aerodactyl and Ho-Oh word rooms add blocks $40-$41 (the crumbling fossil
+; walls), so they need their own collision tables instead of sharing the beta
+; one, which only covers blocks $00-$3f.
 SECTION "Tileset Data 16", ROMX
 
 TilesetAerodactylWordRoomColl:
 INCLUDE "data/tilesets/aerodactyl_word_room_collision.asm"
+
+
+SECTION "Tileset Data 17", ROMX
+
+TilesetHoOhWordRoomColl:
+INCLUDE "data/tilesets/ho_oh_word_room_collision.asm"
 
 
 SECTION "Tileset Data 7", ROMX
@@ -329,6 +334,12 @@ SECTION "Tileset Data 8", ROMX
 
 TilesetHoOhWordRoomMeta:
 INCBIN "data/tilesets/ho_oh_word_room_metatiles.bin"
+; $41: opened version of block $40. The left wall cell uses bank 0 tiles
+; $58 and $59 after its fossil has been exposed.
+	db $06, $06, $06, $06
+	db $58, $59, $21, $21
+	db $02, $03, $02, $03
+	db $03, $02, $03, $02
 
 TilesetKabutoWordRoomMeta:
 INCBIN "data/tilesets/kabuto_word_room_metatiles.bin"
@@ -476,6 +487,11 @@ INCBIN "data/tilesets/beta_word_room_attributes.bin"
 
 TilesetHoOhWordRoomAttr::
 INCBIN "data/tilesets/ho_oh_word_room_attributes.bin"
+; attributes for opened block $41 (bank 0, matching block $40's palettes)
+	db $05, $05, $05, $05
+	db $04, $04, $04, $04
+	db $05, $05, $05, $05
+	db $05, $05, $05, $05
 
 TilesetKabutoWordRoomAttr::
 INCBIN "data/tilesets/kabuto_word_room_attributes.bin"
