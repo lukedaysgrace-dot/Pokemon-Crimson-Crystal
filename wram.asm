@@ -2877,10 +2877,11 @@ wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
 
 	ds 0 ; trimmed by 5: wEventFlags grew a byte for EVENT_BEAT_HEX_MANIAC_WINNIE, again for the Goldenrod rooftop couple events, and again for the Seafoam Gym trainer flags
+	     ; (further growth is paid for out of the padding after wCurBox below)
 
 wCurBox:: db ; db72 ; 0-based index of the current storage box
 
-	ds 2
+	ds 1 ; trimmed by 1: wEventFlags grew a byte again for the Ho-Oh word room fossil walls
 
 wCelebiEvent:: ; dbf3
 ; bit 2: forest is restless
