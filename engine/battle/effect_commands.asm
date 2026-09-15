@@ -1316,8 +1316,8 @@ BattleCommand_Critical:
 	cp STICK
 	jr nz, .FocusEnergy
 
-; +4 critical level
-	ld c, 4
+; crit level 2 => 128/256 = 50% (CriticalHitChances stage +2)
+	ld c, 2
 	jr .Tally
 
 .FocusEnergy:

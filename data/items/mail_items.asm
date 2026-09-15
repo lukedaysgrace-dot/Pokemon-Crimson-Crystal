@@ -1,8 +1,4 @@
 MailItems:
 	db FLOWER_MAIL
-	db SURF_MAIL
-	db LITEBLUEMAIL
-	db PORTRAITMAIL
-	db LOVELY_MAIL
 	db EON_MAIL
 	db -1

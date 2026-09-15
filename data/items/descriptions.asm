@@ -55,11 +55,11 @@ ItemDescriptions:
 	dw XSpecialDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
-	dw QuestionMarkDesc
+	dw HelixFossilDesc
 	dw ExpShareDesc
 	dw OldRodDesc
 	dw GoodRodDesc
-	dw SilverLeafDesc
+	dw DomeFossilDesc
 	dw SuperRodDesc
 	dw PPUpDesc
 	dw EtherDesc
@@ -74,7 +74,7 @@ ItemDescriptions:
 	dw MoomooMilkDesc
 	dw QuickClawDesc
 	dw PsnCureBerryDesc
-	dw GoldLeafDesc
+	dw OldAmberDesc
 	dw SoftSandDesc
 	dw SharpBeakDesc
 	dw PrzCureBerryDesc
@@ -128,7 +128,7 @@ ItemDescriptions:
 	dw LuckyEggDesc
 	dw CardKeyDesc
 	dw MachinePartDesc
-	dw EggTicketDesc
+	dw RootFossilDesc
 	dw LostItemDesc
 	dw StardustDesc
 	dw StarPieceDesc
@@ -166,8 +166,8 @@ ItemDescriptions:
 	dw FriendBallDesc
 	dw MoonBallDesc
 	dw LoveBallDesc
-	dw NormalBoxDesc
-	dw GorgeousBoxDesc
+	dw ClawFossilDesc
+	dw SkullFossilDesc
 	dw SunStoneDesc
 	dw PolkadotBowDesc
 	dw MuscleBandDesc
@@ -180,10 +180,10 @@ ItemDescriptions:
 	dw RainbowWingDesc
 	dw FlameOrbDesc
 	dw BrickPieceDesc
-	dw SurfMailDesc
-	dw LiteBlueMailDesc
-	dw PortraitMailDesc
-	dw LovelyMailDesc
+	dw ArmorFossilDesc
+	dw CoverFossilDesc
+	dw PlumeFossilDesc
+	dw JawFossilDesc
 	dw EonMailDesc
 	dw DampRockDesc
 	dw HeatRockDesc
@@ -192,7 +192,7 @@ ItemDescriptions:
 	dw ToxicOrbDesc
 	dw ElementalSphereDesc
 	dw SafariBallDesc
-	dw QuestionMarkDesc
+	dw SailFossilDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
@@ -476,9 +476,9 @@ GoodRodDesc:
 	db   "A good ROD for"
 	next "catching #MON.@"
 
-SilverLeafDesc:
-	db   "A strange, silver-"
-	next "colored leaf.@"
+DomeFossilDesc:
+	db   "Ancient fossil of"
+	next "a domed shell.@"
 
 SuperRodDesc:
 	db   "The best ROD for"
@@ -536,9 +536,9 @@ PsnCureBerryDesc:
 	db   "A self-cure for"
 	next "poison. (HOLD)@"
 
-GoldLeafDesc:
-	db   "A strange, gold-"
-	next "colored leaf.@"
+OldAmberDesc:
+	db   "Amber with ancient"
+	next "DNA inside it.@"
 
 SoftSandDesc:
 	db   "Powers up ground-"
@@ -739,9 +739,9 @@ MachinePartDesc:
 	db   "A machine part for"
 	next "the POWER PLANT.@"
 
-EggTicketDesc:
-	db   "May use at Golden-"
-	next "rod trade corner.@"
+RootFossilDesc:
+	db   "Ancient fossil of"
+	next "a sea plant.@"
 
 LostItemDesc:
 	db   "The # DOLL lost"
@@ -913,13 +913,13 @@ LoveBallDesc:
 	db   "For catching the"
 	next "opposite gender.@"
 
-NormalBoxDesc:
-	db   "Open it and see"
-	next "what's inside.@"
+ClawFossilDesc:
+	db   "Ancient fossil of"
+	next "a sharp claw.@"
 
-GorgeousBoxDesc:
-	db   "Open it and see"
-	next "what's inside.@"
+SkullFossilDesc:
+	db   "Ancient fossil of"
+	next "a thick skull.@"
 
 SunStoneDesc:
 	db   "Evolves certain"
@@ -968,21 +968,21 @@ BrickPieceDesc:
 	db   "A rare chunk of"
 	next "tile.@"
 
-SurfMailDesc:
-	db   "LAPRAS-print MAIL."
-	next "(HOLD)@"
+ArmorFossilDesc:
+	db   "Ancient fossil of"
+	next "a armored head.@"
 
-LiteBlueMailDesc:
-	db   "DRATINI-print"
-	next "MAIL. (HOLD)@"
+CoverFossilDesc:
+	db   "Ancient fossil of"
+	next "a hard cover.@"
 
-PortraitMailDesc:
-	db   "MAIL featuring the"
-	next "holder's likeness.@"
+PlumeFossilDesc:
+	db   "Ancient fossil of"
+	next "a winged beast.@"
 
-LovelyMailDesc:
-	db   "Heart-print MAIL."
-	next "(HOLD)@"
+JawFossilDesc:
+	db   "Ancient fossil of"
+	next "a large jaw.@"
 
 EonMailDesc:
 	db   "EEVEE-print MAIL."
@@ -1018,3 +1018,11 @@ SyrupyAppleDesc:
 	db   "A syrupy apple."
 	next "Evolves DIPPLIN."
 	next "Works at LV.36.@"
+
+HelixFossilDesc:
+	db   "Ancient fossil of"
+	next "a spiral shell.@"
+
+SailFossilDesc:
+	db   "Ancient fossil of"
+	next "a back sail.@"
