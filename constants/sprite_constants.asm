@@ -86,6 +86,7 @@
 	const SPRITE_POKE_BALL ; 54
 	const SPRITE_POKEDEX ; 55
 	const SPRITE_PAPER ; 56
+SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_VIRTUAL_BOY ; 57
 	const SPRITE_OLD_LINK_RECEPTIONIST ; 58
 	const SPRITE_ROCK ; 59

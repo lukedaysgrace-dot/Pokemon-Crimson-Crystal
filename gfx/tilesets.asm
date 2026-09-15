@@ -330,6 +330,12 @@ INCBIN "data/tilesets/omanyte_word_room_metatiles.bin"
 
 TilesetAerodactylWordRoomMeta:
 INCBIN "data/tilesets/aerodactyl_word_room_metatiles.bin"
+; $41: opened version of block $40. The left wall cell uses bank 0 tiles
+; $58 and $59 after its fossil has been exposed.
+	db $06, $06, $06, $06
+	db $58, $59, $31, $22
+	db $02, $03, $02, $03
+	db $03, $02, $03, $02
 
 
 SECTION "Tileset Data 9", ROMX
@@ -471,3 +477,8 @@ INCBIN "data/tilesets/omanyte_word_room_attributes.bin"
 
 TilesetAerodactylWordRoomAttr::
 INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
+; attributes for opened block $41 (bank 0, matching block $40's palettes)
+	db $05, $05, $05, $05
+	db $04, $04, $04, $04
+	db $05, $05, $05, $05
+	db $05, $05, $05, $05
