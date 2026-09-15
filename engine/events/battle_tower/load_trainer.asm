@@ -92,12 +92,37 @@ Function_LoadRandomBattleTowerMon:
 	call GetSRAMBank
 
 .FindARandomBattleTowerMon:
-	; a = 1, 2, ..., 10 indicating level 10, 20, ..., 100 opponents
+	push de
+
+	; The seventh opponent in the L100 room always leads with Mew.
+	ld a, [wBTChoiceOfLvlGroup]
+	cp 10
+	jr nz, .random_mon
+	ld a, [sNrOfBeatenBattleTowerTrainers]
+	cp BATTLETOWER_STREAK_LENGTH - 1
+	jr nz, .random_mon
+	ld a, e
+	cp LOW(wBT_OTMon1)
+	jr nz, .random_mon
+	ld a, BANK(BattleTowerMew)
+	ld hl, BattleTowerMew
+	jr .copy_mon
+
+.random_mon
+	; Resolve the far pointer for the selected L10, L20, ... L100 pool.
 	ld a, [wBTChoiceOfLvlGroup]
 	dec a
-	ld hl, BattleTowerMons
-	ld bc, BATTLETOWER_NUM_UNIQUE_MON * (NICKNAMED_MON_STRUCT_LENGTH + 5)
-	call AddNTimes
+	ld c, a
+	ld b, 0
+	ld hl, BattleTowerMonGroupPointers
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	push af
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 
 	ldh a, [hRandomAdd]
 	ld b, a
@@ -111,6 +136,16 @@ Function_LoadRandomBattleTowerMon:
 	jr nc, .resample
 	ld bc, NICKNAMED_MON_STRUCT_LENGTH + 5
 	call AddNTimes
+	pop af
+
+.copy_mon
+	; The pools live in independent ROM banks. Copy the chosen source record
+	; into unused Battle Tower WRAM so the existing conversion code can parse it.
+	ld de, w3_d002
+	ld bc, NICKNAMED_MON_STRUCT_LENGTH + 5
+	call FarCopyBytes
+	pop de
+	ld hl, w3_d002
 
 	; hl = pointer to the mon that will be loaded (1 byte species, 1 byte item, 2 -> 1 byte each move, NICKNAMED_MON_STRUCT_LENGTH - 6 bytes data)
 	ld a, [hli]
@@ -145,15 +180,15 @@ Function_LoadRandomBattleTowerMon:
 .pop_and_retry
 	pop de
 	pop hl
-	jr z, .FindARandomBattleTowerMon
+	jp z, .FindARandomBattleTowerMon
 
 	; check if the held item matches any of the current trainer's first two Pokémon's held items
 	ld a, [wBT_OTMon1Item]
 	cp [hl]
-	jr z, .FindARandomBattleTowerMon
+	jp z, .FindARandomBattleTowerMon
 	ld a, [wBT_OTMon2Item]
 	cp [hl]
-	jr z, .FindARandomBattleTowerMon
+	jp z, .FindARandomBattleTowerMon
 
 	; reserve and load the converted species from wTempSpecies, manually load item and moves, and copy everything else
 	push hl
@@ -248,4 +283,14 @@ Function_LoadRandomBattleTowerMon:
 
 INCLUDE "data/battle_tower/classes.asm"
 
-INCLUDE "data/battle_tower/parties.asm"
+BattleTowerMonGroupPointers:
+	dba BattleTowerMons1
+	dba BattleTowerMons2
+	dba BattleTowerMons3
+	dba BattleTowerMons4
+	dba BattleTowerMons5
+	dba BattleTowerMons6
+	dba BattleTowerMons7
+	dba BattleTowerMons8
+	dba BattleTowerMons9
+	dba BattleTowerMons10

@@ -283,6 +283,7 @@ RunBattleTowerTrainer:
 ReadBTTrainerParty:
 ; Initialise the BattleTower-Trainer and his mon
 	call CopyBTTrainer_FromBT_OT_TowBT_OTTemp
+	call PerfectAndRecalculateBTParty
 
 ; Check the nicknames for illegal characters, and replace bad nicknames
 ; with their species names.
@@ -395,6 +396,71 @@ ReadBTTrainerParty:
 	jr nz, .otpartymon_loop
 	ld a, -1
 	ld [bc], a
+	ret
+
+PerfectAndRecalculateBTParty:
+; Battle Tower opponents always have perfect DVs. Refill PP and recalculate
+; their stored battle stats so both legacy and newly-added sets obey that rule.
+	ld hl, wBT_OTTempMon1
+	ld d, BATTLETOWER_PARTY_LENGTH
+.loop
+	push de
+	push hl
+	ld b, h
+	ld c, l
+
+	ld hl, MON_DVS
+	add hl, bc
+	ld a, PERFECT_ATKDEF_DV
+	ld [hli], a
+	ld a, PERFECT_SPDSPC_DV
+	ld [hl], a
+
+	ld a, [bc]
+	ld [wCurSpecies], a
+	call GetBaseData
+
+	ld hl, MON_LEVEL
+	add hl, bc
+	ld a, [hl]
+	ld [wCurPartyLevel], a
+
+	ld hl, MON_MOVES
+	add hl, bc
+	push hl
+	ld hl, MON_PP
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	predef FillPP
+
+	ld hl, MON_MAXHP
+	add hl, bc
+	ld d, h
+	ld e, l
+	push hl
+	push de
+	ld hl, MON_STAT_EXP - 1
+	add hl, bc
+	ld b, TRUE
+	predef CalcMonStats
+	pop de
+	pop hl
+	dec de
+	dec de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+
+	pop hl
+	ld bc, NICKNAMED_MON_STRUCT_LENGTH
+	add hl, bc
+	pop de
+	dec d
+	jr nz, .loop
 	ret
 
 ValidateBTParty:
