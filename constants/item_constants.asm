@@ -61,11 +61,11 @@
 	const X_SPECIAL    ; 35
 	const COIN_CASE    ; 36
 	const ITEMFINDER   ; 37
-	const POKE_FLUTE   ; 38
+	const HELIX_FOSSIL   ; 38
 	const EXP_SHARE    ; 39
 	const OLD_ROD      ; 3a
 	const GOOD_ROD     ; 3b
-	const SILVER_LEAF  ; 3c
+	const DOME_FOSSIL  ; 3c
 	const SUPER_ROD    ; 3d
 	const PP_UP        ; 3e
 	const ETHER        ; 3f
@@ -80,7 +80,7 @@
 	const MOOMOO_MILK  ; 48
 	const QUICK_CLAW   ; 49
 	const PSNCUREBERRY ; 4a
-	const GOLD_LEAF    ; 4b
+	const OLD_AMBER    ; 4b
 	const SOFT_SAND    ; 4c
 	const SHARP_BEAK   ; 4d
 	const PRZCUREBERRY ; 4e
@@ -134,7 +134,7 @@
 	const LUCKY_EGG    ; 7e
 	const CARD_KEY     ; 7f
 	const MACHINE_PART ; 80
-	const EGG_TICKET   ; 81
+	const ROOT_FOSSIL   ; 81
 	const LOST_ITEM    ; 82
 	const STARDUST     ; 83
 	const STAR_PIECE   ; 84
@@ -172,8 +172,8 @@
 	const FRIEND_BALL  ; a4
 	const MOON_BALL    ; a5
 	const LOVE_BALL    ; a6
-	const NORMAL_BOX   ; a7
-	const GORGEOUS_BOX ; a8
+	const CLAW_FOSSIL   ; a7
+	const SKULL_FOSSIL ; a8
 	const SUN_STONE    ; a9
 	const POLKADOT_BOW ; aa
 	const MUSCLE_BAND  ; ab
@@ -186,10 +186,10 @@
 	const RAINBOW_WING ; b2
 	const FLAME_ORB    ; b3
 	const BRICK_PIECE  ; b4
-	const SURF_MAIL    ; b5
-	const LITEBLUEMAIL ; b6
-	const PORTRAITMAIL ; b7
-	const LOVELY_MAIL  ; b8
+	const ARMOR_FOSSIL    ; b5
+	const COVER_FOSSIL ; b6
+	const PLUME_FOSSIL ; b7
+	const JAW_FOSSIL   ; b8
 	const EON_MAIL     ; b9
 	const DAMP_ROCK    ; ba
 	const HEAT_ROCK    ; bb
@@ -198,7 +198,7 @@
 	const TOXIC_ORB    ; be
 	const ELEMENTAL_SPHERE ; bf
 	const SAFARI_BALL  ; c0
-	const ITEM_FA      ; c1
+	const SAIL_FOSSIL      ; c1
 
 add_tm: MACRO
 if !DEF(TM01)

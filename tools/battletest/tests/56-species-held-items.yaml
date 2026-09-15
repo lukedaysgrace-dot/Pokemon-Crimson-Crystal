@@ -1,0 +1,165 @@
+# Regression coverage for species-specific held items.
+# Paired controls use identical RNG so damage differences isolate the item.
+
+# ---- Light Ball ----------------------------------------------------------
+
+- name: "Light Ball control: Pikachu physical damage is read from Attack"
+  id: light_ball_physical_control
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Light Ball doubles Pikachu physical Attack"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp >= 2 * (result('light_ball_physical_control')['enemy']['damage'] - 2) + 2
+    - enemy.start_hp - enemy.hp <= 2 * (result('light_ball_physical_control')['enemy']['damage'] - 2) + 3
+
+- name: "Light Ball control: Pikachu special damage"
+  id: light_ball_special_control
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [THUNDERSHOCK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Light Ball doubles Pikachu Special Attack"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp >= 2 * (result('light_ball_special_control')['enemy']['damage'] - 2) + 2
+    - enemy.start_hp - enemy.hp <= 2 * (result('light_ball_special_control')['enemy']['damage'] - 2) + 3
+
+- name: "Light Ball control: enemy Pikachu physical damage"
+  id: enemy_light_ball_physical_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Light Ball also doubles an enemy Pikachu's physical Attack"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp >= 2 * (result('enemy_light_ball_physical_control')['player']['damage'] - 2) + 2
+    - player.start_hp - player.hp <= 2 * (result('enemy_light_ball_physical_control')['player']['damage'] - 2) + 3
+
+- name: "Light Ball is Pikachu-only"
+  id: light_ball_raichu_control
+  player: { species: RAICHU_ALOLAN, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Light Ball does not boost Alolan Raichu"
+  player: { species: RAICHU_ALOLAN, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('light_ball_raichu_control')['enemy']['damage']
+
+# ---- Stick ---------------------------------------------------------------
+# A roll of 100 misses the stage-0 crit threshold (11) but hits the Stick's
+# +2-stage threshold (128). Water Gun keeps these tests independent of the
+# physical Attack path tested above.
+
+- name: "Stick control: Farfetch'd does not crit at stage zero"
+  id: stick_farfetchd_control
+  player: { species: FARFETCH_D, level: 50, ability: NO_ABILITY, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Stick gives Farfetch'd two critical-hit stages"
+  player: { species: FARFETCH_D, level: 50, ability: NO_ABILITY, item: STICK, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == (result('stick_farfetchd_control')['enemy']['damage'] - 2) + (result('stick_farfetchd_control')['enemy']['damage'] - 2) // 2 + 2
+
+- name: "Stick control: Sirfetch'd does not crit at stage zero"
+  id: stick_sirfetchd_control
+  player: { species: SIRFETCH_D, level: 50, ability: NO_ABILITY, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Stick gives Sirfetch'd two critical-hit stages"
+  player: { species: SIRFETCH_D, level: 50, ability: NO_ABILITY, item: STICK, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == (result('stick_sirfetchd_control')['enemy']['damage'] - 2) + (result('stick_sirfetchd_control')['enemy']['damage'] - 2) // 2 + 2
+
+- name: "Stick control: unrelated species"
+  id: stick_unrelated_control
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Stick is species-specific"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: STICK, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('stick_unrelated_control')['enemy']['damage']
+
+- name: "Klutz suppresses Farfetch'd's Stick"
+  player: { species: FARFETCH_D, level: 50, ability: KLUTZ, item: STICK, moves: [WATER_GUN] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('stick_farfetchd_control')['enemy']['damage']
+
+- name: "Stick control: enemy Farfetch'd does not crit at stage zero"
+  id: enemy_stick_farfetchd_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: FARFETCH_D, level: 50, ability: NO_ABILITY, moves: [WATER_GUN] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Stick works for an enemy Farfetch'd"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: FARFETCH_D, level: 50, ability: NO_ABILITY, item: STICK, moves: [WATER_GUN] }
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == (result('enemy_stick_farfetchd_control')['player']['damage'] - 2) + (result('enemy_stick_farfetchd_control')['player']['damage'] - 2) // 2 + 2

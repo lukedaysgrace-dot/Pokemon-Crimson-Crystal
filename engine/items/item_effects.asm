@@ -68,11 +68,11 @@ ItemEffects:
 	dw XItemEffect         ; X_SPECIAL
 	dw CoinCaseEffect      ; COIN_CASE
 	dw ItemfinderEffect    ; ITEMFINDER
-	dw PokeFluteEffect     ; POKE_FLUTE
+	dw NoEffect            ; HELIX_FOSSIL
 	dw NoEffect            ; EXP_SHARE
 	dw OldRodEffect        ; OLD_ROD
 	dw GoodRodEffect       ; GOOD_ROD
-	dw NoEffect            ; SILVER_LEAF
+	dw NoEffect            ; DOME_FOSSIL
 	dw SuperRodEffect      ; SUPER_ROD
 	dw RestorePPEffect     ; PP_UP
 	dw RestorePPEffect     ; ETHER
@@ -87,7 +87,7 @@ ItemEffects:
 	dw RestoreHPEffect     ; MOOMOO_MILK
 	dw NoEffect            ; QUICK_CLAW
 	dw StatusHealingEffect ; PSNCUREBERRY
-	dw NoEffect            ; GOLD_LEAF
+	dw NoEffect            ; OLD_AMBER
 	dw NoEffect            ; SOFT_SAND
 	dw NoEffect            ; SHARP_BEAK
 	dw StatusHealingEffect ; PRZCUREBERRY
@@ -141,7 +141,7 @@ ItemEffects:
 	dw NoEffect            ; LUCKY_EGG
 	dw CardKeyEffect       ; CARD_KEY
 	dw NoEffect            ; MACHINE_PART
-	dw NoEffect            ; EGG_TICKET
+	dw NoEffect            ; ROOT_FOSSIL
 	dw NoEffect            ; LOST_ITEM
 	dw NoEffect            ; STARDUST
 	dw NoEffect            ; STAR_PIECE
@@ -179,8 +179,8 @@ ItemEffects:
 	dw PokeBallEffect      ; FRIEND_BALL
 	dw PokeBallEffect      ; MOON_BALL
 	dw PokeBallEffect      ; LOVE_BALL
-	dw NormalBoxEffect     ; NORMAL_BOX
-	dw GorgeousBoxEffect   ; GORGEOUS_BOX
+	dw NoEffect            ; CLAW_FOSSIL
+	dw NoEffect            ; SKULL_FOSSIL
 	dw EvoStoneEffect      ; SUN_STONE
 	dw NoEffect            ; POLKADOT_BOW
 	dw NoEffect            ; MUSCLE_BAND
@@ -193,10 +193,10 @@ ItemEffects:
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; FLAME_ORB
 	dw EvoStoneEffect      ; BRICK_PIECE
-	dw NoEffect            ; SURF_MAIL
-	dw NoEffect            ; LITEBLUEMAIL
-	dw NoEffect            ; PORTRAITMAIL
-	dw NoEffect            ; LOVELY_MAIL
+	dw NoEffect            ; ARMOR_FOSSIL
+	dw NoEffect            ; COVER_FOSSIL
+	dw NoEffect            ; PLUME_FOSSIL
+	dw NoEffect            ; JAW_FOSSIL
 	dw NoEffect            ; EON_MAIL
 	dw NoEffect            ; DAMP_ROCK
 	dw NoEffect            ; HEAT_ROCK
@@ -205,6 +205,7 @@ ItemEffects:
 	dw NoEffect            ; TOXIC_ORB
 	dw NoEffect            ; ELEMENTAL_SPHERE
 	dw PokeBallEffect      ; SAFARI_BALL
+	dw NoEffect            ; SAIL_FOSSIL
 
 PokeBallEffect:
 	ld a, [wBattleMode]
