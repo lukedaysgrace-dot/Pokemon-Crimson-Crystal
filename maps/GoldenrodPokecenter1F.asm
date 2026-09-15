@@ -451,76 +451,9 @@ UnknownText_0x61749:
 	line "cancel the trade."
 	done
 
-UnknownText_0x6176f:
-	text "Oh!"
-
-	para "I see you have an"
-	line "EGG TICKET!"
-
-	para "It's a coupon that"
-	line "special people can"
-
-	para "redeem for a"
-	line "special #MON!"
-	done
-
-UnknownText_0x617d2:
-	text "Let me give you a"
-	line "quick briefing."
-
-	para "Trades held at the"
-	line "TRADE CORNER are"
-
-	para "between two"
-	line "trainers who don't"
-
-	para "know each other's"
-	line "identity."
-
-	para "As a result, it"
-	line "may take time."
-
-	para "However, an ODD"
-	line "EGG is available"
-	cont "just for you."
-
-	para "It will be sent to"
-	line "you right away."
-
-	para "Please choose one"
-	line "of the rooms in"
-
-	para "the CENTER."
-	line "An ODD EGG will be"
-
-	para "sent from the"
-	line "chosen room."
-	done
-
 UnknownText_0x6191f:
 	text "Please wait a"
 	line "moment."
-	done
-
-UnknownText_0x61936:
-	text "Thank you for"
-	line "waiting."
-
-	para "We received your"
-	line "ODD EGG."
-
-	para "Here it is!"
-
-	para "Please raise it"
-	line "with loving care."
-	done
-
-UnknownText_0x61996:
-	text "I'm awfully sorry."
-
-	para "The EGG TICKET"
-	line "exchange service"
-	cont "isn't running now."
 	done
 
 UnknownText_0x619db:

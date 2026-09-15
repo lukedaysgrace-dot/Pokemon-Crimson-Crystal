@@ -112,10 +112,6 @@ ReadAnyMail:
 
 MailGFXPointers:
 	dbw FLOWER_MAIL,  LoadFlowerMailGFX
-	dbw SURF_MAIL,    LoadSurfMailGFX
-	dbw LITEBLUEMAIL, LoadLiteBlueMailGFX
-	dbw PORTRAITMAIL, LoadPortraitMailGFX
-	dbw LOVELY_MAIL,  LoadLovelyMailGFX
 	dbw EON_MAIL,     LoadEonMailGFX
 	db -1
 
@@ -695,7 +691,7 @@ MailGFX_PlaceMessage:
 	ret z
 	ld a, [wBuffer3]
 	hlcoord 8, 14
-	cp $3 ; PORTRAITMAIL
+	cp $3 ; (vestigial: mail type 3 was removed)
 	jr z, .place_author
 	hlcoord 5, 14
 

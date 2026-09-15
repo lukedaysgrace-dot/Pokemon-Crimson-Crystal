@@ -84,14 +84,6 @@ _GiveOddEgg:
 	dec c
 	jr nz, .move_loop
 
-	ld a, EGG_TICKET
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantityChangeBuffer], a
-	ld a, -1
-	ld [wCurItemQuantity], a
-	ld hl, wNumItems
-	call TossItem
 
 	; load species in wcd2a
 	ld a, EGG

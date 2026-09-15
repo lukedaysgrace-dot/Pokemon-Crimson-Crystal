@@ -2524,6 +2524,9 @@ PlayerAttackDamage_Core:
 ; Note: Returns player attack at hl in hl.
 	call UnawareStats_Player
 	call ThickClubBoost
+	; Light Ball doubles Pikachu's Attack as well as its Sp. Atk (Gen 4+).
+	; ThickClubBoost already converted the stat pointer in hl to a value.
+	call LightBallBoostValue
 
 .done
 	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
@@ -2661,6 +2664,19 @@ LightBallBoost:
 	ld bc, PIKACHU
 	ld d, LIGHT_BALL
 	call SpeciesItemBoost
+	pop de
+	pop bc
+	ret
+
+LightBallBoostValue:
+; Double the stat value already in hl if the attacking monster is Pikachu
+; holding a Light Ball. The physical path uses this after ThickClubBoost,
+; which has already read the stat pointer into hl.
+	push bc
+	push de
+	ld bc, PIKACHU
+	ld d, LIGHT_BALL
+	call DoubleStatIfSpeciesHoldingItem
 	pop de
 	pop bc
 	ret
@@ -2858,6 +2874,8 @@ EnemyAttackDamage_Core:
 .thickclub
 	call UnawareStats_Enemy
 	call ThickClubBoost
+	; Light Ball doubles Pikachu's Attack as well as its Sp. Atk (Gen 4+).
+	call LightBallBoostValue
 
 .done
 	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
