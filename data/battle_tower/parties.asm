@@ -3637,8 +3637,8 @@ BattleTowerMons6:
 	db ABILITY_1 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
 	db 0, 0 ; Status
-	bigdw 171 ; HP
-	bigdw 171 ; Max HP
+	bigdw 183 ; HP
+	bigdw 183 ; Max HP
 	bigdw 176 ; Atk
 	bigdw 158 ; Def
 	bigdw 72 ; Spd
