@@ -676,6 +676,11 @@ INCLUDE "engine/events/battle_tower/trainer_text.asm"
 INCLUDE "engine/events/hidden_power_type.asm"
 
 
+SECTION "Fossil Revival Menu", ROMX
+
+INCLUDE "engine/events/fossil_revive_menu.asm"
+
+
 SECTION "bank5B", ROMX
 
 INCLUDE "mobile/mobile_5b.asm"
