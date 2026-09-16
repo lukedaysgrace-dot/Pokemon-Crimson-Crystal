@@ -484,6 +484,9 @@ GoldenrodMagnetTrainStation_Blocks:
 RuinsOfAlphOutside_Blocks:
 	INCBIN "maps/RuinsOfAlphOutside.ablk"
 
+RuinsOfAlphFossilLab_Blocks:
+	INCBIN "maps/RuinsOfAlphFossilLab.ablk"
+
 BetaRuinsOfAlphUnsolvedPuzzleRoom_Blocks:
 	INCBIN "maps/unused/BetaRuinsOfAlphUnsolvedPuzzleRoom.ablk"
 

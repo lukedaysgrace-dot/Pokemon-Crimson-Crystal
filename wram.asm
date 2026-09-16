@@ -2881,7 +2881,7 @@ wEventFlags:: flag_array NUM_EVENTS ; da72
 
 wCurBox:: db ; db72 ; 0-based index of the current storage box
 
-	ds 1 ; trimmed by 1: wEventFlags grew a byte again for the Ho-Oh word room fossil walls
+	ds 0 ; trimmed by 2: wEventFlags grew a byte for the Ho-Oh word room fossil walls, and again for the Kabuto ones
 
 wCelebiEvent:: ; dbf3
 ; bit 2: forest is restless
