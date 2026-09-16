@@ -285,7 +285,7 @@ wGlobalAnimYOffset:: db
 wGlobalAnimXOffset:: db
 wSpriteAnimsEnd::
 
-	ds 11
+	; ds 11 ; reclaimed: 11-character Pokémon names
 
 ; mobile data
 wc3cc:: ds 1
@@ -821,7 +821,7 @@ wc612:: ds 10
 NEXTU ; c608
 ; odd egg
 wOddEgg:: party_struct wOddEgg
-wOddEggName:: ds MON_NAME_LENGTH
+wOddEggName:: ds STORED_MON_NAME_LENGTH ; matches the OddEggs table stride
 wOddEggOTName:: ds NAME_LENGTH
 
 NEXTU ; c608
@@ -1144,7 +1144,7 @@ wTimeCapsulePartyMon4:: red_party_struct wTimeCapsulePartyMon4
 wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
 wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
 wTimeCapsulePartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
-wTimeCapsulePartyMonNicks:: ds PARTY_LENGTH * MON_NAME_LENGTH
+wTimeCapsulePartyMonNicks:: ds PARTY_LENGTH * STORED_MON_NAME_LENGTH ; link protocol: 10 chars
 wTimeCapsulePlayerDataEnd::
 
 NEXTU ; c813
@@ -1157,7 +1157,7 @@ wLinkPlayerPartyMon4:: party_struct wLinkPlayerPartyMon4
 wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
 wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
 wLinkPlayerPartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
-wLinkPlayerPartyMonNicks:: ds PARTY_LENGTH * MON_NAME_LENGTH
+wLinkPlayerPartyMonNicks:: ds PARTY_LENGTH * STORED_MON_NAME_LENGTH ; link protocol: 10 chars
 wLinkPlayerDataEnd::
 ENDU ; c9b7
 
@@ -1432,7 +1432,7 @@ wEnemyHPPal:: db ; cd9a
 wHPPals:: ds PARTY_LENGTH
 wCurHPPal:: db
 
-	ds 7
+	; ds 7 ; reclaimed: 11-character Pokémon names
 
 wSGBPals:: ds 48 ; cda9
 
@@ -1573,7 +1573,7 @@ wWindowStackSize:: db ; cf78
 ; is only redrawn when the highlighted item changes instead of every frame.
 wStartMenuLastDesc:: db ; cf79
 
-	ds 7
+	; ds 7 ; reclaimed: 11-character Pokémon names
 
 ; menu header
 wMenuHeader:: ; cf81
@@ -1735,7 +1735,7 @@ wMinutesSince:: db
 wHoursSince:: db
 wDaysSince:: db
 
-	ds 7
+	; ds 7 ; reclaimed: 11-character Pokémon names
 
 wTempLoopCounter:: db
 
@@ -2465,7 +2465,7 @@ wOTPartyMon6:: party_struct wOTPartyMon6 ; d378
 wOTPartyMonsEnd::
 
 wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
-wOTPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; d3ea
+wOTPartyMonNicknames:: ds STORED_MON_NAME_LENGTH * PARTY_LENGTH ; d3ea
 wOTPartyDataEnd::
 	ds 4
 
@@ -3072,7 +3072,7 @@ wPartyMon6:: party_struct wPartyMon6 ; ddcf
 
 wPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
 
-wPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; de41
+wPartyMonNicknames:: ds STORED_MON_NAME_LENGTH * PARTY_LENGTH ; inside wPokemonData: save format ; de41
 wPartyMonNicknamesEnd::
 
 wPokedexCaught:: flag_array NUM_POKEMON ; de99
@@ -3093,7 +3093,7 @@ wDayCareMan:: ; def5
 	db
 
 wBreedMon1::
-wBreedMon1Nick::  ds MON_NAME_LENGTH ; def6
+wBreedMon1Nick::  ds STORED_MON_NAME_LENGTH ; def6
 wBreedMon1OT::    ds NAME_LENGTH ; df01
 wBreedMon1Stats:: box_struct wBreedMon1 ; df0c
 
@@ -3110,11 +3110,11 @@ wBreedMotherOrNonDitto:: ; df2e
 	db
 
 wBreedMon2::
-wBreedMon2Nick::  ds MON_NAME_LENGTH ; df2f
+wBreedMon2Nick::  ds STORED_MON_NAME_LENGTH ; df2f
 wBreedMon2OT::    ds NAME_LENGTH ; df3a
 wBreedMon2Stats:: box_struct wBreedMon2 ; df45
 
-wEggNick:: ds MON_NAME_LENGTH ; df65
+wEggNick:: ds STORED_MON_NAME_LENGTH ; df65
 wEggOT::   ds NAME_LENGTH ; df70
 wEggMon::  box_struct wEggMon ; df7b
 

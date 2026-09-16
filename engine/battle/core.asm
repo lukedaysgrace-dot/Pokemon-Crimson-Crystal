@@ -4105,8 +4105,11 @@ InitBattleMon:
 	ld a, [wCurBattleMon]
 	call SkipNames
 	ld de, wBattleMonNick
-	ld bc, MON_NAME_LENGTH
+	ld bc, STORED_MON_NAME_LENGTH
 	call CopyBytes
+	ld a, [wBattleMonSpecies]
+	ld de, wBattleMonNick
+	call ExpandDefaultNickname
 	ld hl, wBattleMonAttack
 	ld de, wPlayerStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
@@ -4186,8 +4189,11 @@ InitEnemyMon:
 	ld a, [wCurPartyMon]
 	call SkipNames
 	ld de, wEnemyMonNick
-	ld bc, MON_NAME_LENGTH
+	ld bc, STORED_MON_NAME_LENGTH
 	call CopyBytes
+	ld a, [wEnemyMonSpecies]
+	ld de, wEnemyMonNick
+	call ExpandDefaultNickname
 	ld hl, wEnemyMonAttack
 	ld de, wEnemyStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
@@ -4900,8 +4906,17 @@ CheckDanger:
 	ret
 
 PrintPlayerHUD:
+; An 11-character name starts one tile further left so that it still
+; ends flush at column 19, exactly where a 10-character name ends.
+; Row 7 holds nothing but the name, and the HUD frame starts on row 9,
+; so column 9 is free.
+	ld a, [wBattleMonNick + 10]
+	cp "@" ; 11th cell empty = name is 10 characters or fewer
 	ld de, wBattleMonNick
 	hlcoord 10, 7
+	jr z, .got_name_coord
+	hlcoord 9, 7
+.got_name_coord
 	call ret_3e138
 	call PlaceString
 
