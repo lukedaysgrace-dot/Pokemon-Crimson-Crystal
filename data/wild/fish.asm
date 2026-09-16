@@ -240,17 +240,17 @@ FishGroups:
 	dbbw  30 percent,      9, QWILFISH
 	dbbw  55 percent,      9, GOLDEEN
 	dbbw  70 percent,     10, WIMPOD
-	dbbw  82 percent,     10, KABUTO
-	dbbw  92 percent,     10, OMANYTE
-	dbbw  97 percent,     11, ANORITH
+	dbbw  82 percent,     10, CORSOLA
+	dbbw  92 percent,     10, CHINCHOU
+	dbbw  97 percent,     11, SHELLDER
 	dbbw 100 percent,     11, MANTYKE
 .Safari_Super:
 	dbbw  25 percent,     11, QWILFISH
 	dbbw  45 percent,     11, GOLDEEN
-	dbbw  62 percent,     11, TIRTOUGA
-	dbbw  78 percent,     11, LILEEP
+	dbbw  62 percent,     11, HORSEA
+	dbbw  78 percent,     11, STARYU
 	dbbw  90 percent,     12, MANTYKE
-	dbbw 100 percent,     12, ANORITH
+	dbbw 100 percent,     12, SHELLDER
 
 ; Kanto and Silver Cave run 28-48 levels above the shared Old 10 / Good 20 /
 ; Super 40 band, so they get their own scaled groups instead of dragging
