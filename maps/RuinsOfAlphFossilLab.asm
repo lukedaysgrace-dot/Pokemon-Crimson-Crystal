@@ -24,49 +24,162 @@ RuinsOfAlphFossilLabScientist2Script:
 	closetext
 	end
 
-; The fossil reviver. Takes one fossil, walks to the resurrection machine,
-; runs it, and comes back with the restored POKeMON.
+; The fossil reviver. Lists the fossils the player is carrying, then runs
+; the chosen one through the resurrection machine.
 RuinsOfAlphFossilLabScientist3Script:
 	faceplayer
 	opentext
 	writetext RuinsOfAlphFossilLabReviverIntroText
 	waitbutton
-	closetext
-	checkitem DOME_FOSSIL
-	iftrue .HasFossil
-	checkitem HELIX_FOSSIL
-	iftrue .HasFossil
-	checkitem ROOT_FOSSIL
-	iftrue .HasFossil
-	checkitem CLAW_FOSSIL
-	iftrue .HasFossil
-	checkitem ARMOR_FOSSIL
-	iftrue .HasFossil
-	checkitem SAIL_FOSSIL
-	iftrue .HasFossil
-	checkitem SKULL_FOSSIL
-	iftrue .HasFossil
-	checkitem COVER_FOSSIL
-	iftrue .HasFossil
-	checkitem JAW_FOSSIL
-	iftrue .HasFossil
-	checkitem OLD_AMBER
-	iftrue .HasFossil
-	checkitem PLUME_FOSSIL
-	iftrue .HasFossil
-	opentext
+	special FossilRevivalMenu
+	ifequal DOME_FOSSIL, .Dome
+	ifequal HELIX_FOSSIL, .Helix
+	ifequal ROOT_FOSSIL, .Root
+	ifequal CLAW_FOSSIL, .Claw
+	ifequal ARMOR_FOSSIL, .Armor
+	ifequal SAIL_FOSSIL, .Sail
+	ifequal SKULL_FOSSIL, .Skull
+	ifequal COVER_FOSSIL, .Cover
+	ifequal JAW_FOSSIL, .Jaw
+	ifequal OLD_AMBER, .Amber
+	ifequal PLUME_FOSSIL, .Plume
+	ifnotequal 0, .Declined
 	writetext RuinsOfAlphFossilLabNoFossilText
 	waitbutton
 	closetext
 	end
 
-.HasFossil:
-	opentext
-	writetext RuinsOfAlphFossilLabOfferText
-	yesorno
-	iffalse .Declined
-	writetext RuinsOfAlphFossilLabAcceptText
+.Declined:
+	writetext RuinsOfAlphFossilLabDeclinedText
 	waitbutton
+	closetext
+	end
+
+.NoRoom:
+	writetext RuinsOfAlphFossilLabPartyFullText
+	waitbutton
+	closetext
+	end
+
+.Dome:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem DOME_FOSSIL
+	givepoke KABUTO, 10
+	sjump .Revived
+
+.Helix:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem HELIX_FOSSIL
+	givepoke OMANYTE, 10
+	sjump .Revived
+
+.Root:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem ROOT_FOSSIL
+	givepoke LILEEP, 10
+	sjump .Revived
+
+.Claw:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem CLAW_FOSSIL
+	givepoke ANORITH, 20
+	sjump .Revived
+
+.Armor:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem ARMOR_FOSSIL
+	givepoke SHIELDON, 20
+	sjump .Revived
+
+.Sail:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem SAIL_FOSSIL
+	givepoke AMAURA, 20
+	sjump .Revived
+
+.Skull:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem SKULL_FOSSIL
+	givepoke CRANIDOS, 20
+	sjump .Revived
+
+.Cover:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem COVER_FOSSIL
+	givepoke TIRTOUGA, 20
+	sjump .Revived
+
+.Jaw:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem JAW_FOSSIL
+	givepoke TYRUNT, 20
+	sjump .Revived
+
+.Amber:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem OLD_AMBER
+	givepoke AERODACTYL, 30
+	sjump .Revived
+
+.Plume:
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .NoRoom
+	scall .RunMachine
+	playsound SFX_CAUGHT_MON
+	waitsfx
+	takeitem PLUME_FOSSIL
+	givepoke ARCHEN, 30
+	sjump .Revived
+
+.Revived:
+	writetext RuinsOfAlphFossilLabRevivedText
+	waitbutton
+	closetext
+	end
+
+; Shared: walk to the resurrection machine, run it, come back. Returns with
+; the text box open so givepoke can draw its nickname prompt over it.
+.RunMachine:
 	closetext
 	applymovement RUINSOFALPHFOSSILLAB_SCIENTIST3, RuinsOfAlphFossilLabToMachineMovement
 	playsound SFX_BOOT_PC
@@ -80,7 +193,8 @@ RuinsOfAlphFossilLabScientist3Script:
 	pause 15
 	playsound SFX_TWO_PC_BEEPS
 	waitsfx
-	pause 30
+	pause 15
+	pause 15
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	pause 20
@@ -91,90 +205,7 @@ RuinsOfAlphFossilLabScientist3Script:
 	faceplayer
 	opentext
 	writetext RuinsOfAlphFossilLabDoneText
-	waitbutton
-	closetext
-; Whichever fossil came back first above is the one that goes in the machine.
-	checkitem DOME_FOSSIL
-	iftrue .Dome
-	checkitem HELIX_FOSSIL
-	iftrue .Helix
-	checkitem ROOT_FOSSIL
-	iftrue .Root
-	checkitem CLAW_FOSSIL
-	iftrue .Claw
-	checkitem ARMOR_FOSSIL
-	iftrue .Armor
-	checkitem SAIL_FOSSIL
-	iftrue .Sail
-	checkitem SKULL_FOSSIL
-	iftrue .Skull
-	checkitem COVER_FOSSIL
-	iftrue .Cover
-	checkitem JAW_FOSSIL
-	iftrue .Jaw
-	checkitem OLD_AMBER
-	iftrue .Amber
-	checkitem PLUME_FOSSIL
-	iftrue .Plume
-	end
-
-.Dome:
-	takeitem DOME_FOSSIL
-	givepoke KABUTO, 10
-	sjump .Revived
-.Helix:
-	takeitem HELIX_FOSSIL
-	givepoke OMANYTE, 10
-	sjump .Revived
-.Root:
-	takeitem ROOT_FOSSIL
-	givepoke LILEEP, 10
-	sjump .Revived
-.Claw:
-	takeitem CLAW_FOSSIL
-	givepoke ANORITH, 20
-	sjump .Revived
-.Armor:
-	takeitem ARMOR_FOSSIL
-	givepoke SHIELDON, 20
-	sjump .Revived
-.Sail:
-	takeitem SAIL_FOSSIL
-	givepoke AMAURA, 20
-	sjump .Revived
-.Skull:
-	takeitem SKULL_FOSSIL
-	givepoke CRANIDOS, 20
-	sjump .Revived
-.Cover:
-	takeitem COVER_FOSSIL
-	givepoke TIRTOUGA, 20
-	sjump .Revived
-.Jaw:
-	takeitem JAW_FOSSIL
-	givepoke TYRUNT, 20
-	sjump .Revived
-.Amber:
-	takeitem OLD_AMBER
-	givepoke AERODACTYL, 30
-	sjump .Revived
-.Plume:
-	takeitem PLUME_FOSSIL
-	givepoke ARCHEN, 30
-	sjump .Revived
-
-.Revived:
-	opentext
-	writetext RuinsOfAlphFossilLabRevivedText
-	waitbutton
-	closetext
-	end
-
-.Declined:
-	writetext RuinsOfAlphFossilLabDeclinedText
-	waitbutton
-	closetext
-	end
+	return
 
 RuinsOfAlphFossilLabToMachineMovement:
 	step UP
@@ -218,9 +249,9 @@ RuinsOfAlphFossilLabReviverIntroText:
 	text "Hi! I'm a FOSSIL"
 	line "specialist."
 
-	para "Bring me a fossil"
-	line "and I'll restore"
-	cont "the #MON in it!"
+	para "Show me what you're"
+	line "carrying and I'll"
+	cont "restore it!"
 	done
 
 RuinsOfAlphFossilLabNoFossilText:
@@ -231,22 +262,17 @@ RuinsOfAlphFossilLabNoFossilText:
 	line "inside the RUINS."
 	done
 
-RuinsOfAlphFossilLabOfferText:
-	text "Oh! That's a rare"
-	line "fossil!"
-
-	para "Shall I resurrect"
-	line "the #MON in it?"
-	done
-
-RuinsOfAlphFossilLabAcceptText:
-	text "Leave it to me!"
-	line "Give me a minute…"
-	done
-
 RuinsOfAlphFossilLabDeclinedText:
 	text "No? Come back any"
 	line "time you like."
+	done
+
+RuinsOfAlphFossilLabPartyFullText:
+	text "Hold on--your team"
+	line "is full!"
+
+	para "Make some room and"
+	line "come see me again."
 	done
 
 RuinsOfAlphFossilLabDoneText:

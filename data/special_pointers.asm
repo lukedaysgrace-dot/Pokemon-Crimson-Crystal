@@ -193,3 +193,4 @@ SpecialsPointers::
 	add_special EndSafariGame
 	add_special SetLastPartyMonMale
 	add_special CheckPartyForDratiniLine
+	add_special FossilRevivalMenu
