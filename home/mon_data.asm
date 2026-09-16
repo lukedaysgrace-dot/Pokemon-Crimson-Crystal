@@ -18,7 +18,9 @@ GetNick::
 	ld de, wStringBuffer1
 
 	push de
-	ld bc, MON_NAME_LENGTH
+	; nickname lists are STORED_MON_NAME_LENGTH wide; copying the wider
+	; display length would read a byte of the next entry
+	ld bc, STORED_MON_NAME_LENGTH
 	call CopyBytes
 	pop de
 

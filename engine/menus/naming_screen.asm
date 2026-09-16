@@ -223,7 +223,7 @@ NamingScreen:
 	ret
 
 .StoreMonIconParams:
-	ld a, MON_NAME_LENGTH - 1
+	ld a, STORED_MON_NAME_LENGTH - 1
 	hlcoord 5, 6
 	jr .StoreParams
 

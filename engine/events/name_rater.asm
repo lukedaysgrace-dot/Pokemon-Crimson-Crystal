@@ -113,7 +113,7 @@ CheckIfMonIsYourOT:
 IsNewNameEmpty:
 ; Checks to see if the nickname loaded in wStringBuffer2 is empty.  If so, return carry.
 	ld hl, wStringBuffer2
-	ld c, MON_NAME_LENGTH - 1
+	ld c, STORED_MON_NAME_LENGTH - 1
 .loop
 	ld a, [hli]
 	cp "@"
@@ -174,7 +174,7 @@ GetNicknameLength:
 	ret z
 	inc c
 	ld a, c
-	cp MON_NAME_LENGTH - 1
+	cp STORED_MON_NAME_LENGTH - 1
 	jr nz, .loop
 	ret
 

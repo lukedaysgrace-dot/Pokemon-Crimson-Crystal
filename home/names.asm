@@ -125,7 +125,7 @@ GetPokemonName::
 	ld a, BANK(PokemonNames)
 	rst Bankswitch
 
-; Each name is ten characters
+; Each name is eleven characters
 	ld a, [wNamedObjectIndexBuffer]
 	call GetPokemonIndexFromID
 	ld e, l
@@ -133,8 +133,9 @@ GetPokemonName::
 	add hl, hl ; hl = hl * 4
 	add hl, hl ; hl = hl * 4
 	add hl, de ; hl = (hl*4) + de
-	add hl, hl ; hl = (5*hl) + (5*hl)
-	ld de, PokemonNames - 10
+	add hl, hl ; hl = 10*n
+	add hl, de ; hl = 11*n
+	ld de, PokemonNames - 11
 	add hl, de
 
 ; Terminator
@@ -149,6 +150,36 @@ GetPokemonName::
 	pop hl
 	pop af
 	rst Bankswitch
+	ret
+
+ExpandDefaultNickname::
+; in: a = species ID, de = battle nickname buffer (MON_NAME_LENGTH bytes)
+; Party and box records only have room for a 10-character nickname, so a mon
+; carrying its default name stores a truncated one (DUDUNSPARC). If the buffer
+; still holds that default, swap in the full 11-character name from ROM.
+; A nickname the player chose differs from the default and is left alone.
+	push de
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName ; -> wStringBuffer1, 11 characters + "@"
+	pop de
+	push de
+	ld hl, wStringBuffer1
+	ld c, STORED_MON_NAME_LENGTH + -1 ; the 10 stored characters
+.compare
+	ld a, [de]
+	cp [hl]
+	jr nz, .keep
+	inc de
+	inc hl
+	dec c
+	jr nz, .compare
+	pop de
+	ld hl, wStringBuffer1
+	ld bc, MON_NAME_LENGTH
+	jp CopyBytes
+
+.keep
+	pop de
 	ret
 
 GetItemName::
