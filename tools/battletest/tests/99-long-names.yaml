@@ -1,0 +1,37 @@
+# 11-character species names must survive the party -> battle buffer copy and
+# render in the HUD without colliding with the level/HP rows.
+
+- name: "Long names: player buffer holds the full 11-character name"
+  player: { species: DRUNSPARCE,  level: 50, moves: [SPLASH] }
+  enemy:  { species: CORVIKNIGHT, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - buffer_is('wBattleMonNick', 'DUDUNSPARCE', 12)
+
+- name: "Long names: enemy buffer holds the full 11-character name"
+  player: { species: DRUNSPARCE,  level: 50, moves: [SPLASH] }
+  enemy:  { species: CORVIKNIGHT, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - buffer_is('wEnemyMonNick', 'CORVIKNIGHT', 12)
+
+- name: "Long names: a 10-character name is unchanged"
+  player: { species: CHARMELEON, level: 50, moves: [SPLASH] }
+  enemy:  { species: KROOKODILE, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - buffer_is('wBattleMonNick', 'CHARMELEON', 12)
+    - buffer_is('wEnemyMonNick', 'KROOKODILE', 12)
+
+- name: "Long names: a short name is unchanged"
+  player: { species: PIKACHU, level: 50, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - buffer_is('wBattleMonNick', 'PIKACHU', 12)
+    - buffer_is('wEnemyMonNick', 'MEW', 12)
+
