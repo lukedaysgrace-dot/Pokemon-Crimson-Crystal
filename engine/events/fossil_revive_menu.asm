@@ -10,7 +10,10 @@ FossilRevivalMenu:
 	ld a, [de]
 	inc de
 	ld [wCurItem], a
+	push hl
+	ld hl, wNumItems
 	call CheckItem
+	pop hl
 	jr nc, .next_fossil
 	ld a, [wCurItem]
 	ld [hli], a

@@ -313,12 +313,12 @@ RuinsOfAlphFossilLab_MapEvents:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event  0,  5, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
-	bg_event  1,  5, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
-	bg_event  6,  0, BGEVENT_READ, RuinsOfAlphFossilLabMachine
+	bg_event -3,  2, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
+	bg_event -4,  4, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
+	bg_event  5,  0, BGEVENT_READ, RuinsOfAlphFossilLabMachine
 	bg_event  9,  1, BGEVENT_READ, RuinsOfAlphFossilLabPrinter
 
 	db 3 ; object events
 	object_event  2,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphFossilLabScientist1Script, -1
-	object_event  8,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphFossilLabScientist2Script, -1
-	object_event  6,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphFossilLabScientist3Script, -1
+	object_event  9,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphFossilLabScientist2Script, -1
+	object_event  4,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphFossilLabScientist3Script, -1
