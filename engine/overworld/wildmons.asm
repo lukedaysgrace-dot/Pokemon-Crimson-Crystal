@@ -409,19 +409,19 @@ ApplySafariBadgeEncounterGate:
 .check_water_tauros
 	ld a, h
 	cp HIGH(TAUROS_PALDEAN_WATER)
-	jr nz, .check_aerodactyl
+	jr nz, .check_skarmory
 	ld a, l
 	cp LOW(TAUROS_PALDEAN_WATER)
 	jr z, .water_tauros
 
-.check_aerodactyl
+.check_skarmory
 	ld a, h
-	cp HIGH(AERODACTYL)
+	cp HIGH(SKARMORY)
 	ret nz
 	ld a, l
-	cp LOW(AERODACTYL)
+	cp LOW(SKARMORY)
 	ret nz
-	ld hl, TYRUNT
+	ld hl, ROOKIDEE
 	ret
 
 .kangaskhan
