@@ -1,7 +1,7 @@
 	object_const_def
-	const RUINSOFALPHAERODACTYLWORDROOM_DOME_FOSSIL
-	const RUINSOFALPHAERODACTYLWORDROOM_HELIX_FOSSIL
+	const RUINSOFALPHAERODACTYLWORDROOM_CLAW_FOSSIL
 	const RUINSOFALPHAERODACTYLWORDROOM_ARMOR_FOSSIL
+	const RUINSOFALPHAERODACTYLWORDROOM_SAIL_FOSSIL
 
 RuinsOfAlphAerodactylWordRoom_MapScripts:
 	db 0 ; scene scripts
@@ -11,52 +11,52 @@ RuinsOfAlphAerodactylWordRoom_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .FossilObjects
 
 .FossilWalls:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_DOME_WALL_OPEN
-	iffalse .CheckHelixWall
-	changeblock 2, 0, $41
-.CheckHelixWall:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_HELIX_WALL_OPEN
+	checkevent EVENT_AERODACTYL_WORD_ROOM_CLAW_WALL_OPEN
 	iffalse .CheckArmorWall
-	changeblock 8, 0, $41
+	changeblock 2, 0, $41
 .CheckArmorWall:
 	checkevent EVENT_AERODACTYL_WORD_ROOM_ARMOR_WALL_OPEN
+	iffalse .CheckSailWall
+	changeblock 8, 0, $41
+.CheckSailWall:
+	checkevent EVENT_AERODACTYL_WORD_ROOM_SAIL_WALL_OPEN
 	iffalse .WallsDone
 	changeblock 16, 0, $41
 .WallsDone:
 	return
 
 .FossilObjects:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_DOME_WALL_OPEN
-	iftrue .DomeWallOpen
-	disappear RUINSOFALPHAERODACTYLWORDROOM_DOME_FOSSIL
-	sjump .CheckHelixObject
-.DomeWallOpen:
-	checkevent EVENT_PICKED_UP_DOME_FOSSIL_FROM_AERODACTYL_WORD_ROOM
-	iftrue .CheckHelixObject
-	appear RUINSOFALPHAERODACTYLWORDROOM_DOME_FOSSIL
-.CheckHelixObject:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_HELIX_WALL_OPEN
-	iftrue .HelixWallOpen
-	disappear RUINSOFALPHAERODACTYLWORDROOM_HELIX_FOSSIL
+	checkevent EVENT_AERODACTYL_WORD_ROOM_CLAW_WALL_OPEN
+	iftrue .ClawWallOpen
+	disappear RUINSOFALPHAERODACTYLWORDROOM_CLAW_FOSSIL
 	sjump .CheckArmorObject
-.HelixWallOpen:
-	checkevent EVENT_PICKED_UP_HELIX_FOSSIL_FROM_AERODACTYL_WORD_ROOM
+.ClawWallOpen:
+	checkevent EVENT_PICKED_UP_CLAW_FOSSIL_FROM_AERODACTYL_WORD_ROOM
 	iftrue .CheckArmorObject
-	appear RUINSOFALPHAERODACTYLWORDROOM_HELIX_FOSSIL
+	appear RUINSOFALPHAERODACTYLWORDROOM_CLAW_FOSSIL
 .CheckArmorObject:
 	checkevent EVENT_AERODACTYL_WORD_ROOM_ARMOR_WALL_OPEN
 	iftrue .ArmorWallOpen
 	disappear RUINSOFALPHAERODACTYLWORDROOM_ARMOR_FOSSIL
-	return
+	sjump .CheckSailObject
 .ArmorWallOpen:
 	checkevent EVENT_PICKED_UP_ARMOR_FOSSIL_FROM_AERODACTYL_WORD_ROOM
-	iftrue .ObjectsDone
+	iftrue .CheckSailObject
 	appear RUINSOFALPHAERODACTYLWORDROOM_ARMOR_FOSSIL
+.CheckSailObject:
+	checkevent EVENT_AERODACTYL_WORD_ROOM_SAIL_WALL_OPEN
+	iftrue .SailWallOpen
+	disappear RUINSOFALPHAERODACTYLWORDROOM_SAIL_FOSSIL
+	return
+.SailWallOpen:
+	checkevent EVENT_PICKED_UP_SAIL_FOSSIL_FROM_AERODACTYL_WORD_ROOM
+	iftrue .ObjectsDone
+	appear RUINSOFALPHAERODACTYLWORDROOM_SAIL_FOSSIL
 .ObjectsDone:
 	return
 
-RuinsOfAlphAerodactylWordRoomDomeWall:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_DOME_WALL_OPEN
+RuinsOfAlphAerodactylWordRoomClawWall:
+	checkevent EVENT_AERODACTYL_WORD_ROOM_CLAW_WALL_OPEN
 	iftrue .Done
 	opentext
 	writetext RuinsOfAlphAerodactylWordRoomWallCrumblesText
@@ -66,24 +66,8 @@ RuinsOfAlphAerodactylWordRoomDomeWall:
 	earthquake 40
 	changeblock 2, 0, $41
 	reloadmappart
-	setevent EVENT_AERODACTYL_WORD_ROOM_DOME_WALL_OPEN
-	appear RUINSOFALPHAERODACTYLWORDROOM_DOME_FOSSIL
-.Done:
-	end
-
-RuinsOfAlphAerodactylWordRoomHelixWall:
-	checkevent EVENT_AERODACTYL_WORD_ROOM_HELIX_WALL_OPEN
-	iftrue .Done
-	opentext
-	writetext RuinsOfAlphAerodactylWordRoomWallCrumblesText
-	waitbutton
-	closetext
-	playsound SFX_STRENGTH
-	earthquake 40
-	changeblock 8, 0, $41
-	reloadmappart
-	setevent EVENT_AERODACTYL_WORD_ROOM_HELIX_WALL_OPEN
-	appear RUINSOFALPHAERODACTYLWORDROOM_HELIX_FOSSIL
+	setevent EVENT_AERODACTYL_WORD_ROOM_CLAW_WALL_OPEN
+	appear RUINSOFALPHAERODACTYLWORDROOM_CLAW_FOSSIL
 .Done:
 	end
 
@@ -96,27 +80,35 @@ RuinsOfAlphAerodactylWordRoomArmorWall:
 	closetext
 	playsound SFX_STRENGTH
 	earthquake 40
-	changeblock 16, 0, $41
+	changeblock 8, 0, $41
 	reloadmappart
 	setevent EVENT_AERODACTYL_WORD_ROOM_ARMOR_WALL_OPEN
 	appear RUINSOFALPHAERODACTYLWORDROOM_ARMOR_FOSSIL
 .Done:
 	end
 
-RuinsOfAlphAerodactylWordRoomDomeFossil:
+RuinsOfAlphAerodactylWordRoomSailWall:
+	checkevent EVENT_AERODACTYL_WORD_ROOM_SAIL_WALL_OPEN
+	iftrue .Done
 	opentext
-	giveitem DOME_FOSSIL
-	iffalse RuinsOfAlphAerodactylWordRoomFossilPocketFull
-	disappear RUINSOFALPHAERODACTYLWORDROOM_DOME_FOSSIL
-	writetext RuinsOfAlphAerodactylWordRoomGotDomeFossilText
-	sjump RuinsOfAlphAerodactylWordRoomFinishFossil
+	writetext RuinsOfAlphAerodactylWordRoomWallCrumblesText
+	waitbutton
+	closetext
+	playsound SFX_STRENGTH
+	earthquake 40
+	changeblock 16, 0, $41
+	reloadmappart
+	setevent EVENT_AERODACTYL_WORD_ROOM_SAIL_WALL_OPEN
+	appear RUINSOFALPHAERODACTYLWORDROOM_SAIL_FOSSIL
+.Done:
+	end
 
-RuinsOfAlphAerodactylWordRoomHelixFossil:
+RuinsOfAlphAerodactylWordRoomClawFossil:
 	opentext
-	giveitem HELIX_FOSSIL
+	giveitem CLAW_FOSSIL
 	iffalse RuinsOfAlphAerodactylWordRoomFossilPocketFull
-	disappear RUINSOFALPHAERODACTYLWORDROOM_HELIX_FOSSIL
-	writetext RuinsOfAlphAerodactylWordRoomGotHelixFossilText
+	disappear RUINSOFALPHAERODACTYLWORDROOM_CLAW_FOSSIL
+	writetext RuinsOfAlphAerodactylWordRoomGotClawFossilText
 	sjump RuinsOfAlphAerodactylWordRoomFinishFossil
 
 RuinsOfAlphAerodactylWordRoomArmorFossil:
@@ -125,6 +117,14 @@ RuinsOfAlphAerodactylWordRoomArmorFossil:
 	iffalse RuinsOfAlphAerodactylWordRoomFossilPocketFull
 	disappear RUINSOFALPHAERODACTYLWORDROOM_ARMOR_FOSSIL
 	writetext RuinsOfAlphAerodactylWordRoomGotArmorFossilText
+	sjump RuinsOfAlphAerodactylWordRoomFinishFossil
+
+RuinsOfAlphAerodactylWordRoomSailFossil:
+	opentext
+	giveitem SAIL_FOSSIL
+	iffalse RuinsOfAlphAerodactylWordRoomFossilPocketFull
+	disappear RUINSOFALPHAERODACTYLWORDROOM_SAIL_FOSSIL
+	writetext RuinsOfAlphAerodactylWordRoomGotSailFossilText
 
 RuinsOfAlphAerodactylWordRoomFinishFossil:
 	playsound SFX_ITEM
@@ -143,19 +143,19 @@ RuinsOfAlphAerodactylWordRoomWallCrumblesText:
 	line "away!"
 	done
 
-RuinsOfAlphAerodactylWordRoomGotDomeFossilText:
+RuinsOfAlphAerodactylWordRoomGotClawFossilText:
 	text "<PLAYER> got the"
-	line "DOME FOSSIL!"
-	done
-
-RuinsOfAlphAerodactylWordRoomGotHelixFossilText:
-	text "<PLAYER> got the"
-	line "HELIX FOSSIL!"
+	line "CLAW FOSSIL!"
 	done
 
 RuinsOfAlphAerodactylWordRoomGotArmorFossilText:
 	text "<PLAYER> got the"
 	line "ARMOR FOSSIL!"
+	done
+
+RuinsOfAlphAerodactylWordRoomGotSailFossilText:
+	text "<PLAYER> got the"
+	line "SAIL FOSSIL!"
 	done
 
 RuinsOfAlphAerodactylWordRoom_MapEvents:
@@ -169,11 +169,11 @@ RuinsOfAlphAerodactylWordRoom_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  2,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomDomeWall
-	bg_event  8,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomHelixWall
-	bg_event 16,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomArmorWall
+	bg_event  2,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomClawWall
+	bg_event  8,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomArmorWall
+	bg_event 16,  0, BGEVENT_UP, RuinsOfAlphAerodactylWordRoomSailWall
 
 	db 3 ; object events
-	object_event  2,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomDomeFossil, EVENT_PICKED_UP_DOME_FOSSIL_FROM_AERODACTYL_WORD_ROOM
-	object_event  8,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomHelixFossil, EVENT_PICKED_UP_HELIX_FOSSIL_FROM_AERODACTYL_WORD_ROOM
-	object_event 16,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomArmorFossil, EVENT_PICKED_UP_ARMOR_FOSSIL_FROM_AERODACTYL_WORD_ROOM
+	object_event  2,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomClawFossil, EVENT_PICKED_UP_CLAW_FOSSIL_FROM_AERODACTYL_WORD_ROOM
+	object_event  8,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomArmorFossil, EVENT_PICKED_UP_ARMOR_FOSSIL_FROM_AERODACTYL_WORD_ROOM
+	object_event 16,  0, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphAerodactylWordRoomSailFossil, EVENT_PICKED_UP_SAIL_FOSSIL_FROM_AERODACTYL_WORD_ROOM
