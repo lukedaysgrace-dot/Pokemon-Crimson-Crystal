@@ -513,3 +513,9 @@ INCLUDE "maps/Route8SaffronGate.asm"
 INCLUDE "maps/Route12SuperRodHouse.asm"
 INCLUDE "maps/Route2Gate.asm"
 INCLUDE "maps/DanceTheatre.asm"
+
+
+; The Ruins of Alph fossil lab, added alongside the word-room fossil walls.
+SECTION "Map Scripts 30", ROMX
+
+INCLUDE "maps/RuinsOfAlphFossilLab.asm"
