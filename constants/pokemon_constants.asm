@@ -286,7 +286,7 @@ JOHTO_POKEMON EQU const_value
 	const BAGON      ;
 	const SHELGON    ;
 	const SALAMENCE  ;
-	const DRUNSPARCE ;
+	const DUDUNSPARCE ;
 	const ELECTIVIRE ;
 	const FARIGIRAF  ;
 	const RALTS      ;
