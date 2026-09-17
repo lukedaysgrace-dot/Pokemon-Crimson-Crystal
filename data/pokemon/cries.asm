@@ -271,7 +271,7 @@ PokemonCries::
 	mon_cry CRY_RAIKOU,      $05f,  $0d0 ; BAGON
 	mon_cry CRY_SPINARAK,   -$1db,  $150 ; SHELGON
 	mon_cry CRY_RAIKOU,     -$100,  $180 ; SALAMENCE
-	mon_cry CRY_DUNSPARCE,   $1c4,  $100 ; DUDUNSPARCE
+	mon_cry CRY_DUNSPARCE,   $1c4,  $100 ; DRUNSPARCE
 	mon_cry CRY_VOLTORB,     $080,  $1c2 ; ELECTIVIRE
 	mon_cry CRY_GIRAFARIG,   $041,  $200 ; FARIGIRAF
 	mon_cry CRY_RALTS,       $060,  $040 ; RALTS
