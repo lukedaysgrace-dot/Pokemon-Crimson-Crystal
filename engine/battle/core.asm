@@ -2204,7 +2204,7 @@ DoubleSwitch:
 	jr z, .player_1
 	call ClearSprites
 	hlcoord 1, 0
-	lb bc, 4, 11
+	lb bc, 4, 10
 	call ClearBox
 	call PlayerPartyMonEntrance
 	ld a, $1
@@ -2402,7 +2402,7 @@ FaintEnemyPokemon:
 	ld de, SFX_FAINT
 	call PlaySFX
 	hlcoord 1, 0
-	lb bc, 4, 11
+	lb bc, 4, 10
 	call ClearBox
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
@@ -3702,7 +3702,7 @@ ClearEnemyMonBox:
 	call ExitMenu
 	call ClearSprites
 	hlcoord 1, 0
-	lb bc, 4, 11
+	lb bc, 4, 10
 	call ClearBox
 	call WaitBGMap
 	jp FinishBattleAnim
@@ -8455,7 +8455,7 @@ BattleIntro:
 	lb bc, 5, 11
 	call ClearBox
 	hlcoord 1, 0
-	lb bc, 4, 11
+	lb bc, 4, 10
 	call ClearBox
 	call ClearSprites
 	ld a, [wBattleMode]
