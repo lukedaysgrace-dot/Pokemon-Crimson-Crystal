@@ -1297,7 +1297,7 @@ BattleUTurn_Core:
 	call CloseWindow
 	call ClearSprites
 	hlcoord 1, 0
-	lb bc, 4, 10
+	lb bc, 4, 11
 	call ClearBox
 	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
