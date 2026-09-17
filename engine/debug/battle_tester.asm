@@ -1698,7 +1698,7 @@ DebugSpeciesNameByIndex:
 	ld a, l
 	or h
 	jr z, .bad
-	; offset = (index - 1) * 11
+	; offset = (index - 1) * 10
 	dec hl
 	push hl
 	add hl, hl ; x2
@@ -1706,15 +1706,14 @@ DebugSpeciesNameByIndex:
 	pop de
 	add hl, de ; x5
 	add hl, hl ; x10
-	add hl, de ; x11
 	ld de, PokemonNames
 	add hl, de
 	ld a, BANK(PokemonNames)
 	ld de, wStringBuffer1
-	ld bc, 11
+	ld bc, 10
 	call FarCopyBytes
 	ld a, "@"
-	ld [wStringBuffer1 + 11], a
+	ld [wStringBuffer1 + 10], a
 	ret
 .bad
 	ld a, "@"
