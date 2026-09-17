@@ -48,7 +48,7 @@ BattleText_WildFled:
 	prompt
 
 BattleText_EnemyFled:
-	text "Enemy @"
+	text "Foe @"
 	text_ram wEnemyMonNick
 	text_start
 	line "fled!"
@@ -174,17 +174,18 @@ BattleText_TheHailStopped:
 	prompt
 
 BattleText_EnemyMonFainted:
-	text "Enemy @"
+	text "Foe @"
 	text_ram wEnemyMonNick
 	text_start
 	line "fainted!"
 	prompt
 
 GotMoneyForWinningText:
-	text "<PLAYER> got ¥@"
+	text "<PLAYER> got"
+	line "¥@"
 	text_decimal wBattleReward, 3, 6
 	text_start
-	line "for winning!"
+	cont "for winning!"
 	prompt
 
 BattleText_EnemyWasDefeated:
@@ -198,10 +199,11 @@ TiedAgainstText:
 	prompt
 
 SentSomeToMomText:
-	text "<PLAYER> got ¥@"
+	text "<PLAYER> got"
+	line "¥@"
 	text_decimal wBattleReward, 3, 6
 	text_start
-	line "for winning!"
+	cont "for winning!"
 	cont "Sent some to MOM!"
 	prompt
 
@@ -361,8 +363,8 @@ BattleText_TargetsEncoreEnded:
 
 BattleText_StringBuffer1GrewToLevel:
 	text_ram wStringBuffer1
-	text " grew to"
-	line "level @"
+	text_start
+	line "grew to level @"
 	text_decimal wCurPartyLevel, 1, 3
 	text "!@"
 	sound_dex_fanfare_50_79
@@ -445,15 +447,17 @@ BattleText_ItemHealedConfusion:
 BattleText_AssaultVestPreventsMove:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " prevents"
-	line "status moves!"
+	text_start
+	line "prevents status"
+	cont "moves!"
 	prompt
 
 BattleText_ChoiceItemLocksMove:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " only"
-	line "allows one move!"
+	text_start
+	line "only allows one"
+	cont "move!"
 	prompt
 
 AirBalloonImmuneText:
@@ -467,7 +471,8 @@ AirBalloonImmuneText:
 AirBalloonPoppedText:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " popped!"
+	text_start
+	line "popped!"
 	prompt
 
 LifeOrbRecoilText:
@@ -478,8 +483,9 @@ LifeOrbRecoilText:
 RockyHelmetText:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " hurt"
-	line "<USER>!"
+	text_start
+	line "hurt"
+	cont "<USER>!"
 	prompt
 
 AlreadyConfusedText:
@@ -600,14 +606,15 @@ TurnedAwayText:
 
 IgnoredOrdersText:
 	text_ram wBattleMonNick
-	text " ignored"
-	line "orders!"
+	text_start
+	line "ignored orders!"
 	prompt
 
 IgnoredSleepingText:
 	text_ram wBattleMonNick
-	text " ignored"
-	line "orders…sleeping!"
+	text_start
+	line "ignored orders…"
+	cont "sleeping!"
 	prompt
 
 NoPPLeftText:
