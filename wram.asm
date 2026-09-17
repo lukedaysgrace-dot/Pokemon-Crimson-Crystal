@@ -1759,7 +1759,7 @@ wTempMail:: mailmsg wTempMail
 NEXTU ; d002
 ; poke seer
 wSeerAction:: db
-wSeerNickname:: ds MON_NAME_LENGTH
+wSeerNickname:: ds STORED_MON_NAME_LENGTH ; a stored nickname, never expanded
 wSeerCaughtLocation:: ds 17
 wSeerTimeOfDay:: ds NAME_LENGTH
 wSeerOTName:: ds NAME_LENGTH
@@ -1771,7 +1771,7 @@ wSeerCaughtGender:: db
 
 NEXTU ; d002
 ; mon buffer
-wBufferMonNick:: ds MON_NAME_LENGTH ; d002
+wBufferMonNick:: ds STORED_MON_NAME_LENGTH ; keeps wMonOrItemNameBuffer in place ; d002
 wBufferMonOT:: ds NAME_LENGTH ; d00d
 wBufferMon:: party_struct wBufferMon ; d018
 	ds 8
@@ -2157,7 +2157,7 @@ wItemQuantityBuffer:: db
 wTempMon:: party_struct wTempMon ; d10e
 ; Storage-system temp mon extension (see engine/pc/storage.asm). wTempMon holds
 ; the live party_struct (runtime species/move IDs); these carry the rest.
-wTempMonNickname:: ds MON_NAME_LENGTH
+wTempMonNickname:: ds STORED_MON_NAME_LENGTH ; a stored nickname, never expanded
 wTempMonOT:: ds NAME_LENGTH
 wTempMonSpeciesIndex:: dw ; true 16-bit species index
 wTempMonIsEgg:: db ; nonzero if the mon is an Egg
