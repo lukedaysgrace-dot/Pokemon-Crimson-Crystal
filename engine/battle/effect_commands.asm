@@ -5383,7 +5383,7 @@ BattleCommand_ForceSwitch:
 	ld c, $14
 	call DelayFrames
 	hlcoord 1, 0
-	lb bc, 4, 11
+	lb bc, 4, 10
 	call ClearBox
 	ld c, 20
 	call DelayFrames
