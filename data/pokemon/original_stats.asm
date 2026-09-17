@@ -65,7 +65,7 @@ OriginalPokemonStats:
 	db  90,  70,  80,  70,  70,  95
 	dw DRIFBLIM
 	db 150,  80,  44,  80,  90,  54
-	dw DUDUNSPARCE
+	dw DRUNSPARCE
 	db 125, 100,  80,  55,  85,  75
 	dw DUNSPARCE
 	db 100,  70,  70,  45,  65,  65
