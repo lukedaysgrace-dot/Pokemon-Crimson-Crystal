@@ -18,12 +18,18 @@ BUFFER_KIND below; each entry records what the engine loads before printing.
 Every maximum is taken from the real name tables, so a green run means no
 species, item, move or ability in the game can push a line onto the border.
 """
-import re, sys
+import re, sys, pathlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BOX = 18
 SOURCES = ["data/text/battle.asm", "data/text/ability_text.asm"]
+
+# Every routine that wipes a battle HUD name box must clear at least as many
+# columns as the longest name, or the tail of the old name stays on screen.
+# origin coordinate -> (files to scan, description)
+HUD_BOXES = {"hlcoord 1, 0": "enemy HUD name box",
+             "hlcoord 9, 7": "player HUD name box"}
 
 # what the engine leaves in the buffer before each message is printed
 BUFFER_KIND = {
@@ -72,6 +78,28 @@ def main():
     default = max(WIDTH.values())
 
     bad = []
+
+    # ---- HUD clear widths -------------------------------------------------
+    import glob as _glob
+    for f in sorted(_glob.glob(str(ROOT / "engine/**/*.asm"), recursive=True)):
+        lines = open(f, encoding="utf-8", errors="ignore").read().split("\n")
+        for i, raw in enumerate(lines):
+            for origin, what in HUD_BOXES.items():
+                if raw.strip() != origin:
+                    continue
+                for j in range(i + 1, min(i + 3, len(lines))):
+                    m = re.match(r"\s*lb bc, (\d+), (\d+)", lines[j])
+                    if not m:
+                        continue
+                    cols = int(m.group(2))
+                    if cols < nick:
+                        rel = str(pathlib.Path(f).relative_to(ROOT))
+                        bad.append(("HUD", rel, j + 1, what,
+                                    f"lb bc, {m.group(1)}, {cols}",
+                                    f"clears {cols} columns but names are up to {nick}"))
+                    break
+
+    # ---- battle text ------------------------------------------------------
     # text / text_start / text_ram / text_decimal continue the current rendered
     # line; line / cont / next / para begin a new one. Widths accumulate across
     # a run, so "<nick> ignored" is measured as one line, not two fragments.
@@ -127,9 +155,10 @@ def main():
 
     if bad:
         print("BATTLE TEXT AUDIT FAILED")
-        for src, i, label, width, body, why in bad:
-            print(f"- {src}:{i}: {label} renders up to {width} columns (max {BOX}; {why})")
-            print(f'      "{body}"')
+        for kind, src, i, label, body, why in bad:
+            verb = "renders up to" if kind == "TEXT" else "->"
+            print(f"- {src}:{i}: {label} {verb} {why}")
+            print(f'      {body!r}')
         print(f"{len(bad)} error(s)")
         return 1
     print(f"BATTLE TEXT AUDIT PASSED: every battle line fits {BOX} columns "
