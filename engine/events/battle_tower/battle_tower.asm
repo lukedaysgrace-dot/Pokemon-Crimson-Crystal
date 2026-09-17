@@ -288,7 +288,7 @@ ReadBTTrainerParty:
 ; Check the nicknames for illegal characters, and replace bad nicknames
 ; with their species names.
 	ld de, wBT_OTTempMon1Name
-	ld c, STORED_MON_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_1
 
@@ -298,12 +298,12 @@ ReadBTTrainerParty:
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempMon1Name
-	ld bc, STORED_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_1
 	ld de, wBT_OTTempMon2Name
-	ld c, STORED_MON_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_2
 	ld a, [wBT_OTTempMon2]
@@ -312,12 +312,12 @@ ReadBTTrainerParty:
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempMon2Name
-	ld bc, STORED_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_2
 	ld de, wBT_OTTempMon3Name
-	ld c, STORED_MON_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_3
 	ld a, [wBT_OTTempMon3]
@@ -326,7 +326,7 @@ ReadBTTrainerParty:
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempMon3Name
-	ld bc, STORED_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_3
@@ -382,7 +382,7 @@ ReadBTTrainerParty:
 	ld e, a
 	ld a, [wBGMapBuffer + 1]
 	ld d, a
-	ld bc, STORED_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, e
 	ld [wBGMapBuffer], a

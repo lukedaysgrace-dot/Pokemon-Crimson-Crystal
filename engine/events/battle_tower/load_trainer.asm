@@ -239,7 +239,7 @@ Function_LoadRandomBattleTowerMon:
 
 	; rename the Pokémon to its default name (overriding the transliterated Japanese nicknames)
 	push de
-	ld hl, -STORED_MON_NAME_LENGTH
+	ld hl, -MON_NAME_LENGTH
 	add hl, de
 	push hl
 	; wNamedObjectIndexBuffer = wTempSpecies
@@ -247,7 +247,7 @@ Function_LoadRandomBattleTowerMon:
 	ld h, d
 	ld l, e
 	pop de
-	ld bc, STORED_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
 

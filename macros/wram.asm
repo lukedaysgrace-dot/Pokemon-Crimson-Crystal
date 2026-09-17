@@ -214,13 +214,13 @@ battle_tower_struct: MACRO
 \1Name:: ds NAME_LENGTH + -1
 \1TrainerClass:: ds 1
 \1Mon1:: party_struct \1Mon1
-\1Mon1Name:: ds STORED_MON_NAME_LENGTH
+\1Mon1Name:: ds MON_NAME_LENGTH
 \1Mon1NameEnd::
 \1Mon2:: party_struct \1Mon2
-\1Mon2Name:: ds STORED_MON_NAME_LENGTH
+\1Mon2Name:: ds MON_NAME_LENGTH
 \1Mon2NameEnd::
 \1Mon3:: party_struct \1Mon3
-\1Mon3Name:: ds STORED_MON_NAME_LENGTH
+\1Mon3Name:: ds MON_NAME_LENGTH
 \1Mon3NameEnd::
 \1TrainerData:: ds BATTLETOWER_TRAINERDATALENGTH
 \1TrainerEnd::
@@ -257,7 +257,7 @@ hof_mon: MACRO
 \1ID::       dw
 \1DVs::      dw
 \1Level::    db
-\1Nickname:: ds STORED_MON_NAME_LENGTH + -1
+\1Nickname:: ds MON_NAME_LENGTH + -1
 \1End::
 ENDM
 
@@ -282,8 +282,8 @@ ENDM
 
 trademon: MACRO
 \1Species::     db ; wc6d0 | wc702
-\1SpeciesName:: ds STORED_MON_NAME_LENGTH ; link protocol: 10 chars
-\1Nickname::    ds STORED_MON_NAME_LENGTH ; link protocol: 10 chars
+\1SpeciesName:: ds MON_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname::    ds MON_NAME_LENGTH ; wc6dc | wc70e
 \1SenderName::  ds NAME_LENGTH ; wc6e7 | wc719
 \1OTName::      ds NAME_LENGTH ; wc6f2 | wc724
 \1DVs::         dw ; wc6fd | wc72f
