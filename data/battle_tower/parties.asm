@@ -1182,7 +1182,7 @@ BattleTowerMons2:
 	bigdw 44 ; SDef
 	db "PUKURIN@@@@"
 
-	dw DUDUNSPARCE
+	dw DRUNSPARCE
 	db PINK_BOW
 	dw PSYCHIC_M, SWAGGER, PSYCH_UP, HEADBUTT
 
