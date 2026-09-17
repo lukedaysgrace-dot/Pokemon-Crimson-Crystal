@@ -39,9 +39,8 @@ NoLongerInfatuatedText:
 	prompt
 
 TraceActivationText:
-	text "<USER>"
-	line "traced"
-	cont "@"
+	text "<USER> traced"
+	line "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
@@ -136,9 +135,8 @@ ForewarnAlertText:
 	prompt
 
 HarvestedBerryText:
-	text "<USER>"
-	line "harvested its"
-	cont "@"
+	text "<USER> harvested"
+	line "its @"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
