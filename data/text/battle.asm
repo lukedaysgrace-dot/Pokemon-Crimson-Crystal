@@ -457,9 +457,8 @@ BattleText_ChoiceItemLocksMove:
 	prompt
 
 AirBalloonImmuneText:
-	text "<TARGET>"
-	line "floats with its"
-	cont "@"
+	text "<TARGET> floats with"
+	line "its @"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
@@ -1262,15 +1261,13 @@ StealthRockText:
 	prompt
 
 StealthRockHurtText:
-	text "<USER> is"
-	line "hurt by pointed"
-	cont "stones!"
+	text "<USER> is hurt"
+	line "by pointed stones!"
 	prompt
 
 BlewStealthRockText:
-	text "<USER>"
-	line "blew away pointed"
-	cont "stones!"
+	text "<USER> blew away"
+	line "pointed stones!"
 	prompt
 
 DefogClearedText:
@@ -1279,13 +1276,13 @@ DefogClearedText:
 	prompt
 
 FickleBeamAllOutText:
-	text "<USER> is"
-	line "going all out!"
+	text "<USER> is going"
+	line "all out!"
 	prompt
 
 BattleText_UserSubjectedToTorment:
-	text "<USER>"
-	line "was subjected to"
+	text "<USER> was"
+	line "subjected to"
 	cont "TORMENT!"
 	prompt
 
@@ -1308,13 +1305,13 @@ BattleText_ShookOffTheTaunt:
 	prompt
 
 BattleText_UserGrewDrowsy:
-	text "<USER>"
-	line "grew drowsy!"
+	text "<USER> grew"
+	line "drowsy!"
 	prompt
 
 BattleText_UserMadeAWish:
-	text "<USER>"
-	line "made a WISH!"
+	text "<USER> made"
+	line "a WISH!"
 	prompt
 
 BattleText_WishCameTrue:
@@ -1329,15 +1326,13 @@ BattleText_StickyWebSpread:
 	prompt
 
 BattleText_CaughtInStickyWeb:
-	text "<USER>"
-	line "was caught in a"
-	cont "STICKY WEB!"
+	text "<USER> was caught"
+	line "in a STICKY WEB!"
 	prompt
 
 BlewStickyWebText:
-	text "<USER>"
-	line "blew away"
-	cont "STICKY WEB!"
+	text "<USER> blew away"
+	line "STICKY WEB!"
 	prompt
 
 INCLUDE "data/text/ability_text.asm"
