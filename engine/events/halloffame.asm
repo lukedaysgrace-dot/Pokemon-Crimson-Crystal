@@ -205,7 +205,7 @@ GetHallOfFameParty:
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call AddNTimes
-	ld bc, STORED_MON_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 
 	pop bc
@@ -464,7 +464,7 @@ DisplayHOFMon:
 	ld a, [hli]
 	ld [wTempMonLevel], a
 	ld de, wStringBuffer2
-	ld bc, STORED_MON_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [wStringBuffer2 + 10], a
