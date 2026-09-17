@@ -109,7 +109,7 @@ AlphabeticalPokedexOrder:
 	dw DRIFLOON
 	dw DRILBUR
 	dw DROWZEE
-	dw DRUNSPARCE
+	dw DUDUNSPARCE
 	dw DUGTRIO
 	dw DUGTRIO_ALOLAN
 	dw DUNSPARCE
