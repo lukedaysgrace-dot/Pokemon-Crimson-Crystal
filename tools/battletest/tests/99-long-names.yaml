@@ -2,7 +2,7 @@
 # render in the HUD without colliding with the level/HP rows.
 
 - name: "Long names: player buffer holds the full 11-character name"
-  player: { species: DRUNSPARCE,  level: 50, moves: [SPLASH] }
+  player: { species: DUDUNSPARCE,  level: 50, moves: [SPLASH] }
   enemy:  { species: CORVIKNIGHT, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 0
@@ -10,7 +10,7 @@
     - buffer_is('wBattleMonNick', 'DUDUNSPARCE', 12)
 
 - name: "Long names: enemy buffer holds the full 11-character name"
-  player: { species: DRUNSPARCE,  level: 50, moves: [SPLASH] }
+  player: { species: DUDUNSPARCE,  level: 50, moves: [SPLASH] }
   enemy:  { species: CORVIKNIGHT, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 0
