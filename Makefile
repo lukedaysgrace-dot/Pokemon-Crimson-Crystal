@@ -66,6 +66,7 @@ test-all: pokecrystal_debug.gbc
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
 	python3 tools/audit_moves.py
+	python3 tools/audit_battle_text.py
 	python3 tools/audit_trainers.py
 	python3 tools/audit_save.py
 	python3 tools/audit_resources.py
