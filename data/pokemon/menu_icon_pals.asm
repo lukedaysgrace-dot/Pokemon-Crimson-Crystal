@@ -274,7 +274,7 @@ MonMenuIconPals:
 	icon_pals BLUE,   GREEN  ; BAGON
 	icon_pals GRAY,   GREEN  ; SHELGON
 	icon_pals BLUE,   GREEN  ; SALAMENCE
-	icon_pals BLUE,   PINK   ; DRUNSPARCE
+	icon_pals BLUE,   PINK   ; DUDUNSPARCE
 	icon_pals BROWN,  GREEN  ; ELECTIVIRE
 	icon_pals PURPLE, BLUE   ; FARIGIRAF
 	icon_pals GREEN,  BLUE   ; RALTS

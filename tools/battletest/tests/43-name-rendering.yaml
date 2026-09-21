@@ -159,7 +159,7 @@
     - text_seen('TOXIC ORB')
 
 - name: "Name rendering: Dudunsparce and Corvisquire are not truncated"
-  player: { species: DRUNSPARCE, level: 50, moves: [SPLASH] }
+  player: { species: DUDUNSPARCE, level: 50, moves: [SPLASH] }
   enemy:  { species: CORVISQUIRE, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 0
@@ -185,7 +185,7 @@
     - text_seen('FLETCHINDER')
 
 - name: "Name rendering: long name survives multi-level EXP animation"
-  player: { species: DRUNSPARCE, level: 5, moves: [DRAGON_RAGE] }
+  player: { species: DUDUNSPARCE, level: 5, moves: [DRAGON_RAGE] }
   enemy:  { species: BLISSEY, level: 20, hp: 1, moves: [SPLASH] }
   rng: forced_high
   turns: 1
