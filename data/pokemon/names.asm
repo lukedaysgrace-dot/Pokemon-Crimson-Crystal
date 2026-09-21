@@ -497,3 +497,145 @@ PokemonNames::
 	db "SANDILE@@@"
 	db "KROKOROK@@"
 	db "KROOKODILE"
+
+GetPokemonDisplayName::
+; a = runtime species id, de = its stored nickname.
+; Return the nickname in wStringBuffer1, expanding an unnicknamed species to
+; its full eleven-character name. Saved nicknames stay ten characters long.
+	ld [wNamedObjectIndexBuffer], a
+	ld h, d
+	ld l, e
+	ld de, wStringBuffer5
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	call GetPokemonName
+	ld de, wStringBuffer1
+	ld hl, wStringBuffer5
+	ld c, MON_NAME_LENGTH
+	call CompareBytes
+	jr z, ExpandPokemonSpeciesDisplayName
+
+	ld hl, wStringBuffer5
+	ld de, wStringBuffer1
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	ld de, wStringBuffer1
+	and a
+	ret
+
+LoadPlayerBattleMonNames::
+; a = runtime species id, de = stored nickname.
+	ld hl, wBattleMonDisplayName
+	ld bc, wBattleMonNick
+	jr LoadBattleMonNames
+
+LoadEnemyBattleMonNames::
+; a = runtime species id, de = stored nickname.
+	ld hl, wEnemyMonDisplayName
+	ld bc, wEnemyMonNick
+
+LoadBattleMonNames:
+; hl = display destination, bc = legacy destination.
+	push bc
+	push hl
+	push de
+	call GetPokemonDisplayName
+	pop hl
+	pop de
+	push hl
+	ld hl, wStringBuffer1
+	ld bc, DISPLAY_MON_NAME_LENGTH
+	call CopyBytes
+	pop hl
+	pop de
+	ld bc, MON_NAME_LENGTH
+	jp CopyBytes
+
+LoadEnemySpeciesBattleNames::
+; a = runtime species id. Wild opponents never have a custom nickname.
+	call GetPokemonSpeciesDisplayName
+	ld hl, wStringBuffer1
+	ld de, wEnemyMonDisplayName
+	ld bc, DISPLAY_MON_NAME_LENGTH
+	call CopyBytes
+	ld a, [wNamedObjectIndexBuffer]
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wEnemyMonNick
+	ld bc, MON_NAME_LENGTH
+	jp CopyBytes
+
+GetPokemonSpeciesDisplayName::
+; a = runtime species id. Return its full display name in wStringBuffer1.
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
+
+ExpandPokemonSpeciesDisplayName:
+	call .GetLongName
+	jr nc, .not_long
+	ld h, d
+	ld l, e
+	ld de, wStringBuffer1
+	ld bc, DISPLAY_MON_NAME_LENGTH
+	call CopyBytes
+	ld de, wStringBuffer1
+	scf
+	ret
+
+.not_long
+	ld de, wStringBuffer1
+	and a
+	ret
+
+.GetLongName:
+	ld a, [wNamedObjectIndexBuffer]
+	call GetPokemonIndexFromID
+
+	ld a, l
+	cp LOW(DRUNSPARCE)
+	jr nz, .not_dudunsparce
+	ld a, h
+	cp HIGH(DRUNSPARCE)
+	ld de, .Dudunsparce
+	jr z, .found
+.not_dudunsparce
+	ld a, l
+	cp LOW(CORVISQUIRE)
+	jr nz, .not_corvisquire
+	ld a, h
+	cp HIGH(CORVISQUIRE)
+	ld de, .Corvisquire
+	jr z, .found
+.not_corvisquire
+	ld a, l
+	cp LOW(CORVIKNIGHT)
+	jr nz, .not_corviknight
+	ld a, h
+	cp HIGH(CORVIKNIGHT)
+	ld de, .Corviknight
+	jr z, .found
+.not_corviknight
+	ld a, l
+	cp LOW(CENTISKORCH)
+	jr nz, .not_centiskorch
+	ld a, h
+	cp HIGH(CENTISKORCH)
+	ld de, .Centiskorch
+	jr z, .found
+.not_centiskorch
+	ld a, l
+	cp LOW(FLETCHINDER)
+	jr nz, .not_long_name
+	ld a, h
+	cp HIGH(FLETCHINDER)
+	ld de, .Fletchinder
+	jr z, .found
+.not_long_name
+	and a
+	ret
+
+.found
+	scf
+	ret
+
+INCLUDE "data/pokemon/display_names.asm"

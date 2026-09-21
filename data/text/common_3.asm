@@ -1205,7 +1205,7 @@ UnknownText_0x1c5afa::
 
 UnknownText_0x1c5b17::
 	text "Gotcha! @"
-	text_ram wEnemyMonNick
+	text_ram wEnemyMonDisplayName
 	text_start
 	line "was caught!@"
 	sound_caught_mon
@@ -1226,7 +1226,7 @@ UnknownText_0x1c5b38::
 	prompt
 
 UnknownText_0x1c5b53::
-	text_ram wEnemyMonNick
+	text_ram wEnemyMonDisplayName
 	text "'s data"
 	line "was newly added to"
 	cont "the #DEX.@"

@@ -5,5 +5,5 @@ StringBufferPointers::
 	dw wStringBuffer5 ; 2
 	dw wStringBuffer2 ; 3
 	dw wStringBuffer1 ; 4
-	dw wEnemyMonNick  ; 5
-	dw wBattleMonNick ; 6
+	dw wEnemyMonDisplayName  ; 5
+	dw wBattleMonDisplayName ; 6

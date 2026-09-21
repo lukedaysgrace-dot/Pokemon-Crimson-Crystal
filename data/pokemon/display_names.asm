@@ -1,0 +1,5 @@
+.Dudunsparce: db "DUDUNSPARCE@"
+.Corvisquire: db "CORVISQUIRE@"
+.Corviknight: db "CORVIKNIGHT@"
+.Centiskorch: db "CENTISKORCH@"
+.Fletchinder: db "FLETCHINDER@"
