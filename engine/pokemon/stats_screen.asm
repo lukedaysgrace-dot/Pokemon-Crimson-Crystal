@@ -820,9 +820,6 @@ StatsScreen_PinkPage:
 	ld hl, .NicknamePointers
 	call GetNicknamePointer
 	call CopyNickname
-	ld de, wStringBuffer1
-	ld a, [wBaseSpecies]
-	farcall_a GetPokemonDisplayName
 	hlcoord 8, 3
 	call PlaceString
 
@@ -831,7 +828,8 @@ StatsScreen_PinkPage:
 	ld a, "/"
 	ld [hli], a
 	ld a, [wBaseSpecies]
-	farcall_a GetPokemonSpeciesDisplayName
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
 	call PlaceString
 
 	; type icons (Polished-style pills)

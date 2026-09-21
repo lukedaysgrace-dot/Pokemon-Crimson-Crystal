@@ -4104,10 +4104,9 @@ InitBattleMon:
 	ld hl, wPartyMonNicknames
 	ld a, [wCurBattleMon]
 	call SkipNames
-	ld d, h
-	ld e, l
-	ld a, [wBattleMonSpecies]
-	farcall_a LoadPlayerBattleMonNames
+	ld de, wBattleMonNick
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
 	ld hl, wBattleMonAttack
 	ld de, wPlayerStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
@@ -4186,10 +4185,9 @@ InitEnemyMon:
 	ld hl, wOTPartyMonNicknames
 	ld a, [wCurPartyMon]
 	call SkipNames
-	ld d, h
-	ld e, l
-	ld a, [wEnemyMonSpecies]
-	farcall_a LoadEnemyBattleMonNames
+	ld de, wEnemyMonNick
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
 	ld hl, wEnemyMonAttack
 	ld de, wEnemyStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
@@ -4902,13 +4900,9 @@ CheckDanger:
 	ret
 
 PrintPlayerHUD:
-	ld de, wBattleMonDisplayName
+	ld de, wBattleMonNick
 	hlcoord 10, 7
-	ld a, [wBattleMonDisplayName + MON_NAME_LENGTH - 1]
-	cp "@"
-	jr z, .place_name
-	dec hl
-.place_name
+	call ret_3e138
 	call PlaceString
 
 	push bc
@@ -5004,8 +4998,9 @@ DrawEnemyHUD:
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
-	ld de, wEnemyMonDisplayName
+	ld de, wEnemyMonNick
 	hlcoord 1, 0
+	call ret_3e138
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -5139,6 +5134,9 @@ UpdateHPPal:
 	cp b
 	ret z
 	jp FinishBattleAnim
+
+ret_3e138:
+	ret
 
 BattleMenu:
 	xor a
@@ -6756,12 +6754,20 @@ LoadEnemyMon:
 	ld [de], a
 
 	ld a, [wTempEnemyMonSpecies]
-	farcall_a LoadEnemySpeciesBattleNames
+	ld [wNamedObjectIndexBuffer], a
+
+	call GetPokemonName
 
 ; Did we catch it?
 	ld a, [wBattleMode]
 	and a
 	ret z
+
+; Update enemy nick
+	ld hl, wStringBuffer1
+	ld de, wEnemyMonNick
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
 
 ; Saw this mon
 	ld a, [wTempEnemyMonSpecies]
@@ -7412,14 +7418,6 @@ GiveExperiencePoints:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
-	ld a, [wCurPartyMon]
-	ld e, a
-	ld d, 0
-	ld hl, wPartySpecies
-	add hl, de
-	ld a, [hl]
-	ld de, wStringBuffer1
-	farcall_a GetPokemonDisplayName
 	ld hl, Text_MonGainedExpPoint
 	call BattleTextbox
 	ld a, [wStringBuffer2 + 1]
@@ -7922,9 +7920,9 @@ AnimateExpBar:
 	ld c, $40
 	call .LoopBarAnimation
 	call PrintPlayerHUD
-	ld hl, wBattleMonDisplayName
+	ld hl, wBattleMonNick
 	ld de, wStringBuffer1
-	ld bc, DISPLAY_MON_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call TerminateExpBarSound
 	ld de, SFX_HIT_END_OF_EXP_BAR

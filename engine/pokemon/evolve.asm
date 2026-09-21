@@ -515,7 +515,8 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wEvolutionNewSpecies]
 	ld [wCurSpecies], a
 	ld [wTempMonSpecies], a
-	farcall_a GetPokemonSpeciesDisplayName
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName
 
 	push hl
 	ld hl, Text_EvolvedIntoPKMN
