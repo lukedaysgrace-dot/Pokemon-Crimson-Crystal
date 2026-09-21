@@ -786,11 +786,6 @@ wPlayerWishCount:: db ; end-of-turn countdown for a pending Wish (0 = none)
 wEnemyWishCount:: db
 wPlayerWishHP:: dw ; half the wisher's max HP, recorded at use time
 wEnemyWishHP:: dw
-
-; Full-width display copies live at the unused end of the battle union so the
-; legacy battle layout above never moves. Party/save nicknames remain capped.
-wEnemyMonDisplayName::  ds DISPLAY_MON_NAME_LENGTH
-wBattleMonDisplayName:: ds DISPLAY_MON_NAME_LENGTH
 wBattleEnd::
 
 NEXTU ; c608

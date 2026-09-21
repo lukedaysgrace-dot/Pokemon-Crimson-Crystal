@@ -48,7 +48,7 @@ DisplayCaughtContestMonStats:
 	ld [wTempMonLevel], a
 	call PrintLevel
 
-	ld de, wEnemyMonDisplayName
+	ld de, wEnemyMonNick
 	hlcoord 1, 8
 	call PlaceString
 
