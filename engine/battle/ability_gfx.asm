@@ -367,12 +367,12 @@ GetAbilityGFXPkmnName:
 	ldh [rSVBK], a
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wBattleMonDisplayName
+	ld hl, wBattleMonNick
 	jr z, .got_nick
-	ld hl, wEnemyMonDisplayName
+	ld hl, wEnemyMonNick
 .got_nick
 	ld de, wStringBuffer2
-	ld c, DISPLAY_MON_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 .copy_loop
 	ld a, [hli]
 	cp "@"
