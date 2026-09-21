@@ -3,3 +3,5 @@
 .Corviknight: db "CORVIKNIGHT@"
 .Centiskorch: db "CENTISKORCH@"
 .Fletchinder: db "FLETCHINDER@"
+
+LegacyDrunsparceName:: db "DRUNSPARCE@"

@@ -269,7 +269,7 @@ PokemonNames::
 	db "BAGON@@@@@"
 	db "SHELGON@@@"
 	db "SALAMENCE@"
-	db "DRUNSPARCE"
+	db "DUDUNSPARC"
 	db "ELECTIVIRE"
 	db "FARIGIRAF@"
 	db "RALTS@@@@@"
@@ -515,6 +515,23 @@ GetPokemonDisplayName::
 	call CompareBytes
 	jr z, ExpandPokemonSpeciesDisplayName
 
+; Builds made before the internal symbol was corrected stored DRUNSPARCE as
+; the default nickname. Treat that value as unnicknamed for save compatibility.
+	ld a, [wNamedObjectIndexBuffer]
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(DUDUNSPARCE)
+	jr nz, .custom_nickname
+	ld a, h
+	cp HIGH(DUDUNSPARCE)
+	jr nz, .custom_nickname
+	ld hl, wStringBuffer5
+	ld de, LegacyDrunsparceName
+	ld c, MON_NAME_LENGTH
+	call CompareBytes
+	jr z, ExpandPokemonSpeciesDisplayName
+
+.custom_nickname
 	ld hl, wStringBuffer5
 	ld de, wStringBuffer1
 	ld bc, MON_NAME_LENGTH
@@ -592,10 +609,10 @@ ExpandPokemonSpeciesDisplayName:
 	call GetPokemonIndexFromID
 
 	ld a, l
-	cp LOW(DRUNSPARCE)
+	cp LOW(DUDUNSPARCE)
 	jr nz, .not_dudunsparce
 	ld a, h
-	cp HIGH(DRUNSPARCE)
+	cp HIGH(DUDUNSPARCE)
 	ld de, .Dudunsparce
 	jr z, .found
 .not_dudunsparce
