@@ -298,7 +298,7 @@ PlaceMoveUsersName::
 	and a
 	jr nz, .enemy
 
-	ld de, wBattleMonDisplayName
+	ld de, wBattleMonNick
 	jr PlaceCommandCharacter
 
 .enemy
@@ -306,7 +306,7 @@ PlaceMoveUsersName::
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, wEnemyMonDisplayName
+	ld de, wEnemyMonNick
 	jr PlaceCommandCharacter
 
 PlaceEnemysName::
@@ -997,8 +997,8 @@ TextCommand_STRINGBUFFER::
 ; 2: wStringBuffer5
 ; 3: wStringBuffer2
 ; 4: wStringBuffer1
-; 5: wEnemyMonDisplayName
-; 6: wBattleMonDisplayName
+; 5: wEnemyMonNick
+; 6: wBattleMonNick
 ; [$14][id]
 
 	ld a, [hli]

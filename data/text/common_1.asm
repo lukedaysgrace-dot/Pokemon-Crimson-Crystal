@@ -1109,7 +1109,7 @@ Text_EnemyWithdrew::
 	text "<ENEMY>"
 	line "withdrew"
 	cont "@"
-	text_ram wEnemyMonDisplayName
+	text_ram wEnemyMonNick
 	text "!"
 	prompt
 
@@ -1119,7 +1119,7 @@ Text_EnemyUsedOn::
 	text_ram wMonOrItemNameBuffer
 	text_start
 	cont "on @"
-	text_ram wEnemyMonDisplayName
+	text_ram wEnemyMonNick
 	text "!"
 	prompt
 
