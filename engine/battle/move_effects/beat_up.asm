@@ -29,6 +29,14 @@ BattleCommand_BeatUp:
 	ld a, [wd002]
 	ld hl, wPartyMonNicknames
 	call GetNick
+	ld a, [wd002]
+	ld c, a
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld de, wStringBuffer1
+	farcall_a GetPokemonDisplayName
 	ld a, MON_HP
 	call GetBeatupMonLocation
 	ld a, [hli]
@@ -116,17 +124,21 @@ BattleCommand_BeatUp:
 	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
+	farcall_a GetPokemonSpeciesDisplayName
 	jr .got_enemy_nick
 
 .link_or_tower
 	ld a, [wd002]
 	ld hl, wOTPartyMonNicknames
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call GetNick
+	ld a, [wd002]
+	ld c, a
+	ld b, 0
+	ld hl, wOTPartySpecies
+	add hl, bc
+	ld a, [hl]
 	ld de, wStringBuffer1
-	call CopyBytes
+	farcall_a GetPokemonDisplayName
 
 .got_enemy_nick
 	ld a, MON_HP
@@ -154,8 +166,7 @@ BattleCommand_BeatUp:
 
 .wild
 	ld a, [wEnemyMonSpecies]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
+	farcall_a GetPokemonSpeciesDisplayName
 	ld hl, BeatUpAttackText
 	call StdBattleTextbox
 	jp EnemyAttackDamage
