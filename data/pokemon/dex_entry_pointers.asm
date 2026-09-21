@@ -266,7 +266,7 @@ PokedexDataPointerTable:
 	dba BagonPokedexEntry
 	dba ShelgonPokedexEntry
 	dba SalamencePokedexEntry
-	dba DrunsparcePokedexEntry
+	dba DudunsparcePokedexEntry
 	dba ElectivirePokedexEntry
 	dba FarigirafPokedexEntry
 	dba RaltsPokedexEntry

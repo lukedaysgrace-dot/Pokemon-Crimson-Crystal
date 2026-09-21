@@ -265,7 +265,7 @@ FramesPointers:
 	dba BagonFrames
 	dba ShelgonFrames
 	dba SalamenceFrames
-	dba DrunsparceFrames
+	dba DudunsparceFrames
 	dba ElectivireFrames
 	dba FarigirafFrames
 	dba RaltsFrames

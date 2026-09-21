@@ -269,7 +269,7 @@ PokemonNames::
 	db "BAGON@@@@@"
 	db "SHELGON@@@"
 	db "SALAMENCE@"
-	db "DRUNSPARCE"
+	db "DUDUNSPARC"
 	db "ELECTIVIRE"
 	db "FARIGIRAF@"
 	db "RALTS@@@@@"

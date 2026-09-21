@@ -265,7 +265,7 @@ AnimationPointers:
 	dba BagonAnimation
 	dba ShelgonAnimation
 	dba SalamenceAnimation
-	dba DrunsparceAnimation
+	dba DudunsparceAnimation
 	dba ElectivireAnimation
 	dba FarigirafAnimation
 	dba RaltsAnimation

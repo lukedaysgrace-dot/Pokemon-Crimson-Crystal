@@ -44,7 +44,8 @@ moves that exist in this ROM. Evolutions are never touched — only the
 Moves that don't exist in `constants/move_constants.asm` are dropped
 automatically. The Bloodmoon forms map to their real data
 (`ursaluna-bloodmoon`; the custom Teddiursa/Ursaring Bloodmoon pre-evos reuse
-the normal Teddiursa/Ursaring learnsets), and `Drunsparce` maps to Dudunsparce.
+the normal Teddiursa/Ursaring learnsets), and Dudunsparce uses its two-segment
+form for the PokeAPI fallback.
 
 ## Running it
 

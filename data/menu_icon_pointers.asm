@@ -268,7 +268,7 @@ MenuIconPointers:
 	dba BagonMenuIcon
 	dba ShelgonMenuIcon
 	dba SalamenceMenuIcon
-	dba DrunsparceMenuIcon
+	dba DudunsparceMenuIcon
 	dba ElectivireMenuIcon
 	dba FarigirafMenuIcon
 	dba RaltsMenuIcon

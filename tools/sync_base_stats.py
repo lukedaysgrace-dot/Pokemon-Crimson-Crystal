@@ -19,8 +19,8 @@ SLUG_MAP = {
     "porygon_z": "porygon-z",
 }
 
-# Not on pokemondb — skip or manual
-SKIP = {"mesmeria", "drunsparce", "rypherior"}
+# Skip species whose stats are maintained manually.
+SKIP = {"mesmeria", "dudunsparce", "rypherior"}
 
 # Species inserted after Celebi in base_stats.asm (honchkrow … corviknight)
 NEW_SPECIES = [
@@ -28,7 +28,7 @@ NEW_SPECIES = [
     "ambipom",
     "annihilape",
     "bagon",
-    "drunsparce",
+    "dudunsparce",
     "electivire",
     "farigiraf",
     "gardevoir",
