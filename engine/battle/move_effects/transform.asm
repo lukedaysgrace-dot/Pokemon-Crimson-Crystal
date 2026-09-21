@@ -31,8 +31,7 @@ BattleCommand_Transform::
 	ld hl, wEnemyMonSpecies
 .got_species
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
+	farcall_a GetPokemonSpeciesDisplayName
 	call _CheckBattleScene
 	jr c, .mimic_anims
 	ldh a, [hBattleTurn]
