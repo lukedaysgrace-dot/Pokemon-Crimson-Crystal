@@ -64,7 +64,7 @@ NewPokedexOrder:
 	dw EKANS
 	dw ARBOK
 	dw DUNSPARCE
-	dw DRUNSPARCE
+	dw DUDUNSPARCE
 	dw MAREEP
 	dw FLAAFFY
 	dw AMPHAROS

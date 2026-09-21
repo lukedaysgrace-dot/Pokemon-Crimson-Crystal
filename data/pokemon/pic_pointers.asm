@@ -545,8 +545,8 @@ PokemonPicPointers::
 	dba ShelgonBackpic
 	dba SalamenceFrontpic
 	dba SalamenceBackpic
-	dba DrunsparceFrontpic
-	dba DrunsparceBackpic
+	dba DudunsparceFrontpic
+	dba DudunsparceBackpic
 	dba ElectivireFrontpic
 	dba ElectivireBackpic
 	dba FarigirafFrontpic
