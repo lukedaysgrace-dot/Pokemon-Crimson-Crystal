@@ -107,14 +107,22 @@ PlacePartyNicknames:
 	ld a, [hl]
 	cp EGG
 	ld de, .EGG
-	jr z, .got_name
+	jr z, .egg_name
+	ld [wCurPartySpecies], a
 	ld hl, wPartyMonNicknames
 	ld a, b
 	call GetNick
-	ld a, "@"
-	ld [wStringBuffer1 + 10], a ; cap the name so it can't run into the HP column
+	ld de, wStringBuffer1
+	ld a, [wCurPartySpecies]
+	farcall_a GetPokemonDisplayName
+	jr .got_name
+.egg_name
+	and a ; an Egg never needs the one-tile left shift
 .got_name
 	pop hl
+	jr nc, .place_name
+	dec hl ; eleven-character species names occupy columns 2 through 12
+.place_name
 	call PlaceString
 	pop hl
 	ld de, 2 * SCREEN_WIDTH
@@ -866,6 +874,14 @@ PrintPartyMenuActionText:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
+	ld a, [wCurPartyMon]
+	ld c, a
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld de, wStringBuffer1
+	farcall_a GetPokemonDisplayName
 	ld a, [wPartyMenuActionText]
 	and $f
 	ld hl, .MenuActionTexts
