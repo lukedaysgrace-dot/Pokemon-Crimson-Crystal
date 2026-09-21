@@ -357,7 +357,7 @@ MANUAL = {
         '\tnext "reflects moonlight"\n'
         '\tnext "into waking dreams.@"\n'
     ),
-    "drunsparce": (
+    "dudunsparce": (
         '\tdb "LAND SNAKE@" ; category name\n'
         "\tdw 709, 5291 ; height, weight\n"
         "\n"
@@ -467,7 +467,7 @@ ALL_BASES = [
     "ambipom",
     "conkeldurr",
     "mesmeria",
-    "drunsparce",
+    "dudunsparce",
     "tinkatink",
     "bagon",
     "scolipede",

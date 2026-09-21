@@ -265,7 +265,7 @@ BitmasksPointers:
 	dw BagonBitmasks
 	dw ShelgonBitmasks
 	dw SalamenceBitmasks
-	dw DrunsparceBitmasks
+	dw DudunsparceBitmasks
 	dw ElectivireBitmasks
 	dw FarigirafBitmasks
 	dw RaltsBitmasks

@@ -1299,7 +1299,7 @@ ForretressEvosAttacks:
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
-	dbbw EVOLVE_LEVEL, 40, DRUNSPARCE
+	dbbw EVOLVE_LEVEL, 40, DUDUNSPARCE
 	db 0 ; no more evolutions
 	dbw 1, DEFENSE_CURL
 	dbw 1, FLAIL
@@ -3329,7 +3329,7 @@ EvosAttacksPointers2E::
 	dw BagonEvosAttacks
 	dw ShelgonEvosAttacks
 	dw SalamenceEvosAttacks
-	dw DrunsparceEvosAttacks
+	dw DudunsparceEvosAttacks
 	dw ElectivireEvosAttacks
 	dw FarigirafEvosAttacks
 	dw RaltsEvosAttacks
@@ -3605,7 +3605,7 @@ BagonEvosAttacks:
 	dbw 49, OUTRAGE
 	db 0 ; no more level-up moves
 
-DrunsparceEvosAttacks:
+DudunsparceEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, DEFENSE_CURL
 	dbw 4, ROLLOUT
