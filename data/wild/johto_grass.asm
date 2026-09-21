@@ -147,7 +147,7 @@ JohtoGrassWildMons:
 	dbw 56, WYRDEER
 	dbw 56, MIMIKYU
 	dbw 57, XATU
-	dbw 58, DUDUNSPARCE
+	dbw 58, DRUNSPARCE
 	dbw 58, TOGETIC
 	; day
 	dbw 55, AMBIPOM
@@ -161,7 +161,7 @@ JohtoGrassWildMons:
 	dbw 55, RATICATE
 	dbw 55, WYRDEER
 	dbw 56, MIMIKYU
-	dbw 56, DUDUNSPARCE
+	dbw 56, DRUNSPARCE
 	dbw 57, AMBIPOM
 	dbw 58, MISMAGIUS
 	dbw 58, WOBBUFFET
@@ -1085,7 +1085,7 @@ JohtoGrassWildMons:
 	dbw 74, VIBRAVA
 	dbw 76, TINKATON
 	dbw 68, HOUNDOOM
-	dbw 68, DUDUNSPARCE
+	dbw 68, DRUNSPARCE
 	; day
 	dbw 76, CONKELDURR
 	dbw 76, LUCARIO
