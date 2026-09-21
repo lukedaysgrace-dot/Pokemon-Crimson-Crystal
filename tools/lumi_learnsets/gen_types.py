@@ -140,7 +140,7 @@ FILE_REGION = [
     ("_hisuian",       ("hisui",  "hisui")),
 ]
 
-LUMI_NAME_ALIAS = {"drunsparce": "dudunsparce"}
+LUMI_NAME_ALIAS = {}
 
 # Species whose typing must be LEFT ALONE (kept as they are in this ROM),
 # even though Luminescent has different types for them.
@@ -154,7 +154,7 @@ SPECIAL_SLUG = {
     "nidoranf": "nidoran-f", "nidoranm": "nidoran-m", "mrmime": "mr-mime",
     "mrrime": "mr-rime", "mimejr": "mime-jr", "hooh": "ho-oh",
     "porygonz": "porygon-z", "typenull": "type-null", "sirfetchd": "sirfetchd",
-    "farfetchd": "farfetchd", "drunsparce": "dudunsparce-two-segment",
+    "farfetchd": "farfetchd", "dudunsparce": "dudunsparce-two-segment",
     "watu": None, "mesmeria": None,
 }
 

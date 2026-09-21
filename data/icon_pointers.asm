@@ -267,7 +267,7 @@ IconPointers:
 	dba BagonIcon
 	dba ShelgonIcon
 	dba SalamenceIcon
-	dba DrunsparceIcon
+	dba DudunsparceIcon
 	dba ElectivireIcon
 	dba FarigirafIcon
 	dba RaltsIcon

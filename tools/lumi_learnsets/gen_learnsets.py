@@ -295,9 +295,7 @@ LUMI_REGION_KEYWORDS = {
 }
 
 # SS label (normalized) -> Luminescent species name (normalized), when they differ
-LUMI_NAME_ALIAS = {
-    "drunsparce": "dudunsparce",
-}
+LUMI_NAME_ALIAS = {}
 
 # Label base -> explicit PokeAPI slug (when normalization is not enough)
 SPECIAL_SLUG = {
@@ -308,7 +306,7 @@ SPECIAL_SLUG = {
     "jangmoo": "jangmo-o", "hakamoo": "hakamo-o", "kommoo": "kommo-o",
     "tapukoko": "tapu-koko", "wochien": "wo-chien",
     # aliases for SS-specific labels
-    "drunsparce": "dudunsparce-two-segment",  # PokeAPI fallback if not in Lumi
+    "dudunsparce": "dudunsparce-two-segment",  # PokeAPI fallback if not in Lumi
     "watu": None,      # fakemon
     "mesmeria": None,  # fakemon
 }
@@ -551,7 +549,7 @@ def resolve_base_learnset(label_base, lumi, rom_moves, report):
     species, tag, api_suffix = split_region(label_base)
     species_norm = norm_name(species)
     is_fakemon = (species_norm in SPECIAL_SLUG and SPECIAL_SLUG[species_norm] is None)
-    # some SS labels are spelled differently than Luminescent (e.g. Drunsparce)
+    # Some SS labels are spelled differently than Luminescent.
     lumi_lookup = LUMI_NAME_ALIAS.get(species_norm, species_norm)
     monsno = lumi.name_to_monsno.get(lumi_lookup)
 

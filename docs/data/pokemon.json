@@ -11968,10 +11968,10 @@
         "args": [
           "40"
         ],
-        "target": "DRUNSPARCE",
+        "target": "DUDUNSPARCE",
         "text": "Level 40",
-        "target_name": "Drunsparce",
-        "target_slug": "drunsparce"
+        "target_name": "Dudunsparce",
+        "target_slug": "dudunsparce"
       }
     ],
     "egg_moves": [],
@@ -12053,8 +12053,8 @@
     }
   },
   {
-    "const": "DRUNSPARCE",
-    "name": "Drunsparce",
+    "const": "DUDUNSPARCE",
+    "name": "Dudunsparce",
     "number": 61,
     "stats": {
       "HP": 125,
@@ -12192,7 +12192,7 @@
     ],
     "evolutions": [],
     "egg_moves": [],
-    "sprite": "assets/pokemon/drunsparce.png",
+    "sprite": "assets/pokemon/dudunsparce.png",
     "evolves_from": {
       "const": "DUNSPARCE",
       "name": "Dunsparce",
@@ -12200,7 +12200,7 @@
       "text": "Level 40"
     },
     "anim": {
-      "sheet": "assets/pokemon/drunsparce.sheet.png",
+      "sheet": "assets/pokemon/dudunsparce.sheet.png",
       "size": 56,
       "frames": 5,
       "main": [
@@ -60400,7 +60400,7 @@
         ],
         "target": "CORVISQUIRE",
         "text": "Level 18",
-        "target_name": "Corvisquir",
+        "target_name": "Corvisquire",
         "target_slug": "corvisquire"
       }
     ],
@@ -60504,7 +60504,7 @@
   },
   {
     "const": "CORVISQUIRE",
-    "name": "Corvisquir",
+    "name": "Corvisquire",
     "number": 313,
     "stats": {
       "HP": 68,
@@ -60582,7 +60582,7 @@
         ],
         "target": "CORVIKNIGHT",
         "text": "Level 36",
-        "target_name": "Corvknight",
+        "target_name": "Corviknight",
         "target_slug": "corviknight"
       }
     ],
@@ -60597,7 +60597,7 @@
   },
   {
     "const": "CORVIKNIGHT",
-    "name": "Corvknight",
+    "name": "Corviknight",
     "number": 314,
     "stats": {
       "HP": 98,
@@ -60698,7 +60698,7 @@
     "sprite": "assets/pokemon/corviknight.png",
     "evolves_from": {
       "const": "CORVISQUIRE",
-      "name": "Corvisquir",
+      "name": "Corvisquire",
       "slug": "corvisquire",
       "text": "Level 36"
     },
@@ -74906,7 +74906,7 @@
         ],
         "target": "CENTISKORCH",
         "text": "Level 28",
-        "target_name": "Centiskorc",
+        "target_name": "Centiskorch",
         "target_slug": "centiskorch"
       }
     ],
@@ -74974,7 +74974,7 @@
   },
   {
     "const": "CENTISKORCH",
-    "name": "Centiskorc",
+    "name": "Centiskorch",
     "number": 383,
     "stats": {
       "HP": 100,
@@ -77650,7 +77650,7 @@
         ],
         "target": "FLETCHINDER",
         "text": "Level 17",
-        "target_name": "Fletchindr",
+        "target_name": "Fletchinder",
         "target_slug": "fletchinder"
       }
     ],
@@ -77660,7 +77660,7 @@
   },
   {
     "const": "FLETCHINDER",
-    "name": "Fletchindr",
+    "name": "Fletchinder",
     "number": 397,
     "stats": {
       "HP": 62,
@@ -77883,7 +77883,7 @@
     "sprite": "assets/pokemon/talonflame.png",
     "evolves_from": {
       "const": "FLETCHINDER",
-      "name": "Fletchindr",
+      "name": "Fletchinder",
       "slug": "fletchinder",
       "text": "Level 35"
     },

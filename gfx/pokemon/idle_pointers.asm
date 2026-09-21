@@ -265,7 +265,7 @@ AnimationIdlePointers:
 	dba BagonAnimationIdle
 	dba ShelgonAnimationIdle
 	dba SalamenceAnimationIdle
-	dba DrunsparceAnimationIdle
+	dba DudunsparceAnimationIdle
 	dba ElectivireAnimationIdle
 	dba FarigirafAnimationIdle
 	dba RaltsAnimationIdle
