@@ -1299,7 +1299,7 @@ ForretressEvosAttacks:
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
-	dbbw EVOLVE_LEVEL, 40, DUDUNSPARCE
+	dbbw EVOLVE_LEVEL, 40, DRUNSPARCE
 	db 0 ; no more evolutions
 	dbw 1, DEFENSE_CURL
 	dbw 1, FLAIL
