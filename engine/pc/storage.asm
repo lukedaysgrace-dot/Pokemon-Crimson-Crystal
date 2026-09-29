@@ -1093,7 +1093,10 @@ SwapStorageBoxSlots::
 	jr z, .no_boxmon
 	ld a, [wTempMonIsEgg]
 	and a
-	jr nz, .no_boxmon
+	jr z, .box_not_egg
+	xor a ; an Egg can't battle: treat it like an empty slot (z)
+	jr .no_boxmon
+.box_not_egg
 	ld hl, wTempMonHP
 	ld a, [hli]
 	or [hl]

@@ -768,6 +768,8 @@ TradeAnim_ShowGivemonData:
 	ld [wTempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
 	ld [wTempMonDVs + 1], a
+	ld a, [wPlayerTrademonShinyGender]
+	ld [wTempMonUnused], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
@@ -793,6 +795,8 @@ TradeAnim_ShowGetmonData:
 	ld [wTempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [wTempMonDVs + 1], a
+	ld a, [wOTTrademonShinyGender]
+	ld [wTempMonUnused], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0

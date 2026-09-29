@@ -258,22 +258,7 @@ GetMartItemPrice:
 	push hl
 	ld [wCurItem], a
 	farcall GetItemPrice
-	ld a, [wMartType]
-	cp MARTTYPE_COUPLE
-	jr nz, .got_price
-; The retired rooftop battlers charge ten times the normal item price.
-	sla e
-	rl d
-	ld h, d
-	ld l, e
-	sla e
-	rl d
-	sla e
-	rl d
-	add hl, de
-	ld d, h
-	ld e, l
-.got_price
+	call ApplyCoupleMarkup
 	pop hl
 
 GetMartPrice:
@@ -526,12 +511,40 @@ BuyMenuLoop:
 	ret
 
 StandardMartAskPurchaseQuantity:
+	ld a, [wMartType]
+	cp MARTTYPE_COUPLE
 	ld a, 99
+	jr nz, .got_max
+	; 33 x the marked-up price still fits the 6-digit subtotal display
+	ld a, 33
+.got_max
 	ld [wItemQuantityBuffer], a
 	ld a, MARTTEXT_HOW_MANY
 	call LoadBuyMenuText
-	farcall SelectQuantityToBuy
+	; charge the same price the list shows (see ApplyCoupleMarkup)
+	farcall GetItemPrice
+	call ApplyCoupleMarkup
+	farcall RooftopSale_SelectQuantityToBuy
 	call ExitMenu
+	ret
+
+ApplyCoupleMarkup:
+; The retired rooftop battlers (MARTTYPE_COUPLE) charge ten times the normal
+; item price. de = price in, marked-up price out. Clobbers a and hl.
+	ld a, [wMartType]
+	cp MARTTYPE_COUPLE
+	ret nz
+	sla e
+	rl d
+	ld h, d
+	ld l, e
+	sla e
+	rl d
+	sla e
+	rl d
+	add hl, de
+	ld d, h
+	ld e, l
 	ret
 
 MartConfirmPurchase:

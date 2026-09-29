@@ -278,11 +278,11 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 5 ; items
-	db "BAGON      4000@"
-	db "DEINO      6000@"
+	db "BAGON      3500@"
+	db "DEINO      4000@"
 	db "MUNCHLAX   1500@"
-	db "DRATINI    2000@"
-	db "PORYGON    3000@"
+	db "DRATINI    3000@"
+	db "PORYGON    7000@"
 
 GoldenrodGameCornerPharmacistScript:
 	faceplayer

@@ -2666,13 +2666,13 @@ BrickBreak:
 	checkobedience
 	usedmovetext
 	doturn
-	brickbreak
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
 	checkhit
+	brickbreak ; after checkhit: a blocked or missed Brick Break spares the screens
 	moveanim
 	failuretext
 	applydamage

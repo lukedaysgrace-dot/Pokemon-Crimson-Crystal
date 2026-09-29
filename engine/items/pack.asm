@@ -789,8 +789,13 @@ ItemSubmenu:
 	farcall EngineFlagAction
 	ld a, c
 	and a
+	jr nz, .hard_mode
+	; (pop af restores the flags too, so test the result before popping)
 	pop af
-	jr z, TMHMSubmenu
+	jr TMHMSubmenu
+
+.hard_mode
+	pop af
 	; Hard Mode only allows Ball-pocket items from the battle pack.
 	ld b, a
 	farcall CheckItemPocket

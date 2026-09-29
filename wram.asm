@@ -902,6 +902,9 @@ wLinkPlayer1Name:: ds NAME_LENGTH
 wLinkPlayer2Name:: ds NAME_LENGTH
 wLinkTradeSendmonSpecies:: db
 wLinkTradeGetmonSpecies::  db
+; shiny/gender flags (MON_UNUSED) for the trade animation's palettes
+wPlayerTrademonShinyGender:: db
+wOTTrademonShinyGender::     db
 
 NEXTU ; c6d0
 ; naming screen

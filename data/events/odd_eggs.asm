@@ -114,7 +114,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 17 ; Max HP
 	bigdw 9 ; Atk
@@ -177,7 +177,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 20 ; Max HP
 	bigdw 7 ; Atk
@@ -233,7 +233,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 24 ; Max HP
 	bigdw 8 ; Atk
@@ -289,7 +289,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
 	bigdw 8 ; Atk
@@ -345,7 +345,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
 	bigdw 12 ; Atk
@@ -401,7 +401,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 19 ; Max HP
 	bigdw 11 ; Atk
@@ -457,7 +457,7 @@ OddEggs:
 	db 5 ; Level
 	db 0 ; Personality
 	db HIDDEN_POWER_DEFAULT_TYPE ; Hidden Power type
-	db 0, 0 ; Status
+	db 0, MON_SHINY_FLAG ; Status, shiny/gender flags (rare Odd Egg: shiny)
 	bigdw 0 ; HP
 	bigdw 18 ; Max HP
 	bigdw 8 ; Atk

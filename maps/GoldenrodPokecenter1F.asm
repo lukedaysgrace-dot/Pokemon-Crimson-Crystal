@@ -129,6 +129,12 @@ GoldenrodPokecenter1FFeebasSalesmanScript:
 	iffalse .Refused
 	checkmoney YOUR_MONEY, GOLDENRODPOKECENTER1F_FEEBAS_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
+	; don't take the money if the FEEBAS has nowhere to go
+	readvar VAR_PARTYCOUNT
+	ifless PARTY_LENGTH, .HaveRoom
+	readvar VAR_BOXSPACE
+	ifequal 0, .NoRoom
+.HaveRoom:
 	writetext GoldenrodPokecenter1FFeebasSalesmanSoldText
 	buttonsound
 	takemoney YOUR_MONEY, GOLDENRODPOKECENTER1F_FEEBAS_PRICE
@@ -165,6 +171,12 @@ GoldenrodPokecenter1FFeebasSalesmanScript:
 
 .Refused:
 	writetext GoldenrodPokecenter1FFeebasSalesmanRefusedText
+	waitbutton
+	closetext
+	end
+
+.NoRoom:
+	writetext GoldenrodPokecenter1FFeebasSalesmanNoRoomText
 	waitbutton
 	closetext
 	end
@@ -828,6 +840,15 @@ GoldenrodPokecenter1FFeebasSalesmanOfferText:
 
 GoldenrodPokecenter1FFeebasSalesmanRefusedText:
 	text "……fine."
+	done
+
+GoldenrodPokecenter1FFeebasSalesmanNoRoomText:
+	text "Hey now! You've"
+	line "got no room for"
+	cont "another #MON."
+
+	para "Make some space"
+	line "and come back!"
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanNoMoneyText:

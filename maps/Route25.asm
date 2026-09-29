@@ -486,8 +486,14 @@ TrainerCooltrainermKevin:
 	iftrue .AfterNuggetBridge
 	writetext CooltrainermKevinRewardText
 	buttonsound
+	; the two prizes are given separately so a full ITEM pocket can't
+	; hand out the SCOPE LENS again every time the RARE CANDY doesn't fit
+	checkevent EVENT_GOT_NUGGET_BRIDGE_SCOPE_LENS
+	iftrue .GiveRareCandy
 	verbosegiveitem SCOPE_LENS
 	iffalse .NoRoomForPrize
+	setevent EVENT_GOT_NUGGET_BRIDGE_SCOPE_LENS
+.GiveRareCandy:
 	verbosegiveitem RARE_CANDY
 	iffalse .NoRoomForPrize
 	setevent EVENT_CLEARED_NUGGET_BRIDGE

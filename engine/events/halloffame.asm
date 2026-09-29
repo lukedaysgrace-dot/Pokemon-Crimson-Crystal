@@ -171,7 +171,15 @@ GetHallOfFameParty:
 	ld a, l
 	ld [de], a
 	inc de
-	ld a, h
+	; there is no room for the shiny/gender flags in a HoF record, so they
+	; ride in the unused top two bits of the species index
+	push hl
+	ld hl, MON_UNUSED
+	add hl, bc
+	ld a, [hl]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	pop hl
+	or h
 	ld [de], a
 	inc de
 
@@ -225,18 +233,30 @@ GetHallOfFameParty:
 	ld [de], a
 	ret
 
+HOF_GetSpeciesAndFlags:
+; hl = a HoF record's species index. Returns the species ID in a, hl pointing
+; past the index, and the mon's shiny/gender flags in wTempMonUnused (where
+; GetGender and CheckShininess look for a TEMPMON's).
+	ld a, [hli]
+	push hl
+	ld h, [hl]
+	ld l, a
+	ld a, h
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
+	xor h
+	ld h, a
+	call GetPokemonIDFromIndex
+	pop hl
+	inc hl
+	ret
+
 AnimateHOFMonEntrance:
 	push hl
 	call ClearBGPalettes
 	farcall ResetDisplayBetweenHallOfFameMons
 	pop hl
-	ld a, [hli]
-	push hl
-	ld h, [hl]
-	ld l, a
-	call GetPokemonIDFromIndex
-	pop hl
-	inc hl
+	call HOF_GetSpeciesAndFlags
 	ld [wTempMonSpecies], a
 	ld [wCurPartySpecies], a
 	inc hl
@@ -445,13 +465,7 @@ LoadHOFTeam:
 DisplayHOFMon:
 	xor a
 	ldh [hBGMapMode], a
-	ld a, [hli]
-	push hl
-	ld h, [hl]
-	ld l, a
-	call GetPokemonIDFromIndex
-	pop hl
-	inc hl
+	call HOF_GetSpeciesAndFlags
 	ld [wTempMonSpecies], a
 	ld a, [hli]
 	ld [wTempMonID], a

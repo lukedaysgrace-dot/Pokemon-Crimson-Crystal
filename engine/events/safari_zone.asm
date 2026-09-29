@@ -13,12 +13,28 @@ StartSafariGame::
 	bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
 	ret nz
 	set STATUSFLAGS2_SAFARI_GAME_F, [hl]
+	; The lobby clears the fee every time it loads, so a player who walked
+	; straight back in through the door without paying gets a game with
+	; no balls and no steps, which DoSafariStep turns away on the first step.
+	ld de, EVENT_PAID_SAFARI_ZONE_FEE
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr z, .not_paid
 	ld a, SAFARI_ZONE_BALL_COUNT
 	ld [wSafariBallsRemaining], a
 	; big endian, so PrintNum can read it straight out of WRAM
 	ld a, HIGH(SAFARI_ZONE_STEP_COUNT)
 	ld [wSafariStepsRemaining], a
 	ld a, LOW(SAFARI_ZONE_STEP_COUNT)
+	ld [wSafariStepsRemaining + 1], a
+	ret
+
+.not_paid
+	xor a
+	ld [wSafariBallsRemaining], a
+	ld [wSafariStepsRemaining], a
 	ld [wSafariStepsRemaining + 1], a
 	ret
 
@@ -84,8 +100,15 @@ DoSafariStep::
 	ret
 
 .out_of_balls
-	ld a, BANK(SafariZoneOutOfBallsScript)
+	; no balls and no steps at all: this game was never paid for
+	ld hl, wSafariStepsRemaining
+	ld a, [hli]
+	or [hl]
 	ld hl, SafariZoneOutOfBallsScript
+	jr nz, .call_script
+	ld hl, SafariZoneNotPaidScript
+.call_script
+	ld a, BANK(SafariZoneOutOfBallsScript)
 	call CallScript
 	scf
 	ret
@@ -111,6 +134,14 @@ SafariZoneOutOfBallsScript::
 	opentext
 	writetext SafariZoneOutOfBallsText
 	waitbutton
+	sjump SafariZoneReturnToGateScript
+
+SafariZoneNotPaidScript:
+	playsound SFX_ELEVATOR_END
+	opentext
+	writetext SafariZoneNotPaidText
+	waitbutton
+	; fallthrough
 
 SafariZoneReturnToGateScript:
 	closetext
@@ -135,4 +166,14 @@ SafariZoneOutOfBallsText:
 
 	para "PA: Your SAFARI"
 	line "GAME is over!"
+	done
+
+SafariZoneNotPaidText:
+	text "PA: Ding-dong!"
+
+	para "Please pay the"
+	line "entry fee at the"
+	cont "gate before going"
+	cont "into the SAFARI"
+	cont "ZONE!"
 	done
