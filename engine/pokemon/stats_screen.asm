@@ -1446,7 +1446,7 @@ StatsScreen_MoveInfo:
 	; category icon: colors 1-2 of palette 0, tiles $5b-$5c
 	ld a, [wStringBuffer2 + MOVE_CATEGORY]
 	push af
-	farcall LoadStatsCategoryPal
+	farcall_a LoadStatsCategoryPal ; a = category
 	pop af
 	ld hl, CategoryIconGFX
 	ld bc, 2 tiles

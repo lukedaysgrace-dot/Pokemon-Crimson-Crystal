@@ -5371,7 +5371,8 @@ BattleCommand_ForceSwitch:
 	jp .succeed
 
 .trainer
-	call FindAliveEnemyMons
+; FindAliveEnemyMons lives in the "Enemy Trainers" bank (engine/battle/ai/switch.asm)
+	farcall FindAliveEnemyMons
 	jr c, .switch_fail
 	ld a, [wEnemyGoesFirst]
 	and a

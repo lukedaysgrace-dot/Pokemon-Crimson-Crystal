@@ -3467,7 +3467,7 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	farcall SetEnemyGameplayTypesBySpecies
+	farcall_a SetEnemyGameplayTypesBySpecies ; a = species
 	ld a, [wBattleMonType1]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn

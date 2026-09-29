@@ -3,10 +3,11 @@
 
 Calls ROM routines by symbol with chosen registers, using a planted
 `jr @` sentinel in WRAM as the return address, and inspects WRAM/SRAM.
-Requires PyBoy patched for 8 SRAM banks (see docs/pc_storage_design.md).
+Works with stock PyBoy (runs an in-memory MBC5 surrogate of the ROM).
 
 Usage: python3 tools/pc_harness.py [pokecrystal.gbc]
 """
+import io
 import re
 import sys
 import os
@@ -79,8 +80,21 @@ class Harness:
         # File-like ROM input prevents PyBoy from silently loading adjacent
         # emulator .ram/.rtc sidecars. Every harness run needs a clean cartridge
         # so a developer's last play session cannot change test outcomes.
+        #
+        # Stock PyBoy's MBC3 only writes SRAM banks 0-3 (and masks ROM banks to
+        # seven bits), but the PokeDB lives in SRAM banks 3-6 of this 4 MiB
+        # MBC30-style cart. Like tools/battletest/runner.py, run an in-memory
+        # MBC5 surrogate (8-bit ROM bank register, 16 RAM banks); the ROM on
+        # disk is never modified.
         with open(rom, "rb") as rom_file:
-            self.pyboy = PyBoy(rom_file, window="null" if headless else "SDL2", sound_emulated=False)
+            rom_data = bytearray(rom_file.read())
+        if len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
+            rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
+            checksum = 0
+            for value in rom_data[0x134:0x14d]:
+                checksum = (checksum - value - 1) & 0xff
+            rom_data[0x14d] = checksum
+        self.pyboy = PyBoy(io.BytesIO(bytes(rom_data)), window="null" if headless else "SDL2", sound_emulated=False)
         self.pyboy.set_emulation_speed(0)
         self.sym = Sym(sym)
         self.mem = self.pyboy.memory

@@ -20,17 +20,23 @@ def _load_caps():
     body = src.split("HardModeLevelCaps:", 1)[1]
     out = []
     for line in body.splitlines()[1:]:
-        m = re.match(r"\s*db\s+(\d+)", line)
+        m = re.match(r"\s*db\s+(\d+)\s*(?:;\s*([^(\-]*))?", line)
         if not m:
             if line.strip().startswith("db "):
                 break          # MAX_LEVEL: end of the capped run
+            if out and not line.strip():
+                break          # blank line: end of the table
             continue
-        out.append(int(m.group(1)))
+        label = (m.group(2) or "").strip() or f"Cap {len(out)}"
+        out.append((int(m.group(1)), label))
     return out
 
 
-CAPS = _load_caps()
-LEADERS = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine", "Pryce", "Clair"]
+_CAP_ROWS = _load_caps()
+CAPS = [cap for cap, _ in _CAP_ROWS]
+# One label per cap row, read from the table's comments (the table now runs
+# through the Elite Four and Kanto, not just the eight Johto leaders).
+LEADERS = [label for _, label in _CAP_ROWS]
 
 # (a, b, c, d, e) -> (a/b)*n^3 + c*n^2 + d*n - e
 GROWTH = {

@@ -341,7 +341,9 @@ ContestScore:
 
 	call GetContestMonScoreData ; hl = rarity, min level, max level
 
-	; Rarity.
+	; Rarity. (GetContestMonScoreData clobbers bc, so reset the high byte of
+	; the running score: it holds the matched species index's high byte.)
+	ld b, 0
 	ld a, [hli]
 	ld c, a
 
@@ -379,7 +381,9 @@ GetContestMonLevelPercent::
 ; in:  b = species id, c = level
 ; out: a = 0-150
 	ld a, b
+	push bc ; GetContestMonScoreData clobbers bc, and c is the level
 	call GetContestMonScoreData
+	pop bc
 	inc hl ; skip past the rarity
 	ld a, c
 	; fallthrough
