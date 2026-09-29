@@ -1143,6 +1143,37 @@ DebugChoosePlayerMove::
 	ld [wCurMoveNum], a
 	pop af
 .have_move
+	; Auto mode has no move menu to fall back on, so never script a move the
+	; retail selection screen would refuse: Giga Hammer twice in a row fails
+	; and reopens the move menu, which would hang the harness. Take the first
+	; other non-empty slot instead (if there is none, leave it to the retail
+	; path).
+	ld b, a
+	ld a, [wPlayerGigaHammerLock]
+	and a
+	jr z, .move_ok
+	cp b
+	jr nz, .move_ok
+	ld hl, wBattleMonMoves
+	ld c, 0
+.alt_loop
+	ld a, [hli]
+	and a
+	jr z, .alt_next
+	cp b
+	jr nz, .alt_found
+.alt_next
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .alt_loop
+	jr .move_ok
+.alt_found
+	ld b, a
+	ld a, c
+	ld [wCurMoveNum], a
+.move_ok
+	ld a, b
 	ld [wCurPlayerMove], a
 	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a

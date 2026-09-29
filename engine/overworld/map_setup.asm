@@ -152,7 +152,28 @@ CheckReplacePlayerSprite:
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	ret z
-	ld a, PLAYER_BIKE
+	; The Bike Shop hands out either a BICYCLE or a SKATEBOARD, never both,
+	; so put the player on whichever one they own. (No BICYCLE and no
+	; SKATEBOARD can't happen past the gates; default to the bike then.)
+	ld a, [wCurItem]
+	push af
+	ld a, BICYCLE
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	ld b, PLAYER_BIKE
+	jr c, .got_ride
+	ld a, SKATEBOARD
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	ld b, PLAYER_BIKE
+	jr nc, .got_ride
+	ld b, PLAYER_SKATEBOARD
+.got_ride
+	pop af
+	ld [wCurItem], a
+	ld a, b
 	ld [wPlayerState], a
 	scf
 	ret
