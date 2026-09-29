@@ -588,6 +588,17 @@ AnimateWeatherOnIdle::
 	ldh a, [hCurWeather]
 	cp OW_WEATHER_RAIN
 	jr c, .done ; NONE, HARSH_SUN and OVERCAST have no particles
+	; wVramState and the object structs UpdateSprites walks live in WRAMX
+	; bank 1. Request2bpp, WaitSFX and friends reach this from code that has
+	; another WRAM bank switched in (battle setup, ability banners, the intro
+	; and credits), and hCurWeather still holds the last map's weather there.
+	; Reading "wVramState" out of that bank is a garbage byte, and letting it
+	; through would run UpdateSprites against the wrong bank. The overworld
+	; always runs with bank 1 (or 0, which maps to 1), so just skip otherwise.
+	ldh a, [rSVBK]
+	and %111
+	cp 2
+	jr nc, .done
 	ld a, [wVramState]
 	; The start menu (and anything else that sets the suppress bit) pauses
 	; weather completely: no idle particle redraws on top of the menu window,

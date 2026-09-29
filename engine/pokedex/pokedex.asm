@@ -1963,6 +1963,10 @@ INCLUDE "data/pokemon/dex_order_new.asm"
 GetRegionalDexNumber:
 	ld d, h
 	ld e, l
+	; fallthrough
+GetRegionalDexNumber_DE::
+; Same, but takes the species index in de. farcall entry point: the farcall
+; macro loads hl with the target address, so hl can't carry the argument.
 	ld hl, NewPokedexOrder
 	ld bc, 1
 .loop
