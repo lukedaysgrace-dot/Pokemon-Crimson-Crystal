@@ -567,8 +567,11 @@ DayCare_GiveEgg:
 ; in the overworld.
 	ld hl, MON_STATUS
 	add hl, bc
-	xor a
-	ld [hl], a
+	ld d, h
+	ld e, l
+	push bc
+	farcall UnpackBoxMonShinyGender ; also clears MON_STATUS
+	pop bc
 	ld hl, MON_HP
 	add hl, bc
 	xor a
@@ -629,6 +632,9 @@ DayCare_InitBreeding:
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [wTempMonDVs + 1], a
+	ld a, [wBreedMon1PokerusStatus] ; Day-Care mons keep shiny/gender here
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	ld a, $3

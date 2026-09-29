@@ -104,3 +104,16 @@ if _NARG == 0
 	sine_table 32
 endc
 ENDM
+
+fold_pokerus_strain: MACRO
+; a = PokerusStatus. Box structs keep shiny/gender in bits 6-7, so move a
+; Pokerus strain of 4 or more into strains 1-3 (keeping the days left)
+; instead of letting it be masked away. Uses only a and f.
+	cp $40
+	jr c, .strain_ok\@
+	and $3f
+	cp $10
+	jr nc, .strain_ok\@
+	or $10
+.strain_ok\@
+ENDM

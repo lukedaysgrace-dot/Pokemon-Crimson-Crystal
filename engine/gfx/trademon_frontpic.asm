@@ -24,6 +24,8 @@ AnimateTrademonFrontpic:
 	ld [wTempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [wTempMonDVs + 1], a
+	ld a, [wOTTrademonShinyGender]
+	ld [wTempMonUnused], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0

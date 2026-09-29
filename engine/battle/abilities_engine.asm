@@ -1299,12 +1299,18 @@ RunPostBattleAbilities::
 .loop
 	push af
 	ld [wCurPartyMon], a
-	; get species; skip eggs
-	ld a, MON_SPECIES
-	call GetPartyParamLocation
+	; skip eggs: the party struct holds an Egg's real species, only
+	; wPartySpecies says EGG
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
 	ld a, [hl]
 	cp EGG
 	jr z, .next
+	ld a, MON_SPECIES
+	call GetPartyParamLocation
+	ld a, [hl]
 	ld c, a
 	ld a, MON_PERSONALITY
 	call GetPartyParamLocation
@@ -4789,12 +4795,18 @@ AbilityCapCore::
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	callfar UseItem_SelectMon
 	ret c ; cancelled
-	; no eggs
-	ld a, MON_SPECIES
-	call GetPartyParamLocation
+	; no eggs (the party struct holds an Egg's real species)
+	ld a, [wCurPartyMon]
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
 	ld a, [hl]
 	cp EGG
 	jr z, .no_effect
+	ld a, MON_SPECIES
+	call GetPartyParamLocation
+	ld a, [hl]
 	ld [wCurSpecies], a
 	push af
 	call GetBaseData
@@ -6167,17 +6179,10 @@ CheckGenderMatchup:
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
-	ld hl, wEnemyMonDVs
-	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_TRANSFORMED, a
-	jr z, .not_transformed
-	ld hl, wEnemyBackupDVs
-.not_transformed
-	ld a, [hli]
-	ld [wTempMonDVs], a
-	ld a, [hl]
-	ld [wTempMonDVs + 1], a
-	ld a, 3
+	; The enemy's gender lives in wEnemyMonShinyGenderFlags (wild and trainer
+	; mons alike), which is what the WILDMON path of GetGender reads. The old
+	; TEMPMON path read a stale wTempMonUnused byte instead.
+	ld a, WILDMON
 	ld [wMonType], a
 	farcall GetGender
 	pop bc

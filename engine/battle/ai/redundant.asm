@@ -125,9 +125,11 @@ AI_Redundant:
 	ret
 
 .Spikes:
-	ld a, [wPlayerScreens]
-	bit SCREENS_SPIKES, a
-	ret
+; Spikes stack to three layers; only redundant once all three are down.
+	ld a, [wPlayerSpikesLayers]
+	cp 3
+	jp nc, .Redundant
+	jp .NotRedundant
 
 .StealthRock:
 ; The enemy's Stealth Rock sets SCREENS_STEALTH_ROCK in wPlayerScreens.

@@ -12,12 +12,22 @@ CheckShininess:
 
 	ld a, b
 	cp HIGH(wEnemyMonDVs)
-	jr nz, .CheckBattleMon
+	jr nz, .CheckEnemyBackup
 	ld a, c
 	cp LOW(wEnemyMonDVs)
-	jr nz, .CheckBattleMon
+	jr nz, .CheckEnemyBackup
+.EnemyMon:
 	ld a, [wEnemyMonShinyGenderFlags]
 	jr .CheckFlag
+
+.CheckEnemyBackup:
+; a transformed wild mon's own DVs (see GetEnemyMonDVs)
+	ld a, b
+	cp HIGH(wEnemyBackupDVs)
+	jr nz, .CheckBattleMon
+	ld a, c
+	cp LOW(wEnemyBackupDVs)
+	jr z, .EnemyMon
 
 .CheckBattleMon:
 	ld a, b
@@ -34,13 +44,10 @@ CheckShininess:
 	jr .CheckFlag
 
 .PartyMon:
-	ld a, [wMonType]
-	cp BOXMON
-	ld hl, PKRUS_OFFSET_FROM_DVS
-	jr z, .LoadShinyGenderByte
+; Every other caller points bc at a party-struct layout (party, OT party or
+; wTempMon, which is where the PC decodes stored mons). Don't go by
+; wMonType here: GetPartyNick leaves it at BOXMON after any field move.
 	ld hl, MON_SHINY_GENDER_OFFSET_FROM_DVS
-
-.LoadShinyGenderByte:
 	add hl, bc
 	ld a, [hl]
 

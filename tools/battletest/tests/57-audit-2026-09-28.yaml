@@ -19,3 +19,117 @@
   turns: 1
   assert:
     - enemy.species == 'SNORLAX'
+
+# Enemy gender comes from wEnemyMonShinyGenderFlags (GetGender's WILDMON path);
+# Attract, Cute Charm and Rivalry used to read a stale wTempMonUnused byte.
+# (The battle mon's second Status byte mirrors the party mon's gender flags.)
+- name: "Audit 09-28: Attract infatuates an opposite-gender 50/50 foe"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [ATTRACT] }
+  enemy:  { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPartyMon1Unused: 64, wBattleMonStatus: [0, 64], wEnemyMonShinyGenderFlags: 0, wTempMonUnused: 64 }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.substatus[0] & 128) != 0"]
+
+- name: "Audit 09-28: Attract fails on a same-gender 50/50 foe"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [ATTRACT] }
+  enemy:  { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPartyMon1Unused: 64, wBattleMonStatus: [0, 64], wEnemyMonShinyGenderFlags: 64, wTempMonUnused: 0 }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.substatus[0] & 128) == 0"]
+
+# LoadEnemyMon only copied the first Status byte of a trainer's mon, so
+# UpdateEnemyMonInParty wrote 0 over the party struct's shiny/gender flags
+# (MON_UNUSED) after every move - a male mon came back in as female.
+- name: "Audit 09-29: trainer mon keeps its gender flags through a turn"
+  player:  { species: MEW, level: 50, moves: [SPLASH] }
+  enemy:   { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - "wram('wEnemyMonStatus', 1) == wram('wEnemyMonShinyGenderFlags')"
+    - "wram('wOTPartyMon1Unused') == wram('wEnemyMonShinyGenderFlags')"
+    - "wram('wEnemyMonShinyGenderFlags') & 64 == 64"
+
+# Perish Song's ability farcall clobbered hl, so the user's side never got
+# SUBSTATUS_PERISH (only the count), and the player never actually perished.
+- name: "Audit 09-29: Perish Song marks both sides"
+  player: { species: GENGAR, level: 50, ability: NO_ABILITY, moves: [PERISH_SONG] }
+  enemy:  { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "(wram('wPlayerSubStatus1') & 16) != 0"
+    - "(wram('wEnemySubStatus1') & 16) != 0"
+
+- name: "Audit 09-29: Perish Song from the enemy marks both sides"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: GENGAR, level: 50, ability: NO_ABILITY, moves: [PERISH_SONG] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "(wram('wPlayerSubStatus1') & 16) != 0"
+    - "(wram('wEnemySubStatus1') & 16) != 0"
+
+# Sacred Sword only ignored Defense stages on the rare unboosted-crit path.
+- name: "Audit 09-29: Sacred Sword control"
+  id: sacred_sword_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SACRED_SWORD] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit 09-29: Sacred Sword ignores +6 Defense"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SACRED_SWORD] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], stages: { def: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == result('sacred_sword_control')['enemy']['damage']"]
+
+# Brick Break used to shatter the screens before checkhit, even into Protect.
+- name: "Audit 09-29: Brick Break control (no Reflect)"
+  id: brick_break_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [BRICK_BREAK] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit 09-29: Brick Break shatters Reflect and ignores it"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [BRICK_BREAK] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyScreens: 16, wEnemyReflectCount: 5 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "(wram('wEnemyScreens') & 16) == 0"
+    - "enemy.start_hp - enemy.hp == result('brick_break_control')['enemy']['damage']"
+
+- name: "Audit 09-29: Brick Break into Protect leaves Reflect up"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [BRICK_BREAK] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  setup_wram: { wEnemyScreens: 16, wEnemyReflectCount: 5 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.hp == enemy.start_hp"
+    - "(wram('wEnemyScreens') & 16) != 0"
+
+# Shell Side Arm picked its category from unmodified stats.
+- name: "Audit 09-29: Shell Side Arm stays special without boosts"
+  player: { species: ALAKAZAM, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM] }
+  enemy:  { species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerMoveStructCategory') == 1"]
+
+- name: "Audit 09-29: Shell Side Arm turns physical at +6 Attack"
+  player: { species: ALAKAZAM, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM], stages: { atk: 6 } }
+  enemy:  { species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerMoveStructCategory') == 0"]

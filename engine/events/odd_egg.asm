@@ -63,6 +63,22 @@ _GiveOddEgg:
 	call GetPokemonIDFromIndex
 	ld [wOddEggSpecies], a
 
+	; Shininess and gender live in the flags byte after Status, not in the
+	; DVs. Roll gender (and the normal shiny chance) like any new Pokemon;
+	; the rare rows of OddEggs carry MON_SHINY_FLAG and stay shiny.
+	ld [wCurPartySpecies], a
+	ld a, [wOddEggUnused]
+	and MON_SHINY_FLAG
+	push af
+	xor a ; PARTYMON
+	ld [wMonType], a
+	ld de, wOddEggUnused
+	farcall InitMonShinyGender
+	pop af
+	ld hl, wOddEggUnused
+	or [hl]
+	ld [hl], a
+
 	; And likewise with moves
 	pop hl
 	add hl, hl

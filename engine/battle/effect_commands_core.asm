@@ -597,43 +597,44 @@ BattleShellSideArm_Core:
 ; Become physical or special, whichever would hit harder:
 ; physical if Atk * target SpDef > SpAtk * target Def (ties go special).
 ; All four stats are halved together until they fit in 8 bits, which
-; preserves the comparison.
+; preserves the comparison. Uses the stats as modified by stat stages,
+; like the games do.
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy_user
-	ld a, [wPlayerAttack]
+	ld a, [wBattleMonAttack]
 	ld [wBuffer1], a
-	ld a, [wPlayerAttack + 1]
+	ld a, [wBattleMonAttack + 1]
 	ld [wBuffer2], a
-	ld a, [wPlayerSpAtk]
+	ld a, [wBattleMonSpclAtk]
 	ld [wBuffer3], a
-	ld a, [wPlayerSpAtk + 1]
+	ld a, [wBattleMonSpclAtk + 1]
 	ld [wBuffer4], a
-	ld a, [wEnemyDefense]
+	ld a, [wEnemyMonDefense]
 	ld [wBuffer5], a
-	ld a, [wEnemyDefense + 1]
+	ld a, [wEnemyMonDefense + 1]
 	ld [wBuffer6], a
-	ld a, [wEnemySpDef]
+	ld a, [wEnemyMonSpclDef]
 	ld [wCurDamage], a
-	ld a, [wEnemySpDef + 1]
+	ld a, [wEnemyMonSpclDef + 1]
 	ld [wCurDamage + 1], a
 	jr .shift_loop
 .enemy_user
-	ld a, [wEnemyAttack]
+	ld a, [wEnemyMonAttack]
 	ld [wBuffer1], a
-	ld a, [wEnemyAttack + 1]
+	ld a, [wEnemyMonAttack + 1]
 	ld [wBuffer2], a
-	ld a, [wEnemySpAtk]
+	ld a, [wEnemyMonSpclAtk]
 	ld [wBuffer3], a
-	ld a, [wEnemySpAtk + 1]
+	ld a, [wEnemyMonSpclAtk + 1]
 	ld [wBuffer4], a
-	ld a, [wPlayerDefense]
+	ld a, [wBattleMonDefense]
 	ld [wBuffer5], a
-	ld a, [wPlayerDefense + 1]
+	ld a, [wBattleMonDefense + 1]
 	ld [wBuffer6], a
-	ld a, [wPlayerSpDef]
+	ld a, [wBattleMonSpclDef]
 	ld [wCurDamage], a
-	ld a, [wPlayerSpDef + 1]
+	ld a, [wBattleMonSpclDef + 1]
 	ld [wCurDamage + 1], a
 
 .shift_loop
@@ -896,9 +897,14 @@ BattleScaleShotKO_Core:
 	ret
 
 BattleBrickBreak_Core:
-; Shatter Reflect and Light Screen on the target's side before the
-; damage is dealt. If the target is immune to the move (e.g. a Ghost
-; type against this Fighting move), the screens are spared.
+; Shatter Reflect and Light Screen on the target's side once the move is
+; known to connect. (The damage itself already ignored them: see
+; CheckDefScreenPierced.) If the target is immune to the move (e.g. a
+; Ghost type against this Fighting move), protected, out of reach or
+; simply dodged it, the screens are spared.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
 	callfar BattleCheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
@@ -984,6 +990,26 @@ DoubleDamage_Core:
 .quit
 	ret
 
+DefendedStatCategory:
+; Return in a which defense the current move hits: CATEGORIZE_PHYSICAL or
+; CATEGORIZE_SPECIAL. That's the move's category, except for Psystrike,
+; which is special but hits Defense. Preserves bc, de and hl.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	ld a, CATEGORIZE_PHYSICAL
+	ret z
+	push hl
+	ld hl, wPlayerMoveStructCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_category
+	ld hl, wEnemyMoveStructCategory
+.got_category
+	ld a, [hl]
+	pop hl
+	ret
+
 HeldDefenseBoost_Core:
 ; bc = defending stat. Returns boosted bc when applicable.
 	push hl
@@ -1015,14 +1041,8 @@ HeldDefenseBoost_Core:
 	ret
 
 .CurrentMoveCategory
-	ld hl, wPlayerMoveStructCategory
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_category
-	ld hl, wEnemyMoveStructCategory
-.got_category
-	ld a, [hl]
-	ret
+	jp DefendedStatCategory
+
 
 .OpponentCanEvolve
 	ld a, [wEnemyMonSpecies]
@@ -1238,16 +1258,15 @@ WeatherDefenseBoost_Core:
 	ld d, CATEGORIZE_PHYSICAL
 	ld e, ICE
 .got_weather
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
-	ld hl, wEnemyMonType1
-	jr z, .got_category
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	ld hl, wBattleMonType1
-.got_category
+	call DefendedStatCategory
 	cp d
 	jr nz, .done
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wBattleMonType1
+.got_types
 	ld a, [hli]
 	cp e
 	jr z, .boost
@@ -2153,6 +2172,11 @@ CheckDefScreenPierced:
 	ld a, [hl]
 	and b
 	jr z, .done
+	; Brick Break breaks the screens (after checkhit) and ignores them here
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BRICK_BREAK
+	jr z, .done
 	farcall GetTrueUserAbility_b
 	ld a, b
 	sub INFILTRATOR ; z when the attacker infiltrates the screen
@@ -2186,7 +2210,13 @@ UnawareStats_Player:
 	pop hl
 	pop bc
 	cp UNAWARE
+	jr z, .ignore_def_stages
+	; Sacred Sword ignores the target's defensive stat stages too
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SACRED_SWORD
 	jr nz, .done
+.ignore_def_stages
 	call .ReloadUnboostedDef
 .done
 	pop de
@@ -2274,7 +2304,13 @@ UnawareStats_Enemy:
 	pop hl
 	pop bc
 	cp UNAWARE
+	jr z, .ignore_def_stages
+	; Sacred Sword ignores the target's defensive stat stages too
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SACRED_SWORD
 	jr nz, .done
+.ignore_def_stages
 	call .ReloadUnboostedDef
 .done
 	pop de
@@ -2426,15 +2462,11 @@ PlayerAttackDamage_Core:
 	call CheckDamageStatsCritical
 	jp c, .thickclub
 
-	; boosted stats. Sacred Sword ignores the target's DEFENSE stat
-	; stages: keep the unmodified defense in bc, but use boosted attack.
-	push bc
+	; unboosted stats (a crit against a target whose DEFENSE stage is at
+	; least the attacker's ATTACK stage). Sacred Sword's stage-ignoring is
+	; handled in UnawareStats_*, for crits and normal hits alike.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	pop bc
-	ld hl, wPlayerAttack
-	cp EFFECT_SACRED_SWORD
-	jp z, .thickclub
 
 	cp EFFECT_BODY_PRESS
 	jr nz, .not_bp_boosted
@@ -2780,15 +2812,11 @@ EnemyAttackDamage_Core:
 	call CheckDamageStatsCritical
 	jp c, .thickclub
 
-	; boosted stats. Sacred Sword ignores the target's DEFENSE stat
-	; stages: keep the unmodified defense in bc, but use boosted attack.
-	push bc
+	; unboosted stats (a crit against a target whose DEFENSE stage is at
+	; least the attacker's ATTACK stage). Sacred Sword's stage-ignoring is
+	; handled in UnawareStats_*, for crits and normal hits alike.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	pop bc
-	ld hl, wEnemyAttack
-	cp EFFECT_SACRED_SWORD
-	jp z, .thickclub
 
 	cp EFFECT_BODY_PRESS
 	jr nz, .not_bp_boosted

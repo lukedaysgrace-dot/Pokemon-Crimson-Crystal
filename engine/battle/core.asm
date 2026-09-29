@@ -201,6 +201,10 @@ ENDC
 	ld [wEnemyJustGotFrozen], a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
+	; BattleCommand_CriticalText no longer clears this (Anger Point needs it
+	; after the hit), so don't let last turn's crit leak into the AI's
+	; damage predictions below
+	ld [wCriticalHit], a
 
 	call HandleBerserkGene
 	call UpdateBattleMonInParty
@@ -6637,6 +6641,10 @@ LoadEnemyMon:
 	dec hl
 	ld a, [hl] ; OTPartyMonStatus
 	ld [wEnemyMonStatus], a
+; The byte after Status mirrors the party's shiny/gender flags, and
+; UpdateEnemyMonInParty copies it back into the OT party struct.
+	ld a, [wEnemyMonShinyGenderFlags]
+	ld [wEnemyMonStatus + 1], a
 
 .Moves:
 	ld hl, wBaseType1
@@ -8502,10 +8510,15 @@ IF DEF(DEBUG_BATTLE)
 	farcall DebugModifyOTParty
 ENDC
 
-	; RIVAL1's first mon has no held item
+	; RIVAL1's first mon has no held item in the Cherrygrove battle (vanilla
+	; behavior). Later RIVAL1 parties give their lead a held item on purpose
+	; (e.g. Gliscor's Toxic Orb), so only strip it for RIVAL1_1_*.
 	ld a, [wTrainerClass]
 	cp RIVAL1
 	jr nz, .ok
+	ld a, [wOtherTrainerID]
+	cp RIVAL1_2_CHIKORITA
+	jr nc, .ok
 	xor a
 	ld [wOTPartyMon1Item], a
 .ok

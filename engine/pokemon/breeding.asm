@@ -8,6 +8,11 @@ CheckBreedmonCompatibility:
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [wTempMonDVs + 1], a
+	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
+	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
+	ld a, [wBreedMon1PokerusStatus]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
 	ld a, TEMPMON
 	ld [wMonType], a
 	predef GetGender
@@ -24,6 +29,11 @@ CheckBreedmonCompatibility:
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [wTempMonDVs + 1], a
+	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
+	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
+	ld a, [wBreedMon2PokerusStatus]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
 	ld a, TEMPMON
 	ld [wMonType], a
 	predef GetGender
@@ -56,9 +66,8 @@ CheckBreedmonCompatibility:
 	jr z, .done
 
 .compute
-	call .CheckDVs
-	ld c, 255
-	jp z, .done
+	; (Vanilla refused to breed two mons whose Defense/Special DVs matched.
+	; Every player mon here has perfect DVs, so that check blocked all breeding.)
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
@@ -85,24 +94,6 @@ CheckBreedmonCompatibility:
 .done
 	ld a, c
 	ld [wBreedingCompatibility], a
-	ret
-
-.CheckDVs:
-; If Defense DVs match and the lower 3 bits of the Special DVs match,
-; avoid breeding
-	ld a, [wBreedMon1DVs]
-	and %1111
-	ld b, a
-	ld a, [wBreedMon2DVs]
-	and %1111
-	cp b
-	ret nz
-	ld a, [wBreedMon1DVs + 1]
-	and %111
-	ld b, a
-	ld a, [wBreedMon2DVs + 1]
-	and %111
-	cp b
 	ret
 
 .CheckBreedingGroupCompatibility:
@@ -670,6 +661,11 @@ GetHeritableMoves:
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [wTempMonDVs + 1], a
+	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
+	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
+	ld a, [wBreedMon2PokerusStatus]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
 	ld a, TEMPMON
 	ld [wMonType], a
 	predef GetGender
@@ -686,6 +682,11 @@ GetHeritableMoves:
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [wTempMonDVs + 1], a
+	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
+	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
+	ld a, [wBreedMon1PokerusStatus]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld [wTempMonUnused], a
 	ld a, TEMPMON
 	ld [wMonType], a
 	predef GetGender

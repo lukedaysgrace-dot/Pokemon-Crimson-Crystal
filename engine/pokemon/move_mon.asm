@@ -289,6 +289,10 @@ endr
 	ld a, [wMonType]
 	and $f
 	jr nz, .copyEnemyDVs
+	; Unown's letter and Magikarp's length come from their DVs, so they keep
+	; their wild DVs; perfect DVs would make every one of them identical.
+	call CurPartySpeciesKeepsWildDVs
+	jr z, .copyEnemyDVs
 	ld a, PERFECT_ATKDEF_DV
 	ld [de], a
 	inc de
@@ -435,6 +439,29 @@ endr
 
 .done
 	scf ; When this function returns, the carry flag indicates success vs failure.
+	ret
+
+CurPartySpeciesKeepsWildDVs:
+; Return z if wCurPartySpecies derives something visible from its DVs and so
+; must keep its wild DVs instead of the usual perfect ones: Unown (its letter)
+; and Magikarp (its length for the Lake of Rage record). Clobbers a only.
+	push hl
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(UNOWN)
+	jr nz, .not_unown
+	ld a, h
+	cp HIGH(UNOWN)
+	jr z, .done
+.not_unown
+	ld a, l
+	cp LOW(MAGIKARP)
+	jr nz, .done
+	ld a, h
+	cp HIGH(MAGIKARP)
+.done
+	pop hl
 	ret
 
 FillPP:
@@ -638,6 +665,7 @@ RetrieveBreedmon:
 	pop hl
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
+	call UnpackBoxMonShinyGender
 	call GetBaseData
 	call GetLastPartyMon
 	ld b, d
@@ -735,7 +763,42 @@ DepositBreedmon:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld bc, BOXMON_STRUCT_LENGTH
-	jp CopyBytes
+	call CopyBytes
+; A party mon keeps its shiny/gender flags in MON_UNUSED, which is past the end
+; of the box struct copied above. Box structs carry them in PokerusStatus bits
+; 6-7 instead, so fold them in rather than losing them in the Day-Care.
+	inc hl ; MON_STATUS -> MON_UNUSED
+	ld a, [hl]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld b, a
+	ld hl, MON_PKRUS - BOXMON_STRUCT_LENGTH
+	add hl, de
+	ld a, [hl]
+	fold_pokerus_strain
+	or b
+	ld [hl], a
+	ret
+
+UnpackBoxMonShinyGender:
+; de = a party mon's MON_STATUS byte, right after a box struct was copied into
+; it. Move the shiny/gender flags out of PokerusStatus bits 6-7 into
+; MON_UNUSED (the party convention) and clear the status.
+	ld h, d
+	ld l, e
+	ld bc, MON_PKRUS - BOXMON_STRUCT_LENGTH
+	add hl, bc
+	ld a, [hl]
+	and MON_SHINY_FLAG | MON_MALE_FLAG
+	ld b, a
+	ld a, [hl]
+	and $3f
+	ld [hl], a
+	ld h, d
+	ld l, e
+	xor a
+	ld [hli], a ; MON_STATUS
+	ld [hl], b ; MON_UNUSED
+	ret
 
 SendMonIntoBox:
 ; Builds a freshly caught/gifted mon in wTempMon from the wild mon data
@@ -784,12 +847,24 @@ SendMonIntoBox:
 	dec b
 	jr nz, .loop2
 
+	; Unown/Magikarp keep their wild DVs (see CurPartySpeciesKeepsWildDVs)
+	call CurPartySpeciesKeepsWildDVs
+	jr nz, .perfect_dvs
+	ld a, [wEnemyMonDVs]
+	ld [de], a
+	inc de
+	ld a, [wEnemyMonDVs + 1]
+	ld [de], a
+	inc de
+	jr .got_dvs
+.perfect_dvs
 	ld a, PERFECT_ATKDEF_DV
 	ld [de], a
 	inc de
 	ld a, PERFECT_SPDSPC_DV
 	ld [de], a
 	inc de
+.got_dvs
 	; PP: stored mons keep only PP Ups; current PP is restored on withdrawal
 	xor a
 	ld b, NUM_MOVES
