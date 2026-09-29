@@ -86,15 +86,15 @@ ElmPhoneCallerScript:
 	iftrue .stole_cyndaquil
 	checkevent EVENT_GOT_BULBASAUR_FROM_ELM
 	iftrue .stole_cyndaquil
-	clearevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	end
 
 .stole_chikorita
-	clearevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	setevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	end
 
 .stole_cyndaquil
-	clearevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
 .assistant
