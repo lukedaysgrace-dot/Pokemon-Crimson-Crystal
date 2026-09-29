@@ -42,26 +42,24 @@ CheckHMStoryOwned:
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
-	ld d, a
 	or e
-	or d
 	jr z, .no
 	ld a, e
 	cp c
-	jr nz, .skip
+	jr z, .found
+	; skip this entry's event flag word
+	inc hl
+	inc hl
+	jr .loop
+.found
 	ld a, [hli]
 	ld e, a
-	ld a, [hli]
-	ld d, a
+	ld d, [hl]
 	ld b, CHECK_FLAG
-	push hl
-	call EventFlagAction
-	pop hl
+	call EventFlagAction ; c = nonzero if set
 	ld a, c
 	and a
 	jr nz, .yes
-.skip
-	jr .loop
 .no
 	and a
 	ret

@@ -312,9 +312,7 @@ RuinsOfAlphFossilLab_MapEvents:
 
 	db 0 ; coord events
 
-	db 4 ; bg events
-	bg_event -3,  2, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
-	bg_event -4,  4, BGEVENT_READ, RuinsOfAlphFossilLabBookshelf
+	db 2 ; bg events
 	bg_event  5,  0, BGEVENT_READ, RuinsOfAlphFossilLabMachine
 	bg_event  9,  1, BGEVENT_READ, RuinsOfAlphFossilLabPrinter
 

@@ -1,0 +1,21 @@
+# Regressions from the 2026-09-28 code audit.
+
+- name: "Audit 09-28: Roar forces a trainer's mon out (cross-bank FindAliveEnemyMons)"
+  player:  { species: MEW, level: 50, moves: [ROAR] }
+  enemy:   { species: MEW, level: 50, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'
+
+- name: "Audit 09-28: Whirlwind forces a trainer's mon out"
+  player:  { species: MEW, level: 50, moves: [WHIRLWIND] }
+  enemy:   { species: MEW, level: 50, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'

@@ -1547,11 +1547,18 @@ _GetCursorMon:
 	ld a, EGG
 	jr nz, .got_species
 	ld a, [wTempMonSpecies]
-	cp UNOWN
-	jr nz, .got_species
+	; wTempMonSpecies is a runtime species ID; compare its 16-bit index
 	push af
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(UNOWN)
+	jr nz, .not_unown
+	ld a, h
+	cp HIGH(UNOWN)
+	jr nz, .not_unown
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
+.not_unown
 	pop af
 .got_species
 	ld [wCurPartySpecies], a
