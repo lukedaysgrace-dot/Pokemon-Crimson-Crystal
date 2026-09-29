@@ -15,6 +15,8 @@ SweetScentFromMenu:
 	iffalse SweetScentNothing
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugCatchingContest
+	checkflag ENGINE_SAFARI_ZONE
+	iftrue .SafariZone
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
@@ -22,6 +24,9 @@ SweetScentFromMenu:
 
 .BugCatchingContest:
 	farsjump BugCatchingContestBattleScript
+
+.SafariZone:
+	farsjump SafariZoneBattleScript
 
 SweetScentNothing:
 	writetext UnknownText_0x5072b

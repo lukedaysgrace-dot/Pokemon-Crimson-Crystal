@@ -3969,17 +3969,24 @@ BillsPC_SwapStorage:
 	farcall GetStorageBoxMon
 	jp z, .abort
 
-	; Moving to a box may need database space (box -> party is always safe;
-	; the bag shares the party's box id)
+	; Every boxed mon whose item changes is rewritten to a fresh database
+	; record, so count the boxed ends of the move: the destination b and the
+	; source d (the bag shares the party's box id). A boxed source still
+	; needs its record even when the item goes to the party.
+	ld l, 0
 	ld a, b
 	and a
-	jr z, .entries_not_full
+	jr z, .dest_in_party
+	inc l
+.dest_in_party
 	ld a, d
 	and $7f
-	ld a, 1
-	jr z, .got_space_req
-	inc a
-.got_space_req
+	jr z, .source_in_party
+	inc l
+.source_in_party
+	ld a, l
+	and a
+	jr z, .entries_not_full
 	call BillsPC_GetStorageSpace
 	jp nz, .abort
 	pop bc
@@ -4117,11 +4124,9 @@ BillsPC_SwapStorage:
 	ld hl, wTempMonItem
 	ld [hl], e
 	call BillsPC_UpdateStorage
-	pop de
-	pop bc
+	pop de ; d = source mon's item, e = destination mon's item
+	pop bc ; bc = destination slot
 	push de
-	ld b, d
-	ld c, e
 	farcall GetStorageBoxMon
 	pop de
 	ld hl, wTempMonItem

@@ -179,6 +179,12 @@ DoNPCTrade:
 	ld de, wPlayerTrademonDVs
 	call Trade_CopyTwoBytes
 
+	ld hl, wPartyMon1Unused
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call Trade_GetAttributeOfCurrentPartymon
+	ld a, [hl]
+	ld [wPlayerTrademonShinyGender], a
+
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
@@ -270,7 +276,11 @@ DoNPCTrade:
 	call Trade_GetAttributeOfLastPartymon
 	ld d, h
 	ld e, l
+	push de
 	farcall InitMonShinyGender
+	pop hl
+	ld a, [hl]
+	ld [wOTTrademonShinyGender], a
 
 	ld e, NPCTRADE_OT_ID
 	call GetTradeAttribute

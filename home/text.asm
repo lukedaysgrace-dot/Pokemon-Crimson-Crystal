@@ -720,11 +720,12 @@ TextCommand_RAM::
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld h, b
-	ld l, c
 	IF DEF(DEBUG_BATTLE)
+		; before hl is set up: the farcall macro itself loads hl
 		farcall DebugLogTextRam
 	ENDC
+	ld h, b
+	ld l, c
 	call PlaceString
 	pop hl
 	ret

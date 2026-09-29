@@ -536,6 +536,23 @@ EvolveAfterBattle_MasterLoop:
 	call UpdateSpeciesNameIfNotNicknamed
 	call GetBaseData
 
+	; A caught Magikarp keeps its wild DVs so its length means something at
+	; the Lake of Rage. Its evolution gets the perfect DVs every other player
+	; Pokemon has.
+	ld a, [wEvolutionOldSpecies]
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(MAGIKARP)
+	jr nz, .not_magikarp
+	ld a, h
+	cp HIGH(MAGIKARP)
+	jr nz, .not_magikarp
+	ld a, PERFECT_ATKDEF_DV
+	ld [wTempMonDVs], a
+	ld a, PERFECT_SPDSPC_DV
+	ld [wTempMonDVs + 1], a
+.not_magikarp
+
 	ld hl, wTempMonExp + 2
 	ld de, wTempMonMaxHP
 	ld b, TRUE

@@ -90,7 +90,7 @@ EncodeSavedMon::
 	ld a, [wTempMonHappiness]
 	ld [hli], a
 	ld a, [wTempMonPokerusStatus]
-	and $3f
+	fold_pokerus_strain
 	ld d, a
 	ld a, [wTempMonUnused]
 	and MON_SHINY_FLAG | MON_MALE_FLAG

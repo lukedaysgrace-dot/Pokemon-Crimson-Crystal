@@ -47,8 +47,8 @@
 	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WARP_CARPET_DOWN ; 2e
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 2f
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 30
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 31
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 32
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 31 (copy of 06 with a walkable top row, for Oak's Lab)
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 32 (copy of 07 with a walkable top row, for Oak's Lab)
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 33
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 34
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 35

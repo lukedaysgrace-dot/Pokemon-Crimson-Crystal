@@ -63,6 +63,10 @@ MoveTableGarbageCollection:
 	push de
 	ldh a, [rSVBK]
 	push af
+	; clear the bitmap and mark the locked and recently allocated IDs, like
+	; the Pokemon collector does (otherwise stale marks leak slots forever and
+	; locked move IDs can be freed and reused)
+	___conversion_bitmap_initialize wMoveIndexTable, MOVE_TABLE, .set_bit
 	ld a, 1
 	ldh [rSVBK], a
 ___move = 0

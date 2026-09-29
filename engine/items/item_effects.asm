@@ -1462,10 +1462,11 @@ RareCandyEffect:
 
 	call RareCandy_StatBooster_GetParameters
 
+	; farcall clobbers hl, so refresh the level cap before pointing hl at
+	; the mon's level (it used to point into the engine flags afterwards).
+	farcall UpdateLevelCap
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
-
-	farcall UpdateLevelCap
 	ld a, [wLevelCap]
 	ld b, a
 	ld a, [hl]

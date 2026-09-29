@@ -1701,16 +1701,12 @@ ElmsLab_MapEvents:
 	coord_event  4, 12, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
 	coord_event  5, 12, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
 
-	db 16 ; bg events
+	db 12 ; bg events
 	bg_event  8,  1, BGEVENT_READ, ElmsLabHealingMachine
-	bg_event  6,  5, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  7,  5, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  8,  5, BGEVENT_READ, ElmsLabBookshelf
-	bg_event  3, 11, BGEVENT_READ, ElmsLabBookshelf
 	bg_event  0, 11, BGEVENT_READ, ElmsLabTravelTip1
 	bg_event  1, 11, BGEVENT_READ, ElmsLabTravelTip2
 	bg_event  2, 11, BGEVENT_READ, ElmsLabTravelTip3
-	bg_event  7,  0, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event  3, 11, BGEVENT_READ, ElmsLabTravelTip4
 	bg_event  6, 11, BGEVENT_READ, ElmsLabBookshelf
 	bg_event  8, 11, BGEVENT_READ, ElmsLabBookshelf
 	bg_event  9, 11, BGEVENT_READ, ElmsLabBookshelf

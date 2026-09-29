@@ -27,6 +27,7 @@ BattlePerishSong_Core::
 	cp SOUNDPROOF
 	jr z, .enemy
 
+	ld hl, wPlayerSubStatus1 ; the farcall above clobbered hl
 	set SUBSTATUS_PERISH, [hl]
 	ld a, 4
 	ld [wPlayerPerishCount], a

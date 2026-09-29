@@ -2109,6 +2109,11 @@ LinkTrade:
 	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
 	ld [wPlayerTrademonDVs + 1], a
+	ld hl, wPartyMon1Unused
+	ld a, [wd002]
+	call GetPartyLocation
+	ld a, [hl]
+	ld [wPlayerTrademonShinyGender], a
 	ld a, [wd002]
 	ld hl, wPartyMon1Species
 	call GetPartyLocation
@@ -2148,6 +2153,11 @@ LinkTrade:
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
+	ld hl, wOTPartyMon1Unused
+	ld a, [wd003]
+	call GetPartyLocation
+	ld a, [hl]
+	ld [wOTTrademonShinyGender], a
 	ld a, [wd003]
 	ld hl, wOTPartyMon1Species
 	call GetPartyLocation

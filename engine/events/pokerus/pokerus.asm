@@ -42,16 +42,11 @@ GivePokerusAndConvertBerries:
 	ret nz                 ; if it already has pokerus, do nothing
 .randomPokerusLoop         ; Simultaneously sample the strain and duration
 	call Random
-	and a
+	; strain 1-3 only: PC boxes and the Day-Care keep shiny/gender flags in
+	; PokerusStatus bits 6-7, so a strain of 4+ wouldn't survive storage
+	and $3
 	jr z, .randomPokerusLoop
 	ld b, a
-	and $f0
-	jr z, .load_pkrs
-	ld a, b
-	and $7
-	inc a
-.load_pkrs
-	ld b, a ; this should come before the label
 	swap b
 	and $3
 	inc a
