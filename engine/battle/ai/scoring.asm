@@ -1508,7 +1508,9 @@ AI_Smart_Encore:
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, wEnemyMonType1
-	predef CheckTypeMatchup
+	; CheckTypeMatchup takes the offensive type in a, which the predef
+	; call clobbers; AISwitch_CheckTypeMatchup (same bank) passes it through.
+	call AISwitch_CheckTypeMatchup
 
 	pop hl
 	ld a, [wTypeMatchup]
