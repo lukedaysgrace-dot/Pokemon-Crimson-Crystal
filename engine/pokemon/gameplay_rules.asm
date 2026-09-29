@@ -116,8 +116,17 @@ GetGameplayTypesByIndex::
 	ld hl, 0
 
 .apply_rules
+	; wGameplayRules is in WRAMX bank 1, and the Pokedex type search calls
+	; this with rSVBK pointing at its listing bank, so read it explicitly.
+	ldh a, [rSVBK]
+	ld e, a
+	ld a, BANK(wGameplayRules)
+	ldh [rSVBK], a
 	ld a, [wGameplayRules]
-	bit GAMEPLAYRULES_ORIGINAL_TYPES_F, a
+	ld d, a
+	ld a, e
+	ldh [rSVBK], a
+	bit GAMEPLAYRULES_ORIGINAL_TYPES_F, d
 	ld de, RevampedPokemonTypes
 	jr z, .got_table
 	ld de, OriginalPokemonTypes

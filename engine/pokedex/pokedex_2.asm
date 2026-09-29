@@ -99,7 +99,10 @@ DisplayDexEntry:
 	push hl
 	ld a, [wTempSpecies]
 	call GetPokemonIndexFromID
-	farcall GetRegionalDexNumber
+	; farcall clobbers hl, so pass the species index in de
+	ld d, h
+	ld e, l
+	farcall GetRegionalDexNumber_DE
 	ld b, l
 	ld c, h
 	ld hl, sp + 0
