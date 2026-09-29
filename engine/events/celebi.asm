@@ -22,6 +22,10 @@ CelebiShrineEvent:
 	ld [hl], a
 	ld a, 160 ; frame count
 	ld [wFrameCounter], a
+	; CelebiEvent_CountDown ends the loop by setting bit 7 here; clear
+	; whatever the last menu or jumptable left behind first.
+	xor a
+	ld [wJumptableIndex], a
 	ld d, $0
 .loop
 	ld a, [wJumptableIndex]
@@ -92,6 +96,11 @@ CelebiFlybyEvent:
 	call ReinitSpriteAnimFrame
 	ld a, 61 ; frame count: 61 * 3px == the full 184px sweep
 	ld [wFrameCounter], a
+	; CelebiEvent_CountDown ends the loop by setting bit 7 here; clear
+	; whatever the last menu or jumptable left behind first, or the flyby
+	; can end before it starts.
+	xor a
+	ld [wJumptableIndex], a
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a

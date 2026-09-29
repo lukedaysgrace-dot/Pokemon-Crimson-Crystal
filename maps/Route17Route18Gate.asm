@@ -15,7 +15,13 @@ Route17Route18GateOfficerScript:
 
 Route17Route18GateBicycleCheck:
 	checkitem BICYCLE
+	iftrue .HasRide
+	; The Bike Shop hands out a SKATEBOARD instead if the player picks it,
+	; and the BICYCLE is then never offered again. Cycling Road forces the
+	; player onto a bike anyway, so either one gets them through.
+	checkitem SKATEBOARD
 	iffalse .NoBicycle
+.HasRide:
 	end
 
 .NoBicycle:

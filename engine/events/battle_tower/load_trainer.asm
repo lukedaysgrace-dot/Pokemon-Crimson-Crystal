@@ -177,6 +177,7 @@ Function_LoadRandomBattleTowerMon:
 	cp [hl]
 	jr z, .pop_and_retry
 	ld a, [wBT_OTMon2]
+	cp [hl]
 .pop_and_retry
 	pop de
 	pop hl
