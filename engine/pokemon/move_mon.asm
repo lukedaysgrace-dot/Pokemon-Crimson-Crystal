@@ -373,6 +373,30 @@ endr
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .generatestats
+	; A caught mon that was given perfect DVs above (see .copywildmonDVs)
+	; needs its stats recalculated; the wild mon's stats came from its own
+	; DVs. Keep the current HP copied from the battle.
+	ld a, [wMonType]
+	and $f
+	jr nz, .copy_wild_stats
+	call CurPartySpeciesKeepsWildDVs
+	jr z, .copy_wild_stats
+	pop hl
+	push hl
+	ld bc, MON_MAXHP
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	push hl
+	ld bc, MON_STAT_EXP - 1
+	add hl, bc
+	ld b, TRUE
+	call CalcMonStats
+	pop hl
+	jr .registerunowndex
+
+.copy_wild_stats
 	ld hl, wEnemyMonMaxHP
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_MAXHP
 	call CopyBytes

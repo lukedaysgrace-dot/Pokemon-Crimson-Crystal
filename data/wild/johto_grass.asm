@@ -1785,3 +1785,5 @@ SafariZoneRockyWildMons:
 	dbw 10, GROWLITHE_HISUIAN
 	dbw 10, ROOKIDEE ; rare (4%)
 	dbw 11, SKARMORY ; rare (1%); unlocks at 5 Johto badges
+
+	db -1 ; end (for FindNest, which scans both Safari sub-tables)

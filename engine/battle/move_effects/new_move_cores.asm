@@ -1447,6 +1447,7 @@ HandleNewEndTurnEffects_Core:
 	swap a
 	and %11
 	jr z, .sleep_roll
+	inc a ; 2-4: see BattleCommand_SleepTarget
 	ld [hl], a
 	call UpdateOpponentInParty
 	ld de, ANIM_SLP

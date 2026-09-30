@@ -563,6 +563,10 @@ TrySurfOW::
 	ret nz
 	call CheckDirection
 	ret c
+	; not onto a tile someone is standing on
+	farcall CheckFacingObject
+	ccf
+	ret nc
 	ld a, BANK(AskStopSurfScript)
 	ld hl, AskStopSurfScript
 	call CallScript
@@ -2006,6 +2010,13 @@ AskStopSurfScript:
 	yesorno
 	iffalse .end
 	callasm StopSurfFromField
+	closetext
+	; step onto the land and switch back to the map's music, like leaving
+	; the water by walking
+	special PlayMapMusic
+	special SurfStartStep
+	end
+
 .end
 	closetext
 	end

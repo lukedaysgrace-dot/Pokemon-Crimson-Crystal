@@ -403,15 +403,13 @@ SnorlaxAwake:
 	db 35, 10 ; below
 	db 36,  8 ; right
 	db 36,  9 ; right
-	; Route 16 Snorlax at 16, 6
-	db 15,  6 ; left
-	db 15,  7 ; left
-	db 16,  5 ; above
-	db 17,  5 ; above
-	db 16,  8 ; below
-	db 17,  8 ; below
-	db 18,  6 ; right
-	db 18,  7 ; right
+	db 34,  7 ; above
+	; Route 16 Snorlax at 15, 6 (only these neighbours are walkable)
+	db 14,  6 ; left
+	db 14,  7 ; left
+	db 15,  5 ; above
+	db 17,  6 ; right
+	db 17,  7 ; right
 	db -1
 
 PlayCurMonCry:

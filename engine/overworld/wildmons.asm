@@ -43,6 +43,9 @@ FindNest:
 	decoord 0, 0
 	ld hl, JohtoGrassWildMons
 	call .FindGrass
+	; the SAFARI ZONE's icy and rocky tables sit past JohtoGrassWildMons's end
+	ld hl, SafariZoneIceWildMons
+	call .FindGrass
 	ld hl, JohtoWaterWildMons
 	call .FindWater
 ; Roaming is disabled game-wide (see CheckEncounterRoamMon below): Raikou and

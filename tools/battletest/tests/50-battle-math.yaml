@@ -72,7 +72,7 @@
 
 # ---- BM3: sleep lasts 1-3 turns ------------------------------------------
 
-- name: "BM3: sleep counter is 1 on a swap&3==1 roll"
+- name: "BM3: sleep counter is 2 (1 turn asleep) on a swap&3==1 roll"
   # swap($50) & 3 = 1 -> counter 1. The old roll ($50 & 7, +1) stored 1
   # only 1 turn in 6; this pins the new roll deterministically. $50 = 80
   # also satisfies the forced-RNG loop contract: &3 == 0 (enemy move
@@ -83,16 +83,16 @@
   rng_value: 80
   turns: 1
   assert:
-    - player.status & 7 == 1
+    - player.status & 7 == 2
 
-- name: "BM3: sleep counter is 3 under forced_high"
+- name: "BM3: sleep counter is 4 (3 turns asleep) under forced_high"
   # swap($B4) & 3 = 3. The old roll stored 5 here too.
   player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
   enemy:  { species: PARAS,  level: 50, moves: [SPORE] }
   rng: forced_high
   turns: 1
   assert:
-    - player.status & 7 == 3
+    - player.status & 7 == 4
 
 # ---- BM4: paralysis halves Speed (was quartered) --------------------------
 

@@ -63,8 +63,8 @@ BattleCommand_Transform::
 	call LoadAnim
 .no_substitute
 	ld a, [wTempByteValue]
-	and a
-	ret nz
+	inc a ; $ff = called by Imposter, which skips the text
+	ret z
 	ld hl, TransformedText
 	jp StdBattleTextbox
 

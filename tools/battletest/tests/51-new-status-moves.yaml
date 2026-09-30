@@ -74,14 +74,14 @@
     - wram('wPlayerYawnCount') == 1
 
 - name: "Yawn: target falls asleep at the end of the following turn"
-  # forced_high's swap&3 roll gives a 3-turn sleep counter (same roll as
-  # the sleep move effect).
+  # forced_high's swap&3 roll gives a counter of 4 (3 turns asleep; same
+  # roll as the sleep move effect).
   player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH] }
   enemy:  { species: RATTATA, level: 50, moves: [YAWN] }
   rng: forced_high
   turns: 2
   assert:
-    - player.status & 7 == 3
+    - player.status & 7 == 4
     - wram('wPlayerYawnCount') == 0
 
 - name: "Yawn: fails against a mon that already has a status"
