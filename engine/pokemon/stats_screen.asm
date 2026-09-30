@@ -778,10 +778,14 @@ StatsScreen_PinkPage:
 	ld de, .ExpTabString
 	call DrawSummaryTab
 
-	; dex number
+	; dex number: the regional (Pokedex) number, same as the Pokedex shows
 	ld a, [wBaseSpecies]
 	ld [wCurSpecies], a
 	call GetPokemonIndexFromID
+	; farcall clobbers hl, so pass the species index in de
+	ld d, h
+	ld e, l
+	farcall GetRegionalDexNumber_DE
 	ld a, h
 	ld h, l
 	ld l, a

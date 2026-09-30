@@ -133,3 +133,90 @@
   rng: forced_high
   turns: 1
   assert: ["wram('wPlayerMoveStructCategory') == 0"]
+
+# Paralysis halves Speed now, but Quick Feet still undid a quarter (x4),
+# ending at x3 instead of x1.5.
+- name: "Audit 09-29: Quick Feet under paralysis is x1.5, not x3"
+  player: { species: URSARING, level: 50, ability: QUICK_FEET, status_byte: 64, moves: [TACKLE] }
+  enemy:  { species: JOLTEON, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 1"]
+
+# Unnerve only printed its banner.
+- name: "Audit 09-29: Unnerve stops the foe eating its Berry"
+  player: { species: MEW, level: 50, ability: UNNERVE, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 30, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.item == 'BERRY'", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 09-29: without Unnerve the foe eats its Berry"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 30, item: BERRY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.item == 'NO_ITEM'", "enemy.hp > enemy.start_hp"]
+
+# A Berry eaten mid-turn (right after a hit) was replayed by Cud Chew at the
+# end of that same turn.
+- name: "Audit 09-29: Cud Chew control"
+  id: cud_control
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, hp: 60, item: BERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+
+- name: "Audit 09-29: Cud Chew doesn't replay a mid-turn Berry the same turn"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, hp: 60, item: BERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == result('cud_control')['player']['hp']"]
+
+# Klutz skipped the Mean Look / binding checks along with the Smoke Ball one.
+- name: "Audit 09-29: Klutz doesn't escape Mean Look"
+  player: { species: GOLETT, level: 100, ability: KLUTZ, moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemySubStatus5: 128 }
+  move_script: [run]
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wBattleResult') == 0"]
+
+# The sleep counter is decremented before the "still asleep?" check and the
+# mon acts on the turn it hits 0, so the 1-3 roll gave 0-2 turns of sleep.
+- name: "Audit 09-29: a 1-turn sleep still costs the target its next turn"
+  player: { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [TACKLE] }
+  enemy:  { species: PARAS, level: 50, ability: NO_ABILITY, moves: [SPORE] }
+  rng: forced
+  rng_value: 80
+  turns: 2
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]
+
+# Mirror Move didn't re-resolve a copied Weather Ball (stayed Normal/50).
+- name: "Audit 09-29: Mirror Move resolves a copied Weather Ball"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [MIRROR_MOVE] }
+  enemy:  { species: GENGAR, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+# A multi-hit attacker knocked out by Iron Barbs on hit 1 still landed hit 2.
+- name: "Audit 09-29: Double Kick control"
+  id: dk_control
+  player: { species: PERSIAN, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy:  { species: AGGRON, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+
+- name: "Audit 09-29: Double Kick stops after Iron Barbs KOs the attacker on hit 1"
+  player:  { species: PERSIAN, level: 50, ability: NO_ABILITY, hp: 5, moves: [DOUBLE_KICK] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy:   { species: AGGRON, level: 50, ability: IRON_BARBS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram16('wPartyMon1HP') == 0"
+    - "enemy.maxhp - enemy.hp < result('dk_control')['enemy']['damage']"

@@ -203,16 +203,7 @@ _ResetWRAM:
 	call .InitList
 
 	ld hl, wNumKeyItems
-	ld a, 3
-	ld [hli], a
-	ld a, SKATEBOARD
-	ld [hli], a
-	ld a, BICYCLE
-	ld [hli], a
-	ld a, OLD_ROD
-	ld [hli], a
-	ld a, -1
-	ld [hl], a
+	call .InitList
 
 	ld hl, wNumBalls
 	call .InitList

@@ -98,8 +98,9 @@ CheckCanLearnMoveTutorMove:
 
 .CheckCompatibility:
 ; Returns compatibility in c, the same way CanLearnTMHMMove does.
-; EXTREMESPEED is not a TM or HM, so it has no learnset flag to check against;
-; anything the tutor is offered to can be taught it.
+; EXTREMESPEED is not a TM or HM, so it has no learnset flag to check against:
+; the Dragon Shrine elder only offers it for the Dratini line ("Shall I teach
+; it EXTREMESPEED?"), so only Dratini, Dragonair and Dragonite can learn it.
 	ld a, [wPutativeTMHMMove]
 	call GetMoveIndexFromID ; out: hl = 16-bit move index
 	ld a, l
@@ -108,7 +109,27 @@ CheckCanLearnMoveTutorMove:
 	ld a, h
 	cp HIGH(EXTREMESPEED)
 	jr nz, .use_tmhm_learnset
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID ; out: hl = 16-bit species index
 	ld c, TRUE
+	ld de, DRATINI
+	call .HLIsDE
+	ret z
+	ld de, DRAGONAIR
+	call .HLIsDE
+	ret z
+	ld de, DRAGONITE
+	call .HLIsDE
+	ret z
+	ld c, FALSE
+	ret
+
+.HLIsDE:
+	ld a, h
+	cp d
+	ret nz
+	ld a, l
+	cp e
 	ret
 
 .use_tmhm_learnset

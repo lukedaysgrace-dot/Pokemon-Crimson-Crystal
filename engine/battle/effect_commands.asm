@@ -410,6 +410,8 @@ CantMove:
 .fly_dig_moves
 	dw FLY
 	dw DIG
+	dw PHANTOMFORCE ; vanishes like Fly/Dig (see BattleCommand_Charge)
+	dw BOUNCE
 	dw -1
 
 OpponentCantMove:
@@ -2346,6 +2348,8 @@ BattleCommand_MoveAnimNoSub:
 .fly_dig_moves
 	dw FLY
 	dw DIG
+	dw PHANTOMFORCE ; vanishes like Fly/Dig (see BattleCommand_Charge)
+	dw BOUNCE
 	dw -1
 
 .alternate_anim
@@ -2469,6 +2473,8 @@ BattleCommand_FailureText:
 .fly_dig_moves
 	dw FLY
 	dw DIG
+	dw PHANTOMFORCE ; vanishes like Fly/Dig (see BattleCommand_Charge)
+	dw BOUNCE
 	dw -1
 
 BattleCommand_ApplyDamage:
@@ -3791,6 +3797,9 @@ BattleCommand_SleepTarget:
 	swap a
 	and %11
 	jr z, .random_loop
+	; The counter is decremented before the "still asleep?" check and the
+	; mon acts on the turn it reaches 0, so 1-3 turns of sleep need 2-4.
+	inc a
 	ld [de], a
 	call UpdateOpponentInParty
 	call RefreshBattleHuds
@@ -5653,7 +5662,13 @@ BattleCommand_EndLoop:
 	ld [de], a
 	inc a
 	ld [bc], a
-	jr .loop_back_to_critical
+	; Rough Skin / Iron Barbs / Rocky Helmet may already have knocked the
+	; attacker out on the first hit: then there are no more hits.
+	farcall UserHasFainted
+	jr nz, .loop_back_to_critical
+	ld a, 1
+	ld [bc], a
+	jr .done_loop
 
 .twineedle
 	ld a, 1
