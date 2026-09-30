@@ -205,6 +205,7 @@ ENDC
 	; after the hit), so don't let last turn's crit leak into the AI's
 	; damage predictions below
 	ld [wCriticalHit], a
+	farcall PromoteCudChewFlags
 
 	call HandleBerserkGene
 	call UpdateBattleMonInParty
@@ -3904,9 +3905,6 @@ TryToRunAwayFromBattle:
 	pop de
 	pop hl
 	jp c, .can_escape
-	ld a, b ; helper also reports effective Klutz for the Smoke Ball gate
-	and a
-	jr nz, .no_flee_item
 
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
@@ -3915,6 +3913,12 @@ TryToRunAwayFromBattle:
 	ld a, [wPlayerWrapCount]
 	and a
 	jp nz, .cant_escape
+
+	; b = effective Klutz, from CheckRunAwayEscape_Core: skip only the
+	; Smoke Ball check (not the Mean Look / binding checks above)
+	ld a, b
+	and a
+	jr nz, .no_flee_item
 
 	push hl
 	push de
@@ -4535,6 +4539,12 @@ HandleHPHealingItem::
 	ld a, b
 	cp HELD_BERRY
 	ret nz
+	ld a, [hl]
+	cp BERRY_JUICE ; not a Berry: Unnerve doesn't stop it
+	jr z, .not_unnerved
+	call BerryHolderIsUnnerved
+	ret nz
+.not_unnerved
 	ld de, wEnemyMonHP + 1
 	ld hl, wEnemyMonMaxHP
 	ldh a, [hBattleTurn]
@@ -4601,6 +4611,20 @@ UseOpponentItem:
 	ld hl, RecoveredUsingText
 	jp StdBattleTextbox
 
+BerryHolderIsUnnerved:
+; nz if the held-item holder's foe (the turn holder) has Unnerve, so the
+; holder can't eat its Berry. Preserves bc, de and hl.
+	push hl
+	push de
+	push bc
+	farcall UnnerveCheck_b
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+
 ItemRecoveryAnim:
 	push hl
 	push de
@@ -4623,6 +4647,12 @@ ItemRecoveryAnim:
 	ret
 
 UseHeldStatusHealingItem:
+; Returns nz if a status-healing item was used.
+	call BerryHolderIsUnnerved
+	jr z, .not_unnerved
+	xor a ; z: nothing used
+	ret
+.not_unnerved
 	callfar GetOpponentItem
 	ld hl, HeldStatusHealingEffects
 .loop
@@ -4684,6 +4714,8 @@ UseConfusionHealingItem:
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
 	ret z
+	call BerryHolderIsUnnerved
+	ret nz
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_HEAL_CONFUSION

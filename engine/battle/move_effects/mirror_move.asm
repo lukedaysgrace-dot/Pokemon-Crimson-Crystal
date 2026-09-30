@@ -34,6 +34,9 @@ BattleCommand_MirrorMove:
 	pop af
 
 	call GetMoveData
+	; Weather Ball: its type and power from the current weather (as
+	; UpdateMoveData does), before the -ate abilities look at the type
+	farcall WeatherBallUpdateMoveStruct
 	; -ate abilities (Pixilate & co.) convert the copied move's type, as
 	; UpdateMoveData does for Metronome / Sleep Talk (audit 2026-08-28 #18)
 	farcall AbilityConvertMoveType

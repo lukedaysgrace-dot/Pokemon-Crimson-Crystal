@@ -228,7 +228,9 @@ Gen2ToGen2LinkComms:
 	call Serial_ExchangeBytes
 	ld hl, wLinkData
 	ld de, wOTPlayerName
-	ld bc, $1c2
+	; 6 preamble bytes, name, party count + species list, ID, party structs,
+	; OT names and nicknames, 3 stop bytes (was $1c2 for 48-byte structs)
+	ld bc, 6 + LINK_GEN2_PARTY_DATA_LENGTH + 3
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -255,7 +257,7 @@ Gen2ToGen2LinkComms:
 	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
-	ld bc, $1b9
+	ld bc, LINK_GEN2_PARTY_DATA_LENGTH ; was $1b9 for 48-byte structs
 	call Link_CopyOTData
 	ld de, wPlayerTrademonSpecies
 	ld hl, wLinkPlayerPartyMon1Species
@@ -603,7 +605,9 @@ FixDataForLinkTransfer:
 	cp LINK_TIMECAPSULE
 	ld b, $d
 	jr z, .got_value
-	ld b, $27
+	; second patch-list part: the rest of the ID + party structs past the
+	; first $fc bytes (was $27 for 48-byte structs)
+	ld b, LINK_GEN2_PATCH_PART2_END
 .got_value
 	ld a, c
 	cp b
@@ -631,6 +635,16 @@ FixDataForLinkTransfer:
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	ret
+
+; name, party count + species list + terminator, ID, party structs,
+; OT names, nicknames
+; (PARTYMON_STRUCT_LENGTH is only known at link time, hence the literals)
+LINK_GEN2_PARTY_DATA_LENGTH EQU 453
+	assert LINK_GEN2_PARTY_DATA_LENGTH == NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + PARTY_LENGTH * (PARTYMON_STRUCT_LENGTH + NAME_LENGTH + MON_NAME_LENGTH), \
+		"LINK_GEN2_PARTY_DATA_LENGTH doesn't match the party data layout"
+LINK_GEN2_PATCH_PART2_END EQU 51
+	assert LINK_GEN2_PATCH_PART2_END == 2 + PARTYMON_STRUCT_LENGTH * PARTY_LENGTH - $fc + 1, \
+		"LINK_GEN2_PATCH_PART2_END doesn't match the party struct size"
 
 Link_PrepPartyData_Gen1:
 	ld de, wLinkData
@@ -1373,7 +1387,7 @@ Function2868a:
 	ld [hl], a
 	ld [wCurPartyLevel], a
 	push bc
-	ld hl, $24
+	ld hl, MON_MAXHP ; Gen 1 MaxHP, Attack, Defense, Speed
 	add hl, bc
 	push hl
 	ld h, d
@@ -1412,14 +1426,38 @@ Function2868a:
 	ldh a, [hQuotient + 3]
 	ld [hli], a
 	push hl
-	ld hl, $1b
+	ld hl, MON_HAPPINESS
 	add hl, bc
-	ld a, $46
+	ld a, BASE_HAPPINESS
 	ld [hli], a
 	xor a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; PokerusStatus
+	ld [hli], a ; CaughtData
 	ld [hl], a
+	; Fields Gen 1 doesn't have: otherwise they'd keep raw link data.
+	ld hl, MON_PERSONALITY
+	add hl, bc
+	ld a, ABILITY_1 ; first ability slot, Poke Ball
+	ld [hli], a
+	ld [hl], HIDDEN_POWER_DEFAULT_TYPE
+	ld hl, MON_UNUSED
+	add hl, bc
+	push de
+	push bc
+	push hl
+	ld a, [bc]
+	ld [wCurPartySpecies], a
+	xor a ; PARTYMON: roll the species' gender ratio
+	ld [wMonType], a
+	ld d, h
+	ld e, l
+	farcall InitMonShinyGender
+	pop hl
+	ld a, [hl]
+	and ~MON_SHINY_FLAG & $ff ; a traded Gen 1 mon is never shiny
+	ld [hl], a
+	pop bc
+	pop de
 	pop hl
 	inc de
 	inc de

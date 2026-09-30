@@ -511,7 +511,9 @@ ImposterAbility:
 ; Banner briefly, then Transform (wave deform + sprite swap).
 ; BattleCommand_Transform plays the anim itself; skip TransformedText.
 	call ShowAbilityBannerBrief
-	ld a, 1
+	; $ff: never a move animation ID (MOVE_TABLE_MINIMUM_RESERVED_INDEX), so
+	; it can't be mistaken for the one usedmovetext leaves here
+	ld a, $ff
 	ld [wTempByteValue], a
 	farcall BattleCommand_Transform
 	xor a
@@ -3561,16 +3563,14 @@ CompareSpeedsWithAbilities::
 	ret
 
 .quick_feet
-	; x1.5 while statused. The classic engine permanently quarters the
-	; stored Speed when paralysis lands, so undo that reduction first:
-	; Quick Feet ignores paralysis's Speed penalty.
+	; x1.5 while statused. Paralysis permanently halves the stored Speed
+	; (ApplyPrzEffectOnSpeed), so undo that reduction first: Quick Feet
+	; ignores paralysis's Speed penalty.
 	ld a, b
 	and a
 	ret z
 	bit PAR, b
 	jr z, .quick_feet_boost
-	add hl, hl
-	jr c, .speed_cap
 	add hl, hl
 	jr c, .speed_cap
 .quick_feet_boost
@@ -4447,8 +4447,12 @@ TrySleepOpponent:
 	call AbilityPreventsSleep
 	ret c
 	call ShowAbilityBannerBrief
+.sleep_roll
+	; 2-4, i.e. 1-3 turns asleep (see BattleCommand_SleepTarget)
 	call BattleRandom
+	swap a
 	and %11
+	jr z, .sleep_roll
 	inc a
 	ld b, a
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -5592,6 +5596,16 @@ GetTrueUserAbility_b::
 ; farcall-safe wrapper: the user's effective ability, returned in b.
 	call GetTrueUserAbility
 	ld b, a
+	ret
+
+UnnerveCheck_b::
+; b = TRUE if the turn holder's effective ability is Unnerve, which stops its
+; opponent (the held-item holder) from eating Berries.
+	call GetTrueUserAbility
+	cp UNNERVE
+	ld b, FALSE
+	ret nz
+	inc b
 	ret
 
 GetOpponentAbility_b::
@@ -7284,14 +7298,11 @@ CudChewAbility:
 ; The end of the turn after eating an HP Berry, eats it again.
 	call GetUserSide
 	call ReadItemStateFlags
+	; Bit 2 (armed) becomes bit 3 (due) at the start of the next turn (see
+	; PromoteCudChewFlags), so a Berry eaten mid-turn (right after a hit) is
+	; not replayed until the end of the following turn.
 	bit 3, b
-	jr nz, .replay
-	bit 2, b
 	ret z
-	; Held Berries are consumed after end-turn abilities run. Seeing the armed
-	; bit here therefore already means one full end of turn has elapsed; replay
-	; now instead of delaying Cud Chew for an extra turn.
-.replay
 	res 2, b
 	res 3, b
 	call WriteItemStateFlags
@@ -7316,6 +7327,20 @@ CudChewAbility:
 	ld hl, RegainedHealthText
 	call StdBattleTextbox
 	jp EndAbility
+
+PromoteCudChewFlags::
+; Called at the start of every turn: a Berry eaten before this turn is due
+; for Cud Chew at this turn's end.
+	ld c, 0
+	call .side
+	ld c, 1
+.side
+	call ReadItemStateFlags
+	bit 2, b
+	ret z
+	res 2, b
+	set 3, b
+	jp WriteItemStateFlags
 
 ; --- Escape / force-switch ------------------------------------------------
 

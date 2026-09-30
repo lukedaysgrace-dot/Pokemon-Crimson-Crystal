@@ -60,7 +60,9 @@ DragonsDenB1F_ClairScene:
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
-	setevent EVENT_GOT_TM24_DRAGON_CLAW
+	; not EVENT_GOT_TM24_DRAGON_CLAW: that one is Clair's gym gift, which
+	; would otherwise never be handed out after this scene
+	setevent EVENT_GOT_TM_DRAGON_PULSE_FROM_CLAIR
 	writetext ClairText_DescribeDragonPulseDragonDen
 	buttonsound
 	writetext ClairText_WhatsTheMatterDragonDen

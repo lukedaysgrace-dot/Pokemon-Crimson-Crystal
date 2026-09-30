@@ -1058,7 +1058,9 @@ RunMemScript::
 	push af
 	xor a
 	ld hl, wMapReentryScriptQueueFlag
-	ld bc, 8
+	; only the flag, bank and address: the padding after them was trimmed,
+	; so 8 bytes would wipe the phone call timers that follow
+	ld bc, wMapReentryScriptAddress + 2 - wMapReentryScriptQueueFlag
 	call ByteFill
 	pop af
 	ret

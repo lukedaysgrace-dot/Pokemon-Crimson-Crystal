@@ -427,8 +427,11 @@ PokeBallEffect:
 	jp z, .shake_and_break_free
 .caught
 
-; Preserve the wild mon's shiny/gender flags: the LoadEnemyMon
-; call below clears them along with the rest of wEnemyMon.
+; Preserve the wild mon's personality (ability slot) and shiny/gender
+; flags: the LoadEnemyMon call below clears them along with the rest of
+; wEnemyMon, and would re-roll the ability.
+	ld a, [wEnemyMonPersonality]
+	push af
 	ld a, [wEnemyMonShinyGenderFlags]
 	push af
 
@@ -481,9 +484,11 @@ PokeBallEffect:
 	pop af
 	ld [hl], a
 
-; Restore the shiny/gender flags saved at .caught
+; Restore the shiny/gender flags and personality saved at .caught
 	pop af
 	ld [wEnemyMonShinyGenderFlags], a
+	pop af
+	ld [wEnemyMonPersonality], a
 
 	ld hl, wEnemySubStatus5
 	bit SUBSTATUS_TRANSFORMED, [hl]

@@ -1,12 +1,13 @@
 EmptyAllSRAMBanks:
-	ld a, 0
+; Every bank, including the PokeDB storage banks past bank 3.
+	xor a
+.loop
+	push af
 	call .EmptyBank
-	ld a, 1
-	call .EmptyBank
-	ld a, 2
-	call .EmptyBank
-	ld a, 3
-	call .EmptyBank
+	pop af
+	inc a
+	cp NUM_SRAM_BANKS
+	jr c, .loop
 	ret
 
 .EmptyBank:
