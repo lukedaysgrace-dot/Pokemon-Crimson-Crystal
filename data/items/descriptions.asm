@@ -5,7 +5,7 @@ ItemDescriptions:
 	dw BrightpowderDesc
 	dw GreatBallDesc
 	dw PokeBallDesc
-	dw QuestionMarkDesc
+	dw DuskStoneDesc
 	dw BicycleDesc
 	dw MoonStoneDesc
 	dw AntidoteDesc
@@ -925,6 +925,10 @@ SunStoneDesc:
 	db   "Evolves certain"
 	next "kinds of #MON.@"
 
+DuskStoneDesc:
+	db   "A dark stone that"
+	next "evolves RAICHU.@"
+
 PolkadotBowDesc:
 	db   "Powers up normal-"
 	next "type moves. (HOLD)@"
@@ -970,7 +974,7 @@ BrickPieceDesc:
 
 ArmorFossilDesc:
 	db   "Ancient fossil of"
-	next "a armored head.@"
+	next "an armored head.@"
 
 CoverFossilDesc:
 	db   "Ancient fossil of"

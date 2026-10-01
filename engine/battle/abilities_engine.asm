@@ -416,6 +416,30 @@ RunEntryAbilities::
 	call GetTrueUserAbility
 	jp BattleJumptable
 
+RunDelayedEntryAbilities::
+; After a double KO the first replacement is sent out while the other side's
+; slot is still empty, so its foe-targeting entry abilities (Intimidate,
+; Trace, Download, ...) were skipped. Run them once the foe is out.
+	call UserHasFainted
+	ret z
+	call OppHasFainted
+	ret z
+	ld hl, TargetedEntryAbilities
+	call GetTrueUserAbility
+	jp BattleJumptable
+
+TargetedEntryAbilities:
+	dbw TRACE, TraceAbility
+	dbw IMPOSTER, ImposterAbility
+	dbw INTIMIDATE, IntimidateAbility
+	dbw FRISK, FriskAbility
+	dbw UNNERVE, UnnerveAbility
+	dbw DOWNLOAD, DownloadAbility
+	dbw ANTICIPATION, AnticipationAbility
+	dbw FOREWARN, ForewarnAbility
+	dbw SUPERSWEET_SYRUP, SupersweetSyrupAbility
+	dbw -1, -1
+
 BattleEntryAbilitiesNonfainted:
 	dbw TRACE, TraceAbility
 	dbw IMPOSTER, ImposterAbility
@@ -693,6 +717,16 @@ ScreenCleanerAbility:
 	ret
 
 .do_it
+	; the "<side> #MON's REFLECT faded!" texts start with wStringBuffer1,
+	; which still holds the banner's ability name: put the side there
+	ldh a, [hBattleTurn]
+	and a
+	ld de, .Your
+	jr z, .got_side
+	ld de, .Enemy
+.got_side
+	ld hl, wStringBuffer1
+	call CopyName2
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerScreens
@@ -713,6 +747,11 @@ ScreenCleanerAbility:
 	ret z
 	ld hl, BattleText_MonsLightScreenFell
 	jp StdBattleTextbox
+
+.Your:
+	db "Your@"
+.Enemy:
+	db "Enemy@"
 
 SetBattleWeatherFromB::
 ; farcall-safe entry: the farcall macro clobbers a (bank) and hl (address),
@@ -1144,6 +1183,12 @@ RunEndTurnAbilitiesBoth::
 .run
 	call UserHasFainted
 	ret z
+	; Limber, Insomnia, Own Tempo & co. also cure a status that got past
+	; them mid-battle (e.g. through Mold Breaker); the table is otherwise
+	; only run when the mon enters.
+	ld hl, StatusHealAbilities
+	call GetTrueUserAbility
+	call BattleJumptable
 	ld hl, EndTurnAbilities
 	call GetTrueUserAbility
 	jp BattleJumptable

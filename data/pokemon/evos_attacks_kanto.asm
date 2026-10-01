@@ -607,7 +607,7 @@ ArbokEvosAttacks:
 	db 0 ; no more level-up moves
 
 PikachuEvosAttacks:
-	dbbw EVOLVE_ITEM, THUNDERSTONE, RAICHU
+	dbbw EVOLVE_LEVEL, 30, RAICHU
 	dbbw EVOLVE_ITEM, SUN_STONE, RAICHU_ALOLAN
 	db 0 ; no more evolutions
 	dbw 1, GROWL
@@ -633,6 +633,7 @@ PikachuEvosAttacks:
 	db 0 ; no more level-up moves
 
 RaichuEvosAttacks:
+	dbbw EVOLVE_ITEM, DUSK_STONE, GOROCHU
 	db 0 ; no more evolutions
 	dbw 1, THUNDERPUNCH
 	dbw 1, GROWL

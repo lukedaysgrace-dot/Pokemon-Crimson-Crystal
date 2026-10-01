@@ -220,3 +220,50 @@
   assert:
     - "wram16('wPartyMon1HP') == 0"
     - "enemy.maxhp - enemy.hp < result('dk_control')['enemy']['damage']"
+
+# Baton Pass rebuilt the incoming mon's stats from the unmodified ones,
+# dropping its paralysis Speed halving (and burn / badge adjustments).
+- name: "Audit 09-30: Baton Pass keeps the incoming mon's paralysis Speed drop"
+  player:  { species: SMEARGLE, level: 50, ability: NO_ABILITY, moves: [BATON_PASS] }
+  player2: { species: JOLTEON, level: 50, ability: NO_ABILITY, status_byte: 64, moves: [SPLASH] }
+  enemy:   { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'JOLTEON'"
+    - "player.stats['speed'] * 2 <= wram16('wPlayerSpeed') + 1"
+
+# The player's Baton Pass passed the passer's Yawn drowsiness on.
+- name: "Audit 09-30: Baton Pass doesn't pass Yawn drowsiness"
+  player:  { species: TAUROS, level: 50, ability: RUN_AWAY, moves: [SPLASH, BATON_PASS] }
+  player2: { species: MILTANK, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:   { species: RATTATA, level: 50, ability: NO_ABILITY, moves: [YAWN] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - "player.species == 'MILTANK'"
+    - "player.status == 0"
+
+# After a double KO the player's replacement entered while the foe's slot was
+# empty, so its Intimidate (Trace, Download, ...) was skipped.
+- name: "Audit 09-30: double KO replacement still Intimidates the foe's replacement"
+  player:  { species: ELECTRODE, level: 50, ability: NO_ABILITY, moves: [EXPLOSION] }
+  player2: { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  enemy:   { species: RATTATA, level: 5, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'GYARADOS'"
+    - "enemy.species == 'SNORLAX'"
+    - "enemy.stat_levels[0] == 6"
+
+# Status-curing abilities only ran on entry, so a status that got past them
+# (Mold Breaker) stuck until the mon switched out.
+- name: "Audit 09-30: Limber cures a Mold Breaker paralysis at the end of the turn"
+  player: { species: PINSIR, level: 50, ability: MOLD_BREAKER, moves: [THUNDER_WAVE] }
+  enemy:  { species: HITMONLEE, level: 50, ability: LIMBER, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.status & 64) == 0"]

@@ -7,15 +7,15 @@
 	db 30 ; catch rate
 	db 255 ; base exp
 	db NO_ITEM, NO_ITEM ; items
-	db GENDER_F50 ; gender ratio
+	db GENDER_F25 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/electivire/front.dimensions"
 	abilities_for ELECTIVIRE, MOTOR_DRIVE, SHEER_FORCE, IRON_FIST
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_MEDIUM_FAST ; growth rate
+	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, PROTECT, FACADE, RETURN, SWAGGER, KNOCK_OFF, BULK_UP, REST, ATTRACT, WEATHER_BALL

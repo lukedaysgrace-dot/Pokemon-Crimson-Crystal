@@ -630,7 +630,7 @@ EggMoveTutorCancelText:
 	done
 
 EggMoveTutorNoMovesText:
-	text "That #MON has no"
-	line "egg moves"
+	text "That #MON has"
+	line "no egg moves"
 	cont "to learn."
 	done

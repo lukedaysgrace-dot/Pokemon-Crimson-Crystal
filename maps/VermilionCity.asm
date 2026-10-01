@@ -310,13 +310,13 @@ UnknownText_0x1aad4a:
 	done
 
 VermilionCityChantzText:
-	text "Man...i threw a"
-	line "pokeball at it but"
-	cont "all it did was"
-	cont "bounce off it's"
-	cont "belly,"
+	text "Man… I threw a"
+	line "# BALL at it,"
+	cont "but all it did was"
+	cont "bounce off its"
+	cont "belly!"
 
-	para "how am i supposed"
+	para "How am I supposed"
 	line "to catch it?"
 	done
 
