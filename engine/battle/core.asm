@@ -9,6 +9,7 @@ DoBattle:
 	ld [wDisguiseBusted], a
 	ld [wDisguiseBusted + 1], a
 	ld [wAbilityStatDropFlag], a
+	ld [wNeutralizingGasActive], a
 	inc a
 	ld [wBattleHasJustStarted], a
 	ld hl, wOTPartyMon1HP
@@ -1477,6 +1478,11 @@ HandleMysteryberry:
 	ld a, b
 	cp HELD_RESTORE_PP
 	jr nz, .quit
+	; it's a Berry: an Unnerve foe keeps it from being eaten
+	farcall FoeUnnerveCheck_b
+	ld a, b
+	and a
+	jr nz, .quit
 	ld hl, wPartyMon1PP
 	ld a, [wCurBattleMon]
 	call GetPartyLocation
@@ -2864,7 +2870,9 @@ AskUseNextPokemon:
 	ld a, [wMenuCursorY]
 	cp $1 ; YES
 	jr z, .loop
-	ld hl, wPartyMon1Speed
+	; the mon that was out (its ability and item are the ones checked too),
+	; not whoever is in party slot 1
+	ld hl, wBattleMonSpeed
 	ld de, wEnemyMonSpeed
 	jp TryToRunAwayFromBattle
 

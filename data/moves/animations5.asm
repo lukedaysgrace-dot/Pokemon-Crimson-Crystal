@@ -298,12 +298,12 @@ BattleAnim_WoodHammer_CC:
 	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $28
 	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $9c
 	anim_wait 16
-	anim_clearobjs
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_HEADBUTT
 	anim_wait 6
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_clearobjs ; not before: the target's 1-row copy covers its top row until here
 	anim_wait 2
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_clearobjs
@@ -329,7 +329,7 @@ BattleAnim_WoodHammer_CC:
 BattleAnim_HeadSmash_CC:
 ; The user steels itself, then throws away its own safety in a
 ; skull-first crash that levels the field.
-	anim_4gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION, ANIM_GFX_SPEED
+	anim_1gfx ANIM_GFX_SPEED
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20
 	anim_sound 0, 0, SFX_RAGE
@@ -340,15 +340,18 @@ BattleAnim_HeadSmash_CC:
 	anim_obj ANIM_OBJ_FOCUS, 52, 108, $6
 	anim_wait 10
 	anim_incbgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING
-	anim_clearobjs
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_TACKLE
 	anim_wait 6
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_clearobjs ; not before: the target's 1-row copy covers its top row until here
 	anim_wait 2
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_clearobjs
+	; the target's 1-row copy is gone now: load the impact graphics (all
+	; four sets plus the copy's two entries overflowed the 5-entry tile list)
+	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION
 	anim_sound 0, 1, SFX_EGG_BOMB
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $3, $0
@@ -870,22 +873,25 @@ BattleAnim_PhantomForce_CC:
 BattleAnim_HeadlongRush_CC:
 ; Dust erupts under the user's feet as it barrels forward and buries
 ; the target in a reckless, ground-churning collision.
-	anim_4gfx ANIM_GFX_SAND, ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION
+	anim_1gfx ANIM_GFX_SAND
 	anim_call BattleAnim_TargetObj_1Row_CC
 	anim_sound 0, 0, SFX_SANDSTORM
 	anim_obj ANIM_OBJ_DIG_SAND, 40, 92, $0
 	anim_obj ANIM_OBJ_DIG_SAND, 48, 92, $0
 	anim_obj ANIM_OBJ_DIG_SAND, 56, 92, $0
 	anim_wait 12
-	anim_clearobjs
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_TACKLE
 	anim_wait 6
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_clearobjs ; not before: the target's 1-row copy covers its top row until here
 	anim_wait 2
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_clearobjs
+	; the target's 1-row copy is gone now: load the impact graphics (all
+	; four sets plus the copy's two entries overflowed the 5-entry tile list)
+	anim_4gfx ANIM_GFX_SAND, ANIM_GFX_HIT, ANIM_GFX_ROCKS, ANIM_GFX_EXPLOSION
 	anim_sound 0, 1, SFX_EGG_BOMB
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $3, $0
@@ -1217,7 +1223,7 @@ BattleAnim_PsyshieldBash_CC:
 ; Psychic energy ripples into a barrier in front of the user, and it
 ; rams in behind it, shield-first.
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
-	anim_4gfx ANIM_GFX_PSYCHIC, ANIM_GFX_REFLECT, ANIM_GFX_HIT, ANIM_GFX_BIG_RINGS
+	anim_2gfx ANIM_GFX_PSYCHIC, ANIM_GFX_REFLECT
 ; (removed `anim_obp0 $0`: on CGB it maps the gray/yellow object palettes to
 ; all-white, which threw away the purple recolor above and made the psychic
 ; wave, the barrier, the hit star and the ring all draw white on white.)
@@ -1235,6 +1241,9 @@ BattleAnim_PsyshieldBash_CC:
 	anim_wait 2
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_clearobjs
+	; the target's 1-row copy is gone now: load the impact graphics (all
+	; four sets plus the copy's two entries overflowed the 5-entry tile list)
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_BIG_RINGS
 	anim_sound 0, 1, SFX_PSYBEAM
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
@@ -1354,7 +1363,7 @@ BattleAnim_BanefulBunker_CC:
 BattleAnim_RagingBull_CC:
 ; Steam, stamping, seeing red - then the bull charges clean through
 ; whatever wall stands in its way.
-	anim_4gfx ANIM_GFX_HIT_2, ANIM_GFX_MISC, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
+	anim_1gfx ANIM_GFX_MISC
 ; (`anim_obp0 $0` moved down to the impact: on CGB it maps the gray/yellow
 ; object palettes to all-white, so the wall (a gray-palette object) was
 ; invisible until the flash; now it shows up gray and flashes white.)
@@ -1365,15 +1374,18 @@ BattleAnim_RagingBull_CC:
 	anim_obj ANIM_OBJ_ANGER, 60, 52, $0
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $10, $2, $0
 	anim_wait 12
-	anim_clearobjs
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_TACKLE
 	anim_wait 6
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_clearobjs ; not before: the target's 1-row copy covers its top row until here
 	anim_wait 2
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_clearobjs
+	; the target's 1-row copy is gone now: load the impact graphics (all
+	; four sets plus the copy's two entries overflowed the 5-entry tile list)
+	anim_3gfx ANIM_GFX_HIT_2, ANIM_GFX_REFLECT, ANIM_GFX_ROCKS
 	anim_obj ANIM_OBJ_SCREEN, 136, 48, $0
 	anim_wait 8
 	anim_sound 0, 1, SFX_GLASS_TING

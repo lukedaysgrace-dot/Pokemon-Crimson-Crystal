@@ -392,11 +392,14 @@ endr
 	ld a, STARTMENUITEM_OPTION
 	call .AppendMenuList
 IF DEF(DEBUG_BATTLE)
+	; DEBUG takes EXIT's place (B still closes the menu): a ninth item would
+	; run the menu box past the bottom of the screen
 	ld a, STARTMENUITEM_DEBUG
 	call .AppendMenuList
-ENDC
+ELSE
 	ld a, STARTMENUITEM_EXIT
 	call .AppendMenuList
+ENDC
 	ld a, c
 	ld [wMenuItemsList], a
 	ret
