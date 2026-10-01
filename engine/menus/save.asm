@@ -148,8 +148,13 @@ SavedTheGame:
 	done
 
 ForceGameSave::
-; Saves without asking (Bill's PC: the storage database needs a snapshot).
-; Prints the usual "Saving…" / "saved the game" text.
+; Saves without the "save the game?" question (Bill's PC: the storage database
+; needs a snapshot; the PC already asked). Still goes through the overwrite
+; check so a different save file is never replaced silently, and so the first
+; save of a new game erases the old file's leftovers (ErasePreviousSave).
+; Prints the usual "Saving…" / "saved the game" text. Carry if refused.
+	call AskOverwriteSaveFile
+	ret c
 	call PauseGameLogic
 	call SavedTheGame
 	jp ResumeGameLogic
@@ -608,6 +613,20 @@ TryLoadSaveData:
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .backup
+
+	; A reset during the last save's backup phase leaves the live box list as
+	; the only up-to-date copy of the boxes. Finish that backup now, before
+	; NEW GAME can clear the live list (InitializeBoxes) and a later CONTINUE
+	; would copy the emptied list over the backup.
+	call WasMidSaveAborted
+	jr nz, .no_pending_backup
+	call VerifyChecksum
+	jr nz, .no_pending_backup
+	call LoadPlayerData
+	call LoadPokemonData
+	call LoadIndexTables
+	call WriteBackupSave
+.no_pending_backup
 
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank

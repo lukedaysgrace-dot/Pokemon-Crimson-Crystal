@@ -741,6 +741,8 @@ wGivingExperienceToExpShareHolders:: db ; c723
 wBackupEnemyMonBaseStats:: ds 5 ; c724
 wBackupEnemyMonCatchRate:: db ; c729
 wBackupEnemyMonBaseExp:: db ; c72a
+; the exp code copies wEnemyMonBaseStats..wEnemyMonBaseExp in here
+assert wBackupEnemyMonBaseExp + 1 - wBackupEnemyMonBaseStats == wEnemyMonShinyGenderFlags - wEnemyMonBaseStats
 
 wPlayerFutureSightDamage:: dw ; c72b
 wEnemyFutureSightDamage:: dw ; c72d

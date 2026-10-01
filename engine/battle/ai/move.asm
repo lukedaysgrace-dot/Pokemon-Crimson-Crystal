@@ -35,7 +35,14 @@ AIChooseMove:
 	jr z, .ScoreDisabledMove
 	inc c
 	inc hl
-	jr .CheckDisabledMove
+	; bounded: a disabled move that isn't in the moveset must not make this
+	; write past wBuffer1's four slots
+	ld b, a
+	ld a, c
+	cp NUM_MOVES
+	ld a, b
+	jr c, .CheckDisabledMove
+	jr .CheckGigaHammer
 .ScoreDisabledMove:
 	ld hl, wBuffer1
 	ld b, 0

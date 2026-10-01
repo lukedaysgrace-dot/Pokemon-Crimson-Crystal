@@ -114,3 +114,11 @@ Cries:
 	dba Cry_Dreepy
 	dba Cry_Drakloak
 	dba Cry_Dragapult
+; Additional cries imported from Polished Coral
+	dba Cry_Tirtouga
+	dba Cry_Carracosta
+	dba Cry_Archen
+	dba Cry_Archeops
+; Paldea (gen 9)
+	dba Cry_Flittle
+	dba Cry_Espathra

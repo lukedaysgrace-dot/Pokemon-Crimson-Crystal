@@ -295,3 +295,26 @@
   rng: forced_high
   turns: 1
   assert: ["player.start_hp - player.hp == player.maxhp // 10"]
+
+- name: "Audit r23: KO'ing an enemy doesn't corrupt pending Future Sight damage"
+  # The exp code backed up 8 bytes into a 7-byte buffer, writing the fainted
+  # mon's shiny/gender flags over wPlayerFutureSightDamage's high byte.
+  player:  { species: MEW, level: 100, ability: NO_ABILITY, moves: [FUTURE_SIGHT, SURF] }
+  enemy:   { species: MAGIKARP, level: 5, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy2:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [1, 2, 1, 1]
+  rng: forced_high
+  turns: 2
+  assert: ["wram16('wPlayerFutureSightDamage') <= 999"]
+
+- name: "Audit r24: Cursed Body disables the calling move's slot (Mirror Move), not the called move"
+  # The AI scans wEnemyMonMoves for wEnemyDisabledMove; a move outside the
+  # moveset made that scan run off and write into unrelated WRAM.
+  player:  { species: GENGAR, level: 50, ability: CURSED_BODY, moves: [SURF] }
+  enemy:   { species: CHANSEY, level: 50, ability: NO_ABILITY, moves: [MIRROR_MOVE] }
+  enemy2:  { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - "wram('wEnemyDisableCount') != 0"
+    - "wram('wEnemyDisabledMove') == wram('wEnemyMonMoves')"

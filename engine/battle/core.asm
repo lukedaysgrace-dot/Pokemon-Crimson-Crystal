@@ -2297,7 +2297,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call IsAnyMonHoldingExpShare
 	jr z, .skip_exp
 	ld hl, wEnemyMonBaseStats
-	ld b, wEnemyMonEnd - wEnemyMonBaseStats
+	ld b, wEnemyMonShinyGenderFlags - wEnemyMonBaseStats ; fits wBackupEnemyMonBaseStats
 .loop
 	srl [hl]
 	inc hl
@@ -2307,7 +2307,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 .skip_exp
 	ld hl, wEnemyMonBaseStats
 	ld de, wBackupEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
+	ld bc, wEnemyMonShinyGenderFlags - wEnemyMonBaseStats ; fits wBackupEnemyMonBaseStats
 	call CopyBytes
 	xor a
 	ld [wGivingExperienceToExpShareHolders], a
@@ -2321,7 +2321,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld [wBattleParticipantsNotFainted], a
 	ld hl, wBackupEnemyMonBaseStats
 	ld de, wEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
+	ld bc, wEnemyMonShinyGenderFlags - wEnemyMonBaseStats ; fits wBackupEnemyMonBaseStats
 	call CopyBytes
 	ld a, $1
 	ld [wGivingExperienceToExpShareHolders], a
@@ -5477,7 +5477,9 @@ Battle_StatsScreen:
 	call CopyBytes
 
 	call EnableLCD
-	ret
+	; The summary screen also overwrites part of the back pic (and part of
+	; the vTiles0 backup), so reload it in case the player picks SWITCH next.
+	jp GetBattleMonBackpic
 
 TryPlayerSwitch:
 	ld a, [wCurBattleMon]
@@ -7778,7 +7780,7 @@ GiveExperiencePoints:
 
 	ld [wTempByteValue], a
 	ld hl, wEnemyMonBaseStats
-	ld c, wEnemyMonEnd - wEnemyMonBaseStats
+	ld c, wEnemyMonShinyGenderFlags - wEnemyMonBaseStats ; fits wBackupEnemyMonBaseStats
 .base_stat_division_loop
 	xor a
 	ldh [hDividend + 0], a

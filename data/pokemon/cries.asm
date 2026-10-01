@@ -469,10 +469,10 @@ PokemonCries::
 	mon_cry CRY_EKANS,       $27b,  $090 ; SEVIPER
 	mon_cry CRY_HOOTHOOT,    $162,  $081 ; SHUPPET
 	mon_cry CRY_MUK,         $079,  $200 ; BANETTE
-	mon_cry CRY_SPEAROW,     $0a0,  $100 ; ARCHEN
-	mon_cry CRY_VILEPLUME,  -$020,  $1a0 ; ARCHEOPS
-	mon_cry CRY_SQUIRTLE,    $060,  $110 ; TIRTOUGA
-	mon_cry CRY_BLASTOISE,  -$040,  $1b0 ; CARRACOSTA
+	mon_cry CRY_ARCHEN,         206,   204 ; ARCHEN
+	mon_cry CRY_ARCHEOPS,       188,   140 ; ARCHEOPS
+	mon_cry CRY_TIRTOUGA,       192,   204 ; TIRTOUGA
+	mon_cry CRY_CARRACOSTA,      35,   204 ; CARRACOSTA
 	mon_cry CRY_LITWICK,     $000,  $100 ; LITWICK
 	mon_cry CRY_LAMPENT,     $000,  $180 ; LAMPENT
 	mon_cry CRY_CHANDELURE,  $0ff,  $180 ; CHANDELURE
@@ -483,8 +483,8 @@ PokemonCries::
 	mon_cry CRY_NOIVERN,     $04a,  $084 ; NOIVERN
 	mon_cry CRY_EKANS,       $0a0,  $100 ; SALANDIT
 	mon_cry CRY_EKANS,      -$020,  $180 ; SALAZZLE
-	mon_cry CRY_NATU,        $060,  $0e0 ; FLITTLE
-	mon_cry CRY_FEAROW,     -$040,  $160 ; ESPATHRA
+	mon_cry CRY_FLITTLE,         32,   148 ; FLITTLE
+	mon_cry CRY_ESPATHRA,       200,   300 ; ESPATHRA
 	mon_cry CRY_FEAROW,      $0a0,  $0c0 ; FINIZEN
 	mon_cry CRY_FEAROW,     -$0c0,  $180 ; PALAFIN
 	mon_cry CRY_MARILL,      $11b,  $120 ; AZURILL
