@@ -3,7 +3,7 @@
 ; Gen 1's Special 100 is used for both Special Attack and Special Defense.
 	db 0 ; species ID placeholder
 
-	db  70,  90,  65, 115, 100, 100
+	db  70, 100,  65, 115, 100, 100
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, DARK ; type

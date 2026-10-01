@@ -2650,6 +2650,23 @@ EvosAttacksPointers2C::
 	dw SandileEvosAttacks
 	dw KrokorokEvosAttacks
 	dw KrookodileEvosAttacks
+	dw GorochuEvosAttacks
+
+; Initial moves and level-up learnset from Rage Blue.
+GorochuEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, THUNDERSHOCK
+	dbw 1, TAIL_WHIP
+	dbw 1, QUICK_ATTACK
+	dbw 6, TAIL_WHIP
+	dbw 22, SWIFT
+	dbw 28, THUNDERPUNCH
+	dbw 34, FIRE_PUNCH
+	dbw 36, CRUNCH
+	dbw 38, EXTREMESPEED
+	dbw 45, THUNDER
+	dbw 50, LIGHT_SCREEN
+	db 0 ; no more level-up moves
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE

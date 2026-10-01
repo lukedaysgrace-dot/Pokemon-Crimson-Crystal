@@ -375,3 +375,4 @@ SECTION "Pic Animations 8", ROMX
 SandileFrames: INCLUDE "gfx/pokemon/sandile/frames.asm"
 KrokorokFrames: INCLUDE "gfx/pokemon/krokorok/frames.asm"
 KrookodileFrames: INCLUDE "gfx/pokemon/krookodile/frames.asm"
+GorochuFrames: INCLUDE "gfx/pokemon/gorochu/frames.asm"

@@ -518,5 +518,6 @@ StaraptorMenuIcon: INCBIN "gfx/menu_icons/staraptor.2bpp"
 SandileMenuIcon: INCBIN "gfx/menu_icons/sandile.2bpp"
 KrokorokMenuIcon: INCBIN "gfx/menu_icons/krokorok.2bpp"
 KrookodileMenuIcon: INCBIN "gfx/menu_icons/krookodile.2bpp"
+GorochuMenuIcon: INCBIN "gfx/menu_icons/gorochu.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

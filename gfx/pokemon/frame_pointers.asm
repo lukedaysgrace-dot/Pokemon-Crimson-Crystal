@@ -493,3 +493,4 @@ FramesPointers:
 	dba SandileFrames
 	dba KrokorokFrames
 	dba KrookodileFrames
+	dba GorochuFrames

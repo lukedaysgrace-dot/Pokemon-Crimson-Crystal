@@ -1834,40 +1834,64 @@ Pokedex_OrderMonsByMode:
 	dw Pokedex_ABCMode
 
 .OldMode:
-	ld a, [wDexLastSeenValue] ;known to be non-zero
-	ld c, 9 ;bits are numbered 1-8 (instead of 0-7) because the first dex entry is #001, not #000
-.highest_bit_index_loop
-	dec c
-	add a, a
-	jr nc, .highest_bit_index_loop
-	ld a, [wDexLastSeenIndex]
-	ld l, a
-	ld h, 0
-	ld b, h
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	ld d, h
-	ld e, l
+	; Keep the legacy order, inserting Gorochu after Raichu without changing
+	; the internal species IDs used by saves, encounters and the seen flags.
 	ld hl, wPokedexOrder
-	ld c, b ;b = 0
+	ld bc, 0
 .old_mode_loop
 	inc bc
+	ld a, b
+	cp HIGH(GOROCHU)
+	jr nz, .old_mode_add
+	ld a, c
+	cp LOW(GOROCHU)
+	jr z, .old_mode_next
+.old_mode_add
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hli], a
-	cp d
-	jr c, .old_mode_loop
+	cp HIGH(RAICHU)
+	jr nz, .old_mode_next
 	ld a, c
-	cp e
-	jr c, .old_mode_loop
-	ld hl, wDexListingEnd
-	ld a, e
+	cp LOW(RAICHU)
+	jr nz, .old_mode_next
+	ld a, LOW(GOROCHU)
 	ld [hli], a
-	ld [hl], d
-	ret
+	ld a, HIGH(GOROCHU)
+	ld [hli], a
+.old_mode_next
+	ld a, b
+	cp HIGH(NUM_POKEMON)
+	jr nz, .old_mode_loop
+	ld a, c
+	cp LOW(NUM_POKEMON)
+	jr nz, .old_mode_loop
+
+	; Find the last seen entry in the displayed order, rather than using the
+	; highest internal ID (Gorochu's appended ID would expose the whole list).
+	ld bc, NUM_POKEMON
+	ld hl, wPokedexOrder + (2 * NUM_POKEMON) - 1
+.old_mode_last_seen_loop
+	ld a, [hld]
+	ld d, a
+	ld a, [hld]
+	ld e, a
+	push hl
+	push bc
+	ld a, BANK(wPokedexSeen)
+	ldh [rSVBK], a
+	call CheckSeenMonIndex
+	ld a, BANK(wPokedexOrder)
+	ldh [rSVBK], a
+	pop bc
+	pop hl
+	jr nz, .found_last_seen_index
+	dec bc
+	ld a, b
+	or c
+	jr nz, .old_mode_last_seen_loop
+	jr .found_last_seen_index
 
 .NewMode:
 	ld hl, NewPokedexOrder
