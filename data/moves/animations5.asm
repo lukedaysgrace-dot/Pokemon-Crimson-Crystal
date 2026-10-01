@@ -1647,8 +1647,10 @@ BattleAnim_FieryDance_CC:
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj ANIM_OBJ_EMBER,   8, 0,  10, 4, $13
 	anim_wait 10
-	anim_incobj 1
-	anim_incobj 2
+	; anim_clearobjs doesn't reset the object numbering: these embers are
+	; objects 4 and 5 (after the two flames and the glimmer)
+	anim_incobj 4
+	anim_incobj 5
 	anim_sound 0, 1, SFX_EMBER
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_obj ANIM_OBJ_EMBER,  15, 0,   8, 4, $30

@@ -14,8 +14,8 @@
 	INCBIN "gfx/pokemon/mismagius/front.dimensions"
 	abilities_for MISMAGIUS, LEVITATE, NO_ABILITY, PRANKSTER
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_FAST ; growth rate
+	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, PROTECT, WILL_O_WISP, FACADE, RETURN, SWAGGER, NASTY_PLOT, REST, ATTRACT, POWER_GEM

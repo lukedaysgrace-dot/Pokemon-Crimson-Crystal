@@ -284,8 +284,9 @@ SchoolGirlDebraSeenText:
 	text "This field trip"
 	line "is my favorite!"
 
-	para "I'm studying #MON"
-	line "that live at sea."
+	para "I'm studying"
+	line "#MON that live"
+	cont "at sea."
 	done
 
 SchoolGirlDebraBeatenText:

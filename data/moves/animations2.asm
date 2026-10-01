@@ -786,7 +786,7 @@ BattleAnim_GyroBall:
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 12
 	anim_wait 1
-	anim_incobj 1
+	anim_incobj 2 ; the user's copy from ANIM_BG_BATTLEROBJ_1ROW (object 1 was the ball)
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
 	anim_wait 1
 	anim_clearobjs

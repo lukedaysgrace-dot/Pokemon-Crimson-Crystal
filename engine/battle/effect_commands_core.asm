@@ -2136,12 +2136,13 @@ PlayStatChangeAnim_Core:
 	; The in-progress move's own anim param is saved and restored around it.
 	ld a, [wBattleAnimParam]
 	push af
+	xor a
+	ld [wNumHits], a
+	; (wKickCounter is the same byte as wBattleAnimParam, so it's set by
+	; the stat id below rather than zeroed after it)
 	ld a, [wLoweredStat]
 	and $f
 	ld [wBattleAnimParam], a
-	xor a
-	ld [wNumHits], a
-	ld [wKickCounter], a
 	ld a, e
 	ld [wFXAnimID], a
 	ld a, d
@@ -3033,6 +3034,18 @@ ToxicRestorePlayer_Core::
 	ret
 .stale
 	jr ToxicClearPlayer_Core
+
+PassedBattleMonFixups_Core::
+; Farcalled from PassedBattleMonEntrance (the player's Baton Pass switch-in),
+; after the stat stage multipliers were applied.
+; - per-mon Taunt/Yawn state and the toxic slot, as a normal switch-in does
+;   (the enemy's Baton Pass path already runs ToxicRestoreEnemy_Core)
+; - the multipliers rebuild the stats from the unmodified ones: re-apply the
+;   status penalties and badge boosts InitBattleMon had applied
+	call ToxicRestorePlayer_Core
+	callfar ApplyStatusEffectOnPlayerStats
+	callfar BadgeStatBoosts
+	ret
 
 ToxicRestoreEnemy_Core::
 ; Enemy-side mirror of ToxicRestorePlayer_Core. Must run with the incoming

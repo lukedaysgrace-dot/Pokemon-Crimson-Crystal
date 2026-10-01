@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/swablu/front.dimensions"
 	abilities_for SWABLU, CLOUD_NINE, NATURAL_CURE, PIXILATE
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_SLOW ; growth rate
 	dn EGG_FLYING, EGG_DRAGON ; egg groups
 
 	; tm/hm learnset

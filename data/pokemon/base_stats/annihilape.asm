@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/annihilape/front.dimensions"
 	abilities_for ANNIHILAPE, VITAL_SPIRIT, INNER_FOCUS, DEFIANT
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
 	; tm/hm learnset

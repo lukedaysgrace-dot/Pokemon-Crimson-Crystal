@@ -14,8 +14,8 @@
 	INCBIN "gfx/pokemon/rhyperior/front.dimensions"
 	abilities_for RHYPERIOR, SOLID_ROCK, RECKLESS, SHEER_FORCE
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_SLOW ; growth rate
+	dn EGG_MONSTER, EGG_GROUND ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, DRAGON_PULSE, HIDDEN_POWER, PROTECT, FACADE, RETURN, SWAGGER, FLASH_CANNON, REST, ATTRACT

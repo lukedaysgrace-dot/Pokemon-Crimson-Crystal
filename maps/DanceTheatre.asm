@@ -313,8 +313,8 @@ KimonoGirlHanaBeatenText:
 
 KimonoGirlHanaAfterBattleText:
 	text "Dancing with my"
-	line "#MON always makes"
-	cont "me smile."
+	line "#MON always"
+	cont "makes me smile."
 	done
 
 KimonoGirlYumiSeenText:

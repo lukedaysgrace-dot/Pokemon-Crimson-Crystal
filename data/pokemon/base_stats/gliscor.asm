@@ -15,7 +15,7 @@
 	abilities_for GLISCOR, POISON_HEAL, HYPER_CUTTER, SAND_VEIL
 	db 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	dn EGG_BUG, EGG_BUG ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, PROTECT, FACADE, RETURN, SWAGGER, KNOCK_OFF, REST, ATTRACT, HONE_CLAWS, NIGHT_SLASH

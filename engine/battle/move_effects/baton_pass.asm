@@ -72,6 +72,13 @@ BattleCommand_BatonPass:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	ld hl, ApplyStatLevelMultiplierOnAllStats
 	call CallBattleCore
+	; the multipliers rebuild the stats from the unmodified ones: re-apply
+	; the incoming mon's status penalties (this also sets hBattleTurn to
+	; the player's, so restore the enemy's turn)
+	ld hl, ApplyStatusEffectOnEnemyStats
+	call CallBattleCore
+	ld a, 1
+	ldh [hBattleTurn], a
 
 	; Entry abilities must run for the passed-in mon (Intimidate, weather,
 	; Trace, ...) - the player path already does this via

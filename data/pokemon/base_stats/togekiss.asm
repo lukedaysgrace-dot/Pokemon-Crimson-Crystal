@@ -7,15 +7,15 @@
 	db 30 ; catch rate
 	db 255 ; base exp
 	db NO_ITEM, NO_ITEM ; items
-	db GENDER_F50 ; gender ratio
+	db GENDER_F12_5 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/togekiss/front.dimensions"
 	abilities_for TOGEKISS, SUPER_LUCK, SERENE_GRACE, PIXILATE
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_FAST ; growth rate
+	dn EGG_FLYING, EGG_FAIRY ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, WORK_UP, PROTECT, FACADE, RETURN, SWAGGER, NASTY_PLOT, REST, ATTRACT, ZEN_HEADBUTT

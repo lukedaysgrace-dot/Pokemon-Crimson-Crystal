@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/farigiraf/front.dimensions"
 	abilities_for FARIGIRAF, ARMOR_TAIL, CUD_CHEW, SAP_SIPPER
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
 	; tm/hm learnset

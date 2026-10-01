@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/wyrdeer/front.dimensions"
 	abilities_for WYRDEER, INTIMIDATE, FRISK, SAP_SIPPER
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
 	; tm/hm learnset

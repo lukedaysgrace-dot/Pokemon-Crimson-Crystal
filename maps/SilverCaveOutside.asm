@@ -217,8 +217,9 @@ SilverCaveOutsideLoreleiBeforeText:
 	para "challenge to face"
 	line "you while your"
 
-	para "#MON are licking"
-	line "their wounds from"
+	para "#MON are"
+	line "licking their"
+	cont "wounds from"
 
 	para "your previous"
 	line "fight."

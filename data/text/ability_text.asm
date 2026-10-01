@@ -6,8 +6,8 @@ NotifyCloudNineText:
 	prompt
 
 NotifyPressureText:
-	text "<USER> is"
-	line "exerting its"
+	text "<USER>"
+	line "is exerting its"
 	cont "pressure!"
 	prompt
 
@@ -17,9 +17,9 @@ NotifyMoldBreakerText:
 	prompt
 
 NotifyUnnerveText:
-	text "<TARGET> is"
-	line "too afraid to eat"
-	cont "Berries!"
+	text "<TARGET>"
+	line "is too afraid to"
+	cont "eat Berries!"
 	prompt
 
 NotifyNeutralizingGasText:
@@ -39,8 +39,9 @@ NoLongerInfatuatedText:
 	prompt
 
 TraceActivationText:
-	text "<USER> traced"
-	line "@"
+	text "<USER>"
+	line "traced"
+	cont "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
@@ -88,8 +89,8 @@ IsHurtText:
 
 TormentedText:
 ; printed with the victim as the turn holder (see BadDreamsAbility)
-	text "<USER> is"
-	line "tormented!"
+	text "<USER>"
+	line "is tormented!"
 	prompt
 
 MaxedAttackText:
@@ -135,8 +136,9 @@ ForewarnAlertText:
 	prompt
 
 HarvestedBerryText:
-	text "<USER> harvested"
-	line "its @"
+	text "<USER>"
+	line "harvested its"
+	cont "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
