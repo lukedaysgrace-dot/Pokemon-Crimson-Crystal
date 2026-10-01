@@ -177,6 +177,12 @@ SetBoxmonOrEggmonCaughtData:
 	rrca
 	ld b, a
 	ld a, [wCurPartyLevel]
+	; only 6 bits are stored: cap at 63 so higher levels don't spill into the
+	; time-of-day bits (and e.g. Lv65 doesn't read back as "hatched")
+	cp CAUGHT_LEVEL_MASK + 1
+	jr c, .level_ok
+	ld a, CAUGHT_LEVEL_MASK
+.level_ok
 	or b
 	ld [hli], a
 	ld a, [wMapGroup]
@@ -198,6 +204,9 @@ SetBoxmonOrEggmonCaughtData:
 	call GetWorldMapLocation
 	ld b, a
 	ld a, [wPlayerGender]
+	; Indigo (2) and Mint (3) use bit 1 too: keep only the female bit, or it
+	; would rotate into bit 0 and corrupt the location
+	and 1 << PLAYERGENDER_FEMALE_F
 	rrca ; shift bit 0 (PLAYERGENDER_FEMALE_F) to bit 7 (CAUGHT_GENDER_MASK)
 	or b
 	ld [hl], a

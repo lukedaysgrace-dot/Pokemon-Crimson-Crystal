@@ -4303,6 +4303,23 @@ CursedBodyEffect:
 	pop hl
 	cp b
 	ret z
+	; Disable the move in the slot that was used, not the executed move: after
+	; Mirror Move / Metronome / Sleep Talk the executed move isn't in the
+	; moveset, and the AI scans the moveset for the disabled move id.
+	push hl
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wBattleMonMoves
+	jr z, .got_moves
+	ld hl, wEnemyMonMoves
+.got_moves
+	ld b, 0
+	add hl, bc
+	ld b, [hl]
+	pop hl
+	ld a, b
+	and a
+	ret z
 	; store the disabled move id
 	ld [hl], b
 	; count = (slot+1)<<4 | 4 turns

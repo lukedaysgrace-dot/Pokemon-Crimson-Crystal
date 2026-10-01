@@ -18,10 +18,9 @@ LakeOfRage_MapScripts:
 	scene_script .DummyScene0 ; unusable
 	scene_script .DummyScene1 ; unusable
 
-	db 3 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
-	callback MAPCALLBACK_OBJECTS, .Wesley
-	callback MAPCALLBACK_OBJECTS, .Raikou
+	callback MAPCALLBACK_OBJECTS, .Wesley ; continues into .Raikou
 
 .DummyScene0:
 	end
@@ -34,14 +33,16 @@ LakeOfRage_MapScripts:
 	return
 
 .Wesley:
+; Only the first callback of each type runs, so the Raikou check is chained
+; from here rather than registered as a second MAPCALLBACK_OBJECTS.
 	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
-	return
+	sjump .Raikou
 
 .WesleyAppears:
 	appear LAKEOFRAGE_WESLEY
-	return
+	sjump .Raikou
 
 .Raikou:
 ; RAIKOU prowls the lakeshore once the eighth Badge has been earned.
