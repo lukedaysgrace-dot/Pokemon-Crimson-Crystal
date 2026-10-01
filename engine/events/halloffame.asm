@@ -509,6 +509,11 @@ DisplayHOFMon:
 	ld [hl], "<DOT>"
 	ld a, [wCurPartySpecies]
 	call GetPokemonIndexFromID
+	; show the same regional number as the Pokédex and summary screen
+	; (farcall clobbers hl, so pass the species index in de)
+	ld d, h
+	ld e, l
+	farcall GetRegionalDexNumber_DE
 	ld a, l
 	ld l, h
 	ld h, a

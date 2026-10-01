@@ -5310,6 +5310,10 @@ BattleMenu_Pack:
 .use_special_ball
 	ld [wCurItem], a
 	call DoItemEffect
+	; storage full: the ball wasn't thrown, so don't spend the turn
+	ld a, [wItemEffectSucceeded]
+	cp 2
+	jr z, .didnt_use_item
 
 .got_item
 	jp .UseItem

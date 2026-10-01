@@ -184,9 +184,27 @@ PrintPartyMonPage1:
 	inc hl
 	ld [hl], "."
 	inc hl
-	ld de, wNamedObjectIndexBuffer
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
+	; wNamedObjectIndexBuffer is the 8-bit runtime ID; print the regional
+	; dex number like the Pokédex does
+	push hl
+	ld a, [wNamedObjectIndexBuffer]
+	call GetPokemonIndexFromID
+	ld d, h
+	ld e, l
+	farcall GetRegionalDexNumber_DE
+	ld a, l
+	ld l, h
+	ld h, a
+	pop bc
+	push hl
+	ld hl, sp + 0
+	ld d, h
+	ld e, l
+	ld h, b
+	ld l, c
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
 	call PrintNum
+	pop bc
 	hlcoord 1, 9
 	ld de, String1dc550
 	call PlaceString
