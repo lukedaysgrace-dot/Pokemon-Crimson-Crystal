@@ -197,3 +197,11 @@ SchoolGirlSpriteGFX::          INCBIN "gfx/sprites/school_girl.2bpp"
 FatGuySpriteGFX::              INCBIN "gfx/sprites/fat_guy.2bpp"
 BurglarSpriteGFX::             INCBIN "gfx/sprites/burglar.2bpp"
 FossilSpriteGFX::              INCBIN "gfx/sprites/fossil.2bpp"
+
+
+SECTION "Flying Pikachu Sprite", ROMX
+
+; Two 16x16 frames, matching the Fly animation's eight-tile layout.
+FlyingPikachuSpriteGFX::       INCBIN "gfx/sprites/pikachu_fly.2bpp"
+FlyingPikachuSpriteGFXEnd::
+assert FlyingPikachuSpriteGFXEnd - FlyingPikachuSpriteGFX == 8 * 16

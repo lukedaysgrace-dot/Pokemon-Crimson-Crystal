@@ -1,0 +1,226 @@
+{
+  "method": "Unique trainers referenced by included map scripts, excluding unplaced trainer scripts; rematches merged, Twins counted as one pair; excludes named bosses, rivals, executives and Battle Tower generated teams.",
+  "rows": [
+    {
+      "class": "COOLTRAINERM",
+      "trainers": 19,
+      "party_entries": 21
+    },
+    {
+      "class": "COOLTRAINERF",
+      "trainers": 18,
+      "party_entries": 22
+    },
+    {
+      "class": "FISHER",
+      "trainers": 16,
+      "party_entries": 25
+    },
+    {
+      "class": "GRUNTF",
+      "trainers": 16,
+      "party_entries": 16
+    },
+    {
+      "class": "GRUNTM",
+      "trainers": 16,
+      "party_entries": 16
+    },
+    {
+      "class": "HIKER",
+      "trainers": 16,
+      "party_entries": 22
+    },
+    {
+      "class": "BIRD_KEEPER",
+      "trainers": 15,
+      "party_entries": 19
+    },
+    {
+      "class": "POKEFANM",
+      "trainers": 13,
+      "party_entries": 15
+    },
+    {
+      "class": "SWIMMERF",
+      "trainers": 13,
+      "party_entries": 13
+    },
+    {
+      "class": "SWIMMERM",
+      "trainers": 13,
+      "party_entries": 13
+    },
+    {
+      "class": "POKEMANIAC",
+      "trainers": 12,
+      "party_entries": 15
+    },
+    {
+      "class": "PSYCHIC_T",
+      "trainers": 12,
+      "party_entries": 12
+    },
+    {
+      "class": "SAGE",
+      "trainers": 12,
+      "party_entries": 12
+    },
+    {
+      "class": "BUG_CATCHER",
+      "trainers": 11,
+      "party_entries": 19
+    },
+    {
+      "class": "CAMPER",
+      "trainers": 10,
+      "party_entries": 16
+    },
+    {
+      "class": "SAILOR",
+      "trainers": 10,
+      "party_entries": 13
+    },
+    {
+      "class": "SCHOOLBOY",
+      "trainers": 10,
+      "party_entries": 24
+    },
+    {
+      "class": "YOUNGSTER",
+      "trainers": 10,
+      "party_entries": 14
+    },
+    {
+      "class": "LASS",
+      "trainers": 9,
+      "party_entries": 18
+    },
+    {
+      "class": "FIREBREATHER",
+      "trainers": 8,
+      "party_entries": 8
+    },
+    {
+      "class": "KIMONO_GIRL",
+      "trainers": 8,
+      "party_entries": 9
+    },
+    {
+      "class": "SCHOOL_GIRL",
+      "trainers": 8,
+      "party_entries": 8
+    },
+    {
+      "class": "SUPER_NERD",
+      "trainers": 8,
+      "party_entries": 9
+    },
+    {
+      "class": "BIKER",
+      "trainers": 7,
+      "party_entries": 7
+    },
+    {
+      "class": "BLACKBELT_T",
+      "trainers": 7,
+      "party_entries": 9
+    },
+    {
+      "class": "BEAUTY",
+      "trainers": 6,
+      "party_entries": 6
+    },
+    {
+      "class": "BOARDER",
+      "trainers": 6,
+      "party_entries": 6
+    },
+    {
+      "class": "JUGGLER",
+      "trainers": 6,
+      "party_entries": 9
+    },
+    {
+      "class": "BURGLAR",
+      "trainers": 5,
+      "party_entries": 5
+    },
+    {
+      "class": "COSPLAYER",
+      "trainers": 5,
+      "party_entries": 6
+    },
+    {
+      "class": "MEDIUM",
+      "trainers": 5,
+      "party_entries": 5
+    },
+    {
+      "class": "PICNICKER",
+      "trainers": 5,
+      "party_entries": 19
+    },
+    {
+      "class": "SCIENTIST",
+      "trainers": 5,
+      "party_entries": 5
+    },
+    {
+      "class": "TAMER",
+      "trainers": 5,
+      "party_entries": 5
+    },
+    {
+      "class": "TWINS",
+      "trainers": 5,
+      "party_entries": 10
+    },
+    {
+      "class": "BATTLE_GIRL",
+      "trainers": 4,
+      "party_entries": 4
+    },
+    {
+      "class": "GENTLEMAN",
+      "trainers": 4,
+      "party_entries": 4
+    },
+    {
+      "class": "NINJA",
+      "trainers": 4,
+      "party_entries": 4
+    },
+    {
+      "class": "POKEFANF",
+      "trainers": 4,
+      "party_entries": 6
+    },
+    {
+      "class": "SKIER",
+      "trainers": 4,
+      "party_entries": 4
+    },
+    {
+      "class": "HEX_MANIAC",
+      "trainers": 3,
+      "party_entries": 3
+    },
+    {
+      "class": "TEACHER",
+      "trainers": 3,
+      "party_entries": 3
+    },
+    {
+      "class": "GUITARIST",
+      "trainers": 2,
+      "party_entries": 2
+    },
+    {
+      "class": "OFFICER",
+      "trainers": 2,
+      "party_entries": 2
+    }
+  ],
+  "total": 380
+}

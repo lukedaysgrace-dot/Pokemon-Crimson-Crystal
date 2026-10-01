@@ -763,7 +763,7 @@ PassDesc:
 	next "MAGNET TRAIN.@"
 
 AbilityCapDesc:
-	db   "Changes a #MON's"
+	db   "Changes #MON's"
 	next "current ABILITY.@"
 
 LoadedDiceDesc:
@@ -950,7 +950,7 @@ SquirtBottleDesc:
 	next "watering plants.@"
 
 SafariBallDesc:
-	db   "A BALL for use in\n"
+	db   "A BALL for use in"
 	next "the SAFARI ZONE.@"
 
 ParkBallDesc:

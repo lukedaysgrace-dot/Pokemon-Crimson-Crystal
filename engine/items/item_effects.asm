@@ -1785,8 +1785,7 @@ FullRestoreEffect:
 	ld a, MON_STATUS
 	call GetPartyParamLocation
 	xor a
-	ld [hli], a
-	ld [hl], a
+	ld [hl], a ; keep MON_UNUSED: it holds the shiny/gender flags
 	call HealStatus
 	call BattlemonRestoreHealth
 	call HealHP_SFX_GFX

@@ -1101,14 +1101,16 @@ TryTileCollisionEvent::
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
 	farcall TryWhirlpoolOW
-	jr .done
+	jr c, .done
+	jr .noevent
 
 .waterfall
 	ld a, [wFacingTileID]
 	call CheckWaterfallTile
 	jr nz, .headbutt
 	farcall TryWaterfallOW
-	jr .done
+	jr c, .done
+	jr .noevent
 
 .headbutt
 	ld a, [wFacingTileID]

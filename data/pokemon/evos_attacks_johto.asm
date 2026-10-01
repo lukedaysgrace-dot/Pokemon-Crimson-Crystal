@@ -7395,8 +7395,8 @@ RapidashGalarianEvosAttacks:
 	db 0 ; no more level-up moves
 
 SlowpokeGalarianEvosAttacks:
-	dbbw EVOLVE_LEVEL, 42, SLOWKING_GALARIAN
 	dbbw EVOLVE_LEVEL, 37, SLOWBRO_GALARIAN
+	dbbw EVOLVE_ITEM, KINGS_ROCK, SLOWKING_GALARIAN ; mirrors Kantonian Slowpoke
 	db 0 ; no more evolutions
 	dbw 1, CURSE
 	dbw 1, TACKLE

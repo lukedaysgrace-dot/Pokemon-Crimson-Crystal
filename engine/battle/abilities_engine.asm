@@ -485,9 +485,79 @@ PressureAbility:
 OpponentHasPressure::
 ; Return z if the move target has Pressure. Pressure is not an ignorable
 ; defensive ability, so Mold Breaker does not bypass its extra PP cost.
+; Moves that only affect the user or its side (stat boosts, recovery,
+; Protect, weather...) do not target the Pressure holder and cost 1 PP.
 	call GetOpponentAbility
 	cp PRESSURE
+	ret nz
+	push bc
+	push de
+	push hl
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, PressureExemptEffects
+	ld de, 1
+	call IsInArray
+	pop hl
+	pop de
+	pop bc
+	jr c, .exempt
+	xor a ; z
 	ret
+.exempt
+	or 1 ; nz
+	ret
+
+PressureExemptEffects:
+	db EFFECT_ATTACK_UP
+	db EFFECT_DEFENSE_UP
+	db EFFECT_SPEED_UP
+	db EFFECT_SP_ATK_UP
+	db EFFECT_SP_DEF_UP
+	db EFFECT_ACCURACY_UP
+	db EFFECT_EVASION_UP
+	db EFFECT_ATTACK_UP_2
+	db EFFECT_DEFENSE_UP_2
+	db EFFECT_SPEED_UP_2
+	db EFFECT_SP_ATK_UP_2
+	db EFFECT_SP_DEF_UP_2
+	db EFFECT_ACCURACY_UP_2
+	db EFFECT_EVASION_UP_2
+	db EFFECT_CONVERSION
+	db EFFECT_HEAL
+	db EFFECT_LIGHT_SCREEN
+	db EFFECT_MIST
+	db EFFECT_FOCUS_ENERGY
+	db EFFECT_REFLECT
+	db EFFECT_SUBSTITUTE
+	db EFFECT_SPLASH
+	db EFFECT_HEAL_BELL
+	db EFFECT_PROTECT
+	db EFFECT_SANDSTORM
+	db EFFECT_ENDURE
+	db EFFECT_SAFEGUARD
+	db EFFECT_BATON_PASS
+	db EFFECT_MORNING_SUN
+	db EFFECT_SYNTHESIS
+	db EFFECT_MOONLIGHT
+	db EFFECT_RAIN_DANCE
+	db EFFECT_SUNNY_DAY
+	db EFFECT_BELLY_DRUM
+	db EFFECT_TELEPORT
+	db EFFECT_DEFENSE_CURL
+	db EFFECT_HAIL
+	db EFFECT_BULK_UP
+	db EFFECT_CALM_MIND
+	db EFFECT_DRAGON_DANCE
+	db EFFECT_HONE_CLAWS
+	db EFFECT_SHELL_SMASH
+	db EFFECT_ROOST
+	db EFFECT_TRICK_ROOM
+	db EFFECT_BANEFUL_BUNKER
+	db EFFECT_QUIVER_DANCE
+	db EFFECT_WORK_UP
+	db EFFECT_WISH
+	db -1
 MoldBreakerAbility:
 	ld hl, NotifyMoldBreakerText
 	jr NotificationAbilities
@@ -3678,7 +3748,7 @@ RunPostDamageDefenderHeldItems:
 	call WeaknessPolicyBoost
 	jp RockyHelmetDamage
 
-LifeOrbRecoil:
+LifeOrbRecoil::
 	callfar GetUserItem
 	ld a, b
 	cp HELD_LIFE_ORB
