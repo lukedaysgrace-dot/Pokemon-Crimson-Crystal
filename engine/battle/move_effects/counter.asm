@@ -7,17 +7,6 @@ BattleCommand_Counter:
 	; never blocked them (audit 2026-08-28 #24)
 	call BattleCommand_CheckHit.Protect
 	jp nz, EndMoveEffect
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	and a
-	ret z
-
-	ld b, a
-	callfar GetMoveEffect
-	ld a, b
-	cp EFFECT_COUNTER
-	ret z
-
 	call BattleCommand_ResetTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
@@ -26,21 +15,12 @@ BattleCommand_Counter:
 	call CheckOpponentWentFirst
 	ret z
 
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	ld de, wStringBuffer1
-	call GetMoveData
-	; Hidden Power's category is whatever the opponent's stats picked when
-	; it was used, not the move table's
-	farcall HiddenPowerCounterCategory
-
-	ld a, [wStringBuffer1 + MOVE_POWER]
-	and a
-	ret z
-
-	ld a, [wStringBuffer1 + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-	ret z
+	; Use this round's actual direct HP hit, not a move-table category or
+	; the shared scratch damage left by a Substitute, recoil or drain.
+	farcall LoadCounterHit_Core
+	ld a, b
+	cp 1
+	ret nz
 
 	ld hl, wCurDamage
 	ld a, [hli]

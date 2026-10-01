@@ -604,7 +604,7 @@ wEnemyEvaLevel:: db ; c6da
 
 wEnemyTurnsTaken:: db ; c6dc
 wPlayerTurnsTaken:: db ; c6dd
-	ds 1
+wHitSubstitute:: db ; current hit damaged a Substitute, including one it broke
 
 wPlayerSubstituteHP:: db ; c6df
 wEnemySubstituteHP:: db ; c6e0
@@ -3210,6 +3210,29 @@ wEnemyConsumedItem:: db
 ; Per-party-slot once-per-battle state for Supersweet Syrup.
 wPlayerSyrupUsedFlags:: db
 wEnemySyrupUsedFlags:: db
+
+; Per-move Parental Bond replay state. Bank-safe helpers live in its core.
+wParentalBondState:: db ; 0 inactive, 1 first hit, 2 second hit, 3 finished
+wParentalBondLoopStart:: db ; offset into wBattleScriptBuffer
+wParentalBondScriptEnd:: db ; offset immediately after its original endmove
+wParentalBondHits:: db ; number of applydamage commands completed
+wParentalBondFirstDamage:: dw ; uncapped first hit, for Counter/Mirror Coat
+wParentalBondTotalDamage:: dw ; actual HP lost across both hits, for recoil
+wMoveDamageToHolder:: dw ; per-move total excluding Substitute, for Berserk
+wBerserkBerryPending:: db ; single-hit HP Berry waits for Berserk to resolve
+wParentalBondEnd::
+
+SECTION "Counter Hit History", WRAMX, BANK[2]
+
+; Last direct HP hit this round. Counter/Mirror Coat use the actual
+; category and final qualifying hit, including variable and fixed damage.
+wPlayerCounterHit::
+wPlayerCounterHitCategory:: db ; 0 none, 1 physical, 2 special
+wPlayerCounterHitDamage:: dw
+wEnemyCounterHit::
+wEnemyCounterHitCategory:: db
+wEnemyCounterHitDamage:: dw
+wCounterHitHistoryEnd::
 
 
 SECTION "16-bit WRAM tables", WRAMX

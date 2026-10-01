@@ -92,10 +92,8 @@ BattleCommand_UnleashEnergy:
 	ld [de], a
 	ld [wPlayerMoveStructEffect], a
 	ld [wEnemyMoveStructEffect], a
-	call BattleRandom
-	and 1
-	inc a
-	inc a
+	; Modern Bide stores on its first two turns, then releases on turn 3.
+	ld a, 2
 	ld [bc], a
 	ld a, 1
 	ld [wKickCounter], a

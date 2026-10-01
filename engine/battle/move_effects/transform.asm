@@ -159,7 +159,14 @@ TransformMonData::
 	ld hl, wEnemyStatLevels
 	ld de, wPlayerStatLevels
 	ld bc, 8
-	jp BattleSideCopy
+	call BattleSideCopy
+	; The copied battle stats already contain the target's burn, frostbite
+	; and paralysis cuts. Rebuild from the copied raw stats and stages, then
+	; apply only the transformed user's own status penalties.
+	ldh a, [hBattleTurn]
+	and a
+	jp nz, CalcEnemyStats
+	jp CalcPlayerStats
 
 BattleSideCopy:
 ; Copy bc bytes from hl to de if it's the player's turn.

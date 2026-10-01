@@ -110,7 +110,7 @@ BattleUserHasLoadedDice_Core:
 	ret
 
 BattleCheckHitLoadedDiceTripleKick_Core:
-; Return z if Triple Kick/Axel hit 2+ with Loaded Dice (skip accuracy).
+; Return z if Triple Kick/Axel hit 2+ with Loaded Dice or Skill Link.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_TRIPLE_KICK
@@ -118,6 +118,12 @@ BattleCheckHitLoadedDiceTripleKick_Core:
 	ld a, [wKickCounter]
 	and a
 	jr z, .first_kick
+	push bc
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop bc
+	cp SKILL_LINK
+	ret z
 	jp BattleUserHasLoadedDice_Core
 .first_kick
 	or 1
@@ -326,9 +332,11 @@ BattleDireClaw_Core:
 	ret nz
 .sleep_roll
 	call BattleRandom
+	swap a
 	and %11
 	jr z, .sleep_roll
-	ld [hl], a ; 1-3 turns of sleep
+	inc a ; 2-4 counter gives 1-3 sleeping turns (as SleepTarget)
+	ld [hl], a
 	call UpdateOpponentInParty
 	ld de, ANIM_SLP
 	farcall AbilityStatusAnim
@@ -841,11 +849,10 @@ BattleTrapTarget_Core:
 	pop hl
 	ret nz
 	call BattleRandom
-	; trapped for 2-5 turns
-	and %11
-	inc a
-	inc a
-	inc a
+	; Modern binding lasts 4-5 turns. The first end-of-turn tick consumes
+	; one from this counter before applying damage.
+	and 1
+	add 5
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -1410,27 +1417,6 @@ BattleParalyze_Core:
 	farcall AbilityPreventsParalysis
 	jp c, .failed
 .no_bounce
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .dont_sample_failure
-
-	ld a, [wLinkMode]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .dont_sample_failure
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	jp c, .failed
-
-.dont_sample_failure
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	; ability check (Limber)
@@ -2161,6 +2147,15 @@ INCLUDE "engine/battle/move_effects/thief.asm"
 CheckDefScreenPierced:
 ; a = screens mask. z = the screen has no effect: either it isn't up, or
 ; the attacker's Infiltrator ignores it. Preserves de, hl; preserves bc.
+	push af
+	ld a, [wCriticalHit]
+	and a
+	jr z, .not_critical
+	pop af
+	xor a ; modern critical hits ignore both defensive screens
+	ret
+.not_critical
+	pop af
 	push hl
 	push bc
 	ld b, a
@@ -2272,13 +2267,6 @@ UnawareStats_Player:
 	pop hl
 	ld a, 1 << SCREENS_LIGHT_SCREEN
 .rescreen
-	; On the unboosted (crit) branch the damage core deliberately drops
-	; the screen doubling; mirror that here (audit 2026-08-28 #16).
-	; de is free: both UnawareStats_* callers bracket us with push/pop de.
-	ld e, a
-	call CheckDamageStatsCritical
-	ret nc
-	ld a, e
 	call CheckDefScreenPierced
 	ret z
 	sla c
@@ -2364,13 +2352,6 @@ UnawareStats_Enemy:
 	pop hl
 	ld a, 1 << SCREENS_LIGHT_SCREEN
 .rescreen
-	; On the unboosted (crit) branch the damage core deliberately drops
-	; the screen doubling; mirror that here (audit 2026-08-28 #16).
-	; de is free: both UnawareStats_* callers bracket us with push/pop de.
-	ld e, a
-	call CheckDamageStatsCritical
-	ret nc
-	ld a, e
 	call CheckDefScreenPierced
 	ret z
 	sla c
@@ -2420,150 +2401,76 @@ BattleDamageStats_Core:
 	; fallthrough
 
 PlayerAttackDamage_Core:
-; Return move power d, player level e, enemy defense c and player attack b.
-
+; Return power d, level e, defense c and attack b. Critical hits choose
+; offense and defense independently: retain positive offense and negative
+; defense, ignore negative offense and positive defense.
 	call ResetDamage
-
-	ld hl, wPlayerMoveStructPower
-	ld a, [hli]
-	and a
+	ld a, [wPlayerMoveStructPower]
 	ld d, a
+	and a
 	ret z
-
-	inc hl ; wPlayerMoveStructType -> Category
-	ld a, [hl]
+	ld a, [wPlayerMoveStructCategory]
 	cp CATEGORIZE_SPECIAL
 	jr z, .special
-
-.physical
-	ld hl, wEnemyMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, 1 << SCREENS_REFLECT
-	call CheckDefScreenPierced
-	jr z, .physicalcrit
-	sla c
-	rl b
-
-.physicalcrit
-	; pick the unboosted attacking-stat source (used on crits)
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
+	call .physical_defense
+	push de
 	ld hl, wBattleMonAttack
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_bp_unboosted
-	ld hl, wBattleMonDefense ; Body Press attacks with the user's DEFENSE
-.not_bp_unboosted
-	cp EFFECT_FOUL_PLAY
-	jr nz, .not_fp_unboosted
-	ld hl, wEnemyMonAttack ; Foul Play uses the target's ATTACK
-.not_fp_unboosted
-	call CheckDamageStatsCritical
-	jp c, .thickclub
-
-	; unboosted stats (a crit against a target whose DEFENSE stage is at
-	; least the attacker's ATTACK stage). Sacred Sword's stage-ignoring is
-	; handled in UnawareStats_*, for crits and normal hits alike.
+	ld de, wPlayerAttack
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-
 	cp EFFECT_BODY_PRESS
-	jr nz, .not_bp_boosted
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerDefense
-	jr .thickclub
-.not_bp_boosted
+	jr z, .body_press
 	cp EFFECT_FOUL_PLAY
-	jr nz, .not_fp_boosted
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemyAttack
-	jr .thickclub
-.not_fp_boosted
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerAttack
-	jr .thickclub
-
+	jr z, .foul_play
+	ld a, [wPlayerAtkLevel]
+	jr .physical_offense
+.body_press
+	ld hl, wBattleMonDefense
+	ld de, wPlayerDefense
+	ld a, [wPlayerDefLevel]
+	jr .physical_offense
+.foul_play
+	ld hl, wEnemyMonAttack
+	ld de, wEnemyAttack
+	ld a, [wEnemyAtkLevel]
+.physical_offense
+	call CriticalOffensePointer_Core
+	pop de
+	call UnawareStats_Player
+	call ReadOffensiveStat_Core
+	call ThickClubBoostValue_Core
+	call LightBallBoostValue
+	jr .done
 .special
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYSTRIKE
 	jr z, .psystrike
-
+	push de
 	ld hl, wEnemyMonSpclDef
+	ld de, wEnemySpDef
+	ld a, [wEnemySDefLevel]
+	call CriticalDefensePointer_Core
+	pop de
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-
 	ld a, 1 << SCREENS_LIGHT_SCREEN
-	call CheckDefScreenPierced
-	jr z, .specialcrit
-	sla c
-	rl b
-
-.specialcrit
-	ld hl, wBattleMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-
-	ld hl, wEnemySpDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerSpAtk
-	jr .lightball
-
+	call .screen
+	jr .special_offense
 .psystrike
-; Psystrike is special but hits the target's physical Defense.
-	ld hl, wEnemyMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, 1 << SCREENS_REFLECT
-	call CheckDefScreenPierced
-	jr z, .psystrikecrit
-	sla c
-	rl b
-
-.psystrikecrit
+	call .physical_defense
+.special_offense
+	push de
 	ld hl, wBattleMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-
-	ld hl, wEnemyDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerSpAtk
-
-.lightball
-; Note: Returns player special attack at hl in hl.
+	ld de, wPlayerSpAtk
+	ld a, [wPlayerSAtkLevel]
+	call CriticalOffensePointer_Core
+	pop de
 	call UnawareStats_Player
-	call LightBallBoost
-	jr .done
-
-.thickclub
-; Note: Returns player attack at hl in hl.
-	call UnawareStats_Player
-	call ThickClubBoost
-	; Light Ball doubles Pikachu's Attack as well as its Sp. Atk (Gen 4+).
-	; ThickClubBoost already converted the stat pointer in hl to a value.
+	call ReadOffensiveStat_Core
 	call LightBallBoostValue
-
 .done
-	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
-	; in this same bank, but callfar keeps the register contract identical)
 	push hl
 	callfar WeatherDefenseBoost_Core
 	pop hl
@@ -2572,14 +2479,267 @@ PlayerAttackDamage_Core:
 	callfar DittoMetalPowder_Core
 	pop hl
 	call TruncateHLBC_Ovf
-
 	ld a, [wBattleMonLevel]
 	ld e, a
-
 	ld a, 1
 	and a
 	ret
+.physical_defense
+	push de
+	ld hl, wEnemyMonDefense
+	ld de, wEnemyDefense
+	ld a, [wEnemyDefLevel]
+	call CriticalDefensePointer_Core
+	pop de
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld a, 1 << SCREENS_REFLECT
+.screen
+	call CheckDefScreenPierced
+	ret z
+	sla c
+	rl b
+	ret
 
+CriticalOffensePointer_Core:
+; a = offensive stage, hl = staged stat, de = raw stat.
+	push bc
+	ld b, a
+	ld a, [wCriticalHit]
+	and a
+	jr z, .done
+	ld a, b
+	cp BASE_STAT_LEVEL
+	jr nc, .done
+	ld h, d
+	ld l, e
+.done
+	pop bc
+	ret
+
+CriticalDefensePointer_Core:
+; a = defensive stage, hl = staged stat, de = raw stat.
+	push bc
+	ld b, a
+	ld a, [wCriticalHit]
+	and a
+	jr z, .done
+	ld a, b
+	cp BASE_STAT_LEVEL + 1
+	jr c, .done
+	ld h, d
+	ld l, e
+.done
+	pop bc
+	ret
+
+ReadOffensiveStat_Core:
+; hl = selected attacking-stat pointer. Return its value in hl, applying
+; the user's burn/frostbite even when critical hits or Unaware chose a raw
+; stat. Foul Play borrows the target's Attack without borrowing its burn.
+; Body Press still takes the user's physical burn penalty.
+	push bc
+	push de
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BODY_PRESS
+	jr z, .body_press
+	cp EFFECT_FOUL_PLAY
+	jr z, .foul_play
+	cp EFFECT_FACADE
+	jr z, .facade
+	; A staged attack already contains its own status penalty. Raw stats
+	; need that penalty applied explicitly after critical/Unaware selection.
+	ld a, h
+	cp HIGH(wPlayerAttack)
+	jr nz, .check_enemy_raw
+	ld a, l
+	cp LOW(wPlayerAttack)
+	jr z, .raw_physical
+	cp LOW(wPlayerSpAtk)
+	jr z, .raw_special
+.check_enemy_raw
+	ld a, h
+	cp HIGH(wEnemyAttack)
+	jr nz, .read_selected
+	ld a, l
+	cp LOW(wEnemyAttack)
+	jr z, .raw_physical
+	cp LOW(wEnemySpAtk)
+	jr z, .raw_special
+.read_selected
+	call ReadStatValue_Core
+	jr .done
+.raw_physical
+	call ReadStatValue_Core
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	jr z, .done
+	jr .halve
+.raw_special
+	call ReadStatValue_Core
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit FRZ, a
+	jr z, .done
+	jr .halve
+.body_press
+	call ReadStatValue_Core
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	jr z, .done
+	jr .halve
+.foul_play
+	; Recalculate the borrowed Attack from raw stats + its selected stage
+	; instead of doubling the target's rounded, burn-halved stored stat.
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	bit BRN, a
+	jr z, .read_foul_play
+	call RebuildUnburnedAttack_Core
+	jr .foul_play_user_burn
+.read_foul_play
+	call ReadStatValue_Core
+.foul_play_user_burn
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	jr z, .done
+	jr .halve
+.facade
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	jr z, .read_selected
+	call RebuildUnburnedAttack_Core
+	jr .done
+.halve
+	srl h
+	rr l
+	ld a, h
+	or l
+	jr nz, .done
+	inc l
+.done
+	pop de
+	pop bc
+	ret
+
+ReadStatValue_Core:
+; Read a big-endian stat at hl, returning its value in hl.
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	ret
+
+RebuildUnburnedAttack_Core:
+; hl = the selected raw or staged Attack pointer. Restore a burned
+; Attack from its raw value and only the stage actually selected by
+; critical-hit/Unaware handling. Doubling the halved stat loses odd HP
+; rounding and cannot safely restore stats at the 999 cap.
+	ld a, h
+	cp HIGH(wBattleMonAttack)
+	jr nz, .check_enemy
+	ld a, l
+	cp LOW(wBattleMonAttack)
+	jr nz, .check_enemy
+	ld de, wPlayerAttack
+	ld a, [wPlayerAtkLevel]
+	ld b, 1 ; preserve the player's existing staged-stat badge boost
+	jr .rebuild
+.check_enemy
+	ld a, h
+	cp HIGH(wEnemyMonAttack)
+	jr nz, ReadStatValue_Core
+	ld a, l
+	cp LOW(wEnemyMonAttack)
+	jr nz, ReadStatValue_Core
+	ld de, wEnemyAttack
+	ld a, [wEnemyAtkLevel]
+	ld b, 0
+.rebuild
+	push bc
+	dec a
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, .stage_ratios
+	add hl, bc
+	xor a
+	ldh [hMultiplicand + 0], a
+	ld a, [de]
+	ldh [hMultiplicand + 1], a
+	inc de
+	ld a, [de]
+	ldh [hMultiplicand + 2], a
+	ld a, [hli]
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, [hl]
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	ld h, a
+	ldh a, [hQuotient + 3]
+	ld l, a
+	pop bc
+	call .cap
+	ld a, h
+	or l
+	jr nz, .badge
+	inc l
+.badge
+	ld a, b
+	and a
+	ret z
+	ld a, [wLinkMode]
+	and a
+	ret nz
+	ld a, [wInBattleTowerBattle]
+	and a
+	ret nz
+	ld a, [wJohtoBadges]
+	bit ZEPHYRBADGE, a
+	ret z
+	; Mirror BadgeStatBoosts: +1/8 Attack, capped at 999. This applies
+	; only to a selected staged player stat; raw-stat selections keep their
+	; existing critical-hit/Unaware treatment of badges.
+	ld d, h
+	ld e, l
+rept 3
+	srl d
+	rr e
+endr
+	add hl, de
+.cap
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ld a, HIGH(MAX_STAT_VALUE)
+	sbc h
+	ret nc
+	ld hl, MAX_STAT_VALUE
+	ret
+.stage_ratios
+; Match ApplyStatLevelMultiplier's existing stat calculation exactly.
+	db 25, 100, 28, 100, 33, 100, 40, 100, 50, 100, 66, 100
+	db 1, 1, 15, 10, 2, 1, 25, 10, 3, 1, 35, 10, 4, 1
+
+ThickClubBoostValue_Core:
+; ReadOffensiveStat_Core already returned the value in hl.
+	push bc
+	push de
+	ld bc, CUBONE
+	ld d, THICK_CLUB
+	call DoubleStatIfSpeciesHoldingItem
+	ld bc, MAROWAK
+	call DoubleStatIfSpeciesHoldingItem
+	pop de
+	pop bc
+	ret
 TruncateHLBC_Ovf:
 .loop
 ; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
@@ -2621,86 +2781,6 @@ TruncateHLBC_Ovf:
 	ld b, l
 	ret
 
-CheckDamageStatsCritical:
-; Return carry if boosted stats should be used in damage calculations.
-; Unboosted stats should be used if the attack is a critical hit,
-;  and the stage of the opponent's defense is higher than the user's attack.
-
-	ld a, [wCriticalHit]
-	and a
-	scf
-	ret z
-
-	push hl
-	push bc
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wPlayerSAtkLevel]
-	ld b, a
-	ld a, [wEnemySDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wPlayerAtkLevel]
-	ld b, a
-	ld a, [wEnemyDefLevel]
-	jr .end
-
-.enemy
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp CATEGORIZE_SPECIAL
-; special
-	ld a, [wEnemySAtkLevel]
-	ld b, a
-	ld a, [wPlayerSDefLevel]
-	jr nc, .end
-; physical
-	ld a, [wEnemyAtkLevel]
-	ld b, a
-	ld a, [wPlayerDefLevel]
-.end
-	cp b
-	pop bc
-	pop hl
-	ret
-
-ThickClubBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is Cubone or Marowak and
-; it's holding a Thick Club, double it.
-	push bc
-	push de
-	ld bc, CUBONE
-	ld d, THICK_CLUB
-	call SpeciesItemBoost
-	if MAROWAK == (CUBONE + 1)
-		inc bc
-	else
-		ld bc, MAROWAK
-	endc
-	call DoubleStatIfSpeciesHoldingItem
-	pop de
-	pop bc
-	ret
-
-LightBallBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is Pikachu and it's
-; holding a Light Ball, double it.
-	push bc
-	push de
-	ld bc, PIKACHU
-	ld d, LIGHT_BALL
-	call SpeciesItemBoost
-	pop de
-	pop bc
-	ret
-
 LightBallBoostValue:
 ; Double the stat value already in hl if the attacking monster is Pikachu
 ; holding a Light Ball. The physical path uses this after ThickClubBoost,
@@ -2713,17 +2793,6 @@ LightBallBoostValue:
 	pop de
 	pop bc
 	ret
-
-SpeciesItemBoost:
-; Return in hl the stat value at hl.
-
-; If the attacking monster is species bc and
-; it's holding item d, double it.
-
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-	; fallthrough
 
 DoubleStatIfSpeciesHoldingItem:
 ; If the attacking monster is species bc and
@@ -2771,144 +2840,76 @@ DoubleStatIfSpeciesHoldingItem:
 	ret
 
 EnemyAttackDamage_Core:
+; Return power d, level e, defense c and attack b. Critical hits choose
+; offense and defense independently: retain positive offense and negative
+; defense, ignore negative offense and positive defense.
 	call ResetDamage
-
-; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStructPower
-	ld a, [hli] ; hl = wEnemyMoveStructType
+	ld a, [wEnemyMoveStructPower]
 	ld d, a
 	and a
 	ret z
-
-	inc hl ; Type -> Category
-	ld a, [hl]
+	ld a, [wEnemyMoveStructCategory]
 	cp CATEGORIZE_SPECIAL
-	jr z, .Special
-
-.physical
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, 1 << SCREENS_REFLECT
-	call CheckDefScreenPierced
-	jr z, .physicalcrit
-	sla c
-	rl b
-
-.physicalcrit
-	; pick the unboosted attacking-stat source (used on crits)
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
+	jr z, .special
+	call .physical_defense
+	push de
 	ld hl, wEnemyMonAttack
-	cp EFFECT_BODY_PRESS
-	jr nz, .not_bp_unboosted
-	ld hl, wEnemyMonDefense ; Body Press attacks with the user's DEFENSE
-.not_bp_unboosted
-	cp EFFECT_FOUL_PLAY
-	jr nz, .not_fp_unboosted
-	ld hl, wBattleMonAttack ; Foul Play uses the target's ATTACK
-.not_fp_unboosted
-	call CheckDamageStatsCritical
-	jp c, .thickclub
-
-	; unboosted stats (a crit against a target whose DEFENSE stage is at
-	; least the attacker's ATTACK stage). Sacred Sword's stage-ignoring is
-	; handled in UnawareStats_*, for crits and normal hits alike.
+	ld de, wEnemyAttack
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-
 	cp EFFECT_BODY_PRESS
-	jr nz, .not_bp_boosted
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemyDefense
-	jr .thickclub
-.not_bp_boosted
+	jr z, .body_press
 	cp EFFECT_FOUL_PLAY
-	jr nz, .not_fp_boosted
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wPlayerAttack
-	jr .thickclub
-.not_fp_boosted
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemyAttack
-	jr .thickclub
-
-.Special:
+	jr z, .foul_play
+	ld a, [wEnemyAtkLevel]
+	jr .physical_offense
+.body_press
+	ld hl, wEnemyMonDefense
+	ld de, wEnemyDefense
+	ld a, [wEnemyDefLevel]
+	jr .physical_offense
+.foul_play
+	ld hl, wBattleMonAttack
+	ld de, wPlayerAttack
+	ld a, [wPlayerAtkLevel]
+.physical_offense
+	call CriticalOffensePointer_Core
+	pop de
+	call UnawareStats_Enemy
+	call ReadOffensiveStat_Core
+	call ThickClubBoostValue_Core
+	call LightBallBoostValue
+	jr .done
+.special
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYSTRIKE
 	jr z, .psystrike
-
+	push de
 	ld hl, wBattleMonSpclDef
+	ld de, wPlayerSpDef
+	ld a, [wPlayerSDefLevel]
+	call CriticalDefensePointer_Core
+	pop de
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-
 	ld a, 1 << SCREENS_LIGHT_SCREEN
-	call CheckDefScreenPierced
-	jr z, .specialcrit
-	sla c
-	rl b
-
-.specialcrit
-	ld hl, wEnemyMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-	ld hl, wPlayerSpDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemySpAtk
-	jr .lightball
-
+	call .screen
+	jr .special_offense
 .psystrike
-; Psystrike is special but hits the target's physical Defense.
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	ld a, 1 << SCREENS_REFLECT
-	call CheckDefScreenPierced
-	jr z, .psystrikecrit
-	sla c
-	rl b
-
-.psystrikecrit
+	call .physical_defense
+.special_offense
+	push de
 	ld hl, wEnemyMonSpclAtk
-	call CheckDamageStatsCritical
-	jr c, .lightball
-	ld hl, wPlayerDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ld hl, wEnemySpAtk
-
-.lightball
+	ld de, wEnemySpAtk
+	ld a, [wEnemySAtkLevel]
+	call CriticalOffensePointer_Core
+	pop de
 	call UnawareStats_Enemy
-	call LightBallBoost
-	jr .done
-
-.thickclub
-	call UnawareStats_Enemy
-	call ThickClubBoost
-	; Light Ball doubles Pikachu's Attack as well as its Sp. Atk (Gen 4+).
+	call ReadOffensiveStat_Core
 	call LightBallBoostValue
-
 .done
-	; Raise defending stat by 50% in weather (WeatherDefenseBoost_Core is
-	; in this same bank, but callfar keeps the register contract identical)
 	push hl
 	callfar WeatherDefenseBoost_Core
 	pop hl
@@ -2917,12 +2918,27 @@ EnemyAttackDamage_Core:
 	callfar DittoMetalPowder_Core
 	pop hl
 	call TruncateHLBC_Ovf
-
 	ld a, [wEnemyMonLevel]
 	ld e, a
-
 	ld a, 1
 	and a
+	ret
+.physical_defense
+	push de
+	ld hl, wBattleMonDefense
+	ld de, wPlayerDefense
+	ld a, [wPlayerDefLevel]
+	call CriticalDefensePointer_Core
+	pop de
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	ld a, 1 << SCREENS_REFLECT
+.screen
+	call CheckDefScreenPierced
+	ret z
+	sla c
+	rl b
 	ret
 
 ; ==== Toxic slot tracking (modern badly-poison persistence) ==============

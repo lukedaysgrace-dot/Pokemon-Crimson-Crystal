@@ -168,8 +168,7 @@ GetOpponentIgnorableAbility::
 	call GetOpponentAbility
 	push bc
 	ld b, a
-	ld a, BATTLE_VARS_ABILITY
-	call GetBattleVar
+	call GetTrueUserAbility
 	cp MOLD_BREAKER
 	ld a, b
 	jr nz, .done
@@ -454,6 +453,10 @@ CheckNeutralizingGasEnded:
 .got_gas_table
 	call GetTrueUserAbility
 	call BattleJumptable
+	; Status immunities also return immediately when suppression ends.
+	ld hl, StatusHealAbilities
+	call GetTrueUserAbility
+	call BattleJumptable
 	jp SwitchTurn
 
 GasEndedAbilities:
@@ -614,6 +617,10 @@ PressureExemptEffects:
 	db EFFECT_QUIVER_DANCE
 	db EFFECT_WORK_UP
 	db EFFECT_WISH
+	db EFFECT_CONVERSION2
+	db EFFECT_DESTINY_BOND
+	db EFFECT_SLEEP_TALK
+	db EFFECT_METRONOME
 	db -1
 MoldBreakerAbility:
 	ld hl, NotifyMoldBreakerText
@@ -633,7 +640,7 @@ NotificationAbilities:
 	jp StdBattleTextbox
 
 TraceAbility:
-	call GetOpponentIgnorableAbility
+	call GetOpponentAbility
 	and a
 	ret z
 	call AbilityCanBeTraced
@@ -1014,6 +1021,24 @@ RunStatusHealAbilities::
 	call GetTrueUserAbility
 	jp BattleJumptable
 
+RunStatusHealAbilitiesBoth::
+; Move-end update: an immunity bypassed by Mold Breaker cures the status
+; before the holder's next action. Never cure a fainted mon or a suppressed
+; ability. Preserve the caller's turn through both banners and stat recalcs.
+	ldh a, [hBattleTurn]
+	push af
+	call SetPlayerTurn
+	call .side
+	call SetEnemyTurn
+	call .side
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.side
+	call UserHasFainted
+	ret z
+	jp RunStatusHealAbilities
+
 ImmunityAbility:
 PastelVeilAbility:
 	ld a, 1 << PSN
@@ -1051,6 +1076,11 @@ HealStatusAbility:
 	ld a, b
 	and 1 << PSN
 	call nz, .clear_toxic
+	; Sleep cures end Nightmare immediately, just like the ordinary wake-up
+	; paths. Leaving the marker armed makes a later sleep inherit damage.
+	ld a, b
+	and SLP
+	call nz, .clear_nightmare
 	ld hl, BecameHealthyText
 	; StdBattleTextbox runs the text engine, which clobbers bc; preserve the
 	; cured-status mask in b for the stat-recalc checks below.
@@ -1090,6 +1120,12 @@ HealStatusAbility:
 .got_toxic_count
 	xor a
 	ld [hl], a
+	ret
+
+.clear_nightmare
+	ld a, BATTLE_VARS_SUBSTATUS1
+	call GetBattleVarAddr
+	res SUBSTATUS_NIGHTMARE, [hl]
 	ret
 
 OwnTempoAbility:
@@ -1172,7 +1208,7 @@ AbilityPreventsBurn::
 	jr nz, .ordinary
 	call SwitchTurn
 	call ShowAbilityBannerBrief
-	call FlashFireRaiseSpAtk
+	call FlashFireRaiseHigherAttackStatus
 	call SwitchTurn
 	scf
 	ret
@@ -1300,40 +1336,161 @@ CheckStatusPrevention:
 
 ; ==== End-of-turn abilities ==============================================
 
+RunEndTurnStatusAbilitiesBoth::
+; Status cures precede Perish Song; stat boosts and Berry recycling follow it.
+	call RunStatusHealAbilitiesBoth
+	ld hl, EndTurnStatusAbilities
+	jr RunEndTurnAbilityTableBoth
+
 RunEndTurnAbilitiesBoth::
-	; rain and sun replay their weather animation each turn (sandstorm and
-	; hail animate via their own between-turn damage path in HandleWeather).
-	; Hooked here - which core.asm already farcalls every turn - so the
-	; tight Battle Core bank gains no bytes.
-	call PlayPerTurnWeatherAnim
-	call SetPlayerTurn
-	call .run
-	call SetEnemyTurn
-.run
-	call UserHasFainted
-	ret z
-	; Limber, Insomnia, Own Tempo & co. also cure a status that got past
-	; them mid-battle (e.g. through Mold Breaker); the table is otherwise
-	; only run when the mon enters.
-	ld hl, StatusHealAbilities
-	call GetTrueUserAbility
-	call BattleJumptable
 	ld hl, EndTurnAbilities
+RunEndTurnAbilityTableBoth:
+	ldh a, [hBattleTurn]
+	push af
+	push hl
+	call GetResidualFirstSide
+	ldh [hBattleTurn], a
+	pop hl
+	push hl
+	call .run
+	pop hl
+	call SwitchTurn
+	call .run
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.run
+	push hl
+	call UserHasFainted
+	pop hl
+	ret z
+	push hl
 	call GetTrueUserAbility
+	pop hl
 	jp BattleJumptable
+
+EndTurnStatusAbilities:
+	dbw SHED_SKIN, ShedSkinAbility
+	dbw HYDRATION, HydrationAbility
+	dbw -1, -1
 
 EndTurnAbilities:
 	dbw SPEED_BOOST, SpeedBoostAbility
-	dbw SHED_SKIN, ShedSkinAbility
-	dbw HYDRATION, HydrationAbility
+	dbw HARVEST, HarvestAbility
+	dbw CUD_CHEW, CudChewAbility
+	dbw -1, -1
+
+RunWeatherResidualAbilitiesBoth::
+; Each holder's weather chip/healing precedes Wish, Leftovers and status chip.
+; Resolve living holders by effective Speed, without Trick Room reversal.
+	call PlayPerTurnWeatherAnim
+	ldh a, [hBattleTurn]
+	push af
+	call GetResidualFirstSide
+	and a
+	jr nz, .enemy_first
+	call SetPlayerTurn
+	call .side
+	call SetEnemyTurn
+	jr .second
+.enemy_first
+	call SetEnemyTurn
+	call .side
+	call SetPlayerTurn
+.second
+	call .side
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.side
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call UserHasFainted
+	ret z
+	farcall HandleWeatherChip
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call UserHasFainted
+	ret z
+	ld hl, WeatherResidualAbilities
+	call GetTrueUserAbility
+	call BattleJumptable
+	farcall CheckResidualFaint
+	ret
+
+WeatherResidualAbilities:
 	dbw RAIN_DISH, RainDishAbility
 	dbw ICE_BODY, IceBodyAbility
 	dbw DRY_SKIN, DrySkinAbility
 	dbw SOLAR_POWER, SolarPowerAbility
-	dbw BAD_DREAMS, BadDreamsAbility
-	dbw HARVEST, HarvestAbility
-	dbw CUD_CHEW, CudChewAbility
 	dbw -1, -1
+
+RunBadDreamsAbilitiesBoth::
+; Bad Dreams precedes Perish Song, Shed Skin, and Hydration. Resolve each
+; sleeping victim before the later abilities can wake it up.
+	ldh a, [hBattleTurn]
+	push af
+	call GetResidualFirstSide
+	and a
+	jr nz, .enemy_first
+	call SetPlayerTurn
+	call .side
+	call SetEnemyTurn
+	jr .second
+.enemy_first
+	call SetEnemyTurn
+	call .side
+	call SetPlayerTurn
+.second
+	call .side
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.side
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call UserHasFainted
+	ret z
+	call GetTrueUserAbility
+	cp BAD_DREAMS
+	ret nz
+	ldh a, [hBattleTurn]
+	push af
+	call BadDreamsAbility
+	call SwitchTurn
+	farcall CheckResidualFaint
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
+GetResidualFirstSide::
+; a = first side for residual effects (0 player, 1 enemy). End-of-turn
+; order uses effective Speed and random ties, independently of Trick Room.
+	push bc
+	ld a, [wTrickRoomTimer]
+	push af
+	xor a
+	ld [wTrickRoomTimer], a
+	call CompareSpeedsWithAbilities
+	pop bc
+	ld a, b
+	ld [wTrickRoomTimer], a
+	ld b, 0
+	jr z, .tie
+	jr nc, .done
+	inc b
+	jr .done
+.tie
+	call BattleRandom
+	and 1
+	ld b, a
+.done
+	ld a, b
+	pop bc
+	ret
 
 SpeedBoostAbility:
 	; A holder that entered after its side's action has not been active for a
@@ -1880,7 +2037,7 @@ NullificationAbilities:
 	db DRY_SKIN, WATER
 	dw AbsorbHealQuarter
 	db FLASH_FIRE, FIRE
-	dw AbsorbRaiseSpAtk
+	dw FlashFireRaiseHigherAttack
 	db SAP_SIPPER, GRASS
 	dw AbsorbRaiseAttack
 	db LEVITATE, GROUND
@@ -1912,19 +2069,34 @@ AbsorbRaiseStat:
 AbsorbNothing:
 	ret
 
-FlashFireRaiseSpAtk:
-; Flash Fire from the holder's perspective, for the Fire *status* move
-; path (Will-O-Wisp): raise Sp. Atk one stage like Storm Drain does.
-; The damaging path goes through AbsorbRaiseSpAtk directly.
-; wAttackMissed / wEffectFailed are preserved here because the caller
-; is mid-status-effect and still needs its own miss state; the damaging
-; path overwrites wAttackMissed right after the handler returns.
+FlashFireRaiseHigherAttack:
+; Custom Flash Fire: absorb Fire and raise the holder's higher current
+; offensive stat one stage. Compare the live, big-endian battle stats;
+; Special Attack wins ties. These are normal, stacking stat stages.
+	ld hl, wBattleMonAttack
+	ld de, wBattleMonSpclAtk
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .compare
+	ld hl, wEnemyMonAttack
+	ld de, wEnemyMonSpclAtk
+.compare
+	ld c, 2
+	call CompareBytes ; carry if Special Attack < Attack
+	ld b, SP_ATTACK
+	jr nc, .raise
+	ld b, ATTACK
+.raise
+	jp AbsorbRaiseStat
+
+FlashFireRaiseHigherAttackStatus:
+; Will-O-Wisp is mid-status-effect; preserve its caller's failure state.
 	ld a, [wAttackMissed]
 	ld b, a
 	ld a, [wEffectFailed]
 	ld c, a
 	push bc
-	call AbsorbRaiseSpAtk
+	call FlashFireRaiseHigherAttack
 	pop bc
 	ld a, b
 	ld [wAttackMissed], a
@@ -2417,6 +2589,11 @@ RunDamageModifiers:
 	; the net effect x1.5 of unburned damage
 	bit BRN, a
 	jr z, .guts_boost
+	; Facade's damage-stat loader already restores its unburned Attack.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FACADE
+	jr z, .guts_boost
 	call DoubleDamage
 .guts_boost
 	call DamageX1_5
@@ -2663,6 +2840,14 @@ RunDamageModifiers:
 
 .reckless
 	; x1.2 for recoil and crash-damage moves
+	; Struggle uses fixed max-HP recoil, which does not qualify.
+	push bc
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	ld bc, STRUGGLE
+	farcall_a CompareMove
+	pop bc
+	jp z, .defender
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_RECOIL_HIT
@@ -3795,9 +3980,11 @@ RunPostDamageDefenderHeldItems:
 	; a hit taken by a Substitute doesn't touch the holder:
 	; no balloon pop, policy proc or helmet chip through a sub. Infiltrator
 	; routes damage to the holder, so those reactions apply normally.
-	call GetTrueUserAbility
-	cp INFILTRATOR
-	jr z, .hit_holder
+	ld a, [wHitSubstitute]
+	and a
+	ret nz
+	call UserMoveBypassesSubstitute_Core
+	jr c, .hit_holder
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -3812,6 +3999,8 @@ LifeOrbRecoil::
 	ld a, b
 	cp HELD_LIFE_ORB
 	ret nz
+	farcall ParentalBondHitPending_Core
+	ret c ; once per completed Parental Bond move, including an early KO
 	; multi-hit moves recoil once, after the final hit,
 	; not once per hit (this hook runs from every checkfaint)
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -3825,6 +4014,8 @@ LifeOrbRecoil::
 	cp EFFECT_TRIPLE_KICK
 	jr z, .multi_hit
 	cp EFFECT_BEAT_UP
+	jr z, .multi_hit
+	cp EFFECT_SCALE_SHOT
 	jr z, .multi_hit
 .recoil
 	call GetTrueUserAbility
@@ -3988,26 +4179,16 @@ RunContactAbilitiesHook::
 	ret z
 	call RunPostDamageDefenderHeldItems
 	; no procs through a Substitute unless Infiltrator hit the holder
-	call GetTrueUserAbility
-	cp INFILTRATOR
-	jr z, .through_substitute
+	ld a, [wHitSubstitute]
+	and a
+	jp nz, .life_orb
+	call UserMoveBypassesSubstitute_Core
+	jr c, .through_substitute
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, .life_orb
 .through_substitute
-	; Parental Bond: a second hit at 25% power
-	; This implementation is synthetic: defender abilities and other reactions
-	; intentionally run once for the completed move, not once for each hit.
-	call OppHasFainted
-	jr z, .post_parental_bond
-	; Rocky Helmet resolves above and may have knocked out the attacker.
-	call UserHasFainted
-	jr z, .post_parental_bond
-	call GetTrueUserAbility
-	cp PARENTAL_BOND
-	call z, ParentalBondSecondHit
-.post_parental_bond
 	; Stench: the attacker's damaging hits have a 10% flinch chance
 	call GetTrueUserAbility
 	cp STENCH
@@ -4034,8 +4215,6 @@ RunContactAbilitiesHook::
 	jr z, .rattled
 	cp WEAK_ARMOR
 	jp z, .weak_armor
-	cp BERSERK
-	jp z, .berserk
 	cp ANGER_POINT
 	jp z, .anger_point
 .contact
@@ -4136,81 +4315,6 @@ RunContactAbilitiesHook::
 	ld [wEffectFailed], a
 	jp .contact
 
-.berserk
-	; Sheer Force suppresses Berserk when its boosted secondary-effect move
-	; causes the threshold crossing; ordinary contact reactions still run.
-	call GetTrueUserAbility
-	cp SHEER_FORCE
-	jr nz, .berserk_can_activate
-	call CurrentMoveHasSheerForceEffect
-	jp c, .contact
-.berserk_can_activate
-	; SpA+1 when a hit drops the holder from >=1/2 to <1/2 of its max HP
-	call .berserk_check
-	jp nc, .contact
-	ld b, SP_ATTACK
-	jr .on_hit_stat_up
-
-.berserk_check
-; carry if the defender crossed below half HP with this hit
-	push hl
-	push de
-	push bc
-	ld hl, wEnemyMonHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_hp_ptr
-	ld hl, wBattleMonHP
-.got_hp_ptr
-	; de = current HP
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld e, a
-	; bc = max HP / 2
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	srl b
-	rr c
-	; HP now must be below half...
-	ld a, d
-	cp b
-	jr c, .below_half_now
-	jr nz, .berserk_no
-	ld a, e
-	cp c
-	jr nc, .berserk_no
-.below_half_now
-	; ...and HP before the hit (HP + damage) must have been at least half
-	ld h, d
-	ld l, e
-	ld a, [wCurDamage]
-	ld d, a
-	ld a, [wCurDamage + 1]
-	ld e, a
-	add hl, de
-	jr c, .berserk_yes ; 16-bit overflow: certainly >= half
-	ld a, h
-	cp b
-	jr c, .berserk_no
-	jr nz, .berserk_yes
-	ld a, l
-	cp c
-	jr c, .berserk_no
-.berserk_yes
-	pop bc
-	pop de
-	pop hl
-	scf
-	ret
-.berserk_no
-	pop bc
-	pop de
-	pop hl
-	and a
-	ret
-
 .cursed_body
 	; 30% chance to disable the move that hit the holder
 	call ContactChance
@@ -4289,6 +4393,144 @@ RunContactAbilitiesHook::
 	; Attacker recoil resolves after defender items and reactive abilities.
 	call LifeOrbRecoil
 	jp RunMoveKOAbilities
+
+RunBerserkMoveEnd_Core::
+	call ApplyBerserkMoveEnd
+	farcall ClearMoveDamageToHolder_Core
+	; Single-hit Berserk resolves before an HP Berry can erase its crossing.
+	; Multi-hit moves eat between hits and use their final HP instead.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBerserkBerryPending)
+	ldh [rSVBK], a
+	ld a, [wBerserkBerryPending]
+	ld b, a
+	xor a
+	ld [wBerserkBerryPending], a
+	pop af
+	ldh [rSVBK], a
+	ld a, b
+	and a
+	ret z
+	call OppHasFainted
+	ret z
+	farcall HandleHPHealingItem
+	ret
+
+CheckBerserkBerryDelay_Core::
+; Carry when a single-hit move must delay its target's HP Berry until the
+; after-move Berserk event. Sheer Force and multi-hit moves don't delay it.
+	call GetOpponentAbility
+	cp BERSERK
+	jr nz, .no
+	call GetTrueUserAbility
+	cp SHEER_FORCE
+	jr nz, .ordinary_move
+	call CurrentMoveHasSheerForceEffect
+	jr c, .no
+.ordinary_move
+	farcall CheckParentalBondMove_Core
+	jr c, .no
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_MULTI_HIT
+	jr z, .no
+	cp EFFECT_DOUBLE_HIT
+	jr z, .no
+	cp EFFECT_POISON_MULTI_HIT
+	jr z, .no
+	cp EFFECT_TRIPLE_KICK
+	jr z, .no
+	cp EFFECT_BEAT_UP
+	jr z, .no
+	cp EFFECT_SCALE_SHOT
+	jr z, .no
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBerserkBerryPending)
+	ldh [rSVBK], a
+	ld a, 1
+	ld [wBerserkBerryPending], a
+	pop af
+	ldh [rSVBK], a
+	scf
+	ret
+.no
+	and a
+	ret
+
+ApplyBerserkMoveEnd:
+; Berserk is an after-move ability. A multi-hit move can cross half HP,
+; consume a Berry, and then KO the holder; only its final surviving state
+; matters. The total excludes damage absorbed by a Substitute.
+	call GetOpponentAbility
+	cp BERSERK
+	ret nz
+	call OppHasFainted
+	ret z
+	call GetTrueUserAbility
+	cp SHEER_FORCE
+	jr nz, .eligible
+	call CurrentMoveHasSheerForceEffect
+	ret c
+.eligible
+	farcall ReadMoveDamageToHolder_Core
+	ld a, b
+	or c
+	ret z
+	push bc ; damage dealt to the holder
+	ld hl, wEnemyMonHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .hp
+	ld hl, wBattleMonHP
+.hp
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	srl b
+	rr c
+	; Current HP must be <= half max HP.
+	ld a, d
+	cp b
+	jr c, .below_half
+	jr nz, .no
+	ld a, e
+	cp c
+	jr z, .below_half
+	jr nc, .no
+.below_half
+	ld h, d
+	ld l, e
+	pop de ; total damage
+	add hl, de
+	jr c, .activate
+	ld a, h
+	cp b
+	ret c
+	jr nz, .activate
+	ld a, l
+	cp c
+	ret c
+	ret z
+.activate
+	call SwitchTurn
+	call BeginAbility
+	ld b, SP_ATTACK
+	call StatUpAbility
+	call EndAbility
+	call SwitchTurn
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ret
+.no
+	pop bc
+	ret
 
 AngerPointEffect:
 ; Turn = attacker. Maximizes the crit victim's Attack.
@@ -4471,6 +4713,10 @@ CheckContactMoveID::
 
 PoisonTouchAbility:
 ; attacker ability: 30% to poison the defender
+	; Like other added effects, Poison Touch cannot penetrate Shield Dust.
+	call GetOpponentAbility
+	cp SHIELD_DUST
+	ret z
 	ld a, 10
 	call BattleRandomRange
 	cp 3
@@ -4878,16 +5124,20 @@ OpponentIsPoisonImmuneType:
 INCLUDE "data/moves/contact_moves.asm"
 
 AbilityConvertMoveType::
-; "-ate" abilities: the user's Normal-type damaging moves become their
+; "-ate" abilities: the user's Normal-type moves become their
 ; element (Galvanize/Pixilate/Refrigerate/Aerilate). Runs right after the
 ; move struct is loaded for this use. Struggle is exempt.
 	call GetTrueUserAbility
 	and a
 	ret z
 	ld b, a
-	call GetMoveCategory
-	cp CATEGORIZE_STATUS
-	ret z
+	; Weather Ball and Hidden Power determine their own type and are never
+	; converted, including Weather Ball's Normal form without weather.
+	push bc
+	ld hl, AteTypeExcludedMoves
+	call CurrentMoveInList
+	pop bc
+	ret c
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	cp NORMAL
@@ -4925,6 +5175,12 @@ AbilityConvertMoveType::
 	pop hl
 	ret
 
+AteTypeExcludedMoves:
+	dw WEATHER_BALL
+	dw HIDDEN_POWER
+	dw STRUGGLE
+	dw -1
+
 CheckAteAbilityBoost:
 ; carry if the attacker has an "-ate" ability and this move was converted
 ; (its original type is Normal and its live type matches that ability).
@@ -4953,10 +5209,9 @@ CheckAteAbilityBoost:
 	push de
 	; Hidden Power is stored as Normal but its live type is the user's own
 	; chosen type - it is never "-ate"-converted, so it never gets the boost.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_HIDDEN_POWER
-	jr z, .no_boost_after_push
+	ld hl, AteTypeExcludedMoves
+	call CurrentMoveInList
+	jr c, .no_boost_after_push
 	; Original type straight from the move data via GetMoveAttribute (the
 	; Moves table is indirect with 7-byte entries; the old flat *9 read
 	; fetched garbage).
@@ -5082,7 +5337,34 @@ AbilityCapCore::
 	prompt
 RunFaintAbilities::
 	; Generic faint cleanup runs for direct and indirect KOs alike.
-	jp RefreshWeatherSuppression
+	call RefreshWeatherSuppression
+	; Suppressed entry abilities resume as soon as the gas holder faints,
+	; including when no replacement exists. The faint hooks do not guarantee
+	; hBattleTurn identifies the fainted side, so establish that perspective.
+	ld a, [wNeutralizingGasActive]
+	and a
+	ret z
+	ldh a, [hBattleTurn]
+	push af
+	call SetPlayerTurn
+	ld a, [wPlayerAbility]
+	cp NEUTRALIZING_GAS
+	jr nz, .enemy_gas
+	call UserHasFainted
+	jr z, .ended
+.enemy_gas
+	call SetEnemyTurn
+	ld a, [wEnemyAbility]
+	cp NEUTRALIZING_GAS
+	jr nz, .restore_turn
+	call UserHasFainted
+	jr nz, .restore_turn
+.ended
+	call CheckNeutralizingGasEnded
+.restore_turn
+	pop af
+	ldh [hBattleTurn], a
+	ret
 
 RunMoveKOAbilities:
 ; Called only from the damaging-move post-hit hook, after recoil and reactive
@@ -5861,6 +6143,12 @@ TransformCopyAbility::
 CheckPlayerIsTrapped::
 ; Carry if the player's mon can't be recalled: Wrap, Mean Look, or an
 ; enemy trapping ability. (Lives here to keep Battle Core bytes down.)
+	ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .free
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr z, .free
 	ld a, [wPlayerWrapCount]
 	and a
 	jr nz, .trapped
@@ -5869,6 +6157,9 @@ CheckPlayerIsTrapped::
 	jr z, CheckOpponentTrapAbility
 .trapped
 	scf
+	ret
+.free
+	and a
 	ret
 
 CheckOpponentTrapAbility::
@@ -6157,58 +6448,6 @@ AbilityPiercesGhosts::
 	scf
 	ret
 
-ParentalBondSecondHit:
-; Turn = attacker; the defender is alive and not behind a Substitute.
-; Deals a second hit at 25% of the damage just dealt. Multi-hit-style
-; moves are exempt.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_MULTI_HIT
-	ret z
-	cp EFFECT_DOUBLE_HIT
-	ret z
-	cp EFFECT_TRIPLE_KICK
-	ret z
-	cp EFFECT_BEAT_UP
-	ret z
-	cp EFFECT_SELFDESTRUCT
-	ret z
-	; bc = damage / 4, min 1
-	ld a, [wCurDamage]
-	ld b, a
-	ld a, [wCurDamage + 1]
-	ld c, a
-	srl b
-	rr c
-	srl b
-	rr c
-	ld a, b
-	or c
-	jr nz, .got_damage
-	inc c
-.got_damage
-	; hit the defender
-	call SwitchTurn
-	; refresh the HP-bar max with the DEFENDER's max HP: a Rocky Helmet
-	; proc on hit 1 leaves the attacker's max in wBuffer1-2 (audit #25)
-	push bc
-	ld hl, wBattleMonMaxHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_max_hp
-	ld hl, wEnemyMonMaxHP
-.got_max_hp
-	ld a, [hli]
-	ld [wBuffer2], a
-	ld a, [hl]
-	ld [wBuffer1], a
-	pop bc
-	farcall SubtractHPFromUser
-	call SwitchTurn
-	call UpdateBattleHuds
-	ld hl, Hit2TimesText
-	jp StdBattleTextbox
-
 CurrentMoveInList:
 ; hl = -1-terminated dw move-index list. Carry if the current move is in
 ; the list. Preserves de.
@@ -6415,9 +6654,22 @@ BattleCommand_EffectChance_Core::
 ; and Sheer Force (suppress the secondary effect).
 	xor a
 	ld [wEffectFailed], a
+	; Attacker-beneficial secondaries still activate on a Substitute hit.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_DEFENSE_UP_HIT
+	jr z, .check_chance
+	cp EFFECT_ATTACK_UP_HIT
+	jr z, .check_chance
+	cp EFFECT_ALL_UP_HIT
+	jr z, .check_chance
+	cp EFFECT_SPEED_UP_HIT
+	jr z, .check_chance
+	cp EFFECT_SP_ATK_UP_HIT
+	jr z, .check_chance
 	callfar CheckSubstituteOpp
 	jr nz, .failed
-
+.check_chance
 	ld hl, wPlayerMoveStruct + MOVE_CHANCE
 	ldh a, [hBattleTurn]
 	and a
@@ -6496,84 +6748,101 @@ BattleOHKO_Core::
 
 BattleRecoil_Core::
 ; Relocated from effect_commands.asm; adds Rock Head / Magic Guard.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	call UserHasFainted
+	ret z
+	; Struggle recoil is direct damage: neither immunity ability stops it,
+	; and it is based on the user's max HP rather than damage dealt.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	ld a, h
+	cp HIGH(STRUGGLE)
+	jr nz, .ordinary
+	ld a, l
+	cp LOW(STRUGGLE)
+	jr nz, .ordinary
+	ld d, 1
+	call GetUserMaxHPFraction
+	ld a, 25
+	jr .fraction
+.ordinary
 	call GetTrueUserAbility
 	cp MAGIC_GUARD
 	ret z
 	cp ROCK_HEAD
-	jr nz, .no_rock_head
-	; Rock Head does not cancel Struggle's recoil (canon; Magic Guard
-	; does) - audit 2026-08-28 #20
-	push hl
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	call GetMoveIndexFromID
-	ld a, h
-	cp HIGH(STRUGGLE)
-	jr nz, .rock_head_blocks
-	ld a, l
-	cp LOW(STRUGGLE)
-	jr nz, .rock_head_blocks
-	pop hl
-	jr .no_rock_head
-.rock_head_blocks
-	pop hl
-	ret
-.no_rock_head
-	ld hl, wBattleMonMaxHP
-	ldh a, [hBattleTurn]
+	ret z
+	; Most modern recoil attacks use 33%; Take Down and Submission use
+	; 25%, while Head Smash uses 50%. Keep move IDs as 16-bit indexes.
+	ld a, b
+	cp HIGH(HEAD_SMASH)
+	jr nz, .not_head_smash
+	ld a, c
+	cp LOW(HEAD_SMASH)
+	ld a, 50
+	jr z, .damage_fraction
+.not_head_smash
+	ld a, b
 	and a
-	jr z, .got_hp
-	ld hl, wEnemyMonMaxHP
-.got_hp
-; get 1/4 damage or 1 HP, whichever is higher
-	ld a, [wCurDamage]
-	ld b, a
-	ld a, [wCurDamage + 1]
-	ld c, a
-	srl b
-	rr c
-	srl b
-	rr c
+	jr nz, .third
+	ld a, c
+	cp TAKE_DOWN
+	jr z, .quarter
+	cp SUBMISSION
+	jr z, .quarter
+.third
+	ld a, 33
+	jr .damage_fraction
+.quarter
+	ld a, 25
+.damage_fraction
+	ld d, a
+	farcall ParentalBondRecoilDamage_Core
 	ld a, b
 	or c
-	jr nz, .min_damage
+	ret z
+	ld a, d
+.fraction
+; bc = source amount; a = percentage. Round to nearest, minimum 1.
+	ldh [hMultiplier], a
+	xor a
+	ldh [hMultiplicand + 0], a
+	ld a, b
+	ldh [hMultiplicand + 1], a
+	ld a, c
+	ldh [hMultiplicand + 2], a
+	call Multiply
+	ldh a, [hProduct + 3]
+	add 50
+	ldh [hProduct + 3], a
+	ldh a, [hProduct + 2]
+	adc 0
+	ldh [hProduct + 2], a
+	ldh a, [hProduct + 1]
+	adc 0
+	ldh [hProduct + 1], a
+	ld a, 100
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
+	ld c, a
+	ld a, b
+	or c
+	jr nz, .recoil
 	inc c
-.min_damage
-	ld a, [hli]
-	ld [wBuffer2], a
-	ld a, [hl]
-	ld [wBuffer1], a
-	dec hl
-	dec hl
-	ld a, [hl]
-	ld [wBuffer3], a
-	sub c
-	ld [hld], a
-	ld [wBuffer5], a
-	ld a, [hl]
-	ld [wBuffer4], a
-	sbc b
-	ld [hl], a
-	ld [wBuffer6], a
-	jr nc, .dont_ko
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld hl, wBuffer5
-	ld [hli], a
-	ld [hl], a
-.dont_ko
-	hlcoord 10, 9
-	ldh a, [hBattleTurn]
-	and a
-	ld a, 1
-	jr z, .animate_hp_bar
-	hlcoord 2, 2
-	xor a
-.animate_hp_bar
-	ld [wWhichHPBar], a
-	predef AnimateHPBar
-	call RefreshBattleHuds
+.recoil
+	push bc
+	ld d, 1
+	call GetUserMaxHPFraction ; refresh HP-bar maximum for the user
+	pop bc
+	farcall SubtractHPFromUser
 	ld hl, RecoilText
 	jp StdBattleTextbox
 
@@ -6597,7 +6866,6 @@ PunchMoves:
 
 SliceMoves:
 ; Sharpness: slicing moves in this game
-	dw RAZOR_WIND
 	dw CUT
 	dw RAZOR_LEAF
 	dw SLASH
@@ -6615,7 +6883,6 @@ SliceMoves:
 	dw CROSS_POISON
 	dw KOWTOW_CLEAVE
 	dw STONE_AXE
-	dw CRUSH_CLAW
 	dw -1
 
 PulseMoves:
@@ -6663,7 +6930,6 @@ BallBombMoves:
 WindMoves:
 ; Wind Rider: wind moves in this game
 	dw GUST
-	dw RAZOR_WIND
 	dw WHIRLWIND
 	dw BLIZZARD
 	dw AEROBLAST
@@ -6703,6 +6969,13 @@ TryEnemyFlee_Core::
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .Stay
+	; Ghosts ignore binding and escape prevention as well as trap abilities.
+	ld a, [wEnemyMonType1]
+	cp GHOST
+	jr z, .CanFlee
+	ld a, [wEnemyMonType2]
+	cp GHOST
+	jr z, .CanFlee
 
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
@@ -6715,7 +6988,7 @@ TryEnemyFlee_Core::
 	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull); same bank now
 	call CheckPlayerTrapsEnemy
 	jr c, .Stay
-
+.CanFlee
 	ld a, [wEnemyMonStatus]
 	and SLP ; frostbite no longer immobilizes; only sleep pins a wild mon
 	jr nz, .Stay
@@ -7649,9 +7922,11 @@ EarlyBirdEnemySleep::
 CheckSubstituteOpp_Core::
 ; Relocated body of CheckSubstituteOpp. nz = a Substitute is in the way.
 ; The attacker's Infiltrator ignores it.
-	call GetTrueUserAbility
-	cp INFILTRATOR
-	jr z, .pierce
+	ld a, [wHitSubstitute]
+	and a
+	ret nz ; the just-completed hit struck even a now-broken Substitute
+	call UserMoveBypassesSubstitute_Core
+	jr c, .pierce
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -7663,11 +7938,35 @@ CheckSubstituteOpp_Core::
 AbilitySubBypass_Core::
 ; Replaces "ld c, FALSE" before the damage application: c = TRUE when
 ; the attacker's Infiltrator makes the hit go through a Substitute.
+	call UserMoveBypassesSubstitute_Core
+	ld c, FALSE
+	ret nc
+	inc c ; TRUE
+	ret
+
+UserMoveBypassesSubstitute_Core::
+; Carry if the current move reaches its target through a Substitute.
+; Since Gen VI, sound moves bypass it independently of Infiltrator.
+; Preserves bc/de/hl for accuracy, damage, and secondary-effect callers.
+	push hl
+	push de
+	push bc
 	call GetTrueUserAbility
 	cp INFILTRATOR
-	ld c, FALSE
-	ret nz
-	inc c ; TRUE
+	jr z, .yes
+	ld hl, SoundMoves
+	call CurrentMoveInList
+	jr c, .yes
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+.yes
+	pop bc
+	pop de
+	pop hl
+	scf
 	ret
 
 SafeCheckSafeguard_Core::
@@ -7788,9 +8087,10 @@ GetOpponentItem_Core::
 BerryThresholdCheck_Core::
 ; Farcalled from HandleHPHealingItem in place of its inline HP compare.
 ; The holder is the turn holder's OPPONENT (held-item convention).
-; Returns carry when the Berry should be eaten: below 1/2 max HP, or
-; below 3/4 with Gluttony (Berries in this engine already trigger at 1/2,
-; so Gluttony eats even earlier). Doubles the heal amount (c) for Ripen.
+; Returns carry when the Berry should be eaten: at or below 1/2 max HP.
+; The supported HP Berries already use the half-HP threshold; Gluttony
+; only advances quarter-HP pinch Berries, which are not in this item set.
+; Doubles the heal amount (c) for Ripen, except for Berry Juice.
 ; Exit contract (the caller's heal code depends on it): hl = max HP ptr,
 ; de = current HP low-byte ptr, current HP mirrored into wBuffer3/4.
 	ld de, wEnemyMonHP + 1
@@ -7817,41 +8117,17 @@ BerryThresholdCheck_Core::
 	ld d, a
 	ld e, [hl]
 	; HELD_BERRY is also used by Berry Juice. Keep the actual item id so
-	; Gluttony and Ripen only modify real Berries.
+	; Ripen only modifies real Berries.
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wEnemyMonItem]
 	jr z, .got_holder_item
 	ld a, [wBattleMonItem]
 .got_holder_item
-	ld h, a
-	call GetOpponentAbility
-	cp GLUTTONY
-	jr nz, .ordinary
-	ld a, h
-	cp BERRY_JUICE
-	jr nz, .gluttony
-.ordinary
-	ld a, h
 	push af
-	; eat when HP * 2 < max
+	; eat when HP * 2 <= max
 	sla c
 	rl b
-	jr .compare
-.gluttony
-	ld a, h
-	push af
-	; eat when HP * 4 < max * 3
-	sla c
-	rl b
-	sla c
-	rl b
-	ld h, d
-	ld l, e
-	add hl, de
-	add hl, de
-	ld d, h
-	ld e, l
 .compare
 	ld a, b
 	cp d
@@ -7860,6 +8136,7 @@ BerryThresholdCheck_Core::
 	ld a, c
 	cp e
 	jr c, .eat
+	jr z, .eat
 .no
 	pop af ; actual held item
 	pop bc

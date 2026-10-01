@@ -41,6 +41,7 @@ GetAbility::
 	ld b, a
 	pop af
 	rst Bankswitch
+	ld a, b
 	pop de
 	pop hl
 	ret
@@ -50,6 +51,7 @@ GetAbility::
 	ld b, a
 	pop af
 	rst Bankswitch
+	ld a, b
 	pop de
 	pop hl
 	ret
