@@ -345,8 +345,7 @@ HatchEggs:
 	ld bc, MON_STATUS
 	add hl, bc
 	xor a
-	ld [hli], a
-	ld [hl], a
+	ld [hl], a ; the next byte (MON_UNUSED) holds the shiny/gender flags
 	pop hl
 	push hl
 	ld bc, MON_STAT_EXP - 1
@@ -546,7 +545,7 @@ GetEggMove:
 	ld l, c
 	call GetFarHalfword
 	ld a, h
-	and l
+	or l ; the list ends with dw 0; most move indices have a zero high byte
 	jr z, .done
 	inc bc
 	inc bc
@@ -584,6 +583,7 @@ GetEggMove:
 	and a
 	jr z, .not_learnset_move
 	push hl
+	ld a, b ; GetFarByte left the level in a, not the bank
 	call GetFarHalfword
 	ld a, l
 	cp e

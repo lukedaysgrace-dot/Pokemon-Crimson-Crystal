@@ -453,7 +453,7 @@ AlreadySurfingText:
 	text_end
 
 GetSurfType:
-; Surfing on Pikachu, Raichu or Alolan Raichu uses an alternate sprite.
+; The Pikachu family (including Alolan Raichu) shares the surfing sprite.
 ; This is done by using a separate movement type.
 
 	ld a, [wCurPartyMon]
@@ -474,9 +474,11 @@ GetSurfType:
 	ret
 
 .SurfPikaMons:
+	dw PICHU
 	dw PIKACHU
 	dw RAICHU
 	dw RAICHU_ALOLAN
+	dw GOROCHU
 	dw -1 ; end
 
 CheckDirection:
@@ -562,7 +564,7 @@ TrySurfOW::
 	and a
 	ret nz
 	call CheckDirection
-	ret c
+	jr c, .quit ; no script queued: must return nc
 	; not onto a tile someone is standing on
 	farcall CheckFacingObject
 	ccf
@@ -770,7 +772,7 @@ Script_UsedWaterfall:
 TryWaterfallOW::
 	ld hl, WATERFALL
 	call CheckFieldHMAllow
-	jr c, .quit
+	jr c, .failed ; show the flavor text instead of queuing no script
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld a, BANK(Script_AskWaterfall)
@@ -1269,7 +1271,7 @@ DisappearWhirlpool:
 TryWhirlpoolOW::
 	ld hl, WHIRLPOOL
 	call CheckFieldHMAllow
-	jr c, .quit
+	jr c, .failed ; show the flavor text instead of queuing no script
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, BANK(Script_AskWhirlpoolOW)

@@ -267,3 +267,31 @@
   rng: forced_low
   turns: 1
   assert: ["(enemy.status & 64) == 0"]
+
+- name: "Audit r18: Pressure does not drain extra PP from a self-targeting move"
+  player: { species: MEW, level: 50, moves: [SWORDS_DANCE] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]
+
+- name: "Audit r18: Pressure still drains extra PP from a targeted status move"
+  player: { species: MEW, level: 50, moves: [GROWL] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+- name: "Audit r18: Life Orb recoil applies when the hit lands on a Substitute"
+  player: { species: SNORLAX, level: 50, item: LIFE_ORB, moves: [TACKLE] }
+  enemy:  { species: JOLTEON, level: 50, moves: [SUBSTITUTE] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == player.maxhp // 10"]
+
+- name: "Audit r18: Life Orb recoil once for a multi-hit move into a Substitute"
+  player: { species: SNORLAX, level: 50, item: LIFE_ORB, moves: [DOUBLE_KICK] }
+  enemy:  { species: JOLTEON, level: 50, moves: [SUBSTITUTE] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == player.maxhp // 10"]

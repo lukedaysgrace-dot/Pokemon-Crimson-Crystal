@@ -3713,6 +3713,10 @@ DoSubstituteDamage:
 .ok
 	call RefreshBattleHuds
 .done
+	; A hit absorbed by a Substitute still costs the attacker its Life Orb
+	; recoil. checkfaint's post-hit hook sees zero damage after this and
+	; skips, so it has to be applied here.
+	farcall LifeOrbRecoil
 	jp ResetDamage
 
 UpdateMoveData:

@@ -72,9 +72,17 @@ LancesRoomLanceScript:
 	iffalse .RegularVictoryText
 	setevent EVENT_BEAT_LANCE_REMATCH
 	clearevent EVENT_GREEN_IN_ROUTE20
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .RematchNoOakCall
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iffalse .RematchNoOakCall
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 	opentext
 	writetext LanceRematchAfterText
+	sjump .VictoryTextDone
+.RematchNoOakCall:
+	opentext
+	writetext LanceRematchAfterNoOakText
 	sjump .VictoryTextDone
 .RegularVictoryText:
 	opentext
@@ -277,6 +285,17 @@ LanceRematchAfterText:
 
 	para "Visit PROF.OAK."
 	line "MT.SILVER awaits."
+	done
+
+LanceRematchAfterNoOakText:
+	text "Magnificent!"
+
+	para "You conquered our"
+	line "strongest teams."
+
+	para "I hear a strong"
+	line "trainer now waits"
+	cont "on ROUTE 20."
 	done
 
 LanceBattleAfterText:

@@ -457,10 +457,10 @@ CheckRepelEffect::
 	jr .loop
 
 .ok
-; to PartyMonLevel
-rept 4
-	dec hl
-endr
+; to PartyMonLevel (hl is at the HP low byte; Personality and
+; HiddenPowerType sit between Level and Status in this party struct)
+	ld bc, MON_LEVEL - (MON_HP + 1)
+	add hl, bc
 
 	ld a, [wCurPartyLevel]
 	cp [hl]

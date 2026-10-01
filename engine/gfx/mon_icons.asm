@@ -361,12 +361,38 @@ GetSpeciesIcon:
 
 FlyFunction_GetMonIcon:
 	push de
+	; These species share the balloon Pikachu sprite for takeoff and landing.
+	; Compare full species indices, since Gorochu is beyond the first 256.
+	ld a, [wTempIconSpecies]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, .FlyingPikachuMons
+	ld de, 2
+	call IsInHalfwordArray
+	jr c, .flying_pikachu
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	pop de
 	ld a, e
 	call GetIcon_a
+	jr .palette
+
+.flying_pikachu
+	pop de
+	ld l, e
+	ld h, 0
+rept 4
+	add hl, hl
+endr
+	ld de, vTiles0
+	add hl, de
+	ld de, FlyingPikachuSpriteGFX
+	lb bc, BANK(FlyingPikachuSpriteGFX), 8
+	call GetGFXUnlessMobile
+
+.palette
 	; Edit OBJ palette 0 so the flying mon has the right colors.
 	ld a, [wTempIconSpecies]
 	ld [wCurPartySpecies], a
@@ -377,6 +403,10 @@ FlyFunction_GetMonIcon:
 	ld b, h
 	farcall SetFirstOBJPaletteFromMonColors
 	ret
+
+.FlyingPikachuMons:
+	dw PICHU, PIKACHU, RAICHU, GOROCHU
+	dw -1
 
 Unreferenced_GetMonIcon2:
 	push de

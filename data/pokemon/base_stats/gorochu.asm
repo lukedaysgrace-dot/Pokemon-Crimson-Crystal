@@ -20,6 +20,6 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups
 
-	; Rage Blue's TM/HM moves that are machines or tutors in Crimson Crystal.
-	tmhm TOXIC, HYPER_BEAM, THUNDERBOLT, THUNDER, SWIFT, REST, FLY, FLASH
+	; Rage Blue's TM/HM moves plus Surf for the Pikachu-family overworld sprite.
+	tmhm TOXIC, HYPER_BEAM, THUNDERBOLT, THUNDER, SWIFT, REST, FLY, SURF, FLASH
 	; end
