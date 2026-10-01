@@ -34,3 +34,47 @@
 img.animatable{cursor:pointer}
 .monhero img.big.animatable{transition:filter .15s}
 .monhero img.big.animatable:hover{filter:drop-shadow(0 0 14px #dd315488)}
+
+/* ---- Learnset tables (level-up / TM-HM / egg) ---- */
+.muted{color:var(--muted);margin:0}
+.panel h2 em{font-style:normal}
+.mvtable{display:flex;flex-direction:column}
+.mv{display:grid;grid-template-columns:78px minmax(0,1.6fr) 100px 80px 60px 60px;gap:10px;align-items:center;padding:9px 6px;border-bottom:1px solid var(--line)}
+.mv:last-child{border-bottom:0}
+.mv.header{color:var(--muted);font-size:.72rem;text-transform:uppercase;font-weight:900;letter-spacing:.04em}
+.mv .lv{color:var(--muted);font-weight:800;font-variant-numeric:tabular-nums}
+.mv a{font-weight:800}
+.mv a:hover{color:var(--red2)}
+.mv span:nth-child(n+5){font-variant-numeric:tabular-nums;color:var(--muted)}
+.cat{font-size:.8rem;font-weight:800}
+.cat-physical{color:#ff8a65}.cat-special{color:#80b8ff}.cat-status{color:#b8a9ba}
+
+/* ---- Abilities ---- */
+.abilities{display:flex;flex-direction:column;gap:8px;margin-top:16px;max-width:560px}
+.ability{background:var(--s);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.ability b{margin-right:8px}
+.ability span{display:block;color:var(--muted);font-size:.9rem}
+.ability .hidden-tag{display:inline-block;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#f0c56a;border:1px solid #f0c56a66;border-radius:99px;padding:1px 7px;vertical-align:2px}
+
+/* ---- Info list (training & breeding) ---- */
+dl.info{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 24px;margin:0}
+dl.info div{gap:12px}
+dl.info dt{color:var(--muted)}
+dl.info dd{text-align:right}
+
+/* ---- Move pages ---- */
+.movedesc{font-size:1.15rem;color:var(--muted);max-width:640px}
+.panel h3{margin:18px 0 10px;font-size:1rem}
+.panel h3 em{font-style:normal;color:var(--muted);font-weight:600;margin-left:6px}
+.learners{display:flex;flex-wrap:wrap;gap:7px}
+.learner{background:var(--s2);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-weight:700;font-size:.9rem}
+.learner small{color:var(--muted);font-weight:600}
+.learner:hover{border-color:var(--red);color:var(--red2)}
+
+@media(max-width:740px){
+  .mv{grid-template-columns:52px minmax(0,1fr) 84px 54px;gap:8px}
+  .mv span:nth-child(4),.mv span:nth-child(6){display:none}
+  .mv .badge{font-size:.62rem}
+  .abilities{margin-left:auto;margin-right:auto;text-align:left}
+  dl.info{grid-template-columns:1fr}
+}
