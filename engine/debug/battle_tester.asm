@@ -1194,6 +1194,17 @@ DebugBattleTeardown::
 	xor a
 	ldh [hDebugActive], a
 	ldh [hDebugRNGMode], a
+	; a lost test battle must not white out the real save (half the money,
+	; warp to the last Pokémon Center): report it as a draw instead
+	ld a, [wBattleResult]
+	and ~BATTLERESULT_BITMASK
+	cp LOSE
+	jr nz, .not_lost
+	ld a, [wBattleResult]
+	and BATTLERESULT_BITMASK
+	or DRAW
+	ld [wBattleResult], a
+.not_lost
 	call DebugRestoreParty
 	ld a, DEBUGSTATE_DONE
 	call DebugSetState
@@ -1263,10 +1274,8 @@ DebugRestoreParty:
 
 DebugBattleTesterUI::
 ; Returns carry to launch the battle, nc to close the menu.
-	call DebugOpenWRAM
-	ld a, $ee ; entry marker (diagnostics)
-	ld [wDebugMenuStep], a
-	call DebugCloseWRAM
+	; (no diagnostic write to wDebugMenuStep here: DebugInitDefaults keys
+	; off it, and overwriting it reset every setting on each open)
 	call DebugInitDefaults
 	ld a, DEBUGSTATE_MENU
 	call DebugSetState
@@ -1884,14 +1893,31 @@ DebugMenuAdjust:
 	pop af
 	cp b
 	jr c, .store_byte
-	; wrapped below 0 or above max
+	; wrapped below 0 or above max (b is exclusive)
 	bit 7, e
 	jr nz, .to_max
 	xor a
 	jr .store_byte
 .to_max
 	ld a, b
+	dec a
 .store_byte
+	; level never 0: wrap 1 <-> 100
+	push af
+	ld a, c
+	cp 1
+	jr nz, .not_level
+	pop af
+	and a
+	jr nz, .poke_byte
+	bit 7, e
+	ld a, 1
+	jr z, .poke_byte
+	ld a, 100
+	jr .poke_byte
+.not_level
+	pop af
+.poke_byte
 	pop hl
 	call DebugPoke
 	ret
@@ -1921,7 +1947,7 @@ DebugMenuAdjust:
 	jr c, .word_ok
 	jr z, .word_ok
 .word_clamp
-	; over max: wrap to 0 (or 1 for species)
+	; over max: wrap to 0 (species 0 = empty slot, used for the second mons)
 	ld bc, 0
 .word_ok
 	pop hl
@@ -1935,26 +1961,26 @@ DebugMenuAdjust:
 	ret
 
 DebugByteRowMax:
-; c = row -> a = max value for byte rows
+; c = row -> a = exclusive upper bound for byte rows
 	ld a, c
 	cp 1
 	jr nz, .not_level
-	ld a, 100
+	ld a, 100 + 1 ; levels 1-100
 	ret
 .not_level
 	cp 2
 	jr nz, .not_slot
-	ld a, 2
+	ld a, 3 ; ability slot 0-2 (2 = hidden)
 	ret
 .not_slot
 	cp 3
 	jr nz, .not_ovr
-	ld a, NUM_ABILITIES
+	ld a, NUM_ABILITIES ; override 0 (none) to NUM_ABILITIES - 1
 	ret
 .not_ovr
 	cp 10
 	jr nz, .not_hp
-	ld a, 100
+	ld a, 100 + 1 ; HP 0-100%
 	ret
 .not_hp
 	cp 11

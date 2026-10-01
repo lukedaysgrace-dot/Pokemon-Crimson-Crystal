@@ -95,7 +95,11 @@ ENDM
 vibrato: MACRO
 	db vibrato_cmd
 	db \1 ; delay
+if _NARG >= 3
+	dn \2, \3 ; modern "vibrato delay, depth, rate"
+else
 	db \2 ; extent
+endc
 ENDM
 
 	enum unknownmusic0xe2_cmd ; $e2
@@ -327,7 +331,11 @@ ENDM
 
 note_type: MACRO
 if _NARG >= 3
-	notetype \1, (\2 << 4) | (\3)
+if (\3) < 0
+	notetype \1, ((\2) << 4) | 8 | (-(\3))
+else
+	notetype \1, ((\2) << 4) | (\3)
+endc
 else
 	notetype \1
 endc

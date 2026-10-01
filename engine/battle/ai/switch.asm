@@ -641,6 +641,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 
 	push hl
 	push bc
+	ld e, 0 ; each mon's best matchup starts over (vanilla never reset it)
 	; for move on mon:
 	; c = this mon's stored Hidden Power type (hl = its MON_MOVES)
 	push hl

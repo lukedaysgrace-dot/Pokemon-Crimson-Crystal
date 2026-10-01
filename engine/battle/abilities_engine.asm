@@ -414,7 +414,64 @@ RunEntryAbilities::
 	ld hl, BattleEntryAbilitiesNonfainted
 .got_table
 	call GetTrueUserAbility
-	jp BattleJumptable
+	call BattleJumptable
+	; fallthrough
+
+CheckNeutralizingGasEnded:
+; Turn = the battler that just entered. Once no Neutralizing Gas holder is
+; left on the field, the other battler's on-entry abilities (blocked while
+; it was out, e.g. Intimidate or Drizzle) activate, as in Gen 8+.
+	ld a, [wNeutralizingGasActive]
+	and a
+	ret z
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVar
+	cp NEUTRALIZING_GAS
+	jr nz, .check_opponent
+	call UserHasFainted
+	ret nz ; the entering mon has it
+.check_opponent
+	ld a, BATTLE_VARS_ABILITY_OPP
+	call GetBattleVar
+	cp NEUTRALIZING_GAS
+	jr nz, .ended
+	call OppHasFainted
+	ret nz ; the mon already out still has it
+.ended
+	xor a
+	ld [wNeutralizingGasActive], a
+	call OppHasFainted
+	ret z
+	ld hl, NeutralizingGasWoreOffText
+	call StdBattleTextbox
+	call SwitchTurn
+	call EndAbility
+	call RefreshWeatherSuppression
+	call OppHasFainted
+	ld hl, GasEndedAbilitiesNoTarget
+	jr z, .got_gas_table
+	ld hl, GasEndedAbilities
+.got_gas_table
+	call GetTrueUserAbility
+	call BattleJumptable
+	jp SwitchTurn
+
+GasEndedAbilities:
+	dbw TRACE, TraceAbility
+	dbw INTIMIDATE, IntimidateAbility
+	dbw FRISK, FriskAbility
+	dbw UNNERVE, UnnerveAbility
+	dbw DOWNLOAD, DownloadAbility
+	dbw ANTICIPATION, AnticipationAbility
+	dbw FOREWARN, ForewarnAbility
+	dbw SUPERSWEET_SYRUP, SupersweetSyrupAbility
+GasEndedAbilitiesNoTarget:
+	dbw DRIZZLE, DrizzleAbility
+	dbw DROUGHT, DroughtAbility
+	dbw SAND_STREAM, SandStreamAbility
+	dbw SNOW_WARNING, SnowWarningAbility
+	dbw SCREEN_CLEANER, ScreenCleanerAbility
+	dbw -1, -1
 
 RunDelayedEntryAbilities::
 ; After a double KO the first replacement is sent out while the other side's
@@ -565,6 +622,8 @@ UnnerveAbility:
 	ld hl, NotifyUnnerveText
 	jr NotificationAbilities
 NeutralizingGasAbility:
+	ld a, 1
+	ld [wNeutralizingGasActive], a
 	ld hl, NotifyNeutralizingGasText
 	; fallthrough
 NotificationAbilities:
@@ -5730,13 +5789,21 @@ GetTrueUserAbility_b::
 	ld b, a
 	ret
 
+FoeUnnerveCheck_b::
+; b = TRUE if the turn holder (a held-item holder) can't eat Berries because
+; its opponent has Unnerve.
+	call StackCallOpponentTurn
+	; fallthrough
 UnnerveCheck_b::
 ; b = TRUE if the turn holder's effective ability is Unnerve, which stops its
-; opponent (the held-item holder) from eating Berries.
+; opponent (the held-item holder) from eating Berries. A fainted Unnerve
+; holder no longer makes anyone nervous.
 	call GetTrueUserAbility
 	cp UNNERVE
 	ld b, FALSE
 	ret nz
+	call UserHasFainted
+	ret z
 	inc b
 	ret
 

@@ -318,3 +318,33 @@
   assert:
     - "wram('wEnemyDisableCount') != 0"
     - "wram('wEnemyDisabledMove') == wram('wEnemyMonMoves')"
+
+- name: "Audit r25: Neutralizing Gas leaving lets the foe's Intimidate activate"
+  player:  { species: WEEZING_GALARIAN, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  enemy:   { species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 6"]
+
+
+- name: "Audit r27: Unnerve stops a MysteryBerry from restoring PP"
+  player: { species: MEW, level: 50, item: MYSTERYBERRY, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: UNNERVE, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 0, 0, 0]
+    wPartyMon1PP: [1, 0, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'MYSTERYBERRY'
+
+- name: "Audit r27: a fainted Unnerve holder no longer blocks the foe's Berry"
+  player: { species: SNORLAX, level: 5, ability: IRON_BARBS, item: BERRY, hp: 17, moves: [SPLASH] }
+  enemy:  { species: JOLTEON, level: 5, ability: UNNERVE, hp: 1, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.item == 'NO_ITEM'

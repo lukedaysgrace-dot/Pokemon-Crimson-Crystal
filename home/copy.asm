@@ -158,6 +158,10 @@ Request2bpp::
 	ld a, h
 	ld [wRequested2bppDest + 1], a
 .loop
+	; Redraw weather before queuing the copy, not while waiting for it: the
+	; weather code far-calls into other banks, and the VBlank copy reads its
+	; source from whichever ROM bank is mapped when it fires.
+	call UpdateWeatherSprites ; preserves all registers
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
@@ -165,7 +169,7 @@ Request2bpp::
 
 	ld [wRequested2bpp], a
 .wait
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait
@@ -185,7 +189,7 @@ Request2bpp::
 	ld [wRequested2bpp], a
 
 .wait2
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait2
@@ -232,6 +236,10 @@ Request1bpp::
 	ld a, h
 	ld [wRequested1bppDest + 1], a
 .loop
+	; Redraw weather before queuing the copy, not while waiting for it: the
+	; weather code far-calls into other banks, and the VBlank copy reads its
+	; source from whichever ROM bank is mapped when it fires.
+	call UpdateWeatherSprites ; preserves all registers
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
@@ -239,7 +247,7 @@ Request1bpp::
 
 	ld [wRequested1bpp], a
 .wait
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait
@@ -259,7 +267,7 @@ Request1bpp::
 	ld [wRequested1bpp], a
 
 .wait2
-	call WeatherDelayFrame
+	call DelayFrame
 	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait2
