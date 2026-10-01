@@ -494,3 +494,4 @@ FirstEvoStages::
 	dw SANDILE
 	dw SANDILE
 	dw SANDILE
+	dw PICHU ; GOROCHU

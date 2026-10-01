@@ -493,3 +493,4 @@ AnimationPointers:
 	dba SandileAnimation
 	dba KrokorokAnimation
 	dba KrookodileAnimation
+	dba GorochuAnimation

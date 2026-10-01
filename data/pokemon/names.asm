@@ -497,3 +497,4 @@ PokemonNames::
 	db "SANDILE@@@"
 	db "KROKOROK@@"
 	db "KROOKODILE"
+	db "GOROCHU@@@"

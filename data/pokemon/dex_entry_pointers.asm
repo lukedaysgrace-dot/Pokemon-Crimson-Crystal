@@ -494,3 +494,4 @@ PokedexDataPointerTable:
 	dba SandilePokedexEntry
 	dba KrokorokPokedexEntry
 	dba KrookodilePokedexEntry
+	dba GorochuPokedexEntry

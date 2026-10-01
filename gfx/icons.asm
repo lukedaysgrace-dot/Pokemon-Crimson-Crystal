@@ -500,5 +500,6 @@ BonslyIcon:  INCBIN "gfx/icons/bonsly.2bpp"
 MimeJrIcon:  INCBIN "gfx/icons/mime_jr_.2bpp"
 HappinyIcon: INCBIN "gfx/icons/happiny.2bpp"
 MantykeIcon: INCBIN "gfx/icons/mantyke.2bpp"
+GorochuIcon: INCBIN "gfx/icons/gorochu.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"
