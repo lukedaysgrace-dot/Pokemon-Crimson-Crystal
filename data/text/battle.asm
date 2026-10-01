@@ -445,20 +445,23 @@ BattleText_ItemHealedConfusion:
 BattleText_AssaultVestPreventsMove:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " prevents"
-	line "status moves!"
+	text_start
+	line "prevents status"
+	cont "moves!"
 	prompt
 
 BattleText_ChoiceItemLocksMove:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " only"
-	line "allows one move!"
+	text_start
+	line "only allows one"
+	cont "move!"
 	prompt
 
 AirBalloonImmuneText:
-	text "<TARGET> floats with"
-	line "its @"
+	text "<TARGET>"
+	line "floats with its"
+	cont "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
@@ -466,7 +469,8 @@ AirBalloonImmuneText:
 AirBalloonPoppedText:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " popped!"
+	text_start
+	line "popped!"
 	prompt
 
 LifeOrbRecoilText:
@@ -477,8 +481,9 @@ LifeOrbRecoilText:
 RockyHelmetText:
 	text "The @"
 	text_ram wBattleDynamicNameBuffer
-	text " hurt"
-	line "<USER>!"
+	text_start
+	line "hurt"
+	cont "<USER>!"
 	prompt
 
 AlreadyConfusedText:
@@ -989,8 +994,8 @@ UserWasPoisonedText:
 	prompt
 
 UserBadlyPoisonedText:
-	text "<USER> is"
-	line "badly poisoned!"
+	text "<USER>"
+	line "is badly poisoned!"
 	prompt
 
 BattleText_BurnedByItem:
@@ -1010,8 +1015,8 @@ BattleText_BadlyPoisonedByItem:
 	prompt
 
 AlreadyBurnedText:
-	text "<TARGET> is"
-	line "already burned!"
+	text "<TARGET>"
+	line "is already burned!"
 	prompt
 
 KnockedOffItemText:
@@ -1261,13 +1266,15 @@ StealthRockText:
 	prompt
 
 StealthRockHurtText:
-	text "<USER> is hurt"
-	line "by pointed stones!"
+	text "<USER>"
+	line "is hurt"
+	cont "by pointed stones!"
 	prompt
 
 BlewStealthRockText:
-	text "<USER> blew away"
-	line "pointed stones!"
+	text "<USER>"
+	line "blew away"
+	cont "pointed stones!"
 	prompt
 
 DefogClearedText:
@@ -1276,13 +1283,13 @@ DefogClearedText:
 	prompt
 
 FickleBeamAllOutText:
-	text "<USER> is going"
-	line "all out!"
+	text "<USER>"
+	line "is going all out!"
 	prompt
 
 BattleText_UserSubjectedToTorment:
-	text "<USER> was"
-	line "subjected to"
+	text "<USER>"
+	line "was subjected to"
 	cont "TORMENT!"
 	prompt
 
@@ -1305,13 +1312,13 @@ BattleText_ShookOffTheTaunt:
 	prompt
 
 BattleText_UserGrewDrowsy:
-	text "<USER> grew"
-	line "drowsy!"
+	text "<USER>"
+	line "grew drowsy!"
 	prompt
 
 BattleText_UserMadeAWish:
-	text "<USER> made"
-	line "a WISH!"
+	text "<USER>"
+	line "made a WISH!"
 	prompt
 
 BattleText_WishCameTrue:
@@ -1326,13 +1333,15 @@ BattleText_StickyWebSpread:
 	prompt
 
 BattleText_CaughtInStickyWeb:
-	text "<USER> was caught"
-	line "in a STICKY WEB!"
+	text "<USER>"
+	line "was caught"
+	cont "in a STICKY WEB!"
 	prompt
 
 BlewStickyWebText:
-	text "<USER> blew away"
-	line "STICKY WEB!"
+	text "<USER>"
+	line "blew away"
+	cont "STICKY WEB!"
 	prompt
 
 INCLUDE "data/text/ability_text.asm"

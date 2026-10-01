@@ -14,8 +14,8 @@
 	INCBIN "gfx/pokemon/yanmega/front.dimensions"
 	abilities_for YANMEGA, SPEED_BOOST, TINTED_LENS, FRISK
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_MEDIUM_FAST ; growth rate
+	dn EGG_BUG, EGG_BUG ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, PROTECT, FACADE, RETURN, SWAGGER, REST, ATTRACT, NIGHT_SLASH

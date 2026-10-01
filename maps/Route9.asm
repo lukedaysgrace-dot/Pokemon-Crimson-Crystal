@@ -145,8 +145,9 @@ SchoolGirlHeidiAfterBattleText:
 	text "CRADILY and"
 	line "ARMALDO teach us"
 
-	para "how ancient #MON"
-	line "used to battle."
+	para "how ancient"
+	line "#MON used to"
+	cont "battle."
 	done
 
 CamperSidSeenText:

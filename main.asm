@@ -172,6 +172,11 @@ SECTION "Battle Core", ROMX
 INCLUDE "engine/battle/core.asm"
 
 
+SECTION "Link Battle Record", ROMX
+
+INCLUDE "engine/battle/link_record.asm"
+
+
 SECTION "Battle Core Overflow", ROMX
 
 INCLUDE "engine/battle/giga_hammer_core.asm"

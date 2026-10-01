@@ -74,8 +74,9 @@ CrystalPhoneStatusCianwoodText:
 	text "CIANWOOD's coast"
 	line "keeps me busy."
 
-	para "Sea #MON by day,"
-	line "caves at night."
+	para "Sea #MON by"
+	line "day, caves at"
+	cont "night."
 
 	para "My notes are full"
 	line "and my boots are"
@@ -311,9 +312,9 @@ CrystalPhoneTipRoute24Text:
 	line "notice you, they"
 	cont "TELEPORT."
 
-	para "Lead with a #MON"
-	line "that can stop"
-	cont "escape."
+	para "Lead with a"
+	line "#MON that can"
+	cont "stop escape."
 
 	para "Otherwise, you get"
 	line "one chance."

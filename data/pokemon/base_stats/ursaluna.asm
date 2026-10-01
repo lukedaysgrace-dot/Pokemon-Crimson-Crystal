@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/ursaluna/front.dimensions"
 	abilities_for URSALUNA, GUTS, BULLETPROOF, UNNERVE
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
 	; tm/hm learnset

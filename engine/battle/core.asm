@@ -1376,6 +1376,10 @@ HandleWrap:
 	dec [hl]
 	jr z, .release_from_bounds
 
+	; Magic Guard: no binding damage (like the other residual damage)
+	farcall UserHasMagicGuard_Core
+	ret z
+
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
@@ -2214,6 +2218,8 @@ DoubleSwitch:
 	call PlayerPartyMonEntrance
 	ld a, $1
 	call EnemyPartyMonEntrance
+	call SetPlayerTurn
+	farcall RunDelayedEntryAbilities
 	jr .done
 
 .player_1
@@ -2226,6 +2232,8 @@ DoubleSwitch:
 	pop af
 	ld [wCurPartyMon], a
 	call PlayerPartyMonEntrance
+	call SetEnemyTurn
+	farcall RunDelayedEntryAbilities
 
 .done
 	xor a ; BATTLEPLAYERACTION_USEMOVE
@@ -3365,6 +3373,9 @@ ResetEnemyBattleVars:
 	ld [wLastEnemyCounterMove], a
 	ld [wLastEnemyMove], a
 	ld [wEnemyGigaHammerLock], a
+	; a Baton Pass switch-in doesn't go through NewEnemyMonStatus, so the
+	; passer's Choice lock must not carry over
+	ld [wEnemyChoiceLockedMove], a
 	ld [wCurEnemyMove], a
 	dec a
 	ld [wEnemyItemState], a
@@ -4613,15 +4624,11 @@ UseOpponentItem:
 
 BerryHolderIsUnnerved:
 ; nz if the held-item holder's foe (the turn holder) has Unnerve, so the
-; holder can't eat its Berry. Preserves bc, de and hl.
-	push hl
-	push de
+; holder can't eat its Berry. Preserves bc and de; clobbers hl.
 	push bc
 	farcall UnnerveCheck_b
 	ld a, b
 	pop bc
-	pop de
-	pop hl
 	and a
 	ret
 
@@ -5614,6 +5621,7 @@ PassedBattleMonEntrance:
 	xor a ; FALSE
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
+	farcall PassedBattleMonFixups_Core
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap
@@ -7164,7 +7172,7 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BadgeStatBoosts:
+BadgeStatBoosts::
 ; Raise the stats of the battle mon in wBattleMon
 ; depending on which badges have been obtained.
 
@@ -8849,7 +8857,7 @@ DisplayLinkBattleResult:
 	call GetSRAMBank
 
 	call AddLastMobileBattleToLinkRecord
-	call ReadAndPrintLinkBattleRecord
+	farcall ReadAndPrintLinkBattleRecord
 
 	call CloseSRAM
 
@@ -8893,7 +8901,7 @@ _DisplayLinkRecord:
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
-	call ReadAndPrintLinkBattleRecord
+	farcall ReadAndPrintLinkBattleRecord
 
 	call CloseSRAM
 	hlcoord 0, 0, wAttrMap
@@ -8908,137 +8916,6 @@ _DisplayLinkRecord:
 	call DelayFrames
 	call WaitPressAorB_BlinkCursor
 	ret
-
-ReadAndPrintLinkBattleRecord:
-	call ClearTileMap
-	call ClearSprites
-	call .PrintBattleRecord
-	hlcoord 0, 8
-	ld b, 5
-	ld de, sLinkBattleRecord + 2
-.loop
-	push bc
-	push hl
-	push de
-	ld a, [de]
-	and a
-	jr z, .PrintFormatString
-	ld a, [wSavedAtLeastOnce]
-	and a
-	jr z, .PrintFormatString
-	push hl
-	push hl
-	ld h, d
-	ld l, e
-	ld de, wd002
-	ld bc, 10
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	inc de
-	ld bc, 6
-	call CopyBytes
-	ld de, wd002
-	pop hl
-	call PlaceString
-	pop hl
-	ld de, 26
-	add hl, de
-	push hl
-	ld de, wd00d
-	lb bc, 2, 4
-	call PrintNum
-	pop hl
-	ld de, 5
-	add hl, de
-	push hl
-	ld de, wd00f
-	lb bc, 2, 4
-	call PrintNum
-	pop hl
-	ld de, 5
-	add hl, de
-	ld de, wd011
-	lb bc, 2, 4
-	call PrintNum
-	jr .next
-
-.PrintFormatString:
-	ld de, .Format
-	call PlaceString
-.next
-	pop hl
-	ld bc, 18
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	ld bc, 2 * SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .loop
-	ret
-
-.PrintBattleRecord:
-	hlcoord 1, 0
-	ld de, .Record
-	call PlaceString
-
-	hlcoord 0, 6
-	ld de, .Result
-	call PlaceString
-
-	hlcoord 0, 2
-	ld de, .Total
-	call PlaceString
-
-	hlcoord 6, 4
-	ld de, sLinkBattleWins
-	call .PrintZerosIfNoSaveFileExists
-	jr c, .quit
-
-	lb bc, 2, 4
-	call PrintNum
-
-	hlcoord 11, 4
-	ld de, sLinkBattleLosses
-	call .PrintZerosIfNoSaveFileExists
-
-	lb bc, 2, 4
-	call PrintNum
-
-	hlcoord 16, 4
-	ld de, sLinkBattleDraws
-	call .PrintZerosIfNoSaveFileExists
-
-	lb bc, 2, 4
-	call PrintNum
-
-.quit
-	ret
-
-.PrintZerosIfNoSaveFileExists:
-	ld a, [wSavedAtLeastOnce]
-	and a
-	ret nz
-	ld de, .Scores
-	call PlaceString
-	scf
-	ret
-
-.Scores:
-	db "   0    0    0@"
-
-.Format:
-	db "  ---  <LF>"
-	db "         -    -    -@"
-.Record:
-	db "<PLAYER>'s RECORD@"
-.Result:
-	db "RESULT WIN LOSE DRAW@"
-.Total:
-	db "TOTAL  WIN LOSE DRAW@"
 
 BattleEnd_HandleRoamMons:
 	ld a, [wBattleType]

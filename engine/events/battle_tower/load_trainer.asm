@@ -95,14 +95,7 @@ Function_LoadRandomBattleTowerMon:
 	push de
 
 	; The seventh opponent in the L100 room always leads with Mew.
-	ld a, [wBTChoiceOfLvlGroup]
-	cp 10
-	jr nz, .random_mon
-	ld a, [sNrOfBeatenBattleTowerTrainers]
-	cp BATTLETOWER_STREAK_LENGTH - 1
-	jr nz, .random_mon
-	ld a, e
-	cp LOW(wBT_OTMon1)
+	call .IsMewSlot
 	jr nz, .random_mon
 	ld a, BANK(BattleTowerMew)
 	ld hl, BattleTowerMew
@@ -152,6 +145,11 @@ Function_LoadRandomBattleTowerMon:
 	ld c, a
 	ld a, [hli]
 	ld b, a
+	; The fixed Mew skips the duplicate checks below: a retry would just
+	; pick Mew again, so a match (e.g. the previous-trainer record after a
+	; reset mid-streak) would loop forever.
+	call .IsMewSlot
+	jr z, .mew_slot
 	push hl
 	push de
 	; check if it matches any of the previous two trainers' chosen Pokémon (six Pokémon in total)
@@ -190,7 +188,17 @@ Function_LoadRandomBattleTowerMon:
 	ld a, [wBT_OTMon2Item]
 	cp [hl]
 	jp z, .FindARandomBattleTowerMon
+	jr .reserve_mon
 
+.mew_slot
+	push hl
+	ld h, b
+	ld l, c
+	call GetPokemonIDFromIndex
+	ld [wTempSpecies], a
+	pop hl
+
+.reserve_mon
 	; reserve and load the converted species from wTempSpecies, manually load item and moves, and copy everything else
 	push hl
 	ld l, LOCKED_MON_ID_BATTLE_TOWER_1
@@ -271,6 +279,19 @@ Function_LoadRandomBattleTowerMon:
 	call .store_index
 	pop de
 	jp CloseSRAM
+
+.IsMewSlot:
+; z if this is the L100 room's seventh trainer's first mon (always Mew).
+; Uses a only. e = low byte of the wBT_OTMon* slot being filled.
+	ld a, [wBTChoiceOfLvlGroup]
+	cp 10
+	ret nz
+	ld a, [sNrOfBeatenBattleTowerTrainers]
+	cp BATTLETOWER_STREAK_LENGTH - 1
+	ret nz
+	ld a, e
+	cp LOW(wBT_OTMon1)
+	ret
 
 .store_index
 	call GetPokemonIndexFromID

@@ -1613,6 +1613,7 @@ GetBuenasPassword:
 	ld h, [hl]
 	ld l, a
 	call GetPokemonIDFromIndex
+	ld [wNamedObjectIndexBuffer], a ; GetPokemonName reads the ID from here
 	call GetPokemonName
 	ret
 
@@ -1634,6 +1635,7 @@ GetBuenasPassword:
 	ld h, [hl]
 	ld l, a
 	call GetMoveIDFromIndex
+	ld [wNamedObjectIndexBuffer], a ; GetMoveName reads the ID from here
 	call GetMoveName
 	ret
 
