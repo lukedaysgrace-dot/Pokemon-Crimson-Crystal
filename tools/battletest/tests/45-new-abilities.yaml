@@ -9,16 +9,16 @@
   turns: 0
   assert: ["player.ability == 'NO_ABILITY'"]
 
-- name: "New ability: Gluttony consumes an HP Berry below three quarters"
+- name: "New ability: Gluttony does not advance an ordinary HP Berry"
   player: { species: SNORLAX, level: 50, ability: GLUTTONY, hp: 70, item: BERRY, moves: [SPLASH] }
   enemy: { species: MEW, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - player.item == 'NO_ITEM'
-    - player.hp > player.start_hp
+    - player.item == 'BERRY'
+    - player.hp == player.start_hp
 
-- name: "New ability: ordinary HP Berry waits below half"
+- name: "New ability: ordinary HP Berry waits above half"
   player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 70, item: BERRY, moves: [SPLASH] }
   enemy: { species: MEW, level: 50, moves: [SPLASH] }
   rng: forced_high
@@ -251,13 +251,13 @@
     - enemy.start_hp - enemy.hp > result('knock_off_no_item')['enemy']['damage']
     - enemy.item == 'NO_ITEM'
 
-- name: "New ability: Sticky Hold blocks Knock Off"
+- name: "New ability: Sticky Hold retains the item but permits boosted Knock Off damage"
   player: { species: MEW, level: 30, moves: [KNOCK_OFF] }
   enemy: { species: GRIMER, level: 100, ability: STICKY_HOLD, item: BERRY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == result('knock_off_no_item')['enemy']['damage']
+    - enemy.start_hp - enemy.hp > result('knock_off_no_item')['enemy']['damage']
     - enemy.item == 'BERRY'
 
 - name: "New ability: Unburden reverses order after Berry consumption"

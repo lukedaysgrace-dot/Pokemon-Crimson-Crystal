@@ -256,8 +256,8 @@ PastelVeilDescription:
 	done
 
 FlashFireDescription:
-	text "Draws in fire,"
-	next "raising SpclAtk."
+	text "Absorbs fire; ups"
+	next "higher Atk/Sp.Atk."
 	done
 
 OwnTempoDescription:

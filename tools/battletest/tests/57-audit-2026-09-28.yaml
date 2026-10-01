@@ -176,7 +176,7 @@
 
 # Klutz skipped the Mean Look / binding checks along with the Smoke Ball one.
 - name: "Audit 09-29: Klutz doesn't escape Mean Look"
-  player: { species: GOLETT, level: 100, ability: KLUTZ, moves: [SPLASH] }
+  player: { species: GEODUDE, level: 100, ability: KLUTZ, moves: [SPLASH] }
   enemy:  { species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH] }
   setup_wram: { wEnemySubStatus5: 128 }
   move_script: [run]
@@ -348,3 +348,28 @@
   assert:
     - enemy.hp == 0
     - player.item == 'NO_ITEM'
+
+- name: "Audit r28: Sheer Force still cancels Life Orb recoil when the hit breaks a Substitute"
+  player: { species: NIDOKING, level: 50, ability: SHEER_FORCE, item: LIFE_ORB, moves: [BODY_SLAM] }
+  enemy:  { species: JOLTEON, level: 50, moves: [SUBSTITUTE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.hp == player.start_hp"
+
+- name: "Audit r28: Pressure doesn't drain extra PP from Destiny Bond"
+  player: { species: MEW, level: 50, moves: [DESTINY_BOND] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]
+
+- name: "Audit r28: Pressure doesn't drain extra PP from Conversion 2"
+  player: { species: PORYGON2, level: 50, moves: [CONVERSION2] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [TACKLE] }
+  # Conversion 2 rerolls types until one resists the foe's last move; a fixed
+  # forced RNG value can loop forever, so use a seeded stream (as the sweep does)
+  rng: seeded
+  rng_value: 0xE4
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]

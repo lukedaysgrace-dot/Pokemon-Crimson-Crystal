@@ -1,0 +1,784 @@
+# Per-side critical-hit stat selection and burn exceptions.
+# Every paired assertion uses the same move, species, levels and RNG.
+
+- name: "Audit damage: player tackle positive offense critical control"
+  id: player_tackle_crit_positive
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player tackle critical retains positive offense while ignoring positive defense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_tackle_crit_positive')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player tackle negative defense critical control"
+  id: player_tackle_crit_negative
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player tackle critical ignores negative offense while retaining negative defense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": -2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_tackle_crit_negative')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player tackle critical ignores its defensive screen even with positive offense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy_screens: 16
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_tackle_crit_positive')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player tackle status-penalized critical control"
+  id: player_tackle_crit_status
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player tackle critical still retains the status penalty when loading raw offense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": -2}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_tackle_crit_status')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player tackle status-penalized non-critical control"
+  id: player_tackle_unaware_status
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player tackle defensive Unaware retains the status penalty"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "stages": {"atk": 4}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_tackle_unaware_status')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player water_gun positive offense critical control"
+  id: player_water_gun_crit_positive
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player water_gun critical retains positive offense while ignoring positive defense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_water_gun_crit_positive')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player water_gun negative defense critical control"
+  id: player_water_gun_crit_negative
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player water_gun critical ignores negative offense while retaining negative defense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": -2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_water_gun_crit_negative')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player water_gun critical ignores its defensive screen even with positive offense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy_screens: 8
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_water_gun_crit_positive')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player water_gun status-penalized critical control"
+  id: player_water_gun_crit_status
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "status_byte": 32}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player water_gun critical still retains the status penalty when loading raw offense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": -2}, "status_byte": 32}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_water_gun_crit_status')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player water_gun status-penalized non-critical control"
+  id: player_water_gun_unaware_status
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "status_byte": 32}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player water_gun defensive Unaware retains the status penalty"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "stages": {"satk": 4}, "status_byte": 32}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_water_gun_unaware_status')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Body Press Defense critical control"
+  id: player_body_press_crit
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "item": "SCOPE_LENS", "stages": {"atk": -6, "def": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Body Press critical selects Defense stages independently of Attack"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "item": "SCOPE_LENS", "stages": {"atk": -6, "def": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_body_press_crit')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Body Press unburned control"
+  id: player_body_press_no_burn
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Body Press retains the physical burn penalty"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp < result('player_body_press_no_burn')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Foul Play borrowed positive Attack critical control"
+  id: player_foul_play_crit_positive
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": -6}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Foul Play critical retains borrowed positive Attack while ignoring positive Defense"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": -6}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 2, "def": 4}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_foul_play_crit_positive')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Foul Play negative Defense critical control"
+  id: player_foul_play_crit_negative
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": 6}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -2}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Foul Play critical ignores borrowed negative Attack"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": 6}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": -4, "def": -2}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_foul_play_crit_negative')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Foul Play unburned target control"
+  id: player_foul_play_target_burn
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Foul Play does not borrow the target burn penalty"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp - max(1, enemy.maxhp // 16) == result('player_foul_play_target_burn')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Foul Play unburned user control"
+  id: player_foul_play_no_user_burn
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Foul Play still takes its own user burn penalty"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp < result('player_foul_play_no_user_burn')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Psystrike critical control with irrelevant negative Special Defense"
+  id: player_psystrike_crit
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["PSYSTRIKE"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -6}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Psystrike critical ignores physical Defense while retaining Special Attack"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["PSYSTRIKE"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4, "sdef": -6}}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_psystrike_crit')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 0 critical=False"
+  id: player_facade_6_0
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 0}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 0 critical=False"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 0}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_6_0')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 0 critical=True"
+  id: player_facade_6_1
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 0}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 0 critical=True"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 0}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_6_1')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 1 critical=False"
+  id: player_facade_7_0
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 1}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 1 critical=False"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 1}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_7_0')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 1 critical=True"
+  id: player_facade_7_1
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 1}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 1 critical=True"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 1}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_7_1')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack -1 critical=False"
+  id: player_facade_5_0
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": -1}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at -1 critical=False"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": -1}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_5_0')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack -1 critical=True"
+  id: player_facade_5_1
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": -1}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at -1 critical=True"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": -1}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_5_1')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 6 critical=False"
+  id: player_facade_12_0
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 6}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 6 critical=False"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 6}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_12_0')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poison control at Attack 6 critical=True"
+  id: player_facade_12_1
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 6}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burn restores full staged Attack at 6 critical=True"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 6}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_12_1')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poisoned versus Unaware control with GUTS"
+  id: player_facade_unaware_guts
+  player: {"species": "MEW", "level": 20, "ability": "GUTS", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burned versus Unaware matches poison with GUTS"
+  player: {"species": "MEW", "level": 20, "ability": "GUTS", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_unaware_guts')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: player Facade poisoned versus Unaware control with NO_ABILITY"
+  id: player_facade_unaware_no_ability
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit damage: player Facade burned versus Unaware matches poison with NO_ABILITY"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp == result('player_facade_unaware_no_ability')['enemy'][\"damage\"]"]
+
+- name: "Audit damage: enemy tackle positive offense critical control"
+  id: enemy_tackle_crit_positive
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy tackle critical retains positive offense while ignoring positive defense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_tackle_crit_positive')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy tackle negative defense critical control"
+  id: enemy_tackle_crit_negative
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS"}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy tackle critical ignores negative offense while retaining negative defense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": -2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_tackle_crit_negative')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy tackle critical ignores its defensive screen even with positive offense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": 2}}
+  player_screens: 16
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_tackle_crit_positive')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy tackle status-penalized critical control"
+  id: enemy_tackle_crit_status
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy tackle critical still retains the status penalty when loading raw offense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS", "stages": {"atk": -2}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_tackle_crit_status')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy tackle status-penalized non-critical control"
+  id: enemy_tackle_unaware_status
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy tackle defensive Unaware retains the status penalty"
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "stages": {"atk": 4}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_tackle_unaware_status')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy water_gun positive offense critical control"
+  id: enemy_water_gun_crit_positive
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy water_gun critical retains positive offense while ignoring positive defense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_water_gun_crit_positive')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy water_gun negative defense critical control"
+  id: enemy_water_gun_crit_negative
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS"}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy water_gun critical ignores negative offense while retaining negative defense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": -2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_water_gun_crit_negative')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy water_gun critical ignores its defensive screen even with positive offense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  player_screens: 8
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_water_gun_crit_positive')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy water_gun status-penalized critical control"
+  id: enemy_water_gun_crit_status
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "status_byte": 32}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy water_gun critical still retains the status penalty when loading raw offense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS", "stages": {"satk": -2}, "status_byte": 32}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_water_gun_crit_status')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy water_gun status-penalized non-critical control"
+  id: enemy_water_gun_unaware_status
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "status_byte": 32}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy water_gun defensive Unaware retains the status penalty"
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "stages": {"satk": 4}, "status_byte": 32}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_water_gun_unaware_status')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Body Press Defense critical control"
+  id: enemy_body_press_crit
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "item": "SCOPE_LENS", "stages": {"atk": -6, "def": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Body Press critical selects Defense stages independently of Attack"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "item": "SCOPE_LENS", "stages": {"atk": -6, "def": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_body_press_crit')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Body Press unburned control"
+  id: enemy_body_press_no_burn
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Body Press retains the physical burn penalty"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BODY_PRESS"], "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp < result('enemy_body_press_no_burn')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Foul Play borrowed positive Attack critical control"
+  id: enemy_foul_play_crit_positive
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 2}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": -6}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Foul Play critical retains borrowed positive Attack while ignoring positive Defense"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 2, "def": 4}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": -6}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_foul_play_crit_positive')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Foul Play negative Defense critical control"
+  id: enemy_foul_play_crit_negative
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": -2}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": 6}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Foul Play critical ignores borrowed negative Attack"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": -4, "def": -2}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "item": "SCOPE_LENS", "stages": {"atk": 6}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_foul_play_crit_negative')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Foul Play unburned target control"
+  id: enemy_foul_play_target_burn
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Foul Play does not borrow the target burn penalty"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp - max(1, player.maxhp // 16) == result('enemy_foul_play_target_burn')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Foul Play unburned user control"
+  id: enemy_foul_play_no_user_burn
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Foul Play still takes its own user burn penalty"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"], "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp < result('enemy_foul_play_no_user_burn')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Psystrike critical control with irrelevant negative Special Defense"
+  id: enemy_psystrike_crit
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"sdef": -6}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["PSYSTRIKE"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Psystrike critical ignores physical Defense while retaining Special Attack"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 4, "sdef": -6}}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["PSYSTRIKE"], "item": "SCOPE_LENS", "stages": {"satk": 2}}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_psystrike_crit')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 0 critical=False"
+  id: enemy_facade_6_0
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 0}, "status_byte": 8}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 0 critical=False"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 0}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_6_0')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 0 critical=True"
+  id: enemy_facade_6_1
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 0}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 0 critical=True"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 0}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_6_1')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 1 critical=False"
+  id: enemy_facade_7_0
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 1}, "status_byte": 8}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 1 critical=False"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 1}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_7_0')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 1 critical=True"
+  id: enemy_facade_7_1
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 1}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 1 critical=True"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 1}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_7_1')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack -1 critical=False"
+  id: enemy_facade_5_0
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": -1}, "status_byte": 8}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at -1 critical=False"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": -1}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_5_0')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack -1 critical=True"
+  id: enemy_facade_5_1
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": -1}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at -1 critical=True"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": -1}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_5_1')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 6 critical=False"
+  id: enemy_facade_12_0
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 6}, "status_byte": 8}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 6 critical=False"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "stages": {"atk": 6}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_12_0')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poison control at Attack 6 critical=True"
+  id: enemy_facade_12_1
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 6}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burn restores full staged Attack at 6 critical=True"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 6}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_12_1')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poisoned versus Unaware control with GUTS"
+  id: enemy_facade_unaware_guts
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "GUTS", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burned versus Unaware matches poison with GUTS"
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "GUTS", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_unaware_guts')['player'][\"damage\"]"]
+
+- name: "Audit damage: enemy Facade poisoned versus Unaware control with NO_ABILITY"
+  id: enemy_facade_unaware_no_ability
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 8}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit damage: enemy Facade burned versus Unaware matches poison with NO_ABILITY"
+  player: {"species": "MEW", "level": 100, "ability": "UNAWARE", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FACADE"], "item": "SCOPE_LENS", "stages": {"atk": 4}, "status_byte": 16}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp == result('enemy_facade_unaware_no_ability')['player'][\"damage\"]"]

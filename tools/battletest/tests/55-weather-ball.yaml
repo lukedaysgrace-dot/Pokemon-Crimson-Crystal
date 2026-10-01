@@ -144,38 +144,38 @@
     - wram('wPlayerMoveStructType') == 20
 
 # ---- type-conversion abilities -----------------------------------------
-- name: "Weather Ball: Galvanize converts only the clear-weather form"
+- name: "Weather Ball: Galvanize leaves the clear-weather form Normal"
   player: { species: AMPHAROS, level: 50, ability: GALVANIZE, moves: [WEATHER_BALL] }
   enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
     - wram('wPlayerMoveStructPower') == 50
-    - wram('wPlayerMoveStructType') == 23
+    - wram('wPlayerMoveStructType') == 0
 
-- name: "Weather Ball: Pixilate converts only the clear-weather form"
+- name: "Weather Ball: Pixilate leaves the clear-weather form Normal"
   player: { species: SYLVEON, level: 50, ability: PIXILATE, moves: [WEATHER_BALL] }
   enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - wram('wPlayerMoveStructType') == 28
+    - wram('wPlayerMoveStructType') == 0
 
-- name: "Weather Ball: Refrigerate converts only the clear-weather form"
+- name: "Weather Ball: Refrigerate leaves the clear-weather form Normal"
   player: { species: AURORUS, level: 50, ability: REFRIGERATE, moves: [WEATHER_BALL] }
   enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - wram('wPlayerMoveStructType') == 25
+    - wram('wPlayerMoveStructType') == 0
 
-- name: "Weather Ball: Aerilate converts only the clear-weather form"
+- name: "Weather Ball: Aerilate leaves the clear-weather form Normal"
   player: { species: ALTARIA, level: 50, ability: AERILATE, moves: [WEATHER_BALL] }
   enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - wram('wPlayerMoveStructType') == 2
+    - wram('wPlayerMoveStructType') == 0
 
 - name: "Weather Ball: rain form takes precedence over Pixilate"
   player: { species: SYLVEON, level: 50, ability: PIXILATE, moves: [WEATHER_BALL] }
@@ -336,6 +336,7 @@
   assert:
     - enemy.hp == enemy.start_hp
     - enemy.stat_levels[3] == 8
+    - enemy.stat_levels[0] == 7
 
 - name: "Weather Ball: Bulletproof blocks every form"
   player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
@@ -399,14 +400,14 @@
   assert:
     - enemy.hp < enemy.start_hp
 
-- name: "Weather Ball: Galvanize form triggers Volt Absorb"
+- name: "Weather Ball: Galvanize does not turn the clear form into a Volt Absorb trigger"
   player: { species: AMPHAROS, level: 50, ability: GALVANIZE, moves: [WEATHER_BALL] }
   enemy:  { species: JOLTEON, level: 100, ability: VOLT_ABSORB, hp: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - wram('wPlayerMoveStructType') == 23
-    - enemy.hp > enemy.start_hp
+    - wram('wPlayerMoveStructType') == 0
+    - enemy.hp < enemy.start_hp
 
 - name: "Weather Ball: Neutralizing Gas suppresses Mega Sol"
   player: { species: MEGANIUM, level: 50, ability: MEGA_SOL, moves: [WEATHER_BALL] }

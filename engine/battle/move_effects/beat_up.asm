@@ -38,46 +38,25 @@ BattleCommand_BeatUp:
 	ld c, a
 	ld a, [wCurBattleMon]
 	cp c
-	ld hl, wBattleMonStatus
-	jr z, .active_mon
+	jr z, .eligible_mon ; the user contributes even with a status condition
 	ld a, MON_STATUS
 	call GetBeatupMonLocation
-.active_mon
 	ld a, [hl]
 	and a
 	jp nz, .beatup_fail
 
+.eligible_mon
 	ld a, $1
 	ld [wBeatUpHitAtLeastOnce], a
 	ld hl, BeatUpAttackText
 	call StdBattleTextbox
 
-	ld a, [wEnemyMonSpecies]
-	ld [wCurSpecies], a
-	call GetBaseData
-	ld a, [wBaseDefense]
-	ld c, a
-
-	push bc
 	ld a, MON_SPECIES
 	call GetBeatupMonLocation
 	ld a, [hl]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, [wBaseAttack]
-	pop bc
-	ld b, a
-
-	push bc
-	ld a, MON_LEVEL
-	call GetBeatupMonLocation
-	ld a, [hl]
-	ld e, a
-	pop bc
-
-	ld a, [wPlayerMoveStructPower]
-	ld d, a
-	ret
+	jp .damage
 
 .enemy_beats_up
 	ld a, [wEnemySubStatus3]
@@ -139,15 +118,14 @@ BattleCommand_BeatUp:
 	ld b, a
 	ld a, [wCurOTMon]
 	cp b
-	ld hl, wEnemyMonStatus
-	jr z, .active_enemy
+	jr z, .eligible_enemy
 	ld a, MON_STATUS
 	call GetBeatupMonLocation
-.active_enemy
 	ld a, [hl]
 	and a
 	jr nz, .beatup_fail
 
+.eligible_enemy
 	ld a, $1
 	ld [wBeatUpHitAtLeastOnce], a
 	jr .finish_beatup
@@ -158,38 +136,44 @@ BattleCommand_BeatUp:
 	call GetPokemonName
 	ld hl, BeatUpAttackText
 	call StdBattleTextbox
-	jp EnemyAttackDamage
+	ld a, [wEnemyMonSpecies]
+	ld [wCurSpecies], a
+	call GetBaseData
+	jp .damage
 
 .finish_beatup
 	ld hl, BeatUpAttackText
 	call StdBattleTextbox
 
-	ld a, [wBattleMonSpecies]
-	ld [wCurSpecies], a
-	call GetBaseData
-	ld a, [wBaseDefense]
-	ld c, a
-
-	push bc
 	ld a, MON_SPECIES
 	call GetBeatupMonLocation
 	ld a, [hl]
 	ld [wCurSpecies], a
 	call GetBaseData
+
+.damage
+	; Each eligible member supplies only power: 5 + base Attack / 10.
+	; The actual attacker supplies its live Attack, level, stat stages,
+	; status and held item against the target's normal Defense.
+	ld a, 1
+	ld [wBeatUpHitAtLeastOnce], a
 	ld a, [wBaseAttack]
-	pop bc
-	ld b, a
-
-	push bc
-	ld a, MON_LEVEL
-	call GetBeatupMonLocation
-	ld a, [hl]
-	ld e, a
-	pop bc
-
-	ld a, [wEnemyMoveStructPower]
-	ld d, a
-	ret
+	ld d, 5
+.power_loop
+	cp 10
+	jr c, .got_power
+	sub 10
+	inc d
+	jr .power_loop
+.got_power
+	ld hl, wPlayerMoveStructPower
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .store_power
+	ld hl, wEnemyMoveStructPower
+.store_power
+	ld [hl], d
+	jp BattleCommand_DamageStats
 
 .beatup_fail
 	ld b, buildopponentrage_command

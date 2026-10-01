@@ -1,0 +1,705 @@
+# Generation 9 interaction regressions. Intentionally custom Flash Fire, Gale Wings,
+# Disguise, Filter and Solid Rock behavior is preserved.
+
+- name: "Audit abilities: Flash Fire ordinary +1 Sp Atk Fire-move control"
+  id: audit_flash_fire_control
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, stages: { satk: 1 }, moves: [EMBER] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit abilities: Flash Fire uses an ordinary Sp Atk boost for special Fire damage"
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [SPLASH, EMBER] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [EMBER] }
+  move_script: [1, 2]
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - "enemy.start_hp - enemy.hp == result('audit_flash_fire_control')['enemy']['damage']"
+    - player.hp == player.start_hp
+    - player.stat_levels[3] == 9
+    - player.stat_levels[0] == 7
+
+- name: "Audit abilities: Flash Fire non-Fire special-move control"
+  id: audit_flash_fire_nonfire_control
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [PSYCHIC_M] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit abilities: Flash Fire Sp Atk boost improves non-Fire special moves"
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [SPLASH, PSYCHIC_M] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [EMBER] }
+  move_script: [1, 2]
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - "enemy.start_hp - enemy.hp > result('audit_flash_fire_nonfire_control')['enemy']['damage']"
+    - player.hp == player.start_hp
+    - player.stat_levels[3] == 9
+
+- name: "Audit abilities: Flash Fire physical-Fire control"
+  id: audit_flash_fire_physical_control
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [FIRE_FANG] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit abilities: Flash Fire Sp Atk boost adds no separate physical Fire multiplier"
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [SPLASH, FIRE_FANG] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [EMBER] }
+  move_script: [1, 2]
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - "enemy.start_hp - enemy.hp == result('audit_flash_fire_physical_control')['enemy']['damage']"
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 9
+
+- name: "Audit abilities: enemy Flash Fire stacks the higher Sp Atk on repeat Fire hits"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER] }
+  enemy: { species: LITWICK, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[3] == 9
+    - enemy.stat_levels[0] == 7
+
+- name: "Audit abilities: player Flash Fire stacks the higher Attack on repeat Fire hits"
+  player: { species: SCYTHER, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER] }
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - player.hp == player.start_hp
+    - player.stat_levels[0] == 9
+    - player.stat_levels[3] == 7
+
+- name: "Audit abilities: Will-O-Wisp repeatedly raises Flash Fire's higher Sp Atk"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WILL_O_WISP] }
+  enemy: { species: LITWICK, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - enemy.status == 0
+    - enemy.stat_levels[3] == 9
+    - enemy.stat_levels[0] == 7
+    - enemy.hp == enemy.start_hp
+
+- name: "Audit abilities: Will-O-Wisp raises the higher Attack for player Flash Fire"
+  player: { species: SCYTHER, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WILL_O_WISP] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.status == 0
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 7
+
+- name: "Audit abilities: Flash Fire remains immune at maximum Sp Atk"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WILL_O_WISP] }
+  enemy: { species: LITWICK, level: 100, ability: FLASH_FIRE, stages: { satk: 6 }, moves: [SPLASH] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.status == 0
+    - enemy.stat_levels[3] == 13
+    - enemy.stat_levels[0] == 7
+
+- name: "Audit abilities: Flash Fire remains immune at maximum Attack"
+  player: { species: SCYTHER, level: 100, ability: FLASH_FIRE, stages: { atk: 6 }, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER] }
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - player.hp == player.start_hp
+    - player.stat_levels[0] == 13
+    - player.stat_levels[3] == 7
+
+- name: "Audit abilities: Flash Fire compares offenses after existing stat stages"
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, stages: { atk: 1 }, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER] }
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - player.stat_levels[0] == 9
+    - player.stat_levels[3] == 7
+
+- name: "Audit abilities: Neutralizing Gas preserves earned Flash Fire stages and blocks new boosts"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER] }
+  player2: { species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [EMBER] }
+  enemy: { species: LITWICK, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  move_script: [1, "switch:2", 1]
+  rng: forced_high
+  rng_value: 180
+  turns: 3
+  assert:
+    - player.species == 'WEEZING'
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[3] == 8
+    - enemy.stat_levels[0] == 7
+    - wram('wNeutralizingGasActive') == 1
+
+- name: "Audit abilities: losing Flash Fire retains its earned ordinary stat stage"
+  player: { species: MEW, level: 50, ability: FLASH_FIRE, moves: [SPLASH, SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, moves: [EMBER] }
+  move_script: [1, 2]
+  rng: forced_high
+  rng_value: 180
+  turns: 2
+  assert:
+    - player.ability == 'THICK_FAT'
+    - enemy.ability == 'FLASH_FIRE'
+    - player.stat_levels[3] == 8
+    - player.hp < player.start_hp
+
+- name: "Audit abilities: Mold Breaker bypasses Flash Fire immunity and its stat boost"
+  player: { species: MEW, level: 50, ability: MOLD_BREAKER, moves: [EMBER] }
+  enemy: { species: LITWICK, level: 100, ability: FLASH_FIRE, moves: [SPLASH] }
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[0] == 7
+    - enemy.stat_levels[3] == 7
+
+- name: "Audit abilities: Berserk triggers when damage lands exactly at half HP"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 50, ability: BERSERK, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 50
+    - enemy.stat_levels[3] == 8
+
+- name: "Audit abilities: Berserk does not trigger when starting at half HP"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 50, ability: BERSERK, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 50], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 20
+    - enemy.stat_levels[3] == 7
+
+- name: "Audit abilities: Poison Touch control poisons on contact"
+  player: { species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status & 8 != 0"]
+
+- name: "Audit abilities: Shield Dust blocks Poison Touch"
+  player: { species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.status == 0
+
+- name: "Audit abilities: Magic Guard still pays Struggle recoil from max HP"
+  player: { species: MEW, level: 50, ability: MAGIC_GUARD, moves: [STRUGGLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - "player.start_hp - player.hp == (player.maxhp + 2) // 4"
+
+- name: "Audit abilities: Rock Head still pays Struggle recoil from max HP"
+  player: { species: MEW, level: 50, ability: ROCK_HEAD, moves: [STRUGGLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == (player.maxhp + 2) // 4"]
+
+- name: "Audit abilities: Double Edge uses modern 33 percent rounded recoil"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_EDGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == max(1, ((enemy.start_hp - enemy.hp) * 33 + 50) // 100)"]
+
+- name: "Audit abilities: Head Smash uses half damage rounded recoil"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [HEAD_SMASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["player.start_hp - player.hp == (enemy.start_hp - enemy.hp + 1) // 2"]
+
+- name: "Audit abilities: Rock Head prevents ordinary Double Edge recoil"
+  player: { species: MEW, level: 50, ability: ROCK_HEAD, moves: [DOUBLE_EDGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp == player.start_hp
+
+- name: "Audit abilities: Gluttony does not eat an ordinary Berry above half HP"
+  player: { species: SNORLAX, level: 50, ability: GLUTTONY, item: GOLD_BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 51], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'GOLD_BERRY'
+    - player.hp == 51
+
+- name: "Audit abilities: an ordinary Berry triggers exactly at half HP"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, item: BERRY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 50], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp == 60
+
+- name: "Audit abilities: Pixilate converts Normal status moves too"
+  player: { species: MEW, level: 50, ability: PIXILATE, moves: [SING] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wPlayerMoveStruct', 3) == 28"]
+
+- name: "Audit abilities: Weather Ball without weather stays Normal with Pixilate"
+  player: { species: MEW, level: 50, ability: PIXILATE, moves: [WEATHER_BALL] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerMoveStruct', 3) == 0"]
+
+- name: "Audit abilities: ordinary sound move bypasses Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [HYPER_VOICE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wEnemySubstituteHP') == 100
+    - "(enemy.substatus[3] & 16) != 0"
+
+- name: "Audit abilities: sound status move bypasses Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100 }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status & 7 != 0"]
+
+- name: "Audit abilities: a sound hit through Substitute still activates Stamina"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [HYPER_VOICE] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[1] == 8
+
+- name: "Audit abilities: Flame Charge boosts its user even when hitting Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FLAME_CHARGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - wram('wEnemySubstituteHP') < 100
+    - player.stat_levels[2] == 8
+
+- name: "Audit abilities: breaking a Substitute does not trigger Stamina"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[1] == 7
+
+- name: "Audit abilities: Crush Claw Sharpness control"
+  id: audit_crush_claw_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [CRUSH_CLAW] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit abilities: Crush Claw is not a Sharpness slicing move"
+  player: { species: MEW, level: 50, ability: SHARPNESS, moves: [CRUSH_CLAW] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == result('audit_crush_claw_control')['enemy']['damage']"]
+
+- name: "Audit abilities: Drizzle resumes when the last Neutralizing Gas holder faints"
+  player: { species: POLITOED, level: 50, ability: DRIZZLE, moves: [SURF] }
+  enemy: { species: WEEZING, level: 5, ability: NEUTRALIZING_GAS, hp: 1, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - weather == 1
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Audit abilities: Immunity cures existing poison when the last gas holder faints"
+  player: { species: MEW, level: 50, ability: IMMUNITY, status_byte: 8, moves: [TACKLE] }
+  enemy: { species: WEEZING, level: 5, ability: NEUTRALIZING_GAS, hp: 1, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.status == 0
+
+- name: "Audit abilities: last fainted player gas holder restores enemy Drizzle"
+  player: { species: WEEZING, level: 5, ability: NEUTRALIZING_GAS, hp: 1, moves: [SPLASH] }
+  enemy: { species: POLITOED, level: 50, ability: DRIZZLE, moves: [SURF] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - weather == 1
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Audit abilities: curing sleep also clears Nightmare"
+  player: { species: MEW, level: 50, ability: INSOMNIA, status_byte: 4, substatus: [NIGHTMARE], moves: [SNORE] }
+  enemy: { species: WEEZING, level: 5, ability: NEUTRALIZING_GAS, hp: 1, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.status == 0
+    - "(player.substatus[0] & 1) == 0"
+
+- name: "Audit abilities: Parental Bond activates Stamina on each hit"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 9
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Audit abilities: Parental Bond takes Rocky Helmet damage on each contact"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == 2 * (player.maxhp // 6)"]
+
+- name: "Audit abilities: Rocky Helmet KO stops Parental Bond before its second hit"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 1] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - wram('wEnemyRageFistHits') == 1
+    - wram('wParentalBondHits') == 1
+
+- name: "Audit abilities: Parental Bond can break Substitute then hit the holder"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 1, wEnemyMonSpeed: [3, 231] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[1] == 8
+    - wram('wEnemyRageFistHits') == 1
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: Struggle control for Reckless"
+  id: reckless_struggle_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STRUGGLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+
+- name: "Audit abilities: Reckless does not boost Struggle"
+  player: { species: MEW, level: 50, ability: RECKLESS, moves: [STRUGGLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == result('reckless_struggle_control')['enemy']['damage']"]
+
+- name: "Audit abilities: both Parental Bond hits respect a surviving Substitute"
+  player: { species: MEW, level: 20, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100, wEnemyMonSpeed: [3, 231] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[1] == 7
+    - wram('wEnemySubstituteHP') < 100
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: Parental Bond gives Flame Charge two Speed boosts"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [FLAME_CHARGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[2] == 9"]
+
+- name: "Audit abilities: Parental Bond applies Superpower self drops each hit"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [SUPERPOWER] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 5
+    - player.stat_levels[1] == 5
+
+- name: "Audit abilities: Parental Bond preserves full Seismic Toss damage on both hits"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [SEISMIC_TOSS] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == 100"]
+
+- name: "Audit abilities: Parental Bond preserves full Dragon Rage damage on both hits"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [DRAGON_RAGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == 80"]
+
+- name: "Audit abilities: Parental Bond recomputes Super Fang from remaining HP"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [SUPER_FANG] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 200], wEnemyMonMaxHP: [0, 200] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == 50"]
+
+- name: "Audit abilities: Parental Bond Counter reflects the incoming hit twice"
+  player: { species: SNORLAX, level: 50, ability: PARENTAL_BOND, moves: [COUNTER] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - "enemy.start_hp - enemy.hp == 4 * (player.start_hp - player.hp)"
+
+- name: "Audit abilities: Parental Bond pays Life Orb recoil once"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, item: LIFE_ORB, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 2
+    - "player.start_hp - player.hp == player.maxhp // 10"
+
+- name: "Audit abilities: Parental Bond Double Edge recoil uses both hits together"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [DOUBLE_EDGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 2
+    - "player.start_hp - player.hp == max(1, ((enemy.start_hp - enemy.hp) * 33 + 50) // 100)"
+
+- name: "Audit abilities: Parental Bond Struggle pays its max-HP recoil once"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [STRUGGLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 2
+    - "player.start_hp - player.hp == (player.maxhp + 2) // 4"
+
+- name: "Audit abilities: Parental Bond does not extend Twineedle's two hits"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TWINEEDLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyRageFistHits') == 2"]
+
+- name: "Audit abilities: Parental Bond does not extend a charging Fly attack"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [FLY] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wEnemyRageFistHits') == 1"]
+
+- name: "Audit abilities: Parental Bond does not extend Rollout"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [ROLLOUT] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyRageFistHits') == 1"]
+
+- name: "Audit abilities: Parental Bond breaks Focus Sash before its second KO hit"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 5, ability: NO_ABILITY, item: FOCUS_SASH, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - enemy.item == 'NO_ITEM'
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: Protect stops the entire Parental Bond move"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, item: LIFE_ORB, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.hp == player.start_hp
+    - wram('wParentalBondHits') == 0
+
+- name: "Audit abilities: Parental Bond crossing half HP activates Berserk once after both hits"
+  player: { species: MEW, level: 30, ability: PARENTAL_BOND, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 100, ability: BERSERK, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 20
+    - enemy.stat_levels[3] == 8
+
+- name: "Audit abilities: Berserk does not activate before Parental Bond's second hit KOs"
+  player: { species: MEW, level: 60, ability: PARENTAL_BOND, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 100, ability: BERSERK, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - enemy.stat_levels[3] == 7
+
+- name: "Audit abilities: single-hit Berserk activates before its HP Berry"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEW, level: 100, ability: BERSERK, item: BERRY, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 60
+    - enemy.stat_levels[3] == 8
+    - enemy.item == 'NO_ITEM'
+
+- name: "Audit abilities: a Berry between Parental Bond hits can prevent Berserk"
+  player: { species: MEW, level: 20, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: MEW, level: 100, ability: BERSERK, item: GOLD_BERRY, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 51], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > 50
+    - enemy.stat_levels[3] == 7
+    - enemy.item == 'NO_ITEM'
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: Parental Bond U-turn completes both hits before switching"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [U_TURN] }
+  player2: { species: RAICHU, level: 50, ability: STATIC, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: STAMINA, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'RAICHU'
+    - enemy.stat_levels[1] == 9
+
+- name: "Audit abilities: enemy Parental Bond activates player Stamina twice"
+  player: { species: MEW, level: 100, ability: STAMINA, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.stat_levels[1] == 9
+    - wram('wPlayerRageFistHits') == 2
+
+- name: "Audit abilities: enemy Parental Bond breaks Substitute before hitting its holder"
+  player: { species: MEW, level: 100, ability: STAMINA, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TACKLE] }
+  setup_wram: { wPlayerSubstituteHP: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.stat_levels[1] == 8
+    - wram('wPlayerRageFistHits') == 1
+
+- name: "Audit abilities: failed Crunch secondary at minimum Defense still permits Parental Bond"
+  player: { species: MEW, level: 20, ability: PARENTAL_BOND, moves: [CRUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyDefLevel: 1, wEnemyMonSpeed: [3, 231] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 1
+    - wram('wEnemyRageFistHits') == 2
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: Parental Bond breaks preserved Disguise then damages its holder"
+  player: { species: MEW, level: 20, ability: PARENTAL_BOND, moves: [TACKLE] }
+  enemy: { species: MIMIKYU, level: 100, ability: DISGUISE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonType1: 0, wEnemyMonType2: 0, wEnemyMonSpeed: [3, 231] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - "(wram('wDisguiseBusted', 1) & 1) == 1"
+    - wram('wParentalBondHits') == 2
+
+- name: "Audit abilities: phazing cannot award the replacement's Berserk for another target's damage"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [DRAGON_TAIL] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH, SPLASH] }
+  enemy2: { species: HYDREIGON, level: 5, ability: BERSERK, hp: 1, moves: [SPLASH] }
+  rng: forced
+  rng_value: 17 # &7 selects the second party member; &3 selects its populated move slot.
+  turns: 1
+  assert:
+    - enemy.species == 'HYDREIGON'
+    - enemy.ability == 'BERSERK'
+    - enemy.stat_levels[3] == 7
+    - wram('wEnemyRageFistHits') == 0
+
+- name: "Audit abilities: Parental Bond U-turn resolves Berserk exactly once before pivoting"
+  player: { species: MEW, level: 30, ability: PARENTAL_BOND, moves: [U_TURN] }
+  player2: { species: RAICHU, level: 50, ability: STATIC, moves: [SPLASH] }
+  enemy: { species: MEW, level: 100, ability: BERSERK, moves: [SPLASH] }
+  setup_wram: { wBattleMonAttack: [0, 100], wEnemyMonDefense: [0, 50], wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100], wEnemyMonType1: 0, wEnemyMonType2: 0 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'RAICHU'
+    - enemy.hp > 0
+    - enemy.hp <= 50
+    - enemy.stat_levels[3] == 8
+
+- name: "Audit abilities: Scale Shot pays Life Orb recoil once after all hits"
+  player: { species: MEW, level: 50, ability: SKILL_LINK, item: LIFE_ORB, moves: [SCALE_SHOT] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 5
+    - "player.start_hp - player.hp == player.maxhp // 10"

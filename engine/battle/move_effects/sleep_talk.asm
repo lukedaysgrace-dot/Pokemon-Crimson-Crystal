@@ -8,12 +8,8 @@ BattleCommand_SleepTalk:
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonMoves + 1
-	ld a, [wDisabledMove]
-	ld d, a
 	jr z, .got_moves
 	ld hl, wEnemyMonMoves + 1
-	ld a, [wEnemyDisabledMove]
-	ld d, a
 .got_moves
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
@@ -42,8 +38,6 @@ BattleCommand_SleepTalk:
 	cp e
 	jr z, .sample_move
 	ld a, e
-	cp d
-	jr z, .sample_move
 	call .check_two_turn_move
 	jr z, .sample_move
 	ld a, BATTLE_VARS_MOVE
@@ -77,14 +71,6 @@ BattleCommand_SleepTalk:
 	ret
 
 .check_has_usable_move
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wDisabledMove]
-	jr z, .got_move_2
-
-	ld a, [wEnemyDisabledMove]
-.got_move_2
-	ld b, a
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld c, a
@@ -97,9 +83,6 @@ BattleCommand_SleepTalk:
 
 	cp c
 	jr z, .nope
-	cp b
-	jr z, .nope
-
 	call .check_two_turn_move
 	jr nz, .no_carry
 
@@ -138,6 +121,14 @@ BattleCommand_SleepTalk:
 	cp EFFECT_SOLARBEAM
 	ret z
 	cp EFFECT_FLY
+	ret z
+	cp EFFECT_METRONOME
+	ret z
+	cp EFFECT_MIRROR_MOVE
+	ret z
+	cp EFFECT_MIMIC
+	ret z
+	cp EFFECT_SKETCH
 	ret z
 	cp EFFECT_BIDE
 	ret

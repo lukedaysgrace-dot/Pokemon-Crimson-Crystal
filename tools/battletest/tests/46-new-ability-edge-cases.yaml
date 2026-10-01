@@ -108,9 +108,9 @@
     - not text_seen('RUN AWAY')
 
 - name: "New ability edge: Klutz suppresses Smoke Ball escape"
-  # Golett is far slower, so without an effective Smoke Ball the first
+  # Geodude is far slower, so without an effective Smoke Ball the first
   # forced-high ordinary escape roll must fail.
-  player: { species: GOLETT, level: 5, ability: KLUTZ, item: SMOKE_BALL, moves: [SPLASH] }
+  player: { species: GEODUDE, level: 5, ability: KLUTZ, item: SMOKE_BALL, moves: [SPLASH] }
   enemy: { species: MEWTWO, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   move_script: [run]
   rng: forced_high
@@ -173,7 +173,7 @@
   assert:
     - player.item == 'GOLD_BERRY'
 
-- name: "New ability edge: Gluttony waits above three quarters"
+- name: "New ability edge: Gluttony waits above an ordinary Berry's half-HP threshold"
   player: { species: SNORLAX, level: 50, ability: GLUTTONY, item: GOLD_BERRY, hp: 90, moves: [SPLASH] }
   enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high

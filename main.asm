@@ -866,6 +866,14 @@ SECTION "Perish Song Ability Core", ROMX
 
 INCLUDE "engine/battle/move_effects/perish_song_core.asm"
 
+SECTION "Parental Bond Move Core", ROMX
+
+INCLUDE "engine/battle/move_effects/parental_bond_core.asm"
+
+SECTION "Counter Hit History Core", ROMX
+
+INCLUDE "engine/battle/move_effects/counter_hit_core.asm"
+
 SECTION "Ability Descriptions", ROMX
 
 INCLUDE "engine/pokemon/print_ability_description.asm"
