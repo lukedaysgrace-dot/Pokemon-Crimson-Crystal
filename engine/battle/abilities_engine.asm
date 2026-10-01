@@ -1336,15 +1336,19 @@ CheckStatusPrevention:
 
 ; ==== End-of-turn abilities ==============================================
 
-RunEndTurnStatusAbilitiesBoth::
-; Status cures precede Perish Song; stat boosts and Berry recycling follow it.
-	call RunStatusHealAbilitiesBoth
+RunEndTurnStatusAbility::
+; Residual order 5 (with Leftovers): the current battler's Shed Skin or
+; Hydration cures its status before Leech Seed and status damage.
+	call UserHasFainted
+	ret z
+	call GetTrueUserAbility
 	ld hl, EndTurnStatusAbilities
-	jr RunEndTurnAbilityTableBoth
+	jp BattleJumptable
 
 RunEndTurnAbilitiesBoth::
+; Late residual abilities (Speed Boost, Bad Dreams, Harvest, Cud Chew) share
+; one pass in effective Speed order, after Perish Song and Trick Room's end.
 	ld hl, EndTurnAbilities
-RunEndTurnAbilityTableBoth:
 	ldh a, [hBattleTurn]
 	push af
 	push hl
@@ -1360,6 +1364,9 @@ RunEndTurnAbilityTableBoth:
 	ldh [hBattleTurn], a
 	ret
 .run
+	ld a, [wBattleEnded]
+	and a
+	ret nz
 	push hl
 	call UserHasFainted
 	pop hl
@@ -1376,13 +1383,14 @@ EndTurnStatusAbilities:
 
 EndTurnAbilities:
 	dbw SPEED_BOOST, SpeedBoostAbility
+	dbw BAD_DREAMS, BadDreamsEndTurnAbility
 	dbw HARVEST, HarvestAbility
 	dbw CUD_CHEW, CudChewAbility
 	dbw -1, -1
 
 RunWeatherResidualAbilitiesBoth::
 ; Each holder's weather chip/healing precedes Wish, Leftovers and status chip.
-; Resolve living holders by effective Speed, without Trick Room reversal.
+; Resolve living holders by effective Speed (reversed under Trick Room).
 	call PlayPerTurnWeatherAnim
 	ldh a, [hBattleTurn]
 	push af
@@ -1427,36 +1435,8 @@ WeatherResidualAbilities:
 	dbw SOLAR_POWER, SolarPowerAbility
 	dbw -1, -1
 
-RunBadDreamsAbilitiesBoth::
-; Bad Dreams precedes Perish Song, Shed Skin, and Hydration. Resolve each
-; sleeping victim before the later abilities can wake it up.
-	ldh a, [hBattleTurn]
-	push af
-	call GetResidualFirstSide
-	and a
-	jr nz, .enemy_first
-	call SetPlayerTurn
-	call .side
-	call SetEnemyTurn
-	jr .second
-.enemy_first
-	call SetEnemyTurn
-	call .side
-	call SetPlayerTurn
-.second
-	call .side
-	pop af
-	ldh [hBattleTurn], a
-	ret
-.side
-	ld a, [wBattleEnded]
-	and a
-	ret nz
-	call UserHasFainted
-	ret z
-	call GetTrueUserAbility
-	cp BAD_DREAMS
-	ret nz
+BadDreamsEndTurnAbility:
+; Resolve the sleeping victim's knockout before the next holder acts.
 	ldh a, [hBattleTurn]
 	push af
 	call BadDreamsAbility
@@ -1468,16 +1448,10 @@ RunBadDreamsAbilitiesBoth::
 
 GetResidualFirstSide::
 ; a = first side for residual effects (0 player, 1 enemy). End-of-turn
-; order uses effective Speed and random ties, independently of Trick Room.
+; order uses effective Speed and random ties; Trick Room reverses it, as
+; it does move order (Showdown's residual handlers use action speed).
 	push bc
-	ld a, [wTrickRoomTimer]
-	push af
-	xor a
-	ld [wTrickRoomTimer], a
 	call CompareSpeedsWithAbilities
-	pop bc
-	ld a, b
-	ld [wTrickRoomTimer], a
 	ld b, 0
 	jr z, .tie
 	jr nc, .done

@@ -394,9 +394,9 @@ def audit_species(audit: Audit) -> None:
             roots.update(evolution_roots(parent, trail | {name}))
         return roots
 
-    # Full Incense is not implemented, so Snorlax breeding intentionally keeps
-    # Snorlax as the egg species instead of following its Munchlax pre-evolution.
-    first_stage_exceptions = {"SNORLAX": "SNORLAX"}
+    # No species currently breeds outside its evolution root. Incense items are
+    # not in this game, so Snorlax eggs always hatch Munchlax.
+    first_stage_exceptions: dict[str, str] = {}
     for name, first_stage in zip(species, first_stages):
         if name in first_stage_exceptions:
             audit.expect(

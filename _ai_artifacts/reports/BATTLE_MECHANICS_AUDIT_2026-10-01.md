@@ -102,10 +102,13 @@ are isolated under `.tmpbuild/full-audit-2026-10-01/`.
 - Toxic's counter progresses while Magic Guard or Poison Heal prevents damage
   and stops at its supported cap.
 - Residual stages are ordered across both battlers in effective-Speed order;
-  Trick Room does not reverse residual ordering. Leech Seed precedes poison.
-- Weather, Wish, Leftovers, residual damage, ability cures, and late ability
-  effects use their supported timing. Bad Dreams precedes Hydration and Shed
-  Skin; status cures precede Yawn, then Perish Song. Weather chip and each
+  Trick Room reverses that order, as it does in Showdown. Leech Seed precedes
+  poison.
+- Weather, Wish, ability cures, Leftovers, residual damage, and late ability
+  effects use their supported timing. Each battler's Shed Skin or Hydration
+  resolves with its Leftovers after Wish and before Leech Seed and status
+  damage. Taunt and Yawn precede Perish Song; Trick Room's expiry then precedes
+  the shared Speed Boost/Bad Dreams/Harvest/Cud Chew pass. Weather chip and each
   holder's weather ability share the same Speed-ordered pass. Future Sight and
   Perish Song resolve each victim before continuing, and expired Future Sight
   is cleared even when weather has already removed its target. Replacements
@@ -123,8 +126,9 @@ are isolated under `.tmpbuild/full-audit-2026-10-01/`.
 - Eggs inherit the selected mother/non-Ditto parent's ability slot with the
   supported 80% regular / 60% hidden probabilities, accounting for offspring
   slot availability and evolution-dependent ability names.
-- Existing save-refusal propagation and the documented Snorlax breeding
-  exception were retained and validated. The pre-existing Pressure self-target
+- Existing save-refusal propagation was retained and validated. Snorlax
+  eggs hatch Munchlax (the game has no incense items), and the game-data
+  audit no longer carries a Snorlax exception. The pre-existing Pressure self-target
   exemptions also remain in the battle engine.
 
 ## Initial audit verification
@@ -212,6 +216,25 @@ audit artifacts above remain preserved as historical snapshots.
 | --- | --- |
 | Release ROM | `FB25A2AAA9FA3CBE36FE473E42FC017DFD186304BC8195C3134E618D421AA2E0` |
 | Debug ROM | `79F287C629BA6066811748F980F0E63E3510104D10B22AB8958FE94BBB559AD4` |
+
+## End-of-turn order follow-up
+
+A follow-up review against Showdown's residual orders found three timing
+errors in the initial pass, now corrected:
+
+- Shed Skin and Hydration (order 5.3) were running after status damage and
+  after Bad Dreams. They now run with Leftovers (5.4), per battler in Speed
+  order, so a successful cure prevents that turn's poison/burn/Bad Dreams.
+- Bad Dreams (28.2) was running before Taunt, Yawn and Perish Song. It now
+  shares the late ability pass with Speed Boost, Harvest and Cud Chew, so a
+  Yawn sleep that lands this turn is hit by Bad Dreams the same turn.
+- `GetResidualFirstSide` masked Trick Room. Showdown sorts residual handlers
+  by action speed, which Trick Room reverses, so residual order now follows
+  Trick Room. Trick Room's own expiry (27) runs before the late ability pass.
+
+Tests in `63-audit-residual-order-2026-10-01.yaml` were updated to the
+corrected order and extended with cure-before-damage, Yawn/Bad Dreams and
+Trick Room mirror cases.
 
 ## Mechanics references
 
