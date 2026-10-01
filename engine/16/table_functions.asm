@@ -39,6 +39,19 @@ PokemonTableGarbageCollection:
 	___conversion_bitmap_check_structs wBugContestFirstPlaceMon, wBugContestSecondPlaceMon - wBugContestFirstPlaceMon, 3, .set_bit
 	___conversion_bitmap_check_values .set_bit, wBufferMonSpecies, wTempMonSpecies, wContestMonSpecies, \
 	                                            wBattleMonSpecies, wEnemyMonSpecies, wOddEggSpecies, wBaseSpecies
+IF DEF(DEBUG_BATTLE)
+	; the battle tester parks the real party in WRAM bank 2 while a test
+	; party is out; its IDs must survive collections during the test
+	ld a, BANK(wDebugPartyBackedUp)
+	ldh [rSVBK], a
+	ld a, [wDebugPartyBackedUp]
+	and a
+	jr z, .no_debug_backup
+	___conversion_bitmap_check_structs wDebugPartyBackup + (wPartyMons - wPartyCount), PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+.no_debug_backup
+	ld a, 1
+	ldh [rSVBK], a
+ENDC
 	pop af
 	ldh [rSVBK], a
 	; Stored (boxed) mons keep true 16-bit indexes in SRAM and are not roots.
@@ -89,6 +102,21 @@ ___move = ___move + 1
 	                                            wEnemyChoiceLockedMove, wLastPlayerMove, wLastEnemyMove, wLastPlayerCounterMove, wLastEnemyCounterMove, \
 	                                            wPlayerTrappingMove, wEnemyTrappingMove, wPlayerMoveStructAnimation, wEnemyMoveStructAnimation, \
 	                                            wPutativeTMHMMove, wPlayerGigaHammerLock, wEnemyGigaHammerLock
+IF DEF(DEBUG_BATTLE)
+	ld a, BANK(wDebugPartyBackedUp)
+	ldh [rSVBK], a
+	ld a, [wDebugPartyBackedUp]
+	and a
+	jp z, .no_debug_backup
+___move = 0
+	rept NUM_MOVES
+		___conversion_bitmap_check_structs wDebugPartyBackup + (wPartyMon1Moves - wPartyCount) + ___move, PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+___move = ___move + 1
+	endr
+.no_debug_backup
+	ld a, 1
+	ldh [rSVBK], a
+ENDC
 	pop af
 	ldh [rSVBK], a
 	; Stored (boxed) mons keep true 14-bit move indexes in SRAM and are not roots.

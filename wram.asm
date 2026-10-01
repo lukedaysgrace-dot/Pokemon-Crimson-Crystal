@@ -538,6 +538,9 @@ wDisguiseBusted:: ds 2
 ; (Both wDisguiseBusted bytes have no free bits: 0-5 are per-slot
 ; busted-disguise markers, 6/7 are guard flags.)
 wAbilityStatDropFlag:: db
+; nz while a Neutralizing Gas holder has been active on the field; cleared
+; (and the other battler's entry abilities re-run) once no holder remains
+wNeutralizingGasActive:: db
 
 wPlayerDamageTaken:: dw ; c682
 wEnemyDamageTaken:: dw ; c684

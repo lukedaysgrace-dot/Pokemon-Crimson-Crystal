@@ -27,6 +27,12 @@ NotifyNeutralizingGasText:
 	line "filled the area!"
 	prompt
 
+NeutralizingGasWoreOffText:
+	text "The effects of"
+	line "the neutralizing"
+	cont "gas wore off!"
+	prompt
+
 BecameHealthyText:
 	text "<USER>"
 	line "became healthy!"

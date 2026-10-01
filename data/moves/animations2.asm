@@ -151,7 +151,8 @@ BattleAnim_Astonish:
 	anim_wait 1
 	anim_clearobjs
 	anim_wait 1
-	anim_battlergfx_2row
+	; (the battler tiles loaded above are still valid; loading them again
+	; appended two more entries past the end of the tile list)
 	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $1, $0
 	anim_wait 1
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
@@ -1503,7 +1504,13 @@ BattleAnim_WaterPulse:
 	anim_wait 3
 	anim_loop 3, .loop2
 	anim_wait 32
-	anim_call BattleAnim_ShowMon_1_B
+	; ShowMon_1_B would advance object 1 (the first wave); the user's copy from
+	; ANIM_BG_BATTLEROBJ_1ROW is object 4, after the three waves
+	anim_wait 1
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 4
+	anim_incobj 4
+	anim_wait 1
 	anim_ret
 
 
