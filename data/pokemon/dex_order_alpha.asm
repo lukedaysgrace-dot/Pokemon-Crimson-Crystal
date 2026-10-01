@@ -171,6 +171,7 @@ AlphabeticalPokedexOrder:
 	dw GOLETT
 	dw GOLISOPOD
 	dw GOLURK
+	dw GOROCHU
 	dw GOROTORA
 	dw GRANBULL
 	dw GRAVELER

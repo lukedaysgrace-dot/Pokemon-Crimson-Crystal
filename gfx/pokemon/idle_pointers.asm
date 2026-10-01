@@ -493,3 +493,4 @@ AnimationIdlePointers:
 	dba SandileAnimationIdle
 	dba KrokorokAnimationIdle
 	dba KrookodileAnimationIdle
+	dba GorochuAnimationIdle

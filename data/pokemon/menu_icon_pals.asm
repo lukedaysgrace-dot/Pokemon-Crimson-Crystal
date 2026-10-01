@@ -502,3 +502,4 @@ MonMenuIconPals:
 	icon_pals BROWN,  BLUE   ; SANDILE
 	icon_pals BROWN,  BLUE   ; KROKOROK
 	icon_pals BROWN,  BLUE   ; KROOKODILE
+	icon_pals RED,    PURPLE ; GOROCHU

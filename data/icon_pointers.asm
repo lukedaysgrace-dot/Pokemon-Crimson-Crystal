@@ -495,3 +495,4 @@ IconPointers:
 	dba TotodileIcon ; SANDILE
 	dba CroconawIcon ; KROKOROK
 	dba FeraligatrIcon ; KROOKODILE
+	dba GorochuIcon

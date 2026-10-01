@@ -493,3 +493,4 @@ BitmasksPointers:
 	dw SandileBitmasks
 	dw KrokorokBitmasks
 	dw KrookodileBitmasks
+	dw GorochuBitmasks

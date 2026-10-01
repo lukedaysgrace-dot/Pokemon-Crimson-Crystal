@@ -347,6 +347,7 @@ EggMovePointers2::
 	dw SandileEggMoves ; SANDILE
 	dw NoEggMoves2 ; KROKOROK
 	dw NoEggMoves2 ; KROOKODILE
+	dw NoEggMoves2 ; GOROCHU (breeds PICHU)
 
 
 ChikoritaEggMoves:

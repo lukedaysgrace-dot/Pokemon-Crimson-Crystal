@@ -1,2 +1,3 @@
-	RGB 10, 26, 28
-	RGB 18,  8, 25
+; Reference colors: gold #FFC678 and purple #7E34DB (GBC 5-bit channels).
+	RGB 31, 24, 15
+	RGB 15,  6, 27

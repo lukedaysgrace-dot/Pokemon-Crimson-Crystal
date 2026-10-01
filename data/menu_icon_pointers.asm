@@ -496,3 +496,4 @@ MenuIconPointers:
 	dba SandileMenuIcon
 	dba KrokorokMenuIcon
 	dba KrookodileMenuIcon
+	dba GorochuMenuIcon

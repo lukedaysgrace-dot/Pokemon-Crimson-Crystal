@@ -1001,3 +1001,5 @@ PokemonPicPointers::
 	dba KrokorokBackpic
 	dba KrookodileFrontpic
 	dba KrookodileBackpic
+	dba GorochuFrontpic
+	dba GorochuBackpic
