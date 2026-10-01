@@ -79,20 +79,21 @@ Route2DiglettsCaveBlockerText:
 Route2_MapEvents:
 	db 0, 0 ; filler
 
-	db 6 ; warp events
+	db 7 ; warp events
 	warp_event 12,  9, DIGLETTS_CAVE, 3
 	warp_event  3, 11, VIRIDIAN_FOREST_NORTH_GATE, 2
 	warp_event 15, 19, ROUTE_2_NUGGET_HOUSE, 1
 	warp_event 16, 35, ROUTE_2_GATE, 1
 	warp_event 15, 39, ROUTE_2_GATE, 3
 	warp_event  3, 43, VIRIDIAN_FOREST_SOUTH_GATE, 3
+	warp_event 17, 35, ROUTE_2_GATE, 2
 
 	db 0 ; coord events
 
 	db 6 ; bg events
 	bg_event  5, 65, BGEVENT_READ, Route2Sign
 	bg_event 11, 11, BGEVENT_READ, Route2DiglettsCaveSign
-	bg_event  1, 12, BGEVENT_ITEM, Route2HiddenMaxEther
+	bg_event  6, 12, BGEVENT_ITEM, Route2HiddenMaxEther
 	bg_event 18,  7, BGEVENT_ITEM, Route2HiddenFullHeal
 	bg_event 16, 50, BGEVENT_ITEM, Route2HiddenFullRestore
 	bg_event  4, 66, BGEVENT_ITEM, Route2HiddenRevive

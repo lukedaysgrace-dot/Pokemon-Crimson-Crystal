@@ -549,8 +549,20 @@ LoadPortraitMailGFX:
 	call LovelyEonMail_PlaceIcons
 	ld a, $1
 	ld [wUnownLetter], a
+	; The mail stores an 8-bit runtime species ID. If that ID has since been
+	; freed (e.g. the holder evolved and the table was cleaned up on save),
+	; it no longer maps to a species: draw no portrait rather than garbage.
+	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	inc a
+	jr z, .no_portrait ; reserved ID (e.g. EGG)
+	ld a, h
+	or l
+	jr z, .no_portrait
 	hlcoord 1, 10
 	call PrepMonFrontpic
+.no_portrait
 	pop hl
 	jp MailGFX_PlaceMessage
 

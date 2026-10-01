@@ -121,3 +121,11 @@
 	const CRY_DREEPY
 	const CRY_DRAKLOAK
 	const CRY_DRAGAPULT
+; Additional cries imported from Polished Coral
+	const CRY_TIRTOUGA
+	const CRY_CARRACOSTA
+	const CRY_ARCHEN
+	const CRY_ARCHEOPS
+; Paldea (gen 9)
+	const CRY_FLITTLE
+	const CRY_ESPATHRA

@@ -623,11 +623,8 @@ FlyFunction:
 .outdoors
 	xor a
 	ldh [hMapAnims], a
-	push hl
-	ld hl, FLY
-	call FindFirstPartyMonCanLearnMove
-	ld [wCurPartyMon], a
-	pop hl
+	; wCurPartyMon is the mon picked in the party menu (the only caller);
+	; keep it so the fly map icon and takeoff graphic show that mon
 	call LoadStandardMenuHeader
 	call ClearSprites
 	farcall _FlyMap

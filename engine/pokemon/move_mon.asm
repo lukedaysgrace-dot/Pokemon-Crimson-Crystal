@@ -967,7 +967,7 @@ SendMonIntoBox:
 .not_unown
 	farcall AddTempMonToStorage
 	cp PCSTORE_FULL
-	ccf ; carry if a < PCSTORE_FULL, i.e. stored
+	; carry if a < PCSTORE_FULL, i.e. stored
 	ret
 
 GiveEgg::

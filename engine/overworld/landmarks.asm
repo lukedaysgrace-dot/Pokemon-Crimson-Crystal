@@ -73,6 +73,9 @@ RegionCheck:
 ; Victory Road area is considered to be Johto.
 	cp VICTORY_ROAD
 	jr c, .kanto
+; Kanto landmarks added after FAST_SHIP (Viridian Forest, the bird islands).
+	cp FAST_SHIP + 1
+	jr nc, .kanto
 
 .johto
 	ld e, JOHTO_REGION
