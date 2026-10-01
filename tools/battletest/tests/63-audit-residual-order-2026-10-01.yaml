@@ -48,10 +48,20 @@
     - player.hp == player.start_hp + enemy.maxhp // 8 - player.maxhp // 8
     - enemy.start_hp - enemy.hp == enemy.maxhp // 8
 
-- name: "Residual stages: Trick Room does not reverse Leech Seed's effective Speed order"
+- name: "Residual stages: Trick Room reverses Leech Seed's effective Speed order"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp - player.start_hp == enemy.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: without Trick Room the faster Leech Seed victim drains first"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
-  setup_wram: { wTrickRoomTimer: 3 }
   rng: forced_high
   turns: 1
   assert:
@@ -181,25 +191,64 @@
     - enemy.hp == enemy.start_hp
     - wram('wBattleEnded') == 1
 
-- name: "Residual stages: Bad Dreams deals damage before Hydration cures sleep"
+- name: "Residual stages: Hydration cures sleep before Bad Dreams can damage"
   player: { species: TAUROS, level: 50, ability: HYDRATION, hp: 50, status_byte: 3, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
   weather: rain
   rng: forced_high
   turns: 1
   assert:
-    - player.start_hp - player.hp == player.maxhp // 8
+    - player.hp == player.start_hp
     - player.status == 0
 
-- name: "Residual stages: Bad Dreams deals damage before Shed Skin cures sleep"
+- name: "Residual stages: Shed Skin cures sleep before Bad Dreams can damage"
   player: { species: TAUROS, level: 50, ability: SHED_SKIN, hp: 50, status_byte: 3, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
   rng: forced_low
   rng_value: 12 # divisible by three so Shed Skin procs; valid single-move RNG
   turns: 1
   assert:
-    - player.start_hp - player.hp == player.maxhp // 8
+    - player.hp == player.start_hp
     - player.status == 0
+
+- name: "Residual stages: Bad Dreams still damages a sleeper that Hydration cannot cure"
+  player: { species: TAUROS, level: 50, ability: HYDRATION, hp: 50, status_byte: 3, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 8
+    - player.status != 0
+
+- name: "Residual stages: Shed Skin cures poison before the poison tick"
+  player: { species: TAUROS, level: 50, ability: SHED_SKIN, hp: 50, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  rng_value: 12 # divisible by three so Shed Skin procs; valid single-move RNG
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - player.status == 0
+
+- name: "Residual stages: Hydration cures burn in rain before the burn tick"
+  player: { species: TAUROS, level: 50, ability: HYDRATION, hp: 50, status_byte: 16, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - player.status == 0
+
+- name: "Residual stages: Yawn sleep lands before Bad Dreams in the same end of turn"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
+  setup_wram: { wPlayerYawnCount: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.status != 0
+    - player.start_hp - player.hp == player.maxhp // 8
 
 - name: "Residual stages: player's Future Sight last-mon knockout ends before its poison tick"
   player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
@@ -249,25 +298,25 @@
     - player.hp == player.maxhp // 2
     - wram('wEnemyFutureSightCount') == 0
 
-- name: "Residual stages: simultaneous Future Sight strikes resolve by target Speed despite Trick Room"
+- name: "Residual stages: Trick Room reverses simultaneous Future Sight target order"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
   setup_wram: { wPlayerFutureSightCount: 2, wPlayerFutureSightDamage: [0, 20], wEnemyFutureSightCount: 2, wEnemyFutureSightDamage: [0, 20], wTrickRoomTimer: 3 }
   rng: forced_high
   turns: 1
   assert:
-    - player.hp == 0
-    - enemy.hp == enemy.start_hp
+    - enemy.hp == 0
+    - player.hp == player.start_hp
 
-- name: "Residual stages: faster player's last-mon Perish Song expires before the enemy's"
+- name: "Residual stages: under Trick Room the slower enemy's last-mon Perish Song expires first"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
   setup_wram: { wPlayerPerishCount: 1, wEnemyPerishCount: 1, wTrickRoomTimer: 3 }
   rng: forced_high
   turns: 1
   assert:
-    - player.hp == 0
-    - enemy.hp == enemy.start_hp
+    - enemy.hp == 0
+    - player.hp == player.start_hp
     - wram('wBattleEnded') == 1
 
 - name: "Residual stages: faster enemy's last-mon Perish Song expires before the player's"
@@ -294,7 +343,7 @@
     - enemy.status != 0
     - wram('wNeutralizingGasActive') == 0
 
-- name: "Residual stages: faster player's last-mon sandstorm knockout ends before the enemy's"
+- name: "Residual stages: under Trick Room the slower enemy's last-mon sandstorm knockout ends first"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
   setup_wram: { wTrickRoomTimer: 3 }
@@ -302,8 +351,8 @@
   rng: forced_high
   turns: 1
   assert:
-    - player.hp == 0
-    - enemy.hp == enemy.start_hp
+    - enemy.hp == 0
+    - player.hp == player.start_hp
 
 - name: "Residual stages: faster enemy's last-mon sandstorm knockout ends before the player's"
   player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
@@ -328,7 +377,6 @@
 - name: "Residual stages: faster enemy's last-mon hail knockout ends before the player's"
   player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
   enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
-  setup_wram: { wTrickRoomTimer: 3 }
   weather: hail
   rng: forced_high
   turns: 1
@@ -349,3 +397,42 @@
     - enemy.species == 'SPHEAL'
     - wram('wNeutralizingGasActive') == 0
 
+- name: "Residual stages: under Trick Room the slower player's last-mon hail knockout ends first"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Residual stages: both battlers' Leftovers heal exactly once each"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, item: LEFTOVERS, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, item: LEFTOVERS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp - player.start_hp == player.maxhp // 16
+    - enemy.hp - enemy.start_hp == enemy.maxhp // 16
+
+- name: "Residual stages: both battlers' Leftovers heal exactly once each under Trick Room"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, item: LEFTOVERS, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, item: LEFTOVERS, moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp - player.start_hp == player.maxhp // 16
+    - enemy.hp - enemy.start_hp == enemy.maxhp // 16
+
+- name: "Residual stages: Shed Skin cure and Leftovers both resolve before poison"
+  player: { species: TAUROS, level: 50, ability: SHED_SKIN, hp: 50, status_byte: 8, item: LEFTOVERS, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  rng_value: 12 # divisible by three so Shed Skin procs; valid single-move RNG
+  turns: 1
+  assert:
+    - player.hp - player.start_hp == player.maxhp // 16
+    - player.status == 0

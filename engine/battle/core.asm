@@ -316,28 +316,28 @@ HandleBetweenTurnEffects:
 	ret nz
 	farcall RunFaintAbilities
 	farcall HandleWishBoth_Core
-	call HandleLeftovers
+	call HandleStatusCureAbilitiesAndLeftovers
 	call HandleResidualDamageBoth
 	ld a, [wBattleEnded]
 	and a
 	ret nz
-	farcall RunBadDreamsAbilitiesBoth
-	ld a, [wBattleEnded]
-	and a
-	ret nz
-	farcall RunEndTurnStatusAbilitiesBoth
-	; Taunt wear-off and Yawn follow status cures, before Perish Song.
+	; Taunt wear-off and Yawn follow residual damage, before Perish Song.
 	farcall HandleNewEndTurnEffects_Core
 	call HandlePerishSong
 	ld a, [wBattleEnded]
 	and a
 	ret nz
 	farcall RunFaintAbilities
+	; Trick Room ends before the late Speed-ordered abilities run.
+	farcall HandleTrickRoom
+	; Speed Boost, Bad Dreams, Harvest and Cud Chew share one Speed-ordered pass.
 	farcall RunEndTurnAbilitiesBoth
+	ld a, [wBattleEnded]
+	and a
+	ret nz
 	farcall RunFaintAbilities
 	call HandleMysteryberry
 	; Frostbite no longer self-thaws; it persists like burn until cured.
-	farcall HandleTrickRoom
 	farcall HandleRoost
 	call HandleSafeguard
 	call HandleScreens
@@ -1107,7 +1107,7 @@ CheckIfHPIsZero:
 HandleResidualDamageBoth:
 ; End-of-turn effects resolve by effect first, then effective Speed.
 ; Leech Seed can save a poisoned source before poison damage is applied.
-; Trick Room reverses move order only. Keep the caller's turn unchanged.
+; Trick Room reverses this order too. Keep the caller's turn unchanged.
 	ldh a, [hBattleTurn]
 	push af
 	farcall GetResidualFirstSide
@@ -1489,20 +1489,40 @@ SwitchTurnCore:
 	ldh [hBattleTurn], a
 	ret
 
-HandleLeftovers:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .DoEnemyFirst
-	call SetPlayerTurn
+HandleStatusCureAbilitiesAndLeftovers:
+; Residual order 5: after Wish and before Leech Seed/status damage, each
+; battler in effective Speed order resolves Shed Skin or Hydration, then
+; its Leftovers. Trick Room reverses this order like other residuals.
+	farcall RunStatusHealAbilitiesBoth
+	ldh a, [hBattleTurn]
+	push af
+	farcall GetResidualFirstSide
+	ldh [hBattleTurn], a
 	call .do_it
-	call SetEnemyTurn
-	jp .do_it
+	call SwitchTurnCore
+	call .do_it
+	pop af
+	ldh [hBattleTurn], a
+	ret
 
-.DoEnemyFirst:
-	call SetEnemyTurn
-	call .do_it
-	call SetPlayerTurn
 .do_it
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call HasUserFainted
+	ret z
+	ldh a, [hBattleTurn]
+	push af
+	farcall RunEndTurnStatusAbility
+	pop af
+	ldh [hBattleTurn], a
+	push af
+	call HandleUserLeftovers ; switches turns to restore HP
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
+HandleUserLeftovers:
 	call HasUserFainted
 	ret z
 
