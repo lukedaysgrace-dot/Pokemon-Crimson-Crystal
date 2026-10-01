@@ -107,7 +107,80 @@ SPECIAL_DISPLAY_NAMES = {
     'V_CREATE': 'V-create',
     'FREEZE_DRY': 'Freeze-Dry',
     'TRI_ATTACK': 'Tri Attack',
+    'CURSE_T': '???',
+    'MINDS_EYE': "Mind's Eye",
 }
+
+# Move names. The ROM's move-name table is ALL CAPS and squeezed into 12
+# characters (DAZZLE GLEAM, PHANTOMFORCE...), so the site uses each move's
+# constant and fixes the handful that do not read correctly on their own.
+MOVE_DISPLAY_NAMES = {
+    'THUNDERPUNCH': 'Thunder Punch', 'VICEGRIP': 'Vise Grip', 'SAND_ATTACK': 'Sand Attack',
+    'SONICBOOM': 'Sonic Boom', 'BUBBLEBEAM': 'Bubble Beam', 'SOLARBEAM': 'Solar Beam',
+    'POISONPOWDER': 'Poison Powder', 'THUNDERSHOCK': 'Thunder Shock', 'SMOKESCREEN': 'Smokescreen',
+    'SELFDESTRUCT': 'Self-Destruct', 'HI_JUMP_KICK': 'High Jump Kick', 'DOUBLESLAP': 'Double Slap',
+    'CONVERSION2': 'Conversion 2', 'FAINT_ATTACK': 'Feint Attack', 'MUD_SLAP': 'Mud-Slap',
+    'LOCK_ON': 'Lock-On', 'DYNAMICPUNCH': 'Dynamic Punch', 'DRAGONBREATH': 'Dragon Breath',
+    'EXTREMESPEED': 'Extreme Speed', 'ANCIENTPOWER': 'Ancient Power', 'ACCELROCK': 'Accelerock',
+    'DUALWINGBEAT': 'Dual Wingbeat', 'PHANTOMFORCE': 'Phantom Force', 'HEADLONGRUSH': 'Headlong Rush',
+    'SHELLSIDEARM': 'Shell Side Arm', 'PSYSHIELD': 'Psyshield Bash', 'STRANGESTEAM': 'Strange Steam',
+    'BANEFUL_BUNKER': 'Baneful Bunker', 'KOWTOW_CLEAVE': 'Kowtow Cleave',
+}
+def move_disp(const):
+    c=(const or '').strip().upper()
+    return MOVE_DISPLAY_NAMES.get(c) or disp(c)
+
+# Plain-English labels for base-data constants.
+GENDER_TEXT = {
+    'GENDER_F0': '100% male', 'GENDER_F12_5': '87.5% male, 12.5% female',
+    'GENDER_F25': '75% male, 25% female', 'GENDER_F50': '50% male, 50% female',
+    'GENDER_F75': '25% male, 75% female', 'GENDER_F100': '100% female',
+    'GENDER_UNKNOWN': 'Genderless',
+}
+EGG_GROUP_TEXT = {
+    'EGG_MONSTER': 'Monster', 'EGG_WATER_1': 'Water 1', 'EGG_BUG': 'Bug', 'EGG_FLYING': 'Flying',
+    'EGG_GROUND': 'Field', 'EGG_FAIRY': 'Fairy', 'EGG_PLANT': 'Grass', 'EGG_HUMANSHAPE': 'Human-Like',
+    'EGG_WATER_3': 'Water 3', 'EGG_MINERAL': 'Mineral', 'EGG_INDETERMINATE': 'Amorphous',
+    'EGG_WATER_2': 'Water 2', 'EGG_DITTO': 'Ditto', 'EGG_DRAGON': 'Dragon',
+    'EGG_NONE': 'Undiscovered (cannot breed)',
+}
+GROWTH_TEXT = {
+    'GROWTH_MEDIUM_FAST': 'Medium Fast', 'GROWTH_SLIGHTLY_FAST': 'Slightly Fast',
+    'GROWTH_SLIGHTLY_SLOW': 'Slightly Slow', 'GROWTH_MEDIUM_SLOW': 'Medium Slow',
+    'GROWTH_FAST': 'Fast', 'GROWTH_SLOW': 'Slow',
+}
+def clean_game_text(t):
+    """In-game text uses Game Boy shorthand (ATTACK, SPCL.ATK, POKéMON).
+    Make it read naturally on the web."""
+    for a,b in (('SPCL.ATK','Sp. Atk'),('SPCL.DEF','Sp. Def'),('SPCL. ATK','Sp. Atk'),
+                ('SPCL. DEF','Sp. Def'),('SP.ATK','Sp. Atk'),('SP.DEF','Sp. Def'),
+                ('ATTACK','Attack'),('DEFENSE','Defense'),('SPEED','Speed'),('ACCURACY','Accuracy'),
+                ('EVASION','Evasion'),('POKéMON','Pokémon'),('#MON','Pokémon'),('#','Poké'),
+                ('STATUS','status'),('PP','PP'),('HP','HP')):
+        t=t.replace(a,b)
+    t=re.sub(r'\s+',' ',t).strip()
+    return t
+def read_text_blocks(path):
+    """label -> joined text for blocks written as db/text/next/line/cont lines."""
+    out={}; cur=None; parts=[]
+    def flush():
+        if cur is not None:
+            txt_=''
+            for x in parts:
+                if txt_.endswith('-') and x[:1].islower(): txt_=txt_[:-1]+x
+                else: txt_=(txt_+' '+x) if txt_ else x
+            out[cur]=clean_game_text(txt_)
+    for raw in txt(path).splitlines():
+        l=strip(raw)
+        m=re.match(r'^([A-Za-z0-9_]+):',l)
+        if m:
+            flush(); cur=m.group(1); parts=[]; continue
+        if cur is None: continue
+        for q in re.findall(r'"([^"]*)"',l):
+            q=q.replace('@','').strip()
+            if q: parts.append(q)
+    flush()
+    return out
 
 def disp(s):
     raw=s.strip().strip(',"').replace('@','')
@@ -124,11 +197,24 @@ def form_label(const, name):
     ('_PALDEAN_WATER','Paldean Aqua Breed'),
     ('_PALDEAN','Paldean'),
     ('_BLOODMOON','Bloodmoon'),
+    ('BM','Bloodmoon'),       # TEDDIURSABM / URSARINGBM / URSALUNABM
   )
   for suffix,label in suffixes:
     if const.endswith(suffix):
       return f'{name} ({label})'
   return name
+
+def pretty_location(const):
+    """Map constants -> readable place names: BURNED_TOWER_1F -> Burned Tower 1F,
+    RUINS_OF_ALPH_OUTSIDE -> Ruins of Alph Outside, DIGLETTS_CAVE -> Diglett's Cave."""
+    t=disp(const)
+    t=re.sub(r'\b(B?\d+)f\b',lambda m:m.group(1).upper()+'F',t)
+    t=re.sub(r'\b(Ne|Nw|Se|Sw)\b',lambda m:m.group(1).upper(),t)
+    for a,b in ((' Of ',' of '),('Digletts',"Diglett's"),('Dragons Den',"Dragon's Den"),
+                ('Mount Moon','Mt. Moon'),('Mount Mortar','Mt. Mortar'),
+                ('Whirl Island','Whirl Islands')):
+        t=t.replace(a,b)
+    return t
 
 def slug(s):
     return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
@@ -150,31 +236,46 @@ def pretty_group(const):
 # data/pokemon/evos_attacks_*.asm. Nothing on the site should show raw assembly.
 HAPPINESS_WHEN={'TR_ANYTIME':'','TR_MORNDAY':' during the day','TR_NITE':' at night'}
 STAT_COMPARE={
-    'ATK_GT_DEF':'Attack higher than Defense',
-    'ATK_LT_DEF':'Attack lower than Defense',
-    'ATK_EQ_DEF':'Attack equal to Defense',
+    'ATK_GT_DEF':'Attack is higher than Defense',
+    'ATK_LT_DEF':'Attack is lower than Defense',
+    'ATK_EQ_DEF':'Attack and Defense are equal',
 }
 NO_HELD_ITEM={'-1','$FF','255','NO_ITEM','NONE'}
 
 def describe_evolution(method, args, item, species):
     """method: EVOLVE_* constant. args: the parameters before the target species.
     item/species: callables turning a constant into a display name."""
+    # Argument layouts match engine/pokemon/evolve.asm and the format notes at
+    # the top of data/pokemon/evos_attacks.asm.
     a0=args[0] if args else ''
     a1=args[1] if len(args)>1 else ''
+    _item=item
+    item=lambda c: (lambda n: ('an ' if n[:1].upper() in 'AEIOU' else 'a ')+n)(_item(c))
     if method=='EVOLVE_LEVEL':        return f'Level {a0}'
     if method=='EVOLVE_LEVEL_MALE':   return f'Level {a0} (male only)'
     if method=='EVOLVE_LEVEL_FEMALE': return f'Level {a0} (female only)'
     if method=='EVOLVE_ITEM':         return f'Use {item(a0)}'
     if method=='EVOLVE_TRADE':
-        return 'Trade' if a0.upper() in NO_HELD_ITEM else f'Trade holding {item(a0)}'
+        return 'Trade' if a0.upper() in NO_HELD_ITEM else f'Trade while holding {item(a0)}'
     if method=='EVOLVE_HAPPINESS':
         return 'Level up with high friendship'+HAPPINESS_WHEN.get(a0.upper(),'')
     if method=='EVOLVE_STAT':
-        return f'Level {a0} with '+STAT_COMPARE.get(a1.upper(),disp(a1))
-    if method=='EVOLVE_MOVE':    return f'Level up knowing {disp(a0)}'
-    if method=='EVOLVE_HOLDING': return f'Level up holding {item(a0)} during the day'
+        return f'Level {a0} when '+STAT_COMPARE.get(a1.upper(),disp(a1))
+    if method=='EVOLVE_MOVE':    return f'Level up knowing {move_disp(a0)}'
+    # dbbbw EVOLVE_HOLDING, level, held item, species. The engine checks the
+    # level and the held item only (no time-of-day check) and uses up the item.
+    if method=='EVOLVE_HOLDING': return f'Level {a0} while holding {item(a1)}'
     if method=='EVOLVE_PARTY':   return f'Level up with {species(a0)} in the party'
     return ' '.join(x for x in [disp(method.replace('EVOLVE_',''))]+[disp(x) for x in args] if x)
+def fmt_power(m):
+    v=m.get('power')
+    if v is None or v==0: return '—'
+    if v==1: return 'Varies'   # fixed-damage / OHKO / variable-power moves
+    return str(v)
+def fmt_acc(m):
+    v=m.get('accuracy')
+    if v is None: return '—'
+    return f'{v}%'
 def num(s):
     try:return int(s.strip().replace('$','0x'),0)
     except:return None
@@ -183,6 +284,7 @@ class Builder:
   def __init__(self, repo):
     self.r=repo; self.o=repo/'docs'; self.a=self.o/'assets'; self.report={'warnings':[],'unparsed':[]}
     self.dex_numbers={}
+    self.tm_index={}; self.ability_desc={}; self._items={}
   def dex_order(self, order):
     """Regional dex numbering from data/pokemon/dex_order_new.asm.
 
@@ -282,13 +384,101 @@ class Builder:
       am=re.search(
         r'\babilities_for\s+[A-Z0-9_]+\s*,\s*([A-Z0-9_]+)\s*,\s*([A-Z0-9_]+)\s*,\s*([A-Z0-9_]+)',
         txt(p), re.I)
+      ability_slots=[]
       if am:
         abilities=[disp(x) for x in am.groups() if x.upper() not in {'NO_ABILITY','NONE'}]
+        seen=set()
+        for slot,x in enumerate(am.groups()):
+          if x.upper() in {'NO_ABILITY','NONE'}: continue
+          name=disp(x)
+          if name in seen: continue
+          seen.add(name)
+          ability_slots.append({'name':name,'hidden':slot==2})
+        abilities=list(dict.fromkeys(abilities))
       else:
         # Fallback for forks that store abilities on a normal db line.
         am=re.search(r'abilit(?:y|ies).*?(?:db\s+)?([A-Z][A-Z0-9_]*(?:\s*,\s*[A-Z][A-Z0-9_]*){0,2})',txt(p),re.I)
         if am: abilities=[disp(x) for x in am.group(1).split(',')]
-      out[c]={'const':c,'name':names[c],'number':self.dex_numbers.get(c,i),'stats':stats,'types':types,'abilities':abilities,'learnset':[],'evolutions':[],'egg_moves':[],'sprite':None}
+      out[c]={'const':c,'name':names[c],'number':self.dex_numbers.get(c,i),'stats':stats,'types':types,'abilities':abilities,'ability_slots':ability_slots,'learnset':[],'evolutions':[],'egg_moves':[],'tmhm':[],'info':self.base_info(p,c),'sprite':None}
+      # TM / HM / move tutor compatibility: `tmhm MOVE, MOVE, ...`
+      tm=re.search(r'^\s*tmhm\b(.*)$',txt(p),re.M)
+      if tm:
+        for mv in [x.strip().upper() for x in strip(tm.group(1)).split(',') if x.strip()]:
+          if mv in self.tm_index:
+            out[c]['tmhm'].append(mv)
+          else:
+            self.report['warnings'].append(f'{c}: tmhm lists {mv}, which is not a TM, HM or tutor move')
+        order={k:i for i,k in enumerate(self.tm_index)}
+        out[c]['tmhm']=sorted(dict.fromkeys(out[c]['tmhm']),key=lambda x:order[x])
+    return out
+
+  def base_info(self, p, c):
+    """Catch rate, held items, gender, breeding and growth from a base_stats file,
+    already converted to display text."""
+    info={}
+    for raw in txt(p).splitlines():
+      comment=raw.split(';',1)[1].strip().lower() if ';' in raw else ''
+      l=strip(raw)
+      vals=[v.strip() for v in re.sub(r'^(db|dn|dw)\s+','',l,flags=re.I).split(',')] if l else []
+      if comment.startswith('catch rate') and vals: info['catch_rate']=num(vals[0])
+      elif comment.startswith('base exp') and vals: info['base_exp']=num(vals[0])
+      elif comment.startswith('items') and len(vals)>=2:
+        info['items']=[x.upper() for x in vals[:2]]
+      elif comment.startswith('gender ratio') and vals:
+        info['gender']=GENDER_TEXT.get(vals[0].upper(),disp(vals[0]))
+      elif comment.startswith('step cycles') and vals: info['egg_cycles']=num(vals[0])
+      elif comment.startswith('growth rate') and vals:
+        info['growth']=GROWTH_TEXT.get(vals[0].upper(),disp(vals[0].upper().replace('GROWTH_','')))
+      elif comment.startswith('egg groups') and vals:
+        groups=[EGG_GROUP_TEXT.get(x.upper(),disp(x)) for x in vals[:2]]
+        info['egg_groups']=list(dict.fromkeys(groups))
+    return info
+
+  def tm_table(self):
+    """Ordered TM01.., HM01.., tutor moves from constants/item_constants.asm,
+    exactly as the tmhm macro numbers them."""
+    p=self.r/'constants/item_constants.asm'; out={}
+    if not p.exists():
+      self.report['warnings'].append('constants/item_constants.asm not found; TM/HM learnsets skipped')
+      return out
+    tm=hm=mt=0
+    for raw in txt(p).splitlines():
+      m=re.match(r'^\s*(add_tm|add_hm|add_mt)\s+([A-Z0-9_]+)',strip(raw),re.I)
+      if not m: continue
+      kind,mv=m.group(1).lower(),m.group(2).upper()
+      if kind=='add_tm': tm+=1; out[mv]=f'TM{tm:02}'
+      elif kind=='add_hm': hm+=1; out[mv]=f'HM{hm:02}'
+      else: mt+=1; out[mv]='Tutor'
+    return out
+
+  def egg_moves(self, mons):
+    look={re.sub('[^a-z0-9]','',k.lower()):k for k in mons}
+    for p in sorted((self.r/'data/pokemon').glob('egg_moves*.asm')):
+      cur=None
+      for raw in txt(p).splitlines():
+        l=strip(raw)
+        m=re.match(r'^([A-Za-z0-9_]+)EggMoves:',l)
+        if m:
+          cur=look.get(re.sub('[^a-z0-9]','',m.group(1).lower()))
+          if cur is None and not m.group(1).startswith('No'):
+            self.report['warnings'].append(f'{p.name}: egg-move label {m.group(1)}EggMoves matches no species')
+          continue
+        if not cur: continue
+        mm=re.match(r'^dw\s+([A-Z0-9_]+)\s*$',l,re.I)
+        if mm:
+          mons[cur]['egg_moves'].append(mm.group(1).upper())
+        elif re.match(r'^dw\s+-1',l): cur=None
+
+  def ability_descriptions(self):
+    """Ability display name -> in-game description."""
+    np=self.r/'data/abilities/names.asm'; dp=self.r/'data/abilities/descriptions.asm'
+    if not (np.exists() and dp.exists()): return {}
+    names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]*)"',txt(np))]
+    labels=re.findall(r'^\s*dw\s+([A-Za-z0-9_]+)',txt(dp).split('AbilityDescriptions::',1)[-1],re.M)
+    blocks=read_text_blocks(dp); out={}
+    for n,lab in zip(names,labels):
+      key=re.sub('[^a-z0-9]','',n.lower())
+      if key and lab in blocks: out[key]=blocks[lab]
     return out
   def learnsets(self, mons):
     look={re.sub('[^a-z0-9]','',k.lower()):k for k in mons}
@@ -402,6 +592,9 @@ class Builder:
     p=self.r/'data/moves/moves.asm'; n=self.r/'data/moves/names.asm'; out=[]
     names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]+)',txt(n))] if n.exists() else []
     if not p.exists(): return out
+    dp=self.r/'data/moves/descriptions.asm'
+    desc_blocks=read_text_blocks(dp) if dp.exists() else {}
+    desc_labels=re.findall(r'^\s*dw\s+([A-Za-z0-9_]+)',txt(dp).split('MoveDescriptions1:',1)[-1].split('\n\n',1)[0],re.M) if dp.exists() else []
     for raw in txt(p).splitlines():
       m=re.search(r'\bmove\s+(.+)',strip(raw),re.I)
       if not m: continue
@@ -419,7 +612,13 @@ class Builder:
         name=SPECIAL_DISPLAY_NAMES[move_const]
       if not move_const:
         move_const=re.sub('[^A-Z0-9]+','_',name.upper()).strip('_')
-      out.append({'const':move_const,'name':name,'effect':disp(v[0]),'power':num(v[1]),'type':disp(v[2]),'category':disp(v[3]),'accuracy':num(v[4]),'pp':num(v[5]),'chance':num(v[6])})
+      rom_name=name
+      name=move_disp(move_const)
+      desc=desc_blocks.get(desc_labels[idx]) if idx<len(desc_labels) else None
+      out.append({'const':move_const,'name':name,'rom_name':rom_name,'description':desc,
+                  'power':num(v[1]),'type':disp(v[2]),
+                  'category':disp(re.sub(r'^CATEGORIZE_','',v[3].upper())),
+                  'accuracy':num(v[4]),'pp':num(v[5]),'chance':num(v[6])})
     return out
   def export_static_sprite(self, src, dst):
     """Copy a square static sprite, or crop the first frame from a sprite sheet."""
@@ -535,7 +734,7 @@ class Builder:
         return
       out.append({
         'location_const':location.upper(),
-        'location':disp(location),
+        'location':pretty_location(location),
         'method':method,
         'time':time,
         'level':int(level),
@@ -627,13 +826,18 @@ class Builder:
     # Parse Headbutt/Rock Smash sets.
     tree_sets={}; psets=root/'treemons.asm'
     if psets.exists():
-      label=None; variant='Common Tree'
+      label=None; variant='Common Tree'; pending=[]
       for raw in txt(psets).splitlines():
         clean=strip(raw)
         lm=re.match(r'^(TreeMonSet_[A-Za-z0-9_]+):',clean)
         if lm:
-          label=lm.group(1).upper().replace('TREEMONSET_','TREEMON_SET_')
-          tree_sets.setdefault(label,[])
+          # TreeMonSet_KantoLate -> TREEMON_SET_KANTO_LATE
+          tail=lm.group(1)[len('TreeMonSet_'):]
+          label='TREEMON_SET_'+re.sub(r'(?<=[a-z0-9])(?=[A-Z])','_',tail).upper()
+          # Back-to-back labels with no rows between them share one table.
+          if label not in tree_sets:
+            tree_sets[label]=tree_sets[pending[-1]] if pending and not tree_sets[pending[-1]] else []
+          pending.append(label)
           variant='Common Tree'
           continue
         comment=raw.split(';',1)[1].strip().lower() if ';' in raw else ''
@@ -672,7 +876,9 @@ class Builder:
     for cp in (self.r/'constants').rglob('*.asm'):
       for raw in txt(cp).splitlines():
         m=re.match(r'^\s*const\s+(FISHGROUP_[A-Z0-9_]+)',strip(raw),re.I)
-        if m and m.group(1).upper() not in fish_const_order:
+        # FISHGROUP_NONE (0) means "no fishing here" and has no FishGroups row;
+        # FishGroups starts at FISHGROUP_SHORE (the engine does `dec d`).
+        if m and m.group(1).upper() not in fish_const_order and m.group(1).upper()!='FISHGROUP_NONE':
           fish_const_order.append(m.group(1).upper())
 
     pfish=root/'fish.asm'
@@ -704,12 +910,11 @@ class Builder:
         if lm and not in_time:
           current=lm.group(1); label_rows.setdefault(current,[]); continue
         if in_time:
-          # Time rows are morn/day/nite triples; support common dbw/dbbbw layouts.
-          tm=re.match(
-            r'^(?:dbw|dbbw|dbbbw)\s+(?:[^,]+,\s*)?(\d+)\s*,\s*([A-Z0-9_]+)',
-            clean,re.I)
+          # dbwbw day_level, DAY_SPECIES, nite_level, NITE_SPECIES
+          tm=re.match(r'^dbwbw\s+(\d+)\s*,\s*([A-Z0-9_]+)\s*,\s*(\d+)\s*,\s*([A-Z0-9_]+)',clean,re.I)
           if tm:
-            time_groups[time_index]=(int(tm.group(1)),tm.group(2).upper())
+            time_groups[time_index]=[('Morning/Day',int(tm.group(1)),tm.group(2).upper()),
+                                     ('Night',int(tm.group(3)),tm.group(4).upper())]
             time_index+=1
           continue
         if current:
@@ -734,8 +939,8 @@ class Builder:
               # Level field is an index into TimeFishGroups.
               tg=time_groups.get(row['level'])
               if tg:
-                expanded.append({'time':'Time-dependent','level':tg[0],
-                                 'species':tg[1],'chance':chance})
+                for when,lvl,sp in tg:
+                  expanded.append({'time':when,'level':lvl,'species':sp,'chance':chance})
               else:
                 self.report['warnings'].append(
                   f'Unresolved TIME_GROUP index {row["level"]} in {label}')
@@ -744,30 +949,32 @@ class Builder:
                                'species':row['species'],'chance':chance})
           fish_groups[const][rod]=expanded
 
-    # Find explicit map -> FISHGROUP_* assignments anywhere in source.
+    # Map -> fishing group, from the 8th argument of each `map` line in
+    # data/maps/maps.asm. Only the map's own name (argument 1) identifies it;
+    # the landmark column is shared by every building in a town, so it is
+    # never used.
     fish_map_links={}
-    fish_pattern=re.compile(r'\b(FISHGROUP_[A-Z0-9_]+)\b',re.I)
-    map_pattern=re.compile(r'\b([A-Z][A-Z0-9_]+)\b')
-    known_maps=set()
-    for e in out: known_maps.add(e['location_const'])
-    for asm in list((self.r/'data').rglob('*.asm'))+list((self.r/'maps').rglob('*.asm')):
-      if asm == pfish: continue
-      for line_no,raw in enumerate(txt(asm).splitlines(),1):
-        fm=fish_pattern.search(strip(raw))
-        if not fm: continue
-        group=fm.group(1).upper()
-        # Prefer an already known map constant on the same source line.
-        tokens=[t for t in map_pattern.findall(strip(raw).upper())
-                if t not in {group,'FISHGROUP'}]
-        candidates=[t for t in tokens if t in known_maps]
-        location=candidates[0] if candidates else None
-        if not location:
-          # Map attribute files commonly identify the map by filename.
-          stem=re.sub(r'(?<!^)(?=[A-Z])','_',asm.stem).upper()
-          stem=re.sub(r'[^A-Z0-9_]+','_',stem).strip('_')
-          if stem in known_maps: location=stem
-        if location:
-          fish_map_links.setdefault(location,set()).add(group)
+    known_maps={e['location_const'] for e in out}
+    water_maps={e['location_const'] for e in out if e['method']=='Surf'}
+    pmaps=self.r/'data/maps/maps.asm'
+    if pmaps.exists():
+      for raw in txt(pmaps).splitlines():
+        mm=re.match(r'^map\s+([A-Za-z0-9_]+)\s*,(.*)$',strip(raw))
+        if not mm: continue
+        args=[x.strip().upper() for x in mm.group(2).split(',')]
+        if len(args)<7: continue
+        env,group=args[1],args[6]
+        if not group.startswith('FISHGROUP_') or group=='FISHGROUP_NONE': continue
+        # Route32 -> ROUTE_32, DragonsDenB1F -> DRAGONS_DEN_B1F
+        name=mm.group(1)
+        const=re.sub(r'(?<=[a-z])(?=[A-Z0-9])|(?<=[0-9])(?=[A-Z][a-z])','_',name).upper()
+        if const not in known_maps:
+          squashed={k.replace('_',''):k for k in known_maps}
+          const=squashed.get(name.upper(),const)
+        # Outdoor maps get a default fishing group even with no water (e.g.
+        # Lavender Town), so only maps with Surf data count as fishable.
+        if const in water_maps:
+          fish_map_links.setdefault(const,set()).add(group)
 
     for location,groups in fish_map_links.items():
       for group in groups:
@@ -806,11 +1013,18 @@ class Builder:
           slot+=1
 
     # Stable output and duplicate protection.
+    # The same Pokémon often fills several slots of one table (e.g. Magikarp
+    # 70% + 15%). Show it once with the combined chance.
     unique={}
     for e in out:
       key=(e['location_const'],e['method'],e['time'],e['level'],e['const'],
-           e.get('condition'),e.get('chance'))
-      unique[key]=e
+           e.get('condition'),e.get('group'))
+      if key in unique:
+        u=unique[key]
+        if u.get('chance') is not None and e.get('chance') is not None:
+          u['chance']+=e['chance']
+      else:
+        unique[key]=dict(e)
     result=sorted(unique.values(),key=lambda e:(
       e['location'],e['method'],e['time'],e['level'],e['pokemon']))
 
@@ -839,6 +1053,71 @@ class Builder:
       if base in mons and clone in mons:
         mons[base]['forms']={'normal':mons[base], 'clone':mons[clone]}
     return set(clone_pairs.values())
+  def move_table(self, entries, move_map, first, empty, p='../'):
+    """entries: [(first-column text, MOVE_CONST)] -> one learnset table."""
+    if not entries: return f'<p class="muted">{empty}</p>'
+    head=f'<div class="mv header"><span>{first}</span><span>Move</span><span>Type</span><span>Cat.</span><span>Power</span><span>Acc.</span></div>'
+    rows=''
+    for label,const in entries:
+      mv=move_map.get(const)
+      if mv:
+        rows+=(f'<div class="mv"><span class="lv">{html.escape(str(label))}</span>'
+               f'<a href="{p}moves/{slug(mv["name"])}.html">{html.escape(mv["name"])}</a>'
+               f'<span>{self.badge(mv["type"])}</span><span class="cat cat-{slug(mv["category"])}">{html.escape(mv["category"])}</span>'
+               f'<span>{fmt_power(mv)}</span><span>{fmt_acc(mv)}</span></div>')
+      else:
+        self.report['warnings'].append(f'Learnset references unknown move {const}')
+        rows+=f'<div class="mv"><span class="lv">{html.escape(str(label))}</span><span>{html.escape(move_disp(const))}</span><span></span><span></span><span></span><span></span></div>'
+    return f'<div class="mvtable">{head}{rows}</div>'
+
+  def info_html(self, m):
+    i=m.get('info') or {}
+    items=self._items if hasattr(self,'_items') else {}
+    def item(c): return items.get(c, disp(c))
+    held=[]
+    its=i.get('items') or []
+    real=[x for x in its if x not in NO_HELD_ITEM]
+    if len(its)>=2 and its[0]==its[1] and real: held=[item(its[0])]
+    else:
+      if its and its[0] not in NO_HELD_ITEM: held.append(f'{item(its[0])} (common)')
+      if len(its)>1 and its[1] not in NO_HELD_ITEM: held.append(f'{item(its[1])} (rare)')
+    rows=[]
+    if i.get('catch_rate') is not None: rows.append(('Catch rate',f'{i["catch_rate"]} / 255'))
+    if i.get('base_exp') is not None: rows.append(('Base experience',i['base_exp']))
+    rows.append(('Wild held items',', '.join(held) if held else 'None'))
+    if i.get('gender'): rows.append(('Gender ratio',i['gender']))
+    if i.get('egg_groups'): rows.append(('Egg groups',', '.join(i['egg_groups'])))
+    if i.get('egg_cycles') is not None and 'Undiscovered (cannot breed)' not in (i.get('egg_groups') or []):
+      rows.append(('Hatch time',f'{i["egg_cycles"]} egg cycles (~{i["egg_cycles"]*256:,} steps)'))
+    if i.get('growth'): rows.append(('Growth rate',i['growth']))
+    return '<dl class="info">'+''.join(f'<div><dt>{k}</dt><dd>{html.escape(str(v))}</dd></div>' for k,v in rows)+'</dl>'
+
+  def abilities_html(self, m):
+    slots=m.get('ability_slots') or [{'name':a,'hidden':False} for a in m['abilities']]
+    if not slots: return '<p class="muted">No abilities.</p>'
+    out=''
+    for a in slots:
+      d=self.ability_desc.get(re.sub('[^a-z0-9]','',a['name'].lower()),'')
+      tag='<span class="hidden-tag">Hidden ability</span>' if a['hidden'] else ''
+      out+=f'<div class="ability"><b>{html.escape(a["name"])}</b>{tag}{f"<span>{html.escape(d)}</span>" if d else ""}</div>'
+    return f'<div class="abilities">{out}</div>'
+
+  def mon_view(self, m, move_map, eyebrow, page_mon):
+    sprite=f'<img class="big" src="../{m["sprite"]}"{self.anim_attrs(m,"../")}>' if m.get('sprite') else '<div class="big placeholder">◆</div>'
+    stats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in m['stats'].items())
+    level=[(x['level'],x['const']) for x in sorted(m['learnset'],key=lambda x:x['level'])]
+    tms=[(self.tm_index[c],c) for c in m['tmhm']]
+    egg=[('Egg',c) for c in m['egg_moves']]
+    name=form_label(page_mon["const"],page_mon["name"])
+    return (f'<section class="monhero">{sprite}<div><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(name)}</h1>'
+            f'<div>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
+            f'<div class="twocol"><section class="panel"><h2>Base stats <em>Total {sum(m["stats"].values())}</em></h2>{stats or "<p class=muted>No stats.</p>"}</section>'
+            f'<section class="panel"><h2>Evolution</h2>{self.evo_html(m,"../")}</section></div>'
+            f'<section class="panel"><h2>Training &amp; breeding</h2>{self.info_html(m)}</section>'
+            f'<section class="panel"><h2>Level-up moves</h2>{self.move_table(level,move_map,"Level","Learns no moves by level-up.")}</section>'
+            f'<section class="panel"><h2>TM / HM moves <em>{len(tms)}</em></h2>{self.move_table(tms,move_map,"TM / HM","Cannot learn any TMs or HMs.")}</section>'
+            + (f'<section class="panel"><h2>Egg moves <em>{len(egg)}</em></h2>{self.move_table(egg,move_map,"Learned","")}</section>' if egg else ''))
+
   def render(self,mons,moves,wild):
     clone_consts=self.attach_clone_forms(mons)
     ms=sorted((m for c,m in mons.items() if c not in clone_consts),key=lambda x:x['number']); move_map={m['const']:m for m in moves}
@@ -858,29 +1137,49 @@ class Builder:
     types=sorted({t for m in ms for t in m['types']}); opts=''.join(f'<option value="{slug(t)}">{t}</option>' for t in types)
     (self.o/'pokedex.html').write_text(self.shell('Pokédex',f'<section class="head"><p class="eyebrow">DATABASE</p><h1>Pokédex</h1></section><div class="toolbar"><input id="search" placeholder="Search Pokémon, type or ability"><select id="typeFilter"><option value="">All types</option>{opts}</select></div><div class="grid">{cards}</div>'))
     for m in ms:
-      stats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in m['stats'].items())
-      learn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(m['learnset'],key=lambda x:x['level']))
-      sprite=f'<img class="big" src="../{m["sprite"]}"{self.anim_attrs(m,"../")}>' if m['sprite'] else '<div class="big placeholder">◆</div>'
       toggle=''
       clone_panel=''
       if 'forms' in m:
         c=m['forms']['clone']
-        csprite=f'<img class="big" src="../{c["sprite"]}"{self.anim_attrs(c,"../")}>' if c.get('sprite') else '<div class="big placeholder">◆</div>'
-        cstats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in c['stats'].items())
-        clearn=''.join(f'<div class="learn"><span>Lv. {x["level"]}</span><span>{html.escape(x["move"])}</span><span>{self.badge(move_map.get(x["const"],{}).get("type"))}</span></div>' for x in sorted(c['learnset'],key=lambda x:x['level']))
         toggle='<div class="form-toggle"><button class="active" data-form="normal">Normal</button><button data-form="clone">Clone</button></div>'
-        clone_panel=f'<div class="form-view" data-form-view="clone" hidden><section class="monhero">{csprite}<div><p class="eyebrow">CLONE FORM</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in c["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(c["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(c["stats"].values())}</em></h2>{cstats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2>{self.evo_html(c,"../")}</section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{clearn or "<p>No moves detected.</p>"}</section></div>'
-      normal=f'<div class="form-view" data-form-view="normal"><section class="monhero">{sprite}<div><p class="eyebrow">#{m["number"]:03}</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1><div>{"".join(self.badge(t) for t in m["types"])}</div><p><b>Abilities:</b> {html.escape(", ".join(m["abilities"]) or "Not detected")}</p></div></section><div class="twocol"><section class="panel"><h2>Base stats <em>BST {sum(m["stats"].values())}</em></h2>{stats or "<p>Not parsed.</p>"}</section><section class="panel"><h2>Evolution</h2>{self.evo_html(m,"../")}</section></div><section class="panel"><h2>Level-up learnset</h2><div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>{learn or "<p>No moves detected.</p>"}</section></div>'
+        clone_panel=f'<div class="form-view" data-form-view="clone" hidden>{self.mon_view(c,move_map,"CLONE FORM",m)}</div>'
+      dexno=f'#{m["number"]:03}'
+      normal=f'<div class="form-view" data-form-view="normal">{self.mon_view(m,move_map,dexno,m)}</div>'
       loc_entries=wild_by_const.get(m['const'],[])
       loc_html=''.join(f'<div class="location-row"><b><a href="../locations/{slug(e["location_const"])}.html">{html.escape(e["location"])}</a></b><span>{html.escape(e["method"])}</span><span>{html.escape(e["time"])}</span><span>Lv. {e["level"]}</span></div>' for e in loc_entries)
-      locations=f'<section class="panel"><h2>Wild locations</h2><div class="locations">{loc_html or "<p>Not found in the parsed wild encounter tables.</p>"}</div></section>'
+      locations=f'<section class="panel"><h2>Wild locations</h2><div class="locations">{loc_html or "<p class=muted>Not found in the wild.</p>"}</div></section>'
       body=f'<a class="back" href="../pokedex.html">← Pokédex</a>{toggle}{normal}{clone_panel}{locations}'
       page_title=form_label(m["const"],m["name"])
       p=self.o/'pokemon'/f'{slug(m["const"])}.html';p.parent.mkdir(exist_ok=True);p.write_text(self.shell(page_title,body,'../'))
-    rows=''.join(f'<a class="row searchable" data-search="{html.escape((m["name"]+" "+m["type"]+" "+m["category"]).lower())}" href="moves/{slug(m["name"])}.html"><b>{html.escape(m["name"])}</b><span>{self.badge(m["type"])}</span><span>{m["category"]}</span><span>{m["power"] if m["power"] is not None else "—"}</span><span>{m["accuracy"] if m["accuracy"] is not None else "—"}</span><span>{m["pp"] if m["pp"] is not None else "—"}</span></a>' for m in moves)
-    (self.o/'moves.html').write_text(self.shell('Moves',f'<section class="head"><p class="eyebrow">BATTLE DATA</p><h1>Moves</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search moves"></div><div class="table"><div class="row labels"><span>Move</span><span>Type</span><span>Category</span><span>Power</span><span>Accuracy</span><span>PP</span></div>{rows}</div>'))
+    rows=''.join(f'<a class="row searchable" data-search="{html.escape((m["name"]+" "+m.get("rom_name","")+" "+m["type"]+" "+m["category"]+" "+self.tm_index.get(m["const"],"")).lower())}" href="moves/{slug(m["name"])}.html"><b>{html.escape(m["name"])}</b><span>{self.badge(m["type"])}</span><span>{m["category"]}</span><span>{fmt_power(m)}</span><span>{fmt_acc(m)}</span><span>{m["pp"] if m["pp"] is not None else "—"}</span></a>' for m in moves)
+    (self.o/'moves.html').write_text(self.shell('Moves',f'<section class="head"><p class="eyebrow">BATTLE DATA</p><h1>Moves</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search moves, types, or TM number"></div><div class="table"><div class="row labels"><span>Move</span><span>Type</span><span>Category</span><span>Power</span><span>Accuracy</span><span>PP</span></div>{rows}</div>'))
+    # Reverse index: which Pokémon learn each move, and how.
+    learners={}
+    for mon in ms:
+      label=form_label(mon['const'],mon['name']); href=f'../pokemon/{slug(mon["const"])}.html'
+      for x in mon['learnset']:
+        learners.setdefault(x['const'],{}).setdefault('Level up',[]).append((label,href,f'Lv. {x["level"]}'))
+      for mv in mon['tmhm']:
+        learners.setdefault(mv,{}).setdefault('TM / HM / Tutor',[]).append((label,href,''))
+      for mv in mon['egg_moves']:
+        learners.setdefault(mv,{}).setdefault('Egg move',[]).append((label,href,''))
     for m in moves:
-      b=f'<a class="back" href="../moves.html">← Moves</a><section class="head"><p class="eyebrow">{m["type"]} MOVE</p><h1>{html.escape(form_label(m["const"],m["name"]))}</h1></section><section class="panel"><dl><div><dt>Type</dt><dd>{self.badge(m["type"])}</dd></div><div><dt>Category</dt><dd>{m["category"]}</dd></div><div><dt>Power</dt><dd>{m["power"]}</dd></div><div><dt>Accuracy</dt><dd>{m["accuracy"]}</dd></div><div><dt>PP</dt><dd>{m["pp"]}</dd></div><div><dt>Effect</dt><dd>{m["effect"]}</dd></div></dl></section>'
+      details=[('Type',self.badge(m["type"])),('Category',html.escape(m["category"])),
+               ('Power',fmt_power(m)),('Accuracy',fmt_acc(m)),('PP',m["pp"] if m["pp"] is not None else "—")]
+      if m.get('chance'): details.append(('Effect chance',f'{m["chance"]}%'))
+      if m['const'] in self.tm_index:
+        t=self.tm_index[m['const']]
+        details.append(('Taught by','Move Tutor' if t=='Tutor' else t))
+      dl=''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k,v in details)
+      desc=f'<p class="movedesc">{html.escape(m["description"])}</p>' if m.get('description') else ''
+      groups=learners.get(m['const'],{})
+      lb=''
+      for how in ('Level up','TM / HM / Tutor','Egg move'):
+        if how not in groups: continue
+        chips=''.join(f'<a class="learner" href="{h}">{html.escape(n)}{f" <small>{html.escape(extra)}</small>" if extra else ""}</a>' for n,h,extra in sorted(groups[how],key=lambda x:x[0]))
+        lb+=f'<h3>{how} <em>{len(groups[how])}</em></h3><div class="learners">{chips}</div>'
+      learned=f'<section class="panel"><h2>Pokémon that learn {html.escape(m["name"])}</h2>{lb or "<p class=muted>No Pokémon learn this move by level-up, TM/HM or breeding.</p>"}</section>'
+      b=f'<a class="back" href="../moves.html">← Moves</a><section class="head"><p class="eyebrow">{html.escape(m["type"].upper())} MOVE</p><h1>{html.escape(m["name"])}</h1>{desc}</section><section class="panel"><dl>{dl}</dl></section>{learned}'
       p=self.o/'moves'/f'{slug(m["name"])}.html';p.parent.mkdir(exist_ok=True);p.write_text(self.shell(m['name'],b,'../'))
     # Dedicated location index and pages.
     by_location={}
@@ -904,11 +1203,20 @@ class Builder:
       lp=self.o/'locations'/f'{slug(loc)}.html'; lp.parent.mkdir(exist_ok=True)
       lp.write_text(self.shell(title,f'<a class="back" href="../locations.html">← Locations</a><section class="head"><p class="eyebrow">WILD ENCOUNTERS</p><h1>{html.escape(title)}</h1></section>{sections}','../'))
     er=''.join(f'<div class="erow searchable" data-search="{html.escape((e["location"]+" "+e["pokemon"]+" "+e["time"]+" "+e["method"]).lower())}"><b>{html.escape(e["location"])}</b><span>{html.escape(e["method"])}</span><span>{e["time"]}</span><span>{e["pokemon"]}</span><span>Lv. {e["level"]}</span><span>{str(e["chance"])+"%" if e.get("chance") is not None else "—"}</span></div>' for e in wild)
-    (self.o/'encounters.html').write_text(self.shell('Encounters',f'<section class="head"><p class="eyebrow">WORLD DATA</p><h1>Wild encounters</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations or Pokémon"></div><div class="table"><div class="erow labels"><span>Location</span><span>Method</span><span>Time</span><span>Pokémon</span><span>Level</span><span>Slot</span></div>{er or "<p class=empty>No supported encounter rows detected.</p>"}</div>'))
+    (self.o/'encounters.html').write_text(self.shell('Encounters',f'<section class="head"><p class="eyebrow">WORLD DATA</p><h1>Wild encounters</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations or Pokémon"></div><div class="table"><div class="erow labels"><span>Location</span><span>Method</span><span>Time</span><span>Pokémon</span><span>Level</span><span>Chance</span></div>{er or "<p class=empty>No supported encounter rows detected.</p>"}</div>'))
   def run(self):
     if self.o.exists(): shutil.rmtree(self.o)
     self.a.mkdir(parents=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
-    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.finish_evolutions(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons)); self.render(mons,moves,wild)
+    self.tm_index=self.tm_table(); self.ability_desc=self.ability_descriptions(); self._items=self.item_names()
+    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
+    for e in wild:
+      mon=mons.get(e['const'])
+      if mon: e['pokemon']=form_label(mon['const'],mon['name'])
+    move_names={m['const']:m['name'] for m in moves}
+    for mon in mons.values():
+      for x in mon['learnset']: x['move']=move_names.get(x['const'],move_disp(x['const']))
+      mon['tmhm_labeled']=[{'tm':self.tm_index[c],'const':c,'move':move_names.get(c,move_disp(c))} for c in mon['tmhm']]
+    self.render(mons,moves,wild)
     summary=self.report.get('encounter_summary',{})
     print(f'Generated {len(mons)} Pokémon, {len(moves)} moves, {len(wild)} encounter slots across {summary.get("locations",0)} locations -> {self.o}')
     print(f'Validation: {len(self.report["warnings"])} warning(s), {len(self.report["unparsed"])} unparsed row(s). See docs/data/build-report.json.')
