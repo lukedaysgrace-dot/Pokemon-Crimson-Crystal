@@ -188,8 +188,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 SUBSTATUS_CURLED EQU 0
 SUBSTATUS_TORMENTED EQU 1 ; can't use the same move twice in a row
 ; (Taunt needs no bit: wPlayerTauntCount / wEnemyTauntCount nonzero = taunted)
-; bit 7 is free (was SUBSTATUS_FLASH_FIRE before Flash Fire became a
-; Storm Drain-style Sp. Atk absorb)
+; bits 2-7 are free
 
 ; wPlayerSubStatus3 or wEnemySubStatus3 bit flags
 	enum_start 7, -1

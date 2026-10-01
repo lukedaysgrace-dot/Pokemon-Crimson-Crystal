@@ -120,7 +120,7 @@
     - enemy.hp == enemy.start_hp
     - enemy.stat_levels[0] == 8
 
-- name: "Ability: custom Flash Fire absorbs Fire and raises Sp. Atk"
+- name: "Ability: Flash Fire absorbs Fire and raises the higher Sp. Atk"
   player: { species: GENGAR, level: 50, moves: [EMBER] }
   enemy:  { species: LITWICK, level: 50, ability: FLASH_FIRE, moves: [SPLASH] }
   rng: forced_high
@@ -128,6 +128,7 @@
   assert:
     - enemy.hp == enemy.start_hp
     - enemy.stat_levels[3] == 8
+    - enemy.stat_levels[0] == 7
 
 - name: "Ability: Dry Skin heals from Water moves"
   player: { species: TOXICROAK, level: 50, ability: DRY_SKIN, hp: 50, moves: [SPLASH] }

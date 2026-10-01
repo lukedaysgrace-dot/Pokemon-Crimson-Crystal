@@ -1,0 +1,233 @@
+# Trainer AI must distinguish damaging type immunity from status immunity,
+# and reflectable moves from moves blocked by Substitute.
+# FALKNER enables all scoring layers. CANT_RUN prevents bench-switch heuristics.
+# A forced-high tie picks move slot 1; Haze is a nonreflectable alternative.
+
+- name: "AI uses Sing against a Ghost type"
+  player: { species: GENGAR, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SING'
+
+- name: "AI uses Hypnosis against a Dark type"
+  player: { species: UMBREON, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [HYPNOSIS, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HYPNOSIS'
+
+- name: "AI uses Glare against a Ghost type"
+  player: { species: GENGAR, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GLARE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'GLARE'
+
+- name: "AI uses Stun Spore against a Ground type"
+  player: { species: GOLEM, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STUN_SPORE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'STUN_SPORE'
+
+- name: "AI avoids Thunder Wave against Ground"
+  player: { species: GOLEM, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI uses sound sleep through Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SING'
+
+- name: "AI still avoids reflectable sound sleep against Magic Bounce"
+  player: { species: MEW, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI Attract bypasses Substitute"
+  player: { species: RATTATA, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: RATTATA, level: 50, ability: NO_ABILITY, moves: [ATTRACT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'ATTRACT'
+
+- name: "AI avoids Attract against Magic Bounce"
+  player: { species: RATTATA, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: RATTATA, level: 50, ability: NO_ABILITY, moves: [ATTRACT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI type scoring rejects zero-power OHKO against Ghost"
+  player: { species: GENGAR, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GUILLOTINE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: SCIENTIST
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI avoids Glare against Electric"
+  player: { species: JOLTEON, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GLARE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI avoids Sing against Insomnia"
+  player: { species: GENGAR, level: 50, ability: INSOMNIA, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI avoids Stun Spore against Sap Sipper"
+  player: { species: GOLEM, level: 50, ability: SAP_SIPPER, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STUN_SPORE, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI Taunt control"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TAUNT'
+
+- name: "AI avoids Taunt against Magic Bounce"
+  player: { species: MEW, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI Taunt bypasses Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TAUNT'
+
+- name: "AI Torment control"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TORMENT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TORMENT'
+
+- name: "AI avoids Torment against Magic Bounce"
+  player: { species: MEW, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TORMENT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI Torment bypasses Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TORMENT, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TORMENT'
+
+- name: "AI Yawn control"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'YAWN'
+
+- name: "AI avoids Yawn against Magic Bounce"
+  player: { species: MEW, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+- name: "AI avoids Yawn against Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, HAZE] }
+  enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy_class: FALKNER
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HAZE'
+
+

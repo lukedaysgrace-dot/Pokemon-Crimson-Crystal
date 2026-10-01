@@ -1,0 +1,716 @@
+# Modern Transform, Beat Up, Bide, Counter and Mirror Coat regressions.
+
+- name: "Audit moves extra: player Transform raw-stat control"
+  id: player_transform_stats
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 8", "player.stat_levels[3] == 9"]
+
+- name: "Audit moves extra: player Transform ignores target status 16"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats == result('player_transform_stats')['player'][\"stats\"]"]
+
+- name: "Audit moves extra: player Transform retains own status 16"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats['attack'] == result('player_transform_stats')['player'][\"stats\"]['attack'] // 2"]
+
+- name: "Audit moves extra: player Transform ignores target status 32"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 32}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats == result('player_transform_stats')['player'][\"stats\"]"]
+
+- name: "Audit moves extra: player Transform retains own status 32"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 32}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats['spclatk'] == result('player_transform_stats')['player'][\"stats\"]['spclatk'] // 2"]
+
+- name: "Audit moves extra: player Transform ignores target status 64"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 64}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats == result('player_transform_stats')['player'][\"stats\"]"]
+
+- name: "Audit moves extra: player Transform retains own status 64"
+  player: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 64}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stats['speed'] == result('player_transform_stats')['player'][\"stats\"]['speed'] // 2"]
+
+- name: "Audit moves extra: player Beat Up modern live-stat control"
+  id: player_beat_up_neutral
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Beat Up respects user Attack stages"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "stages": {"atk": 2}}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('player_beat_up_neutral')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up respects target Defense stages"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp < result('player_beat_up_neutral')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up receives Dark STAB"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wBattleMonType1": 27, "wBattleMonType2": 27}
+  assert: ["enemy.start_hp - enemy.hp > result('player_beat_up_neutral')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up includes its poisoned active user"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == result('player_beat_up_neutral')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up includes its burned active user and applies burn"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.start_hp - enemy.hp < result('player_beat_up_neutral')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up ignores contributing party member level"
+  id: beat_up_party_low
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  player2: {"species": "MEW", "level": 1, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Beat Up contributor level does not change damage"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  player2: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  assert: ["enemy.start_hp - enemy.hp == result(\"beat_up_party_low\")[\"enemy\"][\"damage\"]"]
+
+- name: "Audit moves extra: player Beat Up excludes poisoned inactive party members"
+  player: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 1
+  player2: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "status_byte": 8}
+  assert: ["enemy.start_hp - enemy.hp == result(\"player_beat_up_neutral\")[\"enemy\"][\"damage\"]"]
+
+- name: "Audit moves extra: player Bide always stores exactly two turns before release on third"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  enemy: {"species": "MEW", "level": 10, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 3
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Bide ignores Ghost immunity on release"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  enemy: {"species": "GENGAR", "level": 20, "ability": "NO_ABILITY", "moves": ["LICK"]}
+  rng: forced_high
+  turns: 3
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player COUNTER cannot retaliate against damage absorbed by its Substitute"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wPlayerSubstituteHP": 80}
+  assert: ["enemy.hp == enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Audit moves extra: player COUNTER cannot retaliate even after the hit breaks its Substitute"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wPlayerSubstituteHP": 1}
+  assert: ["enemy.hp == enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Audit moves extra: player MIRROR_COAT cannot retaliate against damage absorbed by its Substitute"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"], "substatus": ["SUBSTITUTE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wPlayerSubstituteHP": 80}
+  assert: ["enemy.hp == enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Audit moves extra: player MIRROR_COAT cannot retaliate even after the hit breaks its Substitute"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"], "substatus": ["SUBSTITUTE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wPlayerSubstituteHP": 1}
+  assert: ["enemy.hp == enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Audit moves extra: player Counter sees physical Shell Side Arm actual category"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SHELLSIDEARM"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemyMonAttack": [0, 250], "wEnemyMonSpclAtk": [0, 20]}
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Mirror Coat rejects physical Shell Side Arm actual category"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SHELLSIDEARM"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemyMonAttack": [0, 250], "wEnemyMonSpclAtk": [0, 20]}
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Audit moves extra: player COUNTER reflects fixed level damage"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SEISMIC_TOSS"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == 2 * (player.start_hp - player.hp)", "wram('wPlayerCounterHitDamage') * 256 + wram('wPlayerCounterHitDamage', 1) == player.start_hp - player.hp"]
+
+- name: "Audit moves extra: player MIRROR_COAT reflects fixed level damage"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["NIGHT_SHADE"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == 2 * (player.start_hp - player.hp)", "wram('wPlayerCounterHitDamage') * 256 + wram('wPlayerCounterHitDamage', 1) == player.start_hp - player.hp"]
+
+- name: "Audit moves extra: player Counter reflects only the final native multi-hit strike"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["DOUBLE_KICK"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == player.start_hp - player.hp", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Counter reflects only Parental Bond final actual hit"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "PARENTAL_BOND", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == 2", "wram('wPlayerCounterHitDamage') * 256 + wram('wPlayerCounterHitDamage', 1) == 1"]
+
+- name: "Audit moves extra: player Counter sees Parental Bond second hit after first breaks Substitute"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "PARENTAL_BOND", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wPlayerSubstituteHP": 1}
+  assert: ["enemy.start_hp - enemy.hp == 2 * (player.start_hp - player.hp)", "player.hp < player.start_hp", "wram('wPlayerCounterHitDamage') * 256 + wram('wPlayerCounterHitDamage', 1) == player.start_hp - player.hp"]
+
+- name: "Audit moves extra: player Counter first Hyper Beam round control"
+  id: player_counter_hyper_beam_once
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["HYPER_BEAM"]}
+  rng: forced_high
+  turns: 1
+
+- name: "Audit moves extra: player Counter cannot reuse prior round damage on a recharge turn"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["HYPER_BEAM"]}
+  rng: forced_high
+  turns: 2
+  assert: ["enemy.start_hp - enemy.hp == result('player_counter_hyper_beam_once')['enemy'][\"damage\"]"]
+
+- name: "Audit moves extra: player critical includes the formula base two damage"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  setup_wram: {"wBattleMonAttack": [0, 10], "wEnemyMonDefense": [0, 100]}
+  assert: ["enemy.start_hp - enemy.hp == 3"]
+
+- name: "Audit moves extra: player weather reduction applies before critical multiplication"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  setup_wram: {"wBattleMonSpclAtk": [0, 20], "wEnemyMonSpclDef": [0, 160]}
+  weather: "sun"
+  assert: ["enemy.start_hp - enemy.hp == 1"]
+
+- name: "Audit moves extra: player high-crit move is one stage at roll 32"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 32
+  assert: ["wram(\"wCriticalHit\") == 0", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player high-crit move plus Scope Lens is two stages at roll 128"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 128
+  assert: ["wram(\"wCriticalHit\") == 0", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player high-crit move plus Scope Lens crits at roll 127"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 127
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Focus Energy adds two stages and crits at roll 32"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 32
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Focus Energy stage two stops at roll 128"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 128
+  assert: ["wram(\"wCriticalHit\") == 0", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player Focus Energy plus Super Luck guarantees a crit on roll 255"
+  player: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player high-crit move plus Super Luck plus Scope Lens guarantees a crit on roll 255"
+  player: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player BATTLE_ARMOR still blocks a guaranteed stage-three critical hit"
+  player: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "BATTLE_ARMOR", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 0", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player SHELL_ARMOR still blocks a guaranteed stage-three critical hit"
+  player: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "SHELL_ARMOR", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 0", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player slow Bide starts storing before a normal-priority attack"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wBattleMonHP": [1, 144], "wBattleMonMaxHP": [1, 144]}
+  assert: ["wram('wPlayerDamageTaken') * 256 + wram('wPlayerDamageTaken', 1) == 400 - player.hp", "player.hp < 400"]
+
+- name: "Audit moves extra: player LUCKY_PUNCH critical stages stack with Focus Energy for CHANSEY"
+  player: {"species": "CHANSEY", "level": 20, "ability": "NO_ABILITY", "item": "LUCKY_PUNCH", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player STICK critical stages stack with Focus Energy for FARFETCH_D"
+  player: {"species": "FARFETCH_D", "level": 20, "ability": "NO_ABILITY", "item": "STICK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: player STICK critical stages stack with Focus Energy for SIRFETCH_D"
+  player: {"species": "SIRFETCH_D", "level": 20, "ability": "NO_ABILITY", "item": "STICK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: enemy Transform raw-stat control"
+  id: enemy_transform_stats
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 8", "enemy.stat_levels[3] == 9"]
+
+- name: "Audit moves extra: enemy Transform ignores target status 16"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 16}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats == result('enemy_transform_stats')['enemy'][\"stats\"]"]
+
+- name: "Audit moves extra: enemy Transform retains own status 16"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats['attack'] == result('enemy_transform_stats')['enemy'][\"stats\"]['attack'] // 2"]
+
+- name: "Audit moves extra: enemy Transform ignores target status 32"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 32}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats == result('enemy_transform_stats')['enemy'][\"stats\"]"]
+
+- name: "Audit moves extra: enemy Transform retains own status 32"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 32}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats['spclatk'] == result('enemy_transform_stats')['enemy'][\"stats\"]['spclatk'] // 2"]
+
+- name: "Audit moves extra: enemy Transform ignores target status 64"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}, "status_byte": 64}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats == result('enemy_transform_stats')['enemy'][\"stats\"]"]
+
+- name: "Audit moves extra: enemy Transform retains own status 64"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"atk": 1, "satk": 2}}
+  enemy: {"species": "MEW", "level": 50, "ability": "NO_ABILITY", "moves": ["TRANSFORM"], "status_byte": 64}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stats['speed'] == result('enemy_transform_stats')['enemy'][\"stats\"]['speed'] // 2"]
+
+- name: "Audit moves extra: enemy Beat Up modern live-stat control"
+  id: enemy_beat_up_neutral
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Beat Up respects user Attack stages"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "stages": {"atk": 2}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp > result('enemy_beat_up_neutral')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy Beat Up respects target Defense stages"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"], "stages": {"def": 2}}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp < result('enemy_beat_up_neutral')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy Beat Up receives Dark STAB"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemyMonType1": 27, "wEnemyMonType2": 27}
+  assert: ["player.start_hp - player.hp > result('enemy_beat_up_neutral')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy Beat Up includes its poisoned active user"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "status_byte": 8}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == result('enemy_beat_up_neutral')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy Beat Up includes its burned active user and applies burn"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 30, "ability": "NO_ABILITY", "moves": ["BEAT_UP"], "status_byte": 16}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.start_hp - player.hp < result('enemy_beat_up_neutral')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy Bide always stores exactly two turns before release on third"
+  player: {"species": "MEW", "level": 10, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  rng: forced_high
+  turns: 3
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Bide ignores Ghost immunity on release"
+  player: {"species": "GENGAR", "level": 20, "ability": "NO_ABILITY", "moves": ["LICK"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  rng: forced_high
+  turns: 3
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy COUNTER cannot retaliate against damage absorbed by its Substitute"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemySubstituteHP": 80}
+  assert: ["player.hp == player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit moves extra: enemy COUNTER cannot retaliate even after the hit breaks its Substitute"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemySubstituteHP": 1}
+  assert: ["player.hp == player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit moves extra: enemy MIRROR_COAT cannot retaliate against damage absorbed by its Substitute"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"], "substatus": ["SUBSTITUTE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemySubstituteHP": 80}
+  assert: ["player.hp == player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit moves extra: enemy MIRROR_COAT cannot retaliate even after the hit breaks its Substitute"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"], "substatus": ["SUBSTITUTE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemySubstituteHP": 1}
+  assert: ["player.hp == player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit moves extra: enemy Counter sees physical Shell Side Arm actual category"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SHELLSIDEARM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wBattleMonAttack": [0, 250], "wBattleMonSpclAtk": [0, 20]}
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Mirror Coat rejects physical Shell Side Arm actual category"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SHELLSIDEARM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wBattleMonAttack": [0, 250], "wBattleMonSpclAtk": [0, 20]}
+  assert: ["player.hp == player.start_hp"]
+
+- name: "Audit moves extra: enemy COUNTER reflects fixed level damage"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SEISMIC_TOSS"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == 2 * (enemy.start_hp - enemy.hp)", "wram('wEnemyCounterHitDamage') * 256 + wram('wEnemyCounterHitDamage', 1) == enemy.start_hp - enemy.hp"]
+
+- name: "Audit moves extra: enemy MIRROR_COAT reflects fixed level damage"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["NIGHT_SHADE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["MIRROR_COAT"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == 2 * (enemy.start_hp - enemy.hp)", "wram('wEnemyCounterHitDamage') * 256 + wram('wEnemyCounterHitDamage', 1) == enemy.start_hp - enemy.hp"]
+
+- name: "Audit moves extra: enemy Counter reflects only the final native multi-hit strike"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["DOUBLE_KICK"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == enemy.start_hp - enemy.hp", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Counter reflects only Parental Bond final actual hit"
+  player: {"species": "MEW", "level": 20, "ability": "PARENTAL_BOND", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == 2", "wram('wEnemyCounterHitDamage') * 256 + wram('wEnemyCounterHitDamage', 1) == 1"]
+
+- name: "Audit moves extra: enemy Counter sees Parental Bond second hit after first breaks Substitute"
+  player: {"species": "MEW", "level": 20, "ability": "PARENTAL_BOND", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"], "substatus": ["SUBSTITUTE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemySubstituteHP": 1}
+  assert: ["player.start_hp - player.hp == 2 * (enemy.start_hp - enemy.hp)", "enemy.hp < enemy.start_hp", "wram('wEnemyCounterHitDamage') * 256 + wram('wEnemyCounterHitDamage', 1) == enemy.start_hp - enemy.hp"]
+
+- name: "Audit moves extra: enemy Counter first Hyper Beam round control"
+  id: enemy_counter_hyper_beam_once
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["HYPER_BEAM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 1
+
+- name: "Audit moves extra: enemy Counter cannot reuse prior round damage on a recharge turn"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["HYPER_BEAM"]}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["COUNTER"]}
+  rng: forced_high
+  turns: 2
+  assert: ["player.start_hp - player.hp == result('enemy_counter_hyper_beam_once')['player'][\"damage\"]"]
+
+- name: "Audit moves extra: enemy critical includes the formula base two damage"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["TACKLE"], "item": "SCOPE_LENS"}
+  rng: forced_low
+  turns: 1
+  setup_wram: {"wEnemyMonAttack": [0, 10], "wBattleMonDefense": [0, 100]}
+  assert: ["player.start_hp - player.hp == 3"]
+
+- name: "Audit moves extra: enemy weather reduction applies before critical multiplication"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN"], "item": "SCOPE_LENS"}
+  rng: forced_low
+  turns: 1
+  setup_wram: {"wEnemyMonSpclAtk": [0, 20], "wBattleMonSpclDef": [0, 160]}
+  weather: "sun"
+  assert: ["player.start_hp - player.hp == 1"]
+
+- name: "Audit moves extra: enemy high-crit move is one stage at roll 32"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"]}
+  rng: forced
+  turns: 1
+  rng_value: 32
+  assert: ["wram(\"wCriticalHit\") == 0", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy high-crit move plus Scope Lens is two stages at roll 128"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  rng: forced
+  turns: 1
+  rng_value: 128
+  assert: ["wram(\"wCriticalHit\") == 0", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy high-crit move plus Scope Lens crits at roll 127"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  rng: forced
+  turns: 1
+  rng_value: 127
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Focus Energy adds two stages and crits at roll 32"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 32
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Focus Energy stage two stops at roll 128"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 128
+  assert: ["wram(\"wCriticalHit\") == 0", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy Focus Energy plus Super Luck guarantees a crit on roll 255"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy high-crit move plus Super Luck plus Scope Lens guarantees a crit on roll 255"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["SLASH", "SLASH", "SLASH", "SLASH"], "item": "SCOPE_LENS"}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy BATTLE_ARMOR still blocks a guaranteed stage-three critical hit"
+  player: {"species": "MEW", "level": 100, "ability": "BATTLE_ARMOR", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 0", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy SHELL_ARMOR still blocks a guaranteed stage-three critical hit"
+  player: {"species": "MEW", "level": 100, "ability": "SHELL_ARMOR", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "SUPER_LUCK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 0", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy slow Bide starts storing before a normal-priority attack"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["TACKLE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["BIDE"]}
+  rng: forced_high
+  turns: 1
+  setup_wram: {"wEnemyMonHP": [1, 144], "wEnemyMonMaxHP": [1, 144]}
+  assert: ["wram('wEnemyDamageTaken') * 256 + wram('wEnemyDamageTaken', 1) == 400 - enemy.hp", "enemy.hp < 400"]
+
+- name: "Audit moves extra: enemy LUCKY_PUNCH critical stages stack with Focus Energy for CHANSEY"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "CHANSEY", "level": 20, "ability": "NO_ABILITY", "item": "LUCKY_PUNCH", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy STICK critical stages stack with Focus Energy for FARFETCH_D"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "FARFETCH_D", "level": 20, "ability": "NO_ABILITY", "item": "STICK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: enemy STICK critical stages stack with Focus Energy for SIRFETCH_D"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH", "SPLASH", "SPLASH", "SPLASH"]}
+  enemy: {"species": "SIRFETCH_D", "level": 20, "ability": "NO_ABILITY", "item": "STICK", "moves": ["WATER_GUN", "WATER_GUN", "WATER_GUN", "WATER_GUN"], "substatus": ["FOCUS_ENERGY"]}
+  rng: forced
+  turns: 1
+  rng_value: 255
+  assert: ["wram(\"wCriticalHit\") == 1", "player.hp < player.start_hp"]
+
+- name: "Audit moves extra: Facade Zephyr Badge poison control"
+  id: facade_badge_poison
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE", "FACADE"], "status_byte": 8}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 2
+  setup_wram: {"wJohtoBadges": 1}
+  move_script: [1, 2]
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit moves extra: Facade preserves Zephyr Badge when restoring burned Attack"
+  player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE", "FACADE"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
+  rng: forced_high
+  turns: 2
+  setup_wram: {"wJohtoBadges": 1}
+  move_script: [1, 2]
+  assert: ["enemy.start_hp - enemy.hp == result(\"facade_badge_poison\")[\"enemy\"][\"damage\"]"]
+
+- name: "Audit moves extra: Foul Play Zephyr Badge unburned borrowed Attack control"
+  id: foul_play_badge_unburned
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE"]}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  rng: forced_high
+  turns: 2
+  setup_wram: {"wJohtoBadges": 1}
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Audit moves extra: Foul Play preserves Zephyr Badge when restoring borrowed burned Attack"
+  player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE"], "status_byte": 16}
+  enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
+  rng: forced_high
+  turns: 2
+  setup_wram: {"wJohtoBadges": 1}
+  assert: ["player.start_hp - player.hp - 2 * max(1, player.maxhp // 16) == result(\"foul_play_badge_unburned\")[\"player\"][\"damage\"]"]

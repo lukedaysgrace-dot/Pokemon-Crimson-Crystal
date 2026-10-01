@@ -2961,7 +2961,11 @@ BillsPC_GetStorageSpace:
 	push af
 	jr c, .menutext_abort
 	call BillsPC_ForceSave
-	; fallthrough
+	jr nc, .menutext_abort ; saved: check the space again
+	; the player refused to overwrite another save file: give up
+	pop af
+	scf
+	push af
 .menutext_abort
 	call BillsPC_UpdateCursorLocation
 	call BillsPC_CloseWindow
@@ -2973,6 +2977,7 @@ BillsPC_GetStorageSpace:
 
 BillsPC_ForceSave:
 ; Saves the game (with the usual "Saving…" / "saved the game" text and SFX).
+; Carry if the player refused to overwrite a different save file.
 	farcall ForceGameSave
 	ret
 
@@ -4197,6 +4202,7 @@ BillsPC_SwapStorage:
 	jr c, .menutext_abort
 
 	call BillsPC_ForceSave
+	jr c, .menutext_abort ; refused to overwrite another save file
 	call BillsPC_UpdateCursorLocation
 	call BillsPC_CloseWindow
 	pop bc

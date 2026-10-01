@@ -2,7 +2,7 @@
 # BM1 crit x1.5, BM2 Gen7 crit table, BM3 sleep 1-3 turns, BM4 paralysis
 # halves speed, BM5 toxic persists across switches, BM6 berries fire
 # post-damage, BM7 Encore 3 / Disable 4 turns, BM8 Protect fixes.
-# (BM9 per-side crit stat-stage rule is deferred.)
+# Per-side critical stat selection is covered by audit tests 62.
 
 # ---- BM1: critical hits deal x1.5, not x2 -------------------------------
 
@@ -23,7 +23,7 @@
   rng: forced_low
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == (result('bm1c')['enemy']['damage'] - 2) + (result('bm1c')['enemy']['damage'] - 2) // 2 + 2
+    - enemy.start_hp - enemy.hp == 19
 
 # ---- BM2: Gen 7 critical hit chance table --------------------------------
 
@@ -48,10 +48,10 @@
   rng_value: 12
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == (result('bm2c')['enemy']['damage'] - 2) + (result('bm2c')['enemy']['damage'] - 2) // 2 + 2
+    - enemy.start_hp - enemy.hp == 19
 
-- name: "BM2 control: high-crit move at stage 2 does not crit under forced_high"
-  # Slash is a +2 crit-stage move: new threshold 128, $B4 = 180 -> no crit.
+- name: "BM2 control: high-crit move at stage 1 does not crit under forced_high"
+  # Modern Slash adds one stage: threshold 32, $B4 = 180 -> no crit.
   id: bm2h
   player: { species: SCYTHER, level: 50, moves: [SLASH] }
   enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
@@ -60,15 +60,14 @@
   assert:
     - enemy.hp < enemy.start_hp
 
-- name: "BM2: stage 3 (high-crit move + Scope Lens) always crits"
-  # Stage 3 = 255 in the Gen7 table: even a roll of 180 crits. The old
-  # table had stage 3 = 85, where 180 would NOT crit.
-  player: { species: SCYTHER, level: 50, item: SCOPE_LENS, moves: [SLASH] }
+- name: "BM2: stage 3 (high-crit move + Scope Lens + Super Luck) always crits"
+  # Slash +1, Scope Lens +1, Super Luck +1: a guaranteed critical hit.
+  player: { species: SCYTHER, level: 50, ability: SUPER_LUCK, item: SCOPE_LENS, moves: [SLASH] }
   enemy:  { species: MACHAMP, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == (result('bm2h')['enemy']['damage'] - 2) + (result('bm2h')['enemy']['damage'] - 2) // 2 + 2
+    - enemy.start_hp - enemy.hp == result('bm2h')['enemy']['damage'] * 3 // 2
 
 # ---- BM3: sleep lasts 1-3 turns ------------------------------------------
 
@@ -122,11 +121,10 @@
   rng: forced_high
   turns: 3
   assert:
-    # Residual poison runs after the victim acts (Gen 2 timing), so turn 1
-    # (poisoned after acting) deals no tick: counter is 2 after 3 turns.
+    # Residual poison runs after both actions, including the infliction turn.
     - player.status & 8 != 0
     - wram('wPlayerSubStatus5') & 1 != 0
-    - wram('wPlayerToxicCount') == 2
+    - wram('wPlayerToxicCount') == 3
 
 - name: "BM5: toxic survives switching out and back, counter reset"
   player:  { species: TAUROS,  level: 50, ability: RUN_AWAY, moves: [SPLASH] }

@@ -207,6 +207,7 @@ ENDC
 	; damage predictions below
 	ld [wCriticalHit], a
 	farcall PromoteCudChewFlags
+	farcall ResetCounterHitHistory_Core
 
 	call HandleBerserkGene
 	call UpdateBattleMonInParty
@@ -296,49 +297,45 @@ Stubbed_Function3c1bf:
 	ret
 
 HandleBetweenTurnEffects:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .CheckEnemyFirst
-	call CheckFaint_PlayerThenEnemy
+	call .CheckFaints
 	ret c
-	call HandleFutureSight
-	call CheckFaint_PlayerThenEnemy
-	ret c
+	; Keep fainted slots empty until every end-of-turn phase has finished.
+	; A replacement must not take its predecessor's pending residuals.
 	call HandleWeather
-	call CheckFaint_PlayerThenEnemy
-	ret c
-	call HandleWrap
-	call CheckFaint_PlayerThenEnemy
-	ret c
-	call HandlePerishSong
-	call CheckFaint_PlayerThenEnemy
-	ret c
-	jr .NoMoreFaintingConditions
-
-.CheckEnemyFirst:
-	call CheckFaint_EnemyThenPlayer
-	ret c
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	farcall RunFaintAbilities
+	farcall RunWeatherResidualAbilitiesBoth
+	ld a, [wBattleEnded]
+	and a
+	ret nz
 	call HandleFutureSight
-	call CheckFaint_EnemyThenPlayer
-	ret c
-	call HandleWeather
-	call CheckFaint_EnemyThenPlayer
-	ret c
-	call HandleWrap
-	call CheckFaint_EnemyThenPlayer
-	ret c
-	call HandlePerishSong
-	call CheckFaint_EnemyThenPlayer
-	ret c
-
-.NoMoreFaintingConditions:
-	farcall RunEndTurnAbilitiesBoth
-	call CheckFaint_PlayerThenEnemy
-	ret c
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	farcall RunFaintAbilities
+	farcall HandleWishBoth_Core
 	call HandleLeftovers
-	call HandleMysteryberry
-	; Wish resolution, Taunt wear-off and Yawn drowsiness
+	call HandleResidualDamageBoth
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	farcall RunBadDreamsAbilitiesBoth
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	farcall RunEndTurnStatusAbilitiesBoth
+	; Taunt wear-off and Yawn follow status cures, before Perish Song.
 	farcall HandleNewEndTurnEffects_Core
+	call HandlePerishSong
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	farcall RunFaintAbilities
+	farcall RunEndTurnAbilitiesBoth
+	farcall RunFaintAbilities
+	call HandleMysteryberry
 	; Frostbite no longer self-thaws; it persists like burn until cured.
 	farcall HandleTrickRoom
 	farcall HandleRoost
@@ -347,9 +344,17 @@ HandleBetweenTurnEffects:
 	call HandleStatBoostingHeldItems
 	call HandleHealingItems
 	farcall HandleStatusOrbs_Core
+	call .CheckFaints
+	ret c
 	call UpdateBattleMonInParty
 	call LoadTileMapToTempTileMap
 	jp HandleEncore
+
+.CheckFaints
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jp z, CheckFaint_EnemyThenPlayer
+	jp CheckFaint_PlayerThenEnemy
 
 HasAnyoneFainted:
 	call HasPlayerFainted
@@ -962,9 +967,6 @@ Battle_EnemyFirst:
 
 .switch_item
 	call ExpireEnemyFirstImpressionAfterItem
-	call SetEnemyTurn
-	call ResidualDamage
-	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	call PlayerTurn_EndOpponentProtectEndureDestinyBond
 	call CheckMobileBattleError
@@ -975,9 +977,6 @@ Battle_EnemyFirst:
 	call HasEnemyFainted
 	jp z, HandleEnemyMonFaint
 	call HasPlayerFainted
-	jp z, HandlePlayerMonFaint
-	call SetPlayerTurn
-	call ResidualDamage
 	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
 	xor a ; BATTLEPLAYERACTION_USEMOVE
@@ -1002,11 +1001,6 @@ Battle_PlayerFirst:
 	call HasPlayerFainted
 	jp z, HandlePlayerMonFaint
 	push bc
-	call SetPlayerTurn
-	call ResidualDamage
-	pop bc
-	jp z, HandlePlayerMonFaint
-	push bc
 	call RefreshBattleHuds
 	pop af
 	jr c, .switched_or_used_item
@@ -1026,9 +1020,6 @@ Battle_PlayerFirst:
 
 .switched_or_used_item
 	call ExpireEnemyFirstImpressionAfterItem
-	call SetEnemyTurn
-	call ResidualDamage
-	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
@@ -1063,12 +1054,14 @@ PlayerTurn_EndOpponentProtectEndureDestinyBond:
 .player_move_done
 	xor a
 	ld [wSkipCheckTurnOnce], a
+	farcall RunStatusHealAbilitiesBoth
 	jp EndOpponentProtectEndureDestinyBond
 
 EnemyTurn_EndOpponentProtectEndureDestinyBond:
 	call SetEnemyTurn
 	call EndUserDestinyBond
 	callfar DoEnemyTurn
+	farcall RunStatusHealAbilitiesBoth
 	jp EndOpponentProtectEndureDestinyBond
 
 EndOpponentProtectEndureDestinyBond:
@@ -1111,50 +1104,127 @@ CheckIfHPIsZero:
 	or [hl]
 	ret
 
-ResidualDamage:
-; Return z if the user fainted before
-; or as a result of residual damage.
-; For Sandstorm damage, see HandleWeather.
-
+HandleResidualDamageBoth:
+; End-of-turn effects resolve by effect first, then effective Speed.
+; Leech Seed can save a poisoned source before poison damage is applied.
+; Trick Room reverses move order only. Keep the caller's turn unchanged.
+	ldh a, [hBattleTurn]
+	push af
+	farcall GetResidualFirstSide
+	ld b, a
+	ld c, 6
+	ld de, .stages
+.next_stage
+	ld a, [wBattleEnded]
+	and a
+	jr nz, .finished
+	; A Gas holder can faint in an earlier residual stage. Cures resume
+	; before the next stage applies damage from a now-prevented status.
+	push bc
+	push de
+	farcall RunStatusHealAbilitiesBoth
+	pop de
+	pop bc
+	ld a, [de]
+	inc de
+	ld l, a
+	ld a, [de]
+	inc de
+	ld h, a
+	push bc
+	push de
+	push hl
+	ld a, b
+	ldh [hBattleTurn], a
+	call .side
+	pop hl
+	pop de
+	pop bc
+	push bc
+	push de
+	ld a, b
+	xor 1
+	ldh [hBattleTurn], a
+	call .side
+	pop de
+	pop bc
+	dec c
+	jr nz, .next_stage
+.finished
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.side
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	push hl
 	call HasUserFainted
+	pop hl
 	ret z
-	; Magic Guard prevents every indirect-damage branch below: status chip,
-	; Leech Seed, Nightmare and Curse.
-	farcall UserHasMagicGuard_Core
-	jp z, .not_cursed
+	call .dispatch
+	jp CheckResidualFaint
+.dispatch
+	jp hl
+.stages
+	dw ResidualLeechSeed
+	dw ResidualPoison
+	dw ResidualBurnFrostbite
+	dw ResidualNightmare
+	dw ResidualCurse
+	dw HandleWrap
 
+CheckResidualFaint::
+; A last-mon residual KO ends the battle immediately, in effect/Speed
+; order. Keep a nonterminal fainted slot empty until all phases finish.
+	call HasUserFainted
+	ret nz
+	farcall RunFaintAbilities
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+	call UpdateBattleMonInParty
+	call CheckPlayerPartyForFitMon
+	ld a, d
+	and a
+	ret nz
+	jp HandlePlayerMonFaint
+.enemy
+	call UpdateEnemyMonInParty
+	ld a, [wBattleMode]
+	dec a
+	jp z, HandleEnemyMonFaint
+	call CheckEnemyTrainerDefeated
+	ret nz
+	jp HandleEnemyMonFaint
+
+ResidualPoison:
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 1 << PSN | 1 << BRN | 1 << FRZ ; frostbite chips like burn
-	jr z, .did_psn_brn
-
-	; Magic Guard ignores the chip; Poison Heal turns poison into healing
+	bit PSN, a
+	ret z
+	; Toxic escalates even when Magic Guard or Poison Heal prevents damage.
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVar
+	bit SUBSTATUS_TOXIC, a
+	jr z, .toxic_count_done
+	ld hl, wPlayerToxicCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_toxic_count
+	ld hl, wEnemyToxicCount
+.got_toxic_count
+	ld a, [hl]
+	cp 15
+	jr nc, .toxic_count_done
+	inc [hl]
+.toxic_count_done
+	; Magic Guard ignores the chip; Poison Heal turns poison into healing.
 	farcall RunResidualStatusAbilities
-	jr c, .did_psn_brn
-
+	ret c
 	ld hl, HurtByPoisonText
 	ld de, ANIM_PSN
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	bit BRN, a
-	jr z, .check_frz_anim
-	ld hl, HurtByBurnText
-	ld de, ANIM_BRN
-	jr .got_anim
-.check_frz_anim
-	bit FRZ, a
-	jr z, .got_anim
-	ld hl, HurtByFrostbiteText
-	ld de, ANIM_FRZ
-.got_anim
-
-	push de
-	call StdBattleTextbox
-	pop de
-
-	xor a
-	ld [wNumHits], a
-	call Call_PlayBattleAnim_OnlyIfVisible
+	call PlayResidualStatusAnim
 	call GetEighthMaxHP
 	ld de, wPlayerToxicCount
 	ldh a, [hBattleTurn]
@@ -1169,8 +1239,6 @@ ResidualDamage:
 	jr z, .did_toxic
 	call GetSixteenthMaxHP
 	ld a, [de]
-	inc a
-	ld [de], a
 	ld hl, 0
 .add
 	add hl, bc
@@ -1179,17 +1247,51 @@ ResidualDamage:
 	ld b, h
 	ld c, l
 .did_toxic
+	jp SubtractHPFromUser
 
-	call SubtractHPFromUser
-.did_psn_brn
+ResidualBurnFrostbite:
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and 1 << BRN | 1 << FRZ
+	ret z
+	farcall UserHasMagicGuard_Core
+	ret z
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	ld hl, HurtByBurnText
+	ld de, ANIM_BRN
+	jr nz, .got_anim
+	ld hl, HurtByFrostbiteText
+	ld de, ANIM_FRZ
+.got_anim
+	call PlayResidualStatusAnim
+	call GetEighthMaxHP ; preserve the game's frostbite damage
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	bit BRN, a
+	call nz, GetSixteenthMaxHP
+	jp SubtractHPFromUser
 
-	call HasUserFainted
-	jp z, .fainted
+PlayResidualStatusAnim:
+	push de
+	call StdBattleTextbox
+	pop de
+	xor a
+	ld [wNumHits], a
+	jp Call_PlayBattleAnim_OnlyIfVisible
 
+ResidualLeechSeed:
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarAddr
-	bit SUBSTATUS_LEECH_SEED, [hl]
-	jr z, .not_seeded
+	call GetBattleVar
+	bit SUBSTATUS_LEECH_SEED, a
+	ret z
+	farcall UserHasMagicGuard_Core
+	ret z
+	; A fainted source cannot receive Leech Seed healing, and the seed does
+	; not drain its victim while that opposing slot is empty.
+	farcall OppHasFainted
+	ret z
 
 	call SwitchTurnCore
 	xor a
@@ -1202,82 +1304,65 @@ ResidualDamage:
 	call SwitchTurnCore
 
 	call GetEighthMaxHP
-	call SubtractHPFromUser
+	call SubtractHP
+	; The HP HUD can clobber bc when the victim faints. Heal exactly the
+	; HP actually removed, including a victim with less than one eighth left.
+	push bc
+	call UpdateHPBarBattleHuds
+	pop bc
 	ld a, $1
 	ldh [hBGMapMode], a
 	call RestoreHP
 	ld hl, LeechSeedSapsText
-	call StdBattleTextbox
-.not_seeded
+	jp StdBattleTextbox
 
-	call HasUserFainted
-	jr z, .fainted
-
+ResidualNightmare:
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarAddr
-	bit SUBSTATUS_NIGHTMARE, [hl]
-	jr z, .not_nightmare
-	xor a
-	ld [wNumHits], a
-	ld de, ANIM_IN_NIGHTMARE
-	call Call_PlayBattleAnim_OnlyIfVisible
-	call GetQuarterMaxHP
-	call SubtractHPFromUser
+	call GetBattleVar
+	bit SUBSTATUS_NIGHTMARE, a
+	ret z
 	ld hl, HasANightmareText
-	call StdBattleTextbox
-.not_nightmare
+	jr ResidualQuarterDamage
 
-	call HasUserFainted
-	jr z, .fainted
-
+ResidualCurse:
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarAddr
-	bit SUBSTATUS_CURSE, [hl]
-	jr z, .not_cursed
-
+	call GetBattleVar
+	bit SUBSTATUS_CURSE, a
+	ret z
+	ld hl, HurtByCurseText
+ResidualQuarterDamage:
+	push hl
+	farcall UserHasMagicGuard_Core
+	pop hl
+	ret z
+	push hl
 	xor a
 	ld [wNumHits], a
 	ld de, ANIM_IN_NIGHTMARE
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call GetQuarterMaxHP
 	call SubtractHPFromUser
-	ld hl, HurtByCurseText
-	call StdBattleTextbox
-
-.not_cursed
-	ld hl, wBattleMonHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .check_fainted
-	ld hl, wEnemyMonHP
-
-.check_fainted
-	ld a, [hli]
-	or [hl]
-	ret nz
-
-.fainted
-	call RefreshBattleHuds
-	ld c, 20
-	call DelayFrames
-	xor a
-	ret
+	pop hl
+	jp StdBattleTextbox
 
 HandlePerishSong:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .EnemyFirst
-	call SetPlayerTurn
+	ldh a, [hBattleTurn]
+	push af
+	farcall GetResidualFirstSide
+	ldh [hBattleTurn], a
 	call .do_it
-	call SetEnemyTurn
-	jp .do_it
-
-.EnemyFirst:
-	call SetEnemyTurn
+	call SwitchTurnCore
 	call .do_it
-	call SetPlayerTurn
+	pop af
+	ldh [hBattleTurn], a
+	ret
 
 .do_it
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call HasUserFainted
+	ret z
 	ld hl, wPlayerPerishCount
 	ldh a, [hBattleTurn]
 	and a
@@ -1313,7 +1398,7 @@ HandlePerishSong:
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ret
+	jp CheckResidualFaint
 
 .kill_enemy
 	ld hl, wEnemyMonHP
@@ -1322,30 +1407,19 @@ HandlePerishSong:
 	ld [hl], a
 	ld a, [wBattleMode]
 	dec a
-	ret z
+	jp z, CheckResidualFaint
 	ld hl, wOTPartyMon1HP
 	ld a, [wCurOTMon]
 	call GetPartyLocation
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ret
+	jp CheckResidualFaint
 
 HandleWrap:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .EnemyFirst
-	call SetPlayerTurn
-	call .do_it
-	call SetEnemyTurn
-	jp .do_it
-
-.EnemyFirst:
-	call SetEnemyTurn
-	call .do_it
-	call SetPlayerTurn
-
-.do_it
+; The residual scheduler calls this once per living battler, in Speed order.
+	farcall OppHasFainted
+	jr z, .source_gone
 	ld hl, wPlayerWrapCount
 	ld de, wPlayerTrappingMove
 	ldh a, [hBattleTurn]
@@ -1358,11 +1432,6 @@ HandleWrap:
 	ld a, [hl]
 	and a
 	ret z
-
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVar
-	bit SUBSTATUS_SUBSTITUTE, a
-	ret nz
 
 	ld a, [de]
 	ld [wNamedObjectIndexBuffer], a
@@ -1393,7 +1462,7 @@ HandleWrap:
 	call SwitchTurnCore
 
 .skip_anim
-	call GetSixteenthMaxHP
+	call GetEighthMaxHP
 	call SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
 	jr .print_text
@@ -1403,6 +1472,16 @@ HandleWrap:
 
 .print_text
 	jp StdBattleTextbox
+
+.source_gone
+	ld hl, wPlayerWrapCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .clear_wrap
+	ld hl, wEnemyWrapCount
+.clear_wrap
+	ld [hl], 0
+	ret
 
 SwitchTurnCore:
 	ldh a, [hBattleTurn]
@@ -1424,6 +1503,8 @@ HandleLeftovers:
 	call .do_it
 	call SetPlayerTurn
 .do_it
+	call HasUserFainted
+	ret z
 
 	callfar GetUserItem
 	ld a, [hl]
@@ -1474,6 +1555,8 @@ HandleMysteryberry:
 	call SetPlayerTurn
 
 .do_it
+	call HasUserFainted
+	ret z
 	callfar GetUserItem
 	ld a, b
 	cp HELD_RESTORE_PP
@@ -1604,20 +1687,22 @@ HandleMysteryberry:
 	jp StdBattleTextbox
 
 HandleFutureSight:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
-	call SetPlayerTurn
+	ldh a, [hBattleTurn]
+	push af
+	farcall GetResidualFirstSide
+	xor 1 ; pending strikes are keyed by source, but target Speed orders them
+	ldh [hBattleTurn], a
 	call .do_it
-	call SetEnemyTurn
-	jp .do_it
-
-.enemy_first
-	call SetEnemyTurn
+	call SwitchTurnCore
 	call .do_it
-	call SetPlayerTurn
+	pop af
+	ldh [hBattleTurn], a
+	ret
 
 .do_it
+	ld a, [wBattleEnded]
+	and a
+	ret nz
 	ld hl, wPlayerFutureSightCount
 	ldh a, [hBattleTurn]
 	and a
@@ -1632,6 +1717,15 @@ HandleFutureSight:
 	ld [hl], a
 	cp $1
 	ret nz
+	; The delayed strike expires on this turn even if weather has already
+	; removed its target. It cannot attack a replacement sent out later.
+	push hl
+	farcall OppHasFainted
+	pop hl
+	jr nz, .hit
+	ld [hl], 0
+	ret
+.hit
 
 	ld hl, BattleText_TargetWasHitByFutureSight
 	call StdBattleTextbox
@@ -1662,7 +1756,15 @@ HandleFutureSight:
 	ld [hl], a
 
 	call UpdateBattleMonInParty
-	jp UpdateEnemyMonInParty
+	call UpdateEnemyMonInParty
+	ldh a, [hBattleTurn]
+	push af
+	xor 1 ; CheckResidualFaint expects the damaged target's perspective
+	ldh [hBattleTurn], a
+	call CheckResidualFaint
+	pop af
+	ldh [hBattleTurn], a
+	ret
 
 HandleSafeguard:
 	ldh a, [hSerialConnectionStatus]
@@ -1786,27 +1888,14 @@ HandleWeather:
 .continues
 	ld hl, .WeatherMessages
 	call .PrintWeatherMessage
-
-	ld a, [wBattleWeather]
-	cp WEATHER_SANDSTORM
-	jr nz, .check_hail
-
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
-
-.player_first
-	call SetPlayerTurn
-	call .SandstormDamage
-	call SetEnemyTurn
-	jr .SandstormDamage
-
-.enemy_first
-	call SetEnemyTurn
-	call .SandstormDamage
-	call SetPlayerTurn
+	ret ; each living holder processes weather in the shared Speed-ordered pass
 
 .SandstormDamage:
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call HasUserFainted
+	ret z
 	farcall AbilityImmuneToSandstorm
 	ret c
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -1842,33 +1931,19 @@ HandleWeather:
 	ld de, ANIM_IN_SANDSTORM
 	call Call_PlayBattleAnim
 	call SwitchTurnCore
-	call GetEighthMaxHP
+	call GetSixteenthMaxHP
 	call SubtractHPFromUser
 
 	ld hl, SandstormHitsText
-	jp StdBattleTextbox
-
-.check_hail
-	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
-	ret nz
-
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first_hail
-
-; player first
-	call SetPlayerTurn
-	call .HailDamage
-	call SetEnemyTurn
-	jr .HailDamage
-
-.enemy_first_hail
-	call SetEnemyTurn
-	call .HailDamage
-	call SetPlayerTurn
+	call StdBattleTextbox
+	jp CheckResidualFaint
 
 .HailDamage:
+	ld a, [wBattleEnded]
+	and a
+	ret nz
+	call HasUserFainted
+	ret z
 	farcall AbilityImmuneToHail
 	ret c
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -1900,7 +1975,8 @@ HandleWeather:
 	call SubtractHPFromUser
 
 	ld hl, PeltedByHailText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+	jp CheckResidualFaint
 
 .PrintWeatherMessage:
 	ld a, [wBattleWeather]
@@ -1928,6 +2004,15 @@ HandleWeather:
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
 	dw BattleText_TheHailStopped
+
+HandleWeatherChip::
+; The weather ability pass calls this for each holder, in effective Speed order.
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jp z, HandleWeather.SandstormDamage
+	cp WEATHER_HAIL
+	ret nz
+	jp HandleWeather.HailDamage
 
 SubtractHPFromTarget:
 	call SubtractHP
@@ -3916,6 +4001,14 @@ TryToRunAwayFromBattle:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, .cant_run_from_trainer
+	; Ghost types always escape wild battles, including Mean Look, binding,
+	; and trapping abilities (Gen 6+).
+	ld a, [wBattleMonType1]
+	cp GHOST
+	jp z, .can_escape
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jp z, .can_escape
 
 	; Run Away always escapes wild battles, ignoring trapping
 	push hl
@@ -4554,6 +4647,8 @@ HandleHealingItems:
 	jp UseConfusionHealingItem
 
 HandleHPHealingItem::
+	farcall OppHasFainted
+	ret z
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_BERRY
@@ -4663,6 +4758,8 @@ ItemRecoveryAnim:
 
 UseHeldStatusHealingItem:
 ; Returns nz if a status-healing item was used.
+	farcall OppHasFainted
+	ret z
 	call BerryHolderIsUnnerved
 	jr z, .not_unnerved
 	xor a ; z: nothing used
@@ -4725,6 +4822,8 @@ UseHeldStatusHealingItem:
 INCLUDE "data/battle/held_heal_status.asm"
 
 UseConfusionHealingItem:
+	farcall OppHasFainted
+	ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
@@ -4775,6 +4874,10 @@ HandleStatBoostingHeldItems:
 	ld a, $1
 .HandleItem:
 	ldh [hBattleTurn], a
+	push hl
+	call HasUserFainted
+	pop hl
+	ret z
 	; Klutz disables held-item effects without removing the item.
 	push hl
 	push bc

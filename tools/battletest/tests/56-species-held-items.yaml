@@ -96,7 +96,7 @@
   rng_value: 100
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == (result('stick_farfetchd_control')['enemy']['damage'] - 2) + (result('stick_farfetchd_control')['enemy']['damage'] - 2) // 2 + 2
+    - enemy.start_hp - enemy.hp == result('stick_farfetchd_control')['enemy']['damage'] * 3 // 2
 
 - name: "Stick control: Sirfetch'd does not crit at stage zero"
   id: stick_sirfetchd_control
@@ -115,7 +115,7 @@
   rng_value: 100
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == (result('stick_sirfetchd_control')['enemy']['damage'] - 2) + (result('stick_sirfetchd_control')['enemy']['damage'] - 2) // 2 + 2
+    - enemy.start_hp - enemy.hp == result('stick_sirfetchd_control')['enemy']['damage'] * 3 // 2
 
 - name: "Stick control: unrelated species"
   id: stick_unrelated_control
@@ -162,4 +162,4 @@
   rng_value: 100
   turns: 1
   assert:
-    - player.start_hp - player.hp == (result('enemy_stick_farfetchd_control')['player']['damage'] - 2) + (result('enemy_stick_farfetchd_control')['player']['damage'] - 2) // 2 + 2
+    - player.start_hp - player.hp == result('enemy_stick_farfetchd_control')['player']['damage'] * 3 // 2

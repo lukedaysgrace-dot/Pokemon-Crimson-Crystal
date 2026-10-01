@@ -12,7 +12,12 @@ BattleCommand_FuryCutter:
 	and a
 	jp nz, ResetFuryCutterCount
 
+	push hl
+	farcall CheckParentalBondSecondHit_Core
+	pop hl
+	jr c, .same_use
 	inc [hl]
+.same_use
 
 ; Damage capped at 5 turns' worth (16x).
 	ld a, [hl]

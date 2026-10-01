@@ -1,0 +1,191 @@
+# Modern move/ability interaction regressions from the 2026-10-01 audit.
+
+- name: "Audit 10-01: Knock Off item boost control"
+  id: audit_knock_item
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, item: METAL_COAT, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.item == 'NO_ITEM'"]
+
+- name: "Audit 10-01: Sticky Hold keeps its item but not Knock Off's boost"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF] }
+  enemy: { species: SNORLAX, level: 100, ability: STICKY_HOLD, item: METAL_COAT, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.item == 'METAL_COAT'"
+    - "enemy.start_hp - enemy.hp == result('audit_knock_item')['enemy']['damage']"
+
+- name: "Audit 10-01: Skill Swap accepts identical abilities and runs their entry effects"
+  player: { species: MEW, level: 50, ability: DROUGHT, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 50, ability: DROUGHT, moves: [SPLASH] }
+  setup_wram: { wBattleWeather: 0, wWeatherCount: 0 }
+  rng: forced_high
+  turns: 1
+  assert: ["weather == 2", "ability_seen('DROUGHT')"]
+
+- name: "Audit 10-01: Belly Drum applies a single inverted +12 change with Contrary"
+  player: { species: MEW, level: 50, ability: CONTRARY, moves: [BELLY_DRUM] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 1", "player.start_hp - player.hp == player.maxhp // 2"]
+
+- name: "Audit 10-01: Contrary Belly Drum still pays HP at -6"
+  player: { species: MEW, level: 50, ability: CONTRARY, moves: [BELLY_DRUM], stages: { atk: -6 } }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 1", "player.start_hp - player.hp == player.maxhp // 2"]
+
+- name: "Audit 10-01: Contrary Belly Drum fails at +6 without charging HP"
+  player: { species: MEW, level: 50, ability: CONTRARY, moves: [BELLY_DRUM], stages: { atk: 6 } }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 13", "player.hp == player.start_hp"]
+
+- name: "Audit 10-01: Psych Up copies neutral stages through Contrary and Clear Body"
+  player: { species: MEW, level: 50, ability: CONTRARY, moves: [PSYCH_UP], stages: { atk: 3, def: -2 } }
+  enemy: { species: SNORLAX, level: 50, ability: CLEAR_BODY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 7", "player.stat_levels[1] == 7"]
+
+- name: "Audit 10-01: Psych Up copies Focus Energy"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCH_UP] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH], substatus: [FOCUS_ENERGY] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[3] & 4) != 0"]
+
+- name: "Audit 10-01: Psych Up clears the user's Focus Energy when target has none"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCH_UP], substatus: [FOCUS_ENERGY] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[3] & 4) == 0"]
+
+# forced_low lands the move's accuracy roll, but used to fail the unrelated
+# vanilla AI-only 25% roll after it. Both sides now obey the same mechanics.
+- name: "Audit 10-01: enemy sleep has no additional random failure"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SING] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 7) != 0"]
+
+- name: "Audit 10-01: enemy poison has no additional random failure"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TOXIC] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 8) != 0"]
+
+- name: "Audit 10-01: enemy burn has no additional random failure"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WILL_O_WISP] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 16) != 0"]
+
+- name: "Audit 10-01: enemy paralysis has no additional random failure"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GLARE] }
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 64) != 0"]
+
+- name: "Audit 10-01: enemy stat drop has no additional random failure"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GROWL] }
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 6"]
+
+- name: "Audit 10-01: Glare paralyzes Ghost types"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GLARE] }
+  enemy: { species: GENGAR, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert: ["(enemy.status & 64) != 0"]
+
+- name: "Audit 10-01: Mist blocks Snarl's modern effect id"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SNARL] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [MIST] }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[3] == 7", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit 10-01: draining damages Substitute and heals from its actual lost HP"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, hp: 50, moves: [GIGA_DRAIN] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 11 }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "player.hp - player.start_hp == 6", "(enemy.substatus[3] & 16) == 0"]
+
+- name: "Audit 10-01: recoil on a broken Substitute uses its actual lost HP"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_EDGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 12 }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "player.start_hp - player.hp == 4"]
+
+- name: "Audit 10-01: broken Substitute still blocks Iron Barbs"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: IRON_BARBS, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Audit 10-01: broken Substitute still blocks target secondary burn"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FIRE_PUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status == 0", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 10-01: Flame Charge raises Speed after breaking Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FLAME_CHARGE] }
+  enemy: { species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[2] == 8", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 10-01: Life Orb charges once on broken Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: LIFE_ORB, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == player.maxhp // 10", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 10-01: Sheer Force still suppresses Life Orb on broken Substitute"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, item: LIFE_ORB, moves: [FIRE_PUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == player.start_hp", "enemy.status == 0", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 10-01: Superpower self drops survive broken Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SUPERPOWER] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 6", "player.stat_levels[1] == 6", "enemy.hp == enemy.start_hp"]
+
+- name: "Audit 10-01: second hit reaches holder after first hit breaks Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "(enemy.substatus[3] & 16) == 0"]

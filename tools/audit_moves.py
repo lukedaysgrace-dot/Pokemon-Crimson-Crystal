@@ -522,24 +522,29 @@ def audit_move_mechanics(audit: Audit) -> None:
         "SheerForceEffects is missing Eerie Spell's removable PP-loss effect",
     )
 
-    contact_hook = "\n".join(ability_blocks.get("RunContactAbilitiesHook", []))
-    attacker_faint_check = contact_hook.find("call UserHasFainted")
-    parental_bond_hit = contact_hook.find("call z, ParentalBondSecondHit")
+    parental_bond_core = read("engine/battle/move_effects/parental_bond_core.asm")
     audit.check(
-        0 <= attacker_faint_check < parental_bond_hit,
-        "Parental Bond must not synthesize its second hit after Rocky Helmet KOs the attacker",
+        re.search(
+            r"\.repeat\s+farcall UserHasFainted\s+"
+            r"jp z, \.cancel.*?farcall OppHasFainted\s+jp z, \.cancel.*?"
+            r"ld a, \[wParentalBondHits\]\s+and a\s+jr z, \.not_landed.*?"
+            r"ld a, 2\s+ld \[wParentalBondState\], a",
+            parental_bond_core,
+            re.DOTALL,
+        ) is not None,
+        "Parental Bond must replay a second hit only after a successful first hit with both battlers alive",
     )
 
     core = read("engine/battle/move_effects/new_move_cores.asm")
     audit.check(
         re.search(
             r"BattleConditionalBoost_Core:.*?cp EFFECT_KNOCK_OFF.*?farcall ItemIsMail.*?"
-            r"farcall GetOppIgnorableAbility_b.*?cp STICKY_HOLD.*?\.no_knock_off_item",
+            r"jr c, \.no_knock_off_item.*?ld a, 1\s+jr \.got_knock_off_item",
             core,
             re.DOTALL,
         )
         is not None,
-        "Knock Off must not receive its item boost against unremovable mail or Sticky Hold",
+        "Knock Off must exclude unremovable mail from its item boost",
     )
 
     sticky_web = "\n".join(global_blocks(core).get("StickyWebEntry", []))

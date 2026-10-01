@@ -50,6 +50,7 @@ DoMove:
 	; Clear Body, Substitute and the AI miss roll (audit 2026-08-28 #6).
 	xor a
 	ld [wPreStatScopeActive], a
+	ld [wHitSubstitute], a
 ; Get the user's move effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -71,6 +72,7 @@ DoMove:
 	inc de
 	cp endmove_command
 	jr nz, .GetMoveEffect
+	farcall PrepareParentalBond_Core
 
 ; Deferred stat messages never carry over between moves.
 	xor a
@@ -98,10 +100,21 @@ DoMove:
 	ld a, h
 	ld [wBattleScriptBufferAddress + 1], a
 	pop af
+	; Parental Bond replays the existing hit commands, keeping every hit's
+	; abilities, items and secondary effects in the ordinary battle pipeline.
+	push bc
+	ld b, a
+	farcall ParentalBondCommandGate_Core
+	ld a, b
+	pop bc
+	jr c, .ReadMoveEffectCommand
 
 ; endturn_command (-2) is used to terminate branches without ending the read cycle.
 	cp endturn_command
-	ret nc
+	jr c, .DispatchMoveEffectCommand
+	farcall RunBerserkMoveEnd_Core
+	ret
+.DispatchMoveEffectCommand
 
 ; The rest of the commands (01-af) are read from BattleCommandPointers.
 	push bc
@@ -1226,6 +1239,7 @@ BattleCommand_Critical:
 
 	xor a
 	ld [wCriticalHit], a
+	ld [wHitSubstitute], a ; a fresh hit in a multi-hit move
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
@@ -1279,7 +1293,7 @@ BattleCommand_Critical:
 
 ; +2 critical level
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy ; item stages also stack with Focus Energy and high-crit moves
 
 .Farfetchd:
 	ld a, l
@@ -1320,7 +1334,7 @@ BattleCommand_Critical:
 
 ; crit level 2 => 128/256 = 50% (CriticalHitChances stage +2)
 	ld c, 2
-	jr .Tally
+	jr .FocusEnergy
 
 .FocusEnergy:
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -1328,7 +1342,8 @@ BattleCommand_Critical:
 	bit SUBSTATUS_FOCUS_ENERGY, a
 	jr z, .CheckCritical
 
-; +1 critical level
+; Modern Focus Energy adds two critical stages.
+	inc c
 	inc c
 
 .CheckCritical:
@@ -1338,7 +1353,7 @@ BattleCommand_Critical:
 	call GetMoveIndexFromID
 	; IsInHalfwordArray wants the search VALUE in bc and the list in hl.
 	; The old code loaded bc with the list's own address, so high-crit
-	; moves never actually got their +2 stage (found while testing the
+	; moves never actually got their critical-stage bonus (found testing the
 	; Gen 7 crit table, 2026-08).
 	ld b, h
 	ld c, l
@@ -1348,8 +1363,7 @@ BattleCommand_Critical:
 	pop bc
 	jr nc, .ScopeLens
 
-; +2 critical level
-	inc c
+; Modern high-critical-hit moves add one critical stage.
 	inc c
 
 .ScopeLens:
@@ -1366,12 +1380,17 @@ BattleCommand_Critical:
 .Tally:
 	; Super Luck: +1 crit stage
 	farcall AbilityCritLevelMods
+	; Three stages guarantee a critical hit, including an RNG byte of $ff.
+	ld a, c
+	cp 3
+	jr nc, .critical_hit
 	ld hl, CriticalHitChances
 	ld b, 0
 	add hl, bc
 	call BattleRandom
 	cp [hl]
 	ret nc
+.critical_hit
 	ld a, 1
 	ld [wCriticalHit], a
 	ret
@@ -1387,6 +1406,7 @@ BattleCommand_Stab:
 	ld bc, STRUGGLE
 	call CompareMove
 	jr nz, .not_struggle
+	call ApplyCriticalDamageMultiplier
 	; Struggle is typeless: no STAB and no type chart, but it must still
 	; go through the nullification / damage-modifier hooks (Disguise,
 	; Multiscale, Huge Power, Guts, item boosts...) - audit 2026-08-28 #17.
@@ -1400,6 +1420,22 @@ BattleCommand_Stab:
 	ret
 
 .not_struggle
+	; Thunder Wave obeys Electric type immunities. Other paralysis status
+	; moves (Glare and Stun Spore) ignore the ordinary damage type chart.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PARALYZE
+	jr nz, .typed_move
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp ELECTRIC
+	jr z, .typed_move
+	ld a, EFFECTIVE
+	ld [wTypeModifier], a
+	ld [wTypeMatchup], a
+	farcall RunNullificationAbilities
+	ret
+.typed_move
 	ld hl, wBattleMonType1
 	ld a, [hli]
 	ld b, a
@@ -1434,6 +1470,9 @@ BattleCommand_Stab:
 	pop bc
 	pop de
 	pop hl
+	; Modern critical damage includes the formula's +2 and follows weather,
+	; before STAB and type effectiveness. Confusion never reaches this hook.
+	call ApplyCriticalDamageMultiplier
 
 	push de
 	push bc
@@ -1752,6 +1791,16 @@ CheckTypeMatchup:
 BattleCommand_ResetTypeMatchup:
 ; Reset the type matchup multiplier to 1.0, if the type matchup is not 0.
 ; If there is immunity in play, the move automatically misses.
+	; Modern Bide's stored damage ignores type immunity.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_BIDE
+	jr nz, .normal_matchup
+	ld a, 10
+	ld [wTypeMatchup], a
+	ld [wTypeModifier], a
+	ret
+.normal_matchup
 	call BattleCheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
@@ -1838,6 +1887,9 @@ ENDC
 
 BattleCommand_CheckHit:
 ; checkhit
+	; Parental Bond checks accuracy once for the whole two-hit move.
+	farcall CheckParentalBondSecondHit_Core
+	ret c
 	; Targeting ability blocks must precede every unconditional-hit shortcut
 	; below (Lock-On, X Accuracy, always-hit effects, rain/hail, No Guard).
 	farcall AbilityPreHitTargetBlock
@@ -1848,9 +1900,6 @@ BattleCommand_CheckHit:
 
 	call .Protect
 	jp nz, .Miss
-
-	call .DrainSub
-	jp z, .Miss
 
 	call .LockOn
 	ret nz
@@ -1876,6 +1925,8 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	cp EFFECT_BIDE
+	ret z ; Bide's release does not roll accuracy
 
 	call .StatModifiers
 
@@ -1991,24 +2042,6 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_FLYING, a
 	ld hl, .DigMoves
 	jr nz, .check_move_in_list
-	ld a, 1
-	and a
-	ret
-
-.DrainSub:
-; Return z if using an HP drain move on a substitute.
-	call CheckSubstituteOpp
-	jr z, .not_draining_sub
-
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-
-	cp EFFECT_LEECH_HIT
-	ret z
-	cp EFFECT_DREAM_EATER
-	ret z
-
-.not_draining_sub
 	ld a, 1
 	and a
 	ret
@@ -2484,6 +2517,8 @@ BattleCommand_ApplyDamage_:
 ; them from inside ApplyDamage stalled the battle; see
 ; _ai_artifacts/reports/ABILITY_PORT_PLAN.md)
 
+	xor a
+	ld [wHitSubstitute], a
 	callfar EndureFocusSashInEffect_Core
 	jr c, .damage
 
@@ -2517,6 +2552,7 @@ BattleCommand_ApplyDamage_:
 	call DoPlayerDamage
 
 .done_damage
+	farcall RecordParentalBondDamage_Core
 	pop bc
 	ld a, b
 	and a
@@ -2544,14 +2580,12 @@ BattleCommand_ApplyDamage_:
 	jp StdBattleTextbox
 
 .update_damage_taken
-	; Infiltrator routes damage through a Substitute to the holder, so the
-	; hit still counts for damage-taken bookkeeping and Rage Fist.
+	; Infiltrator and sound moves route damage through a Substitute to the
+	; holder, so the hit counts for damage-taken bookkeeping and Rage Fist.
 	push bc
-	farcall GetTrueUserAbility_b
-	ld a, b
+	farcall UserMoveBypassesSubstitute_Core
 	pop bc
-	cp INFILTRATOR
-	jr z, .record_damage_taken
+	jr c, .record_damage_taken
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -2774,6 +2808,8 @@ BattleCommand_CheckFaint:
 	; and multi-hit moves eat between hits. The end-of-turn
 	; HandleHealingItems call still covers chip damage (weather, Leech
 	; Seed, poison, ...); consuming the item here is the double-eat guard.
+	farcall CheckBerserkBerryDelay_Core
+	ret c
 	farcall HandleHPHealingItem
 	ret
 
@@ -3054,16 +3090,7 @@ BattleCommand_DamageCalc:
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-
-; Selfdestruct and Explosion halve defense.
-	cp EFFECT_SELFDESTRUCT
-	jr nz, .dont_selfdestruct
-
-	srl c
-	jr nz, .dont_selfdestruct
-	inc c
-
-.dont_selfdestruct
+	; Explosion and Selfdestruct have used normal Defense since Gen 5.
 
 ; Variable-hit moves and Conversion can have a power of 0.
 	cp EFFECT_MULTI_HIT
@@ -3179,9 +3206,6 @@ ConfusionDamageCalc:
 	call Divide
 
 .DoneItem:
-; Critical hits
-	call .CriticalMultiplier
-
 ; Update wCurDamage (capped at 997).
 	ld hl, wCurDamage
 	ld b, [hl]
@@ -3255,6 +3279,7 @@ ConfusionDamageCalc:
 	jr nc, .dont_floor
 	inc [hl]
 .dont_floor
+	farcall QuarterParentalBondDamage_Core
 
 	; Glaive Rush users take double damage
 	farcall GlaiveRushIncomingDouble_Core
@@ -3263,7 +3288,7 @@ ConfusionDamageCalc:
 	and a
 	ret
 
-.CriticalMultiplier:
+ApplyCriticalDamageMultiplier:
 	ld a, [wCriticalHit]
 	and a
 	ret z
@@ -3272,9 +3297,9 @@ ConfusionDamageCalc:
 	push hl
 	push de
 ; hl = damage
-	ldh a, [hQuotient + 2]
+	ld a, [wCurDamage]
 	ld h, a
-	ldh a, [hQuotient + 3]
+	ld a, [wCurDamage + 1]
 	ld l, a
 ; de = damage >> 1
 	ld d, h
@@ -3288,9 +3313,9 @@ ConfusionDamageCalc:
 	ld hl, $ffff
 .no_crit_cap
 	ld a, h
-	ldh [hProduct + 2], a
+	ld [wCurDamage], a
 	ld a, l
-	ldh [hProduct + 3], a
+	ld [wCurDamage + 1], a
 	pop de
 	pop hl
 	ret
@@ -3649,6 +3674,8 @@ DoPlayerDamage:
 	jp RefreshBattleHuds
 
 DoSubstituteDamage:
+	ld a, 1
+	ld [wHitSubstitute], a
 	ld hl, SubTookDamageText
 	call StdBattleTextbox
 
@@ -3658,17 +3685,29 @@ DoSubstituteDamage:
 	jr z, .got_hp
 	ld de, wPlayerSubstituteHP
 .got_hp
+	; Damage, draining and recoil are based on the HP actually lost by the
+	; Substitute. Preserve that damage for the move's remaining commands.
+	ld a, [de]
+	ld b, a
 
 	ld hl, wCurDamage
 	ld a, [hli]
 	and a
-	jr nz, .broke
+	jr nz, .cap_and_break
 
-	ld a, [de]
+	ld a, b
 	sub [hl]
+	jr c, .cap_and_break
 	ld [de], a
 	jr z, .broke
-	jr nc, .done
+	jr .done
+
+.cap_and_break
+	xor a
+	ld [wCurDamage], a
+	ld [de], a
+	ld a, b
+	ld [wCurDamage + 1], a
 
 .broke
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
@@ -3685,39 +3724,12 @@ DoSubstituteDamage:
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, AppearUserLowerSub
 	call BattleCommand_SwitchTurn
+	; Keep the effect byte: self changes and Sheer Force/Life Orb depend on
+	; it. wHitSubstitute blocks target secondaries and held/contact reactions.
+	jp RefreshBattleHuds
 
-	; Self-stat-change moves (Superpower, Hammer Arm, Close Combat,
-	; Headlong Rush, Scale Shot, Draco Meteor) must keep their effect
-	; byte. Zeroing it here (the vanilla "no secondary effects when the
-	; sub breaks" rule) made the later self stat drop take the normal
-	; opponent-drop path - including the 25% computer-miss roll and the
-	; Mist/ability checks - so Superpower & co. randomly failed to lower
-	; their user's stats whenever the hit broke a Substitute.
-	call CheckSelfInflictedStatDrop
-	jr z, .ok
-
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarAddr
-	cp EFFECT_MULTI_HIT
-	jr z, .ok
-	cp EFFECT_DOUBLE_HIT
-	jr z, .ok
-	cp EFFECT_POISON_MULTI_HIT
-	jr z, .ok
-	cp EFFECT_TRIPLE_KICK
-	jr z, .ok
-	cp EFFECT_BEAT_UP
-	jr z, .ok
-	xor a
-	ld [hl], a
-.ok
-	call RefreshBattleHuds
 .done
-	; A hit absorbed by a Substitute still costs the attacker its Life Orb
-	; recoil. checkfaint's post-hit hook sees zero damage after this and
-	; skips, so it has to be applied here.
-	farcall LifeOrbRecoil
-	jp ResetDamage
+	ret ; checkfaint now sees the retained damage and applies Life Orb once
 
 UpdateMoveData:
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -3777,8 +3789,6 @@ BattleCommand_SleepTarget:
 	jp c, PrintDidntAffect2
 .no_bounce
 	ld hl, DidntAffect1Text
-	call .CheckAIRandomFail
-	jr c, .fail
 
 	ld a, [de]
 	and a
@@ -3821,34 +3831,6 @@ BattleCommand_SleepTarget:
 	call AnimateFailedMove
 	pop hl
 	jp StdBattleTextbox
-
-.CheckAIRandomFail:
-	; Enemy turn
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .dont_fail
-
-	; Not in link battle
-	ld a, [wLinkMode]
-	and a
-	jr nz, .dont_fail
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .dont_fail
-
-	; Not locked-on by the enemy
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .dont_fail
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	ret c
-
-.dont_fail
-	xor a
-	ret
 
 BattleCommand_PoisonTarget:
 ; poisontarget
@@ -3987,27 +3969,6 @@ BattleCommand_Poison:
 	jp c, PrintDidntAffect2
 .no_bounce
 	ld hl, DidntAffect1Text
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .dont_sample_failure
-
-	ld a, [wLinkMode]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .dont_sample_failure
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	jr c, .failed
-
-.dont_sample_failure
 	call CheckSubstituteOpp
 	jr nz, .failed
 	ld a, [wAttackMissed]
@@ -4081,17 +4042,28 @@ PoisonOpponent:
 
 BattleCommand_DrainTarget:
 ; draintarget
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	or b
+	ret z
 	call SapHealth
 	ld hl, SuckedHealthText
 	jp StdBattleTextbox
 
 BattleCommand_EatDream:
 ; eatdream
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	or b
+	ret z
 	call SapHealth
 	ld hl, DreamEatenText
 	jp StdBattleTextbox
 
 SapHealth:
+	; Modern half-damage draining rounds up (including Substitute damage).
 	; Divide damage by 2, store it in hDividend
 	ld hl, wCurDamage
 	ld a, [hli]
@@ -4100,6 +4072,15 @@ SapHealth:
 	ld b, a
 	ld a, [hl]
 	rr a
+	jr nc, .rounded
+	inc a
+	jr nz, .rounded
+	inc b
+	push af
+	ld a, b
+	ldh [hDividend], a
+	pop af
+.rounded
 	ldh [hDividend + 1], a
 	or b
 	jr nz, .at_least_one
@@ -4660,8 +4641,8 @@ StatDownSkipProtect::
 	inc b
 
 .ComputerMiss:
-; Computer opponents have a 25% chance of failing.
-	; ...but not ability-driven drops (Intimidate, Mirror Armor)
+	; Consume the ability/self-drop marker. Move accuracy is the only miss
+	; roll: modern enemy stat drops have no extra 25% random failure.
 	; NOTE: hl still points at the stat-level slot and is written through
 	; at .SelfInflicted below - it must survive this marker check. Without
 	; the push/pop, every stat drop wrote its new stage into
@@ -4682,33 +4663,6 @@ StatDownSkipProtect::
 	; player's own Close Combat / Draco Meteor / Shell Smash)
 	call CheckSelfInflictedStatDrop
 	jr z, .SelfInflicted
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .DidntMiss
-
-	ld a, [wLinkMode]
-	and a
-	jr nz, .DidntMiss
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .DidntMiss
-
-; Lock-On still always works.
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .DidntMiss
-
-; Attacking moves that also lower accuracy are unaffected.
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_ACCURACY_DOWN_HIT
-	jr z, .DidntMiss
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	jr c, .Failed
-
 .DidntMiss:
 	call CheckSubstituteOpp
 	jr nz, .Failed
@@ -4829,25 +4783,8 @@ CheckSelfInflictedStatDrop::
 	ret
 
 CheckMist:
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_ATTACK_DOWN
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN + 1
-	jr c, .check_mist
-	cp EFFECT_ATTACK_DOWN_2
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN_2 + 1
-	jr c, .check_mist
-	cp EFFECT_ATTACK_DOWN_HIT
-	jr c, .dont_check_mist
-	cp EFFECT_EVASION_DOWN_HIT + 1
-	jr c, .check_mist
-.dont_check_mist
-	xor a
-	ret
-
-.check_mist
+	; Every opponent-inflicted drop respects Mist, including modern effects
+	; outside the original Gen 2 effect-id ranges (Snarl, Defog, ...).
 	; Infiltrator bypasses Mist just as it bypasses screens and Safeguard.
 	farcall GetTrueUserAbility_b
 	ld a, b

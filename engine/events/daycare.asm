@@ -673,7 +673,7 @@ DayCare_InitBreeding:
 	ld [wEggMonSpecies], a
 
 	call GetBaseData
-	call GetRandomAbilitySlot
+	call DayCare_GetEggAbilitySlot
 	ld [wEggMonPersonality], a
 	ld a, HIDDEN_POWER_DEFAULT_TYPE
 	ld [wEggMonHiddenPowerType], a
@@ -809,6 +809,54 @@ DayCare_InitBreeding:
 
 .String_EGG:
 	db "EGG@"
+
+DayCare_GetEggAbilitySlot:
+; The species parent has already been selected in wBreedMotherOrNonDitto:
+; the mother for ordinary pairs, or the non-Ditto parent for Ditto pairs.
+; Inherit its slot (not its ability name, which can change with evolution).
+; wCurBaseData describes the offspring. Returns a = supported ability slot.
+	push bc
+	ld a, [wBreedMotherOrNonDitto]
+	and a
+	ld a, [wBreedMon1Personality]
+	jr z, .got_parent
+	ld a, [wBreedMon2Personality]
+.got_parent
+	and ABILITY_MASK
+	cp HIDDEN_ABILITY
+	jr z, .hidden
+	cp ABILITY_2
+	jr z, .normal
+	ld a, ABILITY_1 ; also normalize legacy, unset personality bits
+.normal
+	ld b, a
+	ld a, [wBaseAbility2]
+	and a
+	jr z, .slot1
+	ld a, 100
+	call RandomRange
+	cp 80
+	ld a, b
+	jr c, .done
+	xor ABILITY_1 | ABILITY_2 ; the other regular slot, 20% of eggs
+	jr .done
+.hidden
+	ld a, [wBaseHiddenAbility]
+	and a
+	jr z, .random_regular
+	ld a, 100
+	call RandomRange
+	cp 60
+	ld a, HIDDEN_ABILITY
+	jr c, .done
+.random_regular
+	call GetRandomAbilitySlot
+	jr .done
+.slot1
+	ld a, ABILITY_1
+.done
+	pop bc
+	ret
 
 Daycare_CheckAlternateOffspring:
 	; returns [wCurPartySpecies] in a, unless that species may give birth to an alternate species (e.g., gender variant)

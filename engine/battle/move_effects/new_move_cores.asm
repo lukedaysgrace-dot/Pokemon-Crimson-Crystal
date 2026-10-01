@@ -223,12 +223,8 @@ BattleConditionalBoost_Core:
 	ld d, a
 	farcall ItemIsMail
 	jr c, .no_knock_off_item
-	; Sticky Hold makes the item unremovable, so it also suppresses the
-	; power boost. Mold Breaker is handled by the ignorable-ability helper.
-	farcall GetOppIgnorableAbility_b
-	ld a, b
-	cp STICKY_HOLD
-	jr z, .no_knock_off_item
+	; Sticky Hold prevents the later removal, but still allows the modern
+	; power boost. Only the item's own removal restriction suppresses it.
 	ld a, 1
 	jr .got_knock_off_item
 .no_knock_off_item
@@ -526,8 +522,8 @@ BattleSkillSwap_Core:
 	and a
 	jr nz, .failed
 	; Abilities marked NO_SWAP (including no ability, Disguise and
-	; Neutralizing Gas) cannot be exchanged. Swapping identical abilities
-	; must also fail instead of re-triggering both entry effects for free.
+	; Neutralizing Gas) cannot be exchanged. Since Gen 6, identical abilities
+	; can be exchanged too, and their entry effects activate again.
 	ld a, [wPlayerAbility]
 	ld b, a
 	farcall GetAbilityFlags_b
@@ -540,11 +536,6 @@ BattleSkillSwap_Core:
 	ld a, b
 	and ABILFLAG_NO_SWAP
 	jr nz, .failed
-	ld a, [wPlayerAbility]
-	ld b, a
-	ld a, [wEnemyAbility]
-	cp b
-	jr z, .failed
 	callfar AnimateCurrentMove
 	ld a, [wPlayerAbility]
 	ld b, a
@@ -753,27 +744,6 @@ BattleBurn_Core:
 	farcall AbilityPreventsBurn
 	jp c, .failed
 .no_bounce
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .dont_sample_failure
-
-	ld a, [wLinkMode]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	jr nz, .dont_sample_failure
-
-	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .dont_sample_failure
-
-	call BattleRandom
-	cp 25 percent + 1 ; 25% chance AI fails
-	jp c, .failed
-
-.dont_sample_failure
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	farcall AbilityPreventsBurn
@@ -1306,28 +1276,24 @@ SpikesLayerDamage_Core:
 	inc c ; minimum 1
 	ret
 
-HandleNewEndTurnEffects_Core:
-; End-of-turn processing for Wish, Taunt and Yawn, in that order.
-; Match the link battle's shared serial-clock ordering. In particular, Yawn
-; rolls a sleep counter, so assigning the first RNG value to each console's
-; local player would desynchronize simultaneous Yawn expirations.
+HandleWishBoth_Core::
+; Resolve both sides' Wish before poison/burn. Preserve the caller's turn
+; context and shared link ordering. Expired wishes never revive fainted mons.
+	ldh a, [hBattleTurn]
+	push af
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .enemy_first
 	call .wish_player
 	call .wish_enemy
-	call .taunt_player
-	call .taunt_enemy
-	call .yawn_player
-	jp .yawn_enemy
+	jr .done
 .enemy_first
 	call .wish_enemy
 	call .wish_player
-	call .taunt_enemy
-	call .taunt_player
-	call .yawn_enemy
-	jp .yawn_player
-
+.done
+	pop af
+	ldh [hBattleTurn], a
+	ret
 .wish_player
 	ld hl, wPlayerWishCount
 	ld a, [hl]
@@ -1335,6 +1301,11 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	ld a, [wBattleMonHP]
+	ld b, a
+	ld a, [wBattleMonHP + 1]
+	or b
+	ret z ; an expired Wish cannot revive a fainted active mon
 	; heal the player's active slot by the stored amount
 	; (RestoreHP heals the PLAYER when hBattleTurn is nonzero)
 	ld a, 1
@@ -1356,6 +1327,11 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	ld a, [wEnemyMonHP]
+	ld b, a
+	ld a, [wEnemyMonHP + 1]
+	or b
+	ret z
 	xor a
 	ldh [hBattleTurn], a
 	ld a, [wEnemyWishHP]
@@ -1371,6 +1347,29 @@ HandleNewEndTurnEffects_Core:
 	ldh [hBattleTurn], a
 	ret
 
+
+HandleNewEndTurnEffects_Core:
+; Late end-of-turn Taunt and Yawn processing. Wish has its own earlier phase.
+; Shared serial-clock ordering keeps simultaneous Yawn sleep rolls aligned.
+	ldh a, [hBattleTurn]
+	push af
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .enemy_first
+	call .taunt_player
+	call .taunt_enemy
+	call .yawn_player
+	call .yawn_enemy
+	jr .done
+.enemy_first
+	call .taunt_enemy
+	call .taunt_player
+	call .yawn_enemy
+	call .yawn_player
+.done
+	pop af
+	ldh [hBattleTurn], a
+	ret
 .taunt_player
 	ld hl, wPlayerTauntCount
 	ld a, [hl]

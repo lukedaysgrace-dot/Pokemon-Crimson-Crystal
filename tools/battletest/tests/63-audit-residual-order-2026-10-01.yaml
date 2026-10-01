@@ -1,0 +1,351 @@
+# End-of-turn effects resolve globally by effect, then effective Speed.
+# Ability suppression makes the stage order observable, without animation hooks.
+
+- name: "Residual stages: poison precedes burn even when the burning Gas holder is faster"
+  player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, hp: 5, status_byte: 16, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: MAGIC_GUARD, hp: 50, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 8
+
+- name: "Residual stages: poison precedes Curse even when the cursed Gas holder is faster"
+  player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, hp: 5, substatus: [CURSE], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: MAGIC_GUARD, hp: 50, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 8
+
+- name: "Residual stages: a source that faints from its move cannot drain Leech Seed"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [EXPLOSION] }
+  enemy: { species: GENGAR, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Residual stages: a draining source receives only the victim's remaining HP"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 5] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp - player.start_hp == 5
+    - enemy.hp == 0
+
+- name: "Residual stages: slower Leech Seed healing can save a poisoned source under Trick Room"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 15, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp + enemy.maxhp // 8 - player.maxhp // 8
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 8
+
+- name: "Residual stages: Trick Room does not reverse Leech Seed's effective Speed order"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp - enemy.start_hp == player.start_hp
+
+- name: "Residual stages: binding ends if its source faints during the preceding Curse stage"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, substatus: [CURSE], moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, moves: [SPLASH] }
+  setup_wram: { wEnemyWrapCount: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp // 2
+    - enemy.hp == enemy.start_hp
+    - wram('wEnemyWrapCount') == 0
+
+- name: "Residual stages: Immunity resumes after Leech Seed knocks out Neutralizing Gas"
+  player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: IMMUNITY, hp: 50, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp - enemy.start_hp == player.start_hp
+    - enemy.status == 0
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Residual stages: Drizzle resumes before later stages when Leech Seed knocks out Gas"
+  player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, hp: 5, substatus: [LEECH_SEED], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: DRIZZLE, hp: 50, moves: [SPLASH] }
+  # Debug ability overrides happen after entry, so initialize Gas's entry flag.
+  setup_wram: { wNeutralizingGasActive: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp - enemy.start_hp == player.start_hp
+    - wram('wBattleWeather') == 1
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Residual stages: Leftovers heals before poison and can prevent a knockout"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 12, status_byte: 8, item: LEFTOVERS, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp + player.maxhp // 16 - player.maxhp // 8
+
+- name: "Residual stages: Wish heals before poison and can prevent a knockout"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerWishCount: 1, wPlayerWishHP: [0, 75] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp + 75 - player.maxhp // 8
+    - wram('wPlayerWishCount') == 0
+
+- name: "Residual stages: Rain Dish heals before poison and can prevent a knockout"
+  player: { species: TAUROS, level: 50, ability: RAIN_DISH, hp: 12, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp + player.maxhp // 16 - player.maxhp // 8
+
+- name: "Residual stages: Wish and Leftovers cannot revive a weather-fainted battler"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, item: LEFTOVERS, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 100, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerWishCount: 1, wPlayerWishHP: [0, 75] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+    - wram('wPlayerWishCount') == 0
+
+- name: "Residual stages: a weather knockout's replacement does not receive that turn's Ice Body healing"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, substatus: [CURSE], moves: [SPLASH] }
+  player2: { species: SPHEAL, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerWrapCount: 3 }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SPHEAL'
+    - player.ability == 'ICE_BODY'
+    - player.hp == player.maxhp // 2
+
+- name: "Residual stages: Solar Power's sun damage precedes a pending Wish and cannot be healed after fainting"
+  player: { species: TAUROS, level: 50, ability: SOLAR_POWER, hp: 5, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerWishCount: 1, wPlayerWishHP: [0, 75] }
+  weather: sun
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp // 2
+    - wram('wPlayerWishCount') == 0
+
+- name: "Residual stages: the faster enemy's last-mon poison knockout ends before the player's poison tick"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp == player.start_hp
+    - wram('wBattleResult') & 3 == 0
+
+- name: "Residual stages: the faster player's last-mon poison knockout ends before the enemy's poison tick"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: Bad Dreams deals damage before Hydration cures sleep"
+  player: { species: TAUROS, level: 50, ability: HYDRATION, hp: 50, status_byte: 3, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 8
+    - player.status == 0
+
+- name: "Residual stages: Bad Dreams deals damage before Shed Skin cures sleep"
+  player: { species: TAUROS, level: 50, ability: SHED_SKIN, hp: 50, status_byte: 3, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: BAD_DREAMS, moves: [SPLASH] }
+  rng: forced_low
+  rng_value: 12 # divisible by three so Shed Skin procs; valid single-move RNG
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 8
+    - player.status == 0
+
+- name: "Residual stages: player's Future Sight last-mon knockout ends before its poison tick"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  setup_wram: { wPlayerFutureSightCount: 2, wPlayerFutureSightDamage: [0, 20] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp == player.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: enemy's Future Sight last-mon knockout ends before its poison tick"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  setup_wram: { wEnemyFutureSightCount: 2, wEnemyFutureSightDamage: [0, 20] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: player's expired Future Sight is cleared when weather removes its target"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy2: { species: SPHEAL, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
+  setup_wram: { wPlayerFutureSightCount: 2, wPlayerFutureSightDamage: [0, 20] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'SPHEAL'
+    - enemy.hp == enemy.maxhp // 2
+    - wram('wPlayerFutureSightCount') == 0
+
+- name: "Residual stages: enemy's expired Future Sight is cleared when weather removes its target"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  player2: { species: SPHEAL, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyFutureSightCount: 2, wEnemyFutureSightDamage: [0, 20] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SPHEAL'
+    - player.hp == player.maxhp // 2
+    - wram('wEnemyFutureSightCount') == 0
+
+- name: "Residual stages: simultaneous Future Sight strikes resolve by target Speed despite Trick Room"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  setup_wram: { wPlayerFutureSightCount: 2, wPlayerFutureSightDamage: [0, 20], wEnemyFutureSightCount: 2, wEnemyFutureSightDamage: [0, 20], wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Residual stages: faster player's last-mon Perish Song expires before the enemy's"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
+  setup_wram: { wPlayerPerishCount: 1, wEnemyPerishCount: 1, wTrickRoomTimer: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: faster enemy's last-mon Perish Song expires before the player's"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH] }
+  setup_wram: { wPlayerPerishCount: 1, wEnemyPerishCount: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp == player.start_hp
+    - wram('wBattleEnded') == 1
+
+- name: "Residual stages: Hydration's cure window precedes a Perish Song knockout that ends Gas"
+  player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, substatus: [PERISH], moves: [SPLASH] }
+  player2: { species: SPHEAL, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: HYDRATION, status_byte: 3, moves: [SPLASH] }
+  setup_wram: { wPlayerPerishCount: 1, wNeutralizingGasActive: 1 }
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SPHEAL'
+    - enemy.status != 0
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Residual stages: faster player's last-mon sandstorm knockout ends before the enemy's"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Residual stages: faster enemy's last-mon sandstorm knockout ends before the player's"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp == player.start_hp
+
+- name: "Residual stages: faster player's last-mon hail knockout ends before the enemy's"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Residual stages: faster enemy's last-mon hail knockout ends before the player's"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
+  setup_wram: { wTrickRoomTimer: 3 }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.hp == player.start_hp
+
+- name: "Residual stages: faster suppressed Ice Body cannot heal after a slower weather knockout ends Gas"
+  player: { species: TAUROS, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NEUTRALIZING_GAS, hp: 5, moves: [SPLASH] }
+  enemy2: { species: SPHEAL, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  setup_wram: { wNeutralizingGasActive: 1 }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 16
+    - enemy.species == 'SPHEAL'
+    - wram('wNeutralizingGasActive') == 0
+

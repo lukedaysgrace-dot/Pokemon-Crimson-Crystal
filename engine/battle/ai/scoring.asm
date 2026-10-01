@@ -191,6 +191,18 @@ AI_Types:
 
 	inc de
 	call AIGetEnemyMove
+	; Status moves generally bypass damage-type immunities. Thunder Wave
+	; is the exception; poison/burn eligibility is scored by AI_Status.
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	cp CATEGORIZE_STATUS
+	jr nz, .check_matchup
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_PARALYZE
+	jr nz, .checkmove
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	cp ELECTRIC
+	jr nz, .checkmove
+.check_matchup
 
 	push hl
 	push bc
@@ -3489,9 +3501,9 @@ AI_Status:
 	cp EFFECT_POISON
 	jr z, .poisonimmunity
 	cp EFFECT_SLEEP
-	jr z, .typeimmunity
+	jr z, .checkmove ; Normal sleep moves can affect Ghost types
 	cp EFFECT_PARALYZE
-	jr z, .typeimmunity
+	jr z, .paralyzeimmunity
 	cp EFFECT_BURN
 	jr z, .burnimmunity
 
@@ -3500,6 +3512,20 @@ AI_Status:
 	jr z, .checkmove
 
 	jr .typeimmunity
+
+.paralyzeimmunity
+; Thunder Wave checks Electric/Ground immunity. Glare and powders do not
+; use the damage type chart (Electric targets are checked by their status).
+	ld a, [wBattleMonType1]
+	cp ELECTRIC
+	jr z, .immune
+	ld a, [wBattleMonType2]
+	cp ELECTRIC
+	jr z, .immune
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	cp ELECTRIC
+	jr z, .typeimmunity
+	jr .checkmove
 
 .poisonimmunity
 ; Our own Corrosion poisons Poison- and Steel-types regardless.
@@ -4039,9 +4065,14 @@ AI_Abilities:
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	jr z, .done
-	call AIGetEnemyAbility
-	cp INFILTRATOR
-	jr z, .done
+	push hl
+	push bc
+	push de
+	farcall UserMoveBypassesSubstitute_Core
+	pop de
+	pop bc
+	pop hl
+	jr c, .done
 	call .TargetsPlayerDirect
 	jr nc, .done
 	call AIDiscourageMove
@@ -4060,7 +4091,7 @@ AI_Abilities:
 	push hl
 	push de
 	push bc
-	ld hl, AIHazardEffects
+	ld hl, AIReflectableIndirectEffects
 	ld de, 1
 	call IsInArray
 	pop bc
@@ -4157,17 +4188,22 @@ AIDirectStatusEffects:
 	db EFFECT_PARALYZE
 	db EFFECT_BURN
 	db EFFECT_CONFUSE
-	db EFFECT_ATTRACT
 	db EFFECT_LEECH_SEED
 	db EFFECT_MEAN_LOOK
 	db EFFECT_SWAGGER
+	db EFFECT_YAWN
 	db -1 ; end
 
-AIHazardEffects:
-; entry hazards: reflected by Magic Bounce, but NOT blocked by a Substitute
+AIReflectableIndirectEffects:
+; Reflected by Magic Bounce, but not blocked by a Substitute.
 	db EFFECT_SPIKES
 	db EFFECT_TOXIC_SPIKES
 	db EFFECT_STEALTH_ROCK
+	db EFFECT_DISABLE
+	db EFFECT_ENCORE
+	db EFFECT_TAUNT
+	db EFFECT_TORMENT
+	db EFFECT_ATTRACT
 	db -1 ; end
 
 
@@ -4633,7 +4669,13 @@ AI_Elite:
 
 .MoveTypeImmune:
 ; carry if the player's typing makes it immune to the scored status
-; move's type (the engine fails these, e.g. Thunder Wave vs Ground).
+; move's type. Only Thunder Wave uses this chart; Glare bypasses Ghost.
+	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	cp ELECTRIC
+	jr z, .check_type_immunity
+	and a
+	ret
+.check_type_immunity
 	push hl
 	push de
 	push bc

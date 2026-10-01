@@ -1,0 +1,105 @@
+# Gen 9 residual timing, damage, and suppressed Toxic progression.
+- name: "Modern residual: burn removes one sixteenth of maximum HP"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, status_byte: 16, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 16
+
+- name: "Modern residual: sandstorm removes one sixteenth of maximum HP"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 16
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 16
+
+- name: "Modern residual: a slower opponent acts before poison knocks out the faster battler"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, moves: [RECOVER] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.start_pp[0] - enemy.pp[0] == 1
+    - enemy.hp > enemy.start_hp
+
+- name: "Modern residual: Toxic from the slower opponent ticks on the turn it lands"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: GRIMER, level: 50, ability: NO_ABILITY, moves: [TOXIC] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 16
+    - wram('wPlayerToxicCount') == 1
+
+- name: "Modern residual: Leech Seed heals its source before poison damage"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 50, substatus: [LEECH_SEED], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp + enemy.maxhp // 8 - player.maxhp // 8
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 8
+
+- name: "Modern residual: Magic Guard prevents damage while the Toxic counter still advances"
+  player: { species: CLEFABLE, level: 50, ability: MAGIC_GUARD, status_byte: 8, substatus: [TOXIC], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerToxicCount: 14 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - wram('wPlayerToxicCount') == 15
+
+- name: "Modern residual: Poison Heal replaces damage while the Toxic counter still advances"
+  player: { species: BRELOOM, level: 50, ability: POISON_HEAL, hp: 50, status_byte: 8, substatus: [TOXIC], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerToxicCount: 14 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp - player.start_hp == player.maxhp // 8
+    - wram('wPlayerToxicCount') == 15
+
+- name: "Modern residual: Toxic counter saturates at fifteen under Magic Guard"
+  player: { species: CLEFABLE, level: 50, ability: MAGIC_GUARD, status_byte: 8, substatus: [TOXIC], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerToxicCount: 15 }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.hp == player.start_hp
+    - wram('wPlayerToxicCount') == 15
+
+- name: "Modern residual binding control: Tackle without trapping"
+  id: modern_binding_control
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Modern residual: existing binding removes one eighth of maximum HP"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  setup_wram: { wPlayerWrapCount: 3 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('modern_binding_control')['player']['damage'] + player.maxhp // 8
+    - wram('wPlayerWrapCount') == 2
+
+- name: "Modern residual: an existing Substitute does not suspend binding damage or its timer"
+  player: { species: TAUROS, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  setup_wram: { wPlayerWrapCount: 3, wPlayerSubstituteHP: 200 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == player.maxhp // 8
+    - wram('wPlayerWrapCount') == 2

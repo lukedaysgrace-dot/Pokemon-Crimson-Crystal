@@ -1,29 +1,46 @@
 BattleCommand_BellyDrum:
 ; bellydrum
+	; Belly Drum fails at +6 Attack before Contrary is applied, but may
+	; succeed at -6 with Contrary (paying HP even though the stage stays -6).
+	ld hl, wPlayerStatLevels + ATTACK
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_attack_stage
+	ld hl, wEnemyStatLevels + ATTACK
+.got_attack_stage
+	ld a, [hl]
+	cp MAX_STAT_LEVEL
+	jr nc, .failed
 	callfar GetHalfMaxHP
 	callfar CheckUserHasEnoughHP
 	jr nc, .failed
-
-	push bc
-	call BattleCommand_AttackUp2
-	pop bc
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .failed
 
 	push bc
 	call AnimateCurrentMove
 	pop bc
 	callfar SubtractHPFromUser
 	call UpdateUserInParty
-	ld a, 5
-
-.max_attack_loop
-	push af
-	call BattleCommand_AttackUp2
-	pop af
-	dec a
-	jr nz, .max_attack_loop
+	; Apply the single +12-stage change directly. Repeated AttackUp2 calls
+	; leak Contrary's inversion marker and can accidentally raise it again.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp CONTRARY
+	ld b, MAX_STAT_LEVEL
+	jr nz, .got_final_stage
+	ld b, 1 ; -6
+.got_final_stage
+	ld hl, wPlayerStatLevels + ATTACK
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player
+	ld hl, wEnemyStatLevels + ATTACK
+	ld [hl], b
+	call CalcEnemyStats
+	jr .done
+.player
+	ld [hl], b
+	call CalcPlayerStats
+.done
 
 	ld hl, BellyDrumText
 	jp StdBattleTextbox
