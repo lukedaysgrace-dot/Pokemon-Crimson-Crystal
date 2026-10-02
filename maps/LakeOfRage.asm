@@ -45,10 +45,11 @@ LakeOfRage_MapScripts:
 	sjump .Raikou
 
 .Raikou:
-; RAIKOU prowls the lakeshore once the eighth Badge has been earned.
+; RAIKOU prowls the lakeshore once ENTEI has been fought at TIN TOWER.
+; FindNest (engine/overworld/wildmons.asm) mirrors this for the #DEX AREA.
 	checkevent EVENT_FOUGHT_LAKE_OF_RAGE_RAIKOU
 	iftrue .NoRaikou
-	checkflag ENGINE_RISINGBADGE
+	checkevent EVENT_FOUGHT_SUICUNE ; set by the TIN TOWER ENTEI battle
 	iffalse .NoRaikou
 	appear LAKEOFRAGE_RAIKOU
 	return
