@@ -78,3 +78,12 @@ dl.info dd{text-align:right}
   .abilities{margin-left:auto;margin-right:auto;text-align:left}
   dl.info{grid-template-columns:1fr}
 }
+/* Hero: running Suicune from the title intro (gfx/intro/suicune_run.png) */
+.hero-art{position:relative;display:grid;place-items:center;min-height:300px}
+.hero-art::before{content:"";position:absolute;width:420px;height:300px;background:radial-gradient(closest-side,#dd31542e,transparent);pointer-events:none}
+.hero-art::after{content:"";position:absolute;left:50%;top:calc(50% + 112px);width:240px;height:18px;transform:translateX(-50%);background:radial-gradient(closest-side,#00000099,transparent);animation:suicune-shadow calc(var(--dur) / 2) ease-in-out infinite alternate}
+.suicune-run{position:relative;z-index:1;width:var(--w);height:var(--h);background-repeat:no-repeat;background-size:var(--sheet-w) var(--h);image-rendering:pixelated;filter:drop-shadow(0 0 18px #dd315466);animation:suicune-run var(--dur) steps(var(--frames)) infinite}
+@keyframes suicune-run{from{background-position:0 0}to{background-position:calc(-1 * var(--sheet-w)) 0}}
+@keyframes suicune-shadow{from{opacity:.65;width:240px}to{opacity:1;width:270px}}
+@media(prefers-reduced-motion:reduce){.suicune-run,.hero-art::after{animation:none}}
+@media(max-width:740px){.hero-art{display:none}}
