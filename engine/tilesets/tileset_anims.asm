@@ -34,9 +34,21 @@ _AnimateTileset::
 	jp hl
 
 Tileset0Anim:
-TilesetJohtoModernAnim:
 TilesetKantoAnim:
 	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  StandingTileFrame8
+	dw NULL,  DoneTileAnimation
+
+TilesetJohtoModernAnim:
+	dw JohtoModernWaterObjects, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -76,7 +88,7 @@ TilesetForestAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetJohtoAnim:
-	dw NULL,  AnimateWaterTile
+	dw JohtoWaterObjects, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -117,7 +129,7 @@ UnusedTilesetAnim_fc103:
 	dw NULL,  DoneTileAnimation
 
 TilesetPortAnim:
-	dw NULL,  AnimateWaterTile
+	dw PortWaterObjects, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -436,15 +448,21 @@ AnimateWaterTile:
 ; Water blocks use VRAM bank 1 tiles $0e/$0f (top) and $1e/$1f (bottom).
 ; The whole frame is copied with general-purpose DMA in a single step, so
 ; all four quarters change on the same frame and never show a seam.
+; Input: de = water objects struct (see JohtoWaterObjects), or NULL.
 
 ; No HBlank DMA check here: every HBlank DMA in the game runs through
 ; CallInSafeGFXMode, which turns tile animations off while it runs. (Reading
 ; rHDMA5 isn't reliable for this: after the map-name popup's transfers it can
 ; read as busy until the next tileset load, which froze the water.)
 
-	ld a, [wTileAnimationTimer]
-; 8 frames, one per animation cycle.
-	and %111
+	ldh a, [rVBK]
+	push af
+	ld a, BANK(vTiles5)
+	ldh [rVBK], a
+
+	push de
+
+	call .GetFrame
 ; 4 tiles x 16 bytes = 64 bytes per frame
 	swap a
 	ld l, a
@@ -454,22 +472,71 @@ AnimateWaterTile:
 	ld de, WaterTileFrames
 	add hl, de
 
-	ldh a, [rVBK]
-	push af
-	ld a, BANK(vTiles5)
-	ldh [rVBK], a
-
 	ld de, vTiles5 tile $0e
 	call .CopyRow
 	ld de, vTiles5 tile $1e
 	call .CopyRow
 
+; Objects sitting in water (rocks, posts): same frame, same step.
+	pop hl
+	ld a, h
+	or l
+	jr z, .done
+
+	ld a, [hli] ; number of tiles
+	ld c, a
+	ld e, [hl] ; VRAM destination
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, [hli] ; frames
+	ld h, [hl]
+	ld l, a
+
+; hl += frame * (number of tiles) * 16
+	push de
+	ld e, c
+	ld d, 0
+rept 4
+	sla e
+	rl d
+endr
+	call .GetFrame
+	and a
+	jr z, .got_frame
+.next_frame
+	add hl, de
+	dec a
+	jr nz, .next_frame
+.got_frame
+	pop de
+
+	ld a, c
+	dec a
+	call .Copy
+
+.done
 	pop af
 	ldh [rVBK], a
 	ret
 
+.GetFrame:
+; 8 frames, one per animation cycle.
+	ld a, [wTileAnimationTimer]
+	and %111
+	ret
+
 .CopyRow:
-; Copy 2 tiles from hl to de with general-purpose DMA. hl += 2 tiles.
+; Copy 2 tiles from hl to de. hl += 2 tiles.
+	ld a, 2 - 1
+	call .Copy
+	ld bc, 2 tiles
+	add hl, bc
+	ret
+
+.Copy:
+; Copy a + 1 tiles from hl to de with general-purpose DMA.
+	push af
 	ld a, h
 	ldh [rHDMA1], a
 	ld a, l
@@ -478,19 +545,43 @@ AnimateWaterTile:
 	ldh [rHDMA3], a
 	ld a, e
 	ldh [rHDMA4], a
-	ld a, 2 - 1 ; 2 blocks of 16 bytes
+	pop af
 	ldh [rHDMA5], a ; general DMA: the CPU waits until it's done
-	ld bc, 2 tiles
-	add hl, bc
 	ret
 
+; Objects in water whose water is animated with the rest of it. The tiles
+; and frames are made by tools/water_objects.py; keep the tile counts and
+; VRAM slots here in sync with its OBJECTS table.
+; db number of tiles, dw VRAM destination (bank 1), dw frames
+JohtoWaterObjects:
+	db 4
+	dw vTiles5 tile $02
+	dw JohtoWaterObjectFrames
+
+JohtoModernWaterObjects:
+	db 4
+	dw vTiles5 tile $00
+	dw JohtoModernWaterObjectFrames
+
+PortWaterObjects:
+	db 8
+	dw vTiles5 tile $00
+	dw PortWaterObjectFrames
+
 ; DMA sources must be 16-byte aligned, so the frames get their own aligned
-; section. It has to share a bank with this code (bank3F is pinned to $3f
+; section (every INCBIN here is a whole number of tiles, so they all stay
+; aligned). It has to share a bank with this code (bank3F is pinned to $3f
 ; in pokecrystal.link).
 	PUSHS
 SECTION "Water Tile Frames", ROMX, BANK[$3f], ALIGN[4]
 WaterTileFrames:
 	INCBIN "gfx/tilesets/water/water2.2bpp"
+JohtoWaterObjectFrames:
+	INCBIN "gfx/tilesets/water/johto_objects.2bpp"
+JohtoModernWaterObjectFrames:
+	INCBIN "gfx/tilesets/water/johto_modern_objects.2bpp"
+PortWaterObjectFrames:
+	INCBIN "gfx/tilesets/water/port_objects.2bpp"
 	POPS
 	ASSERT BANK(WaterTileFrames) == BANK(AnimateWaterTile), "WaterTileFrames must share a bank with AnimateWaterTile"
 
