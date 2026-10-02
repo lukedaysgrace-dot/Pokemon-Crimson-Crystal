@@ -183,3 +183,4 @@
 	tilecoll FLOOR, FLOOR, WALL, FLOOR ; b6
 	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WALL ; b7
 	tilecoll WALL, WALL, WALL, WALL ; b8
+	tilecoll , , ,  ; b9
