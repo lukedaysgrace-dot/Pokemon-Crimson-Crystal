@@ -395,18 +395,19 @@ LedybaEggMoves:
 	dw -1 ; end
 
 SpinarakEggMoves:
-	dw PSYBEAM
-	dw DISABLE
 	dw BATON_PASS
+	dw DISABLE
+	dw LUNGE
+	dw PSYBEAM
 	dw PURSUIT
 	dw -1 ; end
 
 ChinchouEggMoves:
-	dw SCREECH
 	dw AGILITY
 	dw AMNESIA
-	dw MIST
-	dw PSYBEAM
+	dw HEAL_BELL
+	dw SCALD
+	dw VOLT_SWITCH
 	dw WATER_PULSE
 	dw -1 ; end
 
@@ -449,10 +450,11 @@ NatuEggMoves:
 	dw -1 ; end
 
 MareepEggMoves:
+	dw AGILITY
 	dw BODY_SLAM
+	dw REFLECT
 	dw SAFEGUARD
 	dw SCREECH
-	dw REFLECT
 	dw -1 ; end
 
 HoppipEggMoves:
@@ -511,11 +513,12 @@ MisdreavusEggMoves:
 	dw -1 ; end
 
 GirafarigEggMoves:
-	dw TAKE_DOWN
 	dw AMNESIA
+	dw BEAT_UP
 	dw FORESIGHT
 	dw FUTURE_SIGHT
-	dw BEAT_UP
+	dw TAKE_DOWN
+	dw WISH
 	dw -1 ; end
 
 PinecoEggMoves:
@@ -560,9 +563,7 @@ QwilfishEggMoves:
 
 ShuckleEggMoves:
 	dw ENDURE
-	dw DEFENSE_CURL
-	dw SAND_ATTACK
-	dw ACID_ARMOR
+	dw STICKY_WEB
 	dw -1 ; end
 
 HeracrossEggMoves:
@@ -679,9 +680,11 @@ ElekidEggMoves:
 	dw -1 ; end
 
 MagbyEggMoves:
-	dw KARATE_CHOP
-	dw MEGA_PUNCH
 	dw BARRIER
+	dw BELLY_DRUM
+	dw KARATE_CHOP
+	dw MACH_PUNCH
+	dw MEGA_PUNCH
 	dw SCREECH
 	dw -1 ; end
 
@@ -710,12 +713,11 @@ CharmanderCloneEggMoves:
 	dw -1 ; end
 
 SquirtleCloneEggMoves:
-	dw MIRROR_COAT
+	dw DARK_PULSE
+	dw FLIP_TURN
 	dw HAZE
+	dw MIRROR_COAT
 	dw MIST
-	dw CONFUSION
-	dw FORESIGHT
-	dw FLAIL
 	dw -1 ; end
 
 BulbasaurCloneEggMoves:
@@ -816,11 +818,13 @@ DreepyEggMoves:
 	dw -1 ; end
 
 ImpidimpEggMoves:
-	dw TORMENT
 	dw CHARM
 	dw ENCORE
+	dw LIGHT_SCREEN
 	dw MEAN_LOOK
-	dw SPITE
+	dw REFLECT
+	dw THUNDER_WAVE
+	dw TORMENT
 	dw -1 ; end
 
 TinkatinkEggMoves:
@@ -918,11 +922,11 @@ SizzlipedeEggMoves:
 	dw -1 ; end
 
 GrubbinEggMoves:
-	dw HARDEN
-	dw MUD_SHOT
-	dw SCREECH
-	dw THUNDER_WAVE
 	dw AGILITY
+	dw MUD_SHOT
+	dw STICKY_WEB
+	dw THUNDER_WAVE
+	dw VOLT_SWITCH
 	dw -1 ; end
 
 CroagunkEggMoves:
@@ -966,12 +970,11 @@ FletchlingEggMoves:
 	dw -1 ; end
 
 TrapinchEggMoves:
-	dw FLAIL
 	dw FOCUS_ENERGY
-	dw FURY_CUTTER
-	dw GUST
 	dw QUICK_ATTACK
+	dw ROOST
 	dw SIGNAL_BEAM
+	dw U_TURN
 	dw -1 ; end
 
 SnoruntEggMoves:
@@ -1304,10 +1307,11 @@ SeviperEggMoves:
 	dw -1 ; end
 
 ShuppetEggMoves:
-	dw ASTONISH
 	dw DISABLE
-	dw FORESIGHT
+	dw ENCORE
 	dw GUNK_SHOT
+	dw SWORDS_DANCE
+	dw TAUNT
 	dw -1 ; end
 
 ArchenEggMoves:
@@ -1333,11 +1337,10 @@ LitwickEggMoves:
 	dw -1 ; end
 
 JoltikEggMoves:
-	dw CROSS_POISON
 	dw DISABLE
-	dw FAINT_ATTACK
-	dw PIN_MISSILE
+	dw GIGA_DRAIN
 	dw POISON_JAB
+	dw STICKY_WEB
 	dw -1 ; end
 
 MawileEggMoves:

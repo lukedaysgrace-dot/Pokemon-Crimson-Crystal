@@ -194,3 +194,4 @@ SpecialsPointers::
 	add_special SetLastPartyMonMale
 	add_special CheckPartyForDratiniLine
 	add_special FossilRevivalMenu
+	add_special UtilityMoveTutor

@@ -57,7 +57,9 @@ VenusaurCloneEvosAttacks:
 	dbw 20, SEED_BOMB
 	dbw 22, TAKE_DOWN
 	dbw 26, SWEET_SCENT
+	dbw 28, GIGA_DRAIN
 	dbw 30, SLUDGE_BOMB
+	dbw 30, SWORDS_DANCE
 	dbw 32, PETAL_DANCE
 	dbw 35, GROWTH
 	dbw 45, DOUBLE_EDGE
@@ -126,7 +128,9 @@ CharizardCloneEvosAttacks:
 	dbw 30, FLAMETHROWER
 	dbw 34, SCARY_FACE
 	dbw 36, AIR_SLASH
+	dbw 36, ROOST
 	dbw 39, CRUNCH
+	dbw 40, FOCUS_BLAST
 	dbw 44, DRAGON_PULSE
 	dbw 44, DRAGON_TAIL
 	dbw 49, FIRE_SPIN
@@ -187,6 +191,10 @@ BlastoiseCloneEvosAttacks:
 	dbw 18, RAPID_SPIN
 	dbw 22, WATER_PULSE
 	dbw 26, PROTECT
+	dbw 28, IRON_DEFENSE
+	dbw 30, FLIP_TURN
+	dbw 32, BODY_PRESS
+	dbw 34, DARK_PULSE
 	dbw 35, SHELL_SMASH
 	dbw 36, AURA_SPHERE
 	dbw 39, SKULL_BASH

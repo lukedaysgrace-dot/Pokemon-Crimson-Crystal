@@ -169,12 +169,11 @@ CharmanderEggMoves:
 	dw -1 ; end
 
 SquirtleEggMoves:
-	dw MIRROR_COAT
+	dw DARK_PULSE
+	dw FLIP_TURN
 	dw HAZE
+	dw MIRROR_COAT
 	dw MIST
-	dw CONFUSION
-	dw FORESIGHT
-	dw FLAIL
 	dw -1 ; end
 
 PidgeyEggMoves:
@@ -314,9 +313,10 @@ MankeyEggMoves:
 
 GrowlitheEggMoves:
 	dw BODY_SLAM
+	dw FIRE_SPIN
+	dw MORNING_SUN
 	dw SAFEGUARD
 	dw THRASH
-	dw FIRE_SPIN
 	dw -1 ; end
 
 PoliwagEggMoves:
@@ -437,8 +437,9 @@ GastlyEggMoves:
 	dw -1 ; end
 
 OnixEggMoves:
-	dw FLAIL
 	dw DEFENSE_CURL
+	dw FLAIL
+	dw HEAD_SMASH
 	dw ROCK_BLAST
 	dw ROLLOUT
 	dw -1 ; end
@@ -504,10 +505,11 @@ RhyhornEggMoves:
 	dw -1 ; end
 
 TangelaEggMoves:
-	dw FLAIL
-	dw CONFUSION
-	dw REFLECT
 	dw AMNESIA
+	dw CONFUSION
+	dw FLAIL
+	dw LEECH_SEED
+	dw REFLECT
 	dw -1 ; end
 
 KangaskhanEggMoves:
@@ -573,9 +575,10 @@ LaprasEggMoves:
 	dw -1 ; end
 
 EeveeEggMoves:
-	dw FLAIL
 	dw DETECT
 	dw ENDURE
+	dw FLAIL
+	dw HEAL_BELL
 	dw WISH
 	dw YAWN
 	dw -1 ; end
