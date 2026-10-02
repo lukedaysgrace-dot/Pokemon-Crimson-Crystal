@@ -1037,6 +1037,82 @@ class Builder:
     }
     return result
   def badge(self,t): return f'<span class="badge type-{slug(t)}">{html.escape(t)}</span>' if t else '—'
+  def export_intro_suicune(self):
+    """Rebuild the intro's running-Suicune sprite animation as a web sprite sheet.
+
+    Mirrors the title intro (engine/movie/crystal_intro.asm, IntroScene8): the
+    SPRITE_ANIM_FRAMESET_INTRO_SUICUNE frameset cycles OAMSETs INTRO_SUICUNE_1..4,
+    each assembled from 8x8 tiles of gfx/intro/suicune_run.png using the dsprite
+    layouts in data/sprite_anims/oam.asm. The silhouette is recoloured dark red.
+    Returns {'sheet','w','h','frames','ms'} or None on failure.
+    """
+    if Image is None: return None
+    src=self.r/'gfx'/'intro'/'suicune_run.png'
+    oam_path=self.r/'data'/'sprite_anims'/'oam.asm'
+    fs_path=self.r/'data'/'sprite_anims'/'framesets.asm'
+    try:
+      oam=txt(oam_path); fs=txt(fs_path)
+      # Frameset order + durations
+      m=re.search(r'^\.Frameset_IntroSuicune:\s*$(.*?)^\s*(?:dorestart|endanim|dorepeat)',fs,re.M|re.S)
+      if not m: raise ValueError('Frameset_IntroSuicune not found')
+      seq=[(f,int(d)) for f,d in re.findall(r'frame\s+SPRITE_ANIM_OAMSET_(INTRO_SUICUNE_\d+)\s*,\s*(\d+)',m.group(1))]
+      if not seq: raise ValueError('Frameset_IntroSuicune has no frames')
+      # OAMSET -> (tile base, label)
+      table={}
+      for base,label,const in re.findall(r'dbw\s+\$([0-9a-fA-F]+)\s*,\s*\.(\w+)\s*;\s*SPRITE_ANIM_OAMSET_(\w+)',oam):
+        table[const]=(int(base,16),label)
+      def num(v):
+        v=v.strip()
+        return int(v[1:],16) if v.startswith('$') else int(v)
+      layouts=[]
+      for const,_ in seq:
+        base,label=table[const]
+        b=re.search(r'^\.'+label+r':\s*$(.*?)(?=^\S|\Z)',oam,re.M|re.S)
+        if not b: raise ValueError(f'.{label} not found')
+        tiles=[]
+        for line in b.group(1).splitlines():
+          line=strip(line)
+          if not line.startswith('dsprite'): continue
+          a=[x.strip() for x in line[len('dsprite'):].split(',')]
+          y=num(a[0])*8+num(a[1]); x=num(a[2])*8+num(a[3]); t=(num(a[4])+base)&0xff
+          try: attr=num(a[5])
+          except ValueError: attr=0
+          tiles.append((x,y,t,attr))
+        layouts.append(tiles)
+      with Image.open(src) as im:
+        im=im.convert('RGB'); im.load()
+      cols=im.size[0]//8
+      xs=[x for L in layouts for x,_,_,_ in L]; ys=[y for L in layouts for _,y,_,_ in L]
+      x0,y0=min(xs),min(ys); fw=max(xs)+8-x0; fh=max(ys)+8-y0
+      # GB shades -> crimson palette (white is the transparent sprite colour)
+      def recolor(px):
+        r,g,b=px; lum=(r+g+b)//3
+        if lum>=0xe0: return (0,0,0,0)
+        if lum>=0x60: return (0xff,0x4d,0x6a,255)   # light shade (eye glint)
+        return (0x6e,0x0f,0x22,255)                 # body: dark crimson
+      sheet=Image.new('RGBA',(fw*len(layouts),fh),(0,0,0,0))
+      for i,L in enumerate(layouts):
+        for x,y,t,attr in L:
+          tile=im.crop(((t%cols)*8,(t//cols)*8,(t%cols)*8+8,(t//cols)*8+8))
+          if attr&0x20: tile=tile.transpose(Image.FLIP_LEFT_RIGHT)
+          if attr&0x40: tile=tile.transpose(Image.FLIP_TOP_BOTTOM)
+          rgba=Image.new('RGBA',(8,8)); rgba.putdata([recolor(px) for px in tile.getdata()])
+          sheet.alpha_composite(rgba,(i*fw+x-x0,y-y0))
+      dst=self.a/'suicune_run.png'; sheet.save(dst,'PNG')
+      # Sprite-anim durations hold for duration+1 frames at ~60 fps
+      ms=round(sum(d+1 for _,d in seq)*1000/59.73)
+      return {'sheet':'assets/suicune_run.png','w':fw,'h':fh,'frames':len(layouts),'ms':ms}
+    except Exception as e:
+      self.report['warnings'].append(f'Could not build intro Suicune animation: {e}')
+      return None
+  def hero_art(self):
+    s=getattr(self,'suicune',None)
+    if not s: return '<div class="gem">◆</div>'
+    scale=5; w,h,n=s['w']*scale,s['h']*scale,s['frames']
+    style=(f'--w:{w}px;--h:{h}px;--sheet-w:{w*n}px;--frames:{n};--dur:{s["ms"]}ms;'
+           f'background-image:url({s["sheet"]})')
+    return (f'<div class="hero-art"><div class="suicune-run" role="img" '
+            f'aria-label="Suicune running, from the title intro" style="{style}"></div></div>')
   def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a></nav></header>'
   def shell(self,title,body,p=''): return f'<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
@@ -1132,7 +1208,7 @@ class Builder:
       clean_ms.append(q)
     for name,obj in [('pokemon',clean_ms),('moves',moves),('encounters',wild),('build-report',self.report)]: (self.o/'data'/f'{name}.json').write_text(json.dumps(obj,indent=2))
     cards=''.join(self.card(x) for x in ms)
-    home=f'<section class="hero"><div><p class="eyebrow">POKÉMON CRYSTAL ROM HACK</p><h1>Crimson Crystal</h1><p>A searchable guide generated directly from the game source.</p><a class="button" href="pokedex.html">Explore the Pokédex</a></div><div class="gem">◆</div></section><section class="counts"><div><b>{len(ms)}</b> Pokémon</div><div><b>{len(moves)}</b> Moves</div><div><b>{len(wild)}</b> Encounter slots</div></section><h2>Pokédex preview</h2><div class="grid">{cards}</div>'
+    home=f'<section class="hero"><div><p class="eyebrow">POKÉMON CRYSTAL ROM HACK</p><h1>Crimson Crystal</h1><p>A searchable guide generated directly from the game source.</p><a class="button" href="pokedex.html">Explore the Pokédex</a></div>{self.hero_art()}</section><section class="counts"><div><b>{len(ms)}</b> Pokémon</div><div><b>{len(moves)}</b> Moves</div><div><b>{len(wild)}</b> Encounter slots</div></section><h2>Pokédex preview</h2><div class="grid">{cards}</div>'
     (self.o/'index.html').write_text(self.shell('Home',home))
     types=sorted({t for m in ms for t in m['types']}); opts=''.join(f'<option value="{slug(t)}">{t}</option>' for t in types)
     (self.o/'pokedex.html').write_text(self.shell('Pokédex',f'<section class="head"><p class="eyebrow">DATABASE</p><h1>Pokédex</h1></section><div class="toolbar"><input id="search" placeholder="Search Pokémon, type or ability"><select id="typeFilter"><option value="">All types</option>{opts}</select></div><div class="grid">{cards}</div>'))
@@ -1216,6 +1292,7 @@ class Builder:
     for mon in mons.values():
       for x in mon['learnset']: x['move']=move_names.get(x['const'],move_disp(x['const']))
       mon['tmhm_labeled']=[{'tm':self.tm_index[c],'const':c,'move':move_names.get(c,move_disp(c))} for c in mon['tmhm']]
+    self.suicune=self.export_intro_suicune()
     self.render(mons,moves,wild)
     summary=self.report.get('encounter_summary',{})
     print(f'Generated {len(mons)} Pokémon, {len(moves)} moves, {len(wild)} encounter slots across {summary.get("locations",0)} locations -> {self.o}')
