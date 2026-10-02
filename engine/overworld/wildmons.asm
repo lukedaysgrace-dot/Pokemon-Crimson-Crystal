@@ -53,6 +53,60 @@ FindNest:
 ; structs are still written by InitRoamMons, so listing their nests here would
 ; point AREA at Route 42 and Route 37, where neither beast can be found.
 ; .RoamMon1 / .RoamMon2 are left in place for if roaming is ever restored.
+; fallthrough
+
+.StaticBeasts:
+; Show Raikou at Lake of Rage and Suicune at Tohjo Falls while they are there:
+; after the Tin Tower Entei battle and until that beast has been fought.
+; Keep in sync with the object callbacks in maps/LakeOfRage.asm and
+; maps/TohjoFalls.asm. bc = species index (preserved by .FindGrass/.FindWater).
+	ld a, c
+	cp LOW(RAIKOU)
+	jr nz, .not_raikou
+	ld a, b
+	cp HIGH(RAIKOU)
+	jr nz, .not_raikou
+	ld hl, EVENT_FOUGHT_LAKE_OF_RAGE_RAIKOU
+	lb bc, GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
+	jr .check_beast
+
+.not_raikou
+	ld a, c
+	cp LOW(SUICUNE)
+	ret nz
+	ld a, b
+	cp HIGH(SUICUNE)
+	ret nz
+	ld hl, EVENT_FOUGHT_TOHJO_FALLS_SUICUNE
+	lb bc, GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
+
+.check_beast
+	push de
+	push bc
+	push hl
+	ld de, EVENT_FOUGHT_SUICUNE ; set by the Tin Tower Entei battle
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	pop de ; this beast's own "fought" event
+	ld a, c
+	and a
+	jr z, .beast_absent
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .beast_absent
+	pop bc
+	pop de
+	call .AppendNest
+	ret nc
+	ld [de], a
+	inc de
+	ret
+
+.beast_absent
+	pop bc
+	pop de
 	ret
 
 .kanto
