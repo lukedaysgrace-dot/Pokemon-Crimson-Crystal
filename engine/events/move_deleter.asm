@@ -634,3 +634,5 @@ EggMoveTutorNoMovesText:
 	line "no egg moves"
 	cont "to learn."
 	done
+
+INCLUDE "engine/events/utility_tutor.asm"
