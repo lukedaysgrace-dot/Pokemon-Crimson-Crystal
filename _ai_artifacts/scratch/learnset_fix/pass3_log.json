@@ -1,0 +1,41 @@
+{
+ "VULPIX": [
+  "FLAMETHROWER 25->22"
+ ],
+ "NINETALES": [
+  "FLAMETHROWER 25->22"
+ ],
+ "TANGELA": [
+  "SEED_BOMB 34->30"
+ ],
+ "TANGROWTH": [
+  "SEED_BOMB 34->30"
+ ],
+ "AMPHAROS": [
+  "DAZZLING_GLEAM 51->42"
+ ],
+ "GOLETT": [
+  "PHANTOMFORCE 34->31"
+ ],
+ "DRAKLOAK": [
+  "PHANTOMFORCE 44->34"
+ ],
+ "DRAGAPULT": [
+  "PHANTOMFORCE 48->34"
+ ],
+ "CETODDLE": [
+  "ICICLE_CRASH 34->32"
+ ],
+ "CETITAN": [
+  "ICICLE_CRASH 34->32"
+ ],
+ "TAUROS_PALDEAN_FIRE": [
+  "FLAME_CHARGE 15->10"
+ ],
+ "FINIZEN": [
+  "FLIP_TURN 24->20"
+ ],
+ "PALAFIN": [
+  "FLIP_TURN 24->20"
+ ]
+}
