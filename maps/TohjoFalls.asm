@@ -9,10 +9,11 @@ TohjoFalls_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Suicune
 
 .Suicune:
-; SUICUNE waits by the water once the eighth Badge has been earned.
+; SUICUNE waits by the water once ENTEI has been fought at TIN TOWER.
+; FindNest (engine/overworld/wildmons.asm) mirrors this for the #DEX AREA.
 	checkevent EVENT_FOUGHT_TOHJO_FALLS_SUICUNE
 	iftrue .NoSuicune
-	checkflag ENGINE_RISINGBADGE
+	checkevent EVENT_FOUGHT_SUICUNE ; set by the TIN TOWER ENTEI battle
 	iffalse .NoSuicune
 	appear TOHJOFALLS_SUICUNE
 	return
