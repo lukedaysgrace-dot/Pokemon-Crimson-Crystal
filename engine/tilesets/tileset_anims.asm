@@ -36,10 +36,10 @@ _AnimateTileset::
 Tileset0Anim:
 TilesetJohtoModernAnim:
 TilesetKantoAnim:
-	dw vTiles5 tile $0e, AnimateWaterTileTL
-	dw vTiles5 tile $0f, AnimateWaterTileTR
-	dw vTiles5 tile $1e, AnimateWaterTileBL
-	dw vTiles5 tile $1f, AnimateWaterTileBR
+	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
@@ -49,10 +49,10 @@ TilesetKantoAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetParkAnim:
-	dw vTiles5 tile $0e, AnimateWaterTileTL
-	dw vTiles5 tile $0f, AnimateWaterTileTR
-	dw vTiles5 tile $1e, AnimateWaterTileBL
-	dw vTiles5 tile $1f, AnimateWaterTileBR
+	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw vTiles2 tile $5f, AnimateFountain
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
@@ -64,10 +64,10 @@ TilesetParkAnim:
 TilesetForestAnim:
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
-	dw vTiles5 tile $0e, AnimateWaterTileTL
-	dw vTiles5 tile $0f, AnimateWaterTileTR
-	dw vTiles5 tile $1e, AnimateWaterTileBL
-	dw vTiles5 tile $1f, AnimateWaterTileBR
+	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  ForestTreeLeftAnimation2
 	dw NULL,  ForestTreeRightAnimation2
 	dw NULL,  AnimateFlowerTile
@@ -76,10 +76,10 @@ TilesetForestAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetJohtoAnim:
-	dw vTiles5 tile $0e, AnimateWaterTileTL
-	dw vTiles5 tile $0f, AnimateWaterTileTR
-	dw vTiles5 tile $1e, AnimateWaterTileBL
-	dw vTiles5 tile $1f, AnimateWaterTileBR
+	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateSilentCryptLights
 	dw NULL,  AnimateFlowerTile
 	dw WhirlpoolFrames1, AnimateWhirlpoolTile
@@ -117,10 +117,10 @@ UnusedTilesetAnim_fc103:
 	dw NULL,  DoneTileAnimation
 
 TilesetPortAnim:
-	dw vTiles5 tile $0e, AnimateWaterTileTL
-	dw vTiles5 tile $0f, AnimateWaterTileTR
-	dw vTiles5 tile $1e, AnimateWaterTileBL
-	dw vTiles5 tile $1f, AnimateWaterTileBR
+	dw NULL,  AnimateWaterTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -430,30 +430,17 @@ AnimateFountain:
 .frame4 INCBIN "gfx/tilesets/fountain/4.2bpp"
 .frame5 INCBIN "gfx/tilesets/fountain/5.2bpp"
 
-AnimateWaterTileTL:
-	xor a
-	jr AnimateWaterTile
-
-AnimateWaterTileTR:
-	ld a, 1 tiles
-	jr AnimateWaterTile
-
-AnimateWaterTileBL:
-	ld a, 2 tiles
-	jr AnimateWaterTile
-
-AnimateWaterTileBR:
-	ld a, 3 tiles
-	; fallthrough
-
 AnimateWaterTile:
 ; Water is a 16x16 tile with 8 frames (gfx/tilesets/water/water2.png).
 ; Each frame is 4 tiles: top-left, top-right, bottom-left, bottom-right.
-; The tileset anim lists draw one quadrant per step into VRAM bank 1
-; tiles $0e, $0f, $1e and $1f; water blocks use those 4 tiles.
-; Input: a = quadrant offset in bytes, de = VRAM destination.
+; Water blocks use VRAM bank 1 tiles $0e/$0f (top) and $1e/$1f (bottom).
+; The whole frame is copied with general-purpose DMA in a single step, so
+; all four quarters change on the same frame and never show a seam.
 
-	ld c, a
+; Leave the DMA registers alone if an HBlank DMA is running.
+	ldh a, [rHDMA5]
+	bit 7, a
+	ret z
 
 	ld a, [wTileAnimationTimer]
 ; 8 frames, one per animation cycle.
@@ -464,39 +451,48 @@ AnimateWaterTile:
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld b, 0
-	add hl, bc
-	ld bc, WaterTileFrames
-	add hl, bc
-; hl = source tile for this frame and quadrant.
+	ld de, WaterTileFrames
+	add hl, de
 
-; Write to VRAM bank 1, then restore the previous bank.
 	ldh a, [rVBK]
 	push af
-	ld a, 1
+	ld a, BANK(vTiles5)
 	ldh [rVBK], a
 
-; WriteTile restores sp from bc and returns, so leave .done on the
-; real stack and point bc at it.
-	ld bc, .done
-	push bc
-	push hl
-	ld hl, sp+2
-	ld b, h
-	ld c, l
-	pop hl
-	ld sp, hl
-	ld l, e
-	ld h, d
-	jp WriteTile
+	ld de, vTiles5 tile $0e
+	call .CopyRow
+	ld de, vTiles5 tile $1e
+	call .CopyRow
 
-.done
 	pop af
 	ldh [rVBK], a
 	ret
 
+.CopyRow:
+; Copy 2 tiles from hl to de with general-purpose DMA. hl += 2 tiles.
+	ld a, h
+	ldh [rHDMA1], a
+	ld a, l
+	ldh [rHDMA2], a
+	ld a, d
+	ldh [rHDMA3], a
+	ld a, e
+	ldh [rHDMA4], a
+	ld a, 2 - 1 ; 2 blocks of 16 bytes
+	ldh [rHDMA5], a ; general DMA: the CPU waits until it's done
+	ld bc, 2 tiles
+	add hl, bc
+	ret
+
+; DMA sources must be 16-byte aligned, so the frames get their own aligned
+; section. It has to share a bank with this code (bank3F is pinned to $3f
+; in pokecrystal.link).
+	PUSHS
+SECTION "Water Tile Frames", ROMX, BANK[$3f], ALIGN[4]
 WaterTileFrames:
 	INCBIN "gfx/tilesets/water/water2.2bpp"
+	POPS
+	ASSERT BANK(WaterTileFrames) == BANK(AnimateWaterTile), "WaterTileFrames must share a bank with AnimateWaterTile"
 
 ForestTreeLeftAnimation:
 	ld hl, sp+0
