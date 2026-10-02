@@ -317,6 +317,9 @@ Route38Sign:
 Route38TrainerTips:
 	jumptext Route38TrainerTipsText
 
+Route38SafariZoneSign:
+	jumptext Route38SafariZoneSignText
+
 Route38FruitTree:
 	fruittree FRUITTREE_ROUTE_38
 
@@ -454,6 +457,10 @@ Route38SignText:
 	line "ECRUTEAK CITY"
 	done
 
+Route38SafariZoneSignText:
+	text "SAFARI ZONE"
+	done
+
 Route38TrainerTipsText:
 	text "TRAINER TIPS"
 
@@ -473,15 +480,17 @@ Route38TrainerTipsText:
 Route38_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	db 3 ; warp events
 	warp_event 35,  8, ROUTE_38_ECRUTEAK_GATE, 1
 	warp_event 35,  9, ROUTE_38_ECRUTEAK_GATE, 2
+	warp_event 19,  3, SAFARI_ZONE_LOBBY, 3
 
 	db 0 ; coord events
 
-	db 2 ; bg events
+	db 3 ; bg events
 	bg_event 33,  7, BGEVENT_READ, Route38Sign
 	bg_event  5, 13, BGEVENT_READ, Route38TrainerTips
+	bg_event 18,  5, BGEVENT_READ, Route38SafariZoneSign
 
 	db 7 ; object events
 	object_event  4,  1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
