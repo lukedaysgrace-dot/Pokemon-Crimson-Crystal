@@ -23,8 +23,6 @@ BulbasaurCloneEvosAttacks:
 IvysaurCloneEvosAttacks:
 	dbbw EVOLVE_LEVEL, 32, VENUSAUR_CLONE
 	db 0 ; no more evolutions
-	dbw 1, GROWTH
-	dbw 1, VINE_WHIP
 	dbw 1, GROWL
 	dbw 1, TACKLE
 	dbw 5, VINE_WHIP
@@ -46,13 +44,10 @@ IvysaurCloneEvosAttacks:
 
 VenusaurCloneEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, GROWTH
-	dbw 1, VINE_WHIP
-	dbw 1, GROWL
-	dbw 1, TACKLE
-	dbw 1, PETAL_DANCE
-	dbw 1, POWER_WHIP
 	dbw 1, EARTH_POWER
+	dbw 1, GROWL
+	dbw 1, POWER_WHIP
+	dbw 1, TACKLE
 	dbw 5, VINE_WHIP
 	dbw 8, LEECH_SEED
 	dbw 11, RAZOR_LEAF
@@ -116,11 +111,10 @@ CharmeleonCloneEvosAttacks:
 
 CharizardCloneEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, AIR_SLASH
 	dbw 1, DRAGON_CLAW
-	dbw 1, SHADOW_CLAW
 	dbw 1, GROWL
 	dbw 1, SCRATCH
+	dbw 1, SHADOW_CLAW
 	dbw 1, WING_ATTACK
 	dbw 5, EMBER
 	dbw 8, SMOKESCREEN
@@ -136,6 +130,7 @@ CharizardCloneEvosAttacks:
 	dbw 44, DRAGON_PULSE
 	dbw 44, DRAGON_TAIL
 	dbw 49, FIRE_SPIN
+	dbw 50, RAGING_FURY
 	dbw 54, BELLY_DRUM
 	dbw 55, HEAT_WAVE
 	dbw 59, FLARE_BLITZ
@@ -145,8 +140,8 @@ CharizardCloneEvosAttacks:
 SquirtleCloneEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, WARTORTLE_CLONE
 	db 0 ; no more evolutions
-	dbw 1, TAIL_WHIP
 	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
 	dbw 5, WATER_GUN
 	dbw 8, WITHDRAW
 	dbw 11, BUBBLE
@@ -164,10 +159,8 @@ SquirtleCloneEvosAttacks:
 WartortleCloneEvosAttacks:
 	dbbw EVOLVE_LEVEL, 36, BLASTOISE_CLONE
 	db 0 ; no more evolutions
-	dbw 1, WITHDRAW
-	dbw 1, WATER_GUN
-	dbw 1, TAIL_WHIP
 	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
 	dbw 5, WATER_GUN
 	dbw 8, WITHDRAW
 	dbw 11, BUBBLE
@@ -185,10 +178,8 @@ WartortleCloneEvosAttacks:
 BlastoiseCloneEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, FLASH_CANNON
-	dbw 1, WITHDRAW
-	dbw 1, WATER_GUN
-	dbw 1, TAIL_WHIP
 	dbw 1, TACKLE
+	dbw 1, TAIL_WHIP
 	dbw 5, WATER_GUN
 	dbw 8, WITHDRAW
 	dbw 11, BUBBLE
