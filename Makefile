@@ -48,7 +48,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-learnsets audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -63,9 +63,13 @@ test: pokecrystal_debug.gbc
 test-all: pokecrystal_debug.gbc
 	python3 tools/battletest/runner.py --all-moves --all-effects
 
+test-learnsets: pokecrystal.gbc
+	python3 tools/test_learnset_variety.py pokecrystal.gbc
+
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
 	python3 tools/audit_moves.py
+	python3 tools/audit_learnset_variety.py
 	python3 tools/audit_trainers.py
 	python3 tools/audit_save.py
 	python3 tools/audit_resources.py
