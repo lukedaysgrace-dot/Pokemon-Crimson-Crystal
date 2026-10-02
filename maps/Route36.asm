@@ -354,9 +354,6 @@ ArthurNotThursdayScript:
 Route36Sign:
 	jumptext Route36SignText
 
-Route36SafariZoneSign:
-	jumptext Route36SafariZoneSignText
-
 RuinsOfAlphNorthSign:
 	jumptext RuinsOfAlphNorthSignText
 
@@ -626,10 +623,6 @@ Route36SignText:
 	text "ROUTE 36"
 	done
 
-Route36SafariZoneSignText:
-	text "SAFARI ZONE"
-	done
-
 RuinsOfAlphNorthSignText:
 	text "RUINS OF ALPH"
 	line "NORTH ENTRANCE"
@@ -669,20 +662,18 @@ Route36TrainerTips2Text:
 Route36_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	db 4 ; warp events
 	warp_event 18,  8, ROUTE_36_NATIONAL_PARK_GATE, 3
 	warp_event 18,  9, ROUTE_36_NATIONAL_PARK_GATE, 4
 	warp_event 47, 13, ROUTE_36_RUINS_OF_ALPH_GATE, 1
 	warp_event 48, 13, ROUTE_36_RUINS_OF_ALPH_GATE, 2
-	warp_event 47,  5, SAFARI_ZONE_LOBBY, 3
 
 	db 2 ; coord events
 	coord_event 20,  7, SCENE_ROUTE36_SUICUNE, Route36SuicuneScript
 	coord_event 22,  7, SCENE_ROUTE36_SUICUNE, Route36SuicuneScript
 
-	db 5 ; bg events
+	db 4 ; bg events
 	bg_event 29,  1, BGEVENT_READ, Route36TrainerTips2
-	bg_event 45,  7, BGEVENT_READ, Route36SafariZoneSign
 	bg_event 45, 11, BGEVENT_READ, RuinsOfAlphNorthSign
 	bg_event 55,  7, BGEVENT_READ, Route36Sign
 	bg_event 21,  7, BGEVENT_READ, Route36TrainerTips1

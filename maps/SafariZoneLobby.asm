@@ -350,8 +350,8 @@ SafariZoneLobby_MapEvents:
 	db 4 ; warp events
 	warp_event  9,  0, SAFARI_ZONE, 1
 	warp_event 10,  0, SAFARI_ZONE, 1
-	warp_event  9, 17, ROUTE_36, 5
-	warp_event 10, 17, ROUTE_36, 5
+	warp_event  9, 17, ROUTE_38, 3
+	warp_event 10, 17, ROUTE_38, 3
 
 	db 6 ; coord events
 	coord_event  8,  3, -1, SafariZoneLobbyGateTrigger1
