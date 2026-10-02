@@ -1099,8 +1099,16 @@ class Builder:
           rgba=Image.new('RGBA',(8,8)); rgba.putdata([recolor(px) for px in tile.getdata()])
           sheet.alpha_composite(rgba,(i*fw+x-x0,y-y0))
       dst=self.a/'suicune_run.png'; sheet.save(dst,'PNG')
-      # Sprite-anim durations hold for duration+1 frames at ~60 fps
-      ms=round(sum(d+1 for _,d in seq)*1000/59.73)
+      # Match the title screen's speed: SuicuneFrameIterator (engine/movie/title.asm)
+      # holds each pose for N frames ("cp 1 * N"), ticked once per DelayFrame.
+      hold=8
+      try:
+        t=txt(self.r/'engine'/'movie'/'title.asm')
+        it=re.search(r'^SuicuneFrameIterator:(.*?)^\S',t,re.M|re.S)
+        hm=re.search(r'cp\s+1\s*\*\s*(\d+)',it.group(1)) if it else None
+        if hm: hold=int(hm.group(1))
+      except Exception: pass
+      ms=round(len(layouts)*hold*1000/59.73)
       return {'sheet':'assets/suicune_run.png','w':fw,'h':fh,'frames':len(layouts),'ms':ms}
     except Exception as e:
       self.report['warnings'].append(f'Could not build intro Suicune animation: {e}')
