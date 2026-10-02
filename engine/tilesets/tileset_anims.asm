@@ -36,10 +36,10 @@ _AnimateTileset::
 Tileset0Anim:
 TilesetJohtoModernAnim:
 TilesetKantoAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
+	dw vTiles5 tile $0e, AnimateWaterTileTL
+	dw vTiles5 tile $0f, AnimateWaterTileTR
+	dw vTiles5 tile $1e, AnimateWaterTileBL
+	dw vTiles5 tile $1f, AnimateWaterTileBR
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
@@ -49,11 +49,11 @@ TilesetKantoAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetParkAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
+	dw vTiles5 tile $0e, AnimateWaterTileTL
+	dw vTiles5 tile $0f, AnimateWaterTileTR
+	dw vTiles5 tile $1e, AnimateWaterTileBL
+	dw vTiles5 tile $1f, AnimateWaterTileBR
 	dw vTiles2 tile $5f, AnimateFountain
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
@@ -64,23 +64,23 @@ TilesetParkAnim:
 TilesetForestAnim:
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
+	dw vTiles5 tile $0e, AnimateWaterTileTL
+	dw vTiles5 tile $0f, AnimateWaterTileTR
+	dw vTiles5 tile $1e, AnimateWaterTileBL
+	dw vTiles5 tile $1f, AnimateWaterTileBR
 	dw NULL,  ForestTreeLeftAnimation2
 	dw NULL,  ForestTreeRightAnimation2
 	dw NULL,  AnimateFlowerTile
-	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 
 TilesetJohtoAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles5 tile $0e, AnimateWaterTileTL
+	dw vTiles5 tile $0f, AnimateWaterTileTR
+	dw vTiles5 tile $1e, AnimateWaterTileBL
+	dw vTiles5 tile $1f, AnimateWaterTileBR
 	dw NULL,  AnimateSilentCryptLights
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw WhirlpoolFrames1, AnimateWhirlpoolTile
 	dw WhirlpoolFrames2, AnimateWhirlpoolTile
@@ -117,10 +117,10 @@ UnusedTilesetAnim_fc103:
 	dw NULL,  DoneTileAnimation
 
 TilesetPortAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
+	dw vTiles5 tile $0e, AnimateWaterTileTL
+	dw vTiles5 tile $0f, AnimateWaterTileTR
+	dw vTiles5 tile $1e, AnimateWaterTileBL
+	dw vTiles5 tile $1f, AnimateWaterTileBR
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -430,40 +430,73 @@ AnimateFountain:
 .frame4 INCBIN "gfx/tilesets/fountain/4.2bpp"
 .frame5 INCBIN "gfx/tilesets/fountain/5.2bpp"
 
-AnimateWaterTile:
-; Draw a water tile for the current frame in VRAM tile at de.
+AnimateWaterTileTL:
+	xor a
+	jr AnimateWaterTile
 
-; Save sp in bc (see WriteTile).
-	ld hl, sp+0
-	ld b, h
-	ld c, l
+AnimateWaterTileTR:
+	ld a, 1 tiles
+	jr AnimateWaterTile
+
+AnimateWaterTileBL:
+	ld a, 2 tiles
+	jr AnimateWaterTile
+
+AnimateWaterTileBR:
+	ld a, 3 tiles
+	; fallthrough
+
+AnimateWaterTile:
+; Water is a 16x16 tile with 8 frames (gfx/tilesets/water/water2.png).
+; Each frame is 4 tiles: top-left, top-right, bottom-left, bottom-right.
+; The tileset anim lists draw one quadrant per step into VRAM bank 1
+; tiles $0e, $0f, $1e and $1f; water blocks use those 4 tiles.
+; Input: a = quadrant offset in bytes, de = VRAM destination.
+
+	ld c, a
 
 	ld a, [wTileAnimationTimer]
-
-; 4 tile graphics, updated every other frame.
-	and %110
-
-; 2 x 8 = 16 bytes per tile
-	add a
-	add a
-	add a
-
-	add LOW(WaterTileFrames)
+; 8 frames, one per animation cycle.
+	and %111
+; 4 tiles x 16 bytes = 64 bytes per frame
+	swap a
 	ld l, a
-	ld a, 0
-	adc HIGH(WaterTileFrames)
-	ld h, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	ld b, 0
+	add hl, bc
+	ld bc, WaterTileFrames
+	add hl, bc
+; hl = source tile for this frame and quadrant.
 
-; The stack now points to the start of the tile for this frame.
+; Write to VRAM bank 1, then restore the previous bank.
+	ldh a, [rVBK]
+	push af
+	ld a, 1
+	ldh [rVBK], a
+
+; WriteTile restores sp from bc and returns, so leave .done on the
+; real stack and point bc at it.
+	ld bc, .done
+	push bc
+	push hl
+	ld hl, sp+2
+	ld b, h
+	ld c, l
+	pop hl
 	ld sp, hl
-
 	ld l, e
 	ld h, d
-
 	jp WriteTile
 
+.done
+	pop af
+	ldh [rVBK], a
+	ret
+
 WaterTileFrames:
-	INCBIN "gfx/tilesets/water/water.2bpp"
+	INCBIN "gfx/tilesets/water/water2.2bpp"
 
 ForestTreeLeftAnimation:
 	ld hl, sp+0
