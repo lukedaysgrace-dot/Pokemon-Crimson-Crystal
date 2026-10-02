@@ -437,10 +437,10 @@ AnimateWaterTile:
 ; The whole frame is copied with general-purpose DMA in a single step, so
 ; all four quarters change on the same frame and never show a seam.
 
-; Leave the DMA registers alone if an HBlank DMA is running.
-	ldh a, [rHDMA5]
-	bit 7, a
-	ret z
+; No HBlank DMA check here: every HBlank DMA in the game runs through
+; CallInSafeGFXMode, which turns tile animations off while it runs. (Reading
+; rHDMA5 isn't reliable for this: after the map-name popup's transfers it can
+; read as busy until the next tileset load, which froze the water.)
 
 	ld a, [wTileAnimationTimer]
 ; 8 frames, one per animation cycle.
