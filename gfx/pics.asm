@@ -1130,6 +1130,9 @@ CetoddleFrontpic: INCBIN "gfx/pokemon/cetoddle/front.animated.2bpp.lz"
 CetoddleBackpic:  INCBIN "gfx/pokemon/cetoddle/back.2bpp.lz"
 CetitanFrontpic: INCBIN "gfx/pokemon/cetitan/front.animated.2bpp.lz"
 CetitanBackpic:  INCBIN "gfx/pokemon/cetitan/back.2bpp.lz"
+
+SECTION "Pics 35", ROMX
+
 FeebasFrontpic: INCBIN "gfx/pokemon/feebas/front.animated.2bpp.lz"
 FeebasBackpic:  INCBIN "gfx/pokemon/feebas/back.2bpp.lz"
 MiloticFrontpic: INCBIN "gfx/pokemon/milotic/front.animated.2bpp.lz"
