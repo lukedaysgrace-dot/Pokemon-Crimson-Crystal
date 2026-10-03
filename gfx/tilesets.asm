@@ -393,7 +393,7 @@ INCLUDE "data/tilesets/johto_collision.asm"
 
 
 ; Per-block attribute data for the Polished Map++ attribute system.
-; Generated from the old *_palette_map.asm files by tools/palmap2attr.py.
+; Converted from the old *_palette_map.asm files.
 
 SECTION "Tileset Data 10", ROMX
 
