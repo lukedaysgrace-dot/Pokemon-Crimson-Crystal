@@ -48,14 +48,16 @@ SetFacingStepAction:
 	bit SLIDING_F, [hl]
 	jp nz, SetFacingCurrent
 
-	; SpriteMons only load two 2x2 icon frames. Their normal walking
-	; facings would read unloaded directional graphics, so alternate the
-	; two valid icon frames while a non-sliding scripted step is active.
+	; Decide from the resolved sprite type, not the raw variable id. Icons
+	; bounce between their two frames; standing sheets keep their own facing.
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
-	cp SPRITE_POKEMON
-	jp nc, SetFacingBounce
+	farcall_a GetOverworldSpriteType
+	cp MON_ICON_SPRITE
+	jp z, SetFacingBounce
+	cp STANDING_SPRITE
+	jp z, SetFacingCurrent
 
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc

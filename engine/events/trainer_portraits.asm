@@ -97,6 +97,27 @@ TrainerPortraitPointers:
 	dba TrainerPortraitWillGFX
 	assert (@ - TrainerPortraitPointers) / 3 == NUM_TRAINER_PORTRAITS
 
+TrainerPortrait_SetUpTextbox::
+; PrintText specials also change speakers (Oak's rating, item notifications).
+; b:de is the caller's text. Keep this out of the nearly full ROM0 bank.
+	push de
+	ldh a, [rSVBK]
+	and %110
+	jr nz, .no_portrait_text
+	ld a, e
+	ld [wPortraitTextAddr], a
+	ld a, d
+	ld [wPortraitTextAddr + 1], a
+	ld a, b
+	ld [wPortraitTextBank], a
+.no_portrait_text
+	call SpeechTextbox
+	call TrainerPortrait_Draw
+	call UpdateSprites
+	call ApplyTilemap
+	pop hl
+	ret
+
 TrainerPortrait_Draw::
 ; Called by MapTextbox right after it draws the speech textbox, before the
 ; tilemap is pushed. Puts up, keeps, swaps or takes down the portrait for
@@ -116,7 +137,7 @@ TrainerPortrait_Draw::
 ; Map texts are listed with their speaker (data/maps/portrait_texts.asm).
 	farcall TrainerPortrait_FindText
 	cp -1
-	jr z, .not_listed
+	jr z, .nobody
 	and a
 	jr z, .nobody
 	bit 7, a
@@ -126,25 +147,10 @@ TrainerPortrait_Draw::
 	jr z, .nobody
 	jr .show
 
-.not_listed
-; A shared text (an item fanfare, a std script): keep a portrait that is
-; already up, mouth still. Otherwise use the NPC that was talked to.
-	call TrainerPortrait_IsOnScreen
-	jr nz, .fallback
-	ld a, TRUE
-	ld [wPortraitMute], a
-	jr TrainerPortrait_ApplyPalette
-
-.fallback
-	ld a, [wPortraitSession]
-	and a
-	ret z
-	ldh a, [hLastTalked]
-	call TrainerPortrait_GetObjectPortrait
-	ret z
-	jr .show
-
 .nobody
+; Only text with an identified speaker may display a portrait. Shared item
+; messages, signs and unknown text must never inherit the previous speaker
+; or a portrait-looking disguise from hLastTalked.
 	call TrainerPortrait_IsOnScreen
 	ret nz
 	jp TrainerPortrait_TakeDown
@@ -191,6 +197,19 @@ TrainerPortrait_Draw::
 	inc a
 	ld [wPortraitAnimTimer], a
 	; fallthrough
+
+TrainerPortrait_ReapplyPalette::
+; Time/weather rebuilds use the normal textbox colors. Restore the portrait's
+; two colors before that rebuilt buffer reaches VBlank, if it is still drawn.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPortraitShown)
+	ldh [rSVBK], a
+	call TrainerPortrait_IsOnScreen
+	call z, TrainerPortrait_ApplyPalette
+	pop af
+	ldh [rSVBK], a
+	ret
 
 TrainerPortrait_ApplyPalette:
 ; Reapplied on every textbox: anything that reloads the text palette in

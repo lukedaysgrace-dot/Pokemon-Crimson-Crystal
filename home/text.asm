@@ -150,11 +150,11 @@ PrintTextboxText::
 	ret
 
 SetUpTextbox::
-	push hl
-	call SpeechTextbox
-	call UpdateSprites
-	call ApplyTilemap
-	pop hl
+	ld d, h
+	ld e, l
+	ldh a, [hROMBank]
+	ld b, a
+	farcall TrainerPortrait_SetUpTextbox
 	ret
 
 FarPlaceString::

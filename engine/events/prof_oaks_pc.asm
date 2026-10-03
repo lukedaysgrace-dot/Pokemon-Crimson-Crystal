@@ -119,79 +119,79 @@ OakPCText3:
 	text_far _OakPCText3
 	text_end
 
-OakRating01:
+OakRating01::
 	text_far _OakRating01
 	text_end
 
-OakRating02:
+OakRating02::
 	text_far _OakRating02
 	text_end
 
-OakRating03:
+OakRating03::
 	text_far _OakRating03
 	text_end
 
-OakRating04:
+OakRating04::
 	text_far _OakRating04
 	text_end
 
-OakRating05:
+OakRating05::
 	text_far _OakRating05
 	text_end
 
-OakRating06:
+OakRating06::
 	text_far _OakRating06
 	text_end
 
-OakRating07:
+OakRating07::
 	text_far _OakRating07
 	text_end
 
-OakRating08:
+OakRating08::
 	text_far _OakRating08
 	text_end
 
-OakRating09:
+OakRating09::
 	text_far _OakRating09
 	text_end
 
-OakRating10:
+OakRating10::
 	text_far _OakRating10
 	text_end
 
-OakRating11:
+OakRating11::
 	text_far _OakRating11
 	text_end
 
-OakRating12:
+OakRating12::
 	text_far _OakRating12
 	text_end
 
-OakRating13:
+OakRating13::
 	text_far _OakRating13
 	text_end
 
-OakRating14:
+OakRating14::
 	text_far _OakRating14
 	text_end
 
-OakRating15:
+OakRating15::
 	text_far _OakRating15
 	text_end
 
-OakRating16:
+OakRating16::
 	text_far _OakRating16
 	text_end
 
-OakRating17:
+OakRating17::
 	text_far _OakRating17
 	text_end
 
-OakRating18:
+OakRating18::
 	text_far _OakRating18
 	text_end
 
-OakRating19:
+OakRating19::
 	text_far _OakRating19
 	text_end
 

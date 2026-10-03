@@ -28,9 +28,9 @@ order:
      at PLAYER is ignored); `faceplayer` and LAST_TALKED mean the object that
      was talked to.
 
-Only maps that have a portrait character in them are listed. Texts that are
-reached with different speakers are reported and left out (the engine then
-falls back to "whoever you talked to"); settle them in OVERRIDES.
+Only maps that have a portrait character in them are listed. Unlisted text
+never shows a portrait. Ambiguous speakers are errors; settle them in
+OVERRIDES before generating the table.
 
 Usage:
   trainer_portrait_texts.py data/maps/portrait_texts.asm
@@ -44,8 +44,26 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+def read_lines(path):
+	with open(path, encoding='utf-8') as source:
+		return source.readlines()
+
+# Maps where a sprite variable stands for a portrait character: the engine
+# then shows whatever portrait that object's sprite has at the time.
+VARIABLE_SPEAKERS = {
+	('OlivineCity', 'SPRITE_OLIVINE_RIVAL'),  # Silver bumping into you
+	('AzaleaTown', 'SPRITE_AZALEA_ROCKET'),   # a Rocket, then Silver after Slowpoke Well
+}
+
 # Text label -> "NAME" (a PORTRAIT_* suffix) or None (nobody with a portrait).
 OVERRIDES = {
+	# The Azalea Town Rocket grunts share the sprite variable Silver uses later.
+	'AzaleaTownRocket1Text': None,
+	'AzaleaTownRocket2Text': None,
+	# Ariana (the executive) speaks for the pair when they corner you.
+	'UnknownText_0x6d2ad': 'ARIANA',
+	'UnknownText_0x6d2c3': 'ARIANA',
 	# Clair, lost for words after the Elder's scolding.
 	'DragonShrineSpeechlessText': 'CLAIR',
 	# Jasmine, while the emote is on Amphy.
@@ -62,13 +80,18 @@ NAME_ALIASES = {
 	'ELM': 'ELM',
 }
 
+# Oak also speaks through a special (PrintText rather than writetext) while
+# rating the Pokedex in his lab. The completion statistics are UI text;
+# only his actual assessment has his portrait.
+SHARED_SPEAKERS = {f'OakRating{i:02}': 'OAK' for i in range(1, 20)}
+
 SPEAKER_FIRST = {
 	'applymovement', 'setlasttalked', 'appear', 'follow', 'follownotexact',
 }
 # Turning is usually somebody turning to *listen* (the Elder turning to Clair
 # before she speaks), so it only picks a speaker when there is none yet.
 SPEAKER_IF_NONE = {'turnobject'}
-TEXT_CMDS = {'writetext', 'jumptext', 'jumptextfaceplayer'}
+TEXT_CMDS = {'writetext', 'jumptext', 'jumptextfaceplayer', 'farwritetext', 'farjumptext'}
 BRANCH_LAST = {'iftrue', 'iffalse', 'ifequal', 'ifnotequal', 'ifgreater', 'ifless'}
 STOP = {
 	'end', 'endall', 'return', 'reloadandreturn', 'jumptext', 'jumptextfaceplayer',
@@ -81,11 +104,11 @@ def load_portraits():
 	sprites = {}
 	names = set()
 	inside = False
-	for line in open(os.path.join(ROOT, 'constants/gfx_constants.asm')):
+	for line in read_lines(os.path.join(ROOT, 'constants/gfx_constants.asm')):
 		m = re.match(r'\s*const\s+PORTRAIT_(\w+)', line)
 		if m:
 			names.add(m.group(1))
-	for line in open(path):
+	for line in read_lines(path):
 		if line.startswith('SpritePortraits:'):
 			inside = True
 			continue
@@ -110,7 +133,8 @@ def strip(line):
 	return ''.join(out).rstrip()
 
 
-LABEL_RE = re.compile(r'^(\.?[A-Za-z_][\w.]*)::?')
+# Global labels need a colon; local ones (.foo) may leave it off.
+LABEL_RE = re.compile(r'^(\.[A-Za-z_]\w*|[A-Za-z_][\w.]*(?=::?))(?::{0,2})')
 
 
 class MapFile:
@@ -118,7 +142,7 @@ class MapFile:
 		self.path = path
 		self.name = os.path.basename(path)[:-4]
 		self.sprite_portraits = sprite_portraits
-		self.lines = [strip(l) for l in open(path, encoding='utf-8')]
+		self.lines = [strip(l) for l in read_lines(path)]
 		self.parse()
 
 	def parse(self):
@@ -205,11 +229,13 @@ class MapFile:
 		if i is None:
 			return []
 		out = []
-		for line in self.lines[i:i + 40]:
+		for line in self.lines[i:]:
+			if line != self.lines[i] and LABEL_RE.match(line):
+				break
 			m = re.search(r'\b(text|line|cont|para|next)\s+"(.*)"', line)
 			if m:
 				out.append(m.group(2))
-			if re.search(r'\b(done|prompt|text_end)\b', line) and out:
+			if re.match(r'\s*(done|prompt|text_end)(?:\s|$)', line) and out:
 				break
 		return out
 
@@ -234,7 +260,7 @@ VARIABLE_SPRITE_DEFAULTS = {}  # set when a new game starts (std_scripts.asm)
 def load_variable_sprites():
 	path = os.path.join(ROOT, 'constants/sprite_constants.asm')
 	inside = False
-	for line in open(path):
+	for line in read_lines(path):
 		if line.startswith('SPRITE_VARS'):
 			inside = True
 			continue
@@ -243,7 +269,7 @@ def load_variable_sprites():
 			if m:
 				VARIABLE_SPRITE_NAMES.add(m.group(1))
 	pokemon = False
-	for line in open(path):
+	for line in read_lines(path):
 		if line.startswith('SPRITE_POKEMON'):
 			pokemon = True
 			continue
@@ -252,7 +278,12 @@ def load_variable_sprites():
 		m = re.match(r'\s*const\s+(SPRITE_\w+)', line)
 		if pokemon and m:
 			THING_SPRITES.add(m.group(1))
-	for line in open(os.path.join(ROOT, 'engine/events/std_scripts.asm')):
+	for path2 in glob.glob(os.path.join(ROOT, 'maps/*.asm')):
+		for line in read_lines(path2):
+			m = re.match(r'\s*variablesprite\s+(SPRITE_\w+)\s*,\s*(SPRITE_\w+)', line)
+			if m:
+				VARIABLE_SPRITE_DEFAULTS.setdefault(m.group(1), set()).add(m.group(2))
+	for line in read_lines(os.path.join(ROOT, 'engine/events/std_scripts.asm')):
 		m = re.match(r'\s*variablesprite\s+(SPRITE_\w+)\s*,\s*(SPRITE_\w+)', line)
 		if m:
 			VARIABLE_SPRITE_DEFAULTS.setdefault(m.group(1), set()).add(m.group(2))
@@ -313,9 +344,13 @@ def walk_map(mf, record):
 				elif cmd in ('faceplayer', 'applymovementlasttalked'):
 					if talker:
 						spk = talker
+				elif cmd == 'disappear' and args:
+					# They've left; whoever speaks next isn't them.
+					if obj(args[0]) == spk:
+						spk = None
 				if cmd in TEXT_CMDS and args:
 					who = talker if cmd == 'jumptextfaceplayer' else spk
-					record(mf, mf.resolve(args[-1], scope), who, entry)
+					record(mf, mf.resolve(args[-1], scope), who, entry, i - 1)
 				if cmd in BRANCH_LAST and args:
 					target = mf.resolve(args[-1], scope)
 					if target in mf.labels:
@@ -341,7 +376,7 @@ def walk_map(mf, record):
 				if m:
 					args = [a.strip() for a in m.group(1).split(',')]
 					scope = mf.scope_of_line[j]
-					record(mf, mf.resolve(args[3], scope), const, 'trainer')
+					record(mf, mf.resolve(args[3], scope), const, 'trainer', j)
 					after = mf.resolve(args[6], scope)
 					if after in mf.labels:
 						walk(mf.labels[after], const, const, 'talk')
@@ -371,7 +406,12 @@ def decide(mf, label, speaker, portrait_names):
 		return ('none',), 'no speaker'
 	sprite = mf.sprite_of(speaker)
 	if mf.is_variable(sprite):
-		return ('object', speaker), 'variable sprite'
+		# A sprite variable only means a portrait character where it really is
+		# one; elsewhere it's a disguise (the Fuchsia Gym Janines) or a
+		# stand-in (the Route 40/41 swimmers use SPRITE_OLIVINE_RIVAL).
+		if (mf.name, sprite) in VARIABLE_SPEAKERS:
+			return ('object', speaker), 'variable sprite'
+		return ('none',), 'variable sprite'
 	p = mf.static_portrait(sprite)
 	if p:
 		return ('portrait', p), 'speaker'
@@ -385,11 +425,14 @@ def main():
 	maps = [MapFile(p, sprite_portraits) for p in sorted(glob.glob(os.path.join(ROOT, 'maps/*.asm')))]
 
 	uses = {}  # (map, label) -> list of (speaker, entry)
+	use_lines = {}  # (map, label) -> lines of the commands that print it
 
-	def record(mf, label, speaker, entry):
+	def record(mf, label, speaker, entry, line=None):
 		if label not in mf.labels:
 			return  # defined elsewhere (shared text); the engine falls back for those
 		uses.setdefault((mf.name, label), []).append((speaker, entry))
+		if line is not None:
+			use_lines.setdefault((mf.name, label), set()).add(line)
 
 	by_name = {}
 	for mf in maps:
@@ -402,7 +445,8 @@ def main():
 	for (mapname, label), speakers in sorted(uses.items()):
 		mf = by_name[mapname]
 		if all(e == 'sign' for _, e in speakers):
-			continue  # signs and the like never involve a portrait
+			rows.append((mapname, label, ('none',), {(None, 'sign')}))
+			continue
 		decisions = {}
 		for spk, entry in speakers:
 			d, why = decide(mf, label, spk, portrait_names)
@@ -421,6 +465,25 @@ def main():
 		sprite = mf.sprite_of(d[1])
 		return mf.static_portrait(sprite) or sprite
 
+	if '--review' in sys.argv:
+		# Everything a portrait could be shown for, with the script around it.
+		for mapname, label, d, how in rows:
+			mf = by_name[mapname]
+			entries = {e for (mn, lb), sp in uses.items() if (mn, lb) == (mapname, label) for _, e in sp}
+			trivial = d[0] == 'none' and all(w in ('speaker',) for _, w in how) and \
+				not any(mf.static_portrait(mf.sprite_of(sp)) for sp, _ in how if sp)
+			if d[0] == 'none' and ('narration' in {w for _, w in how}):
+				continue
+			if trivial and entries <= {'talk', 'trainer'}:
+				continue
+			print('=' * 78)
+			print(f'{show(mf, d)}  {mapname}  {label}  ({",".join(sorted({w for _, w in how}))}; {",".join(sorted(entries))})')
+			for ln in sorted(use_lines.get((mapname, label), ())):
+				ctx = [l.strip() for l in mf.lines[max(0, ln - 6):ln + 1] if l.strip()]
+				print('   > ' + ' | '.join(ctx))
+			print('   ' + ' / '.join(mf.text_lines(label)))
+		return
+
 	if report:
 		for mapname, label, d, how in rows:
 			mf = by_name[mapname]
@@ -432,6 +495,10 @@ def main():
 			print(f'CONFLICT       {mapname:26} {label:42} {[(show(mf, d), sorted(map(str, v))) for d, v in decisions.items()]} | {" / ".join(mf.text_lines(label)[:2])}')
 		return
 
+	if conflicts:
+		for mapname, label, decisions in conflicts:
+			print(f'error: {mapname}: {label} has more than one speaker; add it to OVERRIDES', file=sys.stderr)
+		raise SystemExit(1)
 	out = sys.argv[1]
 	with open(out, 'w') as f:
 		f.write('; Generated by tools/trainer_portrait_texts.py from maps/*.asm - do not edit.\n')
@@ -451,6 +518,9 @@ def main():
 			else:
 				who = f'$80 | {mf.object_index(d[1])} ; {d[1]}'
 			f.write(f'\tdba {label}\n\tdb {who}\n')
+		f.write('; Shared dialogue printed by specials\n')
+		for label, who in sorted(SHARED_SPEAKERS.items()):
+			f.write(f'\tdba {label}\n\tdb PORTRAIT_{who}\n')
 		f.write('\tdb -1 ; end\n')
 	for mapname, label, decisions in conflicts:
 		print(f'{out}: warning: {mapname}: {label} has more than one speaker; add it to OVERRIDES', file=sys.stderr)
