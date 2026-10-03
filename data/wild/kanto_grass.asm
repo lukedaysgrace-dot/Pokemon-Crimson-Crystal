@@ -491,7 +491,7 @@ KantoGrassWildMons:
 	dbw 56, SANDSHREW
 	dbw 57, PIDGEOTTO
 	dbw 57, SKIPLOOM
-	dbw 58, KANGASKHAN
+	dbw 58, SANDSLASH
 	; day
 	dbw 55, PIDGEY
 	dbw 55, HOPPIP
@@ -499,7 +499,7 @@ KantoGrassWildMons:
 	dbw 56, DODUO
 	dbw 57, PIDGEOTTO
 	dbw 57, SKIPLOOM
-	dbw 58, KANGASKHAN
+	dbw 58, DODRIO
 	; nite
 	dbw 55, HOOTHOOT
 	dbw 55, MEOWTH
@@ -572,7 +572,7 @@ KantoGrassWildMons:
 	dbw 70, HOPPIP
 	dbw 71, NIDORINA
 	dbw 71, PIDGEOTTO
-	dbw 72, CHANSEY
+	dbw 72, NIDOQUEEN
 	; day
 	dbw 69, NIDORINA
 	dbw 69, NIDORINO
@@ -580,7 +580,7 @@ KantoGrassWildMons:
 	dbw 70, TANGELA
 	dbw 71, NIDOQUEEN
 	dbw 71, NIDOKING
-	dbw 72, CHANSEY
+	dbw 72, PIDGEOT
 	; nite
 	dbw 69, VENONAT
 	dbw 69, QUAGSIRE
@@ -588,7 +588,7 @@ KantoGrassWildMons:
 	dbw 70, GLOOM
 	dbw 71, VENOMOTH
 	dbw 71, NOCTOWL
-	dbw 72, CHANSEY
+	dbw 72, NIDOKING
 
 	map_id ROUTE_16
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -793,7 +793,7 @@ KantoGrassWildMons:
 	dbw 45, DODUO
 	dbw 45, SANDSHREW
 	dbw 46, PONYTA
-	dbw 46, TAUROS
+	dbw 46, RAPIDASH
 	dbw 47, SANDSLASH
 	dbw 47, MILTANK
 	dbw 49, DODRIO
@@ -822,7 +822,7 @@ KantoGrassWildMons:
 	dbw 46, ARBOK
 	dbw 46, PONYTA
 	dbw 47, SANDSLASH
-	dbw 47, TAUROS
+	dbw 47, FEAROW
 	dbw 49, DODRIO
 	; nite
 	dbw 45, QUAGSIRE
@@ -847,10 +847,10 @@ KantoGrassWildMons:
 	dbw 83, TANGELA
 	dbw 83, PONYTA
 	dbw 84, ARBOK
-	dbw 84, TAUROS
+	dbw 84, MILTANK
 	dbw 85, RAPIDASH
 	dbw 86, DODRIO
-	dbw 88, KANGASKHAN
+	dbw 88, URSARING
 	; nite
 	dbw 83, GOLBAT
 	dbw 83, QUAGSIRE

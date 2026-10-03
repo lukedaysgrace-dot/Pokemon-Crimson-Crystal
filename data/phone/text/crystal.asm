@@ -244,9 +244,9 @@ CrystalPhoneTipRoute43Text:
 	done
 
 CrystalPhoneTipRoute44Text:
-	text "CHANSEY appear on"
-	line "ROUTE 44 after"
-	cont "dark."
+	text "CHANSEY appear in"
+	line "the SAFARI ZONE"
+	cont "during the day."
 
 	para "They're rare and"
 	line "quick to flee."
@@ -322,8 +322,8 @@ CrystalPhoneTipRoute24Text:
 
 CrystalPhoneTipRoute28Text:
 	text "KANGASKHAN roam"
-	line "ROUTE 28 during"
-	cont "the day."
+	line "the SAFARI ZONE"
+	cont "in the morning."
 
 	para "If one has a baby,"
 	line "stay well back."
