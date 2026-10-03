@@ -87,3 +87,16 @@ dl.info dd{text-align:right}
 @keyframes suicune-shadow{from{opacity:.65;width:240px}to{opacity:1;width:270px}}
 @media(prefers-reduced-motion:reduce){.suicune-run,.hero-art::after{animation:none}}
 @media(max-width:740px){.hero-art{display:none}}
+
+/* ---- Front + back sprites side by side ---- */
+.monhero:has(.sprite-pair){grid-template-columns:auto 1fr}
+.sprite-pair{display:flex;align-items:flex-end;gap:72px;padding:18px 28px;background:radial-gradient(closest-side,#dd31541a,transparent);border-radius:20px}
+.sprite-cell{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.sprite-cell figcaption{color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+.sprite-pair .back-sprite{width:calc(var(--w) * 1px);height:calc(var(--w) * 1px)}
+@media(max-width:1060px){.monhero:has(.sprite-pair){grid-template-columns:1fr}.sprite-pair{justify-self:start}}
+@media(max-width:740px){
+  .sprite-pair{justify-self:center;gap:36px;padding:12px 8px}
+  .sprite-pair .big{width:150px;height:150px}
+  .sprite-pair .back-sprite{width:calc(var(--w) * .5556px);height:calc(var(--w) * .5556px)}
+}
