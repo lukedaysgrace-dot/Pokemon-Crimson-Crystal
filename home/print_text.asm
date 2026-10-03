@@ -22,6 +22,15 @@ PrintLetterDelay::
 	push de
 	push bc
 
+; Keep a trainer portrait's mouth moving while letters are going out. (Only
+; with the overworld's WRAM bank mapped: battle code prints with others.)
+	ldh a, [rSVBK]
+	and %110
+	jr nz, .no_portrait
+	ld a, PORTRAIT_TALK_FRAMES
+	ld [wPortraitTalkTimer], a
+.no_portrait
+
 ; force fast scroll?
 	ld a, [wTextboxFlags]
 	bit FAST_TEXT_DELAY_F, a

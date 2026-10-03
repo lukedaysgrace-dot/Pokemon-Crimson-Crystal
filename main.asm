@@ -930,3 +930,8 @@ INCLUDE "engine/events/safari_zone.asm"
 SECTION "Original Pokemon Stats", ROMX
 
 INCLUDE "data/pokemon/original_stats.asm"
+
+
+SECTION "Trainer Portraits", ROMX
+
+INCLUDE "engine/events/trainer_portraits.asm"

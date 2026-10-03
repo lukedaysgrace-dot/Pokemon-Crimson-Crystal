@@ -932,6 +932,10 @@ Script_applymovement:
 
 ApplyMovement:
 	push bc
+	; Walking frames may share VRAM with a trainer portrait; take it down first.
+	farcall TrainerPortrait_HideForMovement
+	pop bc
+	push bc
 	ld a, c
 	farcall SetFlagsForMovement_1
 	pop bc
@@ -2680,6 +2684,7 @@ Script_end:
 .resume
 	xor a
 	ld [wScriptRunning], a
+	ld [wPortraitSession], a
 	ld a, SCRIPT_OFF
 	ld [wScriptMode], a
 	ld hl, wScriptFlags
@@ -2734,6 +2739,7 @@ Script_endall:
 	xor a
 	ld [wScriptStackSize], a
 	ld [wScriptRunning], a
+	ld [wPortraitSession], a
 	ld a, SCRIPT_OFF
 	ld [wScriptMode], a
 	ld hl, wScriptFlags

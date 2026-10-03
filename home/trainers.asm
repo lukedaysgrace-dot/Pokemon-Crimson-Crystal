@@ -94,6 +94,8 @@ _CheckTrainerBattle::
 	pop de
 	pop af
 	ldh [hLastTalked], a
+	ld a, TRUE
+	ld [wPortraitSession], a ; a spotting trainer gets their portrait too
 	ld a, b
 	ld [wSeenTrainerDistance], a
 	ld a, c

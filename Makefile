@@ -253,6 +253,10 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 gfx/pc/obj.2bpp: gfx/pc/modes.2bpp gfx/pc/bags.2bpp
 	cat $^ > $@
 
+# Overworld trainer portraits: two stacked 56x56 talking frames per PNG.
+gfx/trainer_portraits/%.portrait: gfx/trainer_portraits/%.png tools/trainer_portrait.py
+	python3 tools/trainer_portrait.py $< $@
+
 ### Catch-all graphics rules
 
 %.2bpp: %.png

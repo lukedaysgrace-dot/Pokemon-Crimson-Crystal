@@ -3503,6 +3503,33 @@ wDebugMenuStep::   db
 
 ENDC
 
+
+SECTION "Trainer Portrait State", WRAMX, BANK[1]
+; Overworld trainer portraits (engine/events/trainer_portraits.asm). These are
+; checked every frame from the text and sprite loops, so they live in the bank
+; the overworld always has mapped. Not saved.
+
+; Nonzero while a conversation started by talking to (or being spotted by) an
+; NPC is running; cleared when that script ends.
+wPortraitSession::   db
+; Portrait id currently drawn in the tilemap (0 = none).
+wPortraitShown::     db
+; Nonzero while the portrait owns VRAM bank 1 tiles / text palette colors 1-2.
+wPortraitDirty::     db
+; Set by PrintLetterDelay on every letter; the mouth moves while it runs down.
+wPortraitTalkTimer:: db
+wPortraitAnimTimer:: db
+wPortraitMouth::     db ; 0 = closed (resting frame), 1 = open
+wPortraitTickFrame:: db ; hVBlankCounter of the last tick
+
+
+SECTION "Trainer Portrait Buffers", WRAMX, BANK[2]
+
+wPortraitHeader::      ds PORTRAIT_HEADER_SIZE
+; The map under the frame, put back when a movement interrupts a conversation.
+wPortraitBackupTiles:: ds PORTRAIT_FRAME_SIZE * PORTRAIT_FRAME_SIZE
+wPortraitBackupAttrs:: ds PORTRAIT_FRAME_SIZE * PORTRAIT_FRAME_SIZE
+
 INCLUDE "sram.asm"
 
 INCLUDE "hram.asm"
