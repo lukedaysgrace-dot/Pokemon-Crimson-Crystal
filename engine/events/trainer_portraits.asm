@@ -21,40 +21,7 @@
 ; bank-1 NPCs keep their walking frames in. Both are given back on CloseText,
 ; and before any movement runs while the box is still open.
 
-	const_def 1
-	const PORTRAIT_AGATHA      ; 01
-	const PORTRAIT_ARCHER      ; 02
-	const PORTRAIT_ARIANA      ; 03
-	const PORTRAIT_BILL        ; 04
-	const PORTRAIT_BLAINE      ; 05
-	const PORTRAIT_BLUE        ; 06
-	const PORTRAIT_BROCK       ; 07
-	const PORTRAIT_BRUNO       ; 08
-	const PORTRAIT_BUGSY       ; 09
-	const PORTRAIT_CHUCK       ; 0a
-	const PORTRAIT_CLAIR       ; 0b
-	const PORTRAIT_ELM         ; 0c
-	const PORTRAIT_ERIKA       ; 0d
-	const PORTRAIT_EUSINE      ; 0e
-	const PORTRAIT_GREEN       ; 0f
-	const PORTRAIT_JANINE      ; 10
-	const PORTRAIT_JASMINE     ; 11
-	const PORTRAIT_KAREN       ; 12
-	const PORTRAIT_KIMONO_GIRL ; 13
-	const PORTRAIT_KOGA        ; 14
-	const PORTRAIT_LANCE       ; 15
-	const PORTRAIT_LORELEI     ; 16
-	const PORTRAIT_MISTY       ; 17
-	const PORTRAIT_MORTY       ; 18
-	const PORTRAIT_OAK         ; 19
-	const PORTRAIT_PRYCE       ; 1a
-	const PORTRAIT_RED         ; 1b
-	const PORTRAIT_SABRINA     ; 1c
-	const PORTRAIT_SILVER      ; 1d
-	const PORTRAIT_SURGE       ; 1e
-	const PORTRAIT_WHITNEY     ; 1f
-	const PORTRAIT_WILL        ; 20
-NUM_TRAINER_PORTRAITS EQU const_value - 1
+; PORTRAIT_* constants are in constants/gfx_constants.asm.
 
 SpritePortraits:
 ; overworld sprite, portrait
@@ -132,28 +99,77 @@ TrainerPortraitPointers:
 
 TrainerPortrait_Draw::
 ; Called by MapTextbox right after it draws the speech textbox, before the
-; tilemap is pushed. Puts up (or keeps up) the portrait of hLastTalked.
+; tilemap is pushed. Puts up, keeps, swaps or takes down the portrait for
+; whoever says this text.
 	ldh a, [rSVBK]
 	and %110
 	ret nz ; WRAM bank 0/1 only
-	ld a, [wPortraitSession]
-	and a
-	ret z
 	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, [wVramState]
 	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
 	ret z
-	call TrainerPortrait_GetID
+	xor a
+	ld [wPortraitMute], a
+
+; Map texts are listed with their speaker (data/maps/portrait_texts.asm).
+	farcall TrainerPortrait_FindText
+	cp -1
+	jr z, .not_listed
+	and a
+	jr z, .nobody
+	bit 7, a
+	jr z, .show
+	and $7f ; a map object: use whatever its sprite is right now
+	call TrainerPortrait_GetObjectPortrait
+	jr z, .nobody
+	jr .show
+
+.not_listed
+; A shared text (an item fanfare, a std script): keep a portrait that is
+; already up, mouth still. Otherwise use the NPC that was talked to.
+	call TrainerPortrait_IsOnScreen
+	jr nz, .fallback
+	ld a, TRUE
+	ld [wPortraitMute], a
+	jr TrainerPortrait_ApplyPalette
+
+.fallback
+	ld a, [wPortraitSession]
+	and a
 	ret z
+	ldh a, [hLastTalked]
+	call TrainerPortrait_GetObjectPortrait
+	ret z
+	jr .show
+
+.nobody
+	call TrainerPortrait_IsOnScreen
+	ret nz
+	jp TrainerPortrait_TakeDown
+
+.show
 	ld e, a
 	call TrainerPortrait_IsOnScreen
 	jr nz, .new
 	ld a, [wPortraitShown]
 	cp e
-	jr z, .palette ; already up (the textbox redraw never touches it)
-	jr .load ; replace it; the backup still holds the map underneath
+	jr z, TrainerPortrait_ApplyPalette ; already up
+	; Somebody else's portrait is up: blank the picture while the new one
+	; streams in, rather than showing a half-and-half face.
+	push de
+	hlcoord PORTRAIT_X, PORTRAIT_Y
+	ld a, " "
+	ld d, 0
+	call TrainerPortrait_FillInterior
+	hlcoord PORTRAIT_X, PORTRAIT_Y, wAttrMap
+	ld a, PAL_BG_TEXT
+	ld d, 0
+	call TrainerPortrait_FillInterior
+	call ApplyTilemap
+	pop de
+	jr .load
 
 .new
 	push de
@@ -174,8 +190,9 @@ TrainerPortrait_Draw::
 	ld [wPortraitTalkTimer], a
 	inc a
 	ld [wPortraitAnimTimer], a
+	; fallthrough
 
-.palette
+TrainerPortrait_ApplyPalette:
 ; Reapplied on every textbox: anything that reloads the text palette in
 ; between (a Pokepic, a fade) would otherwise leave the portrait gray.
 	ldh a, [rSVBK]
@@ -206,9 +223,8 @@ TrainerPortrait_Draw::
 	ldh [hCGBPalUpdate], a
 	ret
 
-TrainerPortrait_GetID:
-; Return the portrait for the hLastTalked object in a (z and 0 if none).
-	ldh a, [hLastTalked]
+TrainerPortrait_GetObjectPortrait:
+; Return the portrait for map object a's current sprite in a (z and 0 if none).
 	and a
 	ret z ; the player
 	cp NUM_OBJECTS
@@ -316,13 +332,13 @@ TrainerPortrait_DrawFrame:
 	hlcoord PORTRAIT_X, PORTRAIT_Y
 	ld a, PORTRAIT_VTILE
 	ld d, 1
-	call .Fill
+	call TrainerPortrait_FillInterior
 	hlcoord PORTRAIT_X, PORTRAIT_Y, wAttrMap
 	ld a, PAL_BG_TEXT | VRAM_BANK_1
 	ld d, 0
 	; fallthrough
 
-.Fill:
+TrainerPortrait_FillInterior:
 ; Fill the portrait interior at hl with a, adding d per tile.
 	ld b, PORTRAIT_HEIGHT
 .row
@@ -444,6 +460,9 @@ TrainerPortrait_Tick::
 	jr nz, .done
 	call TrainerPortrait_IsOnScreen
 	jr nz, .done
+	ld a, [wPortraitMute]
+	and a
+	jr nz, .quiet
 
 	ld hl, wPortraitTalkTimer
 	ld a, [hl]
@@ -578,6 +597,11 @@ TrainerPortrait_HideForMovement::
 	ret z
 	call TrainerPortrait_IsOnScreen
 	jr nz, TrainerPortrait_Restore
+	; fallthrough
+
+TrainerPortrait_TakeDown:
+; Put the map back under the portrait, show that, then hand back what the
+; portrait borrowed.
 	call TrainerPortrait_RestoreMap
 	xor a
 	ld [wPortraitShown], a
@@ -591,6 +615,7 @@ TrainerPortrait_Restore::
 	xor a
 	ld [wPortraitShown], a
 	ld [wPortraitMouth], a
+	ld [wPortraitMute], a
 	ld a, [wPortraitDirty]
 	and a
 	ret z

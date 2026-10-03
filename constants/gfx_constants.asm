@@ -87,6 +87,42 @@ PORTRAIT_VTILE        EQU WEATHER_TILE - (PORTRAIT_NUM_TILES + PORTRAIT_MAX_MOUT
 PORTRAIT_TALK_FRAMES  EQU 8 ; mouth keeps moving this long after the last letter
 PORTRAIT_MOUTH_FRAMES EQU 6 ; frames per mouth open/closed step
 
+; Trainer portrait ids (see TrainerPortraitPointers)
+	const_def 1
+	const PORTRAIT_AGATHA      ; 01
+	const PORTRAIT_ARCHER      ; 02
+	const PORTRAIT_ARIANA      ; 03
+	const PORTRAIT_BILL        ; 04
+	const PORTRAIT_BLAINE      ; 05
+	const PORTRAIT_BLUE        ; 06
+	const PORTRAIT_BROCK       ; 07
+	const PORTRAIT_BRUNO       ; 08
+	const PORTRAIT_BUGSY       ; 09
+	const PORTRAIT_CHUCK       ; 0a
+	const PORTRAIT_CLAIR       ; 0b
+	const PORTRAIT_ELM         ; 0c
+	const PORTRAIT_ERIKA       ; 0d
+	const PORTRAIT_EUSINE      ; 0e
+	const PORTRAIT_GREEN       ; 0f
+	const PORTRAIT_JANINE      ; 10
+	const PORTRAIT_JASMINE     ; 11
+	const PORTRAIT_KAREN       ; 12
+	const PORTRAIT_KIMONO_GIRL ; 13
+	const PORTRAIT_KOGA        ; 14
+	const PORTRAIT_LANCE       ; 15
+	const PORTRAIT_LORELEI     ; 16
+	const PORTRAIT_MISTY       ; 17
+	const PORTRAIT_MORTY       ; 18
+	const PORTRAIT_OAK         ; 19
+	const PORTRAIT_PRYCE       ; 1a
+	const PORTRAIT_RED         ; 1b
+	const PORTRAIT_SABRINA     ; 1c
+	const PORTRAIT_SILVER      ; 1d
+	const PORTRAIT_SURGE       ; 1e
+	const PORTRAIT_WHITNEY     ; 1f
+	const PORTRAIT_WILL        ; 20
+NUM_TRAINER_PORTRAITS EQU const_value - 1
+
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
