@@ -33,7 +33,7 @@ AzaleaGymBugsyScript:
 	readvar VAR_BADGES
 	scall AzaleaGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM49_BUG_BITE
+	checkevent EVENT_GOT_TM49_FURY_CUTTER
 	iftrue .GotBugBite
 	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
@@ -41,10 +41,10 @@ AzaleaGymBugsyScript:
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
 	writetext BugsyText_HiveBadgeSpeech
 	buttonsound
-	verbosegiveitem TM_BUG_BITE
+	verbosegiveitem TM_FURY_CUTTER
 	iffalse .NoRoomForBugBite
-	setevent EVENT_GOT_TM49_BUG_BITE
-	writetext BugsyText_BugBiteSpeech
+	setevent EVENT_GOT_TM49_FURY_CUTTER
+	writetext BugsyText_FuryCutterSpeech
 	waitbutton
 	closetext
 	end
@@ -219,15 +219,17 @@ BugsyText_HiveBadgeSpeech:
 	line "you to have this."
 	done
 
-BugsyText_BugBiteSpeech:
+BugsyText_FuryCutterSpeech:
 	text "TM49 contains"
-	line "BUG BITE."
+	line "FURY CUTTER."
 
-	para "It bites hard, and"
-	line "if the foe holds"
+	para "If you don't miss,"
+	line "it gets stronger"
+	cont "every turn."
 
-	para "a BERRY, your"
-	line "#MON eats it!"
+	para "The longer your"
+	line "battle goes, the"
+	cont "better it gets."
 
 	para "Isn't that great?"
 	line "I discovered it!"

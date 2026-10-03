@@ -919,6 +919,16 @@ GetMovePriority:
 	ret z
 
 .not_vital_throw
+	; Extreme Speed shares PriorityHit's damage script, but has +2
+	; priority rather than Quick Attack and Sucker Punch's +1.
+	ld a, h
+	cp HIGH(EXTREMESPEED)
+	jr nz, .effect_priority
+	ld a, l
+	cp LOW(EXTREMESPEED)
+	ld a, BASE_PRIORITY + 2
+	ret z
+.effect_priority
 	call GetMoveEffect
 	ld hl, MoveEffectPriorities
 .loop

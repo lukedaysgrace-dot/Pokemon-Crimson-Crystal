@@ -1,0 +1,48 @@
+{
+  "existing_release": {
+    "path": "C:\\Users\\luked\\Documents\\GitHub\\Pokemon-Crimson-Crystal\\pokecrystal.gbc",
+    "move_count": 420,
+    "incinerate_index": 421,
+    "incinerate_present": false,
+    "sucker_punch_attributes": [
+      103,
+      50,
+      27,
+      0,
+      255,
+      30,
+      0
+    ]
+  },
+  "existing_debug": {
+    "path": "C:\\Users\\luked\\Documents\\GitHub\\Pokemon-Crimson-Crystal\\pokecrystal_debug.gbc",
+    "move_count": 420,
+    "incinerate_index": 421,
+    "incinerate_present": false,
+    "sucker_punch_attributes": [
+      103,
+      50,
+      27,
+      0,
+      255,
+      30,
+      0
+    ]
+  },
+  "rebuilt_debug": {
+    "path": "C:\\Users\\luked\\Documents\\GitHub\\Pokemon-Crimson-Crystal\\.tmpbuild\\move-videos-2026-10-02\\build\\pokecrystal_debug.gbc",
+    "move_count": 421,
+    "incinerate_index": 421,
+    "incinerate_present": true,
+    "sucker_punch_attributes": [
+      222,
+      80,
+      27,
+      0,
+      255,
+      30,
+      0
+    ]
+  },
+  "existing_release_debug_move_data_identical": true
+}

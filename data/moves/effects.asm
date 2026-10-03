@@ -3181,3 +3181,50 @@ StickyWeb:
 	doturn
 	stickyweb
 	endmove
+
+SuckerPunch:
+; +1 priority hit that fails unless the target is about to use a damaging
+; move (Gen IV+ rules). Priority comes from MoveEffectPriorities.
+	checkobedience
+	usedmovetext
+	doturn
+	suckerpunchcheck
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+Incinerate:
+; Damaging Fire hit that burns up the target's held Berry. Shares the
+; knockoff command, which takes the Berry-only path for this effect.
+; Destroy the Berry before checkfaint can heal with it or end a KO move.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	knockoff
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove

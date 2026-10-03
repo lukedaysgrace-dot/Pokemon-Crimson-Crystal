@@ -7727,6 +7727,13 @@ HarvestAbility:
 	ld hl, HarvestedBerryText
 	jp StdBattleTextbox
 
+IsBerryItem_Core:
+; Returns carry if item b is a Berry (used by Incinerate).
+	ld a, b
+	ld hl, BerryItems
+	ld de, 1
+	jp IsInArray
+
 BerryItems:
 	db PSNCUREBERRY
 	db PRZCUREBERRY

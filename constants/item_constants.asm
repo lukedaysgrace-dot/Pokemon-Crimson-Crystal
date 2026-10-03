@@ -259,7 +259,7 @@ ENDM
 	add_tm THIEF        ; ef
 	add_tm STEEL_WING   ; f0
 	add_tm FIRE_PUNCH   ; f1
-	add_tm BUG_BITE
+	add_tm FURY_CUTTER
 	add_tm HONE_CLAWS
 	add_tm NIGHT_SLASH
 	add_tm ZEN_HEADBUTT

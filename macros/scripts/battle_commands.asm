@@ -216,6 +216,7 @@ ENDM
 	command yawn                    ; d1
 	command wish                    ; d2
 	command stickyweb               ; d3
+	command suckerpunchcheck        ; d4
 
 	enum_start $fe
 	command endturn                 ; fe

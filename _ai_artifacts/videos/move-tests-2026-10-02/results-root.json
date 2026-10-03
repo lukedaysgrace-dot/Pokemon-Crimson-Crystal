@@ -1,0 +1,2735 @@
+{
+  "rom": "C:\\Users\\luked\\Documents\\GitHub\\Pokemon-Crimson-Crystal\\pokecrystal_debug.gbc",
+  "sha256": "f1a293bbd6474b4cd36af18eb89365c743a49b15e5695b76d30cde9754d9dd58",
+  "results": [
+    {
+      "player": {
+        "hp": 212,
+        "maxhp": 235,
+        "damage": 23,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 125,
+        "maxhp": 175,
+        "damage": 50,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "TACKLE",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          34,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "TACKLE",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_physical",
+      "name": "Sucker Punch hits before a faster physical attacker",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 217,
+        "maxhp": 235,
+        "damage": 18,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 125,
+        "maxhp": 175,
+        "damage": 50,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "WATER_GUN",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          24,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "WATER_GUN",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_special",
+      "name": "Sucker Punch hits before a faster special attacker",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SPLASH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          39,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            40,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SPLASH",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_status",
+      "name": "Sucker Punch fails against a status move",
+      "failures": [
+        "enemy.hp == enemy.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 235,
+        "maxhp": 235,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "PROTECT",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "PROTECT",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 1,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 1,
+      "id": "sp_protect",
+      "name": "Sucker Punch fails against Protect",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 209,
+        "maxhp": 235,
+        "damage": 26,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 125,
+        "maxhp": 175,
+        "damage": 50,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "QUICK_ATTACK",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "QUICK_ATTACK",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 1,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_slower_priority",
+      "name": "Sucker Punch fails after faster Quick Attack",
+      "failures": [
+        "enemy.hp == enemy.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 144,
+        "maxhp": 175,
+        "damage": 31,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "QUICK_ATTACK",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "QUICK_ATTACK",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_faster_priority",
+      "name": "Sucker Punch hits before slower Quick Attack",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 87,
+        "maxhp": 175,
+        "damage": 88,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "FIRST_IMPRESSION",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "FIRST_IMPRESSION",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 1,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_first_impression",
+      "name": "Sucker Punch fails after higher priority First Impression",
+      "failures": [
+        "enemy.hp == enemy.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 109,
+        "maxhp": 175,
+        "damage": 66,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "EXTREMESPEED",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          4,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "EXTREMESPEED",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_extremespeed",
+      "name": "Sucker Punch fails after higher priority Extreme Speed",
+      "failures": [
+        "enemy.hp == enemy.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 2,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "TACKLE",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          35,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 3,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 3,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "TACKLE",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_sleep",
+      "name": "Sucker Punch hits a sleeping target that chose an attack",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "HYPER_BEAM",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          5,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 3,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "HYPER_BEAM",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_recharge",
+      "name": "Sucker Punch fails against a recharging target",
+      "failures": [
+        "enemy.hp == enemy.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SOLARBEAM",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          16,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 3,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SOLARBEAM",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_charge",
+      "name": "Sucker Punch hits a target preparing SolarBeam",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 125,
+        "maxhp": 175,
+        "damage": 50,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "TACKLE",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          34,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 212,
+        "maxhp": 235,
+        "damage": 23,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "TACKLE",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 1,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_enemy_attack",
+      "name": "Enemy Sucker Punch hits the player attack",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "player": {
+        "hp": 202,
+        "maxhp": 235,
+        "damage": 33,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SPLASH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          39,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 175,
+        "maxhp": 175,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            40,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SPLASH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 1,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_enemy_status",
+      "name": "Enemy Sucker Punch fails against player status",
+      "failures": [
+        "player.hp == player.start_hp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 150,
+        "maxhp": 165,
+        "damage": 25,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "GUTS",
+        "species": "MACHAMP",
+        "moves": [
+          "TACKLE",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          35,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 150,
+          "defense": 100,
+          "speed": 75,
+          "spclatk": 85,
+          "spcldef": 105
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 235,
+        "maxhp": 235,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 5,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "TACKLE",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 0,
+      "wAttackMissed": 0,
+      "id": "sp_enemy_switch",
+      "name": "Enemy Sucker Punch fails when the player switches",
+      "failures": [
+        "player.hp == player.maxhp"
+      ],
+      "passed": false
+    },
+    {
+      "player": {
+        "hp": 148,
+        "maxhp": 175,
+        "damage": 27,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "MEW",
+        "moves": [
+          "SUCKER_PUNCH",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 120,
+          "defense": 120,
+          "speed": 120,
+          "spclatk": 120,
+          "spcldef": 120
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "enemy": {
+        "hp": 235,
+        "maxhp": 235,
+        "damage": 0,
+        "healing": 0,
+        "status": 0,
+        "item": "NO_ITEM",
+        "ability": "NO_ABILITY",
+        "species": "SNORLAX",
+        "moves": [
+          "TACKLE",
+          null,
+          null,
+          null
+        ],
+        "pp": [
+          34,
+          0,
+          0,
+          0
+        ],
+        "stats": {
+          "attack": 130,
+          "defense": 85,
+          "speed": 50,
+          "spclatk": 85,
+          "spcldef": 130
+        },
+        "stat_levels": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "screens": 0,
+        "substatus": [
+          0,
+          0,
+          0,
+          16,
+          0
+        ]
+      },
+      "weather": 0,
+      "turns_done": 1,
+      "rng_count": 0,
+      "text_ram_count": 4,
+      "start": {
+        "player": {
+          "hp": 175,
+          "maxhp": 175,
+          "status": 0,
+          "stats": {
+            "attack": 120,
+            "defense": 120,
+            "speed": 120,
+            "spclatk": 120,
+            "spcldef": 120
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "MEW",
+          "moves": [
+            "SUCKER_PUNCH",
+            null,
+            null,
+            null
+          ]
+        },
+        "enemy": {
+          "hp": 235,
+          "maxhp": 235,
+          "status": 0,
+          "stats": {
+            "attack": 130,
+            "defense": 85,
+            "speed": 50,
+            "spclatk": 85,
+            "spcldef": 130
+          },
+          "stat_levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "pp": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "item": "NO_ITEM",
+          "ability": "NO_ABILITY",
+          "species": "SNORLAX",
+          "moves": [
+            "TACKLE",
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "wEnemyGoesFirst": 0,
+      "wEnemyConsumedItem": 0,
+      "wPlayerConsumedItem": 0,
+      "wEnemySubstituteHP": 222,
+      "wAttackMissed": 0,
+      "id": "sp_substitute",
+      "name": "Sucker Punch damages Substitute instead of holder",
+      "failures": [],
+      "passed": true
+    }
+  ]
+}

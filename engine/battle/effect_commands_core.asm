@@ -903,6 +903,42 @@ BattleScaleShotKO_Core:
 	callfar BattleCommand_RestoreMiss
 	ret
 
+BattleSuckerPunch_CheckCore:
+; Returns carry if Sucker Punch should fail:
+; - the target already acted this turn (moved, switched or used an item),
+; - the target is recharging, or
+; - the target chose a status move (or no move).
+	ld a, [wEnemyGoesFirst] ; 0 if the player went first
+	ld b, a
+	ldh a, [hBattleTurn]    ; 0 if it's the player's turn
+	xor b
+	jr nz, .fail            ; target went first
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_RECHARGE, a
+	jr nz, .fail
+	ld a, [wCurEnemyMove]
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_move
+	ld a, [wCurPlayerMove]
+	ld b, a
+.got_move
+	ld a, b
+	and a
+	jr z, .fail
+	ld l, a
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+	jr z, .fail
+	and a
+	ret
+.fail
+	scf
+	ret
+
 BattleBrickBreak_Core:
 ; Shatter Reflect and Light Screen on the target's side once the move is
 ; known to connect. (The damage itself already ignored them: see

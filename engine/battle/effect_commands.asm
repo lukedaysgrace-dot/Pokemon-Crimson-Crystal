@@ -5953,12 +5953,20 @@ BattleCommand_GigaHammerSetLock:
 	callfar BattleGigaHammer_SetLockCore
 	ret
 
+BattleCommand_SuckerPunchCheck:
+; Sucker Punch fails unless the target is about to use a damaging move
+; (body in the Battle Effect Overflow bank, see BattleSuckerPunch_CheckCore).
+	callfar BattleSuckerPunch_CheckCore
+	ret nc
+	jr FailMoveAndEnd
+
 BattleCommand_FirstImpressionCheck:
 ; First Impression only works during the user's first action opportunity
 ; after entering battle. Its PP and turn have already been consumed.
 	ld a, [wFirstImpressionThisTurn]
 	and a
 	ret nz
+FailMoveAndEnd:
 	ld a, 1
 	ld [wAttackMissed], a
 	call AnimateFailedMove
