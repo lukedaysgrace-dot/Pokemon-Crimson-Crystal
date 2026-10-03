@@ -222,3 +222,5 @@ MoveEffectsPointers:
 	dw Yawn ; EFFECT_YAWN
 	dw Wish ; EFFECT_WISH
 	dw StickyWeb ; EFFECT_STICKY_WEB
+	dw SuckerPunch ; EFFECT_SUCKER_PUNCH
+	dw Incinerate ; EFFECT_INCINERATE

@@ -502,7 +502,7 @@
       "KNOCK_OFF",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "CUT",
       "STRENGTH",
       "FLASH"
@@ -668,8 +668,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM01",
@@ -864,7 +864,7 @@
       "KNOCK_OFF",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "WEATHER_BALL",
       "CUT",
@@ -1066,8 +1066,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -1170,6 +1170,11 @@
         "level": 20,
         "const": "REVERSAL",
         "move": "Reversal"
+      },
+      {
+        "level": 22,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 26,
@@ -1544,6 +1549,11 @@
         "move": "Reversal"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 31,
         "const": "SWIFT",
         "move": "Swift"
@@ -1629,7 +1639,7 @@
       "SWIFT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "CUT",
       "STRENGTH",
@@ -1861,8 +1871,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -1982,6 +1992,11 @@
         "move": "Reversal"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 31,
         "const": "SWIFT",
         "move": "Swift"
@@ -2067,7 +2082,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "CUT",
       "STRENGTH",
@@ -2329,8 +2344,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -2925,7 +2940,7 @@
       "DRAGON_DANCE",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -3161,8 +3176,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -3391,7 +3406,7 @@
       "DRAGON_DANCE",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -3602,8 +3617,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -7270,6 +7285,11 @@
         "move": "Stealth Rock"
       },
       {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "FLAMETHROWER",
         "move": "Flamethrower"
@@ -8471,7 +8491,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "ZEN_HEADBUTT",
       "CUT",
@@ -8669,8 +8689,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -8863,7 +8883,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "ZEN_HEADBUTT",
       "CUT",
@@ -9088,8 +9108,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -11223,7 +11243,7 @@
       "SWIFT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "info": {
@@ -11439,8 +11459,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -11916,7 +11936,7 @@
       "SWIFT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "CUT"
     ],
     "info": {
@@ -12252,8 +12272,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM01",
@@ -12440,7 +12460,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "info": {
@@ -12633,8 +12653,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -12836,7 +12856,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "info": {
@@ -13075,8 +13095,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -13259,7 +13279,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "FLASH"
@@ -13421,8 +13441,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -13624,7 +13644,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "FLASH"
@@ -13836,8 +13856,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -14837,7 +14857,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLAMETHROWER"
     ],
@@ -15042,8 +15062,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -19998,7 +20018,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -20223,8 +20243,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -20436,7 +20456,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -20647,8 +20667,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -29352,7 +29372,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "CUT",
       "FLASH"
@@ -29520,8 +29540,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -29699,7 +29719,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "CUT",
       "FLASH"
@@ -29909,8 +29929,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -33813,7 +33833,7 @@
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "WEATHER_BALL",
       "SURF",
@@ -34055,8 +34075,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -34292,7 +34312,7 @@
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "POWER_GEM",
       "WEATHER_BALL",
@@ -34520,8 +34540,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -38053,7 +38073,7 @@
       "SWIFT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH"
     ],
     "info": {
@@ -38197,8 +38217,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -38363,7 +38383,7 @@
       "SWIFT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH"
     ],
     "info": {
@@ -38572,8 +38592,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -39433,7 +39453,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "SURF",
       "STRENGTH",
@@ -39680,8 +39700,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -40572,7 +40592,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "SURF",
       "STRENGTH",
@@ -40808,8 +40828,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -41010,7 +41030,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "info": {
@@ -41188,8 +41208,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -41374,7 +41394,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "FLY",
       "FLASH"
@@ -41684,8 +41704,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -44346,7 +44366,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT"
     ],
     "info": {
@@ -44546,8 +44566,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -44739,7 +44759,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "FLASH"
     ],
@@ -44990,8 +45010,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -45085,11 +45105,6 @@
         "level": 22,
         "const": "SLASH",
         "move": "Slash"
-      },
-      {
-        "level": 25,
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
       },
       {
         "level": 26,
@@ -45195,7 +45210,7 @@
       "ATTRACT",
       "THIEF",
       "STEEL_WING",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "CUT"
     ],
@@ -45405,8 +45420,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -45611,7 +45626,7 @@
       "ATTRACT",
       "THIEF",
       "STEEL_WING",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
@@ -45806,8 +45821,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -46036,7 +46051,7 @@
       "ATTRACT",
       "THIEF",
       "STEEL_WING",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "POWER_GEM",
       "CUT",
@@ -46239,8 +46254,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -46414,7 +46429,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "CUT",
       "STRENGTH"
     ],
@@ -46578,8 +46593,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM01",
@@ -46782,7 +46797,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
@@ -46932,8 +46947,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -50109,7 +50124,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "CUT",
       "STRENGTH",
@@ -50313,8 +50328,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -50484,7 +50499,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "CUT",
       "STRENGTH",
@@ -50694,8 +50709,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -51633,6 +51648,11 @@
         "move": "Will-O-Wisp"
       },
       {
+        "level": 19,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 22,
         "const": "FLAMETHROWER",
         "move": "Flamethrower"
@@ -52009,6 +52029,11 @@
         "move": "Hex"
       },
       {
+        "level": 19,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 22,
         "const": "FLAMETHROWER",
         "move": "Flamethrower"
@@ -52375,6 +52400,11 @@
         "move": "Agility"
       },
       {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "FLAMETHROWER",
         "move": "Flamethrower"
@@ -52707,6 +52737,11 @@
         "level": 25,
         "const": "AGILITY",
         "move": "Agility"
+      },
+      {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 28,
@@ -58238,7 +58273,7 @@
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "ZEN_HEADBUTT",
       "POWER_GEM",
@@ -58470,8 +58505,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -62929,6 +62964,11 @@
         "move": "Scary Face"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 31,
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
@@ -63273,6 +63313,11 @@
         "level": 24,
         "const": "SCARY_FACE",
         "move": "Scary Face"
+      },
+      {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 33,
@@ -63673,6 +63718,11 @@
         "level": 24,
         "const": "SCARY_FACE",
         "move": "Scary Face"
+      },
+      {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 33,
@@ -71421,7 +71471,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -71598,8 +71648,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -71794,7 +71844,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -71989,8 +72039,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -72207,7 +72257,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLASH"
     ],
@@ -72391,8 +72441,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -74573,6 +74623,11 @@
         "level": 25,
         "const": "OCTAZOOKA",
         "move": "Octazooka"
+      },
+      {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 32,
@@ -82644,7 +82699,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -82858,8 +82913,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -83107,7 +83162,7 @@
       "ATTRACT",
       "THIEF",
       "STEEL_WING",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -83299,8 +83354,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -84959,7 +85014,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -85192,8 +85247,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -85416,7 +85471,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -85683,8 +85738,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -85912,7 +85967,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -86168,8 +86223,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -88713,6 +88768,11 @@
         "move": "Fire Spin"
       },
       {
+        "level": 24,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 25,
         "const": "AGILITY",
         "move": "Agility"
@@ -89035,6 +89095,11 @@
         "level": 22,
         "const": "FIRE_SPIN",
         "move": "Fire Spin"
+      },
+      {
+        "level": 24,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 25,
@@ -90340,7 +90405,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "SURF",
       "STRENGTH",
       "FLAMETHROWER",
@@ -90576,8 +90641,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM03",
@@ -91202,7 +91267,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "SURF",
       "STRENGTH",
       "FLAMETHROWER",
@@ -91552,8 +91617,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM03",
@@ -91782,7 +91847,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "POWER_GEM",
       "SURF",
       "STRENGTH",
@@ -92054,8 +92119,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM53",
@@ -99556,7 +99621,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE"
+      "FURY_CUTTER"
     ],
     "info": {
       "catch_rate": 255,
@@ -99676,8 +99741,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       }
     ]
   },
@@ -99812,7 +99877,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE"
+      "FURY_CUTTER"
     ],
     "info": {
       "catch_rate": 120,
@@ -99957,8 +100022,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       }
     ]
   },
@@ -100108,7 +100173,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH"
     ],
     "info": {
@@ -100323,8 +100388,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -100514,7 +100579,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "CUT",
       "SURF",
@@ -100693,8 +100758,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -100918,7 +100983,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -101144,8 +101209,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -102021,7 +102086,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "POWER_GEM",
       "STRENGTH"
@@ -102194,8 +102259,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -102386,7 +102451,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "POWER_GEM",
       "STRENGTH"
@@ -102602,8 +102667,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -108407,6 +108472,11 @@
         "move": "Bug Bite"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 30,
         "const": "SCREECH",
         "move": "Screech"
@@ -108492,7 +108562,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "FLAMETHROWER"
     ],
@@ -108643,8 +108713,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -108750,6 +108820,11 @@
         "move": "Bug Bite"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "GIGA_DRAIN",
         "move": "Giga Drain"
@@ -108834,7 +108909,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "FLAMETHROWER"
     ],
@@ -109039,8 +109114,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -114039,6 +114114,11 @@
         "move": "Night Shade"
       },
       {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "FIRE_FANG",
         "move": "Fire Fang"
@@ -114325,6 +114405,11 @@
         "level": 24,
         "const": "FLAME_CHARGE",
         "move": "Flame Charge"
+      },
+      {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 28,
@@ -114685,6 +114770,11 @@
         "level": 24,
         "const": "FLAME_CHARGE",
         "move": "Flame Charge"
+      },
+      {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 28,
@@ -116211,6 +116301,11 @@
         "move": "Beat Up"
       },
       {
+        "level": 25,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "CRUNCH",
         "move": "Crunch"
@@ -116605,6 +116700,11 @@
         "level": 24,
         "const": "TAUNT",
         "move": "Taunt"
+      },
+      {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 30,
@@ -117015,6 +117115,11 @@
         "move": "Rock Tomb"
       },
       {
+        "level": 21,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 24,
         "const": "ROCK_SLIDE",
         "move": "Rock Slide"
@@ -117327,6 +117432,11 @@
         "level": 20,
         "const": "ROCK_TOMB",
         "move": "Rock Tomb"
+      },
+      {
+        "level": 21,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 24,
@@ -120420,7 +120530,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -120607,8 +120717,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -122095,7 +122205,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "WEATHER_BALL",
       "CUT",
       "FLASH"
@@ -122267,8 +122377,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM54",
@@ -122447,7 +122557,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -122619,8 +122729,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -122799,7 +122909,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -122971,8 +123081,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -123147,7 +123257,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "WEATHER_BALL",
       "CUT",
       "FLASH"
@@ -123328,8 +123438,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM54",
@@ -123502,7 +123612,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -123683,8 +123793,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -123857,7 +123967,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -124030,8 +124140,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -124227,7 +124337,7 @@
       "SLUDGE_BOMB",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "WEATHER_BALL",
       "CUT",
       "FLASH"
@@ -124418,8 +124528,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM54",
@@ -124613,7 +124723,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -124804,8 +124914,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -124999,7 +125109,7 @@
           "SLUDGE_BOMB",
           "REST",
           "ATTRACT",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "WEATHER_BALL",
           "CUT",
           "FLASH"
@@ -125190,8 +125300,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM54",
@@ -125283,6 +125393,11 @@
         "move": "Bite"
       },
       {
+        "level": 17,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 20,
         "const": "FIRE_FANG",
         "move": "Fire Fang"
@@ -125371,7 +125486,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "WEATHER_BALL",
       "CUT",
@@ -125575,8 +125690,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -125676,6 +125791,11 @@
             "move": "Bite"
           },
           {
+            "level": 17,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 20,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -125764,7 +125884,7 @@
           "REST",
           "ATTRACT",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -125968,8 +126088,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -126069,6 +126189,11 @@
             "move": "Bite"
           },
           {
+            "level": 17,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 20,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -126157,7 +126282,7 @@
           "REST",
           "ATTRACT",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -126307,8 +126432,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -126410,6 +126535,11 @@
         "move": "Dragon Breath"
       },
       {
+        "level": 19,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 22,
         "const": "FIRE_FANG",
         "move": "Fire Fang"
@@ -126493,7 +126623,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "WEATHER_BALL",
       "CUT",
@@ -126710,8 +126840,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -126811,6 +126941,11 @@
             "move": "Dragon Breath"
           },
           {
+            "level": 19,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 22,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -126894,7 +127029,7 @@
           "REST",
           "ATTRACT",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -127111,8 +127246,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -127212,6 +127347,11 @@
             "move": "Dragon Breath"
           },
           {
+            "level": 19,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 22,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -127295,7 +127435,7 @@
           "REST",
           "ATTRACT",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -127450,8 +127590,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -127569,6 +127709,11 @@
         "move": "Dragon Breath"
       },
       {
+        "level": 19,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 22,
         "const": "FIRE_FANG",
         "move": "Fire Fang"
@@ -127681,7 +127826,7 @@
       "ATTRACT",
       "STEEL_WING",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "WEATHER_BALL",
       "CUT",
@@ -127928,8 +128073,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -128050,6 +128195,11 @@
             "move": "Dragon Breath"
           },
           {
+            "level": 19,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 22,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -128162,7 +128312,7 @@
           "ATTRACT",
           "STEEL_WING",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -128409,8 +128559,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -128531,6 +128681,11 @@
             "move": "Dragon Breath"
           },
           {
+            "level": 19,
+            "const": "INCINERATE",
+            "move": "Incinerate"
+          },
+          {
             "level": 22,
             "const": "FIRE_FANG",
             "move": "Fire Fang"
@@ -128643,7 +128798,7 @@
           "ATTRACT",
           "STEEL_WING",
           "FIRE_PUNCH",
-          "BUG_BITE",
+          "FURY_CUTTER",
           "HONE_CLAWS",
           "WEATHER_BALL",
           "CUT",
@@ -128874,8 +129029,8 @@
           },
           {
             "tm": "TM49",
-            "const": "BUG_BITE",
-            "move": "Bug Bite"
+            "const": "FURY_CUTTER",
+            "move": "Fury Cutter"
           },
           {
             "tm": "TM50",
@@ -133062,6 +133217,11 @@
         "move": "U-turn"
       },
       {
+        "level": 30,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 34,
         "const": "SOLARBEAM",
         "move": "Solar Beam"
@@ -133913,6 +134073,11 @@
         "level": 26,
         "const": "FIRE_FANG",
         "move": "Fire Fang"
+      },
+      {
+        "level": 30,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 34,
@@ -135566,7 +135731,7 @@
       "ATTRACT",
       "STEEL_WING",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "WEATHER_BALL",
       "FLY",
@@ -135845,8 +136010,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -136774,7 +136939,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "POWER_GEM",
       "CUT",
@@ -137001,8 +137166,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -137546,6 +137711,11 @@
         "level": 26,
         "const": "SAFEGUARD",
         "move": "Safeguard"
+      },
+      {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 30,
@@ -138573,7 +138743,7 @@
       "THIEF",
       "STEEL_WING",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "ZEN_HEADBUTT",
       "POWER_GEM",
@@ -138947,8 +139117,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -144547,6 +144717,11 @@
         "move": "Amnesia"
       },
       {
+        "level": 22,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 25,
         "const": "EARTH_POWER",
         "move": "Earth Power"
@@ -144884,6 +145059,11 @@
         "level": 19,
         "const": "AMNESIA",
         "move": "Amnesia"
+      },
+      {
+        "level": 22,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 24,
@@ -145306,7 +145486,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLAMETHROWER"
     ],
     "info": {
@@ -145454,8 +145634,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "Tutor",
@@ -145618,7 +145798,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLAMETHROWER"
     ],
@@ -145801,8 +145981,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -145938,7 +146118,7 @@
       "SWAGGER",
       "REST",
       "ATTRACT",
-      "BUG_BITE"
+      "FURY_CUTTER"
     ],
     "info": {
       "catch_rate": 255,
@@ -146083,8 +146263,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       }
     ]
   },
@@ -146218,7 +146398,7 @@
       "SWAGGER",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH",
       "THUNDERBOLT"
     ],
@@ -146401,8 +146581,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -146568,7 +146748,7 @@
       "FLASH_CANNON",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLY",
       "FLASH",
       "THUNDERBOLT"
@@ -146779,8 +146959,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM02",
@@ -150463,6 +150643,11 @@
         "move": "Agility"
       },
       {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 30,
         "const": "AERIAL_ACE",
         "move": "Aerial Ace"
@@ -150728,6 +150913,11 @@
         "level": 25,
         "const": "AGILITY",
         "move": "Agility"
+      },
+      {
+        "level": 27,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 30,
@@ -151148,7 +151338,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLAMETHROWER"
     ],
@@ -151301,8 +151491,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -151495,7 +151685,7 @@
       "FIRE_BLAST",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLAMETHROWER"
     ],
@@ -151691,8 +151881,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -151906,7 +152096,7 @@
       "DRAGON_DANCE",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "STRENGTH",
       "FLAMETHROWER"
@@ -152133,8 +152323,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -152940,7 +153130,7 @@
       "SWAGGER",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "SURF",
       "WHIRLPOOL",
       "WATERFALL",
@@ -153089,8 +153279,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM03",
@@ -153243,7 +153433,7 @@
       "BULK_UP",
       "REST",
       "ATTRACT",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "SURF",
       "STRENGTH",
       "WHIRLPOOL",
@@ -153438,8 +153628,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM03",
@@ -158078,7 +158268,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -158311,8 +158501,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -158506,7 +158696,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -158738,8 +158928,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -158942,7 +159132,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "CUT",
@@ -159182,8 +159372,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -169300,6 +169490,11 @@
         "move": "Psybeam"
       },
       {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 30,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
@@ -171439,6 +171634,11 @@
         "move": "Rock Slide"
       },
       {
+        "level": 24,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 26,
         "const": "FLAMETHROWER",
         "move": "Flamethrower"
@@ -171783,6 +171983,11 @@
         "level": 21,
         "const": "ROCK_SLIDE",
         "move": "Rock Slide"
+      },
+      {
+        "level": 24,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 26,
@@ -172982,6 +173187,11 @@
         "move": "Swift"
       },
       {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 34,
         "const": "EXTRASENSORY",
         "move": "Extrasensory"
@@ -173077,7 +173287,7 @@
       "REST",
       "ATTRACT",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "ZEN_HEADBUTT",
       "CUT",
       "STRENGTH",
@@ -173327,8 +173537,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM52",
@@ -179321,7 +179531,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "HONE_CLAWS",
       "NIGHT_SLASH",
       "ZEN_HEADBUTT",
@@ -179526,8 +179736,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM50",
@@ -179725,7 +179935,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "STRENGTH",
@@ -179922,8 +180132,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "TM51",
@@ -182438,6 +182648,11 @@
         "move": "Flame Wheel"
       },
       {
+        "level": 22,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 24,
         "const": "HEX",
         "move": "Hex"
@@ -182763,6 +182978,11 @@
         "level": 20,
         "const": "FLAME_WHEEL",
         "move": "Flame Wheel"
+      },
+      {
+        "level": 22,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 24,
@@ -183128,6 +183348,11 @@
         "level": 1,
         "const": "WILL_O_WISP",
         "move": "Will-O-Wisp"
+      },
+      {
+        "level": 1,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 30,
@@ -183584,7 +183809,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH",
       "THUNDERBOLT"
     ],
@@ -183748,8 +183973,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -183920,7 +184145,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
-      "BUG_BITE",
+      "FURY_CUTTER",
       "FLASH",
       "THUNDERBOLT"
     ],
@@ -184098,8 +184323,8 @@
       },
       {
         "tm": "TM49",
-        "const": "BUG_BITE",
-        "move": "Bug Bite"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM05",
@@ -185369,6 +185594,11 @@
         "move": "Dragon Rage"
       },
       {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 28,
         "const": "VENOSHOCK",
         "move": "Venoshock"
@@ -185779,6 +186009,11 @@
         "level": 24,
         "const": "TAUNT",
         "move": "Taunt"
+      },
+      {
+        "level": 26,
+        "const": "INCINERATE",
+        "move": "Incinerate"
       },
       {
         "level": 28,

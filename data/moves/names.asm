@@ -419,3 +419,4 @@ MoveNames::
 	db "WISH@"
 	db "STICKY WEB@"
 	db "WEATHER BALL@"
+	db "INCINERATE@"

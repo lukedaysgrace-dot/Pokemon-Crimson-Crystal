@@ -200,6 +200,7 @@ CharmanderEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 12, DRAGONBREATH
 	dbw 14, BITE
+	dbw 17, INCINERATE
 	dbw 20, FIRE_FANG
 	dbw 23, SLASH
 	dbw 26, FLAMETHROWER
@@ -221,6 +222,7 @@ CharmeleonEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 19, INCINERATE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER
@@ -244,6 +246,7 @@ CharizardEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 19, INCINERATE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER
@@ -898,6 +901,7 @@ VulpixEvosAttacks:
 	dbw 12, SPITE
 	dbw 13, FIRE_SPIN
 	dbw 17, WILL_O_WISP
+	dbw 19, INCINERATE
 	dbw 22, FLAMETHROWER
 	dbw 23, EXTRASENSORY
 	dbw 23, FAINT_ATTACK
@@ -921,6 +925,7 @@ NinetalesEvosAttacks:
 	dbw 13, FIRE_SPIN
 	dbw 17, WILL_O_WISP
 	dbw 18, HEX
+	dbw 19, INCINERATE
 	dbw 22, FLAMETHROWER
 	dbw 23, EXTRASENSORY
 	dbw 23, FAINT_ATTACK
@@ -1394,6 +1399,7 @@ GrowlitheEvosAttacks:
 	dbw 21, TAKE_DOWN
 	dbw 23, FLAME_WHEEL
 	dbw 25, AGILITY
+	dbw 26, INCINERATE
 	dbw 28, FLAMETHROWER
 	dbw 31, CRUNCH
 	dbw 33, OUTRAGE
@@ -1413,6 +1419,7 @@ ArcanineEvosAttacks:
 	dbw 18, REVERSAL
 	dbw 21, TAKE_DOWN
 	dbw 25, AGILITY
+	dbw 26, INCINERATE
 	dbw 28, FLAMETHROWER
 	dbw 31, CRUNCH
 	dbw 33, OUTRAGE
@@ -1839,6 +1846,7 @@ PonytaEvosAttacks:
 	dbw 16, FLAME_WHEEL
 	dbw 19, TAKE_DOWN
 	dbw 22, FIRE_SPIN
+	dbw 24, INCINERATE
 	dbw 25, AGILITY
 	dbw 28, HYPNOSIS
 	dbw 31, LOW_KICK
@@ -1862,6 +1870,7 @@ RapidashEvosAttacks:
 	dbw 16, FLAME_WHEEL
 	dbw 19, TAKE_DOWN
 	dbw 22, FIRE_SPIN
+	dbw 24, INCINERATE
 	dbw 25, AGILITY
 	dbw 28, HYPNOSIS
 	dbw 30, SWORDS_DANCE
@@ -2977,7 +2986,6 @@ ScytherEvosAttacks:
 	dbw 19, WING_ATTACK
 	dbw 22, NIGHT_SLASH
 	dbw 22, SLASH
-	dbw 25, BUG_BITE
 	dbw 26, WORK_UP
 	dbw 30, X_SCISSOR
 	dbw 30, U_TURN
@@ -3055,6 +3063,7 @@ MagmarEvosAttacks:
 	dbw 19, FIRE_PUNCH
 	dbw 22, CONFUSE_RAY
 	dbw 24, SCARY_FACE
+	dbw 28, INCINERATE
 	dbw 33, FLAMETHROWER
 	dbw 33, SUNNY_DAY
 	dbw 37, CROSS_CHOP
@@ -3534,6 +3543,7 @@ MoltresEvosAttacks:
 	dbw 22, AIR_SLASH
 	dbw 26, SUNNY_DAY
 	dbw 30, U_TURN
+	dbw 30, INCINERATE
 	dbw 34, SOLARBEAM
 	dbw 38, SKY_ATTACK
 	dbw 40, DUALWINGBEAT
