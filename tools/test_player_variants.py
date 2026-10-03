@@ -55,6 +55,61 @@ for name, gender, sprite_label, palette_label in variants:
     expected_palette = h.s(palette_label)
     check(palette["hl"] == expected_palette, f"{name} player palette does not resolve to {palette_label}")
 
+# The map and party Fly picker use different icon initialization paths.
+# Check actual rendered OAM through the full standing/walking/flipped cycle.
+for name, gender, _, _ in variants:
+    expected_palette = 7  # dedicated map-player OBJ slot
+    h.wr(h.s("wPlayerGender"), gender)
+    h.wr(h.s("wPlayerSpriteSetupFlags"), 0)
+    for entry in ("PokegearMap_InitPlayerIcon", "TownMapPlayerIcon"):
+        h.call("ClearSpriteAnims")
+        # Request2bpp needs VBlank interrupts; the harness's return trap uses DI.
+        bank, address = h.sym[entry]
+        h.wr(0xc0fa, [0xfb, 0xc3, address & 0xff, address >> 8])  # EI; JP entry
+        h.sym.by_name["MapIconTestEntry"] = (bank, 0xc0fa)
+        h.call("MapIconTestEntry", a=1)  # New Bark Town landmark
+        seen_tiles, seen_flips = set(), set()
+        for frame in range(40):
+            h.call("PlaySpriteAnimations")
+            oam = h.rd(h.s("wVirtualOAM"), 16)
+            check(all((attr & 7) == expected_palette for attr in oam[3::4]),
+                  f"{name} {entry} frame {frame} uses the wrong OBJ palette")
+            seen_tiles.add(oam[2])
+            seen_flips.add(oam[3] & 0x20)
+        check(seen_tiles == {0x10, 0x14}, f"{name} {entry} lost its walking frames")
+        check(seen_flips == {0, 0x20}, f"{name} {entry} lost its flipped walking frame")
+
+# The Pokedex area map writes the standing player directly instead of using
+# sprite animations; it must use the same dedicated character palette.
+for name, gender, _, _ in variants:
+    h.wr(h.s("wPlayerGender"), gender)
+    h.wr(h.s("wTownMapPlayerIconLandmark"), 1)
+    h.wr(h.s("wTownMapCursorLandmark"), 0)  # Johto
+    h.call("Pokedex_GetArea.HideNestsShowPlayer")
+    oam = h.rd(h.s("wVirtualOAM"), 16)
+    check(all((attr & 7) == 7 for attr in oam[3::4]), f"{name} Pokedex map player uses the wrong palette")
+    check(list(oam[2::4]) == [0x78, 0x79, 0x7a, 0x7b], f"{name} Pokedex map player tiles changed")
+
+# The player slot must match the overworld at every time of day, even after
+# party palettes were loaded. Other OBJ slots (Fly Pokemon/cursor) must survive.
+rom_data = Path(rom or Path(__file__).resolve().parents[1] / "pokecrystal.gbc").read_bytes()
+pal_bank, pal_addr = h.sym["MapObjectPals"]
+for name, gender, _, _ in variants:
+    h.wr(h.s("wPlayerGender"), gender)
+    for time in range(4):
+        h.wr(h.s("wTimeOfDayPal"), time)
+        h.mem[0xff70] = h.sym["wOBPals1"][0]
+        h.wr(h.s("wOBPals1"), bytes([0x55] * 64))
+        h.mem[0xff70] = 1
+        h.call("_CGB_PokegearPals")
+        h.mem[0xff70] = h.sym["wOBPals1"][0]
+        actual = h.rd(h.s("wOBPals1"), 64)
+        h.mem[0xff70] = 1
+        color = (0, 0, 4, 1)[gender]
+        offset = pal_bank * 0x4000 + (pal_addr & 0x3fff) + time * 64 + color * 8
+        check(actual[56:] == rom_data[offset:offset + 8], f"{name} map colors wrong at time {time}")
+        check(actual[:56] == bytes([0x55] * 56), f"{name} map overwrote Fly Pokemon/cursor colors")
+
 layout_path = Path(__file__).resolve().parents[1] / "engine/gfx/cgb_layouts.asm"
 layout = layout_path.read_text(encoding="utf-8")
 pack_block = layout.split("_CGB_PackPals:", 1)[1].split("_CGB_Pokepic:", 1)[0]
