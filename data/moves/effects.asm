@@ -3228,3 +3228,27 @@ Incinerate:
 	buildopponentrage
 	kingsrock
 	endmove
+
+DefSpDefDownHit:
+; Damaging hit with one effect-chance roll that lowers both the target's
+; DEFENSE and SPCL.DEF (OCTAZOOKA). Shares the direclaw command, whose core
+; hands this effect to BattleDefSpDefDownHit_Core.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	direclaw
+	kingsrock
+	endmove

@@ -1,0 +1,21 @@
+{
+  "release_attributes": [
+    224,
+    90,
+    21,
+    1,
+    255,
+    15,
+    51
+  ],
+  "debug_attributes": [
+    224,
+    90,
+    21,
+    1,
+    255,
+    15,
+    51
+  ],
+  "tested_debug_sha256": "cd4c83f5147ff18cb95734310215113bf80885377cbe9b751fa7f53179c345f6"
+}

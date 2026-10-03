@@ -1315,8 +1315,8 @@ MudSlapDescription:
 	next "accuracy.@"
 
 OctazookaDescription:
-	db   "An attack that may"
-	next "reduce accuracy.@"
+	db   "May lower DEFENSE"
+	next "and SPCL.DEF.@"
 
 SpikesDescription:
 	db   "Hurts foes when"

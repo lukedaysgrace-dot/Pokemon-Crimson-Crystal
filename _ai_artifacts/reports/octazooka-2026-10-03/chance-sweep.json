@@ -1,0 +1,9750 @@
+{
+  "rom": "C:\\Users\\luked\\Documents\\GitHub\\Pokemon-Crimson-Crystal\\.tmpbuild\\octazooka-2026-10-03\\build\\pokecrystal_debug.gbc",
+  "sha256": "79eb518d0b5cd3c6b566d2dc1b438c6dd440c13b186d32a7f6bb47fd8a6211da",
+  "summaries": [
+    {
+      "ability": "NO_ABILITY",
+      "threshold": 51,
+      "procs": 51,
+      "rolls_tested": 256,
+      "outcomes": [
+        {
+          "roll": 0,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 0,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 1,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 1,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 2,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 2,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 3,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 3,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 4,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 4,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 5,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 5,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 6,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 6,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 7,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 7,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 8,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 8,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 9,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 9,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 10,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 10,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 11,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 11,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 12,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 12,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 13,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 13,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 14,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 14,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 15,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 15,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 16,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 16,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 17,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 17,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 18,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 18,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 19,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 19,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 20,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 20,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 21,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 21,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 22,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 22,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 23,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 23,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 24,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 24,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 25,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 25,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 26,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 26,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 27,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 27,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 28,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 28,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 29,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 29,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 30,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 30,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 31,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 31,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 32,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 32,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 33,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 33,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 34,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 34,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 35,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 35,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 36,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 36,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 37,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 37,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 38,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 38,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 39,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 39,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 40,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 40,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 41,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 41,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 42,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 42,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 43,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 43,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 44,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 44,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 45,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 45,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 46,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 46,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 47,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 47,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 48,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 48,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 49,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 49,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 50,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 50,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 51,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 51,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 52,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 52,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 53,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 53,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 54,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 54,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 55,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 55,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 56,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 56,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 57,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 57,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 58,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 58,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 59,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 59,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 60,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 60,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 61,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 61,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 62,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 62,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 63,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 63,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 64,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 64,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 65,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 65,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 66,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 66,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 67,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 67,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 68,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 68,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 69,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 69,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 70,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 70,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 71,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 71,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 72,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 72,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 73,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 73,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 74,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 74,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 75,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 75,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 76,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 76,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 77,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 77,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 78,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 78,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 79,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 79,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 80,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 80,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 81,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 81,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 82,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 82,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 83,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 83,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 84,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 84,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 85,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 85,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 86,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 86,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 87,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 87,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 88,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 88,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 89,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 89,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 90,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 90,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 91,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 91,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 92,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 92,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 93,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 93,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 94,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 94,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 95,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 95,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 96,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 96,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 97,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 97,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 98,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 98,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 99,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 99,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 100,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 100,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 101,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 101,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 102,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 102,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 103,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 103,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 104,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 104,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 105,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 105,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 106,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 106,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 107,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 107,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 108,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 108,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 109,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 109,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 110,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 110,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 111,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 111,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 112,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 112,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 113,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 113,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 114,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 114,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 115,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 115,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 116,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 116,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 117,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 117,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 118,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 118,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 119,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 119,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 120,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 120,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 121,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 121,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 122,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 122,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 123,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 123,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 124,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 124,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 125,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 125,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 126,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 126,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 127,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 127,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 128,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 128,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 129,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 129,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 130,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 130,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 131,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 131,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 132,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 132,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 133,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 133,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 134,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 134,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 135,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 135,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 136,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 136,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 137,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 137,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 138,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 138,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 139,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 139,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 140,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 140,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 141,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 141,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 142,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 142,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 143,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 143,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 144,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 144,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 145,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 145,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 146,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 146,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 147,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 147,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 148,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 148,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 149,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 149,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 150,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 150,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 151,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 151,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 152,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 152,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 153,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 153,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 154,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 154,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 155,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 155,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 156,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 156,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 157,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 157,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 158,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 158,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 159,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 159,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 160,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 160,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 161,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 161,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 162,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 162,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 163,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 163,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 164,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 164,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 165,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 165,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 166,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 166,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 167,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 167,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 168,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 168,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 169,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 169,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 170,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 170,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 171,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 171,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 172,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 172,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 173,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 173,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 174,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 174,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 175,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 175,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 176,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 176,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 177,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 177,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 178,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 178,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 179,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 179,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 180,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 180,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 181,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 181,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 182,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 182,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 183,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 183,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 184,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 184,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 185,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 185,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 186,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 186,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 187,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 187,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 188,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 188,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 189,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 189,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 190,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 190,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 191,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 191,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 192,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 192,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 193,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 193,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 194,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 194,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 195,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 195,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 196,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 196,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 197,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 197,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 198,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 198,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 199,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 199,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 200,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 200,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 201,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 201,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 202,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 202,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 203,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 203,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 204,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 204,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 205,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 205,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 206,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 206,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 207,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 207,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 208,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 208,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 209,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 209,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 210,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 210,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 211,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 211,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 212,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 212,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 213,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 213,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 214,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 214,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 215,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 215,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 216,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 216,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 217,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 217,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 218,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 218,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 219,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 219,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 220,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 220,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 221,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 221,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 222,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 222,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 223,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 223,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 224,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 224,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 225,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 225,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 226,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 226,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 227,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 227,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 228,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 228,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 229,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 229,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 230,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 230,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 231,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 231,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 232,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 232,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 233,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 233,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 234,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 234,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 235,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 235,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 236,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 236,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 237,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 237,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 238,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 238,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 239,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 239,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 240,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 240,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 241,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 241,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 242,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 242,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 243,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 243,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 244,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 244,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 245,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 245,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 246,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 246,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 247,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 247,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 248,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 248,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 249,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 249,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 250,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 250,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 251,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 251,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 252,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 252,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 253,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 253,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 254,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 254,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 255,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 255,
+              "threshold": 51
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "ability": "SERENE_GRACE",
+      "threshold": 102,
+      "procs": 102,
+      "rolls_tested": 256,
+      "outcomes": [
+        {
+          "roll": 0,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 0,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 1,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 1,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 2,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 2,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 3,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 3,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 4,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 4,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 5,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 5,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 6,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 6,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 7,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 7,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 8,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 8,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 9,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 9,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 10,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 10,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 11,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 11,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 12,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 12,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 13,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 13,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 14,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 14,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 15,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 15,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 16,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 16,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 17,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 17,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 18,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 18,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 19,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 19,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 20,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 20,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 21,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 21,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 22,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 22,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 23,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 23,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 24,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 24,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 25,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 25,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 26,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 26,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 27,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 27,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 28,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 28,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 29,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 29,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 30,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 30,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 31,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 31,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 32,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 32,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 33,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 33,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 34,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 34,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 35,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 35,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 36,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 36,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 37,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 37,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 38,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 38,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 39,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 39,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 40,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 40,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 41,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 41,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 42,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 42,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 43,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 43,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 44,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 44,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 45,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 45,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 46,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 46,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 47,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 47,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 48,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 48,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 49,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 49,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 50,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 50,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 51,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 51,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 52,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 52,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 53,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 53,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 54,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 54,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 55,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 55,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 56,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 56,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 57,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 57,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 58,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 58,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 59,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 59,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 60,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 60,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 61,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 61,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 62,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 62,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 63,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 63,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 64,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 64,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 65,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 65,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 66,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 66,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 67,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 67,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 68,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 68,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 69,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 69,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 70,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 70,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 71,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 71,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 72,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 72,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 73,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 73,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 74,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 74,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 75,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 75,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 76,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 76,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 77,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 77,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 78,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 78,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 79,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 79,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 80,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 80,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 81,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 81,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 82,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 82,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 83,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 83,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 84,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 84,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 85,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 85,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 86,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 86,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 87,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 87,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 88,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 88,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 89,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 89,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 90,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 90,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 91,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 91,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 92,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 92,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 93,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 93,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 94,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 94,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 95,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 95,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 96,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 96,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 97,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 97,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 98,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 98,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 99,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 99,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 100,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 100,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 101,
+          "levels": [
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 101,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 102,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 102,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 103,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 103,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 104,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 104,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 105,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 105,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 106,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 106,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 107,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 107,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 108,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 108,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 109,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 109,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 110,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 110,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 111,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 111,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 112,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 112,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 113,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 113,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 114,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 114,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 115,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 115,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 116,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 116,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 117,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 117,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 118,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 118,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 119,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 119,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 120,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 120,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 121,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 121,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 122,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 122,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 123,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 123,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 124,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 124,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 125,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 125,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 126,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 126,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 127,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 127,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 128,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 128,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 129,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 129,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 130,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 130,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 131,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 131,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 132,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 132,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 133,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 133,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 134,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 134,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 135,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 135,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 136,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 136,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 137,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 137,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 138,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 138,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 139,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 139,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 140,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 140,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 141,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 141,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 142,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 142,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 143,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 143,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 144,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 144,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 145,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 145,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 146,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 146,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 147,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 147,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 148,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 148,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 149,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 149,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 150,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 150,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 151,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 151,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 152,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 152,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 153,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 153,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 154,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 154,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 155,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 155,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 156,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 156,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 157,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 157,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 158,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 158,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 159,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 159,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 160,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 160,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 161,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 161,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 162,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 162,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 163,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 163,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 164,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 164,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 165,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 165,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 166,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 166,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 167,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 167,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 168,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 168,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 169,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 169,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 170,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 170,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 171,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 171,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 172,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 172,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 173,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 173,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 174,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 174,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 175,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 175,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 176,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 176,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 177,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 177,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 178,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 178,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 179,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 179,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 180,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 180,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 181,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 181,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 182,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 182,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 183,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 183,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 184,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 184,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 185,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 185,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 186,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 186,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 187,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 187,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 188,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 188,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 189,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 189,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 190,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 190,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 191,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 191,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 192,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 192,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 193,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 193,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 194,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 194,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 195,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 195,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 196,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 196,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 197,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 197,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 198,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 198,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 199,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 199,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 200,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 200,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 201,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 201,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 202,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 202,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 203,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 203,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 204,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 204,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 205,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 205,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 206,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 206,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 207,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 207,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 208,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 208,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 209,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 209,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 210,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 210,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 211,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 211,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 212,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 212,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 213,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 213,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 214,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 214,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 215,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 215,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 216,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 216,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 217,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 217,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 218,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 218,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 219,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 219,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 220,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 220,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 221,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 221,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 222,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 222,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 223,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 223,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 224,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 224,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 225,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 225,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 226,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 226,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 227,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 227,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 228,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 228,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 229,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 229,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 230,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 230,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 231,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 231,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 232,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 232,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 233,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 233,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 234,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 234,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 235,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 235,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 236,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 236,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 237,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 237,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 238,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 238,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 239,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 239,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 240,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 240,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 241,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 241,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 242,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 242,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 243,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 243,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 244,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 244,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 245,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 245,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 246,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 246,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 247,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 247,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 248,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 248,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 249,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 249,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 250,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 250,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 251,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 251,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 252,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 252,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 253,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 253,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 254,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 254,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        },
+        {
+          "roll": 255,
+          "levels": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "rolls": [
+            {
+              "roll": 255,
+              "threshold": 102
+            }
+          ],
+          "passed": true
+        }
+      ]
+    }
+  ]
+}
