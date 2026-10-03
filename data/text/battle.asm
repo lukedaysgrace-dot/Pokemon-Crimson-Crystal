@@ -1027,6 +1027,14 @@ KnockedOffItemText:
 	text "!"
 	prompt
 
+IncineratedBerryText:
+	text "<TARGET>'s"
+	line "@"
+	text_ram wBattleDynamicNameBuffer
+	text " was"
+	cont "burned up!"
+	prompt
+
 SwappedItemsText:
 	text "The battlers"
 	line "swapped items!"

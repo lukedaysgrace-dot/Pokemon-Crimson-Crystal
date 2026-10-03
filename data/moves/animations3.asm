@@ -1548,6 +1548,48 @@ BattleAnim_Flamethrower_PC3:
 	anim_wait 16
 	anim_ret
 
+BattleAnim_Incinerate_PC3:
+; Flamethrower's flame stream for about 79 frames (half its 157),
+; then Scald's final steam/sizzle sequence after all flames disappear.
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_VERY_BRIGHT
+	anim_2gfx ANIM_GFX_FIRE, ANIM_GFX_SMOKE_PUFF
+	anim_sound 6, 2, SFX_EMBER
+	anim_obj ANIM_OBJ_FLAMETHROWER,   8, 0,  11, 4, $3
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,   9, 3,  10, 6, $5
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,  10, 5,  10, 1, $7
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,  12, 0,   9, 4, $9
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,  13, 2,   8, 7, $b
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,  14, 4,   8, 2, $c
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER,  15, 6,   7, 5, $a
+	anim_wait 2
+	anim_obj ANIM_OBJ_FLAMETHROWER, -15, 0,   7, 0, $8
+	anim_wait 16
+.flames
+	anim_sound 0, 1, SFX_EMBER
+	anim_wait 16
+	anim_loop 2, .flames
+	anim_wait 6
+	anim_clearobjs
+	anim_setobjpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_FIRE
+	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $0, $40
+	anim_sound 0, 1, SFX_POISON_STING
+.sizzle
+	anim_obj ANIM_OBJ_SCALD_STEAM, 120, 46, $30
+	anim_wait 1
+	anim_obj ANIM_OBJ_SCALD_STEAM, 144, 34, $30
+	anim_wait 8
+	anim_loop 6, .sizzle
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
+	anim_ret
+
 BattleAnim_FlareBlitz_PC3:
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_FIRE
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE

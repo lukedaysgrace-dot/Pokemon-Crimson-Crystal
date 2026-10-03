@@ -79,6 +79,7 @@ CharmanderCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 12, DRAGONBREATH
 	dbw 14, BITE
+	dbw 17, INCINERATE
 	dbw 20, FIRE_FANG
 	dbw 23, SLASH
 	dbw 26, FLAMETHROWER
@@ -100,6 +101,7 @@ CharmeleonCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 19, INCINERATE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER
@@ -123,6 +125,7 @@ CharizardCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 19, INCINERATE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER

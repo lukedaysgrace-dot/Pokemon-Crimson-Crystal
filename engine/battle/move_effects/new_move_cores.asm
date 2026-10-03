@@ -398,13 +398,35 @@ BattleKnockOff_Core:
 	ld a, [hl]
 	and a
 	ret z
-	; Sticky Hold keeps the victim's item on (Mold Breaker pierces)
+	; Incinerate shares this command but only burns up a held Berry
+	ld de, KnockedOffItemText
+	push hl
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	pop hl
+	cp EFFECT_INCINERATE
+	jr nz, .got_kind
+	ld b, [hl]
+	push hl
+	farcall IsBerryItem_Core
+	pop hl
+	ret nc
+	ld de, IncineratedBerryText
+.got_kind
+	push de ; message to print once the item is gone
+	; Sticky Hold keeps a surviving victim's item (Mold Breaker pierces).
+	; A fainted holder cannot protect its Berry from Incinerate.
+	push hl
+	farcall OppHasFainted
+	pop hl
+	jr z, .take_item
 	push hl
 	farcall GetOppIgnorableAbility_b
 	ld a, b
 	cp STICKY_HOLD
 	pop hl
 	jr z, .sticky_hold
+.take_item
 	ld a, [hl]
 	; Can't knock off mail
 	; Keep the item id on the stack across ItemIsMail and the party-struct
@@ -444,14 +466,16 @@ BattleKnockOff_Core:
 	pop af
 	ld b, a
 	farcall AbilityBufferItemName_b
-	ld hl, KnockedOffItemText
+	pop hl ; message
 	jp StdBattleTextbox
 
 .mail
 	pop af
+	pop de
 	ret
 
 .sticky_hold
+	pop de
 	farcall StickyHoldAnnounce_Core
 	ret
 

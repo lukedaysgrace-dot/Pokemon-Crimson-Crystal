@@ -187,6 +187,7 @@ CyndaquilEvosAttacks:
 	dbw 14, FLAME_WHEEL
 	dbw 17, DEFENSE_CURL
 	dbw 20, REVERSAL
+	dbw 22, INCINERATE
 	dbw 26, SWIFT
 	dbw 28, FLAME_CHARGE
 	dbw 29, EXTRASENSORY
@@ -209,6 +210,7 @@ QuilavaEvosAttacks:
 	dbw 15, FLAME_WHEEL
 	dbw 19, DEFENSE_CURL
 	dbw 23, REVERSAL
+	dbw 27, INCINERATE
 	dbw 31, SWIFT
 	dbw 35, EXTRASENSORY
 	dbw 35, FLAME_CHARGE
@@ -233,6 +235,7 @@ TyphlosionEvosAttacks:
 	dbw 15, FLAME_WHEEL
 	dbw 19, DEFENSE_CURL
 	dbw 23, REVERSAL
+	dbw 27, INCINERATE
 	dbw 31, SWIFT
 	dbw 35, EXTRASENSORY
 	dbw 35, FLAME_CHARGE
@@ -1666,6 +1669,7 @@ SlugmaEvosAttacks:
 	dbw 15, WILL_O_WISP
 	dbw 18, ANCIENTPOWER
 	dbw 18, ROCK_TOMB
+	dbw 21, INCINERATE
 	dbw 24, ROCK_SLIDE
 	dbw 27, AMNESIA
 	dbw 29, FLAMETHROWER
@@ -1685,6 +1689,7 @@ MagcargoEvosAttacks:
 	dbw 15, WILL_O_WISP
 	dbw 18, ANCIENTPOWER
 	dbw 20, ROCK_TOMB
+	dbw 21, INCINERATE
 	dbw 24, ROCK_SLIDE
 	dbw 27, AMNESIA
 	dbw 28, IRON_DEFENSE
@@ -1806,6 +1811,7 @@ OctilleryEvosAttacks:
 	dbw 18, BUBBLEBEAM
 	dbw 21, FOCUS_ENERGY
 	dbw 25, OCTAZOOKA
+	dbw 28, INCINERATE
 	dbw 32, ICE_BEAM
 	dbw 36, SEED_BOMB
 	dbw 40, FLAMETHROWER
@@ -1903,6 +1909,7 @@ HoundourEvosAttacks:
 	dbw 16, FIRE_FANG
 	dbw 16, THUNDER_FANG
 	dbw 22, BEAT_UP
+	dbw 25, INCINERATE
 	dbw 28, CRUNCH
 	dbw 28, SNARL
 	dbw 31, FLAMETHROWER
@@ -1925,6 +1932,7 @@ HoundoomEvosAttacks:
 	dbw 16, THUNDER_FANG
 	dbw 22, BEAT_UP
 	dbw 24, TAUNT
+	dbw 27, INCINERATE
 	dbw 30, CRUNCH
 	dbw 32, SNARL
 	dbw 34, FLAMETHROWER
@@ -2189,6 +2197,7 @@ MagbyEvosAttacks:
 	dbw 19, FIRE_PUNCH
 	dbw 22, CONFUSE_RAY
 	dbw 24, SCARY_FACE
+	dbw 27, INCINERATE
 	dbw 31, SUNNY_DAY
 	dbw 32, FLAMETHROWER
 	dbw 34, CROSS_CHOP
@@ -2281,6 +2290,7 @@ EnteiEvosAttacks:
 	dbw 18, FLAMETHROWER
 	dbw 22, SWAGGER
 	dbw 26, FIRE_FANG
+	dbw 30, INCINERATE
 	dbw 34, EXTRASENSORY
 	dbw 36, SCARY_FACE
 	dbw 38, FIRE_BLAST
@@ -2427,6 +2437,7 @@ HoOhEvosAttacks:
 	dbw 22, ANCIENTPOWER
 	dbw 24, DEFOG
 	dbw 26, SAFEGUARD
+	dbw 28, INCINERATE
 	dbw 30, RECOVER
 	dbw 34, FUTURE_SIGHT
 	dbw 38, FIRE_BLAST
@@ -2906,6 +2917,7 @@ LitwickEvosAttacks:
 	dbw 13, NIGHT_SHADE
 	dbw 16, WILL_O_WISP
 	dbw 20, FLAME_WHEEL
+	dbw 22, INCINERATE
 	dbw 24, HEX
 	dbw 28, PAIN_SPLIT
 	dbw 33, CURSE
@@ -2927,6 +2939,7 @@ LampentEvosAttacks:
 	dbw 13, NIGHT_SHADE
 	dbw 16, WILL_O_WISP
 	dbw 20, FLAME_WHEEL
+	dbw 22, INCINERATE
 	dbw 24, HEX
 	dbw 28, PAIN_SPLIT
 	dbw 35, CURSE
@@ -2951,6 +2964,7 @@ ChandelureEvosAttacks:
 	dbw 1, PAIN_SPLIT
 	dbw 1, SHADOW_BALL
 	dbw 1, WILL_O_WISP
+	dbw 1, INCINERATE
 	dbw 30, CALM_MIND
 	dbw 35, CURSE
 	dbw 36, TRICK_ROOM
@@ -3087,6 +3101,7 @@ SalanditEvosAttacks:
 	dbw 20, SWEET_SCENT
 	dbw 20, TOXIC
 	dbw 24, DRAGON_RAGE
+	dbw 26, INCINERATE
 	dbw 28, VENOSHOCK
 	dbw 32, FIRE_SPIN
 	dbw 36, NASTY_PLOT
@@ -3111,6 +3126,7 @@ SalazzleEvosAttacks:
 	dbw 24, DRAGON_RAGE
 	dbw 24, ENCORE
 	dbw 24, TAUNT
+	dbw 26, INCINERATE
 	dbw 28, VENOSHOCK
 	dbw 32, FIRE_SPIN
 	dbw 36, NASTY_PLOT
@@ -3975,6 +3991,7 @@ MagmortarEvosAttacks:
 	dbw 19, FIRE_PUNCH
 	dbw 22, CONFUSE_RAY
 	dbw 24, SCARY_FACE
+	dbw 28, INCINERATE
 	dbw 33, FLAMETHROWER
 	dbw 33, SUNNY_DAY
 	dbw 37, CROSS_CHOP
@@ -4710,6 +4727,7 @@ LarvestaEvosAttacks:
 	dbw 12, STRUGGLE_BUG
 	dbw 18, FLAME_WHEEL
 	dbw 24, BUG_BITE
+	dbw 27, INCINERATE
 	dbw 30, SCREECH
 	dbw 30, SIGNAL_BEAM
 	dbw 36, LEECH_LIFE
@@ -4736,6 +4754,7 @@ VolcaronaEvosAttacks:
 	dbw 1, WHIRLWIND
 	dbw 18, FLAME_WHEEL
 	dbw 24, BUG_BITE
+	dbw 27, INCINERATE
 	dbw 28, GIGA_DRAIN
 	dbw 30, SCREECH
 	dbw 36, LEECH_LIFE
@@ -5078,6 +5097,7 @@ CharcadetEvosAttacks:
 	dbw 16, WILL_O_WISP
 	dbw 18, FLAME_CHARGE
 	dbw 20, NIGHT_SHADE
+	dbw 26, INCINERATE
 	dbw 28, FIRE_FANG
 	dbw 28, HEX
 	db 0 ; no more level-up moves
@@ -5091,6 +5111,7 @@ ArmarougeEvosAttacks:
 	dbw 16, WILL_O_WISP
 	dbw 20, NIGHT_SHADE
 	dbw 24, FLAME_CHARGE
+	dbw 26, INCINERATE
 	dbw 28, HEX
 	dbw 32, PSYBEAM
 	dbw 36, FLAMETHROWER
@@ -5115,6 +5136,7 @@ CeruledgeEvosAttacks:
 	dbw 16, WILL_O_WISP
 	dbw 20, NIGHT_SHADE
 	dbw 24, FLAME_CHARGE
+	dbw 26, INCINERATE
 	dbw 28, FIRE_FANG
 	dbw 28, HEX
 	dbw 32, SHADOW_CLAW
@@ -5404,6 +5426,7 @@ CameruptEvosAttacks:
 	dbw 16, ANCIENTPOWER
 	dbw 18, MUD_SHOT
 	dbw 19, AMNESIA
+	dbw 22, INCINERATE
 	dbw 24, STEALTH_ROCK
 	dbw 25, EARTH_POWER
 	dbw 28, CURSE
@@ -5681,6 +5704,7 @@ FletchinderEvosAttacks:
 	dbw 20, ACROBATICS
 	dbw 20, FLAME_WHEEL
 	dbw 25, AGILITY
+	dbw 27, INCINERATE
 	dbw 30, AERIAL_ACE
 	dbw 30, DUALWINGBEAT
 	dbw 32, DEFOG
@@ -6033,6 +6057,7 @@ NumelEvosAttacks:
 	dbw 16, ANCIENTPOWER
 	dbw 16, MUD_SHOT
 	dbw 19, AMNESIA
+	dbw 22, INCINERATE
 	dbw 25, EARTH_POWER
 	dbw 28, CURSE
 	dbw 31, TAKE_DOWN
@@ -6303,6 +6328,7 @@ TalonflameEvosAttacks:
 	dbw 20, FLAME_WHEEL
 	dbw 24, TAUNT
 	dbw 25, AGILITY
+	dbw 27, INCINERATE
 	dbw 30, AERIAL_ACE
 	dbw 30, DUALWINGBEAT
 	dbw 32, DEFOG
@@ -7126,6 +7152,7 @@ TorkoalEvosAttacks:
 	dbw 20, FLAME_WHEEL
 	dbw 23, PROTECT
 	dbw 24, STEALTH_ROCK
+	dbw 26, INCINERATE
 	dbw 28, FLAMETHROWER
 	dbw 28, IRON_DEFENSE
 	dbw 31, BODY_SLAM
@@ -7681,6 +7708,7 @@ RapidashGalarianEvosAttacks:
 	dbw 20, STOMP
 	dbw 24, DRAINING_KISS
 	dbw 25, PSYBEAM
+	dbw 28, INCINERATE
 	dbw 30, SWORDS_DANCE
 	dbw 32, DAZZLING_GLEAM
 	dbw 32, PLAY_ROUGH
@@ -7842,6 +7870,7 @@ GrowlitheHisuianEvosAttacks:
 	dbw 15, FIRE_FANG
 	dbw 18, REVERSAL
 	dbw 21, ROCK_SLIDE
+	dbw 24, INCINERATE
 	dbw 26, FLAMETHROWER
 	dbw 29, CRUNCH
 	dbw 33, OUTRAGE
@@ -7861,6 +7890,7 @@ ArcanineHisuianEvosAttacks:
 	dbw 15, FIRE_FANG
 	dbw 18, REVERSAL
 	dbw 21, ROCK_SLIDE
+	dbw 24, INCINERATE
 	dbw 26, FLAMETHROWER
 	dbw 29, CRUNCH
 	dbw 33, OUTRAGE
@@ -7938,6 +7968,7 @@ TyphlosionHisuianEvosAttacks:
 	dbw 18, FLAME_WHEEL
 	dbw 23, REVERSAL
 	dbw 25, SWIFT
+	dbw 28, INCINERATE
 	dbw 34, EXTRASENSORY
 	dbw 35, FLAME_CHARGE
 	dbw 40, FOCUS_BLAST

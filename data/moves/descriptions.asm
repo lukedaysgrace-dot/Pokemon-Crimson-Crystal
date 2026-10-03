@@ -425,6 +425,7 @@ MoveDescriptions1:
 	dw WishDescription
 	dw StickyWebDescription
 	dw WeatherBallDescription
+	dw IncinerateDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -1590,8 +1591,8 @@ FairyWindDescription:
 	next "hits the target.@"
 
 SuckerPunchDescription:
-	db   "A quick punch that"
-	next "strikes first.@"
+	db   "Strikes first if"
+	next "foe is attacking.@"
 
 DarkPulseDescription:
 	db   "An aura pulse may"
@@ -2072,3 +2073,7 @@ StickyWebDescription:
 WeatherBallDescription:
 	db   "Changes type and"
 	next "power in weather.@"
+
+IncinerateDescription:
+	db   "Burns the foe and"
+	next "its held BERRY.@"

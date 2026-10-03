@@ -215,3 +215,4 @@ BattleCommandPointers:
 	dw BattleCommand_Yawn
 	dw BattleCommand_Wish
 	dw BattleCommand_StickyWeb
+	dw BattleCommand_SuckerPunchCheck
