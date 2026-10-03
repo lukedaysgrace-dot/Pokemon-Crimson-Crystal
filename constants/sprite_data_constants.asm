@@ -42,3 +42,6 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 ; unused pink slot repurposed for Sour Crystal-style purple
 DEF PAL_OW_PURPLE EQU PAL_OW_PINK
 DEF PAL_NPC_PURPLE EQU PAL_NPC_PINK
+
+; Town Map reserves OBJ palette 7 for the selected playable character.
+DEF PAL_TOWN_MAP_PLAYER EQU 7

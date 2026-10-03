@@ -74,6 +74,7 @@ SpriteAnimFrameData:
 	dw .Frameset_PcMode2
 	dw .Frameset_PcPack
 	dw .Frameset_PcCursorEmpty
+	dw .Frameset_PlayerWalk
 
 .Frameset_00:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
@@ -114,6 +115,13 @@ SpriteAnimFrameData:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_2,  8
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1,  8
 	frame SPRITE_ANIM_OAMSET_RED_WALK_2,  8, OAM_X_FLIP
+	dorestart
+
+.Frameset_PlayerWalk:
+	frame SPRITE_ANIM_OAMSET_PLAYER_WALK_1,  8
+	frame SPRITE_ANIM_OAMSET_PLAYER_WALK_2,  8
+	frame SPRITE_ANIM_OAMSET_PLAYER_WALK_1,  8
+	frame SPRITE_ANIM_OAMSET_PLAYER_WALK_2,  8, OAM_X_FLIP
 	dorestart
 
 .Frameset_BlueWalk:

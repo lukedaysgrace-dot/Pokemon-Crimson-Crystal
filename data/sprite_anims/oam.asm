@@ -151,6 +151,16 @@ SpriteAnimOAMData:
 	dbw $00, .OAMData_PcPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
 	dbw $00, .OAMData_PcCursorEmpty            ; SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY
 
+	dbw $00, .OAMData_PlayerWalk               ; SPRITE_ANIM_OAMSET_PLAYER_WALK_1
+	dbw $04, .OAMData_PlayerWalk               ; SPRITE_ANIM_OAMSET_PLAYER_WALK_2
+
+.OAMData_PlayerWalk:
+	db 4
+	dsprite -1,  0, -1,  0, $00, PAL_TOWN_MAP_PLAYER
+	dsprite -1,  0,  0,  0, $01, PAL_TOWN_MAP_PLAYER
+	dsprite  0,  0, -1,  0, $02, PAL_TOWN_MAP_PLAYER
+	dsprite  0,  0,  0,  0, $03, PAL_TOWN_MAP_PLAYER
+
 .OAMData_1x1_Palette0:
 	db 1
 	dsprite -1,  4, -1,  4, $00, 0

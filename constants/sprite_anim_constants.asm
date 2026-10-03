@@ -71,6 +71,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_INDEX_PC_MODE                  ; 2f
 	const SPRITE_ANIM_INDEX_PC_MODE2                 ; 30
 	const SPRITE_ANIM_INDEX_PC_PACK                  ; 31
+	const SPRITE_ANIM_INDEX_PLAYER_WALK              ; 32
 
 ; DoAnimFrame.Jumptable indexes (see engine/gfx/sprite_anims.asm)
 	const_def
@@ -191,6 +192,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_FRAMESET_PC_MODE2                 ; 47
 	const SPRITE_ANIM_FRAMESET_PC_PACK                  ; 48
 	const SPRITE_ANIM_FRAMESET_PC_CURSOR_EMPTY          ; 49
+	const SPRITE_ANIM_FRAMESET_PLAYER_WALK              ; 4a
 
 ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
 	const_def
@@ -343,3 +345,5 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_OAMSET_PC_MODE2                   ; 92
 	const SPRITE_ANIM_OAMSET_PC_PACK                    ; 93
 	const SPRITE_ANIM_OAMSET_PC_CURSOR_EMPTY            ; 94
+	const SPRITE_ANIM_OAMSET_PLAYER_WALK_1              ; 95
+	const SPRITE_ANIM_OAMSET_PLAYER_WALK_2              ; 96

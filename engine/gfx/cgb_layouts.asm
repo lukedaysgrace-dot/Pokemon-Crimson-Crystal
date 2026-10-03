@@ -278,6 +278,27 @@ _CGB_PokegearPals:
 	ld bc, 6 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
+	; Keep the player's map palette separate from the Fly Pokemon and cursor.
+	; Reload it even when entering from the party menu's Pokemon palettes.
+	ld a, [wTimeOfDayPal]
+	maskbits NUM_DAYTIMES
+	ld hl, MapObjectPals
+	ld bc, 8 palettes
+	call AddNTimes
+	ld a, [wPlayerGender]
+	ld bc, PAL_OW_PURPLE palettes
+	cp PLAYERGENDER_INDIGO
+	jr z, .got_player_palette
+	ld bc, PAL_OW_BLUE palettes
+	cp PLAYERGENDER_MINT
+	jr z, .got_player_palette
+	ld bc, PAL_OW_RED palettes ; Gold and Lyra
+.got_player_palette
+	add hl, bc
+	ld de, wOBPals1 palette PAL_TOWN_MAP_PLAYER
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
 	call ApplyPals
 	ld a, $1
 	ldh [hCGBPalUpdate], a
