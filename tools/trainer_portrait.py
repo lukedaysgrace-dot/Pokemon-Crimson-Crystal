@@ -32,6 +32,9 @@ HEIGHT_TILES = 7
 NUM_TILES = WIDTH_TILES * HEIGHT_TILES
 MAX_MOUTH_TILES = 8
 
+# Frame drawn over the portrait's outer pixels, outside ring first.
+FRAME = 'kwk'
+
 # name (file stem) -> index of the closed-mouth frame (0 = top, 1 = bottom)
 CLOSED_FRAME_OVERRIDES = {
 }
@@ -140,6 +143,31 @@ def main():
 	width, height, px = read_png(src)
 	if (width, height) != (WIDTH_TILES * 8, HEIGHT_TILES * 8 * 2):
 		raise SystemExit(f'{src}: expected {WIDTH_TILES * 8}x{HEIGHT_TILES * 16} (two stacked frames), got {width}x{height}')
+
+	# The frame: drawn into the outermost pixels of both frames, so it hugs the
+	# picture with no gap and costs no extra tiles. FRAME lists the rings from
+	# the outside in ('k' black, 'w' white).
+	w = WIDTH_TILES * 8
+	h = HEIGHT_TILES * 8
+	colours = {'k': (0, 0, 0), 'w': (255, 255, 255)}
+	for frame in (0, 1):
+		top = frame * h
+		for ring, c in enumerate(FRAME):
+			for i in range(ring, w - ring):
+				px[top + ring][i] = colours[c]
+				px[top + h - 1 - ring][i] = colours[c]
+			for i in range(ring, h - ring):
+				px[top + i][ring] = colours[c]
+				px[top + i][w - 1 - ring] = colours[c]
+
+	# Off-by-a-bit whites and blacks (254,254,254 and the like) are the same
+	# white and black the textbox uses.
+	for row in px:
+		for x, c in enumerate(row):
+			if min(c) >= 240:
+				row[x] = (255, 255, 255)
+			elif max(c) <= 16:
+				row[x] = (0, 0, 0)
 
 	counts = {}
 	for row in px:

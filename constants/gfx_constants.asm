@@ -71,15 +71,16 @@ PORTRAIT_HEIGHT       EQU 7 ; tiles
 PORTRAIT_NUM_TILES    EQU PORTRAIT_WIDTH * PORTRAIT_HEIGHT
 PORTRAIT_MAX_MOUTH    EQU 8 ; tiles that may change between the two frames
 PORTRAIT_HEADER_SIZE  EQU 1 + 2 * 2 + PORTRAIT_MAX_MOUTH ; count, 2 colors, cells
-; The frame sits flush right, directly on top of the speech textbox, so it can
-; never cover the NPC being spoken to (who is always beside, above or below
-; the player). Its left column still touches an NPC standing right of the
-; player, which is why OAM is only clipped from the interior's left edge.
-PORTRAIT_FRAME_X      EQU SCREEN_WIDTH - PORTRAIT_WIDTH - 2 ; 11
-PORTRAIT_FRAME_Y      EQU (SCREEN_HEIGHT - 6) - PORTRAIT_HEIGHT - 2 ; 3 (TEXTBOX_Y is 12)
-PORTRAIT_X            EQU PORTRAIT_FRAME_X + 1
-PORTRAIT_Y            EQU PORTRAIT_FRAME_Y + 1
-PORTRAIT_FRAME_SIZE   EQU PORTRAIT_WIDTH + 2
+; The portrait sits flush against the right edge of the screen, directly on
+; top of the speech textbox, so it can never cover the NPC being spoken to (who
+; is always beside, above or below the player). Its frame is drawn into the
+; portrait's own outer pixels by tools/trainer_portrait.py, so the frame hugs
+; the picture and takes no extra tiles.
+PORTRAIT_X            EQU SCREEN_WIDTH - PORTRAIT_WIDTH ; 13
+PORTRAIT_Y            EQU (SCREEN_HEIGHT - 6) - PORTRAIT_HEIGHT ; 5 (TEXTBOX_Y is 12)
+PORTRAIT_FRAME_X      EQU PORTRAIT_X
+PORTRAIT_FRAME_Y      EQU PORTRAIT_Y
+PORTRAIT_FRAME_SIZE   EQU PORTRAIT_WIDTH
 ; Tiles live in VRAM bank 1 just below the weather tiles. That is the top of
 ; the table bank-1 NPCs keep their walking frames in; those are restored when
 ; the portrait goes away (only the sprites that actually overlap are touched).

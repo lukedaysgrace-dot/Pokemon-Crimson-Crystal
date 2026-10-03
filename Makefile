@@ -261,6 +261,11 @@ gfx/trainer_portraits/%.portrait: gfx/trainer_portraits/%.png tools/trainer_port
 data/maps/portrait_texts.asm: tools/trainer_portrait_texts.py $(wildcard maps/*.asm) engine/events/trainer_portraits.asm engine/events/std_scripts.asm constants/gfx_constants.asm constants/sprite_constants.asm
 	python3 tools/trainer_portrait_texts.py $@
 
+# Textbox frames: lines pushed out to the edge of the box (no white margin).
+gfx/frames/%.1bpp: gfx/frames/%.png tools/tight_frames.py
+	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	python3 tools/tight_frames.py $@
+
 ### Catch-all graphics rules
 
 %.2bpp: %.png
