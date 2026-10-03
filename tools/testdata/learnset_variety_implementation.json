@@ -1,0 +1,4154 @@
+{
+  "reminder_repairs": {
+    "HITMONLEE": {
+      "MACH_PUNCH": 1
+    },
+    "HITMONTOP": {
+      "MACH_PUNCH": 1
+    },
+    "ELECTIVIRE": {
+      "MACH_PUNCH": 1
+    },
+    "GOLISOPOD": {
+      "AQUA_JET": 24
+    },
+    "OVERQWIL": {
+      "AQUA_JET": 15
+    },
+    "FLAPPLE": {
+      "RECOVER": 36,
+      "SUBSTITUTE": 44
+    },
+    "XATU": {
+      "REFLECT": 20,
+      "LIGHT_SCREEN": 20
+    },
+    "MANTINE": {
+      "AQUA_JET": 23
+    },
+    "NINETALES_ALOLAN": {
+      "ICE_SHARD": 8
+    },
+    "BRELOOM": {
+      "GIGA_DRAIN": 25
+    },
+    "TOGEKISS": {
+      "WISH": 36
+    },
+    "VAPOREON": {
+      "HEAL_BELL": 37
+    },
+    "JOLTEON": {
+      "HEAL_BELL": 37
+    },
+    "FLAREON": {
+      "HEAL_BELL": 37
+    },
+    "ESPEON": {
+      "HEAL_BELL": 37
+    },
+    "UMBREON": {
+      "HEAL_BELL": 37
+    },
+    "LEAFEON": {
+      "HEAL_BELL": 37
+    },
+    "GLACEON": {
+      "HEAL_BELL": 37
+    },
+    "SYLVEON": {
+      "HEAL_BELL": 37
+    }
+  },
+  "availability_restorations": {
+    "SHUCKLE": {
+      "BIDE": 12
+    },
+    "GRUMPIG": {
+      "PSYWAVE": 1
+    },
+    "VOLTORB": {
+      "SONICBOOM": 15
+    }
+  },
+  "utility_flags": {
+    "BULBASAUR": 11,
+    "IVYSAUR": 11,
+    "VENUSAUR": 11,
+    "CHARMANDER": 3,
+    "CHARMELEON": 3,
+    "CHARIZARD": 3,
+    "SQUIRTLE": 3,
+    "WARTORTLE": 3,
+    "BLASTOISE": 3,
+    "CATERPIE": 0,
+    "METAPOD": 0,
+    "BUTTERFREE": 3,
+    "WEEDLE": 0,
+    "KAKUNA": 0,
+    "BEEDRILL": 3,
+    "PIDGEY": 3,
+    "PIDGEOTTO": 3,
+    "PIDGEOT": 3,
+    "RATTATA": 19,
+    "RATICATE": 19,
+    "SPEAROW": 3,
+    "FEAROW": 3,
+    "EKANS": 3,
+    "ARBOK": 3,
+    "PIKACHU": 31,
+    "RAICHU": 31,
+    "SANDSHREW": 3,
+    "SANDSLASH": 3,
+    "NIDORAN_F": 3,
+    "NIDORINA": 3,
+    "NIDOQUEEN": 3,
+    "NIDORAN_M": 3,
+    "NIDORINO": 3,
+    "NIDOKING": 3,
+    "CLEFAIRY": 31,
+    "CLEFABLE": 31,
+    "VULPIX": 3,
+    "NINETALES": 3,
+    "JIGGLYPUFF": 31,
+    "WIGGLYTUFF": 31,
+    "ZUBAT": 3,
+    "GOLBAT": 3,
+    "ODDISH": 3,
+    "GLOOM": 3,
+    "VILEPLUME": 3,
+    "PARAS": 11,
+    "PARASECT": 11,
+    "VENONAT": 3,
+    "VENOMOTH": 3,
+    "DIGLETT": 3,
+    "DUGTRIO": 3,
+    "MEOWTH": 19,
+    "PERSIAN": 19,
+    "PSYDUCK": 11,
+    "GOLDUCK": 11,
+    "MANKEY": 3,
+    "PRIMEAPE": 3,
+    "GROWLITHE": 3,
+    "ARCANINE": 3,
+    "POLIWAG": 3,
+    "POLIWHIRL": 3,
+    "POLIWRATH": 3,
+    "ABRA": 31,
+    "KADABRA": 31,
+    "ALAKAZAM": 31,
+    "MACHOP": 11,
+    "MACHOKE": 11,
+    "MACHAMP": 11,
+    "BELLSPROUT": 7,
+    "WEEPINBELL": 7,
+    "VICTREEBEL": 7,
+    "TENTACOOL": 3,
+    "TENTACRUEL": 3,
+    "GEODUDE": 3,
+    "GRAVELER": 3,
+    "GOLEM": 3,
+    "PONYTA": 3,
+    "RAPIDASH": 3,
+    "SLOWPOKE": 27,
+    "SLOWBRO": 27,
+    "MAGNEMITE": 31,
+    "MAGNETON": 31,
+    "FARFETCH_D": 3,
+    "DODUO": 3,
+    "DODRIO": 3,
+    "SEEL": 3,
+    "DEWGONG": 3,
+    "GRIMER": 3,
+    "MUK": 3,
+    "SHELLDER": 3,
+    "CLOYSTER": 11,
+    "GASTLY": 3,
+    "HAUNTER": 3,
+    "GENGAR": 19,
+    "ONIX": 3,
+    "DROWZEE": 31,
+    "HYPNO": 31,
+    "KRABBY": 3,
+    "KINGLER": 3,
+    "VOLTORB": 31,
+    "ELECTRODE": 31,
+    "EXEGGCUTE": 15,
+    "EXEGGUTOR": 15,
+    "CUBONE": 3,
+    "MAROWAK": 3,
+    "HITMONLEE": 3,
+    "HITMONCHAN": 3,
+    "LICKITUNG": 3,
+    "KOFFING": 3,
+    "WEEZING": 3,
+    "RHYHORN": 3,
+    "RHYDON": 3,
+    "CHANSEY": 27,
+    "TANGELA": 7,
+    "KANGASKHAN": 3,
+    "HORSEA": 3,
+    "SEADRA": 3,
+    "GOLDEEN": 3,
+    "SEAKING": 3,
+    "STARYU": 31,
+    "STARMIE": 31,
+    "MR__MIME": 31,
+    "SCYTHER": 11,
+    "JYNX": 15,
+    "ELECTABUZZ": 27,
+    "MAGMAR": 3,
+    "PINSIR": 3,
+    "TAUROS": 3,
+    "MAGIKARP": 0,
+    "GYARADOS": 19,
+    "LAPRAS": 7,
+    "DITTO": 0,
+    "EEVEE": 3,
+    "VAPOREON": 3,
+    "JOLTEON": 27,
+    "FLAREON": 3,
+    "PORYGON": 19,
+    "OMANYTE": 3,
+    "OMASTAR": 3,
+    "KABUTO": 3,
+    "KABUTOPS": 3,
+    "AERODACTYL": 3,
+    "SNORLAX": 3,
+    "ARTICUNO": 15,
+    "ZAPDOS": 27,
+    "MOLTRES": 3,
+    "DRATINI": 27,
+    "DRAGONAIR": 27,
+    "DRAGONITE": 27,
+    "MEWTWO": 31,
+    "MEW": 31,
+    "CHIKORITA": 15,
+    "BAYLEEF": 15,
+    "MEGANIUM": 15,
+    "CYNDAQUIL": 3,
+    "QUILAVA": 3,
+    "TYPHLOSION": 3,
+    "TOTODILE": 3,
+    "CROCONAW": 3,
+    "FERALIGATR": 3,
+    "SENTRET": 3,
+    "FURRET": 3,
+    "HOOTHOOT": 7,
+    "NOCTOWL": 7,
+    "LEDYBA": 15,
+    "LEDIAN": 15,
+    "SPINARAK": 3,
+    "ARIADOS": 3,
+    "CROBAT": 3,
+    "CHINCHOU": 19,
+    "LANTURN": 19,
+    "PICHU": 31,
+    "CLEFFA": 31,
+    "IGGLYBUFF": 31,
+    "TOGEPI": 31,
+    "TOGETIC": 31,
+    "NATU": 31,
+    "XATU": 31,
+    "MAREEP": 31,
+    "FLAAFFY": 31,
+    "AMPHAROS": 31,
+    "BELLOSSOM": 3,
+    "MARILL": 11,
+    "AZUMARILL": 11,
+    "SUDOWOODO": 3,
+    "POLITOED": 3,
+    "HOPPIP": 15,
+    "SKIPLOOM": 15,
+    "JUMPLUFF": 15,
+    "AIPOM": 19,
+    "SUNKERN": 11,
+    "SUNFLORA": 11,
+    "YANMA": 3,
+    "WOOPER": 3,
+    "QUAGSIRE": 3,
+    "ESPEON": 31,
+    "UMBREON": 31,
+    "MURKROW": 19,
+    "SLOWKING": 31,
+    "MISDREAVUS": 19,
+    "UNOWN": 0,
+    "WOBBUFFET": 0,
+    "GIRAFARIG": 31,
+    "PINECO": 15,
+    "FORRETRESS": 31,
+    "DUNSPARCE": 19,
+    "GLIGAR": 3,
+    "STEELIX": 3,
+    "SNUBBULL": 23,
+    "GRANBULL": 23,
+    "QWILFISH": 19,
+    "SCIZOR": 11,
+    "SHUCKLE": 3,
+    "HERACROSS": 3,
+    "SNEASEL": 7,
+    "TEDDIURSA": 3,
+    "URSARING": 3,
+    "SLUGMA": 15,
+    "MAGCARGO": 15,
+    "SWINUB": 15,
+    "PILOSWINE": 15,
+    "CORSOLA": 15,
+    "REMORAID": 19,
+    "OCTILLERY": 19,
+    "DELIBIRD": 3,
+    "MANTINE": 3,
+    "SKARMORY": 3,
+    "HOUNDOUR": 3,
+    "HOUNDOOM": 3,
+    "KINGDRA": 3,
+    "PHANPY": 3,
+    "DONPHAN": 3,
+    "PORYGON2": 19,
+    "STANTLER": 31,
+    "SMEARGLE": 0,
+    "TYROGUE": 3,
+    "HITMONTOP": 3,
+    "SMOOCHUM": 15,
+    "ELEKID": 27,
+    "MAGBY": 3,
+    "MILTANK": 19,
+    "BLISSEY": 27,
+    "RAIKOU": 31,
+    "ENTEI": 7,
+    "SUICUNE": 7,
+    "LARVITAR": 3,
+    "PUPITAR": 3,
+    "TYRANITAR": 19,
+    "LUGIA": 31,
+    "HO_OH": 31,
+    "CELEBI": 31,
+    "CHARMANDER_CLONE": 3,
+    "CHARMELEON_CLONE": 3,
+    "CHARIZARD_CLONE": 3,
+    "SQUIRTLE_CLONE": 3,
+    "WARTORTLE_CLONE": 3,
+    "BLASTOISE_CLONE": 3,
+    "BULBASAUR_CLONE": 11,
+    "IVYSAUR_CLONE": 11,
+    "VENUSAUR_CLONE": 11,
+    "HONCHKROW": 19,
+    "AMBIPOM": 19,
+    "ANNIHILAPE": 3,
+    "BAGON": 3,
+    "SHELGON": 3,
+    "SALAMENCE": 3,
+    "DUDUNSPARCE": 19,
+    "ELECTIVIRE": 31,
+    "FARIGIRAF": 31,
+    "RALTS": 31,
+    "KIRLIA": 31,
+    "GARDEVOIR": 31,
+    "GALLADE": 31,
+    "GLACEON": 3,
+    "LEAFEON": 3,
+    "SYLVEON": 15,
+    "GLISCOR": 3,
+    "LICKILICKY": 3,
+    "MAGMORTAR": 3,
+    "MAGNEZONE": 31,
+    "MAMOSWINE": 15,
+    "MESMERIA": 15,
+    "MISMAGIUS": 19,
+    "PORYGON_Z": 19,
+    "RHYPERIOR": 3,
+    "VENIPEDE": 3,
+    "WHIRLIPEDE": 3,
+    "SCOLIPEDE": 3,
+    "TANGROWTH": 7,
+    "TOGEKISS": 31,
+    "URSALUNA": 3,
+    "WEAVILE": 7,
+    "WYRDEER": 31,
+    "YANMEGA": 3,
+    "LILEEP": 3,
+    "CRADILY": 3,
+    "ANORITH": 3,
+    "ARMALDO": 3,
+    "GOLETT": 7,
+    "GOLURK": 7,
+    "DUSKULL": 3,
+    "DUSCLOPS": 3,
+    "DUSKNOIR": 3,
+    "TIMBURR": 3,
+    "GURDURR": 3,
+    "CONKELDURR": 3,
+    "LARVESTA": 11,
+    "VOLCARONA": 11,
+    "DEINO": 19,
+    "ZWEILOUS": 19,
+    "HYDREIGON": 23,
+    "DREEPY": 19,
+    "DRAKLOAK": 31,
+    "DRAGAPULT": 31,
+    "IMPIDIMP": 31,
+    "MORGREM": 31,
+    "GRIMMSNARL": 31,
+    "TINKATINK": 31,
+    "TINKATUFF": 31,
+    "TINKATON": 31,
+    "FRIGIBAX": 3,
+    "ARCTIBAX": 3,
+    "BAXCALIBUR": 3,
+    "CHARCADET": 3,
+    "ARMAROUGE": 15,
+    "CERULEDGE": 15,
+    "ROOKIDEE": 3,
+    "CORVISQUIRE": 3,
+    "CORVIKNIGHT": 15,
+    "SNOVER": 11,
+    "ABOMASNOW": 11,
+    "SWABLU": 3,
+    "ALTARIA": 3,
+    "APPLIN": 0,
+    "DIPPLIN": 7,
+    "APPLETUN": 15,
+    "FLAPPLE": 3,
+    "HYDRAPPLE": 7,
+    "DURALUDON": 31,
+    "ARCHALUDON": 31,
+    "SHROOMISH": 3,
+    "BRELOOM": 3,
+    "BUNEARY": 19,
+    "LOPUNNY": 19,
+    "NUMEL": 3,
+    "CAMERUPT": 3,
+    "SIZZLIPEDE": 3,
+    "CENTISKORCH": 3,
+    "GRUBBIN": 27,
+    "CHARJABUG": 27,
+    "VIKAVOLT": 27,
+    "CROAGUNK": 3,
+    "TOXICROAK": 3,
+    "DRIFLOON": 19,
+    "DRIFBLIM": 19,
+    "DRILBUR": 3,
+    "EXCADRILL": 3,
+    "KOTORA": 19,
+    "RAITORA": 19,
+    "GOROTORA": 19,
+    "FLETCHLING": 3,
+    "FLETCHINDER": 3,
+    "TALONFLAME": 3,
+    "TRAPINCH": 3,
+    "VIBRAVA": 3,
+    "FLYGON": 3,
+    "SNORUNT": 11,
+    "FROSLASS": 31,
+    "WIMPOD": 3,
+    "GOLISOPOD": 3,
+    "SPOINK": 31,
+    "GRUMPIG": 31,
+    "PAWNIARD": 19,
+    "BISHARP": 19,
+    "KINGAMBIT": 19,
+    "LOTAD": 3,
+    "LOMBRE": 3,
+    "LUDICOLO": 3,
+    "OVERQWIL": 3,
+    "SCRAGGY": 3,
+    "SCRAFTY": 3,
+    "SPHEAL": 3,
+    "SEALEO": 3,
+    "WALREIN": 3,
+    "TEDDIURSABM": 3,
+    "URSARINGBM": 3,
+    "URSALUNABM": 3,
+    "AXEW": 3,
+    "FRAXURE": 3,
+    "HAXORUS": 3,
+    "CRANIDOS": 3,
+    "RAMPARDOS": 3,
+    "SHIELDON": 3,
+    "BASTIODON": 7,
+    "CETODDLE": 3,
+    "CETITAN": 3,
+    "FEEBAS": 11,
+    "MILOTIC": 11,
+    "MIMIKYU": 27,
+    "CORSOLA_GALARIAN": 15,
+    "CURSOLA": 15,
+    "MR__RIME": 31,
+    "SIRFETCH_D": 3,
+    "RIOLU": 3,
+    "LUCARIO": 3,
+    "TYRUNT": 3,
+    "TYRANTRUM": 3,
+    "AMAURA": 31,
+    "AURORUS": 31,
+    "MUNCHLAX": 3,
+    "TORKOAL": 3,
+    "RATTATA_ALOLAN": 3,
+    "RATICATE_ALOLAN": 3,
+    "RAICHU_ALOLAN": 31,
+    "SANDSHREW_ALOLAN": 3,
+    "SANDSLASH_ALOLAN": 3,
+    "VULPIX_ALOLAN": 3,
+    "NINETALES_ALOLAN": 3,
+    "DIGLETT_ALOLAN": 3,
+    "DUGTRIO_ALOLAN": 3,
+    "MEOWTH_ALOLAN": 19,
+    "PERSIAN_ALOLAN": 19,
+    "GEODUDE_ALOLAN": 19,
+    "GRAVELER_ALOLAN": 19,
+    "GOLEM_ALOLAN": 19,
+    "GRIMER_ALOLAN": 3,
+    "MUK_ALOLAN": 3,
+    "EXEGGUTOR_ALOLAN": 15,
+    "MAROWAK_ALOLAN": 3,
+    "MEOWTH_GALARIAN": 3,
+    "PERRSERKER": 3,
+    "PONYTA_GALARIAN": 3,
+    "RAPIDASH_GALARIAN": 3,
+    "SLOWPOKE_GALARIAN": 27,
+    "SLOWBRO_GALARIAN": 27,
+    "SLOWKING_GALARIAN": 27,
+    "WEEZING_GALARIAN": 3,
+    "GROWLITHE_HISUIAN": 3,
+    "ARCANINE_HISUIAN": 3,
+    "VOLTORB_HISUIAN": 31,
+    "ELECTRODE_HISUIAN": 31,
+    "TYPHLOSION_HISUIAN": 3,
+    "SNEASEL_HISUIAN": 3,
+    "SNEASLER": 3,
+    "WOOPER_PALDEAN": 3,
+    "CLODSIRE": 3,
+    "TAUROS_PALDEAN_FIRE": 3,
+    "TAUROS_PALDEAN_WATER": 3,
+    "WATU": 31,
+    "BOUNSWEET": 15,
+    "STEENEE": 15,
+    "TSAREENA": 15,
+    "ARON": 3,
+    "LAIRON": 3,
+    "AGGRON": 19,
+    "KLEAVOR": 11,
+    "GLIMMET": 15,
+    "GLIMMORA": 15,
+    "MAREANIE": 3,
+    "TOXAPEX": 11,
+    "ZANGOOSE": 19,
+    "SEVIPER": 3,
+    "SHUPPET": 19,
+    "BANETTE": 19,
+    "ARCHEN": 3,
+    "ARCHEOPS": 3,
+    "TIRTOUGA": 3,
+    "CARRACOSTA": 3,
+    "LITWICK": 3,
+    "LAMPENT": 3,
+    "CHANDELURE": 3,
+    "JOLTIK": 27,
+    "GALVANTULA": 27,
+    "MAWILE": 3,
+    "NOIBAT": 3,
+    "NOIVERN": 3,
+    "SALANDIT": 19,
+    "SALAZZLE": 19,
+    "FLITTLE": 15,
+    "ESPATHRA": 15,
+    "FINIZEN": 3,
+    "PALAFIN": 3,
+    "AZURILL": 11,
+    "WYNAUT": 0,
+    "BONSLY": 3,
+    "MIME_JR_": 31,
+    "HAPPINY": 27,
+    "MANTYKE": 3,
+    "STARLY": 3,
+    "STARAVIA": 3,
+    "STARAPTOR": 3,
+    "SANDILE": 3,
+    "KROKOROK": 3,
+    "KROOKODILE": 3,
+    "GOROCHU": 31
+  },
+  "recommendations": [
+    {
+      "species": "GRIMMSNARL",
+      "move": "REFLECT"
+    },
+    {
+      "species": "GRIMMSNARL",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "GRIMMSNARL",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "LANTURN",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "LANTURN",
+      "move": "SCALD"
+    },
+    {
+      "species": "LANTURN",
+      "move": "HEAL_BELL"
+    },
+    {
+      "species": "BEEDRILL",
+      "move": "U_TURN"
+    },
+    {
+      "species": "BEEDRILL",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "NIDOKING",
+      "move": "SLUDGE_BOMB"
+    },
+    {
+      "species": "NIDOQUEEN",
+      "move": "SLUDGE_BOMB"
+    },
+    {
+      "species": "VIKAVOLT",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "VIKAVOLT",
+      "move": "ENERGY_BALL"
+    },
+    {
+      "species": "VIKAVOLT",
+      "move": "STICKY_WEB"
+    },
+    {
+      "species": "GALVANTULA",
+      "move": "STICKY_WEB"
+    },
+    {
+      "species": "GALVANTULA",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "SHUCKLE",
+      "move": "STICKY_WEB"
+    },
+    {
+      "species": "SCIZOR",
+      "move": "U_TURN"
+    },
+    {
+      "species": "SCIZOR",
+      "move": "ROOST"
+    },
+    {
+      "species": "SCIZOR",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "CROBAT",
+      "move": "U_TURN"
+    },
+    {
+      "species": "CROBAT",
+      "move": "ROOST"
+    },
+    {
+      "species": "CROBAT",
+      "move": "TAUNT"
+    },
+    {
+      "species": "CORVIKNIGHT",
+      "move": "U_TURN"
+    },
+    {
+      "species": "CORVIKNIGHT",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "CORVIKNIGHT",
+      "move": "TAUNT"
+    },
+    {
+      "species": "ESPEON",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "ESPEON",
+      "move": "DAZZLING_GLEAM"
+    },
+    {
+      "species": "ESPEON",
+      "move": "REFLECT"
+    },
+    {
+      "species": "ESPEON",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "SYLVEON",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "SYLVEON",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "SYLVEON",
+      "move": "PSYCHIC_M"
+    },
+    {
+      "species": "GARDEVOIR",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "GARDEVOIR",
+      "move": "WISH"
+    },
+    {
+      "species": "GLACEON",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "GLACEON",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "AURORUS",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "AURORUS",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "PIDGEOT",
+      "move": "HEAT_WAVE"
+    },
+    {
+      "species": "PIDGEOT",
+      "move": "U_TURN"
+    },
+    {
+      "species": "NOCTOWL",
+      "move": "HEAT_WAVE"
+    },
+    {
+      "species": "NOCTOWL",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "STARAPTOR",
+      "move": "U_TURN"
+    },
+    {
+      "species": "WEAVILE",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "WEAVILE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "WEAVILE",
+      "move": "TRIPLE_AXEL"
+    },
+    {
+      "species": "FERALIGATR",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "FERALIGATR",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "URSALUNABM",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "URSALUNABM",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "URSALUNABM",
+      "move": "MOONLIGHT"
+    },
+    {
+      "species": "PORYGON_Z",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "PORYGON_Z",
+      "move": "DARK_PULSE"
+    },
+    {
+      "species": "BLASTOISE",
+      "move": "DARK_PULSE"
+    },
+    {
+      "species": "BLASTOISE",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "BLASTOISE",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "BLASTOISE",
+      "move": "IRON_DEFENSE"
+    },
+    {
+      "species": "MAGMORTAR",
+      "move": "THUNDERBOLT"
+    },
+    {
+      "species": "OCTILLERY",
+      "move": "ENERGY_BALL"
+    },
+    {
+      "species": "OCTILLERY",
+      "move": "PSYCHIC_M"
+    },
+    {
+      "species": "OCTILLERY",
+      "move": "SLUDGE_BOMB"
+    },
+    {
+      "species": "GRUMPIG",
+      "move": "ENCORE"
+    },
+    {
+      "species": "GRUMPIG",
+      "move": "TAUNT"
+    },
+    {
+      "species": "GRUMPIG",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "GRUMPIG",
+      "move": "REFLECT"
+    },
+    {
+      "species": "GRUMPIG",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "ARMAROUGE",
+      "move": "AURA_SPHERE"
+    },
+    {
+      "species": "ARMAROUGE",
+      "move": "ENERGY_BALL"
+    },
+    {
+      "species": "ARMAROUGE",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "HYDRAPPLE",
+      "move": "EARTH_POWER"
+    },
+    {
+      "species": "HYDRAPPLE",
+      "move": "DRACO_METEOR"
+    },
+    {
+      "species": "MIMIKYU",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "MIMIKYU",
+      "move": "DRAIN_PUNCH"
+    },
+    {
+      "species": "MIMIKYU",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "CHANDELURE",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "CHANDELURE",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "SCOLIPEDE",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "SCOLIPEDE",
+      "move": "ROCK_SLIDE"
+    },
+    {
+      "species": "SCOLIPEDE",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "FLYGON",
+      "move": "U_TURN"
+    },
+    {
+      "species": "FLYGON",
+      "move": "ROOST"
+    },
+    {
+      "species": "PERSIAN_ALOLAN",
+      "move": "U_TURN"
+    },
+    {
+      "species": "PERSIAN_ALOLAN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "PERSIAN_ALOLAN",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "HYPNO",
+      "move": "ENCORE"
+    },
+    {
+      "species": "HYPNO",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "HYPNO",
+      "move": "REFLECT"
+    },
+    {
+      "species": "BANETTE",
+      "move": "ENCORE"
+    },
+    {
+      "species": "BANETTE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "BANETTE",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "TOGEKISS",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "TOGEKISS",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "ARCANINE",
+      "move": "MORNING_SUN"
+    },
+    {
+      "species": "ARCANINE",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "VENUSAUR",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "VENUSAUR",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "CHARIZARD",
+      "move": "ROOST"
+    },
+    {
+      "species": "CHARIZARD",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "PARASECT",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "PARASECT",
+      "move": "SYNTHESIS"
+    },
+    {
+      "species": "SANDSLASH",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "SANDSLASH",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "PERSIAN",
+      "move": "U_TURN"
+    },
+    {
+      "species": "PERSIAN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "PERSIAN",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "GOLDUCK",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "GOLDUCK",
+      "move": "SCALD"
+    },
+    {
+      "species": "POLIWRATH",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "SLOWBRO",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "SLOWBRO",
+      "move": "SCALD"
+    },
+    {
+      "species": "SLOWBRO",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "DODRIO",
+      "move": "ROOST"
+    },
+    {
+      "species": "DODRIO",
+      "move": "TAUNT"
+    },
+    {
+      "species": "DEWGONG",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "DEWGONG",
+      "move": "HAZE"
+    },
+    {
+      "species": "GENGAR",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "GENGAR",
+      "move": "TAUNT"
+    },
+    {
+      "species": "GENGAR",
+      "move": "ENCORE"
+    },
+    {
+      "species": "ELECTRODE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "ELECTRODE",
+      "move": "FOUL_PLAY"
+    },
+    {
+      "species": "EXEGGUTOR",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "EXEGGUTOR",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "HITMONLEE",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "HITMONCHAN",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "HITMONTOP",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "WEEZING",
+      "move": "TAUNT"
+    },
+    {
+      "species": "SEAKING",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "SEAKING",
+      "move": "SCALD"
+    },
+    {
+      "species": "STARMIE",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "STARMIE",
+      "move": "SCALD"
+    },
+    {
+      "species": "VAPOREON",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "VAPOREON",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "JOLTEON",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "JOLTEON",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "KABUTOPS",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "KABUTOPS",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "ZAPDOS",
+      "move": "HURRICANE"
+    },
+    {
+      "species": "ZAPDOS",
+      "move": "HEAT_WAVE"
+    },
+    {
+      "species": "ZAPDOS",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "MEGANIUM",
+      "move": "ENCORE"
+    },
+    {
+      "species": "MEGANIUM",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "FURRET",
+      "move": "U_TURN"
+    },
+    {
+      "species": "LEDIAN",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "XATU",
+      "move": "U_TURN"
+    },
+    {
+      "species": "XATU",
+      "move": "HEAT_WAVE"
+    },
+    {
+      "species": "AMPHAROS",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "AMPHAROS",
+      "move": "AGILITY"
+    },
+    {
+      "species": "AMPHAROS",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "SUDOWOODO",
+      "move": "HEAD_SMASH"
+    },
+    {
+      "species": "SUDOWOODO",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "SUDOWOODO",
+      "move": "IRON_DEFENSE"
+    },
+    {
+      "species": "QUAGSIRE",
+      "move": "SCALD"
+    },
+    {
+      "species": "QUAGSIRE",
+      "move": "YAWN"
+    },
+    {
+      "species": "QUAGSIRE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "FORRETRESS",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "STEELIX",
+      "move": "GYRO_BALL"
+    },
+    {
+      "species": "DONPHAN",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "DONPHAN",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "MILTANK",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "MILTANK",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "MILTANK",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "BLISSEY",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "BLISSEY",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "RAIKOU",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "RAIKOU",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "RAIKOU",
+      "move": "SCALD"
+    },
+    {
+      "species": "SUICUNE",
+      "move": "SCALD"
+    },
+    {
+      "species": "SUICUNE",
+      "move": "SLEEP_TALK"
+    },
+    {
+      "species": "CELEBI",
+      "move": "EARTH_POWER"
+    },
+    {
+      "species": "CELEBI",
+      "move": "U_TURN"
+    },
+    {
+      "species": "HONCHKROW",
+      "move": "HEAT_WAVE"
+    },
+    {
+      "species": "HONCHKROW",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "HONCHKROW",
+      "move": "ROOST"
+    },
+    {
+      "species": "AMBIPOM",
+      "move": "U_TURN"
+    },
+    {
+      "species": "AMBIPOM",
+      "move": "TRIPLE_AXEL"
+    },
+    {
+      "species": "SALAMENCE",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "ELECTIVIRE",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "ELECTIVIRE",
+      "move": "FLAMETHROWER"
+    },
+    {
+      "species": "FARIGIRAF",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "FARIGIRAF",
+      "move": "REFLECT"
+    },
+    {
+      "species": "FARIGIRAF",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "GLISCOR",
+      "move": "ROOST"
+    },
+    {
+      "species": "GLISCOR",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "GLISCOR",
+      "move": "TAUNT"
+    },
+    {
+      "species": "TANGROWTH",
+      "move": "SYNTHESIS"
+    },
+    {
+      "species": "TANGROWTH",
+      "move": "LEECH_SEED"
+    },
+    {
+      "species": "TANGROWTH",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "RHYPERIOR",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "RHYPERIOR",
+      "move": "ICE_PUNCH"
+    },
+    {
+      "species": "WYRDEER",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "WYRDEER",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "WYRDEER",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "YANMEGA",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "YANMEGA",
+      "move": "ROOST"
+    },
+    {
+      "species": "ARMALDO",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "ARMALDO",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "DUSKNOIR",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "DUSKNOIR",
+      "move": "TAUNT"
+    },
+    {
+      "species": "HYDREIGON",
+      "move": "U_TURN"
+    },
+    {
+      "species": "HYDREIGON",
+      "move": "ROOST"
+    },
+    {
+      "species": "TINKATON",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "TINKATON",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "CERULEDGE",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "APPLETUN",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "APPLETUN",
+      "move": "IRON_DEFENSE"
+    },
+    {
+      "species": "LOPUNNY",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "LOPUNNY",
+      "move": "U_TURN"
+    },
+    {
+      "species": "CAMERUPT",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "TOXICROAK",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "TOXICROAK",
+      "move": "TAUNT"
+    },
+    {
+      "species": "DRIFBLIM",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "DRIFBLIM",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "FROSLASS",
+      "move": "TAUNT"
+    },
+    {
+      "species": "FROSLASS",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "SCRAFTY",
+      "move": "POISON_JAB"
+    },
+    {
+      "species": "SCRAFTY",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "MILOTIC",
+      "move": "SCALD"
+    },
+    {
+      "species": "MILOTIC",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "MR__RIME",
+      "move": "SLACK_OFF"
+    },
+    {
+      "species": "MR__RIME",
+      "move": "FREEZE_DRY"
+    },
+    {
+      "species": "MR__RIME",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "TORKOAL",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "TORKOAL",
+      "move": "IRON_DEFENSE"
+    },
+    {
+      "species": "TORKOAL",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "PERRSERKER",
+      "move": "U_TURN"
+    },
+    {
+      "species": "PERRSERKER",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "SLOWBRO_GALARIAN",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "SLOWBRO_GALARIAN",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "WEEZING_GALARIAN",
+      "move": "DEFOG"
+    },
+    {
+      "species": "WEEZING_GALARIAN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "ELECTRODE_HISUIAN",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "ELECTRODE_HISUIAN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "TSAREENA",
+      "move": "U_TURN"
+    },
+    {
+      "species": "TSAREENA",
+      "move": "PLAY_ROUGH"
+    },
+    {
+      "species": "NOIVERN",
+      "move": "DRACO_METEOR"
+    },
+    {
+      "species": "NOIVERN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "SALAZZLE",
+      "move": "ENCORE"
+    },
+    {
+      "species": "SALAZZLE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "KROOKODILE",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "KROOKODILE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "KROOKODILE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "BUTTERFREE",
+      "move": "U_TURN"
+    },
+    {
+      "species": "BUTTERFREE",
+      "move": "ROOST"
+    },
+    {
+      "species": "FEAROW",
+      "move": "DRILL_RUN"
+    },
+    {
+      "species": "FEAROW",
+      "move": "U_TURN"
+    },
+    {
+      "species": "ARBOK",
+      "move": "TOXIC_SPIKES"
+    },
+    {
+      "species": "ARBOK",
+      "move": "ROCK_SLIDE"
+    },
+    {
+      "species": "CLEFABLE",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "CLEFABLE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "NINETALES",
+      "move": "ENERGY_BALL"
+    },
+    {
+      "species": "NINETALES",
+      "move": "ENCORE"
+    },
+    {
+      "species": "WIGGLYTUFF",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "WIGGLYTUFF",
+      "move": "REFLECT"
+    },
+    {
+      "species": "WIGGLYTUFF",
+      "move": "LIGHT_SCREEN"
+    },
+    {
+      "species": "VENOMOTH",
+      "move": "U_TURN"
+    },
+    {
+      "species": "DUGTRIO",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "DUGTRIO",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "DUGTRIO_ALOLAN",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "DUGTRIO_ALOLAN",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "ALAKAZAM",
+      "move": "DAZZLING_GLEAM"
+    },
+    {
+      "species": "ALAKAZAM",
+      "move": "TAUNT"
+    },
+    {
+      "species": "MACHAMP",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "VICTREEBEL",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "TENTACRUEL",
+      "move": "SCALD"
+    },
+    {
+      "species": "TENTACRUEL",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "GOLEM",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "RAPIDASH",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "RAPIDASH",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "MUK",
+      "move": "TOXIC_SPIKES"
+    },
+    {
+      "species": "MUK",
+      "move": "TAUNT"
+    },
+    {
+      "species": "CLOYSTER",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "KINGLER",
+      "move": "ROCK_SLIDE"
+    },
+    {
+      "species": "MAROWAK",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "MAROWAK",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "KANGASKHAN",
+      "move": "ROCK_SLIDE"
+    },
+    {
+      "species": "PINSIR",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "TAUROS",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "TAUROS",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "GYARADOS",
+      "move": "TAUNT"
+    },
+    {
+      "species": "LAPRAS",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "LAPRAS",
+      "move": "HEAL_BELL"
+    },
+    {
+      "species": "FLAREON",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "OMASTAR",
+      "move": "SCALD"
+    },
+    {
+      "species": "AERODACTYL",
+      "move": "TAUNT"
+    },
+    {
+      "species": "SNORLAX",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "ARTICUNO",
+      "move": "U_TURN"
+    },
+    {
+      "species": "ARTICUNO",
+      "move": "DEFOG"
+    },
+    {
+      "species": "MOLTRES",
+      "move": "U_TURN"
+    },
+    {
+      "species": "DRAGONITE",
+      "move": "ENCORE"
+    },
+    {
+      "species": "MEWTWO",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "MEWTWO",
+      "move": "TAUNT"
+    },
+    {
+      "species": "MEW",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "MEW",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "MEW",
+      "move": "U_TURN"
+    },
+    {
+      "species": "MEW",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "TYPHLOSION",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "TYPHLOSION",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "ARIADOS",
+      "move": "LUNGE"
+    },
+    {
+      "species": "ARIADOS",
+      "move": "TOXIC_SPIKES"
+    },
+    {
+      "species": "BELLOSSOM",
+      "move": "ENCORE"
+    },
+    {
+      "species": "BELLOSSOM",
+      "move": "DRAINING_KISS"
+    },
+    {
+      "species": "AZUMARILL",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "AZUMARILL",
+      "move": "ENCORE"
+    },
+    {
+      "species": "POLITOED",
+      "move": "SCALD"
+    },
+    {
+      "species": "JUMPLUFF",
+      "move": "SUBSTITUTE"
+    },
+    {
+      "species": "SUNFLORA",
+      "move": "DAZZLING_GLEAM"
+    },
+    {
+      "species": "UMBREON",
+      "move": "TAUNT"
+    },
+    {
+      "species": "SLOWKING",
+      "move": "SCALD"
+    },
+    {
+      "species": "GRANBULL",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "HERACROSS",
+      "move": "BULLET_SEED"
+    },
+    {
+      "species": "HERACROSS",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "MAGCARGO",
+      "move": "IRON_DEFENSE"
+    },
+    {
+      "species": "CORSOLA",
+      "move": "SCALD"
+    },
+    {
+      "species": "CORSOLA",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "DELIBIRD",
+      "move": "SPIKES"
+    },
+    {
+      "species": "DELIBIRD",
+      "move": "HAZE"
+    },
+    {
+      "species": "MANTINE",
+      "move": "SCALD"
+    },
+    {
+      "species": "SKARMORY",
+      "move": "TAUNT"
+    },
+    {
+      "species": "HOUNDOOM",
+      "move": "TAUNT"
+    },
+    {
+      "species": "KINGDRA",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "KINGDRA",
+      "move": "FLIP_TURN"
+    },
+    {
+      "species": "ENTEI",
+      "move": "STONE_EDGE"
+    },
+    {
+      "species": "TYRANITAR",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "LUGIA",
+      "move": "DEFOG"
+    },
+    {
+      "species": "LUGIA",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "HO_OH",
+      "move": "DEFOG"
+    },
+    {
+      "species": "ANNIHILAPE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "DUDUNSPARCE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "GALLADE",
+      "move": "TRIPLE_AXEL"
+    },
+    {
+      "species": "LEAFEON",
+      "move": "X_SCISSOR"
+    },
+    {
+      "species": "LICKILICKY",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "LICKILICKY",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "MAGNEZONE",
+      "move": "SUBSTITUTE"
+    },
+    {
+      "species": "MAMOSWINE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "MISMAGIUS",
+      "move": "TAUNT"
+    },
+    {
+      "species": "URSALUNA",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "CRADILY",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "GOLURK",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "CONKELDURR",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "VOLCARONA",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "DRAGAPULT",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "BAXCALIBUR",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "ABOMASNOW",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "ABOMASNOW",
+      "move": "GIGA_DRAIN"
+    },
+    {
+      "species": "ALTARIA",
+      "move": "HEAL_BELL"
+    },
+    {
+      "species": "FLAPPLE",
+      "move": "U_TURN"
+    },
+    {
+      "species": "ARCHALUDON",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "BRELOOM",
+      "move": "ROCK_SLIDE"
+    },
+    {
+      "species": "CENTISKORCH",
+      "move": "THUNDER_FANG"
+    },
+    {
+      "species": "EXCADRILL",
+      "move": "SHADOW_CLAW"
+    },
+    {
+      "species": "TALONFLAME",
+      "move": "TAUNT"
+    },
+    {
+      "species": "GOLISOPOD",
+      "move": "SPIKES"
+    },
+    {
+      "species": "KINGAMBIT",
+      "move": "TAUNT"
+    },
+    {
+      "species": "LUDICOLO",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "OVERQWIL",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "WALREIN",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "HAXORUS",
+      "move": "POISON_JAB"
+    },
+    {
+      "species": "HAXORUS",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "RAMPARDOS",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "BASTIODON",
+      "move": "FLAMETHROWER"
+    },
+    {
+      "species": "BASTIODON",
+      "move": "FOUL_PLAY"
+    },
+    {
+      "species": "CETITAN",
+      "move": "LIQUIDATION"
+    },
+    {
+      "species": "CETITAN",
+      "move": "PLAY_ROUGH"
+    },
+    {
+      "species": "CURSOLA",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "SIRFETCH_D",
+      "move": "DEFOG"
+    },
+    {
+      "species": "LUCARIO",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "TYRANTRUM",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "RATICATE",
+      "move": "U_TURN"
+    },
+    {
+      "species": "RATICATE_ALOLAN",
+      "move": "U_TURN"
+    },
+    {
+      "species": "RAICHU_ALOLAN",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "SANDSLASH_ALOLAN",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "NINETALES_ALOLAN",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "GOLEM_ALOLAN",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "MUK_ALOLAN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "EXEGGUTOR_ALOLAN",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "MAROWAK_ALOLAN",
+      "move": "PAIN_SPLIT"
+    },
+    {
+      "species": "RAPIDASH_GALARIAN",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "RAPIDASH_GALARIAN",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "SLOWKING_GALARIAN",
+      "move": "TOXIC_SPIKES"
+    },
+    {
+      "species": "ARCANINE_HISUIAN",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "TYPHLOSION_HISUIAN",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "SNEASLER",
+      "move": "U_TURN"
+    },
+    {
+      "species": "CLODSIRE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "CLODSIRE",
+      "move": "YAWN"
+    },
+    {
+      "species": "TAUROS_PALDEAN_FIRE",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "TAUROS_PALDEAN_WATER",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "AGGRON",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "KLEAVOR",
+      "move": "U_TURN"
+    },
+    {
+      "species": "KLEAVOR",
+      "move": "CLOSE_COMBAT"
+    },
+    {
+      "species": "GLIMMORA",
+      "move": "ENERGY_BALL"
+    },
+    {
+      "species": "TOXAPEX",
+      "move": "SCALD"
+    },
+    {
+      "species": "ZANGOOSE",
+      "move": "FIRE_PUNCH"
+    },
+    {
+      "species": "SEVIPER",
+      "move": "ICE_FANG"
+    },
+    {
+      "species": "SEVIPER",
+      "move": "DARK_PULSE"
+    },
+    {
+      "species": "ARCHEOPS",
+      "move": "ROOST"
+    },
+    {
+      "species": "CARRACOSTA",
+      "move": "SUPERPOWER"
+    },
+    {
+      "species": "MAWILE",
+      "move": "KNOCK_OFF"
+    },
+    {
+      "species": "MAWILE",
+      "move": "TAUNT"
+    },
+    {
+      "species": "ESPATHRA",
+      "move": "U_TURN"
+    },
+    {
+      "species": "PALAFIN",
+      "move": "TAUNT"
+    },
+    {
+      "species": "GOROCHU",
+      "move": "DARK_PULSE"
+    },
+    {
+      "species": "UNOWN",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "UNOWN",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "SCYTHER",
+      "move": "U_TURN"
+    },
+    {
+      "species": "SCYTHER",
+      "move": "ROOST"
+    },
+    {
+      "species": "CHANSEY",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "CHANSEY",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "PORYGON2",
+      "move": "FOUL_PLAY"
+    },
+    {
+      "species": "PORYGON2",
+      "move": "SHADOW_BALL"
+    },
+    {
+      "species": "DUSCLOPS",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "DUSCLOPS",
+      "move": "TAUNT"
+    },
+    {
+      "species": "CORSOLA_GALARIAN",
+      "move": "CALM_MIND"
+    },
+    {
+      "species": "RAICHU",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "RAICHU",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "JYNX",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "JYNX",
+      "move": "ENCORE"
+    },
+    {
+      "species": "MURKROW",
+      "move": "ROOST"
+    },
+    {
+      "species": "MURKROW",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "GIRAFARIG",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "GIRAFARIG",
+      "move": "WISH"
+    },
+    {
+      "species": "STANTLER",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "STANTLER",
+      "move": "TRICK_ROOM"
+    },
+    {
+      "species": "PILOSWINE",
+      "move": "STEALTH_ROCK"
+    },
+    {
+      "species": "CHARJABUG",
+      "move": "STICKY_WEB"
+    },
+    {
+      "species": "CHARJABUG",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "CHARJABUG",
+      "move": "WILD_CHARGE"
+    },
+    {
+      "species": "DURALUDON",
+      "move": "DRACO_METEOR"
+    },
+    {
+      "species": "DURALUDON",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "MAGNETON",
+      "move": "SUBSTITUTE"
+    },
+    {
+      "species": "TOGETIC",
+      "move": "THUNDER_WAVE"
+    },
+    {
+      "species": "TOGETIC",
+      "move": "HYPER_VOICE"
+    },
+    {
+      "species": "ONIX",
+      "move": "HEAD_SMASH"
+    },
+    {
+      "species": "GLIGAR",
+      "move": "ROOST"
+    },
+    {
+      "species": "GLIGAR",
+      "move": "DEFOG"
+    },
+    {
+      "species": "RHYDON",
+      "move": "SWORDS_DANCE"
+    },
+    {
+      "species": "RHYDON",
+      "move": "BODY_PRESS"
+    },
+    {
+      "species": "ELECTABUZZ",
+      "move": "VOLT_SWITCH"
+    },
+    {
+      "species": "ELECTABUZZ",
+      "move": "FOCUS_BLAST"
+    },
+    {
+      "species": "MAGMAR",
+      "move": "BELLY_DRUM"
+    },
+    {
+      "species": "MAGMAR",
+      "move": "MACH_PUNCH"
+    }
+  ],
+  "tm_changes": {
+    "NIDORAN_F": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SLUDGE_BOMB",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "THUNDERBOLT"
+      ]
+    },
+    "NIDORINA": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "STRENGTH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SLUDGE_BOMB",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "STRENGTH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "NIDOQUEEN": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "SLUDGE_BOMB",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "NIDORAN_M": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SLUDGE_BOMB",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "THUNDERBOLT"
+      ]
+    },
+    "NIDORINO": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "STRENGTH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SLUDGE_BOMB",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "STRENGTH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "NIDOKING": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "SLUDGE_BOMB",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "VULPIX": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLAMETHROWER"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "PROTECT",
+        "ENERGY_BALL",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLAMETHROWER"
+      ]
+    },
+    "NINETALES": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLAMETHROWER"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "ENERGY_BALL",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLAMETHROWER"
+      ]
+    },
+    "RHYDON": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "PORYGON": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "TYPHLOSION": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "ZEN_HEADBUTT",
+        "CUT",
+        "STRENGTH",
+        "FLAMETHROWER"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FIRE_BLAST",
+        "SWIFT",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "ZEN_HEADBUTT",
+        "CUT",
+        "STRENGTH",
+        "FLAMETHROWER"
+      ]
+    },
+    "HOOTHOOT": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "PROTECT",
+        "FACADE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "ZEN_HEADBUTT",
+        "FLY",
+        "FLASH"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "PROTECT",
+        "FACADE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "ZEN_HEADBUTT",
+        "FLY",
+        "FLASH"
+      ]
+    },
+    "NOCTOWL": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "ZEN_HEADBUTT",
+        "FLY",
+        "FLASH"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "ZEN_HEADBUTT",
+        "FLY",
+        "FLASH"
+      ]
+    },
+    "UNOWN": {
+      "before": [],
+      "after": [
+        "SHADOW_BALL"
+      ]
+    },
+    "REMORAID": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "SURF",
+        "WHIRLPOOL",
+        "FLAMETHROWER",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "SURF",
+        "WHIRLPOOL",
+        "FLAMETHROWER",
+        "ICE_BEAM"
+      ]
+    },
+    "OCTILLERY": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "SURF",
+        "WHIRLPOOL",
+        "FLAMETHROWER",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SLUDGE_BOMB",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "SURF",
+        "WHIRLPOOL",
+        "FLAMETHROWER",
+        "ICE_BEAM"
+      ]
+    },
+    "PORYGON2": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "STANTLER": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "EARTHQUAKE",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "EARTHQUAKE",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH"
+      ]
+    },
+    "RAIKOU": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SANDSTORM",
+        "SWIFT",
+        "REST",
+        "WEATHER_BALL",
+        "CUT",
+        "STRENGTH",
+        "FLASH",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SANDSTORM",
+        "SWIFT",
+        "REST",
+        "WEATHER_BALL",
+        "CUT",
+        "STRENGTH",
+        "FLASH",
+        "THUNDERBOLT"
+      ]
+    },
+    "ELECTIVIRE": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "KNOCK_OFF",
+        "SWIFT",
+        "BULK_UP",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "WEATHER_BALL",
+        "STRENGTH",
+        "FLASH",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "KNOCK_OFF",
+        "SWIFT",
+        "BULK_UP",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "WEATHER_BALL",
+        "STRENGTH",
+        "FLASH",
+        "FLAMETHROWER",
+        "THUNDERBOLT"
+      ]
+    },
+    "SYLVEON": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "WEATHER_BALL"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "WEATHER_BALL"
+      ]
+    },
+    "MAGMORTAR": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "KNOCK_OFF",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "WEATHER_BALL",
+        "STRENGTH",
+        "FLAMETHROWER"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "KNOCK_OFF",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "WEATHER_BALL",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT"
+      ]
+    },
+    "PORYGON_Z": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "RHYPERIOR": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "POWER_GEM",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "ROAR",
+        "TOXIC",
+        "ZAP_CANNON",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "BLIZZARD",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "EARTHQUAKE",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "FIRE_BLAST",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "POWER_GEM",
+        "SURF",
+        "STRENGTH",
+        "FLAMETHROWER",
+        "THUNDERBOLT",
+        "ICE_BEAM"
+      ]
+    },
+    "WYRDEER": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "EARTHQUAKE",
+        "RETURN",
+        "PSYCHIC_M",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "STRENGTH",
+        "FLASH"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "EARTHQUAKE",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "SWIFT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "ZEN_HEADBUTT",
+        "STRENGTH",
+        "FLASH"
+      ]
+    },
+    "ARMAROUGE": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "FIRE_BLAST",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLASH",
+        "FLAMETHROWER"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "ENERGY_BALL",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "PSYCHIC_M",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "FIRE_BLAST",
+        "REST",
+        "ATTRACT",
+        "ZEN_HEADBUTT",
+        "WEATHER_BALL",
+        "FLASH",
+        "FLAMETHROWER"
+      ]
+    },
+    "VIKAVOLT": {
+      "before": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "BUG_BITE",
+        "FLY",
+        "FLASH",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "CURSE",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "FACADE",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "BUG_BITE",
+        "FLY",
+        "FLASH",
+        "THUNDERBOLT"
+      ]
+    },
+    "SHIELDON": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM",
+        "STRENGTH"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM",
+        "STRENGTH",
+        "FLAMETHROWER"
+      ]
+    },
+    "BASTIODON": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM",
+        "STRENGTH"
+      ],
+      "after": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM",
+        "STRENGTH",
+        "FLAMETHROWER"
+      ]
+    },
+    "MIMIKYU": {
+      "before": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "BULK_UP",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "NIGHT_SLASH",
+        "STRENGTH",
+        "FLASH",
+        "THUNDERBOLT"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "HIDDEN_POWER",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "BULK_UP",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "HONE_CLAWS",
+        "NIGHT_SLASH",
+        "STRENGTH",
+        "FLASH",
+        "THUNDERBOLT"
+      ]
+    },
+    "LUCARIO": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "SWIFT",
+        "BULK_UP",
+        "THUNDERPUNCH",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "HONE_CLAWS",
+        "ZEN_HEADBUTT",
+        "STRENGTH"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "DRAGON_PULSE",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "RETURN",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "SWIFT",
+        "BULK_UP",
+        "THUNDERPUNCH",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "HONE_CLAWS",
+        "ZEN_HEADBUTT",
+        "STRENGTH"
+      ]
+    },
+    "GLIMMORA": {
+      "before": [
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "RETURN",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SLUDGE_BOMB",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM"
+      ],
+      "after": [
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "ENERGY_BALL",
+        "FACADE",
+        "RETURN",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "SLUDGE_BOMB",
+        "SANDSTORM",
+        "REST",
+        "ATTRACT",
+        "POWER_GEM"
+      ]
+    },
+    "ZANGOOSE": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "KNOCK_OFF",
+        "SWIFT",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "NIGHT_SLASH",
+        "ZEN_HEADBUTT",
+        "CUT",
+        "STRENGTH"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "ROAR",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "WORK_UP",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "THUNDER",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "KNOCK_OFF",
+        "SWIFT",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "BUG_BITE",
+        "HONE_CLAWS",
+        "NIGHT_SLASH",
+        "ZEN_HEADBUTT",
+        "CUT",
+        "STRENGTH"
+      ]
+    },
+    "MAWILE": {
+      "before": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "SWEET_SCENT",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "FIRE_PUNCH",
+        "CUT",
+        "STRENGTH"
+      ],
+      "after": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "SWEET_SCENT",
+        "HYPER_BEAM",
+        "PROTECT",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "KNOCK_OFF",
+        "THUNDERPUNCH",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "STEEL_WING",
+        "FIRE_PUNCH",
+        "CUT",
+        "STRENGTH"
+      ]
+    }
+  }
+}
