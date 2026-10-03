@@ -3521,6 +3521,12 @@ wPortraitTalkTimer:: db
 wPortraitAnimTimer:: db
 wPortraitMouth::     db ; 0 = closed (resting frame), 1 = open
 wPortraitTickFrame:: db ; hVBlankCounter of the last tick
+; Nonzero: leave the portrait up but keep its mouth still (a shared line such
+; as an item fanfare, which isn't theirs to say).
+wPortraitMute::      db
+; The text MapTextbox is about to print, for looking up who says it.
+wPortraitTextBank::  db
+wPortraitTextAddr::  dw
 
 
 SECTION "Trainer Portrait Buffers", WRAMX, BANK[2]

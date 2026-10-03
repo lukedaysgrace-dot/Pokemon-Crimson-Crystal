@@ -1018,6 +1018,12 @@ MapTextbox::
 	rst Bankswitch
 
 	push hl
+	ld a, l
+	ld [wPortraitTextAddr], a
+	ld a, h
+	ld [wPortraitTextAddr + 1], a
+	ldh a, [hROMBank]
+	ld [wPortraitTextBank], a
 	call SpeechTextbox
 	farcall TrainerPortrait_Draw
 	call SafeUpdateSprites

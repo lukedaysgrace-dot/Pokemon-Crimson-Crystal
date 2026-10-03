@@ -257,6 +257,10 @@ gfx/pc/obj.2bpp: gfx/pc/modes.2bpp gfx/pc/bags.2bpp
 gfx/trainer_portraits/%.portrait: gfx/trainer_portraits/%.png tools/trainer_portrait.py
 	python3 tools/trainer_portrait.py $< $@
 
+# Who says each map text (see the script for how it is worked out).
+data/maps/portrait_texts.asm: tools/trainer_portrait_texts.py $(wildcard maps/*.asm) engine/events/trainer_portraits.asm engine/events/std_scripts.asm constants/gfx_constants.asm constants/sprite_constants.asm
+	python3 tools/trainer_portrait_texts.py $@
+
 ### Catch-all graphics rules
 
 %.2bpp: %.png
