@@ -1,0 +1,1316 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\luked\Documents\GitHub\Pokemon-Crimson-Crystal\_ai_artifacts\videos\all-attacks-2026-10-03\Crimson-Crystal-Every-Attack.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : PokÃ©mon Crimson Crystal â€” Every Attack Animation
+    artist          : PokÃ©mon Crimson Crystal
+    encoder         : Lavf61.7.100
+    comment         : 421 native move animations; game audio; player-side animation playback.
+  Duration: 00:26:06.87, start: 0.000000, bitrate: 367 kb/s
+  Chapters:
+    Chapter #0:0: start 0.000000, end 1.903000
+      Metadata:
+        title           : 001 â€” POUND
+    Chapter #0:1: start 1.903000, end 4.273000
+      Metadata:
+        title           : 002 â€” KARATE CHOP
+    Chapter #0:2: start 4.273000, end 7.411000
+      Metadata:
+        title           : 003 â€” DOUBLESLAP
+    Chapter #0:3: start 7.411000, end 10.749000
+      Metadata:
+        title           : 004 â€” COMET PUNCH
+    Chapter #0:4: start 10.749000, end 13.970000
+      Metadata:
+        title           : 005 â€” MEGA PUNCH
+    Chapter #0:5: start 13.970000, end 16.907000
+      Metadata:
+        title           : 006 â€” PAY DAY
+    Chapter #0:6: start 16.907000, end 20.696000
+      Metadata:
+        title           : 007 â€” FIRE PUNCH
+    Chapter #0:7: start 20.696000, end 23.350000
+      Metadata:
+        title           : 008 â€” ICE PUNCH
+    Chapter #0:8: start 23.350000, end 26.004000
+      Metadata:
+        title           : 009 â€” THUNDERPUNCH
+    Chapter #0:9: start 26.004000, end 27.990000
+      Metadata:
+        title           : 010 â€” SCRATCH
+    Chapter #0:10: start 27.990000, end 29.976000
+      Metadata:
+        title           : 011 â€” VICEGRIP
+    Chapter #0:11: start 29.976000, end 31.962000
+      Metadata:
+        title           : 012 â€” GUILLOTINE
+    Chapter #0:12: start 31.962000, end 35.083000
+      Metadata:
+        title           : 013 â€” RAZOR WIND
+    Chapter #0:13: start 35.083000, end 37.486000
+      Metadata:
+        title           : 014 â€” SWORDS DANCE
+    Chapter #0:14: start 37.486000, end 39.472000
+      Metadata:
+        title           : 015 â€” CUT
+    Chapter #0:15: start 39.472000, end 42.510000
+      Metadata:
+        title           : 016 â€” GUST
+    Chapter #0:16: start 42.510000, end 45.481000
+      Metadata:
+        title           : 017 â€” WING ATTACK
+    Chapter #0:17: start 45.481000, end 51.239000
+      Metadata:
+        title           : 018 â€” WHIRLWIND
+    Chapter #0:18: start 51.239000, end 56.196000
+      Metadata:
+        title           : 019 â€” FLY
+    Chapter #0:19: start 56.196000, end 60.669000
+      Metadata:
+        title           : 020 â€” BIND
+    Chapter #0:20: start 60.669000, end 63.406000
+      Metadata:
+        title           : 021 â€” SLAM
+    Chapter #0:21: start 63.406000, end 65.459000
+      Metadata:
+        title           : 022 â€” VINE WHIP
+    Chapter #0:22: start 65.459000, end 67.829000
+      Metadata:
+        title           : 023 â€” STOMP
+    Chapter #0:23: start 67.829000, end 70.967000
+      Metadata:
+        title           : 024 â€” DOUBLE KICK
+    Chapter #0:24: start 70.967000, end 74.305000
+      Metadata:
+        title           : 025 â€” MEGA KICK
+    Chapter #0:25: start 74.305000, end 76.508000
+      Metadata:
+        title           : 026 â€” JUMP KICK
+    Chapter #0:26: start 76.508000, end 78.511000
+      Metadata:
+        title           : 027 â€” ROLLING KICK
+    Chapter #0:27: start 78.511000, end 81.181000
+      Metadata:
+        title           : 028 â€” SAND-ATTACK
+    Chapter #0:28: start 81.181000, end 84.002000
+      Metadata:
+        title           : 029 â€” HEADBUTT
+    Chapter #0:29: start 84.002000, end 86.122000
+      Metadata:
+        title           : 030 â€” HORN ATTACK
+    Chapter #0:30: start 86.122000, end 88.559000
+      Metadata:
+        title           : 031 â€” FURY ATTACK
+    Chapter #0:31: start 88.559000, end 92.047000
+      Metadata:
+        title           : 032 â€” HORN DRILL
+    Chapter #0:32: start 92.047000, end 94.317000
+      Metadata:
+        title           : 033 â€” TACKLE
+    Chapter #0:33: start 94.317000, end 97.238000
+      Metadata:
+        title           : 034 â€” BODY SLAM
+    Chapter #0:34: start 97.238000, end 100.092000
+      Metadata:
+        title           : 035 â€” WRAP
+    Chapter #0:35: start 100.092000, end 102.379000
+      Metadata:
+        title           : 036 â€” TAKE DOWN
+    Chapter #0:36: start 102.379000, end 104.399000
+      Metadata:
+        title           : 037 â€” THRASH
+    Chapter #0:37: start 104.399000, end 106.686000
+      Metadata:
+        title           : 038 â€” DOUBLE-EDGE
+    Chapter #0:38: start 106.686000, end 109.273000
+      Metadata:
+        title           : 039 â€” TAIL WHIP
+    Chapter #0:39: start 109.273000, end 111.393000
+      Metadata:
+        title           : 040 â€” POISON STING
+    Chapter #0:40: start 111.393000, end 113.496000
+      Metadata:
+        title           : 041 â€” TWINEEDLE
+    Chapter #0:41: start 113.496000, end 115.983000
+      Metadata:
+        title           : 042 â€” PIN MISSILE
+    Chapter #0:42: start 115.983000, end 117.719000
+      Metadata:
+        title           : 043 â€” LEER
+    Chapter #0:43: start 117.719000, end 119.822000
+      Metadata:
+        title           : 044 â€” BITE
+    Chapter #0:44: start 119.822000, end 123.661000
+      Metadata:
+        title           : 045 â€” GROWL
+    Chapter #0:45: start 123.661000, end 127.366000
+      Metadata:
+        title           : 046 â€” ROAR
+    Chapter #0:46: start 127.366000, end 132.923000
+      Metadata:
+        title           : 047 â€” SING
+    Chapter #0:47: start 132.923000, end 136.561000
+      Metadata:
+        title           : 048 â€” SUPERSONIC
+    Chapter #0:48: start 136.561000, end 139.599000
+      Metadata:
+        title           : 049 â€” SONICBOOM
+    Chapter #0:49: start 139.599000, end 143.054000
+      Metadata:
+        title           : 050 â€” DISABLE
+    Chapter #0:50: start 143.054000, end 146.726000
+      Metadata:
+        title           : 051 â€” ACID
+    Chapter #0:51: start 146.726000, end 150.898000
+      Metadata:
+        title           : 052 â€” EMBER
+    Chapter #0:52: start 150.898000, end 156.672000
+      Metadata:
+        title           : 053 â€” FLAMETHROWER
+    Chapter #0:53: start 156.672000, end 161.262000
+      Metadata:
+        title           : 054 â€” MIST
+    Chapter #0:54: start 161.262000, end 165.117000
+      Metadata:
+        title           : 055 â€” WATER GUN
+    Chapter #0:55: start 165.117000, end 169.873000
+      Metadata:
+        title           : 056 â€” HYDRO PUMP
+    Chapter #0:56: start 169.873000, end 174.179000
+      Metadata:
+        title           : 057 â€” SURF
+    Chapter #0:57: start 174.179000, end 178.418000
+      Metadata:
+        title           : 058 â€” ICE BEAM
+    Chapter #0:58: start 178.418000, end 183.592000
+      Metadata:
+        title           : 059 â€” BLIZZARD
+    Chapter #0:59: start 183.592000, end 188.015000
+      Metadata:
+        title           : 060 â€” PSYBEAM
+    Chapter #0:60: start 188.015000, end 192.721000
+      Metadata:
+        title           : 061 â€” BUBBLEBEAM
+    Chapter #0:61: start 192.721000, end 197.427000
+      Metadata:
+        title           : 062 â€” AURORA BEAM
+    Chapter #0:62: start 197.427000, end 200.982000
+      Metadata:
+        title           : 063 â€” HYPER BEAM
+    Chapter #0:63: start 200.982000, end 202.918000
+      Metadata:
+        title           : 064 â€” PECK
+    Chapter #0:64: start 202.918000, end 205.906000
+      Metadata:
+        title           : 065 â€” DRILL PECK
+    Chapter #0:65: start 205.906000, end 210.128000
+      Metadata:
+        title           : 066 â€” SUBMISSION
+    Chapter #0:66: start 210.128000, end 212.148000
+      Metadata:
+        title           : 067 â€” LOW KICK
+    Chapter #0:67: start 212.148000, end 214.985000
+      Metadata:
+        title           : 068 â€” COUNTER
+    Chapter #0:68: start 214.985000, end 219.424000
+      Metadata:
+        title           : 069 â€” SEISMIC TOSS
+    Chapter #0:69: start 219.424000, end 223.913000
+      Metadata:
+        title           : 070 â€” STRENGTH
+    Chapter #0:70: start 223.913000, end 227.685000
+      Metadata:
+        title           : 071 â€” ABSORB
+    Chapter #0:71: start 227.685000, end 232.341000
+      Metadata:
+        title           : 072 â€” MEGA DRAIN
+    Chapter #0:72: start 232.341000, end 236.897000
+      Metadata:
+        title           : 073 â€” LEECH SEED
+    Chapter #0:73: start 236.897000, end 239.434000
+      Metadata:
+        title           : 074 â€” GROWTH
+    Chapter #0:74: start 239.434000, end 243.907000
+      Metadata:
+        title           : 075 â€” RAZOR LEAF
+    Chapter #0:75: start 243.907000, end 251.367000
+      Metadata:
+        title           : 076 â€” SOLARBEAM
+    Chapter #0:76: start 251.367000, end 255.272000
+      Metadata:
+        title           : 077 â€” POISONPOWDER
+    Chapter #0:77: start 255.272000, end 259.177000
+      Metadata:
+        title           : 078 â€” STUN SPORE
+    Chapter #0:78: start 259.177000, end 263.082000
+      Metadata:
+        title           : 079 â€” SLEEP POWDER
+    Chapter #0:79: start 263.082000, end 269.474000
+      Metadata:
+        title           : 080 â€” PETAL DANCE
+    Chapter #0:80: start 269.474000, end 272.428000
+      Metadata:
+        title           : 081 â€” STRING SHOT
+    Chapter #0:81: start 272.428000, end 277.151000
+      Metadata:
+        title           : 082 â€” DRAGON RAGE
+    Chapter #0:82: start 277.151000, end 281.223000
+      Metadata:
+        title           : 083 â€” FIRE SPIN
+    Chapter #0:83: start 281.223000, end 284.644000
+      Metadata:
+        title           : 084 â€” THUNDERSHOCK
+    Chapter #0:84: start 284.644000, end 288.900000
+      Metadata:
+        title           : 085 â€” THUNDERBOLT
+    Chapter #0:85: start 288.900000, end 292.355000
+      Metadata:
+        title           : 086 â€” THUNDER WAVE
+    Chapter #0:86: start 292.355000, end 295.493000
+      Metadata:
+        title           : 087 â€” THUNDER
+    Chapter #0:87: start 295.493000, end 298.781000
+      Metadata:
+        title           : 088 â€” ROCK THROW
+    Chapter #0:88: start 298.781000, end 303.721000
+      Metadata:
+        title           : 089 â€” EARTHQUAKE
+    Chapter #0:89: start 303.721000, end 308.661000
+      Metadata:
+        title           : 090 â€” FISSURE
+    Chapter #0:90: start 308.661000, end 315.370000
+      Metadata:
+        title           : 091 â€” DIG
+    Chapter #0:91: start 315.370000, end 321.545000
+      Metadata:
+        title           : 092 â€” TOXIC
+    Chapter #0:92: start 321.545000, end 325.684000
+      Metadata:
+        title           : 093 â€” CONFUSION
+    Chapter #0:93: start 325.684000, end 330.057000
+      Metadata:
+        title           : 094 â€” PSYCHIC
+    Chapter #0:94: start 330.057000, end 333.245000
+      Metadata:
+        title           : 095 â€” HYPNOSIS
+    Chapter #0:95: start 333.245000, end 337.301000
+      Metadata:
+        title           : 096 â€” MEDITATE
+    Chapter #0:96: start 337.301000, end 340.856000
+      Metadata:
+        title           : 097 â€” AGILITY
+    Chapter #0:97: start 340.856000, end 343.076000
+      Metadata:
+        title           : 098 â€” QUICK ATTACK
+    Chapter #0:98: start 343.076000, end 346.965000
+      Metadata:
+        title           : 099 â€” RAGE
+    Chapter #0:99: start 346.965000, end 350.703000
+      Metadata:
+        title           : 100 â€” TELEPORT
+    Chapter #0:100: start 350.703000, end 354.859000
+      Metadata:
+        title           : 101 â€” NIGHT SHADE
+    Chapter #0:101: start 354.859000, end 359.282000
+      Metadata:
+        title           : 102 â€” MIMIC
+    Chapter #0:102: start 359.282000, end 361.919000
+      Metadata:
+        title           : 103 â€” SCREECH
+    Chapter #0:103: start 361.919000, end 365.908000
+      Metadata:
+        title           : 104 â€” DOUBLE TEAM
+    Chapter #0:104: start 365.908000, end 370.180000
+      Metadata:
+        title           : 105 â€” RECOVER
+    Chapter #0:105: start 370.180000, end 373.952000
+      Metadata:
+        title           : 106 â€” HARDEN
+    Chapter #0:106: start 373.952000, end 377.724000
+      Metadata:
+        title           : 107 â€” MINIMIZE
+    Chapter #0:107: start 377.724000, end 382.731000
+      Metadata:
+        title           : 108 â€” SMOKESCREEN
+    Chapter #0:108: start 382.731000, end 387.003000
+      Metadata:
+        title           : 109 â€” CONFUSE RAY
+    Chapter #0:109: start 387.003000, end 390.925000
+      Metadata:
+        title           : 110 â€” WITHDRAW
+    Chapter #0:110: start 390.925000, end 394.613000
+      Metadata:
+        title           : 111 â€” DEFENSE CURL
+    Chapter #0:111: start 394.613000, end 397.534000
+      Metadata:
+        title           : 112 â€” BARRIER
+    Chapter #0:112: start 397.534000, end 400.772000
+      Metadata:
+        title           : 113 â€” LIGHT SCREEN
+    Chapter #0:113: start 400.772000, end 404.944000
+      Metadata:
+        title           : 114 â€” HAZE
+    Chapter #0:114: start 404.944000, end 407.948000
+      Metadata:
+        title           : 115 â€” REFLECT
+    Chapter #0:115: start 407.948000, end 411.253000
+      Metadata:
+        title           : 116 â€” FOCUS ENERGY
+    Chapter #0:116: start 411.253000, end 417.328000
+      Metadata:
+        title           : 117 â€” BIDE
+    Chapter #0:117: start 417.328000, end 420.449000
+      Metadata:
+        title           : 118 â€” METRONOME
+    Chapter #0:118: start 420.449000, end 421.868000
+      Metadata:
+        title           : 119 â€” MIRROR MOVE
+    Chapter #0:119: start 421.868000, end 424.822000
+      Metadata:
+        title           : 120 â€” SELFDESTRUCT
+    Chapter #0:120: start 424.822000, end 430.980000
+      Metadata:
+        title           : 121 â€” EGG BOMB
+    Chapter #0:121: start 430.980000, end 433.534000
+      Metadata:
+        title           : 122 â€” LICK
+    Chapter #0:122: start 433.534000, end 438.140000
+      Metadata:
+        title           : 123 â€” SMOG
+    Chapter #0:123: start 438.140000, end 442.830000
+      Metadata:
+        title           : 124 â€” SLUDGE
+    Chapter #0:124: start 442.830000, end 445.267000
+      Metadata:
+        title           : 125 â€” BONE CLUB
+    Chapter #0:125: start 445.267000, end 451.993000
+      Metadata:
+        title           : 126 â€” FIRE BLAST
+    Chapter #0:126: start 451.993000, end 456.883000
+      Metadata:
+        title           : 127 â€” WATERFALL
+    Chapter #0:127: start 456.883000, end 459.520000
+      Metadata:
+        title           : 128 â€” CLAMP
+    Chapter #0:128: start 459.520000, end 462.241000
+      Metadata:
+        title           : 129 â€” SWIFT
+    Chapter #0:129: start 462.241000, end 468.266000
+      Metadata:
+        title           : 130 â€” SKULL BASH
+    Chapter #0:130: start 468.266000, end 471.437000
+      Metadata:
+        title           : 131 â€” SPIKE CANNON
+    Chapter #0:131: start 471.437000, end 474.441000
+      Metadata:
+        title           : 132 â€” CONSTRICT
+    Chapter #0:132: start 474.441000, end 477.579000
+      Metadata:
+        title           : 133 â€” AMNESIA
+    Chapter #0:133: start 477.579000, end 482.452000
+      Metadata:
+        title           : 134 â€” KINESIS
+    Chapter #0:134: start 482.452000, end 490.262000
+      Metadata:
+        title           : 135 â€” SOFTBOILED
+    Chapter #0:135: start 490.262000, end 492.882000
+      Metadata:
+        title           : 136 â€” HI JUMP KICK
+    Chapter #0:136: start 492.882000, end 494.618000
+      Metadata:
+        title           : 137 â€” GLARE
+    Chapter #0:137: start 494.618000, end 499.258000
+      Metadata:
+        title           : 138 â€” DREAM EATER
+    Chapter #0:138: start 499.258000, end 504.398000
+      Metadata:
+        title           : 139 â€” POISON GAS
+    Chapter #0:139: start 504.398000, end 507.102000
+      Metadata:
+        title           : 140 â€” BARRAGE
+    Chapter #0:140: start 507.102000, end 510.991000
+      Metadata:
+        title           : 141 â€” LEECH LIFE
+    Chapter #0:141: start 510.991000, end 513.778000
+      Metadata:
+        title           : 142 â€” LOVELY KISS
+    Chapter #0:142: start 513.778000, end 522.139000
+      Metadata:
+        title           : 143 â€” SKY ATTACK
+    Chapter #0:143: start 522.139000, end 526.278000
+      Metadata:
+        title           : 144 â€” TRANSFORM
+    Chapter #0:144: start 526.278000, end 530.667000
+      Metadata:
+        title           : 145 â€” BUBBLE
+    Chapter #0:145: start 530.667000, end 534.138000
+      Metadata:
+        title           : 146 â€” DIZZY PUNCH
+    Chapter #0:146: start 534.138000, end 539.178000
+      Metadata:
+        title           : 147 â€” SPORE
+    Chapter #0:147: start 539.178000, end 541.848000
+      Metadata:
+        title           : 148 â€” FLASH
+    Chapter #0:148: start 541.848000, end 545.954000
+      Metadata:
+        title           : 149 â€” PSYWAVE
+    Chapter #0:149: start 545.954000, end 549.609000
+      Metadata:
+        title           : 150 â€” SPLASH
+    Chapter #0:150: start 549.609000, end 552.747000
+      Metadata:
+        title           : 151 â€” ACID ARMOR
+    Chapter #0:151: start 552.747000, end 555.367000
+      Metadata:
+        title           : 152 â€” CRABHAMMER
+    Chapter #0:152: start 555.367000, end 558.321000
+      Metadata:
+        title           : 153 â€” EXPLOSION
+    Chapter #0:153: start 558.321000, end 561.893000
+      Metadata:
+        title           : 154 â€” FURY SWIPES
+    Chapter #0:154: start 561.893000, end 564.330000
+      Metadata:
+        title           : 155 â€” BONEMERANG
+    Chapter #0:155: start 564.330000, end 568.419000
+      Metadata:
+        title           : 156 â€” REST
+    Chapter #0:156: start 568.419000, end 573.976000
+      Metadata:
+        title           : 157 â€” ROCK SLIDE
+    Chapter #0:157: start 573.976000, end 575.879000
+      Metadata:
+        title           : 158 â€” HYPER FANG
+    Chapter #0:158: start 575.879000, end 579.567000
+      Metadata:
+        title           : 159 â€” SHARPEN
+    Chapter #0:159: start 579.567000, end 583.172000
+      Metadata:
+        title           : 160 â€” CONVERSION
+    Chapter #0:160: start 583.172000, end 589.147000
+      Metadata:
+        title           : 161 â€” TRI ATTACK
+    Chapter #0:161: start 589.147000, end 592.168000
+      Metadata:
+        title           : 162 â€” SUPER FANG
+    Chapter #0:162: start 592.168000, end 594.154000
+      Metadata:
+        title           : 163 â€” SLASH
+    Chapter #0:163: start 594.154000, end 596.791000
+      Metadata:
+        title           : 164 â€” SUBSTITUTE
+    Chapter #0:164: start 596.791000, end 598.577000
+      Metadata:
+        title           : 165 â€” STRUGGLE
+    Chapter #0:165: start 598.577000, end 601.965000
+      Metadata:
+        title           : 166 â€” SKETCH
+    Chapter #0:166: start 601.965000, end 606.471000
+      Metadata:
+        title           : 167 â€” TRIPLE KICK
+    Chapter #0:167: start 606.471000, end 610.260000
+      Metadata:
+        title           : 168 â€” THIEF
+    Chapter #0:168: start 610.260000, end 612.964000
+      Metadata:
+        title           : 169 â€” SPIDER WEB
+    Chapter #0:169: start 612.964000, end 615.601000
+      Metadata:
+        title           : 170 â€” MIND READER
+    Chapter #0:170: start 615.601000, end 618.722000
+      Metadata:
+        title           : 171 â€” NIGHTMARE
+    Chapter #0:171: start 618.722000, end 625.397000
+      Metadata:
+        title           : 172 â€” FLAME WHEEL
+    Chapter #0:172: start 625.397000, end 628.201000
+      Metadata:
+        title           : 173 â€” SNORE
+    Chapter #0:173: start 628.201000, end 634.826000
+      Metadata:
+        title           : 174 â€” CURSE
+    Chapter #0:174: start 634.826000, end 637.463000
+      Metadata:
+        title           : 175 â€” FLAIL
+    Chapter #0:175: start 637.463000, end 641.886000
+      Metadata:
+        title           : 176 â€” CONVERSION2
+    Chapter #0:176: start 641.886000, end 645.908000
+      Metadata:
+        title           : 177 â€” AEROBLAST
+    Chapter #0:177: start 645.908000, end 649.797000
+      Metadata:
+        title           : 178 â€” COTTON SPORE
+    Chapter #0:178: start 649.797000, end 652.050000
+      Metadata:
+        title           : 179 â€” REVERSAL
+    Chapter #0:179: start 652.050000, end 655.188000
+      Metadata:
+        title           : 180 â€” SPITE
+    Chapter #0:180: start 655.188000, end 658.743000
+      Metadata:
+        title           : 181 â€” POWDER SNOW
+    Chapter #0:181: start 658.743000, end 662.715000
+      Metadata:
+        title           : 182 â€” PROTECT
+    Chapter #0:182: start 662.715000, end 665.052000
+      Metadata:
+        title           : 183 â€” MACH PUNCH
+    Chapter #0:183: start 665.052000, end 667.589000
+      Metadata:
+        title           : 184 â€” SCARY FACE
+    Chapter #0:184: start 667.589000, end 672.179000
+      Metadata:
+        title           : 185 â€” FAINT ATTACK
+    Chapter #0:185: start 672.179000, end 674.966000
+      Metadata:
+        title           : 186 â€” SWEET KISS
+    Chapter #0:186: start 674.966000, end 679.072000
+      Metadata:
+        title           : 187 â€” BELLY DRUM
+    Chapter #0:187: start 679.072000, end 684.279000
+      Metadata:
+        title           : 188 â€” SLUDGE BOMB
+    Chapter #0:188: start 684.279000, end 686.949000
+      Metadata:
+        title           : 189 â€” MUD-SLAP
+    Chapter #0:189: start 686.949000, end 689.503000
+      Metadata:
+        title           : 190 â€” OCTAZOOKA
+    Chapter #0:190: start 689.503000, end 692.407000
+      Metadata:
+        title           : 191 â€” SPIKES
+    Chapter #0:191: start 692.407000, end 696.246000
+      Metadata:
+        title           : 192 â€” ZAP CANNON
+    Chapter #0:192: start 696.246000, end 699.901000
+      Metadata:
+        title           : 193 â€” FORESIGHT
+    Chapter #0:193: start 699.901000, end 703.556000
+      Metadata:
+        title           : 194 â€” DESTINY BOND
+    Chapter #0:194: start 703.556000, end 707.261000
+      Metadata:
+        title           : 195 â€” PERISH SONG
+    Chapter #0:195: start 707.261000, end 711.617000
+      Metadata:
+        title           : 196 â€” ICY WIND
+    Chapter #0:196: start 711.617000, end 713.637000
+      Metadata:
+        title           : 197 â€” DETECT
+    Chapter #0:197: start 713.637000, end 716.174000
+      Metadata:
+        title           : 198 â€” BONE RUSH
+    Chapter #0:198: start 716.174000, end 718.811000
+      Metadata:
+        title           : 199 â€” LOCK-ON
+    Chapter #0:199: start 718.811000, end 722.900000
+      Metadata:
+        title           : 200 â€” OUTRAGE
+    Chapter #0:200: start 722.900000, end 727.506000
+      Metadata:
+        title           : 201 â€” SANDSTORM
+    Chapter #0:201: start 727.506000, end 734.565000
+      Metadata:
+        title           : 202 â€” GIGA DRAIN
+    Chapter #0:202: start 734.565000, end 738.570000
+      Metadata:
+        title           : 203 â€” ENDURE
+    Chapter #0:203: start 738.570000, end 741.207000
+      Metadata:
+        title           : 204 â€” CHARM
+    Chapter #0:204: start 741.207000, end 743.560000
+      Metadata:
+        title           : 205 â€” ROLLOUT
+    Chapter #0:205: start 743.560000, end 745.713000
+      Metadata:
+        title           : 206 â€” FALSE SWIPE
+    Chapter #0:206: start 745.713000, end 749.618000
+      Metadata:
+        title           : 207 â€” SWAGGER
+    Chapter #0:207: start 749.618000, end 755.342000
+      Metadata:
+        title           : 208 â€” MILK DRINK
+    Chapter #0:208: start 755.342000, end 759.381000
+      Metadata:
+        title           : 209 â€” SPARK
+    Chapter #0:209: start 759.381000, end 761.484000
+      Metadata:
+        title           : 210 â€” FURY CUTTER
+    Chapter #0:210: start 761.484000, end 766.774000
+      Metadata:
+        title           : 211 â€” STEEL WING
+    Chapter #0:211: start 766.774000, end 770.779000
+      Metadata:
+        title           : 212 â€” MEAN LOOK
+    Chapter #0:212: start 770.779000, end 776.236000
+      Metadata:
+        title           : 213 â€” ATTRACT
+    Chapter #0:213: start 776.236000, end 779.641000
+      Metadata:
+        title           : 214 â€” SLEEP TALK
+    Chapter #0:214: start 779.641000, end 785.849000
+      Metadata:
+        title           : 215 â€” HEAL BELL
+    Chapter #0:215: start 785.849000, end 789.771000
+      Metadata:
+        title           : 216 â€” RETURN
+    Chapter #0:216: start 789.771000, end 794.127000
+      Metadata:
+        title           : 217 â€” PRESENT
+    Chapter #0:217: start 794.127000, end 797.582000
+      Metadata:
+        title           : 218 â€” FRUSTRATION
+    Chapter #0:218: start 797.582000, end 801.604000
+      Metadata:
+        title           : 219 â€” SAFEGUARD
+    Chapter #0:219: start 801.604000, end 803.957000
+      Metadata:
+        title           : 220 â€” PAIN SPLIT
+    Chapter #0:220: start 803.957000, end 810.916000
+      Metadata:
+        title           : 221 â€” SACRED FIRE
+    Chapter #0:221: start 810.916000, end 814.254000
+      Metadata:
+        title           : 222 â€” MAGNITUDE
+    Chapter #0:222: start 814.254000, end 817.075000
+      Metadata:
+        title           : 223 â€” DYNAMICPUNCH
+    Chapter #0:223: start 817.075000, end 820.747000
+      Metadata:
+        title           : 224 â€” MEGAHORN
+    Chapter #0:224: start 820.747000, end 824.469000
+      Metadata:
+        title           : 225 â€” DRAGONBREATH
+    Chapter #0:225: start 824.469000, end 827.623000
+      Metadata:
+        title           : 226 â€” BATON PASS
+    Chapter #0:226: start 827.623000, end 830.560000
+      Metadata:
+        title           : 227 â€” ENCORE
+    Chapter #0:227: start 830.560000, end 832.429000
+      Metadata:
+        title           : 228 â€” PURSUIT
+    Chapter #0:228: start 832.429000, end 835.366000
+      Metadata:
+        title           : 229 â€” RAPID SPIN
+    Chapter #0:229: start 835.366000, end 840.740000
+      Metadata:
+        title           : 230 â€” SWEET SCENT
+    Chapter #0:230: start 840.740000, end 845.246000
+      Metadata:
+        title           : 231 â€” IRON TAIL
+    Chapter #0:231: start 845.246000, end 849.585000
+      Metadata:
+        title           : 232 â€” METAL CLAW
+    Chapter #0:232: start 849.585000, end 853.040000
+      Metadata:
+        title           : 233 â€” VITAL THROW
+    Chapter #0:233: start 853.040000, end 856.962000
+      Metadata:
+        title           : 234 â€” MORNING SUN
+    Chapter #0:234: start 856.962000, end 861.285000
+      Metadata:
+        title           : 235 â€” SYNTHESIS
+    Chapter #0:235: start 861.285000, end 866.726000
+      Metadata:
+        title           : 236 â€” MOONLIGHT
+    Chapter #0:236: start 866.726000, end 871.432000
+      Metadata:
+        title           : 237 â€” HIDDEN POWER
+    Chapter #0:237: start 871.432000, end 874.853000
+      Metadata:
+        title           : 238 â€” CROSS CHOP
+    Chapter #0:238: start 874.853000, end 881.495000
+      Metadata:
+        title           : 239 â€” TWISTER
+    Chapter #0:239: start 881.495000, end 885.651000
+      Metadata:
+        title           : 240 â€” RAIN DANCE
+    Chapter #0:240: start 885.651000, end 889.573000
+      Metadata:
+        title           : 241 â€” SUNNY DAY
+    Chapter #0:241: start 889.573000, end 891.676000
+      Metadata:
+        title           : 242 â€” CRUNCH
+    Chapter #0:242: start 891.676000, end 895.515000
+      Metadata:
+        title           : 243 â€” MIRROR COAT
+    Chapter #0:243: start 895.515000, end 899.554000
+      Metadata:
+        title           : 244 â€” PSYCH UP
+    Chapter #0:244: start 899.554000, end 903.042000
+      Metadata:
+        title           : 245 â€” EXTREMESPEED
+    Chapter #0:245: start 903.042000, end 905.813000
+      Metadata:
+        title           : 246 â€” ANCIENTPOWER
+    Chapter #0:246: start 905.813000, end 909.184000
+      Metadata:
+        title           : 247 â€” SHADOW BALL
+    Chapter #0:247: start 909.184000, end 911.854000
+      Metadata:
+        title           : 248 â€” FUTURE SIGHT
+    Chapter #0:248: start 911.854000, end 915.459000
+      Metadata:
+        title           : 249 â€” ROCK SMASH
+    Chapter #0:249: start 915.459000, end 919.448000
+      Metadata:
+        title           : 250 â€” WHIRLPOOL
+    Chapter #0:250: start 919.448000, end 921.718000
+      Metadata:
+        title           : 251 â€” BEAT UP
+    Chapter #0:251: start 921.718000, end 927.960000
+      Metadata:
+        title           : 252 â€” GIGA HAMMER
+    Chapter #0:252: start 927.960000, end 931.482000
+      Metadata:
+        title           : 253 â€” DAZZLE GLEAM
+    Chapter #0:253: start 931.482000, end 935.337000
+      Metadata:
+        title           : 254 â€” DISARM VOICE
+    Chapter #0:254: start 935.337000, end 940.227000
+      Metadata:
+        title           : 255 â€” DRAIN KISS
+    Chapter #0:255: start 940.227000, end 943.298000
+      Metadata:
+        title           : 256 â€” PLAY ROUGH
+    Chapter #0:256: start 943.298000, end 946.235000
+      Metadata:
+        title           : 257 â€” SPIRIT BREAK
+    Chapter #0:257: start 946.235000, end 949.606000
+      Metadata:
+        title           : 258 â€” FAIRY WIND
+    Chapter #0:258: start 949.606000, end 952.577000
+      Metadata:
+        title           : 259 â€” SUCKER PUNCH
+    Chapter #0:259: start 952.577000, end 955.698000
+      Metadata:
+        title           : 260 â€” DARK PULSE
+    Chapter #0:260: start 955.698000, end 958.152000
+      Metadata:
+        title           : 261 â€” FIRE FANG
+    Chapter #0:261: start 958.152000, end 960.856000
+      Metadata:
+        title           : 262 â€” ICE FANG
+    Chapter #0:262: start 960.856000, end 963.376000
+      Metadata:
+        title           : 263 â€” THUNDER FANG
+    Chapter #0:263: start 963.376000, end 966.213000
+      Metadata:
+        title           : 264 â€” AQUA JET
+    Chapter #0:264: start 966.213000, end 971.120000
+      Metadata:
+        title           : 265 â€” WILD CHARGE
+    Chapter #0:265: start 971.120000, end 974.258000
+      Metadata:
+        title           : 266 â€” BITTER BLADE
+    Chapter #0:266: start 974.258000, end 978.998000
+      Metadata:
+        title           : 267 â€” HEAT CRASH
+    Chapter #0:267: start 978.998000, end 983.504000
+      Metadata:
+        title           : 268 â€” ICE SHARD
+    Chapter #0:268: start 983.504000, end 989.629000
+      Metadata:
+        title           : 269 â€” TRIPLE AXEL
+    Chapter #0:269: start 989.629000, end 992.366000
+      Metadata:
+        title           : 270 â€” ICICLE CRASH
+    Chapter #0:270: start 992.366000, end 994.769000
+      Metadata:
+        title           : 271 â€” STRUGGLE BUG
+    Chapter #0:271: start 994.769000, end 997.606000
+      Metadata:
+        title           : 272 â€” INFESTATION
+    Chapter #0:272: start 997.606000, end 1002.012000
+      Metadata:
+        title           : 273 â€” BUG BUZZ
+    Chapter #0:273: start 1002.012000, end 1004.449000
+      Metadata:
+        title           : 274 â€” ACCELROCK
+    Chapter #0:274: start 1004.449000, end 1007.854000
+      Metadata:
+        title           : 275 â€” STONE EDGE
+    Chapter #0:275: start 1007.854000, end 1010.124000
+      Metadata:
+        title           : 276 â€” AIR SLASH
+    Chapter #0:276: start 1010.124000, end 1013.212000
+      Metadata:
+        title           : 277 â€” POISON FANG
+    Chapter #0:277: start 1013.212000, end 1018.202000
+      Metadata:
+        title           : 278 â€” VENOSHOCK
+    Chapter #0:278: start 1018.202000, end 1021.907000
+      Metadata:
+        title           : 279 â€” HAIL
+    Chapter #0:279: start 1021.907000, end 1024.027000
+      Metadata:
+        title           : 280 â€” LEAF BLADE
+    Chapter #0:280: start 1024.027000, end 1026.597000
+      Metadata:
+        title           : 281 â€” SHADOW SNEAK
+    Chapter #0:281: start 1026.597000, end 1030.486000
+      Metadata:
+        title           : 282 â€” SHADOW PUNCH
+    Chapter #0:282: start 1030.486000, end 1032.589000
+      Metadata:
+        title           : 283 â€” SHADOW CLAW
+    Chapter #0:283: start 1032.589000, end 1037.262000
+      Metadata:
+        title           : 284 â€” POISON JAB
+    Chapter #0:284: start 1037.262000, end 1039.499000
+      Metadata:
+        title           : 285 â€” LUNGE
+    Chapter #0:285: start 1039.499000, end 1043.121000
+      Metadata:
+        title           : 286 â€” BUG BITE
+    Chapter #0:286: start 1043.121000, end 1045.107000
+      Metadata:
+        title           : 287 â€” X-SCISSOR
+    Chapter #0:287: start 1045.107000, end 1048.562000
+      Metadata:
+        title           : 288 â€” U-TURN
+    Chapter #0:288: start 1048.562000, end 1051.783000
+      Metadata:
+        title           : 289 â€” DRAGON CLAW
+    Chapter #0:289: start 1051.783000, end 1057.441000
+      Metadata:
+        title           : 290 â€” DRACO METEOR
+    Chapter #0:290: start 1057.441000, end 1062.932000
+      Metadata:
+        title           : 291 â€” MOONBLAST
+    Chapter #0:291: start 1062.932000, end 1065.619000
+      Metadata:
+        title           : 292 â€” PIXIE PUNCH
+    Chapter #0:292: start 1065.619000, end 1073.513000
+      Metadata:
+        title           : 293 â€” BLOOD MOON
+    Chapter #0:293: start 1073.513000, end 1076.234000
+      Metadata:
+        title           : 294 â€” BULLET PUNCH
+    Chapter #0:294: start 1076.234000, end 1079.922000
+      Metadata:
+        title           : 295 â€” DRAIN PUNCH
+    Chapter #0:295: start 1079.922000, end 1086.214000
+      Metadata:
+        title           : 296 â€” SOLAR BLADE
+    Chapter #0:296: start 1086.214000, end 1089.986000
+      Metadata:
+        title           : 297 â€” CLOSE COMBAT
+    Chapter #0:297: start 1089.986000, end 1093.608000
+      Metadata:
+        title           : 298 â€” ACROBATICS
+    Chapter #0:298: start 1093.608000, end 1096.278000
+      Metadata:
+        title           : 299 â€” AERIAL ACE
+    Chapter #0:299: start 1096.278000, end 1100.601000
+      Metadata:
+        title           : 300 â€” AQUA TAIL
+    Chapter #0:300: start 1100.601000, end 1103.438000
+      Metadata:
+        title           : 301 â€” ASTONISH
+    Chapter #0:301: start 1103.438000, end 1108.044000
+      Metadata:
+        title           : 302 â€” AURA SPHERE
+    Chapter #0:302: start 1108.044000, end 1112.216000
+      Metadata:
+        title           : 303 â€” AVALANCHE
+    Chapter #0:303: start 1112.216000, end 1116.005000
+      Metadata:
+        title           : 304 â€” BRAVE BIRD
+    Chapter #0:304: start 1116.005000, end 1119.476000
+      Metadata:
+        title           : 305 â€” BULK UP
+    Chapter #0:305: start 1119.476000, end 1123.565000
+      Metadata:
+        title           : 306 â€” BULLDOZE
+    Chapter #0:306: start 1123.565000, end 1127.370000
+      Metadata:
+        title           : 307 â€” CALM MIND
+    Chapter #0:307: start 1127.370000, end 1130.858000
+      Metadata:
+        title           : 308 â€” DRAGON DANCE
+    Chapter #0:308: start 1130.858000, end 1134.079000
+      Metadata:
+        title           : 309 â€” DRAGON PULSE
+    Chapter #0:309: start 1134.079000, end 1138.068000
+      Metadata:
+        title           : 310 â€” EARTH POWER
+    Chapter #0:310: start 1138.068000, end 1142.925000
+      Metadata:
+        title           : 311 â€” ENERGY BALL
+    Chapter #0:311: start 1142.925000, end 1147.631000
+      Metadata:
+        title           : 312 â€” EXTRASENSORY
+    Chapter #0:312: start 1147.631000, end 1151.703000
+      Metadata:
+        title           : 313 â€” FACADE
+    Chapter #0:313: start 1151.703000, end 1158.378000
+      Metadata:
+        title           : 314 â€” FLAME CHARGE
+    Chapter #0:314: start 1158.378000, end 1162.600000
+      Metadata:
+        title           : 315 â€” FLARE BLITZ
+    Chapter #0:315: start 1162.600000, end 1167.840000
+      Metadata:
+        title           : 316 â€” FLASH CANNON
+    Chapter #0:316: start 1167.840000, end 1172.563000
+      Metadata:
+        title           : 317 â€” FOCUS BLAST
+    Chapter #0:317: start 1172.563000, end 1177.319000
+      Metadata:
+        title           : 318 â€” GIGA IMPACT
+    Chapter #0:318: start 1177.319000, end 1183.043000
+      Metadata:
+        title           : 319 â€” GUNK SHOT
+    Chapter #0:319: start 1183.043000, end 1187.900000
+      Metadata:
+        title           : 320 â€” GYRO BALL
+    Chapter #0:320: start 1187.900000, end 1192.056000
+      Metadata:
+        title           : 321 â€” HEX
+    Chapter #0:321: start 1192.056000, end 1195.527000
+      Metadata:
+        title           : 322 â€” HONE CLAWS
+    Chapter #0:322: start 1195.527000, end 1199.616000
+      Metadata:
+        title           : 323 â€” HURRICANE
+    Chapter #0:323: start 1199.616000, end 1204.289000
+      Metadata:
+        title           : 324 â€” HYPER VOICE
+    Chapter #0:324: start 1204.289000, end 1206.793000
+      Metadata:
+        title           : 325 â€” ICICLE SPEAR
+    Chapter #0:325: start 1206.793000, end 1211.666000
+      Metadata:
+        title           : 326 â€” IRON HEAD
+    Chapter #0:326: start 1211.666000, end 1213.586000
+      Metadata:
+        title           : 327 â€” KNOCK OFF
+    Chapter #0:327: start 1213.586000, end 1217.458000
+      Metadata:
+        title           : 328 â€” NASTY PLOT
+    Chapter #0:328: start 1217.458000, end 1220.229000
+      Metadata:
+        title           : 329 â€” NIGHT SLASH
+    Chapter #0:329: start 1220.229000, end 1224.301000
+      Metadata:
+        title           : 330 â€” POWER GEM
+    Chapter #0:330: start 1224.301000, end 1227.222000
+      Metadata:
+        title           : 331 â€” POWER WHIP
+    Chapter #0:331: start 1227.222000, end 1231.962000
+      Metadata:
+        title           : 332 â€” PSYSTRIKE
+    Chapter #0:332: start 1231.962000, end 1234.349000
+      Metadata:
+        title           : 333 â€” ROCK BLAST
+    Chapter #0:333: start 1234.349000, end 1239.523000
+      Metadata:
+        title           : 334 â€” ROOST
+    Chapter #0:334: start 1239.523000, end 1244.329000
+      Metadata:
+        title           : 335 â€” SCALD
+    Chapter #0:335: start 1244.329000, end 1247.650000
+      Metadata:
+        title           : 336 â€” SEED BOMB
+    Chapter #0:336: start 1247.650000, end 1251.272000
+      Metadata:
+        title           : 337 â€” SHELL SMASH
+    Chapter #0:337: start 1251.272000, end 1255.161000
+      Metadata:
+        title           : 338 â€” SKILL SWAP
+    Chapter #0:338: start 1255.161000, end 1259.433000
+      Metadata:
+        title           : 339 â€” TOXIC SPIKES
+    Chapter #0:339: start 1259.433000, end 1263.906000
+      Metadata:
+        title           : 340 â€” TRICK
+    Chapter #0:340: start 1263.906000, end 1268.162000
+      Metadata:
+        title           : 341 â€” TRICK ROOM
+    Chapter #0:341: start 1268.162000, end 1272.902000
+      Metadata:
+        title           : 342 â€” VOLT SWITCH
+    Chapter #0:342: start 1272.902000, end 1277.208000
+      Metadata:
+        title           : 343 â€” WATER PULSE
+    Chapter #0:343: start 1277.208000, end 1280.763000
+      Metadata:
+        title           : 344 â€” WILL-O-WISP
+    Chapter #0:344: start 1280.763000, end 1285.319000
+      Metadata:
+        title           : 345 â€” ZEN HEADBUTT
+    Chapter #0:345: start 1285.319000, end 1287.939000
+      Metadata:
+        title           : 346 â€” TROP KICK
+    Chapter #0:346: start 1287.939000, end 1290.893000
+      Metadata:
+        title           : 347 â€” MORTAL SPIN
+    Chapter #0:347: start 1290.893000, end 1293.313000
+      Metadata:
+        title           : 348 â€” FIRST STRIKE
+    Chapter #0:348: start 1293.313000, end 1295.950000
+      Metadata:
+        title           : 349 â€” LIQUIDATION
+    Chapter #0:349: start 1295.950000, end 1300.039000
+      Metadata:
+        title           : 350 â€” SLACK OFF
+    Chapter #0:350: start 1300.039000, end 1303.894000
+      Metadata:
+        title           : 351 â€” VOLT TACKLE
+    Chapter #0:351: start 1303.894000, end 1309.635000
+      Metadata:
+        title           : 352 â€” OVERHEAT
+    Chapter #0:352: start 1309.635000, end 1313.874000
+      Metadata:
+        title           : 353 â€” LEAF STORM
+    Chapter #0:353: start 1313.874000, end 1316.628000
+      Metadata:
+        title           : 354 â€” FAKE OUT
+    Chapter #0:354: start 1316.628000, end 1319.933000
+      Metadata:
+        title           : 355 â€” FLIP TURN
+    Chapter #0:355: start 1319.933000, end 1323.204000
+      Metadata:
+        title           : 356 â€” IRON DEFENSE
+    Chapter #0:356: start 1323.204000, end 1327.226000
+      Metadata:
+        title           : 357 â€” ROCK POLISH
+    Chapter #0:357: start 1327.226000, end 1330.564000
+      Metadata:
+        title           : 358 â€” WOOD HAMMER
+    Chapter #0:358: start 1330.564000, end 1333.969000
+      Metadata:
+        title           : 359 â€” HEAD SMASH
+    Chapter #0:359: start 1333.969000, end 1336.957000
+      Metadata:
+        title           : 360 â€” DRILL RUN
+    Chapter #0:360: start 1336.957000, end 1341.413000
+      Metadata:
+        title           : 361 â€” PSYCHO CUT
+    Chapter #0:361: start 1341.413000, end 1344.467000
+      Metadata:
+        title           : 362 â€” SACRED SWORD
+    Chapter #0:362: start 1344.467000, end 1347.989000
+      Metadata:
+        title           : 363 â€” BRICK BREAK
+    Chapter #0:363: start 1347.989000, end 1352.261000
+      Metadata:
+        title           : 364 â€” HEAT WAVE
+    Chapter #0:364: start 1352.261000, end 1354.915000
+      Metadata:
+        title           : 365 â€” SNARL
+    Chapter #0:365: start 1354.915000, end 1358.787000
+      Metadata:
+        title           : 366 â€” NUZZLE
+    Chapter #0:366: start 1358.787000, end 1360.673000
+      Metadata:
+        title           : 367 â€” BULLET SEED
+    Chapter #0:367: start 1360.673000, end 1366.114000
+      Metadata:
+        title           : 368 â€” DUALWINGBEAT
+    Chapter #0:368: start 1366.114000, end 1370.136000
+      Metadata:
+        title           : 369 â€” ROCK TOMB
+    Chapter #0:369: start 1370.136000, end 1372.590000
+      Metadata:
+        title           : 370 â€” LOW SWEEP
+    Chapter #0:370: start 1372.590000, end 1376.729000
+      Metadata:
+        title           : 371 â€” MUD SHOT
+    Chapter #0:371: start 1376.729000, end 1380.301000
+      Metadata:
+        title           : 372 â€” AIR CUTTER
+    Chapter #0:372: start 1380.301000, end 1382.788000
+      Metadata:
+        title           : 373 â€” CROSS POISON
+    Chapter #0:373: start 1382.788000, end 1387.277000
+      Metadata:
+        title           : 374 â€” MAGICAL LEAF
+    Chapter #0:374: start 1387.277000, end 1391.616000
+      Metadata:
+        title           : 375 â€” SIGNAL BEAM
+    Chapter #0:375: start 1391.616000, end 1393.652000
+      Metadata:
+        title           : 376 â€” SCALE SHOT
+    Chapter #0:376: start 1393.652000, end 1399.526000
+      Metadata:
+        title           : 377 â€” PHANTOMFORCE
+    Chapter #0:377: start 1399.526000, end 1402.797000
+      Metadata:
+        title           : 378 â€” HEADLONGRUSH
+    Chapter #0:378: start 1402.797000, end 1406.001000
+      Metadata:
+        title           : 379 â€” SHADOW BONE
+    Chapter #0:379: start 1406.001000, end 1409.122000
+      Metadata:
+        title           : 380 â€” DIRE CLAW
+    Chapter #0:380: start 1409.122000, end 1411.943000
+      Metadata:
+        title           : 381 â€” BARB BARRAGE
+    Chapter #0:381: start 1411.943000, end 1416.416000
+      Metadata:
+        title           : 382 â€” INFERNPARADE
+    Chapter #0:382: start 1416.416000, end 1419.537000
+      Metadata:
+        title           : 383 â€” KOWTOWCLEAVE
+    Chapter #0:383: start 1419.537000, end 1423.342000
+      Metadata:
+        title           : 384 â€” ARMOR CANNON
+    Chapter #0:384: start 1423.342000, end 1426.279000
+      Metadata:
+        title           : 385 â€” SHELLSIDEARM
+    Chapter #0:385: start 1426.279000, end 1428.983000
+      Metadata:
+        title           : 386 â€” GLAIVE RUSH
+    Chapter #0:386: start 1428.983000, end 1431.186000
+      Metadata:
+        title           : 387 â€” DRAGON DARTS
+    Chapter #0:387: start 1431.186000, end 1433.890000
+      Metadata:
+        title           : 388 â€” APPLE ACID
+    Chapter #0:388: start 1433.890000, end 1436.727000
+      Metadata:
+        title           : 389 â€” GRAV APPLE
+    Chapter #0:389: start 1436.727000, end 1441.734000
+      Metadata:
+        title           : 390 â€” PSYSHLD BASH
+    Chapter #0:390: start 1441.734000, end 1445.039000
+      Metadata:
+        title           : 391 â€” RAGING FURY
+    Chapter #0:391: start 1445.039000, end 1449.145000
+      Metadata:
+        title           : 392 â€” STRANGESTEAM
+    Chapter #0:392: start 1449.145000, end 1452.950000
+      Metadata:
+        title           : 393 â€” EERIE SPELL
+    Chapter #0:393: start 1452.950000, end 1455.570000
+      Metadata:
+        title           : 394 â€” BANE BUNKER
+    Chapter #0:394: start 1455.570000, end 1458.941000
+      Metadata:
+        title           : 395 â€” RAGING BULL
+    Chapter #0:395: start 1458.941000, end 1461.378000
+      Metadata:
+        title           : 396 â€” FICKLE BEAM
+    Chapter #0:396: start 1461.378000, end 1464.015000
+      Metadata:
+        title           : 397 â€” STONE AXE
+    Chapter #0:397: start 1464.015000, end 1466.786000
+      Metadata:
+        title           : 398 â€” QUIVER DANCE
+    Chapter #0:398: start 1466.786000, end 1469.807000
+      Metadata:
+        title           : 399 â€” STEALTH ROCK
+    Chapter #0:399: start 1469.807000, end 1473.162000
+      Metadata:
+        title           : 400 â€” DEFOG
+    Chapter #0:400: start 1473.162000, end 1476.366000
+      Metadata:
+        title           : 401 â€” BODY PRESS
+    Chapter #0:401: start 1476.366000, end 1479.153000
+      Metadata:
+        title           : 402 â€” WORK UP
+    Chapter #0:402: start 1479.153000, end 1484.010000
+      Metadata:
+        title           : 403 â€” SUPERPOWER
+    Chapter #0:403: start 1484.010000, end 1487.064000
+      Metadata:
+        title           : 404 â€” FIERY DANCE
+    Chapter #0:404: start 1487.064000, end 1489.818000
+      Metadata:
+        title           : 405 â€” FOUL PLAY
+    Chapter #0:405: start 1489.818000, end 1492.839000
+      Metadata:
+        title           : 406 â€” RAGE FIST
+    Chapter #0:406: start 1492.839000, end 1495.710000
+      Metadata:
+        title           : 407 â€” CRUSH CLAW
+    Chapter #0:407: start 1495.710000, end 1498.764000
+      Metadata:
+        title           : 408 â€” FORCE PALM
+    Chapter #0:408: start 1498.764000, end 1501.418000
+      Metadata:
+        title           : 409 â€” HAMMER ARM
+    Chapter #0:409: start 1501.418000, end 1504.539000
+      Metadata:
+        title           : 410 â€” CIRCLE THROW
+    Chapter #0:410: start 1504.539000, end 1507.844000
+      Metadata:
+        title           : 411 â€” FREEZE-DRY
+    Chapter #0:411: start 1507.844000, end 1512.050000
+      Metadata:
+        title           : 412 â€” BOUNCE
+    Chapter #0:412: start 1512.050000, end 1514.804000
+      Metadata:
+        title           : 413 â€” DRAGON TAIL
+    Chapter #0:413: start 1514.804000, end 1519.827000
+      Metadata:
+        title           : 414 â€” LUMINA CRASH
+    Chapter #0:414: start 1519.827000, end 1525.017000
+      Metadata:
+        title           : 415 â€” TORMENT
+    Chapter #0:415: start 1525.017000, end 1529.340000
+      Metadata:
+        title           : 416 â€” TAUNT
+    Chapter #0:416: start 1529.340000, end 1533.763000
+      Metadata:
+        title           : 417 â€” YAWN
+    Chapter #0:417: start 1533.763000, end 1539.170000
+      Metadata:
+        title           : 418 â€” WISH
+    Chapter #0:418: start 1539.170000, end 1541.874000
+      Metadata:
+        title           : 419 â€” STICKY WEB
+    Chapter #0:419: start 1541.874000, end 1562.817000
+      Metadata:
+        title           : 420 â€” WEATHER BALL
+    Chapter #0:420: start 1562.817000, end 1566.873000
+      Metadata:
+        title           : 421 â€” INCINERATE
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 225 kb/s, 59.24 fps, 59.73 tbr, 262144 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+  Stream #0:2[0x3](eng): Data: bin_data (text / 0x74786574), 0 kb/s
+      Metadata:
+        handler_name    : SubtitleHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : PokÃ©mon Crimson Crystal â€” Every Attack Animation
+    artist          : PokÃ©mon Crimson Crystal
+    comment         : 421 native move animations; game audio; player-side animation playback.
+    encoder         : Lavf61.7.100
+  Chapters:
+    Chapter #0:0: start 0.000000, end 0.000000
+      Metadata:
+        title           : 001 â€” POUND
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(progressive), 1280x720, q=2-31, 200 kb/s, 59.73 fps, 59.73 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 wrapped_avframe
+  Stream #0:1(und): Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 pcm_s16le
+[out#0/null @ 000002857ea80980] video:0KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+[out#0/null @ 000002857ea80980] Output file is empty, nothing was encoded(check -ss / -t / -frames parameters if used)
+frame=    0 fps=0.0 q=0.0 Lsize=N/A time=N/A bitrate=N/A speed=N/A    
