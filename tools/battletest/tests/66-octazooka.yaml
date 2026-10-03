@@ -1,0 +1,684 @@
+# Octazooka uses one 20% roll for paired Defense and Special Defense drops.
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_proc
+  name: 'Octazooka: one roll lowers both defenses'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+  - enemy.stat_levels[5] == 7
+  - player.stat_levels == player.start_stat_levels
+  - enemy.stats["defense"] < enemy.start_stats["defense"]
+  - enemy.stats["spcldef"] < enemy.start_stats["spcldef"]
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  id: oct_no_proc
+  name: 'Octazooka: failed roll leaves both defenses alone'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp < enemy.start_hp
+  - enemy.stat_levels[5] == 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_low_edge
+  name: 'Octazooka: roll 48 succeeds'
+  rng_value: 48
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_high_edge
+  name: 'Octazooka: roll 52 fails'
+  rng_value: 52
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+- player:
+    species: MEW
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_grace_low
+  name: 'Octazooka: Serene Grace roll 100 succeeds'
+  rng_value: 100
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_grace_high
+  name: 'Octazooka: Serene Grace roll 104 fails'
+  rng_value: 104
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: SHIELD_DUST
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_shield_dust
+  name: 'Octazooka: SHIELD_DUST blocks both drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CLEAR_BODY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_clear_body
+  name: 'Octazooka: CLEAR_BODY blocks both drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: WHITE_SMOKE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_white_smoke
+  name: 'Octazooka: WHITE_SMOKE blocks both drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    substatus:
+    - MIST
+  rng: forced_low
+  turns: 1
+  id: oct_mist
+  name: 'Octazooka: Mist blocks both drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+- player:
+    species: MEW
+    level: 50
+    ability: INFILTRATOR
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    substatus:
+    - MIST
+  rng: forced_low
+  turns: 1
+  id: oct_infiltrator_mist
+  name: 'Octazooka: Infiltrator bypasses Mist'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: SHIELD_DUST
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_mold_dust
+  name: 'Octazooka: Mold Breaker bypasses Shield Dust'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CLEAR_BODY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_mold_clear
+  name: 'Octazooka: Mold Breaker bypasses Clear Body'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CONTRARY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_contrary
+  name: 'Octazooka: Contrary raises both defenses'
+  assert:
+  - enemy.stat_levels[1] == 8
+  - enemy.stat_levels[4] == 8
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_def_floor
+  name: 'Octazooka: Defense at minimum still permits Special Defense drop'
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 7
+    - 7
+    - 7
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_spdef_floor
+  name: 'Octazooka: Special Defense at minimum still permits Defense drop'
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 7
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 1
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_both_floor
+  name: 'Octazooka: both defenses respect the minimum'
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 1
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CONTRARY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_contrary_def_cap
+  name: 'Octazooka: capped Contrary Defense still raises Special Defense'
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 13
+    - 7
+    - 7
+    - 7
+    - 7
+    - 7
+  assert:
+  - enemy.stat_levels[1] == 13
+  - enemy.stat_levels[4] == 8
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    substatus:
+    - SUBSTITUTE
+  rng: forced_low
+  turns: 1
+  id: oct_sub_255
+  name: 'Octazooka: Substitute blocks drops even when broken'
+  setup_wram:
+    wEnemySubstituteHP: 255
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+  - wram("wEnemySubstituteHP") < 255
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    substatus:
+    - SUBSTITUTE
+  rng: forced_low
+  turns: 1
+  id: oct_sub_1
+  name: 'Octazooka: Substitute blocks drops even when broken'
+  setup_wram:
+    wEnemySubstituteHP: 1
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+  - wram("wEnemySubstituteHP") == 0
+- player:
+    species: MEW
+    level: 50
+    ability: INFILTRATOR
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    substatus:
+    - SUBSTITUTE
+  rng: forced_low
+  turns: 1
+  id: oct_infiltrator_sub
+  name: 'Octazooka: Infiltrator bypasses Substitute'
+  setup_wram:
+    wEnemySubstituteHP: 255
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+  - wram("wEnemySubstituteHP") == 255
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - PROTECT
+  rng: forced_low
+  turns: 1
+  id: oct_protect
+  name: 'Octazooka: Protect blocks damage and drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_miss
+  name: 'Octazooka: a missed attack cannot drop defenses'
+  setup_wram:
+    wPlayerStatLevels:
+    - 7
+    - 7
+    - 7
+    - 7
+    - 7
+    - 1
+    - 7
+  rng_value: 180
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: WATER_ABSORB
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_water_absorb
+  name: 'Octazooka: Water Absorb blocks damage and drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 1
+  rng: forced_low
+  turns: 1
+  id: oct_ko
+  name: 'Octazooka: knockout skips secondary drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == 0
+- player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_sheer_force
+  name: 'Octazooka: Sheer Force suppresses drops and boosts damage'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.start_hp - enemy.hp > result("oct_proc")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - OCTAZOOKA
+    item: LIFE_ORB
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_sheer_lifeorb
+  name: 'Octazooka: Sheer Force suppresses Life Orb recoil'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - player.hp == player.start_hp
+- player:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  rng: forced_low
+  turns: 1
+  id: oct_enemy_proc
+  name: 'Octazooka: enemy attack lowers player defenses'
+  assert:
+  - player.stat_levels[1] == 6
+  - player.stat_levels[4] == 6
+  - player.hp < player.start_hp
+  - enemy.stat_levels == enemy.start_stat_levels
+- player:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  rng: forced_high
+  turns: 1
+  id: oct_enemy_no_proc
+  name: 'Octazooka: enemy failed roll leaves defenses alone'
+  assert:
+  - player.stat_levels[1] == 7
+  - player.stat_levels[4] == 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DIRE_CLAW
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: oct_direclaw
+  name: 'Octazooka: shared command still applies Dire Claw paralysis'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.status == 64
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DIRE_CLAW
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  id: oct_direclaw_no_proc
+  name: 'Octazooka: Dire Claw failed roll leaves status alone'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.status == 0

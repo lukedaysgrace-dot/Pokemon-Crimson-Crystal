@@ -1,0 +1,1279 @@
+# Direct ability interactions for the modified Octazooka and Incinerate.
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_DEFIANT
+  name: 'OCTAZOOKA: DEFIANT reacts to each defense lowered'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.stat_levels[0] == 11
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_DEFIANT_def_floor
+  name: 'OCTAZOOKA: DEFIANT with def_floor'
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 6
+  - enemy.stat_levels[0] == 9
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 7
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_DEFIANT_spdef_floor
+  name: 'OCTAZOOKA: DEFIANT with spdef_floor'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 1
+  - enemy.stat_levels[0] == 9
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 7
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_DEFIANT_both_floor
+  name: 'OCTAZOOKA: DEFIANT with both_floor'
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 1
+  - enemy.stat_levels[0] == 7
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: COMPETITIVE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_COMPETITIVE
+  name: 'OCTAZOOKA: COMPETITIVE reacts to each defense lowered'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.stat_levels[3] == 11
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: COMPETITIVE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_COMPETITIVE_def_floor
+  name: 'OCTAZOOKA: COMPETITIVE with def_floor'
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 6
+  - enemy.stat_levels[3] == 9
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 7
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: COMPETITIVE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_COMPETITIVE_spdef_floor
+  name: 'OCTAZOOKA: COMPETITIVE with spdef_floor'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 1
+  - enemy.stat_levels[3] == 9
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 7
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: COMPETITIVE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_COMPETITIVE_both_floor
+  name: 'OCTAZOOKA: COMPETITIVE with both_floor'
+  assert:
+  - enemy.stat_levels[1] == 1
+  - enemy.stat_levels[4] == 1
+  - enemy.stat_levels[3] == 7
+  setup_wram:
+    wEnemyStatLevels:
+    - 7
+    - 1
+    - 7
+    - 7
+    - 1
+    - 7
+    - 7
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: BIG_PECKS
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_pecks
+  name: 'OCTAZOOKA: Big Pecks blocks Defense only'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MIRROR_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mirror
+  name: 'OCTAZOOKA: Mirror Armor reflects both defenses'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - player.stat_levels[1] == 6
+  - player.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: CLEAR_BODY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MIRROR_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mirror_clear
+  name: 'OCTAZOOKA: Clear Body blocks reflected drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - player.stat_levels == player.start_stat_levels
+- player:
+    species: MEW
+    level: 50
+    ability: DEFIANT
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MIRROR_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mirror_defiant
+  name: 'OCTAZOOKA: Defiant reacts to both reflected drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - player.stat_levels[1] == 6
+  - player.stat_levels[4] == 6
+  - player.stat_levels[0] == 11
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MIRROR_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mold_mirror
+  name: 'OCTAZOOKA: Mold Breaker bypasses Mirror Armor'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - player.stat_levels == player.start_stat_levels
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_MAGIC_BOUNCE
+  name: 'OCTAZOOKA: MAGIC_BOUNCE does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: KEEN_EYE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_KEEN_EYE
+  name: 'OCTAZOOKA: KEEN_EYE does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: HYPER_CUTTER
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_HYPER_CUTTER
+  name: 'OCTAZOOKA: HYPER_CUTTER does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MINDS_EYE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_MINDS_EYE
+  name: 'OCTAZOOKA: MINDS_EYE does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: BATTLE_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_BATTLE_ARMOR
+  name: 'OCTAZOOKA: BATTLE_ARMOR does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: SHELL_ARMOR
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_SHELL_ARMOR
+  name: 'OCTAZOOKA: SHELL_ARMOR does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: UNAWARE
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_unrelated_UNAWARE
+  name: 'OCTAZOOKA: UNAWARE does not block defense drops'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: BULLETPROOF
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_immune_BULLETPROOF
+  name: 'OCTAZOOKA: BULLETPROOF blocks damage and drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: BULLETPROOF
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mold_BULLETPROOF
+  name: 'OCTAZOOKA: Mold Breaker bypasses BULLETPROOF'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: STORM_DRAIN
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_immune_STORM_DRAIN
+  name: 'OCTAZOOKA: STORM_DRAIN blocks damage and drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+  - enemy.stat_levels[3] == 8
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: STORM_DRAIN
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mold_STORM_DRAIN
+  name: 'OCTAZOOKA: Mold Breaker bypasses STORM_DRAIN'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DRY_SKIN
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_immune_DRY_SKIN
+  name: 'OCTAZOOKA: DRY_SKIN blocks damage and drops'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 7
+  - enemy.hp == enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DRY_SKIN
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_mold_DRY_SKIN
+  name: 'OCTAZOOKA: Mold Breaker bypasses DRY_SKIN'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NEUTRALIZING_GAS
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: SHIELD_DUST
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_gas_dust
+  name: 'OCTAZOOKA: Neutralizing Gas suppresses Shield Dust'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NEUTRALIZING_GAS
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CONTRARY
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_gas_contrary
+  name: 'OCTAZOOKA: Neutralizing Gas suppresses Contrary'
+  assert:
+  - enemy.stat_levels[1] == 6
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - OCTAZOOKA
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: STAMINA
+    moves:
+    - SPLASH
+  rng: forced_low
+  turns: 1
+  id: ability_oct_stamina
+  name: 'OCTAZOOKA: Stamina raises Defense before the defense drop'
+  assert:
+  - enemy.stat_levels[1] == 7
+  - enemy.stat_levels[4] == 6
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_control
+  name: 'INCINERATE: base damage and destroyed berry control'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_user_SHEER_FORCE
+  name: 'INCINERATE: SHEER_FORCE leaves berry destruction active'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp == result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_user_SERENE_GRACE
+  name: 'INCINERATE: SERENE_GRACE leaves berry destruction active'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp == result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: UNNERVE
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_user_UNNERVE
+  name: 'INCINERATE: UNNERVE leaves berry destruction active'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp == result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_user_MOLD_BREAKER
+  name: 'INCINERATE: MOLD_BREAKER leaves berry destruction active'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: SHIELD_DUST
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_SHIELD_DUST
+  name: 'INCINERATE: SHIELD_DUST does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_RIPEN
+  name: 'INCINERATE: RIPEN does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_GLUTTONY
+  name: 'INCINERATE: GLUTTONY does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: CUD_CHEW
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 3
+  id: ability_inc_foe_CUD_CHEW
+  name: 'INCINERATE: CUD_CHEW does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.hp == result("ability_inc_control")["enemy"]["hp"]
+  - (wram("wEnemyItemStateFlags") & 12) == 0
+  move_script:
+  - 1
+  - 2
+  - 2
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_KLUTZ
+  name: 'INCINERATE: KLUTZ does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: HARVEST
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_HARVEST
+  name: 'INCINERATE: HARVEST does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: PICKPOCKET
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_PICKPOCKET
+  name: 'INCINERATE: PICKPOCKET does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_MAGIC_BOUNCE
+  name: 'INCINERATE: MAGIC_BOUNCE does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: BULLETPROOF
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_BULLETPROOF
+  name: 'INCINERATE: BULLETPROOF does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: WATER_VEIL
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_foe_WATER_VEIL
+  name: 'INCINERATE: WATER_VEIL does not preserve an incinerated berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - INCINERATE
+    item: LIFE_ORB
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_sheer_lifeorb
+  name: 'INCINERATE: Sheer Force does not cancel Life Orb recoil'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - player.start_hp - player.hp == player.maxhp // 10
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: THERMAL_EXCHANGE
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_thermal
+  name: 'INCINERATE: Thermal Exchange raises Attack and loses berry'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.stat_levels[0] == 8
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: THICK_FAT
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_damage_THICK_FAT
+  name: 'INCINERATE: THICK_FAT applies Fire damage modifier'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp < result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: DRY_SKIN
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_damage_DRY_SKIN
+  name: 'INCINERATE: DRY_SKIN applies Fire damage modifier'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp > result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: FLUFFY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_damage_FLUFFY
+  name: 'INCINERATE: FLUFFY applies Fire damage modifier'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp > result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: MULTISCALE
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_damage_MULTISCALE
+  name: 'INCINERATE: MULTISCALE applies Fire damage modifier'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+  - enemy.start_hp - enemy.hp < result("ability_inc_control")["enemy"]["damage"]
+- player:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: FLASH_FIRE
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_mold_flash
+  name: 'INCINERATE: Mold Breaker bypasses Flash Fire'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: MEW
+    level: 50
+    ability: NEUTRALIZING_GAS
+    moves:
+    - INCINERATE
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: STICKY_HOLD
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_low
+  turns: 1
+  id: ability_inc_gas_sticky
+  name: 'INCINERATE: Neutralizing Gas suppresses Sticky Hold'
+  assert:
+  - enemy.item == "NO_ITEM"
+  - wram("wEnemyConsumedItem") == 0
+  - enemy.hp < enemy.start_hp
+- player:
+    species: HITMONLEE
+    level: 60
+    ability: UNBURDEN
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: AERODACTYL
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  rng: forced_high
+  turns: 2
+  id: ability_inc_unburden
+  name: 'INCINERATE: destroying a berry activates Unburden next turn'
+  assert:
+  - player.item == "NO_ITEM"
+  - wram("wEnemyGoesFirst") == 0
+  - (wram("wPlayerItemStateFlags") & 2) != 0
+- player:
+    species: HITMONLEE
+    level: 60
+    ability: UNBURDEN
+    moves:
+    - SPLASH
+  enemy:
+    species: AERODACTYL
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  rng: forced_high
+  turns: 2
+  id: ability_inc_unburden_itemless
+  name: 'INCINERATE: Unburden does not activate without item loss'
+  assert:
+  - wram("wEnemyGoesFirst") == 1
+  - (wram("wPlayerItemStateFlags") & 3) == 0
+- name: 'Audit 2026-08-28 #4: Defiant does not fire on the user''s own Close Combat
+    drops'
+  player:
+    species: BISHARP
+    level: 50
+    ability: DEFIANT
+    moves:
+    - CLOSE_COMBAT
+  enemy:
+    species: SNORLAX
+    level: 50
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[0] == 7
+  - player.stat_levels[1] == 6
+  - player.stat_levels[4] == 6
+  id: ability_existing_reaction_4
+- name: 'Audit 2026-08-28 #4: Competitive does not fire on the user''s own Draco Meteor
+    drop'
+  player:
+    species: MILOTIC
+    level: 50
+    ability: COMPETITIVE
+    moves:
+    - DRACO_METEOR
+  enemy:
+    species: SNORLAX
+    level: 50
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[3] == 5
+  id: ability_existing_reaction_5
+- name: 'Audit 2026-08-28 #4: Defiant does not fire on a non-Ghost Curse''s Speed
+    drop'
+  player:
+    species: BISHARP
+    level: 50
+    ability: DEFIANT
+    moves:
+    - CURSE
+  enemy:
+    species: SNORLAX
+    level: 50
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[0] == 8
+  - player.stat_levels[1] == 8
+  - player.stat_levels[2] == 6
+  id: ability_existing_reaction_6
+- name: 'Audit 2026-08-28 #4 control: Defiant still answers an opponent''s Growl'
+  player:
+    species: BISHARP
+    level: 50
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 50
+    moves:
+    - GROWL
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[0] == 8
+  id: ability_existing_reaction_7
+- name: 'Audit 2026-08-28 #11: Sticky Web always slows the player''s switch-in (no
+    AI-miss roll) and Defiant answers it'
+  player:
+    species: TAUROS
+    level: 50
+    ability: RUN_AWAY
+    moves:
+    - SPLASH
+  player2:
+    species: BISHARP
+    level: 50
+    ability: DEFIANT
+    moves:
+    - SPLASH
+  enemy:
+    species: GRIMER
+    level: 50
+    moves:
+    - STICKY_WEB
+  rng: forced_low
+  move_script:
+  - 1
+  - switch:2
+  turns: 2
+  assert:
+  - player.species == 'BISHARP'
+  - player.stat_levels[2] == 6
+  - player.stat_levels[0] == 9
+  id: ability_existing_reaction_16

@@ -12,8 +12,8 @@
 	frame 6, 6
 	frame 2, 6
 	frame 0, 6
-	frame 7, 6
+	frame 6, 6
 	frame 0, 6
-	frame 7, 6
+	frame 6, 6
 	frame 0, 6
 	endanim
