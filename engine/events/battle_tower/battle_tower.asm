@@ -825,7 +825,7 @@ Function1704e1:
 	ld [hli], a
 	ld c, SCREEN_WIDTH - 2
 .bottom_border_loop
-	ld a, "─"
+	ld a, "━"
 	ld [hli], a
 	dec c
 	jr nz, .bottom_border_loop
@@ -835,7 +835,7 @@ Function1704e1:
 	add hl, de
 	ld c, 12
 .right_border_loop
-	ld a, "│"
+	ld a, "┃"
 	ld [hl], a
 	add hl, de
 	dec c

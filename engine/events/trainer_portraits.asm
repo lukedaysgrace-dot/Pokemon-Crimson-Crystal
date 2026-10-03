@@ -326,9 +326,7 @@ TrainerPortrait_LoadGFX:
 	ret
 
 TrainerPortrait_DrawFrame:
-	hlcoord PORTRAIT_FRAME_X, PORTRAIT_FRAME_Y
-	lb bc, PORTRAIT_HEIGHT, PORTRAIT_WIDTH
-	call Textbox ; the textbox border, and PAL_BG_TEXT for the whole frame
+; The frame is part of the portrait's tiles, so this is just the picture.
 	hlcoord PORTRAIT_X, PORTRAIT_Y
 	ld a, PORTRAIT_VTILE
 	ld d, 1
@@ -550,9 +548,7 @@ TrainerPortrait_SetMouth:
 
 TrainerPortrait_ClipOAM::
 ; Farcalled at the end of _UpdateSprites. NPCs and weather particles are OAM
-; and would draw on top of the portrait, so hide any that overlap it. The
-; frame's left column is left alone: an NPC standing just right of the player
-; reaches into it, and losing half of them would look worse.
+; and would draw on top of the portrait, so hide any that overlap it.
 	ldh a, [rSVBK]
 	and %110
 	ret nz
