@@ -553,6 +553,7 @@ UpdateWeatherSprites::
 	push af
 	push hl
 	farcall AnimateWeatherOnIdle
+	farcall TrainerPortrait_Tick
 	pop hl
 	pop af
 	ret

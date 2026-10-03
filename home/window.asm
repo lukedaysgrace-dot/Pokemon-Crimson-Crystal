@@ -14,6 +14,8 @@ RefreshScreen::
 	ret
 
 CloseText::
+	xor a
+	ld [wPortraitShown], a ; the close is about to wipe it; stop animating it
 ; Stop holding the particles above the textbox before the close begins rather
 ; than after it ends. .CloseText erases the box in its first few instructions
 ; but then spends a dozen-odd frames restoring VRAM, and it rebuilds the
@@ -53,6 +55,7 @@ CloseText::
 	farcall ReturnFromMapSetupScript
 	farcall LoadOverworldFont
 	farcall ReloadBank0SpriteFacings
+	farcall TrainerPortrait_Restore
 	ret
 
 OpenText::
