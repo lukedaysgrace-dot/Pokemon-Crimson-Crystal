@@ -1822,6 +1822,7 @@ _RebuildTimePalBuffers::
 	ldh [rSVBK], a
 	farcall ApplyWeatherTint
 	; The buffers are consistent again; let VBlank push them.
+	farcall TrainerPortrait_ReapplyPalette
 	ld a, 1
 	ldh [hCGBPalUpdate], a
 	ret

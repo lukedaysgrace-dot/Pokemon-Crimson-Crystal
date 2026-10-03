@@ -1,0 +1,257 @@
+AGATHA       SilverCaveOutside                  AGATHA: My my, / LORELEI, who do
+AGATHA       SilverCaveOutside                  AGATHA: You've / got spirit,
+ARCHER       RadioTower5F                       How could this be? / Our dreams have
+ARCHER       RadioTower5F                       Oh? You managed to / get this far?
+ARIANA       RadioTower5F                       <PLAYER>, isn't it? / A brat like you
+ARIANA       RadioTower5F                       Remember me from / the HIDEOUT in
+ARIANA       TeamRocketBaseB2F                  Hold it right / there!
+ARIANA       TeamRocketBaseB2F                  We can't have a / brat like you on
+ARIANA       TeamRocketBaseB2F                  What? You had an / accomplice?
+ARIANA       TeamRocketBaseB2F                  …This hideout is / done for…
+BILL         BillsFamilysHouse                  BILL: Hi, <PLAYER>! / Do us a favor and
+BILL         BillsFamilysHouse                  BILL: I knew you'd / come through!
+BILL         BillsFamilysHouse                  BILL: My pop, he / won't work. All he
+BILL         BillsFamilysHouse                  BILL: PROF.ELM / claims EEVEE may
+BILL         BillsFamilysHouse                  Oh… Now what to / do?
+BILL         BillsFamilysHouse                  Whoa, wait. You / can't carry any
+BILL         EcruteakPokecenter1F               Hi, I'm BILL. And / who are you?
+BILL         EcruteakPokecenter1F               I just finished / adjustments on my
+BLAINE       SeafoamGym                         BLAINE: I did lose / this time, but I'm
+BLAINE       SeafoamGym                         BLAINE: My fire / #MON will be
+BLAINE       SeafoamGym                         BLAINE: Waaah! / My GYM in CINNABAR
+BLUE         CinnabarIsland                     BLUE: I used my / original team.
+BLUE         CinnabarIsland                     BLUE: Took you / long enough.
+BLUE         CinnabarIsland                     Who are you? / Well, it's plain
+BLUE         ViridianGym                        BLUE: Listen, you. / You'd better not
+BLUE         ViridianGym                        BLUE: Yo! Finally / got here, huh?
+BLUE         ViridianGym                        BLUE: … / All right, I was
+BROCK        PewterGym                          BROCK: <PLAY_G>, / thanks. I enjoyed
+BROCK        PewterGym                          BROCK: The world / is huge. There are
+BROCK        PewterGym                          BROCK: Wow, it's / not often that we
+BRUNO        BrunosRoom                         Having lost, I / have no right to
+BRUNO        BrunosRoom                         I am BRUNO of the / ELITE FOUR.
+BUGSY        AzaleaGym                          Bug #MON are / deep. There are
+BUGSY        AzaleaGym                          Do you know the / benefits of HIVE-
+BUGSY        AzaleaGym                          I'm BUGSY! / I never lose when
+BUGSY        AzaleaGym                          TM49 contains / FURY CUTTER.
+BUGSY        AzaleaGym                          Wow, you're the / JOHTO CHAMPION
+CHUCK        CianwoodGym                        CHUCK: Urggh! / …
+CHUCK        CianwoodGym                        STORMBADGE makes / all #MON up to
+CHUCK        CianwoodGym                        That is DRAIN / PUNCH.
+CHUCK        CianwoodGym                        There! Scared now, / are you?
+CHUCK        CianwoodGym                        WAHAHAH! / JOHTO CHAMPION!
+CHUCK        CianwoodGym                        WAHAHAH! / So you've come
+CHUCK        CianwoodGym                        WAHAHAH! I enjoyed / battling you!
+CLAIR        BlackthornGym1F                    I am CLAIR. / The world's best
+CLAIR        BlackthornGym1F                    I won't admit / this.
+CLAIR        BlackthornGym1F                    That contains / DRAGON CLAW.
+CLAIR        BlackthornGym1F                    What is this? You / don't have room?
+CLAIR        BlackthornGym1F                    What's the matter? / Aren't you headed
+CLAIR        BlackthornGym1F                    What's the matter? / Is it too much to
+CLAIR        BlackthornGym1F                    You did it, huh? / You are now the
+CLAIR        BlackthornGym1F                    You've kept me / waiting!
+CLAIR        DragonShrine                       <……><……><……><……><……><……>
+CLAIR        DragonShrine                       Here, this is the / RISINGBADGE…
+CLAIR        DragonShrine                       I-I understand…
+CLAIR        DragonShrine                       RISINGBADGE will / enable your
+CLAIR        DragonShrine                       So how did it go? / I guess there's no
+CLAIR        DragonShrine                       That can't be!
+CLAIR        DragonShrine                       You're lying! / Even I haven't
+CLAIR        DragonsDenB1F                      CLAIR: I'm sorry / about this.
+CLAIR        DragonsDenB1F                      CLAIR: What's the / matter? Aren't you
+CLAIR        DragonsDenB1F                      Oh? You don't have / any room for this.
+CLAIR        DragonsDenB1F                      That contains / DRAGON PULSE.
+CLAIR        DragonsDenB1F                      Wait!
+ELM          ElmsLab                            <PLAY_G>, I'm / counting on you!
+ELM          ElmsLab                            <PLAY_G>? I thought / the EGG hatched.
+ELM          ElmsLab                            An ABILITY CAP / draws out a #-
+ELM          ElmsLab                            But… Is it a / #MON EGG?
+ELM          ElmsLab                            But… Please, I / need your help!
+ELM          ElmsLab                            ELM: <PLAY_G>! / There you are!
+ELM          ElmsLab                            ELM: <PLAY_G>! / There you are!
+ELM          ElmsLab                            ELM: <PLAY_G>, I'll / call you if any-
+ELM          ElmsLab                            ELM: <PLAY_G>, this / is terrible…
+ELM          ElmsLab                            ELM: <PLAY_G>, you / look great!
+ELM          ElmsLab                            ELM: <PLAY_G>? / Didn't you meet my
+ELM          ElmsLab                            ELM: Do you want / TOTODILE, the
+ELM          ElmsLab                            ELM: Don't give / up! I'll call if
+ELM          ElmsLab                            ELM: Hey, has that / EGG changed any?
+ELM          ElmsLab                            ELM: Hi, <PLAY_G>! / Thanks to you, my
+ELM          ElmsLab                            ELM: I think / that's a great
+ELM          ElmsLab                            ELM: So, you like / CHIKORITA, the
+ELM          ElmsLab                            ELM: Think it over / carefully.
+ELM          ElmsLab                            ELM: This?
+ELM          ElmsLab                            ELM: Wait! Where / are you going?
+ELM          ElmsLab                            ELM: What?!? / PROF.OAK gave you
+ELM          ElmsLab                            ELM: You'll take / CYNDAQUIL, the
+ELM          ElmsLab                            Hey, listen. / I have an acquain-
+ELM          ElmsLab                            I want you to / raise one of the
+ELM          ElmsLab                            If a wild #MON / appears, let your
+ELM          ElmsLab                            If your #MON is / hurt, you should
+ELM          ElmsLab                            MR.#MON goes / everywhere and
+ELM          ElmsLab                            MR.#MON lives a / little bit beyond
+ELM          ElmsLab                            Oh! And one more / thing, <PLAY_G>.
+ELM          ElmsLab                            Oh, hey! I got an / e-mail!
+ELM          ElmsLab                            Thanks, <PLAY_G>! / You're a great
+ELM          ElmsLab                            Thanks, <PLAY_G>! / You're helping
+ELM          ElmsLab                            That's an / EVERSTONE.
+ELM          ElmsLab                            The EGG hatched! / So, #MON are
+ELM          ElmsLab                            The MASTER BALL is / the best!
+ELM          ElmsLab                            The ship departs / from OLIVINE CITY.
+ELM          ElmsLab                            What? / That #MON!?!
+ELM          ElmsLab                            When I announce my / findings, I'm sure
+ELM          ElmsLab                            Which BULBASAUR / will you take?
+ELM          ElmsLab                            Which CHARMANDER / will you take?
+ELM          ElmsLab                            Which SQUIRTLE / will you take?
+ELM          ElmsLab                            …<PLAY_G>. The / road to the
+ERIKA        CeladonGym                         ERIKA: Hello… / Lovely weather,
+ERIKA        CeladonGym                         ERIKA: Losing / leaves a bitter
+ERIKA        CeladonGym                         ERIKA: That was a / delightful match.
+EUSINE       BurnedTower1F                      EUSINE: I heard / that ENTEI is in
+EUSINE       BurnedTower1F                      EUSINE: My name's / EUSINE.
+EUSINE       BurnedTowerB1F                     EUSINE: I dug a / hole here, too…
+EUSINE       CeladonPokecenter1F                <PLAYER>, have you / heard?
+EUSINE       CeladonPokecenter1F                EUSINE: Hi! / I'm back visiting
+EUSINE       CeladonPokecenter1F                Oh, by the way, / <PLAYER>.
+EUSINE       CianwoodCity                       EUSINE: Yo, / <PLAYER>.
+EUSINE       CianwoodCity                       You're amazing, / <PLAYER>!
+EUSINE       EcruteakCity                       EUSINE: Amazing! / ENTEI's power is
+EUSINE       EcruteakCity                       EUSINE: ENTEI is / waiting inside.
+EUSINE       EcruteakCity                       EUSINE: Wait, / <PLAYER>.
+EUSINE       TinTower1F                         EUSINE: Awesome! / Too awesome, even!
+EUSINE       TinTower1F                         I knew it. / I knew you'd get
+GREEN        Route20                            GREEN: There you / are!
+GREEN        Route20                            GREEN: You're / good. REALLY
+JANINE       FuchsiaGym                         Fufufufu… / I'm sorry to dis-
+JANINE       FuchsiaGym                         JANINE: I'm going / to really apply
+JANINE       FuchsiaGym                         JANINE: You're so / tough! I have a
+JASMINE      OlivineGym                         It's a METAL COAT. / STEELIX was just
+JASMINE      OlivineGym                         MINERALBADGE / raises #MON's
+JASMINE      OlivineGym                         Oh… And please, / take this as well.
+JASMINE      OlivineGym                         Um… I don't know / how to say this,
+JASMINE      OlivineGym                         …Congratulations, / JOHTO CHAMPION.
+JASMINE      OlivineGym                         …Thank you for / your help at the
+JASMINE      OlivineGym                         …You could use / that TM to teach
+JASMINE      OlivineLighthouse6F                JASMINE: … / AMPHY, how are you
+JASMINE      OlivineLighthouse6F                JASMINE: … This / #MON always
+JASMINE      OlivineLighthouse6F                JASMINE: …I see…
+JASMINE      OlivineLighthouse6F                JASMINE: …Oh, I'm / so relieved…
+JASMINE      OlivineLighthouse6F                JASMINE: …Um, / please don't be
+JASMINE      OlivineLighthouse6F                JASMINE: …Will / that medicine cure
+JASMINE      OlivineLighthouse6F                …AMPHY, hang on!
+JASMINE      OlivineLighthouse6F                …May I ask you to / get some medicine
+KAREN        KarensRoom                         I am KAREN of the / ELITE FOUR.
+KAREN        KarensRoom                         Strong #MON. / Weak #MON.
+KIMONO_GIRL  DanceTheatre                       A graceful dance / takes patience and
+KIMONO_GIRL  DanceTheatre                       Dancing with my / #MON always
+KIMONO_GIRL  DanceTheatre                       Do you feel the / rhythm in the air?
+KIMONO_GIRL  DanceTheatre                       Do you like my / dancing? I'm good
+KIMONO_GIRL  DanceTheatre                       I always dance / with my #MON.
+KIMONO_GIRL  DanceTheatre                       I can keep dancing / because there are
+KIMONO_GIRL  DanceTheatre                       I enjoyed that / bout. I would like
+KIMONO_GIRL  DanceTheatre                       I express myself / through dance and
+KIMONO_GIRL  DanceTheatre                       I practice dancing / every day with my
+KIMONO_GIRL  DanceTheatre                       I put a different / flower in my bar-
+KIMONO_GIRL  DanceTheatre                       I trained a lot, / so I thought I was
+KIMONO_GIRL  DanceTheatre                       Isn't my barrette / pretty?
+KIMONO_GIRL  DanceTheatre                       Oh, you're a cute / trainer. Would you
+KIMONO_GIRL  DanceTheatre                       Rhythm is impor- / tant for both
+KIMONO_GIRL  DanceTheatre                       Ribbons make every / dance look lovely.
+KIMONO_GIRL  DanceTheatre                       You have lovely / #MON. May I see
+KOGA         KogasRoom                          Fwahahahaha! / I am KOGA of the
+KOGA         KogasRoom                          I subjected you to / everything I could
+LANCE        HallOfFame                         LANCE: It's been a / long time since I
+LANCE        LakeOfRage                         Did you come here / because of the
+LANCE        LakeOfRage                         LANCE: Excellent! / It seems that the
+LANCE        LakeOfRage                         LANCE: Hm? Are you / going to help me?
+LANCE        LakeOfRage                         Oh… Well, if you / change your mind,
+LANCE        LakeOfRage                         This lake is full / of GYARADOS but
+LANCE        LancesRoom                         LANCE: I've been / waiting for you.
+LANCE        LancesRoom                         LANCE: This is / getting to be a
+LANCE        LancesRoom                         Magnificent! / You conquered our
+LANCE        LancesRoom                         Magnificent! / You conquered our
+LANCE        LancesRoom                         …Whew. / You have become
+LANCE        MahoganyMart1F                     LANCE: <PLAY_G>, we / should split up to
+LANCE        MahoganyMart1F                     LANCE: DRAGONITE, / HYPER BEAM.
+LANCE        MahoganyMart1F                     The stairs are / right here.
+LANCE        MahoganyMart1F                     What took you, / <PLAY_G>?
+LANCE        MahoganyTown                       Good, you made / it.
+LANCE        TeamRocketBaseB2F                  <PLAY_G>… / The journey to be-
+LANCE        TeamRocketBaseB2F                  Hey! Don't be so / selfish. Spread
+LANCE        TeamRocketBaseB2F                  It's this machine / that's causing all
+LANCE        TeamRocketBaseB2F                  LANCE: <PLAY_G>, / let's give it our
+LANCE        TeamRocketBaseB2F                  LANCE: Are you all / right?
+LANCE        TeamRocketBaseB2F                  LANCE: Leave this / side to me.
+LANCE        TeamRocketBaseB2F                  LANCE: That did / it. We defeated
+LANCE        TeamRocketBaseB2F                  LANCE: That odd / signal has finally
+LANCE        TeamRocketBaseB2F                  Sorry, <PLAY_G>. / I saw how well you
+LANCE        TeamRocketBaseB2F                  That's WHIRLPOOL. / Teach it to a
+LANCE        TeamRocketBaseB3F                  LANCE: It takes / two passwords to
+LORELEI      SilverCaveOutside                  LORELEI: I can't / say I'm not
+LORELEI      SilverCaveOutside                  LORELEI: Let's / begin.
+LORELEI      SilverCaveOutside                  LORELEI: You're / stronger than I
+MISTY        CeruleanGym                        MISTY: Are there / many strong train-
+MISTY        CeruleanGym                        MISTY: I was ex- / pecting you, you
+MISTY        Route25                            MISTY: Aww! Why / did you have to
+MORTY        BurnedTower1F                      MORTY: ECRUTEAK's / GYM LEADER has to
+MORTY        EcruteakGym                        Ah, the JOHTO / CHAMPION! Good
+MORTY        EcruteakGym                        By having FOG- / BADGE, #MON up
+MORTY        EcruteakGym                        Good of you to / have come.
+MORTY        EcruteakGym                        I see… / Your journey has
+MORTY        EcruteakGym                        It's SHADOW BALL. / It causes damage
+OAK          LancesRoom                         PROF.OAK: Ah, / <PLAY_G>!
+OAK          MrPokemonsHouse                    Go meet many kinds / of #MON and
+OAK          MrPokemonsHouse                    OAK: Aha! So / you're <PLAY_G>!
+OAK          OaksLab                            How is your #- / DEX coming?
+OAK          OaksLab                            If you're in the / area, I hope you
+OAK          OaksLab                            OAK: Ah, <PLAY_G>! / It's good of you
+OAK          OaksLab                            OAK: Ah, you're / collecting KANTO
+OAK          OaksLab                            OAK: Hmm? You're / not collecting
+OAK          OaksLab                            OAK: Wow! That's / excellent!
+PRYCE        MahoganyGym                        #MON have many / experiences in
+PRYCE        MahoganyGym                        Ah, JOHTO / CHAMPION!
+PRYCE        MahoganyGym                        That BADGE will / raise the SPECIAL
+PRYCE        MahoganyGym                        That TM contains / ICICLE CRASH.
+PRYCE        MahoganyGym                        When the ice and / snow melt, spring
+RED          PalletTown                         <……> / <……>
+RED          PalletTown                         <……> / <……>
+RED          SilverCaveRoom3                    <……> / <……>
+RED          SilverCaveRoom3                    <……> / <……>
+SABRINA      SaffronGym                         SABRINA: I knew / you were coming…
+SABRINA      SaffronGym                         SABRINA: MARSH- / BADGE draws out
+SABRINA      SaffronGym                         SABRINA: Your love / for your #MON
+SILVER       AzaleaTown                         I hate the weak. / #MON, trainers.
+SILVER       AzaleaTown                         …Tell me some- / thing.
+SILVER       BurnedTower1F                      <……> <……> <……> / …Oh, it's you.
+SILVER       BurnedTower1F                      Humph! / What are you doing
+SILVER       BurnedTower1F                      …Aw, whatever. / You would never be
+SILVER       CherrygroveCity                    <……> <……> <……> / My name's ???.
+SILVER       CherrygroveCity                    <……> <……> <……> / My name's ???.
+SILVER       CherrygroveCity                    <……> <……> <……> / You got a #MON
+SILVER       DragonsDenB1F                      … / What? <PLAYER>?
+SILVER       DragonsDenB1F                      … / Whew…
+SILVER       GoldenrodUndergroundSwitchRoomEntrances Hold it! / I saw you, so I
+SILVER       GoldenrodUndergroundSwitchRoomEntrances …I don't under- / stand…
+SILVER       IndigoPlateauPokecenter1F          Hold it. / You're going to
+SILVER       IndigoPlateauPokecenter1F          …Darn… I still / can't win…
+SILVER       MountMoon                          <……> <……> <……> / It's been a while,
+SILVER       MountMoon                          <……> <……> <……> / …You won, fair
+SILVER       NewBarkTown                        <……> / So this is the
+SILVER       NewBarkTown                        …What are you / staring at?
+SILVER       OlivineCity                        … / You again?
+SILVER       SproutTower3F                      … / …Humph!
+SILVER       TeamRocketBaseB3F                  … / Didn't I tell you
+SILVER       VictoryRoad                        Hold it. / …Are you going to
+SILVER       VictoryRoad                        …I haven't given up / on becoming the
+SURGE        VermilionGym                       SURGE: Hey, kid! / Still slugging and
+SURGE        VermilionGym                       SURGE: Hey, you / little tyke!
+SURGE        VermilionGym                       SURGE: THUNDER- / BADGE increases
+WHITNEY      GoldenrodGym                       Ah, that was a / good cry!
+WHITNEY      GoldenrodGym                       Hi! I'm WHITNEY! / Everyone was into
+WHITNEY      GoldenrodGym                       Hi! It's you! / Wow, JOHTO
+WHITNEY      GoldenrodGym                       It's ATTRACT! / It makes full use
+WHITNEY      GoldenrodGym                       PLAINBADGE lets / your #MON use
+WHITNEY      GoldenrodGym                       Waaaaah! / Waaaaah!
+WHITNEY      GoldenrodGym                       …Sniff… / What? What do you
+WILL         WillsRoom                          Even though I was / defeated, I won't
+WILL         WillsRoom                          Welcome to #MON / LEAGUE, <PLAYER>.

@@ -85,7 +85,6 @@ NurseSpriteGFX::               INCBIN "gfx/sprites/nurse.2bpp"
 LinkReceptionistSpriteGFX::    INCBIN "gfx/sprites/link_receptionist.2bpp"
 ClerkSpriteGFX::               INCBIN "gfx/sprites/clerk.2bpp"
 FisherSpriteGFX::              INCBIN "gfx/sprites/fisher.2bpp"
-FishingGuruSpriteGFX::         INCBIN "gfx/sprites/fishing_guru.2bpp"
 ScientistSpriteGFX::           INCBIN "gfx/sprites/scientist.2bpp"
 KimonoGirlSpriteGFX::          INCBIN "gfx/sprites/kimono_girl.2bpp"
 SageSpriteGFX::                INCBIN "gfx/sprites/sage.2bpp"
@@ -205,3 +204,9 @@ SECTION "Flying Pikachu Sprite", ROMX
 FlyingPikachuSpriteGFX::       INCBIN "gfx/sprites/pikachu_fly.2bpp"
 FlyingPikachuSpriteGFXEnd::
 assert FlyingPikachuSpriteGFXEnd - FlyingPikachuSpriteGFX == 8 * 16
+
+; The complete Crystal walking sheet does not fit in the full Sprites 2 bank.
+SECTION "Fishing Guru Sprite", ROMX
+FishingGuruSpriteGFX::         INCBIN "gfx/sprites/fishing_guru.2bpp"
+FishingGuruSpriteGFXEnd::
+assert FishingGuruSpriteGFXEnd - FishingGuruSpriteGFX == 24 * 16
