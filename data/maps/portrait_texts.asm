@@ -40,6 +40,45 @@ PortraitTexts:
 	db 0
 	dba TwinsAmyandmay2SeenText
 	db 0
+; AzaleaTown
+	dba AzaleaGymSignText
+	db 0
+	dba AzaleaTownGrampsTextAfter
+	db 0
+	dba AzaleaTownGrampsTextBefore
+	db 0
+	dba AzaleaTownIlexForestSignText
+	db 0
+	dba AzaleaTownKurtText1
+	db 0
+	dba AzaleaTownKurtText2
+	db 0
+	dba AzaleaTownKurtText3
+	db 0
+	dba AzaleaTownRivalAfterText
+	db $80 | 10 ; AZALEATOWN_SILVER
+	dba AzaleaTownRivalBeforeText
+	db $80 | 10 ; AZALEATOWN_SILVER
+	dba AzaleaTownRocket1Text
+	db 0
+	dba AzaleaTownRocket2Text
+	db 0
+	dba AzaleaTownSignText
+	db 0
+	dba AzaleaTownSlowpokeText1
+	db 0
+	dba AzaleaTownSlowpokeText2
+	db 0
+	dba AzaleaTownTeacherText
+	db 0
+	dba AzaleaTownYoungsterText
+	db 0
+	dba CharcoalKilnSignText
+	db 0
+	dba KurtsHouseSignText
+	db 0
+	dba SlowpokeWellSignText
+	db 0
 ; BillsFamilysHouse
 	dba BillEeveeMayEvolveText
 	db PORTRAIT_BILL
@@ -116,6 +155,10 @@ PortraitTexts:
 	db PORTRAIT_EUSINE
 	dba BurnedTower1FMortyText
 	db PORTRAIT_MORTY
+	dba BurnedTowerSilver_AfterText1
+	db PORTRAIT_SILVER
+	dba BurnedTowerSilver_AfterText2
+	db PORTRAIT_SILVER
 	dba BurnedTowerSilver_BeforeText
 	db PORTRAIT_SILVER
 	dba HexManiacWinnieAfterBattleText
@@ -176,6 +219,10 @@ PortraitTexts:
 	db 0
 	dba CeruleanGymGuyWinText
 	db 0
+	dba CeruleanGymNote1Text
+	db 0
+	dba CeruleanGymNote2Text
+	db 0
 	dba MistyFightDoneText
 	db PORTRAIT_MISTY
 	dba MistyIntroText
@@ -195,6 +242,8 @@ PortraitTexts:
 	dba SwimmermParkerSeenText
 	db 0
 ; CherrygroveCity
+	dba CherrygroveCitySignText
+	db 0
 	dba CherrygroveRivalText_Seen
 	db PORTRAIT_SILVER
 	dba CherrygroveRivalText_YouLost
@@ -229,6 +278,8 @@ PortraitTexts:
 	db 0
 	dba GuideGentTourText1
 	db 0
+	dba GuideGentsHouseSignText
+	db 0
 	dba MysticWaterGuyTextAfter
 	db 0
 	dba MysticWaterGuyTextBefore
@@ -252,11 +303,21 @@ PortraitTexts:
 	db 0
 	dba CianwoodCityPokefanMText
 	db 0
+	dba CianwoodCitySignText
+	db 0
 	dba CianwoodCityWeatherGrampsAfterText
 	db 0
 	dba CianwoodCityWeatherGrampsIntroText
 	db 0
 	dba CianwoodCityYoungsterText
+	db 0
+	dba CianwoodGymSignText
+	db 0
+	dba CianwoodPharmacySignText
+	db 0
+	dba CianwoodPhotoStudioSignText
+	db 0
+	dba CianwoodPokeSeerSignText
 	db 0
 	dba EusineAfterText
 	db PORTRAIT_EUSINE
@@ -302,8 +363,14 @@ PortraitTexts:
 	db PORTRAIT_BLUE
 	dba CinnabarIslandBlueText
 	db PORTRAIT_BLUE
+	dba CinnabarIslandGymSignText
+	db 0
+	dba CinnabarIslandSignText
+	db 0
 ; DanceTheatre
 	dba DanceTheatreCooltrainerMText
+	db 0
+	dba DanceTheatreFancyPanelText
 	db 0
 	dba DanceTheatreGrannyText
 	db 0
@@ -439,6 +506,8 @@ PortraitTexts:
 	db 0
 	dba CooltrainermDarinSeenText
 	db 0
+	dba DragonShrineSignpostText
+	db 0
 	dba NotifyReceiveDragonPulse
 	db 0
 	dba SilverText_Training1
@@ -458,6 +527,8 @@ PortraitTexts:
 	dba TwinsLeaandpia2SeenText
 	db 0
 ; EcruteakCity
+	dba BurnedTowerSignText
+	db 0
 	dba EcruteakCityEusineAfterText
 	db PORTRAIT_EUSINE
 	dba EcruteakCityEusineBeforeText
@@ -480,7 +551,15 @@ PortraitTexts:
 	db 0
 	dba EcruteakCityLass2Text_ReleasedBeasts
 	db 0
+	dba EcruteakCitySignText
+	db 0
 	dba EcruteakCityYoungsterText
+	db 0
+	dba EcruteakDanceTheaterSignText
+	db 0
+	dba EcruteakGymSignText
+	db 0
+	dba TinTowerSignText
 	db 0
 ; EcruteakGym
 	dba EcruteakGymClosedText
@@ -523,6 +602,8 @@ PortraitTexts:
 	dba EcruteakPokecenter1FGymGuyText
 	db 0
 	dba EcruteakPokecenter1FPokefanMText
+	db 0
+	dba EcruteakPokecenter1FPokefanMTextMobile
 	db 0
 	dba EcruteakPokecenter1F_BillText1
 	db PORTRAIT_BILL
@@ -615,9 +696,29 @@ PortraitTexts:
 	db PORTRAIT_ELM
 	dba ElmWaitingEggHatchText
 	db PORTRAIT_ELM
+	dba ElmsLabHealingMachineText1
+	db 0
+	dba ElmsLabHealingMachineText2
+	db 0
 	dba ElmsLabOfficerText1
 	db 0
 	dba ElmsLabOfficerText2
+	db 0
+	dba ElmsLabPCText
+	db 0
+	dba ElmsLabTrashcanText
+	db 0
+	dba ElmsLabTravelTip1Text
+	db 0
+	dba ElmsLabTravelTip2Text
+	db 0
+	dba ElmsLabTravelTip3Text
+	db 0
+	dba ElmsLabTravelTip4Text
+	db 0
+	dba ElmsLabWindowText1
+	db 0
+	dba ElmsLabWindowText2
 	db 0
 	dba GotElmsNumberText
 	db 0
@@ -639,9 +740,9 @@ PortraitTexts:
 	db PORTRAIT_ELM
 ; FuchsiaGym
 	dba CamperBarryAfterText
-	db $80 | 5 ; FUCHSIAGYM_FUCHSIA_GYM_4
+	db 0
 	dba CamperBarryBeforeText
-	db $80 | 5 ; FUCHSIAGYM_FUCHSIA_GYM_4
+	db 0
 	dba FuchsiaGymGuyText
 	db 0
 	dba FuchsiaGymGuyWinText
@@ -653,17 +754,17 @@ PortraitTexts:
 	dba JanineText_ToxicSpeech
 	db PORTRAIT_JANINE
 	dba LassAliceAfterText
-	db $80 | 2 ; FUCHSIAGYM_FUCHSIA_GYM_1
+	db 0
 	dba LassAliceBeforeText
-	db $80 | 2 ; FUCHSIAGYM_FUCHSIA_GYM_1
+	db 0
 	dba LassLindaAfterText
-	db $80 | 3 ; FUCHSIAGYM_FUCHSIA_GYM_2
+	db 0
 	dba LassLindaBeforeText
-	db $80 | 3 ; FUCHSIAGYM_FUCHSIA_GYM_2
+	db 0
 	dba PicnickerCindyAfterText
-	db $80 | 4 ; FUCHSIAGYM_FUCHSIA_GYM_3
+	db 0
 	dba PicnickerCindyBeforeText
-	db $80 | 4 ; FUCHSIAGYM_FUCHSIA_GYM_3
+	db 0
 	dba Text_ReceivedSoulBadge
 	db 0
 ; FuchsiaPokecenter1F
@@ -672,9 +773,9 @@ PortraitTexts:
 	dba FuchsiaPokecenter1FCooltrainerMText
 	db 0
 	dba FuchsiaPokecenter1FJanineImpersonatorText1
-	db $80 | 4 ; FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
+	db 0
 	dba FuchsiaPokecenter1FJanineImpersonatorText2
-	db $80 | 4 ; FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
+	db 0
 ; GoldenrodGym
 	dba BeautySamanthaAfterBattleText
 	db 0
@@ -743,6 +844,18 @@ PortraitTexts:
 	db 0
 	dba GruntM25SeenText
 	db 0
+	dba SwitchRoomText_Emergency
+	db 0
+	dba SwitchRoomText_OffTurnOn
+	db 0
+	dba SwitchRoomText_OnTurnOff
+	db 0
+	dba SwitchRoomText_Switch1
+	db 0
+	dba SwitchRoomText_Switch2
+	db 0
+	dba SwitchRoomText_Switch3
+	db 0
 	dba UndergroundSilverAfterText
 	db PORTRAIT_SILVER
 	dba UndergroundSilverBeforeText
@@ -792,6 +905,8 @@ PortraitTexts:
 	db 0
 	dba FisherRaymondSeenText
 	db 0
+	dba FishingGurusHouseSignText
+	db 0
 	dba LakeOfRageCooltrainerFText
 	db 0
 	dba LakeOfRageGrampsText
@@ -799,6 +914,8 @@ PortraitTexts:
 	dba LakeOfRageGrampsText_ClearedRocketHideout
 	db 0
 	dba LakeOfRageRaikouText
+	db 0
+	dba LakeOfRageSignText
 	db 0
 	dba LakeOfRageSuperNerdText
 	db 0
@@ -898,6 +1015,8 @@ PortraitTexts:
 	dba UnknownText_0x6c5ba
 	db PORTRAIT_LANCE
 ; MahoganyTown
+	dba MahoganyGymSignText
+	db 0
 	dba MahoganyTownDragonText
 	db 0
 	dba MahoganyTownFisherText
@@ -909,6 +1028,10 @@ PortraitTexts:
 	dba MahoganyTownLanceText
 	db PORTRAIT_LANCE
 	dba MahoganyTownLassText
+	db 0
+	dba MahoganyTownRagecandybarSignText
+	db 0
+	dba MahoganyTownSignText
 	db 0
 	dba RageCandyBarMerchantNoRoomText
 	db 0
@@ -940,25 +1063,41 @@ PortraitTexts:
 	db 0
 	dba MrPokemonText_AlwaysNewDiscoveries
 	db 0
+	dba MrPokemonText_Disappointed
+	db 0
 	dba MrPokemonText_GimmeTheScale
 	db 0
 	dba MrPokemonText_ImDependingOnYou
+	db 0
+	dba MrPokemonsHouse_BrokenComputerText
+	db 0
+	dba MrPokemonsHouse_ForeignMagazinesText
 	db 0
 	dba MrPokemonsHouse_GetDexText
 	db 0
 	dba MrPokemonsHouse_GotEggText
 	db 0
 	dba MrPokemonsHouse_MrPokemonHealText
-	db PORTRAIT_OAK
+	db 0
 	dba MrPokemonsHouse_OakText1
 	db PORTRAIT_OAK
 	dba MrPokemonsHouse_OakText2
 	db PORTRAIT_OAK
+	dba MrPokemonsHouse_StrangeCoinsText
+	db 0
 ; NewBarkTown
+	dba NewBarkTownElmsHouseSignText
+	db 0
+	dba NewBarkTownElmsLabSignText
+	db 0
+	dba NewBarkTownPlayersHouseSignText
+	db 0
 	dba NewBarkTownRivalText1
 	db PORTRAIT_SILVER
 	dba NewBarkTownRivalText2
 	db PORTRAIT_SILVER
+	dba NewBarkTownSignText
+	db 0
 	dba Text_CallMomOnGear
 	db 0
 	dba Text_ElmDiscoveredNewMon
@@ -994,16 +1133,34 @@ PortraitTexts:
 	db 0
 	dba OaksAssistant3Text
 	db 0
+	dba OaksLabPCText
+	db 0
+	dba OaksLabPoster1Text
+	db 0
+	dba OaksLabPoster2Text
+	db 0
+	dba OaksLabTrashcanText
+	db 0
 ; OlivineCity
+	dba OlivineCityBattleTowerSignText
+	db 0
+	dba OlivineCityPortSignText
+	db 0
 	dba OlivineCityRivalText
 	db $80 | 4 ; OLIVINECITY_OLIVINE_RIVAL
 	dba OlivineCitySailor1Text
 	db 0
 	dba OlivineCitySailor2Text
 	db 0
+	dba OlivineCitySignText
+	db 0
 	dba OlivineCityStandingYoungsterPokedexText
 	db 0
 	dba OlivineCityStandingYoungsterPokegearText
+	db 0
+	dba OlivineGymSignText
+	db 0
+	dba OlivineLighthouseSignText
 	db 0
 ; OlivineGym
 	dba JasmineRematchChallengeText
@@ -1062,13 +1219,21 @@ PortraitTexts:
 	dba PlayerHandedSecretpotionText
 	db 0
 ; PalletTown
+	dba BluesHouseSignText
+	db 0
+	dba OaksLabSignText
+	db 0
 	dba PalletTownFisherText
 	db 0
 	dba PalletTownRed2AfterText
 	db PORTRAIT_RED
 	dba PalletTownRed2BeforeText
 	db PORTRAIT_RED
+	dba PalletTownSignText
+	db 0
 	dba PalletTownTeacherText
+	db 0
+	dba RedsHouseSignText
 	db 0
 ; PewterGym
 	dba BrockBoulderBadgeText
@@ -1106,11 +1271,17 @@ PortraitTexts:
 	db 0
 	dba RadioTower5FDirectorThankYouText
 	db 0
+	dba RadioTower5FDirectorsOfficeSignText
+	db 0
 	dba RadioTower5FRocketBossAfterText
 	db PORTRAIT_ARCHER
 	dba RadioTower5FRocketBossBeforeText
 	db PORTRAIT_ARCHER
+	dba RadioTower5FStudio1SignText
+	db 0
 ; Route20
+	dba CinnabarGymSignText
+	db 0
 	dba Route20GreenAfterText
 	db PORTRAIT_GREEN
 	dba Route20GreenBeforeText
@@ -1128,6 +1299,8 @@ PortraitTexts:
 	dba SwimmermCameronSeenText
 	db 0
 ; Route25
+	dba BillsHouseSignText
+	db 0
 	dba CooltrainermKevinAfterBattleText
 	db 0
 	dba CooltrainermKevinRewardText
@@ -1179,6 +1352,10 @@ PortraitTexts:
 	db 0
 	dba Route40PokefanMText
 	db 0
+	dba Route40PokefanMText_Mobile
+	db 0
+	dba Route40SignText
+	db 0
 	dba Route40StandingYoungsterText
 	db 0
 	dba SwimmerfElaineAfterBattleText
@@ -1190,17 +1367,19 @@ PortraitTexts:
 	dba SwimmerfPaulaSeenText
 	db 0
 	dba SwimmermRandallAfterBattleText
-	db $80 | 2 ; ROUTE40_OLIVINE_RIVAL2
+	db 0
 	dba SwimmermRandallSeenText
-	db $80 | 2 ; ROUTE40_OLIVINE_RIVAL2
+	db 0
 	dba SwimmermSimonAfterBattleText
-	db $80 | 1 ; ROUTE40_OLIVINE_RIVAL1
+	db 0
 	dba SwimmermSimonSeenText
-	db $80 | 1 ; ROUTE40_OLIVINE_RIVAL1
+	db 0
 ; Route41
 	dba Route41FinizenCorneredText
 	db 0
 	dba Route41FinizenFinText
+	db 0
+	dba Route41ShiverIsleSignText
 	db 0
 	dba SwimmerfDeniseAfterBattleText
 	db 0
@@ -1223,25 +1402,25 @@ PortraitTexts:
 	dba SwimmerfWendySeenText
 	db 0
 	dba SwimmermBerkeAfterBattleText
-	db $80 | 3 ; ROUTE41_OLIVINE_RIVAL3
+	db 0
 	dba SwimmermBerkeSeenText
-	db $80 | 3 ; ROUTE41_OLIVINE_RIVAL3
+	db 0
 	dba SwimmermCharlieAfterBattleText
-	db $80 | 1 ; ROUTE41_OLIVINE_RIVAL1
+	db 0
 	dba SwimmermCharlieSeenText
-	db $80 | 1 ; ROUTE41_OLIVINE_RIVAL1
+	db 0
 	dba SwimmermGeorgeAfterBattleText
-	db $80 | 2 ; ROUTE41_OLIVINE_RIVAL2
+	db 0
 	dba SwimmermGeorgeSeenText
-	db $80 | 2 ; ROUTE41_OLIVINE_RIVAL2
+	db 0
 	dba SwimmermKirkAfterBattleText
-	db $80 | 4 ; ROUTE41_OLIVINE_RIVAL4
+	db 0
 	dba SwimmermKirkSeenText
-	db $80 | 4 ; ROUTE41_OLIVINE_RIVAL4
+	db 0
 	dba SwimmermMathewAfterBattleText
-	db $80 | 5 ; ROUTE41_OLIVINE_RIVAL5
+	db 0
 	dba SwimmermMathewSeenText
-	db $80 | 5 ; ROUTE41_OLIVINE_RIVAL5
+	db 0
 ; SaffronGym
 	dba MediumDorisAfterBattleText
 	db 0
@@ -1301,6 +1480,8 @@ PortraitTexts:
 	dba SeafoamGymGuyWinText2
 	db 0
 ; SilverCaveOutside
+	dba MtSilverSignText
+	db 0
 	dba SilverCaveOutsideAgathaAfterText
 	db PORTRAIT_AGATHA
 	dba SilverCaveOutsideAgathaBeforeText
@@ -1337,6 +1518,10 @@ PortraitTexts:
 	db 0
 	dba SageTroySeenText
 	db 0
+	dba SproutTower3FPaintingText
+	db 0
+	dba SproutTower3FStatueText
+	db 0
 	dba SproutTowerElderLecturesRivalText
 	db 0
 	dba SproutTowerRivalOnlyCareAboutStrongText
@@ -1361,9 +1546,9 @@ PortraitTexts:
 	dba LanceHealsText2
 	db PORTRAIT_LANCE
 	dba UnknownText_0x6d2ad
-	db 0
+	db PORTRAIT_ARIANA
 	dba UnknownText_0x6d2c3
-	db 0
+	db PORTRAIT_ARIANA
 	dba UnknownText_0x6d38c
 	db PORTRAIT_LANCE
 	dba UnknownText_0x6d3bd
@@ -1384,6 +1569,14 @@ PortraitTexts:
 	db PORTRAIT_LANCE
 	dba UnknownText_0x6d994
 	db PORTRAIT_LANCE
+	dba UnknownText_0x6dd39
+	db 0
+	dba UnknownText_0x6dd6b
+	db 0
+	dba UnknownText_0x6dda7
+	db 0
+	dba UnknownText_0x6de03
+	db 0
 ; TeamRocketBaseB3F
 	dba ExecutiveM4AfterText
 	db 0
@@ -1410,6 +1603,10 @@ PortraitTexts:
 	dba ScientistRossAfterBattleText
 	db 0
 	dba ScientistRossSeenText
+	db 0
+	dba TeamRocketBaseB3FLockedDoorNeedsPasswordText
+	db 0
+	dba TeamRocketBaseB3FLockedDoorOpenSesameText
 	db 0
 	dba TeamRocketBaseB3FRocketText
 	db 0
@@ -1462,6 +1659,8 @@ PortraitTexts:
 	dba VermilionGymGuyText
 	db 0
 	dba VermilionGymGuyWinText
+	db 0
+	dba VermilionGymTrashCanText
 	db 0
 ; VictoryRoad
 	dba BattleGirlKiraAfterBattleText
@@ -1522,4 +1721,43 @@ PortraitTexts:
 	db PORTRAIT_WILL
 	dba WillScript_WillDefeatText
 	db PORTRAIT_WILL
+; Shared dialogue printed by specials
+	dba OakRating01
+	db PORTRAIT_OAK
+	dba OakRating02
+	db PORTRAIT_OAK
+	dba OakRating03
+	db PORTRAIT_OAK
+	dba OakRating04
+	db PORTRAIT_OAK
+	dba OakRating05
+	db PORTRAIT_OAK
+	dba OakRating06
+	db PORTRAIT_OAK
+	dba OakRating07
+	db PORTRAIT_OAK
+	dba OakRating08
+	db PORTRAIT_OAK
+	dba OakRating09
+	db PORTRAIT_OAK
+	dba OakRating10
+	db PORTRAIT_OAK
+	dba OakRating11
+	db PORTRAIT_OAK
+	dba OakRating12
+	db PORTRAIT_OAK
+	dba OakRating13
+	db PORTRAIT_OAK
+	dba OakRating14
+	db PORTRAIT_OAK
+	dba OakRating15
+	db PORTRAIT_OAK
+	dba OakRating16
+	db PORTRAIT_OAK
+	dba OakRating17
+	db PORTRAIT_OAK
+	dba OakRating18
+	db PORTRAIT_OAK
+	dba OakRating19
+	db PORTRAIT_OAK
 	db -1 ; end

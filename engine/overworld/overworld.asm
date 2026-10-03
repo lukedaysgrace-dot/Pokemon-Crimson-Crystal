@@ -379,9 +379,30 @@ GetMonSprite:
 	and a
 	ret
 
+ResolveVariableSprite::
+; Return the underlying sprite id without disturbing graphics/object pointers.
+; Match GetMonSprite's player fallback for an uninitialized variable.
+	cp SPRITE_VARS
+	ret c
+	push hl
+	push de
+	sub SPRITE_VARS
+	ld e, a
+	ld d, 0
+	ld hl, wVariableSprites
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	and a
+	jr nz, ResolveVariableSprite
+	ld a, SPRITE_GOLD
+	ret
+
 _DoesSpriteHaveFacings::
 ; Checks to see whether we can apply a facing to a sprite.
-; Returns carry unless the sprite is a Pokemon or a Still Sprite.
+; Carry skips the second sprite table for still/big sprites.
+	call ResolveVariableSprite
 	cp SPRITE_POKEMON
 	jr nc, .only_down
 
@@ -406,6 +427,28 @@ _DoesSpriteHaveFacings::
 
 .only_down
 	and a
+	ret
+
+GetOverworldSpriteType::
+; Resolve variable NPCs and return their declared type without touching the
+; caller's object/graphics pointers. SpriteMons use two-frame icon animation.
+	call ResolveVariableSprite
+	cp SPRITE_POKEMON
+	jr c, .npc
+	ld a, MON_ICON_SPRITE
+	ret
+.npc
+	push hl
+	push bc
+	ld hl, OverworldSprites + SPRITEDATA_TYPE
+	dec a
+	ld c, a
+	ld b, 0
+	ld a, NUM_SPRITEDATA_FIELDS
+	call AddNTimes
+	ld a, [hl]
+	pop bc
+	pop hl
 	ret
 
 _GetSpritePalette::
@@ -831,8 +874,16 @@ GetUsedSprite:
 
 .skip
 	pop bc
+	ldh a, [hUsedSpriteIndex]
+	call GetOverworldSpriteType
+	cp STANDING_SPRITE
 	ld l, c
 	ld h, $0
+	jr nz, .source_offset
+; Standing-only sheets have three facings, not a second set of walking
+; frames. Reuse their own facings rather than reading the following sprite.
+	ld l, 0
+.source_offset
 rept 4
 	add hl, hl
 endr

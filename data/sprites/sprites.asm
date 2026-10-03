@@ -36,7 +36,7 @@ OverworldSprites:
 	overworld_sprite BrunoSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite MistySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite LanceSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite SurgeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite SurgeSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
 	overworld_sprite ErikaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite KogaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite SabrinaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
@@ -75,7 +75,7 @@ OverworldSprites:
 	overworld_sprite OfficerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite CalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite AmpySickSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_BROWN
-	overworld_sprite CaptainSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite CaptainSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite BigLaprasSpriteGFX, 12, BIG_SPRITE, PAL_OW_BLUE
 	overworld_sprite GymGuySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite SailorSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
@@ -93,7 +93,7 @@ OverworldSprites:
 	overworld_sprite PokedexSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite FossilSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite VirtualBoySpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
-	overworld_sprite OldLinkReceptionistSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
+	overworld_sprite OldLinkReceptionistSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite RockSpriteGFX, 4, STILL_SPRITE, PAL_OW_ROCK
 	overworld_sprite BoulderSpriteGFX, 4, STILL_SPRITE, PAL_OW_ROCK
 	overworld_sprite SnesSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
@@ -139,7 +139,7 @@ OverworldSprites:
 	overworld_sprite SlowbroNPCSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED ; SPRITE_SLOWBRO_NPC
 	overworld_sprite AgathaSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN ; SPRITE_AGATHA
 	overworld_sprite LoreleiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_LORELEI
-	overworld_sprite BlueCloakSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BLUE_CLOAK
+	overworld_sprite BlueCloakSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE ; SPRITE_BLUE_CLOAK
 	overworld_sprite GreenSpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_GREEN
 	overworld_sprite BattleGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED ; SPRITE_BATTLE_GIRL
 	overworld_sprite TamerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_TAMER
