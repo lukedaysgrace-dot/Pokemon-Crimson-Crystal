@@ -302,6 +302,14 @@ BanefulBunkerPunish_Core:
 
 BattleDireClaw_Core:
 ; 50% chance (the move's effect chance) of poison, paralysis or sleep.
+	; Octazooka's DEFENSE + SPCL.DEF drop shares this command
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_DEF_SPDEF_DOWN_HIT
+	jr nz, .dire_claw
+	farcall BattleDefSpDefDownHit_Core
+	ret
+.dire_claw
 	callfar BattleCommand_EffectChance
 	ld a, [wEffectFailed]
 	and a
@@ -1969,8 +1977,26 @@ FlushStatMessages_Core::
 	ld hl, DeferredDownListText
 	call PrintStatList
 .reaction
-	; Defiant / Competitive react once to the whole batch of drops
+	; Defiant / Competitive react to each stat actually lowered, even
+	; when their messages are combined. A later capped/blocked stat must
+	; not suppress the reaction to a successful earlier drop.
+	ld a, [wDeferredDowns1]
+	ld b, a
+	ld a, [wDeferredDowns2]
+	or b
+	ld c, a
+	xor a
+	ld [wFailedMessage], a
+.reaction_loop
+	srl c
+	jr nc, .next_reaction
+	push bc
 	farcall RunStatDropReaction
+	pop bc
+.next_reaction
+	ld a, c
+	and a
+	jr nz, .reaction_loop
 	ret
 
 PrintStatList:

@@ -6004,6 +6004,7 @@ SheerForceEffects:
 	db EFFECT_SPEED_DOWN_HIT
 	db EFFECT_SP_ATK_DOWN_HIT
 	db EFFECT_SP_DEF_DOWN_HIT
+	db EFFECT_DEF_SPDEF_DOWN_HIT
 	db EFFECT_ACCURACY_DOWN_HIT
 	db EFFECT_EVASION_DOWN_HIT
 	db EFFECT_DEFENSE_UP_HIT
@@ -6667,6 +6668,27 @@ BattleCommand_EffectChance_Core::
 	ld a, 1
 	ld [wEffectFailed], a
 	and a
+	ret
+
+BattleDefSpDefDownHit_Core::
+; OCTAZOOKA: a single effect-chance roll lowers both the target's DEFENSE
+; and SPCL.DEF by one stage, with one combined "fell!" message. resetmiss
+; between the two keeps a DEFENSE already at -6 from blocking the SPCL.DEF
+; drop (the move is known to have hit and the roll to have passed).
+	callfar BattleCommand_EffectChance
+	ld a, [wEffectFailed]
+	and a
+	ret nz
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	callfar BattleCommand_DeferStatMessages
+	callfar BattleCommand_DefenseDown
+	callfar BattleCommand_StatDownMessage
+	callfar BattleCommand_ResetMiss
+	callfar BattleCommand_SpecialDefenseDown
+	callfar BattleCommand_StatDownMessage
+	callfar BattleCommand_FlushStatMessages
 	ret
 
 BattleOHKO_Core::

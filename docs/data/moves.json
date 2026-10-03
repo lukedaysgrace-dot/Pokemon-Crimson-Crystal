@@ -2271,13 +2271,13 @@
     "const": "OCTAZOOKA",
     "name": "Octazooka",
     "rom_name": "OCTAZOOKA",
-    "description": "An attack that may reduce accuracy.",
-    "power": 65,
+    "description": "May lower Defense and Sp. Def.",
+    "power": 90,
     "type": "Water",
     "category": "Special",
-    "accuracy": 85,
-    "pp": 10,
-    "chance": 50
+    "accuracy": 100,
+    "pp": 15,
+    "chance": 20
   },
   {
     "const": "SPIKES",
