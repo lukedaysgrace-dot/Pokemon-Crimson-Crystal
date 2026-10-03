@@ -448,7 +448,7 @@ BlinkCursor::
 	dec a
 	ldh [hObjectStructIndexBuffer], a
 	ret nz
-	ld a, "─"
+	ld a, "━" ; the cursor sits in the textbox's bottom edge
 	ld [hl], a
 	ld a, -1
 	ldh [hMapObjectIndexBuffer], a
