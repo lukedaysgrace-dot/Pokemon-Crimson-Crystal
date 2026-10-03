@@ -1,1 +1,0 @@
-SECTION "t", ROM0

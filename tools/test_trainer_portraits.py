@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Audit overworld portrait speaker coverage without an emulator.
 
-Run after changing maps, sprites or the speaker generator. Actual drawing,
-animation and shared-message handoffs are covered by the emulator capture
-manifest under _ai_artifacts/videos/portraits-2026-10-03.
+Run after changing maps, sprites or the speaker generator. Runtime portrait
+colors and sprite facings are checked by test_portrait_weather_sprites.py.
 """
 import glob
 import re

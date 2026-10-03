@@ -75,7 +75,7 @@ try:
   party(c)
   check(menu('EggMoveTutor_GetTeachableMoves')==eggs[c],c+' family tutor')
 
- receipt=json.loads((ROOT/'_ai_artifacts/reports/learnset_variety_implementation_2026-10-02.json').read_text())
+ receipt=json.loads((ROOT/'tools/testdata/learnset_variety_implementation.json').read_text())
  for c,row in receipt['tm_changes'].items():
   sid=party(c)
   for move in set(row['after'])-set(row['before']):

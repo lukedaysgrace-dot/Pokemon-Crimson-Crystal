@@ -1,6 +1,5 @@
-# Regression cases for the 2026-08-28 code audit
-# (_ai_artifacts/reports/CODE_AUDIT_2026-08-28.md). Numbers match the
-# report's findings.
+# Regression cases for the 2026-08-28 code audit.
+# Numbers match the original report's findings.
 
 # ---- #1 Spite scans past the move slots after Metronome ---------------------
 

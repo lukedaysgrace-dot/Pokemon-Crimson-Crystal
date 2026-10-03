@@ -28,9 +28,16 @@ Thumbs.db
 
 # Temporary build tools
 .tmpbuild/
+.tmpplaytest/
 
 # Generated audit reports, recordings, and download packages
 _ai_artifacts/
+_to_delete/
+Claude outputs/
+_cry_backup/
+_suicune_close_backup/
+lbc_extract/
+*.sav.*.bak
 
 # Documentation preview/cache
 docs/data/build-report.json

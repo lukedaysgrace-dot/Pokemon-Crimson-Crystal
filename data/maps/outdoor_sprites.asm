@@ -106,8 +106,8 @@ PewterGroupSprites:
 	db SPRITE_FRUIT_TREE
 
 CinnabarGroupSprites:
-; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
-; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md). This group used to
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm).
+; This group used to
 ; pack VRAM bank 0 to
 ; exactly 128/128 - byte for byte the state CeruleanGroupSprites was in before
 ; it started rendering NPCs as the player.
@@ -393,8 +393,8 @@ CherrygroveGroupSprites:
 	db SPRITE_FRUIT_TREE
 
 SilverGroupSprites:
-; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
-; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md). Like
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm).
+; Like
 ; CinnabarGroupSprites, this group used
 ; to pack VRAM bank 0 to exactly 128/128 - the pre-fix Cerulean state.
 ; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
@@ -529,8 +529,7 @@ GoldenrodGroupSprites:
 	db SPRITE_SLOWPOKE
 
 CianwoodGroupSprites:
-; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm
-; and _ai_artifacts/reports/OUTDOOR_SPRITE_VRAM_AUDIT.md).
+; VRAM budget notes (see ArrangeUsedSprites in engine/overworld/overworld.asm).
 ; Only four maps in this group are outdoor (ROUTE/TOWN) and so use this list:
 ; Route 40, Route 41, Cianwood City, Battle Tower Outside. Everything else in
 ; the group is INDOOR/CAVE/GATE and self-loads via AddIndoorSprites - including

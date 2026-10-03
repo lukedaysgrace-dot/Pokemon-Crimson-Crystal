@@ -79,8 +79,8 @@ def main():
    original=c[:-6]
    assert levels[c]==levels[original] and tm[c]==tm[original] and eggs[c]==eggs[original] and utility[c]==utility[original],(c,'clone mismatch')
  for c in ['DITTO','WOBBUFFET','WYNAUT','SMEARGLE']:assert utility[c]==0,(c,'restricted identity')
- review=json.loads(read('_ai_artifacts/reports/learnset_variety_review_2026-10-02.json'))
- receipt=json.loads(read('_ai_artifacts/reports/learnset_variety_implementation_2026-10-02.json'))
+ review=json.loads(read('tools/testdata/learnset_variety_review.json'))
+ receipt=json.loads(read('tools/testdata/learnset_variety_implementation.json'))
  assignments=0
  for c,q in review['recommendations'].items():
   for x in q['choices']:
