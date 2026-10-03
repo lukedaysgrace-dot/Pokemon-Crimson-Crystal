@@ -2772,6 +2772,7 @@ _UpdateSprites::
 	call InitSprites
 	farcall DoOverworldWeather
 	call .fill
+	farcall TrainerPortrait_ClipOAM
 	pop af
 	ldh [hOAMUpdate], a
 	ret

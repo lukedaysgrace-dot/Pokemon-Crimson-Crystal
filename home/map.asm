@@ -1019,6 +1019,7 @@ MapTextbox::
 
 	push hl
 	call SpeechTextbox
+	farcall TrainerPortrait_Draw
 	call SafeUpdateSprites
 	ld a, 1
 	ldh [hOAMUpdate], a

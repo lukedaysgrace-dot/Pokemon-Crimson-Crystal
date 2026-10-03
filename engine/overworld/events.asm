@@ -558,6 +558,9 @@ TryObjectEvent:
 	add hl, bc
 	ld a, [hl]
 	ldh [hLastTalked], a
+	; Whatever this object says gets its trainer portrait, if it has one.
+	ld a, TRUE
+	ld [wPortraitSession], a
 
 	ldh a, [hLastTalked]
 	call GetMapObject
