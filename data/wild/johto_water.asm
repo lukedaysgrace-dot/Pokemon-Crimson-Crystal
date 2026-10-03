@@ -54,9 +54,9 @@ JohtoWaterWildMons:
 
 	map_id MOUNT_MORTAR_2F_INSIDE
 	db 2 percent ; encounter rate
-	dbw 35, GOLDEEN
-	dbw 40, POLIWHIRL
-	dbw 40, MARILL
+	dbw 44, SEAKING
+	dbw 46, POLIWHIRL
+	dbw 46, AZUMARILL
 
 	map_id MOUNT_MORTAR_B1F
 	db 2 percent ; encounter rate
@@ -66,21 +66,21 @@ JohtoWaterWildMons:
 
 	map_id WHIRL_ISLAND_SW
 	db 4 percent ; encounter rate
-	dbw 31, TENTACOOL
-	dbw 26, HORSEA
-	dbw 33, CORSOLA
+	dbw 38, TENTACOOL
+	dbw 33, HORSEA
+	dbw 40, CORSOLA
 
 	map_id WHIRL_ISLAND_B2F
 	db 4 percent ; encounter rate
-	dbw 30, HORSEA
-	dbw 32, TENTACOOL
-	dbw 34, STARMIE
+	dbw 37, HORSEA
+	dbw 39, TENTACOOL
+	dbw 41, STARMIE
 
 	map_id WHIRL_ISLAND_LUGIA_CHAMBER
 	db 4 percent ; encounter rate
-	dbw 32, HORSEA
-	dbw 34, TENTACOOL
-	dbw 35, MANTINE
+	dbw 39, HORSEA
+	dbw 41, TENTACOOL
+	dbw 42, MANTINE
 
 	map_id SILVER_CAVE_ROOM_2
 	db 2 percent ; encounter rate
@@ -96,9 +96,9 @@ JohtoWaterWildMons:
 
 	map_id DARK_CAVE_BLACKTHORN_ENTRANCE
 	db 2 percent ; encounter rate
-	dbw 30, MAGIKARP
-	dbw 33, QUAGSIRE
-	dbw 36, GYARADOS
+	dbw 37, MAGIKARP
+	dbw 40, QUAGSIRE
+	dbw 42, GYARADOS
 
 	map_id DRAGONS_DEN_B1F
 	db 4 percent ; encounter rate
@@ -225,6 +225,12 @@ JohtoWaterWildMons:
 	dbw 37, MAGIKARP
 	dbw 38, POLIWHIRL
 	dbw 42, GYARADOS
+
+	map_id SAFARI_ZONE
+	db 4 percent ; encounter rate
+	dbw 24, WOOPER_PALDEAN
+	dbw 25, SLOWPOKE_GALARIAN
+	dbw 26, GOLDEEN
 
 	map_id SILVER_CAVE_OUTSIDE
 	db 2 percent ; encounter rate

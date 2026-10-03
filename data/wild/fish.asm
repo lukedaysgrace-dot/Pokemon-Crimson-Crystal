@@ -227,34 +227,35 @@ FishGroups:
 	dbbw  90 percent + 1, 40, REMORAID
 	dbbw 100 percent,     40, OCTILLERY
 
-; Safari Zone rods. Everything here is a base form, so the area's low level
-; band never produces an evolution below its own evolution level. Paldean
-; Wooper, Galarian Slowpoke and Galarian Corsola moved to land tables - all
-; three are land dwellers in their home games and cannot be fished up.
+; Safari Zone rods. Levels sit in the Route 38 band (23-27) now that the
+; Safari Zone entrance is on Route 38. Paldean Wooper and Galarian Slowpoke
+; are surf-only here (see SAFARI_ZONE in data/wild/johto_water.asm).
 .Safari_Old:
-	dbbw  40 percent,      8, QWILFISH
-	dbbw  72 percent,      8, GOLDEEN
-	dbbw  88 percent,      9, WIMPOD
-	dbbw 100 percent,      9, MAREANIE
+	dbbw  40 percent,     23, QWILFISH
+	dbbw  72 percent,     23, GOLDEEN
+	dbbw  88 percent,     24, WIMPOD
+	dbbw 100 percent,     24, MAREANIE
 .Safari_Good:
-	dbbw  30 percent,      9, QWILFISH
-	dbbw  55 percent,      9, GOLDEEN
-	dbbw  70 percent,     10, WIMPOD
-	dbbw  82 percent,     10, CORSOLA
-	dbbw  92 percent,     10, CHINCHOU
-	dbbw  97 percent,     11, SHELLDER
-	dbbw 100 percent,     11, MANTYKE
+	dbbw  30 percent,     24, QWILFISH
+	dbbw  55 percent,     24, GOLDEEN
+	dbbw  70 percent,     25, WIMPOD
+	dbbw  82 percent,     25, CORSOLA
+	dbbw  92 percent,     25, CHINCHOU
+	dbbw  97 percent,     26, SHELLDER
+	dbbw 100 percent,     26, MANTYKE
 .Safari_Super:
-	dbbw  25 percent,     11, QWILFISH
-	dbbw  45 percent,     11, GOLDEEN
-	dbbw  62 percent,     11, HORSEA
-	dbbw  78 percent,     11, STARYU
-	dbbw  90 percent,     12, MANTYKE
-	dbbw 100 percent,     12, SHELLDER
+	dbbw  25 percent,     26, QWILFISH
+	dbbw  45 percent,     26, GOLDEEN
+	dbbw  62 percent,     26, HORSEA
+	dbbw  78 percent,     26, STARYU
+	dbbw  90 percent,     27, MANTYKE
+	dbbw  97 percent,     27, SHELLDER
+	dbbw 100 percent,     27, FEEBAS ; rare (3%)
 
-; Kanto and Silver Cave run 28-48 levels above the shared Old 10 / Good 20 /
-; Super 40 band, so they get their own scaled groups instead of dragging
-; Johto's rods up with them.
+; The shared Johto groups above list Old 10 / Good 20 / Super 40, which
+; ScaleJohtoFishLevel (engine/events/fish.asm) raises with Johto badges.
+; Kanto and Silver Cave run 28-48 levels above that band, so they get their
+; own hand-set groups below and are not scaled.
 .Ocean_Kanto_Old:
 	dbbw  70 percent + 1, 40, MAGIKARP
 	dbbw  85 percent + 1, 40, TENTACOOL

@@ -490,7 +490,7 @@ ApplySafariBadgeEncounterGate:
 	ret
 
 .water_tauros
-	ld hl, SLOWPOKE_GALARIAN
+	ld hl, TAUROS
 	ret
 
 INCLUDE "data/wild/probabilities.asm"

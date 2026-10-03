@@ -9,6 +9,7 @@ Fish:
 
 	ld b, e
 	call GetFishGroupIndex
+	push de ; group index, for the level scaling below
 
 	ld hl, FishGroups
 rept FISHGROUP_DATA_LENGTH
@@ -16,6 +17,15 @@ rept FISHGROUP_DATA_LENGTH
 endr
 	call .Fish
 
+	pop bc ; c = group index
+	ld a, d
+	and a
+	jr z, .done ; no bite
+	ld a, c
+	cp FISHGROUP_SAFARI - 1
+	call c, ScaleJohtoFishLevel
+
+.done
 	pop hl
 	pop bc
 	pop af
@@ -81,6 +91,28 @@ endr
 	inc hl
 	inc hl
 	jr .ok
+
+ScaleJohtoFishLevel:
+; The shared Johto rod groups list fixed levels (Old 10 / Good 20 / Super 40).
+; Scale them with progress: level = max(listed, listed / 2 + 4 * Johto badges).
+; This never lowers a level, so no evolved form drops below its evolution level.
+; Safari, Kanto, Silver Cave and Ice groups keep their own hand-set levels.
+; In: d = species, e = level. Out: e = scaled level (d preserved).
+	push de
+	ld hl, wJohtoBadges
+	ld b, 1
+	call CountSetBits
+	pop de
+	add a
+	add a
+	ld b, a ; 4 * badges
+	ld a, e
+	srl a
+	add b
+	cp e
+	ret c
+	ld e, a
+	ret
 
 GetFishGroupIndex:
 ; Return the index of fishgroup d in de.
