@@ -703,8 +703,26 @@ class Builder:
       for q in candidates:
         if self.export_static_sprite(q,target):
           m['sprite']='assets/pokemon/'+target.name
+          with Image.open(target) as im: m['sprite_size']=im.size[0]
           break
+      self.export_back_sprite(m,d,dst)
       self.export_pic_animation(m,d,dst)
+
+  def export_back_sprite(self, m, d, dst):
+    """Copy back.png (first square frame) so pages can show it beside the front."""
+    src=d/'back.png'
+    if Image is None or not src.exists(): return
+    target=dst/(slug(m['const'])+'.back.png')
+    try:
+      with Image.open(src) as im:
+        im.load(); w,h=im.size
+        if w<16 or h<16: return
+        size=min(w,h)
+        im.crop((0,0,size,size)).save(target,'PNG')
+      m['back']='assets/pokemon/'+target.name
+      m['back_size']=size
+    except Exception as e:
+      self.report['warnings'].append(f'Could not process back sprite {src}: {e}')
 
   def wild(self, valid_species):
     """Parse every explicitly mapped wild-encounter source used by Crimson Crystal.
@@ -1188,6 +1206,14 @@ class Builder:
 
   def mon_view(self, m, move_map, eyebrow, page_mon):
     sprite=f'<img class="big" src="../{m["sprite"]}"{self.anim_attrs(m,"../")}>' if m.get('sprite') else '<div class="big placeholder">◆</div>'
+    if m.get('back'):
+      # Draw the back at the same pixel scale as the front (the front fills a
+      # 270px box), so a 48px back sits next to a 56px front at true size.
+      scale=270/(m.get('sprite_size') or 56)
+      bw=min(270,round(m['back_size']*scale))
+      alt=html.escape(form_label(page_mon["const"],page_mon["name"]))
+      sprite=(f'<div class="sprite-pair"><figure class="sprite-cell">{sprite}<figcaption>Front</figcaption></figure>'
+              f'<figure class="sprite-cell"><img class="big back-sprite" src="../{m["back"]}" alt="{alt} (back)" style="--w:{bw}"><figcaption>Back</figcaption></figure></div>')
     stats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in m['stats'].items())
     level=[(x['level'],x['const']) for x in sorted(m['learnset'],key=lambda x:x['level'])]
     tms=[(self.tm_index[c],c) for c in m['tmhm']]

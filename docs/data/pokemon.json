@@ -177,6 +177,9 @@
     },
     "sprite": "assets/pokemon/chikorita.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/chikorita.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/chikorita.sheet.png",
       "size": 40,
@@ -526,6 +529,9 @@
       "slug": "chikorita",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/bayleef.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bayleef.sheet.png",
       "size": 48,
@@ -887,6 +893,9 @@
       "slug": "bayleef",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/meganium.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/meganium.sheet.png",
       "size": 56,
@@ -1256,6 +1265,9 @@
     },
     "sprite": "assets/pokemon/cyndaquil.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/cyndaquil.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cyndaquil.sheet.png",
       "size": 40,
@@ -1644,6 +1656,9 @@
       "slug": "cyndaquil",
       "text": "Level 14"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/quilava.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/quilava.sheet.png",
       "size": 48,
@@ -2079,6 +2094,9 @@
       "slug": "quilava",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/typhlosion.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/typhlosion.sheet.png",
       "size": 56,
@@ -2520,6 +2538,9 @@
     },
     "sprite": "assets/pokemon/totodile.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/totodile.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/totodile.sheet.png",
       "size": 40,
@@ -2938,6 +2959,9 @@
       "slug": "totodile",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/croconaw.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/croconaw.sheet.png",
       "size": 48,
@@ -3401,6 +3425,9 @@
       "slug": "croconaw",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/feraligatr.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/feraligatr.sheet.png",
       "size": 56,
@@ -3800,6 +3827,9 @@
     },
     "sprite": "assets/pokemon/pidgey.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/pidgey.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pidgey.sheet.png",
       "size": 40,
@@ -4164,6 +4194,9 @@
       "slug": "pidgey",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/pidgeotto.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pidgeotto.sheet.png",
       "size": 48,
@@ -4493,6 +4526,9 @@
       "slug": "pidgeotto",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/pidgeot.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pidgeot.sheet.png",
       "size": 56,
@@ -4808,6 +4844,9 @@
     },
     "sprite": "assets/pokemon/starly.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/starly.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/starly.sheet.png",
       "size": 40,
@@ -5163,6 +5202,9 @@
       "slug": "starly",
       "text": "Level 14"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/staravia.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/staravia.sheet.png",
       "size": 48,
@@ -5547,6 +5589,9 @@
       "slug": "staravia",
       "text": "Level 34"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/staraptor.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/staraptor.sheet.png",
       "size": 56,
@@ -5903,6 +5948,9 @@
     },
     "sprite": "assets/pokemon/spearow.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/spearow.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/spearow.sheet.png",
       "size": 40,
@@ -6250,6 +6298,9 @@
       "slug": "spearow",
       "text": "Level 20"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/fearow.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/fearow.sheet.png",
       "size": 56,
@@ -6582,6 +6633,9 @@
     },
     "sprite": "assets/pokemon/hoothoot.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/hoothoot.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hoothoot.sheet.png",
       "size": 40,
@@ -6948,6 +7002,9 @@
       "slug": "hoothoot",
       "text": "Level 20"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/noctowl.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/noctowl.sheet.png",
       "size": 56,
@@ -7322,6 +7379,9 @@
     },
     "sprite": "assets/pokemon/torkoal.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/torkoal.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/torkoal.sheet.png",
       "size": 48,
@@ -7659,6 +7719,9 @@
     },
     "sprite": "assets/pokemon/rattata.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/rattata.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rattata.sheet.png",
       "size": 40,
@@ -8035,6 +8098,9 @@
       "slug": "rattata",
       "text": "Level 20"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/raticate.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raticate.sheet.png",
       "size": 56,
@@ -8427,6 +8493,9 @@
     },
     "sprite": "assets/pokemon/sentret.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/sentret.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sentret.sheet.png",
       "size": 48,
@@ -8822,6 +8891,9 @@
       "slug": "sentret",
       "text": "Level 15"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/furret.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/furret.sheet.png",
       "size": 56,
@@ -9182,6 +9254,9 @@
     },
     "sprite": "assets/pokemon/pichu.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/pichu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pichu.sheet.png",
       "size": 40,
@@ -9546,6 +9621,9 @@
       "slug": "pichu",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/pikachu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pikachu.sheet.png",
       "size": 48,
@@ -10049,6 +10127,9 @@
       "slug": "pikachu",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/raichu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raichu.sheet.png",
       "size": 56,
@@ -10445,6 +10526,9 @@
       "slug": "raichu",
       "text": "Use a Dusk Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gorochu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gorochu.sheet.png",
       "size": 56,
@@ -10788,6 +10872,9 @@
     },
     "sprite": "assets/pokemon/caterpie.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/caterpie.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/caterpie.sheet.png",
       "size": 40,
@@ -10919,6 +11006,9 @@
       "slug": "caterpie",
       "text": "Level 10"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/metapod.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/metapod.sheet.png",
       "size": 40,
@@ -11157,6 +11247,9 @@
       "slug": "metapod",
       "text": "Level 16"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/butterfree.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/butterfree.sheet.png",
       "size": 56,
@@ -11433,6 +11526,9 @@
     },
     "sprite": "assets/pokemon/weedle.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/weedle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/weedle.sheet.png",
       "size": 40,
@@ -11605,6 +11701,9 @@
       "slug": "weedle",
       "text": "Level 10"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/kakuna.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kakuna.sheet.png",
       "size": 40,
@@ -11841,6 +11940,9 @@
       "slug": "kakuna",
       "text": "Level 16"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/beedrill.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/beedrill.sheet.png",
       "size": 56,
@@ -12357,6 +12459,9 @@
     },
     "sprite": "assets/pokemon/ledyba.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/ledyba.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ledyba.sheet.png",
       "size": 48,
@@ -12755,6 +12860,9 @@
       "slug": "ledyba",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/ledian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ledian.sheet.png",
       "size": 48,
@@ -13172,6 +13280,9 @@
     },
     "sprite": "assets/pokemon/spinarak.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/spinarak.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/spinarak.sheet.png",
       "size": 40,
@@ -13539,6 +13650,9 @@
       "slug": "spinarak",
       "text": "Level 22"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ariados.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ariados.sheet.png",
       "size": 56,
@@ -13932,6 +14046,9 @@
     },
     "sprite": "assets/pokemon/geodude.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/geodude.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/geodude.sheet.png",
       "size": 40,
@@ -14306,6 +14423,9 @@
       "slug": "geodude",
       "text": "Level 25"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/graveler.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/graveler.sheet.png",
       "size": 56,
@@ -14742,6 +14862,9 @@
       "slug": "graveler",
       "text": "Level 36"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/golem.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golem.sheet.png",
       "size": 48,
@@ -15104,6 +15227,9 @@
     },
     "sprite": "assets/pokemon/zubat.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/zubat.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/zubat.sheet.png",
       "size": 40,
@@ -15452,6 +15578,9 @@
       "slug": "zubat",
       "text": "Level 22"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/golbat.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golbat.sheet.png",
       "size": 56,
@@ -15824,6 +15953,9 @@
       "slug": "golbat",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/crobat.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/crobat.sheet.png",
       "size": 56,
@@ -16123,6 +16255,9 @@
     },
     "sprite": "assets/pokemon/cleffa.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/cleffa.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cleffa.sheet.png",
       "size": 40,
@@ -16480,6 +16615,9 @@
       "slug": "cleffa",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/clefairy.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/clefairy.sheet.png",
       "size": 40,
@@ -16924,6 +17062,9 @@
       "slug": "clefairy",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/clefable.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/clefable.sheet.png",
       "size": 48,
@@ -17292,6 +17433,9 @@
     },
     "sprite": "assets/pokemon/igglybuff.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/igglybuff.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/igglybuff.sheet.png",
       "size": 40,
@@ -17693,6 +17837,9 @@
       "slug": "igglybuff",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/jigglypuff.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/jigglypuff.sheet.png",
       "size": 40,
@@ -18143,6 +18290,9 @@
       "slug": "jigglypuff",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/wigglytuff.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wigglytuff.sheet.png",
       "size": 48,
@@ -18590,6 +18740,9 @@
     },
     "sprite": "assets/pokemon/togepi.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/togepi.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/togepi.sheet.png",
       "size": 40,
@@ -18991,6 +19144,9 @@
       "slug": "togepi",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/togetic.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/togetic.sheet.png",
       "size": 56,
@@ -19421,6 +19577,9 @@
       "slug": "togetic",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/togekiss.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/togekiss.sheet.png",
       "size": 56,
@@ -19861,6 +20020,9 @@
     },
     "sprite": "assets/pokemon/sandshrew.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/sandshrew.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sandshrew.sheet.png",
       "size": 40,
@@ -20301,6 +20463,9 @@
       "slug": "sandshrew",
       "text": "Level 22"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/sandslash.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sandslash.sheet.png",
       "size": 48,
@@ -20673,6 +20838,9 @@
     },
     "sprite": "assets/pokemon/sandile.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/sandile.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sandile.sheet.png",
       "size": 40,
@@ -21022,6 +21190,9 @@
       "slug": "sandile",
       "text": "Level 29"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/krokorok.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/krokorok.sheet.png",
       "size": 48,
@@ -21398,6 +21569,9 @@
       "slug": "krokorok",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/krookodile.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/krookodile.sheet.png",
       "size": 56,
@@ -21775,6 +21949,9 @@
     },
     "sprite": "assets/pokemon/ekans.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/ekans.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ekans.sheet.png",
       "size": 40,
@@ -22213,6 +22390,9 @@
       "slug": "ekans",
       "text": "Level 22"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/arbok.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/arbok.sheet.png",
       "size": 56,
@@ -22612,6 +22792,9 @@
     },
     "sprite": "assets/pokemon/dunsparce.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/dunsparce.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dunsparce.sheet.png",
       "size": 48,
@@ -23031,6 +23214,9 @@
       "slug": "dunsparce",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dudunsparce.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dudunsparce.sheet.png",
       "size": 56,
@@ -23404,6 +23590,9 @@
     },
     "sprite": "assets/pokemon/mareep.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/mareep.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mareep.sheet.png",
       "size": 40,
@@ -23717,6 +23906,9 @@
       "slug": "mareep",
       "text": "Level 15"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/flaaffy.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/flaaffy.sheet.png",
       "size": 48,
@@ -24102,6 +24294,9 @@
       "slug": "flaaffy",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ampharos.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ampharos.sheet.png",
       "size": 56,
@@ -24460,6 +24655,9 @@
     },
     "sprite": "assets/pokemon/wooper.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/wooper.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wooper.sheet.png",
       "size": 40,
@@ -24823,6 +25021,9 @@
       "slug": "wooper",
       "text": "Level 20"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/quagsire.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/quagsire.sheet.png",
       "size": 48,
@@ -25177,6 +25378,9 @@
     },
     "sprite": "assets/pokemon/gastly.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/gastly.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gastly.sheet.png",
       "size": 56,
@@ -25525,6 +25729,9 @@
       "slug": "gastly",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/haunter.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/haunter.sheet.png",
       "size": 48,
@@ -25879,6 +26086,9 @@
       "slug": "haunter",
       "text": "Level 36"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/gengar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gengar.sheet.png",
       "size": 48,
@@ -26398,6 +26608,9 @@
     },
     "sprite": "assets/pokemon/onix.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/onix.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/onix.sheet.png",
       "size": 56,
@@ -26813,6 +27026,9 @@
       "slug": "onix",
       "text": "Use a Metal Coat"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/steelix.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/steelix.sheet.png",
       "size": 56,
@@ -27153,6 +27369,9 @@
     },
     "sprite": "assets/pokemon/bellsprout.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/bellsprout.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bellsprout.sheet.png",
       "size": 40,
@@ -27507,6 +27726,9 @@
       "slug": "bellsprout",
       "text": "Level 21"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/weepinbell.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/weepinbell.sheet.png",
       "size": 48,
@@ -27840,6 +28062,9 @@
       "slug": "weepinbell",
       "text": "Use a Leaf Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/victreebel.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/victreebel.sheet.png",
       "size": 56,
@@ -28183,6 +28408,9 @@
     },
     "sprite": "assets/pokemon/hoppip.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/hoppip.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hoppip.sheet.png",
       "size": 40,
@@ -28499,6 +28727,9 @@
       "slug": "hoppip",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/skiploom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/skiploom.sheet.png",
       "size": 48,
@@ -28827,6 +29058,9 @@
       "slug": "skiploom",
       "text": "Level 27"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/jumpluff.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/jumpluff.sheet.png",
       "size": 56,
@@ -29140,6 +29374,9 @@
     },
     "sprite": "assets/pokemon/paras.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/paras.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/paras.sheet.png",
       "size": 40,
@@ -29489,6 +29726,9 @@
       "slug": "paras",
       "text": "Level 24"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/parasect.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/parasect.sheet.png",
       "size": 56,
@@ -29847,6 +30087,9 @@
     },
     "sprite": "assets/pokemon/poliwag.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/poliwag.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/poliwag.sheet.png",
       "size": 40,
@@ -30195,6 +30438,9 @@
       "slug": "poliwag",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/poliwhirl.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/poliwhirl.sheet.png",
       "size": 48,
@@ -30588,6 +30834,9 @@
       "slug": "poliwhirl",
       "text": "Use a Water Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/poliwrath.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/poliwrath.sheet.png",
       "size": 56,
@@ -30968,6 +31217,9 @@
       "slug": "poliwhirl",
       "text": "Use a King's Rock"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/politoed.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/politoed.sheet.png",
       "size": 56,
@@ -31240,6 +31492,9 @@
     },
     "sprite": "assets/pokemon/magikarp.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/magikarp.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magikarp.sheet.png",
       "size": 48,
@@ -31510,6 +31765,9 @@
       "slug": "magikarp",
       "text": "Level 20"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gyarados.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gyarados.sheet.png",
       "size": 56,
@@ -31847,6 +32105,9 @@
     },
     "sprite": "assets/pokemon/feebas.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/feebas.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/feebas.sheet.png",
       "size": 40,
@@ -32204,6 +32465,9 @@
       "slug": "feebas",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/milotic.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/milotic.sheet.png",
       "size": 56,
@@ -32495,6 +32759,9 @@
     },
     "sprite": "assets/pokemon/goldeen.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/goldeen.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/goldeen.sheet.png",
       "size": 48,
@@ -32812,6 +33079,9 @@
       "slug": "goldeen",
       "text": "Level 33"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/seaking.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/seaking.sheet.png",
       "size": 56,
@@ -33184,6 +33454,9 @@
     },
     "sprite": "assets/pokemon/slowpoke.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/slowpoke.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowpoke.sheet.png",
       "size": 40,
@@ -33571,6 +33844,9 @@
       "slug": "slowpoke",
       "text": "Level 37"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/slowbro.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowbro.sheet.png",
       "size": 56,
@@ -34049,6 +34325,9 @@
       "slug": "slowpoke",
       "text": "Use a King's Rock"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/slowking.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowking.sheet.png",
       "size": 56,
@@ -34455,6 +34734,9 @@
     },
     "sprite": "assets/pokemon/oddish.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/oddish.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/oddish.sheet.png",
       "size": 40,
@@ -34779,6 +35061,9 @@
       "slug": "oddish",
       "text": "Level 21"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/gloom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gloom.sheet.png",
       "size": 48,
@@ -35111,6 +35396,9 @@
       "slug": "gloom",
       "text": "Use a Leaf Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/vileplume.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vileplume.sheet.png",
       "size": 56,
@@ -35460,6 +35748,9 @@
       "slug": "gloom",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/bellossom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bellossom.sheet.png",
       "size": 48,
@@ -35835,6 +36126,9 @@
     },
     "sprite": "assets/pokemon/drowzee.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/drowzee.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/drowzee.sheet.png",
       "size": 48,
@@ -36256,6 +36550,9 @@
       "slug": "drowzee",
       "text": "Level 26"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hypno.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hypno.sheet.png",
       "size": 56,
@@ -36538,6 +36835,9 @@
     },
     "sprite": "assets/pokemon/abra.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/abra.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/abra.sheet.png",
       "size": 40,
@@ -36902,6 +37202,9 @@
       "slug": "abra",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/kadabra.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kadabra.sheet.png",
       "size": 48,
@@ -37296,6 +37599,9 @@
       "slug": "kadabra",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/alakazam.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/alakazam.sheet.png",
       "size": 56,
@@ -37533,6 +37839,9 @@
     },
     "sprite": "assets/pokemon/ditto.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/ditto.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ditto.sheet.png",
       "size": 40,
@@ -37763,6 +38072,9 @@
     },
     "sprite": "assets/pokemon/pineco.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/pineco.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pineco.sheet.png",
       "size": 40,
@@ -38075,6 +38387,9 @@
       "slug": "pineco",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/forretress.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/forretress.sheet.png",
       "size": 56,
@@ -38433,6 +38748,9 @@
     },
     "sprite": "assets/pokemon/nidoran-f.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/nidoran-f.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidoran-f.sheet.png",
       "size": 40,
@@ -38767,6 +39085,9 @@
       "slug": "nidoran-f",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/nidorina.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidorina.sheet.png",
       "size": 48,
@@ -39141,6 +39462,9 @@
       "slug": "nidorina",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/nidoqueen.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidoqueen.sheet.png",
       "size": 56,
@@ -39552,6 +39876,9 @@
     },
     "sprite": "assets/pokemon/nidoran-m.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/nidoran-m.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidoran-m.sheet.png",
       "size": 40,
@@ -39878,6 +40205,9 @@
       "slug": "nidoran-m",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/nidorino.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidorino.sheet.png",
       "size": 48,
@@ -40272,6 +40602,9 @@
       "slug": "nidorino",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/nidoking.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/nidoking.sheet.png",
       "size": 56,
@@ -40696,6 +41029,9 @@
     },
     "sprite": "assets/pokemon/yanma.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/yanma.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/yanma.sheet.png",
       "size": 48,
@@ -41064,6 +41400,9 @@
       "slug": "yanma",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/yanmega.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/yanmega.sheet.png",
       "size": 56,
@@ -41534,6 +41873,9 @@
     },
     "sprite": "assets/pokemon/sunkern.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/sunkern.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sunkern.sheet.png",
       "size": 40,
@@ -41860,6 +42202,9 @@
       "slug": "sunkern",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/sunflora.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sunflora.sheet.png",
       "size": 48,
@@ -42214,6 +42559,9 @@
     },
     "sprite": "assets/pokemon/exeggcute.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/exeggcute.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/exeggcute.sheet.png",
       "size": 56,
@@ -42595,6 +42943,9 @@
       "slug": "exeggcute",
       "text": "Use a Leaf Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/exeggutor.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/exeggutor.sheet.png",
       "size": 56,
@@ -42942,6 +43293,9 @@
     },
     "sprite": "assets/pokemon/bonsly.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/bonsly.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bonsly.sheet.png",
       "size": 48,
@@ -43318,6 +43672,9 @@
       "slug": "bonsly",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/sudowoodo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sudowoodo.sheet.png",
       "size": 48,
@@ -43603,6 +43960,9 @@
     },
     "sprite": "assets/pokemon/wynaut.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/wynaut.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wynaut.sheet.png",
       "size": 48,
@@ -43789,6 +44149,9 @@
       "slug": "wynaut",
       "text": "Level 15"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/wobbuffet.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wobbuffet.sheet.png",
       "size": 48,
@@ -44002,6 +44365,9 @@
     },
     "sprite": "assets/pokemon/venonat.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/venonat.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/venonat.sheet.png",
       "size": 40,
@@ -44398,6 +44764,9 @@
       "slug": "venonat",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/venomoth.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/venomoth.sheet.png",
       "size": 56,
@@ -44846,6 +45215,9 @@
     },
     "sprite": "assets/pokemon/scyther.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/scyther.back.png",
+    "back_size": 96,
     "anim": {
       "sheet": "assets/pokemon/scyther.sheet.png",
       "size": 56,
@@ -45265,6 +45637,9 @@
       "slug": "scyther",
       "text": "Use a Metal Coat"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/scizor.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/scizor.sheet.png",
       "size": 56,
@@ -45688,6 +46063,9 @@
       "slug": "scyther",
       "text": "Use a Hard Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/kleavor.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kleavor.sheet.png",
       "size": 56,
@@ -46056,6 +46434,9 @@
     },
     "sprite": "assets/pokemon/pinsir.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/pinsir.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pinsir.sheet.png",
       "size": 56,
@@ -46422,6 +46803,9 @@
     },
     "sprite": "assets/pokemon/heracross.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/heracross.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/heracross.sheet.png",
       "size": 48,
@@ -46749,6 +47133,9 @@
     },
     "sprite": "assets/pokemon/koffing.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/koffing.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/koffing.sheet.png",
       "size": 48,
@@ -47075,6 +47462,9 @@
       "slug": "koffing",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/weezing.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/weezing.sheet.png",
       "size": 56,
@@ -47418,6 +47808,9 @@
     },
     "sprite": "assets/pokemon/grimer.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/grimer.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/grimer.sheet.png",
       "size": 48,
@@ -47815,6 +48208,9 @@
       "slug": "grimer",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/muk.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/muk.sheet.png",
       "size": 56,
@@ -48156,6 +48552,9 @@
     },
     "sprite": "assets/pokemon/magnemite.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/magnemite.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magnemite.sheet.png",
       "size": 40,
@@ -48459,6 +48858,9 @@
       "slug": "magnemite",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/magneton.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magneton.sheet.png",
       "size": 48,
@@ -48780,6 +49182,9 @@
       "slug": "magneton",
       "text": "Use a Thunderstone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/magnezone.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magnezone.sheet.png",
       "size": 56,
@@ -49110,6 +49515,9 @@
     },
     "sprite": "assets/pokemon/voltorb.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/voltorb.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/voltorb.sheet.png",
       "size": 40,
@@ -49446,6 +49854,9 @@
       "slug": "voltorb",
       "text": "Level 30"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/electrode.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/electrode.sheet.png",
       "size": 40,
@@ -49720,6 +50131,9 @@
     },
     "sprite": "assets/pokemon/aipom.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/aipom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/aipom.sheet.png",
       "size": 40,
@@ -50097,6 +50511,9 @@
       "slug": "aipom",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ambipom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ambipom.sheet.png",
       "size": 56,
@@ -50508,6 +50925,9 @@
     },
     "sprite": "assets/pokemon/snubbull.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/snubbull.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/snubbull.sheet.png",
       "size": 48,
@@ -50931,6 +51351,9 @@
       "slug": "snubbull",
       "text": "Level 23"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/granbull.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/granbull.sheet.png",
       "size": 48,
@@ -51308,6 +51731,9 @@
     },
     "sprite": "assets/pokemon/vulpix.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/vulpix.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vulpix.sheet.png",
       "size": 48,
@@ -51681,6 +52107,9 @@
       "slug": "vulpix",
       "text": "Use a Fire Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ninetales.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ninetales.sheet.png",
       "size": 56,
@@ -52027,6 +52456,9 @@
     },
     "sprite": "assets/pokemon/growlithe.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/growlithe.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/growlithe.sheet.png",
       "size": 40,
@@ -52383,6 +52815,9 @@
       "slug": "growlithe",
       "text": "Use a Fire Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/arcanine.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/arcanine.sheet.png",
       "size": 56,
@@ -52733,6 +53168,9 @@
     },
     "sprite": "assets/pokemon/stantler.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/stantler.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/stantler.sheet.png",
       "size": 56,
@@ -53091,6 +53529,9 @@
       "slug": "stantler",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/wyrdeer.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wyrdeer.sheet.png",
       "size": 56,
@@ -53435,6 +53876,9 @@
     },
     "sprite": "assets/pokemon/azurill.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/azurill.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/azurill.sheet.png",
       "size": 48,
@@ -53809,6 +54253,9 @@
       "slug": "azurill",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/marill.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/marill.sheet.png",
       "size": 40,
@@ -54203,6 +54650,9 @@
       "slug": "marill",
       "text": "Level 18"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/azumarill.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/azumarill.sheet.png",
       "size": 56,
@@ -54568,6 +55018,9 @@
     },
     "sprite": "assets/pokemon/diglett.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/diglett.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/diglett.sheet.png",
       "size": 40,
@@ -54905,6 +55358,9 @@
       "slug": "diglett",
       "text": "Level 26"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dugtrio.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dugtrio.sheet.png",
       "size": 56,
@@ -55329,6 +55785,9 @@
     },
     "sprite": "assets/pokemon/mankey.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/mankey.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mankey.sheet.png",
       "size": 40,
@@ -55755,6 +56214,9 @@
       "slug": "mankey",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/primeape.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/primeape.sheet.png",
       "size": 56,
@@ -56226,6 +56688,9 @@
       "slug": "primeape",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/annihilape.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/annihilape.sheet.png",
       "size": 56,
@@ -56629,6 +57094,9 @@
     },
     "sprite": "assets/pokemon/meowth.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/meowth.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/meowth.sheet.png",
       "size": 40,
@@ -56981,6 +57449,9 @@
       "slug": "meowth",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/persian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/persian.sheet.png",
       "size": 56,
@@ -57388,6 +57859,9 @@
     },
     "sprite": "assets/pokemon/psyduck.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/psyduck.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/psyduck.sheet.png",
       "size": 40,
@@ -57797,6 +58271,9 @@
       "slug": "psyduck",
       "text": "Level 33"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/golduck.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golduck.sheet.png",
       "size": 56,
@@ -58236,6 +58713,9 @@
     },
     "sprite": "assets/pokemon/machop.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/machop.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/machop.sheet.png",
       "size": 40,
@@ -58622,6 +59102,9 @@
       "slug": "machop",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/machoke.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/machoke.sheet.png",
       "size": 56,
@@ -59027,6 +59510,9 @@
       "slug": "machoke",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/machamp.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/machamp.sheet.png",
       "size": 56,
@@ -59414,6 +59900,9 @@
     },
     "sprite": "assets/pokemon/tyrogue.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/tyrogue.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tyrogue.sheet.png",
       "size": 40,
@@ -59760,6 +60249,9 @@
       "slug": "tyrogue",
       "text": "Level 20 when Attack is higher than Defense"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hitmonlee.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hitmonlee.sheet.png",
       "size": 56,
@@ -60122,6 +60614,9 @@
       "slug": "tyrogue",
       "text": "Level 20 when Attack is lower than Defense"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hitmonchan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hitmonchan.sheet.png",
       "size": 56,
@@ -60531,6 +61026,9 @@
       "slug": "tyrogue",
       "text": "Level 20 while holding a Brick Piece"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hitmontop.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hitmontop.sheet.png",
       "size": 56,
@@ -60889,6 +61387,9 @@
     },
     "sprite": "assets/pokemon/girafarig.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/girafarig.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/girafarig.sheet.png",
       "size": 56,
@@ -61276,6 +61777,9 @@
       "slug": "girafarig",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/farigiraf.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/farigiraf.sheet.png",
       "size": 56,
@@ -61707,6 +62211,9 @@
     },
     "sprite": "assets/pokemon/tauros.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/tauros.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tauros.sheet.png",
       "size": 56,
@@ -62105,6 +62612,9 @@
     },
     "sprite": "assets/pokemon/miltank.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/miltank.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/miltank.sheet.png",
       "size": 48,
@@ -62513,6 +63023,9 @@
     },
     "sprite": "assets/pokemon/magby.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/magby.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magby.sheet.png",
       "size": 48,
@@ -62873,6 +63386,9 @@
       "slug": "magby",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/magmar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magmar.sheet.png",
       "size": 48,
@@ -63271,6 +63787,9 @@
       "slug": "magmar",
       "text": "Use a Fire Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/magmortar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magmortar.sheet.png",
       "size": 56,
@@ -63654,6 +64173,9 @@
     },
     "sprite": "assets/pokemon/smoochum.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/smoochum.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/smoochum.sheet.png",
       "size": 40,
@@ -64014,6 +64536,9 @@
       "slug": "smoochum",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/jynx.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/jynx.sheet.png",
       "size": 48,
@@ -64410,6 +64935,9 @@
       "slug": "jynx",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/mesmeria.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mesmeria.sheet.png",
       "size": 56,
@@ -64782,6 +65310,9 @@
     },
     "sprite": "assets/pokemon/elekid.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/elekid.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/elekid.sheet.png",
       "size": 48,
@@ -65218,6 +65749,9 @@
       "slug": "elekid",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/electabuzz.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/electabuzz.sheet.png",
       "size": 48,
@@ -65704,6 +66238,9 @@
       "slug": "electabuzz",
       "text": "Use a Thunderstone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/electivire.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/electivire.sheet.png",
       "size": 56,
@@ -66138,6 +66675,9 @@
     },
     "sprite": "assets/pokemon/mime-jr.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/mime-jr.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mime-jr.sheet.png",
       "size": 48,
@@ -66523,6 +67063,9 @@
       "slug": "mime-jr",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/mr-mime.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mr-mime.sheet.png",
       "size": 48,
@@ -66976,6 +67519,9 @@
       "slug": "mr-mime",
       "text": "Level 42"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/mr-rime.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mr-rime.sheet.png",
       "size": 56,
@@ -67390,6 +67936,9 @@
     },
     "sprite": "assets/pokemon/smeargle.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/smeargle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/smeargle.sheet.png",
       "size": 56,
@@ -67650,6 +68199,9 @@
     },
     "sprite": "assets/pokemon/farfetch-d.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/farfetch-d.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/farfetch-d.sheet.png",
       "size": 56,
@@ -68044,6 +68596,9 @@
       "slug": "farfetch-d",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/sirfetch-d.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sirfetch-d.sheet.png",
       "size": 56,
@@ -68403,6 +68958,9 @@
     },
     "sprite": "assets/pokemon/natu.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/natu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/natu.sheet.png",
       "size": 40,
@@ -68693,6 +69251,9 @@
       "slug": "natu",
       "text": "Level 25"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/watu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/watu.sheet.png",
       "size": 40,
@@ -69038,6 +69599,9 @@
       "slug": "watu",
       "text": "Level 36"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/xatu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/xatu.sheet.png",
       "size": 48,
@@ -69411,6 +69975,9 @@
     },
     "sprite": "assets/pokemon/qwilfish.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/qwilfish.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/qwilfish.sheet.png",
       "size": 40,
@@ -69780,6 +70347,9 @@
       "slug": "qwilfish",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/overqwil.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/overqwil.sheet.png",
       "size": 56,
@@ -70164,6 +70734,9 @@
     },
     "sprite": "assets/pokemon/tentacool.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/tentacool.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tentacool.sheet.png",
       "size": 40,
@@ -70496,6 +71069,9 @@
       "slug": "tentacool",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/tentacruel.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tentacruel.sheet.png",
       "size": 48,
@@ -70870,6 +71446,9 @@
     },
     "sprite": "assets/pokemon/krabby.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/krabby.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/krabby.sheet.png",
       "size": 40,
@@ -71245,6 +71824,9 @@
       "slug": "krabby",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/kingler.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kingler.sheet.png",
       "size": 56,
@@ -71645,6 +72227,9 @@
     },
     "sprite": "assets/pokemon/shuckle.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/shuckle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shuckle.sheet.png",
       "size": 40,
@@ -72000,6 +72585,9 @@
     },
     "sprite": "assets/pokemon/staryu.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/staryu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/staryu.sheet.png",
       "size": 48,
@@ -72351,6 +72939,9 @@
       "slug": "staryu",
       "text": "Use a Water Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/starmie.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/starmie.sheet.png",
       "size": 48,
@@ -72737,6 +73328,9 @@
     },
     "sprite": "assets/pokemon/shellder.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/shellder.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shellder.sheet.png",
       "size": 40,
@@ -73081,6 +73675,9 @@
       "slug": "shellder",
       "text": "Use a Water Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/cloyster.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cloyster.sheet.png",
       "size": 56,
@@ -73404,6 +74001,9 @@
     },
     "sprite": "assets/pokemon/corsola.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/corsola.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/corsola.sheet.png",
       "size": 48,
@@ -73728,6 +74328,9 @@
     },
     "sprite": "assets/pokemon/remoraid.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/remoraid.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/remoraid.sheet.png",
       "size": 40,
@@ -74050,6 +74653,9 @@
       "slug": "remoraid",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/octillery.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/octillery.sheet.png",
       "size": 48,
@@ -74391,6 +74997,9 @@
     },
     "sprite": "assets/pokemon/chinchou.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/chinchou.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/chinchou.sheet.png",
       "size": 48,
@@ -74747,6 +75356,9 @@
       "slug": "chinchou",
       "text": "Level 27"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/lanturn.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lanturn.sheet.png",
       "size": 48,
@@ -75096,6 +75708,9 @@
     },
     "sprite": "assets/pokemon/seel.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/seel.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/seel.sheet.png",
       "size": 48,
@@ -75421,6 +76036,9 @@
       "slug": "seel",
       "text": "Level 34"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dewgong.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dewgong.sheet.png",
       "size": 56,
@@ -75783,6 +76401,9 @@
     },
     "sprite": "assets/pokemon/lickitung.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/lickitung.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lickitung.sheet.png",
       "size": 56,
@@ -76211,6 +76832,9 @@
       "slug": "lickitung",
       "text": "Level 33"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/lickilicky.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lickilicky.sheet.png",
       "size": 56,
@@ -76647,6 +77271,9 @@
     },
     "sprite": "assets/pokemon/tangela.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/tangela.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tangela.sheet.png",
       "size": 48,
@@ -76970,6 +77597,9 @@
       "slug": "tangela",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tangrowth.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tangrowth.sheet.png",
       "size": 56,
@@ -77382,6 +78012,9 @@
     },
     "sprite": "assets/pokemon/eevee.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/eevee.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/eevee.sheet.png",
       "size": 40,
@@ -77746,6 +78379,9 @@
       "slug": "eevee",
       "text": "Use a Water Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/vaporeon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vaporeon.sheet.png",
       "size": 48,
@@ -78146,6 +78782,9 @@
       "slug": "eevee",
       "text": "Use a Thunderstone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/jolteon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/jolteon.sheet.png",
       "size": 48,
@@ -78540,6 +79179,9 @@
       "slug": "eevee",
       "text": "Use a Fire Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/flareon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/flareon.sheet.png",
       "size": 48,
@@ -78928,6 +79570,9 @@
       "slug": "eevee",
       "text": "Level up with high friendship during the day"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/espeon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/espeon.sheet.png",
       "size": 48,
@@ -79323,6 +79968,9 @@
       "slug": "eevee",
       "text": "Level up with high friendship at night"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/umbreon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/umbreon.sheet.png",
       "size": 48,
@@ -79715,6 +80363,9 @@
       "slug": "eevee",
       "text": "Use an Ice Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/glaceon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/glaceon.sheet.png",
       "size": 48,
@@ -80105,6 +80756,9 @@
       "slug": "eevee",
       "text": "Use a Leaf Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/leafeon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/leafeon.sheet.png",
       "size": 48,
@@ -80503,6 +81157,9 @@
       "slug": "eevee",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/sylveon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sylveon.sheet.png",
       "size": 48,
@@ -80845,6 +81502,9 @@
     },
     "sprite": "assets/pokemon/horsea.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/horsea.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/horsea.sheet.png",
       "size": 40,
@@ -81214,6 +81874,9 @@
       "slug": "horsea",
       "text": "Level 32"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/seadra.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/seadra.sheet.png",
       "size": 48,
@@ -81595,6 +82258,9 @@
       "slug": "seadra",
       "text": "Use a Dragon Scale"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/kingdra.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kingdra.sheet.png",
       "size": 56,
@@ -82000,6 +82666,9 @@
     },
     "sprite": "assets/pokemon/gligar.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/gligar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gligar.sheet.png",
       "size": 48,
@@ -82466,6 +83135,9 @@
       "slug": "gligar",
       "text": "Level 42"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gliscor.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gliscor.sheet.png",
       "size": 56,
@@ -82848,6 +83520,9 @@
     },
     "sprite": "assets/pokemon/delibird.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/delibird.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/delibird.sheet.png",
       "size": 48,
@@ -83201,6 +83876,9 @@
     },
     "sprite": "assets/pokemon/swinub.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/swinub.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/swinub.sheet.png",
       "size": 40,
@@ -83553,6 +84231,9 @@
       "slug": "swinub",
       "text": "Level 33"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/piloswine.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/piloswine.sheet.png",
       "size": 48,
@@ -83900,6 +84581,9 @@
       "slug": "piloswine",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/mamoswine.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mamoswine.sheet.png",
       "size": 56,
@@ -84297,6 +84981,9 @@
     },
     "sprite": "assets/pokemon/teddiursa.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/teddiursa.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/teddiursa.sheet.png",
       "size": 40,
@@ -84756,6 +85443,9 @@
       "slug": "teddiursa",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ursaring.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ursaring.sheet.png",
       "size": 56,
@@ -85249,6 +85939,9 @@
       "slug": "ursaring",
       "text": "Level 42"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ursaluna.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ursaluna.sheet.png",
       "size": 56,
@@ -85676,6 +86369,9 @@
     },
     "sprite": "assets/pokemon/phanpy.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/phanpy.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/phanpy.sheet.png",
       "size": 40,
@@ -86055,6 +86751,9 @@
       "slug": "phanpy",
       "text": "Level 25"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/donphan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/donphan.sheet.png",
       "size": 56,
@@ -86372,6 +87071,9 @@
     },
     "sprite": "assets/pokemon/mantyke.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/mantyke.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mantyke.sheet.png",
       "size": 48,
@@ -86735,6 +87437,9 @@
       "slug": "mantyke",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/mantine.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mantine.sheet.png",
       "size": 56,
@@ -87084,6 +87789,9 @@
     },
     "sprite": "assets/pokemon/skarmory.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/skarmory.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/skarmory.sheet.png",
       "size": 56,
@@ -87411,6 +88119,9 @@
     },
     "sprite": "assets/pokemon/doduo.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/doduo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/doduo.sheet.png",
       "size": 40,
@@ -87746,6 +88457,9 @@
       "slug": "doduo",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dodrio.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dodrio.sheet.png",
       "size": 56,
@@ -88082,6 +88796,9 @@
     },
     "sprite": "assets/pokemon/ponyta.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/ponyta.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ponyta.sheet.png",
       "size": 48,
@@ -88422,6 +89139,9 @@
       "slug": "ponyta",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/rapidash.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rapidash.sheet.png",
       "size": 56,
@@ -88818,6 +89538,9 @@
     },
     "sprite": "assets/pokemon/cubone.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/cubone.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cubone.sheet.png",
       "size": 40,
@@ -89221,6 +89944,9 @@
       "slug": "cubone",
       "text": "Level 28"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/marowak.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/marowak.sheet.png",
       "size": 48,
@@ -89637,6 +90363,9 @@
     },
     "sprite": "assets/pokemon/kangaskhan.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/kangaskhan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kangaskhan.sheet.png",
       "size": 56,
@@ -90081,6 +90810,9 @@
     },
     "sprite": "assets/pokemon/rhyhorn.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/rhyhorn.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rhyhorn.sheet.png",
       "size": 56,
@@ -90499,6 +91231,9 @@
       "slug": "rhyhorn",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/rhydon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rhydon.sheet.png",
       "size": 56,
@@ -91077,6 +91812,9 @@
       "slug": "rhydon",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/rhyperior.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rhyperior.sheet.png",
       "size": 56,
@@ -91537,6 +92275,9 @@
     },
     "sprite": "assets/pokemon/murkrow.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/murkrow.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/murkrow.sheet.png",
       "size": 48,
@@ -91877,6 +92618,9 @@
       "slug": "murkrow",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/honchkrow.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/honchkrow.sheet.png",
       "size": 56,
@@ -92201,6 +92945,9 @@
     },
     "sprite": "assets/pokemon/bagon.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/bagon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bagon.sheet.png",
       "size": 40,
@@ -92538,6 +93285,9 @@
       "slug": "bagon",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/shelgon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shelgon.sheet.png",
       "size": 48,
@@ -92905,6 +93655,9 @@
       "slug": "shelgon",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/salamence.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/salamence.sheet.png",
       "size": 56,
@@ -93286,6 +94039,9 @@
     },
     "sprite": "assets/pokemon/axew.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/axew.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/axew.sheet.png",
       "size": 40,
@@ -93695,6 +94451,9 @@
       "slug": "axew",
       "text": "Level 24"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/fraxure.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/fraxure.sheet.png",
       "size": 56,
@@ -94075,6 +94834,9 @@
       "slug": "fraxure",
       "text": "Level 44"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/haxorus.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/haxorus.sheet.png",
       "size": 56,
@@ -94411,6 +95173,9 @@
     },
     "sprite": "assets/pokemon/ralts.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/ralts.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ralts.sheet.png",
       "size": 40,
@@ -94714,6 +95479,9 @@
       "slug": "ralts",
       "text": "Level 20"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/kirlia.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kirlia.sheet.png",
       "size": 48,
@@ -95027,6 +95795,9 @@
       "slug": "kirlia",
       "text": "Level 30 (female only)"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gardevoir.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gardevoir.sheet.png",
       "size": 56,
@@ -95447,6 +96218,9 @@
       "slug": "kirlia",
       "text": "Level 30 (male only)"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gallade.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gallade.sheet.png",
       "size": 56,
@@ -95820,6 +96594,9 @@
     },
     "sprite": "assets/pokemon/riolu.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/riolu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/riolu.sheet.png",
       "size": 48,
@@ -96242,6 +97019,9 @@
       "slug": "riolu",
       "text": "Level up with high friendship during the day"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/lucario.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lucario.sheet.png",
       "size": 56,
@@ -96683,6 +97463,9 @@
     },
     "sprite": "assets/pokemon/misdreavus.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/misdreavus.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/misdreavus.sheet.png",
       "size": 48,
@@ -97045,6 +97828,9 @@
       "slug": "misdreavus",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/mismagius.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mismagius.sheet.png",
       "size": 56,
@@ -97413,6 +98199,9 @@
     },
     "sprite": "assets/pokemon/mimikyu.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/mimikyu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mimikyu.sheet.png",
       "size": 40,
@@ -97748,6 +98537,9 @@
     },
     "sprite": "assets/pokemon/porygon.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/porygon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/porygon.sheet.png",
       "size": 48,
@@ -98108,6 +98900,9 @@
       "slug": "porygon",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/porygon2.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/porygon2.sheet.png",
       "size": 48,
@@ -98445,6 +99240,9 @@
       "slug": "porygon2",
       "text": "Use an Up-Grade"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/porygon-z.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/porygon-z.sheet.png",
       "size": 48,
@@ -98776,6 +99574,9 @@
     },
     "sprite": "assets/pokemon/venipede.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/venipede.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/venipede.sheet.png",
       "size": 40,
@@ -99034,6 +99835,9 @@
       "slug": "venipede",
       "text": "Level 22"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/whirlipede.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/whirlipede.sheet.png",
       "size": 48,
@@ -99328,6 +100132,9 @@
       "slug": "whirlipede",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/scolipede.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/scolipede.sheet.png",
       "size": 56,
@@ -99730,6 +100537,9 @@
     },
     "sprite": "assets/pokemon/sneasel.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/sneasel.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sneasel.sheet.png",
       "size": 48,
@@ -100137,6 +100947,9 @@
       "slug": "sneasel",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/weavile.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/weavile.sheet.png",
       "size": 56,
@@ -100544,6 +101357,9 @@
     },
     "sprite": "assets/pokemon/lileep.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/lileep.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lileep.sheet.png",
       "size": 40,
@@ -100888,6 +101704,9 @@
       "slug": "lileep",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/cradily.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cradily.sheet.png",
       "size": 56,
@@ -101224,6 +102043,9 @@
     },
     "sprite": "assets/pokemon/anorith.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/anorith.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/anorith.sheet.png",
       "size": 40,
@@ -101591,6 +102413,9 @@
       "slug": "anorith",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/armaldo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/armaldo.sheet.png",
       "size": 56,
@@ -101989,6 +102814,9 @@
     },
     "sprite": "assets/pokemon/cranidos.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/cranidos.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cranidos.sheet.png",
       "size": 56,
@@ -102375,6 +103203,9 @@
       "slug": "cranidos",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/rampardos.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rampardos.sheet.png",
       "size": 56,
@@ -102695,6 +103526,9 @@
     },
     "sprite": "assets/pokemon/shieldon.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/shieldon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shieldon.sheet.png",
       "size": 56,
@@ -103042,6 +103876,9 @@
       "slug": "shieldon",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/bastiodon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bastiodon.sheet.png",
       "size": 56,
@@ -103409,6 +104246,9 @@
     },
     "sprite": "assets/pokemon/tyrunt.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/tyrunt.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tyrunt.sheet.png",
       "size": 48,
@@ -103766,6 +104606,9 @@
       "slug": "tyrunt",
       "text": "Level 39"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tyrantrum.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tyrantrum.sheet.png",
       "size": 56,
@@ -104138,6 +104981,9 @@
     },
     "sprite": "assets/pokemon/amaura.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/amaura.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM02",
@@ -104442,6 +105288,9 @@
       "slug": "amaura",
       "text": "Level 39"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/aurorus.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM02",
@@ -104733,6 +105582,9 @@
     },
     "sprite": "assets/pokemon/golett.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/golett.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golett.sheet.png",
       "size": 40,
@@ -105062,6 +105914,9 @@
       "slug": "golett",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/golurk.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golurk.sheet.png",
       "size": 56,
@@ -105438,6 +106293,9 @@
     },
     "sprite": "assets/pokemon/duskull.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/duskull.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/duskull.sheet.png",
       "size": 56,
@@ -105767,6 +106625,9 @@
       "slug": "duskull",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dusclops.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dusclops.sheet.png",
       "size": 56,
@@ -106114,6 +106975,9 @@
       "slug": "dusclops",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dusknoir.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dusknoir.sheet.png",
       "size": 56,
@@ -106516,6 +107380,9 @@
     },
     "sprite": "assets/pokemon/timburr.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/timburr.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/timburr.sheet.png",
       "size": 48,
@@ -106884,6 +107751,9 @@
       "slug": "timburr",
       "text": "Level 25"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gurdurr.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gurdurr.sheet.png",
       "size": 56,
@@ -107291,6 +108161,9 @@
       "slug": "gurdurr",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/conkeldurr.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/conkeldurr.sheet.png",
       "size": 56,
@@ -107639,6 +108512,9 @@
     },
     "sprite": "assets/pokemon/larvesta.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/larvesta.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/larvesta.sheet.png",
       "size": 48,
@@ -107983,6 +108859,9 @@
       "slug": "larvesta",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/volcarona.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/volcarona.sheet.png",
       "size": 56,
@@ -108352,6 +109231,9 @@
     },
     "sprite": "assets/pokemon/deino.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/deino.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/deino.sheet.png",
       "size": 40,
@@ -108692,6 +109574,9 @@
       "slug": "deino",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/zweilous.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/zweilous.sheet.png",
       "size": 48,
@@ -109060,6 +109945,9 @@
       "slug": "zweilous",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hydreigon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hydreigon.sheet.png",
       "size": 56,
@@ -109386,6 +110274,9 @@
     },
     "sprite": "assets/pokemon/dreepy.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/dreepy.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dreepy.sheet.png",
       "size": 40,
@@ -109708,6 +110599,9 @@
       "slug": "dreepy",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/drakloak.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/drakloak.sheet.png",
       "size": 48,
@@ -110061,6 +110955,9 @@
       "slug": "drakloak",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dragapult.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dragapult.sheet.png",
       "size": 56,
@@ -110376,6 +111273,9 @@
     },
     "sprite": "assets/pokemon/impidimp.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/impidimp.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/impidimp.sheet.png",
       "size": 40,
@@ -110705,6 +111605,9 @@
       "slug": "impidimp",
       "text": "Level 22"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/morgrem.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM01",
@@ -110961,6 +111864,9 @@
       "slug": "morgrem",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/grimmsnarl.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/grimmsnarl.sheet.png",
       "size": 56,
@@ -111277,6 +112183,9 @@
     },
     "sprite": "assets/pokemon/tinkatink.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/tinkatink.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tinkatink.sheet.png",
       "size": 40,
@@ -111609,6 +112518,9 @@
       "slug": "tinkatink",
       "text": "Level 24"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tinkatuff.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tinkatuff.sheet.png",
       "size": 56,
@@ -111947,6 +112859,9 @@
       "slug": "tinkatuff",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tinkaton.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM03",
@@ -112191,6 +113106,9 @@
     },
     "sprite": "assets/pokemon/frigibax.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/frigibax.back.png",
+    "back_size": 40,
     "anim": {
       "sheet": "assets/pokemon/frigibax.sheet.png",
       "size": 40,
@@ -112531,6 +113449,9 @@
       "slug": "frigibax",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/arctibax.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/arctibax.sheet.png",
       "size": 48,
@@ -112864,6 +113785,9 @@
       "slug": "arctibax",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/baxcalibur.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/baxcalibur.sheet.png",
       "size": 56,
@@ -113186,6 +114110,9 @@
     },
     "sprite": "assets/pokemon/charcadet.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/charcadet.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/charcadet.sheet.png",
       "size": 40,
@@ -113496,6 +114423,9 @@
       "slug": "charcadet",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/armarouge.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/armarouge.sheet.png",
       "size": 56,
@@ -113851,6 +114781,9 @@
       "slug": "charcadet",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ceruledge.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ceruledge.sheet.png",
       "size": 56,
@@ -114269,6 +115202,9 @@
     },
     "sprite": "assets/pokemon/rookidee.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/rookidee.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rookidee.sheet.png",
       "size": 40,
@@ -114601,6 +115537,9 @@
       "slug": "rookidee",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/corvisquire.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/corvisquire.sheet.png",
       "size": 48,
@@ -114969,6 +115908,9 @@
       "slug": "corvisquire",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/corviknight.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/corviknight.sheet.png",
       "size": 56,
@@ -115370,6 +116312,9 @@
     },
     "sprite": "assets/pokemon/houndour.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/houndour.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/houndour.sheet.png",
       "size": 48,
@@ -115773,6 +116718,9 @@
       "slug": "houndour",
       "text": "Level 24"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/houndoom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/houndoom.sheet.png",
       "size": 56,
@@ -116155,6 +117103,9 @@
     },
     "sprite": "assets/pokemon/slugma.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/slugma.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slugma.sheet.png",
       "size": 48,
@@ -116483,6 +117434,9 @@
       "slug": "slugma",
       "text": "Level 38"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/magcargo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/magcargo.sheet.png",
       "size": 48,
@@ -116774,6 +117728,9 @@
     },
     "sprite": "assets/pokemon/happiny.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/happiny.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/happiny.sheet.png",
       "size": 40,
@@ -117172,6 +118129,9 @@
       "slug": "happiny",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/chansey.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/chansey.sheet.png",
       "size": 56,
@@ -117593,6 +118553,9 @@
       "slug": "chansey",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/blissey.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/blissey.sheet.png",
       "size": 56,
@@ -118014,6 +118977,9 @@
     },
     "sprite": "assets/pokemon/lapras.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/lapras.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lapras.sheet.png",
       "size": 56,
@@ -118399,6 +119365,9 @@
     },
     "sprite": "assets/pokemon/omanyte.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/omanyte.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/omanyte.sheet.png",
       "size": 40,
@@ -118760,6 +119729,9 @@
       "slug": "omanyte",
       "text": "Level 40"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/omastar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/omastar.sheet.png",
       "size": 48,
@@ -119102,6 +120074,9 @@
     },
     "sprite": "assets/pokemon/kabuto.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/kabuto.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kabuto.sheet.png",
       "size": 40,
@@ -119476,6 +120451,9 @@
       "slug": "kabuto",
       "text": "Level 40"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/kabutops.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kabutops.sheet.png",
       "size": 48,
@@ -119889,6 +120867,9 @@
     },
     "sprite": "assets/pokemon/aerodactyl.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/aerodactyl.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/aerodactyl.sheet.png",
       "size": 56,
@@ -120278,6 +121259,9 @@
     },
     "sprite": "assets/pokemon/munchlax.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/munchlax.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/munchlax.sheet.png",
       "size": 48,
@@ -120702,6 +121686,9 @@
       "slug": "munchlax",
       "text": "Level up with high friendship"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/snorlax.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/snorlax.sheet.png",
       "size": 56,
@@ -121130,6 +122117,9 @@
     },
     "sprite": "assets/pokemon/bulbasaur.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/bulbasaur.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bulbasaur.sheet.png",
       "size": 40,
@@ -121479,6 +122469,9 @@
         },
         "sprite": "assets/pokemon/bulbasaur.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/bulbasaur.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/bulbasaur.sheet.png",
           "size": 40,
@@ -121828,6 +122821,9 @@
         },
         "sprite": "assets/pokemon/bulbasaur-clone.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/bulbasaur-clone.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/bulbasaur-clone.sheet.png",
           "size": 40,
@@ -122178,6 +123174,9 @@
       "slug": "bulbasaur",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/ivysaur.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ivysaur.sheet.png",
       "size": 48,
@@ -122530,6 +123529,9 @@
           "slug": "bulbasaur",
           "text": "Level 16"
         },
+        "sprite_size": 48,
+        "back": "assets/pokemon/ivysaur.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/ivysaur.sheet.png",
           "size": 48,
@@ -122882,6 +123884,9 @@
           "slug": "bulbasaur-clone",
           "text": "Level 16"
         },
+        "sprite_size": 48,
+        "back": "assets/pokemon/ivysaur-clone.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/ivysaur-clone.sheet.png",
           "size": 48,
@@ -123249,6 +124254,9 @@
       "slug": "ivysaur",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/venusaur.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/venusaur.sheet.png",
       "size": 56,
@@ -123632,6 +124640,9 @@
           "slug": "ivysaur",
           "text": "Level 32"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/venusaur.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/venusaur.sheet.png",
           "size": 56,
@@ -124015,6 +125026,9 @@
           "slug": "ivysaur-clone",
           "text": "Level 32"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/venusaur-clone.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/venusaur-clone.sheet.png",
           "size": 56,
@@ -124381,6 +125395,9 @@
     },
     "sprite": "assets/pokemon/charmander.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/charmander.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/charmander.sheet.png",
       "size": 40,
@@ -124771,6 +125788,9 @@
         },
         "sprite": "assets/pokemon/charmander.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/charmander.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/charmander.sheet.png",
           "size": 40,
@@ -125161,6 +126181,9 @@
         },
         "sprite": "assets/pokemon/charmander-clone.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/charmander-clone.back.png",
+        "back_size": 48,
         "tmhm_labeled": [
           {
             "tm": "TM01",
@@ -125499,6 +126522,9 @@
       "slug": "charmander",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/charmeleon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/charmeleon.sheet.png",
       "size": 48,
@@ -125897,6 +126923,9 @@
           "slug": "charmander",
           "text": "Level 16"
         },
+        "sprite_size": 48,
+        "back": "assets/pokemon/charmeleon.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/charmeleon.sheet.png",
           "size": 48,
@@ -126295,6 +127324,9 @@
           "slug": "charmander-clone",
           "text": "Level 16"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/charmeleon-clone.back.png",
+        "back_size": 48,
         "tmhm_labeled": [
           {
             "tm": "TM01",
@@ -126679,6 +127711,9 @@
       "slug": "charmeleon",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/charizard.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/charizard.sheet.png",
       "size": 56,
@@ -127157,6 +128192,9 @@
           "slug": "charmeleon",
           "text": "Level 36"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/charizard.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/charizard.sheet.png",
           "size": 56,
@@ -127635,6 +128673,9 @@
           "slug": "charmeleon-clone",
           "text": "Level 36"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/charizard-clone.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/charizard-clone.sheet.png",
           "size": 56,
@@ -128042,6 +129083,9 @@
     },
     "sprite": "assets/pokemon/squirtle.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/squirtle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/squirtle.sheet.png",
       "size": 40,
@@ -128415,6 +129459,9 @@
         },
         "sprite": "assets/pokemon/squirtle.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/squirtle.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/squirtle.sheet.png",
           "size": 40,
@@ -128788,6 +129835,9 @@
         },
         "sprite": "assets/pokemon/squirtle-clone.png",
         "evolves_from": null,
+        "sprite_size": 40,
+        "back": "assets/pokemon/squirtle-clone.back.png",
+        "back_size": 48,
         "tmhm_labeled": [
           {
             "tm": "TM01",
@@ -129104,6 +130154,9 @@
       "slug": "squirtle",
       "text": "Level 16"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/wartortle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wartortle.sheet.png",
       "size": 48,
@@ -129476,6 +130529,9 @@
           "slug": "squirtle",
           "text": "Level 16"
         },
+        "sprite_size": 48,
+        "back": "assets/pokemon/wartortle.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/wartortle.sheet.png",
           "size": 48,
@@ -129848,6 +130904,9 @@
           "slug": "squirtle-clone",
           "text": "Level 16"
         },
+        "sprite_size": 48,
+        "back": "assets/pokemon/wartortle-clone.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/wartortle-clone.sheet.png",
           "size": 48,
@@ -130246,6 +131305,9 @@
       "slug": "wartortle",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/blastoise.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/blastoise.sheet.png",
       "size": 56,
@@ -130646,6 +131708,9 @@
           "slug": "wartortle",
           "text": "Level 36"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/blastoise.back.png",
+        "back_size": 48,
         "anim": {
           "sheet": "assets/pokemon/blastoise.sheet.png",
           "size": 56,
@@ -131046,6 +132111,9 @@
           "slug": "wartortle-clone",
           "text": "Level 36"
         },
+        "sprite_size": 56,
+        "back": "assets/pokemon/blastoise-clone.back.png",
+        "back_size": 48,
         "tmhm_labeled": [
           {
             "tm": "TM01",
@@ -131384,6 +132452,9 @@
     },
     "sprite": "assets/pokemon/articuno.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/articuno.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/articuno.sheet.png",
       "size": 56,
@@ -131718,6 +132789,9 @@
     },
     "sprite": "assets/pokemon/zapdos.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/zapdos.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/zapdos.sheet.png",
       "size": 56,
@@ -132072,6 +133146,9 @@
     },
     "sprite": "assets/pokemon/moltres.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/moltres.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/moltres.sheet.png",
       "size": 56,
@@ -132514,6 +133591,9 @@
     },
     "sprite": "assets/pokemon/raikou.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/raikou.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raikou.sheet.png",
       "size": 56,
@@ -132922,6 +134002,9 @@
     },
     "sprite": "assets/pokemon/entei.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/entei.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/entei.sheet.png",
       "size": 56,
@@ -133289,6 +134372,9 @@
     },
     "sprite": "assets/pokemon/suicune.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/suicune.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/suicune.sheet.png",
       "size": 56,
@@ -133692,6 +134778,9 @@
     },
     "sprite": "assets/pokemon/dratini.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/dratini.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dratini.sheet.png",
       "size": 40,
@@ -134059,6 +135148,9 @@
       "slug": "dratini",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/dragonair.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dragonair.sheet.png",
       "size": 48,
@@ -134508,6 +135600,9 @@
       "slug": "dragonair",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dragonite.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dragonite.sheet.png",
       "size": 56,
@@ -134993,6 +136088,9 @@
     },
     "sprite": "assets/pokemon/larvitar.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/larvitar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/larvitar.sheet.png",
       "size": 40,
@@ -135315,6 +136413,9 @@
       "slug": "larvitar",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/pupitar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pupitar.sheet.png",
       "size": 48,
@@ -135704,6 +136805,9 @@
       "slug": "pupitar",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tyranitar.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tyranitar.sheet.png",
       "size": 56,
@@ -136115,6 +137219,9 @@
     },
     "sprite": "assets/pokemon/lugia.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/lugia.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lugia.sheet.png",
       "size": 56,
@@ -136529,6 +137636,9 @@
     },
     "sprite": "assets/pokemon/ho-oh.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/ho-oh.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ho-oh.sheet.png",
       "size": 56,
@@ -136984,6 +138094,9 @@
     },
     "sprite": "assets/pokemon/mewtwo.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/mewtwo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mewtwo.sheet.png",
       "size": 56,
@@ -137492,6 +138605,9 @@
     },
     "sprite": "assets/pokemon/mew.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/mew.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mew.sheet.png",
       "size": 40,
@@ -138041,6 +139157,9 @@
     },
     "sprite": "assets/pokemon/celebi.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/celebi.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/celebi.sheet.png",
       "size": 40,
@@ -138424,6 +139543,9 @@
     },
     "sprite": "assets/pokemon/snover.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/snover.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/snover.sheet.png",
       "size": 48,
@@ -138722,6 +139844,9 @@
       "slug": "snover",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/abomasnow.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/abomasnow.sheet.png",
       "size": 56,
@@ -139030,6 +140155,9 @@
     },
     "sprite": "assets/pokemon/swablu.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/swablu.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/swablu.sheet.png",
       "size": 40,
@@ -139373,6 +140501,9 @@
       "slug": "swablu",
       "text": "Level 34"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/altaria.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/altaria.sheet.png",
       "size": 56,
@@ -139673,6 +140804,9 @@
     },
     "sprite": "assets/pokemon/applin.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/applin.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/applin.sheet.png",
       "size": 40,
@@ -139995,6 +141129,9 @@
       "slug": "applin",
       "text": "Level 22"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/dipplin.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dipplin.sheet.png",
       "size": 48,
@@ -140360,6 +141497,9 @@
       "slug": "dipplin",
       "text": "Use a Sweet Apple"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/appletun.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/appletun.sheet.png",
       "size": 56,
@@ -140746,6 +141886,9 @@
       "slug": "dipplin",
       "text": "Use a Tart Apple"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/flapple.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/flapple.sheet.png",
       "size": 48,
@@ -141110,6 +142253,9 @@
       "slug": "dipplin",
       "text": "Use a Syrupy Apple"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/hydrapple.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/hydrapple.sheet.png",
       "size": 56,
@@ -141458,6 +142604,9 @@
     },
     "sprite": "assets/pokemon/duraludon.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/duraludon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/duraludon.sheet.png",
       "size": 56,
@@ -141805,6 +142954,9 @@
       "slug": "duraludon",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/archaludon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/archaludon.sheet.png",
       "size": 56,
@@ -142156,6 +143308,9 @@
     },
     "sprite": "assets/pokemon/shroomish.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/shroomish.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shroomish.sheet.png",
       "size": 40,
@@ -142466,6 +143621,9 @@
       "slug": "shroomish",
       "text": "Level 23"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/breloom.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/breloom.sheet.png",
       "size": 56,
@@ -142784,6 +143942,9 @@
     },
     "sprite": "assets/pokemon/buneary.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/buneary.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/buneary.sheet.png",
       "size": 48,
@@ -143119,6 +144280,9 @@
       "slug": "buneary",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/lopunny.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lopunny.sheet.png",
       "size": 56,
@@ -143473,6 +144637,9 @@
     },
     "sprite": "assets/pokemon/numel.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/numel.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/numel.sheet.png",
       "size": 48,
@@ -143832,6 +144999,9 @@
       "slug": "numel",
       "text": "Level 33"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/camerupt.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/camerupt.sheet.png",
       "size": 56,
@@ -144155,6 +145325,9 @@
     },
     "sprite": "assets/pokemon/sizzlipede.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/sizzlipede.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sizzlipede.sheet.png",
       "size": 40,
@@ -144470,6 +145643,9 @@
       "slug": "sizzlipede",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/centiskorch.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/centiskorch.sheet.png",
       "size": 56,
@@ -144780,6 +145956,9 @@
     },
     "sprite": "assets/pokemon/grubbin.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/grubbin.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/grubbin.sheet.png",
       "size": 40,
@@ -145064,6 +146243,9 @@
       "slug": "grubbin",
       "text": "Level 20"
     },
+    "sprite_size": 40,
+    "back": "assets/pokemon/charjabug.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/charjabug.sheet.png",
       "size": 40,
@@ -145412,6 +146594,9 @@
       "slug": "charjabug",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/vikavolt.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vikavolt.sheet.png",
       "size": 56,
@@ -145799,6 +146984,9 @@
     },
     "sprite": "assets/pokemon/croagunk.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/croagunk.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/croagunk.sheet.png",
       "size": 40,
@@ -146155,6 +147343,9 @@
       "slug": "croagunk",
       "text": "Level 37"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/toxicroak.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/toxicroak.sheet.png",
       "size": 56,
@@ -146516,6 +147707,9 @@
     },
     "sprite": "assets/pokemon/drifloon.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/drifloon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/drifloon.sheet.png",
       "size": 48,
@@ -146862,6 +148056,9 @@
       "slug": "drifloon",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/drifblim.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/drifblim.sheet.png",
       "size": 56,
@@ -147197,6 +148394,9 @@
     },
     "sprite": "assets/pokemon/drilbur.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/drilbur.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/drilbur.sheet.png",
       "size": 48,
@@ -147520,6 +148720,9 @@
       "slug": "drilbur",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/excadrill.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/excadrill.sheet.png",
       "size": 56,
@@ -147883,6 +149086,9 @@
     },
     "sprite": "assets/pokemon/kotora.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/kotora.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kotora.sheet.png",
       "size": 40,
@@ -148307,6 +149513,9 @@
       "slug": "kotora",
       "text": "Level 31"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/raitora.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raitora.sheet.png",
       "size": 56,
@@ -148711,6 +149920,9 @@
       "slug": "raitora",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/gorotora.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/gorotora.sheet.png",
       "size": 56,
@@ -149093,6 +150305,9 @@
     },
     "sprite": "assets/pokemon/fletchling.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/fletchling.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM02",
@@ -149332,6 +150547,9 @@
       "slug": "fletchling",
       "text": "Level 17"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/fletchinder.back.png",
+    "back_size": 48,
     "tmhm_labeled": [
       {
         "tm": "TM02",
@@ -149599,6 +150817,9 @@
       "slug": "fletchinder",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/talonflame.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/talonflame.sheet.png",
       "size": 56,
@@ -149948,6 +151169,9 @@
     },
     "sprite": "assets/pokemon/trapinch.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/trapinch.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/trapinch.sheet.png",
       "size": 40,
@@ -150297,6 +151521,9 @@
       "slug": "trapinch",
       "text": "Level 25"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/vibrava.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vibrava.sheet.png",
       "size": 48,
@@ -150706,6 +151933,9 @@
       "slug": "vibrava",
       "text": "Level 45"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/flygon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/flygon.sheet.png",
       "size": 56,
@@ -151095,6 +152325,9 @@
     },
     "sprite": "assets/pokemon/snorunt.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/snorunt.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/snorunt.sheet.png",
       "size": 40,
@@ -151447,6 +152680,9 @@
       "slug": "snorunt",
       "text": "Level 36"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/froslass.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/froslass.sheet.png",
       "size": 48,
@@ -151727,6 +152963,9 @@
     },
     "sprite": "assets/pokemon/wimpod.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/wimpod.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wimpod.sheet.png",
       "size": 40,
@@ -152033,6 +153272,9 @@
       "slug": "wimpod",
       "text": "Level 25"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/golisopod.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golisopod.sheet.png",
       "size": 56,
@@ -152398,6 +153640,9 @@
     },
     "sprite": "assets/pokemon/spoink.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/spoink.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/spoink.sheet.png",
       "size": 40,
@@ -152732,6 +153977,9 @@
       "slug": "spoink",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/grumpig.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/grumpig.sheet.png",
       "size": 56,
@@ -153027,6 +154275,9 @@
     },
     "sprite": "assets/pokemon/pawniard.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/pawniard.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/pawniard.sheet.png",
       "size": 40,
@@ -153357,6 +154608,9 @@
       "slug": "pawniard",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/bisharp.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bisharp.sheet.png",
       "size": 56,
@@ -153684,6 +154938,9 @@
       "slug": "bisharp",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/kingambit.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/kingambit.sheet.png",
       "size": 56,
@@ -154080,6 +155337,9 @@
     },
     "sprite": "assets/pokemon/lotad.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/lotad.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lotad.sheet.png",
       "size": 40,
@@ -154417,6 +155677,9 @@
       "slug": "lotad",
       "text": "Level 14"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/lombre.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lombre.sheet.png",
       "size": 48,
@@ -154756,6 +156019,9 @@
       "slug": "lombre",
       "text": "Use a Water Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ludicolo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ludicolo.sheet.png",
       "size": 56,
@@ -155113,6 +156379,9 @@
     },
     "sprite": "assets/pokemon/scraggy.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/scraggy.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/scraggy.sheet.png",
       "size": 40,
@@ -155475,6 +156744,9 @@
       "slug": "scraggy",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/scrafty.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/scrafty.sheet.png",
       "size": 56,
@@ -155842,6 +157114,9 @@
     },
     "sprite": "assets/pokemon/spheal.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/spheal.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/spheal.sheet.png",
       "size": 40,
@@ -156186,6 +157461,9 @@
       "slug": "spheal",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/sealeo.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sealeo.sheet.png",
       "size": 56,
@@ -156516,6 +157794,9 @@
       "slug": "sealeo",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/walrein.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/walrein.sheet.png",
       "size": 56,
@@ -156819,6 +158100,9 @@
     },
     "sprite": "assets/pokemon/teddiursabm.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/teddiursabm.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/teddiursabm.sheet.png",
       "size": 40,
@@ -157249,6 +158533,9 @@
       "slug": "teddiursabm",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ursaringbm.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ursaringbm.sheet.png",
       "size": 56,
@@ -157682,6 +158969,9 @@
       "slug": "ursaringbm",
       "text": "Level 42"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ursalunabm.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ursalunabm.sheet.png",
       "size": 56,
@@ -158083,6 +159373,9 @@
     },
     "sprite": "assets/pokemon/cetoddle.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/cetoddle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cetoddle.sheet.png",
       "size": 56,
@@ -158454,6 +159747,9 @@
       "slug": "cetoddle",
       "text": "Level 30"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/cetitan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cetitan.sheet.png",
       "size": 56,
@@ -158846,6 +160142,9 @@
     },
     "sprite": "assets/pokemon/corsola-galarian.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/corsola-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/corsola-galarian.sheet.png",
       "size": 48,
@@ -159241,6 +160540,9 @@
       "slug": "corsola-galarian",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/cursola.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/cursola.sheet.png",
       "size": 56,
@@ -159617,6 +160919,9 @@
     },
     "sprite": "assets/pokemon/rattata-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/rattata-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rattata-alolan.sheet.png",
       "size": 40,
@@ -160002,6 +161307,9 @@
       "slug": "rattata-alolan",
       "text": "Level 20"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/raticate-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raticate-alolan.sheet.png",
       "size": 48,
@@ -160431,6 +161739,9 @@
       "slug": "pikachu",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/raichu-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/raichu-alolan.sheet.png",
       "size": 56,
@@ -160861,6 +162172,9 @@
     },
     "sprite": "assets/pokemon/sandshrew-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/sandshrew-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sandshrew-alolan.sheet.png",
       "size": 40,
@@ -161323,6 +162637,9 @@
       "slug": "sandshrew-alolan",
       "text": "Level 22"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/sandslash-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sandslash-alolan.sheet.png",
       "size": 48,
@@ -161746,6 +163063,9 @@
     },
     "sprite": "assets/pokemon/vulpix-alolan.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/vulpix-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/vulpix-alolan.sheet.png",
       "size": 48,
@@ -162116,6 +163436,9 @@
       "slug": "vulpix-alolan",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/ninetales-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ninetales-alolan.sheet.png",
       "size": 56,
@@ -162458,6 +163781,9 @@
     },
     "sprite": "assets/pokemon/diglett-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/diglett-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/diglett-alolan.sheet.png",
       "size": 40,
@@ -162849,6 +164175,9 @@
       "slug": "diglett-alolan",
       "text": "Level 26"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/dugtrio-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/dugtrio-alolan.sheet.png",
       "size": 56,
@@ -163249,6 +164578,9 @@
     },
     "sprite": "assets/pokemon/meowth-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/meowth-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/meowth-alolan.sheet.png",
       "size": 40,
@@ -163638,6 +164970,9 @@
       "slug": "meowth-alolan",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/persian-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/persian-alolan.sheet.png",
       "size": 56,
@@ -164030,6 +165365,9 @@
     },
     "sprite": "assets/pokemon/geodude-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/geodude-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/geodude-alolan.sheet.png",
       "size": 40,
@@ -164420,6 +165758,9 @@
       "slug": "geodude-alolan",
       "text": "Level 25"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/graveler-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/graveler-alolan.sheet.png",
       "size": 56,
@@ -164870,6 +166211,9 @@
       "slug": "graveler-alolan",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/golem-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/golem-alolan.sheet.png",
       "size": 56,
@@ -165264,6 +166608,9 @@
     },
     "sprite": "assets/pokemon/grimer-alolan.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/grimer-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/grimer-alolan.sheet.png",
       "size": 40,
@@ -165633,6 +166980,9 @@
       "slug": "grimer-alolan",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/muk-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/muk-alolan.sheet.png",
       "size": 56,
@@ -166036,6 +167386,9 @@
       "slug": "exeggcute",
       "text": "Use a Sun Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/exeggutor-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/exeggutor-alolan.sheet.png",
       "size": 56,
@@ -166480,6 +167833,9 @@
       "slug": "cubone",
       "text": "Level 28"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/marowak-alolan.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/marowak-alolan.sheet.png",
       "size": 48,
@@ -166912,6 +168268,9 @@
     },
     "sprite": "assets/pokemon/meowth-galarian.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/meowth-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/meowth-galarian.sheet.png",
       "size": 40,
@@ -167329,6 +168688,9 @@
       "slug": "meowth-galarian",
       "text": "Level 28"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/perrserker.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/perrserker.sheet.png",
       "size": 56,
@@ -167696,6 +169058,9 @@
     },
     "sprite": "assets/pokemon/ponyta-galarian.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/ponyta-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/ponyta-galarian.sheet.png",
       "size": 48,
@@ -168020,6 +169385,9 @@
       "slug": "ponyta-galarian",
       "text": "Level 40"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/rapidash-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/rapidash-galarian.sheet.png",
       "size": 56,
@@ -168419,6 +169787,9 @@
     },
     "sprite": "assets/pokemon/slowpoke-galarian.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/slowpoke-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowpoke-galarian.sheet.png",
       "size": 48,
@@ -168850,6 +170221,9 @@
       "slug": "slowpoke-galarian",
       "text": "Level 37"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/slowbro-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowbro-galarian.sheet.png",
       "size": 56,
@@ -169356,6 +170730,9 @@
       "slug": "slowpoke-galarian",
       "text": "Use a King's Rock"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/slowking-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/slowking-galarian.sheet.png",
       "size": 56,
@@ -169793,6 +171170,9 @@
       "slug": "koffing",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/weezing-galarian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/weezing-galarian.sheet.png",
       "size": 56,
@@ -170156,6 +171536,9 @@
     },
     "sprite": "assets/pokemon/growlithe-hisuian.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/growlithe-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/growlithe-hisuian.sheet.png",
       "size": 48,
@@ -170519,6 +171902,9 @@
       "slug": "growlithe-hisuian",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/arcanine-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/arcanine-hisuian.sheet.png",
       "size": 56,
@@ -170905,6 +172291,9 @@
     },
     "sprite": "assets/pokemon/voltorb-hisuian.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/voltorb-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/voltorb-hisuian.sheet.png",
       "size": 40,
@@ -171285,6 +172674,9 @@
       "slug": "voltorb-hisuian",
       "text": "Level 30"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/electrode-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/electrode-hisuian.sheet.png",
       "size": 48,
@@ -171712,6 +173104,9 @@
       "slug": "quilava",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/typhlosion-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/typhlosion-hisuian.sheet.png",
       "size": 56,
@@ -172164,6 +173559,9 @@
     },
     "sprite": "assets/pokemon/sneasel-hisuian.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/sneasel-hisuian.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sneasel-hisuian.sheet.png",
       "size": 48,
@@ -172682,6 +174080,9 @@
       "slug": "sneasel-hisuian",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/sneasler.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/sneasler.sheet.png",
       "size": 56,
@@ -173085,6 +174486,9 @@
     },
     "sprite": "assets/pokemon/wooper-paldean.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/wooper-paldean.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/wooper-paldean.sheet.png",
       "size": 40,
@@ -173439,6 +174843,9 @@
       "slug": "wooper-paldean",
       "text": "Level 20"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/clodsire.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/clodsire.sheet.png",
       "size": 48,
@@ -173837,6 +175244,9 @@
     },
     "sprite": "assets/pokemon/tauros-paldean-fire.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/tauros-paldean-fire.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tauros-paldean-fire.sheet.png",
       "size": 56,
@@ -174240,6 +175650,9 @@
     },
     "sprite": "assets/pokemon/tauros-paldean-water.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/tauros-paldean-water.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tauros-paldean-water.sheet.png",
       "size": 56,
@@ -174567,6 +175980,9 @@
     },
     "sprite": "assets/pokemon/bounsweet.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/bounsweet.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/bounsweet.sheet.png",
       "size": 40,
@@ -174843,6 +176259,9 @@
       "slug": "bounsweet",
       "text": "Level 18"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/steenee.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/steenee.sheet.png",
       "size": 48,
@@ -175190,6 +176609,9 @@
       "slug": "steenee",
       "text": "Level 29"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/tsareena.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tsareena.sheet.png",
       "size": 56,
@@ -175556,6 +176978,9 @@
     },
     "sprite": "assets/pokemon/aron.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/aron.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/aron.sheet.png",
       "size": 40,
@@ -175934,6 +177359,9 @@
       "slug": "aron",
       "text": "Level 32"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/lairon.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lairon.sheet.png",
       "size": 56,
@@ -176328,6 +177756,9 @@
       "slug": "lairon",
       "text": "Level 42"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/aggron.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/aggron.sheet.png",
       "size": 56,
@@ -176686,6 +178117,9 @@
     },
     "sprite": "assets/pokemon/glimmet.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/glimmet.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/glimmet.sheet.png",
       "size": 40,
@@ -176976,6 +178410,9 @@
       "slug": "glimmet",
       "text": "Level 35"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/glimmora.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/glimmora.sheet.png",
       "size": 48,
@@ -177271,6 +178708,9 @@
     },
     "sprite": "assets/pokemon/mareanie.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/mareanie.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mareanie.sheet.png",
       "size": 48,
@@ -177549,6 +178989,9 @@
       "slug": "mareanie",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/toxapex.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/toxapex.sheet.png",
       "size": 56,
@@ -177901,6 +179344,9 @@
     },
     "sprite": "assets/pokemon/zangoose.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/zangoose.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/zangoose.sheet.png",
       "size": 56,
@@ -178302,6 +179748,9 @@
     },
     "sprite": "assets/pokemon/seviper.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/seviper.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/seviper.sheet.png",
       "size": 56,
@@ -178670,6 +180119,9 @@
     },
     "sprite": "assets/pokemon/shuppet.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/shuppet.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/shuppet.sheet.png",
       "size": 40,
@@ -179033,6 +180485,9 @@
       "slug": "shuppet",
       "text": "Level 37"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/banette.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/banette.sheet.png",
       "size": 48,
@@ -179452,6 +180907,9 @@
     },
     "sprite": "assets/pokemon/archen.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/archen.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/archen.sheet.png",
       "size": 48,
@@ -179863,6 +181321,9 @@
       "slug": "archen",
       "text": "Level 37"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/archeops.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/archeops.sheet.png",
       "size": 56,
@@ -180279,6 +181740,9 @@
     },
     "sprite": "assets/pokemon/tirtouga.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/tirtouga.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/tirtouga.sheet.png",
       "size": 48,
@@ -180689,6 +182153,9 @@
       "slug": "tirtouga",
       "text": "Level 37"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/carracosta.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/carracosta.sheet.png",
       "size": 56,
@@ -181061,6 +182528,9 @@
     },
     "sprite": "assets/pokemon/litwick.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/litwick.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/litwick.sheet.png",
       "size": 40,
@@ -181391,6 +182861,9 @@
       "slug": "litwick",
       "text": "Level 41"
     },
+    "sprite_size": 48,
+    "back": "assets/pokemon/lampent.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/lampent.sheet.png",
       "size": 48,
@@ -181733,6 +183206,9 @@
       "slug": "lampent",
       "text": "Use a Moon Stone"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/chandelure.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/chandelure.sheet.png",
       "size": 56,
@@ -182128,6 +183604,9 @@
     },
     "sprite": "assets/pokemon/joltik.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/joltik.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/joltik.sheet.png",
       "size": 40,
@@ -182466,6 +183945,9 @@
       "slug": "joltik",
       "text": "Level 36"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/galvantula.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/galvantula.sheet.png",
       "size": 56,
@@ -182810,6 +184292,9 @@
     },
     "sprite": "assets/pokemon/mawile.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/mawile.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/mawile.sheet.png",
       "size": 48,
@@ -183186,6 +184671,9 @@
     },
     "sprite": "assets/pokemon/noibat.png",
     "evolves_from": null,
+    "sprite_size": 48,
+    "back": "assets/pokemon/noibat.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/noibat.sheet.png",
       "size": 48,
@@ -183574,6 +185062,9 @@
       "slug": "noibat",
       "text": "Level 48"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/noivern.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/noivern.sheet.png",
       "size": 56,
@@ -183975,6 +185466,9 @@
     },
     "sprite": "assets/pokemon/salandit.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/salandit.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/salandit.sheet.png",
       "size": 40,
@@ -184395,6 +185889,9 @@
       "slug": "salandit",
       "text": "Level 33 (female only)"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/salazzle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/salazzle.sheet.png",
       "size": 56,
@@ -184780,6 +186277,9 @@
     },
     "sprite": "assets/pokemon/flittle.png",
     "evolves_from": null,
+    "sprite_size": 40,
+    "back": "assets/pokemon/flittle.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/flittle.sheet.png",
       "size": 40,
@@ -185092,6 +186592,9 @@
       "slug": "flittle",
       "text": "Level 35"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/espathra.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/espathra.sheet.png",
       "size": 56,
@@ -185420,6 +186923,9 @@
     },
     "sprite": "assets/pokemon/finizen.png",
     "evolves_from": null,
+    "sprite_size": 56,
+    "back": "assets/pokemon/finizen.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/finizen.sheet.png",
       "size": 56,
@@ -185856,6 +187362,9 @@
       "slug": "finizen",
       "text": "Level 38"
     },
+    "sprite_size": 56,
+    "back": "assets/pokemon/palafin.back.png",
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/palafin.sheet.png",
       "size": 56,
