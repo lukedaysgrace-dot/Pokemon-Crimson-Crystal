@@ -2999,6 +2999,7 @@ wStarterShinyFlags:: db
 wGameplayRules:: db
 ; bit 0: use original Pokemon typings instead of the revamped typings
 ; bit 1: use original base stats instead of the updated base stats
+; bit 2: Pokemon abilities are turned off (GetAbility returns NO_ABILITY)
 	ds 4
 
 wStepCount:: db ; dc73

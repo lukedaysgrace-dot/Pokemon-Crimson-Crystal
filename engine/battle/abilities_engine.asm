@@ -1598,6 +1598,8 @@ BadDreamsAbility:
 
 RunPostBattleAbilities::
 ; Party-wide Pickup / Honey Gather / Natural Cure.
+	call AbilitiesDisabled
+	ret nz
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -1961,6 +1963,7 @@ AIPartyIndexAbilityNullifiesTypeFar::
 	add hl, de
 	ld b, [hl] ; personality
 	call GetAbility ; out: b = ability (clobbers c)
+	call ZeroAbilityIfDisabled
 	pop de ; e = saved move type
 	ld c, e
 	jp AbilityNullifiesType
@@ -5232,9 +5235,57 @@ CheckAteAbilityBoost:
 	and a ; nc
 	ret
 
+; ==== Abilities on/off (chosen when starting a new game) ==================
+
+AbilitiesDisabled::
+; out: nz if this save plays with Pokemon abilities turned off.
+; wGameplayRules is in WRAMX bank 1, so read it explicitly.
+; Preserves bc, de, hl. Farcall-safe (a and f are returned).
+	push bc
+	ldh a, [rSVBK]
+	ld c, a
+	ld a, BANK(wGameplayRules)
+	ldh [rSVBK], a
+	ld a, [wGameplayRules]
+	ld b, a
+	ld a, c
+	ldh [rSVBK], a
+	ld a, b
+	pop bc
+	and 1 << GAMEPLAYRULES_NO_ABILITIES_F
+	ret
+
+ZeroAbilityIfDisabled::
+; Filter a GetAbility result through this save's abilities rule.
+; in: b = ability; out: a = b = ability, or NO_ABILITY if abilities are off.
+; Preserves c, de, hl.
+	call AbilitiesDisabled
+	ld a, b
+	ret z
+	xor a ; NO_ABILITY
+	ld b, a
+	ret
+
+ClearAbilitiesIfDisabled::
+; Called right after SetPlayerAbility / SetEnemyAbility in the battle core.
+; With abilities off, neither side has an ability for the whole battle.
+	call AbilitiesDisabled
+	ret z
+	xor a ; NO_ABILITY
+	ld [wPlayerAbility], a
+	ld [wEnemyAbility], a
+	ret
+
 AbilityCapCore::
 ; ABILITY CAP key item: cycle the chosen mon's ability through its
 ; available slots (1 -> 2 -> hidden -> 1), skipping empty ones.
+	; With abilities turned off for this save, there is nothing to change.
+	call AbilitiesDisabled
+	jr z, .abilities_on
+	ld hl, .NoEffectText
+	jp PrintText
+
+.abilities_on
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	callfar UseItem_SelectMon
 	ret c ; cancelled

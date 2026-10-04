@@ -592,6 +592,50 @@ TextJump_SelectPokemonStats:
 	text_far Text_SelectPokemonStats
 	text_end
 
+InitPokemonAbilities:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetPalettes
+	ld hl, TextJump_SelectPokemonAbilities
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld hl, wGameplayRules
+	ld a, [wMenuCursorY]
+	dec a
+	jr nz, .off
+	res GAMEPLAYRULES_NO_ABILITIES_F, [hl]
+	jr .done
+
+.off
+	set GAMEPLAYRULES_NO_ABILITIES_F, [hl]
+
+.done
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 5, 4, 14, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "On@"
+	db "Off@"
+
+TextJump_SelectPokemonAbilities:
+	text_far Text_SelectPokemonAbilities
+	text_end
+
 InitGenderScreen:
 	ld a, $10
 	ld [wMusicFade], a

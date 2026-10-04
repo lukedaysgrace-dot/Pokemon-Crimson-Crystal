@@ -187,4 +187,6 @@
 ; wSwarmFlags
 	const ENGINE_DUNSPARCE_SWARM ; a0
 	const ENGINE_YANMA_SWARM
+; wGameplayRules
+	const ENGINE_ABILITIES_OFF
 NUM_ENGINE_FLAGS EQU const_value

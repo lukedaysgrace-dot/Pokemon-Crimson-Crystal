@@ -717,6 +717,13 @@ Text_SelectPokemonStats::
 	line "game's buffs."
 	done
 
+Text_SelectPokemonAbilities::
+	text "Turn #MON"
+	line "ABILITIES on?"
+	para "Off: battles play"
+	line "with no ABILITIES."
+	done
+
 UnknownText_0x1c0cc6::
 	text "<USER>'s"
 	line "@"
