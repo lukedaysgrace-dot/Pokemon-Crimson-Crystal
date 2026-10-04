@@ -5267,8 +5267,7 @@ ZeroAbilityIfDisabled::
 	ret
 
 ClearAbilitiesIfDisabled::
-; Called right after SetPlayerAbility / SetEnemyAbility in the battle core.
-; With abilities off, neither side has an ability for the whole battle.
+; Clear both live ability values if this save has abilities turned off.
 	call AbilitiesDisabled
 	ret z
 	xor a ; NO_ABILITY

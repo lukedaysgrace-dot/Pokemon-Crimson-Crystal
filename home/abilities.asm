@@ -41,7 +41,9 @@ GetAbility::
 	ld b, a
 	pop af
 	rst Bankswitch
-	ld a, b
+	; Apply the save rule centrally, including AI and debug setup lookups.
+	; This returns a = b and preserves the saved de/hl and c.
+	farcall ZeroAbilityIfDisabled
 	pop de
 	pop hl
 	ret
@@ -64,7 +66,6 @@ SetPlayerAbility::
 	ld a, [wBattleMonSpecies]
 	ld c, a
 	call GetAbility
-	ld a, b
 	ld [wPlayerAbility], a
 	pop bc
 	ret
@@ -77,7 +78,6 @@ SetEnemyAbility::
 	ld a, [wEnemyMonSpecies]
 	ld c, a
 	call GetAbility
-	ld a, b
 	ld [wEnemyAbility], a
 	pop bc
 	ret
