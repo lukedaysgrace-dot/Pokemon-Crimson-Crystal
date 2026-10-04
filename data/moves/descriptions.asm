@@ -807,8 +807,8 @@ AuroraBeamDescription:
 	next "lower ATTACK.@"
 
 HyperBeamDescription:
-	db   "1st turn: Attack"
-	next "2nd turn: Rest@"
+	db   "Must recharge"
+	next "unless foe faints.@"
 
 PeckDescription:
 	db   "Jabs the foe with"
@@ -1803,8 +1803,8 @@ FlameChargeDescription:
 	next "up user's Speed.@"
 
 GigaImpactDescription:
-	db   "1st turn: Attack"
-	next "2nd turn: Rest@"
+	db   "Must recharge"
+	next "unless foe faints.@"
 
 GunkShotDescription:
 	db   "An attack that may"
