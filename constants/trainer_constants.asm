@@ -204,6 +204,7 @@ LYRA EQU __enum__
 	const DANIELLE
 	const KATHRYN
 	const PAIGE
+	const ELISE
 
 	trainerclass JANINE ; 1a
 	const JANINE1

@@ -327,7 +327,7 @@ JasmineGroup:
 	db 31
 	dw SKARMORY
 	db NO_ITEM
-	db HIDDEN_ABILITY
+	db ABILITY_1
 	dw STEEL_WING, DRILL_PECK, PURSUIT, U_TURN
 	db 31
 	dw LAIRON
@@ -1871,21 +1871,21 @@ LassGroup:
 
 	next_list_item ; LASS (16) DANIELLE - Olivine Gym (after Jasmine returns)
 	db "DANIELLE@", TRAINERTYPE_NORMAL
-	db 33
+	db 31
 	dw LAIRON
-	db 34
+	db 31
 	dw FORRETRESS
-	db 35
+	db 31
 	dw SKARMORY
 	db -1 ; end
 
 	next_list_item ; LASS (17) KATHRYN - Olivine Gym (after Jasmine returns)
 	db "KATHRYN@", TRAINERTYPE_NORMAL
-	db 34
+	db 31
 	dw MAGNETON
-	db 34
+	db 31
 	dw SKARMORY
-	db 35
+	db 31
 	dw FORRETRESS
 	db -1 ; end
 
@@ -1897,6 +1897,26 @@ LassGroup:
 	db 59
 	dw DEWGONG
 	dw ICE_BEAM, SURF, MEGAHORN, AQUA_JET
+	db -1 ; end
+
+	next_list_item ; LASS (19) ELISE - Olivine Gym (after Jasmine returns)
+	db "ELISE@", TRAINERTYPE_MOVES_ABILITY
+	db 31
+	dw PERRSERKER
+	db HIDDEN_ABILITY ; Steely Spirit
+	dw IRON_HEAD, BULLET_PUNCH, SEED_BOMB, LOW_SWEEP
+	db 31
+	dw MAWILE
+	db ABILITY_1 ; Huge Power
+	dw IRON_HEAD, FAINT_ATTACK, ICE_PUNCH, FIRE_PUNCH
+	db 31
+	dw BISHARP
+	db HIDDEN_ABILITY ; Sharpness
+	dw NIGHT_SLASH, METAL_CLAW, LOW_SWEEP, HONE_CLAWS
+	db 31
+	dw DUGTRIO_ALOLAN
+	db ABILITY_2 ; Technician
+	dw BULLDOZE, METAL_CLAW, ROCK_TOMB, SUCKER_PUNCH
 	db -1 ; end
 
 	end_list_items
