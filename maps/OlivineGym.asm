@@ -3,6 +3,7 @@
 	const OLIVINEGYM_GYM_GUY
 	const OLIVINEGYM_DANIELLE
 	const OLIVINEGYM_KATHRYN
+	const OLIVINEGYM_ELISE
 
 OlivineGym_MapScripts:
 	db 0 ; scene scripts
@@ -17,11 +18,13 @@ OlivineGym_MapScripts:
 	iftrue .ShowLasses
 	disappear OLIVINEGYM_DANIELLE
 	disappear OLIVINEGYM_KATHRYN
+	disappear OLIVINEGYM_ELISE
 	return
 
 .ShowLasses:
 	appear OLIVINEGYM_DANIELLE
 	appear OLIVINEGYM_KATHRYN
+	appear OLIVINEGYM_ELISE
 	return
 
 OlivineGymJasmineScript:
@@ -149,6 +152,17 @@ TrainerLassKathryn:
 	endifjustbattled
 	opentext
 	writetext LassKathrynAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerLassElise:
+	trainer LASS, ELISE, EVENT_BEAT_LASS_ELISE, LassEliseSeenText, LassEliseBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext LassEliseAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -357,6 +371,23 @@ LassKathrynAfterBattleText:
 	line "shot at her now."
 	done
 
+LassEliseSeenText:
+	text "Steel can bend,"
+	line "but my team won't"
+	cont "give up easily!"
+	done
+
+LassEliseBeatenText:
+	text "You found a crack"
+	line "in our defenses!"
+	done
+
+LassEliseAfterBattleText:
+	text "Even steel needs"
+	line "a strong trainer"
+	cont "to guide it."
+	done
+
 OlivineGym_MapEvents:
 	db 0, 0 ; filler
 
@@ -370,8 +401,9 @@ OlivineGym_MapEvents:
 	bg_event  3, 13, BGEVENT_READ, OlivineGymStatue
 	bg_event  6, 13, BGEVENT_READ, OlivineGymStatue
 
-	db 4 ; object events
+	db 5 ; object events
 	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
-	object_event  6,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassDanielle, EVENT_OLIVINE_GYM_LASS_DANIELLE
+	object_event  6,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassDanielle, EVENT_OLIVINE_GYM_LASS_DANIELLE
 	object_event  3, 11, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassKathryn, EVENT_OLIVINE_GYM_LASS_KATHRYN
+	object_event  3,  7, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerLassElise, EVENT_OLIVINE_GYM_LASS_ELISE

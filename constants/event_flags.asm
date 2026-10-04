@@ -283,8 +283,8 @@
 	const EVENT_BEAT_PRYCE_REMATCH
 	const EVENT_BEAT_CLAIR_REMATCH
 	const EVENT_BEAT_LANCE_REMATCH
-	const EVENT_10E
-	const EVENT_10F
+	const EVENT_BEAT_LASS_ELISE ; reused unused flag; preserve event IDs
+	const EVENT_OLIVINE_GYM_LASS_ELISE
 	const EVENT_110
 	const EVENT_111
 	const EVENT_112
