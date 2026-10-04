@@ -89,3 +89,23 @@ main games, plus the latest ability, move and evolution updates recorded in
 `balance_changes.json`. Keep those latest-update notes in sync with game data;
 the generator validates their resulting stats, ability slots and learnsets.
 Abilities, moves and evolution changes apply to both rules choices.
+
+## Game Updates guide
+
+`updates.html` is the separate Game Updates tab. It groups the game’s changes
+from original Crystal by topic, with one entry per rule and explicit labels
+for modern rules, custom changes and special exceptions. Search and filters
+also search the collapsible move, ability and added-Pokémon directories.
+
+`game_updates.json` contains the reviewed gameplay notes and their source paths.
+Update the appropriate note whenever its game behavior changes. The generator
+checks that every referenced source exists and that entry IDs are unique.
+`gen2_baseline.json` contains the original Crystal move table and species list,
+derived from pret/pokecrystal. Move comparisons are computed from that historical
+baseline and the current ROM source, including changes to move effect classes.
+Ability descriptions and holders, added Pokémon, and all directory links are
+generated from the current game data. Builds do not require network access.
+
+Keep Pokémon-specific redesigns in the Pokémon Changes tab; keep general game
+rules, modernization and custom exceptions in Game Updates. Both pages link
+to each other, and every generated page includes both navigation tabs.

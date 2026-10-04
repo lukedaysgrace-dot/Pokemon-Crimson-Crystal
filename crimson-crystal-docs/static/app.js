@@ -40,6 +40,70 @@ document.addEventListener('DOMContentLoaded', () => {
   update();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const search = document.querySelector('#updateSearch');
+  const category = document.querySelector('#updateCategory');
+  const kind = document.querySelector('#updateKind');
+  if (!search || !category || !kind) return;
+  const entries = [...document.querySelectorAll('[data-update-entry]')];
+  const sections = [...document.querySelectorAll('[data-update-section]')];
+  const directoryState = new Map();
+  let wasFiltering = false;
+  const update = () => {
+    const query = search.value.trim().toLowerCase();
+    const filtering = Boolean(query || category.value || kind.value);
+    if (filtering && !wasFiltering) {
+      sections.filter(section => section.tagName === 'DETAILS')
+        .forEach(section => directoryState.set(section, section.open));
+    }
+    let visible = 0;
+    entries.forEach(entry => {
+      const matchesKind = !kind.value || (kind.value === 'exception'
+        ? ['exception', 'custom'].includes(entry.dataset.kind)
+        : kind.value === entry.dataset.kind);
+      entry.hidden = !(entry.dataset.search.includes(query) &&
+        (!category.value || category.value === entry.dataset.category) && matchesKind);
+      if (!entry.hidden) visible++;
+    });
+    sections.forEach(section => {
+      section.hidden = ![...section.querySelectorAll('[data-update-entry]')]
+        .some(entry => !entry.hidden);
+      if (section.tagName === 'DETAILS') {
+        if (filtering) section.open = !section.hidden;
+        else if (wasFiltering) section.open = directoryState.get(section) || false;
+      }
+    });
+    document.querySelector('#updateCount').textContent = `Showing ${visible} of ${entries.length} entries`;
+    document.querySelector('#updateEmpty').hidden = visible !== 0;
+    wasFiltering = filtering;
+  };
+  const revealHash = () => {
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (!target) return;
+    if (target.hidden || target.closest('[hidden]')) {
+      search.value = category.value = kind.value = '';
+      update();
+    }
+    const directory = target.closest('details');
+    if (directory) directory.open = true;
+  };
+  search.addEventListener('input', update);
+  category.addEventListener('change', update);
+  kind.addEventListener('change', update);
+  window.addEventListener('hashchange', revealHash);
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      search.value = category.value = kind.value = '';
+      update();
+      const target = document.getElementById(link.getAttribute('href').slice(1));
+      const directory = target?.closest('details');
+      if (directory) directory.open = true;
+    });
+  });
+  update();
+  revealHash();
+});
+
 /* ------------------------------------------------------------------ *
  * Front-pic animation player.
  *
