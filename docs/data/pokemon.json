@@ -31750,7 +31750,7 @@
     },
     "types": [
       "Bug",
-      "Grass"
+      "Ghost"
     ],
     "abilities": [
       "Effect Spore",
@@ -31931,7 +31931,7 @@
     ],
     "updated_types": [
       "Bug",
-      "Grass"
+      "Ghost"
     ],
     "updated_stats": {
       "HP": 85,
@@ -45225,7 +45225,8 @@
       "Sp. Def": 95
     },
     "types": [
-      "Grass"
+      "Grass",
+      "Fire"
     ],
     "abilities": [
       "Chlorophyll",
@@ -45403,7 +45404,8 @@
       "Grass"
     ],
     "updated_types": [
-      "Grass"
+      "Grass",
+      "Fire"
     ],
     "updated_stats": {
       "HP": 85,
@@ -47972,7 +47974,7 @@
     },
     "types": [
       "Bug",
-      "Poison"
+      "Psychic"
     ],
     "abilities": [
       "Tinted Lens",
@@ -48175,7 +48177,7 @@
     ],
     "updated_types": [
       "Bug",
-      "Poison"
+      "Psychic"
     ],
     "updated_stats": {
       "HP": 70,
