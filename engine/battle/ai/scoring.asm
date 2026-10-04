@@ -3496,6 +3496,20 @@ AI_Status:
 	inc de
 	call AIGetEnemyMove
 
+	; Grass typing rejects powders even when an ability is ignored.
+	ld a, [wBattleMonType1]
+	cp GRASS
+	jr z, .checkpowder
+	ld a, [wBattleMonType2]
+	cp GRASS
+	jr nz, .notpowder
+.checkpowder
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	push hl
+	farcall_a MoveIsPowder
+	pop hl
+	jp c, .immune
+.notpowder
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_TOXIC
 	jr z, .poisonimmunity
@@ -3562,11 +3576,11 @@ AI_Status:
 
 	ld a, [wTypeMatchup]
 	and a
-	jr nz, .checkmove
+	jp nz, .checkmove
 
 .immune
 	call AIDiscourageMove
-	jr .checkmove
+	jp .checkmove
 
 
 AI_Risky:

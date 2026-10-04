@@ -711,6 +711,10 @@ Text_SelectPokemonTyping::
 Text_SelectPokemonStats::
 	text "Choose #MON"
 	line "base stats."
+	para "Original: modern"
+	line "main-game stats."
+	para "Updated: this"
+	line "game's buffs."
 	done
 
 UnknownText_0x1c0cc6::

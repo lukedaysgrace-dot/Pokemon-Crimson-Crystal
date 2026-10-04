@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/arbok/front.dimensions"
-	abilities_for ARBOK, INTIMIDATE, SHED_SKIN, MERCILESS
+	abilities_for ARBOK, INTIMIDATE, SHED_SKIN, STRONG_JAW
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_DRAGON ; egg groups

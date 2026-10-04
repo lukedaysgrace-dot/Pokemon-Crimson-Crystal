@@ -1,0 +1,320 @@
+{
+  "date": "2026-10-04",
+  "pokemon": {
+    "AGGRON": {
+      "stats": {
+        "HP": [
+          70,
+          80
+        ]
+      }
+    },
+    "ARBOK": {
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "MERCILESS",
+          "after": "STRONG_JAW"
+        }
+      ]
+    },
+    "BASTIODON": {
+      "stats": {
+        "HP": [
+          60,
+          75
+        ]
+      }
+    },
+    "CAMERUPT": {
+      "stats": {
+        "HP": [
+          70,
+          80
+        ]
+      }
+    },
+    "CENTISKORCH": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "WHITE_SMOKE",
+          "after": "SHED_SKIN"
+        }
+      ]
+    },
+    "CORSOLA": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "HUSTLE",
+          "after": "STORM_DRAIN"
+        }
+      ]
+    },
+    "CURSOLA": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "NO_ABILITY",
+          "after": "REGENERATOR"
+        }
+      ]
+    },
+    "DODRIO": {
+      "stats": {
+        "HP": [
+          60,
+          70
+        ]
+      }
+    },
+    "DUGTRIO": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "SAND_VEIL",
+          "after": "SAND_RUSH"
+        }
+      ]
+    },
+    "DUGTRIO_ALOLAN": {
+      "stats": {
+        "HP": [
+          35,
+          50
+        ]
+      }
+    },
+    "DUSKNOIR": {
+      "stats": {
+        "HP": [
+          45,
+          60
+        ]
+      }
+    },
+    "FEAROW": {
+      "stats": {
+        "Speed": [
+          100,
+          115
+        ]
+      }
+    },
+    "GOLISOPOD": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "NO_ABILITY",
+          "after": "WATER_VEIL"
+        },
+        {
+          "slot": 3,
+          "before": "NO_ABILITY",
+          "after": "TOUGH_CLAWS"
+        }
+      ]
+    },
+    "GOLURK": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "KLUTZ",
+          "after": "CLEAR_BODY"
+        }
+      ]
+    },
+    "HITMONCHAN": {
+      "stats": {
+        "HP": [
+          50,
+          65
+        ]
+      },
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "KEEN_EYE",
+          "after": "SCRAPPY"
+        }
+      ]
+    },
+    "KABUTOPS": {
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "SHARPNESS",
+          "after": "TOUGH_CLAWS"
+        }
+      ]
+    },
+    "LANTURN": {
+      "stats": {
+        "Sp. Atk": [
+          86,
+          96
+        ]
+      }
+    },
+    "LICKILICKY": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "OBLIVIOUS",
+          "after": "CUD_CHEW"
+        }
+      ],
+      "moves": [
+        {
+          "const": "WISH",
+          "level": 50
+        }
+      ]
+    },
+    "MACHAMP": {
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "STEADFAST",
+          "after": "INNER_FOCUS"
+        }
+      ]
+    },
+    "MAGCARGO": {
+      "stats": {
+        "HP": [
+          60,
+          75
+        ]
+      }
+    },
+    "MEOWTH": {
+      "moves": [
+        {
+          "const": "FAKE_OUT",
+          "level": 1
+        }
+      ]
+    },
+    "MUK": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "STENCH",
+          "after": "REGENERATOR"
+        }
+      ]
+    },
+    "OCTILLERY": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "SUCTION_CUPS",
+          "after": "MEGA_LAUNCHER"
+        }
+      ]
+    },
+    "PARASECT": {
+      "stats": {
+        "HP": [
+          70,
+          85
+        ]
+      }
+    },
+    "PERSIAN": {
+      "moves": [
+        {
+          "const": "FAKE_OUT",
+          "level": 1
+        }
+      ]
+    },
+    "PIDGEOT": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "TANGLED_FEET",
+          "after": "COMPETITIVE"
+        }
+      ]
+    },
+    "SANDSLASH": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "SAND_VEIL",
+          "after": "BATTLE_ARMOR"
+        }
+      ]
+    },
+    "SKARMORY": {
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "SHARPNESS",
+          "after": "OVERCOAT"
+        }
+      ]
+    },
+    "SLUGMA": {
+      "evolutions": [
+        {
+          "target": "MAGCARGO",
+          "before": 38,
+          "after": 34
+        }
+      ]
+    },
+    "TAUROS_PALDEAN_WATER": {
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "RECKLESS",
+          "after": "WATER_VEIL"
+        }
+      ]
+    },
+    "UNOWN": {
+      "stats": {
+        "HP": [
+          54,
+          74
+        ],
+        "Attack": [
+          108,
+          58
+        ],
+        "Defense": [
+          54,
+          64
+        ],
+        "Speed": [
+          75,
+          85
+        ],
+        "Sp. Def": [
+          54,
+          64
+        ]
+      },
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "NO_ABILITY",
+          "after": "ANALYTIC"
+        }
+      ]
+    },
+    "VIKAVOLT": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "HUSTLE",
+          "after": "COMPOUND_EYES"
+        }
+      ]
+    }
+  }
+}

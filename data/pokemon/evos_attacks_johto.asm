@@ -1660,7 +1660,7 @@ UrsaringEvosAttacks:
 	db 0 ; no more level-up moves
 
 SlugmaEvosAttacks:
-	dbbw EVOLVE_LEVEL, 38, MAGCARGO
+	dbbw EVOLVE_LEVEL, 34, MAGCARGO
 	db 0 ; no more evolutions
 	dbw 1, SMOG
 	dbw 6, ROCK_THROW
@@ -3972,6 +3972,7 @@ LickilickyEvosAttacks:
 	dbw 37, BODY_SLAM
 	dbw 43, THRASH
 	dbw 46, SCREECH
+	dbw 50, WISH
 	dbw 52, POWER_WHIP
 	dbw 58, GYRO_BALL
 	dbw 60, BELLY_DRUM

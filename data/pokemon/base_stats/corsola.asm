@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/corsola/front.dimensions"
-	abilities_for CORSOLA, HUSTLE, NATURAL_CURE, REGENERATOR
+	abilities_for CORSOLA, STORM_DRAIN, NATURAL_CURE, REGENERATOR
 	db 0 ; padding
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_WATER_3 ; egg groups

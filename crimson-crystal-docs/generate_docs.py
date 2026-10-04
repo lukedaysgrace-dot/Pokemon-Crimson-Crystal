@@ -204,6 +204,11 @@ def form_label(const, name):
       return f'{name} ({label})'
   return name
 
+def pokemon_url(const, prefix=''):
+  clone=const.endswith('_CLONE')
+  base=const[:-6] if clone else const
+  return f'{prefix}pokemon/{slug(base)}.html'+('?form=clone' if clone else '')
+
 def pretty_location(const):
     """Map constants -> readable place names: BURNED_TOWER_1F -> Burned Tower 1F,
     RUINS_OF_ALPH_OUTSIDE -> Ruins of Alph Outside, DIGLETTS_CAVE -> Diglett's Cave."""
@@ -393,7 +398,7 @@ class Builder:
           name=disp(x)
           if name in seen: continue
           seen.add(name)
-          ability_slots.append({'name':name,'hidden':slot==2})
+          ability_slots.append({'name':name,'hidden':slot==2,'slot':slot+1})
         abilities=list(dict.fromkeys(abilities))
       else:
         # Fallback for forks that store abilities on a normal db line.
@@ -411,6 +416,40 @@ class Builder:
         order={k:i for i,k in enumerate(self.tm_index)}
         out[c]['tmhm']=sorted(dict.fromkeys(out[c]['tmhm']),key=lambda x:order[x])
     return out
+
+  def gameplay_rules(self, mons):
+    """Match the Original / Updated choices actually loaded by the ROM."""
+    source=txt(self.r/'engine/pokemon/gameplay_rules.asm')
+    def type_table(label):
+      block=source.split(label+':',1)[1].split('\tdw 0',1)[0]
+      return {c:list(dict.fromkeys(disp(t) for t in pair.split(',')))
+              for c,pair in re.findall(r'dw\s+(\w+)\s+db\s+([A-Z_]+\s*,\s*[A-Z_]+)',block)}
+    original_types=type_table('OriginalPokemonTypes')
+    updated_types=type_table('RevampedPokemonTypes')
+    original_stats={c:[int(v) for v in values.split(',')]
+                    for c,values in re.findall(r'dw\s+(\w+)\s+db\s+([\d ,]+)',txt(self.r/'data/pokemon/original_stats.asm'))}
+    for c,m in mons.items():
+      m['original_types']=original_types.get(c,m['types'][:])
+      m['types']=updated_types.get(c,m['types'])
+      m['updated_types']=m['types'][:]
+      m['updated_stats']=m['stats'].copy()
+      m['original_stats']=dict(zip(m['stats'],original_stats[c])) if c in original_stats else m['stats'].copy()
+      m['original_stats_source']='modern main games' if c in original_stats else 'custom species'
+    self.balance_changes=json.loads(txt(self.r/'crimson-crystal-docs/balance_changes.json'))
+    for c,entry in self.balance_changes['pokemon'].items():
+      if c not in mons: raise ValueError(f'Changes page: unknown species {c}')
+      mon=mons[c]
+      for stat,values in entry.get('stats',{}).items():
+        if mon['stats'].get(stat)!=values[1]: raise ValueError(f'Changes page: stale {c} {stat}')
+      for ability in entry.get('abilities',[]):
+        if not any(a['slot']==ability['slot'] and a['name']==disp(ability['after']) for a in mon['ability_slots']):
+          raise ValueError(f'Changes page: stale {c} ability slot {ability["slot"]}')
+      for move in entry.get('moves',[]):
+        if not any(m['const']==move['const'] and m['level']==move['level'] for m in mon['learnset']):
+          raise ValueError(f'Changes page: stale {c} level-up move {move["const"]}')
+      for evo in entry.get('evolutions',[]):
+        if not any(e['target']==evo['target'] and e['method']=='EVOLVE_LEVEL' and e['args']==[str(evo['after'])] for e in mon['evolutions']):
+          raise ValueError(f'Changes page: stale {c} evolution {evo["target"]}')
 
   def base_info(self, p, c):
     """Catch rate, held items, gender, breeding and growth from a base_stats file,
@@ -575,13 +614,13 @@ class Builder:
     parts=[]
     src=m.get('evolves_from')
     if src:
-      parts.append(f'<p class="evofrom">Evolves from <a href="{p}pokemon/{src["slug"]}.html">'
+      parts.append(f'<p class="evofrom">Evolves from <a href="{pokemon_url(src["const"],p)}">'
                    f'{html.escape(src["name"])}</a> — {html.escape(src["text"])}</p>')
     if m['evolutions']:
       rows=''.join(
         f'<div class="evorow"><span class="cond">{html.escape(e["text"])}</span>'
         f'<span class="arrow">→</span>'
-        f'<a href="{p}pokemon/{e["target_slug"]}.html">{html.escape(e["target_name"])}</a></div>'
+        f'<a href="{pokemon_url(e["target"],p)}">{html.escape(e["target_name"])}</a></div>'
         for e in m['evolutions'])
       parts.append(f'<div class="evolist">{rows}</div>')
     elif not src:
@@ -1139,8 +1178,8 @@ class Builder:
            f'background-image:url({s["sheet"]})')
     return (f'<div class="hero-art"><div class="suicune-run" role="img" '
             f'aria-label="Suicune running, from the title intro" style="{style}"></div></div>')
-  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a></nav></header>'
-  def shell(self,title,body,p=''): return f'<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
+  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Changes</a></nav></header>'
+  def shell(self,title,body,p=''): return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
     shown=form_label(m["const"],m["name"])
     im=f'<img src="{p}{m["sprite"]}" alt="{html.escape(shown)}">' if m['sprite'] else '<div class="placeholder">◆</div>'
@@ -1214,19 +1253,88 @@ class Builder:
       alt=html.escape(form_label(page_mon["const"],page_mon["name"]))
       sprite=(f'<div class="sprite-pair"><figure class="sprite-cell">{sprite}<figcaption>Front</figcaption></figure>'
               f'<figure class="sprite-cell"><img class="big back-sprite" src="../{m["back"]}" alt="{alt} (back)" style="--w:{bw}"><figcaption>Back</figcaption></figure></div>')
-    stats=''.join(f'<div class="stat"><span>{k}</span><i><b style="width:{min(100,v/2.55)}%"></b></i><strong>{v}</strong></div>' for k,v in m['stats'].items())
     level=[(x['level'],x['const']) for x in sorted(m['learnset'],key=lambda x:x['level'])]
     tms=[(self.tm_index[c],c) for c in m['tmhm']]
     egg=[('Egg',c) for c in m['egg_moves']]
     name=form_label(page_mon["const"],page_mon["name"])
     return (f'<section class="monhero">{sprite}<div><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(name)}</h1>'
-            f'<div>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
-            f'<div class="twocol"><section class="panel"><h2>Base stats <em>Total {sum(m["stats"].values())}</em></h2>{stats or "<p class=muted>No stats.</p>"}</section>'
+            f'<div><span class="rules-label">Updated typing</span>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
+            f'{self.typing_comparison(m)}'
+            f'<div class="twocol"><section class="panel"><h2>Base stats</h2>{self.stats_comparison(m)}</section>'
             f'<section class="panel"><h2>Evolution</h2>{self.evo_html(m,"../")}</section></div>'
             f'<section class="panel"><h2>Training &amp; breeding</h2>{self.info_html(m)}</section>'
             f'<section class="panel"><h2>Level-up moves</h2>{self.move_table(level,move_map,"Level","Learns no moves by level-up.")}</section>'
             f'<section class="panel"><h2>TM / HM moves <em>{len(tms)}</em></h2>{self.move_table(tms,move_map,"TM / HM","Cannot learn any TMs or HMs.")}</section>'
             + (f'<section class="panel"><h2>Egg moves <em>{len(egg)}</em></h2>{self.move_table(egg,move_map,"Learned","")}</section>' if egg else ''))
+
+  def typing_comparison(self, m):
+    custom=m['original_stats_source']=='custom species'
+    note=('This custom Pokémon has no official main-game version; Original uses its game-specific design.' if custom else
+          'Original uses modern main-game values. Updated uses Crimson Crystal’s changes.')
+    rows=''.join(f'<div><h3>{label}</h3><div>{"".join(self.badge(t) for t in m[key])}</div></div>'
+                 for label,key in [('Original','original_types'),('Updated','updated_types')])
+    return (f'<section class="panel rules-panel"><h2>Original vs Updated</h2><p class="rules-note">{note} '
+            'Choose typings and base stats separately when starting a new game. Abilities, moves and evolution changes apply to both choices.</p>'
+            f'<div class="type-comparison">{rows}</div></section>')
+
+  def stats_comparison(self, m):
+    original=m['original_stats']; updated=m['stats']
+    rows=''
+    for stat in ['HP','Attack','Defense','Sp. Atk','Sp. Def','Speed']:
+      before,after=original[stat],updated[stat];delta=after-before
+      cells=''.join(f'<td><strong>{value}</strong><i class="stat-meter {kind}" aria-hidden="true"><b style="width:{min(100,value/2.55):.1f}%"></b></i></td>'
+                    for value,kind in [(before,'original'),(after,'updated')])
+      change=f'{delta:+d}' if delta else '—';kind='up' if delta>0 else 'down' if delta<0 else 'same'
+      rows+=f'<tr><th scope="row">{stat}</th>{cells}<td class="delta {kind}">{change}</td></tr>'
+    total_before,total_after=sum(original.values()),sum(updated.values());delta=total_after-total_before
+    rows+=f'<tr class="stat-total"><th scope="row">Total</th><td>{total_before}</td><td>{total_after}</td><td class="delta">{f"{delta:+d}" if delta else "—"}</td></tr>'
+    return ('<table class="stats-compare"><caption class="sr-only">Original and Updated base stats, with numerical changes</caption>'
+            '<thead><tr><th scope="col">Stat</th><th scope="col">Original</th><th scope="col">Updated</th><th scope="col">Change</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table>')
+
+  def changes_html(self, mons):
+    notes=self.balance_changes['pokemon'];cards=[];count_stats=count_types=0
+    for m in mons:
+      c=m['const'];entry=notes.get(c,{})
+      differences=[f'{stat} {m["original_stats"][stat]} → {value} ({value-m["original_stats"][stat]:+d})'
+                   for stat,value in m['stats'].items() if m['original_stats'][stat]!=value]
+      changed_types=m['original_types']!=m['types']
+      count_stats+=bool(differences);count_types+=changed_types
+      if not differences and not changed_types and not entry:continue
+      sections=[];tags=[]
+      if changed_types:
+        tags.append('typing')
+        sections.append(f'<p><b>Typing:</b> {" / ".join(m["original_types"])} → {" / ".join(m["types"])}</p>')
+      if differences:
+        tags.append('stats')
+        sections.append('<p><b>Stats versus modern Original:</b> '+html.escape('; '.join(differences))+'.</p>')
+      if entry.get('stats'):
+        recent=[f'{stat} {values[0]} → {values[1]}' for stat,values in entry['stats'].items()]
+        sections.append('<p><b>Latest stat adjustment:</b> '+html.escape('; '.join(recent))+'.</p>')
+      if entry.get('abilities'):
+        tags.append('ability')
+        for a in entry['abilities']:
+          slot='Hidden ability' if a['slot']==3 else f'Ability slot {a["slot"]}'
+          old='Empty slot' if a['before']=='NO_ABILITY' else disp(a['before'])
+          sections.append(f'<p><b>{slot}:</b> {html.escape(old)} → {html.escape(disp(a["after"]))}.</p>')
+      for move in entry.get('moves',[]):
+        tags.append('move');sections.append(f'<p><b>Move added:</b> <a href="moves/{slug(move_disp(move["const"]))}.html">{html.escape(move_disp(move["const"]))}</a> at level {move["level"]}.</p>')
+      for evo in entry.get('evolutions',[]):
+        tags.append('evolution');target=next(mon for mon in mons if mon['const']==evo['target'])
+        sections.append(f'<p><b>Evolution:</b> evolves into <a href="pokemon/{slug(evo["target"])}.html">{html.escape(form_label(target["const"],target["name"]))}</a> at level {evo["after"]} (previously {evo["before"]}).</p>')
+      tags=list(dict.fromkeys(tags));label=form_label(c,m['name'])
+      search=html.escape(' '.join([label,c]+tags+m['types']+m['abilities']).lower())
+      chips=''.join(f'<span>{tag.title()}</span>' for tag in tags)
+      cards.append(f'<article class="change-card searchable" id="{slug(c)}" data-search="{search}" data-kinds="{" ".join(tags)}"><h3><a href="pokemon/{slug(c)}.html">{html.escape(label)}</a></h3><div class="change-tags">{chips}</div>{"".join(sections)}</article>')
+    return (f'<section class="head"><p class="eyebrow">GAMEPLAY GUIDE</p><h1>Changes</h1><p>See what changed, why your Pokémon’s numbers differ, and what each new-game option does.</p></section>'
+            '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Updated</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
+            '<p>Abilities, moves and evolution changes are shared by both choices. Palafin’s Original stats describe its base form; this game does not implement Zero to Hero.</p></section>'
+            '<section class="panel"><h2>Latest mechanics update</h2><p>Grass types are now immune to Poison Powder, Stun Spore, Sleep Powder, Spore and Cotton Spore. No Guard and Mold Breaker cannot bypass this typing immunity. Trainers recognize it when choosing moves. Powder Snow remains a damaging Ice move.</p>'
+            '<p>Original stats now cover every official species and starter clone, including earlier buffs such as Pikachu’s. The selected rules are saved with your game.</p></section>'
+            f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species in the latest balance update</div></div>'
+            '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">Stat and typing comparisons show the full difference from modern main games, including earlier redesigns. Latest adjustments and ability replacements describe this balance update. Positive and negative stat changes are shown explicitly.</p>'
+            '<div class="toolbar"><input id="changeSearch" type="search" aria-label="Search Pokémon changes" placeholder="Search Pokémon, type or ability"><select id="changeFilter" aria-label="Filter changes"><option value="">All changes</option><option value="stats">Stats</option><option value="typing">Typings</option><option value="ability">Abilities</option><option value="move">Moves</option><option value="evolution">Evolutions</option></select></div>'
+            f'<p id="changeCount" class="rules-note" aria-live="polite">Showing {len(cards)} Pokémon</p><div class="change-grid">{"".join(cards)}</div><p id="changeEmpty" class="panel" hidden>No Pokémon match these filters.</p>')
 
   def render(self,mons,moves,wild):
     clone_consts=self.attach_clone_forms(mons)
@@ -1246,12 +1354,13 @@ class Builder:
     (self.o/'index.html').write_text(self.shell('Home',home))
     types=sorted({t for m in ms for t in m['types']}); opts=''.join(f'<option value="{slug(t)}">{t}</option>' for t in types)
     (self.o/'pokedex.html').write_text(self.shell('Pokédex',f'<section class="head"><p class="eyebrow">DATABASE</p><h1>Pokédex</h1></section><div class="toolbar"><input id="search" placeholder="Search Pokémon, type or ability"><select id="typeFilter"><option value="">All types</option>{opts}</select></div><div class="grid">{cards}</div>'))
+    (self.o/'changes.html').write_text(self.shell('Changes',self.changes_html(ms)))
     for m in ms:
       toggle=''
       clone_panel=''
       if 'forms' in m:
         c=m['forms']['clone']
-        toggle='<div class="form-toggle"><button class="active" data-form="normal">Normal</button><button data-form="clone">Clone</button></div>'
+        toggle='<div class="form-toggle"><button type="button" class="active" aria-pressed="true" data-form="normal">Normal</button><button type="button" aria-pressed="false" data-form="clone">Clone</button></div>'
         clone_panel=f'<div class="form-view" data-form-view="clone" hidden>{self.mon_view(c,move_map,"CLONE FORM",m)}</div>'
       dexno=f'#{m["number"]:03}'
       normal=f'<div class="form-view" data-form-view="normal">{self.mon_view(m,move_map,dexno,m)}</div>'
@@ -1318,7 +1427,7 @@ class Builder:
     if self.o.exists(): shutil.rmtree(self.o)
     self.a.mkdir(parents=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
     self.tm_index=self.tm_table(); self.ability_desc=self.ability_descriptions(); self._items=self.item_names()
-    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
+    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); self.gameplay_rules(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
     for e in wild:
       mon=mons.get(e['const'])
       if mon: e['pokemon']=form_label(mon['const'],mon['name'])
