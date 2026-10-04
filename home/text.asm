@@ -709,6 +709,13 @@ TextCommand_START::
 	inc hl
 	ret
 
+IF DEF(DEBUG_BATTLE)
+; The debug text logger makes this command larger. Use the free ROM0 space
+; between the interrupt vectors and cartridge header instead of growing Home.
+PUSHS
+SECTION "Debug Text RAM Command", ROM0[$80]
+ENDC
+
 TextCommand_RAM::
 ; text_ram
 ; write text from a ram address
@@ -729,6 +736,11 @@ TextCommand_RAM::
 	call PlaceString
 	pop hl
 	ret
+
+IF DEF(DEBUG_BATTLE)
+ASSERT @ <= $100, "Debug text command overlaps the cartridge header"
+POPS
+ENDC
 
 TextCommand_FAR::
 ; text_far
