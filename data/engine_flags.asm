@@ -197,3 +197,5 @@ EngineFlags:
 
 	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F ; $a0
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
+
+	engine_flag wGameplayRules, GAMEPLAYRULES_NO_ABILITIES_F

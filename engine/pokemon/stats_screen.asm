@@ -1063,12 +1063,18 @@ StatsScreen_BluePage:
 	ld a, [wTempMonSpecies]
 	ld c, a
 	call GetAbility
+	farcall ZeroAbilityIfDisabled
 	push bc
 	farcall GetAbilityName
 	ld de, wStringBuffer1
 	hlcoord 1, 14
 	call PlaceString
-	; ability slot indicator
+	; ability slot indicator (none when abilities are turned off)
+	pop bc
+	push bc
+	ld a, b
+	and a ; NO_ABILITY?
+	jr z, .slot_done
 	ld a, [wTempMonPersonality]
 	and ABILITY_MASK
 	cp HIDDEN_ABILITY
@@ -1082,6 +1088,7 @@ StatsScreen_BluePage:
 	ld a, b
 	hlcoord 18, 14
 	ld [hl], a
+.slot_done
 	pop bc
 	; note: farcall clobbers hl, so the coords are passed in de
 	decoord 1, 16
