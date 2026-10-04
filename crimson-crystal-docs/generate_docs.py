@@ -1178,7 +1178,7 @@ class Builder:
            f'background-image:url({s["sheet"]})')
     return (f'<div class="hero-art"><div class="suicune-run" role="img" '
             f'aria-label="Suicune running, from the title intro" style="{style}"></div></div>')
-  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Changes</a></nav></header>'
+  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Pokémon Changes</a><a href="{p}updates.html">Game Updates</a></nav></header>'
   def shell(self,title,body,p=''): return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
     shown=form_label(m["const"],m["name"])
@@ -1329,12 +1329,124 @@ class Builder:
     return (f'<section class="head"><p class="eyebrow">GAMEPLAY GUIDE</p><h1>Changes</h1><p>See what changed, why your Pokémon’s numbers differ, and what each new-game option does.</p></section>'
             '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Updated</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
             '<p>Abilities, moves and evolution changes are shared by both choices. Palafin’s Original stats describe its base form; this game does not implement Zero to Hero.</p></section>'
-            '<section class="panel"><h2>Latest mechanics update</h2><p>Grass types are now immune to Poison Powder, Stun Spore, Sleep Powder, Spore and Cotton Spore. No Guard and Mold Breaker cannot bypass this typing immunity. Trainers recognize it when choosing moves. Powder Snow remains a damaging Ice move.</p>'
-            '<p>Original stats now cover every official species and starter clone, including earlier buffs such as Pikachu’s. The selected rules are saved with your game.</p></section>'
+            '<section class="panel"><h2>Looking for battle mechanics?</h2><p>The <a href="updates.html">Game Updates guide</a> covers frostbite, <a href="updates.html#grass-types-block-powder-moves">Grass powder immunity</a>, modern battle rules and custom exceptions, with one entry per change.</p></section>'
             f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species in the latest balance update</div></div>'
             '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">Stat and typing comparisons show the full difference from modern main games, including earlier redesigns. Latest adjustments and ability replacements describe this balance update. Positive and negative stat changes are shown explicitly.</p>'
             '<div class="toolbar"><input id="changeSearch" type="search" aria-label="Search Pokémon changes" placeholder="Search Pokémon, type or ability"><select id="changeFilter" aria-label="Filter changes"><option value="">All changes</option><option value="stats">Stats</option><option value="typing">Typings</option><option value="ability">Abilities</option><option value="move">Moves</option><option value="evolution">Evolutions</option></select></div>'
             f'<p id="changeCount" class="rules-note" aria-live="polite">Showing {len(cards)} Pokémon</p><div class="change-grid">{"".join(cards)}</div><p id="changeEmpty" class="panel" hidden>No Pokémon match these filters.</p>')
+
+  def updates_html(self, mons, moves):
+    """Player-facing modernization guide, with source-validated editorial notes.
+
+    Historical tables are local snapshots: site builds never need the network.
+    Live move values, ability assignments and species come from the ROM source.
+    """
+    catalog=json.loads(txt(Path(__file__).parent/'game_updates.json'))
+    baseline=json.loads(txt(Path(__file__).parent/'gen2_baseline.json'))
+    categories={category['id']:category['title'] for category in catalog['categories']}
+    kinds={'modern':'Modern rule','custom':'Custom change','exception':'Special exception','expanded':'Added feature','changed':'Adjusted move'}
+    seen=set();sections={category:[] for category in categories}
+
+    def entry(key,title,category,kind,content,search=''):
+      if key in seen: raise ValueError(f'Duplicate Game Updates entry: {key}')
+      seen.add(key)
+      words=html.escape(' '.join([title,category,kind,search,re.sub('<[^>]+>',' ',content)]).lower(),quote=True)
+      return (f'<article class="update-entry" id="{key}" data-update-entry data-category="{category}" data-kind="{kind}" data-search="{words}">'
+              f'<div class="update-title"><h3>{html.escape(title)}</h3><span class="update-kind {kind}">{kinds[kind]}</span></div>{content}</article>')
+
+    for note in catalog['entries']:
+      if note['category'] not in categories or note['kind'] not in kinds:
+        raise ValueError(f'Invalid Game Updates category/kind: {note["id"]}')
+      for source in note['sources']:
+        path=(self.r/source).resolve()
+        if not path.is_relative_to(self.r.resolve()) or not path.exists():
+          raise ValueError(f'Missing Game Updates source: {source}')
+      compare=(f'<dl class="update-compare"><div><dt>{html.escape(note["comparison"])}</dt><dd>{html.escape(note["before"])}</dd></div>'
+               f'<div><dt>Crimson Crystal</dt><dd>{html.escape(note["after"])}</dd></div></dl>')
+      links=''.join(f'<a href="{html.escape(link["href"],quote=True)}">{html.escape(link["label"])}</a>' for link in note.get('links',[]))
+      if links:compare+=f'<div class="update-links">{links}</div>'
+      sections[note['category']].append(entry(note['id'],note['title'],note['category'],note['kind'],compare))
+
+    move_cards=[];added_moves=changed_moves=0
+    fields=[('type','Type'),('category','Category'),('power','Power'),('accuracy','Accuracy'),('pp','PP'),('chance','Effect chance')]
+    move_effects=dict((constant,effect) for effect,constant in re.findall(r'^\s*move\s+(EFFECT_\w+).*;\s*(\w+)',txt(self.r/'data/moves/moves.asm'),re.M))
+    effect_labels={'EFFECT_RAZOR_WIND':'Requires a charging turn','EFFECT_NORMAL_HIT':'Direct damaging attack',
+                   'EFFECT_FREEZE_HIT':'May inflict freeze','EFFECT_BLIZZARD':'May inflict frostbite; always hits in hail',
+                   'EFFECT_FLINCH_HIT':'May cause flinching','EFFECT_ACCURACY_DOWN_HIT':'May lower accuracy',
+                   'EFFECT_DEF_SPDEF_DOWN_HIT':'May lower Defense and Special Defense together'}
+    for move in moves:
+      old=baseline['moves'].get(move['const'])
+      changes=[(key,label) for key,label in fields if old and old[key]!=move[key]]
+      changed_effect=old and old['effect']!=move_effects[move['const']]
+      if old and not changes and not changed_effect:continue
+      kind='changed' if old else 'expanded'
+      added_moves+=not bool(old);changed_moves+=bool(old)
+      if old:
+        rows=''.join(f'<li><b>{label}:</b> {html.escape(str(old[key]))} → {html.escape(str(move[key]))}</li>' for key,label in changes)
+        if changed_effect:
+          rows+=f'<li><b>Behavior:</b> {effect_labels[old["effect"]]} → {effect_labels[move_effects[move["const"]]]}</li>'
+        content=f'<ul class="update-values">{rows}</ul>'
+      else:
+        content=f'<p>Added since Gen 2. {html.escape(move["type"])} · {html.escape(move["category"])} · Power {fmt_power(move)} · Accuracy {fmt_acc(move)} · {move["pp"]} PP.</p>'
+      if move['const']=='HIDDEN_POWER':
+        content+='<p class="rules-note">The move table uses placeholders. Actual battles use 70 power, a selectable type and a category chosen from the user’s stats; see the three Hidden Power entries above.</p>'
+      content+=f'<div class="update-links"><a href="moves/{slug(move["name"])}.html">Move details &amp; learners</a></div>'
+      move_cards.append(entry('move-update-'+slug(move['const']),move['name'],'moves',kind,content))
+
+    ability_users={}
+    for mon in mons.values():
+      for ability in dict.fromkeys(mon['abilities']):
+        ability_users.setdefault(ability,[]).append(mon)
+    guide_descriptions=dict(self.ability_desc)
+    ability_source=txt(self.r/'data/abilities/descriptions.asm')
+    description_blocks=read_text_blocks(self.r/'data/abilities/descriptions.asm')
+    # Consecutive labels share one description, e.g. Battle Armor / Shell Armor.
+    for group in re.findall(r'((?:^[A-Za-z0-9_]+:\s*\n){2,})',ability_source,re.M):
+      labels=re.findall(r'^([A-Za-z0-9_]+):',group,re.M)
+      for label in labels:
+        key=re.sub('[^a-z0-9]','',label.removesuffix('Description').lower())
+        guide_descriptions[key]=description_blocks[labels[-1]]
+    ability_cards=[]
+    for ability,users in sorted(ability_users.items()):
+      description=guide_descriptions.get(re.sub('[^a-z0-9]','',ability.lower()))
+      if not description:raise ValueError(f'Missing Game Updates ability description: {ability}')
+      description=re.sub(r'\bfreez(?:e|ing)\b','frostbite',description,flags=re.I)
+      links=''.join(f'<a href="{pokemon_url(mon["const"])}">{html.escape(form_label(mon["const"],mon["name"]))}</a>' for mon in users)
+      content=f'<p>{html.escape(description)}</p><div class="update-users">{links}</div>'
+      ability_cards.append(entry('ability-'+slug(ability),ability,'abilities','expanded',content))
+
+    added_cards=[]
+    original_species=set(baseline['species'])
+    for mon in mons.values():
+      if mon['const'] in original_species:continue
+      label=form_label(mon['const'],mon['name'])
+      content=(f'<p>{html.escape(" / ".join(mon["types"]))} · {sum(mon["stats"].values())} total base stats in Updated mode.</p>'
+               f'<div class="update-links"><a href="{pokemon_url(mon["const"])}">Stats, abilities, moves &amp; evolutions</a></div>')
+      added_cards.append(entry('added-'+slug(mon['const']),label,'world','expanded',content))
+
+    opts=''.join(f'<option value="{key}">{html.escape(title)}</option>' for key,title in categories.items())
+    toc=''.join(f'<a href="#updates-{key}">{html.escape(title)}</a>' for key,title in categories.items())
+    body=('<section class="head"><p class="eyebrow">THE COMPLETE GAMEPLAY GUIDE</p><h1>Game Updates</h1>'
+          '<p>What changed since Pokémon Crystal, one rule at a time. Modern mechanics and Crimson Crystal’s custom exceptions are labeled separately.</p></section>'
+          f'<div class="counts"><div><b>{len(catalog["entries"])}</b> Individual gameplay updates</div><div><b>{added_moves}</b> Added moves</div><div><b>{changed_moves}</b> Original moves with changed values</div></div>'
+          '<div class="updates-controls"><div class="toolbar"><input id="updateSearch" type="search" aria-label="Search game updates" placeholder="Search frostbite, powder, moves, items…">'
+          f'<select id="updateCategory" aria-label="Filter game updates by topic"><option value="">Every topic</option>{opts}</select>'
+          '<select id="updateKind" aria-label="Filter game updates by kind"><option value="">Every kind</option><option value="exception">Custom &amp; special exceptions</option><option value="custom">Custom changes</option><option value="modern">Modern rules</option><option value="expanded">Added features</option><option value="changed">Move value changes</option></select></div>'
+          '<p id="updateCount" class="rules-note" aria-live="polite"></p></div>'
+          f'<nav class="updates-toc" aria-label="Game Updates topics">{toc}<a href="#move-updates">Move directory</a><a href="#ability-directory">Ability directory</a><a href="#added-pokemon">Added Pokémon</a></nav>')
+    for category,title in categories.items():
+      body+=(f'<section class="update-section" id="updates-{category}" data-update-section><h2>{html.escape(title)}</h2>'
+             f'<div class="update-list">{"".join(sections[category])}</div></section>')
+    for key,title,subtitle,cards in [
+      ('move-updates','Every added or adjusted move','All additions and changed type, category, power, accuracy, PP, effect-chance or effect-class values, compared with the original Crystal move table. Further behavior changes are described in the entries above.',move_cards),
+      ('ability-directory','Every ability assigned to the roster','Abilities did not exist in Gen 2. These are the game’s descriptions and current holders; custom behavior such as Flash Fire and Gale Wings is detailed above.',ability_cards),
+      ('added-pokemon','Every Pokémon and form added since Gen 2','Includes later evolutions, regional forms, custom species and clone starters. Follow a link for the complete current design and evolution requirements.',added_cards)]:
+      body+=(f'<details class="update-directory" id="{key}" data-update-section><summary>{title} <span>({len(cards)})</span></summary>'
+             f'<p class="rules-note">{subtitle}</p><div class="update-list">{"".join(cards)}</div></details>')
+    body+=('<p id="updateEmpty" class="panel" hidden>No updates match these filters. Try a different term or choose Every topic and Every kind.</p>'
+           '<section class="panel"><h2>Pokémon balance comparisons</h2><p>For every stat and typing redesign, plus the latest ability, move and evolution buffs, visit <a href="changes.html">Pokémon Changes</a>. Individual Pokémon pages show the Original and Updated values.</p></section>'
+           '<p class="rules-note">This guide describes the current game. Historical move values come from the <a href="https://github.com/pret/pokecrystal/blob/master/data/moves/moves.asm">original Crystal source</a>; current rules and content are checked against the <a href="https://github.com/lukedaysgrace-dot/Pokemon-Crimson-Crystal">Crimson Crystal source</a>.</p>')
+    return body
 
   def render(self,mons,moves,wild):
     clone_consts=self.attach_clone_forms(mons)
@@ -1355,6 +1467,7 @@ class Builder:
     types=sorted({t for m in ms for t in m['types']}); opts=''.join(f'<option value="{slug(t)}">{t}</option>' for t in types)
     (self.o/'pokedex.html').write_text(self.shell('Pokédex',f'<section class="head"><p class="eyebrow">DATABASE</p><h1>Pokédex</h1></section><div class="toolbar"><input id="search" placeholder="Search Pokémon, type or ability"><select id="typeFilter"><option value="">All types</option>{opts}</select></div><div class="grid">{cards}</div>'))
     (self.o/'changes.html').write_text(self.shell('Changes',self.changes_html(ms)))
+    (self.o/'updates.html').write_text(self.shell('Game Updates',self.updates_html(mons,moves)))
     for m in ms:
       toggle=''
       clone_panel=''

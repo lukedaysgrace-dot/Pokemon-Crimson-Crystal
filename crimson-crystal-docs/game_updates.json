@@ -1,0 +1,2210 @@
+{
+  "categories": [
+    {
+      "id": "rules",
+      "title": "New-game choices"
+    },
+    {
+      "id": "battle",
+      "title": "Battle calculations & turn order"
+    },
+    {
+      "id": "status",
+      "title": "Status conditions & type immunities"
+    },
+    {
+      "id": "weather",
+      "title": "Weather & field effects"
+    },
+    {
+      "id": "abilities",
+      "title": "Abilities"
+    },
+    {
+      "id": "moves",
+      "title": "Move behavior & hazards"
+    },
+    {
+      "id": "training",
+      "title": "Training, learning & evolution"
+    },
+    {
+      "id": "items",
+      "title": "Items & storage"
+    },
+    {
+      "id": "world",
+      "title": "World, campaign & presentation"
+    }
+  ],
+  "entries": [
+    {
+      "id": "normal-or-hard-difficulty",
+      "category": "rules",
+      "title": "Normal or Hard difficulty",
+      "before": "One campaign ruleset.",
+      "after": "Choose Normal or Hard when starting a save. Hard adds the restrictions listed below; both use the updated battle engine.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/menus/init_gender.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "original-or-updated-typings",
+      "category": "rules",
+      "title": "Original or Updated typings",
+      "before": "Species use their Gen 2 typings.",
+      "after": "Choose modern main-game typings or Crimson Crystal’s redesigned typings. This is independent of the stat choice.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/pokemon/gameplay_rules.asm"
+      ],
+      "links": [
+        {
+          "label": "Compare Pokémon changes",
+          "href": "changes.html"
+        }
+      ]
+    },
+    {
+      "id": "original-or-updated-base-stats",
+      "category": "rules",
+      "title": "Original or Updated base stats",
+      "before": "Species use their Gen 2 base stats.",
+      "after": "Original uses modern main-game base stats for every official species and starter clone. Updated uses this game’s balance changes. Custom species keep their own baseline.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/original_stats.asm"
+      ],
+      "links": [
+        {
+          "label": "Compare every Pokémon",
+          "href": "pokedex.html"
+        }
+      ]
+    },
+    {
+      "id": "rules-saved-with-your-adventure",
+      "category": "rules",
+      "title": "Rules saved with your adventure",
+      "before": "No type/stat selection.",
+      "after": "Your independent typing and stat choices persist in the save. Abilities, move changes, evolutions and battle mechanics apply with either selection.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/menus/save.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hard-mode-forces-set-battles",
+      "category": "rules",
+      "title": "Hard Mode forces Set battles",
+      "before": "Shift or Set can be selected.",
+      "after": "Hard Mode removes the free switch prompt after an opposing Pokémon faints. Normal retains the battle-style option.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hard-mode-limits-bag-use-in-battle",
+      "category": "rules",
+      "title": "Hard Mode limits Bag use in battle",
+      "before": "Battle items can be used from the Bag.",
+      "after": "Only Ball-pocket items can be used from the battle Bag in Hard Mode. Healing items remain usable outside battle; held items still work.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/items/pack.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hard-mode-level-caps",
+      "category": "rules",
+      "title": "Hard Mode level caps",
+      "before": "No badge-based player level cap.",
+      "after": "Badge-based caps run through Johto, the League and Kanto. Johto caps are 10, 16, 20, 25, 30, 34, 38 and 45; the League cap is 57. Kanto progresses from 58 to 73.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/pokemon/experience.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hard-mode-experience-bonus",
+      "category": "rules",
+      "title": "Hard Mode experience bonus",
+      "before": "Trainer battles award 1.5× base experience.",
+      "after": "Hard Mode trainer battles award 2× base experience, with progression constrained by the current level cap. Normal keeps the 1.5× trainer bonus.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hard-mode-opponent-training",
+      "category": "rules",
+      "title": "Hard Mode opponent training",
+      "before": "Trainer stats do not use this class-based training system.",
+      "after": "Trainer classes receive tailored stat experience in Hard Mode. Major opponents receive more training than ordinary route trainers; Normal uses zero trainer stat experience.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/trainers/stat_exp.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "physical-special-split",
+      "category": "battle",
+      "title": "Physical / special split",
+      "before": "A damaging move’s category is determined by its type.",
+      "after": "Each move has its own physical or special category. Physical moves use Attack and Defense; special moves use Special Attack and Special Defense.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "constants/battle_constants.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "critical-hit-damage",
+      "category": "battle",
+      "title": "Critical-hit damage",
+      "before": "Critical hits deal roughly double damage.",
+      "after": "The critical-hit damage multiplier is 1.5×.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "critical-hit-rates",
+      "category": "battle",
+      "title": "Critical-hit rates",
+      "before": "The base critical-hit rate is about 1/16.",
+      "after": "The base rate is about 1/24; +1 stage is 1/8, +2 stages is 1/2, and +3 or more guarantees a critical hit.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "data/battle/critical_hit_chances.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "focus-energy-critical-stages",
+      "category": "battle",
+      "title": "Focus Energy critical stages",
+      "before": "Focus Energy adds one critical stage.",
+      "after": "Focus Energy adds two critical stages. High-critical-hit moves add one stage; abilities and held items can add more.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "damage-variation-retains-gen-2-rounding",
+      "category": "battle",
+      "title": "Damage variation retains Gen 2 rounding",
+      "before": "Ordinary damage rolls span approximately 85% to 100%.",
+      "after": "The game retains this range and the legacy byte-based rounding, rather than uniform modern 16-value damage rolls.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "enemy-stat-lowering-moves",
+      "category": "battle",
+      "title": "Enemy stat-lowering moves",
+      "before": "Enemy stat drops can suffer an additional random failure.",
+      "after": "Opponent-inflicted stat drops do not have the extra Gen 2 computer failure roll. Accuracy, immunities and protection still apply.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "end-of-turn-effect-order",
+      "category": "battle",
+      "title": "End-of-turn effect order",
+      "before": "Residual effects use the older turn flow.",
+      "after": "Effects resolve in phases, with effective Speed ordering within each phase. Trick Room reverses that ordering; weather, healing and status damage resolve consistently.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "modern-priority-moves",
+      "category": "battle",
+      "title": "Modern priority moves",
+      "before": "Priority uses the original move set.",
+      "after": "New moves and abilities have their own priority. Extreme Speed has +2 priority, Prankster adds +1 to status moves, and Triage adds +3 to supported healing moves.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "freeze-becomes-frostbite",
+      "category": "status",
+      "title": "Freeze becomes frostbite",
+      "before": "Freeze prevents the Pokémon from acting.",
+      "after": "Frostbite allows normal actions, halves Special Attack and deals 1/8 maximum HP damage at the end of each turn.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "frostbite-persists-until-cured",
+      "category": "status",
+      "title": "Frostbite persists until cured",
+      "before": "Frozen Pokémon can thaw naturally.",
+      "after": "Frostbite does not thaw at random. Using the Pokémon’s own Fire moves does not cure it.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "frostbite-protection-and-healing",
+      "category": "status",
+      "title": "Frostbite protection and healing",
+      "before": "Ice typing and anti-freeze effects protect against freeze.",
+      "after": "Those protections now apply to frostbite. Ice Heal, Ice Berry and full-status cures remove it; Magma Armor prevents or cures it. Harsh sunlight blocks move-inflicted frostbite.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "burn-damage",
+      "category": "status",
+      "title": "Burn damage",
+      "before": "Burn deals 1/8 maximum HP each turn.",
+      "after": "Burn deals 1/16 maximum HP each turn and still halves Attack, subject to abilities such as Guts.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "paralysis-speed-reduction",
+      "category": "status",
+      "title": "Paralysis Speed reduction",
+      "before": "Paralysis reduces Speed to one quarter.",
+      "after": "Paralysis halves Speed. Its 25% chance to prevent an action remains.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "electric-types-resist-paralysis",
+      "category": "status",
+      "title": "Electric types resist paralysis",
+      "before": "Electric typing does not provide blanket paralysis immunity.",
+      "after": "Electric-type Pokémon cannot be paralyzed, including by non-Electric moves or secondary effects.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "grass-types-block-powder-moves",
+      "category": "status",
+      "title": "Grass types block powder moves",
+      "before": "Grass typing does not block powders.",
+      "after": "Grass types are immune to Poison Powder, Stun Spore, Sleep Powder, Spore and Cotton Spore. The immunity applies with either Grass type slot.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "powder-immunity-cannot-be-bypassed",
+      "category": "status",
+      "title": "Powder immunity cannot be bypassed",
+      "before": "There is no Grass powder immunity.",
+      "after": "No Guard and Mold Breaker do not bypass Grass typing’s powder immunity. The AI recognizes the immunity when choosing moves.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/ai/scoring.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "powder-snow-is-still-an-attack",
+      "category": "status",
+      "title": "Powder Snow is still an attack",
+      "before": "Powder Snow is a damaging Ice move.",
+      "after": "Powder Snow remains a damaging Ice move and is not blocked by Grass powder immunity.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "effect-spore-and-grass-typing",
+      "category": "status",
+      "title": "Effect Spore and Grass typing",
+      "before": "Abilities do not exist.",
+      "after": "Grass types are also protected from Effect Spore’s contact-triggered status.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "ghost-types-escape-trapping",
+      "category": "status",
+      "title": "Ghost types escape trapping",
+      "before": "Ghost typing does not exempt a Pokémon from trapping.",
+      "after": "Ghost types can leave trapping effects and trapping abilities.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "sleep-duration",
+      "category": "status",
+      "title": "Sleep duration",
+      "before": "Ordinary inflicted sleep uses the older 2–7 turn roll.",
+      "after": "Ordinary sleep uses a 1–3 turn duration. Rest retains its own fixed sleep duration, and abilities can modify waking.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "confusion-retains-its-stronger-self-hit-chance",
+      "category": "status",
+      "title": "Confusion retains its stronger self-hit chance",
+      "before": "Confusion has a 50% self-hit chance.",
+      "after": "This game retains 50%, rather than the later main-game 1/3 chance.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "overworld-poison-can-still-cause-fainting",
+      "category": "status",
+      "title": "Overworld poison can still cause fainting",
+      "before": "Poison damages the party while walking and can cause fainting.",
+      "after": "Walking poison damage and poison fainting remain in this game. Do not assume the later games’ 1-HP safety rule.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/events/poisonstep.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hail-weather",
+      "category": "weather",
+      "title": "Hail weather",
+      "before": "Hail does not exist.",
+      "after": "Hail is supported and deals 1/16 maximum HP damage to non-Ice Pokémon unless an ability protects them. Blizzard hits without its normal accuracy check in hail.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hail-also-boosts-ice-defense",
+      "category": "weather",
+      "title": "Hail also boosts Ice Defense",
+      "before": "No hail or snow Defense boost.",
+      "after": "Ice types receive a 1.5× Defense boost against physical moves in hail. This game combines damaging hail with the later snow-style defensive benefit.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "sandstorm-boosts-rock-special-defense",
+      "category": "weather",
+      "title": "Sandstorm boosts Rock Special Defense",
+      "before": "Sandstorm does not boost Rock-type Special Defense.",
+      "after": "Rock types receive a 1.5× Special Defense boost against special moves during sandstorm.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "weather-lasts-five-or-eight-turns",
+      "category": "weather",
+      "title": "Weather lasts five or eight turns",
+      "before": "Weather moves use the original duration rules.",
+      "after": "Weather moves and weather abilities set five turns of weather, extended to eight by the matching weather rock.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "weather-suppression",
+      "category": "weather",
+      "title": "Weather suppression",
+      "before": "No ability-based weather suppression.",
+      "after": "Cloud Nine suppresses weather effects while its active holder is alive. The underlying weather remains and resumes when suppression ends.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "trick-room",
+      "category": "weather",
+      "title": "Trick Room",
+      "before": "Trick Room does not exist.",
+      "after": "Trick Room reverses ordinary Speed order for five turns. Using it again ends it early; priority still matters.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "regular-and-hidden-abilities",
+      "category": "abilities",
+      "title": "Regular and hidden abilities",
+      "before": "Pokémon have no abilities.",
+      "after": "Species can have two regular ability slots and a hidden slot. Empty slots are skipped, and available abilities are shown on each Pokémon page.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "constants/ability_constants.asm"
+      ],
+      "links": [
+        {
+          "label": "Ability directory",
+          "href": "#ability-directory"
+        }
+      ]
+    },
+    {
+      "id": "reusable-ability-cap",
+      "category": "abilities",
+      "title": "Reusable Ability Cap",
+      "before": "There is no ability-changing item.",
+      "after": "Elm provides an Ability Cap key item. It cycles through the Pokémon’s available regular and hidden slots and can be reused.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "modern-sturdy",
+      "category": "abilities",
+      "title": "Modern Sturdy",
+      "before": "Abilities do not exist.",
+      "after": "At full HP, Sturdy allows its holder to survive a damaging hit with 1 HP. It also protects against one-hit KO moves.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "gale-wings-has-no-full-hp-restriction",
+      "category": "abilities",
+      "title": "Gale Wings has no full-HP restriction",
+      "before": "Abilities do not exist.",
+      "after": "Gale Wings grants +1 priority to Flying moves at any HP, retaining the earlier version of the ability.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "disguise-uses-its-original-no-chip-version",
+      "category": "abilities",
+      "title": "Disguise uses its original no-chip version",
+      "before": "Abilities do not exist.",
+      "after": "Mimikyu’s intact Disguise blocks the first damaging hit without the later 1/8 HP cost. It does not cancel all other effects of the move.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "parental-bond-follow-up-hit",
+      "category": "abilities",
+      "title": "Parental Bond follow-up hit",
+      "before": "Abilities do not exist.",
+      "after": "Eligible attacks strike twice. The second hit uses one quarter of the first hit’s ordinary damage; unsupported move classes are excluded.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/parental_bond_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "mega-sol-is-a-custom-ability",
+      "category": "abilities",
+      "title": "Mega Sol is a custom ability",
+      "before": "Abilities do not exist.",
+      "after": "The holder uses supported moves as though harsh sunlight were active, including Solar Beam, Weather Ball, recovery and damage adjustments. It does not set field weather for both sides.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "supreme-overlord-scales-with-fallen-allies",
+      "category": "abilities",
+      "title": "Supreme Overlord scales with fallen allies",
+      "before": "Abilities do not exist.",
+      "after": "Damage increases by 10% for each fainted non-Egg ally, up to five allies and a 1.5× multiplier.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "palafin-has-no-zero-to-hero-transformation",
+      "category": "abilities",
+      "title": "Palafin has no Zero to Hero transformation",
+      "before": "Palafin does not exist.",
+      "after": "Palafin uses its listed game stats and abilities without transforming into Hero Form. Original stats refer to its official base form.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/pokemon/base_stats/palafin.asm"
+      ],
+      "links": [
+        {
+          "label": "Palafin comparison",
+          "href": "pokemon/palafin.html"
+        }
+      ]
+    },
+    {
+      "id": "expanded-move-selection",
+      "category": "moves",
+      "title": "Expanded move selection",
+      "before": "Crystal has 251 moves.",
+      "after": "Later-generation attacks, support moves and custom adaptations expand the move set. Every addition and changed table value is listed individually below.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/moves/moves.asm"
+      ],
+      "links": [
+        {
+          "label": "Move-by-move updates",
+          "href": "#move-updates"
+        }
+      ]
+    },
+    {
+      "id": "hyper-beam-and-giga-impact-skip-recharge-after-a-ko",
+      "category": "moves",
+      "title": "Hyper Beam and Giga Impact skip recharge after a KO",
+      "before": "Hyper Beam still requires recharge after knocking out its target.",
+      "after": "Hyper Beam and Giga Impact end without recharge when they knock out the target, following the Gen 1-style rule. A surviving target still causes recharge.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hidden-power-has-a-selectable-type",
+      "category": "moves",
+      "title": "Hidden Power has a selectable type",
+      "before": "Hidden Power’s type is determined by DVs.",
+      "after": "Choose each Pokémon’s Hidden Power type at the house northwest of the Lake of Rage. Untuned Pokémon default to Dark; DVs do not determine the type.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/hidden_power.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hidden-power-has-fixed-power",
+      "category": "moves",
+      "title": "Hidden Power has fixed power",
+      "before": "Hidden Power’s power varies with DVs.",
+      "after": "Hidden Power always has 70 base power. Its move-table placeholder is not its actual battle power.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "constants/type_constants.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "hidden-power-chooses-its-category-dynamically",
+      "category": "moves",
+      "title": "Hidden Power chooses its category dynamically",
+      "before": "Hidden Power’s damage category follows its type.",
+      "after": "It becomes physical when the user’s current Attack exceeds Special Attack, and special otherwise. Stat-stage changes are considered; ties use special.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/hidden_power.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "octazooka-lowers-both-defenses",
+      "category": "moves",
+      "title": "Octazooka lowers both defenses",
+      "before": "Octazooka has 65 power, 85% accuracy and a chance to lower accuracy.",
+      "after": "Octazooka has 90 power, 100% accuracy and a 20% chance to lower Defense and Special Defense together by one stage.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": [
+        {
+          "label": "Octazooka",
+          "href": "moves/octazooka.html"
+        }
+      ]
+    },
+    {
+      "id": "incinerate-has-custom-power",
+      "category": "moves",
+      "title": "Incinerate has custom power",
+      "before": "Incinerate does not exist.",
+      "after": "Incinerate has 75 power and destroys a removable held Berry after a successful hit.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": [
+        {
+          "label": "Incinerate",
+          "href": "moves/incinerate.html"
+        }
+      ]
+    },
+    {
+      "id": "low-kick-retains-fixed-power-and-flinching",
+      "category": "moves",
+      "title": "Low Kick retains fixed power and flinching",
+      "before": "Low Kick has fixed 50 power and can flinch.",
+      "after": "Low Kick remains a 50-power attack with a 30% flinch chance, rather than using the later weight-based formula. Its accuracy is now 100%.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/moves/moves.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "teleport-retains-escape-behavior",
+      "category": "moves",
+      "title": "Teleport retains escape behavior",
+      "before": "Teleport attempts to escape wild battles and fails in trainer battles.",
+      "after": "Teleport retains this behavior. It is not the later slow-switching move used in trainer battles.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/move_effects/teleport.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "giga-hammer-and-blood-moon-have-a-repeat-use-lock",
+      "category": "moves",
+      "title": "Giga Hammer and Blood Moon have a repeat-use lock",
+      "before": "These moves do not exist.",
+      "after": "These attacks cannot be used consecutively. If the player’s repeat attempt fails, the game lets them choose another move in the same turn without giving the enemy another action.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "explosion-and-selfdestruct-use-normal-defense",
+      "category": "moves",
+      "title": "Explosion and Selfdestruct use normal Defense",
+      "before": "These moves halve the target’s Defense during damage calculation.",
+      "after": "Explosion and Selfdestruct no longer halve Defense.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "protect-becomes-harder-to-repeat",
+      "category": "moves",
+      "title": "Protect becomes harder to repeat",
+      "before": "Repeated Protect halves the next success chance.",
+      "after": "Repeated Protect uses approximately 1/3, 1/9, 1/27 and so on. A different action resets the chain.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/protect.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "spikes-stack-in-three-layers",
+      "category": "moves",
+      "title": "Spikes stack in three layers",
+      "before": "Spikes has one layer and deals 1/8 maximum HP.",
+      "after": "Spikes stacks up to three layers: 1/8, 1/6 and 1/4 maximum HP entry damage. Flying types and other ungrounded Pokémon avoid it.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/spikes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "stealth-rock",
+      "category": "moves",
+      "title": "Stealth Rock",
+      "before": "Stealth Rock does not exist.",
+      "after": "Entering Pokémon take Rock-type effectiveness-scaled damage, normally 1/8 maximum HP at neutral effectiveness.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "toxic-spikes",
+      "category": "moves",
+      "title": "Toxic Spikes",
+      "before": "Toxic Spikes does not exist.",
+      "after": "One layer poisons grounded entrants; two layers badly poison them. Grounded Poison types remove the layers.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "sticky-web",
+      "category": "moves",
+      "title": "Sticky Web",
+      "before": "Sticky Web does not exist.",
+      "after": "Grounded entrants lose one Speed stage on a webbed side. It does not deal hazard damage.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "rapid-spin-clears-all-supported-hazards",
+      "category": "moves",
+      "title": "Rapid Spin clears all supported hazards",
+      "before": "Rapid Spin clears Gen 2 Spikes, trapping and Leech Seed.",
+      "after": "It also clears Toxic Spikes, Stealth Rock and Sticky Web from the user’s side. Its attack has updated power.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/rapid_spin.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "defog-clears-hazards-and-screens",
+      "category": "moves",
+      "title": "Defog clears hazards and screens",
+      "before": "Defog does not exist.",
+      "after": "Defog removes hazards from both sides and removes Reflect and Light Screen from the target’s side.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "wish-heals-the-active-slot-next-turn",
+      "category": "moves",
+      "title": "Wish heals the active slot next turn",
+      "before": "Wish does not exist.",
+      "after": "At the end of the following turn, Wish heals the active Pokémon on the user’s side for half of the original user’s maximum HP. It can heal a teammate switched into that slot.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "taunt",
+      "category": "moves",
+      "title": "Taunt",
+      "before": "Taunt does not exist.",
+      "after": "Taunt blocks status moves for three turns. Oblivious protects against it.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "torment",
+      "category": "moves",
+      "title": "Torment",
+      "before": "Torment does not exist.",
+      "after": "Torment prevents consecutive use of the same move until the affected Pokémon leaves the field. Struggle remains legal.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "yawn",
+      "category": "moves",
+      "title": "Yawn",
+      "before": "Yawn does not exist.",
+      "after": "Yawn makes the target fall asleep at the end of the next turn if it remains eligible.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "knock-off-bonus-damage",
+      "category": "moves",
+      "title": "Knock Off bonus damage",
+      "before": "Knock Off does not exist.",
+      "after": "Knock Off deals 1.5× damage when the target has a removable item, then removes it when permitted.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "weather-ball-changes-in-battle",
+      "category": "moves",
+      "title": "Weather Ball changes in battle",
+      "before": "Weather Ball does not exist.",
+      "after": "Weather Ball is normally a 50-power Normal move. Active weather changes its type and doubles its base power; suppressed weather does not apply.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/new_move_cores.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "sound-moves-bypass-substitute",
+      "category": "moves",
+      "title": "Sound moves bypass Substitute",
+      "before": "Sound moves do not have this general Substitute bypass.",
+      "after": "Supported sound moves reach the Pokémon behind Substitute. Infiltrator also bypasses Substitute for supported attacks.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "sucker-punch-checks-the-opponent-s-action",
+      "category": "moves",
+      "title": "Sucker Punch checks the opponent’s action",
+      "before": "Sucker Punch does not exist.",
+      "after": "It succeeds only before the opponent acts and when they have selected a damaging move. Switching, using an item, recharging or choosing a status move makes it fail.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "redesigned-pok-mon-stats-and-typings",
+      "category": "training",
+      "title": "Redesigned Pokémon stats and typings",
+      "before": "The original 251-species designs are used.",
+      "after": "The balance guide lists every difference between modern Original and this game’s Updated stats and typings, including prior redesigns and the latest buffs.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "crimson-crystal-docs/balance_changes.json"
+      ],
+      "links": [
+        {
+          "label": "Pokémon balance changes",
+          "href": "changes.html#roster-changes"
+        }
+      ]
+    },
+    {
+      "id": "expanded-evolution-methods",
+      "category": "training",
+      "title": "Expanded evolution methods",
+      "before": "Only the original evolution chains and items are present.",
+      "after": "Added species use game-specific evolution routes and items. Each Pokémon page lists the actual requirements; do not assume later games’ methods carry over unchanged.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks.asm"
+      ],
+      "links": [
+        {
+          "label": "Evolution requirements",
+          "href": "pokedex.html"
+        }
+      ]
+    },
+    {
+      "id": "slugma-evolves-sooner",
+      "category": "training",
+      "title": "Slugma evolves sooner",
+      "before": "Slugma evolves into Magcargo at level 38.",
+      "after": "Slugma evolves into Magcargo at level 34.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks.asm"
+      ],
+      "links": [
+        {
+          "label": "Slugma",
+          "href": "pokemon/slugma.html"
+        }
+      ]
+    },
+    {
+      "id": "reusable-tms",
+      "category": "training",
+      "title": "Reusable TMs",
+      "before": "A TM is consumed when used.",
+      "after": "TMs can be used repeatedly. HMs remain reusable; the TM lineup has also been updated.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/items/tmhm.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "updated-level-up-learnsets",
+      "category": "training",
+      "title": "Updated level-up learnsets",
+      "before": "The original Crystal learnsets are used.",
+      "after": "Species have expanded, revised level-up learnsets. Every Pokémon page lists level-up, TM/HM and family-tutor compatibility.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks.asm"
+      ],
+      "links": [
+        {
+          "label": "Learnsets",
+          "href": "pokedex.html"
+        }
+      ]
+    },
+    {
+      "id": "move-reminder",
+      "category": "training",
+      "title": "Move Reminder",
+      "before": "Crystal has no Move Reminder.",
+      "after": "The Move Deleter’s house in Blackthorn includes a Move Reminder. Successful lessons cost ¥1,000 and recover eligible level-up moves.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "maps/MoveDeletersHouse.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "family-egg-move-tutor",
+      "category": "training",
+      "title": "Family / egg-move tutor",
+      "before": "Egg moves require breeding.",
+      "after": "The purple tutor in the Move Deleter’s house teaches compatible family/egg moves for ¥5,000 per successful lesson.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/MoveDeletersHouse.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "goldenrod-utility-tutor",
+      "category": "training",
+      "title": "Goldenrod utility tutor",
+      "before": "There is no utility tutor.",
+      "after": "The PP speech house in Goldenrod has a tutor for Substitute, Sleep Talk, Reflect, Light Screen and Thunder Wave, according to compatibility. Successful lessons cost ¥1,000.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/GoldenrodPPSpeechHouse.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "meowth-and-persian-learn-fake-out",
+      "category": "training",
+      "title": "Meowth and Persian learn Fake Out",
+      "before": "Fake Out does not exist.",
+      "after": "Meowth and Persian have Fake Out at level 1, including through the Move Reminder when eligible.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "lickilicky-learns-wish",
+      "category": "training",
+      "title": "Lickilicky learns Wish",
+      "before": "Lickilicky and Wish do not exist.",
+      "after": "Lickilicky learns Wish at level 50, giving it a way to support teammates.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "training-retains-dvs-and-stat-experience",
+      "category": "training",
+      "title": "Training retains DVs and stat experience",
+      "before": "Gen 2 uses DVs and stat experience.",
+      "after": "This game retains that system rather than adopting natures, six modern IVs or the modern 510-EV limit. The Original choice replaces base stats, not the entire training formula.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/pokemon/move_mon.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "shiny-odds-are-about-2",
+      "category": "training",
+      "title": "Shiny odds are about 2%",
+      "before": "Ordinary shiny odds are 1/8,192 and depend on DVs.",
+      "after": "Ordinary eligible Pokémon use a separate shiny roll of about 2% (5/256), independent of their DVs. Trainer Pokémon do not receive random shininess.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/pokemon/mon_gender_shiny.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "clone-starters-are-an-exception-to-random-shininess",
+      "category": "training",
+      "title": "Clone starters are an exception to random shininess",
+      "before": "Clone starter forms do not exist.",
+      "after": "Clone starters do not receive the ordinary random shiny roll. Their forms appear in the Normal / Clone panels on their starter pages.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/pokemon/mon_gender_shiny.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "choice-band",
+      "category": "items",
+      "title": "Choice Band",
+      "before": "Choice Band does not exist.",
+      "after": "Boosts Attack by 50% and locks the holder into its chosen move until switching.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "choice-specs",
+      "category": "items",
+      "title": "Choice Specs",
+      "before": "Choice Specs does not exist.",
+      "after": "Boosts Special Attack by 50% and locks the holder into its chosen move until switching.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "choice-scarf",
+      "category": "items",
+      "title": "Choice Scarf",
+      "before": "Choice Scarf does not exist.",
+      "after": "Boosts Speed by 50% and locks the holder into its chosen move until switching.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "eviolite",
+      "category": "items",
+      "title": "Eviolite",
+      "before": "Eviolite does not exist.",
+      "after": "Boosts Defense and Special Defense by 50% for species that can still evolve.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "assault-vest",
+      "category": "items",
+      "title": "Assault Vest",
+      "before": "Assault Vest does not exist.",
+      "after": "Boosts Special Defense by 50% while preventing the holder from selecting status moves.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "focus-sash",
+      "category": "items",
+      "title": "Focus Sash",
+      "before": "Focus Sash does not exist.",
+      "after": "At full HP, a consumable Focus Sash lets its holder survive a damaging hit with 1 HP.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "expert-belt",
+      "category": "items",
+      "title": "Expert Belt",
+      "before": "Expert Belt does not exist.",
+      "after": "Boosts super-effective move damage by 20%.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "life-orb",
+      "category": "items",
+      "title": "Life Orb",
+      "before": "Life Orb does not exist.",
+      "after": "Boosts move damage by 30%, with recoil after a successful damaging move unless prevented.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "rocky-helmet",
+      "category": "items",
+      "title": "Rocky Helmet",
+      "before": "Rocky Helmet does not exist.",
+      "after": "Contact attackers lose 1/6 of their maximum HP.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "weakness-policy",
+      "category": "items",
+      "title": "Weakness Policy",
+      "before": "Weakness Policy does not exist.",
+      "after": "When a super-effective damaging hit activates it, this consumable item raises Attack and Special Attack by two stages.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "loaded-dice",
+      "category": "items",
+      "title": "Loaded Dice",
+      "before": "Loaded Dice does not exist.",
+      "after": "Ordinary eligible multi-hit moves strike four or five times. It also supports the repeated accuracy checks of Triple Kick / Triple Axel.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "flame-orb",
+      "category": "items",
+      "title": "Flame Orb",
+      "before": "Flame Orb does not exist.",
+      "after": "Attempts to burn its holder at the end of the turn, respecting status and type protections.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "toxic-orb",
+      "category": "items",
+      "title": "Toxic Orb",
+      "before": "Toxic Orb does not exist.",
+      "after": "Attempts to badly poison its holder at the end of the turn, respecting status and type protections.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "damp-rock",
+      "category": "items",
+      "title": "Damp Rock",
+      "before": "Damp Rock does not exist.",
+      "after": "Extends rain summoned by its holder from five to eight turns.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "heat-rock",
+      "category": "items",
+      "title": "Heat Rock",
+      "before": "Heat Rock does not exist.",
+      "after": "Extends harsh sunlight summoned by its holder from five to eight turns.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "smooth-rock",
+      "category": "items",
+      "title": "Smooth Rock",
+      "before": "Smooth Rock does not exist.",
+      "after": "Extends sandstorm summoned by its holder from five to eight turns.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "icy-rock",
+      "category": "items",
+      "title": "Icy Rock",
+      "before": "Icy Rock does not exist.",
+      "after": "Extends hail summoned by its holder from five to eight turns.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "larger-item-pocket",
+      "category": "items",
+      "title": "Larger item pocket",
+      "before": "The item pocket holds 20 distinct stacks.",
+      "after": "The item pocket holds 40 distinct stacks. The Ball pocket holds 12.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "constants/item_data_constants.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "more-pok-mon-storage",
+      "category": "items",
+      "title": "More Pokémon storage",
+      "before": "Crystal has 14 boxes of 20 Pokémon.",
+      "after": "This game has 25 boxes of 20 Pokémon, for 500 boxed Pokémon.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "constants/pokemon_data_constants.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "graphical-pc-storage",
+      "category": "items",
+      "title": "Graphical PC storage",
+      "before": "Bill’s PC uses the original text-list interface.",
+      "after": "A graphical box interface supports moving Pokémon and held items, renaming boxes, box themes and party access.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/pc/bills_pc_ui.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "use-another-repel-prompt",
+      "category": "items",
+      "title": "Use another Repel prompt",
+      "before": "When Repel expires, the player must reopen the Bag.",
+      "after": "When Repel wears off, the game offers to use another of the same kind if one is available.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/events/misc_scripts_2.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "apricorn-trees-give-three",
+      "category": "items",
+      "title": "Apricorn trees give three",
+      "before": "Apricorn trees give one Apricorn per harvest.",
+      "after": "Apricorn trees give three per harvest. Ordinary fruit trees still give one item.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/events/fruit_trees.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "new-evolution-items",
+      "category": "items",
+      "title": "New evolution items",
+      "before": "The original evolution-item set is used.",
+      "after": "Dusk Stone, Ice Stone and evolution apples support the expanded evolution chains. The Pokémon pages show which item each species needs.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "constants/item_constants.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "fossil-revival",
+      "category": "items",
+      "title": "Fossil revival",
+      "before": "Crystal has no usable fossil-revival service.",
+      "after": "The Ruins of Alph Fossil Lab revives the fossils you carry, including Old Amber and later-generation fossils. The revived species and levels follow the game’s custom scripts.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "maps/RuinsOfAlphFossilLab.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "expanded-pok-mon-roster",
+      "category": "world",
+      "title": "Expanded Pokémon roster",
+      "before": "Crystal has 251 species.",
+      "after": "The roster includes later-generation evolutions, regional forms, custom species and nine clone starter forms. Every added species/form is linked below.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "constants/pokemon_constants.asm"
+      ],
+      "links": [
+        {
+          "label": "Added Pokémon directory",
+          "href": "#added-pokemon"
+        }
+      ]
+    },
+    {
+      "id": "regional-forms",
+      "category": "world",
+      "title": "Regional forms",
+      "before": "Regional forms do not exist.",
+      "after": "Alolan, Galarian, Hisuian and Paldean forms have their own species records, abilities, typings, stats and evolution requirements.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/pokemon/base_stats.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "custom-pok-mon",
+      "category": "world",
+      "title": "Custom Pokémon",
+      "before": "These species are absent.",
+      "after": "Custom designs include Mesmeria, Kotora, Raitora, Gorotora, Watu and Gorochu, plus custom Bloodmoon pre-evolutions. Their baselines are game-specific.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/original_stats.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "four-playable-trainers",
+      "category": "world",
+      "title": "Four playable trainers",
+      "before": "Crystal offers two player characters.",
+      "after": "Choose Gold, Lyra, Indigo or Mint at the start, with matching character graphics.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/menus/init_gender.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "bicycle-or-skateboard",
+      "category": "world",
+      "title": "Bicycle or skateboard",
+      "before": "Goldenrod’s shop lends a Bicycle.",
+      "after": "The shop offers a Bicycle or a skateboard, with corresponding overworld movement graphics.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/GoldenrodBikeShop.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "daily-regional-overworld-weather",
+      "category": "world",
+      "title": "Daily regional overworld weather",
+      "before": "There is no broad daily regional weather system.",
+      "after": "Johto and Kanto areas receive daily weather, including overcast skies, rain, thunderstorms and harsh sunlight. Neighboring maps share regional selections.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/overworld/weather.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "overworld-weather-affects-battles",
+      "category": "world",
+      "title": "Overworld weather affects battles",
+      "before": "Outdoor map weather does not generally seed battles.",
+      "after": "Applicable regional rain, harsh sun, snow/hail and sandstorm can carry into battles. Plain sunny skies do not automatically mean battle harsh sunlight.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/overworld/weather.asm",
+        "engine/battle/giga_hammer_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "safari-zone-is-playable",
+      "category": "world",
+      "title": "Safari Zone is playable",
+      "before": "Crystal’s Safari Zone is closed.",
+      "after": "A working Safari Zone has its own encounter pool, progression rules, catching system and visit fee. ¥500 grants 30 Safari Balls and 300 steps.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "maps/SafariZoneLobby.asm"
+      ],
+      "links": [
+        {
+          "label": "Safari Zone encounters",
+          "href": "locations/safari-zone.html"
+        }
+      ]
+    },
+    {
+      "id": "bug-catching-contest-overhaul",
+      "category": "world",
+      "title": "Bug-Catching Contest overhaul",
+      "before": "The original Contest rules and judging are used.",
+      "after": "The Contest has revised encounters and judging for the expanded roster. Check the encounter guide for the current Contest species.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/events/bug_contest/judging.asm"
+      ],
+      "links": [
+        {
+          "label": "Contest encounters",
+          "href": "encounters.html"
+        }
+      ]
+    },
+    {
+      "id": "silent-crypt",
+      "category": "world",
+      "title": "Silent Crypt",
+      "before": "This area and its gravekeeping quest are absent.",
+      "after": "Silent Crypt adds Ghost-focused encounters, trainers and a gravekeeping quest near Route 37.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/SilentCrypt.asm"
+      ],
+      "links": [
+        {
+          "label": "Silent Crypt",
+          "href": "locations/silent-crypt.html"
+        }
+      ]
+    },
+    {
+      "id": "ice-island",
+      "category": "world",
+      "title": "Ice Island",
+      "before": "This area is absent.",
+      "after": "Ice Island is reachable from Route 19 and includes an Articuno encounter.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/IceIsland.asm"
+      ],
+      "links": [
+        {
+          "label": "Articuno",
+          "href": "pokemon/articuno.html"
+        }
+      ]
+    },
+    {
+      "id": "expanded-wild-encounter-pools",
+      "category": "world",
+      "title": "Expanded wild encounter pools",
+      "before": "Wild tables only cover the original roster.",
+      "after": "Grass, Surf, fishing, Headbutt, Rock Smash, swarm and special encounter tables include the expanded roster. The guide shows actual locations, times and levels.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/wild/johto_grass.asm"
+      ],
+      "links": [
+        {
+          "label": "All encounters",
+          "href": "encounters.html"
+        }
+      ]
+    },
+    {
+      "id": "rebalanced-trainers-and-rematches",
+      "category": "world",
+      "title": "Rebalanced trainers and rematches",
+      "before": "Crystal’s original trainer parties and progression are used.",
+      "after": "Trainer parties, rival fights, gym battles, late-game bosses and rematches use revised teams and progression.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/trainers/parties.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "crystal-s-story-and-mew-encounter",
+      "category": "world",
+      "title": "Crystal’s story and Mew encounter",
+      "before": "There is no added Crystal rival story or Route 25 Mew event.",
+      "after": "New Crystal encounters and a Mew event extend the campaign, including the Cerulean Cape sequence.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/Route25.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "pallet-town-superboss-encounter",
+      "category": "world",
+      "title": "Pallet Town superboss encounter",
+      "before": "Red’s main encounter is at Mt. Silver.",
+      "after": "Additional late-game challenges include a Red encounter in Pallet Town after its story prerequisites.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/PalletTown.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "trainer-dialogue-portraits",
+      "category": "world",
+      "title": "Trainer dialogue portraits",
+      "before": "Dialogue uses the original text presentation.",
+      "after": "Important characters have illustrated dialogue portraits with dedicated colors and weather-aware presentation.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/events/trainer_portraits.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "updated-pok-mon-artwork-and-animations",
+      "category": "world",
+      "title": "Updated Pokémon artwork and animations",
+      "before": "Original Crystal graphics are used.",
+      "after": "The expanded roster has front and back artwork, palettes, icons, cries and animations, with animation and presentation updates throughout the game.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "gfx/pokemon"
+      ],
+      "links": []
+    },
+    {
+      "id": "updated-maps-and-water-graphics",
+      "category": "world",
+      "title": "Updated maps and water graphics",
+      "before": "Original map artwork is used.",
+      "after": "Towns, routes, new areas, water tiles and overworld objects have revised artwork and layouts.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/tilesets"
+      ],
+      "links": []
+    },
+    {
+      "id": "fairy-type",
+      "category": "battle",
+      "title": "Fairy type",
+      "before": "Gen 2 has no Fairy type.",
+      "after": "Fairy is a fully supported type. It is immune to Dragon, weak to Poison and Steel, and super effective against Fighting, Dragon and Dark.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "data/types/type_matchups.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "steel-no-longer-resists-ghost-or-dark",
+      "category": "battle",
+      "title": "Steel no longer resists Ghost or Dark",
+      "before": "Steel resists Ghost and Dark.",
+      "after": "Ghost and Dark attacks deal neutral damage to Steel before any second type is considered.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "data/types/type_matchups.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "critical-hits-ignore-unfavorable-stat-stages",
+      "category": "battle",
+      "title": "Critical hits ignore unfavorable stat stages",
+      "before": "Gen 2 checks Attack and Defense stage relationships together.",
+      "after": "Critical hits ignore the attacker’s negative offensive stages and the defender’s positive defensive stages independently. Favorable offensive stages and lowered defenses still help.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "dark-types-block-opposing-prankster-status-moves",
+      "category": "status",
+      "title": "Dark types block opposing Prankster status moves",
+      "before": "Abilities do not exist.",
+      "after": "Dark types are immune to opposing status moves boosted by Prankster. The user can still use Prankster moves targeting itself or its own side.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "bad-poison-persists-through-switching",
+      "category": "status",
+      "title": "Bad poison persists through switching",
+      "before": "Switching converts bad poison into regular poison.",
+      "after": "A badly poisoned Pokémon remains badly poisoned after switching. Its escalating damage counter resets when it re-enters battle.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "disable-has-a-fixed-duration",
+      "category": "moves",
+      "title": "Disable has a fixed duration",
+      "before": "Disable uses a variable duration.",
+      "after": "Disable lasts four turns.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/disable.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "encore-has-a-fixed-duration",
+      "category": "moves",
+      "title": "Encore has a fixed duration",
+      "before": "Encore uses a variable duration.",
+      "after": "Encore lasts three turns.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/encore.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "endure-shares-the-protect-chain",
+      "category": "moves",
+      "title": "Endure shares the Protect chain",
+      "before": "Endure uses the older consecutive-use odds.",
+      "after": "Endure shares Protect’s consecutive-use success system, including the progressively reduced chance.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/endure.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "bide-releases-on-turn-three",
+      "category": "moves",
+      "title": "Bide releases on turn three",
+      "before": "Bide’s storing period can vary.",
+      "after": "Bide stores damage on its first two turns and releases on turn three. Its retaliation ignores type immunity.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/bide.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "struggle-uses-maximum-hp-recoil",
+      "category": "moves",
+      "title": "Struggle uses maximum-HP recoil",
+      "before": "Struggle recoil is based on the damage dealt.",
+      "after": "Struggle recoil is one quarter of the user’s maximum HP. Rock Head and Magic Guard do not prevent this recoil.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "rapid-spin-does-not-raise-speed",
+      "category": "moves",
+      "title": "Rapid Spin does not raise Speed",
+      "before": "Rapid Spin has no Speed boost.",
+      "after": "This game’s Rapid Spin clears hazards and has 50 power, but retains no Speed-raising effect.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/moves/effects.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "growth-keeps-its-original-stat-effect",
+      "category": "moves",
+      "title": "Growth keeps its original stat effect",
+      "before": "Growth raises Special Attack by one stage.",
+      "after": "Growth still raises only Special Attack by one stage. It does not gain the later Attack increase or doubled sunlight boosts.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/moves/moves.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "thunder-wave-keeps-100-accuracy",
+      "category": "moves",
+      "title": "Thunder Wave keeps 100% accuracy",
+      "before": "Thunder Wave has 100% accuracy.",
+      "after": "This game retains 100% move-table accuracy, rather than the later 90%. Ground immunity and Electric-type paralysis immunity still apply.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/moves/moves.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "flash-fire-raises-the-higher-offensive-stat",
+      "category": "abilities",
+      "title": "Flash Fire raises the higher offensive stat",
+      "before": "Abilities do not exist.",
+      "after": "Absorbing a Fire move raises the holder’s higher current Attack or Special Attack by one stage. Ties raise Special Attack. These boosts can stack; this differs from the official Fire-damage-only boost.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "weight-abilities-are-omitted",
+      "category": "abilities",
+      "title": "Weight abilities are omitted",
+      "before": "Abilities do not exist.",
+      "after": "Heavy Metal and Light Metal are omitted because this battle engine has no Pokémon-weight mechanics. Low Kick uses its fixed-power rules listed above.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "air-balloon",
+      "category": "items",
+      "title": "Air Balloon",
+      "before": "Air Balloon does not exist.",
+      "after": "The holder avoids Ground attacks and grounded entry hazards until a damaging hit pops the balloon.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "muscle-band",
+      "category": "items",
+      "title": "Muscle Band",
+      "before": "Muscle Band does not exist.",
+      "after": "Boosts physical move damage by 10%.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "wise-glasses",
+      "category": "items",
+      "title": "Wise Glasses",
+      "before": "Wise Glasses do not exist.",
+      "after": "Boosts special move damage by 10%.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "light-ball-boosts-both-offensive-stats",
+      "category": "items",
+      "title": "Light Ball boosts both offensive stats",
+      "before": "Light Ball doubles Pikachu’s Special Attack.",
+      "after": "Light Ball doubles Pikachu’s Attack and Special Attack.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "focus-band-has-an-increased-chance",
+      "category": "items",
+      "title": "Focus Band has an increased chance",
+      "before": "Focus Band has roughly a 10% activation chance.",
+      "after": "This game gives Focus Band roughly a 30% chance to let its holder survive a would-be knockout with 1 HP. Unlike Focus Sash, it does not require full HP.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "relic-clock",
+      "category": "items",
+      "title": "Relic Clock",
+      "before": "This key item does not exist.",
+      "after": "The Relic Clock found in Ilex Forest lets you reset the game clock through its time-distortion sequence.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/items/item_effects.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "most-acquired-pok-mon-receive-perfect-dvs",
+      "category": "training",
+      "title": "Most acquired Pokémon receive perfect DVs",
+      "before": "DVs normally vary between individual Pokémon.",
+      "after": "Most caught, gifted and hatched Pokémon receive 15 in every DV, reducing individual-stat grinding. Shiny rolls remain separate.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/pokemon/move_mon.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "unown-and-magikarp-keep-wild-dvs",
+      "category": "training",
+      "title": "Unown and Magikarp keep wild DVs",
+      "before": "Unown letters and Magikarp length depend on their DVs.",
+      "after": "Caught Unown and Magikarp retain their wild DVs so their letters and lengths can still vary. They are exceptions to the normal perfect-DV rule.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/pokemon/move_mon.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "badge-stat-boosts-remain",
+      "category": "battle",
+      "title": "Badge stat boosts remain",
+      "before": "Johto badges increase particular player battle stats.",
+      "after": "The game retains badge-linked stat boosts in ordinary single-player battles. Link battles and the Battle Tower skip these boosts.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "map-seeded-weather-has-a-longer-duration",
+      "category": "weather",
+      "title": "Map-seeded weather has a longer duration",
+      "before": "No broad overworld-to-battle weather transfer.",
+      "after": "Weather inherited from the map starts with a 255-turn timer, effectively lasting the battle. A weather move or ability can replace it with its own normal duration.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/giga_hammer_core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "safari-zone-progression-gate",
+      "category": "world",
+      "title": "Safari Zone progression gate",
+      "before": "The Safari Zone is closed.",
+      "after": "Before five Johto badges, selected powerful Safari encounters are replaced with earlier alternatives. Five badges unlock the original selected Kangaskhan, Paldean Tauros and Skarmory encounters.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/overworld/wildmons.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "contest-scoring-uses-rarity-size-and-clean-catches",
+      "category": "world",
+      "title": "Contest scoring uses rarity, size and clean catches",
+      "before": "Judging uses the original Crystal scoring formula.",
+      "after": "The score combines species rarity, level relative to that species’ Contest range, and the Park Balls spent on the Pokémon kept. HP and DVs do not determine the score.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/events/bug_contest/judging.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "viridian-forest-is-restored",
+      "category": "world",
+      "title": "Viridian Forest is restored",
+      "before": "Crystal compresses the forest into Route 2.",
+      "after": "A full Viridian Forest map and its north and south gates add exploration and encounters in Kanto.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "maps/ViridianForest.asm"
+      ],
+      "links": [
+        {
+          "label": "Viridian Forest",
+          "href": "locations/viridian-forest.html"
+        }
+      ]
+    },
+    {
+      "id": "fire-island",
+      "category": "world",
+      "title": "Fire Island",
+      "before": "This area is absent.",
+      "after": "Fire Island adds a dedicated Moltres encounter reached through Route 19’s island sequence.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/FireIsland.asm"
+      ],
+      "links": [
+        {
+          "label": "Moltres",
+          "href": "pokemon/moltres.html"
+        }
+      ]
+    },
+    {
+      "id": "thunder-island",
+      "category": "world",
+      "title": "Thunder Island",
+      "before": "This area is absent.",
+      "after": "Thunder Island adds a dedicated Zapdos encounter reached through Route 19’s island sequence.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/ThunderIsland.asm"
+      ],
+      "links": [
+        {
+          "label": "Zapdos",
+          "href": "pokemon/zapdos.html"
+        }
+      ]
+    },
+    {
+      "id": "elemental-sphere-opens-the-bird-islands",
+      "category": "world",
+      "title": "Elemental Sphere opens the bird islands",
+      "before": "This quest item and island-opening event are absent.",
+      "after": "The Elemental Sphere obtained in Lugia’s chamber can be placed at Route 19 to open Fire Island, Thunder Island and Ice Island.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/Route19.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "type-boosting-items-retain-the-gen-2-bonus",
+      "category": "items",
+      "title": "Type-boosting items retain the Gen 2 bonus",
+      "before": "Held type-boosting items generally add 10% damage.",
+      "after": "Items such as Charcoal, Mystic Water and Magnet retain their 10% bonus, rather than the later main games’ 20%.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "data/items/attributes.asm"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -113,6 +113,48 @@ header{gap:16px;flex-wrap:wrap}nav{flex-wrap:wrap;align-items:center}nav a:hover
 @media(max-width:740px){header{padding:14px 20px}.brand{width:100%}nav{gap:14px}.change-grid{grid-template-columns:1fr}.rules-panel{text-align:left}.stats-compare th,.stats-compare td{padding:9px 5px}.stats-compare thead th{font-size:.65rem}.type-comparison>div{padding:12px}.counts div{padding:16px}.stat-meter{display:none}}
 
 .monhero:has(.sprite-pair){grid-template-columns:auto 1fr}
+/* ---- Complete game modernization guide ---- */
+.updates-controls{background:var(--s);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:22px 0}
+.updates-controls .toolbar{margin:0;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr)}
+.updates-controls input,.updates-controls select{min-width:0;width:100%}
+.updates-controls .rules-note{margin:12px 0 0}
+.updates-toc{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 28px}
+.updates-toc a{border:1px solid var(--line);background:var(--s2);border-radius:8px;padding:7px 11px;font-size:.82rem}
+.updates-toc a:hover{border-color:var(--red);color:var(--red2)}
+.update-section,.update-directory,.update-entry{scroll-margin-top:24px}
+.update-section{margin:32px 0}
+.update-section>h2{font-size:1.35rem;margin:0 0 14px}
+.update-list{display:flex;flex-direction:column;gap:12px}
+.update-entry{background:var(--s);border:1px solid var(--line);border-radius:12px;padding:18px 22px;min-width:0}
+.update-title{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.update-title h3{font-size:1.04rem;margin:0;line-height:1.5}
+.update-kind{flex-shrink:0;border:1px solid #6f899866;border-radius:99px;padding:3px 8px;font-size:.65rem;letter-spacing:.03em;text-transform:uppercase;font-weight:800;color:#93c8ef}
+.update-kind.custom,.update-kind.exception{color:#f0c56a;border-color:#f0c56a55}
+.update-kind.expanded{color:#85dfb1;border-color:#85dfb155}
+.update-compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;margin:0}
+.update-compare div{display:block;padding:0;border:0}
+.update-compare dt{color:var(--muted);font-size:.65rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.update-compare dd{margin:0;font-size:.9rem;line-height:1.65}
+.update-compare div:first-child dd{color:var(--muted)}
+.update-entry p{margin:0;font-size:.9rem;line-height:1.65}
+.update-entry .rules-note{margin-top:10px}
+.update-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.update-links a{color:var(--red2);font-weight:700;font-size:.82rem}
+.update-users{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.update-users a{padding:3px 8px;background:var(--s2);border:1px solid var(--line);border-radius:6px;font-size:.75rem}
+.update-values{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:.86rem;font-variant-numeric:tabular-nums}
+.update-values b{color:var(--muted);font-weight:600}
+.update-directory{border:1px solid var(--line);border-radius:14px;background:var(--s);padding:20px;margin:22px 0}
+.update-directory>summary{cursor:pointer;font-weight:800;font-size:1.15rem}
+.update-directory>summary span{color:var(--muted);font-size:.85rem}
+.update-directory>.rules-note{margin:16px 0}
+[hidden]{display:none!important}
+@media(max-width:740px){
+  .updates-controls{padding:14px}.updates-controls .toolbar{grid-template-columns:1fr;gap:10px}
+  .update-entry{padding:16px}.update-title{flex-direction:column;gap:7px}
+  .update-compare{grid-template-columns:1fr;gap:12px}.update-directory{padding:14px}
+  .update-directory>summary{font-size:1rem}.updates-toc{gap:7px}
+}
 .sprite-pair{display:flex;align-items:flex-end;gap:72px;padding:18px 28px;background:radial-gradient(closest-side,#dd31541a,transparent);border-radius:20px}
 .sprite-cell{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
 .sprite-cell figcaption{color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
