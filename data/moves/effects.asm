@@ -1214,8 +1214,9 @@ HyperBeam:
 	applydamage
 	criticaltext
 	supereffectivetext
-	rechargenextturn
 	checkfaint
+	; Hyper Beam and Giga Impact skip recharge when checkfaint ends the move on a KO.
+	rechargenextturn
 	buildopponentrage
 	endmove
 
