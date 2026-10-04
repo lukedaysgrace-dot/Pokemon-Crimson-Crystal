@@ -1249,6 +1249,7 @@ DugtrioEvosAttacks:
 MeowthEvosAttacks:
 	dbbw EVOLVE_LEVEL, 28, PERSIAN
 	db 0 ; no more evolutions
+	dbw 1, FAKE_OUT
 	dbw 1, GROWL
 	dbw 1, SCRATCH
 	dbw 6, BITE
@@ -1266,6 +1267,7 @@ MeowthEvosAttacks:
 
 PersianEvosAttacks:
 	db 0 ; no more evolutions
+	dbw 1, FAKE_OUT
 	dbw 1, GROWL
 	dbw 1, SCRATCH
 	dbw 6, BITE

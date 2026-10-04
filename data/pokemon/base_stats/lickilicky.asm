@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/lickilicky/front.dimensions"
-	abilities_for LICKILICKY, OWN_TEMPO, OBLIVIOUS, CLOUD_NINE
+	abilities_for LICKILICKY, OWN_TEMPO, CUD_CHEW, CLOUD_NINE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups

@@ -1737,6 +1737,10 @@ RunNullificationAbilities::
 	ld hl, wDisguiseBusted + 1
 	res 7, [hl]
 .prediction
+	; Stun Spore runs stab before checkhit. Typing must block it before
+	; Sap Sipper can activate, just as for the other powder moves.
+	call GrassBlocksCurrentPowder
+	ret c
 	call CheckAirBalloonImmunity
 	ret c
 	call .CheckNullification
@@ -3411,10 +3415,26 @@ WeatherImmune:
 	scf
 	ret
 
+GrassBlocksCurrentPowder:
+; Carry if the target's Grass typing blocks this powder/spore move.
+	call OpponentIsGrassType
+	jr nz, .not_blocked
+	push bc
+	ld hl, PowderMoves
+	call CurrentMoveInList
+	pop bc
+	ret
+.not_blocked
+	and a
+	ret
+
 AbilityPreHitTargetBlock::
 ; Carry if an opponent-targeted move is blocked before accuracy handling.
 ; This must run at the very start of checkhit so Lock-On, X Accuracy,
 ; always-hit effects and weather accuracy shortcuts cannot bypass it.
+	; Grass typing blocks powders regardless of abilities or Mold Breaker.
+	call GrassBlocksCurrentPowder
+	ret c
 	; Since Gen VII, Dark-type opponents are immune to status moves whose
 	; priority was raised by Prankster. This hook only receives moves that
 	; actually target the opposing Pokemon, so self/side moves remain valid.
@@ -6438,6 +6458,22 @@ CurrentMoveInList:
 	pop de
 	ret
 
+MoveIsPowder::
+; a = runtime move ID. Carry if powder/spore; preserves hl, de, bc.
+	push hl
+	push de
+	push bc
+	call GetMoveIndexFromID
+	ld b, h
+	ld c, l
+	ld hl, PowderMoves
+	ld de, 2
+	call IsInHalfwordArray
+	pop bc
+	pop de
+	pop hl
+	ret
+
 AbilityCritLevelMods::
 ; c = crit stage. Super Luck adds one stage (capped at the table limit).
 	call GetTrueUserAbility
@@ -6937,9 +6973,7 @@ WindMoves:
 	dw -1
 
 PowderMoves:
-; Overcoat: powder and spore moves in this game (the same class Effect
-; Spore's proc immunity covers; Grass-type powder immunity is deliberately
-; deferred.)
+; Powder and spore moves blocked by Grass typing and Overcoat.
 	dw POISONPOWDER
 	dw STUN_SPORE
 	dw SLEEP_POWDER

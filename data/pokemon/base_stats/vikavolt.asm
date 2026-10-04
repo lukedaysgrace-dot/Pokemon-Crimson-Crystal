@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/vikavolt/front.dimensions"
-	abilities_for VIKAVOLT, LEVITATE, HUSTLE, SPEED_BOOST
+	abilities_for VIKAVOLT, LEVITATE, COMPOUND_EYES, SPEED_BOOST
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

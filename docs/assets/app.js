@@ -5,11 +5,39 @@ document.querySelectorAll('.form-toggle').forEach(toggle => {
     const button = event.target.closest('button[data-form]');
     if (!button) return;
     const form = button.dataset.form;
-    toggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === button));
+    toggle.querySelectorAll('button').forEach(b => {
+      b.classList.toggle('active', b === button);
+      b.setAttribute('aria-pressed', String(b === button));
+    });
     document.querySelectorAll('[data-form-view]').forEach(view => {
       view.hidden = view.dataset.formView !== form;
     });
   });
+  const requestedForm = new URLSearchParams(window.location.search).get('form');
+  const requestedButton = [...toggle.querySelectorAll('button')].find(button => button.dataset.form === requestedForm);
+  requestedButton?.click();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const search = document.querySelector('#changeSearch');
+  const filter = document.querySelector('#changeFilter');
+  if (!search || !filter) return;
+  const cards = [...document.querySelectorAll('.change-card')];
+  const update = () => {
+    const query = search.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+      const matches = card.dataset.search.includes(query) &&
+        (!filter.value || card.dataset.kinds.split(' ').includes(filter.value));
+      card.hidden = !matches;
+      if (matches) visible++;
+    });
+    document.querySelector('#changeCount').textContent = `Showing ${visible} Pokémon`;
+    document.querySelector('#changeEmpty').hidden = visible !== 0;
+  };
+  search.addEventListener('input', update);
+  filter.addEventListener('change', update);
+  update();
 });
 
 /* ------------------------------------------------------------------ *

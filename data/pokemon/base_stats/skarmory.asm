@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/skarmory/front.dimensions"
-	abilities_for SKARMORY, IRON_BARBS, STURDY, SHARPNESS
+	abilities_for SKARMORY, IRON_BARBS, STURDY, OVERCOAT
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups

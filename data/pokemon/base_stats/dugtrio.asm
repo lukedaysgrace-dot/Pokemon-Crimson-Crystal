@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/dugtrio/front.dimensions"
-	abilities_for DUGTRIO, SAND_VEIL, ARENA_TRAP, SAND_FORCE
+	abilities_for DUGTRIO, SAND_RUSH, ARENA_TRAP, SAND_FORCE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
