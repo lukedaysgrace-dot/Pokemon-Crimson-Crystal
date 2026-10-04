@@ -267,6 +267,8 @@ OriginalPokemonTypes:
 	db FIRE, FIRE
 	dw NOCTOWL
 	db NORMAL, FLYING
+	dw OCTILLERY
+	db WATER, WATER
 	dw PALAFIN
 	db WATER, WATER
 	dw PONYTA_GALARIAN

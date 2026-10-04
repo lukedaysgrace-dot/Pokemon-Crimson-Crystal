@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  54, 108,  54,  75, 108,  54
+	db  74,  58,  64,  85, 108,  64
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type
@@ -12,7 +12,7 @@
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/unown_a/front.dimensions"
-	abilities_for UNOWN, LEVITATE, NO_ABILITY, NO_ABILITY
+	abilities_for UNOWN, LEVITATE, ANALYTIC, NO_ABILITY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups

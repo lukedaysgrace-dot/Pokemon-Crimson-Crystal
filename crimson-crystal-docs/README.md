@@ -74,3 +74,18 @@ git add crimson-crystal-docs docs
 git commit -m "Update documentation"
 git push
 ```
+
+## Original / Updated rules and the Changes page
+
+Each Pokémon page compares the Original and Updated typings and six base stats,
+including numerical differences and total stats. These values come from the same
+tables the game loads for its new-game choices: `original_stats.asm` and the two
+typing tables in `engine/pokemon/gameplay_rules.asm`. Custom species keep their
+game-specific baselines, and starter clone comparisons appear in the existing
+Normal / Clone panels.
+
+The Changes tab lists all current stat and type differences from the modern
+main games, plus the latest ability, move and evolution updates recorded in
+`balance_changes.json`. Keep those latest-update notes in sync with game data;
+the generator validates their resulting stats, ability slots and learnsets.
+Abilities, moves and evolution changes apply to both rules choices.

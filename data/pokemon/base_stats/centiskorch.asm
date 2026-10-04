@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/centiskorch/front.dimensions"
-	abilities_for CENTISKORCH, FLASH_FIRE, WHITE_SMOKE, FLAME_BODY
+	abilities_for CENTISKORCH, FLASH_FIRE, SHED_SKIN, FLAME_BODY
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups

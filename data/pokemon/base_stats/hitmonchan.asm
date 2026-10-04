@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  50, 105,  79,  76,  35, 110
+	db  65, 105,  79,  76,  35, 110
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING ; type
@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hitmonchan/front.dimensions"
-	abilities_for HITMONCHAN, IRON_FIST, KEEN_EYE, INNER_FOCUS
+	abilities_for HITMONCHAN, IRON_FIST, SCRAPPY, INNER_FOCUS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups
