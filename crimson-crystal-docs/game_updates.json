@@ -88,11 +88,25 @@
       ]
     },
     {
+      "id": "abilities-on-or-off",
+      "category": "rules",
+      "title": "Abilities on or off",
+      "before": "Pokémon have no abilities.",
+      "after": "Choose whether Pokémon abilities are On or Off when starting a save. With Off, no Pokémon on either side has an ability in battle or after it, the summary screen shows none, and Professor Elm does not hand out the ABILITY CAP.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/menus/init_gender.asm",
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
       "id": "rules-saved-with-your-adventure",
       "category": "rules",
       "title": "Rules saved with your adventure",
       "before": "No type/stat selection.",
-      "after": "Your independent typing and stat choices persist in the save. Abilities, move changes, evolutions and battle mechanics apply with either selection.",
+      "after": "Your independent typing, stat and ability choices persist in the save. Move changes, evolutions and battle mechanics apply with any selection.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [

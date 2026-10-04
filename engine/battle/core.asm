@@ -4251,6 +4251,7 @@ InitBattleMon:
 	ld a, [wBaseType2]
 	ld [wBattleMonType2], a
 	call SetPlayerAbility
+	farcall ClearAbilitiesIfDisabled
 	ld hl, wPartyMonNicknames
 	ld a, [wCurBattleMon]
 	call SkipNames
@@ -4332,6 +4333,7 @@ InitEnemyMon:
 	ld [wCurSpecies], a
 	call GetBaseData
 	call SetEnemyAbility
+	farcall ClearAbilitiesIfDisabled
 	ld hl, wOTPartyMonNicknames
 	ld a, [wCurPartyMon]
 	call SkipNames
@@ -6915,6 +6917,7 @@ LoadEnemyMon:
 .SetPersonality:
 	ld [wEnemyMonPersonality], a
 	call SetEnemyAbility
+	farcall ClearAbilitiesIfDisabled
 
 ; Hidden Power type: trainer mons carry their own; wild mons use the default
 	ld a, [wBattleMode]

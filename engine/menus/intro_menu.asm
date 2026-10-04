@@ -66,6 +66,7 @@ NewGame:
 	call SelectDifficulty
 	call SelectPokemonTyping
 	call SelectPokemonStats
+	call SelectPokemonAbilities
 	farcall UpdateLevelCap
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
@@ -132,6 +133,10 @@ SelectPokemonTyping:
 
 SelectPokemonStats:
 	farcall InitPokemonStats
+	ret
+
+SelectPokemonAbilities:
+	farcall InitPokemonAbilities
 	ret
 
 ResetWRAM:
