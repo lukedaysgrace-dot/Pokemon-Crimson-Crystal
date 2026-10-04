@@ -47,7 +47,7 @@ TrainerMediumBethany:
 	end
 
 SilentCryptGrannyAdviceScript:
-; Fires below the gravekeeper's door, once the old man has thrown the player
+; Fires at either side below the gravekeeper's door, once he has thrown the player
 ; out at least once. The granny walks over from 4,4, explains what happened,
 ; then returns to her post.
 	checkevent EVENT_MEDIUM_GAVE_ADVICE
@@ -55,16 +55,34 @@ SilentCryptGrannyAdviceScript:
 	checkevent EVENT_MET_GRAVEKEEPER
 	iffalse .Done
 	showemote EMOTE_SHOCK, SILENTCRYPT_GRANNY, 15
+	readvar VAR_XCOORD
+	ifequal 10, .ApproachRight
 	applymovement SILENTCRYPT_GRANNY, SilentCryptGrannyApproachMovement
+	sjump .Advice
+
+.ApproachRight:
+	applymovement SILENTCRYPT_GRANNY, SilentCryptGrannyApproachRightMovement
+
+.Advice:
 	opentext
 	writetext SilentCryptGrannyAdviceText
 	waitbutton
 	closetext
 	setevent EVENT_MEDIUM_GAVE_ADVICE
+	readvar VAR_XCOORD
+	ifequal 10, .ReturnRight
 	applymovement SILENTCRYPT_GRANNY, SilentCryptGrannyReturnMovement
+	sjump .Done
+
+.ReturnRight:
+	applymovement SILENTCRYPT_GRANNY, SilentCryptGrannyReturnRightMovement
 .Done:
 	end
 
+SilentCryptGrannyApproachRightMovement:
+; Two extra steps for the player at 10,4; continue to 9,4 facing right.
+	slow_step RIGHT
+	slow_step RIGHT
 SilentCryptGrannyApproachMovement:
 ; 4,4 -> 7,4, ending up facing right, next to the player at 8,4.
 	slow_step RIGHT
@@ -72,6 +90,10 @@ SilentCryptGrannyApproachMovement:
 	slow_step RIGHT
 	step_end
 
+SilentCryptGrannyReturnRightMovement:
+; Two extra steps back from 9,4; continue to her original post.
+	slow_step LEFT
+	slow_step LEFT
 SilentCryptGrannyReturnMovement:
 ; Back to 4,4 and facing up again.
 	slow_step LEFT
@@ -341,8 +363,9 @@ SilentCrypt_MapEvents:
 	warp_event 10, 15, ROUTE_37, 1
 	warp_event  9,  3, GRAVEKEEPERS_HOUSE, 1
 
-	db 1 ; coord events
+	db 2 ; coord events
 	coord_event  8,  4, SCENE_DEFAULT, SilentCryptGrannyAdviceScript
+	coord_event 10,  4, SCENE_DEFAULT, SilentCryptGrannyAdviceScript
 
 	db 2 ; bg events
 	bg_event  4, 13, BGEVENT_READ, SilentCryptGrave1
