@@ -1505,6 +1505,8 @@ HasRockSmash:
 	ret
 
 FishFunction:
+	farcall FishingContestCheckRod
+	ret c
 	ld a, e
 	push af
 	call FieldMoveJumptableReset
@@ -1552,7 +1554,14 @@ FishFunction:
 	ld d, a
 	ld a, [wBuffer2]
 	ld e, a
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .ordinary_fish
+	farcall FishingContestFish
+	jr .got_fish
+.ordinary_fish
 	farcall Fish
+.got_fish
 	ld a, d
 	and a
 	jr z, .nonibble
@@ -1565,6 +1574,11 @@ FishFunction:
 	jr z, .not_safari
 	ld a, BATTLETYPE_SAFARI
 .not_safari
+	ld hl, wStatusFlags2
+	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	jr z, .battle_type
+	ld a, BATTLETYPE_CONTEST
+.battle_type
 	ld [wBattleType], a
 	ld a, $2
 	ret
@@ -1635,6 +1649,12 @@ Script_GotABite:
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
+	checkflag ENGINE_FISHING_CONTEST
+	iffalse .done
+	readmem wParkBallsRemaining
+	iftrue .done
+	farsjump FishingContestOutOfBallsScript
+.done
 	end
 
 .Movement_NotFacingUp:

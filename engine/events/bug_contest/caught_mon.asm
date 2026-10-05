@@ -31,11 +31,12 @@ BugContest_SetCaughtContestMon:
 	ld [wMonType], a
 	ld hl, wContestMon
 	call GeneratePartyMonStats
-	; Remember the ball (wCurItem is PARK_BALL here).
+	; Remember the Park Ball or fishing contest Lure Ball.
 	ld bc, wContestMonPersonality
 	farcall SetCaughtBall
 	; Remember what it cost, for ContestScore's clean catch bonus.
 	ld a, [wContestBallsThisMon]
+	inc a ; the current throw is counted after this capture routine returns
 	ld [wContestMonBallsUsed], a
 	ret
 

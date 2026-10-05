@@ -16,6 +16,11 @@ SafariBattleMenu:
 
 ContestBattleMenu:
 	ld hl, MenuHeader_0x24f89
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .load
+	ld hl, FishingContestBattleMenuHeader
+.load
 	call LoadMenuHeader
 
 Function24f19:
@@ -98,3 +103,22 @@ Function24fb2:
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
+
+FishingContestBattleMenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw FishingContestBattleMenuData
+	db 1
+
+FishingContestBattleMenuData:
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B
+	dn 2, 2
+	db 12
+	dba FishingContestBattleMenuStrings
+	dba Function24fb2
+
+FishingContestBattleMenuStrings:
+	db "FIGHT@"
+	db "<PKMN>@"
+	db "LUREBALL×  @"
+	db "RUN@"

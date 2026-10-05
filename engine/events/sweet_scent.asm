@@ -35,6 +35,9 @@ SweetScentNothing:
 	end
 
 SweetScentEncounter:
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr nz, .no_battle
 	farcall CanUseSweetScent
 	jr nc, .no_battle
 	ld hl, wStatusFlags2

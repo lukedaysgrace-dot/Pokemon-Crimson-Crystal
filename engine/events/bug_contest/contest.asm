@@ -1,4 +1,6 @@
 GiveParkBalls:
+	ld hl, wStatusFlags2
+	res STATUSFLAGS2_FISHING_CONTEST_F, [hl]
 	xor a
 	ld [wContestMon], a
 	ld [wContestBallsThisMon], a
