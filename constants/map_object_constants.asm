@@ -171,6 +171,7 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_SLOW_POKEMON         ; 25
 	const SPRITEMOVEDATA_LOOK_DOWN_LEFT       ; 26
 	const SPRITEMOVEDATA_SNORLAX_SLEEP        ; 27
+	const SPRITEMOVEDATA_FISHING_BOAT         ; 28
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -206,6 +207,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const SPRITEMOVEFN_SLOW_BOUNCE           ; 1c
 	const SPRITEMOVEFN_LOOK_DOWN_LEFT        ; 1d
 	const SPRITEMOVEFN_SNORLAX_SLEEP         ; 1e
+	const SPRITEMOVEFN_FISHING_BOAT          ; 1f
 
 ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
 	const_def
@@ -257,6 +259,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const OBJECT_ACTION_SKYFALL       ; 10
 	const OBJECT_ACTION_SLOW_BOUNCE   ; 11
 	const OBJECT_ACTION_SNORLAX_SLEEP ; 12
+	const OBJECT_ACTION_FISHING_BOAT  ; 13
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def
@@ -298,6 +301,8 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const FACING_SNORLAX_SLEEP_2 ; 22
 	const FACING_SNORLAX_SLEEP_3 ; 23
 	const FACING_SNORLAX_STILL   ; 24
+	const FACING_FISHING_BOAT_0 ; 25
+	const FACING_FISHING_BOAT_1 ; 26
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def

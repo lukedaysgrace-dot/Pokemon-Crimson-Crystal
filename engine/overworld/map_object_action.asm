@@ -19,6 +19,7 @@ ObjectActionPairPointers:
 	dw SetFacingSkyfall,               SetFacingCurrent
 	dw SetFacingSlowBounce,            SetFacingFreezeBounce
 	dw SetFacingSnorlaxSleep,          SetFacingSnorlaxSleep
+	dw SetFacingFishingBoat,           SetFacingFishingBoatStill
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -230,6 +231,25 @@ SetFacingSnorlaxSleep:
 	rlca
 	rlca
 	add FACING_SNORLAX_SLEEP_0
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], a
+	ret
+
+SetFacingFishingBoat:
+; Switch between the two full-width frames every 32 overworld ticks.
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	inc [hl]
+SetFacingFishingBoatStill:
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	ld a, [hl]
+	and %00100000
+	rlca
+	rlca
+	rlca
+	add FACING_FISHING_BOAT_0
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a

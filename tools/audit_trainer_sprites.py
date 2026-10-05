@@ -112,6 +112,7 @@ def sprite_metadata():
 			"MON_ICON_SPRITE": 3,
 			"STILL_SPRITE": 4,
 			"BIG_SPRITE": 5,
+			"BOAT_SPRITE": 6,
 		}[type_name]
 		types[index] = (type_id, int(match.group(1)))
 		index += 1
