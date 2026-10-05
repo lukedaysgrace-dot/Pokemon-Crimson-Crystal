@@ -37,10 +37,35 @@ Facings:
 	dw FacingSnorlaxSleep2
 	dw FacingSnorlaxSleep3
 	dw FacingSnorlaxStill
+	dw FacingFishingBoat0
+	dw FacingFishingBoat1
 .End
 	dw 0
 
 NUM_FACINGS EQU (Facings.End - Facings) / 2
+
+; Each animation frame is 32x16, with tiles in source-sheet row order.
+FacingFishingBoat0:
+	db 8
+	db  0,  0, 0, $00
+	db  0,  8, 0, $01
+	db  0, 16, 0, $02
+	db  0, 24, 0, $03
+	db  8,  0, 0, $04
+	db  8,  8, 0, $05
+	db  8, 16, 0, $06
+	db  8, 24, 0, $07
+
+FacingFishingBoat1:
+	db 8
+	db  0,  0, 0, $08
+	db  0,  8, 0, $09
+	db  0, 16, 0, $0a
+	db  0, 24, 0, $0b
+	db  8,  0, 0, $0c
+	db  8,  8, 0, $0d
+	db  8, 16, 0, $0e
+	db  8, 24, 0, $0f
 
 ; Tables used as a reference to transform OAM data.
 

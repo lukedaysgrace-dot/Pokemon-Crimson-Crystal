@@ -676,7 +676,7 @@ TrainerPortrait_Restore::
 	jr nz, .next ; VRAM bank 0
 	cp WALKING_SPRITE
 	jr c, .check
-	cp BIG_SPRITE + 1
+	cp BOAT_SPRITE + 1
 	jr c, .next ; never got a VRAM slot (see ArrangeUsedSprites)
 .check
 	add $80 + 12 ; end of its walking frames

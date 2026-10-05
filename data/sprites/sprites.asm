@@ -1,7 +1,8 @@
 overworld_sprite: MACRO
 ; pointer, length, type, palette
 	dw \1
-	db \2 tiles, BANK(\1), \3, \4
+; A zero size byte encodes 16 tiles (256 bytes).
+	db (\2 tiles) & $ff, BANK(\1), \3, \4
 ENDM
 
 OverworldSprites:
@@ -151,3 +152,4 @@ OverworldSprites:
 	overworld_sprite SchoolGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_SCHOOL_GIRL
 	overworld_sprite FatGuySpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE ; SPRITE_FAT_GUY
 	overworld_sprite BurglarSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BURGLAR
+	overworld_sprite FishingBoatSpriteGFX, 16, BOAT_SPRITE, PAL_OW_BROWN

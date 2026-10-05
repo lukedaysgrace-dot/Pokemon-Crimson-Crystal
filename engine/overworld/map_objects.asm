@@ -144,11 +144,11 @@ Function437b:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit INVISIBLE_F, [hl]
-	jr nz, SetFacingStanding
+	jp nz, SetFacingStanding
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit OBJ_FLAGS2_6, [hl]
-	jr nz, SetFacingStanding
+	jp nz, SetFacingStanding
 	bit OBJ_FLAGS2_5, [hl]
 	jr nz, asm_4448
 	ld de, ObjectActionPairPointers ; use first column
@@ -158,7 +158,7 @@ Function4440:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit INVISIBLE_F, [hl]
-	jr nz, SetFacingStanding
+	jp nz, SetFacingStanding
 asm_4448:
 	ld de, ObjectActionPairPointers + 2 ; use second column
 	jr _HandleObjectAction
@@ -570,6 +570,7 @@ MapObjectMovementPattern:
 	dw .MovementSlowBouncing ; 1c
 	dw .LookDownLeft ; 1d
 	dw .MovementSnorlaxSleep ; 1e
+	dw .MovementFishingBoat ; 1f
 
 .Null_00:
 	ret
@@ -812,6 +813,19 @@ MapObjectMovementPattern:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_SNORLAX_SLEEP
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_04
+	ret
+
+.MovementFishingBoat:
+	call EndSpriteMovement
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], STANDING
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_FISHING_BOAT
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04
