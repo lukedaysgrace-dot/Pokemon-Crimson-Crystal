@@ -38,6 +38,8 @@ SpritePortraits:
 	db SPRITE_BUGSY,       PORTRAIT_BUGSY
 	db SPRITE_CHUCK,       PORTRAIT_CHUCK
 	db SPRITE_CLAIR,       PORTRAIT_CLAIR
+	db SPRITE_CRYSTAL,     PORTRAIT_CRYSTAL
+	db SPRITE_CRYSTAL_SURF, PORTRAIT_CRYSTAL
 	db SPRITE_ELM,         PORTRAIT_ELM
 	db SPRITE_ERIKA,       PORTRAIT_ERIKA
 	db SPRITE_MYSTICALMAN, PORTRAIT_EUSINE ; Eusine's overworld sprite
@@ -95,6 +97,8 @@ TrainerPortraitPointers:
 	dba TrainerPortraitSurgeGFX
 	dba TrainerPortraitWhitneyGFX
 	dba TrainerPortraitWillGFX
+	dba TrainerPortraitCrystalGFX
+	dba TrainerPortraitWhitneyCryingGFX
 	assert (@ - TrainerPortraitPointers) / 3 == NUM_TRAINER_PORTRAITS
 
 TrainerPortrait_SetUpTextbox::
@@ -742,3 +746,5 @@ TrainerPortraitSilverGFX:     INCBIN "gfx/trainer_portraits/silver.portrait"
 TrainerPortraitSurgeGFX:      INCBIN "gfx/trainer_portraits/surge.portrait"
 TrainerPortraitWhitneyGFX:    INCBIN "gfx/trainer_portraits/whitney.portrait"
 TrainerPortraitWillGFX:       INCBIN "gfx/trainer_portraits/will.portrait"
+TrainerPortraitCrystalGFX:    INCBIN "gfx/trainer_portraits/crystal.portrait"
+TrainerPortraitWhitneyCryingGFX: INCBIN "gfx/trainer_portraits/whitney_crying.portrait"

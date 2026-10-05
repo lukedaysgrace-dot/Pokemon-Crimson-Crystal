@@ -115,6 +115,57 @@ class PortraitCoverage(unittest.TestCase):
         ]:
             self.assertEqual(self.decisions(mapname, label), {('object', obj)})
 
+    def test_crystal_in_person_dialogue(self):
+        for sprite in ['SPRITE_CRYSTAL', 'SPRITE_CRYSTAL_SURF']:
+            self.assertEqual(self.sprites[sprite], 'CRYSTAL')
+        for mapname in ['VioletCity', 'IlexForest', 'CianwoodCity', 'IcePath1F']:
+            labels = [f'{mapname}CrystalBeforeText', f'{mapname}CrystalAfterText']
+            if mapname == 'VioletCity':
+                labels += ['VioletCityCrystalNumberText', 'VioletCityCrystalCallMeText']
+            for label in labels:
+                with self.subTest(map=mapname, text=label):
+                    self.assertEqual(self.decisions(mapname, label), {('portrait', 'CRYSTAL')})
+        self.assertEqual(self.decisions('VioletCity', 'VioletCityCrystalRegisteredText'), {('none',)})
+        # Audit every Cape farwritetext rather than only the initial conversation:
+        # reminders and both outcomes of the Mew encounter need the portrait too.
+        cape = (ROOT / 'maps/Route25.asm').read_text()
+        labels = set(re.findall(r'farwritetext (Route25Crystal\w+Text)', cape))
+        self.assertEqual(len(labels), 5)
+        for label in labels:
+            self.assertEqual(portraits.SHARED_SPEAKERS.get(label), 'CRYSTAL')
+
+    def test_crystal_phone_dialogue_has_no_portrait(self):
+        table = (ROOT / 'data/maps/portrait_texts.asm').read_text()
+        for path in (ROOT / 'data/phone/text').glob('crystal*.asm'):
+            labels = re.findall(r'^(\w+)::?', path.read_text(), re.M)
+            self.assertTrue(labels)
+            for label in labels:
+                with self.subTest(text=label):
+                    self.assertNotIn(label, portraits.SHARED_SPEAKERS)
+                    self.assertNotRegex(table, rf'\bdba {label}\b')
+
+    def test_whitney_crying_and_recovery(self):
+        self.assertEqual(self.decisions('GoldenrodGym', 'WhitneyYouMeanieText'),
+                         {('portrait', 'WHITNEY_CRYING')})
+        for label in ['WhitneyShouldntBeSoSeriousText', 'WhitneyRematchWinText']:
+            self.assertEqual(portraits.SHARED_SPEAKERS[label], 'WHITNEY_CRYING')
+        for label in ['WhitneyBeforeText', 'WhitneyWhatDoYouWantText',
+                      'WhitneyPlainBadgeText', 'WhitneyAttractText',
+                      'WhitneyGoodCryText', 'WhitneyRematchChallengeText']:
+            with self.subTest(text=label):
+                self.assertEqual(self.decisions('GoldenrodGym', label), {('portrait', 'WHITNEY')})
+        for label in ['BridgetWhitneyCriesText', 'PlayerReceivedPlainBadgeText']:
+            self.assertEqual(self.decisions('GoldenrodGym', label), {('none',)})
+        # Whitney stays in the crying branch until Bridget's scene clears the
+        # existing event; portrait selection must preserve that story timing.
+        script = (ROOT / 'maps/GoldenrodGym.asm').read_text()
+        crying = script.split('.FightDone:', 1)[1].split('.StoppedCrying:', 1)[0]
+        self.assertIn('checkevent EVENT_MADE_WHITNEY_CRY', crying)
+        self.assertIn('iffalse .StoppedCrying', crying)
+        self.assertIn('writetext WhitneyYouMeanieText', crying)
+        bridget = script.split('WhitneyCriesScript:', 1)[1].split('TrainerLassBridget:', 1)[0]
+        self.assertIn('clearevent EVENT_MADE_WHITNEY_CRY', bridget)
+
 
 if __name__ == '__main__':
     unittest.main()

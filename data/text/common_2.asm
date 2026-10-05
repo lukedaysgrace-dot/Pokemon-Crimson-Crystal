@@ -1024,6 +1024,22 @@ ContestJudging_FirstPlaceText::
 	text "!@"
 	text_end
 
+FishingContestJudging_FirstPlaceText::
+	text "This Fishing"
+	line "Competition winner"
+	cont "is@"
+	text_pause
+	text "…"
+
+	para "@"
+	text_ram wBugContestWinnerName
+	text ","
+	line "who caught a"
+	cont "@"
+	text_ram wStringBuffer1
+	text "!@"
+	text_end
+
 ContestJudging_FirstPlaceScoreText::
 	text_start
 

@@ -1198,9 +1198,22 @@ TownMapEffect:
 	ret
 
 RelicClockEffect:
+	; Both contests share the timer; fishing also stays active during judging.
+	ld a, [wStatusFlags2]
+	and (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F) | (1 << STATUSFLAGS2_FISHING_CONTEST_F)
+	jr z, .allowed
+	ld hl, RelicClockContestText
+	jp CantUseItemMessage
+.allowed
 	ld hl, RelicClockScript
 	call QueueScript
 	ret
+
+RelicClockContestText:
+	text "The RELIC CLOCK"
+	line "can't be used"
+	cont "during a Contest."
+	prompt
 
 RelicClockScript:
 	reloadmappart

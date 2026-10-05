@@ -134,13 +134,56 @@ def check_rom(h):
         return collisions[blocks[y // 2 * 20 + x // 2]][y % 2 * 2 + x % 2]
 
     load(15, 36)
+    h.call('FishingContestSetMapSprites')
+    directions = {
+        fields['SPRITEMOVEDATA_STANDING_UP']: (0, -1),
+        fields['SPRITEMOVEDATA_STANDING_DOWN']: (0, 1),
+        fields['SPRITEMOVEDATA_STANDING_LEFT']: (-1, 0),
+        fields['SPRITEMOVEDATA_STANDING_RIGHT']: (1, 0),
+    }
     for i in range(5):
         obj = h.s('wMap4Object') + i * 16
         x = h.rd(obj + fields['MAPOBJECT_X_COORD']) - 4
         y = h.rd(obj + fields['MAPOBJECT_Y_COORD']) - 4
-        check(tile(x, y) == 'FLOOR' and tile(x, y - 1) == 'WATER'
-              and h.rd(obj + fields['MAPOBJECT_MOVEMENT']) == fields['SPRITEMOVEDATA_STANDING_UP'],
+        movement = h.rd(obj + fields['MAPOBJECT_MOVEMENT'])
+        dx, dy = directions[movement]
+        check(tile(x, y) == 'FLOOR' and tile(x + dx, y + dy) == 'WATER'
+              and h.rd(obj + fields['MAPOBJECT_RADIUS']) == 0,
               f'Contestant {i + 1} is not fishing from the shore at {x},{y}')
+        # A talked-to NPC must resume facing the water, without moving.
+        live = h.s('wObject1Struct')
+        h.wr(live, bytes(40))
+        h.wr(obj + fields['MAPOBJECT_OBJECT_STRUCT_ID'], 1)
+        h.wr(live + fields['OBJECT_FACING'], 0xa0)
+        h.wr(h.s('hLastTalked'), i + 4)
+        with patch(h, {'UpdateSprites': b'\xc9'}):
+            h.call('FishingContestFaceWater')
+        expected = (movement - fields['SPRITEMOVEDATA_STANDING_DOWN']) * 4
+        check(h.rd(live + fields['OBJECT_FACING']) == 0xa0 | expected,
+              f'Contestant {i + 1} still faces the player after talking')
+        check((h.rd(obj + fields['MAPOBJECT_X_COORD']) - 4,
+               h.rd(obj + fields['MAPOBJECT_Y_COORD']) - 4) == (x, y),
+              f'Contestant {i + 1} moved after talking')
+    # Non-contest visitors retain their own movement and facing.
+    h.wr(h.s('wStatusFlags2'), 0)
+    h.wr(live + fields['OBJECT_FACING'], 8)
+    h.call('FishingContestFaceWater')
+    check(h.rd(live + fields['OBJECT_FACING']) == 8, 'Visitor was forced to face the water')
+
+    load(16, 0)
+    for i in range(5):
+        obj = h.s('wMap2Object') + i * 16
+        live = h.s('wObject1Struct') + i * 40
+        h.wr(live, bytes(40))
+        h.wr(obj + fields['MAPOBJECT_OBJECT_STRUCT_ID'], i + 1)
+        h.wr(live + fields['OBJECT_MAP_OBJECT_INDEX'], i + 2)
+        h.wr(live + fields['OBJECT_MOVEMENTTYPE'], fields['SPRITEMOVEDATA_STANDING_UP'])
+    h.call('FishingContestRelaxParticipants')
+    for i in range(5):
+        expected = fields['SPRITEMOVEDATA_SPINRANDOM_SLOW'] if i % 2 == 0 else fields['SPRITEMOVEDATA_STANDING_UP']
+        check(h.rd(h.s('wMap2Object') + i * 16 + fields['MAPOBJECT_MOVEMENT']) == expected
+              and h.rd(h.s('wObject1Struct') + i * 40 + fields['OBJECT_MOVEMENTTYPE']) == expected,
+              f'Participant {i + 1} did not get the correct post-judging movement')
     return checks, failures
 
 

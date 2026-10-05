@@ -50,6 +50,26 @@ def check_rom(h):
         h.wr(h.s('wContestMonSpecies'), h.species_id(species['KRABBY']))
         h.wr(h.s('wContestMonLevel'), 20)
         h.wr(h.s('wContestMonBallsUsed'), 1)
+        printed = []
+        print_bank, print_addr = h.sym['PrintText']
+        h.pyboy.hook_register(print_bank, print_addr, lambda log: log.append(h.reg.HL), printed)
+        try:
+            with patch(h, {'Random': b'\x3e\x00\xc9'}):
+                result = h.call('BugContestJudging', max_frames=60)
+            check(h.s('FishingContest_FirstPlaceText') in printed
+                  and h.s('BugContest_FirstPlaceText') not in printed,
+                  'Fishing judging used the Bug-Catching Contest winner announcement')
+            printed.clear()
+            h.wr(h.s('wStatusFlags2'), 0)
+            with patch(h, {'Random': b'\x3e\x00\xc9'}):
+                h.call('BugContestJudging', max_frames=60)
+            check(h.s('BugContest_FirstPlaceText') in printed
+                  and h.s('FishingContest_FirstPlaceText') not in printed,
+                  'Bug contest lost its own winner announcement')
+        finally:
+            h.pyboy.hook_deregister(print_bank, print_addr)
+        # Restore the fishing results being checked below after the bug-mode run.
+        h.wr(h.s('wStatusFlags2'), 32)
         with patch(h, {'Random': b'\x3e\x00\xc9'}):
             result = h.call('BugContestJudging', max_frames=60)
         check(h.rd(h.s('wScriptVar')) == 0, 'Losing Krabby did not return a consolation placement')
@@ -111,6 +131,8 @@ def check_rom(h):
                       f'Level {level} Krabby was not kept after judging')
                 check(h.rd(h.s('wStatusFlags2')) & (32 | 4) == 0,
                       f'Level {level} Krabby results left the contest running')
+                check((h.rd(h.s('wXCoord')), h.rd(h.s('wYCoord'))) == (7, 5),
+                      f'Level {level} Krabby judging did not place the player beside the trainers')
     return checks, failures
 
 

@@ -38,6 +38,7 @@ OlivineFishingCoveVisitorScript:
 	repeattext -1, -1
 	waitbutton
 	closetext
+	callasm FishingContestFaceWater
 	end
 
 OlivineFishingCove_MapEvents:

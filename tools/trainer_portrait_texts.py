@@ -70,6 +70,9 @@ OVERRIDES = {
 	'JasmineAmphyHangOnText': 'JASMINE',
 	# Mr. Pokemon, not Oak.
 	'MrPokemonText_ImDependingOnYou': None,
+	# This text repeats while EVENT_MADE_WHITNEY_CRY is set. The stopped-
+	# crying branch uses her regular portrait, including the badge dialogue.
+	'WhitneyYouMeanieText': 'WHITNEY_CRYING',
 }
 
 # "NAME:" prefixes that mean a portrait character, beyond the portrait names.
@@ -84,6 +87,23 @@ NAME_ALIASES = {
 # rating the Pokedex in his lab. The completion statistics are UI text;
 # only his actual assessment has his portrait.
 SHARED_SPEAKERS = {f'OakRating{i:02}': 'OAK' for i in range(1, 20)}
+
+# Crystal's in-person Cape dialogue is in a separate bank, reached through
+# farwritetext. Her phone texts are deliberately not portrait speakers.
+SHARED_SPEAKERS.update({label: 'CRYSTAL' for label in (
+	'Route25CrystalBeforeText',
+	'Route25CrystalAfterText',
+	'Route25CrystalGoCatchItText',
+	'Route25CrystalMewCaughtText',
+	'Route25CrystalMewEscapedText',
+)})
+
+# Whitney starts crying in her battle-loss speech, before returning to the
+# map. These are printed by PrintWinLossText rather than map text commands.
+SHARED_SPEAKERS.update({label: 'WHITNEY_CRYING' for label in (
+	'WhitneyShouldntBeSoSeriousText',
+	'WhitneyRematchWinText',
+)})
 
 SPEAKER_FIRST = {
 	'applymovement', 'setlasttalked', 'appear', 'follow', 'follownotexact',
@@ -518,7 +538,7 @@ def main():
 			else:
 				who = f'$80 | {mf.object_index(d[1])} ; {d[1]}'
 			f.write(f'\tdba {label}\n\tdb {who}\n')
-		f.write('; Shared dialogue printed by specials\n')
+		f.write('; Shared dialogue printed by specials or farwritetext\n')
 		for label, who in sorted(SHARED_SPEAKERS.items()):
 			f.write(f'\tdba {label}\n\tdb PORTRAIT_{who}\n')
 		f.write('\tdb -1 ; end\n')
