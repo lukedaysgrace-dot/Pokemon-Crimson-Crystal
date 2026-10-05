@@ -177,7 +177,13 @@ OlivineFishingCoveGateClaimPrize:
 OlivineFishingCoveGateSign:
 	jumptext OlivineFishingCoveGateSignText
 OlivineFishingCoveGateFisherScript:
-	jumptextfaceplayer OlivineFishingCoveGateFisherText
+	faceplayer
+	opentext
+	callasm FishingContestSelectResultDialogue
+	repeattext -1, -1
+	waitbutton
+	closetext
+	end
 
 OlivineFishingCoveGateOfferText:
 	text "It's Friday! The"
@@ -285,12 +291,6 @@ OlivineFishingCoveGateThanksText:
 	line "part in the"
 	cont "Fishing Contest!"
 	done
-OlivineFishingCoveGateFisherText:
-	text "A rare fish helps,"
-	line "but a big common"
-	cont "one can win too!"
-	done
-
 OlivineFishingCoveGate_MapEvents:
 	db 0, 0
 	db 4 ; warp events
