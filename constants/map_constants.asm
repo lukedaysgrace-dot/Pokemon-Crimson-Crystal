@@ -42,6 +42,7 @@ ENDM
 	map_const ROUTE_38,                                    20,  9 ; 12
 	map_const ROUTE_39,                                    10, 18 ; 13
 	map_const OLIVINE_CITY,                                20, 18 ; 14
+	map_const OLIVINE_FISHING_COVE,                        20, 18 ; 15
 
 	newgroup                                                      ;  2
 

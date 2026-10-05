@@ -15,6 +15,7 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 	const MON_ICON_SPRITE ; 3 (not in OverworldSprites; used for SpriteMons icons)
 	const STILL_SPRITE    ; 4
 	const BIG_SPRITE      ; 5 (12 tiles, no walking frames)
+	const BOAT_SPRITE     ; 6 (two 32x16 frames, 16 tiles total)
 
 ; sprite palettes
 	const_def
