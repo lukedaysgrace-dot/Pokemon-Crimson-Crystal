@@ -191,3 +191,4 @@
 	tilecoll WATER, WATER, WATER, WATER ; be
 	tilecoll WATER, WATER, WATER, WATER ; bf
 	tilecoll WATER, WATER, WATER, WATER ; c0
+	tilecoll WALL, WALL, FLOOR, FLOOR ; c1
