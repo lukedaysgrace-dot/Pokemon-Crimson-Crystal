@@ -41,6 +41,7 @@ TYPE_TILES = {
     "MON_ICON_SPRITE": 8,
     "STILL_SPRITE": 4,
     "BIG_SPRITE": 12,
+    "BOAT_SPRITE": 16,
 }
 
 SPRITE_POKEMON = sprite_ids.get("SPRITE_POKEMON", 0x80)
@@ -81,6 +82,7 @@ def type_priority(sprite_name):
             "MON_ICON_SPRITE": 3,
             "STILL_SPRITE": 4,
             "BIG_SPRITE": 5,
+            "BOAT_SPRITE": 6,
         }.get(st, 1)
     return 1
 

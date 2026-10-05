@@ -98,6 +98,9 @@ OlivineCitySign:
 OlivineCityPortSign:
 	jumptext OlivineCityPortSignText
 
+OlivineCityFishingCoveSign:
+	jumptext OlivineCityFishingCoveSignText
+
 OlivineGymSign:
 	jumptext OlivineGymSignText
 
@@ -261,6 +264,14 @@ OlivineCityPortSignText:
 	line "FAST SHIP PIER"
 	done
 
+OlivineCityFishingCoveSignText:
+	text "OLIVINE"
+	line "FISHING COVE"
+
+	para "A fisherman's"
+	line "paradise!"
+	done
+
 OlivineGymSignText:
 	text "OLIVINE CITY"
 	line "#MON GYM"
@@ -289,7 +300,7 @@ OlivineCityBattleTowerSignText_NotYetOpen:
 OlivineCity_MapEvents:
 	db 0, 0 ; filler
 
-	db 11 ; warp events
+	db 12 ; warp events
 	warp_event 13, 21, OLIVINE_POKECENTER_1F, 1
 	warp_event 10, 11, OLIVINE_GYM, 1
 	warp_event 25, 11, OLIVINE_TIMS_HOUSE, 1
@@ -301,12 +312,13 @@ OlivineCity_MapEvents:
 	warp_event 29, 27, OLIVINE_LIGHTHOUSE_1F, 1
 	warp_event 19, 27, OLIVINE_PORT_PASSAGE, 1
 	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
+	warp_event 35, 15, OLIVINE_FISHING_COVE, 1
 
 	db 2 ; coord events
 	coord_event 13, 12, SCENE_DEFAULT, OlivineCityRivalSceneTop
 	coord_event 13, 13, SCENE_DEFAULT, OlivineCityRivalSceneBottom
 
-	db 7 ; bg events
+	db 8 ; bg events
 	bg_event 17, 11, BGEVENT_READ, OlivineCitySign
 	bg_event 20, 24, BGEVENT_READ, OlivineCityPortSign
 	bg_event  7, 11, BGEVENT_READ, OlivineGymSign
@@ -314,6 +326,7 @@ OlivineCity_MapEvents:
 	bg_event  3, 23, BGEVENT_READ, OlivineCityBattleTowerSign
 	bg_event 14, 21, BGEVENT_READ, OlivineCityPokecenterSign
 	bg_event 20, 17, BGEVENT_READ, OlivineCityMartSign
+	bg_event 36, 16, BGEVENT_READ, OlivineCityFishingCoveSign
 
 	db 4 ; object events
 	object_event 26, 27, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1

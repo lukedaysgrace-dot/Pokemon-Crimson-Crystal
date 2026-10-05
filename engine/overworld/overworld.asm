@@ -213,6 +213,10 @@ GetSprite:
 	; load the length into c
 	ld a, [hli]
 	swap a
+	and a
+	jr nz, .length_loaded
+	ld a, 16 ; size byte 0 encodes a full 256-byte sprite sheet
+.length_loaded
 	ld c, a
 	; load the sprite bank into both b and h
 	ld b, [hl]
@@ -420,6 +424,8 @@ _DoesSpriteHaveFacings::
 	cp STILL_SPRITE
 	jr z, .one_direction
 	cp BIG_SPRITE
+	jr z, .one_direction
+	cp BOAT_SPRITE
 	jr nz, .only_down
 .one_direction
 	scf
@@ -736,6 +742,8 @@ GetSpriteLength:
 	jr z, .AnyDirection
 	cp MON_ICON_SPRITE
 	jr z, .MonIcon
+	cp BOAT_SPRITE
+	jr z, .Boat
 
 	ld a, 12
 	ret
@@ -750,6 +758,10 @@ GetSpriteLength:
 
 .MonIcon:
 	ld a, 8
+	ret
+
+.Boat:
+	ld a, 16
 	ret
 
 GetUsedSprites:
@@ -770,11 +782,11 @@ GetUsedSprites:
 	ldh [hUsedSpriteTile], a
 
 ; Skip sprites that failed VRAM assignment in ArrangeUsedSprites.
-; Their tile byte is still a sprite type (1-5), which would overwrite
-; the player if loaded at tiles 1-5.
+; Their tile byte is still a sprite type (1-6), which would overwrite
+; the player if loaded at tiles 1-6.
 	cp WALKING_SPRITE
 	jr c, .load
-	cp BIG_SPRITE + 1
+	cp BOAT_SPRITE + 1
 	jr nc, .load
 	dec c
 	jr nz, .loop

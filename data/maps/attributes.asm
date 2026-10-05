@@ -212,6 +212,7 @@ ENDM
 	connection north, Route40, ROUTE_40, 15
 	connection west, CianwoodCity, CIANWOOD_CITY, 0
 
+	map_attributes OlivineFishingCove, OLIVINE_FISHING_COVE, $05, 0
 	map_attributes ShiverIsle, SHIVER_ISLE, $19, 0
 
 	map_attributes Route42, ROUTE_42, $05, WEST | EAST
