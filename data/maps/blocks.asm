@@ -788,6 +788,9 @@ OlivineLighthouse6F_Blocks:
 
 SECTION "Map Blocks 3", ROMX
 
+OlivineFishingCove_Blocks:
+	INCBIN "maps/OlivineFishingCove.ablk"
+
 ShiverIsle_Blocks:
 	INCBIN "maps/ShiverIsle.ablk"
 

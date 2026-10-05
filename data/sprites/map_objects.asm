@@ -321,3 +321,11 @@ SpriteMovementData::
 	db WONT_DELETE | FIXED_FACING | SLIDING | MOVE_ANYWHERE ; flags1
 	db LOW_PRIORITY ; flags2
 	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags
+
+; SPRITEMOVEDATA_FISHING_BOAT
+	db SPRITEMOVEFN_FISHING_BOAT ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_FISHING_BOAT ; action
+	db FIXED_FACING | SLIDING ; flags1
+	db 0 ; flags2
+	db SWIMMING ; palette flags

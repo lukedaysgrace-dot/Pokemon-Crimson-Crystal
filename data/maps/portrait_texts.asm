@@ -1144,6 +1144,8 @@ PortraitTexts:
 ; OlivineCity
 	dba OlivineCityBattleTowerSignText
 	db 0
+	dba OlivineCityFishingCoveSignText
+	db 0
 	dba OlivineCityPortSignText
 	db 0
 	dba OlivineCityRivalText
