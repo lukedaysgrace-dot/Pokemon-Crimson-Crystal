@@ -345,6 +345,20 @@ UnknownText_0xc8f3:
 .BlankText:
 	text_end
 
+CheckSurfMapAllowed:
+; Carry means Surf is prohibited, regardless of weekday or contest status.
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	jr nz, .allowed
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	jr nz, .allowed
+	scf
+	ret
+.allowed
+	and a
+	ret
+
 SurfFunction:
 	call FieldMoveJumptableReset
 .loop
@@ -362,6 +376,8 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
+	call CheckSurfMapAllowed
+	jr c, .cannotsurf
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .asm_c956
@@ -528,6 +544,8 @@ TrySurfOW::
 	call GetTileCollision
 	cp WATERTILE
 	jr nz, .quit
+	call CheckSurfMapAllowed
+	jr c, .quit
 
 ; Check tile permissions.
 	call CheckDirection

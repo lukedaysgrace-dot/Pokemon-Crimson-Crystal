@@ -296,9 +296,9 @@ PortraitTexts:
 	dba ChucksWifeGiveHMText
 	db 0
 	dba CianwoodCityCrystalAfterText
-	db 0
+	db PORTRAIT_CRYSTAL
 	dba CianwoodCityCrystalBeforeText
-	db 0
+	db PORTRAIT_CRYSTAL
 	dba CianwoodCityLassText
 	db 0
 	dba CianwoodCityPokefanMText
@@ -814,7 +814,7 @@ PortraitTexts:
 	dba WhitneyWhatDoYouWantText
 	db PORTRAIT_WHITNEY
 	dba WhitneyYouMeanieText
-	db PORTRAIT_WHITNEY
+	db PORTRAIT_WHITNEY_CRYING
 ; GoldenrodUndergroundSwitchRoomEntrances
 	dba BurglarDuncanAfterBattleText
 	db 0
@@ -863,6 +863,56 @@ PortraitTexts:
 ; HallOfFame
 	dba HallOfFame_LanceText
 	db PORTRAIT_LANCE
+; IcePath1F
+	dba IcePath1FCrystalAfterText
+	db PORTRAIT_CRYSTAL
+	dba IcePath1FCrystalBeforeText
+	db PORTRAIT_CRYSTAL
+; IlexForest
+	dba BugCatcherWayneAfterBattleText
+	db 0
+	dba BugCatcherWayneSeenText
+	db 0
+	dba IlexForestApprenticeAfterText
+	db 0
+	dba IlexForestApprenticeIntroText
+	db 0
+	dba IlexForestCrystalAfterText
+	db PORTRAIT_CRYSTAL
+	dba IlexForestCrystalBeforeText
+	db PORTRAIT_CRYSTAL
+	dba IlexForestFoundRelicClockText
+	db 0
+	dba IlexForestSignpostText
+	db 0
+	dba IlexForestTickingFadesText
+	db 0
+	dba IlexForestTickingText
+	db 0
+	dba Text_CharcoalMasterIntro
+	db 0
+	dba Text_CharcoalMasterOutro
+	db 0
+	dba Text_CharcoalMasterTalkAfter
+	db 0
+	dba Text_HeadbuttIntro
+	db 0
+	dba Text_HeadbuttOutro
+	db 0
+	dba Text_IlexForestLass
+	db 0
+	dba Text_IlexForestShrine
+	db 0
+	dba Text_InsertGSBall
+	db 0
+	dba Text_ItsTheMissingPokemon
+	db 0
+	dba Text_KurtCaughtCelebi
+	db 0
+	dba Text_Kwaaaa
+	db 0
+	dba Text_ShrineCelebiEvent
+	db 0
 ; IndigoPlateauPokecenter1F
 	dba AbraText
 	db 0
@@ -1697,6 +1747,41 @@ PortraitTexts:
 	db PORTRAIT_SILVER
 	dba VictoryRoadRivalBeforeText
 	db PORTRAIT_SILVER
+; VioletCity
+	dba EarlsPokemonAcademySignText
+	db 0
+	dba SproutTowerSignText
+	db 0
+	dba Text_EarlAsksIfYouBeatFalkner
+	db 0
+	dba Text_FollowEarl
+	db 0
+	dba Text_HereTeacherIAm
+	db 0
+	dba Text_VeryNiceIndeed
+	db 0
+	dba VioletCityCrystalAfterText
+	db PORTRAIT_CRYSTAL
+	dba VioletCityCrystalBeforeText
+	db PORTRAIT_CRYSTAL
+	dba VioletCityCrystalCallMeText
+	db PORTRAIT_CRYSTAL
+	dba VioletCityCrystalNumberText
+	db PORTRAIT_CRYSTAL
+	dba VioletCityCrystalRegisteredText
+	db 0
+	dba VioletCityGrampsText
+	db 0
+	dba VioletCityLassText
+	db 0
+	dba VioletCitySignText
+	db 0
+	dba VioletCitySuperNerdText
+	db 0
+	dba VioletCityYoungsterText
+	db 0
+	dba VioletGymSignText
+	db 0
 ; ViridianGym
 	dba CooltrainermCyanideAfterBattleText
 	db 0
@@ -1727,7 +1812,7 @@ PortraitTexts:
 	db PORTRAIT_WILL
 	dba WillScript_WillDefeatText
 	db PORTRAIT_WILL
-; Shared dialogue printed by specials
+; Shared dialogue printed by specials or farwritetext
 	dba OakRating01
 	db PORTRAIT_OAK
 	dba OakRating02
@@ -1766,4 +1851,18 @@ PortraitTexts:
 	db PORTRAIT_OAK
 	dba OakRating19
 	db PORTRAIT_OAK
+	dba Route25CrystalAfterText
+	db PORTRAIT_CRYSTAL
+	dba Route25CrystalBeforeText
+	db PORTRAIT_CRYSTAL
+	dba Route25CrystalGoCatchItText
+	db PORTRAIT_CRYSTAL
+	dba Route25CrystalMewCaughtText
+	db PORTRAIT_CRYSTAL
+	dba Route25CrystalMewEscapedText
+	db PORTRAIT_CRYSTAL
+	dba WhitneyRematchWinText
+	db PORTRAIT_WHITNEY_CRYING
+	dba WhitneyShouldntBeSoSeriousText
+	db PORTRAIT_WHITNEY_CRYING
 	db -1 ; end

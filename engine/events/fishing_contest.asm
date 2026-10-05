@@ -1,3 +1,33 @@
+TryFishingCoveOW::
+; A at the cove's water uses its shared rod without any inventory item.
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	jr nz, .no_event
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	jr nz, .no_event
+	ld a, [wFacingTileID]
+	call GetTileCollision
+	cp WATERTILE
+	jr nz, .no_event
+	ld e, 2 ; the shared contest rod uses the normal fishing animation
+	farcall FishFunction
+	ld a, [wFieldMoveSucceeded]
+	and a
+	jr z, .no_event
+	; FishFunction queues its cast/bite script (or the cove access message).
+	ld hl, wQueuedScriptAddr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wQueuedScriptBank]
+	call CallScript
+	scf
+	ret
+.no_event
+	xor a
+	ret
+
 FishingContestCheckRod::
 ; Queue an explanatory script when fishing in the cove is not allowed.
 ; Carry means the rod request was handled here. Preserve the rod in de.
@@ -189,7 +219,14 @@ FishingContestSetMapSprites::
 	ld a, [wStatusFlags2]
 	and (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
 	cp (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
-	jr z, .set_sprites
+	jr nz, .visitors
+	push hl
+	push de
+	call FishingContestSetShorePositions
+	pop de
+	pop hl
+	jr .set_sprites
+.visitors
 	ld de, FishingCoveVisitorRoster
 .set_sprites
 	ld b, NUM_FISHING_CONTESTANTS
@@ -225,6 +262,89 @@ FishingContestSetMapSprites::
 	pop bc
 	dec b
 	jr nz, .loop
+	ret
+
+FishingContestSetShorePositions:
+; Contestants use fishing spots rather than the regular visitors' benches.
+	ld hl, wMap4ObjectYCoord
+	ld de, FishingContestShorePositions
+	ld b, NUM_FISHING_CONTESTANTS
+.object
+	push bc
+	ld c, 4 ; y, x, movement, radius
+.field
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .field
+	ld bc, OBJECT_LENGTH - 4
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .object
+	ret
+
+FishingContestShorePositions:
+	db 21 + 4,  3 + 4, SPRITEMOVEDATA_STANDING_RIGHT, 0
+	db  5 + 4, 29 + 4, SPRITEMOVEDATA_STANDING_DOWN, 0
+	db 28 + 4,  8 + 4, SPRITEMOVEDATA_STANDING_UP, 0
+	db 16 + 4, 36 + 4, SPRITEMOVEDATA_STANDING_LEFT, 0
+	db 28 + 4, 30 + 4, SPRITEMOVEDATA_STANDING_UP, 0
+	assert (@ - FishingContestShorePositions) / 4 == NUM_FISHING_CONTESTANTS
+
+FishingContestFaceWater::
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	ret nz
+	ld a, [wStatusFlags2]
+	and (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	cp (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	ret nz
+	ldh a, [hLastTalked]
+	sub 4
+	cp NUM_FISHING_CONTESTANTS
+	ret nc
+	ldh a, [hLastTalked]
+	call GetMapObject
+	ld hl, MAPOBJECT_MOVEMENT
+	add hl, bc
+	ld a, [hl]
+	sub SPRITEMOVEDATA_STANDING_DOWN
+	add a
+	add a
+	push af
+	ldh a, [hLastTalked]
+	call CheckObjectVisibility
+	jr c, .not_visible
+	pop af
+	call SetSpriteDirection
+	call UpdateSprites
+	ret
+.not_visible
+	pop af
+	ret
+
+FishingContestRelaxParticipants::
+; Change three participants to occasional head turns after the ceremony.
+	ld a, 2
+	call .relax
+	ld a, 4
+	call .relax
+	ld a, 6
+.relax
+	push af
+	call GetMapObject
+	ld hl, MAPOBJECT_MOVEMENT
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_SPINRANDOM_SLOW
+	pop af
+	call CheckObjectVisibility
+	ret c
+	farcall Function58e3 ; restore this map object's movement on its live struct
 	ret
 
 FishingContestantSprites:
@@ -392,7 +512,7 @@ FishingContestResultsWarpScript::
 	clearflag ENGINE_BUG_CONTEST_TIMER
 	setflag ENGINE_FISHING_CONTEST_RESULTS
 	special ClearBGPalettes
-	warpfacing UP, OLIVINE_FISHING_COVE_GATE, 3, 4
+	warpfacing UP, OLIVINE_FISHING_COVE_GATE, 7, 5
 	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
@@ -433,6 +553,7 @@ FishingContestResultsWarpScript::
 	farwritetext ContestResults_JoinUsNextTimeText
 	waitbutton
 	closetext
+	callasm FishingContestRelaxParticipants
 	special PlayMapMusic
 	end
 

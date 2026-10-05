@@ -68,15 +68,6 @@ OlivineFishingCoveGateOfficerScript:
 	writetext OlivineFishingCoveGateOfferText
 	yesorno
 	iffalse .Declined
-	checkitem OLD_ROD
-	iftrue .HasRod
-	checkitem GOOD_ROD
-	iftrue .HasRod
-	checkitem SUPER_ROD
-	iftrue .HasRod
-	writetext OlivineFishingCoveGateBringRodText
-	sjump .DeclineFinish
-.HasRod:
 	special CheckFirstMonIsEgg
 	iftrue .Egg
 	readvar VAR_PARTYCOUNT
@@ -189,6 +180,9 @@ OlivineFishingCoveGateOfferText:
 	text "It's Friday! The"
 	line "Fishing Contest"
 	cont "is on today."
+	para "We use a special"
+	line "rod here to keep"
+	cont "things fair."
 	para "Would you like to"
 	line "take part?"
 	done
@@ -207,8 +201,12 @@ OlivineFishingCoveGateBallsText:
 OlivineFishingCoveGateRulesText:
 	text "You have 20 min."
 	line "and 20 LURE BALLS."
-	para "Use any fishing"
-	line "rod in the cove."
+	para "Everyone uses the"
+	line "same special rod."
+	para "Face the water and"
+	line "press A to fish."
+	para "No need to carry"
+	line "or register a rod."
 	para "Keep your best"
 	line "catch for judging."
 	para "Rarity, size and"
@@ -261,10 +259,6 @@ OlivineFishingCoveGateDeclinedText:
 	line "if you change"
 	cont "your mind."
 	done
-OlivineFishingCoveGateBringRodText:
-	text "Please bring a"
-	line "fishing rod first."
-	done
 OlivineFishingCoveGateEggText:
 	text "An EGG can't"
 	line "compete. Switch"
@@ -304,7 +298,7 @@ OlivineFishingCoveGate_MapEvents:
 	db 1 ; bg events
 	bg_event 5, 0, BGEVENT_READ, OlivineFishingCoveGateSign
 	db 6 ; object events
-	object_event 2, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OlivineFishingCoveGateOfficerScript, -1
+	object_event 2, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, OlivineFishingCoveGateOfficerScript, -1
 ; The callback sets this shared temporary flag so object loading keeps them hidden.
 	object_event 2, 5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineFishingCoveGateFisherScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	object_event 3, 5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlivineFishingCoveGateFisherScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

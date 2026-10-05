@@ -102,6 +102,94 @@ def check_rom(h):
     check(h.rd16(h.s('wQueuedScriptAddr')) == h.s('FishingContestFridayOnlyScript'),
           'Wrong weekday did not queue the fishing restriction message')
 
+    # The cove never permits Surf, via either the party menu or water prompt.
+    # Make every other requirement valid so rejection must come from the map.
+    surf_requirements = {name: b'\xaf\xc9' for name in [
+        'CheckBadge', 'CheckFieldHMAllowForMenu', 'CheckFieldHMAllow', 'CheckFacingObject']}
+    surf_requirements.update({name: b'\xc9' for name in ['MenuTextboxBackup', 'GetPartyNick']})
+    surf_requirements['GetSurfType'] = b'\x3e\x04\xc9'
+    with patch(h, surf_requirements):
+        write('wBikeFlags', 0)
+        write('wTilePermissions', 0)
+        write('wPlayerDirection', 0)
+        write('wTileDown', 0x29)  # COLL_WATER
+        write('wFacingTileID', 0x29)
+        for day in range(7):
+            write('wCurDay', day)
+            for status in [0, TIMER, FISHING, FISHING | TIMER]:
+                load_map(COVE)
+                flags(status)
+                write('wPlayerState', 0)
+                h.wr16(h.s('wScriptPos'), 0)
+                check(h.call('SurfFunction.TrySurf')['a'] == 2,
+                      f'Party Surf allowed in the cove on day {day}, flags {status}')
+                check(not h.call('TrySurfOW')['c_flag'] and h.rd16(h.s('wScriptPos')) == 0,
+                      f'Cove offered a Surf prompt on day {day}, flags {status}')
+        h.call('SurfFunction')
+        check(read('wFieldMoveSucceeded') == 0 and read('wPlayerState') == 0,
+              'Failed Surf menu request changed the player movement state')
+        for group, number in [(1, 14), (2, COVE)]:
+            write('wMapGroup', group)
+            write('wMapNumber', number)
+            check(h.call('SurfFunction.TrySurf')['a'] == 1,
+                  f'Cove Surf restriction leaked onto map {group},{number}')
+            check(h.call('TrySurfOW')['c_flag'] and h.rd16(h.s('wScriptPos')) == h.s('AskSurfScript'),
+                  f'Normal Surf prompt was blocked on map {group},{number}')
+    load_map(COVE)
+
+    # Pressing A at the water uses the shared rod without owning/registering one.
+    a_fishing = {name: b'\xaf\xc9' for name in ['CheckFacingObject', 'TryBGEvent']}
+    a_fishing.update({name: b'\xc9' for name in ['PlayClickSFX']})
+    with patch(h, a_fishing), patch(h, {'Random': b'\x3e\x00\xc9'}):
+        write('wNumKeyItems', 0)
+        write('wKeyItems', [255])
+        write('wRegisteredItem', 0)
+        write('wWhichRegisteredItem', 0)
+        write('wPlayerState', 0)
+        write('wPlayerDirection', 0)
+        write('wTileDown', 0x29)
+        write('hJoyPressed', 1)  # A_BUTTON
+        write('wParkBallsRemaining', 20)
+        for day in range(7):
+            write('wCurDay', day)
+            for status in [0, TIMER, FISHING, FISHING | TIMER]:
+                flags(status)
+                h.wr16(h.s('wScriptPos'), 0)
+                result = h.call('CheckAPressOW')
+                expected = ('FishingContestFridayOnlyScript' if day != FRIDAY else
+                            'Script_GotABite' if status == FISHING | TIMER else
+                            'FishingContestEnterFirstScript')
+                check(result['c_flag'] and h.rd16(h.s('wScriptPos')) == h.s(expected)
+                      and read('wScriptBank') == h.sym[expected][0],
+                      f'A-button fishing selected wrong script on day {day}, flags {status}')
+                check(read('wNumKeyItems') == 0 and read('wRegisteredItem') == 0
+                      and read('wWhichRegisteredItem') == 0,
+                      'Automatic fishing added or registered a rod')
+                if expected == 'Script_GotABite':
+                    check(read('wBuffer2') == 2 and read('wBattleType') == battles['BATTLETYPE_CONTEST']
+                          and h.species_index(read('wTempWildMonSpecies')) == species['MAGIKARP'],
+                          'A-button fishing bypassed the contest rod/encounter rules')
+        flags(FISHING | TIMER)
+        write('wCurDay', FRIDAY)
+        # A cast with no bite must still run the ordinary casting animation.
+        with patch(h, {'Random': b'\x3e\xff\xc9'}):
+            h.call('CheckAPressOW')
+        check(h.rd16(h.s('wScriptPos')) == h.s('Script_NotEvenANibble'),
+              'A-button fishing skipped the no-bite casting script')
+        write('wTileDown', 0)
+        write('wFacingTileID', 0)
+        h.wr16(h.s('wScriptPos'), 0)
+        check(not h.call('TryFishingCoveOW')['c_flag'] and h.rd16(h.s('wScriptPos')) == 0,
+              'Cove fished while facing dry land')
+        write('wFacingTileID', 0x29)
+        write('hJoyPressed', 0)
+        check(not h.call('CheckAPressOW')['c_flag'], 'Cove fished without pressing A')
+        for group, number in [(1, GATE), (1, 14), (2, COVE)]:
+            write('wMapGroup', group)
+            write('wMapNumber', number)
+            check(not h.call('TryFishingCoveOW')['c_flag'], f'Automatic rod affected map {group},{number}')
+    load_map(COVE)
+
     # Exhaust every equiprobable species roll, including high-index species.
     counts = Counter()
     for roll in range(200):
@@ -242,6 +330,40 @@ def check_rom(h):
         h.call('CheckDailyResetTimer')
     check(read('wFishingContestDailyFlags') == 0, 'Friday participation did not reset with daily events')
 
+    # Both the Pack and registered-item use reach this item dispatcher.
+    # A clock request must never queue the calendar-reset script in a contest.
+    with patch(h, {name: b'\xc9' for name in ['PrintText', 'RefreshScreen', 'CloseText', 'MenuTextboxWaitButton']}):
+        for status in [TIMER, FISHING | TIMER, FISHING, 0]:
+            for using_select in [0, 1]:
+                flags(status)
+                write('wCurItem', items['RELIC_CLOCK'])
+                write('wUsingItemWithSelect', using_select)
+                write('wBattleMode', 0)
+                write('wCurDay', FRIDAY)
+                h.wr16(h.s('wQueuedScriptAddr'), 0)
+                h.call('_DoItemEffect')
+                if status:
+                    check(read('wItemEffectSucceeded') == 0 and h.rd16(h.s('wQueuedScriptAddr')) == 0,
+                          f'Relic Clock was usable during contest flags {status}, select {using_select}')
+                    check(read('wCurDay') == FRIDAY, 'Blocked Relic Clock changed the weekday')
+                else:
+                    check(read('wItemEffectSucceeded') == 1
+                          and h.rd16(h.s('wQueuedScriptAddr')) == h.s('RelicClockScript'),
+                          'Relic Clock was incorrectly blocked outside a contest')
+        for status in [TIMER, FISHING | TIMER]:
+            flags(status)
+            write('wCurItem', items['RELIC_CLOCK'])
+            write('wRegisteredItem', items['RELIC_CLOCK'])
+            write('wWhichRegisteredItem', 0x81)  # KEY_ITEM pocket, first entry
+            write('wNumKeyItems', 1)
+            write('wKeyItems', [items['RELIC_CLOCK'], 255])
+            h.wr16(h.s('wQueuedScriptAddr'), 0)
+            h.call('SelectMenu')
+            check(read('wItemEffectSucceeded') == 0 and h.rd16(h.s('wQueuedScriptAddr')) == 0,
+                  f'Registered Relic Clock bypassed contest flags {status}')
+            check(read('wUsingItemWithSelect') == 0 and read('wRegisteredItem') == items['RELIC_CLOCK'],
+                  'Blocking the registered clock removed its registration or left use active')
+
     # Drive the game's compiled scripts one command at a time, removing only
     # text, sound and interactive presentation. Inventory/flags/specials stay real.
     presentation = {name: b'\xc9' for name in [
@@ -304,12 +426,17 @@ def check_rom(h):
             fresh_gate(day=day)
             script('OlivineFishingCoveGateOfficerScript')
             check(bool(read('wStatusFlags2') & FISHING) == (day == FRIDAY), f'Guard admitted entry on day {day}')
-        for rod, hp, allowed in [(None, 50, False), ('OLD_ROD', 0, False),
+        for rod, hp, allowed in [(None, 50, True), ('OLD_ROD', 0, False),
                                   ('GOOD_ROD', 50, True), ('SUPER_ROD', 50, True)]:
             fresh_gate(rod=rod, hp=hp)
             script('OlivineFishingCoveGateOfficerScript')
             check(bool(read('wStatusFlags2') & FISHING) == allowed, f'Entry requirement failed: {rod}, HP {hp}')
             check(read('wPartyCount') == (1 if allowed else 3), 'Rejected entry changed the party')
+            check(read('wNumKeyItems') == (1 if rod else 0)
+                  and (h.rd(h.s('wKeyItems'), 2) == bytes([items[rod], 255]) if rod
+                       else read('wKeyItems') == 255),
+                  f'Contest entry changed key items for {rod}: count {read("wNumKeyItems")}, '
+                  f'data {h.rd(h.s("wKeyItems"), 4).hex()}')
         fresh_gate()
         write('wPartySpecies', 253)  # EGG EQU -3
         script('OlivineFishingCoveGateOfficerScript')
@@ -335,6 +462,8 @@ def check_rom(h):
             pocket = 'wBalls' if rank == 0 else 'wItems'
             check(h.rd(h.s(pocket), 2) == bytes([items[prize], 1]), f'Wrong prize for placement {rank}')
             check(read('wMapNumber') == GATE, 'Results returned to the wrong gate')
+            check((read('wXCoord'), read('wYCoord')) == (7, 5),
+                  'Player did not stand at the right end of the judging lineup')
             script('OlivineFishingCoveGateOfficerScript')
             check(not read('wStatusFlags2') & FISHING, 'Allowed a second Friday entry')
 
@@ -452,6 +581,7 @@ def check_rom(h):
                   f'Results contestant visibility wrong: {results}, {masks.hex()}')
             check((read('wMap1ObjectXCoord'), read('wMap1ObjectYCoord')) == ((7, 6) if results else (6, 5)),
                   'Judge did not move beside the results lineup')
+            check(read('wMap1ObjectColor') >> 4 == 12, 'Fishing guard did not use the purple palette')
         for bank in [0x10, 0x74, 0x90, 0xfe]:
             write('wScriptBank', bank)
             h.wr16(h.s('wScriptPos'), 0x4567)
