@@ -434,7 +434,6 @@ SECTION "Map Scripts 23", ROMX
 INCLUDE "maps/NewBarkTown.asm"
 INCLUDE "maps/VioletCity.asm"
 INCLUDE "maps/OlivineCity.asm"
-INCLUDE "maps/OlivineFishingCove.asm"
 INCLUDE "maps/Route37.asm"
 INCLUDE "maps/Route42.asm"
 INCLUDE "maps/Route46.asm"
@@ -524,4 +523,5 @@ INCLUDE "maps/RuinsOfAlphFossilLab.asm"
 
 SECTION "Map Scripts 31", ROMX
 
+INCLUDE "maps/OlivineFishingCove.asm"
 INCLUDE "maps/OlivineFishingCoveGate.asm"

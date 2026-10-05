@@ -2882,7 +2882,8 @@ wBugContestStonePrizeIndex:: db
 
 wFishingContestPrize:: db ; pending prize, retained if the Bag is full
 wFishingContestFlags:: db ; bit 0: show contestants for the results ceremony
-	ds 38 ; preserve the addresses of existing save data
+wFishingContestRoster:: ds NUM_FISHING_CONTESTANTS ; candidate IDs, chosen on entry
+	ds 33 ; preserve the addresses of existing save data
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d

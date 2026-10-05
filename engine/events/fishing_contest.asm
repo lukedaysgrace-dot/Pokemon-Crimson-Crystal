@@ -110,7 +110,148 @@ GiveFishingContestBalls::
 	farcall GiveParkBalls
 	ld hl, wStatusFlags2
 	set STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	call ChooseFishingContestRoster
 	ret
+
+ChooseFishingContestRoster::
+; Choose two distinct fishers, then three distinct guests. Select the rank
+; among unused candidates instead of retrying duplicate random identities.
+	ld e, 0
+.slot
+	ld c, NUM_FISHING_CONTEST_FISHERS
+	ld d, 0
+	ld a, e
+	and a
+	jr z, .pick
+	dec c
+	cp 2
+	jr c, .pick
+	ld d, NUM_FISHING_CONTEST_FISHERS
+	ld a, NUM_FISHING_CONTEST_CANDIDATES - NUM_FISHING_CONTEST_FISHERS + 2
+	sub e
+	ld c, a
+.pick
+	call .unused_candidate
+	ld hl, wFishingContestRoster
+	push de
+	ld d, 0
+	add hl, de
+	pop de
+	ld [hl], a
+	inc e
+	ld a, e
+	cp NUM_FISHING_CONTESTANTS
+	jr nz, .slot
+	ret
+.unused_candidate
+	call Random
+	cp 240 ; divisible by all remaining pool sizes: 4, 5, and 6
+	jr nc, .unused_candidate
+	call SimpleDivide
+	ld b, a
+	inc b
+.candidate
+	ld hl, wFishingContestRoster
+	ld c, e
+	ld a, c
+	and a
+	jr z, .available
+.scan
+	ld a, [hli]
+	cp d
+	jr z, .used
+	dec c
+	jr nz, .scan
+.available
+	dec b
+	jr z, .found
+.used
+	inc d
+	jr .candidate
+.found
+	ld a, d
+	ret
+
+FishingContestSetMapSprites::
+; Called before the sprite allocator reads map objects. The same saved roster
+; supplies the shore and the judging lineup; regular visitors use fixed IDs.
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	ret nz
+	ld de, wFishingContestRoster
+	ld hl, wMap2ObjectSprite
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE_GATE
+	jr z, .set_sprites
+	cp MAP_OLIVINE_FISHING_COVE
+	ret nz
+	ld hl, wMap4ObjectSprite
+	ld a, [wStatusFlags2]
+	and (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	cp (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	jr z, .set_sprites
+	ld de, FishingCoveVisitorRoster
+.set_sprites
+	ld b, NUM_FISHING_CONTESTANTS
+.loop
+	push bc
+	push hl
+	ld a, [de]
+	inc de
+	push de
+	ld c, a
+	ld b, 0
+	ld hl, FishingContestantSprites
+	add hl, bc
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld a, [hl]
+	pop de
+	pop hl
+	ld [hl], c
+	push hl
+	ld bc, MAPOBJECT_COLOR - MAPOBJECT_SPRITE
+	add hl, bc
+	swap a
+	ld c, a
+	ld a, [hl]
+	and $f
+	or c
+	ld [hl], a
+	pop hl
+	ld bc, OBJECT_LENGTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .loop
+	ret
+
+FishingContestantSprites:
+; Candidate order matches FishingContestantPointers, excluding unused index 0.
+	db SPRITE_FISHER, PAL_NPC_RED
+	db SPRITE_FISHER, PAL_NPC_BLUE
+	db SPRITE_FISHER, PAL_NPC_GREEN
+	db SPRITE_FISHER, PAL_NPC_BROWN
+	db SPRITE_FISHER, PAL_NPC_RED
+	db SPRITE_YOUNGSTER, PAL_NPC_BLUE
+	db SPRITE_COOLTRAINER_M, PAL_NPC_BLUE
+	db SPRITE_COOLTRAINER_F, PAL_NPC_RED
+	db SPRITE_CAMPER_NEW, PAL_NPC_GREEN
+	db SPRITE_PICNICKER_NEW, PAL_NPC_GREEN
+	db SPRITE_POKEFAN_M, PAL_NPC_BROWN
+	assert (@ - FishingContestantSprites) / 2 == NUM_FISHING_CONTEST_CANDIDATES
+; Regular visitors, after the contest candidates.
+	db SPRITE_LASS, PAL_NPC_RED
+	db SPRITE_COOLTRAINER_F, PAL_NPC_BLUE
+	db SPRITE_TEACHER, PAL_NPC_GREEN
+	db SPRITE_COOLTRAINER_M, PAL_NPC_BLUE
+FishingCoveVisitorRoster:
+	db NUM_FISHING_CONTEST_CANDIDATES + 0
+	db NUM_FISHING_CONTEST_CANDIDATES + 1
+	db NUM_FISHING_CONTEST_CANDIDATES + 2
+	db NUM_FISHING_CONTEST_CANDIDATES + 3
+	db NUM_FISHING_CONTEST_CANDIDATES + 0
 
 FishingContestCanUseItem::
 ; Outside battle, open the Pack for rods while retaining contest item rules.
