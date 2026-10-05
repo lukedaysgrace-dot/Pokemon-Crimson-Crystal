@@ -1183,6 +1183,10 @@ PortraitTexts:
 	db 0
 	dba LassDanielleSeenText
 	db 0
+	dba LassEliseAfterBattleText
+	db 0
+	dba LassEliseSeenText
+	db 0
 	dba LassKathrynAfterBattleText
 	db 0
 	dba LassKathrynSeenText
