@@ -5,6 +5,8 @@ _DoItemEffect::
 	call CopyName1
 	ld a, 1
 	ld [wItemEffectSucceeded], a
+	farcall FishingContestCanUseItem
+	jp c, NoEffect
 	ld a, [wCurItem]
 	dec a
 	ld hl, ItemEffects
@@ -898,7 +900,13 @@ LureBallMultiplier:
 ; multiply catch rate by 3 if this is a fishing rod battle
 	ld a, [wBattleType]
 	cp BATTLETYPE_FISH
+	jr z, .fishing
+	cp BATTLETYPE_CONTEST
 	ret nz
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	ret z
+.fishing
 
 	ld a, b
 	add a

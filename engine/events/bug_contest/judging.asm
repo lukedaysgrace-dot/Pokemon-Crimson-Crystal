@@ -97,6 +97,7 @@ LoadContestantName:
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
+	call GetFishingContestantPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -146,6 +147,15 @@ LoadContestantName:
 	jp CopyBytes
 
 INCLUDE "data/events/bug_contest_winners.asm"
+
+GetFishingContestantPointers:
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	ret z
+	ld hl, FishingContestantPointers
+	ret
+
+INCLUDE "data/events/fishing_contest_winners.asm"
 
 BugContest_GetPlayersResult:
 	ld hl, wBugContestThirdPlaceWinnerID
@@ -249,6 +259,7 @@ endr
 ComputeAIContestantScores:
 	ld e, 0
 .loop
+	ld a, e
 	push de
 	call CheckBugContestContestantFlag
 	pop de
@@ -261,6 +272,7 @@ ComputeAIContestantScores:
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
+	call GetFishingContestantPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -469,6 +481,10 @@ GetContestMonScoreData:
 	ld d, h
 	ld e, l
 	ld hl, ContestMonScoreData
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .loop
+	ld hl, FishingContestMonScoreData
 .loop
 	ld a, [hli]
 	ld c, a
@@ -523,3 +539,5 @@ ContestMonScoreData:
 	db     70,  12, 18
 	dw 0 ; end
 	db     25,   5, 20 ; anything not listed above
+
+INCLUDE "data/events/fishing_contest_scores.asm"

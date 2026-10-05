@@ -1,9 +1,22 @@
 Script_AbortBugContest:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iffalse .finish
+	checkflag ENGINE_FISHING_CONTEST
+	iftrue .fishing
 	setflag ENGINE_DAILY_BUG_CONTEST
 	special ContestReturnMons
 .finish
+	end
+.fishing
+	checkevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
+	iffalse .no_party
+	special ContestReturnMons
+.no_party
+	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
+	setflag ENGINE_DAILY_FISHING_CONTEST
+	clearflag ENGINE_FISHING_CONTEST
+	clearflag ENGINE_BUG_CONTEST_TIMER
+	loadmem wParkBallsRemaining, 0
 	end
 
 FindItemInBallScript::

@@ -199,3 +199,5 @@ EngineFlags:
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 
 	engine_flag wGameplayRules, GAMEPLAYRULES_NO_ABILITIES_F
+	engine_flag wFishingContestDailyFlags, 0
+	engine_flag wFishingContestFlags, 0

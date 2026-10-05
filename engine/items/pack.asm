@@ -192,6 +192,8 @@ Pack:
 	dw QuitItemSubmenu
 
 .UseItem:
+	farcall FishingContestCanUseItem
+	jp c, UseItem.Oak
 	farcall AskTeachTMHM
 	ret c
 	farcall ChooseMonToLearnTMHM

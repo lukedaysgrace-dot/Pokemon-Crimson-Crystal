@@ -58,6 +58,19 @@ SelectRandomBugContestContestants:
 CheckBugContestContestantFlag:
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
+	ld hl, wStatusFlags2
+	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	jr z, .bug_contest
+; The fishing contest has five fixed competitors (indices 0-4).
+	cp 5
+	jr nc, .not_competing
+	xor a
+	ret
+.not_competing
+	ld a, 1
+	and a
+	ret
+.bug_contest
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
 	ld d, 0

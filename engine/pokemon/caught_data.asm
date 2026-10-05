@@ -77,6 +77,13 @@ CheckPartyFullAfterContest:
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
 	ld b, NATIONAL_PARK
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .party_location
+	ld b, OLIVINE_CITY
+.party_location
+	ld a, [hl]
+	and CAUGHT_GENDER_MASK
 	or b
 	ld [hl], a
 	xor a
@@ -117,6 +124,13 @@ CheckPartyFullAfterContest:
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
 	ld b, NATIONAL_PARK
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .box_location
+	ld b, OLIVINE_CITY
+.box_location
+	ld a, [hl]
+	and CAUGHT_GENDER_MASK
 	or b
 	ld [hl], a
 	farcall AddTempMonToStorage

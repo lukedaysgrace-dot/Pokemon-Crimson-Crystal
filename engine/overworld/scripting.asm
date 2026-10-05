@@ -1449,9 +1449,7 @@ CallCallback::
 	ld a, [wScriptStackSize]
 	cp 5
 	ret nc
-	ld a, [wScriptBank]
-	or $80
-	ld [wScriptBank], a
+	; Callbacks stop with Script_return. Keep all eight cartridge bank bits.
 	jp ScriptCall
 
 Script_sjump:
@@ -2719,7 +2717,7 @@ ExitScriptSubroutine:
 	add hl, de
 	ld a, [hli]
 	ld b, a
-	and " "
+	; The former callback marker used bit 7, which is now a ROM bank bit.
 	ld [wScriptBank], a
 	ld a, [hli]
 	ld e, a
