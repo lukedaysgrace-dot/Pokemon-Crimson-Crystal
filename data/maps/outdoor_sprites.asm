@@ -577,7 +577,7 @@ OlivineGroupSprites:
 	db SPRITE_STANDING_YOUNGSTER
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
-	db SPRITE_BIG_SNORLAX
+	db SPRITE_FISHING_BOAT ; cove boats replace an unused outdoor sprite
 	db SPRITE_OLIVINE_RIVAL
 	db SPRITE_POKEFAN_M
 	db SPRITE_LASS

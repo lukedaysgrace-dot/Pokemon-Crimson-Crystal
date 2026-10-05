@@ -210,3 +210,9 @@ SECTION "Fishing Guru Sprite", ROMX
 FishingGuruSpriteGFX::         INCBIN "gfx/sprites/fishing_guru.2bpp"
 FishingGuruSpriteGFXEnd::
 assert FishingGuruSpriteGFXEnd - FishingGuruSpriteGFX == 24 * 16
+
+SECTION "Fishing Boat Sprite", ROMX
+; Two 32x16 frames stacked vertically in the 32x32 source sheet.
+FishingBoatSpriteGFX::        INCBIN "gfx/sprites/fishing_boat.2bpp"
+FishingBoatSpriteGFXEnd::
+assert FishingBoatSpriteGFXEnd - FishingBoatSpriteGFX == 16 * 16
