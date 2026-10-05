@@ -152,6 +152,13 @@ GetFishingContestantPointers:
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_FISHING_CONTEST_F, a
 	ret z
+	; bc is the one-based competitor slot, not the candidate's identity.
+	dec c
+	ld hl, wFishingContestRoster
+	add hl, bc
+	ld c, [hl]
+	inc c
+	ld b, 0
 	ld hl, FishingContestantPointers
 	ret
 

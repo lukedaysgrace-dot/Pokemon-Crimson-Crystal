@@ -61,8 +61,8 @@ CheckBugContestContestantFlag:
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
 	jr z, .bug_contest
-; The fishing contest has five fixed competitors (indices 0-4).
-	cp 5
+; Five roster slots participate; their identities are chosen on entry.
+	cp NUM_FISHING_CONTESTANTS
 	jr nc, .not_competing
 	xor a
 	ret
