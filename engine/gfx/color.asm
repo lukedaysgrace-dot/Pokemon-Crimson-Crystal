@@ -1427,6 +1427,15 @@ LoadMapPals:
 	cp ROUTE
 	ret nz
 .outside
+; The cove uses the roof slot for plants floating on water, so keep its
+; map palette instead of replacing those colors with Olivine's roof colors.
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	jr nz, .load_roof
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	ret z
+.load_roof
 	ld a, [wMapGroup]
 	ld l, a
 	ld h, 0
