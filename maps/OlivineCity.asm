@@ -312,7 +312,7 @@ OlivineCity_MapEvents:
 	warp_event 29, 27, OLIVINE_LIGHTHOUSE_1F, 1
 	warp_event 19, 27, OLIVINE_PORT_PASSAGE, 1
 	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
-	warp_event 35, 15, OLIVINE_FISHING_COVE, 1
+	warp_event 35, 15, OLIVINE_FISHING_COVE_GATE, 3
 
 	db 2 ; coord events
 	coord_event 13, 12, SCENE_DEFAULT, OlivineCityRivalSceneTop

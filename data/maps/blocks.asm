@@ -791,6 +791,9 @@ SECTION "Map Blocks 3", ROMX
 OlivineFishingCove_Blocks:
 	INCBIN "maps/OlivineFishingCove.ablk"
 
+OlivineFishingCoveGate_Blocks:
+	INCBIN "maps/OlivineFishingCoveGate.ablk"
+
 ShiverIsle_Blocks:
 	INCBIN "maps/ShiverIsle.ablk"
 
