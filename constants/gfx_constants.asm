@@ -122,6 +122,8 @@ PORTRAIT_MOUTH_FRAMES EQU 6 ; frames per mouth open/closed step
 	const PORTRAIT_SURGE       ; 1e
 	const PORTRAIT_WHITNEY     ; 1f
 	const PORTRAIT_WILL        ; 20
+	const PORTRAIT_CRYSTAL     ; 21
+	const PORTRAIT_WHITNEY_CRYING ; 22
 NUM_TRAINER_PORTRAITS EQU const_value - 1
 
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)

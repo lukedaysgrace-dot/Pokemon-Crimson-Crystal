@@ -26,6 +26,11 @@ _BugContestJudging:
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_FirstPlaceText
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_FISHING_CONTEST_F, a
+	jr z, .announce_winner
+	ld hl, FishingContest_FirstPlaceText
+.announce_winner
 	call PrintText
 	call BugContest_PrintPlayerScore
 	jp BugContest_GetPlayersResult
@@ -48,11 +53,17 @@ BugContest_PlayerScoreText:
 BugContest_FirstPlaceText:
 	text_far ContestJudging_FirstPlaceText
 	text_asm
+BugContest_FirstPlaceFanfare:
 	ld de, SFX_1ST_PLACE
 	call PlaySFX
 	call WaitSFX
 	ld hl, BugContest_FirstPlaceScoreText
 	ret
+
+FishingContest_FirstPlaceText:
+	text_far FishingContestJudging_FirstPlaceText
+	text_asm
+	jp BugContest_FirstPlaceFanfare
 
 BugContest_FirstPlaceScoreText:
 	; The winning score was @  points!

@@ -1091,6 +1091,9 @@ LoadScriptBDE::
 TryTileCollisionEvent::
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
+	farcall TryFishingCoveOW
+	jr c, .done
+	ld a, [wFacingTileID]
 	ld c, a
 	farcall CheckFacingTileForStdScript
 	jr c, .done
