@@ -520,3 +520,8 @@ INCLUDE "maps/DanceTheatre.asm"
 SECTION "Map Scripts 30", ROMX
 
 INCLUDE "maps/RuinsOfAlphFossilLab.asm"
+
+
+SECTION "Map Scripts 31", ROMX
+
+INCLUDE "maps/OlivineFishingCoveGate.asm"
