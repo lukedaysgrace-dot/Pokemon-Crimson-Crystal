@@ -362,7 +362,10 @@ endr
 	jr nz, .no_pack
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	jr nz, .no_pack
+	jr z, .allow_pack
+	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	jr z, .no_pack
+.allow_pack
 	ld a, STARTMENUITEM_PACK
 	call .AppendMenuList
 .no_pack

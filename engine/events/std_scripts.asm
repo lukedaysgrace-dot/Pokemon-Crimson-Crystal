@@ -302,6 +302,8 @@ RadioTowerRocketsScript:
 	end
 
 BugContestResultsWarpScript:
+	checkflag ENGINE_FISHING_CONTEST
+	iftrue .fishing
 	special ClearBGPalettes
 	scall BugContestResults_CopyContestantsToResults
 	setevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
@@ -309,6 +311,9 @@ BugContestResultsWarpScript:
 	setevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	warp ROUTE_36_NATIONAL_PARK_GATE, 0, 4
 	applymovement PLAYER, Movement_ContestResults_WalkAfterWarp
+	sjump BugContestResultsScript
+.fishing
+	farsjump FishingContestResultsWarpScript
 
 BugContestResultsScript:
 	clearflag ENGINE_BUG_CONTEST_TIMER

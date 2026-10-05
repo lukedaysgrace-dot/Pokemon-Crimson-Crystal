@@ -2842,7 +2842,8 @@ wMobileBattleRoomSceneID::                        db ; d9c0
 wSilentCryptSceneID::                             db
 wGravekeepersHouseSceneID::                       db
 
-	ds 47
+wOlivineFishingCoveGateSceneID::                   db
+	ds 46
 
 ; fight counts
 wJackFightCount::    db ; d9f2
@@ -2879,7 +2880,9 @@ wErinFightCount::    db
 ; Cycles 0-5: Fire, Water, Thunder, Leaf, Moon, Ice.
 wBugContestStonePrizeIndex:: db
 
-	ds 40 ; trimmed by 40 more bytes to expand the item pocket from 20 to 40 slots
+wFishingContestPrize:: db ; pending prize, retained if the Bag is full
+wFishingContestFlags:: db ; bit 0: show contestants for the results ceremony
+	ds 38 ; preserve the addresses of existing save data
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
@@ -2941,7 +2944,8 @@ wDailyResetTimer:: dw ; dc1c
 wDailyFlags1:: db
 wDailyFlags2:: db
 wSwarmFlags:: db
-	ds 2
+wFishingContestDailyFlags:: db ; also cleared by CheckDailyResetTimer
+	ds 1
 wTimerEventStartDay:: db
 	ds 3
 

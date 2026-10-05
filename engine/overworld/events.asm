@@ -472,6 +472,8 @@ CheckTimeEvents:
 
 	farcall CheckBugContestTimer
 	jr c, .end_bug_contest
+	farcall FishingContestCheckDay
+	jr c, .end_bug_contest
 	xor a
 	ret
 
@@ -1161,6 +1163,8 @@ RandomEncounter::
 	jr .ok
 
 .bug_contest
+	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	jr nz, .nope ; this contest has rod encounters only
 	call _TryWildEncounter_BugContest
 	jr nc, .nope
 	jr .ok_bug_contest

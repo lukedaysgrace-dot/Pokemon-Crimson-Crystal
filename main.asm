@@ -70,9 +70,12 @@ INCLUDE "engine/events/elevator.asm"
 INCLUDE "engine/events/bug_contest/contest.asm"
 INCLUDE "engine/events/misc_scripts_2.asm"
 INCLUDE "engine/events/std_collision.asm"
+PUSHS
+SECTION "Contest Judging", ROMX
 INCLUDE "engine/events/bug_contest/judging.asm"
-INCLUDE "engine/events/pokerus/apply_pokerus_tick.asm"
 INCLUDE "engine/events/bug_contest/contest_2.asm"
+POPS
+INCLUDE "engine/events/pokerus/apply_pokerus_tick.asm"
 INCLUDE "engine/pokemon/correct_party_errors.asm"
 INCLUDE "engine/math/get_square_root.asm"
 
@@ -935,3 +938,8 @@ INCLUDE "data/pokemon/original_stats.asm"
 SECTION "Trainer Portraits", ROMX
 
 INCLUDE "engine/events/trainer_portraits.asm"
+
+
+SECTION "Fishing Contest", ROMX
+
+INCLUDE "engine/events/fishing_contest.asm"

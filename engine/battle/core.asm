@@ -5441,6 +5441,10 @@ BattleMenu_Pack:
 
 .contest
 	ld a, PARK_BALL
+	ld hl, wStatusFlags2
+	bit STATUSFLAGS2_FISHING_CONTEST_F, [hl]
+	jr z, .use_special_ball
+	ld a, LURE_BALL
 	jr .use_special_ball
 
 .safari
