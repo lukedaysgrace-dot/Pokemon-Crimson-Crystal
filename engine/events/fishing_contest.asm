@@ -253,6 +253,49 @@ FishingCoveVisitorRoster:
 	db NUM_FISHING_CONTEST_CANDIDATES + 3
 	db NUM_FISHING_CONTEST_CANDIDATES + 0
 
+FishingCoveSelectDialogue::
+; hLastTalked uses map-object IDs: shore visitors are objects 4 through 11.
+	ldh a, [hLastTalked]
+	sub 4
+	ld c, a
+	ld hl, FishingCoveVisitorTextPointers
+	ld a, [wStatusFlags2]
+	and (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	cp (1 << STATUSFLAGS2_FISHING_CONTEST_F) | (1 << STATUSFLAGS2_BUG_CONTEST_TIMER_F)
+	jr nz, FishingCoveSetDialoguePointer
+	ld a, c
+	cp NUM_FISHING_CONTESTANTS
+	jr nc, FishingCoveSetDialoguePointer
+	ld hl, FishingContestTextPointers
+	jr FishingContestSelectRosterDialogue
+
+FishingContestSelectResultDialogue::
+; The gate's five contestants are map objects 2 through 6.
+	ldh a, [hLastTalked]
+	sub 2
+	ld c, a
+	ld hl, FishingContestResultTextPointers
+FishingContestSelectRosterDialogue:
+	push hl
+	ld hl, wFishingContestRoster
+	ld b, 0
+	add hl, bc
+	ld c, [hl]
+	pop hl
+FishingCoveSetDialoguePointer:
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld [wScriptTextAddr], a
+	ld a, [hl]
+	ld [wScriptTextAddr + 1], a
+	ld a, BANK(FishingCoveVisitorTextPointers)
+	ld [wScriptTextBank], a
+	ret
+
+INCLUDE "data/text/fishing_cove.asm"
+
 FishingContestCanUseItem::
 ; Outside battle, open the Pack for rods while retaining contest item rules.
 	ld a, [wStatusFlags2]
