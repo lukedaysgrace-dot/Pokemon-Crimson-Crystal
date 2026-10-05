@@ -5,6 +5,13 @@ FishingContestantPointers:
 	dw FishingContestantArnold
 	dw FishingContestantKyle
 	dw FishingContestantWilton
+	dw FishingContestantSamuel
+	dw FishingContestantNick
+	dw FishingContestantGwen
+	dw FishingContestantBarry
+	dw FishingContestantCindy
+	dw FishingContestantWilliam
+	assert (@ - FishingContestantPointers) / 2 == NUM_FISHING_CONTEST_CANDIDATES + 1
 
 FishingContestantJustin:
 	db FISHER, JUSTIN
@@ -35,3 +42,39 @@ FishingContestantWilton:
 	dw MAREANIE, 178
 	dw QWILFISH, 160
 	dw SHELLDER, 140
+
+FishingContestantSamuel:
+	db YOUNGSTER, SAMUEL
+	dw KRABBY,   168
+	dw MAGIKARP, 149
+	dw HORSEA,   129
+
+FishingContestantNick:
+	db COOLTRAINERM, NICK
+	dw REMORAID, 179
+	dw QWILFISH, 158
+	dw CHINCHOU, 139
+
+FishingContestantGwen:
+	db COOLTRAINERF, GWEN
+	dw CORSOLA,  176
+	dw HORSEA,   156
+	dw SHELLDER, 137
+
+FishingContestantBarry:
+	db CAMPER, BARRY
+	dw HORSEA,   171
+	dw KRABBY,   153
+	dw MAGIKARP, 131
+
+FishingContestantCindy:
+	db PICNICKER, CINDY
+	dw CHINCHOU, 173
+	dw SHELLDER, 155
+	dw MAGIKARP, 133
+
+FishingContestantWilliam:
+	db POKEFANM, WILLIAM
+	dw MAREANIE, 178
+	dw QWILFISH, 160
+	dw KRABBY,   142

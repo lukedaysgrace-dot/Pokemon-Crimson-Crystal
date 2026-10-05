@@ -42,6 +42,8 @@ def check_rom(h):
     items = _parse_constants(ROOT / 'constants/item_constants.asm')
     battles = _parse_constants(ROOT / 'constants/battle_constants.asm')
     events = _parse_constants(ROOT / 'constants/event_flags.asm')
+    # Fixed identities isolate the existing score/name regression fixtures.
+    h.wr(h.s('wFishingContestRoster'), [0, 1, 2, 3, 4])
 
     def check(ok, message):
         nonlocal checks
@@ -464,12 +466,16 @@ def check_rom(h):
     write('wFishingContestPrize', items['NUGGET'])
     write('wFishingContestDailyFlags', 1)
     write('wFishingContestFlags', 1)
+    write('wFishingContestRoster', [3, 1, 6, 8, 10])
     flags(FISHING)
     h.call('SaveGameData', max_frames=600)
     for name in ['wFishingContestPrize', 'wFishingContestDailyFlags', 'wFishingContestFlags', 'wStatusFlags2']:
         write(name, 0)
+    write('wFishingContestRoster', bytes(5))
     h.call('TryLoadSaveFile', max_frames=600)
     check(read('wFishingContestPrize') == items['NUGGET'], 'Held prize was lost after saving and loading')
+    check(h.rd(h.s('wFishingContestRoster'), 5) == bytes([3, 1, 6, 8, 10]),
+          'Saved contestant identities were not restored')
     check(read('wFishingContestDailyFlags') == 1 and read('wFishingContestFlags') == 1 and read('wStatusFlags2') & FISHING,
           'Saved fishing contest flags were not restored')
 

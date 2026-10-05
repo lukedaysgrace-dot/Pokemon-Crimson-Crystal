@@ -114,9 +114,20 @@ GetPlayerSprite:
 INCLUDE "data/sprites/player_sprites.asm"
 
 AddMapSprites:
+	; Select the saved contest roster before reserving space for its graphics.
+	farcall FishingContestSetMapSprites
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	jr nz, .environment
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	jr z, .map_objects
+.environment
 	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .outdoor
+.map_objects
+	; The cove's changing cast needs its actual sprites, like an indoor map.
 	call AddIndoorSprites
 	ret
 
