@@ -22,6 +22,13 @@ LoadSpecialMapPalette:
 
 .johto
 	ld hl, JohtoTilesetPalette
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_FISHING_COVE
+	jr nz, .load_outdoor_timeofday
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_FISHING_COVE
+	jr nz, .load_outdoor_timeofday
+	ld hl, OlivineFishingCovePalette
 	jr .load_outdoor_timeofday
 
 .johto_modern
@@ -182,6 +189,9 @@ INCLUDE "gfx/tilesets/mansion_2.pal"
 
 JohtoTilesetPalette:
 INCLUDE "gfx/tilesets/johto.pal"
+
+OlivineFishingCovePalette:
+INCLUDE "maps/OlivineFishingCove.pal"
 
 JohtoModernTilesetPalette:
 INCLUDE "gfx/tilesets/johto_modern.pal"
