@@ -6,242 +6,96 @@ Route25CrystalBeforeText::
 	text "CRYSTAL: Quiet."
 	line "Look over there."
 
-	para "Don't get any"
-	line "closer yet."
+	para "That's MEW. I've"
+	line "checked twice."
 
-	para "…"
+	para "…I'm trying not to"
+	line "shout."
 
-	para "I came here to"
-	line "check those"
-	cont "rumors."
+	para "We both want a"
+	line "chance to catch"
+	cont "it. Let's settle"
+	cont "this first."
 
-	para "I expected to"
-	line "prove them wrong."
+	para "One battle. Winner"
+	line "gets the first"
+	cont "try."
 
-	para "Then I saw it."
-
-	para "I've checked its"
-	line "size, movement,"
-	cont "markings…"
-
-	para "Everything."
-
-	para "There is only one"
-	line "possible answer."
-
-	para "That's MEW."
-
-	para "A real, living"
-	line "MEW."
-
-	para "…"
-
-	para "I know."
-
-	para "I'm trying not to"
-	line "shout too."
-
-	para "That's why I"
-	line "called you here."
-
-	para "If that's really"
-	line "MEW, I'm going"
-	cont "after it."
-
-	para "And I know you"
-	line "are too."
-
-	para "So we're going to"
-	line "settle this first."
-
-	para "One battle."
-
-	para "Winner gets the"
-	line "first attempt."
-
-	para "I've been waiting"
-	line "for another"
-	cont "chance at you,"
-
-	para "<PLAYER>."
-
-	para "Don't disappoint"
-	line "me."
+	para "Ready, <PLAYER>?"
+	line "I've been waiting"
+	cont "for this!"
 	done
 
 Route25CrystalAfterText::
-	text "CRYSTAL: I really"
-	line "thought I had you"
-	cont "this time."
+	text "CRYSTAL: I thought"
+	line "I had you. I'll"
+	cont "work out what went"
+	cont "wrong later."
 
-	para "I studied your"
-	line "team. Your habits."
-	cont "Everything."
-
-	para "And somehow you"
-	line "still found a way"
-	cont "around me."
-
-	para "…"
-
-	para "I'm going to have"
-	line "to figure that"
-	cont "one out."
-
-	para "But later."
-
-	para "You've got"
-	line "something more"
-	cont "important waiting"
-
-	para "for you."
-
-	para "Go on, <PLAYER>."
+	para "You earned the"
+	line "first try. Go on,"
+	cont "<PLAYER>."
 
 	para "Let's see if you"
-	line "can catch MEW."
+	line "can catch MEW!"
 	done
 
 Route25CrystalGoCatchItText::
-	text "CRYSTAL: Why are"
-	line "you talking to me?"
+	text "CRYSTAL: MEW is"
+	line "right there. Go!"
 
-	para "MEW is right"
-	line "there!"
-
-	para "Go!"
-
-	para "…"
-
-	para "And don't do"
-	line "anything reckless."
-
-	para "I want usable"
-	line "observations."
+	para "And be careful. I"
+	line "want usable"
+	cont "observations!"
 	done
 
 Route25CrystalMewCaughtText::
-	text "CRYSTAL: …"
+	text "CRYSTAL: You"
+	line "actually caught"
+	cont "MEW. Let me see"
+	cont "your #DEX!"
 
-	para "You did it."
+	para "…There it is. OAK"
+	line "is going to have"
+	cont "questions."
 
-	para "You actually"
-	line "caught MEW."
-
-	para "Let me see your"
-	line "#DEX."
-
-	para "…"
-
-	para "There it is."
-
-	para "MEW."
-
-	para "I don't think I've"
-	line "ever been this"
-	cont "happy to be wrong."
-
-	para "…"
-
-	para "You know, when we"
-	line "left NEW BARK,"
-
-	para "I thought I knew"
-	line "exactly what I"
-	cont "was doing."
-
-	para "Find #MON."
-	line "Record them."
-	cont "Keep moving."
+	para "When we started, I"
+	line "only thought about"
+	cont "filling the"
+	cont "#DEX."
 
 	para "Then you kept"
-	line "showing up."
-
-	para "And every time"
-	line "you did, you made"
-	cont "things harder."
-
-	para "You made me train"
-	line "harder."
-
-	para "Think harder."
-	line "Get better."
-
-	para "…"
+	line "beating me. You"
+	cont "made me work"
+	cont "harder."
 
 	para "It was incredibly"
-	line "annoying."
+	line "annoying. But I"
+	cont "wouldn't change"
+	cont "it."
 
-	para "But I wouldn't"
-	line "change it."
-
-	para "Look at us now."
-
-	para "All the way out"
-	line "here in KANTO,"
-
-	para "standing next to"
-	line "a real MEW."
-
-	para "…"
-
-	para "I guess we did"
-	line "pretty well,"
-	cont "didn't we?"
-
-	para "Take care of it,"
+	para "Take care of MEW,"
 	line "<PLAYER>."
 
-	para "And keep taking"
-	line "care of the rest"
-	cont "of them, too."
-
-	para "I expect to hear"
-	line "about whatever"
-
-	para "impossible thing"
-	line "you do next."
-
-	para "…"
-
-	para "Just don't expect"
-	line "me to believe it"
-
-	para "until I see it"
-	line "myself."
-
-	para "See you,"
-	line "<PLAYER>."
+	para "And call me when"
+	line "you find something"
+	cont "impossible again!"
 	done
 
 Route25CrystalMewEscapedText::
-	text "CRYSTAL: …"
+	text "CRYSTAL: …It got"
+	line "away."
 
-	para "It got away."
+	para "We may not get"
+	line "another chance."
+	cont "But we know it's"
+	cont "real now."
 
-	para "I was afraid that"
-	line "might happen."
+	para "That's more than"
+	line "we knew before."
 
-	para "Don't worry."
-
-	para "We know it's real"
-	line "now."
-
-	para "We know where it"
-	line "was seen."
-
-	para "And we know a lot"
-	line "more than we did"
-	cont "this morning."
-
-	para "That's enough to"
-	line "start with."
-
-	para "I'll keep looking"
-	line "into it."
-
-	para "If MEW shows up"
-	line "again…"
-
-	para "we'll be ready."
+	para "I'll send OAK our"
+	line "notes. This"
+	cont "sighting still"
+	cont "matters."
 	done

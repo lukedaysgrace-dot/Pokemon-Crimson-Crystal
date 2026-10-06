@@ -743,12 +743,12 @@ SchoolGirlNadiaBeatenText:
 	done
 
 SchoolGirlNadiaAfterBattleText:
-	text "I mix strength,"
-	line "style and support."
+	text "A team is a group"
+	line "project. Everyone"
+	cont "needs a job."
 
-	para "A good team is"
-	line "like a group"
-	cont "project."
+	para "We need to work on"
+	line "ours!"
 	done
 
 PokefanmDustinSeenText:
@@ -761,13 +761,19 @@ PokefanmDustinBeatenText:
 	done
 
 PokefanmDustinAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "I still think my"
+	line "#MON are the"
+	cont "best!"
+
+	para "All right… Yours"
+	line "are pretty great,"
+	cont "too."
 	done
 
 CosplayerNoelleSeenText:
-	text "Here's No. 3!"
-	line "I won't be easy."
+	text "Here's No. 3! The"
+	line "costume is ready."
+	cont "So is my team!"
 	done
 
 CosplayerNoelleBeatenText:
@@ -775,8 +781,9 @@ CosplayerNoelleBeatenText:
 	done
 
 CosplayerNoelleAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "At least my"
+	line "costume held up. I"
+	cont "worked hard on it!"
 	done
 
 LassPaigeSeenText:
@@ -789,8 +796,12 @@ LassPaigeBeatenText:
 	done
 
 LassPaigeAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "You still had all"
+	line "that energy after"
+	cont "three battles?"
+
+	para "I need to train"
+	line "longer!"
 	done
 
 JugglerSilasSeenText:
@@ -805,8 +816,12 @@ JugglerSilasBeatenText:
 	done
 
 JugglerSilasAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "Five battles and"
+	line "you never lost"
+	cont "your rhythm!"
+
+	para "That's a tough act"
+	line "to follow."
 	done
 
 SupernerdPatSeenText:

@@ -345,7 +345,8 @@ SchoolGirlKimAfterBattleText:
 	line "read expressions."
 
 	para "That's useful in"
-	line "battles and exams!"
+	line "battles and class"
+	cont "presentations!"
 	done
 
 BirdKeeperBryanSeenText:

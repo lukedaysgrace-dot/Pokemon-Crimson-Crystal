@@ -261,8 +261,9 @@ OlivineFishingCoveGateDeclinedText:
 	done
 OlivineFishingCoveGateEggText:
 	text "An EGG can't"
-	line "compete. Switch"
-	cont "your first #MON."
+	line "compete. Put a"
+	cont "#MON first in"
+	cont "your party."
 	done
 OlivineFishingCoveGateFaintedText:
 	text "Your first #MON"

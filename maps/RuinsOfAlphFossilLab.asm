@@ -249,9 +249,9 @@ RuinsOfAlphFossilLabReviverIntroText:
 	text "Hi! I'm a FOSSIL"
 	line "specialist."
 
-	para "Show me what you're"
-	line "carrying and I'll"
-	cont "restore it!"
+	para "Show me a fossil"
+	line "and I'll restore"
+	cont "it!"
 	done
 
 RuinsOfAlphFossilLabNoFossilText:

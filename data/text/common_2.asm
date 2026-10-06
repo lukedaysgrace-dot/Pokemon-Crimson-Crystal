@@ -691,8 +691,8 @@ Text_SelectDifficulty::
 Text_SelectDifficultyNormal::
 	text "Are you sure?"
 
-	para "Classic #MON"
-	line "rules."
+	para "Items allowed. No"
+	line "GYM level caps."
 	done
 
 Text_SelectDifficultyHard::

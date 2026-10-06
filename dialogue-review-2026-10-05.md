@@ -2,7 +2,13 @@
 
 The additions need a focused editing pass, especially Crystal's longer scenes. Most ordinary trainers are serviceable, and several additions have good character. The strongest problems are inaccurate gameplay information, repeated speeches, and incidental lines that invent relationships or backstory.
 
-This is a recommendation report. No game dialogue or event scripts were changed.
+The editing pass below has now been implemented: 117 dialogue blocks across 44 assembly files. Crystal's encounters and Mew finale are shorter, Rocket executives and other rivals have clearer voices, and repetitive trainer and rematch lines have been revised. Incorrect gameplay guidance, missing-rematch promises, outdated place names, grammar and text-width problems have been corrected. Event scripts, teams and rewards are unchanged.
+
+**Intentional exception:** The crypt still mentions a red-haired boy defacing graves and taking offerings, implying Silver. You confirmed that this is intended. The advice is shorter, and the reminder still refers to the boy. Recommendation 15 below is retained as part of the original review, not an outstanding change request.
+
+The rest of this document preserves the original audit and its coverage inventory. Quoted old dialogue, proposed wording and line numbers describe the pre-edit version; current text is identified by the same assembly labels.
+
+**Validation after editing:** Release and debug ROMs built successfully. All 117 edited text blocks ran through the ROM's text interpreter in an in-memory emulator; 381 input pauses and every final page were checked for border overflow using seven-character player names. All 738 source lines fit the 18-tile text area. The 10 portrait coverage tests passed, and a comparison with the pre-edit files confirmed that only text bodies changed in the 44 assembly files. Input and presentation waits were skipped for the renderer check; this was not a full playthrough of the events.
 
 ## Scope and method
 

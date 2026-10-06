@@ -226,8 +226,9 @@ TamerDevinBeatenText:
 
 TamerDevinAfterBattleText:
 	text "A strong #MON"
-	line "needs trust too."
-	cont "as discipline."
+	line "needs trust as"
+	cont "well as"
+	cont "discipline."
 	done
 
 TamerRolfSeenText:
@@ -247,9 +248,9 @@ TamerRolfAfterBattleText:
 	done
 
 BattleGirlKiraSeenText:
-	text "Every step through"
-	line "this cave honed"
-	cont "my technique!"
+	text "My legs are tired."
+	line "My #MON aren't."
+	cont "Let's battle!"
 	done
 
 BattleGirlKiraBeatenText:
@@ -258,15 +259,16 @@ BattleGirlKiraBeatenText:
 	done
 
 BattleGirlKiraAfterBattleText:
-	text "Training never"
-	line "ends. The LEAGUE"
-	cont "is only the start!"
+	text "All those steps"
+	line "weren't enough. I"
+	cont "need battle"
+	cont "practice, too!"
 	done
 
 BattleGirlMinaSeenText:
-	text "No shortcuts!"
-
-	para "Fight with spirit!"
+	text "I've come too far"
+	line "to back down now."
+	cont "You're on!"
 	done
 
 BattleGirlMinaBeatenText:
@@ -275,14 +277,17 @@ BattleGirlMinaBeatenText:
 	done
 
 BattleGirlMinaAfterBattleText:
-	text "A clear mind makes"
-	line "each strike count."
+	text "One loss won't"
+	line "send me home. I"
+	cont "came for the"
+	cont "LEAGUE!"
 	done
 
 CooltrainerMAdrianSeenText:
-	text "My team has an"
-	line "answer for every"
-	cont "challenge!"
+	text "I keep a move"
+	line "ready for every"
+	cont "type. Try to"
+	cont "surprise me!"
 	done
 
 CooltrainerMAdrianBeatenText:
@@ -291,13 +296,17 @@ CooltrainerMAdrianBeatenText:
 	done
 
 CooltrainerMAdrianAfterBattleText:
-	text "Coverage matters,"
-	line "but so does trust."
+	text "Knowing the right"
+	line "move is one thing."
+	cont "Picking the right"
+	cont "moment is harder."
 	done
 
 CooltrainerFSeleneSeenText:
-	text "The LEAGUE tests"
-	line "more than power."
+	text "The exit's close."
+	line "But I'm not"
+	cont "letting you slip"
+	cont "past!"
 	done
 
 CooltrainerFSeleneBeatenText:
@@ -305,8 +314,10 @@ CooltrainerFSeleneBeatenText:
 	done
 
 CooltrainerFSeleneAfterBattleText:
-	text "Keep that focus."
-	line "The exit is near."
+	text "You're nearly out"
+	line "of the cave. Save"
+	cont "some strength for"
+	cont "the LEAGUE!"
 	done
 
 VictoryRoadRivalBeforeText:

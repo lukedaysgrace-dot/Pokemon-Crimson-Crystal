@@ -291,28 +291,19 @@ OlivineGymGuyPreText:
 	done
 
 JasmineRematchChallengeText:
-	text "…Congratulations,"
-	line "JOHTO CHAMPION."
+	text "…Welcome back."
 
-	para "You have become"
-	line "so strong…"
-
-	para "I wonder if I"
-	line "have improved."
-
-	para "Would you like"
-	line "to test that?"
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "I've been working"
+	line "with my team."
+	cont "Would you like to"
+	cont "see how we battle"
+	cont "now?"
 	done
 
 JasmineRematchWinText:
-	text "…You are a better"
-	line "trainer than me,"
-
-	para "in both skill and"
-	line "kindness."
+	text "…We gave it our"
+	line "best. Thank you"
+	cont "for the battle."
 
 	para "PRYCE will test"
 	line "you next."

@@ -296,33 +296,22 @@ VioletGymGuyWinText:
 	done
 
 FalknerRematchChallengeText:
-	text "Congratulations"
-	line "on defeating the"
-	cont "ELITE 4!"
+	text "My FLYING #MON"
+	line "have trained hard"
+	cont "since our last"
+	cont "battle."
 
-	para "I've been training"
-	line "my FLYING-type"
-	cont "#MON even"
-	cont "harder."
-
-	para "Think you can take"
-	line "on the power of"
-	cont "the skies again?"
+	para "Ready to face them"
+	line "again?"
 	done
 
 FalknerRematchWinText:
-	text "Wow…"
-	line "You beat me again."
-
-	para "I'm going to train"
-	line "harder to become"
-
-	para "the greatest bird"
-	line "master!"
+	text "You beat me again."
+	line "We have to aim"
+	cont "higher!"
 
 	para "BUGSY is waiting"
-	line "for you in"
-	cont "AZALEA TOWN."
+	line "in AZALEA TOWN."
 	done
 
 VioletGym_MapEvents:

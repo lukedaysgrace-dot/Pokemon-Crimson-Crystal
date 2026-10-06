@@ -376,31 +376,17 @@ AzaleaGymGuyWinText:
 	done
 
 BugsyRematchChallengeText:
-	text "Wow, you're the"
-	line "JOHTO CHAMPION"
-	cont "now!"
+	text "My research has"
+	line "turned up new ways"
+	cont "to battle!"
 
-	para "Your skills are"
-	line "truly impressive!"
-
-	para "I've been busy"
-	line "with my research."
-
-	para "I'm ready to"
-	line "show you my new"
-	cont "findings."
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "Want to see my"
+	line "findings?"
 	done
 
 BugsyRematchWinText:
-	text "Wow, you must"
-	line "be an expert"
-	cont "trainer."
-
-	para "My research must"
-	line "not be complete…"
+	text "That's a result I"
+	line "need to study!"
 
 	para "WHITNEY is your"
 	line "next challenge."

@@ -43,17 +43,14 @@ CrystalPhoneStatusVioletText:
 	text "I'm working around"
 	line "VIOLET CITY."
 
-	para "SPROUT TOWER is"
-	line "full of leads,"
+	para "SPROUT TOWER"
+	line "first, then UNION"
+	cont "CAVE."
 
-	para "and UNION CAVE is"
-	line "next."
-
-	para "PROF.OAK wants"
-	line "sixty new entries."
-
-	para "I'd better keep"
-	line "moving."
+	para "OAK is waiting for"
+	line "my next report."
+	cont "Better keep"
+	cont "moving!"
 	done
 
 CrystalPhoneStatusIlexText:
@@ -147,31 +144,28 @@ CrystalPhoneTipRoute32Text:
 
 CrystalPhoneTipRoute33Text:
 	text "I confirmed"
-	line "PIKACHU on"
-	cont "ROUTE 33."
+	line "PIKACHU on ROUTE"
+	cont "33."
 
-	para "They only showed"
-	line "during the day."
+	para "Look during the"
+	line "morning or day."
 
 	para "Listen before you"
 	line "enter the grass."
-
-	para "You'll hear one"
-	line "before you see it."
+	cont "You'll hear one"
+	cont "before you see it."
 	done
 
 CrystalPhoneTipRoute34Text:
-	text "If you're patient,"
-	line "check ROUTE 34"
-	cont "in the morning."
+	text "Check ROUTE 34 in"
+	line "the morning."
 
-	para "EEVEE are there,"
-	line "but very rare."
+	para "SMEARGLE are rare,"
+	line "but I found one"
+	cont "there."
 
-	para "Keep quiet and let"
-	line "one come to you."
-
-	para "Don't chase one."
+	para "It tried to sketch"
+	line "my notes!"
 	done
 
 CrystalPhoneTipRoute35Text:
@@ -187,17 +181,18 @@ CrystalPhoneTipRoute35Text:
 	done
 
 CrystalPhoneTipRoute36Text:
-	text "Set out early for"
-	line "ROUTE 36."
+	text "Try ROUTE 36 in"
+	line "the morning or at"
+	cont "night."
 
-	para "SHROOMISH appear"
-	line "with the morning"
-	cont "dew."
+	para "SHROOMISH hide in"
+	line "the grass. I"
+	cont "haven't found them"
+	cont "during the day."
 
-	para "By midmorning,"
-	line "they're gone."
-
-	para "Don't sleep in!"
+	para "I nearly stepped"
+	line "on one. Watch your"
+	cont "feet!"
 	done
 
 CrystalPhoneTipRoute38Text:
@@ -290,13 +285,12 @@ CrystalPhoneTipRoute46Text:
 	done
 
 CrystalPhoneTipRoute9Text:
-	text "RHYHORN roam"
-	line "ROUTE 9 early in"
-	cont "the day."
+	text "RHYHORN roam ROUTE"
+	line "9 in the morning."
 
 	para "They don't scare"
-	line "easily, and they"
-	cont "never stop."
+	line "easily. Bring a"
+	cont "rested team."
 
 	para "Wear one down."
 	line "Don't rush the"
@@ -305,19 +299,15 @@ CrystalPhoneTipRoute9Text:
 
 CrystalPhoneTipRoute24Text:
 	text "Look for KADABRA"
-	line "on ROUTE 24 in"
-	cont "the morning."
+	line "on ROUTE 24 in the"
+	cont "morning."
 
-	para "The instant they"
-	line "notice you, they"
-	cont "TELEPORT."
+	para "They're rare."
+	line "Don't mistake one"
+	cont "for an ABRA!"
 
-	para "Lead with a"
-	line "#MON that can"
-	cont "stop escape."
-
-	para "Otherwise, you get"
-	line "one chance."
+	para "Those spoons are a"
+	line "useful clue."
 	done
 
 CrystalPhoneTipRoute28Text:
