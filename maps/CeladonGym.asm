@@ -155,22 +155,13 @@ PlayerReceivedRainbowBadgeText:
 	done
 
 ErikaExplainTMText:
-	text "ERIKA: That was a"
-	line "delightful match."
+	text "ERIKA: Please"
+	line "accept this TM."
 
-	para "I felt inspired."
-	line "Please, I wish you"
-	cont "to have this TM."
-
-	para "It is ENERGY"
-	line "BALL."
-
-	para "It is a wonderful"
-	line "move that drains"
-
-	para "half the damage it"
-	line "inflicts to heal"
-	cont "your #MON."
+	para "It is ENERGY BALL."
+	line "It may lower the"
+	cont "foe's SPECIAL"
+	cont "DEFENSE."
 
 	para "Please use it if"
 	line "it pleases you…"

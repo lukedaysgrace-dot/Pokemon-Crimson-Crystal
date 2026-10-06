@@ -92,9 +92,8 @@ BugCatcherRobSeenText:
 	done
 
 BugCatcherRobBeatenText:
-	text "No!"
-	line "CATERPIE can't"
-	cont "cut it!"
+	text "Even my best bugs"
+	line "couldn't stop you!"
 	done
 
 BugCatcherRobAfterBattleText:
@@ -103,9 +102,9 @@ BugCatcherRobAfterBattleText:
 	done
 
 BugCatcherEdSeenText:
-	text "Yo! You can't jam"
-	line "out if you're a"
-	cont "#MON trainer!"
+	text "You can't sneak"
+	line "past a BUG"
+	cont "CATCHER!"
 	done
 
 BugCatcherEdBeatenText:
@@ -126,9 +125,8 @@ BugCatcherDougSeenText:
 	done
 
 BugCatcherDougBeatenText:
-	text "I"
-	line "give! You're good"
-	cont "at this!"
+	text "I give! You're"
+	line "good at this!"
 	done
 
 BugCatcherDougAfterBattleText:

@@ -401,35 +401,19 @@ BlackthornGymGuyWinText:
 	done
 
 ClairRematchChallengeText:
-	text "You did it, huh?"
+	text "So, you're back."
+	line "Don't expect the"
+	cont "same battle twice."
 
-	para "You are now the"
-	line "JOHTO CHAMP."
-
-	para "You've proven"
-	line "your strength"
-
-	para "but can you"
-	line "handle me again?"
-
-	para "As a Dragon"
-	line "Master, I won't"
-	cont "hold back."
-
-	para "Not this time."
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "I won't hold back."
+	line "Will you face me"
+	cont "again?"
 	done
 
 ClairRematchWinText:
-	text "I lost?"
-
-	para "Again?"
-
-	para "I don't believe"
-	line "it. There must be"
-	cont "some mistake…"
+	text "Again? Hmph. You"
+	line "earned that"
+	cont "victory."
 
 	para "The ELITE FOUR now"
 	line "await your return."

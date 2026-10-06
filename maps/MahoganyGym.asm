@@ -389,40 +389,20 @@ MahoganyGymGuyWinText:
 	done
 
 PryceRematchChallengeText:
-	text "Ah, JOHTO"
-	line "CHAMPION!"
+	text "You've grown since"
+	line "we last fought."
 
-	para "Your skills"
-	line "are indeed"
-	cont "remarkable."
-
-	para "I am impressed."
-
-	para "But even now,"
-	line "there is much"
-	cont "to learn from"
-	cont "each other."
-
-	para "I, PRYCE--the"
-	line "winter trainer--"
-
-	para "still have a"
-	line "few tricks left."
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "But an old trainer"
+	line "still has a few"
+	cont "tricks. Shall I"
+	cont "show you?"
 	done
 
 PryceRematchWinText:
-	text "Ah, yet again I'm"
-	line "impressed by your"
-	cont "prowess."
-
-	para "With your strong"
-	line "will, I know you"
-
-	para "will overcome all"
-	line "life's obstacles."
+	text "Your will is"
+	line "strong. Keep it"
+	cont "through every"
+	cont "challenge."
 
 	para "CLAIR is the final"
 	line "JOHTO rematch."

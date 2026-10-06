@@ -216,25 +216,16 @@ IndigoPlateauPokecenter1FCooltrainerMText:
 	done
 
 PlateauRivalText1:
-	text "Hold it."
+	text "Hold it, <PLAYER>."
 
-	para "You're going to"
-	line "take the #MON"
+	para "My partners and I"
+	line "have trained for"
+	cont "this."
 
-	para "LEAGUE challenge"
-	line "now?"
-
-	para "That's not going"
-	line "to happen."
-
-	para "My super-well-"
-	line "trained #MON"
-
-	para "are going to pound"
-	line "you."
-
-	para "<PLAYER>!"
-	line "I challenge you!"
+	para "Let's see how far"
+	line "we've come. I'm"
+	cont "taking you on"
+	cont "first!"
 	done
 
 PlateauRivalWinText:
@@ -244,15 +235,14 @@ PlateauRivalWinText:
 	done
 
 PlateauRivalText2:
-	text "…Darn… I still"
-	line "can't win…"
+	text "…I lost. But my"
+	line "partners gave it"
+	cont "everything."
 
-	para "I… I have to think"
-	line "more about my"
-	cont "#MON…"
-
-	para "Humph! Try not to"
-	line "lose!"
+	para "We'll keep"
+	line "working. You'd"
+	cont "better not lose in"
+	cont "there!"
 	done
 
 PlateauRivalLoseText:
