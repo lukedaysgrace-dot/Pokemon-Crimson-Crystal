@@ -6,8 +6,7 @@ Route25CrystalBeforeText::
 	text "CRYSTAL: Quiet."
 	line "Look over there."
 
-	para "That's MEW. I've"
-	line "checked twice."
+	para "That's MEW."
 
 	para "…I'm trying not to"
 	line "shout."
@@ -90,9 +89,6 @@ Route25CrystalMewEscapedText::
 	line "another chance."
 	cont "But we know it's"
 	cont "real now."
-
-	para "That's more than"
-	line "we knew before."
 
 	para "I'll send OAK our"
 	line "notes. This"
