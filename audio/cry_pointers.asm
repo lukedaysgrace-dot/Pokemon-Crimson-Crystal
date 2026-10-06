@@ -122,3 +122,10 @@ Cries:
 ; Paldea (gen 9)
 	dba Cry_Flittle
 	dba Cry_Espathra
+; More cries imported from Polished Coral
+	dba Cry_Exeggutor
+	dba Cry_Espeon
+	dba Cry_Leafeon
+	dba Cry_Glaceon
+	dba Cry_Sylveon
+	dba Cry_PorygonZ

@@ -1039,23 +1039,23 @@ Cry_Lampent_Ch8:
 	sound_ret
 
 Cry_Chandelure:
-        channel_count 3
-        channel 5, Cry_Chandelure_Ch5
+	channel_count 3
+	channel 5, Cry_Chandelure_Ch5
 	channel 6, Cry_Chandelure_Ch6
 	channel 8, Cry_Chandelure_Ch8
 
 Cry_Chandelure_Ch5:
 	duty_cycle_pattern 0, 0, 0, 0
 	pitch_sweep 6, -7
-	square_note 34, 15, -1, 1716
+	square_note 36, 15, 7, 1716
 	pitch_sweep 8, 8
 	duty_cycle_pattern 0, 0, 1, 0
-	square_note 5, 14, 3, 1540
-	square_note 2, 14, 3, 1546
-	square_note 7, 14, 3, 1552
-	square_note 4, 14, 3, 1455
-	square_note 6, 14, 3, 1443
-	square_note 5, 11, 1, 1447
+	square_note 3, 10, 3, 1540
+	square_note 2, 10, 3, 1546
+	square_note 7, 10, 3, 1552
+	square_note 2, 10, 3, 1455
+	square_note 4, 10, 3, 1443
+	square_note 5, 8, 1, 1447
 	sound_ret
 
 Cry_Chandelure_Ch6:
@@ -1064,14 +1064,14 @@ Cry_Chandelure_Ch6:
 	square_note 6, 4, 0, 1347
 	square_note 6, 7, 0, 1334
 	square_note 6, 9, 7, 1322
-	square_note 5, 9, 7, 1315
-	square_note 5, 9, 7, 1308
-	square_note 5, 11, -1, 1300
-	square_note 2, 11, 3, 1316
-	square_note 7, 12, 3, 1330
-	square_note 4, 12, 3, 1215
-	square_note 6, 12, 3, 1103
-	square_note 5, 10, 1, 1112
+	square_note 6, 9, 7, 1315
+	square_note 6, 9, 7, 1308
+	square_note 3, 8, -1, 1300
+	square_note 2, 8, 3, 1316
+	square_note 7, 8, 3, 1330
+	square_note 2, 8, 3, 1215
+	square_note 4, 8, 3, 1103
+	square_note 5, 7, 1, 1112
 	sound_ret
 
 Cry_Chandelure_Ch8:
@@ -1079,7 +1079,7 @@ Cry_Chandelure_Ch8:
 	noise_note 18, 10, 0, 84
 	noise_note 12, 10, 0, 85
 	noise_note 12, 10, 7, 86
-	noise_note 18, 11, 6, 112
+	noise_note 20, 11, 6, 87 ;112
 	noise_note 16, 11, 2, 108
 	sound_ret
 
