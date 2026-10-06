@@ -211,3 +211,8 @@ INCLUDE "audio/cries.asm"
 SECTION "Cries 2", ROMX
 
 INCLUDE "audio/cries_2.asm"
+
+
+SECTION "Cries 3", ROMX
+
+INCLUDE "audio/cries_3.asm"

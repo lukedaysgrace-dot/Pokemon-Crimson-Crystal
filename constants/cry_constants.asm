@@ -129,3 +129,10 @@
 ; Paldea (gen 9)
 	const CRY_FLITTLE
 	const CRY_ESPATHRA
+; More cries imported from Polished Coral
+	const CRY_EXEGGUTOR
+	const CRY_ESPEON
+	const CRY_LEAFEON
+	const CRY_GLACEON
+	const CRY_SYLVEON
+	const CRY_PORYGONZ
