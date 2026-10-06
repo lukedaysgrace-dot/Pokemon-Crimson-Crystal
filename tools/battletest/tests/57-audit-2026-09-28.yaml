@@ -145,7 +145,7 @@
 
 # Unnerve only printed its banner.
 - name: "Audit 09-29: Unnerve stops the foe eating its Berry"
-  player: { species: MEW, level: 50, ability: UNNERVE, moves: [SPLASH] }
+  player: { species: MEWTWO, level: 50, ability: UNNERVE, moves: [SPLASH] }
   enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 30, item: BERRY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
@@ -156,7 +156,7 @@
   enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, hp: 30, item: BERRY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["enemy.item == 'NO_ITEM'", "enemy.hp > enemy.start_hp"]
+  assert: ["enemy.item == 'NO_ITEM'", "enemy.hp == (enemy.maxhp * 30) // 100 + 10"]
 
 # A Berry eaten mid-turn (right after a hit) was replayed by Cud Chew at the
 # end of that same turn.
@@ -341,13 +341,14 @@
     - player.item == 'MYSTERYBERRY'
 
 - name: "Audit r27: a fainted Unnerve holder no longer blocks the foe's Berry"
-  player: { species: SNORLAX, level: 5, ability: IRON_BARBS, item: BERRY, hp: 17, moves: [SPLASH] }
+  player: { species: SNORLAX, level: 5, ability: IRON_BARBS, item: BERRY, hp: 35, moves: [SPLASH] }
   enemy:  { species: JOLTEON, level: 5, ability: UNNERVE, hp: 1, moves: [TACKLE] }
   rng: forced_high
   turns: 1
   assert:
     - enemy.hp == 0
     - player.item == 'NO_ITEM'
+    - player.hp > 0
 
 - name: "Audit r28: Sheer Force still cancels Life Orb recoil when the hit breaks a Substitute"
   player: { species: NIDOKING, level: 50, ability: SHEER_FORCE, item: LIFE_ORB, moves: [BODY_SLAM] }

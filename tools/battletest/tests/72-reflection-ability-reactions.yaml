@@ -1,0 +1,83 @@
+- name: "Deep reflection reaction: Clear Body blocks a reflected Growl"
+  player: {species: MEW, level: 30, ability: CLEAR_BODY, moves: [GROWL]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 7", "enemy.stat_levels[0] == 7", "ability_seen('MAGIC_BOUNCE')", "ability_seen('CLEAR_BODY')"]
+
+- name: "Deep reflection reaction: Contrary reverses a reflected Growl"
+  player: {species: MEW, level: 30, ability: CONTRARY, moves: [GROWL]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 8", "enemy.stat_levels[0] == 7"]
+
+- name: "Deep reflection reaction: Mirror Armor redirects a reflected Growl once"
+  player: {species: MEW, level: 30, ability: MIRROR_ARMOR, moves: [GROWL]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 7", "enemy.stat_levels[0] == 6", "ability_seen('MIRROR_ARMOR')", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Deep reflection reaction: Defiant reacts to a reflected Growl"
+  player: {species: MEW, level: 30, ability: DEFIANT, moves: [GROWL]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 8", "enemy.stat_levels[0] == 7"]
+
+- name: "Deep reflection reaction: Competitive reacts to a reflected Screech"
+  player: {species: MEW, level: 30, ability: COMPETITIVE, moves: [SCREECH]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[1] == 5", "player.stat_levels[3] == 9", "enemy.stat_levels[1] == 7"]
+
+- name: "Deep reflection reaction: Contrary reverses reflected Swagger's boost"
+  player: {species: MEW, level: 30, ability: CONTRARY, moves: [SWAGGER]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 5", "enemy.stat_levels[0] == 7", "(player.substatus[2] & 128) != 0"]
+
+- name: "Deep reflection reaction: Own Tempo blocks only reflected Swagger's confusion"
+  player: {species: MEW, level: 30, ability: OWN_TEMPO, moves: [SWAGGER]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 9", "enemy.stat_levels[0] == 7", "(player.substatus[2] & 128) == 0"]
+
+- name: "Deep reflection reaction: two Magic Bounce holders do not split Swagger"
+  player: {species: ESPEON, level: 30, ability: MAGIC_BOUNCE, moves: [SWAGGER]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 9", "enemy.stat_levels[0] == 7", "(player.substatus[2] & 128) != 0", "(enemy.substatus[2] & 128) == 0", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Deep reflection reaction: Synchronize can poison the Magic Bounce holder"
+  player: {species: MEW, level: 30, ability: SYNCHRONIZE, moves: [TOXIC]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["(player.status & 8) != 0", "(player.substatus[4] & 1) != 0", "(enemy.status & 8) != 0", "(enemy.substatus[4] & 1) != 0"]
+
+- name: "Deep Swagger: Mold Breaker ignores the target's Contrary"
+  player: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: CONTRARY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 9", "(enemy.substatus[2] & 128) != 0"]
+
+- name: "Deep Swagger: an enemy Mold Breaker also ignores the player's Contrary"
+  player: {species: MEW, level: 30, ability: CONTRARY, moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: MOLD_BREAKER, moves: [SWAGGER]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 9", "(player.substatus[2] & 128) != 0"]
+
+- name: "Deep Contrary: an opponent's Mold Breaker cannot bypass a self-raise"
+  player: {species: MEW, level: 30, ability: CONTRARY, moves: [SWORDS_DANCE]}
+  enemy: {species: SNORLAX, level: 100, ability: MOLD_BREAKER, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 5", "enemy.stat_levels[0] == 7"]

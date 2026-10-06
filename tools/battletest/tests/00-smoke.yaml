@@ -34,7 +34,7 @@
   rng: forced_low
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == 13   # golden value, max roll, no crit
+    - enemy.start_hp - enemy.hp == 19   # current 30-power Lick, max roll, no crit
 
 - name: Intimidate fires on entry
   # This test found a real engine bug on 2026-08-09: BattleCommand_StatDown's

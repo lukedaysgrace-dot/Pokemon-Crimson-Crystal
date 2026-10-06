@@ -1,0 +1,2481 @@
+# Gas faint -> forced replacement -> Trace -> weather, with held items.
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace DRIZZLE BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DRIZZLE"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DRIZZLE"
+  - weather == 1
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace DRIZZLE LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DRIZZLE"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DRIZZLE"
+  - weather == 1
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace DRIZZLE BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DRIZZLE"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DRIZZLE"
+  - weather == 1
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace DRIZZLE LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DRIZZLE"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DRIZZLE"
+  - weather == 1
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace DRIZZLE BERRY'
+  player:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DRIZZLE"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DRIZZLE"
+  - weather == 1
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace DRIZZLE LEFTOVERS'
+  player:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DRIZZLE"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DRIZZLE"
+  - weather == 1
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace DRIZZLE BERRY'
+  player:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DRIZZLE"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DRIZZLE"
+  - weather == 1
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace DRIZZLE LEFTOVERS'
+  player:
+    species: POLITOED
+    level: 100
+    ability: DRIZZLE
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DRIZZLE"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DRIZZLE"
+  - weather == 1
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace DROUGHT BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DROUGHT"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DROUGHT"
+  - weather == 2
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace DROUGHT LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DROUGHT"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DROUGHT"
+  - weather == 2
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace DROUGHT BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DROUGHT"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DROUGHT"
+  - weather == 2
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace DROUGHT LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "DROUGHT"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "DROUGHT"
+  - weather == 2
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace DROUGHT BERRY'
+  player:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DROUGHT"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DROUGHT"
+  - weather == 2
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace DROUGHT LEFTOVERS'
+  player:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DROUGHT"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DROUGHT"
+  - weather == 2
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace DROUGHT BERRY'
+  player:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DROUGHT"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DROUGHT"
+  - weather == 2
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace DROUGHT LEFTOVERS'
+  player:
+    species: NINETALES
+    level: 100
+    ability: DROUGHT
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "DROUGHT"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "DROUGHT"
+  - weather == 2
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace SAND_STREAM BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SAND_STREAM"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SAND_STREAM"
+  - weather == 3
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace SAND_STREAM LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SAND_STREAM"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SAND_STREAM"
+  - weather == 3
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace SAND_STREAM BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SAND_STREAM"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SAND_STREAM"
+  - weather == 3
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace SAND_STREAM LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SAND_STREAM"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SAND_STREAM"
+  - weather == 3
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace SAND_STREAM BERRY'
+  player:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SAND_STREAM"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SAND_STREAM"
+  - weather == 3
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace SAND_STREAM LEFTOVERS'
+  player:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SAND_STREAM"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SAND_STREAM"
+  - weather == 3
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace SAND_STREAM BERRY'
+  player:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SAND_STREAM"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SAND_STREAM"
+  - weather == 3
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace SAND_STREAM LEFTOVERS'
+  player:
+    species: TYRANITAR
+    level: 100
+    ability: SAND_STREAM
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SAND_STREAM"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SAND_STREAM"
+  - weather == 3
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace SNOW_WARNING BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SNOW_WARNING"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SNOW_WARNING"
+  - weather == 4
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas EXPLOSION Trace SNOW_WARNING LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  enemy:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SNOW_WARNING"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SNOW_WARNING"
+  - weather == 4
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace SNOW_WARNING BERRY'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SNOW_WARNING"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SNOW_WARNING"
+  - weather == 4
+  - enemy.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: player Gas SELFDESTRUCT Trace SNOW_WARNING LEFTOVERS'
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  enemy:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.species == "PORYGON"
+  - player.ability == "SNOW_WARNING"
+  - player.item == "AIR_BALLOON"
+  - player.hp > 0
+  - enemy.hp > 0
+  - enemy.ability == "SNOW_WARNING"
+  - weather == 4
+  - enemy.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  player2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace SNOW_WARNING BERRY'
+  player:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SNOW_WARNING"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SNOW_WARNING"
+  - weather == 4
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas EXPLOSION Trace SNOW_WARNING LEFTOVERS'
+  player:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - EXPLOSION
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SNOW_WARNING"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SNOW_WARNING"
+  - weather == 4
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace SNOW_WARNING BERRY'
+  player:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: BERRY
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SNOW_WARNING"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SNOW_WARNING"
+  - weather == 4
+  - player.item == "NO_ITEM"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER
+- name: 'Lifecycle chain: enemy Gas SELFDESTRUCT Trace SNOW_WARNING LEFTOVERS'
+  player:
+    species: ABOMASNOW
+    level: 100
+    ability: SNOW_WARNING
+    item: LEFTOVERS
+    hp: 51
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SELFDESTRUCT
+  rng: forced_high
+  turns: 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.species == "PORYGON"
+  - enemy.ability == "SNOW_WARNING"
+  - enemy.item == "AIR_BALLOON"
+  - enemy.hp > 0
+  - player.hp > 0
+  - player.ability == "SNOW_WARNING"
+  - weather == 4
+  - player.item == "LEFTOVERS"
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - turns_done == 2
+  enemy2:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    item: AIR_BALLOON
+    moves:
+    - SPLASH
+  enemy_class: FALKNER

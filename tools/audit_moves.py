@@ -432,7 +432,7 @@ def audit_effect_command_dispatch(audit: Audit) -> None:
         if (match := re.fullmatch(
             r"\s*command\s+([a-z0-9]+)\s*;\s*([0-9a-fA-F]{2})\s*", raw
         ))
-        and int(match.group(2), 16) <= 0xD3
+        and int(match.group(2), 16) < 0xFE
     ]
     pointer_text = read("data/battle/effect_command_pointers.asm")
     pointer_body = pointer_text.split("BattleCommandPointers:", 1)
@@ -445,8 +445,8 @@ def audit_effect_command_dispatch(audit: Audit) -> None:
 
     audit.count("battle commands", len(commands))
     audit.check(
-        [value for _, value in commands] == list(range(1, 0xD4)),
-        "battle command macros must cover every byte from $01 through $d3 in order",
+        [value for _, value in commands] == list(range(1, len(commands) + 1)),
+        "battle command macros must be contiguous from $01 up to the last declared command",
     )
     audit.check(
         len(pointers) == len(commands),

@@ -541,6 +541,9 @@ wAbilityStatDropFlag:: db
 ; nz while a Neutralizing Gas holder has been active on the field; cleared
 ; (and the other battler's entry abilities re-run) once no holder remains
 wNeutralizingGasActive:: db
+; 1 player / 2 enemy while a Gas holder's Selfdestruct hit is resolving.
+; The core clears the user's HP before damage, but Gas ends after the hit.
+wSelfdestructGasTurn:: db
 
 wPlayerDamageTaken:: dw ; c682
 wEnemyDamageTaken:: dw ; c684

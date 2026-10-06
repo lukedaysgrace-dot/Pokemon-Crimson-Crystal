@@ -51,6 +51,7 @@ DoMove:
 	xor a
 	ld [wPreStatScopeActive], a
 	ld [wHitSubstitute], a
+	ld [wSelfdestructGasTurn], a
 ; Get the user's move effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -112,9 +113,24 @@ DoMove:
 ; endturn_command (-2) is used to terminate branches without ending the read cycle.
 	cp endturn_command
 	jr c, .DispatchMoveEffectCommand
+	xor a
+	ld [wSelfdestructGasTurn], a
 	farcall RunBerserkMoveEnd_Core
 	ret
 .DispatchMoveEffectCommand
+	; Reflection runs the complete status move after its action commands.
+	; Keep command operands (including damage in de) across the hooks.
+	push af
+	push bc
+	push de
+	ld b, a
+	farcall MagicBounceSkipActionCommand_Core
+	jr c, .reflected_action_command
+	farcall TryMagicBounceCommand_Core
+	pop de
+	pop bc
+	jr c, .bounced_command
+	pop af
 
 ; The rest of the commands (01-af) are read from BattleCommandPointers.
 	push bc
@@ -132,6 +148,17 @@ DoMove:
 	call .DoMoveEffectCommand
 
 	jr .ReadMoveEffectCommand
+
+.bounced_command
+	pop af
+	; The reflected full script replaced the original buffer and completed.
+	ret
+
+.reflected_action_command
+	pop de
+	pop bc
+	pop af
+	jp .ReadMoveEffectCommand
 
 .DoMoveEffectCommand:
 	jp hl
@@ -1890,6 +1917,8 @@ BattleCommand_CheckHit:
 	; Parental Bond checks accuracy once for the whole two-hit move.
 	farcall CheckParentalBondSecondHit_Core
 	ret c
+	farcall MagicBounceSkipsOriginalHit_Core
+	ret c
 	; Targeting ability blocks must precede every unconditional-hit shortcut
 	; below (Lock-On, X Accuracy, always-hit effects, rain/hail, No Guard).
 	farcall AbilityPreHitTargetBlock
@@ -1900,6 +1929,16 @@ BattleCommand_CheckHit:
 
 	call .Protect
 	jp nz, .Miss
+
+	; Swagger's raise and confusion are one targeted effect. Check the
+	; Substitute before switchturn makes the raise look self-inflicted.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SWAGGER
+	jr nz, .swagger_sub_checked
+	call CheckSubstituteOpp
+	jp nz, .Miss
+.swagger_sub_checked
 
 	call .LockOn
 	ret nz
@@ -1927,6 +1966,8 @@ BattleCommand_CheckHit:
 	ret z
 	cp EFFECT_BIDE
 	ret z ; Bide's release does not roll accuracy
+	cp EFFECT_SKILL_SWAP
+	ret z ; Always hits eligible targets; protection/priority checks ran above.
 
 	call .StatModifiers
 
@@ -2798,6 +2839,8 @@ BattleCommand_CheckFaint:
 ; It runs after applydamage/criticaltext/supereffectivetext, a text-safe
 ; spot, and before faint processing (the hook guards fainted sides itself).
 	farcall RunContactAbilitiesHook
+	; A committed Gas explosion still suppresses berry abilities below.
+	; Clear its marker at move completion, after the whole hit has resolved.
 
 	farcall CheckTargetFaintedWithCheat
 	jr z, .fainted
@@ -4365,10 +4408,38 @@ BattleCommand_StatUp:
 	ret nz
 	jp MinimizeDropSub
 
+BattleCommand_SwaggerBoost:
+; Resolve the targeted boost's ability before switching perspectives.
+; Mold Breaker ignores the recipient's Contrary; genuine self-raises
+; continue to use RaiseStat's ordinary Contrary hook.
+	farcall GetOpponentIgnorableAbility_b
+	ld a, b
+	cp CONTRARY
+	push af
+	call BattleCommand_SwitchTurn
+	pop af
+	ld b, $10 | ATTACK
+	jr z, .contrary
+	call RaiseStatWithoutContrary
+	jr .finish
+.contrary
+	call BattleCommand_StatUp
+.finish
+	; A capped boost does not prevent Swagger's separate confusion effect.
+	; Keep the cap message, but don't let failuretext end the entire move.
+	ld a, [wFailedMessage]
+	cp 2
+	jr nz, .restore_turn
+	xor a
+	ld [wAttackMissed], a
+.restore_turn
+	jp BattleCommand_SwitchTurn
+
 RaiseStat::
 	; Contrary turns the holder's own raises into drops
 	farcall ContraryCheckRaise
 	ret c
+RaiseStatWithoutContrary:
 	ld a, b
 	ld [wLoweredStat], a
 	ld hl, wPlayerStatLevels
@@ -5323,9 +5394,13 @@ BattleCommand_ForceSwitch:
 ; FindAliveEnemyMons lives in the "Enemy Trainers" bank (engine/battle/ai/switch.asm)
 	farcall FindAliveEnemyMons
 	jr c, .switch_fail
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .enemy_switch_ready
 	ld a, [wEnemyGoesFirst]
 	and a
 	jr z, .switch_fail
+.enemy_switch_ready
 	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [wKickCounter], a
@@ -5382,7 +5457,7 @@ BattleCommand_ForceSwitch:
 .force_player_switch
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .player_miss
+	jp nz, .player_miss
 
 	ld a, [wBattleMode]
 	dec a
@@ -5418,16 +5493,20 @@ BattleCommand_ForceSwitch:
 	ld [wForcedSwitch], a
 	call SetBattleDraw
 	ld a, [wEnemyMoveStructAnimation]
-	jr .succeed
+	jp .succeed
 
 .vs_trainer
 	call CheckPlayerHasMonToSwitchTo
-	jr c, .fail
+	jp c, .fail
 
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .player_switch_ready
 	ld a, [wEnemyGoesFirst]
 	cp $1
 	jr z, .switch_fail
 
+.player_switch_ready
 	call UpdateBattleMonInParty
 	ld a, $1
 	ld [wKickCounter], a

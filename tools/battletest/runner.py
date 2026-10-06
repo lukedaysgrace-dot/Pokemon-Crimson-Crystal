@@ -29,10 +29,21 @@ import yaml
 from pyboy import PyBoy
 
 from symbols import Symbols, Constants, STATE_MENU, STATE_READY, STATE_WAIT, STATE_DONE, STATE_ERROR
-from state import Battle, Request
+from state import Battle, Request, encode_action
 from move_sweep import generate_move_smoke_tests
 from effect_sweep import generate_effect_semantic_tests
 from interaction_sweep import generate_interaction_tests
+from ability_sweep import generate_ability_tests
+from ability_matrix import generate_ability_matrix
+from reflection_matrix import generate_reflection_matrix
+from class_matrix import generate_class_matrix
+from textbox_matrix import generate_textbox_matrix
+from swagger_matrix import generate_swagger_matrix
+from outcome_matrix import generate_outcome_matrix
+from long_sweep import generate_long_tests
+from item_matrix import generate_item_matrix
+from reaction_matrix import generate_reaction_matrix
+from complex_matrix import generate_complex_matrix
 
 ROOT = Path(__file__).resolve().parents[2]
 ROM = ROOT / "pokecrystal_debug.gbc"
@@ -72,7 +83,39 @@ class Harness:
         self.pb.hook_register(0, 0x100, lambda _context: None, None)
         self.pb.set_emulation_speed(0)
         self.battle = Battle(self.pb, self.sym, self.con)
+        self.battle.textbox_contexts = set()
         self.fixture = None  # BytesIO of the DEBUG-menu state
+        self.text_context = None
+        self.text_overflows = []
+        for symbol, callback in (
+                ("PrintTextboxText", self._begin_text),
+                ("PrintTextboxText.done", self._end_text),
+                ("CheckDict.place", self._check_text_glyph)):
+            bank, address = self.sym[symbol]
+            self.pb.hook_register(bank, address, callback, None)
+
+    def _begin_text(self, _context):
+        registers = self.pb.register_file
+        address = registers.HL
+        bank = self.battle.mem.read("hROMBank") if address >= 0x4000 else 0
+        self.text_context = self.sym.nearest(bank, address)
+        self.battle.textbox_contexts.add(self.text_context)
+
+    def _end_text(self, _context):
+        self.text_context = None
+
+    def _check_text_glyph(self, _context):
+        # Observe the actual destination before the text engine writes a glyph.
+        # This includes expanded <USER>/<TARGET> and text_ram strings, across
+        # scrolls and pages; checking a screenshot at turn end misses old text.
+        if self.text_context is None:
+            return
+        offset = self.pb.register_file.HL - self.sym.addr("wTileMap")
+        row, column = divmod(offset, 20)
+        if row not in (14, 16) or not 1 <= column <= 18:
+            event = f"{self.text_context}: glyph at ({column}, {row})"
+            if event not in self.text_overflows:
+                self.text_overflows.append(event)
 
     # ---- low level ----
 
@@ -163,9 +206,9 @@ class Harness:
         for _ in range(6):
             self.press("b", wait=10)
         log("bootstrap: opening DEBUG")
-        deadline = time.time() + 180
+        deadline = time.monotonic() + 180
         while self.state() != STATE_MENU:
-            if time.time() > deadline:
+            if time.monotonic() > deadline:
                 self.screenshot("bootstrap-stuck")
                 raise RuntimeError(
                     "bootstrap never reached the DEBUG menu "
@@ -185,6 +228,9 @@ class Harness:
     def load_fixture(self):
         self.fixture.seek(0)
         self.pb.load_state(self.fixture)
+        self.text_context = None
+        self.text_overflows = []
+        self.battle.textbox_contexts.clear()
 
     def run_battle(self, test):
         """Write request, run to the assertion point. Returns reached state."""
@@ -294,6 +340,8 @@ class AssertionContext:
             "wram16": lambda name, offset=0: b.mem.read_u16_be(name, offset),
             "item_id": b.con.item_id,
             "text_seen": b.text_seen,
+            "textbox_seen": lambda label: any(context == label or context.startswith(label + "+")
+                                             for context in b.textbox_contexts),
             "ability_seen": b.ability_seen,
             "buffer_is": b.buffer_is,
             # name of the move the AI picked last (wCurEnemyMove, 8-bit ID)
@@ -362,13 +410,24 @@ def capture_result(battle, snapshot):
 def apply_wram_setup(battle, setup):
     """Apply optional post-entry WRAM fixtures before the first turn."""
     for symbol, value in (setup or {}).items():
-        if isinstance(value, list):
+        if isinstance(value, dict) and set(value) == {"move"}:
+            index = battle.con.move_index(value["move"])
+            runtime_id = next((move for move in range(1, 0xfd)
+                               if battle.mem.move_index_of(move) == index), None)
+            if runtime_id is None:
+                raise ValueError(f"setup move {value['move']} is not loaded in this battle")
+            battle.mem.write(symbol, runtime_id)
+        elif isinstance(value, list):
             battle.mem.write_bytes(symbol, value)
         else:
             battle.mem.write(symbol, value)
 
 
-def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interactions=0):
+def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interactions=0,
+               all_abilities=False, ability_matrix=False, reflection_matrix=False,
+               class_matrix=False, textbox_matrix=False, swagger_matrix=False,
+               outcome_matrix=False, long_battles=False, item_matrix=False, reaction_matrix=False,
+               complex_matrix=False):
     files = []
     default_dir = Path(__file__).resolve().parent / "tests"
     if not paths:
@@ -391,8 +450,42 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
         tests.extend(generate_effect_semantic_tests())
     if interactions:
         tests.extend(generate_interaction_tests(interactions))
+    if all_abilities:
+        tests.extend(generate_ability_tests())
+    if ability_matrix:
+        tests.extend(generate_ability_matrix())
+    if reflection_matrix:
+        tests.extend(generate_reflection_matrix())
+    if class_matrix:
+        tests.extend(generate_class_matrix())
+    if textbox_matrix:
+        tests.extend(generate_textbox_matrix())
+    if swagger_matrix:
+        tests.extend(generate_swagger_matrix())
+    if outcome_matrix:
+        tests.extend(generate_outcome_matrix())
+    if long_battles:
+        tests.extend(generate_long_tests())
+    if item_matrix:
+        tests.extend(generate_item_matrix())
+    if reaction_matrix:
+        tests.extend(generate_reaction_matrix())
+    if complex_matrix:
+        tests.extend(generate_complex_matrix())
     if keyword:
-        tests = [t for t in tests if keyword.lower() in t.get("name", "").lower()]
+        selected = {i for i, t in enumerate(tests) if keyword.lower() in t.get("name", "").lower()}
+        # A filtered assertion still needs its earlier paired controls.
+        # Include dependencies transitively and retain original execution order.
+        while True:
+            required = set()
+            for i in selected:
+                for expression in tests[i].get("assert", []) + tests[i].get("turn_assert", []):
+                    required.update(re.findall(r"result\(['\"]([^'\"]+)['\"]\)", expression))
+            expanded = selected | {i for i, t in enumerate(tests) if t.get("id") in required}
+            if expanded == selected:
+                break
+            selected = expanded
+        tests = [t for i, t in enumerate(tests) if i in selected]
     return tests
 
 
@@ -405,18 +498,44 @@ def main():
                     help="also execute one generated smoke battle per move")
     ap.add_argument("--all-effects", action="store_true",
                     help="also assert one generated scenario per move effect")
+    ap.add_argument("--all-abilities", action="store_true",
+                    help="exercise every ability on both sides, Gas suppression and Trace")
+    ap.add_argument("--ability-matrix", action="store_true",
+                    help="move-class suppression/bypass controls and ability transfers")
+    ap.add_argument("--reflection-matrix", action="store_true",
+                    help="complete Magic Bounce effects, accuracy and targeting rules")
+    ap.add_argument("--class-matrix", action="store_true",
+                    help="every punch/slice/pulse/bite/ball/wind/sound move with paired controls")
+    ap.add_argument("--textbox-matrix", action="store_true",
+                    help="every move and ability execution with maximum-length nicknames")
+    ap.add_argument("--swagger-matrix", action="store_true",
+                    help="Swagger at every Attack stage with Contrary/Own Tempo and bypass controls")
+    ap.add_argument("--outcome-matrix", action="store_true",
+                    help="move-specific absorption, stat boundaries and secondary effects")
+    ap.add_argument("--long-battles", action="store_true",
+                    help="16-32 turn ability/switch/mixed battles with per-turn assertions")
+    ap.add_argument("--item-matrix", action="store_true",
+                    help="Life Orb/Klutz and contact damage/Magic Guard across damaging moves")
+    ap.add_argument("--reaction-matrix", action="store_true",
+                    help="per-hit Stamina, Weak Armor, Justified, Rattled and Thermal Exchange outcomes")
+    ap.add_argument("--complex-matrix", action="store_true",
+                    help="multi-hit ability/item combinations and new 12-turn mixed battles")
     ap.add_argument("--interactions", type=int, metavar="N", default=0,
                     help="also run N deterministic mixed-mechanic stress battles")
     args = ap.parse_args()
 
-    tests = load_tests(args.paths, args.keyword, args.all_moves, args.all_effects, args.interactions)
+    tests = load_tests(args.paths, args.keyword, args.all_moves, args.all_effects,
+                       args.interactions, args.all_abilities, args.ability_matrix,
+                       args.reflection_matrix, args.class_matrix, args.textbox_matrix,
+                       args.swagger_matrix, args.outcome_matrix, args.long_battles, args.item_matrix,
+                       args.reaction_matrix, args.complex_matrix)
     if not tests:
         sys.exit("no tests found")
 
     h = Harness(verbose=args.verbose)
-    t0 = time.time()
+    t0 = time.monotonic()
     h.ensure_fixture()
-    print(f"fixture ready in {time.time()-t0:.1f}s; running {len(tests)} tests")
+    print(f"fixture ready in {time.monotonic()-t0:.1f}s; running {len(tests)} tests")
 
     passed = failed = errored = skipped = 0
     results = {}
@@ -426,9 +545,10 @@ def main():
             skipped += 1
             print(f"SKIP {name} ({test.get('skip') if isinstance(test.get('skip'), str) else 'skipped'})")
             continue
-        t1 = time.time()
+        t1 = time.monotonic()
         try:
             h.load_fixture()
+            checkpoint_failures = []
             # pre-turn snapshot comes from a 0-turn pause when requested
             snapshot = {}
             if test.get("snapshot", True):
@@ -450,24 +570,38 @@ def main():
                 snapshot = {"player": snapshot_side(h.battle.player),
                             "enemy": snapshot_side(h.battle.enemy)}
                 apply_wram_setup(h.battle, test.get("setup_wram"))
-                # continue to the real turn target
-                h.battle.mem.write("wDebugTurnTarget", test.get("turns", 1))
-                h.battle.mem.write("wDebugControl", 1)
-                frames = 0
-                while frames < FRAME_CEILING_BATTLE:
-                    st = h.state()
-                    if st in (STATE_WAIT, STATE_DONE, STATE_ERROR) and \
-                            h.battle.turns_done >= test.get("turns", 1):
+                # Longer scripts refresh the last ROM script slot at each
+                # pause, preserving the retail turn/switch routines. Optional
+                # assertions inspect every completed turn, not only the end.
+                target = test.get("turns", 1)
+                script = test.get("move_script") or []
+                checkpoints = range(1, target + 1) if test.get("turn_assert") or len(script) > 8 else [target]
+                for checkpoint in checkpoints:
+                    if checkpoint >= 8 and len(script) > 8:
+                        action = script[min(checkpoint - 1, len(script) - 1)]
+                        h.battle.mem.write("wDebugMoveScript", encode_action(action), 7)
+                    h.battle.mem.write("wDebugTurnTarget", checkpoint)
+                    h.battle.mem.write("wDebugControl", 1)
+                    frames = 0
+                    while frames < FRAME_CEILING_BATTLE:
+                        st = h.state()
+                        if st in (STATE_WAIT, STATE_DONE, STATE_ERROR) and \
+                                h.battle.turns_done >= checkpoint:
+                            break
+                        if st == STATE_DONE:
+                            break
+                        h.pb.button("a", 2)
+                        h.tick(4)
+                        frames += 4
+                    else:
+                        st = None
+                    if st in (STATE_WAIT, STATE_DONE):
+                        env = AssertionContext(h.battle, snapshot, results).env()
+                        for expression in test.get("turn_assert", []):
+                            if not eval(expression, {"__builtins__": {}}, env):
+                                checkpoint_failures.append(f"turn {h.battle.turns_done}: {expression}")
+                    if st != STATE_WAIT:
                         break
-                    if st == STATE_DONE:
-                        break
-                    h.pb.button("a", 2)
-                    h.tick(4)
-                    frames += 4
-                else:
-                    # Do not reuse the snapshot's prior STATE_WAIT when the
-                    # continuation itself exhausted the frame ceiling.
-                    st = None
             else:
                 st = h.run_battle(test)
 
@@ -483,6 +617,8 @@ def main():
             if "id" in test:
                 results[test["id"]] = capture_result(h.battle, snapshot)
             failures = []
+            failures.extend(checkpoint_failures)
+            failures.extend(h.text_overflows)
             for expr in test.get("assert", []):
                 try:
                     ok = eval(expr, {"__builtins__": {}}, ctx)
@@ -495,7 +631,7 @@ def main():
             if failures:
                 failed += 1
                 shot = h.screenshot(name.replace(" ", "_").replace("/", "-")[:60])
-                print(f"FAIL {name} ({time.time()-t1:.1f}s)")
+                print(f"FAIL {name} ({time.monotonic()-t1:.1f}s)")
                 for f_ in failures:
                     print(f"     assert {f_}")
                 detail = {k: v for k, v in (("player.hp", ctx["player"].hp),
@@ -519,7 +655,7 @@ def main():
                 print(f"     screenshot: {shot}")
             else:
                 passed += 1
-                print(f"PASS {name} ({time.time()-t1:.1f}s)")
+                print(f"PASS {name} ({time.monotonic()-t1:.1f}s)")
                 if h.verbose:
                     print(f"     control: {h.control_state()}")
         except Exception as e:
@@ -527,7 +663,7 @@ def main():
             shot = h.screenshot(("err-" + name.replace(" ", "_"))[:60])
             print(f"ERROR {name}: {e} (screenshot: {shot})")
 
-    dt = time.time() - t0
+    dt = time.monotonic() - t0
     print(f"\n{passed} passed, {failed} failed, {errored} errored, {skipped} skipped in {dt:.1f}s")
     h.pb.stop(save=False)
     sys.exit(0 if failed == errored == 0 else 1)

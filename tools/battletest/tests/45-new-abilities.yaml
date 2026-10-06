@@ -291,14 +291,14 @@
   enemy: { species: MEW, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
-  assert: ["player.hp - player.start_hp == 20"]
+  assert: ["player.hp == (player.maxhp * 25) // 100 + 20", "player.item == 'NO_ITEM'"]
 
 - name: "New ability: Cud Chew repeats an HP Berry next turn"
   player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, hp: 25, item: BERRY, moves: [SPLASH] }
   enemy: { species: MEW, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 2
-  assert: ["player.hp - player.start_hp == 20"]
+  assert: ["player.hp == (player.maxhp * 25) // 100 + 20", "player.hp - player.start_hp == 10"]
 
 - name: "New ability: Forewarn reveals the strongest move"
   player: { species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH] }

@@ -1,0 +1,78 @@
+# Modern interactions, retaining the game's documented custom ability rules.
+
+- name: "Ability audit: Neutralizing Gas cannot suppress Disguise"
+  player: { species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [WATER_GUN] }
+  enemy: { species: MIMIKYU, level: 100, ability: DISGUISE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "(wram('wDisguiseBusted', 1) & 1) != 0"]
+
+- name: "Ability audit: Magic Bounce reflects Leech Seed"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LEECH_SEED] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[3] & 128) != 0", "(enemy.substatus[3] & 128) == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Taunt"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Torment"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TORMENT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[1] & 2) != 0", "(enemy.substatus[1] & 2) == 0"]
+
+- name: "Ability audit: reflected Yawn causes drowsiness rather than immediate sleep"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerYawnCount') == 1", "wram('wEnemyYawnCount') == 0", "player.status == 0", "enemy.status == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Spikes"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIKES] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerSpikesLayers') == 1", "wram('wEnemySpikesLayers') == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Toxic Spikes"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TOXIC_SPIKES] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.screens & 32) != 0", "(enemy.screens & 32) == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Stealth Rock"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STEALTH_ROCK] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.screens & 128) != 0", "(enemy.screens & 128) == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Sticky Web"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STICKY_WEB] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.screens & 2) != 0", "(enemy.screens & 2) == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Foresight"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [FORESIGHT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[0] & 8) != 0", "(enemy.substatus[0] & 8) == 0"]
+
+- name: "Ability audit: Magic Bounce reflects Mean Look"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [MEAN_LOOK] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[4] & 128) != 0", "(enemy.substatus[4] & 128) == 0"]

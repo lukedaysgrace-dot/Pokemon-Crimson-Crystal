@@ -154,7 +154,8 @@
     - (enemy.substatus[2] & 128) != 0
 
 - name: "Ability: Unnerve prevents the foe from eating a healing Berry"
-  player: { species: MEW, level: 100, ability: UNNERVE, moves: [TACKLE] }
+  # A legal holder applies Unnerve before the foe's entry-item update.
+  player: { species: MEWTWO, level: 100, ability: UNNERVE, moves: [TACKLE] }
   enemy:  { species: SNORLAX, level: 20, hp: 50, item: BERRY, moves: [SPLASH] }
   rng: forced_high
   turns: 1

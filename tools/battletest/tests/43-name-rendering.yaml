@@ -75,7 +75,7 @@
   turns: 1
   assert:
     - player.item == 'NO_ITEM'
-    - player.hp > player.start_hp
+    - player.hp == (player.maxhp * 25) // 100 + 10
     - text_seen('BERRY')
 
 - name: "Name rendering: confusion-healing Berry identifies the item"

@@ -3,6 +3,16 @@ BattleCommand_Selfdestruct:
 	; script before any damage, and the user keeps its HP
 	farcall AbilityPreventsSelfdestruct
 	ret c
+	; HP becomes zero below, before the hit and its defender reactions.
+	; Keep Neutralizing Gas active until those reactions have completed.
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVar
+	cp NEUTRALIZING_GAS
+	jr nz, .gas_checked
+	ldh a, [hBattleTurn]
+	inc a
+	ld [wSelfdestructGasTurn], a
+.gas_checked
 	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a

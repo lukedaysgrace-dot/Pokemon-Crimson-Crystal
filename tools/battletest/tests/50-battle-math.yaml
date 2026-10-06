@@ -13,7 +13,7 @@
   rng: forced_low
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == 13
+    - enemy.start_hp - enemy.hp == 19  # current 30-power Lick
 
 - name: "BM1: Scope Lens crit is exactly 1.5x the control damage"
   # forced_low $14 = 20: no crit at stage 0 (Gen7 threshold 11), crit at
@@ -23,7 +23,8 @@
   rng: forced_low
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == 19
+    - enemy.start_hp - enemy.hp == result('bm1c')['enemy']['damage'] * 3 // 2
+    - wram('wCriticalHit') == 1
 
 # ---- BM2: Gen 7 critical hit chance table --------------------------------
 
@@ -48,7 +49,8 @@
   rng_value: 12
   turns: 1
   assert:
-    - enemy.start_hp - enemy.hp == 19
+    - enemy.start_hp - enemy.hp == result('bm2c')['enemy']['damage'] * 3 // 2
+    - wram('wCriticalHit') == 1
 
 - name: "BM2 control: high-crit move at stage 1 does not crit under forced_high"
   # Modern Slash adds one stage: threshold 32, $B4 = 180 -> no crit.

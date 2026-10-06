@@ -22,8 +22,11 @@ def _representatives():
         if match:
             effect, power, move = match.groups()
             effects.setdefault(effect, (move, int(power)))
-    if len(effects) != 202:
-        raise RuntimeError(f"expected 202 move effects, found {len(effects)}")
+    declared = set(re.findall(r"^\s*const (EFFECT_\w+)",
+                             (ROOT / "constants/move_effect_constants.asm").read_text(),
+                             re.MULTILINE))
+    if not effects or set(effects) - declared:
+        raise RuntimeError("move table is empty or references undeclared effects")
     return effects
 
 
@@ -109,6 +112,9 @@ def _configure(effect, move, power):
         assertions.append(SECONDARY_STATUS[effect])
 
     special = {
+        "EFFECT_DEF_SPDEF_DOWN_HIT": ["enemy.hp < enemy.start_hp",
+                                      "enemy.stat_levels[1] == 6",
+                                      "enemy.stat_levels[4] == 6"],
         "EFFECT_ALL_UP_HIT": ["enemy.hp < enemy.start_hp"] + [f"player.stat_levels[{i}] == 8" for i in range(5)],
         "EFFECT_ATTRACT": ["(enemy.substatus[0] & 128) != 0"],
         "EFFECT_BELLY_DRUM": ["player.hp < player.start_hp", "player.stat_levels[0] == 13"],
@@ -234,6 +240,12 @@ def _configure(effect, move, power):
         test["player"]["item"] = "BERRY"
         test["enemy"]["item"] = "GOLD_BERRY"
         assertions = ["player.item == 'GOLD_BERRY'", "enemy.item == 'BERRY'"]
+    elif effect == "EFFECT_INCINERATE":
+        test["enemy"]["item"] = "GOLD_BERRY"
+        assertions = ["enemy.hp < enemy.start_hp", "enemy.item == 'NO_ITEM'"]
+    elif effect == "EFFECT_SUCKER_PUNCH":
+        test["enemy"]["moves"] = ["TACKLE"]
+        assertions = ["enemy.hp < enemy.start_hp", "wram('wEnemyGoesFirst') == 0"]
     elif effect == "EFFECT_PAIN_SPLIT":
         test["player"]["hp"] = 20
         assertions = ["player.hp > player.start_hp", "enemy.hp < enemy.start_hp"]

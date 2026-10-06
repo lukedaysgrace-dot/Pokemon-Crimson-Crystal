@@ -25,9 +25,9 @@ HELD_ITEMS = [
 ]
 
 
-def generate_interaction_tests(count=128, constants=None):
+def generate_interaction_tests(count=128, constants=None, seed=0xC11A0, extended=False):
     con = constants or Constants()
-    rng = random.Random(0xC11A0)
+    rng = random.Random(seed)
     last_species = con.num_pokemon or max(con.species_by_index)
     species = [con.species_by_index[index] for index in range(1, last_species + 1)]
     last_move = con.num_attacks
@@ -40,6 +40,8 @@ def generate_interaction_tests(count=128, constants=None):
         if index and name != "NO_ABILITY"
     ]
     items = [name for name in HELD_ITEMS if name in con.items]
+    if extended:
+        items += [name for name in ('WEAK_POLICY', 'CHOICE_SPECS') if name in con.items]
     statuses = [0, 0, 0, 2, 8, 16, 64]
     weather = ["none", "rain", "sun", "sandstorm", "hail"]
 
@@ -73,7 +75,14 @@ def generate_interaction_tests(count=128, constants=None):
                 "turns": turns,
                 "move_script": move_script,
                 "snapshot": False,
-                "assert": [],
+                "assert": [
+                    "0 <= player.hp <= player.maxhp",
+                    "0 <= enemy.hp <= enemy.maxhp",
+                    "wram('wInAbility') == 0",
+                    "(player.status & 7) == 0 or (player.status & 120) == 0",
+                    "(enemy.status & 7) == 0 or (enemy.status & 120) == 0",
+                ] + [f"1 <= {side}.stat_levels[{stage}] <= 13"
+                     for side in ("player", "enemy") for stage in range(7)],
                 "_file": "<generated interaction sweep>",
             }
         )

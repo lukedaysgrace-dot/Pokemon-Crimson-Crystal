@@ -1,0 +1,397 @@
+# Held-item updates after entry abilities, before the first move.
+- name: 'Entry item: player RIPEN'
+  player:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 20
+  - player.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player GLUTTONY'
+  player:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    hp: 65
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 65) // 100 + 0
+  - player.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player KLUTZ'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 0
+  - player.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player UNNERVE'
+  player:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 0
+  - player.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player GAS'
+  player:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 10
+  - player.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player TRACE_RIPEN'
+  player:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 20
+  - player.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player TRACE_GLUTTONY'
+  player:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 65
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 65) // 100 + 0
+  - player.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player TRACE_KLUTZ'
+  player:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 0
+  - player.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player JUICE_UNNERVE'
+  player:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    hp: 45
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.hp == (player.maxhp * 45) // 100 + 20
+  - player.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy RIPEN'
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 20
+  - enemy.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy GLUTTONY'
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    hp: 65
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 65) // 100 + 0
+  - enemy.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy KLUTZ'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 0
+  - enemy.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy UNNERVE'
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 0
+  - enemy.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy GAS'
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 10
+  - enemy.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy TRACE_RIPEN'
+  enemy:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 20
+  - enemy.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy TRACE_GLUTTONY'
+  enemy:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 65
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 65) // 100 + 0
+  - enemy.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy TRACE_KLUTZ'
+  enemy:
+    species: PORYGON
+    level: 100
+    ability: TRACE
+    hp: 45
+    item: BERRY
+    moves:
+    - SPLASH
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 0
+  - enemy.item == "BERRY"
+  - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: enemy JUICE_UNNERVE'
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    hp: 45
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 20
+  - enemy.item == "NO_ITEM"
+  - wram("wInAbility") == 0
+  - turns_done == 0
