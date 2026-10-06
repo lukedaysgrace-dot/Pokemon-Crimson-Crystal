@@ -2,50 +2,33 @@
 ; Split out of data/phone/text/crystal.asm for bank space.
 
 CrystalPhoneCapeCallText1::
-	text "<PLAY_G>. CRYSTAL."
+	text "<PLAY_G>? CRYSTAL."
 
-	para "I've been hearing"
-	line "about you."
+	para "I hear you've been"
+	line "taking on every"
+	cont "GYM in KANTO."
+	cont "Sounds about"
+	cont "right."
 
-	para "Apparently you've"
-	line "been rampaging"
-	cont "through KANTO,"
-
-	para "taking on every"
-	line "GYM LEADER you"
-	cont "can find."
-
-	para "Sounds about"
-	line "right."
-
-	para "Listen. Something"
-	line "came up."
+	para "Listen. I need you"
+	line "at CERULEAN CAPE."
 	done
 
 CrystalPhoneCapeCallText2::
-	text "I've been hearing"
-	line "rumors about a"
+	text "There's a rumor"
+	line "about a rare"
+	cont "#MON there."
 
-	para "#MON near"
-	line "CERULEAN CAPE."
-
-	para "Normally, I"
-	line "wouldn't give them"
-	cont "a second thought."
-
-	para "But I've heard the"
-	line "same story from"
-	cont "too many people."
+	para "I've heard the"
+	line "same story too"
+	cont "many times to"
+	cont "ignore it."
 
 	para "If they're right…"
-
-	para "No. I'm not even"
-	line "saying it."
-
-	para "I'm heading there"
-	line "now."
+	line "No. I'll tell you"
+	cont "when I see it."
 
 	para "Meet me at the"
-	line "CAPE as soon as"
-	cont "you can."
+	line "CAPE. I'm heading"
+	cont "there now."
 	done

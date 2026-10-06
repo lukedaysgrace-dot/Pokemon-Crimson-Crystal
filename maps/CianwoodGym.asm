@@ -235,11 +235,12 @@ ChuckExplainTMText:
 	text "That is DRAIN"
 	line "PUNCH."
 
-	para "It never misses,"
-	line "and it heals you"
+	para "A good punch gives"
+	line "you strength!"
 
-	para "with half of what"
-	line "it deals!"
+	para "It restores half"
+	line "the damage you"
+	cont "deal!"
 	done
 
 ChuckAfterText:
@@ -320,18 +321,13 @@ BlackbeltLungAfterText:
 	done
 
 ChuckRematchChallengeText:
-	text "WAHAHAH!"
-	line "JOHTO CHAMPION!"
+	text "WAHAHAH! You've"
+	line "come back for"
+	cont "more!"
 
-	para "You've come"
-	line "back for more!"
-
-	para "I see your"
-	line "skills have"
-	cont "improved!"
-
-	para "Ready to see"
-	line "who's stronger?"
+	para "I've kept"
+	line "training. Ready"
+	cont "for another round?"
 	done
 
 ChuckRematchWinText:

@@ -394,20 +394,12 @@ GoldenrodGymGuyWinText:
 	done
 
 WhitneyRematchChallengeText:
-	text "Hi! It's you!"
+	text "Hi! You're back!"
+	line "I've been"
+	cont "practicing, too."
 
-	para "Wow, JOHTO"
-	line "CHAMPION now?"
-
-	para "You really are"
-	line "amazing!"
-
-	para "I want to see"
-	line "how strong you"
-	cont "are."
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "Come on! Want"
+	line "another battle?"
 	done
 
 WhitneyRematchWinText:

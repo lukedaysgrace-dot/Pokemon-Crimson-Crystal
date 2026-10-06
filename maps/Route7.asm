@@ -59,14 +59,11 @@ Route7LockedDoorText:
 	done
 
 BattleGirlMihoSeenText:
-	text "The DOJO in"
-	line "SAFFRON is shut"
+	text "AYA and I train"
+	line "out here together."
 
-	para "while the master's"
-	line "away training."
-
-	para "So we train out"
-	line "here instead."
+	para "Let's see how you"
+	line "keep up!"
 	done
 
 BattleGirlMihoBeatenText:
@@ -75,9 +72,9 @@ BattleGirlMihoBeatenText:
 	done
 
 BattleGirlMihoAfterBattleText:
-	text "A closed door is"
-	line "no excuse to stop"
-	cont "training."
+	text "AYA never lets me"
+	line "skip a day of"
+	cont "training!"
 	done
 
 BattleGirlAyaSeenText:
@@ -92,11 +89,12 @@ BattleGirlAyaBeatenText:
 	done
 
 BattleGirlAyaAfterBattleText:
-	text "MIHO and I will be"
+	text "MIHO and I train"
 	line "here every day."
 
-	para "Come back when you"
-	line "want a rematch."
+	para "That battle gave"
+	line "us plenty to work"
+	cont "on!"
 	done
 
 Route7_MapEvents:

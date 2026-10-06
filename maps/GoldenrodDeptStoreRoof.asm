@@ -163,19 +163,14 @@ GoldenrodDeptStoreRoofGrampsText:
 	done
 
 GoldenrodDeptStoreRoofGrannyText:
-	text "When we were"
-	line "young, my husband"
-	cont "and I swept every"
-	cont "tournament going."
+	text "We knew PRYCE when"
+	line "he was making a"
+	cont "name for himself."
 
-	para "You've beaten"
-	line "PRYCE? Ho ho! He"
-	cont "was just a boy"
-	cont "when we retired."
-
-	para "Very well, dear."
-	line "My wares are for"
-	cont "real contenders."
+	para "You've beaten him?"
+	line "Ho ho! Then take a"
+	cont "look at my wares,"
+	cont "dear."
 	done
 
 GoldenrodDeptStoreRoofCoupleLockedText:

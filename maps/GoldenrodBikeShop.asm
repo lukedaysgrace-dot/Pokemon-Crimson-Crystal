@@ -75,25 +75,23 @@ GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
 
 GoldenrodBikeShopClerkIntroText:
-	text "…sigh… I moved"
-	line "here, but I can't"
-
-	para "sell my BICYCLES."
-	line "Why is that?"
+	text "…Sigh… I moved"
+	line "here, but nobody"
+	cont "knows my shop."
 
 	para "Could you ride a"
-	line "BICYCLE and adver-"
-	cont "tise for me?"
+	line "BICYCLE or"
+	cont "SKATEBOARD and"
+	cont "advertise for me?"
 	done
 
 GoldenrodBikeShopClerkAgreedText:
 	text "Really? Great!"
 
 	para "Give me your name"
-	line "and phone number,"
-
-	para "and I'll loan you"
-	line "a BICYCLE."
+	line "and phone number."
+	cont "I'll loan you a"
+	cont "ride!"
 	done
 
 BorrowedABicycleText:
@@ -125,18 +123,16 @@ BorrowedASkateboardText:
 
 GoldenrodBikeShopClerkFirstRateBikesText:
 	text "My BICYCLES are"
-	line "first-rate! You"
-
-	para "can ride them"
-	line "anywhere."
+	line "first-rate! Great"
+	cont "for getting around"
+	cont "town!"
 	done
 
 GoldenrodBikeShopClerkFirstRateSkateboardsText:
-	text "My SKATEBOARDS"
-	line "are first-rate!"
-
-	para "You can ride them"
-	line "anywhere."
+	text "My SKATEBOARDS are"
+	line "first-rate! Great"
+	cont "for getting around"
+	cont "town!"
 	done
 
 GoldenrodBikeShopClerkRefusedText:

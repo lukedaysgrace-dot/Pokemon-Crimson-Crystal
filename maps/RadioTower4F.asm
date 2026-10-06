@@ -167,27 +167,25 @@ GruntM10AfterBattleText:
 	done
 
 Executivem2SeenText:
-	text "Stop! I'm known as"
-	line "the TEAM ROCKET"
-	cont "fortress!"
+	text "You again! I"
+	line "haven't forgotten"
+	cont "the WELL."
 
-	para "You're not taking"
-	line "another step!"
+	para "No more mistakes."
+	line "You stop here!"
 	done
 
 Executivem2BeatenText:
-	text "The fortress came"
-	line "down!"
+	text "Not you again!"
 	done
 
 Executivem2AfterBattleText:
-	text "You've earned my"
-	line "respect, so here's"
-	cont "some advice."
+	text "Go ahead, then."
+	line "The others are"
+	cont "waiting."
 
-	para "It's not too late."
-	line "You can still turn"
-	cont "back."
+	para "I hope you're"
+	line "ready for them."
 	done
 
 GruntF4SeenText:

@@ -217,9 +217,8 @@ BurglarMortonBeatenText:
 BurglarMortonAfterBattleText:
 	text "BLAINE trains us"
 	line "hard. Only the"
-
-	para "hottest #MON"
-	line "survive here."
+	cont "toughest teams"
+	cont "keep up!"
 	done
 
 BurglarVanceSeenText:
