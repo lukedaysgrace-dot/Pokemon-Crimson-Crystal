@@ -392,8 +392,6 @@ VioletCityCrystalBeforeText:
 	line "BARK TOWN, aren't"
 	cont "you?"
 
-	para "I thought so."
-
 	para "PROF.ELM mentioned"
 	line "another TRAINER"
 	cont "was helping with"
@@ -403,9 +401,8 @@ VioletCityCrystalBeforeText:
 	line "we'd cross paths."
 
 	para "I'm CRYSTAL."
-
-	para "PROF.OAK asked me"
-	line "to help complete"
+	line "PROF.OAK asked me"
+	cont "to help complete"
 	cont "the #DEX."
 
 	para "Since we're both"
@@ -438,17 +435,11 @@ VioletCityCrystalLossText:
 	done
 
 VioletCityCrystalAfterText:
-	text "So that's where"
-	line "I stand."
+	text "So that's where I"
+	line "stand."
 
-	para "Good."
-
-	para "Now I know what"
-	line "I need to improve."
-
-	para "We're both working"
-	line "toward the same"
-	cont "goal, after all."
+	para "Now I know what I"
+	line "need to improve."
 
 	para "Next time, I won't"
 	line "be as easy to"

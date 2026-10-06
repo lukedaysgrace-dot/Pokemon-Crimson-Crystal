@@ -218,41 +218,91 @@ IndigoPlateauPokecenter1FCooltrainerMText:
 PlateauRivalText1:
 	text "Hold it, <PLAYER>."
 
-	para "My partners and I"
-	line "have trained for"
-	cont "this."
+	para "Since CHERRYGROVE,"
+	line "I've been trying"
+	cont "to prove I was"
+	cont "better than you."
 
-	para "Let's see how far"
-	line "we've come. I'm"
-	cont "taking you on"
-	cont "first!"
+	para "I blamed my"
+	line "#MON. I thought"
+	cont "stronger ones"
+	cont "would fix"
+	cont "everything."
+
+	para "LANCE told me what"
+	line "I was missing. I"
+	cont "hated hearing it."
+	cont "But he was right."
+
+	para "They weren't weak."
+	line "I was holding them"
+	cont "back."
+
+	para "Look at them now."
+	line "This is the team"
+	cont "I'm taking to the"
+	cont "top."
+
+	para "You're going back"
+	line "to face the"
+	cont "LEAGUE? Then this"
+	cont "is where we settle"
+	cont "it."
+
+	para "No holding back."
+	line "<PLAYER>! I'm"
+	cont "taking you down!"
 	done
 
 PlateauRivalWinText:
-	text "…"
-
-	para "OK--I lost…"
+	text "…That was"
+	line "everything we had."
 	done
 
 PlateauRivalText2:
-	text "…I lost. But my"
-	line "partners gave it"
-	cont "everything."
+	text "I won't call them"
+	line "weak. Not one of"
+	cont "them backed down."
 
-	para "We'll keep"
-	line "working. You'd"
-	cont "better not lose in"
-	cont "there!"
+	para "…Don't expect me"
+	line "to enjoy saying"
+	cont "this. You're the"
+	cont "better trainer."
+
+	para "I still intend to"
+	line "reach the top. But"
+	cont "I'm done trying to"
+	cont "prove it by"
+	cont "dragging you down."
+
+	para "Go on. Show LANCE"
+	line "what the trainer"
+	cont "who beat me can"
+	cont "do."
+
+	para "And you'd better"
+	line "win. I didn't come"
+	cont "all this way to"
+	cont "lose to second"
+	cont "best."
+
+	para "…And <PLAYER>?"
+	line "Thanks. For never"
+	cont "letting me hide"
+	cont "behind my excuses."
+
+	para "Hmph. Don't make"
+	line "me say that again."
 	done
 
 PlateauRivalLoseText:
-	text "…"
+	text "…We did it."
+	line "Together."
 
-	para "Whew…"
-	line "With my partners,"
-
-	para "I'm going to be"
-	line "the CHAMPION!"
+	para "Remember this,"
+	line "<PLAYER>. This is"
+	cont "the team that will"
+	cont "take the LEAGUE!"
 	done
 
 TeleportGuyText1:
