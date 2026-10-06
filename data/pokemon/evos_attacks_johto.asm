@@ -813,6 +813,7 @@ MarillEvosAttacks:
 	dbw 1, TAIL_WHIP
 	dbw 1, WATER_GUN
 	dbw 7, BUBBLE
+	dbw 7, PIXIE_PUNCH
 	dbw 9, CHARM
 	dbw 9, DEFENSE_CURL
 	dbw 9, ROLLOUT
@@ -835,6 +836,7 @@ AzumarillEvosAttacks:
 	dbw 1, TAIL_WHIP
 	dbw 1, WATER_GUN
 	dbw 7, BUBBLE
+	dbw 7, PIXIE_PUNCH
 	dbw 9, CHARM
 	dbw 9, DEFENSE_CURL
 	dbw 9, ROLLOUT
@@ -3024,6 +3026,7 @@ MawileEvosAttacks:
 	dbw 1, ASTONISH
 	dbw 1, TAIL_WHIP
 	dbw 6, VICEGRIP
+	dbw 6, PIXIE_PUNCH
 	dbw 11, BITE
 	dbw 15, FAIRY_WIND
 	dbw 16, SWEET_SCENT
@@ -3233,6 +3236,7 @@ AzurillEvosAttacks:
 	dbw 2, GROWL
 	dbw 5, FORESIGHT
 	dbw 7, AQUA_JET
+	dbw 7, PIXIE_PUNCH
 	dbw 10, CHARM
 	dbw 13, BUBBLEBEAM
 	dbw 16, SING
@@ -4920,6 +4924,7 @@ ImpidimpEvosAttacks:
 	dbw 1, FAKE_OUT
 	dbw 4, BITE
 	dbw 8, SWEET_KISS
+	dbw 8, PIXIE_PUNCH
 	dbw 12, DISARMING_VOICE
 	dbw 16, TAUNT
 	dbw 18, LOW_SWEEP
@@ -4940,6 +4945,7 @@ MorgremEvosAttacks:
 	dbw 1, DISARMING_VOICE
 	dbw 1, FAKE_OUT
 	dbw 1, SWEET_KISS
+	dbw 1, PIXIE_PUNCH
 	dbw 16, TAUNT
 	dbw 20, LOW_SWEEP
 	dbw 20, SUCKER_PUNCH
@@ -4979,6 +4985,7 @@ TinkatinkEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, ASTONISH
 	dbw 1, FAIRY_WIND
+	dbw 5, PIXIE_PUNCH
 	dbw 8, METAL_CLAW
 	dbw 14, ROCK_SMASH
 	dbw 17, DRAINING_KISS
@@ -4994,6 +5001,7 @@ TinkatuffEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, ASTONISH
 	dbw 1, FAIRY_WIND
+	dbw 5, PIXIE_PUNCH
 	dbw 8, METAL_CLAW
 	dbw 14, ROCK_SMASH
 	dbw 17, DRAINING_KISS
@@ -5010,6 +5018,7 @@ TinkatonEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, ASTONISH
 	dbw 1, FAIRY_WIND
+	dbw 5, PIXIE_PUNCH
 	dbw 8, METAL_CLAW
 	dbw 14, ROCK_SMASH
 	dbw 17, DRAINING_KISS
@@ -6830,6 +6839,7 @@ MimikyuEvosAttacks:
 	dbw 1, SCRATCH
 	dbw 1, SPLASH
 	dbw 6, SHADOW_SNEAK
+	dbw 9, PIXIE_PUNCH
 	dbw 12, DOUBLE_TEAM
 	dbw 20, SHADOW_CLAW
 	dbw 24, MIMIC
@@ -7681,6 +7691,7 @@ PonytaGalarianEvosAttacks:
 	dbw 1, TACKLE
 	dbw 4, TAIL_WHIP
 	dbw 8, FAIRY_WIND
+	dbw 8, PIXIE_PUNCH
 	dbw 10, CONFUSION
 	dbw 16, STOMP
 	dbw 20, AGILITY
@@ -7703,6 +7714,7 @@ RapidashGalarianEvosAttacks:
 	dbw 1, MEGAHORN
 	dbw 1, QUICK_ATTACK
 	dbw 1, TACKLE
+	dbw 1, PIXIE_PUNCH
 	dbw 4, TAIL_WHIP
 	dbw 8, FLAME_WHEEL
 	dbw 16, AGILITY
