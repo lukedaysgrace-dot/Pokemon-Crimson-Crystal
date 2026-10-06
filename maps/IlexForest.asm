@@ -1098,12 +1098,12 @@ BugCatcherWayneAfterBattleText:
 	done
 
 IlexForestCrystalBeforeText:
-	text "CRYSTAL: Hey,"
-	line "it's you again!"
+	text "CRYSTAL: Hey, it's"
+	line "you again!"
 
 	para "I've been"
-	line "searching all"
-	cont "over ILEX FOREST!"
+	line "searching all over"
+	cont "ILEX FOREST!"
 
 	para "Did you know some"
 	line "really rare"
@@ -1115,21 +1115,8 @@ IlexForestCrystalBeforeText:
 	line "walk right past"
 	cont "them."
 
-	para "But if you know"
-	line "where to look..."
-
-	para "You can find some"
-	line "amazing catches!"
-
-	para "I spent hours in"
-	line "here and"
-	cont "found some really"
-	cont "interesting"
-	cont "#MON."
-
-	para "Let's see how"
-	line "your training is"
-	cont "going!"
+	para "Let's see how your"
+	line "training is going!"
 	done
 
 IlexForestCrystalWinText:
@@ -1145,26 +1132,17 @@ IlexForestCrystalLossText:
 	done
 
 IlexForestCrystalAfterText:
-	text "You've gotten"
-	line "stronger since we"
-	cont "last battled."
-
-	para "Maybe I've been"
+	text "Maybe I've been"
 	line "spending too much"
 	cont "time looking for"
-	cont "rare #MON"
+	cont "rare #MON and"
+	cont "should focus a bit"
+	cont "more on training."
 
-	para "and should focus"
-	line "a bit more on"
-	cont "training."
-
-	para "I know there's"
+	para "I know there are"
 	line "quite a few"
 	cont "trainers before"
-	cont "GOLDENROD,"
-
-	para "so the timing is"
-	line "perfect."
+	cont "GOLDENROD."
 
 	para "I'll see you"
 	line "later, <PLAYER>!"
