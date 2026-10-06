@@ -100,14 +100,14 @@ PokemonCries::
 	mon_cry CRY_METAPOD,     $030,  $0c0 ; HAUNTER
 	mon_cry CRY_MUK,         $000,  $17f ; GENGAR
 	mon_cry CRY_EKANS,       $0ff,  $140 ; ONIX
-	mon_cry CRY_DROWZEE,     $088,  $0a0 ; DROWZEE
-	mon_cry CRY_DROWZEE,     $0ee,  $0c0 ; HYPNO
+	mon_cry CRY_EXEGGUTOR,   $088,  $0a0 ; DROWZEE
+	mon_cry CRY_EXEGGUTOR,   $0ee,  $0c0 ; HYPNO
 	mon_cry CRY_KRABBY,      $020,  $160 ; KRABBY
 	mon_cry CRY_KRABBY,      $0ee,  $160 ; KINGLER
 	mon_cry CRY_VOLTORB,     $0ed,  $100 ; VOLTORB
 	mon_cry CRY_VOLTORB,     $0a8,  $110 ; ELECTRODE
 	mon_cry CRY_DIGLETT,     $000,  $100 ; EXEGGCUTE
-	mon_cry CRY_DROWZEE,     $000,  $100 ; EXEGGUTOR
+	mon_cry CRY_EXEGGUTOR,   $000,  $100 ; EXEGGUTOR
 	mon_cry CRY_CLEFAIRY,    $000,  $100 ; CUBONE
 	mon_cry CRY_ODDISH,      $04f,  $0e0 ; MAROWAK
 	mon_cry CRY_GOLEM,       $080,  $140 ; HITMONLEE
@@ -200,7 +200,7 @@ PokemonCries::
 	mon_cry CRY_TOTODILE,    $031,  $0c8 ; YANMA
 	mon_cry CRY_WOOPER,      $093,  $0af ; WOOPER
 	mon_cry CRY_WOOPER,     -$0c6,  $140 ; QUAGSIRE
-	mon_cry CRY_AIPOM,       $0a2,  $140 ; ESPEON
+	mon_cry CRY_ESPEON,      $0a2,  $140 ; ESPEON
 	mon_cry CRY_VENONAT,    -$0e9,  $0f0 ; UMBREON
 	mon_cry CRY_MARILL,     -$01f,  $180 ; MURKROW
 	mon_cry CRY_SLOWKING,    $104,  $200 ; SLOWKING
@@ -238,7 +238,7 @@ PokemonCries::
 	mon_cry CRY_SENTRET,     $048,  $230 ; PHANPY
 	mon_cry CRY_DONPHAN,     $000,  $1a0 ; DONPHAN
 	mon_cry CRY_GIRAFARIG,   $073,  $240 ; PORYGON2
-	mon_cry CRY_AIPOM,      -$160,  $180 ; STANTLER
+	mon_cry CRY_ESPEON,     -$160,  $180 ; STANTLER
 	mon_cry CRY_PICHU,      -$21a,  $1f0 ; SMEARGLE
 	mon_cry CRY_AIPOM,       $02c,  $108 ; TYROGUE
 	mon_cry CRY_SLUGMA,      $000,  $100 ; HITMONTOP
@@ -278,9 +278,9 @@ PokemonCries::
 	mon_cry CRY_KIRLIA,      $060,  $080 ; KIRLIA
 	mon_cry CRY_TOGEPI,     -$0a2,  $17c ; GARDEVOIR
 	mon_cry CRY_GALLADE,     $020,  $130 ; GALLADE
-	mon_cry CRY_VENONAT,     $0b0,  $16f ; GLACEON
-	mon_cry CRY_VENONAT,     $03d,  $160 ; LEAFEON
-	mon_cry CRY_VENONAT,     $0b0,  $16f ; SYLVEON
+	mon_cry CRY_GLACEON,     $038,  $24c ; GLACEON
+	mon_cry CRY_LEAFEON,     $038,  $20c ; LEAFEON
+	mon_cry CRY_SYLVEON,     $000,  $298 ; SYLVEON
 	mon_cry CRY_GLIGAR,     -$06b,  $140 ; GLISCOR
 	mon_cry CRY_SEEL,       -$077,  $17f ; LICKILICKY
 	mon_cry CRY_CHARMANDER,  $077,  $100 ; MAGMORTAR
@@ -288,7 +288,7 @@ PokemonCries::
 	mon_cry CRY_MAGCARGO,   -$109,  $100 ; MAMOSWINE
 	mon_cry CRY_RALTS,      -$0a0,  $190 ; MESMERIA
 	mon_cry CRY_HOOTHOOT,    $11b,  $17f ; MISMAGIUS
-	mon_cry CRY_WEEPINBELL,  $10e,  $1c2 ; PORYGON_Z
+	mon_cry CRY_PORYGONZ,    $000,  $180 ; PORYGON_Z
 	mon_cry CRY_RHYDON,     -$068,  $160 ; RHYPERIOR
 	mon_cry CRY_VENIPEDE,    $096,  $180 ; VENIPEDE
 	mon_cry CRY_WHIRLIPEDE,  $096,  $180 ; WHIRLIPEDE
