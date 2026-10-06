@@ -223,43 +223,47 @@ GruntF15AfterBattleText:
 	done
 
 GruntM1SeenText:
-	text "What do we have"
-	line "here?"
+	text "PROTON: Well,"
+	line "well. Another"
+	cont "little hero."
 
-	para "I am often labeled"
-	line "as the scariest"
-	cont "and cruelest TEAM"
-	cont "ROCKET member."
+	para "Those SLOWPOKE"
+	line "will grow their"
+	cont "tails back. Then"
+	cont "we'll take those,"
+	cont "too."
 
-	para "I'd strongly urge"
-	line "you to walk away"
-	cont "and not interfere"
-	cont "with our business!"
+	para "What's wrong?"
+	line "Can't stand to"
+	cont "watch?"
+
+	para "Heh. You'd better"
+	line "leave before I"
+	cont "give you something"
+	cont "to cry about!"
 	done
 
 GruntM1BeatenText:
-	text "For a kid to be"
-	line "this good..."
-	cont "I didn't see it"
-	cont "coming."
+	text ".... Don't look so"
+	line "pleased with"
+	cont "yourself, brat!"
 	done
 
 TrainerGruntM1WhenTalkText:
-	text "TEAM ROCKET was"
-	line "indeed broken up"
-	cont "three years ago,"
+	text "Enjoy saving a few"
+	line "SLOWPOKE."
 
-	para "but we continued"
-	line "our activities"
-	cont "underground."
+	para "TEAM ROCKET has"
+	line "been working in"
+	cont "secret for three"
+	cont "years. You haven't"
+	cont "stopped a damn"
+	cont "thing."
 
-	para "A small obstacle"
-	line "like you won't be"
-	cont "a problem for our"
-	cont "mission."
-
-	para "Be very afraid of"
-	line "what is to come!"
+	para "The next time you"
+	line "get in my way, I"
+	cont "won't be playing"
+	cont "with you."
 	done
 
 GruntM2SeenText:

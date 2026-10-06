@@ -167,25 +167,42 @@ GruntM10AfterBattleText:
 	done
 
 Executivem2SeenText:
-	text "You again! I"
-	line "haven't forgotten"
-	cont "the WELL."
+	text "You again?! The"
+	line "brat from the"
+	cont "WELL!"
 
-	para "No more mistakes."
-	line "You stop here!"
+	para "You've been making"
+	line "a fool of me in"
+	cont "front of my"
+	cont "GRUNTS."
+
+	para "Did you think I'd"
+	line "just forget that?"
+
+	para "I'm going to enjoy"
+	line "watching that smug"
+	cont "look disappear."
+	cont "You and your"
+	cont "#MON are"
+	cont "finished!"
 	done
 
 Executivem2BeatenText:
-	text "Not you again!"
+	text "Damn it! Not to"
+	line "you! Not again!"
 	done
 
 Executivem2AfterBattleText:
-	text "Go ahead, then."
-	line "The others are"
-	cont "waiting."
+	text "Wipe that grin off"
+	line "your face!"
 
-	para "I hope you're"
-	line "ready for them."
+	para "You still have to"
+	line "get past ARIANA"
+	cont "and ARCHER."
+
+	para "I hope they make"
+	line "you regret ever"
+	cont "coming here!"
 	done
 
 GruntF4SeenText:
