@@ -389,46 +389,54 @@ RocketBaseRivalText:
 	done
 
 ExecutiveM4BeforeText:
-	text "What? Who are you?"
-	line "This is the office"
+	text "PETREL: You're the"
+	line "kid causing all"
+	cont "this trouble?"
 
-	para "of our leader,"
-	line "GIOVANNI."
+	para "Both passwords,"
+	line "eh? You know how"
+	cont "to get people"
+	cont "talking."
 
-	para "Since disbanding"
-	line "TEAM ROCKET three"
+	para "GIOVANNI isn't"
+	line "here. I'm the one"
+	cont "you need to worry"
+	cont "about."
 
-	para "years ago, he has"
-	line "been in training."
+	para "You're after the"
+	line "transmitter,"
+	cont "aren't you?"
+	cont "Thought so."
 
-	para "But we're certain"
-	line "he will be back"
-
-	para "some day to assume"
-	line "command again."
-
-	para "That's why we're"
-	line "standing guard."
-
-	para "I won't let any-"
-	line "one disturb this"
-	cont "place!"
+	para "Let's see if you"
+	line "can get past me,"
+	cont "too."
 	done
 
 ExecutiveM4BeatenText:
-	text "I… I couldn't do a"
-	line "thing…"
-
-	para "GIOVANNI, please"
-	line "forgive me…"
+	text "Well, that"
+	line "was inconvenient."
 	done
 
 ExecutiveM4AfterText:
-	text "No, I can't let"
-	line "this affect me."
+	text "No point getting"
+	line "myself flattened"
+	cont "for someone else's"
+	cont "plans."
 
-	para "I have to inform"
-	line "the others…"
+	para "TEAM ROCKET gives"
+	line "me what I need."
+	cont "That doesn't mean"
+	cont "I owe them my"
+	cont "neck."
+
+	para "Let ARCHER worry"
+	line "about GIOVANNI."
+	cont "I've got my own"
+	cont "interests to look"
+	cont "after."
+
+	para "See ya, kid."
 	done
 
 RocketBaseMurkrowText:
