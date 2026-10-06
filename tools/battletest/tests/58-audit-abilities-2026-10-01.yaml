@@ -498,12 +498,13 @@
 
 - name: "Audit abilities: Parental Bond Counter reflects the incoming hit twice"
   player: { species: SNORLAX, level: 50, ability: PARENTAL_BOND, moves: [COUNTER] }
-  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: MEW, level: 80, ability: NO_ABILITY, moves: [TACKLE] }
   rng: forced_high
   turns: 1
   assert:
     - player.hp < player.start_hp
     - "enemy.start_hp - enemy.hp == 4 * (player.start_hp - player.hp)"
+    - wram('wEnemyRageFistHits') == 2
 
 - name: "Audit abilities: Parental Bond pays Life Orb recoil once"
   player: { species: MEW, level: 50, ability: PARENTAL_BOND, item: LIFE_ORB, moves: [TACKLE] }

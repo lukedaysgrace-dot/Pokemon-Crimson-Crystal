@@ -94,10 +94,21 @@ def main():
   for move,lv in ms.items():assert (lv,move) in levels[c],(c,move,'move availability restoration')
  assert assignments==440==len(receipt['recommendations'])
  assert utility==receipt['utility_flags']
- # Original moves survive unless explicitly curated out of the highlighted egg lists.
+ # Preserve the review's original moves, allowing documented later curation.
+ # The reviewed snapshot predates deliberate TM-slot replacements. Preserve
+ # compatibility with their documented successors, not a removed TM name.
+ replacements=receipt.get('tm_replacements',{})
+ valid_tm=set(re.findall(r'^\s*add_(?:tm|hm|mt)\s+(\w+)',read('constants/item_constants.asm'),re.M))
+ for old,new in replacements.items():
+  assert old in moves and old not in valid_tm and new in valid_tm,(old,new,'invalid TM replacement')
+ removals=receipt.get('level_up_removals',{})
+ for c,removed in removals.items():
+  assert c in review['roster'] and set(removed)<=set(review['roster'][c]['own']),(c,'invalid curated removal')
+  assert not set(removed)&set(m for lv,m in levels[c]),(c,'curated removal restored')
  for c,row in review['roster'].items():
-  assert set(row['own'])<=set(m for lv,m in levels[c]),(c,'original level-up loss')
-  assert set(row['tms'])<=set(tm[c]),(c,'original compatibility loss')
+  assert set(row['own'])-set(removals.get(c,[]))<=set(m for lv,m in levels[c]),(c,'original level-up loss')
+  expected={replacements.get(move,move) for move in row['tms']}
+  assert expected<=set(tm[c]),(c,sorted(expected-set(tm[c])),'original compatibility loss')
  print(f'LEARNSET VARIETY AUDIT PASSED: {len(order)} entries, {assignments} approved additions, 9 clone mirrors, reminder/timing repairs and five utility compatibility columns.')
  print(f'Largest reminder list: {max(len(ls) for ls in levels.values())}/{capacity}; largest egg list: {max(len(ms) for ms in eggs.values())}/{capacity}.')
 if __name__=='__main__':main()

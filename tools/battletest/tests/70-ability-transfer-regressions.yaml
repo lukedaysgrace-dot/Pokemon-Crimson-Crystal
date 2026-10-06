@@ -1,0 +1,49 @@
+- name: "Deep ability: Skill Swap always hits through Wonder Skin"
+  player: { species: MEW, level: 30, ability: SYNCHRONIZE, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: WONDER_SKIN, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'WONDER_SKIN'", "enemy.ability == 'SYNCHRONIZE'"]
+
+- name: "Deep ability: Skill Swap ignores accuracy evasion and BrightPowder"
+  player: { species: MEW, level: 30, ability: SYNCHRONIZE, stages: {acc: -6}, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, stages: {eva: 6}, item: BRIGHTPOWDER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'THICK_FAT'", "enemy.ability == 'SYNCHRONIZE'"]
+
+- name: "Deep ability: Skill Swap still respects Protect"
+  player: { species: MEW, level: 30, ability: SYNCHRONIZE, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, moves: [PROTECT] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'SYNCHRONIZE'", "enemy.ability == 'THICK_FAT'"]
+
+- name: "Deep ability: Skill Swap bypasses Substitute"
+  player: { species: MEW, level: 30, ability: SYNCHRONIZE, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: {wEnemySubstituteHP: 100}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'THICK_FAT'", "enemy.ability == 'SYNCHRONIZE'"]
+
+- name: "Deep ability: Skill Swap cannot hit a flying target"
+  player: { species: MEW, level: 30, ability: SYNCHRONIZE, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, substatus: [FLYING], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'SYNCHRONIZE'", "enemy.ability == 'THICK_FAT'"]
+
+- name: "Deep ability: Prankster Skill Swap is blocked by Dark typing"
+  player: { species: MEW, level: 30, ability: PRANKSTER, moves: [SKILL_SWAP] }
+  enemy: { species: UMBREON, level: 100, ability: INNER_FOCUS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'PRANKSTER'", "enemy.ability == 'INNER_FOCUS'"]
+
+- name: "Deep ability: Prankster Skill Swap is blocked by Armor Tail"
+  player: { species: MEW, level: 30, ability: PRANKSTER, moves: [SKILL_SWAP] }
+  enemy: { species: SNORLAX, level: 100, ability: ARMOR_TAIL, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'PRANKSTER'", "enemy.ability == 'ARMOR_TAIL'"]

@@ -29,6 +29,21 @@ DBG_SIZE = 30
 SUBSTATUS_BITS = parse_substatus_bits()
 
 
+def encode_action(action):
+    if isinstance(action, str):
+        if action.lower() == "run":
+            return 0xFF
+        if action.lower().startswith("switch:"):
+            slot = int(action.split(":", 1)[1])
+            if not 1 <= slot <= 4:
+                raise ValueError(f"switch slot must be 1..4, got {slot}")
+            return 0x80 | (slot - 1)
+        raise ValueError(f"unknown scripted action {action!r}")
+    if not isinstance(action, int) or not 0 <= action <= 4:
+        raise ValueError(f"move slot must be 0..4, got {action!r}")
+    return action
+
+
 class Memory:
     def __init__(self, pyboy, symbols: Symbols):
         self.pb = pyboy
@@ -352,17 +367,7 @@ class Request:
         script = test.get("move_script") or []
         for i in range(8):
             action = script[i] if i < len(script) else 0
-            if isinstance(action, str):
-                if action.lower() == "run":
-                    action = 0xFF
-                elif action.lower().startswith("switch:"):
-                    slot = int(action.split(":", 1)[1])
-                    if not 1 <= slot <= 4:
-                        raise ValueError(f"switch slot must be 1..4, got {slot}")
-                    action = 0x80 | (slot - 1)
-                else:
-                    raise ValueError(f"unknown scripted action {action!r}")
-            m.write("wDebugMoveScript", action, i)
+            m.write("wDebugMoveScript", encode_action(action), i)
 
         m.write_bytes("wDebugPlayer1", self._side_bytes(test.get("player")))
         m.write_bytes("wDebugPlayer2", self._side_bytes(test.get("player2")))

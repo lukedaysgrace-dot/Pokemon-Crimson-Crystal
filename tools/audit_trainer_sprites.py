@@ -3,6 +3,7 @@
 
 import re
 import sys
+from itertools import combinations
 from pathlib import Path
 
 
@@ -25,6 +26,10 @@ AUTONOMOUS_MOVEMENT_PREFIXES = (
 	"SPRITEMOVEDATA_WANDER",
 )
 MAP_NAME_FONT_TILE_START = 0xDC
+
+# AddMapSprites explicitly allocates the cove from its changing map objects.
+# It therefore does not use the shared Olivine outdoor sprite list.
+MAP_LOCAL_OUTDOORS = {"OlivineFishingCove"}
 
 
 def trainer_sprite_expectations():
@@ -219,8 +224,40 @@ def main():
 
 	ids, types = sprite_metadata()
 	map_groups, groups = outdoor_groups()
+	loader = (ROOT / "engine/overworld/overworld.asm").read_text()
+	assert re.search(
+		r"cp GROUP_OLIVINE_FISHING_COVE\s+jr nz, \.environment\s+"
+		r"ld a, \[wMapNumber\]\s+cp MAP_OLIVINE_FISHING_COVE\s+jr z, \.map_objects",
+		loader), "Cove map-local sprite dispatch changed; update the audit"
+	assert re.search(r"\.map_objects\s*\n\s*;[^\n]*\n\s*call AddIndoorSprites", loader)
+	print("\n=== MAP-LOCAL OUTDOOR PACKING ===")
+	contest = (ROOT / "engine/events/fishing_contest.asm").read_text()
+	candidates = re.search(r"FishingContestantSprites:\s*(.*?)\s*assert", contest, re.S)[1]
+	candidates = re.findall(r"\bdb\s+(SPRITE_\w+),", candidates)
+	objects = all_objects["OlivineFishingCove"]
+	constants = (ROOT / "constants/misc_constants.asm").read_text()
+	assert re.search(r"NUM_FISHING_CONTESTANTS EQU 5\b", constants)
+	assert len(objects) == 11 and len(candidates) == 11, "Cove object/roster layout changed; update the allocation model"
+	assert all(obj["sprite"] == "SPRITE_FISHING_BOAT" for obj in objects[:3])
+	assert "farcall FishingContestSetMapSprites" in loader.split("AddMapSprites:", 1)[1].split("AddIndoorSprites:", 1)[0]
+	# Three boats, five replaced contestants, and three fixed visitors.
+	fixed = [obj["sprite"] for obj in objects[:3] + objects[8:]]
+	local_rosters = [[obj["sprite"] for obj in objects]]
+	local_rosters += [fixed + list(roster) for roster in combinations(candidates, 5)]
+	local_failures = []
+	for roster in local_rosters:
+		_, _, assignments, failed = packed_sprite_tiles(roster, ids, types)
+		risky = [sprite for sprite, tile, size, kind in assignments
+		         if kind < 4 and tile >= 0x80 and tile + size > MAP_NAME_FONT_TILE_START]
+		if failed or risky:
+			local_failures.append((roster, failed, risky))
+	for failure in local_failures:
+		print(failure)
+	print(f"OlivineFishingCove: {len(local_rosters)} visitor/contest rosters, {len(local_failures)} allocation/font risks")
 	needed_by_group = {group: set() for group in groups}
 	for map_name, group in map_groups.items():
+		if map_name in MAP_LOCAL_OUTDOORS:
+			continue
 		for obj in all_objects.get(map_name, []):
 			if obj["sprite"].startswith("SPRITE_") and obj["sprite"] != "SPRITE_NONE":
 				needed_by_group.setdefault(group, set()).add(obj["sprite"])
@@ -252,6 +289,8 @@ def main():
 	print("\n=== FONT-SHARED ANIMATION RISKS ===")
 	font_risks = set()
 	for map_name, group in map_groups.items():
+		if map_name in MAP_LOCAL_OUTDOORS:
+			continue
 		assignments = {
 			sprite: (tile, size, type_id)
 			for sprite, tile, size, type_id in packed_sprite_tiles(
@@ -285,7 +324,7 @@ def main():
 			status += f", unassigned {', '.join(failed)}"
 		print(f"{group:12} {status}")
 
-	return 1 if mismatches or issue_count or font_risks else 0
+	return 1 if mismatches or issue_count or font_risks or local_failures else 0
 
 
 if __name__ == "__main__":

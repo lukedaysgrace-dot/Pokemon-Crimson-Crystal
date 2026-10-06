@@ -1729,15 +1729,14 @@ Swagger:
 	usedmovetext
 	doturn
 	checkhit
-	switchturn
-	attackup2
-	switchturn
+	swaggerboost
 	lowersub
 	statupanim
 	raisesub
 	failuretext
 	switchturn
 	statupmessage
+	statupfailtext
 	switchturn
 	confusetarget
 	endmove

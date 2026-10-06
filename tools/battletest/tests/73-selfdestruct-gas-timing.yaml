@@ -1,0 +1,292 @@
+# Gas suppresses the committed explosion hit, then ends before later actions.
+
+- name: "Gas explosion timing: SELFDESTRUCT STAMINA player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["SELFDESTRUCT"]}
+  enemy: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - player.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: SELFDESTRUCT STAMINA enemy"
+  player: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["SELFDESTRUCT"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp > 0
+    - player.hp < player.start_hp
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - enemy.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: SELFDESTRUCT WEAK_ARMOR player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["SELFDESTRUCT"]}
+  enemy: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - player.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: SELFDESTRUCT WEAK_ARMOR enemy"
+  player: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["SELFDESTRUCT"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp > 0
+    - player.hp < player.start_hp
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - enemy.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: EXPLOSION STAMINA player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - player.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: EXPLOSION STAMINA enemy"
+  player: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp > 0
+    - player.hp < player.start_hp
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - enemy.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: EXPLOSION WEAK_ARMOR player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - player.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: EXPLOSION WEAK_ARMOR enemy"
+  player: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp > 0
+    - player.hp < player.start_hp
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - enemy.hp == 0
+    - wram('wSelfdestructGasTurn') == 0
+    - wram('wInAbility') == 0
+
+- name: "Gas explosion timing: STAMINA resumes next turn player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  player2: {species: MEW, level: 30, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced_low
+  turns: 2
+  turn_assert:
+    - "enemy.stat_levels == ([7, 7, 7, 7, 7, 7, 7] if turns_done == 1 else [7, 8, 7, 7, 7, 7, 7])"
+    - wram('wSelfdestructGasTurn') == 0
+  assert:
+    - turns_done == 2
+    - enemy.stat_levels == [7, 8, 7, 7, 7, 7, 7]
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion timing: STAMINA resumes next turn enemy"
+  player: {"species":"MEW","level":100,"ability":"STAMINA","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy2: {species: MEW, level: 30, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced_low
+  turns: 2
+  turn_assert:
+    - "player.stat_levels == ([7, 7, 7, 7, 7, 7, 7] if turns_done == 1 else [7, 8, 7, 7, 7, 7, 7])"
+    - wram('wSelfdestructGasTurn') == 0
+  assert:
+    - turns_done == 2
+    - player.stat_levels == [7, 8, 7, 7, 7, 7, 7]
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion timing: WEAK_ARMOR resumes next turn player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  player2: {species: MEW, level: 30, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced_low
+  turns: 2
+  turn_assert:
+    - "enemy.stat_levels == ([7, 7, 7, 7, 7, 7, 7] if turns_done == 1 else [7, 6, 9, 7, 7, 7, 7])"
+    - wram('wSelfdestructGasTurn') == 0
+  assert:
+    - turns_done == 2
+    - enemy.stat_levels == [7, 6, 9, 7, 7, 7, 7]
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion timing: WEAK_ARMOR resumes next turn enemy"
+  player: {"species":"MEW","level":100,"ability":"WEAK_ARMOR","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy2: {species: MEW, level: 30, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced_low
+  turns: 2
+  turn_assert:
+    - "player.stat_levels == ([7, 7, 7, 7, 7, 7, 7] if turns_done == 1 else [7, 6, 9, 7, 7, 7, 7])"
+    - wram('wSelfdestructGasTurn') == 0
+  assert:
+    - turns_done == 2
+    - player.stat_levels == [7, 6, 9, 7, 7, 7, 7]
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion timing: Drizzle resumes after faint player"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"POLITOED","level":100,"ability":"DRIZZLE","moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert: ["weather == 1", "player.hp == 0", "enemy.hp > 0", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion timing: Drizzle resumes after faint enemy"
+  player: {"species":"POLITOED","level":100,"ability":"DRIZZLE","moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert: ["weather == 1", "enemy.hp == 0", "player.hp > 0", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion timing: NO_ABILITY against Damp"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [EXPLOSION]}
+  enemy: {species: MEW, level: 100, ability: DAMP, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == player.start_hp", "enemy.hp == enemy.start_hp", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion timing: MOLD_BREAKER against Damp"
+  player: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [EXPLOSION]}
+  enemy: {species: MEW, level: 100, ability: DAMP, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == 0", "enemy.hp < enemy.start_hp", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion timing: NEUTRALIZING_GAS against Damp"
+  player: {species: MEW, level: 30, ability: NEUTRALIZING_GAS, moves: [EXPLOSION]}
+  enemy: {species: MEW, level: 100, ability: DAMP, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == 0", "enemy.hp < enemy.start_hp", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion timing: protected explosion clears pending guard"
+  player: {species: MEW, level: 30, ability: NEUTRALIZING_GAS, moves: [EXPLOSION]}
+  enemy: {species: MEW, level: 100, ability: STAMINA, moves: [PROTECT]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp == 0", "enemy.hp == enemy.start_hp", "enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]", "wram('wSelfdestructGasTurn') == 0"]
+
+- name: "Gas explosion berry timing: player NO_ABILITY NO_ABILITY"
+  id: explosion_berry_player_NO_ABILITY
+  player: {"species":"WEEZING","level":30,"ability":"NO_ABILITY","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"NO_ABILITY","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion berry timing: player NO_ABILITY RIPEN"
+  player: {"species":"WEEZING","level":30,"ability":"NO_ABILITY","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"RIPEN","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+    - "enemy.hp == result('explosion_berry_player_NO_ABILITY')['enemy']['hp'] + 10"
+
+- name: "Gas explosion berry timing: player NEUTRALIZING_GAS NO_ABILITY"
+  id: explosion_berry_player_NEUTRALIZING_GAS
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"NO_ABILITY","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion berry timing: player NEUTRALIZING_GAS RIPEN"
+  player: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  enemy: {"species":"MEW","level":100,"ability":"RIPEN","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+    - "enemy.hp == result('explosion_berry_player_NEUTRALIZING_GAS')['enemy']['hp']"
+
+- name: "Gas explosion berry timing: enemy NO_ABILITY NO_ABILITY"
+  id: explosion_berry_enemy_NO_ABILITY
+  player: {"species":"MEW","level":100,"ability":"NO_ABILITY","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NO_ABILITY","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion berry timing: enemy NO_ABILITY RIPEN"
+  player: {"species":"MEW","level":100,"ability":"RIPEN","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NO_ABILITY","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+    - "player.hp == result('explosion_berry_enemy_NO_ABILITY')['player']['hp'] + 10"
+
+- name: "Gas explosion berry timing: enemy NEUTRALIZING_GAS NO_ABILITY"
+  id: explosion_berry_enemy_NEUTRALIZING_GAS
+  player: {"species":"MEW","level":100,"ability":"NO_ABILITY","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+
+- name: "Gas explosion berry timing: enemy NEUTRALIZING_GAS RIPEN"
+  player: {"species":"MEW","level":100,"ability":"RIPEN","item":"BERRY","hp":51,"moves":["SPLASH"]}
+  enemy: {"species":"WEEZING","level":30,"ability":"NEUTRALIZING_GAS","moves":["EXPLOSION"]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp > 0
+    - wram('wSelfdestructGasTurn') == 0
+    - "player.hp == result('explosion_berry_enemy_NEUTRALIZING_GAS')['player']['hp']"
+

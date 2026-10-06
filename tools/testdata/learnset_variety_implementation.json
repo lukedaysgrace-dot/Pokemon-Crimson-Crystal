@@ -4150,5 +4150,11 @@
         "STRENGTH"
       ]
     }
-  }
+  },
+  "tm_replacements": {
+    "BUG_BITE": "FURY_CUTTER"
+  },
+  "tm_replacement_source": "f96557e98c8cc64284836ab8abc31e82248371dc: intentional Bug Bite to Fury Cutter TM and compatibility replacement",
+  "level_up_removals": {"SCYTHER": ["BUG_BITE"]},
+  "level_up_removal_source": "f96557e98c8cc64284836ab8abc31e82248371dc: Scyther's level-25 Bug Bite explicitly removed alongside the TM replacement"
 }

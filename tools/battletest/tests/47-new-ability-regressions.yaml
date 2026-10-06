@@ -104,7 +104,8 @@
   turns: 1
   assert:
     - player.item == 'NO_ITEM'
-    - player.hp - player.start_hp == 20
+    - player.hp == (player.maxhp * 25) // 100 + 20
+    - player.hp == player.start_hp
 
 - name: "New ability regression: Cud Chew does not replay Berry Juice"
   player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, hp: 25, item: BERRY_JUICE, moves: [SPLASH] }
@@ -113,7 +114,8 @@
   turns: 2
   assert:
     - player.item == 'NO_ITEM'
-    - player.hp - player.start_hp == 20
+    - player.hp == (player.maxhp * 25) // 100 + 20
+    - player.hp == player.start_hp
 
 - name: "New ability regression: Harvest does not restore Berry Juice"
   player: { species: EXEGGUTOR, level: 50, ability: HARVEST, hp: 25, item: BERRY_JUICE, moves: [SPLASH] }
@@ -123,7 +125,8 @@
   turns: 2
   assert:
     - player.item == 'NO_ITEM'
-    - player.hp - player.start_hp == 20
+    - player.hp == (player.maxhp * 25) // 100 + 20
+    - player.hp == player.start_hp
 
 # ---- Harvest records every real Berry consumer ---------------------------
 

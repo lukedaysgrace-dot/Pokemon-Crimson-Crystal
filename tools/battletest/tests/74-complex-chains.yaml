@@ -1,0 +1,2183 @@
+# Exact berry amounts and ability/item state across multi-turn chains.
+# Start above half HP so the first hit, rather than entry, triggers recovery.
+- name: 'Complex chain: player PARENTAL_BOND TACKLE NO_ABILITY berry control'
+  id: complex_berry_player_PARENTAL_BOND_TACKLE_NO_ABILITY
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+- name: 'Complex chain: player PARENTAL_BOND TACKLE NO_ABILITY exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+  - enemy.hp == result('complex_berry_player_PARENTAL_BOND_TACKLE_NO_ABILITY')['enemy']['hp']
+    + 10
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player PARENTAL_BOND TACKLE RIPEN berry control'
+  id: complex_berry_player_PARENTAL_BOND_TACKLE_RIPEN
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+- name: 'Complex chain: player PARENTAL_BOND TACKLE RIPEN exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+  - enemy.hp == result('complex_berry_player_PARENTAL_BOND_TACKLE_RIPEN')['enemy']['hp']
+    + 20
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player PARENTAL_BOND TACKLE KLUTZ berry control'
+  id: complex_berry_player_PARENTAL_BOND_TACKLE_KLUTZ
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+- name: 'Complex chain: player PARENTAL_BOND TACKLE KLUTZ exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 2
+  - enemy.hp == result('complex_berry_player_PARENTAL_BOND_TACKLE_KLUTZ')['enemy']['hp']
+    + 0
+  - enemy.item == 'BERRY'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE NO_ABILITY berry control'
+  id: complex_berry_enemy_PARENTAL_BOND_TACKLE_NO_ABILITY
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE NO_ABILITY exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+  - player.hp == result('complex_berry_enemy_PARENTAL_BOND_TACKLE_NO_ABILITY')['player']['hp']
+    + 10
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE RIPEN berry control'
+  id: complex_berry_enemy_PARENTAL_BOND_TACKLE_RIPEN
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE RIPEN exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+  - player.hp == result('complex_berry_enemy_PARENTAL_BOND_TACKLE_RIPEN')['player']['hp']
+    + 20
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE KLUTZ berry control'
+  id: complex_berry_enemy_PARENTAL_BOND_TACKLE_KLUTZ
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+- name: 'Complex chain: enemy PARENTAL_BOND TACKLE KLUTZ exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 2
+  - player.hp == result('complex_berry_enemy_PARENTAL_BOND_TACKLE_KLUTZ')['player']['hp']
+    + 0
+  - player.item == 'BERRY'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK NO_ABILITY berry control'
+  id: complex_berry_player_SKILL_LINK_FURY_ATTACK_NO_ABILITY
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK NO_ABILITY exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_FURY_ATTACK_NO_ABILITY')['enemy']['hp']
+    + 10
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK RIPEN berry control'
+  id: complex_berry_player_SKILL_LINK_FURY_ATTACK_RIPEN
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK RIPEN exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_FURY_ATTACK_RIPEN')['enemy']['hp']
+    + 20
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK KLUTZ berry control'
+  id: complex_berry_player_SKILL_LINK_FURY_ATTACK_KLUTZ
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK FURY_ATTACK KLUTZ exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_FURY_ATTACK_KLUTZ')['enemy']['hp']
+    + 0
+  - enemy.item == 'BERRY'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK NO_ABILITY berry control'
+  id: complex_berry_enemy_SKILL_LINK_FURY_ATTACK_NO_ABILITY
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK NO_ABILITY exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_FURY_ATTACK_NO_ABILITY')['player']['hp']
+    + 10
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK RIPEN berry control'
+  id: complex_berry_enemy_SKILL_LINK_FURY_ATTACK_RIPEN
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK RIPEN exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_FURY_ATTACK_RIPEN')['player']['hp']
+    + 20
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK KLUTZ berry control'
+  id: complex_berry_enemy_SKILL_LINK_FURY_ATTACK_KLUTZ
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK FURY_ATTACK KLUTZ exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - FURY_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_FURY_ATTACK_KLUTZ')['player']['hp']
+    + 0
+  - player.item == 'BERRY'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED NO_ABILITY berry control'
+  id: complex_berry_player_SKILL_LINK_BULLET_SEED_NO_ABILITY
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED NO_ABILITY exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_BULLET_SEED_NO_ABILITY')['enemy']['hp']
+    + 10
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED RIPEN berry control'
+  id: complex_berry_player_SKILL_LINK_BULLET_SEED_RIPEN
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED RIPEN exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_BULLET_SEED_RIPEN')['enemy']['hp']
+    + 20
+  - enemy.item == 'NO_ITEM'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED KLUTZ berry control'
+  id: complex_berry_player_SKILL_LINK_BULLET_SEED_KLUTZ
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+- name: 'Complex chain: player SKILL_LINK BULLET_SEED KLUTZ exact berry heal'
+  player:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - enemy.hp > 0
+  - wram('wEnemyRageFistHits') == 5
+  - enemy.hp == result('complex_berry_player_SKILL_LINK_BULLET_SEED_KLUTZ')['enemy']['hp']
+    + 0
+  - enemy.item == 'BERRY'
+  - player.start_hp - player.hp == player.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED NO_ABILITY berry control'
+  id: complex_berry_enemy_SKILL_LINK_BULLET_SEED_NO_ABILITY
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED NO_ABILITY exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_BULLET_SEED_NO_ABILITY')['player']['hp']
+    + 10
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED RIPEN berry control'
+  id: complex_berry_enemy_SKILL_LINK_BULLET_SEED_RIPEN
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED RIPEN exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: RIPEN
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_BULLET_SEED_RIPEN')['player']['hp']
+    + 20
+  - player.item == 'NO_ITEM'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED KLUTZ berry control'
+  id: complex_berry_enemy_SKILL_LINK_BULLET_SEED_KLUTZ
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+- name: 'Complex chain: enemy SKILL_LINK BULLET_SEED KLUTZ exact berry heal'
+  player:
+    species: OMASTAR
+    level: 100
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    hp: 51
+    item: BERRY
+  enemy:
+    species: MEW
+    level: 30
+    ability: SKILL_LINK
+    item: LIFE_ORB
+    moves:
+    - BULLET_SEED
+  rng: forced_high
+  turns: 1
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - player.hp > 0
+  - wram('wPlayerRageFistHits') == 5
+  - player.hp == result('complex_berry_enemy_SKILL_LINK_BULLET_SEED_KLUTZ')['player']['hp']
+    + 0
+  - player.item == 'BERRY'
+  - enemy.start_hp - enemy.hp == enemy.maxhp // 10
+- name: 'Complex chain: Skill Swap STAMINA NO_ITEM repeated swap restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: NO_ITEM
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: STAMINA
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 4
+  move_script:
+  - 1
+  - 2
+  - 1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 4
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'STAMINA'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 2
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6)
+  - enemy.stat_levels == [7, 9, 7, 7, 7, 7, 7]
+- name: 'Complex chain: Skill Swap STAMINA NO_ITEM Gas switch restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: NO_ITEM
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: STAMINA
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 5
+  move_script:
+  - 1
+  - 2
+  - switch:2
+  - switch:1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 5
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'PARENTAL_BOND'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 1
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6)
+  - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+  player2:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+- name: 'Complex chain: Skill Swap STAMINA LIFE_ORB repeated swap restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: STAMINA
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 4
+  move_script:
+  - 1
+  - 2
+  - 1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 4
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'STAMINA'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 2
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6) + 2 * (player.maxhp //
+    10)
+  - enemy.stat_levels == [7, 9, 7, 7, 7, 7, 7]
+- name: 'Complex chain: Skill Swap STAMINA LIFE_ORB Gas switch restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: STAMINA
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 5
+  move_script:
+  - 1
+  - 2
+  - switch:2
+  - switch:1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 5
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'PARENTAL_BOND'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 1
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6) + 2 * (player.maxhp //
+    10)
+  - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+  player2:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+- name: 'Complex chain: Skill Swap WEAK_ARMOR NO_ITEM repeated swap restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: NO_ITEM
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: WEAK_ARMOR
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 4
+  move_script:
+  - 1
+  - 2
+  - 1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 4
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'WEAK_ARMOR'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 2
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6)
+  - enemy.stat_levels == [7, 5, 11, 7, 7, 7, 7]
+- name: 'Complex chain: Skill Swap WEAK_ARMOR NO_ITEM Gas switch restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: NO_ITEM
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: WEAK_ARMOR
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 5
+  move_script:
+  - 1
+  - 2
+  - switch:2
+  - switch:1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 5
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'PARENTAL_BOND'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 1
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6)
+  - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+  player2:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+- name: 'Complex chain: Skill Swap WEAK_ARMOR LIFE_ORB repeated swap restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: WEAK_ARMOR
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 4
+  move_script:
+  - 1
+  - 2
+  - 1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 4
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'WEAK_ARMOR'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 2
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6) + 2 * (player.maxhp //
+    10)
+  - enemy.stat_levels == [7, 5, 11, 7, 7, 7, 7]
+- name: 'Complex chain: Skill Swap WEAK_ARMOR LIFE_ORB Gas switch restoration'
+  player:
+    species: KANGASKHAN
+    level: 30
+    ability: PARENTAL_BOND
+    item: LIFE_ORB
+    moves:
+    - SKILL_SWAP
+    - TACKLE
+  enemy:
+    species: OMASTAR
+    level: 100
+    ability: WEAK_ARMOR
+    item: ROCKY_HELMET
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 5
+  move_script:
+  - 1
+  - 2
+  - switch:2
+  - switch:1
+  - 2
+  turn_assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  assert:
+  - 0 <= player.hp <= player.maxhp
+  - 0 <= enemy.hp <= enemy.maxhp
+  - wram('wInAbility') == 0
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+  - (player.status & 7) == 0 or (player.status & 120) == 0
+  - (enemy.status & 7) == 0 or (enemy.status & 120) == 0
+  - 1 <= player.stat_levels[0] <= 13
+  - 1 <= player.stat_levels[1] <= 13
+  - 1 <= player.stat_levels[2] <= 13
+  - 1 <= player.stat_levels[3] <= 13
+  - 1 <= player.stat_levels[4] <= 13
+  - 1 <= player.stat_levels[5] <= 13
+  - 1 <= player.stat_levels[6] <= 13
+  - 1 <= enemy.stat_levels[0] <= 13
+  - 1 <= enemy.stat_levels[1] <= 13
+  - 1 <= enemy.stat_levels[2] <= 13
+  - 1 <= enemy.stat_levels[3] <= 13
+  - 1 <= enemy.stat_levels[4] <= 13
+  - 1 <= enemy.stat_levels[5] <= 13
+  - 1 <= enemy.stat_levels[6] <= 13
+  - turns_done == 5
+  - player.ability == 'PARENTAL_BOND'
+  - enemy.ability == 'PARENTAL_BOND'
+  - wram('wEnemyRageFistHits') == 3
+  - wram('wNeutralizingGasActive') == 0
+  - wram('wSelfdestructGasTurn') == 0
+  - player.start_pp[1] - player.pp[1] == 2
+  - player.start_pp[0] - player.pp[0] == 1
+  - player.start_hp - player.hp == 3 * (player.maxhp // 6) + 2 * (player.maxhp //
+    10)
+  - enemy.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+  player2:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+

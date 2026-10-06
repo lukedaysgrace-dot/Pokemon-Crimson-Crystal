@@ -147,6 +147,7 @@ BuenaPrintText::
 PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	call PlaceHLTextAtBC
+.done:
 	ret
 
 SetUpTextbox::

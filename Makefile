@@ -48,7 +48,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all test-learnsets audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -61,13 +61,43 @@ test: pokecrystal_debug.gbc
 	python3 tools/battletest/runner.py
 
 test-all: pokecrystal_debug.gbc
-	python3 tools/battletest/runner.py --all-moves --all-effects
+	python3 tools/audit_ability_text.py
+	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities
+
+test-deep: pokecrystal_debug.gbc
+	python3 tools/audit_ability_text.py
+	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --interactions 1024
+
+test-complete: pokecrystal_debug.gbc
+	python3 tools/audit_ability_text.py
+	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 1024
+	python3 tools/battletest/probability_checks.py
+	python3 tools/battletest/ui_checks.py
+	python3 tools/battletest/visual_matrix.py
+	python3 tools/battletest/cove_sprite_checks.py
+	python3 tools/battletest/tower_checks.py
+	python3 tools/battletest/tower_battle_checks.py
+	python3 tools/battletest/link_rng_checks.py
+	python3 tools/battletest/gameplay_session_checks.py
+
+test-session: pokecrystal_debug.gbc
+	python3 tools/battletest/runner.py -k "Lifecycle chain:"
+	python3 tools/battletest/runner.py -k "Entry item:"
+	python3 tools/battletest/gameplay_session_checks.py
+
+test-complex: pokecrystal_debug.gbc
+	python3 tools/audit_learnset_variety.py
+	python3 tools/audit_trainer_sprites.py
+	python3 tools/battletest/runner.py --complex-matrix -k "Complex "
+	python3 tools/battletest/visual_matrix.py
+	python3 tools/battletest/cove_sprite_checks.py
 
 test-learnsets: pokecrystal.gbc
 	python3 tools/test_learnset_variety.py pokecrystal.gbc
 
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
+	python3 tools/audit_ability_text.py
 	python3 tools/audit_moves.py
 	python3 tools/audit_learnset_variety.py
 	python3 tools/audit_trainers.py

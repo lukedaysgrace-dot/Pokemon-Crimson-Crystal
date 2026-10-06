@@ -110,12 +110,19 @@ GetOpponentAbility::
 	ld a, l
 	pop hl
 	ret nz
-	; A fainted Neutralizing Gas holder no longer suppresses the field.
+	; A fainted Neutralizing Gas holder no longer suppresses the field,
+	; except while its committed Selfdestruct hit is still resolving.
 	; Keep the opponent's ability in b while checking the current user.
 	push bc
 	ld b, a
 	call UserHasFainted
 	jr nz, .gas_active
+	ldh a, [hBattleTurn]
+	inc a
+	ld c, a
+	ld a, [wSelfdestructGasTurn]
+	cp c
+	jr z, .gas_active
 	ld a, b
 	pop bc
 	ret
@@ -399,7 +406,18 @@ ShowPotentialAbilityActivation::
 ; ==== Entry abilities =====================================================
 
 RunEntryAbilities::
+; Check the incoming mon's low-HP item after entry effects and Gas
+; reactivation, so Trace/Ripen and item suppression use its active ability.
+	; The foe may still be awaiting its own initial entry effects.
+	call RunEntryAbilitiesInner
+	call SwitchTurn
+	farcall HandleHPHealingItem
+	jp SwitchTurn
+
+RunEntryAbilitiesInner:
 ; Runs the current turn holder's switch-in abilities.
+	xor a
+	ld [wSelfdestructGasTurn], a
 	call EndAbility
 	call RefreshWeatherSuppression
 	call UserHasFainted
@@ -3357,6 +3375,9 @@ AbilityProtectsStatDrop::
 	ret
 
 .magic_bounce_drop
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jp nz, .no ; a complete reflected move cannot bounce again
 	; Magic Bounce reflects stat drops from STATUS moves only - not from
 	; abilities (Intimidate/Tangling Hair, flagged via bit 6) and not from
 	; secondary effects of damaging moves.
@@ -3500,6 +3521,10 @@ AbilityPreExecutionTargetBlock::
 	cp GHOST
 	jr nz, .not_blocked
 .check_ability
+	; Reflection precedes Prankster's Dark immunity. Mean Look has no
+	; checkhit command, so its bounce exemption must also run here.
+	farcall MagicBounceSkipsOriginalHit_Core
+	jr c, .not_blocked
 	call AbilityPreHitTargetBlock
 	jr .done
 .not_blocked

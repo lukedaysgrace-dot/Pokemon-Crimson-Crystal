@@ -9,12 +9,14 @@ this directory drives it headlessly with PyBoy and asserts on WRAM.
 ```bash
 make debug          # build pokecrystal_debug.gbc (release ROM untouched)
 make test           # run every YAML case in tools/battletest/tests/
-make test-all       # YAML assertions + every effect + execute every move
+make test-all       # YAML + every effect/move/ability + expanded ability text
+make test-deep      # also ability/class/reflection matrices + 1,024 mixed battles
+python3 tools/battletest/runner.py --all-abilities -k "Ability sweep"
 python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
 python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
-Requires: `pip install pyboy pyyaml` — **with the MBC30 patch** (see below).
+Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
 First run bootstraps a fresh save into the DEBUG start-menu entry
 (~1 minute) and caches it as a save state in `fixtures/`, keyed on the ROM
@@ -24,29 +26,57 @@ hash. Every test after that costs ~0.4s.
 a behavioral scenario for every distinct `EFFECT_*` routine. The former catches
 conversion-table gaps, rejected requests, crashes, and hangs; the latter and
 the YAML cases assert damage, status, stat stages, switching, weather, priority,
-post-battle effects, and move/ability interactions.
+post-battle effects, and move/ability interactions. `--all-abilities` adds
+offense and defense execution for every ability, comparison with no-ability
+controls under Neutralizing Gas, and Trace's copying restrictions against
+every ability. These representative battles complement the targeted YAML
+assertions; they do not enumerate every ability/move/opposing-ability triple.
+
+`--ability-matrix` executes every ability against twelve common move classes,
+compares suppressible abilities with no-ability controls under Neutralizing
+Gas, checks Mold Breaker's bypass of ignorable defenses, and tests Skill Swap
+and Transform against every ability. Gas comparisons include both battlers'
+HP, status, stat stages, PP, items, screens, substatus, and the weather. Mold
+comparisons isolate immediate hit mechanics; passive effects remain active.
+
+`--class-matrix` asserts every listed punch, slice, pulse, and bite damage
+boost, with Gas and opposing Mold Breaker controls, and every ball/bomb,
+wind, and sound immunity with Gas/Mold bypass controls. Tackle serves as a
+nonmember control for each class. `--reflection-matrix` tests complete
+reflected status effects against accuracy, Protect, both Substitutes, and
+Prankster/Dark boundaries. Targeted YAML cases also check reacting abilities,
+two bouncers, forced switches, PP, scheduled actions, and following turns.
+
+`--textbox-matrix` repeats every move and the offense/defense execution
+scenarios for every ability with ten-character nicknames on both battlers.
+The move scenarios use trainer battles for the longest enemy-name prefix.
+The live glyph monitor checks the text as it appears, including scrolling.
+
+`--swagger-matrix` tests all thirteen Attack stages against Contrary and
+Own Tempo with ordinary, Mold Breaker, and Gas sources. Confusion still
+applies when the boost is capped. Own Tempo's later cure under Mold Breaker
+is distinguished from initial immunity by checking both rendered messages.
+
+All battles monitor each rendered textbox glyph, including expanded names
+and messages that scroll away before assertions run. A glyph outside either
+18-cell textbox line fails the case. `tools/audit_ability_text.py` also checks
+ability banners, descriptions, and expanded battle messages with maximum
+nickname/name widths. Intentional custom ability rules remain the expected
+behavior in this game's tests.
 
 `--interactions N` adds a deterministic generated sweep that mixes random
 species, four-move sets, abilities, held items, status, weather, trainer AI,
 benches, knockouts, and voluntary switches. It is intended as a broader
 state-transition/crash sweep after the exhaustive single-move checks.
+Every mixed battle also asserts HP bounds, valid stat stages, exclusive
+major status, and a cleared ability execution guard.
 
-## PyBoy MBC30 patch (required)
+## Emulator bank handling
 
-Stock PyBoy masks MBC3 ROM banks to 7 bits, so banks ≥ $80 (where the
-tester and Pokémon names live) silently map to bank-$0F garbage. Patch
-`pyboy/core/cartridge/mbc3.py`, in `setitem`:
-
-```python
-elif 0x2000 <= address < 0x4000:
-    if self.external_rom_count > 128:
-        value &= 0b11111111          # MBC30: 8-bit bank select
-    else:
-        value &= 0b01111111
-```
-
-then `pip install .` from the PyBoy source tree. (Upstreaming this to
-PyBoy is worth a PR.)
+The runner creates a private MBC5-header surrogate so stock PyBoy can access
+all of this MBC30 ROM's banks. It maps the game's SRAM bank selections and
+steps the emulated CPU at the debug RNG hook. The original ROM is unchanged;
+no PyBoy source patch is required.
 
 ## Writing a test
 
@@ -85,6 +115,9 @@ Test fields: `turns` (pause for assertions after N turns), `rng`
 Use `switch:N` in that list for a voluntary switch to one-based party slot
 N (for example, `["switch:2"]`); normal trapping and switch-out hooks run.
 Use `run` to attempt to flee through the normal battle escape path.
+For a WRAM field that stores a runtime move ID, use `{move: WRAP}` rather
+than its two-byte constant index. The named move must be loaded in a party
+member's move set, for example `setup_wram: {wPlayerTrappingMove: {move: WRAP}}`.
 
 Assertions are Python expressions over: `player` / `enemy` (`.hp`,
 `.maxhp`, `.status`, `.item`, `.ability`, `.species`, `.moves`, `.pp`,
@@ -100,6 +133,8 @@ abilities, before any move).
 `ability_seen('ANTICIPATION')` checks the debug-only semantic trace of
 ability banners that were actually presented; `text_seen('NAME')` checks
 dynamic `text_ram` strings rendered by battle text.
+`textbox_seen('BecameConfusedText')` checks whether a static textbox template
+was actually entered, which can establish an effect that is later cured.
 `enemy_move()` names the move the AI picked on the last turn (wCurEnemyMove).
 
 For paired control cases, give an earlier case an `id:` and read its retained
@@ -142,7 +177,68 @@ The forced defaults were chosen against the engine's reroll loops (enemy
 move slot needs `&3==0`, sleep turns need `&7!=0`, tri-status needs
 `swap&3!=0`); override with `rng_value` only if you know the loop budget.
 
+## Complete interaction sweep
+
+`make test-complete` runs the deep sweep plus the move outcome, held-item,
+incoming-hit reaction, and long-battle matrices. It also runs the separate
+probability, normal-menu, Tower-roster, Tower-battle, and link-RNG checks.
+This is a lengthy emulator run; individual matrices can be selected with
+`--outcome-matrix`, `--item-matrix`, `--reaction-matrix`, `--complex-matrix`, or `--long-battles`.
+`-k` matches a literal name substring and automatically includes earlier
+paired controls required by `result('id')` assertions.
+
+`turn_assert` expressions are checked after each completed turn, including
+HP/stat limits and presentation guards. Scripts longer than eight actions
+are streamed into the ROM's final script slot while it is paused. This lets
+the 24-switch and 32-turn cases execute their full action sequences.
+
+Ability overrides for a species without that ability take effect after
+entry. Use a legal holder, or explicitly set the relevant entry state, when
+testing switch-in effects or Gas's faint-reactivation lifecycle.
+
+The probability script enumerates all 256 RNG bytes through the actual ROM
+routines; it tests thresholds rather than the distribution of hardware RNG.
+The menu script uses normal button input with animations enabled. Tower
+checks cover all 321 roster builds, entry rules, seven complete battle-wrapper
+wins, a loss with forced party selection, and saved-party restoration. The
+winning Tower fixtures are overleveled; this does not test the frontend's
+level selection or reward script. Link-RNG checks compare two independent
+emulators using the retail link random stream; they do not emulate a cable
+handshake or complete two-player battle.
+
+`make test-complex` runs 44 exact berry/ability-transfer chain regressions and
+the added 1,008 combinations of Parental Bond/Skill
+Link, seven attacks, both directions, six defender abilities, four defender
+items, and three attacker items. It checks hit counts, exact stat stages,
+item consumption, and exact Life Orb/contact recoil. Another 512 mixed cases
+use a new seed, extra held items, and 12-turn scripts with checks each turn.
+These mixed cases test state boundaries; they do not assert the complete
+expected outcome of every randomly selected move.
+
+`visual_matrix.py` uses native menus at all 20 textbox frames, three text
+speeds, and animations on/off (120 scenarios). It captures active banners,
+live and completed messages, and restored menus with ten-character names.
+`--shard N --shards M` partitions this run without repeating cases. The
+glyph monitor remains active throughout each scenario. Images are saved to
+`.venv/visual-matrix/` for visual inspection.
+
+`cove_sprite_checks.py` loads the real fishing cove at four viewpoints in
+visitor and two contest-roster states (12 views, 216 map/roster/allocation checks).
+The sprite audit also checks all 462 possible contest candidate rosters
+plus the ordinary visitor roster. The cove uses its actual map objects for
+allocation rather than the shared Olivine outdoor list.
+
 ## How it works (ROM side)
+
+`make test-session` runs 32 Gas/faint/replacement/Trace/weather/item chains,
+18 pre-move entry-item cases, and an eight-battle native-menu session. The
+session keeps one party throughout, checks HP/PP/item/permanent-ability
+persistence, switches through the party menu, reloads the overworld after
+each battle, heals once, and verifies exact Pokemon SRAM save/load data three
+times. Encounters are staged; this is not a complete story playthrough.
+Captures are saved under `.venv/gameplay-session/`. Only the initial party
+is built through the debug helper; automatic battle actions and debug party
+restoration remain disabled throughout the session.
 
 `engine/debug/battle_tester.asm` (bank $8F, `DEBUG_BATTLE` builds only).
 The harness writes a request block in WRAMX bank 2 (`wDebugMagic`...)

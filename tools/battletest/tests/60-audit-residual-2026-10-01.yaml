@@ -86,20 +86,22 @@
 
 - name: "Modern residual: existing binding removes one eighth of maximum HP"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
-  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
-  setup_wram: { wPlayerWrapCount: 3 }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE, WRAP] }
+  setup_wram: { wPlayerWrapCount: 3, wPlayerTrappingMove: { move: WRAP } }
   rng: forced_high
   turns: 1
   assert:
     - player.start_hp - player.hp == result('modern_binding_control')['player']['damage'] + player.maxhp // 8
     - wram('wPlayerWrapCount') == 2
+    - text_seen('WRAP')
 
 - name: "Modern residual: an existing Substitute does not suspend binding damage or its timer"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH] }
-  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
-  setup_wram: { wPlayerWrapCount: 3, wPlayerSubstituteHP: 200 }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE, WRAP] }
+  setup_wram: { wPlayerWrapCount: 3, wPlayerSubstituteHP: 200, wPlayerTrappingMove: { move: WRAP } }
   rng: forced_high
   turns: 1
   assert:
     - player.start_hp - player.hp == player.maxhp // 8
     - wram('wPlayerWrapCount') == 2
+    - text_seen('WRAP')

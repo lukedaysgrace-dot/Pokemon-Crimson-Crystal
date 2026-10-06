@@ -216,3 +216,4 @@ BattleCommandPointers:
 	dw BattleCommand_Wish
 	dw BattleCommand_StickyWeb
 	dw BattleCommand_SuckerPunchCheck
+	dw BattleCommand_SwaggerBoost

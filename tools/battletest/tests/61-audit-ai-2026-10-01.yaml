@@ -76,8 +76,8 @@
     - enemy_move() == 'HAZE'
 
 - name: "AI Attract bypasses Substitute"
-  player: { species: RATTATA, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
-  enemy: { species: RATTATA, level: 50, ability: NO_ABILITY, moves: [ATTRACT, HAZE] }
+  player: { species: NIDORINO, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN, SUBSTITUTE], moves: [SPLASH] }
+  enemy: { species: NIDORINA, level: 100, ability: NO_ABILITY, moves: [ATTRACT, HAZE] }
   enemy2: { species: PIDGEY, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   enemy_class: FALKNER
   setup_wram: { wPlayerSubstituteHP: 40 }

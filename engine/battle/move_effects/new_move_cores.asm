@@ -1022,12 +1022,156 @@ ToxicSpikesPoison:
 ; All bodies live in this bank (Battle Effect Overflow); Battle Core and
 ; Effect Commands only hold farcall stubs.
 
+MagicBounceSkipsOriginalHit_Core::
+; New reflected commands check accuracy/protection from the bouncer's side.
+; The original target's Protect or the source's accuracy cannot stop a bounce.
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .no
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jr nz, .no
+	farcall GetOpponentIgnorableAbility_b
+	ld a, b
+	cp MAGIC_BOUNCE
+	jr nz, .no
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, .effects
+	ld de, 1
+	call IsInArray
+	ret
+.no
+	and a
+	ret
+.effects
+	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
+	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_MEAN_LOOK, -1
+
+MagicBounceSkipActionCommand_Core::
+; Reflected scripts execute effects, without spending PP, checking obedience,
+; or overwriting the bouncer's actual last move and scheduled action.
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr z, .no
+	push bc
+	ld a, b
+	ld hl, .actions
+	ld de, 1
+	call IsInArray
+	pop bc
+	ret
+.no
+	and a
+	ret
+.actions
+	db checkobedience_command, usedmovetext_command, doturn_command, -1
+
+TryMagicBounceCommand_Core::
+; b = next command. Reflect the complete move after the original user's
+; obedience, used-move text and PP commands, before any targeting checks.
+	push bc
+	ld a, b
+	ld hl, MagicBounceSkipActionCommand_Core.actions
+	ld de, 1
+	call IsInArray
+	pop bc
+	jp c, .no
+	; Circle Throw shares forceswitch with Roar but is a damaging move.
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerMoveStructCategory]
+	jr z, .got_category
+	ld a, [wEnemyMoveStructCategory]
+.got_category
+	cp CATEGORIZE_STATUS
+	jp nz, .no
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jp nz, .no
+	push bc
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, .effects
+	ld de, 1
+	call IsInArray
+	pop bc
+	jp nc, .no
+	push bc
+	farcall GetOpponentIgnorableAbility_b
+	ld a, b
+	cp MAGIC_BOUNCE
+	pop bc
+	jp nz, .no
+	; Semi-invulnerability prevents reflection, including side-targeted moves.
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jp nz, .no
+	farcall ShowEnemyAbilityBannerBrief
+	call .swap_move_data
+	ldh a, [hBattleTurn]
+	push af
+	farcall SwitchTurn
+	ld hl, wDisguiseBusted + 1
+	set 6, [hl]
+	; Load the unmodified move for the bouncer, then run every ordinary effect
+	; command. This includes accuracy, typed/powder/sound immunities,
+	; Substitute, Safeguard, items, stat boosts/drops and secondary effects.
+	farcall UpdateMoveData
+	xor a
+	ld [wAttackMissed], a
+	farcall DoMove
+	ld hl, wDisguiseBusted + 1
+	res 6, [hl]
+	pop af
+	ldh [hBattleTurn], a
+	call .swap_move_data
+	scf
+	ret
+.no
+	and a
+	ret
+
+.swap_move_data
+	ld hl, wPlayerMoveStruct
+	ld de, wEnemyMoveStruct
+	ld b, MOVE_LENGTH
+.swap_loop
+	ld c, [hl]
+	ld a, [de]
+	ld [hli], a
+	ld a, c
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .swap_loop
+	ld a, [wCurPlayerMove]
+	ld b, a
+	ld a, [wCurEnemyMove]
+	ld [wCurPlayerMove], a
+	ld a, b
+	ld [wCurEnemyMove], a
+	ret
+
+.effects
+	db EFFECT_SLEEP, EFFECT_POISON, EFFECT_PARALYZE, EFFECT_TOXIC, EFFECT_BURN
+	db EFFECT_CONFUSE, EFFECT_ATTRACT, EFFECT_SWAGGER
+	db EFFECT_ATTACK_DOWN, EFFECT_DEFENSE_DOWN, EFFECT_SPEED_DOWN
+	db EFFECT_SP_ATK_DOWN, EFFECT_SP_DEF_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
+	db EFFECT_ATTACK_DOWN_2, EFFECT_DEFENSE_DOWN_2, EFFECT_SPEED_DOWN_2
+	db EFFECT_SP_ATK_DOWN_2, EFFECT_SP_DEF_DOWN_2, EFFECT_ACCURACY_DOWN_2, EFFECT_EVASION_DOWN_2
+	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
+	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_DEFOG
+	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
+	db EFFECT_STICKY_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
+
+
 BattleTorment_Core:
 ; Target can't use the same move twice in a row until it leaves the field.
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .failed
-	farcall CheckSubstituteOpp_Core
 	jr nz, .failed
 	ld a, BATTLE_VARS_SUBSTATUS2_OPP
 	call GetBattleVarAddr
@@ -1049,8 +1193,6 @@ BattleTaunt_Core:
 ; end of the Taunt turn and then once per taunted turn, like Encore).
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .failed
-	farcall CheckSubstituteOpp_Core
 	jr nz, .failed
 	; canon Gen 6+: Oblivious blocks Taunt
 	farcall GetOpponentIgnorableAbility_b
@@ -1460,7 +1602,13 @@ HandleNewEndTurnEffects_Core:
 	pop hl
 	ret nz
 	push hl
+	; Drowsiness has already landed (and may already have been reflected).
+	; Its delayed sleep is not a new reflectable move.
+	ld hl, wDisguiseBusted + 1
+	set 6, [hl]
 	farcall AbilityPreventsSleep
+	ld hl, wDisguiseBusted + 1
+	res 6, [hl]
 	pop hl
 	ret c
 .sleep_roll

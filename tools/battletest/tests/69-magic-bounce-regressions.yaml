@@ -1,0 +1,209 @@
+- name: "Bounce regression: Mold Breaker bypasses reflection"
+  player: { species: MEW, level: 50, ability: MOLD_BREAKER, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 0", "wram('wEnemyTauntCount') == 3"]
+
+- name: "Bounce regression: Neutralizing Gas suppresses reflection"
+  player: { species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPIKES] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerSpikesLayers') == 0", "wram('wEnemySpikesLayers') == 1"]
+
+- name: "Bounce regression: two Magic Bounce holders cannot reflect repeatedly"
+  player: { species: ESPEON, level: 50, ability: MAGIC_BOUNCE, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "wram('wInAbility') == 0", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Bounce regression: reflected Leech Seed fails on a Grass source"
+  player: { species: BULBASAUR, level: 50, ability: NO_ABILITY, moves: [LEECH_SEED] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[3] & 128) == 0", "(enemy.substatus[3] & 128) == 0"]
+
+- name: "Bounce regression: Sap Sipper absorbs reflected Leech Seed"
+  player: { species: MEW, level: 50, ability: SAP_SIPPER, moves: [LEECH_SEED] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[3] & 128) == 0", "(enemy.substatus[3] & 128) == 0", "player.stat_levels[0] == 8"]
+
+- name: "Bounce regression: reflected Taunt respects Oblivious"
+  player: { species: MEW, level: 50, ability: OBLIVIOUS, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 0", "wram('wEnemyTauntCount') == 0"]
+
+- name: "Bounce regression: reflected Taunt respects Wonder Skin accuracy"
+  player: { species: MEW, level: 50, ability: WONDER_SKIN, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 0", "wram('wEnemyTauntCount') == 0"]
+
+- name: "Bounce regression: reflected Taunt bypasses the source Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wPlayerSubstituteHP: 100, wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0"]
+
+- name: "Bounce regression: reflected Torment bypasses the source Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [TORMENT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wPlayerSubstituteHP: 100, wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[1] & 2) != 0", "(enemy.substatus[1] & 2) == 0"]
+
+- name: "Bounce regression: reflected Yawn respects the source Substitute"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [YAWN] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  setup_wram: { wPlayerSubstituteHP: 100, wEnemySubstituteHP: 100 }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerYawnCount') == 0", "wram('wEnemyYawnCount') == 0", "player.status == 0", "enemy.status == 0"]
+
+- name: "Bounce regression: reflected Yawn sleeps the source on the next turn"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["(player.status & 7) != 0", "enemy.status == 0", "wram('wPlayerYawnCount') == 0"]
+
+- name: "Bounce regression: a reflected hazard spends only the source PP"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIKES] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1", "enemy.start_pp[0] - enemy.pp[0] == 1", "enemy.moves[0] == 'SPLASH'", "enemy_move() == 'SPLASH'"]
+
+- name: "Bounce regression: delayed Yawn sleep cannot bounce again"
+  player: { species: ESPEON, level: 50, ability: MAGIC_BOUNCE, moves: [YAWN, SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["(player.status & 7) != 0", "enemy.status == 0", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Bounce regression: enemy Taunt is reflected onto the enemy"
+  player: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 0", "wram('wEnemyTauntCount') == 3"]
+
+- name: "Bounce regression: Circle Throw damage and phazing cannot be reflected"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [CIRCLE_THROW] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  rng: forced
+  rng_value: 1
+  turns: 1
+  assert: ["player.hp == player.start_hp", "enemy.species == 'SNORLAX'", "not ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: a flying holder cannot reflect Spikes"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIKES] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [FLYING], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerSpikesLayers') == 0", "wram('wEnemySpikesLayers') == 1", "not ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: Disable locks the source's current move"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DISABLE, SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  move_script: [2, 1]
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerDisableCount') % 16 == 4", "wram('wDisabledMove') == wram('wBattleMonMoves')", "wram('wEnemyDisableCount') == 0", "enemy_move() == 'SPLASH'"]
+
+- name: "Bounce regression: Encore cannot encore the source's current Encore"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ENCORE, SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  move_script: [2, 1]
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerEncoreCount') == 0", "wram('wEnemyEncoreCount') == 0", "ability_seen('MAGIC_BOUNCE')", "enemy_move() == 'SPLASH'", "player.start_pp[0] - player.pp[0] == 1", "player.start_pp[1] - player.pp[1] == 1"]
+
+- name: "Bounce regression: reflected Roar switches the source"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ROAR] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy2: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced
+  rng_value: 1
+  turns: 1
+  assert: ["player.species == 'SNORLAX'", "enemy.species == 'ESPEON'", "ability_seen('MAGIC_BOUNCE')", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Bounce regression: reflected Roar respects source Soundproof"
+  player: { species: MEW, level: 50, ability: SOUNDPROOF, moves: [ROAR] }
+  player2: { species: SNORLAX, level: 50, moves: [SPLASH] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy2: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced
+  rng_value: 1
+  turns: 1
+  assert: ["player.species == 'MEW'", "ability_seen('SOUNDPROOF')", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Bounce regression: Defog reflects its evasion drop and clears hazards"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DEFOG] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  setup_wram: { wPlayerSpikesLayers: 1, wEnemySpikesLayers: 1, wPlayerScreens: 1, wEnemyScreens: 1 }
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[6] == 6", "enemy.stat_levels[6] == 7", "wram('wPlayerSpikesLayers') == 0", "wram('wEnemySpikesLayers') == 0"]
+
+- name: "Bounce regression: reflected Taunt uses the bouncer's accuracy"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, stages: { acc: -6 }, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: Magic Bounce reflects through its own Protect"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [PROTECT] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: reflected Roar allows a normal following turn"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ROAR] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  enemy2: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  move_script: [1, 1]
+  rng: forced
+  rng_value: 1
+  turns: 2
+  assert: ["player.species == 'SNORLAX'", "enemy.hp < enemy.start_hp", "player.moves[0] == 'TACKLE'", "player.pp[0] == 34", "enemy.pp[0] == 38", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Bounce regression: Prankster Taunt reflects from a Dark holder"
+  player: { species: MEW, level: 50, ability: PRANKSTER, moves: [TAUNT] }
+  enemy: { species: UMBREON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: Prankster Mean Look reflects from a Dark holder"
+  player: { species: MEW, level: 50, ability: PRANKSTER, moves: [MEAN_LOOK] }
+  enemy: { species: UMBREON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[4] & 128) != 0", "(enemy.substatus[4] & 128) == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Bounce regression: reflected Prankster Mean Look can trap a Dark source"
+  player: { species: UMBREON, level: 50, ability: PRANKSTER, moves: [MEAN_LOOK] }
+  enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[4] & 128) != 0", "(enemy.substatus[4] & 128) == 0", "ability_seen('MAGIC_BOUNCE')"]

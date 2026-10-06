@@ -1,0 +1,53 @@
+- name: "Deep Swagger: Substitute blocks both Attack and confusion"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wEnemySubstituteHP: 100}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7", "(enemy.substatus[2] & 128) == 0"]
+
+- name: "Deep Swagger: Infiltrator bypasses Substitute for both effects"
+  player: {species: MEW, level: 30, ability: INFILTRATOR, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wEnemySubstituteHP: 100}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 9", "(enemy.substatus[2] & 128) != 0"]
+
+- name: "Deep Swagger: Own Tempo blocks confusion while allowing Attack"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: OWN_TEMPO, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 9", "(enemy.substatus[2] & 128) == 0", "ability_seen('OWN_TEMPO')"]
+
+- name: "Deep Swagger: Contrary reverses Attack without losing confusion"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: CONTRARY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 5", "(enemy.substatus[2] & 128) != 0"]
+
+- name: "Deep Swagger: Contrary behind Substitute cannot react"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [SWAGGER]}
+  enemy: {species: SNORLAX, level: 100, ability: CONTRARY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wEnemySubstituteHP: 100}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7", "(enemy.substatus[2] & 128) == 0", "not ability_seen('CONTRARY')"]
+
+- name: "Deep Swagger: reflected move uses the bouncer's Infiltrator rules"
+  player: {species: MEW, level: 30, ability: INFILTRATOR, substatus: [SUBSTITUTE], moves: [SWAGGER]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  setup_wram: {wPlayerSubstituteHP: 100}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 7", "enemy.stat_levels[0] == 7", "(player.substatus[2] & 128) == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: "Deep Swagger: enemy move cannot boost through the player's Substitute"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SWAGGER]}
+  setup_wram: {wPlayerSubstituteHP: 100}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[0] == 7", "(player.substatus[2] & 128) == 0"]
