@@ -5368,8 +5368,9 @@ AbilityCapCore::
 	jp PrintText
 
 .BecameText:
-	text "Its ability is"
-	line "now @"
+	text "Its ability"
+	line "is now"
+	cont "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"
 	prompt
