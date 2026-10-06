@@ -4698,7 +4698,7 @@ HandleHPHealingItem::
 	ld hl, wBattleMonMaxHP
 
 .go
-; Eat the Berry below half max HP (below 3/4 with Gluttony). Ripen
+; Eat the Berry at or below half max HP. Ripen
 ; doubles the heal (c). The helper also stores current HP in wBuffer3/4
 ; and returns with this routine's hl/de pointer contract intact.
 	farcall BerryThresholdCheck_Core
