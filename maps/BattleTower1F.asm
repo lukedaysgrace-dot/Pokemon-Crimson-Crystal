@@ -792,7 +792,8 @@ Text_RegisterRecordTimedOut_Mobile:
 Text_AMonLevelExceeds:
 	text "One or more of"
 	line "your #MON's"
-	cont "levels exceeds @"
+	cont "levels exceeds"
+	cont "@"
 	text_decimal wScriptVar, 1, 3
 	text "."
 	done

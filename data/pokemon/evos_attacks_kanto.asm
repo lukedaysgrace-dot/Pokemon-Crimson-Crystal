@@ -946,6 +946,7 @@ JigglypuffEvosAttacks:
 	dbw 1, SING
 	dbw 1, SWEET_KISS
 	dbw 4, POUND
+	dbw 7, PIXIE_PUNCH
 	dbw 9, DISARMING_VOICE
 	dbw 13, DISABLE
 	dbw 15, DRAINING_KISS
@@ -969,6 +970,7 @@ WigglytuffEvosAttacks:
 	dbw 1, POUND
 	dbw 1, SING
 	dbw 1, SWEET_KISS
+	dbw 1, PIXIE_PUNCH
 	dbw 9, DISARMING_VOICE
 	dbw 13, DISABLE
 	dbw 15, DRAINING_KISS
