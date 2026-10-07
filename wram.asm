@@ -3243,6 +3243,17 @@ wEnemyCounterHitCategory:: db
 wEnemyCounterHitDamage:: dw
 wCounterHitHistoryEnd::
 
+SECTION "Ability Move State", WRAMX, BANK[2]
+
+; BANKED (bank 2): accessed only through helpers in abilities_engine.asm.
+; Base power the latest damagecalc used for the current hit, after the
+; variable-power commands (Return, Present, Magnitude, Flail, Gyro Ball,
+; Rage Fist, ...). Technician's 60-power threshold reads it.
+wDamageCalcBasePower:: db
+; Nonzero when Transform/Imposter has just replaced the user's ability with
+; a different one, whose start (entry) effect is still pending.
+wTransformedAbilityPending:: db
+
 
 SECTION "16-bit WRAM tables", WRAMX
 ; align this section to $100

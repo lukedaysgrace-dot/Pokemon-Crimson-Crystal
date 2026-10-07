@@ -1,5 +1,13 @@
 # Ability testing handoff — October 6, 2026
 
+> **Update 2026-10-07:** a second-pass code audit found and fixed 17 further
+> ability bugs (Technician base power, absorb abilities through Protect/Fly,
+> No Guard vs semi-invulnerability, Baton Pass switch-out abilities, copied
+> abilities on Transform/Imposter, Substitute vs Sturdy/Focus Sash, AI
+> targeting awareness, and data lists). See
+> `ability-audit-second-pass-2026-10-07.md` and
+> `tools/battletest/tests/78-ability-audit-2026-10-07.yaml`.
+
 ## Historical state at commit bf178b7e
 
 The sixth-pass continuation below describes current changes and verification.

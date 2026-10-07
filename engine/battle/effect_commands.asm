@@ -2105,42 +2105,23 @@ BattleCommand_CheckHit:
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	bit SUBSTATUS_FLYING, a
-	ld hl, .DigMoves
-	jr nz, .check_move_in_list
+	jr nz, .lock_on_flying
 	ld a, 1
 	and a
 	ret
 
-.FlyDigMoves:
-; Check for moves that can hit underground/flying opponents.
-; Return z if the current move can hit the opponent.
-
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	ret z
-
-	; A Phantom Force user sets both bits at once: while it has
-	; vanished, no move can reach it at all.
-	cp 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jr z, .phantom_force_unreachable
-
-	bit SUBSTATUS_FLYING, a
-	ld hl, .FlyMoves
-	jr nz, .check_move_in_list ; FLYING set -> moves that hit flying mons
-	ld hl, .DigMoves
-.check_move_in_list
-	; returns z (and a = 0) if the current move is in a given list, or nz (and a = 1) if not
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	call CheckMoveInList
+.lock_on_flying
+	; z (keep checking, then miss) for Earthquake/Fissure/Magnitude, else nz
+	farcall CurrentMoveHitsUnderground_Core
 	sbc a
 	inc a
 	ret
 
-.phantom_force_unreachable
-	ld a, 1
-	and a
+.FlyDigMoves:
+; Return z if the current move can hit the opponent: it isn't semi-
+; invulnerable, the move reaches it, or No Guard is on the field. The move
+; lists and rules are shared with the stab-time ability hooks.
+	farcall SemiInvulnerableMiss_Core
 	ret
 
 .GlaiveRushTarget:
@@ -2160,20 +2141,6 @@ BattleCommand_CheckHit:
 .glaive_flagged
 	xor a
 	ret
-
-.FlyMoves:
-	dw GUST
-	dw WHIRLWIND
-	dw THUNDER
-	dw TWISTER
-	dw HURRICANE
-	dw -1
-
-.DigMoves:
-	dw EARTHQUAKE
-	dw FISSURE
-	dw MAGNITUDE
-	dw -1
 
 .ThunderRain:
 ; Return z if the current move always hits in rain, and it is raining.
@@ -2225,6 +2192,10 @@ BattleCommand_CheckHit:
 	ld c, a
 
 .got_acc_eva
+	; The target's Unaware ignores the user's accuracy stages.
+	push hl
+	farcall DefenderUnawareAccuracy_Core
+	pop hl
 	; Sacred Sword ignores the target's evasion stat stages.
 	push hl
 	push bc
@@ -3171,6 +3142,8 @@ BattleCommand_DamageCalc:
 	ret z
 
 .skip_zero_damage_check
+	; Technician compares the base power this hit actually uses.
+	farcall RecordDamageCalcPower_Core
 	xor a
 	ld [wIsConfusionDamage], a
 	; fallthrough
@@ -6977,6 +6950,13 @@ CheckHiddenOpponent:
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	ret z
+	; No Guard on either side reaches a semi-invulnerable target too.
+	push hl
+	farcall NoGuardOnField_Core
+	pop hl
+	sbc a
+	inc a ; z if No Guard reaches it, nz if it is hidden
 	ret
 
 GetUserItem:
