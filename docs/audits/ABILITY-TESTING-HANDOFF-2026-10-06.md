@@ -6,7 +6,10 @@
 > abilities on Transform/Imposter, Substitute vs Sturdy/Focus Sash, AI
 > targeting awareness, and data lists). See
 > `ability-audit-second-pass-2026-10-07.md` and
-> `tools/battletest/tests/78-ability-audit-2026-10-07.yaml`.
+> `tools/battletest/tests/78-ability-audit-2026-10-07.yaml`. A follow-up
+> modernised Keen Eye / Mind's Eye, Sheer Force + Mortal Spin, Sap Sipper vs
+> powders, Synchronize, Cud Chew and the Air Balloon message
+> (`tests/79-ability-modern-followups-2026-10-07.yaml`).
 
 ## Historical state at commit bf178b7e
 
