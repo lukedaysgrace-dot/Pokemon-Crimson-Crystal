@@ -92,11 +92,17 @@ def generate_ability_matrix(constants=None):
         transform = battle("TRANSFORM", ability, "SYNCHRONIZE", "forced_high")
         transform["weather"] = "none"
         transform["name"] = f"Ability matrix: Transform versus {ability}"
+        # A copied ability starts as if it had just entered, so the
+        # transformed (Normal-type) user takes its own weather's chip damage.
+        chip = " - player.maxhp // 16" if ability in ("SAND_STREAM", "SNOW_WARNING") else ""
         transform["assert"] += [
             f"player.ability == '{'SYNCHRONIZE' if flags[ability] & 32 else ability}'",
-            "player.species == 'SNORLAX'", "player.hp == player.start_hp",
+            "player.species == 'SNORLAX'", f"player.hp == player.start_hp{chip}",
             "player.moves[0] == 'SPLASH'", "player.pp[0] == 5",
             "(player.substatus[4] & 8) != 0",
         ]
+        weather = {"DRIZZLE": 1, "DROUGHT": 2, "SAND_STREAM": 3, "SNOW_WARNING": 4}
+        if ability in weather:
+            transform["assert"].append(f"weather_raw == {weather[ability]}")
         tests.append(transform)
     return tests

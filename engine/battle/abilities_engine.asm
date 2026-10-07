@@ -569,8 +569,11 @@ PressureAbility:
 OpponentHasPressure::
 ; Return z if the move target has Pressure. Pressure is not an ignorable
 ; defensive ability, so Mold Breaker does not bypass its extra PP cost.
-; Moves that only affect the user or its side (stat boosts, recovery,
-; Protect, weather...) do not target the Pressure holder and cost 1 PP.
+; Moves that only affect the user, its side or its team (stat boosts,
+; recovery, Protect, screens, Sticky Web...) cost 1 PP. Moves that target
+; the foe, the whole field (weather, Trick Room, Haze, Perish Song) or the
+; foe's side with a forced-Pressure hazard (Spikes, Toxic Spikes, Stealth
+; Rock) cost 1 extra, as in Gen V onward.
 	call GetOpponentAbility
 	cp PRESSURE
 	ret nz
@@ -579,6 +582,8 @@ OpponentHasPressure::
 	push hl
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_CURSE
+	jr z, .curse
 	ld hl, PressureExemptEffects
 	ld de, 1
 	call IsInArray
@@ -586,8 +591,20 @@ OpponentHasPressure::
 	pop de
 	pop bc
 	jr c, .exempt
+.applies
 	xor a ; z
 	ret
+.curse
+	; Curse targets the foe only when its user is a Ghost type; otherwise
+	; it is a self-targeting stat move.
+	pop hl
+	pop de
+	pop bc
+	call SwitchTurn
+	ld a, GHOST
+	call OpponentIsType ; z if the (switched) opponent, i.e. the user, is Ghost
+	call SwitchTurn
+	jr z, .applies
 .exempt
 	or 1 ; nz
 	ret
@@ -617,34 +634,31 @@ PressureExemptEffects:
 	db EFFECT_SPLASH
 	db EFFECT_HEAL_BELL
 	db EFFECT_PROTECT
-	db EFFECT_SANDSTORM
 	db EFFECT_ENDURE
 	db EFFECT_SAFEGUARD
 	db EFFECT_BATON_PASS
 	db EFFECT_MORNING_SUN
 	db EFFECT_SYNTHESIS
 	db EFFECT_MOONLIGHT
-	db EFFECT_RAIN_DANCE
-	db EFFECT_SUNNY_DAY
 	db EFFECT_BELLY_DRUM
 	db EFFECT_TELEPORT
 	db EFFECT_DEFENSE_CURL
-	db EFFECT_HAIL
 	db EFFECT_BULK_UP
 	db EFFECT_CALM_MIND
 	db EFFECT_DRAGON_DANCE
 	db EFFECT_HONE_CLAWS
 	db EFFECT_SHELL_SMASH
 	db EFFECT_ROOST
-	db EFFECT_TRICK_ROOM
 	db EFFECT_BANEFUL_BUNKER
 	db EFFECT_QUIVER_DANCE
 	db EFFECT_WORK_UP
 	db EFFECT_WISH
-	db EFFECT_CONVERSION2
+	db EFFECT_CONVERSION2 ; this game keeps the Gen II-IV self-targeting Conversion 2
 	db EFFECT_DESTINY_BOND
 	db EFFECT_SLEEP_TALK
 	db EFFECT_METRONOME
+	db EFFECT_STICKY_WEB ; foe-side hazard without forced Pressure
+	db EFFECT_BIDE
 	db -1
 MoldBreakerAbility:
 	ld hl, NotifyMoldBreakerText
@@ -1025,6 +1039,7 @@ AbilityLowerOppStat::
 	ld [hl], 1
 	pop hl
 	farcall AbilityStatDown
+AbilityLowerOppStat_Message:
 	ld a, [wFailedMessage]
 	and a
 	jr nz, .done
@@ -1035,6 +1050,22 @@ AbilityLowerOppStat::
 	ld [hl], 0
 	pop hl
 	ret
+
+AbilityLowerOppStatSelfInflicted:
+; b = stat. Like AbilityLowerOppStat, for an ability lowering its own
+; holder's stat (Weak Armor) from the opponent's perspective: the holder
+; is the source too, so its own Mist does not stop the drop. The holder's
+; ability is the dropping one, so no stat-drop ability applies either.
+	push hl
+	ld hl, wDisguiseBusted
+	set 6, [hl] ; resolved here: no substitute recheck in StatDown
+	ld hl, wAbilityStatDropFlag
+	ld [hl], 1
+	pop hl
+	ld a, b
+	ld [wLoweredStat], a
+	farcall StatDownSkipProtect
+	jr AbilityLowerOppStat_Message
 
 ; ==== Status heal / prevention ============================================
 
@@ -1230,12 +1261,28 @@ ObliviousAbility:
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
 	bit SUBSTATUS_IN_LOVE, a
-	ret z ; not infatuated
+	jr z, .taunt ; not infatuated
 	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	res SUBSTATUS_IN_LOVE, [hl]
 	ld hl, NoLongerInfatuatedText
+	call StdBattleTextbox
+.taunt
+	; Gen VI onward, Oblivious also ends Taunt (Mold Breaker's Taunt, or
+	; Oblivious gained by Skill Swap/Trace while taunted).
+	ld hl, wPlayerTauntCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_taunt_count
+	ld hl, wEnemyTauntCount
+.got_taunt_count
+	ld a, [hl]
+	and a
+	ret z ; not taunted
+	ld [hl], 0
+	call ShowAbilityBannerBrief
+	ld hl, BattleText_ShookOffTheTaunt
 	jp StdBattleTextbox
 
 ; Status prevention: called from effect commands with hBattleTurn = attacker.
@@ -1749,6 +1796,11 @@ RunNullificationAbilities::
 	; after damage calc and never reached its kingsrock command)
 	ld hl, wDisguiseBusted + 1
 	res 7, [hl]
+	; Protect and semi-invulnerability resolve before every hook below
+	; (stab precedes checkhit, which then reports the miss): a protected
+	; or airborne/underground target absorbs nothing and shows no banner.
+	call TargetEvadesTryHitAbilities
+	jp c, RunDamageModifiers
 .prediction
 	; Stun Spore runs stab before checkhit. Typing must block it before
 	; Sap Sipper can activate, just as for the other powder moves.
@@ -1981,6 +2033,138 @@ AIPartyIndexAbilityNullifiesTypeFar::
 .no
 	and a ; nc
 	ret
+
+AIScoredMoveFails_Core::
+; AI scoring: hBattleTurn = enemy, wEnemyMoveStruct = the scored move.
+; Carry if the player's ability or typing stops that move outright, the
+; way the live targeting checks would (AbilityPreHitTargetBlock, its
+; pre-execution twin, and stab's absorbs for status moves): Armor Tail /
+; Queenly Majesty against raised priority, our Prankster status move
+; against a Dark type, powder against Grass/Overcoat, Soundproof, Wind
+; Rider, and a type-absorbing ability against a status move (Thunder Wave
+; into Volt Absorb/Lightning Rod/Motor Drive, Spore into Sap Sipper, ...).
+; Damaging moves' absorbs already predict zero damage, so they only need
+; the priority check. Respects Mold Breaker and Neutralizing Gas.
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .priority
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CURSE
+	jr z, .curse
+	ld hl, AIFoeTargetedStatusEffects
+	ld de, 1
+	call IsInArray
+	ret nc ; self, side or field move: nothing here applies
+.aimed_at_player
+	call GrassBlocksCurrentPowder
+	ret c
+	call GetTrueUserAbility
+	cp PRANKSTER
+	jr nz, .no_prankster
+	ld a, DARK
+	call OpponentIsType
+	jr z, .fails
+.no_prankster
+	call GetOpponentIgnorableAbility
+	ld b, a
+	ld hl, SoundMoves
+	cp SOUNDPROOF
+	jr z, .in_list
+	ld hl, WindMoves
+	cp WIND_RIDER
+	jr z, .in_list
+	ld hl, PowderMoves
+	cp OVERCOAT
+	jr z, .in_list
+	cp LEVITATE
+	jr z, .priority ; Levitate doesn't stop status moves
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	ld c, a
+	call AbilityNullifiesType ; b = ability, c = move type
+	ret c
+	jr .priority
+.in_list
+	call CurrentMoveInList
+	ret c
+.priority
+	call GetOpponentIgnorableAbility
+	cp ARMOR_TAIL
+	jr z, .check_priority
+	cp QUEENLY_MAJESTY
+	jr z, .check_priority
+	and a
+	ret
+.check_priority
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld e, a
+	farcall GetMovePriority_e
+	ld d, e ; base priority
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld b, a ; move id
+	call GetTrueUserAbility
+	ld c, a
+	call AbilityCompareMovePriority.Adjust
+	ld a, d
+	cp BASE_PRIORITY + 1
+	ccf ; carry if the move has raised priority
+	ret
+.curse
+	; Only a Ghost's Curse is aimed at the foe.
+	call SwitchTurn
+	ld a, GHOST
+	call OpponentIsType ; z if the user is a Ghost type
+	call SwitchTurn
+	jr z, .aimed_at_player
+	and a
+	ret
+.fails
+	scf
+	ret
+
+AIFoeTargetedStatusEffects:
+; Status effects aimed at the opposing Pokemon that pass the live targeting
+; checks (checkhit, or the pre-execution block for those without it).
+	db EFFECT_SLEEP
+	db EFFECT_POISON
+	db EFFECT_TOXIC
+	db EFFECT_PARALYZE
+	db EFFECT_BURN
+	db EFFECT_CONFUSE
+	db EFFECT_SWAGGER
+	db EFFECT_ATTRACT
+	db EFFECT_YAWN
+	db EFFECT_LEECH_SEED
+	db EFFECT_ATTACK_DOWN
+	db EFFECT_DEFENSE_DOWN
+	db EFFECT_SPEED_DOWN
+	db EFFECT_ACCURACY_DOWN
+	db EFFECT_EVASION_DOWN
+	db EFFECT_ATTACK_DOWN_2
+	db EFFECT_DEFENSE_DOWN_2
+	db EFFECT_SPEED_DOWN_2
+	db EFFECT_FORCE_SWITCH
+	db EFFECT_DISABLE
+	db EFFECT_ENCORE
+	db EFFECT_TAUNT
+	db EFFECT_TORMENT
+	db EFFECT_SPITE
+	db EFFECT_FORESIGHT
+	db EFFECT_LOCK_ON
+	db EFFECT_MIMIC
+	db EFFECT_PAIN_SPLIT
+	db EFFECT_SKILL_SWAP
+	db EFFECT_TRICK
+	db EFFECT_DEFOG
+	db EFFECT_CONVERSION2
+	db EFFECT_MEAN_LOOK
+	db EFFECT_NIGHTMARE
+	db EFFECT_SKETCH
+	db EFFECT_TRANSFORM
+	db -1
 
 AbilityNullifiesType::
 ; in: b = ability, c = move type
@@ -2598,9 +2782,7 @@ RunDamageModifiers:
 	jr .defender
 
 .technician
-	ld a, BATTLE_VARS_MOVE_POWER
-	call GetBattleVar
-	cp 60 + 1
+	call TechnicianBoostsCurrentHit
 	jr nc, .defender
 	call DamageX1_5
 	jr .defender
@@ -3379,12 +3561,13 @@ AbilityImmuneToSandstorm::
 
 AbilityImmuneToHail::
 ; Carry if the current turn holder's ability grants hail immunity.
+; Unlike Sand Rush in sandstorm, Slush Rush only boosts Speed: it grants
+; no hail immunity (its holders here are Ice-types, but a transferred
+; Slush Rush must not shield a non-Ice holder).
 	call GetTrueUserAbility
 	cp ICE_BODY
 	jr z, WeatherImmune
 	cp SNOW_CLOAK
-	jr z, WeatherImmune
-	cp SLUSH_RUSH
 	jr z, WeatherImmune
 	; fallthrough
 WeatherImmuneCommon:
@@ -3396,6 +3579,144 @@ WeatherImmuneCommon:
 	ret
 WeatherImmune:
 	scf
+	ret
+
+; ==== Reachability before TryHit-stage abilities ==========================
+; Gen V onward resolves a move against its target in this order: semi-
+; invulnerability, then TryHit handlers (Protect first, then Magic Bounce and
+; the absorbing/blocking abilities), then type immunity and accuracy. The
+; `stab` command (where Volt Absorb, Flash Fire, Levitate, Disguise, ... live)
+; runs before `checkhit` (Protect, Fly/Dig), so those hooks must first ask
+; whether the target is even reachable.
+
+NoGuardOnField_Core::
+; Carry if the user's or the target's effective ability is No Guard.
+	call GetTrueUserAbility
+	cp NO_GUARD
+	jr z, .yes
+	call GetOpponentAbility
+	cp NO_GUARD
+	jr z, .yes
+	and a
+	ret
+.yes
+	scf
+	ret
+
+SemiInvulnerableMiss_Core::
+; nz if the opponent's semi-invulnerable state (Fly, Bounce, Dig, Phantom
+; Force) keeps the current move from reaching it; z otherwise. No Guard on
+; either side reaches any semi-invulnerable target (Gen V onward). Lock-On
+; is resolved separately (checkhit consumes it). Side-effect free.
+; Farcalled by checkhit's .FlyDigMoves.
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	ret z
+	push bc
+	ld b, a
+	call NoGuardOnField_Core
+	ld a, b
+	pop bc
+	jr c, .reach
+	; A Phantom Force user sets both bits at once: no move reaches it.
+	cp 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	jr z, .miss
+	bit SUBSTATUS_FLYING, a
+	ld hl, FlyHittingMoves
+	jr nz, .check_list
+	ld hl, DigHittingMoves
+.check_list
+	push bc
+	call CurrentMoveInList
+	pop bc
+	jr c, .reach
+.miss
+	or 1 ; nz
+	ret
+.reach
+	xor a ; z
+	ret
+
+CurrentMoveHitsUnderground_Core::
+; Carry if the current move is one that reaches an underground target
+; (Earthquake, Fissure, Magnitude). Farcalled by checkhit's Lock-On rule.
+	push bc
+	ld hl, DigHittingMoves
+	call CurrentMoveInList
+	pop bc
+	ret
+
+FlyHittingMoves:
+; moves that hit a target using Fly or Bounce
+	dw GUST
+	dw WHIRLWIND
+	dw THUNDER
+	dw TWISTER
+	dw HURRICANE
+	dw -1
+
+DigHittingMoves:
+; moves that hit a target using Dig
+	dw EARTHQUAKE
+	dw FISSURE
+	dw MAGNITUDE
+	dw -1
+
+TargetEvadesTryHitAbilities:
+; Carry if the opponent's Protect or semi-invulnerability stops the current
+; move before its TryHit-stage ability reactions (absorbs, Levitate,
+; Soundproof-style blocks, Disguise, Air Balloon). checkhit reports the
+; miss itself. Mirrors checkhit's Protect bypasses (status Roar/Whirlwind,
+; Phantom Force) and Lock-On rule without consuming Lock-On. Side-effect
+; free; preserves bc and de.
+	push bc
+	push de
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_PROTECT, a
+	jr z, .reachability
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FORCE_SWITCH
+	jr nz, .check_phantom_force
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr z, .reachability
+.check_phantom_force
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(PHANTOMFORCE)
+	jr nz, .evades
+	ld a, l
+	cp LOW(PHANTOMFORCE)
+	jr nz, .evades
+.reachability
+	; Lock-On reaches a semi-invulnerable target, except that Earthquake &
+	; co. still can't reach one in the sky (checkhit's Gen II rule).
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	bit SUBSTATUS_LOCK_ON, a
+	jr z, .no_lock_on
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	bit SUBSTATUS_FLYING, a
+	jr z, .reaches
+	call CurrentMoveHitsUnderground_Core
+	jr nc, .reaches
+.no_lock_on
+	call SemiInvulnerableMiss_Core
+	jr nz, .evades
+.reaches
+	and a
+	jr .done
+.evades
+	scf
+.done
+	pop de
+	pop bc
 	ret
 
 GrassBlocksCurrentPowder:
@@ -3546,6 +3867,10 @@ AbilityAccuracyMods::
 	call GetMoveCategory
 	cp CATEGORIZE_STATUS
 	jr nz, .class_not_blocked
+	; Protect and semi-invulnerability come first: let checkhit report
+	; the miss instead of absorbing (Sap Sipper) or showing a banner.
+	call TargetEvadesTryHitAbilities
+	jr c, .class_not_blocked
 	call GetOpponentIgnorableAbility
 	cp SOUNDPROOF
 	jr z, .soundproof_status
@@ -3719,6 +4044,16 @@ AccuracyPercent:
 	ld b, a
 	pop de
 	pop hl
+	ret
+
+DefenderUnawareAccuracy_Core::
+; b = the user's accuracy stage. The target's Unaware ignores the user's
+; accuracy stages, raised or lowered, unless the user's Mold Breaker
+; ignores Unaware: return b = neutral then. Preserves c, de and hl.
+	call GetOpponentIgnorableAbility
+	cp UNAWARE
+	ret nz
+	ld b, BASE_STAT_LEVEL
 	ret
 
 AbilityIgnoresOpponentEvasion::
@@ -4281,7 +4616,7 @@ RunContactAbilitiesHook::
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
 	ld b, DEFENSE
-	call AbilityLowerOppStat
+	call AbilityLowerOppStatSelfInflicted
 	call SwitchTurn
 	xor a
 	ld [wAttackMissed], a
@@ -6146,12 +6481,16 @@ GetAbilityFlags_b::
 
 TransformCopyAbility::
 ; Transform/Imposter also copies the target's ability (canon), unless
-; that ability can't be acquired by transforming (ABILFLAG_NO_TRANSFORM,
-; e.g. Neutralizing Gas) - then the user keeps its own ability.
+; that ability can't be acquired by transforming (ABILFLAG_NO_TRANSFORM:
+; Neutralizing Gas, and Disguise, which can't work while transformed) -
+; then the user keeps its own ability.
 ; The copy lasts until the mon leaves the field: send-out recomputes
 ; the ability from species and personality.
+; A different copied ability starts once the transformation is shown
+; (TransformedAbilityStart).
 	push hl
 	push bc
+	ld c, FALSE ; start pending?
 	ld a, BATTLE_VARS_ABILITY_OPP
 	call GetBattleVar
 	and a
@@ -6162,11 +6501,222 @@ TransformCopyAbility::
 	jr nz, .done
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVarAddr
+	ld a, [hl]
+	cp b
+	jr z, .same_ability
+	inc c ; TRUE
+.same_ability
 	ld [hl], b
-	call RefreshWeatherSuppression
+	call RefreshWeatherSuppression ; preserves c
 .done
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wTransformedAbilityPending)
+	ldh [rSVBK], a
+	ld a, c
+	ld [wTransformedAbilityPending], a
+	pop af
+	ldh [rSVBK], a
 	pop bc
 	pop hl
+	ret
+
+TransformedAbilityStart::
+; Farcalled by BattleCommand_Transform once the transformation is shown.
+; As in Gen V onward, an ability Transform/Imposter just copied starts as
+; if it had entered: Intimidate, weather, Download, Trace, Frisk, ... It is
+; not re-run when the user already had that ability, nor for Imposter
+; itself (a switch-in-only trigger). After the move, live holders' HP
+; items update (Klutz/Unnerve/Ripen may have come or gone); Imposter's
+; own entry processing already does that.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wTransformedAbilityPending)
+	ldh [rSVBK], a
+	ld a, [wTransformedAbilityPending]
+	ld b, a
+	xor a
+	ld [wTransformedAbilityPending], a
+	pop af
+	ldh [rSVBK], a
+	ld a, b
+	and a
+	ret z
+	call UserHasFainted
+	ret z
+	call GetTrueUserAbility
+	cp IMPOSTER
+	ret z
+	ld hl, BattleEntryAbilitiesNonfainted
+	call BattleJumptable
+	ld a, [wTempByteValue]
+	inc a ; $ff = Imposter
+	ret z
+	jp RunHPItemUpdatesBoth
+
+RecordDamageCalcPower_Core::
+; d = the base power damagecalc is about to use. Preserves bc, de.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDamageCalcBasePower)
+	ldh [rSVBK], a
+	ld a, d
+	ld [wDamageCalcBasePower], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+TechnicianBoostsCurrentHit:
+; Carry if the current hit's base power is 60 or less, as Technician sees
+; it after every base-power change. damagecalc records the variable-power
+; moves' computed power (Return, Frustration, Present, Magnitude, Flail,
+; Reversal, Gyro Ball, Rage Fist; Weather Ball's struct power). Fury Cutter,
+; Rollout, Acrobatics, Avalanche, Hex/Infernal Parade and Pursuit instead
+; double their damage after stab, so count those doublings here; they are
+; base-power multipliers in the modern games, which Technician sees.
+; (Gust/Twister/Stomp/Magnitude-style doubling against a semi-invulnerable
+; or minimized target is a damage modifier, so it doesn't count.)
+	push bc
+	push de
+	push hl
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDamageCalcBasePower)
+	ldh [rSVBK], a
+	ld a, [wDamageCalcBasePower]
+	ld b, a
+	pop af
+	ldh [rSVBK], a
+	ld c, 0 ; doublings still to come
+	call .CountLaterDoublings
+	ld a, b
+	inc c
+.double_loop
+	dec c
+	jr z, .threshold
+	add a
+	jr nc, .double_loop
+	and a ; overflowed: far above 60
+	jr .done
+.threshold
+	cp 60 + 1 ; carry if 60 or less
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.CountLaterDoublings:
+; c += doublings the move's own command applies after stab.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FURY_CUTTER
+	jr z, .fury_cutter
+	cp EFFECT_ROLLOUT
+	jr z, .rollout
+	cp EFFECT_ACROBATICS
+	jr z, .acrobatics
+	cp EFFECT_AVALANCHE
+	jr z, .avalanche
+	cp EFFECT_HEX
+	jr z, .hex
+	cp EFFECT_PURSUIT
+	ret nz
+	; Pursuit: doubled against a target that is switching out
+	ld hl, wEnemyIsSwitching
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_switching
+	ld hl, wPlayerIsSwitching
+.got_switching
+	ld a, [hl]
+	and a
+	ret z
+	inc c
+	ret
+
+.acrobatics
+	; doubled when the user holds nothing
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_acrobatics_item
+	ld hl, wEnemyMonItem
+.got_acrobatics_item
+	ld a, [hl]
+	and a
+	ret nz
+	inc c
+	ret
+
+.avalanche
+	; doubled when the target moved first and hit the user this turn
+	ld a, [wEnemyGoesFirst]
+	ld e, a
+	ldh a, [hBattleTurn]
+	xor e
+	ret z
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	call GetBattleVar
+	and a
+	ret z
+	inc c
+	ret
+
+.hex
+	; Hex and Infernal Parade: doubled against a statused target
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and a
+	ret z
+	inc c
+	ret
+
+.fury_cutter
+	; furycutter raises the use count after stab (except on Parental Bond's
+	; second hit), then doubles damage min(count, 3) - 1 times.
+	ld hl, wPlayerFuryCutterCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_fury_cutter_count
+	ld hl, wEnemyFuryCutterCount
+.got_fury_cutter_count
+	ld c, [hl]
+	farcall CheckParentalBondSecondHit_Core ; preserves bc
+	jr c, .fury_cutter_counted
+	inc c
+.fury_cutter_counted
+	ld a, c
+	cp 3 + 1
+	jr c, .fury_cutter_capped
+	ld a, 3
+.fury_cutter_capped
+	and a
+	jr z, .fury_cutter_doublings
+	dec a
+.fury_cutter_doublings
+	ld c, a
+	ret
+
+.rollout
+	; rolloutpower raises the count after stab, then doubles damage
+	; (count + Defense Curl - 1) times; a sleeping user doesn't roll.
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and SLP
+	ret nz
+	ld hl, wPlayerRolloutCount
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_rollout_count
+	ld hl, wEnemyRolloutCount
+.got_rollout_count
+	ld c, [hl]
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVar
+	bit SUBSTATUS_CURLED, a
+	ret z
+	inc c
 	ret
 
 CheckPlayerIsTrapped::
@@ -6928,6 +7478,7 @@ PunchMoves:
 	dw PIXIE_PUNCH
 	dw RAGE_FIST
 	dw HAMMER_ARM
+	dw HEADLONGRUSH
 	dw -1
 
 SliceMoves:
@@ -7114,6 +7665,8 @@ TriageMoves:
 	dw MORNING_SUN
 	dw SYNTHESIS
 	dw MOONLIGHT
+	dw SLACK_OFF
+	dw WISH
 	dw -1
 
 UserCantRest::
