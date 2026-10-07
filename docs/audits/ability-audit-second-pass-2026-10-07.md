@@ -379,3 +379,14 @@ on the new ROM all 32 pass.
 
 Release SHA-256 `07d4b754eb33034e425a21be0b873fd7cdcc729607221c940ae6146b579728e9`,
 debug `d1d7c89799bf0ba5732691acd0679affdbd51085aa15916016717abee831f44b`.
+
+### After the follow-up changes (F1-F6)
+
+- Both ROMs build; all static audits pass; `git diff --check` is clean.
+- Complete generated suite (now 20,663 cases, including every permanent
+  YAML file): 20,663 passed, 0 failed.
+- The rest of `make test-complete`: 0 failures in every script (same counts
+  as above).
+
+Release SHA-256 `e1a867b05bce932ee51220f932267e5828884336a9b9c6fd0d730c235386acab`,
+debug `92504a3e505d6586ef5ae54d4afeda155b75e28c8fcc345c27eed7f21e46ddc2`.
