@@ -262,7 +262,7 @@ def audit_contact(audit: Audit, move_ids: dict[str, int]) -> None:
         "CRABHAMMER": True,
         "SACRED_FIRE": False,
         "DRAGONBREATH": False,
-        "GIGA_HAMMER": True,
+        "GIGA_HAMMER": False,  # Gigaton Hammer makes no contact (Gen IX)
         "DRAINING_KISS": True,
         "DARK_PULSE": False,
         "BITTER_BLADE": True,

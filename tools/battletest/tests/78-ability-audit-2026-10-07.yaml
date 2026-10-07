@@ -1,0 +1,645 @@
+# Second-pass ability audit, 2026-10-07. Each fix has a reproduction case
+# (failed before the fix) and, where useful, a control that pins the
+# unchanged behaviour next to it. Modern reference: Pokemon Showdown's
+# data/abilities.ts, data/moves.ts and sim/battle-actions.ts hit steps.
+
+# ---- Protect / semi-invulnerability precede TryHit-stage abilities -------
+# stab (absorb/immunity hooks) runs before checkhit (Protect, Fly/Dig).
+- name: "Audit 10-07: Protect blocks Thunderbolt before Volt Absorb heals"
+  player: { species: LANTURN, level: 50, ability: VOLT_ABSORB, hp: 50, moves: [PROTECT] }
+  enemy:  { species: MAGNEMITE, level: 50, ability: NO_ABILITY, moves: [THUNDERBOLT] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - "not ability_seen('VOLT_ABSORB')"
+
+- name: "Audit 10-07 control: Volt Absorb still heals without Protect"
+  player: { species: LANTURN, level: 50, ability: VOLT_ABSORB, hp: 50, moves: [SPLASH] }
+  enemy:  { species: MAGNEMITE, level: 50, ability: NO_ABILITY, moves: [THUNDERBOLT] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+
+- name: "Audit 10-07: Volt Absorb still absorbs a move that would miss"
+  # TryHit abilities resolve before the accuracy roll (Zap Cannon is 50%).
+  player: { species: LANTURN, level: 50, ability: VOLT_ABSORB, hp: 50, moves: [SPLASH] }
+  enemy:  { species: MAGNEMITE, level: 50, ability: NO_ABILITY, moves: [ZAP_CANNON] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > player.start_hp
+
+- name: "Audit 10-07: Protect blocks Thunder Wave before Volt Absorb heals"
+  player: { species: LANTURN, level: 50, ability: VOLT_ABSORB, hp: 50, moves: [PROTECT] }
+  enemy:  { species: MAGNEMITE, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - player.status == 0
+
+- name: "Audit 10-07: Protect blocks the move before Lightning Rod raises Sp. Atk"
+  player: { species: PIKACHU, level: 50, ability: LIGHTNING_ROD, moves: [PROTECT] }
+  enemy:  { species: MAGNEMITE, level: 50, ability: NO_ABILITY, moves: [THUNDERBOLT] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[3] == 7
+
+- name: "Audit 10-07: Protect blocks Flamethrower before Flash Fire activates"
+  player: { species: ARCANINE, level: 50, ability: FLASH_FIRE, moves: [PROTECT] }
+  enemy:  { species: MAGMAR, level: 50, ability: NO_ABILITY, moves: [FLAMETHROWER] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+
+- name: "Audit 10-07: Protect blocks Spore before Sap Sipper absorbs it"
+  player: { species: MILTANK, level: 50, ability: SAP_SIPPER, moves: [PROTECT] }
+  enemy:  { species: PARASECT, level: 50, ability: NO_ABILITY, moves: [SPORE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 7
+    - player.status == 0
+
+- name: "Audit 10-07: a Fly user is out of reach before Volt Absorb heals"
+  player: { species: PIDGEOT, level: 70, ability: VOLT_ABSORB, hp: 50, moves: [FLY] }
+  enemy:  { species: MAGNEMITE, level: 20, ability: NO_ABILITY, moves: [THUNDERBOLT] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07: a Dig user is out of reach before Water Absorb heals"
+  player: { species: QUAGSIRE, level: 70, ability: WATER_ABSORB, hp: 50, moves: [DIG] }
+  enemy:  { species: STARYU, level: 20, ability: NO_ABILITY, moves: [WATER_GUN] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07: Levitate shows no banner against a Protecting target"
+  player: { species: GENGAR, level: 50, ability: LEVITATE, moves: [PROTECT] }
+  enemy:  { species: DUGTRIO, level: 50, ability: NO_ABILITY, moves: [EARTHQUAKE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - "not ability_seen('LEVITATE')"
+
+# ---- No Guard reaches semi-invulnerable targets -------------------------
+- name: "Audit 10-07 control: a Fly user dodges an ordinary attack"
+  player: { species: PIDGEOT, level: 70, ability: NO_ABILITY, moves: [FLY] }
+  enemy:  { species: MACHAMP, level: 20, ability: NO_ABILITY, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07: a No Guard attacker hits a Fly user"
+  player: { species: PIDGEOT, level: 70, ability: NO_ABILITY, moves: [FLY] }
+  enemy:  { species: MACHAMP, level: 20, ability: NO_GUARD, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Audit 10-07: a Fly user with No Guard can be hit"
+  player: { species: PIDGEOT, level: 70, ability: NO_GUARD, moves: [FLY] }
+  enemy:  { species: MACHAMP, level: 20, ability: NO_ABILITY, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Audit 10-07: a No Guard attacker hits a Dig user"
+  player: { species: DUGTRIO, level: 70, ability: NO_ABILITY, moves: [DIG] }
+  enemy:  { species: MACHAMP, level: 20, ability: NO_GUARD, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Audit 10-07: No Guard's hit on a Fly user applies its stat drop"
+  player: { species: PIDGEOT, level: 70, ability: NO_ABILITY, moves: [FLY] }
+  enemy:  { species: MACHAMP, level: 20, ability: NO_GUARD, moves: [ROCK_SMASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.stat_levels[1] == 6
+
+# ---- Baton Pass runs switch-out abilities ------------------------------
+- name: "Audit 10-07: Regenerator heals the player's Baton Pass user"
+  player:  { species: CORSOLA, level: 50, ability: REGENERATOR, hp: 50, moves: [BATON_PASS] }
+  player2: { species: MEW, level: 50, moves: [SPLASH] }
+  enemy:   { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MEW'
+    - wram16('wPartyMon1HP') > player.start_hp
+
+- name: "Audit 10-07: Natural Cure cures the player's Baton Pass user"
+  player:  { species: CORSOLA, level: 50, ability: NATURAL_CURE, status_byte: 8, moves: [BATON_PASS] }
+  player2: { species: MEW, level: 50, moves: [SPLASH] }
+  enemy:   { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MEW'
+    - wram('wPartyMon1Status') == 0
+
+- name: "Audit 10-07: Regenerator heals the enemy's Baton Pass user"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: CORSOLA, level: 50, ability: REGENERATOR, hp: 50, moves: [BATON_PASS] }
+  enemy2: { species: MEW, level: 50, moves: [SPLASH] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'MEW'
+    - wram16('wOTPartyMon1HP') > enemy.start_hp
+
+# ---- Transform / Imposter start the copied ability ---------------------
+- name: "Audit 10-07: Transform copies Intimidate and it activates"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TRANSFORM] }
+  enemy:  { species: ARBOK, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.ability == 'INTIMIDATE'
+    - enemy.stat_levels[0] == 6
+
+- name: "Audit 10-07: Transform copies Drizzle and it summons rain"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TRANSFORM] }
+  enemy:  { species: POLITOED, level: 50, ability: DRIZZLE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  setup_wram: { wBattleWeather: 0 }
+  assert:
+    - player.ability == 'DRIZZLE'
+    - weather == 1
+
+- name: "Audit 10-07: copying an ability the user already has doesn't restart it"
+  player: { species: MEW, level: 50, ability: INTIMIDATE, moves: [TRANSFORM] }
+  enemy:  { species: ARBOK, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.ability == 'INTIMIDATE'
+    - enemy.stat_levels[0] == 7
+
+- name: "Audit 10-07: Imposter's copied Intimidate activates on entry"
+  player: { species: DITTO, level: 50, ability: IMPOSTER, moves: [SPLASH] }
+  enemy:  { species: ARBOK, level: 50, ability: INTIMIDATE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert:
+    - player.ability == 'INTIMIDATE'
+    - enemy.stat_levels[0] == 6
+
+- name: "Audit 10-07: Transform does not copy a working Disguise"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TRANSFORM, SPLASH] }
+  enemy:  { species: MIMIKYU, level: 50, ability: DISGUISE, moves: [SPLASH, TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.ability == 'SYNCHRONIZE'
+
+# ---- Technician uses the hit's real base power -------------------------
+- name: "Audit 10-07 control: max-friendship Return without Technician"
+  id: tech_return_control
+  player: { species: AMBIPOM, level: 50, ability: NO_ABILITY, moves: [RETURN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHappiness: 255 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost 102-power Return"
+  player: { species: AMBIPOM, level: 50, ability: TECHNICIAN, moves: [RETURN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHappiness: 255 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_return_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: low-friendship Return without Technician"
+  id: tech_weak_return_control
+  player: { species: AMBIPOM, level: 50, ability: NO_ABILITY, moves: [RETURN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHappiness: 100 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician boosts 40-power Return"
+  player: { species: AMBIPOM, level: 50, ability: TECHNICIAN, moves: [RETURN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHappiness: 100 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('tech_weak_return_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: 90-power Magnitude without Technician"
+  id: tech_magnitude_control
+  player: { species: DUGTRIO, level: 50, ability: NO_ABILITY, moves: [MAGNITUDE] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost 90-power Magnitude"
+  player: { species: DUGTRIO, level: 50, ability: TECHNICIAN, moves: [MAGNITUDE] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_magnitude_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: 120-power Present without Technician"
+  id: tech_present_control
+  player: { species: DELIBIRD, level: 50, ability: NO_ABILITY, moves: [PRESENT] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost 120-power Present"
+  player: { species: DELIBIRD, level: 50, ability: TECHNICIAN, moves: [PRESENT] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_present_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: 200-power Flail without Technician"
+  id: tech_flail_control
+  player: { species: AMBIPOM, level: 50, ability: NO_ABILITY, hp: 1, moves: [FLAIL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost 200-power Flail"
+  player: { species: AMBIPOM, level: 50, ability: TECHNICIAN, hp: 1, moves: [FLAIL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_flail_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: 20-power Flail without Technician"
+  id: tech_weak_flail_control
+  player: { species: AMBIPOM, level: 50, ability: NO_ABILITY, moves: [FLAIL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician boosts 20-power Flail"
+  player: { species: AMBIPOM, level: 50, ability: TECHNICIAN, moves: [FLAIL] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('tech_weak_flail_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: item-less Acrobatics without Technician"
+  id: tech_acrobatics_control
+  player: { species: AMBIPOM, level: 50, ability: NO_ABILITY, moves: [ACROBATICS] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost doubled 110-power Acrobatics"
+  player: { species: AMBIPOM, level: 50, ability: TECHNICIAN, moves: [ACROBATICS] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_acrobatics_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: first Fury Cutter without Technician"
+  id: tech_fury_cutter_control
+  player: { species: SCIZOR, level: 50, ability: NO_ABILITY, moves: [FURY_CUTTER] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician boosts a first 40-power Fury Cutter"
+  player: { species: SCIZOR, level: 50, ability: TECHNICIAN, moves: [FURY_CUTTER] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('tech_fury_cutter_control')['enemy']['damage']
+
+- name: "Audit 10-07 control: third Fury Cutter without Technician"
+  id: tech_fury_cutter3_control
+  player: { species: SCIZOR, level: 50, ability: NO_ABILITY, moves: [FURY_CUTTER] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerFuryCutterCount: 2 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Technician doesn't boost a 160-power third Fury Cutter"
+  player: { species: SCIZOR, level: 50, ability: TECHNICIAN, moves: [FURY_CUTTER] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerFuryCutterCount: 2 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('tech_fury_cutter3_control')['enemy']['damage']
+
+# ---- Pressure: field-wide moves cost extra, side/self moves don't ------
+- name: "Audit 10-07: Pressure drains extra PP from Rain Dance"
+  player: { species: MEW, level: 50, moves: [RAIN_DANCE] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+- name: "Audit 10-07: Pressure drains extra PP from Trick Room"
+  player: { species: MEW, level: 50, moves: [TRICK_ROOM] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+- name: "Audit 10-07: Pressure drains extra PP from Spikes"
+  player: { species: MEW, level: 50, moves: [SPIKES] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+- name: "Audit 10-07: Pressure doesn't drain extra PP from Sticky Web"
+  player: { species: MEW, level: 50, moves: [STICKY_WEB] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]
+
+- name: "Audit 10-07: Pressure doesn't drain extra PP from a non-Ghost Curse"
+  player: { species: SNORLAX, level: 50, moves: [CURSE] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1"]
+
+- name: "Audit 10-07: Pressure drains extra PP from a Ghost's Curse"
+  player: { species: GENGAR, level: 50, moves: [CURSE] }
+  enemy:  { species: AERODACTYL, level: 50, ability: PRESSURE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 2"]
+
+# ---- Move-data and list corrections ------------------------------------
+- name: "Audit 10-07: Giga Hammer makes no contact (no Iron Barbs chip)"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [GIGA_HAMMER] }
+  enemy:  { species: SKARMORY, level: 100, ability: IRON_BARBS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07 control: Headlong Rush without Iron Fist"
+  id: iron_fist_headlong_control
+  player: { species: HITMONCHAN, level: 50, ability: NO_ABILITY, moves: [HEADLONGRUSH] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Iron Fist boosts Headlong Rush (a punching move)"
+  player: { species: HITMONCHAN, level: 50, ability: IRON_FIST, moves: [HEADLONGRUSH] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('iron_fist_headlong_control')['enemy']['damage']
+
+- name: "Audit 10-07: Triage gives Slack Off +3 priority"
+  player: { species: SLOWBRO, level: 50, ability: TRIAGE, hp: 50, moves: [SLACK_OFF] }
+  enemy:  { species: ELECTRODE, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "Audit 10-07: Triage gives Wish +3 priority"
+  player: { species: SLOWBRO, level: 50, ability: TRIAGE, moves: [WISH] }
+  enemy:  { species: ELECTRODE, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+
+- name: "Audit 10-07: Slush Rush gives no hail immunity to a non-Ice holder"
+  player: { species: SNORLAX, level: 50, ability: SLUSH_RUSH, moves: [SPLASH] }
+  enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: hail
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+# ---- Unaware ignores the attacker's accuracy stages ---------------------
+# forced_high rolls 180: a 50% move misses at neutral accuracy and hits at
+# +6; a 100% move hits at neutral and misses at -6.
+- name: "Audit 10-07 control: +6 accuracy lands a 50% move"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], stages: { acc: 6 } }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Unaware ignores the attacker's +6 accuracy"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], stages: { acc: 6 } }
+  enemy:  { species: SNORLAX, level: 100, ability: UNAWARE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Audit 10-07: Unaware ignores the attacker's -6 accuracy"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [KARATE_CHOP], stages: { acc: -6 } }
+  enemy:  { species: SNORLAX, level: 100, ability: UNAWARE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Audit 10-07: Mold Breaker's +6 accuracy ignores the target's Unaware"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [DYNAMICPUNCH], stages: { acc: 6 } }
+  enemy:  { species: SNORLAX, level: 100, ability: UNAWARE, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+# ---- Weak Armor's own Mist doesn't stop its self-inflicted drop ----------
+- name: "Audit 10-07: Weak Armor lowers Defense through its holder's Mist"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy:  { species: OMASTAR, level: 100, ability: WEAK_ARMOR, substatus: [MIST], moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.stat_levels[1] == 6
+    - enemy.stat_levels[2] == 9
+
+# ---- Oblivious ends a Mold Breaker Taunt ---------------------------------
+- name: "Audit 10-07 control: Mold Breaker Taunt sticks without Oblivious"
+  player: { species: PINSIR, level: 50, ability: MOLD_BREAKER, moves: [TAUNT] }
+  enemy:  { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyTauntCount') != 0
+
+- name: "Audit 10-07: Oblivious shakes off a Mold Breaker Taunt"
+  player: { species: PINSIR, level: 50, ability: MOLD_BREAKER, moves: [TAUNT] }
+  enemy:  { species: LICKITUNG, level: 50, ability: OBLIVIOUS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyTauntCount') == 0
+    - ability_seen('OBLIVIOUS')
+
+# ---- AI keeps attacking an intact Disguise -------------------------------
+- name: "Audit 10-07 AI control: Bite is picked over Splash"
+  player: { species: MIMIKYU, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [BITE, SPLASH] }
+  enemy2: { species: RATTATA, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'BITE'
+
+- name: "Audit 10-07: the AI doesn't dismiss attacks against an intact Disguise"
+  player: { species: MIMIKYU, level: 50, ability: DISGUISE, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [BITE, SPLASH] }
+  enemy2: { species: RATTATA, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'BITE'
+
+# ---- AI: moves the player's ability or typing stops outright ------------
+# Trainer battles against FALKNER (AI_SMART + AI_ABILITIES + AI_ELITE);
+# forced_high takes every smart branch and breaks ties toward slot 1.
+- name: "Audit 10-07 AI control: Thunder Wave is picked against Swift Swim"
+  player: { species: SEAKING, level: 50, ability: SWIFT_SWIM, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, moves: [THUNDER_WAVE, SPLASH] }
+  enemy2: { species: PIKACHU, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'THUNDER_WAVE'
+
+- name: "Audit 10-07 AI: Thunder Wave isn't fed to Lightning Rod"
+  player: { species: SEAKING, level: 50, ability: LIGHTNING_ROD, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: PIKACHU, level: 50, moves: [THUNDER_WAVE, SPLASH] }
+  enemy2: { species: PIKACHU, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+    - player.stat_levels[3] == 7
+
+- name: "Audit 10-07 AI control: Sing is picked against an ordinary target"
+  player: { species: ELECTRODE, level: 50, ability: STATIC, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: JIGGLYPUFF, level: 50, moves: [SING, SPLASH] }
+  enemy2: { species: JIGGLYPUFF, level: 50, moves: [POUND] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SING'
+
+- name: "Audit 10-07 AI: Sing isn't used into Soundproof"
+  player: { species: ELECTRODE, level: 50, ability: SOUNDPROOF, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: JIGGLYPUFF, level: 50, moves: [SING, SPLASH] }
+  enemy2: { species: JIGGLYPUFF, level: 50, moves: [POUND] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+- name: "Audit 10-07 AI control: Quick Attack is picked without Armor Tail"
+  player: { species: SNORLAX, level: 50, ability: THICK_FAT, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [QUICK_ATTACK, SPLASH] }
+  enemy2: { species: RATTATA, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'QUICK_ATTACK'
+
+- name: "Audit 10-07 AI: priority moves aren't used into Armor Tail"
+  player: { species: SNORLAX, level: 50, ability: ARMOR_TAIL, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy:  { species: RATTATA, level: 50, moves: [QUICK_ATTACK, SPLASH] }
+  enemy2: { species: RATTATA, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'SPLASH'
+
+# ---- Survival effects only apply to hits that reach the holder ----------
+- name: "Audit 10-07: a hit on a Substitute doesn't consume a full-HP Focus Sash"
+  player: { species: ALAKAZAM, level: 50, ability: NO_ABILITY, item: FOCUS_SASH, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 100, ability: NO_ABILITY, moves: [CROSS_CHOP] }
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'FOCUS_SASH'
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07: Sturdy doesn't activate for a hit on a Substitute"
+  player: { species: GOLEM, level: 50, ability: STURDY, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 100, ability: NO_ABILITY, moves: [CROSS_CHOP] }
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - "not ability_seen('STURDY')"
+    - player.hp == player.start_hp
+
+- name: "Audit 10-07 control: Infiltrator's hit through a Substitute meets the Sash"
+  player: { species: ALAKAZAM, level: 50, ability: NO_ABILITY, item: FOCUS_SASH, substatus: [SUBSTITUTE], moves: [SPLASH] }
+  enemy:  { species: MACHAMP, level: 100, ability: INFILTRATOR, moves: [CROSS_CHOP] }
+  setup_wram: { wPlayerSubstituteHP: 40 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.hp == 1

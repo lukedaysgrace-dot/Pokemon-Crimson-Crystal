@@ -1190,6 +1190,11 @@ DittoMetalPowder_Core::
 
 EndureFocusSashInEffect_Core:
 ; Carry if ApplyDamage should proceed to damage. b = survival message id.
+	; A hit its Substitute takes never reaches the holder's HP: Endure,
+	; Sturdy, Focus Sash and Focus Band don't come into play (a full-HP
+	; holder must not lose its Sash, or show Sturdy, to a Substitute hit).
+	farcall CheckSubstituteOpp_Core
+	jp nz, .no_trigger
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a

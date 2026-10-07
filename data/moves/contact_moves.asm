@@ -4,7 +4,7 @@ ContactMoves::
 	db $be, $9f, $fa, $ef, $7f, $10, $00, $00
 	db $7f, $00, $01, $08, $0c, $00, $20, $84
 	db $15, $21, $04, $45, $ac, $91, $88, $02
-	db $00, $61, $0e, $85, $b1, $43, $24, $92
+	db $00, $61, $0e, $85, $b1, $43, $24, $82 ; bit 4 = GIGA_HAMMER: Gigaton Hammer makes no contact
 	db $eb, $2f, $25, $ff, $d3, $bf, $01, $4e
 	db $c1, $0a, $00, $be ; bit 7 of this byte = VOLT_TACKLE (contact)
 	; new moves 352-413:
