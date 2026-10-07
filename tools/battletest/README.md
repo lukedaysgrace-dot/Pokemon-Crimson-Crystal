@@ -11,12 +11,20 @@ make debug          # build pokecrystal_debug.gbc (release ROM untouched)
 make test           # run every YAML case in tools/battletest/tests/
 make test-all       # YAML + every effect/move/ability + expanded ability text
 make test-deep      # also ability/class/reflection matrices + 1,024 mixed battles
+make BATTLE_TEST_JOBS=8 test-complete  # full suite with isolated emulator workers
 python3 tools/battletest/runner.py --all-abilities -k "Ability sweep"
 python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
 python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
+
+Parallel workers retain paired `result(...)` controls with their dependents
+and cover every selected case exactly once. Worker logs are under `.tmpbuild/`.
+The default remains one emulator. YAML `before_action` checkpoints can assert
+state before a specified side's native move begins, e.g. `side: enemy`,
+`turn: 1`, and an `assert` list. Missing checkpoints fail the case, so a skipped
+or fainted action cannot silently satisfy a timing assertion.
 
 First run bootstraps a fresh save into the DEBUG start-menu entry
 (~1 minute) and caches it as a save state in `fixtures/`, keyed on the ROM
@@ -239,6 +247,17 @@ times. Encounters are staged; this is not a complete story playthrough.
 Captures are saved under `.venv/gameplay-session/`. Only the initial party
 is built through the debug helper; automatic battle actions and debug party
 restoration remain disabled throughout the session.
+
+The session and complete targets also run `hp_item_update_checks.py`
+(40 Speed/Trick Room/link-RNG scenarios and 24 suppression-ending faint
+battles), `trainer_ui_checks.py` (native Set/Shift menus, simultaneous KOs,
+mandatory/optional cancellation, and no reserves), `wild_ui_checks.py`
+(escape, Arena Trap, and Master Ball capture through the Bag), and
+`save_menu_checks.py` (native Save, a fresh emulator boot, Continue, and
+walking on the reloaded map). These stage private fixtures and do not replace
+a longer story playthrough. Each emulator uses temporary SRAM; the player's
+cartridge save is untouched. New captures are under `.venv/trainer-ui/`,
+`.venv/wild-ui/`, and `.venv/save-menu/`.
 
 `engine/debug/battle_tester.asm` (bank $8F, `DEBUG_BATTLE` builds only).
 The harness writes a request block in WRAMX bank 2 (`wDebugMagic`...)

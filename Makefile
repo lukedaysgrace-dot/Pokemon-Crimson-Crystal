@@ -3,6 +3,7 @@ roms := pokecrystal.gbc
 # `make debug` builds pokecrystal_debug.gbc with the in-ROM battle tester
 # (engine/debug/battle_tester.asm) compiled in. The regular ROM is untouched.
 debug_roms := pokecrystal_debug.gbc
+BATTLE_TEST_JOBS ?= 1
 
 crystal_obj := \
 audio.o \
@@ -70,8 +71,9 @@ test-deep: pokecrystal_debug.gbc
 
 test-complete: pokecrystal_debug.gbc
 	python3 tools/audit_ability_text.py
-	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 1024
+	python3 tools/battletest/runner.py --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 1024
 	python3 tools/battletest/probability_checks.py
+	python3 tools/battletest/hp_item_update_checks.py
 	python3 tools/battletest/ui_checks.py
 	python3 tools/battletest/visual_matrix.py
 	python3 tools/battletest/cove_sprite_checks.py
@@ -79,11 +81,19 @@ test-complete: pokecrystal_debug.gbc
 	python3 tools/battletest/tower_battle_checks.py
 	python3 tools/battletest/link_rng_checks.py
 	python3 tools/battletest/gameplay_session_checks.py
+	python3 tools/battletest/trainer_ui_checks.py
+	python3 tools/battletest/wild_ui_checks.py
+	python3 tools/battletest/save_menu_checks.py
 
 test-session: pokecrystal_debug.gbc
+	python3 tools/battletest/hp_item_update_checks.py
 	python3 tools/battletest/runner.py -k "Lifecycle chain:"
 	python3 tools/battletest/runner.py -k "Entry item:"
+	python3 tools/battletest/runner.py -k "Item update:"
 	python3 tools/battletest/gameplay_session_checks.py
+	python3 tools/battletest/trainer_ui_checks.py
+	python3 tools/battletest/wild_ui_checks.py
+	python3 tools/battletest/save_menu_checks.py
 
 test-complex: pokecrystal_debug.gbc
 	python3 tools/audit_learnset_variety.py

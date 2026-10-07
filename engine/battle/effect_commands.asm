@@ -124,6 +124,15 @@ DoMove:
 	push bc
 	push de
 	ld b, a
+	; Damaging moves cannot reflect; avoid bank switches for their commands.
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerMoveStructCategory]
+	jr z, .got_bounce_category
+	ld a, [wEnemyMoveStructCategory]
+.got_bounce_category
+	cp CATEGORIZE_STATUS
+	jr nz, .ordinary_command
 	farcall MagicBounceSkipActionCommand_Core
 	jr c, .reflected_action_command
 	farcall TryMagicBounceCommand_Core
@@ -131,6 +140,13 @@ DoMove:
 	pop bc
 	jr c, .bounced_command
 	pop af
+	jr .dispatch
+
+.ordinary_command
+	pop de
+	pop bc
+	pop af
+.dispatch
 
 ; The rest of the commands (01-af) are read from BattleCommandPointers.
 	push bc
@@ -1917,8 +1933,6 @@ BattleCommand_CheckHit:
 	; Parental Bond checks accuracy once for the whole two-hit move.
 	farcall CheckParentalBondSecondHit_Core
 	ret c
-	farcall MagicBounceSkipsOriginalHit_Core
-	ret c
 	; Targeting ability blocks must precede every unconditional-hit shortcut
 	; below (Lock-On, X Accuracy, always-hit effects, rain/hail, No Guard).
 	farcall AbilityPreHitTargetBlock
@@ -2044,6 +2058,16 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	ret z
+	; Roar and Whirlwind bypass Protect. Damaging phazing moves still
+	; respect it, even if they share the force-switch command.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FORCE_SWITCH
+	jr nz, .check_phantom_force
+	farcall GetMoveCategory
+	cp CATEGORIZE_STATUS
+	ret z
+.check_phantom_force
 
 	; Phantom Force strikes through Protect and Detect.
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -3823,13 +3847,6 @@ BattleCommand_SleepTarget:
 	and a
 	jp nz, PrintDidntAffect2
 
-	; Magic Bounce reflects a status move even from behind the bouncer's
-	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
-	farcall StatDropSubCheckExempt
-	jr nc, .no_bounce
-	farcall AbilityPreventsSleep
-	jp c, PrintDidntAffect2
-.no_bounce
 	ld hl, DidntAffect1Text
 
 	ld a, [de]
@@ -4003,13 +4020,6 @@ BattleCommand_Poison:
 	and a
 	jr nz, .failed
 
-	; Magic Bounce reflects a status move even from behind the bouncer's
-	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
-	farcall StatDropSubCheckExempt
-	jr nc, .no_bounce
-	farcall AbilityPreventsPoison
-	jp c, PrintDidntAffect2
-.no_bounce
 	ld hl, DidntAffect1Text
 	call CheckSubstituteOpp
 	jr nz, .failed
@@ -4660,10 +4670,7 @@ BattleCommand_StatDown::
 .NotSelfInflicted
 	; A Substitute blocks a move's stat drop outright, before the target's
 	; abilities can react to it (Contrary/Clear Body/Mirror Armor banners
-	; must not fire behind a sub). Exception: Magic Bounce reflects status
-	; moves even from behind its own Substitute (canon).
-	farcall StatDropSubCheckExempt
-	jr c, .SubChecked
+	; must not fire behind a sub). Reflection already ran in DoMove.
 	call CheckSubstituteOpp
 	jp nz, StatDownSkipProtect.Failed
 .SubChecked
@@ -6178,13 +6185,6 @@ BattleCommand_Confuse:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
-	; Magic Bounce reflects a status move even from behind the bouncer's
-	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
-	farcall StatDropSubCheckExempt
-	jr nc, .no_bounce
-	farcall AbilityPreventsConfusion
-	jp c, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
-.no_bounce
 	call CheckSubstituteOpp
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
 	farcall AbilityPreventsConfusion

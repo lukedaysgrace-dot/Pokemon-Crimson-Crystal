@@ -1454,13 +1454,6 @@ BattleParalyze_Core:
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .failed
-	; Magic Bounce reflects a status move even from behind the bouncer's
-	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
-	farcall StatDropSubCheckExempt
-	jr nc, .no_bounce
-	farcall AbilityPreventsParalysis
-	jp c, .failed
-.no_bounce
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	; ability check (Limber)

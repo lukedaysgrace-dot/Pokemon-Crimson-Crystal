@@ -22,7 +22,7 @@ def generate_reflection_matrix():
             test = {"name": f"Reflection matrix: {move} {variant}",
                     "player": player, "enemy": enemy, "rng": "forced",
                     "rng_value": 80, "turns": 1,
-                    "assert": ["ability_seen('MAGIC_BOUNCE')",
+                    "assert": ["not ability_seen('MAGIC_BOUNCE')" if variant == "holder Protect" else "ability_seen('MAGIC_BOUNCE')",
                                "player.start_pp[0] - player.pp[0] == 1",
                                "enemy.start_pp[0] - enemy.pp[0] == 1",
                                "(wram('wDisguiseBusted', 1) & 64) == 0"],
@@ -40,8 +40,8 @@ def generate_reflection_matrix():
                 player["ability"] = "PRANKSTER"
                 enemy["species"] = "UMBREON"
                 enemy["dvs"] = 0  # female, so reflected Attract remains eligible
-            blocked = variant == "source Substitute" and kind not in (
-                "love", "sleep_sound", "stat_sound")
+            blocked = variant == "holder Protect" or (variant == "source Substitute" and kind not in (
+                "love", "sleep_sound", "stat_sound"))
             if kind in ("poison", "burn", "paralysis", "sleep", "sleep_sound"):
                 mask = {"poison": 8, "burn": 16, "paralysis": 64,
                         "sleep": 7, "sleep_sound": 7}[kind]
@@ -53,7 +53,7 @@ def generate_reflection_matrix():
                 test["assert"] += [f"(player.substatus[2] & 128) {'==' if blocked else '!='} 0",
                                    "(enemy.substatus[2] & 128) == 0"]
             elif kind == "love":
-                test["assert"] += ["(player.substatus[0] & 128) != 0",
+                test["assert"] += [f"(player.substatus[0] & 128) {'==' if blocked else '!='} 0",
                                    "(enemy.substatus[0] & 128) == 0"]
             if stat:
                 index, level = stat
@@ -61,11 +61,12 @@ def generate_reflection_matrix():
                 test["assert"] += [f"player.stat_levels[{index}] == {expected}",
                                    f"enemy.stat_levels[{index}] == 7"]
             if kind == "defog":
+                protected = variant == 'holder Protect'
                 test.setdefault("setup_wram", {}).update(
                     wPlayerScreens=17, wEnemyScreens=17,
                     wPlayerSpikesLayers=1, wEnemySpikesLayers=1)
-                test["assert"] += ["wram('wPlayerSpikesLayers') == 0",
-                                   "wram('wEnemySpikesLayers') == 0",
-                                   "(player.screens & 16) == 0", "(enemy.screens & 16) != 0"]
+                test["assert"] += [f"wram('wPlayerSpikesLayers') == {1 if protected else 0}",
+                                   f"wram('wEnemySpikesLayers') == {1 if protected else 0}",
+                                   f"(player.screens & 16) {'!=' if protected else '=='} 0", "(enemy.screens & 16) != 0"]
             tests.append(test)
     return tests
