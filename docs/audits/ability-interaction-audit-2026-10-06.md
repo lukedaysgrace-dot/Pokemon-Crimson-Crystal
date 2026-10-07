@@ -14,8 +14,9 @@ Intentional Crimson Crystal balance rules remain the test expectations.
   Reflected effects use the source as their target, respect its immunities,
   preserve PP and scheduled actions, and cannot repeatedly bounce.
 - Reflection checks the bouncer's accuracy and the reflected target's
-  protection for all reflectable status moves. Protect on the original
-  Magic Bounce holder does not prevent reflection. Prankster's Dark immunity
+  protection for reflectable status moves. Protect on the original
+  Magic Bounce holder blocks protectable moves before reflection. Hazards,
+  Mean Look, Roar, and Whirlwind bypass Protect. Prankster's Dark immunity
   no longer preempts reflection; reflected moves lose
   the original user's Prankster boost.
 - Reflected forced switching now bypasses the original move-order gate and
@@ -45,6 +46,11 @@ Modern interaction references were checked against Pokémon Showdown's
 [move implementation](https://raw.githubusercontent.com/smogon/pokemon-showdown/master/data/moves.ts),
 and [hit-resolution order](https://raw.githubusercontent.com/smogon/pokemon-showdown/master/sim/battle-actions.ts).
 The project's documented differences take precedence over those references.
+
+The Protect ordering above was corrected during the sixth pass. The earlier
+commit and its regression fixture incorrectly expected Taunt to reflect
+through the holder's Protect. Showdown's Protect hit callback has priority 3;
+Magic Bounce's has priority 1. Protect's move priority is a separate value.
 
 ## Textbox coverage
 
@@ -467,3 +473,75 @@ Run `make test-session` for the focused lifecycle/entry/native checks.
 Logs are `.venv/fifth-*.log`; captures are `.venv/gameplay-session/`.
 The remaining coverage gaps and exact resume commands are detailed in
 `ABILITY-TESTING-HANDOFF-2026-10-06.md`.
+
+## Sixth pass: review corrections and item-update timing
+
+The code review correctly questioned Protect: Showdown's
+[Protect callback](https://github.com/smogon/pokemon-showdown/blob/master/data/moves.ts)
+has `onTryHitPriority: 3`, while
+[Magic Bounce](https://github.com/smogon/pokemon-showdown/blob/master/data/abilities.ts)
+has priority 1. This is callback order, separate from Protect's move priority.
+The ROM now blocks protectable status moves before reflection. Hazards,
+Mean Look, Roar, and Whirlwind retain Protect bypass, with regression controls.
+The generated reflection matrix expects the corrected rule.
+
+Obsolete per-status/stat-drop Magic Bounce handlers, substitute exemptions,
+and the original-hit shortcut have been removed. A narrow Mean Look exemption
+remains necessary in the earlier Prankster targeting check. The reflection
+hook runs once immediately after the original action commands; later script
+perspective changes cannot accidentally inspect the opponent's selected move.
+Damaging move commands skip both reflection far calls.
+
+Trace now reruns only the copied entry ability; the outer entry invocation
+performs Gas cleanup and item checks once. Skill Swap resolves both entry
+abilities, including Trace, before checking either holder's HP item.
+
+New checkpoints inspect state before the next native action. They exposed an
+existing holder's Berry waiting until turn end after Gas/Unnerve switched out.
+Entry, move completion, and faint updates now check eligible live holders in
+effective Speed order, retaining the committed Gas-explosion marker through
+hit-time berries. Empty/single-item update events do not advance battle/link
+RNG; only a genuine tie between two eligible holders requires a tie roll.
+
+Role Play, Entrainment, Gastro Acid, Worry Seed, Simple Beam, and contact
+ability transfers are absent from the implemented move/ability set. Their
+animation assets do not establish an implemented mechanic. The handoff's
+earlier checklist was broader than the current ROM's scope.
+
+Both ROMs build and static audits pass. The final focused run passes 258
+battles, including eight additional Protect/reflection regressions and 56
+new item-timing cases. Forty native item-update scenarios and 24 faint-update
+battles pass 352 exact healing/order/perspective/link-RNG/cleanup assertions.
+Six native trainer chains pass 75 checks for Set/Shift, cancellation, forced
+replacement after a faint, double KOs, delayed Trace/weather, and no reserves.
+Three native wild endings pass 21 checks for escape, Arena Trap, and capture
+through the Bag. Native Save, fresh emulator boot, Continue, map return, and
+walking pass 23 checks, including exact party data and expected roaming-map
+bookkeeping. Test fixtures use private SRAM.
+
+The complete final-ROM generated sweep passes all 20,559 battle cases, with
+zero failures, errors, or skips in eight isolated workers. Paired controls
+and dependent assertions remain together. `make test-complete` finishes with
+exit status 0. Every ancillary suite also passes:
+
+| Suite | Final-ROM coverage | Failures |
+| --- | --- | --- |
+| Probability thresholds | 172 groups, 44,032 outcomes | 0 |
+| Native battle UI | 12 scenarios, 44 assertions | 0 |
+| Visual matrix | 120 scenarios, 912 assertions, 1,128 captures | 0 |
+| Cove sprites | 12 views, 216 allocation checks | 0 |
+| Tower roster | All 321 builds, 23,299 checks | 0 |
+| Tower battles | Eight battles, 104 checks | 0 |
+| Retail link RNG | 32 seeds, 16,384 synchrony checks | 0 |
+| Persistent native session | Eight consecutive battles, 179 checks | 0 |
+
+The new standalone checks were added during that run and verified separately
+on the same ROM; future complete/session targets include them.
+
+Current release SHA256 is
+`f5476ee4ff8a76eb609c4286bc6afbfda04defedbc88d8fa5d5c6550122d1430`;
+debug is `04a23c7a97e7d907a1c76555d9ac86aa3c4e94d565d32356091137111de8c254`.
+Logs are under `.tmpbuild/ability-audit/`; full worker logs are under
+`.tmpbuild/battletest-1a3316f34362-1791330588812600429/`. Longer story gameplay,
+full cable battles, Tower frontend/rewards, and hardware RNG distribution
+remain coverage gaps. The current backlog is in the sibling handoff document.
