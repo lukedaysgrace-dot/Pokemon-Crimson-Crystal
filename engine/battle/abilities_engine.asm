@@ -1802,8 +1802,8 @@ RunNullificationAbilities::
 	call TargetEvadesTryHitAbilities
 	jp c, RunDamageModifiers
 .prediction
-	; Stun Spore runs stab before checkhit. Typing must block it before
-	; Sap Sipper can activate, just as for the other powder moves.
+	; Stun Spore runs stab before checkhit. Grass typing blocks it here,
+	; except that Sap Sipper absorbs it first (see GrassBlocksCurrentPowder).
 	call GrassBlocksCurrentPowder
 	ret c
 	call CheckAirBalloonImmunity
@@ -3721,12 +3721,24 @@ TargetEvadesTryHitAbilities:
 
 GrassBlocksCurrentPowder:
 ; Carry if the target's Grass typing blocks this powder/spore move.
+; Sap Sipper absorbs a Grass-type powder before that (Showdown runs TryHit
+; abilities before the powder immunity step), unless Mold Breaker ignores it.
 	call OpponentIsGrassType
 	jr nz, .not_blocked
 	push bc
 	ld hl, PowderMoves
 	call CurrentMoveInList
 	pop bc
+	ret nc
+	call GetOpponentIgnorableAbility
+	cp SAP_SIPPER
+	jr nz, .blocked
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	cp GRASS
+	jr z, .not_blocked
+.blocked
+	scf
 	ret
 .not_blocked
 	and a
@@ -3736,7 +3748,8 @@ AbilityPreHitTargetBlock::
 ; Carry if an opponent-targeted move is blocked before accuracy handling.
 ; This must run at the very start of checkhit so Lock-On, X Accuracy,
 ; always-hit effects and weather accuracy shortcuts cannot bypass it.
-	; Grass typing blocks powders regardless of abilities or Mold Breaker.
+	; Grass typing blocks powders (a Grass-type Sap Sipper holder absorbs
+	; Grass powders later, in AbilityAccuracyMods).
 	call GrassBlocksCurrentPowder
 	ret c
 	; Since Gen VII, Dark-type opponents are immune to status moves whose
@@ -4058,31 +4071,20 @@ DefenderUnawareAccuracy_Core::
 
 AbilityIgnoresOpponentEvasion::
 ; Carry if the user's ability ignores the opponent's evasion stage.
-; Keen Eye and Mind's Eye only ignore evasion INCREASES: a stage at or
-; below neutral still applies, so the user keeps the benefit of drops.
+; Keen Eye, Mind's Eye (Gen VI+ ignoreEvasion) and Unaware ignore the
+; stage in both directions, so a lowered evasion is ignored as well.
 ; cp leaves carry set whenever a < the compared constant, so every
 ; "no" path must clear carry explicitly before returning.
 	call GetTrueUserAbility
 	cp KEEN_EYE
-	jr z, .relevant_ability
+	jr z, .ignore
 	cp MINDS_EYE
-	jr z, .relevant_ability
+	jr z, .ignore
 	cp UNAWARE
-	jr z, .always_ignore
+	jr z, .ignore
 	and a ; clear carry: this ability does not touch evasion
 	ret
-.relevant_ability
-	ld hl, wEnemyEvaLevel
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_eva
-	ld hl, wPlayerEvaLevel
-.got_eva
-	ld a, [hl]
-	cp BASE_STAT_LEVEL + 1
-	ccf ; carry iff the stage is above neutral (raised)
-	ret
-.always_ignore
+.ignore
 	scf
 	ret
 
@@ -4266,6 +4268,15 @@ CheckAirBalloonImmunity:
 	call GetBattleVar
 	cp GROUND
 	jr nz, .no
+	; A Flying type is already immune: the type chart's "doesn't affect"
+	; is the whole message. Levitate reports the immunity itself (Showdown
+	; isGrounded: Flying, then Levitate, then Air Balloon).
+	ld a, [wTypeModifier]
+	and $7f
+	jr z, .no
+	call GetOpponentIgnorableAbility
+	cp LEVITATE
+	jr z, .no
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_AIR_BALLOON
@@ -5068,7 +5079,8 @@ TryParalyzeOpponent:
 	call AbilityStatusAnim
 	call UpdateBattleHuds
 	farcall PrintParalyze
-	jp FinishAbilityMajorStatus
+	ld hl, TryParalyzeOpponent
+	jp FinishSynchronizableStatus
 
 FlameBodyAbility:
 	call ContactChance
@@ -5100,7 +5112,8 @@ TryBurnOpponent:
 	call UpdateBattleHuds
 	ld hl, WasBurnedText
 	call StdBattleTextbox
-	jp FinishAbilityMajorStatus
+	ld hl, TryBurnOpponent
+	jp FinishSynchronizableStatus
 
 PoisonPointAbility:
 	call ContactChance
@@ -5126,7 +5139,8 @@ TryPoisonOpponentContact:
 	call UpdateBattleHuds
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
-	jp FinishAbilityMajorStatus
+	ld hl, TryPoisonOpponentContact
+	jp FinishSynchronizableStatus
 
 TryToxicOpponent:
 ; Badly poison the turn holder's opponent. Used by Synchronize and Magic
@@ -5163,7 +5177,8 @@ TryToxicOpponent:
 	call UpdateBattleHuds
 	ld hl, BadlyPoisonedText
 	call StdBattleTextbox
-	jp FinishAbilityMajorStatus
+	ld hl, TryToxicOpponent
+	jp FinishSynchronizableStatus
 
 EffectSporeAbility:
 	; Grass-types and Overcoat holders are immune to spores.
@@ -5217,6 +5232,34 @@ TrySleepOpponent:
 	ld hl, FellAsleepText
 	call StdBattleTextbox
 	jp FinishAbilityMajorStatus
+
+FinishSynchronizableStatus:
+; hl = the Try* helper that just burned, paralyzed or poisoned the turn
+; holder's opponent. Finish as usual, then let the target's Synchronize pass
+; the same status back (Showdown onAfterSetStatus: any burn, paralysis or
+; poison another Pokemon inflicts, so Static, Flame Body, Poison Point,
+; Effect Spore and Poison Touch count too). Nothing is passed back to a
+; fainted inflicter, and an already-statused one is skipped by the helper,
+; so two Synchronize holders can't loop.
+	push hl
+	call FinishAbilityMajorStatus
+	pop hl
+	call GetOpponentAbility
+	cp SYNCHRONIZE
+	ret nz
+	call UserHasFainted
+	ret z
+	call SwitchTurn
+	; Inside the contact block the Magic Bounce guard is already held; leave
+	; it set for the procs that follow (see RunGuardedStatusProc).
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	jr nz, .guarded
+	call RunGuardedStatusProc
+	jp SwitchTurn
+.guarded
+	call _hl_
+	jp SwitchTurn
 
 FinishAbilityMajorStatus:
 ; Contact abilities, Synchronize and Magic Bounce all use the Try* helpers.
@@ -6378,10 +6421,24 @@ CurrentMoveHasSheerForceEffect::
 	scf
 	ret
 
+UserSheerForceSuppresses_Core::
+; Carry if the user's Sheer Force removes the current move's additional
+; effects (the same contract as the damage boost). Preserves bc and de.
+	push bc
+	call GetTrueUserAbility
+	pop bc
+	cp SHEER_FORCE
+	jr nz, .no
+	jp CurrentMoveHasSheerForceEffect
+.no
+	and a ; nc
+	ret
+
 SheerForceEffects:
 ; Effect classes with a removable additional effect. Deliberately excludes
 ; primary effects (such as Thief), recoil/thawing and user drawbacks. Mortal
-; Spin is included for poison; its primary hazard clearing remains active.
+; Spin is included: Sheer Force removes its poison and, as in Showdown
+; (onAfterHit checks hasSheerForce), its hazard/trap/Leech Seed clearing.
 	db EFFECT_POISON_HIT
 	db EFFECT_BURN_HIT
 	db EFFECT_FREEZE_HIT
@@ -6443,7 +6500,19 @@ FoeUnnerveCheck_b::
 UnnerveCheck_b::
 ; b = TRUE if the turn holder's effective ability is Unnerve, which stops its
 ; opponent (the held-item holder) from eating Berries. A fainted Unnerve
-; holder no longer makes anyone nervous.
+; holder no longer makes anyone nervous, and Cud Chew's replay ignores it.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wCudChewReplaying)
+	ldh [rSVBK], a
+	ld a, [wCudChewReplaying]
+	ld b, a
+	pop af
+	ldh [rSVBK], a
+	ld a, b
+	and a
+	ld b, FALSE
+	ret nz
 	call GetTrueUserAbility
 	cp UNNERVE
 	ld b, FALSE
@@ -7868,14 +7937,13 @@ RecordConsumedItem::
 	cp CUD_CHEW
 	pop bc
 	jr nz, .store
-	; This engine can replay its two HP-restoring Berries. Match the actual
-	; item ids so Berry Juice is not mistaken for a Berry by held-effect code.
-	ld a, e
-	cp BERRY
-	jr z, .arm_cud_chew
-	cp GOLD_BERRY
-	jr nz, .store
-.arm_cud_chew
+	; Any Berry (not Berry Juice): match the actual item ids, since held-effect
+	; codes are shared with non-Berry items.
+	push bc
+	ld b, e
+	call IsBerryItem_Core
+	pop bc
+	jr nc, .store
 	set 2, b
 .store
 	call WriteItemStateFlags
@@ -8391,7 +8459,9 @@ BerryItems:
 	db -1
 
 CudChewAbility:
-; The end of the turn after eating an HP Berry, eats it again.
+; The end of the turn after its holder ate a Berry, eats it again: any Berry,
+; as in Showdown (HP, status, confusion and PP Berries alike). It stays
+; silent when eating the Berry again would do nothing.
 	call GetUserSide
 	call ReadItemStateFlags
 	; Bit 2 (armed) becomes bit 3 (due) at the start of the next turn (see
@@ -8407,11 +8477,16 @@ CudChewAbility:
 	and a
 	ret z
 	push bc
+	call IsBerryItem_Core
+	pop bc
+	ret nc ; a later non-Berry item replaced the record
+	ld e, b
+	push de
 	farcall GetItemHeldEffect
+	pop de ; e = Berry id
 	ld a, b
-	pop de ; e = item id (unused; kept for clarity)
 	cp HELD_BERRY
-	ret nz
+	jr nz, .other_berry
 	; bc = 0:param = the Berry's heal amount
 	ld b, 0
 	call CheckUserFullHP
@@ -8423,6 +8498,137 @@ CudChewAbility:
 	ld hl, RegainedHealthText
 	call StdBattleTextbox
 	jp EndAbility
+
+.other_berry
+	push de
+	call .WouldEat
+	pop de
+	ret nc
+	push bc
+	push de
+	call ShowAbilityBannerBrief
+	pop de
+	pop bc
+	; Put the Berry back and let the held-item code eat it again, so its
+	; text, animation and party sync are the usual ones.
+	ld hl, wBattleMonItem
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_item
+	ld hl, wEnemyMonItem
+.got_item
+	ld [hl], e
+	push hl
+	ld a, TRUE
+	call SetCudChewReplay
+	ld a, b
+	cp HELD_RESTORE_PP
+	jr z, .restore_pp
+	call SwitchTurn ; these two act on the turn holder's opponent
+	farcall UseHeldStatusHealingItem
+	jr nz, .status_done
+	farcall UseConfusionHealingItem
+.status_done
+	call SwitchTurn
+	jr .eaten
+.restore_pp
+	farcall HandleUserMysteryberry
+.eaten
+	xor a
+	call SetCudChewReplay
+	pop hl
+	xor a
+	ld [hl], a ; gone again, even if a handler declined it
+	; eating it a second time doesn't arm Cud Chew again
+	call GetUserSide
+	call ReadItemStateFlags
+	res 2, b
+	call WriteItemStateFlags
+	jp EndAbility
+
+.WouldEat:
+; b = the Berry's held effect. Carry if eating it now would do something.
+	ld a, b
+	cp HELD_RESTORE_PP
+	jr z, .zero_pp_move
+	cp HELD_HEAL_CONFUSION
+	jr z, .confused
+	ld hl, CudChewStatusMasks
+.find
+	ld a, [hli]
+	cp -1
+	jr z, .no
+	cp b
+	ld a, [hli]
+	jr nz, .find
+	ld d, a
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and d
+	jr nz, .yes
+	ld a, b
+	cp HELD_HEAL_STATUS
+	jr nz, .no
+.confused
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVar
+	bit SUBSTATUS_CONFUSED, a
+	jr nz, .yes
+.no
+	and a
+	ret
+.yes
+	scf
+	ret
+.zero_pp_move
+	; Mystery Berry: a known move with no PP left
+	ld hl, wBattleMonMoves
+	ld de, wBattleMonPP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_moves
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonPP
+.got_moves
+	ld c, NUM_MOVES
+.pp_loop
+	ld a, [hli]
+	and a
+	jr z, .no
+	ld a, [de]
+	inc de
+	and PP_MASK
+	jr z, .yes
+	dec c
+	jr nz, .pp_loop
+	jr .no
+
+CudChewStatusMasks:
+; Mirrors HeldStatusHealingEffects (data/battle/held_heal_status.asm).
+	db HELD_HEAL_POISON,   1 << PSN
+	db HELD_HEAL_FREEZE,   1 << FRZ
+	db HELD_HEAL_BURN,     1 << BRN
+	db HELD_HEAL_SLEEP,    SLP
+	db HELD_HEAL_PARALYZE, 1 << PAR
+	db HELD_HEAL_STATUS,   ALL_STATUS
+	db -1
+
+SetCudChewReplay:
+; a = TRUE while Cud Chew re-eats a Berry: UnnerveCheck_b lets it through
+; (the Berry is eaten again directly, not "tried" - Showdown's Unnerve only
+; stops TryEatItem). Preserves bc, de and hl.
+	push bc
+	ld b, a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wCudChewReplaying)
+	ldh [rSVBK], a
+	ld a, b
+	ld [wCudChewReplaying], a
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	ret
 
 PromoteCudChewFlags::
 ; Called at the start of every turn: a Berry eaten before this turn is due
