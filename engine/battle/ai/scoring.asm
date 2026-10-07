@@ -3938,11 +3938,16 @@ AI_Abilities:
 ; - Dismiss damaging moves whose predicted damage is zero: the player's
 ;   ability (Levitate, Flash Fire, Water/Volt Absorb, Dry Skin, Sap Sipper,
 ;   Lightning Rod, Storm Drain, Motor Drive, Soundproof, Bulletproof,
-;   Wind Rider), Air Balloon or Disguise nullifies them. The prediction
+;   Wind Rider) or Air Balloon nullifies them (an intact Disguise only
+;   blocks the damage, so breaking it stays worthwhile). The prediction
 ;   reuses the real damage formula, so Mold Breaker and Neutralizing Gas
 ;   are respected automatically.
 ; - Dismiss self-KO moves that the player's Damp would block.
 ; - Dismiss Roar/Whirlwind into Suction Cups.
+; - Dismiss moves the player's ability or typing stops outright: absorbed
+;   status moves, Soundproof/Overcoat/Wind Rider, powder into Grass, our
+;   Prankster into a Dark type, raised priority into Armor Tail/Queenly
+;   Majesty (AIScoredMoveFails_Core mirrors the live targeting checks).
 ; - Discourage status moves aimed at a Magic Bounce user, or at a player
 ;   protected by a Substitute (unless our Infiltrator pierces it).
 ; - Mildly discourage contact moves when the player's ability or held
@@ -3987,6 +3992,28 @@ AI_Abilities:
 	ld a, c
 	call AIGetEnemyMove
 
+; Moves the player's ability or typing stops outright, as the live
+; targeting checks would: absorbed status moves (Thunder Wave into Volt
+; Absorb, Spore into Sap Sipper), Soundproof/Overcoat/Wind Rider blocks,
+; powder into a Grass type, our Prankster status move into a Dark type,
+; and raised priority into Armor Tail / Queenly Majesty.
+	push hl
+	push bc
+	push de
+	farcall AIScoredMoveFails_Core
+	pop de
+	pop bc
+	pop hl
+	jr nc, .move_can_land
+	ld a, [hl]
+	add 30
+	jr nc, .no_wrap_fails
+	ld a, $ff ; saturate
+.no_wrap_fails
+	ld [hl], a
+	jp .done
+.move_can_land
+
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	jr z, .status_move
@@ -4003,6 +4030,11 @@ AI_Abilities:
 	ld d, a
 	ld a, [wCurDamage + 1]
 	or d
+	jr nz, .not_nullified
+	; An intact Disguise also predicts zero damage, but it keeps a nonzero
+	; effectiveness: the hit still lands and breaks it, so don't dismiss.
+	ld a, [wTypeModifier]
+	and $7f
 	jr nz, .not_nullified
 	ld a, [hl]
 	add 30
