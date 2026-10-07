@@ -64,9 +64,13 @@ BattleCommand_Transform::
 .no_substitute
 	ld a, [wTempByteValue]
 	inc a ; $ff = called by Imposter, which skips the text
-	ret z
+	jr z, .start_copied_ability
 	ld hl, TransformedText
-	jp StdBattleTextbox
+	call StdBattleTextbox
+.start_copied_ability
+	; a newly copied ability starts as if it had just entered
+	farcall TransformedAbilityStart
+	ret
 
 TransformMonData::
 ; Copy the target's ability, moves, DVs, stats and stat stages onto the user.
