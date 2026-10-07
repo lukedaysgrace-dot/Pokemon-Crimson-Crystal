@@ -1555,8 +1555,8 @@ Thief:
 	applydamage
 	criticaltext
 	supereffectivetext
-	thief
 	checkfaint
+	thief
 	buildopponentrage
 	kingsrock
 	endmove

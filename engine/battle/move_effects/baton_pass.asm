@@ -197,6 +197,9 @@ ResetBatonPassStatus:
 	ld a, 1
 	ld [wEnemyFirstImpressionFresh], a
 .new_vars_done
+	; Entry abilities already restored the incoming mon's own history.
+	; The reset above must discard only the outgoing mon's active tally.
+	farcall LoadUserRageFistHistory_Core
 
 	xor a
 	ld [wPlayerWrapCount], a

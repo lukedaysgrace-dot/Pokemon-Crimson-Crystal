@@ -1,7 +1,7 @@
 	object_const_def ; object_event constants
 	const SPROUTTOWER3F_SAGE1
 	const SPROUTTOWER3F_SAGE2
-	const SPROUTTOWER3F_SAGE3
+	const SPROUTTOWER3F_ELDER
 	const SPROUTTOWER3F_SAGE4
 	const SPROUTTOWER3F_POKE_BALL1
 	const SPROUTTOWER3F_POKE_BALL2
@@ -70,7 +70,7 @@ SageLiScript:
 	waitbutton
 	closetext
 	winlosstext SageLiBeatenText, 0
-	loadtrainer SAGE, LI
+	loadtrainer ELDER, LI
 	startbattle
 	reloadmapafterbattle
 	opentext
@@ -347,7 +347,7 @@ SproutTower3F_MapEvents:
 	db 7 ; object events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
 	object_event  8,  8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
-	object_event 10,  2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
+	object_event 10,  2, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
 	object_event  6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
 	object_event 14,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE

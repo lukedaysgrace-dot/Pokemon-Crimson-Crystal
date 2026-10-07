@@ -330,7 +330,7 @@ ParentalBondCommandGate_Core::
 	push bc
 	push de
 	push hl
-	farcall RunBerserkMoveEnd_Core
+	farcall RunAfterMoveAbilities_Core
 	pop hl
 	pop de
 	pop bc
@@ -344,6 +344,33 @@ ParentalBondCommandGate_Core::
 	ret
 .present_powers
 	db 40, 80, 120
+
+MarkAfterMoveAbilitiesPending_Core::
+; Before HP application: Substitute damage clears wCurDamage afterward,
+; but it still counts as a landed hit for Life Orb's once-per-move recoil.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld a, [wCurDamage]
+	push bc
+	ld b, a
+	ld a, [wCurDamage + 1]
+	or b
+	pop bc
+	jr nz, .landed
+	ld a, [wDisguiseBusted + 1]
+	bit 7, a
+	ret z
+.landed
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wAfterMoveAbilitiesPending)
+	ldh [rSVBK], a
+	ld a, TRUE
+	ld [wAfterMoveAbilitiesPending], a
+	pop af
+	ldh [rSVBK], a
+	ret
 
 RecordParentalBondDamage_Core::
 ; Called after applydamage, when wCurDamage is capped to actual HP lost.
@@ -430,6 +457,20 @@ ClearMoveDamageToHolder_Core::
 	xor a
 	ld [wMoveDamageToHolder], a
 	ld [wMoveDamageToHolder + 1], a
+	ld [wAfterMoveAbilitiesPending], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+ReadAfterMoveAbilitiesPending_Core::
+; b = TRUE for a landed hit, including Substitute/Disguise hits with no
+; HP loss to the holder. Cleared when its after-move events are consumed.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wAfterMoveAbilitiesPending)
+	ldh [rSVBK], a
+	ld a, [wAfterMoveAbilitiesPending]
+	ld b, a
 	pop af
 	ldh [rSVBK], a
 	ret

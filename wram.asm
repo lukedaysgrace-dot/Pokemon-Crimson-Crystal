@@ -3211,7 +3211,7 @@ wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
 ; again when a mon enters on that side.
 ; flags: bit 0 = ate a held Berry, bit 1 = lost its item (Thief/Knock Off/
 ; Pickpocket), bit 2 = Cud Chew is armed for the NEXT end of turn,
-; bit 3 = Cud Chew replay is due this end of turn
+; bit 3 = Cud Chew replay is due this end of turn, bit 4 = Trace is waiting
 wPlayerItemStateFlags:: db
 wEnemyItemStateFlags:: db
 wPlayerConsumedItem:: db
@@ -3229,6 +3229,7 @@ wParentalBondFirstDamage:: dw ; uncapped first hit, for Counter/Mirror Coat
 wParentalBondTotalDamage:: dw ; actual HP lost across both hits, for recoil
 wMoveDamageToHolder:: dw ; per-move total excluding Substitute, for Berserk
 wBerserkBerryPending:: db ; single-hit HP Berry waits for Berserk to resolve
+wAfterMoveAbilitiesPending:: db ; a landed hit awaits its once-per-move events
 wParentalBondEnd::
 
 SECTION "Counter Hit History", WRAMX, BANK[2]
@@ -3255,6 +3256,19 @@ wDamageCalcBasePower:: db
 wTransformedAbilityPending:: db
 ; Nonzero only while Cud Chew re-eats a Berry (lets it past Unnerve).
 wCudChewReplaying:: db
+
+SECTION "Supreme Overlord History", WRAMX, BANK[2]
+
+wSupremeHistoryReady:: db
+wPlayerFaintCount:: db
+wEnemyFaintCount:: db
+wPlayerFaintCounted:: db
+wEnemyFaintCounted:: db
+wPlayerSupremeFallen:: db
+wEnemySupremeFallen:: db
+wPlayerRageFistHistory:: ds PARTY_LENGTH
+wEnemyRageFistHistory:: ds PARTY_LENGTH
+wSupremeHistoryEnd::
 
 
 SECTION "16-bit WRAM tables", WRAMX

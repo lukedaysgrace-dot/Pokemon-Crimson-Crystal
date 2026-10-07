@@ -1,0 +1,546 @@
+- name: "Third pass control: ordinary Body Slam triggers Pickpocket"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: LIFE_ORB, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'LIFE_ORB'
+
+- name: "Third pass: Sheer Force Body Slam suppresses Pickpocket"
+  player: {species: MEW, level: 30, ability: SHEER_FORCE, item: LIFE_ORB, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'LIFE_ORB'
+    - enemy.item == 'NO_ITEM'
+    - not ability_seen('PICKPOCKET')
+    - player.hp == player.start_hp
+
+- name: "Third pass control: Choice Band stays on for every Fury Attack hit"
+  id: third_pickpocket_multihit_control
+  player: {species: MEW, level: 30, ability: SKILL_LINK, item: CHOICE_BAND, moves: [FURY_ATTACK]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 5
+
+- name: "Third pass: Pickpocket waits until all Fury Attack hits have finished"
+  player: {species: MEW, level: 30, ability: SKILL_LINK, item: CHOICE_BAND, moves: [FURY_ATTACK]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 5
+    - enemy.hp == result('third_pickpocket_multihit_control')['enemy']['hp']
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+
+- name: "Third pass control: Rage Fist at two prior hits"
+  id: third_rage_two_control
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [RAGE_FIST]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  setup_wram: {wPlayerRageFistHits: 2}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Third pass: Rage Fist retains its owner's hits across a round-trip switch"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH, RAGE_FIST]}
+  player2: {species: MAGIKARP, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  move_script: [1, 'switch:2', 'switch:1', 2]
+  rng: forced_high
+  turns: 4
+  assert:
+    - player.species == 'MEW'
+    - enemy.hp == result('third_rage_two_control')['enemy']['hp']
+
+- name: "Third pass: the incoming mon does not inherit the outgoing Rage Fist tally"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: MAGIKARP, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  setup_wram: {wPlayerRageFistHits: 3}
+  move_script: [1, 'switch:2']
+  rng: forced_high
+  turns: 2
+  assert: ["player.species == 'MAGIKARP'", "wram('wPlayerRageFistHits') == 1"]
+
+- name: "Third pass control: enemy Rage Fist at two prior hits"
+  id: third_rage_enemy_two_control
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 90, ability: NO_ABILITY, moves: [RAGE_FIST]}
+  enemy2: {species: MAGIKARP, level: 100, moves: [BATON_PASS]}
+  setup_wram: {wEnemyRageFistHits: 2}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp"]
+
+- name: "Third pass: Rage Fist survives enemy Baton Pass without transferring its history"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE, RAGE_FIST]}
+  enemy: {species: MEW, level: 90, ability: NO_ABILITY, moves: [BATON_PASS, BATON_PASS]}
+  enemy2: {species: MAGIKARP, level: 100, moves: [BATON_PASS]}
+  turn_setup_wram: {2: {wEnemyMonMoves: {move: RAGE_FIST}}}
+  turn_assert:
+    - "turns_done != 1 or wram('wEnemyRageFistHits') == 0"
+    - "turns_done != 2 or wram('wEnemyRageFistHits') == 1"
+  rng: forced_high
+  turns: 3
+  assert:
+    - enemy.species == 'MEW'
+    - player.hp == result('third_rage_enemy_two_control')['player']['hp']
+
+- name: "Third pass: Rage Fist keeps its user's KO hit after revival"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, hp: 1, moves: [SPLASH, RAGE_FIST]}
+  player2: {species: MAGIKARP, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  turn_setup_wram: {1: {wPartyMon1HP: [0, 170]}}
+  move_script: [1, 'switch:1', 2]
+  rng: forced_high
+  turns: 3
+  assert:
+    - player.species == 'MEW'
+    - player.hp > 0
+    - enemy.hp == result('third_rage_two_control')['enemy']['hp']
+
+- name: "Third pass: Anticipation uses Hidden Power's default Dark type"
+  player: {species: MEW, level: 100, moves: [SKILL_SWAP]}
+  enemy: {species: CROAGUNK, level: 50, ability: ANTICIPATION, moves: [HIDDEN_POWER]}
+  setup_wram: {wEnemyMonHiddenPowerType: 0}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'ANTICIPATION'", "textbox_seen('AnticipationShudderText')"]
+
+- name: "Third pass: Anticipation does not warn about a resisted Hidden Power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: PONYTA_GALARIAN, level: 100, ability: ANTICIPATION, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [HIDDEN_POWER]}
+  setup_wram: {wEnemyMonHiddenPowerType: 1}
+  move_script: ['switch:2']
+  rng: forced_high
+  turns: 1
+  assert: ["player.species == 'PONYTA_GALARIAN'", "not ability_seen('ANTICIPATION')"]
+
+- name: "Third pass: enemy Anticipation also reads the player's Hidden Power type"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [HIDDEN_POWER]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [BATON_PASS]}
+  enemy2: {species: PONYTA_GALARIAN, level: 100, ability: ANTICIPATION, moves: [SPLASH]}
+  setup_wram: {wBattleMonHiddenPowerType: 3} # Poison threatens custom Fairy Ponyta
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.species == 'PONYTA_GALARIAN'", "ability_seen('ANTICIPATION')"]
+
+- name: "Third pass control: Skill Swap gains Supreme Overlord after an ally faint"
+  id: third_supreme_swap_control
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: MEW, level: 100, moves: [SKILL_SWAP, TACKLE]}
+  enemy: {species: KINGAMBIT, level: 100, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  move_script: [1, 1, 2]
+  rng: forced_high
+  turns: 3
+  assert: ["player.ability == 'SUPREME_OVERLORD'", "enemy.hp < enemy.start_hp"]
+
+- name: "Third pass: copied Supreme Overlord includes a revived ally's recorded faint"
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: MEW, level: 100, moves: [SKILL_SWAP, TACKLE]}
+  enemy: {species: KINGAMBIT, level: 100, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  turn_setup_wram: {1: {wPartyMon1HP: [0, 10]}}
+  move_script: [1, 1, 2]
+  rng: forced_high
+  turns: 3
+  assert:
+    - player.ability == 'SUPREME_OVERLORD'
+    - enemy.hp == result('third_supreme_swap_control')['enemy']['hp']
+
+- name: "Third pass: fainted Sticky Hold cannot block move-end Pickpocket"
+  player: {species: MEW, level: 30, ability: STICKY_HOLD, item: CHOICE_BAND, hp: 1, moves: [DOUBLE_EDGE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.item == 'CHOICE_BAND'
+
+# Paused-turn HP fixtures model Revive's restored bench HP. The faint and
+# replacement on the preceding turn use the ordinary cartridge routines.
+- name: "Third pass control: Supreme Overlord after a single faint"
+  id: third_supreme_one_faint
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  rng: forced_high
+  turns: 2
+  assert: ["player.species == 'KINGAMBIT'", "enemy.hp < enemy.start_hp"]
+
+- name: "Third pass: reviving an ally preserves Supreme Overlord's entry boost"
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  turn_setup_wram: {1: {wPartyMon1HP: [0, 10]}}
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.species == 'KINGAMBIT'
+    - wram('wPartyMon1HP', 1) == 10
+    - enemy.hp == result('third_supreme_one_faint')['enemy']['hp']
+
+- name: "Third pass control: two faint events without Supreme Overlord"
+  id: third_supreme_two_control
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability_slot: 1, moves: [SPLASH, TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  turn_setup_wram: {1: {wPartyMon1HP: [0, 1]}}
+  move_script: [1, 'switch:1', 2]
+  rng: forced_high
+  turns: 3
+  assert: ["player.species == 'KINGAMBIT'", "enemy.hp < enemy.start_hp"]
+
+- name: "Third pass: a revived teammate fainting again adds another Supreme Overlord boost"
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [SPLASH, TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  turn_setup_wram: {1: {wPartyMon1HP: [0, 1]}}
+  move_script: [1, 'switch:1', 2]
+  rng: forced_high
+  turns: 3
+  assert:
+    - player.species == 'KINGAMBIT'
+    - enemy.start_hp - enemy.hp == result('third_supreme_two_control')['enemy']['damage'] * 120 // 100
+
+- name: "Third pass control: six faint events without Supreme Overlord"
+  id: third_supreme_six_control
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability_slot: 1, moves: [SPLASH, TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  turn_setup_wram:
+    1: {wPartyMon1HP: [0, 1]}
+    2: {wPartyMon1HP: [0, 1]}
+    3: {wPartyMon1HP: [0, 1]}
+    4: {wPartyMon1HP: [0, 1]}
+    5: {wPartyMon1HP: [0, 1]}
+  move_script: [1, 'switch:1', 'switch:1', 'switch:1', 'switch:1', 'switch:1', 2]
+  rng: forced_high
+  turns: 7
+  assert: ["player.species == 'KINGAMBIT'", "enemy.hp < enemy.start_hp"]
+
+- name: "Third pass: Supreme Overlord caps at five recorded faints"
+  player: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  player2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [SPLASH, TACKLE]}
+  enemy: {species: SNORLAX, level: 100, moves: [TACKLE]}
+  turn_setup_wram:
+    1: {wPartyMon1HP: [0, 1]}
+    2: {wPartyMon1HP: [0, 1]}
+    3: {wPartyMon1HP: [0, 1]}
+    4: {wPartyMon1HP: [0, 1]}
+    5: {wPartyMon1HP: [0, 1]}
+  move_script: [1, 'switch:1', 'switch:1', 'switch:1', 'switch:1', 'switch:1', 2]
+  rng: forced_high
+  turns: 7
+  assert:
+    - player.species == 'KINGAMBIT'
+    - enemy.start_hp - enemy.hp == result('third_supreme_six_control')['enemy']['damage'] * 150 // 100
+
+- name: "Third pass control: enemy Supreme Overlord after an ally faints"
+  id: third_supreme_enemy_control
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE, SPLASH]}
+  enemy: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  enemy2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["enemy.species == 'KINGAMBIT'", "player.hp < player.start_hp"]
+
+- name: "Third pass: enemy Supreme Overlord also preserves its boost after revival"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE, SPLASH]}
+  enemy: {species: RATTATA, level: 2, hp: 1, moves: [SPLASH]}
+  enemy2: {species: KINGAMBIT, level: 50, ability: SUPREME_OVERLORD, moves: [TACKLE]}
+  turn_setup_wram: {1: {wOTPartyMon1HP: [0, 10]}}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy.species == 'KINGAMBIT'
+    - player.hp == result('third_supreme_enemy_control')['player']['hp']
+
+- name: "Third pass: Forewarn ranks an OHKO move over Double-Edge"
+  player: {species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [FISSURE, DOUBLE_EDGE]}
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('FISSURE')"]
+
+- name: "Third pass: Forewarn ranks Counter at 120 over Earthquake"
+  player: {species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [COUNTER, EARTHQUAKE]}
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('COUNTER')"]
+
+- name: "Third pass: Forewarn ranks variable power at 80 over Water Pulse"
+  player: {species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [FLAIL, WATER_PULSE]}
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('FLAIL')"]
+
+- name: "Third pass: pending Trace copies a newly switched-in ability"
+  player: {species: MEW, level: 50, ability: TRACE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: TRACE, moves: [BATON_PASS]}
+  enemy2: {species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'GYARADOS'
+    - player.ability == 'INTIMIDATE'
+    - enemy.stat_levels[0] == 6
+
+- name: "Third pass: incoming Anticipation recognizes stored Fighting Hidden Power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: EEVEE, level: 100, ability: ANTICIPATION, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [HIDDEN_POWER]}
+  setup_wram: {wEnemyMonHiddenPowerType: 1}
+  move_script: ['switch:2']
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'EEVEE'
+    - ability_seen('ANTICIPATION')
+
+- name: "Third pass: Pickpocket takes Life Orb before its recoil"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: LIFE_ORB, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'LIFE_ORB'
+    - player.hp == player.start_hp
+
+- name: "Third pass: unboosted Sheer Force does not suppress Pickpocket"
+  player: {species: MEW, level: 30, ability: SHEER_FORCE, item: LIFE_ORB, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'LIFE_ORB'
+    - player.hp == player.start_hp
+
+- name: "Third pass: Substitute blocks Pickpocket but Life Orb still recoils"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: LIFE_ORB, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wEnemySubstituteHP: 255}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'LIFE_ORB'
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp == enemy.start_hp
+    - player.start_hp - player.hp == player.maxhp // 10
+
+- name: "Third pass: Pickpocket takes back the item stolen by Thief"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THIEF]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, item: CHOICE_BAND, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+    - ability_seen('PICKPOCKET')
+
+- name: "Third pass: Pickpocket can steal after Knock Off empties its slot"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, moves: [KNOCK_OFF]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, item: LEFTOVERS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+    - ability_seen('PICKPOCKET')
+
+- name: "Third pass: Neutralizing Gas suppresses move-end Pickpocket"
+  player: {species: MEW, level: 30, ability: NEUTRALIZING_GAS, item: LIFE_ORB, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'LIFE_ORB'
+    - enemy.item == 'NO_ITEM'
+    - player.start_hp - player.hp == player.maxhp // 10
+    - not ability_seen('PICKPOCKET')
+
+- name: "Third pass: Life Orb recoils once across all Skill Link hits"
+  player: {species: MEW, level: 30, ability: SKILL_LINK, item: LIFE_ORB, moves: [FURY_ATTACK]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 5
+    - player.start_hp - player.hp == player.maxhp // 10
+
+- name: "Third pass: Life Orb recoils on a hit absorbed by Disguise"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: LIFE_ORB, moves: [BITE]}
+  enemy: {species: MIMIKYU, level: 100, ability: DISGUISE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.start_hp - player.hp == player.maxhp // 10
+
+- name: "Third pass: fainted Pickpocket cannot take an item"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: LIFE_ORB, moves: [TACKLE]}
+  enemy: {species: RATTATA, level: 5, ability: PICKPOCKET, hp: 1, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'LIFE_ORB'
+    - enemy.item == 'NO_ITEM'
+    - enemy.hp == 0
+    - player.hp < player.start_hp
+
+- name: "Third pass: Forewarn ranks Mirror Coat above Earthquake"
+  player: {species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [MIRROR_COAT, EARTHQUAKE]}
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('MIRROR COAT')"]
+
+- name: "Third pass: Forewarn ranks fixed damage at 80"
+  player: {species: JYNX, level: 50, ability: FOREWARN, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DRAGON_RAGE, WATER_PULSE]}
+  rng: forced_high
+  turns: 0
+  assert: ["text_seen('DRAGON RAGE')"]
+
+- name: "Third pass: No Ability prevents Trace from seeking on a later switch"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: PORYGON, level: 50, ability: TRACE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [BATON_PASS]}
+  enemy2: {species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH]}
+  move_script: ['switch:2']
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'GYARADOS'
+    - player.species == 'PORYGON'
+    - player.ability == 'TRACE'
+
+- name: "Third pass: incoming Anticipation does not warn about neutral Hidden Power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: EEVEE, level: 100, ability: ANTICIPATION, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [HIDDEN_POWER]}
+  setup_wram: {wEnemyMonHiddenPowerType: 20}
+  move_script: ['switch:2']
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'EEVEE'
+    - not ability_seen('ANTICIPATION')
+
+- name: "Third pass: Pickpocket steals from U-turn before the attacker switches"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - enemy.item == 'CHOICE_BAND'
+    - wram('wPartyMon1Item') == item_id('NO_ITEM')
+
+- name: "Third pass: Pickpocket steals from U-turn with no available pivot"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, moves: [U_TURN]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MEW'
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+
+- name: "Third pass: Pickpocket steals after Dragon Tail fails to find a replacement"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, moves: [DRAGON_TAIL]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH, SPLASH]}
+  enemy2: {species: RATTATA, level: 5, moves: [SPLASH, SPLASH]}
+  setup_wram: {wOTPartyMon2HP: [0, 0]}
+  rng: forced
+  rng_value: 17 # &7 selects the reserve; &3 selects populated move slot 2
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+
+- name: "Third pass: a phazed Pickpocket cannot take the Dragon Tail user's item"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, moves: [DRAGON_TAIL]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH, SPLASH]}
+  enemy2: {species: GYARADOS, level: 50, moves: [SPLASH, SPLASH]}
+  rng: forced
+  rng_value: 17
+  turns: 1
+  assert:
+    - player.item == 'CHOICE_BAND'
+    - enemy.species == 'GYARADOS'
+    - not ability_seen('PICKPOCKET')
+
+- name: "Third pass: Parental Bond retains its Choice Band through both hits"
+  player: {species: MEW, level: 30, ability: PARENTAL_BOND, item: CHOICE_BAND, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 2
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+
+- name: "Third pass: Thief can steal from Sticky Hold when the hit faints its holder"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [THIEF]}
+  enemy: {species: RATTATA, level: 5, ability: STICKY_HOLD, item: CHOICE_BAND, hp: 1, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.item == 'CHOICE_BAND'
+    - enemy.item == 'NO_ITEM'
+
+- name: "Third pass: Knock Off removes an item from a fainted Sticky Hold holder"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy: {species: RATTATA, level: 5, ability: STICKY_HOLD, item: CHOICE_BAND, hp: 1, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - enemy.item == 'NO_ITEM'
+
+- name: "Third pass: a Thief attacker fainted by Iron Barbs cannot gain an item"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, hp: 1, moves: [THIEF]}
+  enemy: {species: SNORLAX, level: 100, ability: IRON_BARBS, item: CHOICE_BAND, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'CHOICE_BAND'
+
+- name: "Third pass: enemy-side Sheer Force also suppresses Pickpocket"
+  player: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: SHEER_FORCE, item: LIFE_ORB, moves: [BODY_SLAM]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'LIFE_ORB'
+    - player.item == 'NO_ITEM'
+    - enemy.hp == enemy.start_hp
+
+- name: "Third pass: a source fainted by recoil can still lose its item to Pickpocket"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: CHOICE_BAND, hp: 1, moves: [DOUBLE_EDGE]}
+  enemy: {species: SNORLAX, level: 100, ability: PICKPOCKET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.item == 'CHOICE_BAND'
+
+
+

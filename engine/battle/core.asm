@@ -1585,8 +1585,7 @@ HandleMysteryberry:
 	call SetPlayerTurn
 
 HandleUserMysteryberry::
-; The turn holder eats its Mystery Berry if a move is out of PP (also
-; farcalled by Cud Chew's replay).
+; The turn holder automatically eats its Mystery Berry if a move is out of PP.
 	call HasUserFainted
 	ret z
 	callfar GetUserItem
