@@ -86,6 +86,26 @@ all of this MBC30 ROM's banks. It maps the game's SRAM bank selections and
 steps the emulated CPU at the debug RNG hook. The original ROM is unchanged;
 no PyBoy source patch is required.
 
+For RTC-driven integration, `prepare_mbc30.py` compiles a separate copy of
+PyBoy under `.tmpbuild/pyboy-mbc30/`. It extends MBC3 to eight-bit ROM banks
+and SRAM banks 4-7, and provides a test clock-advance helper. The installed
+emulator and the game ROM remain unchanged. This optional workflow needs
+Cython, setuptools, and a C compiler; the standard battle tests do not.
+
+`make test-gameplay-rules BATTLE_TEST_PYTHON=.venv/bin/python` runs all eight
+New Game combinations through actual choice menus, Save, fresh emulator
+boot, and Continue. Staged level-ready Pokemon then exercise native
+evolution, stat calculation, ability lookup, PokeDB transfer, and save/load.
+
+`make test-fishing BATTLE_TEST_PYTHON=.venv/bin/python` runs the contest
+backend/text regressions and native dialogue/button integration. The latter
+stages a private Friday party at the gate, then checks refusal, entry,
+early-finish cancellation, rod-free casting, capture, judging, party return,
+full-party boxing, and held-prize Save/Continue/claim. It advances the
+emulator RTC to check timeout, Saturday midnight, and the following Friday;
+it does not patch the game's time/event routines or write `wCurDay`.
+Temporary results and captures are under `.tmpbuild/`.
+
 ## Writing a test
 
 ```yaml

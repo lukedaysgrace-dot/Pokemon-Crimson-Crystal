@@ -59,7 +59,7 @@ FishingContestAccess::
 	ld a, [wMapNumber]
 	cp MAP_OLIVINE_FISHING_COVE
 	jr nz, .allowed
-	ld a, [wCurDay]
+	call GetWeekday
 	cp FRIDAY
 	jr nz, .closed
 	ld a, [wStatusFlags2]
@@ -442,7 +442,7 @@ FishingContestCheckDay::
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_FISHING_CONTEST_F, a
 	jr z, .ok
-	ld a, [wCurDay]
+	call GetWeekday
 	cp FRIDAY
 	jr nz, .over
 .ok

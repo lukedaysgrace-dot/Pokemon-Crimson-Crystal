@@ -4,6 +4,7 @@ roms := pokecrystal.gbc
 # (engine/debug/battle_tester.asm) compiled in. The regular ROM is untouched.
 debug_roms := pokecrystal_debug.gbc
 BATTLE_TEST_JOBS ?= 1
+BATTLE_TEST_PYTHON ?= python3
 
 crystal_obj := \
 audio.o \
@@ -49,7 +50,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-gameplay-rules test-fishing audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -104,6 +105,17 @@ test-complex: pokecrystal_debug.gbc
 
 test-learnsets: pokecrystal.gbc
 	python3 tools/test_learnset_variety.py pokecrystal.gbc
+
+test-gameplay-rules: pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/gameplay_rules_checks.py
+
+# RTC integration needs Cython/setuptools and a C compiler to prepare a
+# private emulator adapter. The ordinary battle harness remains unchanged.
+test-fishing: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_fishing_contest.py
+	$(BATTLE_TEST_PYTHON) tools/test_contest_judging_text.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/prepare_mbc30.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/fishing_ui_checks.py
 
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
