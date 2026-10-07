@@ -11,6 +11,11 @@ BattleCommand_BatonPass:
 
 	call UpdateBattleMonInParty
 	call AnimateCurrentMove
+	; Switch-out abilities (Natural Cure, Regenerator) act on the passer's
+	; party data, as for every other switch-out (U-turn does the same).
+	ld a, [wCurBattleMon]
+	ld [wLastPlayerMon], a
+	farcall RunPlayerSwitchOutAbilities
 
 	ld c, 50
 	call DelayFrames
@@ -55,6 +60,7 @@ BattleCommand_BatonPass:
 
 	call UpdateEnemyMonInParty
 	call AnimateCurrentMove
+	farcall RunEnemySwitchOutAbilities
 	call BatonPass_LinkEnemySwitch
 
 ; Mobile link battles handle entrances differently
