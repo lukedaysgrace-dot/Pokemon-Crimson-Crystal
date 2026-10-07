@@ -1575,16 +1575,18 @@ HandleMysteryberry:
 	cp USING_EXTERNAL_CLOCK
 	jr z, .DoEnemyFirst
 	call SetPlayerTurn
-	call .do_it
+	call HandleUserMysteryberry
 	call SetEnemyTurn
-	jp .do_it
+	jp HandleUserMysteryberry
 
 .DoEnemyFirst:
 	call SetEnemyTurn
-	call .do_it
+	call HandleUserMysteryberry
 	call SetPlayerTurn
 
-.do_it
+HandleUserMysteryberry::
+; The turn holder eats its Mystery Berry if a move is out of PP (also
+; farcalled by Cud Chew's replay).
 	call HasUserFainted
 	ret z
 	callfar GetUserItem

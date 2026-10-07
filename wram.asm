@@ -3253,6 +3253,8 @@ wDamageCalcBasePower:: db
 ; Nonzero when Transform/Imposter has just replaced the user's ability with
 ; a different one, whose start (entry) effect is still pending.
 wTransformedAbilityPending:: db
+; Nonzero only while Cud Chew re-eats a Berry (lets it past Unnerve).
+wCudChewReplaying:: db
 
 
 SECTION "16-bit WRAM tables", WRAMX
