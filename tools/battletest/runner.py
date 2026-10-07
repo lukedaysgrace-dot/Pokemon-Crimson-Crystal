@@ -55,25 +55,31 @@ FRAME_CEILING_BATTLE = 60 * 60 * 5  # 5 emulated minutes per test, hard stop
 
 
 class Harness:
-    def __init__(self, verbose=False, cartridge='surrogate'):
-        if not ROM.exists():
+    def __init__(self, verbose=False, cartridge='surrogate', rom_path=None,
+                 sound_emulated=False, emulator_kwargs=None):
+        rom_path = Path(rom_path or ROM)
+        if not rom_path.exists():
             sys.exit("pokecrystal_debug.gbc not found - run `make debug` first")
         self.verbose = verbose
-        if cartridge not in ('surrogate', 'mbc30'):
+        if cartridge not in ('surrogate', 'mbc30', 'native'):
             raise ValueError('Unknown cartridge mode: ' + cartridge)
         if cartridge == 'mbc30':
             from pyboy.core.cartridge import mbc3
             if not hasattr(mbc3, 'advance_clock'):
                 raise RuntimeError('MBC30 tests require the isolated prepare_mbc30.py adapter')
+        if cartridge == 'native':
+            from pyboy.core.cartridge import mbc3
+            if not hasattr(mbc3, 'MBC30'):
+                raise RuntimeError('Native MBC30 tests require PyBoy >=2.8.1 (use the isolated link emulator)')
         self.cartridge = cartridge
-        self.sym = Symbols()
+        self.sym = Symbols(rom_path.with_suffix('.sym'))
         self.con = Constants()
         # PyBoy's MBC3 implementation masks ROM bank numbers to seven bits,
         # but this is a 4 MiB MBC30-style ROM with eight-bit bank numbers.
         # Run a private, header-only MBC5 surrogate: its low bank register has
         # the same behavior this game uses, so banks $80-$ff remain reachable.
         # The release/debug ROM on disk is never modified.
-        rom_data = bytearray(ROM.read_bytes())
+        rom_data = bytearray(rom_path.read_bytes())
         if cartridge == 'surrogate' and len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
             rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
             checksum = 0
@@ -81,9 +87,10 @@ class Harness:
                 checksum = (checksum - value - 1) & 0xff
             rom_data[0x14d] = checksum
         self._rom_tempdir = tempfile.TemporaryDirectory(prefix="battletest-")
-        clean_rom = Path(self._rom_tempdir.name) / ROM.name
+        clean_rom = Path(self._rom_tempdir.name) / rom_path.name
         clean_rom.write_bytes(rom_data)
-        self.pb = PyBoy(str(clean_rom), window="null", cgb=True, sound_emulated=False)
+        self.pb = PyBoy(str(clean_rom), window="null", cgb=True,
+                        sound_emulated=sound_emulated, **(emulator_kwargs or {}))
         # PyBoy's fast stepping path can mishandle this ROM's CGB double-speed
         # transitions and reboot into GBCOnlyScreen.  Registering a hook makes
         # PyBoy use its accurate stepping path; the cartridge entry point is a

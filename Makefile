@@ -60,6 +60,7 @@ debug: pokecrystal_debug.gbc
 
 # RTC integration needs Cython/setuptools and a C compiler to prepare a
 # private emulator adapter. The ordinary battle harness remains unchanged.
+# Install the isolated PyBoy 2.8.1 dependency first; see battletest/README.md.
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
