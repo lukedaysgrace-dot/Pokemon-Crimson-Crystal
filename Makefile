@@ -50,7 +50,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-gameplay-rules test-fishing audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-gameplay-rules test-fishing test-tower-ui test-release-av test-link-session audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -116,6 +116,18 @@ test-fishing: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_contest_judging_text.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/prepare_mbc30.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/fishing_ui_checks.py
+
+test-tower-ui: pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/tower_ui_checks.py
+
+test-release-av: pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/prepare_mbc30.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/release_audio_rtc_checks.py
+
+# Install the isolated PyBoy 2.8.1 dependency first; see battletest/README.md.
+test-link-session: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/prepare_link_emulator.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/link_session_checks.py
 
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py

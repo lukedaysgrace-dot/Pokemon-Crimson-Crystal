@@ -229,10 +229,53 @@ routines; it tests thresholds rather than the distribution of hardware RNG.
 The menu script uses normal button input with animations enabled. Tower
 checks cover all 321 roster builds, entry rules, seven complete battle-wrapper
 wins, a loss with forced party selection, and saved-party restoration. The
-winning Tower fixtures are overleveled; this does not test the frontend's
-level selection or reward script. Link-RNG checks compare two independent
+winning Tower fixtures are overleveled; the separate `test-tower-ui` target
+tests the frontend's level selection and rewards. Link-RNG checks compare two independent
 emulators using the retail link random stream; they do not emulate a cable
 handshake or complete two-player battle.
+
+## Tower frontend, release audio/RTC, and cable sessions
+
+These are separate integration targets. Use `BATTLE_TEST_PYTHON=.venv/bin/python`
+with `make` when dependencies live in the local virtual environment.
+
+`make test-tower-ui` runs registration/refusals, all ten level rooms, a native
+seven-battle streak, loss/retry, quitting, suspension/resumption, five reward
+choices, full-bag recovery, and Save/fresh Continue. Private party/location
+fixtures use boosted stats; battle wins and frontend routines are not stubbed.
+
+`make test-release-av` prepares the private MBC30/RTC adapter and runs the
+unmodified release ROM with sound enabled. It checks each playable species'
+cry, channel cleanup, music/SFX, cartridge-clock midnight/week rollover, and
+fresh boot/Continue, including midnight and the hardware 140-day rollover.
+The private adapter corrects the old emulator's clock-register write signs
+and time units; independent register-write/persistence probes check it.
+Requires the normal PyBoy 2.7.0 dependency, NumPy,
+Cython, setuptools, and a C compiler. Signal/termination checks do not certify
+subjective sound quality. Seven recently changed cries and map music are
+recorded as WAV files under `.tmpbuild/release-audio-rtc/` for listening.
+
+`make test-link-session` needs a separate PyBoy 2.8.1 installation:
+
+```sh
+.venv/bin/python -m pip install --no-deps --target .tmpbuild/pyboy-link pyboy==2.8.1
+make test-link-session BATTLE_TEST_PYTHON=.venv/bin/python
+```
+
+The preparer compiles a clock-driven serial module in that private copy
+(Cython/setuptools/C compiler required). The installed emulator is unchanged.
+The adapter only shifts when an internal clock is present; both external-clock
+ports cannot complete a transfer. It synchronizes two processes at bit periods
+during transfers and at coarser intervals while idle. Byte exchange and clock
+gating are checked before the game sessions. This is a functional emulator
+cable test, not physical-hardware or cycle-accurate cable certification.
+
+Two unmodified release cartridges boot private debug-generated save fixtures,
+then use ordinary reception/console controls. Logs, JSON results, and screenshots
+are under `.tmpbuild/link-session/`. The fixtures include species and moves
+above index 255, separate trainers, held items, and a deterministic winner.
+No link, RNG, trade, or battle routine is stubbed. All new targets use private
+SRAM/RTC files and do not write the player's cartridge save.
 
 `make test-complex` runs 44 exact berry/ability-transfer chain regressions and
 the added 1,008 combinations of Parental Bond/Skill
