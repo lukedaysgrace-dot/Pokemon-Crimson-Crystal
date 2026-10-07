@@ -102,3 +102,4 @@ TrainerPicPointers::
 	dba BrunoPic ; BRUNO_REMATCH
 	dba KarenPic ; KAREN_REMATCH
 	dba ChampionPic ; CHAMPION_REMATCH
+	dba ElderPic ; ELDER

@@ -115,7 +115,7 @@ DoMove:
 	jr c, .DispatchMoveEffectCommand
 	xor a
 	ld [wSelfdestructGasTurn], a
-	farcall RunBerserkMoveEnd_Core
+	farcall RunAfterMoveAbilities_Core
 	ret
 .DispatchMoveEffectCommand
 	; Reflection runs the complete status move after its action commands.
@@ -2574,6 +2574,7 @@ BattleCommand_ApplyDamage_:
 
 .damage
 	push bc
+	farcall MarkAfterMoveAbilitiesPending_Core
 	call .update_damage_taken
 	; c = TRUE when the attacker's Infiltrator pierces a Substitute
 	farcall AbilitySubBypass_Core
@@ -2641,6 +2642,7 @@ BattleCommand_ApplyDamage_:
 	ld [de], a
 .rage_tally_capped
 	pop de
+	farcall RecordOpponentRageFistHistory_Core
 
 	ld de, wPlayerDamageTaken + 1
 	ldh a, [hBattleTurn]
@@ -2908,6 +2910,10 @@ BattleCommand_CheckFaint:
 	call GetBattleVar
 	cp EFFECT_U_TURN
 	jr z, .u_turn_ko
+	cp EFFECT_THIEF
+	jr z, .thief_ko
+	cp EFFECT_KNOCK_OFF
+	jr z, .knock_off_ko
 	cp EFFECT_SCALE_SHOT
 	jr z, .scale_shot_ko
 	cp EFFECT_STEALTH_ROCK_HIT
@@ -2928,6 +2934,15 @@ BattleCommand_CheckFaint:
 
 .finish
 	jp EndMoveEffect
+
+.thief_ko
+	; After-hit theft still runs on a KO, once contact damage has resolved.
+	call BattleCommand_Thief
+	jr .finish
+
+.knock_off_ko
+	call BattleCommand_KnockOff
+	jr .finish
 
 .u_turn_ko
 	; Skip BuildOpponentRage for a fainted target, but still perform the

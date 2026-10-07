@@ -1,5 +1,7 @@
 BattleThief_Core:
 ; thief (body in the Battle Effect Overflow bank)
+	farcall UserHasFainted
+	ret z ; contact damage may have fainted the thief before this event
 
 	ldh a, [hBattleTurn]
 	and a
@@ -22,11 +24,16 @@ BattleThief_Core:
 ; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
 
 	push hl
+	farcall OppHasFainted
+	pop hl
+	jr z, .player_take_item
+	push hl
 	farcall GetOppIgnorableAbility_b
 	ld a, b
 	cp STICKY_HOLD
 	pop hl
-	jr z, .sticky_hold
+	jp z, .sticky_hold
+.player_take_item
 
 ; Can't steal mail.
 
@@ -82,11 +89,16 @@ BattleThief_Core:
 ; Sticky Hold keeps the victim's item where it is (Mold Breaker pierces).
 
 	push hl
+	farcall OppHasFainted
+	pop hl
+	jr z, .enemy_take_item
+	push hl
 	farcall GetOppIgnorableAbility_b
 	ld a, b
 	cp STICKY_HOLD
 	pop hl
 	jr z, .sticky_hold
+.enemy_take_item
 
 ; Can't steal mail!
 
