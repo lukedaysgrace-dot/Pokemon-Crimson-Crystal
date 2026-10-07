@@ -15,21 +15,33 @@ from pathlib import Path
 from runner import Harness
 from symbols import ROOT
 from ui_checks import tile_text
+from overworld_controls import Controls
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', default='.tmpbuild/story-playthrough')
+    parser.add_argument('--resume', help='Resume a button-only playthrough snapshot')
     args = parser.parse_args()
     output = ROOT / args.output
     output.mkdir(parents=True, exist_ok=True)
     h = Harness()
-    h.ensure_fixture()
-    # The fixture was created through the new-game menus, before the starter.
-    # Leave DEBUG and the start menu through their normal cancel inputs.
-    h.press('b', hold=4, wait=30)
-    h.press('b', hold=4, wait=30)
+    if args.resume:
+        with Path(args.resume).open('rb') as stream:
+            h.pb.load_state(stream)
+    else:
+        h.ensure_fixture()
+        # The fixture was created through the new-game menus, before the starter.
+        # Leave DEBUG and the start menu through their normal cancel inputs.
+        h.press('b', hold=4, wait=30)
+        h.press('b', hold=4, wait=30)
+    controls = Controls(h)
     frames = commands = 0
+    if args.resume and (output / 'journal.jsonl').exists():
+        for line in (output / 'journal.jsonl').read_text().splitlines():
+            previous = json.loads(line)
+            if 'frames' in previous:
+                frames, commands = previous['frames'], previous['command']
     journal = (output / 'journal.jsonl').open('a', buffering=1)
 
     def snapshot(label):
@@ -52,6 +64,7 @@ def main():
                     map_status=m.read('wMapStatus'), battle_mode=m.read('wBattleMode'),
                     party=party, text=tile_text(h), text_overflows=list(h.text_overflows),
                     pc=f'{h.pb.register_file.PC:04x}')
+        data['gameplay_rules'] = m.read('wGameplayRules')
         h.pb.screen.image.save(str(output / 'latest.png'))
         h.pb.screen.image.save(str(output / f'{commands:04d}.png'))
         with (output / 'latest.state').open('wb') as stream:
@@ -59,7 +72,7 @@ def main():
         journal.write(json.dumps(data) + '\n')
         print(json.dumps(data), flush=True)
 
-    snapshot('fresh game, no starter')
+    snapshot('resumed button-only playthrough' if args.resume else 'fresh game, no starter')
     try:
         for line in sys.stdin:
             try:
@@ -68,6 +81,18 @@ def main():
                 journal.write(json.dumps(dict(input=command, command=commands)) + '\n')
                 if command.get('quit'):
                     break
+                if 'go' in command:
+                    controls.go(command['go'], avoid=command.get('avoid', []))
+                if 'mash' in command:
+                    controls.mash(command['mash'])
+                if command.get('battle'):
+                    controls.battle()
+                if command.get('grid'):
+                    print(json.dumps(dict(grid=controls.grid(), objects=controls.objects())), flush=True)
+                if 'read' in command:
+                    print(json.dumps({name: h.battle.mem.read(name) for name in command['read']}), flush=True)
+                frames += controls.frames
+                controls.frames = 0
                 for action in command.get('actions', []):
                     button = action.get('button')
                     hold, wait = action.get('hold', 8), action.get('wait', 24)

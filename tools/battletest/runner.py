@@ -55,10 +55,17 @@ FRAME_CEILING_BATTLE = 60 * 60 * 5  # 5 emulated minutes per test, hard stop
 
 
 class Harness:
-    def __init__(self, verbose=False):
+    def __init__(self, verbose=False, cartridge='surrogate'):
         if not ROM.exists():
             sys.exit("pokecrystal_debug.gbc not found - run `make debug` first")
         self.verbose = verbose
+        if cartridge not in ('surrogate', 'mbc30'):
+            raise ValueError('Unknown cartridge mode: ' + cartridge)
+        if cartridge == 'mbc30':
+            from pyboy.core.cartridge import mbc3
+            if not hasattr(mbc3, 'advance_clock'):
+                raise RuntimeError('MBC30 tests require the isolated prepare_mbc30.py adapter')
+        self.cartridge = cartridge
         self.sym = Symbols()
         self.con = Constants()
         # PyBoy's MBC3 implementation masks ROM bank numbers to seven bits,
@@ -67,7 +74,7 @@ class Harness:
         # the same behavior this game uses, so banks $80-$ff remain reachable.
         # The release/debug ROM on disk is never modified.
         rom_data = bytearray(ROM.read_bytes())
-        if len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
+        if cartridge == 'surrogate' and len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
             rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
             checksum = 0
             for value in rom_data[0x134:0x14d]:
@@ -169,7 +176,8 @@ class Harness:
         return hashlib.md5(ROM.read_bytes()).hexdigest()[:12]
 
     def fixture_path(self):
-        return FIXTURES / f"menu-{self.rom_key()}.state"
+        prefix = 'menu-mbc30' if self.cartridge == 'mbc30' else 'menu'
+        return FIXTURES / f"{prefix}-{self.rom_key()}.state"
 
     def ensure_fixture(self):
         path = self.fixture_path()

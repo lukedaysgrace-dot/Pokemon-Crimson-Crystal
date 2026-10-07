@@ -80,12 +80,14 @@ def check_rom(h):
 
     # Friday plus entry is required; other maps retain their normal fishing.
     load_map(COVE)
-    for day in range(7):
+    # wCurDay is an accumulated calendar day, not an already-reduced weekday.
+    # Exercise its entire byte range so Friday also works in later weeks.
+    for day in range(256):
         write('wCurDay', day)
         for status in (0, FISHING, TIMER, FISHING | TIMER):
             flags(status)
             write('wParkBallsRemaining', 20)
-            expected = 0 if day != FRIDAY else (1 if status == FISHING | TIMER else 2)
+            expected = 0 if day % 7 != FRIDAY else (1 if status == FISHING | TIMER else 2)
             check(h.call('FishingContestAccess')['a'] == expected,
                   f'Fishing access wrong: day {day}, flags {status}')
     write('wCurDay', FRIDAY)
@@ -150,13 +152,13 @@ def check_rom(h):
         write('wTileDown', 0x29)
         write('hJoyPressed', 1)  # A_BUTTON
         write('wParkBallsRemaining', 20)
-        for day in range(7):
+        for day in [*range(7), 12, 19, 138, 139]:
             write('wCurDay', day)
             for status in [0, TIMER, FISHING, FISHING | TIMER]:
                 flags(status)
                 h.wr16(h.s('wScriptPos'), 0)
                 result = h.call('CheckAPressOW')
-                expected = ('FishingContestFridayOnlyScript' if day != FRIDAY else
+                expected = ('FishingContestFridayOnlyScript' if day % 7 != FRIDAY else
                             'Script_GotABite' if status == FISHING | TIMER else
                             'FishingContestEnterFirstScript')
                 check(result['c_flag'] and h.rd16(h.s('wScriptPos')) == h.s(expected)
@@ -315,10 +317,11 @@ def check_rom(h):
         menu = h.rd(h.s('wMenuItemsList') + 1, read('wMenuItemsList'))
         check((2 in menu) == has_pack and (8 in menu) == has_quit,
               f'Wrong Pack/QUIT visibility with flags {status}: {menu.hex()}')
-    for day in range(7):
+    for day in range(256):
         write('wCurDay', day)
         flags(FISHING | TIMER)
-        check(h.call('FishingContestCheckDay')['c_flag'] == (day != FRIDAY), 'Midnight contest expiry failed')
+        check(h.call('FishingContestCheckDay')['c_flag'] == (day % 7 != FRIDAY),
+              f'Midnight contest expiry failed on calendar day {day}')
     flags(FISHING | TIMER)
     write('wLinkMode', 0)
     with patch(h, {'CheckBugContestTimer': b'\x37\xc9'}):
