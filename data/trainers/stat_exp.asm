@@ -126,3 +126,4 @@ TrainerClassStatExp:
 	dw 46656 ; BRUNO_REMATCH    ; 54 pts, +52 @L97
 	dw 46656 ; KAREN_REMATCH    ; 54 pts, +52 @L97
 	dw 46656 ; CHAMPION_REMATCH ; 54 pts, +52 @L98
+	dw     0 ; ELDER

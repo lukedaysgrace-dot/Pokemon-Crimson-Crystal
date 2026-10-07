@@ -1508,3 +1508,4 @@ SECTION "New Trainer Pics", ROMX
 BattleGirlPic: INCBIN "gfx/trainers/battle_girl.2bpp.lz"
 TamerPic: INCBIN "gfx/trainers/tamer.2bpp.lz"
 SchoolGirlPic: INCBIN "gfx/trainers/school_girl.2bpp.lz"
+ElderPic: INCBIN "gfx/trainers/elder.2bpp.lz"

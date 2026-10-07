@@ -869,9 +869,17 @@ SECTION "Perish Song Ability Core", ROMX
 
 INCLUDE "engine/battle/move_effects/perish_song_core.asm"
 
+SECTION "Cud Chew Berry Core", ROMX
+
+INCLUDE "engine/battle/move_effects/cud_chew_core.asm"
+
 SECTION "Parental Bond Move Core", ROMX
 
 INCLUDE "engine/battle/move_effects/parental_bond_core.asm"
+
+SECTION "Supreme Overlord History Core", ROMX
+
+INCLUDE "engine/battle/move_effects/supreme_overlord_core.asm"
 
 SECTION "Counter Hit History Core", ROMX
 

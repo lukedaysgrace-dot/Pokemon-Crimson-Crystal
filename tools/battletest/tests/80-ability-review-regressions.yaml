@@ -1,0 +1,276 @@
+# Showdown reference: data/abilities.ts (Cud Chew and Technician),
+# data/items.ts (Mystery Berry Eat), and data/moves.ts (Barb Barrage).
+# Seeded replay fixtures below represent a Berry eaten before this turn:
+# item-state bit 2 is armed; the remembered Berry is PRZCureBerry $4e,
+# Bitter Berry $53, or Mystery Berry $96.
+
+- name: "Ability regression: Cud Chew retains a Leftovers received through Trick"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: PRZCUREBERRY, moves: [SPLASH, TRICK] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: LEFTOVERS, moves: [THUNDER_WAVE] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - player.status == 0
+    - ability_seen('CUD_CHEW')
+    - player.item == 'LEFTOVERS'
+    - wram('wPartyMon1Item') == item_id('LEFTOVERS')
+    - enemy.item == 'NO_ITEM'
+
+- name: "Ability regression control: Trick retains Leftovers without Cud Chew"
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, item: PRZCUREBERRY, moves: [SPLASH, TRICK] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: LEFTOVERS, moves: [THUNDER_WAVE] }
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - player.item == 'LEFTOVERS'
+    - wram('wPartyMon1Item') == item_id('LEFTOVERS')
+    - enemy.item == 'NO_ITEM'
+
+- name: "Ability regression control: Barb Barrage against poison without Technician"
+  id: review_barb_poison_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [BARB_BARRAGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Ability regression: Technician must not boost a 120 power Barb Barrage"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [BARB_BARRAGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == result('review_barb_poison_control')['enemy']['hp']
+
+- name: "Ability regression control: Barb Barrage at 60 power without Technician"
+  id: review_barb_clean_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [BARB_BARRAGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Ability regression: Technician boosts Barb Barrage at 60 power"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [BARB_BARRAGE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < result('review_barb_clean_control')['enemy']['hp']
+
+- name: "Ability regression control: Mystery Berry restores PP once"
+  id: review_mystery_control
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, item: MYSTERYBERRY, moves: [TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 30, 0, 0]
+    wPartyMon1PP: [1, 30, 0, 0]
+  rng: forced_high
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    - player.pp[0] == 4
+    - player.item == 'NO_ITEM'
+
+- name: "Ability regression: Cud Chew replays Mystery Berry with nonzero depleted PP"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: MYSTERYBERRY, moves: [TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 30, 0, 0]
+    wPartyMon1PP: [1, 30, 0, 0]
+  rng: forced_high
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    - player.pp[0] == 9
+    - wram('wPartyMon1PP') == 9
+    - ability_seen('CUD_CHEW')
+    - player.item == 'NO_ITEM'
+    - (wram('wPlayerItemStateFlags') & 12) == 0
+    - wram('wCudChewReplaying') == 0
+
+- name: "Ability regression: Cud Chew does not rearm after curing with a replacement item"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: PRZCUREBERRY, moves: [SPLASH, TRICK] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: LEFTOVERS, moves: [THUNDER_WAVE] }
+  rng: forced_high
+  move_script: [1, 2, 1]
+  turns: 3
+  assert:
+    - player.status == 64
+    - player.item == 'LEFTOVERS'
+    - wram('wPartyMon1Item') == item_id('LEFTOVERS')
+    - (wram('wPlayerItemStateFlags') & 12) == 0
+    - wram('wCudChewReplaying') == 0
+
+- name: "Ability regression: enemy Cud Chew status replay preserves its replacement item"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE] }
+  enemy: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: LEFTOVERS, moves: [SPLASH] }
+  enemy2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyItemStateFlags: 5, wEnemyConsumedItem: 0x4e }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.status == 0
+    - enemy.item == 'LEFTOVERS'
+    - wram('wOTPartyMon1Item') == item_id('LEFTOVERS')
+    - (wram('wEnemyItemStateFlags') & 12) == 0
+    - wram('wEnemyConsumedItem') == item_id('PRZCUREBERRY')
+    - wram('wCudChewReplaying') == 0
+    - ability_seen('CUD_CHEW')
+
+- name: "Ability regression: Cud Chew confusion replay preserves its replacement item"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: LEFTOVERS, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [CONFUSE_RAY] }
+  setup_wram: { wPlayerItemStateFlags: 5, wPlayerConsumedItem: 0x53 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - (wram('wPlayerSubStatus3') & 128) == 0
+    - player.item == 'LEFTOVERS'
+    - wram('wPartyMon1Item') == item_id('LEFTOVERS')
+    - wram('wPlayerConsumedItem') == item_id('BITTER_BERRY')
+    - wram('wCudChewReplaying') == 0
+    - ability_seen('CUD_CHEW')
+
+- name: "Ability regression: Cud Chew PP replay preserves its replacement item"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: LEFTOVERS, moves: [TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [10, 30, 0, 0]
+    wPartyMon1PP: [10, 30, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.pp[0] == 14
+    - wram('wPartyMon1PP') == 14
+    - player.item == 'LEFTOVERS'
+    - wram('wPartyMon1Item') == item_id('LEFTOVERS')
+    - (wram('wPlayerItemStateFlags') & 12) == 0
+    - wram('wPlayerConsumedItem') == item_id('MYSTERYBERRY')
+    - wram('wCudChewReplaying') == 0
+
+- name: "Ability regression: Cud Chew Mystery Berry chooses the lowest PP slot"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [RECOVER, TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [15, 2, 30, 0]
+    wPartyMon1PP: [15, 2, 30, 0]
+  rng: forced_high
+  move_script: [3]
+  turns: 1
+  assert:
+    - player.pp == [15, 7, 29, 0]
+    - wram('wPartyMon1PP', 1) == 7
+
+- name: "Ability regression: Cud Chew Mystery Berry chooses the first slot on a PP tie"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [TACKLE, SPLASH, RECOVER] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [2, 2, 20, 0]
+    wPartyMon1PP: [2, 2, 20, 0]
+  rng: forced_high
+  move_script: [3]
+  turns: 1
+  assert:
+    - player.pp == [7, 2, 19, 0]
+    - wram('wPartyMon1PP') == 7
+
+- name: "Ability regression: Cud Chew Mystery Berry respects base maximum PP"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [34, 40, 0, 0]
+    wPartyMon1PP: [34, 40, 0, 0]
+  rng: forced_high
+  move_script: [2]
+  turns: 1
+  assert:
+    - player.pp == [35, 39, 0, 0]
+    - wram('wPartyMon1PP') == 35
+
+- name: "Ability regression: Cud Chew Mystery Berry preserves PP Ups and their maximum"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [TACKLE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [247, 0, 0, 0]
+    wPartyMon1PP: [247, 0, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.pp[0] == 56
+    - wram('wBattleMonPP') == 248
+    - wram('wPartyMon1PP') == 248
+
+- name: "Ability regression: Cud Chew Mystery Berry respects the packed 61 PP cap"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [252, 0, 0, 0]
+    wPartyMon1PP: [252, 0, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.pp[0] == 61
+    - wram('wBattleMonPP') == 253
+    - wram('wPartyMon1PP') == 253
+
+- name: "Ability regression: Cud Chew PP replay changes copied PP without changing original party PP"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, substatus: [TRANSFORMED], moves: [TACKLE, SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wPlayerItemStateFlags: 5
+    wPlayerConsumedItem: 0x96
+    wBattleMonPP: [4, 5, 0, 0]
+    wPartyMon1PP: [20, 30, 0, 0]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.pp == [5, 5, 0, 0]
+    - wram('wPartyMon1PP') == 20
+    - wram('wPartyMon1PP', 1) == 30
+
+- name: "Ability regression: wild enemy Cud Chew restores nonzero PP and syncs wild PP"
+  player: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: MYSTERYBERRY, moves: [TACKLE] }
+  setup_wram:
+    wEnemyMonPP: [1, 0, 0, 0]
+    wWildMonPP: [1, 0, 0, 0]
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy.pp[0] == 9
+    - wram('wWildMonPP') == 9
+    - enemy.item == 'NO_ITEM'
+    - ability_seen('CUD_CHEW')
+
+- name: "Ability regression: trainer enemy Cud Chew restores nonzero PP and syncs party PP"
+  player: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: MYSTERYBERRY, moves: [TACKLE] }
+  enemy2: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wEnemyMonPP: [1, 0, 0, 0]
+    wOTPartyMon1PP: [1, 0, 0, 0]
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy.pp[0] == 9
+    - wram('wOTPartyMon1PP') == 9
+    - enemy.item == 'NO_ITEM'
+    - wram('wOTPartyMon1Item') == item_id('NO_ITEM')
+    - ability_seen('CUD_CHEW')

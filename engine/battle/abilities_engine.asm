@@ -411,6 +411,7 @@ RunEntryAbilities::
 	; The foe may still be awaiting its own initial entry effects.
 	call RunEntryAbilitiesInner
 	call CheckNeutralizingGasEnded
+	call RunPendingTraceUpdatesBoth
 	; During battle, the existing battler also needs an item update when
 	; Gas/Unnerve leaves or the incoming mon changes field suppression.
 	; On initial entry the foe may still be awaiting Trace and entry effects.
@@ -430,6 +431,8 @@ RunEntryAbilitiesInner::
 	call UserHasFainted
 	ret z
 	; a busted Mimikyu keeps its broken sprite when it re-enters
+	farcall PrepareSupremeEntry_Core
+	farcall LoadUserRageFistHistory_Core
 	call ReapplyBrokenDisguise
 	call OppHasFainted
 	ld hl, BattleEntryAbilities
@@ -678,11 +681,22 @@ NotificationAbilities:
 	jp StdBattleTextbox
 
 TraceAbility:
+	; Start a new search. No Ability ends it; an untraceable ability leaves
+	; it pending until the foe acquires a traceable ability or switches.
+	call GetUserSide
+	call ReadItemStateFlags
+	res 4, b
+	call WriteItemStateFlags
 	call GetOpponentAbility
 	and a
 	ret z
 	call AbilityCanBeTraced
-	ret nz
+	jr z, .copy
+	call GetUserSide
+	call ReadItemStateFlags
+	set 4, b
+	jp WriteItemStateFlags
+.copy
 	push af
 	call BeginAbility
 	call ShowAbilityActivation
@@ -704,6 +718,28 @@ TraceAbility:
 	pop af
 	ld [hl], a
 	jp RunEntryAbilitiesInner
+
+RunPendingTraceUpdatesBoth:
+	ldh a, [hBattleTurn]
+	push af
+	call SetPlayerTurn
+	call .side
+	call SetEnemyTurn
+	call .side
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.side
+	call UserHasFainted
+	ret z
+	call GetTrueUserAbility
+	cp TRACE
+	ret nz
+	call GetUserSide
+	call ReadItemStateFlags
+	bit 4, b
+	ret z
+	jp TraceAbility
 
 ImposterAbility:
 ; Banner briefly, then Transform (wave deform + sprite swap).
@@ -1097,6 +1133,7 @@ RunStatusHealAbilitiesBoth::
 RunPostActionAbilityUpdates::
 ; The full move has completed and the committed Gas-explosion marker is
 ; clear. Reactivate field abilities/items before either battler acts again.
+	call RunPendingTraceUpdatesBoth
 	call RunFaintAbilities
 	jp RunStatusHealAbilitiesBoth
 
@@ -2916,9 +2953,9 @@ RunDamageModifiers:
 	jp .defender
 
 .supreme_overlord
-	; ~+10% damage for each fainted ally (x1.09375 each, additive)
+	; +10% per recorded faint, capped and snapshotted on ability entry.
 	push de
-	call CountFaintedAllies
+	farcall ReadSupremeFallen_Core
 	pop de
 	and a
 	jp z, .defender
@@ -4321,29 +4358,12 @@ RunPostDamageDefenderHeldItems:
 	jp RockyHelmetDamage
 
 LifeOrbRecoil::
+	; Once after the full move and defender's after-move ability, so
+	; Pickpocket can take the Orb before its recoil event.
 	callfar GetUserItem
 	ld a, b
 	cp HELD_LIFE_ORB
 	ret nz
-	farcall ParentalBondHitPending_Core
-	ret c ; once per completed Parental Bond move, including an early KO
-	; multi-hit moves recoil once, after the final hit,
-	; not once per hit (this hook runs from every checkfaint)
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_MULTI_HIT
-	jr z, .multi_hit
-	cp EFFECT_DOUBLE_HIT
-	jr z, .multi_hit
-	cp EFFECT_POISON_MULTI_HIT
-	jr z, .multi_hit
-	cp EFFECT_TRIPLE_KICK
-	jr z, .multi_hit
-	cp EFFECT_BEAT_UP
-	jr z, .multi_hit
-	cp EFFECT_SCALE_SHOT
-	jr z, .multi_hit
-.recoil
 	call GetTrueUserAbility
 	cp MAGIC_GUARD
 	ret z
@@ -4361,29 +4381,6 @@ LifeOrbRecoil::
 	farcall SubtractHPFromUser
 	ld hl, LifeOrbRecoilText
 	jp StdBattleTextbox
-
-.multi_hit
-	; a KO cuts the loop short: that hit was the final one
-	call OppHasFainted
-	jr z, .recoil
-	; endloop hasn't run yet on the first hit, so IN_LOOP clear
-	; means more hits are coming
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVar
-	bit SUBSTATUS_IN_LOOP, a
-	ret z
-	; the loop counter (see BattleCommand_EndLoop) reads 1 during
-	; the last hit's checkfaint
-	ld hl, wPlayerRolloutCount
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_count
-	ld hl, wEnemyRolloutCount
-.got_count
-	ld a, [hl]
-	dec a
-	ret nz
-	jr .recoil
 
 AirBalloonPop:
 	call OppHasFainted
@@ -4716,11 +4713,17 @@ RunContactAbilitiesHook::
 	ld hl, IsHurtText
 	call StdBattleTextbox
 .life_orb
-	; Attacker recoil resolves after defender items and reactive abilities.
-	call LifeOrbRecoil
-	jp RunMoveKOAbilities
+	ret ; recoil and move-end reactions follow the completed move script
 
-RunBerserkMoveEnd_Core::
+RunAfterMoveAbilities_Core::
+	farcall ReadAfterMoveAbilitiesPending_Core
+	ld a, b
+	and a
+	jr z, .berserk
+	call RunPickpocketMoveEnd
+	call LifeOrbRecoil
+	call RunMoveKOAbilities
+.berserk
 	call ApplyBerserkMoveEnd
 	farcall ClearMoveDamageToHolder_Core
 	; Single-hit Berserk resolves before an HP Berry can erase its crossing.
@@ -4742,6 +4745,49 @@ RunBerserkMoveEnd_Core::
 	ret z
 	farcall HandleHPHealingItem
 	ret
+
+RunPickpocketMoveEnd:
+; Turn = attacker. Pickpocket is an AfterMoveSecondary event, after all
+; hits, recoil and item-removal commands; boosted Sheer Force suppresses it.
+	farcall ReadMoveDamageToHolder_Core
+	ld a, b
+	or c
+	ret z ; no hit reached the holder through its Substitute
+	call GetTrueUserAbility
+	cp SHEER_FORCE
+	jr nz, .eligible
+	call CurrentMoveHasSheerForceEffect
+	ret c
+.eligible
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CIRCLE_THROW
+	jr nz, .contact
+	; A phazed target skips Pickpocket; a target with no replacement stays
+	; and can steal. U-turn's user is still present for this event.
+	call UserHasFainted
+	jr z, .contact
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .player_target
+	ld a, [wBattleMode]
+	dec a
+	ret z ; a wild target leaves the battle
+	farcall CheckAnyOtherAliveEnemyMons
+	ret nz
+	jr .contact
+.player_target
+	farcall CheckAnyOtherAlivePartyMons
+	ret nz
+.contact
+	call CheckContactMove
+	ret nc
+	call GetOpponentAbility
+	cp PICKPOCKET
+	ret nz
+	call SwitchTurn
+	call PickpocketAbility
+	jp SwitchTurn
 
 CheckBerserkBerryDelay_Core::
 ; Carry when a single-hit move must delay its target's HP Berry until the
@@ -4983,7 +5029,6 @@ TargetContactAbilities:
 	dbw CUTE_CHARM, CuteCharmAbility
 	dbw IRON_BARBS, IronBarbsAbility
 	dbw PERISH_BODY, PerishBodyAbility
-	dbw PICKPOCKET, PickpocketAbility
 	dbw -1, -1
 
 CheckContactMove::
@@ -5743,6 +5788,7 @@ AbilityCapCore::
 	prompt
 RunFaintAbilities::
 	; Generic faint cleanup runs for direct and indirect KOs alike.
+	farcall RecordFaintHistoryBoth_Core
 	call RefreshWeatherSuppression
 	; Suppressed entry abilities resume as soon as the gas holder faints,
 	; including when no replacement exists. The faint hooks do not guarantee
@@ -5773,7 +5819,7 @@ RunFaintAbilities::
 	jp RunHPItemUpdatesBoth
 
 RunMoveKOAbilities:
-; Called only from the damaging-move post-hit hook, after recoil and reactive
+; Called only after a completed damaging move, after recoil and reactive
 ; damage resolve. If the attacker survived and its target fainted, run Moxie.
 	; A fainted Cloud Nine holder stops suppressing the underlying weather
 	; via RunFaintAbilities later; this path is only for move-caused KO rewards.
@@ -6501,14 +6547,7 @@ UnnerveCheck_b::
 ; b = TRUE if the turn holder's effective ability is Unnerve, which stops its
 ; opponent (the held-item holder) from eating Berries. A fainted Unnerve
 ; holder no longer makes anyone nervous, and Cud Chew's replay ignores it.
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wCudChewReplaying)
-	ldh [rSVBK], a
-	ld a, [wCudChewReplaying]
-	ld b, a
-	pop af
-	ldh [rSVBK], a
+	call CudChewReplaying_b
 	ld a, b
 	and a
 	ld b, FALSE
@@ -6640,7 +6679,7 @@ TechnicianBoostsCurrentHit:
 ; it after every base-power change. damagecalc records the variable-power
 ; moves' computed power (Return, Frustration, Present, Magnitude, Flail,
 ; Reversal, Gyro Ball, Rage Fist; Weather Ball's struct power). Fury Cutter,
-; Rollout, Acrobatics, Avalanche, Hex/Infernal Parade and Pursuit instead
+; Rollout, Acrobatics, Avalanche, Hex/Infernal Parade, Barb Barrage and Pursuit instead
 ; double their damage after stab, so count those doublings here; they are
 ; base-power multipliers in the modern games, which Technician sees.
 ; (Gust/Twister/Stomp/Magnitude-style doubling against a semi-invulnerable
@@ -6689,6 +6728,8 @@ TechnicianBoostsCurrentHit:
 	jr z, .avalanche
 	cp EFFECT_HEX
 	jr z, .hex
+	cp EFFECT_BARB_BARRAGE
+	jr z, .barb_barrage
 	cp EFFECT_PURSUIT
 	ret nz
 	; Pursuit: doubled against a target that is switching out
@@ -6737,6 +6778,15 @@ TechnicianBoostsCurrentHit:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
+	ret z
+	inc c
+	ret
+
+.barb_barrage
+	; doubled only against a poisoned target (including Toxic poison)
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and 1 << PSN
 	ret z
 	inc c
 	ret
@@ -7864,6 +7914,7 @@ GetUserSide:
 InitAbilityItemState::
 ; Farcalled from the battle-start send-out (replaces the plain wInAbility
 ; clear there). Zeroes held-item state and once-per-battle ability state.
+	farcall InitSupremeHistory_Core
 	xor a
 	ld [wInAbility], a
 	ld b, a
@@ -8104,9 +8155,7 @@ ForewarnAbility:
 	push hl
 	push de
 	push bc
-	ld l, a
-	ld a, MOVE_POWER
-	call GetMoveAttribute
+	call ForewarnMovePower
 	pop bc
 	pop de
 	pop hl
@@ -8140,6 +8189,48 @@ ForewarnAbility:
 	call AbilityBufferMoveName
 	ld hl, ForewarnAlertText
 	jp StdBattleTextbox
+
+ForewarnMovePower:
+; a = move id. Forewarn uses special rankings for OHKO, counter and
+; variable/fixed-damage moves, rather than their placeholder base power.
+	push de
+	ld e, a
+	ld l, a
+	ld a, MOVE_EFFECT
+	call GetMoveAttribute
+	cp EFFECT_OHKO
+	jr z, .ohko
+	cp EFFECT_COUNTER
+	jr z, .counter
+	cp EFFECT_MIRROR_COAT
+	jr z, .counter
+	cp EFFECT_STATIC_DAMAGE
+	jr z, .variable ; ROM data stores Sonic Boom/Dragon Rage's fixed damage
+	ld l, e
+	ld a, MOVE_POWER
+	call GetMoveAttribute
+	cp 1
+	jr z, .variable
+	and a
+	jr nz, .done
+	ld l, e
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+	jr nz, .variable
+	xor a
+	jr .done
+.ohko
+	ld a, 150
+	jr .done
+.counter
+	ld a, 120
+	jr .done
+.variable
+	ld a, 80
+.done
+	pop de
+	ret
 
 AnticipationAbility:
 ; Shudders if the foe has a super-effective or OHKO move.
@@ -8184,9 +8275,7 @@ AnticipationAbility:
 	and a
 	jr z, .next
 	; super effective vs the holder's typing?
-	ld l, e
-	ld a, MOVE_TYPE
-	call GetMoveAttribute
+	call AnticipationMoveType
 	ld b, a
 	ld hl, wBuffer5
 	ld a, BANK(CheckTypeMatchupFar)
@@ -8213,6 +8302,37 @@ AnticipationAbility:
 	pop af
 	ldh [rSVBK], a
 	ret
+
+AnticipationMoveType:
+; e = foe's move id. Hidden Power uses the foe's stored type, not the
+; Normal placeholder in the move table. Preserves de.
+	push de
+	ld a, e
+	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(HIDDEN_POWER)
+	jr nz, .ordinary
+	ld a, l
+	cp LOW(HIDDEN_POWER)
+	jr nz, .ordinary
+	ld hl, wEnemyMonHiddenPowerType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .hidden_power
+	ld hl, wBattleMonHiddenPowerType
+.hidden_power
+	ld a, [hl]
+	and a
+	jr nz, .done
+	ld a, HIDDEN_POWER_DEFAULT_TYPE
+.done
+	pop de
+	ret
+.ordinary
+	pop de
+	ld l, e
+	ld a, MOVE_TYPE
+	jp GetMoveAttribute
 
 ; --- On-hit abilities -----------------------------------------------------
 
@@ -8256,7 +8376,7 @@ StenchAbility:
 	db -1
 
 PickpocketAbility:
-; Contact chain, turn = the defending Pickpocket holder. Steals the
+; Move-end reaction, turn = the defending Pickpocket holder. Steals the
 ; attacker's held item when the holder has none. Sticky Hold protects
 ; the attacker; mail can't be taken.
 	call UserHasFainted
@@ -8272,9 +8392,12 @@ PickpocketAbility:
 	and a
 	ret nz
 	; Sticky Hold keeps the attacker's item where it is
+	call OppHasFainted
+	jr z, .attacker_item ; a fainted source's Sticky Hold no longer protects it
 	call GetOpponentAbility
 	cp STICKY_HOLD
 	ret z
+.attacker_item
 	; the attacker must have an item
 	ld hl, wEnemyMonItem
 	ldh a, [hBattleTurn]
@@ -8509,14 +8632,16 @@ CudChewAbility:
 	call ShowAbilityBannerBrief
 	pop de
 	pop bc
-	; Put the Berry back and let the held-item code eat it again, so its
-	; text, animation and party sync are the usual ones.
+	; Borrow the item slot for the usual status Berry text/animation. Replaying
+	; Eat must not consume an item acquired since the original Berry was eaten.
 	ld hl, wBattleMonItem
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_item
 	ld hl, wEnemyMonItem
 .got_item
+	ld a, [hl]
+	push af
 	ld [hl], e
 	push hl
 	ld a, TRUE
@@ -8532,13 +8657,13 @@ CudChewAbility:
 	call SwitchTurn
 	jr .eaten
 .restore_pp
-	farcall HandleUserMysteryberry
+	farcall CudChewRestorePP_Core
 .eaten
 	xor a
 	call SetCudChewReplay
 	pop hl
-	xor a
-	ld [hl], a ; gone again, even if a handler declined it
+	pop af
+	ld [hl], a
 	; eating it a second time doesn't arm Cud Chew again
 	call GetUserSide
 	call ReadItemStateFlags
@@ -8550,7 +8675,7 @@ CudChewAbility:
 ; b = the Berry's held effect. Carry if eating it now would do something.
 	ld a, b
 	cp HELD_RESTORE_PP
-	jr z, .zero_pp_move
+	jr z, .restore_pp_move
 	cp HELD_HEAL_CONFUSION
 	jr z, .confused
 	ld hl, CudChewStatusMasks
@@ -8580,28 +8705,12 @@ CudChewAbility:
 .yes
 	scf
 	ret
-.zero_pp_move
-	; Mystery Berry: a known move with no PP left
-	ld hl, wBattleMonMoves
-	ld de, wBattleMonPP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_moves
-	ld hl, wEnemyMonMoves
-	ld de, wEnemyMonPP
-.got_moves
-	ld c, NUM_MOVES
-.pp_loop
-	ld a, [hli]
-	and a
-	jr z, .no
-	ld a, [de]
-	inc de
-	and PP_MASK
-	jr z, .yes
-	dec c
-	jr nz, .pp_loop
-	jr .no
+.restore_pp_move
+	; Replay Eat, not the automatic Berry trigger: PP need not be zero.
+	push bc
+	farcall CudChewFindPPMove_Core
+	pop bc
+	ret
 
 CudChewStatusMasks:
 ; Mirrors HeldStatusHealingEffects (data/battle/held_heal_status.asm).
@@ -8628,6 +8737,18 @@ SetCudChewReplay:
 	pop af
 	ldh [rSVBK], a
 	pop bc
+	ret
+
+CudChewReplaying_b::
+; b = TRUE during the remembered Berry's Eat effect. Preserves c, de and hl.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wCudChewReplaying)
+	ldh [rSVBK], a
+	ld a, [wCudChewReplaying]
+	ld b, a
+	pop af
+	ldh [rSVBK], a
 	ret
 
 PromoteCudChewFlags::

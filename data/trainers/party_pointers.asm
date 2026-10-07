@@ -102,3 +102,4 @@ TrainerGroups:
 	dba BrunoGroup ; BRUNO_REMATCH
 	dba KarenGroup ; KAREN_REMATCH
 	dba ChampionGroup ; CHAMPION_REMATCH
+	dba ElderGroup ; ELDER

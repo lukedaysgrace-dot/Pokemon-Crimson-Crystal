@@ -1,4 +1,14 @@
 ConsumeHeldItem:
+	; Cud Chew only replays Eat; it does not consume the current held item,
+	; overwrite the party item, or record another consumption.
+	push hl
+	push bc
+	farcall CudChewReplaying_b
+	ld a, b
+	pop bc
+	pop hl
+	and a
+	ret nz
 	push hl
 	push de
 	push bc

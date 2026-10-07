@@ -5661,17 +5661,7 @@ SageGroup:
 	dw RALTS
 	db -1 ; end
 
-	next_list_item ; SAGE (9) LI - Sprout Tower 3F
-	db "LI@", TRAINERTYPE_NORMAL
-	db 7
-	dw HOPPIP
-	db 8
-	dw FLITTLE
-	db 9
-	dw EXEGGCUTE
-	db -1 ; end
-
-	next_list_item ; SAGE (10) GAKU - Wise Trios Room
+	next_list_item ; SAGE (9) GAKU - Wise Trios Room
 	db "GAKU@", TRAINERTYPE_NORMAL
 	db 47
 	dw DUNSPARCE
@@ -5681,7 +5671,7 @@ SageGroup:
 	dw DIPPLIN
 	db -1 ; end
 
-	next_list_item ; SAGE (11) MASA - Wise Trios Room
+	next_list_item ; SAGE (10) MASA - Wise Trios Room
 	db "MASA@", TRAINERTYPE_NORMAL
 	db 47
 	dw VIBRAVA
@@ -5691,7 +5681,7 @@ SageGroup:
 	dw AMPHAROS
 	db -1 ; end
 
-	next_list_item ; SAGE (12) KOJI - Wise Trios Room
+	next_list_item ; SAGE (11) KOJI - Wise Trios Room
 	db "KOJI@", TRAINERTYPE_NORMAL
 	db 47
 	dw AMPHAROS
@@ -8126,6 +8116,28 @@ CrystalGroup:
 	db LEFTOVERS
 	db ABILITY_1
 	dw QUIVER_DANCE, FIERY_DANCE, BUG_BUZZ, GIGA_DRAIN
+	db -1 ; end
+
+	end_list_items
+
+ElderGroup:
+	next_list_item ; ELDER (1) LI - Sprout Tower 3F
+	db "LI@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 7
+	dw HOPPIP
+	db NO_ITEM
+	db HIDDEN_ABILITY ; Infiltrator
+	dw ABSORB, SYNTHESIS, TACKLE, TAIL_WHIP
+	db 8
+	dw EXEGGCUTE
+	db BERRY
+	db HIDDEN_ABILITY ; Harvest
+	dw HYPNOSIS, ABSORB, BARRAGE, REFLECT
+	db 9
+	dw WEEPINBELL
+	db NO_ITEM
+	db ABILITY_2 ; Poison Puppeteer
+	dw POISONPOWDER, VINE_WHIP, ACID, WRAP
 	db -1 ; end
 
 	end_list_items

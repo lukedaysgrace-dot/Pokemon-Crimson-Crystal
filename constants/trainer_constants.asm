@@ -582,7 +582,6 @@ LYRA EQU __enum__
 	const PING
 	const EDMOND
 	const NEAL
-	const LI
 	const GAKU
 	const MASA
 	const KOJI
@@ -848,5 +847,9 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 
 	trainerclass CHAMPION_REMATCH
 ; Lance's rematch team (party index LANCE2 in ChampionGroup).
+
+	trainerclass ELDER
+; The Elder of Sprout Tower (3F), who gives out HM05 Flash.
+	const LI
 
 NUM_TRAINER_CLASSES EQU __enum__

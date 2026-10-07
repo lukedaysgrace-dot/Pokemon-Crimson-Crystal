@@ -689,7 +689,7 @@ def main():
                 # assertions inspect every completed turn, not only the end.
                 target = test.get("turns", 1)
                 script = test.get("move_script") or []
-                checkpoints = range(1, target + 1) if test.get("turn_assert") or len(script) > 8 else [target]
+                checkpoints = range(1, target + 1) if test.get("turn_assert") or test.get("turn_setup_wram") or len(script) > 8 else [target]
                 for checkpoint in checkpoints:
                     if checkpoint >= 8 and len(script) > 8:
                         action = script[min(checkpoint - 1, len(script) - 1)]
@@ -716,6 +716,9 @@ def main():
                                 checkpoint_failures.append(f"turn {h.battle.turns_done}: {expression}")
                     if st != STATE_WAIT:
                         break
+                    # Seed a documented state between native turns (for
+                    # example, a revived bench ally), then resume normally.
+                    apply_wram_setup(h.battle, (test.get("turn_setup_wram") or {}).get(checkpoint))
             else:
                 st = h.run_battle(test)
 

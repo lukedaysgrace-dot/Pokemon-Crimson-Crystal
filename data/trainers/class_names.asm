@@ -100,3 +100,4 @@ TrainerClassNames::
 	db "ELITE FOUR@"
 	db "ELITE FOUR@"
 	db "CHAMPION@"
+	db "ELDER@"
