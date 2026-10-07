@@ -120,7 +120,8 @@ MEDIUM (important interaction wrong), LOW (edge case / data / cosmetic).
   table runs for it (not for Imposter), and the Transform move then updates
   HP items (Imposter's own entry processing already does).
 - **Tests:** Transform into Intimidate and Drizzle, Imposter into Intimidate,
-  and "already had the ability" (no restart).
+  and "already had the ability" (no restart). The generated Transform matrix
+  (`ability_matrix.py`) now expects the copied weather to start.
 
 ### B6 — A Transform user got a working Disguise (LOW)
 - **Files:** `data/abilities/flags.asm` (Disguise `$1f` → `$3f`).
@@ -273,8 +274,14 @@ scope.
 - Full permanent YAML suite before the AI changes: 1,318/1,318 passed; the
   new file: 71/71 passed on the final ROM; 42 fix cases fail on the pre-fix
   ROM as expected.
-- Complete generated suite on the final ROM (`make test-complete` runner
-  invocation, 20,634 cases): in progress at commit time; result to follow.
+- Complete generated suite on the final ROM (the `make test-complete` runner
+  invocation, 20,634 cases): 20,632 passed. The two failures were
+  "Ability matrix: Transform versus SAND_STREAM / SNOW_WARNING", whose
+  generated expectation predated B5: the copied weather now starts, so the
+  Normal-type copy takes 1/16 chip damage, as in Showdown.
+  `tools/battletest/ability_matrix.py` now expects that chip and asserts the
+  weather for all four weather setters. With that change, all 171 Transform
+  matrix cases pass.
 
 Release SHA-256 `07d4b754eb33034e425a21be0b873fd7cdcc729607221c940ae6146b579728e9`,
 debug `d1d7c89799bf0ba5732691acd0679affdbd51085aa15916016717abee831f44b`.
