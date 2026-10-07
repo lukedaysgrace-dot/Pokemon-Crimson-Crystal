@@ -569,11 +569,14 @@ BattleSkillSwap_Core:
 	ld [wEnemyAbility], a
 	ld hl, SwappedAbilitiesText
 	call StdBattleTextbox
-	; Re-run switch-in abilities: user first, then the opponent
-	farcall RunEntryAbilities
+	; Resolve both entry abilities before updating items. In particular,
+	; the second holder's Trace must finish before either berry is checked.
+	farcall RunEntryAbilitiesInner
 	farcall SwitchTurn
-	farcall RunEntryAbilities
+	farcall RunEntryAbilitiesInner
 	farcall SwitchTurn
+	farcall CheckNeutralizingGasEnded
+	farcall RunHPItemUpdatesBoth
 	ret
 
 .failed
@@ -761,13 +764,6 @@ BattleBurn_Core:
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .failed
-	; Magic Bounce reflects a status move even from behind the bouncer's
-	; own Substitute, and before the AI 25% fail roll (audit 2026-08-28 #14)
-	farcall StatDropSubCheckExempt
-	jr nc, .no_bounce
-	farcall AbilityPreventsBurn
-	jp c, .failed
-.no_bounce
 	callfar CheckSubstituteOpp
 	jp nz, .failed
 	farcall AbilityPreventsBurn
@@ -1022,9 +1018,9 @@ ToxicSpikesPoison:
 ; All bodies live in this bank (Battle Effect Overflow); Battle Core and
 ; Effect Commands only hold farcall stubs.
 
-MagicBounceSkipsOriginalHit_Core::
-; New reflected commands check accuracy/protection from the bouncer's side.
-; The original target's Protect or the source's accuracy cannot stop a bounce.
+MagicBounceSkipsPreExecutionBlock_Core::
+; Mean Look's doturn priority check precedes the reflection hook. Let its
+; eligible bouncer reflect before Prankster's Dark immunity is considered.
 	ld a, [wDisguiseBusted + 1]
 	bit 6, a
 	jr nz, .no
@@ -1046,8 +1042,7 @@ MagicBounceSkipsOriginalHit_Core::
 	and a
 	ret
 .effects
-	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
-	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_MEAN_LOOK, -1
+	db EFFECT_MEAN_LOOK, -1
 
 MagicBounceSkipActionCommand_Core::
 ; Reflected scripts execute effects, without spending PP, checking obedience,
@@ -1078,6 +1073,18 @@ TryMagicBounceCommand_Core::
 	call IsInArray
 	pop bc
 	jp c, .no
+	; Check once, at the command immediately following doturn. Later
+	; switchturn commands can temporarily expose the opponent's selected
+	; move data while resolving self boosts/drops; that is not a new attack.
+	ld a, [wBattleScriptBufferAddress]
+	ld l, a
+	ld a, [wBattleScriptBufferAddress + 1]
+	ld h, a
+	dec hl
+	dec hl
+	ld a, [hl]
+	cp doturn_command
+	jp nz, .no
 	; Circle Throw shares forceswitch with Roar but is a damaging move.
 	ldh a, [hBattleTurn]
 	and a
@@ -1098,6 +1105,19 @@ TryMagicBounceCommand_Core::
 	call IsInArray
 	pop bc
 	jp nc, .no
+	; Protect's hit check precedes Magic Bounce. Side hazards, Mean Look,
+	; and Roar/Whirlwind bypass Protect and can still reflect through it.
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
+	call GetBattleVar
+	bit SUBSTATUS_PROTECT, a
+	jr z, .protect_checked
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	ld hl, .protect_bypass
+	ld de, 1
+	call IsInArray
+	jp nc, .no
+.protect_checked
 	push bc
 	farcall GetOpponentIgnorableAbility_b
 	ld a, b
@@ -1164,6 +1184,10 @@ TryMagicBounceCommand_Core::
 	db EFFECT_SP_ATK_DOWN_2, EFFECT_SP_DEF_DOWN_2, EFFECT_ACCURACY_DOWN_2, EFFECT_EVASION_DOWN_2
 	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
 	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_DEFOG
+	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
+	db EFFECT_STICKY_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
+
+.protect_bypass
 	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
 	db EFFECT_STICKY_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
 

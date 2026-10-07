@@ -1064,14 +1064,14 @@ PlayerTurn_EndOpponentProtectEndureDestinyBond:
 .player_move_done
 	xor a
 	ld [wSkipCheckTurnOnce], a
-	farcall RunStatusHealAbilitiesBoth
+	farcall RunPostActionAbilityUpdates
 	jp EndOpponentProtectEndureDestinyBond
 
 EnemyTurn_EndOpponentProtectEndureDestinyBond:
 	call SetEnemyTurn
 	call EndUserDestinyBond
 	callfar DoEnemyTurn
-	farcall RunStatusHealAbilitiesBoth
+	farcall RunPostActionAbilityUpdates
 	jp EndOpponentProtectEndureDestinyBond
 
 EndOpponentProtectEndureDestinyBond:

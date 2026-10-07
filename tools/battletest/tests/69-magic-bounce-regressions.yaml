@@ -169,12 +169,12 @@
   turns: 1
   assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "ability_seen('MAGIC_BOUNCE')"]
 
-- name: "Bounce regression: Magic Bounce reflects through its own Protect"
+- name: "Bounce regression: Protect blocks Taunt before Magic Bounce"
   player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT] }
   enemy: { species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [PROTECT] }
   rng: forced_high
   turns: 1
-  assert: ["wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0", "ability_seen('MAGIC_BOUNCE')"]
+  assert: ["wram('wPlayerTauntCount') == 0", "wram('wEnemyTauntCount') == 0", "not ability_seen('MAGIC_BOUNCE')", "textbox_seen('ProtectingItselfText')", "player.start_pp[0] - player.pp[0] == 1"]
 
 - name: "Bounce regression: reflected Roar allows a normal following turn"
   player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ROAR] }
@@ -207,3 +207,188 @@
   rng: forced_high
   turns: 1
   assert: ["(player.substatus[4] & 128) != 0", "(enemy.substatus[4] & 128) == 0", "ability_seen('MAGIC_BOUNCE')"]
+
+- name: 'Bounce regression: player Protect blocks Taunt before reflection'
+  player:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  enemy:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - TAUNT
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram('wPlayerTauntCount') == 0
+  - wram('wEnemyTauntCount') == 0
+  - not ability_seen('MAGIC_BOUNCE')
+  - textbox_seen('ProtectingItselfText')
+- name: 'Bounce regression: SPIKES reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - SPIKES
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram('wPlayerSpikesLayers') == 1
+  - wram('wEnemySpikesLayers') == 0
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: TOXIC_SPIKES reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - TOXIC_SPIKES
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - (player.screens & 96) == 32
+  - (enemy.screens & 96) == 0
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: STEALTH_ROCK reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - STEALTH_ROCK
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - (player.screens & 128) != 0
+  - (enemy.screens & 128) == 0
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: STICKY_WEB reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - STICKY_WEB
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - (player.screens & 2) != 0
+  - (enemy.screens & 2) == 0
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: MEAN_LOOK reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - MEAN_LOOK
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - (player.substatus[4] & 128) != 0
+  - (enemy.substatus[4] & 128) == 0
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: ROAR reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - ROAR
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced
+  rng_value: 1
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 30
+    moves:
+    - SPLASH
+  enemy2:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  assert:
+  - player.species == 'SNORLAX'
+  - enemy.species == 'ESPEON'
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0
+- name: 'Bounce regression: WHIRLWIND reflects through holder Protect'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - WHIRLWIND
+  enemy:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  rng: forced
+  rng_value: 1
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 30
+    moves:
+    - SPLASH
+  enemy2:
+    species: ESPEON
+    level: 100
+    ability: MAGIC_BOUNCE
+    moves:
+    - PROTECT
+  assert:
+  - player.species == 'SNORLAX'
+  - enemy.species == 'ESPEON'
+  - ability_seen('MAGIC_BOUNCE')
+  - (wram('wDisguiseBusted', 1) & 64) == 0

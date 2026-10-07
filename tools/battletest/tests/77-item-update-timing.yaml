@@ -1,0 +1,2099 @@
+# Observe HP-item updates before the next native action.
+- name: 'Item update: player Skill Swap KLUTZ to RIPEN BERRY'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY'
+    - enemy.hp == 1
+    - player.hp == 21
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'RIPEN'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY'
+  - enemy.hp == 1
+  - player.hp == 21
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to RIPEN BERRY_JUICE'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY_JUICE'
+    - enemy.hp == 1
+    - player.hp == 21
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'RIPEN'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY_JUICE'
+  - enemy.hp == 1
+  - player.hp == 21
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to KLUTZ BERRY'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: BUNEARY
+    level: 30
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'KLUTZ'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY'
+    - enemy.hp == 1
+    - player.hp == 1
+    - player.item == 'BERRY'
+  assert:
+  - player.ability == 'KLUTZ'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY'
+  - enemy.hp == 1
+  - player.hp == 1
+  - player.item == 'BERRY'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to KLUTZ BERRY_JUICE'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: BUNEARY
+    level: 30
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'KLUTZ'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY_JUICE'
+    - enemy.hp == 1
+    - player.hp == 1
+    - player.item == 'BERRY_JUICE'
+  assert:
+  - player.ability == 'KLUTZ'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY_JUICE'
+  - enemy.hp == 1
+  - player.hp == 1
+  - player.item == 'BERRY_JUICE'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to GLUTTONY BERRY'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: SNORLAX
+    level: 30
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'GLUTTONY'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY'
+    - enemy.hp == 1
+    - player.hp == 11
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'GLUTTONY'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY'
+  - enemy.hp == 1
+  - player.hp == 11
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to GLUTTONY BERRY_JUICE'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: SNORLAX
+    level: 30
+    ability: GLUTTONY
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'GLUTTONY'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY_JUICE'
+    - enemy.hp == 1
+    - player.hp == 21
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'GLUTTONY'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY_JUICE'
+  - enemy.hp == 1
+  - player.hp == 21
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to SWIFT_SWIM BERRY'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: MAGIKARP
+    level: 30
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'SWIFT_SWIM'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY'
+    - enemy.hp == 1
+    - player.hp == 11
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'SWIFT_SWIM'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY'
+  - enemy.hp == 1
+  - player.hp == 11
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to SWIFT_SWIM BERRY_JUICE'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: MAGIKARP
+    level: 30
+    ability: SWIFT_SWIM
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'SWIFT_SWIM'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY_JUICE'
+    - enemy.hp == 1
+    - player.hp == 21
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'SWIFT_SWIM'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY_JUICE'
+  - enemy.hp == 1
+  - player.hp == 21
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to UNNERVE BERRY'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: HAXORUS
+    level: 30
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'UNNERVE'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY'
+    - enemy.hp == 1
+    - player.hp == 11
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'UNNERVE'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY'
+  - enemy.hp == 1
+  - player.hp == 11
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap KLUTZ to UNNERVE BERRY_JUICE'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: HAXORUS
+    level: 30
+    ability: UNNERVE
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'UNNERVE'
+    - enemy.ability == 'KLUTZ'
+    - enemy.item == 'BERRY_JUICE'
+    - enemy.hp == 1
+    - player.hp == 21
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'UNNERVE'
+  - enemy.ability == 'KLUTZ'
+  - enemy.item == 'BERRY_JUICE'
+  - enemy.hp == 1
+  - player.hp == 21
+  - player.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: player Skill Swap cannot transfer Gas'
+  player:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert:
+    - player.ability == 'KLUTZ'
+    - player.hp == 11
+    - player.item == 'NO_ITEM'
+  assert:
+  - player.ability == 'KLUTZ'
+  - player.hp == 11
+  - player.item == 'NO_ITEM'
+- name: 'Item update: enemy Skill Swap KLUTZ to RIPEN BERRY'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'RIPEN'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY'
+    - player.hp == 1
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'RIPEN'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY'
+  - player.hp == 1
+  - enemy.hp == 21
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to RIPEN BERRY_JUICE'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  player:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'RIPEN'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY_JUICE'
+    - player.hp == 1
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'RIPEN'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY_JUICE'
+  - player.hp == 1
+  - enemy.hp == 21
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to KLUTZ BERRY'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: BUNEARY
+    level: 30
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'KLUTZ'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY'
+    - player.hp == 1
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+  assert:
+  - enemy.ability == 'KLUTZ'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY'
+  - player.hp == 1
+  - enemy.hp == 1
+  - enemy.item == 'BERRY'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to KLUTZ BERRY_JUICE'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  player:
+    species: BUNEARY
+    level: 30
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'KLUTZ'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY_JUICE'
+    - player.hp == 1
+    - enemy.hp == 1
+    - enemy.item == 'BERRY_JUICE'
+  assert:
+  - enemy.ability == 'KLUTZ'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY_JUICE'
+  - player.hp == 1
+  - enemy.hp == 1
+  - enemy.item == 'BERRY_JUICE'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to GLUTTONY BERRY'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: SNORLAX
+    level: 30
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'GLUTTONY'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY'
+    - player.hp == 1
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'GLUTTONY'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY'
+  - player.hp == 1
+  - enemy.hp == 11
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to GLUTTONY BERRY_JUICE'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  player:
+    species: SNORLAX
+    level: 30
+    ability: GLUTTONY
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'GLUTTONY'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY_JUICE'
+    - player.hp == 1
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'GLUTTONY'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY_JUICE'
+  - player.hp == 1
+  - enemy.hp == 21
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to SWIFT_SWIM BERRY'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: MAGIKARP
+    level: 30
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'SWIFT_SWIM'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY'
+    - player.hp == 1
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'SWIFT_SWIM'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY'
+  - player.hp == 1
+  - enemy.hp == 11
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to SWIFT_SWIM BERRY_JUICE'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  player:
+    species: MAGIKARP
+    level: 30
+    ability: SWIFT_SWIM
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'SWIFT_SWIM'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY_JUICE'
+    - player.hp == 1
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'SWIFT_SWIM'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY_JUICE'
+  - player.hp == 1
+  - enemy.hp == 21
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to UNNERVE BERRY'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: HAXORUS
+    level: 30
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'UNNERVE'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY'
+    - player.hp == 1
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'UNNERVE'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY'
+  - player.hp == 1
+  - enemy.hp == 11
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap KLUTZ to UNNERVE BERRY_JUICE'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY_JUICE
+    moves:
+    - SKILL_SWAP
+  player:
+    species: HAXORUS
+    level: 30
+    ability: UNNERVE
+    item: BERRY_JUICE
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'UNNERVE'
+    - player.ability == 'KLUTZ'
+    - player.item == 'BERRY_JUICE'
+    - player.hp == 1
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'UNNERVE'
+  - player.ability == 'KLUTZ'
+  - player.item == 'BERRY_JUICE'
+  - player.hp == 1
+  - enemy.hp == 21
+  - enemy.item == 'NO_ITEM'
+  - wram('wInAbility') == 0
+  - wram('wSelfdestructGasTurn') == 0
+- name: 'Item update: enemy Skill Swap cannot transfer Gas'
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: WEEZING
+    level: 30
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert:
+    - enemy.ability == 'KLUTZ'
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+  assert:
+  - enemy.ability == 'KLUTZ'
+  - enemy.hp == 11
+  - enemy.item == 'NO_ITEM'
+- name: 'Item update: NEUTRALIZING_GAS switch to SWIFT_SWIM releases RIPEN'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id001
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id001
+- name: 'Item update: NEUTRALIZING_GAS switch to UNNERVE releases RIPEN'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id002
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id002
+- name: 'Item update: NEUTRALIZING_GAS switch to NEUTRALIZING_GAS releases RIPEN'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id003
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id003
+- name: 'Item update: NEUTRALIZING_GAS switch to SWIFT_SWIM releases KLUTZ'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id004
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id004
+- name: 'Item update: NEUTRALIZING_GAS switch to UNNERVE releases KLUTZ'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id005
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id005
+- name: 'Item update: NEUTRALIZING_GAS switch to NEUTRALIZING_GAS releases KLUTZ'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id006
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id006
+- name: 'Item update: NEUTRALIZING_GAS switch to SWIFT_SWIM releases GLUTTONY'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id007
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id007
+- name: 'Item update: NEUTRALIZING_GAS switch to UNNERVE releases GLUTTONY'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id008
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id008
+- name: 'Item update: NEUTRALIZING_GAS switch to NEUTRALIZING_GAS releases GLUTTONY'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id009
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id009
+- name: 'Item update: NEUTRALIZING_GAS switch to SWIFT_SWIM releases SWIFT_SWIM'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id010
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id010
+- name: 'Item update: NEUTRALIZING_GAS switch to UNNERVE releases SWIFT_SWIM'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id011
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id011
+- name: 'Item update: NEUTRALIZING_GAS switch to NEUTRALIZING_GAS releases SWIFT_SWIM'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id012
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id012
+- name: 'Item update: NEUTRALIZING_GAS switch to SWIFT_SWIM releases UNNERVE'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id013
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id013
+- name: 'Item update: NEUTRALIZING_GAS switch to UNNERVE releases UNNERVE'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id014
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id014
+- name: 'Item update: NEUTRALIZING_GAS switch to NEUTRALIZING_GAS releases UNNERVE'
+  player:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id015
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id015
+- name: 'Item update: UNNERVE switch to SWIFT_SWIM releases RIPEN'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id016
+    - enemy.hp == 21
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id016
+- name: 'Item update: UNNERVE switch to UNNERVE releases RIPEN'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id017
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id017
+- name: 'Item update: UNNERVE switch to NEUTRALIZING_GAS releases RIPEN'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: APPLIN
+    level: 100
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id018
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id018
+- name: 'Item update: UNNERVE switch to SWIFT_SWIM releases KLUTZ'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id019
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id019
+- name: 'Item update: UNNERVE switch to UNNERVE releases KLUTZ'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id020
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id020
+- name: 'Item update: UNNERVE switch to NEUTRALIZING_GAS releases KLUTZ'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: BUNEARY
+    level: 100
+    ability: KLUTZ
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id021
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id021
+- name: 'Item update: UNNERVE switch to SWIFT_SWIM releases GLUTTONY'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id022
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id022
+- name: 'Item update: UNNERVE switch to UNNERVE releases GLUTTONY'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id023
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id023
+- name: 'Item update: UNNERVE switch to NEUTRALIZING_GAS releases GLUTTONY'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: SNORLAX
+    level: 100
+    ability: GLUTTONY
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id024
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id024
+- name: 'Item update: UNNERVE switch to SWIFT_SWIM releases SWIFT_SWIM'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id025
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id025
+- name: 'Item update: UNNERVE switch to UNNERVE releases SWIFT_SWIM'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id026
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id026
+- name: 'Item update: UNNERVE switch to NEUTRALIZING_GAS releases SWIFT_SWIM'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id027
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id027
+- name: 'Item update: UNNERVE switch to SWIFT_SWIM releases UNNERVE'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: MAGIKARP
+    level: 100
+    ability: SWIFT_SWIM
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id028
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id028
+- name: 'Item update: UNNERVE switch to UNNERVE releases UNNERVE'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id029
+    - enemy.hp == 1
+    - enemy.item == 'BERRY'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id029
+- name: 'Item update: UNNERVE switch to NEUTRALIZING_GAS releases UNNERVE'
+  player:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  player2:
+    species: WEEZING
+    level: 100
+    ability: NEUTRALIZING_GAS
+    moves:
+    - SPLASH
+  enemy:
+    species: HAXORUS
+    level: 100
+    ability: UNNERVE
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 1
+  move_script:
+  - switch:2
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id030
+    - enemy.hp == 11
+    - enemy.item == 'NO_ITEM'
+    - wram('wSelfdestructGasTurn') == 0
+  assert: *id030
+- name: 'Item update: player Skill Swap resolves player Trace before berries'
+  player:
+    species: MEW
+    level: 100
+    ability: SYNCHRONIZE
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+    wPlayerAbility: 29
+    wEnemyAbility: 168
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id031
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'RIPEN'
+    - player.hp == 21
+    - enemy.hp == 21
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'NO_ITEM'
+    - wram('wInAbility') == 0
+  assert: *id031
+- name: 'Item update: player Skill Swap resolves enemy Trace before berries'
+  player:
+    species: MEW
+    level: 100
+    ability: SYNCHRONIZE
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  enemy:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+    wEnemyAbility: 29
+    wPlayerAbility: 168
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: enemy
+    assert: &id032
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'RIPEN'
+    - player.hp == 21
+    - enemy.hp == 21
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'NO_ITEM'
+    - wram('wInAbility') == 0
+  assert: *id032
+- name: 'Item update: enemy Skill Swap resolves enemy Trace before berries'
+  enemy:
+    species: MEW
+    level: 100
+    ability: SYNCHRONIZE
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+    wEnemyAbility: 29
+    wPlayerAbility: 168
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert: &id033
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'RIPEN'
+    - player.hp == 21
+    - enemy.hp == 21
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'NO_ITEM'
+    - wram('wInAbility') == 0
+  assert: *id033
+- name: 'Item update: enemy Skill Swap resolves player Trace before berries'
+  enemy:
+    species: MEW
+    level: 100
+    ability: SYNCHRONIZE
+    item: BERRY
+    moves:
+    - SKILL_SWAP
+  player:
+    species: APPLIN
+    level: 30
+    ability: RIPEN
+    item: BERRY
+    moves:
+    - SPLASH
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 1
+    wEnemyMonHP:
+    - 0
+    - 1
+    wPlayerAbility: 29
+    wEnemyAbility: 168
+  rng: forced_high
+  turns: 1
+  before_action:
+  - side: player
+    assert: &id034
+    - player.ability == 'RIPEN'
+    - enemy.ability == 'RIPEN'
+    - player.hp == 21
+    - enemy.hp == 21
+    - player.item == 'NO_ITEM'
+    - enemy.item == 'NO_ITEM'
+    - wram('wInAbility') == 0
+  assert: *id034

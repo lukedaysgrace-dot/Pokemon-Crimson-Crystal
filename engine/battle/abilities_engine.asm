@@ -410,11 +410,18 @@ RunEntryAbilities::
 ; reactivation, so Trace/Ripen and item suppression use its active ability.
 	; The foe may still be awaiting its own initial entry effects.
 	call RunEntryAbilitiesInner
+	call CheckNeutralizingGasEnded
+	; During battle, the existing battler also needs an item update when
+	; Gas/Unnerve leaves or the incoming mon changes field suppression.
+	; On initial entry the foe may still be awaiting Trace and entry effects.
+	ld a, [wBattleHasJustStarted]
+	and a
+	jp z, RunHPItemUpdatesBoth
 	call SwitchTurn
 	farcall HandleHPHealingItem
 	jp SwitchTurn
 
-RunEntryAbilitiesInner:
+RunEntryAbilitiesInner::
 ; Runs the current turn holder's switch-in abilities.
 	xor a
 	ld [wSelfdestructGasTurn], a
@@ -430,8 +437,7 @@ RunEntryAbilitiesInner:
 	ld hl, BattleEntryAbilitiesNonfainted
 .got_table
 	call GetTrueUserAbility
-	call BattleJumptable
-	; fallthrough
+	jp BattleJumptable
 
 CheckNeutralizingGasEnded:
 ; Turn = the battler that just entered. Once no Neutralizing Gas holder is
@@ -503,7 +509,8 @@ RunDelayedEntryAbilities::
 	ret z
 	ld hl, TargetedEntryAbilities
 	call GetTrueUserAbility
-	jp BattleJumptable
+	call BattleJumptable
+	jp RunHPItemUpdatesBoth
 
 TargetedEntryAbilities:
 	dbw TRACE, TraceAbility
@@ -682,7 +689,7 @@ TraceAbility:
 	call GetBattleVarAddr
 	pop af
 	ld [hl], a
-	jp RunEntryAbilities
+	jp RunEntryAbilitiesInner
 
 ImposterAbility:
 ; Banner briefly, then Transform (wave deform + sprite swap).
@@ -1056,6 +1063,68 @@ RunStatusHealAbilitiesBoth::
 	ret z
 	jp RunStatusHealAbilities
 
+RunPostActionAbilityUpdates::
+; The full move has completed and the committed Gas-explosion marker is
+; clear. Reactivate field abilities/items before either battler acts again.
+	call RunFaintAbilities
+	jp RunStatusHealAbilitiesBoth
+
+RunHPItemUpdatesBoth::
+; Resolve live holders in effective Speed order, preserving perspective.
+; HandleHPHealingItem expects the holder to be the current opponent.
+	; Only roll a Speed tie when both holders can actually consume an item.
+	; Empty update events must not advance the battle/link RNG stream.
+	ldh a, [hBattleTurn]
+	push af
+	call SetPlayerTurn
+	call .eligible
+	ld b, 0
+	jr nc, .enemy_checked
+	inc b
+.enemy_checked
+	push bc
+	call SetEnemyTurn
+	call .eligible
+	pop bc
+	jr c, .player_pending
+	ld a, b
+	and a
+	jr z, .restore_turn
+	call SetPlayerTurn
+	jr .one_item
+.player_pending
+	ld a, b
+	and a
+	jr z, .one_item
+	call GetResidualFirstSide
+	xor 1
+	ldh [hBattleTurn], a
+	farcall HandleHPHealingItem
+	call SwitchTurn
+.one_item
+	farcall HandleHPHealingItem
+.restore_turn
+	pop af
+	ldh [hBattleTurn], a
+	ret
+.eligible
+	call OppHasFainted
+	jr z, .no
+	call GetOpponentItem_Core
+	ld a, b
+	cp HELD_BERRY
+	jr nz, .no
+	ld a, [hl]
+	cp BERRY_JUICE
+	jr z, .threshold
+	farcall BerryHolderIsUnnerved
+	jr nz, .no
+.threshold
+	jp BerryThresholdCheck_Core
+.no
+	and a
+	ret
+
 ImmunityAbility:
 PastelVeilAbility:
 	ld a, 1 << PSN
@@ -1172,39 +1241,27 @@ ObliviousAbility:
 ; Status prevention: called from effect commands with hBattleTurn = attacker.
 ; Each returns carry if the DEFENDER's ability prevents the status
 ; (and shows the ability banner).
-; Each list is prefixed with a "bounce kind" byte so Magic Bounce knows how
-; to reflect a STATUS move of that kind back at its user.
+; Reflection is handled once by the move interpreter before targeting checks.
 ; NOTE: de must be preserved on the no-carry path (SleepTarget keeps its
 ; status pointer in de across the farcall). The carry paths all jump
 ; straight to failure handling, so de is free to clobber there.
-
-BOUNCE_NONE EQU 0
-BOUNCE_SLP  EQU 1
-BOUNCE_PAR  EQU 2
-BOUNCE_PSN  EQU 3
-BOUNCE_BRN  EQU 4
-BOUNCE_CNF  EQU 5
-BOUNCE_ATR  EQU 6
 
 AbilityPreventsSleep::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_SLP
 	db INSOMNIA, VITAL_SPIRIT, LEAF_GUARD, -1
 
 AbilityPreventsParalysis::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_PAR
 	db LIMBER, LEAF_GUARD, -1
 
 AbilityPreventsPoison::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_PSN
 	db IMMUNITY, PASTEL_VEIL, LEAF_GUARD, -1
 
 AbilityPreventsBurn::
@@ -1233,42 +1290,32 @@ AbilityPreventsBurn::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_BRN
 	db WATER_VEIL, THERMAL_EXCHANGE, LEAF_GUARD, -1
 
 AbilityPreventsFreeze::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_NONE
 	db MAGMA_ARMOR, LEAF_GUARD, -1
 
 AbilityPreventsConfusion::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_CNF
 	db OWN_TEMPO, -1
 
 AbilityPreventsAttraction::
 	ld hl, .abilities
 	jr CheckStatusPrevention
 .abilities
-	db BOUNCE_ATR
 	db OBLIVIOUS, -1
 
 CheckStatusPrevention:
-; hl = bounce kind byte, then -1-terminated ability list.
-; Carry if the defender's ability matches (or Magic Bounce reflected).
+; hl = -1-terminated ability list. Carry if the defender's ability matches.
 	call GetOpponentIgnorableAbility
 	and a
 	ret z ; nc
 	ld b, a
-	ld a, [hli] ; bounce kind
-	ld c, a
-	ld a, b
-	cp MAGIC_BOUNCE
-	jr z, .magic_bounce
 .loop
 	ld a, [hli]
 	cp -1
@@ -1296,60 +1343,6 @@ CheckStatusPrevention:
 .no_match
 	and a ; nc
 	ret
-
-.magic_bounce
-	; Magic Bounce reflects STATUS moves back at their user.
-	; Secondary effects of damaging moves are not bounced (canon), and a
-	; bounced move can't be bounced again (guard bit 6 of wDisguiseBusted+1).
-	ld a, c
-	and a ; BOUNCE_NONE?
-	jr z, .no_match
-	call GetMoveCategory
-	cp CATEGORIZE_STATUS
-	jr nz, .no_match
-	ld a, [wDisguiseBusted + 1]
-	bit 6, a
-	jr nz, .no_match
-	ld hl, wDisguiseBusted + 1
-	set 6, [hl]
-	; run the reflected status attempt from the bouncer's perspective
-	; (the Try* handlers status the bouncer's OPPONENT = original attacker,
-	; showing the bouncer's MAGIC BOUNCE banner)
-	; Toxic must remain badly poisoned when reflected; the generic poison
-	; handler is correct for every other poison-inducing status move.
-	ld a, c
-	cp BOUNCE_PSN
-	jr nz, .ordinary_bounce
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_TOXIC
-	ld hl, TryToxicOpponent
-	jr z, .run_bounce
-.ordinary_bounce
-	ld hl, .bounce_handlers
-	ld b, 0
-	dec c
-	sla c
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-.run_bounce
-	call SwitchTurn
-	call _hl_
-	call SwitchTurn
-	ld hl, wDisguiseBusted + 1
-	res 6, [hl]
-	scf ; the original move fails
-	ret
-
-.bounce_handlers
-	dw TrySleepOpponent      ; BOUNCE_SLP
-	dw TryParalyzeOpponent   ; BOUNCE_PAR
-	dw TryPoisonOpponentContact ; BOUNCE_PSN
-	dw TryBurnOpponent       ; BOUNCE_BRN
-	dw TryConfuseOpponent    ; BOUNCE_CNF
-	dw TryAttractOpponent    ; BOUNCE_ATR
 
 ; ==== End-of-turn abilities ==============================================
 
@@ -3263,24 +3256,6 @@ HalveDamage:
 	pop hl
 	ret
 
-StatDropSubCheckExempt::
-; Carry if the opponent's Magic Bounce will reflect this stat-drop move:
-; the bounce works even from behind the holder's own Substitute, so the
-; caller must skip its Substitute bail and let AbilityProtectsStatDrop's
-; magic_bounce_drop path handle it. Secondary drops of damaging moves
-; (non-STATUS category) are still blocked by the sub, per canon.
-	call GetOpponentIgnorableAbility
-	cp MAGIC_BOUNCE
-	jr nz, .no
-	call GetMoveCategory
-	cp CATEGORIZE_STATUS
-	jr nz, .no
-	scf
-	ret
-.no
-	and a ; nc
-	ret
-
 ContraryInvertsSelfDrop::
 ; Self-inflicted drops (Superpower & co.) arrive through switchturn, so
 ; the drop's target is the turn holder's opponent = the move's own user.
@@ -3312,8 +3287,6 @@ AbilityProtectsStatDrop::
 	ld b, a
 	cp MIRROR_ARMOR
 	jr z, .mirror_armor
-	cp MAGIC_BOUNCE
-	jr z, .magic_bounce_drop
 	cp CONTRARY
 	jr z, .contrary
 	cp CLEAR_BODY
@@ -3374,20 +3347,6 @@ AbilityProtectsStatDrop::
 	scf ; the original drop "fails"
 	ret
 
-.magic_bounce_drop
-	ld a, [wDisguiseBusted + 1]
-	bit 6, a
-	jp nz, .no ; a complete reflected move cannot bounce again
-	; Magic Bounce reflects stat drops from STATUS moves only - not from
-	; abilities (Intimidate/Tangling Hair, flagged via bit 6) and not from
-	; secondary effects of damaging moves.
-	ld a, [wDisguiseBusted]
-	bit 6, a
-	jr nz, .no
-	call GetMoveCategory
-	cp CATEGORIZE_STATUS
-	jr nz, .no
-	; fallthrough: bounce it exactly like Mirror Armor
 .mirror_armor
 	; bounce the drop back at its source (no ping-pong between two
 	; Mirror Armors: while the guard bit is set, take the drop instead)
@@ -3523,7 +3482,7 @@ AbilityPreExecutionTargetBlock::
 .check_ability
 	; Reflection precedes Prankster's Dark immunity. Mean Look has no
 	; checkhit command, so its bounce exemption must also run here.
-	farcall MagicBounceSkipsOriginalHit_Core
+	farcall MagicBounceSkipsPreExecutionBlock_Core
 	jr c, .not_blocked
 	call AbilityPreHitTargetBlock
 	jr .done
@@ -5412,7 +5371,7 @@ RunFaintAbilities::
 	; hBattleTurn identifies the fainted side, so establish that perspective.
 	ld a, [wNeutralizingGasActive]
 	and a
-	ret z
+	jp z, RunHPItemUpdatesBoth
 	ldh a, [hBattleTurn]
 	push af
 	call SetPlayerTurn
@@ -5433,7 +5392,7 @@ RunFaintAbilities::
 .restore_turn
 	pop af
 	ldh [hBattleTurn], a
-	ret
+	jp RunHPItemUpdatesBoth
 
 RunMoveKOAbilities:
 ; Called only from the damaging-move post-hit hook, after recoil and reactive
