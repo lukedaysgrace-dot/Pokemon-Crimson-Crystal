@@ -282,6 +282,12 @@ scope.
   `tools/battletest/ability_matrix.py` now expects that chip and asserts the
   weather for all four weather setters. With that change, all 171 Transform
   matrix cases pass.
+- The rest of `make test-complete` on the final ROM, 0 failures each:
+  probability (44,032 outcome checks), HP-item updates (352), UI (12
+  scenarios), visual matrix (120 scenarios), Cove sprites (216), Tower
+  rosters (23,299) and battles (104), link RNG (16,384 synchrony checks),
+  gameplay session (8 battles, 179 checks), trainer UI (75), wild UI (21),
+  save menu (23).
 
 Release SHA-256 `07d4b754eb33034e425a21be0b873fd7cdcc729607221c940ae6146b579728e9`,
 debug `d1d7c89799bf0ba5732691acd0679affdbd51085aa15916016717abee831f44b`.
