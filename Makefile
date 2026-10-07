@@ -3,6 +3,7 @@ roms := pokecrystal.gbc
 # `make debug` builds pokecrystal_debug.gbc with the in-ROM battle tester
 # (engine/debug/battle_tester.asm) compiled in. The regular ROM is untouched.
 debug_roms := pokecrystal_debug.gbc
+BATTLE_TEST_PYTHON ?= python3
 
 crystal_obj := \
 audio.o \
@@ -57,6 +58,8 @@ all: pokecrystal.gbc
 
 debug: pokecrystal_debug.gbc
 
+# RTC integration needs Cython/setuptools and a C compiler to prepare a
+# private emulator adapter. The ordinary battle harness remains unchanged.
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
