@@ -18,6 +18,13 @@ rules were kept (see "Intentional rules preserved").
 | Abilities with a flagged design question (unchanged) | 6 |
 | Confirmed bugs found / fixed | 17 / 17 |
 | New permanent regression cases (`tests/78-ability-audit-2026-10-07.yaml`) | 71 |
+| Follow-up cases (`tests/79-ability-modern-followups-2026-10-07.yaml`, plus 3 in `44-evasion-regression.yaml`) | 27 + 3 |
+
+Follow-up: at the owner's request, the flagged Keen Eye / Mind's Eye, Sheer
+Force (Mortal Spin), Sap Sipper, Synchronize and Cud Chew behaviours and the
+Air Balloon message were changed to match modern rules (F1-F6 below).
+Neutralizing Gas's exit order and Conversion 2's Pressure exemption stay as
+they are.
 
 Every fix has a reproduction case that **fails on the original ROM and passes
 on the fixed ROM** (verified by building the pre-fix commit in a separate
@@ -243,27 +250,108 @@ ability ordering; Mold Breaker scope (only the Mold Breaker user's own move).
 Filter/Solid Rock's 4× rule, older Gale Wings, custom Flash Fire (raises the
 higher attacking stat), older Disguise damage, Mega Sol, frostbite, Poison
 Puppeteer without a species check, the Gen II multi-hit distribution and
-Hi Jump Kick crash, Conversion 2's older semantics, and Cud Chew's HP-Berry
-scope.
+Hi Jump Kick crash, and Conversion 2's older semantics.
 
-## Flagged for a design decision (not changed)
+## Flagged for a design decision
 
-1. **Cud Chew** replays only the two HP Berries (documented in code); modern
-   Cud Chew re-eats any Berry.
-2. **Synchronize** doesn't return statuses inflicted by contact abilities
-   (Showdown does). Practically only Effect Spore holders can be affected.
-3. **Keen Eye / Mind's Eye** ignore only raised evasion (documented intent);
-   Showdown's `ignoreEvasion` also ignores lowered evasion.
+The owner chose to bring items 1, 2, 3, 5, 6 and 7 in line with modern rules
+(see "Follow-up changes" below). Items 4 and 8 stay as they are.
+
+1. **Cud Chew** replayed only the two HP Berries. *Changed: F6.*
+2. **Synchronize** didn't return statuses inflicted by contact abilities.
+   *Changed: F5.*
+3. **Keen Eye / Mind's Eye** ignored only raised evasion. *Changed: F1.*
 4. **Neutralizing Gas** leaving: the foe's suppressed entry abilities fire
    after the replacement enters, so a returning Intimidate hits the
-   replacement (Showdown resolves the end before the replacement arrives).
-   Earlier passes built extensive lifecycle tests around the current order.
-5. **Sheer Force + Mortal Spin** keeps the hazard clearing (Showdown removes
-   it along with the poison). No current holder learns it.
-6. **Sap Sipper vs powder on a Grass-type holder:** Grass immunity is checked
-   first here (comment documents this); Showdown lets Sap Sipper absorb first.
-7. Cosmetic: an Air Balloon holder that is also Flying-type prints the
-   balloon message and "doesn't affect".
+   replacement. *Kept.* This first report said Showdown resolves the end
+   before the replacement arrives; that is what Showdown's code does, but its
+   own source marks it as a known bug ("FIXME this happens before the pokemon
+   switches out, should be the opposite order"), so the game's current order
+   is most likely the cartridge behaviour. Earlier passes also built
+   lifecycle tests around it.
+5. **Sheer Force + Mortal Spin** kept the hazard clearing. *Changed: F2.*
+6. **Sap Sipper vs powder on a Grass-type holder:** Grass immunity was
+   checked first. *Changed: F4.*
+7. Cosmetic: an Air Balloon holder that is also Flying-type printed the
+   balloon message and "doesn't affect". *Changed: F3.*
+8. **Conversion 2** stays exempt from Pressure's extra PP, because the game
+   keeps the Gen II–IV self-targeting move. *Kept.*
+
+## Follow-up changes (owner-approved modernisations)
+
+Tests: `tools/battletest/tests/79-ability-modern-followups-2026-10-07.yaml`
+(27 cases) and `44-evasion-regression.yaml` (5 cases, 3 of them new or
+changed). On the pre-change ROM the 15 fix cases fail and the other 17 pass;
+on the new ROM all 32 pass.
+
+### F1 — Keen Eye / Mind's Eye ignore the evasion stage both ways (LOW)
+- **Files / routine:** `abilities_engine.asm` `AbilityIgnoresOpponentEvasion`
+  (called from checkhit's stat modifiers).
+- **Was:** only a raised evasion stage was ignored; a lowered one still made
+  the move more accurate.
+- **Now:** Gen VI+ `ignoreEvasion` - the target's evasion stage is ignored in
+  both directions, as Unaware's already was.
+- **Tests:** 44-evasion-regression's old "keeps the benefit of lowered
+  evasion" case now asserts the modern result (Keen Eye and Mind's Eye),
+  with a no-ability control that still benefits from -6 evasion.
+
+### F2 — Sheer Force removes Mortal Spin's hazard clearing (LOW)
+- **Files / routine:** `move_effects/rapid_spin.asm`
+  `BattleCommand_ClearHazards`; new `UserSheerForceSuppresses_Core`.
+- **Was:** Sheer Force dropped the poison but Mortal Spin still cleared
+  hazards, Leech Seed and binding.
+- **Now:** as in Showdown (`onAfterHit` checks `hasSheerForce`), the
+  clearing is part of what Sheer Force removes. Rapid Spin has no removable
+  effect here, so it is unaffected (control included).
+
+### F3 — Air Balloon steps aside for Flying types and Levitate (LOW, text)
+- **Files / routine:** `abilities_engine.asm` `CheckAirBalloonImmunity`.
+- **Was:** a Flying-type balloon holder printed the balloon line and then
+  "doesn't affect"; a Levitate holder showed the balloon instead of
+  Levitate.
+- **Now:** the order of Showdown's `isGrounded` - Flying type, then
+  Levitate, then Air Balloon. A Flying type gets only "doesn't affect", a
+  Levitate holder shows Levitate, and the balloon line appears only when the
+  balloon is what keeps the holder up (including when Mold Breaker ignores
+  Levitate).
+
+### F4 — Sap Sipper absorbs Grass powders before the Grass immunity (LOW)
+- **Files / routine:** `abilities_engine.asm` `GrassBlocksCurrentPowder`
+  (used at stab, at the start of checkhit and by the AI).
+- **Was:** a Grass-type Sap Sipper holder was simply immune to Spore, Sleep
+  Powder, Stun Spore, etc.
+- **Now:** Showdown runs TryHit abilities before the powder immunity, so Sap
+  Sipper absorbs the Grass-type powder (+1 Attack). Mold Breaker ignores Sap
+  Sipper, leaving the Grass immunity. No native Sap Sipper holder is Grass
+  type; this matters after Skill Swap/Trace-style transfers.
+
+### F5 — Synchronize returns statuses from abilities (LOW)
+- **Files / routines:** `abilities_engine.asm` `TryParalyzeOpponent`,
+  `TryBurnOpponent`, `TryPoisonOpponentContact`, `TryToxicOpponent`, new
+  `FinishSynchronizableStatus`.
+- **Was:** only statuses from moves were passed back.
+- **Now:** as in Showdown's `onAfterSetStatus`, any burn, paralysis or
+  poison another Pokemon inflicts is passed back, including Static, Flame
+  Body, Poison Point, Effect Spore and Poison Touch. Sleep and freeze are
+  not, nothing goes to a fainted inflicter, type immunity still applies, and
+  an already-statused inflicter is skipped silently, so two Synchronize
+  holders can't loop. The Magic Bounce anti-rebounce guard stays held across
+  the contact block.
+
+### F6 — Cud Chew re-eats any Berry (LOW)
+- **Files / routines:** `abilities_engine.asm` `RecordConsumedItem`,
+  `CudChewAbility`, `UnnerveCheck_b`; `core.asm` `HandleMysteryberry` (new
+  entry `HandleUserMysteryberry`); `wram.asm` `wCudChewReplaying`.
+- **Was:** only Berry and Gold Berry were replayed.
+- **Now:** any Berry the holder eats is eaten again at the end of the next
+  turn: status Berries, Bitter Berry, MiracleBerry and MysteryBerry. The
+  replay puts the Berry back for a moment and runs the engine's own held-item
+  code, so texts, animations, stat recalculation and party sync are the
+  usual ones, then removes it again. It is not re-armed by that second
+  meal. As in Showdown (Cud Chew eats the Berry directly rather than "trying"
+  to), Unnerve doesn't stop the replay; it still stops ordinary eating.
+- **Kept:** like the existing HP-Berry replay, Cud Chew stays silent when
+  eating the Berry again would do nothing (Showdown announces it anyway).
 
 ## Verification
 

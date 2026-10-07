@@ -1,0 +1,302 @@
+# Follow-ups to the 2026-10-07 second-pass ability audit: the flagged
+# mechanics the owner chose to bring in line with modern (Showdown) rules.
+# Keen Eye / Mind's Eye evasion cases live in 44-evasion-regression.yaml.
+# Status bits: PSN 8, BRN 16, PAR 64. wPlayerScreens bit 7 = Stealth Rock.
+
+# ---- Sheer Force + Mortal Spin --------------------------------------------
+
+- name: "Followup 10-07: Mortal Spin clears hazards and poisons (control)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [MORTAL_SPIN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerScreens: 128 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - (wram('wPlayerScreens') & 128) == 0
+    - (enemy.status & 8) != 0
+
+- name: "Followup 10-07: Sheer Force Mortal Spin neither clears hazards nor poisons"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [MORTAL_SPIN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerScreens: 128 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - (wram('wPlayerScreens') & 128) != 0
+    - enemy.status == 0
+
+- name: "Followup 10-07: Sheer Force Rapid Spin still clears hazards"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [RAPID_SPIN] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerScreens: 128 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - (wram('wPlayerScreens') & 128) == 0
+
+# ---- Air Balloon immunity message -----------------------------------------
+
+- name: "Followup 10-07: Air Balloon on a non-Flying type announces itself (control)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EARTHQUAKE] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.item == 'AIR_BALLOON'
+    - text_seen('AIR BALLOON')
+
+- name: "Followup 10-07: a Flying type's Air Balloon stays quiet against Ground moves"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EARTHQUAKE] }
+  enemy:  { species: PIDGEOT, level: 100, ability: NO_ABILITY, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.item == 'AIR_BALLOON'
+    - not text_seen('AIR BALLOON')
+
+- name: "Followup 10-07: Levitate, not the Air Balloon, reports Ground immunity"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [EARTHQUAKE] }
+  enemy:  { species: SNORLAX, level: 100, ability: LEVITATE, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.item == 'AIR_BALLOON'
+    - ability_seen('LEVITATE')
+    - not text_seen('AIR BALLOON')
+
+- name: "Followup 10-07: Mold Breaker ignores Levitate, so the Air Balloon floats"
+  player: { species: MEW, level: 50, ability: MOLD_BREAKER, moves: [EARTHQUAKE] }
+  enemy:  { species: SNORLAX, level: 100, ability: LEVITATE, item: AIR_BALLOON, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.item == 'AIR_BALLOON'
+    - not ability_seen('LEVITATE')
+    - text_seen('AIR BALLOON')
+
+# ---- Sap Sipper vs powder on a Grass type ---------------------------------
+
+- name: "Followup 10-07: Grass typing blocks Spore (control)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPORE] }
+  enemy:  { species: BULBASAUR, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+    - enemy.stat_levels[0] == 7
+
+- name: "Followup 10-07: a Grass-type Sap Sipper holder absorbs Spore"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPORE] }
+  enemy:  { species: BULBASAUR, level: 50, ability: SAP_SIPPER, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+    - enemy.stat_levels[0] == 8
+    - ability_seen('SAP_SIPPER')
+    - "wram('wInAbility') == 0"
+
+- name: "Followup 10-07: a Grass-type Sap Sipper holder absorbs Stun Spore"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [STUN_SPORE] }
+  enemy:  { species: BULBASAUR, level: 50, ability: SAP_SIPPER, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+    - enemy.stat_levels[0] == 8
+    - ability_seen('SAP_SIPPER')
+
+- name: "Followup 10-07: Mold Breaker Spore meets the Grass immunity instead"
+  player: { species: MEW, level: 50, ability: MOLD_BREAKER, moves: [SPORE] }
+  enemy:  { species: BULBASAUR, level: 50, ability: SAP_SIPPER, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+    - enemy.stat_levels[0] == 7
+    - not ability_seen('SAP_SIPPER')
+
+# ---- Synchronize vs ability-inflicted statuses ----------------------------
+
+- name: "Followup 10-07: Static paralyzes an ordinary attacker only (control)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: STATIC, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 64) != 0
+    - enemy.status == 0
+
+- name: "Followup 10-07: Synchronize passes Static's paralysis back"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: STATIC, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 64) != 0
+    - (enemy.status & 64) != 0
+    - ability_seen('SYNCHRONIZE')
+    - "wram('wInAbility') == 0"
+    - "(wram('wDisguiseBusted', 1) & 64) == 0"
+
+- name: "Followup 10-07: Synchronize passes Flame Body's burn back"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: FLAME_BODY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 16) != 0
+    - (enemy.status & 16) != 0
+    - ability_seen('SYNCHRONIZE')
+
+- name: "Followup 10-07: Synchronize passes Poison Point's poison back"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: POISON_POINT, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 8) != 0
+    - (enemy.status & 8) != 0
+    - ability_seen('SYNCHRONIZE')
+
+- name: "Followup 10-07: Synchronize passes Poison Touch's poison back"
+  player: { species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE] }
+  enemy:  { species: SNORLAX, level: 100, ability: SYNCHRONIZE, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+    - (player.status & 8) != 0
+    - ability_seen('SYNCHRONIZE')
+
+- name: "Followup 10-07: Synchronize can't paralyze an Electric-type Static holder"
+  player: { species: MEW, level: 50, ability: SYNCHRONIZE, moves: [TACKLE] }
+  enemy:  { species: RAICHU, level: 100, ability: STATIC, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 64) != 0
+    - enemy.status == 0
+    - not ability_seen('SYNCHRONIZE')
+
+# ---- Cud Chew re-eats any Berry -------------------------------------------
+
+- name: "Followup 10-07: a PRZCureBerry is eaten once without Cud Chew (control)"
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, item: PRZCUREBERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - (player.status & 64) != 0
+
+- name: "Followup 10-07: Cud Chew re-eats a PRZCureBerry the next turn"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: PRZCUREBERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.status == 0
+    - ability_seen('CUD_CHEW')
+    - "wram('wInAbility') == 0"
+
+- name: "Followup 10-07: Cud Chew re-eats a Berry only once"
+  # A re-armed replay would cure the third Thunder Wave at turn 3's end.
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: PRZCUREBERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [THUNDER_WAVE] }
+  rng: forced_low
+  turns: 3
+  assert:
+    - player.item == 'NO_ITEM'
+    - (player.status & 64) != 0
+
+- name: "Followup 10-07: Cud Chew stays quiet when the Berry has nothing to cure"
+  # Armed by hand (bit 2) with a PRZCureBerry ($4e) recorded as eaten.
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wPlayerItemStateFlags: 5, wPlayerConsumedItem: 0x4e }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.status == 0
+    - not ability_seen('CUD_CHEW')
+    - (wram('wPlayerItemStateFlags') & 12) == 0
+
+- name: "Followup 10-07: a Bitter Berry is eaten once without Cud Chew (control)"
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, item: BITTER_BERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [CONFUSE_RAY] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - (wram('wPlayerSubStatus3') & 128) != 0
+
+- name: "Followup 10-07: Cud Chew re-eats a Bitter Berry the next turn"
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, item: BITTER_BERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: NO_ABILITY, moves: [CONFUSE_RAY] }
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - (wram('wPlayerSubStatus3') & 128) == 0
+    - ability_seen('CUD_CHEW')
+
+- name: "Followup 10-07: a MysteryBerry is eaten once without Cud Chew (control)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: MYSTERYBERRY, moves: [TACKLE, SPLASH] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 1, 0, 0]
+    wPartyMon1PP: [1, 1, 0, 0]
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.pp[0] > 0
+    - player.pp[1] == 0
+
+- name: "Followup 10-07: Cud Chew re-eats a MysteryBerry the next turn"
+  player: { species: MEW, level: 50, ability: CUD_CHEW, item: MYSTERYBERRY, moves: [TACKLE, SPLASH] }
+  enemy:  { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram:
+    wBattleMonPP: [1, 1, 0, 0]
+    wPartyMon1PP: [1, 1, 0, 0]
+  rng: forced_high
+  move_script: [1, 2]
+  turns: 2
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.pp[0] > 0
+    - player.pp[1] > 0
+    - ability_seen('CUD_CHEW')
+
+- name: "Followup 10-07: Unnerve doesn't stop Cud Chew's replay"
+  # Armed by hand (bit 2) with a PRZCureBerry recorded as eaten ($4e), as if
+  # it was eaten before the Unnerve holder came in.
+  player: { species: FARIGIRAF, level: 50, ability: CUD_CHEW, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: UNNERVE, moves: [THUNDER_WAVE] }
+  setup_wram: { wPlayerItemStateFlags: 5, wPlayerConsumedItem: 0x4e }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.status == 0
+    - ability_seen('CUD_CHEW')
+    - "wram('wCudChewReplaying') == 0"
+
+- name: "Followup 10-07: Unnerve still stops ordinary Berry eating (control)"
+  player: { species: FARIGIRAF, level: 50, ability: NO_ABILITY, item: PRZCUREBERRY, moves: [SPLASH] }
+  enemy:  { species: MEW, level: 50, ability: UNNERVE, moves: [THUNDER_WAVE] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.item == 'PRZCUREBERRY'
+    - (player.status & 64) != 0

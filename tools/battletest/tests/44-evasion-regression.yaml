@@ -3,8 +3,9 @@
 # The Keen Eye / Mind's Eye checkhit hook returns "ignore evasion" via the
 # carry flag. These controls pin down the two ways that predicate can go
 # wrong: leaking carry for unrelated abilities (which would make raised
-# evasion useless against almost every attacker), and ignoring *lowered*
-# evasion (main-series Keen Eye only ignores increases).
+# evasion useless against almost every attacker), and honouring *lowered*
+# evasion (Gen VI+ Keen Eye ignores the target's evasion stage both ways,
+# Showdown ignoreEvasion).
 
 - name: "Evasion: raised evasion still works against an ordinary attacker"
   # Tackle raw accuracy 242 becomes 242*25/100 = 60 at +6 target evasion;
@@ -25,13 +26,30 @@
   assert:
     - enemy.hp == enemy.start_hp
 
-- name: "Evasion: Keen Eye keeps the benefit of lowered target evasion"
+- name: "Evasion: lowered target evasion helps an ordinary attacker"
   # Zap Cannon raw accuracy 127 misses the forced 180 roll at neutral
-  # evasion, but -6 target evasion multiplies it to 255. Keen Eye only
-  # ignores INCREASED evasion, so the drop must still apply and hit.
-  player: { species: MEW, level: 50, ability: KEEN_EYE, moves: [ZAP_CANNON] }
+  # evasion, but -6 target evasion multiplies it to 255.
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [ZAP_CANNON] }
   enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: -6 } }
   rng: forced_high
   turns: 1
   assert:
     - enemy.hp < enemy.start_hp
+
+- name: "Evasion: Keen Eye ignores lowered target evasion"
+  # Gen VI+ Keen Eye ignores the evasion stage in both directions, so the
+  # same Zap Cannon is back at its raw 127 accuracy and misses.
+  player: { species: MEW, level: 50, ability: KEEN_EYE, moves: [ZAP_CANNON] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: -6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Evasion: Mind's Eye ignores lowered target evasion"
+  player: { species: MEW, level: 50, ability: MINDS_EYE, moves: [ZAP_CANNON] }
+  enemy: { species: SNORLAX, level: 100, moves: [SPLASH], stages: { eva: -6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp

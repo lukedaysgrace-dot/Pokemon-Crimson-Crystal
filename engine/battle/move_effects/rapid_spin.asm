@@ -1,6 +1,11 @@
 BattleCommand_ClearHazards:
 ; clearhazards
 
+	; Mortal Spin's clearing is part of what Sheer Force removes. Rapid
+	; Spin has no removable effect, so this never stops it.
+	farcall UserSheerForceSuppresses_Core
+	ret c
+
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
 	bit SUBSTATUS_LEECH_SEED, [hl]
