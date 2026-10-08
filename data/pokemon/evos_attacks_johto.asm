@@ -1031,9 +1031,11 @@ SunfloraEvosAttacks:
 	dbw 21, GIGA_DRAIN
 	dbw 25, MORNING_SUN
 	dbw 28, ENERGY_BALL
+	dbw 28, INCINERATE
 	dbw 34, DAZZLING_GLEAM
 	dbw 35, EARTH_POWER
 	dbw 38, DOUBLE_EDGE
+	dbw 40, FLAMETHROWER
 	dbw 41, SUNNY_DAY
 	dbw 43, SOLARBEAM
 	dbw 46, WOOD_HAMMER
@@ -1254,6 +1256,7 @@ UnownEvosAttacks:
 	dbw 1, HIDDEN_POWER
 	dbw 30, PSYCHIC_M
 	dbw 30, CALM_MIND
+	dbw 35, TRICK
 	db 0 ; no more level-up moves
 
 WobbuffetEvosAttacks:

@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  50,  95,  95,  70,  35, 110
+	db  70,  95,  95,  80,  35, 110
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING ; type
@@ -12,7 +12,7 @@
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/hitmontop/front.dimensions"
-	abilities_for HITMONTOP, TECHNICIAN, INTIMIDATE, CONTRARY
+	abilities_for HITMONTOP, TECHNICIAN, INTIMIDATE, SKILL_LINK
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_HUMANSHAPE, EGG_HUMANSHAPE ; egg groups

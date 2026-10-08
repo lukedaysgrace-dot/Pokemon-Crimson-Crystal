@@ -128,7 +128,7 @@ def feature_cases(h, rules, check):
                       level=40, moves=['TACKLE'], dvs=0xffff)))
         call(h, 'DebugBuildPartyMon', B=slot, D=address >> 8, E=address & 255)
     for original, evolved, expected_stats, original_stats in (
-            ('LEDYBA', 'LEDIAN', [75, 105, 60, 90, 35, 110], [55, 35, 50, 85, 55, 110]),
+            ('LEDYBA', 'LEDIAN', [80, 105, 70, 95, 35, 110], [55, 35, 50, 85, 55, 110]),
             ('PIDGEOTTO', 'PIDGEOT', [83, 60, 70, 101, 115, 70], [83, 80, 75, 101, 70, 70])):
         slot = next(i for i in range(m.read('wPartyCount'))
                     if m.species_index_of(m.read(f'wPartyMon{i + 1}Species')) == h.con.species_index(original))
