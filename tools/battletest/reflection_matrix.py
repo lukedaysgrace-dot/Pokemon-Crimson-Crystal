@@ -39,7 +39,9 @@ def generate_reflection_matrix():
             elif variant == "Prankster Dark":
                 player["ability"] = "PRANKSTER"
                 enemy["species"] = "UMBREON"
-                enemy["dvs"] = 0  # female, so reflected Attract remains eligible
+                # Gender is a stored creation flag, not derived from DVs. Pin
+                # Umbreon female so reflected Attract remains eligible.
+                test.setdefault("setup_wram", {})["wEnemyMonShinyGenderFlags"] = 0
             blocked = variant == "holder Protect" or (variant == "source Substitute" and kind not in (
                 "love", "sleep_sound", "stat_sound"))
             if kind in ("poison", "burn", "paralysis", "sleep", "sleep_sound"):

@@ -1,0 +1,159 @@
+# Review fixes, 2026-10-07 (after the third ability pass).
+# Showdown reference (sim run, gen9customgame): a KOing U-turn pays Life Orb
+# recoil and gains Moxie before it pivots; the incoming mon gets neither.
+# Knock Off removes nothing when its user faints to Rocky Helmet/Iron Barbs.
+# Technician/Barb Barrage regressions live in 80-ability-review-regressions.
+
+# ---- U-turn KO: after-move events belong to the U-turn user --------------
+
+- name: "Review fix: Life Orb U-turn KO recoils the U-turn user before it pivots"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: LIFE_ORB, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+    - wram16('wPartyMon1HP') == wram16('wPartyMon1MaxHP') - wram16('wPartyMon1MaxHP') // 10
+
+- name: "Review fix: U-turn KO does not make the incoming Life Orb holder recoil"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, item: LIFE_ORB, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+    - wram16('wPartyMon1HP') == wram16('wPartyMon1MaxHP')
+
+- name: "Review fix: Moxie activates for the KOing U-turn user, not the incoming mon"
+  player: {species: MEW, level: 50, ability: MOXIE, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - ability_seen('MOXIE')
+    - player.stat_levels[0] == 7
+
+- name: "Review fix: an incoming Moxie holder gains nothing from the U-turn KO"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [U_TURN]}
+  player2: {species: GYARADOS, level: 50, ability: MOXIE, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'GYARADOS'
+    - not ability_seen('MOXIE')
+    - player.stat_levels[0] == 7
+
+- name: "Review fix: Life Orb recoil that faints the U-turn user cancels the pivot"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: LIFE_ORB, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonHP: [0, 1]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram16('wPartyMon1HP') == 0
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+
+- name: "Review fix: Parental Bond U-turn KO on the first hit recoils once"
+  player: {species: MEW, level: 50, ability: PARENTAL_BOND, item: LIFE_ORB, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+    - wram16('wPartyMon1HP') == wram16('wPartyMon1MaxHP') - wram16('wPartyMon1MaxHP') // 10
+
+- name: "Review control: Life Orb U-turn without a KO recoils the user once"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, item: LIFE_ORB, moves: [U_TURN]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp > 0
+    - player.species == 'SNORLAX'
+    - player.hp == player.maxhp
+    - wram16('wPartyMon1HP') == wram16('wPartyMon1MaxHP') - wram16('wPartyMon1MaxHP') // 10
+
+- name: "Review control: Moxie still activates on an ordinary KO"
+  player: {species: MEW, level: 50, ability: MOXIE, moves: [TACKLE]}
+  enemy: {species: RATTATA, level: 2, hp: 1, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 8
+
+# ---- Knock Off: a fainted user removes nothing ----------------------------
+
+- name: "Review fix: Knock Off user fainted by Rocky Helmet leaves the item"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonHP: [0, 1]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram16('wPartyMon1HP') == 0
+    - enemy.hp < enemy.maxhp
+    - enemy.item == 'ROCKY_HELMET'
+    - wram('wOTPartyMon1Item') == item_id('ROCKY_HELMET')
+
+- name: "Review fix: Knock Off user fainted by Iron Barbs leaves the item"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: IRON_BARBS, item: LEFTOVERS, moves: [SPLASH]}
+  setup_wram: {wBattleMonHP: [0, 1]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram16('wPartyMon1HP') == 0
+    - enemy.item == 'LEFTOVERS'
+
+- name: "Review fix: enemy Knock Off user fainted by Rocky Helmet leaves the player's item"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyMonHP: [0, 1]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.maxhp
+    - player.item == 'ROCKY_HELMET'
+    - wram('wPartyMon1Item') == item_id('ROCKY_HELMET')
+
+- name: "Review control: Knock Off removes Rocky Helmet when its user survives"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp > 0
+    - player.hp < player.maxhp
+    - enemy.item == 'NO_ITEM'
+
+- name: "Review control: Knock Off still removes the item when it KOs the target"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy: {species: RATTATA, level: 2, ability: NO_ABILITY, item: LEFTOVERS, moves: [SPLASH]}
+  enemy2: {species: RATTATA, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wOTPartyMon1Item') == item_id('NO_ITEM')

@@ -106,6 +106,11 @@ emulator RTC to check timeout, Saturday midnight, and the following Friday;
 it does not patch the game's time/event routines or write `wCurDay`.
 Temporary results and captures are under `.tmpbuild/`.
 
+`make test-weather BATTLE_TEST_PYTHON=.venv/bin/python` calls the release
+ROM's `CheckAzaleaWeather` for all 256 calendar-byte values, on each Azalea
+weather map and on one map outside it, and checks the Sunday/Tuesday/
+Thursday/Saturday rain schedule against the weekday.
+
 ## Writing a test
 
 ```yaml

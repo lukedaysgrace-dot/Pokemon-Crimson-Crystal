@@ -392,6 +392,9 @@ BattleKnockOff_Core:
 	ld a, [wAttackMissed]
 	and a
 	ret nz
+	; A user fainted by Rocky Helmet/Iron Barbs/contact damage removes nothing.
+	farcall UserHasFainted
+	ret z
 	callfar CheckSubstituteOpp
 	ret nz
 	callfar GetOpponentItem

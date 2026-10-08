@@ -50,7 +50,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-gameplay-rules test-fishing test-tower-ui test-release-av test-link-session audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-weather test-gameplay-rules test-fishing test-tower-ui test-release-av test-link-session audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -105,6 +105,9 @@ test-complex: pokecrystal_debug.gbc
 
 test-learnsets: pokecrystal.gbc
 	python3 tools/test_learnset_variety.py pokecrystal.gbc
+
+test-weather: pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_azalea_weather.py pokecrystal.gbc
 
 test-gameplay-rules: pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/gameplay_rules_checks.py
