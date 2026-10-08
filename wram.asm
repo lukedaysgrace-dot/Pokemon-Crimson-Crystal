@@ -3203,6 +3203,8 @@ wPokeAnimStructEnd::
 wAbilityTiles:: ds SLIDEOUT_WIDTH * 2 * LEN_2BPP_TILE
 wAbilityPkmn:: ds MON_NAME_LENGTH + 2 ; nickname + 's + @
 wAbilityName:: ds 17 ; longest ability name + @
+wAbilityBannerWidths:: ds 2 ; visible columns, player then enemy
+wAbilityBannerInsets:: ds 2 ; shared text inset, player then enemy
 wAbilityAttrBackup:: ds SLIDEOUT_WIDTH * 2 * 2 ; original attrs under the banners (player, then enemy)
 wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
 ; Held-item ability state (Gluttony/Harvest/Cud Chew/Unburden/Pickpocket).
