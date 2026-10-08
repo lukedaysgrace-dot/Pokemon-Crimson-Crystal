@@ -777,7 +777,7 @@ class Builder:
     surf_slot_chances=(60,30,10)
 
     def source_name(path):
-      try: return str(path.relative_to(self.r))
+      try: return path.relative_to(self.r).as_posix()
       except ValueError: return str(path)
 
     def add(location, method, time, level, species, source, rate=None,

@@ -1138,9 +1138,11 @@ ParasectEvosAttacks:
 	dbw 15, VENOSHOCK
 	dbw 19, SPORE
 	dbw 22, SLASH
+	dbw 24, SHADOW_CLAW
 	dbw 26, LEECH_LIFE
 	dbw 30, GROWTH
 	dbw 30, SWORDS_DANCE
+	dbw 32, SHADOW_SNEAK
 	dbw 34, SEED_BOMB
 	dbw 36, SYNTHESIS
 	dbw 42, KNOCK_OFF

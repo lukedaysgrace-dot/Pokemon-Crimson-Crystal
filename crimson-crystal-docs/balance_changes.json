@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-04",
+  "date": "2026-10-08",
   "pokemon": {
     "AGGRON": {
       "stats": {
@@ -16,7 +16,17 @@
           "before": "MERCILESS",
           "after": "STRONG_JAW"
         }
-      ]
+      ],
+      "stats": {
+        "HP": [
+          60,
+          70
+        ],
+        "Defense": [
+          70,
+          75
+        ]
+      }
     },
     "BASTIODON": {
       "stats": {
@@ -128,8 +138,12 @@
     "HITMONCHAN": {
       "stats": {
         "HP": [
-          50,
-          65
+          65,
+          75
+        ],
+        "Speed": [
+          76,
+          81
         ]
       },
       "abilities": [
@@ -221,7 +235,17 @@
           70,
           85
         ]
-      }
+      },
+      "moves": [
+        {
+          "const": "SHADOW_CLAW",
+          "level": 24
+        },
+        {
+          "const": "SHADOW_SNEAK",
+          "level": 32
+        }
+      ]
     },
     "PERSIAN": {
       "moves": [
@@ -247,7 +271,17 @@
           "before": "SAND_VEIL",
           "after": "BATTLE_ARMOR"
         }
-      ]
+      ],
+      "stats": {
+        "HP": [
+          75,
+          85
+        ],
+        "Sp. Def": [
+          55,
+          65
+        ]
+      }
     },
     "SKARMORY": {
       "abilities": [
@@ -305,6 +339,12 @@
           "before": "NO_ABILITY",
           "after": "ANALYTIC"
         }
+      ],
+      "moves": [
+        {
+          "const": "TRICK",
+          "level": 35
+        }
       ]
     },
     "VIKAVOLT": {
@@ -313,6 +353,93 @@
           "slot": 2,
           "before": "HUSTLE",
           "after": "COMPOUND_EYES"
+        }
+      ]
+    },
+    "LEDIAN": {
+      "stats": {
+        "HP": [
+          75,
+          80
+        ],
+        "Defense": [
+          60,
+          70
+        ],
+        "Speed": [
+          90,
+          95
+        ]
+      }
+    },
+    "SUNFLORA": {
+      "moves": [
+        {
+          "const": "INCINERATE",
+          "level": 28
+        },
+        {
+          "const": "FLAMETHROWER",
+          "level": 40
+        }
+      ]
+    },
+    "KINGLER": {
+      "stats": {
+        "HP": [
+          55,
+          65
+        ],
+        "Sp. Def": [
+          50,
+          55
+        ]
+      }
+    },
+    "SEAKING": {
+      "stats": {
+        "HP": [
+          80,
+          85
+        ],
+        "Defense": [
+          75,
+          80
+        ]
+      }
+    },
+    "HITMONLEE": {
+      "stats": {
+        "HP": [
+          50,
+          65
+        ],
+        "Defense": [
+          53,
+          63
+        ],
+        "Speed": [
+          87,
+          92
+        ]
+      }
+    },
+    "HITMONTOP": {
+      "stats": {
+        "HP": [
+          50,
+          70
+        ],
+        "Speed": [
+          70,
+          80
+        ]
+      },
+      "abilities": [
+        {
+          "slot": 3,
+          "before": "CONTRARY",
+          "after": "SKILL_LINK"
         }
       ]
     }

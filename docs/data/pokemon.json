@@ -13609,10 +13609,10 @@
     "name": "Ledian",
     "number": 36,
     "stats": {
-      "HP": 75,
+      "HP": 80,
       "Attack": 105,
-      "Defense": 60,
-      "Speed": 90,
+      "Defense": 70,
+      "Speed": 95,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -13833,10 +13833,10 @@
       "Fighting"
     ],
     "updated_stats": {
-      "HP": 75,
+      "HP": 80,
       "Attack": 105,
-      "Defense": 60,
-      "Speed": 90,
+      "Defense": 70,
+      "Speed": 95,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -19017,6 +19017,11 @@
         "move": "Pound"
       },
       {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
         "level": 9,
         "const": "DISARMING_VOICE",
         "move": "Disarming Voice"
@@ -19491,6 +19496,11 @@
         "level": 1,
         "const": "SWEET_KISS",
         "move": "Sweet Kiss"
+      },
+      {
+        "level": 1,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 9,
@@ -21734,12 +21744,12 @@
     "name": "Sandslash",
     "number": 55,
     "stats": {
-      "HP": 75,
+      "HP": 85,
       "Attack": 100,
       "Defense": 110,
       "Speed": 65,
       "Sp. Atk": 45,
-      "Sp. Def": 55
+      "Sp. Def": 65
     },
     "types": [
       "Ground"
@@ -21954,12 +21964,12 @@
       "Ground"
     ],
     "updated_stats": {
-      "HP": 75,
+      "HP": 85,
       "Attack": 100,
       "Defense": 110,
       "Speed": 65,
       "Sp. Atk": 45,
-      "Sp. Def": 55
+      "Sp. Def": 65
     },
     "original_stats": {
       "HP": 75,
@@ -23825,9 +23835,9 @@
     "name": "Arbok",
     "number": 60,
     "stats": {
-      "HP": 60,
+      "HP": 70,
       "Attack": 110,
-      "Defense": 70,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 55,
       "Sp. Def": 80
@@ -24018,9 +24028,9 @@
       "Dark"
     ],
     "updated_stats": {
-      "HP": 60,
+      "HP": 70,
       "Attack": 110,
-      "Defense": 70,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 55,
       "Sp. Def": 80
@@ -28287,6 +28297,11 @@
         "level": 30,
         "const": "CALM_MIND",
         "move": "Calm Mind"
+      },
+      {
+        "level": 35,
+        "const": "TRICK",
+        "move": "Trick"
       }
     ],
     "evolutions": [],
@@ -31831,6 +31846,11 @@
         "move": "Slash"
       },
       {
+        "level": 24,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
         "level": 26,
         "const": "LEECH_LIFE",
         "move": "Leech Life"
@@ -31844,6 +31864,11 @@
         "level": 30,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
+      },
+      {
+        "level": 32,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
       },
       {
         "level": 34,
@@ -35441,9 +35466,9 @@
     "name": "Seaking",
     "number": 91,
     "stats": {
-      "HP": 80,
+      "HP": 85,
       "Attack": 75,
-      "Defense": 75,
+      "Defense": 80,
       "Speed": 78,
       "Sp. Atk": 102,
       "Sp. Def": 75
@@ -35614,9 +35639,9 @@
       "Water"
     ],
     "updated_stats": {
-      "HP": 80,
+      "HP": 85,
       "Attack": 75,
-      "Defense": 75,
+      "Defense": 80,
       "Speed": 78,
       "Sp. Atk": 102,
       "Sp. Def": 75
@@ -45317,6 +45342,11 @@
         "move": "Energy Ball"
       },
       {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 34,
         "const": "DAZZLING_GLEAM",
         "move": "Dazzling Gleam"
@@ -45330,6 +45360,11 @@
         "level": 38,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 40,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
       },
       {
         "level": 41,
@@ -57882,6 +57917,11 @@
         "move": "Aqua Jet"
       },
       {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
         "level": 10,
         "const": "CHARM",
         "move": "Charm"
@@ -58244,6 +58284,11 @@
         "level": 7,
         "const": "BUBBLE",
         "move": "Bubble"
+      },
+      {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 9,
@@ -58652,6 +58697,11 @@
         "level": 7,
         "const": "BUBBLE",
         "move": "Bubble"
+      },
+      {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 9,
@@ -64586,10 +64636,10 @@
     "name": "Hitmonlee",
     "number": 165,
     "stats": {
-      "HP": 50,
+      "HP": 65,
       "Attack": 120,
-      "Defense": 53,
-      "Speed": 87,
+      "Defense": 63,
+      "Speed": 92,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -64782,10 +64832,10 @@
       "Fighting"
     ],
     "updated_stats": {
-      "HP": 50,
+      "HP": 65,
       "Attack": 120,
-      "Defense": 53,
-      "Speed": 87,
+      "Defense": 63,
+      "Speed": 92,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -64979,10 +65029,10 @@
     "name": "Hitmonchan",
     "number": 166,
     "stats": {
-      "HP": 65,
+      "HP": 75,
       "Attack": 105,
       "Defense": 79,
-      "Speed": 76,
+      "Speed": 81,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -65173,10 +65223,10 @@
       "Fighting"
     ],
     "updated_stats": {
-      "HP": 65,
+      "HP": 75,
       "Attack": 105,
       "Defense": 79,
-      "Speed": 76,
+      "Speed": 81,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -65421,10 +65471,10 @@
     "name": "Hitmontop",
     "number": 167,
     "stats": {
-      "HP": 50,
+      "HP": 70,
       "Attack": 95,
       "Defense": 95,
-      "Speed": 70,
+      "Speed": 80,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -65434,7 +65484,7 @@
     "abilities": [
       "Technician",
       "Intimidate",
-      "Contrary"
+      "Skill Link"
     ],
     "ability_slots": [
       {
@@ -65448,7 +65498,7 @@
         "slot": 2
       },
       {
-        "name": "Contrary",
+        "name": "Skill Link",
         "hidden": true,
         "slot": 3
       }
@@ -65611,10 +65661,10 @@
       "Fighting"
     ],
     "updated_stats": {
-      "HP": 50,
+      "HP": 70,
       "Attack": 95,
       "Defense": 95,
-      "Speed": 70,
+      "Speed": 80,
       "Sp. Atk": 35,
       "Sp. Def": 110
     },
@@ -76994,12 +77044,12 @@
     "name": "Kingler",
     "number": 195,
     "stats": {
-      "HP": 55,
+      "HP": 65,
       "Attack": 130,
       "Defense": 115,
       "Speed": 75,
       "Sp. Atk": 50,
-      "Sp. Def": 50
+      "Sp. Def": 55
     },
     "types": [
       "Water"
@@ -77185,12 +77235,12 @@
       "Water"
     ],
     "updated_stats": {
-      "HP": 55,
+      "HP": 65,
       "Attack": 130,
       "Defense": 115,
       "Speed": 75,
       "Sp. Atk": 50,
-      "Sp. Def": 50
+      "Sp. Def": 55
     },
     "original_stats": {
       "HP": 55,
@@ -105312,6 +105362,11 @@
         "move": "Shadow Sneak"
       },
       {
+        "level": 9,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
         "level": 12,
         "const": "DOUBLE_TEAM",
         "move": "Double Team"
@@ -119415,10 +119470,10 @@
     "number": 301,
     "stats": {
       "HP": 45,
-      "Attack": 45,
+      "Attack": 55,
       "Defense": 30,
       "Speed": 50,
-      "Sp. Atk": 55,
+      "Sp. Atk": 45,
       "Sp. Def": 40
     },
     "types": [
@@ -119462,6 +119517,11 @@
         "level": 8,
         "const": "SWEET_KISS",
         "move": "Sweet Kiss"
+      },
+      {
+        "level": 8,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 12,
@@ -119585,10 +119645,10 @@
     ],
     "updated_stats": {
       "HP": 45,
-      "Attack": 45,
+      "Attack": 55,
       "Defense": 30,
       "Speed": 50,
-      "Sp. Atk": 55,
+      "Sp. Atk": 45,
       "Sp. Def": 40
     },
     "original_stats": {
@@ -119778,10 +119838,10 @@
     "number": 302,
     "stats": {
       "HP": 65,
-      "Attack": 60,
+      "Attack": 75,
       "Defense": 45,
       "Speed": 70,
-      "Sp. Atk": 75,
+      "Sp. Atk": 60,
       "Sp. Def": 55
     },
     "types": [
@@ -119830,6 +119890,11 @@
         "level": 1,
         "const": "SWEET_KISS",
         "move": "Sweet Kiss"
+      },
+      {
+        "level": 1,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 16,
@@ -119945,10 +120010,10 @@
     ],
     "updated_stats": {
       "HP": 65,
-      "Attack": 60,
+      "Attack": 75,
       "Defense": 45,
       "Speed": 70,
-      "Sp. Atk": 75,
+      "Sp. Atk": 60,
       "Sp. Def": 55
     },
     "original_stats": {
@@ -120563,6 +120628,11 @@
         "move": "Fairy Wind"
       },
       {
+        "level": 5,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
         "level": 8,
         "const": "METAL_CLAW",
         "move": "Metal Claw"
@@ -120915,6 +120985,11 @@
         "level": 1,
         "const": "FAIRY_WIND",
         "move": "Fairy Wind"
+      },
+      {
+        "level": 5,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 8,
@@ -121274,6 +121349,11 @@
         "level": 1,
         "const": "FAIRY_WIND",
         "move": "Fairy Wind"
+      },
+      {
+        "level": 5,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 8,
@@ -181686,6 +181766,11 @@
         "move": "Fairy Wind"
       },
       {
+        "level": 8,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
         "level": 10,
         "const": "CONFUSION",
         "move": "Confusion"
@@ -182031,6 +182116,11 @@
         "level": 1,
         "const": "TACKLE",
         "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 4,
@@ -198037,6 +198127,11 @@
         "level": 6,
         "const": "VICEGRIP",
         "move": "Vise Grip"
+      },
+      {
+        "level": 6,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
       },
       {
         "level": 11,
