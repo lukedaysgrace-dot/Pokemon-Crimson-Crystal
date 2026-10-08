@@ -253,7 +253,17 @@
           "const": "FAKE_OUT",
           "level": 1
         }
-      ]
+      ],
+      "stats": {
+        "HP": [
+          65,
+          70
+        ],
+        "Attack": [
+          80,
+          90
+        ]
+      }
     },
     "PIDGEOT": {
       "abilities": [
@@ -313,24 +323,24 @@
     "UNOWN": {
       "stats": {
         "HP": [
-          54,
-          74
+          74,
+          84
         ],
         "Attack": [
           108,
           58
         ],
         "Defense": [
-          54,
-          64
+          64,
+          69
         ],
         "Speed": [
           75,
           85
         ],
         "Sp. Def": [
-          54,
-          64
+          64,
+          69
         ]
       },
       "abilities": [
@@ -442,6 +452,98 @@
           "after": "SKILL_LINK"
         }
       ]
+    },
+    "DELIBIRD": {
+      "stats": {
+        "HP": [
+          45,
+          60
+        ]
+      }
+    },
+    "ARIADOS": {
+      "stats": {
+        "HP": [
+          70,
+          80
+        ],
+        "Defense": [
+          70,
+          75
+        ]
+      }
+    },
+    "GRANBULL": {
+      "stats": {
+        "Defense": [
+          75,
+          85
+        ],
+        "Sp. Def": [
+          75,
+          80
+        ]
+      }
+    },
+    "RATICATE": {
+      "stats": {
+        "HP": [
+          55,
+          65
+        ]
+      }
+    },
+    "ELECTRODE": {
+      "stats": {
+        "Sp. Atk": [
+          80,
+          90
+        ]
+      }
+    },
+    "ELECTRODE_HISUIAN": {
+      "stats": {
+        "Sp. Atk": [
+          80,
+          90
+        ]
+      }
+    },
+    "SANDSLASH_ALOLAN": {
+      "stats": {
+        "HP": [
+          75,
+          85
+        ],
+        "Sp. Def": [
+          65,
+          70
+        ]
+      }
+    },
+    "RATICATE_ALOLAN": {
+      "stats": {
+        "Attack": [
+          78,
+          88
+        ]
+      }
+    },
+    "NOCTOWL": {
+      "stats": {
+        "Defense": [
+          50,
+          60
+        ]
+      }
+    },
+    "GRUMPIG": {
+      "stats": {
+        "Defense": [
+          65,
+          75
+        ]
+      }
     }
   }
 }
