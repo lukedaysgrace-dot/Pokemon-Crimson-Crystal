@@ -8,6 +8,8 @@ ClearDailyTimers:
 	ld [wUnusedTwoDayTimer], a
 	ld [wDailyResetTimer], a
 	ld [wWeatherRandomDay], a
+	ld hl, wWeatherDailyFlags
+	res WEATHER_DAILY_VALID_F, [hl]
 	ret
 
 InitCallReceiveDelay::
@@ -93,6 +95,8 @@ CheckDailyResetTimer::
 	ret nc
 	xor a
 	ld [wWeatherRandomDay], a
+	ld hl, wWeatherDailyFlags
+	res WEATHER_DAILY_VALID_F, [hl]
 	ld hl, wDailyFlags1
 	ld [hli], a ; wDailyFlags1
 	ld [hli], a ; wDailyFlags2
@@ -304,6 +308,7 @@ GetSecondsSinceIfLessThan60:
 	and a
 	jr nz, GetTimeElapsed_ExceedsUnitLimit
 	ld a, [wMinutesSince]
+	and a
 	jr nz, GetTimeElapsed_ExceedsUnitLimit
 	ld a, [wSecondsSince]
 	ret

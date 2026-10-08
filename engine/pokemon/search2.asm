@@ -13,23 +13,39 @@ _FindPartyMonThatSpecies:
 	jp FindThatSpecies
 
 _FindPartyMonThatSpeciesYourTrainerID:
-	ld hl, wPartyMon1Species
-	call FindThatSpecies
-	ret z
+	; A traded match must not hide a later match belonging to the player.
+	ld hl, wPartySpecies
+	ld c, -1
+.loop
+	ld a, [hli]
+	cp -1
+	jr z, .nope
+	inc c
+	cp b
+	jr nz, .loop
+	push hl
+	push bc
 	ld a, c
 	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [wPlayerID]
 	cp [hl]
-	jr nz, .nope
+	jr nz, .next
 	inc hl
 	ld a, [wPlayerID + 1]
 	cp [hl]
-	jr nz, .nope
+	jr nz, .next
+	pop bc
+	pop hl
 	ld a, $1
 	and a
 	ret
+
+.next
+	pop bc
+	pop hl
+	jr .loop
 
 .nope
 	xor a
