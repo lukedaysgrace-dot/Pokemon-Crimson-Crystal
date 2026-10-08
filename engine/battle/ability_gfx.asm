@@ -1,8 +1,11 @@
 ; Ability slideout banner.
-; Fixed-width port of Polished Crystal's engine/battle/ability_gfx.asm.
+; Content-sized port of Polished Crystal's engine/battle/ability_gfx.asm.
 ;
 ; The banner is a 2-row band that slides across the battler's side of the
-; screen, then reveals "<MON>'s" / "<ABILITY>" cut out of the band.
+; screen, then reveals left-aligned "<MON>'s" / "<ABILITY>" in a small panel.
+; Short names share an inset and a clipped inner edge; the outer edge joins
+; the screen without a gap. Full-width names use all 16
+; columns so the longest ability names remain readable.
 ; Banner tile graphics live in VRAM bank 1 (enemy $c0-$df, player $e0-$ff),
 ; so they never conflict with the battle scene tiles.
 ;
@@ -35,6 +38,7 @@ PerformAbilityGFX::
 
 	ld a, BANK(wAbilityTiles)
 	ldh [rSVBK], a
+	call CalculateAbilityBannerWidth
 
 	; Fill the banner tiles with the solid band and upload them. The BGMap
 	; cells still point at the scene, so nothing shows yet.
@@ -80,10 +84,21 @@ PerformAbilityGFX::
 	jr c, .len_loop
 .got_len
 	pop de
-	; center: start tile = row * SLIDEOUT_WIDTH + (SLIDEOUT_WIDTH - len) / 2
+	; Both rows share an inset. Enemy panels hug the right edge of the screen.
+	push bc
+	call GetAbilityBannerInset
+	ld c, a
+	ldh a, [hBattleTurn]
+	and a
+	ld a, c
+	jr z, .got_column
+	call GetAbilityBannerWidth
+	ld b, a
 	ld a, SLIDEOUT_WIDTH
-	sub c
-	srl a
+	sub b
+	add c
+.got_column
+	pop bc
 	bit 0, b
 	jr z, .got_offset
 	add SLIDEOUT_WIDTH
@@ -150,6 +165,75 @@ FillBannerSolid:
 	jr nz, .loop
 	ret
 
+CalculateAbilityBannerWidth:
+; Preserve the fixed 16-column tile stride, but engage only the fitted panel.
+; Per-side widths survive simultaneous banners and Trace replacements.
+	push bc
+	push hl
+	ld hl, wAbilityPkmn
+	call .Length
+	ld b, a
+	ld hl, wAbilityName
+	call .Length
+	cp b
+	jr nc, .got_length
+	ld a, b
+.got_length
+	ld b, 0 ; no inset when the full row is needed
+	cp SLIDEOUT_WIDTH - 1
+	jr nc, .full_width
+	add 2 ; one tile of padding on each side
+	inc b
+	jr .store
+.full_width
+	ld a, SLIDEOUT_WIDTH
+.store
+	ld c, a
+	ld hl, wAbilityBannerWidths
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	inc hl
+.got_side
+	ld [hl], c
+	inc hl
+	inc hl ; corresponding inset in the next two-byte array
+	ld [hl], b
+	pop hl
+	pop bc
+	ret
+.Length
+	ld c, 0
+.length_loop
+	ld a, [hli]
+	cp "@"
+	jr z, .length_done
+	inc c
+	ld a, c
+	cp SLIDEOUT_WIDTH
+	jr c, .length_loop
+.length_done
+	ld a, c
+	ret
+
+GetAbilityBannerWidth:
+	push hl
+	ld hl, wAbilityBannerWidths
+	jr GetAbilityBannerSideByte
+
+GetAbilityBannerInset:
+	push hl
+	ld hl, wAbilityBannerInsets
+GetAbilityBannerSideByte:
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	inc hl
+.got_side
+	ld a, [hl]
+	pop hl
+	ret
+
 BackupBannerAttrs:
 ; Save the original attribute of every cell under the banner, row-major, to
 ; match DismissAbilityOverlays' read order, so dismissal can restore the
@@ -186,6 +270,8 @@ SlideInBanner:
 ; Reveal the solid band one column per frame, engaging each column with a
 ; single atomic BGMap write. Player wipes left-to-right, enemy right-to-left.
 ; rSVBK = BANK(wAbilityTiles).
+	call GetAbilityBannerWidth
+	ld e, a
 	ld d, 0 ; column step
 .loop
 	ldh a, [hBattleTurn]
@@ -201,7 +287,7 @@ SlideInBanner:
 	pop de
 	inc d
 	ld a, d
-	cp SLIDEOUT_WIDTH
+	cp e
 	jr c, .loop
 	ret
 
@@ -291,39 +377,26 @@ PerformAbilityReplacementGFX::
 	call PlaySFX
 	pop bc
 	call GetAbilityName ; -> wStringBuffer1
+	call GetAbilityGFXPkmnName ; rebuild the replacing side's possessive name
 	ldh a, [rSVBK]
 	push af
+	ld hl, wStringBuffer2
+	ld de, wAbilityPkmn
+	call CopyStringToAbilityBank
 	ld hl, wStringBuffer1
 	ld de, wAbilityName
 	call CopyStringToAbilityBank
 	ld a, BANK(wAbilityTiles)
 	ldh [rSVBK], a
-	; wipe the ability row (row 1) back to the solid band
-	ld hl, wAbilityTiles + SLIDEOUT_WIDTH * LEN_2BPP_TILE
-	ld bc, SLIDEOUT_WIDTH * LEN_2BPP_TILE
-	ld a, $ff
-.wipe_loop
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	ld a, $ff
-	jr nz, .wipe_loop
-	; push the wiped band to VRAM first - DrawRow only uploads the tiles
-	; it carves text into, so without this, glyphs of the old (longer)
-	; name would linger on the flanks of the new one
-	ld a, SLIDEOUT_WIDTH
-.upload_loop
-	push af
-	call UploadBannerTile
-	pop af
-	inc a
-	cp SLIDEOUT_WIDTH * 2
-	jr c, .upload_loop
-	; redraw and upload the row's text
-	ld de, wAbilityName
-	ld b, 1
-	call PerformAbilityGFX.DrawRow
+	; Restore this side before resizing, so a shorter replacement leaves no
+	; old border or text behind. The opposite side's panel stays engaged.
+	call DismissAbilityOverlaySide
+	call CalculateAbilityBannerWidth
+	call FillBannerSolid
+	call ApplyAbilityTiles
+	call BackupBannerAttrs
+	call SlideInBanner
+	call PerformAbilityGFX.DrawBannerText
 	call WaitSFX
 	pop af
 	ldh [rSVBK], a
@@ -421,6 +494,9 @@ endr
 UploadBannerTile:
 ; a = tile index within the banner (0-31); upload it to VRAM bank 1.
 	push hl
+	push af
+	call StyleAbilityBannerTile
+	pop af
 	; offset = a * 16
 	ld l, a
 	ld h, 0
@@ -444,6 +520,126 @@ endr
 	ld c, LEN_2BPP_TILE
 	call SafeCopyWRAMToVRAM
 	pop hl
+	ret
+
+StyleAbilityBannerTile:
+; One-pixel white edge and clipped corners on the end facing into the scene.
+; The screen-facing padding column stays solid, joining the screen edge.
+; The longest names have no inset/border, preserving every glyph pixel.
+	push bc
+	push de
+	push hl
+	ld e, a ; buffer tile index
+	call GetAbilityBannerInset
+	and a
+	jp z, .done
+	ld l, e
+	ld h, 0
+rept 4
+	add hl, hl
+endr
+	ld bc, wAbilityTiles
+	add hl, bc
+	call GetAbilityBannerWidth
+	ld d, a
+	ld b, 0 ; first visible buffer column
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_start
+	ld a, SLIDEOUT_WIDTH
+	sub d
+	ld b, a
+.got_start
+	ld a, e
+	and SLIDEOUT_WIDTH - 1
+	sub b
+	jr c, .done
+	cp d
+	jr nc, .done
+	ld c, a ; relative panel column
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_edge
+	ld a, c
+	and a
+	jr z, .done ; player panel joins the left screen edge
+	jr .inner_edge
+.enemy_edge
+	ld a, d
+	dec a
+	cp c
+	jr z, .done ; enemy panel joins the right screen edge
+.inner_edge
+	ld a, c
+	ld b, %10000000
+	and a
+	jr z, .got_edge
+	ld a, d
+	dec a
+	cp c
+	ld b, %00000001
+	jr z, .got_edge
+	ld b, 0
+.got_edge
+	ld a, b
+	and a
+	jr z, .done ; keep every pixel of the normal font intact
+	push hl
+	ld c, 8
+.pixel_row
+	ld a, b
+	cpl
+	and [hl]
+	ld [hli], a
+	ld [hli], a
+	dec c
+	jr nz, .pixel_row
+	pop hl
+	bit 4, e
+	jr z, .top
+	ld a, l
+	add 14
+	ld l, a
+	adc h
+	sub l
+	ld h, a
+.top
+	; Three-pixel cut at the outer corner, two pixels on the next row.
+	bit 7, b
+	jr z, .right_corner
+	ld a, %00011111
+	jr .corner_mask
+.right_corner
+	ld a, %11111000
+.corner_mask
+	and [hl]
+	ld [hli], a
+	ld [hl], a
+	bit 7, b
+	jr z, .right_inner_corner
+	ld a, %00111111
+	jr .inner_corner_mask
+.right_inner_corner
+	ld a, %11111100
+.inner_corner_mask
+	ld b, a
+	bit 4, e
+	jr nz, .bottom_corner
+	inc hl ; second pixel row of the top tile
+	jr .corner
+.bottom_corner
+	dec hl
+	dec hl
+	dec hl ; penultimate pixel row of the bottom tile
+.corner
+	ld a, [hl]
+	and b
+	ld [hli], a
+	ld [hl], a
+.done
+	pop hl
+	pop de
+	pop bc
 	ret
 
 ApplyAbilityTiles:
@@ -649,7 +845,7 @@ DismissAbilityOverlaySide:
 	and a
 	hlcoord 0, 8, wAttrMap
 	jr z, .got_anchor
-	hlcoord 4, 3, wAttrMap
+	hlcoord 19, 3, wAttrMap ; enemy panels always touch the right edge
 .got_anchor
 	ld a, [hl]
 	and VRAM_BANK_1
