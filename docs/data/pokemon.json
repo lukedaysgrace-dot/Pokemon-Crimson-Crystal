@@ -7324,7 +7324,7 @@
     "stats": {
       "HP": 100,
       "Attack": 40,
-      "Defense": 50,
+      "Defense": 60,
       "Speed": 60,
       "Sp. Atk": 106,
       "Sp. Def": 116
@@ -7520,7 +7520,7 @@
     "updated_stats": {
       "HP": 100,
       "Attack": 40,
-      "Defense": 50,
+      "Defense": 60,
       "Speed": 60,
       "Sp. Atk": 106,
       "Sp. Def": 116
@@ -8503,7 +8503,7 @@
     "name": "Raticate",
     "number": 22,
     "stats": {
-      "HP": 55,
+      "HP": 65,
       "Attack": 97,
       "Defense": 70,
       "Speed": 113,
@@ -8697,7 +8697,7 @@
       "Normal"
     ],
     "updated_stats": {
-      "HP": 55,
+      "HP": 65,
       "Attack": 97,
       "Defense": 70,
       "Speed": 113,
@@ -14463,9 +14463,9 @@
     "name": "Ariados",
     "number": 38,
     "stats": {
-      "HP": 70,
+      "HP": 80,
       "Attack": 110,
-      "Defense": 70,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 50,
       "Sp. Def": 70
@@ -14679,9 +14679,9 @@
       "Poison"
     ],
     "updated_stats": {
-      "HP": 70,
+      "HP": 80,
       "Attack": 110,
-      "Defense": 70,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 50,
       "Sp. Def": 70
@@ -28246,12 +28246,12 @@
     "name": "Unown",
     "number": 71,
     "stats": {
-      "HP": 74,
+      "HP": 84,
       "Attack": 58,
-      "Defense": 64,
+      "Defense": 69,
       "Speed": 85,
       "Sp. Atk": 108,
-      "Sp. Def": 64
+      "Sp. Def": 69
     },
     "types": [
       "Psychic"
@@ -28332,12 +28332,12 @@
       "Psychic"
     ],
     "updated_stats": {
-      "HP": 74,
+      "HP": 84,
       "Attack": 58,
-      "Defense": 64,
+      "Defense": 69,
       "Speed": 85,
       "Sp. Atk": 108,
-      "Sp. Def": 64
+      "Sp. Def": 69
     },
     "original_stats": {
       "HP": 48,
@@ -53514,7 +53514,7 @@
       "Attack": 50,
       "Defense": 70,
       "Speed": 150,
-      "Sp. Atk": 80,
+      "Sp. Atk": 90,
       "Sp. Def": 80
     },
     "types": [
@@ -53682,7 +53682,7 @@
       "Attack": 50,
       "Defense": 70,
       "Speed": 150,
-      "Sp. Atk": 80,
+      "Sp. Atk": 90,
       "Sp. Def": 80
     },
     "original_stats": {
@@ -55070,10 +55070,10 @@
     "stats": {
       "HP": 90,
       "Attack": 120,
-      "Defense": 75,
+      "Defense": 85,
       "Speed": 45,
       "Sp. Atk": 60,
-      "Sp. Def": 75
+      "Sp. Def": 80
     },
     "types": [
       "Fairy"
@@ -55281,10 +55281,10 @@
     "updated_stats": {
       "HP": 90,
       "Attack": 120,
-      "Defense": 75,
+      "Defense": 85,
       "Speed": 45,
       "Sp. Atk": 60,
-      "Sp. Def": 75
+      "Sp. Def": 80
     },
     "original_stats": {
       "HP": 90,
@@ -61661,8 +61661,8 @@
     "name": "Persian",
     "number": 158,
     "stats": {
-      "HP": 65,
-      "Attack": 80,
+      "HP": 70,
+      "Attack": 90,
       "Defense": 60,
       "Speed": 115,
       "Sp. Atk": 80,
@@ -61849,8 +61849,8 @@
       "Normal"
     ],
     "updated_stats": {
-      "HP": 65,
-      "Attack": 80,
+      "HP": 70,
+      "Attack": 90,
       "Defense": 60,
       "Speed": 115,
       "Sp. Atk": 80,
@@ -89569,7 +89569,7 @@
     "name": "Delibird",
     "number": 226,
     "stats": {
-      "HP": 45,
+      "HP": 60,
       "Attack": 85,
       "Defense": 50,
       "Speed": 110,
@@ -89767,7 +89767,7 @@
       "Flying"
     ],
     "updated_stats": {
-      "HP": 45,
+      "HP": 60,
       "Attack": 85,
       "Defense": 50,
       "Speed": 110,
@@ -165529,7 +165529,7 @@
     "stats": {
       "HP": 80,
       "Attack": 45,
-      "Defense": 65,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 100,
       "Sp. Def": 110
@@ -165732,7 +165732,7 @@
     "updated_stats": {
       "HP": 80,
       "Attack": 45,
-      "Defense": 65,
+      "Defense": 75,
       "Speed": 80,
       "Sp. Atk": 100,
       "Sp. Def": 110
@@ -173421,7 +173421,7 @@
     "number": 428,
     "stats": {
       "HP": 80,
-      "Attack": 78,
+      "Attack": 88,
       "Defense": 80,
       "Speed": 82,
       "Sp. Atk": 40,
@@ -173615,7 +173615,7 @@
     ],
     "updated_stats": {
       "HP": 80,
-      "Attack": 78,
+      "Attack": 88,
       "Defense": 80,
       "Speed": 82,
       "Sp. Atk": 40,
@@ -174798,12 +174798,12 @@
     "name": "Sandslash",
     "number": 431,
     "stats": {
-      "HP": 75,
+      "HP": 85,
       "Attack": 100,
       "Defense": 120,
       "Speed": 65,
       "Sp. Atk": 25,
-      "Sp. Def": 65
+      "Sp. Def": 70
     },
     "types": [
       "Ice",
@@ -175028,12 +175028,12 @@
       "Steel"
     ],
     "updated_stats": {
-      "HP": 75,
+      "HP": 85,
       "Attack": 100,
       "Defense": 120,
       "Speed": 65,
       "Sp. Atk": 25,
-      "Sp. Def": 65
+      "Sp. Def": 70
     },
     "original_stats": {
       "HP": 75,
@@ -185587,7 +185587,7 @@
       "Attack": 50,
       "Defense": 70,
       "Speed": 150,
-      "Sp. Atk": 80,
+      "Sp. Atk": 90,
       "Sp. Def": 80
     },
     "types": [
@@ -185777,7 +185777,7 @@
       "Attack": 50,
       "Defense": 70,
       "Speed": 150,
-      "Sp. Atk": 80,
+      "Sp. Atk": 90,
       "Sp. Def": 80
     },
     "original_stats": {
