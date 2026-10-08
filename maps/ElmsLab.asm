@@ -137,6 +137,9 @@ ElmCheckEverstone:
 	loadmonindex 2, TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
+	loadmonindex 3, TOGEKISS
+	special FindPartyMonThatSpeciesYourTrainerID
+	iftrue ShowElmTogepiScript
 	writetext ElmThoughtEggHatchedText
 	waitbutton
 	closetext
@@ -147,6 +150,9 @@ ElmEggHatchedScript:
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	loadmonindex 2, TOGETIC
+	special FindPartyMonThatSpeciesYourTrainerID
+	iftrue ShowElmTogepiScript
+	loadmonindex 3, TOGEKISS
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	sjump ElmCheckGotEggAgain

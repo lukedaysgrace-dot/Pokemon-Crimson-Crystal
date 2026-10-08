@@ -306,6 +306,34 @@ allocation rather than the shared Olivine outdoor list.
 
 ## How it works (ROM side)
 
+`make test-overworld` runs progression/calendar state, every compiled evolution
+row, inventory boundaries, and native Safari travel with private SRAM:
+
+```sh
+make test-overworld BATTLE_TEST_PYTHON=python3
+```
+
+The individual targets are `test-overworld-state`, `test-evolutions`,
+`test-inventory`, and `test-safari-ui`. The release-ROM checks accept an optional
+ROM path for before/after reproduction; its matching `.sym` file is required.
+They exercise party ownership, both Elm egg-check routes, all seven gym Rocket
+activation scripts, one-time reward retries, all fruit trees, elapsed calendar
+arithmetic, daily flags/weather, all badge-count level caps, and Save/load.
+The evolution sweep reads all 495 compiled species tables and exercises all
+279 evolution rows, including regional/gender/happiness/held-item prerequisites,
+Everstone, and held-item cancellation. Presentation and move-learning menus are
+suppressed for these routine/script checks; the core eligibility, inventory,
+flags and lifecycle code runs normally.
+
+The inventory pass checks IDs 1-254 through the bag dispatcher and PC pocket,
+including full pockets, 99-item stack limits, split stacks, atomic failures,
+removal compaction, adjacent-byte guards, and exact inventory Save/load.
+The Safari pass uses ordinary buttons without ROM patches for fees, both doors,
+voluntary exit to Route 38, timeout, exhausted balls, unpaid re-entry, and native
+Save/fresh boot/Continue. It stages the initial party/location/money and boundary
+counters. Logs and captures are under `.tmpbuild/overworld-audit/`. These are
+focused integration checks, not a complete campaign playthrough.
+
 `make test-session` runs 32 Gas/faint/replacement/Trace/weather/item chains,
 18 pre-move entry-item cases, and an eight-battle native-menu session. The
 session keeps one party throughout, checks HP/PP/item/permanent-ability

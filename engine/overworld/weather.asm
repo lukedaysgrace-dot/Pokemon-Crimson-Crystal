@@ -121,8 +121,10 @@ RefreshTimeGatedWeather::
 	ret
 
 EnsureDailyWeather:
+	ld hl, wWeatherDailyFlags
+	bit WEATHER_DAILY_VALID_F, [hl]
+	jr z, GenerateDailyWeather
 	ld a, [wCurDay]
-	or $B0 ; versioned key distinguishes this pool from old save data
 	ld b, a
 	ld a, [wWeatherRandomDay]
 	cp b
@@ -131,7 +133,6 @@ EnsureDailyWeather:
 
 GenerateDailyWeather:
 	ld a, [wCurDay]
-	or $B0
 	ld [wWeatherRandomDay], a
 
 	ld hl, wWeatherDailySelections
@@ -253,7 +254,7 @@ GenerateDailyWeather:
 
 	; Climate-specific conditions are also rolled once for the whole day,
 	; never when entering an individual map.
-	ld b, 0
+	ld b, 1 << WEATHER_DAILY_VALID_F
 	call Random
 	cp 26 ; 10% sand at the Ruins of Alph
 	jr c, .ruins_sand
