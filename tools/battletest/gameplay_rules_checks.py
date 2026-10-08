@@ -25,7 +25,7 @@ def hook(h, name, fn):
     h.pb.hook_register(bank, address, fn, None)
 
 
-def new_game(h, rules):
+def new_game(h, rules, hard=False):
     stage = [None]
     completed = []
     choices = {'InitPokemonTyping': 1 if rules & 1 else 2,
@@ -50,9 +50,16 @@ def new_game(h, rules):
                 h.press('down', hold=4, wait=24)
             h.press('a', hold=4, wait=24)
         elif name == 'InitDifficulty':
-            if 'YES' in text and 'NO' in text:
+            if 'Normal' in text and 'Hard' in text and not ('YES' in text and 'NO' in text):
+                h.tick(40)
+                if m.read('wMenuCursorY') != (2 if hard else 1):
+                    h.press('down', hold=4, wait=24)
+                h.press('a', hold=4, wait=24)
+            elif 'YES' in text and 'NO' in text:
                 h.press('up', hold=4, wait=16)
-            h.press('a', hold=4, wait=20)
+                h.press('a', hold=4, wait=20)
+            else:
+                h.press('a', hold=4, wait=20)
         else:
             if iteration % 12 == 11:
                 h.press('start', hold=4, wait=12)

@@ -58,6 +58,7 @@ NUM_DAILY_WEATHER_AREAS_PER_REGION EQU 4
 	const WEATHER_DAILY_ROUTE_3_SAND_F
 	const WEATHER_DAILY_ROUTE_9_SAND_F
 	const WEATHER_DAILY_ROUTE_22_SAND_F
+	const WEATHER_DAILY_VALID_F ; raw-day cache; old saves leave this bit clear
 
 ; Cherry blossom petals tumble through NUM_PETAL_FRAMES rotation frames,
 ; holding each one for PETAL_SPIN_FRAMES frames.

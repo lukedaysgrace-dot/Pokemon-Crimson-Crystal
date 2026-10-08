@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Audit the Hard Mode exp economy: is there enough EXP in the game to
-actually reach each badge's level cap without grinding wild Pokemon?
+"""Estimate the Hard Mode EXP economy from trainer party definitions.
 
-Compares, per badge segment, the one-time EXP available from trainer battles
-against the EXP a team of N Pokemon needs to climb from the previous cap to
-the current one.
+Buckets parties by their highest level, including rematches and unused teams.
+This is a screening estimate, not a campaign reachability or grinding proof.
 """
 
 import re
@@ -58,14 +56,23 @@ def exp_at(level, rate="GROWTH_MEDIUM_SLOW"):
 
 
 def load_base_stats():
-    """species name -> (base_exp, growth_rate)"""
+    """Canonical species name -> (base_exp, growth_rate), including aliases."""
+    species_text = (ROOT / "constants/pokemon_constants.asm").read_text()
+    species_text = species_text.split("const_def 1", 1)[1].split("NUM_POKEMON", 1)[0]
+    species = re.findall(r"^\s*const\s+(\w+)", species_text, re.MULTILINE)
+    species = [name for name in species if name != "EGG"]
+    includes = re.findall(r'INCLUDE "(data/pokemon/base_stats/[^\"]+)"',
+                          (ROOT / "data/pokemon/base_stats.asm").read_text())
+    if len(species) != len(includes):
+        raise ValueError("Species constants and base-stat table have different lengths")
     out = {}
-    for f in sorted((ROOT / "data/pokemon/base_stats").glob("*.asm")):
+    for name, filename in zip(species, includes):
+        f = ROOT / filename
         text = f.read_text(errors="replace")
         m_exp = re.search(r"db\s+(\d+)\s*;\s*base exp", text)
         m_gr = re.search(r"db\s+(GROWTH_\w+)\s*;\s*growth rate", text)
         if m_exp:
-            out[f.stem.upper()] = (
+            out[name] = (
                 int(m_exp.group(1)),
                 m_gr.group(1) if m_gr else "GROWTH_MEDIUM_SLOW",
             )
@@ -126,7 +133,7 @@ def main():
     unknown = set()
 
     def yield_for(party):
-        """Total EXP a party hands over, gen-2 formula with the trainer 1.5x."""
+        """Total EXP pool with the live Hard Mode trainer multiplier (2x)."""
         total = 0
         for lvl, spc in party:
             if spc not in base:
@@ -150,7 +157,8 @@ def main():
         seg_count[seg] += 1
 
     print(f"Parsed {len(trainers)} trainer parties "
-          f"({postgame} above the Clair cap, treated as post-game/rematch).")
+          f"({postgame} above the final cap of {CAPS[-1]}, excluded).")
+    print("Estimate includes rematch/unused definitions; levels do not prove story availability.")
     if unknown:
         print(f"WARNING: {len(unknown)} unresolved species: "
               f"{sorted(unknown)[:8]}")
@@ -186,14 +194,14 @@ def main():
     print("Notes:")
     print(" - EXP needed uses the Medium Slow curve (the common case for")
     print("   fully-evolved starters and most mid-game lines).")
-    print(" - EXP available counts trainer battles only. Wild encounters are")
-    print("   unbounded, so a ratio below 1.00x means 'the player must grind")
-    print("   wild Pokemon to reach this cap', not 'the cap is unreachable'.")
+    print(" - EXP pools count trainer definitions, not verified one-time battles.")
+    print("   A ratio below 1.00x flags a segment for a campaign-route audit;")
+    print("   it does not prove that grinding is required or a cap unreachable.")
     print(" - Segments are assigned by a party's top level, a proxy for where")
     print("   the trainer is actually fought.")
     print(" - The per-segment ratio treats segments as independent. They are")
     print("   not: a deficit carries forward into the next segment. See the")
-    print("   simulation below for the truer picture.")
+    print("   simulation below models carryover using the same approximate buckets.")
     print()
     report_simulation(trainers, base)
     print(" - Participant division does NOT change these totals: the pool is")
@@ -202,9 +210,7 @@ def main():
 
 
 def simulate(seg_parties, team=6, boost="flat15", skip=0.0):
-    """Walk the game in order, tracking the team's level. More truthful than
-    the per-segment ratio: a deficit carries forward, a surplus does not
-    (EXP is clamped at the cap), so segments are not independent."""
+    """Model carryover through level buckets; this is not a verified story route."""
     def level_of(e):
         l = 5
         while l < 100 and exp_at(l + 1) <= e:
@@ -242,8 +248,8 @@ def report_simulation(trainers, base):
         seg[i].append((top, sum(base[s][0] * lv // 7
                                 for lv, s in party if s in base)))
 
-    print("=== Simulated team level on arrival at each gym ===")
-    print("(deficit vs cap in parentheses; negative = arrives underleveled)")
+    print("=== Simulated team level at each approximate cap segment ===")
+    print("(deficit vs cap; negative = below cap in this model)")
     for team in (4, 6):
         for skip in (0.0, 0.25):
             print(f"\n  team of {team}, {int(skip * 100)}% of trainers skipped")
