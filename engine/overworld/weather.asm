@@ -375,7 +375,7 @@ CheckAzaleaWeather:
 	call IsCurrentMapInWeatherArea
 	jr nz, .no
 	; Sunday, Tuesday, Thursday, and Saturday are rainy.
-	ld a, [wCurDay]
+	call GetWeekday ; wCurDay accumulates past the first week
 	and 1
 	jr nz, .no
 	ld a, OW_WEATHER_RAIN

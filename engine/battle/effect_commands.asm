@@ -2946,7 +2946,10 @@ BattleCommand_CheckFaint:
 
 .u_turn_ko
 	; Skip BuildOpponentRage for a fainted target, but still perform the
-	; pivot before ending the move script.
+	; pivot before ending the move script. The completed move's after-move
+	; events (Life Orb recoil, Moxie, Pickpocket) belong to the attacker
+	; that scored the KO, so resolve them before it switches out.
+	farcall RunAfterMoveAbilities_Core
 	call BattleCommand_UTurn
 	jr .finish
 
