@@ -37,13 +37,15 @@
   assert:
     - enemy.hp < enemy.start_hp
 
-- name: "Ability regression: Technician must not boost a 120 power Barb Barrage"
+- name: "Ability regression: Technician still boosts Barb Barrage against poison"
+  # Showdown: Technician (onBasePowerPriority 30) sees the 60 base power
+  # before Barb Barrage's own onBasePower doubling runs.
   player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [BARB_BARRAGE] }
   enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - enemy.hp == result('review_barb_poison_control')['enemy']['hp']
+    - enemy.hp < result('review_barb_poison_control')['enemy']['hp']
 
 - name: "Ability regression control: Barb Barrage at 60 power without Technician"
   id: review_barb_clean_control

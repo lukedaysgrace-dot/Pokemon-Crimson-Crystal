@@ -6679,7 +6679,7 @@ TechnicianBoostsCurrentHit:
 ; it after every base-power change. damagecalc records the variable-power
 ; moves' computed power (Return, Frustration, Present, Magnitude, Flail,
 ; Reversal, Gyro Ball, Rage Fist; Weather Ball's struct power). Fury Cutter,
-; Rollout, Acrobatics, Avalanche, Hex/Infernal Parade, Barb Barrage and Pursuit instead
+; Rollout, Acrobatics, Avalanche, Hex/Infernal Parade and Pursuit instead
 ; double their damage after stab, so count those doublings here; they are
 ; base-power multipliers in the modern games, which Technician sees.
 ; (Gust/Twister/Stomp/Magnitude-style doubling against a semi-invulnerable
@@ -6728,8 +6728,6 @@ TechnicianBoostsCurrentHit:
 	jr z, .avalanche
 	cp EFFECT_HEX
 	jr z, .hex
-	cp EFFECT_BARB_BARRAGE
-	jr z, .barb_barrage
 	cp EFFECT_PURSUIT
 	ret nz
 	; Pursuit: doubled against a target that is switching out
@@ -6778,15 +6776,6 @@ TechnicianBoostsCurrentHit:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
-	ret z
-	inc c
-	ret
-
-.barb_barrage
-	; doubled only against a poisoned target (including Toxic poison)
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	and 1 << PSN
 	ret z
 	inc c
 	ret
