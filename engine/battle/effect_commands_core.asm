@@ -1165,8 +1165,9 @@ DittoMetalPowder_Core::
 
 	push bc
 	callfar GetOpponentItem
-	ld a, [hl]
-	cp METAL_POWDER
+	; Read the active effect so a copied Klutz suppresses Metal Powder.
+	ld a, b
+	cp HELD_METAL_POWDER
 	pop bc
 	ret nz
 
@@ -2796,6 +2797,8 @@ ThickClubBoostValue_Core:
 	ld d, THICK_CLUB
 	call DoubleStatIfSpeciesHoldingItem
 	ld bc, MAROWAK
+	call DoubleStatIfSpeciesHoldingItem
+	ld bc, MAROWAK_ALOLAN
 	call DoubleStatIfSpeciesHoldingItem
 	pop de
 	pop bc

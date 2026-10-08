@@ -2219,6 +2219,44 @@
         "data/items/attributes.asm"
       ],
       "links": []
+    },
+    {
+      "id": "thick-club-regional-marowak",
+      "category": "items",
+      "title": "Thick Club supports Alolan Marowak",
+      "before": "Thick Club doubles Attack for Cubone and Marowak; Alolan forms are absent.",
+      "after": "Thick Club doubles Attack for Cubone, Marowak and Alolan Marowak. It does not boost special attacks.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/effect_commands_core.asm"
+      ],
+      "links": [
+        {
+          "label": "Alolan Marowak",
+          "href": "pokemon/marowak-alolan.html"
+        }
+      ]
+    },
+    {
+      "id": "metal-powder-gen-2-imposter",
+      "category": "items",
+      "title": "Metal Powder retains its Gen 2 boost after transformation",
+      "before": "Metal Powder gives Ditto 50% more Defense and Special Defense, including after Transform.",
+      "after": "Ditto keeps the 50% Defense and Special Defense bonus after Transform or Imposter. Copied Klutz disables the held-item bonus. The original defensive-overflow bug is fixed.",
+      "comparison": "Gen 2",
+      "kind": "exception",
+      "sources": [
+        "engine/battle/effect_commands_core.asm",
+        "engine/battle/move_effects/transform.asm",
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": [
+        {
+          "label": "Ditto",
+          "href": "pokemon/ditto.html"
+        }
+      ]
     }
   ]
 }
