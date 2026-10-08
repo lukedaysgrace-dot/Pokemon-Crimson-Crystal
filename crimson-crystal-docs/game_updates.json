@@ -562,6 +562,19 @@
       ]
     },
     {
+      "id": "ability-activation-banners",
+      "category": "abilities",
+      "title": "Ability activation banners",
+      "before": "Pokémon have no abilities.",
+      "after": "Battle ability activations use a compact black panel with white text and clipped inner corners. Player banners slide in from the left and enemy banners from the right, joining the screen edge without a gap. The Pokémon’s possessive name and its ability are both left-aligned with matching padding. The panel fits the longer line and resizes when an ability is replaced, such as with Trace. The longest names use the full banner width to remain readable.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/battle/ability_gfx.asm"
+      ],
+      "links": []
+    },
+    {
       "id": "reusable-ability-cap",
       "category": "abilities",
       "title": "Reusable Ability Cap",
