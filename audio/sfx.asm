@@ -2121,6 +2121,22 @@ Sfx_RainDance_Ch8:
 	noise __, 11, $32, $46
 	endchannel
 
+; Weather uses half-length notes so WaitSFX cannot prolong the faster effect.
+Sfx_RainDanceFast:
+	musicheader 1, 8, Sfx_RainDanceFast_Ch8
+
+Sfx_RainDanceFast_Ch8:
+	noise __,  6, $7d, $50
+	noise __,  3, $7d, $4f
+	noise __,  6, $7f, $47
+	noise __,  8, $6e, $22
+	loopchannel 3, Sfx_RainDanceFast_Ch8
+	noise __,  3, $6d, $50
+	noise __,  3, $5d, $4f
+	noise __,  3, $4f, $47
+	noise __,  5, $32, $46
+	endchannel
+
 Sfx_Aeroblast:
 	musicheader 2, 5, Sfx_Aeroblast_Ch5
 	musicheader 1, 8, Sfx_Aeroblast_Ch8

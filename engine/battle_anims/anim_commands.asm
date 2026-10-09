@@ -116,13 +116,11 @@ BattleAnimRunScript:
 
 RunBattleAnimScript:
 	call ClearBattleAnims
+	call BattleAnim_IsWeather
+	jr c, .weatherframe
 
 .playframe
-	call RunBattleAnimCommand
-	call _ExecuteBGEffects
-	call BattleAnim_UpdateOAM_All
-	call PushLYOverrides
-	call BattleAnimRequestPals
+	call .UpdateFrame
 
 ; Speed up Rollout's animation.
 	ld a, [wFXAnimID + 1]
@@ -156,8 +154,64 @@ RunBattleAnimScript:
 	bit BATTLEANIM_STOP_F, a
 	jr z, .playframe
 
+.finish
 	call BattleAnim_ClearOAM
 	ret
+
+.weatherframe
+; Advance the script, particles and background effects twice per video frame.
+; Stop after the first update if the script ended on an odd animation tick.
+	call .UpdateFrame
+	ld a, [wBattleAnimFlags]
+	bit BATTLEANIM_STOP_F, a
+	jr nz, .weatherdelay
+	call .UpdateFrame
+.weatherdelay
+	call BattleAnimDelayFrame
+	ld a, [wBattleAnimFlags]
+	bit BATTLEANIM_STOP_F, a
+	jr z, .weatherframe
+	jr .finish
+
+.UpdateFrame
+	call RunBattleAnimCommand
+	call _ExecuteBGEffects
+	call BattleAnim_UpdateOAM_All
+	call PushLYOverrides
+	jp BattleAnimRequestPals
+
+BattleAnim_IsWeather:
+; Carry for weather moves, entry effects and between-turn weather effects.
+; Compare both bytes so negative effect IDs cannot alias ordinary moves.
+	ld a, [wFXAnimID]
+	ld e, a
+	ld a, [wFXAnimID + 1]
+	ld d, a
+	ld hl, .WeatherAnimations
+	ld b, (.WeatherAnimationsEnd - .WeatherAnimations) / 2
+.loop
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	cp d
+	jr nz, .next
+	ld a, c
+	cp e
+	jr z, .weather
+.next
+	dec b
+	jr nz, .loop
+	and a
+	ret
+.weather
+	scf
+	ret
+
+.WeatherAnimations
+	dw RAIN_DANCE, SUNNY_DAY, SANDSTORM, HAIL
+	dw ANIM_INTRO_RAIN, ANIM_INTRO_SUN, ANIM_INTRO_SANDSTORM, ANIM_INTRO_HAIL
+	dw ANIM_IN_SANDSTORM, ANIM_IN_HAIL
+.WeatherAnimationsEnd
 
 BattleAnimClearHud:
 	call BattleAnimDelayFrame

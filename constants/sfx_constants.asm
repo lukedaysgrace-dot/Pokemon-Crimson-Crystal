@@ -215,6 +215,7 @@
 	const SFX_STAT_DOWN                   ; d1
 	const SFX_GRAVITY                     ; d2
 	const SFX_THUNDERBOLT                 ; d3
+	const SFX_RAIN_DANCE_FAST             ; d4 (weather at 2x animation speed)
 
 ; polishedcrystal-compatible alias
 SFX_BUBBLE_BEAM EQU SFX_BUBBLEBEAM
