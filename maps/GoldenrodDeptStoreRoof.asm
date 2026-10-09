@@ -7,8 +7,6 @@
 	const GOLDENRODDEPTSTOREROOF_POKEFAN_M
 	const GOLDENRODDEPTSTOREROOF_TEACHER
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
-	const GOLDENRODDEPTSTOREROOF_GRAMPS
-	const GOLDENRODDEPTSTOREROOF_GRANNY
 
 GoldenrodDeptStoreRoof_MapScripts:
 	db 0 ; scene scripts
@@ -32,25 +30,12 @@ GoldenrodDeptStoreRoof_MapScripts:
 	iftrue .ChangeClerk
 	setevent EVENT_GOLDENROD_SALE_OFF
 	clearevent EVENT_GOLDENROD_SALE_ON
-	sjump .RooftopCouple
+	return
 
 .ChangeClerk:
 	clearevent EVENT_GOLDENROD_SALE_OFF
 	setevent EVENT_GOLDENROD_SALE_ON
 
-.RooftopCouple:
-; the old couple only visits on SUNDAY nights
-	readvar VAR_WEEKDAY
-	ifnotequal SUNDAY, .CoupleAbsent
-	checktime NITE
-	iffalse .CoupleAbsent
-	appear GOLDENRODDEPTSTOREROOF_GRAMPS
-	appear GOLDENRODDEPTSTOREROOF_GRANNY
-	return
-
-.CoupleAbsent:
-	disappear GOLDENRODDEPTSTOREROOF_GRAMPS
-	disappear GOLDENRODDEPTSTOREROOF_GRANNY
 	return
 
 GoldenrodDeptStoreRoofClerkScript:
@@ -96,40 +81,6 @@ GoldenrodDeptStoreRoofTeacherScript:
 GoldenrodDeptStoreRoofBugCatcherScript:
 	jumptextfaceplayer GoldenrodDeptStoreRoofBugCatcherText
 
-GoldenrodDeptStoreRoofGrampsScript:
-	faceplayer
-	opentext
-	checkevent EVENT_BEAT_PRYCE
-	iffalse .NotWorthy
-	writetext GoldenrodDeptStoreRoofGrampsText
-	waitbutton
-	pokemart MARTTYPE_COUPLE, MART_GOLDENROD_ROOF_GRAMPS
-	closetext
-	end
-
-.NotWorthy:
-	writetext GoldenrodDeptStoreRoofCoupleLockedText
-	waitbutton
-	closetext
-	end
-
-GoldenrodDeptStoreRoofGrannyScript:
-	faceplayer
-	opentext
-	checkevent EVENT_BEAT_PRYCE
-	iffalse .NotWorthy
-	writetext GoldenrodDeptStoreRoofGrannyText
-	waitbutton
-	pokemart MARTTYPE_COUPLE, MART_GOLDENROD_ROOF_GRANNY
-	closetext
-	end
-
-.NotWorthy:
-	writetext GoldenrodDeptStoreRoofCoupleLockedText
-	waitbutton
-	closetext
-	end
-
 Binoculars1:
 	jumptext Binoculars1Text
 
@@ -141,51 +92,6 @@ Binoculars3:
 
 PokeDollVendingMachine:
 	jumptext PokeDollVendingMachineText
-
-GoldenrodDeptStoreRoofGrampsText:
-	text "Ah, a trainer up"
-	line "here so late!"
-
-	para "The wife and I"
-	line "come up on SUNDAY"
-	cont "nights to watch"
-	cont "the stars."
-
-	para "We were quite the"
-	line "battlers in our"
-	cont "day, you know."
-
-	para "Now I just sell"
-	line "gear to promising"
-	cont "youngsters."
-
-	para "Take a look!"
-	done
-
-GoldenrodDeptStoreRoofGrannyText:
-	text "We knew PRYCE when"
-	line "he was making a"
-	cont "name for himself."
-
-	para "You've beaten him?"
-	line "Ho ho! Then take a"
-	cont "look at my wares,"
-	cont "dear."
-	done
-
-GoldenrodDeptStoreRoofCoupleLockedText:
-	text "Oh, hello, dear."
-
-	para "Our goods are only"
-	line "for trainers with"
-	cont "real grit."
-
-	para "Go show PRYCE in"
-	line "MAHOGANY TOWN"
-	cont "what you're made"
-	cont "of, then come"
-	cont "back and see us."
-	done
 
 GoldenrodDeptStoreRoofPokefanFText:
 	text "Whew, I'm tired."
@@ -318,7 +224,7 @@ GoldenrodDeptStoreRoof_MapEvents:
 	bg_event 15,  6, BGEVENT_RIGHT, Binoculars3
 	bg_event  3,  0, BGEVENT_UP, PokeDollVendingMachine
 
-	db 10 ; object events
+	db 8 ; object events
 	object_event  1,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofClerkScript, EVENT_GOLDENROD_SALE_OFF
 	object_event 10,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
 	object_event  2,  1, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofFisherScript, -1
@@ -327,5 +233,3 @@ GoldenrodDeptStoreRoof_MapEvents:
 	object_event  7,  0, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  5,  3, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  1,  6, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF
-	object_event  4,  0, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrampsScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRAMPS
-	object_event  5,  0, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofGrannyScript, EVENT_GOLDENROD_DEPT_STORE_ROOF_GRANNY
