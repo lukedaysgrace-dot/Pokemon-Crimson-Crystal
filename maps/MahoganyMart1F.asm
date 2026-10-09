@@ -10,8 +10,9 @@ MahoganyMart1F_MapScripts:
 	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_NOTHING
 	scene_script .LanceUncoversStaircase ; SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
+	callback MAPCALLBACK_OBJECTS, .Shopkeepers
 
 .DummyScene0:
 	end
@@ -27,6 +28,19 @@ MahoganyMart1F_MapScripts:
 
 .ShowStairs:
 	changeblock 6, 2, $1e ; stairs
+	return
+
+.Shopkeepers:
+; Also refresh old saves whose hideout was cleared before the shop moved.
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
+	iffalse .HideGranny
+	setevent EVENT_MAHOGANY_MART_ROCKETS
+	appear MAHOGANYMART1F_GRANNY
+	return
+
+.HideGranny:
+	clearevent EVENT_MAHOGANY_MART_ROCKETS
+	disappear MAHOGANYMART1F_GRANNY
 	return
 
 MahogayMart1FPharmacistScript:
@@ -106,9 +120,42 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 MahogayMart1FGrannyScript:
 	faceplayer
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
+.ChooseStock:
+	writetext MahoganyMart1FGrannyWelcomeText
+	loadmenu .MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Supplies
+	ifequal 2, .HeldItems
 	closetext
 	end
+
+.Supplies:
+	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
+	sjump .ChooseStock
+
+.HeldItems:
+	pokemart MARTTYPE_HELD_ITEMS, MART_MAHOGANY_HELD_ITEMS
+	sjump .ChooseStock
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 15, 8
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 3 ; items
+	db "SUPPLIES@"
+	db "HELD ITEMS@"
+	db "CANCEL@"
+
+MahoganyMart1FGrannyWelcomeText:
+	text "Welcome, dear!"
+	para "Would you like"
+	line "supplies or gear?"
+	done
 
 MovementData_0x6c3f6:
 	fix_facing
@@ -231,8 +278,8 @@ MahoganyMart1F_MapEvents:
 	db 0 ; bg events
 
 	db 5 ; object events
-	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FPharmacistScript, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FBlackBeltScript, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FPharmacistScript, EVENT_MAHOGANY_MART_ROCKETS
+	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FBlackBeltScript, EVENT_MAHOGANY_MART_ROCKETS
 	object_event  4,  6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FGrannyScript, EVENT_MAHOGANY_MART_OWNERS

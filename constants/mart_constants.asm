@@ -5,7 +5,7 @@
 	const MARTTYPE_BARGAIN
 	const MARTTYPE_PHARMACY
 	const MARTTYPE_ROOFTOP
-	const MARTTYPE_COUPLE
+	const MARTTYPE_HELD_ITEMS
 
 ; Marts indexes (see data/items/marts.asm)
 	const_def
@@ -43,5 +43,4 @@
 	const MART_MT_MOON
 	const MART_INDIGO_PLATEAU
 	const MART_UNDERGROUND
-	const MART_GOLDENROD_ROOF_GRAMPS
-	const MART_GOLDENROD_ROOF_GRANNY
+	const MART_MAHOGANY_HELD_ITEMS

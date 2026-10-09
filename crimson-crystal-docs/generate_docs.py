@@ -865,20 +865,29 @@ class Builder:
           add(location,'Surf','Any',em.group(1),em.group(2),p,rate,chance)
           slot+=1
 
-    # Bug-Catching Contest. Entries are probability, species, min level, max level.
-    p=root/'bug_contest_mons.asm'
-    if p.exists():
+    # Contest entries use dbwbb: probability, species, min level, max level.
+    # The -1 terminal species receives the remaining probability mass.
+    for filename,location,method,condition in (
+      ('bug_contest_mons.asm','NATIONAL_PARK','Bug-Catching Contest','Tuesday, Thursday or Saturday contest'),
+      ('fishing_contest_mons.asm','OLIVINE_FISHING_COVE','Fishing Contest (any rod)','Friday contest'),
+    ):
+      p=root/filename
+      if not p.exists(): continue
+      used_chance=0
       for line_no,raw in enumerate(txt(p).splitlines(),1):
         clean=strip(raw)
         m=re.match(
-          r'^(?:dbbw|dbbbw|dbw)\s+([^,]+)\s*,\s*([A-Z0-9_]+)\s*,\s*(\d+)(?:\s*,\s*(\d+))?',
+          r'^(?:dbwbb|dbbw|dbbbw|dbw)\s+([^,]+)\s*,\s*([A-Z0-9_]+)\s*,\s*(\d+)(?:\s*,\s*(\d+))?',
           clean,re.I)
         if not m: continue
         chance=parse_percent(m.group(1))
+        if chance==-1: chance=100-used_chance
+        used_chance+=chance
+        assert 0<chance<=100 and used_chance<=100, f'{filename}:{line_no}: invalid contest probability'
         min_level=int(m.group(3)); max_level=int(m.group(4) or min_level)
         for level in sorted(set((min_level,max_level))):
-          add('NATIONAL_PARK','Bug-Catching Contest','Any',level,m.group(2),p,
-              chance=chance,condition='Contest')
+          add(location,method,'Any',level,m.group(2),p,
+              chance=chance,condition=condition)
 
     # Parse Headbutt/Rock Smash sets.
     tree_sets={}; psets=root/'treemons.asm'

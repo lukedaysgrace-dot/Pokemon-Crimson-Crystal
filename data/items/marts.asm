@@ -34,8 +34,7 @@ Marts:
 	dw MartMtMoon
 	dw MartIndigoPlateau
 	dw MartUnderground
-	dw MartGoldenrodRoofGramps
-	dw MartGoldenrodRoofGranny
+	dw MartMahoganyHeldItems
 .End
 
 MartCherrygrove:
@@ -396,17 +395,13 @@ MartUnderground:
 	db REVIVAL_HERB
 	db -1 ; end
 
-MartGoldenrodRoofGramps:
-	db 5 ; # items
+MartMahoganyHeldItems:
+	db 10 ; # items
 	db EVIOLITE
 	db ROCKY_HELMET
 	db AIR_BALLOON
 	db MUSCLE_BAND
 	db WISE_GLASSES
-	db -1 ; end
-
-MartGoldenrodRoofGranny:
-	db 5 ; # items
 	db EXPERT_BELT
 	db FLAME_ORB
 	db TOXIC_ORB

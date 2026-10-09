@@ -22,7 +22,7 @@ OpenMartDialog::
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
-	dw CoupleShop
+	dw HeldItemShop
 
 MartDialog:
 	ld a, MARTTYPE_STANDARD
@@ -73,7 +73,7 @@ Pharmacist:
 	call MartTextbox
 	ret
 
-CoupleShop:
+HeldItemShop:
 ; buy-only mart with no greeting; the NPC script provides its own intro text
 	call FarReadMart
 	call LoadStandardMenuHeader
@@ -258,7 +258,7 @@ GetMartItemPrice:
 	push hl
 	ld [wCurItem], a
 	farcall GetItemPrice
-	call ApplyCoupleMarkup
+	call ApplyHeldItemMarkup
 	pop hl
 
 GetMartPrice:
@@ -405,7 +405,7 @@ GetMartDialogGroup:
 	dwb .BargainShopPointers, 1
 	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
-	dwb .StandardMartPointers, 0 ; MARTTYPE_COUPLE
+	dwb .StandardMartPointers, 0 ; MARTTYPE_HELD_ITEMS
 
 .StandardMartPointers:
 	dw Text_Mart_HowMany
@@ -512,7 +512,7 @@ BuyMenuLoop:
 
 StandardMartAskPurchaseQuantity:
 	ld a, [wMartType]
-	cp MARTTYPE_COUPLE
+	cp MARTTYPE_HELD_ITEMS
 	ld a, 99
 	jr nz, .got_max
 	; 33 x the marked-up price still fits the 6-digit subtotal display
@@ -521,18 +521,18 @@ StandardMartAskPurchaseQuantity:
 	ld [wItemQuantityBuffer], a
 	ld a, MARTTEXT_HOW_MANY
 	call LoadBuyMenuText
-	; charge the same price the list shows (see ApplyCoupleMarkup)
+	; charge the same price the list shows (see ApplyHeldItemMarkup)
 	farcall GetItemPrice
-	call ApplyCoupleMarkup
+	call ApplyHeldItemMarkup
 	farcall RooftopSale_SelectQuantityToBuy
 	call ExitMenu
 	ret
 
-ApplyCoupleMarkup:
-; The retired rooftop battlers (MARTTYPE_COUPLE) charge ten times the normal
+ApplyHeldItemMarkup:
+; Mahogany held-item stock charges ten times the normal
 ; item price. de = price in, marked-up price out. Clobbers a and hl.
 	ld a, [wMartType]
-	cp MARTTYPE_COUPLE
+	cp MARTTYPE_HELD_ITEMS
 	ret nz
 	sla e
 	rl d
