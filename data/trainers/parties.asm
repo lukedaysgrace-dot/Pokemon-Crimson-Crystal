@@ -2993,6 +2993,24 @@ GruntMGroup:
 	dw SCRAGGY
 	db -1 ; end
 
+	next_list_item ; GRUNTM (17) GRUNTM_ROUTE43_TOLL1 - Route 43 Gate
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 34
+	dw RATICATE_ALOLAN
+	db 34
+	dw KOFFING
+	db -1 ; end
+
+	next_list_item ; GRUNTM (18) GRUNTM_ROUTE43_TOLL2 - Route 43 Gate
+	db "GRUNT@", TRAINERTYPE_NORMAL
+	db 34
+	dw GOLBAT
+	db 34
+	dw GRIMER_ALOLAN
+	db 35
+	dw PERSIAN_ALOLAN
+	db -1 ; end
+
 	end_list_items
 
 GentlemanGroup:

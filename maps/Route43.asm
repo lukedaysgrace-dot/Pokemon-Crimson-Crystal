@@ -15,6 +15,8 @@ Route43_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
+	checkevent EVENT_ROUTE_43_GATE_ROCKETS
+	iftrue .NoRockets
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
 	setmapscene ROUTE_43_GATE, SCENE_DEFAULT
