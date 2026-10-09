@@ -120025,13 +120025,13 @@
       "Sp. Def": 55
     },
     "original_stats_source": "modern main games",
-    "sprite_size": 48,
+    "sprite_size": 56,
     "back": "assets/pokemon/morgrem.back.png",
     "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/morgrem.sheet.png",
-      "size": 48,
-      "frames": 7,
+      "size": 56,
+      "frames": 8,
       "main": [
         [
           0,
@@ -120090,7 +120090,7 @@
           6
         ],
         [
-          6,
+          7,
           6
         ],
         [
@@ -120098,7 +120098,7 @@
           6
         ],
         [
-          6,
+          7,
           6
         ],
         [
