@@ -21,13 +21,15 @@ Route43Gate_MapScripts:
 	end
 
 .CheckIfRockets:
+	checkevent EVENT_ROUTE_43_GATE_ROCKETS
+	iftrue .NoRockets
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43, 0 ; Route 43 does not have a scene variable
+	setscene SCENE_DEFAULT
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43, 1 ; Route 43 does not have a scene variable
+	setscene SCENE_FINISHED
 	return
 
 .RocketTakeover:
@@ -47,7 +49,8 @@ RocketScript_Southbound:
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouSouth
 	opentext
 	writetext RocketText_TollFee
-	buttonsound
+	yesorno
+	iffalse RocketScript_RefuseToll
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollSouth
 	sjump RocketScript_YoureBrokeSouth
@@ -79,7 +82,8 @@ RocketScript_Northbound:
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouNorth
 	opentext
 	writetext RocketText_TollFee
-	buttonsound
+	yesorno
+	iffalse RocketScript_RefuseToll
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollNorth
 	sjump RocketScript_YoureBrokeNorth
@@ -100,6 +104,40 @@ RocketScript_ShakeDownNorth:
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
 	setscene SCENE_FINISHED
+	special RestartMapMusic
+	end
+
+RocketScript_RefuseToll:
+	writetext RocketText_RefusedToll
+	waitbutton
+	closetext
+	setscene SCENE_FINISHED
+	setlasttalked ROUTE43GATE_ROCKET1
+	winlosstext RocketText_FirstRocketBeaten, 0
+	loadtrainer GRUNTM, GRUNTM_ROUTE43_TOLL1
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext RocketText_SecondRocketChallenge
+	waitbutton
+	closetext
+	setlasttalked ROUTE43GATE_ROCKET2
+	winlosstext RocketText_SecondRocketBeaten, 0
+	loadtrainer GRUNTM, GRUNTM_ROUTE43_TOLL2
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext RocketText_RunningAway
+	waitbutton
+	closetext
+	applymovement ROUTE43GATE_ROCKET1, RocketRunsAway
+	playsound SFX_EXIT_BUILDING
+	disappear ROUTE43GATE_ROCKET1
+	applymovement ROUTE43GATE_ROCKET2, RocketRunsAway
+	playsound SFX_EXIT_BUILDING
+	disappear ROUTE43GATE_ROCKET2
+	setevent EVENT_ROUTE_43_GATE_ROCKETS
+	waitsfx
 	special RestartMapMusic
 	end
 
@@ -192,12 +230,59 @@ Rocket2Script_LetsYouPassNorth:
 	big_step UP
 	step_end
 
+RocketRunsAway:
+	rept 6
+	big_step UP
+	endr
+	step_end
+
 RocketText_TollFee:
 	text "Hold it there,"
 	line "kiddo!"
 
 	para "The toll is ¥1000"
 	line "to go through."
+
+	para "you gonna pay up?"
+	done
+
+RocketText_RefusedToll:
+	text "Wrong answer."
+
+	para "We'll crush your"
+	line "team, then empty"
+	cont "your pockets."
+	done
+
+RocketText_FirstRocketBeaten:
+	text "Tch… Lucky hit."
+	line "You're not clear"
+	cont "of us yet."
+	done
+
+RocketText_SecondRocketChallenge:
+	text "He was going easy."
+
+	para "I'll leave your"
+	line "#MON crawling."
+
+	para "You should have"
+	line "paid while you"
+	cont "had the chance."
+	done
+
+RocketText_SecondRocketBeaten:
+	text "No… Both of us?"
+	line "Beaten by a kid?"
+	done
+
+RocketText_RunningAway:
+	text "Keep your money."
+
+	para "But TEAM ROCKET"
+	line "remembers faces."
+
+	para "Come on! Move!"
 	done
 
 RocketText_ThankYou:

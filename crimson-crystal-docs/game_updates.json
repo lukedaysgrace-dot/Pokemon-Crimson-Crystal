@@ -2270,6 +2270,21 @@
           "href": "pokemon/ditto.html"
         }
       ]
+    },
+    {
+      "id": "route-43-rocket-toll",
+      "category": "world",
+      "title": "Refuse the Rocket toll",
+      "before": "The Route 43 gate Rockets automatically take ₽1,000, or all your remaining money, when you pass through.",
+      "after": "The toll has a Yes/No choice from either entrance. Yes pays the original toll and the Rockets return to their posts. No starts two consecutive battles, one against each Rocket, with no healing between them. Win both and, after their dialogue, each Rocket runs six steps straight north from the confrontation and disappears permanently, leaving the gate free. Losing either battle leaves the Rockets in place for another attempt. Clearing the Rocket Hideout still removes them normally.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/Route43Gate.asm",
+        "maps/Route43.asm",
+        "data/trainers/parties.asm"
+      ],
+      "links": []
     }
   ]
 }
