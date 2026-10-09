@@ -3005,7 +3005,7 @@ BattleAnim_RainDance_PC3:
 	anim_1gfx ANIM_GFX_WATER
 	anim_bgp $f8
 	anim_obp0 $7c
-	anim_sound 0, 1, SFX_RAIN_DANCE
+	anim_sound 0, 1, SFX_RAIN_DANCE_FAST
 	anim_obj ANIM_OBJ_RAIN,  11, 0,   0, 0, $0
 	anim_wait 8
 	anim_obj ANIM_OBJ_RAIN,  11, 0,   0, 0, $1
