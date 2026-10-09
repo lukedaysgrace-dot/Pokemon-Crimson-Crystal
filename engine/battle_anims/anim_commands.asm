@@ -531,8 +531,11 @@ SetBattleAnimPal:
 	jr z, .enemy_mon
 	; fallthrough
 .player_mon
-	; backpic bg palette + player object palette
+	; The middle of the backpic shares the move-info palette. Recolor it
+	; with the rest of the battler, as Polished Crystal does.
 	ld d, PAL_BATTLE_BG_PLAYER
+	call .set_one
+	ld d, PAL_BATTLE_BG_TYPE_CAT
 	call .set_one
 	ld d, PAL_BATTLE_OB_PLAYER + 8
 	jr .set_one

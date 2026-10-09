@@ -298,6 +298,12 @@ live and completed messages, and restored menus with ten-character names.
 glyph monitor remains active throughout each scenario. Images are saved to
 `.venv/visual-matrix/` for visual inspection.
 
+`stat_animation_checks.py` checks all seven Polished Crystal stat colors on
+both battlers, for raises and drops of one and two stages (56 scenarios).
+It checks the entire backpic's shared palettes, the matching fade, sound
+effect repetitions, and restoration of battler colors. Captures are saved
+to `.tmpbuild/stat-animation-checks/`.
+
 `cove_sprite_checks.py` loads the real fishing cove at four viewpoints in
 visitor and two contest-roster states (12 views, 216 map/roster/allocation checks).
 The sprite audit also checks all 462 possible contest candidate rosters
