@@ -2108,7 +2108,9 @@
 	const EVENT_RED2_IN_PALLET
 	const EVENT_SILVER_CAVE_OUTSIDE_AGATHA
 	const EVENT_SILVER_CAVE_OUTSIDE_LORELEI
-	const EVENT_GOLDENROD_DEPT_STORE_ROOF_GRAMPS
+; Reuse the retired rooftop seller bit; the shop callback refreshes old saves.
+	const EVENT_MAHOGANY_MART_ROCKETS
+; Retired rooftop granny bit: reserve the ID for existing saves.
 	const EVENT_GOLDENROD_DEPT_STORE_ROOF_GRANNY
 	const EVENT_VIRIDIAN_FOREST_ANTIDOTE
 	const EVENT_VIRIDIAN_FOREST_POTION

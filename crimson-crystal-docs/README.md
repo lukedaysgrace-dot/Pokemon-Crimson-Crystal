@@ -109,3 +109,7 @@ generated from the current game data. Builds do not require network access.
 Keep Pokémon-specific redesigns in the Pokémon Changes tab; keep general game
 rules, modernization and custom exceptions in Game Updates. Both pages link
 to each other, and every generated page includes both navigation tabs.
+
+The separate [TM and held-item list](../ITEM_LOCATIONS.md) is kept outside the
+website. Refresh it with `python tools/generate_item_locations.py` from the
+repository root; the website generator does not publish or regenerate it.
