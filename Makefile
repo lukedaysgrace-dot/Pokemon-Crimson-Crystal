@@ -76,6 +76,7 @@ test-complete: pokecrystal_debug.gbc
 	python3 tools/battletest/probability_checks.py
 	python3 tools/battletest/hp_item_update_checks.py
 	python3 tools/battletest/ui_checks.py
+	python3 tools/battletest/stat_animation_checks.py
 	python3 tools/battletest/visual_matrix.py
 	python3 tools/battletest/cove_sprite_checks.py
 	python3 tools/battletest/tower_checks.py

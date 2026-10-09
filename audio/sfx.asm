@@ -5056,9 +5056,8 @@ Sfx_AbilitySlideout:
 Sfx_AbilitySlideout_Ch5:
 	dutycycle $1
 	soundinput $9f ; pitch sweep: time 1, down, shift 7
-	sound __, 3, $e8, $07ff
-	sound __, 16, $e8, $07e0
-	sound __, 7, $b8, $07e0
+	square_note 3, 14, 8, 2047
+	square_note 23, 14, 8, 2016
 	soundinput $8 ; pitch sweep off
 	endchannel
 
@@ -5067,7 +5066,6 @@ Sfx_StatUp:
 	musicheader 1, 5, Sfx_StatUp_Ch5
 
 Sfx_StatUp_Ch5:
-	dutycycle $2
 	sound __, 2, $e8, 1900
 	sound __, 2, $e8, 1700
 	sound __, 2, $e8, 1910
@@ -5097,7 +5095,6 @@ Sfx_StatDown:
 	musicheader 1, 5, Sfx_StatDown_Ch5
 
 Sfx_StatDown_Ch5:
-	dutycycle $2
 	sound __, 2, $e8, 2000
 	sound __, 2, $e8, 1800
 	sound __, 2, $e8, 1990
