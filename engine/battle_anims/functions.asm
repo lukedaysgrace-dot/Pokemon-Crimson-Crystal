@@ -122,31 +122,10 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_WeatherBallArc ; 6a
 
 BattleAnimFunction_Stat:
-; Stat up/down bars (ported from Polished Crystal).
-; Moves the object vertically 3 pixels per frame.
-; Param >= $20 moves up, otherwise down.
-	call BattleAnim_AnonJumptable
-.anon_dw
-	dw .zero
-	dw .one
-.zero
-	call BattleAnim_IncAnonJumptableIndex
-.one
-	ld hl, BATTLEANIMSTRUCT_PARAM
-	add hl, bc
-	ld a, [hl]
-	ld hl, BATTLEANIMSTRUCT_YOFFSET
-	add hl, bc
-	cp $20
-	ld a, [hl]
-	jr c, .down
-	sub 3
-	ld [hl], a
-	ret
-.down
-	add 3
-	ld [hl], a
-	ret
+; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.
+; The parameter selects the direction; the first frame starts at offset 0.
+	lb de, 6, 80
+	jp BattleAnimFunc_DoRadialMoveOut
 
 BattleAnimFunction_Null:
 	call BattleAnim_AnonJumptable
