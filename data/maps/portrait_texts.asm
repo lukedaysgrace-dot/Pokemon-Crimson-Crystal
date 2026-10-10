@@ -1310,6 +1310,39 @@ PortraitTexts:
 	db 0
 	dba ReceivedBoulderBadgeText
 	db 0
+; RadioTower4F
+	dba Executivem2AfterBattleText
+	db PORTRAIT_PROTON_MAD
+	dba Executivem2SeenText
+	db PORTRAIT_PROTON
+	dba GruntF4AfterBattleText
+	db 0
+	dba GruntF4SeenText
+	db 0
+	dba GruntM10AfterBattleText
+	db 0
+	dba GruntM10SeenText
+	db 0
+	dba RadioTower4FDJMaryText
+	db 0
+	dba RadioTower4FDJMaryText_After
+	db 0
+	dba RadioTower4FDJMaryText_ClearedRockets
+	db 0
+	dba RadioTower4FDJMaryText_GivePinkBow
+	db 0
+	dba RadioTower4FFisherText
+	db 0
+	dba RadioTower4FProductionSignText
+	db 0
+	dba RadioTower4FStudio2SignText
+	db 0
+	dba RadioTowerMeowthText
+	db 0
+	dba ScientistRichAfterBattleText
+	db 0
+	dba ScientistRichSeenText
+	db 0
 ; RadioTower5F
 	dba BenText
 	db 0
@@ -1555,6 +1588,33 @@ PortraitTexts:
 	db PORTRAIT_RED
 	dba Red.Text3
 	db PORTRAIT_RED
+; SlowpokeWellB1F
+	dba GruntF15AfterBattleText
+	db 0
+	dba GruntF15SeenText
+	db 0
+	dba GruntF1AfterBattleText
+	db 0
+	dba GruntF1SeenText
+	db 0
+	dba GruntM1SeenText
+	db PORTRAIT_PROTON
+	dba GruntM2AfterBattleText
+	db 0
+	dba GruntM2SeenText
+	db 0
+	dba KurtLeaveSlowpokeWellText
+	db 0
+	dba SlowpokeWellB1FKurtText
+	db 0
+	dba SlowpokeWellB1FSlowpokeMailText
+	db 0
+	dba SlowpokeWellB1FSlowpokeWithMailText
+	db 0
+	dba SlowpokeWellB1FTaillessSlowpokeText
+	db 0
+	dba TrainerGruntM1WhenTalkText
+	db PORTRAIT_PROTON_MAD
 ; SproutTower3F
 	dba SageJinAfterBattleText
 	db 0
@@ -1784,6 +1844,31 @@ PortraitTexts:
 	db 0
 	dba VioletGymSignText
 	db 0
+; VioletGym
+	dba BirdKeeperAbeAfterBattleText
+	db 0
+	dba BirdKeeperAbeSeenText
+	db 0
+	dba BirdKeeperRodAfterBattleText
+	db 0
+	dba BirdKeeperRodSeenText
+	db 0
+	dba FalknerFightDoneText
+	db PORTRAIT_FALKNER
+	dba FalknerIntroText
+	db PORTRAIT_FALKNER
+	dba FalknerRematchChallengeText
+	db PORTRAIT_FALKNER
+	dba FalknerTMMudSlapText
+	db PORTRAIT_FALKNER
+	dba FalknerZephyrBadgeText
+	db PORTRAIT_FALKNER
+	dba ReceivedZephyrBadgeText
+	db 0
+	dba VioletGymGuyText
+	db 0
+	dba VioletGymGuyWinText
+	db 0
 ; ViridianGym
 	dba CooltrainermCyanideAfterBattleText
 	db 0
@@ -1815,6 +1900,10 @@ PortraitTexts:
 	dba WillScript_WillDefeatText
 	db PORTRAIT_WILL
 ; Shared dialogue printed by specials or farwritetext
+	dba Executivem2BeatenText
+	db PORTRAIT_PROTON_MAD
+	dba GruntM1BeatenText
+	db PORTRAIT_PROTON_MAD
 	dba OakRating01
 	db PORTRAIT_OAK
 	dba OakRating02
