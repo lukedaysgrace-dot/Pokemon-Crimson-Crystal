@@ -43,6 +43,7 @@ SpritePortraits:
 	db SPRITE_ELM,         PORTRAIT_ELM
 	db SPRITE_ERIKA,       PORTRAIT_ERIKA
 	db SPRITE_MYSTICALMAN, PORTRAIT_EUSINE ; Eusine's overworld sprite
+	db SPRITE_FALKNER,     PORTRAIT_FALKNER
 	db SPRITE_GREEN,       PORTRAIT_GREEN
 	db SPRITE_JANINE,      PORTRAIT_JANINE
 	db SPRITE_JASMINE,     PORTRAIT_JASMINE
@@ -54,6 +55,7 @@ SpritePortraits:
 	db SPRITE_MISTY,       PORTRAIT_MISTY
 	db SPRITE_MORTY,       PORTRAIT_MORTY
 	db SPRITE_OAK,         PORTRAIT_OAK
+	db SPRITE_PROTON,      PORTRAIT_PROTON
 	db SPRITE_PRYCE,       PORTRAIT_PRYCE
 	db SPRITE_RED,         PORTRAIT_RED
 	db SPRITE_SABRINA,     PORTRAIT_SABRINA
@@ -99,6 +101,9 @@ TrainerPortraitPointers:
 	dba TrainerPortraitWillGFX
 	dba TrainerPortraitCrystalGFX
 	dba TrainerPortraitWhitneyCryingGFX
+	dba TrainerPortraitFalknerGFX
+	dba TrainerPortraitProtonGFX
+	dba TrainerPortraitProtonMadGFX
 	assert (@ - TrainerPortraitPointers) / 3 == NUM_TRAINER_PORTRAITS
 
 TrainerPortrait_SetUpTextbox::
@@ -724,6 +729,7 @@ TrainerPortraitClairGFX:      INCBIN "gfx/trainer_portraits/clair.portrait"
 TrainerPortraitElmGFX:        INCBIN "gfx/trainer_portraits/elm.portrait"
 TrainerPortraitErikaGFX:      INCBIN "gfx/trainer_portraits/erika.portrait"
 TrainerPortraitEusineGFX:     INCBIN "gfx/trainer_portraits/eusine.portrait"
+TrainerPortraitFalknerGFX:    INCBIN "gfx/trainer_portraits/falkner.portrait"
 TrainerPortraitGreenGFX:      INCBIN "gfx/trainer_portraits/green.portrait"
 TrainerPortraitJanineGFX:     INCBIN "gfx/trainer_portraits/janine.portrait"
 
@@ -748,3 +754,9 @@ TrainerPortraitWhitneyGFX:    INCBIN "gfx/trainer_portraits/whitney.portrait"
 TrainerPortraitWillGFX:       INCBIN "gfx/trainer_portraits/will.portrait"
 TrainerPortraitCrystalGFX:    INCBIN "gfx/trainer_portraits/crystal.portrait"
 TrainerPortraitWhitneyCryingGFX: INCBIN "gfx/trainer_portraits/whitney_crying.portrait"
+
+
+SECTION "Trainer Portrait Graphics 3", ROMX
+
+TrainerPortraitProtonGFX:    INCBIN "gfx/trainer_portraits/proton.portrait"
+TrainerPortraitProtonMadGFX: INCBIN "gfx/trainer_portraits/proton_mad.portrait"
