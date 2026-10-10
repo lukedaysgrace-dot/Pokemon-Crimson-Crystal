@@ -73,6 +73,9 @@ OVERRIDES = {
 	# This text repeats while EVENT_MADE_WHITNEY_CRY is set. The stopped-
 	# crying branch uses her regular portrait, including the badge dialogue.
 	'WhitneyYouMeanieText': 'WHITNEY_CRYING',
+	# Proton is furious after losing at the Well and the Radio Tower.
+	'TrainerGruntM1WhenTalkText': 'PROTON_MAD',
+	'Executivem2AfterBattleText': 'PROTON_MAD',
 }
 
 # "NAME:" prefixes that mean a portrait character, beyond the portrait names.
@@ -103,6 +106,13 @@ SHARED_SPEAKERS.update({label: 'CRYSTAL' for label in (
 SHARED_SPEAKERS.update({label: 'WHITNEY_CRYING' for label in (
 	'WhitneyShouldntBeSoSeriousText',
 	'WhitneyRematchWinText',
+)})
+
+# Proton's defeat lines are printed in battle by PrintWinLossText, before
+# his post-battle map dialogue. Both encounters switch to the mad portrait.
+SHARED_SPEAKERS.update({label: 'PROTON_MAD' for label in (
+	'GruntM1BeatenText',
+	'Executivem2BeatenText',
 )})
 
 SPEAKER_FIRST = {
