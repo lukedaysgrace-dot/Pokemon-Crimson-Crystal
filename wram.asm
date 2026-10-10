@@ -3005,8 +3005,8 @@ wStarterShinyFlags:: db
 ; bit 7: set once the rolls have been made
 ; bits 0-5: shiny flag per starter (see ElmStarterShinyTable)
 wGameplayRules:: db
-; bit 0: use original Pokemon typings instead of the revamped typings
-; bit 1: use original base stats instead of the updated base stats
+; bit 0: use original Pokemon typings instead of the enhanced typings
+; bit 1: use original base stats instead of the enhanced base stats
 ; bit 2: Pokemon abilities are turned off (GetAbility returns NO_ABILITY)
 	ds 4
 

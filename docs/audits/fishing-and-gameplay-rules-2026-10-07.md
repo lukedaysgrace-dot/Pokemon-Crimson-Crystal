@@ -77,7 +77,7 @@ and audible playback quality are not covered.
 
 ### New-game rules coverage
 
-Every combination of Original/Revamped types, Original/Updated stats, and
+Every combination of Original/Enhanced types, Original/Enhanced stats, and
 abilities On/Off is selected through the actual New Game menus at Normal
 difficulty. Each starts with an empty party, saves through the start menu,
 boots a new emulator from private cartridge SRAM, chooses Continue, and

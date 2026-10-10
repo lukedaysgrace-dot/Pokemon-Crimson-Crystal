@@ -713,8 +713,8 @@ Text_SelectPokemonStats::
 	line "base stats."
 	para "Original: modern"
 	line "main-game stats."
-	para "Updated: this"
-	line "game's buffs."
+	para "Updated:"
+	line "Crimson's buffs."
 	done
 
 Text_SelectPokemonAbilities::

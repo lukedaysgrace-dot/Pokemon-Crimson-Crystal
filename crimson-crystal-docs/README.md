@@ -75,9 +75,9 @@ git commit -m "Update documentation"
 git push
 ```
 
-## Original / Updated rules and the Changes page
+## Original / Enhanced rules and the Changes page
 
-Each Pokémon page compares the Original and Updated typings and six base stats,
+Each Pokémon page compares the Original and Enhanced typings and six base stats,
 including numerical differences and total stats. These values come from the same
 tables the game loads for its new-game choices: `original_stats.asm` and the two
 typing tables in `engine/pokemon/gameplay_rules.asm`. Custom species keep their
