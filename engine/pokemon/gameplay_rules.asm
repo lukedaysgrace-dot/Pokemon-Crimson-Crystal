@@ -1,5 +1,5 @@
 ; Per-save Pokemon rules selected when starting a new game.
-; The ROM's base-data files remain the updated ruleset. These routines replace
+; The ROM's base-data files remain the enhanced ruleset. These routines replace
 ; types for either selection and replace stats only for the original selection.
 
 _GetBaseData::

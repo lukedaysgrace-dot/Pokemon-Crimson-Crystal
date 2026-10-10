@@ -54,7 +54,7 @@
     {
       "id": "original-or-updated-typings",
       "category": "rules",
-      "title": "Original or Updated typings",
+      "title": "Original or Enhanced typings",
       "before": "Species use their Gen 2 typings.",
       "after": "Choose modern main-game typings or Crimson Crystal’s redesigned typings. This is independent of the stat choice.",
       "comparison": "Gen 2",
@@ -72,9 +72,9 @@
     {
       "id": "original-or-updated-base-stats",
       "category": "rules",
-      "title": "Original or Updated base stats",
+      "title": "Original or Enhanced base stats",
       "before": "Species use their Gen 2 base stats.",
-      "after": "Original uses modern main-game base stats for every official species and starter clone. Updated uses this game’s balance changes. Custom species keep their own baseline.",
+      "after": "Original uses modern main-game base stats for every official species and starter clone. Enhanced uses this game’s balance changes. Custom species keep their own baseline.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [
@@ -1041,7 +1041,7 @@
       "category": "training",
       "title": "Redesigned Pokémon stats and typings",
       "before": "The original 251-species designs are used.",
-      "after": "The balance guide lists every difference between modern Original and this game’s Updated stats and typings, including prior redesigns and the latest buffs.",
+      "after": "The balance guide lists every difference between modern Original and this game’s Enhanced stats and typings, including prior redesigns and the latest buffs.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [

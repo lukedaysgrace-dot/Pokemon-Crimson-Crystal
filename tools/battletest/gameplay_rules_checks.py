@@ -42,7 +42,7 @@ def new_game(h, rules, hard=False):
             h.tick(120)
             return completed
         name = stage[0]
-        if name in choices and (('Original' in text and ('Revamped' in text or 'Updated' in text))
+        if name in choices and (('Original' in text and 'Enhanced' in text)
                                 or ('On' in text and 'Off' in text)):
             # Menu drawing and its default cursor must finish before input.
             h.tick(40)

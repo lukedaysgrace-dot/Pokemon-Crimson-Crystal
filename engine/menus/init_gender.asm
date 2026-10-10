@@ -542,7 +542,7 @@ InitPokemonTyping:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
 	db "Original@"
-	db "Revamped@"
+	db "Enhanced@"
 
 TextJump_SelectPokemonTyping:
 	text_far Text_SelectPokemonTyping
@@ -586,7 +586,7 @@ InitPokemonStats:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
 	db "Original@"
-	db "Updated@"
+	db "Enhanced@"
 
 TextJump_SelectPokemonStats:
 	text_far Text_SelectPokemonStats

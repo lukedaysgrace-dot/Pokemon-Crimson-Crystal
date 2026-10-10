@@ -418,7 +418,7 @@ class Builder:
     return out
 
   def gameplay_rules(self, mons):
-    """Match the Original / Updated choices actually loaded by the ROM."""
+    """Match the Original / Enhanced choices actually loaded by the ROM."""
     source=txt(self.r/'engine/pokemon/gameplay_rules.asm')
     def type_table(label):
       block=source.split(label+':',1)[1].split('\tdw 0',1)[0]
@@ -1267,7 +1267,7 @@ class Builder:
     egg=[('Egg',c) for c in m['egg_moves']]
     name=form_label(page_mon["const"],page_mon["name"])
     return (f'<section class="monhero">{sprite}<div><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(name)}</h1>'
-            f'<div><span class="rules-label">Updated typing</span>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
+            f'<div><span class="rules-label">Enhanced typing</span>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
             f'{self.typing_comparison(m)}'
             f'<div class="twocol"><section class="panel"><h2>Base stats</h2>{self.stats_comparison(m)}</section>'
             f'<section class="panel"><h2>Evolution</h2>{self.evo_html(m,"../")}</section></div>'
@@ -1279,10 +1279,10 @@ class Builder:
   def typing_comparison(self, m):
     custom=m['original_stats_source']=='custom species'
     note=('This custom Pokémon has no official main-game version; Original uses its game-specific design.' if custom else
-          'Original uses modern main-game values. Updated uses Crimson Crystal’s changes.')
+          'Original uses modern main-game values. Enhanced uses Crimson Crystal’s changes.')
     rows=''.join(f'<div><h3>{label}</h3><div>{"".join(self.badge(t) for t in m[key])}</div></div>'
-                 for label,key in [('Original','original_types'),('Updated','updated_types')])
-    return (f'<section class="panel rules-panel"><h2>Original vs Updated</h2><p class="rules-note">{note} '
+                 for label,key in [('Original','original_types'),('Enhanced','updated_types')])
+    return (f'<section class="panel rules-panel"><h2>Original vs Enhanced</h2><p class="rules-note">{note} '
             'Choose typings and base stats separately when starting a new game. Abilities, moves and evolution changes apply to both choices.</p>'
             f'<div class="type-comparison">{rows}</div></section>')
 
@@ -1297,8 +1297,8 @@ class Builder:
       rows+=f'<tr><th scope="row">{stat}</th>{cells}<td class="delta {kind}">{change}</td></tr>'
     total_before,total_after=sum(original.values()),sum(updated.values());delta=total_after-total_before
     rows+=f'<tr class="stat-total"><th scope="row">Total</th><td>{total_before}</td><td>{total_after}</td><td class="delta">{f"{delta:+d}" if delta else "—"}</td></tr>'
-    return ('<table class="stats-compare"><caption class="sr-only">Original and Updated base stats, with numerical changes</caption>'
-            '<thead><tr><th scope="col">Stat</th><th scope="col">Original</th><th scope="col">Updated</th><th scope="col">Change</th></tr></thead>'
+    return ('<table class="stats-compare"><caption class="sr-only">Original and Enhanced base stats, with numerical changes</caption>'
+            '<thead><tr><th scope="col">Stat</th><th scope="col">Original</th><th scope="col">Enhanced</th><th scope="col">Change</th></tr></thead>'
             f'<tbody>{rows}</tbody></table>')
 
   def changes_html(self, mons):
@@ -1336,7 +1336,7 @@ class Builder:
       chips=''.join(f'<span>{tag.title()}</span>' for tag in tags)
       cards.append(f'<article class="change-card searchable" id="{slug(c)}" data-search="{search}" data-kinds="{" ".join(tags)}"><h3><a href="pokemon/{slug(c)}.html">{html.escape(label)}</a></h3><div class="change-tags">{chips}</div>{"".join(sections)}</article>')
     return (f'<section class="head"><p class="eyebrow">GAMEPLAY GUIDE</p><h1>Changes</h1><p>See what changed, why your Pokémon’s numbers differ, and what each new-game option does.</p></section>'
-            '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Updated</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
+            '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Enhanced</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
             '<p>Abilities, moves and evolution changes are shared by both choices. Palafin’s Original stats describe its base form; this game does not implement Zero to Hero.</p></section>'
             '<section class="panel"><h2>Looking for battle mechanics?</h2><p>The <a href="updates.html">Game Updates guide</a> covers frostbite, <a href="updates.html#grass-types-block-powder-moves">Grass powder immunity</a>, modern battle rules and custom exceptions, with one entry per change.</p></section>'
             f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species in the latest balance update</div></div>'
@@ -1429,7 +1429,7 @@ class Builder:
     for mon in mons.values():
       if mon['const'] in original_species:continue
       label=form_label(mon['const'],mon['name'])
-      content=(f'<p>{html.escape(" / ".join(mon["types"]))} · {sum(mon["stats"].values())} total base stats in Updated mode.</p>'
+      content=(f'<p>{html.escape(" / ".join(mon["types"]))} · {sum(mon["stats"].values())} total base stats in Enhanced mode.</p>'
                f'<div class="update-links"><a href="{pokemon_url(mon["const"])}">Stats, abilities, moves &amp; evolutions</a></div>')
       added_cards.append(entry('added-'+slug(mon['const']),label,'world','expanded',content))
 
@@ -1453,7 +1453,7 @@ class Builder:
       body+=(f'<details class="update-directory" id="{key}" data-update-section><summary>{title} <span>({len(cards)})</span></summary>'
              f'<p class="rules-note">{subtitle}</p><div class="update-list">{"".join(cards)}</div></details>')
     body+=('<p id="updateEmpty" class="panel" hidden>No updates match these filters. Try a different term or choose Every topic and Every kind.</p>'
-           '<section class="panel"><h2>Pokémon balance comparisons</h2><p>For every stat and typing redesign, plus the latest ability, move and evolution buffs, visit <a href="changes.html">Pokémon Changes</a>. Individual Pokémon pages show the Original and Updated values.</p></section>'
+           '<section class="panel"><h2>Pokémon balance comparisons</h2><p>For every stat and typing redesign, plus the latest ability, move and evolution buffs, visit <a href="changes.html">Pokémon Changes</a>. Individual Pokémon pages show the Original and Enhanced values.</p></section>'
            '<p class="rules-note">This guide describes the current game. Historical move values come from the <a href="https://github.com/pret/pokecrystal/blob/master/data/moves/moves.asm">original Crystal source</a>; current rules and content are checked against the <a href="https://github.com/lukedaysgrace-dot/Pokemon-Crimson-Crystal">Crimson Crystal source</a>.</p>')
     return body
 
