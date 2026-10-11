@@ -2238,4 +2238,7 @@
 	const EVENT_GOT_NUGGET_BRIDGE_SCOPE_LENS
 	const EVENT_GOT_TM_DRAGON_PULSE_FROM_CLAIR
 
+; Jasmine has accepted the medicine outside and is waiting beside Amphy.
+	const EVENT_JASMINE_RECEIVED_SECRETPOTION
+
 NUM_EVENTS EQU const_value

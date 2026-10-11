@@ -15,35 +15,27 @@ OlivineLighthouse6F_MapScripts:
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue .ShowHealthyAmphy
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	checkevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+	iftrue .JasmineWaiting
+	setevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+	return
+
+.JasmineWaiting:
+	clearevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	return
 
 .ShowHealthyAmphy:
+	setevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	return
 
 OlivineLighthouseJasmine:
 	faceplayer
 	opentext
-	checkitem SECRETPOTION
-	iftrue .BroughtSecretpotion
-	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
-	iftrue .ExplainedSickness
-	writetext JasmineCianwoodPharmacyText
-	buttonsound
-	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
-.ExplainedSickness:
-	writetext JasmineGetSomeMedicineText
-	waitbutton
-	closetext
-	end
-
-.BroughtSecretpotion:
-	writetext JasmineCureAmphyText
-	yesorno
-	iffalse .no
-	writetext PlayerHandedSecretpotionText
-	buttonsound
-	takeitem SECRETPOTION
+	; Also guard an older save resumed with Jasmine already loaded upstairs.
+	checkevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+	iffalse .MedicineNotDelivered
+	; The medicine was already handed over outside the lighthouse.
 	writetext JasmineDontBeOffendedText
 	waitbutton
 	closetext
@@ -100,18 +92,8 @@ OlivineLighthouseJasmine:
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
-.no:
-	writetext JasmineISeeText
-	waitbutton
-	closetext
-	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
-	pause 15
-	turnobject OLIVINELIGHTHOUSE6F_AMPY_SICK, LEFT
-	opentext
-	writetext JasmineAmphyHangOnText
-	waitbutton
-	closetext
-	end
+.MedicineNotDelivered:
+	farsjump OlivineCityJasmineMedicineRequest
 
 OlivineLighthouseUnusedDummyScript:
 ; unused
@@ -176,48 +158,6 @@ MovementData_0x60c79:
 	step_sleep 8
 	step_end
 
-JasmineCianwoodPharmacyText:
-	text "JASMINE: … This"
-	line "#MON always"
-
-	para "kept the sea lit"
-	line "at night."
-
-	para "…But it suddenly"
-	line "got sick… It's"
-	cont "gasping for air…"
-
-	para "…I understand"
-	line "that there is a"
-
-	para "wonderful PHARMACY"
-	line "in CIANWOOD…"
-
-	para "But that's across"
-	line "the sea…"
-
-	para "And I can't leave"
-	line "AMPHY unattended…"
-	done
-
-JasmineGetSomeMedicineText:
-	text "…May I ask you to"
-	line "get some medicine"
-	cont "for me? Please?"
-	done
-
-JasmineCureAmphyText:
-	text "JASMINE: …Will"
-	line "that medicine cure"
-	cont "AMPHY?"
-	done
-
-PlayerHandedSecretpotionText:
-	text "<PLAYER> handed the"
-	line "SECRETPOTION to"
-	cont "JASMINE."
-	done
-
 JasmineDontBeOffendedText:
 	text "JASMINE: …Um,"
 	line "please don't be"
@@ -247,10 +187,6 @@ JasmineThankYouText:
 
 	para "…I will return to"
 	line "the GYM…"
-	done
-
-JasmineISeeText:
-	text "JASMINE: …I see…"
 	done
 
 JasmineAmphyHangOnText:
