@@ -1194,6 +1194,14 @@ PortraitTexts:
 	dba OaksLabTrashcanText
 	db 0
 ; OlivineCity
+	dba JasmineCianwoodPharmacyText
+	db PORTRAIT_JASMINE
+	dba JasmineCureAmphyText
+	db PORTRAIT_JASMINE
+	dba JasmineGetSomeMedicineText
+	db PORTRAIT_JASMINE
+	dba JasmineISeeText
+	db PORTRAIT_JASMINE
 	dba OlivineCityBattleTowerSignText
 	db 0
 	dba OlivineCityFishingCoveSignText
@@ -1215,6 +1223,8 @@ PortraitTexts:
 	dba OlivineGymSignText
 	db 0
 	dba OlivineLighthouseSignText
+	db 0
+	dba PlayerHandedSecretpotionText
 	db 0
 ; OlivineGym
 	dba JasmineRematchChallengeText
@@ -1258,24 +1268,12 @@ PortraitTexts:
 	db 0
 	dba AmphyPaluPaluluText
 	db 0
-	dba JasmineAmphyHangOnText
-	db PORTRAIT_JASMINE
 	dba JasmineAmphyHowAreYouFeelingText
-	db PORTRAIT_JASMINE
-	dba JasmineCianwoodPharmacyText
-	db PORTRAIT_JASMINE
-	dba JasmineCureAmphyText
 	db PORTRAIT_JASMINE
 	dba JasmineDontBeOffendedText
 	db PORTRAIT_JASMINE
-	dba JasmineGetSomeMedicineText
-	db PORTRAIT_JASMINE
-	dba JasmineISeeText
-	db PORTRAIT_JASMINE
 	dba JasmineThankYouText
 	db PORTRAIT_JASMINE
-	dba PlayerHandedSecretpotionText
-	db 0
 ; PalletTown
 	dba BluesHouseSignText
 	db 0

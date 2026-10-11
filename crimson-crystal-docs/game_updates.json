@@ -2285,6 +2285,21 @@
         "data/trainers/parties.asm"
       ],
       "links": []
+    },
+    {
+      "id": "jasmine-lighthouse-medicine-encounter",
+      "category": "world",
+      "title": "Meet Jasmine outside the lighthouse",
+      "before": "Jasmine requests and receives the SecretPotion on the lighthouse's top floor, then treats Amphy immediately.",
+      "after": "Approach the lighthouse from the west or south and Jasmine steps outside, notices you, and asks for Amphy's medicine. She waits outside until you give her the SecretPotion, then returns upstairs. Talk to her beside Amphy to watch the original healing scene and send her back to the Gym.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/OlivineCity.asm",
+        "maps/OlivineLighthouse6F.asm",
+        "maps/CianwoodPharmacy.asm"
+      ],
+      "links": []
     }
   ]
 }
