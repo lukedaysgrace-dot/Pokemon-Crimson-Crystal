@@ -19438,12 +19438,12 @@
     "name": "Wigglytuff",
     "number": 50,
     "stats": {
-      "HP": 140,
-      "Attack": 80,
-      "Defense": 55,
+      "HP": 110,
+      "Attack": 83,
+      "Defense": 75,
       "Speed": 55,
-      "Sp. Atk": 95,
-      "Sp. Def": 60
+      "Sp. Atk": 70,
+      "Sp. Def": 80
     },
     "types": [
       "Normal",
@@ -19657,12 +19657,12 @@
       "Fairy"
     ],
     "updated_stats": {
-      "HP": 140,
-      "Attack": 80,
-      "Defense": 55,
+      "HP": 110,
+      "Attack": 83,
+      "Defense": 75,
       "Speed": 55,
-      "Sp. Atk": 95,
-      "Sp. Def": 60
+      "Sp. Atk": 70,
+      "Sp. Def": 80
     },
     "original_stats": {
       "HP": 140,
@@ -59423,7 +59423,7 @@
     "name": "Dugtrio",
     "number": 153,
     "stats": {
-      "HP": 35,
+      "HP": 60,
       "Attack": 100,
       "Defense": 50,
       "Speed": 120,
@@ -59616,7 +59616,7 @@
       "Ground"
     ],
     "updated_stats": {
-      "HP": 35,
+      "HP": 60,
       "Attack": 100,
       "Defense": 50,
       "Speed": 120,
@@ -65870,7 +65870,7 @@
     ],
     "abilities": [
       "Inner Focus",
-      "Contrary",
+      "Early Bird",
       "Sap Sipper"
     ],
     "ability_slots": [
@@ -65880,7 +65880,7 @@
         "slot": 1
       },
       {
-        "name": "Contrary",
+        "name": "Early Bird",
         "hidden": false,
         "slot": 2
       },
@@ -89664,6 +89664,11 @@
         "move": "Bounce"
       },
       {
+        "level": 28,
+        "const": "ICE_BEAM",
+        "move": "Ice Beam"
+      },
+      {
         "level": 30,
         "const": "AIR_SLASH",
         "move": "Air Slash"
@@ -89687,11 +89692,6 @@
         "level": 34,
         "const": "FREEZE_DRY",
         "move": "Freeze-Dry"
-      },
-      {
-        "level": 36,
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
       },
       {
         "level": 39,
@@ -111573,6 +111573,11 @@
         "move": "Rock Polish"
       },
       {
+        "level": 34,
+        "const": "BODY_PRESS",
+        "move": "Body Press"
+      },
+      {
         "level": 36,
         "const": "STEALTH_ROCK",
         "move": "Stealth Rock"
@@ -111586,11 +111591,6 @@
         "level": 43,
         "const": "EARTH_POWER",
         "move": "Earth Power"
-      },
-      {
-        "level": 44,
-        "const": "BODY_PRESS",
-        "move": "Body Press"
       },
       {
         "level": 47,
@@ -148925,12 +148925,12 @@
     "name": "Mew",
     "number": 355,
     "stats": {
-      "HP": 100,
-      "Attack": 100,
-      "Defense": 100,
-      "Speed": 100,
-      "Sp. Atk": 100,
-      "Sp. Def": 100
+      "HP": 120,
+      "Attack": 120,
+      "Defense": 120,
+      "Speed": 120,
+      "Sp. Atk": 120,
+      "Sp. Def": 120
     },
     "types": [
       "Psychic"
@@ -149121,12 +149121,12 @@
       "Psychic"
     ],
     "updated_stats": {
-      "HP": 100,
-      "Attack": 100,
-      "Defense": 100,
-      "Speed": 100,
-      "Sp. Atk": 100,
-      "Sp. Def": 100
+      "HP": 120,
+      "Attack": 120,
+      "Defense": 120,
+      "Speed": 120,
+      "Sp. Atk": 120,
+      "Sp. Def": 120
     },
     "original_stats": {
       "HP": 100,
@@ -160789,6 +160789,11 @@
         "move": "Agility"
       },
       {
+        "level": 30,
+        "const": "VOLT_SWITCH",
+        "move": "Volt Switch"
+      },
+      {
         "level": 36,
         "const": "THUNDER_FANG",
         "move": "Thunder Fang"
@@ -161219,6 +161224,11 @@
         "level": 29,
         "const": "AGILITY",
         "move": "Agility"
+      },
+      {
+        "level": 30,
+        "const": "VOLT_SWITCH",
+        "move": "Volt Switch"
       },
       {
         "level": 36,
@@ -165666,6 +165676,11 @@
         "move": "Psychic"
       },
       {
+        "level": 40,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
+      },
+      {
         "level": 41,
         "const": "CALM_MIND",
         "move": "Calm Mind"
@@ -169793,6 +169808,11 @@
         "move": "Belly Drum"
       },
       {
+        "level": 45,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
+      },
+      {
         "level": 48,
         "const": "SURF",
         "move": "Surf"
@@ -170456,13 +170476,13 @@
       "Ground"
     ],
     "abilities": [
-      "Guts",
+      "Competitive",
       "Quick Feet",
       "Unnerve"
     ],
     "ability_slots": [
       {
-        "name": "Guts",
+        "name": "Competitive",
         "hidden": false,
         "slot": 1
       },
@@ -170911,13 +170931,13 @@
       "Normal"
     ],
     "abilities": [
-      "Guts",
+      "Bulletproof",
       "Berserk",
       "Mind's Eye"
     ],
     "ability_slots": [
       {
-        "name": "Guts",
+        "name": "Bulletproof",
         "hidden": false,
         "slot": 1
       },
@@ -176473,7 +176493,7 @@
     "name": "Dugtrio",
     "number": 435,
     "stats": {
-      "HP": 50,
+      "HP": 60,
       "Attack": 100,
       "Defense": 60,
       "Speed": 110,
@@ -176674,7 +176694,7 @@
       "Steel"
     ],
     "updated_stats": {
-      "HP": 50,
+      "HP": 60,
       "Attack": 100,
       "Defense": 60,
       "Speed": 110,
@@ -185691,6 +185711,11 @@
         "level": 34,
         "const": "REFLECT",
         "move": "Reflect"
+      },
+      {
+        "level": 35,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
       },
       {
         "level": 36,

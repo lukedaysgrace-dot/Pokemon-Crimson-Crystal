@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ursaringbm/front.dimensions"
-	abilities_for URSARINGBM, GUTS, QUICK_FEET, UNNERVE
+	abilities_for URSARINGBM, COMPETITIVE, QUICK_FEET, UNNERVE
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
