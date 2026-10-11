@@ -191,6 +191,14 @@ def main() -> int:
         )
     )
 
+    blocks.append(
+        cheat_block(
+            "remove all badges (16)",
+            codes_for_range(w_johto_badges, w_johto_badges + (num_johto_badges + 7) // 8, 0x00, True)
+            + codes_for_range(w_kanto_badges, w_kanto_badges + (num_kanto_badges + 7) // 8, 0x00, True),
+        )
+    )
+
     hm_lines = codes_for_range(hm_start, hm_end, 0x01, True)
     blocks.append(cheat_block("all hms", hm_lines))
 
