@@ -1317,9 +1317,9 @@ class Builder:
       if differences:
         tags.append('stats')
         sections.append('<p><b>Stats versus modern Original:</b> '+html.escape('; '.join(differences))+'.</p>')
-      if entry.get('stats'):
-        recent=[f'{stat} {values[0]} → {values[1]}' for stat,values in entry['stats'].items()]
-        sections.append('<p><b>Latest stat adjustment:</b> '+html.escape('; '.join(recent))+'.</p>')
+        original_total=sum(m['original_stats'].values());enhanced_total=sum(m['stats'].values())
+        sections.append(f'<p><b>Base stat total:</b> {original_total} → {enhanced_total} ({enhanced_total-original_total:+d}).</p>')
+        sections.append('<details><summary>Original → Enhanced: all six base stats</summary>'+self.stats_comparison(m)+'</details>')
       if entry.get('abilities'):
         tags.append('ability')
         for a in entry['abilities']:
@@ -1327,7 +1327,12 @@ class Builder:
           old='Empty slot' if a['before']=='NO_ABILITY' else disp(a['before'])
           sections.append(f'<p><b>{slot}:</b> {html.escape(old)} → {html.escape(disp(a["after"]))}.</p>')
       for move in entry.get('moves',[]):
-        tags.append('move');sections.append(f'<p><b>Move added:</b> <a href="moves/{slug(move_disp(move["const"]))}.html">{html.escape(move_disp(move["const"]))}</a> at level {move["level"]}.</p>')
+        tags.append('move')
+        move_link=f'<a href="moves/{slug(move_disp(move["const"]))}.html">{html.escape(move_disp(move["const"]))}</a>'
+        if 'before_level' in move:
+          sections.append(f'<p><b>Level-up timing:</b> {move_link}, level {move["before_level"]} → {move["level"]}.</p>')
+        else:
+          sections.append(f'<p><b>Move added:</b> {move_link} at level {move["level"]}.</p>')
       for evo in entry.get('evolutions',[]):
         tags.append('evolution');target=next(mon for mon in mons if mon['const']==evo['target'])
         sections.append(f'<p><b>Evolution:</b> evolves into <a href="pokemon/{slug(evo["target"])}.html">{html.escape(form_label(target["const"],target["name"]))}</a> at level {evo["after"]} (previously {evo["before"]}).</p>')
@@ -1339,8 +1344,8 @@ class Builder:
             '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Enhanced</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
             '<p>Abilities, moves and evolution changes are shared by both choices. Palafin’s Original stats describe its base form; this game does not implement Zero to Hero.</p></section>'
             '<section class="panel"><h2>Looking for battle mechanics?</h2><p>The <a href="updates.html">Game Updates guide</a> covers frostbite, <a href="updates.html#grass-types-block-powder-moves">Grass powder immunity</a>, modern battle rules and custom exceptions, with one entry per change.</p></section>'
-            f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species in the latest balance update</div></div>'
-            '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">Stat and typing comparisons show the full difference from modern main games, including earlier redesigns. Latest adjustments and ability replacements describe this balance update. Positive and negative stat changes are shown explicitly.</p>'
+            f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species with recorded balance notes</div></div>'
+            '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">Stat and typing comparisons show the full difference from modern Original to the current Enhanced version, including every earlier redesign. Each stat comparison includes both base stat totals and all six stats. Ability, move and evolution notes record the other balance changes.</p>'
             '<div class="toolbar"><input id="changeSearch" type="search" aria-label="Search Pokémon changes" placeholder="Search Pokémon, type or ability"><select id="changeFilter" aria-label="Filter changes"><option value="">All changes</option><option value="stats">Stats</option><option value="typing">Typings</option><option value="ability">Abilities</option><option value="move">Moves</option><option value="evolution">Evolutions</option></select></div>'
             f'<p id="changeCount" class="rules-note" aria-live="polite">Showing {len(cards)} Pokémon</p><div class="change-grid">{"".join(cards)}</div><p id="changeEmpty" class="panel" hidden>No Pokémon match these filters.</p>')
 
@@ -1546,8 +1551,8 @@ class Builder:
     er=''.join(f'<div class="erow searchable" data-search="{html.escape((e["location"]+" "+e["pokemon"]+" "+e["time"]+" "+e["method"]).lower())}"><b>{html.escape(e["location"])}</b><span>{html.escape(e["method"])}</span><span>{e["time"]}</span><span>{e["pokemon"]}</span><span>Lv. {e["level"]}</span><span>{str(e["chance"])+"%" if e.get("chance") is not None else "—"}</span></div>' for e in wild)
     (self.o/'encounters.html').write_text(self.shell('Encounters',f'<section class="head"><p class="eyebrow">WORLD DATA</p><h1>Wild encounters</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations or Pokémon"></div><div class="table"><div class="erow labels"><span>Location</span><span>Method</span><span>Time</span><span>Pokémon</span><span>Level</span><span>Chance</span></div>{er or "<p class=empty>No supported encounter rows detected.</p>"}</div>'))
   def run(self):
-    if self.o.exists(): shutil.rmtree(self.o)
-    self.a.mkdir(parents=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
+    # Replace generated files in place, preserving supplemental reports and downloads.
+    self.a.mkdir(parents=True,exist_ok=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
     self.tm_index=self.tm_table(); self.ability_desc=self.ability_descriptions(); self._items=self.item_names()
     order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); self.gameplay_rules(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
     for e in wild:

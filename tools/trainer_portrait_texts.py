@@ -76,6 +76,12 @@ OVERRIDES = {
 	# Proton is furious after losing at the Well and the Radio Tower.
 	'TrainerGruntM1WhenTalkText': 'PROTON_MAD',
 	'Executivem2AfterBattleText': 'PROTON_MAD',
+	# Keep Petrel's disguise until his confession; the real director shares
+	# the same gentleman object but never uses Petrel's portrait.
+	'FakeDirectorTextBefore1': None,
+	'FakeDirectorTextBefore2': None,
+	'FakeDirectorRevealText': 'PETREL',
+	'FakeDirectorTextAfter': 'PETREL',
 }
 
 # "NAME:" prefixes that mean a portrait character, beyond the portrait names.
@@ -113,6 +119,12 @@ SHARED_SPEAKERS.update({label: 'WHITNEY_CRYING' for label in (
 SHARED_SPEAKERS.update({label: 'PROTON_MAD' for label in (
 	'GruntM1BeatenText',
 	'Executivem2BeatenText',
+)})
+
+# Petrel's defeat lines are printed in battle by PrintWinLossText.
+SHARED_SPEAKERS.update({label: 'PETREL' for label in (
+	'ExecutiveM4BeatenText',
+	'FakeDirectorWinText',
 )})
 
 SPEAKER_FIRST = {

@@ -13,6 +13,9 @@ automatically (the frame whose differing tiles have fewer black pixels; an
 open mouth adds a dark interior). If the guess is wrong for a portrait, list
 it in CLOSED_FRAME_OVERRIDES below (0 = top half, 1 = bottom half).
 
+For exports with stray differences outside the mouth, TALKING_TILE_OVERRIDES
+limits animation to those tiles and keeps the top frame's other tiles.
+
 Output layout (see PORTRAIT_HEADER_SIZE in the engine):
 	db  N                    ; number of tiles that change when talking (0-8)
 	dw  color1, color2       ; RGB555, lighter then darker
@@ -37,6 +40,11 @@ FRAME = 'kwk'
 
 # name (file stem) -> index of the closed-mouth frame (0 = top, 1 = bottom)
 CLOSED_FRAME_OVERRIDES = {
+}
+
+# name -> row-major tiles to animate; discard stray non-mouth differences.
+TALKING_TILE_OVERRIDES = {
+	'petrel': (37, 38),
 }
 
 
@@ -198,6 +206,10 @@ def main():
 		return [[index[px[y0 + y][x0 + x]] for x in range(8)] for y in range(8)]
 
 	frames = [[tile(f, n) for n in range(NUM_TILES)] for f in (0, 1)]
+	if name in TALKING_TILE_OVERRIDES:
+		for n in range(NUM_TILES):
+			if n not in TALKING_TILE_OVERRIDES[name]:
+				frames[1][n] = frames[0][n]
 	cells = [n for n in range(NUM_TILES) if frames[0][n] != frames[1][n]]
 	if len(cells) > MAX_MOUTH_TILES:
 		raise SystemExit(f'{src}: {len(cells)} tiles differ between the frames; at most {MAX_MOUTH_TILES} may change')

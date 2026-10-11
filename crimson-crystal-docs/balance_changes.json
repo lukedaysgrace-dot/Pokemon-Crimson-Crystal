@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-11",
   "pokemon": {
     "AGGRON": {
       "stats": {
@@ -22,9 +22,21 @@
           60,
           70
         ],
+        "Attack": [
+          95,
+          110
+        ],
         "Defense": [
-          70,
+          69,
           75
+        ],
+        "Sp. Atk": [
+          65,
+          55
+        ],
+        "Sp. Def": [
+          79,
+          80
         ]
       }
     },
@@ -33,8 +45,23 @@
         "HP": [
           60,
           75
+        ],
+        "Attack": [
+          52,
+          27
+        ],
+        "Sp. Atk": [
+          47,
+          77
         ]
-      }
+      },
+      "moves": [
+        {
+          "const": "BODY_PRESS",
+          "level": 34,
+          "before_level": 44
+        }
+      ]
     },
     "CAMERUPT": {
       "stats": {
@@ -86,13 +113,19 @@
           "before": "SAND_VEIL",
           "after": "SAND_RUSH"
         }
-      ]
+      ],
+      "stats": {
+        "HP": [
+          35,
+          60
+        ]
+      }
     },
     "DUGTRIO_ALOLAN": {
       "stats": {
         "HP": [
           35,
-          50
+          60
         ]
       }
     },
@@ -106,6 +139,10 @@
     },
     "FEAROW": {
       "stats": {
+        "Attack": [
+          90,
+          110
+        ],
         "Speed": [
           100,
           115
@@ -138,7 +175,7 @@
     "HITMONCHAN": {
       "stats": {
         "HP": [
-          65,
+          50,
           75
         ],
         "Speed": [
@@ -165,8 +202,12 @@
     },
     "LANTURN": {
       "stats": {
+        "Defense": [
+          58,
+          70
+        ],
         "Sp. Atk": [
-          86,
+          76,
           96
         ]
       }
@@ -200,6 +241,18 @@
         "HP": [
           60,
           75
+        ],
+        "Defense": [
+          120,
+          150
+        ],
+        "Sp. Atk": [
+          90,
+          110
+        ],
+        "Sp. Def": [
+          80,
+          100
         ]
       }
     },
@@ -232,8 +285,24 @@
     "PARASECT": {
       "stats": {
         "HP": [
-          70,
+          60,
           85
+        ],
+        "Attack": [
+          95,
+          115
+        ],
+        "Defense": [
+          80,
+          100
+        ],
+        "Sp. Atk": [
+          60,
+          55
+        ],
+        "Sp. Def": [
+          80,
+          90
         ]
       },
       "moves": [
@@ -260,8 +329,12 @@
           70
         ],
         "Attack": [
-          80,
+          70,
           90
+        ],
+        "Sp. Atk": [
+          65,
+          80
         ]
       }
     },
@@ -323,23 +396,27 @@
     "UNOWN": {
       "stats": {
         "HP": [
-          74,
+          48,
           84
         ],
         "Attack": [
-          108,
+          72,
           58
         ],
         "Defense": [
-          64,
+          48,
           69
         ],
         "Speed": [
-          75,
+          48,
           85
         ],
+        "Sp. Atk": [
+          72,
+          108
+        ],
         "Sp. Def": [
-          64,
+          48,
           69
         ]
       },
@@ -369,16 +446,24 @@
     "LEDIAN": {
       "stats": {
         "HP": [
-          75,
+          55,
           80
         ],
+        "Attack": [
+          35,
+          105
+        ],
         "Defense": [
-          60,
+          50,
           70
         ],
         "Speed": [
-          90,
+          85,
           95
+        ],
+        "Sp. Atk": [
+          55,
+          35
         ]
       }
     },
@@ -412,9 +497,25 @@
           80,
           85
         ],
+        "Attack": [
+          92,
+          75
+        ],
         "Defense": [
-          75,
+          65,
           80
+        ],
+        "Speed": [
+          68,
+          78
+        ],
+        "Sp. Atk": [
+          65,
+          102
+        ],
+        "Sp. Def": [
+          80,
+          75
         ]
       }
     },
@@ -458,8 +559,35 @@
         "HP": [
           45,
           60
+        ],
+        "Attack": [
+          55,
+          85
+        ],
+        "Defense": [
+          45,
+          50
+        ],
+        "Speed": [
+          75,
+          110
+        ],
+        "Sp. Atk": [
+          65,
+          110
+        ],
+        "Sp. Def": [
+          45,
+          50
         ]
-      }
+      },
+      "moves": [
+        {
+          "const": "ICE_BEAM",
+          "level": 28,
+          "before_level": 36
+        }
+      ]
     },
     "ARIADOS": {
       "stats": {
@@ -467,9 +595,21 @@
           70,
           80
         ],
+        "Attack": [
+          90,
+          110
+        ],
         "Defense": [
           70,
           75
+        ],
+        "Speed": [
+          40,
+          80
+        ],
+        "Sp. Atk": [
+          60,
+          50
         ]
       }
     },
@@ -480,7 +620,7 @@
           85
         ],
         "Sp. Def": [
-          75,
+          60,
           80
         ]
       }
@@ -490,6 +630,22 @@
         "HP": [
           55,
           65
+        ],
+        "Attack": [
+          81,
+          97
+        ],
+        "Defense": [
+          60,
+          70
+        ],
+        "Speed": [
+          97,
+          113
+        ],
+        "Sp. Atk": [
+          50,
+          45
         ]
       }
     },
@@ -507,7 +663,13 @@
           80,
           90
         ]
-      }
+      },
+      "moves": [
+        {
+          "const": "SYNTHESIS",
+          "level": 35
+        }
+      ]
     },
     "SANDSLASH_ALOLAN": {
       "stats": {
@@ -523,17 +685,77 @@
     },
     "RATICATE_ALOLAN": {
       "stats": {
+        "HP": [
+          75,
+          80
+        ],
         "Attack": [
-          78,
+          71,
           88
+        ],
+        "Defense": [
+          70,
+          80
+        ],
+        "Speed": [
+          77,
+          82
+        ],
+        "Sp. Def": [
+          80,
+          90
         ]
       }
     },
     "NOCTOWL": {
       "stats": {
+        "Attack": [
+          50,
+          40
+        ],
         "Defense": [
           50,
           60
+        ],
+        "Speed": [
+          70,
+          60
+        ],
+        "Sp. Atk": [
+          86,
+          106
+        ],
+        "Sp. Def": [
+          96,
+          116
+        ]
+      }
+    },
+    "WIGGLYTUFF": {
+      "stats": {
+        "HP": [
+          140,
+          110
+        ],
+        "Attack": [
+          70,
+          83
+        ],
+        "Defense": [
+          45,
+          75
+        ],
+        "Speed": [
+          45,
+          55
+        ],
+        "Sp. Atk": [
+          85,
+          70
+        ],
+        "Sp. Def": [
+          50,
+          80
         ]
       }
     },
@@ -542,8 +764,69 @@
         "Defense": [
           65,
           75
+        ],
+        "Sp. Atk": [
+          90,
+          100
         ]
-      }
+      },
+      "moves": [
+        {
+          "const": "SLACK_OFF",
+          "level": 40
+        }
+      ]
+    },
+    "WALREIN": {
+      "moves": [
+        {
+          "const": "SLACK_OFF",
+          "level": 45
+        }
+      ]
+    },
+    "RAITORA": {
+      "moves": [
+        {
+          "const": "VOLT_SWITCH",
+          "level": 30
+        }
+      ]
+    },
+    "GOROTORA": {
+      "moves": [
+        {
+          "const": "VOLT_SWITCH",
+          "level": 30
+        }
+      ]
+    },
+    "URSARINGBM": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "GUTS",
+          "after": "COMPETITIVE"
+        }
+      ]
+    },
+    "URSALUNABM": {
+      "abilities": [
+        {
+          "slot": 1,
+          "before": "GUTS",
+          "after": "BULLETPROOF"
+        }
+      ]
+    },
+    "GIRAFARIG": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "CONTRARY",
+          "after": "EARLY_BIRD"
+        }
+      ]
     }
   }
 }

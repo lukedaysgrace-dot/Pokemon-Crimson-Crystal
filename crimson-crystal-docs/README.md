@@ -85,10 +85,15 @@ game-specific baselines, and starter clone comparisons appear in the existing
 Normal / Clone panels.
 
 The Changes tab lists all current stat and type differences from the modern
-main games, plus the latest ability, move and evolution updates recorded in
-`balance_changes.json`. Keep those latest-update notes in sync with game data;
-the generator validates their resulting stats, ability slots and learnsets.
+main games. Every stat redesign includes Original → Enhanced totals and a
+table comparing all six base stats. Ability, move and evolution notes come
+from `balance_changes.json`; stat notes use the Original baseline and current
+Enhanced values. Record `before_level` for a move whose learning level changed.
+The generator validates the resulting stats, ability slots and learnsets.
 Abilities, moves and evolution changes apply to both rules choices.
+
+Generation replaces generated files in place and preserves supplemental
+reports in `docs/audits/` and downloadable files in `docs/`.
 
 ## Game Updates guide
 

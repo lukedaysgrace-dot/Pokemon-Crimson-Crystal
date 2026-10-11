@@ -33,6 +33,8 @@ FakeDirectorScript:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
 	writetext FakeDirectorTextBefore2
+	buttonsound
+	writetext FakeDirectorRevealText
 	waitbutton
 	closetext
 	winlosstext FakeDirectorWinText, 0
@@ -198,9 +200,11 @@ FakeDirectorTextBefore1:
 FakeDirectorTextBefore2:
 	text "Is that what you"
 	line "were expecting?"
+	done
 
-	para "Wrong!"
-	line "I'm an imposter!"
+FakeDirectorRevealText:
+	text "Wrong!"
+	line "Remember me kid?"
 
 	para "I pretended to be"
 	line "the real thing to"
