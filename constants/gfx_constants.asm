@@ -127,6 +127,7 @@ PORTRAIT_MOUTH_FRAMES EQU 6 ; frames per mouth open/closed step
 	const PORTRAIT_FALKNER     ; 23
 	const PORTRAIT_PROTON      ; 24
 	const PORTRAIT_PROTON_MAD  ; 25
+	const PORTRAIT_PETREL      ; 26
 NUM_TRAINER_PORTRAITS EQU const_value - 1
 
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)

@@ -1350,8 +1350,10 @@ PortraitTexts:
 	db PORTRAIT_ARIANA
 	dba Executivef1SeenText
 	db PORTRAIT_ARIANA
+	dba FakeDirectorRevealText
+	db PORTRAIT_PETREL
 	dba FakeDirectorTextAfter
-	db 0
+	db PORTRAIT_PETREL
 	dba FakeDirectorTextBefore1
 	db 0
 	dba FakeDirectorTextBefore2
@@ -1697,9 +1699,9 @@ PortraitTexts:
 	db 0
 ; TeamRocketBaseB3F
 	dba ExecutiveM4AfterText
-	db 0
+	db PORTRAIT_PETREL
 	dba ExecutiveM4BeforeText
-	db 0
+	db PORTRAIT_PETREL
 	dba GruntF5AfterBattleText
 	db 0
 	dba GruntF5SeenText
@@ -1900,8 +1902,12 @@ PortraitTexts:
 	dba WillScript_WillDefeatText
 	db PORTRAIT_WILL
 ; Shared dialogue printed by specials or farwritetext
+	dba ExecutiveM4BeatenText
+	db PORTRAIT_PETREL
 	dba Executivem2BeatenText
 	db PORTRAIT_PROTON_MAD
+	dba FakeDirectorWinText
+	db PORTRAIT_PETREL
 	dba GruntM1BeatenText
 	db PORTRAIT_PROTON_MAD
 	dba OakRating01

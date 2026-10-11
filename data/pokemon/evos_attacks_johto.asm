@@ -1839,12 +1839,12 @@ DelibirdEvosAttacks:
 	dbw 24, DRILL_PECK
 	dbw 24, SPIKES
 	dbw 28, BOUNCE
+	dbw 28, ICE_BEAM
 	dbw 30, AIR_SLASH
 	dbw 30, DEFOG
 	dbw 30, DUALWINGBEAT
 	dbw 33, HAIL
 	dbw 34, FREEZE_DRY
-	dbw 36, ICE_BEAM
 	dbw 39, FUTURE_SIGHT
 	dbw 42, BLIZZARD
 	dbw 45, HURRICANE
@@ -5863,6 +5863,7 @@ GrumpigEvosAttacks:
 	dbw 31, SLEEP_TALK
 	dbw 31, SNORE
 	dbw 35, PSYCHIC_M
+	dbw 40, SLACK_OFF
 	dbw 41, CALM_MIND
 	dbw 45, FUTURE_SIGHT
 	dbw 51, TRICK
@@ -6023,6 +6024,7 @@ RaitoraEvosAttacks:
 	dbw 21, SPARK
 	dbw 26, HYPER_VOICE
 	dbw 29, AGILITY
+	dbw 30, VOLT_SWITCH
 	dbw 36, THUNDER_FANG
 	dbw 39, REST
 	dbw 44, THUNDERBOLT
@@ -6046,6 +6048,7 @@ GorotoraEvosAttacks:
 	dbw 21, SPARK
 	dbw 26, HYPER_VOICE
 	dbw 29, AGILITY
+	dbw 30, VOLT_SWITCH
 	dbw 36, THUNDER_FANG
 	dbw 39, REST
 	dbw 44, THUNDERBOLT
@@ -6497,6 +6500,7 @@ WalreinEvosAttacks:
 	dbw 40, CRUNCH
 	dbw 42, FREEZE_DRY
 	dbw 44, BELLY_DRUM
+	dbw 45, SLACK_OFF
 	dbw 48, SURF
 	dbw 50, BLIZZARD
 	db 0 ; no more level-up moves
@@ -6710,10 +6714,10 @@ BastiodonEvosAttacks:
 	dbw 28, FOUL_PLAY
 	dbw 31, ENDURE
 	dbw 34, ROCK_POLISH
+	dbw 34, BODY_PRESS
 	dbw 36, STEALTH_ROCK
 	dbw 40, IRON_DEFENSE
 	dbw 43, EARTH_POWER
-	dbw 44, BODY_PRESS
 	dbw 47, STONE_EDGE
 	dbw 51, IRON_HEAD
 	dbw 52, HEAD_SMASH
@@ -7961,6 +7965,7 @@ ElectrodeHisuianEvosAttacks:
 	dbw 30, VOLT_SWITCH
 	dbw 34, LIGHT_SCREEN
 	dbw 34, REFLECT
+	dbw 35, SYNTHESIS
 	dbw 36, SIGNAL_BEAM
 	dbw 37, THUNDER
 	dbw 42, GYRO_BALL

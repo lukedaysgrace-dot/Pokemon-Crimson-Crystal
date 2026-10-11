@@ -55,6 +55,7 @@ SpritePortraits:
 	db SPRITE_MISTY,       PORTRAIT_MISTY
 	db SPRITE_MORTY,       PORTRAIT_MORTY
 	db SPRITE_OAK,         PORTRAIT_OAK
+	db SPRITE_PETREL,      PORTRAIT_PETREL
 	db SPRITE_PROTON,      PORTRAIT_PROTON
 	db SPRITE_PRYCE,       PORTRAIT_PRYCE
 	db SPRITE_RED,         PORTRAIT_RED
@@ -104,6 +105,7 @@ TrainerPortraitPointers:
 	dba TrainerPortraitFalknerGFX
 	dba TrainerPortraitProtonGFX
 	dba TrainerPortraitProtonMadGFX
+	dba TrainerPortraitPetrelGFX
 	assert (@ - TrainerPortraitPointers) / 3 == NUM_TRAINER_PORTRAITS
 
 TrainerPortrait_SetUpTextbox::
@@ -760,3 +762,4 @@ SECTION "Trainer Portrait Graphics 3", ROMX
 
 TrainerPortraitProtonGFX:    INCBIN "gfx/trainer_portraits/proton.portrait"
 TrainerPortraitProtonMadGFX: INCBIN "gfx/trainer_portraits/proton_mad.portrait"
+TrainerPortraitPetrelGFX:    INCBIN "gfx/trainer_portraits/petrel.portrait"
