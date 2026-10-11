@@ -570,7 +570,7 @@ OlivineGroupSprites:
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
-	db SPRITE_WILL
+	db SPRITE_JASMINE ; lighthouse medicine encounter (replaces unused Will)
 	db SPRITE_PSYCHIC
 	db SPRITE_NURSE
 	db SPRITE_OLD_LINK_RECEPTIONIST

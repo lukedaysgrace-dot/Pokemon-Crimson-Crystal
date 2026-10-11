@@ -3,14 +3,16 @@
 	const OLIVINECITY_STANDING_YOUNGSTER
 	const OLIVINECITY_SAILOR2
 	const OLIVINECITY_OLIVINE_RIVAL
+	const OLIVINECITY_JASMINE
 
 OlivineCity_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .JasmineVisibility
 
 .DummyScene0:
 	end
@@ -21,6 +23,97 @@ OlivineCity_MapScripts:
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_OLIVINE
 	return
+
+.JasmineVisibility:
+	; Both Jasmine objects share a visibility flag, resolved on map entry.
+	setevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iftrue .Done
+	checkevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+	iftrue .Done
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	iffalse .Done
+	clearevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+.Done:
+	return
+
+OlivineCityJasmineSceneLeft:
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	iftrue OlivineCityJasmineSceneDone
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iftrue OlivineCityJasmineSceneDone
+	turnobject PLAYER, RIGHT
+	sjump OlivineCityJasmineScene
+
+OlivineCityJasmineSceneBelow:
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	iftrue OlivineCityJasmineSceneDone
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iftrue OlivineCityJasmineSceneDone
+	turnobject PLAYER, UP
+
+OlivineCityJasmineScene:
+	moveobject OLIVINECITY_JASMINE, 29, 27
+	playsound SFX_ENTER_DOOR
+	appear OLIVINECITY_JASMINE
+	waitsfx
+	applymovement OLIVINECITY_JASMINE, OlivineCityJasmineExitLighthouseMovement
+	writeobjectxy OLIVINECITY_JASMINE
+	setlasttalked OLIVINECITY_JASMINE
+	faceplayer
+	showemote EMOTE_SHOCK, OLIVINECITY_JASMINE, 15
+	opentext
+	sjump OlivineCityJasmineMedicineRequest
+
+OlivineCityJasmineSceneDone:
+	end
+
+OlivineCityJasmineScript:
+	faceplayer
+	opentext
+	checkitem SECRETPOTION
+	iftrue OlivineCityJasmineBroughtSecretpotion
+
+OlivineCityJasmineMedicineRequest:
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	iftrue .ExplainedSickness
+	writetext JasmineCianwoodPharmacyText
+	buttonsound
+	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+.ExplainedSickness:
+	writetext JasmineGetSomeMedicineText
+	waitbutton
+	closetext
+	end
+
+OlivineCityJasmineBroughtSecretpotion:
+	writetext JasmineCureAmphyText
+	yesorno
+	iffalse .Declined
+	writetext PlayerHandedSecretpotionText
+	buttonsound
+	takeitem SECRETPOTION
+	setevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+	closetext
+	applymovement OLIVINECITY_JASMINE, OlivineCityJasmineEnterLighthouseMovement
+	playsound SFX_ENTER_DOOR
+	disappear OLIVINECITY_JASMINE
+	waitsfx
+	end
+
+.Declined:
+	writetext JasmineISeeText
+	waitbutton
+	closetext
+	end
+
+OlivineCityJasmineExitLighthouseMovement:
+	step DOWN
+	step_end
+
+OlivineCityJasmineEnterLighthouseMovement:
+	step UP
+	step_end
 
 OlivineCityRivalSceneTop:
 	turnobject PLAYER, LEFT
@@ -168,6 +261,52 @@ MovementData_0x1a88f7:
 	turn_head DOWN
 	step_end
 
+JasmineCianwoodPharmacyText:
+	text "JASMINE: … This"
+	line "#MON always"
+
+	para "kept the sea lit"
+	line "at night."
+
+	para "…But it suddenly"
+	line "got sick… It's"
+	cont "gasping for air…"
+
+	para "…I understand"
+	line "that there is a"
+
+	para "wonderful PHARMACY"
+	line "in CIANWOOD…"
+
+	para "But that's across"
+	line "the sea…"
+
+	para "And I can't leave"
+	line "AMPHY unattended…"
+	done
+
+JasmineGetSomeMedicineText:
+	text "…May I ask you to"
+	line "get some medicine"
+	cont "for me? Please?"
+	done
+
+JasmineCureAmphyText:
+	text "JASMINE: …Will"
+	line "that medicine cure"
+	cont "AMPHY?"
+	done
+
+PlayerHandedSecretpotionText:
+	text "<PLAYER> handed the"
+	line "SECRETPOTION to"
+	cont "JASMINE."
+	done
+
+JasmineISeeText:
+	text "JASMINE: …I see…"
+	done
+
 OlivineCityRivalText:
 	text "…"
 
@@ -314,9 +453,11 @@ OlivineCity_MapEvents:
 	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
 	warp_event 35, 15, OLIVINE_FISHING_COVE_GATE, 3
 
-	db 2 ; coord events
+	db 4 ; coord events
 	coord_event 13, 12, SCENE_DEFAULT, OlivineCityRivalSceneTop
 	coord_event 13, 13, SCENE_DEFAULT, OlivineCityRivalSceneBottom
+	coord_event 28, 28, -1, OlivineCityJasmineSceneLeft
+	coord_event 29, 29, -1, OlivineCityJasmineSceneBelow
 
 	db 8 ; bg events
 	bg_event 17, 11, BGEVENT_READ, OlivineCitySign
@@ -328,8 +469,9 @@ OlivineCity_MapEvents:
 	bg_event 20, 17, BGEVENT_READ, OlivineCityMartSign
 	bg_event 36, 16, BGEVENT_READ, OlivineCityFishingCoveSign
 
-	db 4 ; object events
+	db 5 ; object events
 	object_event 26, 27, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
 	object_event 20, 13, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityStandingYoungsterScript, -1
 	object_event 17, 21, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
 	object_event 10, 11, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	object_event 29, 28, SPRITE_JASMINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityJasmineScript, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
