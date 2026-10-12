@@ -118,14 +118,12 @@ AromaLadyRosieBeatenText:
 	done
 
 AromaLadyRosieAfterBattleText:
-	text "My herbs can ease"
-	line "AMPHY's fever a"
-	cont "little, but that's"
-	cont "all they can do."
+	text "Herbs can soothe a"
+	line "sick #MON."
 
-	para "Only real medicine"
-	line "will let her shine"
-	cont "again."
+	para "But only real"
+	line "medicine can cure"
+	cont "one."
 	done
 
 OlivineLighthouse5F_MapEvents:

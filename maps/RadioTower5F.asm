@@ -204,7 +204,7 @@ FakeDirectorTextBefore2:
 
 FakeDirectorRevealText:
 	text "Wrong!"
-	line "Remember me kid?"
+	line "Remember me, kid?"
 
 	para "I pretended to be"
 	line "the real thing to"

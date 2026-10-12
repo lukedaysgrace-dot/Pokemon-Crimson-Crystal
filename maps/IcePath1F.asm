@@ -103,17 +103,17 @@ IcePath1FCrystalBeforeText:
 	line "you'd make it this"
 	cont "far."
 
-	para "Blackthorn is just"
+	para "BLACKTHORN is just"
 	line "ahead."
 
 	para "So before we move"
-	line "on... I want to"
+	line "on… I want to"
 	cont "see how far we've"
 	cont "both come."
 	done
 
 IcePath1FCrystalWinText:
-	text "...I understand."
+	text "…I understand."
 
 	para "I still have more"
 	line "to learn."
@@ -139,7 +139,7 @@ IcePath1FCrystalAfterText:
 	cont "finished studying."
 
 	para "When we meet"
-	line "again... I'll have"
+	line "again… I'll have"
 	cont "more than a few"
 	cont "new things to show"
 	cont "you."

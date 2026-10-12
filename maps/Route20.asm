@@ -195,8 +195,8 @@ Route20GreenAfterText:
 	para "It was great"
 	line "meeting you!"
 
-	para "Thanks for a"
-	line "great battle!"
+	para "Thanks for the"
+	line "battle!"
 	done
 
 CinnabarGymSignText:

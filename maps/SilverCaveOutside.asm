@@ -146,37 +146,20 @@ SilverCaveOutsideLoreleiReturnMovement:
 	step_end
 
 SilverCaveOutsideAgathaBeforeText:
-	text "AGATHA: My my,"
-	line "LORELEI, who do"
+	text "AGATHA: My, my."
+	line "LORELEI, look"
+	cont "who's here."
 
-	para "you think we"
-	line "have here?"
+	para "The JOHTO CHAMPION"
+	line "we've heard so"
+	cont "much about."
 
-	para "Could it be the"
-	line "JOHTO CHAMPION"
+	para "Few trainers dare"
+	line "to come this far."
 
-	para "we've been"
-	line "hearing so much"
-	cont "about?"
-
-	para "We train here"
-	line "regularly, but"
-
-	para "if it's not"
-	line "obvious enough,"
-
-	para "not many trainers"
-	line "dare to tread"
-	cont "here."
-
-	para "I'm curious to"
-	line "see what all the"
-
-	para "fuss is about."
-	line "Let's see what"
-
-	para "you've got,"
-	line "child."
+	para "Let's see what all"
+	line "the fuss is about,"
+	cont "child."
 	done
 
 SilverCaveOutsideAgathaBeatenText:
@@ -190,39 +173,20 @@ SilverCaveOutsideAgathaAfterText:
 	done
 
 SilverCaveOutsideLoreleiBeforeText:
-	text "LORELEI: I can't"
-	line "say I'm not"
+	text "LORELEI: Not many"
+	line "can say they beat"
+	cont "AGATHA."
 
-	para "impressed that"
-	line "you were able to"
-	cont "defeat AGATHA."
+	para "Maybe there's more"
+	line "to you than meets"
+	cont "the eye."
 
-	para "Maybe there is"
-	line "more to you than"
-	cont "meets the eye."
-
-	para "Let's see how"
-	line "well your #MON"
-
-	para "do against the"
-	line "power of ice."
-
-	para "But before we"
-	line "begin, I want a"
-	cont "fair fight."
-
-	para "It wouldn't be"
-	line "much of a"
-
-	para "challenge to face"
-	line "you while your"
-
-	para "#MON are"
-	line "licking their"
-	cont "wounds from"
-
-	para "your previous"
+	para "But I want a fair"
 	line "fight."
+
+	para "Your #MON"
+	line "should face my ice"
+	cont "at full strength."
 	done
 
 SilverCaveOutsideLoreleiBeginText:

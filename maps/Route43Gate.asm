@@ -243,7 +243,7 @@ RocketText_TollFee:
 	para "The toll is ¥1000"
 	line "to go through."
 
-	para "you gonna pay up?"
+	para "You gonna pay up?"
 	done
 
 RocketText_RefusedToll:

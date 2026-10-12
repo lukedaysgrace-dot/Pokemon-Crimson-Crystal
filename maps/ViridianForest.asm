@@ -88,7 +88,7 @@ ViridianForestHiddenPotion:
 BugCatcherRobSeenText:
 	text "Hey! You have"
 	line "#MON! Come on!"
-	cont "Let's battle'em!"
+	cont "Let's battle 'em!"
 	done
 
 BugCatcherRobBeatenText:

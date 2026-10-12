@@ -101,3 +101,12 @@ or change to "Thanks for the battle!"
   `maps/GoldenrodUnderground.asm:828` (Haircut Brother "¥500"), `:875` (younger brother "¥300"),
   `maps/Route32.asm:614` (SLOWPOKETAIL "¥1,000,000"). Replace `Â¥` with `¥`.
 - **Wrong TM count.** `maps/NationalPark.asm:414`: "There are 50 kinds of TMs." Your game has **54**.
+
+---
+
+## Applied (2026-10-12)
+All items above were applied except #13 (Proton; left as written) and the optional "Fishing Contest"
+capitalization in #11. Vanilla Crystal itself writes "Contest" in mixed case for the Bug-Catching
+Contest, so the fishing text already matches. Crystal's Cianwood loss line now reads "See? All that
+fieldwork counts for something!" so it no longer repeats her Ilex Forest line. Every edited line was checked
+against the 18-tile width, and each edited file assembles cleanly on its own.

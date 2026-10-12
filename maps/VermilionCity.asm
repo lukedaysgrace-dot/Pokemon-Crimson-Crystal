@@ -323,7 +323,7 @@ VermilionCityChantzText:
 CooltrainermChantzSeenText:
 	text "Hey! I was trying"
 	line "to catch that"
-	cont "SNORLAX...."
+	cont "SNORLAX!"
 
 	para "If you're going"
 	line "to steal my catch,"
@@ -332,17 +332,15 @@ CooltrainermChantzSeenText:
 	done
 
 CooltrainermChantzBeatenText:
-	text "Oh..."
+	text "Oh…"
 	done
 
 CooltrainermChantzAfterBattleText:
-	text "I probably"
-	line "would've never"
-	cont "caught it"
-	cont "anyways...."
+	text "I never would've"
+	line "caught it anyway…"
 
-	para "I'm out of here,"
-	line "later."
+	para "I'm out of here."
+	line "Later!"
 	done
 
 VermilionCitySignText:

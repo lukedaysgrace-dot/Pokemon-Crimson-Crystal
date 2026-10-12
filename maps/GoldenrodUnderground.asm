@@ -825,7 +825,7 @@ GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText:
 
 	para "I can make your"
 	line "#MON beautiful"
-	cont "for just Â¥500."
+	cont "for just ¥500."
 
 	para "Would you like me"
 	line "to do that?"
@@ -872,7 +872,7 @@ GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText:
 
 	para "I'll spiff up your"
 	line "#MON for just"
-	cont "Â¥300."
+	cont "¥300."
 
 	para "So? How about it?"
 	done
@@ -958,15 +958,13 @@ GoldenrodUndergroundThugNoticeText:
 	text "Well, what do we"
 	line "have here?"
 
-	para "Seems like this"
-	line "kid wants to be a"
-	cont "hero."
+	para "A kid playing"
+	line "hero?"
 
 	para "Guess we'll have"
-	line "to show em not to"
-	cont "poke their nose"
-	cont "into other"
-	cont "people's business!"
+	line "to teach you to"
+	cont "keep your nose out"
+	cont "of our business!"
 	done
 
 GoldenrodUndergroundThugPaulieBeatenText:
@@ -1030,56 +1028,28 @@ GoldenrodUndergroundGirlThanksText:
 	text "Oh, thank you so"
 	line "much!"
 
-	para "I came down here"
-	line "with RIOLU"
-	cont "to check out some"
-	cont "of the shops that"
-	cont "only open on"
-	cont "certain days…"
-
 	para "Those TEAM ROCKET"
-	line "members saw him"
-	cont "and immediately"
-	cont "chased me down"
-	cont "this hallway and"
-	cont "cornered me."
+	line "members chased us"
+	cont "all the way down"
+	cont "here."
 
-	para "To think that they"
-	line "wanted to steal"
-	cont "him…"
-
-	para "I don't know"
-	line "what I would've"
-	cont "done if you hadn't"
-	cont "shown up."
-
-	para "You know, I've"
-	line "been thinking of"
-	cont "something."
-
-	para "RIOLU belonged to"
-	line "my grandma. He's"
+	para "RIOLU was my"
+	line "grandma's. He's"
 	cont "always been really"
 	cont "special to me."
 
-	para "But maybe keeping"
-	line "him with me isn't"
-	cont "what is best for"
-	cont "him anymore."
-
-	para "After seeing how"
-	line "you stood up for"
+	para "But after seeing"
+	line "you stand up for"
 	cont "us…"
 
 	para "I think Grandma"
 	line "would've trusted"
 	cont "you with him, too."
 
-	para "He's incredibly"
-	line "brave for his size"
-	cont "and I know you'll"
-	cont "protect him better"
-	cont "than I can."
+	para "He's brave for his"
+	line "size, and I know"
+	cont "you'll keep him"
+	cont "safe."
 
 	para "Would you please"
 	line "take him?"

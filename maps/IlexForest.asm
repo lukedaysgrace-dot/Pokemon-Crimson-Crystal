@@ -1123,7 +1123,7 @@ IlexForestCrystalWinText:
 	text "Oh!"
 
 	para "I wasn't"
-	line "expecting that..."
+	line "expecting that…"
 	done
 
 IlexForestCrystalLossText:

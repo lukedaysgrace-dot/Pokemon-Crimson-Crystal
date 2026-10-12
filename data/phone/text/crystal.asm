@@ -11,7 +11,7 @@ CrystalPhoneDayGreetingText:
 	text "Hi, <PLAY_G>!"
 	line "CRYSTAL here."
 
-	para "Hold on..."
+	para "Hold on…"
 	line "All right!"
 
 	para "Sorry. I was"
