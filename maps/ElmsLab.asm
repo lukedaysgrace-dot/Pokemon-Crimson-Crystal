@@ -1351,10 +1351,11 @@ ElmGiveAbilityCapText2:
 	line "born with differ-"
 	cont "ent ABILITIES."
 
-	para "Use it, and one of"
-	line "those will awaken"
-	cont "in place of its"
-	cont "current one."
+	para "Use it as often as"
+	line "you like. Each use"
+	cont "switches it to the"
+	cont "next ABILITY its"
+	cont "species can have."
 
 	para "Record what you"
 	line "find for me!"

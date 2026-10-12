@@ -81,15 +81,16 @@ GravekeeperAngryText:
 
 	para "Those stones are"
 	line "older than your"
-	cont "town, and a shovel"
-	cont "is cheap."
+	cont "town, and I've"
+	cont "seen what kids do"
+	cont "with a shovel."
 
 	para "Touch one and I'll"
 	line "know."
 	done
 
 GravekeeperAngryAgainText:
-	text "Still here?"
+	text "Back again?"
 
 	para "You have no"
 	line "respect."
@@ -107,9 +108,8 @@ GravekeeperApologyText:
 	cont "years has helped"
 	cont "me clean them."
 
-	para "They come to gawk,"
-	line "or they come to"
-	cont "dig."
+	para "They come to break"
+	line "things or steal."
 
 	para "You came with a"
 	line "rag."
@@ -119,15 +119,20 @@ GravekeeperApologyText:
 	done
 
 GravekeeperGaveGiftText:
-	text "It was pinned to a"
-	line "coat I buried."
+	text "Folk used to leave"
+	line "SPELL TAGS at the"
+	cont "graves, to calm"
+	cont "restless spirits."
 
-	para "I've had it for"
-	line "years."
+	para "That one's sat in"
+	line "my drawer for"
+	cont "years."
 
-	para "Maybe it will be"
-	line "of some use to"
-	cont "you."
+	para "It powers up"
+	line "GHOST-type moves."
+
+	para "Better it goes"
+	line "with you."
 	done
 
 GravekeeperAfterText:

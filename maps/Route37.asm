@@ -240,6 +240,9 @@ Route37SignText:
 
 Route37SilentCryptSignText:
 	text "SILENT CRYPT"
+
+	para "Please respect"
+	line "those at rest."
 	done
 
 Route37_MapEvents:

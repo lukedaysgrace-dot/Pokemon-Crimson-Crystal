@@ -242,7 +242,7 @@ SantosGaveGiftText:
 
 	para "TWISTEDSPOON…"
 
-	para "Psychic-type moves"
+	para "PSYCHIC-type moves"
 	line "get stronger…"
 
 	para "It bent on its"

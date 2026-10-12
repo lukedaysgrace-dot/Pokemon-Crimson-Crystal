@@ -180,7 +180,7 @@ CinnabarIslandBlueCloakBeforeText:
 	line "went wrong."
 
 	para "And I'm not the"
-	line "same Trainer you"
+	line "same trainer you"
 	cont "fought before."
 
 	para "No GYM this time."
@@ -215,7 +215,7 @@ CinnabarIslandBlueCloakAfterText:
 	line "better today."
 
 	para "There's only one"
-	line "Trainer left who"
+	line "trainer left who"
 
 	para "might have some-"
 	line "thing to say"

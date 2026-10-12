@@ -337,14 +337,12 @@ LassDanielleAfterBattleText:
 	done
 
 LassKathrynSeenText:
-	text "Welcome back to"
-	line "the GYM! JASMINE"
-	cont "returned, so the"
-	cont "challenge is on!"
+	text "I've been polish-"
+	line "ing my steel-types"
+	cont "just for today!"
 
-	para "My steel-types"
-	line "won't rust so"
-	cont "easily!"
+	para "They won't rust"
+	line "so easily!"
 	done
 
 LassKathrynBeatenText:

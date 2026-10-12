@@ -159,7 +159,7 @@ SilentCryptGrave1:
 	end
 
 .AlreadyClean:
-	writetext SilentCryptGraveCleanText
+	writetext SilentCryptGrave1CleanText
 	waitbutton
 	closetext
 	end
@@ -187,7 +187,7 @@ SilentCryptGrave3:
 	end
 
 .AlreadyClean:
-	writetext SilentCryptGraveCleanText
+	writetext SilentCryptGrave2CleanText
 	waitbutton
 	closetext
 	end
@@ -205,12 +205,11 @@ HexManiacOdessaBeatenText:
 	done
 
 HexManiacOdessaAfterBattleText:
-	text "I come here to be"
-	line "spoken to."
+	text "I come here to"
+	line "listen."
 
-	para "You wouldn't"
-	line "understand. Nobody"
-	cont "up there does."
+	para "The dead tell the"
+	line "best stories."
 	done
 
 HexManiacLilithSeenText:
@@ -275,13 +274,27 @@ SilentCryptFilthyGraveText:
 SilentCryptScrubbedText:
 	text "<PLAYER> scrubbed"
 	line "the gravestone"
-	cont "spotless!"
+	cont "clean with the"
+	cont "old rag!"
 	done
 
-SilentCryptGraveCleanText:
+SilentCryptGrave2CleanText:
 	text "The stone is"
 	line "clean. The letters"
-	cont "read clearly now."
+	cont "read clearly now:"
+
+	para "GONE AHEAD."
+	line "WAITING STILL."
+	done
+
+SilentCryptGrave1CleanText:
+	text "The stone is"
+	line "clean. The letters"
+	cont "read clearly now:"
+
+	para "HERE RESTS AN OLD"
+	line "FRIEND, FAITHFUL"
+	cont "TO THE END."
 	done
 
 SilentCryptGrannyAdviceText:
@@ -306,12 +319,13 @@ SilentCryptGrannyAdviceText:
 	para "Didn't even look"
 	line "back."
 
-	para "Maybe if you clean"
-	line "those two graves,"
-	cont "and show him"
-	cont "you're a kind"
-	cont "person, he'll be"
-	cont "willing to talk."
+	para "Clean those two"
+	line "stones, and he"
+	cont "might give you the"
+	cont "time of day."
+
+	para "Here, take this"
+	line "old rag of mine."
 	done
 
 SilentCryptGrannyRemindText:
@@ -352,8 +366,9 @@ SilentCryptGrannyFinishedText:
 	line "something, didn't"
 	cont "he?"
 
-	para "First time in"
-	line "forty years."
+	para "Forty years I've"
+	line "known him. That's"
+	cont "a first."
 	done
 
 SilentCrypt_MapEvents:
