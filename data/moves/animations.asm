@@ -1350,33 +1350,34 @@ BattleAnim_SendOutMon:
 	anim_ret
 
 .Shiny:
+; anim_wait includes its command tick: 3 gives four frames between sparkles.
 	anim_1gfx ANIM_GFX_SPEED
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $0
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $0
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $8
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $8
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $10
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $10
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $18
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $18
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $20
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $20
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $28
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $28
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $30
-	anim_wait 4
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $30
+	anim_wait 3
 	anim_sound 0, 0, SFX_SHINE
-	anim_obj ANIM_OBJ_SHINY, 48, 96, $38
-	anim_wait 32
+	anim_obj ANIM_OBJ_SHINY_ENTRANCE, 48, 96, $38
+	anim_wait 16
 	anim_ret
 
 .Normal:

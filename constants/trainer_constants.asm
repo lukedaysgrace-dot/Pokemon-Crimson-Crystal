@@ -854,4 +854,9 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 ; The Elder of Sprout Tower (3F), who gives out HM05 Flash.
 	const LI
 
+	trainerclass AROMA_LADY
+; Herbalists climbing the Olivine Lighthouse.
+	const ROSIE
+	const DAHLIA
+
 NUM_TRAINER_CLASSES EQU __enum__

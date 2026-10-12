@@ -8159,3 +8159,28 @@ ElderGroup:
 	db -1 ; end
 
 	end_list_items
+
+AromaLadyGroup:
+	next_list_item ; AROMA_LADY (1) ROSIE - Olivine Lighthouse 5F
+	db "ROSIE@", TRAINERTYPE_NORMAL
+	db 31
+	dw IVYSAUR
+	db 32
+	dw BAYLEEF
+	db 33
+	dw SUNFLORA
+	db 34
+	dw BELLOSSOM
+	db -1 ; end
+
+	next_list_item ; AROMA_LADY (2) DAHLIA - Olivine Lighthouse 4F
+	db "DAHLIA@", TRAINERTYPE_NORMAL
+	db 32
+	dw TANGELA
+	db 33
+	dw JUMPLUFF
+	db 34
+	dw EXEGGUTOR_ALOLAN
+	db -1 ; end
+
+	end_list_items

@@ -102,3 +102,4 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15; KAREN_REMATCH
 	dn 15, 15, 15, 15; CHAMPION_REMATCH
 	dn 15, 15, 15, 15 ; ELDER
+	dn  6,  9, 12,  8 ; AROMA_LADY
