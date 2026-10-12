@@ -8183,4 +8183,16 @@ AromaLadyGroup:
 	dw EXEGGUTOR_ALOLAN
 	db -1 ; end
 
+	next_list_item ; AROMA_LADY (3) JUNIPER - Route 38
+	db "JUNIPER@", TRAINERTYPE_NORMAL
+	db 26
+	dw SKIPLOOM
+	db 27
+	dw GLOOM
+	db 27
+	dw STEENEE
+	db 28
+	dw WEEPINBELL
+	db -1 ; end
+
 	end_list_items
