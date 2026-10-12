@@ -388,7 +388,7 @@ PokemaniacShaneAfterBattleText:
 	cont "#MON!"
 
 	para "May I please see"
-	line "it. Please?"
+	line "it? Please?"
 	done
 
 Route42Sign1Text:
