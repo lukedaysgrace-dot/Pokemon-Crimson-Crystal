@@ -228,8 +228,8 @@ JohtoWaterWildMons:
 
 	map_id SAFARI_ZONE
 	db 4 percent ; encounter rate
-	dbw 24, WOOPER_PALDEAN
-	dbw 25, SLOWPOKE_GALARIAN
+	dbw 24, GOLDEEN
+	dbw 25, PSYDUCK
 	dbw 26, GOLDEEN
 
 	map_id SILVER_CAVE_OUTSIDE

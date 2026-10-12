@@ -1216,6 +1216,8 @@ CanUseSweetScent::
 	jr z, .ice_check
 	call CheckSafariZoneRockyArea
 	jr c, .ice_check ; the rocky pen works like a cave: encounters on bare ground
+	call CheckSafariZoneMudBlock
+	jr c, .ice_check ; mud patches give encounters on bare ground too
 	farcall CheckGrassCollision
 	jr nc, .no
 
@@ -1245,6 +1247,30 @@ CheckSafariZoneNoEncounterBlock:
 	call GetBlockLocation
 	ld a, [hl]
 	cp SAFARI_ZONE_NO_ENCOUNTER_BLOCK
+	jr nz, .outside
+	scf
+	ret
+
+.outside
+	and a
+	ret
+
+CheckSafariZoneMudBlock:
+; Block SAFARI_ZONE_MUD_BLOCK is the SAFARI ZONE's mud patch, home to
+; PALDEAN WOOPER and GALARIAN SLOWPOKE. Returns carry if standing on it.
+	ld a, [wMapGroup]
+	cp GROUP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wMapNumber]
+	cp MAP_SAFARI_ZONE
+	jr nz, .outside
+	ld a, [wPlayerStandingMapX]
+	ld d, a
+	ld a, [wPlayerStandingMapY]
+	ld e, a
+	call GetBlockLocation
+	ld a, [hl]
+	cp SAFARI_ZONE_MUD_BLOCK
 	jr nz, .outside
 	scf
 	ret
