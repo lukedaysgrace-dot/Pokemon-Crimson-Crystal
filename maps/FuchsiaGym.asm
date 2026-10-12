@@ -353,8 +353,8 @@ CamperBarryBeatenText:
 
 CamperBarryAfterText:
 	text "Hey, you. Was my"
-	line "disguise cute or"
-	cont "what, huh?"
+	line "disguise flawless"
+	cont "or what, huh?"
 	done
 
 FuchsiaGymGuyText:

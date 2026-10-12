@@ -131,3 +131,10 @@ Evolved the remaining 81 Pokémon that were 1–7 levels past their level evolut
 Croconaw 32 -> Feraligatr, Pupitar 46 -> Tyranitar, Eusine's Haunter -> Gengar). No trainer
 Pokémon is now above its level-evolution level, except the intentional skips: all Pikachu,
 Agatha's Haunter, Boarder Noel.
+
+### Rematch team consistency (2026-10-12)
+Rebuilt 22 rematch trainers (Joey, Alan, Chad, Jack, Dana, Ralph, Tully, Huey, Irwin, Todd, Parry,
+Beth, Gaven, Reena, Liz, Gina, Wade, Arnie, Kenji, Brent, Connie, Wilton) so each keeps a core team
+that evolves and grows across rematches, built backward from their existing final fight. Level
+bands per fight unchanged; final fights keep their existing sets (new members got matching sets).
+Hiker Anthony was done separately. No trainer Pokémon is past a level evolution or evolved early.

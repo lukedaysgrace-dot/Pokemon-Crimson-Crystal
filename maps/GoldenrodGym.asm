@@ -380,11 +380,18 @@ GoldenrodGymGuyText:
 
 	para "This GYM is home"
 	line "to normal-type"
-	cont "#MON trainers."
+	cont "#MON trainers…"
+	cont "and a few fairies."
 
-	para "I recommend you"
-	line "use fighting-type"
-	cont "#MON."
+	para "Fighting-type"
+	line "moves hit normal-"
+	cont "types hard, but"
+	cont "fairies shrug them"
+	cont "off."
+
+	para "Bring some poison"
+	line "or steel moves"
+	cont "too!"
 	done
 
 GoldenrodGymGuyWinText:

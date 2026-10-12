@@ -58,10 +58,12 @@ SupernerdHughAfterBattleText:
 	cont "pal's gone AWOL."
 
 	para "Have you seen a"
-	line "trainer who has a"
+	line "trainer with a"
+	cont "MAGNEMITE?"
 
-	para "SLOWPOKE that can"
-	line "use STRENGTH?"
+	para "He said he'd need"
+	line "STRENGTH to get"
+	cont "anywhere."
 	done
 
 MountMortar2FInside_MapEvents:

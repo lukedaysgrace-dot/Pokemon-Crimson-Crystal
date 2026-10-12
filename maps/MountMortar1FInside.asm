@@ -103,15 +103,15 @@ SupernerdMarkusBeatenText:
 SupernerdMarkusAfterBattleText:
 	text "I came to explore"
 	line "MT.MORTAR, but I"
-
-	para "got separated from"
-	line "my partner…"
+	cont "got separated from"
+	cont "my partner…"
 
 	para "Did you run into a"
-	line "trainer who uses a"
+	line "trainer with a"
+	cont "MAGNETON?"
 
-	para "SEADRA that knows"
-	line "WATERFALL?"
+	para "He went looking"
+	line "for the WATERFALL."
 	done
 
 MountMortar1FInside_MapEvents:
