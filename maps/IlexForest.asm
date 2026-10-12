@@ -1115,8 +1115,9 @@ IlexForestCrystalBeforeText:
 	line "walk right past"
 	cont "them."
 
-	para "Let's see how your"
-	line "training is going!"
+	para "Let's see if your"
+	line "team's improved"
+	cont "since VIOLET."
 	done
 
 IlexForestCrystalWinText:

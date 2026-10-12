@@ -115,11 +115,9 @@ TamerColeBeatenText:
 	done
 
 TamerColeAfterBattleText:
-	text "A beast worth"
-	line "taming is a beast"
-
-	para "that would sooner"
-	line "tame you."
+	text "Raise them strong,"
+	line "and they'll test"
+	cont "you every day."
 	done
 
 TamerJaxSeenText:
