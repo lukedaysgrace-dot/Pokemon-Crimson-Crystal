@@ -454,6 +454,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_WISH_2
 	const ANIM_OBJ_WEATHER_BALL_RISE
 	const ANIM_OBJ_WEATHER_BALL_FALL
+	const ANIM_OBJ_SHINY_ENTRANCE
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -874,6 +875,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_TORMENT ; ported from pokeorange
 	const BATTLEANIMFRAMESET_TAUNT
 	const BATTLEANIMFRAMESET_DROWZINESS
+	const BATTLEANIMFRAMESET_SHINY_ENTRANCE
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def

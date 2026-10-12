@@ -1,6 +1,7 @@
 	object_const_def ; object_event constants
 	const OLIVINELIGHTHOUSE4F_SAILOR
 	const OLIVINELIGHTHOUSE4F_LASS
+	const OLIVINELIGHTHOUSE4F_AROMA_LADY
 
 OlivineLighthouse4F_MapScripts:
 	db 0 ; scene scripts
@@ -25,6 +26,17 @@ TrainerSailorKent:
 	endifjustbattled
 	opentext
 	writetext SailorKentAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerAromaLadyDahlia:
+	trainer AROMA_LADY, DAHLIA, EVENT_BEAT_AROMA_LADY_DAHLIA, AromaLadyDahliaSeenText, AromaLadyDahliaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext AromaLadyDahliaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -79,6 +91,37 @@ LassConnie1AfterBattleText:
 	line "back to the GYM."
 	done
 
+AromaLadyDahliaSeenText:
+	text "I crossed the sea"
+	line "to gather rare"
+	cont "flowers for my"
+	cont "garden."
+
+	para "The blooms by this"
+	line "lighthouse grow"
+	cont "nowhere else!"
+
+	para "Let's see if your"
+	line "#MON can match"
+	cont "my garden's best!"
+	done
+
+AromaLadyDahliaBeatenText:
+	text "Oh! My bouquet is"
+	line "all scattered…"
+	done
+
+AromaLadyDahliaAfterBattleText:
+	text "Back home, my"
+	line "garden faces the"
+	cont "open sea."
+
+	para "Someday I'll plant"
+	line "these seeds there"
+	cont "and watch them"
+	cont "bloom by the tide."
+	done
+
 OlivineLighthouse4F_MapEvents:
 	db 0, 0 ; filler
 
@@ -98,6 +141,7 @@ OlivineLighthouse4F_MapEvents:
 
 	db 0 ; bg events
 
-	db 2 ; object events
+	db 3 ; object events
 	object_event  7, 14, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorKent, -1
 	object_event 11,  2, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassConnie, -1
+	object_event  2, 10, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerAromaLadyDahlia, -1

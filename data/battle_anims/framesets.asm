@@ -343,6 +343,7 @@ BattleAnimFrameData:
 	dw .SET_TORMENT ; BATTLEANIMFRAMESET_TORMENT
 	dw .SET_TAUNT ; BATTLEANIMFRAMESET_TAUNT
 	dw .SET_DROWZINESS ; BATTLEANIMFRAMESET_DROWZINESS
+	dw .Frameset_ShinyEntrance ; BATTLEANIMFRAMESET_SHINY_ENTRANCE
 
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
@@ -2172,4 +2173,13 @@ BattleAnimFrameData:
 .SET_DROWZINESS:
 	oamframe BATTLEANIMOAMSET_10, 32
 	oamframe BATTLEANIMOAMSET_1E, 8
+	oamdelanim
+
+.Frameset_ShinyEntrance:
+; Five three-frame phases match the reference's 15-frame sparkle lifetime.
+	oamframe BATTLEANIMOAMSET_74, 2
+	oamframe BATTLEANIMOAMSET_14, 2
+	oamframe BATTLEANIMOAMSET_15, 2
+	oamframe BATTLEANIMOAMSET_14, 2
+	oamframe BATTLEANIMOAMSET_15, 2
 	oamdelanim

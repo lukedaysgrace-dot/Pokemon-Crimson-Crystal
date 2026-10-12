@@ -116,3 +116,4 @@ INCBIN "gfx/trainers/bruno.gbcpal", middle_colors ; BRUNO_REMATCH
 INCBIN "gfx/trainers/karen.gbcpal", middle_colors ; KAREN_REMATCH
 INCBIN "gfx/trainers/champion.gbcpal", middle_colors ; CHAMPION_REMATCH
 INCBIN "gfx/trainers/elder.gbcpal", middle_colors ; ELDER
+INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors ; AROMA_LADY

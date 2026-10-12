@@ -103,3 +103,4 @@ TrainerPicPointers::
 	dba KarenPic ; KAREN_REMATCH
 	dba ChampionPic ; CHAMPION_REMATCH
 	dba ElderPic ; ELDER
+	dba AromaLadyPic ; AROMA_LADY

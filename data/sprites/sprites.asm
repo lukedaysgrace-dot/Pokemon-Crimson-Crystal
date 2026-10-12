@@ -153,3 +153,4 @@ OverworldSprites:
 	overworld_sprite FatGuySpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE ; SPRITE_FAT_GUY
 	overworld_sprite BurglarSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE ; SPRITE_BURGLAR
 	overworld_sprite FishingBoatSpriteGFX, 16, BOAT_SPRITE, PAL_OW_BROWN
+	overworld_sprite AromaLadySpriteGFX, 12, WALKING_SPRITE, PAL_OW_GREEN ; SPRITE_AROMA_LADY

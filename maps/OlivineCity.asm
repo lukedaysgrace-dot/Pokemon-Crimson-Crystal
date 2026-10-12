@@ -78,8 +78,11 @@ OlivineCityJasmineMedicineRequest:
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iftrue .ExplainedSickness
 	writetext JasmineCianwoodPharmacyText
-	buttonsound
+	waitbutton
+	closetext
 	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	end
+
 .ExplainedSickness:
 	writetext JasmineGetSomeMedicineText
 	waitbutton
@@ -92,6 +95,8 @@ OlivineCityJasmineBroughtSecretpotion:
 	iffalse .Declined
 	writetext PlayerHandedSecretpotionText
 	buttonsound
+	writetext JasmineThankGoodnessText
+	waitbutton
 	takeitem SECRETPOTION
 	setevent EVENT_JASMINE_RECEIVED_SECRETPOTION
 	closetext
@@ -262,39 +267,73 @@ MovementData_0x1a88f7:
 	step_end
 
 JasmineCianwoodPharmacyText:
-	text "JASMINE: … This"
-	line "#MON always"
+	text "JASMINE: …Oh!"
+	line "Hello…"
 
-	para "kept the sea lit"
-	line "at night."
+	para "…I'm sorry to"
+	line "trouble you, but…"
+	cont "I need your help,"
+	cont "and I have no one"
+	cont "else to turn to."
 
-	para "…But it suddenly"
-	line "got sick… It's"
-	cont "gasping for air…"
+	para "The #MON that"
+	line "lights this"
+	cont "LIGHTHOUSE…"
 
-	para "…I understand"
-	line "that there is a"
+	para "AMPHY… has become"
+	line "terribly ill."
 
-	para "wonderful PHARMACY"
-	line "in CIANWOOD…"
+	para "…I'm very worried"
+	line "about her…"
 
-	para "But that's across"
-	line "the sea…"
+	para "I've heard there's"
+	line "a wonderful"
+	cont "PHARMACY in"
+	cont "CIANWOOD CITY that"
+	cont "makes special"
+	cont "medicine."
 
-	para "And I can't leave"
-	line "AMPHY unattended…"
+	para "…But I can't leave"
+	line "AMPHY alone for"
+	cont "very long…"
+
+	para "…Would you please"
+	line "go to CIANWOOD and"
+	cont "bring back some"
+	cont "medicine?"
+
+	para "…I'd be ever so"
+	line "grateful…"
 	done
 
 JasmineGetSomeMedicineText:
-	text "…May I ask you to"
-	line "get some medicine"
-	cont "for me? Please?"
+	text "JASMINE: …Have you"
+	line "been to the"
+	cont "PHARMACY in"
+	cont "CIANWOOD yet?"
+
+	para "…AMPHY is still"
+	line "very sick…"
+
+	para "…Please hurry…"
 	done
 
 JasmineCureAmphyText:
-	text "JASMINE: …Will"
-	line "that medicine cure"
+	text "JASMINE: …Oh! Is"
+	line "that medicine for"
 	cont "AMPHY?"
+	done
+
+JasmineThankGoodnessText:
+	text "JASMINE: …Thank"
+	line "goodness!"
+
+	para "…Please, come"
+	line "inside!"
+
+	para "Meet me upstairs"
+	line "so we can give it"
+	cont "to her right away!"
 	done
 
 PlayerHandedSecretpotionText:

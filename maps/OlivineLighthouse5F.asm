@@ -4,6 +4,7 @@
 	const OLIVINELIGHTHOUSE5F_POKE_BALL1
 	const OLIVINELIGHTHOUSE5F_POKE_BALL2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
+	const OLIVINELIGHTHOUSE5F_AROMA_LADY
 
 OlivineLighthouse5F_MapScripts:
 	db 0 ; scene scripts
@@ -28,6 +29,17 @@ TrainerSailorErnest:
 	endifjustbattled
 	opentext
 	writetext SailorErnestAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerAromaLadyRosie:
+	trainer AROMA_LADY, ROSIE, EVENT_BEAT_AROMA_LADY_ROSIE, AromaLadyRosieSeenText, AromaLadyRosieBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext AromaLadyRosieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -88,6 +100,34 @@ BirdKeeperDenisAfterBattleText:
 	cont "across the sea…"
 	done
 
+AromaLadyRosieSeenText:
+	text "I brought some"
+	line "soothing herbs for"
+	cont "poor AMPHY…"
+
+	para "But I'm afraid she"
+	line "needs something"
+	cont "stronger than my"
+	cont "remedies…"
+	done
+
+AromaLadyRosieBeatenText:
+	text "Oh my… Even my"
+	line "lavender couldn't"
+	cont "calm this storm."
+	done
+
+AromaLadyRosieAfterBattleText:
+	text "My herbs can ease"
+	line "AMPHY's fever a"
+	cont "little, but that's"
+	cont "all they can do."
+
+	para "Only real medicine"
+	line "will let her shine"
+	cont "again."
+	done
+
 OlivineLighthouse5F_MapEvents:
 	db 0, 0 ; filler
 
@@ -105,9 +145,10 @@ OlivineLighthouse5F_MapEvents:
 	db 1 ; bg events
 	bg_event  3, 13, BGEVENT_ITEM, OlivineLighthouse5FHiddenHyperPotion
 
-	db 5 ; object events
+	db 6 ; object events
 	object_event  8, 11, SPRITE_SAILOR, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorErnest, -1
 	object_event  8,  3, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBirdKeeperDenis, -1
 	object_event 15, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
 	object_event  6, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
 	object_event  2, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FTMFlashCannon, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_FLASH_CANNON
+	object_event 11, 13, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerAromaLadyRosie, -1

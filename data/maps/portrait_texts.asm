@@ -1202,6 +1202,8 @@ PortraitTexts:
 	db PORTRAIT_JASMINE
 	dba JasmineISeeText
 	db PORTRAIT_JASMINE
+	dba JasmineThankGoodnessText
+	db PORTRAIT_JASMINE
 	dba OlivineCityBattleTowerSignText
 	db 0
 	dba OlivineCityFishingCoveSignText
