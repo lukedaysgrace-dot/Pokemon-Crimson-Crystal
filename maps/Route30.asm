@@ -298,6 +298,10 @@ YoungsterJoey1AfterText:
 	para "No! I'm sticking"
 	line "with this one no"
 	cont "matter what!"
+
+	para "…Well, maybe I'll"
+	line "add a friend or"
+	cont "two."
 	done
 
 YoungsterMikeySeenText:
