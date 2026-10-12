@@ -393,7 +393,7 @@ VioletCityCrystalBeforeText:
 	cont "you?"
 
 	para "PROF.ELM mentioned"
-	line "another TRAINER"
+	line "another trainer"
 	cont "was helping with"
 	cont "#DEX research."
 
@@ -424,9 +424,8 @@ VioletCityCrystalBeforeText:
 VioletCityCrystalWinText:
 	text "I see…"
 
-	para "Looks like I"
-	line "still have some"
-	cont "work to do."
+	para "You're stronger"
+	line "than I expected."
 	done
 
 VioletCityCrystalLossText:

@@ -1140,10 +1140,13 @@ IlexForestCrystalAfterText:
 	cont "should focus a bit"
 	cont "more on training."
 
-	para "I know there are"
-	line "quite a few"
-	cont "trainers before"
+	para "There are plenty"
+	line "of trainers"
+	cont "between here and"
 	cont "GOLDENROD."
+
+	para "I'll start with"
+	line "them."
 
 	para "I'll see you"
 	line "later, <PLAYER>!"

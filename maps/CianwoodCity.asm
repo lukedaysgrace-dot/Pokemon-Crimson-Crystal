@@ -502,7 +502,8 @@ EusineAfterText:
 	done
 
 CianwoodCityCrystalBeforeText:
-	text "Oh! <PLAYER>!"
+	text "CRYSTAL: Oh!"
+	line "<PLAYER>!"
 
 	para "My notes are"
 	line "soaked. My team is"
@@ -535,9 +536,7 @@ CianwoodCityCrystalAfterText:
 	cont "result."
 
 	para "Still, my team"
-	line "held up well. I"
-	cont "know what to work"
-	cont "on now."
+	line "held up well."
 
 	para "See you around,"
 	line "<PLAYER>!"

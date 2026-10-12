@@ -59,9 +59,8 @@ CrystalPhoneStatusIlexText:
 
 	para "I've checked so"
 	line "many trees that"
-
-	para "every branch looks"
-	line "suspicious now."
+	cont "every branch looks"
+	cont "suspicious now."
 
 	para "Next stop:"
 	line "GOLDENROD."
