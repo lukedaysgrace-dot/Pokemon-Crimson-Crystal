@@ -197,8 +197,8 @@ CinnabarIslandBlueCloakBeatenText:
 	done
 
 CinnabarIslandBlueCloakAfterText:
-	text "BLUE: I used my"
-	line "original team."
+	text "BLUE: I brought"
+	line "my best team."
 
 	para "Changed my"
 	line "strategy."
@@ -216,9 +216,8 @@ CinnabarIslandBlueCloakAfterText:
 
 	para "There's only one"
 	line "trainer left who"
-
-	para "might have some-"
-	line "thing to say"
+	cont "might have some-"
+	cont "thing to say"
 	cont "about that."
 
 	para "I heard he came"

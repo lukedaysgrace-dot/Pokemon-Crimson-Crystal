@@ -260,11 +260,15 @@ GRASS_WILDDATA_LENGTH EQU 2 + (1 + NUM_GRASSMON * 3) * 3
 ; - ice area:   y < SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ICE_RIGHT_X
 ; - rocky area: y >= SAFARI_ZONE_LEFT_AREAS_Y and x < SAFARI_ZONE_ROCKY_RIGHT_X
 ;   (cave-style encounters on bare ground; see CheckSafariZoneRockyArea)
+; - mud area: any SAFARI_ZONE_MUD_BLOCK block (checked first; see below)
 ; - everywhere else uses the normal SAFARI_ZONE table in johto_grass.asm
 SAFARI_ZONE_ICE_RIGHT_X   EQU 28
 SAFARI_ZONE_ROCKY_RIGHT_X EQU 16
 SAFARI_ZONE_LEFT_AREAS_Y  EQU 14
 SAFARI_ZONE_NO_ENCOUNTER_BLOCK EQU $01
+; Mud patches (JOHTO tileset block $A7) give their own encounters on bare
+; ground: SafariZoneMudWildMons in johto_grass.asm.
+SAFARI_ZONE_MUD_BLOCK EQU $A7
 WATER_WILDDATA_LENGTH EQU 2 + (1 + NUM_WATERMON * 3) * 1
 FISHGROUP_DATA_LENGTH EQU 1 + 2 * 3
 

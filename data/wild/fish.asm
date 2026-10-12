@@ -229,7 +229,7 @@ FishGroups:
 
 ; Safari Zone rods. Levels sit in the Route 38 band (23-27) now that the
 ; Safari Zone entrance is on Route 38. Paldean Wooper and Galarian Slowpoke
-; are surf-only here (see SAFARI_ZONE in data/wild/johto_water.asm).
+; live only on the mud patches (SafariZoneMudWildMons in johto_grass.asm).
 .Safari_Old:
 	dbbw  40 percent,     23, QWILFISH
 	dbbw  72 percent,     23, GOLDEEN

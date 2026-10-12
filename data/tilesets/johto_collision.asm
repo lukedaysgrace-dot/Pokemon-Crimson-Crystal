@@ -165,7 +165,7 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a4
 	tilecoll WALL, WALL, WALL, WALL ; a5
 	tilecoll WALL, WALL, WALL, WALL ; a6
-	tilecoll WATER, WATER, WATER, WATER ; a7
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a7
 	tilecoll WALL, WALL, WALL, WALL ; a8
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a9
 	tilecoll FLOOR, HEADBUTT_TREE, FLOOR, HEADBUTT_TREE ; aa
