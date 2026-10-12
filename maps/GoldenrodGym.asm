@@ -407,11 +407,9 @@ WhitneyRematchWinText:
 
 	para "Waaaaah!"
 
-	para "…Snivel, hic…"
-	line "…You meanie!"
-
-	para "MORTY will battle"
-	line "you next."
+	para "…Sniff… MORTY's"
+	line "up next. Now go"
+	cont "away, you meanie!"
 	done
 
 GoldenrodGym_MapEvents:

@@ -310,7 +310,9 @@ CooltrainerFSeleneSeenText:
 	done
 
 CooltrainerFSeleneBeatenText:
-	text "You've passed!"
+	text "Go on, then."
+
+	para "You've earned it."
 	done
 
 CooltrainerFSeleneAfterBattleText:

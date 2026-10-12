@@ -549,7 +549,7 @@ DragonShrinePartyFullText:
 DragonShrineTeachExtremeSpeedText:
 	text "Hm… I see you"
 	line "already raise a"
-	cont "dragon."
+	cont "DRAGON."
 
 	para "Shall I teach it"
 	line "EXTREMESPEED?"
