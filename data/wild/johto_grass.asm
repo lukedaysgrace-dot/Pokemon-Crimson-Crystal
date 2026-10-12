@@ -1726,7 +1726,7 @@ JohtoGrassWildMons:
 
 	db -1 ; end
 
-; The SAFARI ZONE's icy and rocky areas swap these tables in
+; The SAFARI ZONE's icy, rocky and mud areas swap these tables in
 ; via _SafariZoneAreaCheck (engine/overworld/wildmons.asm).
 ; They sit after the end marker so normal lookups never find them.
 
@@ -1786,4 +1786,32 @@ SafariZoneRockyWildMons:
 	dbw 26, ROOKIDEE ; rare (4%)
 	dbw 26, SKARMORY ; rare (1%); unlocks at 5 Johto badges
 
-	db -1 ; end (for FindNest, which scans both Safari sub-tables)
+SafariZoneMudWildMons:
+	map_id SAFARI_ZONE
+	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
+	; morn
+	dbw 23, WOOPER_PALDEAN
+	dbw 23, SLOWPOKE_GALARIAN
+	dbw 24, WOOPER_PALDEAN
+	dbw 24, SLOWPOKE_GALARIAN
+	dbw 25, WOOPER_PALDEAN
+	dbw 26, SLOWPOKE_GALARIAN
+	dbw 26, WOOPER_PALDEAN
+	; day
+	dbw 23, SLOWPOKE_GALARIAN
+	dbw 23, WOOPER_PALDEAN
+	dbw 24, SLOWPOKE_GALARIAN
+	dbw 24, WOOPER_PALDEAN
+	dbw 25, SLOWPOKE_GALARIAN
+	dbw 26, WOOPER_PALDEAN
+	dbw 26, SLOWPOKE_GALARIAN
+	; nite
+	dbw 23, WOOPER_PALDEAN
+	dbw 23, SLOWPOKE_GALARIAN
+	dbw 24, WOOPER_PALDEAN
+	dbw 24, SLOWPOKE_GALARIAN
+	dbw 25, WOOPER_PALDEAN
+	dbw 26, SLOWPOKE_GALARIAN
+	dbw 26, WOOPER_PALDEAN
+
+	db -1 ; end (for FindNest, which scans all three Safari sub-tables)

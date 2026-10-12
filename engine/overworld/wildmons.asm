@@ -552,6 +552,21 @@ _SafariZoneAreaCheck:
 	ld a, [wMapNumber]
 	cp MAP_SAFARI_ZONE
 	jr nz, .done
+; mud patches (SAFARI_ZONE_MUD_BLOCK) have their own table, wherever they are
+	push hl
+	ld a, [wPlayerStandingMapX]
+	ld d, a
+	ld a, [wPlayerStandingMapY]
+	ld e, a
+	call GetBlockLocation
+	ld a, [hl]
+	pop hl
+	cp SAFARI_ZONE_MUD_BLOCK
+	jr nz, .not_mud
+	ld hl, SafariZoneMudWildMons
+	jr .done
+
+.not_mud
 	ld a, [wPlayerStandingMapX]
 	sub 4 ; remove the map border offset
 	ld b, a

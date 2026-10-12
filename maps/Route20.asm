@@ -148,10 +148,9 @@ Route20GreenBeforeText:
 	cont "against him."
 
 	para "So I wanted to"
-	line "meet you myself,"
-
-	para "and see what all"
-	line "the fuss was"
+	line "meet you myself"
+	cont "and see what all"
+	cont "the fuss was"
 	cont "about."
 
 	para "Let's see how"
