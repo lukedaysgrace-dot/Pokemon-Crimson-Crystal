@@ -565,7 +565,7 @@ FishingContestPrizeText:
 	done
 
 FishingContestPrizeHeldText::
-	text "Your BAG is full."
+	text "Your PACK is full."
 	line "I'll hold your"
 	cont "prize for you."
 

@@ -407,7 +407,7 @@ VioletCityCrystalBeforeText:
 
 	para "Since we're both"
 	line "working toward the"
-	cont "same goal..."
+	cont "same goal…"
 
 	para "I'd like to see"
 	line "how much progress"
@@ -422,7 +422,7 @@ VioletCityCrystalBeforeText:
 	done
 
 VioletCityCrystalWinText:
-	text "I see..."
+	text "I see…"
 
 	para "Looks like I"
 	line "still have some"

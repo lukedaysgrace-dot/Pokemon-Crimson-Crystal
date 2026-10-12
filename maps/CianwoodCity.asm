@@ -524,13 +524,15 @@ CianwoodCityCrystalWinText:
 	done
 
 CianwoodCityCrystalLossText:
-	text "My training paid"
-	line "off!"
+	text "See? All that"
+	line "fieldwork counts"
+	cont "for something!"
 	done
 
 CianwoodCityCrystalAfterText:
-	text "Hmph. Better notes"
-	line "than results."
+	text "Hmph. Great notes,"
+	line "shame about the"
+	cont "result."
 
 	para "Still, my team"
 	line "held up well. I"

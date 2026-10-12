@@ -311,7 +311,7 @@ JasmineRematchWinText:
 
 LassDanielleSeenText:
 	text "Now that JASMINE"
-	line "is back, us GYM"
+	line "is back, we GYM"
 	cont "TRAINERS are on"
 	cont "duty again!"
 
