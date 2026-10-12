@@ -13,7 +13,7 @@ UnknownText_0x1746c3:
 	line "across a wild"
 	cont "SNUBBULL recently."
 
-	para "My SNUBBULL, I"
+	para "My GRANBULL, I"
 	line "assure you, was"
 
 	para "far cuter than the"
