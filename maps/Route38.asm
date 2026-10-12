@@ -3,7 +3,7 @@
 	const ROUTE38_LASS
 	const ROUTE38_STANDING_YOUNGSTER2
 	const ROUTE38_BUENA1
-	const ROUTE38_SAILOR
+	const ROUTE38_AROMA_LADY
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BUENA2
 
@@ -23,13 +23,13 @@ TrainerBirdKeeperToby:
 	closetext
 	end
 
-TrainerSailorHarry:
-	trainer SAILOR, HARRY, EVENT_BEAT_SAILOR_HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .Script
+TrainerAromaLadyJuniper:
+	trainer AROMA_LADY, JUNIPER, EVENT_BEAT_AROMA_LADY_JUNIPER, AromaLadyJuniperSeenText, AromaLadyJuniperBeatenText, 0, .Script
 
 .Script
 	endifjustbattled
 	opentext
-	writetext SailorHarryAfterBattleText
+	writetext AromaLadyJuniperAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -407,25 +407,28 @@ BeautyValerieAfterBattleText:
 	cont "soothe my nerves."
 	done
 
-SailorHarrySeenText:
-	text "I've been over-"
-	line "seas, so I know"
+AromaLadyJuniperSeenText:
+	text "Can you smell it?"
+	line "The sea breeze"
+	cont "carries the scent"
+	cont "of wildflowers."
 
-	para "about all sorts of"
-	line "#MON!"
+	para "My #MON just"
+	line "love it here!"
 	done
 
-SailorHarryBeatenText:
-	text "Your skill is"
-	line "world class!"
+AromaLadyJuniperBeatenText:
+	text "Oh, my! What a"
+	line "refreshing battle!"
 	done
 
-SailorHarryAfterBattleText:
-	text "All kinds of peo-"
-	line "ple around the"
+AromaLadyJuniperAfterBattleText:
+	text "I mix fresh herbs"
+	line "into MOOMOO MILK."
 
-	para "world live happily"
-	line "with #MON."
+	para "It's the perfect"
+	line "pick-me-up after"
+	cont "a long walk!"
 	done
 
 BeautyOliviaSeenText:
@@ -497,6 +500,6 @@ Route38_MapEvents:
 	object_event 14,  4, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
 	object_event 12, 15, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1
 	object_event 19,  9, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
-	object_event 24,  5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
+	object_event 24,  5, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerAromaLadyJuniper, -1
 	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route38FruitTree, -1
 	object_event  5,  8, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyOlivia, -1

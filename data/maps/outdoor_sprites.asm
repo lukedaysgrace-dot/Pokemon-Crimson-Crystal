@@ -572,7 +572,7 @@ OlivineGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_JASMINE ; lighthouse medicine encounter (replaces unused Will)
 	db SPRITE_PSYCHIC
-	db SPRITE_NURSE
+	db SPRITE_AROMA_LADY ; Route 38 trainer (replaces NURSE; Pokecenter 1F is indoor, self-loads)
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_STANDING_YOUNGSTER
 	db SPRITE_BIG_ONIX

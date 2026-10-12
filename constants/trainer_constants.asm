@@ -855,8 +855,9 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	const LI
 
 	trainerclass AROMA_LADY
-; Herbalists climbing the Olivine Lighthouse.
+; Herbalists at the Olivine Lighthouse and on Route 38.
 	const ROSIE
 	const DAHLIA
+	const JUNIPER
 
 NUM_TRAINER_CLASSES EQU __enum__
