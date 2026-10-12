@@ -113,10 +113,10 @@ IcePath1FCrystalBeforeText:
 	done
 
 IcePath1FCrystalWinText:
-	text "…I understand."
+	text "Again?!"
 
-	para "I still have more"
-	line "to learn."
+	para "…Fine. I'm keeping"
+	line "score, you know."
 	done
 
 IcePath1FCrystalLossText:

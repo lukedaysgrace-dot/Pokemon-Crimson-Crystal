@@ -402,29 +402,16 @@ EcruteakGymClosedText:
 
 MortyRematchChallengeText:
 	text "Ah, the JOHTO"
-	line "CHAMPION! Good"
-	cont "of you to come."
+	line "CHAMPION."
 
-	para "You've shown your"
-	line "strength and"
-	cont "skill, but have"
+	para "I've spent many"
+	line "nights in the"
+	cont "BURNED TOWER since"
+	cont "we last met."
 
-	para "you improved"
-	line "since our last"
-	cont "battle?"
-
-	para "I've been"
-	line "training with my"
-	cont "GHOST-type"
-	cont "#MON."
-
-	para "Let's see if you"
-	line "can overcome the"
-	cont "shadows once"
-	cont "again."
-
-	para "Want to have a"
-	line "rematch with me?"
+	para "My GHOSTS have"
+	line "grown restless."
+	cont "Shall we battle?"
 	done
 
 MortyRematchWinText:
