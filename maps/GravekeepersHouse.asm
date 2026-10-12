@@ -129,7 +129,7 @@ GravekeeperGaveGiftText:
 	cont "years."
 
 	para "It powers up"
-	line "GHOST-type moves."
+	line "ghost-type moves."
 
 	para "Better it goes"
 	line "with you."

@@ -52,18 +52,18 @@ Route6UndergroundPathSignText:
 	done
 
 PokefanmRexSeenText:
-	text "My PHANPY is the"
+	text "My DONPHAN is the"
 	line "cutest in the"
 	cont "world."
 	done
 
 PokefanmRexBeatenText:
-	text "My PHANPY!"
+	text "My DONPHAN!"
 	done
 
 PokefanmRexAfterBattleText:
 	text "Look how adorable"
-	line "my PHANPY acts!"
+	line "my DONPHAN acts!"
 
 	para "Isn't it cute"
 	line "enough to make"
@@ -71,18 +71,18 @@ PokefanmRexAfterBattleText:
 	done
 
 PokefanmAllanSeenText:
-	text "My TEDDIURSA is"
+	text "My SNORLAX is"
 	line "the cutest in the"
 	cont "world."
 	done
 
 PokefanmAllanBeatenText:
-	text "My TEDDIURSA!"
+	text "My SNORLAX!"
 	done
 
 PokefanmAllanAfterBattleText:
 	text "Look how adorable"
-	line "my TEDDIURSA acts!"
+	line "my SNORLAX acts!"
 
 	para "Isn't it cute"
 	line "enough to make"
