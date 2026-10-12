@@ -68,7 +68,7 @@ FishingCoveLass2Text:
 	text "Did you see those"
 	line "little ripples?"
 	para "I wonder what's"
-	line "swimming below..."
+	line "swimming below…"
 	done
 
 FishingCoveCooltrainerF2Text:
@@ -132,7 +132,7 @@ FishingContestWiltonText:
 FishingContestSamuelText:
 	text "My first Contest!"
 	line "I'm so excited!"
-	para "Wait... Was that a"
+	para "Wait… Was that a"
 	line "bite or a wave?"
 	done
 

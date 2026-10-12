@@ -244,7 +244,7 @@ GruntM1SeenText:
 	done
 
 GruntM1BeatenText:
-	text ".... Don't look so"
+	text "…Don't look so"
 	line "pleased with"
 	cont "yourself, brat!"
 	done

@@ -420,21 +420,20 @@ Route42Sign2Text:
 	done
 
 Route42FishingSpotFisherText:
-	text "Sorry bud, this"
+	text "Sorry, bud. This"
 	line "is my favorite"
-	cont "fishing spot and"
-	cont "I'm just now"
-	cont "setting up."
+	cont "fishing spot, and"
+	cont "I'm just setting"
+	cont "up."
 
-	para "Come back later,"
-	line "you should go"
-	cont "check out the"
-	cont "LIGHTHOUSE in"
-	cont "OLIVINE."
+	para "Come back later."
 
-	para "I heard"
-	line "something's gone"
-	cont "wrong there."
+	para "Why not check out"
+	line "the LIGHTHOUSE in"
+	cont "OLIVINE?"
+
+	para "I heard something"
+	line "is wrong there."
 	done
 
 Route42_MapEvents:

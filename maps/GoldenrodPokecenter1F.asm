@@ -835,7 +835,7 @@ GoldenrodPokecenter1FFeebasSalesmanOfferText:
 	line "a lifetime kind of"
 	cont "deal!"
 
-	para "What do you say???"
+	para "What do you say?"
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanRefusedText:
@@ -871,12 +871,11 @@ GoldenrodPokecenter1FFeebasSalesmanReceivedFeebasText:
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanSuckerText:
-	text "Heheh…sucker."
+	text "Heheh… Sucker!"
 
-	para "That thing is"
-	line "worthless, I'm"
-	cont "heading to the"
-	cont "SLOTS!"
+	para "That thing's"
+	line "worthless. I'm off"
+	cont "to the SLOTS!"
 	done
 
 GoldenrodPokecenter1F_MapEvents:
