@@ -163,9 +163,12 @@ JasmineDontBeOffendedText:
 	line "please don't be"
 	cont "offended…"
 
-	para "…AMPHY will not"
-	line "take anything from"
+	para "…AMPHY won't take"
+	line "medicine from"
 	cont "anyone but me…"
+
+	para "…I'll give it to"
+	line "her now."
 	done
 
 JasmineAmphyHowAreYouFeelingText:

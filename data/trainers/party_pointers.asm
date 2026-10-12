@@ -103,3 +103,4 @@ TrainerGroups:
 	dba KarenGroup ; KAREN_REMATCH
 	dba ChampionGroup ; CHAMPION_REMATCH
 	dba ElderGroup ; ELDER
+	dba AromaLadyGroup ; AROMA_LADY
