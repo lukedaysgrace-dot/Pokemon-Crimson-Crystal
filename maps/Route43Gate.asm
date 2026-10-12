@@ -240,10 +240,12 @@ RocketText_TollFee:
 	text "Hold it there,"
 	line "kiddo!"
 
-	para "The toll is ¥1000"
-	line "to go through."
+	para "This gate's under"
+	line "TEAM ROCKET"
+	cont "management now."
 
-	para "You gonna pay up?"
+	para "The toll is ¥1000."
+	line "You gonna pay up?"
 	done
 
 RocketText_RefusedToll:
@@ -255,9 +257,9 @@ RocketText_RefusedToll:
 	done
 
 RocketText_FirstRocketBeaten:
-	text "Tch… Lucky hit."
-	line "You're not clear"
-	cont "of us yet."
+	text "Hey! I'm supposed"
+	line "to be the one"
+	cont "collecting!"
 	done
 
 RocketText_SecondRocketChallenge:
@@ -277,12 +279,10 @@ RocketText_SecondRocketBeaten:
 	done
 
 RocketText_RunningAway:
-	text "Keep your money."
+	text "Forget it!"
 
-	para "But TEAM ROCKET"
-	line "remembers faces."
-
-	para "Come on! Move!"
+	para "Come on, let's get"
+	line "out of here!"
 	done
 
 RocketText_ThankYou:

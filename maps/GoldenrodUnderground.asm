@@ -955,16 +955,12 @@ GoldenrodUndergroundThugsDemandText:
 	done
 
 GoldenrodUndergroundThugNoticeText:
-	text "Well, what do we"
-	line "have here?"
+	text "Huh? Who invited"
+	line "you?"
 
-	para "A kid playing"
-	line "hero?"
-
-	para "Guess we'll have"
-	line "to teach you to"
-	cont "keep your nose out"
-	cont "of our business!"
+	para "Beat it, kid. This"
+	line "is TEAM ROCKET"
+	cont "business!"
 	done
 
 GoldenrodUndergroundThugPaulieBeatenText:
@@ -988,18 +984,16 @@ GoldenrodUndergroundThugBobbyAfterText:
 	done
 
 GoldenrodUndergroundThugTonyShoveText:
-	text "Out of my way."
+	text "Move it!"
 
-	para "I knew you two"
-	line "were too weak for"
-	cont "this job."
-
-	para "I'll crush this"
-	line "brat myself!"
+	para "I can't believe"
+	line "you two can't"
+	cont "handle this kid!"
 	done
 
 GoldenrodUndergroundThugTonyBeatenText:
-	text "Tch… Impossible!"
+	text "Ugh! The kid's"
+	line "for real!"
 	done
 
 GoldenrodUndergroundThugTonyAfterText:
