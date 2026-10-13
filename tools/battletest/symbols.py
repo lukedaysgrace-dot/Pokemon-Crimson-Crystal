@@ -46,13 +46,26 @@ class Symbols:
         return self.by_name[name][0]
 
 
+def _constant_number(token):
+    """Read the literal/left-shift expressions used by constant counters."""
+    match = re.fullmatch(r"(-?(?:\$[0-9a-fA-F]+|%[01]+|\d+))(?:\s*<<\s*(\d+))?", token.strip())
+    if not match:
+        raise ValueError(f'unsupported constant counter: {token!r}')
+    number, shift = match.groups()
+    sign = -1 if number.startswith('-') else 1
+    number = number.lstrip('-')
+    value = sign * (int(number[1:], 16) if number.startswith('$') else
+                    int(number[1:], 2) if number.startswith('%') else int(number))
+    return value << int(shift or 0)
+
+
 def _parse_constants(path, const_re=r"^\tconst (\w+)", const_value_equs=()):
     """Return {NAME: value} honouring const_def and selected EQU markers."""
     out = {}
     value = None
-    pat_def = re.compile(r"^\tconst_def(?:\s+(\d+))?")
+    pat_def = re.compile(r"^\tconst_def(?:\s+(.+))?$")
     pat_const = re.compile(const_re)
-    pat_skip = re.compile(r"^\tconst_skip(?:\s+(\d+))?")
+    pat_skip = re.compile(r"^\tconst_skip(?:\s+(.+))?$")
     pat_reset = re.compile(r"^\s*const_value\s*=\s*(-?(?:\$[0-9a-fA-F]+|%[01]+|\d+))\s*$")
     equ_names = "|".join(re.escape(name) for name in const_value_equs)
     pat_equ = re.compile(
@@ -63,19 +76,15 @@ def _parse_constants(path, const_re=r"^\tconst (\w+)", const_value_equs=()):
             line = line.split(";")[0].rstrip()
             m = pat_reset.match(line)
             if m:
-                token = m.group(1)
-                sign = -1 if token.startswith('-') else 1
-                token = token.lstrip('-')
-                value = sign * (int(token[1:], 16) if token.startswith('$') else
-                                int(token[1:], 2) if token.startswith('%') else int(token))
+                value = _constant_number(m.group(1))
                 continue
             m = pat_def.match(line)
             if m:
-                value = int(m.group(1)) if m.group(1) else 0
+                value = _constant_number(m.group(1)) if m.group(1) else 0
                 continue
             m = pat_skip.match(line)
             if m and value is not None:
-                value += int(m.group(1)) if m.group(1) else 1
+                value += _constant_number(m.group(1)) if m.group(1) else 1
                 continue
             m = pat_const.match(line)
             if m and value is not None:
