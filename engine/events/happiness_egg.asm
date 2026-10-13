@@ -95,7 +95,7 @@ ChangeHappiness:
 	ret z
 	ld a, [wCurPartyMon]
 	ld b, a
-	ld a, [wPartyMenuCursor]
+	ld a, [wCurBattleMon] ; menu cursors are one-based and may point at a reserve
 	cp b
 	ret nz
 	ld a, [de]

@@ -111,6 +111,14 @@ ROM's `CheckAzaleaWeather` for all 256 calendar-byte values, on each Azalea
 weather map and on one map outside it, and checks the Sunday/Tuesday/
 Thursday/Saturday rain schedule against the weekday.
 
+`make test-audit-state BATTLE_TEST_PYTHON=python3` checks HP subtraction and
+permanent shiny/gender flag guards, friendship synchronization for active and
+reserve Pokemon with every party-menu cursor, and both trainer-ID bytes in
+the Poke Seer's origin check. It covers party-filter result masks and egg
+exclusion, empty parties and level cutoffs, and explicit constant-counter resets
+used by the test fixtures. The script accepts a ROM path with matching `.sym`
+for before/after reproduction, and uses private in-memory SRAM.
+
 ## Writing a test
 
 ```yaml

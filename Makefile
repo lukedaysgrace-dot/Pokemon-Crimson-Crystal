@@ -50,7 +50,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-weather test-gameplay-rules test-overworld-state test-evolutions test-inventory test-safari-ui test-overworld test-fishing test-tower-ui test-release-av test-link-session audit-static audit-stress audit
+.PHONY: all clean tidy tools debug test test-all test-deep test-complete test-complex test-session test-learnsets test-weather test-gameplay-rules test-overworld-state test-audit-state test-evolutions test-inventory test-safari-ui test-overworld test-fishing test-tower-ui test-release-av test-link-session audit-static audit-stress audit
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -116,6 +116,9 @@ test-gameplay-rules: pokecrystal_debug.gbc
 test-overworld-state: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_overworld_state.py pokecrystal.gbc
 
+test-audit-state: pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_audit_state_regressions.py pokecrystal.gbc
+
 test-evolutions: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_evolution_sweep.py pokecrystal.gbc
 
@@ -125,7 +128,7 @@ test-inventory: pokecrystal.gbc
 test-safari-ui: pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/safari_ui_checks.py
 
-test-overworld: test-overworld-state test-evolutions test-inventory test-safari-ui
+test-overworld: test-overworld-state test-audit-state test-evolutions test-inventory test-safari-ui
 
 # RTC integration needs Cython/setuptools and a C compiler to prepare a
 # private emulator adapter. The ordinary battle harness remains unchanged.
