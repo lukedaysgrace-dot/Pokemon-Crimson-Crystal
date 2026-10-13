@@ -38,6 +38,9 @@ _cry_backup/
 _suicune_close_backup/
 lbc_extract/
 *.sav.*.bak
+/docs/audits/
+/dialogue-review-*.md
+/trainer-theme-review-*.md
 
 # Documentation preview/cache
 docs/data/build-report.json

@@ -134,7 +134,10 @@ def sprite_size(sprite, ids, types):
 		return 1, 12
 	if sprite_id >= ids["SPRITE_POKEMON"]:
 		return 3, 8
-	return types.get(sprite_id, (1, 12))
+	type_id, _ = types.get(sprite_id, (1, 12))
+	# GetSpriteLength allocates by type. The source length can be smaller
+	# for symmetric big dolls, which must still reserve the full big-sprite slot.
+	return type_id, {1: 12, 2: 12, 3: 8, 4: 4, 5: 12, 6: 16}[type_id]
 
 
 def packed_sprite_tiles(sprites, ids, types):
