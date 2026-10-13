@@ -415,7 +415,7 @@ UpdateChannels:
 .asm_e8268
 	push hl
 	ld a, [wCurTrackIntensity]
-	and $f ; only 0-9 are valid
+	and $f ; wave sample index (currently 0-10)
 	ld l, a
 	ld h, 0
 	; hl << 4

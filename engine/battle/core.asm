@@ -173,7 +173,7 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	jr c, .skip_sfx
 
 	ld de, SFX_RUN
-	call PlaySFX
+	call WaitPlaySFX ; PlaySFX cut the sound off when a wild Pokemon fled
 
 .skip_sfx
 	call SetPlayerTurn

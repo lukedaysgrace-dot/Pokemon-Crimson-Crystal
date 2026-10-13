@@ -2855,18 +2855,22 @@ Script_setobjectpriority:
 ; parameters: object, priority
 	call GetScriptByte
 	dec a
+	push af
+	call GetScriptByte ; read both parameters before any early return
+	ld e, a
+	pop af
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
+	cp -1
+	ret z ; the object has no struct (off screen): nothing to change
 	call GetObjectStruct
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld a, [hl]
 	and ~(LOW_PRIORITY | HIGH_PRIORITY)
-	ld d, a
-	call GetScriptByte
-	or d
+	or e
 	ld [hl], a
 	ret
 

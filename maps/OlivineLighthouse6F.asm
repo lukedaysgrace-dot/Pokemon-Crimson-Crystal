@@ -192,10 +192,6 @@ JasmineThankYouText:
 	line "the GYM…"
 	done
 
-JasmineAmphyHangOnText:
-	text "…AMPHY, hang on!"
-	done
-
 AmphyPalPalooText:
 	text "AMPHY: …"
 	line "…Pa… paloo…"
