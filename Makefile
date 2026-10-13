@@ -57,6 +57,10 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 
 all: pokecrystal.gbc
 
+.PHONY: audit-pokemon-back-colors
+audit-pokemon-back-colors:
+	$(BATTLE_TEST_PYTHON) tools/audit_pokemon_back_colors.py --rgbgfx $(RGBGFX)
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

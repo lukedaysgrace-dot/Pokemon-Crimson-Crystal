@@ -47,6 +47,40 @@ Because your project has substantial custom engine work, the parser is intention
 - The nine clone starter constants are omitted from the Pokédex grid and appear through a **Normal / Clone** toggle on the corresponding starter page.
 - Animated or multi-frame PNGs are cropped to the first complete static front frame.
 
+## Front and back sprite colors
+
+Backsprites use the front sprite's exact authored colors and palette slots,
+including alternate forms, starter clones, Unown letters and player artwork.
+Finizen and Palafin retain separate dorsal blue palettes because their
+front-only pink/red markings are absent from the back view. Their shared blue
+colors still match the fronts. Normal and shiny battles use the corresponding
+palette slots; the docs show the normal PNG artwork.
+
+Check all sprite pairs with Pillow and the project's RGBDS 0.5.2 compiler:
+
+```bash
+make audit-pokemon-back-colors BATTLE_TEST_PYTHON=.venv/bin/python
+```
+
+After building, verify that both ROMs contain the updated compressed artwork
+and every normal/shiny palette record:
+
+```bash
+.venv/bin/python tools/audit_pokemon_back_colors.py --rom pokecrystal.gbc --rom pokecrystal_debug.gbc
+```
+
+To repair mismatched colors or palette indices after replacing artwork:
+
+```bash
+.venv/bin/python tools/audit_pokemon_back_colors.py --fix
+make
+.venv/bin/python crimson-crystal-docs/generate_docs.py .
+```
+
+The audit preserves poses, dimensions and transparency. It also repairs a
+front image if its embedded palette puts black or white in a middle slot,
+which would otherwise make both battle views display incorrect colors.
+
 
 ## Encounter coverage and safety
 
