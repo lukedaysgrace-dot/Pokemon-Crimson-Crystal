@@ -1781,11 +1781,13 @@
       "category": "world",
       "title": "Updated Pokémon artwork and animations",
       "before": "Original Crystal graphics are used.",
-      "after": "The expanded roster has front and back artwork, palettes, icons, cries and animations, with animation and presentation updates throughout the game.",
+      "after": "The expanded roster has front and back artwork, palettes, icons, cries and animations. Backsprite colors and palette indices match the front artwork across species, forms and starter clones. Finizen and Palafin retain their natural dorsal blue shades where front-only pink/red markings are absent.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
-        "gfx/pokemon"
+        "gfx/pokemon",
+        "tools/audit_pokemon_back_colors.py",
+        "data/pokemon/back_palettes.asm"
       ],
       "links": []
     },
