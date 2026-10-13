@@ -117,3 +117,4 @@ Music:
 	dba Music_LugiasSong2000       ; MUSIC_LUGIAS_SONG
 	dba Music_PokemonTowerRBY      ; MUSIC_SILENT_CRYPT
 	dba Music_MtLavender           ; MUSIC_UNDERGROUND_PATH
+	dba Music_HudsonHawkTitle       ; MUSIC_HUDSON_HAWK_TITLE
