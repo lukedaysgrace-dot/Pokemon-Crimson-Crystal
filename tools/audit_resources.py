@@ -181,12 +181,30 @@ def audit_pack_palettes(audit: Audit) -> None:
     )
 
 
+def audit_pokemon_animation_frames(audit: Audit) -> None:
+    """Frame zero is the base picture; other frames index a pointer table."""
+    for frames in sorted((ROOT / 'gfx/pokemon').rglob('frames.asm')):
+        count = len(re.findall(r'^\s*dw\s+\.frame\d+\s*$', frames.read_text(), re.M))
+        for name in ('anim.asm', 'anim_idle.asm'):
+            animation = frames.parent / name
+            if not animation.is_file():
+                continue
+            for line_number, line in enumerate(animation.read_text().splitlines(), 1):
+                match = re.match(r'^\s*frame\s+(\d+)\s*,', line.split(';')[0])
+                if match:
+                    index = int(match.group(1))
+                    audit.check(index <= count,
+                                f'{animation.relative_to(ROOT)}:{line_number}: frame {index} '
+                                f'exceeds its {count} generated frame pointers')
+
+
 def main() -> int:
     audit = Audit()
     release_bank, release_slack = audit_rom(audit, "pokecrystal")
     debug_bank, debug_slack = audit_rom(audit, "pokecrystal_debug")
     audit_audio(audit)
     audit_pack_palettes(audit)
+    audit_pokemon_animation_frames(audit)
     asset_count = audit_binary_references(audit)
     if audit.errors:
         print("RESOURCE AUDIT FAILED")

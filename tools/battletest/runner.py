@@ -56,11 +56,12 @@ FRAME_CEILING_BATTLE = 60 * 60 * 5  # 5 emulated minutes per test, hard stop
 
 class Harness:
     def __init__(self, verbose=False, cartridge='surrogate', rom_path=None,
-                 sound_emulated=False, emulator_kwargs=None):
+                 sound_emulated=False, emulator_kwargs=None, render=True):
         rom_path = Path(rom_path or ROM)
         if not rom_path.exists():
             sys.exit("pokecrystal_debug.gbc not found - run `make debug` first")
         self.verbose = verbose
+        self.render = render
         if cartridge not in ('surrogate', 'mbc30', 'native'):
             raise ValueError('Unknown cartridge mode: ' + cartridge)
         if cartridge == 'mbc30':
@@ -80,6 +81,9 @@ class Harness:
         # the same behavior this game uses, so banks $80-$ff remain reachable.
         # The release/debug ROM on disk is never modified.
         rom_data = bytearray(rom_path.read_bytes())
+        # Key fixtures to the bytes this emulator actually loaded, including
+        # explicit release/alternate ROMs, even if the file is rebuilt later.
+        self._rom_key = hashlib.md5(rom_data).hexdigest()[:12]
         if cartridge == 'surrogate' and len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
             rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
             checksum = 0
@@ -163,7 +167,8 @@ class Harness:
 
     def tick(self, n=1):
         for _ in range(n):
-            self.pb.tick()
+            # Rendering does not affect CPU/PPU timing or the glyph-write hooks.
+            self.pb.tick(1, self.render)
 
     def press(self, button, hold=2, wait=2):
         self.pb.button(button, hold)
@@ -180,10 +185,10 @@ class Harness:
     # ---- bootstrap ----
 
     def rom_key(self):
-        return hashlib.md5(ROM.read_bytes()).hexdigest()[:12]
+        return self._rom_key
 
     def fixture_path(self):
-        prefix = 'menu-mbc30' if self.cartridge == 'mbc30' else 'menu'
+        prefix = {'surrogate': 'menu', 'mbc30': 'menu-mbc30', 'native': 'menu-native'}[self.cartridge]
         return FIXTURES / f"{prefix}-{self.rom_key()}.state"
 
     def ensure_fixture(self):
@@ -353,6 +358,8 @@ class Harness:
         }
 
     def screenshot(self, name):
+        if not self.render:
+            self.pb.tick(1, True)
         FAILDIR.mkdir(exist_ok=True)
         img = self.pb.screen.image
         # Keep failure artifacts portable across Windows/WSL (generated test
@@ -608,6 +615,8 @@ def main():
     ap.add_argument("paths", nargs="*")
     ap.add_argument("-k", dest="keyword", help="only tests whose name matches")
     ap.add_argument("-v", dest="verbose", action="store_true")
+    ap.add_argument('--no-render', action='store_true',
+                    help='skip pixel rendering in automatic battles; retain glyph and gameplay checks')
     ap.add_argument('--jobs', type=int, default=1, help='isolated emulator workers; paired controls stay together')
     ap.add_argument('--shard', help=argparse.SUPPRESS)
     ap.add_argument("--all-moves", action="store_true",
@@ -657,7 +666,7 @@ def main():
     elif args.jobs > 1:
         sys.exit(run_parallel(tests, args.jobs))
 
-    h = Harness(verbose=args.verbose)
+    h = Harness(verbose=args.verbose, render=not args.no_render)
     t0 = time.monotonic()
     h.ensure_fixture()
     print(f"fixture ready in {time.monotonic()-t0:.1f}s; running {len(tests)} tests")

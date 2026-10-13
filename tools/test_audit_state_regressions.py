@@ -39,6 +39,15 @@ def main():
     print('[test constants: explicit decimal and signed hexadecimal resets]', flush=True)
     check(happiness['HAPPINESS_FAINTED'] == 6, 'friendship constants ignore const_value = 1')
     check(con.moves['ANIM_INTRO_RAIN'] == -0x1b, 'animation constants ignore const_value = -$1b')
+    for filename, name, expected in (
+            ('wram_constants.asm', 'STANDING', -1),
+            ('wram_constants.asm', 'DOWN', 0),
+            ('script_constants.asm', 'PLAYEREVENT_NONE', 0),
+            ('map_setup_constants.asm', 'MAPSETUP_WARP', 0xf1),
+            ('menu_constants.asm', 'PARTYMENUTEXT_HEAL_HP', 0xf5),
+            ('sprite_data_constants.asm', 'PAL_NPC_RED', 8)):
+        parsed = _parse_constants(Path(ROOT) / 'constants' / filename)
+        check(parsed[name] == expected, f'{filename}: {name} parsed as {parsed[name]}, expected {expected}')
 
     print('[HP subtraction: saturation, borrow and permanent flag guards]', flush=True)
     for slot, flags, hp, damage in product(range(6), (0, 0x40, 0x80, 0xc0),
@@ -95,6 +104,24 @@ def main():
                 result = h.call(routine, bc=threshold << 8)
                 label = f'{routine}, size {count}, eggs {egg_mask:#x}'
                 check(result['c'] == expected, label + f': mask {result["c"]:#x} != {expected:#x}')
+                check(result['z'] == (expected == 0), label + ': incorrect found/none result')
+
+    print('[party-filter masks: independently eligible slots and Egg exclusions]', flush=True)
+    for count in range(1, 7):
+        for selected, eggs in product(range(1 << count), repeat=2):
+            write('wPartyCount', count)
+            write('wPartySpecies', [253 if eggs & (1 << slot) else species
+                                   for slot in range(count)] + [255])
+            for slot in range(count):
+                eligible = bool(selected & (1 << slot))
+                write(f'wPartyMon{slot + 1}Level', 51 if eligible else 50)
+                write(f'wPartyMon{slot + 1}Happiness', 150 if eligible else 149)
+            expected = selected & ~eggs
+            for routine, threshold in (('_FindPartyMonAtLeastThatHappy', 150),
+                                       ('_FindPartyMonAboveLevel', 50)):
+                result = h.call(routine, bc=threshold << 8)
+                label = f'{routine}, size {count}, selected {selected:#x}, eggs {eggs:#x}'
+                check(result['c'] == expected, label + ': incorrect slot mask')
                 check(result['z'] == (expected == 0), label + ': incorrect found/none result')
 
     write('wPartyCount', 1)

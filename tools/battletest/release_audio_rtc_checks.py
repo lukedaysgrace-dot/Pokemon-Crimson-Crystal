@@ -129,6 +129,51 @@ def main():
             samples = np.concatenate((first, rest))
             check(started and done and np.any(samples), name + ': native sound effect emits audio and returns')
 
+        # Exercise the newly added four-channel track through two complete
+        # loops. Observe its interpreted bytes; music data is not CPU code.
+        fixture.seek(0)
+        pb.load_state(fixture)
+        track = _parse_constants(ROOT / 'constants/music_constants.asm')['MUSIC_HUDSON_HAWK_TITLE']
+        invoke('PlayMusic', D=track >> 8, E=track & 255)
+        _, _, started = record_until_return()
+        loops = {channel: [] for channel in range(1, 5)}
+        clock = [0]
+
+        def observe_audio_update(_):
+            clock[0] += 1
+
+        def observe_music_byte(_):
+            channel = m.read('wCurChannel') + 1
+            if channel not in loops:
+                return
+            bank, address = h.sym[f'Music_HudsonHawkTitle_Ch{channel}_Loop']
+            data = m.read_bytes(f'wChannel{channel}MusicAddress', 2)
+            if data[0] | (data[1] << 8) == address and m.read(f'wChannel{channel}MusicBank') == bank:
+                loops[channel].append(clock[0])
+
+        bank, address = h.sym['GetMusicByte']
+        update_bank, update_address = h.sym['_UpdateSound']
+        pb.hook_register(bank, address, observe_music_byte, None)
+        pb.hook_register(update_bank, update_address, observe_audio_update, None)
+        samples = []
+        try:
+            for _ in range(2 * 2688 + 120):
+                pb.tick(1, False, True)
+                samples.append(pb.sound.ndarray.copy())
+        finally:
+            pb.hook_deregister(bank, address)
+            pb.hook_deregister(update_bank, update_address)
+        check(started and np.any(np.concatenate(samples)), 'Hudson Hawk track emits audio')
+        for channel, times in loops.items():
+            check(len(times) >= 2 and times[1] - times[0] == 2688,
+                  f'Hudson Hawk channel {channel}: exact 2688-audio-update loop {times}')
+            check(m.read(f'wChannel{channel}Flags1') & 1,
+                  f'Hudson Hawk channel {channel}: remains active after two loops')
+        check(all(len(times) >= 2 for times in loops.values())
+              and len({tuple(times[:2]) for times in loops.values()}) == 1,
+              f'Hudson Hawk channels remain synchronized: {loops}')
+        print('CHECK Hudson Hawk native channel loops ' + json.dumps(loops), flush=True)
+
         fixture.seek(0)
         pb.load_state(fixture)
         for raw_day in (5, 12, 19, 138, 139):

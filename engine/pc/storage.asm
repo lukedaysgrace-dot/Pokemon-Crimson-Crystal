@@ -1177,13 +1177,28 @@ SwapStorageBoxSlots::
 	ret
 
 CheckCurPartyMonFainted::
-; Returns carry if every party mon other than [wCurPartyMon] has 0 HP.
+; Returns carry if no non-Egg party mon other than [wCurPartyMon] has HP.
+	ld a, [wPartyCount]
+	and a
+	jr z, .done
 	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld b, 0
 .loop
 	ld a, [wCurPartyMon]
 	cp b
+	jr z, .skip
+	; Eggs have HP in their underlying mon struct, but cannot battle.
+	push hl
+	push bc
+	ld c, b
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	pop hl
+	cp EGG
 	jr z, .skip
 	ld a, [hli]
 	or [hl]
