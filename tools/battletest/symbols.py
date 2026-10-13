@@ -53,6 +53,7 @@ def _parse_constants(path, const_re=r"^\tconst (\w+)", const_value_equs=()):
     pat_def = re.compile(r"^\tconst_def(?:\s+(\d+))?")
     pat_const = re.compile(const_re)
     pat_skip = re.compile(r"^\tconst_skip(?:\s+(\d+))?")
+    pat_reset = re.compile(r"^\s*const_value\s*=\s*(-?(?:\$[0-9a-fA-F]+|%[01]+|\d+))\s*$")
     equ_names = "|".join(re.escape(name) for name in const_value_equs)
     pat_equ = re.compile(
         rf"^({equ_names})\s+EQU\s+const_value(?:\s*\+\s*(-?\d+))?"
@@ -60,6 +61,14 @@ def _parse_constants(path, const_re=r"^\tconst (\w+)", const_value_equs=()):
     with open(path) as f:
         for line in f:
             line = line.split(";")[0].rstrip()
+            m = pat_reset.match(line)
+            if m:
+                token = m.group(1)
+                sign = -1 if token.startswith('-') else 1
+                token = token.lstrip('-')
+                value = sign * (int(token[1:], 16) if token.startswith('$') else
+                                int(token[1:], 2) if token.startswith('%') else int(token))
+                continue
             m = pat_def.match(line)
             if m:
                 value = int(m.group(1)) if m.group(1) else 0

@@ -2064,7 +2064,7 @@ RemoveHP:
 	ld [hl], a
 	jr nc, .okay
 	xor a
-	ld [hld], a
+	ld [hli], a ; high HP byte, then low HP; never write MON_UNUSED
 	ld [hl], a
 .okay
 	call LoadCurHPIntoBuffer5
