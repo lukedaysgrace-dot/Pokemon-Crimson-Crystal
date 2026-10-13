@@ -32,7 +32,7 @@ GoldenrodCity_MapScripts:
 	return
 
 .MoveTutor:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkevent EVENT_BEAT_PRYCE
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE
 	iffalse .MoveTutorDisappear
@@ -129,7 +129,7 @@ MoveTutorScript:
 	waitbutton
 	closetext
 	readvar VAR_FACING
-	ifequal LEFT, .WalkAroundPlayer
+	ifequal RIGHT, .WalkAroundPlayer
 	applymovement GOLDENRODCITY_MOVETUTOR, GoldenrodCityMoveTutorEnterGameCornerMovement
 	sjump .GoInside
 
@@ -268,15 +268,15 @@ GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
 
 GoldenrodCityMoveTutorEnterGameCornerMovement:
-	step RIGHT
-	step RIGHT
+	step LEFT
+	step LEFT
 	step UP
 	step_end
 
 GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 	step DOWN
-	step RIGHT
-	step RIGHT
+	step LEFT
+	step LEFT
 	step UP
 	step UP
 	step_end
@@ -578,7 +578,7 @@ GoldenrodCity_MapEvents:
 	bg_event 26,  9, BGEVENT_READ, GoldenrodGymSign
 	bg_event 22, 18, BGEVENT_READ, GoldenrodCitySign
 	bg_event 28, 30, BGEVENT_READ, GoldenrodCityBikeShopSign
-	bg_event 16, 22, BGEVENT_READ, GoldenrodCityGameCornerSign
+	bg_event 12, 22, BGEVENT_READ, GoldenrodCityGameCornerSign
 	bg_event 12,  7, BGEVENT_READ, GoldenrodCityNameRaterSign
 	bg_event  8,  6, BGEVENT_READ, GoldenrodCityUndergroundSignNorth
 	bg_event  8, 30, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
@@ -596,8 +596,8 @@ GoldenrodCity_MapEvents:
 	object_event  4, 16, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocketScoutScript, EVENT_GOLDENROD_CITY_ROCKET_SCOUT
 	object_event 28, 20, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket1Script, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
 	object_event  8, 15, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket2Script, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
-	object_event 16, 23, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket3Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 12, 23, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket3Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 29, 20, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket4Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 29,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket5Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 31, 10, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket6Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 12, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MoveTutorScript, EVENT_GOLDENROD_CITY_MOVE_TUTOR
+	object_event 16, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MoveTutorScript, EVENT_GOLDENROD_CITY_MOVE_TUTOR
