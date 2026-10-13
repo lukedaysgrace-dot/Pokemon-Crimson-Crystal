@@ -20,6 +20,25 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+`make test-trainer-sprites` renders every trainer class's native battle
+introduction through the Fight menu, every declared overworld sheet in its
+intended facings/animation phases, and sprite allocation on every map with
+trainers. It also finishes real map battles for classes using the newer NPC
+sheets, all three Aroma Ladies, the Ninja disguise replacement, and the Elder.
+The player's party is staged in private memory and strengthened for these
+rendering/flow checks; the map encounters use their real scripts and opponent
+teams with automatic debug battle actions disabled. Scripted bosses with
+separate prerequisites receive introduction/graphics coverage, rather than
+campaign completion coverage. Screenshots, contact sheets, and `results.json`
+are saved under `.tmpbuild/trainer-sprites-<ROM hash>/`.
+Use `trainer_sprite_checks.py --classes AROMA_LADY` for a focused rerun or
+`--section battles|overworld|maps|encounters` to run one part. Native routine
+returns use a RAM marker because frame-end CPU sampling can repeatedly land
+inside the interrupt handler after a routine has already returned.
+
+Trainer-class requests use declaration order, including classes whose source
+comments contain hexadecimal IDs or no IDs. Comments do not define class IDs.
+
 Parallel workers retain paired `result(...)` controls with their dependents
 and cover every selected case exactly once. Worker logs are under `.tmpbuild/`.
 The default remains one emulator. YAML `before_action` checkpoints can assert

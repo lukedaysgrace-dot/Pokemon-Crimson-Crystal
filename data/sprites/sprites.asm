@@ -77,7 +77,7 @@ OverworldSprites:
 	overworld_sprite CalSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite AmpySickSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_BROWN
 	overworld_sprite CaptainSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
-	overworld_sprite BigLaprasSpriteGFX, 12, BIG_SPRITE, PAL_OW_BLUE
+	overworld_sprite BigLaprasSpriteGFX, 8, BIG_SPRITE, PAL_OW_BLUE
 	overworld_sprite GymGuySpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite SailorSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BikerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
@@ -123,7 +123,7 @@ OverworldSprites:
 	overworld_sprite PokemaniacNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite SkierNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SnowboarderNewSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite RattataUpSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+	overworld_sprite RattataUpSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_PURPLE
 	overworld_sprite PsychicSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite HikerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite AppleSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED

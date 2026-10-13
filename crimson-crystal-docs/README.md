@@ -92,8 +92,8 @@ Enhanced values. Record `before_level` for a move whose learning level changed.
 The generator validates the resulting stats, ability slots and learnsets.
 Abilities, moves and evolution changes apply to both rules choices.
 
-Generation replaces generated files in place and preserves supplemental
-reports in `docs/audits/` and downloadable files in `docs/`.
+Generation replaces generated files in place and preserves downloadable
+files in `docs/`.
 
 ## Game Updates guide
 
