@@ -56,8 +56,11 @@ FindAtLeastThatHappy:
 ; The lowest bits are used.  Sets z if no Pokemon in your party is at least that happy.
 	ld c, $0
 	ld a, [wPartyCount]
+	and a
+	ret z
 	ld d, a
 .loop
+	sla c ; shift earlier slots before adding this slot's result
 	ld a, d
 	dec a
 	push hl
@@ -77,7 +80,6 @@ FindAtLeastThatHappy:
 	ld c, a
 
 .lower
-	sla c
 	dec d
 	jr nz, .loop
 	call RetroactivelyIgnoreEggs
@@ -86,10 +88,14 @@ FindAtLeastThatHappy:
 	ret
 
 FindAboveLevel:
+; Set each non-Egg party slot's bit when its level is strictly above b.
 	ld c, $0
 	ld a, [wPartyCount]
+	and a
+	ret z
 	ld d, a
 .loop
+	sla c ; keep slot zero in bit zero for RetroactivelyIgnoreEggs
 	ld a, d
 	dec a
 	push hl
@@ -100,13 +106,12 @@ FindAboveLevel:
 	ld a, b
 	cp [hl]
 	pop hl
-	jr c, .greater
+	jr nc, .greater
 	ld a, c
 	or $1
 	ld c, a
 
 .greater
-	sla c
 	dec d
 	jr nz, .loop
 	call RetroactivelyIgnoreEggs
