@@ -472,33 +472,15 @@ FinizenAnimationIdle:  INCLUDE "gfx/pokemon/finizen/anim_idle.asm"
 PalafinAnimationIdle:  INCLUDE "gfx/pokemon/palafin/anim_idle.asm"
 GlimmoraAnimationIdle:  INCLUDE "gfx/pokemon/glimmora/anim_idle.asm"
 EggAnimationIdle:        INCLUDE "gfx/pokemon/egg/anim_idle.asm"
-BulbasaurCloneAnimationIdle:
-	frame 0, 20
-	endanim
-IvysaurCloneAnimationIdle:
-	frame 0, 20
-	endanim
-VenusaurCloneAnimationIdle:
-	frame 0, 20
-	endanim
-CharmanderCloneAnimationIdle:
-	frame 0, 20
-	endanim
-CharmeleonCloneAnimationIdle:
-	frame 0, 20
-	endanim
-CharizardCloneAnimationIdle:
-	frame 0, 20
-	endanim
-SquirtleCloneAnimationIdle:
-	frame 0, 20
-	endanim
-WartortleCloneAnimationIdle:
-	frame 0, 20
-	endanim
-BlastoiseCloneAnimationIdle:
-	frame 0, 20
-	endanim
+BulbasaurCloneAnimationIdle: INCLUDE "gfx/pokemon/bulbasaur_clone/anim_idle.asm"
+IvysaurCloneAnimationIdle: INCLUDE "gfx/pokemon/ivysaur_clone/anim_idle.asm"
+VenusaurCloneAnimationIdle: INCLUDE "gfx/pokemon/venusaur_clone/anim_idle.asm"
+CharmanderCloneAnimationIdle: INCLUDE "gfx/pokemon/charmander_clone/anim_idle.asm"
+CharmeleonCloneAnimationIdle: INCLUDE "gfx/pokemon/charmeleon_clone/anim_idle.asm"
+CharizardCloneAnimationIdle: INCLUDE "gfx/pokemon/charizard_clone/anim_idle.asm"
+SquirtleCloneAnimationIdle: INCLUDE "gfx/pokemon/squirtle_clone/anim_idle.asm"
+WartortleCloneAnimationIdle: INCLUDE "gfx/pokemon/wartortle_clone/anim_idle.asm"
+BlastoiseCloneAnimationIdle: INCLUDE "gfx/pokemon/blastoise_clone/anim_idle.asm"
 AzurillAnimationIdle: INCLUDE "gfx/pokemon/azurill/anim_idle.asm"
 WynautAnimationIdle:  INCLUDE "gfx/pokemon/wynaut/anim_idle.asm"
 BonslyAnimationIdle:  INCLUDE "gfx/pokemon/bonsly/anim_idle.asm"
