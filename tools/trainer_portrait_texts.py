@@ -66,8 +66,6 @@ OVERRIDES = {
 	'UnknownText_0x6d2c3': 'ARIANA',
 	# Clair, lost for words after the Elder's scolding.
 	'DragonShrineSpeechlessText': 'CLAIR',
-	# Jasmine, while the emote is on Amphy.
-	'JasmineAmphyHangOnText': 'JASMINE',
 	# Mr. Pokemon, not Oak.
 	'MrPokemonText_ImDependingOnYou': None,
 	# This text repeats while EVENT_MADE_WHITNEY_CRY is set. The stopped-

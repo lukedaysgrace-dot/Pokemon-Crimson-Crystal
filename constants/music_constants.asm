@@ -119,6 +119,7 @@
 	const MUSIC_LUGIAS_SONG                   ; 6e
 	const MUSIC_SILENT_CRYPT                  ; 6f
 	const MUSIC_UNDERGROUND_PATH              ; 70
+	const MUSIC_HUDSON_HAWK_TITLE              ; 71
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64

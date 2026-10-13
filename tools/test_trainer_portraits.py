@@ -75,7 +75,7 @@ class PortraitCoverage(unittest.TestCase):
             ('TeamRocketBaseB2F', 'UnknownText_0x6d2c3'): 'ARIANA',
             ('TeamRocketBaseB2F', 'UnknownText_0x6d38c'): 'LANCE',
             ('DragonShrine', 'DragonShrineSpeechlessText'): 'CLAIR',
-            ('OlivineLighthouse6F', 'JasmineAmphyHangOnText'): 'JASMINE',
+            ('OlivineLighthouse6F', 'JasmineDontBeOffendedText'): 'JASMINE',
             ('BurnedTower1F', 'BurnedTowerSilver_AfterText1'): 'SILVER',
             ('BurnedTower1F', 'BurnedTowerSilver_AfterText2'): 'SILVER',
             ('LancesRoom', 'UnknownText_0x18121b'): 'OAK',

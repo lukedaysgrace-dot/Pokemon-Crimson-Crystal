@@ -153,8 +153,10 @@ def main():
                     check(h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym[entry][1], f'{entry}: wrong trigger')
                     texts, moves, emotes = script(entry)
                     check(event(explained) and not event(delivered), f'{entry}: pharmacy request not activated')
-                    check(texts == [h.sym['JasmineCianwoodPharmacyText'], h.sym['JasmineGetSomeMedicineText']],
-                          f'{entry}: original introduction changed')
+                    # The first meeting is one speech that ends with the request; the
+                    # shorter reminder is only for talking to her again afterwards.
+                    check(texts == [h.sym['JasmineCianwoodPharmacyText']],
+                          f'{entry}: introduction changed')
                     check(moves == [(5, *h.sym['OlivineCityJasmineExitLighthouseMovement'])], f'{entry}: wrong entrance movement')
                     check(emotes == [(0, 6, 15)], f'{entry}: Jasmine lacks exclamation emote')
                     obj = h.s('wMap5Object')
