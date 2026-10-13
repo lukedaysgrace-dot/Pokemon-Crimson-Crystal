@@ -14,6 +14,7 @@ make test-deep      # also ability/class/reflection matrices + 1,024 mixed battl
 make BATTLE_TEST_JOBS=8 test-complete  # full suite with isolated emulator workers
 python3 tools/battletest/runner.py --all-abilities -k "Ability sweep"
 python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
+python3 tools/battletest/runner.py --no-render --jobs 6 --all-moves --all-effects --all-abilities
 python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
@@ -25,6 +26,15 @@ The default remains one emulator. YAML `before_action` checkpoints can assert
 state before a specified side's native move begins, e.g. `side: enemy`,
 `turn: 1`, and an `assert` list. Missing checkpoints fail the case, so a skipped
 or fainted action cannot silently satisfy a timing assertion.
+
+`--no-render` skips drawing pixels during automatic battles while retaining
+CPU/PPU timing, interrupts, live glyph destination monitoring and gameplay
+assertions. Native graphical suites retain their default rendering. The
+paired `tools/test_battle_render_mode.py` smoke test verifies identical CPU,
+WRAM/HRAM and observed text between rendering modes, plus fixture identities
+for alternate ROMs and ROM files changed after loading. Fixture caches use
+the loaded ROM's original bytes and separate native cartridge state from the
+surrogate state.
 
 First run bootstraps a fresh save into the DEBUG start-menu entry
 (~1 minute) and caches it as a save state in `fixtures/`, keyed on the ROM
@@ -118,6 +128,20 @@ the Poke Seer's origin check. It covers party-filter result masks and egg
 exclusion, empty parties and level cutoffs, and explicit constant-counter resets
 used by the test fixtures. The script accepts a ROM path with matching `.sym`
 for before/after reproduction, and uses private in-memory SRAM.
+
+`make test-party-usable BATTLE_TEST_PYTHON=.venv/bin/python` checks the last
+usable party-member guard, every healthy/fainted/Egg arrangement, empty parties,
+PC release/deposit refusals, and healthy versus Egg box replacements. Nonzero
+Egg HP is deliberately staged: normal Egg creation and box decoding zero it.
+
+`make test-capture-field BATTLE_TEST_PYTHON=.venv/bin/python` checks Level/Moon/
+Love Ball modifiers and saturation, stored gender flags, all seven HM badge
+gates across every badge mask, pocket/story ownership, eligible party slots,
+and Egg/empty/incompatible parties. Both targets are included in `test-overworld`.
+
+`tools/test_battle_symbols.py` verifies constant-counter and symbol-alias
+boundaries. The resource audit also validates every ordinary/idle Pokemon
+animation frame reference against its generated frame pointer table.
 
 ## Writing a test
 
