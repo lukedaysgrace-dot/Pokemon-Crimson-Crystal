@@ -218,3 +218,8 @@ SECTION "Fishing Boat Sprite", ROMX
 FishingBoatSpriteGFX::        INCBIN "gfx/sprites/fishing_boat.2bpp"
 FishingBoatSpriteGFXEnd::
 assert FishingBoatSpriteGFXEnd - FishingBoatSpriteGFX == 16 * 16
+
+SECTION "Sleeping Gambler Sprite", ROMX
+GamblerAsleepSpriteGFX::      INCBIN "gfx/sprites/gambler_asleep.2bpp"
+GamblerAsleepSpriteGFXEnd::
+assert GamblerAsleepSpriteGFXEnd - GamblerAsleepSpriteGFX == 4 * 16

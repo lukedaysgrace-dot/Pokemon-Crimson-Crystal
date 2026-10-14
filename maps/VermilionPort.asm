@@ -52,6 +52,9 @@ VermilionPortSailorAtGangwayScript:
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	waitsfx
+	clearevent EVENT_ELM_PAID_RETURN_FARE
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iffalse .FirstTime
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
@@ -64,6 +67,7 @@ VermilionPortSailorAtGangwayScript:
 	clearevent EVENT_BEAT_TEACHER_SHIRLEY
 	clearevent EVENT_BEAT_SCHOOLBOY_NATE
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
+.FirstTime:
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear VERMILIONPORT_SAILOR1
 	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_ENTER_SHIP
@@ -84,29 +88,28 @@ VermilionPortWalkUpToShipScript:
 	iftrue .skip
 	turnobject PLAYER, LEFT
 	opentext
+	checkevent EVENT_ELM_PAID_RETURN_FARE
+	iftrue .FirstTime
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iffalse .FirstTime
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .NextShipWednesday
 	ifequal TUESDAY, .NextShipWednesday
 	ifequal THURSDAY, .NextShipSunday
 	ifequal FRIDAY, .NextShipSunday
 	ifequal SATURDAY, .NextShipSunday
+.FirstTime:
 	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse VermilionPortNotRidingMoveAwayScript
-	writetext UnknownText_0x74f8b
-	buttonsound
-	checkitem S_S_TICKET
+	scall VermilionPortCheckPassageScript
 	iffalse .NoTicket
-	writetext VermilionPortSSTicketText
-	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74ef8
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
-	writetext UnknownText_0x74ff2
-	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x74ef5
 	end
@@ -146,29 +149,28 @@ VermilionPortSailorScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue VermilionPortAlreadyRodeScript
+	checkevent EVENT_ELM_PAID_RETURN_FARE
+	iftrue .CanDepart
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iffalse .CanDepart
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .NextShipWednesday
 	ifequal TUESDAY, .NextShipWednesday
 	ifequal THURSDAY, .NextShipSunday
 	ifequal FRIDAY, .NextShipSunday
 	ifequal SATURDAY, .NextShipSunday
+.CanDepart:
 	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse VermilionPortNotRidingScript
-	writetext UnknownText_0x74f8b
-	buttonsound
-	checkitem S_S_TICKET
+	scall VermilionPortCheckPassageScript
 	iffalse .NoTicket
-	writetext VermilionPortSSTicketText
-	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74efe
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
-	writetext UnknownText_0x74ff2
-	waitbutton
 	closetext
 	end
 
@@ -191,6 +193,42 @@ VermilionPortSuperNerdScript:
 	waitbutton
 	closetext
 	end
+
+VermilionPortCheckPassageScript:
+; Elm's fare is one westbound voyage, including days without regular service.
+	checkflag ENGINE_THUNDERBADGE
+	iffalse .NoTicket
+	checkevent EVENT_ELM_PAID_RETURN_FARE
+	iftrue .PaidFare
+	writetext UnknownText_0x74f8b
+	buttonsound
+	checkitem S_S_TICKET
+	iffalse .NoTicket
+	writetext VermilionPortSSTicketText
+	waitbutton
+	setval TRUE
+	end
+.PaidFare:
+	writetext VermilionPortElmPaidFareText
+	waitbutton
+	setval TRUE
+	end
+.NoTicket:
+	writetext UnknownText_0x74ff2
+	waitbutton
+	setval FALSE
+	end
+
+VermilionPortElmPaidFareText:
+	text "PROF.ELM called."
+	line "He's paid for your"
+	cont "trip to OLIVINE."
+
+	para "We'll take you"
+	line "there today. You"
+	cont "don't need a"
+	cont "TICKET this time!"
+	done
 
 VermilionPortHiddenIron:
 	hiddenitem IRON, EVENT_VERMILION_PORT_HIDDEN_IRON

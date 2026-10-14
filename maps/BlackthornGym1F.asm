@@ -98,10 +98,22 @@ BlackthornGymClairScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR_REMATCH
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .RematchFinished
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iffalse .RematchFinished
+	specialphonecall SPECIALCALL_OAK_MT_SILVER
+.RematchFinished:
 	end
 
 .RematchDone:
+	readvar VAR_BADGES
+	ifgreater NUM_BADGES - 1, .LeagueReady
+	writetext BlackthornGymClairText_Kanto
+	sjump .FinishAdvice
+.LeagueReady:
 	writetext BlackthornGymClairText_League
+.FinishAdvice:
 	waitbutton
 	closetext
 	end
@@ -203,8 +215,8 @@ ClairText_GoToDragonsDen:
 	para "I may have lost,"
 	line "but you're still"
 
-	para "not ready for the"
-	line "#MON LEAGUE."
+	para "not worthy of my"
+	line "RISINGBADGE."
 
 	para "I know. You should"
 	line "take the dragon"
@@ -299,6 +311,28 @@ BlackthornGymClairText_League:
 	line "thing you've got."
 	done
 
+BlackthornGymClairText_Kanto:
+	text "You've earned the"
+	line "BADGES of JOHTO."
+
+	para "But the LEAGUE"
+	line "requires all 16"
+	cont "BADGES."
+
+	para "KANTO's GYM"
+	line "LEADERS are next."
+
+	para "SURF east from"
+	line "NEW BARK TOWN."
+
+	para "Follow ROUTE 26 to"
+	line "the gate, then"
+	cont "turn right."
+
+	para "Don't you dare"
+	line "lose to them!"
+	done
+
 CooltrainermPaulSeenText:
 	text "Your first battle"
 	line "against dragons?"
@@ -366,11 +400,9 @@ BlackthornGymGuyText:
 	text "Yo! CHAMP in"
 	line "making!"
 
-	para "It's been a long"
-	line "journey, but we"
-
-	para "are almost done!"
-	line "Count on me!"
+	para "This is JOHTO's"
+	line "last GYM! KANTO"
+	cont "comes next."
 
 	para "CLAIR uses the"
 	line "mythical and sac-"
@@ -391,9 +423,12 @@ BlackthornGymGuyWinText:
 	text "You were great to"
 	line "beat CLAIR!"
 
-	para "All that's left is"
-	line "the #MON LEAGUE"
-	cont "challenge."
+	para "Collect KANTO's"
+	line "eight BADGES too."
+
+	para "With all 16, you"
+	line "can challenge the"
+	cont "#MON LEAGUE!"
 
 	para "You're on the way"
 	line "to becoming the"
@@ -417,6 +452,11 @@ ClairRematchWinText:
 
 	para "The ELITE FOUR now"
 	line "await your return."
+
+	para "And visit PROF."
+	line "OAK in PALLET."
+	cont "He may have a new"
+	cont "challenge for you."
 	done
 
 BlackthornGym1F_MapEvents:

@@ -34,6 +34,10 @@ VermilionGymSurgeScript:
 	writetext LtSurgeThunderBadgeText
 	waitbutton
 	closetext
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue .NoTicketCall
+	specialphonecall SPECIALCALL_SSTICKET
+.NoTicketCall:
 	end
 
 .FightDone:

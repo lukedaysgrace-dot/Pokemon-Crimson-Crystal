@@ -120,8 +120,9 @@ Route23GrampsText:
 	cont "currently"
 	cont "training, kid."
 
-	para "Come back after"
-	line "you've managed"
+	para "For a rematch,"
+	line "come back after"
+	cont "you've managed"
 	cont "to beat all of"
 	cont "JOHTO's GYM"
 	cont "LEADERS at their"

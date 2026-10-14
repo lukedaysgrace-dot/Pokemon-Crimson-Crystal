@@ -20,6 +20,19 @@ VermilionCity_MapScripts:
 VermilionCityTeacherScript:
 	jumptextfaceplayer VermilionCityTeacherText
 
+VermilionCityElmCallScript:
+; Ring on the gym's exit tile, with the ordinary step handler as a fallback.
+	checkflag ENGINE_THUNDERBADGE
+	iffalse .Done
+	checkevent EVENT_ELM_CALLED_AFTER_SURGE
+	iftrue .Done
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue .Done
+	specialphonecall SPECIALCALL_SSTICKET
+	farsjump Script_SpecialElmCall
+.Done:
+	end
+
 VermilionMachopOwner:
 	jumptextfaceplayer VermilionMachopOwnerText
 
@@ -293,6 +306,10 @@ UnknownText_0x1aacf3:
 	para "You got all the"
 	line "KANTO GYM BADGES."
 
+	para "All 16 BADGES!"
+	line "The ELITE FOUR"
+	cont "await you now."
+
 	para "I've got a reward"
 	line "for your efforts."
 	done
@@ -390,7 +407,9 @@ VermilionCity_MapEvents:
 	warp_event 20, 31, VERMILION_PORT_PASSAGE, 2
 	warp_event 34,  7, DIGLETTS_CAVE, 1
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event 10, 19, -1, VermilionCityElmCallScript
+	coord_event 10, 20, -1, VermilionCityElmCallScript
 
 	db 8 ; bg events
 	bg_event 25,  3, BGEVENT_READ, VermilionCitySign

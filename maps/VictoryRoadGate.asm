@@ -21,7 +21,7 @@ VictoryRoadGate_MapScripts:
 	end
 
 .SetupObjects:
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .MtSilverLockDone
 	appear VICTORYROADGATE_BLACK_BELT1
 .MtSilverLockDone:
@@ -142,6 +142,12 @@ VictoryRoadGateEightBadgesText:
 
 	para "Please, go right"
 	line "on through!"
+
+	para "Turn right for"
+	line "KANTO."
+
+	para "VICTORY ROAD needs"
+	line "all 16 BADGES."
 	done
 
 VictoryRoadGateLeftBlackBeltText:

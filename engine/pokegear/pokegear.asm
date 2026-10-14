@@ -742,14 +742,15 @@ PokegearMap_UpdateCursorPosition:
 	ret
 
 TownMap_GetKantoLandmarkLimits:
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	jr z, .not_hof
+; All Johto badges open the overland route to Kanto before the League.
+	ld a, [wJohtoBadges]
+	cp $ff
+	jr nz, .not_unlocked
 	ld d, ROUTE_28
 	ld e, PALLET_TOWN
 	ret
 
-.not_hof
+.not_unlocked
 	ld d, ROUTE_28
 	ld e, VICTORY_ROAD
 	ret
@@ -2515,9 +2516,9 @@ Pokedex_GetArea:
 	ret
 
 .right
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	ret z
+	ld a, [wJohtoBadges]
+	cp $ff
+	ret nz
 	ldh a, [hWY]
 	and a
 	ret z

@@ -33,7 +33,7 @@ def _load_caps():
 _CAP_ROWS = _load_caps()
 CAPS = [cap for cap, _ in _CAP_ROWS]
 # One label per cap row, read from the table's comments (the table now runs
-# through the Elite Four and Kanto, not just the eight Johto leaders).
+# through Kanto and then the Elite Four; postgame caps are a separate table).
 LEADERS = [label for _, label in _CAP_ROWS]
 
 # (a, b, c, d, e) -> (a/b)*n^3 + c*n^2 + d*n - e

@@ -61,10 +61,10 @@ TrainerCooltrainermGaven3:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
 .Fight1:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_THUNDERBADGE
 	iftrue .LoadFight1
 .LoadFight0:
 	loadtrainer COOLTRAINERM, GAVEN3
@@ -165,10 +165,10 @@ TrainerCooltrainerfBeth1:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
 .Fight1:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_THUNDERBADGE
 	iftrue .LoadFight1
 .LoadFight0:
 	loadtrainer COOLTRAINERF, BETH1
@@ -253,11 +253,12 @@ Route26MaxElixer:
 	itemball MAX_ELIXER
 
 CooltrainermJakeSeenText:
-	text "I'm making my"
-	line "final preparations"
+	text "I'm training for"
+	line "the #MON"
+	cont "LEAGUE."
 
-	para "for the #MON"
-	line "LEAGUE."
+	para "Sixteen BADGES is"
+	line "just the start!"
 	done
 
 CooltrainermJakeBeatenText:
@@ -291,17 +292,17 @@ CooltrainermGaven3BeatenText:
 	done
 
 CooltrainermGavenAfterText:
-	text "To get to #MON"
-	line "LEAGUE, you have"
+	text "At the gate ahead,"
+	line "turn right to"
+	cont "reach KANTO."
 
-	para "to get through"
-	line "VICTORY ROAD."
+	para "Eight JOHTO BADGES"
+	line "will let you pass."
 
-	para "But VICTORY ROAD"
-	line "is tough."
-
-	para "Practically nobody"
-	line "goes there!"
+	para "VICTORY ROAD lies"
+	line "north, but you'll"
+	cont "need all 16 BADGES"
+	cont "to enter."
 	done
 
 CooltrainerfJoyceSeenText:
@@ -321,10 +322,14 @@ CooltrainerfJoyceBeatenText:
 
 CooltrainerfJoyceAfterBattleText:
 	text "I've defeated"
-	line "eight GYM LEADERS,"
+	line "JOHTO's eight GYM"
+	cont "LEADERS,"
 
 	para "so I was feeling"
 	line "confident."
+
+	para "KANTO's eight are"
+	line "my next challenge."
 
 	para "I'll have to try"
 	line "harder next time."

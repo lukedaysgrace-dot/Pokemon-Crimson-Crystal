@@ -23,7 +23,14 @@ endr
 	jr z, .done ; no bite
 	ld a, c
 	cp FISHGROUP_SAFARI - 1
-	call c, ScaleJohtoFishLevel
+	jr nc, .kanto
+	call ScaleJohtoFishLevel
+	jr .done
+.kanto
+	cp FISHGROUP_OCEAN_KANTO - 1
+	jr c, .done
+	cp FISHGROUP_SILVER_CAVE - 1
+	call c, ScaleKantoFishLevel
 
 .done
 	pop hl
@@ -96,7 +103,7 @@ ScaleJohtoFishLevel:
 ; The shared Johto rod groups list fixed levels (Old 10 / Good 20 / Super 40).
 ; Scale them with progress: level = max(listed, listed / 2 + 4 * Johto badges).
 ; This never lowers a level, so no evolved form drops below its evolution level.
-; Safari, Kanto, Silver Cave and Ice groups keep their own hand-set levels.
+; Kanto has its own badge curve; Safari, Silver Cave and Ice stay fixed.
 ; In: d = species, e = level. Out: e = scaled level (d preserved).
 	push de
 	ld hl, wJohtoBadges
@@ -113,6 +120,29 @@ ScaleJohtoFishLevel:
 	ret c
 	ld e, a
 	ret
+
+ScaleKantoFishLevel:
+; Shared Kanto groups begin below Brock and follow the local gym tiers.
+; Erika, Janine and Sabrina share the same offset in any order.
+; In: d = species, e = listed level. Out: e = scaled level (d preserved).
+	push de
+	ld hl, wKantoBadges
+	ld b, 1
+	call CountSetBits
+	ld e, a
+	ld d, 0
+	ld hl, KantoFishLevelOffsets
+	add hl, de
+	ld b, [hl]
+	pop de
+	ld a, e
+	add b
+	ld e, a
+	ret
+
+KantoFishLevelOffsets:
+	db 0, 4, 8, 12, 12, 12, 16, 19, 23
+	assert @ - KantoFishLevelOffsets == NUM_KANTO_BADGES + 1
 
 GetFishGroupIndex:
 ; Return the index of fishgroup d in de.

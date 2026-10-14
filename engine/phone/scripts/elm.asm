@@ -1,6 +1,14 @@
 ElmPhoneCalleeScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iffalse .CheckInvitation
+	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
+	iftrue .CheckEgg
+.CheckInvitation:
+	checkflag ENGINE_THUNDERBADGE
+	iftrue .ticket
+.CheckEgg:
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue .discovery
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
@@ -61,12 +69,15 @@ ElmPhoneCalleeScript:
 	specialphonecall SPECIALCALL_NONE
 	end
 
+.ticket
+	sjump ElmPhoneReturnInvitationScript
+
 ElmPhoneCallerScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
 	ifequal SPECIALCALL_ASSISTANT, .assistant
 	ifequal SPECIALCALL_WEIRDBROADCAST, .rocket
-	ifequal SPECIALCALL_SSTICKET, .gift
+	ifequal SPECIALCALL_SSTICKET, .ticket
 	ifequal SPECIALCALL_MASTERBALL, .gift
 	farwritetext ElmPhonePokerusText
 	specialphonecall SPECIALCALL_NONE
@@ -114,7 +125,23 @@ ElmPhoneCallerScript:
 	specialphonecall SPECIALCALL_NONE
 	end
 
+.ticket
+	sjump ElmPhoneReturnInvitationScript
+
 .unused
 	farwritetext ElmPhoneUnusedText
+	specialphonecall SPECIALCALL_NONE
+	end
+
+ElmPhoneReturnInvitationScript:
+	checkevent EVENT_ELM_CALLED_AFTER_SURGE
+	iftrue .Reminder
+	setevent EVENT_ELM_CALLED_AFTER_SURGE
+	setevent EVENT_ELM_PAID_RETURN_FARE
+	farwritetext ElmPhoneSSTicketText
+	specialphonecall SPECIALCALL_NONE
+	end
+.Reminder:
+	farwritetext ElmPhoneReturnReminderText
 	specialphonecall SPECIALCALL_NONE
 	end

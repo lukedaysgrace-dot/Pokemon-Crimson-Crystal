@@ -10,8 +10,8 @@ OakMtSilverPhoneCallerScript:
 OakMtSilverPhoneText:
 	text "OAK: <PLAY_G>!"
 
-	para "I heard about your"
-	line "LEAGUE rematches."
+	para "I heard of your"
+	line "LEAGUE victory."
 
 	para "Please come visit"
 	line "me at my LAB."

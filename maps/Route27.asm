@@ -96,10 +96,10 @@ TrainerBirdKeeperJose2:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
 .Fight1:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_THUNDERBADGE
 	iftrue .LoadFight1
 .LoadFight0:
 	loadtrainer BIRD_KEEPER, JOSE2
@@ -229,10 +229,10 @@ TrainerCooltrainerfReena:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
 .Fight1:
-	checkevent EVENT_BEAT_ELITE_FOUR
+	checkflag ENGINE_THUNDERBADGE
 	iftrue .LoadFight1
 .LoadFight0:
 	loadtrainer COOLTRAINERF, REENA1
@@ -424,8 +424,8 @@ PsychicGilbertSeenText:
 	para "Mmmmmmm…"
 
 	para "I got it! You're"
-	line "on the #MON"
-	cont "LEAGUE challenge!"
+	line "collecting all 16"
+	cont "GYM BADGES!"
 	done
 
 PsychicGilbertBeatenText:
@@ -433,8 +433,9 @@ PsychicGilbertBeatenText:
 	done
 
 PsychicGilbertAfterBattleText:
-	text "With your skills,"
-	line "you'll do well at"
+	text "Earn all 16 BADGES"
+	line "and your skills"
+	cont "will serve you at"
 	cont "the LEAGUE."
 
 	para "That's what my"

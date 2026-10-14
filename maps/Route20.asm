@@ -7,12 +7,7 @@
 Route20_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
-	callback MAPCALLBACK_NEWMAP, .ClearRocks
-
-.ClearRocks:
-	setevent EVENT_CINNABAR_ROCKS_CLEARED
-	return
+	db 0 ; callbacks
 
 TrainerSwimmerfNicole:
 	trainer SWIMMERF, NICOLE, EVENT_BEAT_SWIMMERF_NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script
