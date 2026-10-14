@@ -3,7 +3,7 @@
 The main challenge runs through Johto's eight gyms, Kanto's eight gyms, and
 then Victory Road and the Elite Four.
 
-- The southern officer in the Reception Gate still requires eight badges.
+- The southern officer in the Reception Gate requires all eight Johto badges.
   Turn east there to reach Route 22 and mainland Kanto. The two northern
   officers require all sixteen badges to enter Victory Road.
 - Kanto is first reached overland. Elm rings immediately on leaving Surge's
@@ -20,8 +20,42 @@ then Victory Road and the Elite Four.
   keep their weekday schedule. Full pockets preserve any unclaimed gift.
 - The Pokégear's full Kanto map and the Pokédex's Kanto area view become
   available with all eight Johto badges.
-- Defeating Janine clears the Route 19 shoreline south of Fuchsia.
-  Visiting Route 20 no longer clears the rocks.
+- The level curve suggests Brock, Misty, Surge, then Erika/Sabrina/Janine
+  in any order, Blaine, and Blue. Only Blue has a gym-specific badge check;
+  the other seven leaders use their original battle dialogue and entry logic.
+  Saffron's north and south entrances require Surge's badge. The Route 5
+  Underground Path needs the Machine Part returned and Misty defeated;
+  its dialogue explains the remaining condition after the power returns.
+- Completing Erika, Sabrina and Janine opens Route 19 and the road south
+  of Viridian toward Pallet. Blaine has no separate gym-specific check.
+  Visiting Route 20 no longer clears the rocks. Viridian's object callback
+  derives its blockers from the badges using the retired coastline flag;
+  it does not alter Janine's battle flag or add save-layout fields.
+- Blue stays on Cinnabar until the player has all eight Johto badges and
+  fifteen total badges. Speak to him there to make him return to Viridian.
+  His gym and both cities repair early-return flags from older saves;
+  an already-earned Earth Badge is preserved. His first victory advice
+  points to the League, while a migrated Champion gets rematch advice.
+  His waiting dialogue asks the player to defeat the Kanto gym leaders,
+  and his battle introduction says JOHTO boy or girl using the saved gender.
+- Crystal's Earth Badge call remains intact. A new Mew appearance also
+  requires all sixteen badges. Winning the cape battle queues Oak's lab
+  invitation if it completes the Mt. Silver requirements last. Losing
+  leaves the battle retryable and Crystal asks the player to rest first.
+- Both wing gifts require all eight Johto badges, with no Kanto badge or
+  League requirement. Pewter's old man gives the Silver Wing; Tin Tower's
+  Rainbow Wing sage also requires ownership of Raikou, Entei and Suicune
+  with the player's own OT and ID, in the party or PC. Ho-Oh retains that
+  three-beast requirement. Both bird encounters remain level 60. A full
+  key-item pocket preserves the Silver Wing gift for a later attempt.
+- Irwin's Vermilion and train-pass gossip describes overland Kanto travels.
+  Silver's Mt. Moon dialogue leads into his later Victory Road challenge.
+  His Dragon's Den training remains available during Kanto. Green and
+  cloaked Blue recognize the Lance rematch victory that unlocks their chain.
+- Places and People recognizes Kanto leaders with complete Johto badges,
+  and Elite Four members after the Hall of Fame. Custom story characters
+  and rematch classes stay hidden at every stage. Buena's regional gossip
+  and Goldenrod's improved rooftop sale also open with complete Johto badges.
 - The League entrance also checks for sixteen badges, covering players
   who can already Fly to Indigo Plateau in older saves.
 - Oak directs sixteen-badge trainers to the League. Mt. Silver requires
@@ -35,10 +69,10 @@ then Victory Road and the Elite Four.
 - The Route 26/27 phone trainers use their initial teams before Surge,
   level-58 rematch aces after Surge, and level-74 aces after the League.
   Restoring Kanto's power no longer selects their final tier early.
-- The other Johto phone trainers keep their existing unlocks. Their
-  Elite Four tier now has a level-74 ace, and the final tier (Elite Four
-  plus Kanto's power) has a level-77 ace, matching the first post-League
-  cap rather than the old Johto-only League.
+- The other Johto phone trainers' Elite Four tier has a level-74 ace.
+  Their final tier requires both the League victory and Falkner's rematch,
+  with a level-77 ace. Early Kanto power restoration no longer compresses
+  those two milestones or unlocks a final team in an old pre-League save.
 
 Clair, Elm, the Blackthorn gym guide, Oak, the Route 26/27 trainers and
 the Route 27 house explain the new order. Silver's Victory Road dialogue
@@ -104,8 +138,8 @@ Species, moves, held items and abilities are preserved in the trainer parties;
 ordinary route opponents, first ship passengers and rival fights are relevelled
 along with the bosses. The initial Kanto Super Rod level-75 catches no longer
 undermine the early Kanto curve. Route 1 and Pallet Town stay sealed behind
-Viridian's battling trainers until Janine, so they share the southern-coast
-tier: trainer aces 63–64 and wild levels 60–64.
+Viridian's battling trainers until Erika, Sabrina and Janine, so they share
+the southern-coast tier: trainer aces 63–64 and wild levels 60–64.
 
 These choices align opponent levels and caps with travel order. The EXP audit
 is a screening estimate, not a full campaign playthrough or a claim that every
@@ -116,8 +150,9 @@ that reward makes the Kanto journey usable with the existing gym levels.
 Johto fishing still scales using only Johto badges; Kanto fishing follows the
 new Kanto tiers, and other special groups retain their authored levels.
 The wild encounter badge check
-is a five-Johto-badge Safari species gate, not a League unlock. Type boosts
-already inspect both regions' badge bytes and need no change.
+is a five-Johto-badge Safari species gate, not a League unlock. Badges no longer
+boost battle stats or move damage. Matching bonus claims have been removed
+from Falkner, Whitney, Jasmine, Pryce, Brock, Lt. Surge and Sabrina's dialogue.
 
 ## Verification
 
@@ -126,6 +161,7 @@ Run from the repository root with the built ROM and matching symbols:
 ```sh
 make
 python3 tools/test_league_progression.py
+python3 tools/test_badge_bonuses_removed.py
 python3 tools/test_overworld_state.py
 python3 tools/audit_trainers.py
 python3 tools/audit_exp_economy.py
@@ -139,3 +175,10 @@ the rematch blockade, map visibility, native fishing routes, and compiled
 boss and encounter levels. The overworld test checks both difficulties and
 every badge count with and without the Hall of Fame flag, plus all 256
 combinations of Johto rematch flags and Red's final cap unlock.
+
+The progression suite also checks all southern-access badge combinations,
+Blue's 14/15-badge departure and migrated map flags, both gender greetings,
+unrestricted direct challenges to the other seven leaders,
+both Saffron entrance columns, wing gift retries, the Rainbow Wing sage,
+regional radio/gossip/shop unlocks, Oak's final-condition invitation, and
+every changed Johto phone trainer's League/Falkner tier selection.

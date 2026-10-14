@@ -363,6 +363,10 @@ PortraitTexts:
 	db PORTRAIT_BLUE
 	dba CinnabarIslandBlueCloakBeforeText
 	db PORTRAIT_BLUE
+	dba CinnabarIslandBlueNeedBadgesText
+	db PORTRAIT_BLUE
+	dba CinnabarIslandBlueReturnText
+	db PORTRAIT_BLUE
 	dba CinnabarIslandBlueText
 	db PORTRAIT_BLUE
 	dba CinnabarIslandGymSignText
@@ -1902,12 +1906,22 @@ PortraitTexts:
 	db PORTRAIT_BLUE
 	dba LeaderBlueEpilogueText
 	db PORTRAIT_BLUE
+	dba LeaderBlueLeagueNextText
+	db PORTRAIT_BLUE
+	dba LeaderBlueReadyBoyText
+	db PORTRAIT_BLUE
+	dba LeaderBlueReadyGirlText
+	db PORTRAIT_BLUE
+	dba LeaderBlueRematchNextText
+	db PORTRAIT_BLUE
 	dba Text_ReceivedEarthBadge
 	db 0
 	dba ViridianGymGuyText
 	db 0
 	dba ViridianGymGuyWinText
 	db 0
+	dba ViridianGymNotReadyText
+	db PORTRAIT_BLUE
 ; WillsRoom
 	dba WillScript_WillBeforeText
 	db PORTRAIT_WILL
@@ -1969,6 +1983,8 @@ PortraitTexts:
 	dba Route25CrystalMewCaughtText
 	db PORTRAIT_CRYSTAL
 	dba Route25CrystalMewEscapedText
+	db PORTRAIT_CRYSTAL
+	dba Route25CrystalTryAgainText
 	db PORTRAIT_CRYSTAL
 	dba WhitneyRematchWinText
 	db PORTRAIT_WHITNEY_CRYING

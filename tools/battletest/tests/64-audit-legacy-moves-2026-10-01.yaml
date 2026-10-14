@@ -689,7 +689,7 @@
   move_script: [1, 2]
   assert: ["enemy.hp < enemy.start_hp"]
 
-- name: "Audit moves extra: Facade preserves Zephyr Badge when restoring burned Attack"
+- name: "Audit moves extra: Facade restores burned Attack with a Zephyr Badge owned"
   player: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE", "FACADE"], "status_byte": 16}
   enemy: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SPLASH"]}
   rng: forced_high
@@ -707,7 +707,7 @@
   setup_wram: {"wJohtoBadges": 1}
   assert: ["player.hp < player.start_hp"]
 
-- name: "Audit moves extra: Foul Play preserves Zephyr Badge when restoring borrowed burned Attack"
+- name: "Audit moves extra: Foul Play restores borrowed burned Attack with a Zephyr Badge owned"
   player: {"species": "MEW", "level": 100, "ability": "NO_ABILITY", "moves": ["SWORDS_DANCE"], "status_byte": 16}
   enemy: {"species": "MEW", "level": 20, "ability": "NO_ABILITY", "moves": ["FOUL_PLAY"]}
   rng: forced_high

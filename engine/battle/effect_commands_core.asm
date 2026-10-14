@@ -2709,7 +2709,6 @@ RebuildUnburnedAttack_Core:
 	jr nz, .check_enemy
 	ld de, wPlayerAttack
 	ld a, [wPlayerAtkLevel]
-	ld b, 1 ; preserve the player's existing staged-stat badge boost
 	jr .rebuild
 .check_enemy
 	ld a, h
@@ -2720,9 +2719,7 @@ RebuildUnburnedAttack_Core:
 	jr nz, ReadStatValue_Core
 	ld de, wEnemyAttack
 	ld a, [wEnemyAtkLevel]
-	ld b, 0
 .rebuild
-	push bc
 	dec a
 	add a
 	ld c, a
@@ -2747,35 +2744,12 @@ RebuildUnburnedAttack_Core:
 	ld h, a
 	ldh a, [hQuotient + 3]
 	ld l, a
-	pop bc
 	call .cap
 	ld a, h
 	or l
-	jr nz, .badge
+	ret nz
 	inc l
-.badge
-	ld a, b
-	and a
-	ret z
-	ld a, [wLinkMode]
-	and a
-	ret nz
-	ld a, [wInBattleTowerBattle]
-	and a
-	ret nz
-	ld a, [wJohtoBadges]
-	bit ZEPHYRBADGE, a
-	ret z
-	; Mirror BadgeStatBoosts: +1/8 Attack, capped at 999. This applies
-	; only to a selected staged player stat; raw-stat selections keep their
-	; existing critical-hit/Unaware treatment of badges.
-	ld d, h
-	ld e, l
-rept 3
-	srl d
-	rr e
-endr
-	add hl, de
+	ret
 .cap
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
@@ -3120,10 +3094,9 @@ PassedBattleMonFixups_Core::
 ; - per-mon Taunt/Yawn state and the toxic slot, as a normal switch-in does
 ;   (the enemy's Baton Pass path already runs ToxicRestoreEnemy_Core)
 ; - the multipliers rebuild the stats from the unmodified ones: re-apply the
-;   status penalties and badge boosts InitBattleMon had applied
+;   status penalties InitBattleMon had applied
 	call ToxicRestorePlayer_Core
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	ret
 
 ToxicRestoreEnemy_Core::

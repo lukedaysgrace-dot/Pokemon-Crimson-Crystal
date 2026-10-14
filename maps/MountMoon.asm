@@ -102,8 +102,9 @@ MountMoonSilverTextBefore:
 	line "lacking with my"
 	cont "#MON…"
 
-	para "And we came up"
-	line "with an answer."
+	para "Now KANTO's GYMS"
+	line "will help us grow"
+	cont "stronger together."
 
 	para "<PLAYER>, now we'll"
 	line "show you!"
@@ -141,11 +142,12 @@ MountMoonSilverTextAfter:
 
 	para "…Listen, <PLAYER>."
 
-	para "One of these days"
-	line "I'm going to prove"
+	para "We'll earn every"
+	line "BADGE in KANTO."
 
-	para "how good I am by"
-	line "beating you."
+	para "When we reach the"
+	line "LEAGUE, we'll"
+	cont "battle again."
 	done
 
 MountMoonSilverTextLoss:

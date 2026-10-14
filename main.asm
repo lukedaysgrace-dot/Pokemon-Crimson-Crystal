@@ -951,3 +951,6 @@ INCLUDE "engine/events/trainer_portraits.asm"
 SECTION "Fishing Contest", ROMX
 
 INCLUDE "engine/events/fishing_contest.asm"
+
+SECTION "Campaign Progression Scripts", ROMX
+INCLUDE "engine/events/league_progression.asm"

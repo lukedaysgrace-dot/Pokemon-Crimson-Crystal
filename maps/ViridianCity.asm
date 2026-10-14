@@ -11,11 +11,23 @@
 ViridianCity_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .SouthernRoad
 
 .FlyPoint:
+	farscall UpdateBlueReturnScript
 	setflag ENGINE_FLYPOINT_VIRIDIAN
+	return
+
+.SouthernRoad:
+	farscall CheckSouthernKantoAccessScript
+	iftrue .OpenSouthernRoad
+; Reuse the retired coastline bit for derived visibility, preserving save IDs.
+	clearevent EVENT_CINNABAR_ROCKS_CLEARED
+	return
+.OpenSouthernRoad:
+	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	return
 
 ViridianCityCrystalCapeCallScript:
@@ -283,15 +295,20 @@ ViridianCityBattleInterruptedMText:
 	text "Hey! You made me"
 	line "mess up my attack!"
 	para "This is an intense"
-	line "battle! Go away!"
+	line "battle! Earn the"
+	cont "BADGES of ERIKA,"
+	cont "SABRINA and JANINE"
+	cont "while we finish."
 	done
 
 ViridianCityBattleInterruptedFText:
 	text "Look what you did!"
 	line "I lost my focus!"
 	para "This is an intense"
-	line "battle! Leave us"
-	cont "alone!"
+	line "battle! Earn the"
+	cont "BADGES of ERIKA,"
+	cont "SABRINA and JANINE"
+	cont "while we finish."
 	done
 
 ViridianCityBattlePokemonText:
@@ -352,7 +369,7 @@ ViridianCity_MapEvents:
 	object_event 30,  8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityGrampsNearGym, -1
 	object_event  6, 23, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityNastyPlotFisher, -1
 	object_event 17, 21, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianCityYoungsterScript, -1
-	object_event 27, 30, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerMScript, EVENT_BEAT_JANINE
-	object_event 28, 30, SPRITE_DRAGOON, SPRITEMOVEDATA_POKEMON_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_BEAT_JANINE
-	object_event 29, 30, SPRITE_BIRD, SPRITEMOVEDATA_POKEMON_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_BEAT_JANINE
-	object_event 30, 30, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerFScript, EVENT_BEAT_JANINE
+	object_event 27, 30, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerMScript, EVENT_CINNABAR_ROCKS_CLEARED
+	object_event 28, 30, SPRITE_DRAGOON, SPRITEMOVEDATA_POKEMON_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_CINNABAR_ROCKS_CLEARED
+	object_event 29, 30, SPRITE_BIRD, SPRITEMOVEDATA_POKEMON_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_CINNABAR_ROCKS_CLEARED
+	object_event 30, 30, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerFScript, EVENT_CINNABAR_ROCKS_CLEARED
