@@ -30,18 +30,6 @@ ViridianCity_MapScripts:
 	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	return
 
-ViridianCityCrystalCapeCallScript:
-; The tile the player lands on stepping out of VIRIDIAN GYM. Beating BLUE
-; queues SPECIALCALL_CRYSTAL_CAPE, so CRYSTAL's call lands the instant the
-; door closes rather than on the next step. If this tile is somehow skipped
-; the usual CountStep handler still catches the queued call.
-	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
-	iffalse .Done
-	farsjump Script_SpecialCrystalCall
-
-.Done:
-	end
-
 ViridianCityCoffeeGramps:
 	faceplayer
 	opentext
@@ -353,8 +341,7 @@ ViridianCity_MapEvents:
 	warp_event 29, 19, VIRIDIAN_MART, 2
 	warp_event 23, 25, VIRIDIAN_POKECENTER_1F, 1
 
-	db 1 ; coord events
-	coord_event 32,  7, -1, ViridianCityCrystalCapeCallScript
+	db 0 ; coord events
 
 	db 6 ; bg events
 	bg_event 17, 17, BGEVENT_READ, ViridianCitySign

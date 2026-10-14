@@ -198,12 +198,57 @@ def main():
             for hall in (False, True):
                 badges(15)
                 event('EVENT_BEAT_ELITE_FOUR', hall)
+                event('EVENT_CRYSTAL_CAPE_CALL_PENDING', False)
+                write('wSpecialPhoneCallID', [0, 0])
                 load('VIRIDIAN_GYM')
                 with patches(h, {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9'}):
                     _, texts, _ = script('ViridianGymBlueScript')
                 expected = 'LeaderBlueRematchNextText' if hall else 'LeaderBlueLeagueNextText'
                 check(h.sym[expected] in texts and read('wKantoBadges') == 255, f'Blue badge/advice: old Champion={hall}')
-                check(read('wSpecialPhoneCallID') == phone['SPECIALCALL_CRYSTAL_CAPE'], 'Blue did not queue Crystal at sixteen badges')
+                check(read('wSpecialPhoneCallID') == 0 and not event('EVENT_CRYSTAL_CAPE_CALL_PENDING'),
+                      'Blue still queued Crystal after her invitation moved to Erika')
+
+            print('[Erika exit rings Crystal once and invites the player to Cerulean Cape]', flush=True)
+            badges(8)
+            event('EVENT_CRYSTAL_CAPE_CALL_PENDING', False)
+            write('wSpecialPhoneCallID', [0, 0])
+            load('CELADON_CITY')
+            end, _, _ = script('CeladonCityCrystalCapeCallScript', ('Script_SpecialCrystalCall',))
+            check(end is None, 'Crystal called outside Erika\'s gym before the victory')
+            load('CELADON_GYM')
+            script('CeladonGymErikaScript', stop_before_battle=True)
+            check(not event('EVENT_CRYSTAL_CAPE_CALL_PENDING') and read('wSpecialPhoneCallID') == 0,
+                  'Erika queued the cape call before being defeated')
+            with patches(h, {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9'}):
+                script('CeladonGymErikaScript')
+            check(read('wKantoBadges') == 8 and event('EVENT_BEAT_ERIKA'), 'Erika did not award the Rainbow Badge')
+            check(event('EVENT_CRYSTAL_CAPE_CALL_PENDING')
+                  and read('wSpecialPhoneCallID') == phone['SPECIALCALL_CRYSTAL_CAPE'],
+                  'Erika did not queue the cape invitation')
+            check(not h.call('SpecialCallOnlyWhenOutside')['c_flag'], 'Crystal invitation can ring inside the gym')
+            load('CELADON_CITY')
+            for y in (29, 30):
+                write('wPlayerStandingMapX', 14)
+                write('wPlayerStandingMapY', y + 4)
+                triggered = h.call('CheckCurrentMapCoordEvents')['c_flag']
+                check(triggered and h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym['CeladonCityCrystalCapeCallScript'][1],
+                      f'Crystal call missing on Erika gym exit tile {y}')
+                end, _, _ = script('CeladonCityCrystalCapeCallScript', ('Script_SpecialCrystalCall',))
+                check(end == 'Script_SpecialCrystalCall', f'Erika exit tile {y} did not ring Crystal immediately')
+            end, _, _ = script('Script_SpecialCrystalCall', ('Script_ReceivePhoneCall',))
+            check(end == 'Script_ReceivePhoneCall' and read('wCurCaller') == phone['PHONE_CRYSTAL'],
+                  'Erika exit call selected the wrong caller')
+            _, texts, _ = script('CrystalPhoneCallerScript')
+            check(texts == [h.sym['CrystalPhoneCapeCallText1'], h.sym['CrystalPhoneCapeCallText2']],
+                  'Crystal invitation did not use the Cerulean Cape dialogue')
+            check(not event('EVENT_CRYSTAL_CAPE_CALL_PENDING') and read('wSpecialPhoneCallID') == 0,
+                  'Crystal invitation did not clear its pending state')
+            check(script('CeladonCityCrystalCapeCallScript')[0] is None,
+                  'Erika gym exit repeated the cape call')
+            load('CELADON_GYM')
+            script('CeladonGymErikaScript')
+            check(not event('EVENT_CRYSTAL_CAPE_CALL_PENDING') and read('wSpecialPhoneCallID') == 0,
+                  'Talking to Erika again requeued the invitation')
 
             load('ROUTE_5')
             for powered in (False, True):
@@ -338,14 +383,14 @@ def main():
                       f'final Oak invitation: {count}, hall={hall}, Clair={clair}, cape={cape}, opened={opened}')
 
             load('ROUTE_25')
-            event('EVENT_ROUTE_25_MEW_APPEARED', False)
-            for count in (15, 16):
-                badges(count)
-                if count == 15:
-                    write('wKantoBadges', 0xbf)  # Earth owned in a migrated save, Blaine missing.
+            for johto, kanto, appeared in product((0, 0xff), (0, 8, 0x80, 0xf7, 0xff), (False, True)):
+                write('wJohtoBadges', johto)
+                write('wKantoBadges', kanto)
+                event('EVENT_ROUTE_25_MEW_APPEARED', appeared)
                 end, _, _ = script('Route25MewAppearsScript',
                                    ('Route25MewAppearsScript.Done', 'Route25MewAppearsScript.Appear'))
-                check(end.endswith('.Appear') == (count == 16), f'new Mew appearance at {count}, Earth owned')
+                check(end.endswith('.Appear') == (bool(kanto & 8) and not appeared),
+                      f'Mew appearance: Johto={johto:#x}, Kanto={kanto:#x}, already appeared={appeared}')
 
             for result in (0, 1):
                 badges(16)

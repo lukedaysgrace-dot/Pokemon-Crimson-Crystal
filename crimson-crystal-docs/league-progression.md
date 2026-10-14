@@ -38,8 +38,9 @@ then Victory Road and the Elite Four.
   points to the League, while a migrated Champion gets rematch advice.
   His waiting dialogue asks the player to defeat the Kanto gym leaders,
   and his battle introduction says JOHTO boy or girl using the saved gender.
-- Crystal's Earth Badge call remains intact. A new Mew appearance also
-  requires all sixteen badges. Winning the cape battle queues Oak's lab
+- Crystal calls immediately on leaving Erika's gym after earning the
+  Rainbow Badge, inviting the player to Cerulean Cape. The same badge
+  unlocks Mew's appearance there. Winning the cape battle queues Oak's lab
   invitation if it completes the Mt. Silver requirements last. Losing
   leaves the battle retryable and Crystal asks the player to rest first.
 - Both wing gifts require all eight Johto badges, with no Kanto badge or
@@ -60,8 +61,8 @@ then Victory Road and the Elite Four.
   who can already Fly to Indigo Plateau in older saves.
 - Oak directs sixteen-badge trainers to the League. Mt. Silver requires
   all sixteen badges, a first League victory, the Johto rematch chain through
-  Clair, and Crystal's Cerulean Cape battle. Crystal's existing Earth Badge
-  call and cape event remain intact. Falkner's rematch starts after the first
+  Clair, and Crystal's Cerulean Cape battle. Crystal's invitation and cape
+  event now open after Erika. Falkner's rematch starts after the first
   League victory, rather than after Red; every later leader requires the
   preceding rematch. Lance and Oak point the Champion to Falkner.
 - Route 23's first-championship blockade still requires the Johto gym
