@@ -40,7 +40,7 @@ ReadTrainerParty:
 	ld h, [hl]
 	ld l, a
 
-	ld a, [wOtherTrainerID]
+	call GetTrainerPartyID
 	ld b, a
 .skip_trainer
 	dec b
@@ -118,7 +118,7 @@ SetTrainerBattleLevel:
 	ld h, [hl]
 	ld l, a
 
-	ld a, [wOtherTrainerID]
+	call GetTrainerPartyID
 	ld b, a
 .skip_trainer
 	dec b
@@ -141,6 +141,59 @@ SetTrainerBattleLevel:
 	call GetNextTrainerDataByte ; trainer type
 	call GetNextTrainerDataByte ; first party member's level
 	ld [wCurPartyLevel], a
+	ret
+
+GetTrainerPartyID:
+; Return the party record to read in a. The Trainer House's CAL3 grows with
+; the player: CAL3-CAL6 are chosen by the highest level in the player's party
+; (below 60, 60s, 70s, 80+). Every other trainer uses wOtherTrainerID.
+; Preserves bc, de, hl.
+	ld a, [wOtherTrainerClass]
+	cp CAL
+	jr nz, .default
+	ld a, [wOtherTrainerID]
+	cp CAL3
+	ret nz
+	push bc
+	push hl
+	ld b, 0
+	ld a, [wPartyCount]
+	and a
+	jr z, .got_highest
+	ld c, a
+	ld hl, wPartyMon1Level
+.loop
+	ld a, [hl]
+	cp b
+	jr c, .next
+	ld b, a
+.next
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .loop
+.got_highest
+	ld a, b
+	ld b, CAL6
+	cp 80
+	jr nc, .got_id
+	ld b, CAL5
+	cp 70
+	jr nc, .got_id
+	ld b, CAL4
+	cp 60
+	jr nc, .got_id
+	ld b, CAL3
+.got_id
+	ld a, b
+	pop hl
+	pop bc
+	ret
+
+.default
+	ld a, [wOtherTrainerID]
 	ret
 
 ReadTrainerPartyPieces:

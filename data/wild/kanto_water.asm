@@ -108,9 +108,9 @@ KantoWaterWildMons:
 
 	map_id PALLET_TOWN
 	db 6 percent ; encounter rate
-	dbw 47, TENTACOOL
-	dbw 43, TENTACOOL
-	dbw 47, TENTACRUEL
+	dbw 64, TENTACOOL
+	dbw 60, TENTACOOL
+	dbw 64, TENTACRUEL
 
 	map_id VIRIDIAN_CITY
 	db 2 percent ; encounter rate

@@ -189,29 +189,29 @@ KantoGrassWildMons:
 	map_id ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 43, PIDGEY
-	dbw 43, SENTRET
-	dbw 44, RATTATA
-	dbw 44, HOPPIP
-	dbw 46, FURRET
-	dbw 46, PIDGEOTTO
-	dbw 47, BUNEARY
+	dbw 60, PIDGEY
+	dbw 60, SENTRET
+	dbw 61, RATTATA
+	dbw 61, HOPPIP
+	dbw 63, FURRET
+	dbw 63, PIDGEOTTO
+	dbw 64, BUNEARY
 	; day
-	dbw 43, PIDGEY
-	dbw 43, SENTRET
-	dbw 44, RATTATA
-	dbw 44, LOTAD
-	dbw 46, FURRET
-	dbw 46, PIDGEOTTO
-	dbw 47, MILTANK
+	dbw 60, PIDGEY
+	dbw 60, SENTRET
+	dbw 61, RATTATA
+	dbw 61, LOTAD
+	dbw 63, FURRET
+	dbw 63, PIDGEOTTO
+	dbw 64, MILTANK
 	; nite
-	dbw 43, HOOTHOOT
-	dbw 43, RATTATA
-	dbw 44, SPINARAK
-	dbw 44, MEOWTH
-	dbw 46, RATICATE
-	dbw 46, NOCTOWL
-	dbw 47, PERSIAN
+	dbw 60, HOOTHOOT
+	dbw 60, RATTATA
+	dbw 61, SPINARAK
+	dbw 61, MEOWTH
+	dbw 63, RATICATE
+	dbw 63, NOCTOWL
+	dbw 64, PERSIAN
 
 	map_id ROUTE_2
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
