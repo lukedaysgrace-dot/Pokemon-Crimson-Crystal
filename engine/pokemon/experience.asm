@@ -57,28 +57,55 @@ UpdateLevelCap::
 	ld hl, wStatusFlags
 	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
 	jr z, .load_cap
-	cp NUM_JOHTO_BADGES
+	cp NUM_BADGES
 	jr c, .load_cap
-	inc e
+	jr .postgame
 
 .load_cap
 	ld d, 0
 	ld hl, HardModeLevelCaps
 	add hl, de
 	ld a, [hl]
+.store_cap
 	ld [wLevelCap], a
 	ret
 
+.postgame
+	ld de, EVENT_BEAT_RED
+	ld b, CHECK_FLAG
+	farcall EventFlagAction
+	ld a, c
+	and a
+	ld a, MAX_LEVEL
+	jr nz, .store_cap
+	ld hl, HardModeRematchCaps
+	ld de, EVENT_BEAT_FALKNER_REMATCH
+	ld c, NUM_JOHTO_BADGES
+.next_rematch
+	push hl
+	push de
+	push bc
+	ld b, CHECK_FLAG
+	farcall EventFlagAction
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	and a
+	jr z, .rematch_cap
+	inc hl
+	inc de
+	dec c
+	jr nz, .next_rematch
+.rematch_cap
+	ld a, [hl]
+	jr .store_cap
+
 HardModeLevelCaps:
-; Each entry is the level a player who fights most (not all) trainers actually
-; reaches by that point, solved against the real EXP in the game with the Hard
-; Mode 2x trainer bonus -- see tools/audit_exp_economy.py. Gym leader aces are
-; set to the same numbers, so every profile arrives at parity: a thorough
-; player is clamped down to the cap rather than running away with it.
-; Indexed by badge count, +1 once the Hall of Fame flag is set at 8+ badges,
-; so the cap now runs the whole game rather than lifting after Clair. Kanto
-; compresses hard because the EXP curve is cubic while the amount of content
-; per badge is flat -- these are the levels Kanto can actually pay for.
+; Indexed by total badge count: Johto, then Kanto, then the League at 16.
+; Erika, Janine and Sabrina share a tier so any order works.
+; After the Hall of Fame with all 16 badges, follow the rematch caps below.
+; tools/audit_exp_economy.py reads this table for EXP screening estimates.
 	db 10 ; Falkner
 	db 16 ; Bugsy
 	db 20 ; Whitney
@@ -87,16 +114,29 @@ HardModeLevelCaps:
 	db 34 ; Jasmine
 	db 38 ; Pryce
 	db 45 ; Clair
-	db 57 ; Elite Four (one step: no badge is earned until the Hall of Fame)
-	db 58 ; Kanto, 0 badges
-	db 63 ; Kanto, 1 badge
-	db 65 ; Kanto, 2 badges
-	db 67 ; Kanto, 3 badges
-	db 68 ; Kanto, 4 badges
-	db 69 ; Kanto, 5 badges
-	db 70 ; Kanto, 6 badges
-	db 71 ; Kanto, 7 badges
-	db 73 ; Kanto, 8 badges -- Red
+	db 50 ; Brock
+	db 54 ; Misty
+	db 58 ; Lt. Surge
+	db 62 ; Erika / Janine / Sabrina, first
+	db 62 ; Erika / Janine / Sabrina, second
+	db 62 ; Erika / Janine / Sabrina, third
+	db 66 ; Blaine
+	db 69 ; Blue
+	db 73 ; Elite Four, all 16 badges
+	assert @ - HardModeLevelCaps == NUM_BADGES + 1
+
+HardModeRematchCaps:
+	db 77 ; Falkner rematch
+	db 78 ; Bugsy rematch
+	db 79 ; Whitney rematch
+	db 80 ; Morty rematch
+	db 81 ; Chuck rematch
+	db 82 ; Jasmine rematch
+	db 83 ; Pryce rematch
+	db 84 ; Clair rematch
+	db 90 ; Mt. Silver / Red (Elite Four rematches are optional)
+	assert @ - HardModeRematchCaps == NUM_JOHTO_BADGES + 1
+	assert EVENT_BEAT_CLAIR_REMATCH - EVENT_BEAT_FALKNER_REMATCH == NUM_JOHTO_BADGES - 1
 
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e

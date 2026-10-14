@@ -1,149 +1,151 @@
 ; Kanto Pokémon in water
+; Early overland towns/routes and the southern coast follow the main Kanto
+; badge challenge; Route 28 remains postgame.
 
 KantoWaterWildMons:
 
 	map_id TOHJO_FALLS
 	db 4 percent ; encounter rate
-	dbw 48, GOLDEEN
-	dbw 48, SLOWPOKE
-	dbw 48, SEAKING
+	dbw 46, GOLDEEN
+	dbw 46, SLOWPOKE
+	dbw 46, SEAKING
 
 	map_id VERMILION_PORT
 	db 2 percent ; encounter rate
-	dbw 58, TENTACOOL
-	dbw 53, TENTACOOL
-	dbw 58, TENTACRUEL
+	dbw 55, TENTACOOL
+	dbw 51, TENTACOOL
+	dbw 55, TENTACRUEL
 
 	map_id ROUTE_4
 	db 4 percent ; encounter rate
-	dbw 81, GOLDEEN
-	dbw 76, GOLDEEN
-	dbw 81, SEAKING
+	dbw 51, GOLDEEN
+	dbw 47, GOLDEEN
+	dbw 51, SEAKING
 
 	map_id ROUTE_6
 	db 2 percent ; encounter rate
-	dbw 58, PSYDUCK
-	dbw 53, PSYDUCK
-	dbw 58, GOLDUCK
+	dbw 54, PSYDUCK
+	dbw 51, PSYDUCK
+	dbw 54, GOLDUCK
 
 	map_id ROUTE_9
 	db 4 percent ; encounter rate
-	dbw 61, GOLDEEN
-	dbw 56, GOLDEEN
-	dbw 61, SEAKING
+	dbw 54, GOLDEEN
+	dbw 51, GOLDEEN
+	dbw 54, SEAKING
 
 	map_id ROUTE_10_NORTH
 	db 4 percent ; encounter rate
-	dbw 64, GOLDEEN
-	dbw 59, GOLDEEN
-	dbw 64, SEAKING
+	dbw 55, GOLDEEN
+	dbw 52, GOLDEEN
+	dbw 55, SEAKING
 
 	map_id ROUTE_12
 	db 6 percent ; encounter rate
-	dbw 68, TENTACOOL
-	dbw 68, QUAGSIRE
-	dbw 68, TENTACRUEL
+	dbw 58, TENTACOOL
+	dbw 58, QUAGSIRE
+	dbw 58, TENTACRUEL
 
 	map_id ROUTE_13
 	db 6 percent ; encounter rate
-	dbw 69, TENTACOOL
-	dbw 69, QUAGSIRE
-	dbw 69, TENTACRUEL
+	dbw 59, TENTACOOL
+	dbw 59, QUAGSIRE
+	dbw 59, TENTACRUEL
 
 	map_id ROUTE_19
 	db 6 percent ; encounter rate
-	dbw 76, TENTACOOL
-	dbw 71, TENTACOOL
-	dbw 76, TENTACRUEL
+	dbw 64, TENTACOOL
+	dbw 60, TENTACOOL
+	dbw 64, TENTACRUEL
 
 	map_id ROUTE_20
 	db 6 percent ; encounter rate
-	dbw 78, TENTACOOL
-	dbw 73, TENTACOOL
-	dbw 78, TENTACRUEL
+	dbw 65, TENTACOOL
+	dbw 61, TENTACOOL
+	dbw 65, TENTACRUEL
 
 	map_id ROUTE_21
 	db 6 percent ; encounter rate
-	dbw 78, TENTACOOL
-	dbw 73, TENTACOOL
-	dbw 78, TENTACRUEL
+	dbw 64, TENTACOOL
+	dbw 60, TENTACOOL
+	dbw 64, TENTACRUEL
 
 	map_id ROUTE_22
 	db 2 percent ; encounter rate
-	dbw 85, POLIWAG
-	dbw 80, POLIWAG
-	dbw 85, POLIWHIRL
+	dbw 47, POLIWAG
+	dbw 43, POLIWAG
+	dbw 47, POLIWHIRL
 
 	map_id ROUTE_24
 	db 4 percent ; encounter rate
-	dbw 61, GOLDEEN
-	dbw 56, GOLDEEN
-	dbw 61, SEAKING
+	dbw 51, GOLDEEN
+	dbw 47, GOLDEEN
+	dbw 51, SEAKING
 
 	map_id ROUTE_25
 	db 4 percent ; encounter rate
-	dbw 63, GOLDEEN
-	dbw 58, GOLDEEN
-	dbw 63, SEAKING
+	dbw 51, GOLDEEN
+	dbw 48, GOLDEEN
+	dbw 51, SEAKING
 
 	map_id ROUTE_26
 	db 6 percent ; encounter rate
-	dbw 48, TENTACOOL
+	dbw 47, TENTACOOL
 	dbw 43, TENTACOOL
-	dbw 48, TENTACRUEL
+	dbw 47, TENTACRUEL
 
 	map_id ROUTE_27
 	db 6 percent ; encounter rate
-	dbw 48, TENTACOOL
+	dbw 47, TENTACOOL
 	dbw 43, TENTACOOL
-	dbw 48, TENTACRUEL
+	dbw 47, TENTACRUEL
 
 	map_id ROUTE_28
 	db 2 percent ; encounter rate
-	dbw 88, POLIWAG
-	dbw 83, POLIWAG
-	dbw 88, POLIWHIRL
+	dbw 82, POLIWAG
+	dbw 78, POLIWAG
+	dbw 82, POLIWHIRL
 
 	map_id PALLET_TOWN
 	db 6 percent ; encounter rate
-	dbw 83, TENTACOOL
-	dbw 78, TENTACOOL
-	dbw 83, TENTACRUEL
+	dbw 47, TENTACOOL
+	dbw 43, TENTACOOL
+	dbw 47, TENTACRUEL
 
 	map_id VIRIDIAN_CITY
 	db 2 percent ; encounter rate
-	dbw 83, POLIWAG
-	dbw 78, POLIWAG
-	dbw 83, POLIWHIRL
+	dbw 47, POLIWAG
+	dbw 43, POLIWAG
+	dbw 47, POLIWHIRL
 
 	map_id CERULEAN_CITY
 	db 4 percent ; encounter rate
-	dbw 63, GOLDEEN
-	dbw 58, GOLDEEN
-	dbw 63, SEAKING
+	dbw 51, GOLDEEN
+	dbw 48, GOLDEEN
+	dbw 51, SEAKING
 
 	map_id VERMILION_CITY
 	db 6 percent ; encounter rate
-	dbw 58, TENTACOOL
-	dbw 53, TENTACOOL
-	dbw 58, TENTACRUEL
+	dbw 55, TENTACOOL
+	dbw 51, TENTACOOL
+	dbw 55, TENTACRUEL
 
 	map_id CELADON_CITY
 	db 2 percent ; encounter rate
-	dbw 63, GRIMER
-	dbw 66, GRIMER
-	dbw 68, MUK
+	dbw 56, GRIMER
+	dbw 58, GRIMER
+	dbw 59, MUK
 
 	map_id FUCHSIA_CITY
 	db 2 percent ; encounter rate
-	dbw 66, MAGIKARP
-	dbw 70, MAGIKARP
-	dbw 74, GYARADOS
+	dbw 57, MAGIKARP
+	dbw 59, MAGIKARP
+	dbw 61, GYARADOS
 
 	map_id CINNABAR_ISLAND
 	db 6 percent ; encounter rate
-	dbw 79, TENTACOOL
-	dbw 74, TENTACOOL
-	dbw 79, TENTACRUEL
+	dbw 65, TENTACOOL
+	dbw 61, TENTACOOL
+	dbw 65, TENTACRUEL
 
 	db -1 ; end

@@ -149,6 +149,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_FISHING_BOAT ; 92
 	const SPRITE_AROMA_LADY ; 93
 	const SPRITE_DRAGOON ; 94
+	const SPRITE_GAMBLER_ASLEEP
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)

@@ -248,24 +248,28 @@ ClairText_WhatsTheMatterDragonDen:
 	text "CLAIR: What's the"
 	line "matter? Aren't you"
 
-	para "going on to the"
-	line "#MON LEAGUE?"
+	para "going on to face"
+	line "KANTO's GYMS?"
 
-	para "Do you know how to"
-	line "get there?"
+	para "The LEAGUE needs"
+	line "all 16 BADGES."
 
 	para "From here, go to"
 	line "NEW BARK TOWN."
 
 	para "Then SURF east to"
-	line "#MON LEAGUE."
+	line "ROUTE 27."
+
+	para "Follow ROUTE 26 to"
+	line "the gate and turn"
+	cont "right for KANTO."
 
 	para "The route there is"
 	line "very tough."
 
 	para "Don't you dare"
-	line "lose at the #-"
-	cont "MON LEAGUE!"
+	line "lose to KANTO's"
+	cont "GYM LEADERS!"
 
 	para "If you do, I'll"
 	line "feel even worse"

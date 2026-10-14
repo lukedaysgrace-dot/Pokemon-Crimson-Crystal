@@ -9,7 +9,7 @@ Route19FuchsiaGate_MapScripts:
 Route19FuchsiaGateOfficerScript:
 	faceplayer
 	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	checkevent EVENT_BEAT_JANINE
 	iftrue .RocksCleared
 	writetext Route19FuchsiaGateOfficerText
 	waitbutton

@@ -146,6 +146,31 @@ IndigoPlateauPokecenter1FClerkScript:
 IndigoPlateauPokecenter1FCooltrainerMScript:
 	jumptextfaceplayer IndigoPlateauPokecenter1FCooltrainerMText
 
+IndigoPlateauBadgeCheck:
+; Check the League entrance itself too: Fly and older saves may bypass
+; the Victory Road guards, but never the sixteen-badge requirement.
+	readvar VAR_BADGES
+	ifgreater NUM_BADGES - 1, .Ready
+	opentext
+	writetext IndigoPlateauNeedBadgesText
+	waitbutton
+	closetext
+	applymovement PLAYER, IndigoPlateauStepDownMovement
+.Ready:
+	end
+
+IndigoPlateauStepDownMovement:
+	step DOWN
+	step_end
+
+IndigoPlateauNeedBadgesText:
+	text "The ELITE FOUR"
+	line "accept challengers"
+	cont "with all 16 BADGES"
+	cont "of JOHTO and"
+	cont "KANTO."
+	done
+
 TeleportGuyScript:
 	faceplayer
 	opentext
@@ -349,7 +374,8 @@ IndigoPlateauPokecenter1F_MapEvents:
 	warp_event  0, 13, POKECENTER_2F, 1
 	warp_event 14,  3, WILLS_ROOM, 1
 
-	db 2 ; coord events
+	db 3 ; coord events
+	coord_event 14,  4, -1, IndigoPlateauBadgeCheck
 	coord_event 16,  4, SCENE_DEFAULT, PlateauRivalBattle1
 	coord_event 17,  4, SCENE_DEFAULT, PlateauRivalBattle2
 

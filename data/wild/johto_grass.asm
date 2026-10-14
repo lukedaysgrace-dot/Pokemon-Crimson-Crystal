@@ -1052,83 +1052,83 @@ JohtoGrassWildMons:
 	map_id SILVER_CAVE_ROOM_1
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 71, PIDGEOT
-	dbw 72, RHYDON
-	dbw 70, MACHAMP
-	dbw 73, STEELIX
-	dbw 73, ALAKAZAM
-	dbw 70, GOLEM
-	dbw 74, DRAGONAIR
+	dbw 79, PIDGEOT
+	dbw 80, RHYDON
+	dbw 78, MACHAMP
+	dbw 81, STEELIX
+	dbw 81, ALAKAZAM
+	dbw 78, GOLEM
+	dbw 82, DRAGONAIR
 	; day
-	dbw 71, DRAGONAIR
-	dbw 72, HAXORUS
-	dbw 70, VOLCARONA
-	dbw 73, SHELGON
-	dbw 73, FRAXURE
-	dbw 74, RHYDON
-	dbw 74, TANGROWTH
+	dbw 79, DRAGONAIR
+	dbw 80, HAXORUS
+	dbw 78, VOLCARONA
+	dbw 81, SHELGON
+	dbw 81, FRAXURE
+	dbw 82, RHYDON
+	dbw 82, TANGROWTH
 	; nite
-	dbw 71, PUPITAR
-	dbw 72, SCRAFTY
-	dbw 70, DONPHAN
-	dbw 70, TOGEKISS
-	dbw 73, GOLEM
-	dbw 74, DURALUDON
-	dbw 74, ALTARIA
+	dbw 79, PUPITAR
+	dbw 80, SCRAFTY
+	dbw 78, DONPHAN
+	dbw 78, TOGEKISS
+	dbw 81, GOLEM
+	dbw 82, DURALUDON
+	dbw 82, ALTARIA
 
 	map_id SILVER_CAVE_ROOM_2
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 76, RHYPERIOR
-	dbw 76, MAGNEZONE
-	dbw 75, DIPPLIN
-	dbw 74, VIBRAVA
-	dbw 76, TINKATON
-	dbw 68, HOUNDOOM
-	dbw 68, DUDUNSPARCE
+	dbw 84, RHYPERIOR
+	dbw 84, MAGNEZONE
+	dbw 84, DIPPLIN
+	dbw 83, VIBRAVA
+	dbw 84, TINKATON
+	dbw 80, HOUNDOOM
+	dbw 80, DUDUNSPARCE
 	; day
-	dbw 76, CONKELDURR
-	dbw 76, LUCARIO
-	dbw 75, STARAPTOR
-	dbw 74, TANGROWTH
-	dbw 76, NINETALES
-	dbw 68, SALAZZLE
-	dbw 68, GOLDUCK
+	dbw 84, CONKELDURR
+	dbw 84, LUCARIO
+	dbw 84, STARAPTOR
+	dbw 83, TANGROWTH
+	dbw 84, NINETALES
+	dbw 80, SALAZZLE
+	dbw 80, GOLDUCK
 	; nite
-	dbw 76, STEELIX
-	dbw 76, GOLDUCK
-	dbw 74, TANGROWTH
-	dbw 74, HOUNDOOM
-	dbw 76, CONKELDURR
-	dbw 73, TALONFLAME
-	dbw 73, ZWEILOUS
+	dbw 84, STEELIX
+	dbw 84, GOLDUCK
+	dbw 83, TANGROWTH
+	dbw 83, HOUNDOOM
+	dbw 84, CONKELDURR
+	dbw 82, TALONFLAME
+	dbw 82, ZWEILOUS
 
 	map_id SILVER_CAVE_ROOM_3
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 74, URSARING
-	dbw 71, VIKAVOLT
-	dbw 71, WEEZING
-	dbw 73, MAMOSWINE
-	dbw 70, MAGCARGO
-	dbw 70, MUK
-	dbw 70, AXEW
+	dbw 84, URSARING
+	dbw 82, VIKAVOLT
+	dbw 82, WEEZING
+	dbw 84, MAMOSWINE
+	dbw 82, MAGCARGO
+	dbw 82, MUK
+	dbw 82, AXEW
 	; day
-	dbw 78, DRAGONITE
-	dbw 71, VIKAVOLT
-	dbw 71, GLISCOR
-	dbw 78, TYRANITAR
-	dbw 70, MUK
-	dbw 70, FRAXURE
-	dbw 70, WEEZING
+	dbw 86, DRAGONITE
+	dbw 82, VIKAVOLT
+	dbw 82, GLISCOR
+	dbw 86, TYRANITAR
+	dbw 82, MUK
+	dbw 82, FRAXURE
+	dbw 82, WEEZING
 	; nite
-	dbw 74, URSALUNA
-	dbw 71, MAGCARGO
-	dbw 71, NOIVERN
-	dbw 72, CAMERUPT
-	dbw 70, TORKOAL
-	dbw 76, ARCHALUDON
-	dbw 76, APPLETUN
+	dbw 84, URSALUNA
+	dbw 82, MAGCARGO
+	dbw 82, NOIVERN
+	dbw 83, CAMERUPT
+	dbw 82, TORKOAL
+	dbw 85, ARCHALUDON
+	dbw 85, APPLETUN
 
 	map_id SILVER_CAVE_ITEM_ROOMS
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1673,29 +1673,29 @@ JohtoGrassWildMons:
 	map_id SILVER_CAVE_OUTSIDE
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	dbw 69, LICKILICKY
-	dbw 70, RAPIDASH
-	dbw 70, ARBOK
-	dbw 72, TYRANITAR
-	dbw 69, DODRIO
-	dbw 71, PERSIAN
-	dbw 71, FLYGON
+	dbw 77, LICKILICKY
+	dbw 78, RAPIDASH
+	dbw 78, ARBOK
+	dbw 80, TYRANITAR
+	dbw 77, DODRIO
+	dbw 79, PERSIAN
+	dbw 79, FLYGON
 	; day
-	dbw 69, ARCANINE
-	dbw 70, BLISSEY
-	dbw 70, ELECTIVIRE
-	dbw 72, HYDRAPPLE
-	dbw 69, URSARING
-	dbw 71, CORVIKNIGHT
-	dbw 71, FLAPPLE
+	dbw 77, ARCANINE
+	dbw 78, BLISSEY
+	dbw 78, ELECTIVIRE
+	dbw 80, HYDRAPPLE
+	dbw 77, URSARING
+	dbw 79, CORVIKNIGHT
+	dbw 79, FLAPPLE
 	; nite
-	dbw 69, KINGAMBIT
-	dbw 70, GRIMMSNARL
-	dbw 70, SNEASLER
-	dbw 72, MAGMORTAR
-	dbw 68, HOUNDOOM
-	dbw 72, BISHARP
-	dbw 72, TSAREENA
+	dbw 77, KINGAMBIT
+	dbw 78, GRIMMSNARL
+	dbw 78, SNEASLER
+	dbw 80, MAGMORTAR
+	dbw 76, HOUNDOOM
+	dbw 80, BISHARP
+	dbw 80, TSAREENA
 
 	map_id SAFARI_ZONE
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

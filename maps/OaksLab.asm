@@ -23,11 +23,31 @@ Oak:
 	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
+	readvar VAR_BADGES
+	ifless NUM_JOHTO_BADGES + 1, .Complain
+	ifequal NUM_BADGES, .AllBadges
+	sjump .AhGood
+
+.AllBadges:
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .LeagueNext
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iffalse .JohtoRematches
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .OpenMtSilver
-	readvar VAR_BADGES
-	ifequal NUM_JOHTO_BADGES, .Complain
-	sjump .AhGood
+	farwritetext OakFindCrystalText
+	buttonsound
+	sjump .CheckPokedex
+
+.JohtoRematches:
+	farwritetext OakJohtoRematchesText
+	buttonsound
+	sjump .CheckPokedex
+
+.LeagueNext:
+	farwritetext OakLeagueNextText
+	buttonsound
+	sjump .CheckPokedex
 
 .CheckPokedex:
 	writetext OakLabDexCheckText
@@ -114,6 +134,9 @@ OakOpenMtSilverText:
 	line "BADGES of GYMS in"
 	cont "KANTO. Well done!"
 
+	para "And you've become"
+	line "the LEAGUE CHAMP!"
+
 	para "I was right in my"
 	line "assessment of you."
 
@@ -140,11 +163,9 @@ OakOpenMtSilverText:
 	line "exception in your"
 	cont "case, <PLAY_G>."
 
-	para "Go up to INDIGO"
-	line "PLATEAU. You can"
-
-	para "reach MT.SILVER"
-	line "from there."
+	para "At the RECEPTION"
+	line "GATE, go west to"
+	cont "reach MT.SILVER."
 	done
 
 OakNoKantoBadgesText:
@@ -161,6 +182,10 @@ OakNoKantoBadgesText:
 	para "I recommend that"
 	line "you challenge"
 	cont "them."
+
+	para "All 16 BADGES are"
+	line "needed to face the"
+	cont "ELITE FOUR."
 	done
 
 OakYesKantoBadgesText:
@@ -174,15 +199,59 @@ OakYesKantoBadgesText:
 	para "experience is sure"
 	line "to help you."
 
-	para "Come see me when"
-	line "you get them all."
-
-	para "I'll have a gift"
-	line "for you."
+	para "With all 16 BADGES"
+	line "the LEAGUE awaits."
 
 	para "Keep trying hard,"
 	line "<PLAY_G>!"
 	done
+
+PUSHS
+SECTION "Oak Campaign Progression Text", ROMX
+OakLeagueNextText:
+	text "OAK: Sixteen"
+	line "GYM BADGES!"
+	cont "Well done!"
+
+	para "Now take VICTORY"
+	line "ROAD to the LEAGUE"
+	cont "at INDIGO PLATEAU."
+
+	para "Come back after"
+	line "you've become the"
+	cont "CHAMPION!"
+	done
+
+OakFindCrystalText:
+	text "OAK: CHAMPION!"
+	line "Well done!"
+
+	para "CRYSTAL was hoping"
+	line "to see you at"
+	cont "CERULEAN CAPE."
+
+	para "Meet her, then"
+	line "come see me again."
+	done
+
+OakJohtoRematchesText:
+	text "OAK: CHAMPION!"
+	line "Well done!"
+
+	para "JOHTO's GYM"
+	line "LEADERS have been"
+	cont "training hard."
+
+	para "Start with FALKNER"
+	line "in VIOLET CITY,"
+	cont "then challenge"
+	cont "each LEADER again."
+
+	para "Come back after"
+	line "you defeat CLAIR"
+	cont "at full strength."
+	done
+POPS
 
 OaksAssistant1Text:
 	text "The PROF's #MON"

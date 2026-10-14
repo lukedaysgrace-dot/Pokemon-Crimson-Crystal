@@ -325,24 +325,19 @@ CooltrainerFSeleneAfterBattleText:
 VictoryRoadRivalBeforeText:
 	text "Hold it."
 
-	para "…Are you going to"
-	line "take the #MON"
-	cont "LEAGUE challenge?"
+	para "So, you've earned"
+	line "all 16 BADGES too."
 
-	para "…Don't make me"
-	line "laugh."
+	para "The LEAGUE's just"
+	line "ahead. But first,"
+	cont "face me."
 
-	para "You're so much"
-	line "weaker than I am."
+	para "My #MON and I"
+	line "have trained all"
+	cont "over KANTO."
 
-	para "I'm not like I was"
-	line "before."
-
-	para "I now have the"
-	line "best and strongest"
-
-	para "#MON with me."
-	line "I'm invincible!"
+	para "I'll show you how"
+	line "far we've come!"
 
 	para "<PLAYER>!"
 	line "I challenge you!"
@@ -357,11 +352,9 @@ VictoryRoadRivalDefeatText:
 	para "What you possess,"
 	line "and what I lack…"
 
-	para "I'm beginning to"
-	line "understand what"
-
-	para "that dragon master"
-	line "said to me…"
+	para "I won't forget"
+	line "what that dragon"
+	cont "master taught me…"
 	done
 
 VictoryRoadRivalAfterText:
@@ -369,18 +362,15 @@ VictoryRoadRivalAfterText:
 	line "up on becoming the"
 	cont "greatest trainer…"
 
-	para "I'm going to find"
-	line "out why I can't"
-
-	para "win and become"
-	line "stronger…"
+	para "We'll train"
+	line "together and"
+	cont "become stronger."
 
 	para "When I do, I will"
 	line "challenge you."
 
-	para "And I'll beat you"
-	line "down with all my"
-	cont "power."
+	para "Next time, we'll"
+	line "win."
 
 	para "…Humph! You keep"
 	line "at it until then."
@@ -389,12 +379,9 @@ VictoryRoadRivalAfterText:
 VictoryRoadRivalVictoryText:
 	text "…Humph!"
 
-	para "When it comes down"
-	line "to it, nothing can"
-	cont "beat power."
-
-	para "I don't need any-"
-	line "thing else."
+	para "Our training paid"
+	line "off. We're ready"
+	cont "for the LEAGUE."
 	done
 
 VictoryRoad_MapEvents:

@@ -84,9 +84,9 @@ JohtoWaterWildMons:
 
 	map_id SILVER_CAVE_ROOM_2
 	db 2 percent ; encounter rate
-	dbw 73, SLOWKING
-	dbw 76, WALREIN
-	dbw 76, TOXAPEX
+	dbw 80, SLOWKING
+	dbw 84, WALREIN
+	dbw 84, TOXAPEX
 
 	map_id DARK_CAVE_VIOLET_ENTRANCE
 	db 2 percent ; encounter rate
@@ -234,8 +234,8 @@ JohtoWaterWildMons:
 
 	map_id SILVER_CAVE_OUTSIDE
 	db 2 percent ; encounter rate
-	dbw 68, SLOWBRO
-	dbw 70, POLIWRATH
-	dbw 73, GYARADOS
+	dbw 76, SLOWBRO
+	dbw 78, POLIWRATH
+	dbw 80, GYARADOS
 
 	db -1 ; end

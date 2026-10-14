@@ -254,67 +254,67 @@ FishGroups:
 
 ; The shared Johto groups above list Old 10 / Good 20 / Super 40, which
 ; ScaleJohtoFishLevel (engine/events/fish.asm) raises with Johto badges.
-; Kanto and Silver Cave run 28-48 levels above that band, so they get their
-; own hand-set groups below and are not scaled.
+; Kanto groups start below Brock and ScaleKantoFishLevel raises them with
+; Kanto badges. Silver Cave has fixed levels for the final mountain climb.
 .Ocean_Kanto_Old:
 	dbbw  70 percent + 1, 40, MAGIKARP
 	dbbw  85 percent + 1, 40, TENTACOOL
-	dbbw 100 percent,     45, KRABBY
+	dbbw 100 percent,     43, KRABBY
 .Ocean_Kanto_Good:
-	dbbw  35 percent,     55, MAGIKARP
-	dbbw  70 percent,     55, TENTACOOL
-	dbbw  90 percent + 1, 58, CHINCHOU
-	dbbw 100 percent,     58, SHELLDER
+	dbbw  35 percent,     44, MAGIKARP
+	dbbw  70 percent,     44, TENTACOOL
+	dbbw  90 percent + 1, 46, CHINCHOU
+	dbbw 100 percent,     46, SHELLDER
 .Ocean_Kanto_Super:
-	dbbw  40 percent,     70, TENTACOOL
-	dbbw  70 percent,     72, CHINCHOU
-	dbbw  90 percent + 1, 74, TENTACRUEL
-	dbbw 100 percent,     75, LANTURN
+	dbbw  40 percent,     46, TENTACOOL
+	dbbw  70 percent,     47, CHINCHOU
+	dbbw  90 percent + 1, 48, TENTACRUEL
+	dbbw 100 percent,     49, LANTURN
 
 .Lake_Kanto_Old:
 	dbbw  70 percent + 1, 40, MAGIKARP
 	dbbw  85 percent + 1, 40, GOLDEEN
-	dbbw 100 percent,     45, POLIWAG
+	dbbw 100 percent,     43, POLIWAG
 .Lake_Kanto_Good:
-	dbbw  35 percent,     55, MAGIKARP
-	dbbw  70 percent,     55, GOLDEEN
-	dbbw  90 percent + 1, 58, SEAKING
-	dbbw 100 percent,     58, GYARADOS
+	dbbw  35 percent,     44, MAGIKARP
+	dbbw  70 percent,     44, GOLDEEN
+	dbbw  90 percent + 1, 46, SEAKING
+	dbbw 100 percent,     46, GYARADOS
 .Lake_Kanto_Super:
-	dbbw  40 percent,     68, GOLDEEN
-	dbbw  70 percent,     70, SEAKING
-	dbbw  90 percent + 1, 72, POLIWHIRL
-	dbbw 100 percent,     72, GYARADOS
+	dbbw  40 percent,     46, GOLDEEN
+	dbbw  70 percent,     47, SEAKING
+	dbbw  90 percent + 1, 48, POLIWHIRL
+	dbbw 100 percent,     49, GYARADOS
 
 .Pond_Kanto_Old:
 	dbbw  70 percent + 1, 40, MAGIKARP
 	dbbw  85 percent + 1, 40, POLIWAG
-	dbbw 100 percent,     45, PSYDUCK
+	dbbw 100 percent,     43, PSYDUCK
 .Pond_Kanto_Good:
-	dbbw  35 percent,     55, MAGIKARP
-	dbbw  70 percent,     55, POLIWAG
-	dbbw  90 percent + 1, 58, POLIWHIRL
-	dbbw 100 percent,     58, GOLDUCK
+	dbbw  35 percent,     44, MAGIKARP
+	dbbw  70 percent,     44, POLIWAG
+	dbbw  90 percent + 1, 46, POLIWHIRL
+	dbbw 100 percent,     46, GOLDUCK
 .Pond_Kanto_Super:
-	dbbw  40 percent,     68, POLIWHIRL
-	dbbw  70 percent,     70, GOLDUCK
-	dbbw  90 percent + 1, 72, GYARADOS
-	dbbw 100 percent,     72, POLIWRATH
+	dbbw  40 percent,     46, POLIWHIRL
+	dbbw  70 percent,     47, GOLDUCK
+	dbbw  90 percent + 1, 48, GYARADOS
+	dbbw 100 percent,     49, POLIWRATH
 
 .SilverCave_Old:
-	dbbw  70 percent + 1, 50, MAGIKARP
-	dbbw  85 percent + 1, 50, GOLDEEN
-	dbbw 100 percent,     55, POLIWAG
+	dbbw  70 percent + 1, 70, MAGIKARP
+	dbbw  85 percent + 1, 70, GOLDEEN
+	dbbw 100 percent,     73, POLIWAG
 .SilverCave_Good:
-	dbbw  35 percent,     62, MAGIKARP
-	dbbw  70 percent,     62, SEAKING
-	dbbw  90 percent + 1, 65, POLIWHIRL
-	dbbw 100 percent,     66, GYARADOS
+	dbbw  35 percent,     76, MAGIKARP
+	dbbw  70 percent,     76, SEAKING
+	dbbw  90 percent + 1, 78, POLIWHIRL
+	dbbw 100 percent,     79, GYARADOS
 .SilverCave_Super:
-	dbbw  40 percent,     72, SEAKING
-	dbbw  70 percent,     73, POLIWRATH
-	dbbw  90 percent + 1, 75, GYARADOS
-	dbbw 100 percent,     76, DRAGONAIR
+	dbbw  40 percent,     80, SEAKING
+	dbbw  70 percent,     82, POLIWRATH
+	dbbw  90 percent + 1, 84, GYARADOS
+	dbbw 100 percent,     85, DRAGONAIR
 
 ; Ice Path, Shiver Isle and Ice Island. These were on FISHGROUP_DRATINI,
 ; which fished Dratini and Dragonair out of a glacier.

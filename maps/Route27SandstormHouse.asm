@@ -43,7 +43,8 @@ SandstormHouseWomanText1:
 	text "Where are you off"
 	line "to with #MON?"
 
-	para "#MON LEAGUE?"
+	para "KANTO's GYMS? Or"
+	line "the LEAGUE?"
 
 	para "Are your #MON"
 	line "loyal enough for"

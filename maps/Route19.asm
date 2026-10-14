@@ -17,7 +17,7 @@ Route19_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .HideLegendaryBirds
 
 .ClearRocks:
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	checkevent EVENT_BEAT_JANINE
 	iftrue .CheckIslandEntrances
 	changeblock  6,  6, $7a ; rock
 	changeblock  8,  6, $7a ; rock
@@ -206,7 +206,7 @@ TrainerSwimmermTucker:
 Route19Fisher1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	checkevent EVENT_BEAT_JANINE
 	iftrue .RocksCleared
 	writetext Route19Fisher1Text
 	waitbutton
@@ -222,7 +222,7 @@ Route19Fisher1Script:
 Route19Fisher2Script:
 	faceplayer
 	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	checkevent EVENT_BEAT_JANINE
 	iftrue .RocksCleared
 	writetext Route19Fisher2Text
 	waitbutton

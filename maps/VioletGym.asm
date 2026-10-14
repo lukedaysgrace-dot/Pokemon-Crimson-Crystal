@@ -49,7 +49,7 @@ VioletGymFalknerScript:
 .SpeechAfterTM:
 	checkevent EVENT_BEAT_FALKNER_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_RED
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext FalknerRematchChallengeText
 	yesorno

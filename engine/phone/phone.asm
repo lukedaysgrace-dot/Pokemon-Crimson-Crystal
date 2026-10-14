@@ -438,6 +438,7 @@ Script_SpecialBillCall::
 	jp LoadCallerScript
 
 UnknownScript_0x90261:
+Script_SpecialElmCall::
 	callasm .LoadElmScript
 	pause 30
 	sjump Script_ReceivePhoneCall

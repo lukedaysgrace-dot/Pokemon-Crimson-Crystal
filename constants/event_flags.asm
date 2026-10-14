@@ -288,8 +288,8 @@
 	const EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED ; reused unused EVENT_110 slot
 	const EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN ; reused unused EVENT_111 slot
 	const EVENT_ROUTE_5_POKEFAN_M_LEFT ; reused unused EVENT_112 slot
-	const EVENT_113
-	const EVENT_114
+	const EVENT_ELM_CALLED_AFTER_SURGE ; reused unused EVENT_113; preserve save layout
+	const EVENT_ELM_PAID_RETURN_FARE ; reused unused EVENT_114; one prepaid westbound trip
 	const EVENT_115
 	const EVENT_116
 	const EVENT_117

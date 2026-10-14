@@ -12,7 +12,31 @@ OlivinePort_MapScripts:
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .CheckSailing
+
+.CheckSailing:
+; Derive visibility on entry, including saves made before this change.
+	checkflag ENGINE_THUNDERBADGE
+	iffalse .NoTicket
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	iftrue .OpenPort
+; Keep the exit open after a completed prepaid return, including reloaded
+; saves made on the dock. Boarding eastbound still checks the real ticket.
+	checkevent EVENT_ELM_CALLED_AFTER_SURGE
+	iffalse .NoTicket
+	checkevent EVENT_ELM_PAID_RETURN_FARE
+	iftrue .NoTicket
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iffalse .NoTicket
+.OpenPort:
+	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	return
+.NoTicket:
+	clearevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	setevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	return
 
 .DummyScene0:
 	end
@@ -24,7 +48,17 @@ OlivinePort_MapScripts:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
+; A prepaid arrival has no permanent ticket yet. Let the player walk out
+; past the boarding checkpoint; a later port visit rechecks the ticket.
+	disappear OLIVINEPORT_SAILOR2
 	setscene SCENE_DEFAULT
+; The first trip can now start in Kanto. Retire the rescue quest on arrival
+; at either port, rather than only when first arriving in Vermilion.
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
+	setevent EVENT_FAST_SHIP_FIRST_TIME
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	blackoutmod OLIVINE_CITY
 	end
@@ -375,11 +409,12 @@ OlivinePortCooltrainerFText:
 	done
 
 OlivinePortSailorBeforeHOFText:
-	text "We don't want you"
-	line "to fall into the"
+	text "Boarding requires"
+	line "an S.S.TICKET."
 
-	para "sea, so you're not"
-	line "allowed in."
+	para "PROF.ELM has one"
+	line "for trainers with"
+	cont "the THUNDERBADGE."
 	done
 
 OlivinePort_MapEvents:

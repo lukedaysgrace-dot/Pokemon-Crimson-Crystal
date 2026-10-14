@@ -91,7 +91,7 @@ CrystalPhoneStatusIcePathText:
 	para "I'm working from"
 	line "memory."
 
-	para "The LEAGUE comes"
+	para "KANTO's GYMS come"
 	line "next."
 
 	para "Try to get there"

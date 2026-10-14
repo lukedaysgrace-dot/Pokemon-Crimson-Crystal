@@ -117,12 +117,13 @@ ProfElmScript:
 	opentext
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue ElmCheckMasterBall
-	checkevent EVENT_BEAT_ELITE_FOUR
+; Reach Kanto overland first; Surge's badge unlocks the sea route.
+	checkflag ENGINE_THUNDERBADGE
 	iftrue ElmGiveTicketScript
 ElmCheckMasterBall:
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	iftrue ElmCheckEverstone
-	checkflag ENGINE_RISINGBADGE
+	checkflag ENGINE_THUNDERBADGE
 	iftrue ElmGiveMasterBallScript
 ElmCheckEverstone:
 	checkevent EVENT_GOT_EVERSTONE_FROM_ELM
@@ -619,9 +620,20 @@ ElmGiveTicketScript:
 	writetext ElmGiveTicketText1
 	buttonsound
 	verbosegiveitem S_S_TICKET
+	iffalse .NoRoom
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
+	clearevent EVENT_ELM_PAID_RETURN_FARE
+; The port's old Hall of Fame flags now track whether sailing is available.
+	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	writetext ElmGiveTicketText2
 	waitbutton
+	readvar VAR_SPECIALPHONECALL
+	ifnotequal SPECIALCALL_SSTICKET, .CheckMasterBall
+	specialphonecall SPECIALCALL_NONE
+.CheckMasterBall:
+	sjump ElmCheckMasterBall
+.NoRoom:
 	closetext
 	end
 
@@ -1509,27 +1521,25 @@ ElmGiveTicketText1:
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
-	para "I called because I"
-	line "have something for"
-	cont "you."
+	para "I've arranged a"
+	line "pass for your"
+	cont "future voyages."
 
 	para "See? It's an"
 	line "S.S.TICKET."
 
-	para "Now you can catch"
-	line "#MON in KANTO."
+	para "You'll need all 16"
+	line "BADGES to face the"
+	cont "ELITE FOUR."
 	done
 
 ElmGiveTicketText2:
-	text "The ship departs"
-	line "from OLIVINE CITY."
+	text "Now you can sail"
+	line "between OLIVINE"
+	cont "and VERMILION."
 
-	para "But you knew that"
-	line "already, <PLAY_G>."
-
-	para "After all, you've"
-	line "traveled all over"
-	cont "with your #MON."
+	para "Keep taking on"
+	line "KANTO's GYMS!"
 
 	para "Give my regards to"
 	line "PROF.OAK in KANTO!"
