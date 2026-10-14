@@ -60,10 +60,10 @@ ViridianGroupSprites:
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
-	db SPRITE_WILL
-	db SPRITE_KAREN
-	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_DRAGOON ; Viridian City battle; keep animated facings in bank 1
+	db SPRITE_BIRD ; Viridian City battle
+	db SPRITE_COOLTRAINER_M_NEW ; Viridian City battle
+	db SPRITE_COOLTRAINER_F_NEW ; Viridian City battle
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
