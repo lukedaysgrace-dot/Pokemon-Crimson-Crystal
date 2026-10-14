@@ -219,22 +219,24 @@
   assert:
     - (player.substatus[2] & 128) == 0   # fatigue confusion blocked, silently
 
-- name: "Audit 10b: Own Tempo blocks Berserk Gene confusion (Attack boost stays)"
+- name: "Audit 10b: Berserk Gene has no effect on an Own Tempo non-Mewtwo"
   player: { species: SLOWBRO, level: 50, ability: OWN_TEMPO, item: BERSERK_GENE, moves: [SPLASH] }
   enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
     - (player.substatus[2] & 128) == 0   # no confusion...
-    - player.stat_levels[0] == 9         # ...but +2 Attack applied
-    - player.item == 'NO_ITEM'           # gene is consumed
-    - text_seen('BERSERK GENE')
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 7
+    - player.item == 'BERSERK_GENE'
 
-- name: "Audit 10b-control: Berserk Gene confuses a non-Own-Tempo holder"
+- name: "Audit 10b-control: Berserk Gene neither boosts nor confuses other species"
   player: { species: SLOWBRO, level: 50, ability: OBLIVIOUS, item: BERSERK_GENE, moves: [SPLASH] }
   enemy:  { species: SNORLAX, level: 50, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - (player.substatus[2] & 128) != 0
-    - player.stat_levels[0] == 9
+    - (player.substatus[2] & 128) == 0
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 7
+    - player.item == 'BERSERK_GENE'

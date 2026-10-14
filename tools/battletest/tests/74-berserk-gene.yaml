@@ -1,0 +1,188 @@
+# Berserk Gene stays held and can activate only once per field entry.
+
+- name: "Berserk Gene: Mewtwo gains one Attack and Special Attack stage without confusion"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, hp: 40, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.stat_levels == [8, 7, 7, 8, 7, 7, 7]
+    - player.item == 'BERSERK_GENE'
+    - wram('wPartyMon1Item') != 0
+    - (player.substatus[2] & 128) == 0
+    - textbox_seen('BattleText_BerserkGeneRaisedBoth')
+    - not textbox_seen('BecameConfusedText')
+
+- name: "Berserk Gene: other species cannot activate even below half HP"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, hp: 40, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.stat_levels == [7, 7, 7, 7, 7, 7, 7]
+    - player.item == 'BERSERK_GENE'
+    - not textbox_seen('BattleText_BerserkGeneRaisedBoth')
+
+- name: "Berserk Gene: no boost above half HP"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, hp: 60, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 7
+
+- name: "Berserk Gene: landing exactly at half HP does not activate"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 50
+    - enemy.stat_levels[0] == 7
+    - enemy.stat_levels[3] == 7
+
+- name: "Berserk Gene: boosts the enemy immediately when a hit goes below half"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 79], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 49
+    - enemy.stat_levels[0] == 8
+    - enemy.stat_levels[3] == 8
+    - enemy.item == 'BERSERK_GENE'
+    - textbox_seen('BattleText_BerserkGeneRaisedBoth')
+
+- name: "Berserk Gene: odd maximum HP uses the exact half threshold"
+  player: { species: MEW, level: 30, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 80], wEnemyMonMaxHP: [0, 101] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 50
+    - enemy.stat_levels[0] == 8
+    - enemy.stat_levels[3] == 8
+
+- name: "Berserk Gene: the player receives both boosts before its action after damage"
+  player: { species: MEWTWO, level: 20, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  setup_wram: { wBattleMonHP: [0, 80], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  before_action:
+    - side: player
+      turn: 1
+      assert: ["player.stat_levels[0] == 8", "player.stat_levels[3] == 8"]
+  assert:
+    - player.hp == 30
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 8
+
+- name: "Berserk Gene: Recover above half then damage below half cannot reactivate"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, hp: 40, moves: [RECOVER, SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  before_action:
+    - side: player
+      turn: 2
+      assert: ["player.hp * 2 > player.maxhp", "player.stat_levels[0] == 8", "player.stat_levels[3] == 8"]
+  assert:
+    - player.hp * 2 < player.maxhp
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 8
+    - player.item == 'BERSERK_GENE'
+
+- name: "Berserk Gene: switching out and back in rearms the held item"
+  player: { species: MEWTWO, level: 50, ability: PRESSURE, item: BERSERK_GENE, hp: 40, moves: [SPLASH] }
+  player2: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [1, "switch:2", "switch:1"]
+  rng: forced_high
+  turns: 3
+  before_action:
+    - side: player
+      turn: 1
+      assert: ["player.stat_levels[0] == 8", "player.stat_levels[3] == 8"]
+    - side: enemy
+      turn: 2
+      assert: ["player.species == 'SNORLAX'"]
+    - side: enemy
+      turn: 3
+      assert: ["player.species == 'MEWTWO'", "player.stat_levels[0] == 8", "player.stat_levels[3] == 8"]
+  assert:
+    - player.species == 'MEWTWO'
+    - player.item == 'BERSERK_GENE'
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 8
+
+- name: "Berserk Gene: Klutz suppresses Mewtwo's item"
+  # The harness applies this illegal ability override after entry effects.
+  player: { species: MEWTWO, level: 50, ability: KLUTZ, item: BERSERK_GENE, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 40], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 7
+    - player.item == 'BERSERK_GENE'
+
+- name: "Berserk Gene: capped Attack still allows Special Attack to rise"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH], stages: {atk: 6} }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 40], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 13
+    - player.stat_levels[3] == 8
+    - textbox_seen('BattleText_BerserkGeneRaisedSpAttack')
+
+- name: "Berserk Gene: capped Special Attack still allows Attack to rise"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH], stages: {satk: 6} }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 40], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 13
+    - textbox_seen('BattleText_BerserkGeneRaisedAttack')
+
+- name: "Berserk Gene: fainted Mewtwo cannot activate"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEWTWO, level: 20, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [0, 50], wEnemyMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - not textbox_seen('BattleText_BerserkGeneRaisedBoth')
+
+- name: "Berserk Gene: the threshold works with HP above 255"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SEISMIC_TOSS] }
+  enemy: { species: MEWTWO, level: 100, ability: NO_ABILITY, item: BERSERK_GENE, moves: [SPLASH] }
+  setup_wram: { wEnemyMonHP: [1, 74], wEnemyMonMaxHP: [2, 88] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 280
+    - enemy.stat_levels[0] == 8
+    - enemy.stat_levels[3] == 8
+
+- name: "Berserk Gene: poison damage below half HP activates the item"
+  player: { species: MEWTWO, level: 50, ability: NO_ABILITY, item: BERSERK_GENE, status_byte: 8, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wBattleMonHP: [0, 55], wBattleMonMaxHP: [0, 100] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < 50
+    - player.stat_levels[0] == 8
+    - player.stat_levels[3] == 8
