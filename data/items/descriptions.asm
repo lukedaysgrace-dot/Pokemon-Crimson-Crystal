@@ -870,8 +870,8 @@ DragonScaleDesc:
 	next "item.@"
 
 BerserkGeneDesc:
-	db   "Boosts ATTACK but"
-	next "causes confusion.@"
+	db   "MEWTWO: ATK & SATK"
+	next "up below half HP.@"
 
 SacredAshDesc:
 	db   "Fully revives all"

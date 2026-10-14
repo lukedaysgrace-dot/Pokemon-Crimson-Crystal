@@ -1140,6 +1140,7 @@ RunPostActionAbilityUpdates::
 RunHPItemUpdatesBoth::
 ; Resolve live holders in effective Speed order, preserving perspective.
 ; HandleHPHealingItem expects the holder to be the current opponent.
+	farcall HandleBerserkGene
 	; Only roll a Speed tie when both holders can actually consume an item.
 	; Empty update events must not advance the battle/link RNG stream.
 	ldh a, [hBattleTurn]
@@ -6358,24 +6359,6 @@ RunGuardedStatusProc:
 	res 6, [hl]
 	ret
 
-BerserkGeneConfusion_b::
-; Berserk Gene confusion, gated on Own Tempo (HandleBerserkGene applies
-; the Attack boost itself). Returns the holder's PRIOR SubStatus3 in b;
-; when Own Tempo blocks the confusion, the confused bit is faked into b
-; so the caller's tail skips the confusion anim/text either way.
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	ld b, [hl]
-	call GetTrueUserAbility
-	cp OWN_TEMPO
-	jr z, .blocked
-	set SUBSTATUS_CONFUSED, [hl]
-	farcall SetBerserkGeneConfusionDuration ; Battle Core Overflow bank
-	ret
-.blocked
-	set SUBSTATUS_CONFUSED, b
-	ret
-
 AbilityEffectChanceMods::
 ; b = secondary effect chance. Serene Grace doubles it; Sheer Force
 ; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
@@ -8537,8 +8520,13 @@ HarvestAbility:
 .cleared
 	; forget the consumed record (the Berry is back)
 	call GetUserSide
-	ld b, 0
+	; Harvest must not rearm a Gene used earlier during this field entry.
+	call ReadItemStateFlags
+	ld a, b
+	and 1 << ITEMSTATE_BERSERK_GENE_USED
+	ld b, a
 	call WriteItemStateFlags
+	ld b, 0
 	call WriteConsumedItem
 	pop bc
 	; banner + text with the item name

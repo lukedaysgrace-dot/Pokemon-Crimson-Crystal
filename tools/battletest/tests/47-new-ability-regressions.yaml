@@ -256,15 +256,16 @@
 
 # ---- Unburden item-loss paths --------------------------------------------
 
-- name: "New ability regression: Berserk Gene consumption activates Unburden"
+- name: "New ability regression: Berserk Gene stays held and cannot activate Unburden"
   player: { species: HITMONLEE, level: 50, ability: UNBURDEN, item: BERSERK_GENE, moves: [SPLASH] }
   enemy: { species: AERODACTYL, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:
-    - player.item == 'NO_ITEM'
-    - player.stat_levels[0] == 9
-    - wram('wEnemyGoesFirst') == 0
+    - player.item == 'BERSERK_GENE'
+    - player.stat_levels[0] == 7
+    - player.stat_levels[3] == 7
+    - wram('wEnemyGoesFirst') == 1
 
 - name: "New ability regression: Trick removing an item activates Unburden next turn"
   # Aerodactyl is faster before the player uses Trick. On turn two, Unburden
