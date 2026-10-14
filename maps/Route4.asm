@@ -5,11 +5,95 @@
 	const ROUTE4_POKE_BALL
 	const ROUTE4_COSPLAYER1
 	const ROUTE4_COSPLAYER2
+	const ROUTE4_MEW
 
 Route4_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .HideMew
+
+.HideMew:
+	; Mew is the party member's temporary appearance, never a wild encounter.
+	disappear ROUTE4_MEW
+	return
+
+Route4CeruleanCaveEntrance:
+	; The mouth has a coordinate script instead of an automatic door warp.
+	special CheckCaughtMew
+	iffalse .Blocked
+	checkpoke MEW
+	iffalse .Blocked
+	playsound SFX_GEN1_GLARE
+	applymovement PLAYER, Route4CaveKnockBack
+	turnobject PLAYER, UP
+	moveobject ROUTE4_MEW, 33, 5
+	appear ROUTE4_MEW
+	turnobject ROUTE4_MEW, RIGHT
+	pause 12
+	opentext
+	writetext Route4CaveMewText
+	cry MEW
+	waitsfx
+	waitbutton
+	closetext
+	turnobject ROUTE4_MEW, UP
+	special CeruleanCaveMewPinkFlash
+	pause 12
+	opentext
+	writetext Route4CaveBarrierBrokenText
+	waitbutton
+	closetext
+	disappear ROUTE4_MEW
+	applymovement PLAYER, Route4CaveStepIn
+	warpsound
+	warpfacing UP, CERULEAN_CAVE_1F, 27, 19
+	end
+
+.Blocked:
+	playsound SFX_GEN1_GLARE
+	applymovement PLAYER, Route4CaveKnockBack
+	turnobject PLAYER, UP
+	waitsfx
+	opentext
+	writetext Route4CaveBarrierText
+	waitbutton
+	closetext
+	end
+
+Route4CaveKnockBack:
+	; A two-tile airborne recoil, facing the cave throughout the kickback.
+	fix_facing
+	set_sliding
+	jump_step DOWN
+	remove_sliding
+	remove_fixed_facing
+	step_shake 4
+	step_sleep 8
+	step_end
+
+Route4CaveStepIn:
+	step UP
+	step UP
+	step_end
+
+Route4CaveBarrierText:
+	text "There seems to be"
+	line "a barrier blocking"
+	cont "the way."
+	done
+
+Route4CaveMewText:
+	text "MEW!"
+	done
+
+Route4CaveBarrierBrokenText:
+	text "MEW broke the"
+	line "barrier!"
+	done
+
+Route4CavePartyMewScript:
+	jumptext Route4CaveMewText
 
 TrainerBirdKeeperHank:
 	trainer BIRD_KEEPER, HANK, EVENT_BEAT_BIRD_KEEPER_HANK, BirdKeeperHankSeenText, BirdKeeperHankBeatenText, 0, .Script
@@ -182,19 +266,23 @@ MtMoonSquareSignText:
 Route4_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	db 2 ; warp events
 	warp_event  2,  5, MOUNT_MOON, 2
+	; Return anchor on ordinary floor; entry uses the mouth script above.
+	warp_event 34,  4, CERULEAN_CAVE_1F, 1
 
-	db 0 ; coord events
+	db 1 ; coord events
+	coord_event 34, 3, -1, Route4CeruleanCaveEntrance
 
 	db 2 ; bg events
 	bg_event  3,  7, BGEVENT_READ, MtMoonSquareSign
 	bg_event 10,  3, BGEVENT_ITEM, Route4HiddenUltraBall
 
-	db 6 ; object events
+	db 7 ; object events
 	object_event 17,  9, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperHank, -1
 	object_event  9,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolGirlHope, -1
 	object_event 21,  6, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolGirlSharon, -1
 	object_event 26,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route4HPUp, EVENT_ROUTE_4_HP_UP
 	object_event 14,  6, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPearl, -1
 	object_event 22, 10, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerPixie, -1
+	object_event 33, 5, SPRITE_MEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_SCRIPT, 0, Route4CavePartyMewScript, EVENT_ROUTE_4_PARTY_MEW

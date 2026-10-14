@@ -526,3 +526,9 @@ SECTION "Map Scripts 31", ROMX
 INCLUDE "maps/OlivineCity.asm"
 INCLUDE "maps/OlivineFishingCove.asm"
 INCLUDE "maps/OlivineFishingCoveGate.asm"
+
+SECTION "Cerulean Cave Scripts", ROMX
+
+INCLUDE "maps/CeruleanCave1F.asm"
+INCLUDE "maps/CeruleanCave2F.asm"
+INCLUDE "maps/CeruleanCaveB1F.asm"
