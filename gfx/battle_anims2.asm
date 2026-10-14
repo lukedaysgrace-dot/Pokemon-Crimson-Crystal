@@ -5,3 +5,5 @@ SECTION "Battle Anim GFX 2", ROMX
 
 ; ported from mae-pokeorange
 AnimObjTauntGFX:      INCBIN "gfx/battle_anims/taunt.2bpp.lz"
+
+AnimObjWoodHammerGFX: INCBIN "gfx/battle_anims/wood_hammer.2bpp.lz"
