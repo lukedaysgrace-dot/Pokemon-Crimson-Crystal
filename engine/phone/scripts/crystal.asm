@@ -35,7 +35,7 @@ CrystalPhoneCalleeScript:
 	sjump CrystalPhoneTier5Tips
 
 CrystalPhoneCallerScript:
-; The EARTHBADGE call is CRYSTAL summoning the player to the CERULEAN
+; The RAINBOWBADGE call is CRYSTAL summoning the player to the CERULEAN
 ; coast, so it skips the usual greeting-and-tips routine entirely.
 	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
 	iftrue CrystalPhoneCapeCallScript

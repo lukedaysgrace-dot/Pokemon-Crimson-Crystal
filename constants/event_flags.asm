@@ -2154,8 +2154,8 @@
 	const EVENT_ROUTE_41_FINIZEN_FOUGHT
 	const EVENT_ROUTE_41_CAUGHT_FINIZEN
 
-; Set when BLUE hands over the EARTHBADGE, cleared once CRYSTAL's call about
-; the CERULEAN coast has been delivered (see maps/ViridianCity.asm).
+; Set when ERIKA hands over the RAINBOWBADGE, cleared once CRYSTAL's call about
+; the CERULEAN coast has been delivered (see maps/CeladonCity.asm).
 	const EVENT_CRYSTAL_CAPE_CALL_PENDING
 
 ; GOLDENROD UNDERGROUND thug mugging scene (see maps/GoldenrodUnderground.asm)

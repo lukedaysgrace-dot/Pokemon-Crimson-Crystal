@@ -33,6 +33,8 @@ CeladonGymErikaScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
+	setevent EVENT_CRYSTAL_CAPE_CALL_PENDING
+	specialphonecall SPECIALCALL_CRYSTAL_CAPE
 .FightDone:
 	checkevent EVENT_GOT_TM19_ENERGY_BALL
 	iftrue .GotEnergyBall

@@ -1,12 +1,14 @@
-; CRYSTAL's EARTHBADGE call summoning the player to CERULEAN CAPE.
+; CRYSTAL's RAINBOWBADGE call summoning the player to CERULEAN CAPE.
 ; Split out of data/phone/text/crystal.asm for bank space.
 
 CrystalPhoneCapeCallText1::
 	text "<PLAY_G>? CRYSTAL."
 
-	para "I hear you've been"
-	line "taking on every"
-	cont "GYM in KANTO."
+	para "I heard you beat"
+	line "ERIKA."
+
+	para "Another KANTO GYM"
+	line "down."
 	cont "Sounds about"
 	cont "right."
 
