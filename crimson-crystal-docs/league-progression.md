@@ -35,6 +35,10 @@ then Victory Road and the Elite Four.
 - The Route 26/27 phone trainers use their initial teams before Surge,
   level-58 rematch aces after Surge, and level-74 aces after the League.
   Restoring Kanto's power no longer selects their final tier early.
+- The other Johto phone trainers keep their existing unlocks. Their
+  Elite Four tier now has a level-74 ace, and the final tier (Elite Four
+  plus Kanto's power) has a level-77 ace, matching the first post-League
+  cap rather than the old Johto-only League.
 
 Clair, Elm, the Blackthorn gym guide, Oak, the Route 26/27 trainers and
 the Route 27 house explain the new order. Silver's Victory Road dialogue
@@ -66,16 +70,31 @@ Normal Mode remains uncapped. Existing event IDs and save layouts stay intact.
 | Route 27, Tohjo Falls, Route 26 | 44–49 | 43–47 |
 | Route 22, Viridian Forest, Pewter | 48–49; Brock 50 | 43–47 |
 | Routes 3–4, Mt. Moon, Cerulean / Cape | 49–53; Misty 54 | 47–51 |
+| Routes 24–25 (before Misty's date ends) | 51–54 | 48–51 |
 | Routes 5–6, 9–10, Rock Tunnel, Vermilion | 55–57; Surge 58 | 51–57 |
 | Ship after Surge | Trainer aces 58–59 | — |
 | Celadon / Saffron / Fuchsia approaches | Trainer aces 59–61; Erika, Sabrina, Janine 62 | 55–61 |
-| Southern coast / Seafoam | Trainer aces 63–65; Blaine 66 | 60–65 |
+| Southern coast / Seafoam, Route 1 / Pallet | Trainer aces 63–65; Blaine 66 | 60–65 |
 | Viridian Gym | Trainer aces 67–68; Blue 69 | — |
 | Victory Road | Trainer aces 70; Silver 71 | 63–69 |
 | First Elite Four | Will 70, Koga 71, Bruno 72, Karen 72, Lance 73 | — |
 | Johto rematches | Aces 77–84 in gym order | Existing Johto encounters |
+| Johto phone rematches after the League | Aces 74, then 77 | — |
 | Optional League rematches | Elite Four aces 85–86; Lance 87; Silver 85 | — |
 | Route 28 / Mt. Silver | Agatha and Lorelei 87; Red 90 | 76–86 |
+
+Cal in Viridian's Trainer House picks his team from the player's
+highest-level party member when the battle starts:
+
+| Player's highest level | Cal's team |
+| --- | --- |
+| Below 60 | Meganium, Feraligatr, Typhlosion at 50 |
+| 60–69 | The same three plus Charizard, all at 60 |
+| 70–79 | The same four plus Venusaur, all at 70 |
+| 80+ | The same five plus Blastoise, all at 80 |
+
+Each uses its strongest ability: Mega Sol, Strong Jaw, Adaptability, Drought,
+Thick Fat and Mega Launcher.
 
 Erika, Janine and Sabrina share the same ace and Hard Mode cap so all six
 orders work. The three Kanto rod groups start at levels 40–49, then add
@@ -83,8 +102,10 @@ orders work. The three Kanto rod groups start at levels 40–49, then add
 badges therefore share a fishing tier too. Mt. Silver fishing is 70–85.
 Species, moves, held items and abilities are preserved in the trainer parties;
 ordinary route opponents, first ship passengers and rival fights are relevelled
-along with the bosses. Route 1's old level-70 trainers and the initial Kanto
-Super Rod level-75 catches no longer undermine the early Kanto curve.
+along with the bosses. The initial Kanto Super Rod level-75 catches no longer
+undermine the early Kanto curve. Route 1 and Pallet Town stay sealed behind
+Viridian's battling trainers until Janine, so they share the southern-coast
+tier: trainer aces 63–64 and wild levels 60–64.
 
 These choices align opponent levels and caps with travel order. The EXP audit
 is a screening estimate, not a full campaign playthrough or a claim that every

@@ -535,6 +535,75 @@ def main():
             levels = [read(f'wOTPartyMon{i}Level') for i in range(1, read('wOTPartyCount') + 1)]
             check(len(levels) == 6 and max(levels) == ace, f'{trainer} {ident}: compiled levels {levels}')
 
+        print('[compiled route trainers follow their gates: Route 25, Route 1 and Johto phone tiers]', flush=True)
+        trainer_ids, trainer_class = {}, None
+        for line in (root / 'constants/trainer_constants.asm').read_text().splitlines():
+            match = re.match(r'\s*trainerclass (\w+)', line)
+            if match:
+                trainer_class, trainer_ids[trainer_class] = match[1], {}
+                continue
+            match = re.match(r'\s*const (\w+)', line)
+            if match and trainer_class:
+                trainer_ids[trainer_class][match[1]] = len(trainer_ids[trainer_class]) + 1
+        route_aces = [('SCHOOLBOY', name, 52) for name in ('DUDLEY', 'JOE')]
+        route_aces += [('LASS', 'ELLEN', 52), ('LASS', 'LAURA', 53), ('LASS', 'SHANNON', 53),
+                       ('CAMPER', 'LLOYD', 53), ('COOLTRAINERM', 'KEVIN', 54),
+                       ('SCHOOLBOY', 'DANNY', 63), ('COOLTRAINERF', 'QUINN', 64)]
+        # Elite Four tier, then the final tier that also needs Kanto's power.
+        for tier, ace in ((0, 74), (1, 77)):
+            for trainer, names in (
+                    ('YOUNGSTER', ('JOEY5', None)), ('SCHOOLBOY', ('JACK4', 'JACK5')),
+                    ('SCHOOLBOY', ('ALAN4', 'ALAN5')), ('SCHOOLBOY', ('CHAD4', 'CHAD5')),
+                    ('LASS', ('DANA4', 'DANA5')), ('BUG_CATCHER', ('WADE5', None)),
+                    ('BUG_CATCHER', ('ARNIE4', 'ARNIE5')), ('FISHER', ('RALPH4', 'RALPH5')),
+                    ('PICNICKER', ('LIZ5', None)), ('HIKER', ('ANTHONY4', 'ANTHONY5')),
+                    ('CAMPER', ('TODD4', 'TODD5')), ('PICNICKER', ('GINA4', 'GINA5')),
+                    ('FISHER', ('TULLY3', 'TULLY4')), ('POKEMANIAC', ('BRENT3', 'BRENT4')),
+                    ('PICNICKER', ('TIFFANY2', 'TIFFANY4')), ('BIRD_KEEPER', ('VANCE2', 'VANCE3')),
+                    ('FISHER', ('WILTON2', 'WILTON3')), ('HIKER', ('PARRY1', 'PARRY2')),
+                    ('PICNICKER', ('ERIN2', 'ERIN3')), ('SAILOR', ('HUEY3', 'HUEY4'))):
+                if names[tier]:
+                    route_aces.append((trainer, names[tier], ace))
+        for trainer, name, ace in route_aces:
+            write('wOtherTrainerClass', con.trainer_classes[trainer])
+            write('wOtherTrainerID', trainer_ids[trainer][name])
+            h.call('ReadTrainerParty')
+            levels = [read(f'wOTPartyMon{i}Level') for i in range(1, read('wOTPartyCount') + 1)]
+            check(levels and max(levels) == ace, f'{trainer} {name}: compiled levels {levels}')
+
+        print('[Trainer House CAL picks his team tier from the player\'s highest level]', flush=True)
+        stride = h.s('wPartyMon2Level') - h.s('wPartyMon1Level')
+        saved_count = read('wPartyCount')
+        saved_levels = [h.rd(h.s('wPartyMon1Level') + i * stride) for i in range(6)]
+        starters = ['MEGANIUM', 'FERALIGATR', 'TYPHLOSION', 'CHARIZARD', 'VENUSAUR', 'BLASTOISE']
+        for party, level, size in (((5,), 50, 3), ((12, 48, 30), 50, 3), ((59, 59), 50, 3),
+                                   ((60, 3), 60, 4), ((55, 69, 2), 60, 4), ((70,), 70, 5),
+                                   ((73, 79, 2, 61, 1, 40), 70, 5), ((80,), 80, 6), ((100, 3), 80, 6)):
+            write('wPartyCount', len(party))
+            for i, mon_level in enumerate(party):
+                h.wr(h.s('wPartyMon1Level') + i * stride, mon_level)
+            write('wOtherTrainerClass', con.trainer_classes['CAL'])
+            write('wOtherTrainerID', trainer_ids['CAL']['CAL3'])
+            h.call('ReadTrainerParty')
+            count = read('wOTPartyCount')
+            levels = [read(f'wOTPartyMon{i}Level') for i in range(1, count + 1)]
+            species = [h.species_index(h.rd(h.s('wOTPartySpecies') + i)) for i in range(count)]
+            check(levels == [level] * size, f'CAL3 vs party {party}: levels {levels}')
+            check(species == [con.species[name] for name in starters[:size]],
+                  f'CAL3 vs party {party}: species {species}')
+            check(read('wOtherTrainerID') == trainer_ids['CAL']['CAL3'],
+                  f'CAL3 vs party {party}: trainer ID was rewritten')
+            h.call('SetTrainerBattleLevel')
+            check(read('wCurPartyLevel') == level, f'CAL3 transition level vs party {party}')
+            write('wOtherTrainerClass', con.trainer_classes['BROCK'])
+            write('wOtherTrainerID', 1)
+            h.call('ReadTrainerParty')
+            levels = [read(f'wOTPartyMon{i}Level') for i in range(1, read('wOTPartyCount') + 1)]
+            check(max(levels) == 50, f'BROCK picked up CAL tiers vs party {party}: {levels}')
+        write('wPartyCount', saved_count)
+        for i, mon_level in enumerate(saved_levels):
+            h.wr(h.s('wPartyMon1Level') + i * stride, mon_level)
+
         print('[Kanto fishing: actual rod routing follows badge tiers; Safari and Silver stay separate]', flush=True)
         with patches(h, {'Random': b'\xaf\xc9'}):
             offsets = [0, 4, 8, 12, 12, 12, 16, 19, 23]
@@ -557,7 +626,7 @@ def main():
                 check(result['e'] == level, f'Johto rod {rod} changed with the Kanto curve')
 
         print('[compiled encounters: early Kanto and Victory Road]', flush=True)
-        ranges = {'ROUTE_22': (43, 47), 'ROUTE_1': (43, 47), 'ROUTE_2': (43, 47),
+        ranges = {'ROUTE_22': (43, 47), 'ROUTE_1': (60, 64), 'ROUTE_2': (43, 47),
                   'VIRIDIAN_FOREST': (43, 47), 'ROUTE_3': (47, 50), 'ROUTE_4': (48, 51),
                   'MOUNT_MOON': (47, 51), 'ROUTE_21': (60, 64), 'VICTORY_ROAD': (63, 69),
                   'ROUTE_26': (43, 47), 'ROUTE_27': (43, 47), 'TOHJO_FALLS': (43, 46),
@@ -574,7 +643,7 @@ def main():
         check(not ranges, f'missing Kanto encounter tables: {list(ranges)}')
 
         ranges = {'ROUTE_22': (43, 47), 'ROUTE_4': (47, 51), 'VIRIDIAN_CITY': (43, 47),
-                  'PALLET_TOWN': (43, 47), 'ROUTE_21': (60, 64), 'ROUTE_19': (60, 64),
+                  'PALLET_TOWN': (60, 64), 'ROUTE_21': (60, 64), 'ROUTE_19': (60, 64),
                   'ROUTE_20': (61, 65), 'CINNABAR_ISLAND': (61, 65), 'ROUTE_28': (78, 82)}
         bank, pointer = h.sym['KantoWaterWildMons']
         while h.mem[bank, pointer] != 255:

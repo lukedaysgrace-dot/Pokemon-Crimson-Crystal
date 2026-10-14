@@ -85,7 +85,10 @@ LYRA EQU __enum__
 	trainerclass CAL ; c
 	const CAL1
 	const CAL2
-	const CAL3
+	const CAL3 ; Trainer House, player's highest level below 60
+	const CAL4 ; Trainer House, highest level 60-69
+	const CAL5 ; Trainer House, highest level 70-79
+	const CAL6 ; Trainer House, highest level 80+
 
 	trainerclass BRUNO ; d
 	const BRUNO1
