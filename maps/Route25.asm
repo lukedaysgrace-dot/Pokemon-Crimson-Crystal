@@ -111,12 +111,10 @@ Route25MistyDate2Script:
 
 Route25MewAppearsScript:
 ; MEW drifts out over the cape the first time the player comes this way after
-; taking BLUE's EARTHBADGE.
+; defeating ERIKA and earning the RAINBOWBADGE.
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iftrue .Done
-	readvar VAR_BADGES
-	ifless NUM_BADGES, .Done
-	checkflag ENGINE_EARTHBADGE
+	checkflag ENGINE_RAINBOWBADGE
 	iffalse .Done
 .Appear:
 	setevent EVENT_ROUTE_25_MEW_APPEARED

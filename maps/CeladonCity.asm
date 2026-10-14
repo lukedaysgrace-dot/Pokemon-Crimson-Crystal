@@ -19,6 +19,16 @@ CeladonCity_MapScripts:
 	setflag ENGINE_FLYPOINT_CELADON
 	return
 
+CeladonCityCrystalCapeCallScript:
+; Ring as the player steps out of ERIKA's gym after earning the RAINBOWBADGE.
+	checkflag ENGINE_RAINBOWBADGE
+	iffalse .Done
+	checkevent EVENT_CRYSTAL_CAPE_CALL_PENDING
+	iffalse .Done
+	farsjump Script_SpecialCrystalCall
+.Done:
+	end
+
 CeladonCityFisherScript:
 	jumptextfaceplayer CeladonCityFisherText
 
@@ -246,7 +256,9 @@ CeladonCity_MapEvents:
 	warp_event 10, 29, CELADON_GYM, 1
 	warp_event 25, 29, CELADON_CAFE, 1
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event 10, 29, -1, CeladonCityCrystalCapeCallScript
+	coord_event 10, 30, -1, CeladonCityCrystalCapeCallScript
 
 	db 8 ; bg events
 	bg_event 23, 21, BGEVENT_READ, CeladonCitySign
