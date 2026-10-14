@@ -290,40 +290,27 @@ BattleAnim_RockPolish_CC:
 	anim_ret
 
 BattleAnim_WoodHammer_CC:
-; The user winds up and swings its whole body like a mallet of solid
-; timber - splinters and smoke everywhere, and the recoil rattles it.
-	anim_3gfx ANIM_GFX_HIT, ANIM_GFX_PLANT, ANIM_GFX_SMOKE_PUFF
-	anim_call BattleAnim_TargetObj_1Row_CC
-	anim_sound 0, 0, SFX_SWORDS_DANCE
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $28
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 80, $9c
-	anim_wait 16
-	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-	anim_wait 6
-	anim_sound 0, 1, SFX_HEADBUTT
-	anim_wait 6
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
-	anim_clearobjs ; not before: the target's 1-row copy covers its top row until here
-	anim_wait 2
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
-	anim_clearobjs
-	anim_sound 0, 1, SFX_STRENGTH
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GREEN
+	anim_3gfx ANIM_GFX_WOOD_HAMMER, ANIM_GFX_PLANT, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $60, $2, $20
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 128, 56, $0
-	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
-	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 128, 64, $9c
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 128, 64, $d0
-	anim_wait 2
-	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
-	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
-	anim_wait 22
-	; the recoil bites back
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
-	anim_sound 0, 0, SFX_TACKLE
-	anim_wait 12
-	anim_call BattleAnim_ShowMon_0_CC
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
+	anim_wait 1
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $4, $10
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $1c
+	anim_obj ANIM_OBJ_WOOD_HAMMER, 136, 56, $5c
+	anim_wait 1
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $50
+	anim_obj ANIM_OBJ_WOOD_HAMMER, 136, 56, $e8
+	anim_wait 1
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $dc
+	anim_obj ANIM_OBJ_WOOD_HAMMER, 136, 56, $d0
+	anim_wait 1
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $90
+	anim_obj ANIM_OBJ_WOOD_HAMMER, 136, 56, $50
+	anim_wait 4
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_wait 60
 	anim_ret
 
 BattleAnim_HeadSmash_CC:
