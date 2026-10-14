@@ -22,7 +22,12 @@ Route5_MapScripts:
 	return
 
 Route5PokefanMScript:
-	jumptextfaceplayer Route5PokefanMText
+	faceplayer
+	checkevent EVENT_RETURNED_MACHINE_PART
+	iftrue .Misty
+	jumptext Route5PokefanMText
+.Misty:
+	jumptext Route5MistyNotBeatenText
 
 Route5UndergroundPathSign:
 	jumptext Route5UndergroundPathSignText
@@ -78,3 +83,14 @@ Route5_MapEvents:
 
 	db 1 ; object events
 	object_event 17, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_POKEFAN_M_LEFT
+
+Route5MistyNotBeatenText:
+	text "The power is back!"
+
+	para "Before taking the"
+	line "UNDERGROUND PATH,"
+	cont "challenge MISTY."
+
+	para "Earn her BADGE and"
+	line "I'll let you pass."
+	done

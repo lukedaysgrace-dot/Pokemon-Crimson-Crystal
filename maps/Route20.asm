@@ -133,7 +133,7 @@ Route20GreenBeforeText:
 	cont "over KANTO."
 
 	para "Then you went and"
-	line "beat RED."
+	line "beat LANCE again."
 
 	para "That REALLY got"
 	line "my attention."
@@ -163,7 +163,7 @@ Route20GreenAfterText:
 	line "good. REALLY"
 	cont "good."
 
-	para "RED doesn't lose"
+	para "LANCE doesn't lose"
 	line "very often."
 
 	para "Now I know why"

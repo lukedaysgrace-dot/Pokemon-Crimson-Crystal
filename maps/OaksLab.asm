@@ -23,8 +23,9 @@ Oak:
 	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
+	readmem wKantoBadges
+	iffalse .Complain
 	readvar VAR_BADGES
-	ifless NUM_JOHTO_BADGES + 1, .Complain
 	ifequal NUM_BADGES, .AllBadges
 	sjump .AhGood
 

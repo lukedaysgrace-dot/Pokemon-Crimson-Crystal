@@ -114,8 +114,11 @@ Route25MewAppearsScript:
 ; taking BLUE's EARTHBADGE.
 	checkevent EVENT_ROUTE_25_MEW_APPEARED
 	iftrue .Done
+	readvar VAR_BADGES
+	ifless NUM_BADGES, .Done
 	checkflag ENGINE_EARTHBADGE
 	iffalse .Done
+.Appear:
 	setevent EVENT_ROUTE_25_MEW_APPEARED
 	special FadeOutMusic
 	pause 20
@@ -267,12 +270,19 @@ Route25CrystalBattle:
 	startbattle
 	ifequal LOSE, .Lost
 	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	farscall QueueOakMtSilverCallScript
 .Lost:
 	dontrestartmapmusic
 	reloadmapafterbattle
 	playmusic MUSIC_CRYSTAL_ENCOUNTER
 	opentext
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iffalse .TryAgain
 	farwritetext Route25CrystalAfterText
+	sjump .FinishText
+.TryAgain:
+	farwritetext Route25CrystalTryAgainText
+.FinishText:
 	waitbutton
 	closetext
 	turnobject ROUTE25_CRYSTAL, DOWN

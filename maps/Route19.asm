@@ -17,7 +17,7 @@ Route19_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .HideLegendaryBirds
 
 .ClearRocks:
-	checkevent EVENT_BEAT_JANINE
+	farscall CheckSouthernKantoAccessScript
 	iftrue .CheckIslandEntrances
 	changeblock  6,  6, $7a ; rock
 	changeblock  8,  6, $7a ; rock
@@ -206,7 +206,7 @@ TrainerSwimmermTucker:
 Route19Fisher1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_BEAT_JANINE
+	farscall CheckSouthernKantoAccessScript
 	iftrue .RocksCleared
 	writetext Route19Fisher1Text
 	waitbutton
@@ -222,7 +222,7 @@ Route19Fisher1Script:
 Route19Fisher2Script:
 	faceplayer
 	opentext
-	checkevent EVENT_BEAT_JANINE
+	farscall CheckSouthernKantoAccessScript
 	iftrue .RocksCleared
 	writetext Route19Fisher2Text
 	waitbutton
@@ -325,11 +325,9 @@ Route19Fisher1Text:
 	line "is closed for"
 	cont "construction."
 
-	para "If you want to get"
-	line "to CINNABAR, you'd"
-
-	para "better go south"
-	line "from PALLET TOWN."
+	para "We'll finish after"
+	line "ERIKA, SABRINA and"
+	cont "JANINE are beaten."
 	done
 
 Route19Fisher1Text_RocksCleared:

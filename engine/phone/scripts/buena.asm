@@ -66,12 +66,12 @@ BuenaPhoneScript_Rocket:
 	end
 
 BuenaPhoneScript_Random2:
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .PostE4
+	farscall CheckJohtoBadgesScript
+	iftrue .Kanto
 	random 11
 	sjump .Jumptable
 
-.PostE4:
+.Kanto:
 	random 14
 
 .Jumptable:

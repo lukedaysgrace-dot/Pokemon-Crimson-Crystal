@@ -59,8 +59,11 @@ TrainerPicnickerErin1:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight2:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_FALKNER_REMATCH
+	iffalse .Fight2LeagueFallback
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
+.Fight2LeagueFallback:
 .Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1

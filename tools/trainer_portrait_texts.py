@@ -100,6 +100,7 @@ SHARED_SPEAKERS = {f'OakRating{i:02}': 'OAK' for i in range(1, 20)}
 SHARED_SPEAKERS.update({label: 'CRYSTAL' for label in (
 	'Route25CrystalBeforeText',
 	'Route25CrystalAfterText',
+	'Route25CrystalTryAgainText',
 	'Route25CrystalGoCatchItText',
 	'Route25CrystalMewCaughtText',
 	'Route25CrystalMewEscapedText',

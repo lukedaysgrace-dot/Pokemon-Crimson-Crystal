@@ -352,9 +352,12 @@ VictoryRoadRivalDefeatText:
 	para "What you possess,"
 	line "and what I lack…"
 
-	para "I won't forget"
-	line "what that dragon"
-	cont "master taught me…"
+	para "Since MT.MOON,"
+	line "we've come so far."
+
+	para "I believe in my"
+	line "#MON. We'll keep"
+	cont "growing together."
 	done
 
 VictoryRoadRivalAfterText:

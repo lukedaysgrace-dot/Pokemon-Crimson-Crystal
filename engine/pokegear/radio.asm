@@ -1132,6 +1132,19 @@ PnP_Text3:
 	text_far _PnP_Text3
 	text_end
 
+GetPnPHiddenPeople:
+; Kanto gym leaders are known during Kanto; the Elite Four after the League.
+	ld hl, PnP_HiddenPeople_BeatKanto
+	ld a, [wStatusFlags]
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
+	ret nz
+	ld hl, PnP_HiddenPeople_Kanto
+	ld a, [wJohtoBadges]
+	cp $ff
+	ret z
+	ld hl, PnP_HiddenPeople
+	ret
+
 PeoplePlaces4: ; People
 	call Random
 	maskbits NUM_TRAINER_CLASSES
@@ -1139,16 +1152,7 @@ PeoplePlaces4: ; People
 	cp NUM_TRAINER_CLASSES - 1
 	jr nc, PeoplePlaces4
 	push af
-	ld hl, PnP_HiddenPeople
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	jr z, .ok
-	ld hl, PnP_HiddenPeople_BeatE4
-	ld a, [wKantoBadges]
-	cp %11111111 ; all badges
-	jr nz, .ok
-	ld hl, PnP_HiddenPeople_BeatKanto
-.ok
+	call GetPnPHiddenPeople
 	pop af
 	ld c, a
 	ld de, 1

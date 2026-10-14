@@ -8,14 +8,34 @@
 ViridianGym_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .Blue
+
+.Blue:
+	farscall UpdateBlueReturnScript
+	return
 
 ViridianGymBlueScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_EARTHBADGE
 	iftrue .FightDone
+	farscall CheckBlueBadgeAccessScript
+	iftrue .Ready
+	writetext ViridianGymNotReadyText
+	waitbutton
+	closetext
+	end
+.Ready:
 	writetext LeaderBlueBeforeText
+	buttonsound
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .FemaleIntro
+	writetext LeaderBlueReadyBoyText
+	sjump .IntroDone
+.FemaleIntro:
+	writetext LeaderBlueReadyGirlText
+.IntroDone:
 	waitbutton
 	closetext
 	winlosstext LeaderBlueWinText, 0
@@ -29,6 +49,14 @@ ViridianGymBlueScript:
 	waitsfx
 	setflag ENGINE_EARTHBADGE
 	writetext LeaderBlueAfterText
+	buttonsound
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .RematchAdvice
+	writetext LeaderBlueLeagueNextText
+	sjump .FinishAdvice
+.RematchAdvice:
+	writetext LeaderBlueRematchNextText
+.FinishAdvice:
 	waitbutton
 	closetext
 	setevent EVENT_CRYSTAL_CAPE_CALL_PENDING
@@ -128,8 +156,14 @@ LeaderBlueBeforeText:
 	para "battling you right"
 	line "now."
 
-	para "Ready, JOHTO"
-	line "CHAMP?"
+	done
+
+LeaderBlueReadyBoyText:
+	text "Ready, JOHTO boy?"
+	done
+
+LeaderBlueReadyGirlText:
+	text "Ready, JOHTO girl?"
 	done
 
 LeaderBlueWinText:
@@ -165,11 +199,6 @@ LeaderBlueAfterText:
 	para "Don't you forget"
 	line "it!"
 
-	para "The JOHTO LEADERS"
-	line "want rematches."
-
-	para "Start with FALKNER"
-	line "in VIOLET CITY."
 	done
 
 LeaderBlueEpilogueText:
@@ -290,3 +319,29 @@ ViridianGym_MapEvents:
 	object_event  2, 11, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermSnow, EVENT_VIRIDIAN_GYM_BLUE
 	object_event  2,  7, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 7, TrainerCooltrainermCyanide, EVENT_VIRIDIAN_GYM_BLUE
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+
+ViridianGymNotReadyText:
+	text "BLUE: Defeat all"
+	line "of the KANTO GYM"
+	cont "LEADERS first."
+
+	para "Then we'll battle!"
+	done
+
+LeaderBlueLeagueNextText:
+	text "All 16 BADGES."
+	line "The LEAGUE is your"
+	cont "next challenge."
+
+	para "Go to INDIGO"
+	line "PLATEAU. Show them"
+	cont "what you can do!"
+	done
+
+LeaderBlueRematchNextText:
+	text "The JOHTO LEADERS"
+	line "want rematches."
+
+	para "Start with FALKNER"
+	line "in VIOLET CITY."
+	done

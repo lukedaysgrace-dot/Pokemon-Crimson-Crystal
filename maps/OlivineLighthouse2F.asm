@@ -54,8 +54,11 @@ TrainerSailorHuey:
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
 .Fight3:
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_BEAT_FALKNER_REMATCH
+	iffalse .Fight2LeagueFallback
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
+.Fight2LeagueFallback:
 .Fight2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2

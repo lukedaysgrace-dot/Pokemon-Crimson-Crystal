@@ -162,17 +162,13 @@ ReceivedMarshBadgeText:
 	done
 
 SabrinaMarshBadgeText:
-	text "SABRINA: MARSH-"
-	line "BADGE draws out"
+	text "SABRINA: Although"
+	line "I failed to"
 
-	para "your subliminal"
-	line "powers…"
-
-	para "Although I failed"
-	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
+	para "accurately predict"
+	line "your power, this"
+	cont "much I know to be"
+	cont "true."
 
 	para "You will become a"
 	line "celebrated and"

@@ -117,14 +117,14 @@ UnknownText_0x643d4:
 	text "I saw, I saw,"
 	line "I saw!"
 
-	para "You striding onto"
-	line "a ship, <PLAY_G>!"
+	para "You exploring"
+	line "VERMILION CITY,"
+	cont "<PLAY_G>!"
 
 	para "I can't get over"
-	line "how good you look"
-
-	para "with the sea as"
-	line "your backdrop!"
+	line "how far your GYM"
+	cont "challenge has"
+	cont "taken you!"
 	done
 
 UnknownText_0x64448:
@@ -133,14 +133,12 @@ UnknownText_0x64448:
 	para "You got a MAGNET"
 	line "TRAIN PASS!"
 
-	para "When I saw you"
-	line "departing on the"
+	para "With your travels"
+	line "all over KANTO,"
 
-	para "ship, I felt sad"
-	line "that I wouldn't be"
-
-	para "able to see you"
-	line "for a while."
+	para "I thought I might"
+	line "not see you for"
+	cont "a while."
 
 	para "But since you have"
 	line "that PASS, you can"
