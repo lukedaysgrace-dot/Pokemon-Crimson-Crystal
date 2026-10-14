@@ -195,3 +195,4 @@ SpecialsPointers::
 	add_special CheckPartyForDratiniLine
 	add_special FossilRevivalMenu
 	add_special UtilityMoveTutor
+	add_special CeruleanCaveMewPinkFlash

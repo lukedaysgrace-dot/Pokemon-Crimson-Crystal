@@ -1089,3 +1089,12 @@ Route2_Blocks:
 
 ViridianForest_Blocks:
 	INCBIN "maps/ViridianForest.ablk"
+
+SECTION "Cerulean Cave Blocks", ROMX
+
+CeruleanCave1F_Blocks:
+	INCBIN "maps/CeruleanCave1F.ablk"
+CeruleanCave2F_Blocks:
+	INCBIN "maps/CeruleanCave2F.ablk"
+CeruleanCaveB1F_Blocks:
+	INCBIN "maps/CeruleanCaveB1F.ablk"

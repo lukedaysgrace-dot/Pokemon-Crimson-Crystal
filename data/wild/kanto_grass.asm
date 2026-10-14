@@ -861,4 +861,86 @@ KantoGrassWildMons:
 	dbw 80, HOUNDOOM
 	dbw 82, URSARING
 
+; Restored Cerulean Cave: strong Kanto dungeon encounters.
+	map_id CERULEAN_CAVE_1F
+	db 6 percent, 6 percent, 6 percent
+	; morn
+	dbw 55, GOLBAT
+	dbw 55, MAGNETON
+	dbw 56, MACHOKE
+	dbw 56, PARASECT
+	dbw 57, RHYDON
+	dbw 57, DITTO
+	dbw 58, CHANSEY
+	; day
+	dbw 55, GOLBAT
+	dbw 55, MAGNETON
+	dbw 56, MACHOKE
+	dbw 56, PARASECT
+	dbw 57, RHYDON
+	dbw 57, DITTO
+	dbw 58, CHANSEY
+	; nite
+	dbw 55, GOLBAT
+	dbw 55, MAGNETON
+	dbw 56, MACHOKE
+	dbw 56, PARASECT
+	dbw 57, RHYDON
+	dbw 57, DITTO
+	dbw 58, CHANSEY
+
+	map_id CERULEAN_CAVE_2F
+	db 6 percent, 6 percent, 6 percent
+	; morn
+	dbw 57, GOLBAT
+	dbw 57, MAGNETON
+	dbw 58, MACHOKE
+	dbw 58, PARASECT
+	dbw 59, RHYDON
+	dbw 59, DITTO
+	dbw 60, CHANSEY
+	; day
+	dbw 57, GOLBAT
+	dbw 57, MAGNETON
+	dbw 58, MACHOKE
+	dbw 58, PARASECT
+	dbw 59, RHYDON
+	dbw 59, DITTO
+	dbw 60, CHANSEY
+	; nite
+	dbw 57, GOLBAT
+	dbw 57, MAGNETON
+	dbw 58, MACHOKE
+	dbw 58, PARASECT
+	dbw 59, RHYDON
+	dbw 59, DITTO
+	dbw 60, CHANSEY
+
+	map_id CERULEAN_CAVE_B1F
+	db 6 percent, 6 percent, 6 percent
+	; morn
+	dbw 59, GOLBAT
+	dbw 59, MAGNETON
+	dbw 60, MACHOKE
+	dbw 60, PARASECT
+	dbw 61, RHYDON
+	dbw 61, DITTO
+	dbw 62, CHANSEY
+	; day
+	dbw 59, GOLBAT
+	dbw 59, MAGNETON
+	dbw 60, MACHOKE
+	dbw 60, PARASECT
+	dbw 61, RHYDON
+	dbw 61, DITTO
+	dbw 62, CHANSEY
+	; nite
+	dbw 59, GOLBAT
+	dbw 59, MAGNETON
+	dbw 60, MACHOKE
+	dbw 60, PARASECT
+	dbw 61, RHYDON
+	dbw 61, DITTO
+	dbw 62, CHANSEY
+
 	db -1 ; end

@@ -538,3 +538,14 @@ INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
 	db $04, $04, $04, $04
 	db $05, $05, $05, $05
 	db $05, $05, $05, $05
+
+SECTION "Cerulean Cave Tileset", ROMX
+
+TilesetCeruleanCaveGFX:
+	INCBIN "gfx/tilesets/cerulean_cave.2bpp.lz"
+TilesetCeruleanCaveMeta:
+	INCBIN "data/tilesets/cerulean_cave_metatiles.bin"
+TilesetCeruleanCaveColl:
+	INCBIN "data/tilesets/cerulean_cave_collision.bin"
+TilesetCeruleanCaveAttr:
+	INCBIN "data/tilesets/cerulean_cave_attributes.bin"

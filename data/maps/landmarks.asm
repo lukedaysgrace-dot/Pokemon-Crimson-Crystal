@@ -108,6 +108,7 @@ Landmarks:
 	landmark  92, 128, FireIslandName
 	landmark  92, 128, ThunderIslandName
 	landmark  92, 128, IceIslandName
+	landmark  96,  52, CeruleanCaveName
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"
 CherrygroveCityName: db "CHERRYGROVE¯CITY@"

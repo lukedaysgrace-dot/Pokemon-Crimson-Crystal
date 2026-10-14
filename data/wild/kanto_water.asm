@@ -148,4 +148,17 @@ KantoWaterWildMons:
 	dbw 61, TENTACOOL
 	dbw 65, TENTACRUEL
 
+; Restored Cerulean Cave water encounters.
+	map_id CERULEAN_CAVE_1F
+	db 4 percent
+	dbw 55, SLOWBRO
+	dbw 56, GOLDUCK
+	dbw 57, GYARADOS
+
+	map_id CERULEAN_CAVE_B1F
+	db 4 percent
+	dbw 59, SLOWBRO
+	dbw 60, GOLDUCK
+	dbw 61, GYARADOS
+
 	db -1 ; end

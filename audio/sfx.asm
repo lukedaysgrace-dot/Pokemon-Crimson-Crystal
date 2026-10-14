@@ -5146,3 +5146,18 @@ Sfx_Gravity_Ch8:
 	noise __, 12, $ea, $6b
 	noise __, 12, $e1, $6c
 	endchannel
+
+Sfx_Gen1Glare:
+	musicheader 1, 8, Sfx_Gen1Glare_Ch8
+
+Sfx_Gen1Glare_Ch8:
+; pokered's Glare uses SFX_NOT_VERY_EFFECTIVE with tempo modifier $ff.
+; Its SFX tempo is $80 + $ff = $17f; the frequency modifier affects pulse
+; channels, while this effect plays entirely on the noise channel.
+; https://github.com/pret/pokered/blob/master/audio/sfx/not_very_effective.asm
+	tempo $17f
+	noise_note 4, 8, -7, $55
+	noise_note 2, 15, 4, $44
+	noise_note 8, 15, 4, $22
+	noise_note 15, 15, 2, $21
+	endchannel
