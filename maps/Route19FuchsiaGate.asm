@@ -9,7 +9,7 @@ Route19FuchsiaGate_MapScripts:
 Route19FuchsiaGateOfficerScript:
 	faceplayer
 	opentext
-	checkevent EVENT_BEAT_JANINE
+	farscall CheckSouthernKantoAccessScript
 	iftrue .RocksCleared
 	writetext Route19FuchsiaGateOfficerText
 	waitbutton
@@ -30,9 +30,12 @@ Route19FuchsiaGateOfficerText:
 	line "that cut off ROUTE"
 	cont "19 indefinitely."
 
-	para "I wonder if the"
-	line "people of CINNABAR"
-	cont "are safe…"
+	para "Earn ERIKA's,"
+	line "SABRINA's and"
+	cont "JANINE's BADGES."
+
+	para "The roadwork will"
+	line "be finished then."
 	done
 
 Route19FuchsiaGateOfficerText_RocksCleared:

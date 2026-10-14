@@ -1,7 +1,5 @@
-; Places and People will not describe these trainers.
-
-PnP_HiddenPeople:
-	; story characters and rematch classes this hack added
+; Keep custom story characters and rematches hidden at every milestone.
+PnPAlwaysHidden: MACRO
 	db CRYSTAL
 	db CRYSTAL2
 	db CRYSTAL3
@@ -25,13 +23,20 @@ PnP_HiddenPeople:
 	db BRUNO_REMATCH
 	db KAREN_REMATCH
 	db CHAMPION_REMATCH
+	db RIVAL1
+	db POKEMON_PROF
+	db CAL
+	db RIVAL2
+	db RED
+ENDM
+
+PnP_HiddenPeople:
+	PnPAlwaysHidden
 	db WILL
 	db BRUNO
 	db KAREN
 	db KOGA
 	db CHAMPION
-	; fallthrough
-PnP_HiddenPeople_BeatE4:
 	db BROCK
 	db MISTY
 	db LT_SURGE
@@ -40,11 +45,17 @@ PnP_HiddenPeople_BeatE4:
 	db SABRINA
 	db BLAINE
 	db BLUE
-	; fallthrough
+	db -1
+
+PnP_HiddenPeople_Kanto:
+	PnPAlwaysHidden
+	db WILL
+	db BRUNO
+	db KAREN
+	db KOGA
+	db CHAMPION
+	db -1
+
 PnP_HiddenPeople_BeatKanto:
-	db RIVAL1
-	db POKEMON_PROF
-	db CAL
-	db RIVAL2
-	db RED
+	PnPAlwaysHidden
 	db -1

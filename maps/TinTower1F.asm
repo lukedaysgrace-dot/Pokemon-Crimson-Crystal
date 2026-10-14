@@ -30,7 +30,7 @@ TinTower1F_MapScripts:
 .NPCsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .GotRainbowWing
-	checkevent EVENT_BEAT_ELITE_FOUR
+	farscall CheckJohtoBadgesScript
 	iffalse .FaceBeasts
 	special BeastsCheck
 	iffalse .FaceBeasts

@@ -426,94 +426,26 @@ CheckFaint_EnemyThenPlayer:
 	ret
 
 HandleBerserkGene:
+	ldh a, [hBattleTurn]
+	push af
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .reverse
 
-	call .player
-	jr .enemy
+	call SetPlayerTurn
+	farcall HandleUserBerserkGene_Core
+	call SetEnemyTurn
+	jr .last
 
 .reverse
-	call .enemy
-	; fallthrough
-
-.player
-	call SetPlayerTurn
-	ld de, wPartyMon1Item
-	ld a, [wCurBattleMon]
-	ld b, a
-	jr .go
-
-.enemy
 	call SetEnemyTurn
-	ld de, wOTPartyMon1Item
-	ld a, [wCurOTMon]
-	ld b, a
-	; fallthrough
-
-.go
-	push de
-	push bc
-	callfar GetUserItem
-	push hl
-	callfar GetTrueUserAbility_b
-	ld a, b
-	pop hl
-	cp KLUTZ
-	jr nz, .check_gene
-	pop bc
-	pop de
-	ret
-.check_gene
-	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	sub BERSERK_GENE
-	pop bc
-	pop de
-	ret nz
-
-	ld [hl], a
-
-	ld h, d
-	ld l, e
-	ld a, b
-	call GetPartyLocation
-	xor a
-	ld [hl], a
-	; Using the Gene leaves the holder itemless and activates Unburden.
-	ldh a, [hBattleTurn]
-	ld c, a
-	farcall MarkSideLostItem_Core
-	; confusion, unless Own Tempo blocks it (the Attack boost below still
-	; applies); returns SubStatus3 in b for the confusion-text skip below
-	farcall BerserkGeneConfusion_b
-	push bc
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarAddr
-	push hl
-	push af
-	xor a
-	ld [hl], a
-	ld [wAttackMissed], a
-	ld [wEffectFailed], a
-	farcall BattleCommand_AttackUp2
+	farcall HandleUserBerserkGene_Core
+	call SetPlayerTurn
+.last
+	farcall HandleUserBerserkGene_Core
 	pop af
-	pop hl
-	ld [hl], a
-	call GetItemName
-	ld hl, BattleText_UsersStringBuffer1Activated
-	call StdBattleTextbox
-	callfar BattleCommand_StatUpMessage
-	pop bc
-	bit SUBSTATUS_CONFUSED, b
-	ret nz
-	xor a
-	ld [wNumHits], a
-	ld de, ANIM_CONFUSED
-	call Call_PlayBattleAnim_OnlyIfVisible
-	call SwitchTurnCore
-	ld hl, BecameConfusedText
-	jp StdBattleTextbox
+	ldh [hBattleTurn], a
+	ret
 
 EnemyTriesToFlee:
 	ld a, [wLinkMode]
@@ -4263,7 +4195,6 @@ InitBattleMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnPlayerStats
-	call BadgeStatBoosts
 	ret
 
 BattleCheckPlayerShininess:
@@ -4678,6 +4609,8 @@ HandleHealingItems:
 	jp UseConfusionHealingItem
 
 HandleHPHealingItem::
+	; HP update events also activate Mewtwo's reusable Berserk Gene.
+	farcall HandleOpponentBerserkGene_Core
 	farcall OppHasFainted
 	ret z
 	callfar GetOpponentItem
@@ -7324,99 +7257,6 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BadgeStatBoosts::
-; Raise the stats of the battle mon in wBattleMon
-; depending on which badges have been obtained.
-
-; Every other badge boosts a stat, starting from the first.
-
-; 	ZephyrBadge:  Attack
-; 	PlainBadge:   Speed
-; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack
-; 	RisingBadge:  Special Defense
-
-; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	ret nz
-
-	ld a, [wJohtoBadges]
-
-; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
-	ld d, a
-	and (1 << PLAINBADGE)
-	add a
-	add a
-	ld b, a
-	ld a, d
-	and (1 << MINERALBADGE)
-	rrca
-	rrca
-	ld c, a
-	ld a, d
-	and ((1 << ZEPHYRBADGE) | (1 << HIVEBADGE) | (1 << FOGBADGE) | (1 << STORMBADGE) | (1 << GLACIERBADGE) | (1 << RISINGBADGE))
-	or b
-	or c
-	ld b, a
-
-	ld hl, wBattleMonAttack
-	ld c, 4
-.CheckBadge:
-	ld a, b
-	srl b
-	; BoostStat clobbers a; preserve the mask so Glacier's intended second
-	; boost (Special Defense) is tested deterministically.
-	push af
-	call c, BoostStat
-	pop af
-	inc hl
-	inc hl
-; Check every other badge.
-	srl b
-	dec c
-	jr nz, .CheckBadge
-; And the last one (RisingBadge) too.
-	srl a
-	call c, BoostStat
-	ret
-
-BoostStat:
-; Raise stat at hl by 1/8.
-
-	ld a, [hli]
-	ld d, a
-	ld e, [hl]
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hli], a
-
-; Cap at 999.
-	ld a, [hld]
-	sub LOW(MAX_STAT_VALUE)
-	ld a, [hl]
-	sbc HIGH(MAX_STAT_VALUE)
-	ret c
-	ld a, HIGH(MAX_STAT_VALUE)
-	ld [hli], a
-	ld a, LOW(MAX_STAT_VALUE)
-	ld [hld], a
-	ret
-
 _LoadBattleFontsHPBar:
 	callfar LoadBattleFontsHPBar
 	ret
@@ -7815,7 +7655,6 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap

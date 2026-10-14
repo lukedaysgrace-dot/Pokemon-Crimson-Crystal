@@ -145,7 +145,7 @@
       "category": "rules",
       "title": "Hard Mode level caps",
       "before": "No badge-based player level cap.",
-      "after": "Badge-based caps run through Johto, the League and Kanto. Johto caps are 10, 16, 20, 25, 30, 34, 38 and 45; the League cap is 57. Kanto progresses from 58 to 73.",
+      "after": "The main challenge requires all 16 badges: Johto, then Kanto, then the League. Johto caps are 10, 16, 20, 25, 30, 34, 38 and 45. Kanto caps are 50, 54, 58, 62, 62, 62, 66 and 69; the League cap is 73. Johto gym rematches advance caps from 77 to 84, then Mt. Silver uses 90; defeating Red lifts the cap to 100.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [
@@ -1738,6 +1738,36 @@
       "links": []
     },
     {
+      "id": "sixteen-badge-main-challenge",
+      "category": "world",
+      "title": "Sixteen badges before the League",
+      "before": "The League follows Johto's eight gyms, with Kanto explored afterwards.",
+      "after": "Complete Johto and Kanto before challenging the Elite Four. The level curve suggests Brock, Misty, Lt. Surge, Erika/Sabrina/Janine in any order, Blaine and Blue. Only Blue has a gym-specific badge requirement: he stays on Cinnabar until you have 15 badges; speak to him there to send him back to Viridian Gym. The southern routes open after Erika, Sabrina and Janine. After your first League victory, start the Johto gym rematch chain with Falkner.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/events/league_progression.asm",
+        "maps/CinnabarIsland.asm",
+        "maps/VictoryRoadGate.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "tower-wings-after-johto",
+      "category": "world",
+      "title": "Tower wings after eight Johto badges",
+      "before": "The Silver Wing is available on reaching Pewter, while the Rainbow Wing requires a League victory and the three legendary beasts.",
+      "after": "Both wing gifts require all eight Johto badges, with no Kanto badges or League victory needed. Pewter's old man gives the Silver Wing. Tin Tower's sage gives the Rainbow Wing when you also own Raikou, Entei and Suicune with your own OT and ID in the party or PC. Ho-Oh retains this three-beast requirement; Lugia and Ho-Oh remain level 60.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/PewterCity.asm",
+        "maps/TinTower1F.asm",
+        "engine/pokemon/search.asm"
+      ],
+      "links": []
+    },
+    {
       "id": "crystal-s-story-and-mew-encounter",
       "category": "world",
       "title": "Crystal’s story and Mew encounter",
@@ -2104,15 +2134,17 @@
       "links": []
     },
     {
-      "id": "badge-stat-boosts-remain",
+      "id": "badge-battle-bonuses-removed",
       "category": "battle",
-      "title": "Badge stat boosts remain",
-      "before": "Johto badges increase particular player battle stats.",
-      "after": "The game retains badge-linked stat boosts in ordinary single-player battles. Link battles and the Battle Tower skip these boosts.",
+      "title": "Badge battle bonuses removed",
+      "before": "Johto badges increase particular player battle stats, and both regions' badges boost damage for their corresponding move types.",
+      "after": "Badges no longer increase battle stats or move damage. Gym-leader dialogue no longer promises these bonuses. HM permissions, traded-Pokémon obedience and campaign gates retain their existing badge requirements.",
       "comparison": "Gen 2",
-      "kind": "exception",
+      "kind": "custom",
       "sources": [
-        "engine/battle/core.asm"
+        "engine/battle/core.asm",
+        "engine/battle/effect_commands.asm",
+        "engine/battle/effect_commands_core.asm"
       ],
       "links": []
     },

@@ -222,7 +222,7 @@
     - "enemy.maxhp - enemy.hp < result('dk_control')['enemy']['damage']"
 
 # Baton Pass rebuilt the incoming mon's stats from the unmodified ones,
-# dropping its paralysis Speed halving (and burn / badge adjustments).
+# dropping its paralysis Speed halving (and burn adjustments).
 - name: "Audit 09-30: Baton Pass keeps the incoming mon's paralysis Speed drop"
   player:  { species: SMEARGLE, level: 50, ability: NO_ABILITY, moves: [BATON_PASS] }
   player2: { species: JOLTEON, level: 50, ability: NO_ABILITY, status_byte: 64, moves: [SPLASH] }

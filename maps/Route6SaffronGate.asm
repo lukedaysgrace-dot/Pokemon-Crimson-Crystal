@@ -64,9 +64,35 @@ Route6SaffronGate_MapEvents:
 	warp_event  4,  7, ROUTE_6, 2
 	warp_event  5,  7, ROUTE_6, 2
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event 4, 1, -1, Route6SaffronGateBadgeCheck
+	coord_event 5, 1, -1, Route6SaffronGateBadgeCheck
 
 	db 0 ; bg events
 
 	db 1 ; object events
 	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route6SaffronGuardScript, -1
+
+Route6SaffronGateBadgeCheck:
+	farscall CheckSurgeBadgeScript
+	iftrue .Ready
+	opentext
+	writetext Route6SaffronGateNeedSurgeText
+	waitbutton
+	closetext
+	applymovement PLAYER, Route6SaffronGateReturnMovement
+.Ready:
+	end
+
+Route6SaffronGateReturnMovement:
+	step DOWN
+	step_end
+
+Route6SaffronGateNeedSurgeText:
+	text "SAFFRON's GYM"
+	line "challenge comes"
+	cont "after LT.SURGE."
+
+	para "Earn his BADGE in"
+	line "VERMILION first."
+	done

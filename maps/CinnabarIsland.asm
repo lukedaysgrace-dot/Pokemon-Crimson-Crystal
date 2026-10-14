@@ -14,6 +14,7 @@ CinnabarIsland_MapScripts:
 	return
 
 .CheckBlueCloak:
+	farscall UpdateBlueReturnScript
 	checkevent EVENT_BEAT_GREEN
 	iffalse .HideBlueCloak
 	clearevent EVENT_BLUE_CLOAK_IN_CINNABAR
@@ -27,6 +28,15 @@ CinnabarIslandBlue:
 	faceplayer
 	opentext
 	writetext CinnabarIslandBlueText
+	buttonsound
+	farscall CheckBlueBadgeAccessScript
+	iftrue .ReturnToGym
+	writetext CinnabarIslandBlueNeedBadgesText
+	waitbutton
+	closetext
+	end
+.ReturnToGym:
+	writetext CinnabarIslandBlueReturnText
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
@@ -137,12 +147,6 @@ CinnabarIslandBlueText:
 	line "opponent, it makes"
 	cont "me want to battle."
 
-	para "If you want to"
-	line "battle me, come to"
-	cont "the VIRIDIAN GYM."
-
-	para "I'll take you on"
-	line "then."
 	done
 
 CinnabarIslandBlueCloakBeforeText:
@@ -156,7 +160,7 @@ CinnabarIslandBlueCloakBeforeText:
 	para "I almost couldn't"
 	line "believe it when I"
 	cont "heard you"
-	cont "defeated RED."
+	cont "beat LANCE again."
 
 	para "The last time we"
 	line "fought, I knew"
@@ -263,3 +267,20 @@ CinnabarIsland_MapEvents:
 	db 2 ; object events
 	object_event  9,  6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
 	object_event  9,  6, SPRITE_BLUE_CLOAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlueCloakScript, EVENT_BLUE_CLOAK_IN_CINNABAR
+
+CinnabarIslandBlueNeedBadgesText:
+	text "Defeat all of the"
+	line "KANTO GYM LEADERS"
+	cont "first."
+
+	para "Then come find me."
+	line "I'll be waiting."
+	done
+
+CinnabarIslandBlueReturnText:
+	text "All right, then."
+
+	para "Meet me at the"
+	line "VIRIDIAN GYM."
+	cont "I'll take you on!"
+	done

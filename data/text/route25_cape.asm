@@ -48,6 +48,15 @@ Route25CrystalGoCatchItText::
 	cont "observations!"
 	done
 
+Route25CrystalTryAgainText::
+	text "CRYSTAL: I won"
+	line "this round."
+
+	para "Rest your #MON."
+	line "We'll try again"
+	cont "when you're ready."
+	done
+
 Route25CrystalMewCaughtText::
 	text "CRYSTAL: You"
 	line "actually caught"

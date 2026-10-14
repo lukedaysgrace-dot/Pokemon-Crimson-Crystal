@@ -74,7 +74,7 @@ def main():
         h.call('LoadMapAttributes')
         h.call('GetCurrentMapSceneID')
 
-    def script(name, stops=()):
+    def script(name, stops=(), stop_before_battle=False):
         bank, addr = h.sym[name]
         write('wScriptBank', bank)
         h.wr16(h.s('wScriptPos'), addr)
@@ -87,10 +87,12 @@ def main():
                 if (bank, addr) == h.sym[stop]:
                     return stop, texts, movements
             command = h.mem[bank, addr]
+            if stop_before_battle and command == 0x5f:  # startbattle
+                return 'startbattle', texts, movements
             pointer = h.mem[bank, addr + 1] | h.mem[bank, addr + 2] << 8
-            if command == 0x4c:  # writetext
+            if command in (0x4c, 0x51, 0x53):  # writetext / jumptextfaceplayer / jumptext
                 texts.append((bank, pointer))
-            elif command == 0x4b:  # farwritetext
+            elif command in (0x4b, 0x52):  # farwritetext / farjumptext
                 texts.append((h.mem[bank, addr + 1], h.mem[bank, addr + 2] | h.mem[bank, addr + 3] << 8))
             elif command == 0x69:  # applymovement
                 movements.append(h.mem[bank, addr + 1])
@@ -113,8 +115,284 @@ def main():
         'Script_follow': consume(2), 'Script_stopfollow': b'\xc9',
         'Script_halloffame': b'\xc9',
     })
+    special_bank, special_addr = h.sym['Script_special']
+    native_special = bytes(h.mem[special_bank, special_addr:special_addr + len(presentation['Script_special'])])
     try:
         with patches(h, presentation):
+            print('[Blue badge gate, other Kanto gyms without extra checks, and migrated map flags]', flush=True)
+            gym_entries = (
+                ('VIRIDIAN_GYM', 'ViridianGymBlueScript', 'ENGINE_EARTHBADGE', 15),
+            )
+            for map_name, entry, own, needed in gym_entries:
+                for count in (needed - 1, needed):
+                    badges(count)
+                    h.call('EngineFlagAction', bc=0, de=flags[own])
+                    load(map_name)
+                    end, _, _ = script(entry, (entry + '.Ready',))
+                    check(bool(end) == (count == needed), f'{entry}: {count} badges, needs {needed}')
+
+            for map_name, entry, trainer in (
+                    ('PEWTER_GYM', 'PewterGymBrockScript', 'BROCK'),
+                    ('CERULEAN_GYM', 'CeruleanGymMistyScript', 'MISTY'),
+                    ('VERMILION_GYM', 'VermilionGymSurgeScript', 'LT_SURGE'),
+                    ('CELADON_GYM', 'CeladonGymErikaScript', 'ERIKA'),
+                    ('SAFFRON_GYM', 'SaffronGymSabrinaScript', 'SABRINA'),
+                    ('FUCHSIA_GYM', 'FuchsiaGymJanineScript', 'JANINE'),
+                    ('SEAFOAM_GYM', 'SeafoamGymBlaineScript', 'BLAINE')):
+                badges(0)
+                load(map_name)
+                end, _, _ = script(entry, stop_before_battle=True)
+                check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes[trainer],
+                      f'{entry}: an unwanted gym prerequisite remains')
+
+            for female in (False, True):
+                badges(15)
+                h.call('EngineFlagAction', bc=int(female) << 8, de=flags['ENGINE_PLAYER_IS_FEMALE'])
+                load('VIRIDIAN_GYM')
+                end, texts, _ = script('ViridianGymBlueScript', stop_before_battle=True)
+                expected = 'LeaderBlueReadyGirlText' if female else 'LeaderBlueReadyBoyText'
+                other = 'LeaderBlueReadyBoyText' if female else 'LeaderBlueReadyGirlText'
+                check(end == 'startbattle' and h.sym[expected] in texts and h.sym[other] not in texts,
+                      f'Blue gender greeting: female={female}')
+            h.call('EngineFlagAction', bc=0, de=flags['ENGINE_PLAYER_IS_FEMALE'])
+
+            # Every middle-badge combination, with unrelated late badges present too.
+            for johto, kanto in product((0x7f, 0xff), range(256)):
+                write('wJohtoBadges', johto)
+                write('wKantoBadges', kanto)
+                script('CheckSouthernKantoAccessScript')
+                check(bool(read('wScriptVar')) == (johto == 0xff and kanto & 0x3f == 0x3f),
+                      f'southern access: Johto={johto:#x}, Kanto={kanto:#x}')
+
+            for count, returned in product(range(16), (False, True)):
+                for map_name in ('CINNABAR_ISLAND', 'VIRIDIAN_GYM', 'VIRIDIAN_CITY'):
+                    badges(count)
+                    event('EVENT_BLUE_IN_CINNABAR', returned)
+                    event('EVENT_VIRIDIAN_GYM_BLUE', not returned)
+                    load(map_name)
+                    h.call('RunMapCallback', a=2 if map_name != 'VIRIDIAN_CITY' else 5)
+                    expected = count >= 15 and returned
+                    check(event('EVENT_BLUE_IN_CINNABAR') == expected, f'{map_name}: Blue return at {count}, old={returned}')
+                    check(event('EVENT_VIRIDIAN_GYM_BLUE') == (not expected), f'{map_name}: Blue gym visibility at {count}')
+            for kanto in (0x80, 0xbf, 0xff):
+                write('wJohtoBadges', 255)
+                write('wKantoBadges', kanto)
+                event('EVENT_BLUE_IN_CINNABAR', True)
+                event('EVENT_VIRIDIAN_GYM_BLUE', False)
+                script('UpdateBlueReturnScript')
+                ready = kanto.bit_count() >= 7
+                check(event('EVENT_BLUE_IN_CINNABAR') == ready, f'old Earth Badge bypassed Blue return: Kanto={kanto:#x}')
+                check(read('wKantoBadges') == kanto, 'Blue migration changed an earned badge')
+            # Calling the city script directly also verifies its callback-independent repair.
+            for count in (14, 15):
+                badges(count)
+                event('EVENT_BLUE_IN_CINNABAR', False)
+                event('EVENT_VIRIDIAN_GYM_BLUE', True)
+                load('CINNABAR_ISLAND')
+                _, texts, _ = script('CinnabarIslandBlue')
+                check(event('EVENT_BLUE_IN_CINNABAR') == (count == 15), f'Blue departure at {count}')
+                check(event('EVENT_VIRIDIAN_GYM_BLUE') == (count < 15), f'Blue gym unlock at {count}')
+                expected_text = 'CinnabarIslandBlueReturnText' if count == 15 else 'CinnabarIslandBlueNeedBadgesText'
+                check(h.sym[expected_text] in texts, f'Blue departure text at {count}')
+
+            for hall in (False, True):
+                badges(15)
+                event('EVENT_BEAT_ELITE_FOUR', hall)
+                load('VIRIDIAN_GYM')
+                with patches(h, {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9'}):
+                    _, texts, _ = script('ViridianGymBlueScript')
+                expected = 'LeaderBlueRematchNextText' if hall else 'LeaderBlueLeagueNextText'
+                check(h.sym[expected] in texts and read('wKantoBadges') == 255, f'Blue badge/advice: old Champion={hall}')
+                check(read('wSpecialPhoneCallID') == phone['SPECIALCALL_CRYSTAL_CAPE'], 'Blue did not queue Crystal at sixteen badges')
+
+            load('ROUTE_5')
+            for powered in (False, True):
+                event('EVENT_RETURNED_MACHINE_PART', powered)
+                event('EVENT_BEAT_MISTY', False)
+                _, texts, _ = script('Route5PokefanMScript')
+                expected = 'Route5MistyNotBeatenText' if powered else 'Route5PokefanMText'
+                check(texts == [h.sym[expected]], f'Route 5 blocker reason: power restored={powered}')
+
+            write('wJohtoBadges', 0x7f)
+            write('wKantoBadges', 1)
+            load('VICTORY_ROAD_GATE')
+            write('wVictoryRoadGateSceneID', 0)
+            _, _, moves = script('VictoryRoadGateBadgeCheckScript')
+            check(bool(moves) and read('wVictoryRoadGateSceneID') == 0, 'eight mixed-region badges passed the Johto guard')
+
+            for count, hall in product((10, 11), (False, True)):
+                badges(count)
+                event('EVENT_BEAT_ELITE_FOUR', hall)
+                for map_name, entry, y, columns in (('ROUTE_5_SAFFRON_GATE', 'Route5SaffronGateBadgeCheck', 5, range(2, 8)),
+                                                    ('ROUTE_6_SAFFRON_GATE', 'Route6SaffronGateBadgeCheck', 1, (4, 5))):
+                    load(map_name)
+                    _, _, moves = script(entry)
+                    check(bool(moves) == (count < 11), f'{entry}: {count}, old Champion={hall}')
+                    for x in columns:
+                        write('wPlayerStandingMapX', x + 4)
+                        write('wPlayerStandingMapY', y + 4)
+                        triggered = h.call('CheckCurrentMapCoordEvents')['c_flag']
+                        check(triggered and h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym[entry][1],
+                              f'{entry}: entrance trigger missing at {x},{y}')
+
+            # Use compiled blocks, collisions and coord triggers to find a bypass,
+            # ignoring NPCs so moving around the guard cannot hide a route.
+            block_bank, block_addr = h.sym['Route5SaffronGate_Blocks']
+            coll_bank, coll_addr = h.sym['TilesetGateColl']
+            walkable = set()
+            for y in range(8):
+                for x in range(10):
+                    block = h.mem[block_bank, block_addr + (y // 2) * 5 + x // 2]
+                    collision = h.mem[coll_bank, coll_addr + block * 4 + (y % 2) * 2 + x % 2]
+                    if collision in (0x00, 0x70, 0x71):
+                        walkable.add((x, y))
+
+            for map_name, entry, source_y, exit_y in (('ROUTE_5_SAFFRON_GATE', 'Route5SaffronGateBadgeCheck', 1, 7),
+                                                      ('ROUTE_6_SAFFRON_GATE', 'Route6SaffronGateBadgeCheck', 6, 0)):
+                load(map_name)
+                triggers = set()
+                for x, y in walkable:
+                    write('wPlayerStandingMapX', x + 4)
+                    write('wPlayerStandingMapY', y + 4)
+                    if h.call('CheckCurrentMapCoordEvents')['c_flag']:
+                        check(h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym[entry][1], f'{entry}: unexpected coord script')
+                        triggers.add((x, y))
+                for blocked in (set(), triggers):
+                    reached = {(4, source_y), (5, source_y)}
+                    frontier = list(reached)
+                    while frontier:
+                        x, y = frontier.pop()
+                        for tile in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                            if tile in walkable and tile not in blocked and tile not in reached:
+                                reached.add(tile)
+                                frontier.append(tile)
+                    escaped = any((x, exit_y) in reached for x in (4, 5))
+                    check(escaped == (not blocked), f'{entry}: collision/coord path bypass, blocked={bool(blocked)}')
+
+            for count in (11, 12, 13, 14):
+                badges(count)
+                event('EVENT_BEAT_JANINE', True)
+                # Janine alone cannot remove the coast blockade or alter her win flag.
+                h.call('EngineFlagAction', bc=0x100, de=flags['ENGINE_SOULBADGE'])
+                load('VIRIDIAN_CITY')
+                h.call('RunMapCallback', a=2)
+                h.call('LoadObjectMasks')
+                hidden = [bool(h.rd(h.s('wObjectMasks') + i)) for i in range(5, 9)]
+                check(hidden == [count == 14] * 4, f'Viridian southern blockers at {count}: {hidden}')
+                check(event('EVENT_BEAT_JANINE'), 'coast callback cleared Janine victory')
+
+            print('[Wing gifts, regional gossip, radio and final Oak invitation]', flush=True)
+            for johto, kanto in product(range(256), (0, 255)):
+                event('EVENT_GOT_SILVER_WING', False)
+                write('wNumKeyItems', 0)
+                write('wKeyItems', [255])
+                write('wJohtoBadges', johto)
+                write('wKantoBadges', kanto)
+                load('PEWTER_CITY')
+                script('PewterCityGrampsScript')
+                check(event('EVENT_GOT_SILVER_WING') == (johto == 255),
+                      f'Silver Wing eligibility: Johto={johto:#x}, Kanto={kanto:#x}')
+            event('EVENT_GOT_SILVER_WING', False)
+            badges(8)
+            write('wNumKeyItems', 25)
+            write('wKeyItems', [con.items['BICYCLE']] * 25 + [255])
+            script('PewterCityGrampsScript')
+            check(not event('EVENT_GOT_SILVER_WING'), 'full pocket lost the Silver Wing')
+            write('wNumKeyItems', 0)
+            write('wKeyItems', [255])
+            script('PewterCityGrampsScript')
+            check(event('EVENT_GOT_SILVER_WING') and read('wNumKeyItems') == 1, 'Silver Wing retry failed')
+            script('PewterCityGrampsScript')
+            check(read('wNumKeyItems') == 1, 'Silver Wing duplicated')
+
+            var = h.s('wScriptVar')
+            for johto, kanto, beasts in product(range(256), (0, 255), (False, True)):
+                write('wJohtoBadges', johto)
+                write('wKantoBadges', kanto)
+                event('EVENT_GOT_RAINBOW_WING', False)
+                event('EVENT_BEAT_ELITE_FOUR', False)
+                load('TIN_TOWER_1F')
+                force_beasts = bytes([0x3e, int(beasts), 0xea, var & 255, var >> 8, 0xc9])
+                with patches(h, {'Script_special': native_special, 'BeastsCheck': force_beasts}):
+                    end, _, _ = script('TinTower1F_MapScripts.NPCsCallback',
+                                       ('TinTower1F_MapScripts.FaceBeasts', 'TinTower1F_MapScripts.GotRainbowWing'))
+                check(end.endswith('.GotRainbowWing') == (johto == 255 and beasts),
+                      f'Rainbow Wing sage: Johto={johto:#x}, Kanto={kanto:#x}, beasts={beasts}')
+
+            for johto in (0x7f, 0xff):
+                write('wJohtoBadges', johto)
+                end, _, _ = script('BuenaPhoneScript_Random2',
+                                   ('BuenaPhoneScript_Random2.Kanto', 'BuenaPhoneScript_Random2.Jumptable'))
+                check(end.endswith('.Kanto') == (johto == 0xff), f'Buena Kanto gossip at Johto={johto:#x}')
+
+            for count, hall, clair, cape, opened in product((15, 16), (False, True), (False, True), (False, True), (False, True)):
+                badges(count)
+                event('EVENT_BEAT_ELITE_FOUR', hall)
+                event('EVENT_BEAT_CLAIR_REMATCH', clair)
+                event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
+                event('EVENT_OPENED_MT_SILVER', opened)
+                write('wSpecialPhoneCallID', [0, 0])
+                script('QueueOakMtSilverCallScript')
+                ready = count == 16 and hall and clair and cape and not opened
+                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if ready else 0),
+                      f'final Oak invitation: {count}, hall={hall}, Clair={clair}, cape={cape}, opened={opened}')
+
+            load('ROUTE_25')
+            event('EVENT_ROUTE_25_MEW_APPEARED', False)
+            for count in (15, 16):
+                badges(count)
+                if count == 15:
+                    write('wKantoBadges', 0xbf)  # Earth owned in a migrated save, Blaine missing.
+                end, _, _ = script('Route25MewAppearsScript',
+                                   ('Route25MewAppearsScript.Done', 'Route25MewAppearsScript.Appear'))
+                check(end.endswith('.Appear') == (count == 16), f'new Mew appearance at {count}, Earth owned')
+
+            for result in (0, 1):
+                badges(16)
+                event('EVENT_BEAT_ELITE_FOUR', True)
+                event('EVENT_BEAT_CLAIR_REMATCH', True)
+                event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', False)
+                event('EVENT_OPENED_MT_SILVER', False)
+                write('wSpecialPhoneCallID', [0, 0])
+                force_result = bytes([0x3e, result, 0xea, var & 255, var >> 8, 0xc9])
+                with patches(h, {'Script_startbattle': force_result, 'Script_reloadmapafterbattle': b'\xc9',
+                                 'Script_playmusic': consume(2), 'Script_playmapmusic': b'\xc9'}):
+                    _, texts, _ = script('Route25CrystalBattle')
+                won = result == 0
+                check(event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE') == won, f'cape victory/retry flag, result={result}')
+                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if won else 0),
+                      f'cape was final condition but Oak invitation was wrong, result={result}')
+                expected = 'Route25CrystalAfterText' if won else 'Route25CrystalTryAgainText'
+                check(h.sym[expected] in texts, f'cape win/loss after-battle text, result={result}')
+
+            print('[Final phone rematch tiers follow the League and Falkner, independent of Kanto power]', flush=True)
+            phone_entries = (
+                ('NATIONAL_PARK', 'TrainerSchoolboyJack1.Fight4'),
+                ('OLIVINE_LIGHTHOUSE_2F', 'TrainerSailorHuey.Fight3'),
+                ('ROUTE_32', 'TrainerFisherRalph1.Fight4'),
+                ('ROUTE_33', 'TrainerHikerAnthony.Fight4'),
+                ('ROUTE_34', 'TrainerCamperTodd1.Fight4'), ('ROUTE_34', 'TrainerPicnickerGina1.Fight4'),
+                ('ROUTE_35', 'TrainerBugCatcherArnie.Fight4'), ('ROUTE_36', 'TrainerSchoolboyAlan1.Fight4'),
+                ('ROUTE_38', 'TrainerLassDana1.Fight4'), ('ROUTE_38', 'TrainerSchoolboyChad1.Fight4'),
+                ('ROUTE_42', 'TrainerFisherTully.Fight3'), ('ROUTE_43', 'TrainerPokemaniacBrent.Fight3'),
+                ('ROUTE_43', 'TrainerPicnickerTiffany.Fight3'), ('ROUTE_44', 'TrainerBirdKeeperVance1.Fight2'),
+                ('ROUTE_44', 'TrainerFisherWilton1.Fight2'), ('ROUTE_45', 'TrainerHikerParry.Fight2'),
+                ('ROUTE_46', 'TrainerPicnickerErin1.Fight2'),
+            )
+            battle_stub = {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9'}
+            for map_name, entry in phone_entries:
+                for hall, falkner, power in product((False, True), repeat=3):
+                    event('EVENT_BEAT_ELITE_FOUR', hall)
+                    event('EVENT_BEAT_FALKNER_REMATCH', falkner)
+                    event('EVENT_RESTORED_POWER_TO_KANTO', power)
+                    load(map_name)
+                    with patches(h, battle_stub):
+                        script(entry)
+                    h.call('ReadTrainerParty')
+                    levels = [read(f'wOTPartyMon{i}Level') for i in range(1, read('wOTPartyCount') + 1)]
+                    check(max(levels) == (77 if falkner else 74) if hall else max(levels) <= 45,
+                          f'{entry}: hall={hall}, Falkner={falkner}, power={power}, levels={levels}')
+
             print('[Diglett Cave: officer removed, Route 2 blocker follows Surge rather than Mt. Moon]', flush=True)
             for defeated_surge, defeated_rival in product((False, True), repeat=2):
                 event('EVENT_BEAT_LTSURGE', defeated_surge)
@@ -128,10 +406,13 @@ def main():
             check(h.rd16(h.s('wMap1ObjectScript')) == h.sym['DiglettsCavePokefanMScript'][1],
                   'Diglett Cave regular Pokefan was removed instead of the officer')
 
-            print('[Fuchsia shoreline: Janine opens the rocks, Route 20 and old flags do not]', flush=True)
+            print('[Fuchsia shoreline: all three middle Kanto badges; old rock flags do not bypass them]', flush=True)
             with patches(h, {'BufferScreen': b'\xc9'}):
-                for janine, old_rocks in product((False, True), repeat=2):
+                for janine, erika, sabrina, old_rocks in product((False, True), repeat=4):
+                    badges(11)
                     event('EVENT_BEAT_JANINE', janine)
+                    for flag, owned in (('ENGINE_SOULBADGE', janine), ('ENGINE_RAINBOWBADGE', erika), ('ENGINE_MARSHBADGE', sabrina)):
+                        h.call('EngineFlagAction', bc=int(owned) << 8, de=flags[flag])
                     event('EVENT_CINNABAR_ROCKS_CLEARED', old_rocks)
                     load('ROUTE_20')
                     h.call('RunMapCallback', a=map_setup['MAPCALLBACK_NEWMAP'])
@@ -141,8 +422,8 @@ def main():
                     h.call('LoadBlockData')
                     for x, y in ((6, 6), (8, 6), (10, 6), (12, 8), (4, 8), (10, 10)):
                         loc = h.call('GetBlockLocation', de=((x + 4) << 8) | (y + 4))['hl']
-                        check((h.rd(loc) != 0x7a) == janine,
-                              f'shoreline block {x},{y}: Janine={janine}, old={old_rocks}')
+                        check((h.rd(loc) != 0x7a) == (janine and erika and sabrina),
+                              f'shoreline block {x},{y}: Janine={janine}, Erika={erika}, Sabrina={sabrina}, old={old_rocks}')
 
             print('[Johto rematches: League starts Falkner, then each previous leader unlocks the next]', flush=True)
             rematches = (
@@ -262,6 +543,7 @@ def main():
             check(read('wNumKeyItems') == read('wNumBalls') == 1, 'Elm duplicated a gift')
 
             print('[Surge exit rings Elm immediately; the gift stays a surprise and the fare is granted once]', flush=True)
+            badges(10)
             load('VERMILION_GYM')
             surge(False)
             event('EVENT_GOT_SS_TICKET_FROM_ELM', False)
@@ -508,6 +790,32 @@ def main():
                 h.call('Pokedex_GetArea.right')
             check(read('hWY') == (0 if johto == 0xff else 0x90), f'Pokédex area: johto={johto:#x}')
 
+        print('[Radio recognizes Kanto leaders before the League and keeps story/rematch classes hidden]', flush=True)
+        for johto, hall in product((0x7f, 0xff), (False, True)):
+            write('wJohtoBadges', johto)
+            write('wStatusFlags', 0x40 if hall else 0)
+            result = h.call('GetPnPHiddenPeople')
+            hidden = []
+            bank = h.sym['PnP_HiddenPeople'][0]
+            ptr = result['hl']
+            while h.mem[bank, ptr] != 255:
+                hidden.append(h.mem[bank, ptr])
+                ptr += 1
+            check((con.trainer_classes['BROCK'] not in hidden) == (hall or johto == 0xff), 'radio hid Kanto leaders during Kanto')
+            check((con.trainer_classes['WILL'] not in hidden) == hall, 'radio Elite Four recognition milestone')
+            check(con.trainer_classes['CRYSTAL3'] in hidden and con.trainer_classes['FALKNER_REMATCH'] in hidden,
+                  'radio exposed custom story/rematch classes')
+
+        print('[Rooftop sale improves with complete Johto badges, not an old Hall of Fame flag]', flush=True)
+        shop_ui = {name: b'\xc9' for name in ('ReadMart', 'LoadStandardMenuHeader', 'MartTextbox', 'BuyMenu')}
+        with patches(h, shop_ui):
+            for johto, hall in product((0x7f, 0xff), (False, True)):
+                write('wJohtoBadges', johto)
+                write('wStatusFlags', 0x40 if hall else 0)
+                h.call('RooftopSale')
+                expected = 'RooftopSaleMart2' if johto == 0xff else 'RooftopSaleMart1'
+                check(h.rd16(h.s('wMartPointer')) == h.sym[expected][1], f'rooftop inventory: Johto={johto:#x}, hall={hall}')
+
         print('[compiled gym and first League levels follow the new route]', flush=True)
         write('wLinkMode', 0)
         write('wInBattleTowerBattle', 0)
@@ -549,7 +857,7 @@ def main():
         route_aces += [('LASS', 'ELLEN', 52), ('LASS', 'LAURA', 53), ('LASS', 'SHANNON', 53),
                        ('CAMPER', 'LLOYD', 53), ('COOLTRAINERM', 'KEVIN', 54),
                        ('SCHOOLBOY', 'DANNY', 63), ('COOLTRAINERF', 'QUINN', 64)]
-        # Elite Four tier, then the final tier that also needs Kanto's power.
+        # Elite Four tier, then the final tier after Falkner's rematch.
         for tier, ace in ((0, 74), (1, 77)):
             for trainer, names in (
                     ('YOUNGSTER', ('JOEY5', None)), ('SCHOOLBOY', ('JACK4', 'JACK5')),

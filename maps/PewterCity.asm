@@ -26,10 +26,19 @@ PewterCityGrampsScript:
 	opentext
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue .GotSilverWing
+	farscall CheckJohtoBadgesScript
+	iftrue .GiveWing
+	writetext PewterCityGrampsWaitText
+	waitbutton
+	closetext
+	end
+.GiveWing:
 	writetext PewterCityGrampsText
 	buttonsound
 	verbosegiveitem SILVER_WING
+	iffalse .BagFull
 	setevent EVENT_GOT_SILVER_WING
+.BagFull:
 	closetext
 	end
 
@@ -177,3 +186,14 @@ PewterCity_MapEvents:
 	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
 	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
 	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1
+
+PewterCityGrampsWaitText:
+	text "I have a keepsake"
+	line "for a trainer who"
+	cont "beats all eight"
+	cont "JOHTO GYM LEADERS."
+
+	para "Return with their"
+	line "BADGES and"
+	cont "I'll show you."
+	done
