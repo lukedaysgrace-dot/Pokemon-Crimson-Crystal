@@ -3213,7 +3213,8 @@ wAbilityBackupPtr:: dw ; cursor into wAbilityAttrBackup
 ; again when a mon enters on that side.
 ; flags: bit 0 = ate a held Berry, bit 1 = lost its item (Thief/Knock Off/
 ; Pickpocket), bit 2 = Cud Chew is armed for the NEXT end of turn,
-; bit 3 = Cud Chew replay is due this end of turn, bit 4 = Trace is waiting
+; bit 3 = Cud Chew replay is due this end of turn, bit 4 = Trace is waiting,
+; bit 5 = Berserk Gene has activated during this entry
 wPlayerItemStateFlags:: db
 wEnemyItemStateFlags:: db
 wPlayerConsumedItem:: db

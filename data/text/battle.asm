@@ -316,6 +316,27 @@ BattleText_UsersStringBuffer1Activated:
 	cont "activated!"
 	prompt
 
+BattleText_BerserkGeneRaisedBoth:
+	text "<USER>'s"
+	line "BERSERK GENE"
+	cont "raised its ATTACK"
+	cont "and SPECIAL"
+	cont "ATTACK!"
+	prompt
+
+BattleText_BerserkGeneRaisedAttack:
+	text "<USER>'s"
+	line "BERSERK GENE"
+	cont "raised its ATTACK!"
+	prompt
+
+BattleText_BerserkGeneRaisedSpAttack:
+	text "<USER>'s"
+	line "BERSERK GENE"
+	cont "raised its SPECIAL"
+	cont "ATTACK!"
+	prompt
+
 BattleText_ItemsCantBeUsedHere:
 	text "Items can't be"
 	line "used here."

@@ -10,6 +10,9 @@ NUM_MOVES EQU 4
 BASE_STAT_LEVEL EQU 7
 MAX_STAT_LEVEL EQU 13
 
+; wPlayerItemStateFlags / wEnemyItemStateFlags: reset on each switch-in.
+ITEMSTATE_BERSERK_GENE_USED EQU 5
+
 ; minimum damage before type effectiveness
 MIN_NEUTRAL_DAMAGE EQU 2
 

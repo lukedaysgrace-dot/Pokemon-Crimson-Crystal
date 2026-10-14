@@ -57,17 +57,147 @@ CheckContestBattleOver:
 	and a
 	ret
 
-SetBerserkGeneConfusionDuration:
+HandleOpponentBerserkGene_Core::
+	ldh a, [hBattleTurn]
+	push af
+	xor 1
+	ldh [hBattleTurn], a
+	call HandleUserBerserkGene_Core
+	pop af
+	ldh [hBattleTurn], a
+	ret
+
+HandleUserBerserkGene_Core::
+; Reusable, Mewtwo-only item: strictly below half HP, once per entry.
+; Preserve the in-progress move's stat/failure state and multi-hit count.
+	push bc
+	push de
+	push hl
+	call .check
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.check
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wPlayerConfuseCount
-	jr z, .set_count
-	ld hl, wEnemyConfuseCount
-.set_count
-	call BattleRandom
-	and %11
-	add 2
-	ld [hl], a
+	ld a, [wBattleMonItem]
+	jr z, .item
+	ld a, [wEnemyMonItem]
+.item
+	cp BERSERK_GENE
+	ret nz
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp KLUTZ
+	ret z
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .species
+	ld a, [wEnemyMonSpecies]
+.species
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(MEWTWO)
+	ret nz
+	ld a, h
+	cp HIGH(MEWTWO)
+	ret nz
+	ld hl, wBattleMonHP
+	ld de, wBattleMonMaxHP
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .hp
+	ld hl, wEnemyMonHP
+	ld de, wEnemyMonMaxHP
+.hp
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	or c
+	ret z ; fainted holders cannot activate
+	; HP * 2 < max HP (including odd maximum HP).
+	sla c
+	rl b
+	ret c
+	ld a, [de]
+	cp b
+	jp c, .done
+	jr nz, .below_half
+	inc de
+	ld a, [de]
+	cp c
+	jp z, .done
+	jp c, .done
+.below_half
+	ldh a, [hBattleTurn]
+	ld c, a
+	farcall ReadItemStateFlags
+	bit ITEMSTATE_BERSERK_GENE_USED, b
+	ret nz
+	set ITEMSTATE_BERSERK_GENE_USED, b
+	farcall WriteItemStateFlags
+	ld a, [wLoweredStat]
+	push af
+	ld a, [wFailedMessage]
+	push af
+	ld a, [wAttackMissed]
+	push af
+	ld a, [wEffectFailed]
+	push af
+	ld a, [wNumHits]
+	push af
+	ld b, ATTACK
+	call .raise
+	push af
+	ld b, SP_ATTACK
+	call .raise
+	pop bc ; b = whether Attack rose, a = whether Special Attack rose
+	ld hl, BattleText_BerserkGeneRaisedBoth
+	and a
+	jr z, .attack_only
+	bit 0, b
+	jr nz, .message
+	ld hl, BattleText_BerserkGeneRaisedSpAttack
+	jr .message
+.attack_only
+	bit 0, b
+	jr z, .restore
+	ld hl, BattleText_BerserkGeneRaisedAttack
+.message
+	call StdBattleTextbox
+.restore
+	pop af
+	ld [wNumHits], a
+	pop af
+	ld [wEffectFailed], a
+	pop af
+	ld [wAttackMissed], a
+	pop af
+	ld [wFailedMessage], a
+	pop af
+	ld [wLoweredStat], a
+.done
+	ret
+
+.raise
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	farcall RaiseStat
+	ld a, [wFailedMessage]
+	and a
+	jr nz, .no_raise
+	ld a, [wLoweredStat]
+	bit 7, a ; Contrary already handled its drop animation/message
+	jr nz, .no_raise
+	farcall PlayStatUpAnim_Core
+	ld a, 1
+	ret
+.no_raise
+	xor a
 	ret
 
 ComputeEnemyHPPercentage:
