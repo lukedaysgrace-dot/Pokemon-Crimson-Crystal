@@ -196,6 +196,7 @@ SchoolGirlSpriteGFX::          INCBIN "gfx/sprites/school_girl.2bpp"
 FatGuySpriteGFX::              INCBIN "gfx/sprites/fat_guy.2bpp"
 BurglarSpriteGFX::             INCBIN "gfx/sprites/burglar.2bpp"
 AromaLadySpriteGFX::           INCBIN "gfx/sprites/aroma_lady.2bpp"
+DragoonSpriteGFX::             INCBIN "gfx/sprites/dragoon.2bpp"
 FossilSpriteGFX::              INCBIN "gfx/sprites/fossil.2bpp"
 
 

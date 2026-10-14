@@ -4,7 +4,22 @@
 Route5_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .Pokefan
+
+.Pokefan:
+; Derive this blocker from both milestones, including saves where returning
+; the MACHINE PART already set the shared Route 5/6 disappearance flag.
+	checkevent EVENT_RETURNED_MACHINE_PART
+	iffalse .KeepBlocking
+	checkevent EVENT_BEAT_MISTY
+	iffalse .KeepBlocking
+	disappear ROUTE5_POKEFAN_M
+	return
+
+.KeepBlocking:
+	appear ROUTE5_POKEFAN_M
+	return
 
 Route5PokefanMScript:
 	jumptextfaceplayer Route5PokefanMText
@@ -21,6 +36,10 @@ Route5PokefanMText:
 
 	para "at the POWER PLANT"
 	line "is solved."
+
+	para "MISTY likes to see"
+	line "what trainers are"
+	cont "made of in battle."
 	done
 
 Route5UndergroundPathSignText:
@@ -53,4 +72,4 @@ Route5_MapEvents:
 	bg_event 10, 11, BGEVENT_READ, HouseForSaleSign
 
 	db 1 ; object events
-	object_event 17, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event 17, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_POKEFAN_M_LEFT

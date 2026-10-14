@@ -329,3 +329,19 @@ SpriteMovementData::
 	db FIXED_FACING | SLIDING ; flags1
 	db 0 ; flags2
 	db SWIMMING ; palette flags
+
+; SPRITEMOVEDATA_POKEMON_LEFT
+	db SPRITEMOVEFN_ANIMATED_STANDING ; movement function
+	db LEFT ; facing
+	db OBJECT_ACTION_STEP ; action
+	db FIXED_FACING ; flags1
+	db 0 ; flags2
+	db 0 ; palette flags
+
+; SPRITEMOVEDATA_POKEMON_RIGHT
+	db SPRITEMOVEFN_ANIMATED_STANDING ; movement function
+	db RIGHT ; facing
+	db OBJECT_ACTION_STEP ; action
+	db FIXED_FACING ; flags1
+	db 0 ; flags2
+	db 0 ; palette flags

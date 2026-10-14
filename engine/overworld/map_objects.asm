@@ -571,6 +571,7 @@ MapObjectMovementPattern:
 	dw .LookDownLeft ; 1d
 	dw .MovementSnorlaxSleep ; 1e
 	dw .MovementFishingBoat ; 1f
+	dw .MovementAnimatedStanding ; 20
 
 .Null_00:
 	ret
@@ -826,6 +827,20 @@ MapObjectMovementPattern:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_FISHING_BOAT
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_04
+	ret
+
+.MovementAnimatedStanding:
+; Cycle the walking sheet's facing frames without leaving the map tile.
+	call EndSpriteMovement
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], STANDING
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_STEP
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04

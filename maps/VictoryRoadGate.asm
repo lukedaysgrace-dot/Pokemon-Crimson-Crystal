@@ -1,7 +1,10 @@
 	object_const_def ; object_event constants
 	const VICTORYROADGATE_OFFICER
 	const VICTORYROADGATE_BLACK_BELT1
-	const VICTORYROADGATE_BLACK_BELT2
+	const VICTORYROADGATE_RED_OFFICER
+	const VICTORYROADGATE_BLUE_OFFICER
+	const VICTORYROADGATE_RED_OFFICER_ASIDE
+	const VICTORYROADGATE_BLUE_OFFICER_ASIDE
 
 VictoryRoadGate_MapScripts:
 	db 2 ; scene scripts
@@ -9,7 +12,7 @@ VictoryRoadGate_MapScripts:
 	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
-	callback MAPCALLBACK_OBJECTS, .LockMtSilver
+	callback MAPCALLBACK_OBJECTS, .SetupObjects
 
 .DummyScene0:
 	end
@@ -17,11 +20,20 @@ VictoryRoadGate_MapScripts:
 .DummyScene1:
 	end
 
-.LockMtSilver:
+.SetupObjects:
 	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
 	iftrue .MtSilverLockDone
 	appear VICTORYROADGATE_BLACK_BELT1
 .MtSilverLockDone:
+; Once the Victory Road guards have stepped aside, show them beside the
+; doorway instead of in front of it.
+	checkevent EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED
+	iftrue .GuardsMoved
+	setevent EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN
+	return
+
+.GuardsMoved:
+	clearevent EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN
 	return
 
 VictoryRoadGateBadgeCheckScene:
@@ -52,11 +64,60 @@ VictoryRoadGateBadgeCheckScript:
 VictoryRoadGateLeftBlackBeltScript:
 	jumptextfaceplayer VictoryRoadGateLeftBlackBeltText
 
-VictoryRoadGateRightBlackBeltScript:
-	jumptextfaceplayer VictoryRoadGateRightBlackBeltText
+VictoryRoadGateGuardScript:
+	faceplayer
+	opentext
+	checkevent EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED
+	iftrue .AlreadyMoved
+	readvar VAR_BADGES
+	ifgreater NUM_BADGES - 1, .AllSixteenBadges
+	writetext VictoryRoadGateGuardNotEnoughBadgesText
+	waitbutton
+	closetext
+	turnobject LAST_TALKED, DOWN
+	end
+
+.AlreadyMoved:
+	writetext VictoryRoadGateGuardGoAheadText
+	waitbutton
+	closetext
+	end
+
+.AllSixteenBadges:
+	writetext VictoryRoadGateGuardAllBadgesText
+	waitbutton
+	closetext
+; If the player is standing beside the doorway, step them out of the way.
+	readvar VAR_FACING
+	ifequal LEFT, .StepPlayerDown
+	ifequal RIGHT, .StepPlayerDown
+	sjump .GuardsStepAside
+
+.StepPlayerDown:
+	applymovement PLAYER, VictoryRoadGateStepDownMovement
+.GuardsStepAside:
+	turnobject VICTORYROADGATE_RED_OFFICER, DOWN
+	turnobject VICTORYROADGATE_BLUE_OFFICER, DOWN
+	applymovement VICTORYROADGATE_RED_OFFICER, VictoryRoadGateRedOfficerStepAsideMovement
+	applymovement VICTORYROADGATE_BLUE_OFFICER, VictoryRoadGateBlueOfficerStepAsideMovement
+	setevent EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED
+	end
+
+VictoryRoadGateGuardAsideScript:
+	jumptextfaceplayer VictoryRoadGateGuardGoAheadText
 
 VictoryRoadGateStepDownMovement:
 	step DOWN
+	step_end
+
+VictoryRoadGateRedOfficerStepAsideMovement:
+	step LEFT
+	turn_head RIGHT
+	step_end
+
+VictoryRoadGateBlueOfficerStepAsideMovement:
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 VictoryRoadGateOfficerText:
@@ -92,15 +153,31 @@ VictoryRoadGateLeftBlackBeltText:
 	cont "there."
 	done
 
-VictoryRoadGateRightBlackBeltText:
-	text "Off to the #MON"
-	line "LEAGUE, are you?"
+VictoryRoadGateGuardNotEnoughBadgesText:
+	text "VICTORY ROAD is"
+	line "open only to"
 
-	para "The ELITE FOUR are"
-	line "so strong it's"
+	para "trainers with all"
+	line "16 BADGES of JOHTO"
+	cont "and KANTO."
 
-	para "scary, and they're"
-	line "ready for you!"
+	para "I'm sorry, but I"
+	line "can't let you"
+	cont "through."
+	done
+
+VictoryRoadGateGuardAllBadgesText:
+	text "Oh! All 16 BADGES"
+	line "of JOHTO and"
+	cont "KANTO!"
+
+	para "Please, go right"
+	line "on through!"
+	done
+
+VictoryRoadGateGuardGoAheadText:
+	text "VICTORY ROAD lies"
+	line "ahead. Good luck!"
 	done
 
 VictoryRoadGate_MapEvents:
@@ -121,7 +198,10 @@ VictoryRoadGate_MapEvents:
 
 	db 0 ; bg events
 
-	db 3 ; object events
+	db 6 ; object events
 	object_event  8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
 	object_event  7,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
-	object_event 12,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX
+	object_event  9,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateGuardScript, EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED
+	object_event 10,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateGuardScript, EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED
+	object_event  8,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateGuardAsideScript, EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN
+	object_event 11,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateGuardAsideScript, EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN
