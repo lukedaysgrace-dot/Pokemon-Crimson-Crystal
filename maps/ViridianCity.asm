@@ -3,6 +3,10 @@
 	const VIRIDIANCITY_GRAMPS2
 	const VIRIDIANCITY_FISHER
 	const VIRIDIANCITY_YOUNGSTER
+	const VIRIDIANCITY_BATTLING_COOLTRAINER_M
+	const VIRIDIANCITY_DRAGOON
+	const VIRIDIANCITY_BIRD
+	const VIRIDIANCITY_BATTLING_COOLTRAINER_F
 
 ViridianCity_MapScripts:
 	db 0 ; scene scripts
@@ -78,6 +82,66 @@ ViridianCityNastyPlotFisher:
 
 ViridianCityYoungsterScript:
 	jumptextfaceplayer ViridianCityYoungsterText
+
+ViridianCityBattlingCooltrainerMScript:
+	set_object_priority VIRIDIANCITY_BIRD, LOW_PRIORITY
+	waitsfx
+	playmusic MUSIC_JOHTO_TRAINER_BATTLE
+	opentext
+	writetext ViridianCityDragoonAttackText
+	pause 30
+	closetext
+	playsound SFX_TACKLE
+	applymovement VIRIDIANCITY_DRAGOON, ViridianCityDragoonAttacksMovement
+	opentext
+	writetext ViridianCityBattleInterruptedMText
+	waitbutton
+	closetext
+	set_object_priority VIRIDIANCITY_BIRD, 0
+	set_object_priority VIRIDIANCITY_DRAGOON, LOW_PRIORITY
+	playsound SFX_TACKLE
+	applymovement VIRIDIANCITY_BIRD, ViridianCityBirdAttacksMovement
+	sjump ViridianCityBattleFinishedScript
+
+ViridianCityBattlingCooltrainerFScript:
+	set_object_priority VIRIDIANCITY_DRAGOON, LOW_PRIORITY
+	waitsfx
+	playmusic MUSIC_JOHTO_TRAINER_BATTLE
+	opentext
+	writetext ViridianCityBirdAttackText
+	pause 30
+	closetext
+	playsound SFX_TACKLE
+	applymovement VIRIDIANCITY_BIRD, ViridianCityBirdAttacksMovement
+	opentext
+	writetext ViridianCityBattleInterruptedFText
+	waitbutton
+	closetext
+	set_object_priority VIRIDIANCITY_DRAGOON, 0
+	set_object_priority VIRIDIANCITY_BIRD, LOW_PRIORITY
+	playsound SFX_TACKLE
+	applymovement VIRIDIANCITY_DRAGOON, ViridianCityDragoonAttacksMovement
+
+ViridianCityBattleFinishedScript:
+	set_object_priority VIRIDIANCITY_DRAGOON, 0
+	set_object_priority VIRIDIANCITY_BIRD, 0
+	special RestartMapMusic
+	end
+
+ViridianCityBattlePokemonScript:
+	jumptext ViridianCityBattlePokemonText
+
+ViridianCityDragoonAttacksMovement:
+	fix_facing
+	big_step RIGHT
+	big_step LEFT
+	step_end
+
+ViridianCityBirdAttacksMovement:
+	fix_facing
+	big_step LEFT
+	big_step RIGHT
+	step_end
 
 ViridianCitySign:
 	jumptext ViridianCitySignText
@@ -205,6 +269,39 @@ ViridianCitySignText:
 	line "Green Paradise"
 	done
 
+ViridianCityDragoonAttackText:
+	text "Go, CHARIZARD!"
+	para "TACKLE!"
+	done
+
+ViridianCityBirdAttackText:
+	text "Go, PIDGEOT!"
+	para "TACKLE!"
+	done
+
+ViridianCityBattleInterruptedMText:
+	text "Hey! You made me"
+	line "mess up my attack!"
+	para "This is an intense"
+	line "battle! Go away!"
+	done
+
+ViridianCityBattleInterruptedFText:
+	text "Look what you did!"
+	line "I lost my focus!"
+	para "This is an intense"
+	line "battle! Leave us"
+	cont "alone!"
+	done
+
+ViridianCityBattlePokemonText:
+	text "CHARIZARD and"
+	line "PIDGEOT are in an"
+	cont "intense battle!"
+	para "Better stay out"
+	line "of their way!"
+	done
+
 ViridianGymSignText:
 	text "VIRIDIAN CITY"
 	line "#MON GYM"
@@ -250,8 +347,12 @@ ViridianCity_MapEvents:
 	bg_event 24, 25, BGEVENT_READ, ViridianCityPokecenterSign
 	bg_event 30, 19, BGEVENT_READ, ViridianCityMartSign
 
-	db 4 ; object events
+	db 8 ; object events
 	object_event 18,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianCityCoffeeGramps, -1
 	object_event 30,  8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityGrampsNearGym, -1
 	object_event  6, 23, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityNastyPlotFisher, -1
 	object_event 17, 21, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianCityYoungsterScript, -1
+	object_event 27, 30, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerMScript, EVENT_BEAT_JANINE
+	object_event 28, 30, SPRITE_DRAGOON, SPRITEMOVEDATA_POKEMON_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_BEAT_JANINE
+	object_event 29, 30, SPRITE_BIRD, SPRITEMOVEDATA_POKEMON_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlePokemonScript, EVENT_BEAT_JANINE
+	object_event 30, 30, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianCityBattlingCooltrainerFScript, EVENT_BEAT_JANINE

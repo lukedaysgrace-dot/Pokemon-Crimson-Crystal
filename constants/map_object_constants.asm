@@ -172,6 +172,8 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_LOOK_DOWN_LEFT       ; 26
 	const SPRITEMOVEDATA_SNORLAX_SLEEP        ; 27
 	const SPRITEMOVEDATA_FISHING_BOAT         ; 28
+	const SPRITEMOVEDATA_POKEMON_LEFT         ; 29
+	const SPRITEMOVEDATA_POKEMON_RIGHT        ; 2a
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -208,6 +210,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const SPRITEMOVEFN_LOOK_DOWN_LEFT        ; 1d
 	const SPRITEMOVEFN_SNORLAX_SLEEP         ; 1e
 	const SPRITEMOVEFN_FISHING_BOAT          ; 1f
+	const SPRITEMOVEFN_ANIMATED_STANDING     ; 20
 
 ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
 	const_def

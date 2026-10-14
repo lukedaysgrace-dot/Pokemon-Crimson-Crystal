@@ -285,9 +285,9 @@
 	const EVENT_BEAT_LANCE_REMATCH
 	const EVENT_BEAT_LASS_ELISE ; reused unused flag; preserve event IDs
 	const EVENT_OLIVINE_GYM_LASS_ELISE
-	const EVENT_110
-	const EVENT_111
-	const EVENT_112
+	const EVENT_VICTORY_ROAD_GATE_GUARDS_MOVED ; reused unused EVENT_110 slot
+	const EVENT_VICTORY_ROAD_GATE_SIDE_GUARDS_HIDDEN ; reused unused EVENT_111 slot
+	const EVENT_ROUTE_5_POKEFAN_M_LEFT ; reused unused EVENT_112 slot
 	const EVENT_113
 	const EVENT_114
 	const EVENT_115
