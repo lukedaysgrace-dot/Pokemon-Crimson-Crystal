@@ -197,6 +197,45 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
+ElmPhoneSSTicketText:
+	text "Hello, <PLAY_G>!"
+
+	para "I heard you've"
+	line "been making some"
+	cont "serious progress"
+	cont "in KANTO."
+
+	para "I have something"
+	line "here for you."
+
+	para "Come to my LAB in"
+	line "NEW BARK TOWN."
+
+	para "I've contacted the"
+	line "S.S.AQUA crew and"
+	cont "paid for your"
+	cont "return passage."
+
+	para "You can sail from"
+	line "VERMILION to"
+	cont "OLIVINE today."
+
+	para "No TICKET needed"
+	line "for this trip!"
+
+	para "See you soon!"
+	done
+
+ElmPhoneReturnReminderText:
+	text "Hello, <PLAY_G>!"
+
+	para "Your gift is still"
+	line "here at my LAB in"
+	cont "NEW BARK TOWN."
+
+	para "Come see me soon!"
+	done
+
 ElmPhoneUnusedText:
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"

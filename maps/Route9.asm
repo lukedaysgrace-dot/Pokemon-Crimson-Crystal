@@ -7,6 +7,8 @@
 	const ROUTE9_POKEFAN_M2
 	const ROUTE9_JUGGLER1
 	const ROUTE9_JUGGLER2
+	const ROUTE9_GAMBLER_ASLEEP
+	const ROUTE9_COOLTRAINER_M
 
 Route9_MapScripts:
 	db 0 ; scene scripts
@@ -106,6 +108,49 @@ Route9Sign:
 
 Route9HiddenEther:
 	hiddenitem ETHER, EVENT_ROUTE_9_HIDDEN_ETHER
+
+Route9SleepingGamblerScript:
+	jumptext Route9SleepingGamblerText
+
+Route9ImpatientCooltrainerScript:
+	turnobject ROUTE9_COOLTRAINER_M, LEFT
+	opentext
+	writetext Route9CooltrainerMoveItText
+	waitbutton
+	closetext
+	faceplayer
+	opentext
+	writetext Route9CooltrainerOldCootText
+	waitbutton
+	closetext
+	end
+
+Route9CooltrainerMoveItText:
+	text "Move it, pops!"
+
+	para "I gotta get to"
+	line "LAVENDER TOWN to"
+	cont "visit my family!"
+	done
+
+Route9CooltrainerOldCootText:
+	text "This old coot has"
+	line "been here for"
+	cont "hours and refuses"
+	cont "to move."
+	done
+
+Route9SleepingGamblerText:
+	text "Whaddaya want??"
+	line "Hic!"
+
+	para "Can't you leave an"
+	line "old man in peace?"
+
+	para "Just gimme a while"
+	line "to rest, for"
+	cont "Pete's sake!"
+	done
 
 CamperDeanSeenText:
 	text "I came to explore"
@@ -276,7 +321,7 @@ Route9_MapEvents:
 	bg_event 15,  7, BGEVENT_READ, Route9Sign
 	bg_event 41, 15, BGEVENT_ITEM, Route9HiddenEther
 
-	db 8 ; object events
+	db 10 ; object events
 	object_event 23, 11, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
 	object_event 39,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolGirlHeidi, -1
 	object_event 11,  4, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
@@ -285,3 +330,5 @@ Route9_MapEvents:
 	object_event 36, 15, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1
 	object_event 31,  6, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerJugglerMarco, -1
 	object_event 14, 10, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerJugglerLeon, -1
+	object_event 48, 16, SPRITE_GAMBLER_ASLEEP, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route9SleepingGamblerScript, EVENT_BEAT_MISTY
+	object_event 49, 16, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route9ImpatientCooltrainerScript, EVENT_BEAT_MISTY

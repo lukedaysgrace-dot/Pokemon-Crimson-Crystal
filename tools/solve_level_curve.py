@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Solve the Hard Mode level curve as a fixed point.
+"""Screen the Hard Mode level curve using trainer definitions.
 
-Walks the real trainer roster in progression order, Monte-Carlos over which
-trainers a player skips, and reports the level each player profile actually
-reaches at every gym. Use --solve to print caps/aces that put those profiles
-at parity, and --apply to write them into the game data.
+Parties are sorted by level, including unused and optional parties. This is
+an EXP estimate, not a route simulation or proof of arrival levels. Gate and
+cap order follow the sixteen-badge campaign and Johto rematches before Red.
+--solve prints an experimental fixed point; this tool never edits game data.
 """
 
 import argparse
@@ -26,22 +26,28 @@ GATES = [
     ("WHITNEY (1)", "Whitney"), ("MORTY (1)", "Morty"),
     ("CHUCK (1)", "Chuck"), ("JASMINE (1)", "Jasmine"),
     ("PRYCE (1)", "Pryce"), ("CLAIR (1)", "Clair"),
+    ("BROCK (1)", "Brock"), ("MISTY (1)", "Misty"), ("LT_SURGE (1)", "Surge"),
+    ("ERIKA (1)", "Erika"), ("JANINE (1)", "Janine"), ("SABRINA (1)", "Sabrina"),
+    ("BLAINE (1)", "Blaine"), ("BLUE (1)", "Blue"),
     ("WILL (1)", "Will"), ("KOGA (1)", "Koga"), ("BRUNO (1)", "Bruno"),
     ("KAREN (1)", "Karen"), ("CHAMPION (1)", "Lance"),
-    ("LT_SURGE (1)", "Surge"), ("MISTY (1)", "Misty"), ("ERIKA (1)", "Erika"),
-    ("SABRINA (1)", "Sabrina"), ("JANINE (1)", "Janine"),
-    ("BLAINE (1)", "Blaine"), ("BROCK (1)", "Brock"), ("BLUE (1)", "Blue"),
+    ("FALKNER (2)", "FalknerR"), ("BUGSY (2)", "BugsyR"),
+    ("WHITNEY (2)", "WhitneyR"), ("MORTY (2)", "MortyR"),
+    ("CHUCK (2)", "ChuckR"), ("JASMINE (2)", "JasmineR"),
+    ("PRYCE (2)", "PryceR"), ("CLAIR (2)", "ClairR"),
     ("RED (1)", "Red"),
 ]
-# Beating one of these lifts the cap to the next entry. The whole Elite Four
-# run shares one cap: no badge is earned until the Hall of Fame after Lance.
+# Beating one of these advances to the next cap. The Elite Four share one
+# cap; the Hall of Fame advances into the Johto rematch tiers.
 CAP_STEPS = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine",
-             "Pryce", "Clair", "Lance", "Surge", "Misty", "Erika", "Sabrina",
-             "Janine", "Blaine", "Brock", "Blue"]
-# Display names for the 18 cap slots (slot 8 covers Will through Lance).
+             "Pryce", "Clair", "Brock", "Misty", "Surge", "Erika", "Janine",
+             "Sabrina", "Blaine", "Blue", "Lance", "FalknerR", "BugsyR",
+             "WhitneyR", "MortyR", "ChuckR", "JasmineR", "PryceR", "ClairR", "Red"]
+# Main campaign slots, then the event-based rematch caps (17 covers FalknerR).
 CAP_GATES = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine",
-             "Pryce", "Clair", "EliteFour", "Surge", "Misty", "Erika",
-             "Sabrina", "Janine", "Blaine", "Brock", "Blue", "Red"]
+             "Pryce", "Clair", "Brock", "Misty", "Surge", "Erika", "Janine",
+             "Sabrina", "Blaine", "Blue", "EliteFour", "FalknerR", "BugsyR",
+             "WhitneyR", "MortyR", "ChuckR", "JasmineR", "PryceR", "ClairR", "Red"]
 
 IMPORTANT = re.compile(
     r"\b(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|"
@@ -85,11 +91,12 @@ def walk(parties, caps, team, skip, rng, boost=2.0):
     for d in parties:
         cap = caps[min(gate, len(caps) - 1)] if gate < len(caps) else 100
         hit = next((n for f, n in GATES if f in d["label"]), None)
+        if hit and hit not in arrive:
+            arrive[hit] = level_of(exp)
         if d["important"] or rng.random() >= skip:
             if level_of(exp) < cap:
                 exp = min(exp + int(d["raw"] * boost / team), exp_at(cap))
-        if hit and hit not in arrive:
-            arrive[hit] = level_of(exp)
+        if hit:
             if hit in CAP_STEPS:
                 gate = CAP_STEPS.index(hit) + 1
     return arrive
@@ -104,14 +111,15 @@ def montecarlo(parties, caps, team, skip, trials=150, seed=1):
 
 def current_caps():
     src = (ROOT / "engine/pokemon/experience.asm").read_text(errors="replace")
-    body = src.split("HardModeLevelCaps:", 1)[1]
     out = []
-    for line in body.splitlines()[1:]:
-        m = re.match(r"\s*db\s+(\d+)", line)
-        if m:
-            out.append(int(m.group(1)))
-        elif line.strip().startswith("db "):
-            break
+    for label in ("HardModeLevelCaps:", "HardModeRematchCaps:"):
+        body = src.split(label, 1)[1]
+        for line in body.splitlines()[1:]:
+            m = re.match(r"\s*db\s+(\d+)", line)
+            if m:
+                out.append(int(m.group(1)))
+            elif line.strip().startswith("assert "):
+                break
     return out
 
 
@@ -147,9 +155,14 @@ def solve(parties, target=("6 mons, normal",), rounds=25):
         res = {lab: montecarlo(parties, caps, t, s)
                for lab, t, s in PROFILES if lab in target}
         new, prev = [], 0
-        for n in CAP_GATES:
+        for index, n in enumerate(CAP_GATES):
             key = "Lance" if n == "EliteFour" else n
-            v = max(int(statistics.median(r[key] for r in res.values())), prev + 1)
+            if n in ("Erika", "Janine", "Sabrina"):
+                tier = max(int(statistics.median(r[g] for r in res.values()))
+                           for g in ("Erika", "Janine", "Sabrina"))
+                v = max(tier, prev + 1) if index == 11 else prev
+            else:
+                v = max(int(statistics.median(r[key] for r in res.values())), prev + 1)
             new.append(v)
             prev = v
         if new == caps:
@@ -165,8 +178,9 @@ def main():
     base = load_base_stats()
     parties = load_parties(base)
     caps = current_caps()
-    print("=== Arrival level vs the fight's ace, current data ===")
-    print("(Johto is capped; past Clair the cap lifts and EXP alone sets the pace)\n")
+    print("=== Estimated level vs the fight's ace, current data ===")
+    print("(Level-sorted trainer definitions; includes unused/optional battles, excludes wild training.)")
+    print("(Caps follow Johto, Kanto, League, Johto rematches, then Red.)\n")
     report(parties, caps)
     if args.solve:
         print("\n=== Fixed-point solve, targeting '6 mons, normal' ===")

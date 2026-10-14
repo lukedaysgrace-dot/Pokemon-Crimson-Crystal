@@ -23,6 +23,11 @@ HallOfFame_MapScripts:
 	opentext
 	writetext HallOfFame_LanceText
 	waitbutton
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .Registered
+	writetext HallOfFame_NextChallengeText
+	waitbutton
+.Registered:
 	closetext
 	turnobject HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
@@ -34,15 +39,17 @@ HallOfFame_MapScripts:
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
-	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
 	checkevent EVENT_BEAT_LANCE_REMATCH
 	iftrue .SkipPhoneCall
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
+	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .SkipPhoneCall
-	specialphonecall SPECIALCALL_SSTICKET
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iffalse .SkipPhoneCall
+	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
+	iffalse .SkipPhoneCall
+	specialphonecall SPECIALCALL_OAK_MT_SILVER
 .SkipPhoneCall:
 	halloffame
 	end
@@ -108,6 +115,13 @@ HallOfFame_LanceText:
 
 	para "and your partners"
 	line "as CHAMPIONS!"
+	done
+
+HallOfFame_NextChallengeText:
+	text "Next, JOHTO's GYM"
+	line "LEADERS await a"
+	cont "rematch. Start"
+	cont "with FALKNER."
 	done
 
 HallOfFame_MapEvents:

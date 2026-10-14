@@ -162,7 +162,6 @@ DragonShrine_MapScripts:
 	playsound SFX_GET_BADGE
 	waitsfx
 	special RestartMapMusic
-	specialphonecall SPECIALCALL_MASTERBALL
 	setscene SCENE_FINISHED
 	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 	writetext DragonShrinePlayerReceivedRisingBadgeText
@@ -485,8 +484,8 @@ DragonShrinePassedTestText:
 	line "lose that belief."
 
 	para "It will see you"
-	line "through at the"
-	cont "#MON LEAGUE."
+	line "through KANTO and"
+	cont "then the LEAGUE."
 	done
 
 DragonShrineMustIInformLanceText:

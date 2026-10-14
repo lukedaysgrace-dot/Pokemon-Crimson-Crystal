@@ -188,7 +188,7 @@ CeruleanGroupSprites:
 	db SPRITE_POKEFAN_M ; Route 25
 	db SPRITE_POKE_BALL
 	db SPRITE_SLOWBRO_NPC
-	db SPRITE_NONE ; free slot (was SPRITE_SUICUNE; unused by this group)
+	db SPRITE_GAMBLER_ASLEEP ; Route 9's sleeping Rock Tunnel blocker
 	db SPRITE_NONE ; free slot (was SPRITE_POKEDEX; unused by this group)
 	db SPRITE_NONE ; free slot (was SPRITE_PICNICKER_NEW; no outdoor map in this group has one)
 

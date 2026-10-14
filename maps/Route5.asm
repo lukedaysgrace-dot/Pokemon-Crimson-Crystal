@@ -37,9 +37,14 @@ Route5PokefanMText:
 	para "at the POWER PLANT"
 	line "is solved."
 
-	para "MISTY likes to see"
-	line "what trainers are"
-	cont "made of in battle."
+	para "While you're stuck"
+	line "in CERULEAN CITY,"
+
+	para "you may as well"
+	line "check out the GYM."
+
+	para "MISTY's a real"
+	line "challenge!"
 	done
 
 Route5UndergroundPathSignText:

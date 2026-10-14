@@ -113,6 +113,8 @@ PortraitTexts:
 	db PORTRAIT_CLAIR
 	dba BlackthornGymClairText_DescribeTM24
 	db PORTRAIT_CLAIR
+	dba BlackthornGymClairText_Kanto
+	db PORTRAIT_CLAIR
 	dba BlackthornGymClairText_League
 	db PORTRAIT_CLAIR
 	dba BlackthornGymClairText_YouKeptMeWaiting
@@ -863,6 +865,8 @@ PortraitTexts:
 ; HallOfFame
 	dba HallOfFame_LanceText
 	db PORTRAIT_LANCE
+	dba HallOfFame_NextChallengeText
+	db PORTRAIT_LANCE
 ; IcePath1F
 	dba IcePath1FCrystalAfterText
 	db PORTRAIT_CRYSTAL
@@ -915,6 +919,8 @@ PortraitTexts:
 	db 0
 ; IndigoPlateauPokecenter1F
 	dba AbraText
+	db 0
+	dba IndigoPlateauNeedBadgesText
 	db 0
 	dba IndigoPlateauPokecenter1FCooltrainerMText
 	db 0
@@ -1167,9 +1173,15 @@ PortraitTexts:
 	dba Text_YourMonIsAdorable
 	db 0
 ; OaksLab
+	dba OakFindCrystalText
+	db PORTRAIT_OAK
+	dba OakJohtoRematchesText
+	db PORTRAIT_OAK
 	dba OakLabDexCheckText
 	db PORTRAIT_OAK
 	dba OakLabGoodbyeText
+	db PORTRAIT_OAK
+	dba OakLeagueNextText
 	db PORTRAIT_OAK
 	dba OakNoKantoBadgesText
 	db PORTRAIT_OAK

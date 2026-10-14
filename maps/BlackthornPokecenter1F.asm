@@ -33,6 +33,10 @@ BlackthornPokecenter1FGentlemanText:
 
 	para "there from around"
 	line "the country."
+
+	para "You'll need all 16"
+	line "GYM BADGES before"
+	cont "you can enter."
 	done
 
 BlackthornPokecenter1FTwinText:
