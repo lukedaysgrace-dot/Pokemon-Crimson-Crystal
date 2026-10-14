@@ -954,3 +954,5 @@ INCLUDE "engine/events/fishing_contest.asm"
 
 SECTION "Campaign Progression Scripts", ROMX
 INCLUDE "engine/events/league_progression.asm"
+
+INCLUDE "engine/events/cerulean_cave.asm"

@@ -106,6 +106,7 @@ KANTO_LANDMARK EQU const_value
 	const FIRE_ISLAND       ; 63
 	const THUNDER_ISLAND    ; 64
 	const ICE_ISLAND        ; 65
+	const CERULEAN_CAVE     ; 66 (appended to preserve existing location IDs)
 
 ; used in CaughtData
 GIFT_LOCATION  EQU $7e

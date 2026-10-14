@@ -1420,6 +1420,7 @@ LoadMapPals:
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	call LoadDanceTheatreObjectPalette
+	call LoadRoute4MewPalette
 
 	ld a, [wEnvironment]
 	cp TOWN
@@ -1489,6 +1490,23 @@ INCLUDE "gfx/overworld/npc_sprites.pal"
 
 DanceTheatrePinkPalette:
 	RGB 31,31,31, 31,19,10, 31,15,26, 00,00,00
+
+LoadRoute4MewPalette:
+; Route 4 has no rock-paletted NPCs. Give the party Mew its own pink slot;
+; terrain rocks use BG palettes and are unaffected.
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_4
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_4
+	ret nz
+	ld hl, .Pink
+	ld de, wOBPals1 palette PAL_OW_ROCK
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	jp FarCopyWRAM
+.Pink
+	RGB 31,31,31, 31,26,30, 31,17,26, 18,4,13
 
 RoofPals:
 INCLUDE "gfx/tilesets/roofs.pal"
