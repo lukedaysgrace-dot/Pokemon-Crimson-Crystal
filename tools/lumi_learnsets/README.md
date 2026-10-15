@@ -91,6 +91,26 @@ so you can `git diff` the result.
 Rebuild the ROM as usual (`make`). Nothing else references these files
 differently, so no other changes are needed.
 
+Breeding curation is applied after the source and project additions. The
+checked-in `tools/testdata/breeding_moves.json` keeps modern natural level-up
+overlaps, removes added egg-only copies with independent donor routes, and
+retains fallback levels where this roster cannot supply a move by breeding.
+Newly repaired fallback gaps are level 30 on the first stage. The egg tutor
+remains available for the whole family. Regeneration preserves these decisions.
+
+Validate donor chains, genders, egg groups, evolution carryover and compiled
+inheritance behavior after changing the roster or moves:
+
+```bash
+python3 tools/audit_learnset_variety.py
+make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
+```
+
+The donor audit excludes the egg tutor as a source, includes real Sketch
+bridges, and starts with natural moves before following breeding chains. This
+prevents two egg lists from falsely proving each other's availability. The
+receipt includes a donor proof for every removed level-up entry.
+
 ## Data sources
 
 Downloaded once into `cache/` from

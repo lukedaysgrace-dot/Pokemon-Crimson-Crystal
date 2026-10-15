@@ -539,11 +539,11 @@ PlayDanger:
 	ret
 
 .keep_beeping
-	; Don't do anything if SFX is being played
+	; Pause during SFX: unheard cycles must not consume the three beeps.
 	and $ff ^ (1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
-	jr c, .increment
+	ret c
 
 	; Play the high tone
 	and a

@@ -20,6 +20,15 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+`make test-qol BATTLE_TEST_PYTHON=.venv/bin/python` verifies both ROMs'
+three-cycle health alarm, sound-effect pauses, healing/faint resets, fixed
+64-step Day-Care production, old countdown repair, breeding incompatibilities,
+all six egg slots, zero-counter protection, and native 16-step hatch timing.
+It also runs the existing ability-inheritance checks. Map timing tests stub
+unrelated phone, Safari, poison, bike and friendship services in private
+emulator memory; the step dispatcher and egg routines run from the built ROM.
+Neither ROM files nor player saves are modified by these tests.
+
 `make test-trainer-sprites` renders every trainer class's native battle
 introduction through the Fight menu, every declared overworld sheet in its
 intended facings/animation phases, and sprite allocation on every map with

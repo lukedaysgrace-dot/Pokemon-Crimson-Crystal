@@ -140,7 +140,7 @@ StepHappiness::
 	ret
 
 DayCareStep::
-; Raise the experience of Day-Care Pokémon every step cycle.
+; Raise the experience of Day-Care Pokémon every counted overworld step.
 
 	ld a, [wDayCareMan]
 	bit DAYCAREMAN_HAS_MON_F, a
@@ -190,30 +190,25 @@ DayCareStep::
 	bit DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	ret z
 	ld hl, wStepsToEgg
+	; Bound old saves' random countdowns, and repair a zero countdown rather
+	; than underflowing into a 256-step wait.
+	ld a, [hl]
+	and a
+	jr z, .reset_egg_steps
+	cp DAYCARE_EGG_STEPS + 1
+	jr c, .count_egg_step
+.reset_egg_steps
+	ld [hl], DAYCARE_EGG_STEPS
+.count_egg_step
 	dec [hl]
 	ret nz
 
-	call Random
-	ld [hl], a
 	callfar CheckBreedmonCompatibility
 	ld a, [wBreedingCompatibility]
-	cp 230
-	ld b, 32 percent - 1
-	jr nc, .okay
-	ld a, [wBreedingCompatibility]
-	cp 170
-	ld b, 16 percent
-	jr nc, .okay
-	ld a, [wBreedingCompatibility]
-	cp 110
-	ld b, 12 percent
-	jr nc, .okay
-	ld b, 4 percent
-
-.okay
-	call Random
-	cp b
-	ret nc
+	and a
+	ret z
+	inc a
+	ret z
 	ld hl, wDayCareMan
 	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	set DAYCAREMAN_HAS_EGG_F, [hl]

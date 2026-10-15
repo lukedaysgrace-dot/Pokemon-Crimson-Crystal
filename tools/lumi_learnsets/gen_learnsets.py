@@ -645,6 +645,22 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
         if len(merged) != before:
             source = (source or "project") + "+project"
 
+    # Keep the roster-aware breeding curation after every external/project
+    # layer, so regenerating learnsets cannot restore breedable egg-only rows
+    # or erase the level-up routes for moves with no compatible donor.
+    receipt_path = os.path.join(REPO, "tools", "testdata", "breeding_moves.json")
+    if os.path.exists(receipt_path):
+        with open(receipt_path, encoding="utf-8") as f:
+            breeding = json.load(f)
+        key = norm_name(label_base)
+        removed = {m for c, ms in breeding["level_up_removals"].items()
+                   if norm_name(c) == key for m in ms}
+        fallbacks = {m: lv for c, ms in breeding["fallbacks"].items()
+                     if norm_name(c) == key for m, lv in ms.items()}
+        merged = [(lv, m) for lv, m in merged if m not in removed and m not in fallbacks]
+        merged.extend((lv, m) for m, lv in fallbacks.items())
+        merged.sort(key=lambda row: row[0])
+
     return (source, merged or None)
 
 # --------------------------------------------------------------------------

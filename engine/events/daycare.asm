@@ -610,10 +610,7 @@ DayCare_InitBreeding:
 	ret z
 	ld hl, wDayCareMan
 	set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
-.loop
-	call Random
-	cp 150
-	jr c, .loop
+	ld a, DAYCARE_EGG_STEPS
 	ld [wStepsToEgg], a
 	jp .UselessJump
 
