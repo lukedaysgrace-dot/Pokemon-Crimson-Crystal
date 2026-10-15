@@ -157,6 +157,10 @@ header{gap:16px;flex-wrap:wrap}nav{flex-wrap:wrap;align-items:center}nav a:hover
 }
 .sprite-pair{display:flex;align-items:flex-end;gap:72px;padding:18px 28px;background:radial-gradient(closest-side,#dd31541a,transparent);border-radius:20px}
 .sprite-cell{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+/* Keep the complete main navigation accessible as the site grows. */
+header{gap:16px;flex-wrap:wrap}
+header nav{flex-wrap:wrap;column-gap:20px;row-gap:10px}
+header nav a:hover,header nav a:focus-visible{color:var(--red2)}
 .sprite-cell figcaption{color:var(--muted);font-size:.72rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
 .sprite-pair .back-sprite{width:calc(var(--w) * 1px);height:calc(var(--w) * 1px)}
 @media(max-width:1060px){.monhero:has(.sprite-pair){grid-template-columns:1fr}.sprite-pair{justify-self:start}}

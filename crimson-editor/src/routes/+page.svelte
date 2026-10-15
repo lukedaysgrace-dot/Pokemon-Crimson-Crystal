@@ -12,6 +12,7 @@
   import MonEditor from '$lib/components/MonEditor.svelte';
   import '../style.css';
   type Profile = { id: string; build: string; date: string; layoutHash: string };
+  const websiteRoot = base.endsWith('/editor') ? base.slice(0, -'/editor'.length) : null;
   let profiles = $state<Profile[]>([]),
     bundles = $state<GameData[]>([]),
     model = $state<SaveModel | null>(null),
@@ -247,11 +248,22 @@
 >
 <main>
   <header>
-    <a class="brand" href={base || '/'}
+    <a class="brand" href={websiteRoot !== null ? `${websiteRoot}/index.html` : base || '/'}
       ><span class="crystal">◆</span>
       <div>CRIMSON <b>EDITOR</b><small>Pokémon Crimson Crystal</small></div></a
     ><span class="privacy">Local processing · your save stays on this device</span>
   </header>
+  {#if websiteRoot !== null}
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href={`${websiteRoot}/pokedex.html`}>Pokédex</a>
+      <a href={`${websiteRoot}/moves.html`}>Moves</a>
+      <a href={`${websiteRoot}/encounters.html`}>Encounters</a>
+      <a href={`${websiteRoot}/locations.html`}>Locations</a>
+      <a href={`${websiteRoot}/changes.html`}>Pokémon Changes</a>
+      <a href={`${websiteRoot}/updates.html`}>Game Updates</a>
+      <a href={`${base}/index.html`} aria-current="page">Save Editor</a>
+    </nav>
+  {/if}
   <section class="hero" class:loaded={!!model}>
     <p class="eyebrow">YOUR ADVENTURE, YOUR WAY</p>
     <h1>A little more<br /><em>Crimson.</em></h1>

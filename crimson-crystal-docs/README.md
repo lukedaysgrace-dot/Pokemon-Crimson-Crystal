@@ -27,6 +27,12 @@ Open `http://localhost:8000`.
 
 Commit the `docs` folder, then go to **GitHub → Settings → Pages**. Select **Deploy from a branch**, choose `main`, and choose `/docs`.
 
+The top navigation includes **Save Editor**, served from `docs/editor/`.
+Build it with `pnpm build:website` in `crimson-editor/` and verify it with
+`pnpm test:website`. Commit and push that output with the documentation pages.
+The documentation generator preserves the editor output. Keep `docs/.nojekyll`
+so Pages serves the editor's `_app` directory.
+
 The initial site generates:
 
 - Pokémon index with sprites pulled from `gfx/pokemon/*/front.png`

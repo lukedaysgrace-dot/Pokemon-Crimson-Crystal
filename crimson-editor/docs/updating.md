@@ -24,7 +24,26 @@ to create PRs in repository settings. No PAT is needed for this monorepo. All
 generated data remains reviewable before merge. CI result artifacts include the
 static site and ROM/symbol/map files.
 
-`pnpm build` writes `build/`. Serve it on any static host. For GitHub Pages set
-`BASE_PATH=/Pokemon-Crimson-Crystal/editor` when building and place the result at
-the corresponding site path. Keep the existing documentation site alongside it.
-The implementation does not activate or overwrite repository hosting settings.
+`pnpm build` writes a standalone preview to `build/`.
+
+The public website uses GitHub Pages from `main` / `docs`. To update its editor:
+
+```sh
+cd crimson-editor
+pnpm build:website
+pnpm test:website
+```
+
+`build:website` writes the production editor directly to `docs/editor/`, with
+`/Pokemon-Crimson-Crystal/editor` as its base path. It also creates
+`docs/.nojekyll` so GitHub Pages serves Svelte's `_app` assets. Commit and push
+the generated `docs/editor/` files alongside editor source changes to publish
+them through the existing Pages setup. No hosting setting change is needed.
+
+The documentation generator includes the **Save Editor** tab in every page's
+main navigation. Regenerate those pages with the usual documentation command;
+the generator preserves `docs/editor/`. The editor links back to the guides.
+
+`test:website` serves the real `docs` tree at the exact GitHub Pages project path
+and checks navigation, game-data and sprite loading, save upload/download,
+links from nested pages, and mobile navigation. The CI workflow runs these checks.
