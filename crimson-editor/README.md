@@ -26,6 +26,12 @@ local normal/shiny sprites are included, so running the editor does not require
 building the ROM. Select a save through **Open a save file**. Download writes a
 new file; it never overwrites the original on disk. Validation errors block export.
 
+The public documentation website includes a **Save Editor** navigation tab.
+Build its editor with `pnpm build:website`, then run `pnpm test:website`.
+Commit and push the resulting `docs/editor/` files and `docs/.nojekyll` with the
+source changes to update the existing GitHub Pages site. See
+[hosting instructions](docs/updating.md) for details.
+
 ## Verify
 
 ```sh

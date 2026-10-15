@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
+    "build:website": "tsx tools/build-website.ts",
     "preview": "vite preview --host 127.0.0.1",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "extract": "tsx src/extractors/index.ts",
@@ -13,7 +14,8 @@
     "audit:sprites": "tsx tools/audit-sprites.ts",
     "check:sprites": "tsx tools/prune-sprites.ts",
     "test": "vitest run --config vitest.config.ts",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "test:website": "playwright test --config playwright.website.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
