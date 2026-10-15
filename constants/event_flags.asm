@@ -2204,8 +2204,8 @@
 	const EVENT_BEAT_COOLTRAINERM_ADRIAN
 	const EVENT_BEAT_COOLTRAINERF_SELENE
 
-; Object flag for the independently encounterable sleeping Snorlax on Route 16.
-	const EVENT_ROUTE_16_SNORLAX
+; Object flag for the independently encounterable sleeping Snorlax on Route 12.
+	const EVENT_ROUTE_12_SNORLAX
 
 ; Fossils hidden in the Ruins of Alph Aerodactyl word room.
 	const EVENT_AERODACTYL_WORD_ROOM_CLAW_WALL_OPEN
