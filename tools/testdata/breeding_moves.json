@@ -1,0 +1,1300 @@
+{
+  "policy": "Either parent supplies egg moves; both supply level moves; no TM inheritance. Preserve modern natural level moves. Remove added egg overlaps only with an independent roster donor route; preserve or add level-up fallbacks for unavailable routes.",
+  "source": "https://github.com/smogon/pokemon-showdown/blob/master/data/learnsets.ts",
+  "retrieved": "2026-10-15",
+  "natural_level_up": {
+    "VENUSAUR": {
+      "PETAL_DANCE": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L32"
+      ]
+    },
+    "ARBOK": {
+      "CRUNCH": [
+        "9L0",
+        "7L1",
+        "6L22"
+      ]
+    },
+    "CLEFAIRY": {
+      "METRONOME": [
+        "9L20",
+        "8L20",
+        "7L31",
+        "6L31"
+      ]
+    },
+    "CLEFABLE": {
+      "METRONOME": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "VENOMOTH": {
+      "SIGNAL_BEAM": [
+        "7L25",
+        "6L37"
+      ]
+    },
+    "RAPIDASH": {
+      "QUICK_ATTACK": [
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "GENGAR": {
+      "PERISH_SONG": [
+        "9L1",
+        "8L1"
+      ]
+    },
+    "EXEGGUTOR": {
+      "LEAF_STORM": [
+        "9L1",
+        "8L1",
+        "7L47",
+        "6L47"
+      ]
+    },
+    "HITMONLEE": {
+      "HI_JUMP_KICK": [
+        "9L44",
+        "8L44",
+        "7L29",
+        "6L29"
+      ],
+      "MIND_READER": [
+        "8L28",
+        "7L33",
+        "6L33"
+      ]
+    },
+    "HITMONCHAN": {
+      "BULLET_PUNCH": [
+        "9L16",
+        "8L1",
+        "7L16",
+        "6L16"
+      ],
+      "COUNTER": [
+        "9L40",
+        "8L40",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "JYNX": {
+      "DRAINING_KISS": [
+        "7L1",
+        "6L1"
+      ],
+      "LOVELY_KISS": [
+        "8L40",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "SNORLAX": {
+      "SNORE": [
+        "9L20",
+        "8L20",
+        "7L28",
+        "6L28"
+      ],
+      "SLEEP_TALK": [
+        "9L20",
+        "8L20",
+        "7L33",
+        "6L33"
+      ]
+    },
+    "NOCTOWL": {
+      "SKY_ATTACK": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "SUNFLORA": {
+      "LEAF_STORM": [
+        "9L43",
+        "7L43",
+        "6L43"
+      ]
+    },
+    "SHUCKLE": {
+      "STICKY_WEB": [
+        "8L50",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "PILOSWINE": {
+      "ANCIENTPOWER": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "OCTILLERY": {
+      "OCTAZOOKA": [
+        "8L0",
+        "7L1",
+        "6L25"
+      ]
+    },
+    "HITMONTOP": {
+      "COUNTER": [
+        "9L40",
+        "8L40",
+        "7L28",
+        "6L28"
+      ]
+    },
+    "VENUSAUR_CLONE": {
+      "PETAL_DANCE": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L32"
+      ]
+    },
+    "ANNIHILAPE": {
+      "COUNTER": [
+        "9L1"
+      ]
+    },
+    "SALAMENCE": {
+      "FIRE_FANG": [
+        "7L1",
+        "6L1"
+      ],
+      "THUNDER_FANG": [
+        "7L1",
+        "6L1"
+      ]
+    },
+    "MAGNEZONE": {
+      "MIRROR_COAT": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "MAMOSWINE": {
+      "ANCIENTPOWER": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "CRADILY": {
+      "LEECH_SEED": [
+        "8L1"
+      ]
+    },
+    "DRAGAPULT": {
+      "SUCKER_PUNCH": [
+        "8L1"
+      ]
+    },
+    "BAXCALIBUR": {
+      "ICE_SHARD": [
+        "9L1"
+      ]
+    },
+    "ARMAROUGE": {
+      "CALM_MIND": [
+        "9L37"
+      ]
+    },
+    "CERULEDGE": {
+      "SWORDS_DANCE": [
+        "9L37"
+      ]
+    },
+    "APPLETUN": {
+      "LEECH_SEED": [
+        "9L12",
+        "8L12"
+      ]
+    },
+    "FLAPPLE": {
+      "LEECH_SEED": [
+        "9L12",
+        "8L12"
+      ]
+    },
+    "CHARJABUG": {
+      "STICKY_WEB": [
+        "9L29",
+        "8L29"
+      ]
+    },
+    "VIKAVOLT": {
+      "STICKY_WEB": [
+        "9L29",
+        "8L29"
+      ],
+      "AGILITY": [
+        "9L57",
+        "8L57",
+        "7L49"
+      ]
+    },
+    "GOROTORA": {
+      "CRUNCH": [
+        "project-authored species"
+      ]
+    },
+    "TALONFLAME": {
+      "BRAVE_BIRD": [
+        "9L83",
+        "8L83",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "FROSLASS": {
+      "CONFUSE_RAY": [
+        "9L35",
+        "8L35",
+        "7L32",
+        "6L19"
+      ],
+      "DESTINY_BOND": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "MR__RIME": {
+      "ICY_WIND": [
+        "8L20"
+      ]
+    },
+    "LUCARIO": {
+      "DETECT": [
+        "9L1",
+        "8L1",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "PERRSERKER": {
+      "IRON_DEFENSE": [
+        "9L1",
+        "8L1"
+      ]
+    },
+    "SNEASLER": {
+      "AGILITY": [
+        "9L48"
+      ]
+    },
+    "WATU": {
+      "QUICK_ATTACK": [
+        "project-authored species"
+      ]
+    },
+    "GLIMMORA": {
+      "MORTAL_SPIN": [
+        "9L0"
+      ],
+      "TOXIC_SPIKES": [
+        "9L1"
+      ]
+    },
+    "GALVANTULA": {
+      "STICKY_WEB": [
+        "9L0",
+        "8L0",
+        "7L1",
+        "6L1"
+      ]
+    },
+    "GOROCHU": {
+      "VOLT_TACKLE": [
+        "project-authored species"
+      ]
+    }
+  },
+  "level_up_removals": {
+    "BLASTOISE": [
+      "FLIP_TURN",
+      "DARK_PULSE"
+    ],
+    "PIDGEOTTO": [
+      "DEFOG"
+    ],
+    "PIDGEOT": [
+      "DEFOG"
+    ],
+    "RATICATE": [
+      "COUNTER"
+    ],
+    "PIKACHU": [
+      "VOLT_TACKLE"
+    ],
+    "RAICHU": [
+      "VOLT_TACKLE"
+    ],
+    "CLEFAIRY": [
+      "WISH"
+    ],
+    "CLEFABLE": [
+      "WISH"
+    ],
+    "NINETALES": [
+      "HEX"
+    ],
+    "ARCANINE": [
+      "MORNING_SUN"
+    ],
+    "POLIWRATH": [
+      "HAZE",
+      "MIST"
+    ],
+    "KADABRA": [
+      "LIGHT_SCREEN"
+    ],
+    "ALAKAZAM": [
+      "BARRIER",
+      "ENCORE",
+      "LIGHT_SCREEN"
+    ],
+    "GOLEM": [
+      "IRON_DEFENSE",
+      "HAMMER_ARM"
+    ],
+    "MUK": [
+      "HAZE"
+    ],
+    "HYPNO": [
+      "BARRIER",
+      "PSYCHO_CUT"
+    ],
+    "KINGLER": [
+      "AMNESIA"
+    ],
+    "MAROWAK": [
+      "SWORDS_DANCE"
+    ],
+    "WEEZING": [
+      "PSYBEAM"
+    ],
+    "SEADRA": [
+      "DISABLE"
+    ],
+    "EEVEE": [
+      "HEAL_BELL"
+    ],
+    "VAPOREON": [
+      "HEAL_BELL"
+    ],
+    "JOLTEON": [
+      "HEAL_BELL"
+    ],
+    "FLAREON": [
+      "HEAL_BELL"
+    ],
+    "OMASTAR": [
+      "SPIKES",
+      "TOXIC_SPIKES"
+    ],
+    "KABUTOPS": [
+      "RAPID_SPIN"
+    ],
+    "CROCONAW": [
+      "AQUA_JET"
+    ],
+    "FERALIGATR": [
+      "AQUA_JET"
+    ],
+    "LANTURN": [
+      "SCALD"
+    ],
+    "MARILL": [
+      "BELLY_DRUM"
+    ],
+    "AZUMARILL": [
+      "BELLY_DRUM"
+    ],
+    "SUDOWOODO": [
+      "DEFENSE_CURL",
+      "ROLLOUT",
+      "STEALTH_ROCK"
+    ],
+    "POLITOED": [
+      "ENCORE",
+      "WATER_PULSE"
+    ],
+    "ESPEON": [
+      "HEAL_BELL"
+    ],
+    "UMBREON": [
+      "HEAL_BELL"
+    ],
+    "GIRAFARIG": [
+      "WISH"
+    ],
+    "FORRETRESS": [
+      "REFLECT",
+      "STEALTH_ROCK"
+    ],
+    "KINGDRA": [
+      "DISABLE"
+    ],
+    "HITMONTOP": [
+      "BULLET_PUNCH",
+      "HI_JUMP_KICK"
+    ],
+    "BLASTOISE_CLONE": [
+      "FLIP_TURN",
+      "DARK_PULSE"
+    ],
+    "GLACEON": [
+      "HEAL_BELL"
+    ],
+    "LEAFEON": [
+      "HEAL_BELL"
+    ],
+    "SYLVEON": [
+      "HEAL_BELL"
+    ],
+    "URSALUNA": [
+      "FOCUS_ENERGY"
+    ],
+    "ZWEILOUS": [
+      "DARK_PULSE"
+    ],
+    "HYDREIGON": [
+      "DARK_PULSE"
+    ],
+    "GRIMMSNARL": [
+      "REFLECT",
+      "LIGHT_SCREEN",
+      "THUNDER_WAVE"
+    ],
+    "CORVIKNIGHT": [
+      "ROOST"
+    ],
+    "ABOMASNOW": [
+      "LEAF_STORM"
+    ],
+    "CAMERUPT": [
+      "HEAT_WAVE"
+    ],
+    "CHARJABUG": [
+      "VOLT_SWITCH"
+    ],
+    "VIKAVOLT": [
+      "VOLT_SWITCH"
+    ],
+    "FLYGON": [
+      "U_TURN",
+      "ROOST"
+    ],
+    "GRUMPIG": [
+      "CALM_MIND"
+    ],
+    "BASTIODON": [
+      "FISSURE"
+    ],
+    "MILOTIC": [
+      "CONFUSE_RAY",
+      "DRAGONBREATH",
+      "HYPNOSIS",
+      "MIRROR_COAT"
+    ],
+    "LUCARIO": [
+      "BULLET_PUNCH",
+      "HI_JUMP_KICK"
+    ],
+    "RAICHU_ALOLAN": [
+      "VOLT_TACKLE"
+    ],
+    "SANDSLASH_ALOLAN": [
+      "CRUSH_CLAW"
+    ],
+    "NINETALES_ALOLAN": [
+      "ENCORE"
+    ],
+    "GOLEM_ALOLAN": [
+      "IRON_DEFENSE"
+    ],
+    "MUK_ALOLAN": [
+      "HAZE"
+    ],
+    "MAROWAK_ALOLAN": [
+      "SWORDS_DANCE"
+    ],
+    "WEEZING_GALARIAN": [
+      "PSYBEAM"
+    ],
+    "LAIRON": [
+      "BODY_PRESS"
+    ],
+    "AGGRON": [
+      "BODY_PRESS",
+      "HEAD_SMASH"
+    ],
+    "BANETTE": [
+      "ENCORE",
+      "TAUNT",
+      "SWORDS_DANCE"
+    ],
+    "ARCHEOPS": [
+      "DEFOG"
+    ],
+    "GALVANTULA": [
+      "GIGA_DRAIN"
+    ],
+    "NOIVERN": [
+      "HYPER_VOICE",
+      "OUTRAGE"
+    ]
+  },
+  "fallbacks": {
+    "MAGNETON": {
+      "IRON_DEFENSE": 36
+    },
+    "CHANSEY": {
+      "SEISMIC_TOSS": 31
+    },
+    "MAGMAR": {
+      "BELLY_DRUM": 44
+    },
+    "LANTURN": {
+      "HEAL_BELL": 24,
+      "VOLT_SWITCH": 30
+    },
+    "MAGCARGO": {
+      "HEAT_WAVE": 46
+    },
+    "BLISSEY": {
+      "SEISMIC_TOSS": 31
+    },
+    "MAGNEZONE": {
+      "IRON_DEFENSE": 40
+    },
+    "ARCHEOPS": {
+      "HEAD_SMASH": 52
+    },
+    "CARRACOSTA": {
+      "HEAD_SMASH": 52
+    },
+    "LAMPENT": {
+      "HEAT_WAVE": 44
+    },
+    "CHANDELURE": {
+      "HEAT_WAVE": 52
+    },
+    "ABRA": {
+      "SKILL_SWAP": 30
+    },
+    "AMAURA": {
+      "BARRIER": 30
+    },
+    "AXEW": {
+      "RAZOR_WIND": 30
+    },
+    "BULBASAUR": {
+      "RAZOR_WIND": 30
+    },
+    "BULBASAUR_CLONE": {
+      "RAZOR_WIND": 30
+    },
+    "CHARCADET": {
+      "DESTINY_BOND": 30,
+      "SPITE": 30,
+      "MEAN_LOOK": 30
+    },
+    "CHINCHOU": {
+      "AMNESIA": 30
+    },
+    "CRANIDOS": {
+      "WHIRLWIND": 30
+    },
+    "CROAGUNK": {
+      "ACID_ARMOR": 30
+    },
+    "DROWZEE": {
+      "SKILL_SWAP": 30
+    },
+    "DUSKULL": {
+      "SKILL_SWAP": 30,
+      "NIGHTMARE": 30
+    },
+    "EXEGGCUTE": {
+      "SKILL_SWAP": 30,
+      "MAGICAL_LEAF": 30
+    },
+    "FLITTLE": {
+      "MAGICAL_LEAF": 30
+    },
+    "FRIGIBAX": {
+      "ICICLE_SPEAR": 30
+    },
+    "GASTLY": {
+      "NIGHTMARE": 30,
+      "SCARY_FACE": 30
+    },
+    "GEODUDE": {
+      "MEGA_PUNCH": 30
+    },
+    "GEODUDE_ALOLAN": {
+      "ENDURE": 30,
+      "MEGA_PUNCH": 30
+    },
+    "GLIMMET": {
+      "SPIKES": 30,
+      "EARTH_POWER": 30
+    },
+    "GOLDEEN": {
+      "MUD_SHOT": 30,
+      "SKULL_BASH": 30
+    },
+    "GOLETT": {
+      "MEGA_KICK": 30,
+      "IRON_DEFENSE": 30,
+      "ROLLOUT": 30,
+      "STEALTH_ROCK": 30
+    },
+    "GRIMER": {
+      "SCARY_FACE": 30
+    },
+    "GRIMER_ALOLAN": {
+      "SCARY_FACE": 30
+    },
+    "HOPPIP": {
+      "PAY_DAY": 30
+    },
+    "IMPIDIMP": {
+      "CHARM": 30,
+      "ENCORE": 30,
+      "MEAN_LOOK": 30,
+      "TORMENT": 30
+    },
+    "LEDYBA": {
+      "DIZZY_PUNCH": 30
+    },
+    "LITWICK": {
+      "ENDURE": 30
+    },
+    "MAGNEMITE": {
+      "EXPLOSION": 30
+    },
+    "MAREANIE": {
+      "INFESTATION": 30
+    },
+    "MIME_JR_": {
+      "SKILL_SWAP": 30
+    },
+    "MISDREAVUS": {
+      "PSYCH_UP": 30,
+      "SKILL_SWAP": 30
+    },
+    "MUNCHLAX": {
+      "WHIRLWIND": 30
+    },
+    "PAWNIARD": {
+      "MEAN_LOOK": 30,
+      "PURSUIT": 30
+    },
+    "POLIWAG": {
+      "MIND_READER": 30
+    },
+    "PORYGON": {
+      "DISABLE": 30,
+      "FORESIGHT": 30,
+      "MIND_READER": 30
+    },
+    "SALANDIT": {
+      "FLAME_CHARGE": 30
+    },
+    "SHROOMISH": {
+      "MAGICAL_LEAF": 30
+    },
+    "SLUGMA": {
+      "ROLLOUT": 30
+    },
+    "SMOOCHUM": {
+      "WISH": 30
+    },
+    "SNORUNT": {
+      "SPIKES": 30
+    },
+    "SNOVER": {
+      "MAGICAL_LEAF": 30
+    },
+    "STARYU": {
+      "AURORA_BEAM": 30,
+      "BARRIER": 30,
+      "SUPERSONIC": 30
+    },
+    "TAUROS": {
+      "REVERSAL": 30,
+      "ENDURE": 30,
+      "ROCK_SLIDE": 30
+    },
+    "TAUROS_PALDEAN_FIRE": {
+      "REVERSAL": 30,
+      "ENDURE": 30,
+      "ROCK_SLIDE": 30,
+      "BODY_SLAM": 30,
+      "HORN_ATTACK": 30
+    },
+    "TAUROS_PALDEAN_WATER": {
+      "REVERSAL": 30,
+      "ENDURE": 30,
+      "ROCK_SLIDE": 30,
+      "BODY_SLAM": 30,
+      "HORN_ATTACK": 30
+    },
+    "TINKATINK": {
+      "BULLET_PUNCH": 30
+    },
+    "TOTODILE": {
+      "RAZOR_WIND": 30
+    },
+    "VENONAT": {
+      "SKILL_SWAP": 30
+    },
+    "VOLTORB": {
+      "AGILITY": 30,
+      "RECOVER": 30,
+      "NUZZLE": 30
+    },
+    "VOLTORB_HISUIAN": {
+      "LEECH_SEED": 30,
+      "STUN_SPORE": 30,
+      "MAGICAL_LEAF": 30,
+      "GIGA_DRAIN": 30
+    }
+  },
+  "donor_proofs": {
+    "BLASTOISE": {
+      "FLIP_TURN": [
+        "GOLDUCK: level 30",
+        "GOLDUCK -> SQUIRTLE: egg move"
+      ],
+      "DARK_PULSE": [
+        "LARVITAR: level 34",
+        "LARVITAR -> SQUIRTLE: egg move"
+      ]
+    },
+    "PIDGEOTTO": {
+      "DEFOG": [
+        "NOCTOWL: level 34",
+        "NOCTOWL -> PIDGEY: egg move"
+      ]
+    },
+    "PIDGEOT": {
+      "DEFOG": [
+        "NOCTOWL: level 34",
+        "NOCTOWL -> PIDGEY: egg move"
+      ]
+    },
+    "RATICATE": {
+      "COUNTER": [
+        "WOOPER: level 34",
+        "WOOPER -> RATTATA: egg move"
+      ]
+    },
+    "PIKACHU": {
+      "VOLT_TACKLE": [
+        "GOROCHU: level 58",
+        "GOROCHU -> PICHU: egg move"
+      ]
+    },
+    "RAICHU": {
+      "VOLT_TACKLE": [
+        "GOROCHU: level 58",
+        "GOROCHU -> PICHU: egg move"
+      ]
+    },
+    "CLEFAIRY": {
+      "WISH": [
+        "TOGEKISS: level 36",
+        "TOGEKISS -> CLEFFA: egg move"
+      ]
+    },
+    "CLEFABLE": {
+      "WISH": [
+        "TOGEKISS: level 36",
+        "TOGEKISS -> CLEFFA: egg move"
+      ]
+    },
+    "NINETALES": {
+      "HEX": [
+        "QUILAVA: level 36",
+        "QUILAVA -> VULPIX: egg move"
+      ]
+    },
+    "ARCANINE": {
+      "MORNING_SUN": [
+        "ESPEON: level 31",
+        "ESPEON -> GROWLITHE: egg move"
+      ]
+    },
+    "POLIWRATH": {
+      "HAZE": [
+        "DEWGONG: level 20",
+        "DEWGONG -> POLIWAG: egg move"
+      ],
+      "MIST": [
+        "LAPRAS: level 4",
+        "LAPRAS -> POLIWAG: egg move"
+      ]
+    },
+    "KADABRA": {
+      "LIGHT_SCREEN": [
+        "ABRA: utility tutor"
+      ]
+    },
+    "ALAKAZAM": {
+      "BARRIER": [
+        "MR__MIME: level 1",
+        "MR__MIME -> ABRA: egg move"
+      ],
+      "ENCORE": [
+        "HYPNO: level 24",
+        "HYPNO -> ABRA: egg move"
+      ],
+      "LIGHT_SCREEN": [
+        "ABRA: utility tutor"
+      ]
+    },
+    "GOLEM": {
+      "IRON_DEFENSE": [
+        "ONIX: level 30",
+        "ONIX -> GEODUDE: egg move"
+      ],
+      "HAMMER_ARM": [
+        "DURALUDON: level 40",
+        "DURALUDON -> GEODUDE: egg move"
+      ]
+    },
+    "MUK": {
+      "HAZE": [
+        "KOFFING: level 22",
+        "KOFFING -> GRIMER: egg move"
+      ]
+    },
+    "HYPNO": {
+      "BARRIER": [
+        "MR__MIME: level 1",
+        "MR__MIME -> DROWZEE: egg move"
+      ],
+      "PSYCHO_CUT": [
+        "KADABRA: level 36",
+        "KADABRA -> DROWZEE: egg move"
+      ]
+    },
+    "KINGLER": {
+      "AMNESIA": [
+        "CORSOLA: level 28",
+        "CORSOLA -> KRABBY: egg move"
+      ]
+    },
+    "MAROWAK": {
+      "SWORDS_DANCE": [
+        "VENUSAUR: level 30",
+        "VENUSAUR -> CUBONE: egg move"
+      ]
+    },
+    "WEEZING": {
+      "PSYBEAM": [
+        "MISDREAVUS: level 17",
+        "MISDREAVUS -> KOFFING: egg move"
+      ]
+    },
+    "SEADRA": {
+      "DISABLE": [
+        "PSYDUCK: level 18",
+        "PSYDUCK -> HORSEA: egg move"
+      ]
+    },
+    "EEVEE": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "VAPOREON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "JOLTEON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "FLAREON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "OMASTAR": {
+      "SPIKES": [
+        "CLOYSTER: level 28",
+        "CLOYSTER -> OMANYTE: egg move"
+      ],
+      "TOXIC_SPIKES": [
+        "TENTACOOL: level 10",
+        "TENTACOOL -> OMANYTE: egg move"
+      ]
+    },
+    "KABUTOPS": {
+      "RAPID_SPIN": [
+        "SQUIRTLE: level 17",
+        "SQUIRTLE -> KABUTO: egg move"
+      ]
+    },
+    "CROCONAW": {
+      "AQUA_JET": [
+        "GOLDUCK: level 1",
+        "GOLDUCK -> TOTODILE: egg move"
+      ]
+    },
+    "FERALIGATR": {
+      "AQUA_JET": [
+        "GOLDUCK: level 1",
+        "GOLDUCK -> TOTODILE: egg move"
+      ]
+    },
+    "LANTURN": {
+      "SCALD": [
+        "SEAKING: level 32",
+        "SEAKING -> CHINCHOU: egg move"
+      ]
+    },
+    "MARILL": {
+      "BELLY_DRUM": [
+        "POLIWAG: level 30",
+        "POLIWAG -> AZURILL: egg move"
+      ]
+    },
+    "AZUMARILL": {
+      "BELLY_DRUM": [
+        "POLIWAG: level 30",
+        "POLIWAG -> AZURILL: egg move"
+      ]
+    },
+    "SUDOWOODO": {
+      "DEFENSE_CURL": [
+        "GEODUDE: level 1",
+        "GEODUDE -> BONSLY: egg move"
+      ],
+      "ROLLOUT": [
+        "GEODUDE: level 16",
+        "GEODUDE -> BONSLY: egg move"
+      ],
+      "STEALTH_ROCK": [
+        "GEODUDE: level 30",
+        "GEODUDE -> BONSLY: egg move"
+      ]
+    },
+    "POLITOED": {
+      "ENCORE": [
+        "SEEL: level 11",
+        "SEEL -> POLIWAG: egg move"
+      ],
+      "WATER_PULSE": [
+        "SQUIRTLE: level 20",
+        "SQUIRTLE -> POLIWAG: egg move"
+      ]
+    },
+    "ESPEON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "UMBREON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "GIRAFARIG": {
+      "WISH": [
+        "GARDEVOIR: level 36",
+        "GARDEVOIR -> GIRAFARIG: egg move"
+      ]
+    },
+    "FORRETRESS": {
+      "REFLECT": [
+        "PINECO: utility tutor"
+      ],
+      "STEALTH_ROCK": [
+        "SHUCKLE: level 30",
+        "SHUCKLE -> PINECO: egg move"
+      ]
+    },
+    "KINGDRA": {
+      "DISABLE": [
+        "PSYDUCK: level 18",
+        "PSYDUCK -> HORSEA: egg move"
+      ]
+    },
+    "HITMONTOP": {
+      "BULLET_PUNCH": [
+        "HITMONCHAN: level 27",
+        "HITMONCHAN -> TYROGUE: egg move"
+      ],
+      "HI_JUMP_KICK": [
+        "HITMONLEE: level 41",
+        "HITMONLEE -> TYROGUE: egg move"
+      ]
+    },
+    "BLASTOISE_CLONE": {
+      "FLIP_TURN": [
+        "GOLDUCK: level 30",
+        "GOLDUCK -> SQUIRTLE_CLONE: egg move"
+      ],
+      "DARK_PULSE": [
+        "LARVITAR: level 34",
+        "LARVITAR -> SQUIRTLE_CLONE: egg move"
+      ]
+    },
+    "GLACEON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "LEAFEON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "SYLVEON": {
+      "HEAL_BELL": [
+        "MAREEP: level 40",
+        "MAREEP -> EEVEE: egg move"
+      ]
+    },
+    "URSALUNA": {
+      "FOCUS_ENERGY": [
+        "RATTATA: level 10",
+        "RATTATA -> TEDDIURSA: egg move"
+      ]
+    },
+    "ZWEILOUS": {
+      "DARK_PULSE": [
+        "SEVIPER: level 34",
+        "SEVIPER -> DEINO: egg move"
+      ]
+    },
+    "HYDREIGON": {
+      "DARK_PULSE": [
+        "SEVIPER: level 34",
+        "SEVIPER -> DEINO: egg move"
+      ]
+    },
+    "GRIMMSNARL": {
+      "REFLECT": [
+        "IMPIDIMP: utility tutor"
+      ],
+      "LIGHT_SCREEN": [
+        "IMPIDIMP: utility tutor"
+      ],
+      "THUNDER_WAVE": [
+        "IMPIDIMP: utility tutor"
+      ]
+    },
+    "CORVIKNIGHT": {
+      "ROOST": [
+        "PIDGEY: level 30",
+        "PIDGEY -> ROOKIDEE: egg move"
+      ]
+    },
+    "ABOMASNOW": {
+      "LEAF_STORM": [
+        "VENUSAUR: level 62",
+        "VENUSAUR -> SNOVER: egg move"
+      ]
+    },
+    "CAMERUPT": {
+      "HEAT_WAVE": [
+        "VULPIX: level 39",
+        "VULPIX -> NUMEL: egg move"
+      ]
+    },
+    "CHARJABUG": {
+      "VOLT_SWITCH": [
+        "FORRETRESS: level 30",
+        "FORRETRESS -> GRUBBIN: egg move"
+      ]
+    },
+    "VIKAVOLT": {
+      "VOLT_SWITCH": [
+        "FORRETRESS: level 30",
+        "FORRETRESS -> GRUBBIN: egg move"
+      ]
+    },
+    "FLYGON": {
+      "U_TURN": [
+        "BUTTERFREE: level 30",
+        "BUTTERFREE -> TRAPINCH: egg move"
+      ],
+      "ROOST": [
+        "CHARIZARD: level 36",
+        "CHARIZARD -> TRAPINCH: egg move"
+      ]
+    },
+    "GRUMPIG": {
+      "CALM_MIND": [
+        "VAPOREON: level 30",
+        "VAPOREON -> SPOINK: egg move"
+      ]
+    },
+    "BASTIODON": {
+      "FISSURE": [
+        "SANDSHREW: level 45",
+        "SANDSHREW -> SPHEAL: egg move",
+        "SPHEAL -> LAPRAS: egg move",
+        "LAPRAS -> SHIELDON: egg move"
+      ]
+    },
+    "MILOTIC": {
+      "CONFUSE_RAY": [
+        "LAPRAS: level 7",
+        "LAPRAS -> FEEBAS: egg move"
+      ],
+      "DRAGONBREATH": [
+        "HORSEA: level 13",
+        "HORSEA -> FEEBAS: egg move"
+      ],
+      "HYPNOSIS": [
+        "PSYDUCK: level 27",
+        "PSYDUCK -> FEEBAS: egg move"
+      ],
+      "MIRROR_COAT": [
+        "CORSOLA: level 46",
+        "CORSOLA -> FEEBAS: egg move"
+      ]
+    },
+    "LUCARIO": {
+      "BULLET_PUNCH": [
+        "MACHAMP: level 1",
+        "MACHAMP -> RIOLU: egg move"
+      ],
+      "HI_JUMP_KICK": [
+        "HITMONLEE: level 41",
+        "HITMONLEE -> RIOLU: egg move"
+      ]
+    },
+    "RAICHU_ALOLAN": {
+      "VOLT_TACKLE": [
+        "GOROCHU: level 58",
+        "GOROCHU -> PICHU: egg move"
+      ]
+    },
+    "SANDSLASH_ALOLAN": {
+      "CRUSH_CLAW": [
+        "SANDSLASH: level 32",
+        "SANDSLASH -> SANDSHREW_ALOLAN: egg move"
+      ]
+    },
+    "NINETALES_ALOLAN": {
+      "ENCORE": [
+        "NINETALES: level 24",
+        "NINETALES -> VULPIX_ALOLAN: egg move"
+      ]
+    },
+    "GOLEM_ALOLAN": {
+      "IRON_DEFENSE": [
+        "ONIX: level 30",
+        "ONIX -> GEODUDE_ALOLAN: egg move"
+      ]
+    },
+    "MUK_ALOLAN": {
+      "HAZE": [
+        "KOFFING: level 22",
+        "KOFFING -> GRIMER_ALOLAN: egg move"
+      ]
+    },
+    "MAROWAK_ALOLAN": {
+      "SWORDS_DANCE": [
+        "VENUSAUR: level 30",
+        "VENUSAUR -> CUBONE: egg move"
+      ]
+    },
+    "WEEZING_GALARIAN": {
+      "PSYBEAM": [
+        "MISDREAVUS: level 17",
+        "MISDREAVUS -> KOFFING: egg move"
+      ]
+    },
+    "LAIRON": {
+      "BODY_PRESS": [
+        "BLASTOISE: level 32",
+        "BLASTOISE -> ARON: egg move"
+      ]
+    },
+    "AGGRON": {
+      "BODY_PRESS": [
+        "BLASTOISE: level 32",
+        "BLASTOISE -> ARON: egg move"
+      ],
+      "HEAD_SMASH": [
+        "RHYPERIOR: level 55",
+        "RHYPERIOR -> ARON: egg move"
+      ]
+    },
+    "BANETTE": {
+      "ENCORE": [
+        "GENGAR: level 24",
+        "GENGAR -> SHUPPET: egg move"
+      ],
+      "TAUNT": [
+        "MUK: level 24",
+        "MUK -> SHUPPET: egg move"
+      ],
+      "SWORDS_DANCE": [
+        "MIMIKYU: level 30",
+        "MIMIKYU -> SHUPPET: egg move"
+      ]
+    },
+    "ARCHEOPS": {
+      "DEFOG": [
+        "NOCTOWL: level 34",
+        "NOCTOWL -> ARCHEN: egg move"
+      ]
+    },
+    "GALVANTULA": {
+      "GIGA_DRAIN": [
+        "PARAS: level 40",
+        "PARAS -> JOLTIK: egg move"
+      ]
+    },
+    "NOIVERN": {
+      "HYPER_VOICE": [
+        "TOGETIC: level 36",
+        "TOGETIC -> NOIBAT: egg move"
+      ],
+      "OUTRAGE": [
+        "HORSEA: level 43",
+        "HORSEA -> NOIBAT: egg move"
+      ]
+    }
+  }
+}

@@ -110,7 +110,15 @@ test-complex: pokecrystal_debug.gbc
 	python3 tools/battletest/cove_sprite_checks.py
 
 test-learnsets: pokecrystal.gbc
-	python3 tools/test_learnset_variety.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/audit_breeding_moves.py
+	$(BATTLE_TEST_PYTHON) tools/test_learnset_variety.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_breeding_moves.py pokecrystal.gbc
+
+.PHONY: test-qol
+test-qol: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_qol.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_qol.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_daycare_abilities.py pokecrystal.gbc
 
 test-weather: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_azalea_weather.py pokecrystal.gbc

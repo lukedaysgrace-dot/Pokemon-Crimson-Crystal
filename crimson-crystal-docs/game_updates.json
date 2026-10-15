@@ -1091,6 +1091,51 @@
       ]
     },
     {
+      "id": "three-beep-low-health-alarm",
+      "category": "battle",
+      "title": "Low-health alarm stops after three beeps",
+      "before": "The red-HP alarm repeats continuously.",
+      "after": "The alarm plays at most three high/low beep cycles per continuous red-HP period, then releases its music channel. Other sound effects pause the alarm without spending its beep allowance. Leaving red HP resets both the counter and tone phase; fainting and battle cleanup also reset it.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "constants/audio_constants.asm",
+        "audio/engine.asm",
+        "engine/battle/core.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "short-daycare-egg-wait",
+      "category": "training",
+      "title": "Short, predictable Day-Care egg waits",
+      "before": "A random initial countdown and repeated compatibility-dependent rolls can require a long walk before an egg appears.",
+      "after": "Compatible parents produce an egg after 64 counted Day-Care steps, regardless of species-match or Trainer-ID bonuses. Existing saves with longer or zero countdowns are bounded to 64 steps. Incompatible pairs still cannot breed, and a pending egg pauses further production.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "constants/pokemon_data_constants.asm",
+        "engine/events/daycare.asm",
+        "engine/events/happiness_egg.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "short-egg-hatch-cycles",
+      "category": "training",
+      "title": "Eggs hatch sixteen times faster",
+      "before": "Egg hatch counters advance once every 256 counted steps, and an earlier ready egg can prevent later eggs from advancing.",
+      "after": "All party eggs advance every 16 counted steps, including gift eggs and eggs already held on existing saves. Species retain their own cycle counts: Magikarp takes up to 80 counted steps and Eevee up to 560. Ready eggs stay at zero and every egg advances before hatching begins. Friendship and walking-poison timing are unchanged.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "constants/pokemon_data_constants.asm",
+        "engine/overworld/events.asm",
+        "engine/pokemon/breeding.asm"
+      ],
+      "links": []
+    },
+    {
       "id": "reusable-tms",
       "category": "training",
       "title": "Reusable TMs",
@@ -1131,6 +1176,20 @@
       "kind": "expanded",
       "sources": [
         "maps/MoveDeletersHouse.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "modern-breeding-move-inheritance",
+      "category": "training",
+      "title": "Modern breeding move inheritance",
+      "before": "Only the father passes egg moves, and compatible TM/HM moves can be inherited.",
+      "after": "Either parent can pass a listed egg move. Ordinary level-up moves pass only when both parents know them; TM/HM compatibility alone does not pass moves. Ditto never supplies moves. If more than four moves qualify, egg moves take priority, with the mother's egg moves last. Added level-up copies become egg-only when this roster provides a donor route. Moves without a donor keep level-up access, with missing fallback moves added to the first stage at level 30.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/pokemon/breeding.asm",
+        "tools/testdata/breeding_moves.json"
       ],
       "links": []
     },

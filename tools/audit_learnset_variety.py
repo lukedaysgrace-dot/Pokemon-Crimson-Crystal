@@ -81,13 +81,17 @@ def main():
  for c in ['DITTO','WOBBUFFET','WYNAUT','SMEARGLE']:assert utility[c]==0,(c,'restricted identity')
  review=json.loads(read('tools/testdata/learnset_variety_review.json'))
  receipt=json.loads(read('tools/testdata/learnset_variety_implementation.json'))
+ breeding=json.loads(read('tools/testdata/breeding_moves.json'))
+ breeding_removals=breeding['level_up_removals']
  assignments=0
  for c,q in review['recommendations'].items():
   for x in q['choices']:
    assert x['move'] in pools[c],(c,x['move'],'approved addition unavailable')
    assignments+=1
  for c,ms in receipt['reminder_repairs'].items():
-  for move,lv in ms.items():assert (lv,move) in levels[c],(c,move,'reminder repair missing')
+  for move,lv in ms.items():
+   if move in breeding_removals.get(c,[]):assert move in eggs[c],(c,move,'egg replacement missing')
+   else:assert (lv,move) in levels[c],(c,move,'reminder repair missing')
  assert (32,'VOLT_SWITCH') in levels['RAICHU_ALOLAN'] and (76,'VOLT_SWITCH') not in levels['RAICHU_ALOLAN']
  assert (44,'BELLY_DRUM') in levels['MAGMAR'], 'Magby Belly Drum donor access'
  for c,ms in receipt['availability_restorations'].items():
@@ -106,7 +110,7 @@ def main():
   assert c in review['roster'] and set(removed)<=set(review['roster'][c]['own']),(c,'invalid curated removal')
   assert not set(removed)&set(m for lv,m in levels[c]),(c,'curated removal restored')
  for c,row in review['roster'].items():
-  assert set(row['own'])-set(removals.get(c,[]))<=set(m for lv,m in levels[c]),(c,'original level-up loss')
+  assert set(row['own'])-set(removals.get(c,[]))-set(breeding_removals.get(c,[]))<=set(m for lv,m in levels[c]),(c,'original level-up loss')
   expected={replacements.get(move,move) for move in row['tms']}
   assert expected<=set(tm[c]),(c,sorted(expected-set(tm[c])),'original compatibility loss')
  print(f'LEARNSET VARIETY AUDIT PASSED: {len(order)} entries, {assignments} approved additions, 9 clone mirrors, reminder/timing repairs and five utility compatibility columns.')

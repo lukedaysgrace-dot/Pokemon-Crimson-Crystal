@@ -134,6 +134,7 @@ BulbasaurEvosAttacks:
 	dbw 23, SWEET_SCENT
 	dbw 26, SLUDGE_BOMB
 	dbw 29, GROWTH
+	dbw 30, RAZOR_WIND
 	dbw 33, POWER_WHIP
 	dbw 35, DOUBLE_EDGE
 	dbw 36, SOLARBEAM
@@ -316,9 +317,7 @@ BlastoiseEvosAttacks:
 	dbw 22, WATER_PULSE
 	dbw 26, PROTECT
 	dbw 28, IRON_DEFENSE
-	dbw 30, FLIP_TURN
 	dbw 32, BODY_PRESS
-	dbw 34, DARK_PULSE
 	dbw 35, SHELL_SMASH
 	dbw 36, AURA_SPHERE
 	dbw 39, SKULL_BASH
@@ -444,7 +443,6 @@ PidgeottoEvosAttacks:
 	dbw 30, DUALWINGBEAT
 	dbw 31, AGILITY
 	dbw 31, RAZOR_WIND
-	dbw 32, DEFOG
 	dbw 35, ROOST
 	dbw 39, WHIRLWIND
 	dbw 47, HURRICANE
@@ -468,7 +466,6 @@ PidgeotEvosAttacks:
 	dbw 31, RAZOR_WIND
 	dbw 34, DUALWINGBEAT
 	dbw 35, ROOST
-	dbw 36, DEFOG
 	dbw 36, HEAT_WAVE
 	dbw 40, WHIRLWIND
 	dbw 42, DOUBLE_EDGE
@@ -499,7 +496,6 @@ RattataEvosAttacks:
 
 RaticateEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, COUNTER
 	dbw 1, QUICK_ATTACK
 	dbw 1, SWORDS_DANCE
 	dbw 1, TACKLE
@@ -634,7 +630,6 @@ PikachuEvosAttacks:
 	dbw 33, WILD_CHARGE
 	dbw 36, LIGHT_SCREEN
 	dbw 39, THUNDER
-	dbw 45, VOLT_TACKLE
 	db 0 ; no more level-up moves
 
 RaichuEvosAttacks:
@@ -662,7 +657,6 @@ RaichuEvosAttacks:
 	dbw 36, LIGHT_SCREEN
 	dbw 39, THUNDER
 	dbw 40, FOCUS_BLAST
-	dbw 45, VOLT_TACKLE
 	db 0 ; no more level-up moves
 
 SandshrewEvosAttacks:
@@ -861,7 +855,6 @@ ClefairyEvosAttacks:
 	dbw 29, MOONBLAST
 	dbw 31, MOONLIGHT
 	dbw 36, CALM_MIND
-	dbw 44, WISH
 	db 0 ; no more level-up moves
 
 ClefableEvosAttacks:
@@ -885,7 +878,6 @@ ClefableEvosAttacks:
 	dbw 29, MOONBLAST
 	dbw 31, MOONLIGHT
 	dbw 36, CALM_MIND
-	dbw 44, WISH
 	dbw 59, SOFTBOILED
 	db 0 ; no more level-up moves
 
@@ -924,7 +916,6 @@ NinetalesEvosAttacks:
 	dbw 12, SPITE
 	dbw 13, FIRE_SPIN
 	dbw 17, WILL_O_WISP
-	dbw 18, HEX
 	dbw 19, INCINERATE
 	dbw 22, FLAMETHROWER
 	dbw 23, EXTRASENSORY
@@ -1170,6 +1161,7 @@ VenonatEvosAttacks:
 	dbw 25, BUG_BUZZ
 	dbw 25, MEGA_DRAIN
 	dbw 27, ZEN_HEADBUTT
+	dbw 30, SKILL_SWAP
 	dbw 33, BATON_PASS
 	dbw 39, MORNING_SUN
 	dbw 47, PSYCHIC_M
@@ -1430,7 +1422,6 @@ ArcanineEvosAttacks:
 	dbw 31, CRUNCH
 	dbw 33, OUTRAGE
 	dbw 34, CRUSH_CLAW
-	dbw 36, MORNING_SUN
 	dbw 36, WILD_CHARGE
 	dbw 38, PLAY_ROUGH
 	dbw 41, FLARE_BLITZ
@@ -1453,6 +1444,7 @@ PoliwagEvosAttacks:
 	dbw 24, BODY_SLAM
 	dbw 27, LOW_KICK
 	dbw 30, BELLY_DRUM
+	dbw 30, MIND_READER
 	dbw 36, EARTH_POWER
 	dbw 39, HYDRO_PUMP
 	dbw 54, DOUBLE_EDGE
@@ -1481,8 +1473,6 @@ PoliwhirlEvosAttacks:
 PoliwrathEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, BUBBLE
-	dbw 1, HAZE
-	dbw 1, MIST
 	dbw 1, POUND
 	dbw 1, SUBMISSION
 	dbw 6, HYPNOSIS
@@ -1511,6 +1501,7 @@ AbraEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, KADABRA
 	db 0 ; no more evolutions
 	dbw 1, TELEPORT
+	dbw 30, SKILL_SWAP
 	db 0 ; no more level-up moves
 
 KadabraEvosAttacks:
@@ -1523,7 +1514,6 @@ KadabraEvosAttacks:
 	dbw 16, PSYBEAM
 	dbw 19, DISABLE
 	dbw 22, NIGHT_SHADE
-	dbw 28, LIGHT_SCREEN
 	dbw 28, REFLECT
 	dbw 34, RECOVER
 	dbw 36, PSYCHO_CUT
@@ -1536,9 +1526,7 @@ KadabraEvosAttacks:
 
 AlakazamEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, BARRIER
 	dbw 1, CONFUSION
-	dbw 1, ENCORE
 	dbw 1, FLASH
 	dbw 1, KINESIS
 	dbw 1, TELEPORT
@@ -1546,7 +1534,6 @@ AlakazamEvosAttacks:
 	dbw 19, DISABLE
 	dbw 22, NIGHT_SHADE
 	dbw 24, TAUNT
-	dbw 28, LIGHT_SCREEN
 	dbw 28, REFLECT
 	dbw 34, RECOVER
 	dbw 34, DAZZLING_GLEAM
@@ -1775,6 +1762,7 @@ GeodudeEvosAttacks:
 	dbw 25, ROCK_POLISH
 	dbw 25, ROCK_SLIDE
 	dbw 30, STEALTH_ROCK
+	dbw 30, MEGA_PUNCH
 	dbw 31, EARTHQUAKE
 	dbw 34, ROCK_BLAST
 	dbw 37, EXPLOSION
@@ -1829,10 +1817,8 @@ GolemEvosAttacks:
 	dbw 34, EARTHQUAKE
 	dbw 38, ROCK_BLAST
 	dbw 38, STEALTH_ROCK
-	dbw 40, IRON_DEFENSE
 	dbw 40, SUPERPOWER
 	dbw 42, EXPLOSION
-	dbw 42, HAMMER_ARM
 	dbw 44, BODY_PRESS
 	dbw 46, DOUBLE_EDGE
 	dbw 50, STONE_EDGE
@@ -1954,6 +1940,7 @@ MagnemiteEvosAttacks:
 	dbw 10, SPARK
 	dbw 16, LIGHT_SCREEN
 	dbw 22, VOLT_SWITCH
+	dbw 30, EXPLOSION
 	dbw 31, FLASH_CANNON
 	dbw 34, SCREECH
 	dbw 37, THUNDERBOLT
@@ -2116,6 +2103,7 @@ GrimerEvosAttacks:
 	dbw 22, SHADOW_SNEAK
 	dbw 26, TOXIC
 	dbw 28, POISON_JAB
+	dbw 30, SCARY_FACE
 	dbw 34, SCREECH
 	dbw 37, SLUDGE_BOMB
 	dbw 40, ACID_ARMOR
@@ -2125,7 +2113,6 @@ GrimerEvosAttacks:
 MukEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, CURSE
-	dbw 1, HAZE
 	dbw 1, MOONBLAST
 	dbw 1, POISON_GAS
 	dbw 1, POUND
@@ -2210,6 +2197,8 @@ GastlyEvosAttacks:
 	dbw 19, CURSE
 	dbw 22, SUCKER_PUNCH
 	dbw 25, SHADOW_BALL
+	dbw 30, NIGHTMARE
+	dbw 30, SCARY_FACE
 	dbw 31, SLUDGE_BOMB
 	dbw 34, DREAM_EATER
 	dbw 37, DARK_PULSE
@@ -2308,6 +2297,7 @@ DrowzeeEvosAttacks:
 	dbw 21, MEDITATE
 	dbw 29, MIND_READER
 	dbw 30, PSYCH_UP
+	dbw 30, SKILL_SWAP
 	dbw 33, SWAGGER
 	dbw 33, ZEN_HEADBUTT
 	dbw 36, PSYCHIC_M
@@ -2319,7 +2309,6 @@ DrowzeeEvosAttacks:
 
 HypnoEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, BARRIER
 	dbw 1, DREAM_EATER
 	dbw 1, HYPNOSIS
 	dbw 1, POUND
@@ -2338,7 +2327,6 @@ HypnoEvosAttacks:
 	dbw 33, ZEN_HEADBUTT
 	dbw 36, PSYCHIC_M
 	dbw 39, DYNAMICPUNCH
-	dbw 40, PSYCHO_CUT
 	dbw 41, NASTY_PLOT
 	dbw 42, DRAIN_PUNCH
 	dbw 51, FUTURE_SIGHT
@@ -2369,7 +2357,6 @@ KrabbyEvosAttacks:
 
 KinglerEvosAttacks:
 	db 0 ; no more evolutions
-	dbw 1, AMNESIA
 	dbw 1, BUBBLE
 	dbw 1, HARDEN
 	dbw 1, WATER_GUN
@@ -2404,6 +2391,9 @@ VoltorbEvosAttacks:
 	dbw 24, SELFDESTRUCT
 	dbw 27, VOLT_SWITCH
 	dbw 30, LIGHT_SCREEN
+	dbw 30, AGILITY
+	dbw 30, RECOVER
+	dbw 30, NUZZLE
 	dbw 36, THUNDERBOLT
 	dbw 39, EXPLOSION
 	dbw 42, GYRO_BALL
@@ -2451,6 +2441,8 @@ ExeggcuteEvosAttacks:
 	dbw 25, ENERGY_BALL
 	dbw 25, SYNTHESIS
 	dbw 29, ANCIENTPOWER
+	dbw 30, SKILL_SWAP
+	dbw 30, MAGICAL_LEAF
 	dbw 33, PSYCHIC_M
 	dbw 35, GIGA_DRAIN
 	dbw 37, SOLARBEAM
@@ -2523,7 +2515,6 @@ MarowakEvosAttacks:
 	dbw 22, FALSE_SWIPE
 	dbw 24, STEALTH_ROCK
 	dbw 25, KNOCK_OFF
-	dbw 28, SWORDS_DANCE
 	dbw 29, BONE_RUSH
 	dbw 33, THRASH
 	dbw 38, DRILL_RUN
@@ -2631,7 +2622,6 @@ KoffingEvosAttacks:
 WeezingEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, POISON_GAS
-	dbw 1, PSYBEAM
 	dbw 1, TACKLE
 	dbw 4, SMOG
 	dbw 7, SMOKESCREEN
@@ -2803,7 +2793,6 @@ SeadraEvosAttacks:
 	dbbw EVOLVE_ITEM, DRAGON_SCALE, KINGDRA
 	db 0 ; no more evolutions
 	dbw 1, BUBBLE
-	dbw 1, DISABLE
 	dbw 1, LEER
 	dbw 1, SMOKESCREEN
 	dbw 1, TWISTER
@@ -2846,6 +2835,8 @@ GoldeenEvosAttacks:
 	dbw 22, WATERFALL
 	dbw 25, AGILITY
 	dbw 28, BODY_SLAM
+	dbw 30, MUD_SHOT
+	dbw 30, SKULL_BASH
 	dbw 31, AQUA_TAIL
 	dbw 34, KNOCK_OFF
 	dbw 43, HYDRO_PUMP
@@ -2890,6 +2881,9 @@ StaryuEvosAttacks:
 	dbw 24, PSYBEAM
 	dbw 25, MINIMIZE
 	dbw 27, POWER_GEM
+	dbw 30, AURORA_BEAM
+	dbw 30, BARRIER
+	dbw 30, SUPERSONIC
 	dbw 33, CONFUSE_RAY
 	dbw 35, LIGHT_SCREEN
 	dbw 40, PSYCHIC_M
@@ -3116,6 +3110,9 @@ TaurosEvosAttacks:
 	dbw 25, TAKE_DOWN
 	dbw 28, WORK_UP
 	dbw 28, ZEN_HEADBUTT
+	dbw 30, REVERSAL
+	dbw 30, ENDURE
+	dbw 30, ROCK_SLIDE
 	dbw 31, BODY_SLAM
 	dbw 32, CRUSH_CLAW
 	dbw 34, BRICK_BREAK
@@ -3218,7 +3215,6 @@ EeveeEvosAttacks:
 	dbw 25, TAKE_DOWN
 	dbw 31, CHARM
 	dbw 34, DOUBLE_EDGE
-	dbw 37, HEAL_BELL
 	db 0 ; no more level-up moves
 
 VaporeonEvosAttacks:
@@ -3244,7 +3240,6 @@ VaporeonEvosAttacks:
 	dbw 30, CALM_MIND
 	dbw 31, ACID_ARMOR
 	dbw 37, ICE_BEAM
-	dbw 37, HEAL_BELL
 	dbw 43, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
@@ -3273,7 +3268,6 @@ JolteonEvosAttacks:
 	dbw 31, AGILITY
 	dbw 34, THUNDERBOLT
 	dbw 37, PIN_MISSILE
-	dbw 37, HEAL_BELL
 	dbw 43, THUNDER
 	db 0 ; no more level-up moves
 
@@ -3299,7 +3293,6 @@ FlareonEvosAttacks:
 	dbw 31, SCARY_FACE
 	dbw 34, FLAMETHROWER
 	dbw 37, CLOSE_COMBAT
-	dbw 37, HEAL_BELL
 	dbw 40, FLARE_BLITZ
 	dbw 40, SUPERPOWER
 	dbw 58, OVERHEAT
@@ -3318,6 +3311,9 @@ PorygonEvosAttacks:
 	dbw 15, THUNDERSHOCK
 	dbw 19, BARRIER
 	dbw 20, TRI_ATTACK
+	dbw 30, DISABLE
+	dbw 30, FORESIGHT
+	dbw 30, MIND_READER
 	dbw 31, LOCK_ON
 	dbw 36, SIGNAL_BEAM
 	dbw 37, THUNDERBOLT
@@ -3359,9 +3355,7 @@ OmastarEvosAttacks:
 	dbw 1, CRUNCH
 	dbw 1, KNOCK_OFF
 	dbw 1, SAND_ATTACK
-	dbw 1, SPIKES
 	dbw 1, SPIKE_CANNON
-	dbw 1, TOXIC_SPIKES
 	dbw 1, WATER_GUN
 	dbw 4, WITHDRAW
 	dbw 7, LEER
@@ -3410,7 +3404,6 @@ KabutopsEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, HARDEN
 	dbw 1, LEER
-	dbw 1, RAPID_SPIN
 	dbw 1, SCRATCH
 	dbw 7, ABSORB
 	dbw 10, AQUA_JET

@@ -173,6 +173,14 @@ CAUGHT_EGG_LEVEL EQU 1
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
+; Breeding QoL: compatible parents produce an egg after a short, fixed walk.
+DAYCARE_EGG_STEPS EQU 64
+; Keep species-specific hatch cycles, but advance them 16 times as often.
+EGG_CYCLE_STEPS EQU 16
+assert EGG_CYCLE_STEPS > 0 && (EGG_CYCLE_STEPS & (EGG_CYCLE_STEPS - 1)) == 0
+assert EGG_CYCLE_STEPS <= 256
+assert DAYCARE_EGG_STEPS > 0 && DAYCARE_EGG_STEPS < 256
+
 ; boxes (Polished-style pointer storage; see docs/pc_storage_design.md)
 MONS_PER_BOX EQU 20
 NUM_BOXES    EQU 25

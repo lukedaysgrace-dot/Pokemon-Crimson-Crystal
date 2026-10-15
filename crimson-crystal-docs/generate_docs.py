@@ -290,6 +290,7 @@ class Builder:
     self.r=repo; self.o=repo/'docs'; self.a=self.o/'assets'; self.report={'warnings':[],'unparsed':[]}
     self.dex_numbers={}
     self.tm_index={}; self.ability_desc={}; self._items={}
+    self.egg_cycle_steps=int(re.search(r'^EGG_CYCLE_STEPS\s+EQU\s+(\d+)',txt(repo/'constants/pokemon_data_constants.asm'),re.M).group(1))
   def dex_order(self, order):
     """Regional dex numbering from data/pokemon/dex_order_new.asm.
 
@@ -1238,7 +1239,7 @@ class Builder:
     if i.get('gender'): rows.append(('Gender ratio',i['gender']))
     if i.get('egg_groups'): rows.append(('Egg groups',', '.join(i['egg_groups'])))
     if i.get('egg_cycles') is not None and 'Undiscovered (cannot breed)' not in (i.get('egg_groups') or []):
-      rows.append(('Hatch time',f'{i["egg_cycles"]} egg cycles (~{i["egg_cycles"]*256:,} steps)'))
+      rows.append(('Hatch time',f'{i["egg_cycles"]} egg cycles (up to {i["egg_cycles"]*self.egg_cycle_steps:,} counted steps)'))
     if i.get('growth'): rows.append(('Growth rate',i['growth']))
     return '<dl class="info">'+''.join(f'<div><dt>{k}</dt><dd>{html.escape(str(v))}</dd></div>' for k,v in rows)+'</dl>'
 

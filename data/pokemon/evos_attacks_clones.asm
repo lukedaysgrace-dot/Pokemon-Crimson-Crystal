@@ -13,6 +13,7 @@ BulbasaurCloneEvosAttacks:
 	dbw 23, SWEET_SCENT
 	dbw 26, SLUDGE_BOMB
 	dbw 29, GROWTH
+	dbw 30, RAZOR_WIND
 	dbw 33, POWER_WHIP
 	dbw 35, DOUBLE_EDGE
 	dbw 36, SOLARBEAM
@@ -195,9 +196,7 @@ BlastoiseCloneEvosAttacks:
 	dbw 22, WATER_PULSE
 	dbw 26, PROTECT
 	dbw 28, IRON_DEFENSE
-	dbw 30, FLIP_TURN
 	dbw 32, BODY_PRESS
-	dbw 34, DARK_PULSE
 	dbw 35, SHELL_SMASH
 	dbw 36, AURA_SPHERE
 	dbw 39, SKULL_BASH
