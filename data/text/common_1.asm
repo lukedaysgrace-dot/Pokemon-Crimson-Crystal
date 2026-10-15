@@ -1311,7 +1311,13 @@ _UseAnotherRepelText::
 	text "REPEL's effect"
 	line "wore off."
 
-	para "Use another one?"
+	para "Use @"
+	text_ram wStringBuffer3
+	text "?"
+
+	line "In BAG: @"
+	text_decimal wStringBuffer4, 2, 4
+	text "@"
 	done
 
 _PlayerFoundItemText::

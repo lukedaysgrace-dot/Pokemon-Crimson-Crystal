@@ -29,6 +29,16 @@ unrelated phone, Safari, poison, bike and friendship services in private
 emulator memory; the step dispatcher and egg routines run from the built ROM.
 Neither ROM files nor player saves are modified by these tests.
 
+`make test-qol-followups BATTLE_TEST_PYTHON=.venv/bin/python` checks flexible
+Repel replacement, source-derived pre-evolution reminder lists for every species,
+level/known-move exclusions, scratch-space bounds and repeat-use field items in
+both ROMs. Its separate native menu checks press buttons through healing,
+cancellation, vitamins, PP Ups, Rare Candies and the Hard Mode cap, and capture
+the item/count header under `.tmpbuild/qol-consumables-ui/`. Fixture Pokémon,
+inventory and game flags are staged in private emulator memory. Regenerate
+`data/pokemon/pre_evolutions.asm` with `tools/generate_pre_evolutions.py` whenever
+evolution rows change; the checks reject a stale table.
+
 `make test-trainer-sprites` renders every trainer class's native battle
 introduction through the Fight menu, every declared overworld sheet in its
 intended facings/animation phases, and sprite allocation on every map with
