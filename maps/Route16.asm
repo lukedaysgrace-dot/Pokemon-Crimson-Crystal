@@ -1,5 +1,4 @@
 	object_const_def ; object_event constants
-	const ROUTE16_SLEEPING_SNORLAX
 
 Route16_MapScripts:
 	db 0 ; scene scripts
@@ -22,48 +21,11 @@ Route16_MapScripts:
 CyclingRoadSign:
 	jumptext CyclingRoadSignText
 
-Route16Snorlax:
-	opentext
-	special SnorlaxAwake
-	iftrue .Awake
-	writetext Route16SnorlaxSleepingText
-	waitbutton
-	closetext
-	end
-
-.Awake:
-	writetext Route16SnorlaxAwokeText
-	pause 15
-	cry SNORLAX
-	closetext
-	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadwildmon SNORLAX, 50
-	startbattle
-	disappear ROUTE16_SLEEPING_SNORLAX
-	setevent EVENT_ROUTE_16_SNORLAX
-	reloadmapafterbattle
-	end
-
 CyclingRoadSignText:
 	text "CYCLING ROAD"
 
 	para "DOWNHILL COASTING"
 	line "ALL THE WAY!"
-	done
-
-Route16SnorlaxSleepingText:
-	text "SNORLAX is snoring"
-	line "peacefully…"
-	done
-
-Route16SnorlaxAwokeText:
-	text "The #GEAR was"
-	line "placed near the"
-	cont "sleeping SNORLAX…"
-
-	para "…"
-
-	para "SNORLAX woke up!"
 	done
 
 Route16_MapEvents:
@@ -81,5 +43,4 @@ Route16_MapEvents:
 	db 1 ; bg events
 	bg_event  5,  5, BGEVENT_READ, CyclingRoadSign
 
-	db 1 ; object events
-	object_event 15,  6, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX_SLEEP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route16Snorlax, EVENT_ROUTE_16_SNORLAX
+	db 0 ; object events
