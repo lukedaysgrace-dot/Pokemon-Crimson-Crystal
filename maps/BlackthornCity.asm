@@ -54,6 +54,15 @@ BlackthornSuperNerdScript:
 	closetext
 	end
 
+BlackthornCityBillGSBallCallScript:
+	checkevent EVENT_BEAT_CLAIR
+	iffalse .Done
+	readmem wSpecialPhoneCallID
+	ifnotequal SPECIALCALL_BILL_GS_BALL, .Done
+	farsjump Script_SpecialBillCall
+.Done:
+	end
+
 BlackthornGramps1Script:
 	jumptextfaceplayer BlackthornGrampsRefusesEntryText
 
@@ -323,7 +332,9 @@ BlackthornCity_MapEvents:
 	warp_event 37,  9, ICE_PATH_1F, 2
 	warp_event 21,  1, DRAGONS_DEN_1F, 1
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event 18, 11, -1, BlackthornCityBillGSBallCallScript
+	coord_event 18, 12, -1, BlackthornCityBillGSBallCallScript
 
 	db 7 ; bg events
 	bg_event 34, 24, BGEVENT_READ, BlackthornCitySign
