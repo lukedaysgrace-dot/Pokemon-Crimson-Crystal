@@ -1,0 +1,65 @@
+name: Update Crimson Editor data
+on:
+  push:
+    branches: [main]
+    paths:
+      [
+        "constants/**",
+        "data/**",
+        "engine/**",
+        "gfx/**",
+        "home/**",
+        "macros/**",
+        "*.asm",
+        "Makefile",
+      ]
+  schedule:
+    - cron: "15 11 * * *"
+  repository_dispatch:
+    types: [crimson-updated]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: pnpm/action-setup@v4
+        with: { version: 11.25.0 }
+      - run: sudo apt-get update && sudo apt-get install -y bison flex libpng-dev pkg-config
+      - uses: actions/cache@v4
+        with:
+          {
+            path: crimson-editor/.toolchain,
+            key: "rgbds-0.5.2-${{ runner.os }}-source-v1",
+          }
+      - run: bash crimson-editor/tools/build-crimson.sh
+      - name: Regenerate, validate, test and build
+        working-directory: crimson-editor
+        run: |
+          pnpm install --frozen-lockfile --store-dir .pnpm-store --node-linker=hoisted --config.enable-global-virtual-store=false
+          game_sha=$(git log -1 --format=%H -- '../*.asm' '../constants' '../data' '../engine' '../home' '../gfx' '../macros' '../Makefile')
+          pnpm extract -- --build "$game_sha"
+          pnpm exec tsx tools/prune-sprites.ts --write
+          pnpm audit:sprites -- --profile "static/gamedata/${game_sha:0:8}.json"
+          python ../tools/save_layout_lock.py --profile "static/gamedata/${game_sha:0:8}.json"
+          pnpm exec tsx tools/changelog.ts
+          pnpm check
+          pnpm test
+          pnpm build
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: codex/sync-crimson-editor-data
+          title: Update Crimson Editor game data
+          commit-message: Regenerate verified Crimson Editor data
+          body: Regenerated from the latest Crimson source with the ROM oracle, save layout guard, unit tests and production build. See crimson-editor/CHANGES.md for the data diff.
+          add-paths: |
+            crimson-editor/static/gamedata
+            crimson-editor/static/sprites
+            crimson-editor/CHANGES.md
