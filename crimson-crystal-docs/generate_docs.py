@@ -1188,7 +1188,7 @@ class Builder:
            f'background-image:url({s["sheet"]})')
     return (f'<div class="hero-art"><div class="suicune-run" role="img" '
             f'aria-label="Suicune running, from the title intro" style="{style}"></div></div>')
-  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Pokémon Changes</a><a href="{p}updates.html">Game Updates</a></nav></header>'
+  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Pokémon Changes</a><a href="{p}updates.html">Game Updates</a><a href="{p}editor/index.html">Save Editor</a></nav></header>'
   def shell(self,title,body,p=''): return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
     shown=form_label(m["const"],m["name"])

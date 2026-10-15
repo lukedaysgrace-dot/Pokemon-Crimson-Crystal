@@ -38,6 +38,26 @@ header {
   letter-spacing: 2px;
   font-size: 18px;
 }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid #333135;
+}
+.site-nav a {
+  color: #a6a0a4;
+  font-size: 14px;
+  text-decoration: none;
+}
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a[aria-current='page'] {
+  color: #ff9aaa;
+}
+.site-nav a[aria-current='page'] {
+  font-weight: 700;
+}
 .brand b {
   font-weight: 400;
   color: #b5afb1;

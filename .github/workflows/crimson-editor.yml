@@ -57,6 +57,9 @@ jobs:
         run: python crimson-editor/tools/check_layouts.py pokecrystal.sym pokecrystal_debug.sym
       - run: pnpm exec playwright install --with-deps chromium && pnpm test:ui
         working-directory: crimson-editor
+      - name: GitHub Pages website integration
+        working-directory: crimson-editor
+        run: pnpm build:website && pnpm test:website
       - run: python -m pip install pyboy==2.7.0 PyYAML Pillow
       - name: Emulator round trip
         working-directory: crimson-editor
