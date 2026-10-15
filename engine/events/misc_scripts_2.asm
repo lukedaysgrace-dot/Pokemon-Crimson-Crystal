@@ -23,23 +23,45 @@ RepelWoreOffScript::
 	ld [wScriptVar], a
 	ld a, [wLastRepelUsed]
 	cp REPEL
-	jr z, .check
+	jr z, .preferred
 	cp SUPER_REPEL
-	jr z, .check
+	jr z, .preferred
 	cp MAX_REPEL
-	ret nz
-.check
+	jr nz, .fallback
+.preferred
+	call .CheckRepel
+	ret c
+.fallback
+	ld a, MAX_REPEL
+	call .CheckRepel
+	ret c
+	ld a, SUPER_REPEL
+	call .CheckRepel
+	ret c
+	ld a, REPEL
+.CheckRepel:
 	ld [wCurItem], a
 	ld hl, wNumItems
 	call CheckItem
 	ret nc
+	farcall GetBagItemQuantity
+	ld a, b
+	ld [wStringBuffer4], a
+	ld a, c
+	ld [wStringBuffer4 + 1], a
+	ld a, [wCurItem]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	ld hl, wStringBuffer3
+	call CopyName2
 	ld a, TRUE
 	ld [wScriptVar], a
+	scf
 	ret
 
 .UseAnotherRepel:
-	ld a, [wLastRepelUsed]
-	ld [wCurItem], a
+	ld a, [wCurItem]
+	ld [wLastRepelUsed], a
 	ld b, 100
 	cp REPEL
 	jr z, .set_effect

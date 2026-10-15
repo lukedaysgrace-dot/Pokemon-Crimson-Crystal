@@ -221,7 +221,28 @@ MoveReminder_GetRemindableMoves:
 	ld [wCurPartyLevel], a
 
 	ld a, [wCurPartySpecies]
+	push af
 	call GetPokemonIndexFromID
+.loop_species
+	push hl
+	call .AddSpeciesMoves
+	pop hl
+	; Follow only this species' actual ancestors, never sibling branches.
+	add hl, hl
+	ld bc, PreEvolutionSpecies - 2
+	add hl, bc
+	ld a, BANK(PreEvolutionSpecies)
+	call GetFarHalfword
+	ld a, h
+	or l
+	jr nz, .loop_species
+	pop af
+	ld [wCurPartySpecies], a
+	ld a, [wMoveReminderMoveList]
+	and a
+	ret
+
+.AddSpeciesMoves
 	ld b, h
 	ld c, l
 	ld hl, EvosAttacksPointers
@@ -257,8 +278,6 @@ MoveReminder_GetRemindableMoves:
 	jr .loop_moves
 
 .done_moves
-	ld a, [wMoveReminderMoveList]
-	and a
 	ret
 
 MoveReminder_GetNextEvoAttackByte:
@@ -450,6 +469,9 @@ MoveReminder_IntroText:
 
 	para "that they learned"
 	line "while growing up."
+
+	para "Pre-evolution"
+	line "moves count, too!"
 
 	para "My fee is ¥1000."
 	line "Interested?"

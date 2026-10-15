@@ -56,6 +56,9 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 
 all: pokecrystal.gbc
 
+data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
+	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
+
 debug: pokecrystal_debug.gbc
 
 # RTC integration needs Cython/setuptools and a C compiler to prepare a
