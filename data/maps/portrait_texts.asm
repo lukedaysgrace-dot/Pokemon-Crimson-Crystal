@@ -821,6 +821,43 @@ PortraitTexts:
 	db PORTRAIT_WHITNEY
 	dba WhitneyYouMeanieText
 	db PORTRAIT_WHITNEY_CRYING
+; GoldenrodPokecenter1F
+	dba GoldenrodPokeCenter1FBillAfterGSBallText
+	db PORTRAIT_BILL
+	dba GoldenrodPokeCenter1FBillPleaseAcceptGSBallText
+	db PORTRAIT_BILL
+	dba GoldenrodPokecenter1FAskGiveAwayAnEonMailText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanNoMoneyText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanNoRoomText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanOfferText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanReceivedFeebasText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanRefusedText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanSoldText
+	db 0
+	dba GoldenrodPokecenter1FFeebasSalesmanSuckerText
+	db 0
+	dba GoldenrodPokecenter1FGameboyKidText
+	db 0
+	dba GoldenrodPokecenter1FLassText
+	db 0
+	dba GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText
+	db 0
+	dba GoldenrodPokecenter1FPokefanFAnotherTimeThenText
+	db 0
+	dba GoldenrodPokecenter1FPokefanFDaughterWillBeDelightedText
+	db 0
+	dba GoldenrodPokecenter1FPokefanFDoYouHaveEonMailText
+	db 0
+	dba GoldenrodPokecenter1FPokefanFThisIsForYouText
+	db 0
+	dba GoldenrodPokecenter1FPokefanFTooBadText
+	db 0
 ; GoldenrodUndergroundSwitchRoomEntrances
 	dba BurglarDuncanAfterBattleText
 	db 0

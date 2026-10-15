@@ -17,3 +17,4 @@ SpecialPhoneCallList:
 	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneCallerScript
 	specialcall SpecialCallOnlyWhenOutside, PHONE_OAK_CALL,          OakMtSilverPhoneCallerScript
 	specialcall SpecialCallOnlyWhenOutside, PHONE_CRYSTAL,           CrystalPhoneCallerScript
+	specialcall SpecialCallOnlyWhenOutside, PHONE_BILL,              BillPhoneCallerScript

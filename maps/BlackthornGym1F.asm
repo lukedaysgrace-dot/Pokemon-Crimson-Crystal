@@ -41,6 +41,7 @@ BlackthornGymClairScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
+	specialphonecall SPECIALCALL_BILL_GS_BALL
 	opentext
 	writetext ClairText_GoToDragonsDen
 	waitbutton

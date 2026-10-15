@@ -54,6 +54,7 @@
 	const SPECIALCALL_MASTERBALL
 	const SPECIALCALL_OAK_MT_SILVER
 	const SPECIALCALL_CRYSTAL_CAPE
+	const SPECIALCALL_BILL_GS_BALL
 
 ; phone struct members
 	const_def
