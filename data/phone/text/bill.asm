@@ -1,3 +1,17 @@
+BillPhoneGSBallInvitationText:
+	text "Hey, <PLAYER>!"
+
+	para "When you get a"
+	line "chance could you"
+	cont "stop by the"
+	cont "Pokécenter in"
+	cont "GOLDENROD?"
+
+	para "I have something"
+	line "fascinating to"
+	cont "show you. See ya!"
+	done
+
 BillPhoneMornGreetingText:
 	text "Good morning!"
 

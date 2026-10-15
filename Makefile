@@ -121,6 +121,7 @@ test-gameplay-rules: pokecrystal_debug.gbc
 test-overworld-state: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_overworld_state.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_league_progression.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_gs_ball.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_route9_blockers.py
 
 test-audit-state: pokecrystal.gbc

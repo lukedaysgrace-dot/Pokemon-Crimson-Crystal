@@ -173,7 +173,7 @@ Route12_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 11, 27, BGEVENT_READ, Route12Sign
+	bg_event 11, 29, BGEVENT_READ, Route12Sign
 	bg_event 13,  9, BGEVENT_READ, FishingSpotSign
 	bg_event 14, 13, BGEVENT_ITEM, Route12HiddenElixer
 

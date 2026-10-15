@@ -36,6 +36,13 @@ BillPhoneCalleeScript:
 	end
 
 BillPhoneCallerScript:
+	readmem wSpecialPhoneCallID
+	ifequal SPECIALCALL_BILL_GS_BALL, .GSBall
 	farwritetext BillPhoneNewlyFullText
 	waitbutton
+	end
+
+.GSBall:
+	farwritetext BillPhoneGSBallInvitationText
+	specialphonecall SPECIALCALL_NONE
 	end
