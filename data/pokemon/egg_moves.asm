@@ -3,13 +3,11 @@ INCLUDE "constants.asm"
 
 SECTION "Egg Move Pointers", ROMX
 
-; All instances of Charm, Steel Wing, Sweet Scent, and Lovely Kiss were
-; removed from egg move lists in Crystal.
-; Sweet Scent and Steel Wing were redundant since they're TMs, and
-; Charm and Lovely Kiss were unobtainable.
-
-; Staryu's egg moves were removed in Crystal, because Staryu is genderless
-; and can only breed with Ditto.
+; Either non-Ditto parent may pass these moves to the hatchling. Shared
+; level-up moves are inherited separately; TM/HM compatibility is not inherited.
+; Keep project egg lists (including regional/clone forms). The roster-aware
+; audit in tools/audit_breeding_moves.py proves donor chains without the egg
+; tutor, and preserves level-up fallbacks where breeding cannot supply a move.
 
 EggMovePointers::
 	indirect_table 2, 1

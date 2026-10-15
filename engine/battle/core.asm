@@ -5002,8 +5002,7 @@ CheckDanger:
 	; out of the red zone: re-arm the alarm for next time
 	xor a
 	ld [wDangerBeepCount], a
-	ld hl, wLowHealthAlarm
-	res DANGER_ON_F, [hl]
+	ld [wLowHealthAlarm], a
 	jr .done
 
 .danger

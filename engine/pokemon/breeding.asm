@@ -176,14 +176,18 @@ DoEggStep::
 	ld a, [de]
 	inc de
 	cp -1
-	ret z
+	jr z, .done
 	cp EGG
 	jr nz, .next
+	; A ready egg must stay at zero. Advance the rest of the party too,
+	; so an earlier hatch never costs later eggs a cycle.
+	ld a, [hl]
+	and a
+	jr z, .ready
 	dec [hl]
 	jr nz, .next
-	ld a, 1
-	and a
-	ret
+.ready
+	ld c, 1
 
 .next
 	push de
@@ -191,6 +195,11 @@ DoEggStep::
 	add hl, de
 	pop de
 	jr .loop
+
+.done
+	ld a, c
+	and a
+	ret
 
 OverworldHatchEgg::
 	call RefreshScreen
@@ -460,24 +469,53 @@ HatchEggs:
 	text_end
 
 InitEggMoves:
-	call GetHeritableMoves
-	ld d, h
-	ld e, l
+	; Hatch moves < shared level-up moves < father's egg moves < mother's
+	; egg moves. Later moves displace the oldest when all four slots are full.
+	ld de, wBreedMon1Moves
+	ld c, 0
+	call .InheritMoves
+	ld a, [wBreedMotherOrNonDitto]
+	and a
+	jr nz, .mother2
+	call .Parent2
+	jp .Parent1
+.mother2
+	call .Parent1
+	jp .Parent2
+
+.Parent1
+	ld a, [wBreedMon1Species]
+	ld de, wBreedMon1Moves
+	jr .Parent
+.Parent2
+	ld a, [wBreedMon2Species]
+	ld de, wBreedMon2Moves
+.Parent
+	; Ditto never supplies moves, even if it knows a hacked/copied egg move.
+	push af
+	push de
+	ld hl, DITTO
+	call GetPokemonIDFromIndex
+	ld b, a
+	pop de
+	pop af
+	cp b
+	ret z
+	ld c, 1
+.InheritMoves
 	ld b, NUM_MOVES
 .loop
 	ld a, [de]
 	and a
-	jr z, .done
-	ld hl, wEggMonMoves
-	ld c, NUM_MOVES
-.next
-	ld a, [de]
-	cp [hl]
 	jr z, .skip
-	inc hl
-	dec c
-	jr nz, .next
+	ld a, c
+	and a
+	jr z, .shared
 	call GetEggMove
+	jr .checked
+.shared
+	call GetSharedEggMove
+.checked
 	jr nc, .skip
 	call LoadEggMove
 
@@ -486,31 +524,17 @@ InitEggMoves:
 	dec b
 	jr nz, .loop
 
-.done
 	ret
 
 GetEggMove:
+	; Carry iff the candidate is in the hatchling's own 16-bit egg list.
+	; TM/HM compatibility alone has not granted inheritance since Gen VI.
 	push bc
 	push de
-	call GetBreedmonMovePointer
-	ld b, NUM_MOVES
 	ld a, [de]
-	ld c, a
-.breedmon_loop
-	ld a, [hli]
-	and a
-	jr z, .not_breedmon
-	cp c
-	jr z, .breedmon_found
-	dec b
-	jr nz, .breedmon_loop
-.not_breedmon
-
-	ld a, c
 	call GetMoveIndexFromID
 	ld d, h
 	ld e, l
-.not_learnset_move
 	ld a, [wEggMonSpecies]
 	call GetPokemonIndexFromID
 	ld b, h
@@ -521,9 +545,11 @@ GetEggMove:
 .egg_move_loop
 	push hl
 	call GetFarHalfword
+	; Only $ffff ends the list; move indices may have either byte $ff.
 	ld a, h
 	and l
-	ld c, a
+	cp $ff
+	jr z, .end_egg_list
 	ld a, h
 	cp d
 	jr nz, .no_egg_match
@@ -535,36 +561,46 @@ GetEggMove:
 	inc hl
 	inc hl
 	ld a, b
-	inc c
-	jr nz, .egg_move_loop
-
-	ld bc, TMHMMoves
-.tmhm_loop
-	ld a, BANK(TMHMMoves)
-	ld h, b
-	ld l, c
-	call GetFarHalfword
-	ld a, h
-	or l ; the list ends with dw 0; most move indices have a zero high byte
-	jr z, .done
-	inc bc
-	inc bc
-	ld a, h
-	cp d
-	jr nz, .tmhm_loop
-	ld a, l
-	cp e
-	jr nz, .tmhm_loop
-	pop de
-	ld a, [de]
-	push de
-	ld [wPutativeTMHMMove], a
-	predef CanLearnTMHMMove
-	xor a
-	cp c ;will carry if non-zero
+	jr .egg_move_loop
+.end_egg_list
+	pop hl
+	and a
 	jr .done
+.is_egg_move
+	scf
+.done
+	pop de
+	pop bc
+	ret
 
-.breedmon_found
+GetSharedEggMove:
+	; Scan mon 1's moves only; mon 2 must also know the candidate and the
+	; hatchling must learn it by level. Ditto cannot satisfy either parent.
+	push bc
+	push de
+	ld hl, DITTO
+	call GetPokemonIDFromIndex
+	ld b, a
+	ld a, [wBreedMon1Species]
+	cp b
+	jr z, .not_shared
+	ld a, [wBreedMon2Species]
+	cp b
+	jr z, .not_shared
+	ld a, [de]
+	ld c, a
+	ld hl, wBreedMon2Moves
+	ld b, NUM_MOVES
+.parent_loop
+	ld a, [hli]
+	cp c
+	jr z, .both_know
+	dec b
+	jr nz, .parent_loop
+.not_shared
+	xor a
+	jr .done
+.both_know
 	call GetMoveIndexFromID
 	ld d, h
 	ld e, l
@@ -581,7 +617,7 @@ GetEggMove:
 	call GetFarByte
 	inc hl
 	and a
-	jr z, .not_learnset_move
+	jr z, .done
 	push hl
 	ld a, b ; GetFarByte left the level in a, not the bank
 	call GetFarHalfword
@@ -594,7 +630,6 @@ GetEggMove:
 	jr nz, .learnset_loop
 	cp d
 	jr nz, .learnset_loop
-.is_egg_move
 	scf
 .done
 	pop de
@@ -606,6 +641,34 @@ LoadEggMove:
 	push bc
 	ld a, [de]
 	ld b, a
+	; Promote a duplicate to this inheritance tier's end. Simply skipping
+	; it could let later maternal moves displace an egg move she also knows.
+	ld hl, wEggMonMoves
+	ld c, NUM_MOVES
+.find_duplicate
+	ld a, [hl]
+	cp b
+	jr z, .remove_duplicate
+	inc hl
+	dec c
+	jr nz, .find_duplicate
+	jr .append
+.remove_duplicate
+	ld d, h
+	ld e, l
+	inc hl
+	dec c
+	jr z, .clear_last
+.shift_duplicate
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .shift_duplicate
+.clear_last
+	xor a
+	ld [de], a
+.append
 	ld hl, wEggMonMoves
 	ld c, NUM_MOVES
 .loop
@@ -633,95 +696,6 @@ LoadEggMove:
 	predef FillPP
 	pop bc
 	pop de
-	ret
-
-GetHeritableMoves:
-	ld hl, DITTO
-	call GetPokemonIDFromIndex
-	ld b, a
-	ld hl, wBreedMon2Moves
-	ld a, [wBreedMon1Species]
-	cp b
-	jr z, .ditto1
-	ld a, [wBreedMon2Species]
-	cp b
-	jr z, .ditto2
-	ld a, [wBreedMotherOrNonDitto]
-	and a
-	ret z
-	ld hl, wBreedMon1Moves
-	ret
-
-.ditto1
-	ld a, [wCurPartySpecies]
-	push af
-	ld a, [wBreedMon2Species]
-	ld [wCurPartySpecies], a
-	ld a, [wBreedMon2DVs]
-	ld [wTempMonDVs], a
-	ld a, [wBreedMon2DVs + 1]
-	ld [wTempMonDVs + 1], a
-	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
-	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
-	ld a, [wBreedMon2PokerusStatus]
-	and MON_SHINY_FLAG | MON_MALE_FLAG
-	ld [wTempMonUnused], a
-	ld a, TEMPMON
-	ld [wMonType], a
-	predef GetGender
-	jr c, .inherit_mon2_moves
-	jr nz, .inherit_mon2_moves
-	jr .inherit_mon1_moves
-
-.ditto2
-	ld a, [wCurPartySpecies]
-	push af
-	ld a, [wBreedMon1Species]
-	ld [wCurPartySpecies], a
-	ld a, [wBreedMon1DVs]
-	ld [wTempMonDVs], a
-	ld a, [wBreedMon1DVs + 1]
-	ld [wTempMonDVs + 1], a
-	; GetGender reads TEMPMON gender from wTempMonUnused; Day-Care mons keep
-	; their flags in PokerusStatus bits 6-7 (see DepositBreedmon)
-	ld a, [wBreedMon1PokerusStatus]
-	and MON_SHINY_FLAG | MON_MALE_FLAG
-	ld [wTempMonUnused], a
-	ld a, TEMPMON
-	ld [wMonType], a
-	predef GetGender
-	jr c, .inherit_mon1_moves
-	jr nz, .inherit_mon1_moves
-
-.inherit_mon2_moves
-	ld hl, wBreedMon2Moves
-	pop af
-	ld [wCurPartySpecies], a
-	ret
-
-.inherit_mon1_moves
-	ld hl, wBreedMon1Moves
-	pop af
-	ld [wCurPartySpecies], a
-	ret
-
-GetBreedmonMovePointer:
-	ld hl, DITTO
-	call GetPokemonIDFromIndex
-	ld b, a
-	ld hl, wBreedMon1Moves
-	ld a, [wBreedMon1Species]
-	cp b
-	ret z
-	ld a, [wBreedMon2Species]
-	cp b
-	jr z, .ditto
-	ld a, [wBreedMotherOrNonDitto]
-	and a
-	ret z
-
-.ditto
-	ld hl, wBreedMon2Moves
 	ret
 
 GetEggFrontpic:

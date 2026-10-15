@@ -904,11 +904,10 @@ CountStep:
 	farcall StepHappiness
 
 .skip_happiness
-	; Every 256 steps, offset from the happiness incrementor by 128 steps,
-	; decrease the hatch counter of all your eggs until you reach the first
-	; one that is ready to hatch.
+	; Advance every egg's hatch counter on the same short cycle. Happiness,
+	; poison, and Day-Care experience retain their own independent timings.
 	ld a, [wStepCount]
-	cp $80
+	and EGG_CYCLE_STEPS - 1
 	jr nz, .skip_egg
 
 	farcall DoEggStep
