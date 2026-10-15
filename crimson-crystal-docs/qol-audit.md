@@ -15,6 +15,9 @@ features.
 | Existing breeding countdowns | Zero and values above 64 are repaired to a 64-step countdown when walking resumes. Existing shorter countdowns are kept. |
 | Hatching | Egg cycles advance every 16 counted steps instead of 256: sixteen times faster. Applies to existing eggs and gift eggs as well as newly bred eggs. Magikarp: up to 80 steps; Eevee: up to 560. The position in the shared cycle can shorten the first interval. |
 | Multiple eggs | Every egg advances before the hatch event starts. A ready egg no longer holds later eggs back, and zero counters cannot underflow to 255. |
+| Flexible Repel renewal | Keeps the previous type when available; otherwise offers Max Repel, Super Repel, then Repel. Shows the offered name and total bag count. Accepting consumes one and remembers its type; declining changes nothing. |
+| Repeat-use consumables | Field healing/status items, revives, vitamins, PP items and Rare Candies return to the party picker after consumption while more remain. The picker shows the item and remaining total across stacks. Cancel, no effect and exhaustion return to the Bag. Battle turns and Hard caps are preserved. |
+| Pre-evolution Move Reminder | Eligible level-up moves come from the current species and its actual ancestor chain, up to its current level. Known moves, duplicates, future moves and sibling branches are excluded. The existing successful-lesson fee remains ¥1,000. |
 | Published guide | Individual species hatch-time estimates now read the cycle length from the source constant. Added the alarm and breeding changes to the game-updates directory. |
 
 "Counted steps" follows the existing overworld dispatcher: link rooms and steps
@@ -69,13 +72,10 @@ reviewed implementation or an improvement to an existing feature.
 | 2 | Show remaining hatch steps in the egg summary | Existing summary text uses broad hatch-cycle bands. Show a range or "up to N counted steps" because the first shared interval can be partial. |
 | 2 | Prevent Day-Care moveset replacement | [Retrieval](../engine/pokemon/move_mon.asm) calls FillMoves after gaining levels. Preserve the deposited moveset or make learning elective so a breeding donor does not lose a carefully chosen move. |
 | 2 | Optional Flame Body / Magma Armor hatch bonus | These abilities have battle implementations but no bonus in DoEggStep. A party-wide, non-stacking 2× bonus would fit; honor the abilities-off choice. The new base hatching speed already makes this optional. |
-| 2 | Relearn eligible pre-evolution moves | Audit reminder eligibility across stone and branched evolutions, then offer compatible pre-evolution moves explicitly. Do not turn future level-up moves into free early access by accident. |
 | 2 | Rename any owned party Pokémon from its summary | The Name Rater still rejects traded Pokémon and requires a trip to his house. A summary action can remove that travel and ownership restriction while keeping eggs excluded. |
 | 2 | Direct held-item swaps | Extend current item management with give-and-swap in one interaction and clear confirmation of the displaced item; retain Mail and bag-full checks. |
-| 2 | Repeat-use consumable flow | Keep the party picker open after vitamins, PP items, healing items and Rare Candies when more remain and use is valid. Show the remaining count; retain Hard Mode restrictions and caps. |
 | 2 | Optional team EXP sharing / catch-up training | Current EXP Share is a held-item system. A toggleable team mode or paid level-cap training service would reduce replacement-team grinding. This needs an EXP-economy decision and tests against Hard caps, fainted mons and eggs. |
 | 2 | Show the current Hard Mode cap in common menus | The cap schedule exists in source, but a player should see the current cap before buying or using training items, and know why EXP is blocked. |
-| 2 | More flexible Repel renewal | When the previous type is gone, offer another available type rather than ending the convenience flow. Show the type and count before consuming it. |
 | 2 | Faster repeated Pokémon Center visits | Shorter repeat dialogue and an optional fast healing presentation; keep first visits, story scenes, healing sound and save-sensitive logic intact. |
 | 2 | Quick Save action | Reuse the existing save routine with one intentional action and a completion notice. Keep New Game / overwrite protection and backup/checksum handling. An autosave system would need a separate design. |
 | 2 | Optional phone chatter filter | Keep story-critical calls, but let players mute ordinary calls without deleting contacts. The [contact limit](../constants/phone_constants.asm) is only ten; expanding it requires checking saved-data layout. |
@@ -113,4 +113,15 @@ repeat Repels and expanded storage already exist and should not be duplicated.
 - Existing HP/item update suite: 40 item scenarios and 24 faint-update battles,
   352 total checks, 0 failures.
 - Reproduce with `make test-qol BATTLE_TEST_PYTHON=.venv/bin/python` in WSL.
+- Follow-up checks: `make test-qol-followups BATTLE_TEST_PYTHON=.venv/bin/python`.
+  Both ROMs pass 8,826 routine checks and 40 native menu checks each (17,732 total).
+  The follow-up ROM suite checks all Repel availability/preference combinations,
+  all 495 species at five levels, known-move exclusion, scratch bounds, stack
+  totals and real healing/inventory changes. Native menu tests use button input
+  for healing, cancellation, vitamins, PP Ups, Rare Candies and the Hard cap.
+  Direct routine tests replace unrelated presentation/target picking in private
+  memory; the separate menu tests run those menus normally.
+- Regenerate the immediate-ancestor table after editing evolution rows with
+  `python tools/generate_pre_evolutions.py`; normal builds also refresh it when
+  its inputs change. `--check` verifies it matches source.
 - Tests use private emulator memory and do not read or alter player saves.

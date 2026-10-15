@@ -1171,11 +1171,13 @@
       "category": "training",
       "title": "Move Reminder",
       "before": "Crystal has no Move Reminder.",
-      "after": "The Move Deleter’s house in Blackthorn includes a Move Reminder. Successful lessons cost ¥1,000 and recover eligible level-up moves.",
+      "after": "The Move Deleter’s house in Blackthorn includes a Move Reminder. Successful lessons cost ¥1,000 and recover eligible level-up moves from the current species and its actual pre-evolution chain, up to the Pokémon’s current level. Already-known moves, sibling evolution branches and future level-up moves are excluded.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
-        "maps/MoveDeletersHouse.asm"
+        "maps/MoveDeletersHouse.asm",
+        "engine/events/move_deleter.asm",
+        "data/pokemon/pre_evolutions.asm"
       ],
       "links": []
     },
@@ -1549,11 +1551,26 @@
       "category": "items",
       "title": "Use another Repel prompt",
       "before": "When Repel expires, the player must reopen the Bag.",
-      "after": "When Repel wears off, the game offers to use another of the same kind if one is available.",
+      "after": "When Repel wears off, the game offers the same kind if available. Otherwise it offers an available Max Repel, Super Repel or Repel, in that order. The prompt names the offered item and shows its total bag count. Accepting uses one and remembers that type; declining consumes nothing.",
       "comparison": "Gen 2",
       "kind": "modern",
       "sources": [
         "engine/events/misc_scripts_2.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "repeat-use-consumables",
+      "category": "items",
+      "title": "Repeat-use consumables",
+      "before": "Using a party consumable returns to the Bag after each use.",
+      "after": "In the field, healing and status items, revives, vitamins, PP items and Rare Candies return to the party picker after a successful use when more remain. The picker shows the item name and total quantity across stacks. Cancel, no effect or running out returns to the Bag. Battle item turns and Hard Mode caps retain their existing rules.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/items/consumable_qol.asm",
+        "engine/items/pack.asm",
+        "engine/items/item_effects.asm"
       ],
       "links": []
     },

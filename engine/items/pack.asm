@@ -454,7 +454,7 @@ UseItem:
 	ld a, [wPartyCount]
 	and a
 	jr z, .NoPokemon
-	call DoItemEffect
+	farcall UsePartyItemRepeatedly
 	xor a
 	ldh [hBGMapMode], a
 	call Pack_InitGFX

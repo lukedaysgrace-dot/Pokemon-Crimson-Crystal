@@ -57,6 +57,9 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 
 all: pokecrystal.gbc
 
+data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
+	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
+
 .PHONY: audit-pokemon-back-colors
 audit-pokemon-back-colors:
 	$(BATTLE_TEST_PYTHON) tools/audit_pokemon_back_colors.py --rgbgfx $(RGBGFX)
@@ -119,6 +122,14 @@ test-qol: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_qol.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_qol.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_daycare_abilities.py pokecrystal.gbc
+
+.PHONY: test-qol-followups
+test-qol-followups: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py --check
+	$(BATTLE_TEST_PYTHON) tools/test_qol_followups.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_qol_followups.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_consumable_ui.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_consumable_ui.py pokecrystal_debug.gbc
 
 test-weather: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_azalea_weather.py pokecrystal.gbc

@@ -1936,6 +1936,7 @@ ChooseMonToUseItemOn:
 	farcall InitPartyMenuGFX
 	farcall WritePartyMenuTilemap
 	farcall PrintPartyMenuText
+	farcall PrintRepeatConsumableQuantity
 	call WaitBGMap
 	call SetPalettes
 	call DelayFrame
