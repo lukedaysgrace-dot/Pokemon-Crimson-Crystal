@@ -492,22 +492,26 @@ class Builder:
     return out
 
   def egg_moves(self, mons):
-    look={re.sub('[^a-z0-9]','',k.lower()):k for k in mons}
+    pointers={}; lists={}
     for p in sorted((self.r/'data/pokemon').glob('egg_moves*.asm')):
-      cur=None
-      for raw in txt(p).splitlines():
-        l=strip(raw)
-        m=re.match(r'^([A-Za-z0-9_]+)EggMoves:',l)
-        if m:
-          cur=look.get(re.sub('[^a-z0-9]','',m.group(1).lower()))
-          if cur is None and not m.group(1).startswith('No'):
-            self.report['warnings'].append(f'{p.name}: egg-move label {m.group(1)}EggMoves matches no species')
-          continue
-        if not cur: continue
-        mm=re.match(r'^dw\s+([A-Z0-9_]+)\s*$',l,re.I)
-        if mm:
-          mons[cur]['egg_moves'].append(mm.group(1).upper())
-        elif re.match(r'^dw\s+-1',l): cur=None
+      text=txt(p)
+      pointers.update({c:label for label,c in re.findall(r'^\s*dw\s+(\w+)\s*;\s*(\w+)\s*$',text,re.M)})
+      for m in re.finditer(r'^(\w*EggMoves\w*)::?\n(.*?)^\s*dw\s+-1',text,re.M|re.S):
+        lists[m[1]]=re.findall(r'^\s*dw\s+(\w+)\s*$',m[2],re.M)
+    order,_=self.species()
+    roots=dict(zip(order,re.findall(r'^\s*dw\s+(\w+)',txt(self.r/'data/pokemon/first_stages.asm'),re.M)))
+    for c,mon in mons.items():
+      mon['egg_moves']=list(lists[pointers[roots[c]]])
+    flags={c:int(bits,2) for bits,c in re.findall(r'^\s*db\s+%([01]{8})\s*;\s*(\w+)',txt(self.r/'data/pokemon/utility_tutor.asm'),re.M)}
+    utility=['SUBSTITUTE','SLEEP_TALK','REFLECT','LIGHT_SCREEN','THUNDER_WAVE']
+    for c,mon in mons.items():
+      mon['tutor_moves']=[m for i,m in enumerate(utility) if flags[c]&(1<<i)]
+    technical=txt(self.r/'data/pokemon/technical_tutor.asm')
+    tutor_lists={m[1]:re.findall(r'^\s*dw\s+(\w+)\s*$',m[2],re.M)
+                 for m in re.finditer(r'^(TechnicalTutor_\w+)::?\n(.*?)^\s*dw\s+0\s*$',technical,re.M|re.S)}
+    tutor_pointers={c:label for label,c in re.findall(r'^\s*dba\s+(\w+)\s*;\s*(\w+)',technical,re.M)}
+    for c,mon in mons.items():
+      mon['blackthorn_tutor_moves']=list(tutor_lists[tutor_pointers[c]])
 
   def ability_descriptions(self):
     """Ability display name -> in-game description."""
@@ -1266,6 +1270,8 @@ class Builder:
     level=[(x['level'],x['const']) for x in sorted(m['learnset'],key=lambda x:x['level'])]
     tms=[(self.tm_index[c],c) for c in m['tmhm']]
     egg=[('Egg',c) for c in m['egg_moves']]
+    tutors=[('Tutor',c) for c in m['tutor_moves']]
+    blackthorn=[('Tutor',c) for c in m['blackthorn_tutor_moves']]
     name=form_label(page_mon["const"],page_mon["name"])
     return (f'<section class="monhero">{sprite}<div><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(name)}</h1>'
             f'<div><span class="rules-label">Enhanced typing</span>{"".join(self.badge(t) for t in m["types"])}</div>{self.abilities_html(m)}</div></section>'
@@ -1275,7 +1281,9 @@ class Builder:
             f'<section class="panel"><h2>Training &amp; breeding</h2>{self.info_html(m)}</section>'
             f'<section class="panel"><h2>Level-up moves</h2>{self.move_table(level,move_map,"Level","Learns no moves by level-up.")}</section>'
             f'<section class="panel"><h2>TM / HM moves <em>{len(tms)}</em></h2>{self.move_table(tms,move_map,"TM / HM","Cannot learn any TMs or HMs.")}</section>'
-            + (f'<section class="panel"><h2>Egg moves <em>{len(egg)}</em></h2>{self.move_table(egg,move_map,"Learned","")}</section>' if egg else ''))
+            + (f'<section class="panel"><h2>Utility tutor moves <em>{len(tutors)}</em></h2><p>The tutor in Goldenrod City\'s PP Speech House teaches these moves for ¥1000.</p>{self.move_table(tutors,move_map,"Learned","")}</section>' if tutors else '')
+            + (f'<section class="panel"><h2>Blackthorn tutor moves <em>{len(blackthorn)}</em></h2><p>The purple move tutor in Blackthorn City\'s Move Deleter\'s House teaches these moves for ¥5000.</p>{self.move_table(blackthorn,move_map,"Learned","")}</section>' if blackthorn else '')
+            + (f'<section class="panel"><h2>Egg moves <em>{len(egg)}</em></h2><p>Available through breeding or the family move tutor in Blackthorn for ¥5000.</p>{self.move_table(egg,move_map,"Learned","")}</section>' if egg else ''))
 
   def typing_comparison(self, m):
     custom=m['original_stats_source']=='custom species'
@@ -1510,6 +1518,10 @@ class Builder:
         learners.setdefault(x['const'],{}).setdefault('Level up',[]).append((label,href,f'Lv. {x["level"]}'))
       for mv in mon['tmhm']:
         learners.setdefault(mv,{}).setdefault('TM / HM / Tutor',[]).append((label,href,''))
+      for mv in mon['tutor_moves']:
+        learners.setdefault(mv,{}).setdefault('TM / HM / Tutor',[]).append((label,href,'Goldenrod tutor'))
+      for mv in mon['blackthorn_tutor_moves']:
+        learners.setdefault(mv,{}).setdefault('Blackthorn tutor',[]).append((label,href,'¥5000'))
       for mv in mon['egg_moves']:
         learners.setdefault(mv,{}).setdefault('Egg move',[]).append((label,href,''))
     for m in moves:
@@ -1523,7 +1535,7 @@ class Builder:
       desc=f'<p class="movedesc">{html.escape(m["description"])}</p>' if m.get('description') else ''
       groups=learners.get(m['const'],{})
       lb=''
-      for how in ('Level up','TM / HM / Tutor','Egg move'):
+      for how in ('Level up','TM / HM / Tutor','Blackthorn tutor','Egg move'):
         if how not in groups: continue
         chips=''.join(f'<a class="learner" href="{h}">{html.escape(n)}{f" <small>{html.escape(extra)}</small>" if extra else ""}</a>' for n,h,extra in sorted(groups[how],key=lambda x:x[0]))
         lb+=f'<h3>{how} <em>{len(groups[how])}</em></h3><div class="learners">{chips}</div>'

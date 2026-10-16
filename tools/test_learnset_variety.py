@@ -12,7 +12,7 @@ sys.path.insert(0,str(ROOT/'tools'))
 sys.path.insert(0,str(ROOT/'tools/battletest'))
 from pc_harness import Harness
 from symbols import Constants
-from audit_learnset_variety import load_sources
+from audit_learnset_variety import load_sources, load_technical_tutors
 
 rom=Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/'pokecrystal.gbc'
 h=Harness(rom=str(rom),sym=str(rom.with_suffix('.sym')))
@@ -20,6 +20,7 @@ h.boot()
 con=Constants()
 order,levels,tms,eggs,parents,flags=load_sources()
 utility=['SUBSTITUTE','SLEEP_TALK','REFLECT','LIGHT_SCREEN','THUNDER_WAVE']
+technical=load_technical_tutors()
 checks=0
 def check(condition,message):
  global checks
@@ -38,6 +39,8 @@ def party(c,lv=100,known=()):
  h.wr(h.s('wCurPartySpecies'),sid)
  return sid
 def menu(routine):
+ guard=h.s('wMoveReminderMoveListEnd')
+ h.wr(guard,0xa5)
  result=h.call(routine)
  base=h.s('wMoveReminderMoveList');n=h.rd(base)
  data=h.rd(base+1,2*n+2)
@@ -45,6 +48,7 @@ def menu(routine):
  entries=[con.moves_by_index[(data[2*i]<<8)|data[2*i+1]] for i in range(n)]
  check(len(set(entries))==n,routine+' list duplicates')
  check(result['z']==(n==0),routine+' empty flag')
+ check(h.rd(guard)==0xa5,routine+' scratch-buffer overflow')
  return entries
 
 try:
@@ -57,12 +61,25 @@ try:
   party(c,known=known)
   expected=[m for i,m in enumerate(utility) if flags[c]&(1<<i) and m not in known]
   check(menu('UtilityMoveTutor_GetTeachableMoves')==expected,c+' known moves omitted')
- print('Utility tutor: every species, restricted identities and known-move filtering passed.',flush=True)
+ print('Utility tutor: all species retain only their original five-move compatibility and known-move filtering.',flush=True)
+
+ for c,level in [('ARON',32),('LAIRON',38),('AGGRON',44)]:
+  party(c,level-1)
+  check('BODY_PRESS' not in menu('UtilityMoveTutor_GetTeachableMoves'),c+' Body Press leaked into Goldenrod tutor')
+  for lv,wanted in [(level-1,False),(level,True)]:
+   party(c,lv)
+   # Pre-evolutions can legitimately supply Body Press earlier on evolved
+   # forms. Inspect the exact current-species placement separately below.
+   actual=menu('MoveReminder_GetRemindableMoves')
+   if c=='ARON':check(('BODY_PRESS' in actual)==wanted,c+' Body Press unlock timing')
+  check((level,'BODY_PRESS') in levels[c],c+' direct Body Press level')
 
  # Full current-form lists must not truncate or confuse 16-bit move indices.
  for c in order:
   party(c)
-  expected=list(dict.fromkeys(m for lv,m in levels[c]))
+  def reminder_moves(species):
+   return [m for lv,m in levels[species]]+[m for p in parents[species] for m in reminder_moves(p)]
+  expected=list(dict.fromkeys(reminder_moves(c)))
   check(menu('MoveReminder_GetRemindableMoves')==expected,c+' reminder level-100 list')
  for c,lv,wanted in [('RAICHU_ALOLAN',31,'VOLT_SWITCH'),('RAICHU_ALOLAN',32,'VOLT_SWITCH'),('URSALUNABM',36,'HYPER_VOICE'),('ELECTIVIRE',1,'MACH_PUNCH'),('FLAPPLE',36,'RECOVER'),('XATU',20,'REFLECT')]:
   party(c,lv)
@@ -70,10 +87,30 @@ try:
   check((wanted in result)==(c!='RAICHU_ALOLAN' or lv>=32),c+' reminder timing '+wanted)
  print('Move Reminder: every species plus timing/recovery/priority repairs passed.',flush=True)
 
- # Family mapping must select the root list on evolved, regional and clone forms.
- for c in ['BLASTOISE','BLASTOISE_CLONE','LANTURN','VIKAVOLT','CHARJABUG','GRIMMSNARL','SYLVEON','GLACEON','FLYGON','BANETTE','ARCANINE','TANGROWTH','MAGMAR','MAGMORTAR','ONIX','FARIGIRAF']:
-  party(c)
-  check(menu('EggMoveTutor_GetTeachableMoves')==eggs[c],c+' family tutor')
+ # Blackthorn combines the family's egg list with only this selected species'
+ # fallback list. Exhaust all species, including indices >255 and clone forms.
+ for c in order:
+  sid=party(c)
+  expected=list(dict.fromkeys(eggs[c]+technical[c]))
+  check(menu('EggMoveTutor_GetTeachableMoves')==expected,c+' Blackthorn compatibility')
+  check(h.rd(h.s('wCurPartySpecies'))==sid,c+' Blackthorn changed selected species')
+ for c in ['MEW','AGGRON','RAICHU_ALOLAN','BLASTOISE_CLONE']:
+  expected=list(dict.fromkeys(eggs[c]+technical[c]))
+  known=tuple(expected[:4])
+  party(c,lv=1,known=known)
+  check(menu('EggMoveTutor_GetTeachableMoves')==[m for m in expected if m not in known],c+' Blackthorn known-move filtering')
+ party('MEW')
+ long_list=menu('EggMoveTutor_GetTeachableMoves')
+ check(len(long_list)>128,'Mew must exercise Blackthorn offsets over 128')
+ h.wr(h.s('wMenuData_ItemsPointerAddr'),[h.s('wMoveReminderMoveList')&255,h.s('wMoveReminderMoveList')>>8])
+ h.wr(h.s('wMenuData_ItemsPointerBank'),0)
+ h.wr(h.s('wMenuData_ScrollingMenuItemFormat'),2)
+ for offset in [0,127,128,len(long_list)-1]:
+  h.wr(h.s('wMenuScrollPosition'),offset)
+  h.call('ScrollingMenu_GetListItemCoordAndFunctionArgs',a=0)
+  actual=(h.rd(h.s('wMenuSelection'))<<8)|h.rd(h.s('wMenuSelectionQuantity'))
+  check(actual==con.move_index(long_list[offset]),f'Blackthorn scrolling entry {offset}')
+ print('Blackthorn tutor: all species, known-move filtering and scrolling beyond 128 entries passed.',flush=True)
 
  receipt=json.loads((ROOT/'tools/testdata/learnset_variety_implementation.json').read_text())
  for c,row in receipt['tm_changes'].items():
@@ -83,11 +120,19 @@ try:
    h.wr(h.s('wCurPartySpecies'),sid)
    h.wr(h.s('wPutativeTMHMMove'),mid)
    check(h.call('CanLearnTMHMMove')['c']!=0,c+' compatibility '+move)
+ canonical=json.loads((ROOT/'tools/testdata/canonical_learnsets.json').read_text())
+ for c,moves in canonical['changes']['tmhm'].items():
+  sid=party(c)
+  for move in moves:
+   mid=h.move_id(con.move_index(move))
+   h.wr(h.s('wCurPartySpecies'),sid)
+   h.wr(h.s('wPutativeTMHMMove'),mid)
+   check(h.call('CanLearnTMHMMove')['c']!=0,c+' canonical compatibility '+move)
  print('Family tutors and every added TM/elemental tutor flag passed.',flush=True)
 
  # Exercise the actual 16-bit egg-list inheritance scan, not only the tutor.
  # Father/other-parent move pointers are selected exactly as normal breeding.
- for hatchling,mother,father,move in [('GROWLITHE','ARCANINE','ESPEON','MORNING_SUN'),('MAGBY','MAGMAR','MAGMAR','BELLY_DRUM'),('MAGBY','MAGMAR','HITMONCHAN','MACH_PUNCH'),('GIRAFARIG','GIRAFARIG','GARDEVOIR','WISH'),('SQUIRTLE','WARTORTLE','GOLDUCK','FLIP_TURN'),('ONIX','ONIX','GOLEM','HEAD_SMASH'),('TANGELA','TANGELA','BULBASAUR','LEECH_SEED'),('MAREEP','AMPHAROS','RAICHU','AGILITY'),('SPINARAK','ARIADOS','CENTISKORCH','LUNGE')]:
+ for hatchling,mother,father,move in [('GROWLITHE','ARCANINE','ESPEON','MORNING_SUN'),('MAGBY','MAGMAR','MAGMAR','BELLY_DRUM'),('MAGBY','MAGMAR','HITMONCHAN','MACH_PUNCH'),('GIRAFARIG','GIRAFARIG','GARDEVOIR','WISH'),('SQUIRTLE','WARTORTLE','GOLDUCK','FLIP_TURN'),('ONIX','ONIX','GOLEM','HEAD_SMASH'),('TANGELA','TANGELA','BULBASAUR','LEECH_SEED'),('MAREEP','AMPHAROS','RAICHU','AGILITY'),('SPINARAK','ARIADOS','CENTISKORCH','LUNGE'),('ARON','AGGRON','RHYPERIOR','HEAD_SMASH'),('ARON','AGGRON','NIDOKING','SUPERPOWER'),('ARON','AGGRON','LICKITUNG','STOMP')]:
   mom=party(mother,known=())
   dad=h.species_id(con.species_index(father));mid=h.move_id(con.move_index(move))
   h.wr(h.s('wBreedMotherOrNonDitto'),0)

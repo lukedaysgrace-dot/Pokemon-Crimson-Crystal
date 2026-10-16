@@ -9,6 +9,7 @@ BulbasaurCloneEvosAttacks:
 	dbw 14, POISONPOWDER
 	dbw 14, SLEEP_POWDER
 	dbw 17, SLUDGE
+	dbw 18, VENOSHOCK
 	dbw 20, TAKE_DOWN
 	dbw 23, SWEET_SCENT
 	dbw 26, SLUDGE_BOMB
@@ -34,6 +35,7 @@ IvysaurCloneEvosAttacks:
 	dbw 18, SLUDGE
 	dbw 20, SEED_BOMB
 	dbw 22, TAKE_DOWN
+	dbw 24, VENOSHOCK
 	dbw 26, SWEET_SCENT
 	dbw 30, SLUDGE_BOMB
 	dbw 34, GROWTH
@@ -57,12 +59,14 @@ VenusaurCloneEvosAttacks:
 	dbw 18, SLUDGE
 	dbw 20, SEED_BOMB
 	dbw 22, TAKE_DOWN
+	dbw 24, VENOSHOCK
 	dbw 26, SWEET_SCENT
 	dbw 28, GIGA_DRAIN
 	dbw 30, SLUDGE_BOMB
 	dbw 30, SWORDS_DANCE
 	dbw 32, PETAL_DANCE
 	dbw 35, GROWTH
+	dbw 42, POISON_JAB
 	dbw 45, DOUBLE_EDGE
 	dbw 50, SYNTHESIS
 	dbw 55, SOLARBEAM
@@ -80,7 +84,9 @@ CharmanderCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 12, DRAGONBREATH
 	dbw 14, BITE
+	dbw 16, DRAGON_RAGE
 	dbw 17, INCINERATE
+	dbw 19, RAGE
 	dbw 20, FIRE_FANG
 	dbw 23, SLASH
 	dbw 26, FLAMETHROWER
@@ -89,7 +95,9 @@ CharmanderCloneEvosAttacks:
 	dbw 35, DRAGON_PULSE
 	dbw 38, FIRE_SPIN
 	dbw 41, BELLY_DRUM
+	dbw 42, HEAT_WAVE
 	dbw 44, FLARE_BLITZ
+	dbw 56, OVERHEAT
 	db 0 ; no more level-up moves
 
 CharmeleonCloneEvosAttacks:
@@ -102,16 +110,20 @@ CharmeleonCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 17, DRAGON_RAGE
 	dbw 19, INCINERATE
+	dbw 20, RAGE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER
 	dbw 34, SCARY_FACE
 	dbw 38, CRUNCH
 	dbw 42, DRAGON_PULSE
+	dbw 44, HEAT_WAVE
 	dbw 46, FIRE_SPIN
 	dbw 50, BELLY_DRUM
 	dbw 54, FLARE_BLITZ
+	dbw 56, OVERHEAT
 	db 0 ; no more level-up moves
 
 CharizardCloneEvosAttacks:
@@ -126,7 +138,9 @@ CharizardCloneEvosAttacks:
 	dbw 11, METAL_CLAW
 	dbw 14, BITE
 	dbw 16, DRAGONBREATH
+	dbw 17, DRAGON_RAGE
 	dbw 19, INCINERATE
+	dbw 20, RAGE
 	dbw 22, FIRE_FANG
 	dbw 26, SLASH
 	dbw 30, FLAMETHROWER
@@ -135,6 +149,7 @@ CharizardCloneEvosAttacks:
 	dbw 36, ROOST
 	dbw 39, CRUNCH
 	dbw 40, FOCUS_BLAST
+	dbw 42, HEAT_CRASH
 	dbw 44, DRAGON_PULSE
 	dbw 44, DRAGON_TAIL
 	dbw 49, FIRE_SPIN
@@ -158,10 +173,13 @@ SquirtleCloneEvosAttacks:
 	dbw 20, WATER_PULSE
 	dbw 23, PROTECT
 	dbw 27, SHELL_SMASH
+	dbw 30, IRON_DEFENSE
 	dbw 32, SKULL_BASH
 	dbw 35, AQUA_TAIL
 	dbw 38, RAIN_DANCE
 	dbw 41, HYDRO_PUMP
+	dbw 42, SCALD
+	dbw 44, LIQUIDATION
 	db 0 ; no more level-up moves
 
 WartortleCloneEvosAttacks:
@@ -178,8 +196,11 @@ WartortleCloneEvosAttacks:
 	dbw 26, PROTECT
 	dbw 35, SHELL_SMASH
 	dbw 38, SKULL_BASH
+	dbw 40, IRON_DEFENSE
 	dbw 42, AQUA_TAIL
+	dbw 44, SCALD
 	dbw 46, RAIN_DANCE
+	dbw 48, LIQUIDATION
 	dbw 50, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
@@ -193,14 +214,19 @@ BlastoiseCloneEvosAttacks:
 	dbw 11, BUBBLE
 	dbw 14, BITE
 	dbw 18, RAPID_SPIN
+	dbw 20, BULLDOZE
 	dbw 22, WATER_PULSE
+	dbw 24, DRAGON_TAIL
 	dbw 26, PROTECT
 	dbw 28, IRON_DEFENSE
 	dbw 32, BODY_PRESS
 	dbw 35, SHELL_SMASH
 	dbw 36, AURA_SPHERE
 	dbw 39, SKULL_BASH
+	dbw 42, SCALD
 	dbw 44, AQUA_TAIL
+	dbw 46, LIQUIDATION
 	dbw 49, RAIN_DANCE
+	dbw 50, IRON_TAIL
 	dbw 54, HYDRO_PUMP
 	db 0 ; no more level-up moves

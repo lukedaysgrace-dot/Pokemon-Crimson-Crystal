@@ -806,7 +806,7 @@ def audit_egg_moves(
         if pointer.startswith("NoEggMoves"):
             continue
         species = species_order[species_id] if species_id < len(species_order) else f"species{species_id}"
-        pointer_species = re.sub(r"EggMoves\d?$", "", pointer)
+        pointer_species = re.sub(r"EggMoves\d?$", "", pointer).removeprefix("Canonical")
         audit.check(
             normalize(pointer_species) == normalize(species),
             f"egg pointer species {species_id} {species}: points to {pointer}",
@@ -953,6 +953,7 @@ def audit_move_availability(audit: Audit, moves: list[str]) -> None:
         "data/pokemon/egg_moves_kanto.asm",
         "data/pokemon/egg_moves_johto.asm",
         "data/moves/tmhm_moves.asm",
+        "data/pokemon/technical_tutor.asm",
     ):
         available.update(
             re.findall(r"^\s*dw\s+([A-Z][A-Z0-9_]*)", read(relative), re.MULTILINE)

@@ -53,7 +53,8 @@ ROMX $08
 	"Clock Reset"
 	"Tileset Data 3"
 	"Egg Move Pointers"
-	"Egg Moves 1"
+	; Expanded canonical egg lists no longer fit beside this bank's tilesets.
+	; EggMovePointers uses banked indirection, so Egg Moves 1 may float.
 ROMX $09
 	"bank9"
 ROMX $0a

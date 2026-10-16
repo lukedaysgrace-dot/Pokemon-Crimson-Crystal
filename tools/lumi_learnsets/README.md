@@ -111,6 +111,50 @@ bridges, and starts with natural moves before following breeding chains. This
 prevents two egg lists from falsely proving each other's availability. The
 receipt includes a donor proof for every removed level-up entry.
 
+## Canonical coverage through Scarlet/Violet
+
+`tools/testdata/canonical_learnsets.json` records the later full-roster audit,
+including the nine clone mirrors and the normal-species proxies used by custom
+Bloodmoon pre-evolutions. Its natural level placements are layered on after
+breeding curation, so regeneration preserves them. Canonical egg additions live
+in the root egg lists; current machines retain real compatibility flags.
+The Goldenrod tutor retains its original five utility moves. Selected machine/tutor candidates
+use explicitly custom thematic level placements, recorded with their reasons
+in `changes.thematic_level_up`. Breeding-eligible moves remain in the canonical
+family egg lists, with independent donor proofs and level-30 fallbacks where
+the limited roster otherwise cannot supply a move. Existing authored removals
+are respected; the user-approved Body Press overlap is recorded explicitly.
+
+Historical compatibility alone does not imply a natural level-up move. All
+remaining verified moves are taught by the existing purple Blackthorn tutor
+in the Move Deleter's House, alongside its family egg moves, for ¥5,000.
+`tools/restore_blackthorn_move_access.py` generates the species-specific
+fallback table in `data/pokemon/technical_tutor.asm` without changing natural
+or breeding placements. There are zero deferred implemented moves. The audit
+enforces complete coverage and protects every previously expanded move pool
+against accidental trimming. Regeneration preserves both sourced natural
+placements and the selected thematic levels.
+
+The canonical reference is Smogon's Pokémon Showdown data pinned to commit
+`f7d73fdb20909885b70c4463f3878cf37875068d` (December 3, 2024), after the SV
+DLC and before Legends: Z-A. Bulbapedia spot checks and exact source codes are
+recorded in the receipt. The audit concerns individual historical move access,
+not whether every four-move combination can transfer between official games.
+Moves absent from the ROM and the six original custom species are recorded
+separately rather than assigned fabricated canonical learnsets.
+
+```bash
+python3 tools/audit_canonical_learnsets.py  # complete offline receipt audit
+python3 tools/audit_breeding_moves.py
+make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
+```
+
+For an independent source recheck, cache `data/learnsets.ts`, `data/pokedex.ts`
+and `data/moves.ts` from the pinned Smogon commit in
+`tools/lumi_learnsets/cache/smogon-sv/`, with the receipt's `source` object in
+`source.json`, then run `python3 tools/audit_canonical_learnsets.py --reference`.
+The downloads are ignored by Git; the checked-in receipt supports offline use.
+
 ## Data sources
 
 Downloaded once into `cache/` from

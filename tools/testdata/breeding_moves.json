@@ -542,11 +542,8 @@
     "WEEZING_GALARIAN": [
       "PSYBEAM"
     ],
-    "LAIRON": [
-      "BODY_PRESS"
-    ],
+    "LAIRON": [],
     "AGGRON": [
-      "BODY_PRESS",
       "HEAD_SMASH"
     ],
     "BANETTE": [
@@ -621,7 +618,8 @@
       "MEAN_LOOK": 30
     },
     "CHINCHOU": {
-      "AMNESIA": 30
+      "AMNESIA": 30,
+      "SUCKER_PUNCH": 30
     },
     "CRANIDOS": {
       "WHIRLWIND": 30
@@ -651,7 +649,8 @@
       "SCARY_FACE": 30
     },
     "GEODUDE": {
-      "MEGA_PUNCH": 30
+      "MEGA_PUNCH": 30,
+      "DYNAMICPUNCH": 30
     },
     "GEODUDE_ALOLAN": {
       "ENDURE": 30,
@@ -690,7 +689,8 @@
       "DIZZY_PUNCH": 30
     },
     "LITWICK": {
-      "ENDURE": 30
+      "ENDURE": 30,
+      "ACID": 30
     },
     "MAGNEMITE": {
       "EXPLOSION": 30
@@ -710,7 +710,8 @@
     },
     "PAWNIARD": {
       "MEAN_LOOK": 30,
-      "PURSUIT": 30
+      "PURSUIT": 30,
+      "STEALTH_ROCK": 30
     },
     "POLIWAG": {
       "MIND_READER": 30
@@ -780,6 +781,42 @@
       "LEECH_SEED": 30,
       "STUN_SPORE": 30,
       "MAGICAL_LEAF": 30,
+      "GIGA_DRAIN": 30
+    },
+    "DURALUDON": {
+      "MIRROR_COAT": 30
+    },
+    "KANGASKHAN": {
+      "CIRCLE_THROW": 30
+    },
+    "KRABBY": {
+      "HAMMER_ARM": 30
+    },
+    "SHUCKLE": {
+      "ACID": 30
+    },
+    "TIMBURR": {
+      "DEFOG": 30
+    },
+    "TOGEPI": {
+      "MORNING_SUN": 30
+    },
+    "CUBONE": {
+      "DETECT": 30
+    },
+    "QWILFISH": {
+      "SELFDESTRUCT": 30
+    },
+    "SHELLDER": {
+      "AVALANCHE": 30
+    },
+    "SUNKERN": {
+      "BIDE": 30
+    },
+    "SWABLU": {
+      "PLAY_ROUGH": 30
+    },
+    "ZUBAT": {
       "GIGA_DRAIN": 30
     }
   },
@@ -1295,6 +1332,14 @@
         "HORSEA: level 43",
         "HORSEA -> NOIBAT: egg move"
       ]
+    }
+  },
+  "thematic_level_up_overrides": {
+    "LAIRON": {
+      "BODY_PRESS": 38
+    },
+    "AGGRON": {
+      "BODY_PRESS": 44
     }
   }
 }
