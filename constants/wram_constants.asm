@@ -114,8 +114,8 @@ DAY_CARE_DEPOSIT  EQU 3
 	const PLAYERSTEP_STOP_F     ; 6
 	const PLAYERSTEP_START_F    ; 7
 
-; wMoveReminderMoveList (wStringBuffer2 through wStringBuffer5)
-MOVE_TUTOR_LIST_CAPACITY EQU 36
+; wMoveReminderMoveList (shared menu scratch union at wBoxPartialData)
+MOVE_TUTOR_LIST_CAPACITY EQU 192
 MOVE_TUTOR_LIST_BYTES EQU 1 + 2 * MOVE_TUTOR_LIST_CAPACITY + 2
 
 ; wInitListType:: ; d263

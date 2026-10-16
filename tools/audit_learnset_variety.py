@@ -5,6 +5,14 @@ import json,re
 
 ROOT=Path(__file__).resolve().parents[1]
 read=lambda p:(ROOT/p).read_text(encoding='utf-8')
+
+def load_technical_tutors():
+ path=ROOT/'data/pokemon/technical_tutor.asm'
+ if not path.exists():return {}
+ text=path.read_text(encoding='utf-8')
+ lists={m[1]:re.findall(r'^\s*dw\s+(\w+)\s*$',m[2],re.M)
+        for m in re.finditer(r'^(TechnicalTutor_\w+)::?\n(.*?)^\s*dw\s+0\s*$',text,re.M|re.S)}
+ return {c:lists[label] for label,c in re.findall(r'^\s*dba\s+(TechnicalTutor_\w+)\s*;\s*(\w+)',text,re.M)}
 def load_sources():
  species_text=read('constants/pokemon_constants.asm').split('const_def 1',1)[1].split('NUM_POKEMON',1)[0]
  order=re.findall(r'^\s*const\s+(\w+)',species_text,re.M)
@@ -62,6 +70,7 @@ def main():
    if p not in seen:seen.add(p);ancestors(p,seen)
   return seen
  utility_moves=['SUBSTITUTE','SLEEP_TALK','REFLECT','LIGHT_SCREEN','THUNDER_WAVE']
+ technical=load_technical_tutors()
  pools={}
  for c in order:
   ls=levels[c];ms=[m for lv,m in ls]
@@ -73,11 +82,12 @@ def main():
   pool=set(ms+tm[c]+eggs[c])|{m for p in ancestors(c) for lv,m in levels[p]}
   if c in {'DRATINI','DRAGONAIR','DRAGONITE'}:pool.add('EXTREMESPEED')
   pool|={m for i,m in enumerate(utility_moves) if utility[c]&(1<<i)}
+  pool|=set(technical.get(c,[]))
   assert pool<=moves,(c,pool-moves)
   pools[c]=pool
   if c.endswith('_CLONE'):
    original=c[:-6]
-   assert levels[c]==levels[original] and tm[c]==tm[original] and eggs[c]==eggs[original] and utility[c]==utility[original],(c,'clone mismatch')
+   assert levels[c]==levels[original] and tm[c]==tm[original] and eggs[c]==eggs[original] and utility[c]==utility[original] and technical.get(c)==technical.get(original),(c,'clone mismatch')
  for c in ['DITTO','WOBBUFFET','WYNAUT','SMEARGLE']:assert utility[c]==0,(c,'restricted identity')
  review=json.loads(read('tools/testdata/learnset_variety_review.json'))
  receipt=json.loads(read('tools/testdata/learnset_variety_implementation.json'))
