@@ -794,6 +794,16 @@ wPlayerWishCount:: db ; end-of-turn countdown for a pending Wish (0 = none)
 wEnemyWishCount:: db
 wPlayerWishHP:: dw ; half the wisher's max HP, recorded at use time
 wEnemyWishHP:: dw
+; Spider Web is an independent, single-layer hazard (Screens is full).
+wPlayerSpiderWeb:: db
+wEnemySpiderWeb:: db
+; Setter party slot + 1: Mirror Armor only reflects a web at its setter.
+wPlayerStickyWebSource:: db
+wEnemyStickyWebSource:: db
+wPlayerSpiderWebSource:: db
+wEnemySpiderWebSource:: db
+; Nonzero only while a web's stat drop is resolving; value = setter slot + 1.
+wEntryWebStatDrop:: db
 wBattleEnd::
 
 NEXTU ; c608

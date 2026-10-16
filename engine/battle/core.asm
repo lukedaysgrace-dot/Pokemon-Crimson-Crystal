@@ -4439,6 +4439,10 @@ BreakAttraction:
 
 SpikesDamageAndEntryAbilities:
 ; Switch-in handling: spikes, then the incoming mon's entry abilities.
+IF DEF(DEBUG_BATTLE)
+	; Honor the test request's second-mon ability before native entry effects.
+	farcall DebugApplyBenchAbilityOverride
+ENDC
 	; A newly entering mon starts with clean held-item ability state. Reset it
 	; before hazards so a Toxic Spikes-curing Berry can arm Harvest/Unburden.
 	farcall ClearUserItemState_Core

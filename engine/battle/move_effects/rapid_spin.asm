@@ -59,6 +59,23 @@ BattleCommand_ClearHazards:
 	pop de
 	pop hl
 .no_sticky_web
+	push hl
+	ld hl, wPlayerSpiderWeb
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_spider_side
+	ld hl, wEnemySpiderWeb
+.got_spider_side
+	ld a, [hl]
+	and a
+	jr z, .no_spider_web
+	ld [hl], 0
+	push de
+	ld hl, BlewSpiderWebText
+	call StdBattleTextbox
+	pop de
+.no_spider_web
+	pop hl
 	bit SCREENS_STEALTH_ROCK, [hl]
 	jr z, .no_stealth_rock
 	res SCREENS_STEALTH_ROCK, [hl]

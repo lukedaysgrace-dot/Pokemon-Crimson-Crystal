@@ -150,6 +150,7 @@ def _configure(effect, move, power):
         "EFFECT_TAUNT": ["wram('wEnemyTauntCount') != 0"],
         "EFFECT_YAWN": ["wram('wEnemyYawnCount') != 0"],
         "EFFECT_STICKY_WEB": ["(enemy.screens & 2) != 0"],
+        "EFFECT_SPIDER_WEB": ["wram('wEnemySpiderWeb') == 1", "enemy.status == 0"],
     }
     assertions = special.get(effect, assertions)
 

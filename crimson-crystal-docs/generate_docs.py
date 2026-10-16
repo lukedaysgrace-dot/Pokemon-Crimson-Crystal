@@ -1388,7 +1388,9 @@ class Builder:
     effect_labels={'EFFECT_RAZOR_WIND':'Requires a charging turn','EFFECT_NORMAL_HIT':'Direct damaging attack',
                    'EFFECT_FREEZE_HIT':'May inflict freeze','EFFECT_BLIZZARD':'May inflict frostbite; always hits in hail',
                    'EFFECT_FLINCH_HIT':'May cause flinching','EFFECT_ACCURACY_DOWN_HIT':'May lower accuracy',
-                   'EFFECT_DEF_SPDEF_DOWN_HIT':'May lower Defense and Special Defense together'}
+                   'EFFECT_DEF_SPDEF_DOWN_HIT':'May lower Defense and Special Defense together',
+                   'EFFECT_MEAN_LOOK':'Prevents switching and fleeing',
+                   'EFFECT_SPIDER_WEB':'Entry hazard: lowers Speed one stage and inflicts regular poison'}
     for move in moves:
       old=baseline['moves'].get(move['const'])
       changes=[(key,label) for key,label in fields if old and old[key]!=move[key]]

@@ -20,6 +20,18 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+Spider Web's focused placement, poison, immunity, item and clearing cases
+live in `tests/84-spider-web.yaml`. To also test native switch-ins against
+every ability on both sides:
+
+```bash
+python3 tools/battletest/spider_web_matrix.py > .tmpbuild/spider-web-matrix.yaml
+python3 tools/battletest/runner.py --no-render --jobs 6 tools/battletest/tests/84-spider-web.yaml .tmpbuild/spider-web-matrix.yaml
+```
+
+Second-party-member ability overrides are installed before switch-in hazards
+in the debug ROM, allowing these fixtures to test arbitrary incoming abilities.
+
 `python3 tools/battletest/wide_lens_checks.py` checks all 256 accuracy
 values for both battlers with Wide Lens, no item, Klutz, and Neutralizing
 Gas. `tests/83-wide-lens.yaml` covers the resulting native move outcomes.

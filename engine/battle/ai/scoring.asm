@@ -448,6 +448,7 @@ AI_Smart:
 	dbw EFFECT_TOXIC_SPIKES,     AI_Smart_ToxicSpikes
 	dbw EFFECT_STEALTH_ROCK,     AI_Smart_StealthRock
 	dbw EFFECT_STICKY_WEB,       AI_Smart_StickyWeb
+	dbw EFFECT_SPIDER_WEB,       AI_Smart_SpiderWeb
 	dbw EFFECT_TORMENT,          AI_Smart_Torment
 	dbw EFFECT_TAUNT,            AI_Smart_Taunt
 	dbw EFFECT_YAWN,             AI_Smart_Yawn
@@ -2441,7 +2442,10 @@ AI_Smart_RapidSpin:
 	jr nz, .asm_39097
 
 	ld a, [wEnemyScreens]
-	bit SCREENS_SPIKES, a
+	and SCREENS_HAZARDS_MASK
+	jr nz, .asm_39097
+	ld a, [wEnemySpiderWeb]
+	and a
 	ret z
 
 .asm_39097
@@ -3721,6 +3725,12 @@ AI_Smart_StickyWeb:
 	dec [hl]
 	ret
 
+AI_Smart_SpiderWeb:
+	ld a, [wPlayerSpiderWeb]
+	and a
+	jp nz, AIDiscourageMove
+	jp AI_Smart_StickyWeb.none_yet
+
 AI_Smart_Torment:
 ; Useless against an already tormented target.
 	ld a, [wPlayerSubStatus2]
@@ -3771,17 +3781,27 @@ AI_Smart_Defog:
 	ld a, [wEnemyScreens]
 	and SCREENS_HAZARDS_MASK
 	jr nz, .useful
+	ld a, [wEnemySpiderWeb]
+	and a
+	jr nz, .useful
 	ld a, [wPlayerScreens]
 	and (1 << SCREENS_LIGHT_SCREEN) | (1 << SCREENS_REFLECT)
 	jr nz, .useful
 	ld a, [wPlayerScreens]
 	and SCREENS_HAZARDS_MASK
+	jr nz, .only_own_hazards
+	ld a, [wPlayerSpiderWeb]
+	and a
 	ret z ; nothing anywhere: leave the default score
+.only_own_hazards
 	jp AIDiscourageMove
 .useful
 	ld a, [wPlayerScreens]
 	and SCREENS_HAZARDS_MASK
 	jr nz, .mild ; we'd also clear our own hazards off the player's side
+	ld a, [wPlayerSpiderWeb]
+	and a
+	jr nz, .mild
 	dec [hl]
 	dec [hl]
 	ret
@@ -3926,7 +3946,11 @@ AI_Smart_CircleThrow:
 	ret z
 	ld a, [wPlayerScreens]
 	and SCREENS_HAZARDS_MASK
+	jr nz, .hazards_present
+	ld a, [wPlayerSpiderWeb]
+	and a
 	ret z
+.hazards_present
 	dec [hl]
 	ret
 
@@ -4246,6 +4270,8 @@ AIReflectableIndirectEffects:
 	db EFFECT_SPIKES
 	db EFFECT_TOXIC_SPIKES
 	db EFFECT_STEALTH_ROCK
+	db EFFECT_STICKY_WEB
+	db EFFECT_SPIDER_WEB
 	db EFFECT_DISABLE
 	db EFFECT_ENCORE
 	db EFFECT_TAUNT
