@@ -6,7 +6,7 @@ Wild held-item rates are approximately 20% for slot 1 and 5% for slot 2; identic
 
 Source coverage: map item balls, hidden items, scripted gifts, standard and rooftop marts, Game Corner prizes, Battle Tower prize menu, Fishing Contest prizes, in-game trades, Mystery Gift item pool, wild held-item tables joined to encounter maps, scripted wild encounters, and map-referenced trainer parties. An item with no source is explicitly marked; a base-stat holder without a wild encounter is not treated as a location.
 
-**Coverage:** 54 TMs; 59 held items; 755 acquisition entries.
+**Coverage:** 54 TMs; 59 held items; 761 acquisition entries.
 
 ## Quick index
 
@@ -74,24 +74,24 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
 | [Brick Piece](#brick_piece) | Ground pickup |
 | [Brightpowder](#brightpowder) | Trainer item |
-| [Charcoal](#charcoal) | Gift / reward, Ground pickup, Shop, Trainer item |
+| [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
 | [Choice Band](#choice_band) | Battle Tower prize, Trainer item |
 | [Choice Scarf](#choice_scarf) | Battle Tower prize |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Trainer item |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
-| [Damp Rock](#damp_rock) | Mystery Gift, Trainer item |
+| [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
 | [Everstone](#everstone) | Gift / reward, Static wild Pokémon, Wild Pokémon |
-| [Eviolite](#eviolite) | Shop, Trainer item |
+| [Eviolite](#eviolite) | Ground pickup, Shop, Trainer item |
 | [Exp. Share](#exp_share) | Gift / reward |
-| [Expert Belt](#expert_belt) | Shop, Trainer item |
-| [Flame Orb](#flame_orb) | Shop, Trainer item |
+| [Expert Belt](#expert_belt) | Gift / reward, Shop, Trainer item |
+| [Flame Orb](#flame_orb) | Ground pickup, Shop, Trainer item |
 | [Focus Band](#focus_band) | Ground pickup |
 | [Focus Sash](#focus_sash) | Battle Tower prize, Trainer item |
 | [Hard Stone](#hard_stone) | Gift / reward, Wild Pokémon |
-| [Heat Rock](#heat_rock) | Mystery Gift |
-| [Icy Rock](#icy_rock) | Mystery Gift, Trainer item |
+| [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
+| [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
 | [Leftovers](#leftovers) | Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Shop, Trainer item |
@@ -114,8 +114,8 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
 | [Silverpowder](#silverpowder) | Wild Pokémon |
 | [Smoke Ball](#smoke_ball) | Ground pickup, In-game trade |
-| [Smooth Rock](#smooth_rock) | Mystery Gift |
-| [Soft Sand](#soft_sand) | Gift / reward, Wild Pokémon |
+| [Smooth Rock](#smooth_rock) | Ground pickup, Mystery Gift |
+| [Soft Sand](#soft_sand) | Wild Pokémon |
 | [Spell Tag](#spell_tag) | Gift / reward, Trainer item, Wild Pokémon |
 | [Stick](#stick) | Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
@@ -123,7 +123,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize |
-| [Wide Lens](#wide_lens) | Shop |
+| [Wide Lens](#wide_lens) | Ground pickup, Shop |
 | [Wise Glasses](#wise_glasses) | Shop, Trainer item |
 
 <a id="tm_drain_punch"></a>
@@ -269,7 +269,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
-| Burned Tower B1F | **Ground pickup** — Basement item ball. Tile (16, 4). | [maps/BurnedTowerB1F.asm](maps/BurnedTowerB1F.asm#L127) |
+| Burned Tower B1F | **Ground pickup** — Basement item ball. Tile (16, 4). | [maps/BurnedTowerB1F.asm](maps/BurnedTowerB1F.asm#L128) |
 
 <a id="tm_facade"></a>
 ## TM21 — Facade
@@ -599,7 +599,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | --- | --- | --- |
 | Azalea Mart | **Shop** — Repeatable purchase. Cost: ₽9,800. | [data/items/marts.asm](data/items/marts.asm#L71); [map script](maps/AzaleaMart.asm#L13) |
 | Charcoal Kiln (Azalea Town) | **Gift / reward** — Apprentice in Azalea Town; after receiving HM Cut from the Farfetch’d quest. | [maps/CharcoalKiln.asm](maps/CharcoalKiln.asm#L50) |
-| Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 4). | [maps/RuinsOfAlphHoOhItemRoom.asm](maps/RuinsOfAlphHoOhItemRoom.asm#L22) |
 | Cianwood City | **Trainer item** — Crystal Crystal: Quilava Lv. 32. Party CRYSTAL_3_CYNDAQUIL. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7901); [map script](maps/CianwoodCity.asm) |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Ceruledge Lv. 41. Party RIVAL1_4_CHIKORITA. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7352); [map script](maps/GoldenrodUndergroundSwitchRoomEntrances.asm) |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Ceruledge Lv. 41. Party RIVAL1_4_TOTODILE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7420); [map script](maps/GoldenrodUndergroundSwitchRoomEntrances.asm) |
@@ -656,6 +655,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 4). | [maps/RuinsOfAlphHoOhItemRoom.asm](maps/RuinsOfAlphHoOhItemRoom.asm#L22) |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Random Mystery Gift item pool. Unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible Mystery Gift infrared session. Requires external connectivity; not an ordinary overworld gift. | [data/items/mystery_gift_items.asm](data/items/mystery_gift_items.asm#L16) |
 | Route 42 | **Trainer item** — Fisher Tully: Kingdra Lv. 59. Party TULLY4. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L3588); [map script](maps/Route42.asm) |
 
@@ -746,6 +746,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Day Care | **Ground pickup** — Collect the item ball. Tile (3, 3). | [maps/DayCare.asm](maps/DayCare.asm#L78) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Silver Cave Outside | **Trainer item** — Elite Four Agatha: Misdreavus Lv. 78. Party AGATHA1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6720); [map script](maps/SilverCaveOutside.asm) |
 
@@ -762,6 +763,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Route 34 | **Gift / reward** — Cooltrainer Kate on the southern beach; defeat Irene, Jenn, and Kate, then speak to Kate again. Surf to the beach. | [maps/Route34.asm](maps/Route34.asm#L463) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Machamp Lv. 80. Party BRUNO2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L725); [map script](maps/BrunosRoom.asm) |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Toxicroak Lv. 53. Party BRUNO1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L681); [map script](maps/BrunosRoom.asm) |
@@ -779,6 +781,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Burned Tower B1F | **Ground pickup** — Basement item ball. Tile (5, 2). | [maps/BurnedTowerB1F.asm](maps/BurnedTowerB1F.asm#L131) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 78. Party BRUNO2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L700); [map script](maps/BrunosRoom.asm) |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Conkeldurr Lv. 75. Party CHUCK2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Morty’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L427); [map script](maps/CianwoodGym.asm) |
@@ -827,6 +830,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 6). | [maps/RuinsOfAlphHoOhItemRoom.asm](maps/RuinsOfAlphHoOhItemRoom.asm#L16) |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Random Mystery Gift item pool. Unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible Mystery Gift infrared session. Requires external connectivity; not an ordinary overworld gift. | [data/items/mystery_gift_items.asm](data/items/mystery_gift_items.asm#L37) |
 
 <a id="icy_rock"></a>
@@ -834,6 +838,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (2, 6). | [maps/RuinsOfAlphHoOhItemRoom.asm](maps/RuinsOfAlphHoOhItemRoom.asm#L13) |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Random Mystery Gift item pool. Unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible Mystery Gift infrared session. Requires external connectivity; not an ordinary overworld gift. | [data/items/mystery_gift_items.asm](data/items/mystery_gift_items.asm#L38) |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Ninetales (Alolan) Lv. 35. Party PRYCE1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L256); [map script](maps/MahoganyGym.asm) |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Ninetales (Alolan) Lv. 75. Party PRYCE2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Jasmine’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L290); [map script](maps/MahoganyGym.asm) |
@@ -1437,6 +1442,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (2, 4). | [maps/RuinsOfAlphHoOhItemRoom.asm](maps/RuinsOfAlphHoOhItemRoom.asm#L19) |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Random Mystery Gift item pool. Unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible Mystery Gift infrared session. Requires external connectivity; not an ordinary overworld gift. | [data/items/mystery_gift_items.asm](data/items/mystery_gift_items.asm#L17) |
 
 <a id="soft_sand"></a>
@@ -1444,7 +1450,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
-| Route 34 | **Gift / reward** — Cooltrainer Kate on the southern beach; speak again after defeating her. Surf to the beach. | [maps/Route34.asm](maps/Route34.asm#L463) |
 | Safari Zone | **Wild Pokémon** — Diglett (Alolan); approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 23. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/diglett_alolan.asm) |
 
 <a id="spell_tag"></a>
@@ -1539,6 +1544,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Olivine Lighthouse 3F | **Ground pickup** — Collect the item ball. Tile (12, 12). | [maps/OlivineLighthouse3F.asm](maps/OlivineLighthouse3F.asm#L50) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 
 <a id="wise_glasses"></a>

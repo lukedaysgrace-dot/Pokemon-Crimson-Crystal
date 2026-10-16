@@ -9,17 +9,17 @@ RuinsOfAlphHoOhItemRoom_MapScripts:
 
 	db 0 ; callbacks
 
-RuinsOfAlphHoOhItemRoomGoldBerry:
-	itemball GOLD_BERRY
+RuinsOfAlphHoOhItemRoomIcyRock:
+	itemball ICY_ROCK
 
-RuinsOfAlphHoOhItemRoomMysteryberry:
-	itemball MYSTERYBERRY
+RuinsOfAlphHoOhItemRoomHeatRock:
+	itemball HEAT_ROCK
 
-RuinsOfAlphHoOhItemRoomRevivalHerb:
-	itemball REVIVAL_HERB
+RuinsOfAlphHoOhItemRoomSmoothRock:
+	itemball SMOOTH_ROCK
 
-RuinsOfAlphHoOhItemRoomCharcoal:
-	itemball CHARCOAL
+RuinsOfAlphHoOhItemRoomDampRock:
+	itemball DAMP_ROCK
 
 RuinsOfAlphHoOhItemRoomAncientReplica:
 	jumptext RuinsOfAlphHoOhItemRoomAncientReplicaText
@@ -46,7 +46,8 @@ RuinsOfAlphHoOhItemRoom_MapEvents:
 	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphHoOhItemRoomAncientReplica
 
 	db 4 ; object events
-	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomGoldBerry, EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM
-	object_event  5,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomMysteryberry, EVENT_PICKED_UP_MYSTERYBERRY_FROM_HO_OH_ITEM_ROOM
-	object_event  2,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomRevivalHerb, EVENT_PICKED_UP_REVIVAL_HERB_FROM_HO_OH_ITEM_ROOM
-	object_event  5,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomCharcoal, EVENT_PICKED_UP_CHARCOAL_FROM_HO_OH_ITEM_ROOM
+	; Keep the original pickup flags for existing saves.
+	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomIcyRock, EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM
+	object_event  5,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomHeatRock, EVENT_PICKED_UP_MYSTERYBERRY_FROM_HO_OH_ITEM_ROOM
+	object_event  2,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomSmoothRock, EVENT_PICKED_UP_REVIVAL_HERB_FROM_HO_OH_ITEM_ROOM
+	object_event  5,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomDampRock, EVENT_PICKED_UP_CHARCOAL_FROM_HO_OH_ITEM_ROOM
