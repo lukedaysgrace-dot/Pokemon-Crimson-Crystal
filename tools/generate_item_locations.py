@@ -49,6 +49,7 @@ GIFT_NOTES = {
     'GoldenrodGameCorner:TM_BLIZZARD': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGameCorner:TM_FIRE_BLAST': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGym:TM_ATTRACT': 'Whitney; talk to her again after winning and collect the Plain Badge.',
+    'GoldenrodDeptStoreRoof:AIR_BALLOON': 'Interact with the red floating balloon at tile (15, 0); one-time pickup. It remains if the Bag is full.',
     'GoldenrodUnderground:LOADED_DICE': 'Girl rescued from the thugs; complete her reward conversation after defeating them. She also gives the dice if you decline Riolu.',
     'GravekeepersHouse:SPELL_TAG': 'Gravekeeper in Silent Crypt; clean both gravestones before entering his house.',
     'IlexForest:TM_HEADBUTT': 'Headbutt tutor in the forest; accept his gift.',

@@ -169,7 +169,7 @@ ItemDescriptions:
 	dw ClawFossilDesc
 	dw SkullFossilDesc
 	dw SunStoneDesc
-	dw PolkadotBowDesc
+	dw WideLensDesc
 	dw MuscleBandDesc
 	dw UpGradeDesc
 	dw BerryDesc
@@ -929,9 +929,9 @@ DuskStoneDesc:
 	db   "A dark stone that"
 	next "evolves RAICHU.@"
 
-PolkadotBowDesc:
-	db   "Powers up normal-"
-	next "type moves. (HOLD)@"
+WideLensDesc:
+	db   "Boosts accuracy"
+	next "by 10%. (HOLD)@"
 
 UpGradeDesc:
 	db   "A mysterious box"

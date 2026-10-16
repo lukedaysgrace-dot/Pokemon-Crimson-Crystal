@@ -6,7 +6,7 @@ Wild held-item rates are approximately 20% for slot 1 and 5% for slot 2; identic
 
 Source coverage: map item balls, hidden items, scripted gifts, standard and rooftop marts, Game Corner prizes, Battle Tower prize menu, Fishing Contest prizes, in-game trades, Mystery Gift item pool, wild held-item tables joined to encounter maps, scripted wild encounters, and map-referenced trainer parties. An item with no source is explicitly marked; a base-stat holder without a wild encounter is not treated as a location.
 
-**Coverage:** 54 TMs; 59 held items; 753 acquisition entries.
+**Coverage:** 54 TMs; 59 held items; 755 acquisition entries.
 
 ## Quick index
 
@@ -66,7 +66,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [TM52 — Zen Headbutt](#tm_zen_headbutt) | Gift / reward |
 | [TM53 — Power Gem](#tm_power_gem) | Ground pickup |
 | [TM54 — Weather Ball](#tm_weather_ball) | Gift / reward |
-| [Air Balloon](#air_balloon) | Shop, Trainer item |
+| [Air Balloon](#air_balloon) | Gift / reward, Shop, Trainer item |
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
 | [Assault Vest](#assault_vest) | Shop, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
@@ -108,7 +108,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Nevermeltice](#nevermeltice) | Ground pickup, Trainer item |
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
-| [Polkadot Bow](#polkadot_bow) | No obtainable source found |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
 | [Rocky Helmet](#rocky_helmet) | Shop, Trainer item |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
@@ -124,6 +123,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize |
+| [Wide Lens](#wide_lens) | Shop |
 | [Wise Glasses](#wise_glasses) | Shop, Trainer item |
 
 <a id="tm_drain_punch"></a>
@@ -516,6 +516,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Goldenrod Dept Store Roof | **Gift / reward** — Interact with the red floating balloon at tile (15, 0). One-time pickup; it remains if the Bag is full. | [maps/GoldenrodDeptStoreRoof.asm](maps/GoldenrodDeptStoreRoof.asm#L85) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Golem (Alolan) Lv. 77. Party CAL3. Use Trick before the balloon pops; ordinary damaging Thief hits pop it. | [data/trainers/parties.asm](data/trainers/parties.asm#L651); [map script](maps/TrainerHouseB1F.asm) |
 | Vermilion Gym | **Trainer item** — Leader Lt.Surge: Magnezone Lv. 55. Party LT_SURGE1. Use Trick before the balloon pops; ordinary damaging Thief hits pop it. | [data/trainers/parties.asm](data/trainers/parties.asm#L1024); [map script](maps/VermilionGym.asm) |
@@ -1311,11 +1312,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Whirl Islands SE | **Wild Pokémon** — Mareanie; approx. 5% held-item chance. Grass / Cave; Night; Lv. 39. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/mareanie.asm) |
 | Whirl Islands SW | **Wild Pokémon** — Mareanie; approx. 5% held-item chance. Grass / Cave; Night; Lv. 39. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/mareanie.asm) |
 
-<a id="polkadot_bow"></a>
-## Polkadot Bow
-
-No obtainable source found in the current source tables and map scripts.
-
 <a id="quick_claw"></a>
 ## Quick Claw
 
@@ -1537,6 +1533,13 @@ No obtainable source found in the current source tables and map scripts.
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L152) |
+
+<a id="wide_lens"></a>
+## Wide Lens
+
+| Location | How to obtain / conditions | Source |
+| --- | --- | --- |
+| Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 
 <a id="wise_glasses"></a>
 ## Wise Glasses

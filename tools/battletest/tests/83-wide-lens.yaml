@@ -1,0 +1,95 @@
+# Controlled rolls distinguish Wide Lens from its no-item and Klutz controls.
+- name: "Wide Lens: Fire Blast misses without the lens"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [FIRE_BLAST]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 224
+  turns: 1
+  assert: [enemy.hp == enemy.start_hp]
+
+- name: "Wide Lens: player Fire Blast hits and the lens stays held"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: WIDE_LENS, moves: [FIRE_BLAST]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 224
+  turns: 1
+  assert: [enemy.hp < enemy.start_hp, player.item == 'WIDE_LENS']
+
+- name: "Wide Lens: enemy Fire Blast receives the same boost"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: WIDE_LENS, moves: [FIRE_BLAST]}
+  rng: forced_high
+  rng_value: 224
+  turns: 1
+  assert: [player.hp < player.start_hp, enemy.item == 'WIDE_LENS']
+
+- name: "Wide Lens: Klutz suppresses the boost"
+  player: {species: MEW, level: 50, ability: KLUTZ, item: WIDE_LENS, moves: [FIRE_BLAST]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 224
+  turns: 1
+  assert: [enemy.hp == enemy.start_hp, player.item == 'WIDE_LENS']
+
+- name: "Wide Lens: Neutralizing Gas suppresses Klutz and restores the boost"
+  player: {species: MEW, level: 50, ability: KLUTZ, item: WIDE_LENS, moves: [FIRE_BLAST]}
+  enemy: {species: SNORLAX, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 224
+  turns: 1
+  assert: [enemy.hp < enemy.start_hp, player.item == 'WIDE_LENS']
+
+- name: "Wide Lens: Hypnosis misses without the lens"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [HYPNOSIS]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 164
+  turns: 1
+  assert: [enemy.status == 0]
+
+- name: "Wide Lens: status moves receive the accuracy boost"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: WIDE_LENS, moves: [HYPNOSIS]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 164
+  turns: 1
+  assert: [enemy.status != 0, player.item == 'WIDE_LENS']
+
+- name: "Wide Lens: Compound Eyes alone misses this Hypnosis roll"
+  player: {species: MEW, level: 50, ability: COMPOUND_EYES, moves: [HYPNOSIS]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 208
+  turns: 1
+  assert: [enemy.status == 0]
+
+- name: "Wide Lens: stacks with Compound Eyes"
+  player: {species: MEW, level: 50, ability: COMPOUND_EYES, item: WIDE_LENS, moves: [HYPNOSIS]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 208
+  turns: 1
+  assert: [enemy.status != 0]
+
+- name: "Wide Lens: Wonder Skin still caps status accuracy"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: WIDE_LENS, moves: [SLEEP_POWDER]}
+  enemy: {species: SNORLAX, level: 100, ability: WONDER_SKIN, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 140
+  turns: 1
+  assert: [enemy.status == 0]
+
+- name: "Wide Lens: Protect still blocks an accurate attack"
+  player: {species: MEW, level: 50, ability: NO_GUARD, item: WIDE_LENS, moves: [FIRE_BLAST]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [PROTECT]}
+  rng: forced_low
+  turns: 1
+  assert: [enemy.hp == enemy.start_hp]
+
+- name: "Wide Lens: cannot bypass Grass immunity to powders"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: WIDE_LENS, moves: [SLEEP_POWDER]}
+  enemy: {species: VENUSAUR, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: [enemy.status == 0]
+
