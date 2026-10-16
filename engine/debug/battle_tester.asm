@@ -991,6 +991,44 @@ DebugApplyPostEntry:
 .no_e_abil
 	ret
 
+DebugApplyBenchAbilityOverride::
+; Arbitrary bench ability fixtures used to revert to the species' ability
+; on switch-in. Apply only slot 2's requested override here, before hazards;
+; lead overrides retain their established post-entry timing.
+	ldh a, [hDebugActive]
+	and a
+	ret z
+	push af
+	push bc
+	push de
+	push hl
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wDebugPlayer2 + dbg_ABILOVERRIDE
+	ld de, wPlayerAbility
+	ld a, [wCurBattleMon]
+	jr z, .got_side
+	ld hl, wDebugEnemy2 + dbg_ABILOVERRIDE
+	ld de, wEnemyAbility
+	ld a, [wCurOTMon]
+.got_side
+	cp 1
+	jr nz, .done
+	call DebugPeek
+	and a
+	jr z, .done
+	cp $ff
+	jr nz, .set_ability
+	xor a
+.set_ability
+	ld [de], a
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
 DebugApplySubstatus:
 ; OR 5 request bytes at hl (debug bank) into the 5 substatus bytes at de.
 	ld c, 5

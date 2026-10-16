@@ -1,0 +1,267 @@
+# Spider Web is a separate persistent hazard. Poison and Speed are independent.
+- &entry
+  name: "Spider Web: grounded entrant loses Speed and receives regular poison"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIDER_WEB]}
+  rng: forced_high
+  move_script: [1, 'switch:2']
+  turns: 2
+  assert:
+    - player.stat_levels[2] == 6
+    - player.status == 8
+    - (player.substatus[4] & 1) == 0
+    - wram('wPlayerToxicSlots') == 0
+    - player.hp == player.maxhp - player.maxhp // 8
+    - wram('wPlayerSpiderWeb') == 1
+    - wram('wEntryWebStatDrop') == 0
+
+- name: "Spider Web: placement neither traps nor immediately poisons the active foe"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIDER_WEB]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemySpiderWeb') == 1
+    - wram('wPlayerSpiderWeb') == 0
+    - enemy.status == 0
+    - enemy.stat_levels[2] == 7
+    - (enemy.substatus[4] & 128) == 0
+
+- <<: *entry
+  name: "Spider Web: repeated use does not stack or become Toxic"
+  move_script: [1, 1, 1, 'switch:2']
+  turns: 4
+
+- <<: *entry
+  name: "Spider Web: Poison types are slowed without absorbing the web"
+  player2: {species: GRIMER, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 0", "wram('wPlayerSpiderWeb') == 1"]
+
+- <<: *entry
+  name: "Spider Web: Steel types are slowed and cannot be poisoned even by Corrosion"
+  player2: {species: SCIZOR, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CORROSION, moves: [SPIDER_WEB]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Flying types avoid both effects"
+  player2: {species: FEAROW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 7", "player.status == 0", "player.hp == player.maxhp"]
+
+- <<: *entry
+  name: "Spider Web: Air Balloon avoids both effects"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, item: AIR_BALLOON, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 7", "player.status == 0", "player.item == 'AIR_BALLOON'"]
+
+- <<: *entry
+  name: "Spider Web: Klutz disables Air Balloon's protection"
+  player2: {species: MEW, level: 50, ability: KLUTZ, item: AIR_BALLOON, moves: [SPLASH]}
+
+- <<: *entry
+  name: "Spider Web: Mold Breaker does not bypass Levitate on entry"
+  player2: {species: MEW, level: 50, ability: LEVITATE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [SPIDER_WEB]}
+  assert: ["player.stat_levels[2] == 7", "player.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Mold Breaker does not bypass Clear Body on entry"
+  player2: {species: MEW, level: 50, ability: CLEAR_BODY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [SPIDER_WEB]}
+  assert: ["player.stat_levels[2] == 7", "player.status == 8"]
+
+- <<: *entry
+  name: "Spider Web: Mold Breaker does not bypass poison immunity on entry"
+  player2: {species: MEW, level: 50, ability: IMMUNITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [SPIDER_WEB]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Neutralizing Gas suppresses Levitate"
+  player2: {species: MEW, level: 50, ability: LEVITATE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NEUTRALIZING_GAS, moves: [SPIDER_WEB]}
+
+- <<: *entry
+  name: "Spider Web: Neutralizing Gas suppresses Clear Body"
+  player2: {species: MEW, level: 50, ability: CLEAR_BODY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NEUTRALIZING_GAS, moves: [SPIDER_WEB]}
+
+- <<: *entry
+  name: "Spider Web: Neutralizing Gas suppresses Immunity"
+  player2: {species: MEW, level: 50, ability: IMMUNITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NEUTRALIZING_GAS, moves: [SPIDER_WEB]}
+
+- <<: *entry
+  name: "Spider Web: Leaf Guard prevents poison in sun but Speed still drops"
+  player2: {species: MEW, level: 50, ability: LEAF_GUARD, moves: [SPLASH]}
+  weather: sun
+  assert: ["player.stat_levels[2] == 6", "player.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Hydration cures the regular poison in rain"
+  player2: {species: MEW, level: 50, ability: HYDRATION, moves: [SPLASH]}
+  weather: rain
+  assert: ["player.stat_levels[2] == 6", "player.status == 0", "(player.substatus[4] & 1) == 0"]
+
+- <<: *entry
+  name: "Spider Web: existing status remains unchanged while Speed drops"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 64, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 64"]
+
+- <<: *entry
+  name: "Spider Web: berry cures poison immediately after entry"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, item: PSNCUREBERRY, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 0", "player.item == 'NO_ITEM'"]
+
+- <<: *entry
+  name: "Spider Web: Lum equivalent cures poison immediately after entry"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, item: MIRACLEBERRY, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 0", "player.item == 'NO_ITEM'"]
+
+- <<: *entry
+  name: "Spider Web: Unnerve prevents the poison-curing berry"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, item: PSNCUREBERRY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: UNNERVE, moves: [SPIDER_WEB]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 8", "player.item == 'PSNCUREBERRY'"]
+
+- <<: *entry
+  name: "Spider Web: Synchronize does not reflect field poison"
+  player2: {species: MEW, level: 50, ability: SYNCHRONIZE, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 6", "player.status == 8", "enemy.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Poison Puppeteer does not confuse from field poison"
+  enemy: {species: MEW, level: 50, ability: POISON_PUPPETEER, moves: [SPIDER_WEB]}
+  assert: ["player.status == 8", "(player.substatus[2] & 128) == 0"]
+
+- <<: *entry
+  name: "Spider Web: Sticky Web and Spider Web coexist independently"
+  player_screens: 2
+  assert: ["player.stat_levels[2] == 5", "player.status == 8", "(player.screens & 2) != 0", "wram('wPlayerSpiderWeb') == 1"]
+
+- <<: *entry
+  name: "Spider Web: does not downgrade two-layer Toxic Spikes poison"
+  player_screens: 96
+  assert: ["player.stat_levels[2] == 6", "player.status == 8", "(player.substatus[4] & 1) != 0", "wram('wPlayerToxicSlots') == 2"]
+
+- <<: *entry
+  name: "Spider Web: Mirror Armor reflects Speed at the active setter and still poisons"
+  player2: {species: MEW, level: 50, ability: MIRROR_ARMOR, moves: [SPLASH]}
+  assert: ["player.stat_levels[2] == 7", "enemy.stat_levels[2] == 6", "player.status == 8", "enemy.status == 0"]
+
+- <<: *entry
+  name: "Spider Web: Mirror Armor does not reflect at a replacement for the setter"
+  player2: {species: MEW, level: 50, ability: MIRROR_ARMOR, moves: [SPLASH]}
+  turn_setup_wram: {1: {wPlayerSpiderWebSource: 2}}
+  assert: ["player.stat_levels[2] == 7", "enemy.stat_levels[2] == 7", "player.status == 8"]
+
+- name: "Spider Web: Magic Bounce reflects placement through Protect"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [SPIDER_WEB]}
+  enemy: {species: MEW, level: 100, ability: MAGIC_BOUNCE, moves: [PROTECT]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerSpiderWeb') == 1", "wram('wEnemySpiderWeb') == 0", "ability_seen('MAGIC_BOUNCE')", "player.status == 0", "enemy.status == 0"]
+
+- name: "Spider Web: placement bypasses Substitute and Prankster Dark immunity"
+  player: {species: MEW, level: 50, ability: PRANKSTER, moves: [SPIDER_WEB]}
+  enemy: {species: UMBREON, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemySpiderWeb') == 1", "enemy.status == 0"]
+
+- name: "Spider Web: Pressure does not drain extra PP"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIDER_WEB]}
+  enemy: {species: MEW, level: 50, ability: PRESSURE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_pp[0] - player.pp[0] == 1", "wram('wEnemySpiderWeb') == 1"]
+
+- &spin
+  name: "Spider Web: Rapid Spin clears only the user's web"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [RAPID_SPIN]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerSpiderWeb: 1, wEnemySpiderWeb: 1}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerSpiderWeb') == 0", "wram('wEnemySpiderWeb') == 1"]
+
+- <<: *spin
+  name: "Spider Web: Mortal Spin clears only the user's web"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [MORTAL_SPIN]}
+
+- <<: *spin
+  name: "Spider Web: Defog clears webs from both sides"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DEFOG]}
+  assert: ["wram('wPlayerSpiderWeb') == 0", "wram('wEnemySpiderWeb') == 0"]
+
+- <<: *spin
+  name: "Spider Web: Sheer Force removes Mortal Spin's clearing effect"
+  player: {species: MEW, level: 50, ability: SHEER_FORCE, moves: [MORTAL_SPIN]}
+  assert: ["wram('wPlayerSpiderWeb') == 1", "wram('wEnemySpiderWeb') == 1"]
+
+- <<: *entry
+  name: "Spider Web: lethal Spikes prevents Speed changes, poison and berry use"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, hp: 1, item: PSNCUREBERRY, moves: [SPLASH]}
+  player_screens: 1
+  setup_wram: {wPlayerSpikesLayers: 1}
+  assert: ["wram16('wPartyMon2HP') == 0", "wram('wPartyMon2Status') == 0", "wram('wPartyMon2Item') == item_id('PSNCUREBERRY')", "wram('wPlayerToxicSlots') == 0"]
+
+- <<: *entry
+  name: "Spider Web: lethal Stealth Rock prevents Speed changes, poison and berry use"
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, hp: 1, item: PSNCUREBERRY, moves: [SPLASH]}
+  player_screens: 128
+  assert: ["wram16('wPartyMon2HP') == 0", "wram('wPartyMon2Status') == 0", "wram('wPartyMon2Item') == item_id('PSNCUREBERRY')", "wram('wPlayerToxicSlots') == 0"]
+
+- <<: *entry
+  name: "Spider Web: Safeguard does not protect against entry poison"
+  player_screens: 4
+
+- <<: *entry
+  name: "Spider Web: Baton Passed Substitute does not protect against either effect"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH, BATON_PASS]}
+  setup_wram: {wPlayerSubstituteHP: 100}
+  move_script: [1, 2]
+
+- <<: *entry
+  name: "Sticky Web: Mold Breaker cannot bypass Clear Body on entry"
+  player2: {species: MEW, level: 50, ability: CLEAR_BODY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [STICKY_WEB]}
+  assert: ["player.stat_levels[2] == 7", "player.status == 0"]
+
+- <<: *entry
+  name: "Sticky Web: Mirror Armor reflects at its setter"
+  player2: {species: MEW, level: 50, ability: MIRROR_ARMOR, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [STICKY_WEB]}
+  assert: ["player.stat_levels[2] == 7", "enemy.stat_levels[2] == 6", "player.status == 0"]
+
+- name: "Spider Web: enemy's poison-curing berry activates on replacement"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIDER_WEB, DRAGON_RAGE]}
+  enemy: {species: MAGIKARP, level: 5, hp: 1, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, item: PSNCUREBERRY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 2
+  move_script: [1, 2]
+  assert: ["enemy.species == 'MEW'", "enemy.stat_levels[2] == 6", "enemy.status == 0", "enemy.item == 'NO_ITEM'"]
+
+- &ai
+  name: "Spider Web AI: avoids laying another layer"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH]}
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPIDER_WEB, TACKLE]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  setup_wram: {wPlayerSpiderWeb: 1}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'"]
+
+- <<: *ai
+  name: "Spider Web AI: avoids reflecting its web into Magic Bounce"
+  player: {species: MEW, level: 50, ability: MAGIC_BOUNCE, substatus: [CANT_RUN], moves: [SPLASH]}
+  setup_wram: {}
+
+- <<: *ai
+  name: "Spider Web AI: recognizes its own web when scoring Defog"
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DEFOG, HAZE]}
+  setup_wram: {wEnemySpiderWeb: 1}
+  assert: ["enemy_move() == 'DEFOG'", "wram('wEnemySpiderWeb') == 0"]

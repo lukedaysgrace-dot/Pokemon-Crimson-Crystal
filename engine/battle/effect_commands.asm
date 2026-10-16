@@ -4670,8 +4670,12 @@ BattleCommand_StatDown::
 .AbilityDrivenDrop
 	; A Substitute also blocks Intimidate & co. outright (canon) - no
 	; Contrary/Clear Body reaction fires behind it.
+	ld a, [wEntryWebStatDrop]
+	and a
+	jr nz, .ability_mist ; entry webs also affect a Baton Passed Substitute
 	call CheckSubstituteOpp
 	jp nz, StatDownSkipProtect.Failed
+.ability_mist
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_MIST, a

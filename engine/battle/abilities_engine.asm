@@ -661,6 +661,7 @@ PressureExemptEffects:
 	db EFFECT_SLEEP_TALK
 	db EFFECT_METRONOME
 	db EFFECT_STICKY_WEB ; foe-side hazard without forced Pressure
+	db EFFECT_SPIDER_WEB
 	db EFFECT_BIDE
 	db -1
 MoldBreakerAbility:
@@ -3501,7 +3502,16 @@ ContraryInvertsSelfDrop::
 AbilityProtectsStatDrop::
 ; Carry if the opponent's (stat-drop target's) ability protects the stat
 ; in wLoweredStat. Shows the ability banner when it does.
+	; Entry hazards have no attacking Mold Breaker, even if the active foe
+	; happens to have it. Neutralizing Gas still suppresses these abilities.
+	ld a, [wEntryWebStatDrop]
+	and a
+	jr z, .move_ability
+	call GetOpponentAbility
+	jr .got_ability
+.move_ability
 	call GetOpponentIgnorableAbility
+.got_ability
 	and a
 	ret z ; nc
 	ld b, a
@@ -3574,6 +3584,24 @@ AbilityProtectsStatDrop::
 	bit 7, a
 	jr nz, .no
 	call ShowEnemyAbilityBannerBrief
+	; A web may outlive its setter. Block the drop but do not reflect it
+	; onto an unrelated active Pokemon (or a fainted setter).
+	ld a, [wEntryWebStatDrop]
+	and a
+	jr z, .reflect_drop
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wCurBattleMon]
+	jr z, .got_web_source
+	ld a, [wCurOTMon]
+.got_web_source
+	inc a
+	cp b
+	jr nz, .web_blocked
+	call UserHasFainted
+	jr z, .web_blocked
+.reflect_drop
 	ld hl, wDisguiseBusted
 	set 7, [hl]
 	ld a, [wLoweredStat]
@@ -3583,6 +3611,9 @@ AbilityProtectsStatDrop::
 	call AbilityLowerOppStat
 	ld hl, wDisguiseBusted
 	res 7, [hl]
+	scf
+	ret
+.web_blocked
 	scf
 	ret
 

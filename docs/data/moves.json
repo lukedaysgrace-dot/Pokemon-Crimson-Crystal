@@ -2019,7 +2019,7 @@
     "const": "SPIDER_WEB",
     "name": "Spider Web",
     "rom_name": "SPIDER WEB",
-    "description": "Prevents fleeing or switching.",
+    "description": "Entry web poisons and drops Speed.",
     "power": 0,
     "type": "Bug",
     "category": "Status",

@@ -47,6 +47,8 @@ AI_Redundant:
 	dbw EFFECT_HAIL,         .Hail
 	dbw EFFECT_STEALTH_ROCK, .StealthRock
 	dbw EFFECT_TOXIC_SPIKES, .ToxicSpikes
+	dbw EFFECT_STICKY_WEB, .StickyWeb
+	dbw EFFECT_SPIDER_WEB, .SpiderWeb
 	dbw EFFECT_TRICK_ROOM,   .TrickRoom
 	dbw EFFECT_ROOST,        .Heal
 	db -1
@@ -146,6 +148,16 @@ AI_Redundant:
 .TrickRoom:
 ; Using Trick Room while it's active just ends it early.
 	ld a, [wTrickRoomTimer]
+	and a
+	ret
+
+.StickyWeb:
+	ld a, [wPlayerScreens]
+	bit SCREENS_STICKY_WEB, a
+	ret
+
+.SpiderWeb:
+	ld a, [wPlayerSpiderWeb]
 	and a
 	ret
 
