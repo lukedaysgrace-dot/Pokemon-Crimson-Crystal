@@ -168,7 +168,7 @@ ItemNames::
 	db "CLAW FOSSIL@"
 	db "SKULL FOSSIL@"
 	db "SUN STONE@"
-	db "POLKADOT BOW@"
+	db "WIDE LENS@"
 	db "MUSCLE BAND@"
 	db "UP-GRADE@"
 	db "BERRY@"

@@ -20,6 +20,15 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+`python3 tools/battletest/wide_lens_checks.py` checks all 256 accuracy
+values for both battlers with Wide Lens, no item, Klutz, and Neutralizing
+Gas. `tests/83-wide-lens.yaml` covers the resulting native move outcomes.
+
+`python3 tools/battletest/rooftop_balloon_checks.py` checks the real rooftop
+balloon animation, red palette, full-Bag retry, one-time pickup, and map
+re-entry. Add `--record path/to/demo.mp4` to record the interaction with game
+audio; recording uses the FFmpeg executable supplied via `--ffmpeg`.
+
 `make test-qol BATTLE_TEST_PYTHON=.venv/bin/python` verifies both ROMs'
 three-cycle health alarm, sound-effect pauses, healing/faint resets, fixed
 64-step Day-Care production, old countdown repair, breeding incompatibilities,
