@@ -184,7 +184,7 @@ ItemEffects:
 	dw NoEffect            ; CLAW_FOSSIL
 	dw NoEffect            ; SKULL_FOSSIL
 	dw EvoStoneEffect      ; SUN_STONE
-	dw NoEffect            ; POLKADOT_BOW
+	dw NoEffect            ; WIDE_LENS
 	dw NoEffect            ; MUSCLE_BAND
 	dw EvoStoneEffect      ; UP_GRADE
 	dw RestoreHPEffect     ; BERRY

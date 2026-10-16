@@ -1983,9 +1983,12 @@ BattleCommand_CheckHit:
 	ld b, a
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .BrightPowder
+	jr z, .WideLens
 	ld a, [wEnemyMoveStruct + MOVE_ACC]
 	ld b, a
+
+.WideLens:
+	farcall ApplyWideLensAccuracy_Core
 
 .BrightPowder:
 	push bc

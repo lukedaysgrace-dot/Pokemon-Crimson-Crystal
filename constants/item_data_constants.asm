@@ -143,3 +143,4 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_FLAME_ORB
 	const HELD_TOXIC_ORB
 	const HELD_WEATHER_ROCK
+	const HELD_WIDE_LENS

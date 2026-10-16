@@ -396,7 +396,7 @@ MartUnderground:
 	db -1 ; end
 
 MartMahoganyHeldItems:
-	db 10 ; # items
+	db 11 ; # items
 	db EVIOLITE
 	db ROCKY_HELMET
 	db AIR_BALLOON
@@ -407,6 +407,7 @@ MartMahoganyHeldItems:
 	db TOXIC_ORB
 	db ASSAULT_VEST
 	db LIFE_ORB
+	db WIDE_LENS
 	db -1 ; end
 
 DefaultMart:

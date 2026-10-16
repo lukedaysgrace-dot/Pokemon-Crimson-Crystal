@@ -4097,6 +4097,30 @@ AccuracyPercent:
 	pop hl
 	ret
 
+ApplyWideLensAccuracy_Core::
+; b = stage-adjusted hit chance. Wide Lens multiplies it by 1.1 before
+; defender items/abilities. GetUserItem_Core honours Klutz on either side.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_OHKO
+	ret z ; OHKO accuracy is not boosted by accuracy items
+	push bc
+	call GetUserItem_Core
+	ld a, b
+	pop bc
+	cp HELD_WIDE_LENS
+	ret nz
+	; AccuracyPercent caps at $fe to avoid its callers' never-miss sentinel.
+	; Here ordinary accuracy may reach $ff: defender modifiers still run.
+	ld a, b
+	cp 232 ; floor(232 * 110 / 100) reaches $ff
+	jr c, .scale
+	ld b, $ff
+	ret
+.scale
+	ld a, 110
+	jp AccuracyPercent
+
 DefenderUnawareAccuracy_Core::
 ; b = the user's accuracy stage. The target's Unaware ignores the user's
 ; accuracy stages, raised or lowered, unless the user's Mold Breaker

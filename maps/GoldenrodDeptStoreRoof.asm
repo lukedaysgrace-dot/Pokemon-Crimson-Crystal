@@ -7,6 +7,7 @@
 	const GOLDENRODDEPTSTOREROOF_POKEFAN_M
 	const GOLDENRODDEPTSTOREROOF_TEACHER
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
+	const GOLDENRODDEPTSTOREROOF_BALLOON
 
 GoldenrodDeptStoreRoof_MapScripts:
 	db 0 ; scene scripts
@@ -80,6 +81,16 @@ GoldenrodDeptStoreRoofTeacherScript:
 
 GoldenrodDeptStoreRoofBugCatcherScript:
 	jumptextfaceplayer GoldenrodDeptStoreRoofBugCatcherText
+
+GoldenrodDeptStoreRoofBalloonScript:
+	opentext
+	verbosegiveitem AIR_BALLOON
+	iffalse .Done
+	setevent EVENT_GOT_AIR_BALLOON_ON_ROOF
+	disappear GOLDENRODDEPTSTOREROOF_BALLOON
+.Done:
+	closetext
+	end
 
 Binoculars1:
 	jumptext Binoculars1Text
@@ -224,7 +235,7 @@ GoldenrodDeptStoreRoof_MapEvents:
 	bg_event 15,  6, BGEVENT_RIGHT, Binoculars3
 	bg_event  3,  0, BGEVENT_UP, PokeDollVendingMachine
 
-	db 8 ; object events
+	db 9 ; object events
 	object_event  1,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofClerkScript, EVENT_GOLDENROD_SALE_OFF
 	object_event 10,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
 	object_event  2,  1, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofFisherScript, -1
@@ -233,3 +244,4 @@ GoldenrodDeptStoreRoof_MapEvents:
 	object_event  7,  0, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  5,  3, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
 	object_event  1,  6, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF
+	object_event 15,  0, SPRITE_BALLOON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBalloonScript, EVENT_GOT_AIR_BALLOON_ON_ROOF

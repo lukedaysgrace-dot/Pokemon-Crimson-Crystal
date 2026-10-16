@@ -175,7 +175,7 @@
 	const CLAW_FOSSIL   ; a7
 	const SKULL_FOSSIL ; a8
 	const SUN_STONE    ; a9
-	const POLKADOT_BOW ; aa
+	const WIDE_LENS    ; aa; replaces the duplicate Normal-boosting bow
 	const MUSCLE_BAND  ; ab
 	const UP_GRADE     ; ac
 	const BERRY        ; ad

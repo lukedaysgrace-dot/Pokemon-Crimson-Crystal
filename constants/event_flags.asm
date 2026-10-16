@@ -408,7 +408,7 @@
 	const EVENT_187
 	const EVENT_188
 	const EVENT_189
-	const EVENT_18A
+	const EVENT_GOT_AIR_BALLOON_ON_ROOF ; reuse unused bit $18d; preserve save layout
 	const EVENT_18B
 	const EVENT_18C
 	const EVENT_18D
