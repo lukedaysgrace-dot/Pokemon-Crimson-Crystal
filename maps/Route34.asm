@@ -424,14 +424,14 @@ TrainerCooltrainerfIrene:
 .Script:
 	endifjustbattled
 	opentext
-	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
-	iftrue .GotSoftSand
+	checkevent EVENT_GOT_EXPERT_BELT_FROM_KATE
+	iftrue .GotExpertBelt
 	writetext CooltrainerfIreneAfterText1
 	waitbutton
 	closetext
 	end
 
-.GotSoftSand:
+.GotExpertBelt:
 	writetext CooltrainerfIreneAfterText2
 	waitbutton
 	closetext
@@ -443,14 +443,14 @@ TrainerCooltrainerfJenn:
 .Script:
 	endifjustbattled
 	opentext
-	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
-	iftrue .GotSoftSand
+	checkevent EVENT_GOT_EXPERT_BELT_FROM_KATE
+	iftrue .GotExpertBelt
 	writetext CooltrainerfJennAfterText1
 	waitbutton
 	closetext
 	end
 
-.GotSoftSand:
+.GotExpertBelt:
 	writetext CooltrainerfJennAfterText2
 	waitbutton
 	closetext
@@ -462,17 +462,27 @@ TrainerCooltrainerfKate:
 .Script:
 	endifjustbattled
 	opentext
-	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
-	iftrue .GotSoftSand
-	writetext CooltrainerfKateOfferSoftSandText
+	checkevent EVENT_GOT_EXPERT_BELT_FROM_KATE
+	iftrue .GotExpertBelt
+	checkevent EVENT_BEAT_COOLTRAINERF_IRENE
+	iffalse .BeatMySisters
+	checkevent EVENT_BEAT_COOLTRAINERF_JENN
+	iffalse .BeatMySisters
+	writetext CooltrainerfKateOfferExpertBeltText
 	buttonsound
-	verbosegiveitem SOFT_SAND
+	verbosegiveitem EXPERT_BELT
 	iffalse .BagFull
-	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
-.GotSoftSand:
+	setevent EVENT_GOT_EXPERT_BELT_FROM_KATE
+.GotExpertBelt:
 	writetext CooltrainerfKateAfterText
 	waitbutton
 .BagFull:
+	closetext
+	end
+
+.BeatMySisters:
+	writetext CooltrainerfKateBeatMySistersText
+	waitbutton
 	closetext
 	end
 
@@ -711,13 +721,25 @@ CooltrainerfKateBeatenText:
 	line "believe I lost."
 	done
 
-CooltrainerfKateOfferSoftSandText:
-	text "KATE: You're too"
-	line "strong. I didn't"
-	cont "stand a chance."
+CooltrainerfKateOfferExpertBeltText:
+	text "KATE: You beat all"
+	line "three of us!"
 
-	para "Here. You deserve"
-	line "this."
+	para "Here, take this"
+	line "EXPERT BELT."
+
+	para "It boosts moves"
+	line "that hit a foe's"
+	cont "weakness."
+	done
+
+CooltrainerfKateBeatMySistersText:
+	text "KATE: You haven't"
+	line "beaten both of my"
+	cont "little sisters!"
+
+	para "Beat IRENE and"
+	line "JENN first."
 	done
 
 CooltrainerfKateAfterText:

@@ -120,7 +120,7 @@
 	const EVENT_GOT_TWISTEDSPOON_FROM_SANTOS
 	const EVENT_MET_MONICA_OF_MONDAY
 	const EVENT_GOT_SHARP_BEAK_FROM_MONICA ; 070
-	const EVENT_GOT_SOFT_SAND_FROM_KATE
+	const EVENT_GOT_EXPERT_BELT_FROM_KATE
 	const EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	const EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	const EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
@@ -1674,9 +1674,9 @@
 	const EVENT_63A
 	const EVENT_63B
 	const EVENT_63C
-	const EVENT_63D
-	const EVENT_63E
-	const EVENT_63F
+	const EVENT_DAY_CARE_EVIOLITE ; formerly unused EVENT_63D
+	const EVENT_OLIVINE_LIGHTHOUSE_3F_WIDE_LENS ; formerly unused EVENT_63E
+	const EVENT_BURNED_TOWER_B1F_FLAME_ORB ; formerly unused EVENT_63F
 ; Sprite visibility flags
 ; When these events are cleared, the sprite becomes visible; when set, the sprite is hidden.
 ; The map script command macros `disappear` and `appear` set/clear these flags and immediately apply the effect on visibility.

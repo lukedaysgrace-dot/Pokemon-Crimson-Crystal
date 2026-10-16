@@ -3,6 +3,7 @@
 	const OLIVINELIGHTHOUSE3F_GENTLEMAN
 	const OLIVINELIGHTHOUSE3F_YOUNGSTER
 	const OLIVINELIGHTHOUSE3F_POKE_BALL
+	const OLIVINELIGHTHOUSE3F_WIDE_LENS
 
 OlivineLighthouse3F_MapScripts:
 	db 0 ; scene scripts
@@ -44,6 +45,9 @@ TrainerSailorTerrell:
 
 OlivineLighthouse3FEther:
 	itemball ETHER
+
+OlivineLighthouse3FWideLens:
+	itemball WIDE_LENS
 
 BirdKeeperTheoSeenText:
 	text "Why are you here?"
@@ -128,8 +132,9 @@ OlivineLighthouse3F_MapEvents:
 
 	db 0 ; bg events
 
-	db 4 ; object events
+	db 5 ; object events
 	object_event  9,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSailorTerrell, -1
 	object_event 13,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
 	object_event  3,  9, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperTheo, -1
 	object_event  8,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
+	object_event 12, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse3FWideLens, EVENT_OLIVINE_LIGHTHOUSE_3F_WIDE_LENS
