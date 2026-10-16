@@ -386,10 +386,11 @@ MoveTutorShared_AddMoveToList:
 	cp MOVE_TUTOR_LIST_CAPACITY
 	ret nc
 	inc [hl]
-	add a
-	inc a
 	ld e, a
 	ld d, 0
+	sla e
+	rl d ; full 16-bit offset for historical lists with more than 128 moves
+	inc de
 	add hl, de
 	ld [hl], b
 	inc hl
@@ -411,7 +412,17 @@ MoveTutorShared_ChooseMoveToLearn:
 	ld [wMenuCursorBuffer], a
 	call InitScrollingMenu
 	call SetPalettes
-	call UpdateSprites
+	; FadeToMenu hides overworld sprites; keep them hidden over the move list.
+	call ClearSprites
+	; NPC text can leave OAM transfers locked. Flush the cleared sprite buffer
+	; for one frame, then preserve the caller's lock throughout the menu.
+	ldh a, [hOAMUpdate]
+	push af
+	xor a
+	ldh [hOAMUpdate], a
+	call DelayFrame
+	pop af
+	ldh [hOAMUpdate], a
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
@@ -628,23 +639,22 @@ EggMoveTutor_GetTeachableMoves:
 	jr .loop_moves
 
 .done_moves
-	ld a, [wMoveReminderMoveList]
-	and a
-	ret
+	jp BlackthornMoveTutor_AddTeachableMoves
 
 EggMoveTutorIntroText:
-	text "I'm an EGG MOVE"
+	text "I'm a MOVE"
 	line "TUTOR!"
 
-	para "I teach moves"
-	line "from breeding."
+	para "I teach EGG moves"
+	line "and special moves"
+	cont "your #MON can use."
 
 	para "My fee is ¥5000."
 	line "Interested?"
 	done
 
 EggMoveTutorWhichMoveText:
-	text "Which egg move?"
+	text "Which move?"
 	done
 
 EggMoveTutorCancelText:
@@ -653,8 +663,10 @@ EggMoveTutorCancelText:
 
 EggMoveTutorNoMovesText:
 	text "That #MON has"
-	line "no egg moves"
-	cont "to learn."
+	line "no more moves"
+	cont "I can teach."
 	done
 
 INCLUDE "engine/events/utility_tutor.asm"
+
+INCLUDE "engine/events/blackthorn_tutor.asm"

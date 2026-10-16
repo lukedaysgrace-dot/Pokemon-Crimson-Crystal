@@ -380,6 +380,13 @@ wBoxPartialData:: ds 480
 wBoxPartialDataEnd::
 
 NEXTU ; c608
+; Menus run outside battle/box saving. This shared scratch region fits full
+; historical tutor lists without moving any persistent WRAM or save fields.
+wMoveReminderMoveList:: ds MOVE_TUTOR_LIST_BYTES
+wMoveReminderMoveListEnd::
+assert MOVE_TUTOR_LIST_BYTES <= 480, "Tutor list exceeds menu scratch union"
+
+NEXTU ; c608
 ; battle tower temp struct
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 
@@ -2054,15 +2061,12 @@ ENDU ; d054
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d054
 
 wStringBuffer1:: ds 19 ; d061
-wMoveReminderMoveList::
 wStringBuffer2:: ds 19 ; d074
 wStringBuffer3:: ds 19 ; d087
 wStringBuffer4:: ds 19 ; d09a
 wStringBuffer5:: ds 19 ; d0ad
 
 wBattleMenuCursorBuffer:: ; d0c0
-assert wBattleMenuCursorBuffer - wMoveReminderMoveList >= MOVE_TUTOR_LIST_BYTES, \
-	"Move tutor list exceeds its string-buffer scratch space"
 	dw
 
 wCurBattleMon:: db ; d0c2

@@ -18,5 +18,5 @@
 	dn EGG_NONE, EGG_NONE ; egg groups
 
 	; tm/hm learnset
-	tmhm SHADOW_BALL
+	tmhm SHADOW_BALL, HIDDEN_POWER
 	; end

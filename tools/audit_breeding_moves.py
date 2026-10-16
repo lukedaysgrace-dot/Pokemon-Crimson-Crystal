@@ -10,7 +10,7 @@ from pathlib import Path
 import json
 import re
 
-from audit_learnset_variety import ROOT, load_sources, read
+from audit_learnset_variety import ROOT, load_sources, load_technical_tutors, read
 
 RECEIPT = ROOT / 'tools/testdata/breeding_moves.json'
 UTILITY = ['SUBSTITUTE', 'SLEEP_TALK', 'REFLECT', 'LIGHT_SCREEN', 'THUNDER_WAVE']
@@ -30,7 +30,7 @@ def breeding_data():
     return order, levels, tms, eggs, parents, utility, groups, genders, roots
 
 
-def routes(data, excluded=None):
+def routes(data, excluded=None, technical=None):
     """Least fixed point, seeded only by non-breeding sources.
 
     A proof is a list of natural acquisition, evolution and breeding steps.
@@ -69,6 +69,7 @@ def routes(data, excluded=None):
             known[c][move] = proof
             queue.append((c, move))
 
+    technical = load_technical_tutors() if technical is None else technical
     for c in order:
         for level, move in levels[c]:
             if move not in excluded.get(c, []):
@@ -78,6 +79,8 @@ def routes(data, excluded=None):
         for bit, move in enumerate(UTILITY):
             if utility[c] & (1 << bit):
                 learn(c, move, [f'{c}: utility tutor'])
+        for move in technical.get(c, []):
+            learn(c, move, [f'{c}: Blackthorn move tutor'])
     # Sketch is a real Field-group bridge, but cannot invent an unavailable
     # move. Only moves with an independent source somewhere in the roster seed it.
     if 'SMEARGLE' in known:

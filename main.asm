@@ -958,3 +958,5 @@ SECTION "Campaign Progression Scripts", ROMX
 INCLUDE "engine/events/league_progression.asm"
 
 INCLUDE "engine/events/cerulean_cave.asm"
+
+INCLUDE "data/pokemon/technical_tutor.asm"

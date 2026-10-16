@@ -661,6 +661,27 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
         merged.extend((lv, m) for m, lv in fallbacks.items())
         merged.sort(key=lambda row: row[0])
 
+    # Preserve the canonical audit's natural placements after breeding curation.
+    # Thematic placements are explicitly authored levels; egg lists stay separate.
+    canonical_path = os.path.join(REPO, "tools", "testdata", "canonical_learnsets.json")
+    if os.path.exists(canonical_path):
+        with open(canonical_path, encoding="utf-8") as f:
+            canonical = json.load(f)
+        for field in ['level_up', 'thematic_level_up']:
+            for species, moves in canonical['changes'].get(field, {}).items():
+                if norm_name(species) == norm_name(label_base):
+                    merged = [(lv, m) for lv, m in merged if m not in moves]
+                    merged.extend((lv, m) for m, lv in moves.items())
+                    merged.sort(key=lambda row: row[0])
+
+    authored_path = os.path.join(REPO, "tools", "testdata", "learnset_variety_implementation.json")
+    if os.path.exists(authored_path):
+        with open(authored_path, encoding="utf-8") as f:
+            authored = json.load(f)
+        excluded = {m for species, ms in authored.get('level_up_removals', {}).items()
+                    if norm_name(species) == norm_name(label_base) for m in ms}
+        merged = [(lv, m) for lv, m in merged if m not in excluded]
+
     return (source, merged or None)
 
 # --------------------------------------------------------------------------
