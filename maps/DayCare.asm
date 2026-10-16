@@ -1,6 +1,7 @@
 	object_const_def ; object_event constants
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
+	const DAYCARE_EVIOLITE
 
 DayCare_MapScripts:
 	db 0 ; scene scripts
@@ -72,6 +73,9 @@ DayCareLadyScript:
 
 DayCareBookshelf:
 	jumpstd difficultbookshelf
+
+DayCareEviolite:
+	itemball EVIOLITE
 
 Text_GrampsLookingForYou:
 	text "Gramps was looking"
@@ -145,6 +149,7 @@ DayCare_MapEvents:
 	bg_event  0,  1, BGEVENT_READ, DayCareBookshelf
 	bg_event  1,  1, BGEVENT_READ, DayCareBookshelf
 
-	db 2 ; object events
+	db 3 ; object events
 	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	object_event  5,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
+	object_event  3,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DayCareEviolite, EVENT_DAY_CARE_EVIOLITE
