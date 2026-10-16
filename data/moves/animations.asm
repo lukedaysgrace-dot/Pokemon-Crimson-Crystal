@@ -457,7 +457,7 @@ BattleAnimations::
 	banim BattleAnim_Taunt_PO ; TAUNT (ported from pokeorange)
 	banim BattleAnim_Yawn_PO ; YAWN (ported from pokeorange)
 	banim BattleAnim_Wish_PO ; WISH (ported from pokeorange)
-	banim BattleAnim_SpiderWeb ; STICKY_WEB (reused animation)
+	banim BattleAnim_StickyWeb ; STICKY_WEB
 	banim BattleAnim_WeatherBall_PO ; WEATHER_BALL (ported from mae-pokeorange)
 	banim BattleAnim_Incinerate_PC3 ; INCINERATE
 	banim BattleAnim_SweetScent2
@@ -4102,6 +4102,33 @@ BattleAnim_Thief:
 	anim_ret
 
 BattleAnim_SpiderWeb:
+	; Poison bubbles begin with the web, then pop in a quick staggered burst.
+	; Four web/string objects + six bubbles fit the ten-object animation pool.
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
+	anim_2gfx ANIM_GFX_WEB, ANIM_GFX_POISON
+	anim_bgeffect ANIM_BG_07, $0, $2, $0
+	anim_obj ANIM_OBJ_SPIDER_WEB, 132, 48, $0
+	anim_sound 6, 2, SFX_SPIDER_WEB
+	anim_obj ANIM_OBJ_STRING_SHOT, 64, 80, $0
+	anim_obj ANIM_OBJ_SLUDGE, 116, 72, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_STRING_SHOT, 64, 88, $0
+	anim_obj ANIM_OBJ_SLUDGE, 132, 68, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_STRING_SHOT, 64, 84, $0
+	anim_sound 0, 1, SFX_TOXIC
+	anim_obj ANIM_OBJ_SLUDGE, 148, 72, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_SLUDGE, 124, 64, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_SLUDGE, 140, 64, $0
+	anim_wait 4
+	anim_obj ANIM_OBJ_SLUDGE, 132, 76, $0
+	anim_wait 28
+	anim_clearobjs
+	anim_ret
+
+BattleAnim_StickyWeb:
 	anim_1gfx ANIM_GFX_WEB
 	anim_bgeffect ANIM_BG_07, $0, $2, $0
 	anim_obj ANIM_OBJ_SPIDER_WEB, 132, 48, $0

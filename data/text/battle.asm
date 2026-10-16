@@ -1373,4 +1373,22 @@ BlewStickyWebText:
 	cont "STICKY WEB!"
 	prompt
 
+BattleText_SpiderWebSpread:
+	text "A toxic SPIDER WEB"
+	line "spreads out under"
+	cont "<TARGET>!"
+	prompt
+
+BattleText_CaughtInSpiderWeb:
+	text "<USER>"
+	line "was caught in a"
+	cont "toxic SPIDER WEB!"
+	prompt
+
+BlewSpiderWebText:
+	text "<USER>"
+	line "blew away"
+	cont "SPIDER WEB!"
+	prompt
+
 INCLUDE "data/text/ability_text.asm"

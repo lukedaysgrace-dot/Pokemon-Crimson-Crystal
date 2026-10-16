@@ -1231,8 +1231,8 @@ ThiefDescription:
 	next "steal a held item.@"
 
 SpiderWebDescription:
-	db   "Prevents fleeing"
-	next "or switching.@"
+	db   "Entry web poisons"
+	next "and drops SPEED.@"
 
 MindReaderDescription:
 	db   "Ensures the next"

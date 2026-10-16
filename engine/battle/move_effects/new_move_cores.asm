@@ -862,7 +862,8 @@ ToxicSpikesPoison:
 	ret z
 	call .toxic_spikes
 	; the poison cannot faint the switch-in, so Sticky Web can run directly
-	jp StickyWebEntry
+	call StickyWebEntry
+	jp SpiderWebEntry
 
 .toxic_spikes
 
@@ -1188,11 +1189,11 @@ TryMagicBounceCommand_Core::
 	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
 	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_DEFOG
 	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
-	db EFFECT_STICKY_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
+	db EFFECT_STICKY_WEB, EFFECT_SPIDER_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
 
 .protect_bypass
 	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
-	db EFFECT_STICKY_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
+	db EFFECT_STICKY_WEB, EFFECT_SPIDER_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
 
 
 BattleTorment_Core:
@@ -1345,19 +1346,53 @@ BattleWish_Core:
 	jp StdBattleTextbox
 
 BattleStickyWeb_Core:
-; Lay a sticky web on the opponent's side of the field.
+; Both webs use the same move script, with independent single-layer state.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SPIDER_WEB
+	jr z, .spider_web
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wEnemyScreens
+	ld de, wEnemyStickyWebSource
 	jr z, .got_screens
 	ld hl, wPlayerScreens
+	ld de, wPlayerStickyWebSource
 .got_screens
 	bit SCREENS_STICKY_WEB, [hl]
 	jr nz, .failed
 	set SCREENS_STICKY_WEB, [hl]
+	call .record_source
 	callfar AnimateCurrentMove
 	ld hl, BattleText_StickyWebSpread
 	jp StdBattleTextbox
+.spider_web
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wEnemySpiderWeb
+	ld de, wEnemySpiderWebSource
+	jr z, .got_spider_side
+	ld hl, wPlayerSpiderWeb
+	ld de, wPlayerSpiderWebSource
+.got_spider_side
+	ld a, [hl]
+	and a
+	jr nz, .failed
+	ld [hl], 1
+	call .record_source
+	callfar AnimateCurrentMove
+	ld hl, BattleText_SpiderWebSpread
+	jp StdBattleTextbox
+.record_source
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wCurBattleMon]
+	jr z, .got_source
+	ld a, [wCurOTMon]
+.got_source
+	inc a
+	ld [de], a
+	ret
 .failed
 	callfar AnimateFailedMove
 	ld hl, ButItFailedText
@@ -1380,21 +1415,18 @@ StickyWebEntry:
 	ret c
 	ld hl, BattleText_CaughtInStickyWeb
 	call StdBattleTextbox
-	; lower the ENTERING mon's Speed: the stat-drop machinery targets the
-	; turn holder's opponent (like Intimidate), so flip the turn around it
-	; Go through the ability-drop wrapper so the drop is flagged as
-	; ability-driven (no 25% AI-miss roll against the player's switch-in,
-	; no stale move-effect byte for the Mist / self-drop shortcuts) and
-	; the fell message + Defiant/Competitive reaction run
-	; (audit 2026-08-28 #11).
-	call SwitchTurnForOppText
-	ld b, SPEED
-	farcall AbilityLowerOppStat
-	jp SwitchTurnForOppText
+	ld hl, wPlayerStickyWebSource
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_source
+	ld hl, wEnemyStickyWebSource
+.got_source
+	ld a, [hl]
+	jp WebEntryLowerSpeed
 
 .check_ungrounded
 ; Carry if the switch-in is not grounded. Magic Guard is deliberately not
-; checked here: it prevents hazard damage, but Sticky Web only changes a stat.
+; checked here: it prevents hazard damage, but a web also changes a stat.
 	ld hl, wBattleMonType
 	ldh a, [hBattleTurn]
 	and a
@@ -1420,6 +1452,120 @@ StickyWebEntry:
 .ungrounded
 	scf
 	ret
+
+WebEntryLowerSpeed:
+; a = setter's party slot + 1 (zero means unknown, e.g. a debug fixture).
+	and a
+	jr nz, .known_source
+	dec a ; $ff marks a web with no known setter; never reflect at a bystander
+.known_source
+	ld [wEntryWebStatDrop], a
+	; Entry effects must neither inherit stale move failures nor leave them
+	; behind when Clear Body, Contrary, the stage floor, etc. stop a drop.
+	ld a, [wAttackMissed]
+	push af
+	ld a, [wEffectFailed]
+	push af
+	ld a, [wFailedMessage]
+	push af
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
+	ld [wFailedMessage], a
+	; lower the ENTERING mon's Speed: the stat-drop machinery targets the
+	; turn holder's opponent (like Intimidate), so flip the turn around it
+	; Go through the ability-drop wrapper so the drop is flagged as
+	; ability-driven (no 25% AI-miss roll against the player's switch-in,
+	; no stale move-effect byte for the Mist / self-drop shortcuts) and
+	; the fell message + Defiant/Competitive reaction run
+	; (audit 2026-08-28 #11).
+	call SwitchTurnForOppText
+	ld b, SPEED
+	farcall AbilityLowerOppStat
+	call SwitchTurnForOppText
+	xor a
+	ld [wEntryWebStatDrop], a
+	pop af
+	ld [wFailedMessage], a
+	pop af
+	ld [wEffectFailed], a
+	pop af
+	ld [wAttackMissed], a
+	ret
+
+SpiderWebEntry:
+; Independent from Sticky Web: one Speed stage and regular poison only.
+	ld hl, wPlayerSpiderWeb
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	ld hl, wEnemySpiderWeb
+.got_side
+	ld a, [hl]
+	and a
+	ret z
+	farcall UserHasFainted
+	ret z
+	call StickyWebEntry.check_ungrounded
+	ret c
+	ld hl, BattleText_CaughtInSpiderWeb
+	call StdBattleTextbox
+	ld hl, wPlayerSpiderWebSource
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_source
+	ld hl, wEnemySpiderWebSource
+.got_source
+	ld a, [hl]
+	call WebEntryLowerSpeed
+	; A blocked/reversed Speed drop does not prevent the poison component.
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and a
+	ret nz
+	ld hl, wBattleMonType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_types
+	ld hl, wEnemyMonType
+.got_types
+	ld a, [hli]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	ld a, [hl]
+	cp POISON
+	ret z
+	cp STEEL
+	ret z
+	; This is field poison: no Corrosion, Mold Breaker, Safeguard,
+	; Substitute, Shield Dust or Synchronize. Gas still suppresses immunity.
+	farcall GetTrueUserAbility_b
+	ld a, b
+	cp IMMUNITY
+	ret z
+	cp PASTEL_VEIL
+	ret z
+	cp LEAF_GUARD
+	jr nz, .poison
+	ld a, [wBattleWeather]
+	cp WEATHER_SUN
+	ret z
+.poison
+	call ToxicClearUser_Core
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVarAddr
+	res SUBSTATUS_TOXIC, [hl]
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVarAddr
+	set PSN, [hl]
+	call UpdateUserInParty
+	call ToxicSpikesPoison.poison_anim
+	call RefreshBattleHuds
+	ld hl, UserWasPoisonedText
+	call StdBattleTextbox
+	jp ToxicSpikesPoison.held_cure
 
 SpikesLayerDamage_Core:
 ; bc = entry damage for the turn holder from the spikes layers on its

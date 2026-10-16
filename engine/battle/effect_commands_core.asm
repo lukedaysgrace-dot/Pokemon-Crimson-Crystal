@@ -496,6 +496,16 @@ BattleDefog_Core:
 	call .clear_hazards
 	ld hl, wEnemyScreens
 	call .clear_hazards
+	; Spider Web has its own hazard bytes because Screens has no free bit.
+	ld a, [wPlayerSpiderWeb]
+	ld hl, wEnemySpiderWeb
+	or [hl]
+	jr z, .no_spider_web
+	ld e, 1
+	xor a
+	ld [hl], a
+	ld [wPlayerSpiderWeb], a
+.no_spider_web
 
 	ld hl, wEnemyScreens
 	ld bc, wEnemyLightScreenCount

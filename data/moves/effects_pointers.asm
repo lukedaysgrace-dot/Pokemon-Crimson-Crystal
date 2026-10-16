@@ -225,3 +225,4 @@ MoveEffectsPointers:
 	dw SuckerPunch ; EFFECT_SUCKER_PUNCH
 	dw Incinerate ; EFFECT_INCINERATE
 	dw DefSpDefDownHit ; EFFECT_DEF_SPDEF_DOWN_HIT
+	dw StickyWeb ; EFFECT_SPIDER_WEB (shared hazard placement command)
