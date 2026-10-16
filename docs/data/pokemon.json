@@ -191143,7 +191143,7 @@
     ],
     "abilities": [
       "Rock Head",
-      "Sturdy",
+      "Filter",
       "Iron Barbs"
     ],
     "ability_slots": [
@@ -191153,7 +191153,7 @@
         "slot": 1
       },
       {
-        "name": "Sturdy",
+        "name": "Filter",
         "hidden": false,
         "slot": 2
       },
@@ -191548,7 +191548,7 @@
     ],
     "abilities": [
       "Rock Head",
-      "Sturdy",
+      "Filter",
       "Iron Barbs"
     ],
     "ability_slots": [
@@ -191558,7 +191558,7 @@
         "slot": 1
       },
       {
-        "name": "Sturdy",
+        "name": "Filter",
         "hidden": false,
         "slot": 2
       },
@@ -191960,7 +191960,7 @@
     ],
     "abilities": [
       "Rock Head",
-      "Sturdy",
+      "Filter",
       "Iron Barbs"
     ],
     "ability_slots": [
@@ -191970,7 +191970,7 @@
         "slot": 1
       },
       {
-        "name": "Sturdy",
+        "name": "Filter",
         "hidden": false,
         "slot": 2
       },
