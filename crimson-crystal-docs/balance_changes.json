@@ -1,13 +1,38 @@
 {
-  "date": "2026-10-11",
+  "date": "2026-10-16",
   "pokemon": {
     "AGGRON": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "STURDY",
+          "after": "FILTER"
+        }
+      ],
       "stats": {
         "HP": [
           70,
           80
         ]
       }
+    },
+    "ARON": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "STURDY",
+          "after": "FILTER"
+        }
+      ]
+    },
+    "LAIRON": {
+      "abilities": [
+        {
+          "slot": 2,
+          "before": "STURDY",
+          "after": "FILTER"
+        }
+      ]
     },
     "ARBOK": {
       "abilities": [
