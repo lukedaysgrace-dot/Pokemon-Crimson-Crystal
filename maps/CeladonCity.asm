@@ -97,14 +97,16 @@ CeladonCityChoiceSpecs:
 	setevent EVENT_GOT_CELADON_CHOICE_SPECS
 	closetext
 	disappear CELADONCITY_CHOICE_SPECS
-; Enter from the east, staying within sprite range for every pickup side.
+; Start beyond the east edge of the camera, then walk into view.
 	checkevent EVENT_CELADON_SPECS_DROPPED_LOWER
 	iftrue .OfficerLower
-	moveobject CELADONCITY_OFFICER, 38, 10
+	moveobject CELADONCITY_OFFICER, 40, 10
 	sjump .OfficerAppears
 .OfficerLower:
-	moveobject CELADONCITY_OFFICER, 38, 11
+	moveobject CELADONCITY_OFFICER, 40, 11
 .OfficerAppears:
+; Movement type 00 retains the actor while it is outside the camera.
+	loadmem wMap12Object + MAPOBJECT_MOVEMENT, SPRITEMOVEDATA_00
 	appear CELADONCITY_OFFICER
 	applymovement CELADONCITY_OFFICER, CeladonOfficerApproachMovement
 ; Stop to the player's right when they picked up the ball from the east.
@@ -160,11 +162,13 @@ CeladonBurglarApproachMovement:
 	big_step LEFT
 	step_end
 CeladonPlayerShovedDownMovement:
+	turn_head UP
 	fix_facing
 	fast_slide_step DOWN
 	remove_fixed_facing
 	step_end
 CeladonPlayerShovedUpMovement:
+	turn_head DOWN
 	fix_facing
 	fast_slide_step UP
 	remove_fixed_facing
@@ -186,6 +190,8 @@ CeladonSuspectExitMovement:
 	big_step LEFT
 	step_end
 CeladonOfficerApproachMovement:
+	big_step LEFT
+	big_step LEFT
 	big_step LEFT
 	big_step LEFT
 	step_end
