@@ -520,4 +520,6 @@ KrokorokMenuIcon: INCBIN "gfx/menu_icons/krokorok.2bpp"
 KrookodileMenuIcon: INCBIN "gfx/menu_icons/krookodile.2bpp"
 GorochuMenuIcon: INCBIN "gfx/menu_icons/gorochu.2bpp"
 
+JirachiMenuIcon: INCBIN "gfx/menu_icons/jirachi.2bpp"
+
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

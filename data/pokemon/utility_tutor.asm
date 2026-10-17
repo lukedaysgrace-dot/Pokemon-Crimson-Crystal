@@ -497,5 +497,6 @@ UtilityTutorCompatibility:
 	db %00000011 ; KROKOROK
 	db %00000011 ; KROOKODILE
 	db %00011111 ; GOROCHU
+	db %00011111 ; JIRACHI
 UtilityTutorCompatibilityEnd:
 	assert UtilityTutorCompatibilityEnd - UtilityTutorCompatibility == NUM_POKEMON

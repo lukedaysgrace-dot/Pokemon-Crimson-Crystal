@@ -1003,3 +1003,5 @@ PokemonPicPointers::
 	dba KrookodileBackpic
 	dba GorochuFrontpic
 	dba GorochuBackpic
+	dba JirachiFrontpic
+	dba JirachiBackpic

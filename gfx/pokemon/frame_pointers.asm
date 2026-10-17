@@ -494,3 +494,4 @@ FramesPointers:
 	dba KrokorokFrames
 	dba KrookodileFrames
 	dba GorochuFrames
+	dba JirachiFrames

@@ -498,3 +498,4 @@ PokemonNames::
 	db "KROKOROK@@"
 	db "KROOKODILE"
 	db "GOROCHU@@@"
+	db "JIRACHI@@@"

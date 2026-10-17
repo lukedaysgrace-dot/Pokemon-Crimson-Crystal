@@ -496,4 +496,5 @@ PreEvolutionSpecies::
 	dw SANDILE ; KROKOROK
 	dw KROKOROK ; KROOKODILE
 	dw RAICHU ; GOROCHU
+	dw 0 ; JIRACHI
 assert (@ - PreEvolutionSpecies) == NUM_POKEMON * 2

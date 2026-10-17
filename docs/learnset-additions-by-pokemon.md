@@ -1,6 +1,6 @@
 # New move additions by Pokémon
 
-All 495 roster entries, in alphabetical order. Regional forms, clones and custom forms are listed separately.
+All 496 roster entries, in alphabetical order. Regional forms, clones and custom forms are listed separately.
 
 **Newly available** lists moves that the Pokémon could not obtain before this pass. The route lists also include new ways to learn moves it already had—for example, Aron, Lairon and Aggron already had Body Press through their custom family egg list and now learn it at levels 32, 38 and 44.
 
@@ -8,9 +8,9 @@ All 495 roster entries, in alphabetical order. Regional forms, clones and custom
 
 This lists changes to Pokémon move access; it does not introduce new battle moves to the engine. The comparison baseline is repository commit `b60a01f1dc52bcc8370ee9e2fdcceb045d001f8c`.
 
-**495 entries; 486 gain moves they previously could not obtain; 12,949 newly available Pokémon/move pairs.**
+**496 entries; 487 gain moves they previously could not obtain; 13,025 newly available Pokémon/move pairs.**
 
-Of these, 12,775 close canonical gaps. The other 174 are additional inherited access through this project's evolution and breeding relationships.
+Of these, 12,850 close canonical gaps. The other 175 are additional inherited access through this project's evolution and breeding relationships.
 
 **Every verified implemented move is available; no historical move candidates remain deferred.** The audit also checks that none of the previously expanded movepools were trimmed.
 
@@ -1917,6 +1917,15 @@ No new acquisition routes were added.
 - **Egg (Igglybuff family):** Present, Rollout.
 - **TM/HM/elemental tutor:** Dig, Energy Ball, Sandstorm, Swift, Thief.
 - **Blackthorn tutor:** Amnesia, Baton Pass, Bide, Body Press, Brick Break, Bubble Beam, Counter, Dark Pulse, Detect, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Frustration, Heal Bell, Icy Wind, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Metronome, Nightmare, Pain Split, Psych Up, Psywave, Rage, Safeguard, Screech, Seismic Toss, Skill Swap, Snore, Stealth Rock, Submission, Taunt, Teleport, Water Gun, Water Pulse, Wild Charge.
+
+## Jirachi
+
+**Newly available (76):** Aerial Ace, Amnesia, Ancient Power, Aura Sphere, Baton Pass, Body Slam, Calm Mind, Charm, Confuse Ray, Confusion, Dazzling Gleam, Defense Curl, Double Team, Double-Edge, Draco Meteor, Drain Punch, Dream Eater, Dynamic Punch, Encore, Endure, Energy Ball, Facade, Fire Punch, Flash, Flash Cannon, Frustration, Future Sight, Giga Impact, Headbutt, Hidden Power, Hyper Beam, Ice Punch, Icy Wind, Iron Defense, Iron Head, Light Screen, Mega Kick, Mega Punch, Metronome, Mimic, Moonblast, Mud-Slap, Nightmare, Play Rough, Protect, Psybeam, Psych Up, Psychic, Rain Dance, Reflect, Rest, Return, Safeguard, Sandstorm, Shadow Ball, Signal Beam, Skill Swap, Sleep Talk, Snore, Stealth Rock, Substitute, Sunny Day, Swagger, Swift, Thunder, Thunder Punch, Thunder Wave, Thunderbolt, Toxic, Trick, Trick Room, U-turn, Water Pulse, Wish, Zap Cannon, Zen Headbutt.
+
+- **Natural/restored level-up:** Confusion (Lv. 1), Draco Meteor (Lv. 1), Swift (Lv. 1), Wish (Lv. 1), Psychic (Lv. 10), Zen Headbutt (Lv. 22), Iron Head (Lv. 34), Future Sight (Lv. 38), Double-Edge (Lv. 42), Rest (Lv. 63).
+- **TM/HM/elemental tutor:** Drain Punch, Energy Ball, Facade, Fire Punch, Flash, Flash Cannon, Headbutt, Hidden Power, Hyper Beam, Ice Punch, Iron Head, Mud-Slap, Protect, Psychic, Rain Dance, Rest, Return, Sandstorm, Shadow Ball, Sunny Day, Swagger, Swift, Thunder, Thunder Punch, Thunderbolt, Toxic, Zap Cannon, Zen Headbutt.
+- **Goldenrod utility tutor:** Light Screen, Reflect, Sleep Talk, Substitute, Thunder Wave.
+- **Blackthorn tutor:** Aerial Ace, Amnesia, Ancient Power, Aura Sphere, Baton Pass, Body Slam, Calm Mind, Charm, Confuse Ray, Dazzling Gleam, Defense Curl, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Frustration, Giga Impact, Icy Wind, Iron Defense, Mega Kick, Mega Punch, Metronome, Mimic, Moonblast, Nightmare, Play Rough, Psybeam, Psych Up, Safeguard, Signal Beam, Skill Swap, Snore, Stealth Rock, Trick, Trick Room, U-turn, Water Pulse.
 
 ## Jolteon
 

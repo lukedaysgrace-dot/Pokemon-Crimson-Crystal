@@ -493,3 +493,4 @@ INCBIN "gfx/footprints/totodile.1bpp" ; SANDILE
 INCBIN "gfx/footprints/croconaw.1bpp" ; KROKOROK
 INCBIN "gfx/footprints/feraligatr.1bpp" ; KROOKODILE
 INCBIN "gfx/footprints/raichu.1bpp" ; GOROCHU
+INCBIN "gfx/footprints/jirachi.1bpp" ; JIRACHI

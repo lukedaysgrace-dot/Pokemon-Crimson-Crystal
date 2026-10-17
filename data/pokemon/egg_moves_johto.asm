@@ -345,6 +345,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; KROKOROK
 	dw NoEggMoves2 ; KROOKODILE
 	dw NoEggMoves2 ; GOROCHU
+	dw NoEggMoves2 ; JIRACHI
 
 ChikoritaEggMoves:
 	dw VINE_WHIP

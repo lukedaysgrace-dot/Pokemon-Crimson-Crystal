@@ -207,6 +207,7 @@ AlphabeticalPokedexOrder:
 	dw IVYSAUR
 	dw IVYSAUR_CLONE
 	dw JIGGLYPUFF
+	dw JIRACHI
 	dw JOLTEON
 	dw JOLTIK
 	dw JUMPLUFF

@@ -515,6 +515,7 @@ JOHTO_POKEMON EQU const_value
 	const KROKOROK          ;
 	const KROOKODILE        ;
 	const GOROCHU           ; appended to preserve all existing species IDs
+	const JIRACHI           ; appended to preserve all existing species IDs
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

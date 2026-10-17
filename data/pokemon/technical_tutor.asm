@@ -498,6 +498,7 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_KROKOROK ; KROKOROK
 	dba TechnicalTutor_KROOKODILE ; KROOKODILE
 	dba TechnicalTutor_None ; GOROCHU
+	dba TechnicalTutor_JIRACHI ; JIRACHI
 assert (@ - TechnicalTutorPointers) == NUM_POKEMON * 3
 
 SECTION "Blackthorn Tutor Moves 1", ROMX
@@ -10505,4 +10506,45 @@ TechnicalTutor_KROOKODILE:
 	dw SNORE
 	dw SUPERPOWER
 	dw TAKE_DOWN
+	dw 0
+
+TechnicalTutor_JIRACHI:
+	dw AERIAL_ACE
+	dw AMNESIA
+	dw ANCIENTPOWER
+	dw AURA_SPHERE
+	dw BATON_PASS
+	dw BODY_SLAM
+	dw CALM_MIND
+	dw CHARM
+	dw CONFUSE_RAY
+	dw DAZZLING_GLEAM
+	dw DEFENSE_CURL
+	dw DOUBLE_TEAM
+	dw DREAM_EATER
+	dw DYNAMICPUNCH
+	dw ENCORE
+	dw ENDURE
+	dw FRUSTRATION
+	dw GIGA_IMPACT
+	dw ICY_WIND
+	dw IRON_DEFENSE
+	dw MEGA_KICK
+	dw MEGA_PUNCH
+	dw METRONOME
+	dw MIMIC
+	dw MOONBLAST
+	dw NIGHTMARE
+	dw PLAY_ROUGH
+	dw PSYBEAM
+	dw PSYCH_UP
+	dw SAFEGUARD
+	dw SIGNAL_BEAM
+	dw SKILL_SWAP
+	dw SNORE
+	dw STEALTH_ROCK
+	dw TRICK
+	dw TRICK_ROOM
+	dw U_TURN
+	dw WATER_PULSE
 	dw 0
