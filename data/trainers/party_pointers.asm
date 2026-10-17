@@ -104,3 +104,4 @@ TrainerGroups:
 	dba ChampionGroup ; CHAMPION_REMATCH
 	dba ElderGroup ; ELDER
 	dba AromaLadyGroup ; AROMA_LADY
+	dba CueballGroup ; CUEBALL

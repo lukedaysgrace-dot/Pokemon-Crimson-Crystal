@@ -6,7 +6,7 @@ Wild held-item rates are approximately 20% for slot 1 and 5% for slot 2; identic
 
 Source coverage: map item balls, hidden items, scripted gifts, standard and rooftop marts, Game Corner prizes, Battle Tower prize menu, Fishing Contest prizes, in-game trades, Mystery Gift item pool, wild held-item tables joined to encounter maps, scripted wild encounters, and map-referenced trainer parties. An item with no source is explicitly marked; a base-stat holder without a wild encounter is not treated as a location.
 
-**Coverage:** 54 TMs; 59 held items; 761 acquisition entries.
+**Coverage:** 54 TMs; 59 held items; 782 acquisition entries.
 
 ## Quick index
 
@@ -68,7 +68,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [TM54 — Weather Ball](#tm_weather_ball) | Gift / reward |
 | [Air Balloon](#air_balloon) | Gift / reward, Shop, Trainer item |
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
-| [Assault Vest](#assault_vest) | Shop, Trainer item |
+| [Assault Vest](#assault_vest) | Gift / reward, Shop, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
 | [Blackbelt](#blackbelt) | Gift / reward, Trainer item |
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
@@ -76,7 +76,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Brightpowder](#brightpowder) | Trainer item |
 | [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
 | [Choice Band](#choice_band) | Battle Tower prize, Trainer item |
-| [Choice Scarf](#choice_scarf) | Battle Tower prize |
+| [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Trainer item |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
@@ -88,13 +88,13 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Expert Belt](#expert_belt) | Gift / reward, Shop, Trainer item |
 | [Flame Orb](#flame_orb) | Ground pickup, Shop, Trainer item |
 | [Focus Band](#focus_band) | Ground pickup |
-| [Focus Sash](#focus_sash) | Battle Tower prize, Trainer item |
+| [Focus Sash](#focus_sash) | Battle Tower prize, Gift / reward, Trainer item |
 | [Hard Stone](#hard_stone) | Gift / reward, Wild Pokémon |
 | [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
 | [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
 | [Leftovers](#leftovers) | Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
-| [Life Orb](#life_orb) | Shop, Trainer item |
+| [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
 | [Loaded Dice](#loaded_dice) | Gift / reward |
 | [Lucky Egg](#lucky_egg) | Wild Pokémon |
@@ -109,22 +109,22 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
-| [Rocky Helmet](#rocky_helmet) | Shop, Trainer item |
+| [Rocky Helmet](#rocky_helmet) | Gift / reward, Shop, Trainer item |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
 | [Silverpowder](#silverpowder) | Wild Pokémon |
 | [Smoke Ball](#smoke_ball) | Ground pickup, In-game trade |
 | [Smooth Rock](#smooth_rock) | Ground pickup, Mystery Gift |
-| [Soft Sand](#soft_sand) | Wild Pokémon |
-| [Spell Tag](#spell_tag) | Gift / reward, Trainer item, Wild Pokémon |
+| [Soft Sand](#soft_sand) | Ground pickup, Wild Pokémon |
+| [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
-| [Toxic Orb](#toxic_orb) | Shop, Trainer item |
+| [Toxic Orb](#toxic_orb) | Ground pickup, Shop, Trainer item |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
-| [Weak Policy](#weak_policy) | Battle Tower prize |
+| [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
 | [Wide Lens](#wide_lens) | Ground pickup, Shop |
-| [Wise Glasses](#wise_glasses) | Shop, Trainer item |
+| [Wise Glasses](#wise_glasses) | Gift / reward, Shop, Trainer item |
 
 <a id="tm_drain_punch"></a>
 ## TM01 — Drain Punch
@@ -550,6 +550,8 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Viridian Gym | **Trainer item** — Cooltrainer Larry: Golisopod Lv. 70. Party LARRY2. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L2216); [map script](maps/ViridianGym.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 50. Party WILL1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L537); [map script](maps/WillsRoom.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 79. Party WILL2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L571); [map script](maps/WillsRoom.asm) |
+| Route 16 | **Gift / reward** — Cueball Chopper on Cycling Road; defeat him for a one-time gift. Talk to him again if the Bag was full. | [maps/Route16.asm](maps/Route16.asm#L47) |
+| Route 16 | **Trainer item** — Cueball Chopper: Machamp Lv. 67. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8586); [map script](maps/Route16.asm) |
 
 <a id="berserk_gene"></a>
 ## Berserk Gene
@@ -618,6 +620,8 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Victory Road | **Trainer item** — Rival ?: Ceruledge Lv. 49. Party RIVAL1_5_CHIKORITA. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7454); [map script](maps/VictoryRoad.asm) |
 | Victory Road | **Trainer item** — Rival ?: Ceruledge Lv. 49. Party RIVAL1_5_TOTODILE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7522); [map script](maps/VictoryRoad.asm) |
 | Victory Road | **Trainer item** — Rival ?: Typhlosion Lv. 51. Party RIVAL1_5_CYNDAQUIL. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7493); [map script](maps/VictoryRoad.asm) |
+| Route 16 | **Trainer item** — Biker Axle: Houndoom Lv. 61. Party ROUTE16_AXLE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8515); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Biker Rusty: Magmortar Lv. 61. Party ROUTE16_RUSTY. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8539); [map script](maps/Route16.asm) |
 
 <a id="choice_band"></a>
 ## Choice Band
@@ -633,6 +637,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Copycats House 2F | **Gift / reward** — Item ball at (3, 3); return Copycat’s lost Poké Doll, receive the Magnet Train Pass and hear her permission speech before collecting it. One-time gift; remains if the Bag is full. | [maps/CopycatsHouse2F.asm](maps/CopycatsHouse2F.asm#L224) |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L144) |
 
 <a id="choice_specs"></a>
@@ -775,6 +780,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Viridian Gym | **Trainer item** — Cooltrainer Larry: Salamence Lv. 70. Party LARRY2. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L2221); [map script](maps/ViridianGym.asm) |
 | Viridian Gym | **Trainer item** — Cooltrainer Snow: Gardevoir Lv. 71. Party SNOW. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L2245); [map script](maps/ViridianGym.asm) |
 | Viridian Gym | **Trainer item** — Leader : Arcanine Lv. 70. Party BLUE1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6244); [map script](maps/ViridianGym.asm) |
+| Route 16 | **Trainer item** — Cueball Chopper: Krookodile Lv. 65. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8576); [map script](maps/Route16.asm) |
 
 <a id="flame_orb"></a>
 ## Flame Orb
@@ -803,6 +809,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L148) |
+| Gravekeepers House | **Gift / reward** — Gravekeeper in Silent Crypt; clean both gravestones before entering his house. Tile (2, 4). | [maps/GravekeepersHouse.asm](maps/GravekeepersHouse.asm#L58) |
 | Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 50. Party KOGA1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L808); [map script](maps/KogasRoom.asm) |
 | Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 78. Party KOGA2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L842); [map script](maps/KogasRoom.asm) |
 | Pewter Gym | **Trainer item** — Leader Brock: Aerodactyl Lv. 67. Party BROCK1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L950); [map script](maps/PewterGym.asm) |
@@ -936,7 +943,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
 | Celadon Cafe | **Search trash can** — Search the café trash can; one-time pickup. Tile (7, 1). | [maps/CeladonCafe.asm](maps/CeladonCafe.asm#L94) |
-| Route 16 | **Static wild Pokémon** — Snorlax, Lv. 50; 100% held-item chance. Catch it or use Thief. Wake with the Poké Flute radio channel. | [maps/Route16.asm](maps/Route16.asm#L40) |
 | Vermilion City | **Static wild Pokémon** — Snorlax, Lv. 50; 100% held-item chance. Catch it or use Thief. Wake with the Poké Flute radio channel. | [maps/VermilionCity.asm](maps/VermilionCity.asm#L57) |
 | Route 39 | **Wild Pokémon** — Munchlax; approx. 25% held-item chance. Grass / Cave; Day; Lv. 24. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/munchlax.asm) |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Forretress Lv. 75. Party BUGSY2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Falkner’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L158); [map script](maps/AzaleaGym.asm) |
@@ -1036,12 +1042,19 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 80. Party WILL2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L581); [map script](maps/WillsRoom.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Xatu Lv. 49. Party WILL1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L532); [map script](maps/WillsRoom.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Xatu Lv. 78. Party WILL2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L566); [map script](maps/WillsRoom.asm) |
+| Route 16 | **Trainer item** — Biker Axle: Weezing Lv. 60. Party ROUTE16_AXLE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8510); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Biker Rusty: Arbok Lv. 60. Party ROUTE16_RUSTY. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8534); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Biker Rusty: Muk Lv. 61. Party ROUTE16_RUSTY. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8544); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Biker Rusty: Scrafty Lv. 62. Party ROUTE16_RUSTY. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8549); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Cueball Chopper: Arbok Lv. 64. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8566); [map script](maps/Route16.asm) |
+| Route 16 | **Trainer item** — Cueball Chopper: Muk (Alolan) Lv. 66. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8581); [map script](maps/Route16.asm) |
 
 <a id="life_orb"></a>
 ## Life Orb
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Team Rocket Base B3F | **Ground pickup** — Collect the item ball at tile (14, 1). | [maps/TeamRocketBaseB3F.asm](maps/TeamRocketBaseB3F.asm#L227) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽30,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Heracross Lv. 76. Party BUGSY2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Falkner’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L168); [map script](maps/AzaleaGym.asm) |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Scizor Lv. 77. Party BUGSY2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Falkner’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L183); [map script](maps/AzaleaGym.asm) |
@@ -1123,6 +1136,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Viridian Gym | **Trainer item** — Leader : Pidgeot Lv. 68. Party BLUE1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6229); [map script](maps/ViridianGym.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Gallade Lv. 50. Party WILL1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L542); [map script](maps/WillsRoom.asm) |
 | Wills Room | **Trainer item** — Elite Four Will: Gallade Lv. 79. Party WILL2. Use Thief or Trick before the item is consumed. Elite Four / Champion rematch team after defeating Clair’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L576); [map script](maps/WillsRoom.asm) |
+| Route 16 | **Trainer item** — Cueball Chopper: Houndoom Lv. 65. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8571); [map script](maps/Route16.asm) |
 
 <a id="light_ball"></a>
 ## Light Ball
@@ -1183,6 +1197,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Victory Road | **Trainer item** — Rival ?: Magnezone Lv. 49. Party RIVAL1_5_CHIKORITA. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7439); [map script](maps/VictoryRoad.asm) |
 | Victory Road | **Trainer item** — Rival ?: Magnezone Lv. 49. Party RIVAL1_5_CYNDAQUIL. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7473); [map script](maps/VictoryRoad.asm) |
 | Victory Road | **Trainer item** — Rival ?: Magnezone Lv. 49. Party RIVAL1_5_TOTODILE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7507); [map script](maps/VictoryRoad.asm) |
+| Route 16 | **Trainer item** — Biker Axle: Golem (Alolan) Lv. 62. Party ROUTE16_AXLE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8525); [map script](maps/Route16.asm) |
 
 <a id="metal_coat"></a>
 ## Metal Coat
@@ -1342,6 +1357,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Route 33 | **Gift / reward** — Hiker Anthony outside Union Cave near Azalea Town; defeat him for a one-time gift. Talk to him again if the Bag was full. Previously defeated saves can collect it by talking to him. Tile (6, 13). | [maps/Route33.asm](maps/Route33.asm#L24) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽30,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Cerulean Gym | **Trainer item** — Leader Misty: Gyarados Lv. 61. Party MISTY1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L997); [map script](maps/CeruleanGym.asm) |
 | Pewter Gym | **Trainer item** — Leader Brock: Golem Lv. 70. Party BROCK1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L975); [map script](maps/PewterGym.asm) |
@@ -1349,6 +1365,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Route 36 | **Trainer item** — Schoolboy Alan: Corsola Lv. 63. Party ALAN5. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L1484); [map script](maps/Route36.asm) |
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Magcargo Lv. 77. Party CAL3. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L639); [map script](maps/TrainerHouseB1F.asm) |
 | Violet Gym | **Trainer item** — Leader Falkner: Skarmory Lv. 75. Party FALKNER2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Red. | [data/trainers/parties.asm](data/trainers/parties.asm#L41); [map script](maps/VioletGym.asm) |
+| Route 16 | **Trainer item** — Cueball Chopper: Weezing Lv. 64. Party CHOPPER. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8561); [map script](maps/Route16.asm) |
 
 <a id="scope_lens"></a>
 ## Scope Lens
@@ -1379,7 +1396,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Olivine City | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Headbutt (Rare Tree); Any; Lv. 24. | [data/wild/treemon_maps.asm](data/wild/treemon_maps.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
 | Route 10 North | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 63. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
 | Route 11 | **Wild Pokémon** — Dodrio; approx. 5% held-item chance. Grass / Cave; Day; Lv. 58. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/dodrio.asm) |
-| Route 16 | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 69. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
 | Route 17 | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 69. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
 | Route 18 | **Wild Pokémon** — Dodrio; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 72. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/dodrio.asm) |
 | Route 18 | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 70. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
@@ -1414,6 +1430,8 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Radio Tower 5F | **Trainer item** — Executive Archer: Crobat Lv. 41. Party ARCHER2. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6481); [map script](maps/RadioTower5F.asm) |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Honchkrow Lv. 42. Party ARIANA2. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6420); [map script](maps/RadioTower5F.asm) |
 | Route 27 | **Trainer item** — Bird Keeper Jose: Talonflame Lv. 63. Party JOSE3. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L1680); [map script](maps/Route27.asm) |
+| Route 16 | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 56. | [data/wild/kanto_grass.asm](data/wild/kanto_grass.asm); [held slots](data/pokemon/base_stats/fearow.asm) |
+| Route 16 | **Trainer item** — Biker Axle: Crobat Lv. 61. Party ROUTE16_AXLE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8520); [map script](maps/Route16.asm) |
 
 <a id="silverpowder"></a>
 ## Silverpowder
@@ -1450,6 +1468,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Route 38 | **Ground pickup** — Collect the item ball. Tile (4, 16). | [maps/Route38.asm](maps/Route38.asm#L334) |
 | Safari Zone | **Wild Pokémon** — Diglett (Alolan); approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 23. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/diglett_alolan.asm) |
 
 <a id="spell_tag"></a>
@@ -1457,7 +1476,6 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
-| Gravekeepers House | **Gift / reward** — Gravekeeper in Silent Crypt; clean both gravestones before entering his house. Tile (2, 4). | [maps/GravekeepersHouse.asm](maps/GravekeepersHouse.asm#L58) |
 | Silent Crypt | **Wild Pokémon** — Misdreavus; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 20. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/misdreavus.asm) |
 | Cianwood City | **Trainer item** — Mysticalman Eusine: Haunter Lv. 33. Party EUSINE. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L6289); [map script](maps/CianwoodCity.asm) |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Gengar Lv. 41. Party RIVAL1_4_CYNDAQUIL. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7386); [map script](maps/GoldenrodUndergroundSwitchRoomEntrances.asm) |
@@ -1502,6 +1520,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Goldenrod Underground Warehouse | **Ground pickup** — Item ball at tile (2, 1), replacing the Ultra Ball. Reached during the Radio Tower rescue. | [maps/GoldenrodUndergroundWarehouse.asm](maps/GoldenrodUndergroundWarehouse.asm#L96) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Gliscor Lv. 40. Party RIVAL1_4_CHIKORITA. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7332); [map script](maps/GoldenrodUndergroundSwitchRoomEntrances.asm) |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Gliscor Lv. 40. Party RIVAL1_4_CYNDAQUIL. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L7366); [map script](maps/GoldenrodUndergroundSwitchRoomEntrances.asm) |
@@ -1537,6 +1556,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Radio Tower 5F | **Ground pickup** — Item ball replaces Archer at (13, 5) during the blackout after his defeat dialogue, before the director enters. Loot it after the director’s Clear Bell scene. One-time pickup. | [maps/RadioTower5F.asm](maps/RadioTower5F.asm#L160) |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L152) |
 
 <a id="wide_lens"></a>
@@ -1552,6 +1572,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Radio Tower 2F | **Gift / reward** — Buena; talk to her after defeating Archer, clearing the Radio Tower and receiving the Clear Bell. One-time gift, available at any time of day; can be collected later if the Bag is full. Tile (14, 5). | [maps/RadioTower2F.asm](maps/RadioTower2F.asm#L172) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Vikavolt Lv. 75. Party BUGSY2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Falkner’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L163); [map script](maps/AzaleaGym.asm) |
 | Olivine Gym | **Trainer item** — Leader Jasmine: Magnezone Lv. 75. Party JASMINE2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Chuck’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L356); [map script](maps/OlivineGym.asm) |

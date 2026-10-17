@@ -27,6 +27,7 @@ MaleTrainers:
 	db BIKER
 	db SCIENTIST
 	db TAMER
+	db CUEBALL
 .End
 
 FemaleTrainers:

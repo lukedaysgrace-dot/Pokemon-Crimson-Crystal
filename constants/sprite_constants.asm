@@ -151,6 +151,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_DRAGOON ; 94
 	const SPRITE_GAMBLER_ASLEEP
 	const SPRITE_BALLOON
+	const SPRITE_CUEBALL
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)

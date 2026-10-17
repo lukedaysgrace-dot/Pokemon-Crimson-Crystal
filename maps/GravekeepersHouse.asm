@@ -51,15 +51,13 @@ GravekeeperEjectMovement:
 GravekeeperScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_SPELL_TAG_FROM_GRAVEKEEPER
+	checkevent EVENT_GOT_FOCUS_SASH_FROM_GRAVEKEEPER
 	iftrue .Afterwards
-	writetext GravekeeperApologyText
+	writetext GravekeeperGiftText
 	buttonsound
-	verbosegiveitem SPELL_TAG
+	verbosegiveitem FOCUS_SASH
 	iffalse .Done
-	setevent EVENT_GOT_SPELL_TAG_FROM_GRAVEKEEPER
-	writetext GravekeeperGaveGiftText
-	waitbutton
+	setevent EVENT_GOT_FOCUS_SASH_FROM_GRAVEKEEPER
 .Done:
 	closetext
 	end
@@ -95,44 +93,36 @@ GravekeeperAngryAgainText:
 	para "You have no"
 	line "respect."
 
-	para "OUT."
+	para "OUT!"
 	done
 
-GravekeeperApologyText:
-	text "…"
+GravekeeperGiftText:
+	text "You cleaned the"
+	line "stones?"
 
-	para "You cleaned them."
+	para "Most children your"
+	line "age are nothing"
+	cont "but trouble."
 
-	para "Not a single"
-	line "person in forty"
-	cont "years has helped"
-	cont "me clean them."
+	para "Thank you young"
+	line "one."
 
-	para "They come to break"
-	line "things or steal."
+	para "I've spent my life"
+	line "tending to those"
+	cont "who've passed on."
 
-	para "You came with a"
-	line "rag."
+	para "If there's one"
+	line "thing I've"
+	cont "learned, it's how"
+	cont "precious even a"
+	cont "single moment of"
+	cont "life can be."
 
-	para "I was wrong about"
-	line "you. Here."
-	done
-
-GravekeeperGaveGiftText:
-	text "Folk used to leave"
-	line "SPELL TAGS at the"
-	cont "graves, to calm"
-	cont "restless spirits."
-
-	para "That one's sat in"
-	line "my drawer for"
-	cont "years."
-
-	para "It powers up"
-	line "ghost-type moves."
-
-	para "Better it goes"
-	line "with you."
+	para "Take this. Perhaps"
+	line "someday it'll give"
+	cont "one of your"
+	cont "#MON that one"
+	cont "extra moment."
 	done
 
 GravekeeperAfterText:

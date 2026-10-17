@@ -128,3 +128,4 @@ TrainerClassStatExp:
 	dw 46656 ; CHAMPION_REMATCH ; 54 pts, +52 @L98
 	dw     0 ; ELDER
 	dw     0 ; AROMA_LADY
+	dw  6400 ; CUEBALL ; 20 pts, +13 @L64-67 in Hard Mode
