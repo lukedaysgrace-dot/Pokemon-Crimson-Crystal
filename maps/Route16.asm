@@ -1,4 +1,7 @@
 	object_const_def ; object_event constants
+	const ROUTE16_BIKER_AXLE
+	const ROUTE16_BIKER_RUSTY
+	const ROUTE16_CUEBALL_CHOPPER
 
 Route16_MapScripts:
 	db 0 ; scene scripts
@@ -20,6 +23,107 @@ Route16_MapScripts:
 
 CyclingRoadSign:
 	jumptext CyclingRoadSignText
+
+TrainerBikerAxle:
+	trainer BIKER, ROUTE16_AXLE, EVENT_BEAT_ROUTE16_BIKER_AXLE, BikerAxleSeenText, BikerAxleBeatenText, 0, .Script
+.Script:
+	endifjustbattled
+	jumptext BikerAxleAfterText
+
+TrainerBikerRusty:
+	trainer BIKER, ROUTE16_RUSTY, EVENT_BEAT_ROUTE16_BIKER_RUSTY, BikerRustySeenText, BikerRustyBeatenText, 0, .Script
+.Script:
+	endifjustbattled
+	jumptext BikerRustyAfterText
+
+TrainerCueballChopper:
+	trainer CUEBALL, CHOPPER, EVENT_BEAT_CUEBALL_CHOPPER, CueballChopperSeenText, CueballChopperBeatenText, 0, .Script
+.Script:
+	opentext
+	checkevent EVENT_GOT_ASSAULT_VEST_FROM_CHOPPER
+	iftrue .AfterGift
+	writetext CueballChopperSpunkText
+	buttonsound
+	verbosegiveitem ASSAULT_VEST
+	iffalse .Done
+	setevent EVENT_GOT_ASSAULT_VEST_FROM_CHOPPER
+.AfterGift:
+	writetext CueballChopperAfterText
+	waitbutton
+.Done:
+	closetext
+	end
+
+BikerAxleSeenText:
+	text "This stretch is"
+	line "our gang's spot!"
+	para "You can't just"
+	line "tread around here!"
+	done
+
+BikerAxleBeatenText:
+	text "You ran me down!"
+	done
+
+BikerAxleAfterText:
+	text "CHOPPER's the boss"
+	line "of our bike gang."
+	para "He respects spunk."
+	line "You've got plenty!"
+	done
+
+BikerRustySeenText:
+	text "Hear that? That's"
+	line "our road calling!"
+	para "Beat it, or we'll"
+	line "turn you back!"
+	done
+
+BikerRustyBeatenText:
+	text "My team wiped out!"
+	done
+
+BikerRustyAfterText:
+	text "All right, you can"
+	line "ride with us."
+	para "Just don't scratch"
+	line "my bike!"
+	done
+
+CueballChopperSeenText:
+	text "I'm CHOPPER, boss"
+	line "of this bike gang!"
+	para "This is our turf!"
+	line "You don't just"
+	cont "stroll through it!"
+	para "Let's see if you"
+	line "can stand your"
+	cont "ground!"
+	done
+
+CueballChopperBeatenText:
+	text "Ha! Now that's"
+	line "what I call spunk!"
+	done
+
+CueballChopperSpunkText:
+	text "Heh! I like your"
+	line "spunk, kid!"
+	para "You stood up to"
+	line "our gang and won."
+	para "Take this"
+	line "ASSAULT VEST!"
+	para "You've earned it!"
+	done
+
+CueballChopperAfterText:
+	text "That vest boosts"
+	line "SPCL.DEF, but your"
+	cont "#MON can only"
+	cont "use attack moves!"
+	para "You've earned a"
+	line "spot on this road!"
+	done
 
 CyclingRoadSignText:
 	text "CYCLING ROAD"
@@ -43,4 +147,7 @@ Route16_MapEvents:
 	db 1 ; bg events
 	bg_event  5,  5, BGEVENT_READ, CyclingRoadSign
 
-	db 0 ; object events
+	db 3 ; object events
+	object_event  6, 12, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerAxle, -1
+	object_event  9, 14, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerRusty, -1
+	object_event  6, 17, SPRITE_CUEBALL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerCueballChopper, -1

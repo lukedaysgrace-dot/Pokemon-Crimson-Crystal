@@ -16,6 +16,19 @@ TrainerHikerAnthony:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_ANTHONY
+	checkevent EVENT_GOT_ROCKY_HELMET_FROM_ANTHONY
+	iftrue .PhoneInteraction
+	opentext
+	writetext HikerAnthonyRockyHelmetText
+	buttonsound
+	verbosegiveitem ROCKY_HELMET
+	iffalse .GiftDone
+	setevent EVENT_GOT_ROCKY_HELMET_FROM_ANTHONY
+.GiftDone:
+	closetext
+	end
+
+.PhoneInteraction:
 	endifjustbattled
 	opentext
 	checkflag ENGINE_ANTHONY
@@ -162,6 +175,17 @@ HikerAnthony2AfterText:
 	text "We HIKERS are at"
 	line "our best in the"
 	cont "mountains."
+	done
+
+HikerAnthonyRockyHelmetText:
+	text "Here, take this"
+	line "ROCKY HELMET!"
+
+	para "It's saved my head"
+	line "from falling rocks"
+
+	para "more times than I"
+	line "can count!"
 	done
 
 HikerAnthonyDunsparceText:

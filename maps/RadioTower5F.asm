@@ -4,6 +4,7 @@
 	const RADIOTOWER5F_ROCKET_GIRL
 	const RADIOTOWER5F_ROCKER
 	const RADIOTOWER5F_POKE_BALL
+	const RADIOTOWER5F_WEAK_POLICY
 
 RadioTower5F_MapScripts:
 	db 3 ; scene scripts
@@ -11,7 +12,8 @@ RadioTower5F_MapScripts:
 	scene_script .DummyScene1 ; SCENE_RADIOTOWER5F_ROCKET_BOSS
 	scene_script .DummyScene2 ; SCENE_RADIOTOWER5F_NOTHING
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .HideWeakPolicyUntilRescue
 
 .DummyScene0:
 	end
@@ -21,6 +23,14 @@ RadioTower5F_MapScripts:
 
 .DummyScene2:
 	end
+
+.HideWeakPolicyUntilRescue:
+	checkevent EVENT_TEAM_ROCKET_DISBANDED
+	iftrue .Done
+	; The finale's appear command clears this visibility/pickup bit once.
+	disappear RADIOTOWER5F_WEAK_POLICY
+.Done:
+	return
 
 FakeDirectorScript:
 	turnobject RADIOTOWER5F_DIRECTOR, UP
@@ -99,6 +109,8 @@ RadioTower5FRocketBossScene:
 	special ReloadSpritesNoPalettes
 	disappear RADIOTOWER5F_ROCKET
 	disappear RADIOTOWER5F_ROCKET_GIRL
+	appear RADIOTOWER5F_WEAK_POLICY
+	applymovement RADIOTOWER5F_WEAK_POLICY, RadioTower5FWeakPolicyAppearsMovement
 	pause 15
 	special FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
@@ -144,6 +156,9 @@ Ben:
 RadioTower5FUltraBall:
 	itemball ULTRA_BALL
 
+RadioTower5FWeakPolicy:
+	itemball WEAK_POLICY
+
 RadioTower5FDirectorsOfficeSign:
 	jumptext RadioTower5FDirectorsOfficeSignText
 
@@ -152,6 +167,11 @@ RadioTower5FStudio1Sign:
 
 RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
+
+RadioTower5FWeakPolicyAppearsMovement:
+	; Initialize the newly spawned ball while the other objects are frozen.
+	step_sleep 1
+	step_end
 
 FakeDirectorMovement:
 	step LEFT
@@ -440,9 +460,10 @@ RadioTower5F_MapEvents:
 	bg_event 16,  1, BGEVENT_READ, RadioTower5FBookshelf
 	bg_event 17,  1, BGEVENT_READ, RadioTower5FBookshelf
 
-	db 5 ; object events
+	db 6 ; object events
 	object_event  3,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
 	object_event 13,  5, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 17,  2, SPRITE_ARIANA, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 13,  5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event 13,  6, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event  8,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	object_event 13,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FWeakPolicy, EVENT_RADIO_TOWER_5F_WEAK_POLICY

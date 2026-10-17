@@ -6,6 +6,7 @@
 	const ROUTE38_AROMA_LADY
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BUENA2
+	const ROUTE38_SOFT_SAND
 
 Route38_MapScripts:
 	db 0 ; scene scripts
@@ -329,6 +330,9 @@ Route38SafariZoneSign:
 Route38FruitTree:
 	fruittree FRUITTREE_ROUTE_38
 
+Route38SoftSand:
+	itemball SOFT_SAND
+
 BirdKeeperTobySeenText:
 	text "Fly high into the"
 	line "sky, my beloved"
@@ -501,7 +505,7 @@ Route38_MapEvents:
 	bg_event  5, 13, BGEVENT_READ, Route38TrainerTips
 	bg_event 18,  5, BGEVENT_READ, Route38SafariZoneSign
 
-	db 7 ; object events
+	db 8 ; object events
 	object_event  4,  1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
 	object_event 14,  4, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
 	object_event 12, 15, SPRITE_BIRD_KEEPER_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1
@@ -509,3 +513,4 @@ Route38_MapEvents:
 	object_event 24,  5, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerAromaLadyJuniper, -1
 	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route38FruitTree, -1
 	object_event  5,  8, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyOlivia, -1
+	object_event  4, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route38SoftSand, EVENT_ROUTE_38_SOFT_SAND

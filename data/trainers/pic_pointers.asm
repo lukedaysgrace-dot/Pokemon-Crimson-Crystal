@@ -104,3 +104,4 @@ TrainerPicPointers::
 	dba ChampionPic ; CHAMPION_REMATCH
 	dba ElderPic ; ELDER
 	dba AromaLadyPic ; AROMA_LADY
+	dba CueballPic ; CUEBALL

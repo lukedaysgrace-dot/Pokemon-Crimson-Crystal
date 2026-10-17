@@ -102,6 +102,13 @@ Buena:
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue .MidRocketTakeover
+	checkevent EVENT_CLEARED_RADIO_TOWER
+	iffalse .RegularInteraction
+	checkevent EVENT_GOT_CLEAR_BELL
+	iffalse .RegularInteraction
+	checkevent EVENT_GOT_WISE_GLASSES_FROM_BUENA
+	iffalse .GiveWiseGlasses
+.RegularInteraction:
 	checkevent EVENT_MET_BUENA
 	iffalse .Introduction
 	checkflag ENGINE_BUENAS_PASSWORD_2
@@ -157,6 +164,17 @@ Buena:
 	special RestartMapMusic
 	readvar VAR_BLUECARDBALANCE
 	ifequal 30, .BlueCardCapped1
+	end
+
+.GiveWiseGlasses:
+	writetext RadioTower2FBuenaWiseGlassesText
+	buttonsound
+	verbosegiveitem WISE_GLASSES
+	iffalse .WiseGlassesDone
+	setevent EVENT_GOT_WISE_GLASSES_FROM_BUENA
+.WiseGlassesDone:
+	closetext
+	turnobject RADIOTOWER2F_BUENA, RIGHT
 	end
 
 .Introduction:
@@ -466,6 +484,25 @@ GruntF2BeatenText:
 GruntF2AfterBattleText:
 	text "You beat me, and"
 	line "I won't forget it!"
+	done
+
+RadioTower2FBuenaWiseGlassesText:
+	text "BUENA: Thank you"
+	line "so much for saving"
+	cont "us!"
+
+	para "I don't have much"
+	line "to offer, but how"
+	cont "about these sweet"
+	cont "shades?"
+
+	para "I've had them"
+	line "forever but never"
+	cont "really use them."
+
+	para "Maybe you'll find"
+	line "a better use for"
+	cont "them!"
 	done
 
 RadioTower2FBuenaShowIntroductionText:

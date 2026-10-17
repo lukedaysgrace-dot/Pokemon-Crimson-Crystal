@@ -229,3 +229,9 @@ SECTION "Balloon Sprite", ROMX
 BalloonSpriteGFX::             INCBIN "gfx/sprites/balloon.2bpp"
 BalloonSpriteGFXEnd::
 assert BalloonSpriteGFXEnd - BalloonSpriteGFX == 8 * 16
+
+SECTION "Cueball Sprite", ROMX
+; Six 16x16 frames: standing and walking poses for all three facings.
+CueballSpriteGFX::             INCBIN "gfx/sprites/cueball.2bpp"
+CueballSpriteGFXEnd::
+assert CueballSpriteGFXEnd - CueballSpriteGFX == 24 * 16
