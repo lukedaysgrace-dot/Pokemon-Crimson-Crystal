@@ -357,6 +357,9 @@ BattleAnimOAMData:
 	dbbw $08,  1, .OAMData_0f ; BATTLEANIMOAMSET_MORNING_SUN_SPARKLE (vanilla BATTLEANIMOAMSET_BD)
 	dbbw $1b,  4, .OAMData_03 ; BATTLEANIMOAMSET_TORMENT (pokeorange OAMSET_D9)
 
+	dbbw $00, 27, .OAMData_PO_CosmicPowerBG ; BATTLEANIMOAMSET_PO_COSMIC_POWER_BG
+	dbbw $0f, 1, .OAMData_0f ; BATTLEANIMOAMSET_PO_VOLT_TACKLE
+
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
 	dbsprite  -2, -2,  0, -2, $00, $0
@@ -2427,3 +2430,35 @@ BattleAnimOAMData:
 	dbsprite  -1,   0, 6,  0, $00, $0
 	dbsprite  -1,  -1, 6,  0, $01, $0
 	dbsprite  -1,  -2, 6,  0, $00, X_FLIP | Y_FLIP
+
+.OAMData_PO_CosmicPowerBG:
+	dbsprite   -6, -6,  0,  0,$00, $0
+	dbsprite   -5, -1,  0, -4,$00, $0
+	dbsprite    2, -4,  0,  0,$00, $0
+	dbsprite    0,  2, -2,  2,$00, $0
+	dbsprite    4, -6,  0,  0,$00, $0
+	dbsprite    7,  4,  0,  0,$00, $0
+	dbsprite    8, -1,  2,  0,$00, $0
+	dbsprite   11, -6,  2,  2,$00, $0
+
+	dbsprite   -3, -5,  0,  0,$01, $0
+	dbsprite    5,  2,  2,  0,$01, $0
+	dbsprite   12, -4,  2,  0,$01, $0
+
+	dbsprite   -5,  3,  0,  0,$02, X_FLIP
+	dbsprite    0, -7,  0,  0,$02, $0
+	dbsprite    6, -3, -2, -2,$02, X_FLIP
+	dbsprite    9,  2,  1, -1,$02, $0
+
+	dbsprite    2, -1,  0,  0,$03, $0
+	dbsprite   10, -7,  0, -1,$03, X_FLIP
+
+	dbsprite   -6, -4,  0,  0,$04, $0
+	dbsprite   -6,  1,  2, -4,$04, $0
+	dbsprite   -4, -7,  0,  0,$04, $0
+	dbsprite   -2, -2,  1,  2,$04, $0
+	dbsprite    3,  4,  0, -2,$04, $0
+	dbsprite    5, -1,  0,  3,$04, $0
+	dbsprite    7, -7,  0,  3,$04, $0
+	dbsprite   10, -4,  0,  0,$04, $0
+	dbsprite   12,  1,  2,  0,$04, $0

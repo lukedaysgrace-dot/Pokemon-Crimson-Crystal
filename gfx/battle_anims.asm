@@ -85,3 +85,5 @@ AnimObjBigGlowSpikedGFX: INCBIN "gfx/battle_anims/bigglowspiked.2bpp.lz"
 AnimObjLuminaCrashGFX: INCBIN "gfx/battle_anims/luminacrash.2bpp.lz"
 ; ported from mae-pokeorange
 AnimObjWeatherBallGFX: INCBIN "gfx/battle_anims/weatherball.2bpp.lz"
+
+AnimObjCosmicPowerGFX: INCBIN "gfx/battle_anims/cosmicpower.2bpp.lz"

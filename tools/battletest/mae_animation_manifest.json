@@ -1,0 +1,3140 @@
+{
+  "upstream_repository": "https://github.com/PiaCarrot/mae-pokeorange",
+  "upstream_commit": "83db98aec1a0ccf50e78f8b38e37b8427ba310bb",
+  "date": "2026-10-17",
+  "scope": "Shared move scripts and reachable helper bodies; engine adaptations and upgraded assets retained.",
+  "counts": {
+    "matching": 142,
+    "preserved": 189,
+    "updated": 14
+  },
+  "moves": [
+    {
+      "move": "POUND",
+      "local_label": "BattleAnim_Pound",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Pound",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b229cbfcec0c20c6b3fa521fdc23cf18c75501680dfbc503d0c7ff536992b094"
+    },
+    {
+      "move": "KARATE_CHOP",
+      "local_label": "BattleAnim_KarateChop_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_KarateChop",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "0eedf206f5fc418e58856708e41736725d1ca543ce6df19fc4f3fb8214fa467b"
+    },
+    {
+      "move": "DOUBLESLAP",
+      "local_label": "BattleAnim_DoubleSlap_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Doubleslap",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "bcdd34053c55e5bdbf9205233660694e3fcbf90fb8fb7bbc29ab7ca0093eeef0"
+    },
+    {
+      "move": "COMET_PUNCH",
+      "local_label": "BattleAnim_CometPunch",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_CometPunch",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "986c4ae31f309d2c34c63d80df76219877ba3416b168feaaad7fdea10e116878"
+    },
+    {
+      "move": "MEGA_PUNCH",
+      "local_label": "BattleAnim_MegaPunch",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_MegaPunch",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "4d2a1df50bdc271d390602a5e54b4f4b1c7a2ba9510198c7f21222a805de0b67"
+    },
+    {
+      "move": "PAY_DAY",
+      "local_label": "BattleAnim_PayDay_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_PayDay",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b79efd52dd06e1805dce5cd108fb8e0753d00cb49a70eb0f4b3224c7bb0ebfdf"
+    },
+    {
+      "move": "FIRE_PUNCH",
+      "local_label": "BattleAnim_FirePunch_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_FirePunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "a7553b7b4db402a257094b026ab04f9a9d6e0744327e04c70bca9579c63e35f0"
+    },
+    {
+      "move": "ICE_PUNCH",
+      "local_label": "BattleAnim_IcePunch_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_IcePunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "4ff8ab52d47b36b22b34d6fcca70b83e3be6869305155b5320fa10f2d931ee78"
+    },
+    {
+      "move": "THUNDERPUNCH",
+      "local_label": "BattleAnim_Thunderpunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thunderpunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "3fd5e5425c0e4b2f5729d47e15aec2ec5c1ada7eb993559c6e2f5fd13050f540"
+    },
+    {
+      "move": "SCRATCH",
+      "local_label": "BattleAnim_Scratch_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Scratch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "39294d3ee36ff16079ac71b9b3b73e8c20f2149c943da60f0bf74e1133faeb30"
+    },
+    {
+      "move": "VICEGRIP",
+      "local_label": "BattleAnim_Vicegrip",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Vicegrip",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "508ef698737305b43e7759de8235d1b12da0662c8730ce98750e1c03e90382b4"
+    },
+    {
+      "move": "GUILLOTINE",
+      "local_label": "BattleAnim_Guillotine",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Guillotine",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "c8ee5f908417314d5cacf0c30e0e31b383a8b55af625ed1dc37bd13771629bd2"
+    },
+    {
+      "move": "RAZOR_WIND",
+      "local_label": "BattleAnim_RazorWind",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_RazorWind",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a02616e5f08acf96d12472f8f04fcc452b66a33cf588a9cc56f6985104c20d82"
+    },
+    {
+      "move": "SWORDS_DANCE",
+      "local_label": "BattleAnim_SwordsDance_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SwordsDance",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "8be522497ea7eef367f28c1f98666e7c0f5611da41a0468f4a63c02f8cb8ff5c"
+    },
+    {
+      "move": "CUT",
+      "local_label": "BattleAnim_Cut_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Cut",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1d874bdef4c27347671efabf71a5543453f60a1a7b12bf074a44e0218f5f3f99"
+    },
+    {
+      "move": "GUST",
+      "local_label": "BattleAnim_Gust_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Gust",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f5c4e5b46f015c8b21e87f39279358b23fd7161a219283237c2f8786c381346b"
+    },
+    {
+      "move": "WING_ATTACK",
+      "local_label": "BattleAnim_WingAttack_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_WingAttack",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "4a61a638c3a1c65481fc6f96697036bc6ce400d726b84eb63781e3edbf6f866a"
+    },
+    {
+      "move": "WHIRLWIND",
+      "local_label": "BattleAnim_Whirlwind",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Whirlwind",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "2228413dc8da9a615baefe1b4d735c45ee640f779922d890ac282c683f3142f3"
+    },
+    {
+      "move": "FLY",
+      "local_label": "BattleAnim_Fly_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Fly",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "ddf4fcc1a14b889e754205fba8f4f5d790120d386527e33c7d58fa65f70579dd"
+    },
+    {
+      "move": "BIND",
+      "local_label": "BattleAnim_Bind",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Bind",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "539a2f5481dadd642cff8f0505943f8b84d1423b8fc8d077908b98ff50be95e2"
+    },
+    {
+      "move": "SLAM",
+      "local_label": "BattleAnim_Slam",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Slam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "205edeaccce03501afd36277bb9758d7396e3495d46a807781cb4c31baa607eb"
+    },
+    {
+      "move": "VINE_WHIP",
+      "local_label": "BattleAnim_VineWhip_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_VineWhip",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "05b949f74db587330072bbede12c0895226137619c178f4344bd7a3b59607ad5"
+    },
+    {
+      "move": "STOMP",
+      "local_label": "BattleAnim_Stomp_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Stomp",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b28715faca20538a40008415a6e4eb85156793c2c2a928d0fa405e843c63a25b"
+    },
+    {
+      "move": "DOUBLE_KICK",
+      "local_label": "BattleAnim_DoubleKick_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DoubleKick",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "62678afc24d22bda1c6486b2f50f8364acd5488f25c62dfc6d9dc6e2c64d45f7"
+    },
+    {
+      "move": "MEGA_KICK",
+      "local_label": "BattleAnim_MegaKick",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_MegaKick",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "5b98640744d4a88454a29b2ceffd8543d5d752ab4dbba10deeda3964866176ef"
+    },
+    {
+      "move": "JUMP_KICK",
+      "local_label": "BattleAnim_JumpKick",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_JumpKick",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0ade3a6c7a80d15bdf2e4de6d9cf290880ad5ae1b229e445e0d8c6c4888ec847"
+    },
+    {
+      "move": "ROLLING_KICK",
+      "local_label": "BattleAnim_RollingKick",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_RollingKick",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "60cb726f934d548098bd6336d25449749c137764eae1d1c13ab20b07b8903d0d"
+    },
+    {
+      "move": "SAND_ATTACK",
+      "local_label": "BattleAnim_SandAttack",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SandAttack",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0fdc7a597b50a0b431e1efdea0a26eb74c56243d8c505865a5a7b981d22a9996"
+    },
+    {
+      "move": "HEADBUTT",
+      "local_label": "BattleAnim_Headbutt_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Headbutt",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "49ce842125682d71568e398147d565ab074a30dbd06fd81ea43cd5f30cac54f9"
+    },
+    {
+      "move": "HORN_ATTACK",
+      "local_label": "BattleAnim_HornAttack_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_HornAttack",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f65047087f47a4649ad164b2a375ccbe9f97f2cd10ffe8c7c4dabaa3503e716a"
+    },
+    {
+      "move": "FURY_ATTACK",
+      "local_label": "BattleAnim_FuryAttack",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_FuryAttack",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "f3062068d1435e9499ef0d6d0dd7ea6c20bb81a72363a3009ea29013300a66b0"
+    },
+    {
+      "move": "HORN_DRILL",
+      "local_label": "BattleAnim_HornDrill",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_HornDrill",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "f48c7b361add182cdbf79ef9ff5f5b4522ab365b4a7cfddf350ef4330514cef4"
+    },
+    {
+      "move": "TACKLE",
+      "local_label": "BattleAnim_Tackle_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Tackle",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "bb0f3d1594b0b4facef865320a31ebc0de81f9b58a6be5e39d78ed6e4e8e9378"
+    },
+    {
+      "move": "BODY_SLAM",
+      "local_label": "BattleAnim_BodySlam_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_BodySlam",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "36d8171e56d9806d852f8ead517728894c79d243cc72fe70fd0e3e82f6a4c529"
+    },
+    {
+      "move": "WRAP",
+      "local_label": "BattleAnim_Wrap_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Wrap",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f6b7b3f8fb347741f9fad39580f96bb962d0fe140ab496ba892b289527921d13"
+    },
+    {
+      "move": "TAKE_DOWN",
+      "local_label": "BattleAnim_TakeDown_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_TakeDown",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2ec191c707643dfd3f5608f29a9b7cc20d9c9e3590fd69843bf5a91461b4a976"
+    },
+    {
+      "move": "THRASH",
+      "local_label": "BattleAnim_Thrash_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thrash",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1abb40b40a205f6034a4974cdc7fccf7fafd545d02100796638ba47034359100"
+    },
+    {
+      "move": "DOUBLE_EDGE",
+      "local_label": "BattleAnim_DoubleEdge_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DoubleEdge",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "eda73d50806103a921e635b5ecb3d135c734d9bc44442484a76301fcf715d8f2"
+    },
+    {
+      "move": "TAIL_WHIP",
+      "local_label": "BattleAnim_TailWhip",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_TailWhip",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "cefefcfc6a17920cf4ea09848b2cc7dd20593734267b3c2413a61301aa42b3a1"
+    },
+    {
+      "move": "POISON_STING",
+      "local_label": "BattleAnim_PoisonSting_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_PoisonSting",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1537a37d7a003680c46ff9cdc3dbf253073fdf37255773b1f9635403eccee492"
+    },
+    {
+      "move": "TWINEEDLE",
+      "local_label": "BattleAnim_Twineedle",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Twineedle",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e2c1e803b42e93607f1310abd985cbd6d0c137198fded731104234c94add600d"
+    },
+    {
+      "move": "PIN_MISSILE",
+      "local_label": "BattleAnim_PinMissile_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PinMissile",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "673864efea1d6b6ec0b40e87e94015fcecb94f470e7befc72fc90c700f45677d"
+    },
+    {
+      "move": "LEER",
+      "local_label": "BattleAnim_Leer_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Leer",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1b92bec817e2295263fbc5234bf5c63dfdcf7ac161a126416e950fdfa1c6bd18"
+    },
+    {
+      "move": "BITE",
+      "local_label": "BattleAnim_Bite_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Bite",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "a6303ba972742c4ea367a94ab4dbbea75b44796082ab7e39646214dc0ba5da02"
+    },
+    {
+      "move": "GROWL",
+      "local_label": "BattleAnim_Growl_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Growl",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "16ff20950a38a7afbfc17c62a4e6c6a309f7c154f5ef757e9d85c63340554f0b"
+    },
+    {
+      "move": "ROAR",
+      "local_label": "BattleAnim_Roar_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Roar",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0eaa0c33894abb6b89850df8f8ac74c36970a83d70396106b618d2a47f43e16d"
+    },
+    {
+      "move": "SING",
+      "local_label": "BattleAnim_Sing_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Sing",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e468a1c6572faa4e29ba491fdf2c2ac884bbb8d7591b6d4b722d7627d52c1970"
+    },
+    {
+      "move": "SUPERSONIC",
+      "local_label": "BattleAnim_Supersonic_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Supersonic",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "d8673c32fa5570770402308a972d48e3b9b86f0df58c8887230618b0023c1d6a"
+    },
+    {
+      "move": "SONICBOOM",
+      "local_label": "BattleAnim_Sonicboom_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Sonicboom",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e976999cf5da618d2eb695979d623046f18f2f525c813a17b56c7a753c257e95"
+    },
+    {
+      "move": "DISABLE",
+      "local_label": "BattleAnim_Disable_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Disable",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9b425244dcaa406366c21de62aa2290552fceb02324d2e24bb04cfb16bd08cdf"
+    },
+    {
+      "move": "ACID",
+      "local_label": "BattleAnim_Acid_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Acid",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c833f7b204853fc0fa971f1bfb88b8e477b90e8eadc538c77bdb601676854300"
+    },
+    {
+      "move": "EMBER",
+      "local_label": "BattleAnim_Ember_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Ember",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "17f96998f3ae71d26bed264c5e05280f55118743aca058743475002fcea7e294"
+    },
+    {
+      "move": "FLAMETHROWER",
+      "local_label": "BattleAnim_Flamethrower_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Flamethrower",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8721e79a3d12800a949c8afb6b241d56a50edbe50bace7b94f77104b7fa6f71f"
+    },
+    {
+      "move": "MIST",
+      "local_label": "BattleAnim_Mist",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Mist",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "2449fe07d9b2fab8d06e7ddd2a28e47a73eee75b4ba41c4fae12cfa2571be038"
+    },
+    {
+      "move": "WATER_GUN",
+      "local_label": "BattleAnim_WaterGun_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_WaterGun",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "0b41f877e08db611aa63f8ef05cfdb383235ee948d099c40e7e25ffb84a9dc97"
+    },
+    {
+      "move": "HYDRO_PUMP",
+      "local_label": "BattleAnim_HydroPump_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_HydroPump",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "bf5a0fb5d3d8cbedcb7a8d69ab7f4e15fb7fc102a8627571ba66b80279dad686"
+    },
+    {
+      "move": "SURF",
+      "local_label": "BattleAnim_Surf_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Surf",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "ccfed731cb1a7c4d0b010f0affdf87d4f064d2ea0f2fe7926f9454d095038d7e"
+    },
+    {
+      "move": "ICE_BEAM",
+      "local_label": "BattleAnim_IceBeam_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_IceBeam",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e68ab090e803f5a8e5e056ab702a0be6b6896fdba40100d201388a86d98204b2"
+    },
+    {
+      "move": "BLIZZARD",
+      "local_label": "BattleAnim_Blizzard_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Blizzard",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "32925a1cfa56b20b47ffe9f242543b36af3ff3790ee7856c73cc635fe78f3457"
+    },
+    {
+      "move": "PSYBEAM",
+      "local_label": "BattleAnim_Psybeam_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Psybeam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e9034b09f2844f19dce4fe9a3e5f2b99d2b932df69555c6bb0ffb850372bcc1b"
+    },
+    {
+      "move": "BUBBLEBEAM",
+      "local_label": "BattleAnim_BubbleBeam_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Bubblebeam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "bf4f7de9628547fa2d131874402c671dfd5b49eca4fe49347462bfe33f96fa13"
+    },
+    {
+      "move": "AURORA_BEAM",
+      "local_label": "BattleAnim_AuroraBeam_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_AuroraBeam",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e1632716f83fe6c116e811ea8a5854f4657a328dcedd9ca0476ebe8fe57ef6a8"
+    },
+    {
+      "move": "HYPER_BEAM",
+      "local_label": "BattleAnim_HyperBeam_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_HyperBeam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e8362c032a66f87e8009769c51cd807eca754eca7b1c6212ad7f9128fa57e77f"
+    },
+    {
+      "move": "PECK",
+      "local_label": "BattleAnim_Peck_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Peck",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "bb3cfbec6928ebb8c5ef5a63acb850a1f02bdb1816b3dad9914e80ea49cacbe1"
+    },
+    {
+      "move": "DRILL_PECK",
+      "local_label": "BattleAnim_DrillPeck_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DrillPeck",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "09ae9928d546be31125b72f05e58a12f9ffa4612177919b06f9bf458dfeff7cd"
+    },
+    {
+      "move": "SUBMISSION",
+      "local_label": "BattleAnim_Submission",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Submission",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "287c38f911073dde41b18819c4d1ae8c82caae14e04ba1f4f19a8463bad1f8f0"
+    },
+    {
+      "move": "LOW_KICK",
+      "local_label": "BattleAnim_LowKick_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_LowKick",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1a6ba647f170198525bbbdb683c10db4b9c6ae91be39b77c5795e8ccb23d609e"
+    },
+    {
+      "move": "COUNTER",
+      "local_label": "BattleAnim_Counter_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Counter",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "0cab0811f043e362835edcc1f5026c39c226ab973416088fcd1d5d062ecd4a90"
+    },
+    {
+      "move": "SEISMIC_TOSS",
+      "local_label": "BattleAnim_SeismicToss_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SeismicToss",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d772472f3edf86b44721000c9887a18974c6e806a637b8fb417e0fcbd33777f0"
+    },
+    {
+      "move": "STRENGTH",
+      "local_label": "BattleAnim_Strength_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Strength",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d9f67fd6b915a17dd58d7742e8e92672797038d6f49e0e78e42bed6dd1a614e5"
+    },
+    {
+      "move": "ABSORB",
+      "local_label": "BattleAnim_Absorb_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Absorb",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "da68d88c786b216e881b489e43b8242650270a035418e9f4ca46a75f15f95550"
+    },
+    {
+      "move": "MEGA_DRAIN",
+      "local_label": "BattleAnim_MegaDrain_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_MegaDrain",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "6d7f9b390ad8caf73095c471c3a38f17e66ae84ed32ce850a2391f166858841c"
+    },
+    {
+      "move": "LEECH_SEED",
+      "local_label": "BattleAnim_LeechSeed_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_LeechSeed",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "fe5e475bfc8a05264182370e9f87b4bae1d00a797499c3691850f2d126ee4228"
+    },
+    {
+      "move": "GROWTH",
+      "local_label": "BattleAnim_Growth_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Growth",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "6bf1f4a85be054f6e844b6ca066841c9f66682797be49f465cd2ebc0717734e7"
+    },
+    {
+      "move": "RAZOR_LEAF",
+      "local_label": "BattleAnim_RazorLeaf_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RazorLeaf",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "86230da4864b2f76bb2693d16b966ce0fcd805917cbad81ce6f47d896cdaaa1f"
+    },
+    {
+      "move": "SOLARBEAM",
+      "local_label": "BattleAnim_SolarBeam_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Solarbeam",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e6ac068cb424dc48a65b97afd1dfd4f1e78678b06c8f16de2254b47696d0af98"
+    },
+    {
+      "move": "POISONPOWDER",
+      "local_label": "BattleAnim_Poisonpowder_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Poisonpowder",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "ef4e2996ed28a324b9a54138d5eec23dade674660d9316ed5d0e8c0941caa5c0"
+    },
+    {
+      "move": "STUN_SPORE",
+      "local_label": "BattleAnim_StunSpore_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_StunSpore",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "39bc7a4bac08ea0adc0f8dd4654109a3e10d86f4d4010c3ee42b9b16b21f5efb"
+    },
+    {
+      "move": "SLEEP_POWDER",
+      "local_label": "BattleAnim_SleepPowder_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SleepPowder",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "15f7b2f02e0d6dac57fd2edbeef23b32c62478b861f944300408ba3128c05b60"
+    },
+    {
+      "move": "PETAL_DANCE",
+      "local_label": "BattleAnim_PetalDance_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PetalDance",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8db4db2636e7ceaef1ceb7c00e21a2897cd2bc7b4075240f9ff2cf8b4ccef941"
+    },
+    {
+      "move": "STRING_SHOT",
+      "local_label": "BattleAnim_StringShot_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_StringShot",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "147ae77a68dccd35911601ef3ea82563c341317e08516b5e41f3c59057f66e0c"
+    },
+    {
+      "move": "DRAGON_RAGE",
+      "local_label": "BattleAnim_DragonRage_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_DragonRage",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "3903e44e1de961910d5737dfbd0f7513755f2fb4234ed1429e43230192e34777"
+    },
+    {
+      "move": "FIRE_SPIN",
+      "local_label": "BattleAnim_FireSpin_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FireSpin",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a3522f0a826a8287c680b0e4324f8e2ed02670c624ea49c9df2fed3fd4b77ad4"
+    },
+    {
+      "move": "THUNDERSHOCK",
+      "local_label": "BattleAnim_Thundershock_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thundershock",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c1a1aeb0fbdb976def03af385f4fa2dd8c1a8018342d28e1c3ebd2f0e2c87272"
+    },
+    {
+      "move": "THUNDERBOLT",
+      "local_label": "BattleAnim_Thunderbolt_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thunderbolt",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "877bb5e8b0727dda1a184604df468cefcde4281f254efdba0cff55e962550bab"
+    },
+    {
+      "move": "THUNDER_WAVE",
+      "local_label": "BattleAnim_ThunderWave_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ThunderWave",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "dd5202fbeb24db2a395e01f07dcf225ddf1f365a5ea82005ddecf5ec04ec2715"
+    },
+    {
+      "move": "THUNDER",
+      "local_label": "BattleAnim_Thunder_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thunder",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "3ea76be4dfeba77ad622cbaf3b7ce60d1603d5d44c7eaee440620290eee72171"
+    },
+    {
+      "move": "ROCK_THROW",
+      "local_label": "BattleAnim_RockThrow_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RockThrow",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "09efcd6f9818d11811cf59b43e307eb8b476e7abde839b39d9bed1caff942e9f"
+    },
+    {
+      "move": "EARTHQUAKE",
+      "local_label": "BattleAnim_Earthquake_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Earthquake",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "3f2e98a9b7a8b1f76ba918007c754d303095b3453821ac54acd8b93af1e9ebbf"
+    },
+    {
+      "move": "FISSURE",
+      "local_label": "BattleAnim_Fissure",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Fissure",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b874c72c793d2e4e6c7da089c55addb4c9efb36497b26f1ba51e04e200b5b865"
+    },
+    {
+      "move": "DIG",
+      "local_label": "BattleAnim_Dig_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Dig",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "76ae4909a208a196299669be7dd4d34b99c3707e834e4b083588ad3668814724"
+    },
+    {
+      "move": "TOXIC",
+      "local_label": "BattleAnim_Toxic_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Toxic",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b410982ea7d7869db1421e2975220ef389a189ecdc375e6cb600552fa987ed86"
+    },
+    {
+      "move": "CONFUSION",
+      "local_label": "BattleAnim_Confusion",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Confusion",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "bf1bf8534dcbe0540679fbb6decc3f8635cee1a9cbde5a3695c58e1055987954"
+    },
+    {
+      "move": "PSYCHIC_M",
+      "local_label": "BattleAnim_PsychicM_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PsychicM",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "fad860fce51e04941372b302b378448b2159b4f1207453e1ba997c4204a63c4b"
+    },
+    {
+      "move": "HYPNOSIS",
+      "local_label": "BattleAnim_Hypnosis_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Hypnosis",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "21b8c61c56fc9310467a2c5416d0e5bc022e9b5886f2521aa6d7448864c3de06"
+    },
+    {
+      "move": "MEDITATE",
+      "local_label": "BattleAnim_Meditate",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Meditate",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "99b8da8b4147cb648c51563be54436bd51ebfd0954d230dd4b0d284f44566618"
+    },
+    {
+      "move": "AGILITY",
+      "local_label": "BattleAnim_Agility_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Agility",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "8faf33658502c776fe6b01f0fea4cc02013b552931d0f4383c4bcd2a25de6576"
+    },
+    {
+      "move": "QUICK_ATTACK",
+      "local_label": "BattleAnim_QuickAttack_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_QuickAttack",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9fd1292c47e8a46e1f6345044ce6b5e23a300b4e44c718ef5a97b21111aa71b2"
+    },
+    {
+      "move": "RAGE",
+      "local_label": "BattleAnim_Rage_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Rage",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "68bbf04296114028a1689875a96286e0dde7e771bffcc40739619177979d67ec"
+    },
+    {
+      "move": "TELEPORT",
+      "local_label": "BattleAnim_Teleport_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Teleport",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e10eb2f3ab34d4f990ac1dea0c9a6c4b98f7c9f24c6c03bedf3d506772668b50"
+    },
+    {
+      "move": "NIGHT_SHADE",
+      "local_label": "BattleAnim_NightShade_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_NightShade",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b9fd4eaf03feea16e293c449d40ba72fd057e8f2f7108de76080885d8e6c9574"
+    },
+    {
+      "move": "MIMIC",
+      "local_label": "BattleAnim_Mimic",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Mimic",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "18c594bddea91a33f496ac51e3309b7d2d44fe79f5af3e07fdc406667bd7f93a"
+    },
+    {
+      "move": "SCREECH",
+      "local_label": "BattleAnim_Screech_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Screech",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "14949c85ba57434c102350789db001f14ae4a191d7e900aed0ec46a44b2904e8"
+    },
+    {
+      "move": "DOUBLE_TEAM",
+      "local_label": "BattleAnim_DoubleTeam",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_DoubleTeam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b250f848137e542b563506c61d078e15343ea498516509d96dce03b91ed1767a"
+    },
+    {
+      "move": "RECOVER",
+      "local_label": "BattleAnim_Recover_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Recover",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b3e244a89cad7317f6841200d8ef4e1a6f97ebfdc266cd5c418cfafd60b1ae80"
+    },
+    {
+      "move": "HARDEN",
+      "local_label": "BattleAnim_Harden",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Harden",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0dd32bbf11f3f0ea6284f6445d66314850d64fe7fa744ff2924c5feb12bed958"
+    },
+    {
+      "move": "MINIMIZE",
+      "local_label": "BattleAnim_Minimize_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Minimize",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "77af2bbf69b41a703676360ed3a0c973f6408009b197415d01a6908ae6da721a"
+    },
+    {
+      "move": "SMOKESCREEN",
+      "local_label": "BattleAnim_Smokescreen_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Smokescreen",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2ce620df3024ec1610457fb0923c1a7251de8ae1b98dce10cdb5b08135c7b36b"
+    },
+    {
+      "move": "CONFUSE_RAY",
+      "local_label": "BattleAnim_ConfuseRay_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ConfuseRay",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e4b999c367e8da471762d19a10a5901a245b3e97ae5359724b590f8737e5347d"
+    },
+    {
+      "move": "WITHDRAW",
+      "local_label": "BattleAnim_Withdraw",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Withdraw",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ebfb3912d4a34e5ae374d83e1cc1d751037f48c3d64737d292dcf7b9c1297785"
+    },
+    {
+      "move": "DEFENSE_CURL",
+      "local_label": "BattleAnim_DefenseCurl_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DefenseCurl",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "95c1146364fde6252629bb8686717cc026d5c3e04a99da66bcacf33eb06c8a7c"
+    },
+    {
+      "move": "BARRIER",
+      "local_label": "BattleAnim_Barrier_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Barrier",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "0c8fb9f86f9b0f6fc08126fd2f59798bebbdb95737a05163e92c2130ed657d5e"
+    },
+    {
+      "move": "LIGHT_SCREEN",
+      "local_label": "BattleAnim_LightScreen_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_LightScreen",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "bd64d974b77220c58026f1e353710e18cb916def74f1fe231f959c4973e05dfe"
+    },
+    {
+      "move": "HAZE",
+      "local_label": "BattleAnim_Haze_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Haze",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "013143f4a3b9c244decc8c8a27aa3f8e499a8e4733adb8a245bf23df27616e52"
+    },
+    {
+      "move": "REFLECT",
+      "local_label": "BattleAnim_Reflect_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Reflect",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "fe6f3b4df935a29eeea9f571128bdf7ffabd2975975fee64031a819581af8411"
+    },
+    {
+      "move": "FOCUS_ENERGY",
+      "local_label": "BattleAnim_FocusEnergy_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FocusEnergy",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "677c9326b13d343833125bd037c745dc980077f63794887c28a4bd0542ea52e3"
+    },
+    {
+      "move": "BIDE",
+      "local_label": "BattleAnim_Bide",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Bide",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "8b9709bc5cd28537ce3cf8114226d1ba8fb2ec7127ac54ce49d10772b9a7a1a6"
+    },
+    {
+      "move": "METRONOME",
+      "local_label": "BattleAnim_Metronome_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Metronome",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "24057d2e7066355b4fa20c2813d99f6ed7e6a981f1665a9253065c822f7706ae"
+    },
+    {
+      "move": "MIRROR_MOVE",
+      "local_label": "BattleAnim_MirrorMove",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_0",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "11a72ae276daf573be83cd34759d26548f9a683f460ae5d392d1420b8e935695"
+    },
+    {
+      "move": "SELFDESTRUCT",
+      "local_label": "BattleAnim_Selfdestruct",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Selfdestruct",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "6cde8a01404755b247e7e251b02242f1f86e0cae8843a91445f78255f86a801f"
+    },
+    {
+      "move": "EGG_BOMB",
+      "local_label": "BattleAnim_EggBomb",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_EggBomb",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "2903021d3ea046ba078c7a3db13b116cd1b4ff0e8f620809702e4e048419ebcf"
+    },
+    {
+      "move": "LICK",
+      "local_label": "BattleAnim_Lick_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Lick",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f90f153d5706f070e439b33ee1906e15bfc1d5adeb3ac4e9f24e92ae6a16c70a"
+    },
+    {
+      "move": "SMOG",
+      "local_label": "BattleAnim_Smog",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Smog",
+      "status": "preserved",
+      "reason": "Retain the existing poison-purple palette enhancement.",
+      "script_sha256": "1b427c8505269c6b12d2216ba420c2943d35df2e46f9eb7af7e56b8110328e42"
+    },
+    {
+      "move": "SLUDGE",
+      "local_label": "BattleAnim_Sludge",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Sludge",
+      "status": "preserved",
+      "reason": "Retain poison-purple palette handling and its automatic reset.",
+      "script_sha256": "c443d92736675bea1da5a8f3d9939ffeec403740c77d382dfc2a720270a7188f"
+    },
+    {
+      "move": "BONE_CLUB",
+      "local_label": "BattleAnim_BoneClub",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_BoneClub",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "4bb7cd9920db4fefb70b4e959b80b05eaeec62042dfed12c9048e3dca13e1f7c"
+    },
+    {
+      "move": "FIRE_BLAST",
+      "local_label": "BattleAnim_FireBlast_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FireBlast",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "76a552ad870f700f62ddda84ebc18b199ea85f437240033f06428124e2ad902e"
+    },
+    {
+      "move": "WATERFALL",
+      "local_label": "BattleAnim_Waterfall_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Waterfall",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "4f148a2503ef7173c88ade6e4cedeb66c2412ea4feda1e7839a4f5ce22b2febc"
+    },
+    {
+      "move": "CLAMP",
+      "local_label": "BattleAnim_Clamp",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Clamp",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "789417a3e080079e96f9c5465657ea112070addfcd84febb6b3cd0be94665158"
+    },
+    {
+      "move": "SWIFT",
+      "local_label": "BattleAnim_Swift_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Swift",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b090d02cf4b4c5f664e76d0d477e6b87e3ec4b8b12449038f0cdc7bc805b7794"
+    },
+    {
+      "move": "SKULL_BASH",
+      "local_label": "BattleAnim_SkullBash",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SkullBash",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "6471aea89f50128429bc4082cb346371486c829a379d377217bdab97267ea8c3"
+    },
+    {
+      "move": "SPIKE_CANNON",
+      "local_label": "BattleAnim_SpikeCannon",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SpikeCannon",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "b351da47c094572fb357bb555d3a541267bda29fac4b46d3c98f491b8c6a3f8a"
+    },
+    {
+      "move": "CONSTRICT",
+      "local_label": "BattleAnim_Constrict",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Constrict",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "05321b188ed24801793aef8e569d378f62bd4fe66ad6b9a90dd6a1a878d0d82f"
+    },
+    {
+      "move": "AMNESIA",
+      "local_label": "BattleAnim_Amnesia_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Amnesia",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "37b46a9c53925cda0347b91c28f475ee88d0643b1a3638b6b14c3a46c65de003"
+    },
+    {
+      "move": "KINESIS",
+      "local_label": "BattleAnim_Kinesis",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Kinesis",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "44aac7ac0b4f283e58dbfe57c56fe1879d30590e914a9bf98a5d1c971c9e2ae7"
+    },
+    {
+      "move": "SOFTBOILED",
+      "local_label": "BattleAnim_Softboiled",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Softboiled",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "101179e410734de76256db3973225fbec4a29acea864dea10519dba5671c4613"
+    },
+    {
+      "move": "HI_JUMP_KICK",
+      "local_label": "BattleAnim_HiJumpKick_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_HiJumpKick",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2076e4b31dbaee45e08e40c0a9f8f54f1bb5a8207d03c0bf61dfa94f3c352b94"
+    },
+    {
+      "move": "GLARE",
+      "local_label": "BattleAnim_Glare_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Glare",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "57043887b26deab34ffc65d0235f1f54c7b39352afa58736ba6ab4c7ea38445d"
+    },
+    {
+      "move": "DREAM_EATER",
+      "local_label": "BattleAnim_DreamEater_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DreamEater",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e973e33caf26f7eb5aeb0e450af784c1af566bb436421b4b8b60185eb7f6f27f"
+    },
+    {
+      "move": "POISON_GAS",
+      "local_label": "BattleAnim_PoisonGas",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_PoisonGas",
+      "status": "preserved",
+      "reason": "Retain the existing poison-purple palette enhancement.",
+      "script_sha256": "a989754eef366d2e8f41095377fb4cd20c8473e6842c376c86d80b58b40d7c05"
+    },
+    {
+      "move": "BARRAGE",
+      "local_label": "BattleAnim_Barrage",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Barrage",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "30131404491407fc43d88fbedc076deebc09e7a83db5a173791f686334b1cdfe"
+    },
+    {
+      "move": "LEECH_LIFE",
+      "local_label": "BattleAnim_LeechLife_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_LeechLife",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1ad7c8e7fa6e6da46038d321562d515e729e0ec41587660ec82d6861a09cd646"
+    },
+    {
+      "move": "LOVELY_KISS",
+      "local_label": "BattleAnim_LovelyKiss",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_LovelyKiss",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e5d62340c693334d189211000eb6378d508265e9e9528fef96703c3f2d989ca5"
+    },
+    {
+      "move": "SKY_ATTACK",
+      "local_label": "BattleAnim_SkyAttack",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SkyAttack",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "6ee0c8b82343e515c479132b27b13b3208dde0263754b3eef853ed6808a64eb9"
+    },
+    {
+      "move": "TRANSFORM",
+      "local_label": "BattleAnim_Transform_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Transform",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a66d219efc4b8838b4a1f339465a059cc7e9dc3a77bb609ce0616804defbe33d"
+    },
+    {
+      "move": "BUBBLE",
+      "local_label": "BattleAnim_Bubble",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Bubble",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "e38237439b41405b71a449944942dc122dd74bf07af94f4b61d3fbc811a1458e"
+    },
+    {
+      "move": "DIZZY_PUNCH",
+      "local_label": "BattleAnim_DizzyPunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DizzyPunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "4fe9884dfe79dddd7995863a33f2ff568a4d2c593b8cb7b112507ac3d009233e"
+    },
+    {
+      "move": "SPORE",
+      "local_label": "BattleAnim_Spore_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Spore",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "565c00e5f7767f5dde1b4e8e5932d402963516a90122200226dbf1400848d2ec"
+    },
+    {
+      "move": "FLASH",
+      "local_label": "BattleAnim_Flash_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Flash",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e140dbf747ee6ad006a0c477a7e1c97843e784b0d0bea602b2cc3653c8d74b7a"
+    },
+    {
+      "move": "PSYWAVE",
+      "local_label": "BattleAnim_Psywave",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Psywave",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e812386aef02a9a12baa2e9f3c6c3d6bfd11ebb8415d003da6706e7cc87f5c08"
+    },
+    {
+      "move": "SPLASH",
+      "local_label": "BattleAnim_Splash",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Splash",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "07380143001d02a77d910094931f30e7734727afc6a8ea0fd62e8e96e624bce8"
+    },
+    {
+      "move": "ACID_ARMOR",
+      "local_label": "BattleAnim_AcidArmor",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_AcidArmor",
+      "status": "preserved",
+      "reason": "Retain the existing poison-purple palette enhancement.",
+      "script_sha256": "4e39579235c913302787a3af3be1e0741b1f43607d1a94976ddca7c94bcd1579"
+    },
+    {
+      "move": "CRABHAMMER",
+      "local_label": "BattleAnim_Crabhammer_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Crabhammer",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b344cc04a5fb624a4c0b7a6fab902a5f18fae84db6c0705f35051f974ead7b62"
+    },
+    {
+      "move": "EXPLOSION",
+      "local_label": "BattleAnim_Explosion_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Explosion",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "390f7519915493048e3b0a03d3e7f377be6ddeba07df2e58bf90839baf5d552a"
+    },
+    {
+      "move": "FURY_SWIPES",
+      "local_label": "BattleAnim_FurySwipes",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_FurySwipes",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "86d04eeaf38dd065ba2234bb78f5b124fa98a4e37bba437a669a876d52d67811"
+    },
+    {
+      "move": "BONEMERANG",
+      "local_label": "BattleAnim_Bonemerang_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Bonemerang",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "204252ab79f4913d4f0ba9639952eab5ac8dcbcba68b0bdd78e0d73a070308ec"
+    },
+    {
+      "move": "REST",
+      "local_label": "BattleAnim_Rest_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Rest",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a4f1420a21eebb1f6a45dea878b28570b5b9c4a9462a4480922b228300d35ff5"
+    },
+    {
+      "move": "ROCK_SLIDE",
+      "local_label": "BattleAnim_RockSlide_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RockSlide",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b3d3174fef67fc093ef9f4cd8c3fcc4d5ac42c3addfacd737263455e84405e25"
+    },
+    {
+      "move": "HYPER_FANG",
+      "local_label": "BattleAnim_HyperFang_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_HyperFang",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9304315552291c33b7613469a03fa827a259e54bca24471b7810f578a8dd1d06"
+    },
+    {
+      "move": "SHARPEN",
+      "local_label": "BattleAnim_Sharpen",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Sharpen",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "c957af0497559f4987e95674fcd27a67041b66e1ee4798751bb1207291870c60"
+    },
+    {
+      "move": "CONVERSION",
+      "local_label": "BattleAnim_Conversion_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Conversion",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "f181c1370e065ac6eab04cca56e322eeeff394cab2a4308d0c94ac8d29833aee"
+    },
+    {
+      "move": "TRI_ATTACK",
+      "local_label": "BattleAnim_TriAttack_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_TriAttack",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c45826fb7717e852a7d074cc70478a0f6b5ffe0da8ea627390c11271ee4e8b4c"
+    },
+    {
+      "move": "SUPER_FANG",
+      "local_label": "BattleAnim_SuperFang_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SuperFang",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b0edbabcb49204d06452429af129fe79efe30d0f183f44895d5854e3101c2de6"
+    },
+    {
+      "move": "SLASH",
+      "local_label": "BattleAnim_Slash_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Slash",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "24bfd9cbbbb68e01768e87643b370c06106adcc0fb6906c8accbfa22e4d1ae09"
+    },
+    {
+      "move": "SUBSTITUTE",
+      "local_label": "BattleAnim_Substitute_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Substitute",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "cff4b2c17321f0dd33fb16662177bcfc93bfebf7a8d4ad584a292290ad38aeb1"
+    },
+    {
+      "move": "STRUGGLE",
+      "local_label": "BattleAnim_Struggle_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Struggle",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "5af7e86381e2e720b753bbf9a19dbfca77885326d70d1c17e13758bcfd4f2291"
+    },
+    {
+      "move": "SKETCH",
+      "local_label": "BattleAnim_Sketch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Sketch",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "64508175f8cf73572a7487f11996a67b9a01c22a5d1cff86f20773bbe0c307bb"
+    },
+    {
+      "move": "TRIPLE_KICK",
+      "local_label": "BattleAnim_TripleKick",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_TripleKick",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "4b551b8c3664828c678dc591cb96b1c3b6c15bf98681107b35872f1bbc942e25"
+    },
+    {
+      "move": "THIEF",
+      "local_label": "BattleAnim_Thief_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Thief",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "7f7e50dd7eb3c19856a957ac3a2476385c308dd19eec985109f693f7b798ae90"
+    },
+    {
+      "move": "SPIDER_WEB",
+      "local_label": "BattleAnim_SpiderWeb",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SpiderWeb",
+      "status": "preserved",
+      "reason": "Custom purple web and poison bubbles express this game's redesigned hazard.",
+      "script_sha256": "044b3f72e9ffb247b45f93fb7b642e286d9be3ec83b98462bbe5a8193e679bae"
+    },
+    {
+      "move": "MIND_READER",
+      "local_label": "BattleAnim_MindReader",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_MindReader",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ff1fd83328782d113636f65e8c5a8d8f9f27d897f0272beb7e5d594038d12a69"
+    },
+    {
+      "move": "NIGHTMARE",
+      "local_label": "BattleAnim_Nightmare",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Nightmare",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "326d8e538b4fc1e17f6dfb6670c5c88148b6f3420adf7988f85ff3e738d8ba93"
+    },
+    {
+      "move": "FLAME_WHEEL",
+      "local_label": "BattleAnim_FlameWheel",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_FlameWheel",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "090bbf2959836d0a10a6431fd6bbc48498c69432f94667bfc1b940a74366a236"
+    },
+    {
+      "move": "SNORE",
+      "local_label": "BattleAnim_Snore",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Snore",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b4271ce86afe85eee09d41c54843c86c8e891d282e23ff134b6ea5483ed39124"
+    },
+    {
+      "move": "CURSE",
+      "local_label": "BattleAnim_Curse_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Curse",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c996dd86ce6bcfc45621df9a9c8eb7038162a386384fa5a0cda6380941a11b41"
+    },
+    {
+      "move": "FLAIL",
+      "local_label": "BattleAnim_Flail",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Flail",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "389d62ead75fe4d1b8ebaeefa339d0c537fe5ef0c096e36df5b6d2e222b7f207"
+    },
+    {
+      "move": "CONVERSION2",
+      "local_label": "BattleAnim_Conversion2",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Conversion2",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ebaac50786aa8b9d07f883d189ab1f12174377952d1f1975859b2f3437288ff9"
+    },
+    {
+      "move": "AEROBLAST",
+      "local_label": "BattleAnim_Aeroblast_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Aeroblast",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d50f4b3eff541790309b3dc0a94a7d99b9b3908652dfdffc000e726a9e299fcc"
+    },
+    {
+      "move": "COTTON_SPORE",
+      "local_label": "BattleAnim_CottonSpore",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_CottonSpore",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "faa9232bb27eb520a7c84b79096fc3763b4fab98ed2123675737a808e9e25948"
+    },
+    {
+      "move": "REVERSAL",
+      "local_label": "BattleAnim_Reversal_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Reversal",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1f27c22baeeb27f4e04b0820707029fb832e7ddc5802167d2c9e790dc4befc86"
+    },
+    {
+      "move": "SPITE",
+      "local_label": "BattleAnim_Spite",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Spite",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "914456de96596b6e3e9230f9f5178e6d67d1dd240752981de29dd5587815f826"
+    },
+    {
+      "move": "POWDER_SNOW",
+      "local_label": "BattleAnim_PowderSnow",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_PowderSnow",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "90e7f39eed1937449a0cc7496693c595db5731fffc92a9bf56fe08b23009f9d5"
+    },
+    {
+      "move": "PROTECT",
+      "local_label": "BattleAnim_Protect_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Protect",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "2a948e086bfc2051eb29380caca412e71290b1d85cca5efb9814866250812f19"
+    },
+    {
+      "move": "MACH_PUNCH",
+      "local_label": "BattleAnim_MachPunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_MachPunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d14ebd2ec5ff26b1114758e81df2cd906742b9e16435cfe6c6fbd9a04171eebd"
+    },
+    {
+      "move": "SCARY_FACE",
+      "local_label": "BattleAnim_ScaryFace_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_ScaryFace",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "dac99198f8d2c0466a98a6a1e58b91333b021aad8cd9b17d5a8df6d67c735830"
+    },
+    {
+      "move": "FAINT_ATTACK",
+      "local_label": "BattleAnim_FeintAttack_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FaintAttack",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "38aedc8f12e1b8817181307058bfcda740c4fdff87210d97befcb007f8a9edf7"
+    },
+    {
+      "move": "SWEET_KISS",
+      "local_label": "BattleAnim_SweetKiss_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SweetKiss",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "60feb217aac9d04cdd9d89db6b9046c7e2584101ee98c2b7a58d87524e93d131"
+    },
+    {
+      "move": "BELLY_DRUM",
+      "local_label": "BattleAnim_BellyDrum_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_BellyDrum",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2222229796e0fa7754dcfeb556caccb22e0b1fb163036cdcfe4d797f9183e47b"
+    },
+    {
+      "move": "SLUDGE_BOMB",
+      "local_label": "BattleAnim_SludgeBomb_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_SludgeBomb",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "047652524cdd31063a0536a1563bc3d9d8117b7c5d578f0d126df828c290c253"
+    },
+    {
+      "move": "MUD_SLAP",
+      "local_label": "BattleAnim_MudSlap_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_MudSlap",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "3cbdc12c2c269a4ff07e6a8afddc37add14002a5341d138aef0b5b9f2386a166"
+    },
+    {
+      "move": "OCTAZOOKA",
+      "local_label": "BattleAnim_Octazooka_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Octazooka",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c5ce064ecba0263e46baaed6a69f4cda848216a46db6f70445f35124d34e583e"
+    },
+    {
+      "move": "SPIKES",
+      "local_label": "BattleAnim_Spikes_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Spikes",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "57b2d8d717e44b75979765a19edd1821bcc9c493c7f77c1da9a2cc198c761c32"
+    },
+    {
+      "move": "ZAP_CANNON",
+      "local_label": "BattleAnim_ZapCannon_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ZapCannon",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b42ff9683be0f51b0b2744d60755746961893e90184e8981cf8cf7aba46628ea"
+    },
+    {
+      "move": "FORESIGHT",
+      "local_label": "BattleAnim_Foresight_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Foresight",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f6d286970da38a458e02d3eca361023560b73c31bb10b4a206cfb8c3ad2255ea"
+    },
+    {
+      "move": "DESTINY_BOND",
+      "local_label": "BattleAnim_DestinyBond_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DestinyBond",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e679dd8b141c2c0d8a4761709cde087d716c131edc9676612cdcf9c308afceee"
+    },
+    {
+      "move": "PERISH_SONG",
+      "local_label": "BattleAnim_PerishSong_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PerishSong",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "02ff57129dc43580028aeefa8dd7325c32fe86095d57e40861504309e725bf31"
+    },
+    {
+      "move": "ICY_WIND",
+      "local_label": "BattleAnim_IcyWind_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_IcyWind",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "3aa64c9496f94ad1aa3f2db4eb5809ca8bff07b9e3c2d4d9a5065f51ee710051"
+    },
+    {
+      "move": "DETECT",
+      "local_label": "BattleAnim_Detect",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Detect",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "555cd27d51061a73ee54aad7d93bc82e55e5bdb22efa3f67331efd5639a8e829"
+    },
+    {
+      "move": "BONE_RUSH",
+      "local_label": "BattleAnim_BoneRush",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_BoneRush",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "70bff38000e72fe51e6dba0bce360fcf9edc1c3d60dbf62d607cd2ad5ce742b7"
+    },
+    {
+      "move": "LOCK_ON",
+      "local_label": "BattleAnim_LockOn",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_LockOn",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "3e6d83b4b3431020772bc1e2c54669542264516bb0a93a1a8827acbe2189ec11"
+    },
+    {
+      "move": "OUTRAGE",
+      "local_label": "BattleAnim_Outrage_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Outrage",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "432e4f1d150bfaed5acf814e8211ee3ab3be86a961754e8e055325af6fd29072"
+    },
+    {
+      "move": "SANDSTORM",
+      "local_label": "BattleAnim_Sandstorm_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Sandstorm",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "64a3a520897e54470d0cec0a109f196043d923aa79d744e583d1bc2b8943e0ad"
+    },
+    {
+      "move": "GIGA_DRAIN",
+      "local_label": "BattleAnim_GigaDrain_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_GigaDrain",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "e57b65ad59d84c4a5ece1c754dfc829ba0bffbb392fa7c60221e85b8a83cf72d"
+    },
+    {
+      "move": "ENDURE",
+      "local_label": "BattleAnim_Endure_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Endure",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0dc3e1a0fbd2fc440a17b019605c3dea7c6da3392aaf266c6fc678742c216044"
+    },
+    {
+      "move": "CHARM",
+      "local_label": "BattleAnim_Charm_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Charm",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a3c02883b8e934cc6a5b1f6b0555fce6d0bf79f7f5575fb6303179766d83adb0"
+    },
+    {
+      "move": "ROLLOUT",
+      "local_label": "BattleAnim_Rollout_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Rollout",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d20f73705f8de48c1974c5949305d6a944ce8f12b9dcec09bb1e0d0b2b69620c"
+    },
+    {
+      "move": "FALSE_SWIPE",
+      "local_label": "BattleAnim_FalseSwipe_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FalseSwipe",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "881e471a40d38fe5becaf7408eb7c4e07177e23616594ea996d6e283d69658d1"
+    },
+    {
+      "move": "SWAGGER",
+      "local_label": "BattleAnim_Swagger_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Swagger",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "d459670f3939e4d44ef3eeae801afa23d393917a8b15bd3bb35e4d87faead37e"
+    },
+    {
+      "move": "MILK_DRINK",
+      "local_label": "BattleAnim_MilkDrink",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_MilkDrink",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "370964cbaa6cfab9c663a56d9bc899c4aa03a539996bb4e9f9063bdc72669f53"
+    },
+    {
+      "move": "SPARK",
+      "local_label": "BattleAnim_Spark_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Spark",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "dc49d4946a88f2de88baa0a7ef2a0b6627ff09c5a5f4a83e4486a44b97710c76"
+    },
+    {
+      "move": "FURY_CUTTER",
+      "local_label": "BattleAnim_FuryCutter",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_FuryCutter",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "58ecd416df2671e5dac6bf9389eb1e6457393c8c113ad86dd07f33cdb379efa5"
+    },
+    {
+      "move": "STEEL_WING",
+      "local_label": "BattleAnim_SteelWing_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_SteelWing",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "51a47ba760c6063f5e724a4275bdca06631a66745afc3d3703278af654e34b64"
+    },
+    {
+      "move": "MEAN_LOOK",
+      "local_label": "BattleAnim_MeanLook_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_MeanLook",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "dbbd6ead3adf1947e1c27f238137e6b83adc1a0bad3a4833ac9d56cc99260455"
+    },
+    {
+      "move": "ATTRACT",
+      "local_label": "BattleAnim_Attract_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Attract",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "3062af2d0046bb4dc4714243360e9ddae3c4036ea661a9fba01da11920ea2e2a"
+    },
+    {
+      "move": "SLEEP_TALK",
+      "local_label": "BattleAnim_SleepTalk_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_SleepTalk",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "10081fd2d333fb8315d542e9e7d381818e5de3d6a6ff79a258547ea2dcd57a3e"
+    },
+    {
+      "move": "HEAL_BELL",
+      "local_label": "BattleAnim_HealBell_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_HealBell",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "580fea2b20915f2e2340421564db841fec92836efa6b4d67cf25849ae9260ae8"
+    },
+    {
+      "move": "RETURN",
+      "local_label": "BattleAnim_Return_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Return",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9a3ed5b59518a2a664d5e29e0ea73de213ebf54f4e9fe6215fe9e2dc5c99de9b"
+    },
+    {
+      "move": "PRESENT",
+      "local_label": "BattleAnim_Present",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Present",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "412ea21063158c4f5a35977abaf8b1182398fbca585b3e1e0b59b0d273e8fa26"
+    },
+    {
+      "move": "FRUSTRATION",
+      "local_label": "BattleAnim_Frustration",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Frustration",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "060b37b0d9b576a5eb692f53896aa8599adab3fa84a26e31ee12b64c4b0f1520"
+    },
+    {
+      "move": "SAFEGUARD",
+      "local_label": "BattleAnim_Safeguard_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Safeguard",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b52b6190771ed9e7e75de2ec86d13ba26cb0016c6b8d05a0f9af3c7ebce26fa1"
+    },
+    {
+      "move": "PAIN_SPLIT",
+      "local_label": "BattleAnim_PainSplit_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PainSplit",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "43d5edd4f2aa2b193538eef1f34dee04ea3ae53722119d29bb647ac2e4630554"
+    },
+    {
+      "move": "SACRED_FIRE",
+      "local_label": "BattleAnim_SacredFire_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SacredFire",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "4d66b485c495f64cf5f56549335a945eea92a44275da09b6420e19a3fab67060"
+    },
+    {
+      "move": "MAGNITUDE",
+      "local_label": "BattleAnim_Magnitude_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Magnitude",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8d9f32b7cb90af19634d79d6fef8b84b2c67ee997ced836d731a9d87ee09c602"
+    },
+    {
+      "move": "DYNAMICPUNCH",
+      "local_label": "BattleAnim_Dynamicpunch_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Dynamicpunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "91368c1bfd9d74ee485d016ba6f8510d8f6e38e4f131b75ff886817859420fc3"
+    },
+    {
+      "move": "MEGAHORN",
+      "local_label": "BattleAnim_Megahorn_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Megahorn",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "33f35014cd534bb04c75c6b4765c345d6d3a584bfbc8c49286b3dcb859cdb329"
+    },
+    {
+      "move": "DRAGONBREATH",
+      "local_label": "BattleAnim_Dragonbreath_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Dragonbreath",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "da1e7c7185fac3209d3686e2ee2579fb976a1962b2b574d4af6039f51cd9b411"
+    },
+    {
+      "move": "BATON_PASS",
+      "local_label": "BattleAnim_BatonPass_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_BatonPass",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "47981df0438b41f52db0f78e7557a9c5fd704c0cd4e229c4fb685bd09a13402c"
+    },
+    {
+      "move": "ENCORE",
+      "local_label": "BattleAnim_Encore_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Encore",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "c85e40234ccf1972934274151f0aa3487a9468687deb14b6bc94c42ad5927574"
+    },
+    {
+      "move": "PURSUIT",
+      "local_label": "BattleAnim_Pursuit_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Pursuit",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "474fd84346482d6db505cc44c788cd33897ce42ad0d1ca6acbf8404e35843e05"
+    },
+    {
+      "move": "RAPID_SPIN",
+      "local_label": "BattleAnim_RapidSpin_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RapidSpin",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9aee77c665d49ac79904e7c879671d0ab5a58008833fdf3f9244f4125f6cbe6f"
+    },
+    {
+      "move": "SWEET_SCENT",
+      "local_label": "BattleAnim_SweetScent",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_SweetScent",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "2e971dd40f60228a23c84590023d75f0ba0e85e298bbf9481cea056487a2e925"
+    },
+    {
+      "move": "IRON_TAIL",
+      "local_label": "BattleAnim_IronTail_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_IronTail",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "30b7e28aee784c7c84289f14cfbda833dca5ed9244b623181a71737541c8b943"
+    },
+    {
+      "move": "METAL_CLAW",
+      "local_label": "BattleAnim_MetalClaw_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_MetalClaw",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9ac0c01b1bd778f03f0a95962d215782582eabc6349f07782bfcabfc6dc466f2"
+    },
+    {
+      "move": "VITAL_THROW",
+      "local_label": "BattleAnim_VitalThrow",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_VitalThrow",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "b820bb2df380de06f4dfb715bf1e8cffcf30591aa6b35fe262d880fecabf7a39"
+    },
+    {
+      "move": "MORNING_SUN",
+      "local_label": "BattleAnim_MorningSun",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_MorningSun",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "1ea4d36ea8f954c3a19ed74f53da5bbc626e36feafb197d8958a058464a9be7d"
+    },
+    {
+      "move": "SYNTHESIS",
+      "local_label": "BattleAnim_Synthesis",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Synthesis",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "cf44d26025af2e66fffe1c910436a965450317f2df6f9851cbfac131f6fa78e1"
+    },
+    {
+      "move": "MOONLIGHT",
+      "local_label": "BattleAnim_Moonlight",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Moonlight",
+      "status": "preserved",
+      "reason": "Keep the rising moon globe and added glimmer sequence.",
+      "script_sha256": "fdc56240e284155c3c57376d939883e53a0c7cb20c0371264035066060cc5a9b"
+    },
+    {
+      "move": "HIDDEN_POWER",
+      "local_label": "BattleAnim_HiddenPower_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_HiddenPower",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2051d50a54e836c741726cca3375e626463a47cb954194af2c31c3846bc9bc9f"
+    },
+    {
+      "move": "CROSS_CHOP",
+      "local_label": "BattleAnim_CrossChop_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_CrossChop",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "698d335088def3a176c9bf15d13bc974c40d0530be6b9e5bdd923b86496fc344"
+    },
+    {
+      "move": "TWISTER",
+      "local_label": "BattleAnim_Twister",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_Twister",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a2733efd248d9036b0f1ec3238b62655a5f5a838b01f231b7a191b540a8e9e10"
+    },
+    {
+      "move": "RAIN_DANCE",
+      "local_label": "BattleAnim_RainDance_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RainDance",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "b50bff2ae65ac26609def95fe194fe91faf889d0ef686053b91ea91807990687"
+    },
+    {
+      "move": "SUNNY_DAY",
+      "local_label": "BattleAnim_SunnyDay_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SunnyDay",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "0a58f22d871a4055e022b9866a29f0b67885f12a10ac8df0eb5ac7d985226062"
+    },
+    {
+      "move": "CRUNCH",
+      "local_label": "BattleAnim_Crunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Crunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1739c322c2f26c5cff27b013f8d0e3ef9bd2241d76c772e63eb37a0e8c8913a6"
+    },
+    {
+      "move": "MIRROR_COAT",
+      "local_label": "BattleAnim_MirrorCoat_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_MirrorCoat",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d6462d373c259e0b148d4f18f348e6439176dc0e13267fdccf44f3f3b73a1070"
+    },
+    {
+      "move": "PSYCH_UP",
+      "local_label": "BattleAnim_PsychUp",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_PsychUp",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "11f8f0383646aeb2ad9160e1715513777d1a1725ffab613087a71a41b05605d3"
+    },
+    {
+      "move": "EXTREMESPEED",
+      "local_label": "BattleAnim_Extremespeed_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Extremespeed",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "9022a3c0379bd7a0cf1ce75231a26deb4f6411afd9831836cfcfab2843af556f"
+    },
+    {
+      "move": "ANCIENTPOWER",
+      "local_label": "BattleAnim_Ancientpower_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Ancientpower",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8c04fe8a1c9437caa4995456ac0dab66110376cdb95b1eda9c596b5dfd33b186"
+    },
+    {
+      "move": "SHADOW_BALL",
+      "local_label": "BattleAnim_ShadowBall_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ShadowBall",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c3a667b745188c7c8d7f500e16e00e412fd94340d11631ba1f2105e78d5cef7b"
+    },
+    {
+      "move": "FUTURE_SIGHT",
+      "local_label": "BattleAnim_FutureSight_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FutureSight",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "2c4c1619adccad3a2ac4d43100d6448546fb6ed5d4069c51c6e1c15fc3fe254f"
+    },
+    {
+      "move": "ROCK_SMASH",
+      "local_label": "BattleAnim_BrickBreak_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_RockSmash",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "ad0456409dbb104bf5cf2f034c7a3c366b5e286ffbd55da19b52bcd01bd7589a"
+    },
+    {
+      "move": "WHIRLPOOL",
+      "local_label": "BattleAnim_Whirlpool_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Whirlpool",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "26db5bcd9697d88aaec3ce6b24f227c52596ace36fe259839846709cbece2abf"
+    },
+    {
+      "move": "BEAT_UP",
+      "local_label": "BattleAnim_BeatUp",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_BeatUp",
+      "status": "preserved",
+      "reason": "Keep actual party-member sprite substitutions between hits.",
+      "script_sha256": "b30be38b833682de9bd0650b70fa28ea48812ecbbd6985412d9a5a020b6a14fa"
+    },
+    {
+      "move": "SUCKER_PUNCH",
+      "local_label": "BattleAnim_SuckerPunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_SuckerPunch",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "338c7b2994f4072626d67e233ae5e99f8c301bc12266951c80e627ec1ea3079d"
+    },
+    {
+      "move": "DARK_PULSE",
+      "local_label": "BattleAnim_DarkPulse_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DarkPulse",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "97e80b910772a96eb55389ed3cc33b5d6026a7f5ea26d9c397f4b5bd00bbb152"
+    },
+    {
+      "move": "FIRE_FANG",
+      "local_label": "BattleAnim_FireFang",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_FireFang",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "85e30c5234cc2c3ffba7fd51cd6b407b25586d7e6d6e67e710478e5a20844145"
+    },
+    {
+      "move": "ICE_FANG",
+      "local_label": "BattleAnim_IceFang",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_IceFang",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "e1dda30b30e6f29e56b4727abee077dfdcb1d86de91bdafa783d569bd7ae5744"
+    },
+    {
+      "move": "THUNDER_FANG",
+      "local_label": "BattleAnim_ThunderFang",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_ThunderFang",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "4b2c040649ab2e8b340f04770989278615fb738469369a1b17bde75639529a7c"
+    },
+    {
+      "move": "AQUA_JET",
+      "local_label": "BattleAnim_AquaJet_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_AquaJet",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "42cc9978a859702122e3bf78e8719d36b2126485c50fe310ee3739535d26520f"
+    },
+    {
+      "move": "ICE_SHARD",
+      "local_label": "BattleAnim_IceShard_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_IceShard",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "dffde6cd0ca199b9672a245a5b676b21898577953d7ea83a44f72485d4e364f3"
+    },
+    {
+      "move": "BUG_BUZZ",
+      "local_label": "BattleAnim_BugBuzz_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_BugBuzz",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "c772054c11815fc7ef7206f160388ca6ddb5ad27fc00ca068b4b7fac572c15c7"
+    },
+    {
+      "move": "STONE_EDGE",
+      "local_label": "BattleAnim_StoneEdge_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_StoneEdge",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "e3a36fa71be4e3054cde4bdad9a775f7fd15cedf60ec564950d762c0f1d12edc"
+    },
+    {
+      "move": "AIR_SLASH",
+      "local_label": "BattleAnim_AirSlash_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_AirSlash",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "4211d51dbccd587b94f7e3bd740931524f7b8faa23be0d2b08cca66903541c89"
+    },
+    {
+      "move": "POISON_FANG",
+      "local_label": "BattleAnim_PoisonFang",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_PoisonFang",
+      "status": "preserved",
+      "reason": "Keep the bite, purple poison splash and extra impact.",
+      "script_sha256": "d9f0394d26dc17eff67ce42320ed2be95e538a0e3bee6437fb88c86ebcaaa1be"
+    },
+    {
+      "move": "HAIL",
+      "local_label": "BattleAnim_Hail_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_Hail",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "d60cb5949280dae196e3e3e51efba398df2da246fbcb0708305ea863d9cbb387"
+    },
+    {
+      "move": "LEAF_BLADE",
+      "local_label": "BattleAnim_LeafBlade",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_LeafBlade",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "469ecaaecd58da8ea08a5db450997dc10bf9df5dab3976b0f0d2b4c74aee5d8a"
+    },
+    {
+      "move": "SHADOW_SNEAK",
+      "local_label": "BattleAnim_ShadowSneak",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_ShadowSneak",
+      "status": "preserved",
+      "reason": "Keep the darkened field, disappearing user and fast shadow strike.",
+      "script_sha256": "83ca2b856f10865658ed79945d024254c847cf5d72dd732e974e92ed8868e222"
+    },
+    {
+      "move": "SHADOW_PUNCH",
+      "local_label": "BattleAnim_ShadowPunch",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_ShadowPunch",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "5afeeb4bedff3534c992f0ae401312f9e338c9178e2cd2c548a37ebe0c518097"
+    },
+    {
+      "move": "SHADOW_CLAW",
+      "local_label": "BattleAnim_ShadowClaw_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ShadowClaw",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "a383504f18f82f306c3d69e83dc238db6aeb7c3b443d690bfe3186942fc497e9"
+    },
+    {
+      "move": "POISON_JAB",
+      "local_label": "BattleAnim_PoisonJab_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PoisonJab",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "da3d00002647c6887dba78408ce256fe62a88c9dfe0ef381326ee8a0e563c5ae"
+    },
+    {
+      "move": "BUG_BITE",
+      "local_label": "BattleAnim_BugBite_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_BugBite",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "5d017bcc50f869ceb612920097b7efb7d9db22079608c3cd1b5b30637176e773"
+    },
+    {
+      "move": "X_SCISSOR",
+      "local_label": "BattleAnim_XScissor_PC4",
+      "local_file": "data/moves/animations4.asm",
+      "reference_label": "BattleAnim_XScissor",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "25c03cbbd846561c934390ac3f318723cecdcf23000c363fc8804716296e3bdd"
+    },
+    {
+      "move": "U_TURN",
+      "local_label": "BattleAnim_UTurn_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_UTurn",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "dd99b88a2eeb23bbb21e1097254ed07023db99f9e97498a30d7624e7dc6c807c"
+    },
+    {
+      "move": "DRAGON_CLAW",
+      "local_label": "BattleAnim_DragonClaw_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DragonClaw",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "7e39096bf75bc7fc9b5832e8d62fb7a85b58175a86b4bba75064d4f88f8cf45c"
+    },
+    {
+      "move": "DRACO_METEOR",
+      "local_label": "BattleAnim_DracoMeteor",
+      "local_file": "data/moves/animations.asm",
+      "reference_label": "BattleAnim_DracoMeteor",
+      "status": "preserved",
+      "reason": "Keep separate small/big meteors, dragon palettes and corrected impacts.",
+      "script_sha256": "dbbaae2b432a76902755dc8f93ef7298bea21ad66441b0194a592d4ef9b8f63a"
+    },
+    {
+      "move": "BULLET_PUNCH",
+      "local_label": "BattleAnim_BulletPunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_BulletPunch",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "6e72d62cb0d6abf707681ade48cae2b7480a803abf06d5b4c29e2a5ff1a6d24f"
+    },
+    {
+      "move": "DRAIN_PUNCH",
+      "local_label": "BattleAnim_DrainPunch_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_DrainPunch",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8c614741bdf128527697c76f098e37f47faaf1a4edd860d11da587ce2c61e76b"
+    },
+    {
+      "move": "CLOSE_COMBAT",
+      "local_label": "BattleAnim_CloseCombat_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_CloseCombat",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "70e4d28423cb961358291e356a39696b0e3d57f5a92dae51fa2aaf0363d4fa99"
+    },
+    {
+      "move": "AERIAL_ACE",
+      "local_label": "BattleAnim_AerialAce",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_AerialAce",
+      "status": "preserved",
+      "reason": "Keep the shared speed lines and earlier user restoration, preventing sprite loss.",
+      "script_sha256": "82e115f2e9158b6f9d09c02a1c71aa294cb20e93433cad249d5dc6d3d111ba86"
+    },
+    {
+      "move": "AQUA_TAIL",
+      "local_label": "BattleAnim_AquaTail",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_AquaTail",
+      "status": "preserved",
+      "reason": "Keep safe initial GFX loading and the corrected impact graphics set.",
+      "script_sha256": "fc1e244ea7e9cecb854e8efc44c9ec7641c30ae548cd9d0ee447da88e9e5a2f6"
+    },
+    {
+      "move": "ASTONISH",
+      "local_label": "BattleAnim_Astonish",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_Astonish",
+      "status": "preserved",
+      "reason": "Keep object cleanup instead of reloading battler graphics over active objects.",
+      "script_sha256": "d0634c6cee8cff6e9cd47b8e34aae626fa32f6f086389cab816f2fd7354ce04c"
+    },
+    {
+      "move": "AURA_SPHERE",
+      "local_label": "BattleAnim_AuraSphere_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_AuraSphere",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "0f622327519b247c2871c37c86bcba3f08b2dfb497ecec6cb11190e3482fa287"
+    },
+    {
+      "move": "AVALANCHE",
+      "local_label": "BattleAnim_Avalanche_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_Avalanche",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "395071a144d5dbf399603c28a26f10a3dba52846af7ee4621c6401f19510341f"
+    },
+    {
+      "move": "BRAVE_BIRD",
+      "local_label": "BattleAnim_BraveBird",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_BraveBird",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "734fcd7ac7cb18c4d5397f65e14c041e68a939f1cd32115ad47f3857df0756e3"
+    },
+    {
+      "move": "BULK_UP",
+      "local_label": "BattleAnim_BulkUp",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_BulkUp",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "5353f7ff2c78f9eef3d46ea6507ca4c3793d94b85acb6c7b7de7e6577cc52917"
+    },
+    {
+      "move": "CALM_MIND",
+      "local_label": "BattleAnim_CalmMind",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_CalmMind",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "130926604ba33500e5eb08602f62aaa7e0779694417bdc9039969462d0391f18"
+    },
+    {
+      "move": "DRAGON_DANCE",
+      "local_label": "BattleAnim_DragonDance",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_DragonDance",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "de2a1de0c16b3b698b398e9a81c612fe57eefb783e899ae2e9b548ef78a470d2"
+    },
+    {
+      "move": "DRAGON_PULSE",
+      "local_label": "BattleAnim_DragonPulse",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_DragonPulse",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "d50fba59f7748a3f13192c2fbc227464dc78129a1258964423a746d7498ad44f"
+    },
+    {
+      "move": "EARTH_POWER",
+      "local_label": "BattleAnim_EarthPower",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_EarthPower",
+      "status": "preserved",
+      "reason": "Keep the added fire-colored eruption palette.",
+      "script_sha256": "dccb94e9709c5f90b2e78faca726df27fd571321e800a719b6fc972e0f629fb4"
+    },
+    {
+      "move": "ENERGY_BALL",
+      "local_label": "BattleAnim_EnergyBall_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_EnergyBall",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "aa0f135129a080f4ebd42015dfed61b5439eaf2e07fa1455ee82073cc3c01425"
+    },
+    {
+      "move": "EXTRASENSORY",
+      "local_label": "BattleAnim_Extrasensory",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_Extrasensory",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "4baa9a0e20636e5f50487fb6591def5bf0577c1c12aece70ebd9633c4757b941"
+    },
+    {
+      "move": "FACADE",
+      "local_label": "BattleAnim_Facade",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_Facade",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ae6b09ccc11d8a951aac315f7564e7138d432d03d42a88ace333c1d8bf30d066"
+    },
+    {
+      "move": "FLARE_BLITZ",
+      "local_label": "BattleAnim_FlareBlitz_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FlareBlitz",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "92799624b9b3df2116897ab25109579453c4937937d9f1bafcb54473ad72962d"
+    },
+    {
+      "move": "FLASH_CANNON",
+      "local_label": "BattleAnim_FlashCannon",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_FlashCannon",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "ee2341c27ad29841df8ad6418033c0b78a2f003152b6d07e99c2321d48f95944"
+    },
+    {
+      "move": "FOCUS_BLAST",
+      "local_label": "BattleAnim_FocusBlast_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_FocusBlast",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "70a2e0e4469c7731eb047f31a348f6c0a6b5ff4fc0dd2b3372560ed4c8c41b4a"
+    },
+    {
+      "move": "GIGA_IMPACT",
+      "local_label": "BattleAnim_GigaImpact_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_GigaImpact",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "47dd2527ad85ea73f1019aab22b1d638a6db22c69403880772dec9fb17224a6f"
+    },
+    {
+      "move": "GUNK_SHOT",
+      "local_label": "BattleAnim_GunkShot_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_GunkShot",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "2dab77384102e33af098e14fa9012ddec93b7bf92e3ca6f20ab1ab39e576f032"
+    },
+    {
+      "move": "GYRO_BALL",
+      "local_label": "BattleAnim_GyroBall",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_GyroBall",
+      "status": "preserved",
+      "reason": "Keep corrected object index, palette restoration and valid macro syntax.",
+      "script_sha256": "288147b36cb842fde81d0a7c5469bfdd4a4f169e311a81c1c0c6585787aa80b4"
+    },
+    {
+      "move": "HYPER_VOICE",
+      "local_label": "BattleAnim_HyperVoice_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_HyperVoice",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "1e896720c13dfdb4fbf877878f383451c9407b58e4b2efc1ed26319de7056beb"
+    },
+    {
+      "move": "ICICLE_SPEAR",
+      "local_label": "BattleAnim_IcicleSpear",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_IcicleSpear",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "5a1a3f6523b448e9c15ff9433d41d8fc0f5e0e2e8302ceea4ffbfd82afddb89b"
+    },
+    {
+      "move": "IRON_HEAD",
+      "local_label": "BattleAnim_IronHead",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_IronHead",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "f5768203171b27d70dd955100603b61de3438358c189ab8648158ddd38af39c3"
+    },
+    {
+      "move": "KNOCK_OFF",
+      "local_label": "BattleAnim_KnockOff",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_KnockOff",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a5e7c542dab29c7bcaab8bf4ccb2e07214b43644785bb764cae199542c8a6216"
+    },
+    {
+      "move": "NASTY_PLOT",
+      "local_label": "BattleAnim_NastyPlot",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_NastyPlot",
+      "status": "preserved",
+      "reason": "Keep dedicated thought/hand/surprise graphics instead of reused Amnesia icons.",
+      "script_sha256": "1bf2ccf7fa06e9ae2471cfb7c2c7ff622b81d3a6ce47916c645b6dc211d60ff1"
+    },
+    {
+      "move": "NIGHT_SLASH",
+      "local_label": "BattleAnim_NightSlash",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_NightSlash",
+      "status": "preserved",
+      "reason": "Keep the dedicated horizontal slash object and its orientation parameter.",
+      "script_sha256": "ad50c6132318b4f6a5d4b0281b889defa7bafe9c90e855bc1ca0a331f17ddcf7"
+    },
+    {
+      "move": "POWER_GEM",
+      "local_label": "BattleAnim_PowerGem_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_PowerGem",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "adda445f1942e5255a624fd383212b152eaf87b1b62964c56a25c56436470bf7"
+    },
+    {
+      "move": "POWER_WHIP",
+      "local_label": "BattleAnim_PowerWhip",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_PowerWhip",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "9c69086729f57c0a516833a74385e65866e5b8a5e2cf897ff2945209d11e5a69"
+    },
+    {
+      "move": "ROCK_BLAST",
+      "local_label": "BattleAnim_RockBlast",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_RockBlast",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "5bd65a0e7d3cf28830fce663b2e32dbbf6b6ede8cfd8918830c07d08afc84df8"
+    },
+    {
+      "move": "ROOST",
+      "local_label": "BattleAnim_Roost",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_Roost",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "486962e5bdeaccf56146fa7c3dde3f181a792cbcbd1c04cfb6cab3f8097ad561"
+    },
+    {
+      "move": "SEED_BOMB",
+      "local_label": "BattleAnim_SeedBomb",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_SeedBomb",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "85ab2d8494ee9f20681d484e649797ac1e318f546ccdd7c291f7b4406ebaf546"
+    },
+    {
+      "move": "SKILL_SWAP",
+      "local_label": "BattleAnim_SkillSwap",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_SkillSwap",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ecc95ef3d07400220fda490da8a54a2342692d6f4b95a60fe021c2de12762841"
+    },
+    {
+      "move": "TOXIC_SPIKES",
+      "local_label": "BattleAnim_ToxicSpikes",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_ToxicSpikes",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "ba2c8c3e1b735d89f873da87df13caa6232a4ff08238366111c1b044fb7f98a7"
+    },
+    {
+      "move": "TRICK",
+      "local_label": "BattleAnim_Trick",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_Trick",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "7f5ada132992546004fd183c313f305e81891ef86a84597aeafaf2ac30b45827"
+    },
+    {
+      "move": "TRICK_ROOM",
+      "local_label": "BattleAnim_TrickRoom",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_TrickRoom",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "d5f925ff2f13c104153a1264c3d85489dfa85517b2088950a686601e9c97c2b5"
+    },
+    {
+      "move": "WATER_PULSE",
+      "local_label": "BattleAnim_WaterPulse",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_WaterPulse",
+      "status": "preserved",
+      "reason": "Keep explicit user restoration using the correct fourth object.",
+      "script_sha256": "287dd9500360c43e018eeabe4e330de82d3681242ee01a456830b15a778277aa"
+    },
+    {
+      "move": "WILL_O_WISP",
+      "local_label": "BattleAnim_WillOWisp_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_WillOWisp",
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "f16b2b06f70fd5c3e4efe767fe54c1f2a5c91d6c07a182794e125b9bf5ea5c0c"
+    },
+    {
+      "move": "ZEN_HEADBUTT",
+      "local_label": "BattleAnim_ZenHeadbutt_PC3",
+      "local_file": "data/moves/animations3.asm",
+      "reference_label": "BattleAnim_ZenHeadbutt",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "da88ce3ad0c848c60900ed53536fb88bd0410da8d55aac4348256ce6919da0fb"
+    },
+    {
+      "move": "SLACK_OFF",
+      "local_label": "BattleAnim_SlackOff",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_SlackOff",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "ad402391dbc45ce6cc0abf4b6ee2bfb370a3c61930740ac1dbafbc8db062efe4"
+    },
+    {
+      "move": "VOLT_TACKLE",
+      "local_label": "BattleAnim_VoltTackle",
+      "local_file": "data/moves/animations2.asm",
+      "reference_label": "BattleAnim_VoltTackle",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "0aa68484a4c856915142c1ae8ec12c5aee417b9f1be8ccebb83518af2df450c7"
+    },
+    {
+      "move": "OVERHEAT",
+      "local_label": "BattleAnim_Overheat_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Overheat",
+      "status": "preserved",
+      "reason": "Keep the red flame object; the shared radial flame has a different palette here.",
+      "script_sha256": "e58655e11f88cd1ff26550bd1a5004a90f1eb59fe4a54e9d236d4321a164b12f"
+    },
+    {
+      "move": "LEAF_STORM",
+      "local_label": "BattleAnim_LeafStorm_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_LeafStorm",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "976abc69f18609df1ab5f161d6147bf8dddbe7a560712bbcbd21d785bae24b15"
+    },
+    {
+      "move": "FAKE_OUT",
+      "local_label": "BattleAnim_FakeOut_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_FakeOut",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "af2f6dd44ba1c6ae6db026efd0a10af38753a239dfef39d99a2964d73b289a5f"
+    },
+    {
+      "move": "IRON_DEFENSE",
+      "local_label": "BattleAnim_IronDefense_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_IronDefense",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "dde17b32f1923f538f972cace8e621371cf5c3b5140e4ea7f335ef7b41a34ad2"
+    },
+    {
+      "move": "ROCK_POLISH",
+      "local_label": "BattleAnim_RockPolish_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_RockPolish",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "e5fc0bff83e8aa2d6e89f955b0b27f5301a1c6e668089295cdb4aa9907b99b08"
+    },
+    {
+      "move": "WOOD_HAMMER",
+      "local_label": "BattleAnim_WoodHammer_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_WoodHammer",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "1493ad6dd5f89fae439cff98744f0c9323d90c611e21f5ee7c0edf9796ff54be"
+    },
+    {
+      "move": "HEAD_SMASH",
+      "local_label": "BattleAnim_HeadSmash_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_HeadSmash",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "8da9b04af5766b0f4ef1c0fa7981b6f4b363955356534522e6f3325487c495b9"
+    },
+    {
+      "move": "PSYCHO_CUT",
+      "local_label": "BattleAnim_PsychoCut_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_PsychoCut",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "2284818fbbbc967dd4fd6c8791b66fb9f7b510f68daa1c86ed722c12797badfc"
+    },
+    {
+      "move": "BRICK_BREAK",
+      "local_label": "BattleAnim_BrickBreak_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_BrickBreak",
+      "status": "preserved",
+      "reason": "Keep the visible screen, chop, shattering fragments and impact.",
+      "script_sha256": "ea063e144487da21cacf4861ed55edd91a91daedb0b3338ad739532fa93f13bd"
+    },
+    {
+      "move": "HEAT_WAVE",
+      "local_label": "BattleAnim_HeatWave_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_HeatWave",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "f44c1410fadd7a589d28bfed2ff07dd2dfb407b1a4284f1d35defda4d1d351eb"
+    },
+    {
+      "move": "BULLET_SEED",
+      "local_label": "BattleAnim_BulletSeed_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_BulletSeed",
+      "status": "preserved",
+      "reason": "Keep one short volley per native multi-hit iteration, avoiding repeated volleys.",
+      "script_sha256": "6c78b2228063a4466f0761778f973b920c10494d8f3ab12d4d14d217700dd79b"
+    },
+    {
+      "move": "ROCK_TOMB",
+      "local_label": "BattleAnim_RockTomb_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_RockTomb",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a5551040226257385fa01c2dec05a1f3945b421b934db703d4077ef4678ed023"
+    },
+    {
+      "move": "MUD_SHOT",
+      "local_label": "BattleAnim_MudShot_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_MudShot",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "1725ec331e34d68e00ad5a976eae86b644fccb3791011fd83a14a19dea5e5cd1"
+    },
+    {
+      "move": "AIR_CUTTER",
+      "local_label": "BattleAnim_AirCutter_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_AirCutter",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "857f844312cc373e33e4d9b11e691ba15a4d585402d3c2fc8b22f1106b283f70"
+    },
+    {
+      "move": "CROSS_POISON",
+      "local_label": "BattleAnim_CrossPoison_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_CrossPoison",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "cdec1c6be8edac502055ef1c5e8a19d16ee5a82d3262b7319ccf249d610a1e33"
+    },
+    {
+      "move": "MAGICAL_LEAF",
+      "local_label": "BattleAnim_MagicalLeaf_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_MagicalLeaf",
+      "status": "preserved",
+      "reason": "Keep the Aurora palette on the actual green leaf slot in this engine.",
+      "script_sha256": "35fc2b5694eafe7c9bac34711e0c05df16fa875a4de4c5c51143b2829900cf77"
+    },
+    {
+      "move": "SIGNAL_BEAM",
+      "local_label": "BattleAnim_SignalBeam_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_SignalBeam",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "6b552b405ab427f411137673fc92b50fe5aa58d489f23029e820e62f3b37d86a"
+    },
+    {
+      "move": "STEALTH_ROCK",
+      "local_label": "BattleAnim_StealthRock_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_StealthRock",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "30a52381ebd5013d00ce80ef652db31a17aab23a42bab6fc10288f49360d6a4c"
+    },
+    {
+      "move": "DEFOG",
+      "local_label": "BattleAnim_Defog_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Defog",
+      "status": "preserved",
+      "reason": "Upstream has an empty placeholder; retain the implemented animation.",
+      "script_sha256": "7ed7434beaafdbe7742004a58dc7383de6841ac07bdb46f1595c272c1c1cc111"
+    },
+    {
+      "move": "SUPERPOWER",
+      "local_label": "BattleAnim_Superpower_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Superpower",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "37ab00da9234c435e0b01049b36ec142987dbe9be45dd845f70a12caaeb6972e"
+    },
+    {
+      "move": "CRUSH_CLAW",
+      "local_label": "BattleAnim_CrushClaw_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_CrushClaw",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "28a30dd76ab1b7b12f04b528efb3d63f6653a1914554b4b828990f99502f8fdc"
+    },
+    {
+      "move": "FORCE_PALM",
+      "local_label": "BattleAnim_ForcePalm_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_ForcePalm",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "d2de6ebf7133cc3d303eff9746b6255415d32ee2115077a52ed8367ea72d3f3a"
+    },
+    {
+      "move": "HAMMER_ARM",
+      "local_label": "BattleAnim_HammerArm_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_HammerArm",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "5ce6f0dfd6844c4e28a0acab98eb72308101324daaf71ed314a82c2ea974d9a8"
+    },
+    {
+      "move": "BOUNCE",
+      "local_label": "BattleAnim_Bounce_CC",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Bounce",
+      "status": "preserved",
+      "reason": "Keep the complete charge, hit and miss paths and restored user sprite.",
+      "script_sha256": "8976fc309ea47d75a69c87a870c6438eeef922919e5e77dc9d64e6c6cc81710e"
+    },
+    {
+      "move": "TORMENT",
+      "local_label": "BattleAnim_Torment_PO",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Torment",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "9924b8912727ed85e9e5e9a73b6b62bc2e89b8fcd2dfcb6063ff5d5d20f7d47a"
+    },
+    {
+      "move": "TAUNT",
+      "local_label": "BattleAnim_Taunt_PO",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Taunt",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "a8dfa44f69c0b8487e7a75eb05a78903f096a47a43ee5136c067919a8a8104b9"
+    },
+    {
+      "move": "YAWN",
+      "local_label": "BattleAnim_Yawn_PO",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Yawn",
+      "status": "matching",
+      "reason": "Same normalized animation commands and reachable helper bodies.",
+      "script_sha256": "aca60b90e4c5a09dc1859a23fa6b02abc4388438f5f3e95bc342c3c336924d74"
+    },
+    {
+      "move": "WISH",
+      "local_label": "BattleAnim_Wish_PO",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_Wish",
+      "status": "updated",
+      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
+      "script_sha256": "b374ccccd54fd231f2b90a192c57c146cb0e343f97c0c815e0b6854c6ab219d7"
+    },
+    {
+      "move": "WEATHER_BALL",
+      "local_label": "BattleAnim_WeatherBall_PO",
+      "local_file": "data/moves/animations5.asm",
+      "reference_label": "BattleAnim_WeatherBall",
+      "status": "preserved",
+      "reason": "Keep corrected 120-pixel travel, dedicated ice burst and removed transition flash.",
+      "script_sha256": "80d07f083a2d18f3e35418d38aa8981552313297dec65620fe9c2f27b4d77368"
+    }
+  ],
+  "support_file_sha256": {
+    "constants/battle_anim_constants.asm": "4270989ef46121287018f85285c716470f3e010e84cefee84512c100f82a51dd",
+    "macros/scripts/battle_anims.asm": "58ad390e02afe1cd39028ebd644ffae6f6b88d02ba47a90dded6473e6c849d20",
+    "data/battle_anims/objects.asm": "619af733e9e2a98ba52cbbb62228744d52fd93271e9f9e2c6884b29a788d3e4b",
+    "data/battle_anims/framesets.asm": "c5879f543d64f6ddfde1b31d1bdb0b7db32b59806bec87bc21afbd71b8b3be2b",
+    "data/battle_anims/oam.asm": "8ad57517388a8bfa98498bdf3c5aded3f10670c123c90ef10ce520eacd3e3e90",
+    "data/battle_anims/object_gfx.asm": "492dece752084e73f8459a07db33f7dc794247421e3fa86fdc1afdae1d0df4fc",
+    "engine/battle_anims/anim_commands.asm": "39d65edf7a019b5deef472ccd52db87b1e30aba0259037481db1117fb37691f7",
+    "engine/battle_anims/core.asm": "db9ede2ae5ab5dbfc370331f3847029b7ab65481e06a8119913e7552f475e46a",
+    "engine/battle_anims/functions.asm": "471bed5457a8a1b38e7b09f69c4c9a40f28d8266a1a360a36428f6410a2a6e9d",
+    "engine/battle_anims/helpers.asm": "45c8df0e4c57d45911a4691d670d9096d156f43f972b4f7c37f0919adf6ffbac",
+    "engine/battle_anims/data_readers.asm": "8365f057a95719d2cb64897c2a140accacf6eaf8100b1f93f5794be0b8753cec",
+    "engine/battle_anims/object_readers.asm": "0a829a3fecb0c20ca464365e747058522f537ee0a1b093067879406751aa3e11",
+    "gfx/battle_anims.asm": "80080815ac7cb167ce28b16da100d29039023bb51d947dd3f936d3a0da03be2e",
+    "gfx/battle_anims/custom.pal": "65a21d4a8f5330aaa99ee32985ca05eedfd162c85ea1af2bbb5b9d0cee4c8825",
+    "gfx/battle_anims/cosmicpower.png": "d3e1ce2fce32bdda9b49a0ce6275aeba8b0280fecbe25cb2c3b0ba2acea161a6",
+    "data/moves/animations.asm": "15d96b5a8813e8a227949cda5e19a07bec6084c68b309a9c3da5f50107bf7161",
+    "data/moves/animations2.asm": "a38de20819ebe926f03533a99b3f8e570f0183e3ee1071321d64d723bd338543",
+    "data/moves/animations3.asm": "082007e8c26c796b0453522474cb47306eb9389a7321541f724367f5807336b6",
+    "data/moves/animations4.asm": "713eff2d6bf83b385efe65fa7067ad428c220502de93b88840bccdc05087d5ce",
+    "data/moves/animations5.asm": "5414fe4a3d602f1363d35757fe3fbf95acdc2cbf5d22b4fc6866d3a41d8e17f4"
+  }
+}

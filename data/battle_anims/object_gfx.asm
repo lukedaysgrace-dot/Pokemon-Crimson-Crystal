@@ -95,3 +95,5 @@ AnimObjGFX:
 	anim_obj_gfx  8, AnimObjTauntGFX ; ported from pokeorange
 	anim_obj_gfx 16, AnimObjWeatherBallGFX ; ported from mae-pokeorange
 	anim_obj_gfx  9, AnimObjWoodHammerGFX
+
+	anim_obj_gfx 5, AnimObjCosmicPowerGFX
