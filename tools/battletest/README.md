@@ -20,6 +20,15 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+`python3 tools/battletest/olivine_muscle_band_checks.py` checks Olivine Port's
+right-facing sailor, animated Machamp icon, one-time Muscle Band gift, full-Bag
+retry and follow-up dialogue through native A-button interactions. It also
+checks Machamp's outdoor graphics allocation, verifies both frames' VRAM bytes
+against `gfx/icons/machamp.2bpp`, and confirms that both frames reach the sprite
+renderer and change the displayed pixels. It checks map re-entry and the
+saved-data layout, and captures the placement and animated preview under
+`.tmpbuild/olivine-muscle-band/`.
+
 Spider Web's focused placement, poison, immunity, item and clearing cases
 live in `tests/84-spider-web.yaml`. To also test native switch-ins against
 every ability on both sides:
