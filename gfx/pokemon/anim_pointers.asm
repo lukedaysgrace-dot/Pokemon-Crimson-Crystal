@@ -494,3 +494,4 @@ AnimationPointers:
 	dba KrokorokAnimation
 	dba KrookodileAnimation
 	dba GorochuAnimation
+	dba JirachiAnimation

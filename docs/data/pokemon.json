@@ -235438,5 +235438,349 @@
         "move": "Ice Beam"
       }
     ]
+  },
+  {
+    "const": "JIRACHI",
+    "name": "Jirachi",
+    "number": 496,
+    "stats": {
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Speed": 100,
+      "Sp. Atk": 100,
+      "Sp. Def": 100
+    },
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "abilities": [
+      "Serene Grace"
+    ],
+    "ability_slots": [
+      {
+        "name": "Serene Grace",
+        "hidden": false,
+        "slot": 1
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "WISH",
+        "move": "Wish"
+      },
+      {
+        "level": 1,
+        "const": "CONFUSION",
+        "move": "Confusion"
+      },
+      {
+        "level": 1,
+        "const": "DRACO_METEOR",
+        "move": "Draco Meteor"
+      },
+      {
+        "level": 1,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 10,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "level": 22,
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "level": 34,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 38,
+        "const": "FUTURE_SIGHT",
+        "move": "Future Sight"
+      },
+      {
+        "level": 42,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 63,
+        "const": "REST",
+        "move": "Rest"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [],
+    "tmhm": [
+      "DRAIN_PUNCH",
+      "HEADBUTT",
+      "TOXIC",
+      "ZAP_CANNON",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "ENERGY_BALL",
+      "FACADE",
+      "IRON_HEAD",
+      "THUNDER",
+      "RETURN",
+      "PSYCHIC_M",
+      "SHADOW_BALL",
+      "MUD_SLAP",
+      "SWAGGER",
+      "ICE_PUNCH",
+      "FLASH_CANNON",
+      "SANDSTORM",
+      "SWIFT",
+      "THUNDERPUNCH",
+      "REST",
+      "FIRE_PUNCH",
+      "ZEN_HEADBUTT",
+      "FLASH",
+      "THUNDERBOLT"
+    ],
+    "info": {
+      "catch_rate": 3,
+      "base_exp": 215,
+      "items": [
+        "STAR_PIECE",
+        "STAR_PIECE"
+      ],
+      "gender": "Genderless",
+      "egg_cycles": 120,
+      "growth": "Slow",
+      "egg_groups": [
+        "Undiscovered (cannot breed)"
+      ]
+    },
+    "sprite": "assets/pokemon/jirachi.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "REFLECT",
+      "LIGHT_SCREEN",
+      "THUNDER_WAVE"
+    ],
+    "blackthorn_tutor_moves": [
+      "AERIAL_ACE",
+      "AMNESIA",
+      "ANCIENTPOWER",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BODY_SLAM",
+      "CALM_MIND",
+      "CHARM",
+      "CONFUSE_RAY",
+      "DAZZLING_GLEAM",
+      "DEFENSE_CURL",
+      "DOUBLE_TEAM",
+      "DREAM_EATER",
+      "DYNAMICPUNCH",
+      "ENCORE",
+      "ENDURE",
+      "FRUSTRATION",
+      "GIGA_IMPACT",
+      "ICY_WIND",
+      "IRON_DEFENSE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METRONOME",
+      "MIMIC",
+      "MOONBLAST",
+      "NIGHTMARE",
+      "PLAY_ROUGH",
+      "PSYBEAM",
+      "PSYCH_UP",
+      "SAFEGUARD",
+      "SIGNAL_BEAM",
+      "SKILL_SWAP",
+      "SNORE",
+      "STEALTH_ROCK",
+      "TRICK",
+      "TRICK_ROOM",
+      "U_TURN",
+      "WATER_PULSE"
+    ],
+    "evolves_from": null,
+    "original_types": [
+      "Steel",
+      "Psychic"
+    ],
+    "updated_types": [
+      "Steel",
+      "Psychic"
+    ],
+    "updated_stats": {
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Speed": 100,
+      "Sp. Atk": 100,
+      "Sp. Def": 100
+    },
+    "original_stats": {
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Speed": 100,
+      "Sp. Atk": 100,
+      "Sp. Def": 100
+    },
+    "original_stats_source": "custom species",
+    "sprite_size": 56,
+    "back": "assets/pokemon/jirachi.back.png",
+    "back_size": 48,
+    "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM07",
+        "const": "ZAP_CANNON",
+        "move": "Zap Cannon"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM19",
+        "const": "ENERGY_BALL",
+        "move": "Energy Ball"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM25",
+        "const": "THUNDER",
+        "move": "Thunder"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM29",
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "tm": "TM31",
+        "const": "MUD_SLAP",
+        "move": "Mud-Slap"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM33",
+        "const": "ICE_PUNCH",
+        "move": "Ice Punch"
+      },
+      {
+        "tm": "TM34",
+        "const": "FLASH_CANNON",
+        "move": "Flash Cannon"
+      },
+      {
+        "tm": "TM37",
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM41",
+        "const": "THUNDERPUNCH",
+        "move": "Thunder Punch"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM48",
+        "const": "FIRE_PUNCH",
+        "move": "Fire Punch"
+      },
+      {
+        "tm": "TM52",
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "tm": "HM05",
+        "const": "FLASH",
+        "move": "Flash"
+      },
+      {
+        "tm": "Tutor",
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      }
+    ]
   }
 ]

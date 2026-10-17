@@ -1,0 +1,1080 @@
+{
+  "species": "JIRACHI",
+  "internal_id": 496,
+  "dex_number": 496,
+  "smogon": {
+    "repository": "https://github.com/smogon/pokemon-showdown",
+    "revision": "f7d73fdb20909885b70c4463f3878cf37875068d",
+    "scope": "Mainline through Scarlet/Violet DLC; before Legends Z-A",
+    "learnsets_commit_date": "2024-12-03T03:21:31Z",
+    "cutoff": "2025-01-01T00:00:00Z"
+  },
+  "smogon_moves": {
+    "AERIAL_ACE": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "allyswitch": [
+      "8M"
+    ],
+    "AMNESIA": [
+      "9M",
+      "8M"
+    ],
+    "ANCIENTPOWER": [
+      "4T"
+    ],
+    "AURA_SPHERE": [
+      "9M",
+      "8M"
+    ],
+    "BATON_PASS": [
+      "9M",
+      "8M"
+    ],
+    "BODY_SLAM": [
+      "9M",
+      "8M",
+      "3T"
+    ],
+    "CALM_MIND": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "chargebeam": [
+      "9M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "CHARM": [
+      "9M",
+      "8M"
+    ],
+    "confide": [
+      "7M",
+      "6M"
+    ],
+    "CONFUSE_RAY": [
+      "9M"
+    ],
+    "CONFUSION": [
+      "9L1",
+      "8L1",
+      "7L1",
+      "6L1",
+      "6S10",
+      "6S12",
+      "6S13",
+      "5L1",
+      "4L1",
+      "4S3",
+      "4S4",
+      "3L1",
+      "3S0",
+      "3S1"
+    ],
+    "cosmicpower": [
+      "9L84",
+      "8M",
+      "8L84",
+      "7L60",
+      "6L60",
+      "6S11",
+      "5L60",
+      "5S7",
+      "4L60",
+      "3L45"
+    ],
+    "DAZZLING_GLEAM": [
+      "9M",
+      "8M",
+      "7M",
+      "6M"
+    ],
+    "DEFENSE_CURL": [
+      "3T"
+    ],
+    "doomdesire": [
+      "9L98",
+      "8L98",
+      "7L70",
+      "6L70",
+      "5L70",
+      "4L70",
+      "3L50"
+    ],
+    "DOUBLE_EDGE": [
+      "9M",
+      "9L77",
+      "8L77",
+      "7L40",
+      "6L40",
+      "5L40",
+      "4L40",
+      "3T",
+      "3L35"
+    ],
+    "DOUBLE_TEAM": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "DRACO_METEOR": [
+      "5S6",
+      "4S4"
+    ],
+    "DRAIN_PUNCH": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4M"
+    ],
+    "DREAM_EATER": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3T"
+    ],
+    "DYNAMICPUNCH": [
+      "3T"
+    ],
+    "ENCORE": [
+      "9M",
+      "8M"
+    ],
+    "ENDURE": [
+      "9M",
+      "8M",
+      "4M",
+      "3T"
+    ],
+    "ENERGY_BALL": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "expandingforce": [
+      "9M",
+      "8T"
+    ],
+    "FACADE": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "faketears": [
+      "9M"
+    ],
+    "FIRE_PUNCH": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T",
+      "3T"
+    ],
+    "FLASH": [
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "FLASH_CANNON": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "fling": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "followme": [
+      "5S6"
+    ],
+    "FRUSTRATION": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "FUTURE_SIGHT": [
+      "9M",
+      "9L70",
+      "8M",
+      "8L70",
+      "7L55",
+      "6L55",
+      "5L55",
+      "4L55",
+      "3L40"
+    ],
+    "GIGA_IMPACT": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "grassknot": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "gravity": [
+      "9M",
+      "9L35",
+      "8L35",
+      "7T",
+      "7L45",
+      "6T",
+      "6L45",
+      "5T",
+      "5L45",
+      "4T",
+      "4L45"
+    ],
+    "happyhour": [
+      "6S12"
+    ],
+    "HEADBUTT": [
+      "4T"
+    ],
+    "healingwish": [
+      "9L56",
+      "8L56",
+      "7L50",
+      "7S14",
+      "6L50",
+      "6S9",
+      "5L50",
+      "5S5",
+      "5S7",
+      "5S8",
+      "4L50"
+    ],
+    "heartstamp": [
+      "6S11"
+    ],
+    "helpinghand": [
+      "9M",
+      "8M",
+      "8L14",
+      "7T",
+      "7L15",
+      "6T",
+      "6L15",
+      "6S10",
+      "5T",
+      "5L15",
+      "4T",
+      "4L15",
+      "3L15",
+      "3S2"
+    ],
+    "HIDDEN_POWER": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "HYPER_BEAM": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "ICE_PUNCH": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T",
+      "3T"
+    ],
+    "ICY_WIND": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T",
+      "3T"
+    ],
+    "imprison": [
+      "9M",
+      "8M"
+    ],
+    "IRON_DEFENSE": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "IRON_HEAD": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "lastresort": [
+      "9L91",
+      "8L91",
+      "7T",
+      "7L65",
+      "6T",
+      "6L65",
+      "5T",
+      "5L65",
+      "4T",
+      "4L65"
+    ],
+    "lifedew": [
+      "9L21",
+      "8L21"
+    ],
+    "LIGHT_SCREEN": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "luckychant": [
+      "7L30"
+    ],
+    "magiccoat": [
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "magicroom": [
+      "8M",
+      "7T",
+      "6T",
+      "5T"
+    ],
+    "MEGA_KICK": [
+      "8M"
+    ],
+    "MEGA_PUNCH": [
+      "8M"
+    ],
+    "metalsound": [
+      "9M"
+    ],
+    "meteorbeam": [
+      "9M",
+      "8T"
+    ],
+    "meteormash": [
+      "9L49",
+      "8L49",
+      "8S15",
+      "5S5",
+      "5S6",
+      "5S7"
+    ],
+    "METRONOME": [
+      "9M",
+      "8M",
+      "3T"
+    ],
+    "MIMIC": [
+      "3T"
+    ],
+    "MOONBLAST": [
+      "6S9"
+    ],
+    "MUD_SLAP": [
+      "9M",
+      "4T",
+      "3T"
+    ],
+    "naturalgift": [
+      "4M"
+    ],
+    "NIGHTMARE": [
+      "3T"
+    ],
+    "PLAY_ROUGH": [
+      "9M",
+      "8M",
+      "6S11"
+    ],
+    "poweruppunch": [
+      "6M"
+    ],
+    "PROTECT": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "PSYBEAM": [
+      "9M"
+    ],
+    "PSYCHIC_M": [
+      "9M",
+      "9L42",
+      "8M",
+      "8L42",
+      "8S15",
+      "7M",
+      "7L20",
+      "6M",
+      "6L20",
+      "5M",
+      "5L20",
+      "5S5",
+      "4M",
+      "4L20",
+      "3M",
+      "3L20",
+      "3S2"
+    ],
+    "psychicnoise": [
+      "9M"
+    ],
+    "PSYCH_UP": [
+      "9M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3T"
+    ],
+    "psyshock": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M"
+    ],
+    "RAIN_DANCE": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "recycle": [
+      "7T",
+      "6T",
+      "5T",
+      "4M"
+    ],
+    "REFLECT": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "refresh": [
+      "7L25",
+      "6L25",
+      "5L25",
+      "4L25",
+      "3L25",
+      "3S2"
+    ],
+    "REST": [
+      "9M",
+      "9L63",
+      "8M",
+      "8L63",
+      "8S15",
+      "7M",
+      "7L30",
+      "7S14",
+      "6M",
+      "6L5",
+      "6S13",
+      "5M",
+      "5L5",
+      "4M",
+      "4L5",
+      "4S3",
+      "4S4",
+      "3M",
+      "3L5",
+      "3S0",
+      "3S1",
+      "3S2"
+    ],
+    "RETURN": [
+      "7M",
+      "6M",
+      "6S10",
+      "5M",
+      "5S8",
+      "4M",
+      "3M"
+    ],
+    "round": [
+      "8M",
+      "7M",
+      "6M",
+      "5M"
+    ],
+    "SAFEGUARD": [
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "SANDSTORM": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "secretpower": [
+      "6M",
+      "4M",
+      "3M"
+    ],
+    "SHADOW_BALL": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "shockwave": [
+      "7T",
+      "6T",
+      "4M",
+      "3M"
+    ],
+    "SIGNAL_BEAM": [
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "SKILL_SWAP": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4M",
+      "3M"
+    ],
+    "SLEEP_TALK": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5T",
+      "4M",
+      "3T"
+    ],
+    "SNORE": [
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T",
+      "3T"
+    ],
+    "STEALTH_ROCK": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4M"
+    ],
+    "steelbeam": [
+      "9M",
+      "8T"
+    ],
+    "storedpower": [
+      "9M",
+      "8M"
+    ],
+    "SUBSTITUTE": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3T"
+    ],
+    "SUNNY_DAY": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "SWAGGER": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3T"
+    ],
+    "SWIFT": [
+      "9M",
+      "9L7",
+      "8M",
+      "8L7",
+      "7L10",
+      "7S14",
+      "6L10",
+      "6S9",
+      "6S12",
+      "5L10",
+      "5S5",
+      "5S8",
+      "4T",
+      "4L10",
+      "3T",
+      "3L10"
+    ],
+    "telekinesis": [
+      "7T",
+      "5M"
+    ],
+    "terablast": [
+      "9M"
+    ],
+    "THUNDER": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "THUNDERBOLT": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "THUNDERPUNCH": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T",
+      "3T"
+    ],
+    "THUNDER_WAVE": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3T"
+    ],
+    "TOXIC": [
+      "7M",
+      "6M",
+      "5M",
+      "4M",
+      "3M"
+    ],
+    "TRICK": [
+      "9M",
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "TRICK_ROOM": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "uproar": [
+      "8M",
+      "7T",
+      "6T",
+      "5T",
+      "4T"
+    ],
+    "U_TURN": [
+      "9M",
+      "8M",
+      "7M",
+      "6M",
+      "5M",
+      "4M"
+    ],
+    "WATER_PULSE": [
+      "9M",
+      "7T",
+      "6T",
+      "4M",
+      "3M"
+    ],
+    "WISH": [
+      "9L1",
+      "8L1",
+      "8S15",
+      "7L1",
+      "7S14",
+      "6L1",
+      "6S9",
+      "6S10",
+      "6S11",
+      "6S12",
+      "6S13",
+      "5L1",
+      "5S6",
+      "5S7",
+      "5S8",
+      "4L1",
+      "4S3",
+      "4S4",
+      "3L1",
+      "3S0",
+      "3S1"
+    ],
+    "ZEN_HEADBUTT": [
+      "9M",
+      "9L28",
+      "8M",
+      "8L28",
+      "7T",
+      "7L35",
+      "6T",
+      "6L35",
+      "5T",
+      "5L35",
+      "4T",
+      "4L35"
+    ]
+  },
+  "luminescent": {
+    "url": "https://luminescent.team/pokedex/jirachi",
+    "page_version": "Luminescent 2.2F",
+    "checked": "2026-10-17",
+    "page_sha256": "2922567201bc10734fb70ead85c9425caf182bc52641b6957547466449ec5805",
+    "level_up": [
+      [
+        1,
+        "Wish"
+      ],
+      [
+        1,
+        "Confusion"
+      ],
+      [
+        1,
+        "Draco Meteor"
+      ],
+      [
+        1,
+        "Healing Wish"
+      ],
+      [
+        1,
+        "Swift"
+      ],
+      [
+        6,
+        "Helping Hand"
+      ],
+      [
+        10,
+        "Psychic"
+      ],
+      [
+        21,
+        "Life Dew"
+      ],
+      [
+        22,
+        "Zen Headbutt"
+      ],
+      [
+        26,
+        "Cosmic Power"
+      ],
+      [
+        30,
+        "Gravity"
+      ],
+      [
+        34,
+        "Iron Head"
+      ],
+      [
+        38,
+        "Future Sight"
+      ],
+      [
+        42,
+        "Double-Edge"
+      ],
+      [
+        46,
+        "Last Resort"
+      ],
+      [
+        49,
+        "Meteor Mash"
+      ],
+      [
+        50,
+        "Doom Desire"
+      ]
+    ],
+    "extra_tutor_moves": [
+      "Zap Cannon"
+    ],
+    "cache_version": "gamedata3.0 (level-up rows match linked page)"
+  },
+  "level_up": [
+    [
+      1,
+      "WISH"
+    ],
+    [
+      1,
+      "CONFUSION"
+    ],
+    [
+      1,
+      "DRACO_METEOR"
+    ],
+    [
+      1,
+      "SWIFT"
+    ],
+    [
+      10,
+      "PSYCHIC_M"
+    ],
+    [
+      22,
+      "ZEN_HEADBUTT"
+    ],
+    [
+      34,
+      "IRON_HEAD"
+    ],
+    [
+      38,
+      "FUTURE_SIGHT"
+    ],
+    [
+      42,
+      "DOUBLE_EDGE"
+    ],
+    [
+      63,
+      "REST"
+    ]
+  ],
+  "tmhm": [
+    "DRAIN_PUNCH",
+    "HEADBUTT",
+    "TOXIC",
+    "ZAP_CANNON",
+    "HIDDEN_POWER",
+    "SUNNY_DAY",
+    "HYPER_BEAM",
+    "PROTECT",
+    "RAIN_DANCE",
+    "ENERGY_BALL",
+    "FACADE",
+    "IRON_HEAD",
+    "THUNDER",
+    "RETURN",
+    "PSYCHIC_M",
+    "SHADOW_BALL",
+    "MUD_SLAP",
+    "SWAGGER",
+    "ICE_PUNCH",
+    "FLASH_CANNON",
+    "SANDSTORM",
+    "SWIFT",
+    "THUNDERPUNCH",
+    "REST",
+    "FIRE_PUNCH",
+    "ZEN_HEADBUTT",
+    "FLASH",
+    "THUNDERBOLT"
+  ],
+  "utility_tutor": [
+    "SUBSTITUTE",
+    "SLEEP_TALK",
+    "REFLECT",
+    "LIGHT_SCREEN",
+    "THUNDER_WAVE"
+  ],
+  "blackthorn_tutor": [
+    "AERIAL_ACE",
+    "AMNESIA",
+    "ANCIENTPOWER",
+    "AURA_SPHERE",
+    "BATON_PASS",
+    "BODY_SLAM",
+    "CALM_MIND",
+    "CHARM",
+    "CONFUSE_RAY",
+    "DAZZLING_GLEAM",
+    "DEFENSE_CURL",
+    "DOUBLE_TEAM",
+    "DREAM_EATER",
+    "DYNAMICPUNCH",
+    "ENCORE",
+    "ENDURE",
+    "FRUSTRATION",
+    "GIGA_IMPACT",
+    "ICY_WIND",
+    "IRON_DEFENSE",
+    "MEGA_KICK",
+    "MEGA_PUNCH",
+    "METRONOME",
+    "MIMIC",
+    "MOONBLAST",
+    "NIGHTMARE",
+    "PLAY_ROUGH",
+    "PSYBEAM",
+    "PSYCH_UP",
+    "SAFEGUARD",
+    "SIGNAL_BEAM",
+    "SKILL_SWAP",
+    "SNORE",
+    "STEALTH_ROCK",
+    "TRICK",
+    "TRICK_ROOM",
+    "U_TURN",
+    "WATER_PULSE"
+  ],
+  "implemented_move_count": 76,
+  "unimplemented_moves": [
+    "Ally Switch",
+    "Charge Beam",
+    "Confide",
+    "Cosmic Power",
+    "Doom Desire",
+    "Expanding Force",
+    "Fake Tears",
+    "Fling",
+    "Follow Me",
+    "Grass Knot",
+    "Gravity",
+    "Happy Hour",
+    "Healing Wish",
+    "Heart Stamp",
+    "Helping Hand",
+    "Imprison",
+    "Last Resort",
+    "Life Dew",
+    "Lucky Chant",
+    "Magic Coat",
+    "Magic Room",
+    "Metal Sound",
+    "Meteor Beam",
+    "Meteor Mash",
+    "Natural Gift",
+    "Power-Up Punch",
+    "Psychic Noise",
+    "Psyshock",
+    "Recycle",
+    "Refresh",
+    "Round",
+    "Secret Power",
+    "Shock Wave",
+    "Steel Beam",
+    "Stored Power",
+    "Telekinesis",
+    "Tera Blast",
+    "Uproar"
+  ],
+  "footprint_source": "https://github.com/pret/pokeemerald/blob/master/graphics/pokemon/jirachi/footprint.png",
+  "cry": "Synthesized Gen II cry: CRY_ENTEI, pitch $24a, length $091; not a sampled Gen III cry.",
+  "artwork": "User supplied front/back/menu PNGs. Shared indexed palette; static battle artwork; red-tag shiny palette.",
+  "shiny_palette": {
+    "source": "https://github.com/pret/pokeemerald/blob/master/graphics/pokemon/jirachi/shiny.pal",
+    "yellow_rgb5": [31, 27, 9],
+    "yellow_policy": "Identical to the supplied normal sprite's yellow.",
+    "ribbon_rgb5": [28, 9, 6],
+    "ribbon_source_slot": 5,
+    "ribbon_rgb8": [230, 74, 49],
+    "policy": "Use the dominant original ribbon shade for this four-color sprite."
+  }
+}

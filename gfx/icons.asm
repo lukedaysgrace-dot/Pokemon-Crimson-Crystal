@@ -502,4 +502,6 @@ HappinyIcon: INCBIN "gfx/icons/happiny.2bpp"
 MantykeIcon: INCBIN "gfx/icons/mantyke.2bpp"
 GorochuIcon: INCBIN "gfx/icons/gorochu.2bpp"
 
+JirachiIcon: INCBIN "gfx/menu_icons/jirachi.2bpp"
+
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"

@@ -495,3 +495,4 @@ PokedexDataPointerTable:
 	dba KrokorokPokedexEntry
 	dba KrookodilePokedexEntry
 	dba GorochuPokedexEntry
+	dba JirachiPokedexEntry

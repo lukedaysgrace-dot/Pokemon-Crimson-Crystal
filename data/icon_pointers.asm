@@ -496,3 +496,4 @@ IconPointers:
 	dba CroconawIcon ; KROKOROK
 	dba FeraligatrIcon ; KROOKODILE
 	dba GorochuIcon
+	dba JirachiIcon

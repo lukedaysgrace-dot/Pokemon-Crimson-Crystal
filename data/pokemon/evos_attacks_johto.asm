@@ -3077,6 +3077,7 @@ EvosAttacksPointers2C::
 	dw KrokorokEvosAttacks
 	dw KrookodileEvosAttacks
 	dw GorochuEvosAttacks
+	dw JirachiEvosAttacks
 
 ; Initial moves and level-up learnset from Rage Blue.
 GorochuEvosAttacks:
@@ -3104,6 +3105,24 @@ GorochuEvosAttacks:
 	dbw 52, THUNDER
 	dbw 58, VOLT_TACKLE
 	db 0 ; no more level-up moves
+
+; Keep this data in the bank of EvosAttacksPointers2C.
+; Luminescent Platinum level-up moves, filtered to implemented moves.
+; Rest retains its latest canonical level (63); see tools/testdata/jirachi.json.
+JirachiEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, WISH
+	dbw 1, CONFUSION
+	dbw 1, DRACO_METEOR
+	dbw 1, SWIFT
+	dbw 10, PSYCHIC_M
+	dbw 22, ZEN_HEADBUTT
+	dbw 34, IRON_HEAD
+	dbw 38, FUTURE_SIGHT
+	dbw 42, DOUBLE_EDGE
+	dbw 63, REST
+	db 0 ; no more level-up moves
+assert BANK(JirachiEvosAttacks) == BANK(EvosAttacksPointers2C)
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE

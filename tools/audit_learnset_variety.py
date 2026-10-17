@@ -17,7 +17,7 @@ def load_sources():
  species_text=read('constants/pokemon_constants.asm').split('const_def 1',1)[1].split('NUM_POKEMON',1)[0]
  order=re.findall(r'^\s*const\s+(\w+)',species_text,re.M)
  order=[c for c in order if c!='EGG']
- assert len(order)==495
+ assert order and len(order)==len(set(order)), 'Empty roster or duplicate species constants'
  files=re.findall(r'INCLUDE "(data/pokemon/base_stats/[^\"]+)"',read('data/pokemon/base_stats.asm'))
  assert len(files)==len(order)
  tm={}
