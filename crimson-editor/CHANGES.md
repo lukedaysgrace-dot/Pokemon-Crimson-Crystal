@@ -1,13 +1,11 @@
 # Game data changes
 
-5dc51b77 → 06c4a7bb
+06c4a7bb → 0e3be03c
 
-Save layout: changed.
+Save layout: unchanged.
 
-- species: 8 added, 486 changed.
-  Added: DUDUNSPARCE, STARLY, STARAVIA, STARAPTOR, SANDILE, KROKOROK, KROOKODILE, GOROCHU.
-- moves: 2 added, 48 changed.
-  Added: WEATHER_BALL, INCINERATE.
-- items: 14 added, 13 changed.
-  Added: DUSK_STONE, HELIX_FOSSIL, DOME_FOSSIL, OLD_AMBER, ROOT_FOSSIL, CLAW_FOSSIL, SKULL_FOSSIL, ARMOR_FOSSIL, COVER_FOSSIL, PLUME_FOSSIL, JAW_FOSSIL, SAIL_FOSSIL, TM_FURY_CUTTER, TM_WEATHER_BALL.
-- abilities: 0 added, 1 changed.
+- species: 0 added, 481 changed.
+- moves: 0 added, 1 changed.
+- items: 1 added, 0 changed.
+  Added: WIDE_LENS.
+- abilities: 0 added, 0 changed.
