@@ -29,6 +29,9 @@ OlivineCafeFishingGuruScript:
 OlivineCafeSailorScript:
 	jumptextfaceplayer OlivineCafeSailorText
 
+OlivineCafeTrashcan:
+	hiddenitem LEFTOVERS, EVENT_FOUND_LEFTOVERS_IN_OLIVINE_CAFE
+
 OlivineCafeStrengthSailorText:
 	text "Hah! Your #MON"
 	line "sure look like"
@@ -85,7 +88,8 @@ OlivineCafe_MapEvents:
 
 	db 0 ; coord events
 
-	db 0 ; bg events
+	db 1 ; bg events
+	bg_event  1,  1, BGEVENT_ITEM, OlivineCafeTrashcan
 
 	db 3 ; object events
 	object_event  4,  3, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCafeStrengthSailorScript, -1

@@ -28,6 +28,7 @@ MaleTrainers:
 	db SCIENTIST
 	db TAMER
 	db CUEBALL
+	db KARATE_KING
 .End
 
 FemaleTrainers:

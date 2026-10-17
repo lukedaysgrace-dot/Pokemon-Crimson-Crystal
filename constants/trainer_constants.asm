@@ -516,6 +516,8 @@ LYRA EQU __enum__
 	const LUNG
 	const KENJI3
 	const WAI
+	const DOJO_RIKU
+	const DOJO_MASARU
 
 	trainerclass EXECUTIVEM ; 33
 	const EXECUTIVEM_1
@@ -868,5 +870,8 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 
 	trainerclass CUEBALL
 	const CHOPPER
+
+	trainerclass KARATE_KING
+	const KARATE_KIYO
 
 NUM_TRAINER_CLASSES EQU __enum__
