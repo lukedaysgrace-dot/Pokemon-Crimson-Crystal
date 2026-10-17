@@ -8,16 +8,250 @@
 	const CELADONCITY_YOUNGSTER2
 	const CELADONCITY_TEACHER2
 	const CELADONCITY_LASS
+	const CELADONCITY_BURGLAR
+	const CELADONCITY_CHOICE_SPECS
+	const CELADONCITY_OFFICER
 
 CeladonCity_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .GlassesObjects
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON
 	return
+
+.GlassesObjects:
+	disappear CELADONCITY_BURGLAR
+	disappear CELADONCITY_OFFICER
+	checkevent EVENT_CELADON_SPECS_BURGLAR_FLED
+	iffalse .HideGlasses
+	checkevent EVENT_GOT_CELADON_CHOICE_SPECS
+	iftrue .GlassesCollected
+	checkevent EVENT_CELADON_SPECS_DROPPED_LOWER
+	iffalse .ShowGlasses
+	moveobject CELADONCITY_CHOICE_SPECS, 34, 11
+.ShowGlasses:
+	appear CELADONCITY_CHOICE_SPECS
+	return
+.GlassesCollected:
+	disappear CELADONCITY_CHOICE_SPECS
+	checkevent EVENT_BEAT_CELADON_OFFICER
+	iftrue .ObjectsDone
+; If the player lost the battle, the officer waits here for a retry.
+	appear CELADONCITY_OFFICER
+.ObjectsDone:
+	return
+.HideGlasses:
+	disappear CELADONCITY_CHOICE_SPECS
+	return
+
+CeladonCityBurglarScene:
+	checkevent EVENT_CELADON_SPECS_BURGLAR_FLED
+	iftrue .Done
+	setevent EVENT_CELADON_SPECS_BURGLAR_FLED
+	readvar VAR_YCOORD
+	ifequal 11, .LowerLane
+	moveobject CELADONCITY_BURGLAR, 39, 10
+	sjump .Approach
+.LowerLane:
+	setevent EVENT_CELADON_SPECS_DROPPED_LOWER
+	moveobject CELADONCITY_BURGLAR, 39, 11
+	moveobject CELADONCITY_CHOICE_SPECS, 34, 11
+.Approach:
+	appear CELADONCITY_BURGLAR
+	applymovement CELADONCITY_BURGLAR, CeladonBurglarApproachMovement
+	faceobject PLAYER, CELADONCITY_BURGLAR
+	opentext
+	writetext CeladonBurglarShoveText
+	waitbutton
+	closetext
+	playsound SFX_TACKLE
+	checkevent EVENT_CELADON_SPECS_DROPPED_LOWER
+	iftrue .PushUp
+	applymovement PLAYER, CeladonPlayerShovedDownMovement
+	sjump .Drop
+.PushUp:
+	applymovement PLAYER, CeladonPlayerShovedUpMovement
+.Drop:
+	applymovement CELADONCITY_BURGLAR, CeladonBurglarDropMovement
+	appear CELADONCITY_CHOICE_SPECS
+	applymovement CELADONCITY_CHOICE_SPECS, CeladonGlassesAppearMovement
+	playsound SFX_ITEM
+	showemote EMOTE_SHOCK, CELADONCITY_BURGLAR, 15
+	opentext
+	writetext CeladonBurglarDroppedText
+	waitbutton
+	closetext
+	applymovement CELADONCITY_BURGLAR, CeladonSuspectExitMovement
+	disappear CELADONCITY_BURGLAR
+.Done:
+	end
+
+CeladonCityChoiceSpecs:
+	opentext
+	verbosegiveitem CHOICE_SPECS
+	iffalse .NoRoom
+	setevent EVENT_GOT_CELADON_CHOICE_SPECS
+	closetext
+	disappear CELADONCITY_CHOICE_SPECS
+; Enter from the east, staying within sprite range for every pickup side.
+	checkevent EVENT_CELADON_SPECS_DROPPED_LOWER
+	iftrue .OfficerLower
+	moveobject CELADONCITY_OFFICER, 38, 10
+	sjump .OfficerAppears
+.OfficerLower:
+	moveobject CELADONCITY_OFFICER, 38, 11
+.OfficerAppears:
+	appear CELADONCITY_OFFICER
+	applymovement CELADONCITY_OFFICER, CeladonOfficerApproachMovement
+; Stop to the player's right when they picked up the ball from the east.
+	readvar VAR_XCOORD
+	ifequal 35, .Confront
+	applymovement CELADONCITY_OFFICER, CeladonOfficerCloserMovement
+.Confront:
+	faceobject CELADONCITY_OFFICER, PLAYER
+	faceobject PLAYER, CELADONCITY_OFFICER
+	sjump CeladonCityOfficerBattle
+.NoRoom:
+	closetext
+	end
+
+CeladonCityOfficerScript:
+	faceplayer
+CeladonCityOfficerBattle:
+	setlasttalked CELADONCITY_OFFICER
+	playmusic MUSIC_OFFICER_ENCOUNTER
+	opentext
+	writetext CeladonOfficerAccusationText
+	waitbutton
+	closetext
+	winlosstext CeladonOfficerBeatenText, 0
+	loadtrainer OFFICER, CELADON_HAYES
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_CELADON_OFFICER
+	opentext
+	writetext CeladonOfficerApologyText
+	waitbutton
+	closetext
+; Step into the other lane if the player would block the westward exit.
+	readmem wMap12Object + MAPOBJECT_Y_COORD
+	ifequal 10 + 4, .UpperExit
+	readvar VAR_YCOORD
+	ifnotequal 11, .Exit
+	applymovement CELADONCITY_OFFICER, CeladonOfficerStepUpMovement
+	sjump .Exit
+.UpperExit:
+	readvar VAR_YCOORD
+	ifnotequal 10, .Exit
+	applymovement CELADONCITY_OFFICER, CeladonOfficerStepDownMovement
+.Exit:
+	applymovement CELADONCITY_OFFICER, CeladonSuspectExitMovement
+	disappear CELADONCITY_OFFICER
+	end
+
+CeladonBurglarApproachMovement:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+CeladonPlayerShovedDownMovement:
+	fix_facing
+	fast_slide_step DOWN
+	remove_fixed_facing
+	step_end
+CeladonPlayerShovedUpMovement:
+	fix_facing
+	fast_slide_step UP
+	remove_fixed_facing
+	step_end
+CeladonBurglarDropMovement:
+	big_step LEFT
+	big_step LEFT
+	turn_head RIGHT
+	step_end
+CeladonGlassesAppearMovement:
+	step_sleep 1
+	step_end
+CeladonSuspectExitMovement:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+CeladonOfficerApproachMovement:
+	big_step LEFT
+	big_step LEFT
+	step_end
+CeladonOfficerCloserMovement:
+	big_step LEFT
+	big_step LEFT
+	step_end
+CeladonOfficerStepUpMovement:
+	big_step UP
+	step_end
+CeladonOfficerStepDownMovement:
+	big_step DOWN
+	step_end
+
+CeladonBurglarShoveText:
+	text "Outta my way, kid!"
+	done
+CeladonBurglarDroppedText:
+	text "Aw, crud! I"
+	line "dropped them!"
+	para "No time! I'm outta"
+	line "here!"
+	done
+CeladonOfficerAccusationText:
+	text "Hey! You there!"
+	para "We've had reports"
+	line "of a thief in the"
+	cont "area!"
+	para "Hold on... Are"
+	line "those the stolen"
+	cont "glasses?"
+	para "Looks like I've"
+	line "caught you"
+	cont "red-handed!"
+	para "<PLAYER>: ......"
+	para "Save your excuses"
+	line "for the station!"
+	para "You're coming"
+	line "with me!"
+	done
+CeladonOfficerBeatenText:
+	text "Well, I'll be..."
+	para "You're no ordinary"
+	line "crook!"
+	done
+CeladonOfficerApologyText:
+	text "Wait a minute..."
+	para "You're the trainer"
+	line "who took down TEAM"
+	cont "ROCKET in"
+	cont "GOLDENROD!"
+	para "Sorry about that!"
+	line "Guess I jumped to"
+	cont "conclusions."
+	para "Those glasses were"
+	line "reported stolen,"
+	cont "but the owner"
+	cont "already collected"
+	cont "the insurance."
+	para "Consider them a"
+	line "reward for your"
+	cont "trouble!"
+	para "Now, where'd that"
+	line "burglar run off"
+	cont "to?"
+	done
 
 CeladonCityCrystalCapeCallScript:
 ; Ring as the player steps out of ERIKA's gym after earning the RAINBOWBADGE.
@@ -256,9 +490,11 @@ CeladonCity_MapEvents:
 	warp_event 10, 29, CELADON_GYM, 1
 	warp_event 25, 29, CELADON_CAFE, 1
 
-	db 2 ; coord events
+	db 4 ; coord events
 	coord_event 10, 29, -1, CeladonCityCrystalCapeCallScript
 	coord_event 10, 30, -1, CeladonCityCrystalCapeCallScript
+	coord_event 34, 10, -1, CeladonCityBurglarScene
+	coord_event 34, 11, -1, CeladonCityBurglarScene
 
 	db 8 ; bg events
 	bg_event 23, 21, BGEVENT_READ, CeladonCitySign
@@ -270,7 +506,7 @@ CeladonCity_MapEvents:
 	bg_event 30,  9, BGEVENT_READ, CeladonCityPokecenterSign
 	bg_event 37, 21, BGEVENT_ITEM, CeladonCityHiddenPpUp
 
-	db 9 ; object events
+	db 12 ; object events
 	object_event 26, 11, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityFisherScript, -1
 	object_event 27, 11, SPRITE_POLIWRATH_NPC, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCityPoliwrath, -1
 	object_event 20, 24, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCityTeacher1Script, -1
@@ -280,3 +516,6 @@ CeladonCity_MapEvents:
 	object_event 24, 33, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityYoungster2Script, -1
 	object_event  6, 14, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityTeacher2Script, -1
 	object_event  7, 22, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCityLassScript, -1
+	object_event 39, 10, SPRITE_BURGLAR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CeladonCityBurglarScene, EVENT_CELADON_SPECS_BURGLAR_HIDDEN
+	object_event 34, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCityChoiceSpecs, EVENT_CELADON_SPECS_BALL_HIDDEN
+	object_event 33, 10, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCityOfficerScript, EVENT_CELADON_SPECS_OFFICER_HIDDEN

@@ -27,6 +27,7 @@ GIFT_NOTES = {
     'BlackthornCity:TWISTEDSPOON': 'Santos; Saturday.',
     'BlackthornGym1F:TM_DRAGON_CLAW': 'Clair; return after receiving the Rising Badge in Dragon’s Den.',
     'CeladonCafe:LEFTOVERS': 'Search the café trash can; one-time pickup.',
+    'CeladonCity:CHOICE_SPECS': 'Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to clear up the misunderstanding. One-time reward; the ball remains if the Bag is full.',
     'CeladonGameCornerPrizeRoom:TM_SWAGGER': 'TM prize counter; 1,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_PSYCHIC_M': 'TM prize counter; 3,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_HYPER_BEAM': 'TM prize counter; 7,500 coins and a Coin Case.',
