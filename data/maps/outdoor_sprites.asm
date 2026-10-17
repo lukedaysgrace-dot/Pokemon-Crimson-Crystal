@@ -692,7 +692,7 @@ DungeonsGroupSprites:
 
 FastShipGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_MACHAMP ; Olivine Port; replaces unused trophy graphics
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL

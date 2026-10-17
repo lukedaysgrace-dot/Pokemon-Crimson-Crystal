@@ -6,6 +6,8 @@
 	const OLIVINEPORT_FISHING_GURU2
 	const OLIVINEPORT_YOUNGSTER
 	const OLIVINEPORT_COOLTRAINER_F
+	const OLIVINEPORT_MUSCLE_BAND_SAILOR
+	const OLIVINEPORT_MACHAMP
 
 OlivinePort_MapScripts:
 	db 2 ; scene scripts
@@ -268,6 +270,35 @@ OlivinePortCooltrainerFScript:
 OlivinePortHiddenProtein:
 	hiddenitem PROTEIN, EVENT_OLIVINE_PORT_HIDDEN_PROTEIN
 
+OlivinePortMuscleBandSailorScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_MUSCLE_BAND_FROM_OLIVINE_SAILOR
+	iftrue .AfterGift
+	writetext OlivinePortMuscleBandSailorGiftText
+	buttonsound
+	verbosegiveitem MUSCLE_BAND
+	iffalse .Done
+	setevent EVENT_GOT_MUSCLE_BAND_FROM_OLIVINE_SAILOR
+	writetext OlivinePortMuscleBandSailorReceivedText
+	waitbutton
+	sjump .Done
+.AfterGift:
+	writetext OlivinePortMuscleBandSailorAfterText
+	waitbutton
+.Done:
+	closetext
+	turnobject OLIVINEPORT_MUSCLE_BAND_SAILOR, RIGHT
+	end
+
+OlivinePortMachampScript:
+	opentext
+	writetext OlivinePortMachampText
+	cry MACHAMP
+	waitbutton
+	closetext
+	end
+
 MovementData_0x74a30:
 	step DOWN
 	step_end
@@ -417,6 +448,54 @@ OlivinePortSailorBeforeHOFText:
 	cont "the THUNDERBADGE."
 	done
 
+OlivinePortMuscleBandSailorGiftText:
+	text "Ahoy, kid!"
+
+	para "See that MACHAMP"
+	line "of mine?"
+
+	para "He's been wearin'"
+	line "this MUSCLE BAND"
+	cont "for years!"
+
+	para "But look at him"
+	line "now!"
+
+	para "Every muscle's"
+	line "been honed to"
+	cont "perfection!"
+
+	para "He doesn't need"
+	line "this old thing"
+	cont "anymore!"
+
+	para "Here, take it!"
+	line "Put it to good"
+	cont "use!"
+	done
+
+OlivinePortMuscleBandSailorReceivedText:
+	text "HAH! Just look at"
+	line "those muscles!"
+
+	para "Not an ounce of"
+	line "strength wasted!"
+	done
+
+OlivinePortMuscleBandSailorAfterText:
+	text "My MACHAMP's"
+	line "muscles are a"
+	cont "work of art!"
+
+	para "Even the toughest"
+	line "cargo feels like"
+	cont "a feather to him!"
+	done
+
+OlivinePortMachampText:
+	text "MACHAMP: Champ!"
+	done
+
 OlivinePort_MapEvents:
 	db 0, 0 ; filler
 
@@ -430,7 +509,7 @@ OlivinePort_MapEvents:
 	db 1 ; bg events
 	bg_event  1, 22, BGEVENT_ITEM, OlivinePortHiddenProtein
 
-	db 7 ; object events
+	db 9 ; object events
 	object_event  7, 23, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorAtGangwayScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	object_event  7, 15, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorBeforeHOFScript, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	object_event  6, 15, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorAfterHOFScript, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
@@ -438,3 +517,5 @@ OlivinePort_MapEvents:
 	object_event 13, 14, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortFishingGuru2Script, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	object_event  4, 15, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortYoungsterScript, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	object_event 11, 15, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortCooltrainerFScript, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	object_event  8,  9, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortMuscleBandSailorScript, -1
+	object_event  9,  9, SPRITE_MACHAMP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlivinePortMachampScript, -1

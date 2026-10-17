@@ -224,6 +224,8 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_MEWTWO ; c0
 	const SPRITE_ARTICUNO ; c1
 	const SPRITE_ZAPDOS ; c2
+	const SPRITE_MACHAMP
+	assert const_value <= $e0, "Pokemon sprites overlap Day-Care sprite IDs"
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0
