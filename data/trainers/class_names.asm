@@ -103,3 +103,4 @@ TrainerClassNames::
 	db "ELDER@"
 	db "AROMA LADY@"
 	db "CUEBALL@"
+	db "KARATE KING@"

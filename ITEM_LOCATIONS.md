@@ -6,7 +6,7 @@ Wild held-item rates are approximately 20% for slot 1 and 5% for slot 2; identic
 
 Source coverage: map item balls, hidden items, scripted gifts, standard and rooftop marts, Game Corner prizes, Battle Tower prize menu, Fishing Contest prizes, in-game trades, Mystery Gift item pool, wild held-item tables joined to encounter maps, scripted wild encounters, and map-referenced trainer parties. An item with no source is explicitly marked; a base-stat holder without a wild encounter is not treated as a location.
 
-**Coverage:** 54 TMs; 59 held items; 788 acquisition entries.
+**Coverage:** 54 TMs; 59 held items; 795 acquisition entries.
 
 ## Quick index
 
@@ -75,7 +75,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Brick Piece](#brick_piece) | Ground pickup |
 | [Brightpowder](#brightpowder) | Trainer item |
 | [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
-| [Choice Band](#choice_band) | Battle Tower prize, Trainer item |
+| [Choice Band](#choice_band) | Battle Tower prize, Gift / reward, Trainer item |
 | [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Gift / reward |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
@@ -93,7 +93,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
 | [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
-| [Leftovers](#leftovers) | Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
+| [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
 | [Loaded Dice](#loaded_dice) | Gift / reward |
@@ -117,13 +117,13 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | [Smooth Rock](#smooth_rock) | Ground pickup, Mystery Gift |
 | [Soft Sand](#soft_sand) | Ground pickup, Wild Pokémon |
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
-| [Stick](#stick) | Wild Pokémon |
+| [Stick](#stick) | Trainer item, Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
 | [Toxic Orb](#toxic_orb) | Ground pickup, Shop, Trainer item |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
-| [Wide Lens](#wide_lens) | Ground pickup, Shop |
+| [Wide Lens](#wide_lens) | Ground pickup, Shop, Trainer item |
 | [Wise Glasses](#wise_glasses) | Gift / reward, Shop, Trainer item |
 
 <a id="tm_drain_punch"></a>
@@ -629,6 +629,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Gift / reward** — Karate King Kiyo in Saffron City’s Fighting Dojo; defeat his five-Pokémon team for a one-time gift. Speak to him again if the Bag was full. Tile (4, 3). | [maps/FightingDojo.asm](maps/FightingDojo.asm#L40) |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L136) |
 | Route 36 | **Trainer item** — Schoolboy Alan: Tauros Lv. 62. Party ALAN5. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L1474); [map script](maps/Route36.asm) |
 | Route 42 | **Trainer item** — Fisher Tully: Azumarill Lv. 59. Party TULLY4. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L3593); [map script](maps/Route42.asm) |
@@ -647,7 +648,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L140) |
-| Celadon City | **Gift / reward** — Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to clear up the misunderstanding. One-time reward; the ball remains if the Bag is full. Tile (34, 10). | [maps/CeladonCity.asm](maps/CeladonCity.asm#L95) |
+| Celadon City | **Gift / reward** — Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to keep the reward. Losing removes this pickup and resets the entire encounter. The ball remains if the Bag is full. Tile (34, 10). | [maps/CeladonCity.asm](maps/CeladonCity.asm#L95) |
 
 <a id="cleanse_tag"></a>
 ## Cleanse Tag
@@ -802,13 +803,14 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
-| Fighting Dojo | **Ground pickup** — Collect the item ball. Tile (3, 1). | [maps/FightingDojo.asm](maps/FightingDojo.asm#L20) |
+| Fighting Dojo | **Ground pickup** — Collect the item ball. Tile (3, 1). | [maps/FightingDojo.asm](maps/FightingDojo.asm#L69) |
 
 <a id="focus_sash"></a>
 ## Focus Sash
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Trainer item** — Karate King Kiyo: Breloom Lv. 68. Party KARATE_KIYO. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8667); [map script](maps/FightingDojo.asm) |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. | [maps/BattleTower1F.asm](maps/BattleTower1F.asm#L148) |
 | Gravekeepers House | **Gift / reward** — Gravekeeper in Silent Crypt; clean both gravestones before entering his house. Tile (2, 4). | [maps/GravekeepersHouse.asm](maps/GravekeepersHouse.asm#L58) |
 | Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 50. Party KOGA1. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L808); [map script](maps/KogasRoom.asm) |
@@ -943,7 +945,9 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Trainer item** — Karate King Kiyo: Scrafty Lv. 68. Party KARATE_KIYO. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8672); [map script](maps/FightingDojo.asm) |
 | Celadon Cafe | **Search trash can** — Search the café trash can; one-time pickup. Tile (7, 1). | [maps/CeladonCafe.asm](maps/CeladonCafe.asm#L94) |
+| Olivine Cafe | **Hidden pickup** — Search the trash can at (1, 1); one-time pickup. Remains available if the Bag is full. Tile (1, 1). | [maps/OlivineCafe.asm](maps/OlivineCafe.asm#L33) |
 | Route 12 | **Static wild Pokémon** — Snorlax, Lv. 50; 100% held-item chance. Catch it or use Thief. Wake with the Poké Flute radio channel. | [maps/Route12.asm](maps/Route12.asm#L30) |
 | Vermilion City | **Static wild Pokémon** — Snorlax, Lv. 50; 100% held-item chance. Catch it or use Thief. Wake with the Poké Flute radio channel. | [maps/VermilionCity.asm](maps/VermilionCity.asm#L70) |
 | Route 39 | **Wild Pokémon** — Munchlax; approx. 25% held-item chance. Grass / Cave; Day; Lv. 24. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/munchlax.asm) |
@@ -1059,6 +1063,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Trainer item** — Karate King Kiyo: Sneasler Lv. 67. Party KARATE_KIYO. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8662); [map script](maps/FightingDojo.asm) |
 | Team Rocket Base B3F | **Ground pickup** — Collect the item ball at tile (14, 1). | [maps/TeamRocketBaseB3F.asm](maps/TeamRocketBaseB3F.asm#L227) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽30,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Heracross Lv. 76. Party BUGSY2. Use Thief or Trick before the item is consumed. One-time gym rematch after defeating Falkner’s rematch. | [data/trainers/parties.asm](data/trainers/parties.asm#L168); [map script](maps/AzaleaGym.asm) |
@@ -1494,6 +1499,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Trainer item** — Karate King Kiyo: Sirfetch’d Lv. 67. Party KARATE_KIYO. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8657); [map script](maps/FightingDojo.asm) |
 | Ilex Forest | **Wild Pokémon** — Farfetch'd; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 16. | [data/wild/johto_grass.asm](data/wild/johto_grass.asm); [held slots](data/pokemon/base_stats/farfetch_d.asm) |
 
 <a id="thick_club"></a>
@@ -1569,6 +1575,7 @@ Source coverage: map item balls, hidden items, scripted gifts, standard and roof
 
 | Location | How to obtain / conditions | Source |
 | --- | --- | --- |
+| Fighting Dojo | **Trainer item** — Karate King Kiyo: Hitmontop Lv. 70. Party KARATE_KIYO. Use Thief or Trick before the item is consumed. | [data/trainers/parties.asm](data/trainers/parties.asm#L8677); [map script](maps/FightingDojo.asm) |
 | Olivine Lighthouse 3F | **Ground pickup** — Collect the item ball. Tile (12, 12). | [maps/OlivineLighthouse3F.asm](maps/OlivineLighthouse3F.asm#L50) |
 | Mahogany Mart 1F | **Shop** — Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup. Cost: ₽20,000. | [data/items/marts.asm](data/items/marts.asm#L398); [map script](maps/MahoganyMart1F.asm#L138) |
 

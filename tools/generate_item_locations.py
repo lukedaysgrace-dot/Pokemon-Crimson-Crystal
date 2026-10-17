@@ -27,7 +27,7 @@ GIFT_NOTES = {
     'BlackthornCity:TWISTEDSPOON': 'Santos; Saturday.',
     'BlackthornGym1F:TM_DRAGON_CLAW': 'Clair; return after receiving the Rising Badge in Dragon’s Den.',
     'CeladonCafe:LEFTOVERS': 'Search the café trash can; one-time pickup.',
-    'CeladonCity:CHOICE_SPECS': 'Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to clear up the misunderstanding. One-time reward; the ball remains if the Bag is full.',
+    'CeladonCity:CHOICE_SPECS': 'Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to keep the reward. Losing removes this pickup and resets the entire encounter. The ball remains if the Bag is full.',
     'CeladonGameCornerPrizeRoom:TM_SWAGGER': 'TM prize counter; 1,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_PSYCHIC_M': 'TM prize counter; 3,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_HYPER_BEAM': 'TM prize counter; 7,500 coins and a Coin Case.',
@@ -45,6 +45,7 @@ GIFT_NOTES = {
     'ElmsLab:EVERSTONE': 'Professor Elm in New Bark Town; show him the hatched Togepi.',
     'FastShipCabins_SE_SSE_CaptainsCabin:METAL_COAT': 'Grandfather aboard the S.S. Aqua; find his granddaughter. The two script paths award the same one-time gift.',
     'FuchsiaGym:TM_TOXIC': 'Janine; defeat her and collect the Soul Badge.',
+    'FightingDojo:CHOICE_BAND': 'Karate King Kiyo in Saffron City’s Fighting Dojo; defeat his five-Pokémon team for a one-time gift. Speak to him again if the Bag was full.',
     'GoldenrodDeptStore5F:TM_RETURN': 'Sunday receptionist; first party Pokémon’s happiness must be at least 150. Shares the weekly gift flag with Facade.',
     'GoldenrodDeptStore5F:TM_FACADE': 'Sunday receptionist; first party Pokémon’s happiness must be below 50. Shares the weekly gift flag with Return; happiness 50–149 gives neither.',
     'GoldenrodGameCorner:TM_THUNDER': 'TM prize counter; 5,500 coins and a Coin Case.',
@@ -95,6 +96,7 @@ GIFT_NOTES = {
 }
 
 PICKUP_NOTES = {
+    'OlivineCafe': 'Search the trash can at (1, 1); one-time pickup. Remains available if the Bag is full.',
     'RadioTower5F': 'Item ball replaces Archer during the blackout after his defeat dialogue, before the director enters. Loot it after the director’s Clear Bell scene.',
     'BurnedTowerB1F': 'Basement item ball.',
     'DarkCaveBlackthornEntrance': 'Blackthorn-side chamber; Flash helps navigation.',

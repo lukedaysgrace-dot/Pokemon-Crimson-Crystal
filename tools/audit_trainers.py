@@ -459,6 +459,7 @@ def validate_parallel_tables(classes, items):
 	if len(pics) != len(actual):
 		fail(path, 0, f"found {len(pics)} pic pointers for {len(actual)} classes")
 	pic_aliases = {
+		"KARATE_KING": "BLACKBELT_T",
 		"CRYSTAL3": "CRYSTAL2",
 		"RIVAL3": "RIVAL2",
 		"FALKNER_REMATCH": "FALKNER",

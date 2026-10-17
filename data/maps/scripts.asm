@@ -437,7 +437,6 @@ INCLUDE "maps/Route37.asm"
 INCLUDE "maps/Route42.asm"
 INCLUDE "maps/Route46.asm"
 INCLUDE "maps/ViridianCity.asm"
-INCLUDE "maps/CeladonCity.asm"
 INCLUDE "maps/Route15.asm"
 INCLUDE "maps/VermilionCity.asm"
 INCLUDE "maps/CinnabarPokecenter1F.asm"
@@ -532,3 +531,8 @@ SECTION "Cerulean Cave Scripts", ROMX
 INCLUDE "maps/CeruleanCave1F.asm"
 INCLUDE "maps/CeruleanCave2F.asm"
 INCLUDE "maps/CeruleanCaveB1F.asm"
+
+; The expanded burglar/officer scene no longer fits in Map Scripts 23.
+SECTION "Celadon City Scripts", ROMX
+
+INCLUDE "maps/CeladonCity.asm"

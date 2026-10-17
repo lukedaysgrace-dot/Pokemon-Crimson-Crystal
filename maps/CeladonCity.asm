@@ -40,8 +40,8 @@ CeladonCity_MapScripts:
 	disappear CELADONCITY_CHOICE_SPECS
 	checkevent EVENT_BEAT_CELADON_OFFICER
 	iftrue .ObjectsDone
-; If the player lost the battle, the officer waits here for a retry.
-	appear CELADONCITY_OFFICER
+; Recover saves left awaiting an officer rematch by the old loss behavior.
+	scall CeladonCityResetGlassesEncounter
 .ObjectsDone:
 	return
 .HideGlasses:
@@ -133,8 +133,14 @@ CeladonCityOfficerBattle:
 	winlosstext CeladonOfficerBeatenText, 0
 	loadtrainer OFFICER, CELADON_HAYES
 	startbattle
+	ifnotequal LOSE, .Won
+	scall CeladonCityResetGlassesEncounter
 	reloadmapafterbattle
+	end
+.Won:
+; Mark victory before map callbacks run so the earned reward stays yours.
 	setevent EVENT_BEAT_CELADON_OFFICER
+	reloadmapafterbattle
 	opentext
 	writetext CeladonOfficerApologyText
 	waitbutton
@@ -154,6 +160,22 @@ CeladonCityOfficerBattle:
 	applymovement CELADONCITY_OFFICER, CeladonSuspectExitMovement
 	disappear CELADONCITY_OFFICER
 	end
+
+CeladonCityResetGlassesEncounter:
+; Remove only this encounter's pickup, preserving any earlier copies.
+	checkevent EVENT_GOT_CELADON_CHOICE_SPECS
+	iffalse .ResetFlags
+	takeitem CHOICE_SPECS, 1
+.ResetFlags:
+	clearevent EVENT_GOT_CELADON_CHOICE_SPECS
+	clearevent EVENT_CELADON_SPECS_BURGLAR_FLED
+	clearevent EVENT_CELADON_SPECS_DROPPED_LOWER
+	clearevent EVENT_BEAT_CELADON_OFFICER
+	disappear CELADONCITY_BURGLAR
+	disappear CELADONCITY_CHOICE_SPECS
+	disappear CELADONCITY_OFFICER
+	moveobject CELADONCITY_CHOICE_SPECS, 34, 10
+	return
 
 CeladonBurglarApproachMovement:
 	big_step LEFT
