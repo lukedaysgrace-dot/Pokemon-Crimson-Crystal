@@ -345,9 +345,34 @@ BattleAnim_DragonDance:
 	anim_obj ANIM_OBJ_DRAGON_DANCE, 48, 104, $0
 	anim_wait 8
 	anim_loop 8, .loop
-	anim_wait 48
+	anim_wait 40
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_wait 1
+	anim_1gfx ANIM_GFX_SPEED
+	anim_call BattleAnim_TargetObj_1Row_B
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT, $0, $1, $40
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+.loop2
+	anim_sound 0, 0, SFX_SWORDS_DANCE
+	anim_obj ANIM_OBJ_FOCUS, 44, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 36, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 52, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 28, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 60, 108, $6
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 20, 108, $8
+	anim_wait 2
+	anim_obj ANIM_OBJ_FOCUS, 68, 108, $8
+	anim_wait 2
+	anim_loop 3, .loop2
+	anim_wait 8
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT
+	anim_call BattleAnim_ShowMon_0_B
 	anim_ret
-
 
 BattleAnim_DragonPulse:
 	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_DRAGON_PULSE
@@ -1733,47 +1758,64 @@ BattleAnim_FirstImpression:
 	anim_ret
 
 BattleAnim_SlackOff:
-; Ported from Johto Legends: lazy "Z"s float up while the user recovers.
-	anim_1gfx ANIM_GFX_STATUS
-	anim_sound 0, 0, SFX_TAIL_WHIP
-.loop
-	anim_obj ANIM_OBJ_ASLEEP, 64, 80, $0
-	anim_wait 40
-	anim_loop 3, .loop
-	anim_wait 32
-	anim_ret
+	anim_1gfx ANIM_GFX_SHINE
+	anim_call BattleAnim_TargetObj_2Row_B
+	anim_sound 16, 2, SFX_CURSE
+	anim_bgeffect ANIM_BG_WITHDRAW, $0, $1, $50
+	anim_wait 64
+	anim_incbgeffect ANIM_BG_WITHDRAW
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_wait 1
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	; Pokeorange falls through to its shared recovery sparkle block.
+	anim_jump BattleAnimSub_Glimmer
 
 BattleAnim_VoltTackle:
-; Ported from Johto Legends (Spark's flow), with a recoil jolt back on the user.
-	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
-	anim_sound 0, 0, SFX_ZAP_CANNON
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
-	anim_obj ANIM_OBJ_THUNDER_WAVE, 48, 92, $0
-	anim_wait 24
-	anim_setobj $1, $3
-	anim_wait 1
-	anim_call BattleAnim_TargetObj_1Row_B
-	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-	anim_sound 0, 0, SFX_SPARK
-	anim_wait 16
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
-	anim_wait 4
-	anim_incobj 2
-	anim_wait 1
+	anim_3gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION, ANIM_GFX_SPEED
 	anim_sound 0, 1, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_LIGHTNING_BOLT, 136, 56, $2
-	anim_obj ANIM_OBJ_33, 136, 56, $0
-	anim_wait 24
-; recoil: the charge arcs back into the user
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_obj ANIM_OBJ_THUNDER_WAVE, 48, 88, $0
+	anim_bgp $1b
+	anim_incobj 1
+	anim_wait 48
 	anim_clearobjs
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
-	anim_sound 0, 0, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_LIGHTNING_BOLT, 48, 96, $0
-	anim_wait 8
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $10, $2, $0
-	anim_sound 0, 0, SFX_SPARK
-	anim_obj ANIM_OBJ_33, 48, 92, $0
-	anim_wait 32
+	anim_sound 0, 0, SFX_MENU
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 12
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ICE
+.loop
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_obj ANIM_OBJ_VOLT_TACKLE, 48, 88, $0
+	anim_wait 1
+	anim_loop 8, .loop
+	anim_wait 2
+.loop2
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_obj ANIM_OBJ_VOLT_TACKLE, 158, 72, $20
+	anim_wait 1
+	anim_loop 8, .loop2
+	anim_wait 2
+.loop3
+	anim_sound 0, 0, SFX_ZAP_CANNON
+	anim_obj ANIM_OBJ_VOLT_TACKLE, 0, 56, $0
+	anim_wait 1
+	anim_loop 8, .loop3
+	anim_wait 2
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $4, $10
+	anim_obp0 $30
+	anim_sound 0, 1, SFX_THUNDER
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, 136, 56, $2
+	anim_wait 16
+	anim_obj ANIM_OBJ_31, 136, 56, $0
+	anim_wait 64
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_ret
 
 BattleAnim_Liquidation:

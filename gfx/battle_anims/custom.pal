@@ -266,3 +266,9 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 	RGB 29, 03, 04
 	RGB 29, 03, 04
 	RGB 00, 00, 00
+
+; cosmic (mae-pokeorange Wish starfield)
+	RGB 31, 31, 31
+	RGB 31, 30, 23
+	RGB 13, 27, 31
+	RGB 28, 05, 13

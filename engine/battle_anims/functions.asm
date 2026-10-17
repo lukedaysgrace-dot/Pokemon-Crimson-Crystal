@@ -121,6 +121,8 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_ObjectHover ; 69 (ported from pokeorange; Wish)
 	dw BattleAnimFunction_WeatherBallArc ; 6a
 
+	dw BattleAnimFunction_RadialMoveOut_CP_BG ; appended mae-pokeorange starfield callback
+
 BattleAnimFunction_Stat:
 ; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.
 ; The parameter selects the direction; the first frame starts at offset 0.
@@ -5191,4 +5193,50 @@ BattleAnimFunction_ObjectHover:
 	ret
 
 .two
+	ret
+
+BattleAnimFunction_RadialMoveOut_CP_BG:
+	call BattleAnim_AnonJumptable
+
+	dw .initialize
+	dw .step
+
+.initialize
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	xor a
+	ld [hld], a
+	ld [hl], a ; initial position = 0
+	call BattleAnim_IncAnonJumptableIndex
+.step
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	push hl
+	ld a, [hli]
+	ld e, [hl]
+	ld d, a
+	ld hl, $0014 ; Pokeorange builds with -Q8: 0.08 * 256, truncated.
+	add hl, de
+	ld a, h
+	ld e, l
+	pop hl
+	ld [hli], a
+	ld [hl], e
+	cp 120 ; final position
+	jp nc, DeinitBattleAnimation
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld e, [hl]
+	push de
+	ld a, e
+	call Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	ld a, e
+	call Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
 	ret

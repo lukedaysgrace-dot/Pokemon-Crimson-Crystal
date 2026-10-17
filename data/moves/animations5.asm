@@ -2021,12 +2021,12 @@ BattleAnim_Yawn_PO:
 	anim_ret
 
 BattleAnim_Wish_PO:
-; pokeorange's Wish, minus its Cosmic Power backdrop machinery (custom
-; cosmic palette, ANIM_GFX_COSMIC_POWER bg object and the clearenemyhud
-; opcode do not exist here); anim_bgp darkening + hidden mon + the star
-; shower and inverted-palette moonlight flash carry the effect.
-	anim_1gfx ANIM_GFX_STARS
+	; Completed mae-pokeorange port, including the drifting cosmic backdrop.
+	anim_setobjpal PAL_BATTLE_OB_GREEN, PAL_BTLCUSTOM_COSMIC
+	anim_2gfx ANIM_GFX_STARS, ANIM_GFX_COSMIC_POWER
+	anim_clearopponenthud
 	anim_bgp $1b
+	anim_obj ANIM_OBJ_COSMIC_POWER_BG, 61, 75, $30
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $0, $0
 	anim_wait 16
@@ -2044,6 +2044,7 @@ BattleAnim_Wish_PO:
 	anim_obj ANIM_OBJ_WISH_2, 130, 64, $0
 	anim_wait 80
 	anim_clearobjs
+	anim_obj ANIM_OBJ_COSMIC_POWER_BG, 61, 60, $30
 	anim_incbgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW
 	anim_bgeffect ANIM_BG_CYCLE_BGPALS_INVERTED, $0, $0, $0
 	anim_sound 0, 0, SFX_MOONLIGHT
@@ -2051,8 +2052,7 @@ BattleAnim_Wish_PO:
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
 	anim_ret
 
-; Exact Weather Ball animation from mae-pokeorange. The Ice Ball burst helper
-; is copied below under a bank-local name.
+; Weather Ball retains its corrected travel distance and removed transition flash.
 BattleAnim_WeatherBall_PO:
 	anim_2gfx ANIM_GFX_WEATHER_BALL, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
@@ -2180,3 +2180,45 @@ BattleAnim_WeatherBallIceBurst_PO:
 	anim_obj ANIM_OBJ_ICE_SPLASH, 136, 56, $dc
 	anim_obj ANIM_OBJ_ICE_SPLASH, 136, 56, $90
 	anim_ret
+
+; Completed mae-pokeorange port; moved here because bank32 is full.
+BattleAnim_LeafBlade:
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GREEN
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_GREEN
+	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_PLANT
+	anim_sound 0, 1, SFX_CUT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
+	anim_obj ANIM_OBJ_3A, 150, 40, $0
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $28
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $d0
+	anim_wait 32
+	anim_sound 0, 1, SFX_CUT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
+	anim_obj ANIM_OBJ_3B, 118, 40, $0
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $10
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $dc
+	anim_wait 32
+	anim_sound 0, 1, SFX_CUT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $08, $2, $0
+	anim_obj ANIM_OBJ_CUT_LONG_UP_RIGHT, 120, 68, $0
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $5c
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 136, 40, $90
+	anim_wait 32
+	anim_ret
+
+; Completed mae-pokeorange port; moved here because bank32 is full.
+BattleAnim_ShadowPunch:
+	anim_1gfx ANIM_GFX_HIT
+	anim_battlergfx_2row
+	anim_bgp $1b
+	anim_sound 6, 2, SFX_CURSE
+	anim_wait 32
+	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $0, $0
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_SIDE_PUNCH, 88, 56, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_01, 136, 56, $0
+	anim_wait 32
+	anim_jump BattleAnim_ShowMon_0_CC

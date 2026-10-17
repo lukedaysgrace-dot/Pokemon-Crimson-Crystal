@@ -457,6 +457,10 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_SHINY_ENTRANCE
 	const ANIM_OBJ_WOOD_HAMMER
 
+	const ANIM_OBJ_COSMIC_POWER_BG
+	const ANIM_OBJ_SIDE_PUNCH
+	const ANIM_OBJ_VOLT_TACKLE
+	const ANIM_OBJ_CUT_LONG_UP_RIGHT
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
 	const BATTLEANIMFUNC_00
@@ -567,6 +571,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_PURSUIT
 	const BATTLEANIMFUNC_OBJECT_HOVER ; ported from pokeorange (Wish)
 	const BATTLEANIMFUNC_WEATHER_BALL_ARC
+
+	const BATTLEANIMFUNC_RADIAL_MOVE_OUT_CP_BG
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
@@ -879,6 +885,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_SHINY_ENTRANCE
 	const BATTLEANIMFRAMESET_WOOD_HAMMER
 
+	const BATTLEANIMFRAMESET_PO_COSMIC_POWER_BG
+	const BATTLEANIMFRAMESET_PO_VOLT_TACKLE_SPARKS
+	const BATTLEANIMFRAMESET_PO_CUT_LONG_UP_RIGHT
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
 	const BATTLEANIMOAMSET_00
@@ -1238,6 +1247,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_MORNING_SUN_SPARKLE ; vanilla BATTLEANIMOAMSET_BD
 	const BATTLEANIMOAMSET_TORMENT ; ported from pokeorange
 
+	const BATTLEANIMOAMSET_PO_COSMIC_POWER_BG
+	const BATTLEANIMOAMSET_PO_VOLT_TACKLE
+
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
 	const ANIM_BG_FLASH_INVERTED
@@ -1411,6 +1423,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_TAUNT ; ported from pokeorange
 	const ANIM_GFX_WEATHER_BALL ; ported from mae-pokeorange
 	const ANIM_GFX_WOOD_HAMMER
+	const ANIM_GFX_COSMIC_POWER
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def
@@ -1510,6 +1523,7 @@ PAL_BATTLE_BG_TARGET EQU 9
 	const PAL_BTLCUSTOM_EVASION          ; 38
 	const PAL_BTLCUSTOM_CHARRED          ; 39
 	const PAL_BTLCUSTOM_HEAT_WAVE        ; 3a
+	const PAL_BTLCUSTOM_COSMIC
 NUM_CUSTOM_BATTLE_PALETTES EQU const_value
 
 PAL_BTLCUSTOM_DEFAULT EQU $ff

@@ -1959,6 +1959,7 @@ BattleAnim_Blizzard:
 	anim_ret
 
 BattleAnim_Bubble:
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_BUBBLE
 	anim_1gfx ANIM_GFX_BUBBLE
 	anim_sound 32, 2, SFX_WATER_GUN
 	anim_obj ANIM_OBJ_BUBBLE, 64, 92, $c1
@@ -2290,11 +2291,13 @@ BattleAnim_Selfdestruct:
 	anim_1gfx ANIM_GFX_EXPLOSION
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $24
 	anim_if_param_equal $1, .loop
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_call BattleAnim_Selfdestruct_branch_cbb8f
 	anim_wait 16
 	anim_ret
 
 .loop
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_call BattleAnim_Selfdestruct_branch_cbb62
 	anim_wait 5
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
@@ -2623,6 +2626,7 @@ BattleAnim_MegaDrain:
 	anim_ret
 
 BattleAnim_EggBomb:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_2gfx ANIM_GFX_EGG, ANIM_GFX_EXPLOSION
 	anim_sound 0, 0, SFX_SWITCH_POKEMON
 	anim_obj ANIM_OBJ_EGG, 44, 104, $1
@@ -3267,21 +3271,27 @@ BattleAnim_PinMissile:
 	anim_ret
 
 BattleAnim_SpikeCannon:
+	; This engine's medium horn uses BLUE; Pokeorange's uses YELLOW.
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_GRAY
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_MEGA_PUNCH
 .loop
-	anim_obj ANIM_OBJ_60, 64, 92, $18
-	anim_wait 8
-	anim_obj ANIM_OBJ_60, 56, 84, $18
-	anim_sound 0, 1, SFX_POISON_STING
-	anim_obj ANIM_OBJ_05, 136, 56, $0
-	anim_wait 8
-	anim_obj ANIM_OBJ_60, 52, 88, $18
-	anim_sound 0, 1, SFX_POISON_STING
-	anim_obj ANIM_OBJ_05, 128, 48, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_POISON_STING
-	anim_obj ANIM_OBJ_05, 132, 52, $0
-	anim_loop 3, .loop
+	anim_obj ANIM_OBJ_MEDIUM_HORN, 52, 88, $18
+	anim_wait 12
+	anim_obj ANIM_OBJ_MEDIUM_HORN, 64, 92, $18
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_04, 130, 50, $0
+	anim_wait 12
+	anim_obj ANIM_OBJ_MEDIUM_HORN, 56, 84, $18
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_04, 136, 56, $0
+	anim_wait 12
+	anim_obj ANIM_OBJ_MEDIUM_HORN, 60, 96, $18
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_04, 128, 48, $0
+	anim_wait 12
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_04, 137, 57, $0
 	anim_wait 16
 	anim_ret
 
@@ -3313,6 +3323,7 @@ BattleAnim_PetalDance:
 	anim_ret
 
 BattleAnim_Barrage:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_2gfx ANIM_GFX_EGG, ANIM_GFX_EXPLOSION
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_SLUDGE_BOMB, 64, 92, $10
@@ -4165,6 +4176,7 @@ BattleAnim_Nightmare:
 	anim_ret
 
 BattleAnim_FlameWheel:
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_1gfx ANIM_GFX_FIRE
 .loop
 	anim_sound 0, 0, SFX_EMBER
@@ -4351,6 +4363,7 @@ BattleAnim_PowderSnow:
 	anim_loop 2, .loop
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
 	anim_wait 40
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ICE
 	anim_call BattleAnim_PowderSnow_branch_cbbdf
 	anim_wait 32
 	anim_ret
@@ -4956,6 +4969,7 @@ BattleAnim_Present:
 	anim_1gfx ANIM_GFX_EXPLOSION
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $12
 .loop
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_FIRE
 	anim_call BattleAnim_Present_branch_cbb8f
 	anim_wait 16
 	anim_jumpuntil .loop
@@ -5931,19 +5945,6 @@ BattleAnim_ShowMon_1:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_LeafBlade:
-; Sharp grass blades slash the target
-	anim_2gfx ANIM_GFX_PLANT, ANIM_GFX_CUT
-	anim_sound 0, 0, SFX_VINE_WHIP
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 56, 80, $28
-	anim_obj ANIM_OBJ_RAZOR_LEAF, 48, 88, $5c
-	anim_wait 12
-	anim_sound 0, 1, SFX_CUT
-	anim_obj ANIM_OBJ_3A, 152, 40, $0
-	anim_obj ANIM_OBJ_3A, 120, 72, $0
-	anim_wait 24
-	anim_ret
-
 BattleAnim_ShadowSneak:
 ; Dark shadow lunge from behind (priority ghost strike)
 	anim_2gfx ANIM_GFX_SPEED, ANIM_GFX_HIT
@@ -5963,21 +5964,6 @@ BattleAnim_ShadowSneak:
 	anim_wait 8
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_wait 16
-	anim_ret
-
-BattleAnim_ShadowPunch:
-; Faint Attack vanish, then a silent Thunder Punch fist from the dark
-	anim_1gfx ANIM_GFX_HIT
-	anim_sound 0, 0, SFX_CURSE
-	anim_call BattleAnim_TargetObj_1Row
-	anim_bgeffect ANIM_BG_1D, $0, $1, $80
-	anim_wait 40
-	anim_obj ANIM_OBJ_0A, 136, 56, $43
-	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_wait 64
-	anim_incbgeffect ANIM_BG_1D
-	anim_call BattleAnim_ShowMon_0
-	anim_wait 4
 	anim_ret
 
 BattleAnim_ShadowClaw:

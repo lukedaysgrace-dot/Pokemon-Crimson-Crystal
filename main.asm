@@ -531,11 +531,15 @@ INCLUDE "engine/battle_anims/helpers.asm"
 
 SECTION "Battle Anim Data", ROMX
 
-INCLUDE "data/battle_anims/objects.asm"
 INCLUDE "data/battle_anims/framesets.asm"
 INCLUDE "data/battle_anims/oam.asm"
-INCLUDE "data/battle_anims/object_gfx.asm"
 INCLUDE "engine/battle_anims/data_readers.asm"
+
+SECTION "Battle Anim Objects", ROMX
+
+INCLUDE "data/battle_anims/objects.asm"
+INCLUDE "data/battle_anims/object_gfx.asm"
+INCLUDE "engine/battle_anims/object_readers.asm"
 
 
 ; This section is pinned to bank $34 and holds only the engine code and the

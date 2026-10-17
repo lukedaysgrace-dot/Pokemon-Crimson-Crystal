@@ -346,6 +346,10 @@ BattleAnimFrameData:
 	dw .Frameset_ShinyEntrance ; BATTLEANIMFRAMESET_SHINY_ENTRANCE
 	dw .Frameset_WoodHammer ; BATTLEANIMFRAMESET_WOOD_HAMMER
 
+	dw .Frameset_PO_CosmicPowerBG ; BATTLEANIMFRAMESET_PO_COSMIC_POWER_BG
+	dw .Frameset_PO_VoltTackleSparks ; BATTLEANIMFRAMESET_PO_VOLT_TACKLE_SPARKS
+	dw .Frameset_PO_CutLongUpRight ; BATTLEANIMFRAMESET_PO_CUT_LONG_UP_RIGHT
+
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
 	oamdelanim
@@ -2191,3 +2195,27 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_CD, 2, OAM_X_FLIP, OAM_Y_FLIP
 	oamframe BATTLEANIMOAMSET_CD, 2, OAM_Y_FLIP
 	oamrestart
+
+.Frameset_PO_CosmicPowerBG:
+	oamframe BATTLEANIMOAMSET_PO_COSMIC_POWER_BG,  1
+	oamendanim
+
+.Frameset_PO_VoltTackleSparks:
+	oamframe BATTLEANIMOAMSET_PO_VOLT_TACKLE,  8
+	oamendanim
+
+.Frameset_PO_CutLongUpRight:
+	oamframe BATTLEANIMOAMSET_4B,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4C,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4D,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4F,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_50,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_51,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_52,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamdelanim
