@@ -158,3 +158,4 @@ OverworldSprites:
 	overworld_sprite GamblerAsleepSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite BalloonSpriteGFX, 8, MON_ICON_SPRITE, PAL_OW_RED
 	overworld_sprite CueballSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite KarateKingSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
