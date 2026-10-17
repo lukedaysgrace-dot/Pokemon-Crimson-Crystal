@@ -9502,7 +9502,14 @@
         "SEED_BOMB",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [],
+      "removed_moves": [
+        "PSYSTRIKE"
+      ],
+      "evolution_move": {
+        "pre_evolution": "FLITTLE",
+        "move": "LUMINA_CRASH"
+      }
     },
     {
       "species": "ESPEON",

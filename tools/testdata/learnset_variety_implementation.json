@@ -4156,6 +4156,12 @@
     "BUG_BITE": "FURY_CUTTER"
   },
   "tm_replacement_source": "f96557e98c8cc64284836ab8abc31e82248371dc: intentional Bug Bite to Fury Cutter TM and compatibility replacement",
-  "level_up_removals": {"SCYTHER": ["BUG_BITE"]},
+  "level_up_removals": {"SCYTHER": ["BUG_BITE"], "ESPATHRA": ["PSYSTRIKE"]},
+  "level_up_removal_notes": {
+    "ESPATHRA": "User correction: Espathra learns Lumina Crash on evolution from Flittle, never Psystrike. Keep its level-1 Lumina Crash reminder entry."
+  },
+  "evolution_moves": {
+    "ESPATHRA": {"pre_evolution": "FLITTLE", "move": "LUMINA_CRASH"}
+  },
   "level_up_removal_source": "f96557e98c8cc64284836ab8abc31e82248371dc: Scyther's level-25 Bug Bite explicitly removed alongside the TM replacement"
 }

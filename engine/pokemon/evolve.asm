@@ -592,6 +592,7 @@ EvolveAfterBattle_MasterLoop:
 	ld [wTempSpecies], a
 	xor a
 	ld [wMonType], a
+	call LearnEspathraEvolutionMove
 	call LearnLevelMoves
 	ld a, [wTempSpecies]
 	call SetSeenAndCaughtMon
@@ -726,6 +727,51 @@ Text_WhatEvolving:
 	; What? @ is evolving!
 	text_far UnknownText_0x1c4be3
 	text_end
+
+LearnEspathraEvolutionMove:
+; Offer Lumina Crash on a successful Flittle -> Espathra evolution, including
+; delayed evolutions above level 35. The level-1 entry remains for the reminder.
+	ld a, [wEvolutionOldSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(FLITTLE)
+	ret nz
+	ld a, l
+	cp LOW(FLITTLE)
+	ret nz
+	ld a, [wTempSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(ESPATHRA)
+	ret nz
+	ld a, l
+	cp LOW(ESPATHRA)
+	ret nz
+
+	ld hl, LUMINA_CRASH
+	call GetMoveIDFromIndex
+	ld d, a
+	ld hl, wPartyMon1Moves
+	ld a, [wCurPartyMon]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld b, NUM_MOVES
+.check_known
+	ld a, [hli]
+	cp d
+	ret z
+	dec b
+	jr nz, .check_known
+
+	ld a, [wTempSpecies]
+	ld [wCurPartySpecies], a
+	ld a, d
+	ld [wPutativeTMHMMove], a
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	call CopyName1
+	predef LearnMove
+	ret
 
 LearnLevelMoves:
 	ld a, [wTempSpecies]

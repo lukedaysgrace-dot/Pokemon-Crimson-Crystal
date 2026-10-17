@@ -116,6 +116,7 @@ test-learnsets: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/audit_canonical_learnsets.py
 	$(BATTLE_TEST_PYTHON) tools/audit_breeding_moves.py
 	$(BATTLE_TEST_PYTHON) tools/test_learnset_variety.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_espathra_evolution_move.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_breeding_moves.py pokecrystal.gbc
 
 .PHONY: test-qol
