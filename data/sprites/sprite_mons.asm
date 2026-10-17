@@ -67,3 +67,4 @@ SpriteMons:
 	dw MEWTWO
 	dw ARTICUNO
 	dw ZAPDOS
+	dw MACHAMP
