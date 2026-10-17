@@ -166,6 +166,8 @@ def main():
             dialogue()
             check(event('EVENT_CELADON_SPECS_BURGLAR_FLED'), 'Trigger did not start chase')
             check(c.position() == (34, 21-lane), 'Player was not shoved into the other lane')
+            check(m.read('wObjectStructs',8) == (4 if lane == 10 else 0),
+                  'Player does not face up after being shoved down, or down after being shoved up')
             check(obj(10) is None and obj(11) is not None and obj(11)['position'] == [34,lane],
                   'Burglar did not leave the ball on the correct tile')
             check(obj(12) is None and quantity() == 0, 'Officer or reward appeared too soon')
@@ -191,7 +193,7 @@ def main():
             c.press(direction, hold=4, wait=24)
             c.press('a', hold=4, wait=24)
             until_battle()
-            check(officer_spawns == [(38,lane)], 'Officer did not enter from the right: ' + str(officer_spawns))
+            check(officer_spawns == [(40,lane)], 'Officer did not enter from beyond the right edge: ' + str(officer_spawns))
             check(quantity() == 1 and event('EVENT_GOT_CELADON_CHOICE_SPECS'), 'Specs pickup failed')
             check(h.sym['CeladonOfficerAccusationText'] in texts, 'Missing officer confrontation')
             check(m.read('wOtherTrainerClass') == h.con.trainer_classes['OFFICER']
