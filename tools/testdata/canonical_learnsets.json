@@ -1030,6 +1030,18 @@
       "CHANDELURE": {
         "MINIMIZE": 1,
         "SMOG": 1
+      },
+      "JIRACHI": {
+        "WISH": 1,
+        "CONFUSION": 1,
+        "DRACO_METEOR": 1,
+        "SWIFT": 1,
+        "PSYCHIC_M": 10,
+        "ZEN_HEADBUTT": 22,
+        "IRON_HEAD": 34,
+        "FUTURE_SIGHT": 38,
+        "DOUBLE_EDGE": 42,
+        "REST": 63
       }
     },
     "egg_moves": {
@@ -4576,6 +4588,36 @@
       ],
       "MANTYKE": [
         "MUD_SLAP"
+      ],
+      "JIRACHI": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "TOXIC",
+        "ZAP_CANNON",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "FACADE",
+        "IRON_HEAD",
+        "THUNDER",
+        "RETURN",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "FLASH_CANNON",
+        "SANDSTORM",
+        "SWIFT",
+        "THUNDERPUNCH",
+        "REST",
+        "FIRE_PUNCH",
+        "ZEN_HEADBUTT",
+        "FLASH",
+        "THUNDERBOLT"
       ]
     },
     "technical_tutor": {
@@ -14593,6 +14635,46 @@
         "SNORE",
         "SUPERPOWER",
         "TAKE_DOWN"
+      ],
+      "JIRACHI": [
+        "AERIAL_ACE",
+        "AMNESIA",
+        "ANCIENTPOWER",
+        "AURA_SPHERE",
+        "BATON_PASS",
+        "BODY_SLAM",
+        "CALM_MIND",
+        "CHARM",
+        "CONFUSE_RAY",
+        "DAZZLING_GLEAM",
+        "DEFENSE_CURL",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "DYNAMICPUNCH",
+        "ENCORE",
+        "ENDURE",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "ICY_WIND",
+        "IRON_DEFENSE",
+        "MEGA_KICK",
+        "MEGA_PUNCH",
+        "METRONOME",
+        "MIMIC",
+        "MOONBLAST",
+        "NIGHTMARE",
+        "PLAY_ROUGH",
+        "PSYBEAM",
+        "PSYCH_UP",
+        "SAFEGUARD",
+        "SIGNAL_BEAM",
+        "SKILL_SWAP",
+        "SNORE",
+        "STEALTH_ROCK",
+        "TRICK",
+        "TRICK_ROOM",
+        "U_TURN",
+        "WATER_PULSE"
       ]
     },
     "donor_fallbacks": {
@@ -69083,6 +69165,594 @@
       "TWISTER": [
         "staraptor:4T"
       ]
+    },
+    "JIRACHI": {
+      "AERIAL_ACE": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "AMNESIA": [
+        "jirachi:9M",
+        "jirachi:8M"
+      ],
+      "ANCIENTPOWER": [
+        "jirachi:4T"
+      ],
+      "AURA_SPHERE": [
+        "jirachi:9M",
+        "jirachi:8M"
+      ],
+      "BATON_PASS": [
+        "jirachi:9M",
+        "jirachi:8M"
+      ],
+      "BODY_SLAM": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:3T"
+      ],
+      "CALM_MIND": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "CHARM": [
+        "jirachi:9M",
+        "jirachi:8M"
+      ],
+      "CONFUSE_RAY": [
+        "jirachi:9M"
+      ],
+      "CONFUSION": [
+        "jirachi:9L1",
+        "jirachi:8L1",
+        "jirachi:7L1",
+        "jirachi:6L1",
+        "jirachi:6S10",
+        "jirachi:6S12",
+        "jirachi:6S13",
+        "jirachi:5L1",
+        "jirachi:4L1",
+        "jirachi:4S3",
+        "jirachi:4S4",
+        "jirachi:3L1",
+        "jirachi:3S0",
+        "jirachi:3S1"
+      ],
+      "DAZZLING_GLEAM": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M"
+      ],
+      "DEFENSE_CURL": [
+        "jirachi:3T"
+      ],
+      "DOUBLE_EDGE": [
+        "jirachi:9M",
+        "jirachi:9L77",
+        "jirachi:8L77",
+        "jirachi:7L40",
+        "jirachi:6L40",
+        "jirachi:5L40",
+        "jirachi:4L40",
+        "jirachi:3T",
+        "jirachi:3L35"
+      ],
+      "DOUBLE_TEAM": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "DRACO_METEOR": [
+        "jirachi:5S6",
+        "jirachi:4S4"
+      ],
+      "DRAIN_PUNCH": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4M"
+      ],
+      "DREAM_EATER": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "DYNAMICPUNCH": [
+        "jirachi:3T"
+      ],
+      "ENCORE": [
+        "jirachi:9M",
+        "jirachi:8M"
+      ],
+      "ENDURE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "ENERGY_BALL": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M"
+      ],
+      "FACADE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "FIRE_PUNCH": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "FLASH": [
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "FLASH_CANNON": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M"
+      ],
+      "FRUSTRATION": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "FUTURE_SIGHT": [
+        "jirachi:9M",
+        "jirachi:9L70",
+        "jirachi:8M",
+        "jirachi:8L70",
+        "jirachi:7L55",
+        "jirachi:6L55",
+        "jirachi:5L55",
+        "jirachi:4L55",
+        "jirachi:3L40"
+      ],
+      "GIGA_IMPACT": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M"
+      ],
+      "HEADBUTT": [
+        "jirachi:4T"
+      ],
+      "HIDDEN_POWER": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "HYPER_BEAM": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "ICE_PUNCH": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "ICY_WIND": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "IRON_DEFENSE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T"
+      ],
+      "IRON_HEAD": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T"
+      ],
+      "LIGHT_SCREEN": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "MEGA_KICK": [
+        "jirachi:8M"
+      ],
+      "MEGA_PUNCH": [
+        "jirachi:8M"
+      ],
+      "METRONOME": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:3T"
+      ],
+      "MIMIC": [
+        "jirachi:3T"
+      ],
+      "MOONBLAST": [
+        "jirachi:6S9"
+      ],
+      "MUD_SLAP": [
+        "jirachi:9M",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "NIGHTMARE": [
+        "jirachi:3T"
+      ],
+      "PLAY_ROUGH": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:6S11"
+      ],
+      "PROTECT": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "PSYBEAM": [
+        "jirachi:9M"
+      ],
+      "PSYCHIC_M": [
+        "jirachi:9M",
+        "jirachi:9L42",
+        "jirachi:8M",
+        "jirachi:8L42",
+        "jirachi:8S15",
+        "jirachi:7M",
+        "jirachi:7L20",
+        "jirachi:6M",
+        "jirachi:6L20",
+        "jirachi:5M",
+        "jirachi:5L20",
+        "jirachi:5S5",
+        "jirachi:4M",
+        "jirachi:4L20",
+        "jirachi:3M",
+        "jirachi:3L20",
+        "jirachi:3S2"
+      ],
+      "PSYCH_UP": [
+        "jirachi:9M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "RAIN_DANCE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "REFLECT": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "REST": [
+        "jirachi:9M",
+        "jirachi:9L63",
+        "jirachi:8M",
+        "jirachi:8L63",
+        "jirachi:8S15",
+        "jirachi:7M",
+        "jirachi:7L30",
+        "jirachi:7S14",
+        "jirachi:6M",
+        "jirachi:6L5",
+        "jirachi:6S13",
+        "jirachi:5M",
+        "jirachi:5L5",
+        "jirachi:4M",
+        "jirachi:4L5",
+        "jirachi:4S3",
+        "jirachi:4S4",
+        "jirachi:3M",
+        "jirachi:3L5",
+        "jirachi:3S0",
+        "jirachi:3S1",
+        "jirachi:3S2"
+      ],
+      "RETURN": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:6S10",
+        "jirachi:5M",
+        "jirachi:5S8",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SAFEGUARD": [
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SANDSTORM": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SHADOW_BALL": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SIGNAL_BEAM": [
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T"
+      ],
+      "SKILL_SWAP": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SLEEP_TALK": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5T",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "SNORE": [
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "STEALTH_ROCK": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4M"
+      ],
+      "SUBSTITUTE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "SUNNY_DAY": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "SWAGGER": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "SWIFT": [
+        "jirachi:9M",
+        "jirachi:9L7",
+        "jirachi:8M",
+        "jirachi:8L7",
+        "jirachi:7L10",
+        "jirachi:7S14",
+        "jirachi:6L10",
+        "jirachi:6S9",
+        "jirachi:6S12",
+        "jirachi:5L10",
+        "jirachi:5S5",
+        "jirachi:5S8",
+        "jirachi:4T",
+        "jirachi:4L10",
+        "jirachi:3T",
+        "jirachi:3L10"
+      ],
+      "THUNDER": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "THUNDERBOLT": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "THUNDERPUNCH": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T",
+        "jirachi:3T"
+      ],
+      "THUNDER_WAVE": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3T"
+      ],
+      "TOXIC": [
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "TRICK": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:5T",
+        "jirachi:4T"
+      ],
+      "TRICK_ROOM": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M"
+      ],
+      "U_TURN": [
+        "jirachi:9M",
+        "jirachi:8M",
+        "jirachi:7M",
+        "jirachi:6M",
+        "jirachi:5M",
+        "jirachi:4M"
+      ],
+      "WATER_PULSE": [
+        "jirachi:9M",
+        "jirachi:7T",
+        "jirachi:6T",
+        "jirachi:4M",
+        "jirachi:3M"
+      ],
+      "WISH": [
+        "jirachi:9L1",
+        "jirachi:8L1",
+        "jirachi:8S15",
+        "jirachi:7L1",
+        "jirachi:7S14",
+        "jirachi:6L1",
+        "jirachi:6S9",
+        "jirachi:6S10",
+        "jirachi:6S11",
+        "jirachi:6S12",
+        "jirachi:6S13",
+        "jirachi:5L1",
+        "jirachi:5S6",
+        "jirachi:5S7",
+        "jirachi:5S8",
+        "jirachi:4L1",
+        "jirachi:4S3",
+        "jirachi:4S4",
+        "jirachi:3L1",
+        "jirachi:3S0",
+        "jirachi:3S1"
+      ],
+      "ZEN_HEADBUTT": [
+        "jirachi:9M",
+        "jirachi:9L28",
+        "jirachi:8M",
+        "jirachi:8L28",
+        "jirachi:7T",
+        "jirachi:7L35",
+        "jirachi:6T",
+        "jirachi:6L35",
+        "jirachi:5T",
+        "jirachi:5L35",
+        "jirachi:4T",
+        "jirachi:4L35"
+      ]
     }
   },
   "expected": {
@@ -103173,6 +103843,83 @@
       "THUNDER_FANG",
       "TORMENT",
       "TOXIC"
+    ],
+    "JIRACHI": [
+      "AERIAL_ACE",
+      "AMNESIA",
+      "ANCIENTPOWER",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BODY_SLAM",
+      "CALM_MIND",
+      "CHARM",
+      "CONFUSE_RAY",
+      "CONFUSION",
+      "DAZZLING_GLEAM",
+      "DEFENSE_CURL",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DRACO_METEOR",
+      "DRAIN_PUNCH",
+      "DREAM_EATER",
+      "DYNAMICPUNCH",
+      "ENCORE",
+      "ENDURE",
+      "ENERGY_BALL",
+      "FACADE",
+      "FIRE_PUNCH",
+      "FLASH",
+      "FLASH_CANNON",
+      "FRUSTRATION",
+      "FUTURE_SIGHT",
+      "GIGA_IMPACT",
+      "HEADBUTT",
+      "HIDDEN_POWER",
+      "HYPER_BEAM",
+      "ICE_PUNCH",
+      "ICY_WIND",
+      "IRON_DEFENSE",
+      "IRON_HEAD",
+      "LIGHT_SCREEN",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METRONOME",
+      "MIMIC",
+      "MOONBLAST",
+      "MUD_SLAP",
+      "NIGHTMARE",
+      "PLAY_ROUGH",
+      "PROTECT",
+      "PSYBEAM",
+      "PSYCHIC_M",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "SAFEGUARD",
+      "SANDSTORM",
+      "SHADOW_BALL",
+      "SIGNAL_BEAM",
+      "SKILL_SWAP",
+      "SLEEP_TALK",
+      "SNORE",
+      "STEALTH_ROCK",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "THUNDER",
+      "THUNDERBOLT",
+      "THUNDERPUNCH",
+      "THUNDER_WAVE",
+      "TOXIC",
+      "TRICK",
+      "TRICK_ROOM",
+      "U_TURN",
+      "WATER_PULSE",
+      "WISH",
+      "ZEN_HEADBUTT"
     ]
   },
   "unimplemented_moves": {
@@ -114712,6 +115459,46 @@
       "Uproar",
       "Me First",
       "Rock Climb"
+    ],
+    "JIRACHI": [
+      "Ally Switch",
+      "Charge Beam",
+      "Confide",
+      "Cosmic Power",
+      "Doom Desire",
+      "Expanding Force",
+      "Fake Tears",
+      "Fling",
+      "Follow Me",
+      "Grass Knot",
+      "Gravity",
+      "Happy Hour",
+      "Healing Wish",
+      "Heart Stamp",
+      "Helping Hand",
+      "Imprison",
+      "Last Resort",
+      "Life Dew",
+      "Lucky Chant",
+      "Magic Coat",
+      "Magic Room",
+      "Metal Sound",
+      "Meteor Beam",
+      "Meteor Mash",
+      "Natural Gift",
+      "Power-Up Punch",
+      "Psychic Noise",
+      "Psyshock",
+      "Recycle",
+      "Refresh",
+      "Round",
+      "Secret Power",
+      "Shock Wave",
+      "Steel Beam",
+      "Stored Power",
+      "Telekinesis",
+      "Tera Blast",
+      "Uproar"
     ]
   },
   "bulbapedia_spot_checks": [
@@ -176443,6 +177230,84 @@
       "WISH",
       "YAWN",
       "ZAP_CANNON"
+    ],
+    "JIRACHI": [
+      "AERIAL_ACE",
+      "AMNESIA",
+      "ANCIENTPOWER",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BODY_SLAM",
+      "CALM_MIND",
+      "CHARM",
+      "CONFUSE_RAY",
+      "CONFUSION",
+      "DAZZLING_GLEAM",
+      "DEFENSE_CURL",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DRACO_METEOR",
+      "DRAIN_PUNCH",
+      "DREAM_EATER",
+      "DYNAMICPUNCH",
+      "ENCORE",
+      "ENDURE",
+      "ENERGY_BALL",
+      "FACADE",
+      "FIRE_PUNCH",
+      "FLASH",
+      "FLASH_CANNON",
+      "FRUSTRATION",
+      "FUTURE_SIGHT",
+      "GIGA_IMPACT",
+      "HEADBUTT",
+      "HIDDEN_POWER",
+      "HYPER_BEAM",
+      "ICE_PUNCH",
+      "ICY_WIND",
+      "IRON_DEFENSE",
+      "IRON_HEAD",
+      "LIGHT_SCREEN",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METRONOME",
+      "MIMIC",
+      "MOONBLAST",
+      "MUD_SLAP",
+      "NIGHTMARE",
+      "PLAY_ROUGH",
+      "PROTECT",
+      "PSYBEAM",
+      "PSYCHIC_M",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "SAFEGUARD",
+      "SANDSTORM",
+      "SHADOW_BALL",
+      "SIGNAL_BEAM",
+      "SKILL_SWAP",
+      "SLEEP_TALK",
+      "SNORE",
+      "STEALTH_ROCK",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "THUNDER",
+      "THUNDERBOLT",
+      "THUNDERPUNCH",
+      "THUNDER_WAVE",
+      "TOXIC",
+      "TRICK",
+      "TRICK_ROOM",
+      "U_TURN",
+      "WATER_PULSE",
+      "WISH",
+      "ZAP_CANNON",
+      "ZEN_HEADBUTT"
     ]
   },
   "fallback_tutor": {
@@ -176450,5 +177315,15 @@
     "npc": "Existing purple move tutor",
     "fee": 5000,
     "policy": "Existing egg menu plus species-specific verified fallback moves"
+  },
+  "supplemental_sources": {
+    "JIRACHI": {
+      "url": "https://luminescent.team/pokedex/jirachi",
+      "receipt": "tools/testdata/jirachi.json",
+      "additional_moves": [
+        "ZAP_CANNON"
+      ],
+      "level_policy": "Lumi level-up schedule plus canonical Rest at 63, filtered to implemented moves."
+    }
   }
 }

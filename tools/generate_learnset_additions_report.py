@@ -57,6 +57,7 @@ def main():
 
     records = []
     for c in sorted(current[0], key=lambda c: name(c).casefold()):
+        before.setdefault(c, set())  # Species appended after the baseline have no old access.
         assert before[c] <= after[c], (c, 'unexpected removed access', before[c] - after[c])
         root = current[-1][c]
         natural = changes['level_up'].get(c, {})
@@ -66,7 +67,8 @@ def main():
         machines = changes['tmhm'].get(c, [])
         tutors = changes['technical_tutor'].get(c, [])
         added = after[c] - before[c]
-        direct = set(natural) | set(thematic) | set(fallback) | set(eggs) | set(machines) | set(tutors)
+        utility = added & {m for i, m in enumerate(breeding.UTILITY) if current[5][c] & (1 << i)}
+        direct = set(natural) | set(thematic) | set(fallback) | set(eggs) | set(machines) | set(tutors) | utility
         inherited = added - direct
         records.append({'species': c, 'name': name(c), 'newly_available': sorted(added),
                         'new_level_up': natural, 'breeding_fallbacks': fallback,
@@ -74,10 +76,12 @@ def main():
                         'new_family_egg_moves': eggs, 'egg_family': name(root),
                         'new_tm_compatibility': machines, 'new_tutor_routes': tutors,
                         'new_evolution_access': sorted(inherited)})
+        if utility:
+            records[-1]['new_utility_tutor'] = sorted(utility)
     canonical_count = sum(len(set(r['newly_available']) & set(receipt['expected'].get(r['species'], []))) for r in records)
     total_count = sum(len(r['newly_available']) for r in records)
     lines = ['# New move additions by Pokémon', '',
-             'All 495 roster entries, in alphabetical order. Regional forms, clones and custom forms are listed separately.', '',
+             f'All {len(current[0])} roster entries, in alphabetical order. Regional forms, clones and custom forms are listed separately.', '',
              '**Newly available** lists moves that the Pokémon could not obtain before this pass. '
              'The route lists also include new ways to learn moves it already had—for example, '
              'Aron, Lairon and Aggron already had Body Press through their custom family egg list and now learn it at levels 32, 38 and 44.', '',
@@ -113,8 +117,9 @@ def main():
         if r['new_family_egg_moves']:
             rows.append(f'- **Egg ({r["egg_family"]} family):** {move_names(r["new_family_egg_moves"])}.')
         for label, key in [('TM/HM/elemental tutor', 'new_tm_compatibility'),
+                           ('Goldenrod utility tutor', 'new_utility_tutor'),
                            ('Blackthorn tutor', 'new_tutor_routes'), ('Evolution access', 'new_evolution_access')]:
-            if r[key]:
+            if r.get(key):
                 rows.append(f'- **{label}:** {move_names(r[key])}.')
         lines += rows or ['No new acquisition routes were added.']
         lines.append('')

@@ -500,3 +500,4 @@ PokemonCries::
 	mon_cry CRY_TOTODILE,    $400,  $120 ; KROKOROK
 	mon_cry CRY_TOTODILE,    $280,  $180 ; KROOKODILE
 	mon_cry CRY_RAICHU,      $0e0,  $17f ; GOROCHU (Rage Blue length $ff + $80)
+	mon_cry CRY_ENTEI,       $24a,  $091 ; JIRACHI (synthesized mythical cry)

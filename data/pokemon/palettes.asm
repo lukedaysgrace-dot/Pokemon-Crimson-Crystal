@@ -1020,3 +1020,5 @@ INCBIN "gfx/pokemon/krookodile/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/krookodile/shiny.pal"
 INCBIN "gfx/pokemon/gorochu/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/gorochu/shiny.pal"
+INCBIN "gfx/pokemon/jirachi/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/jirachi/shiny.pal"

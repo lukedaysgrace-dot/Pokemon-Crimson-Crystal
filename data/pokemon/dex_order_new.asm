@@ -499,3 +499,4 @@ NewPokedexOrder:
 	dw ESPATHRA
 	dw FINIZEN
 	dw PALAFIN
+	dw JIRACHI
