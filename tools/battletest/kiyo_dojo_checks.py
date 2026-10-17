@@ -117,6 +117,10 @@ def main():
         check({(i,(m.read(f'wMap{i}Object',fields['MAPOBJECT_X_COORD'])-4,
                    m.read(f'wMap{i}Object',fields['MAPOBJECT_Y_COORD'])-4)) for i in range(1,5)}
               == {(1,(4,3)),(2,(3,1)),(3,(3,7)),(4,(6,5))},'Dojo objects are misplaced')
+        check(obj(1) is not None and obj(1)['sprite']==sprites['SPRITE_KARATE_KING'],
+              'Kiyo is not using the Karate King overworld sprite')
+        check(m.read(f'wObjectStructs',obj(1)['slot']*40+fields['OBJECT_PALETTE'])&7==0,
+              'Kiyo is not using the red overworld palette')
         for index,direction in ((3,'RIGHT'),(4,'LEFT')):
             check(m.read(f'wMap{index}Object',fields['MAPOBJECT_MOVEMENT'])
                   ==fields['SPRITEMOVEDATA_STANDING_'+direction],'Student faces the wrong way')
@@ -140,6 +144,7 @@ def main():
 
         call(h,'HealParty')
         enter(4,4)
+        pb.screen.image.resize((640,576)).save(output / 'karate-king-overworld.png')
         bank,address=h.sym['ItemAttributes']
         excluded={h.con.item_id(n) for n in ('CHOICE_BAND','POTION','SUPER_POTION','HYPER_POTION','MAX_POTION','FULL_RESTORE')}
         stock=[i for i in range(1,194) if i not in excluded and pb.memory[bank,address+(i-1)*7+5]==1][:40]
@@ -161,9 +166,10 @@ def main():
         pointer_bank,pointer_addr=h.sym['TrainerPicPointers']
         king=h.con.trainer_classes['KARATE_KING']
         blackbelt=h.con.trainer_classes['BLACKBELT_T']
+        picture_bank,picture_addr=h.sym['KarateKingPic']
         check(bytes(pb.memory[pointer_bank,pointer_addr+(king-1)*3:pointer_addr+king*3])
-              ==bytes(pb.memory[pointer_bank,pointer_addr+(blackbelt-1)*3:pointer_addr+blackbelt*3]),
-              'Karate King does not share the Black Belt battle portrait')
+              ==bytes([picture_bank,picture_addr&255,picture_addr>>8]),
+              'Karate King does not use his new battle portrait')
         c.battle()
         dialogue()
         check(event('EVENT_BEAT_DOJO_KIYO') and not event('EVENT_GOT_CHOICE_BAND_FROM_KIYO') and not quantity(),

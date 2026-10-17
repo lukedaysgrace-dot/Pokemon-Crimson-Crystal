@@ -235,3 +235,8 @@ SECTION "Cueball Sprite", ROMX
 CueballSpriteGFX::             INCBIN "gfx/sprites/cueball.2bpp"
 CueballSpriteGFXEnd::
 assert CueballSpriteGFXEnd - CueballSpriteGFX == 24 * 16
+
+SECTION "Karate King Sprite", ROMX
+KarateKingSpriteGFX::          INCBIN "gfx/sprites/karate_king.2bpp"
+KarateKingSpriteGFXEnd::
+assert KarateKingSpriteGFXEnd - KarateKingSpriteGFX == 24 * 16

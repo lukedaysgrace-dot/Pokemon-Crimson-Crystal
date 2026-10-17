@@ -118,4 +118,4 @@ INCBIN "gfx/trainers/champion.gbcpal", middle_colors ; CHAMPION_REMATCH
 INCBIN "gfx/trainers/elder.gbcpal", middle_colors ; ELDER
 INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors ; AROMA_LADY
 INCBIN "gfx/trainers/cueball.gbcpal", middle_colors ; CUEBALL
-INCBIN "gfx/trainers/blackbelt_t.gbcpal", middle_colors ; KARATE_KING
+INCBIN "gfx/trainers/karate_king.gbcpal", middle_colors ; KARATE_KING
