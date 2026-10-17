@@ -108,7 +108,7 @@
     try {
       const output = write(model);
       downloadBytes(output, filename);
-      report = `Verified ${output.length.toLocaleString()} bytes; all save checksums pass. RTC trailer preserved.`;
+      report = 'Save verified and ready to download.';
       error = '';
     } catch (e) {
       error = String(e);
@@ -257,6 +257,7 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a href={`${websiteRoot}/pokedex.html`}>Pokédex</a>
       <a href={`${websiteRoot}/moves.html`}>Moves</a>
+      <a href={`${websiteRoot}/items.html`}>Items</a>
       <a href={`${websiteRoot}/encounters.html`}>Encounters</a>
       <a href={`${websiteRoot}/locations.html`}>Locations</a>
       <a href={`${websiteRoot}/changes.html`}>Pokémon Changes</a>
@@ -265,8 +266,7 @@
     </nav>
   {/if}
   <section class="hero" class:loaded={!!model}>
-    <p class="eyebrow">YOUR ADVENTURE, YOUR WAY</p>
-    <h1>A little more<br /><em>Crimson.</em></h1>
+    <h1>Save Editor</h1>
     <p>Edit your team, organize your boxes, and inspect your save.</p>
     <label class="upload"
       >{loading ? 'Loading game data…' : model ? 'Open another save' : 'Open a save file'}<input
@@ -276,7 +276,7 @@
         onchange={upload}
         disabled={loading}
       /></label
-    ><span class="muted">64 KiB SRAM · emulator RTC preserved</span>
+    ><span class="muted">Supports .sav, .bak, .srm and .ram files.</span>
   </section>
   {#if error}<div role="alert" class="error">{error}</div>{/if}{#if report}<p
       role="status"
@@ -691,23 +691,7 @@
         )}</span
       >
     </footer>
-  {:else if !loading}<section class="intro-grid">
-      <article>
-        <span>01</span>
-        <h3>Your whole roster</h3>
-        <p>Party, 25 boxes, regional species and clones.</p>
-      </article>
-      <article>
-        <span>02</span>
-        <h3>Built for Crimson</h3>
-        <p>Game data generated from the ROM source.</p>
-      </article>
-      <article>
-        <span>03</span>
-        <h3>Verify every edit</h3>
-        <p>Checksum checks, diagnostics and byte diffs.</p>
-      </article>
-    </section>{/if}
+  {/if}
   {#if showWarnings}<div class="modal-backdrop">
       <div
         class="modal"
