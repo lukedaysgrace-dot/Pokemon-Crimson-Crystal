@@ -6515,6 +6515,30 @@ OfficerGroup:
 	dw NOCTOWL
 	db -1 ; end
 
+	next_list_item ; OFFICER (3) CELADON_HAYES - Celadon City
+	db "HAYES@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 66
+	dw ARCANINE
+	db CHARCOAL
+	db ABILITY_1 ; Intimidate
+	dw FLARE_BLITZ, EXTREMESPEED, CRUNCH, WILD_CHARGE
+	db 66
+	dw GRANBULL
+	db LEFTOVERS
+	db ABILITY_1 ; Intimidate
+	dw PLAY_ROUGH, EARTHQUAKE, CRUNCH, THUNDER_WAVE
+	db 67
+	dw NOCTOWL
+	db WISE_GLASSES
+	db ABILITY_1 ; Tinted Lens
+	dw AIR_SLASH, PSYCHIC_M, ROOST, SHADOW_BALL
+	db 68
+	dw LUCARIO
+	db EXPERT_BELT
+	db ABILITY_1 ; Adaptability
+	dw AURA_SPHERE, FLASH_CANNON, DARK_PULSE, NASTY_PLOT
+	db -1 ; end
+
 	end_list_items
 
 
