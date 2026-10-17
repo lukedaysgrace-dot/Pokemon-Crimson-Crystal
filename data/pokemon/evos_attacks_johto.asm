@@ -3633,7 +3633,6 @@ EspathraEvosAttacks:
 	dbw 45, CALM_MIND
 	dbw 50, PSYCHIC_M
 	dbw 56, DAZZLING_GLEAM
-	dbw 62, PSYSTRIKE
 	db 0 ; no more level-up moves
 
 

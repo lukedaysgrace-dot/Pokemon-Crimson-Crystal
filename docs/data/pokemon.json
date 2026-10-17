@@ -234112,11 +234112,6 @@
         "level": 56,
         "const": "DAZZLING_GLEAM",
         "move": "Dazzling Gleam"
-      },
-      {
-        "level": 62,
-        "const": "PSYSTRIKE",
-        "move": "Psystrike"
       }
     ],
     "evolutions": [],

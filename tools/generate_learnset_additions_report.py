@@ -22,6 +22,8 @@ def main():
     args = parser.parse_args()
     receipt = json.loads((ROOT / 'tools/testdata/canonical_learnsets.json').read_text(encoding='utf-8'))
     changes = receipt['changes']
+    authored = json.loads((ROOT / 'tools/testdata/learnset_variety_implementation.json').read_text(encoding='utf-8'))
+    approved_removals = authored.get('level_up_removals', {})
     current = breeding.breeding_data()
     after = available(current)
     # Read the clean pre-audit snapshot in memory; never check out or reset files.
@@ -58,7 +60,8 @@ def main():
     records = []
     for c in sorted(current[0], key=lambda c: name(c).casefold()):
         before.setdefault(c, set())  # Species appended after the baseline have no old access.
-        assert before[c] <= after[c], (c, 'unexpected removed access', before[c] - after[c])
+        removed = before[c] - after[c]
+        assert removed <= set(approved_removals.get(c, [])), (c, 'unexpected removed access', removed)
         root = current[-1][c]
         natural = changes['level_up'].get(c, {})
         thematic = changes.get('thematic_level_up', {}).get(c, {})
@@ -78,6 +81,10 @@ def main():
                         'new_evolution_access': sorted(inherited)})
         if utility:
             records[-1]['new_utility_tutor'] = sorted(utility)
+        if removed:
+            records[-1]['removed_moves'] = sorted(removed)
+        if c in authored.get('evolution_moves', {}):
+            records[-1]['evolution_move'] = authored['evolution_moves'][c]
     canonical_count = sum(len(set(r['newly_available']) & set(receipt['expected'].get(r['species'], []))) for r in records)
     total_count = sum(len(r['newly_available']) for r in records)
     lines = ['# New move additions by Pokémon', '',
@@ -100,7 +107,7 @@ def main():
              f'Of these, {canonical_count:,} close canonical gaps. The other {total_count - canonical_count:,} '
              'are additional inherited access through this project\'s evolution and breeding relationships.', '',
              '**Every verified implemented move is available; no historical move candidates remain deferred.** '
-             'The audit also checks that none of the previously expanded movepools were trimmed.', '']
+             'The audit preserves previously expanded movepools except explicitly recorded corrections.', '']
     for r in records:
         lines += [f'## {r["name"]}', '']
         if r['newly_available']:
@@ -109,6 +116,11 @@ def main():
             lines.append('**Newly available:** None.')
         lines.append('')
         rows = []
+        if r.get('removed_moves'):
+            rows.append(f'- **Removed incorrect move access:** {move_names(r["removed_moves"])}.')
+        if r.get('evolution_move'):
+            evo = r['evolution_move']
+            rows.append(f'- **On evolution:** {moves[evo["move"]]} when {name(evo["pre_evolution"])} evolves into {r["name"]}.')
         for label, key in [('Natural/restored level-up', 'new_level_up'),
                            ('Thematic level-up (custom)', 'thematic_level_up'), ('Breeding fallback', 'breeding_fallbacks')]:
             if r[key]:
