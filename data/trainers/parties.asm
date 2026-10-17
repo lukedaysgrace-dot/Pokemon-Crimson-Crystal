@@ -4950,6 +4950,9 @@ JugglerGroup:
 
 	end_list_items
 
+; Keep the expanded dojo roster out of the full, pinned bank $11.
+SECTION "Blackbelt Trainer Parties", ROMX
+
 BlackbeltGroup:
 	next_list_item ; BLACKBELT_T (1) KENJI1 - Route 45 (rematch)
 	db "KENJI@", TRAINERTYPE_MOVES_ABILITY
@@ -5018,7 +5021,7 @@ BlackbeltGroup:
 	dw SEED_BOMB, LOW_SWEEP, HEADBUTT, SPORE
 	db -1 ; end
 
-	next_list_item ; BLACKBELT_T (6) KIYO - Mount Mortar B1F
+	next_list_item ; BLACKBELT_T (6) KIYO - legacy Mt. Mortar team, no longer placed
 	db "KIYO@", TRAINERTYPE_MOVES
 	db 32
 	dw CROAGUNK
@@ -5078,6 +5081,38 @@ BlackbeltGroup:
 	dw HITMONLEE
 	db ABILITY_1
 	dw HI_JUMP_KICK, CLOSE_COMBAT, SUCKER_PUNCH, STONE_EDGE
+	db -1 ; end
+
+	next_list_item ; BLACKBELT_T (10) DOJO_RIKU - Fighting Dojo
+	db "RIKU@", TRAINERTYPE_MOVES_ABILITY
+	db 61
+	dw PRIMEAPE
+	db HIDDEN_ABILITY ; Defiant
+	dw CLOSE_COMBAT, NIGHT_SLASH, ICE_PUNCH, U_TURN
+	db 62
+	dw BRELOOM
+	db ABILITY_1 ; Technician
+	dw SPORE, MACH_PUNCH, BULLET_SEED, ROCK_TOMB
+	db 63
+	dw HITMONLEE
+	db ABILITY_1 ; Reckless
+	dw HI_JUMP_KICK, STONE_EDGE, KNOCK_OFF, MACH_PUNCH
+	db -1 ; end
+
+	next_list_item ; BLACKBELT_T (11) DOJO_MASARU - Fighting Dojo
+	db "MASARU@", TRAINERTYPE_MOVES_ABILITY
+	db 62
+	dw POLIWRATH
+	db HIDDEN_ABILITY ; Water Absorb
+	dw LIQUIDATION, DRAIN_PUNCH, ICE_PUNCH, BULK_UP
+	db 62
+	dw HERACROSS
+	db HIDDEN_ABILITY ; Moxie
+	dw CLOSE_COMBAT, MEGAHORN, STONE_EDGE, KNOCK_OFF
+	db 63
+	dw HITMONCHAN
+	db ABILITY_1 ; Iron Fist
+	dw DRAIN_PUNCH, ICE_PUNCH, THUNDERPUNCH, BULLET_PUNCH
 	db -1 ; end
 
 	end_list_items
@@ -8612,6 +8647,38 @@ CueballGroup:
 	db ASSAULT_VEST
 	db ABILITY_2 ; No Guard
 	dw DYNAMICPUNCH, STONE_EDGE, ICE_PUNCH, KNOCK_OFF
+	db -1 ; end
+
+	end_list_items
+
+KarateKingGroup:
+	next_list_item ; KARATE_KING (1) KARATE_KIYO - Fighting Dojo
+	db "KIYO@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 67
+	dw SIRFETCH_D
+	db STICK
+	db ABILITY_2 ; Super Luck
+	dw CLOSE_COMBAT, BRAVE_BIRD, LEAF_BLADE, NIGHT_SLASH
+	db 67
+	dw SNEASLER
+	db LIFE_ORB
+	db HIDDEN_ABILITY ; Technician boosts Fake Out and Triple Axel
+	dw FAKE_OUT, DIRE_CLAW, CLOSE_COMBAT, TRIPLE_AXEL
+	db 68
+	dw BRELOOM
+	db FOCUS_SASH
+	db ABILITY_1 ; Technician
+	dw SPORE, BULLET_SEED, MACH_PUNCH, ROCK_TOMB
+	db 68
+	dw SCRAFTY
+	db LEFTOVERS
+	db HIDDEN_ABILITY ; Intimidate creates room to set up Dragon Dance
+	dw DRAGON_DANCE, DRAIN_PUNCH, KNOCK_OFF, ICE_PUNCH
+	db 70
+	dw HITMONTOP
+	db WIDE_LENS
+	db ABILITY_1 ; Technician powers up both escalating triple-hit moves
+	dw TRIPLE_KICK, TRIPLE_AXEL, MACH_PUNCH, BULLET_PUNCH
 	db -1 ; end
 
 	end_list_items

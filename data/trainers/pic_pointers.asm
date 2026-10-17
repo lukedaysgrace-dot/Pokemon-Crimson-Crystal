@@ -105,3 +105,4 @@ TrainerPicPointers::
 	dba ElderPic ; ELDER
 	dba AromaLadyPic ; AROMA_LADY
 	dba CueballPic ; CUEBALL
+	dba BlackbeltTPic ; KARATE_KING

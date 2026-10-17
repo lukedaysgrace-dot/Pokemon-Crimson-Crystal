@@ -105,3 +105,4 @@ BTTrainerClassGenders:
 	db MALE; ELDER
 	db FEMALE; AROMA_LADY
 	db MALE ; CUEBALL
+	db MALE ; KARATE_KING

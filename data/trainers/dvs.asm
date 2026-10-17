@@ -104,3 +104,4 @@ TrainerClassDVs:
 	dn 15, 15, 15, 15 ; ELDER
 	dn  6,  9, 12,  8 ; AROMA_LADY
 	dn 14, 13, 13, 13 ; CUEBALL
+	dn 15, 15, 15, 15 ; KARATE_KING
