@@ -27,7 +27,7 @@ GIFT_NOTES = {
     'BlackthornCity:TWISTEDSPOON': 'Santos; Saturday.',
     'BlackthornGym1F:TM_DRAGON_CLAW': 'Clair; return after receiving the Rising Badge in Dragon’s Den.',
     'CeladonCafe:LEFTOVERS': 'Search the café trash can; one-time pickup.',
-    'CeladonCity:CHOICE_SPECS': 'Step onto (34, 10) or (34, 11) to encounter the fleeing burglar, then collect his dropped item ball at (34, 10) or (34, 11). Officer Hayes confronts you after pickup; defeat his four-Pokémon team to keep the reward. Losing removes this pickup and resets the entire encounter. The ball remains if the Bag is full.',
+    'CeladonCity:CHOICE_SPECS': 'Collect the fleeing burglar’s dropped item near (34, 10), then defeat Officer Hayes to keep it.',
     'CeladonGameCornerPrizeRoom:TM_SWAGGER': 'TM prize counter; 1,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_PSYCHIC_M': 'TM prize counter; 3,500 coins and a Coin Case.',
     'CeladonGameCornerPrizeRoom:TM_HYPER_BEAM': 'TM prize counter; 7,500 coins and a Coin Case.',
@@ -37,22 +37,22 @@ GIFT_NOTES = {
     'CherrygroveCity:MYSTIC_WATER': 'Man on the offshore island; Surf to him.',
     'CianwoodCity:TM_WEATHER_BALL': 'Weather-loving old man; talk to him for a one-time gift.',
     'CianwoodGym:TM_DRAIN_PUNCH': 'Chuck; defeat him and collect the Storm Badge.',
-    'CopycatsHouse2F:CHOICE_SCARF': 'Item ball at (3, 3); return Copycat’s lost Poké Doll, receive the Magnet Train Pass and hear her permission speech before collecting it. One-time gift; remains if the Bag is full.',
+    'CopycatsHouse2F:CHOICE_SCARF': 'Return Copycat’s Poké Doll and speak to her after receiving the Magnet Train Pass, then collect the item ball at (3, 3).',
     'DarkCaveBlackthornEntrance:BLACKGLASSES': 'Talk to the pharmacist in the Blackthorn-side chamber.',
     'DragonsDenB1F:TM_DRAGON_PULSE': 'Clair’s scene after passing the Dragon Shrine test.',
     'DragonsDenB1F:DRAGON_FANG': 'Ground pickup; reach the item ball using Surf and Whirlpool.',
     'EcruteakGym:TM_SHADOW_BALL': 'Morty; defeat him and collect the Fog Badge.',
     'ElmsLab:EVERSTONE': 'Professor Elm in New Bark Town; show him the hatched Togepi.',
-    'FastShipCabins_SE_SSE_CaptainsCabin:METAL_COAT': 'Grandfather aboard the S.S. Aqua; find his granddaughter. The two script paths award the same one-time gift.',
+    'FastShipCabins_SE_SSE_CaptainsCabin:METAL_COAT': 'Grandfather aboard the S.S. Aqua; find his granddaughter. ',
     'FuchsiaGym:TM_TOXIC': 'Janine; defeat her and collect the Soul Badge.',
-    'FightingDojo:CHOICE_BAND': 'Karate King Kiyo in Saffron City’s Fighting Dojo; defeat his five-Pokémon team for a one-time gift. Speak to him again if the Bag was full.',
-    'GoldenrodDeptStore5F:TM_RETURN': 'Sunday receptionist; first party Pokémon’s happiness must be at least 150. Shares the weekly gift flag with Facade.',
-    'GoldenrodDeptStore5F:TM_FACADE': 'Sunday receptionist; first party Pokémon’s happiness must be below 50. Shares the weekly gift flag with Return; happiness 50–149 gives neither.',
+    'FightingDojo:CHOICE_BAND': 'Karate King Kiyo in Saffron City’s Fighting Dojo; defeat his five-Pokémon team for a one-time gift.',
+    'GoldenrodDeptStore5F:TM_RETURN': 'Sunday receptionist; first party Pokémon’s happiness must be at least 150. Choose Return or Facade once per week.',
+    'GoldenrodDeptStore5F:TM_FACADE': 'Sunday receptionist; first party Pokémon’s happiness must be below 50. Choose Return or Facade once per week.',
     'GoldenrodGameCorner:TM_THUNDER': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGameCorner:TM_BLIZZARD': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGameCorner:TM_FIRE_BLAST': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGym:TM_ATTRACT': 'Whitney; talk to her again after winning and collect the Plain Badge.',
-    'GoldenrodDeptStoreRoof:AIR_BALLOON': 'Interact with the red floating balloon at tile (15, 0); one-time pickup. It remains if the Bag is full.',
+    'GoldenrodDeptStoreRoof:AIR_BALLOON': 'Collect the red balloon at (15, 0).',
     'GoldenrodUnderground:LOADED_DICE': 'Girl rescued from the thugs; complete her reward conversation after defeating them. She also gives the dice if you decline Riolu.',
     'GravekeepersHouse:FOCUS_SASH': 'Gravekeeper in Silent Crypt; clean both gravestones before entering his house.',
     'IlexForest:TM_HEADBUTT': 'Headbutt tutor in the forest; accept his gift.',
@@ -64,13 +64,14 @@ GIFT_NOTES = {
     'NationalPark:QUICK_CLAW': 'Teacher beside Persian; talk to her for a one-time gift.',
     'OlivineGym:TM_IRON_HEAD': 'Jasmine; defeat her after healing the lighthouse Ampharos.',
     'OlivineGym:METAL_COAT': 'Jasmine; additional gift after her Iron Head TM.',
+    'OlivinePort:MUSCLE_BAND': 'Sailor beside Machamp on the dock at (8, 9); one-time gift.',
     'PowerPlant:TM_ZAP_CANNON': 'Manager; return the stolen Machine Part.',
     'RadioTower1F:EXP_SHARE': 'Lucky Number Show second prize; last three or four trainer-ID digits match the drawn number (all five gives the first prize). One prize per week.',
-    'RadioTower2F:WISE_GLASSES': 'Buena; talk to her after defeating Archer, clearing the Radio Tower and receiving the Clear Bell. One-time gift, available at any time of day; can be collected later if the Bag is full.',
+    'RadioTower2F:WISE_GLASSES': 'Buena; speak to her after clearing Team Rocket from the Radio Tower.',
     'RadioTower3F:TM_SUNNY_DAY': 'Woman on 3F; after clearing Team Rocket from the Radio Tower.',
     'RadioTower4F:PINK_BOW': 'DJ Mary; after clearing Team Rocket from the Radio Tower.',
     'Route25:SCOPE_LENS': 'Cooltrainer Kevin at the end of Nugget Bridge’s trainer gauntlet; reward before his battle.',
-    'Route16:ASSAULT_VEST': 'Cueball Chopper on Cycling Road; defeat him for a one-time gift. Talk to him again if the Bag was full.',
+    'Route16:ASSAULT_VEST': 'Cueball Chopper on Cycling Road; defeat him for a one-time gift.',
     'Route27SandstormHouse:TM_SANDSTORM': 'Woman in the house; first party Pokémon’s happiness must be at least 150.',
     'Route28SteelWingHouse:TM_STEEL_WING': 'Celebrity in the house; talk to her.',
     'Route29:PINK_BOW': 'Tuscany; Tuesday.',
@@ -78,8 +79,8 @@ GIFT_NOTES = {
     'Route32:MIRACLE_SEED': 'Man near the Violet entrance; have the Zephyr Badge and receive the Togepi Egg from Elm’s aide.',
     'Route32:TM_ROAR': 'Talk to the Roar TM man; one-time gift.',
     'Route32:POISON_BARB': 'Frieda; Friday.',
-    'Route33:ROCKY_HELMET': 'Hiker Anthony outside Union Cave near Azalea Town; defeat him for a one-time gift. Talk to him again if the Bag was full. Previously defeated saves can collect it by talking to him.',
-    'Route34:SOFT_SAND': 'Cooltrainer Kate on the southern beach; speak again after defeating her. Surf to the beach.',
+    'Route33:ROCKY_HELMET': 'Defeat Hiker Anthony outside Union Cave, then speak to him.',
+    'Route34:EXPERT_BELT': 'Surf to the southern beach. Defeat Kate, Irene and Jenn, then speak to Kate.',
     'Route34IlexForestGate:TM_SWEET_SCENT': 'Teacher in the gate; talk to her.',
     'Route36:TM_ROCK_SMASH': 'Man near Sudowoodo; after clearing Sudowoodo.',
     'Route36:HARD_STONE': 'Arthur; Thursday.',
@@ -96,8 +97,8 @@ GIFT_NOTES = {
 }
 
 PICKUP_NOTES = {
-    'OlivineCafe': 'Search the trash can at (1, 1); one-time pickup. Remains available if the Bag is full.',
-    'RadioTower5F': 'Item ball replaces Archer during the blackout after his defeat dialogue, before the director enters. Loot it after the director’s Clear Bell scene.',
+    'OlivineCafe': 'Search the trash can at (1, 1); one-time pickup.',
+    'RadioTower5F': 'Collect the item ball after defeating Archer and receiving the Clear Bell.',
     'BurnedTowerB1F': 'Basement item ball.',
     'DarkCaveBlackthornEntrance': 'Blackthorn-side chamber; Flash helps navigation.',
     'GoldenrodDeptStoreB1F': 'Basement item ball; access depends on the moving-box layout and the warehouse passage.',
@@ -107,15 +108,16 @@ PICKUP_NOTES = {
     'LakeOfRage': 'Northern shore item ball; approach through the Route 43 forest.',
     'MountMortar2FInside': 'Upper interior; Surf and Waterfall are needed to reach this floor.',
     'NationalPark': 'Outside the fence; enter through the gap in the fence.',
-    'NationalParkBugContest': 'Same Dig pickup as the ordinary National Park map; shared event, not a second copy.',
+    'NationalParkBugContest': 'Outside the fence; enter through the gap in the fence.',
     'Route27': 'Item ball beyond the whirlpool; Surf and Whirlpool.',
     'RuinsOfAlphHoOhItemRoom': 'Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage.',
     'RuinsOfAlphOmanyteItemRoom': 'Omanyte puzzle’s secret chamber; have a Water Stone in the Bag or held by a party Pokémon at its inscription.',
     'SlowpokeWellB2F': 'B2F item ball; Surf and Strength.',
+    'Route38': 'Ground pickup at (4, 16).',
 }
 
 
-def generate(repo, builder=None):
+def generate(repo, builder=None, write=True):
     repo = Path(repo).resolve()
     b = builder or Builder(repo)
     order, names = b.species()
@@ -145,7 +147,7 @@ def generate(repo, builder=None):
     records = defaultdict(list)
     seen_notes = set()
     map_names = {m[1]: pretty_location(m[2]) for m in re.finditer(
-        r'^\s*map_attributes\s+(\w+),\s*(\w+)', (repo/'data/maps/attributes.asm').read_text(), re.M)}
+        r'^\s*map_attributes\s+(\w+),\s*(\w+)', (repo/'data/maps/attributes.asm').read_text(encoding="utf-8"), re.M)}
     map_names.update({'FastShipCabins_SE_SSE_CaptainsCabin': 'S.S. Aqua — southeast cabins / captain’s cabin',
                       'MrPsychicsHouse': 'Mr. Psychic’s House (Saffron City)',
                       'MrPokemonsHouse': 'Mr. Pokémon’s House (Route 30)',
@@ -168,12 +170,12 @@ def generate(repo, builder=None):
     # Map events: retain source and exact zero-based map tile coordinates.
     maps = {p.stem: p for p in sorted((repo/'maps').glob('*.asm'))}
     trainer_refs = defaultdict(set)
-    trainer_constants = (repo/'constants/trainer_constants.asm').read_text()
+    trainer_constants = (repo/'constants/trainer_constants.asm').read_text(encoding="utf-8")
     classes = re.findall(r'^\s*trainerclass (\w+)', trainer_constants, re.M)
-    groups = re.findall(r'^\s*dba (\w+)', (repo/'data/trainers/party_pointers.asm').read_text(), re.M)
+    groups = re.findall(r'^\s*dba (\w+)', (repo/'data/trainers/party_pointers.asm').read_text(encoding="utf-8"), re.M)
     assert classes[0] == 'TRAINER_NONE' and len(classes) == len(groups) + 1
     class_groups = dict(zip(classes[1:], groups))
-    class_names = re.findall(r'^\s*db "([^"]*)@"', (repo/'data/trainers/class_names.asm').read_text(), re.M)
+    class_names = re.findall(r'^\s*db "([^"]*)@"', (repo/'data/trainers/class_names.asm').read_text(encoding="utf-8"), re.M)
     assert len(class_names) == len(groups)
     class_display = {c: n.replace('<PKMN>', 'Pokémon').replace('#', 'Poké').title()
                      for c, n in zip(classes[1:], class_names)}
@@ -217,22 +219,22 @@ def generate(repo, builder=None):
                 if item == 'DRAGON_FANG' or key == 'CeladonCafe:LEFTOVERS':
                     method = 'Ground pickup' if item == 'DRAGON_FANG' else 'Search trash can'
             xy = coords.get(label, [])
-            if xy:
+            if xy and not all(tile in details for tile in xy):
                 details += ' Tile ' + ', '.join(xy) + '.'
             add(item, mapname(stem), method, details, p.relative_to(repo).as_posix(), number)
     assert seen_notes == GIFT_NOTES.keys(), sorted(GIFT_NOTES.keys() - seen_notes)
 
     # Standard shop inventories, including alternate TM stock.
-    mart_constants = re.findall(r'^\s*const (MART_(?!TYPE_)\w+)', (repo/'constants/mart_constants.asm').read_text(), re.M)
+    mart_constants = re.findall(r'^\s*const (MART_(?!TYPE_)\w+)', (repo/'constants/mart_constants.asm').read_text(encoding="utf-8"), re.M)
     marts_file = repo/'data/items/marts.asm'
-    mart_text = marts_file.read_text()
+    mart_text = marts_file.read_text(encoding="utf-8")
     mart_labels = re.findall(r'^\s*dw (Mart\w+)', mart_text, re.M)
     assert len(mart_constants) == len(mart_labels)
     for const, label in zip(mart_constants, mart_labels):
         block = re.search(r'^' + label + r':\n(.*?)(?=^\w+:|\Z)', mart_text, re.M | re.S)
         items = re.findall(r'^\s*db (\w+)\s*(?:;.*)?$', block[1], re.M)
         for stem, p in maps.items():
-            for number, line in enumerate(p.read_text().splitlines(), 1):
+            for number, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
                 match = re.match(r'\s*pokemart (\w+),\s*' + const + r'\b', line)
                 if not match:
                     continue
@@ -244,7 +246,7 @@ def generate(repo, builder=None):
                     detail = 'Repeatable purchase.'
                     if match[1] == 'MARTTYPE_HELD_ITEMS':
                         price *= 10
-                        detail = 'Grandma; choose Held Items after clearing the Rocket Hideout. Available every day and time; no Pryce requirement. Price includes the gear shop’s ×10 markup.'
+                        detail = 'Granny’s Held Items shop; opens after clearing the Rocket Hideout.'
                     elif item == 'TM_HEADBUTT':
                         detail = 'Stock appears after receiving Headbutt in Ilex Forest.'
                     elif item == 'TM_ROCK_SMASH':
@@ -258,7 +260,7 @@ def generate(repo, builder=None):
     # Dynamic rewards: the old tower random vitamin table is not called by
     # the current prize menu, so only the five selectable rewards belong here.
     tower_path = repo/'maps/BattleTower1F.asm'
-    tower_text = tower_path.read_text()
+    tower_text = tower_path.read_text(encoding="utf-8")
     tower_block = tower_text.split('Script_GivePlayerHisPrize:', 1)[1].split('BattleTowerPrizeMenuHeader:', 1)[0]
     for match in re.finditer(r'^\s*setval (\w+)\s*$', tower_block, re.M):
         item = match[1]
@@ -267,7 +269,7 @@ def generate(repo, builder=None):
             add(item, 'Battle Tower 1F', 'Battle Tower prize', 'Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.',
                 'maps/BattleTower1F.asm', tower_text[:number].count('\n') + 1)
     fish_path = repo/'engine/events/fishing_contest.asm'
-    fish_text = fish_path.read_text()
+    fish_text = fish_path.read_text(encoding="utf-8")
     prizes = re.search(r'FishingContestPrizes:\n\s*db (.*)', fish_text)
     for place, item in enumerate(prizes[1].split(',')):
         item = item.strip()
@@ -278,20 +280,20 @@ def generate(repo, builder=None):
 
     # The Mystery Gift item table is a conditional hardware/link source.
     mg_path = repo/'data/items/mystery_gift_items.asm'
-    for number, line in enumerate(mg_path.read_text().splitlines(), 1):
+    for number, line in enumerate(mg_path.read_text(encoding="utf-8").splitlines(), 1):
         match = re.match(r'\s*db (\w+)', line)
         if match and match[1] in held:
             add(match[1], 'Pokémon Center 2F delivery NPC', 'Mystery Gift',
-                'Random Mystery Gift item pool. Unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible Mystery Gift infrared session. Requires external connectivity; not an ordinary overworld gift.',
+                'Unlock Mystery Gift with Carrie on Goldenrod Department Store 5F, then use a compatible infrared session.',
                 'data/items/mystery_gift_items.asm', number)
 
     # In-game trades carry their explicitly assigned item.
-    trade_ids = re.findall(r'^\s*const (NPC_TRADE_\w+)', (repo/'constants/script_constants.asm').read_text(), re.M)
+    trade_ids = re.findall(r'^\s*const (NPC_TRADE_\w+)', (repo/'constants/script_constants.asm').read_text(encoding="utf-8"), re.M)
     if not trade_ids:
         for p in (repo/'constants').glob('*.asm'):
-            trade_ids += re.findall(r'^\s*const (NPC_TRADE_\w+)', p.read_text(), re.M)
+            trade_ids += re.findall(r'^\s*const (NPC_TRADE_\w+)', p.read_text(encoding="utf-8"), re.M)
     trade_path = repo/'data/events/npc_trades.asm'
-    trades = [(n, l.split(';')[0].split(',')) for n, l in enumerate(trade_path.read_text().splitlines(), 1) if re.match(r'\s*npctrade ', l)]
+    trades = [(n, l.split(';')[0].split(',')) for n, l in enumerate(trade_path.read_text(encoding="utf-8").splitlines(), 1) if re.match(r'\s*npctrade ', l)]
     assert len(trade_ids) == len(trades), (trade_ids, len(trades))
     for const, (number, fields) in zip(trade_ids, trades):
         item = fields[6].strip()
@@ -299,7 +301,7 @@ def generate(repo, builder=None):
             continue
         requested, offered = fields[1].strip(), fields[2].strip()
         for stem, p in maps.items():
-            if re.search(r'^\s*trade ' + const + r'\b', p.read_text(), re.M):
+            if re.search(r'^\s*trade ' + const + r'\b', p.read_text(encoding="utf-8"), re.M):
                 gender = 'female ' if fields[-1].strip() == 'TRADE_GENDER_FEMALE' else ''
                 add(item, mapname(stem), 'In-game trade',
                     f'Trade a {gender}{names[requested]} for {names[offered]}; take the item from the received Pokémon. One-time trade.',
@@ -334,7 +336,7 @@ def generate(repo, builder=None):
     # Scripted wild encounters may force slot 1 (not the rare slot). Snorlax
     # therefore has guaranteed Leftovers; forced-slot-1 Mewtwo has NO_ITEM.
     for stem, p in maps.items():
-        text = p.read_text()
+        text = p.read_text(encoding="utf-8")
         label_start = 0
         for number, line in enumerate(text.splitlines(), 1):
             if re.match(r'^\w+:', line):
@@ -351,13 +353,13 @@ def generate(repo, builder=None):
                 rate = 100 if forced else sum((20, 5)[i] for i, slot in enumerate(slots) if slot == item)
                 extra = ' Wake with the Poké Flute radio channel.' if species == 'SNORLAX' else ''
                 add(item, mapname(stem), 'Static wild Pokémon',
-                    f'{form_label(species, names[species])}, Lv. {level}; {rate}% held-item chance. Catch it or use Thief.' + extra,
+                    f'{form_label(species, names[species])}, Lv. {level}; {rate}% held-item chance. ' + extra,
                     p.relative_to(repo).as_posix(), number, species=species, held_chance=rate)
 
     # Permanent stealing sources in ordinary scripted trainer battles. Include
     # only parties referenced by a map script; tower and link teams are omitted.
     party_path = repo/'data/trainers/parties.asm'
-    party_text = party_path.read_text()
+    party_text = party_path.read_text(encoding="utf-8")
     blocks = list(re.finditer(r'^\s*next_list_item[^\n]*', party_text, re.M))
     unused_parties = []
     for index, marker in enumerate(blocks):
@@ -388,9 +390,9 @@ def generate(repo, builder=None):
                 continue
             number = party_text[:start + match.start()].count('\n') + 1
             for stem in sorted(locations):
-                name = trainer_name.replace('<PKMN>', 'Pokémon').replace('#', 'Poké').title()
-                theft = 'Use Trick before the balloon pops; ordinary damaging Thief hits pop it.' if item == 'AIR_BALLOON' else 'Use Thief or Trick before the item is consumed.'
-                detail = f'{class_display[trainer_class]} {name}: {form_label(species, names[species])} Lv. {level}. Party {trainer_id}. {theft}'
+                name = trainer_name.replace('<PKMN>', 'Pokémon').replace('#', 'Poké').title().strip()
+                trainer_label = (class_display[trainer_class] + ' ' + name).strip()
+                detail = f'{trainer_label}: {form_label(species, names[species])} Lv. {level}.'
                 if trainer_id in {'FALKNER2', 'BUGSY2', 'WHITNEY2', 'MORTY2', 'CHUCK2', 'JASMINE2', 'PRYCE2', 'CLAIR2'}:
                     required = {'FALKNER2': 'Red', 'BUGSY2': 'Falkner’s rematch', 'WHITNEY2': 'Bugsy’s rematch', 'MORTY2': 'Whitney’s rematch',
                                 'CHUCK2': 'Morty’s rematch', 'JASMINE2': 'Chuck’s rematch', 'PRYCE2': 'Jasmine’s rematch', 'CLAIR2': 'Pryce’s rematch'}
@@ -412,52 +414,30 @@ def generate(repo, builder=None):
               'no_sources': [r['name'] for r in result if not r['sources']]}
     payload = dict(counts=counts, items=result, audit={'unreferenced_trainer_party_items': unused_parties,
                    'encounter_parser_warnings': b.report['warnings'], 'encounter_parser_unparsed': b.report['unparsed']})
-    render(repo, result, counts)
-    print(json.dumps(counts, ensure_ascii=False))
+    if write:
+        render(repo, result, counts)
+        print(json.dumps(counts, ensure_ascii=False))
     return payload
 
 
 def render(out, items, counts):
-    intro = (f'All {counts["tms"]} TMs and {counts["held_items"]} battle, training, species-specific, and held-evolution items, from the current Crimson Crystal source. '
-             'Berries, Berry Juice, apricorns, medicines, balls, mail, key items, fossils, and ordinary use-on-Pokémon evolution items are excluded. '
-             'Tile coordinates are (x, y), starting at zero in the named map. Ground items and most gifts are one-time unless stated otherwise.')
-    how = ('Wild held-item rates are approximately 20% for slot 1 and 5% for slot 2; identical slots total 25%. '
-           'These are the chance of the Pokémon holding the item, not its encounter rate. Catch the Pokémon or steal the item with Thief. '
-           'Your Thief user must be holding no item. Trick can also take an item by swapping; using an empty-handed Pokémon gives up no item. Sticky Hold can prevent theft; consumable items must be taken before they activate. '
-           'Use Trick for Air Balloon, which damaging hits pop before Thief can take it. Ordinary trainer Thief / Trick writes the item into your party permanently. Trainer rows identify the exact party variant; rematches and story variants require their normal progression or phone conditions. '
-           'Battle Tower opponent gear and externally supplied link / Mystery Gift trainer teams are not fixed item locations. '
-           'Pickup’s current table contains no items in this guide.')
-    scope = ('Source coverage: map item balls, hidden items, scripted gifts, standard and rooftop marts, Game Corner prizes, '
-             'Battle Tower prize menu, Fishing Contest prizes, in-game trades, Mystery Gift item pool, wild held-item tables joined to encounter maps, '
-             'scripted wild encounters, and map-referenced trainer parties. An item with no source is explicitly marked; a base-stat holder without a wild encounter is not treated as a location.')
-    md = ['# Crimson Crystal — TM and held-item locations', '', intro, '', how, '', scope, '',
-          f'**Coverage:** {counts["tms"]} TMs; {counts["held_items"]} held items; {counts["acquisition_rows"]} acquisition entries.', '',
+    md = ['# Crimson Crystal — TM and held-item locations', '',
+          f'Locations for all {counts["tms"]} TMs and {counts["held_items"]} held items. Most ground items and gifts are one-time rewards.', '',
+          'Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.', '',
           '## Quick index', '', '| Item | Sources |', '| --- | --- |']
     for item in items:
-        categories = ', '.join(sorted({r['method'] for r in item['sources']})) or 'No obtainable source found'
+        categories = ', '.join(sorted({r['method'] for r in item['sources']})) or 'Unavailable'
         md.append(f'| [{item["name"]}](#{item["const"].lower()}) | {categories} |')
     for item in items:
         anchor = item['const'].lower()
         md += ['', f'<a id="{anchor}"></a>', f'## {item["name"]}', '']
         if not item['sources']:
-            md.append('No obtainable source found in the current source tables and map scripts.')
+            md.append('Unavailable.')
         else:
-            md += ['| Location | How to obtain / conditions | Source |', '| --- | --- | --- |']
+            md += ['| Location | How to obtain |', '| --- | --- |']
             for row in item['sources']:
-                md.append(f'| {row["location"]} | **{row["method"]}** — {row["details"]} | {md_source(row)} |')
-    md += ['', '## Updating the guide', '', 'Run `python tools/generate_item_locations.py` from the repository root. This standalone list is separate from the website.', '']
+                md.append(f'| {row["location"]} | **{row["method"]}** — {row["details"]} |')
     (out/'ITEM_LOCATIONS.md').write_text('\n'.join(md), encoding='utf-8')
-
-
-def md_source(row):
-    sources = row['source'].split(', ')
-    links = [f'[{s}]({s}' + (f'#L{row["line"]}' if row['line'] else '') + ')' for s in sources]
-    if row.get('map_source'):
-        links.append(f'[map script]({row["map_source"]}' + (f'#L{row["map_line"]}' if row.get('map_line') else '') + ')')
-    if row.get('held_source'):
-        links.append(f'[held slots]({row["held_source"]})')
-    return '; '.join(links)
-
 
 
 if __name__ == '__main__':

@@ -42,6 +42,8 @@ The initial site generates:
 - Search and type filtering
 - Wild encounter index for recognized pokecrystal-style encounter lines
 - JSON exports and a build report
+- A searchable Items page with all 254 items, including 54 TMs, seven HMs,
+  acquisition locations, shop prices, wild held items and availability exceptions
 
 Because your project has substantial custom engine work, the parser is intentionally tolerant. The first real run may expose a few custom data formats that need an additional parser rule; it will still generate the rest of the site.
 
@@ -155,6 +157,22 @@ Keep Pokémon-specific redesigns in the Pokémon Changes tab; keep general game
 rules, modernization and custom exceptions in Game Updates. Both pages link
 to each other, and every generated page includes both navigation tabs.
 
-The separate [TM and held-item list](../ITEM_LOCATIONS.md) is kept outside the
-website. Refresh it with `python tools/generate_item_locations.py` from the
-repository root; the website generator does not publish or regenerate it.
+## Item locations
+
+The Items navigation tab opens `items.html`. It covers every named item,
+including TMs, HMs, berries, fossils, evolution items, balls and key items.
+Search by item, Pokémon, place or method, and filter by category or availability.
+Each item has a direct anchor such as `items.html#muscle_band`.
+The complete machine-readable catalog is exported to `docs/data/items.json`.
+
+The catalog reuses `tools/generate_item_locations.py` for reviewed TM and
+held-item sources, then adds other acquisition systems in `item_catalog.py`.
+It distinguishes Mystery Gift connectivity, trainer theft, wild held-item
+hunting, temporary activity balls, and ordinary world sources. Refund scripts
+are not counted as fresh sources. Placement and item IDs come from the ROM
+source; player-facing notes describe where to go and what to do.
+
+The website build also refreshes the [TM and held-item list](../ITEM_LOCATIONS.md).
+Run `python tools/generate_item_locations.py` to refresh just that list without
+rebuilding the site. Validate item coverage with
+`python tools/test_item_catalog.py`.

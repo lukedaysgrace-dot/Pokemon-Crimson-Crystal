@@ -6,6 +6,14 @@ try:
 except ImportError:
     Image = None
 
+def save_png(image, path):
+    """Preserve identical artwork across Pillow encoder versions."""
+    if path.exists():
+        with Image.open(path) as existing:
+            if existing.size == image.size and existing.convert('RGBA').tobytes() == image.convert('RGBA').tobytes():
+                return
+    image.save(path, 'PNG')
+
 def txt(p):
     return p.read_text(encoding='utf-8', errors='ignore')
 def strip(line):
@@ -589,7 +597,8 @@ class Builder:
     # ItemNames has no record for NO_ITEM (id 0), so item N is names[N - 1].
     names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]*)"',txt(np))]
     for c,i in ids.items():
-      if 1<=i<=len(names): out[c]=titlecase(names[i-1])
+      if 1<=i<=len(names): out[c]=titlecase(names[i-1].replace('#', 'POKÉ'))
+    out.update({'HP_UP':'HP Up', 'PP_UP':'PP Up', 'EXP_SHARE':'Exp. Share'})
     return out
 
   def finish_evolutions(self, mons):
@@ -682,7 +691,7 @@ class Builder:
           if w >= size and h >= size and (w==size or h==size or w%size==0 or h%size==0):
             frame=size; break
         crop=im.crop((0,0,frame,frame))
-        crop.save(dst,'PNG')
+        save_png(crop,dst)
         return True
     except Exception as e:
       self.report['warnings'].append(f'Could not process sprite {src}: {e}')
@@ -762,7 +771,7 @@ class Builder:
         im.load(); w,h=im.size
         if w<16 or h<16: return
         size=min(w,h)
-        im.crop((0,0,size,size)).save(target,'PNG')
+        save_png(im.crop((0,0,size,size)),target)
       m['back']='assets/pokemon/'+target.name
       m['back_size']=size
     except Exception as e:
@@ -1169,7 +1178,7 @@ class Builder:
           if attr&0x40: tile=tile.transpose(Image.FLIP_TOP_BOTTOM)
           rgba=Image.new('RGBA',(8,8)); rgba.putdata([recolor(px) for px in tile.getdata()])
           sheet.alpha_composite(rgba,(i*fw+x-x0,y-y0))
-      dst=self.a/'suicune_run.png'; sheet.save(dst,'PNG')
+      dst=self.a/'suicune_run.png'; save_png(sheet,dst)
       # Match the title screen's speed: SuicuneFrameIterator (engine/movie/title.asm)
       # holds each pose for N frames ("cp 1 * N"), ticked once per DelayFrame.
       hold=8
@@ -1192,8 +1201,8 @@ class Builder:
            f'background-image:url({s["sheet"]})')
     return (f'<div class="hero-art"><div class="suicune-run" role="img" '
             f'aria-label="Suicune running, from the title intro" style="{style}"></div></div>')
-  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Pokémon Changes</a><a href="{p}updates.html">Game Updates</a><a href="{p}editor/index.html">Save Editor</a></nav></header>'
-  def shell(self,title,body,p=''): return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Crimson Crystal documentation generated from source</footer><script src="{p}assets/app.js"></script></body></html>'
+  def nav(self,p=''): return f'<header><a class="brand" href="{p}index.html">◆ Crimson Crystal</a><nav aria-label="Main navigation"><a href="{p}pokedex.html">Pokédex</a><a href="{p}moves.html">Moves</a><a href="{p}items.html">Items</a><a href="{p}encounters.html">Encounters</a><a href="{p}locations.html">Locations</a><a href="{p}changes.html">Pokémon Changes</a><a href="{p}updates.html">Game Updates</a><a href="{p}editor/index.html">Save Editor</a></nav></header>'
+  def shell(self,title,body,p=''): return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{html.escape(title)} · Crimson Crystal</title><link rel="stylesheet" href="{p}assets/style.css"></head><body>{self.nav(p)}<main>{body}</main><footer>Pokémon Crimson Crystal</footer><script src="{p}assets/app.js"></script></body></html>'
   def card(self,m,p=''):
     shown=form_label(m["const"],m["name"])
     im=f'<img src="{p}{m["sprite"]}" alt="{html.escape(shown)}">' if m['sprite'] else '<div class="placeholder">◆</div>'
@@ -1286,13 +1295,9 @@ class Builder:
             + (f'<section class="panel"><h2>Egg moves <em>{len(egg)}</em></h2><p>Available through breeding or the family move tutor in Blackthorn for ¥5000.</p>{self.move_table(egg,move_map,"Learned","")}</section>' if egg else ''))
 
   def typing_comparison(self, m):
-    custom=m['original_stats_source']=='custom species'
-    note=('This custom Pokémon has no official main-game version; Original uses its game-specific design.' if custom else
-          'Original uses modern main-game values. Enhanced uses Crimson Crystal’s changes.')
     rows=''.join(f'<div><h3>{label}</h3><div>{"".join(self.badge(t) for t in m[key])}</div></div>'
                  for label,key in [('Original','original_types'),('Enhanced','updated_types')])
-    return (f'<section class="panel rules-panel"><h2>Original vs Enhanced</h2><p class="rules-note">{note} '
-            'Choose typings and base stats separately when starting a new game. Abilities, moves and evolution changes apply to both choices.</p>'
+    return ('<section class="panel rules-panel"><h2>Original vs Enhanced</h2>'
             f'<div class="type-comparison">{rows}</div></section>')
 
   def stats_comparison(self, m):
@@ -1325,10 +1330,9 @@ class Builder:
         sections.append(f'<p><b>Typing:</b> {" / ".join(m["original_types"])} → {" / ".join(m["types"])}</p>')
       if differences:
         tags.append('stats')
-        sections.append('<p><b>Stats versus modern Original:</b> '+html.escape('; '.join(differences))+'.</p>')
         original_total=sum(m['original_stats'].values());enhanced_total=sum(m['stats'].values())
         sections.append(f'<p><b>Base stat total:</b> {original_total} → {enhanced_total} ({enhanced_total-original_total:+d}).</p>')
-        sections.append('<details><summary>Original → Enhanced: all six base stats</summary>'+self.stats_comparison(m)+'</details>')
+        sections.append('<details><summary>Compare stats</summary>'+self.stats_comparison(m)+'</details>')
       if entry.get('abilities'):
         tags.append('ability')
         for a in entry['abilities']:
@@ -1350,11 +1354,9 @@ class Builder:
       chips=''.join(f'<span>{tag.title()}</span>' for tag in tags)
       cards.append(f'<article class="change-card searchable" id="{slug(c)}" data-search="{search}" data-kinds="{" ".join(tags)}"><h3><a href="pokemon/{slug(c)}.html">{html.escape(label)}</a></h3><div class="change-tags">{chips}</div>{"".join(sections)}</article>')
     return (f'<section class="head"><p class="eyebrow">GAMEPLAY GUIDE</p><h1>Changes</h1><p>See what changed, why your Pokémon’s numbers differ, and what each new-game option does.</p></section>'
-            '<section class="panel"><h2>Your rules, your run</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Enhanced</b> uses Crimson Crystal’s redesigned stats and typings. The two choices are independent. Custom species retain their game-specific designs.</p>'
-            '<p>Abilities, moves and evolution changes are shared by both choices. Palafin’s Original stats describe its base form; this game does not implement Zero to Hero.</p></section>'
-            '<section class="panel"><h2>Looking for battle mechanics?</h2><p>The <a href="updates.html">Game Updates guide</a> covers frostbite, <a href="updates.html#grass-types-block-powder-moves">Grass powder immunity</a>, modern battle rules and custom exceptions, with one entry per change.</p></section>'
+            '<section class="panel"><h2>Original and Enhanced</h2><p><b>Original</b> uses modern main-game base stats and typings. <b>Enhanced</b> uses Crimson Crystal’s balance changes. Choose stats and typings separately when starting a game.</p></section>'
             f'<div class="counts"><div><b>{count_stats}</b> Species with stat changes</div><div><b>{count_types}</b> Species with type changes</div><div><b>{len(notes)}</b> Species with recorded balance notes</div></div>'
-            '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">Stat and typing comparisons show the full difference from modern Original to the current Enhanced version, including every earlier redesign. Each stat comparison includes both base stat totals and all six stats. Ability, move and evolution notes record the other balance changes.</p>'
+            '<h2 id="roster-changes">Pokémon changes</h2><p class="rules-note">For battle rules, see <a href="updates.html">Game Updates</a>.</p>'
             '<div class="toolbar"><input id="changeSearch" type="search" aria-label="Search Pokémon changes" placeholder="Search Pokémon, type or ability"><select id="changeFilter" aria-label="Filter changes"><option value="">All changes</option><option value="stats">Stats</option><option value="typing">Typings</option><option value="ability">Abilities</option><option value="move">Moves</option><option value="evolution">Evolutions</option></select></div>'
             f'<p id="changeCount" class="rules-note" aria-live="polite">Showing {len(cards)} Pokémon</p><div class="change-grid">{"".join(cards)}</div><p id="changeEmpty" class="panel" hidden>No Pokémon match these filters.</p>')
 
@@ -1384,8 +1386,7 @@ class Builder:
         path=(self.r/source).resolve()
         if not path.is_relative_to(self.r.resolve()) or not path.exists():
           raise ValueError(f'Missing Game Updates source: {source}')
-      compare=(f'<dl class="update-compare"><div><dt>{html.escape(note["comparison"])}</dt><dd>{html.escape(note["before"])}</dd></div>'
-               f'<div><dt>Crimson Crystal</dt><dd>{html.escape(note["after"])}</dd></div></dl>')
+      compare=f'<p>{html.escape(note["after"])}</p>'
       links=''.join(f'<a href="{html.escape(link["href"],quote=True)}">{html.escape(link["label"])}</a>' for link in note.get('links',[]))
       if links:compare+=f'<div class="update-links">{links}</div>'
       sections[note['category']].append(entry(note['id'],note['title'],note['category'],note['kind'],compare))
@@ -1412,9 +1413,9 @@ class Builder:
           rows+=f'<li><b>Behavior:</b> {effect_labels[old["effect"]]} → {effect_labels[move_effects[move["const"]]]}</li>'
         content=f'<ul class="update-values">{rows}</ul>'
       else:
-        content=f'<p>Added since Gen 2. {html.escape(move["type"])} · {html.escape(move["category"])} · Power {fmt_power(move)} · Accuracy {fmt_acc(move)} · {move["pp"]} PP.</p>'
+        content=f'<p>{html.escape(move["type"])} · {html.escape(move["category"])} · Power {fmt_power(move)} · Accuracy {fmt_acc(move)} · {move["pp"]} PP.</p>'
       if move['const']=='HIDDEN_POWER':
-        content+='<p class="rules-note">The move table uses placeholders. Actual battles use 70 power, a selectable type and a category chosen from the user’s stats; see the three Hidden Power entries above.</p>'
+        content+='<p>Hidden Power has 70 power. Choose its type at the Lake of Rage house. It uses the user’s higher attacking stat.</p>'
       content+=f'<div class="update-links"><a href="moves/{slug(move["name"])}.html">Move details &amp; learners</a></div>'
       move_cards.append(entry('move-update-'+slug(move['const']),move['name'],'moves',kind,content))
 
@@ -1451,9 +1452,9 @@ class Builder:
 
     opts=''.join(f'<option value="{key}">{html.escape(title)}</option>' for key,title in categories.items())
     toc=''.join(f'<a href="#updates-{key}">{html.escape(title)}</a>' for key,title in categories.items())
-    body=('<section class="head"><p class="eyebrow">THE COMPLETE GAMEPLAY GUIDE</p><h1>Game Updates</h1>'
-          '<p>What changed since Pokémon Crystal, one rule at a time. Modern mechanics and Crimson Crystal’s custom exceptions are labeled separately.</p></section>'
-          f'<div class="counts"><div><b>{len(catalog["entries"])}</b> Individual gameplay updates</div><div><b>{added_moves}</b> Added moves</div><div><b>{changed_moves}</b> Original moves with changed values</div></div>'
+    body=('<section class="head"><p class="eyebrow">GAMEPLAY GUIDE</p><h1>Game Updates</h1>'
+          '<p>Battle rules, new features and changes from Pokémon Crystal.</p></section>'
+          f'<div class="counts"><div><b>{len(catalog["entries"])}</b> Gameplay changes</div><div><b>{added_moves}</b> Added moves</div><div><b>{changed_moves}</b> Updated moves</div></div>'
           '<div class="updates-controls"><div class="toolbar"><input id="updateSearch" type="search" aria-label="Search game updates" placeholder="Search frostbite, powder, moves, items…">'
           f'<select id="updateCategory" aria-label="Filter game updates by topic"><option value="">Every topic</option>{opts}</select>'
           '<select id="updateKind" aria-label="Filter game updates by kind"><option value="">Every kind</option><option value="exception">Custom &amp; special exceptions</option><option value="custom">Custom changes</option><option value="modern">Modern rules</option><option value="expanded">Added features</option><option value="changed">Move value changes</option></select></div>'
@@ -1463,17 +1464,18 @@ class Builder:
       body+=(f'<section class="update-section" id="updates-{category}" data-update-section><h2>{html.escape(title)}</h2>'
              f'<div class="update-list">{"".join(sections[category])}</div></section>')
     for key,title,subtitle,cards in [
-      ('move-updates','Every added or adjusted move','All additions and changed type, category, power, accuracy, PP, effect-chance or effect-class values, compared with the original Crystal move table. Further behavior changes are described in the entries above.',move_cards),
-      ('ability-directory','Every ability assigned to the roster','Abilities did not exist in Gen 2. These are the game’s descriptions and current holders; custom behavior such as Flash Fire and Gale Wings is detailed above.',ability_cards),
-      ('added-pokemon','Every Pokémon and form added since Gen 2','Includes later evolutions, regional forms, custom species and clone starters. Follow a link for the complete current design and evolution requirements.',added_cards)]:
+      ('move-updates','Added and updated moves','Move stats and changes from Crystal.',move_cards),
+      ('ability-directory','Abilities','Ability effects and the Pokémon that have them.',ability_cards),
+      ('added-pokemon','Added Pokémon','Later evolutions, regional forms, custom Pokémon and clone starters.',added_cards)]:
       body+=(f'<details class="update-directory" id="{key}" data-update-section><summary>{title} <span>({len(cards)})</span></summary>'
              f'<p class="rules-note">{subtitle}</p><div class="update-list">{"".join(cards)}</div></details>')
-    body+=('<p id="updateEmpty" class="panel" hidden>No updates match these filters. Try a different term or choose Every topic and Every kind.</p>'
-           '<section class="panel"><h2>Pokémon balance comparisons</h2><p>For every stat and typing redesign, plus the latest ability, move and evolution buffs, visit <a href="changes.html">Pokémon Changes</a>. Individual Pokémon pages show the Original and Enhanced values.</p></section>'
-           '<p class="rules-note">This guide describes the current game. Historical move values come from the <a href="https://github.com/pret/pokecrystal/blob/master/data/moves/moves.asm">original Crystal source</a>; current rules and content are checked against the <a href="https://github.com/lukedaysgrace-dot/Pokemon-Crimson-Crystal">Crimson Crystal source</a>.</p>')
+    body+=('<p id="updateEmpty" class="panel" hidden>No updates match these filters.</p>'
+           '<p>For stats, typings and evolution changes, see <a href="changes.html">Pokémon Changes</a>.</p>')
     return body
 
   def render(self,mons,moves,wild):
+    from item_catalog import build_catalog, render_catalog
+    catalog=build_catalog(self,write_guide=True)
     clone_consts=self.attach_clone_forms(mons)
     ms=sorted((m for c,m in mons.items() if c not in clone_consts),key=lambda x:x['number']); move_map={m['const']:m for m in moves}
     wild_by_const={}
@@ -1485,9 +1487,10 @@ class Builder:
       if 'forms' in m:
         q['forms']={name:{k:v for k,v in form.items() if k!='forms'} for name,form in m['forms'].items()}
       clean_ms.append(q)
-    for name,obj in [('pokemon',clean_ms),('moves',moves),('encounters',wild),('build-report',self.report)]: (self.o/'data'/f'{name}.json').write_text(json.dumps(obj,indent=2))
+    for name,obj in [('pokemon',clean_ms),('moves',moves),('encounters',wild),('items',catalog),('build-report',self.report)]: (self.o/'data'/f'{name}.json').write_text(json.dumps(obj,indent=2),encoding='utf-8')
+    (self.o/'items.html').write_text(self.shell('Items',render_catalog(catalog)),encoding='utf-8')
     cards=''.join(self.card(x) for x in ms)
-    home=f'<section class="hero"><div><p class="eyebrow">POKÉMON CRYSTAL ROM HACK</p><h1>Crimson Crystal</h1><p>A searchable guide generated directly from the game source.</p><a class="button" href="pokedex.html">Explore the Pokédex</a></div>{self.hero_art()}</section><section class="counts"><div><b>{len(ms)}</b> Pokémon</div><div><b>{len(moves)}</b> Moves</div><div><b>{len(wild)}</b> Encounter slots</div></section><h2>Pokédex preview</h2><div class="grid">{cards}</div>'
+    home=f'<section class="hero"><div><p class="eyebrow">POKÉMON CRYSTAL ROM HACK</p><h1>Crimson Crystal</h1><p>Pokémon, moves, items and locations.</p><a class="button" href="pokedex.html">Explore the Pokédex</a></div>{self.hero_art()}</section><section class="counts"><div><b>{len(ms)}</b> Pokémon</div><div><b>{len(moves)}</b> Moves</div><div><b>{len(wild)}</b> Encounter slots</div></section><h2>Pokédex preview</h2><div class="grid">{cards}</div>'
     (self.o/'index.html').write_text(self.shell('Home',home))
     types=sorted({t for m in ms for t in m['types']}); opts=''.join(f'<option value="{slug(t)}">{t}</option>' for t in types)
     (self.o/'pokedex.html').write_text(self.shell('Pokédex',f'<section class="head"><p class="eyebrow">DATABASE</p><h1>Pokédex</h1></section><div class="toolbar"><input id="search" placeholder="Search Pokémon, type or ability"><select id="typeFilter"><option value="">All types</option>{opts}</select></div><div class="grid">{cards}</div>'))
@@ -1550,7 +1553,7 @@ class Builder:
       for loc,items in sorted(by_location.items(),key=lambda x:x[1][0]['location']))
     (self.o/'locations.html').write_text(self.shell(
       'Locations',
-      f'<section class="head"><p class="eyebrow">LOCATION DATABASE</p><h1>Locations</h1><p>Every location explicitly found in Crimson Crystal’s encounter tables.</p></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations"></div><div class="location-grid">{location_cards}</div>'))
+      f'<section class="head"><p class="eyebrow">LOCATION DATABASE</p><h1>Locations</h1><p>Find wild Pokémon by location.</p></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations"></div><div class="location-grid">{location_cards}</div>'))
     for loc,items in by_location.items():
       title=items[0]['location']
       methods={}
@@ -1564,7 +1567,7 @@ class Builder:
       lp=self.o/'locations'/f'{slug(loc)}.html'; lp.parent.mkdir(exist_ok=True)
       lp.write_text(self.shell(title,f'<a class="back" href="../locations.html">← Locations</a><section class="head"><p class="eyebrow">WILD ENCOUNTERS</p><h1>{html.escape(title)}</h1></section>{sections}','../'))
     er=''.join(f'<div class="erow searchable" data-search="{html.escape((e["location"]+" "+e["pokemon"]+" "+e["time"]+" "+e["method"]).lower())}"><b>{html.escape(e["location"])}</b><span>{html.escape(e["method"])}</span><span>{e["time"]}</span><span>{e["pokemon"]}</span><span>Lv. {e["level"]}</span><span>{str(e["chance"])+"%" if e.get("chance") is not None else "—"}</span></div>' for e in wild)
-    (self.o/'encounters.html').write_text(self.shell('Encounters',f'<section class="head"><p class="eyebrow">WORLD DATA</p><h1>Wild encounters</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations or Pokémon"></div><div class="table"><div class="erow labels"><span>Location</span><span>Method</span><span>Time</span><span>Pokémon</span><span>Level</span><span>Chance</span></div>{er or "<p class=empty>No supported encounter rows detected.</p>"}</div>'))
+    (self.o/'encounters.html').write_text(self.shell('Encounters',f'<section class="head"><p class="eyebrow">WORLD DATA</p><h1>Wild encounters</h1></section><div class="toolbar"><input id="tableSearch" placeholder="Search locations or Pokémon"></div><div class="table"><div class="erow labels"><span>Location</span><span>Method</span><span>Time</span><span>Pokémon</span><span>Level</span><span>Chance</span></div>{er or "<p class=empty>No encounters found.</p>"}</div>'))
   def run(self):
     # Replace generated files in place, preserving supplemental reports and downloads.
     self.a.mkdir(parents=True,exist_ok=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')

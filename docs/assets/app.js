@@ -1,5 +1,47 @@
 document.addEventListener('DOMContentLoaded',()=>{const s=document.querySelector('#search'),t=document.querySelector('#typeFilter');function f(){const q=(s?.value||'').toLowerCase(),ty=t?.value||'';document.querySelectorAll('.card').forEach(x=>x.style.display=((x.dataset.search||'').includes(q)&&(!ty||(x.dataset.type||'').split(' ').includes(ty)))?'':'none')}s?.addEventListener('input',f);t?.addEventListener('change',f);const ts=document.querySelector('#tableSearch');ts?.addEventListener('input',()=>{const q=ts.value.toLowerCase();document.querySelectorAll('.table .searchable').forEach(x=>x.style.display=(x.dataset.search||'').includes(q)?'':'none')})});
 
+document.addEventListener('DOMContentLoaded', () => {
+  const search = document.querySelector('#itemSearch');
+  const category = document.querySelector('#itemCategory');
+  const availability = document.querySelector('#itemAvailability');
+  if (!search || !category || !availability) return;
+  const items = [...document.querySelectorAll('[data-item]')];
+  const update = () => {
+    const query = search.value.trim().toLowerCase();
+    let visible = 0;
+    items.forEach(item => {
+      item.hidden = !(item.dataset.search.includes(query) &&
+        (!category.value || category.value === item.dataset.category) &&
+        (!availability.value || availability.value === item.dataset.availability));
+      if (!item.hidden) visible++;
+    });
+    document.querySelector('#itemCount').textContent = `Showing ${visible} of ${items.length} items`;
+    document.querySelector('#itemEmpty').hidden = visible !== 0;
+  };
+  const reveal = () => {
+    const item = document.getElementById(window.location.hash.slice(1));
+    if (!item?.matches('[data-item]')) return;
+    if (item.hidden) {
+      search.value = category.value = availability.value = '';
+      update();
+    }
+    item.open = true;
+    item.scrollIntoView({ block: 'start' });
+  };
+  search.addEventListener('input', update);
+  category.addEventListener('change', update);
+  availability.addEventListener('change', update);
+  window.addEventListener('hashchange', reveal);
+  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+    search.value = category.value = availability.value = '';
+    update();
+    const item = document.getElementById(link.hash.slice(1));
+    if (item?.matches('[data-item]')) item.open = true;
+  }));
+  update();
+  reveal();
+});
+
 document.querySelectorAll('.form-toggle').forEach(toggle => {
   toggle.addEventListener('click', event => {
     const button = event.target.closest('button[data-form]');
