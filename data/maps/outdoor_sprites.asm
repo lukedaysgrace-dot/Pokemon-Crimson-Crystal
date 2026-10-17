@@ -218,10 +218,10 @@ SaffronGroupSprites:
 	db SPRITE_SLOWPOKE
 
 CeladonGroupSprites:
-	db SPRITE_SUICUNE
+	db SPRITE_BURGLAR ; Celadon glasses chase; replaces unused outdoor filler
 	db SPRITE_BATTLE_GIRL ; was SPRITE_SILVER_TROPHY (unused filler) - for Route 7 Battle Girls
 	db SPRITE_CUEBALL ; Route 16 gang; replaces unused outdoor filler
-	db SPRITE_POKEDEX
+	db SPRITE_OFFICER ; Celadon glasses confrontation; replaces unused outdoor filler
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
@@ -568,7 +568,7 @@ CianwoodGroupSprites:
 OlivineGroupSprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
+	db SPRITE_POKE_BALL ; Route 38 Soft Sand; replaces unused outdoor filler
 	db SPRITE_POKEDEX
 	db SPRITE_JASMINE ; lighthouse medicine encounter (replaces unused Will)
 	db SPRITE_PSYCHIC

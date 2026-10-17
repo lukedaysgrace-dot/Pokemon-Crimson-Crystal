@@ -665,6 +665,7 @@ LYRA EQU __enum__
 	trainerclass OFFICER ; 41
 	const KEITH
 	const DIRK
+	const CELADON_HAYES
 
 	trainerclass GRUNTF ; 42
 	const GRUNTF_1
