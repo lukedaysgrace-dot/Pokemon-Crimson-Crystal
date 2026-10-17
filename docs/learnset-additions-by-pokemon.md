@@ -12,7 +12,7 @@ This lists changes to Pokémon move access; it does not introduce new battle mov
 
 Of these, 12,850 close canonical gaps. The other 175 are additional inherited access through this project's evolution and breeding relationships.
 
-**Every verified implemented move is available; no historical move candidates remain deferred.** The audit also checks that none of the previously expanded movepools were trimmed.
+**Every verified implemented move is available; no historical move candidates remain deferred.** The audit preserves previously expanded movepools except explicitly recorded corrections.
 
 ## Abomasnow
 
@@ -1158,6 +1158,8 @@ No new acquisition routes were added.
 
 **Newly available (24):** Aerial Ace, Baton Pass, Body Slam, Brave Bird, Double-Edge, Drill Peck, Endure, Energy Ball, Foul Play, Giga Impact, Hex, Hypnosis, Low Kick, Mud-Slap, Night Shade, Peck, Psych Up, Rain Dance, Sandstorm, Seed Bomb, Skill Swap, Take Down, Trick, Trick Room.
 
+- **Removed incorrect move access:** Psystrike.
+- **On evolution:** Lumina Crash when Flittle evolves into Espathra.
 - **Natural/restored level-up:** Drill Peck (Lv. 1), Peck (Lv. 1), Disarming Voice (Lv. 11).
 - **Thematic level-up (custom):** Skill Swap (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 38).
 - **Egg (Flittle family):** Hypnosis.
