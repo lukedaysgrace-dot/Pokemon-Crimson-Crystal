@@ -105,7 +105,7 @@ SilentCryptGrannyReturnMovement:
 SilentCryptGrannyScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_SPELL_TAG_FROM_GRAVEKEEPER
+	checkevent EVENT_GOT_FOCUS_SASH_FROM_GRAVEKEEPER
 	iftrue .Finished
 	checkevent EVENT_MEDIUM_GAVE_ADVICE
 	iffalse .Idle

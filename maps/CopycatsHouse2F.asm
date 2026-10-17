@@ -5,6 +5,7 @@
 	const COPYCATSHOUSE2F_MONSTERDOLL
 	const COPYCATSHOUSE2F_BIRDDOLL
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
+	const COPYCATSHOUSE2F_CHOICE_SCARF
 
 CopycatsHouse2F_MapScripts:
 	db 0 ; scene scripts
@@ -124,10 +125,26 @@ Copycat:
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext CopycatText_ExplainPass
 	waitbutton
+	sjump .OfferScarf
+
+.OfferScarfForExistingPass:
+	opentext
+.OfferScarf:
+	checkevent EVENT_TRIED_TAKING_COPYCAT_SCARF
+	iftrue .RememberScarf
+	writetext CopycatText_OfferScarf
+	sjump .ScarfPermission
+.RememberScarf:
+	writetext CopycatText_RememberScarf
+.ScarfPermission:
+	waitbutton
+	setevent EVENT_COPYCAT_SCARF_PERMISSION
 	closetext
 	end
 
 .GotPass:
+	checkevent EVENT_COPYCAT_SCARF_PERMISSION
+	iffalse .OfferScarfForExistingPass
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .GotPass_Female_1
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinAroundMovementData
@@ -185,6 +202,32 @@ CopycatsHouse2FDoll:
 
 CopycatsHouse2FBookshelf:
 	jumpstd picturebookshelf
+
+CopycatsHouse2FChoiceScarf:
+	checkevent EVENT_COPYCAT_SCARF_PERMISSION
+	iftrue .TakeScarf
+	setevent EVENT_TRIED_TAKING_COPYCAT_SCARF
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .Female
+	faceobject COPYCATSHOUSE2F_COPYCAT1, PLAYER
+	sjump .Scold
+.Female:
+	faceobject COPYCATSHOUSE2F_COPYCAT2, PLAYER
+.Scold:
+	opentext
+	writetext CopycatText_NoStealingScarf
+	waitbutton
+	closetext
+	end
+.TakeScarf:
+	opentext
+	verbosegiveitem CHOICE_SCARF
+	iffalse .Done
+	setevent EVENT_GOT_CHOICE_SCARF_FROM_COPYCAT
+	disappear COPYCATSHOUSE2F_CHOICE_SCARF
+.Done:
+	closetext
+	end
 
 CopycatSpinAroundMovementData:
 	turn_head DOWN
@@ -291,6 +334,42 @@ CopycatText_Male_3:
 	cont "my every move?"
 	done
 
+CopycatText_NoStealingScarf:
+	text "COPYCAT: Hey!"
+	para "Didn't anyone"
+	line "teach you stealing"
+	cont "is wrong?!"
+	done
+
+CopycatText_OfferScarf:
+	text "COPYCAT: Oh!"
+	line "I almost forgot!"
+	para "See that scarf"
+	line "over there?"
+	para "It's one of my"
+	line "favorites!"
+	para "But you helped me"
+	line "get my precious"
+	cont "# DOLL back, so"
+	cont "you can have it!"
+	para "Go on! Take it!"
+	done
+
+CopycatText_RememberScarf:
+	text "COPYCAT: Oh!"
+	line "One more thing!"
+	para "Remember that"
+	line "scarf you were"
+	cont "eyeing earlier?"
+	para "Hehe! Since you"
+	line "found my # DOLL,"
+	para "I guess you've"
+	line "earned it!"
+	para "Go ahead! It's"
+	line "yours! No hard"
+	cont "feelings."
+	done
+
 CopycatText_ItsAScream:
 	text "COPYCAT: You bet!"
 	line "It's a scream!"
@@ -370,10 +449,11 @@ CopycatsHouse2F_MapEvents:
 	bg_event  0,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 	bg_event  1,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 
-	db 6 ; object events
+	db 7 ; object events
 	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
 	object_event  6,  4, SPRITE_DODRIO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
 	object_event  6,  1, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
 	object_event  2,  1, SPRITE_RHYDON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
 	object_event  7,  1, SPRITE_PIDGEY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
 	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2
+	object_event  3,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FChoiceScarf, EVENT_GOT_CHOICE_SCARF_FROM_COPYCAT

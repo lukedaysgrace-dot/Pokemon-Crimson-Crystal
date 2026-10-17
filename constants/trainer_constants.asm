@@ -472,6 +472,8 @@ LYRA EQU __enum__
 	const RILEY
 	const JOEL
 	const GLENN
+	const ROUTE16_AXLE
+	const ROUTE16_RUSTY
 
 	trainerclass BLAINE ; 2e
 	const BLAINE1
@@ -862,5 +864,8 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	const ROSIE
 	const DAHLIA
 	const JUNIPER
+
+	trainerclass CUEBALL
+	const CHOPPER
 
 NUM_TRAINER_CLASSES EQU __enum__
