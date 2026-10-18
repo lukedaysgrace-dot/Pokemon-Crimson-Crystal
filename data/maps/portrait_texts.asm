@@ -551,6 +551,8 @@ PortraitTexts:
 	db 0
 	dba EcruteakCityGramps3Text
 	db 0
+	dba EcruteakCityJirachiText
+	db 0
 	dba EcruteakCityLass1Text
 	db 0
 	dba EcruteakCityLass2Text
@@ -564,6 +566,10 @@ PortraitTexts:
 	dba EcruteakCityWellGrannyStarPieceText
 	db 0
 	dba EcruteakCityWellGrannyText
+	db 0
+	dba EcruteakCityWishingStarPromptText
+	db 0
+	dba EcruteakCityWishingStarTossText
 	db 0
 	dba EcruteakCityWishingWellBagFullText
 	db 0

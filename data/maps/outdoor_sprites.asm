@@ -456,7 +456,7 @@ VioletGroupSprites:
 EcruteakGroupSprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
-	db SPRITE_FAMICOM
+	db SPRITE_JIRACHI ; wishing well; replaces unused outdoor console
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN
@@ -693,7 +693,7 @@ DungeonsGroupSprites:
 FastShipGroupSprites:
 	db SPRITE_SUICUNE
 	db SPRITE_MACHAMP ; Olivine Port; replaces unused trophy graphics
-	db SPRITE_FAMICOM
+	db SPRITE_FOSSIL ; Mt. Moon crater; replaces unused outdoor console
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN

@@ -246,3 +246,8 @@ SECTION "Silph Worker M Sprite", ROMX
 SilphWorkerMSpriteGFX::       INCBIN "gfx/sprites/silph_worker_m.2bpp"
 SilphWorkerMSpriteGFXEnd::
 assert SilphWorkerMSpriteGFXEnd - SilphWorkerMSpriteGFX == 12 * 16
+
+SECTION "Jirachi Walking Sprite", ROMX
+JirachiSpriteGFX::            INCBIN "gfx/sprites/jirachi.2bpp"
+JirachiSpriteGFXEnd::
+assert JirachiSpriteGFXEnd - JirachiSpriteGFX == 24 * 16

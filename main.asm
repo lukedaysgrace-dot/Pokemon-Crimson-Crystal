@@ -964,5 +964,6 @@ INCLUDE "engine/events/saffron_gates.asm"
 INCLUDE "engine/events/decoration_shops.asm"
 
 INCLUDE "engine/events/cerulean_cave.asm"
+INCLUDE "engine/events/wishing_star.asm"
 
 INCLUDE "data/pokemon/technical_tutor.asm"
