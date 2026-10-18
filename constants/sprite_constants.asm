@@ -153,6 +153,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_BALLOON
 	const SPRITE_CUEBALL
 	const SPRITE_KARATE_KING
+	const SPRITE_SILPH_WORKER_M
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
@@ -225,6 +226,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_ARTICUNO ; c1
 	const SPRITE_ZAPDOS ; c2
 	const SPRITE_MACHAMP
+	const SPRITE_STARYU
 	assert const_value <= $e0, "Pokemon sprites overlap Day-Care sprite IDs"
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)

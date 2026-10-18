@@ -7,6 +7,7 @@
 	const ECRUTEAKCITY_YOUNGSTER
 	const ECRUTEAKCITY_GRAMPS3
 	const ECRUTEAKCITY_EUSINE
+	const ECRUTEAKCITY_WELL_GRANNY
 
 EcruteakCity_MapScripts:
 	db 0 ; scene scripts
@@ -129,6 +130,63 @@ EcruteakCityFisherScript:
 
 EcruteakCityYoungsterScript:
 	jumptextfaceplayer EcruteakCityYoungsterText
+
+EcruteakCityWishingWell:
+	opentext
+	writetext EcruteakCityWishingWellPromptText
+	yesorno
+	iffalse .Done
+	checkmoney YOUR_MONEY, 100
+	ifequal HAVE_LESS, .NotEnoughMoney
+	checkevent EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
+	iftrue .AnotherWish
+	; Reserve the reward before charging, so a full Bag cannot waste the wish.
+	giveitem RARE_CANDY
+	iffalse .BagFull
+	takemoney YOUR_MONEY, 100
+	setevent EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
+	writetext EcruteakCityWishingWellWishText
+	waitbutton
+	writetext EcruteakCityWishingWellRewardText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	itemnotify
+	sjump .Done
+
+.AnotherWish:
+	takemoney YOUR_MONEY, 100
+	writetext EcruteakCityWishingWellNothingText
+	waitbutton
+	sjump .Done
+
+.NotEnoughMoney:
+	writetext EcruteakCityWishingWellNoMoneyText
+	waitbutton
+	sjump .Done
+
+.BagFull:
+	writetext EcruteakCityWishingWellBagFullText
+	waitbutton
+.Done:
+	closetext
+	end
+
+EcruteakCityWellGrannyScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
+	iftrue .FoundCandy
+	writetext EcruteakCityWellGrannyText
+	waitbutton
+	closetext
+	end
+
+.FoundCandy:
+	writetext EcruteakCityWellGrannyAfterText
+	waitbutton
+	closetext
+	end
 
 EcruteakCitySign:
 	jumptext EcruteakCitySignText
@@ -370,6 +428,96 @@ EcruteakCityEusineWaitingText:
 	cont "your #MON!"
 	done
 
+EcruteakCityWishingWellPromptText:
+	text "It's an old"
+	line "wishing well."
+
+	para "Several coins"
+	line "glimmer beneath"
+	cont "the water."
+
+	para "Toss in ¥100?"
+	done
+
+EcruteakCityWishingWellWishText:
+	text "You tossed ¥100"
+	line "into the well!"
+
+	para "You close your"
+	line "eyes and make a"
+	cont "wish..."
+
+	para "..."
+
+	para "Something sparkles"
+	line "beneath the water!"
+	done
+
+EcruteakCityWishingWellRewardText:
+	text "You found a"
+	line "RARE CANDY!"
+	done
+
+EcruteakCityWishingWellNothingText:
+	text "You tossed ¥100"
+	line "into the well."
+
+	para "Ripples spread"
+	line "across the water…"
+
+	para "Nothing else"
+	line "happens."
+	done
+
+EcruteakCityWishingWellNoMoneyText:
+	text "You don't have"
+	line "enough money."
+	done
+
+EcruteakCityWishingWellBagFullText:
+	text "Your BAG is full."
+
+	para "Make room before"
+	line "making a wish."
+	done
+
+EcruteakCityWellGrannyText:
+	text "When I was a"
+	line "little girl, my"
+
+	para "mother would bring"
+	line "me here to make a"
+	cont "wish."
+
+	para "I still remember"
+	line "what I wished"
+	cont "for..."
+
+	para "But I won't tell"
+	line "you!"
+
+	para "Then it might not"
+	line "come true!"
+	done
+
+EcruteakCityWellGrannyAfterText:
+	text "Oh? You found"
+	line "something in the"
+	cont "well?"
+
+	para "How curious..."
+
+	para "I've been coming"
+	line "here for years,"
+
+	para "and that's never"
+	line "happened to me!"
+
+	para "Perhaps the well"
+	line "has taken a liking"
+	cont "to you."
+	done
+
 EcruteakCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -393,7 +541,7 @@ EcruteakCity_MapEvents:
 	db 1 ; coord events
 	coord_event 36, 9, -1, EcruteakCityEusineTrigger
 
-	db 8 ; bg events
+	db 9 ; bg events
 	bg_event 15, 21, BGEVENT_READ, EcruteakCitySign
 	bg_event 38, 10, BGEVENT_READ, TinTowerSign
 	bg_event  8, 28, BGEVENT_READ, EcruteakGymSign
@@ -402,8 +550,9 @@ EcruteakCity_MapEvents:
 	bg_event 24, 27, BGEVENT_READ, EcruteakCityPokecenterSign
 	bg_event 30, 21, BGEVENT_READ, EcruteakCityMartSign
 	bg_event 23, 14, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
+	bg_event 25,  8, BGEVENT_READ, EcruteakCityWishingWell
 
-	db 8 ; object events
+	db 9 ; object events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
 	object_event 20, 21, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
 	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass1Script, -1
@@ -412,3 +561,4 @@ EcruteakCity_MapEvents:
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
 	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
 	object_event 31,  5, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, EcruteakCityEusineScript, EVENT_ECRUTEAK_CITY_EUSINE
+	object_event 24,  8, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityWellGrannyScript, -1

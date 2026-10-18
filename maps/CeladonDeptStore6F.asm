@@ -1,10 +1,10 @@
-CELADONDEPTSTORE6F_FRESH_WATER_PRICE EQU 200
-CELADONDEPTSTORE6F_SODA_POP_PRICE    EQU 300
-CELADONDEPTSTORE6F_LEMONADE_PRICE    EQU 350
+CELADONDEPTSTORE6F_FRESH_WATER_PRICE EQU 2000
+CELADONDEPTSTORE6F_SODA_POP_PRICE    EQU 3000
+CELADONDEPTSTORE6F_LEMONADE_PRICE    EQU 4000
 
 	object_const_def ; object_event constants
-	const CELADONDEPTSTORE6F_SUPER_NERD
-	const CELADONDEPTSTORE6F_YOUNGSTER
+	const CELADONDEPTSTORE6F_LITTLE_GIRL
+	const CELADONDEPTSTORE6F_DAD
 
 CeladonDeptStore6F_MapScripts:
 	db 0 ; scene scripts
@@ -16,11 +16,125 @@ CeladonDeptStore6F_MapScripts:
 	changeblock 12, 0, $03 ; wall
 	return
 
-CeladonDeptStore6FSuperNerdScript:
-	jumptextfaceplayer CeladonDeptStore6FSuperNerdText
+CeladonDeptStore6FLittleGirlScript:
+	faceplayer
+	opentext
+	checkevent EVENT_CELADON_GIRL_GOT_FRESH_WATER
+	iffalse .Thirsty
+	checkevent EVENT_CELADON_GIRL_GOT_SODA_POP
+	iffalse .Thirsty
+	checkevent EVENT_CELADON_GIRL_GOT_LEMONADE
+	iftrue .HadAllDrinks
+.Thirsty:
+	writetext CeladonDeptStore6FLittleGirlThirstyText
+	yesorno
+	iffalse .Declined
+	writetext CeladonDeptStore6FLittleGirlWhichDrinkText
+	loadmenu .MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .FreshWater
+	ifequal 2, .SodaPop
+	ifequal 3, .Lemonade
+.Declined:
+	writetext CeladonDeptStore6FLittleGirlDeclinedText
+	waitbutton
+	closetext
+	end
 
-CeladonDeptStore6FYoungsterScript:
-	jumptextfaceplayer CeladonDeptStore6FYoungsterText
+.FreshWater:
+	checkevent EVENT_CELADON_GIRL_GOT_FRESH_WATER
+	iftrue .AlreadyHadDrink
+	takeitem FRESH_WATER
+	iffalse .NoDrink
+	giveitem MAX_ELIXER
+	iffalse .ReturnFreshWater
+	setevent EVENT_CELADON_GIRL_GOT_FRESH_WATER
+	getitemname STRING_BUFFER_4, MAX_ELIXER
+	sjump .ReceivedReward
+
+.SodaPop:
+	checkevent EVENT_CELADON_GIRL_GOT_SODA_POP
+	iftrue .AlreadyHadDrink
+	takeitem SODA_POP
+	iffalse .NoDrink
+	giveitem RARE_CANDY
+	iffalse .ReturnSodaPop
+	setevent EVENT_CELADON_GIRL_GOT_SODA_POP
+	getitemname STRING_BUFFER_4, RARE_CANDY
+	sjump .ReceivedReward
+
+.Lemonade:
+	checkevent EVENT_CELADON_GIRL_GOT_LEMONADE
+	iftrue .AlreadyHadDrink
+	takeitem LEMONADE
+	iffalse .NoDrink
+	giveitem PP_MAX
+	iffalse .ReturnLemonade
+	setevent EVENT_CELADON_GIRL_GOT_LEMONADE
+	getitemname STRING_BUFFER_4, PP_MAX
+
+.ReceivedReward:
+	writetext CeladonDeptStore6FLittleGirlThankYouText
+	buttonsound
+	writetext CeladonDeptStore6FLittleGirlRewardText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	itemnotify
+	closetext
+	end
+
+; Removing the last drink can free a Bag slot for the reward. If the
+; reward still won't fit, restore the drink and leave its gift unclaimed.
+.ReturnFreshWater:
+	giveitem FRESH_WATER
+	sjump .NoRoom
+.ReturnSodaPop:
+	giveitem SODA_POP
+	sjump .NoRoom
+.ReturnLemonade:
+	giveitem LEMONADE
+.NoRoom:
+	writetext CeladonDeptStore6FLittleGirlNoRoomText
+	waitbutton
+	closetext
+	end
+
+.NoDrink:
+	writetext CeladonDeptStore6FLittleGirlNoDrinkText
+	waitbutton
+	closetext
+	end
+
+.AlreadyHadDrink:
+	writetext CeladonDeptStore6FLittleGirlAlreadyHadDrinkText
+	waitbutton
+	closetext
+	end
+
+.HadAllDrinks:
+	writetext CeladonDeptStore6FLittleGirlHadAllDrinksText
+	waitbutton
+	closetext
+	end
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 13, 9
+	dw .MenuData
+	db 1
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 4
+	db "FRESH WATER@"
+	db "SODA POP@"
+	db "LEMONADE@"
+	db "CANCEL@"
+
+CeladonDeptStore6FDadScript:
+	jumptextfaceplayer CeladonDeptStore6FDadText
 
 CeladonDeptStore6FVendingMachine:
 	opentext
@@ -90,21 +204,20 @@ CeladonDeptStore6FVendingMachine:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "FRESH WATER  ¥200@"
-	db "SODA POP     ¥300@"
-	db "LEMONADE     ¥350@"
+	db "FRESH WATER ¥2000@"
+	db "SODA POP    ¥3000@"
+	db "LEMONADE    ¥4000@"
 	db "CANCEL@"
 
 CeladonDeptStore6FDirectory:
 	jumptext CeladonDeptStore6FDirectoryText
 
-; unused
 CeladonDeptStore6FElevatorButton:
 	jumpstd elevatorbutton
 
 CeladonVendingText:
-	text "A vending machine!"
-	line "Here's the menu."
+	text "The drinks are"
+	line "really expensive!"
 	done
 
 CeladonClangText:
@@ -126,20 +239,77 @@ CeladonVendingNoSpaceText:
 	line "room for stuff…"
 	done
 
-CeladonDeptStore6FSuperNerdText:
-	text "A vending machine"
-	line "with a prize rou-"
-	cont "lette…"
+CeladonDeptStore6FLittleGirlThirstyText:
+	text "I'm here with my"
+	line "dad!"
 
-	para "You never see"
-	line "those anymore."
+	para "I'm thirsty! Will"
+	line "you give me a"
+	cont "drink?"
 	done
 
-CeladonDeptStore6FYoungsterText:
-	text "Aww! There's no"
-	line "games here!"
+CeladonDeptStore6FLittleGirlWhichDrinkText:
+	text "Which drink will"
+	line "you give me?"
+	done
 
-	para "I wanted to play…"
+CeladonDeptStore6FLittleGirlDeclinedText:
+	text "That's OK!"
+	line "I'll ask my dad."
+	done
+
+CeladonDeptStore6FLittleGirlThankYouText:
+	text "Yay! Thank you!"
+	line "It's delicious!"
+
+	para "You can have this"
+	line "as a thank-you!"
+	done
+
+CeladonDeptStore6FLittleGirlRewardText:
+	text "<PLAYER> received"
+	line "@"
+	text_ram wStringBuffer4
+	text "!"
+	done
+
+CeladonDeptStore6FLittleGirlNoRoomText:
+	text "Your BAG is full!"
+	line "Keep your drink"
+	cont "for now."
+
+	para "Make room for my"
+	line "present first!"
+	done
+
+CeladonDeptStore6FLittleGirlNoDrinkText:
+	text "You don't have"
+	line "that drink!"
+	done
+
+CeladonDeptStore6FLittleGirlAlreadyHadDrinkText:
+	text "You gave me that"
+	line "one already!"
+
+	para "I'd like to try"
+	line "a different one!"
+	done
+
+CeladonDeptStore6FLittleGirlHadAllDrinksText:
+	text "Thanks for all"
+	line "the yummy drinks!"
+
+	para "I'm having fun"
+	line "shopping with dad!"
+	done
+
+CeladonDeptStore6FDadText:
+	text "I'm taking my"
+	line "daughter shopping."
+
+	para "I work at SILPH"
+	line "CO., so we don't"
+	cont "get many days out."
 	done
 
 CeladonDeptStore6FDirectoryText:
@@ -158,12 +328,12 @@ CeladonDeptStore6F_MapEvents:
 
 	db 6 ; bg events
 	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore6FDirectory
-	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore1FElevatorButton
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore6FElevatorButton
 	bg_event  8,  1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 	bg_event  9,  1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 	bg_event 10,  1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 	bg_event 11,  1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 
 	db 2 ; object events
-	object_event  9,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
-	object_event 12,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1
+	object_event  9,  5, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FLittleGirlScript, -1
+	object_event 11,  5, SPRITE_SILPH_WORKER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FDadScript, -1

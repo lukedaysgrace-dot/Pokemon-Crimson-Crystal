@@ -125,3 +125,6 @@ NUM_NON_TROPHY_DECOS EQU __enum__
 	deco  GOLD_TROPHY_DOLL
 	deco  SILVER_TROPHY_DOLL
 NUM_DECOS EQU __enum__
+
+; Preserve the original decoration ID and save flag for the Staryu doll.
+DECO_STARYU_DOLL EQU DECO_STARMIE_DOLL

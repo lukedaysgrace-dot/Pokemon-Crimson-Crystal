@@ -411,8 +411,10 @@ CeladonDeptStore5F_Blocks:
 	INCBIN "maps/DeptStore5F.ablk"
 
 GoldenrodDeptStore6F_Blocks:
-CeladonDeptStore6F_Blocks:
 	INCBIN "maps/DeptStore6F.ablk"
+
+CeladonDeptStore6F_Blocks:
+	INCBIN "maps/CeladonDeptStore6F.ablk"
 
 GoldenrodDeptStoreElevator_Blocks:
 CeladonDeptStoreElevator_Blocks:

@@ -84,7 +84,7 @@ ItemNames::
 	db "BITTER BERRY@"
 	db "MINT BERRY@"
 	db "RED APRICORN@"
-	db "TINYMUSHROOM@"
+	db "PP MAX@"
 	db "BIG MUSHROOM@"
 	db "SILVERPOWDER@"
 	db "BLU APRICORN@"

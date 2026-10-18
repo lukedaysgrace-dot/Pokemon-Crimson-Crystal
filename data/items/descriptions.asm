@@ -85,7 +85,7 @@ ItemDescriptions:
 	dw BitterBerryDesc
 	dw MintBerryDesc
 	dw RedApricornDesc
-	dw TinyMushroomDesc
+	dw PPMaxDesc
 	dw BigMushroomDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
@@ -579,9 +579,9 @@ MintBerryDesc:
 RedApricornDesc:
 	db   "A red APRICORN.@"
 
-TinyMushroomDesc:
-	db   "An ordinary mush-"
-	next "room. Sell low.@"
+PPMaxDesc:
+	db   "Raises a move's PP"
+	next "to the maximum.@"
 
 BigMushroomDesc:
 	db   "A rare mushroom."

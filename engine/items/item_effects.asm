@@ -100,7 +100,7 @@ ItemEffects:
 	dw BitterBerryEffect   ; BITTER_BERRY
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
-	dw NoEffect            ; TINYMUSHROOM
+	dw RestorePPEffect     ; PP_MAX
 	dw NoEffect            ; BIG_MUSHROOM
 	dw NoEffect            ; SILVERPOWDER
 	dw NoEffect            ; BLU_APRICORN
@@ -2521,6 +2521,8 @@ RestorePPEffect:
 	ld a, [wd002]
 	cp PP_UP
 	jr z, .ppup
+	cp PP_MAX
+	jr z, .ppup
 	ld hl, TextJump_RestoreThePPOfWhichMove
 
 .ppup
@@ -2551,8 +2553,11 @@ RestorePPEffect:
 
 	ld a, [wd002]
 	cp PP_UP
+	jr z, .raise_pp
+	cp PP_MAX
 	jp nz, Not_PP_Up
 
+.raise_pp
 	ld a, [hl]
 	push hl
 	call GetMoveIndexFromID
@@ -2585,9 +2590,20 @@ RestorePPEffect:
 	ld a, [hl]
 	add PP_UP_ONE
 	ld [hl], a
+	push hl
 	ld a, TRUE
 	ld [wUsePPUp], a
 	call ApplyPPUp
+	pop hl
+	; PP MAX applies every remaining boost before consuming the one item.
+	ld a, [wd002]
+	cp PP_MAX
+	jr nz, .pp_raised
+	ld a, [hl]
+	and PP_UP_MASK
+	cp PP_UP_MASK
+	jr nz, .do_ppup
+.pp_raised
 	call Play_SFX_FULL_HEAL
 
 	ld hl, TextJump_PPsIncreased

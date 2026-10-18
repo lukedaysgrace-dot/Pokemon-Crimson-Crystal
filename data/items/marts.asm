@@ -193,8 +193,7 @@ MartEcruteak:
 	db -1 ; end
 
 MartMahogany1:
-	db 4 ; # items
-	db TINYMUSHROOM
+	db 3 ; # items
 	db SLOWPOKETAIL
 	db POKE_BALL
 	db POTION

@@ -7,15 +7,9 @@ Route8SaffronGate_MapScripts:
 	db 0 ; callbacks
 
 Route8SaffronGateOfficerScript:
-	jumptextfaceplayer Route8SaffronGateOfficerText
-
-Route8SaffronGateOfficerText:
-	text "Have you been to"
-	line "LAVENDER TOWN?"
-
-	para "There's a tall"
-	line "RADIO TOWER there."
-	done
+	faceplayer
+	farscall SaffronGateGuardDrinkScript
+	end
 
 Route8SaffronGate_MapEvents:
 	db 0, 0 ; filler
@@ -26,9 +20,27 @@ Route8SaffronGate_MapEvents:
 	warp_event  9,  4, ROUTE_8, 1
 	warp_event  9,  5, ROUTE_8, 2
 
-	db 0 ; coord events
+	db 3 ; coord events
+; Cover both the main corridor and the narrow path beside the guard.
+	coord_event 5, 2, -1, Route8SaffronGateDrinkCheck
+	coord_event 5, 4, -1, Route8SaffronGateDrinkCheck
+	coord_event 5, 5, -1, Route8SaffronGateDrinkCheck
 
 	db 0 ; bg events
 
 	db 1 ; object events
 	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route8SaffronGateOfficerScript, -1
+
+Route8SaffronGateDrinkCheck:
+	checkevent EVENT_GAVE_SAFFRON_GUARDS_DRINK
+	iftrue .Ready
+	turnobject PLAYER, UP
+	farscall SaffronGateGuardDrinkScript
+	iftrue .Ready
+	applymovement PLAYER, Route8SaffronGateReturnMovement
+.Ready:
+	end
+
+Route8SaffronGateReturnMovement:
+	step RIGHT
+	step_end
