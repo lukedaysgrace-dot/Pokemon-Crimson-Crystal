@@ -86,7 +86,7 @@ ItemDescriptions:
 	dw MintBerryDesc
 	dw RedApricornDesc
 	dw PPMaxDesc
-	dw BigMushroomDesc
+	dw WishingStarDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
 	dw IceStoneDesc
@@ -583,9 +583,9 @@ PPMaxDesc:
 	db   "Raises a move's PP"
 	next "to the maximum.@"
 
-BigMushroomDesc:
-	db   "A rare mushroom."
-	next "Sell high.@"
+WishingStarDesc:
+	db   "A fallen star,"
+	next "cool to the touch.@"
 
 SilverPowderDesc:
 	db   "Powers up bug-type"

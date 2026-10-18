@@ -99,7 +99,17 @@ HiddenItemScript::
 	callasm SetMemEvent
 	specialsound
 	itemnotify
-	sjump .finish
+	closetext
+	; Only a successful Mt. Moon Square Moon Stone pickup can call the star.
+	readmem wHiddenItemID
+	ifnotequal MOON_STONE, .done
+	readvar VAR_MAPGROUP
+	ifnotequal GROUP_MOUNT_MOON_SQUARE, .done
+	readvar VAR_MAPNUMBER
+	ifnotequal MAP_MOUNT_MOON_SQUARE, .done
+	farsjump MountMoonSquareWishingStarCrash
+.done:
+	end
 
 .bag_full
 	buttonsound

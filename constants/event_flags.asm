@@ -2256,6 +2256,14 @@
 ; The wishing well transforms the Star Shard only once per save.
 	const EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
 
+; The meteor crash and wishing-well encounter are permanent quest progress.
+	const EVENT_MT_MOON_WISHING_STAR_CRASHED
+	const EVENT_MT_MOON_STAR_PIECE_VANISHED
+	const EVENT_GOT_WISHING_STAR
+	const EVENT_MT_MOON_CRATER_FOSSIL
+	const EVENT_ECRUTEAK_WELL_JIRACHI
+	const EVENT_ECRUTEAK_WELL_JIRACHI_FINISHED
+
 ; Party Mew's appearance lasts only for the entrance cutscene.
 EVENT_ROUTE_4_PARTY_MEW EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 

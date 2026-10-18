@@ -101,7 +101,7 @@ ItemEffects:
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
 	dw RestorePPEffect     ; PP_MAX
-	dw NoEffect            ; BIG_MUSHROOM
+	dw NoEffect            ; WISHING_STAR
 	dw NoEffect            ; SILVERPOWDER
 	dw NoEffect            ; BLU_APRICORN
 	dw EvoStoneEffect      ; ICE_STONE

@@ -92,7 +92,7 @@
 	const MINT_BERRY   ; 54
 	const RED_APRICORN ; 55
 	const PP_MAX       ; 56; replaces the sell-only TINYMUSHROOM slot
-	const BIG_MUSHROOM ; 57
+	const WISHING_STAR ; 57; replaces the sell-only BIG_MUSHROOM slot
 	const SILVERPOWDER ; 58
 	const BLU_APRICORN ; 59
 	const ICE_STONE    ; 5a

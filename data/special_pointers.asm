@@ -196,3 +196,6 @@ SpecialsPointers::
 	add_special FossilRevivalMenu
 	add_special UtilityMoveTutor
 	add_special CeruleanCaveMewPinkFlash
+	add_special MtMoonOverworldWishingStar
+	add_special EcruteakWellJirachiRise
+	add_special EcruteakWellJirachiCircle

@@ -157,3 +157,4 @@
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 9c
 	tilecoll WALL, WALL, WALL, WALL ; 9d
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 9e
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 9f
