@@ -2,7 +2,6 @@
 	const MOUNTMOONSQUARE_FAIRY1
 	const MOUNTMOONSQUARE_FAIRY2
 	const MOUNTMOONSQUARE_ROCK
-	const MOUNTMOONSQUARE_CRATER_FOSSIL
 
 MountMoonSquare_MapScripts:
 	db 1 ; scene scripts
@@ -22,14 +21,6 @@ MountMoonSquare_MapScripts:
 
 .DisappearRock:
 	disappear MOUNTMOONSQUARE_ROCK
-	checkevent EVENT_MT_MOON_WISHING_STAR_CRASHED
-	iffalse .HideFossil
-	checkevent EVENT_GOT_WISHING_STAR
-	iftrue .HideFossil
-	appear MOUNTMOONSQUARE_CRATER_FOSSIL
-	return
-.HideFossil:
-	disappear MOUNTMOONSQUARE_CRATER_FOSSIL
 	return
 
 .CraterTiles:
@@ -109,7 +100,6 @@ MountMoonSquareWishingStarCrash::
 	setevent EVENT_MT_MOON_WISHING_STAR_CRASHED
 	changeblock 20, 14, $9f
 	reloadmappart
-	appear MOUNTMOONSQUARE_CRATER_FOSSIL
 	opentext
 	writetext MountMoonSquareStarCrashedText
 	waitbutton
@@ -137,17 +127,21 @@ MountMoonSquareConsumeStarPiece:
 .Done:
 	return
 
-MountMoonSquareCraterFossil:
+MountMoonSquareMeteor:
+	checkevent EVENT_MT_MOON_WISHING_STAR_CRASHED
+	iffalse .End
+	checkevent EVENT_GOT_WISHING_STAR
+	iftrue .End
 	scall MountMoonSquareConsumeStarPiece
 	opentext
-	writetext MountMoonSquareCraterFossilText
+	writetext MountMoonSquareMeteorText
 	waitbutton
 	verbosegiveitem WISHING_STAR
 	iffalse .Done
 	setevent EVENT_GOT_WISHING_STAR
-	disappear MOUNTMOONSQUARE_CRATER_FOSSIL
 .Done:
 	closetext
+.End:
 	end
 
 MountMoonSquareStarPieceGlowingText:
@@ -167,7 +161,7 @@ MountMoonSquareStarPieceVanishesText:
 	cont "crater."
 	done
 
-MountMoonSquareCraterFossilText:
+MountMoonSquareMeteorText:
 	text "There seems to be"
 	line "a star-shaped"
 	cont "object embedded"
@@ -247,12 +241,12 @@ MountMoonSquare_MapEvents:
 	coord_event 21, 14, -1, MountMoonSquareCraterApproach
 	coord_event 21, 16, -1, MountMoonSquareCraterApproach
 
-	db 2 ; bg events
+	db 3 ; bg events
 	bg_event  7,  7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
 	bg_event 17,  7, BGEVENT_READ, DontLitterSign
+	bg_event 21, 15, BGEVENT_READ, MountMoonSquareMeteor
 
-	db 4 ; object events
+	db 3 ; object events
 	object_event  6,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
 	object_event  7,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
 	object_event  7,  7, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
-	object_event 21, 15, SPRITE_FOSSIL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MountMoonSquareCraterFossil, EVENT_MT_MOON_CRATER_FOSSIL

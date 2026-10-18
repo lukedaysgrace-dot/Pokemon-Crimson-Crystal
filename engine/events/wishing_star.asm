@@ -2,8 +2,8 @@ SECTION "Wishing Star Overworld Effects", ROMX
 
 MtMoonOverworldWishingStar::
 ; Wish's large star crosses the live map. The constellation/background
-; effects are deliberately absent. Emote tiles $fc-$ff in VRAM bank 1
-; are temporary scratch; no emote is active during this effect.
+; effects are deliberately absent. Mt. Moon Square has room for temporary
+; trail/emote tiles $fa-$ff in VRAM bank 1; no emote is active here.
 	ldh a, [rSVBK]
 	push af
 	ld a, 1
@@ -12,9 +12,9 @@ MtMoonOverworldWishingStar::
 	push af
 	ld a, 1
 	ldh [rVBK], a
-	ld de, .StarGFX
-	ld hl, vTiles0 tile $fc
-	lb bc, BANK(.StarGFX), 4
+	ld de, .TrailGFX
+	ld hl, vTiles0 tile $fa
+	lb bc, BANK(.TrailGFX), 6
 	call Request2bpp
 	ld a, BANK(wOBPals1)
 	ldh [rSVBK], a
@@ -30,7 +30,7 @@ endr
 	ld de, SFX_GAME_FREAK_LOGO_GS
 	call PlaySFX
 	lb bc, 0, 8 ; screen-space OAM x, y
-	ld d, 88
+	ld d, 56 ; 44 frames for the star, then time for the tail to leave.
 .CrossScreen:
 	push bc
 	push de
@@ -40,17 +40,20 @@ endr
 	call .DrawStar
 	push bc
 	push de
-	ld c, 2
-	call DelayFrames
+	call DelayFrame
 	pop de
 	pop bc
 	inc b
 	inc b
+	inc b
+	inc b
 	; Match the display's aspect ratio to exit at the bottom-right corner.
-	ld a, d
-	and 7
-	jr z, .KeepY
 	inc c
+	inc c
+	inc c
+	ld a, d
+	and 1
+	jr z, .KeepY
 	inc c
 .KeepY:
 	dec d
@@ -74,7 +77,26 @@ endr
 	ret
 
 .DrawStar:
-	ld hl, wVirtualOAMSprite36
+	; Lower OAM indices win sprite overlap on CGB. Reserve the first eight
+	; entries for the star and its trail, keeping the map/player behind them.
+	ldh a, [hOAMUpdate]
+	push af
+	ld a, 1
+	ldh [hOAMUpdate], a
+	push bc
+	push de
+	ld hl, wVirtualOAMSprite31 + 3
+	ld de, wVirtualOAMEnd - 1
+	ld b, 32 * SPRITEOAMSTRUCT_LENGTH
+.ShiftMapSprites:
+	ld a, [hld]
+	ld [de], a
+	dec de
+	dec b
+	jr nz, .ShiftMapSprites
+	pop de
+	pop bc
+	ld hl, wVirtualOAM
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -110,7 +132,40 @@ endr
 	ld a, $ff
 	ld [hli], a
 	ld a, VRAM_BANK_1 | PAL_OW_ROCK
-	ld [hl], a
+	ld [hli], a
+	push bc
+	push de
+	ld e, 4
+.DrawTrail:
+	ld a, b
+	sub 12
+	ld b, a
+	ld a, c
+	sub 10
+	ld c, a
+	ld [hli], a
+	ld a, b
+	ld [hli], a
+	ld a, e
+	cp 3
+	ld a, $fb
+	jr c, .TrailTile
+	ld a, d
+	and 2
+	ld a, $fa
+	jr z, .TrailTile
+	inc a
+.TrailTile:
+	ld [hli], a
+	ld a, VRAM_BANK_1 | PAL_OW_ROCK
+	ld [hli], a
+	dec e
+	jr nz, .DrawTrail
+	pop de
+	pop bc
+.SpritesReady:
+	pop af
+	ldh [hOAMUpdate], a
 	ret
 
 .ShowPalette:
@@ -127,6 +182,12 @@ endr
 
 .StarPalette:
 	RGB 31, 31, 31, 31, 31, 16, 31, 22, 0, 12, 6, 0
+.TrailGFX:
+	; Small twinkling star and distant mote, fading behind the leading star.
+	db $00, $00, $00, $10, $10, $28, $38, $00
+	db $10, $28, $00, $10, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $10, $00
+	db $00, $10, $00, $00, $00, $00, $00, $00
 .StarGFX:
 	INCBIN "gfx/battle_anims/stars.2bpp", 0, 4 * LEN_2BPP_TILE
 
