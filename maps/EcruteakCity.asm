@@ -133,6 +133,11 @@ EcruteakCityYoungsterScript:
 
 EcruteakCityWishingWell:
 	opentext
+	checkevent EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
+	iftrue .CoinWish
+	checkitem STAR_SHARD
+	iftrue EcruteakCityWishingWellStarShard
+.CoinWish:
 	writetext EcruteakCityWishingWellPromptText
 	yesorno
 	iffalse .Done
@@ -172,9 +177,100 @@ EcruteakCityWishingWell:
 	closetext
 	end
 
+EcruteakCityWishingWellStarShard:
+	writetext EcruteakCityWishingWellStarShardPromptText
+	yesorno
+	iffalse .Done
+	; Exchanging the shard frees the Key Item slot needed for the star piece.
+	takeitem STAR_SHARD
+	iffalse .Done
+	checkitem STAR_PIECE
+	iftrue .HaveStarPiece
+	giveitem STAR_PIECE
+	iffalse .BagFull
+.HaveStarPiece:
+	setevent EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
+	writetext EcruteakCityWishingWellStarShardTossText
+	waitbutton
+	writetext EcruteakCityWishingWellStarPieceRisesText
+	waitbutton
+	closetext
+	rept 3
+		special FadeOutPalettes
+		pause 4
+		special FadeInPalettes
+		pause 4
+	endr
+	opentext
+	writetext EcruteakCityWishingWellStarPieceReceivedText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	; checkitem also updates wCurItem when the star piece was already owned.
+	itemnotify
+	closetext
+	showemote EMOTE_SHOCK, ECRUTEAKCITY_WELL_GRANNY, 15
+	readvar VAR_XCOORD
+	ifequal 26, .PlayerEast
+	; Below the well: stop to the player's left, without stepping onto them.
+	applymovement ECRUTEAKCITY_WELL_GRANNY, EcruteakCityWellGrannyApproachSouth
+	turnobject PLAYER, LEFT
+	scall .GrannyStory
+	applymovement ECRUTEAKCITY_WELL_GRANNY, EcruteakCityWellGrannyReturnSouth
+	end
+
+.PlayerEast:
+	; The well and north wall block the direct path, so walk around its base.
+	applymovement ECRUTEAKCITY_WELL_GRANNY, EcruteakCityWellGrannyApproachEast
+	turnobject PLAYER, DOWN
+	scall .GrannyStory
+	applymovement ECRUTEAKCITY_WELL_GRANNY, EcruteakCityWellGrannyReturnEast
+	end
+
+.GrannyStory:
+	setlasttalked ECRUTEAKCITY_WELL_GRANNY
+	faceplayer
+	opentext
+	writetext EcruteakCityWellGrannyStarPieceText
+	waitbutton
+	closetext
+	return
+
+.BagFull:
+	giveitem STAR_SHARD
+	writetext EcruteakCityWishingWellKeyItemsFullText
+	waitbutton
+.Done:
+	closetext
+	end
+
+EcruteakCityWellGrannyApproachSouth:
+	step DOWN
+	step_end
+
+EcruteakCityWellGrannyReturnSouth:
+	step UP
+	turn_head DOWN
+	step_end
+
+EcruteakCityWellGrannyApproachEast:
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step_end
+
+EcruteakCityWellGrannyReturnEast:
+	step LEFT
+	step LEFT
+	step UP
+	turn_head DOWN
+	step_end
+
 EcruteakCityWellGrannyScript:
 	faceplayer
 	opentext
+	checkevent EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
+	iftrue .StarPiece
 	checkevent EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
 	iftrue .FoundCandy
 	writetext EcruteakCityWellGrannyText
@@ -184,6 +280,12 @@ EcruteakCityWellGrannyScript:
 
 .FoundCandy:
 	writetext EcruteakCityWellGrannyAfterText
+	waitbutton
+	closetext
+	end
+
+.StarPiece:
+	writetext EcruteakCityWellGrannyStarPieceText
 	waitbutton
 	closetext
 	end
@@ -426,6 +528,87 @@ EcruteakCityEusineWaitingText:
 	line "Show ENTEI the"
 	cont "bond you have with"
 	cont "your #MON!"
+	done
+
+EcruteakCityWishingWellStarShardPromptText:
+	text "The water in the"
+	line "well is perfectly"
+	cont "still."
+
+	para "The STAR SHARD"
+	line "begins to glow"
+	cont "faintly..."
+
+	para "Toss the"
+	line "STAR SHARD into"
+	cont "the well?"
+	done
+
+EcruteakCityWishingWellStarShardTossText:
+	text "You tossed the"
+	line "STAR SHARD into"
+	cont "the well."
+
+	para "..."
+	done
+
+EcruteakCityWishingWellStarPieceRisesText:
+	text "A brilliant light"
+	line "shines from"
+	cont "beneath the water!"
+
+	para "Something rises"
+	line "to the surface..."
+	done
+
+EcruteakCityWishingWellStarPieceReceivedText:
+	text "Received a"
+	line "STAR PIECE!"
+	done
+
+EcruteakCityWishingWellKeyItemsFullText:
+	text "Your KEY ITEMS"
+	line "pocket is full."
+
+	para "You keep the"
+	line "STAR SHARD."
+	done
+
+EcruteakCityWellGrannyStarPieceText:
+	text "OLD WOMAN: Oh my!"
+	line "Did you see that?"
+
+	para "I've been coming"
+	line "to this well since"
+	cont "I was a little"
+	cont "girl, but I've"
+	cont "never seen"
+	cont "anything like it!"
+
+	para "You know, my"
+	line "mother used to"
+	cont "tell me stories"
+	cont "about strange"
+	cont "lights appearing"
+	cont "over MT.MOON."
+
+	para "She said the"
+	line "#MON there"
+	cont "would gather"
+	cont "beneath the stars,"
+	cont "almost as if they"
+	cont "were waiting for"
+	cont "something."
+
+	para "I wonder if"
+	line "there's any truth"
+	cont "to those old"
+	cont "stories..."
+
+	para "Perhaps that stone"
+	line "of yours has"
+	cont "something to do"
+	cont "with it."
 	done
 
 EcruteakCityWishingWellPromptText:

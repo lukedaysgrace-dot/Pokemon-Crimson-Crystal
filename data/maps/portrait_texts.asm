@@ -561,9 +561,13 @@ PortraitTexts:
 	db 0
 	dba EcruteakCityWellGrannyAfterText
 	db 0
+	dba EcruteakCityWellGrannyStarPieceText
+	db 0
 	dba EcruteakCityWellGrannyText
 	db 0
 	dba EcruteakCityWishingWellBagFullText
+	db 0
+	dba EcruteakCityWishingWellKeyItemsFullText
 	db 0
 	dba EcruteakCityWishingWellNoMoneyText
 	db 0
@@ -572,6 +576,14 @@ PortraitTexts:
 	dba EcruteakCityWishingWellPromptText
 	db 0
 	dba EcruteakCityWishingWellRewardText
+	db 0
+	dba EcruteakCityWishingWellStarPieceReceivedText
+	db 0
+	dba EcruteakCityWishingWellStarPieceRisesText
+	db 0
+	dba EcruteakCityWishingWellStarShardPromptText
+	db 0
+	dba EcruteakCityWishingWellStarShardTossText
 	db 0
 	dba EcruteakCityWishingWellWishText
 	db 0

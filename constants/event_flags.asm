@@ -2247,6 +2247,15 @@
 ; The wishing well gives its Rare Candy only once per save.
 	const EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
 
+; Gramps's meteorite keepsake is a one-time gift.
+	const EVENT_GOT_STAR_SHARD_FROM_ROUTE_45_GRAMPS
+
+; Object visibility is independent of the one-time Star Shard gift.
+	const EVENT_ROUTE_45_STAR_SHARD_GRAMPS
+
+; The wishing well transforms the Star Shard only once per save.
+	const EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
+
 ; Party Mew's appearance lasts only for the entrance cutscene.
 EVENT_ROUTE_4_PARTY_MEW EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 

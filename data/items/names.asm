@@ -109,7 +109,7 @@ ItemNames::
 	db "MAGNET@"
 	db "MIRACLEBERRY@"
 	db "PEARL@"
-	db "BIG PEARL@"
+	db "STAR SHARD@"
 	db "EVERSTONE@"
 	db "SPELL TAG@"
 	db "RAGECANDYBAR@"

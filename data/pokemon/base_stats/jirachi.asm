@@ -7,7 +7,7 @@
 	db STEEL, PSYCHIC ; type
 	db 3 ; catch rate
 	db 215 ; base exp (Gen III, fits the one-byte field)
-	db STAR_PIECE, STAR_PIECE ; items
+	db STARDUST, STARDUST ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
 	db 120 ; step cycles to hatch
