@@ -132,7 +132,7 @@ endr
 
 EcruteakWellJirachiRise::
 ; Internal map object 10 is the well's Jirachi (script object 11).
-; Start below the lip of the well and float up into view.
+; Start at the well's lip (one tile above the old player-overlapping start).
 	ld a, 10
 	call _CopyObjectStruct
 	ldh a, [hObjectStructIndexBuffer]
@@ -155,14 +155,20 @@ EcruteakWellJirachiRise::
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_STEP_DOWN_0
+	; Initialize the standing action as well as the rendered pose.
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_STAND
+	ld a, OW_DOWN
+	call SetSpriteDirection
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], 16
+	ld [hl], 0
 .Rise:
 	push bc
 	push hl
 	farcall _UpdateSprites
-	ld c, 3
+	ld c, 6 ; Same rise duration over the shorter, higher path.
 	call DelayFrames
 	pop hl
 	pop bc

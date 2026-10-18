@@ -30,6 +30,7 @@ def main():
     checks, star_positions, rise_offsets, texts, cries, sounds = [], [], [], [], [], []
     rise_oam_positions = set()
     circle_frames, well_sequence, circle_screen_positions = [], [], set()
+    dialogue_visible = []
 
     def check(ok, message):
         if not ok:
@@ -121,7 +122,12 @@ def main():
             well_sequence.append('dialogue')
             obj = next(o for o in c.objects() if o['map_object'] == 10)
             raw = m.read_bytes('wObjectStructs', 40, obj['slot'] * 40)
+            (output / 'jirachi-dialogue-object.json').write_text(json.dumps(dict(raw=list(raw),
+                tilemap=list(m.read_bytes('wTileMap', 360)), x=m.read('wXCoord'), y=m.read('wYCoord'),
+                bgx=m.read('wPlayerBGMapOffsetX'), bgy=m.read('wPlayerBGMapOffsetY')), indent=2))
             check(raw[0x19:0x1b] == bytes([0, 240]), 'Jirachi returns to its spawn position before speaking')
+            check(raw[0x0d] != 255, 'Jirachi remains visible after facing the player before its dialogue')
+            pb.screen.image.resize((640, 576)).save(output / 'jirachi-before-dialogue.png')
 
     def circle(_):
         address = pb.register_file.B * 256 + pb.register_file.C
@@ -145,6 +151,20 @@ def main():
     hook('EcruteakWellJirachiCircle.CirclesDone', lambda _: well_sequence.append('circles_done'))
     hook('Script_startbattle', lambda _: well_sequence.append('battle'))
     hook('Script_writetext', text)
+    def dialogue_wait(_):
+        if dialogue_visible or not texts or texts[-1] != h.sym['EcruteakCityJirachiText']:
+            return
+        obj = next(o for o in c.objects() if o['map_object'] == 10)
+        raw = m.read_bytes('wObjectStructs', 40, obj['slot'] * 40)
+        tile, bank = raw[2] & 127, 0 if raw[2] & 128 else 8
+        oam = list(m.read_bytes('wVirtualOAM', 160))
+        visible = any(8 <= x <= 160 and 16 <= y <= 152 and attr & 8 == bank
+                      and (tile <= graphic < tile + 12 or tile + 128 <= graphic < tile + 140)
+                      for y, x, graphic, attr in zip(oam[::4], oam[1::4], oam[2::4], oam[3::4]))
+        check(visible, 'Jirachi stays rendered while CHI dialogue waits before battle')
+        dialogue_visible.append(True)
+        pb.screen.image.resize((640, 576)).save(output / 'jirachi-chi-dialogue.png')
+    hook('JoyWaitAorB', dialogue_wait)
     def cry(_):
         bank = m.read('wScriptBank')
         pos = int.from_bytes(m.read_bytes('wScriptPos', 2), 'little')
@@ -285,9 +305,10 @@ def main():
         check(m.read('wBattleMode') == 1 and m.species_index_of(m.read('wEnemyMonSpecies')) == h.con.species_index('JIRACHI')
               and m.read('wEnemyMonLevel') == 50, 'Well starts a catchable wild level 50 Jirachi battle')
         check(not has_key('WISHING_STAR') and event('EVENT_ECRUTEAK_WELL_JIRACHI_FINISHED'), 'Wish consumes its key item and marks encounter complete before battle')
-        check(len(set(rise_offsets)) == 32, 'Jirachi visibly rises out of the well')
-        check(len(rise_oam_positions) >= 32, 'Jirachi graphics render at distinct screen positions throughout the rise')
+        check(rise_offsets == [value & 255 for value in range(0, -16, -1)], 'Jirachi first appears one tile higher and rises above the well')
+        check(len(rise_oam_positions) >= 16, 'Jirachi graphics render at distinct screen positions throughout the rise')
         check(cries == [h.con.species_index('JIRACHI')] * 2, 'Jirachi cries once on appearing and again before battle')
+        check(bool(dialogue_visible), 'The final Jirachi dialogue visibility check ran')
         check(well_sequence == ['cry', 'circles', 'circles_done', 'dialogue', 'cry', 'battle'],
               'Two circles separate the appearance cry from the final CHI dialogue and cry')
         check([frame[0] for frame in circle_frames] == list(range(128)), 'Jirachi performs exactly two complete 64-frame circles')
