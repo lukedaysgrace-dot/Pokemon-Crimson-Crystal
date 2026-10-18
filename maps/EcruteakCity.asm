@@ -8,6 +8,7 @@
 	const ECRUTEAKCITY_GRAMPS3
 	const ECRUTEAKCITY_EUSINE
 	const ECRUTEAKCITY_WELL_GRANNY
+	const ECRUTEAKCITY_JIRACHI
 
 EcruteakCity_MapScripts:
 	db 0 ; scene scripts
@@ -21,6 +22,7 @@ EcruteakCity_MapScripts:
 	return
 
 .Eusine:
+	disappear ECRUTEAKCITY_JIRACHI
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .HideEusine
 	checkevent EVENT_BEAT_EUSINE_IN_ECRUTEAK_CITY
@@ -133,6 +135,11 @@ EcruteakCityYoungsterScript:
 
 EcruteakCityWishingWell:
 	opentext
+	checkevent EVENT_ECRUTEAK_WELL_JIRACHI_FINISHED
+	iftrue .CheckShard
+	checkitem WISHING_STAR
+	iftrue EcruteakCityWishingWellWishingStar
+.CheckShard:
 	checkevent EVENT_ECRUTEAK_WELL_STAR_SHARD_OFFERED
 	iftrue .CoinWish
 	checkitem STAR_SHARD
@@ -243,6 +250,59 @@ EcruteakCityWishingWellStarShard:
 .Done:
 	closetext
 	end
+
+EcruteakCityWishingWellWishingStar:
+	writetext EcruteakCityWishingStarPromptText
+	yesorno
+	iffalse .Done
+	takeitem WISHING_STAR
+	iffalse .Done
+	setevent EVENT_ECRUTEAK_WELL_JIRACHI_FINISHED
+	writetext EcruteakCityWishingStarTossText
+	waitbutton
+	closetext
+	special EcruteakWellJirachiRise
+	cry JIRACHI
+	waitsfx
+	special EcruteakWellJirachiCircle
+	setlasttalked ECRUTEAKCITY_JIRACHI
+	faceplayer
+	opentext
+	writetext EcruteakCityJirachiText
+	cry JIRACHI
+	waitsfx
+	waitbutton
+	closetext
+	loadvar VAR_BATTLETYPE, BATTLETYPE_NORMAL
+	loadwildmon JIRACHI, 50
+	startbattle
+	disappear ECRUTEAKCITY_JIRACHI
+	reloadmapafterbattle
+	end
+.Done:
+	closetext
+	end
+
+EcruteakCityWishingStarPromptText:
+	text "The WISHING STAR"
+	line "shimmers softly."
+
+	para "Drop it into"
+	line "the well?"
+	done
+
+EcruteakCityWishingStarTossText:
+	text "You dropped the"
+	line "WISHING STAR into"
+	cont "the well."
+
+	para "A brilliant light"
+	line "shines from below!"
+	done
+
+EcruteakCityJirachiText:
+	text "JIRACHI: CHI!"
+	done
 
 EcruteakCityWellGrannyApproachSouth:
 	step DOWN
@@ -735,7 +795,7 @@ EcruteakCity_MapEvents:
 	bg_event 23, 14, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
 	bg_event 25,  8, BGEVENT_READ, EcruteakCityWishingWell
 
-	db 9 ; object events
+	db 10 ; object events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
 	object_event 20, 21, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
 	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass1Script, -1
@@ -744,4 +804,5 @@ EcruteakCity_MapEvents:
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
 	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
 	object_event 31,  5, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, EcruteakCityEusineScript, EVENT_ECRUTEAK_CITY_EUSINE
-	object_event 24,  8, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityWellGrannyScript, -1
+	object_event 24,  8, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityWellGrannyScript, EVENT_GOT_WISHING_STAR
+	object_event 25,  8, SPRITE_JIRACHI, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_WELL_JIRACHI
