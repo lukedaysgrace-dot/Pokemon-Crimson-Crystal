@@ -1830,6 +1830,13 @@ wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
 
 NEXTU ; d002
+; Decoration shops share temporary menu storage; no saved data is added.
+wDecorationShopStock:: ds 18 ; count, up to 16 decorations, terminator
+wDecorationShopID:: db
+wDecorationShopSelected:: db
+wDecorationShopPrice:: ds 3 ; big-endian money
+
+NEXTU ; d002
 ; town map data
 wTownMapPlayerIconLandmark:: db
 UNION

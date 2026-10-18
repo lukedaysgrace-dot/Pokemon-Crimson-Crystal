@@ -68,3 +68,4 @@ SpriteMons:
 	dw ARTICUNO
 	dw ZAPDOS
 	dw MACHAMP
+	dw STARYU

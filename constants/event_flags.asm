@@ -308,10 +308,11 @@
 	const EVENT_CERULEAN_CAVE_B1F_HIDDEN_ULTRA_BALL
 	const EVENT_CERULEAN_CAVE_B1F_MAX_ELIXER
 	const EVENT_CERULEAN_CAVE_B1F_ULTRA_BALL ; reused EVENT_125
-	const EVENT_126
-	const EVENT_127
-	const EVENT_128
-	const EVENT_129
+; Celadon drink gifts reuse spare bits so existing save addresses stay fixed.
+	const EVENT_CELADON_GIRL_GOT_FRESH_WATER
+	const EVENT_CELADON_GIRL_GOT_SODA_POP
+	const EVENT_CELADON_GIRL_GOT_LEMONADE
+	const EVENT_GAVE_SAFFRON_GUARDS_DRINK ; reuse spare bit; preserve save layout
 	const EVENT_12A
 	const EVENT_12B
 	const EVENT_12C
@@ -2242,6 +2243,9 @@
 
 ; Jasmine has accepted the medicine outside and is waiting beside Amphy.
 	const EVENT_JASMINE_RECEIVED_SECRETPOTION
+
+; The wishing well gives its Rare Candy only once per save.
+	const EVENT_GOT_ECRUTEAK_WELL_RARE_CANDY
 
 ; Party Mew's appearance lasts only for the entrance cutscene.
 EVENT_ROUTE_4_PARTY_MEW EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1

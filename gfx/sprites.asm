@@ -240,3 +240,9 @@ SECTION "Karate King Sprite", ROMX
 KarateKingSpriteGFX::          INCBIN "gfx/sprites/karate_king.2bpp"
 KarateKingSpriteGFXEnd::
 assert KarateKingSpriteGFXEnd - KarateKingSpriteGFX == 24 * 16
+
+SECTION "Silph Worker M Sprite", ROMX
+; Three standing facings; the worker turns in place without walking.
+SilphWorkerMSpriteGFX::       INCBIN "gfx/sprites/silph_worker_m.2bpp"
+SilphWorkerMSpriteGFXEnd::
+assert SilphWorkerMSpriteGFXEnd - SilphWorkerMSpriteGFX == 12 * 16

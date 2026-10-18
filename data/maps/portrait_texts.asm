@@ -559,6 +559,22 @@ PortraitTexts:
 	db 0
 	dba EcruteakCitySignText
 	db 0
+	dba EcruteakCityWellGrannyAfterText
+	db 0
+	dba EcruteakCityWellGrannyText
+	db 0
+	dba EcruteakCityWishingWellBagFullText
+	db 0
+	dba EcruteakCityWishingWellNoMoneyText
+	db 0
+	dba EcruteakCityWishingWellNothingText
+	db 0
+	dba EcruteakCityWishingWellPromptText
+	db 0
+	dba EcruteakCityWishingWellRewardText
+	db 0
+	dba EcruteakCityWishingWellWishText
+	db 0
 	dba EcruteakCityYoungsterText
 	db 0
 	dba EcruteakDanceTheaterSignText

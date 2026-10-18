@@ -102,7 +102,12 @@ Binoculars3:
 	jumptext Binoculars3Text
 
 PokeDollVendingMachine:
-	jumptext PokeDollVendingMachineText
+	opentext
+	writetext PokeDollVendingMachineText
+	waitbutton
+	callasm GoldenrodDailyDollShop
+	closetext
+	end
 
 GoldenrodDeptStoreRoofPokefanFText:
 	text "Whew, I'm tired."
@@ -115,15 +120,12 @@ GoldenrodDeptStoreRoofPokefanFText:
 	done
 
 GoldenrodDeptStoreRoofFisherText:
-	text "Pardon? Who says"
-	line "an adult can't get"
-	cont "into this?"
+	text "I got chewed out"
+	line "for buying all the"
+	cont "dolls the other"
+	cont "day....."
 
-	para "I'm going to be"
-	line "back every day to"
-
-	para "collect all the"
-	line "dolls!"
+	para "It's not fair."
 	done
 
 GoldenrodDeptStoreRoofTwinText:
@@ -212,13 +214,11 @@ Binoculars3Text:
 
 PokeDollVendingMachineText:
 	text "A vending machine"
-	line "for #MON dolls?"
-
-	para "Insert money, then"
-	line "turn the crank…"
-
-	para "But it's almost"
-	line "empty…"
+	line "for #MON dolls!"
+	para "Three different"
+	line "dolls every day."
+	para "One of each per"
+	line "collector!"
 	done
 
 GoldenrodDeptStoreRoof_MapEvents:
