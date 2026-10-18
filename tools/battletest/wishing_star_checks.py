@@ -31,6 +31,7 @@ def main():
     rise_oam_positions = set()
     circle_frames, well_sequence, circle_screen_positions = [], [], set()
     dialogue_visible = []
+    star_priority, star_map_oam = [], []
 
     def check(ok, message):
         if not ok:
@@ -94,8 +95,16 @@ def main():
 
     def star(_):
         star_positions.append((pb.register_file.B, pb.register_file.C))
-        if pb.register_file.D == 44:
+        star_map_oam[:] = m.read_bytes('wVirtualOAM', 128)
+        if pb.register_file.D == 34:
             pb.screen.image.resize((640, 576)).save(output / 'shooting-star-midflight.png')
+
+    def star_ready(_):
+        oam = m.read_bytes('wVirtualOAM', 160)
+        star_priority.append(oam[2:16:4] == bytes([0xfc, 0xfd, 0xfe, 0xff])
+                             and set(oam[18:32:4]) <= {0xfa, 0xfb}
+                             and all(not attr & 0x80 for attr in oam[3:32:4])
+                             and oam[32:] == bytes(star_map_oam))
 
     def rise(_):
         address = pb.register_file.B * 256 + pb.register_file.C
@@ -127,6 +136,7 @@ def main():
                 bgx=m.read('wPlayerBGMapOffsetX'), bgy=m.read('wPlayerBGMapOffsetY')), indent=2))
             check(raw[0x19:0x1b] == bytes([0, 240]), 'Jirachi returns to its spawn position before speaking')
             check(raw[0x0d] != 255, 'Jirachi remains visible after facing the player before its dialogue')
+            check(raw[6] & 7 == 1, 'Well Jirachi uses the blue overworld palette')
             pb.screen.image.resize((640, 576)).save(output / 'jirachi-before-dialogue.png')
 
     def circle(_):
@@ -146,6 +156,7 @@ def main():
             pb.screen.image.resize((640, 576)).save(output / f'jirachi-circle-{phase}.png')
 
     hook('MtMoonOverworldWishingStar.DrawStar', star)
+    hook('MtMoonOverworldWishingStar.SpritesReady', star_ready)
     hook('EcruteakWellJirachiRise.Rise', rise)
     hook('EcruteakWellJirachiCircle.CircleFrame', circle)
     hook('EcruteakWellJirachiCircle.CirclesDone', lambda _: well_sequence.append('circles_done'))
@@ -244,8 +255,10 @@ def main():
         check(sfx['SFX_EGG_BOMB'] in sounds, 'Crash plays the explosion sound')
         check(m.read_bytes('wOBPals1', 64) == palettes_before_crash, 'Shooting star restores the overworld object palettes')
         check(event('EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE') and m.read('wItems') == items['MOON_STONE'], 'Moon Stone is awarded before the crash')
-        check(len(star_positions) == 88 and star_positions[0] == (0, 8) and star_positions[-1][0] >= 170,
-              'Wish star crosses the visible overworld from top-left to bottom-right')
+        check(len(star_positions) == 56 and star_positions[0] == (0, 8) and star_positions[-1] == (220, 200),
+              'Faster shooting star and its tail leave the bottom-right in 56 frames')
+        check(len(star_priority) == 56 and all(star_priority),
+              'Star and four sparkling trail sprites take OAM priority over the unchanged player/map sprites')
         check((m.read('wPlayerDirection') & 0xc) == 0, 'Player faces down after watching the star')
         check(block(20, 14) == 0x9f, 'Crash replaces the entire (20,14)-(21,15) metatile with $9F')
         check(has_key('STAR_PIECE'), 'STAR PIECE remains in the Bag until the crater is approached')
@@ -262,20 +275,23 @@ def main():
         restore(crashed)
         enter('MOUNT_MOON_SQUARE', (19, 15))
         check(block(20, 14) == 0x9f, 'Crater survives map reload')
-        check(any(o['map_object'] == 4 and o['position'] == [21, 15] for o in c.objects()), 'Fossil is at (21,15)')
-        pb.screen.image.resize((640, 576)).save(output / 'crater-fossil.png')
+        check(not any(o['map_object'] == 4 for o in c.objects()), 'Meteor uses the tileset boulder without a fossil sprite')
+        pb.screen.image.resize((640, 576)).save(output / 'crater-meteor.png')
         c.go((20, 15))
         until(idle, advance=True)
-        check(not has_key('STAR_PIECE') and event('EVENT_MT_MOON_STAR_PIECE_VANISHED'), 'Approaching the fossil consumes STAR PIECE once')
+        check(not has_key('STAR_PIECE') and event('EVENT_MT_MOON_STAR_PIECE_VANISHED'), 'Approaching the meteor consumes STAR PIECE once')
         check(h.sym['MountMoonSquareStarPieceVanishesText'] in texts, 'Approach explains the vanishing key item')
-        c.press('right', hold=4, wait=24)
+        if m.read('wPlayerDirection') & 12 != 12:
+            c.press('right', hold=4, wait=24)
         c.press('a', hold=4, wait=24)
         until(idle, advance=True)
-        check(has_key('WISHING_STAR') and event('EVENT_GOT_WISHING_STAR'), 'Interacting with the fossil awards WISHING STAR')
-        check(not any(o['map_object'] == 4 for o in c.objects()), 'Fossil disappears after collection')
+        check(has_key('WISHING_STAR') and event('EVENT_GOT_WISHING_STAR'), 'Hidden meteor interaction awards WISHING STAR')
+        c.press('a', hold=4, wait=24)
+        until(idle, advance=True)
+        check(m.read('wNumKeyItems') == 1, 'Hidden WISHING STAR cannot be collected twice')
         pb.screen.image.resize((640, 576)).save(output / 'crater-collected.png')
         enter('MOUNT_MOON_SQUARE', (19, 15))
-        check(block(20, 14) == 0x9f and not any(o['map_object'] == 4 for o in c.objects()), 'Crater stays permanently while the fossil stays collected')
+        check(block(20, 14) == 0x9f and not any(o['map_object'] == 4 for o in c.objects()), 'Crater boulder stays permanently after hidden item collection')
 
         enter('ECRUTEAK_CITY', (25, 9))
         check(not any(o['map_object'] == 9 for o in c.objects()), 'Well granny disappears once WISHING STAR is collected')
