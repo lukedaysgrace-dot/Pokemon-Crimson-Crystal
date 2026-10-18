@@ -19,7 +19,7 @@ RuinsOfAlphOmanyteItemRoomStardust:
 	itemball STARDUST
 
 RuinsOfAlphOmanyteItemRoomStarPiece:
-	itemball STAR_PIECE
+	itemball STARDUST
 
 RuinsOfAlphOmanyteItemRoomAncientReplica:
 	jumptext RuinsOfAlphOmanyteItemRoomAncientReplicaText

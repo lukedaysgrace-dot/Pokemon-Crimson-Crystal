@@ -12,11 +12,25 @@
 	const ROUTE45_POKE_BALL3
 	const ROUTE45_POKE_BALL4
 	const ROUTE45_YOUNGSTER
+	const ROUTE45_GRAMPS
 
 Route45_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .Gramps
+
+.Gramps:
+	readvar VAR_WEEKDAY
+	ifnotequal FRIDAY, .HideGramps
+	readvar VAR_HOUR
+	ifless NITE_HOUR, .HideGramps
+	appear ROUTE45_GRAMPS
+	return
+
+.HideGramps:
+	disappear ROUTE45_GRAMPS
+	return
 
 TrainerBlackbeltKenji:
 	trainer BLACKBELT_T, KENJI3, EVENT_BEAT_BLACKBELT_KENJI, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, 0, .Script
@@ -294,6 +308,38 @@ Route45DummyScript:
 	closetext
 	end
 
+Route45GrampsScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_STAR_SHARD_FROM_ROUTE_45_GRAMPS
+	iftrue .Reminisce
+	writetext Route45GrampsStoryText
+	buttonsound
+	giveitem STAR_SHARD
+	iffalse .BagFull
+	setevent EVENT_GOT_STAR_SHARD_FROM_ROUTE_45_GRAMPS
+	writetext Route45ReceivedStarShardText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	itemnotify
+	writetext Route45GrampsTakeCareText
+	waitbutton
+	closetext
+	end
+
+.BagFull:
+	writetext Route45GrampsBagFullText
+	waitbutton
+	closetext
+	end
+
+.Reminisce:
+	writetext Route45GrampsAfterText
+	waitbutton
+	closetext
+	end
+
 Route45Sign:
 	jumptext Route45SignText
 
@@ -532,6 +578,114 @@ Route45SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
+Route45GrampsStoryText:
+	text "GRAMPS: I like to"
+	line "come here"
+	cont "at night."
+
+	para "The stars"
+	line "reflecting on the"
+
+	para "water, the sound"
+	line "of the lake..."
+
+	para "It reminds me of"
+	line "when I was a boy."
+
+	para "My grandfather"
+	line "used to bring me"
+
+	para "here to watch"
+	line "the stars."
+
+	para "We'd always stop"
+	line "by the old wishing"
+
+	para "well in ECRUTEAK"
+	line "on our way home."
+
+	para "He used to say"
+	line "that every star"
+
+	para "in the sky carried"
+	line "someone's wish."
+
+	para "...I still"
+	line "remember those"
+	cont "nights fondly."
+
+	para "Thank you for"
+	line "listening to an"
+
+	para "old man reminisce."
+
+	para "Here, I'd like you"
+	line "to have something."
+
+	para "My grandfather"
+	line "gave it to me one"
+
+	para "night while we"
+	line "were watching the"
+	cont "stars together."
+
+	para "He told me it was"
+	line "a fragment of a"
+
+	para "meteorite he'd"
+	line "found many years"
+	cont "before."
+
+	para "I've treasured it"
+	line "ever since."
+	done
+
+Route45ReceivedStarShardText:
+	text "Received the"
+	line "STAR SHARD!"
+	done
+
+Route45GrampsTakeCareText:
+	text "Perhaps it's time"
+	line "someone else made"
+
+	para "a few memories"
+	line "with it."
+
+	para "Take good care"
+	line "of it!"
+	done
+
+Route45GrampsBagFullText:
+	text "Your KEY ITEMS"
+	line "pocket is full."
+
+	para "Come back when you"
+	line "have room for it."
+	done
+
+Route45GrampsAfterText:
+	text "GRAMPS: I wonder"
+	line "how many nights my"
+
+	para "grandfather and I"
+	line "spent watching the"
+	cont "stars together..."
+
+	para "Funny how those"
+	line "little moments"
+
+	para "become the"
+	line "memories you"
+	cont "treasure most."
+
+	para "I hope that shard"
+	line "brings you as much"
+
+	para "happiness as it"
+	line "brought me."
+	done
+
 Route45_MapEvents:
 	db 0, 0 ; filler
 
@@ -544,7 +698,7 @@ Route45_MapEvents:
 	bg_event 10,  4, BGEVENT_READ, Route45Sign
 	bg_event 13, 80, BGEVENT_ITEM, Route45HiddenPpUp
 
-	db 13 ; object events
+	db 14 ; object events
 	object_event 10, 16, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerHikerErik, -1
 	object_event 15, 65, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerMichael, -1
 	object_event  5, 28, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerParry, -1
@@ -558,3 +712,4 @@ Route45_MapEvents:
 	object_event  6, 20, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
 	object_event  7, 33, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
 	object_event  4, 70, SPRITE_CAMPER_NEW, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerCamperQuentin, -1
+	object_event 12, 77, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, 18, 0, 0, OBJECTTYPE_SCRIPT, 0, Route45GrampsScript, EVENT_ROUTE_45_STAR_SHARD_GRAMPS
