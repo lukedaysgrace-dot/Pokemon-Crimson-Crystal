@@ -391,12 +391,17 @@ INCLUDE "maps/CherrygroveCity.asm"
 INCLUDE "maps/Route35.asm"
 INCLUDE "maps/Route43.asm"
 INCLUDE "maps/Route44.asm"
-INCLUDE "maps/Route45.asm"
 INCLUDE "maps/Route19.asm"
 INCLUDE "maps/FireIsland.asm"
 INCLUDE "maps/ThunderIsland.asm"
 INCLUDE "maps/IceIsland.asm"
 INCLUDE "maps/Route25.asm"
+
+
+; Gramps's story needs more room than Map Scripts 20 has left.
+SECTION "Route 45 Map Scripts", ROMX
+
+INCLUDE "maps/Route45.asm"
 
 
 SECTION "Map Scripts 21", ROMX
@@ -415,9 +420,14 @@ INCLUDE "maps/PewterPokecenter2FBeta.asm"
 INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 
 
-SECTION "Map Scripts 22", ROMX
+; The expanded wishing-well scene needs its own space.
+SECTION "Ecruteak City Map Scripts", ROMX
 
 INCLUDE "maps/EcruteakCity.asm"
+
+
+SECTION "Map Scripts 22", ROMX
+
 INCLUDE "maps/BlackthornCity.asm"
 INCLUDE "maps/Route26.asm"
 INCLUDE "maps/Route28.asm"

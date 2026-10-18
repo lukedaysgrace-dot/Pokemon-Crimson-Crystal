@@ -125,7 +125,7 @@ ItemEffects:
 	dw NoEffect            ; MAGNET
 	dw StatusHealingEffect ; MIRACLEBERRY
 	dw NoEffect            ; PEARL
-	dw NoEffect            ; BIG_PEARL
+	dw NoEffect            ; STAR_SHARD
 	dw NoEffect            ; EVERSTONE
 	dw NoEffect            ; SPELL_TAG
 	dw RestoreHPEffect     ; RAGECANDYBAR

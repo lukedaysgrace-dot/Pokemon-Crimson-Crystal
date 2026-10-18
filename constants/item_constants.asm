@@ -116,7 +116,7 @@
 	const MAGNET       ; 6c
 	const MIRACLEBERRY ; 6d
 	const PEARL        ; 6e
-	const BIG_PEARL    ; 6f
+	const STAR_SHARD   ; 6f; replaces BIG_PEARL with Gramps's meteorite keepsake
 	const EVERSTONE    ; 70
 	const SPELL_TAG    ; 71
 	const RAGECANDYBAR ; 72

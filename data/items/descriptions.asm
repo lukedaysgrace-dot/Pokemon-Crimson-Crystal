@@ -110,7 +110,7 @@ ItemDescriptions:
 	dw MagnetDesc
 	dw MiracleBerryDesc
 	dw PearlDesc
-	dw BigPearlDesc
+	dw StarShardDesc
 	dw EverStoneDesc
 	dw SpellTagDesc
 	dw RageCandyBarDesc
@@ -667,9 +667,9 @@ PearlDesc:
 	db   "A beautiful pearl."
 	next "Sell low.@"
 
-BigPearlDesc:
-	db   "A big, beautiful"
-	next "pearl. Sell high.@"
+StarShardDesc:
+	db   "A meteorite shard"
+	next "full of memories.@"
 
 EverStoneDesc:
 	db   "Stops evolution."
@@ -752,8 +752,8 @@ StardustDesc:
 	next "Sell high.@"
 
 StarPieceDesc:
-	db   "A hunk of red gem."
-	next "Sell very high.@"
+	db   "A glowing stone"
+	next "from a wish.@"
 
 BasementKeyDesc:
 	db   "Opens doors.@"
