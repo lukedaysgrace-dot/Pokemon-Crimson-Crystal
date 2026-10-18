@@ -265,35 +265,71 @@ def main():
             _, _, moves = script('VictoryRoadGateBadgeCheckScript')
             check(bool(moves) and read('wVictoryRoadGateSceneID') == 0, 'eight mixed-region badges passed the Johto guard')
 
-            for count, hall in product((10, 11), (False, True)):
+            print('[Saffron gates share one drink requirement, independent of badges]', flush=True)
+            gates = (
+                ('ROUTE_5_SAFFRON_GATE', 'Route5SaffronGateDrinkCheck', 'Route5SaffronGateOfficerScript',
+                 [(x, 5) for x in range(2, 8)], [(4, 1), (5, 1)], [(4, 7), (5, 7)]),
+                ('ROUTE_6_SAFFRON_GATE', 'Route6SaffronGateDrinkCheck', 'Route6SaffronGuardScript',
+                 [(4, 1), (5, 1)], [(4, 6), (5, 6)], [(4, 0), (5, 0)]),
+                ('ROUTE_7_SAFFRON_GATE', 'Route7SaffronGateDrinkCheck', 'Route7SaffronGuardScript',
+                 [(5, y) for y in (2, 4, 5)], [(0, 4), (0, 5)], [(9, 4), (9, 5)]),
+                ('ROUTE_8_SAFFRON_GATE', 'Route8SaffronGateDrinkCheck', 'Route8SaffronGateOfficerScript',
+                 [(5, y) for y in (2, 4, 5)], [(9, 4), (9, 5)], [(0, 4), (0, 5)]),
+            )
+            write('wNumItems', 0)
+            write('wItems', 255)
+            for count, hall, opened in product((0, 10, 11, 16), (False, True), (False, True)):
                 badges(count)
                 event('EVENT_BEAT_ELITE_FOUR', hall)
-                for map_name, entry, y, columns in (('ROUTE_5_SAFFRON_GATE', 'Route5SaffronGateBadgeCheck', 5, range(2, 8)),
-                                                    ('ROUTE_6_SAFFRON_GATE', 'Route6SaffronGateBadgeCheck', 1, (4, 5))):
+                event('EVENT_GAVE_SAFFRON_GUARDS_DRINK', opened)
+                for map_name, entry, _, coords, _, _ in gates:
                     load(map_name)
-                    _, _, moves = script(entry)
-                    check(bool(moves) == (count < 11), f'{entry}: {count}, old Champion={hall}')
-                    for x in columns:
+                    _, texts, moves = script(entry)
+                    check(bool(moves) == (not opened), f'{entry}: {count}, Champion={hall}, drink={opened}')
+                    check(texts == ([] if opened else [h.sym['SaffronGateGuardClosedText']]),
+                          f'{entry}: incorrect closed/open dialogue')
+                    for x, y in coords:
                         write('wPlayerStandingMapX', x + 4)
                         write('wPlayerStandingMapY', y + 4)
                         triggered = h.call('CheckCurrentMapCoordEvents')['c_flag']
                         check(triggered and h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym[entry][1],
                               f'{entry}: entrance trigger missing at {x},{y}')
 
+            # Each guard accepts any one drink, by conversation or by trying
+            # to pass. Later crossings and conversations must not take more.
+            for map_name, entry, officer, _, _, _ in gates:
+                for start in (entry, officer):
+                    for drink in ('FRESH_WATER', 'SODA_POP', 'LEMONADE'):
+                        event('EVENT_GAVE_SAFFRON_GUARDS_DRINK', False)
+                        write('wNumItems', 2)
+                        write('wItems', [con.item_id(drink), 2, con.item_id('POTION'), 7, 255])
+                        load(map_name)
+                        _, texts, moves = script(start)
+                        check(event('EVENT_GAVE_SAFFRON_GUARDS_DRINK') and not moves,
+                              f'{start}: {drink} did not open the gates')
+                        check(texts == [h.sym['SaffronGateGuardGaveDrinkText']], f'{start}: drink dialogue')
+                        check(h.rd(h.s('wItems'), 5) == bytes([con.item_id(drink), 1, con.item_id('POTION'), 7, 255]),
+                              f'{start}: consumed more than one drink or another item')
+                        for other_map, other_entry, other_officer, _, _, _ in gates:
+                            load(other_map)
+                            _, texts, moves = script(other_entry)
+                            check(not texts and not moves, f'{other_entry}: other guard failed to open')
+                            _, texts, _ = script(other_officer)
+                            check(texts == [h.sym['SaffronGateGuardOpenText']], f'{other_officer}: repeat dialogue')
+                        check(h.rd(h.s('wItems') + 1) == 1, 'open gates took another drink')
+
             # Use compiled blocks, collisions and coord triggers to find a bypass,
             # ignoring NPCs so moving around the guard cannot hide a route.
-            block_bank, block_addr = h.sym['Route5SaffronGate_Blocks']
             coll_bank, coll_addr = h.sym['TilesetGateColl']
-            walkable = set()
-            for y in range(8):
-                for x in range(10):
-                    block = h.mem[block_bank, block_addr + (y // 2) * 5 + x // 2]
-                    collision = h.mem[coll_bank, coll_addr + block * 4 + (y % 2) * 2 + x % 2]
-                    if collision in (0x00, 0x70, 0x71):
-                        walkable.add((x, y))
-
-            for map_name, entry, source_y, exit_y in (('ROUTE_5_SAFFRON_GATE', 'Route5SaffronGateBadgeCheck', 1, 7),
-                                                      ('ROUTE_6_SAFFRON_GATE', 'Route6SaffronGateBadgeCheck', 6, 0)):
+            for map_name, entry, _, _, starts, exits in gates:
+                block_bank, block_addr = h.sym[entry.replace('DrinkCheck', '_Blocks')]
+                walkable = set()
+                for y in range(8):
+                    for x in range(10):
+                        block = h.mem[block_bank, block_addr + (y // 2) * 5 + x // 2]
+                        collision = h.mem[coll_bank, coll_addr + block * 4 + (y % 2) * 2 + x % 2]
+                        if collision == 0 or collision >> 4 == 7:
+                            walkable.add((x, y))
                 load(map_name)
                 triggers = set()
                 for x, y in walkable:
@@ -303,7 +339,7 @@ def main():
                         check(h.rd16(h.s('wCurCoordEventScriptAddr')) == h.sym[entry][1], f'{entry}: unexpected coord script')
                         triggers.add((x, y))
                 for blocked in (set(), triggers):
-                    reached = {(4, source_y), (5, source_y)}
+                    reached = set(starts)
                     frontier = list(reached)
                     while frontier:
                         x, y = frontier.pop()
@@ -311,7 +347,7 @@ def main():
                             if tile in walkable and tile not in blocked and tile not in reached:
                                 reached.add(tile)
                                 frontier.append(tile)
-                    escaped = any((x, exit_y) in reached for x in (4, 5))
+                    escaped = any(tile in reached for tile in exits)
                     check(escaped == (not blocked), f'{entry}: collision/coord path bypass, blocked={bool(blocked)}')
 
             for count in (11, 12, 13, 14):

@@ -41,6 +41,7 @@ def main():
             ('full-hp', 'POTION', 3, 'MEW', 20, 200, False),
             ('vitamins', 'PROTEIN', 2, 'MEW', 20, 100, False),
             ('pp-ups', 'PP_UP', 3, 'MEW', 20, 100, False),
+            ('pp-max', 'PP_MAX', 1, 'MEW', 20, 100, False),
             ('candies', 'RARE_CANDY', 2, 'MAGIKARP', 10, 20, False),
             ('hard-cap', 'RARE_CANDY', 3, 'MAGIKARP', 9, 20, False),
         ]:
@@ -113,7 +114,7 @@ def main():
                 check(h.rd(h.s('wPartyMon1HP'), 2) == bytes([0, 41]), 'native repeated Potion healing')
             elif name == 'vitamins':
                 check(h.rd(h.s('wPartyMon1AtkExp')) == 20, 'native repeated vitamins')
-            elif name == 'pp-ups':
+            elif name in ('pp-ups', 'pp-max'):
                 check(h.rd(h.s('wPartyMon1PP')) >> 6 == 3, 'native repeated PP Ups')
             elif name == 'candies':
                 check(h.rd(h.s('wPartyMon1Level')) == level + amount, 'native repeated Rare Candies')

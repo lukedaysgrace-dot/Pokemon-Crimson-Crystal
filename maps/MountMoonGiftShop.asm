@@ -12,9 +12,19 @@ MountMoonGiftShop_MapScripts:
 MountMoonGiftShopClerkScript:
 	faceplayer
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_MT_MOON
+	writetext MountMoonGiftShopDollIntroText
+	waitbutton
+	callasm MountMoonDollShop
 	closetext
 	end
+
+MountMoonGiftShopDollIntroText:
+	text "Take home a doll"
+	line "from MT.MOON!"
+	para "We even stock"
+	line "giant dolls and"
+	cont "SURF PIKACHU!"
+	done
 
 MountMoonGiftShopLassScript:
 	jumptextfaceplayer MountMoonGiftShopLassText

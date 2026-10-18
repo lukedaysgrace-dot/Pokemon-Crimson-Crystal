@@ -91,7 +91,7 @@
 	const BITTER_BERRY ; 53
 	const MINT_BERRY   ; 54
 	const RED_APRICORN ; 55
-	const TINYMUSHROOM ; 56
+	const PP_MAX       ; 56; replaces the sell-only TINYMUSHROOM slot
 	const BIG_MUSHROOM ; 57
 	const SILVERPOWDER ; 58
 	const BLU_APRICORN ; 59
