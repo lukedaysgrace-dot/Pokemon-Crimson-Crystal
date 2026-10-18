@@ -2457,6 +2457,28 @@ Function56cd:
 .ok7
 	ld a, d
 	ldh [hFFBF], a
+	; The well's Jirachi floats over scenery, whose $60-$7f tile IDs would
+	; otherwise be mistaken for text and hide it during idle sprite redraws.
+	; Keep the usual screen bounds above, and only bypass the tile mask when
+	; the entire floating sprite is safely above the speech textbox.
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld a, [hl]
+	cp SPRITE_JIRACHI
+	jr nz, .loop
+	ld hl, OBJECT_SPRITE_Y_OFFSET
+	add hl, bc
+	ld a, [hl]
+	ld hl, OBJECT_SPRITE_Y
+	add hl, bc
+	add [hl]
+	ld hl, wPlayerBGMapOffsetY
+	add [hl]
+	add 16
+	cp (SCREEN_HEIGHT - 6) * TILE_WIDTH
+	jr nc, .loop
+	and a
+	ret
 .loop
 	ldh a, [hFFBF]
 	ld d, a
