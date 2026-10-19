@@ -153,6 +153,8 @@ AIPredictVariableMovePower_Core:
 	jp z, BattleGyroBall_Core
 	cp EFFECT_RAGE_FIST
 	jp z, BattleRageFistPower_Core
+	cp EFFECT_HP_SCALED
+	jp z, BattleHPScaledPower_Core
 	ret
 
 AIPredictVariableMoveDamage_Core:

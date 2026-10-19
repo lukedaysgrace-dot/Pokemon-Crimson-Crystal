@@ -1,0 +1,5204 @@
+[
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_PSYSHOCK"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "PSYSHOCK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PSYSHOCK Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PSYSHOCK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_VACUUM_WAVE"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: VACUUM_WAVE Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_VACUUM_WAVE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_DISCHARGE"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DISCHARGE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE direct damage control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_DISCHARGE_direct"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE secondary status",
+    "assert": [
+      "enemy.status & 64 != 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE Shield Dust",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE Sheer Force",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.start_hp-enemy.hp > result('oct19_DISCHARGE_direct')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_LAVA_PLUME"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_LAVA_PLUME')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME direct damage control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_LAVA_PLUME_direct"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME secondary status",
+    "assert": [
+      "enemy.status & 16 != 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME Shield Dust",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME Sheer Force",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.start_hp-enemy.hp > result('oct19_LAVA_PLUME_direct')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_METEOR_MASH"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH raises Attack",
+    "assert": [
+      "player.stat_levels[0] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "METEOR_MASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: METEOR_MASH Sheer Force removes boost",
+    "assert": [
+      "player.stat_levels[0] == 7",
+      "enemy.start_hp-enemy.hp > result('oct19_METEOR_MASH')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_DRAGON_HAMMER"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "DRAGON_HAMMER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DRAGON_HAMMER Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DRAGON_HAMMER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_ERUPTION"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_WATER_SPOUT"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_DOOM_DESIRE"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DOOM_DESIRE Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_PETAL_BLIZZARD"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "PETAL_BLIZZARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: PETAL_BLIZZARD Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_PETAL_BLIZZARD')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_BLAZE_KICK"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_BLAZE_KICK')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK direct damage control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_BLAZE_KICK_direct"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK secondary status",
+    "assert": [
+      "enemy.status & 16 != 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK Shield Dust",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK Sheer Force",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.start_hp-enemy.hp > result('oct19_BLAZE_KICK_direct')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_SKY_UPPERCUT"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: SKY_UPPERCUT Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_SKY_UPPERCUT')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_POISON_TAIL"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "HUGE_POWER",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_POISON_TAIL')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL direct damage control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_POISON_TAIL_direct"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL secondary status",
+    "assert": [
+      "enemy.status & 8 != 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL Shield Dust",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL Sheer Force",
+    "assert": [
+      "enemy.status == 0",
+      "enemy.start_hp-enemy.hp > result('oct19_POISON_TAIL_direct')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_OMINOUS_WIND"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND respects FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FILTER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND bypasses FILTER",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND respects FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND bypasses FUR_COAT",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND respects MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MULTISCALE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND bypasses MULTISCALE",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "ADAPTABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND Gas suppresses attacker",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND boosts five stats",
+    "assert": [
+      "player.stat_levels[0] == 8",
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[2] == 8",
+      "player.stat_levels[3] == 8",
+      "player.stat_levels[4] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "SHEER_FORCE",
+      "moves": [
+        "OMINOUS_WIND"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: OMINOUS_WIND Sheer Force removes boosts",
+    "assert": [
+      "player.stat_levels[:5] == [7]*5",
+      "enemy.start_hp-enemy.hp > result('oct19_OMINOUS_WIND')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COTTON_GUARD NO_ABILITY",
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: COTTON_GUARD caps NO_ABILITY",
+    "assert": [
+      "player.stat_levels[1] == 13",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COTTON_GUARD CONTRARY",
+    "assert": [
+      "player.stat_levels[1] == 4",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: COTTON_GUARD caps CONTRARY",
+    "assert": [
+      "player.stat_levels[1] == 1",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COTTON_GUARD Gas disables Contrary",
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: TAIL_GLOW NO_ABILITY",
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: TAIL_GLOW caps NO_ABILITY",
+    "assert": [
+      "player.stat_levels[3] == 13",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: TAIL_GLOW CONTRARY",
+    "assert": [
+      "player.stat_levels[3] == 4",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: TAIL_GLOW caps CONTRARY",
+    "assert": [
+      "player.stat_levels[3] == 1",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: TAIL_GLOW Gas disables Contrary",
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COSMIC_POWER NO_ABILITY",
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: COSMIC_POWER caps NO_ABILITY",
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.stat_levels[4] == 10",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COSMIC_POWER CONTRARY",
+    "assert": [
+      "player.stat_levels[1] == 6",
+      "player.stat_levels[4] == 6",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "name": "October moves: COSMIC_POWER caps CONTRARY",
+    "assert": [
+      "player.stat_levels[1] == 4",
+      "player.stat_levels[4] == 4",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "CONTRARY",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: COSMIC_POWER Gas disables Contrary",
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "VOLT_ABSORB",
+      "moves": [
+        "SPLASH"
+      ],
+      "hp": 50
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE VOLT_ABSORB",
+    "assert": [
+      "enemy.hp > enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "LIGHTNING_ROD",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE LIGHTNING_ROD",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "enemy.stat_levels[3] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DISCHARGE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "MOTOR_DRIVE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: DISCHARGE MOTOR_DRIVE",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "enemy.stat_levels[2] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FLASH_FIRE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME FLASH_FIRE",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BLAZE_KICK"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FLASH_FIRE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: BLAZE_KICK FLASH_FIRE",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "WATER_ABSORB",
+      "moves": [
+        "SPLASH"
+      ],
+      "hp": 50
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT WATER_ABSORB",
+    "assert": [
+      "enemy.hp > enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "STORM_DRAIN",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_SPOUT STORM_DRAIN",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "enemy.stat_levels[3] == 8",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FLASH_FIRE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: ERUPTION FLASH_FIRE",
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "POISON_TAIL"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "IMMUNITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: POISON_TAIL IMMUNITY",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "enemy.status == 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "LAVA_PLUME"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "WATER_VEIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: LAVA_PLUME WATER_VEIL",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "enemy.status == 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "FLY"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Sky Uppercut hits FLY",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SKY_UPPERCUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "BOUNCE"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Sky Uppercut hits BOUNCE",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "SNORLAX",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ],
+      "hp": 1
+    },
+    "enemy": {
+      "species": "RATTATA",
+      "level": 2,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "TACKLE"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Vacuum Wave priority wins before faster Tackle",
+    "assert": [
+      "enemy.hp == 0",
+      "player.hp > 0",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Doom Desire is immediate",
+    "assert": [
+      "wram('wPlayerGigaHammerLock') != 0",
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "name": "October moves: Doom Desire consecutive enemy selection blocked",
+    "assert": [
+      "enemy.start_pp[0]-enemy.pp[0] == 1",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "DOOM_DESIRE",
+        "SPLASH"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 3,
+    "move_script": [
+      1,
+      2,
+      1
+    ],
+    "name": "October moves: Doom Desire usable after another move",
+    "assert": [
+      "player.start_pp[0]-player.pp[0] == 2",
+      "enemy.start_hp-enemy.hp == 2*result('oct19_DOOM_DESIRE')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "GOLD_BERRY",
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "name": "October moves: Recycle restores real consumed Gold Berry",
+    "assert": [
+      "player.item == 'GOLD_BERRY'",
+      "player.hp == player.maxhp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "RECYCLE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Recycle fails without consumed history",
+    "assert": [
+      "player.item == 'NO_ITEM'",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "LEFTOVERS"
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: Recycle does not replace held item",
+    "assert": [
+      "player.item == 'LEFTOVERS'",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "UNBURDEN",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "GOLD_BERRY",
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "name": "October moves: Recycle interacts with UNBURDEN",
+    "assert": [
+      "player.item == 'GOLD_BERRY'",
+      "player.hp == player.maxhp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "CUD_CHEW",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "GOLD_BERRY",
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "name": "October moves: Recycle interacts with CUD_CHEW",
+    "assert": [
+      "player.item == 'GOLD_BERRY'",
+      "player.hp == player.maxhp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "HARVEST",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "GOLD_BERRY",
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "name": "October moves: Recycle interacts with HARVEST",
+    "assert": [
+      "player.item == 'GOLD_BERRY'",
+      "player.hp == player.maxhp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH",
+        "RECYCLE"
+      ],
+      "item": "GOLD_BERRY",
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 4,
+    "player2": {
+      "species": "SNORLAX",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "move_script": [
+      1,
+      "switch:2",
+      "switch:1",
+      2
+    ],
+    "name": "October moves: Recycle history survives switching out and back",
+    "assert": [
+      "player.species == 'MEW'",
+      "player.item == 'GOLD_BERRY'",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "EMBER"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: EMBER 40-power HP-scaling control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_hp_EMBER"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        80
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "name": "October moves: ERUPTION exact 150 times 80 over 300 power",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_hp_EMBER')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        1
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "name": "October moves: ERUPTION minimum power remains nonzero",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_GUN"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "name": "October moves: WATER_GUN 40-power HP-scaling control",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ],
+    "id": "oct19_hp_WATER_GUN"
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        80
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "name": "October moves: WATER_SPOUT exact 150 times 80 over 300 power",
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_hp_WATER_GUN')['enemy']['damage']",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        1
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "name": "October moves: WATER_SPOUT minimum power remains nonzero",
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "wram('wInAbility') == 0"
+    ]
+  },
+  {
+    "name": "October moves: COTTON_GUARD self-targeting with Prankster vs Dark PRESSURE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "PRESSURE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COTTON_GUARD self-targeting with Prankster vs Dark MAGIC_BOUNCE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "MAGIC_BOUNCE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COTTON_GUARD self-targeting with Prankster vs Dark ARMOR_TAIL",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "ARMOR_TAIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COTTON_GUARD self-targeting with Prankster vs Dark QUEENLY_MAJESTY",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "QUEENLY_MAJESTY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COTTON_GUARD self-targeting with Prankster vs Dark SAP_SIPPER",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COTTON_GUARD"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "SAP_SIPPER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: TAIL_GLOW self-targeting with Prankster vs Dark PRESSURE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "PRESSURE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: TAIL_GLOW self-targeting with Prankster vs Dark MAGIC_BOUNCE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "MAGIC_BOUNCE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: TAIL_GLOW self-targeting with Prankster vs Dark ARMOR_TAIL",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "ARMOR_TAIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: TAIL_GLOW self-targeting with Prankster vs Dark QUEENLY_MAJESTY",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "QUEENLY_MAJESTY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: TAIL_GLOW self-targeting with Prankster vs Dark SAP_SIPPER",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "TAIL_GLOW"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "SAP_SIPPER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[3] == 10",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COSMIC_POWER self-targeting with Prankster vs Dark PRESSURE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "PRESSURE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COSMIC_POWER self-targeting with Prankster vs Dark MAGIC_BOUNCE",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "MAGIC_BOUNCE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COSMIC_POWER self-targeting with Prankster vs Dark ARMOR_TAIL",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "ARMOR_TAIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COSMIC_POWER self-targeting with Prankster vs Dark QUEENLY_MAJESTY",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "QUEENLY_MAJESTY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: COSMIC_POWER self-targeting with Prankster vs Dark SAP_SIPPER",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "PRANKSTER",
+      "moves": [
+        "COSMIC_POWER"
+      ]
+    },
+    "enemy": {
+      "species": "UMBREON",
+      "level": 100,
+      "ability": "SAP_SIPPER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.stat_levels[1] == 8",
+      "player.stat_levels[4] == 8",
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  },
+  {
+    "name": "October moves: VACUUM_WAVE priority NO_ABILITY ARMOR_TAIL",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "ARMOR_TAIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp == enemy.start_hp"
+    ]
+  },
+  {
+    "name": "October moves: VACUUM_WAVE priority NO_ABILITY QUEENLY_MAJESTY",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "QUEENLY_MAJESTY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp == enemy.start_hp"
+    ]
+  },
+  {
+    "name": "October moves: VACUUM_WAVE priority MOLD_BREAKER ARMOR_TAIL",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "MOLD_BREAKER",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "ARMOR_TAIL",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp"
+    ]
+  },
+  {
+    "name": "October moves: VACUUM_WAVE priority NEUTRALIZING_GAS QUEENLY_MAJESTY",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NEUTRALIZING_GAS",
+      "moves": [
+        "VACUUM_WAVE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "QUEENLY_MAJESTY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp"
+    ]
+  },
+  {
+    "name": "October moves: ERUPTION Technician sees 40 effective power",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "TECHNICIAN",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        80
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "assert": [
+      "enemy.start_hp-enemy.hp > result('oct19_hp_EMBER')['enemy']['damage']"
+    ]
+  },
+  {
+    "name": "October moves: ERUPTION Technician does not boost full HP",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "TECHNICIAN",
+      "moves": [
+        "ERUPTION"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_ERUPTION')['enemy']['damage']"
+    ]
+  },
+  {
+    "name": "October moves: WATER_SPOUT Technician sees 40 effective power",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "TECHNICIAN",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SHIELD_DUST",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wBattleMonHP": [
+        0,
+        80
+      ],
+      "wBattleMonMaxHP": [
+        1,
+        44
+      ]
+    },
+    "assert": [
+      "enemy.start_hp-enemy.hp > result('oct19_hp_WATER_GUN')['enemy']['damage']"
+    ]
+  },
+  {
+    "name": "October moves: WATER_SPOUT Technician does not boost full HP",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "TECHNICIAN",
+      "moves": [
+        "WATER_SPOUT"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.start_hp-enemy.hp == result('oct19_WATER_SPOUT')['enemy']['damage']"
+    ]
+  },
+  {
+    "name": "October moves: RECYCLE cannot replace a Klutz-suppressed held item",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "KLUTZ",
+      "moves": [
+        "RECYCLE"
+      ],
+      "item": "LEFTOVERS"
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "setup_wram": {
+      "wPlayerRecycleItems": 174
+    },
+    "assert": [
+      "player.item == 'LEFTOVERS'"
+    ]
+  },
+  {
+    "name": "October moves: Recycle cannot restore a knocked-off item",
+    "player": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH",
+        "RECYCLE"
+      ],
+      "item": "LEFTOVERS"
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 5,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "KNOCK_OFF"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 2,
+    "move_script": [
+      1,
+      2
+    ],
+    "assert": [
+      "player.item == 'NO_ITEM'",
+      "wram('wPlayerRecycleItems') == 0"
+    ]
+  },
+  {
+    "name": "October moves: RECYCLE costs only one PP vs Pressure",
+    "player": {
+      "species": "MEW",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "RECYCLE"
+      ]
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "PRESSURE",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.start_pp[0]-player.pp[0] == 1"
+    ]
+  }
+]

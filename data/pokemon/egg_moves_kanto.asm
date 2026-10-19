@@ -7,7 +7,7 @@ EggMovePointers1:
 	dw CanonicalCHARMANDEREggMoves ; CHARMANDER
 	dw NoEggMoves1 ; CHARMELEON
 	dw NoEggMoves1 ; CHARIZARD
-	dw CanonicalSQUIRTLEEggMoves ; SQUIRTLE
+	dw CanonicalSQUIRTLEEggMoves2 ; SQUIRTLE
 	dw NoEggMoves1 ; WARTORTLE
 	dw NoEggMoves1 ; BLASTOISE
 	dw NoEggMoves1 ; CATERPIE
@@ -23,16 +23,16 @@ EggMovePointers1:
 	dw NoEggMoves1 ; RATICATE
 	dw CanonicalSPEAROWEggMoves ; SPEAROW
 	dw NoEggMoves1 ; FEAROW
-	dw CanonicalEKANSEggMoves ; EKANS
+	dw CanonicalEKANSEggMoves2 ; EKANS
 	dw NoEggMoves1 ; ARBOK
 	dw NoEggMoves1 ; PIKACHU
 	dw NoEggMoves1 ; RAICHU
 	dw CanonicalSANDSHREWEggMoves ; SANDSHREW
 	dw NoEggMoves1 ; SANDSLASH
-	dw CanonicalNIDORAN_FEggMoves ; NIDORAN_F
+	dw CanonicalNIDORAN_FEggMoves2 ; NIDORAN_F
 	dw NoEggMoves1 ; NIDORINA
 	dw NoEggMoves1 ; NIDOQUEEN
-	dw CanonicalNIDORAN_MEggMoves ; NIDORAN_M
+	dw CanonicalNIDORAN_MEggMoves2 ; NIDORAN_M
 	dw NoEggMoves1 ; NIDORINO
 	dw NoEggMoves1 ; NIDOKING
 	dw NoEggMoves1 ; CLEFAIRY
@@ -100,7 +100,7 @@ EggMovePointers1:
 	dw NoEggMoves1 ; HYPNO
 	dw CanonicalKRABBYEggMoves ; KRABBY
 	dw NoEggMoves1 ; KINGLER
-	dw VoltorbEggMoves ; VOLTORB
+	dw CanonicalVOLTORBEggMoves2 ; VOLTORB
 	dw NoEggMoves1 ; ELECTRODE
 	dw CanonicalEXEGGCUTEEggMoves ; EXEGGCUTE
 	dw NoEggMoves1 ; EXEGGUTOR
@@ -1396,4 +1396,76 @@ CanonicalDRATINIEggMoves:
 	dw EXTREMESPEED
 	dw IRON_TAIL
 	dw WATER_PULSE
+	dw -1 ; end
+
+; October 2026: source-verified breeding routes.
+CanonicalSQUIRTLEEggMoves2:
+	dw DARK_PULSE
+	dw FLIP_TURN
+	dw HAZE
+	dw MIRROR_COAT
+	dw MIST
+	dw AQUA_JET
+	dw AURA_SPHERE
+	dw DRAGON_PULSE
+	dw FAKE_OUT
+	dw FLAIL
+	dw FORESIGHT
+	dw YAWN
+	dw WATER_SPOUT
+	dw -1 ; end
+
+CanonicalEKANSEggMoves2:
+	dw PURSUIT
+	dw SLAM
+	dw SPITE
+	dw BEAT_UP
+	dw CRUNCH
+	dw DISABLE
+	dw IRON_TAIL
+	dw POISON_FANG
+	dw SCARY_FACE
+	dw SUCKER_PUNCH
+	dw POISON_TAIL
+	dw -1 ; end
+
+CanonicalNIDORAN_FEggMoves2:
+	dw SUPERSONIC
+	dw DISABLE
+	dw TAKE_DOWN
+	dw FOCUS_ENERGY
+	dw CHARM
+	dw COUNTER
+	dw BEAT_UP
+	dw ENDURE
+	dw IRON_TAIL
+	dw POISON_FANG
+	dw PURSUIT
+	dw SKULL_BASH
+	dw POISON_TAIL
+	dw -1 ; end
+
+CanonicalNIDORAN_MEggMoves2:
+	dw SUPERSONIC
+	dw DISABLE
+	dw TAKE_DOWN
+	dw CONFUSION
+	dw AMNESIA
+	dw COUNTER
+	dw BEAT_UP
+	dw ENDURE
+	dw HEAD_SMASH
+	dw HORN_DRILL
+	dw IRON_TAIL
+	dw SUCKER_PUNCH
+	dw THRASH
+	dw POISON_TAIL
+	dw -1 ; end
+
+CanonicalVOLTORBEggMoves2:
+	dw AGILITY
+	dw RECOVER
+	dw REFLECT
+	dw NUZZLE
+	dw RECYCLE
 	dw -1 ; end

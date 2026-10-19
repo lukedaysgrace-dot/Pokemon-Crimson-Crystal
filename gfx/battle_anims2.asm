@@ -7,3 +7,9 @@ SECTION "Battle Anim GFX 2", ROMX
 AnimObjTauntGFX:      INCBIN "gfx/battle_anims/taunt.2bpp.lz"
 
 AnimObjWoodHammerGFX: INCBIN "gfx/battle_anims/wood_hammer.2bpp.lz"
+
+; October move graphics (bank-aware AnimObjGFX entries).
+AnimObjCottonGFX: INCBIN "gfx/battle_anims/cotton.2bpp.lz"
+AnimObjLavaRocksGFX: INCBIN "gfx/battle_anims/lavarocks.2bpp.lz"
+AnimObjSmallExplosionGFX: INCBIN "gfx/battle_anims/smallexplosion.2bpp.lz"
+AnimObjRecycleGFX: INCBIN "gfx/battle_anims/recycle.2bpp.lz"

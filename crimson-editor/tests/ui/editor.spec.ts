@@ -12,7 +12,7 @@ test('loads the correct normal and shiny pictures across the Unown gap', async (
     mimeType: 'application/octet-stream',
     buffer: Buffer.from(fixture()),
   });
-  for (const name of ['UNOWN', 'WOBBUFFET', 'CETODDLE', 'CETITAN', 'FEEBAS', 'MEOWTH_GALARIAN']) {
+  for (const name of ['UNOWN', 'WOBBUFFET', 'CETODDLE', 'CETITAN', 'FEEBAS', 'MEOWTH_GALARIAN', 'JIRACHI']) {
     const species = game.species.find((s) => s.const === name)!;
     await page.getByLabel('Species', { exact: true }).selectOption(String(species.index));
     const image = page.getByRole('img', { name: species.name, exact: true });
@@ -87,4 +87,20 @@ test('invalid container shows diagnostics without enabling download', async ({ p
   });
   await expect(page.getByRole('button', { name: 'Download save', exact: true })).toBeDisabled();
   await expect(page.getByRole('heading', { name: 'Diagnostics', exact: true })).toBeVisible();
+});
+
+test('selects the correct layout when two save profiles share a source commit', async ({ page }) => {
+  const old = JSON.parse(readFileSync(new URL('../../static/gamedata/c1a7287b-v2.json', import.meta.url), 'utf8'));
+  await page.goto('/');
+  await page.getByLabel('Open save file').setInputFiles({
+    name: 'previous-jirachi.sav',
+    mimeType: 'application/octet-stream',
+    buffer: Buffer.from(fixture(old)),
+  });
+  await expect(page.getByLabel('Build profile')).toHaveValue('c1a7287b-v2');
+  await expect(page.getByRole('button', { name: 'Download save', exact: true })).toBeEnabled();
+  await page.getByLabel('Build profile').selectOption('c1a7287b');
+  await expect(page.getByRole('button', { name: 'Download save', exact: true })).toBeDisabled();
+  await page.getByLabel('Build profile').selectOption('c1a7287b-v2');
+  await expect(page.getByRole('button', { name: 'Download save', exact: true })).toBeEnabled();
 });

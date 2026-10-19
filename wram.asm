@@ -3240,6 +3240,9 @@ wPlayerItemStateFlags:: db
 wEnemyItemStateFlags:: db
 wPlayerConsumedItem:: db
 wEnemyConsumedItem:: db
+; Recycle remembers consumption per party member across field changes.
+wPlayerRecycleItems:: ds PARTY_LENGTH
+wEnemyRecycleItems:: ds PARTY_LENGTH
 ; Per-party-slot once-per-battle state for Supersweet Syrup.
 wPlayerSyrupUsedFlags:: db
 wEnemySyrupUsedFlags:: db

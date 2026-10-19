@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-19",
+  "source": "User-supplied GBC reference recordings",
+  "scope": "Animation geometry, origin, sequence, timing and palette; battle mechanics unchanged",
+  "reference_files_are_website_assets": false,
+  "moves": {
+    "VACUUM_WAVE": {
+      "file": "Vacuum Wave.webm",
+      "frames": [
+        171,
+        201
+      ],
+      "phases": [
+        "target fist",
+        "large shrinking pressure ring",
+        "small shrinking pressure ring",
+        "target hit flash"
+      ],
+      "origin": "target",
+      "gray_palette_5bit": [
+        28,
+        10
+      ],
+      "sha256": "8e2137bd45be13946c07f15b84287af06a14bf5d3638ba856c3654598a8f90bd",
+      "bytes": 424678,
+      "fps": 60,
+      "source_size": [
+        800,
+        720
+      ],
+      "script_origin": [
+        136,
+        52
+      ]
+    },
+    "DISCHARGE": {
+      "file": "Discharge.webm",
+      "frames": [
+        196,
+        320
+      ],
+      "phases": [
+        "small blinking black/gray orb with sparks",
+        "large blinking black/cyan orb with sparks",
+        "brief field flash"
+      ],
+      "origin": "user",
+      "cyan_5bit": [
+        10,
+        21,
+        29
+      ],
+      "sha256": "520c6f177266189207f25607fce51420edd969c0719e1a78d6e64d354414445f",
+      "bytes": 1026975,
+      "fps": 60,
+      "source_size": [
+        800,
+        720
+      ],
+      "script_origin": [
+        48,
+        88
+      ]
+    },
+    "LAVA_PLUME": {
+      "file": "Lava Plume.webm",
+      "frames": [
+        231,
+        336
+      ],
+      "phases": [
+        "radial flames around user",
+        "interleaved expanding smoke puffs",
+        "user repeatedly fades to light"
+      ],
+      "origin": "user, eight pixels below the Discharge orb",
+      "sha256": "fa9d0c325c542e21dd68cf0e4d79df971c0311f8a98b49ff72d7788a01723741",
+      "bytes": 914360,
+      "fps": 60,
+      "source_size": [
+        800,
+        720
+      ],
+      "script_origin": [
+        48,
+        96
+      ],
+      "flame_burst_interval": 6,
+      "flame_angles": [
+        16,
+        56,
+        42,
+        4,
+        24,
+        59,
+        26,
+        40,
+        48,
+        30,
+        0,
+        36
+      ],
+      "small_embers": true,
+      "smoke_color": "black stipple with transparent gaps",
+      "timing_notes": "Includes the final pale silhouette and palette/HUD restoration. Use short fire SFX so PlayBattleAnim does not wait on an unrelated long audio tail."
+    }
+  }
+}

@@ -156,6 +156,26 @@ def norm_move(name):
 # Built from constants/move_constants.asm; only moves that exist in the ROM
 # are listed, so anything not here is automatically dropped.
 MOVE_MAP = {
+    # October 2026 supported moves.
+    "psyshock": "PSYSHOCK",
+    "vacuumwave": "VACUUM_WAVE",
+    "discharge": "DISCHARGE",
+    "lavaplume": "LAVA_PLUME",
+    "meteormash": "METEOR_MASH",
+    "dragonhammer": "DRAGON_HAMMER",
+    "cottonguard": "COTTON_GUARD",
+    "cosmicpower": "COSMIC_POWER",
+    "eruption": "ERUPTION",
+    "waterspout": "WATER_SPOUT",
+    "doomdesire": "DOOM_DESIRE",
+    "tailglow": "TAIL_GLOW",
+    "recycle": "RECYCLE",
+    "petalblizzard": "PETAL_BLIZZARD",
+    "blazekick": "BLAZE_KICK",
+    "skyuppercut": "SKY_UPPERCUT",
+    "poisontail": "POISON_TAIL",
+    "ominouswind": "OMINOUS_WIND",
+
     "pound": "POUND", "karatechop": "KARATE_CHOP", "doubleslap": "DOUBLESLAP",
     "cometpunch": "COMET_PUNCH", "megapunch": "MEGA_PUNCH", "payday": "PAY_DAY",
     "firepunch": "FIRE_PUNCH", "icepunch": "ICE_PUNCH", "thunderpunch": "THUNDERPUNCH",

@@ -9,6 +9,9 @@
         "8L1",
         "7L1",
         "6L32"
+      ],
+      "PETAL_BLIZZARD": [
+        "Lumi:L1"
       ]
     },
     "ARBOK": {
@@ -16,6 +19,9 @@
         "9L0",
         "7L1",
         "6L22"
+      ],
+      "POISON_TAIL": [
+        "Lumi:L31"
       ]
     },
     "CLEFAIRY": {
@@ -24,6 +30,12 @@
         "8L20",
         "7L31",
         "6L31"
+      ],
+      "METEOR_MASH": [
+        "Lumi:L35"
+      ],
+      "COSMIC_POWER": [
+        "Lumi:L25"
       ]
     },
     "CLEFABLE": {
@@ -32,6 +44,12 @@
         "8L1",
         "7L1",
         "6L1"
+      ],
+      "METEOR_MASH": [
+        "Lumi:L64"
+      ],
+      "COSMIC_POWER": [
+        "Lumi:L44"
       ]
     },
     "VENOMOTH": {
@@ -59,6 +77,9 @@
         "8L1",
         "7L47",
         "6L47"
+      ],
+      "PSYSHOCK": [
+        "9L1"
       ]
     },
     "HITMONLEE": {
@@ -72,6 +93,9 @@
         "8L28",
         "7L33",
         "6L33"
+      ],
+      "BLAZE_KICK": [
+        "Lumi:L43"
       ]
     },
     "HITMONCHAN": {
@@ -86,6 +110,12 @@
         "8L40",
         "7L1",
         "6L1"
+      ],
+      "VACUUM_WAVE": [
+        "Lumi:L41"
+      ],
+      "SKY_UPPERCUT": [
+        "Lumi:L41"
       ]
     },
     "JYNX": {
@@ -97,6 +127,9 @@
         "8L40",
         "7L1",
         "6L1"
+      ],
+      "PSYSHOCK": [
+        "Lumi:L59"
       ]
     },
     "SNORLAX": {
@@ -111,6 +144,9 @@
         "8L20",
         "7L33",
         "6L33"
+      ],
+      "RECYCLE": [
+        "Lumi:L15"
       ]
     },
     "NOCTOWL": {
@@ -126,6 +162,9 @@
         "9L43",
         "7L43",
         "6L43"
+      ],
+      "PETAL_BLIZZARD": [
+        "Lumi:L72"
       ]
     },
     "SHUCKLE": {
@@ -148,6 +187,9 @@
         "8L0",
         "7L1",
         "6L25"
+      ],
+      "WATER_SPOUT": [
+        "Lumi:L56"
       ]
     },
     "HITMONTOP": {
@@ -164,6 +206,9 @@
         "8L1",
         "7L1",
         "6L32"
+      ],
+      "PETAL_BLIZZARD": [
+        "Lumi:L1"
       ]
     },
     "ANNIHILAPE": {
@@ -187,6 +232,9 @@
         "8L1",
         "7L1",
         "6L1"
+      ],
+      "DISCHARGE": [
+        "Lumi:L28"
       ]
     },
     "MAMOSWINE": {
@@ -215,29 +263,47 @@
     "ARMAROUGE": {
       "CALM_MIND": [
         "9L37"
+      ],
+      "PSYSHOCK": [
+        "Lumi:L1"
+      ],
+      "LAVA_PLUME": [
+        "Lumi:L32"
       ]
     },
     "CERULEDGE": {
       "SWORDS_DANCE": [
         "9L37"
+      ],
+      "LAVA_PLUME": [
+        "Lumi:L32"
       ]
     },
     "APPLETUN": {
       "LEECH_SEED": [
         "9L12",
         "8L12"
+      ],
+      "RECYCLE": [
+        "Lumi:L1"
       ]
     },
     "FLAPPLE": {
       "LEECH_SEED": [
         "9L12",
         "8L12"
+      ],
+      "RECYCLE": [
+        "Lumi:L1"
       ]
     },
     "CHARJABUG": {
       "STICKY_WEB": [
         "9L29",
         "8L29"
+      ],
+      "DISCHARGE": [
+        "Lumi:L64"
       ]
     },
     "VIKAVOLT": {
@@ -249,11 +315,17 @@
         "9L57",
         "8L57",
         "7L49"
+      ],
+      "DISCHARGE": [
+        "Lumi:L1"
       ]
     },
     "GOROTORA": {
       "CRUNCH": [
         "project-authored species"
+      ],
+      "DISCHARGE": [
+        "Crimson:L44"
       ]
     },
     "TALONFLAME": {
@@ -276,11 +348,20 @@
         "8L1",
         "7L1",
         "6L1"
+      ],
+      "OMINOUS_WIND": [
+        "Lumi:L1"
       ]
     },
     "MR__RIME": {
       "ICY_WIND": [
         "8L20"
+      ],
+      "PSYSHOCK": [
+        "Lumi:L56"
+      ],
+      "RECYCLE": [
+        "Lumi:L1"
       ]
     },
     "LUCARIO": {
@@ -289,6 +370,15 @@
         "8L1",
         "7L1",
         "6L1"
+      ],
+      "VACUUM_WAVE": [
+        "9L1"
+      ],
+      "METEOR_MASH": [
+        "Lumi:L49"
+      ],
+      "BLAZE_KICK": [
+        "Lumi:L41"
       ]
     },
     "PERRSERKER": {
@@ -305,6 +395,12 @@
     "WATU": {
       "QUICK_ATTACK": [
         "project-authored species"
+      ],
+      "PSYSHOCK": [
+        "Crimson:L35"
+      ],
+      "COSMIC_POWER": [
+        "Crimson:L40"
       ]
     },
     "GLIMMORA": {
@@ -321,11 +417,620 @@
         "8L0",
         "7L1",
         "6L1"
+      ],
+      "DISCHARGE": [
+        "Lumi:L39"
       ]
     },
     "GOROCHU": {
       "VOLT_TACKLE": [
         "project-authored species"
+      ],
+      "DISCHARGE": [
+        "Crimson:L44"
+      ]
+    },
+    "SQUIRTLE": {
+      "WATER_SPOUT": [
+        "Lumi:L44"
+      ]
+    },
+    "WARTORTLE": {
+      "WATER_SPOUT": [
+        "Lumi:L54"
+      ]
+    },
+    "BLASTOISE": {
+      "WATER_SPOUT": [
+        "Lumi:L59"
+      ]
+    },
+    "EKANS": {
+      "POISON_TAIL": [
+        "Lumi:L28"
+      ]
+    },
+    "PIKACHU": {
+      "DISCHARGE": [
+        "Lumi:L31"
+      ]
+    },
+    "RAICHU": {
+      "DISCHARGE": [
+        "Lumi:L60"
+      ]
+    },
+    "NIDORAN_F": {
+      "POISON_TAIL": [
+        "Lumi:L33"
+      ]
+    },
+    "NIDORINA": {
+      "POISON_TAIL": [
+        "Lumi:L39"
+      ]
+    },
+    "NIDOQUEEN": {
+      "POISON_TAIL": [
+        "Lumi:L56"
+      ]
+    },
+    "NIDORAN_M": {
+      "POISON_TAIL": [
+        "Lumi:L33"
+      ]
+    },
+    "NIDORINO": {
+      "POISON_TAIL": [
+        "Lumi:L39"
+      ]
+    },
+    "NIDOKING": {
+      "POISON_TAIL": [
+        "Lumi:L56"
+      ]
+    },
+    "GLOOM": {
+      "PETAL_BLIZZARD": [
+        "7L49"
+      ]
+    },
+    "VILEPLUME": {
+      "PETAL_BLIZZARD": [
+        "Lumi:L1"
+      ]
+    },
+    "POLIWRATH": {
+      "VACUUM_WAVE": [
+        "Lumi:L1"
+      ]
+    },
+    "KADABRA": {
+      "PSYSHOCK": [
+        "Lumi:L30"
+      ]
+    },
+    "ALAKAZAM": {
+      "PSYSHOCK": [
+        "Lumi:L30"
+      ]
+    },
+    "MAGNEMITE": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ]
+    },
+    "MAGNETON": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ]
+    },
+    "DROWZEE": {
+      "PSYSHOCK": [
+        "Lumi:L57"
+      ]
+    },
+    "HYPNO": {
+      "PSYSHOCK": [
+        "Lumi:L57"
+      ]
+    },
+    "VOLTORB": {
+      "DISCHARGE": [
+        "Lumi:L27"
+      ]
+    },
+    "ELECTRODE": {
+      "DISCHARGE": [
+        "Lumi:L27"
+      ]
+    },
+    "KOFFING": {
+      "LAVA_PLUME": [
+        "Lumi:L31"
+      ]
+    },
+    "WEEZING": {
+      "LAVA_PLUME": [
+        "Lumi:L31"
+      ]
+    },
+    "STARYU": {
+      "COSMIC_POWER": [
+        "Lumi:L37"
+      ]
+    },
+    "STARMIE": {
+      "COSMIC_POWER": [
+        "Lumi:L64"
+      ]
+    },
+    "MR__MIME": {
+      "RECYCLE": [
+        "Lumi:L24"
+      ]
+    },
+    "SCYTHER": {
+      "VACUUM_WAVE": [
+        "Lumi:L1"
+      ]
+    },
+    "ELECTABUZZ": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ]
+    },
+    "MAGMAR": {
+      "LAVA_PLUME": [
+        "Lumi:L28"
+      ]
+    },
+    "JOLTEON": {
+      "DISCHARGE": [
+        "Lumi:L25"
+      ]
+    },
+    "FLAREON": {
+      "LAVA_PLUME": [
+        "Lumi:L25"
+      ]
+    },
+    "PORYGON": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ],
+      "RECYCLE": [
+        "Lumi:L22"
+      ]
+    },
+    "ZAPDOS": {
+      "DISCHARGE": [
+        "Lumi:L22"
+      ]
+    },
+    "MEGANIUM": {
+      "PETAL_BLIZZARD": [
+        "Lumi:L70"
+      ]
+    },
+    "CYNDAQUIL": {
+      "LAVA_PLUME": [
+        "Lumi:L23"
+      ],
+      "ERUPTION": [
+        "Lumi:L44"
+      ]
+    },
+    "QUILAVA": {
+      "LAVA_PLUME": [
+        "Lumi:L27"
+      ],
+      "ERUPTION": [
+        "Lumi:L55"
+      ]
+    },
+    "TYPHLOSION": {
+      "LAVA_PLUME": [
+        "Lumi:L27"
+      ],
+      "ERUPTION": [
+        "Lumi:L60"
+      ]
+    },
+    "LEDYBA": {
+      "METEOR_MASH": [
+        "Lumi:L42"
+      ]
+    },
+    "LEDIAN": {
+      "METEOR_MASH": [
+        "Lumi:L51"
+      ]
+    },
+    "CHINCHOU": {
+      "DISCHARGE": [
+        "Lumi:L27"
+      ]
+    },
+    "LANTURN": {
+      "DISCHARGE": [
+        "Lumi:L29"
+      ],
+      "TAIL_GLOW": [
+        "Crimson:L40"
+      ]
+    },
+    "NATU": {
+      "OMINOUS_WIND": [
+        "Lumi:L20"
+      ]
+    },
+    "XATU": {
+      "OMINOUS_WIND": [
+        "Lumi:L20"
+      ]
+    },
+    "MAREEP": {
+      "DISCHARGE": [
+        "Lumi:L25"
+      ],
+      "COTTON_GUARD": [
+        "Lumi:L36"
+      ]
+    },
+    "FLAAFFY": {
+      "DISCHARGE": [
+        "Lumi:L29"
+      ],
+      "COTTON_GUARD": [
+        "Lumi:L43"
+      ]
+    },
+    "AMPHAROS": {
+      "DISCHARGE": [
+        "Lumi:L29"
+      ],
+      "COTTON_GUARD": [
+        "Lumi:L46"
+      ],
+      "TAIL_GLOW": [
+        "Lumi:L1"
+      ]
+    },
+    "BELLOSSOM": {
+      "PETAL_BLIZZARD": [
+        "Lumi:L1"
+      ]
+    },
+    "UNOWN": {
+      "COSMIC_POWER": [
+        "Lumi:L1"
+      ]
+    },
+    "GLIGAR": {
+      "SKY_UPPERCUT": [
+        "Lumi:L45"
+      ],
+      "POISON_TAIL": [
+        "9L19"
+      ]
+    },
+    "SLUGMA": {
+      "LAVA_PLUME": [
+        "Lumi:L21"
+      ]
+    },
+    "MAGCARGO": {
+      "LAVA_PLUME": [
+        "Lumi:L21"
+      ]
+    },
+    "REMORAID": {
+      "WATER_SPOUT": [
+        "Lumi:L48"
+      ]
+    },
+    "DELIBIRD": {
+      "RECYCLE": [
+        "Lumi:L27"
+      ]
+    },
+    "PORYGON2": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ],
+      "RECYCLE": [
+        "Lumi:L22"
+      ]
+    },
+    "ELEKID": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ]
+    },
+    "MAGBY": {
+      "LAVA_PLUME": [
+        "Lumi:L28"
+      ]
+    },
+    "RAIKOU": {
+      "DISCHARGE": [
+        "Lumi:L30"
+      ]
+    },
+    "ENTEI": {
+      "LAVA_PLUME": [
+        "Lumi:L30"
+      ],
+      "ERUPTION": [
+        "Lumi:L46"
+      ]
+    },
+    "SQUIRTLE_CLONE": {
+      "WATER_SPOUT": [
+        "Lumi:L44"
+      ]
+    },
+    "WARTORTLE_CLONE": {
+      "WATER_SPOUT": [
+        "Lumi:L54"
+      ]
+    },
+    "BLASTOISE_CLONE": {
+      "WATER_SPOUT": [
+        "Lumi:L59"
+      ]
+    },
+    "ELECTIVIRE": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ]
+    },
+    "GLISCOR": {
+      "SKY_UPPERCUT": [
+        "Lumi:L45"
+      ]
+    },
+    "MAGMORTAR": {
+      "LAVA_PLUME": [
+        "Lumi:L28"
+      ]
+    },
+    "MESMERIA": {
+      "PSYSHOCK": [
+        "Crimson:L40"
+      ]
+    },
+    "PORYGON_Z": {
+      "DISCHARGE": [
+        "Lumi:L28"
+      ],
+      "RECYCLE": [
+        "9L1"
+      ]
+    },
+    "VENIPEDE": {
+      "POISON_TAIL": [
+        "Lumi:L40"
+      ]
+    },
+    "WHIRLIPEDE": {
+      "POISON_TAIL": [
+        "Lumi:L42"
+      ]
+    },
+    "SCOLIPEDE": {
+      "POISON_TAIL": [
+        "Lumi:L44"
+      ]
+    },
+    "CHARCADET": {
+      "LAVA_PLUME": [
+        "Lumi:L32"
+      ]
+    },
+    "SWABLU": {
+      "COTTON_GUARD": [
+        "Lumi:L35"
+      ]
+    },
+    "ALTARIA": {
+      "COTTON_GUARD": [
+        "Lumi:L32"
+      ]
+    },
+    "DIPPLIN": {
+      "RECYCLE": [
+        "Lumi:L1"
+      ]
+    },
+    "HYDRAPPLE": {
+      "RECYCLE": [
+        "Lumi:L1"
+      ]
+    },
+    "BRELOOM": {
+      "SKY_UPPERCUT": [
+        "Lumi:L38"
+      ]
+    },
+    "LOPUNNY": {
+      "BLAZE_KICK": [
+        "Lumi:L1"
+      ]
+    },
+    "NUMEL": {
+      "LAVA_PLUME": [
+        "Lumi:L22"
+      ]
+    },
+    "CAMERUPT": {
+      "LAVA_PLUME": [
+        "Lumi:L22"
+      ],
+      "ERUPTION": [
+        "Lumi:L51"
+      ]
+    },
+    "TOXICROAK": {
+      "VACUUM_WAVE": [
+        "Lumi:L1"
+      ]
+    },
+    "DRIFLOON": {
+      "OMINOUS_WIND": [
+        "Lumi:L20"
+      ]
+    },
+    "DRIFBLIM": {
+      "OMINOUS_WIND": [
+        "Lumi:L20"
+      ]
+    },
+    "KOTORA": {
+      "DISCHARGE": [
+        "Crimson:L36"
+      ]
+    },
+    "RAITORA": {
+      "DISCHARGE": [
+        "Crimson:L40"
+      ]
+    },
+    "SPOINK": {
+      "PSYSHOCK": [
+        "Lumi:L38"
+      ]
+    },
+    "GRUMPIG": {
+      "PSYSHOCK": [
+        "Lumi:L42"
+      ]
+    },
+    "OVERQWIL": {
+      "POISON_TAIL": [
+        "Lumi:L16"
+      ]
+    },
+    "RIOLU": {
+      "VACUUM_WAVE": [
+        "9L24"
+      ]
+    },
+    "TYRANTRUM": {
+      "DRAGON_HAMMER": [
+        "Lumi:L60"
+      ]
+    },
+    "MUNCHLAX": {
+      "RECYCLE": [
+        "Lumi:L15"
+      ]
+    },
+    "TORKOAL": {
+      "LAVA_PLUME": [
+        "Lumi:L25"
+      ],
+      "ERUPTION": [
+        "Lumi:L49"
+      ]
+    },
+    "RAICHU_ALOLAN": {
+      "PSYSHOCK": [
+        "Lumi:L43"
+      ],
+      "DISCHARGE": [
+        "Lumi:L56"
+      ]
+    },
+    "GEODUDE_ALOLAN": {
+      "DISCHARGE": [
+        "Lumi:L31"
+      ]
+    },
+    "GRAVELER_ALOLAN": {
+      "DISCHARGE": [
+        "Lumi:L34"
+      ]
+    },
+    "GOLEM_ALOLAN": {
+      "DISCHARGE": [
+        "Lumi:L34"
+      ]
+    },
+    "EXEGGUTOR_ALOLAN": {
+      "PSYSHOCK": [
+        "9L1"
+      ],
+      "DRAGON_HAMMER": [
+        "Lumi:L52"
+      ]
+    },
+    "RAPIDASH_GALARIAN": {
+      "BLAZE_KICK": [
+        "Lumi:L1"
+      ]
+    },
+    "VOLTORB_HISUIAN": {
+      "DISCHARGE": [
+        "9L34"
+      ]
+    },
+    "ELECTRODE_HISUIAN": {
+      "DISCHARGE": [
+        "9L34"
+      ]
+    },
+    "TYPHLOSION_HISUIAN": {
+      "LAVA_PLUME": [
+        "Lumi:L29"
+      ],
+      "ERUPTION": [
+        "9L1"
+      ],
+      "OMINOUS_WIND": [
+        "Lumi:L25"
+      ]
+    },
+    "WOOPER_PALDEAN": {
+      "POISON_TAIL": [
+        "Lumi:L22"
+      ]
+    },
+    "CLODSIRE": {
+      "POISON_TAIL": [
+        "Lumi:L23"
+      ]
+    },
+    "TAUROS_PALDEAN_FIRE": {
+      "BLAZE_KICK": [
+        "Lumi:L28"
+      ]
+    },
+    "SEVIPER": {
+      "POISON_TAIL": [
+        "Lumi:L22"
+      ]
+    },
+    "JOLTIK": {
+      "DISCHARGE": [
+        "Lumi:L37"
+      ]
+    },
+    "MIME_JR_": {
+      "RECYCLE": [
+        "Lumi:L24"
+      ]
+    },
+    "JIRACHI": {
+      "METEOR_MASH": [
+        "Lumi:L49"
+      ],
+      "COSMIC_POWER": [
+        "Lumi:L26"
+      ],
+      "DOOM_DESIRE": [
+        "Lumi:L50"
       ]
     }
   },
@@ -677,7 +1382,8 @@
       "SCARY_FACE": 30
     },
     "HOPPIP": {
-      "PAY_DAY": 30
+      "PAY_DAY": 30,
+      "COTTON_GUARD": 30
     },
     "IMPIDIMP": {
       "CHARM": 30,
@@ -775,13 +1481,15 @@
     "VOLTORB": {
       "AGILITY": 30,
       "RECOVER": 30,
-      "NUZZLE": 30
+      "NUZZLE": 30,
+      "RECYCLE": 30
     },
     "VOLTORB_HISUIAN": {
       "LEECH_SEED": 30,
       "STUN_SPORE": 30,
       "MAGICAL_LEAF": 30,
-      "GIGA_DRAIN": 30
+      "GIGA_DRAIN": 30,
+      "RECYCLE": 30
     },
     "DURALUDON": {
       "MIRROR_COAT": 30

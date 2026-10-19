@@ -6,13 +6,15 @@ import { template } from '../../src/lib/save/mon';
 import { expAtLevel, maxPP } from '../../src/lib/save/mechanics';
 mkdirSync('tests/output', { recursive: true });
 const m = parse(fixture(), game),
-  s = game.species.find((s) => s.index > 255)!;
+  s = game.species.find((s) => s.const === 'JIRACHI')!;
 const mon = m.party[0];
 mon.species = s.index;
 mon.nickname = 'CRIMSON';
 mon.level = 73;
 mon.exp = expAtLevel(game.growth[s.growth], mon.level);
-mon.moves = [421, 300, 1, 256].map((n) => Math.min(n, game.layout.constants.NUM_ATTACKS));
+mon.moves = ['DOOM_DESIRE', 'METEOR_MASH', 'PSYSHOCK', 'RECYCLE'].map(
+  (constant) => game.moves.find((move) => move.const === constant)!.index,
+);
 mon.ups = [3, 1, 2, 0];
 mon.pp = mon.moves.map((n, i) => maxPP(game.moves[n - 1].pp, mon.ups[i]));
 mon.shiny = true;
