@@ -8,29 +8,30 @@ ViridianForestNorthGate_MapScripts:
 	db 0 ; callbacks
 
 ViridianForestNorthGateSuperNerdScript:
-	jumptext ViridianForestNorthGateSuperNerdText
+	jumptextfaceplayer ViridianForestNorthGateSuperNerdText
 
 ViridianForestNorthGateGrampsScript:
-	jumptext ViridianForestNorthGateGrampsText
+	jumptextfaceplayer ViridianForestNorthGateGrampsText
 
 ViridianForestNorthGateSuperNerdText:
-	text "Many #MON live"
-	line "only in forests"
-	cont "and caves."
+	text "You won't find"
+	line "every #MON on"
+	cont "the roadside!"
 
-	para "You need to look"
-	line "everywhere to get"
-	cont "different kinds!"
+	para "Try the forest,"
+	line "then poke around"
+	cont "a cave or two."
 	done
 
 ViridianForestNorthGateGrampsText:
-	text "Have you noticed"
-	line "the bushes on the"
-	cont "roadside?"
+	text "Those little trees"
+	line "blocking the road?"
 
-	para "They can be cut"
-	line "down by a special"
-	cont "#MON move."
+	para "A #MON can CUT"
+	line "through them!"
+
+	para "I tried my walking"
+	line "stick. No luck."
 	done
 
 ViridianForestNorthGate_MapEvents:
@@ -47,5 +48,6 @@ ViridianForestNorthGate_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  3,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianForestNorthGateSuperNerdScript, -1
-	object_event  2,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestNorthGateGrampsScript, -1
+	; Pace on the side aisles, keeping the center and both exits clear.
+	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianForestNorthGateSuperNerdScript, -1
+	object_event  7,  4, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestNorthGateGrampsScript, -1
