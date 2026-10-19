@@ -2347,6 +2347,7 @@ StantlerEvosAttacks:
 	dbw 24, CALM_MIND
 	dbw 26, WORK_UP
 	dbw 27, ZEN_HEADBUTT
+	dbw 28, HORN_LEECH
 	dbw 34, THRASH
 	dbw 36, WILD_CHARGE
 	dbw 36, TRICK_ROOM
@@ -5124,6 +5125,7 @@ WyrdeerEvosAttacks:
 	dbw 21, TAKE_DOWN
 	dbw 24, CALM_MIND
 	dbw 27, ZEN_HEADBUTT
+	dbw 28, HORN_LEECH
 	dbw 30, WORK_UP
 	dbw 34, THRASH
 	dbw 36, WILD_CHARGE

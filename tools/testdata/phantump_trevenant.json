@@ -511,6 +511,7 @@
       }
     },
     "TREVENANT": {
+      "enhanced_stats": [90, 110, 95, 56, 65, 84],
       "stats": [
         85,
         110,

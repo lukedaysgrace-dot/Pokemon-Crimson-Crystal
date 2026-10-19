@@ -2672,7 +2672,7 @@
       "category": "moves",
       "title": "Horn Leech",
       "before": "Horn Leech is unavailable in original Crystal.",
-      "after": "Horn Leech is a 75-power physical Grass contact move with 100% accuracy and 10 PP. It restores half the damage dealt, rounded up, and receives Triage priority. Phantump and Trevenant learn it at level 28. Its dedicated attack-and-drain animation is ported from Polished Coral.",
+      "after": "Horn Leech is a 75-power physical Grass contact move with 100% accuracy and 10 PP. It restores half the damage dealt, rounded up, and receives Triage priority. Phantump, Trevenant, Stantler and Wyrdeer learn it at level 28. Stantler and Wyrdeer receiving Horn Leech is a Crimson Crystal addition that applies to both Original and Enhanced rules. Its dedicated attack-and-drain animation is ported from Polished Coral.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
