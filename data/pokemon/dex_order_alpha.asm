@@ -316,6 +316,7 @@ AlphabeticalPokedexOrder:
 	dw PERSIAN
 	dw PERSIAN_ALOLAN
 	dw PHANPY
+	dw PHANTUMP
 	dw PICHU
 	dw PIDGEOT
 	dw PIDGEOTTO
@@ -446,6 +447,7 @@ AlphabeticalPokedexOrder:
 	dw TOXAPEX
 	dw TOXICROAK
 	dw TRAPINCH
+	dw TREVENANT
 	dw TSAREENA
 	dw TYPHLOSION
 	dw TYPHLOSION_HISUIAN

@@ -92,3 +92,39 @@ test('the top tab works from nested pages and on a phone', async ({ page }, test
   await page.goto('editor/');
   await expect(page.getByLabel('Open save file')).toBeEnabled();
 });
+
+test('website editor exports both new species, Horn Leech and Harvest in format 4', async ({ page }) => {
+  const failures: string[] = [];
+  page.on('pageerror', (error) => failures.push(error.message));
+  await page.goto('editor/');
+  await page.getByLabel('Open save file').setInputFiles({
+    name: 'phantump-trevenant.sav', mimeType: 'application/octet-stream', buffer: Buffer.from(fixture()),
+  });
+  const horn = game.moves.find((move) => move.const === 'HORN_LEECH')!;
+  for (const constant of ['PHANTUMP', 'TREVENANT']) {
+    const species = game.species.find((entry) => entry.const === constant)!;
+    await page.getByLabel('Species', { exact: true }).selectOption(String(species.index));
+    await page.getByLabel('Move 1', { exact: true }).selectOption(String(horn.index));
+    await expect(page.getByLabel('Move 1', { exact: true })).toHaveValue(String(horn.index));
+    const image = page.getByRole('img', { name: species.name, exact: true });
+    for (const shiny of [false, true]) {
+      await page.getByLabel('Shiny', { exact: true }).setChecked(shiny);
+      await expect(image).toHaveAttribute('src', new RegExp(`/sprites/${species.sprite}/${shiny ? 'shiny' : 'normal'}.png$`));
+      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+  }
+  await page.getByRole('combobox', { name: /^Ability slot/ }).selectOption('3');
+  const pending = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download save', exact: true }).click();
+  if (await page.getByRole('dialog').isVisible())
+    await page.getByRole('button', { name: 'Download verified save', exact: true }).click();
+  const download = await pending;
+  const bytes = new Uint8Array(readFileSync((await download.path())!));
+  const saved = parse(bytes, game);
+  expect(saved.party[0].species).toBe(498);
+  expect(saved.party[0].moves[0]).toBe(440);
+  expect((saved.party[0].personality >>> 5) & 3).toBe(3);
+  expect(bytes[game.layout.sram.sSaveVersion]).toBe(4);
+  expect(saved.diagnostics.filter((diagnostic) => diagnostic.severity === 'ERROR')).toEqual([]);
+  expect(failures).toEqual([]);
+});

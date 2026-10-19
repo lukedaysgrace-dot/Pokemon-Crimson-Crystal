@@ -592,7 +592,7 @@ EvolveAfterBattle_MasterLoop:
 	ld [wTempSpecies], a
 	xor a
 	ld [wMonType], a
-	call LearnEspathraEvolutionMove
+	call LearnEvolutionMove
 	call LearnLevelMoves
 	ld a, [wTempSpecies]
 	call SetSeenAndCaughtMon
@@ -729,16 +729,17 @@ Text_WhatEvolving:
 	text_end
 
 LearnEspathraEvolutionMove:
-; Offer Lumina Crash on a successful Flittle -> Espathra evolution, including
-; delayed evolutions above level 35. The level-1 entry remains for the reminder.
+LearnEvolutionMove:
+; Offer each family's evolution move at any evolution level. The level-1
+; entries also remain available from the move reminder.
 	ld a, [wEvolutionOldSpecies]
 	call GetPokemonIndexFromID
 	ld a, h
 	cp HIGH(FLITTLE)
-	ret nz
+	jr nz, .phantump
 	ld a, l
 	cp LOW(FLITTLE)
-	ret nz
+	jr nz, .phantump
 	ld a, [wTempSpecies]
 	call GetPokemonIndexFromID
 	ld a, h
@@ -749,6 +750,25 @@ LearnEspathraEvolutionMove:
 	ret nz
 
 	ld hl, LUMINA_CRASH
+	jr .teach
+
+.phantump
+	ld a, h
+	cp HIGH(PHANTUMP)
+	ret nz
+	ld a, l
+	cp LOW(PHANTUMP)
+	ret nz
+	ld a, [wTempSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(TREVENANT)
+	ret nz
+	ld a, l
+	cp LOW(TREVENANT)
+	ret nz
+	ld hl, SHADOW_CLAW
+.teach
 	call GetMoveIDFromIndex
 	ld d, a
 	ld hl, wPartyMon1Moves

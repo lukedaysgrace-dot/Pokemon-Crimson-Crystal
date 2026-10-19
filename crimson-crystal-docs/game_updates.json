@@ -2619,19 +2619,72 @@
     {
       "id": "jirachi-save-format",
       "category": "items",
-      "title": "Save format 3 and editor profiles",
-      "before": "Earlier saves use format 2.",
-      "after": "Jirachi and the Wishing Star event expand saved event data by two bytes. This build uses format 3. The save editor includes Jirachi, its normal and shiny sprites, all 439 moves and previous build profiles. Older saves can be migrated into a save created by this ROM; Pokemon and supported inventory/player fields transfer, while map and event progress comes from the target template.",
+      "title": "Save format 4 and retained editor profiles",
+      "before": "The Jirachi/Wishing Star build uses save format 3; earlier builds use format 2.",
+      "after": "The current build uses format 4, with 498 species and 440 moves. The ROM automatically upgrades valid format-3 saves to add Phantump and Trevenant caught/seen flags while preserving map, event and Pokemon progress. The save editor includes both new species, their normal/shiny sprites, Horn Leech and all previous profiles. Format-2 saves can use the editor migration control with a new-ROM save template; map and event progress then comes from that template.",
       "comparison": "Earlier Crimson Crystal builds",
       "kind": "exception",
       "sources": [
         "constants/pc_constants.asm",
+        "engine/menus/pokedex_save_upgrade.asm",
         "crimson-editor/docs/save-format.md"
       ],
       "links": [
         {
           "href": "editor/index.html",
           "label": "Save editor"
+        }
+      ]
+    },
+    {
+      "id": "phantump-trevenant-family",
+      "category": "training",
+      "title": "Phantump and Trevenant",
+      "before": "The Phantump family is unavailable in original Crystal.",
+      "after": "Phantump and Trevenant are regional Pokedex #287 and #288, before the Duskull family. Find level-35 Phantump (10% slot) or level-36 Trevenant (1% slot) on Route 43 at night. Phantump evolves at level 32, and Trevenant is offered Shadow Claw on evolution. Both have Ghost/Grass typing and Natural Cure, Frisk or Harvest. Supported historical main-series moves through Scarlet/Violet are available via level-up, machines, breeding, the reminder and tutors; moves not implemented in this game remain excluded. Its level-32 evolution is a Crimson Crystal change.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/pokemon/base_stats/phantump.asm",
+        "data/pokemon/base_stats/trevenant.asm",
+        "data/pokemon/evos_attacks_johto.asm",
+        "data/pokemon/dex_order_new.asm",
+        "data/wild/johto_grass.asm",
+        "engine/pokemon/evolve.asm"
+      ],
+      "links": [
+        {
+          "href": "pokemon/phantump.html",
+          "label": "Phantump"
+        },
+        {
+          "href": "pokemon/trevenant.html",
+          "label": "Trevenant"
+        },
+        {
+          "href": "locations/route-43.html",
+          "label": "Route 43 encounters"
+        }
+      ]
+    },
+    {
+      "id": "horn-leech-draining-contact",
+      "category": "moves",
+      "title": "Horn Leech",
+      "before": "Horn Leech is unavailable in original Crystal.",
+      "after": "Horn Leech is a 75-power physical Grass contact move with 100% accuracy and 10 PP. It restores half the damage dealt, rounded up, and receives Triage priority. Phantump and Trevenant learn it at level 28. Its dedicated attack-and-drain animation is ported from Polished Coral.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/moves/moves.asm",
+        "data/moves/animations6.asm",
+        "data/moves/contact_moves.asm",
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": [
+        {
+          "href": "moves/horn-leech.html",
+          "label": "Horn Leech and learners"
         }
       ]
     }

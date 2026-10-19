@@ -484,6 +484,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_DISCHARGE_DIAGONAL_REVERSE
 	const ANIM_OBJ_LAVA_PLUME_SMOKE
 	const ANIM_OBJ_LAVA_PLUME_EMBER
+	const ANIM_OBJ_HORN_LEECH
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
 	const BATTLEANIMFUNC_00
@@ -1497,6 +1498,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_LAVA_ROCKS
 	const ANIM_GFX_SMALL_EXPLOSION
 	const ANIM_GFX_RECYCLE
+	const ANIM_GFX_HORN_LEECH
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

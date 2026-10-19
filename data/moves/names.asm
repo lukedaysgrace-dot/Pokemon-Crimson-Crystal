@@ -438,3 +438,4 @@ MoveNames::
 	db "SKY UPPERCUT@"
 	db "POISON TAIL@"
 	db "OMINOUS WIND@"
+	db "HORN LEECH@"

@@ -496,3 +496,5 @@ PokedexDataPointerTable:
 	dba KrookodilePokedexEntry
 	dba GorochuPokedexEntry
 	dba JirachiPokedexEntry
+	dba PhantumpPokedexEntry
+	dba TrevenantPokedexEntry

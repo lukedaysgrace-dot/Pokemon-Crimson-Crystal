@@ -5266,5 +5266,17 @@
     "accuracy": 100,
     "pp": 5,
     "chance": 10
+  },
+  {
+    "const": "HORN_LEECH",
+    "name": "Horn Leech",
+    "rom_name": "HORN LEECH",
+    "description": "Drains half the damage inflicted.",
+    "power": 75,
+    "type": "Grass",
+    "category": "Physical",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 0
   }
 ]

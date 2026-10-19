@@ -1323,6 +1323,37 @@
       },
       "SEVIPER": {
         "POISON_TAIL": 22
+      },
+      "PHANTUMP": {
+        "ASTONISH": 1,
+        "TACKLE": 1,
+        "LEECH_SEED": 8,
+        "CONFUSE_RAY": 12,
+        "WILL_O_WISP": 16,
+        "FAINT_ATTACK": 19,
+        "HEX": 20,
+        "GROWTH": 24,
+        "HORN_LEECH": 28,
+        "CURSE": 32,
+        "PHANTOMFORCE": 36,
+        "WOOD_HAMMER": 44,
+        "DESTINY_BOND": 48
+      },
+      "TREVENANT": {
+        "ASTONISH": 1,
+        "LEECH_SEED": 1,
+        "SHADOW_CLAW": 1,
+        "TACKLE": 1,
+        "CONFUSE_RAY": 12,
+        "WILL_O_WISP": 16,
+        "FAINT_ATTACK": 19,
+        "HEX": 20,
+        "GROWTH": 24,
+        "HORN_LEECH": 28,
+        "CURSE": 32,
+        "PHANTOMFORCE": 36,
+        "WOOD_HAMMER": 44,
+        "DESTINY_BOND": 48
       }
     },
     "egg_moves": {
@@ -2725,6 +2756,10 @@
       ],
       "VOLTORB_HISUIAN": [
         "RECYCLE"
+      ],
+      "PHANTUMP": [
+        "DISABLE",
+        "SUCKER_PUNCH"
       ]
     },
     "tmhm": {
@@ -4929,6 +4964,57 @@
         "ZEN_HEADBUTT",
         "FLASH",
         "THUNDERBOLT"
+      ],
+      "PHANTUMP": [
+        "ATTRACT",
+        "CURSE",
+        "CUT",
+        "DIG",
+        "ENERGY_BALL",
+        "FACADE",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "PSYCHIC_M",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "SHADOW_BALL",
+        "SOLARBEAM",
+        "STRENGTH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "THIEF",
+        "TOXIC",
+        "WILL_O_WISP"
+      ],
+      "TREVENANT": [
+        "ATTRACT",
+        "CURSE",
+        "CUT",
+        "DIG",
+        "DRAIN_PUNCH",
+        "EARTHQUAKE",
+        "ENERGY_BALL",
+        "FACADE",
+        "HIDDEN_POWER",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "KNOCK_OFF",
+        "PROTECT",
+        "PSYCHIC_M",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "SHADOW_BALL",
+        "SOLARBEAM",
+        "STRENGTH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "THIEF",
+        "TOXIC",
+        "WILL_O_WISP"
       ]
     },
     "technical_tutor": {
@@ -15163,6 +15249,61 @@
         "TRICK_ROOM",
         "U_TURN",
         "WATER_PULSE"
+      ],
+      "PHANTUMP": [
+        "BULLDOZE",
+        "DARK_PULSE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "ENDURE",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "POISON_JAB",
+        "PSYCH_UP",
+        "ROCK_SLIDE",
+        "SAFEGUARD",
+        "SEED_BOMB",
+        "SHADOW_CLAW",
+        "SKILL_SWAP",
+        "SNORE",
+        "SPITE",
+        "TRICK",
+        "TRICK_ROOM"
+      ],
+      "TREVENANT": [
+        "BULLDOZE",
+        "CALM_MIND",
+        "DARK_PULSE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "ENDURE",
+        "FOCUS_BLAST",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "HAZE",
+        "LEAF_STORM",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "POISON_JAB",
+        "PSYCH_UP",
+        "ROCK_SLIDE",
+        "SAFEGUARD",
+        "SCARY_FACE",
+        "SEED_BOMB",
+        "SKILL_SWAP",
+        "SNORE",
+        "SPITE",
+        "TAKE_DOWN",
+        "TRICK",
+        "TRICK_ROOM",
+        "X_SCISSOR"
       ]
     },
     "donor_fallbacks": {
@@ -73613,6 +73754,696 @@
       "DISCHARGE": [
         "Crimson Crystal:GOROCHU:User-approved custom placement"
       ]
+    },
+    "PHANTUMP": {
+      "ASTONISH": [
+        "phantump:9L1",
+        "phantump:8L1",
+        "phantump:7L5",
+        "phantump:6L5"
+      ],
+      "ATTRACT": [
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "BULLDOZE": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "CONFUSE_RAY": [
+        "phantump:9M",
+        "phantump:9L12",
+        "phantump:8L12",
+        "phantump:7L1",
+        "phantump:6L1"
+      ],
+      "CURSE": [
+        "phantump:9M",
+        "phantump:9L32",
+        "phantump:8L32",
+        "phantump:7L28",
+        "phantump:6L28"
+      ],
+      "CUT": [
+        "phantump:6M"
+      ],
+      "DARK_PULSE": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "DESTINY_BOND": [
+        "phantump:9L48",
+        "phantump:8L48",
+        "phantump:7L39",
+        "phantump:6L39"
+      ],
+      "DIG": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:6M"
+      ],
+      "DISABLE": [
+        "phantump:9E",
+        "phantump:8E"
+      ],
+      "DOUBLE_TEAM": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "DREAM_EATER": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "ENDURE": [
+        "phantump:9M",
+        "phantump:8M"
+      ],
+      "ENERGY_BALL": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "FACADE": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "FAINT_ATTACK": [
+        "phantump:7L19",
+        "phantump:6L19"
+      ],
+      "FOUL_PLAY": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "FRUSTRATION": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "GIGA_DRAIN": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "GROWTH": [
+        "phantump:9L24",
+        "phantump:8L24",
+        "phantump:7L8",
+        "phantump:6L8"
+      ],
+      "HEX": [
+        "phantump:9M",
+        "phantump:9L20",
+        "phantump:8M",
+        "phantump:8L20"
+      ],
+      "HIDDEN_POWER": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "HORN_LEECH": [
+        "phantump:9L28",
+        "phantump:8L28",
+        "phantump:7L54",
+        "phantump:6L54"
+      ],
+      "LEECH_SEED": [
+        "phantump:9L8",
+        "phantump:8L8",
+        "phantump:7L23",
+        "phantump:6L23"
+      ],
+      "MAGICAL_LEAF": [
+        "phantump:9M",
+        "phantump:8M"
+      ],
+      "NIGHT_SHADE": [
+        "phantump:9M"
+      ],
+      "PAIN_SPLIT": [
+        "phantump:9M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "PHANTOMFORCE": [
+        "phantump:9M",
+        "phantump:9L36",
+        "phantump:8M",
+        "phantump:8L36",
+        "phantump:7L45",
+        "phantump:6L45"
+      ],
+      "POISON_JAB": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "PROTECT": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "PSYCHIC_M": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "PSYCH_UP": [
+        "phantump:9M"
+      ],
+      "RAIN_DANCE": [
+        "phantump:9M"
+      ],
+      "REFLECT": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "REST": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "RETURN": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "ROCK_SLIDE": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "ROCK_SMASH": [
+        "phantump:6M"
+      ],
+      "SAFEGUARD": [
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SEED_BOMB": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "SHADOW_BALL": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SHADOW_CLAW": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SKILL_SWAP": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "SLEEP_TALK": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SNORE": [
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "SOLARBEAM": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SPITE": [
+        "phantump:9M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "STRENGTH": [
+        "phantump:6M"
+      ],
+      "SUBSTITUTE": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SUCKER_PUNCH": [
+        "phantump:9E",
+        "phantump:8E"
+      ],
+      "SUNNY_DAY": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "SWAGGER": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "TACKLE": [
+        "phantump:9L1",
+        "phantump:8L1",
+        "phantump:7L1",
+        "phantump:6L1"
+      ],
+      "THIEF": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "TOXIC": [
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "TRICK": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7T",
+        "phantump:6T"
+      ],
+      "TRICK_ROOM": [
+        "phantump:9M",
+        "phantump:8M",
+        "phantump:7M",
+        "phantump:6M"
+      ],
+      "WILL_O_WISP": [
+        "phantump:9M",
+        "phantump:9L16",
+        "phantump:8M",
+        "phantump:8L16",
+        "phantump:7M",
+        "phantump:7L31",
+        "phantump:6M",
+        "phantump:6L31"
+      ],
+      "WOOD_HAMMER": [
+        "phantump:9L44",
+        "phantump:8L44",
+        "phantump:7L49",
+        "phantump:6L49"
+      ]
+    },
+    "TREVENANT": {
+      "ASTONISH": [
+        "trevenant:9L1",
+        "trevenant:8L1",
+        "trevenant:7L1",
+        "trevenant:6L5"
+      ],
+      "ATTRACT": [
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "BULLDOZE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "CALM_MIND": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "CONFUSE_RAY": [
+        "trevenant:9M",
+        "trevenant:9L12",
+        "trevenant:8L12",
+        "trevenant:7L1",
+        "trevenant:6L1"
+      ],
+      "CURSE": [
+        "trevenant:9M",
+        "trevenant:9L32",
+        "trevenant:8L32",
+        "trevenant:7L28",
+        "trevenant:6L28"
+      ],
+      "CUT": [
+        "trevenant:6M"
+      ],
+      "DARK_PULSE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "DESTINY_BOND": [
+        "trevenant:9L48",
+        "trevenant:8L48",
+        "trevenant:7L39",
+        "trevenant:6L39"
+      ],
+      "DIG": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:6M"
+      ],
+      "DOUBLE_TEAM": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "DRAIN_PUNCH": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "DREAM_EATER": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "EARTHQUAKE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "ENDURE": [
+        "trevenant:9M",
+        "trevenant:8M"
+      ],
+      "ENERGY_BALL": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "FACADE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "FAINT_ATTACK": [
+        "trevenant:7L19",
+        "trevenant:6L19"
+      ],
+      "FOCUS_BLAST": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "FOUL_PLAY": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "FRUSTRATION": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "GIGA_DRAIN": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "GIGA_IMPACT": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "GROWTH": [
+        "trevenant:9L24",
+        "trevenant:8L24",
+        "trevenant:7L1",
+        "trevenant:6L8"
+      ],
+      "HAZE": [
+        "trevenant:9M"
+      ],
+      "HEX": [
+        "trevenant:9M",
+        "trevenant:9L20",
+        "trevenant:8M",
+        "trevenant:8L20"
+      ],
+      "HIDDEN_POWER": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "HONE_CLAWS": [
+        "trevenant:6M"
+      ],
+      "HORN_LEECH": [
+        "trevenant:9L28",
+        "trevenant:8L28",
+        "trevenant:7L1",
+        "trevenant:6L1"
+      ],
+      "HYPER_BEAM": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "KNOCK_OFF": [
+        "trevenant:9M"
+      ],
+      "LEAF_STORM": [
+        "trevenant:9M",
+        "trevenant:8M"
+      ],
+      "LEECH_SEED": [
+        "trevenant:9L1",
+        "trevenant:8L1",
+        "trevenant:7L23",
+        "trevenant:6L23"
+      ],
+      "MAGICAL_LEAF": [
+        "trevenant:9M",
+        "trevenant:8M"
+      ],
+      "NIGHT_SHADE": [
+        "trevenant:9M"
+      ],
+      "PAIN_SPLIT": [
+        "trevenant:9M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "PHANTOMFORCE": [
+        "trevenant:9M",
+        "trevenant:9L36",
+        "trevenant:8M",
+        "trevenant:8L36",
+        "trevenant:7L45",
+        "trevenant:6L45"
+      ],
+      "POISON_JAB": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "PROTECT": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "PSYCHIC_M": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "PSYCH_UP": [
+        "trevenant:9M"
+      ],
+      "RAIN_DANCE": [
+        "trevenant:9M"
+      ],
+      "REFLECT": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "REST": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "RETURN": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "ROCK_SLIDE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "ROCK_SMASH": [
+        "trevenant:6M"
+      ],
+      "SAFEGUARD": [
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SCARY_FACE": [
+        "trevenant:9M"
+      ],
+      "SEED_BOMB": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "SHADOW_BALL": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SHADOW_CLAW": [
+        "trevenant:9M",
+        "trevenant:9L0",
+        "trevenant:8M",
+        "trevenant:8L0",
+        "trevenant:7M",
+        "trevenant:7L1",
+        "trevenant:6M",
+        "trevenant:6L55"
+      ],
+      "SKILL_SWAP": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "SLEEP_TALK": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SNORE": [
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "SOLARBEAM": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SPITE": [
+        "trevenant:9M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "STRENGTH": [
+        "trevenant:6M"
+      ],
+      "SUBSTITUTE": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SUNNY_DAY": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "SWAGGER": [
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "TACKLE": [
+        "trevenant:9L1",
+        "trevenant:8L1",
+        "trevenant:7L1",
+        "trevenant:6L1"
+      ],
+      "TAKE_DOWN": [
+        "trevenant:9M"
+      ],
+      "THIEF": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "TOXIC": [
+        "trevenant:9M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "TRICK": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7T",
+        "trevenant:6T"
+      ],
+      "TRICK_ROOM": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ],
+      "WILL_O_WISP": [
+        "trevenant:9M",
+        "trevenant:9L16",
+        "trevenant:8M",
+        "trevenant:8L16",
+        "trevenant:7M",
+        "trevenant:7L31",
+        "trevenant:6M",
+        "trevenant:6L31"
+      ],
+      "WOOD_HAMMER": [
+        "trevenant:9L44",
+        "trevenant:8L44",
+        "trevenant:7L49",
+        "trevenant:6L49"
+      ],
+      "X_SCISSOR": [
+        "trevenant:9M",
+        "trevenant:8M",
+        "trevenant:7M",
+        "trevenant:6M"
+      ]
     }
   },
   "expected": {
@@ -108170,6 +109001,141 @@
     ],
     "GOROCHU": [
       "DISCHARGE"
+    ],
+    "PHANTUMP": [
+      "ASTONISH",
+      "ATTRACT",
+      "BULLDOZE",
+      "CONFUSE_RAY",
+      "CURSE",
+      "CUT",
+      "DARK_PULSE",
+      "DESTINY_BOND",
+      "DIG",
+      "DISABLE",
+      "DOUBLE_TEAM",
+      "DREAM_EATER",
+      "ENDURE",
+      "ENERGY_BALL",
+      "FACADE",
+      "FAINT_ATTACK",
+      "FOUL_PLAY",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
+      "GROWTH",
+      "HEX",
+      "HIDDEN_POWER",
+      "HORN_LEECH",
+      "LEECH_SEED",
+      "MAGICAL_LEAF",
+      "NIGHT_SHADE",
+      "PAIN_SPLIT",
+      "PHANTOMFORCE",
+      "POISON_JAB",
+      "PROTECT",
+      "PSYCHIC_M",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "SAFEGUARD",
+      "SEED_BOMB",
+      "SHADOW_BALL",
+      "SHADOW_CLAW",
+      "SKILL_SWAP",
+      "SLEEP_TALK",
+      "SNORE",
+      "SOLARBEAM",
+      "SPITE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUCKER_PUNCH",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "TACKLE",
+      "THIEF",
+      "TOXIC",
+      "TRICK",
+      "TRICK_ROOM",
+      "WILL_O_WISP",
+      "WOOD_HAMMER"
+    ],
+    "TREVENANT": [
+      "ASTONISH",
+      "ATTRACT",
+      "BULLDOZE",
+      "CALM_MIND",
+      "CONFUSE_RAY",
+      "CURSE",
+      "CUT",
+      "DARK_PULSE",
+      "DESTINY_BOND",
+      "DIG",
+      "DISABLE",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "DREAM_EATER",
+      "EARTHQUAKE",
+      "ENDURE",
+      "ENERGY_BALL",
+      "FACADE",
+      "FAINT_ATTACK",
+      "FOCUS_BLAST",
+      "FOUL_PLAY",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
+      "GIGA_IMPACT",
+      "GROWTH",
+      "HAZE",
+      "HEX",
+      "HIDDEN_POWER",
+      "HONE_CLAWS",
+      "HORN_LEECH",
+      "HYPER_BEAM",
+      "KNOCK_OFF",
+      "LEAF_STORM",
+      "LEECH_SEED",
+      "MAGICAL_LEAF",
+      "NIGHT_SHADE",
+      "PAIN_SPLIT",
+      "PHANTOMFORCE",
+      "POISON_JAB",
+      "PROTECT",
+      "PSYCHIC_M",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "SAFEGUARD",
+      "SCARY_FACE",
+      "SEED_BOMB",
+      "SHADOW_BALL",
+      "SHADOW_CLAW",
+      "SKILL_SWAP",
+      "SLEEP_TALK",
+      "SNORE",
+      "SOLARBEAM",
+      "SPITE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUCKER_PUNCH",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "TACKLE",
+      "TAKE_DOWN",
+      "THIEF",
+      "TOXIC",
+      "TRICK",
+      "TRICK_ROOM",
+      "WILL_O_WISP",
+      "WOOD_HAMMER",
+      "X_SCISSOR"
     ]
   },
   "unimplemented_moves": {
@@ -119397,6 +120363,62 @@
       "Telekinesis",
       "Tera Blast",
       "Uproar"
+    ],
+    "PHANTUMP": [
+      "allyswitch",
+      "bestow",
+      "branchpoke",
+      "confide",
+      "forestscurse",
+      "grassknot",
+      "grassyglide",
+      "grassyterrain",
+      "grudge",
+      "imprison",
+      "ingrain",
+      "lashout",
+      "magiccoat",
+      "naturepower",
+      "poltergeist",
+      "poweruppunch",
+      "roleplay",
+      "round",
+      "secretpower",
+      "skittersmack",
+      "telekinesis",
+      "terablast",
+      "trailblaze",
+      "venomdrench",
+      "worryseed"
+    ],
+    "TREVENANT": [
+      "allyswitch",
+      "block",
+      "branchpoke",
+      "brutalswing",
+      "burningjealousy",
+      "confide",
+      "forestscurse",
+      "grassknot",
+      "grassyglide",
+      "grassyterrain",
+      "imprison",
+      "ingrain",
+      "lashout",
+      "magiccoat",
+      "naturepower",
+      "poltergeist",
+      "poweruppunch",
+      "psychicnoise",
+      "roleplay",
+      "round",
+      "secretpower",
+      "skittersmack",
+      "telekinesis",
+      "terablast",
+      "trailblaze",
+      "venomdrench",
+      "worryseed"
     ]
   },
   "bulbapedia_spot_checks": [

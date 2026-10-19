@@ -671,6 +671,7 @@ TryLoadSaveData:
 INCLUDE "data/default_options.asm"
 
 CheckPrimarySaveFile:
+	call UpgradePokedexSave
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2), BANK(sSaveVersion)
 	call GetSRAMBank
 	ld a, [sSaveVersion]
@@ -695,6 +696,7 @@ CheckPrimarySaveFile:
 	ret
 
 CheckBackupSaveFile:
+	call UpgradePokedexSave
 	ld a, BANK(sSaveVersion)
 	call GetSRAMBank
 	ld a, [sSaveVersion]
@@ -930,6 +932,8 @@ _LoadData:
 	ld [hli], a
 
 	jp CloseSRAM
+
+INCLUDE "engine/menus/pokedex_save_upgrade.asm"
 
 Checksum:
 	ld de, 0

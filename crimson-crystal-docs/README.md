@@ -50,7 +50,8 @@ Because your project has substantial custom engine work, the parser is intention
 
 ## Pokédex ordering and forms
 
-- The Pokédex follows the first Pokémon constant block in `constants/pokemon_constants.asm` exactly.
+- Regional Pokédex numbers follow `data/pokemon/dex_order_new.asm`; internal species indexes remain tied to `constants/pokemon_constants.asm`.
+- Phantump and Trevenant are regional #287 and #288, before the Duskull family. Their pages include supported level-up, machine, breeding and tutor moves, Phantump's level-32 evolution, abilities and nighttime Route 43 encounters. Horn Leech has its own move page and learner links.
 - `EGG` and the three `?????` engine records are ignored.
 - The nine clone starter constants are omitted from the Pokédex grid and appear through a **Normal / Clone** toggle on the corresponding starter page.
 - Animated or multi-frame PNGs are cropped to the first complete static front frame.

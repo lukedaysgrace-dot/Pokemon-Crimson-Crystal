@@ -495,3 +495,5 @@ BitmasksPointers:
 	dw KrookodileBitmasks
 	dw GorochuBitmasks
 	dw JirachiBitmasks
+	dw PhantumpBitmasks
+	dw TrevenantBitmasks

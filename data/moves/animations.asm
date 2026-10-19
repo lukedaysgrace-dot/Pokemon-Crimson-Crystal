@@ -478,6 +478,7 @@ BattleAnimations::
 	banim BattleAnim_SkyUppercut_Oct19 ; SKY_UPPERCUT
 	banim BattleAnim_PoisonTail_Oct19 ; POISON_TAIL
 	banim BattleAnim_OminousWind_Oct19 ; OMINOUS_WIND
+	banim BattleAnim_HornLeech_PC ; HORN_LEECH
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
