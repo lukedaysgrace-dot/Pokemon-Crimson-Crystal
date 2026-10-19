@@ -33,6 +33,7 @@ def _representatives():
 USER_STAGES = {
     "EFFECT_ATTACK_UP": (0, 8), "EFFECT_ATTACK_UP_2": (0, 9),
     "EFFECT_DEFENSE_UP": (1, 8), "EFFECT_DEFENSE_UP_2": (1, 9),
+    "EFFECT_DEFENSE_UP_3": (1, 10), "EFFECT_SP_ATK_UP_3": (3, 10),
     "EFFECT_SPEED_UP_2": (2, 9),
     "EFFECT_SP_ATK_UP": (3, 8), "EFFECT_SP_ATK_UP_2": (3, 9),
     "EFFECT_SP_DEF_UP_2": (4, 9), "EFFECT_EVASION_UP": (6, 8),
@@ -50,6 +51,7 @@ TARGET_STAGES = {
     "EFFECT_SP_DEF_DOWN_2_HIT": (4, 5),
 }
 USER_MULTI = {
+    "EFFECT_COSMIC_POWER": {1: 8, 4: 8},
     "EFFECT_BULK_UP": {0: 8, 1: 8},
     "EFFECT_CALM_MIND": {3: 8, 4: 8},
     "EFFECT_DRAGON_DANCE": {0: 8, 2: 8},
@@ -156,6 +158,13 @@ def _configure(effect, move, power):
 
     if effect in {"EFFECT_ACCURACY_DOWN_HIT", "EFFECT_EARTHQUAKE", "EFFECT_HEADLONG_RUSH", "EFFECT_MAGNITUDE"}:
         test["enemy"]["species"] = "SNORLAX"
+    if effect == "EFFECT_RECYCLE":
+        test["player"]["level"] = 5
+        test["player"]["hp"] = 1
+        test["player"]["item"] = "GOLD_BERRY"
+        test["turns"] = 2
+        # The berry is consumed during entry, before the harness snapshot.
+        assertions = ["player.item == 'GOLD_BERRY'", "player.hp == player.maxhp"]
     if effect == "EFFECT_ATTRACT":
         test["player"]["species"] = "NIDOKING"
         test["enemy"]["species"] = "NIDOQUEEN"

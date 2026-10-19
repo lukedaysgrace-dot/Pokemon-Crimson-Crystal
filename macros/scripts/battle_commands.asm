@@ -219,6 +219,10 @@ ENDM
 	command suckerpunchcheck        ; d4
 	command swaggerboost            ; d5
 
+	command threestageboost          ; d6
+	command hpscaledpower            ; d7
+	command recycle                  ; d8
+
 	enum_start $fe
 	command endturn                 ; fe
 	command endmove                 ; ff

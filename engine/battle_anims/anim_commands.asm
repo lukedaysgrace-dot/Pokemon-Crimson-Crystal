@@ -284,7 +284,7 @@ ClearActorHud:
 	jr z, .player
 
 	hlcoord 1, 0
-	lb bc, 4, 10
+	lb bc, 4, 11 ; match DrawEnemyHUD, including the right border
 	call ClearBox
 	ret
 
@@ -459,24 +459,20 @@ BattleAnimCmd_EB:
 	ret
 
 BattleAnimCmd_ClearOpponentHUD:
-; Clear the opposing battler's HUD (ported from polishedcrystal).
+; Use this fork's complete HUD rectangles, matching ClearActorHud and the
+; battle HUD draw routines. Vanilla coordinates leave HP/border fragments
+; visible when Cosmic Power darkens the background and hides the target.
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .clear_enemy_hud
 ; clear player hud
-	hlcoord 11, 7
-	lb bc, 5, 9
-	call ClearBox
-	ld a, " "
-	hlcoord 10, 7
-	ld [hl], a
-	hlcoord 10, 11
-	ld [hl], a
-	ret
+	hlcoord 9, 7
+	lb bc, 5, 11
+	jp ClearBox
 
 .clear_enemy_hud
-	hlcoord 0, 0
-	lb bc, 3, 11
+	hlcoord 1, 0
+	lb bc, 4, 11
 	jp ClearBox
 
 BattleAnimCmd_SetBgPal:

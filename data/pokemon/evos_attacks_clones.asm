@@ -51,6 +51,7 @@ VenusaurCloneEvosAttacks:
 	dbw 1, GROWL
 	dbw 1, POWER_WHIP
 	dbw 1, TACKLE
+	dbw 1, PETAL_BLIZZARD
 	dbw 5, VINE_WHIP
 	dbw 8, LEECH_SEED
 	dbw 11, RAZOR_LEAF
@@ -180,6 +181,7 @@ SquirtleCloneEvosAttacks:
 	dbw 41, HYDRO_PUMP
 	dbw 42, SCALD
 	dbw 44, LIQUIDATION
+	dbw 44, WATER_SPOUT
 	db 0 ; no more level-up moves
 
 WartortleCloneEvosAttacks:
@@ -202,6 +204,7 @@ WartortleCloneEvosAttacks:
 	dbw 46, RAIN_DANCE
 	dbw 48, LIQUIDATION
 	dbw 50, HYDRO_PUMP
+	dbw 54, WATER_SPOUT
 	db 0 ; no more level-up moves
 
 BlastoiseCloneEvosAttacks:
@@ -229,4 +232,5 @@ BlastoiseCloneEvosAttacks:
 	dbw 49, RAIN_DANCE
 	dbw 50, IRON_TAIL
 	dbw 54, HYDRO_PUMP
+	dbw 59, WATER_SPOUT
 	db 0 ; no more level-up moves

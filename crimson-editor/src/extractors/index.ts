@@ -279,7 +279,9 @@ const moves = rows('data/moves/moves.asm', 'move').map((r, i) => {
       ),
     ),
   );
-  return { ...moveConsts[i], effect, power, type, category, accuracy, pp, effectChance };
+  const displayNames: Record<string, string> = { DRAGON_HAMMER: 'DRAGON HAMMER', PETAL_BLIZZARD: 'PETAL BLIZZARD' };
+  const displayName = displayNames[moveConsts[i].const];
+  return { ...moveConsts[i], ...(displayName ? { name: displayName } : {}), effect, power, type, category, accuracy, pp, effectChance };
 });
 const itemNames = names('data/items/names.asm'),
   attributes = rows('data/items/attributes.asm', 'item_attribute');

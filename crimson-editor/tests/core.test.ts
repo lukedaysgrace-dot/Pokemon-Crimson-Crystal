@@ -124,6 +124,35 @@ describe('mechanics and byte codecs', () => {
   });
 });
 describe('save read/write transactions', () => {
+  it('round trips Jirachi and every October move in party and boxed records', () => {
+    const jirachi = game.species.find((s) => s.const === 'JIRACHI')!;
+    expect(jirachi.index).toBe(496);
+    const additions = game.moves.filter((m) => m.index > 421);
+    expect(additions).toHaveLength(18);
+    expect(game.moves.find((m) => m.const === 'DOOM_DESIRE')).toMatchObject({ power: 160, accuracy: 100 });
+    for (let i = 0; i < additions.length; i += 4) {
+      const model = parse(fixture(), game);
+      const moves = additions.slice(i, i + 4).map((m) => m.index);
+      while (moves.length < 4) moves.push(0);
+      const mon = model.party[0];
+      mon.species = jirachi.index;
+      mon.moves = moves;
+      mon.ups = [0, 1, 2, 3];
+      mon.pp = moves.map((id, slot) => id ? maxPP(game.moves[id - 1].pp, mon.ups[slot]) : 0);
+      const boxed = template(game, model.player, true, 0);
+      boxed.species = jirachi.index;
+      boxed.moves = [...moves];
+      boxed.ups = [...mon.ups];
+      model.boxes[24].slots[19] = boxed;
+      const reread = parse(write(model), game);
+      expect(errors(reread)).toEqual([]);
+      expect(reread.party[0].species).toBe(jirachi.index);
+      expect(reread.party[0].moves).toEqual(moves);
+      expect(reread.party[0].pp).toEqual(mon.pp);
+      expect(reread.boxes[24].slots[19]?.species).toBe(jirachi.index);
+      expect(reread.boxes[24].slots[19]?.moves).toEqual(moves);
+    }
+  });
   it('rejects truncated saves and preserves supported trailers', () => {
     expect(() => container(new Uint8Array(32768))).toThrow('MBC30');
     expect(() => container(new Uint8Array(65534))).toThrow();
@@ -259,9 +288,11 @@ describe('historical fixtures (when present locally)', () => {
   it('keeps distinct layout hashes without relying on the version byte', () => {
     if (!existsSync(profilePath)) return;
     const old = JSON.parse(readFileSync(profilePath, 'utf8'));
+    const previous = JSON.parse(readFileSync(new URL('../static/gamedata/06c4a7bb.json', import.meta.url), 'utf8'));
     expect(old.layout.constants.SAVE_FORMAT_VERSION).toBe(
-      game.layout.constants.SAVE_FORMAT_VERSION,
+      previous.layout.constants.SAVE_FORMAT_VERSION,
     );
+    expect(old.layout.layoutHash).not.toBe(previous.layout.layoutHash);
     expect(old.layout.layoutHash).not.toBe(game.layout.layoutHash);
   });
   for (const name of [
@@ -319,6 +350,26 @@ describe('developer tools', () => {
     expect(reread.boxes[0].slots[0]?.species).toBe(1);
     expect(errors(reread)).toEqual([]);
     expect(result.report).toHaveLength(2);
+  });
+  it('detects the retained Jirachi format-2 layout and migrates it into format 3', () => {
+    const old = JSON.parse(readFileSync(new URL('../static/gamedata/c1a7287b-v2.json', import.meta.url), 'utf8'));
+    const bytes = fixture(old);
+    expect(old.layout.constants.SAVE_FORMAT_VERSION).toBe(2);
+    expect(game.layout.constants.SAVE_FORMAT_VERSION).toBe(3);
+    expect(detect(bytes, [game, old])).toBe(old);
+    const source = parse(bytes, old);
+    source.party[0].species = old.species.find((s: { const: string }) => s.const === 'JIRACHI').index;
+    source.party[0].moves = ['DOOM_DESIRE', 'METEOR_MASH', 'PSYSHOCK', 'RECYCLE'].map(
+      (constant) => old.moves.find((m: { const: string }) => m.const === constant).index,
+    );
+    source.party[0].ups = [0, 0, 0, 0];
+    source.party[0].pp = source.party[0].moves.map((id) => old.moves[id - 1].pp);
+    const result = migrate(source, parse(emptySave(), game));
+    const reread = parse(result.bytes, game);
+    expect(errors(reread)).toEqual([]);
+    expect(reread.party[0].species).toBe(496);
+    expect(reread.party[0].moves).toEqual(source.party[0].moves);
+    expect(result.bytes[game.layout.sram.sSaveVersion]).toBe(3);
   });
   it('saves an event flag and preserves unrelated bits', () => {
     const m = parse(fixture(), game),

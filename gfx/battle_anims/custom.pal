@@ -272,3 +272,38 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 	RGB 31, 30, 23
 	RGB 13, 27, 31
 	RGB 28, 05, 13
+; PAL_BTLCUSTOM_COTTON_GUARD (polishedcoral)
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 27, 30, 31
+	RGB 21, 27, 27
+
+; PAL_BTLCUSTOM_LAVA_ROCKS (mae-pokeorange)
+	RGB 31, 31, 31
+	RGB 31, 13, 01
+	RGB 06, 05, 07
+	RGB 00, 00, 00
+
+; PAL_BTLCUSTOM_RECYCLE (mae-pokeorange)
+	RGB 31, 31, 31
+	RGB 08, 09, 28
+	RGB 29, 03, 04
+	RGB 00, 00, 00
+
+; discharge orb (user-supplied GBC reference: black / cyan)
+	RGB 31, 31, 31
+	RGB 13, 13, 13
+	RGB 10, 21, 29
+	RGB 00, 00, 00
+
+; Vacuum Wave fist/rings/impact (gray levels measured from the supplied clip)
+	RGB 31, 31, 31
+	RGB 28, 28, 28
+	RGB 10, 10, 10
+	RGB 00, 00, 00
+
+; Lava Plume's black stippled smoke (the checker gaps remain transparent).
+	RGB 31, 31, 31
+	RGB 28, 28, 28
+	RGB 00, 00, 00
+	RGB 00, 00, 00

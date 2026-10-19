@@ -460,6 +460,24 @@ BattleAnimations::
 	banim BattleAnim_StickyWeb ; STICKY_WEB
 	banim BattleAnim_WeatherBall_PO ; WEATHER_BALL (ported from mae-pokeorange)
 	banim BattleAnim_Incinerate_PC3 ; INCINERATE
+	banim BattleAnim_Psyshock_Oct19 ; PSYSHOCK
+	banim BattleAnim_VacuumWave_Oct19 ; VACUUM_WAVE
+	banim BattleAnim_Discharge_Oct19 ; DISCHARGE
+	banim BattleAnim_LavaPlume_Oct19 ; LAVA_PLUME
+	banim BattleAnim_MeteorMash_Oct19 ; METEOR_MASH
+	banim BattleAnim_DragonHammer_Oct19 ; DRAGON_HAMMER
+	banim BattleAnim_CottonGuard_Oct19 ; COTTON_GUARD
+	banim BattleAnim_CosmicPower_Oct19 ; COSMIC_POWER
+	banim BattleAnim_Eruption_Oct19 ; ERUPTION
+	banim BattleAnim_WaterSpout_Oct19 ; WATER_SPOUT
+	banim BattleAnim_DoomDesire_Oct19 ; DOOM_DESIRE
+	banim BattleAnim_TailGlow_Oct19 ; TAIL_GLOW
+	banim BattleAnim_Recycle_Oct19 ; RECYCLE
+	banim BattleAnim_PetalBlizzard_Oct19 ; PETAL_BLIZZARD
+	banim BattleAnim_BlazeKick_Oct19 ; BLAZE_KICK
+	banim BattleAnim_SkyUppercut_Oct19 ; SKY_UPPERCUT
+	banim BattleAnim_PoisonTail_Oct19 ; POISON_TAIL
+	banim BattleAnim_OminousWind_Oct19 ; OMINOUS_WIND
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown

@@ -426,6 +426,24 @@ MoveDescriptions1:
 	dw StickyWebDescription
 	dw WeatherBallDescription
 	dw IncinerateDescription
+	dw PsyshockDescription
+	dw VacuumWaveDescription
+	dw DischargeDescription
+	dw LavaPlumeDescription
+	dw MeteorMashDescription
+	dw DragonHammerDescription
+	dw CottonGuardDescription
+	dw CosmicPowerDescription
+	dw EruptionDescription
+	dw WaterSpoutDescription
+	dw DoomDesireDescription
+	dw TailGlowDescription
+	dw RecycleDescription
+	dw PetalBlizzardDescription
+	dw BlazeKickDescription
+	dw SkyUppercutDescription
+	dw PoisonTailDescription
+	dw OminousWindDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2077,3 +2095,75 @@ WeatherBallDescription:
 IncinerateDescription:
 	db   "Burns the foe and"
 	next "its held BERRY.@"
+
+PsyshockDescription:
+	db   "Special hit uses"
+	next "the foe's DEFENSE.@"
+
+VacuumWaveDescription:
+	db   "Special hit that"
+	next "strikes first.@"
+
+DischargeDescription:
+	db   "Electric blast."
+	next "May paralyze.@"
+
+LavaPlumeDescription:
+	db   "A fiery plume that"
+	next "may burn the foe.@"
+
+MeteorMashDescription:
+	db   "Star punch. May"
+	next "raise own ATTACK.@"
+
+DragonHammerDescription:
+	db   "Swings a mighty"
+	next "draconic hammer.@"
+
+CottonGuardDescription:
+	db   "Raises the user's"
+	next "DEFENSE by 3.@"
+
+CosmicPowerDescription:
+	db   "Raises DEFENSE"
+	next "and SPCL.DEF.@"
+
+EruptionDescription:
+	db   "More HP makes"
+	next "a stronger blast.@"
+
+WaterSpoutDescription:
+	db   "More HP makes"
+	next "a stronger spout.@"
+
+DoomDesireDescription:
+	db   "Steel blast. Can't"
+	next "repeat next turn.@"
+
+TailGlowDescription:
+	db   "Raises the user's"
+	next "SPCL.ATK by 3.@"
+
+RecycleDescription:
+	db   "Restores user's"
+	next "consumed item.@"
+
+PetalBlizzardDescription:
+	db   "A physical storm"
+	next "of sharp petals.@"
+
+BlazeKickDescription:
+	db   "Fiery kick with a"
+	next "high crit odds.@"
+
+SkyUppercutDescription:
+	db   "An uppercut that"
+	next "hits flying foes.@"
+
+PoisonTailDescription:
+	db   "High crit odds."
+	next "May also poison.@"
+
+OminousWindDescription:
+	db   "Ghostly wind. May"
+	next "raise all stats.@"

@@ -226,3 +226,8 @@ MoveEffectsPointers:
 	dw Incinerate ; EFFECT_INCINERATE
 	dw DefSpDefDownHit ; EFFECT_DEF_SPDEF_DOWN_HIT
 	dw StickyWeb ; EFFECT_SPIDER_WEB (shared hazard placement command)
+	dw ThreeStageBoost ; EFFECT_DEFENSE_UP_3
+	dw CosmicPower ; EFFECT_COSMIC_POWER
+	dw HPScaledHit ; EFFECT_HP_SCALED
+	dw ThreeStageBoost ; EFFECT_SP_ATK_UP_3
+	dw Recycle ; EFFECT_RECYCLE

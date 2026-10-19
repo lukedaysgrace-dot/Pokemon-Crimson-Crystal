@@ -427,6 +427,24 @@
 	const STICKY_WEB
 	const WEATHER_BALL
 	const INCINERATE
+	const PSYSHOCK
+	const VACUUM_WAVE
+	const DISCHARGE
+	const LAVA_PLUME
+	const METEOR_MASH
+	const DRAGON_HAMMER
+	const COTTON_GUARD
+	const COSMIC_POWER
+	const ERUPTION
+	const WATER_SPOUT
+	const DOOM_DESIRE
+	const TAIL_GLOW
+	const RECYCLE
+	const PETAL_BLIZZARD
+	const BLAZE_KICK
+	const SKY_UPPERCUT
+	const POISON_TAIL
+	const OMINOUS_WIND
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

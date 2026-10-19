@@ -4398,6 +4398,23 @@ BattleCommand_EvasionUp2:
 	ld b, $10 | EVASION
 	jr BattleCommand_StatUp
 
+BattleCommand_ThreeStageBoost:
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_DEFENSE_UP_3
+	ld b, $20 | DEFENSE
+	jr z, BattleCommand_StatUp
+	ld b, $20 | SP_ATTACK
+	jr BattleCommand_StatUp
+
+BattleCommand_HPScaledPower:
+	callfar BattleHPScaledPower_Core
+	ret
+
+BattleCommand_Recycle:
+	callfar BattleRecycle_Core
+	ret
+
 BattleCommand_StatUp:
 ; statup
 	call RaiseStat
@@ -4466,6 +4483,11 @@ RaiseStatWithoutContrary:
 	and $f0
 	jr z, .got_num_stages
 	inc b
+	ld a, [wLoweredStat]
+	bit 5, a ; $20 encodes a three-stage raise
+	jr z, .cap_stages
+	inc b
+.cap_stages
 	ld a, $d
 	cp b
 	jr nc, .got_num_stages
@@ -4706,8 +4728,14 @@ StatDownSkipProtect::
 	and $f0
 	jr z, .ComputerMiss
 	dec b
+	jr z, .floor_stages
+	ld a, [wLoweredStat]
+	bit 5, a ; Contrary can invert a three-stage self-raise
+	jr z, .ComputerMiss
+	dec b
 	jr nz, .ComputerMiss
-	inc b
+.floor_stages
+	ld b, 1
 
 .ComputerMiss:
 	; Consume the ability/self-drop marker. Move accuracy is the only miss

@@ -122,6 +122,9 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_WeatherBallArc ; 6a
 
 	dw BattleAnimFunction_RadialMoveOut_CP_BG ; appended mae-pokeorange starfield callback
+	dw BattleAnimFunction_CottonGuard
+	dw BattleAnimFunction_RadialMoveOut_VeryFast_NoStop
+	dw BattleAnimFunction_LavaPlumeEmber
 
 BattleAnimFunction_Stat:
 ; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.
@@ -4287,6 +4290,12 @@ BattleAnimFunction_RadialMoveOut_Slow:
 	lb de, 3, 80
 	jp BattleAnimFunc_DoRadialMoveOut
 
+; Smaller embers lag behind the main plume. End at 60 pixels so the
+; twelve-frame emission interval keeps at most two alive at once.
+BattleAnimFunction_LavaPlumeEmber:
+	lb de, 5, 60
+	jp BattleAnimFunc_DoRadialMoveOut
+
 BattleAnimFunction_WeatherBallArc:
 ; Weather Ball was authored against mae-pokeorange's slow radial function,
 ; which travels 120 pixels. Keep that distance local to Weather Ball so the
@@ -4858,6 +4867,51 @@ BattleAnimFunction_RadialMoveOut_Fast:
 	lb de, 20, 160
 	jp BattleAnimFunc_DoRadialMoveOut
 
+; Sky Uppercut's Orange wind columns use a 15-pixel radial step with wrap,
+; rather than the shared fast callback's 10-pixel step and distance cutoff.
+; Keep this separate so other moves retain their original trajectories.
+BattleAnimFunction_RadialMoveOut_VeryFast_NoStop:
+	call BattleAnim_AnonJumptable
+	dw .initialize
+	dw .step
+.initialize
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	xor a
+	ld [hld], a
+	ld [hl], a
+	call BattleAnim_IncAnonJumptableIndex
+.step
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	push hl
+	ld a, [hli]
+	ld e, [hl]
+	ld d, a
+	ld hl, $0f00 ; 15.0 in the donor's Q8 fixed point
+	add hl, de
+	ld a, h
+	ld e, l
+	pop hl
+	ld [hli], a
+	ld [hl], e
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld e, [hl]
+	push de
+	ld a, e
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	ld a, e
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ret
+
 
 BattleAnimFunction_RadialMoveOut_Spore:
 	lb de, 3, 40
@@ -5239,4 +5293,54 @@ BattleAnimFunction_RadialMoveOut_CP_BG:
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
+	ret
+
+; Cotton Guard radial-in shell, adapted from polishedcoral.
+BattleAnimFunction_CottonGuard:
+	call BattleAnim_AnonJumptable
+
+	dw .zero
+	dw .one
+
+.zero
+	call BattleAnim_IncAnonJumptableIndex
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, 40
+	ld [hli], a
+	ld [hl], 0
+.one
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld d, [hl]
+	push af
+	push de
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	pop af
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	ld hl, -$0380
+	add hl, de
+	ret nc
+	ld e, l
+	ld d, h
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, e
+	ld [hld], a
+	ld [hl], d
 	ret

@@ -994,6 +994,11 @@
         "level": 65,
         "const": "EARTH_POWER",
         "move": "Earth Power"
+      },
+      {
+        "level": 70,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
       }
     ],
     "evolutions": [],
@@ -1396,6 +1401,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 23,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 26,
         "const": "SWIFT",
         "move": "Swift"
@@ -1434,6 +1444,11 @@
         "level": 42,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
+      },
+      {
+        "level": 44,
+        "const": "ERUPTION",
+        "move": "Eruption"
       },
       {
         "level": 58,
@@ -1847,6 +1862,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 27,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 31,
         "const": "SWIFT",
         "move": "Swift"
@@ -1890,6 +1910,11 @@
         "level": 51,
         "const": "FLARE_BLITZ",
         "move": "Flare Blitz"
+      },
+      {
+        "level": 55,
+        "const": "ERUPTION",
+        "move": "Eruption"
       },
       {
         "level": 68,
@@ -2359,6 +2384,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 27,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 31,
         "const": "SWIFT",
         "move": "Swift"
@@ -2407,6 +2437,11 @@
         "level": 55,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
+      },
+      {
+        "level": 60,
+        "const": "ERUPTION",
+        "move": "Eruption"
       },
       {
         "level": 62,
@@ -4623,6 +4658,7 @@
       "ENDURE",
       "FRUSTRATION",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "REFLECT",
       "SKY_ATTACK",
@@ -5067,6 +5103,7 @@
       "ENDURE",
       "FRUSTRATION",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "REFLECT",
       "SNORE",
@@ -5460,6 +5497,7 @@
       "FRUSTRATION",
       "GIGA_IMPACT",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "REFLECT",
       "SNORE"
@@ -5848,6 +5886,7 @@
       "FRUSTRATION",
       "HEAT_WAVE",
       "HURRICANE",
+      "OMINOUS_WIND",
       "SNORE",
       "TWISTER",
       "U_TURN"
@@ -6262,6 +6301,7 @@
       "FRUSTRATION",
       "HEAT_WAVE",
       "HURRICANE",
+      "OMINOUS_WIND",
       "SNORE",
       "TWISTER",
       "U_TURN"
@@ -6720,6 +6760,7 @@
       "FRUSTRATION",
       "HEAT_WAVE",
       "HURRICANE",
+      "OMINOUS_WIND",
       "SNORE",
       "STRUGGLE_BUG",
       "TWISTER"
@@ -7143,6 +7184,7 @@
       "FRUSTRATION",
       "HEAT_WAVE",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "SNORE",
       "TWISTER",
@@ -7568,6 +7610,7 @@
       "FRUSTRATION",
       "HEAT_WAVE",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "SNORE",
       "TWISTER"
@@ -8002,8 +8045,10 @@
       "HAZE",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYBEAM",
       "PSYCH_UP",
+      "RECYCLE",
       "SCREECH",
       "SKILL_SWAP",
       "SNORE",
@@ -8465,7 +8510,9 @@
       "HAZE",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
+      "RECYCLE",
       "SCARY_FACE",
       "SCREECH",
       "SNORE",
@@ -8779,6 +8826,11 @@
         "move": "Stealth Rock"
       },
       {
+        "level": 25,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 26,
         "const": "INCINERATE",
         "move": "Incinerate"
@@ -8839,6 +8891,11 @@
         "move": "Heat Wave"
       },
       {
+        "level": 49,
+        "const": "ERUPTION",
+        "move": "Eruption"
+      },
+      {
         "level": 50,
         "const": "EXPLOSION",
         "move": "Explosion"
@@ -8869,7 +8926,8 @@
       "SKULL_BASH",
       "ANCIENTPOWER",
       "EARTHQUAKE",
-      "SUPERPOWER"
+      "SUPERPOWER",
+      "ERUPTION"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -11599,6 +11657,11 @@
         "move": "Signal Beam"
       },
       {
+        "level": 31,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 33,
         "const": "WILD_CHARGE",
         "move": "Wild Charge"
@@ -12223,6 +12286,11 @@
         "level": 40,
         "const": "FOCUS_BLAST",
         "move": "Focus Blast"
+      },
+      {
+        "level": 60,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       }
     ],
     "evolutions": [
@@ -12699,6 +12767,11 @@
         "level": 44,
         "const": "SUCKER_PUNCH",
         "move": "Sucker Punch"
+      },
+      {
+        "level": 44,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 48,
@@ -13642,6 +13715,7 @@
       "MIMIC",
       "MORNING_SUN",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "PSYWAVE",
       "RAGE",
@@ -14488,6 +14562,7 @@
       "IRON_DEFENSE",
       "MEGA_DRAIN",
       "MIMIC",
+      "OMINOUS_WIND",
       "PECK",
       "REFLECT",
       "ROOST",
@@ -15022,6 +15097,11 @@
         "level": 39,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 42,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
       }
     ],
     "evolutions": [
@@ -15106,6 +15186,7 @@
       "INFESTATION",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "ROLLOUT",
       "SNORE",
       "STRING_SHOT",
@@ -15494,6 +15575,11 @@
         "level": 47,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 51,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
       }
     ],
     "evolutions": [],
@@ -15573,6 +15659,7 @@
       "INFESTATION",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "ROLLOUT",
       "SNORE",
       "STRING_SHOT"
@@ -18396,6 +18483,7 @@
       "FRUSTRATION",
       "MEGA_DRAIN",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "SNORE",
@@ -18861,6 +18949,7 @@
       "GIGA_IMPACT",
       "MEGA_DRAIN",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "SNORE",
@@ -19360,6 +19449,7 @@
       "HEX",
       "MEGA_DRAIN",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "SNORE",
@@ -19766,6 +19856,8 @@
       "PLAY_ROUGH",
       "PSYBEAM",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "ROLLOUT",
       "SAFEGUARD",
       "SEISMIC_TOSS",
@@ -20081,6 +20173,11 @@
         "move": "Metronome"
       },
       {
+        "level": 25,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
+      },
+      {
         "level": 29,
         "const": "MOONBLAST",
         "move": "Moonblast"
@@ -20089,6 +20186,11 @@
         "level": 31,
         "const": "MOONLIGHT",
         "move": "Moonlight"
+      },
+      {
+        "level": 35,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
       },
       {
         "level": 36,
@@ -20216,8 +20318,10 @@
       "NIGHT_SHADE",
       "PSYBEAM",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SAFEGUARD",
       "SEISMIC_TOSS",
@@ -20678,9 +20782,19 @@
         "move": "Dazzling Gleam"
       },
       {
+        "level": 44,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
+      },
+      {
         "level": 59,
         "const": "SOFTBOILED",
         "move": "Soft-Boiled"
+      },
+      {
+        "level": 64,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
       }
     ],
     "evolutions": [],
@@ -20786,8 +20900,10 @@
       "NIGHT_SHADE",
       "PSYBEAM",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SAFEGUARD",
       "SEISMIC_TOSS",
@@ -21282,6 +21398,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "RECYCLE",
       "SAFEGUARD",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -21806,8 +21923,10 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -22414,8 +22533,10 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -22982,6 +23103,7 @@
       "MEGA_PUNCH",
       "MIMIC",
       "PLAY_ROUGH",
+      "PSYSHOCK",
       "ROLLOUT",
       "SEISMIC_TOSS",
       "SIGNAL_BEAM",
@@ -23482,7 +23604,9 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "PLAY_ROUGH",
+      "PSYSHOCK",
       "ROLLOUT",
       "SEISMIC_TOSS",
       "SIGNAL_BEAM",
@@ -24017,7 +24141,9 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "PLAY_ROUGH",
+      "PSYSHOCK",
       "ROLLOUT",
       "SEISMIC_TOSS",
       "SIGNAL_BEAM",
@@ -26766,6 +26892,11 @@
         "move": "Poison Jab"
       },
       {
+        "level": 28,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 31,
         "const": "LEECH_LIFE",
         "move": "Leech Life"
@@ -26828,7 +26959,8 @@
       "IRON_TAIL",
       "POISON_FANG",
       "SCARY_FACE",
-      "SUCKER_PUNCH"
+      "SUCKER_PUNCH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -27303,6 +27435,11 @@
         "move": "Poison Jab"
       },
       {
+        "level": 31,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 34,
         "const": "ROCK_SLIDE",
         "move": "Rock Slide"
@@ -27354,7 +27491,8 @@
       "IRON_TAIL",
       "POISON_FANG",
       "SCARY_FACE",
-      "SUCKER_PUNCH"
+      "SUCKER_PUNCH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -27941,6 +28079,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "POISON_JAB",
+      "POISON_TAIL",
       "PSYCH_UP",
       "SCALE_SHOT",
       "SCARY_FACE",
@@ -28498,6 +28637,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "POISON_JAB",
+      "POISON_TAIL",
       "PSYCH_UP",
       "SCARY_FACE",
       "STONE_EDGE",
@@ -28856,6 +28996,11 @@
         "move": "Take Down"
       },
       {
+        "level": 25,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 28,
         "const": "POWER_GEM",
         "move": "Power Gem"
@@ -28864,6 +29009,11 @@
         "level": 34,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      },
+      {
+        "level": 36,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
       },
       {
         "level": 37,
@@ -29230,6 +29380,11 @@
         "move": "Take Down"
       },
       {
+        "level": 29,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 33,
         "const": "POWER_GEM",
         "move": "Power Gem"
@@ -29238,6 +29393,11 @@
         "level": 36,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      },
+      {
+        "level": 43,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
       },
       {
         "level": 45,
@@ -29665,6 +29825,11 @@
         "move": "Zap Cannon"
       },
       {
+        "level": 1,
+        "const": "TAIL_GLOW",
+        "move": "Tail Glow"
+      },
+      {
         "level": 4,
         "const": "THUNDER_WAVE",
         "move": "Thunder Wave"
@@ -29700,6 +29865,11 @@
         "move": "Take Down"
       },
       {
+        "level": 29,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "DRAGON_PULSE",
         "move": "Dragon Pulse"
@@ -29728,6 +29898,11 @@
         "level": 42,
         "const": "DAZZLING_GLEAM",
         "move": "Dazzling Gleam"
+      },
+      {
+        "level": 46,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
       },
       {
         "level": 49,
@@ -31245,6 +31420,7 @@
       "INFESTATION",
       "MEGA_DRAIN",
       "MIMIC",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "POISON_JAB",
       "PSYCH_UP",
@@ -31713,6 +31889,7 @@
       "MEGA_DRAIN",
       "METRONOME",
       "MIMIC",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "POISON_JAB",
       "PSYCH_UP",
@@ -32196,6 +32373,7 @@
       "MEGA_PUNCH",
       "METRONOME",
       "MIMIC",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "POISON_JAB",
       "PSYCH_UP",
@@ -32517,6 +32695,11 @@
         "level": 1,
         "const": "HIDDEN_POWER",
         "move": "Hidden Power"
+      },
+      {
+        "level": 1,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
       },
       {
         "level": 30,
@@ -34954,6 +35137,11 @@
         "move": "Pay Day"
       },
       {
+        "level": 30,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
+      },
+      {
         "level": 31,
         "const": "ENERGY_BALL",
         "move": "Energy Ball"
@@ -34986,7 +35174,8 @@
       "PAY_DAY",
       "ENDURE",
       "PSYCH_UP",
-      "SEED_BOMB"
+      "SEED_BOMB",
+      "COTTON_GUARD"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -35382,7 +35571,8 @@
       "PAY_DAY",
       "ENDURE",
       "PSYCH_UP",
-      "SEED_BOMB"
+      "SEED_BOMB",
+      "COTTON_GUARD"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -35789,7 +35979,8 @@
       "PAY_DAY",
       "ENDURE",
       "PSYCH_UP",
-      "SEED_BOMB"
+      "SEED_BOMB",
+      "COTTON_GUARD"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -36210,8 +36401,8 @@
       "catch_rate": 190,
       "base_exp": 57,
       "items": [
-        "TINYMUSHROOM",
-        "BIG_MUSHROOM"
+        "NO_ITEM",
+        "STARDUST"
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
@@ -36647,8 +36838,8 @@
       "catch_rate": 75,
       "base_exp": 142,
       "items": [
-        "TINYMUSHROOM",
-        "BIG_MUSHROOM"
+        "NO_ITEM",
+        "STARDUST"
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
@@ -37858,6 +38049,11 @@
         "level": 1,
         "const": "MUD_SHOT",
         "move": "Mud Shot"
+      },
+      {
+        "level": 1,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
       },
       {
         "level": 6,
@@ -41361,8 +41557,10 @@
       "NIGHTMARE",
       "PAY_DAY",
       "PSYBEAM",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "REFLECT",
       "SCALD",
       "SIGNAL_BEAM",
@@ -41879,8 +42077,10 @@
       "MUD_SHOT",
       "NIGHTMARE",
       "PAY_DAY",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "REFLECT",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -42505,8 +42705,10 @@
       "MUD_SHOT",
       "NIGHTMARE",
       "PAY_DAY",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "ROCK_SLIDE",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -43325,6 +43527,11 @@
         "move": "Petal Dance"
       },
       {
+        "level": 49,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
+      },
+      {
         "level": 56,
         "const": "LEAF_STORM",
         "move": "Leaf Storm"
@@ -43667,6 +43874,11 @@
         "level": 1,
         "const": "TOXIC",
         "move": "Toxic"
+      },
+      {
+        "level": 1,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
       },
       {
         "level": 4,
@@ -44152,6 +44364,11 @@
         "level": 1,
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
+      },
+      {
+        "level": 1,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
       },
       {
         "level": 15,
@@ -44665,6 +44882,11 @@
         "level": 51,
         "const": "FUTURE_SIGHT",
         "move": "Future Sight"
+      },
+      {
+        "level": 57,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       }
     ],
     "evolutions": [
@@ -44764,6 +44986,7 @@
       "NIGHT_SHADE",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -45201,6 +45424,11 @@
         "level": 54,
         "const": "ZAP_CANNON",
         "move": "Zap Cannon"
+      },
+      {
+        "level": 57,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       }
     ],
     "evolutions": [],
@@ -45293,6 +45521,7 @@
       "NIGHT_SHADE",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SCARY_FACE",
       "SEISMIC_TOSS",
@@ -45693,8 +45922,10 @@
       "METRONOME",
       "MIMIC",
       "NIGHTMARE",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -46014,6 +46245,11 @@
         "move": "Reflect"
       },
       {
+        "level": 30,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 34,
         "const": "RECOVER",
         "move": "Recover"
@@ -46152,6 +46388,7 @@
       "NIGHTMARE",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -46490,6 +46727,11 @@
         "move": "Reflect"
       },
       {
+        "level": 30,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 34,
         "const": "RECOVER",
         "move": "Recover"
@@ -46634,6 +46876,7 @@
       "NIGHTMARE",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SAFEGUARD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -47988,6 +48231,11 @@
         "move": "Crunch"
       },
       {
+        "level": 33,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 39,
         "const": "SUPER_FANG",
         "move": "Super Fang"
@@ -48027,7 +48275,8 @@
       "IRON_TAIL",
       "POISON_FANG",
       "PURSUIT",
-      "SKULL_BASH"
+      "SKULL_BASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -48414,6 +48663,11 @@
         "move": "Crunch"
       },
       {
+        "level": 39,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 43,
         "const": "EARTH_POWER",
         "move": "Earth Power"
@@ -48453,7 +48707,8 @@
       "IRON_TAIL",
       "POISON_FANG",
       "PURSUIT",
-      "SKULL_BASH"
+      "SKULL_BASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -48904,6 +49159,11 @@
         "move": "Toxic"
       },
       {
+        "level": 56,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 58,
         "const": "EARTH_POWER",
         "move": "Earth Power"
@@ -48927,7 +49187,8 @@
       "IRON_TAIL",
       "POISON_FANG",
       "PURSUIT",
-      "SKULL_BASH"
+      "SKULL_BASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -49435,6 +49696,11 @@
         "move": "Sucker Punch"
       },
       {
+        "level": 33,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 40,
         "const": "TOXIC",
         "move": "Toxic"
@@ -49475,7 +49741,8 @@
       "HORN_DRILL",
       "IRON_TAIL",
       "SUCKER_PUNCH",
-      "THRASH"
+      "THRASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -49859,6 +50126,11 @@
         "move": "Sucker Punch"
       },
       {
+        "level": 39,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 43,
         "const": "EARTH_POWER",
         "move": "Earth Power"
@@ -49899,7 +50171,8 @@
       "HORN_DRILL",
       "IRON_TAIL",
       "SUCKER_PUNCH",
-      "THRASH"
+      "THRASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -50365,6 +50638,11 @@
         "move": "Superpower"
       },
       {
+        "level": 56,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 58,
         "const": "EARTH_POWER",
         "move": "Earth Power"
@@ -50389,7 +50667,8 @@
       "HORN_DRILL",
       "IRON_TAIL",
       "SUCKER_PUNCH",
-      "THRASH"
+      "THRASH",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -51017,6 +51296,7 @@
       "GIGA_DRAIN",
       "LUNGE",
       "MIMIC",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SNORE",
       "STRUGGLE_BUG",
@@ -51471,6 +51751,7 @@
       "GIGA_IMPACT",
       "LUNGE",
       "MIMIC",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SCARY_FACE",
       "SNORE",
@@ -52364,6 +52645,11 @@
         "level": 50,
         "const": "LEAF_STORM",
         "move": "Leaf Storm"
+      },
+      {
+        "level": 72,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
       }
     ],
     "evolutions": [],
@@ -52878,6 +53164,7 @@
       "INFESTATION",
       "MIMIC",
       "NIGHTMARE",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
       "ROLLOUT",
@@ -53174,6 +53461,11 @@
         "level": 1,
         "const": "BULLET_SEED",
         "move": "Bullet Seed"
+      },
+      {
+        "level": 1,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       },
       {
         "level": 7,
@@ -55582,6 +55874,7 @@
       "LUNGE",
       "MIMIC",
       "NIGHT_SHADE",
+      "OMINOUS_WIND",
       "PSYWAVE",
       "RAGE",
       "RAZOR_WIND",
@@ -55920,6 +56213,11 @@
         "move": "Quick Attack"
       },
       {
+        "level": 1,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
+      },
+      {
         "level": 4,
         "const": "FOCUS_ENERGY",
         "move": "Focus Energy"
@@ -56110,6 +56408,7 @@
       "LUNGE",
       "MIMIC",
       "MORNING_SUN",
+      "OMINOUS_WIND",
       "PSYCHO_CUT",
       "RAGE",
       "SCARY_FACE",
@@ -56605,6 +56904,7 @@
       "LUNGE",
       "MIMIC",
       "MORNING_SUN",
+      "OMINOUS_WIND",
       "PSYCHO_CUT",
       "RAGE",
       "SCARY_FACE",
@@ -57115,6 +57415,7 @@
       "LUNGE",
       "MIMIC",
       "MORNING_SUN",
+      "OMINOUS_WIND",
       "PSYCHO_CUT",
       "RAGE",
       "SCARY_FACE",
@@ -58038,6 +58339,7 @@
       "SNORE",
       "SPIKES",
       "STRUGGLE_BUG",
+      "VACUUM_WAVE",
       "VENOSHOCK"
     ],
     "evolves_from": null,
@@ -58327,6 +58629,11 @@
         "level": 28,
         "const": "SLUDGE_BOMB",
         "move": "Sludge Bomb"
+      },
+      {
+        "level": 31,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 32,
@@ -58762,6 +59069,11 @@
         "level": 28,
         "const": "SLUDGE_BOMB",
         "move": "Sludge Bomb"
+      },
+      {
+        "level": 31,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 34,
@@ -60165,6 +60477,11 @@
         "move": "Signal Beam"
       },
       {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "EXPLOSION",
         "move": "Explosion"
@@ -60272,6 +60589,7 @@
       "MIMIC",
       "PSYCH_UP",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SNORE",
       "TAKE_DOWN",
@@ -60540,6 +60858,11 @@
         "move": "Volt Switch"
       },
       {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "TRI_ATTACK",
         "move": "Tri Attack"
@@ -60659,6 +60982,7 @@
       "MIMIC",
       "PSYCH_UP",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SNORE",
       "TAKE_DOWN",
@@ -60960,6 +61284,11 @@
         "move": "Volt Switch"
       },
       {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 33,
         "const": "FLASH_CANNON",
         "move": "Flash Cannon"
@@ -61068,6 +61397,7 @@
       "MIMIC",
       "PSYCH_UP",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SELFDESTRUCT",
       "SNORE",
@@ -61375,6 +61705,11 @@
         "move": "Volt Switch"
       },
       {
+        "level": 27,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "LIGHT_SCREEN",
         "move": "Light Screen"
@@ -61393,6 +61728,11 @@
         "level": 30,
         "const": "NUZZLE",
         "move": "Nuzzle"
+      },
+      {
+        "level": 30,
+        "const": "RECYCLE",
+        "move": "Recycle"
       },
       {
         "level": 36,
@@ -61436,7 +61776,8 @@
       "AGILITY",
       "RECOVER",
       "REFLECT",
-      "NUZZLE"
+      "NUZZLE",
+      "RECYCLE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -61790,6 +62131,11 @@
         "move": "Volt Switch"
       },
       {
+        "level": 27,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 28,
         "const": "FOUL_PLAY",
         "move": "Foul Play"
@@ -61835,7 +62181,8 @@
       "AGILITY",
       "RECOVER",
       "REFLECT",
-      "NUZZLE"
+      "NUZZLE",
+      "RECYCLE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -64294,6 +64641,7 @@
       "FRUSTRATION",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "RAGE",
       "REFLECT",
@@ -64741,7 +65089,9 @@
       "IRON_TAIL",
       "MIMIC",
       "NIGHT_SHADE",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
+      "PSYSHOCK",
       "RAGE",
       "REFLECT",
       "SKULL_BASH",
@@ -66096,6 +66446,7 @@
       "MIMIC",
       "NIGHTMARE",
       "PSYBEAM",
+      "PSYSHOCK",
       "SCARY_FACE",
       "SIGNAL_BEAM",
       "SKILL_SWAP",
@@ -66582,6 +66933,7 @@
       "IRON_TAIL",
       "MIMIC",
       "NIGHTMARE",
+      "PSYSHOCK",
       "SCARY_FACE",
       "SIGNAL_BEAM",
       "SNORE",
@@ -69419,7 +69771,8 @@
       "SNORE",
       "STONE_EDGE",
       "TAKE_DOWN",
-      "TAUNT"
+      "TAUNT",
+      "VACUUM_WAVE"
     ],
     "evolves_from": null,
     "original_types": [
@@ -69953,7 +70306,8 @@
       "STEALTH_ROCK",
       "STONE_EDGE",
       "TAKE_DOWN",
-      "TAUNT"
+      "TAUNT",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "MANKEY",
@@ -70526,7 +70880,8 @@
       "SNORE",
       "STEALTH_ROCK",
       "STONE_EDGE",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "PRIMEAPE",
@@ -72047,6 +72402,7 @@
       "MIMIC",
       "MUD_SHOT",
       "PAY_DAY",
+      "PSYSHOCK",
       "RAGE",
       "SEISMIC_TOSS",
       "SHADOW_CLAW",
@@ -72056,7 +72412,8 @@
       "SNORE",
       "SUBMISSION",
       "TAKE_DOWN",
-      "TAUNT"
+      "TAUNT",
+      "VACUUM_WAVE"
     ],
     "evolves_from": null,
     "original_types": [
@@ -72561,6 +72918,7 @@
       "MIMIC",
       "MUD_SHOT",
       "PAY_DAY",
+      "PSYSHOCK",
       "RAGE",
       "SEISMIC_TOSS",
       "SHADOW_CLAW",
@@ -72568,7 +72926,8 @@
       "SNORE",
       "SUBMISSION",
       "TAKE_DOWN",
-      "TAUNT"
+      "TAUNT",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "PSYDUCK",
@@ -73095,7 +73454,8 @@
       "REVERSAL",
       "SKULL_BASH",
       "SNORE",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "VACUUM_WAVE"
     ],
     "evolves_from": null,
     "original_types": [
@@ -73568,7 +73928,8 @@
       "REVERSAL",
       "SKULL_BASH",
       "SNORE",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "MACHOP",
@@ -74063,7 +74424,8 @@
       "ROCK_BLAST",
       "SKULL_BASH",
       "SNORE",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "MACHOKE",
@@ -74463,7 +74825,8 @@
       "ENDURE",
       "MACH_PUNCH",
       "PURSUIT",
-      "RAPID_SPIN"
+      "RAPID_SPIN",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -74857,6 +75220,11 @@
         "move": "Submission"
       },
       {
+        "level": 43,
+        "const": "BLAZE_KICK",
+        "move": "Blaze Kick"
+      },
+      {
         "level": 45,
         "const": "REVERSAL",
         "move": "Reversal"
@@ -74881,7 +75249,8 @@
       "ENDURE",
       "MACH_PUNCH",
       "PURSUIT",
-      "RAPID_SPIN"
+      "RAPID_SPIN",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -75329,6 +75698,16 @@
         "move": "Stone Edge"
       },
       {
+        "level": 41,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
+      },
+      {
+        "level": 41,
+        "const": "SKY_UPPERCUT",
+        "move": "Sky Uppercut"
+      },
+      {
         "level": 42,
         "const": "SUBMISSION",
         "move": "Submission"
@@ -75348,7 +75727,8 @@
       "ENDURE",
       "MACH_PUNCH",
       "PURSUIT",
-      "RAPID_SPIN"
+      "RAPID_SPIN",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -75854,7 +76234,8 @@
       "ENDURE",
       "MACH_PUNCH",
       "PURSUIT",
-      "RAPID_SPIN"
+      "RAPID_SPIN",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -76383,6 +76764,8 @@
       "LOW_KICK",
       "MIMIC",
       "NIGHTMARE",
+      "PSYSHOCK",
+      "RECYCLE",
       "SNORE",
       "SUCKER_PUNCH"
     ],
@@ -76875,6 +77258,8 @@
       "MIMIC",
       "NIGHTMARE",
       "NIGHT_SHADE",
+      "PSYSHOCK",
+      "RECYCLE",
       "SNORE",
       "SUCKER_PUNCH"
     ],
@@ -78285,6 +78670,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 28,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 31,
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
@@ -78703,6 +79093,11 @@
         "level": 28,
         "const": "INCINERATE",
         "move": "Incinerate"
+      },
+      {
+        "level": 28,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 33,
@@ -79195,6 +79590,11 @@
         "level": 28,
         "const": "INCINERATE",
         "move": "Incinerate"
+      },
+      {
+        "level": 28,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 33,
@@ -79859,6 +80259,8 @@
       "METRONOME",
       "MIMIC",
       "NIGHTMARE",
+      "PSYSHOCK",
+      "RECYCLE",
       "SEISMIC_TOSS",
       "SNORE",
       "WATER_PULSE"
@@ -80234,6 +80636,11 @@
         "level": 56,
         "const": "FUTURE_SIGHT",
         "move": "Future Sight"
+      },
+      {
+        "level": 59,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       }
     ],
     "evolutions": [
@@ -80330,6 +80737,7 @@
       "PSYCHO_CUT",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "SCREECH",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -80721,6 +81129,11 @@
         "level": 40,
         "const": "FOCUS_BLAST",
         "move": "Focus Blast"
+      },
+      {
+        "level": 40,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       },
       {
         "level": 41,
@@ -81119,6 +81532,11 @@
         "level": 26,
         "const": "SIGNAL_BEAM",
         "move": "Signal Beam"
+      },
+      {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 31,
@@ -81609,6 +82027,11 @@
         "level": 26,
         "const": "SIGNAL_BEAM",
         "move": "Signal Beam"
+      },
+      {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 30,
@@ -82198,6 +82621,11 @@
         "move": "Brick Break"
       },
       {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
@@ -82737,6 +83165,11 @@
         "move": "Reflect"
       },
       {
+        "level": 24,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 25,
         "const": "PSYBEAM",
         "move": "Psybeam"
@@ -82891,6 +83324,7 @@
       "ENDURE",
       "FRUSTRATION",
       "INFESTATION",
+      "PSYSHOCK",
       "SNORE",
       "TAUNT",
       "TORMENT"
@@ -83222,6 +83656,11 @@
         "move": "Reflect"
       },
       {
+        "level": 24,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 26,
         "const": "SIGNAL_BEAM",
         "move": "Signal Beam"
@@ -83380,6 +83819,7 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "NIGHTMARE",
+      "PSYSHOCK",
       "RAGE",
       "SEISMIC_TOSS",
       "SKULL_BASH",
@@ -83709,6 +84149,11 @@
         "move": "Rapid Spin"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 8,
         "const": "MEDITATE",
         "move": "Meditate"
@@ -83822,6 +84267,11 @@
         "level": 48,
         "const": "SAFEGUARD",
         "move": "Safeguard"
+      },
+      {
+        "level": 56,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
       },
       {
         "level": 60,
@@ -84720,6 +85170,7 @@
       "HEAT_WAVE",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "RAGE",
       "RAZOR_LEAF",
@@ -85184,6 +85635,7 @@
     "blackthorn_tutor_moves": [
       "ENDURE",
       "FOCUS_ENERGY",
+      "OMINOUS_WIND",
       "SNORE",
       "SOLAR_BLADE"
     ],
@@ -85508,6 +85960,11 @@
         "move": "Confusion"
       },
       {
+        "level": 20,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
+      },
+      {
         "level": 22,
         "const": "CONFUSE_RAY",
         "move": "Confuse Ray"
@@ -85640,6 +86097,7 @@
       "AERIAL_ACE",
       "AIR_CUTTER",
       "BATON_PASS",
+      "COSMIC_POWER",
       "DAZZLING_GLEAM",
       "DETECT",
       "DOUBLE_EDGE",
@@ -85651,6 +86109,7 @@
       "MIMIC",
       "NIGHTMARE",
       "PAIN_SPLIT",
+      "PSYSHOCK",
       "SKY_ATTACK",
       "SNORE",
       "TWISTER",
@@ -85918,6 +86377,11 @@
         "move": "Psycho Cut"
       },
       {
+        "level": 35,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 36,
         "const": "PSYCHIC_M",
         "move": "Psychic"
@@ -85926,6 +86390,11 @@
         "level": 40,
         "const": "ROOST",
         "move": "Roost"
+      },
+      {
+        "level": 40,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
       },
       {
         "level": 44,
@@ -86276,6 +86745,11 @@
         "level": 20,
         "const": "LIGHT_SCREEN",
         "move": "Light Screen"
+      },
+      {
+        "level": 20,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
       },
       {
         "level": 22,
@@ -86907,6 +87381,7 @@
       "MIMIC",
       "MUD_SHOT",
       "PAIN_SPLIT",
+      "POISON_TAIL",
       "REVERSAL",
       "SCALD",
       "SCALE_SHOT",
@@ -87187,6 +87662,11 @@
         "level": 15,
         "const": "AQUA_JET",
         "move": "Aqua Jet"
+      },
+      {
+        "level": 16,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
       },
       {
         "level": 19,
@@ -90033,6 +90513,11 @@
         "move": "Light Screen"
       },
       {
+        "level": 37,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
+      },
+      {
         "level": 40,
         "const": "PSYCHIC_M",
         "move": "Psychic"
@@ -90102,7 +90587,7 @@
       "base_exp": 68,
       "items": [
         "STARDUST",
-        "STAR_PIECE"
+        "STARDUST"
       ],
       "gender": "Genderless",
       "egg_cycles": 20,
@@ -90133,6 +90618,7 @@
       "PAIN_SPLIT",
       "PSYCH_UP",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SIGNAL_BEAM",
       "SKULL_BASH",
@@ -90513,6 +90999,11 @@
         "level": 50,
         "const": "DREAM_EATER",
         "move": "Dream Eater"
+      },
+      {
+        "level": 64,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
       }
     ],
     "evolutions": [],
@@ -90554,7 +91045,7 @@
       "base_exp": 182,
       "items": [
         "STARDUST",
-        "STAR_PIECE"
+        "STARDUST"
       ],
       "gender": "Genderless",
       "egg_cycles": 20,
@@ -90587,7 +91078,9 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SKULL_BASH",
       "SNORE",
@@ -91042,7 +91535,7 @@
       "base_exp": 61,
       "items": [
         "PEARL",
-        "BIG_PEARL"
+        "PEARL"
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
@@ -91462,7 +91955,7 @@
       "base_exp": 184,
       "items": [
         "PEARL",
-        "BIG_PEARL"
+        "PEARL"
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
@@ -92247,6 +92740,11 @@
         "level": 45,
         "const": "HYPER_BEAM",
         "move": "Hyper Beam"
+      },
+      {
+        "level": 48,
+        "const": "WATER_SPOUT",
+        "move": "Water Spout"
       }
     ],
     "evolutions": [
@@ -92273,7 +92771,8 @@
       "SNORE",
       "SWIFT",
       "THUNDER_WAVE",
-      "WATER_PULSE"
+      "WATER_PULSE",
+      "WATER_SPOUT"
     ],
     "tmhm": [
       "CURSE",
@@ -92680,6 +93179,11 @@
         "level": 52,
         "const": "HYPER_BEAM",
         "move": "Hyper Beam"
+      },
+      {
+        "level": 56,
+        "const": "WATER_SPOUT",
+        "move": "Water Spout"
       }
     ],
     "evolutions": [],
@@ -92695,7 +93199,8 @@
       "SNORE",
       "SWIFT",
       "THUNDER_WAVE",
-      "WATER_PULSE"
+      "WATER_PULSE",
+      "WATER_SPOUT"
     ],
     "tmhm": [
       "CURSE",
@@ -93074,6 +93579,11 @@
         "level": 21,
         "const": "BUBBLEBEAM",
         "move": "Bubble Beam"
+      },
+      {
+        "level": 27,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 30,
@@ -93507,6 +94017,11 @@
         "move": "Heal Bell"
       },
       {
+        "level": 29,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
@@ -93525,6 +94040,11 @@
         "level": 37,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      },
+      {
+        "level": 40,
+        "const": "TAIL_GLOW",
+        "move": "Tail Glow"
       },
       {
         "level": 41,
@@ -97691,6 +98211,11 @@
         "move": "Volt Switch"
       },
       {
+        "level": 25,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 26,
         "const": "SIGNAL_BEAM",
         "move": "Signal Beam"
@@ -98158,6 +98683,11 @@
         "level": 22,
         "const": "FLAME_WHEEL",
         "move": "Flame Wheel"
+      },
+      {
+        "level": 25,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 28,
@@ -98758,6 +99288,7 @@
       "MIMIC",
       "NIGHTMARE",
       "PAY_DAY",
+      "PSYSHOCK",
       "RAGE",
       "SING",
       "SNORE"
@@ -100679,6 +101210,7 @@
       "MIMIC",
       "PAY_DAY",
       "PLAY_ROUGH",
+      "PSYSHOCK",
       "RAGE",
       "SAFEGUARD",
       "SING",
@@ -102308,6 +102840,11 @@
         "move": "Feint Attack"
       },
       {
+        "level": 19,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 22,
         "const": "ACROBATICS",
         "move": "Acrobatics"
@@ -102383,6 +102920,11 @@
         "move": "Crabhammer"
       },
       {
+        "level": 45,
+        "const": "SKY_UPPERCUT",
+        "move": "Sky Uppercut"
+      },
+      {
         "level": 46,
         "const": "GUILLOTINE",
         "move": "Guillotine"
@@ -102409,7 +102951,8 @@
       "CROSS_POISON",
       "DOUBLE_EDGE",
       "NIGHT_SLASH",
-      "WING_ATTACK"
+      "WING_ATTACK",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -102959,6 +103502,11 @@
         "move": "Crabhammer"
       },
       {
+        "level": 45,
+        "const": "SKY_UPPERCUT",
+        "move": "Sky Uppercut"
+      },
+      {
         "level": 46,
         "const": "GUILLOTINE",
         "move": "Guillotine"
@@ -102979,7 +103527,8 @@
       "CROSS_POISON",
       "DOUBLE_EDGE",
       "NIGHT_SLASH",
-      "WING_ATTACK"
+      "WING_ATTACK",
+      "POISON_TAIL"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -103392,6 +103941,11 @@
         "level": 24,
         "const": "SPIKES",
         "move": "Spikes"
+      },
+      {
+        "level": 27,
+        "const": "RECYCLE",
+        "move": "Recycle"
       },
       {
         "level": 28,
@@ -108766,6 +109320,7 @@
       "HURRICANE",
       "ICY_WIND",
       "MIMIC",
+      "OMINOUS_WIND",
       "REVERSAL",
       "ROCK_SLIDE",
       "SNORE",
@@ -114447,6 +115002,7 @@
       "ICY_WIND",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SCARY_FACE",
       "SNORE",
@@ -114892,6 +115448,7 @@
       "INCINERATE",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SCARY_FACE",
       "SNORE",
@@ -116275,6 +116832,7 @@
       "IRON_DEFENSE",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "ROCK_SLIDE",
       "ROLLOUT",
       "SNORE",
@@ -118258,6 +118816,8 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "SAFEGUARD",
       "SING",
       "SNORE",
@@ -118705,6 +119265,8 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "SAFEGUARD",
       "SING",
       "SNORE",
@@ -119170,12 +119732,15 @@
       "NIGHT_SHADE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "SAFEGUARD",
       "SING",
       "SNORE",
       "TAUNT",
       "TORMENT",
-      "TRIPLE_AXEL"
+      "TRIPLE_AXEL",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "KIRLIA",
@@ -119738,6 +120303,8 @@
       "PAIN_SPLIT",
       "POISON_JAB",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "REVERSAL",
       "ROCK_SLIDE",
       "SAFEGUARD",
@@ -119749,6 +120316,7 @@
       "TAKE_DOWN",
       "TAUNT",
       "TORMENT",
+      "VACUUM_WAVE",
       "WISH",
       "X_SCISSOR"
     ],
@@ -120125,6 +120693,11 @@
         "move": "Nasty Plot"
       },
       {
+        "level": 24,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
+      },
+      {
         "level": 25,
         "const": "CRUNCH",
         "move": "Crunch"
@@ -120178,7 +120751,11 @@
       "CROSS_CHOP",
       "CRUNCH",
       "LOW_KICK",
-      "MIND_READER"
+      "MIND_READER",
+      "VACUUM_WAVE",
+      "METEOR_MASH",
+      "BLAZE_KICK",
+      "SKY_UPPERCUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -120577,6 +121154,11 @@
         "move": "Dark Pulse"
       },
       {
+        "level": 1,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
+      },
+      {
         "level": 4,
         "const": "METAL_CLAW",
         "move": "Metal Claw"
@@ -120667,6 +121249,11 @@
         "move": "Flash Cannon"
       },
       {
+        "level": 41,
+        "const": "BLAZE_KICK",
+        "move": "Blaze Kick"
+      },
+      {
         "level": 45,
         "const": "CLOSE_COMBAT",
         "move": "Close Combat"
@@ -120675,6 +121262,11 @@
         "level": 46,
         "const": "SACRED_SWORD",
         "move": "Sacred Sword"
+      },
+      {
+        "level": 49,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
       },
       {
         "level": 50,
@@ -120704,7 +121296,11 @@
       "CROSS_CHOP",
       "CRUNCH",
       "LOW_KICK",
-      "MIND_READER"
+      "MIND_READER",
+      "VACUUM_WAVE",
+      "METEOR_MASH",
+      "BLAZE_KICK",
+      "SKY_UPPERCUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -121292,7 +121888,8 @@
       "DESTINY_BOND",
       "NASTY_PLOT",
       "SHADOW_SNEAK",
-      "SPITE"
+      "SPITE",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -121359,6 +121956,7 @@
       "MIMIC",
       "NIGHTMARE",
       "NIGHT_SHADE",
+      "PSYSHOCK",
       "SCARY_FACE",
       "SNORE",
       "TAUNT",
@@ -121762,7 +122360,8 @@
       "DESTINY_BOND",
       "NASTY_PLOT",
       "SHADOW_SNEAK",
-      "SPITE"
+      "SPITE",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -121827,6 +122426,7 @@
       "MIMIC",
       "NIGHTMARE",
       "NIGHT_SHADE",
+      "PSYSHOCK",
       "SCARY_FACE",
       "SNORE",
       "TORMENT"
@@ -122584,6 +123184,16 @@
         "move": "Tri Attack"
       },
       {
+        "level": 22,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 30,
         "const": "DISABLE",
         "move": "Disable"
@@ -122715,6 +123325,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
       "REFLECT",
@@ -123030,9 +123641,19 @@
         "move": "Tri Attack"
       },
       {
+        "level": 22,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 28,
         "const": "FOUL_PLAY",
         "move": "Foul Play"
+      },
+      {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 31,
@@ -123157,6 +123778,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
       "REFLECT",
@@ -123422,6 +124044,11 @@
         "move": "Tackle"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 4,
         "const": "SHARPEN",
         "move": "Sharpen"
@@ -123450,6 +124077,11 @@
         "level": 20,
         "const": "TRI_ATTACK",
         "move": "Tri Attack"
+      },
+      {
+        "level": 28,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 31,
@@ -123560,6 +124192,7 @@
       "NIGHTMARE",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
       "REFLECT",
@@ -123900,6 +124533,11 @@
         "level": 36,
         "const": "TOXIC",
         "move": "Toxic"
+      },
+      {
+        "level": 40,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
       },
       {
         "level": 42,
@@ -124249,6 +124887,11 @@
         "level": 39,
         "const": "POISON_JAB",
         "move": "Poison Jab"
+      },
+      {
+        "level": 42,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
       },
       {
         "level": 50,
@@ -124632,6 +125275,11 @@
         "level": 44,
         "const": "X_SCISSOR",
         "move": "X-Scissor"
+      },
+      {
+        "level": 44,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
       },
       {
         "level": 50,
@@ -130460,6 +131108,11 @@
         "level": 60,
         "const": "GIGA_IMPACT",
         "move": "Giga Impact"
+      },
+      {
+        "level": 60,
+        "const": "DRAGON_HAMMER",
+        "move": "Dragon Hammer"
       }
     ],
     "evolutions": [],
@@ -130965,7 +131618,8 @@
       "MOONBLAST",
       "EARTH_POWER",
       "ROCK_THROW",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "DISCHARGE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -131500,7 +132154,8 @@
       "MOONBLAST",
       "EARTH_POWER",
       "ROCK_THROW",
-      "TAKE_DOWN"
+      "TAKE_DOWN",
+      "DISCHARGE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -133036,7 +133691,8 @@
       "HAZE",
       "NIGHTMARE",
       "DESTINY_BOND",
-      "FAINT_ATTACK"
+      "FAINT_ATTACK",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -133467,7 +134123,8 @@
       "HAZE",
       "NIGHTMARE",
       "DESTINY_BOND",
-      "FAINT_ATTACK"
+      "FAINT_ATTACK",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -133967,7 +134624,8 @@
       "HAZE",
       "NIGHTMARE",
       "DESTINY_BOND",
-      "FAINT_ATTACK"
+      "FAINT_ATTACK",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -142997,6 +143655,11 @@
         "move": "Mean Look"
       },
       {
+        "level": 32,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 42,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
@@ -143305,6 +143968,11 @@
         "move": "Leer"
       },
       {
+        "level": 1,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 12,
         "const": "FIRE_SPIN",
         "move": "Fire Spin"
@@ -143338,6 +144006,11 @@
         "level": 32,
         "const": "PSYBEAM",
         "move": "Psybeam"
+      },
+      {
+        "level": 32,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 34,
@@ -143778,6 +144451,11 @@
         "move": "Shadow Claw"
       },
       {
+        "level": 32,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 37,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
@@ -143875,6 +144553,7 @@
       "PSYCH_UP",
       "TAKE_DOWN",
       "TAUNT",
+      "VACUUM_WAVE",
       "X_SCISSOR"
     ],
     "evolves_from": {
@@ -146504,6 +147183,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 21,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 24,
         "const": "ROCK_SLIDE",
         "move": "Rock Slide"
@@ -146904,6 +147588,11 @@
         "level": 21,
         "const": "INCINERATE",
         "move": "Incinerate"
+      },
+      {
+        "level": 21,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 24,
@@ -147416,6 +148105,7 @@
       "ICY_WIND",
       "INCINERATE",
       "PSYCH_UP",
+      "RECYCLE",
       "SAFEGUARD",
       "SNORE",
       "TAKE_DOWN",
@@ -147902,6 +148592,7 @@
       "PSYCH_UP",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "REFLECT",
       "ROCK_SLIDE",
       "SAFEGUARD",
@@ -148440,6 +149131,7 @@
       "PSYCH_UP",
       "PSYWAVE",
       "RAGE",
+      "RECYCLE",
       "REFLECT",
       "ROCK_SLIDE",
       "SAFEGUARD",
@@ -151352,6 +152044,7 @@
       "INCINERATE",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "REFLECT",
@@ -151686,6 +152379,11 @@
         "level": 12,
         "const": "LICK",
         "move": "Lick"
+      },
+      {
+        "level": 15,
+        "const": "RECYCLE",
+        "move": "Recycle"
       },
       {
         "level": 16,
@@ -152229,6 +152927,11 @@
         "level": 12,
         "const": "YAWN",
         "move": "Yawn"
+      },
+      {
+        "level": 15,
+        "const": "RECYCLE",
+        "move": "Recycle"
       },
       {
         "level": 16,
@@ -155418,6 +156121,11 @@
         "move": "Tackle"
       },
       {
+        "level": 1,
+        "const": "PETAL_BLIZZARD",
+        "move": "Petal Blizzard"
+      },
+      {
         "level": 5,
         "const": "VINE_WHIP",
         "move": "Vine Whip"
@@ -155901,6 +156609,11 @@
             "move": "Tackle"
           },
           {
+            "level": 1,
+            "const": "PETAL_BLIZZARD",
+            "move": "Petal Blizzard"
+          },
+          {
             "level": 5,
             "const": "VINE_WHIP",
             "move": "Vine Whip"
@@ -156382,6 +157095,11 @@
             "level": 1,
             "const": "TACKLE",
             "move": "Tackle"
+          },
+          {
+            "level": 1,
+            "const": "PETAL_BLIZZARD",
+            "move": "Petal Blizzard"
           },
           {
             "level": 5,
@@ -160275,6 +160993,7 @@
       "ACROBATICS",
       "AERIAL_ACE",
       "BIDE",
+      "BLAZE_KICK",
       "BODY_SLAM",
       "BRICK_BREAK",
       "BULLDOZE",
@@ -160296,6 +161015,7 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "QUICK_ATTACK",
       "REFLECT",
       "SCALE_SHOT",
@@ -160879,6 +161599,7 @@
           "ACROBATICS",
           "AERIAL_ACE",
           "BIDE",
+          "BLAZE_KICK",
           "BODY_SLAM",
           "BRICK_BREAK",
           "BULLDOZE",
@@ -160900,6 +161621,7 @@
           "MEGA_KICK",
           "MEGA_PUNCH",
           "MIMIC",
+          "OMINOUS_WIND",
           "QUICK_ATTACK",
           "REFLECT",
           "SCALE_SHOT",
@@ -161483,6 +162205,7 @@
           "ACROBATICS",
           "AERIAL_ACE",
           "BIDE",
+          "BLAZE_KICK",
           "BODY_SLAM",
           "BRICK_BREAK",
           "BULLDOZE",
@@ -161504,6 +162227,7 @@
           "MEGA_KICK",
           "MEGA_PUNCH",
           "MIMIC",
+          "OMINOUS_WIND",
           "QUICK_ATTACK",
           "REFLECT",
           "SCALE_SHOT",
@@ -161920,6 +162644,11 @@
         "level": 44,
         "const": "LIQUIDATION",
         "move": "Liquidation"
+      },
+      {
+        "level": 44,
+        "const": "WATER_SPOUT",
+        "move": "Water Spout"
       }
     ],
     "evolutions": [
@@ -161946,7 +162675,8 @@
       "FAKE_OUT",
       "FLAIL",
       "FORESIGHT",
-      "YAWN"
+      "YAWN",
+      "WATER_SPOUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -162380,6 +163110,11 @@
             "level": 44,
             "const": "LIQUIDATION",
             "move": "Liquidation"
+          },
+          {
+            "level": 44,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [
@@ -162406,7 +163141,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -162840,6 +163576,11 @@
             "level": 44,
             "const": "LIQUIDATION",
             "move": "Liquidation"
+          },
+          {
+            "level": 44,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [
@@ -162866,7 +163607,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -163382,6 +164124,11 @@
         "level": 50,
         "const": "HYDRO_PUMP",
         "move": "Hydro Pump"
+      },
+      {
+        "level": 54,
+        "const": "WATER_SPOUT",
+        "move": "Water Spout"
       }
     ],
     "evolutions": [
@@ -163408,7 +164155,8 @@
       "FAKE_OUT",
       "FLAIL",
       "FORESIGHT",
-      "YAWN"
+      "YAWN",
+      "WATER_SPOUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -163847,6 +164595,11 @@
             "level": 50,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
+          },
+          {
+            "level": 54,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [
@@ -163873,7 +164626,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -164312,6 +165066,11 @@
             "level": 50,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
+          },
+          {
+            "level": 54,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [
@@ -164338,7 +165097,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -164810,6 +165570,11 @@
         "level": 54,
         "const": "HYDRO_PUMP",
         "move": "Hydro Pump"
+      },
+      {
+        "level": 59,
+        "const": "WATER_SPOUT",
+        "move": "Water Spout"
       }
     ],
     "evolutions": [],
@@ -164825,7 +165590,8 @@
       "FAKE_OUT",
       "FLAIL",
       "FORESIGHT",
-      "YAWN"
+      "YAWN",
+      "WATER_SPOUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -165310,6 +166076,11 @@
             "level": 54,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
+          },
+          {
+            "level": 59,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [],
@@ -165325,7 +166096,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -165810,6 +166582,11 @@
             "level": 54,
             "const": "HYDRO_PUMP",
             "move": "Hydro Pump"
+          },
+          {
+            "level": 59,
+            "const": "WATER_SPOUT",
+            "move": "Water Spout"
           }
         ],
         "evolutions": [],
@@ -165825,7 +166602,8 @@
           "FAKE_OUT",
           "FLAIL",
           "FORESIGHT",
-          "YAWN"
+          "YAWN",
+          "WATER_SPOUT"
         ],
         "tmhm": [
           "DRAIN_PUNCH",
@@ -166378,6 +167156,7 @@
       "LEER",
       "MIMIC",
       "MIRROR_COAT",
+      "OMINOUS_WIND",
       "PECK",
       "RAGE",
       "RAZOR_WIND",
@@ -166668,6 +167447,11 @@
         "move": "Agility"
       },
       {
+        "level": 22,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 26,
         "const": "RAIN_DANCE",
         "move": "Rain Dance"
@@ -166807,6 +167591,7 @@
       "HAIL",
       "LEER",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "REFLECT",
@@ -167245,6 +168030,7 @@
       "GIGA_IMPACT",
       "MIMIC",
       "MORNING_SUN",
+      "OMINOUS_WIND",
       "PECK",
       "RAGE",
       "RAZOR_WIND",
@@ -167659,6 +168445,11 @@
         "level": 30,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
+      },
+      {
+        "level": 30,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 32,
@@ -168123,6 +168914,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 30,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 34,
         "const": "EXTRASENSORY",
         "move": "Extrasensory"
@@ -168156,6 +168952,11 @@
         "level": 44,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
+      },
+      {
+        "level": 46,
+        "const": "ERUPTION",
+        "move": "Eruption"
       },
       {
         "level": 50,
@@ -168672,6 +169473,7 @@
       "ICY_WIND",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SIGNAL_BEAM",
       "SNARL",
@@ -170181,6 +170983,7 @@
       "MEGA_PUNCH",
       "METRONOME",
       "MIMIC",
+      "OMINOUS_WIND",
       "RAGE",
       "RAZOR_WIND",
       "REFLECT",
@@ -172267,7 +173070,9 @@
       "LIQUIDATION",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
+      "PSYSHOCK",
       "SCALE_SHOT",
       "SCARY_FACE",
       "SNORE",
@@ -172791,6 +173596,7 @@
       "HYPER_VOICE",
       "MIMIC",
       "NIGHTMARE",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SIGNAL_BEAM",
       "SNORE",
@@ -173367,7 +174173,9 @@
       "NIGHT_SHADE",
       "PAY_DAY",
       "POISON_JAB",
+      "PSYSHOCK",
       "RAGE",
+      "RECYCLE",
       "REVERSAL",
       "ROCK_SLIDE",
       "SCARY_FACE",
@@ -173999,6 +174807,7 @@
       "BEAT_UP",
       "BIDE",
       "BIND",
+      "BLAZE_KICK",
       "BODY_PRESS",
       "BODY_SLAM",
       "BOUNCE",
@@ -174013,6 +174822,7 @@
       "CLOSE_COMBAT",
       "CONFUSE_RAY",
       "CONFUSION",
+      "COSMIC_POWER",
       "COUNTER",
       "CROSS_POISON",
       "CRUNCH",
@@ -174087,19 +174897,24 @@
       "MUD_SHOT",
       "NIGHTMARE",
       "NIGHT_SHADE",
+      "OMINOUS_WIND",
       "OUTRAGE",
       "OVERHEAT",
       "PAIN_SPLIT",
       "PAY_DAY",
+      "PETAL_BLIZZARD",
       "PHANTOMFORCE",
       "PIN_MISSILE",
       "PLAY_ROUGH",
       "POISON_JAB",
+      "POISON_TAIL",
       "POWER_WHIP",
       "PSYCH_UP",
+      "PSYSHOCK",
       "PSYWAVE",
       "RAGE",
       "RAZOR_WIND",
+      "RECYCLE",
       "REVERSAL",
       "ROCK_BLAST",
       "ROCK_POLISH",
@@ -174140,6 +174955,7 @@
       "TRIPLE_AXEL",
       "TRI_ATTACK",
       "TWISTER",
+      "VACUUM_WAVE",
       "VENOSHOCK",
       "VOLT_SWITCH",
       "WATER_GUN",
@@ -176011,6 +176827,11 @@
         "move": "Moonblast"
       },
       {
+        "level": 35,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
+      },
+      {
         "level": 39,
         "const": "DRAGON_PULSE",
         "move": "Dragon Pulse"
@@ -176127,6 +176948,7 @@
       "FRUSTRATION",
       "HEAL_BELL",
       "MIMIC",
+      "OMINOUS_WIND",
       "OUTRAGE",
       "PSYCH_UP",
       "SNORE",
@@ -176433,6 +177255,11 @@
         "move": "Bounce"
       },
       {
+        "level": 32,
+        "const": "COTTON_GUARD",
+        "move": "Cotton Guard"
+      },
+      {
         "level": 34,
         "const": "DUALWINGBEAT",
         "move": "Dual Wingbeat"
@@ -176586,6 +177413,7 @@
       "INCINERATE",
       "IRON_TAIL",
       "MIMIC",
+      "OMINOUS_WIND",
       "PSYCH_UP",
       "SNORE",
       "TWISTER"
@@ -176939,7 +177767,8 @@
       "LEECH_SEED",
       "DRAGON_TAIL",
       "DEFENSE_CURL",
-      "ROLLOUT"
+      "ROLLOUT",
+      "RECYCLE"
     ],
     "tmhm": [
       "CURSE",
@@ -177207,6 +178036,11 @@
         "move": "Withdraw"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 4,
         "const": "DRAGON_TAIL",
         "move": "Dragon Tail"
@@ -177315,7 +178149,8 @@
       "LEECH_SEED",
       "DRAGON_TAIL",
       "DEFENSE_CURL",
-      "ROLLOUT"
+      "ROLLOUT",
+      "RECYCLE"
     ],
     "tmhm": [
       "CURSE",
@@ -177641,6 +178476,11 @@
         "move": "Withdraw"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 4,
         "const": "CURSE",
         "move": "Curse"
@@ -177753,7 +178593,8 @@
       "LEECH_SEED",
       "DRAGON_TAIL",
       "DEFENSE_CURL",
-      "ROLLOUT"
+      "ROLLOUT",
+      "RECYCLE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -178108,6 +178949,11 @@
         "move": "Withdraw"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 8,
         "const": "ACROBATICS",
         "move": "Acrobatics"
@@ -178225,7 +179071,8 @@
       "LEECH_SEED",
       "DRAGON_TAIL",
       "DEFENSE_CURL",
-      "ROLLOUT"
+      "ROLLOUT",
+      "RECYCLE"
     ],
     "tmhm": [
       "CURSE",
@@ -178567,6 +179414,11 @@
         "move": "Yawn"
       },
       {
+        "level": 1,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 4,
         "const": "DRAGON_TAIL",
         "move": "Dragon Tail"
@@ -178669,7 +179521,8 @@
       "LEECH_SEED",
       "DRAGON_TAIL",
       "DEFENSE_CURL",
-      "ROLLOUT"
+      "ROLLOUT",
+      "RECYCLE"
     ],
     "tmhm": [
       "CURSE",
@@ -180329,6 +181182,11 @@
         "move": "Rock Slide"
       },
       {
+        "level": 38,
+        "const": "SKY_UPPERCUT",
+        "move": "Sky Uppercut"
+      },
+      {
         "level": 42,
         "const": "COUNTER",
         "move": "Counter"
@@ -180446,6 +181304,7 @@
       "SNORE",
       "STONE_EDGE",
       "TAKE_DOWN",
+      "VACUUM_WAVE",
       "VENOSHOCK"
     ],
     "evolves_from": {
@@ -180827,7 +181686,9 @@
       "FIRE_PUNCH",
       "FLAIL",
       "ICE_PUNCH",
-      "THUNDERPUNCH"
+      "THUNDERPUNCH",
+      "COSMIC_POWER",
+      "SKY_UPPERCUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -181179,6 +182040,11 @@
         "move": "Splash"
       },
       {
+        "level": 1,
+        "const": "BLAZE_KICK",
+        "move": "Blaze Kick"
+      },
+      {
         "level": 7,
         "const": "ENDURE",
         "move": "Endure"
@@ -181280,7 +182146,9 @@
       "FIRE_PUNCH",
       "FLAIL",
       "ICE_PUNCH",
-      "THUNDERPUNCH"
+      "THUNDERPUNCH",
+      "COSMIC_POWER",
+      "SKY_UPPERCUT"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -181714,6 +182582,11 @@
         "level": 22,
         "const": "INCINERATE",
         "move": "Incinerate"
+      },
+      {
+        "level": 22,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 25,
@@ -182158,6 +183031,11 @@
         "move": "Incinerate"
       },
       {
+        "level": 22,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
+      },
+      {
         "level": 24,
         "const": "STEALTH_ROCK",
         "move": "Stealth Rock"
@@ -182206,6 +183084,11 @@
         "level": 47,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 51,
+        "const": "ERUPTION",
+        "move": "Eruption"
       },
       {
         "level": 52,
@@ -183408,7 +184291,8 @@
       "THUNDER_WAVE",
       "VOLT_SWITCH",
       "ENDURE",
-      "HARDEN"
+      "HARDEN",
+      "DISCHARGE"
     ],
     "tmhm": [
       "CURSE",
@@ -183732,6 +184616,11 @@
         "level": 57,
         "const": "IRON_DEFENSE",
         "move": "Iron Defense"
+      },
+      {
+        "level": 64,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       }
     ],
     "evolutions": [
@@ -183753,7 +184642,8 @@
       "THUNDER_WAVE",
       "VOLT_SWITCH",
       "ENDURE",
-      "HARDEN"
+      "HARDEN",
+      "DISCHARGE"
     ],
     "tmhm": [
       "CURSE",
@@ -184100,6 +184990,11 @@
         "move": "Iron Defense"
       },
       {
+        "level": 1,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 10,
         "const": "NUZZLE",
         "move": "Nuzzle"
@@ -184163,7 +185058,8 @@
       "THUNDER_WAVE",
       "VOLT_SWITCH",
       "ENDURE",
-      "HARDEN"
+      "HARDEN",
+      "DISCHARGE"
     ],
     "tmhm": [
       "CURSE",
@@ -184643,7 +185539,8 @@
       "CROSS_CHOP",
       "DRAIN_PUNCH",
       "FAKE_OUT",
-      "HEADBUTT"
+      "HEADBUTT",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -184998,6 +185895,11 @@
         "move": "Astonish"
       },
       {
+        "level": 1,
+        "const": "VACUUM_WAVE",
+        "move": "Vacuum Wave"
+      },
+      {
         "level": 4,
         "const": "MUD_SLAP",
         "move": "Mud-Slap"
@@ -185128,7 +186030,8 @@
       "CROSS_CHOP",
       "DRAIN_PUNCH",
       "FAKE_OUT",
-      "HEADBUTT"
+      "HEADBUTT",
+      "VACUUM_WAVE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -185539,6 +186442,11 @@
         "move": "Hex"
       },
       {
+        "level": 20,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
+      },
+      {
         "level": 25,
         "const": "SHADOW_BALL",
         "move": "Shadow Ball"
@@ -185694,6 +186602,7 @@
       "NIGHT_SHADE",
       "PSYBEAM",
       "PSYCH_UP",
+      "RECYCLE",
       "ROLLOUT",
       "SKILL_SWAP",
       "SNORE",
@@ -185997,6 +186906,11 @@
         "move": "Hex"
       },
       {
+        "level": 20,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
+      },
+      {
         "level": 25,
         "const": "SHADOW_BALL",
         "move": "Shadow Ball"
@@ -186148,6 +187062,7 @@
       "NIGHT_SHADE",
       "PSYBEAM",
       "PSYCH_UP",
+      "RECYCLE",
       "ROLLOUT",
       "SKILL_SWAP",
       "SNORE",
@@ -187335,6 +188250,11 @@
         "move": "Thunder Fang"
       },
       {
+        "level": 36,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 37,
         "const": "REST",
         "move": "Rest"
@@ -187803,6 +188723,11 @@
         "move": "Rest"
       },
       {
+        "level": 40,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 44,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
@@ -188255,6 +189180,11 @@
         "level": 44,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      },
+      {
+        "level": 44,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 48,
@@ -190674,6 +191604,7 @@
       "GIGA_IMPACT",
       "HEAT_WAVE",
       "MIMIC",
+      "OMINOUS_WIND",
       "SNORE",
       "STONE_EDGE",
       "STRUGGLE_BUG",
@@ -191211,12 +192142,14 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "MIMIC",
+      "OMINOUS_WIND",
       "SCALE_SHOT",
       "SNORE",
       "STONE_EDGE",
       "STRUGGLE_BUG",
       "TAKE_DOWN",
-      "TWISTER"
+      "TWISTER",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "VIBRAVA",
@@ -191982,6 +192915,11 @@
         "level": 1,
         "const": "PROTECT",
         "move": "Protect"
+      },
+      {
+        "level": 1,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
       },
       {
         "level": 6,
@@ -193332,6 +194270,11 @@
         "move": "Trick Room"
       },
       {
+        "level": 38,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 43,
         "const": "FUTURE_SIGHT",
         "move": "Future Sight"
@@ -193429,6 +194372,7 @@
       "LUNGE",
       "MIMIC",
       "NIGHT_SHADE",
+      "RECYCLE",
       "SNARL",
       "TAKE_DOWN",
       "TAUNT",
@@ -193781,6 +194725,11 @@
         "move": "Slack Off"
       },
       {
+        "level": 42,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 45,
         "const": "FUTURE_SIGHT",
         "move": "Future Sight"
@@ -193890,6 +194839,7 @@
       "MIMIC",
       "MUD_SHOT",
       "NIGHT_SHADE",
+      "RECYCLE",
       "SEED_BOMB",
       "SEISMIC_TOSS",
       "SNARL",
@@ -200496,7 +201446,8 @@
       "SHADOW_CLAW",
       "SNARL",
       "STONE_EDGE",
-      "TAUNT"
+      "TAUNT",
+      "VACUUM_WAVE"
     ],
     "evolves_from": {
       "const": "URSARINGBM",
@@ -201849,6 +202800,7 @@
       "ICY_WIND",
       "IRON_DEFENSE",
       "LIQUIDATION",
+      "OMINOUS_WIND",
       "ROCK_BLAST",
       "ROCK_SLIDE",
       "SAFEGUARD",
@@ -202314,6 +203266,7 @@
       "IRON_DEFENSE",
       "LEECH_LIFE",
       "LIQUIDATION",
+      "OMINOUS_WIND",
       "PIN_MISSILE",
       "ROCK_BLAST",
       "ROCK_SLIDE",
@@ -203609,9 +204562,19 @@
         "move": "Focus Blast"
       },
       {
+        "level": 43,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 56,
         "const": "FUTURE_SIGHT",
         "move": "Future Sight"
+      },
+      {
+        "level": 56,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       }
     ],
     "evolutions": [],
@@ -203704,6 +204667,7 @@
       "PAY_DAY",
       "PLAY_ROUGH",
       "RAGE",
+      "RECYCLE",
       "ROLLOUT",
       "SAFEGUARD",
       "SEISMIC_TOSS",
@@ -205284,9 +206248,11 @@
       "HEAL_BELL",
       "ICICLE_SPEAR",
       "IRON_TAIL",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "PLAY_ROUGH",
       "PSYCH_UP",
+      "PSYSHOCK",
       "REFLECT",
       "SNORE",
       "TACKLE",
@@ -205736,8 +206702,10 @@
       "HEAL_BELL",
       "ICICLE_SPEAR",
       "IRON_TAIL",
+      "OMINOUS_WIND",
       "PAIN_SPLIT",
       "PSYCH_UP",
+      "PSYSHOCK",
       "REFLECT",
       "SNORE",
       "TACKLE",
@@ -207911,6 +208879,11 @@
         "move": "Mega Punch"
       },
       {
+        "level": 31,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 34,
         "const": "ROCK_BLAST",
         "move": "Rock Blast"
@@ -208367,6 +209340,11 @@
         "level": 34,
         "const": "STEALTH_ROCK",
         "move": "Stealth Rock"
+      },
+      {
+        "level": 34,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 38,
@@ -208875,6 +209853,11 @@
         "level": 32,
         "const": "ROCK_POLISH",
         "move": "Rock Polish"
+      },
+      {
+        "level": 34,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 38,
@@ -209412,7 +210395,8 @@
       "HAZE",
       "CURSE",
       "PURSUIT",
-      "SHADOW_SNEAK"
+      "SHADOW_SNEAK",
+      "RECYCLE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -209892,7 +210876,8 @@
       "HAZE",
       "CURSE",
       "PURSUIT",
-      "SHADOW_SNEAK"
+      "SHADOW_SNEAK",
+      "RECYCLE"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -210321,6 +211306,11 @@
         "move": "Leaf Storm"
       },
       {
+        "level": 1,
+        "const": "PSYSHOCK",
+        "move": "Psyshock"
+      },
+      {
         "level": 7,
         "const": "REFLECT",
         "move": "Reflect"
@@ -210414,6 +211404,11 @@
         "level": 50,
         "const": "WOOD_HAMMER",
         "move": "Wood Hammer"
+      },
+      {
+        "level": 52,
+        "const": "DRAGON_HAMMER",
+        "move": "Dragon Hammer"
       },
       {
         "level": 56,
@@ -212749,6 +213744,11 @@
         "move": "Psycho Cut"
       },
       {
+        "level": 1,
+        "const": "BLAZE_KICK",
+        "move": "Blaze Kick"
+      },
+      {
         "level": 4,
         "const": "TAIL_WHIP",
         "move": "Tail Whip"
@@ -213360,6 +214360,7 @@
       "LIQUIDATION",
       "MUD_SHOT",
       "PAY_DAY",
+      "PSYSHOCK",
       "SCALD",
       "SNORE",
       "TAKE_DOWN",
@@ -213900,6 +214901,7 @@
       "METRONOME",
       "MUD_SHOT",
       "PAY_DAY",
+      "PSYSHOCK",
       "ROCK_BLAST",
       "SCALD",
       "SCARY_FACE",
@@ -214517,6 +215519,7 @@
       "MUD_SHOT",
       "PAY_DAY",
       "POISON_JAB",
+      "PSYSHOCK",
       "SCALD",
       "SCARY_FACE",
       "SNARL",
@@ -216319,6 +217322,11 @@
         "move": "Giga Drain"
       },
       {
+        "level": 30,
+        "const": "RECYCLE",
+        "move": "Recycle"
+      },
+      {
         "level": 34,
         "const": "LIGHT_SCREEN",
         "move": "Light Screen"
@@ -216332,6 +217340,11 @@
         "level": 34,
         "const": "SEED_BOMB",
         "move": "Seed Bomb"
+      },
+      {
+        "level": 34,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 37,
@@ -216380,7 +217393,8 @@
       "LEECH_SEED",
       "STUN_SPORE",
       "MAGICAL_LEAF",
-      "GIGA_DRAIN"
+      "GIGA_DRAIN",
+      "RECYCLE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -216791,6 +217805,11 @@
         "move": "Seed Bomb"
       },
       {
+        "level": 34,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 35,
         "const": "SYNTHESIS",
         "move": "Synthesis"
@@ -216831,7 +217850,8 @@
       "LEECH_SEED",
       "STUN_SPORE",
       "MAGICAL_LEAF",
-      "GIGA_DRAIN"
+      "GIGA_DRAIN",
+      "RECYCLE"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -217195,6 +218215,11 @@
         "move": "Gyro Ball"
       },
       {
+        "level": 1,
+        "const": "ERUPTION",
+        "move": "Eruption"
+      },
+      {
         "level": 6,
         "const": "EMBER",
         "move": "Ember"
@@ -217235,9 +218260,19 @@
         "move": "Swift"
       },
       {
+        "level": 25,
+        "const": "OMINOUS_WIND",
+        "move": "Ominous Wind"
+      },
+      {
         "level": 28,
         "const": "INCINERATE",
         "move": "Incinerate"
+      },
+      {
+        "level": 29,
+        "const": "LAVA_PLUME",
+        "move": "Lava Plume"
       },
       {
         "level": 34,
@@ -217948,10 +218983,12 @@
       "FALSE_SWIPE",
       "FOCUS_BLAST",
       "GIGA_IMPACT",
+      "POISON_TAIL",
       "REVERSAL",
       "SHADOW_CLAW",
       "SPITE",
       "TAKE_DOWN",
+      "VACUUM_WAVE",
       "VENOSHOCK"
     ],
     "evolves_from": null,
@@ -218538,11 +219575,13 @@
       "FALSE_SWIPE",
       "FOCUS_BLAST",
       "GIGA_IMPACT",
+      "POISON_TAIL",
       "REVERSAL",
       "ROCK_SLIDE",
       "SHADOW_CLAW",
       "SPITE",
       "TAKE_DOWN",
+      "VACUUM_WAVE",
       "VENOSHOCK"
     ],
     "evolves_from": {
@@ -218892,6 +219931,11 @@
         "level": 21,
         "const": "YAWN",
         "move": "Yawn"
+      },
+      {
+        "level": 22,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
       },
       {
         "level": 28,
@@ -219342,6 +220386,11 @@
         "move": "Yawn"
       },
       {
+        "level": 23,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 24,
         "const": "STEALTH_ROCK",
         "move": "Stealth Rock"
@@ -219788,6 +220837,11 @@
         "level": 28,
         "const": "FLAME_WHEEL",
         "move": "Flame Wheel"
+      },
+      {
+        "level": 28,
+        "const": "BLAZE_KICK",
+        "move": "Blaze Kick"
       },
       {
         "level": 30,
@@ -221225,6 +222279,7 @@
       "DOUBLE_TEAM",
       "FRUSTRATION",
       "LOW_SWEEP",
+      "PETAL_BLIZZARD",
       "SAFEGUARD",
       "SNORE",
       "TAKE_DOWN",
@@ -221653,6 +222708,7 @@
       "GIGA_IMPACT",
       "LOW_KICK",
       "MEGA_KICK",
+      "PETAL_BLIZZARD",
       "SAFEGUARD",
       "SNORE",
       "TAKE_DOWN",
@@ -225568,6 +226624,11 @@
         "move": "Glare"
       },
       {
+        "level": 22,
+        "const": "POISON_TAIL",
+        "move": "Poison Tail"
+      },
+      {
         "level": 25,
         "const": "NIGHT_SLASH",
         "move": "Night Slash"
@@ -226124,7 +227185,8 @@
       "FORESIGHT",
       "PHANTOMFORCE",
       "PURSUIT",
-      "SHADOW_SNEAK"
+      "SHADOW_SNEAK",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -226566,7 +227628,8 @@
       "FORESIGHT",
       "PHANTOMFORCE",
       "PURSUIT",
-      "SHADOW_SNEAK"
+      "SHADOW_SNEAK",
+      "OMINOUS_WIND"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -226621,6 +227684,7 @@
     ],
     "blackthorn_tutor_moves": [
       "CALM_MIND",
+      "COTTON_GUARD",
       "DAZZLING_GLEAM",
       "DOUBLE_TEAM",
       "DREAM_EATER",
@@ -230353,6 +231417,11 @@
         "move": "X-Scissor"
       },
       {
+        "level": 37,
+        "const": "DISCHARGE",
+        "move": "Discharge"
+      },
+      {
         "level": 38,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
@@ -230772,6 +231841,11 @@
         "level": 38,
         "const": "X_SCISSOR",
         "move": "X-Scissor"
+      },
+      {
+        "level": 39,
+        "const": "DISCHARGE",
+        "move": "Discharge"
       },
       {
         "level": 43,
@@ -232792,6 +233866,7 @@
       "IRON_TAIL",
       "LEECH_LIFE",
       "POISON_JAB",
+      "POISON_TAIL",
       "SCALE_SHOT",
       "SCARY_FACE",
       "SHADOW_CLAW",
@@ -233300,6 +234375,7 @@
       "IRON_TAIL",
       "LEECH_LIFE",
       "POISON_JAB",
+      "POISON_TAIL",
       "SCALE_SHOT",
       "SCARY_FACE",
       "SHADOW_CLAW",
@@ -233771,6 +234847,7 @@
       "BATON_PASS",
       "ENDURE",
       "FOUL_PLAY",
+      "PSYSHOCK",
       "SEED_BOMB",
       "TAKE_DOWN",
       "U_TURN"
@@ -234181,6 +235258,7 @@
       "LOW_KICK",
       "NIGHT_SHADE",
       "PSYCH_UP",
+      "PSYSHOCK",
       "SEED_BOMB",
       "TAKE_DOWN"
     ],
@@ -235492,6 +236570,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "level": 26,
+        "const": "COSMIC_POWER",
+        "move": "Cosmic Power"
+      },
+      {
         "level": 34,
         "const": "IRON_HEAD",
         "move": "Iron Head"
@@ -235505,6 +236588,16 @@
         "level": 42,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
+      },
+      {
+        "level": 49,
+        "const": "METEOR_MASH",
+        "move": "Meteor Mash"
+      },
+      {
+        "level": 50,
+        "const": "DOOM_DESIRE",
+        "move": "Doom Desire"
       },
       {
         "level": 63,
@@ -235548,8 +236641,8 @@
       "catch_rate": 3,
       "base_exp": 215,
       "items": [
-        "STAR_PIECE",
-        "STAR_PIECE"
+        "STARDUST",
+        "STARDUST"
       ],
       "gender": "Genderless",
       "egg_cycles": 120,
@@ -235596,6 +236689,8 @@
       "PLAY_ROUGH",
       "PSYBEAM",
       "PSYCH_UP",
+      "PSYSHOCK",
+      "RECYCLE",
       "SAFEGUARD",
       "SIGNAL_BEAM",
       "SKILL_SWAP",

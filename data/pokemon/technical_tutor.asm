@@ -66,7 +66,7 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_POLIWHIRL ; POLIWHIRL
 	dba TechnicalTutor_POLIWRATH ; POLIWRATH
 	dba TechnicalTutor_ABRA ; ABRA
-	dba TechnicalTutor_ABRA ; KADABRA
+	dba TechnicalTutor_KADABRA ; KADABRA
 	dba TechnicalTutor_ALAKAZAM ; ALAKAZAM
 	dba TechnicalTutor_MACHOP ; MACHOP
 	dba TechnicalTutor_MACHOP ; MACHOKE
@@ -577,6 +577,7 @@ TechnicalTutor_CHARIZARD:
 	dw ACROBATICS
 	dw AERIAL_ACE
 	dw BIDE
+	dw BLAZE_KICK
 	dw BODY_SLAM
 	dw BRICK_BREAK
 	dw BULLDOZE
@@ -598,6 +599,7 @@ TechnicalTutor_CHARIZARD:
 	dw MEGA_KICK
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw QUICK_ATTACK
 	dw REFLECT
 	dw SCALE_SHOT
@@ -709,6 +711,7 @@ TechnicalTutor_BUTTERFREE:
 	dw MIMIC
 	dw MORNING_SUN
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw PSYWAVE
 	dw RAGE
@@ -748,6 +751,7 @@ TechnicalTutor_BEEDRILL:
 	dw IRON_DEFENSE
 	dw MEGA_DRAIN
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PECK
 	dw REFLECT
 	dw ROOST
@@ -765,6 +769,7 @@ TechnicalTutor_PIDGEY:
 	dw ENDURE
 	dw FRUSTRATION
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw REFLECT
 	dw SKY_ATTACK
@@ -780,6 +785,7 @@ TechnicalTutor_PIDGEOTTO:
 	dw ENDURE
 	dw FRUSTRATION
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw REFLECT
 	dw SNORE
@@ -794,6 +800,7 @@ TechnicalTutor_PIDGEOT:
 	dw FRUSTRATION
 	dw GIGA_IMPACT
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw REFLECT
 	dw SNORE
@@ -841,6 +848,7 @@ TechnicalTutor_SPEAROW:
 	dw FRUSTRATION
 	dw HEAT_WAVE
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw SNORE
 	dw TWISTER
@@ -857,6 +865,7 @@ TechnicalTutor_FEAROW:
 	dw FRUSTRATION
 	dw HEAT_WAVE
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw SNORE
 	dw TWISTER
@@ -1232,8 +1241,10 @@ TechnicalTutor_CLEFAIRY:
 	dw NIGHT_SHADE
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
@@ -1279,8 +1290,10 @@ TechnicalTutor_CLEFABLE:
 	dw NIGHT_SHADE
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
@@ -1310,6 +1323,7 @@ TechnicalTutor_VULPIX:
 	dw FRUSTRATION
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw RAGE
 	dw REFLECT
@@ -1336,7 +1350,9 @@ TechnicalTutor_NINETALES:
 	dw IRON_TAIL
 	dw MIMIC
 	dw NIGHT_SHADE
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
+	dw PSYSHOCK
 	dw RAGE
 	dw REFLECT
 	dw SKULL_BASH
@@ -1372,8 +1388,10 @@ TechnicalTutor_JIGGLYPUFF:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SCREECH
 	dw SEISMIC_TOSS
@@ -1416,8 +1434,10 @@ TechnicalTutor_WIGGLYTUFF:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SCREECH
 	dw SEISMIC_TOSS
@@ -1445,6 +1465,7 @@ TechnicalTutor_ZUBAT:
 	dw FRUSTRATION
 	dw MEGA_DRAIN
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw SNORE
@@ -1468,6 +1489,7 @@ TechnicalTutor_GOLBAT:
 	dw GIGA_IMPACT
 	dw MEGA_DRAIN
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw SNORE
@@ -1606,6 +1628,7 @@ TechnicalTutor_VENOMOTH:
 	dw LUNGE
 	dw MIMIC
 	dw NIGHT_SHADE
+	dw OMINOUS_WIND
 	dw PSYWAVE
 	dw RAGE
 	dw RAZOR_WIND
@@ -1746,6 +1769,7 @@ TechnicalTutor_PSYDUCK:
 	dw MIMIC
 	dw MUD_SHOT
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw RAGE
 	dw SEISMIC_TOSS
 	dw SHADOW_CLAW
@@ -1756,6 +1780,7 @@ TechnicalTutor_PSYDUCK:
 	dw SUBMISSION
 	dw TAKE_DOWN
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_GOLDUCK:
@@ -1785,6 +1810,7 @@ TechnicalTutor_GOLDUCK:
 	dw MIMIC
 	dw MUD_SHOT
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw RAGE
 	dw SEISMIC_TOSS
 	dw SHADOW_CLAW
@@ -1793,6 +1819,7 @@ TechnicalTutor_GOLDUCK:
 	dw SUBMISSION
 	dw TAKE_DOWN
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_MANKEY:
@@ -1827,6 +1854,7 @@ TechnicalTutor_MANKEY:
 	dw STONE_EDGE
 	dw TAKE_DOWN
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_PRIMEAPE:
@@ -1862,6 +1890,7 @@ TechnicalTutor_PRIMEAPE:
 	dw STONE_EDGE
 	dw TAKE_DOWN
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_GROWLITHE:
@@ -2005,8 +2034,41 @@ TechnicalTutor_ABRA:
 	dw METRONOME
 	dw MIMIC
 	dw NIGHTMARE
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
+	dw SAFEGUARD
+	dw SEISMIC_TOSS
+	dw SKULL_BASH
+	dw SNORE
+	dw SUBMISSION
+	dw TAKE_DOWN
+	dw TAUNT
+	dw TORMENT
+	dw TRI_ATTACK
+	dw 0
+
+TechnicalTutor_KADABRA:
+	dw BIDE
+	dw BODY_SLAM
+	dw COUNTER
+	dw DAZZLING_GLEAM
+	dw DOUBLE_EDGE
+	dw DOUBLE_TEAM
+	dw DYNAMICPUNCH
+	dw ENDURE
+	dw FOUL_PLAY
+	dw FRUSTRATION
+	dw IRON_TAIL
+	dw MEGA_KICK
+	dw MEGA_PUNCH
+	dw METRONOME
+	dw MIMIC
+	dw NIGHTMARE
+	dw PSYWAVE
+	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -2037,6 +2099,7 @@ TechnicalTutor_ALAKAZAM:
 	dw NIGHTMARE
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -2068,6 +2131,7 @@ TechnicalTutor_MACHOP:
 	dw SKULL_BASH
 	dw SNORE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_MACHAMP:
@@ -2094,6 +2158,7 @@ TechnicalTutor_MACHAMP:
 	dw SKULL_BASH
 	dw SNORE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_BELLSPROUT:
@@ -2333,8 +2398,10 @@ TechnicalTutor_SLOWPOKE:
 	dw NIGHTMARE
 	dw PAY_DAY
 	dw PSYBEAM
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw REFLECT
 	dw SCALD
 	dw SIGNAL_BEAM
@@ -2373,8 +2440,10 @@ TechnicalTutor_SLOWBRO:
 	dw MUD_SHOT
 	dw NIGHTMARE
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw REFLECT
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -2393,6 +2462,7 @@ TechnicalTutor_MAGNEMITE:
 	dw MIMIC
 	dw PSYCH_UP
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SNORE
 	dw TAKE_DOWN
@@ -2411,6 +2481,7 @@ TechnicalTutor_MAGNETON:
 	dw MIMIC
 	dw PSYCH_UP
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SNORE
 	dw TAKE_DOWN
@@ -2429,6 +2500,7 @@ TechnicalTutor_FARFETCH_D:
 	dw HEAT_WAVE
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw RAGE
 	dw RAZOR_LEAF
@@ -2626,6 +2698,7 @@ TechnicalTutor_GASTLY:
 	dw INFESTATION
 	dw MEGA_DRAIN
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw POISON_JAB
 	dw PSYCH_UP
@@ -2653,6 +2726,7 @@ TechnicalTutor_HAUNTER:
 	dw MEGA_DRAIN
 	dw METRONOME
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw POISON_JAB
 	dw PSYCH_UP
@@ -2687,6 +2761,7 @@ TechnicalTutor_GENGAR:
 	dw MEGA_PUNCH
 	dw METRONOME
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw POISON_JAB
 	dw PSYCH_UP
@@ -2749,6 +2824,7 @@ TechnicalTutor_DROWZEE:
 	dw NIGHT_SHADE
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -2791,6 +2867,7 @@ TechnicalTutor_HYPNO:
 	dw NIGHT_SHADE
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SCARY_FACE
 	dw SEISMIC_TOSS
@@ -2892,6 +2969,7 @@ TechnicalTutor_EXEGGCUTE:
 	dw INFESTATION
 	dw MIMIC
 	dw NIGHTMARE
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
 	dw ROLLOUT
@@ -2957,6 +3035,8 @@ TechnicalTutor_CUBONE:
 	dw WATER_GUN
 	dw 0
 
+SECTION "Blackthorn Tutor Moves 2", ROMX
+
 TechnicalTutor_MAROWAK:
 	dw AERIAL_ACE
 	dw BIDE
@@ -2985,8 +3065,6 @@ TechnicalTutor_MAROWAK:
 	dw TAKE_DOWN
 	dw WATER_GUN
 	dw 0
-
-SECTION "Blackthorn Tutor Moves 2", ROMX
 
 TechnicalTutor_HITMONLEE:
 	dw AURA_SPHERE
@@ -3202,6 +3280,7 @@ TechnicalTutor_CHANSEY:
 	dw PSYCH_UP
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw REFLECT
 	dw ROCK_SLIDE
 	dw SAFEGUARD
@@ -3362,6 +3441,7 @@ TechnicalTutor_STARYU:
 	dw PAIN_SPLIT
 	dw PSYCH_UP
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SIGNAL_BEAM
 	dw SKULL_BASH
@@ -3388,7 +3468,9 @@ TechnicalTutor_STARMIE:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SKULL_BASH
 	dw SNORE
@@ -3417,6 +3499,7 @@ TechnicalTutor_MR__MIME:
 	dw MEGA_KICK
 	dw MEGA_PUNCH
 	dw NIGHTMARE
+	dw PSYSHOCK
 	dw RAGE
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -3444,6 +3527,7 @@ TechnicalTutor_SCYTHER:
 	dw LUNGE
 	dw MIMIC
 	dw MORNING_SUN
+	dw OMINOUS_WIND
 	dw PSYCHO_CUT
 	dw RAGE
 	dw SCARY_FACE
@@ -3477,6 +3561,7 @@ TechnicalTutor_JYNX:
 	dw PSYCHO_CUT
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw SCREECH
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -3745,6 +3830,7 @@ TechnicalTutor_PORYGON:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
 	dw REFLECT
@@ -3862,6 +3948,7 @@ TechnicalTutor_AERODACTYL:
 	dw INCINERATE
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw REFLECT
@@ -3925,6 +4012,7 @@ TechnicalTutor_ARTICUNO:
 	dw LEER
 	dw MIMIC
 	dw MIRROR_COAT
+	dw OMINOUS_WIND
 	dw PECK
 	dw RAGE
 	dw RAZOR_WIND
@@ -3953,6 +4041,7 @@ TechnicalTutor_ZAPDOS:
 	dw HAIL
 	dw LEER
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw REFLECT
@@ -3977,6 +4066,7 @@ TechnicalTutor_MOLTRES:
 	dw GIGA_IMPACT
 	dw MIMIC
 	dw MORNING_SUN
+	dw OMINOUS_WIND
 	dw PECK
 	dw RAGE
 	dw RAZOR_WIND
@@ -4068,6 +4158,7 @@ TechnicalTutor_DRAGONITE:
 	dw MEGA_PUNCH
 	dw METRONOME
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw REFLECT
@@ -4120,7 +4211,9 @@ TechnicalTutor_MEWTWO:
 	dw NIGHT_SHADE
 	dw PAY_DAY
 	dw POISON_JAB
+	dw PSYSHOCK
 	dw RAGE
+	dw RECYCLE
 	dw REVERSAL
 	dw ROCK_SLIDE
 	dw SCARY_FACE
@@ -4149,6 +4242,7 @@ TechnicalTutor_MEW:
 	dw BEAT_UP
 	dw BIDE
 	dw BIND
+	dw BLAZE_KICK
 	dw BODY_PRESS
 	dw BODY_SLAM
 	dw BOUNCE
@@ -4163,6 +4257,7 @@ TechnicalTutor_MEW:
 	dw CLOSE_COMBAT
 	dw CONFUSE_RAY
 	dw CONFUSION
+	dw COSMIC_POWER
 	dw COUNTER
 	dw CROSS_POISON
 	dw CRUNCH
@@ -4237,19 +4332,24 @@ TechnicalTutor_MEW:
 	dw MUD_SHOT
 	dw NIGHTMARE
 	dw NIGHT_SHADE
+	dw OMINOUS_WIND
 	dw OUTRAGE
 	dw OVERHEAT
 	dw PAIN_SPLIT
 	dw PAY_DAY
+	dw PETAL_BLIZZARD
 	dw PHANTOMFORCE
 	dw PIN_MISSILE
 	dw PLAY_ROUGH
 	dw POISON_JAB
+	dw POISON_TAIL
 	dw POWER_WHIP
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
 	dw RAZOR_WIND
+	dw RECYCLE
 	dw REVERSAL
 	dw ROCK_BLAST
 	dw ROCK_POLISH
@@ -4290,6 +4390,7 @@ TechnicalTutor_MEW:
 	dw TRIPLE_AXEL
 	dw TRI_ATTACK
 	dw TWISTER
+	dw VACUUM_WAVE
 	dw VENOSHOCK
 	dw VOLT_SWITCH
 	dw WATER_GUN
@@ -4516,8 +4617,10 @@ TechnicalTutor_HOOTHOOT:
 	dw HAZE
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw RECYCLE
 	dw SCREECH
 	dw SKILL_SWAP
 	dw SNORE
@@ -4540,7 +4643,9 @@ TechnicalTutor_NOCTOWL:
 	dw HAZE
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
+	dw RECYCLE
 	dw SCARY_FACE
 	dw SCREECH
 	dw SNORE
@@ -4558,6 +4663,7 @@ TechnicalTutor_LEDYBA:
 	dw INFESTATION
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw ROLLOUT
 	dw SNORE
 	dw STRING_SHOT
@@ -4577,6 +4683,7 @@ TechnicalTutor_LEDIAN:
 	dw INFESTATION
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw ROLLOUT
 	dw SNORE
 	dw STRING_SHOT
@@ -4635,6 +4742,7 @@ TechnicalTutor_CROBAT:
 	dw HEX
 	dw MEGA_DRAIN
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw RAGE
 	dw RAZOR_WIND
 	dw SNORE
@@ -4718,6 +4826,8 @@ TechnicalTutor_CLEFFA:
 	dw PLAY_ROUGH
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw ROLLOUT
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
@@ -4745,6 +4855,7 @@ TechnicalTutor_IGGLYBUFF:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SCREECH
 	dw SEISMIC_TOSS
@@ -4769,6 +4880,7 @@ TechnicalTutor_TOGEPI:
 	dw MEGA_PUNCH
 	dw MIMIC
 	dw PLAY_ROUGH
+	dw PSYSHOCK
 	dw ROLLOUT
 	dw SEISMIC_TOSS
 	dw SIGNAL_BEAM
@@ -4795,7 +4907,9 @@ TechnicalTutor_TOGETIC:
 	dw MEGA_KICK
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PLAY_ROUGH
+	dw PSYSHOCK
 	dw ROLLOUT
 	dw SEISMIC_TOSS
 	dw SIGNAL_BEAM
@@ -4811,6 +4925,7 @@ TechnicalTutor_NATU:
 	dw AERIAL_ACE
 	dw AIR_CUTTER
 	dw BATON_PASS
+	dw COSMIC_POWER
 	dw DAZZLING_GLEAM
 	dw DETECT
 	dw DOUBLE_EDGE
@@ -4822,6 +4937,7 @@ TechnicalTutor_NATU:
 	dw MIMIC
 	dw NIGHTMARE
 	dw PAIN_SPLIT
+	dw PSYSHOCK
 	dw SKY_ATTACK
 	dw SNORE
 	dw TWISTER
@@ -5104,6 +5220,7 @@ TechnicalTutor_YANMA:
 	dw GIGA_DRAIN
 	dw LUNGE
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SNORE
 	dw STRUGGLE_BUG
@@ -5175,6 +5292,7 @@ TechnicalTutor_ESPEON:
 	dw MIMIC
 	dw NIGHTMARE
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw RAGE
 	dw SING
 	dw SNORE
@@ -5217,6 +5335,7 @@ TechnicalTutor_MURKROW:
 	dw ICY_WIND
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SCARY_FACE
 	dw SNORE
@@ -5254,8 +5373,10 @@ TechnicalTutor_SLOWKING:
 	dw MUD_SHOT
 	dw NIGHTMARE
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw ROCK_SLIDE
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
@@ -5281,6 +5402,7 @@ TechnicalTutor_MISDREAVUS:
 	dw MIMIC
 	dw NIGHTMARE
 	dw NIGHT_SHADE
+	dw PSYSHOCK
 	dw SCARY_FACE
 	dw SNORE
 	dw TAUNT
@@ -5299,6 +5421,8 @@ TechnicalTutor_GIRAFARIG:
 	dw LOW_KICK
 	dw MIMIC
 	dw NIGHTMARE
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SNORE
 	dw SUCKER_PUNCH
 	dw 0
@@ -5371,6 +5495,7 @@ TechnicalTutor_DUNSPARCE:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw POISON_JAB
+	dw POISON_TAIL
 	dw PSYCH_UP
 	dw SCALE_SHOT
 	dw SCARY_FACE
@@ -5468,6 +5593,8 @@ TechnicalTutor_SNUBBULL:
 	dw WILD_CHARGE
 	dw 0
 
+SECTION "Blackthorn Tutor Moves 3", ROMX
+
 TechnicalTutor_GRANBULL:
 	dw BODY_SLAM
 	dw BRICK_BREAK
@@ -5503,8 +5630,6 @@ TechnicalTutor_GRANBULL:
 	dw WILD_CHARGE
 	dw 0
 
-SECTION "Blackthorn Tutor Moves 3", ROMX
-
 TechnicalTutor_QWILFISH:
 	dw AGILITY
 	dw BOUNCE
@@ -5523,6 +5648,7 @@ TechnicalTutor_QWILFISH:
 	dw MIMIC
 	dw MUD_SHOT
 	dw PAIN_SPLIT
+	dw POISON_TAIL
 	dw REVERSAL
 	dw SCALD
 	dw SCALE_SHOT
@@ -5548,6 +5674,7 @@ TechnicalTutor_SCIZOR:
 	dw LUNGE
 	dw MIMIC
 	dw MORNING_SUN
+	dw OMINOUS_WIND
 	dw PSYCHO_CUT
 	dw RAGE
 	dw SCARY_FACE
@@ -5591,6 +5718,7 @@ TechnicalTutor_HERACROSS:
 	dw SNORE
 	dw SPIKES
 	dw STRUGGLE_BUG
+	dw VACUUM_WAVE
 	dw VENOSHOCK
 	dw 0
 
@@ -5872,6 +6000,7 @@ TechnicalTutor_SKARMORY:
 	dw HURRICANE
 	dw ICY_WIND
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw REVERSAL
 	dw ROCK_SLIDE
 	dw SNORE
@@ -5991,6 +6120,7 @@ TechnicalTutor_PORYGON2:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw PSYWAVE
 	dw RAGE
 	dw REFLECT
@@ -6015,6 +6145,7 @@ TechnicalTutor_STANTLER:
 	dw MIMIC
 	dw NIGHTMARE
 	dw PSYBEAM
+	dw PSYSHOCK
 	dw SCARY_FACE
 	dw SIGNAL_BEAM
 	dw SKILL_SWAP
@@ -6080,6 +6211,8 @@ TechnicalTutor_SMOOCHUM:
 	dw METRONOME
 	dw MIMIC
 	dw NIGHTMARE
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SEISMIC_TOSS
 	dw SNORE
 	dw WATER_PULSE
@@ -6166,6 +6299,7 @@ TechnicalTutor_BLISSEY:
 	dw PSYCH_UP
 	dw PSYWAVE
 	dw RAGE
+	dw RECYCLE
 	dw REFLECT
 	dw ROCK_SLIDE
 	dw SAFEGUARD
@@ -6236,6 +6370,7 @@ TechnicalTutor_SUICUNE:
 	dw ICY_WIND
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SIGNAL_BEAM
 	dw SNARL
@@ -6334,7 +6469,9 @@ TechnicalTutor_LUGIA:
 	dw LIQUIDATION
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw SCALE_SHOT
 	dw SCARY_FACE
 	dw SNORE
@@ -6362,6 +6499,7 @@ TechnicalTutor_HO_OH:
 	dw HYPER_VOICE
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SIGNAL_BEAM
 	dw SNORE
@@ -6413,6 +6551,7 @@ TechnicalTutor_HONCHKROW:
 	dw INCINERATE
 	dw MIMIC
 	dw NIGHTMARE
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SCARY_FACE
 	dw SNORE
@@ -6482,6 +6621,7 @@ TechnicalTutor_ANNIHILAPE:
 	dw STEALTH_ROCK
 	dw STONE_EDGE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_BAGON:
@@ -6535,6 +6675,7 @@ TechnicalTutor_SALAMENCE:
 	dw IRON_DEFENSE
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw ROCK_SLIDE
 	dw ROLLOUT
 	dw SNORE
@@ -6564,6 +6705,7 @@ TechnicalTutor_DUDUNSPARCE:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw POISON_JAB
+	dw POISON_TAIL
 	dw PSYCH_UP
 	dw SCARY_FACE
 	dw STONE_EDGE
@@ -6612,6 +6754,8 @@ TechnicalTutor_FARIGIRAF:
 	dw MIMIC
 	dw NIGHTMARE
 	dw NIGHT_SHADE
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SNORE
 	dw SUCKER_PUNCH
 	dw 0
@@ -6631,6 +6775,8 @@ TechnicalTutor_RALTS:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SING
 	dw SNORE
@@ -6654,6 +6800,8 @@ TechnicalTutor_KIRLIA:
 	dw NIGHTMARE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SING
 	dw SNORE
@@ -6680,12 +6828,15 @@ TechnicalTutor_GARDEVOIR:
 	dw NIGHT_SHADE
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SING
 	dw SNORE
 	dw TAUNT
 	dw TORMENT
 	dw TRIPLE_AXEL
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_GALLADE:
@@ -6712,6 +6863,8 @@ TechnicalTutor_GALLADE:
 	dw PAIN_SPLIT
 	dw POISON_JAB
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw REVERSAL
 	dw ROCK_SLIDE
 	dw SAFEGUARD
@@ -6723,6 +6876,7 @@ TechnicalTutor_GALLADE:
 	dw TAKE_DOWN
 	dw TAUNT
 	dw TORMENT
+	dw VACUUM_WAVE
 	dw WISH
 	dw X_SCISSOR
 	dw 0
@@ -6780,6 +6934,7 @@ TechnicalTutor_SYLVEON:
 	dw MIMIC
 	dw PAY_DAY
 	dw PLAY_ROUGH
+	dw PSYSHOCK
 	dw RAGE
 	dw SAFEGUARD
 	dw SING
@@ -6896,6 +7051,7 @@ TechnicalTutor_MAGNEZONE:
 	dw MIMIC
 	dw PSYCH_UP
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SELFDESTRUCT
 	dw SNORE
@@ -6936,6 +7092,7 @@ TechnicalTutor_MISMAGIUS:
 	dw MIMIC
 	dw NIGHTMARE
 	dw NIGHT_SHADE
+	dw PSYSHOCK
 	dw SCARY_FACE
 	dw SNORE
 	dw TORMENT
@@ -7056,7 +7213,9 @@ TechnicalTutor_TOGEKISS:
 	dw MEGA_KICK
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PLAY_ROUGH
+	dw PSYSHOCK
 	dw ROLLOUT
 	dw SEISMIC_TOSS
 	dw SIGNAL_BEAM
@@ -7141,6 +7300,7 @@ TechnicalTutor_WYRDEER:
 	dw IRON_TAIL
 	dw MIMIC
 	dw NIGHTMARE
+	dw PSYSHOCK
 	dw SCARY_FACE
 	dw SIGNAL_BEAM
 	dw SNORE
@@ -7155,6 +7315,7 @@ TechnicalTutor_YANMEGA:
 	dw GIGA_IMPACT
 	dw LUNGE
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SCARY_FACE
 	dw SNORE
@@ -7611,6 +7772,8 @@ TechnicalTutor_ARCTIBAX:
 	dw SCARY_FACE
 	dw 0
 
+SECTION "Blackthorn Tutor Moves 4", ROMX
+
 TechnicalTutor_BAXCALIBUR:
 	dw AERIAL_ACE
 	dw BODY_SLAM
@@ -7623,8 +7786,6 @@ TechnicalTutor_BAXCALIBUR:
 	dw SCARY_FACE
 	dw THUNDER_FANG
 	dw 0
-
-SECTION "Blackthorn Tutor Moves 4", ROMX
 
 TechnicalTutor_CHARCADET:
 	dw ENDURE
@@ -7650,6 +7811,7 @@ TechnicalTutor_CERULEDGE:
 	dw PSYCH_UP
 	dw TAKE_DOWN
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw X_SCISSOR
 	dw 0
 
@@ -7746,6 +7908,7 @@ TechnicalTutor_SWABLU:
 	dw FRUSTRATION
 	dw HEAL_BELL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw OUTRAGE
 	dw PSYCH_UP
 	dw SNORE
@@ -7769,6 +7932,7 @@ TechnicalTutor_ALTARIA:
 	dw INCINERATE
 	dw IRON_TAIL
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw PSYCH_UP
 	dw SNORE
 	dw TWISTER
@@ -7887,6 +8051,7 @@ TechnicalTutor_BRELOOM:
 	dw SNORE
 	dw STONE_EDGE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw VENOSHOCK
 	dw 0
 
@@ -8076,6 +8241,7 @@ TechnicalTutor_DRIFLOON:
 	dw NIGHT_SHADE
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw RECYCLE
 	dw ROLLOUT
 	dw SKILL_SWAP
 	dw SNORE
@@ -8097,6 +8263,7 @@ TechnicalTutor_DRIFBLIM:
 	dw NIGHT_SHADE
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw RECYCLE
 	dw ROLLOUT
 	dw SKILL_SWAP
 	dw SNORE
@@ -8197,6 +8364,7 @@ TechnicalTutor_VIBRAVA:
 	dw GIGA_IMPACT
 	dw HEAT_WAVE
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw SNORE
 	dw STONE_EDGE
 	dw STRUGGLE_BUG
@@ -8224,12 +8392,14 @@ TechnicalTutor_FLYGON:
 	dw MEGA_KICK
 	dw MEGA_PUNCH
 	dw MIMIC
+	dw OMINOUS_WIND
 	dw SCALE_SHOT
 	dw SNORE
 	dw STONE_EDGE
 	dw STRUGGLE_BUG
 	dw TAKE_DOWN
 	dw TWISTER
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_SNORUNT:
@@ -8325,6 +8495,7 @@ TechnicalTutor_SPOINK:
 	dw LUNGE
 	dw MIMIC
 	dw NIGHT_SHADE
+	dw RECYCLE
 	dw SNARL
 	dw TAKE_DOWN
 	dw TAUNT
@@ -8358,6 +8529,7 @@ TechnicalTutor_GRUMPIG:
 	dw MIMIC
 	dw MUD_SHOT
 	dw NIGHT_SHADE
+	dw RECYCLE
 	dw SEED_BOMB
 	dw SEISMIC_TOSS
 	dw SNARL
@@ -8672,6 +8844,7 @@ TechnicalTutor_URSALUNABM:
 	dw SNARL
 	dw STONE_EDGE
 	dw TAUNT
+	dw VACUUM_WAVE
 	dw 0
 
 TechnicalTutor_AXEW:
@@ -8874,6 +9047,7 @@ TechnicalTutor_CORSOLA_GALARIAN:
 	dw ICY_WIND
 	dw IRON_DEFENSE
 	dw LIQUIDATION
+	dw OMINOUS_WIND
 	dw ROCK_BLAST
 	dw ROCK_SLIDE
 	dw SAFEGUARD
@@ -8896,6 +9070,7 @@ TechnicalTutor_CURSOLA:
 	dw IRON_DEFENSE
 	dw LEECH_LIFE
 	dw LIQUIDATION
+	dw OMINOUS_WIND
 	dw PIN_MISSILE
 	dw ROCK_BLAST
 	dw ROCK_SLIDE
@@ -8933,6 +9108,7 @@ TechnicalTutor_MR__RIME:
 TechnicalTutor_SIRFETCH_D:
 	dw ENDURE
 	dw FOCUS_ENERGY
+	dw OMINOUS_WIND
 	dw SNORE
 	dw SOLAR_BLADE
 	dw 0
@@ -9134,6 +9310,7 @@ TechnicalTutor_RAICHU_ALOLAN:
 	dw PAY_DAY
 	dw PLAY_ROUGH
 	dw RAGE
+	dw RECYCLE
 	dw ROLLOUT
 	dw SAFEGUARD
 	dw SEISMIC_TOSS
@@ -9205,9 +9382,11 @@ TechnicalTutor_VULPIX_ALOLAN:
 	dw HEAL_BELL
 	dw ICICLE_SPEAR
 	dw IRON_TAIL
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw PLAY_ROUGH
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw REFLECT
 	dw SNORE
 	dw TACKLE
@@ -9228,8 +9407,10 @@ TechnicalTutor_NINETALES_ALOLAN:
 	dw HEAL_BELL
 	dw ICICLE_SPEAR
 	dw IRON_TAIL
+	dw OMINOUS_WIND
 	dw PAIN_SPLIT
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw REFLECT
 	dw SNORE
 	dw TACKLE
@@ -9409,6 +9590,8 @@ TechnicalTutor_GRIMER_ALOLAN:
 	dw VENOSHOCK
 	dw 0
 
+SECTION "Blackthorn Tutor Moves 5", ROMX
+
 TechnicalTutor_MUK_ALOLAN:
 	dw BODY_SLAM
 	dw BRICK_BREAK
@@ -9437,8 +9620,6 @@ TechnicalTutor_MUK_ALOLAN:
 	dw TORMENT
 	dw VENOSHOCK
 	dw 0
-
-SECTION "Blackthorn Tutor Moves 5", ROMX
 
 TechnicalTutor_EXEGGUTOR_ALOLAN:
 	dw BIDE
@@ -9593,6 +9774,7 @@ TechnicalTutor_SLOWPOKE_GALARIAN:
 	dw LIQUIDATION
 	dw MUD_SHOT
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw SCALD
 	dw SNORE
 	dw TAKE_DOWN
@@ -9621,6 +9803,7 @@ TechnicalTutor_SLOWBRO_GALARIAN:
 	dw METRONOME
 	dw MUD_SHOT
 	dw PAY_DAY
+	dw PSYSHOCK
 	dw ROCK_BLAST
 	dw SCALD
 	dw SCARY_FACE
@@ -9653,6 +9836,7 @@ TechnicalTutor_SLOWKING_GALARIAN:
 	dw MUD_SHOT
 	dw PAY_DAY
 	dw POISON_JAB
+	dw PSYSHOCK
 	dw SCALD
 	dw SCARY_FACE
 	dw SNARL
@@ -9755,10 +9939,12 @@ TechnicalTutor_SNEASEL_HISUIAN:
 	dw FALSE_SWIPE
 	dw FOCUS_BLAST
 	dw GIGA_IMPACT
+	dw POISON_TAIL
 	dw REVERSAL
 	dw SHADOW_CLAW
 	dw SPITE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw VENOSHOCK
 	dw 0
 
@@ -9769,11 +9955,13 @@ TechnicalTutor_SNEASLER:
 	dw FALSE_SWIPE
 	dw FOCUS_BLAST
 	dw GIGA_IMPACT
+	dw POISON_TAIL
 	dw REVERSAL
 	dw ROCK_SLIDE
 	dw SHADOW_CLAW
 	dw SPITE
 	dw TAKE_DOWN
+	dw VACUUM_WAVE
 	dw VENOSHOCK
 	dw 0
 
@@ -9839,6 +10027,7 @@ TechnicalTutor_STEENEE:
 	dw DOUBLE_TEAM
 	dw FRUSTRATION
 	dw LOW_SWEEP
+	dw PETAL_BLIZZARD
 	dw SAFEGUARD
 	dw SNORE
 	dw TAKE_DOWN
@@ -9854,6 +10043,7 @@ TechnicalTutor_TSAREENA:
 	dw GIGA_IMPACT
 	dw LOW_KICK
 	dw MEGA_KICK
+	dw PETAL_BLIZZARD
 	dw SAFEGUARD
 	dw SNORE
 	dw TAKE_DOWN
@@ -9921,6 +10111,7 @@ TechnicalTutor_KLEAVOR:
 	dw LUNGE
 	dw MIMIC
 	dw MORNING_SUN
+	dw OMINOUS_WIND
 	dw PSYCHO_CUT
 	dw RAGE
 	dw SCARY_FACE
@@ -10059,6 +10250,7 @@ TechnicalTutor_SHUPPET:
 
 TechnicalTutor_BANETTE:
 	dw CALM_MIND
+	dw COTTON_GUARD
 	dw DAZZLING_GLEAM
 	dw DOUBLE_TEAM
 	dw DREAM_EATER
@@ -10251,6 +10443,7 @@ TechnicalTutor_SALANDIT:
 	dw IRON_TAIL
 	dw LEECH_LIFE
 	dw POISON_JAB
+	dw POISON_TAIL
 	dw SCALE_SHOT
 	dw SCARY_FACE
 	dw SHADOW_CLAW
@@ -10277,6 +10470,7 @@ TechnicalTutor_SALAZZLE:
 	dw IRON_TAIL
 	dw LEECH_LIFE
 	dw POISON_JAB
+	dw POISON_TAIL
 	dw SCALE_SHOT
 	dw SCARY_FACE
 	dw SHADOW_CLAW
@@ -10288,6 +10482,7 @@ TechnicalTutor_FLITTLE:
 	dw BATON_PASS
 	dw ENDURE
 	dw FOUL_PLAY
+	dw PSYSHOCK
 	dw SEED_BOMB
 	dw TAKE_DOWN
 	dw U_TURN
@@ -10306,6 +10501,7 @@ TechnicalTutor_ESPATHRA:
 	dw LOW_KICK
 	dw NIGHT_SHADE
 	dw PSYCH_UP
+	dw PSYSHOCK
 	dw SEED_BOMB
 	dw TAKE_DOWN
 	dw 0
@@ -10371,6 +10567,7 @@ TechnicalTutor_MIME_JR_:
 	dw ENDURE
 	dw FRUSTRATION
 	dw INFESTATION
+	dw PSYSHOCK
 	dw SNORE
 	dw TAUNT
 	dw TORMENT
@@ -10384,6 +10581,7 @@ TechnicalTutor_HAPPINY:
 	dw ICY_WIND
 	dw INCINERATE
 	dw PSYCH_UP
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SNORE
 	dw TAKE_DOWN
@@ -10412,6 +10610,7 @@ TechnicalTutor_STARLY:
 	dw FRUSTRATION
 	dw HEAT_WAVE
 	dw HURRICANE
+	dw OMINOUS_WIND
 	dw SNORE
 	dw TWISTER
 	dw U_TURN
@@ -10426,6 +10625,7 @@ TechnicalTutor_STARAPTOR:
 	dw FRUSTRATION
 	dw HEAT_WAVE
 	dw HURRICANE
+	dw OMINOUS_WIND
 	dw SNORE
 	dw STRUGGLE_BUG
 	dw TWISTER
@@ -10538,6 +10738,8 @@ TechnicalTutor_JIRACHI:
 	dw PLAY_ROUGH
 	dw PSYBEAM
 	dw PSYCH_UP
+	dw PSYSHOCK
+	dw RECYCLE
 	dw SAFEGUARD
 	dw SIGNAL_BEAM
 	dw SKILL_SWAP

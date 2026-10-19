@@ -172,6 +172,7 @@ VenusaurEvosAttacks:
 	dbw 1, GROWL
 	dbw 1, POWER_WHIP
 	dbw 1, TACKLE
+	dbw 1, PETAL_BLIZZARD
 	dbw 5, VINE_WHIP
 	dbw 8, LEECH_SEED
 	dbw 11, RAZOR_LEAF
@@ -301,6 +302,7 @@ SquirtleEvosAttacks:
 	dbw 41, HYDRO_PUMP
 	dbw 42, SCALD
 	dbw 44, LIQUIDATION
+	dbw 44, WATER_SPOUT
 	db 0 ; no more level-up moves
 
 WartortleEvosAttacks:
@@ -323,6 +325,7 @@ WartortleEvosAttacks:
 	dbw 46, RAIN_DANCE
 	dbw 48, LIQUIDATION
 	dbw 50, HYDRO_PUMP
+	dbw 54, WATER_SPOUT
 	db 0 ; no more level-up moves
 
 BlastoiseEvosAttacks:
@@ -350,6 +353,7 @@ BlastoiseEvosAttacks:
 	dbw 49, RAIN_DANCE
 	dbw 50, IRON_TAIL
 	dbw 54, HYDRO_PUMP
+	dbw 59, WATER_SPOUT
 	db 0 ; no more level-up moves
 
 CaterpieEvosAttacks:
@@ -618,6 +622,7 @@ EkansEvosAttacks:
 	dbw 18, VENOSHOCK
 	dbw 22, SCREECH
 	dbw 28, POISON_JAB
+	dbw 28, POISON_TAIL
 	dbw 31, LEECH_LIFE
 	dbw 33, SLUDGE_BOMB
 	dbw 34, HAZE
@@ -644,6 +649,7 @@ ArbokEvosAttacks:
 	dbw 23, SCREECH
 	dbw 24, TOXIC_SPIKES
 	dbw 28, POISON_JAB
+	dbw 31, POISON_TAIL
 	dbw 34, ROCK_SLIDE
 	dbw 35, LEECH_LIFE
 	dbw 39, HAZE
@@ -675,6 +681,7 @@ PikachuEvosAttacks:
 	dbw 28, IRON_TAIL
 	dbw 29, AGILITY
 	dbw 30, SIGNAL_BEAM
+	dbw 31, DISCHARGE
 	dbw 33, WILD_CHARGE
 	dbw 36, LIGHT_SCREEN
 	dbw 38, VOLT_SWITCH
@@ -707,6 +714,7 @@ RaichuEvosAttacks:
 	dbw 36, LIGHT_SCREEN
 	dbw 39, THUNDER
 	dbw 40, FOCUS_BLAST
+	dbw 60, DISCHARGE
 	db 0 ; no more level-up moves
 
 SandshrewEvosAttacks:
@@ -783,6 +791,7 @@ NidoranFEvosAttacks:
 	dbw 21, TOXIC_SPIKES
 	dbw 24, POISON_JAB
 	dbw 30, CRUNCH
+	dbw 33, POISON_TAIL
 	dbw 39, SUPER_FANG
 	dbw 40, TOXIC
 	dbw 55, EARTH_POWER
@@ -803,6 +812,7 @@ NidorinaEvosAttacks:
 	dbw 23, TOXIC_SPIKES
 	dbw 27, POISON_JAB
 	dbw 35, CRUNCH
+	dbw 39, POISON_TAIL
 	dbw 43, EARTH_POWER
 	dbw 47, SUPER_FANG
 	dbw 50, TOXIC
@@ -834,6 +844,7 @@ NidoqueenEvosAttacks:
 	dbw 46, AQUA_TAIL
 	dbw 50, EARTHQUAKE
 	dbw 54, TOXIC
+	dbw 56, POISON_TAIL
 	dbw 58, EARTH_POWER
 	dbw 62, SUPER_FANG
 	db 0 ; no more level-up moves
@@ -853,6 +864,7 @@ NidoranMEvosAttacks:
 	dbw 21, TOXIC_SPIKES
 	dbw 24, POISON_JAB
 	dbw 30, SUCKER_PUNCH
+	dbw 33, POISON_TAIL
 	dbw 40, TOXIC
 	dbw 45, HORN_DRILL
 	dbw 55, EARTH_POWER
@@ -873,6 +885,7 @@ NidorinoEvosAttacks:
 	dbw 23, TOXIC_SPIKES
 	dbw 27, POISON_JAB
 	dbw 35, SUCKER_PUNCH
+	dbw 39, POISON_TAIL
 	dbw 43, EARTH_POWER
 	dbw 50, TOXIC
 	dbw 58, HORN_DRILL
@@ -902,6 +915,7 @@ NidokingEvosAttacks:
 	dbw 50, EARTHQUAKE
 	dbw 54, TOXIC
 	dbw 56, SUPERPOWER
+	dbw 56, POISON_TAIL
 	dbw 58, EARTH_POWER
 	dbw 60, OUTRAGE
 	db 0 ; no more level-up moves
@@ -924,8 +938,10 @@ ClefairyEvosAttacks:
 	dbw 19, BODY_SLAM
 	dbw 21, MINIMIZE
 	dbw 23, METRONOME
+	dbw 25, COSMIC_POWER
 	dbw 29, MOONBLAST
 	dbw 31, MOONLIGHT
+	dbw 35, METEOR_MASH
 	dbw 36, CALM_MIND
 	dbw 42, PLAY_ROUGH
 	dbw 44, DAZZLING_GLEAM
@@ -955,7 +971,9 @@ ClefableEvosAttacks:
 	dbw 36, CALM_MIND
 	dbw 42, PLAY_ROUGH
 	dbw 44, DAZZLING_GLEAM
+	dbw 44, COSMIC_POWER
 	dbw 59, SOFTBOILED
+	dbw 64, METEOR_MASH
 	db 0 ; no more level-up moves
 
 VulpixEvosAttacks:
@@ -1177,6 +1195,7 @@ GloomEvosAttacks:
 	dbw 39, SLUDGE_BOMB
 	dbw 42, SEED_BOMB
 	dbw 47, PETAL_DANCE
+	dbw 49, PETAL_BLIZZARD
 	dbw 56, LEAF_STORM
 	db 0 ; no more level-up moves
 
@@ -1185,6 +1204,7 @@ VileplumeEvosAttacks:
 	dbw 1, ABSORB
 	dbw 1, GROWTH
 	dbw 1, TOXIC
+	dbw 1, PETAL_BLIZZARD
 	dbw 4, ACID
 	dbw 7, SWEET_SCENT
 	dbw 10, POISONPOWDER
@@ -1632,6 +1652,7 @@ PoliwrathEvosAttacks:
 	dbw 1, SUBMISSION
 	dbw 1, MIND_READER
 	dbw 1, MUD_SHOT
+	dbw 1, VACUUM_WAVE
 	dbw 6, HYPNOSIS
 	dbw 9, WATER_GUN
 	dbw 15, DOUBLESLAP
@@ -1680,6 +1701,7 @@ KadabraEvosAttacks:
 	dbw 22, NIGHT_SHADE
 	dbw 26, SIGNAL_BEAM
 	dbw 28, REFLECT
+	dbw 30, PSYSHOCK
 	dbw 34, RECOVER
 	dbw 36, PSYCHO_CUT
 	dbw 37, PSYCHIC_M
@@ -1703,6 +1725,7 @@ AlakazamEvosAttacks:
 	dbw 24, TAUNT
 	dbw 26, SIGNAL_BEAM
 	dbw 28, REFLECT
+	dbw 30, PSYSHOCK
 	dbw 34, RECOVER
 	dbw 34, DAZZLING_GLEAM
 	dbw 36, TRICK_ROOM
@@ -2148,6 +2171,7 @@ MagnemiteEvosAttacks:
 	dbw 17, SONICBOOM
 	dbw 22, VOLT_SWITCH
 	dbw 26, SIGNAL_BEAM
+	dbw 28, DISCHARGE
 	dbw 30, EXPLOSION
 	dbw 31, FLASH_CANNON
 	dbw 34, SCREECH
@@ -2168,6 +2192,7 @@ MagnetonEvosAttacks:
 	dbw 16, LIGHT_SCREEN
 	dbw 17, SONICBOOM
 	dbw 22, VOLT_SWITCH
+	dbw 28, DISCHARGE
 	dbw 30, TRI_ATTACK
 	dbw 33, FLASH_CANNON
 	dbw 36, IRON_DEFENSE
@@ -2565,6 +2590,7 @@ DrowzeeEvosAttacks:
 	dbw 42, DRAIN_PUNCH
 	dbw 50, DREAM_EATER
 	dbw 51, FUTURE_SIGHT
+	dbw 57, PSYSHOCK
 	db 0 ; no more level-up moves
 
 HypnoEvosAttacks:
@@ -2596,6 +2622,7 @@ HypnoEvosAttacks:
 	dbw 42, DRAIN_PUNCH
 	dbw 51, FUTURE_SIGHT
 	dbw 54, ZAP_CANNON
+	dbw 57, PSYSHOCK
 	db 0 ; no more level-up moves
 
 KrabbyEvosAttacks:
@@ -2661,10 +2688,12 @@ VoltorbEvosAttacks:
 	dbw 24, SELFDESTRUCT
 	dbw 26, SIGNAL_BEAM
 	dbw 27, VOLT_SWITCH
+	dbw 27, DISCHARGE
 	dbw 30, LIGHT_SCREEN
 	dbw 30, AGILITY
 	dbw 30, RECOVER
 	dbw 30, NUZZLE
+	dbw 30, RECYCLE
 	dbw 36, THUNDERBOLT
 	dbw 39, EXPLOSION
 	dbw 42, GYRO_BALL
@@ -2684,6 +2713,7 @@ ElectrodeEvosAttacks:
 	dbw 24, SELFDESTRUCT
 	dbw 24, TAUNT
 	dbw 27, VOLT_SWITCH
+	dbw 27, DISCHARGE
 	dbw 28, FOUL_PLAY
 	dbw 31, LIGHT_SCREEN
 	dbw 36, SIGNAL_BEAM
@@ -2732,6 +2762,7 @@ ExeggutorEvosAttacks:
 	dbw 1, SEED_BOMB
 	dbw 1, GROWTH
 	dbw 1, BULLET_SEED
+	dbw 1, PSYSHOCK
 	dbw 7, REFLECT
 	dbw 12, CONFUSION
 	dbw 15, MEGA_DRAIN
@@ -2840,6 +2871,7 @@ HitmonleeEvosAttacks:
 	dbw 41, HI_JUMP_KICK
 	dbw 41, MIND_READER
 	dbw 42, SUBMISSION
+	dbw 43, BLAZE_KICK
 	dbw 45, REVERSAL
 	dbw 46, SUPERPOWER
 	dbw 47, DOUBLE_EDGE
@@ -2870,6 +2902,8 @@ HitmonchanEvosAttacks:
 	dbw 39, MEGA_PUNCH
 	dbw 40, HAMMER_ARM
 	dbw 40, STONE_EDGE
+	dbw 41, VACUUM_WAVE
+	dbw 41, SKY_UPPERCUT
 	dbw 42, SUBMISSION
 	dbw 47, REVERSAL
 	db 0 ; no more level-up moves
@@ -2914,6 +2948,7 @@ KoffingEvosAttacks:
 	dbw 22, HAZE
 	dbw 25, GYRO_BALL
 	dbw 28, SLUDGE_BOMB
+	dbw 31, LAVA_PLUME
 	dbw 32, FAIRY_WIND
 	dbw 34, DESTINY_BOND
 	dbw 36, TOXIC
@@ -2937,6 +2972,7 @@ WeezingEvosAttacks:
 	dbw 24, TAUNT
 	dbw 25, GYRO_BALL
 	dbw 28, SLUDGE_BOMB
+	dbw 31, LAVA_PLUME
 	dbw 34, DESTINY_BOND
 	dbw 38, DARK_PULSE
 	dbw 38, TOXIC
@@ -3214,6 +3250,7 @@ StaryuEvosAttacks:
 	dbw 30, SUPERSONIC
 	dbw 33, CONFUSE_RAY
 	dbw 35, LIGHT_SCREEN
+	dbw 37, COSMIC_POWER
 	dbw 40, PSYCHIC_M
 	dbw 41, HYDRO_PUMP
 	dbw 42, SCALD
@@ -3247,6 +3284,7 @@ StarmieEvosAttacks:
 	dbw 41, HYDRO_PUMP
 	dbw 44, SURF
 	dbw 50, DREAM_EATER
+	dbw 64, COSMIC_POWER
 	db 0 ; no more level-up moves
 
 SECTION "Evolutions and Attacks 1B", ROMX
@@ -3299,6 +3337,7 @@ MrMimeEvosAttacks:
 	dbw 21, PSYBEAM
 	dbw 24, LIGHT_SCREEN
 	dbw 24, REFLECT
+	dbw 24, RECYCLE
 	dbw 26, SIGNAL_BEAM
 	dbw 27, DAZZLING_GLEAM
 	dbw 30, SUBSTITUTE
@@ -3319,6 +3358,7 @@ ScytherEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, LEER
 	dbw 1, QUICK_ATTACK
+	dbw 1, VACUUM_WAVE
 	dbw 4, FOCUS_ENERGY
 	dbw 9, PURSUIT
 	dbw 10, FALSE_SWIPE
@@ -3372,6 +3412,7 @@ JynxEvosAttacks:
 	dbw 51, BLIZZARD
 	dbw 55, CALM_MIND
 	dbw 56, FUTURE_SIGHT
+	dbw 59, PSYSHOCK
 	db 0 ; no more level-up moves
 
 ElectabuzzEvosAttacks:
@@ -3387,6 +3428,7 @@ ElectabuzzEvosAttacks:
 	dbw 19, THUNDERPUNCH
 	dbw 22, LIGHT_SCREEN
 	dbw 26, SIGNAL_BEAM
+	dbw 28, DISCHARGE
 	dbw 30, VOLT_SWITCH
 	dbw 33, SCREECH
 	dbw 37, CROSS_CHOP
@@ -3413,6 +3455,7 @@ MagmarEvosAttacks:
 	dbw 22, CONFUSE_RAY
 	dbw 24, SCARY_FACE
 	dbw 28, INCINERATE
+	dbw 28, LAVA_PLUME
 	dbw 33, FLAMETHROWER
 	dbw 33, SUNNY_DAY
 	dbw 37, CROSS_CHOP
@@ -3627,6 +3670,7 @@ JolteonEvosAttacks:
 	dbw 20, LIGHT_SCREEN
 	dbw 22, THUNDER_FANG
 	dbw 25, VOLT_SWITCH
+	dbw 25, DISCHARGE
 	dbw 26, SIGNAL_BEAM
 	dbw 28, EXTRASENSORY
 	dbw 30, CALM_MIND
@@ -3654,6 +3698,7 @@ FlareonEvosAttacks:
 	dbw 16, FIRE_FANG
 	dbw 19, FIRE_SPIN
 	dbw 22, FLAME_WHEEL
+	dbw 25, LAVA_PLUME
 	dbw 28, PLAY_ROUGH
 	dbw 31, SCARY_FACE
 	dbw 34, FLAMETHROWER
@@ -3677,6 +3722,8 @@ PorygonEvosAttacks:
 	dbw 15, THUNDERSHOCK
 	dbw 19, BARRIER
 	dbw 20, TRI_ATTACK
+	dbw 22, RECYCLE
+	dbw 28, DISCHARGE
 	dbw 30, DISABLE
 	dbw 30, FORESIGHT
 	dbw 30, MIND_READER
@@ -3857,6 +3904,7 @@ SnorlaxEvosAttacks:
 	dbw 9, AMNESIA
 	dbw 12, LICK
 	dbw 12, YAWN
+	dbw 15, RECYCLE
 	dbw 16, BITE
 	dbw 21, BODY_SLAM
 	dbw 24, REST
@@ -3911,6 +3959,7 @@ ZapdosEvosAttacks:
 	dbw 1, THUNDER_WAVE
 	dbw 10, ANCIENTPOWER
 	dbw 18, AGILITY
+	dbw 22, DISCHARGE
 	dbw 26, RAIN_DANCE
 	dbw 28, SIGNAL_BEAM
 	dbw 30, VOLT_SWITCH

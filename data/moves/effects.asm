@@ -3252,3 +3252,62 @@ DefSpDefDownHit:
 	direclaw
 	kingsrock
 	endmove
+
+HPScaledHit:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	hpscaledpower
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+
+ThreeStageBoost:
+	checkobedience
+	usedmovetext
+	doturn
+	threestageboost
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	endmove
+
+CosmicPower:
+	checkobedience
+	usedmovetext
+	doturn
+	deferstatmessages
+	defenseup
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	resetmiss
+	specialdefenseup
+	statupmessage
+	statupfailtext
+	flushstatmessages
+	endmove
+
+Recycle:
+	checkobedience
+	usedmovetext
+	doturn
+	recycle
+	endmove

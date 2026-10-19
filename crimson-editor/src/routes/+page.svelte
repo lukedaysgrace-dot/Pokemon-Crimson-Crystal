@@ -41,7 +41,7 @@
     model ? (tab === 'Party' ? model.party[index] : model.boxes[boxIndex]?.slots[slotIndex]) : null,
   );
   const selected = $derived(
-    model ? profiles.find((p) => p.build === model?.data.layout.build)?.id || '' : '',
+    model ? profiles.find((p) => p.build === model?.data.layout.build && p.layoutHash === model?.data.layout.layoutHash)?.id || '' : '',
   );
   onMount(async () => {
     try {
@@ -291,7 +291,7 @@
           aria-label="Build profile"
           value={selected}
           onchange={(e) => {
-            const data = bundles.find((b) => b.layout.build.startsWith(e.currentTarget.value));
+            const data = bundles[profiles.findIndex((p) => p.id === e.currentTarget.value)];
             if (data && uploaded) load(uploaded, data);
           }}
           >{#each profiles as p}<option value={p.id}>{p.id} · {p.date.slice(0, 10)}</option

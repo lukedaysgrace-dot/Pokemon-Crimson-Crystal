@@ -36,7 +36,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; AZUMARILL
 	dw NoEggMoves2 ; SUDOWOODO
 	dw NoEggMoves2 ; POLITOED
-	dw CanonicalHOPPIPEggMoves ; HOPPIP
+	dw CanonicalHOPPIPEggMoves2 ; HOPPIP
 	dw NoEggMoves2 ; SKIPLOOM
 	dw NoEggMoves2 ; JUMPLUFF
 	dw CanonicalAIPOMEggMoves ; AIPOM
@@ -49,14 +49,14 @@ EggMovePointers2::
 	dw NoEggMoves2 ; UMBREON
 	dw CanonicalMURKROWEggMoves ; MURKROW
 	dw NoEggMoves2 ; SLOWKING
-	dw CanonicalMISDREAVUSEggMoves ; MISDREAVUS
+	dw CanonicalMISDREAVUSEggMoves2 ; MISDREAVUS
 	dw NoEggMoves2 ; UNOWN
 	dw NoEggMoves2 ; WOBBUFFET
 	dw CanonicalGIRAFARIGEggMoves ; GIRAFARIG
 	dw CanonicalPINECOEggMoves ; PINECO
 	dw NoEggMoves2 ; FORRETRESS
 	dw CanonicalDUNSPARCEEggMoves ; DUNSPARCE
-	dw CanonicalGLIGAREggMoves ; GLIGAR
+	dw CanonicalGLIGAREggMoves2 ; GLIGAR
 	dw NoEggMoves2 ; STEELIX
 	dw CanonicalSNUBBULLEggMoves ; SNUBBULL
 	dw NoEggMoves2 ; GRANBULL
@@ -72,7 +72,7 @@ EggMovePointers2::
 	dw CanonicalSWINUBEggMoves ; SWINUB
 	dw NoEggMoves2 ; PILOSWINE
 	dw CanonicalCORSOLAEggMoves ; CORSOLA
-	dw CanonicalREMORAIDEggMoves ; REMORAID
+	dw CanonicalREMORAIDEggMoves2 ; REMORAID
 	dw NoEggMoves2 ; OCTILLERY
 	dw CanonicalDELIBIRDEggMoves ; DELIBIRD
 	dw NoEggMoves2 ; MANTINE
@@ -85,7 +85,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; PORYGON2
 	dw CanonicalSTANTLEREggMoves ; STANTLER
 	dw NoEggMoves2 ; SMEARGLE
-	dw CanonicalTYROGUEEggMoves ; TYROGUE
+	dw CanonicalTYROGUEEggMoves2 ; TYROGUE
 	dw NoEggMoves2 ; HITMONTOP
 	dw CanonicalSMOOCHUMEggMoves ; SMOOCHUM
 	dw CanonicalELEKIDEggMoves ; ELEKID
@@ -104,7 +104,7 @@ EggMovePointers2::
 	dw CanonicalCHARMANDER_CLONEEggMoves ; CHARMANDER_CLONE
 	dw NoEggMoves2 ; CHARMELEON_CLONE
 	dw NoEggMoves2 ; CHARIZARD_CLONE
-	dw CanonicalSQUIRTLE_CLONEEggMoves ; SQUIRTLE_CLONE
+	dw CanonicalSQUIRTLE_CLONEEggMoves2 ; SQUIRTLE_CLONE
 	dw NoEggMoves2 ; WARTORTLE_CLONE
 	dw NoEggMoves2 ; BLASTOISE_CLONE
 	dw CanonicalBULBASAUR_CLONEEggMoves ; BULBASAUR_CLONE
@@ -150,7 +150,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; ARMALDO
 	dw GolettEggMoves ; GOLETT
 	dw NoEggMoves2 ; GOLURK
-	dw CanonicalDUSKULLEggMoves ; DUSKULL
+	dw CanonicalDUSKULLEggMoves2 ; DUSKULL
 	dw NoEggMoves2 ; DUSCLOPS
 	dw NoEggMoves2 ; DUSKNOIR
 	dw CanonicalTIMBURREggMoves ; TIMBURR
@@ -183,7 +183,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; ABOMASNOW
 	dw CanonicalSWABLUEggMoves ; SWABLU
 	dw NoEggMoves2 ; ALTARIA
-	dw CanonicalAPPLINEggMoves ; APPLIN
+	dw CanonicalAPPLINEggMoves2 ; APPLIN
 	dw NoEggMoves2 ; DIPPLIN
 	dw NoEggMoves2 ; APPLETUN
 	dw NoEggMoves2 ; FLAPPLE
@@ -192,16 +192,16 @@ EggMovePointers2::
 	dw NoEggMoves2 ; ARCHALUDON
 	dw CanonicalSHROOMISHEggMoves ; SHROOMISH
 	dw NoEggMoves2 ; BRELOOM
-	dw CanonicalBUNEARYEggMoves ; BUNEARY
+	dw CanonicalBUNEARYEggMoves2 ; BUNEARY
 	dw NoEggMoves2 ; LOPUNNY
 	dw CanonicalNUMELEggMoves ; NUMEL
 	dw NoEggMoves2 ; CAMERUPT
 	dw CanonicalSIZZLIPEDEEggMoves ; SIZZLIPEDE
 	dw NoEggMoves2 ; CENTISKORCH
-	dw CanonicalGRUBBINEggMoves ; GRUBBIN
+	dw CanonicalGRUBBINEggMoves2 ; GRUBBIN
 	dw NoEggMoves2 ; CHARJABUG
 	dw NoEggMoves2 ; VIKAVOLT
-	dw CanonicalCROAGUNKEggMoves ; CROAGUNK
+	dw CanonicalCROAGUNKEggMoves2 ; CROAGUNK
 	dw NoEggMoves2 ; TOXICROAK
 	dw CanonicalDRIFLOONEggMoves ; DRIFLOON
 	dw NoEggMoves2 ; DRIFBLIM
@@ -253,14 +253,14 @@ EggMovePointers2::
 	dw NoEggMoves2 ; CURSOLA
 	dw NoEggMoves2 ; MR__RIME
 	dw NoEggMoves2 ; SIRFETCH_D
-	dw CanonicalRIOLUEggMoves ; RIOLU
+	dw CanonicalRIOLUEggMoves2 ; RIOLU
 	dw NoEggMoves2 ; LUCARIO
 	dw CanonicalTYRUNTEggMoves ; TYRUNT
 	dw NoEggMoves2 ; TYRANTRUM
-	dw CanonicalAMAURAEggMoves ; AMAURA
+	dw CanonicalAMAURAEggMoves2 ; AMAURA
 	dw NoEggMoves2 ; AURORUS
 	dw CanonicalMUNCHLAXEggMoves ; MUNCHLAX
-	dw CanonicalTORKOALEggMoves ; TORKOAL
+	dw CanonicalTORKOALEggMoves2 ; TORKOAL
 	dw CanonicalRATTATA_ALOLANEggMoves ; RATTATA_ALOLAN
 	dw NoEggMoves2 ; RATICATE_ALOLAN
 	dw NoEggMoves2 ; RAICHU_ALOLAN
@@ -275,7 +275,7 @@ EggMovePointers2::
 	dw CanonicalGEODUDE_ALOLANEggMoves ; GEODUDE_ALOLAN
 	dw NoEggMoves2 ; GRAVELER_ALOLAN
 	dw NoEggMoves2 ; GOLEM_ALOLAN
-	dw CanonicalGRIMER_ALOLANEggMoves ; GRIMER_ALOLAN
+	dw CanonicalGRIMER_ALOLANEggMoves2 ; GRIMER_ALOLAN
 	dw NoEggMoves2 ; MUK_ALOLAN
 	dw NoEggMoves2 ; EXEGGUTOR_ALOLAN
 	dw NoEggMoves2 ; MAROWAK_ALOLAN
@@ -289,7 +289,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; WEEZING_GALARIAN
 	dw CanonicalGROWLITHE_HISUIANEggMoves ; GROWLITHE_HISUIAN
 	dw NoEggMoves2 ; ARCANINE_HISUIAN
-	dw VoltorbHisuianEggMoves ; VOLTORB_HISUIAN
+	dw CanonicalVOLTORB_HISUIANEggMoves2 ; VOLTORB_HISUIAN
 	dw NoEggMoves2 ; ELECTRODE_HISUIAN
 	dw NoEggMoves2 ; TYPHLOSION_HISUIAN
 	dw CanonicalSNEASEL_HISUIANEggMoves ; SNEASEL_HISUIAN
@@ -312,7 +312,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; TOXAPEX
 	dw CanonicalZANGOOSEEggMoves ; ZANGOOSE
 	dw CanonicalSEVIPEREggMoves ; SEVIPER
-	dw CanonicalSHUPPETEggMoves ; SHUPPET
+	dw CanonicalSHUPPETEggMoves2 ; SHUPPET
 	dw NoEggMoves2 ; BANETTE
 	dw CanonicalARCHENEggMoves ; ARCHEN
 	dw NoEggMoves2 ; ARCHEOPS
@@ -3139,4 +3139,226 @@ CanonicalSANDILEEggMoves:
 	dw MEAN_LOOK
 	dw PURSUIT
 	dw THUNDER_FANG
+	dw -1 ; end
+
+; October 2026: source-verified breeding routes.
+CanonicalHOPPIPEggMoves2:
+	dw CONFUSION
+	dw GROWL
+	dw ENCORE
+	dw DOUBLE_EDGE
+	dw REFLECT
+	dw AMNESIA
+	dw PAY_DAY
+	dw ENDURE
+	dw PSYCH_UP
+	dw SEED_BOMB
+	dw COTTON_GUARD
+	dw -1 ; end
+
+CanonicalMISDREAVUSEggMoves2:
+	dw SCREECH
+	dw PSYCH_UP
+	dw SKILL_SWAP
+	dw SUCKER_PUNCH
+	dw CURSE
+	dw DESTINY_BOND
+	dw NASTY_PLOT
+	dw SHADOW_SNEAK
+	dw SPITE
+	dw OMINOUS_WIND
+	dw -1 ; end
+
+CanonicalGLIGAREggMoves2:
+	dw METAL_CLAW
+	dw RAZOR_WIND
+	dw COUNTER
+	dw AGILITY
+	dw BATON_PASS
+	dw CROSS_POISON
+	dw DOUBLE_EDGE
+	dw NIGHT_SLASH
+	dw WING_ATTACK
+	dw POISON_TAIL
+	dw -1 ; end
+
+CanonicalREMORAIDEggMoves2:
+	dw OCTAZOOKA
+	dw SUPERSONIC
+	dw HAZE
+	dw SCREECH
+	dw AURORA_BEAM
+	dw FLAIL
+	dw MUD_SHOT
+	dw ROCK_BLAST
+	dw SNORE
+	dw SWIFT
+	dw THUNDER_WAVE
+	dw WATER_PULSE
+	dw WATER_SPOUT
+	dw -1 ; end
+
+CanonicalTYROGUEEggMoves2:
+	dw HI_JUMP_KICK
+	dw MIND_READER
+	dw BULLET_PUNCH
+	dw COUNTER
+	dw ENDURE
+	dw MACH_PUNCH
+	dw PURSUIT
+	dw RAPID_SPIN
+	dw VACUUM_WAVE
+	dw -1 ; end
+
+CanonicalSQUIRTLE_CLONEEggMoves2:
+	dw DARK_PULSE
+	dw FLIP_TURN
+	dw HAZE
+	dw MIRROR_COAT
+	dw MIST
+	dw AQUA_JET
+	dw AURA_SPHERE
+	dw DRAGON_PULSE
+	dw FAKE_OUT
+	dw FLAIL
+	dw FORESIGHT
+	dw YAWN
+	dw WATER_SPOUT
+	dw -1 ; end
+
+CanonicalDUSKULLEggMoves2:
+	dw PAIN_SPLIT
+	dw SKILL_SWAP
+	dw DARK_PULSE
+	dw HAZE
+	dw NIGHTMARE
+	dw DESTINY_BOND
+	dw FAINT_ATTACK
+	dw OMINOUS_WIND
+	dw -1 ; end
+
+CanonicalAPPLINEggMoves2:
+	dw GIGA_DRAIN
+	dw SUCKER_PUNCH
+	dw LEECH_SEED
+	dw DRAGON_TAIL
+	dw DEFENSE_CURL
+	dw ROLLOUT
+	dw RECYCLE
+	dw -1 ; end
+
+CanonicalBUNEARYEggMoves2:
+	dw FAKE_OUT
+	dw ENCORE
+	dw SWEET_KISS
+	dw LOW_KICK
+	dw CIRCLE_THROW
+	dw ATTRACT
+	dw FIRE_PUNCH
+	dw FLAIL
+	dw ICE_PUNCH
+	dw THUNDERPUNCH
+	dw COSMIC_POWER
+	dw SKY_UPPERCUT
+	dw -1 ; end
+
+CanonicalGRUBBINEggMoves2:
+	dw AGILITY
+	dw MUD_SHOT
+	dw STICKY_WEB
+	dw THUNDER_WAVE
+	dw VOLT_SWITCH
+	dw ENDURE
+	dw HARDEN
+	dw DISCHARGE
+	dw -1 ; end
+
+CanonicalCROAGUNKEggMoves2:
+	dw BULLET_PUNCH
+	dw COUNTER
+	dw DYNAMICPUNCH
+	dw MEDITATE
+	dw ACID_ARMOR
+	dw CROSS_CHOP
+	dw DRAIN_PUNCH
+	dw FAKE_OUT
+	dw HEADBUTT
+	dw VACUUM_WAVE
+	dw -1 ; end
+
+CanonicalRIOLUEggMoves2:
+	dw AGILITY
+	dw BULLET_PUNCH
+	dw DETECT
+	dw HI_JUMP_KICK
+	dw IRON_DEFENSE
+	dw BITE
+	dw CIRCLE_THROW
+	dw CROSS_CHOP
+	dw CRUNCH
+	dw LOW_KICK
+	dw MIND_READER
+	dw VACUUM_WAVE
+	dw METEOR_MASH
+	dw BLAZE_KICK
+	dw SKY_UPPERCUT
+	dw -1 ; end
+
+CanonicalAMAURAEggMoves2:
+	dw BARRIER
+	dw HAZE
+	dw MIRROR_COAT
+	dw MOONBLAST
+	dw EARTH_POWER
+	dw ROCK_THROW
+	dw TAKE_DOWN
+	dw DISCHARGE
+	dw -1 ; end
+
+CanonicalTORKOALEggMoves2:
+	dw ENDURE
+	dw FISSURE
+	dw FLAIL
+	dw SLEEP_TALK
+	dw YAWN
+	dw SKULL_BASH
+	dw ANCIENTPOWER
+	dw EARTHQUAKE
+	dw SUPERPOWER
+	dw ERUPTION
+	dw -1 ; end
+
+CanonicalGRIMER_ALOLANEggMoves2:
+	dw MEAN_LOOK
+	dw SCARY_FACE
+	dw SPITE
+	dw HAZE
+	dw CURSE
+	dw PURSUIT
+	dw SHADOW_SNEAK
+	dw RECYCLE
+	dw -1 ; end
+
+CanonicalVOLTORB_HISUIANEggMoves2:
+	dw LEECH_SEED
+	dw STUN_SPORE
+	dw MAGICAL_LEAF
+	dw GIGA_DRAIN
+	dw RECYCLE
+	dw -1 ; end
+
+CanonicalSHUPPETEggMoves2:
+	dw DISABLE
+	dw ENCORE
+	dw GUNK_SHOT
+	dw SWORDS_DANCE
+	dw TAUNT
+	dw ASTONISH
+	dw CONFUSE_RAY
+	dw DESTINY_BOND
+	dw FORESIGHT
+	dw PHANTOMFORCE
+	dw PURSUIT
+	dw SHADOW_SNEAK
+	dw OMINOUS_WIND
 	dw -1 ; end

@@ -217,3 +217,6 @@ BattleCommandPointers:
 	dw BattleCommand_StickyWeb
 	dw BattleCommand_SuckerPunchCheck
 	dw BattleCommand_SwaggerBoost
+	dw BattleCommand_ThreeStageBoost
+	dw BattleCommand_HPScaledPower
+	dw BattleCommand_Recycle

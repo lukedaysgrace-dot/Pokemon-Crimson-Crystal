@@ -1803,8 +1803,16 @@ StatUpMessage_Core:
 	ld a, [wLoweredStat]
 	and $f0
 	ret z
+	bit 5, a
+	ld hl, .drasticallyup
+	ret nz
 	ld hl, .wayup
 	ret
+
+.drasticallyup
+	text_pause
+	text "<SCROLL>rose drastically!"
+	prompt
 
 .wayup
 	text_far UnknownText_0x1c0cd0
@@ -1845,8 +1853,16 @@ StatDownMessage_Core:
 	ld a, [wLoweredStat]
 	and $f0
 	ret z
+	bit 5, a
+	ld hl, .drasticallyfell
+	ret nz
 	ld hl, .sharplyfell
 	ret
+
+.drasticallyfell
+	text_pause
+	text "<SCROLL>severely fell!"
+	prompt
 
 .sharplyfell
 	text_far UnknownText_0x1c0cf5
@@ -2213,6 +2229,7 @@ PlayStatChangeAnim_Core:
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
+INCLUDE "engine/battle/move_effects/october_move_cores.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"
 
 CheckDefScreenPierced:
