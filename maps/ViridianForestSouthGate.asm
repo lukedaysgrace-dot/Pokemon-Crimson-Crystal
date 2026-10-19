@@ -8,23 +8,29 @@ ViridianForestSouthGate_MapScripts:
 	db 0 ; callbacks
 
 ViridianForestSouthGateLassScript:
-	jumptext ViridianForestSouthGateLassText
+	jumptextfaceplayer ViridianForestSouthGateLassText
 
 ViridianForestSouthGateTwinScript:
-	jumptext ViridianForestSouthGateTwinText
+	jumptextfaceplayer ViridianForestSouthGateTwinText
 
 ViridianForestSouthGateLassText:
-	text "Are you going to"
-	line "VIRIDIAN FOREST?"
-	cont "Be careful, it's"
-	cont "a natural maze!"
+	text "Going through the"
+	line "forest? Pick a"
+	cont "landmark!"
+
+	para "I followed a BUG"
+	line "CATCHER once. He"
+	cont "was lost, too!"
 	done
 
 ViridianForestSouthGateTwinText:
-	text "RATTATA may be"
-	line "small, but its"
-	cont "bite is wicked!"
-	cont "Did you get one?"
+	text "Did you catch a"
+	line "RATTATA?"
+
+	para "Mine chewed right"
+	line "through my bag!"
+	cont "Small #MON,"
+	cont "big teeth!"
 	done
 
 ViridianForestSouthGate_MapEvents:
@@ -41,5 +47,6 @@ ViridianForestSouthGate_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  8,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianForestSouthGateLassScript, -1
-	object_event  2,  4, SPRITE_TWIN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianForestSouthGateTwinScript, -1
+	; Both walking lanes are floor, away from the counters and central doors.
+	object_event  7,  3, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianForestSouthGateLassScript, -1
+	object_event  2,  4, SPRITE_TWIN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianForestSouthGateTwinScript, -1
