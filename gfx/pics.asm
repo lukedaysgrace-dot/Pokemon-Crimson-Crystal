@@ -1517,3 +1517,13 @@ SECTION "Jirachi Pics", ROMX
 
 JirachiFrontpic: INCBIN "gfx/pokemon/jirachi/front.animated.2bpp.lz"
 JirachiBackpic: INCBIN "gfx/pokemon/jirachi/back.2bpp.lz"
+
+SECTION "Phantump Pics", ROMX
+
+PhantumpFrontpic: INCBIN "gfx/pokemon/phantump/front.animated.2bpp.lz"
+PhantumpBackpic: INCBIN "gfx/pokemon/phantump/back.2bpp.lz"
+
+SECTION "Trevenant Pics", ROMX
+
+TrevenantFrontpic: INCBIN "gfx/pokemon/trevenant/front.animated.2bpp.lz"
+TrevenantBackpic: INCBIN "gfx/pokemon/trevenant/back.2bpp.lz"

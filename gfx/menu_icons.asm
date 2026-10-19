@@ -522,4 +522,8 @@ GorochuMenuIcon: INCBIN "gfx/menu_icons/gorochu.2bpp"
 
 JirachiMenuIcon: INCBIN "gfx/menu_icons/jirachi.2bpp"
 
+PhantumpMenuIcon: INCBIN "gfx/menu_icons/phantump.2bpp"
+
+TrevenantMenuIcon: INCBIN "gfx/menu_icons/trevenant.2bpp"
+
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"

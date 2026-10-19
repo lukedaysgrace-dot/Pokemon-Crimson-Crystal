@@ -21,10 +21,16 @@ pnpm install --frozen-lockfile --store-dir .pnpm-store --node-linker=hoisted --c
 pnpm dev
 ```
 
-Open the local URL printed by Vite. Current and September 9 build profiles and
+Open the local URL printed by Vite. The current format-4 profile includes
+Phantump, Trevenant, Horn Leech, and their normal/shiny sprites.
+Phantump evolves at level 32. Previous
+format-3, format-2, and September 9 build profiles and
 local normal/shiny sprites are included, so running the editor does not require
 building the ROM. Select a save through **Open a save file**. Download writes a
 new file; it never overwrites the original on disk. Validation errors block export.
+
+The move filters include the full Blackthorn tutor lists and each species'
+family breeding moves, including Phantump's inherited moves for Trevenant.
 
 The public documentation website includes a **Save Editor** navigation tab.
 Build its editor with `pnpm build:website`, then run `pnpm test:website`.

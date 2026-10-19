@@ -3572,9 +3572,8 @@ SECTION "Trainer Portrait State", WRAMX, BANK[1]
 ; checked every frame from the text and sprite loops, so they live in the bank
 ; the overworld always has mapped. Not saved.
 
-; Nonzero while a conversation started by talking to (or being spotted by) an
-; NPC is running; cleared when that script ends.
-wPortraitSession::   db
+; The unused session and mute bytes were removed to make room for the expanded
+; caught/seen flags in bank 1. Portrait selection uses the text speaker table.
 ; Portrait id currently drawn in the tilemap (0 = none).
 wPortraitShown::     db
 ; Nonzero while the portrait owns VRAM bank 1 tiles / text palette colors 1-2.
@@ -3584,9 +3583,6 @@ wPortraitTalkTimer:: db
 wPortraitAnimTimer:: db
 wPortraitMouth::     db ; 0 = closed (resting frame), 1 = open
 wPortraitTickFrame:: db ; hVBlankCounter of the last tick
-; Nonzero: leave the portrait up but keep its mouth still (a shared line such
-; as an item fanfare, which isn't theirs to say).
-wPortraitMute::      db
 ; The text MapTextbox is about to print, for looking up who says it.
 wPortraitTextBank::  db
 wPortraitTextAddr::  dw

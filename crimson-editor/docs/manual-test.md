@@ -1,5 +1,13 @@
 # Manual and automated acceptance checks
 
+For the format-4 update, open a save produced by the updated ROM and select
+Phantump and Trevenant. Check normal/shiny sprites, all three ability slots,
+Horn Leech in the level-up filter, family egg moves (Disable and Sucker Punch)
+and Blackthorn moves in the tutor filter. Download and reopen the save; verify
+the chosen species, moves and ability survive, with both Dex flags preserved.
+Format-3 saves should still select their retained profile. Saving them in the
+updated game upgrades them to format 4 while preserving campaign progress.
+
 Automated Playwright checks upload a synthetic save, edit a party nickname and
 level plus a box nickname, download, independently parse the bytes, and upload
 the download again. They also verify truncated/zero saves show errors. The suite

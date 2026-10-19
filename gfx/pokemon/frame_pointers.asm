@@ -495,3 +495,5 @@ FramesPointers:
 	dba KrookodileFrames
 	dba GorochuFrames
 	dba JirachiFrames
+	dba PhantumpFrames
+	dba TrevenantFrames

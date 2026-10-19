@@ -499,6 +499,8 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_KROOKODILE ; KROOKODILE
 	dba TechnicalTutor_None ; GOROCHU
 	dba TechnicalTutor_JIRACHI ; JIRACHI
+	dba TechnicalTutor_PHANTUMP ; PHANTUMP
+	dba TechnicalTutor_TREVENANT ; TREVENANT
 assert (@ - TechnicalTutorPointers) == NUM_POKEMON * 3
 
 SECTION "Blackthorn Tutor Moves 1", ROMX
@@ -10749,4 +10751,61 @@ TechnicalTutor_JIRACHI:
 	dw TRICK_ROOM
 	dw U_TURN
 	dw WATER_PULSE
+	dw 0
+
+TechnicalTutor_PHANTUMP:
+	dw BULLDOZE
+	dw DARK_PULSE
+	dw DOUBLE_TEAM
+	dw DREAM_EATER
+	dw ENDURE
+	dw FOUL_PLAY
+	dw FRUSTRATION
+	dw GIGA_DRAIN
+	dw MAGICAL_LEAF
+	dw NIGHT_SHADE
+	dw PAIN_SPLIT
+	dw POISON_JAB
+	dw PSYCH_UP
+	dw ROCK_SLIDE
+	dw SAFEGUARD
+	dw SEED_BOMB
+	dw SHADOW_CLAW
+	dw SKILL_SWAP
+	dw SNORE
+	dw SPITE
+	dw TRICK
+	dw TRICK_ROOM
+	dw 0
+
+TechnicalTutor_TREVENANT:
+	dw BULLDOZE
+	dw CALM_MIND
+	dw DARK_PULSE
+	dw DOUBLE_TEAM
+	dw DREAM_EATER
+	dw ENDURE
+	dw FOCUS_BLAST
+	dw FOUL_PLAY
+	dw FRUSTRATION
+	dw GIGA_DRAIN
+	dw GIGA_IMPACT
+	dw HAZE
+	dw LEAF_STORM
+	dw MAGICAL_LEAF
+	dw NIGHT_SHADE
+	dw PAIN_SPLIT
+	dw POISON_JAB
+	dw PSYCH_UP
+	dw ROCK_SLIDE
+	dw SAFEGUARD
+	dw SCARY_FACE
+	dw SEED_BOMB
+	dw SKILL_SWAP
+	dw SNORE
+	dw SPITE
+	dw TAKE_DOWN
+	dw TRICK
+	dw TRICK_ROOM
+	dw X_SCISSOR
 	dw 0

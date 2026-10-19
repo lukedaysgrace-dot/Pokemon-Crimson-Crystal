@@ -3,8 +3,8 @@ import type { GameData } from '../src/lib/gamedata/model';
 const manifest = JSON.parse(readFileSync('static/gamedata/manifest.json', 'utf8'));
 if (manifest.length < 2) process.exit(0);
 const [newest, previous] = manifest
-  // Skip the retained format-2 profile that shares the current source commit.
-  .filter((entry: { build: string }, index: number) => index === 0 || entry.build !== manifest[0].build)
+  // A new layout can share a source commit with its retained predecessor.
+  .filter((entry: { layoutHash: string }, index: number) => index === 0 || entry.layoutHash !== manifest[0].layoutHash)
   .slice(0, 2)
   .map((p: { id: string }): GameData =>
     JSON.parse(readFileSync(`static/gamedata/${p.id}.json`, 'utf8')),

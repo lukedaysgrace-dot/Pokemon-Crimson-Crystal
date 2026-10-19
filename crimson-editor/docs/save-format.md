@@ -23,10 +23,16 @@ Both physical copies and both box snapshots are synchronized on edited export;
 the backup-phase flag is cleared. Unchanged clean saves return their original
 bytes. Unknown entities fail validation and remain inspectable.
 
-The October 2026 build uses save format 3. The Jirachi/Wishing Star event flags
-increased the saved event area by two bytes. The new ROM rejects older layouts
-instead of reading shifted party/map data. Profiles for previous format-2 builds,
-including the transitional Jirachi layout, remain bundled. To migrate, open the
-old save, then use the editor's migration control with a save created by the new
-ROM. Migration carries Pokémon, inventory and supported player fields into the
-new save; its map and event state comes from that target save.
+The current October 2026 build uses save format 4, with 498 species and 440
+moves. Phantump and Trevenant expand each caught/seen bitfield from 62 to 63
+bytes. The ROM automatically upgrades valid format-3 saves, preserving party,
+Day-Care, roamer, map and event progress. Save in the updated game to produce a
+format-4 save for editing the two new species and Horn Leech.
+
+Profiles for format 3 and previous format-2 builds, including the transitional
+Jirachi layout, remain bundled. The editor detects their original layouts and
+can edit them without converting their bytes. To migrate an older format-2
+save, use the migration control with a save created by the new ROM. That
+template-based migration carries Pokémon, inventory and supported player
+fields; map and event state comes from the target save. It is distinct from
+the ROM's lossless format-3 upgrade.

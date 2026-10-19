@@ -1005,3 +1005,7 @@ PokemonPicPointers::
 	dba GorochuBackpic
 	dba JirachiFrontpic
 	dba JirachiBackpic
+	dba PhantumpFrontpic
+	dba PhantumpBackpic
+	dba TrevenantFrontpic
+	dba TrevenantBackpic

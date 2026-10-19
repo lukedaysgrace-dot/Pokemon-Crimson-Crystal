@@ -505,3 +505,5 @@ GorochuIcon: INCBIN "gfx/icons/gorochu.2bpp"
 JirachiIcon: INCBIN "gfx/menu_icons/jirachi.2bpp"
 
 EggIcon:         INCBIN "gfx/icons/egg.2bpp"
+PhantumpIcon: INCBIN "gfx/menu_icons/phantump.2bpp"
+TrevenantIcon: INCBIN "gfx/menu_icons/trevenant.2bpp"

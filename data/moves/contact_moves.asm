@@ -1,6 +1,7 @@
 ContactMoves::
 ; bitfield indexed by 16-bit move index (bit i&7 of byte i>>3, POUND = 1);
 ; set = the move makes contact (Gen IV contact flags; see CheckContactMove)
+
 	db $be, $9f, $fa, $ef, $7f, $10, $00, $00
 	db $7f, $00, $01, $08, $0c, $00, $20, $84
 	db $15, $21, $04, $45, $ac, $91, $88, $02
@@ -19,3 +20,4 @@ ContactMoves::
 	db $cc, $4d, $25, $96, $44, $28, $ea, $37
 	; TORMENT..STICKY_WEB make no contact
 	db $00, $0c, $70
+	db $01 ; HORN_LEECH (move 440) makes contact

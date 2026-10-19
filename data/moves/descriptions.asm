@@ -444,6 +444,7 @@ MoveDescriptions1:
 	dw SkyUppercutDescription
 	dw PoisonTailDescription
 	dw OminousWindDescription
+	dw HornLeechDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2167,3 +2168,7 @@ PoisonTailDescription:
 OminousWindDescription:
 	db   "Ghostly wind. May"
 	next "raise all stats.@"
+
+HornLeechDescription:
+	db   "Drains half the"
+	next "damage inflicted.@"

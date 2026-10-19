@@ -12,7 +12,7 @@ test('loads the correct normal and shiny pictures across the Unown gap', async (
     mimeType: 'application/octet-stream',
     buffer: Buffer.from(fixture()),
   });
-  for (const name of ['UNOWN', 'WOBBUFFET', 'CETODDLE', 'CETITAN', 'FEEBAS', 'MEOWTH_GALARIAN', 'JIRACHI']) {
+  for (const name of ['UNOWN', 'WOBBUFFET', 'CETODDLE', 'CETITAN', 'FEEBAS', 'MEOWTH_GALARIAN', 'JIRACHI', 'PHANTUMP', 'TREVENANT']) {
     const species = game.species.find((s) => s.const === name)!;
     await page.getByLabel('Species', { exact: true }).selectOption(String(species.index));
     const image = page.getByRole('img', { name: species.name, exact: true });

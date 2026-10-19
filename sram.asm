@@ -108,7 +108,7 @@ sBackupConversionTableChecksum:: dw
 sBackupSaveDataEnd::
 
 ; bd85
-	ds $88
+	ds $88 - 2 ; v4: keep checksum and later SRAM addresses stable as Dex flags grow
 ; bf0d
 
 sBackupChecksum:: dw
@@ -139,7 +139,7 @@ sConversionTableChecksum:: dw
 sSaveDataEnd::
 
 ; ab85
-	ds $88
+	ds $88 - 2 ; v4: keep checksum and later SRAM addresses stable as Dex flags grow
 ; ad0d
 
 sChecksum:: dw

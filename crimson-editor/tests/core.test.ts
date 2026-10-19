@@ -124,10 +124,70 @@ describe('mechanics and byte codecs', () => {
   });
 });
 describe('save read/write transactions', () => {
+  it('round trips Phantump, Trevenant, Horn Leech, ability slots and expanded Dex flags', () => {
+    expect(game.layout.constants.SAVE_FORMAT_VERSION).toBe(4);
+    expect(game.species).toHaveLength(498);
+    expect(game.moves).toHaveLength(440);
+    const horn = game.moves.find((move) => move.const === 'HORN_LEECH')!;
+    const reference = JSON.parse(readFileSync(new URL('../../tools/testdata/phantump_trevenant.json', import.meta.url), 'utf8'));
+    expect(horn).toMatchObject({ index: 440, power: 75, accuracy: 100, pp: 10, category: 0 });
+    for (const constant of ['PHANTUMP', 'TREVENANT']) {
+      const species = game.species.find((entry) => entry.const === constant)!;
+      if (constant === 'PHANTUMP') expect(species.evolutions).toEqual([
+        expect.objectContaining({ args: [32], target: 498 }),
+      ]);
+      expect(species.levelMoves).toContainEqual({ level: 28, move: horn.index });
+      expect(species.abilities.map((id) => game.abilities.find((a) => a.index === id)?.const))
+        .toEqual(['NATURAL_CURE', 'FRISK', 'HARVEST']);
+      expect(species.tutor.map((id) => game.moves.find((move) => move.index === id)?.const))
+        .toEqual(expect.arrayContaining(['GIGA_DRAIN', 'SEED_BOMB', 'TRICK', 'TRICK_ROOM']));
+      expect(species.eggMoves.map((id) => game.moves.find((move) => move.index === id)?.const))
+        .toEqual(expect.arrayContaining(['DISABLE', 'SUCKER_PUNCH']));
+      const supported = [...species.levelMoves.map((row) => row.move), ...species.tmhm, ...species.eggMoves, ...species.tutor]
+        .map((id) => game.moves.find((move) => move.index === id)?.const);
+      expect(supported).toEqual(expect.arrayContaining(reference.species[constant].expected));
+      for (const slot of [1, 2, 3]) {
+        const model = parse(fixture(), game);
+        const mon = model.party[0];
+        mon.species = species.index;
+        mon.moves = [horn.index, 0, 0, 0];
+        mon.pp = [10, 0, 0, 0];
+        mon.ups = [0, 0, 0, 0];
+        mon.personality = (mon.personality & 159) | (slot << 5);
+        mon.shiny = slot === 3;
+        const boxed = template(game, model.player, true, model.rules);
+        Object.assign(boxed, { species: species.index, moves: [...mon.moves], pp: [...mon.pp],
+          ups: [...mon.ups], personality: mon.personality, shiny: mon.shiny });
+        model.boxes[24].slots[19] = boxed;
+        model.dex.seen[species.index - 1] = true;
+        model.dex.caught[species.index - 1] = true;
+        const bytes = write(model), reread = parse(bytes, game);
+        expect(errors(reread)).toEqual([]);
+        expect(reread.party[0]).toMatchObject({ species: species.index, moves: mon.moves, shiny: mon.shiny });
+        expect(reread.boxes[24].slots[19]).toMatchObject({ species: species.index, moves: mon.moves, shiny: mon.shiny });
+        expect(ability(species, (reread.party[0].personality >>> 5) & 3, model.rules)).toBe(species.abilities[slot - 1]);
+        expect(reread.dex.seen[species.index - 1]).toBe(true);
+        expect(reread.dex.caught[species.index - 1]).toBe(true);
+        expect(verify(bytes, game.layout, game.layout.main).valid).toBe(true);
+        expect(verify(bytes, game.layout, game.layout.backup).valid).toBe(true);
+      }
+    }
+  });
+  it('retains and detects format-3 saves without rewriting them as format 4', () => {
+    const old = JSON.parse(readFileSync(new URL('../static/gamedata/c1a7287b.json', import.meta.url), 'utf8'));
+    expect(old.layout.constants.SAVE_FORMAT_VERSION).toBe(3);
+    expect(old.species).toHaveLength(496);
+    const bytes = fixture(old);
+    expect(detect(bytes, [game, old])).toBe(old);
+    expect(write(parse(bytes, old))).toEqual(bytes);
+    const result = migrate(parse(bytes, old), parse(emptySave(), game));
+    expect(errors(parse(result.bytes, game))).toEqual([]);
+    expect(result.bytes[game.layout.sram.sSaveVersion]).toBe(4);
+  });
   it('round trips Jirachi and every October move in party and boxed records', () => {
     const jirachi = game.species.find((s) => s.const === 'JIRACHI')!;
     expect(jirachi.index).toBe(496);
-    const additions = game.moves.filter((m) => m.index > 421);
+    const additions = game.moves.filter((m) => m.index > 421 && m.index <= 439);
     expect(additions).toHaveLength(18);
     expect(game.moves.find((m) => m.const === 'DOOM_DESIRE')).toMatchObject({ power: 160, accuracy: 100 });
     for (let i = 0; i < additions.length; i += 4) {
@@ -351,11 +411,11 @@ describe('developer tools', () => {
     expect(errors(reread)).toEqual([]);
     expect(result.report).toHaveLength(2);
   });
-  it('detects the retained Jirachi format-2 layout and migrates it into format 3', () => {
+  it('detects the retained Jirachi format-2 layout and migrates it into format 4', () => {
     const old = JSON.parse(readFileSync(new URL('../static/gamedata/c1a7287b-v2.json', import.meta.url), 'utf8'));
     const bytes = fixture(old);
     expect(old.layout.constants.SAVE_FORMAT_VERSION).toBe(2);
-    expect(game.layout.constants.SAVE_FORMAT_VERSION).toBe(3);
+    expect(game.layout.constants.SAVE_FORMAT_VERSION).toBe(4);
     expect(detect(bytes, [game, old])).toBe(old);
     const source = parse(bytes, old);
     source.party[0].species = old.species.find((s: { const: string }) => s.const === 'JIRACHI').index;
@@ -369,7 +429,7 @@ describe('developer tools', () => {
     expect(errors(reread)).toEqual([]);
     expect(reread.party[0].species).toBe(496);
     expect(reread.party[0].moves).toEqual(source.party[0].moves);
-    expect(result.bytes[game.layout.sram.sSaveVersion]).toBe(3);
+    expect(result.bytes[game.layout.sram.sSaveVersion]).toBe(4);
   });
   it('saves an event flag and preserves unrelated bits', () => {
     const m = parse(fixture(), game),

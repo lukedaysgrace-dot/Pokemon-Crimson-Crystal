@@ -2137,7 +2137,7 @@
         {
           "location": "Route 43",
           "method": "Wild Pok\u00e9mon",
-          "details": "Furret; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night.",
+          "details": "Furret; approx. 20% held-item chance. Grass / Cave; Day, Morning.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         },
@@ -2419,7 +2419,7 @@
         {
           "location": "Route 43",
           "method": "Wild Pok\u00e9mon",
-          "details": "Furret; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
+          "details": "Furret; approx. 5% held-item chance. Grass / Cave; Day, Morning.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         }

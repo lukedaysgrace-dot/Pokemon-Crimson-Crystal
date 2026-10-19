@@ -1022,3 +1022,7 @@ INCBIN "gfx/pokemon/gorochu/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/gorochu/shiny.pal"
 INCBIN "gfx/pokemon/jirachi/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/jirachi/shiny.pal"
+INCBIN "gfx/pokemon/phantump/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/phantump/shiny.pal"
+INCBIN "gfx/pokemon/trevenant/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/trevenant/shiny.pal"

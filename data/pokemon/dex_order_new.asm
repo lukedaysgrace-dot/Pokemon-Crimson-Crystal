@@ -290,6 +290,8 @@ NewPokedexOrder:
 	dw AURORUS
 	dw GOLETT
 	dw GOLURK
+	dw PHANTUMP
+	dw TREVENANT
 	dw DUSKULL
 	dw DUSCLOPS
 	dw DUSKNOIR

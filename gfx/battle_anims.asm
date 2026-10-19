@@ -87,3 +87,4 @@ AnimObjLuminaCrashGFX: INCBIN "gfx/battle_anims/luminacrash.2bpp.lz"
 AnimObjWeatherBallGFX: INCBIN "gfx/battle_anims/weatherball.2bpp.lz"
 
 AnimObjCosmicPowerGFX: INCBIN "gfx/battle_anims/cosmicpower.2bpp.lz"
+AnimObjHornLeechGFX: INCBIN "gfx/battle_anims/horn_leech.2bpp.lz"

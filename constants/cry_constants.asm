@@ -136,3 +136,5 @@
 	const CRY_GLACEON
 	const CRY_SYLVEON
 	const CRY_PORYGONZ
+	const CRY_PHANTUMP
+	const CRY_TREVENANT

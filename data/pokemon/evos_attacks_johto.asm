@@ -3118,6 +3118,8 @@ EvosAttacksPointers2C::
 	dw KrookodileEvosAttacks
 	dw GorochuEvosAttacks
 	dw JirachiEvosAttacks
+	dw PhantumpEvosAttacks
+	dw TrevenantEvosAttacks
 
 ; Initial moves and level-up learnset from Rage Blue.
 GorochuEvosAttacks:
@@ -3167,6 +3169,42 @@ JirachiEvosAttacks:
 	dbw 63, REST
 	db 0 ; no more level-up moves
 assert BANK(JirachiEvosAttacks) == BANK(EvosAttacksPointers2C)
+
+PhantumpEvosAttacks:
+	dbbw EVOLVE_LEVEL, 32, TREVENANT
+	db 0 ; no more evolutions
+	dbw 1, ASTONISH
+	dbw 1, TACKLE
+	dbw 8, LEECH_SEED
+	dbw 12, CONFUSE_RAY
+	dbw 16, WILL_O_WISP
+	dbw 19, FAINT_ATTACK
+	dbw 20, HEX
+	dbw 24, GROWTH
+	dbw 28, HORN_LEECH
+	dbw 32, CURSE
+	dbw 36, PHANTOMFORCE
+	dbw 44, WOOD_HAMMER
+	dbw 48, DESTINY_BOND
+	db 0 ; no more level-up moves
+
+TrevenantEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, ASTONISH
+	dbw 1, LEECH_SEED
+	dbw 1, SHADOW_CLAW
+	dbw 1, TACKLE
+	dbw 12, CONFUSE_RAY
+	dbw 16, WILL_O_WISP
+	dbw 19, FAINT_ATTACK
+	dbw 20, HEX
+	dbw 24, GROWTH
+	dbw 28, HORN_LEECH
+	dbw 32, CURSE
+	dbw 36, PHANTOMFORCE
+	dbw 44, WOOD_HAMMER
+	dbw 48, DESTINY_BOND
+	db 0 ; no more level-up moves
 
 ShuppetEvosAttacks:
 	dbbw EVOLVE_LEVEL, 37, BANETTE

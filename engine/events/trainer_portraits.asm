@@ -7,8 +7,6 @@
 ; frame until the next line starts printing.
 ;
 ; Hooks elsewhere:
-;   TryObjectEvent / CheckTrainerBattle  start a session  (wPortraitSession)
-;   Script_end / Script_endall            end it
 ;   MapTextbox                            TrainerPortrait_Draw
 ;   PrintLetterDelay                      keeps the mouth moving (wPortraitTalkTimer)
 ;   UpdateWeatherSprites                  TrainerPortrait_Tick, once per frame
@@ -142,9 +140,6 @@ TrainerPortrait_Draw::
 	ld a, [wVramState]
 	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
 	ret z
-	xor a
-	ld [wPortraitMute], a
-
 ; Map texts are listed with their speaker (data/maps/portrait_texts.asm).
 	farcall TrainerPortrait_FindText
 	cp -1
@@ -488,9 +483,6 @@ TrainerPortrait_Tick::
 	jr nz, .done
 	call TrainerPortrait_IsOnScreen
 	jr nz, .done
-	ld a, [wPortraitMute]
-	and a
-	jr nz, .quiet
 
 	ld hl, wPortraitTalkTimer
 	ld a, [hl]
@@ -641,7 +633,6 @@ TrainerPortrait_Restore::
 	xor a
 	ld [wPortraitShown], a
 	ld [wPortraitMouth], a
-	ld [wPortraitMute], a
 	ld a, [wPortraitDirty]
 	and a
 	ret z

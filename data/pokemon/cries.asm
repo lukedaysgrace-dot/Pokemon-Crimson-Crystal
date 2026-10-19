@@ -501,3 +501,5 @@ PokemonCries::
 	mon_cry CRY_TOTODILE,    $280,  $180 ; KROOKODILE
 	mon_cry CRY_RAICHU,      $0e0,  $17f ; GOROCHU (Rage Blue length $ff + $80)
 	mon_cry CRY_ENTEI,       $24a,  $091 ; JIRACHI (synthesized mythical cry)
+	mon_cry CRY_PHANTUMP, 119, 220 ; PHANTUMP (Polished Coral)
+	mon_cry CRY_TREVENANT, 0, 220 ; TREVENANT (Polished Coral)

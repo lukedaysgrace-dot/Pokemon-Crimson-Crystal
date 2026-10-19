@@ -497,3 +497,5 @@ IconPointers:
 	dba FeraligatrIcon ; KROOKODILE
 	dba GorochuIcon
 	dba JirachiIcon
+	dba PhantumpIcon
+	dba TrevenantIcon

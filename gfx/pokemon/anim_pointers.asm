@@ -495,3 +495,5 @@ AnimationPointers:
 	dba KrookodileAnimation
 	dba GorochuAnimation
 	dba JirachiAnimation
+	dba PhantumpAnimation
+	dba TrevenantAnimation

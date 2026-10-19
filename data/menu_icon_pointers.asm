@@ -498,3 +498,5 @@ MenuIconPointers:
 	dba KrookodileMenuIcon
 	dba GorochuMenuIcon
 	dba JirachiMenuIcon
+	dba PhantumpMenuIcon
+	dba TrevenantMenuIcon

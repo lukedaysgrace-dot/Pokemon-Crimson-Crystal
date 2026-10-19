@@ -24,10 +24,23 @@ const egg = template(game, m.player, false, 0);
 egg.egg = true;
 egg.happiness = 5;
 m.party.push(egg);
+const ghostMoves = ['HORN_LEECH', 'SHADOW_CLAW', 'WOOD_HAMMER', 'WILL_O_WISP'].map(
+  (constant) => game.moves.find((move) => move.const === constant)!.index,
+);
+for (const constant of ['PHANTUMP', 'TREVENANT']) {
+  const added = template(game, m.player, false, m.rules);
+  added.species = game.species.find((species) => species.const === constant)!.index;
+  added.moves = [...ghostMoves];
+  added.ups = [0, 1, 2, 3];
+  added.pp = added.moves.map((id, slot) => maxPP(game.moves[id - 1].pp, added.ups[slot]));
+  added.personality = (added.personality & 159) | (3 << 5);
+  added.shiny = constant === 'TREVENANT';
+  m.party.push(added);
+}
 for (let i = 0; i < m.boxes.length; i++) {
   const boxed = template(game, m.player, true, 0);
-  boxed.species = s.index;
-  boxed.moves = [...mon.moves];
+  boxed.species = game.species.find((species) => species.const === ['JIRACHI', 'PHANTUMP', 'TREVENANT'][i % 3])!.index;
+  boxed.moves = i % 3 === 0 ? [...mon.moves] : [...ghostMoves];
   boxed.ups = [...mon.ups];
   boxed.shiny = true;
   boxed.male = true;
