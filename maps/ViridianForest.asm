@@ -47,10 +47,10 @@ TrainerBugCatcherDoug:
 	end
 
 ViridianForestYoungster1Script:
-	jumptext ViridianForestYoungster1Text
+	jumptextfaceplayer ViridianForestYoungster1Text
 
 ViridianForestYoungster2Script:
-	jumptext ViridianForestYoungster2Text
+	jumptextfaceplayer ViridianForestYoungster2Text
 
 ViridianForestTrainerTips1Sign:
 	jumptext ViridianForestTrainerTips1Text
@@ -86,74 +86,83 @@ ViridianForestHiddenPotion:
 	hiddenitem POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
 BugCatcherRobSeenText:
-	text "Hey! You have"
-	line "#MON! Come on!"
+	text "Hey! Those #MON"
+	line "look ready to go!"
 	cont "Let's battle 'em!"
 	done
 
 BugCatcherRobBeatenText:
-	text "Even my best bugs"
-	line "couldn't stop you!"
+	text "My bugs got"
+	line "squashed!"
 	done
 
 BugCatcherRobAfterBattleText:
-	text "Ssh! You'll scare"
-	line "the bugs away!"
+	text "Shh! Keep it down!"
+	line "You'll scare off"
+	cont "the bugs!"
+
+	para "I just saw a big"
+	line "one over there!"
 	done
 
 BugCatcherEdSeenText:
-	text "You can't sneak"
-	line "past a BUG"
-	cont "CATCHER!"
+	text "Trying to slip by?"
+	line "Not while I'm"
+	cont "looking!"
 	done
 
 BugCatcherEdBeatenText:
-	text "Huh?"
-	line "I ran out of"
-	cont "#MON!"
+	text "What? That's my"
+	line "last #MON!"
 	done
 
 BugCatcherEdAfterBattleText:
-	text "Darn! I'm going"
-	line "to catch some"
-	cont "stronger ones!"
+	text "I was so busy"
+	line "catching #MON,"
+	cont "I forgot to train"
+	cont "them!"
+
+	para "I'll get you next"
+	line "time!"
 	done
 
 BugCatcherDougSeenText:
-	text "Hey, wait up!"
-	line "What's the hurry?"
+	text "Hey! Slow down!"
+	line "Got time for one"
+	cont "more battle?"
 	done
 
 BugCatcherDougBeatenText:
-	text "I give! You're"
-	line "good at this!"
+	text "All right, all"
+	line "right! You win!"
 	done
 
 BugCatcherDougAfterBattleText:
-	text "Sometimes, you"
-	line "can find stuff on"
-	cont "the ground!"
+	text "I dropped a POTION"
+	line "somewhere in here."
 
-	para "I'm looking for"
-	line "the stuff I"
-	cont "dropped!"
+	para "If you find it,"
+	line "let's call it your"
+	cont "prize for winning!"
 	done
 
 ViridianForestYoungster1Text:
-	text "I came here with"
-	line "some friends!"
+	text "My friends came"
+	line "to catch #MON."
 
-	para "They're out for"
-	line "#MON fights!"
+	para "Now they just want"
+	line "to battle anyone"
+	cont "who walks past!"
 	done
 
 ViridianForestYoungster2Text:
-	text "I ran out of #"
-	line "BALLs to catch"
-	cont "#MON with!"
+	text "I used my last"
+	line "# BALL on a"
+	cont "WEEDLE!"
 
-	para "You should carry"
-	line "extras!"
+	para "Then a PIKACHU"
+	line "showed up..."
+	cont "Bring extras!"
 	done
 
 ViridianForestTrainerTips1Text:
@@ -225,17 +234,17 @@ ViridianForest_MapEvents:
 	bg_event 16, 32, BGEVENT_READ, ViridianForestUseAntidoteSign
 	bg_event 26, 17, BGEVENT_READ, ViridianForestTrainerTips2Sign
 	bg_event  4, 24, BGEVENT_READ, ViridianForestTrainerTips3Sign
-	bg_event 18, 45, BGEVENT_READ, ViridianForestTrainerTips4Sign
+	bg_event 18, 44, BGEVENT_READ, ViridianForestTrainerTips4Sign
 	bg_event  2,  1, BGEVENT_READ, ViridianForestLeavingSign
 	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenAntidote
 	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenPotion
 
 	db 8 ; object events
-	object_event 30, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
-	object_event 30, 19, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBugCatcherEd, -1
-	object_event  2, 18, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
+	object_event 30, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
+	object_event 30, 19, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBugCatcherEd, -1
+	object_event  2, 18, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
 	object_event 25,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestAntidote, EVENT_VIRIDIAN_FOREST_ANTIDOTE
 	object_event 12, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestPotion, EVENT_VIRIDIAN_FOREST_POTION
 	object_event  1, 31, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestPokeBall, EVENT_VIRIDIAN_FOREST_POKE_BALL
-	object_event 16, 43, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster1Script, -1
-	object_event 27, 40, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster2Script, -1
+	object_event 14, 43, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster1Script, -1
+	object_event 29, 41, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster2Script, -1
