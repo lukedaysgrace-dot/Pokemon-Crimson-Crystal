@@ -131,6 +131,9 @@ AI_Setup:
 	db EFFECT_DEFENSE_CURL
 	db EFFECT_BULK_UP
 	db EFFECT_CALM_MIND
+	db EFFECT_DEFENSE_UP_3
+	db EFFECT_SP_ATK_UP_3
+	db EFFECT_COSMIC_POWER
 	db EFFECT_DRAGON_DANCE
 	db EFFECT_HONE_CLAWS
 	db EFFECT_SHELL_SMASH
@@ -464,6 +467,7 @@ AI_Smart:
 	dbw EFFECT_HEX,              AI_Smart_Hex
 	dbw EFFECT_FACADE,           AI_Smart_Facade
 	dbw EFFECT_CIRCLE_THROW,     AI_Smart_CircleThrow
+	dbw EFFECT_RECYCLE,          AI_Smart_Recycle
 	dbw EFFECT_ROOST,            AI_Smart_Heal
 	db -1 ; end
 
@@ -4721,6 +4725,9 @@ AI_Elite:
 	db EFFECT_DEFENSE_CURL
 	db EFFECT_BULK_UP
 	db EFFECT_CALM_MIND
+	db EFFECT_DEFENSE_UP_3
+	db EFFECT_SP_ATK_UP_3
+	db EFFECT_COSMIC_POWER
 	db EFFECT_DRAGON_DANCE
 	db EFFECT_HONE_CLAWS
 	db EFFECT_SHELL_SMASH
@@ -4814,6 +4821,9 @@ AI_Elite:
 	db EFFECT_DEFENSE_CURL
 	db EFFECT_BULK_UP
 	db EFFECT_CALM_MIND
+	db EFFECT_DEFENSE_UP_3
+	db EFFECT_SP_ATK_UP_3
+	db EFFECT_COSMIC_POWER
 	db EFFECT_DRAGON_DANCE
 	db EFFECT_HONE_CLAWS
 	db EFFECT_SHELL_SMASH
@@ -4943,3 +4953,18 @@ AI_CheckMoveInList:
 	pop hl
 	ld de, 2
 	jp IsInHalfwordArray
+
+AI_Smart_Recycle:
+; Recover a real consumed item only when the user's hand is empty.
+    ld a, [wEnemyMonItem]
+    and a
+    jp nz, AIDiscourageMove
+    push hl
+    ld c, 1
+    farcall ReadRecycleItem_Core
+    pop hl
+    ld a, b
+    and a
+    jp z, AIDiscourageMove
+    dec [hl]
+    ret

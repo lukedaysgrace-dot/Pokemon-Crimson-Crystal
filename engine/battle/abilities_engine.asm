@@ -564,10 +564,10 @@ StatusHealAbilities:
 
 CloudNineAbility:
 	ld hl, NotifyCloudNineText
-	jr NotificationAbilities
+	jp NotificationAbilities
 PressureAbility:
 	ld hl, NotifyPressureText
-	jr NotificationAbilities
+	jp NotificationAbilities
 
 OpponentHasPressure::
 ; Return z if the move target has Pressure. Pressure is not an ignorable
@@ -613,6 +613,10 @@ OpponentHasPressure::
 	ret
 
 PressureExemptEffects:
+	db EFFECT_DEFENSE_UP_3
+	db EFFECT_SP_ATK_UP_3
+	db EFFECT_COSMIC_POWER
+	db EFFECT_RECYCLE
 	db EFFECT_ATTACK_UP
 	db EFFECT_DEFENSE_UP
 	db EFFECT_SPEED_UP
@@ -2894,14 +2898,15 @@ RunDamageModifiers:
 	jp HalveDamage
 
 .fur_coat
-	ld a, e
-	and a ; physical?
+	; Psyshock/Psystrike are special attacks that target physical Defense.
+	callfar DefendedStatCategory
+	and a
 	ret nz
 	jp HalveDamage
 
 .marvel_scale
 	; A 1.5x Defense boost is equivalent to two-thirds physical damage.
-	ld a, e
+	callfar DefendedStatCategory
 	and a
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -3723,6 +3728,7 @@ FlyHittingMoves:
 	dw THUNDER
 	dw TWISTER
 	dw HURRICANE
+	dw SKY_UPPERCUT
 	dw -1
 
 DigHittingMoves:
@@ -7117,7 +7123,7 @@ DoRegenerator:
 ; ==== Session 7 additions ================================================
 
 ContraryCheckRaise::
-; Hooked at the top of RaiseStat. b = stat id (with $10 sharp bit).
+; Hooked at the top of RaiseStat. b = stat id ($10: two, $20: three).
 ; Carry if Contrary converted the turn holder's raise into a drop
 ; (fully resolved, "fell" message printed; wLoweredStat bit 7 tells the
 ; pending statupmessage to stay quiet).
@@ -7143,7 +7149,7 @@ ContraryCheckRaise::
 	ld hl, wDisguiseBusted
 	set 6, [hl] ; skip the AI 25% miss roll
 	ld a, b
-	and $1f
+	and $3f
 	ld [wLoweredStat], a
 	farcall StatDownSkipProtect
 	farcall BattleCommand_StatDownMessage
@@ -7625,6 +7631,8 @@ PunchMoves:
 	dw RAGE_FIST
 	dw HAMMER_ARM
 	dw HEADLONGRUSH
+	dw METEOR_MASH
+	dw SKY_UPPERCUT
 	dw -1
 
 SliceMoves:
@@ -7702,6 +7710,8 @@ WindMoves:
 	dw HURRICANE
 	dw HEAT_WAVE
 	dw AIR_CUTTER
+	dw PETAL_BLIZZARD
+	dw OMINOUS_WIND
 	dw -1
 
 PowderMoves:
@@ -7939,6 +7949,7 @@ GetUserSide:
 	ret
 
 InitAbilityItemState::
+	farcall InitRecycleItems_Core
 ; Farcalled from the battle-start send-out (replaces the plain wInAbility
 ; clear there). Zeroes held-item state and once-per-battle ability state.
 	farcall InitSupremeHistory_Core
@@ -7999,6 +8010,7 @@ RecordConsumedItem::
 	ld e, a ; e = item id
 	ld b, a
 	call WriteConsumedItem
+	farcall WriteRecycleItem_Core
 	call ReadItemStateFlags
 	set 0, b ; consumed a held item
 	; arm Cud Chew (replays at the end of the NEXT turn) if the holder
@@ -8583,6 +8595,7 @@ HarvestAbility:
 	call WriteItemStateFlags
 	ld b, 0
 	call WriteConsumedItem
+	farcall WriteRecycleItem_Core
 	pop bc
 	; banner + text with the item name
 	push bc

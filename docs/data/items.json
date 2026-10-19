@@ -4,7 +4,7 @@
     "tms": 54,
     "hms": 7,
     "held_items": 59,
-    "acquisition_rows": 1660,
+    "acquisition_rows": 1611,
     "no_sources": []
   },
   "items": [
@@ -308,7 +308,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 313,
+          "line": 312,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 16
         },
@@ -334,7 +334,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 313,
+          "line": 312,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 16
         },
@@ -445,7 +445,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 313,
+          "line": 312,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 16
         }
@@ -464,7 +464,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 313,
+          "line": 312,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 16
         },
@@ -805,7 +805,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 313,
+          "line": 312,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 16
         },
@@ -1284,21 +1284,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Ecruteak Mart",
@@ -1312,7 +1312,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -1333,14 +1333,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Olivine Mart",
@@ -1354,7 +1354,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Player\u2019s House",
@@ -1389,7 +1389,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Union Cave 1F",
@@ -1598,7 +1598,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cherrygrove Mart",
@@ -1709,7 +1709,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Burned Tower 1F",
@@ -1723,7 +1723,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cerulean Cave 1F",
@@ -1758,14 +1758,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Fuchsia Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -1793,7 +1793,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Mt. Mortar 1F Inside",
@@ -1842,7 +1842,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Silver Cave Room 1",
@@ -1884,14 +1884,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Viridian Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         },
         {
           "location": "Whirl Islands B1F",
@@ -3014,7 +3014,7 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (7, 7).",
           "source": "maps/MountMoonSquare.asm",
-          "line": 76
+          "line": 84
         },
         {
           "location": "Player\u2019s House",
@@ -3453,7 +3453,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -3510,7 +3510,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -4879,7 +4879,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -4933,7 +4933,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -5087,7 +5087,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -7455,7 +7455,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -9033,7 +9033,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -9779,7 +9779,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -10852,7 +10852,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -10995,7 +10995,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -11032,7 +11032,7 @@
           "method": "Shop",
           "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 398,
+          "line": 397,
           "map_source": "maps/MahoganyMart1F.asm",
           "map_line": 138
         },
@@ -11579,6 +11579,47 @@
       "notes": ""
     },
     {
+      "const": "STAR_PIECE",
+      "name": "Star Piece",
+      "category": "Key item",
+      "sources": [
+        {
+          "location": "Ecruteak City",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/EcruteakCity.asm",
+          "line": 196
+        }
+      ],
+      "description": "A glowing stone from a wish.",
+      "availability": "World sources",
+      "notes": ""
+    },
+    {
+      "const": "STAR_SHARD",
+      "name": "Star Shard",
+      "category": "Key item",
+      "sources": [
+        {
+          "location": "Ecruteak City",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/EcruteakCity.asm",
+          "line": 247
+        },
+        {
+          "location": "Route 45",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item. Tile (12, 77).",
+          "source": "maps/Route45.asm",
+          "line": 318
+        }
+      ],
+      "description": "A meteorite shard full of memories.",
+      "availability": "World sources",
+      "notes": ""
+    },
+    {
       "const": "SUPER_ROD",
       "name": "Super Rod",
       "category": "Key item",
@@ -11592,6 +11633,23 @@
         }
       ],
       "description": "The best ROD for catching Pok\u00e9mon.",
+      "availability": "World sources",
+      "notes": ""
+    },
+    {
+      "const": "WISHING_STAR",
+      "name": "Wishing Star",
+      "category": "Key item",
+      "sources": [
+        {
+          "location": "Mt. Moon Square",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item. Tile (20, 14), (21, 14), (20, 15), (21, 15).",
+          "source": "maps/MountMoonSquare.asm",
+          "line": 139
+        }
+      ],
+      "description": "A fallen star, cool to the touch.",
       "availability": "World sources",
       "notes": ""
     },
@@ -11612,7 +11670,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cherrygrove Mart",
@@ -11661,14 +11719,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Olivine Mart",
@@ -11682,7 +11740,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Player\u2019s House",
@@ -11724,7 +11782,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Cures poisoned Pok\u00e9mon.",
@@ -11741,7 +11799,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cherrygrove Mart",
@@ -11776,7 +11834,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Olivine Mart",
@@ -11790,7 +11848,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Union Cave 1F",
@@ -11804,7 +11862,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Violet Mart",
@@ -11818,7 +11876,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Awakens sleeping Pok\u00e9mon.",
@@ -11852,7 +11910,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Ecruteak Mart",
@@ -11880,28 +11938,28 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Pewter Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Vermilion Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Viridian Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Heals burned Pok\u00e9mon.",
@@ -11918,7 +11976,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 327
+          "line": 326
         },
         {
           "location": "Dragon's Den B1F",
@@ -11998,7 +12056,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 327
+          "line": 326
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -12141,7 +12199,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (6, 20).",
           "source": "maps/Route45.asm",
-          "line": 310
+          "line": 356
         },
         {
           "location": "Union Cave B2F",
@@ -12172,7 +12230,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd800.",
           "source": "data/items/marts.asm",
-          "line": 390
+          "line": 389
         },
         {
           "location": "Ruins of Alph Aerodactyl Item Room",
@@ -12196,7 +12254,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 390
+          "line": 389
         },
         {
           "location": "Ruins of Alph Kabuto Item Room",
@@ -12300,7 +12358,14 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/CeladonDeptStore6F.asm",
-          "line": 42
+          "line": 91
+        },
+        {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 156
         },
         {
           "location": "Goldenrod Dept Store 6F",
@@ -12308,13 +12373,6 @@
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/GoldenrodDeptStore6F.asm",
           "line": 31
-        },
-        {
-          "location": "Mt. Moon Gift Shop",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd200.",
-          "source": "data/items/marts.asm",
-          "line": 370
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 50.",
@@ -12345,21 +12403,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Cianwood Pharmacy",
@@ -12380,7 +12438,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -12429,7 +12487,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "National Park",
@@ -12457,7 +12515,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Team Rocket Base B2F",
@@ -12506,7 +12564,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Eliminates all status problems.",
@@ -12551,7 +12609,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Lake of Rage",
@@ -12666,7 +12724,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 327
+          "line": 326
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -12753,7 +12811,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd450.",
           "source": "data/items/marts.asm",
-          "line": 390
+          "line": 389
         },
         {
           "location": "Ruins of Alph Aerodactyl Item Room",
@@ -12784,14 +12842,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Cerulean Cave 2F",
@@ -12819,14 +12877,14 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (23, 14).",
           "source": "maps/EcruteakCity.asm",
-          "line": 155
+          "line": 375
         },
         {
           "location": "Fuchsia Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -12840,14 +12898,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Mt. Mortar 1F Inside",
@@ -12903,7 +12961,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Team Rocket Base B1F",
@@ -12924,7 +12982,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Violet City",
@@ -12938,7 +12996,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 200.",
@@ -12955,7 +13013,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Ecruteak Mart",
@@ -13007,7 +13065,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 327
+          "line": 326
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -13049,14 +13107,14 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/Route45.asm",
-          "line": 218
+          "line": 232
         },
         {
           "location": "Route 45",
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/Route45.asm",
-          "line": 230
+          "line": 244
         },
         {
           "location": "Vermilion Port",
@@ -13080,7 +13138,14 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/CeladonDeptStore6F.asm",
-          "line": 60
+          "line": 97
+        },
+        {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 174
         },
         {
           "location": "Goldenrod Dept Store 6F",
@@ -13088,13 +13153,6 @@
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/GoldenrodDeptStore6F.asm",
           "line": 49
-        },
-        {
-          "location": "Mt. Moon Gift Shop",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd350.",
-          "source": "data/items/marts.asm",
-          "line": 370
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 80.",
@@ -13106,6 +13164,13 @@
       "name": "Max Elixer",
       "category": "Medicine / training",
       "sources": [
+        {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 50
+        },
         {
           "location": "Cerulean Cave B1F",
           "method": "Ground pickup",
@@ -13257,14 +13322,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Dragon's Den B1F",
@@ -13299,7 +13364,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Lake of Rage",
@@ -13348,14 +13413,14 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (7, 33).",
           "source": "maps/Route45.asm",
-          "line": 313
+          "line": 359
         },
         {
           "location": "Saffron Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Silver Cave Room 2",
@@ -13602,14 +13667,14 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/Route45.asm",
-          "line": 59
+          "line": 73
         },
         {
           "location": "Route 45",
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (13, 80).",
           "source": "maps/Route45.asm",
-          "line": 316
+          "line": 362
         },
         {
           "location": "Silver Cave Room 2",
@@ -13661,7 +13726,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Cherrygrove Mart",
@@ -13703,14 +13768,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "National Park",
@@ -13738,7 +13803,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Sprout Tower 1F",
@@ -13752,7 +13817,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Violet Mart",
@@ -13766,7 +13831,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Heals paralyzed Pok\u00e9mon.",
@@ -13790,7 +13855,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd300.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Cherrygrove Mart",
@@ -13846,7 +13911,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd300.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mahogany Mart 1F",
@@ -13924,6 +13989,23 @@
       "notes": ""
     },
     {
+      "const": "PP_MAX",
+      "name": "Pp Max",
+      "category": "Medicine / training",
+      "sources": [
+        {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 72
+        }
+      ],
+      "description": "Raises a move's PP to the maximum.",
+      "availability": "World sources",
+      "notes": ""
+    },
+    {
       "const": "PROTEIN",
       "name": "Protein",
       "category": "Medicine / training",
@@ -13933,7 +14015,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 327
+          "line": 326
         },
         {
           "location": "Cerulean Cave 2F",
@@ -14027,7 +14109,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd300.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Mahogany Town",
@@ -14054,6 +14136,13 @@
           "line": 0
         },
         {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 61
+        },
+        {
           "location": "Cerulean Cave 1F",
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (16, 13).",
@@ -14066,6 +14155,13 @@
           "details": "Search this tile. Tile (9, 1).",
           "source": "maps/CinnabarIsland.asm",
           "line": 84
+        },
+        {
+          "location": "Ecruteak City",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/EcruteakCity.asm",
+          "line": 156
         },
         {
           "location": "Goldenrod Radio Tower 2F",
@@ -14173,7 +14269,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,800.",
           "source": "data/items/marts.asm",
-          "line": 390
+          "line": 389
         }
       ],
       "description": "Revives fainted Pok\u00e9mon. Bitter.",
@@ -14197,14 +14293,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Cianwood City",
@@ -14281,14 +14377,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Mt. Mortar 1F Outside",
@@ -14323,7 +14419,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (5, 66).",
           "source": "maps/Route45.asm",
-          "line": 307
+          "line": 353
         },
         {
           "location": "Team Rocket Base B1F",
@@ -14337,14 +14433,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         },
         {
           "location": "Viridian Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         },
         {
           "location": "Pok\u00e9mon Center 2F delivery NPC",
@@ -14368,7 +14464,14 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/CeladonDeptStore6F.asm",
-          "line": 51
+          "line": 94
+        },
+        {
+          "location": "Celadon Dept Store 6F",
+          "method": "Gift / reward",
+          "details": "Complete the local conversation or event to receive this item.",
+          "source": "maps/CeladonDeptStore6F.asm",
+          "line": 165
         },
         {
           "location": "Goldenrod Dept Store 6F",
@@ -14376,13 +14479,6 @@
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/GoldenrodDeptStore6F.asm",
           "line": 40
-        },
-        {
-          "location": "Mt. Moon Gift Shop",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd300.",
-          "source": "data/items/marts.asm",
-          "line": 370
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 60.",
@@ -14413,14 +14509,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Cianwood Pharmacy",
@@ -14441,7 +14537,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -14476,14 +14572,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Olivine Lighthouse 6F",
@@ -14504,7 +14600,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Player\u2019s House",
@@ -14567,331 +14663,10 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 277
+          "line": 276
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 50.",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "BIG_MUSHROOM",
-      "name": "Big Mushroom",
-      "category": "Other item",
-      "sources": [
-        {
-          "location": "Cerulean Cave 1F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Cerulean Cave 2F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Cerulean Cave B1F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Ilex Forest",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Mt. Moon",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Morning.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Mt. Moon",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "National Park",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Bug-Catching Contest; Any. Condition: Tuesday, Thursday or Saturday contest.",
-          "source": "data/wild/bug_contest_mons.asm",
-          "line": 0
-        },
-        {
-          "location": "National Park",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 36",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Viridian Forest",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        }
-      ],
-      "description": "A rare mushroom. Sell high.",
-      "availability": "Held-item hunting",
-      "notes": ""
-    },
-    {
-      "const": "BIG_PEARL",
-      "name": "Big Pearl",
-      "category": "Other item",
-      "sources": [
-        {
-          "location": "Goldenrod Underground",
-          "method": "Bargain shop",
-          "details": "Monday morning bargain merchant; limited daily stock. Cost: \u20bd3,500.",
-          "source": "data/items/bargain_shop.asm",
-          "line": 5
-        },
-        {
-          "location": "Cinnabar Island",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "New Bark Town",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "New Bark Town",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "New Bark Town",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Surf; Any.",
-          "source": "data/wild/johto_water.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Surf; Any.",
-          "source": "data/wild/johto_water.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine Fishing Cove",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Fishing Contest (any rod); Any. Condition: Friday contest.",
-          "source": "data/wild/fishing_contest_mons.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine Port",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Olivine Port",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Pallet Town",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 12",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 13",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 19",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 20",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 21",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 26",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 26",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 27",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 27",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 40",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 40",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 41",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 41",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Morning/Day, Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Safari Zone",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Safari Zone",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Super Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Vermilion City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Vermilion Port",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Good Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands Cave",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands NE",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands NW",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands SW",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 5% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        }
-      ],
-      "description": "A big, beautiful pearl. Sell high.",
       "availability": "World sources",
       "notes": ""
     },
@@ -14905,14 +14680,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd650.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd650.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Dark Cave Violet Entrance",
@@ -14988,7 +14763,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 299
+          "line": 298
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15075,7 +14850,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15089,14 +14864,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Saffron Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Violet Mart",
@@ -15110,7 +14885,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 229
+          "line": 228
         }
       ],
       "description": "Flower-print MAIL. (HOLD)",
@@ -15127,7 +14902,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -15165,35 +14940,35 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Fuchsia Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 347
+          "line": 346
         },
         {
           "location": "Indigo Plateau Pokecenter 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 379
+          "line": 378
         },
         {
           "location": "Lavender Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 265
+          "line": 264
         },
         {
           "location": "Mt. Mortar 1F Inside",
@@ -15322,7 +15097,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (6, 51).",
           "source": "maps/Route45.asm",
-          "line": 304
+          "line": 350
         },
         {
           "location": "Team Rocket Base B1F",
@@ -15449,224 +15224,224 @@
         {
           "location": "Cinnabar Island",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "New Bark Town",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "New Bark Town",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "New Bark Town",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Surf; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Surf; Any.",
           "source": "data/wild/johto_water.asm",
           "line": 0
         },
         {
           "location": "Olivine City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Olivine City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Olivine City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Surf; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Surf; Any.",
           "source": "data/wild/johto_water.asm",
           "line": 0
         },
         {
           "location": "Olivine Fishing Cove",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Fishing Contest (any rod); Any. Condition: Friday contest.",
+          "details": "Shellder; approx. 25% held-item chance. Fishing Contest (any rod); Any. Condition: Friday contest.",
           "source": "data/wild/fishing_contest_mons.asm",
           "line": 0
         },
         {
           "location": "Olivine Port",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Olivine Port",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Pallet Town",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 12",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 13",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 19",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 20",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 21",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 26",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 26",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 27",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 27",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 40",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 40",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 41",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 41",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Morning/Day, Night.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Morning/Day, Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Safari Zone",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Safari Zone",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Super Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Super Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Vermilion City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Vermilion Port",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Good Rod; Any.",
+          "details": "Shellder; approx. 25% held-item chance. Good Rod; Any.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands Cave",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Grass / Cave; Day.",
+          "details": "Shellder; approx. 25% held-item chance. Grass / Cave; Day.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands NE",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Grass / Cave; Night.",
+          "details": "Shellder; approx. 25% held-item chance. Grass / Cave; Night.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands NW",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Grass / Cave; Day.",
+          "details": "Shellder; approx. 25% held-item chance. Grass / Cave; Day.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands SW",
           "method": "Wild Pok\u00e9mon",
-          "details": "Shellder; approx. 20% held-item chance. Grass / Cave; Night.",
+          "details": "Shellder; approx. 25% held-item chance. Grass / Cave; Night.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         }
@@ -15685,7 +15460,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,000.",
           "source": "data/items/marts.asm",
-          "line": 322
+          "line": 321
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15693,13 +15468,6 @@
           "details": "Repeatable purchase. Cost: \u20bd1,000.",
           "source": "data/items/marts.asm",
           "line": 104
-        },
-        {
-          "location": "Mt. Moon Gift Shop",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd1,000.",
-          "source": "data/items/marts.asm",
-          "line": 370
         }
       ],
       "description": "Use to escape from a wild Pok\u00e9mon.",
@@ -15724,13 +15492,6 @@
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
           "line": 104
-        },
-        {
-          "location": "Mt. Moon Gift Shop",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd350.",
-          "source": "data/items/marts.asm",
-          "line": 370
         },
         {
           "location": "Player\u2019s House",
@@ -15786,16 +15547,23 @@
       "notes": ""
     },
     {
-      "const": "STAR_PIECE",
-      "name": "Star Piece",
+      "const": "STARDUST",
+      "name": "Stardust",
       "category": "Other item",
       "sources": [
         {
+          "location": "Ecruteak City",
+          "method": "Static wild Pok\u00e9mon",
+          "details": "Jirachi, Lv. 50; 25% held-item chance. ",
+          "source": "maps/EcruteakCity.asm",
+          "line": 0
+        },
+        {
           "location": "Goldenrod Underground",
           "method": "Bargain shop",
-          "details": "Monday morning bargain merchant; limited daily stock. Cost: \u20bd4,600.",
+          "details": "Monday morning bargain merchant; limited daily stock. Cost: \u20bd900.",
           "source": "data/items/bargain_shop.asm",
-          "line": 7
+          "line": 5
         },
         {
           "location": "Route 27",
@@ -15807,185 +15575,161 @@
         {
           "location": "Ruins of Alph Omanyte Item Room",
           "method": "Ground pickup",
-          "details": "Omanyte puzzle\u2019s secret chamber; have a Water Stone in the Bag or held by a party Pok\u00e9mon at its inscription. Tile (5, 4).",
-          "source": "maps/RuinsOfAlphOmanyteItemRoom.asm",
-          "line": 22
-        },
-        {
-          "location": "Cherrygrove City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Good Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Cherrygrove City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Super Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Cianwood City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Good Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Cianwood City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Super Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Cianwood City",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Surf; Any.",
-          "source": "data/wild/johto_water.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 34",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Good Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 34",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Super Rod; Night.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Safari Zone",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Super Rod; Any.",
-          "source": "data/wild/fish.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands B2F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Starmie; approx. 5% held-item chance. Surf; Any.",
-          "source": "data/wild/johto_water.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands NW",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Whirl Islands SE",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 5% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        }
-      ],
-      "description": "A hunk of red gem. Sell very high.",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "STARDUST",
-      "name": "Stardust",
-      "category": "Other item",
-      "sources": [
-        {
-          "location": "Goldenrod Underground",
-          "method": "Bargain shop",
-          "details": "Monday morning bargain merchant; limited daily stock. Cost: \u20bd900.",
-          "source": "data/items/bargain_shop.asm",
-          "line": 6
-        },
-        {
-          "location": "Ruins of Alph Omanyte Item Room",
-          "method": "Ground pickup",
           "details": "Omanyte puzzle\u2019s secret chamber; have a Water Stone in the Bag or held by a party Pok\u00e9mon at its inscription. Tile (2, 4).",
           "source": "maps/RuinsOfAlphOmanyteItemRoom.asm",
           "line": 19
         },
         {
-          "location": "Cherrygrove City",
+          "location": "Ruins of Alph Omanyte Item Room",
+          "method": "Ground pickup",
+          "details": "Omanyte puzzle\u2019s secret chamber; have a Water Stone in the Bag or held by a party Pok\u00e9mon at its inscription. Tile (5, 4).",
+          "source": "maps/RuinsOfAlphOmanyteItemRoom.asm",
+          "line": 22
+        },
+        {
+          "location": "Cerulean Cave 1F",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Good Rod; Night.",
-          "source": "data/wild/fish.asm",
+          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0
+        },
+        {
+          "location": "Cerulean Cave 2F",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0
+        },
+        {
+          "location": "Cerulean Cave B1F",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night.",
+          "source": "data/wild/kanto_grass.asm",
           "line": 0
         },
         {
           "location": "Cherrygrove City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Super Rod; Night.",
+          "details": "Staryu; approx. 25% held-item chance. Good Rod; Night.",
+          "source": "data/wild/fish.asm",
+          "line": 0
+        },
+        {
+          "location": "Cherrygrove City",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Staryu; approx. 25% held-item chance. Super Rod; Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Cianwood City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Good Rod; Night.",
+          "details": "Staryu; approx. 25% held-item chance. Good Rod; Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Cianwood City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Super Rod; Night.",
+          "details": "Staryu; approx. 25% held-item chance. Super Rod; Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Cianwood City",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Surf; Any.",
+          "details": "Staryu; approx. 25% held-item chance. Surf; Any.",
           "source": "data/wild/johto_water.asm",
           "line": 0
         },
         {
+          "location": "Ilex Forest",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Day.",
+          "source": "data/wild/johto_grass.asm",
+          "line": 0
+        },
+        {
+          "location": "Mt. Moon",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Morning.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0
+        },
+        {
+          "location": "Mt. Moon",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Parasect; approx. 5% held-item chance. Grass / Cave; Day.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0
+        },
+        {
+          "location": "National Park",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Bug-Catching Contest; Any. Condition: Tuesday, Thursday or Saturday contest.",
+          "source": "data/wild/bug_contest_mons.asm",
+          "line": 0
+        },
+        {
+          "location": "National Park",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
+          "source": "data/wild/johto_grass.asm",
+          "line": 0
+        },
+        {
           "location": "Route 34",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Good Rod; Night.",
+          "details": "Staryu; approx. 25% held-item chance. Good Rod; Night.",
           "source": "data/wild/fish.asm",
           "line": 0
         },
         {
           "location": "Route 34",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Super Rod; Night.",
+          "details": "Staryu; approx. 25% held-item chance. Super Rod; Night.",
           "source": "data/wild/fish.asm",
+          "line": 0
+        },
+        {
+          "location": "Route 36",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
+          "source": "data/wild/johto_grass.asm",
           "line": 0
         },
         {
           "location": "Safari Zone",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Super Rod; Any.",
+          "details": "Staryu; approx. 25% held-item chance. Super Rod; Any.",
           "source": "data/wild/fish.asm",
+          "line": 0
+        },
+        {
+          "location": "Viridian Forest",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Paras; approx. 5% held-item chance. Grass / Cave; Night.",
+          "source": "data/wild/kanto_grass.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands B2F",
           "method": "Wild Pok\u00e9mon",
-          "details": "Starmie; approx. 20% held-item chance. Surf; Any.",
+          "details": "Starmie; approx. 25% held-item chance. Surf; Any.",
           "source": "data/wild/johto_water.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands NW",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Grass / Cave; Day.",
+          "details": "Staryu; approx. 25% held-item chance. Grass / Cave; Day.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         },
         {
           "location": "Whirl Islands SE",
           "method": "Wild Pok\u00e9mon",
-          "details": "Staryu; approx. 20% held-item chance. Grass / Cave; Day.",
+          "details": "Staryu; approx. 25% held-item chance. Grass / Cave; Day.",
           "source": "data/wild/johto_grass.asm",
           "line": 0
         }
@@ -16004,21 +15748,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 288
+          "line": 287
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Mahogany Mart 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 203
+          "line": 202
         },
         {
           "location": "Olivine Lighthouse 5F",
@@ -16039,7 +15783,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 242
+          "line": 241
         },
         {
           "location": "Pok\u00e9mon Center 2F delivery NPC",
@@ -16054,93 +15798,6 @@
       "notes": ""
     },
     {
-      "const": "TINYMUSHROOM",
-      "name": "Tinymushroom",
-      "category": "Other item",
-      "sources": [
-        {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: \u20bd500. Available before helping Lance.",
-          "source": "data/items/marts.asm",
-          "line": 195
-        },
-        {
-          "location": "Cerulean Cave 1F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Cerulean Cave 2F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Cerulean Cave B1F",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Ilex Forest",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Mt. Moon",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Grass / Cave; Morning.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Mt. Moon",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Parasect; approx. 20% held-item chance. Grass / Cave; Day.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "National Park",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Bug-Catching Contest; Any. Condition: Tuesday, Thursday or Saturday contest.",
-          "source": "data/wild/bug_contest_mons.asm",
-          "line": 0
-        },
-        {
-          "location": "National Park",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Route 36",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/johto_grass.asm",
-          "line": 0
-        },
-        {
-          "location": "Viridian Forest",
-          "method": "Wild Pok\u00e9mon",
-          "details": "Paras; approx. 20% held-item chance. Grass / Cave; Night.",
-          "source": "data/wild/kanto_grass.asm",
-          "line": 0
-        }
-      ],
-      "description": "An ordinary mushroom. Sell low.",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
       "const": "X_ACCURACY",
       "name": "X Accuracy",
       "category": "Other item",
@@ -16150,7 +15807,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd950.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16195,21 +15852,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 5F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16230,7 +15887,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Union Cave 1F",
@@ -16268,21 +15925,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 216
+          "line": 215
         },
         {
           "location": "Celadon Dept Store 5F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 253
+          "line": 252
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16303,7 +15960,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 358
+          "line": 357
         },
         {
           "location": "Union Cave B1F",
@@ -16341,7 +15998,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16386,7 +16043,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
-          "line": 336
+          "line": 335
         },
         {
           "location": "Goldenrod Dept Store 3F",

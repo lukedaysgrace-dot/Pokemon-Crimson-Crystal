@@ -2540,6 +2540,100 @@
           "href": "items.html"
         }
       ]
+    },
+    {
+      "id": "doom-desire-immediate",
+      "category": "moves",
+      "title": "Doom Desire: immediate 160-power strike",
+      "before": "Delayed Steel attack in the mainline games.",
+      "after": "Doom Desire is a 160-power special Steel attack with 100% accuracy and 5 PP. It strikes immediately and cannot be used twice in succession, just like Giga Hammer. Using another move or switching out clears its reuse restriction.",
+      "comparison": "Mainline Pokémon",
+      "kind": "exception",
+      "sources": [
+        "data/moves/moves.asm",
+        "engine/battle/giga_hammer_core.asm"
+      ],
+      "links": [
+        {
+          "href": "moves/doom-desire.html",
+          "label": "Doom Desire and learners"
+        }
+      ]
+    },
+    {
+      "id": "october-move-values",
+      "category": "moves",
+      "title": "Lumi power buffs and accuracy changes",
+      "before": "Mainline move values.",
+      "after": "Dragon Hammer has 120 power; Blaze Kick and Poison Tail have 90. Meteor Mash and Sky Uppercut have 100% accuracy, and Blaze Kick has 95%. Sky Uppercut can hit opponents during Fly or Bounce.",
+      "comparison": "Mainline Pokémon",
+      "kind": "custom",
+      "sources": [
+        "data/moves/moves.asm",
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "tail-glow-electric",
+      "category": "training",
+      "title": "Tail Glow for Ampharos and Lanturn",
+      "before": "Tail Glow unavailable.",
+      "after": "Ampharos can relearn Tail Glow from its level-1 reminder slot. Lanturn learns it at level 40. Tail Glow raises Special Attack by three stages; Cotton Guard raises Defense by three, while Cosmic Power raises both defenses by one.",
+      "comparison": "Previous Crimson Crystal build",
+      "kind": "custom",
+      "sources": [
+        "data/pokemon/evos_attacks_johto.asm",
+        "data/moves/effects.asm"
+      ],
+      "links": [
+        {
+          "href": "pokemon/ampharos.html",
+          "label": "Ampharos"
+        },
+        {
+          "href": "pokemon/lanturn.html",
+          "label": "Lanturn"
+        }
+      ]
+    },
+    {
+      "id": "recycle-consumed-items",
+      "category": "moves",
+      "title": "Recycle recovers a consumed item",
+      "before": "Recycle unavailable.",
+      "after": "Recycle restores the user’s last consumed held item when it is empty-handed. That history survives switching during the same battle. Recovered items work with Harvest, Cud Chew, Klutz and Unburden; removed or destroyed items do not become new Recycle targets.",
+      "comparison": "Previous Crimson Crystal build",
+      "kind": "expanded",
+      "sources": [
+        "engine/battle/move_effects/october_move_cores.asm",
+        "engine/battle/abilities_engine.asm"
+      ],
+      "links": [
+        {
+          "href": "moves/recycle.html",
+          "label": "Recycle and learners"
+        }
+      ]
+    },
+    {
+      "id": "jirachi-save-format",
+      "category": "items",
+      "title": "Save format 3 and editor profiles",
+      "before": "Earlier saves use format 2.",
+      "after": "Jirachi and the Wishing Star event expand saved event data by two bytes. This build uses format 3. The save editor includes Jirachi, its normal and shiny sprites, all 439 moves and previous build profiles. Older saves can be migrated into a save created by this ROM; Pokemon and supported inventory/player fields transfer, while map and event progress comes from the target template.",
+      "comparison": "Earlier Crimson Crystal builds",
+      "kind": "exception",
+      "sources": [
+        "constants/pc_constants.asm",
+        "crimson-editor/docs/save-format.md"
+      ],
+      "links": [
+        {
+          "href": "editor/index.html",
+          "label": "Save editor"
+        }
+      ]
     }
   ]
 }

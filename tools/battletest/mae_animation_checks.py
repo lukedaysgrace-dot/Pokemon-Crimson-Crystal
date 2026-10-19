@@ -45,7 +45,7 @@ def stage(rom, audio=False):
     return h, fixture
 
 
-def capture(h, fixture, move, side, audio=False, param=None):
+def capture(h, fixture, move, side, audio=False, param=None, observer=None):
     fixture.seek(0)
     h.pb.load_state(fixture)
     m, pb = h.battle.mem, h.pb
@@ -55,7 +55,9 @@ def capture(h, fixture, move, side, audio=False, param=None):
     param = (1 if move == 'SELFDESTRUCT' else 0) if param is None else param
     m.write('wBattleAnimParam', param)
     m.write('wNumHits', 0)
-    palettes = [m.read_bytes(name, 64) for name in ('wBGPals1', 'wOBPals1')]
+    palette_names = ('wBGPals1', 'wOBPals1', 'wBGPals2', 'wOBPals2')
+    palettes = [m.read_bytes(name, 64) for name in palette_names]
+    tilemap = m.read_bytes('wTileMap', 360)
     start = pb.screen.ndarray[:, :, :3].copy()
     frames, samples = [], []
     begin_native_call(h, 'PlayBattleAnim')
@@ -64,6 +66,8 @@ def capture(h, fixture, move, side, audio=False, param=None):
     for elapsed in range(1200):
         pb.tick(1, True, audio)
         frames.append(pb.screen.ndarray[:, :, :3].copy())
+        if observer:
+            observer(elapsed)
         if audio:
             sound = pb.sound
             buf = np.frombuffer(sound.raw_buffer, dtype=np.int8,
@@ -73,13 +77,31 @@ def capture(h, fixture, move, side, audio=False, param=None):
             break
     else:
         raise AssertionError((move, side, 'animation timed out', h.control_state(), h.animation_state()))
+    native_frames = len(frames)
+    # The return marker disables interrupts for reliable detection. Let VBlank
+    # upload the restored palettes/tilemap before holding the final video frame;
+    # otherwise a preview freezes the last distorted LCD/palette frame even
+    # though the engine has already requested the normal battle screen.
+    pb.memory[0xc0f0:0xc0f3] = [0xfb, 0x18, 0xfe]
+    pb.register_file.PC = 0xc0f0
+    for _ in range(8):
+        pb.tick(1, True, audio)
+        frames.append(pb.screen.ndarray[:, :, :3].copy())
+        if audio:
+            sound = pb.sound
+            buf = np.frombuffer(sound.raw_buffer, dtype=np.int8,
+                                count=sound.raw_buffer_head).reshape(-1, 2)
+            samples.append(buf.astype(np.int16) * 256)
     assert len(frames) > 15, (move, side, 'animation did not execute')
     assert not m.read('hSCX') and not m.read('hSCY'), (move, side, 'screen offset leaked')
     assert not m.read('hLCDCPointer'), (move, side, 'LCD effect leaked')
-    assert palettes == [m.read_bytes(name, 64) for name in ('wBGPals1', 'wOBPals1')], (move, side, 'palette leaked')
+    assert palettes == [m.read_bytes(name, 64) for name in palette_names], (move, side, 'palette leaked')
+    assert tilemap == m.read_bytes('wTileMap', 360), (move, side, 'battle tilemap was not restored')
     changed = [int(np.any(frame != start, axis=2).sum()) for frame in frames]
     assert max(changed) > 20, (move, side, 'no visible animation')
     return frames, samples, {'move': move, 'side': side, 'param': param, 'frames': len(frames),
+                            'native_frames': native_frames,
+                            'final_frame_changed_pixels': int(np.any(frames[-1] != start, axis=2).sum()),
                             'changed_pixels_peak': max(changed), 'cleanup': 'passed'}
 
 

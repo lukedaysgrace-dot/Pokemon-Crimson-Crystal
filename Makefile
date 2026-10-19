@@ -193,6 +193,7 @@ audit-static: pokecrystal.gbc pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
 	python3 tools/audit_ability_text.py
 	python3 tools/audit_moves.py
+	python3 tools/audit_move_expansion.py
 	python3 tools/audit_learnset_variety.py
 	python3 tools/audit_trainers.py
 	python3 tools/audit_save.py

@@ -931,6 +931,10 @@
       "ZEN_HEADBUTT"
     ],
     [
+      26,
+      "COSMIC_POWER"
+    ],
+    [
       34,
       "IRON_HEAD"
     ],
@@ -941,6 +945,14 @@
     [
       42,
       "DOUBLE_EDGE"
+    ],
+    [
+      49,
+      "METEOR_MASH"
+    ],
+    [
+      50,
+      "DOOM_DESIRE"
     ],
     [
       63,
@@ -1014,6 +1026,8 @@
     "PLAY_ROUGH",
     "PSYBEAM",
     "PSYCH_UP",
+    "PSYSHOCK",
+    "RECYCLE",
     "SAFEGUARD",
     "SIGNAL_BEAM",
     "SKILL_SWAP",
@@ -1024,13 +1038,11 @@
     "U_TURN",
     "WATER_PULSE"
   ],
-  "implemented_move_count": 76,
+  "implemented_move_count": 81,
   "unimplemented_moves": [
     "Ally Switch",
     "Charge Beam",
     "Confide",
-    "Cosmic Power",
-    "Doom Desire",
     "Expanding Force",
     "Fake Tears",
     "Fling",
@@ -1049,12 +1061,9 @@
     "Magic Room",
     "Metal Sound",
     "Meteor Beam",
-    "Meteor Mash",
     "Natural Gift",
     "Power-Up Punch",
     "Psychic Noise",
-    "Psyshock",
-    "Recycle",
     "Refresh",
     "Round",
     "Secret Power",
@@ -1070,11 +1079,35 @@
   "artwork": "User supplied front/back/menu PNGs. Shared indexed palette; static battle artwork; red-tag shiny palette.",
   "shiny_palette": {
     "source": "https://github.com/pret/pokeemerald/blob/master/graphics/pokemon/jirachi/shiny.pal",
-    "yellow_rgb5": [31, 27, 9],
+    "yellow_rgb5": [
+      31,
+      27,
+      9
+    ],
     "yellow_policy": "Identical to the supplied normal sprite's yellow.",
-    "ribbon_rgb5": [28, 9, 6],
+    "ribbon_rgb5": [
+      28,
+      9,
+      6
+    ],
     "ribbon_source_slot": 5,
-    "ribbon_rgb8": [230, 74, 49],
+    "ribbon_rgb8": [
+      230,
+      74,
+      49
+    ],
     "policy": "Use the dominant original ribbon shade for this four-color sprite."
+  },
+  "october_move_expansion": {
+    "receipt": "tools/testdata/move_expansion_20261019.json",
+    "natural": {
+      "COSMIC_POWER": 26,
+      "METEOR_MASH": 49,
+      "DOOM_DESIRE": 50
+    },
+    "blackthorn": [
+      "PSYSHOCK",
+      "RECYCLE"
+    ]
   }
 }

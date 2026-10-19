@@ -1,9 +1,9 @@
 {
-  "layoutHash": "1dcda17f6448bd4ef3cae006073ec86104a987b3f0f78ab4f6e1b823db26d9e9",
-  "saveFormatVersion": 2,
+  "layoutHash": "4f083df5422ee27e37131119b72f90d02fe4e62635d0a2efd8b31e15477bf118",
+  "saveFormatVersion": 3,
   "symbols": {
     "sBackupSaveData": 4617,
-    "sBackupSaveDataEnd": 7734,
+    "sBackupSaveDataEnd": 7736,
     "sBoxMons1A": 24576,
     "sBoxMons1AEnd": 32727,
     "sBoxMons1AMons": 24576,
@@ -168,7 +168,7 @@
     "sNewBox9Theme": 16680,
     "sNewBoxEnd": 17209,
     "sSaveData": 8201,
-    "sSaveDataEnd": 11318,
-    "sSaveVersion": 14748
+    "sSaveDataEnd": 11320,
+    "sSaveVersion": 14750
   }
 }

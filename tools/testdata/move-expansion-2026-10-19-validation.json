@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-19",
+  "implemented_moves": 439,
+  "roster_entries": 496,
+  "new_moves": 18,
+  "approved_recipient_pairs": 378,
+  "full_battle_matrix": {
+    "cases": 28550,
+    "initial_passed": 28549,
+    "initial_failed": 1,
+    "initial_errors": 0,
+    "correction": "Recycle Gold Berry is consumed on entry, before the HP snapshot. Corrected the test to assert full HP and successful item restoration.",
+    "corrected_case_rerun_passed": true,
+    "effective_cases_passed": 28550,
+    "scope": "Move/mechanics implementation build before the animation follow-up. Final animation build reran the 1212 move/effect/class cases."
+  },
+  "final_rom_move_effect_class_regressions": {
+    "cases": 1212,
+    "passed": 1212,
+    "failed": 0,
+    "errors": 0
+  },
+  "focused_new_move_cases": 202,
+  "native_animation_previews": 36,
+  "native_learnset_checks": 9502,
+  "native_breeding_checks": 11966,
+  "espathra_checks": 24,
+  "native_save_recovery_checks": 25,
+  "complete_integration_modules": [
+    {
+      "module": "probability_checks",
+      "passed": true
+    },
+    {
+      "module": "hp_item_update_checks",
+      "passed": true
+    },
+    {
+      "module": "ui_checks",
+      "passed": true
+    },
+    {
+      "module": "stat_animation_checks",
+      "passed": true
+    },
+    {
+      "module": "visual_matrix",
+      "passed": true
+    },
+    {
+      "module": "cove_sprite_checks",
+      "passed": true
+    },
+    {
+      "module": "tower_checks",
+      "passed": true
+    },
+    {
+      "module": "tower_battle_checks",
+      "passed": true
+    },
+    {
+      "module": "link_rng_checks",
+      "passed": true
+    },
+    {
+      "module": "gameplay_session_checks",
+      "passed": true
+    },
+    {
+      "module": "trainer_ui_checks",
+      "passed": true
+    },
+    {
+      "module": "wild_ui_checks",
+      "passed": true
+    },
+    {
+      "module": "save_menu_checks",
+      "passed": true
+    }
+  ],
+  "editor": {
+    "unit_tests": 30,
+    "type_errors": 0,
+    "type_warnings": 0,
+    "website_tests": 3,
+    "new_profile_selector_browser_tests": 1,
+    "sprite_and_invalid_save_browser_tests": 2,
+    "native_edited_save_party_mons": 2,
+    "native_edited_save_boxes": 25
+  },
+  "video": {
+    "moves": 18,
+    "native_player_opponent_previews": 36,
+    "seconds": 74.7729263305664,
+    "width": 1280,
+    "height": 720,
+    "native_audio": true,
+    "decoder_check": "passed",
+    "published_to_website": false
+  },
+  "rom_sha256": {
+    "pokecrystal.gbc": "d5c6603e7733948af9fec066b49130ca474bb9200b7a2afdb6e217f7e66fab33",
+    "pokecrystal_debug.gbc": "81e5800a7e1d28dea300fc5cc4681ef831da70401a57bc386cc49f48d839690c"
+  },
+  "concurrent_work": "Preserved Picnicker source sprite/palette changes made outside the move implementation. The final linked ROM passed the additional 1212 move/effect/class cases.",
+  "animation_follow_up": {
+    "date": "2026-10-19",
+    "moves": 18,
+    "player_opponent_audits": 36,
+    "showcase_player_opponent_captures": 36,
+    "native_object_spawns": 742,
+    "missing_or_overwritten_graphics": 0,
+    "invalid_oam_tiles": 0,
+    "object_pool_drops": 0,
+    "restored_final_frames": 36,
+    "recycle_rotation_phases": 8,
+    "cosmic_power_hud_clear_checks": "passed on both sides",
+    "shared_hud_regression_moves": [
+      "TRICK",
+      "MOONBLAST",
+      "WISH"
+    ],
+    "shared_hud_native_previews": 6,
+    "checks": "tools/battletest/october_animation_checks.py",
+    "audit_rom_key": "482b50b2c318",
+    "notes": "Earlier changed-pixel/liveness checks missed missing graphics, a non-travelling parameter, mismatched movement, incorrect Recycle half-frame assembly, object-slot exhaustion and HUD border fragments. Audited linked-ROM OAM/frame data, actual VRAM, particle motion/lifetimes, all eight assembled Recycle phases, both palette buffers, tilemap and rendered screen restoration."
+  },
+  "reference_recording_follow_up": {
+    "date": "2026-10-19",
+    "source_manifest": "tools/testdata/move_animation_references_20261019.json",
+    "moves": [
+      "VACUUM_WAVE",
+      "DISCHARGE",
+      "LAVA_PLUME"
+    ],
+    "changes": [
+      "Vacuum Wave: target fist, concentric shrinking rings and impact, shared target anchor, reference gray palette.",
+      "Discharge: small black/gray orb grows into a large black/cyan orb; eight-way sparks and the field flash originate around the user; visible lightning frames repeat instead of becoming blank.",
+      "Lava Plume: lower user origin, staggered pairs of radial flames, smaller trailing embers, black stippled smoke, repeated user light fades and short fire sounds that end with the visible plume."
+    ],
+    "same_species_reference_captures": 6,
+    "same_species_restored_screens": 6,
+    "all_moves_player_opponent_animation_audits": 36,
+    "missing_graphics_or_invalid_oam": 0,
+    "dropped_particles": 0,
+    "screen_or_palette_cleanup_failures": 0,
+    "lava_plume_frames_from_effect_start_to_native_return": [
+      108,
+      108
+    ],
+    "battle_regressions": {
+      "passed": 1212,
+      "failed": 0,
+      "errored": 0,
+      "rom_key": "482b50b2c318",
+      "log_directory": ".tmpbuild/battletest-482b50b2c318-1792419385430922061"
+    },
+    "editor": {
+      "extraction": "passed",
+      "validation": "passed",
+      "production_build": "passed",
+      "website_browser_checks": 3,
+      "rom_sha1": "44e5b3d743cbacaababe795b6725d10b6adc0955",
+      "layout_hash": "4f083df5422ee27e37131119b72f90d02fe4e62635d0a2efd8b31e15477bf118"
+    },
+    "comparison_video": {
+      "normal_and_half_speed": true,
+      "native_audio": true,
+      "published_to_website": false,
+      "complete_decode": "passed",
+      "native_previews": 6,
+      "restored_screens": 6,
+      "width": 1280,
+      "height": 720,
+      "audio_rms": 6289.86,
+      "file_bytes": 1416361,
+      "h264_aac": true
+    },
+    "full_showcase_video": {
+      "complete_decode": "passed",
+      "moves": 18,
+      "previews": 36,
+      "chapters": 18,
+      "seconds": 74.7729263305664,
+      "audio_rms": 5478.64,
+      "file_bytes": 4443233,
+      "h264_aac": true
+    },
+    "visual_review": "Compared decoded reference frames with native player/opponent timelines and inspected the encoded comparison. These are reconstructed animation scripts within this fork; technical tests do not establish a pixel-identical match to a different ROM."
+  }
+}

@@ -753,7 +753,7 @@ def audit_animations(audit: Audit, moves: list[str]) -> None:
     audit.check(len(targets) == len(moves) + 4, f"battle animation pointers: got {len(targets)}, expected {len(moves) + 4}")
     animation_sources = "\n".join(
         read(f"data/moves/animations{suffix}.asm")
-        for suffix in ("", "2", "3", "4", "5")
+        for suffix in ("", "2", "3", "4", "5", "6")
     )
     labels = set(re.findall(r"^(BattleAnim_[A-Za-z0-9_]+):", animation_sources, re.MULTILINE))
     for target in targets:

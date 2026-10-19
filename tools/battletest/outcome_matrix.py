@@ -5,7 +5,7 @@ not copies of the assembly implementation, and retain custom Flash Fire.
 """
 
 import re
-from symbols import ROOT
+from symbols import ROOT, Constants
 from effect_sweep import USER_STAGES, USER_MULTI, TARGET_STAGES, SECONDARY_STATUS
 
 
@@ -19,7 +19,7 @@ def move_records():
             records.append(dict(effect=effect, power=int(power), type=kind,
                                 category=category, accuracy=int(accuracy), pp=int(pp),
                                 chance=int(chance), name=name))
-    if len(records) != 421:
+    if len(records) != Constants().num_attacks:
         raise RuntimeError(f"expected the complete move table, parsed {len(records)}")
     return records
 
