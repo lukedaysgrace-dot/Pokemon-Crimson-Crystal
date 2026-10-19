@@ -156,9 +156,8 @@ MountMoonSquareStarCrashedText:
 
 MountMoonSquareStarPieceVanishesText:
 	text "Your STAR PIECE"
-	line "vanishes as you"
-	cont "approach the"
-	cont "crater."
+	line "was absorbed into"
+	cont "the rock!"
 	done
 
 MountMoonSquareMeteorText:
@@ -234,17 +233,26 @@ MountMoonSquare_MapEvents:
 	warp_event 22, 11, MOUNT_MOON, 6
 	warp_event 13,  7, MOUNT_MOON_GIFT_SHOP, 1
 
-	db 5 ; coord events
+	db 13 ; coord events
 	coord_event  7, 11, SCENE_DEFAULT, ClefairyDance
-	coord_event 20, 15, -1, MountMoonSquareCraterApproach
+	; Surround the entire 2x2 crater at (20,14)-(21,15), including corners.
+	coord_event 19, 13, -1, MountMoonSquareCraterApproach
+	coord_event 20, 13, -1, MountMoonSquareCraterApproach
+	coord_event 21, 13, -1, MountMoonSquareCraterApproach
+	coord_event 22, 13, -1, MountMoonSquareCraterApproach
+	coord_event 19, 14, -1, MountMoonSquareCraterApproach
+	coord_event 22, 14, -1, MountMoonSquareCraterApproach
+	coord_event 19, 15, -1, MountMoonSquareCraterApproach
 	coord_event 22, 15, -1, MountMoonSquareCraterApproach
-	coord_event 21, 14, -1, MountMoonSquareCraterApproach
+	coord_event 19, 16, -1, MountMoonSquareCraterApproach
+	coord_event 20, 16, -1, MountMoonSquareCraterApproach
 	coord_event 21, 16, -1, MountMoonSquareCraterApproach
+	coord_event 22, 16, -1, MountMoonSquareCraterApproach
 
 	db 3 ; bg events
 	bg_event  7,  7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
 	bg_event 17,  7, BGEVENT_READ, DontLitterSign
-	bg_event 21, 15, BGEVENT_READ, MountMoonSquareMeteor
+	bg_event 21, 14, BGEVENT_READ, MountMoonSquareMeteor
 
 	db 3 ; object events
 	object_event  6,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
