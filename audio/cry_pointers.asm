@@ -129,3 +129,5 @@ Cries:
 	dba Cry_Glaceon
 	dba Cry_Sylveon
 	dba Cry_PorygonZ
+	dba Cry_Phantump
+	dba Cry_Trevenant

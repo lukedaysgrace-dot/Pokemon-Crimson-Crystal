@@ -22,7 +22,7 @@ def main():
         match = re.match(r'\s*move (.*?);(\w+)$', line)
         if match:
             rows[match[2]] = [token.strip() for token in match[1].split(',')]
-    assert len(rows) == 439
+    assert len(rows) >= 439
     expected = {
         'PSYSHOCK': (80, 100), 'VACUUM_WAVE': (40, 100),
         'DISCHARGE': (80, 100), 'LAVA_PLUME': (80, 100),

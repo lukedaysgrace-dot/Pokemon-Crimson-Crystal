@@ -497,4 +497,6 @@ PreEvolutionSpecies::
 	dw KROKOROK ; KROOKODILE
 	dw RAICHU ; GOROCHU
 	dw 0 ; JIRACHI
+	dw 0 ; PHANTUMP
+	dw PHANTUMP ; TREVENANT
 assert (@ - PreEvolutionSpecies) == NUM_POKEMON * 2

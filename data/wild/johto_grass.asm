@@ -1584,10 +1584,10 @@ JohtoGrassWildMons:
 	dbw 33, VENOMOTH
 	dbw 34, NOCTOWL
 	dbw 34, MURKROW
-	dbw 35, FURRET
+	dbw 35, PHANTUMP
 	dbw 35, VENONAT
 	dbw 35, FLAAFFY
-	dbw 35, HOOTHOOT
+	dbw 36, TREVENANT
 
 	map_id ROUTE_44
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

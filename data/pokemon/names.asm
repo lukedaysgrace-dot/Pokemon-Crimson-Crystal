@@ -499,3 +499,5 @@ PokemonNames::
 	db "KROOKODILE"
 	db "GOROCHU@@@"
 	db "JIRACHI@@@"
+	db "PHANTUMP@@"
+	db "TREVENANT@"

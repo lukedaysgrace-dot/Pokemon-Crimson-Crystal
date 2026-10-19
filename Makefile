@@ -158,6 +158,14 @@ test-capture-field: pokecrystal.gbc
 test-evolutions: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_evolution_sweep.py pokecrystal.gbc
 
+.PHONY: test-phantump
+test-phantump: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_phantump_trevenant.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_phantump_trevenant.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_pokedex_save_upgrade.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_pokedex_save_upgrade.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render tools/battletest/tests/91-horn-leech.yaml
+
 test-inventory: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_inventory_boundaries.py pokecrystal.gbc
 

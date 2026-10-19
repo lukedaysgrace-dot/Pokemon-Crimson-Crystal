@@ -6,6 +6,7 @@ import { PNG } from 'pngjs';
 import { Constants, evaluate, ExtractError } from './asm/constants';
 import { parseSymbols, romOffset, loadIndirectPointer } from './sym';
 import { createLayout } from './layout';
+import { mergeProfile, type Profile } from './profiles';
 import {
   parsePictureTable,
   verifyPictureTable,
@@ -258,6 +259,17 @@ const species: Species[] = speciesConsts.map((e, i) => {
     spriteSource: `gfx/pokemon/${sprite}/front.png`,
   };
 });
+if (existsSync(resolve(root, 'data/pokemon/first_stages.asm'))) {
+  const roots = rows('data/pokemon/first_stages.asm', 'dw').flat().map(value);
+  if (roots.length !== species.length) throw new Error('breeding family count mismatch');
+  if (symbols.FirstEvoStages) oracle('FirstEvoStages', roots,
+    Array.from({ length: roots.length }, (_, i) => le(at('FirstEvoStages') + i * 2)));
+  const eggLists = species.map((s) => [...s.eggMoves]);
+  species.forEach((s, i) => {
+    if (!eggLists[roots[i] - 1]) throw new Error(`Unknown breeding family for ${s.const}`);
+    s.eggMoves = [...eggLists[roots[i] - 1]];
+  });
+}
 const moves = rows('data/moves/moves.asm', 'move').map((r, i) => {
   if (r.length !== 7 || !moveConsts[i]) throw new Error(`bad move row ${i}`);
   const [effect, power, type, category, accuracy, pp, effectChance] = r.map(value);
@@ -395,6 +407,24 @@ if (existsSync(resolve(root, 'data/pokemon/utility_tutor.asm'))) {
   species.forEach(
     (s, i) => (s.tutor = tutorMoves.filter((_, bit) => compatibility[i] & (1 << bit))),
   );
+}
+if (symbols.TechnicalTutorPointers && existsSync(resolve(root, 'data/pokemon/technical_tutor.asm'))) {
+  const source = read('data/pokemon/technical_tutor.asm');
+  const pointers = rows('data/pokemon/technical_tutor.asm', 'dba').flat();
+  if (pointers.length !== species.length) throw new Error('Blackthorn tutor count mismatch');
+  const lists = new Map([...source.matchAll(/^(TechnicalTutor_\w+)::?\r?\n(.*?)^\s*dw\s+0\s*$/gms)]
+    .map((match) => [match[1], [...match[2].matchAll(/^\s*dw\s+(\w+)\s*$/gm)].map((row) => c.get(row[1]))]));
+  species.forEach((s, i) => {
+    const label = pointers[i], pointer = symbols[label], moves = lists.get(label);
+    if (!pointer || !moves) throw new Error(`Unknown Blackthorn tutor list ${label}`);
+    const p = at('TechnicalTutorPointers') + i * 3;
+    oracle(`${s.const}.BlackthornPointer`,
+      [pointer.bank, pointer.address & 255, pointer.address >>> 8], Array.from(rom.slice(p, p + 3)));
+    const data = romOffset(pointer);
+    oracle(`${s.const}.BlackthornMoves`, [...moves, 0],
+      Array.from({ length: moves.length + 1 }, (_, j) => le(data + j * 2)));
+    s.tutor = [...new Set([...s.tutor, ...moves])];
+  });
 }
 const keyboardBody = read('data/text/name_input_chars.asm');
 const keyboard = (labels: string[]) =>
@@ -536,21 +566,18 @@ const bundle: GameData = {
 if (moves.length !== c.get('NUM_ATTACKS') || items.length !== 256)
   throw new Error('roster counts mismatch');
 for (const s of species)
-  for (const m of [...s.tmhm, ...s.eggMoves, ...s.levelMoves.map((x) => x.move)])
+  for (const m of [...s.tmhm, ...s.tutor, ...s.eggMoves, ...s.levelMoves.map((x) => x.move)])
     if (!moves.some((x) => x.index === m)) throw new Error(`unknown move ${m} in ${s.const}`);
 if (!validate) {
   mkdirSync(out, { recursive: true });
-  const id = build.slice(0, 8);
   const manifestPath = resolve(out, 'manifest.json');
-  const old: { id: string; build: string; date: string; layoutHash: string }[] = existsSync(
+  const old: Profile[] = existsSync(
     manifestPath,
   )
     ? JSON.parse(readFileSync(manifestPath, 'utf8'))
     : [];
-  const manifest = [
-    { id, build, date, layoutHash: layout.layoutHash },
-    ...old.filter((e) => e.id !== id),
-  ].sort((a, b) => b.date.localeCompare(a.date));
+  const { id, manifest } = mergeProfile(old,
+    { build, date, layoutHash: layout.layoutHash }, c.get('SAVE_FORMAT_VERSION'));
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   writeFileSync(resolve(out, `${id}.provenance.json`), JSON.stringify(c.provenance, null, 2));
   for (const s of species) {

@@ -504,3 +504,5 @@ MonMenuIconPals:
 	icon_pals BROWN,  BLUE   ; KROOKODILE
 	icon_pals RED,    PURPLE ; GOROCHU
 	icon_pals YELLOW, RED ; JIRACHI
+	icon_pals BROWN, GRAY ; PHANTUMP
+	icon_pals BROWN, GRAY ; TREVENANT

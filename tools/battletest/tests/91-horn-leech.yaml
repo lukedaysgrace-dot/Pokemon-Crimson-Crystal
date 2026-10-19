@@ -1,0 +1,268 @@
+[
+  {
+    "name": "Horn Leech: physical Grass damage and half drain",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "player.hp-player.start_hp == max(1,(enemy.start_hp-enemy.hp+1)//2)"
+    ],
+    "id": "horn_base"
+  },
+  {
+    "name": "Horn Leech: Phantump can use it",
+    "player": {
+      "species": "PHANTUMP",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "player.hp > player.start_hp"
+    ]
+  },
+  {
+    "name": "Horn Leech: physical damage respects Fur Coat",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "FUR_COAT",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.start_hp-enemy.hp < result('horn_base')['enemy']['damage']",
+      "player.hp > player.start_hp"
+    ]
+  },
+  {
+    "name": "Horn Leech: contact triggers Rocky Helmet",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ],
+      "item": "ROCKY_HELMET"
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "player.hp < result('horn_base')['player']['hp']"
+    ]
+  },
+  {
+    "name": "Horn Leech: Sap Sipper blocks damage and healing",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "SAP_SIPPER",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "player.hp == player.start_hp",
+      "enemy.stat_levels[0] == 8"
+    ]
+  },
+  {
+    "name": "Horn Leech: Protect blocks damage and healing",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "PROTECT"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp == enemy.start_hp",
+      "player.hp == player.start_hp"
+    ]
+  },
+  {
+    "name": "Horn Leech: recovery stays within maximum HP",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 100
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ]
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp < enemy.start_hp",
+      "player.hp == player.maxhp"
+    ]
+  },
+  {
+    "name": "Horn Leech: enemy drains half the damage",
+    "player": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "SPLASH"
+      ],
+      "hp": 100
+    },
+    "enemy": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 40
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.hp < player.start_hp",
+      "enemy.hp-enemy.start_hp == max(1,(player.start_hp-player.hp+1)//2)"
+    ]
+  },
+  {
+    "name": "Horn Leech: Triage outruns Aqua Jet",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "TRIAGE",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "AQUA_JET"
+      ],
+      "hp": 1
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "enemy.hp == 0",
+      "player.hp > 0"
+    ]
+  },
+  {
+    "name": "Horn Leech: without Triage Aqua Jet wins",
+    "player": {
+      "species": "TREVENANT",
+      "level": 50,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "HORN_LEECH"
+      ],
+      "hp": 1
+    },
+    "enemy": {
+      "species": "MEW",
+      "level": 100,
+      "ability": "NO_ABILITY",
+      "moves": [
+        "AQUA_JET"
+      ],
+      "hp": 1
+    },
+    "rng": "forced_low",
+    "turns": 1,
+    "assert": [
+      "player.hp == 0",
+      "enemy.hp == enemy.start_hp"
+    ]
+  }
+]

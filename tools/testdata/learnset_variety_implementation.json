@@ -567,7 +567,9 @@
     "KROKOROK": 3,
     "KROOKODILE": 3,
     "GOROCHU": 31,
-    "JIRACHI": 31
+    "JIRACHI": 31,
+    "PHANTUMP": 7,
+    "TREVENANT": 7
   },
   "recommendations": [
     {
@@ -4161,7 +4163,8 @@
     "ESPATHRA": "User correction: Espathra learns Lumina Crash on evolution from Flittle, never Psystrike. Keep its level-1 Lumina Crash reminder entry."
   },
   "evolution_moves": {
-    "ESPATHRA": {"pre_evolution": "FLITTLE", "move": "LUMINA_CRASH"}
+    "ESPATHRA": {"pre_evolution": "FLITTLE", "move": "LUMINA_CRASH"},
+    "TREVENANT": {"pre_evolution": "PHANTUMP", "move": "SHADOW_CLAW"}
   },
   "level_up_removal_source": "f96557e98c8cc64284836ab8abc31e82248371dc: Scyther's level-25 Bug Bite explicitly removed alongside the TM replacement"
 }

@@ -755,3 +755,29 @@ BattleAnim_LavaPlume_Oct19:
 	anim_clearobjs
 	anim_wait 1
 	anim_ret
+
+; Horn Leech script and horn_leech.png from pkmncoraldev/polishedcoral
+; 2191e0eaad134b4cf006709be82f7362cf70248c. Local object IDs/palette adapted.
+BattleAnim_HornLeech_PC:
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GREEN
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $6, $0
+	anim_3gfx ANIM_GFX_HORN_LEECH, ANIM_GFX_HIT, ANIM_GFX_CHARGE
+	anim_obj ANIM_OBJ_HORN_LEECH, 72, 80, $4
+	anim_wait 16
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_01, 136, 48, $0
+	anim_wait 16
+	anim_setvar $0
+.loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 128, 48, $2
+	anim_wait 3
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 64, $3
+	anim_wait 4
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, 136, 32, $4
+	anim_wait 3
+	anim_loop 6, .loop
+	anim_wait 32
+	anim_ret

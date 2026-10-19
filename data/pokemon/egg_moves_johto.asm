@@ -346,6 +346,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; KROOKODILE
 	dw NoEggMoves2 ; GOROCHU
 	dw NoEggMoves2 ; JIRACHI
+	dw PhantumpEggMoves ; PHANTUMP
+	dw NoEggMoves2 ; TREVENANT
 
 ChikoritaEggMoves:
 	dw VINE_WHIP
@@ -3361,4 +3363,9 @@ CanonicalSHUPPETEggMoves2:
 	dw PURSUIT
 	dw SHADOW_SNEAK
 	dw OMINOUS_WIND
+	dw -1 ; end
+
+PhantumpEggMoves:
+	dw DISABLE
+	dw SUCKER_PUNCH
 	dw -1 ; end

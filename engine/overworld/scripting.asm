@@ -2682,7 +2682,6 @@ Script_end:
 .resume
 	xor a
 	ld [wScriptRunning], a
-	ld [wPortraitSession], a
 	ld a, SCRIPT_OFF
 	ld [wScriptMode], a
 	ld hl, wScriptFlags
@@ -2737,7 +2736,6 @@ Script_endall:
 	xor a
 	ld [wScriptStackSize], a
 	ld [wScriptRunning], a
-	ld [wPortraitSession], a
 	ld a, SCRIPT_OFF
 	ld [wScriptMode], a
 	ld hl, wScriptFlags

@@ -13,7 +13,9 @@ python ../tools/save_layout_lock.py --profile static/gamedata/BUILD_ID.json
 
 For another checkout use `pnpm extract -- --crimson PATH --build SHA`. Options
 `--rom`, `--sym` and `--out` select explicit inputs/outputs. Keep old JSON bundles
-and manifest entries. The manifest is sorted by commit date; checksums select a
+and manifest entries. If one source commit produces different save layouts,
+extraction retains the old profile and adds a version-suffixed profile instead
+of overwriting it. The manifest is sorted by commit date; checksums select a
 layout, and an override is available in the UI. Layout changes require bumping
 `SAVE_FORMAT_VERSION`; rebuild, regenerate, then update `save_layout.lock` with
 `--write`. Do not update the lock to hide a same-version layout change.

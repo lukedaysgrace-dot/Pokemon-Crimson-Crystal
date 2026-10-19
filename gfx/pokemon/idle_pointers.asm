@@ -495,3 +495,5 @@ AnimationIdlePointers:
 	dba KrookodileAnimationIdle
 	dba GorochuAnimationIdle
 	dba JirachiAnimationIdle
+	dba PhantumpAnimationIdle
+	dba TrevenantAnimationIdle

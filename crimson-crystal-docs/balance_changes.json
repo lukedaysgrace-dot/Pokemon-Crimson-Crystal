@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-19",
   "pokemon": {
     "AGGRON": {
       "abilities": [
@@ -850,6 +850,15 @@
           "slot": 2,
           "before": "CONTRARY",
           "after": "EARLY_BIRD"
+        }
+      ]
+    },
+    "PHANTUMP": {
+      "evolutions": [
+        {
+          "target": "TREVENANT",
+          "before": "trading",
+          "after": 32
         }
       ]
     }

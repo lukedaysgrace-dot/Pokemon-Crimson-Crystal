@@ -494,3 +494,5 @@ INCBIN "gfx/footprints/croconaw.1bpp" ; KROKOROK
 INCBIN "gfx/footprints/feraligatr.1bpp" ; KROOKODILE
 INCBIN "gfx/footprints/raichu.1bpp" ; GOROCHU
 INCBIN "gfx/footprints/jirachi.1bpp" ; JIRACHI
+INCBIN "gfx/footprints/phantump.1bpp" ; PHANTUMP
+INCBIN "gfx/footprints/trevenant.1bpp" ; TREVENANT
