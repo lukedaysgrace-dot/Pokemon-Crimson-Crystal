@@ -249,10 +249,13 @@ MountMoonSquare_MapEvents:
 	coord_event 21, 16, -1, MountMoonSquareCraterApproach
 	coord_event 22, 16, -1, MountMoonSquareCraterApproach
 
-	db 3 ; bg events
+	db 6 ; bg events
 	bg_event  7,  7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
 	bg_event 17,  7, BGEVENT_READ, DontLitterSign
+	bg_event 20, 14, BGEVENT_READ, MountMoonSquareMeteor
 	bg_event 21, 14, BGEVENT_READ, MountMoonSquareMeteor
+	bg_event 20, 15, BGEVENT_READ, MountMoonSquareMeteor
+	bg_event 21, 15, BGEVENT_READ, MountMoonSquareMeteor
 
 	db 3 ; object events
 	object_event  6,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
