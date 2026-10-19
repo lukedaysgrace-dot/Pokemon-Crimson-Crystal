@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db 85, 110, 76, 56, 65, 82
+	db 90, 110, 95, 56, 65, 84
 	; hp, atk, def, spd, sat, sdf
 	db GHOST, GRASS ; type
 	db 60 ; catch rate

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the species' compiled data, Dex bits, and level-32 evolution."""
+"""Check compiled family data, rules choices, evolution and deer Horn Leech."""
 import json
 from pathlib import Path
 import sys
@@ -25,8 +25,8 @@ def main():
 
     def write(name,value): h.wr(h.s(name),value)
 
-    def party(level=32,known=('TACKLE',),slot=0,item=0):
-        info=h.build_temp_mon(con.species_index('PHANTUMP'),
+    def party(level=32,known=('TACKLE',),slot=0,item=0,species='PHANTUMP'):
+        info=h.build_temp_mon(con.species_index(species),
             [con.move_index(m) for m in known]+[0]*(4-len(known)),
             level=level,item=item,statexp=bytes(10),nick='TESTMON@@@@')
         write('wTempMonHP',[0,100]);write('wTempMonMaxHP',[0,100])
@@ -51,8 +51,12 @@ def main():
     try:
         for species,row in reference.items():
             sid=h.species_id(con.species_index(species))
-            write('wCurSpecies',sid);h.call('GetBaseData')
-            check(list(h.rd(h.s('wBaseStats'),6))==row['stats'],species+': base stats')
+            for rules in range(8):
+                write('wGameplayRules',rules)
+                write('wCurSpecies',sid);h.call('GetBaseData')
+                expected=row['stats'] if rules & 2 else row.get('enhanced_stats',row['stats'])
+                check(list(h.rd(h.s('wBaseStats'),6))==expected,
+                      species+': selected base stats for rules '+str(rules))
             check(h.rd(h.s('wBaseCatchRate'))==row['catch_rate'],species+': catch rate')
             check(h.rd(h.s('wBaseEggSteps'))==20,species+': hatch cycles')
             check(list(h.rd(h.s('wBaseAbilities'),3))==[con.abilities[a] for a in ('NATURAL_CURE','FRISK','HARVEST')],species+': ability slots')
@@ -66,6 +70,7 @@ def main():
             for table in ['wPokedexCaught','wPokedexSeen']:
                 flags=h.rd(h.s(table),flag_bytes)
                 check(flags[bit//8]==1<<(bit%8) and sum(v.bit_count() for v in flags)==1,species+': '+table)
+        write('wGameplayRules',0)
         with patches(h,presentation):
             for level,slot in [(32,0),(33,0),(60,2),(100,0)]:
                 start=party(level=level,slot=slot)
@@ -97,6 +102,17 @@ def main():
             h.call('EvolvePokemon',max_frames=300)
             check(moves(start)==['TACKLE','SHADOW_CLAW','CURSE'],'Level-32 evolution and level-up moves')
             check(h.rd(start+24)>0 and h.rd(start+25)>0,'Evolution/level-up move PP')
+            for rules in (0,2):
+                write('wGameplayRules',rules)
+                for species in ('STANTLER','WYRDEER'):
+                    for level in (27,28):
+                        start=party(species=species,level=level)
+                        h.call('LearnLevelMoves',max_frames=300)
+                        check(('HORN_LEECH' in moves(start))==(level==28),
+                              f'{species}: Horn Leech level {level}, rules {rules}')
+                        if level==28:
+                            slot=moves(start).index('HORN_LEECH')
+                            check(h.rd(start+23+slot)==10,species+': Horn Leech PP')
         print(f'PHANTUMP/TREVENANT PASSED: {checks} checks in {rom.name}',flush=True)
     finally:
         h.pyboy.stop(save=False)

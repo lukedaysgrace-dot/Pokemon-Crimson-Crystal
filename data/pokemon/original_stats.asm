@@ -880,6 +880,8 @@ OriginalPokemonStats:
 	db  83, 106,  65,  85,  86,  65
 	dw TRAPINCH
 	db  45, 100,  45,  10,  45,  45
+	dw TREVENANT
+	db  85, 110,  76,  56,  65,  82
 	dw TSAREENA
 	db  72, 120,  98,  72,  50,  98
 	dw TYPHLOSION

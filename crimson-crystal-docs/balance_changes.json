@@ -853,6 +853,19 @@
         }
       ]
     },
+    "TREVENANT": {
+      "stats": {
+        "HP": [85, 90],
+        "Defense": [76, 95],
+        "Sp. Def": [82, 84]
+      }
+    },
+    "STANTLER": {
+      "moves": [{"const": "HORN_LEECH", "level": 28}]
+    },
+    "WYRDEER": {
+      "moves": [{"const": "HORN_LEECH", "level": 28}]
+    },
     "PHANTUMP": {
       "evolutions": [
         {

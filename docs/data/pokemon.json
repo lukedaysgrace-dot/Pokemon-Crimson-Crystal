@@ -66307,6 +66307,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "level": 28,
+        "const": "HORN_LEECH",
+        "move": "Horn Leech"
+      },
+      {
         "level": 34,
         "const": "THRASH",
         "move": "Thrash"
@@ -66781,6 +66786,11 @@
         "level": 27,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
+      },
+      {
+        "level": 28,
+        "const": "HORN_LEECH",
+        "move": "Horn Leech"
       },
       {
         "level": 30,
@@ -133928,12 +133938,12 @@
     "name": "Trevenant",
     "number": 288,
     "stats": {
-      "HP": 85,
+      "HP": 90,
       "Attack": 110,
-      "Defense": 76,
+      "Defense": 95,
       "Speed": 56,
       "Sp. Atk": 65,
-      "Sp. Def": 82
+      "Sp. Def": 84
     },
     "types": [
       "Ghost",
@@ -134133,12 +134143,12 @@
       "Grass"
     ],
     "updated_stats": {
-      "HP": 85,
+      "HP": 90,
       "Attack": 110,
-      "Defense": 76,
+      "Defense": 95,
       "Speed": 56,
       "Sp. Atk": 65,
-      "Sp. Def": 82
+      "Sp. Def": 84
     },
     "original_stats": {
       "HP": 85,
@@ -134148,7 +134158,7 @@
       "Sp. Atk": 65,
       "Sp. Def": 82
     },
-    "original_stats_source": "custom species",
+    "original_stats_source": "modern main games",
     "sprite_size": 56,
     "back": "assets/pokemon/trevenant.back.png",
     "back_size": 48,
