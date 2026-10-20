@@ -1021,6 +1021,7 @@ NinetalesEvosAttacks:
 	dbw 27, SAFEGUARD
 	dbw 30, CALM_MIND
 	dbw 31, DARK_PULSE
+	dbw 32, DAZZLING_GLEAM
 	dbw 39, HEAT_WAVE
 	dbw 45, FIRE_BLAST
 	dbw 55, OVERHEAT
@@ -1328,10 +1329,10 @@ VenomothEvosAttacks:
 	dbw 31, GUST
 	dbw 34, BATON_PASS
 	dbw 38, SIGNAL_BEAM
+	dbw 38, PSYCHIC_M
 	dbw 42, MORNING_SUN
 	dbw 42, QUIVER_DANCE
 	dbw 46, BUG_BUZZ
-	dbw 55, PSYCHIC_M
 	db 0 ; no more level-up moves
 
 DiglettEvosAttacks:

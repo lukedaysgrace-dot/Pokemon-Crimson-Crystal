@@ -1256,7 +1256,7 @@
     "type": "Normal",
     "category": "Status",
     "accuracy": 100,
-    "pp": 20,
+    "pp": 10,
     "chance": 0
   },
   {

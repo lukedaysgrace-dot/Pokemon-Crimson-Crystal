@@ -57,6 +57,25 @@ Because your project has substantial custom engine work, the parser is intention
 - The nine clone starter constants are omitted from the Pokédex grid and appear through a **Normal / Clone** toggle on the corresponding starter page.
 - Animated or multi-frame PNGs are cropped to the first complete static front frame.
 
+## October 20 balance adjustments
+
+- Enhanced Mew has 100 in every base stat (600 BST), reduced from 720 BST.
+- Enhanced Wigglytuff has 115 HP / 60 Attack / 75 Defense / 88 Sp. Atk /
+  80 Sp. Def / 55 Speed. Its total remains 473; Original stats are unchanged.
+- Ninetales learns Dazzling Gleam at level 32 and retains Moonblast at 60.
+- Recover has 10 base PP, reduced from 20.
+- Sizzlipede learns Leech Life at 36 instead of 56; Centiskorch at 40 instead
+  of 60. The ancestor-aware reminder can also teach Centiskorch its family's
+  level-36 placement.
+- Wyrdeer learns Psyshield at 31 instead of 50, matching its evolution level.
+- Venomoth learns Psychic at 38 instead of 55.
+- Meganium learns Giga Drain directly at 40 instead of 60.
+- Magmortar learns Dark Pulse at 46, adding a second Mega Launcher attack
+  alongside Aura Sphere at 49.
+
+Learnsets and move PP are shared by Original and Enhanced rules. The two
+stat adjustments above change Enhanced BaseData only.
+
 ## Front and back sprite colors
 
 Backsprites use the front sprite's exact authored colors and palette slots,

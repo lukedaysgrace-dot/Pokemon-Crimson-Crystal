@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "pokemon": {
     "AGGRON": {
       "abilities": [
@@ -102,6 +102,13 @@
           "slot": 2,
           "before": "WHITE_SMOKE",
           "after": "SHED_SKIN"
+        }
+      ],
+      "moves": [
+        {
+          "const": "LEECH_LIFE",
+          "level": 40,
+          "before_level": 60
         }
       ]
     },
@@ -760,11 +767,11 @@
       "stats": {
         "HP": [
           140,
-          110
+          115
         ],
         "Attack": [
           70,
-          83
+          60
         ],
         "Defense": [
           45,
@@ -776,7 +783,7 @@
         ],
         "Sp. Atk": [
           85,
-          70
+          88
         ],
         "Sp. Def": [
           50,
@@ -855,16 +862,40 @@
     },
     "TREVENANT": {
       "stats": {
-        "HP": [85, 90],
-        "Defense": [76, 95],
-        "Sp. Def": [82, 84]
+        "HP": [
+          85,
+          90
+        ],
+        "Defense": [
+          76,
+          95
+        ],
+        "Sp. Def": [
+          82,
+          84
+        ]
       }
     },
     "STANTLER": {
-      "moves": [{"const": "HORN_LEECH", "level": 28}]
+      "moves": [
+        {
+          "const": "HORN_LEECH",
+          "level": 28
+        }
+      ]
     },
     "WYRDEER": {
-      "moves": [{"const": "HORN_LEECH", "level": 28}]
+      "moves": [
+        {
+          "const": "HORN_LEECH",
+          "level": 28
+        },
+        {
+          "const": "PSYSHIELD",
+          "level": 31,
+          "before_level": 50
+        }
+      ]
     },
     "PHANTUMP": {
       "evolutions": [
@@ -872,6 +903,78 @@
           "target": "TREVENANT",
           "before": "trading",
           "after": 32
+        }
+      ]
+    },
+    "MEW": {
+      "summary": "Enhanced Mew now has 100 in every base stat (600 BST), reduced from 120 in every stat (720 BST). Its movepool is unchanged.",
+      "stats": {
+        "HP": [
+          120,
+          100
+        ],
+        "Attack": [
+          120,
+          100
+        ],
+        "Defense": [
+          120,
+          100
+        ],
+        "Speed": [
+          120,
+          100
+        ],
+        "Sp. Atk": [
+          120,
+          100
+        ],
+        "Sp. Def": [
+          120,
+          100
+        ]
+      }
+    },
+    "NINETALES": {
+      "moves": [
+        {
+          "const": "DAZZLING_GLEAM",
+          "level": 32
+        }
+      ]
+    },
+    "SIZZLIPEDE": {
+      "moves": [
+        {
+          "const": "LEECH_LIFE",
+          "level": 36,
+          "before_level": 56
+        }
+      ]
+    },
+    "VENOMOTH": {
+      "moves": [
+        {
+          "const": "PSYCHIC_M",
+          "level": 38,
+          "before_level": 55
+        }
+      ]
+    },
+    "MEGANIUM": {
+      "moves": [
+        {
+          "const": "GIGA_DRAIN",
+          "level": 40,
+          "before_level": 60
+        }
+      ]
+    },
+    "MAGMORTAR": {
+      "moves": [
+        {
+          "const": "DARK_PULSE",
+          "level": 46
         }
       ]
     }
