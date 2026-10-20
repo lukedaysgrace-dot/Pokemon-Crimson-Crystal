@@ -175,12 +175,12 @@ MeganiumEvosAttacks:
 	dbw 32, BODY_PRESS
 	dbw 35, BODY_SLAM
 	dbw 40, MOONBLAST
+	dbw 40, GIGA_DRAIN
 	dbw 42, SEED_BOMB
 	dbw 45, SAFEGUARD
 	dbw 55, SOLARBEAM
 	dbw 55, WOOD_HAMMER
 	dbw 56, SOLAR_BLADE
-	dbw 60, GIGA_DRAIN
 	dbw 62, LEAF_STORM
 	dbw 65, EARTH_POWER
 	dbw 70, PETAL_BLIZZARD
@@ -4646,6 +4646,7 @@ MagmortarEvosAttacks:
 	dbw 40, LOW_KICK
 	dbw 42, HEAT_CRASH
 	dbw 45, FLARE_BLITZ
+	dbw 46, DARK_PULSE
 	dbw 48, RAGING_FURY
 	dbw 49, AURA_SPHERE
 	dbw 52, HEAT_WAVE
@@ -5127,6 +5128,7 @@ WyrdeerEvosAttacks:
 	dbw 27, ZEN_HEADBUTT
 	dbw 28, HORN_LEECH
 	dbw 30, WORK_UP
+	dbw 31, PSYSHIELD
 	dbw 34, THRASH
 	dbw 36, WILD_CHARGE
 	dbw 36, TRICK_ROOM
@@ -5135,7 +5137,6 @@ WyrdeerEvosAttacks:
 	dbw 42, TRICK
 	dbw 44, BODY_SLAM
 	dbw 47, LUNGE
-	dbw 50, PSYSHIELD
 	dbw 52, MEGAHORN
 	dbw 56, FUTURE_SIGHT
 	dbw 58, GIGA_IMPACT
@@ -6280,13 +6281,13 @@ CentiskorchEvosAttacks:
 	dbw 28, THUNDER_FANG
 	dbw 35, SLAM
 	dbw 38, FIRE_SPIN
+	dbw 40, LEECH_LIFE
 	dbw 42, HEAT_CRASH
 	dbw 46, CRUNCH
 	dbw 46, RAGING_FURY
 	dbw 50, HEAT_WAVE
 	dbw 55, POWER_WHIP
 	dbw 58, OVERHEAT
-	dbw 60, LEECH_LIFE
 	dbw 60, LUNGE
 	dbw 66, FLARE_BLITZ
 	db 0 ; no more level-up moves
@@ -7126,6 +7127,7 @@ SizzlipedeEvosAttacks:
 	dbw 15, BUG_BITE
 	dbw 24, FIRE_FANG
 	dbw 34, SLAM
+	dbw 36, LEECH_LIFE
 	dbw 37, FIRE_SPIN
 	dbw 42, BUG_BUZZ
 	dbw 43, CRUNCH
@@ -7133,7 +7135,6 @@ SizzlipedeEvosAttacks:
 	dbw 46, HEAT_CRASH
 	dbw 50, LUNGE
 	dbw 51, POWER_WHIP
-	dbw 56, LEECH_LIFE
 	db 0 ; no more level-up moves
 
 SnoruntEvosAttacks:

@@ -956,6 +956,11 @@
         "move": "Moonblast"
       },
       {
+        "level": 40,
+        "const": "GIGA_DRAIN",
+        "move": "Giga Drain"
+      },
+      {
         "level": 42,
         "const": "SEED_BOMB",
         "move": "Seed Bomb"
@@ -979,11 +984,6 @@
         "level": 56,
         "const": "SOLAR_BLADE",
         "move": "Solar Blade"
-      },
-      {
-        "level": 60,
-        "const": "GIGA_DRAIN",
-        "move": "Giga Drain"
       },
       {
         "level": 62,
@@ -22247,11 +22247,11 @@
     "name": "Wigglytuff",
     "number": 50,
     "stats": {
-      "HP": 110,
-      "Attack": 83,
+      "HP": 115,
+      "Attack": 60,
       "Defense": 75,
       "Speed": 55,
-      "Sp. Atk": 70,
+      "Sp. Atk": 88,
       "Sp. Def": 80
     },
     "types": [
@@ -22565,11 +22565,11 @@
       "Fairy"
     ],
     "updated_stats": {
-      "HP": 110,
-      "Attack": 83,
+      "HP": 115,
+      "Attack": 60,
       "Defense": 75,
       "Speed": 55,
-      "Sp. Atk": 70,
+      "Sp. Atk": 88,
       "Sp. Def": 80
     },
     "original_stats": {
@@ -55782,6 +55782,11 @@
         "move": "Signal Beam"
       },
       {
+        "level": 38,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
+      },
+      {
         "level": 42,
         "const": "MORNING_SUN",
         "move": "Morning Sun"
@@ -55795,11 +55800,6 @@
         "level": 46,
         "const": "BUG_BUZZ",
         "move": "Bug Buzz"
-      },
-      {
-        "level": 55,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
       }
     ],
     "evolutions": [],
@@ -64991,6 +64991,11 @@
         "move": "Dark Pulse"
       },
       {
+        "level": 32,
+        "const": "DAZZLING_GLEAM",
+        "move": "Dazzling Gleam"
+      },
+      {
         "level": 39,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
@@ -66798,6 +66803,11 @@
         "move": "Work Up"
       },
       {
+        "level": 31,
+        "const": "PSYSHIELD",
+        "move": "Psyshield Bash"
+      },
+      {
         "level": 34,
         "const": "THRASH",
         "move": "Thrash"
@@ -66836,11 +66846,6 @@
         "level": 47,
         "const": "LUNGE",
         "move": "Lunge"
-      },
-      {
-        "level": 50,
-        "const": "PSYSHIELD",
-        "move": "Psyshield Bash"
       },
       {
         "level": 52,
@@ -79635,6 +79640,11 @@
         "level": 45,
         "const": "FLARE_BLITZ",
         "move": "Flare Blitz"
+      },
+      {
+        "level": 46,
+        "const": "DARK_PULSE",
+        "move": "Dark Pulse"
       },
       {
         "level": 48,
@@ -175362,12 +175372,12 @@
     "name": "Mew",
     "number": 357,
     "stats": {
-      "HP": 120,
-      "Attack": 120,
-      "Defense": 120,
-      "Speed": 120,
-      "Sp. Atk": 120,
-      "Sp. Def": 120
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Speed": 100,
+      "Sp. Atk": 100,
+      "Sp. Def": 100
     },
     "types": [
       "Psychic"
@@ -175774,12 +175784,12 @@
       "Psychic"
     ],
     "updated_stats": {
-      "HP": 120,
-      "Attack": 120,
-      "Defense": 120,
-      "Speed": 120,
-      "Sp. Atk": 120,
-      "Sp. Def": 120
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Speed": 100,
+      "Sp. Atk": 100,
+      "Sp. Def": 100
     },
     "original_stats": {
       "HP": 100,
@@ -184295,6 +184305,11 @@
         "move": "Slam"
       },
       {
+        "level": 36,
+        "const": "LEECH_LIFE",
+        "move": "Leech Life"
+      },
+      {
         "level": 37,
         "const": "FIRE_SPIN",
         "move": "Fire Spin"
@@ -184328,11 +184343,6 @@
         "level": 51,
         "const": "POWER_WHIP",
         "move": "Power Whip"
-      },
-      {
-        "level": 56,
-        "const": "LEECH_LIFE",
-        "move": "Leech Life"
       }
     ],
     "evolutions": [
@@ -184659,6 +184669,11 @@
         "move": "Fire Spin"
       },
       {
+        "level": 40,
+        "const": "LEECH_LIFE",
+        "move": "Leech Life"
+      },
+      {
         "level": 42,
         "const": "HEAT_CRASH",
         "move": "Heat Crash"
@@ -184687,11 +184702,6 @@
         "level": 58,
         "const": "OVERHEAT",
         "move": "Overheat"
-      },
-      {
-        "level": 60,
-        "const": "LEECH_LIFE",
-        "move": "Leech Life"
       },
       {
         "level": 60,
