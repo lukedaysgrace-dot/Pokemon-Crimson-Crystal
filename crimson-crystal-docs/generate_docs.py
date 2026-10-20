@@ -1325,6 +1325,8 @@ class Builder:
       count_stats+=bool(differences);count_types+=changed_types
       if not differences and not changed_types and not entry:continue
       sections=[];tags=[]
+      if entry.get('summary'):
+        sections.append(f'<p>{html.escape(entry["summary"])}</p>')
       if changed_types:
         tags.append('typing')
         sections.append(f'<p><b>Typing:</b> {" / ".join(m["original_types"])} → {" / ".join(m["types"])}</p>')
