@@ -256,3 +256,8 @@ SECTION "Slot Maniac Sprite", ROMX
 SlotManiacSpriteGFX::         INCBIN "gfx/sprites/slot_maniac.2bpp"
 SlotManiacSpriteGFXEnd::
 assert SlotManiacSpriteGFXEnd - SlotManiacSpriteGFX == 12 * 16
+
+SECTION "Riolu Walking Sprite", ROMX
+RioluSpriteGFX::             INCBIN "gfx/sprites/riolu.2bpp"
+RioluSpriteGFXEnd::
+assert RioluSpriteGFXEnd - RioluSpriteGFX == 24 * 16
