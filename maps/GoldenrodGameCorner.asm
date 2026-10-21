@@ -13,7 +13,7 @@ GOLDENRODGAMECORNER_PORYGON_COINS   EQU 7000
 	const GOLDENRODGAMECORNER_RECEPTIONIST2
 	const GOLDENRODGAMECORNER_PHARMACIST1
 	const GOLDENRODGAMECORNER_PHARMACIST2
-	const GOLDENRODGAMECORNER_POKEFAN_M1
+	const GOLDENRODGAMECORNER_SLOT_MANIAC
 	const GOLDENRODGAMECORNER_COOLTRAINER_M
 	const GOLDENRODGAMECORNER_POKEFAN_F
 	const GOLDENRODGAMECORNER_COOLTRAINER_F
@@ -293,14 +293,75 @@ GoldenrodGameCornerPharmacistScript:
 	turnobject LAST_TALKED, LEFT
 	end
 
-GoldenrodGameCornerPokefanM1Script:
+GoldenrodGameCornerSlotManiacScript:
 	faceplayer
+	checkevent EVENT_BEAT_SLOT_MANIAC
+	iftrue .AfterBattle
+	checkevent EVENT_GOLDENROD_GAME_CORNER_HIDDEN_LOADED_DICE
+	iftrue GoldenrodGameCornerSlotManiacBattle
 	opentext
-	writetext GoldenrodGameCornerPokefanM1Text
+	writetext GoldenrodGameCornerSlotManiacBeforeText
 	waitbutton
 	closetext
-	turnobject GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
+	turnobject GOLDENRODGAMECORNER_SLOT_MANIAC, RIGHT
 	end
+
+.AfterBattle:
+	jumptext GoldenrodGameCornerSlotManiacAfterText
+
+GoldenrodGameCornerHiddenLoadedDice:
+	hiddenitem LOADED_DICE, EVENT_GOLDENROD_GAME_CORNER_HIDDEN_LOADED_DICE
+
+GoldenrodGameCornerSlotManiacConfrontation::
+	checkevent EVENT_BEAT_SLOT_MANIAC
+	iftrue .Done
+	showemote EMOTE_SHOCK, GOLDENRODGAMECORNER_SLOT_MANIAC, 15
+	readvar VAR_FACING
+	ifequal DOWN, .FromAbove
+	ifequal UP, .FromBelow
+	; The NPC occupies (11,10), so the east side cannot be used for pickup.
+	applymovement GOLDENRODGAMECORNER_SLOT_MANIAC, GoldenrodGameCornerSlotManiacStepLeft
+	sjump .Approached
+.FromAbove:
+	applymovement GOLDENRODGAMECORNER_SLOT_MANIAC, GoldenrodGameCornerSlotManiacStepUp
+	sjump .Approached
+.FromBelow:
+	applymovement GOLDENRODGAMECORNER_SLOT_MANIAC, GoldenrodGameCornerSlotManiacStepDown
+.Approached:
+	setlasttalked GOLDENRODGAMECORNER_SLOT_MANIAC
+	faceobject GOLDENRODGAMECORNER_SLOT_MANIAC, PLAYER
+	faceobject PLAYER, GOLDENRODGAMECORNER_SLOT_MANIAC
+	sjump GoldenrodGameCornerSlotManiacBattle
+.Done:
+	end
+
+GoldenrodGameCornerSlotManiacBattle:
+	opentext
+	writetext GoldenrodGameCornerSlotManiacChallengeText
+	waitbutton
+	closetext
+	winlosstext GoldenrodGameCornerSlotManiacBeatenText, 0
+	loadtrainer SLOT_MANIAC, SLOT_MANIAC_LUCKY
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_SLOT_MANIAC
+	opentext
+	writetext GoldenrodGameCornerSlotManiacAfterText
+	waitbutton
+	closetext
+	end
+
+GoldenrodGameCornerSlotManiacStepLeft:
+	step LEFT
+	step_end
+
+GoldenrodGameCornerSlotManiacStepUp:
+	step UP
+	step_end
+
+GoldenrodGameCornerSlotManiacStepDown:
+	step DOWN
+	step_end
 
 GoldenrodGameCornerCooltrainerMScript:
 	faceplayer
@@ -412,13 +473,62 @@ GoldenrodGameCornerPharmacistText:
 	line "others, I think."
 	done
 
-GoldenrodGameCornerPokefanM1Text:
+GoldenrodGameCornerSlotManiacBeforeText:
 	text "I just love this"
 	line "new slot machine."
 
 	para "It's more of a"
 	line "challenge than the"
 	cont "ones in CELADON."
+	done
+
+GoldenrodGameCornerSlotManiacChallengeText:
+	text "Hey! What do you"
+	line "think you're"
+	cont "doing?!"
+
+	para "Those are my dice!"
+
+	para "You can't just go"
+	line "around picking up"
+	cont "other people's"
+	cont "stuff!"
+
+	para "I'll teach you to"
+	line "keep your hands to"
+	cont "yourself kid!"
+	done
+
+GoldenrodGameCornerSlotManiacBeatenText:
+	text "I'm so unlucky"
+	line "today..."
+	done
+
+GoldenrodGameCornerSlotManiacAfterText:
+	text "Fine, just keep"
+	line "them, kid!"
+
+	para "Probably better I"
+	line "don't have them"
+	cont "anymore anyway."
+
+	para "Those Loaded Dice"
+	line "have been drawing"
+	cont "me a little too"
+	cont "much unwanted"
+	cont "attention..."
+
+	para "They make moves"
+	line "that hit multiple"
+	cont "times more likely"
+	cont "to land the"
+	cont "maximum number of"
+	cont "hits."
+
+	para "Pretty handy when"
+	line "you want to tip"
+	cont "the odds in your"
+	cont "favor!"
 	done
 
 GoldenrodGameCornerCooltrainerMText:
@@ -491,7 +601,7 @@ GoldenrodGameCorner_MapEvents:
 
 	db 0 ; coord events
 
-	db 31 ; bg events
+	db 32 ; bg events
 	bg_event  6,  6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  6,  7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  6,  8, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
@@ -523,6 +633,7 @@ GoldenrodGameCorner_MapEvents:
 	bg_event 18, 10, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 18, 11, BGEVENT_RIGHT, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 12,  1, BGEVENT_LEFT, GoldenrodGameCornerLeftTheirDrinkScript
+	bg_event 10, 10, BGEVENT_ITEM, GoldenrodGameCornerHiddenLoadedDice
 
 	db 12 ; object events
 	object_event  3,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCoinVendorScript, -1
@@ -530,7 +641,7 @@ GoldenrodGameCorner_MapEvents:
 	object_event 18,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPrizeMonVendorScript, -1
 	object_event  8,  7, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
 	object_event  8,  7, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, NITE, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
-	object_event 11, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM1Script, -1
+	object_event 11, 10, SPRITE_SLOT_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerSlotManiacScript, -1
 	object_event 14,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerMScript, -1
 	object_event 17,  6, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanFScript, -1
 	object_event 10,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerFScript, -1

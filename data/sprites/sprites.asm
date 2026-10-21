@@ -161,3 +161,4 @@ OverworldSprites:
 	overworld_sprite KarateKingSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SilphWorkerMSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite JirachiSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite SlotManiacSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED

@@ -8462,11 +8462,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Goldenrod Underground",
-          "method": "Gift / reward",
-          "details": "Girl rescued from the thugs; complete her reward conversation after defeating them. She also gives the dice if you decline Riolu.",
-          "source": "maps/GoldenrodUnderground.asm",
-          "line": 590
+          "location": "Goldenrod Game Corner",
+          "method": "Hidden pickup",
+          "details": "Search (10, 10), beside the Slot Maniac. Picking up the Loaded Dice starts his one-time Meowth/Aipom/Dunsparce battle (levels 16/16/17).",
+          "source": "maps/GoldenrodGameCorner.asm",
+          "line": 313
         }
       ],
       "description": "Multi-hit moves: 4-5 times. Triple Kick/Axel hit 3x.",

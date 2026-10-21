@@ -106,3 +106,4 @@ BTTrainerClassGenders:
 	db FEMALE; AROMA_LADY
 	db MALE ; CUEBALL
 	db MALE ; KARATE_KING
+	db MALE ; SLOT_MANIAC

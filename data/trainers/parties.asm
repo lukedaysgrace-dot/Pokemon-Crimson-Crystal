@@ -8776,3 +8776,27 @@ KarateKingGroup:
 	db -1 ; end
 
 	end_list_items
+
+SECTION "Slot Maniac Party", ROMX
+
+SlotManiacGroup:
+	next_list_item ; SLOT_MANIAC (1) SLOT_MANIAC_LUCKY - Goldenrod Game Corner
+	db "LUCKY@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 16
+	dw MEOWTH
+	db NO_ITEM
+	db ABILITY_1 ; Technician
+	dw PAY_DAY, FAKE_OUT, FURY_SWIPES, BITE
+	db 16
+	dw AIPOM
+	db NO_ITEM
+	db HIDDEN_ABILITY ; Skill Link
+	dw DOUBLESLAP, SCRATCH, SAND_ATTACK, ASTONISH
+	db 17
+	dw DUNSPARCE
+	db NO_ITEM
+	db ABILITY_1 ; Serene Grace
+	dw HEADBUTT, GLARE, ROLLOUT, SPITE
+	db -1 ; end
+
+	end_list_items

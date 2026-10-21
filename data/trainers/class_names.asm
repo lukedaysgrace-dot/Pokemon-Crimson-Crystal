@@ -104,3 +104,4 @@ TrainerClassNames::
 	db "AROMA LADY@"
 	db "CUEBALL@"
 	db "KARATE KING@"
+	db "SLOT MANIAC@"

@@ -2162,7 +2162,7 @@
 
 ; GOLDENROD UNDERGROUND thug mugging scene (see maps/GoldenrodUnderground.asm)
 	const EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	const EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	const EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT ; same saved bit as the former dice reward
 
 ; Set when RED in SILVER CAVE has been beaten. Distinct from
 ; EVENT_RED_IN_MT_SILVER, which is his object flag and gets cleared again by
@@ -2266,5 +2266,9 @@
 
 ; Party Mew's appearance lasts only for the entrance cutscene.
 EVENT_ROUTE_4_PARTY_MEW EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+
+; Hidden Game Corner dice and their owner's one-time confrontation.
+	const EVENT_GOLDENROD_GAME_CORNER_HIDDEN_LOADED_DICE
+	const EVENT_BEAT_SLOT_MANIAC
 
 NUM_EVENTS EQU const_value
