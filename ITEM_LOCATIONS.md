@@ -92,7 +92,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
-| [Loaded Dice](#loaded_dice) | Gift / reward |
+| [Loaded Dice](#loaded_dice) | Hidden pickup |
 | [Lucky Egg](#lucky_egg) | Wild Pokémon |
 | [Lucky Punch](#lucky_punch) | Wild Pokémon |
 | [Magnet](#magnet) | Gift / reward, Trainer item, Wild Pokémon |
@@ -1151,7 +1151,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 
 | Location | How to obtain |
 | --- | --- |
-| Goldenrod Underground | **Gift / reward** — Girl rescued from the thugs; complete her reward conversation after defeating them. She also gives the dice if you decline Riolu. |
+| Goldenrod Game Corner | **Hidden pickup** — Search (10, 10), beside the Slot Maniac. Picking up the Loaded Dice starts his one-time Meowth/Aipom/Dunsparce battle (levels 16/16/17). |
 
 <a id="lucky_egg"></a>
 ## Lucky Egg

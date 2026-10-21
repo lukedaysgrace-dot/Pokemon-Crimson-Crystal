@@ -100,6 +100,15 @@ HiddenItemScript::
 	specialsound
 	itemnotify
 	closetext
+	; The dice's owner reacts only after the item actually fits in the Bag.
+	readmem wHiddenItemID
+	ifnotequal LOADED_DICE, .check_moon_stone
+	readvar VAR_MAPGROUP
+	ifnotequal GROUP_GOLDENROD_GAME_CORNER, .done
+	readvar VAR_MAPNUMBER
+	ifnotequal MAP_GOLDENROD_GAME_CORNER, .done
+	farsjump GoldenrodGameCornerSlotManiacConfrontation
+.check_moon_stone:
 	; Only a successful Mt. Moon Square Moon Stone pickup can call the star.
 	readmem wHiddenItemID
 	ifnotequal MOON_STONE, .done

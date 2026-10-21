@@ -1512,6 +1512,7 @@ ElderPic: INCBIN "gfx/trainers/elder.2bpp.lz"
 AromaLadyPic: INCBIN "gfx/trainers/aroma_lady.2bpp.lz"
 CueballPic: INCBIN "gfx/trainers/cueball.2bpp.lz"
 KarateKingPic: INCBIN "gfx/trainers/karate_king.2bpp.lz"
+SlotManiacPic: INCBIN "gfx/trainers/slot_maniac.2bpp.lz"
 
 SECTION "Jirachi Pics", ROMX
 

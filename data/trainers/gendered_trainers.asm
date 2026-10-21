@@ -29,6 +29,7 @@ MaleTrainers:
 	db TAMER
 	db CUEBALL
 	db KARATE_KING
+	db SLOT_MANIAC
 .End
 
 FemaleTrainers:

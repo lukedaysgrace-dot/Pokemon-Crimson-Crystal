@@ -119,3 +119,4 @@ INCBIN "gfx/trainers/elder.gbcpal", middle_colors ; ELDER
 INCBIN "gfx/trainers/aroma_lady.gbcpal", middle_colors ; AROMA_LADY
 INCBIN "gfx/trainers/cueball.gbcpal", middle_colors ; CUEBALL
 INCBIN "gfx/trainers/karate_king.gbcpal", middle_colors ; KARATE_KING
+INCBIN "gfx/trainers/slot_maniac.gbcpal", middle_colors ; SLOT_MANIAC
