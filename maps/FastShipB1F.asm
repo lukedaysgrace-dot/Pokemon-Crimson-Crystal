@@ -313,11 +313,13 @@ JugglerFritzBeatenText:
 	done
 
 JugglerFritzAfterBattleText:
-	text "No more ships for"
-	line "me. Next time,"
+	text "I can't balance my"
+	line "ELECTRODE while"
+	cont "the ship rocks!"
 
-	para "I'm taking the"
-	line "MAGNET TRAIN."
+	para "Even MR.RIME lost"
+	line "his footing! Next"
+	cont "time, the train!"
 	done
 
 SailorGarrettSeenText:

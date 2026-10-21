@@ -106,10 +106,12 @@ YoungsterWarrenBeatenText:
 	done
 
 YoungsterWarrenAfterBattleText:
-	text "You looked strong."
+	text "I raised my"
+	line "VICTREEBEL in"
+	cont "our garden."
 
-	para "I was afraid to"
-	line "take you on…"
+	para "Battles still"
+	line "make me nervous!"
 	done
 
 YoungsterJimmySeenText:
@@ -174,9 +176,11 @@ CosplayerMimiBeatenText:
 	done
 
 CosplayerMimiAfterBattleText:
-	text "A great cosplay is"
-	line "all about com-"
-	cont "mitment!"
+	text "MIMIKYU wears its"
+	line "costume all day!"
+
+	para "MR.RIME helps me"
+	line "practice my poses."
 	done
 
 Route3MtMoonSquareSignText:

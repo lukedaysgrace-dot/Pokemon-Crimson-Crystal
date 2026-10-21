@@ -280,6 +280,7 @@ CharizardEvosAttacks:
 	dbw 55, HEAT_WAVE
 	dbw 59, FLARE_BLITZ
 	dbw 62, OVERHEAT
+	dbw 64, DRACO_METEOR
 	db 0 ; no more level-up moves
 
 SquirtleEvosAttacks:
@@ -508,6 +509,7 @@ PidgeotEvosAttacks:
 	dbw 36, HEAT_WAVE
 	dbw 40, WHIRLWIND
 	dbw 42, DOUBLE_EDGE
+	dbw 44, HYPER_VOICE
 	dbw 50, HURRICANE
 	dbw 55, AERIAL_ACE
 	dbw 56, MIRROR_MOVE
@@ -930,6 +932,7 @@ ClefairyEvosAttacks:
 	dbw 1, SWEET_KISS
 	dbw 1, TELEPORT
 	dbw 4, ENCORE
+	dbw 5, FAIRY_WIND
 	dbw 7, SING
 	dbw 9, DISARMING_VOICE
 	dbw 10, DOUBLESLAP
@@ -957,6 +960,7 @@ ClefableEvosAttacks:
 	dbw 1, TELEPORT
 	dbw 1, DISARMING_VOICE
 	dbw 4, ENCORE
+	dbw 5, FAIRY_WIND
 	dbw 7, SING
 	dbw 10, DOUBLESLAP
 	dbw 11, DEFENSE_CURL
@@ -2460,6 +2464,7 @@ GastlyEvosAttacks:
 	dbw 10, SMOG
 	dbw 12, HEX
 	dbw 13, CONFUSE_RAY
+	dbw 16, SLUDGE
 	dbw 18, VENOSHOCK
 	dbw 19, CURSE
 	dbw 22, SUCKER_PUNCH
@@ -2487,6 +2492,7 @@ HaunterEvosAttacks:
 	dbw 10, SMOG
 	dbw 12, HEX
 	dbw 13, CONFUSE_RAY
+	dbw 16, SLUDGE
 	dbw 18, VENOSHOCK
 	dbw 19, CURSE
 	dbw 22, SUCKER_PUNCH
@@ -2515,6 +2521,7 @@ GengarEvosAttacks:
 	dbw 10, SMOG
 	dbw 12, HEX
 	dbw 13, CONFUSE_RAY
+	dbw 16, SLUDGE
 	dbw 18, VENOSHOCK
 	dbw 19, CURSE
 	dbw 22, SUCKER_PUNCH
@@ -3525,6 +3532,7 @@ TaurosEvosAttacks:
 	dbw 44, RAGING_BULL
 	dbw 46, MEGAHORN
 	dbw 49, OUTRAGE
+	dbw 50, SUPERPOWER
 	dbw 52, GIGA_IMPACT
 	dbw 56, SKULL_BASH
 	db 0 ; no more level-up moves
@@ -3890,6 +3898,7 @@ AerodactylEvosAttacks:
 	dbw 49, STONE_EDGE
 	dbw 53, BRAVE_BIRD
 	dbw 57, HYPER_BEAM
+	dbw 60, HEAD_SMASH
 	dbw 61, GIGA_IMPACT
 	dbw 65, SKY_ATTACK
 	db 0 ; no more level-up moves

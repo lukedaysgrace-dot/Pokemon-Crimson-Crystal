@@ -251,9 +251,12 @@ CosplayerPixieBeatenText:
 	done
 
 CosplayerPixieAfterBattleText:
-	text "Next convention,"
-	line "I'll have an even"
-	cont "better costume!"
+	text "SMEARGLE paints"
+	line "my costume plans."
+
+	para "SYLVEON helps me"
+	line "choose the ribbons"
+	cont "for each outfit!"
 	done
 
 MtMoonSquareSignText:

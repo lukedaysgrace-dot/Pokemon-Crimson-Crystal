@@ -159,6 +159,7 @@ CharizardCloneEvosAttacks:
 	dbw 55, HEAT_WAVE
 	dbw 59, FLARE_BLITZ
 	dbw 62, OVERHEAT
+	dbw 64, DRACO_METEOR
 	db 0 ; no more level-up moves
 
 SquirtleCloneEvosAttacks:

@@ -71,6 +71,21 @@ def main():
   return seen
  utility_moves=['SUBSTITUTE','SLEEP_TALK','REFLECT','LIGHT_SCREEN','THUNDER_WAVE']
  technical=load_technical_tutors()
+ # Preserve old learners; new distributions use actual Fairy typing/stats.
+ pixie=json.loads(read('tools/testdata/pixie_punch.json'))
+ base_files=re.findall(r'INCLUDE "(data/pokemon/base_stats/[^\"]+)"',read('data/pokemon/base_stats.asm'))
+ eligible=set()
+ for c,path in zip(order,base_files):
+  text=read(path)
+  typing=re.search(r'db\s+(\w+),\s*(\w+)\s*;\s*type',text).groups()
+  stats=list(map(int,re.search(r'^\s*db\s+(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)',text,re.M).groups()))
+  if 'FAIRY' in typing and stats[1]>stats[4]:eligible.add(c)
+  actual=[lv for lv,m in levels[c] if m=='PIXIE_PUNCH']
+  expected=[pixie['level_up'][c]] if c in pixie['level_up'] else []
+  assert actual==expected,(c,'Pixie Punch distribution/timing')
+  assert 'PIXIE_PUNCH' not in eggs[c]+tm[c]+technical.get(c,[]),(c,'Pixie Punch must use natural early access')
+ assert eligible | set(pixie['grandfathered'])==set(pixie['level_up']),'New Pixie Punch learners must be Fairy types with higher base Attack than Special Attack'
+ assert all(1<=lv<=9 for lv in pixie['level_up'].values()),'Pixie Punch must be available early'
  pools={}
  for c in order:
   ls=levels[c];ms=[m for lv,m in ls]

@@ -318,13 +318,12 @@ YoungsterMikeyBeatenText:
 	done
 
 YoungsterMikeyAfterText:
-	text "Becoming a good"
-	line "trainer is really"
-	cont "tough."
+	text "DRILBUR loves to"
+	line "dig in our garden."
 
-	para "I'm going to bat-"
-	line "tle other people"
-	cont "to get better."
+	para "PIDGEY watches"
+	line "from above while"
+	cont "we train together!"
 	done
 
 BugCatcherDonSeenText:
