@@ -106,3 +106,4 @@ TrainerGroups:
 	dba AromaLadyGroup ; AROMA_LADY
 	dba CueballGroup ; CUEBALL
 	dba KarateKingGroup ; KARATE_KING
+	dba SlotManiacGroup ; SLOT_MANIAC

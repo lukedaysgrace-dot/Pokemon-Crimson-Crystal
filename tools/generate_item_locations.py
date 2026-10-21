@@ -53,7 +53,6 @@ GIFT_NOTES = {
     'GoldenrodGameCorner:TM_FIRE_BLAST': 'TM prize counter; 5,500 coins and a Coin Case.',
     'GoldenrodGym:TM_ATTRACT': 'Whitney; talk to her again after winning and collect the Plain Badge.',
     'GoldenrodDeptStoreRoof:AIR_BALLOON': 'Collect the red balloon at (15, 0).',
-    'GoldenrodUnderground:LOADED_DICE': 'Girl rescued from the thugs; complete her reward conversation after defeating them. She also gives the dice if you decline Riolu.',
     'GravekeepersHouse:FOCUS_SASH': 'Gravekeeper in Silent Crypt; clean both gravestones before entering his house.',
     'IlexForest:TM_HEADBUTT': 'Headbutt tutor in the forest; accept his gift.',
     'LakeOfRage:BLACKBELT': 'Wesley; Wednesday.',
@@ -97,6 +96,7 @@ GIFT_NOTES = {
 }
 
 PICKUP_NOTES = {
+    'GoldenrodGameCorner': 'Search (10, 10), beside the Slot Maniac. Picking up the Loaded Dice starts his one-time Meowth/Aipom/Dunsparce battle (levels 16/16/17).',
     'OlivineCafe': 'Search the trash can at (1, 1); one-time pickup.',
     'RadioTower5F': 'Collect the item ball after defeating Archer and receiving the Clear Bell.',
     'BurnedTowerB1F': 'Basement item ball.',

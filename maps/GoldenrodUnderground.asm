@@ -563,7 +563,7 @@ GoldenrodUndergroundGirlScript:
 
 GoldenrodUndergroundGirlRewardScript:
 	checkevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
-	iftrue .GiveLoadedDice
+	iftrue .Farewell
 	writetext GoldenrodUndergroundGirlThanksText
 	yesorno
 	iffalse .DeclinedRiolu
@@ -578,18 +578,14 @@ GoldenrodUndergroundGirlRewardScript:
 	givepoke RIOLU, 15
 	special SetLastPartyMonMale
 	setevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
-	sjump .GiveLoadedDice
+	sjump .Farewell
 
 .DeclinedRiolu:
 	writetext GoldenrodUndergroundGirlDeclinedText
 	waitbutton
 
-.GiveLoadedDice:
-	writetext GoldenrodUndergroundGirlLoadedDiceText
-	buttonsound
-	verbosegiveitem LOADED_DICE
-	iffalse .BagFull
-	setevent EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+.Farewell:
+	setevent EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT
 	writetext GoldenrodUndergroundGirlFarewellText
 	waitbutton
 	setval TRUE
@@ -597,12 +593,6 @@ GoldenrodUndergroundGirlRewardScript:
 
 .PartyFull:
 	writetext GoldenrodUndergroundGirlPartyFullText
-	waitbutton
-	setval FALSE
-	return
-
-.BagFull:
-	writetext GoldenrodUndergroundGirlBagFullText
 	waitbutton
 	setval FALSE
 	return
@@ -1072,16 +1062,6 @@ GoldenrodUndergroundGirlDeclinedText:
 	cont "from now on."
 	done
 
-GoldenrodUndergroundGirlLoadedDiceText:
-	text "I also saw one of"
-	line "them drop these"
-	cont "LOADED DICE when"
-	cont "they rushed at"
-	cont "you."
-
-	para "Please take them!"
-	done
-
 GoldenrodUndergroundGirlFarewellText:
 	text "Thank you again!"
 
@@ -1096,15 +1076,6 @@ GoldenrodUndergroundGirlPartyFullText:
 	para "Make room for"
 	line "RIOLU, then come"
 	cont "talk to me again."
-	done
-
-GoldenrodUndergroundGirlBagFullText:
-	text "Oh… your PACK is"
-	line "full."
-
-	para "I'll wait right"
-	line "here until you"
-	cont "make some room."
 	done
 
 GoldenrodUnderground_MapEvents:
@@ -1139,7 +1110,7 @@ GoldenrodUnderground_MapEvents:
 	object_event  7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
 	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BitterMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRANNY
-	object_event 25, 17, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_LOOK_DOWN_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOT_LOADED_DICE_FROM_GOLDENROD_UNDERGROUND_GIRL
+	object_event 25, 17, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_LOOK_DOWN_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT
 	object_event 24, 17, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 	object_event 24, 18, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
 	object_event 25, 18, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN

@@ -251,3 +251,8 @@ SECTION "Jirachi Walking Sprite", ROMX
 JirachiSpriteGFX::            INCBIN "gfx/sprites/jirachi.2bpp"
 JirachiSpriteGFXEnd::
 assert JirachiSpriteGFXEnd - JirachiSpriteGFX == 24 * 16
+
+SECTION "Slot Maniac Sprite", ROMX
+SlotManiacSpriteGFX::         INCBIN "gfx/sprites/slot_maniac.2bpp"
+SlotManiacSpriteGFXEnd::
+assert SlotManiacSpriteGFXEnd - SlotManiacSpriteGFX == 12 * 16
