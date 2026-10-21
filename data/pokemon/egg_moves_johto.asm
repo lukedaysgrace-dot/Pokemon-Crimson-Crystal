@@ -1539,6 +1539,7 @@ CanonicalELEKIDEggMoves:
 	dw FIRE_PUNCH
 	dw ICE_PUNCH
 	dw HAMMER_ARM
+	dw CRUNCH
 	dw -1 ; end
 
 CanonicalMAGBYEggMoves:
@@ -3262,6 +3263,7 @@ CanonicalBUNEARYEggMoves2:
 	dw THUNDERPUNCH
 	dw COSMIC_POWER
 	dw SKY_UPPERCUT
+	dw KARATE_CHOP
 	dw -1 ; end
 
 CanonicalGRUBBINEggMoves2:

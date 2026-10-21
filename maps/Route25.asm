@@ -779,9 +779,9 @@ PokefanmDustinAfterBattleText:
 	done
 
 CosplayerNoelleSeenText:
-	text "Here's No. 3! The"
-	line "costume is ready."
-	cont "So is my team!"
+	text "My mascot costume"
+	line "is ready for its"
+	cont "big battle debut!"
 	done
 
 CosplayerNoelleBeatenText:
@@ -789,9 +789,12 @@ CosplayerNoelleBeatenText:
 	done
 
 CosplayerNoelleAfterBattleText:
-	text "At least my"
-	line "costume held up. I"
-	cont "worked hard on it!"
+	text "SMEARGLE sketches"
+	line "my mascot designs."
+
+	para "A surfer RAICHU,"
+	line "a winter GLACEON…"
+	cont "So many costumes!"
 	done
 
 LassPaigeSeenText:

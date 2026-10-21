@@ -702,6 +702,30 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
                     if norm_name(species) == norm_name(label_base) for m in ms}
         merged = [(lv, m) for lv, m in merged if m not in excluded]
 
+    # User-approved trainer move access has explicit natural placements.
+    # Keep these separate from the pinned canonical import and egg routes.
+    trainer_path = os.path.join(REPO, "tools", "testdata", "trainer_move_access.json")
+    if os.path.exists(trainer_path):
+        with open(trainer_path, encoding="utf-8") as f:
+            trainer = json.load(f)
+        for species, moves in trainer['level_up'].items():
+            if norm_name(species) == norm_name(label_base):
+                merged = [(lv, m) for lv, m in merged if m not in moves]
+                merged.extend((lv, m) for m, lv in moves.items())
+                merged.sort(key=lambda row: row[0])
+
+    # Preserve Pixie Punch's original learners and levels; new distributions
+    # are restricted to physical Fairy types. Apply after imported data.
+    pixie_path = os.path.join(REPO, "tools", "testdata", "pixie_punch.json")
+    if os.path.exists(pixie_path):
+        with open(pixie_path, encoding="utf-8") as f:
+            pixie = json.load(f)
+        merged = [(lv, m) for lv, m in merged if m != 'PIXIE_PUNCH']
+        for species, level in pixie['level_up'].items():
+            if norm_name(species) == norm_name(label_base):
+                merged.append((level, 'PIXIE_PUNCH'))
+        merged.sort(key=lambda row: row[0])
+
     return (source, merged or None)
 
 # --------------------------------------------------------------------------
