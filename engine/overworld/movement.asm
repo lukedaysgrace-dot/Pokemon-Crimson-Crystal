@@ -90,6 +90,7 @@ MovementPointers:
 	dw Movement_rock_smash            ; 57
 	dw Movement_return_dig            ; 58
 	dw Movement_skyfall_top           ; 59
+	dw Movement_jump_in_place         ; 5a
 
 Movement_teleport_from:
 	ld hl, OBJECT_STEP_TYPE
@@ -773,4 +774,25 @@ JumpStep:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_PLAYER_JUMP
+	ret
+
+; NPC-only stationary jump, adapted from Fellowship of the ROMs e805dedc.
+Movement_jump_in_place:
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	set HIGH_PRIORITY_F, [hl]
+	res OVERHEAD_F, [hl]
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld [hl], 8 ; 60fps: twice the reference's four-frame half-jump
+	ld hl, OBJECT_1F ; jump arc position
+	add hl, bc
+	ld [hl], 0
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_STEP
+	call SpawnShadow
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_NPC_JUMP_IN_PLACE
 	ret

@@ -1187,6 +1187,7 @@ StepTypesJumptable:
 	dw StepType17 ; 17
 	dw StepType18 ; 18
 	dw SkyfallTop ; 19
+	dw NPCJumpInPlace ; 1a
 
 WaitStep_InPlace:
 	ld hl, OBJECT_STEP_DURATION
@@ -1196,6 +1197,48 @@ WaitStep_InPlace:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_SLEEP
+	ret
+
+; Stationary NPC jump: only change the vertical sprite offset, never its tile.
+NPCJumpInPlace:
+	call Field1cAnonymousJumptable
+; anonymous dw
+	dw .Jump
+	dw .Land
+
+.Jump:
+	ld a, 16 ; normal jump arc; no slow-step scaling
+	ld h, 2  ; 60fps: half the reference's arc increment
+	call UpdateJumpPositionInPlace
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	res OVERHEAD_F, [hl]
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld [hl], 8
+	jp IncrementObjectStructField1c
+
+.Land:
+	ld a, 16
+	ld h, 2
+	call UpdateJumpPositionInPlace
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_SLEEP
+	ld hl, OBJECT_SPRITE_Y_OFFSET
+	add hl, bc
+	ld [hl], 0
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	res HIGH_PRIORITY_F, [hl]
 	ret
 
 NPCJump:
@@ -1893,6 +1936,7 @@ Stubbed_Function4fb2:
 	db 0, -1, -2, -3, -4, -3, -2, -1
 UpdateJumpPosition:
 	call GetStepVector
+UpdateJumpPositionInPlace:
 	push af
 	ld a, h
 	ld hl, OBJECT_1F

@@ -15,6 +15,7 @@ GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
 	const GOLDENRODUNDERGROUND_THUG_PAULIE
 	const GOLDENRODUNDERGROUND_THUG_BOBBY
 	const GOLDENRODUNDERGROUND_THUG_TONY
+	const GOLDENRODUNDERGROUND_RIOLU
 
 GoldenrodUnderground_MapScripts:
 	db 0 ; scene scripts
@@ -424,7 +425,8 @@ GoldenrodUndergroundHiddenAntidote:
 
 ; The three TEAM ROCKET grunts cornering the girl at the east end of the middle corridor.
 ; The whole thing is a one-shot: once EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-; is set the trigger never fires again and all four objects are gone for good.
+; is set the trigger never fires again. The girl and RIOLU remain until the
+; reward is resolved, including if the player's party is full.
 
 GoldenrodUndergroundThugSceneFromRow18:
 	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
@@ -448,6 +450,15 @@ GoldenrodUndergroundThugScene:
 	closetext
 	opentext
 	writetext GoldenrodUndergroundThugsDemandText
+	waitbutton
+	closetext
+
+; RIOLU steps between the girl and TEAM ROCKET: (25,17) -> (24,18).
+	applymovement GOLDENRODUNDERGROUND_RIOLU, GoldenrodUndergroundRioluProtectMovement
+	opentext
+	writetext GoldenrodUndergroundRioluText
+	cry RIOLU
+	waitsfx
 	waitbutton
 	closetext
 
@@ -533,6 +544,7 @@ GoldenrodUndergroundThugScene:
 
 ; The girl comes over to thank you.
 	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlApproachMovement
+	applymovement GOLDENRODUNDERGROUND_RIOLU, GoldenrodUndergroundRioluApproachMovement
 	turnobject PLAYER, UP
 	opentext
 	scall GoldenrodUndergroundGirlRewardScript
@@ -540,6 +552,10 @@ GoldenrodUndergroundThugScene:
 	closetext
 	applymovement GOLDENRODUNDERGROUND_GIRL, GoldenrodUndergroundGirlLeavesMovement
 	disappear GOLDENRODUNDERGROUND_GIRL
+	checkevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
+	iftrue GoldenrodUndergroundThugScene_Done
+	applymovement GOLDENRODUNDERGROUND_RIOLU, GoldenrodUndergroundThugLeavesFrom22Movement
+	disappear GOLDENRODUNDERGROUND_RIOLU
 GoldenrodUndergroundThugScene_Done:
 	end
 
@@ -550,12 +566,18 @@ GoldenrodUndergroundThugScene_RewardPending:
 ; Fallback if you walk away before she can hand the rewards over.
 GoldenrodUndergroundGirlScript:
 	faceplayer
+	checkevent EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	iffalse .StillCornered
 	opentext
 	scall GoldenrodUndergroundGirlRewardScript
 	iffalse .RewardPending
 	closetext
 	disappear GOLDENRODUNDERGROUND_GIRL
+	disappear GOLDENRODUNDERGROUND_RIOLU
 	end
+
+.StillCornered:
+	jumptext GoldenrodUndergroundGirlPleaText
 
 .RewardPending:
 	closetext
@@ -578,6 +600,7 @@ GoldenrodUndergroundGirlRewardScript:
 	givepoke RIOLU, 15
 	special SetLastPartyMonMale
 	setevent EVENT_GOT_RIOLU_FROM_GOLDENROD_UNDERGROUND_GIRL
+	disappear GOLDENRODUNDERGROUND_RIOLU
 	sjump .Farewell
 
 .DeclinedRiolu:
@@ -606,12 +629,34 @@ GoldenrodUndergroundThugScript:
 	closetext
 	end
 
+GoldenrodUndergroundRioluScript:
+	opentext
+	writetext GoldenrodUndergroundRioluText
+	cry RIOLU
+	waitsfx
+	waitbutton
+	closetext
+	end
+
+GoldenrodUndergroundRioluProtectMovement:
+	step LEFT
+	step DOWN
+	turn_head LEFT
+	jump_in_place
+	jump_in_place
+	step_end
+
+GoldenrodUndergroundRioluApproachMovement:
+	step LEFT
+	step LEFT
+	turn_head LEFT
+	step_end
+
 GoldenrodUndergroundPlayerBacksDownMovement:
 	step DOWN
 	step_end
 
 GoldenrodUndergroundThugPaulieApproachMovement:
-	step LEFT
 	step LEFT
 	step DOWN
 	step LEFT
@@ -621,13 +666,10 @@ GoldenrodUndergroundThugPaulieApproachMovement:
 GoldenrodUndergroundThugBobbyApproachMovement:
 	step DOWN
 	step LEFT
-	step LEFT
 	step_end
 
 GoldenrodUndergroundThugTonyApproachMovement:
 	step LEFT
-	step LEFT
-	step DOWN
 	step_end
 
 GoldenrodUndergroundThugBobbyShovedMovement:
@@ -679,6 +721,7 @@ GoldenrodUndergroundThugTonyLeavesMovement:
 	step_end
 
 GoldenrodUndergroundGirlApproachMovement:
+	step UP
 	step LEFT
 	step LEFT
 	step LEFT
@@ -1078,6 +1121,10 @@ GoldenrodUndergroundGirlPartyFullText:
 	cont "talk to me again."
 	done
 
+GoldenrodUndergroundRioluText:
+	text "RIOLU: RIO!"
+	done
+
 GoldenrodUnderground_MapEvents:
 	db 0, 0 ; filler
 
@@ -1100,7 +1147,7 @@ GoldenrodUnderground_MapEvents:
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
 
-	db 13 ; object events
+	db 14 ; object events
 	object_event  5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
 	object_event  6,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
 	object_event  3, 27, SPRITE_POKEMANIAC_NEW, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
@@ -1110,7 +1157,8 @@ GoldenrodUnderground_MapEvents:
 	object_event  7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
 	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BitterMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRANNY
-	object_event 25, 17, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_LOOK_DOWN_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT
-	object_event 24, 17, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	object_event 24, 18, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
-	object_event 25, 18, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 25, 18, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundGirlScript, EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT
+	object_event 23, 17, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 23, 18, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 24, 19, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundThugScript, EVENT_GOLDENROD_UNDERGROUND_THUGS_BEATEN
+	object_event 25, 17, SPRITE_RIOLU, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodUndergroundRioluScript, EVENT_GOLDENROD_UNDERGROUND_GIRL_LEFT

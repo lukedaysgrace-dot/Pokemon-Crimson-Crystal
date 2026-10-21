@@ -240,6 +240,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const STEP_TYPE_17              ; 17
 	const STEP_TYPE_18              ; 18
 	const STEP_TYPE_SKYFALL_TOP     ; 19
+	const STEP_TYPE_NPC_JUMP_IN_PLACE ; 1a
 
 ; ObjectActionPairPointers indexes (see engine/overworld/map_object_action.asm)
 	const_def

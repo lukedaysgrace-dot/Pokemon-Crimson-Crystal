@@ -218,3 +218,8 @@ ENDM
 skyfall_top: MACRO
 	db movement_skyfall_top
 ENDM
+
+	enum movement_jump_in_place ; $5a
+jump_in_place: MACRO
+	db movement_jump_in_place
+ENDM
