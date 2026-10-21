@@ -36,11 +36,11 @@ UnknownText_0x175611:
 	para "I thought about"
 	line "going for it, but"
 
-	para "I decided to work"
-	line "with my one-and-"
+	para "I decided to train"
+	line "my first partner"
 
-	para "only right to the"
-	line "extreme end."
+	para "and help the whole"
+	line "team get stronger."
 	done
 
 UnknownText_0x175693:

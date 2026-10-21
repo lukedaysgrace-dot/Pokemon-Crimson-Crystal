@@ -247,22 +247,23 @@ BugsyText_BugMonsAreDeep:
 	done
 
 BugCatcherBennySeenText:
-	text "Bug #MON evolve"
-	line "young. So they get"
+	text "Some bug #MON"
+	line "need time to grow."
 
-	para "stronger that much"
-	line "faster."
+	para "My TRAPINCH and"
+	line "PINECO are worth"
+	cont "the wait!"
 	done
 
 BugCatcherBennyBeatenText:
-	text "Just evolving"
-	line "isn't enough!"
+	text "We still need"
+	line "more time to grow!"
 	done
 
 BugCatcherBennyAfterBattleText:
-	text "#MON become"
-	line "stronger if they"
-	cont "evolve. Really!"
+	text "Even before they"
+	line "evolve, my bugs"
+	cont "learn new tricks!"
 	done
 
 BugCatcherAlSeenText:

@@ -1,13 +1,8 @@
 UnknownText_0x174c7f:
 	text "Do you remember my"
-	line "sweet @"
-	text_ram wStringBuffer4
-	text "?"
+	line "sweet RAPIDASH?"
 
-	para "@"
-	text_ram wStringBuffer4
-	text " runs"
-	line "very fast."
+	para "It runs so fast!"
 
 	para "It's exhilarating"
 	line "to ride on its"

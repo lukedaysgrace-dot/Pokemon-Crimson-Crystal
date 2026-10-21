@@ -114,6 +114,7 @@ ChikoritaEvosAttacks:
 	dbw 8, POISONPOWDER
 	dbw 11, SYNTHESIS
 	dbw 13, BULLET_SEED
+	dbw 14, MEGA_DRAIN
 	dbw 17, LIGHT_SCREEN
 	dbw 17, REFLECT
 	dbw 20, DRAINING_KISS
@@ -139,6 +140,7 @@ BayleefEvosAttacks:
 	dbw 8, POISONPOWDER
 	dbw 11, SYNTHESIS
 	dbw 15, BULLET_SEED
+	dbw 16, MEGA_DRAIN
 	dbw 18, LIGHT_SCREEN
 	dbw 18, REFLECT
 	dbw 22, DRAINING_KISS
@@ -163,6 +165,7 @@ MeganiumEvosAttacks:
 	dbw 8, POISONPOWDER
 	dbw 11, SYNTHESIS
 	dbw 15, BULLET_SEED
+	dbw 16, MEGA_DRAIN
 	dbw 18, LIGHT_SCREEN
 	dbw 18, REFLECT
 	dbw 22, DRAINING_KISS
@@ -683,6 +686,7 @@ CleffaEvosAttacks:
 	dbw 1, SPLASH
 	dbw 1, SWEET_KISS
 	dbw 4, ENCORE
+	dbw 5, FAIRY_WIND
 	dbw 7, SING
 	dbw 15, DRAINING_KISS
 	dbw 16, MAGICAL_LEAF
@@ -1401,6 +1405,7 @@ SlowkingEvosAttacks:
 	dbw 46, TRICK_ROOM
 	dbw 49, AURA_SPHERE
 	dbw 50, DREAM_EATER
+	dbw 50, RECOVER
 	dbw 55, SLACK_OFF
 	dbw 56, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -1412,6 +1417,7 @@ MisdreavusEvosAttacks:
 	dbw 1, GROWL
 	dbw 1, PSYWAVE
 	dbw 5, SPITE
+	dbw 7, FAIRY_WIND
 	dbw 9, ASTONISH
 	dbw 11, SHADOW_SNEAK
 	dbw 13, DISARMING_VOICE
@@ -4295,6 +4301,7 @@ AmbipomEvosAttacks:
 	dbw 29, AGILITY
 	dbw 30, U_TURN
 	dbw 32, BOUNCE
+	dbw 36, DIZZY_PUNCH
 	dbw 38, BODY_SLAM
 	dbw 40, TRIPLE_AXEL
 	dbw 42, TAKE_DOWN
@@ -4745,6 +4752,7 @@ MismagiusEvosAttacks:
 	dbw 1, MAGICAL_LEAF
 	dbw 1, PSYWAVE
 	dbw 5, SPITE
+	dbw 7, FAIRY_WIND
 	dbw 9, ASTONISH
 	dbw 11, SHADOW_SNEAK
 	dbw 15, HEX
@@ -5673,6 +5681,7 @@ DragapultEvosAttacks:
 	dbw 40, DEFOG
 	dbw 42, DRAGON_DANCE
 	dbw 42, SCALE_SHOT
+	dbw 48, CRUNCH
 	dbw 54, DRAGON_DARTS
 	dbw 54, TAKE_DOWN
 	dbw 56, OUTRAGE
@@ -5733,6 +5742,7 @@ GrimmsnarlEvosAttacks:
 	dbw 1, BULK_UP
 	dbw 1, SPIRIT_BREAK
 	dbw 1, FAKE_OUT
+	dbw 1, PIXIE_PUNCH
 	dbw 20, SUCKER_PUNCH
 	dbw 20, SWAGGER
 	dbw 22, LOW_SWEEP
@@ -6153,6 +6163,7 @@ ApplinEvosAttacks:
 	dbw 1, WITHDRAW
 	dbw 4, ABSORB
 	dbw 8, DEFENSE_CURL
+	dbw 10, GROWTH
 	dbw 12, TWISTER
 	dbw 16, MEGA_DRAIN
 	dbw 18, DRAGONBREATH
@@ -6479,6 +6490,7 @@ KotoraEvosAttacks:
 	dbw 13, SCARY_FACE
 	dbw 18, BITE
 	dbw 21, SPARK
+	dbw 24, SLACK_OFF
 	dbw 26, HYPER_VOICE
 	dbw 29, AGILITY
 	dbw 34, THUNDER_FANG
@@ -6916,6 +6928,7 @@ RaitoraEvosAttacks:
 	dbw 13, SCARY_FACE
 	dbw 18, BITE
 	dbw 21, SPARK
+	dbw 24, SLACK_OFF
 	dbw 26, HYPER_VOICE
 	dbw 29, AGILITY
 	dbw 30, VOLT_SWITCH
@@ -6941,6 +6954,7 @@ GorotoraEvosAttacks:
 	dbw 13, SCARY_FACE
 	dbw 18, BITE
 	dbw 21, SPARK
+	dbw 24, SLACK_OFF
 	dbw 26, HYPER_VOICE
 	dbw 29, AGILITY
 	dbw 30, VOLT_SWITCH
@@ -7835,6 +7849,7 @@ MiloticEvosAttacks:
 	dbw 40, SURF
 	dbw 42, DRAGON_TAIL
 	dbw 42, RAIN_DANCE
+	dbw 44, CALM_MIND
 	dbw 45, SAFEGUARD
 	dbw 51, HYDRO_PUMP
 	db 0 ; no more level-up moves
@@ -8847,6 +8862,7 @@ RapidashGalarianEvosAttacks:
 	dbw 36, FLAMETHROWER
 	dbw 36, WILD_CHARGE
 	dbw 43, TAKE_DOWN
+	dbw 48, MOONBLAST
 	dbw 52, FLARE_BLITZ
 	dbw 56, PSYCHIC_M
 	db 0 ; no more level-up moves
@@ -8978,6 +8994,7 @@ SlowkingGalarianEvosAttacks:
 	dbw 43, PSYCH_UP
 	dbw 46, FUTURE_SIGHT
 	dbw 48, EERIE_SPELL
+	dbw 50, RECOVER
 	dbw 51, TRICK_ROOM
 	dbw 55, SLACK_OFF
 	db 0 ; no more level-up moves
@@ -9445,6 +9462,7 @@ TsareenaEvosAttacks:
 	dbw 40, LEAF_BLADE
 	dbw 40, PLAY_ROUGH
 	dbw 42, SEED_BOMB
+	dbw 46, SWORDS_DANCE
 	dbw 50, WOOD_HAMMER
 	dbw 52, TRIPLE_AXEL
 	dbw 55, LEAF_STORM

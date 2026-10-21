@@ -1,11 +1,9 @@
 JoseAromaText:
-	text "Hey listen, my"
-	line "@"
-	text_ram wStringBuffer4
-	text "'s stick"
+	text "My FARFETCH'D's"
+	line "stick has a"
 
-	para "has this really"
-	line "delicious aroma."
+	para "really delicious"
+	line "aroma."
 
 	para "That aroma gets my"
 	line "appetite going!"

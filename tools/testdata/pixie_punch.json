@@ -1,0 +1,23 @@
+{
+  "policy": "Preserve every existing learner. New distributions require Fairy typing and base Attack strictly exceeding base Special Attack in this game. The five grandfathered learners keep their original levels regardless of stats. Sketch remains unrestricted.",
+  "level_up": {
+    "SNUBBULL": 7,
+    "GRANBULL": 1,
+    "IMPIDIMP": 8,
+    "MORGREM": 1,
+    "GRIMMSNARL": 1,
+    "TINKATINK": 5,
+    "TINKATUFF": 5,
+    "TINKATON": 5,
+    "MIMIKYU": 9,
+    "PONYTA_GALARIAN": 8,
+    "RAPIDASH_GALARIAN": 1,
+    "MAWILE": 6,
+    "JIGGLYPUFF": 7,
+    "WIGGLYTUFF": 1,
+    "AZURILL": 7,
+    "MARILL": 7,
+    "AZUMARILL": 7
+  },
+  "grandfathered": ["JIGGLYPUFF", "WIGGLYTUFF", "AZURILL", "MARILL", "AZUMARILL"]
+}

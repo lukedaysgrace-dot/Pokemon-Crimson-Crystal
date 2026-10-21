@@ -321,6 +321,9 @@ def verify_receipt():
     order, levels, tms, eggs, parents, utility, *_ = data
     technical = load_technical_tutors()
     known = available(data)
+    # Deliberate project compatibility is recorded separately; never inflate
+    # the pinned historical reference with a custom trainer-move decision.
+    project = json.loads(read('tools/testdata/trainer_move_access.json'))
     revision = receipt.get('distribution_revision')
     curated = revision in {'thematic-level-up-and-canonical-breeding', 'full-access-with-blackthorn-fallback'}
     blackthorn = revision == 'full-access-with-blackthorn-fallback'
@@ -344,7 +347,8 @@ def verify_receipt():
         assert protected <= known[c], (c, sorted(protected-known[c]), 'previously expanded movepool trimmed')
         deferred = set(receipt.get('deferred_moves', {}).get(c, []))
         assert expected - known[c] == deferred, (c, sorted((expected-known[c]) ^ deferred), 'unrecorded coverage change')
-        assert set(technical.get(c, [])) <= expected, (c, 'tutor move without canonical support')
+        approved = set(project['technical_tutor'].get(c, []))
+        assert set(technical.get(c, [])) <= expected | approved, (c, 'tutor move without canonical or project support')
         assert len(technical.get(c, [])) == len(set(technical.get(c, []))), (c, 'duplicate tutor move')
         assert len(set(technical.get(c, [])) | {m for i, m in enumerate(UTILITY) if utility[c] & (1 << i)}) <= capacity, (c, 'tutor capacity')
         assert len(set(eggs[c]) | set(technical.get(c, []))) <= capacity, (c, 'Blackthorn combined-menu capacity')
