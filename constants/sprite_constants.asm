@@ -156,6 +156,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_SILPH_WORKER_M
 	const SPRITE_JIRACHI
 	const SPRITE_SLOT_MANIAC
+	const SPRITE_RIOLU
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
