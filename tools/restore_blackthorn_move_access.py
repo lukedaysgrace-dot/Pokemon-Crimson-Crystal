@@ -21,6 +21,11 @@ def main():
                  for c in order}
     technical = {c: sorted((set(receipt['expected'].get(c, [])) |
                             set(project['technical_tutor'].get(c, []))) - base[c]) for c in order}
+    review_path = ROOT / 'tools/testdata/attacking_learnset_review.json'
+    if review_path.exists():
+        review = json.loads(review_path.read_text(encoding='utf-8'))
+        for c, moves in review['tutor_additions'].items():
+            technical[c] = sorted(set(technical[c]) | set(moves))
     after = available(data, technical=technical)
     for c in order:
         assert set(protected[c]) <= after[c], (c, 'lost previously expanded access', set(protected[c])-after[c])

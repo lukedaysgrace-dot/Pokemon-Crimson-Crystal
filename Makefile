@@ -113,6 +113,7 @@ test-complex: pokecrystal_debug.gbc
 	python3 tools/battletest/cove_sprite_checks.py
 
 test-learnsets: pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/audit_attacking_learnsets.py
 	$(BATTLE_TEST_PYTHON) tools/audit_canonical_learnsets.py
 	$(BATTLE_TEST_PYTHON) tools/audit_breeding_moves.py
 	$(BATTLE_TEST_PYTHON) tools/test_learnset_variety.py pokecrystal.gbc

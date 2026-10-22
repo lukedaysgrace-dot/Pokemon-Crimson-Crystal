@@ -6,6 +6,7 @@ from audit_breeding_moves import breeding_data, routes
 from audit_canonical_learnsets import available
 from audit_learnset_variety import ROOT, load_technical_tutors
 import audit_trainers as trainers
+from attacking_learnsets import check_level
 
 RECEIPT = ROOT / 'tools/testdata/trainer_move_access.json'
 
@@ -20,7 +21,7 @@ def audit():
         assert set(moves) <= known[c], (c, 'requested trainer move unavailable', set(moves)-known[c])
     for c, moves in receipt['level_up'].items():
         for move, level in moves.items():
-            assert (level, move) in levels[c], (c, move, 'natural placement missing')
+            check_level(c, move, level, levels)
     # A father's natural move is an independent source; neither the egg list
     # nor its tutor presentation may serve as its own breeding proof.
     independent = routes(data, technical={})

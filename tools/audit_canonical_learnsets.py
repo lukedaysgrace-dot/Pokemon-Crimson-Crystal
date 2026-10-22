@@ -14,6 +14,7 @@ import re
 from audit_breeding_moves import breeding_data, routes, UTILITY
 from audit_learnset_variety import ROOT, read, load_technical_tutors
 from lumi_learnsets.gen_learnsets import MOVE_MAP
+from attacking_learnsets import check_level, review as attacking_review
 
 CACHE = ROOT / 'tools/lumi_learnsets/cache/smogon-sv'
 RECEIPT = ROOT / 'tools/testdata/canonical_learnsets.json'
@@ -348,6 +349,7 @@ def verify_receipt():
         deferred = set(receipt.get('deferred_moves', {}).get(c, []))
         assert expected - known[c] == deferred, (c, sorted((expected-known[c]) ^ deferred), 'unrecorded coverage change')
         approved = set(project['technical_tutor'].get(c, []))
+        approved.update(attacking_review().get('tutor_additions', {}).get(c, []))
         assert set(technical.get(c, [])) <= expected | approved, (c, 'tutor move without canonical or project support')
         assert len(technical.get(c, [])) == len(set(technical.get(c, []))), (c, 'duplicate tutor move')
         assert len(set(technical.get(c, [])) | {m for i, m in enumerate(UTILITY) if utility[c] & (1 << i)}) <= capacity, (c, 'tutor capacity')
@@ -356,13 +358,13 @@ def verify_receipt():
             assert technical.get(c) == technical.get(c[:-6]), (c, 'clone tutor mismatch')
     for c, ms in receipt['changes']['level_up'].items():
         for move, level in ms.items():
-            assert (level, move) in levels[c], (c, move, 'natural level missing')
+            check_level(c, move, level, levels)
     for c, ms in receipt['changes']['donor_fallbacks'].items():
         for move, level in ms.items():
-            assert (level, move) in levels[c], (c, move, 'independent donor fallback missing')
+            check_level(c, move, level, levels)
     for c, ms in receipt['changes'].get('thematic_level_up', {}).items():
         for move, level in ms.items():
-            assert (level, move) in levels[c], (c, move, 'thematic level missing')
+            check_level(c, move, level, levels)
             assert move in receipt['expected'][c], (c, move, 'thematic move without canonical compatibility')
     for c, ms in receipt['changes']['egg_moves'].items():
         assert set(ms) <= set(eggs[c]), (c, 'missing canonical egg moves')
