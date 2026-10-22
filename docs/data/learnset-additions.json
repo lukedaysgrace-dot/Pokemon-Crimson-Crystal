@@ -421,7 +421,26 @@
     "WISH": "Wish",
     "STICKY_WEB": "Sticky Web",
     "WEATHER_BALL": "Weather Ball",
-    "INCINERATE": "Incinerate"
+    "INCINERATE": "Incinerate",
+    "PSYSHOCK": "Psyshock",
+    "VACUUM_WAVE": "Vacuum Wave",
+    "DISCHARGE": "Discharge",
+    "LAVA_PLUME": "Lava Plume",
+    "METEOR_MASH": "Meteor Mash",
+    "DRAGON_HAMMER": "Dragon Hammer",
+    "COTTON_GUARD": "Cotton Guard",
+    "COSMIC_POWER": "Cosmic Power",
+    "ERUPTION": "Eruption",
+    "WATER_SPOUT": "Water Spout",
+    "DOOM_DESIRE": "Doom Desire",
+    "TAIL_GLOW": "Tail Glow",
+    "RECYCLE": "Recycle",
+    "PETAL_BLIZZARD": "Petal Blizzard",
+    "BLAZE_KICK": "Blaze Kick",
+    "SKY_UPPERCUT": "Sky Uppercut",
+    "POISON_TAIL": "Poison Tail",
+    "OMINOUS_WIND": "Ominous Wind",
+    "HORN_LEECH": "Horn Leech"
   },
   "pokemon": [
     {
@@ -536,8 +555,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -590,8 +611,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -621,11 +644,13 @@
         "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
+        "HEAD_SMASH",
         "HEAT_WAVE",
         "HURRICANE",
         "INCINERATE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -658,6 +683,7 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "ANCIENTPOWER",
         "AQUA_TAIL",
         "BIDE",
         "DETECT",
@@ -672,6 +698,7 @@
         "INCINERATE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -680,7 +707,9 @@
         "TORMENT",
         "TWISTER"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "HEAD_SMASH"
+      ]
     },
     {
       "species": "AGGRON",
@@ -917,8 +946,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -931,7 +962,9 @@
         "TRICK_ROOM",
         "TRI_ATTACK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 30
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK_ROOM": 36,
@@ -967,8 +1000,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYCHO_CUT",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -989,6 +1024,7 @@
         "AIR_CUTTER",
         "BODY_SLAM",
         "BULLDOZE",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -1006,6 +1042,7 @@
         "MIMIC",
         "MIRROR_MOVE",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "PLAY_ROUGH",
         "PSYCH_UP",
@@ -1020,7 +1057,9 @@
         "THIEF",
         "TWISTER"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "COTTON_GUARD": 32
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "DRACO_METEOR": 56,
@@ -1063,6 +1102,7 @@
         "INCINERATE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SNORE",
         "TWISTER"
@@ -1082,6 +1122,7 @@
         "BULLDOZE",
         "CALM_MIND",
         "DARK_PULSE",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DRAGON_TAIL",
         "DREAM_EATER",
@@ -1120,6 +1161,7 @@
         "ROCK_SLIDE": 26
       },
       "new_family_egg_moves": [
+        "DISCHARGE",
         "ROCK_THROW",
         "TAKE_DOWN"
       ],
@@ -1159,6 +1201,7 @@
         "DEFENSE_CURL",
         "DETECT",
         "DIG",
+        "DIZZY_PUNCH",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
@@ -1236,7 +1279,9 @@
         "TAUNT",
         "WATER_PULSE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DIZZY_PUNCH"
+      ]
     },
     {
       "species": "AMPHAROS",
@@ -1244,9 +1289,11 @@
       "newly_available": [
         "BRICK_BREAK",
         "BULLDOZE",
+        "COTTON_GUARD",
         "COUNTER",
         "DEFENSE_CURL",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DRAGON_TAIL",
@@ -1267,10 +1314,14 @@
         "SIGNAL_BEAM",
         "SNORE",
         "SUNNY_DAY",
+        "TAIL_GLOW",
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SIGNAL_BEAM": 51
+        "SIGNAL_BEAM": 51,
+        "DISCHARGE": 29,
+        "COTTON_GUARD": 46,
+        "TAIL_GLOW": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -1352,7 +1403,8 @@
         "STEALTH_ROCK",
         "STONE_EDGE",
         "SUBMISSION",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -1404,7 +1456,8 @@
         "SNORE",
         "STEALTH_ROCK",
         "STONE_EDGE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": [
         "PURSUIT",
@@ -1494,6 +1547,7 @@
         "MAGICAL_LEAF",
         "OUTRAGE",
         "RAIN_DANCE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEED_BOMB",
         "SNORE",
@@ -1501,7 +1555,8 @@
         "TAKE_DOWN"
       ],
       "new_level_up": {
-        "BULLET_SEED": 20
+        "BULLET_SEED": 20,
+        "RECYCLE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -1512,6 +1567,7 @@
       },
       "new_family_egg_moves": [
         "DEFENSE_CURL",
+        "RECYCLE",
         "ROLLOUT"
       ],
       "egg_family": "Applin",
@@ -1538,7 +1594,9 @@
       "species": "APPLIN",
       "name": "Applin",
       "newly_available": [
-        "DRACO_METEOR"
+        "DRACO_METEOR",
+        "GROWTH",
+        "RECYCLE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -1547,12 +1605,15 @@
       },
       "new_family_egg_moves": [
         "DEFENSE_CURL",
+        "RECYCLE",
         "ROLLOUT"
       ],
       "egg_family": "Applin",
       "new_tm_compatibility": [],
       "new_tutor_routes": [],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "GROWTH"
+      ]
     },
     {
       "species": "ARBOK",
@@ -1579,6 +1640,7 @@
         "MUD_SHOT",
         "MUD_SLAP",
         "PAIN_SPLIT",
+        "POISON_TAIL",
         "RAGE",
         "RAIN_DANCE",
         "ROCK_TOMB",
@@ -1592,7 +1654,9 @@
         "TORMENT",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 31
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "AQUA_TAIL": 42
@@ -1601,6 +1665,7 @@
         "DISABLE",
         "IRON_TAIL",
         "POISON_FANG",
+        "POISON_TAIL",
         "SCARY_FACE",
         "SUCKER_PUNCH"
       ],
@@ -1863,7 +1928,6 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 18,
-        "HEAT_WAVE": 42,
         "IRON_DEFENSE": 36,
         "ROCK_BLAST": 38,
         "STONE_EDGE": 50,
@@ -1883,7 +1947,9 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AQUA_TAIL",
+        "DRAGONBREATH",
         "FRUSTRATION",
+        "HEAT_WAVE",
         "IRON_TAIL",
         "SHADOW_CLAW",
         "SNORE",
@@ -1915,7 +1981,8 @@
         "SKY_ATTACK",
         "SNORE",
         "TAUNT",
-        "TORMENT"
+        "TORMENT",
+        "X_SCISSOR"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -1950,7 +2017,8 @@
         "SHADOW_CLAW",
         "SNORE",
         "TAUNT",
-        "TORMENT"
+        "TORMENT",
+        "X_SCISSOR"
       ],
       "new_evolution_access": []
     },
@@ -2132,6 +2200,7 @@
         "MUD_SHOT",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
+        "SIGNAL_BEAM",
         "SNORE",
         "STRING_SHOT",
         "STRUGGLE_BUG",
@@ -2149,14 +2218,19 @@
         "FLARE_BLITZ",
         "FOCUS_BLAST",
         "IRON_DEFENSE",
+        "LAVA_PLUME",
         "PSYCH_UP",
+        "PSYSHOCK",
         "SHADOW_BALL",
         "SOLARBEAM",
         "TAKE_DOWN",
         "TAUNT",
         "TRICK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 1,
+        "LAVA_PLUME": 32
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK": 34
@@ -2271,6 +2345,7 @@
         "LEER",
         "MIMIC",
         "MIRROR_COAT",
+        "OMINOUS_WIND",
         "PECK",
         "RAGE",
         "RAZOR_WIND",
@@ -2314,6 +2389,7 @@
         "LEER",
         "MIMIC",
         "MIRROR_COAT",
+        "OMINOUS_WIND",
         "PECK",
         "RAGE",
         "RAZOR_WIND",
@@ -2337,6 +2413,7 @@
         "BODY_SLAM",
         "BULLDOZE",
         "DARK_PULSE",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DRAGON_TAIL",
         "DREAM_EATER",
@@ -2379,6 +2456,7 @@
         "ROCK_SLIDE": 26
       },
       "new_family_egg_moves": [
+        "DISCHARGE",
         "ROCK_THROW",
         "TAKE_DOWN"
       ],
@@ -2716,6 +2794,7 @@
         "ASTONISH",
         "BODY_SLAM",
         "CALM_MIND",
+        "COTTON_GUARD",
         "DARK_PULSE",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
@@ -2732,6 +2811,7 @@
         "MIMIC",
         "MUD_SLAP",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYBEAM",
         "PSYCH_UP",
@@ -2757,6 +2837,7 @@
         "CONFUSE_RAY",
         "DESTINY_BOND",
         "FORESIGHT",
+        "OMINOUS_WIND",
         "PHANTOMFORCE",
         "PURSUIT",
         "SHADOW_SNEAK"
@@ -2769,6 +2850,7 @@
       ],
       "new_tutor_routes": [
         "CALM_MIND",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DOUBLE_TEAM",
         "DREAM_EATER",
@@ -2849,12 +2931,14 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HEAD_SMASH",
         "INCINERATE",
         "IRON_TAIL",
         "OUTRAGE",
         "REVERSAL",
         "ROCK_SLIDE",
         "SNORE",
+        "STONE_EDGE",
         "TORMENT"
       ],
       "new_evolution_access": []
@@ -2922,6 +3006,7 @@
         "IRON_TAIL",
         "LEAF_STORM",
         "MAGICAL_LEAF",
+        "MEGA_DRAIN",
         "MIMIC",
         "SEED_BOMB",
         "SNORE",
@@ -2956,7 +3041,9 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "MEGA_DRAIN"
+      ]
     },
     {
       "species": "BEEDRILL",
@@ -2982,6 +3069,7 @@
         "IRON_DEFENSE",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "PECK",
         "REFLECT",
         "ROCK_SMASH",
@@ -3024,13 +3112,15 @@
         "IRON_DEFENSE",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "PECK",
         "REFLECT",
         "ROOST",
         "SKULL_BASH",
         "SNORE",
         "STRUGGLE_BUG",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VENOSHOCK"
       ],
       "new_evolution_access": []
     },
@@ -3052,6 +3142,7 @@
         "LEECH_SEED",
         "MAGICAL_LEAF",
         "MIMIC",
+        "PETAL_BLIZZARD",
         "PLAY_ROUGH",
         "RAGE",
         "REFLECT",
@@ -3065,7 +3156,8 @@
       ],
       "new_level_up": {
         "MAGICAL_LEAF": 1,
-        "SUNNY_DAY": 1
+        "SUNNY_DAY": 1,
+        "PETAL_BLIZZARD": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -3295,9 +3387,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "WATER_SPOUT": 59
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 20,
@@ -3313,6 +3408,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle",
@@ -3406,9 +3502,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "WATER_SPOUT": 59
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 20,
@@ -3424,6 +3523,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle (Clone)",
@@ -3501,6 +3601,7 @@
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -3547,9 +3648,11 @@
         "BULLDOZE",
         "CALM_MIND",
         "DAZZLING_GLEAM",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "DYNAMICPUNCH",
+        "EGG_BOMB",
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -3563,6 +3666,7 @@
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -3571,6 +3675,7 @@
         "SNORE",
         "SUBMISSION",
         "SWEET_SCENT",
+        "TAKE_DOWN",
         "TELEPORT",
         "TRICK",
         "WATER_GUN",
@@ -3630,6 +3735,7 @@
         "MUD_SLAP"
       ],
       "new_tutor_routes": [
+        "ANCIENTPOWER",
         "BODY_SLAM",
         "BRICK_BREAK",
         "CALM_MIND",
@@ -3719,6 +3825,7 @@
         "ROCK_TOMB",
         "SAFEGUARD",
         "SEISMIC_TOSS",
+        "SKY_UPPERCUT",
         "SLUDGE_BOMB",
         "SNORE",
         "STONE_EDGE",
@@ -3726,10 +3833,12 @@
         "SWIFT",
         "TAKE_DOWN",
         "THUNDERPUNCH",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_level_up": {
-        "FORCE_PALM": 28
+        "FORCE_PALM": 28,
+        "SKY_UPPERCUT": 38
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -3769,6 +3878,7 @@
         "GIGA_IMPACT",
         "GUNK_SHOT",
         "IRON_TAIL",
+        "LEAF_STORM",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -3780,6 +3890,7 @@
         "SNORE",
         "STONE_EDGE",
         "TAKE_DOWN",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_evolution_access": []
@@ -3932,6 +4043,7 @@
       "species": "BUNEARY",
       "name": "Buneary",
       "newly_available": [
+        "COSMIC_POWER",
         "CUT",
         "DIG",
         "DOUBLE_TEAM",
@@ -3940,6 +4052,7 @@
         "HYPER_VOICE",
         "ICE_BEAM",
         "IRON_TAIL",
+        "KARATE_CHOP",
         "LOW_SWEEP",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -3948,6 +4061,7 @@
         "RAIN_DANCE",
         "ROCK_SMASH",
         "SHADOW_BALL",
+        "SKY_UPPERCUT",
         "SNORE",
         "SOLARBEAM",
         "SUNNY_DAY",
@@ -3957,14 +4071,14 @@
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "HYPER_VOICE": 42
-      },
+      "thematic_level_up": {},
       "new_family_egg_moves": [
         "ATTRACT",
+        "COSMIC_POWER",
         "FIRE_PUNCH",
         "FLAIL",
         "ICE_PUNCH",
+        "SKY_UPPERCUT",
         "THUNDERPUNCH"
       ],
       "egg_family": "Buneary",
@@ -3984,6 +4098,7 @@
       "new_tutor_routes": [
         "DOUBLE_TEAM",
         "HEAL_BELL",
+        "HYPER_VOICE",
         "IRON_TAIL",
         "LOW_SWEEP",
         "MEGA_KICK",
@@ -3993,7 +4108,9 @@
         "TRIPLE_AXEL",
         "WATER_PULSE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "KARATE_CHOP"
+      ]
     },
     {
       "species": "BUTTERFREE",
@@ -4020,6 +4137,7 @@
         "MIMIC",
         "MORNING_SUN",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
@@ -4059,6 +4177,7 @@
         "DOUBLE_TEAM",
         "DRAINING_KISS",
         "DREAM_EATER",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_DRAIN",
@@ -4068,6 +4187,7 @@
         "MIMIC",
         "MORNING_SUN",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
@@ -4091,6 +4211,7 @@
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "ENDURE",
+        "ERUPTION",
         "EXPLOSION",
         "FIRE_SPIN",
         "FLAME_CHARGE",
@@ -4100,6 +4221,7 @@
         "GROWTH",
         "HEADBUTT",
         "IRON_HEAD",
+        "LAVA_PLUME",
         "MIMIC",
         "RAIN_DANCE",
         "ROAR",
@@ -4110,7 +4232,9 @@
         "STONE_EDGE"
       ],
       "new_level_up": {
-        "YAWN": 39
+        "YAWN": 39,
+        "LAVA_PLUME": 22,
+        "ERUPTION": 51
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -4338,15 +4462,16 @@
         "SOLARBEAM"
       ],
       "new_tutor_routes": [
+        "BUG_BUZZ",
         "ENDURE",
         "GIGA_IMPACT",
+        "HEAT_WAVE",
+        "OVERHEAT",
         "SCALD",
         "SNORE",
         "VENOSHOCK"
       ],
-      "new_evolution_access": [
-        "BUG_BUZZ"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "CERULEDGE",
@@ -4358,11 +4483,13 @@
         "FALSE_SWIPE",
         "IRON_DEFENSE",
         "IRON_HEAD",
+        "LAVA_PLUME",
         "OVERHEAT",
         "POISON_JAB",
         "PSYCH_UP",
         "TAKE_DOWN",
         "TAUNT",
+        "VACUUM_WAVE",
         "X_SCISSOR"
       ],
       "new_level_up": {},
@@ -4384,9 +4511,11 @@
         "PSYCH_UP",
         "TAKE_DOWN",
         "TAUNT",
+        "VACUUM_WAVE",
         "X_SCISSOR"
       ],
       "new_evolution_access": [
+        "LAVA_PLUME",
         "OVERHEAT"
       ]
     },
@@ -4427,6 +4556,7 @@
         "BULLDOZE",
         "CHARM",
         "ENDURE",
+        "FREEZE_DRY",
         "GIGA_IMPACT",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -4472,6 +4602,7 @@
         "BULLDOZE",
         "CHARM",
         "ENDURE",
+        "FREEZE_DRY",
         "HYPER_VOICE",
         "ICY_WIND",
         "LIQUIDATION",
@@ -4518,9 +4649,11 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "FLAME_CHARGE",
+        "FLAME_WHEEL",
         "FLARE_BLITZ",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "PHANTOMFORCE",
         "PSYCH_UP",
         "SAFEGUARD",
         "SNORE",
@@ -4560,6 +4693,7 @@
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -4604,9 +4738,11 @@
         "BULLDOZE",
         "CALM_MIND",
         "DAZZLING_GLEAM",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "DYNAMICPUNCH",
+        "EGG_BOMB",
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -4620,6 +4756,7 @@
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -4628,6 +4765,7 @@
         "SNORE",
         "SUBMISSION",
         "SWEET_SCENT",
+        "TAKE_DOWN",
         "TELEPORT",
         "WATER_GUN",
         "WATER_PULSE",
@@ -4643,10 +4781,13 @@
         "ENDURE",
         "FLARE_BLITZ",
         "HEAT_WAVE",
+        "LAVA_PLUME",
         "OVERHEAT",
         "TAKE_DOWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 32
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "HEAT_WAVE": 42,
@@ -4672,6 +4813,7 @@
         "AERIAL_ACE",
         "AIR_CUTTER",
         "BIDE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BRICK_BREAK",
         "BULLDOZE",
@@ -4680,6 +4822,7 @@
         "DEFOG",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "DRACO_METEOR",
         "DRAGON_RAGE",
         "DUALWINGBEAT",
         "DYNAMICPUNCH",
@@ -4697,6 +4840,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "QUICK_ATTACK",
         "RAGE",
         "REFLECT",
@@ -4745,6 +4889,7 @@
         "ACROBATICS",
         "AERIAL_ACE",
         "BIDE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BRICK_BREAK",
         "BULLDOZE",
@@ -4766,6 +4911,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "QUICK_ATTACK",
         "REFLECT",
         "SCALE_SHOT",
@@ -4776,7 +4922,9 @@
         "TAKE_DOWN",
         "TWISTER"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DRACO_METEOR"
+      ]
     },
     {
       "species": "CHARIZARD_CLONE",
@@ -4786,6 +4934,7 @@
         "AERIAL_ACE",
         "AIR_CUTTER",
         "BIDE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BRICK_BREAK",
         "BULLDOZE",
@@ -4794,6 +4943,7 @@
         "DEFOG",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "DRACO_METEOR",
         "DRAGON_RAGE",
         "DUALWINGBEAT",
         "DYNAMICPUNCH",
@@ -4811,6 +4961,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "QUICK_ATTACK",
         "RAGE",
         "REFLECT",
@@ -4859,6 +5010,7 @@
         "ACROBATICS",
         "AERIAL_ACE",
         "BIDE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BRICK_BREAK",
         "BULLDOZE",
@@ -4880,6 +5032,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "QUICK_ATTACK",
         "REFLECT",
         "SCALE_SHOT",
@@ -4890,7 +5043,9 @@
         "TAKE_DOWN",
         "TWISTER"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DRACO_METEOR"
+      ]
     },
     {
       "species": "CHARJABUG",
@@ -4898,6 +5053,7 @@
       "newly_available": [
         "ACROBATICS",
         "BATON_PASS",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
@@ -4917,6 +5073,7 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [
+        "DISCHARGE",
         "ENDURE",
         "HARDEN"
       ],
@@ -5374,6 +5531,7 @@
         "IRON_TAIL",
         "LEAF_STORM",
         "MAGICAL_LEAF",
+        "MEGA_DRAIN",
         "MIMIC",
         "SEED_BOMB",
         "SNORE",
@@ -5410,7 +5568,9 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "MEGA_DRAIN"
+      ]
     },
     {
       "species": "CHINCHOU",
@@ -5419,6 +5579,7 @@
         "BLIZZARD",
         "BOUNCE",
         "DAZZLING_GLEAM",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -5435,7 +5596,9 @@
         "SUCKER_PUNCH",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 27
+      },
       "breeding_fallbacks": {
         "SUCKER_PUNCH": 30
       },
@@ -5465,6 +5628,7 @@
         "LIQUIDATION",
         "MIMIC",
         "SNORE",
+        "TAKE_DOWN",
         "WILD_CHARGE"
       ],
       "new_evolution_access": []
@@ -5478,6 +5642,7 @@
         "BOUNCE",
         "BRICK_BREAK",
         "BUBBLEBEAM",
+        "COSMIC_POWER",
         "COUNTER",
         "DAZZLING_GLEAM",
         "DETECT",
@@ -5488,6 +5653,7 @@
         "DUALWINGBEAT",
         "DYNAMICPUNCH",
         "ENDURE",
+        "FAIRY_WIND",
         "FOCUS_BLAST",
         "FRUSTRATION",
         "FUTURE_SIGHT",
@@ -5499,6 +5665,7 @@
         "MAGICAL_LEAF",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
@@ -5506,8 +5673,10 @@
         "PRESENT",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROCK_SMASH",
         "ROLLOUT",
         "SAFEGUARD",
@@ -5526,7 +5695,9 @@
         "WATER_PULSE"
       ],
       "new_level_up": {
-        "DISARMING_VOICE": 1
+        "DISARMING_VOICE": 1,
+        "METEOR_MASH": 64,
+        "COSMIC_POWER": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -5574,8 +5745,10 @@
         "NIGHT_SHADE",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -5591,6 +5764,7 @@
         "WATER_PULSE"
       ],
       "new_evolution_access": [
+        "FAIRY_WIND",
         "MAGICAL_LEAF"
       ]
     },
@@ -5603,6 +5777,7 @@
         "BOUNCE",
         "BRICK_BREAK",
         "BUBBLEBEAM",
+        "COSMIC_POWER",
         "COUNTER",
         "DAZZLING_GLEAM",
         "DETECT",
@@ -5613,6 +5788,7 @@
         "DUALWINGBEAT",
         "DYNAMICPUNCH",
         "ENDURE",
+        "FAIRY_WIND",
         "FRUSTRATION",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -5621,6 +5797,7 @@
         "MAGICAL_LEAF",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
@@ -5628,8 +5805,10 @@
         "PRESENT",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROCK_SMASH",
         "ROLLOUT",
         "SAFEGUARD",
@@ -5649,7 +5828,10 @@
         "WATER_GUN",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "METEOR_MASH": 35,
+        "COSMIC_POWER": 25
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "PLAY_ROUGH": 42,
@@ -5693,8 +5875,10 @@
         "NIGHT_SHADE",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -5712,6 +5896,7 @@
         "WATER_PULSE"
       ],
       "new_evolution_access": [
+        "FAIRY_WIND",
         "MAGICAL_LEAF"
       ]
     },
@@ -5730,6 +5915,7 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
+        "FAIRY_WIND",
         "FRUSTRATION",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -5744,6 +5930,8 @@
         "PRESENT",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -5793,6 +5981,8 @@
         "PLAY_ROUGH",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -5802,7 +5992,9 @@
         "TRICK",
         "WATER_PULSE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "FAIRY_WIND"
+      ]
     },
     {
       "species": "CLODSIRE",
@@ -5819,6 +6011,7 @@
         "HYDRO_PUMP",
         "LIQUIDATION",
         "LOW_KICK",
+        "POISON_TAIL",
         "RAIN_DANCE",
         "ROCK_SLIDE",
         "STONE_EDGE",
@@ -5827,7 +6020,9 @@
         "WATERFALL",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 23
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "EARTH_POWER": 42,
@@ -6075,9 +6270,11 @@
         "HAIL",
         "ICY_WIND",
         "MIMIC",
+        "ROCK_BLAST",
         "ROLLOUT",
         "SELFDESTRUCT",
         "SNORE",
+        "SPIKE_CANNON",
         "STONE_EDGE",
         "SUCKER_PUNCH"
       ],
@@ -6096,6 +6293,7 @@
         "ICY_WIND",
         "IRON_DEFENSE",
         "LIQUIDATION",
+        "OMINOUS_WIND",
         "PSYCHIC_M",
         "ROCK_BLAST",
         "ROCK_SLIDE",
@@ -6128,6 +6326,7 @@
         "ICY_WIND",
         "IRON_DEFENSE",
         "LIQUIDATION",
+        "OMINOUS_WIND",
         "ROCK_BLAST",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -6177,6 +6376,7 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "BODY_SLAM",
         "DOUBLE_EDGE",
         "ENDURE",
@@ -6188,9 +6388,7 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": [
-        "AIR_SLASH"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "CORVISQUIRE",
@@ -6227,6 +6425,7 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "ENDURE",
         "FOCUS_ENERGY",
         "HURRICANE",
@@ -6235,9 +6434,7 @@
         "TAKE_DOWN",
         "U_TURN"
       ],
-      "new_evolution_access": [
-        "AIR_SLASH"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "CRADILY",
@@ -6365,6 +6562,7 @@
         "THUNDERBOLT"
       ],
       "new_tutor_routes": [
+        "ANCIENTPOWER",
         "BODY_SLAM",
         "DOUBLE_TEAM",
         "EARTH_POWER",
@@ -6417,6 +6615,7 @@
         "TAUNT",
         "THIEF",
         "TORMENT",
+        "VACUUM_WAVE",
         "X_SCISSOR"
       ],
       "new_level_up": {
@@ -6431,7 +6630,8 @@
         "CROSS_CHOP",
         "DRAIN_PUNCH",
         "FAKE_OUT",
-        "HEADBUTT"
+        "HEADBUTT",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Croagunk",
       "new_tm_compatibility": [
@@ -6496,6 +6696,7 @@
         "HURRICANE",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "RAZOR_WIND",
@@ -6550,6 +6751,7 @@
         "HEX",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "SNORE",
@@ -6603,9 +6805,8 @@
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "SWORDS_DANCE": 30,
+        "SWORDS_DANCE": 38,
         "SPITE": 34,
-        "SCALD": 42,
         "LIQUIDATION": 44,
         "FLIP_TURN": 18
       },
@@ -6639,6 +6840,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "SCALD",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
         "SNORE",
@@ -6692,7 +6894,6 @@
       },
       "thematic_level_up": {
         "BULLDOZE": 18,
-        "EARTH_POWER": 42,
         "STEALTH_ROCK": 36
       },
       "new_family_egg_moves": [
@@ -6719,6 +6920,7 @@
         "COUNTER",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
+        "EARTH_POWER",
         "FISSURE",
         "FRUSTRATION",
         "ICY_WIND",
@@ -6752,6 +6954,7 @@
         "IRON_DEFENSE",
         "LEECH_LIFE",
         "LIQUIDATION",
+        "OMINOUS_WIND",
         "PIN_MISSILE",
         "ROCK_BLAST",
         "ROCK_SLIDE",
@@ -6784,6 +6987,7 @@
         "IRON_DEFENSE",
         "LEECH_LIFE",
         "LIQUIDATION",
+        "OMINOUS_WIND",
         "PIN_MISSILE",
         "ROCK_BLAST",
         "ROCK_SLIDE",
@@ -6807,11 +7011,13 @@
         "DOUBLE_KICK",
         "DOUBLE_TEAM",
         "ENDURE",
+        "ERUPTION",
         "FIRE_FANG",
         "FIRE_SPIN",
         "FRUSTRATION",
         "HEAT_WAVE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MIMIC",
         "OVERHEAT",
         "PLAY_ROUGH",
@@ -6821,7 +7027,9 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "OVERHEAT": 58
+        "OVERHEAT": 58,
+        "LAVA_PLUME": 23,
+        "ERUPTION": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -6945,6 +7153,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "RECYCLE",
         "REVERSAL",
         "ROLLOUT",
         "SEED_BOMB",
@@ -6957,7 +7166,9 @@
         "TRIPLE_AXEL",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "RECYCLE": 27
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BRAVE_BIRD": 56,
@@ -7144,6 +7355,7 @@
         "CHARM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FOUL_PLAY",
         "FRUSTRATION",
         "MIMIC",
@@ -7204,6 +7416,7 @@
         "BODY_SLAM",
         "CHARM",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FOUL_PLAY",
         "FRUSTRATION",
         "FURY_SWIPES",
@@ -7232,12 +7445,14 @@
         "GIGA_IMPACT",
         "GYRO_BALL",
         "OUTRAGE",
+        "RECYCLE",
         "SEED_BOMB",
         "TAKE_DOWN"
       ],
       "new_level_up": {
         "BULLET_SEED": 20,
-        "DRAGON_TAIL": 4
+        "DRAGON_TAIL": 4,
+        "RECYCLE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -7247,6 +7462,7 @@
       },
       "new_family_egg_moves": [
         "DEFENSE_CURL",
+        "RECYCLE",
         "ROLLOUT"
       ],
       "egg_family": "Applin",
@@ -7376,8 +7592,7 @@
       ],
       "new_level_up": {
         "PURSUIT": 15,
-        "RAGE": 8,
-        "TRI_ATTACK": 21
+        "RAGE": 8
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -7410,7 +7625,8 @@
         "LOW_KICK",
         "MIMIC",
         "REFLECT",
-        "SNORE"
+        "SNORE",
+        "TRI_ATTACK"
       ],
       "new_evolution_access": []
     },
@@ -7466,6 +7682,7 @@
       "new_tutor_routes": [
         "BOUNCE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "ENCORE",
         "FRUSTRATION",
         "GUNK_SHOT",
@@ -7481,9 +7698,7 @@
         "SEED_BOMB",
         "SUPERPOWER"
       ],
-      "new_evolution_access": [
-        "EARTH_POWER"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "DRAGAPULT",
@@ -7493,6 +7708,7 @@
         "BATON_PASS",
         "BEAT_UP",
         "BODY_SLAM",
+        "CRUNCH",
         "ENDURE",
         "FLY",
         "GIGA_IMPACT",
@@ -7543,7 +7759,9 @@
         "SNORE",
         "TRI_ATTACK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "CRUNCH"
+      ]
     },
     {
       "species": "DRAGONAIR",
@@ -7667,6 +7885,7 @@
         "MEGA_PUNCH",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -7739,6 +7958,7 @@
         "MEGA_PUNCH",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -7934,9 +8154,11 @@
         "ICY_WIND",
         "MUD_SLAP",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYBEAM",
         "PSYCH_UP",
         "RAIN_DANCE",
+        "RECYCLE",
         "ROLLOUT",
         "SKILL_SWAP",
         "SNORE",
@@ -7946,7 +8168,9 @@
         "THUNDER",
         "TRICK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "OMINOUS_WIND": 20
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK": 38
@@ -7982,6 +8206,7 @@
         "NIGHT_SHADE",
         "PSYBEAM",
         "PSYCH_UP",
+        "RECYCLE",
         "ROLLOUT",
         "SKILL_SWAP",
         "SNORE",
@@ -8008,9 +8233,11 @@
         "ICY_WIND",
         "MUD_SLAP",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYBEAM",
         "PSYCH_UP",
         "RAIN_DANCE",
+        "RECYCLE",
         "ROLLOUT",
         "SKILL_SWAP",
         "SNORE",
@@ -8021,7 +8248,9 @@
         "TRICK",
         "TRICK_ROOM"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "OMINOUS_WIND": 20
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK": 36,
@@ -8058,6 +8287,7 @@
         "NIGHT_SHADE",
         "PSYBEAM",
         "PSYCH_UP",
+        "RECYCLE",
         "ROLLOUT",
         "SKILL_SWAP",
         "SNORE",
@@ -8152,8 +8382,10 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -8171,7 +8403,9 @@
         "TRI_ATTACK",
         "WISH"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 57
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "CALM_MIND": 32,
@@ -8217,6 +8451,7 @@
         "NIGHT_SHADE",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -8265,6 +8500,7 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "POISON_JAB",
+        "POISON_TAIL",
         "PSYCH_UP",
         "PURSUIT",
         "RAGE",
@@ -8325,6 +8561,7 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "POISON_JAB",
+        "POISON_TAIL",
         "PSYCH_UP",
         "SCARY_FACE",
         "STONE_EDGE",
@@ -8392,6 +8629,7 @@
         "CHARM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -8401,7 +8639,8 @@
         "SCARY_FACE",
         "SHADOW_CLAW",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "TRI_ATTACK"
       ],
       "new_evolution_access": []
     },
@@ -8453,6 +8692,7 @@
         "CHARM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FOUL_PLAY",
         "FRUSTRATION",
         "FURY_SWIPES",
@@ -8464,7 +8704,8 @@
         "SHADOW_CLAW",
         "SLASH",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "TRI_ATTACK"
       ],
       "new_evolution_access": []
     },
@@ -8502,6 +8743,7 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "POISON_JAB",
+        "POISON_TAIL",
         "PSYCH_UP",
         "PURSUIT",
         "RAGE",
@@ -8566,6 +8808,7 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "POISON_JAB",
+        "POISON_TAIL",
         "PSYCH_UP",
         "SCALE_SHOT",
         "SCARY_FACE",
@@ -8665,6 +8908,7 @@
         "METRONOME",
         "MIMIC",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "PURSUIT",
         "RAIN_DANCE",
@@ -8691,7 +8935,8 @@
       },
       "new_family_egg_moves": [
         "DESTINY_BOND",
-        "FAINT_ATTACK"
+        "FAINT_ATTACK",
+        "OMINOUS_WIND"
       ],
       "egg_family": "Duskull",
       "new_tm_compatibility": [
@@ -8767,6 +9012,7 @@
         "METRONOME",
         "MIMIC",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "PURSUIT",
         "RAIN_DANCE",
@@ -8793,7 +9039,8 @@
       },
       "new_family_egg_moves": [
         "DESTINY_BOND",
-        "FAINT_ATTACK"
+        "FAINT_ATTACK",
+        "OMINOUS_WIND"
       ],
       "egg_family": "Duskull",
       "new_tm_compatibility": [
@@ -8858,6 +9105,7 @@
         "INFESTATION",
         "LEECH_LIFE",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "PURSUIT",
         "RAIN_DANCE",
@@ -8882,7 +9130,8 @@
       },
       "new_family_egg_moves": [
         "DESTINY_BOND",
-        "FAINT_ATTACK"
+        "FAINT_ATTACK",
+        "OMINOUS_WIND"
       ],
       "egg_family": "Duskull",
       "new_tm_compatibility": [
@@ -8901,6 +9150,8 @@
         "DREAM_EATER",
         "ENDURE",
         "FRUSTRATION",
+        "FUTURE_SIGHT",
+        "HEX",
         "ICY_WIND",
         "INFESTATION",
         "LEECH_LIFE",
@@ -8994,6 +9245,7 @@
         "MIMIC",
         "MUD_SHOT",
         "MUD_SLAP",
+        "POISON_TAIL",
         "RAGE",
         "RAIN_DANCE",
         "ROCK_SLIDE",
@@ -9009,7 +9261,9 @@
         "TOXIC_SPIKES",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TOXIC_SPIKES": 38,
@@ -9020,6 +9274,7 @@
         "DISABLE",
         "IRON_TAIL",
         "POISON_FANG",
+        "POISON_TAIL",
         "SCARY_FACE",
         "SUCKER_PUNCH"
       ],
@@ -9066,7 +9321,9 @@
         "BODY_SLAM",
         "BRICK_BREAK",
         "COUNTER",
+        "CRUNCH",
         "DETECT",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
@@ -9091,7 +9348,9 @@
         "TAUNT",
         "TELEPORT"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 26
@@ -9132,7 +9391,9 @@
         "TAUNT",
         "TELEPORT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "CRUNCH"
+      ]
     },
     {
       "species": "ELECTIVIRE",
@@ -9143,8 +9404,10 @@
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
+        "CRUNCH",
         "DETECT",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
@@ -9172,7 +9435,9 @@
         "TELEPORT",
         "TORMENT"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 26,
@@ -9220,13 +9485,16 @@
         "TELEPORT",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "CRUNCH"
+      ]
     },
     {
       "species": "ELECTRODE",
       "name": "Electrode",
       "newly_available": [
         "BIDE",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -9234,6 +9502,7 @@
         "GIGA_IMPACT",
         "MIMIC",
         "RAGE",
+        "RECYCLE",
         "SCARY_FACE",
         "SKULL_BASH",
         "SNORE",
@@ -9245,11 +9514,14 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SONICBOOM": 1
+        "SONICBOOM": 1,
+        "DISCHARGE": 27
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
-      "new_family_egg_moves": [],
+      "new_family_egg_moves": [
+        "RECYCLE"
+      ],
       "egg_family": "Voltorb",
       "new_tm_compatibility": [
         "THIEF"
@@ -9261,6 +9533,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GYRO_BALL",
         "MIMIC",
         "RAGE",
         "SCARY_FACE",
@@ -9280,11 +9553,13 @@
       "newly_available": [
         "AGILITY",
         "BULLET_SEED",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "ENDURE",
         "FOUL_PLAY",
         "GIGA_IMPACT",
         "LEAF_STORM",
+        "RECYCLE",
         "SCARY_FACE",
         "SEED_BOMB",
         "TAKE_DOWN",
@@ -9292,14 +9567,16 @@
       ],
       "new_level_up": {
         "BULLET_SEED": 9,
-        "SEED_BOMB": 34,
-        "STUN_SPORE": 6
+        "STUN_SPORE": 6,
+        "DISCHARGE": 34
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "LEAF_STORM": 56
       },
-      "new_family_egg_moves": [],
+      "new_family_egg_moves": [
+        "RECYCLE"
+      ],
       "egg_family": "Voltorb (Hisuian)",
       "new_tm_compatibility": [],
       "new_tutor_routes": [
@@ -9308,7 +9585,9 @@
         "ENDURE",
         "FOUL_PLAY",
         "GIGA_IMPACT",
+        "GYRO_BALL",
         "SCARY_FACE",
+        "SEED_BOMB",
         "TAKE_DOWN",
         "WILD_CHARGE"
       ],
@@ -9321,7 +9600,9 @@
         "BODY_SLAM",
         "BRICK_BREAK",
         "COUNTER",
+        "CRUNCH",
         "DETECT",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
@@ -9340,7 +9621,9 @@
         "TAUNT",
         "VOLT_SWITCH"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 26,
@@ -9375,7 +9658,9 @@
         "TAKE_DOWN",
         "TAUNT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "CRUNCH"
+      ]
     },
     {
       "species": "ENTEI",
@@ -9389,11 +9674,13 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
+        "ERUPTION",
         "FLAME_CHARGE",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HEAT_WAVE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MIMIC",
         "OVERHEAT",
         "PSYCH_UP",
@@ -9403,7 +9690,10 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 30,
+        "ERUPTION": 46
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "HEAT_WAVE": 44,
@@ -9457,6 +9747,7 @@
         "NIGHT_SHADE",
         "PECK",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "SANDSTORM",
         "SEED_BOMB",
@@ -9499,6 +9790,7 @@
         "LOW_KICK",
         "NIGHT_SHADE",
         "PSYCH_UP",
+        "PSYSHOCK",
         "SEED_BOMB",
         "TAKE_DOWN"
       ],
@@ -9532,6 +9824,7 @@
         "MIMIC",
         "NIGHTMARE",
         "PAY_DAY",
+        "PSYSHOCK",
         "RAGE",
         "ROAR",
         "SING",
@@ -9573,6 +9866,8 @@
         "MIMIC",
         "NIGHTMARE",
         "PAY_DAY",
+        "PSYCHO_CUT",
+        "PSYSHOCK",
         "RAGE",
         "SING",
         "SNORE"
@@ -9667,6 +9962,7 @@
         "NIGHTMARE",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "ROLLOUT",
@@ -9715,6 +10011,7 @@
         "INFESTATION",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "ROLLOUT",
@@ -9755,6 +10052,7 @@
         "PSYBEAM",
         "PSYCHO_CUT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "ROLLOUT",
@@ -9770,7 +10068,8 @@
       "new_level_up": {
         "EGG_BOMB": 27,
         "GROWTH": 1,
-        "BULLET_SEED": 1
+        "BULLET_SEED": 1,
+        "PSYSHOCK": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -9835,6 +10134,7 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DRACO_METEOR",
+        "DRAGON_HAMMER",
         "DREAM_EATER",
         "EGG_BOMB",
         "ENDURE",
@@ -9851,6 +10151,7 @@
         "POWER_WHIP",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "ROLLOUT",
@@ -9868,7 +10169,9 @@
         "EGG_BOMB": 27,
         "GROWTH": 1,
         "BULLET_SEED": 1,
-        "LEAF_STORM": 1
+        "LEAF_STORM": 1,
+        "PSYSHOCK": 1,
+        "DRAGON_HAMMER": 52
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -9944,6 +10247,7 @@
         "HEAT_WAVE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "RAGE",
         "RAZOR_LEAF",
@@ -9962,8 +10266,7 @@
         "YAWN"
       ],
       "new_level_up": {
-        "ACROBATICS": 37,
-        "AIR_CUTTER": 25
+        "ACROBATICS": 37
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -9987,6 +10290,8 @@
         "FURY_CUTTER"
       ],
       "new_tutor_routes": [
+        "AIR_CUTTER",
+        "AIR_SLASH",
         "BATON_PASS",
         "BIDE",
         "DETECT",
@@ -9997,6 +10302,7 @@
         "HEAT_WAVE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "RAGE",
         "RAZOR_LEAF",
@@ -10037,8 +10343,10 @@
         "NIGHTMARE",
         "NIGHT_SHADE",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "RAZOR_WIND",
+        "RECYCLE",
         "ROAR",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
@@ -10081,6 +10389,8 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "PSYSHOCK",
+        "RECYCLE",
         "SNORE",
         "SUCKER_PUNCH"
       ],
@@ -10106,6 +10416,7 @@
         "HEADBUTT",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "RAZOR_WIND",
@@ -10142,6 +10453,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "SNORE",
         "TWISTER"
@@ -10240,7 +10552,6 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SPITE": 36,
-        "SCALD": 42,
         "BRICK_BREAK": 26,
         "FLIP_TURN": 18,
         "OUTRAGE": 56
@@ -10278,6 +10589,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "SCALD",
         "SCALE_SHOT",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
@@ -10342,9 +10654,11 @@
       "name": "Flaaffy",
       "newly_available": [
         "BRICK_BREAK",
+        "COTTON_GUARD",
         "COUNTER",
         "DEFENSE_CURL",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
@@ -10365,7 +10679,9 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SIGNAL_BEAM": 47
+        "SIGNAL_BEAM": 47,
+        "DISCHARGE": 29,
+        "COTTON_GUARD": 43
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -10417,12 +10733,14 @@
         "IRON_DEFENSE",
         "MAGICAL_LEAF",
         "OUTRAGE",
+        "RECYCLE",
         "SCARY_FACE",
         "SNORE",
         "TAKE_DOWN"
       ],
       "new_level_up": {
-        "IRON_DEFENSE": 36
+        "IRON_DEFENSE": 36,
+        "RECYCLE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -10432,6 +10750,7 @@
       },
       "new_family_egg_moves": [
         "DEFENSE_CURL",
+        "RECYCLE",
         "ROLLOUT"
       ],
       "egg_family": "Applin",
@@ -10471,6 +10790,7 @@
         "HYPER_VOICE",
         "INCINERATE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "LEER",
         "MIMIC",
         "PAY_DAY",
@@ -10510,7 +10830,9 @@
         "HEAT_WAVE",
         "INCINERATE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MIMIC",
+        "OVERHEAT",
         "PAY_DAY",
         "RAGE",
         "REFLECT",
@@ -10657,6 +10979,7 @@
         "HYPNOSIS",
         "MUD_SLAP",
         "PECK",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "SANDSTORM",
         "SEED_BOMB",
@@ -10689,6 +11012,7 @@
         "BATON_PASS",
         "ENDURE",
         "FOUL_PLAY",
+        "PSYSHOCK",
         "SEED_BOMB",
         "TAKE_DOWN",
         "U_TURN"
@@ -10726,6 +11050,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "SCALE_SHOT",
         "SNORE",
         "SOLARBEAM",
@@ -10739,7 +11064,8 @@
         "SWIFT",
         "TAKE_DOWN",
         "THUNDERPUNCH",
-        "TWISTER"
+        "TWISTER",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "BIDE": 1,
@@ -10790,12 +11116,14 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "SCALE_SHOT",
         "SNORE",
         "STONE_EDGE",
         "STRUGGLE_BUG",
         "TAKE_DOWN",
-        "TWISTER"
+        "TWISTER",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": [
         "STEALTH_ROCK"
@@ -10843,10 +11171,7 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 22,
-        "EARTH_POWER": 44,
-        "ROCK_POLISH": 32,
-        "SIGNAL_BEAM": 26,
-        "BUG_BUZZ": 46
+        "ROCK_POLISH": 32
       },
       "new_family_egg_moves": [
         "COUNTER",
@@ -10864,9 +11189,11 @@
       ],
       "new_tutor_routes": [
         "BODY_SLAM",
+        "BUG_BUZZ",
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "DRILL_RUN",
+        "EARTH_POWER",
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
@@ -10878,6 +11205,7 @@
         "ROCK_BLAST",
         "ROCK_SLIDE",
         "SEED_BOMB",
+        "SIGNAL_BEAM",
         "SNORE",
         "STONE_EDGE",
         "STRING_SHOT",
@@ -11013,6 +11341,7 @@
         "MIMIC",
         "MUD_SLAP",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYCHIC_M",
         "PSYCH_UP",
@@ -11032,7 +11361,9 @@
         "TRIPLE_AXEL",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "OMINOUS_WIND": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SPITE": 36,
@@ -11069,6 +11400,7 @@
         "MIMIC",
         "NIGHT_SHADE",
         "PAIN_SPLIT",
+        "PHANTOMFORCE",
         "PSYCH_UP",
         "SAFEGUARD",
         "SCARY_FACE",
@@ -11151,6 +11483,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HYPER_VOICE",
         "MIMIC",
         "ROLLOUT",
         "SEED_BOMB",
@@ -11196,7 +11529,9 @@
         "PAIN_SPLIT",
         "POISON_JAB",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_SLIDE",
         "ROCK_TOMB",
@@ -11215,6 +11550,7 @@
         "TORMENT",
         "TRICK",
         "TRICK_ROOM",
+        "VACUUM_WAVE",
         "WISH",
         "X_SCISSOR"
       ],
@@ -11266,6 +11602,8 @@
         "PAIN_SPLIT",
         "POISON_JAB",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_SLIDE",
         "SAFEGUARD",
@@ -11277,6 +11615,7 @@
         "TAKE_DOWN",
         "TAUNT",
         "TORMENT",
+        "VACUUM_WAVE",
         "WISH",
         "X_SCISSOR"
       ],
@@ -11294,6 +11633,7 @@
         "BOUNCE",
         "CROSS_POISON",
         "CUT",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "ENDURE",
         "FAINT_ATTACK",
@@ -11309,8 +11649,8 @@
       ],
       "new_level_up": {
         "ABSORB": 1,
-        "SLASH": 32,
-        "SUCKER_PUNCH": 28
+        "SUCKER_PUNCH": 28,
+        "DISCHARGE": 39
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -11336,7 +11676,9 @@
         "GIGA_IMPACT",
         "SNORE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLASH"
+      ]
     },
     {
       "species": "GARDEVOIR",
@@ -11363,7 +11705,9 @@
         "NIGHT_SHADE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "SAFEGUARD",
         "SIGNAL_BEAM",
         "SING",
@@ -11377,7 +11721,8 @@
         "TORMENT",
         "TRICK",
         "TRICK_ROOM",
-        "TRIPLE_AXEL"
+        "TRIPLE_AXEL",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "MAGICAL_LEAF": 17
@@ -11422,12 +11767,15 @@
         "NIGHT_SHADE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SAFEGUARD",
         "SING",
         "SNORE",
         "TAUNT",
         "TORMENT",
-        "TRIPLE_AXEL"
+        "TRIPLE_AXEL",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -11451,6 +11799,7 @@
         "INFESTATION",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "POISON_JAB",
         "PSYCH_UP",
@@ -11458,6 +11807,7 @@
         "RAGE",
         "SELFDESTRUCT",
         "SKILL_SWAP",
+        "SLUDGE",
         "SNORE",
         "TAUNT",
         "THUNDERPUNCH",
@@ -11503,7 +11853,9 @@
         "INFESTATION",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
+        "PHANTOMFORCE",
         "POISON_JAB",
         "PSYCH_UP",
         "RAGE",
@@ -11513,7 +11865,9 @@
         "TAUNT",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLUDGE"
+      ]
     },
     {
       "species": "GENGAR",
@@ -11541,6 +11895,7 @@
         "MEGA_PUNCH",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "POISON_JAB",
         "PSYCH_UP",
@@ -11551,6 +11906,7 @@
         "SHADOW_CLAW",
         "SKILL_SWAP",
         "SKULL_BASH",
+        "SLUDGE",
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
@@ -11604,13 +11960,16 @@
         "MEGA_PUNCH",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
+        "PHANTOMFORCE",
         "POISON_JAB",
         "PSYCH_UP",
         "RAGE",
         "SEISMIC_TOSS",
         "SELFDESTRUCT",
         "SHADOW_CLAW",
+        "SHADOW_PUNCH",
         "SKILL_SWAP",
         "SKULL_BASH",
         "SNORE",
@@ -11618,7 +11977,9 @@
         "TAKE_DOWN",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLUDGE"
+      ]
     },
     {
       "species": "GEODUDE",
@@ -11702,6 +12063,7 @@
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FLAIL",
@@ -11739,6 +12101,7 @@
         "BIDE",
         "BODY_SLAM",
         "BRICK_BREAK",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FRUSTRATION",
@@ -11779,8 +12142,10 @@
         "MIRROR_COAT",
         "NIGHTMARE",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "RAZOR_WIND",
+        "RECYCLE",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
         "SNORE",
@@ -11824,6 +12189,8 @@
         "LOW_KICK",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
+        "RECYCLE",
         "SNORE",
         "SUCKER_PUNCH"
       ],
@@ -11889,6 +12256,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAZE",
+        "ICE_FANG",
         "ICICLE_SPEAR",
         "IRON_TAIL",
         "MIMIC",
@@ -11932,12 +12300,14 @@
         "LUNGE",
         "MIMIC",
         "POISON_JAB",
+        "POISON_TAIL",
         "RAIN_DANCE",
         "ROCK_POLISH",
         "ROCK_SLIDE",
         "ROCK_TOMB",
         "SCALE_SHOT",
         "SCARY_FACE",
+        "SKY_UPPERCUT",
         "SNORE",
         "SPIKES",
         "STEALTH_ROCK",
@@ -11951,7 +12321,10 @@
         "TOXIC_SPIKES",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "SKY_UPPERCUT": 45,
+        "POISON_TAIL": 19
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SPIKES": 38,
@@ -11959,6 +12332,7 @@
       },
       "new_family_egg_moves": [
         "NIGHT_SLASH",
+        "POISON_TAIL",
         "WING_ATTACK"
       ],
       "egg_family": "Gligar",
@@ -12038,6 +12412,7 @@
         "DAZZLING_GLEAM",
         "ENDURE",
         "GUNK_SHOT",
+        "ROCK_SLIDE",
         "STONE_EDGE"
       ],
       "new_evolution_access": []
@@ -12079,6 +12454,8 @@
         "ENDURE",
         "GIGA_IMPACT",
         "GUNK_SHOT",
+        "HEAD_SMASH",
+        "ROCK_SLIDE",
         "STONE_EDGE"
       ],
       "new_evolution_access": []
@@ -12105,12 +12482,14 @@
         "IRON_TAIL",
         "LUNGE",
         "MIMIC",
+        "POISON_TAIL",
         "RAIN_DANCE",
         "ROCK_POLISH",
         "ROCK_SLIDE",
         "SCALE_SHOT",
         "SCARY_FACE",
         "SKY_ATTACK",
+        "SKY_UPPERCUT",
         "SNORE",
         "SPIKES",
         "STONE_EDGE",
@@ -12120,7 +12499,9 @@
         "TOXIC_SPIKES",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "SKY_UPPERCUT": 45
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SPIKES": 38,
@@ -12128,6 +12509,7 @@
       },
       "new_family_egg_moves": [
         "NIGHT_SLASH",
+        "POISON_TAIL",
         "WING_ATTACK"
       ],
       "egg_family": "Gligar",
@@ -12185,6 +12567,7 @@
         "LEECH_SEED",
         "MAGICAL_LEAF",
         "MIMIC",
+        "PETAL_BLIZZARD",
         "RAGE",
         "REFLECT",
         "SEED_BOMB",
@@ -12192,7 +12575,9 @@
         "TAKE_DOWN",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PETAL_BLIZZARD": 49
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SEED_BOMB": 42,
@@ -12247,6 +12632,7 @@
         "HEAT_WAVE",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "RAZOR_WIND",
@@ -12301,6 +12687,7 @@
         "GIGA_IMPACT",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "SNORE",
@@ -12415,6 +12802,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "RAGE",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
@@ -12425,7 +12813,8 @@
         "SUBMISSION",
         "TAKE_DOWN",
         "TAUNT",
-        "THIEF"
+        "THIEF",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -12472,6 +12861,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "RAGE",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
@@ -12479,7 +12869,8 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -12561,6 +12952,7 @@
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FLAIL",
@@ -12599,6 +12991,7 @@
       "new_tutor_routes": [
         "BIDE",
         "BRICK_BREAK",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FOCUS_BLAST",
@@ -12897,6 +13290,7 @@
         "DEFENSE_CURL",
         "DETECT",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DRAINING_KISS",
         "DYNAMICPUNCH",
@@ -12904,6 +13298,7 @@
         "FLAIL",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -12926,7 +13321,9 @@
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "DISCHARGE": 44
+      },
       "new_family_egg_moves": [
         "BIDE",
         "DISARMING_VOICE",
@@ -12951,6 +13348,7 @@
         "DYNAMICPUNCH",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -12974,15 +13372,22 @@
     {
       "species": "GOROTORA",
       "name": "Gorotora",
-      "newly_available": [],
+      "newly_available": [
+        "DISCHARGE",
+        "SLACK_OFF"
+      ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "DISCHARGE": 44
+      },
       "new_family_egg_moves": [],
       "egg_family": "Kotora",
       "new_tm_compatibility": [],
       "new_tutor_routes": [],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLACK_OFF"
+      ]
     },
     {
       "species": "GRANBULL",
@@ -13181,6 +13586,7 @@
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FLAIL",
@@ -13217,6 +13623,7 @@
       "new_tutor_routes": [
         "BIDE",
         "BRICK_BREAK",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
         "FOCUS_BLAST",
@@ -13339,6 +13746,7 @@
         "PAIN_SPLIT",
         "POISON_JAB",
         "PURSUIT",
+        "RECYCLE",
         "ROCK_POLISH",
         "ROCK_SLIDE",
         "ROCK_TOMB",
@@ -13363,6 +13771,7 @@
       "new_family_egg_moves": [
         "CURSE",
         "PURSUIT",
+        "RECYCLE",
         "SHADOW_SNEAK"
       ],
       "egg_family": "Grimer (Alolan)",
@@ -13596,6 +14005,7 @@
       "newly_available": [
         "ACROBATICS",
         "BATON_PASS",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
@@ -13617,6 +14027,7 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [
+        "DISCHARGE",
         "ENDURE",
         "HARDEN"
       ],
@@ -13678,7 +14089,9 @@
         "MUD_SHOT",
         "MUD_SLAP",
         "NIGHT_SHADE",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "SEED_BOMB",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -13687,11 +14100,14 @@
         "SWIFT",
         "TAKE_DOWN",
         "THIEF",
+        "THUNDERBOLT",
         "THUNDERPUNCH",
         "TORMENT",
         "TRICK_ROOM"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 42
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK_ROOM": 34,
@@ -13725,6 +14141,7 @@
       "new_tutor_routes": [
         "BODY_PRESS",
         "BODY_SLAM",
+        "BOUNCE",
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
@@ -13749,10 +14166,12 @@
         "MIMIC",
         "MUD_SHOT",
         "NIGHT_SHADE",
+        "RECYCLE",
         "SEED_BOMB",
         "SEISMIC_TOSS",
         "SNARL",
         "TAKE_DOWN",
+        "THUNDERBOLT",
         "TORMENT"
       ],
       "new_evolution_access": []
@@ -13882,6 +14301,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAIL",
+        "HURRICANE",
         "ICY_WIND",
         "INCINERATE",
         "IRON_TAIL",
@@ -13920,6 +14340,7 @@
         "POUND",
         "PRESENT",
         "PSYCH_UP",
+        "RECYCLE",
         "SAFEGUARD",
         "SNORE",
         "TAKE_DOWN",
@@ -13953,6 +14374,7 @@
         "ICY_WIND",
         "INCINERATE",
         "PSYCH_UP",
+        "RECYCLE",
         "SAFEGUARD",
         "SNORE",
         "TAKE_DOWN",
@@ -13983,6 +14405,7 @@
         "MEGA_DRAIN",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "POISON_JAB",
         "PSYCH_UP",
@@ -13991,6 +14414,7 @@
         "SELFDESTRUCT",
         "SHADOW_CLAW",
         "SKILL_SWAP",
+        "SLUDGE",
         "SNORE",
         "TAUNT",
         "THUNDERPUNCH",
@@ -14043,18 +14467,23 @@
         "MEGA_DRAIN",
         "METRONOME",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
+        "PHANTOMFORCE",
         "POISON_JAB",
         "PSYCH_UP",
         "RAGE",
         "SELFDESTRUCT",
         "SHADOW_CLAW",
+        "SHADOW_PUNCH",
         "SKILL_SWAP",
         "SNORE",
         "TAUNT",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLUDGE"
+      ]
     },
     {
       "species": "HAXORUS",
@@ -14165,6 +14594,7 @@
         "SNORE",
         "SPIKES",
         "STRUGGLE_BUG",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_level_up": {
@@ -14206,6 +14636,7 @@
         "SNORE",
         "SPIKES",
         "STRUGGLE_BUG",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_evolution_access": []
@@ -14240,15 +14671,19 @@
         "SCARY_FACE",
         "SEISMIC_TOSS",
         "SKULL_BASH",
+        "SKY_UPPERCUT",
         "SNORE",
         "SUBMISSION",
         "SWORDS_DANCE",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "FAKE_OUT": 1,
-        "PURSUIT": 1
+        "PURSUIT": 1,
+        "VACUUM_WAVE": 41,
+        "SKY_UPPERCUT": 41
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -14259,7 +14694,8 @@
         "ENDURE",
         "MACH_PUNCH",
         "PURSUIT",
-        "RAPID_SPIN"
+        "RAPID_SPIN",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Tyrogue",
       "new_tm_compatibility": [
@@ -14304,6 +14740,7 @@
         "AURA_SPHERE",
         "BATON_PASS",
         "BIDE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BOUNCE",
         "BULLDOZE",
@@ -14331,10 +14768,12 @@
         "SUBMISSION",
         "SWORDS_DANCE",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
-        "FAKE_OUT": 1
+        "FAKE_OUT": 1,
+        "BLAZE_KICK": 43
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -14344,7 +14783,8 @@
         "ENDURE",
         "MACH_PUNCH",
         "PURSUIT",
-        "RAPID_SPIN"
+        "RAPID_SPIN",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Tyrogue",
       "new_tm_compatibility": [
@@ -14410,7 +14850,8 @@
         "SNORE",
         "TAKE_DOWN",
         "TRIPLE_AXEL",
-        "TWISTER"
+        "TWISTER",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "FAKE_OUT": 1,
@@ -14424,7 +14865,8 @@
         "ENDURE",
         "MACH_PUNCH",
         "PURSUIT",
-        "RAPID_SPIN"
+        "RAPID_SPIN",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Tyrogue",
       "new_tm_compatibility": [
@@ -14485,6 +14927,7 @@
         "IRON_HEAD",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "OVERHEAT",
         "PSYCH_UP",
         "ROOST",
@@ -14529,6 +14972,7 @@
         "HYPER_VOICE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SIGNAL_BEAM",
         "SNORE",
@@ -14560,6 +15004,7 @@
         "INCINERATE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PERISH_SONG",
         "PSYCHIC_M",
         "PSYCH_UP",
@@ -14614,6 +15059,7 @@
         "INCINERATE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SCARY_FACE",
         "SNORE",
@@ -14649,10 +15095,12 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYBEAM",
         "PSYCHIC_M",
         "PSYCH_UP",
         "RAIN_DANCE",
+        "RECYCLE",
         "SCREECH",
         "SKILL_SWAP",
         "SNORE",
@@ -14696,8 +15144,10 @@
         "HAZE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYBEAM",
         "PSYCH_UP",
+        "RECYCLE",
         "SCREECH",
         "SKILL_SWAP",
         "SNORE",
@@ -14713,6 +15163,7 @@
         "AERIAL_ACE",
         "BATON_PASS",
         "CHARM",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
@@ -14732,12 +15183,15 @@
         "THIEF"
       ],
       "new_level_up": {},
-      "breeding_fallbacks": {},
+      "breeding_fallbacks": {
+        "COTTON_GUARD": 30
+      },
       "thematic_level_up": {
         "LEAF_STORM": 56,
         "MAGICAL_LEAF": 18
       },
       "new_family_egg_moves": [
+        "COTTON_GUARD",
         "ENDURE",
         "PSYCH_UP",
         "SEED_BOMB"
@@ -14748,8 +15202,10 @@
         "THIEF"
       ],
       "new_tutor_routes": [
+        "ACROBATICS",
         "AERIAL_ACE",
         "BATON_PASS",
+        "BOUNCE",
         "CHARM",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
@@ -14988,14 +15444,15 @@
         "MAGICAL_LEAF",
         "OUTRAGE",
         "RAIN_DANCE",
+        "RECYCLE",
         "SEED_BOMB",
         "TAKE_DOWN",
         "YAWN"
       ],
       "new_level_up": {
-        "BULLET_SEED": 20,
         "YAWN": 1,
-        "DRAGON_TAIL": 4
+        "DRAGON_TAIL": 4,
+        "RECYCLE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -15004,6 +15461,7 @@
       },
       "new_family_egg_moves": [
         "DEFENSE_CURL",
+        "RECYCLE",
         "ROLLOUT"
       ],
       "egg_family": "Applin",
@@ -15019,9 +15477,12 @@
         "GIGA_IMPACT",
         "GYRO_BALL",
         "HYDRO_PUMP",
-        "TAKE_DOWN"
+        "POWER_WHIP",
+        "TAKE_DOWN",
+        "WOOD_HAMMER"
       ],
       "new_evolution_access": [
+        "BULLET_SEED",
         "OUTRAGE",
         "SEED_BOMB"
       ]
@@ -15149,8 +15610,10 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SCARY_FACE",
         "SEISMIC_TOSS",
@@ -15170,7 +15633,8 @@
         "WISH"
       ],
       "new_level_up": {
-        "NIGHTMARE": 1
+        "NIGHTMARE": 1,
+        "PSYSHOCK": 57
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -15219,6 +15683,7 @@
         "NIGHT_SHADE",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SCARY_FACE",
         "SEISMIC_TOSS",
@@ -15261,6 +15726,7 @@
         "PLAY_ROUGH",
         "PRESENT",
         "PSYCH_UP",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SCREECH",
@@ -15274,11 +15740,7 @@
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "DOUBLE_EDGE": 56,
         "HYPER_VOICE": 42,
-        "PLAY_ROUGH": 44,
-        "TAKE_DOWN": 46,
-        "BODY_SLAM": 48,
         "DAZZLING_GLEAM": 50
       },
       "new_family_egg_moves": [
@@ -15291,8 +15753,11 @@
         "SWIFT"
       ],
       "new_tutor_routes": [
+        "BODY_SLAM",
+        "BOUNCE",
         "COUNTER",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENCORE",
@@ -15306,11 +15771,14 @@
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
+        "PLAY_ROUGH",
         "PSYCH_UP",
+        "RECYCLE",
         "SAFEGUARD",
         "SCREECH",
         "SEISMIC_TOSS",
         "SNORE",
+        "TAKE_DOWN",
         "WATER_PULSE",
         "WILD_CHARGE"
       ],
@@ -15536,8 +16004,10 @@
         "PAIN_SPLIT",
         "PRESENT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SANDSTORM",
         "SCREECH",
@@ -15606,8 +16076,10 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SCREECH",
         "SEISMIC_TOSS",
@@ -15637,8 +16109,10 @@
         "CHARM",
         "CONFUSE_RAY",
         "CONFUSION",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
+        "DOOM_DESIRE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DRACO_METEOR",
@@ -15665,6 +16139,7 @@
         "LIGHT_SCREEN",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "METRONOME",
         "MIMIC",
         "MOONBLAST",
@@ -15675,7 +16150,9 @@
         "PSYBEAM",
         "PSYCHIC_M",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "REFLECT",
         "REST",
         "RETURN",
@@ -15714,7 +16191,10 @@
         "IRON_HEAD": 34,
         "FUTURE_SIGHT": 38,
         "DOUBLE_EDGE": 42,
-        "REST": 63
+        "REST": 63,
+        "METEOR_MASH": 49,
+        "COSMIC_POWER": 26,
+        "DOOM_DESIRE": 50
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -15780,6 +16260,8 @@
         "PLAY_ROUGH",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SAFEGUARD",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
@@ -15806,6 +16288,7 @@
         "BIDE",
         "BODY_SLAM",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FOCUS_ENERGY",
@@ -15825,7 +16308,9 @@
         "STRENGTH",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 25
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 26
@@ -15852,10 +16337,12 @@
         "IRON_TAIL",
         "MIMIC",
         "PAY_DAY",
+        "PIN_MISSILE",
         "RAGE",
         "REFLECT",
         "SING",
         "SNORE",
+        "THUNDER_FANG",
         "WILD_CHARGE"
       ],
       "new_evolution_access": [
@@ -15872,6 +16359,7 @@
         "BOUNCE",
         "CROSS_POISON",
         "CUT",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "ENDURE",
         "FAINT_ATTACK",
@@ -15888,7 +16376,8 @@
       ],
       "new_level_up": {
         "ABSORB": 1,
-        "SLASH": 32
+        "SLASH": 32,
+        "DISCHARGE": 37
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -15925,6 +16414,7 @@
         "AERIAL_ACE",
         "BATON_PASS",
         "CHARM",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
@@ -15950,6 +16440,7 @@
         "MAGICAL_LEAF": 18
       },
       "new_family_egg_moves": [
+        "COTTON_GUARD",
         "ENDURE",
         "PSYCH_UP",
         "SEED_BOMB"
@@ -15960,8 +16451,10 @@
         "THIEF"
       ],
       "new_tutor_routes": [
+        "ACROBATICS",
         "AERIAL_ACE",
         "BATON_PASS",
+        "BOUNCE",
         "CHARM",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
@@ -16009,8 +16502,10 @@
         "NIGHTMARE",
         "PSYCHO_CUT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SCREECH",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -16030,7 +16525,7 @@
         "WATER_PULSE"
       ],
       "new_level_up": {
-        "AVALANCHE": 39
+        "PSYSHOCK": 59
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -16052,7 +16547,9 @@
         "FLASH"
       ],
       "new_tutor_routes": [
+        "AVALANCHE",
         "BIDE",
+        "BODY_SLAM",
         "BRICK_BREAK",
         "BUBBLEBEAM",
         "CHARM",
@@ -16075,6 +16572,7 @@
         "PSYCHO_CUT",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SCREECH",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -16132,13 +16630,9 @@
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "EARTH_POWER": 42,
         "IRON_DEFENSE": 36,
         "ROCK_BLAST": 38,
-        "SCALD": 44,
-        "ROCK_POLISH": 30,
-        "WATER_PULSE": 48,
-        "HYDRO_PUMP": 56
+        "ROCK_POLISH": 30
       },
       "new_family_egg_moves": [
         "CONFUSE_RAY",
@@ -16160,19 +16654,24 @@
       ],
       "new_tutor_routes": [
         "AERIAL_ACE",
+        "ANCIENTPOWER",
         "BIDE",
         "BODY_SLAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FRUSTRATION",
         "HAIL",
+        "HYDRO_PUMP",
         "MIMIC",
         "RAGE",
         "REFLECT",
         "ROCK_THROW",
+        "SCALD",
         "SLASH",
         "SNORE",
-        "WATER_GUN"
+        "WATER_GUN",
+        "WATER_PULSE"
       ],
       "new_evolution_access": []
     },
@@ -16250,15 +16749,18 @@
       ],
       "new_tutor_routes": [
         "AERIAL_ACE",
+        "ANCIENTPOWER",
         "BIDE",
         "BODY_SLAM",
         "BRICK_BREAK",
         "CROSS_POISON",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAIL",
+        "HYDRO_PUMP",
         "LOW_KICK",
         "MEGA_KICK",
         "MIMIC",
@@ -16267,20 +16769,17 @@
         "RAZOR_WIND",
         "REFLECT",
         "ROCK_THROW",
+        "SCALD",
         "SEISMIC_TOSS",
         "SKULL_BASH",
         "SNORE",
         "SUBMISSION",
         "SUPERPOWER",
         "WATER_GUN",
+        "WATER_PULSE",
         "X_SCISSOR"
       ],
-      "new_evolution_access": [
-        "EARTH_POWER",
-        "HYDRO_PUMP",
-        "SCALD",
-        "WATER_PULSE"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "KADABRA",
@@ -16304,8 +16803,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -16319,7 +16820,9 @@
         "TRICK_ROOM",
         "TRI_ATTACK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 30
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "TRICK_ROOM": 38,
@@ -16355,8 +16858,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYCHO_CUT",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -16742,7 +17247,9 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "SAFEGUARD",
         "SIGNAL_BEAM",
         "SING",
@@ -16802,6 +17309,8 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SAFEGUARD",
         "SING",
         "SNORE",
@@ -16829,6 +17338,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "PURSUIT",
         "RAGE",
@@ -16839,7 +17349,8 @@
         "SNORE",
         "STONE_EDGE",
         "STRUGGLE_BUG",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -16872,6 +17383,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "RAGE",
         "SCARY_FACE",
@@ -16881,7 +17393,8 @@
         "TAKE_DOWN"
       ],
       "new_evolution_access": [
-        "PURSUIT"
+        "PURSUIT",
+        "VACUUM_WAVE"
       ]
     },
     {
@@ -16897,6 +17410,7 @@
         "HEADBUTT",
         "INCINERATE",
         "INFESTATION",
+        "LAVA_PLUME",
         "MIMIC",
         "PSYWAVE",
         "RAGE",
@@ -16910,7 +17424,9 @@
         "TORMENT",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 31
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "VENOSHOCK": 18
@@ -16951,15 +17467,22 @@
     {
       "species": "KOTORA",
       "name": "Kotora",
-      "newly_available": [],
+      "newly_available": [
+        "DISCHARGE",
+        "SLACK_OFF"
+      ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "DISCHARGE": 36
+      },
       "new_family_egg_moves": [],
       "egg_family": "Kotora",
       "new_tm_compatibility": [],
       "new_tutor_routes": [],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLACK_OFF"
+      ]
     },
     {
       "species": "KRABBY",
@@ -17324,8 +17847,10 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "FLAME_CHARGE",
+        "FLAME_WHEEL",
         "FLARE_BLITZ",
         "FRUSTRATION",
+        "PHANTOMFORCE",
         "PSYCH_UP",
         "SAFEGUARD",
         "SNORE",
@@ -17341,9 +17866,11 @@
         "BLIZZARD",
         "BOUNCE",
         "DAZZLING_GLEAM",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
+        "FLASH_CANNON",
         "FLIP_TURN",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -17356,11 +17883,16 @@
         "SCREECH",
         "SNORE",
         "SUCKER_PUNCH",
+        "TAIL_GLOW",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 29
+      },
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "TAIL_GLOW": 40
+      },
       "new_family_egg_moves": [
         "FLAIL",
         "MIST",
@@ -17380,6 +17912,7 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
+        "FLASH_CANNON",
         "FLIP_TURN",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -17388,6 +17921,7 @@
         "LIQUIDATION",
         "MIMIC",
         "SNORE",
+        "TAKE_DOWN",
         "WILD_CHARGE"
       ],
       "new_evolution_access": []
@@ -17524,15 +18058,20 @@
       "new_tutor_routes": [
         "ACROBATICS",
         "BODY_SLAM",
+        "BUG_BUZZ",
         "CALM_MIND",
         "DOUBLE_TEAM",
+        "FIERY_DANCE",
         "FIRE_SPIN",
         "FRUSTRATION",
         "GIGA_DRAIN",
         "HEAT_WAVE",
+        "INCINERATE",
         "LUNGE",
         "OVERHEAT",
+        "QUIVER_DANCE",
         "SAFEGUARD",
+        "SIGNAL_BEAM",
         "SNORE",
         "WILD_CHARGE"
       ],
@@ -17637,9 +18176,7 @@
         "SNORE",
         "SOLAR_BLADE"
       ],
-      "new_level_up": {
-        "MAGICAL_LEAF": 25
-      },
+      "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SOLAR_BLADE": 56
@@ -17666,8 +18203,11 @@
         "DOUBLE_TEAM",
         "FOCUS_ENERGY",
         "FRUSTRATION",
+        "GIGA_DRAIN",
         "GIGA_IMPACT",
         "IRON_TAIL",
+        "LEAF_STORM",
+        "MAGICAL_LEAF",
         "MIMIC",
         "MUD_SHOT",
         "PAY_DAY",
@@ -17701,14 +18241,18 @@
         "GIGA_IMPACT",
         "INFESTATION",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "MIMIC",
+        "OMINOUS_WIND",
         "ROCK_SMASH",
         "ROLLOUT",
         "SNORE",
         "STRENGTH",
         "STRING_SHOT"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "METEOR_MASH": 51
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BRICK_BREAK": 26
@@ -17730,6 +18274,7 @@
       "new_tutor_routes": [
         "ACROBATICS",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "DEFOG",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
@@ -17740,7 +18285,10 @@
         "INFESTATION",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
+        "QUIVER_DANCE",
         "ROLLOUT",
+        "SIGNAL_BEAM",
         "SNORE",
         "STRING_SHOT"
       ],
@@ -17762,13 +18310,17 @@
         "GIGA_DRAIN",
         "INFESTATION",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "MIMIC",
+        "OMINOUS_WIND",
         "ROLLOUT",
         "SNORE",
         "STRING_SHOT",
         "SWORDS_DANCE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "METEOR_MASH": 42
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BRICK_BREAK": 26
@@ -17787,6 +18339,7 @@
       "new_tutor_routes": [
         "ACROBATICS",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
         "FRUSTRATION",
@@ -17794,6 +18347,7 @@
         "INFESTATION",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "ROLLOUT",
         "SNORE",
         "STRING_SHOT",
@@ -18122,8 +18676,10 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "FLAME_CHARGE",
+        "FLAME_WHEEL",
         "FLARE_BLITZ",
         "FRUSTRATION",
+        "PHANTOMFORCE",
         "PSYCH_UP",
         "SAFEGUARD",
         "SNORE",
@@ -18233,7 +18789,9 @@
       "newly_available": [
         "ACROBATICS",
         "AURA_SPHERE",
+        "BLAZE_KICK",
         "BLIZZARD",
+        "COSMIC_POWER",
         "CUT",
         "DIG",
         "DOUBLE_TEAM",
@@ -18244,12 +18802,14 @@
         "HYPER_VOICE",
         "ICE_BEAM",
         "IRON_TAIL",
+        "KARATE_CHOP",
         "MEGA_PUNCH",
         "MUD_SLAP",
         "PLAY_ROUGH",
         "RAIN_DANCE",
         "REVERSAL",
         "SHADOW_BALL",
+        "SKY_UPPERCUT",
         "SNORE",
         "SOLARBEAM",
         "SUNNY_DAY",
@@ -18258,16 +18818,20 @@
         "TRIPLE_AXEL",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "BLAZE_KICK": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "GIGA_IMPACT": 56
       },
       "new_family_egg_moves": [
         "ATTRACT",
+        "COSMIC_POWER",
         "FIRE_PUNCH",
         "FLAIL",
         "ICE_PUNCH",
+        "SKY_UPPERCUT",
         "THUNDERPUNCH"
       ],
       "egg_family": "Buneary",
@@ -18291,6 +18855,7 @@
         "DOUBLE_TEAM",
         "FOCUS_BLAST",
         "HEAL_BELL",
+        "HYPER_VOICE",
         "IRON_TAIL",
         "MEGA_PUNCH",
         "PLAY_ROUGH",
@@ -18300,7 +18865,7 @@
         "WATER_PULSE"
       ],
       "new_evolution_access": [
-        "HYPER_VOICE"
+        "KARATE_CHOP"
       ]
     },
     {
@@ -18372,6 +18937,7 @@
       "name": "Lucario",
       "newly_available": [
         "AERIAL_ACE",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BULLDOZE",
         "DARK_PULSE",
@@ -18385,6 +18951,7 @@
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "METRONOME",
         "MIND_READER",
         "POISON_JAB",
@@ -18396,13 +18963,18 @@
         "ROCK_TOMB",
         "SCARY_FACE",
         "SHADOW_CLAW",
+        "SKY_UPPERCUT",
         "SNORE",
         "STONE_EDGE",
         "TAKE_DOWN",
+        "VACUUM_WAVE",
         "WATER_PULSE"
       ],
       "new_level_up": {
-        "DARK_PULSE": 1
+        "DARK_PULSE": 1,
+        "VACUUM_WAVE": 1,
+        "METEOR_MASH": 49,
+        "BLAZE_KICK": 41
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -18412,11 +18984,15 @@
       },
       "new_family_egg_moves": [
         "BITE",
+        "BLAZE_KICK",
         "CIRCLE_THROW",
         "CROSS_CHOP",
         "CRUNCH",
         "LOW_KICK",
-        "MIND_READER"
+        "METEOR_MASH",
+        "MIND_READER",
+        "SKY_UPPERCUT",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Riolu",
       "new_tm_compatibility": [
@@ -18586,7 +19162,9 @@
         "LIQUIDATION",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
+        "PSYSHOCK",
         "ROOST",
         "SCALE_SHOT",
         "SCARY_FACE",
@@ -18640,7 +19218,9 @@
         "LIQUIDATION",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
+        "PSYSHOCK",
         "SCALE_SHOT",
         "SCARY_FACE",
         "SNORE",
@@ -18680,7 +19260,8 @@
         "SKULL_BASH",
         "SNORE",
         "SUBMISSION",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "SUBMISSION": 37
@@ -18726,7 +19307,8 @@
         "ROCK_BLAST",
         "SKULL_BASH",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -18759,7 +19341,8 @@
         "SNORE",
         "SUBMISSION",
         "SUPERPOWER",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "SUBMISSION": 37
@@ -18804,7 +19387,8 @@
         "REVERSAL",
         "SKULL_BASH",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -18837,7 +19421,8 @@
         "SNORE",
         "SUBMISSION",
         "SUPERPOWER",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "SUBMISSION": 33
@@ -18882,7 +19467,8 @@
         "REVERSAL",
         "SKULL_BASH",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -18903,6 +19489,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MEGA_KICK",
         "MIMIC",
         "OVERHEAT",
@@ -18912,7 +19499,9 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "HEAT_WAVE": 42,
@@ -18967,6 +19556,7 @@
         "GYRO_BALL",
         "HEAT_CRASH",
         "INFESTATION",
+        "LAVA_PLUME",
         "MIMIC",
         "MUD_SHOT",
         "PAIN_SPLIT",
@@ -18980,7 +19570,8 @@
         "YAWN"
       ],
       "new_level_up": {
-        "YAWN": 1
+        "YAWN": 1,
+        "LAVA_PLUME": 21
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -18994,6 +19585,7 @@
         "SOLARBEAM"
       ],
       "new_tutor_routes": [
+        "BODY_SLAM",
         "BULLDOZE",
         "DEFENSE_CURL",
         "DOUBLE_EDGE",
@@ -19012,6 +19604,7 @@
         "MUD_SHOT",
         "PAIN_SPLIT",
         "ROCK_BLAST",
+        "ROCK_SLIDE",
         "SELFDESTRUCT",
         "SNORE",
         "STONE_EDGE",
@@ -19059,6 +19652,7 @@
         "GIGA_IMPACT",
         "HEAT_CRASH",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "LOW_SWEEP",
         "MEGA_KICK",
         "METRONOME",
@@ -19076,7 +19670,9 @@
         "TAUNT",
         "TELEPORT"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "OVERHEAT": 56,
@@ -19133,6 +19729,7 @@
         "BRICK_BREAK",
         "BULLDOZE",
         "COUNTER",
+        "DARK_PULSE",
         "DETECT",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -19146,6 +19743,7 @@
         "HEAT_CRASH",
         "HYPER_VOICE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "LOW_SWEEP",
         "MEGA_KICK",
         "METRONOME",
@@ -19166,7 +19764,9 @@
         "TELEPORT",
         "TORMENT"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "HEAT_CRASH": 42
@@ -19217,7 +19817,9 @@
         "TELEPORT",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DARK_PULSE"
+      ]
     },
     {
       "species": "MAGNEMITE",
@@ -19225,6 +19827,7 @@
       "newly_available": [
         "BIDE",
         "CONFUSE_RAY",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -19234,6 +19837,7 @@
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SANDSTORM",
         "SIGNAL_BEAM",
@@ -19245,7 +19849,8 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SONICBOOM": 17
+        "SONICBOOM": 17,
+        "DISCHARGE": 28
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -19266,9 +19871,11 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GYRO_BALL",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SNORE",
         "TAKE_DOWN",
@@ -19283,6 +19890,7 @@
       "newly_available": [
         "BIDE",
         "CONFUSE_RAY",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -19293,6 +19901,7 @@
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SANDSTORM",
         "SNORE",
@@ -19303,7 +19912,8 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SONICBOOM": 17
+        "SONICBOOM": 17,
+        "DISCHARGE": 28
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -19323,9 +19933,11 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GYRO_BALL",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SNORE",
         "TAKE_DOWN",
@@ -19341,6 +19953,7 @@
         "BIDE",
         "BODY_SLAM",
         "CONFUSE_RAY",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -19350,6 +19963,7 @@
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SANDSTORM",
         "SELFDESTRUCT",
@@ -19361,7 +19975,8 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SONICBOOM": 17
+        "SONICBOOM": 17,
+        "DISCHARGE": 28
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -19380,9 +19995,11 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GYRO_BALL",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SELFDESTRUCT",
         "SNORE",
@@ -19504,7 +20121,8 @@
         "STONE_EDGE",
         "SUBMISSION",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "PURSUIT": 12
@@ -19558,7 +20176,8 @@
         "SNORE",
         "STONE_EDGE",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -19626,9 +20245,11 @@
         "AQUA_TAIL",
         "BODY_PRESS",
         "BODY_SLAM",
+        "BOUNCE",
         "BULLDOZE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -19639,7 +20260,8 @@
         "ROCK_BLAST",
         "SEED_BOMB",
         "SNORE",
-        "STRING_SHOT"
+        "STRING_SHOT",
+        "TAKE_DOWN"
       ],
       "new_evolution_access": []
     },
@@ -19667,7 +20289,6 @@
         "SPLASH"
       ],
       "new_level_up": {
-        "BOUNCE": 40,
         "BUBBLE": 1
       },
       "breeding_fallbacks": {},
@@ -19691,13 +20312,15 @@
         "ACROBATICS",
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "BOUNCE",
         "BULLDOZE",
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
         "HAIL",
         "ICY_WIND",
-        "SNORE"
+        "SNORE",
+        "TAKE_DOWN"
       ],
       "new_evolution_access": []
     },
@@ -19759,8 +20382,10 @@
       "species": "MAREEP",
       "name": "Mareep",
       "newly_available": [
+        "COTTON_GUARD",
         "DEFENSE_CURL",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -19774,7 +20399,9 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "SIGNAL_BEAM": 39
+        "SIGNAL_BEAM": 39,
+        "DISCHARGE": 25,
+        "COTTON_GUARD": 36
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -19955,6 +20582,7 @@
         "COUNTER",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
+        "EARTH_POWER",
         "FISSURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
@@ -19974,9 +20602,7 @@
         "TAKE_DOWN",
         "WATER_GUN"
       ],
-      "new_evolution_access": [
-        "EARTH_POWER"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "MAROWAK_ALOLAN",
@@ -20055,6 +20681,7 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "DYNAMICPUNCH",
+        "EARTH_POWER",
         "FISSURE",
         "FLAME_CHARGE",
         "FOCUS_BLAST",
@@ -20079,7 +20706,6 @@
       ],
       "new_evolution_access": [
         "BULLDOZE",
-        "EARTH_POWER",
         "FURY_CUTTER",
         "RAGE",
         "STEALTH_ROCK"
@@ -20199,15 +20825,18 @@
         "GIGA_IMPACT",
         "IRON_TAIL",
         "MAGICAL_LEAF",
+        "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
+        "PETAL_BLIZZARD",
         "SEED_BOMB",
         "SNORE",
         "SOLAR_BLADE",
         "TAKE_DOWN"
       ],
       "new_level_up": {
-        "MAGICAL_LEAF": 22
+        "MAGICAL_LEAF": 22,
+        "PETAL_BLIZZARD": 70
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -20237,7 +20866,9 @@
         "SNORE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "MEGA_DRAIN"
+      ]
     },
     {
       "species": "MEOWTH",
@@ -20505,8 +21136,10 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SCREECH",
         "SEISMIC_TOSS",
         "SKILL_SWAP",
@@ -20526,7 +21159,9 @@
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "PSYSHOCK": 40
+      },
       "new_family_egg_moves": [
         "ICE_PUNCH",
         "NASTY_PLOT",
@@ -20534,9 +21169,10 @@
       ],
       "egg_family": "Smoochum",
       "new_tm_compatibility": [],
-      "new_tutor_routes": [],
+      "new_tutor_routes": [
+        "AVALANCHE"
+      ],
       "new_evolution_access": [
-        "AVALANCHE",
         "BIDE",
         "BRICK_BREAK",
         "BUBBLEBEAM",
@@ -20560,6 +21196,7 @@
         "NIGHTMARE",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SCREECH",
         "SEISMIC_TOSS",
         "SKILL_SWAP",
@@ -20614,6 +21251,7 @@
         "BEAT_UP",
         "BIDE",
         "BIND",
+        "BLAZE_KICK",
         "BODY_PRESS",
         "BODY_SLAM",
         "BOUNCE",
@@ -20628,6 +21266,7 @@
         "CLOSE_COMBAT",
         "CONFUSE_RAY",
         "CONFUSION",
+        "COSMIC_POWER",
         "COUNTER",
         "CROSS_POISON",
         "CRUNCH",
@@ -20704,21 +21343,26 @@
         "MUD_SHOT",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "OVERHEAT",
         "PAIN_SPLIT",
         "PAY_DAY",
+        "PETAL_BLIZZARD",
         "PHANTOMFORCE",
         "PIN_MISSILE",
         "PLAY_ROUGH",
         "POISON_JAB",
+        "POISON_TAIL",
         "POWER_WHIP",
         "PSYBEAM",
         "PSYCHO_CUT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "RAZOR_WIND",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_BLAST",
         "ROCK_POLISH",
@@ -20763,6 +21407,7 @@
         "TRIPLE_AXEL",
         "TRI_ATTACK",
         "TWISTER",
+        "VACUUM_WAVE",
         "VENOSHOCK",
         "VOLT_SWITCH",
         "WATER_GUN",
@@ -20799,6 +21444,7 @@
         "BEAT_UP",
         "BIDE",
         "BIND",
+        "BLAZE_KICK",
         "BODY_PRESS",
         "BODY_SLAM",
         "BOUNCE",
@@ -20813,6 +21459,7 @@
         "CLOSE_COMBAT",
         "CONFUSE_RAY",
         "CONFUSION",
+        "COSMIC_POWER",
         "COUNTER",
         "CROSS_POISON",
         "CRUNCH",
@@ -20887,19 +21534,24 @@
         "MUD_SHOT",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "OVERHEAT",
         "PAIN_SPLIT",
         "PAY_DAY",
+        "PETAL_BLIZZARD",
         "PHANTOMFORCE",
         "PIN_MISSILE",
         "PLAY_ROUGH",
         "POISON_JAB",
+        "POISON_TAIL",
         "POWER_WHIP",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "RAZOR_WIND",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_BLAST",
         "ROCK_POLISH",
@@ -20940,6 +21592,7 @@
         "TRIPLE_AXEL",
         "TRI_ATTACK",
         "TWISTER",
+        "VACUUM_WAVE",
         "VENOSHOCK",
         "VOLT_SWITCH",
         "WATER_GUN",
@@ -20996,8 +21649,10 @@
         "PAY_DAY",
         "POISON_JAB",
         "PSYBEAM",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_SLIDE",
         "ROCK_TOMB",
@@ -21077,7 +21732,9 @@
         "NIGHT_SHADE",
         "PAY_DAY",
         "POISON_JAB",
+        "PSYSHOCK",
         "RAGE",
+        "RECYCLE",
         "REVERSAL",
         "ROCK_SLIDE",
         "SCARY_FACE",
@@ -21104,6 +21761,7 @@
         "BIND",
         "BODY_SLAM",
         "BULLDOZE",
+        "CALM_MIND",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DRAINING_KISS",
@@ -21141,6 +21799,7 @@
         "SWIFT"
       ],
       "new_tutor_routes": [
+        "AQUA_TAIL",
         "AVALANCHE",
         "BIND",
         "BODY_SLAM",
@@ -21160,7 +21819,9 @@
         "TAKE_DOWN",
         "TRIPLE_AXEL"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "CALM_MIND"
+      ]
     },
     {
       "species": "MILTANK",
@@ -21244,6 +21905,8 @@
         "MUD_SLAP",
         "POUND",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SIGNAL_BEAM",
         "SNORE",
         "SUCKER_PUNCH",
@@ -21256,7 +21919,8 @@
         "MEDITATE": 8,
         "POUND": 1,
         "SUCKER_PUNCH": 40,
-        "MIMIC": 32
+        "MIMIC": 32,
+        "RECYCLE": 24
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -21284,6 +21948,7 @@
         "ENDURE",
         "FRUSTRATION",
         "INFESTATION",
+        "PSYSHOCK",
         "SNORE",
         "TAUNT",
         "TORMENT"
@@ -21381,6 +22046,7 @@
         "DREAM_EATER",
         "ENDURE",
         "ENERGY_BALL",
+        "FAIRY_WIND",
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
@@ -21392,6 +22058,8 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
+        "PSYSHOCK",
         "PSYWAVE",
         "SCARY_FACE",
         "SNORE",
@@ -21415,6 +22083,7 @@
         "CURSE",
         "DESTINY_BOND",
         "NASTY_PLOT",
+        "OMINOUS_WIND",
         "SHADOW_SNEAK",
         "SPITE"
       ],
@@ -21441,12 +22110,16 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "PHANTOMFORCE",
+        "PSYSHOCK",
         "SCARY_FACE",
         "SNORE",
         "TAUNT",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "FAIRY_WIND"
+      ]
     },
     {
       "species": "MISMAGIUS",
@@ -21463,6 +22136,7 @@
         "DREAM_EATER",
         "ENDURE",
         "ENERGY_BALL",
+        "FAIRY_WIND",
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
@@ -21472,6 +22146,8 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
+        "PSYSHOCK",
         "PSYWAVE",
         "SCARY_FACE",
         "SNORE",
@@ -21495,6 +22171,7 @@
         "CURSE",
         "DESTINY_BOND",
         "NASTY_PLOT",
+        "OMINOUS_WIND",
         "SHADOW_SNEAK",
         "SPITE"
       ],
@@ -21518,11 +22195,15 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "PHANTOMFORCE",
+        "PSYSHOCK",
         "SCARY_FACE",
         "SNORE",
         "TORMENT"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "FAIRY_WIND"
+      ]
     },
     {
       "species": "MOLTRES",
@@ -21545,6 +22226,7 @@
         "HEADBUTT",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PECK",
         "RAGE",
         "RAZOR_WIND",
@@ -21580,6 +22262,7 @@
         "GIGA_IMPACT",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PECK",
         "RAGE",
         "RAZOR_WIND",
@@ -21612,9 +22295,7 @@
         "TORMENT": 28
       },
       "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "DAZZLING_GLEAM": 42
-      },
+      "thematic_level_up": {},
       "new_family_egg_moves": [],
       "egg_family": "Impidimp",
       "new_tm_compatibility": [],
@@ -21631,7 +22312,9 @@
         "TAKE_DOWN",
         "TRICK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DAZZLING_GLEAM"
+      ]
     },
     {
       "species": "MR__MIME",
@@ -21659,8 +22342,10 @@
         "MEGA_PUNCH",
         "NIGHTMARE",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
         "SKULL_BASH",
@@ -21674,7 +22359,8 @@
       ],
       "new_level_up": {
         "MAGICAL_LEAF": 1,
-        "PSYWAVE": 15
+        "PSYWAVE": 15,
+        "RECYCLE": 24
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -21714,6 +22400,8 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "NIGHTMARE",
+        "PSYCHO_CUT",
+        "PSYSHOCK",
         "RAGE",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -21755,8 +22443,10 @@
         "MEGA_PUNCH",
         "NIGHTMARE",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SCREECH",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -21769,7 +22459,10 @@
         "TORMENT",
         "TRIPLE_AXEL"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 56,
+        "RECYCLE": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [
@@ -21801,6 +22494,7 @@
         "IRON_DEFENSE",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "PSYCHO_CUT",
         "SCREECH",
         "SNORE",
         "TAUNT",
@@ -21947,6 +22641,7 @@
         "MUD_SLAP",
         "PAIN_SPLIT",
         "PURSUIT",
+        "RECYCLE",
         "ROCK_POLISH",
         "ROCK_SLIDE",
         "ROCK_TOMB",
@@ -21970,6 +22665,7 @@
       "new_family_egg_moves": [
         "CURSE",
         "PURSUIT",
+        "RECYCLE",
         "SHADOW_SNEAK"
       ],
       "egg_family": "Grimer (Alolan)",
@@ -22039,6 +22735,7 @@
         "PAY_DAY",
         "PSYCHIC_M",
         "PURSUIT",
+        "RECYCLE",
         "ROCK_SLIDE",
         "SANDSTORM",
         "SEED_BOMB",
@@ -22052,7 +22749,9 @@
         "WATER_PULSE",
         "WHIRLPOOL"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "RECYCLE": 15
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "GIGA_IMPACT": 56,
@@ -22130,6 +22829,7 @@
         "ICY_WIND",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PERISH_SONG",
         "PSYCHIC_M",
         "PSYCH_UP",
@@ -22186,6 +22886,7 @@
         "ICY_WIND",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SCARY_FACE",
         "SNORE",
@@ -22204,6 +22905,7 @@
         "AIR_SLASH",
         "BATON_PASS",
         "CALM_MIND",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DETECT",
         "DOUBLE_EDGE",
@@ -22216,8 +22918,10 @@
         "HEAT_WAVE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "ROOST",
         "SHADOW_BALL",
@@ -22233,7 +22937,8 @@
         "WISH"
       ],
       "new_level_up": {
-        "WISH": 40
+        "WISH": 40,
+        "OMINOUS_WIND": 20
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -22262,6 +22967,7 @@
         "AERIAL_ACE",
         "AIR_CUTTER",
         "BATON_PASS",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DETECT",
         "DOUBLE_EDGE",
@@ -22273,6 +22979,7 @@
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
+        "PSYSHOCK",
         "SKY_ATTACK",
         "SNORE",
         "TWISTER",
@@ -22317,6 +23024,7 @@
         "MUD_SHOT",
         "OUTRAGE",
         "PAY_DAY",
+        "POISON_TAIL",
         "RAGE",
         "REFLECT",
         "ROCK_BLAST",
@@ -22339,7 +23047,9 @@
         "WATER_PULSE",
         "WHIRLPOOL"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 56
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 18,
@@ -22354,6 +23064,7 @@
         "HEAD_SMASH",
         "HORN_DRILL",
         "IRON_TAIL",
+        "POISON_TAIL",
         "SUCKER_PUNCH",
         "THRASH"
       ],
@@ -22444,6 +23155,7 @@
         "MUD_SHOT",
         "OUTRAGE",
         "PAY_DAY",
+        "POISON_TAIL",
         "PURSUIT",
         "RAGE",
         "REFLECT",
@@ -22468,7 +23180,8 @@
         "WHIRLPOOL"
       ],
       "new_level_up": {
-        "SUPERPOWER": 1
+        "SUPERPOWER": 1,
+        "POISON_TAIL": 56
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -22483,6 +23196,7 @@
         "ENDURE",
         "IRON_TAIL",
         "POISON_FANG",
+        "POISON_TAIL",
         "PURSUIT",
         "SKULL_BASH"
       ],
@@ -22554,6 +23268,7 @@
         "ICE_BEAM",
         "IRON_TAIL",
         "MIMIC",
+        "POISON_TAIL",
         "PURSUIT",
         "RAGE",
         "REFLECT",
@@ -22567,7 +23282,9 @@
         "VENOSHOCK",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 33
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "VENOSHOCK": 18
@@ -22576,6 +23293,7 @@
         "ENDURE",
         "IRON_TAIL",
         "POISON_FANG",
+        "POISON_TAIL",
         "PURSUIT",
         "SKULL_BASH"
       ],
@@ -22627,6 +23345,7 @@
         "ICE_BEAM",
         "IRON_TAIL",
         "MIMIC",
+        "POISON_TAIL",
         "RAGE",
         "REFLECT",
         "ROCK_SMASH",
@@ -22641,7 +23360,8 @@
         "WATER_PULSE"
       ],
       "new_level_up": {
-        "HORN_DRILL": 45
+        "HORN_DRILL": 45,
+        "POISON_TAIL": 33
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -22652,6 +23372,7 @@
         "HEAD_SMASH",
         "HORN_DRILL",
         "IRON_TAIL",
+        "POISON_TAIL",
         "SUCKER_PUNCH",
         "THRASH"
       ],
@@ -22703,6 +23424,7 @@
         "HORN_DRILL",
         "IRON_TAIL",
         "MIMIC",
+        "POISON_TAIL",
         "PURSUIT",
         "RAGE",
         "REFLECT",
@@ -22715,7 +23437,9 @@
         "WATER_GUN",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 39
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "VENOSHOCK": 18
@@ -22724,6 +23448,7 @@
         "ENDURE",
         "IRON_TAIL",
         "POISON_FANG",
+        "POISON_TAIL",
         "PURSUIT",
         "SKULL_BASH"
       ],
@@ -22775,6 +23500,7 @@
         "HORN_DRILL",
         "IRON_TAIL",
         "MIMIC",
+        "POISON_TAIL",
         "RAGE",
         "REFLECT",
         "SHADOW_CLAW",
@@ -22788,7 +23514,8 @@
         "WATER_PULSE"
       ],
       "new_level_up": {
-        "HORN_DRILL": 58
+        "HORN_DRILL": 58,
+        "POISON_TAIL": 39
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -22799,6 +23526,7 @@
         "HEAD_SMASH",
         "HORN_DRILL",
         "IRON_TAIL",
+        "POISON_TAIL",
         "SUCKER_PUNCH",
         "THRASH"
       ],
@@ -22840,6 +23568,7 @@
         "BODY_SLAM",
         "CALM_MIND",
         "CHARM",
+        "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
@@ -22851,7 +23580,9 @@
         "IRON_TAIL",
         "MIMIC",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
+        "PSYSHOCK",
         "RAGE",
         "REFLECT",
         "SHADOW_BALL",
@@ -22899,7 +23630,9 @@
         "IRON_TAIL",
         "MIMIC",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
+        "PSYSHOCK",
         "RAGE",
         "REFLECT",
         "SKULL_BASH",
@@ -22908,7 +23641,9 @@
         "TACKLE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "DAZZLING_GLEAM"
+      ]
     },
     {
       "species": "NINETALES_ALOLAN",
@@ -22930,9 +23665,11 @@
         "HEAL_BELL",
         "ICICLE_SPEAR",
         "IRON_TAIL",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PLAY_ROUGH",
         "PSYCH_UP",
+        "PSYSHOCK",
         "REFLECT",
         "SNORE",
         "TACKLE",
@@ -22975,8 +23712,10 @@
         "HEAL_BELL",
         "ICICLE_SPEAR",
         "IRON_TAIL",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "REFLECT",
         "SNORE",
         "TACKLE",
@@ -23010,9 +23749,11 @@
         "MIMIC",
         "NIGHTMARE",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYBEAM",
         "PSYCH_UP",
         "RAIN_DANCE",
+        "RECYCLE",
         "SCARY_FACE",
         "SCREECH",
         "SKILL_SWAP",
@@ -23048,13 +23789,16 @@
         "CONFUSE_RAY",
         "DETECT",
         "DOUBLE_TEAM",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAZE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PSYCH_UP",
+        "RECYCLE",
         "SCARY_FACE",
         "SCREECH",
         "SNORE",
@@ -23122,9 +23866,11 @@
       "new_tutor_routes": [
         "ACROBATICS",
         "AERIAL_ACE",
+        "BITE",
         "BRICK_BREAK",
         "DARK_PULSE",
         "DREAM_EATER",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "IRON_TAIL",
@@ -23194,11 +23940,13 @@
       "new_tutor_routes": [
         "ACROBATICS",
         "AERIAL_ACE",
+        "BITE",
         "BODY_SLAM",
         "BRICK_BREAK",
         "DARK_PULSE",
         "DOUBLE_EDGE",
         "DREAM_EATER",
+        "DUALWINGBEAT",
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
@@ -23233,6 +23981,7 @@
         "HEADBUTT",
         "HEAT_CRASH",
         "IRON_HEAD",
+        "LAVA_PLUME",
         "MIMIC",
         "OVERHEAT",
         "RAIN_DANCE",
@@ -23243,7 +23992,8 @@
         "STONE_EDGE"
       ],
       "new_level_up": {
-        "YAWN": 36
+        "YAWN": 36,
+        "LAVA_PLUME": 22
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -23306,11 +24056,13 @@
         "SNORE",
         "STRING_SHOT",
         "SUNNY_DAY",
-        "WATERFALL"
+        "WATERFALL",
+        "WATER_SPOUT"
       ],
       "new_level_up": {
         "BULLET_SEED": 30,
-        "SIGNAL_BEAM": 34
+        "SIGNAL_BEAM": 34,
+        "WATER_SPOUT": 56
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -23325,7 +24077,8 @@
         "SNORE",
         "SWIFT",
         "THUNDER_WAVE",
-        "WATER_PULSE"
+        "WATER_PULSE",
+        "WATER_SPOUT"
       ],
       "egg_family": "Remoraid",
       "new_tm_compatibility": [
@@ -23471,6 +24224,7 @@
         "MIMIC",
         "RAGE",
         "REFLECT",
+        "ROCK_BLAST",
         "ROCK_THROW",
         "SNORE",
         "SPIKE_CANNON",
@@ -23552,6 +24306,7 @@
         "PIN_MISSILE",
         "RAGE",
         "REFLECT",
+        "ROCK_BLAST",
         "ROCK_THROW",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -23645,6 +24400,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAIN_SPLIT",
+        "POISON_TAIL",
         "REVERSAL",
         "SCALD",
         "SCALE_SHOT",
@@ -23658,7 +24414,9 @@
         "VENOSHOCK",
         "WATER_PULSE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 16
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SPITE": 36
@@ -23684,6 +24442,7 @@
         "GIGA_IMPACT",
         "GYRO_BALL",
         "HEX",
+        "HYDRO_PUMP",
         "ICY_WIND",
         "MUD_SHOT",
         "PAIN_SPLIT",
@@ -23823,6 +24582,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "FURY_SWIPES",
+        "GIGA_DRAIN",
         "MEGA_DRAIN",
         "MIMIC",
         "RAGE",
@@ -23893,6 +24653,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "FURY_SWIPES",
+        "GIGA_DRAIN",
         "GIGA_IMPACT",
         "MEGA_DRAIN",
         "MIMIC",
@@ -24249,7 +25010,6 @@
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "EARTH_POWER": 42,
         "STEALTH_ROCK": 34
       },
       "new_family_egg_moves": [
@@ -24270,6 +25030,7 @@
       ],
       "new_tutor_routes": [
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "ENCORE",
         "FRUSTRATION",
         "GUNK_SHOT",
@@ -24282,6 +25043,146 @@
         "SUPERPOWER"
       ],
       "new_evolution_access": []
+    },
+    {
+      "species": "PHANTUMP",
+      "name": "Phantump",
+      "newly_available": [
+        "ASTONISH",
+        "ATTRACT",
+        "BULLDOZE",
+        "CONFUSE_RAY",
+        "CURSE",
+        "CUT",
+        "DARK_PULSE",
+        "DESTINY_BOND",
+        "DIG",
+        "DISABLE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "ENDURE",
+        "ENERGY_BALL",
+        "FACADE",
+        "FAINT_ATTACK",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GROWTH",
+        "HEX",
+        "HIDDEN_POWER",
+        "HORN_LEECH",
+        "LEECH_SEED",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "POISON_JAB",
+        "PROTECT",
+        "PSYCHIC_M",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SAFEGUARD",
+        "SEED_BOMB",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SKILL_SWAP",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLARBEAM",
+        "SPITE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "TACKLE",
+        "THIEF",
+        "TOXIC",
+        "TRICK",
+        "TRICK_ROOM",
+        "WILL_O_WISP",
+        "WOOD_HAMMER"
+      ],
+      "new_level_up": {
+        "ASTONISH": 1,
+        "TACKLE": 1,
+        "LEECH_SEED": 8,
+        "CONFUSE_RAY": 12,
+        "WILL_O_WISP": 16,
+        "FAINT_ATTACK": 19,
+        "GROWTH": 24,
+        "HORN_LEECH": 28,
+        "CURSE": 32,
+        "PHANTOMFORCE": 36,
+        "WOOD_HAMMER": 44,
+        "DESTINY_BOND": 48
+      },
+      "breeding_fallbacks": {},
+      "thematic_level_up": {},
+      "new_family_egg_moves": [
+        "DISABLE",
+        "SUCKER_PUNCH"
+      ],
+      "egg_family": "Phantump",
+      "new_tm_compatibility": [
+        "ATTRACT",
+        "CURSE",
+        "CUT",
+        "DIG",
+        "ENERGY_BALL",
+        "FACADE",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "PSYCHIC_M",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "SHADOW_BALL",
+        "SOLARBEAM",
+        "STRENGTH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "THIEF",
+        "TOXIC",
+        "WILL_O_WISP"
+      ],
+      "new_tutor_routes": [
+        "BULLDOZE",
+        "DARK_PULSE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "ENDURE",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "HEX",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "POISON_JAB",
+        "PSYCH_UP",
+        "ROCK_SLIDE",
+        "SAFEGUARD",
+        "SEED_BOMB",
+        "SHADOW_CLAW",
+        "SKILL_SWAP",
+        "SNORE",
+        "SPITE",
+        "TRICK",
+        "TRICK_ROOM"
+      ],
+      "new_evolution_access": [],
+      "new_utility_tutor": [
+        "REFLECT",
+        "SLEEP_TALK",
+        "SUBSTITUTE"
+      ]
     },
     {
       "species": "PICHU",
@@ -24362,10 +25263,13 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HEADBUTT",
+        "HYPER_VOICE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "REFLECT",
+        "SIGNAL_BEAM",
         "SKY_ATTACK",
         "SNORE",
         "TAKE_DOWN"
@@ -24384,20 +25288,26 @@
         "RAIN_DANCE"
       ],
       "new_tutor_routes": [
+        "AERIAL_ACE",
         "BIDE",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "REFLECT",
-        "SNORE"
+        "SIGNAL_BEAM",
+        "SKY_ATTACK",
+        "SNORE",
+        "TAKE_DOWN"
       ],
       "new_evolution_access": [
-        "SKY_ATTACK",
-        "TAKE_DOWN"
+        "HYPER_VOICE"
       ]
     },
     {
@@ -24413,6 +25323,7 @@
         "HEADBUTT",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "REFLECT",
@@ -24424,10 +25335,7 @@
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "HEAT_WAVE": 42,
-        "DOUBLE_EDGE": 56,
-        "SKY_ATTACK": 58,
-        "TAKE_DOWN": 44
+        "HEAT_WAVE": 42
       },
       "new_family_egg_moves": [
         "AIR_SLASH",
@@ -24440,15 +25348,21 @@
         "RAIN_DANCE"
       ],
       "new_tutor_routes": [
+        "AERIAL_ACE",
         "BIDE",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "REFLECT",
+        "SKY_ATTACK",
         "SNORE",
+        "TAKE_DOWN",
         "U_TURN"
       ],
       "new_evolution_access": []
@@ -24466,6 +25380,7 @@
         "HEADBUTT",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "REFLECT",
@@ -24490,6 +25405,7 @@
         "RAIN_DANCE"
       ],
       "new_tutor_routes": [
+        "AERIAL_ACE",
         "BIDE",
         "DETECT",
         "DOUBLE_EDGE",
@@ -24497,6 +25413,7 @@
         "ENDURE",
         "FRUSTRATION",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "REFLECT",
         "SKY_ATTACK",
@@ -24518,6 +25435,7 @@
         "DEFENSE_CURL",
         "DETECT",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DRAINING_KISS",
         "DYNAMICPUNCH",
@@ -24525,6 +25443,7 @@
         "EXTREMESPEED",
         "FLAIL",
         "FRUSTRATION",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -24546,7 +25465,9 @@
         "VOLT_SWITCH",
         "YAWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 31
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 30,
@@ -24578,6 +25499,7 @@
         "DYNAMICPUNCH",
         "EXTREMESPEED",
         "FRUSTRATION",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -25092,11 +26014,13 @@
         "SWEET_KISS",
         "SWIFT",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "MIND_READER": 1,
-        "MUD_SHOT": 1
+        "MUD_SHOT": 1,
+        "VACUUM_WAVE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -25253,6 +26177,7 @@
         "AERIAL_ACE",
         "BIDE",
         "DEFENSE_CURL",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
@@ -25266,8 +26191,10 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SKULL_BASH",
         "SNORE",
@@ -25276,7 +26203,10 @@
         "TELEPORT",
         "TRICK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 28,
+        "RECYCLE": 22
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [],
@@ -25289,6 +26219,7 @@
         "AERIAL_ACE",
         "BIDE",
         "DEFENSE_CURL",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
@@ -25301,6 +26232,7 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "REFLECT",
@@ -25318,6 +26250,7 @@
       "newly_available": [
         "AERIAL_ACE",
         "BIDE",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
@@ -25329,8 +26262,10 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SKULL_BASH",
         "SNORE",
@@ -25339,7 +26274,10 @@
         "TELEPORT",
         "TRICK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 28,
+        "RECYCLE": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [],
@@ -25350,28 +26288,29 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "BIDE",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
         "FRUSTRATION",
+        "GIGA_IMPACT",
         "ICY_WIND",
         "IRON_TAIL",
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "REFLECT",
         "SKULL_BASH",
         "SNORE",
+        "TAKE_DOWN",
         "TELEPORT",
         "TRICK"
       ],
-      "new_evolution_access": [
-        "GIGA_IMPACT",
-        "TAKE_DOWN"
-      ]
+      "new_evolution_access": []
     },
     {
       "species": "PORYGON2",
@@ -25379,6 +26318,7 @@
       "newly_available": [
         "AERIAL_ACE",
         "BIDE",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
@@ -25391,8 +26331,10 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SKULL_BASH",
         "SNORE",
@@ -25401,13 +26343,12 @@
         "TELEPORT",
         "TRICK"
       ],
-      "new_level_up": {},
-      "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "DOUBLE_EDGE": 56,
-        "GIGA_IMPACT": 58,
-        "TAKE_DOWN": 42
+      "new_level_up": {
+        "DISCHARGE": 28,
+        "RECYCLE": 22
       },
+      "breeding_fallbacks": {},
+      "thematic_level_up": {},
       "new_family_egg_moves": [],
       "egg_family": "Porygon",
       "new_tm_compatibility": [
@@ -25416,21 +26357,25 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "BIDE",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
         "FRUSTRATION",
+        "GIGA_IMPACT",
         "ICY_WIND",
         "IRON_TAIL",
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
         "REFLECT",
         "SKULL_BASH",
         "SNORE",
+        "TAKE_DOWN",
         "TELEPORT",
         "TRICK"
       ],
@@ -25481,7 +26426,8 @@
         "STONE_EDGE",
         "SUBMISSION",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
         "PURSUIT": 12,
@@ -25537,7 +26483,8 @@
         "STEALTH_ROCK",
         "STONE_EDGE",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -25571,6 +26518,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "RAGE",
         "SCALD",
         "SEISMIC_TOSS",
@@ -25582,7 +26530,8 @@
         "SUBMISSION",
         "TAKE_DOWN",
         "TAUNT",
-        "THIEF"
+        "THIEF",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -25626,6 +26575,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "RAGE",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
@@ -25635,7 +26585,8 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": []
     },
@@ -25754,10 +26705,7 @@
       "thematic_level_up": {
         "BODY_PRESS": 38,
         "BULLDOZE": 22,
-        "EARTH_POWER": 42,
         "SPIKES": 34,
-        "WATER_PULSE": 44,
-        "HYDRO_PUMP": 56,
         "LIQUIDATION": 48
       },
       "new_family_egg_moves": [
@@ -25780,11 +26728,13 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
+        "EARTH_POWER",
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAIL",
+        "HYDRO_PUMP",
         "ICY_WIND",
         "INFESTATION",
         "IRON_TAIL",
@@ -25797,7 +26747,8 @@
         "SNORE",
         "STONE_EDGE",
         "TAKE_DOWN",
-        "TOXIC_SPIKES"
+        "TOXIC_SPIKES",
+        "WATER_PULSE"
       ],
       "new_evolution_access": []
     },
@@ -25812,11 +26763,13 @@
         "DETECT",
         "DOUBLE_TEAM",
         "ENDURE",
+        "ERUPTION",
         "FIRE_FANG",
         "FIRE_SPIN",
         "FRUSTRATION",
         "HEAT_WAVE",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MIMIC",
         "OVERHEAT",
         "PLAY_ROUGH",
@@ -25825,7 +26778,9 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "OVERHEAT": 68
+        "OVERHEAT": 68,
+        "LAVA_PLUME": 27,
+        "ERUPTION": 55
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -25886,6 +26841,7 @@
         "MIMIC",
         "MUD_SHOT",
         "PAIN_SPLIT",
+        "POISON_TAIL",
         "REVERSAL",
         "SCALD",
         "SCALE_SHOT",
@@ -25935,10 +26891,12 @@
         "GYRO_BALL",
         "HAIL",
         "HEX",
+        "HYDRO_PUMP",
         "ICY_WIND",
         "MIMIC",
         "MUD_SHOT",
         "PAIN_SPLIT",
+        "POISON_TAIL",
         "REVERSAL",
         "SCALD",
         "SCALE_SHOT",
@@ -25963,6 +26921,7 @@
         "DEFENSE_CURL",
         "DETECT",
         "DIG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DRAINING_KISS",
         "DYNAMICPUNCH",
@@ -25971,6 +26930,7 @@
         "FLAIL",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -25991,7 +26951,9 @@
         "TAKE_DOWN",
         "YAWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 60
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 28
@@ -26022,6 +26984,7 @@
         "EXTREMESPEED",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
@@ -26052,6 +27015,7 @@
         "COUNTER",
         "DEFENSE_CURL",
         "DETECT",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DRAINING_KISS",
         "DYNAMICPUNCH",
@@ -26061,13 +27025,16 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
         "PAY_DAY",
         "PLAY_ROUGH",
         "PRESENT",
+        "PSYSHOCK",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -26082,7 +27049,10 @@
         "TELEPORT",
         "YAWN"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PSYSHOCK": 43,
+        "DISCHARGE": 56
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "CALM_MIND": 30,
@@ -26112,12 +27082,14 @@
         "EXTREMESPEED",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
         "PAY_DAY",
         "PLAY_ROUGH",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SAFEGUARD",
         "SEISMIC_TOSS",
@@ -26140,6 +27112,7 @@
         "BODY_SLAM",
         "BULLDOZE",
         "DETECT",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -26155,7 +27128,9 @@
         "TAKE_DOWN",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 30
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SIGNAL_BEAM": 28,
@@ -26187,15 +27162,22 @@
     {
       "species": "RAITORA",
       "name": "Raitora",
-      "newly_available": [],
+      "newly_available": [
+        "DISCHARGE",
+        "SLACK_OFF"
+      ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "DISCHARGE": 40
+      },
       "new_family_egg_moves": [],
       "egg_family": "Kotora",
       "new_tm_compatibility": [],
       "new_tutor_routes": [],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SLACK_OFF"
+      ]
     },
     {
       "species": "RALTS",
@@ -26221,7 +27203,9 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
+        "RECYCLE",
         "SAFEGUARD",
         "SIGNAL_BEAM",
         "SING",
@@ -26279,6 +27263,8 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SAFEGUARD",
         "SING",
         "SNORE",
@@ -26361,6 +27347,7 @@
         "WHIRLPOOL"
       ],
       "new_tutor_routes": [
+        "ANCIENTPOWER",
         "AVALANCHE",
         "BODY_SLAM",
         "DOUBLE_TEAM",
@@ -26446,6 +27433,7 @@
       "name": "Rapidash (Galarian)",
       "newly_available": [
         "BATON_PASS",
+        "BLAZE_KICK",
         "BODY_SLAM",
         "BOUNCE",
         "CALM_MIND",
@@ -26456,13 +27444,15 @@
         "GIGA_IMPACT",
         "HORN_DRILL",
         "IRON_TAIL",
+        "MOONBLAST",
         "PAY_DAY",
         "PSYCHO_CUT",
         "SNORE",
         "TRICK_ROOM"
       ],
       "new_level_up": {
-        "PSYCHO_CUT": 1
+        "PSYCHO_CUT": 1,
+        "BLAZE_KICK": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -26486,7 +27476,9 @@
         "SNORE",
         "TRICK_ROOM"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "MOONBLAST"
+      ]
     },
     {
       "species": "RATICATE",
@@ -26707,11 +27699,13 @@
         "SNORE",
         "STRING_SHOT",
         "SUNNY_DAY",
-        "WATERFALL"
+        "WATERFALL",
+        "WATER_SPOUT"
       ],
       "new_level_up": {
         "BULLET_SEED": 28,
-        "SIGNAL_BEAM": 30
+        "SIGNAL_BEAM": 30,
+        "WATER_SPOUT": 48
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -26725,7 +27719,8 @@
         "SNORE",
         "SWIFT",
         "THUNDER_WAVE",
-        "WATER_PULSE"
+        "WATER_PULSE",
+        "WATER_SPOUT"
       ],
       "egg_family": "Remoraid",
       "new_tm_compatibility": [
@@ -27080,6 +28075,7 @@
       "name": "Riolu",
       "newly_available": [
         "AERIAL_ACE",
+        "BLAZE_KICK",
         "BULLDOZE",
         "CIRCLE_THROW",
         "CLOSE_COMBAT",
@@ -27093,6 +28089,7 @@
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
+        "METEOR_MASH",
         "MIND_READER",
         "POISON_JAB",
         "PSYCH_UP",
@@ -27101,22 +28098,30 @@
         "ROCK_SLIDE",
         "ROCK_TOMB",
         "SHADOW_CLAW",
+        "SKY_UPPERCUT",
         "SNORE",
         "TAKE_DOWN",
-        "THUNDERPUNCH"
+        "THUNDERPUNCH",
+        "VACUUM_WAVE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "VACUUM_WAVE": 24
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "CLOSE_COMBAT": 56
       },
       "new_family_egg_moves": [
         "BITE",
+        "BLAZE_KICK",
         "CIRCLE_THROW",
         "CROSS_CHOP",
         "CRUNCH",
         "LOW_KICK",
-        "MIND_READER"
+        "METEOR_MASH",
+        "MIND_READER",
+        "SKY_UPPERCUT",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Riolu",
       "new_tm_compatibility": [
@@ -27169,9 +28174,7 @@
         "TAUNT": 20
       },
       "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "AIR_SLASH": 30
-      },
+      "thematic_level_up": {},
       "new_family_egg_moves": [
         "DEFOG",
         "ROCK_SMASH",
@@ -27183,6 +28186,7 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "ENDURE",
         "FOCUS_ENERGY",
         "REVERSAL",
@@ -27220,6 +28224,7 @@
         "IRON_TAIL",
         "MIMIC",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "ROAR",
@@ -27277,6 +28282,7 @@
         "IRON_DEFENSE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "ROCK_SLIDE",
         "ROLLOUT",
         "SNORE",
@@ -27303,6 +28309,7 @@
         "LEECH_LIFE",
         "OVERHEAT",
         "POISON_JAB",
+        "POISON_TAIL",
         "SCALE_SHOT",
         "SCARY_FACE",
         "SHADOW_CLAW",
@@ -27336,7 +28343,9 @@
         "GUNK_SHOT",
         "IRON_TAIL",
         "LEECH_LIFE",
+        "POISON_FANG",
         "POISON_JAB",
+        "POISON_TAIL",
         "SCALE_SHOT",
         "SCARY_FACE",
         "SHADOW_CLAW",
@@ -27368,6 +28377,7 @@
         "IRON_TAIL",
         "LEECH_LIFE",
         "POISON_JAB",
+        "POISON_TAIL",
         "POUND",
         "SCALE_SHOT",
         "SCARY_FACE",
@@ -27396,6 +28406,7 @@
         "ACROBATICS",
         "AGILITY",
         "BODY_SLAM",
+        "CROSS_POISON",
         "DOUBLE_TEAM",
         "DRAGON_TAIL",
         "ENDURE",
@@ -27408,7 +28419,9 @@
         "HYPER_VOICE",
         "IRON_TAIL",
         "LEECH_LIFE",
+        "POISON_FANG",
         "POISON_JAB",
+        "POISON_TAIL",
         "SCALE_SHOT",
         "SCARY_FACE",
         "SHADOW_CLAW",
@@ -27806,6 +28819,7 @@
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FOCUS_BLAST",
+        "FREEZE_DRY",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "ICY_WIND",
@@ -27842,6 +28856,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "PURSUIT",
         "RAGE",
@@ -27852,6 +28867,7 @@
         "STRUGGLE_BUG",
         "SUPERPOWER",
         "TAKE_DOWN",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_level_up": {
@@ -27885,6 +28901,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "RAGE",
         "SCARY_FACE",
@@ -27895,7 +28912,9 @@
         "TAKE_DOWN",
         "VENOSHOCK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "VACUUM_WAVE"
+      ]
     },
     {
       "species": "SCOLIPEDE",
@@ -27916,6 +28935,7 @@
         "INFESTATION",
         "IRON_DEFENSE",
         "IRON_TAIL",
+        "POISON_TAIL",
         "PURSUIT",
         "ROCK_SMASH",
         "ROCK_TOMB",
@@ -27928,7 +28948,8 @@
       ],
       "new_level_up": {
         "IRON_DEFENSE": 1,
-        "PURSUIT": 12
+        "PURSUIT": 12,
+        "POISON_TAIL": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -27959,12 +28980,13 @@
         "GYRO_BALL",
         "HEX",
         "IRON_TAIL",
+        "SIGNAL_BEAM",
         "SNORE",
-        "STRUGGLE_BUG"
+        "STRUGGLE_BUG",
+        "VENOSHOCK"
       ],
       "new_evolution_access": [
-        "INFESTATION",
-        "SIGNAL_BEAM"
+        "INFESTATION"
       ]
     },
     {
@@ -28173,6 +29195,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "PURSUIT",
         "RAGE",
@@ -28181,10 +29204,12 @@
         "SKULL_BASH",
         "SNORE",
         "STRUGGLE_BUG",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {
-        "PURSUIT": 9
+        "PURSUIT": 9,
+        "VACUUM_WAVE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -28204,6 +29229,7 @@
         "ACROBATICS",
         "AERIAL_ACE",
         "AIR_CUTTER",
+        "AIR_SLASH",
         "BIDE",
         "BRICK_BREAK",
         "BUG_BITE",
@@ -28216,6 +29242,7 @@
         "LUNGE",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PSYCHO_CUT",
         "RAGE",
         "SCARY_FACE",
@@ -28547,6 +29574,7 @@
         "DYNAMICPUNCH",
         "ENDURE",
         "FRUSTRATION",
+        "HYPER_VOICE",
         "MIMIC",
         "ROLLOUT",
         "SEED_BOMB",
@@ -28577,6 +29605,7 @@
         "INFESTATION",
         "IRON_HEAD",
         "MIMIC",
+        "POISON_TAIL",
         "RAIN_DANCE",
         "REVERSAL",
         "ROCK_SMASH",
@@ -28589,7 +29618,9 @@
         "THUNDER_FANG",
         "X_SCISSOR"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "POISON_TAIL": 22
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SUCKER_PUNCH": 42,
@@ -28838,6 +29869,7 @@
         "IRON_TAIL",
         "ROCK_SLIDE",
         "SNORE",
+        "STONE_EDGE",
         "TORMENT"
       ],
       "new_evolution_access": []
@@ -28977,6 +30009,7 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYBEAM",
         "PSYCH_UP",
@@ -29001,6 +30034,7 @@
         "CONFUSE_RAY",
         "DESTINY_BOND",
         "FORESIGHT",
+        "OMINOUS_WIND",
         "PHANTOMFORCE",
         "PURSUIT",
         "SHADOW_SNEAK"
@@ -29051,6 +30085,7 @@
         "IRON_DEFENSE",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "RAGE",
         "RAZOR_LEAF",
@@ -29086,14 +30121,16 @@
       "egg_family": "Farfetch'd",
       "new_tm_compatibility": [],
       "new_tutor_routes": [
+        "AIR_CUTTER",
+        "AIR_SLASH",
         "ENDURE",
         "FOCUS_ENERGY",
+        "OMINOUS_WIND",
         "SNORE",
         "SOLAR_BLADE"
       ],
       "new_evolution_access": [
         "ACROBATICS",
-        "AIR_CUTTER",
         "BATON_PASS",
         "BIDE",
         "BODY_SLAM",
@@ -29132,7 +30169,6 @@
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "BUG_BUZZ": 42,
         "HEAT_CRASH": 46
       },
       "new_family_egg_moves": [
@@ -29144,7 +30180,9 @@
       "egg_family": "Sizzlipede",
       "new_tm_compatibility": [],
       "new_tutor_routes": [
+        "BUG_BUZZ",
         "ENDURE",
+        "HEAT_WAVE",
         "SCALD",
         "SNORE",
         "VENOSHOCK"
@@ -29171,6 +30209,7 @@
         "HYPER_BEAM",
         "ICY_WIND",
         "MIMIC",
+        "OMINOUS_WIND",
         "REVERSAL",
         "ROAR",
         "ROCK_SLIDE",
@@ -29181,6 +30220,7 @@
         "TAKE_DOWN",
         "TORMENT",
         "TWISTER",
+        "U_TURN",
         "X_SCISSOR"
       ],
       "new_level_up": {
@@ -29211,6 +30251,7 @@
       ],
       "new_tutor_routes": [
         "AERIAL_ACE",
+        "AIR_SLASH",
         "DARK_PULSE",
         "DETECT",
         "DOUBLE_EDGE",
@@ -29221,12 +30262,14 @@
         "HURRICANE",
         "ICY_WIND",
         "MIMIC",
+        "OMINOUS_WIND",
         "REVERSAL",
         "ROCK_SLIDE",
         "SNORE",
         "TAKE_DOWN",
         "TORMENT",
         "TWISTER",
+        "U_TURN",
         "X_SCISSOR"
       ],
       "new_evolution_access": []
@@ -29238,6 +30281,7 @@
         "AERIAL_ACE",
         "BATON_PASS",
         "CHARM",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
@@ -29263,6 +30307,7 @@
         "MAGICAL_LEAF": 18
       },
       "new_family_egg_moves": [
+        "COTTON_GUARD",
         "ENDURE",
         "PSYCH_UP",
         "SEED_BOMB"
@@ -29273,8 +30318,10 @@
         "THIEF"
       ],
       "new_tutor_routes": [
+        "ACROBATICS",
         "AERIAL_ACE",
         "BATON_PASS",
+        "BOUNCE",
         "CHARM",
         "DAZZLING_GLEAM",
         "DEFENSE_CURL",
@@ -29326,8 +30373,10 @@
         "NIGHTMARE",
         "PAY_DAY",
         "PSYBEAM",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -29392,8 +30441,10 @@
         "MUD_SHOT",
         "NIGHTMARE",
         "PAY_DAY",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SEISMIC_TOSS",
         "SKULL_BASH",
@@ -29431,6 +30482,7 @@
         "MUD_SHOT",
         "PAY_DAY",
         "POISON_JAB",
+        "PSYSHOCK",
         "ROCK_BLAST",
         "SANDSTORM",
         "SCALD",
@@ -29484,6 +30536,7 @@
         "METRONOME",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "ROCK_BLAST",
         "SCALD",
         "SCARY_FACE",
@@ -29531,8 +30584,11 @@
         "NIGHTMARE",
         "PAY_DAY",
         "PSYBEAM",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECOVER",
+        "RECYCLE",
         "ROCK_SLIDE",
         "ROCK_TOMB",
         "SEISMIC_TOSS",
@@ -29600,15 +30656,19 @@
         "MUD_SHOT",
         "NIGHTMARE",
         "PAY_DAY",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROCK_SLIDE",
         "SEISMIC_TOSS",
         "SKULL_BASH",
         "TAKE_DOWN",
         "TRI_ATTACK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "RECOVER"
+      ]
     },
     {
       "species": "SLOWKING_GALARIAN",
@@ -29638,6 +30698,8 @@
         "MUD_SHOT",
         "PAY_DAY",
         "POISON_JAB",
+        "PSYSHOCK",
+        "RECOVER",
         "SCALD",
         "SCARY_FACE",
         "SKILL_SWAP",
@@ -29691,6 +30753,8 @@
         "MUD_SHOT",
         "PAY_DAY",
         "POISON_JAB",
+        "PSYCHO_CUT",
+        "PSYSHOCK",
         "SCALD",
         "SCARY_FACE",
         "SNARL",
@@ -29699,7 +30763,9 @@
         "TAUNT",
         "TRI_ATTACK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "RECOVER"
+      ]
     },
     {
       "species": "SLOWPOKE",
@@ -29729,8 +30795,10 @@
         "NIGHTMARE",
         "PAY_DAY",
         "PSYBEAM",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SCALD",
         "SIGNAL_BEAM",
@@ -29782,8 +30850,10 @@
         "NIGHTMARE",
         "PAY_DAY",
         "PSYBEAM",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "SCALD",
         "SIGNAL_BEAM",
@@ -29810,6 +30880,7 @@
         "LIQUIDATION",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "SCALD",
         "SKILL_SWAP",
         "SNORE",
@@ -29842,6 +30913,7 @@
         "LIQUIDATION",
         "MUD_SHOT",
         "PAY_DAY",
+        "PSYSHOCK",
         "SCALD",
         "SNORE",
         "TAKE_DOWN",
@@ -29865,6 +30937,7 @@
         "HEAT_CRASH",
         "INFESTATION",
         "IRON_DEFENSE",
+        "LAVA_PLUME",
         "MIMIC",
         "MUD_SHOT",
         "OVERHEAT",
@@ -29879,7 +30952,8 @@
         "YAWN"
       ],
       "new_level_up": {
-        "YAWN": 1
+        "YAWN": 1,
+        "LAVA_PLUME": 21
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -29895,6 +30969,7 @@
         "SANDSTORM"
       ],
       "new_tutor_routes": [
+        "BODY_SLAM",
         "BULLDOZE",
         "DEFENSE_CURL",
         "DOUBLE_EDGE",
@@ -29910,6 +30985,7 @@
         "MUD_SHOT",
         "PAIN_SPLIT",
         "ROCK_BLAST",
+        "ROCK_SLIDE",
         "SELFDESTRUCT",
         "SNORE",
         "STEALTH_ROCK",
@@ -29921,7 +30997,27 @@
     {
       "species": "SMEARGLE",
       "name": "Smeargle",
-      "newly_available": [],
+      "newly_available": [
+        "BLAZE_KICK",
+        "COSMIC_POWER",
+        "COTTON_GUARD",
+        "DISCHARGE",
+        "DOOM_DESIRE",
+        "DRAGON_HAMMER",
+        "ERUPTION",
+        "HORN_LEECH",
+        "LAVA_PLUME",
+        "METEOR_MASH",
+        "OMINOUS_WIND",
+        "PETAL_BLIZZARD",
+        "POISON_TAIL",
+        "PSYSHOCK",
+        "RECYCLE",
+        "SKY_UPPERCUT",
+        "TAIL_GLOW",
+        "VACUUM_WAVE",
+        "WATER_SPOUT"
+      ],
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {},
@@ -29929,7 +31025,27 @@
       "egg_family": "Smeargle",
       "new_tm_compatibility": [],
       "new_tutor_routes": [],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "BLAZE_KICK",
+        "COSMIC_POWER",
+        "COTTON_GUARD",
+        "DISCHARGE",
+        "DOOM_DESIRE",
+        "DRAGON_HAMMER",
+        "ERUPTION",
+        "HORN_LEECH",
+        "LAVA_PLUME",
+        "METEOR_MASH",
+        "OMINOUS_WIND",
+        "PETAL_BLIZZARD",
+        "POISON_TAIL",
+        "PSYSHOCK",
+        "RECYCLE",
+        "SKY_UPPERCUT",
+        "TAIL_GLOW",
+        "VACUUM_WAVE",
+        "WATER_SPOUT"
+      ]
     },
     {
       "species": "SMOOCHUM",
@@ -29955,6 +31071,8 @@
         "MIMIC",
         "NIGHTMARE",
         "PSYCH_UP",
+        "PSYSHOCK",
+        "RECYCLE",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
@@ -29963,9 +31081,7 @@
         "TRICK_ROOM",
         "WATER_PULSE"
       ],
-      "new_level_up": {
-        "AVALANCHE": 35
-      },
+      "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SKILL_SWAP": 34,
@@ -29984,6 +31100,7 @@
         "FLASH"
       ],
       "new_tutor_routes": [
+        "AVALANCHE",
         "BODY_SLAM",
         "CHARM",
         "COUNTER",
@@ -30000,6 +31117,8 @@
         "METRONOME",
         "MIMIC",
         "NIGHTMARE",
+        "PSYSHOCK",
+        "RECYCLE",
         "SEISMIC_TOSS",
         "SNORE",
         "WATER_PULSE"
@@ -30077,6 +31196,7 @@
         "AERIAL_ACE",
         "BRICK_BREAK",
         "CALM_MIND",
+        "DARK_PULSE",
         "DEFENSE_CURL",
         "DETECT",
         "DOUBLE_EDGE",
@@ -30085,6 +31205,7 @@
         "DYNAMICPUNCH",
         "ENDURE",
         "FALSE_SWIPE",
+        "FREEZE_DRY",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAIL",
@@ -30125,12 +31246,14 @@
         "GUNK_SHOT",
         "LOW_KICK",
         "LOW_SWEEP",
+        "POISON_TAIL",
         "REVERSAL",
         "SCRATCH",
         "SHADOW_CLAW",
         "SPITE",
         "TAKE_DOWN",
         "TOXIC_SPIKES",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_level_up": {
@@ -30159,10 +31282,12 @@
         "FALSE_SWIPE",
         "FOCUS_BLAST",
         "GIGA_IMPACT",
+        "POISON_TAIL",
         "REVERSAL",
         "SHADOW_CLAW",
         "SPITE",
         "TAKE_DOWN",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_evolution_access": []
@@ -30180,6 +31305,7 @@
         "GIGA_IMPACT",
         "GUNK_SHOT",
         "LOW_KICK",
+        "POISON_TAIL",
         "REVERSAL",
         "ROCK_SLIDE",
         "ROCK_TOMB",
@@ -30187,6 +31313,8 @@
         "SPITE",
         "TAKE_DOWN",
         "TOXIC_SPIKES",
+        "TRIPLE_AXEL",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_level_up": {
@@ -30214,11 +31342,14 @@
         "FALSE_SWIPE",
         "FOCUS_BLAST",
         "GIGA_IMPACT",
+        "POISON_TAIL",
         "REVERSAL",
         "ROCK_SLIDE",
         "SHADOW_CLAW",
         "SPITE",
         "TAKE_DOWN",
+        "TRIPLE_AXEL",
+        "VACUUM_WAVE",
         "VENOSHOCK"
       ],
       "new_evolution_access": []
@@ -30256,6 +31387,7 @@
         "PSYWAVE",
         "PURSUIT",
         "RAGE",
+        "RECYCLE",
         "REFLECT",
         "ROCK_SLIDE",
         "SEED_BOMB",
@@ -30272,7 +31404,8 @@
         "YAWN"
       ],
       "new_level_up": {
-        "YAWN": 12
+        "YAWN": 12,
+        "RECYCLE": 15
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -30570,6 +31703,7 @@
         "HEADBUTT",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "RAZOR_WIND",
@@ -30607,6 +31741,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "SNORE",
         "TWISTER",
@@ -30751,8 +31886,10 @@
         "LUNGE",
         "MIMIC",
         "NIGHT_SHADE",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAIN_DANCE",
+        "RECYCLE",
         "SIGNAL_BEAM",
         "SNARL",
         "SUNNY_DAY",
@@ -30764,7 +31901,8 @@
         "TRICK_ROOM"
       ],
       "new_level_up": {
-        "PSYWAVE": 7
+        "PSYWAVE": 7,
+        "PSYSHOCK": 38
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -30791,6 +31929,7 @@
       ],
       "new_tutor_routes": [
         "BODY_SLAM",
+        "BOUNCE",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -30802,6 +31941,7 @@
         "LUNGE",
         "MIMIC",
         "NIGHT_SHADE",
+        "RECYCLE",
         "SNARL",
         "TAKE_DOWN",
         "TAUNT",
@@ -30851,10 +31991,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "new_level_up": {
-        "IRON_DEFENSE": 30
+        "IRON_DEFENSE": 30,
+        "WATER_SPOUT": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -30868,6 +32010,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle",
@@ -30948,10 +32091,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "new_level_up": {
-        "IRON_DEFENSE": 30
+        "IRON_DEFENSE": 30,
+        "WATER_SPOUT": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -30965,6 +32110,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle (Clone)",
@@ -31023,6 +32169,7 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "HORN_LEECH",
         "HYPER_BEAM",
         "IRON_TAIL",
         "JUMP_KICK",
@@ -31030,6 +32177,7 @@
         "NIGHTMARE",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAGE",
         "SCARY_FACE",
         "SIGNAL_BEAM",
@@ -31072,6 +32220,7 @@
         "AGILITY",
         "BOUNCE",
         "BULLDOZE",
+        "CALM_MIND",
         "DETECT",
         "DOUBLE_TEAM",
         "DREAM_EATER",
@@ -31083,6 +32232,7 @@
         "MIMIC",
         "NIGHTMARE",
         "PSYBEAM",
+        "PSYSHOCK",
         "SCARY_FACE",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
@@ -31090,7 +32240,9 @@
         "SUCKER_PUNCH",
         "TRICK"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "HORN_LEECH"
+      ]
     },
     {
       "species": "STARAPTOR",
@@ -31107,6 +32259,7 @@
         "HEAT_WAVE",
         "HURRICANE",
         "MIRROR_MOVE",
+        "OMINOUS_WIND",
         "PURSUIT",
         "SKY_ATTACK",
         "SNORE",
@@ -31138,6 +32291,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "HURRICANE",
+        "OMINOUS_WIND",
         "SNORE",
         "STRUGGLE_BUG",
         "TWISTER"
@@ -31158,6 +32312,7 @@
         "HEAT_WAVE",
         "HURRICANE",
         "MIRROR_MOVE",
+        "OMINOUS_WIND",
         "PURSUIT",
         "SNORE",
         "TWISTER",
@@ -31186,6 +32341,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "HURRICANE",
+        "OMINOUS_WIND",
         "SNORE",
         "TWISTER",
         "U_TURN"
@@ -31206,6 +32362,7 @@
         "HEAT_WAVE",
         "HURRICANE",
         "MIRROR_MOVE",
+        "OMINOUS_WIND",
         "PURSUIT",
         "SNORE",
         "TWISTER",
@@ -31234,6 +32391,7 @@
         "FRUSTRATION",
         "HEAT_WAVE",
         "HURRICANE",
+        "OMINOUS_WIND",
         "SNORE",
         "TWISTER",
         "U_TURN"
@@ -31248,6 +32406,7 @@
         "ATTRACT",
         "AVALANCHE",
         "BIDE",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -31263,8 +32422,10 @@
         "PAIN_SPLIT",
         "PSYCHO_CUT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SIGNAL_BEAM",
         "SKILL_SWAP",
@@ -31277,7 +32438,9 @@
         "TRI_ATTACK",
         "TWISTER"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "COSMIC_POWER": 64
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "SKILL_SWAP": 34,
@@ -31309,7 +32472,9 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SKULL_BASH",
         "SNORE",
@@ -31328,6 +32493,7 @@
       "newly_available": [
         "ATTRACT",
         "BIDE",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -31342,6 +32508,7 @@
         "PSYCH_UP",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SCALD",
         "SIGNAL_BEAM",
@@ -31353,7 +32520,8 @@
         "TWISTER"
       ],
       "new_level_up": {
-        "PSYWAVE": 13
+        "PSYWAVE": 13,
+        "COSMIC_POWER": 37
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -31379,6 +32547,7 @@
         "PAIN_SPLIT",
         "PSYCH_UP",
         "RAGE",
+        "RECYCLE",
         "ROLLOUT",
         "SIGNAL_BEAM",
         "SKULL_BASH",
@@ -31468,6 +32637,7 @@
         "GIGA_DRAIN",
         "LEAF_STORM",
         "LOW_SWEEP",
+        "PETAL_BLIZZARD",
         "PLAY_ROUGH",
         "SAFEGUARD",
         "SEED_BOMB",
@@ -31497,6 +32667,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "LOW_SWEEP",
+        "PETAL_BLIZZARD",
         "SAFEGUARD",
         "SNORE",
         "TAKE_DOWN",
@@ -31554,6 +32725,7 @@
         "HYPER_BEAM"
       ],
       "new_tutor_routes": [
+        "ANCIENTPOWER",
         "BODY_SLAM",
         "BRICK_BREAK",
         "CALM_MIND",
@@ -31595,6 +32767,7 @@
         "IRON_TAIL",
         "LIQUIDATION",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SHADOW_BALL",
         "SIGNAL_BEAM",
@@ -31627,6 +32800,7 @@
         "ICY_WIND",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SIGNAL_BEAM",
         "SNARL",
@@ -31645,6 +32819,7 @@
         "GIGA_IMPACT",
         "MAGICAL_LEAF",
         "MIMIC",
+        "PETAL_BLIZZARD",
         "RAIN_DANCE",
         "SNORE",
         "SWORDS_DANCE",
@@ -31671,9 +32846,11 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "MIMIC",
+        "PETAL_BLIZZARD",
         "SNORE",
         "SWORDS_DANCE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "WOOD_HAMMER"
       ],
       "new_evolution_access": []
     },
@@ -31727,6 +32904,7 @@
         "AERIAL_ACE",
         "AIR_CUTTER",
         "BODY_SLAM",
+        "COTTON_GUARD",
         "DAZZLING_GLEAM",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
@@ -31741,6 +32919,7 @@
         "MIMIC",
         "MIRROR_MOVE",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "PLAY_ROUGH",
         "PSYCH_UP",
@@ -31755,7 +32934,8 @@
         "TWISTER"
       ],
       "new_level_up": {
-        "MIRROR_MOVE": 30
+        "MIRROR_MOVE": 30,
+        "COTTON_GUARD": 35
       },
       "breeding_fallbacks": {
         "PLAY_ROUGH": 30
@@ -31796,6 +32976,7 @@
         "FRUSTRATION",
         "HEAL_BELL",
         "MIMIC",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "PSYCH_UP",
         "SNORE",
@@ -31886,6 +33067,7 @@
         "MIMIC",
         "PAY_DAY",
         "PLAY_ROUGH",
+        "PSYSHOCK",
         "RAGE",
         "ROAR",
         "SAFEGUARD",
@@ -31920,6 +33102,7 @@
         "MIMIC",
         "PAY_DAY",
         "PLAY_ROUGH",
+        "PSYSHOCK",
         "RAGE",
         "SAFEGUARD",
         "SING",
@@ -32037,9 +33220,12 @@
         "MIMIC",
         "MORNING_SUN",
         "PAIN_SPLIT",
+        "POWER_WHIP",
         "PSYCH_UP",
         "RAGE",
+        "SEED_BOMB",
         "SKULL_BASH",
+        "SLAM",
         "SNORE",
         "SWORDS_DANCE",
         "SYNTHESIS",
@@ -32149,6 +33335,7 @@
         "SOLARBEAM",
         "SPITE",
         "STONE_EDGE",
+        "SUPERPOWER",
         "THIEF",
         "WATER_PULSE",
         "WHIRLPOOL"
@@ -32192,7 +33379,9 @@
         "STONE_EDGE",
         "WATER_PULSE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SUPERPOWER"
+      ]
     },
     {
       "species": "TAUROS_PALDEAN_WATER",
@@ -32241,6 +33430,8 @@
       "species": "TAUROS_PALDEAN_FIRE",
       "name": "Tauros (Paldean Blaze Breed)",
       "newly_available": [
+        "AQUA_JET",
+        "BLAZE_KICK",
         "BODY_PRESS",
         "DIG",
         "DRILL_RUN",
@@ -32254,7 +33445,9 @@
         "TAKE_DOWN",
         "THIEF"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "BLAZE_KICK": 28
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BODY_PRESS": 38,
@@ -32272,9 +33465,12 @@
         "THIEF"
       ],
       "new_tutor_routes": [
+        "AQUA_JET",
         "DRILL_RUN",
         "FIRE_SPIN",
         "GIGA_IMPACT",
+        "HEAT_WAVE",
+        "OVERHEAT",
         "STONE_EDGE",
         "TAKE_DOWN"
       ],
@@ -32808,9 +34004,7 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "BULLDOZE": 18,
-        "EARTH_POWER": 42,
         "ROCK_BLAST": 36,
-        "SCALD": 44,
         "STONE_EDGE": 50
       },
       "new_family_egg_moves": [
@@ -32829,11 +34023,14 @@
       ],
       "new_tutor_routes": [
         "DOUBLE_TEAM",
+        "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
+        "HYDRO_PUMP",
         "ICY_WIND",
         "IRON_TAIL",
         "MUD_SHOT",
+        "SCALD",
         "SNORE"
       ],
       "new_evolution_access": []
@@ -32865,9 +34062,11 @@
         "MEGA_PUNCH",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PLAY_ROUGH",
         "PRESENT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "ROLLOUT",
         "ROOST",
         "SEISMIC_TOSS",
@@ -32904,12 +34103,15 @@
         "AIR_CUTTER",
         "AMNESIA",
         "BODY_SLAM",
+        "BOUNCE",
         "BRICK_BREAK",
         "COUNTER",
         "DEFENSE_CURL",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -32918,10 +34120,13 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "PLAY_ROUGH",
+        "PSYSHOCK",
         "ROLLOUT",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
+        "SKY_ATTACK",
         "SNORE",
         "TRICK",
         "TWISTER",
@@ -32955,6 +34160,7 @@
         "PLAY_ROUGH",
         "PRESENT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "ROLLOUT",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -32989,6 +34195,7 @@
         "COUNTER",
         "DEFENSE_CURL",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "ENDURE",
@@ -33000,6 +34207,7 @@
         "MEGA_PUNCH",
         "MIMIC",
         "PLAY_ROUGH",
+        "PSYSHOCK",
         "ROLLOUT",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -33036,9 +34244,11 @@
         "MEGA_PUNCH",
         "MIMIC",
         "MORNING_SUN",
+        "OMINOUS_WIND",
         "PLAY_ROUGH",
         "PRESENT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "ROLLOUT",
         "ROOST",
         "SEISMIC_TOSS",
@@ -33078,12 +34288,15 @@
       "new_tutor_routes": [
         "AIR_CUTTER",
         "BODY_SLAM",
+        "BOUNCE",
         "BRICK_BREAK",
         "COUNTER",
         "DEFENSE_CURL",
         "DETECT",
+        "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "DREAM_EATER",
+        "DUALWINGBEAT",
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
@@ -33092,7 +34305,9 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "OMINOUS_WIND",
         "PLAY_ROUGH",
+        "PSYSHOCK",
         "ROLLOUT",
         "SEISMIC_TOSS",
         "SIGNAL_BEAM",
@@ -33114,6 +34329,7 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "EARTH_POWER",
+        "ERUPTION",
         "FLAME_CHARGE",
         "FLARE_BLITZ",
         "FRUSTRATION",
@@ -33121,6 +34337,7 @@
         "GYRO_BALL",
         "HEADBUTT",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "MIMIC",
         "ROCK_SLIDE",
         "ROLLOUT",
@@ -33134,7 +34351,9 @@
       ],
       "new_level_up": {
         "SHELL_SMASH": 60,
-        "FLAIL": 42
+        "FLAIL": 42,
+        "LAVA_PLUME": 25,
+        "ERUPTION": 49
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33144,6 +34363,7 @@
       "new_family_egg_moves": [
         "ANCIENTPOWER",
         "EARTHQUAKE",
+        "ERUPTION",
         "SUPERPOWER"
       ],
       "egg_family": "Torkoal",
@@ -33210,7 +34430,6 @@
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "SCALD": 42,
         "LIQUIDATION": 46,
         "FLIP_TURN": 18
       },
@@ -33244,6 +34463,7 @@
         "MEGA_KICK",
         "MEGA_PUNCH",
         "MIMIC",
+        "SCALD",
         "SEISMIC_TOSS",
         "SHADOW_CLAW",
         "SNORE",
@@ -33356,10 +34576,12 @@
         "TAKE_DOWN",
         "THIEF",
         "TORMENT",
+        "VACUUM_WAVE",
         "X_SCISSOR"
       ],
       "new_level_up": {
-        "PURSUIT": 15
+        "PURSUIT": 15,
+        "VACUUM_WAVE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33370,7 +34592,8 @@
         "CROSS_CHOP",
         "DRAIN_PUNCH",
         "FAKE_OUT",
-        "HEADBUTT"
+        "HEADBUTT",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Croagunk",
       "new_tm_compatibility": [
@@ -33443,8 +34666,7 @@
       ],
       "new_level_up": {
         "BIDE": 1,
-        "SUPERPOWER": 44,
-        "HYPER_BEAM": 43
+        "SUPERPOWER": 44
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33482,6 +34704,176 @@
       "new_evolution_access": []
     },
     {
+      "species": "TREVENANT",
+      "name": "Trevenant",
+      "newly_available": [
+        "ASTONISH",
+        "ATTRACT",
+        "BULLDOZE",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "CURSE",
+        "CUT",
+        "DARK_PULSE",
+        "DESTINY_BOND",
+        "DIG",
+        "DISABLE",
+        "DOUBLE_TEAM",
+        "DRAIN_PUNCH",
+        "DREAM_EATER",
+        "EARTHQUAKE",
+        "ENDURE",
+        "ENERGY_BALL",
+        "FACADE",
+        "FAINT_ATTACK",
+        "FOCUS_BLAST",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "GROWTH",
+        "HAZE",
+        "HEX",
+        "HIDDEN_POWER",
+        "HONE_CLAWS",
+        "HORN_LEECH",
+        "HYPER_BEAM",
+        "KNOCK_OFF",
+        "LEAF_STORM",
+        "LEECH_SEED",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "POISON_JAB",
+        "PROTECT",
+        "PSYCHIC_M",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SAFEGUARD",
+        "SCARY_FACE",
+        "SEED_BOMB",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SKILL_SWAP",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLARBEAM",
+        "SPITE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "TACKLE",
+        "TAKE_DOWN",
+        "THIEF",
+        "TOXIC",
+        "TRICK",
+        "TRICK_ROOM",
+        "WILL_O_WISP",
+        "WOOD_HAMMER",
+        "X_SCISSOR"
+      ],
+      "new_level_up": {
+        "ASTONISH": 1,
+        "LEECH_SEED": 1,
+        "SHADOW_CLAW": 1,
+        "TACKLE": 1,
+        "CONFUSE_RAY": 12,
+        "WILL_O_WISP": 16,
+        "FAINT_ATTACK": 19,
+        "HEX": 20,
+        "GROWTH": 24,
+        "HORN_LEECH": 28,
+        "CURSE": 32,
+        "PHANTOMFORCE": 36,
+        "WOOD_HAMMER": 44,
+        "DESTINY_BOND": 48
+      },
+      "breeding_fallbacks": {},
+      "thematic_level_up": {},
+      "new_family_egg_moves": [
+        "DISABLE",
+        "SUCKER_PUNCH"
+      ],
+      "egg_family": "Phantump",
+      "new_tm_compatibility": [
+        "ATTRACT",
+        "CURSE",
+        "CUT",
+        "DIG",
+        "DRAIN_PUNCH",
+        "EARTHQUAKE",
+        "ENERGY_BALL",
+        "FACADE",
+        "HIDDEN_POWER",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "KNOCK_OFF",
+        "PROTECT",
+        "PSYCHIC_M",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "SHADOW_BALL",
+        "SOLARBEAM",
+        "STRENGTH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "THIEF",
+        "TOXIC",
+        "WILL_O_WISP"
+      ],
+      "new_tutor_routes": [
+        "BULLDOZE",
+        "CALM_MIND",
+        "DARK_PULSE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "ENDURE",
+        "FOCUS_BLAST",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "HAZE",
+        "LEAF_STORM",
+        "MAGICAL_LEAF",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "POISON_JAB",
+        "PSYCH_UP",
+        "ROCK_SLIDE",
+        "SAFEGUARD",
+        "SCARY_FACE",
+        "SEED_BOMB",
+        "SKILL_SWAP",
+        "SNORE",
+        "SPITE",
+        "TAKE_DOWN",
+        "TRICK",
+        "TRICK_ROOM",
+        "X_SCISSOR"
+      ],
+      "new_evolution_access": [],
+      "new_utility_tutor": [
+        "REFLECT",
+        "SLEEP_TALK",
+        "SUBSTITUTE"
+      ],
+      "evolution_move": {
+        "pre_evolution": "PHANTUMP",
+        "move": "SHADOW_CLAW"
+      }
+    },
+    {
       "species": "TSAREENA",
       "name": "Tsareena",
       "newly_available": [
@@ -33492,18 +34884,20 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "IRON_TAIL",
         "LOW_KICK",
         "MEGA_KICK",
+        "PETAL_BLIZZARD",
         "SAFEGUARD",
         "SEED_BOMB",
         "SNORE",
         "SOLAR_BLADE",
+        "SWORDS_DANCE",
         "TAKE_DOWN",
         "TAUNT"
       ],
       "new_level_up": {
-        "DOUBLESLAP": 1,
-        "MAGICAL_LEAF": 22
+        "DOUBLESLAP": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33522,15 +34916,18 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "IRON_TAIL",
         "LOW_KICK",
         "MEGA_KICK",
+        "PETAL_BLIZZARD",
         "SAFEGUARD",
         "SNORE",
         "TAKE_DOWN",
         "TAUNT"
       ],
       "new_evolution_access": [
-        "GIGA_DRAIN"
+        "GIGA_DRAIN",
+        "SWORDS_DANCE"
       ]
     },
     {
@@ -33547,11 +34944,13 @@
         "DOUBLE_TEAM",
         "DYNAMICPUNCH",
         "ENDURE",
+        "ERUPTION",
         "FIRE_FANG",
         "FIRE_SPIN",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "LOW_KICK",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -33565,7 +34964,10 @@
         "TAKE_DOWN",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "LAVA_PLUME": 27,
+        "ERUPTION": 60
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [
@@ -33595,6 +34997,7 @@
         "FIRE_SPIN",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GYRO_BALL",
         "IRON_TAIL",
         "LOW_KICK",
         "MEGA_KICK",
@@ -33626,15 +35029,18 @@
         "DOUBLE_TEAM",
         "EARTHQUAKE",
         "ENDURE",
+        "ERUPTION",
         "FIRE_FANG",
         "FIRE_SPIN",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "GYRO_BALL",
         "IRON_TAIL",
+        "LAVA_PLUME",
         "LOW_KICK",
         "MIMIC",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PLAY_ROUGH",
         "ROCK_SLIDE",
         "SHADOW_CLAW",
@@ -33644,7 +35050,10 @@
         "WILD_CHARGE"
       ],
       "new_level_up": {
-        "GYRO_BALL": 1
+        "GYRO_BALL": 1,
+        "LAVA_PLUME": 29,
+        "ERUPTION": 1,
+        "OMINOUS_WIND": 25
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33811,6 +35220,7 @@
         "DIG",
         "DOUBLE_TEAM",
         "DRACO_METEOR",
+        "DRAGON_HAMMER",
         "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
@@ -33827,7 +35237,8 @@
         "SUPERPOWER"
       ],
       "new_level_up": {
-        "BIDE": 12
+        "BIDE": 12,
+        "DRAGON_HAMMER": 60
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -33884,7 +35295,8 @@
         "ROCK_SLIDE",
         "SEISMIC_TOSS",
         "SNORE",
-        "TAKE_DOWN"
+        "TAKE_DOWN",
+        "VACUUM_WAVE"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
@@ -33893,7 +35305,8 @@
         "ENDURE",
         "MACH_PUNCH",
         "PURSUIT",
-        "RAPID_SPIN"
+        "RAPID_SPIN",
+        "VACUUM_WAVE"
       ],
       "egg_family": "Tyrogue",
       "new_tm_compatibility": [
@@ -34066,8 +35479,12 @@
     {
       "species": "UNOWN",
       "name": "Unown",
-      "newly_available": [],
-      "new_level_up": {},
+      "newly_available": [
+        "COSMIC_POWER"
+      ],
+      "new_level_up": {
+        "COSMIC_POWER": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [],
@@ -34203,13 +35620,13 @@
         "SWORDS_DANCE",
         "TAUNT",
         "TORMENT",
+        "VACUUM_WAVE",
         "YAWN"
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "BODY_PRESS": 38,
-        "SWORDS_DANCE": 40
+        "BODY_PRESS": 38
       },
       "new_family_egg_moves": [
         "BELLY_DRUM",
@@ -34229,11 +35646,14 @@
       ],
       "new_tutor_routes": [
         "AVALANCHE",
+        "BRICK_BREAK",
         "BULLDOZE",
         "ENDURE",
         "FOCUS_BLAST",
         "GIGA_IMPACT",
         "GUNK_SHOT",
+        "HAMMER_ARM",
+        "HEADLONGRUSH",
         "LOW_KICK",
         "MUD_SHOT",
         "ROCK_SLIDE",
@@ -34241,7 +35661,8 @@
         "SHADOW_CLAW",
         "SNARL",
         "STONE_EDGE",
-        "TAUNT"
+        "TAUNT",
+        "VACUUM_WAVE"
       ],
       "new_evolution_access": [
         "AERIAL_ACE",
@@ -34257,6 +35678,7 @@
         "MIMIC",
         "ROLLOUT",
         "SUPERPOWER",
+        "SWORDS_DANCE",
         "TORMENT"
       ]
     },
@@ -34386,9 +35808,7 @@
         "FAINT_ATTACK": 15
       },
       "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "SWORDS_DANCE": 38
-      },
+      "thematic_level_up": {},
       "new_family_egg_moves": [
         "BELLY_DRUM",
         "CLOSE_COMBAT",
@@ -34408,6 +35828,7 @@
       "new_tutor_routes": [
         "AERIAL_ACE",
         "AVALANCHE",
+        "BRICK_BREAK",
         "BULLDOZE",
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
@@ -34417,6 +35838,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "GUNK_SHOT",
+        "HAMMER_ARM",
         "LOW_KICK",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -34432,7 +35854,8 @@
         "TORMENT"
       ],
       "new_evolution_access": [
-        "BODY_SLAM"
+        "BODY_SLAM",
+        "SWORDS_DANCE"
       ]
     },
     {
@@ -34521,6 +35944,7 @@
         "INFESTATION",
         "IRON_DEFENSE",
         "POISON_JAB",
+        "POISON_TAIL",
         "PURSUIT",
         "ROCK_SMASH",
         "SIGNAL_BEAM",
@@ -34530,11 +35954,11 @@
         "SUNNY_DAY"
       ],
       "new_level_up": {
-        "PURSUIT": 12
+        "PURSUIT": 12,
+        "POISON_TAIL": 40
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "SIGNAL_BEAM": 26,
         "POISON_JAB": 42,
         "INFESTATION": 18
       },
@@ -34556,8 +35980,10 @@
         "GYRO_BALL",
         "HEX",
         "IRON_DEFENSE",
+        "SIGNAL_BEAM",
         "SNORE",
-        "STRUGGLE_BUG"
+        "STRUGGLE_BUG",
+        "VENOSHOCK"
       ],
       "new_evolution_access": []
     },
@@ -34582,6 +36008,7 @@
         "LUNGE",
         "MIMIC",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYWAVE",
         "RAGE",
         "RAZOR_WIND",
@@ -34625,6 +36052,7 @@
         "LUNGE",
         "MIMIC",
         "NIGHT_SHADE",
+        "OMINOUS_WIND",
         "PSYWAVE",
         "RAGE",
         "RAZOR_WIND",
@@ -34721,6 +36149,7 @@
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
+        "PETAL_BLIZZARD",
         "POISON_JAB",
         "RAGE",
         "REFLECT",
@@ -34731,7 +36160,9 @@
         "STRING_SHOT",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PETAL_BLIZZARD": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "POISON_JAB": 42,
@@ -34799,6 +36230,7 @@
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
+        "PETAL_BLIZZARD",
         "POISON_JAB",
         "RAGE",
         "REFLECT",
@@ -34809,7 +36241,9 @@
         "STRING_SHOT",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PETAL_BLIZZARD": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "POISON_JAB": 42,
@@ -34881,6 +36315,7 @@
         "HEAT_WAVE",
         "HYPER_BEAM",
         "MIMIC",
+        "OMINOUS_WIND",
         "OUTRAGE",
         "SNORE",
         "SOLARBEAM",
@@ -34940,6 +36375,7 @@
         "GIGA_IMPACT",
         "HEAT_WAVE",
         "MIMIC",
+        "OMINOUS_WIND",
         "SNORE",
         "STONE_EDGE",
         "STRUGGLE_BUG",
@@ -35028,6 +36464,7 @@
         "AIR_SLASH",
         "BATON_PASS",
         "BULLDOZE",
+        "DISCHARGE",
         "DOUBLE_TEAM",
         "DUALWINGBEAT",
         "ENDURE",
@@ -35048,11 +36485,13 @@
       "new_level_up": {
         "ACROBATICS": 19,
         "AIR_SLASH": 1,
-        "IRON_DEFENSE": 1
+        "IRON_DEFENSE": 1,
+        "DISCHARGE": 1
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {},
       "new_family_egg_moves": [
+        "DISCHARGE",
         "ENDURE",
         "HARDEN"
       ],
@@ -35097,6 +36536,7 @@
         "LEECH_SEED",
         "MAGICAL_LEAF",
         "MIMIC",
+        "PETAL_BLIZZARD",
         "RAGE",
         "REFLECT",
         "SAFEGUARD",
@@ -35106,11 +36546,11 @@
         "TAKE_DOWN",
         "VENOSHOCK"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "PETAL_BLIZZARD": 1
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "SEED_BOMB": 42,
-        "SOLAR_BLADE": 56,
         "MAGICAL_LEAF": 18,
         "VENOSHOCK": 20
       },
@@ -35133,14 +36573,18 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "INFESTATION",
+        "LEAF_BLADE",
         "MIMIC",
         "RAGE",
         "REFLECT",
         "SAFEGUARD",
         "SNORE",
+        "SOLAR_BLADE",
         "TAKE_DOWN"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SEED_BOMB"
+      ]
     },
     {
       "species": "VOLCARONA",
@@ -35193,6 +36637,7 @@
         "CALM_MIND",
         "DEFOG",
         "DOUBLE_TEAM",
+        "DUALWINGBEAT",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "LUNGE",
@@ -35209,6 +36654,7 @@
       "name": "Voltorb",
       "newly_available": [
         "BIDE",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -35216,6 +36662,7 @@
         "FRUSTRATION",
         "MIMIC",
         "RAGE",
+        "RECYCLE",
         "SIGNAL_BEAM",
         "SNORE",
         "SUCKER_PUNCH",
@@ -35226,12 +36673,18 @@
         "TORMENT",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
-      "breeding_fallbacks": {},
+      "new_level_up": {
+        "DISCHARGE": 27
+      },
+      "breeding_fallbacks": {
+        "RECYCLE": 30
+      },
       "thematic_level_up": {
         "SIGNAL_BEAM": 26
       },
-      "new_family_egg_moves": [],
+      "new_family_egg_moves": [
+        "RECYCLE"
+      ],
       "egg_family": "Voltorb",
       "new_tm_compatibility": [
         "THIEF"
@@ -35243,6 +36696,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GYRO_BALL",
         "MIMIC",
         "RAGE",
         "SNORE",
@@ -35261,10 +36715,12 @@
       "newly_available": [
         "AGILITY",
         "BULLET_SEED",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "ENDURE",
         "FOUL_PLAY",
         "LEAF_STORM",
+        "RECYCLE",
         "SEED_BOMB",
         "TAKE_DOWN",
         "TAUNT",
@@ -35273,14 +36729,18 @@
       ],
       "new_level_up": {
         "BULLET_SEED": 9,
-        "SEED_BOMB": 34
+        "DISCHARGE": 34
       },
-      "breeding_fallbacks": {},
+      "breeding_fallbacks": {
+        "RECYCLE": 30
+      },
       "thematic_level_up": {
         "LEAF_STORM": 56,
         "VOLT_SWITCH": 38
       },
-      "new_family_egg_moves": [],
+      "new_family_egg_moves": [
+        "RECYCLE"
+      ],
       "egg_family": "Voltorb (Hisuian)",
       "new_tm_compatibility": [],
       "new_tutor_routes": [
@@ -35288,6 +36748,8 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "FOUL_PLAY",
+        "GYRO_BALL",
+        "SEED_BOMB",
         "TAKE_DOWN",
         "TAUNT",
         "WILD_CHARGE"
@@ -35312,6 +36774,7 @@
         "FRUSTRATION",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "OVERHEAT",
         "PAIN_SPLIT",
         "RAGE",
@@ -35356,6 +36819,7 @@
         "FRUSTRATION",
         "IRON_TAIL",
         "MIMIC",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "RAGE",
         "REFLECT",
@@ -35385,9 +36849,11 @@
         "HEX",
         "ICICLE_SPEAR",
         "IRON_TAIL",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PLAY_ROUGH",
         "PSYCH_UP",
+        "PSYSHOCK",
         "REFLECT",
         "SNORE",
         "TACKLE",
@@ -35424,9 +36890,11 @@
         "HEAL_BELL",
         "ICICLE_SPEAR",
         "IRON_TAIL",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PLAY_ROUGH",
         "PSYCH_UP",
+        "PSYSHOCK",
         "REFLECT",
         "SNORE",
         "TACKLE",
@@ -35546,10 +37014,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "new_level_up": {
-        "IRON_DEFENSE": 40
+        "IRON_DEFENSE": 40,
+        "WATER_SPOUT": 54
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -35563,6 +37033,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle",
@@ -35643,10 +37114,12 @@
         "SNORE",
         "SUBMISSION",
         "TAKE_DOWN",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "new_level_up": {
-        "IRON_DEFENSE": 40
+        "IRON_DEFENSE": 40,
+        "WATER_SPOUT": 54
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -35660,6 +37133,7 @@
         "FAKE_OUT",
         "FLAIL",
         "FORESIGHT",
+        "WATER_SPOUT",
         "YAWN"
       ],
       "egg_family": "Squirtle (Clone)",
@@ -35706,6 +37180,7 @@
         "AIR_CUTTER",
         "BATON_PASS",
         "CALM_MIND",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DETECT",
         "DOUBLE_EDGE",
@@ -35718,8 +37193,10 @@
         "HEAT_WAVE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "SHADOW_BALL",
         "SIGNAL_BEAM",
@@ -35735,7 +37212,10 @@
       ],
       "new_level_up": {},
       "breeding_fallbacks": {},
-      "thematic_level_up": {},
+      "thematic_level_up": {
+        "PSYSHOCK": 35,
+        "COSMIC_POWER": 40
+      },
       "new_family_egg_moves": [
         "PSYCH_UP",
         "ROOST",
@@ -35764,6 +37244,7 @@
         "HEAT_WAVE",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "RAIN_DANCE",
         "SHADOW_BALL",
@@ -35844,6 +37325,7 @@
         "BATON_PASS",
         "BRICK_BREAK",
         "CALM_MIND",
+        "DARK_PULSE",
         "DEFENSE_CURL",
         "DETECT",
         "DOUBLE_EDGE",
@@ -35853,6 +37335,7 @@
         "ENDURE",
         "FALSE_SWIPE",
         "FOCUS_BLAST",
+        "FREEZE_DRY",
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAIL",
@@ -35976,6 +37459,7 @@
         "HEAT_WAVE",
         "INCINERATE",
         "INFESTATION",
+        "LAVA_PLUME",
         "MIMIC",
         "PSYWAVE",
         "RAGE",
@@ -35989,7 +37473,8 @@
         "VENOSHOCK"
       ],
       "new_level_up": {
-        "HEAT_WAVE": 1
+        "HEAT_WAVE": 1,
+        "LAVA_PLUME": 31
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -36043,6 +37528,7 @@
         "HEAT_WAVE",
         "INCINERATE",
         "INFESTATION",
+        "LAVA_PLUME",
         "MIMIC",
         "OVERHEAT",
         "PLAY_ROUGH",
@@ -36092,7 +37578,8 @@
         "TORMENT"
       ],
       "new_evolution_access": [
-        "HEADBUTT"
+        "HEADBUTT",
+        "LAVA_PLUME"
       ]
     },
     {
@@ -36107,6 +37594,7 @@
         "HEX",
         "INFESTATION",
         "IRON_DEFENSE",
+        "POISON_TAIL",
         "PURSUIT",
         "ROCK_SMASH",
         "SIGNAL_BEAM",
@@ -36117,11 +37605,11 @@
       ],
       "new_level_up": {
         "IRON_DEFENSE": 1,
-        "PURSUIT": 12
+        "PURSUIT": 12,
+        "POISON_TAIL": 42
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
-        "SIGNAL_BEAM": 28,
         "INFESTATION": 18
       },
       "new_family_egg_moves": [
@@ -36141,8 +37629,10 @@
         "FRUSTRATION",
         "GYRO_BALL",
         "HEX",
+        "SIGNAL_BEAM",
         "SNORE",
-        "STRUGGLE_BUG"
+        "STRUGGLE_BUG",
+        "VENOSHOCK"
       ],
       "new_evolution_access": []
     },
@@ -36183,8 +37673,10 @@
         "PAIN_SPLIT",
         "PRESENT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SANDSTORM",
         "SCREECH",
@@ -36209,10 +37701,7 @@
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "CALM_MIND": 30,
-        "GIGA_IMPACT": 56,
         "SELFDESTRUCT": 58,
-        "SKULL_BASH": 60,
-        "TAKE_DOWN": 42,
         "DAZZLING_GLEAM": 44,
         "TRI_ATTACK": 46
       },
@@ -36245,6 +37734,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GIGA_IMPACT",
         "HEAL_BELL",
         "ICY_WIND",
         "INCINERATE",
@@ -36256,8 +37746,10 @@
         "NIGHTMARE",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "PSYWAVE",
         "RAGE",
+        "RECYCLE",
         "SAFEGUARD",
         "SCREECH",
         "SEISMIC_TOSS",
@@ -36271,7 +37763,10 @@
         "WATER_PULSE",
         "WILD_CHARGE"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "SKULL_BASH",
+        "TAKE_DOWN"
+      ]
     },
     {
       "species": "WIMPOD",
@@ -36427,6 +37922,7 @@
         "HYDRO_PUMP",
         "LIQUIDATION",
         "LOW_KICK",
+        "POISON_TAIL",
         "RAIN_DANCE",
         "ROCK_SLIDE",
         "STEALTH_ROCK",
@@ -36438,7 +37934,8 @@
         "YAWN"
       ],
       "new_level_up": {
-        "YAWN": 21
+        "YAWN": 21,
+        "POISON_TAIL": 22
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -36505,12 +38002,14 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "HORN_LEECH",
         "IRON_TAIL",
         "JUMP_KICK",
         "MIMIC",
         "NIGHTMARE",
         "PSYBEAM",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAGE",
         "SCARY_FACE",
         "SIGNAL_BEAM",
@@ -36527,10 +38026,8 @@
       "thematic_level_up": {
         "SKILL_SWAP": 40,
         "TRICK": 42,
-        "FUTURE_SIGHT": 56,
         "GIGA_IMPACT": 58,
-        "BODY_SLAM": 44,
-        "PSYBEAM": 20
+        "BODY_SLAM": 44
       },
       "new_family_egg_moves": [
         "DOUBLE_KICK",
@@ -36552,21 +38049,26 @@
       ],
       "new_tutor_routes": [
         "BOUNCE",
+        "CALM_MIND",
         "DETECT",
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
+        "FUTURE_SIGHT",
         "IRON_TAIL",
         "MIMIC",
         "NIGHTMARE",
+        "PSYBEAM",
+        "PSYSHOCK",
         "SCARY_FACE",
         "SIGNAL_BEAM",
         "SNORE",
         "SUCKER_PUNCH"
       ],
       "new_evolution_access": [
+        "HORN_LEECH",
         "JUMP_KICK"
       ]
     },
@@ -36578,6 +38080,7 @@
         "AIR_CUTTER",
         "BATON_PASS",
         "CALM_MIND",
+        "COSMIC_POWER",
         "DAZZLING_GLEAM",
         "DETECT",
         "DOUBLE_EDGE",
@@ -36590,8 +38093,10 @@
         "GIGA_IMPACT",
         "MIMIC",
         "NIGHTMARE",
+        "OMINOUS_WIND",
         "PAIN_SPLIT",
         "PSYCH_UP",
+        "PSYSHOCK",
         "RAIN_DANCE",
         "SHADOW_BALL",
         "SKILL_SWAP",
@@ -36604,7 +38109,8 @@
         "WISH"
       ],
       "new_level_up": {
-        "WISH": 48
+        "WISH": 48,
+        "OMINOUS_WIND": 20
       },
       "breeding_fallbacks": {},
       "thematic_level_up": {
@@ -36646,7 +38152,10 @@
         "SNORE",
         "TWISTER"
       ],
-      "new_evolution_access": []
+      "new_evolution_access": [
+        "COSMIC_POWER",
+        "PSYSHOCK"
+      ]
     },
     {
       "species": "YANMA",
@@ -36661,6 +38170,7 @@
         "GIGA_DRAIN",
         "LUNGE",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCHIC_M",
         "PSYCH_UP",
         "ROOST",
@@ -36699,6 +38209,7 @@
         "GIGA_DRAIN",
         "LUNGE",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SNORE",
         "STRUGGLE_BUG",
@@ -36721,6 +38232,7 @@
         "LUNGE",
         "MIMIC",
         "MUD_SLAP",
+        "OMINOUS_WIND",
         "PSYCHIC_M",
         "PSYCH_UP",
         "SCARY_FACE",
@@ -36737,9 +38249,7 @@
         "PURSUIT": 30
       },
       "breeding_fallbacks": {},
-      "thematic_level_up": {
-        "SWORDS_DANCE": 32
-      },
+      "thematic_level_up": {},
       "new_family_egg_moves": [
         "FAINT_ATTACK",
         "SIGNAL_BEAM"
@@ -36759,10 +38269,12 @@
         "GIGA_IMPACT",
         "LUNGE",
         "MIMIC",
+        "OMINOUS_WIND",
         "PSYCH_UP",
         "SCARY_FACE",
         "SNORE",
         "STRUGGLE_BUG",
+        "SWORDS_DANCE",
         "TAKE_DOWN"
       ],
       "new_evolution_access": [
@@ -36897,6 +38409,7 @@
         "BIDE",
         "BRAVE_BIRD",
         "DEFOG",
+        "DISCHARGE",
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "ENDURE",
@@ -36907,6 +38420,7 @@
         "HEADBUTT",
         "LEER",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -36919,7 +38433,9 @@
         "WHIRLWIND",
         "WILD_CHARGE"
       ],
-      "new_level_up": {},
+      "new_level_up": {
+        "DISCHARGE": 22
+      },
       "breeding_fallbacks": {},
       "thematic_level_up": {
         "DEFOG": 48,
@@ -36948,6 +38464,7 @@
         "HAIL",
         "LEER",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "REFLECT",
@@ -36982,6 +38499,7 @@
         "HEAT_WAVE",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAIN_DANCE",
         "RAZOR_WIND",
@@ -37039,6 +38557,7 @@
         "FRUSTRATION",
         "MEGA_DRAIN",
         "MIMIC",
+        "OMINOUS_WIND",
         "RAGE",
         "RAZOR_WIND",
         "SNORE",

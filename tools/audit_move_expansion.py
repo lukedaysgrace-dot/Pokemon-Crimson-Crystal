@@ -6,6 +6,7 @@ from pathlib import Path
 from audit_breeding_moves import breeding_data
 from audit_canonical_learnsets import available
 from audit_learnset_variety import load_technical_tutors
+from attacking_learnsets import check_level
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / 'tools/testdata/move_expansion_20261019.json'
@@ -48,7 +49,7 @@ def main():
     for kind in ('level_up', 'donor_fallbacks'):
         for c, moves in receipt.get(kind, {}).items():
             for move, level in moves.items():
-                assert (level, move) in levels[c], (c, move, 'recorded natural placement')
+                check_level(c, move, level, levels)
     for c, moves in receipt['new_egg_moves'].items():
         assert set(moves) <= set(eggs[c]), (c, 'recorded egg placement')
     assert (1, 'TAIL_GLOW') in levels['AMPHAROS']

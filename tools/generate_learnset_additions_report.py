@@ -11,6 +11,7 @@ import tarfile
 import audit_breeding_moves as breeding
 import audit_learnset_variety as learnsets
 from audit_canonical_learnsets import available
+from attacking_learnsets import final_level
 
 ROOT = learnsets.ROOT
 BASELINE = 'b60a01f1dc52bcc8370ee9e2fdcceb045d001f8c'
@@ -63,9 +64,12 @@ def main():
         removed = before[c] - after[c]
         assert removed <= set(approved_removals.get(c, [])), (c, 'unexpected removed access', removed)
         root = current[-1][c]
-        natural = changes['level_up'].get(c, {})
-        thematic = changes.get('thematic_level_up', {}).get(c, {})
-        fallback = changes['donor_fallbacks'].get(c, {})
+        def final_placements(entries):
+            return {m: final_level(c,m,lv) for m,lv in entries.items()
+                    if final_level(c,m,lv) is not None}
+        natural = final_placements(changes['level_up'].get(c, {}))
+        thematic = final_placements(changes.get('thematic_level_up', {}).get(c, {}))
+        fallback = final_placements(changes['donor_fallbacks'].get(c, {}))
         eggs = changes['egg_moves'].get(root, [])
         machines = changes['tmhm'].get(c, [])
         tutors = changes['technical_tutor'].get(c, [])

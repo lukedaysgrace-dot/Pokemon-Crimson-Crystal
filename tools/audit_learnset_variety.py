@@ -2,6 +2,7 @@
 """Validate approved movepool additions, source structure and tutor compatibility."""
 from pathlib import Path
 import json,re
+from attacking_learnsets import check_level, removed as removed_attacks
 
 ROOT=Path(__file__).resolve().parents[1]
 read=lambda p:(ROOT/p).read_text(encoding='utf-8')
@@ -116,11 +117,11 @@ def main():
  for c,ms in receipt['reminder_repairs'].items():
   for move,lv in ms.items():
    if move in breeding_removals.get(c,[]):assert move in eggs[c],(c,move,'egg replacement missing')
-   else:assert (lv,move) in levels[c],(c,move,'reminder repair missing')
+   else:check_level(c,move,lv,levels)
  assert (32,'VOLT_SWITCH') in levels['RAICHU_ALOLAN'] and (76,'VOLT_SWITCH') not in levels['RAICHU_ALOLAN']
  assert (44,'BELLY_DRUM') in levels['MAGMAR'], 'Magby Belly Drum donor access'
  for c,ms in receipt['availability_restorations'].items():
-  for move,lv in ms.items():assert (lv,move) in levels[c],(c,move,'move availability restoration')
+  for move,lv in ms.items():check_level(c,move,lv,levels)
  assert assignments==440==len(receipt['recommendations'])
  assert utility==receipt['utility_flags']
  # Preserve the review's original moves, allowing documented later curation.
@@ -135,7 +136,7 @@ def main():
   assert c in review['roster'] and set(removed)<=set(review['roster'][c]['own']),(c,'invalid curated removal')
   assert not set(removed)&set(m for lv,m in levels[c]),(c,'curated removal restored')
  for c,row in review['roster'].items():
-  assert set(row['own'])-set(removals.get(c,[]))-set(breeding_removals.get(c,[]))<=set(m for lv,m in levels[c]),(c,'original level-up loss')
+  assert set(row['own'])-set(removals.get(c,[]))-set(breeding_removals.get(c,[]))-removed_attacks(c)<=set(m for lv,m in levels[c]),(c,'original level-up loss')
   expected={replacements.get(move,move) for move in row['tms']}
   assert expected<=set(tm[c]),(c,sorted(expected-set(tm[c])),'original compatibility loss')
  print(f'LEARNSET VARIETY AUDIT PASSED: {len(order)} entries, {assignments} approved additions, 9 clone mirrors, reminder/timing repairs and five utility compatibility columns.')

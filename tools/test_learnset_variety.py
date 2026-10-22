@@ -87,6 +87,14 @@ try:
   check((wanted in result)==(c!='RAICHU_ALOLAN' or lv>=32),c+' reminder timing '+wanted)
  print('Move Reminder: every species plus timing/recovery/priority repairs passed.',flush=True)
 
+ # A delayed move must not leak through an ancestor's earlier reminder row.
+ for c,move,gate in [('FERALIGATR','SWORDS_DANCE',38),('FERALIGATR','LIQUIDATION',40),
+                     ('BLASTOISE','SHELL_SMASH',36),('CARRACOSTA','SHELL_SMASH',38),
+                     ('FLAREON','CLOSE_COMBAT',44),('FLAREON','SUPERPOWER',48)]:
+  for lv in [gate-1,gate]:
+   party(c,lv)
+   check((move in menu('MoveReminder_GetRemindableMoves'))==(lv==gate),f'{c} {move} reminder gate at {lv}')
+
  # Blackthorn combines the family's egg list with only this selected species'
  # fallback list. Exhaust all species, including indices >255 and clone forms.
  for c in order:

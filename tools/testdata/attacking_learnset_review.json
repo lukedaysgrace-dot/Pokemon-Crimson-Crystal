@@ -1,0 +1,3702 @@
+{
+  "policy": "Trim unsuitable opposite-stat attacks and setup from level 20 onward. Keep viable mixed attackers, useful move/ability interactions, early progression, all level-1 moves and evolution behavior. Delay only selected powerful combinations, including ancestor reminder access. Preserve optional move access through existing routes and Blackthorn.",
+  "reviewed": [
+    "BULBASAUR",
+    "IVYSAUR",
+    "VENUSAUR",
+    "CHARMANDER",
+    "CHARMELEON",
+    "CHARIZARD",
+    "SQUIRTLE",
+    "WARTORTLE",
+    "BLASTOISE",
+    "CATERPIE",
+    "METAPOD",
+    "BUTTERFREE",
+    "WEEDLE",
+    "KAKUNA",
+    "BEEDRILL",
+    "PIDGEY",
+    "PIDGEOTTO",
+    "PIDGEOT",
+    "RATTATA",
+    "RATICATE",
+    "SPEAROW",
+    "FEAROW",
+    "EKANS",
+    "ARBOK",
+    "PIKACHU",
+    "RAICHU",
+    "SANDSHREW",
+    "SANDSLASH",
+    "NIDORAN_F",
+    "NIDORINA",
+    "NIDOQUEEN",
+    "NIDORAN_M",
+    "NIDORINO",
+    "NIDOKING",
+    "CLEFAIRY",
+    "CLEFABLE",
+    "VULPIX",
+    "NINETALES",
+    "JIGGLYPUFF",
+    "WIGGLYTUFF",
+    "ZUBAT",
+    "GOLBAT",
+    "ODDISH",
+    "GLOOM",
+    "VILEPLUME",
+    "PARAS",
+    "PARASECT",
+    "VENONAT",
+    "VENOMOTH",
+    "DIGLETT",
+    "DUGTRIO",
+    "MEOWTH",
+    "PERSIAN",
+    "PSYDUCK",
+    "GOLDUCK",
+    "MANKEY",
+    "PRIMEAPE",
+    "GROWLITHE",
+    "ARCANINE",
+    "POLIWAG",
+    "POLIWHIRL",
+    "POLIWRATH",
+    "ABRA",
+    "KADABRA",
+    "ALAKAZAM",
+    "MACHOP",
+    "MACHOKE",
+    "MACHAMP",
+    "BELLSPROUT",
+    "WEEPINBELL",
+    "VICTREEBEL",
+    "TENTACOOL",
+    "TENTACRUEL",
+    "GEODUDE",
+    "GRAVELER",
+    "GOLEM",
+    "PONYTA",
+    "RAPIDASH",
+    "SLOWPOKE",
+    "SLOWBRO",
+    "MAGNEMITE",
+    "MAGNETON",
+    "FARFETCH_D",
+    "DODUO",
+    "DODRIO",
+    "SEEL",
+    "DEWGONG",
+    "GRIMER",
+    "MUK",
+    "SHELLDER",
+    "CLOYSTER",
+    "GASTLY",
+    "HAUNTER",
+    "GENGAR",
+    "ONIX",
+    "DROWZEE",
+    "HYPNO",
+    "KRABBY",
+    "KINGLER",
+    "VOLTORB",
+    "ELECTRODE",
+    "EXEGGCUTE",
+    "EXEGGUTOR",
+    "CUBONE",
+    "MAROWAK",
+    "HITMONLEE",
+    "HITMONCHAN",
+    "LICKITUNG",
+    "KOFFING",
+    "WEEZING",
+    "RHYHORN",
+    "RHYDON",
+    "CHANSEY",
+    "TANGELA",
+    "KANGASKHAN",
+    "HORSEA",
+    "SEADRA",
+    "GOLDEEN",
+    "SEAKING",
+    "STARYU",
+    "STARMIE",
+    "MR__MIME",
+    "SCYTHER",
+    "JYNX",
+    "ELECTABUZZ",
+    "MAGMAR",
+    "PINSIR",
+    "TAUROS",
+    "MAGIKARP",
+    "GYARADOS",
+    "LAPRAS",
+    "DITTO",
+    "EEVEE",
+    "VAPOREON",
+    "JOLTEON",
+    "FLAREON",
+    "PORYGON",
+    "OMANYTE",
+    "OMASTAR",
+    "KABUTO",
+    "KABUTOPS",
+    "AERODACTYL",
+    "SNORLAX",
+    "ARTICUNO",
+    "ZAPDOS",
+    "MOLTRES",
+    "DRATINI",
+    "DRAGONAIR",
+    "DRAGONITE",
+    "MEWTWO",
+    "MEW",
+    "CHIKORITA",
+    "BAYLEEF",
+    "MEGANIUM",
+    "CYNDAQUIL",
+    "QUILAVA",
+    "TYPHLOSION",
+    "TOTODILE",
+    "CROCONAW",
+    "FERALIGATR",
+    "SENTRET",
+    "FURRET",
+    "HOOTHOOT",
+    "NOCTOWL",
+    "LEDYBA",
+    "LEDIAN",
+    "SPINARAK",
+    "ARIADOS",
+    "CROBAT",
+    "CHINCHOU",
+    "LANTURN",
+    "PICHU",
+    "CLEFFA",
+    "IGGLYBUFF",
+    "TOGEPI",
+    "TOGETIC",
+    "NATU",
+    "XATU",
+    "MAREEP",
+    "FLAAFFY",
+    "AMPHAROS",
+    "BELLOSSOM",
+    "MARILL",
+    "AZUMARILL",
+    "SUDOWOODO",
+    "POLITOED",
+    "HOPPIP",
+    "SKIPLOOM",
+    "JUMPLUFF",
+    "AIPOM",
+    "SUNKERN",
+    "SUNFLORA",
+    "YANMA",
+    "WOOPER",
+    "QUAGSIRE",
+    "ESPEON",
+    "UMBREON",
+    "MURKROW",
+    "SLOWKING",
+    "MISDREAVUS",
+    "UNOWN",
+    "WOBBUFFET",
+    "GIRAFARIG",
+    "PINECO",
+    "FORRETRESS",
+    "DUNSPARCE",
+    "GLIGAR",
+    "STEELIX",
+    "SNUBBULL",
+    "GRANBULL",
+    "QWILFISH",
+    "SCIZOR",
+    "SHUCKLE",
+    "HERACROSS",
+    "SNEASEL",
+    "TEDDIURSA",
+    "URSARING",
+    "SLUGMA",
+    "MAGCARGO",
+    "SWINUB",
+    "PILOSWINE",
+    "CORSOLA",
+    "REMORAID",
+    "OCTILLERY",
+    "DELIBIRD",
+    "MANTINE",
+    "SKARMORY",
+    "HOUNDOUR",
+    "HOUNDOOM",
+    "KINGDRA",
+    "PHANPY",
+    "DONPHAN",
+    "PORYGON2",
+    "STANTLER",
+    "SMEARGLE",
+    "TYROGUE",
+    "HITMONTOP",
+    "SMOOCHUM",
+    "ELEKID",
+    "MAGBY",
+    "MILTANK",
+    "BLISSEY",
+    "RAIKOU",
+    "ENTEI",
+    "SUICUNE",
+    "LARVITAR",
+    "PUPITAR",
+    "TYRANITAR",
+    "LUGIA",
+    "HO_OH",
+    "CELEBI",
+    "CHARMANDER_CLONE",
+    "CHARMELEON_CLONE",
+    "CHARIZARD_CLONE",
+    "SQUIRTLE_CLONE",
+    "WARTORTLE_CLONE",
+    "BLASTOISE_CLONE",
+    "BULBASAUR_CLONE",
+    "IVYSAUR_CLONE",
+    "VENUSAUR_CLONE",
+    "HONCHKROW",
+    "AMBIPOM",
+    "ANNIHILAPE",
+    "BAGON",
+    "SHELGON",
+    "SALAMENCE",
+    "DUDUNSPARCE",
+    "ELECTIVIRE",
+    "FARIGIRAF",
+    "RALTS",
+    "KIRLIA",
+    "GARDEVOIR",
+    "GALLADE",
+    "GLACEON",
+    "LEAFEON",
+    "SYLVEON",
+    "GLISCOR",
+    "LICKILICKY",
+    "MAGMORTAR",
+    "MAGNEZONE",
+    "MAMOSWINE",
+    "MESMERIA",
+    "MISMAGIUS",
+    "PORYGON_Z",
+    "RHYPERIOR",
+    "VENIPEDE",
+    "WHIRLIPEDE",
+    "SCOLIPEDE",
+    "TANGROWTH",
+    "TOGEKISS",
+    "URSALUNA",
+    "WEAVILE",
+    "WYRDEER",
+    "YANMEGA",
+    "LILEEP",
+    "CRADILY",
+    "ANORITH",
+    "ARMALDO",
+    "GOLETT",
+    "GOLURK",
+    "DUSKULL",
+    "DUSCLOPS",
+    "DUSKNOIR",
+    "TIMBURR",
+    "GURDURR",
+    "CONKELDURR",
+    "LARVESTA",
+    "VOLCARONA",
+    "DEINO",
+    "ZWEILOUS",
+    "HYDREIGON",
+    "DREEPY",
+    "DRAKLOAK",
+    "DRAGAPULT",
+    "IMPIDIMP",
+    "MORGREM",
+    "GRIMMSNARL",
+    "TINKATINK",
+    "TINKATUFF",
+    "TINKATON",
+    "FRIGIBAX",
+    "ARCTIBAX",
+    "BAXCALIBUR",
+    "CHARCADET",
+    "ARMAROUGE",
+    "CERULEDGE",
+    "ROOKIDEE",
+    "CORVISQUIRE",
+    "CORVIKNIGHT",
+    "SNOVER",
+    "ABOMASNOW",
+    "SWABLU",
+    "ALTARIA",
+    "APPLIN",
+    "DIPPLIN",
+    "APPLETUN",
+    "FLAPPLE",
+    "HYDRAPPLE",
+    "DURALUDON",
+    "ARCHALUDON",
+    "SHROOMISH",
+    "BRELOOM",
+    "BUNEARY",
+    "LOPUNNY",
+    "NUMEL",
+    "CAMERUPT",
+    "SIZZLIPEDE",
+    "CENTISKORCH",
+    "GRUBBIN",
+    "CHARJABUG",
+    "VIKAVOLT",
+    "CROAGUNK",
+    "TOXICROAK",
+    "DRIFLOON",
+    "DRIFBLIM",
+    "DRILBUR",
+    "EXCADRILL",
+    "KOTORA",
+    "RAITORA",
+    "GOROTORA",
+    "FLETCHLING",
+    "FLETCHINDER",
+    "TALONFLAME",
+    "TRAPINCH",
+    "VIBRAVA",
+    "FLYGON",
+    "SNORUNT",
+    "FROSLASS",
+    "WIMPOD",
+    "GOLISOPOD",
+    "SPOINK",
+    "GRUMPIG",
+    "PAWNIARD",
+    "BISHARP",
+    "KINGAMBIT",
+    "LOTAD",
+    "LOMBRE",
+    "LUDICOLO",
+    "OVERQWIL",
+    "SCRAGGY",
+    "SCRAFTY",
+    "SPHEAL",
+    "SEALEO",
+    "WALREIN",
+    "TEDDIURSABM",
+    "URSARINGBM",
+    "URSALUNABM",
+    "AXEW",
+    "FRAXURE",
+    "HAXORUS",
+    "CRANIDOS",
+    "RAMPARDOS",
+    "SHIELDON",
+    "BASTIODON",
+    "CETODDLE",
+    "CETITAN",
+    "FEEBAS",
+    "MILOTIC",
+    "MIMIKYU",
+    "CORSOLA_GALARIAN",
+    "CURSOLA",
+    "MR__RIME",
+    "SIRFETCH_D",
+    "RIOLU",
+    "LUCARIO",
+    "TYRUNT",
+    "TYRANTRUM",
+    "AMAURA",
+    "AURORUS",
+    "MUNCHLAX",
+    "TORKOAL",
+    "RATTATA_ALOLAN",
+    "RATICATE_ALOLAN",
+    "RAICHU_ALOLAN",
+    "SANDSHREW_ALOLAN",
+    "SANDSLASH_ALOLAN",
+    "VULPIX_ALOLAN",
+    "NINETALES_ALOLAN",
+    "DIGLETT_ALOLAN",
+    "DUGTRIO_ALOLAN",
+    "MEOWTH_ALOLAN",
+    "PERSIAN_ALOLAN",
+    "GEODUDE_ALOLAN",
+    "GRAVELER_ALOLAN",
+    "GOLEM_ALOLAN",
+    "GRIMER_ALOLAN",
+    "MUK_ALOLAN",
+    "EXEGGUTOR_ALOLAN",
+    "MAROWAK_ALOLAN",
+    "MEOWTH_GALARIAN",
+    "PERRSERKER",
+    "PONYTA_GALARIAN",
+    "RAPIDASH_GALARIAN",
+    "SLOWPOKE_GALARIAN",
+    "SLOWBRO_GALARIAN",
+    "SLOWKING_GALARIAN",
+    "WEEZING_GALARIAN",
+    "GROWLITHE_HISUIAN",
+    "ARCANINE_HISUIAN",
+    "VOLTORB_HISUIAN",
+    "ELECTRODE_HISUIAN",
+    "TYPHLOSION_HISUIAN",
+    "SNEASEL_HISUIAN",
+    "SNEASLER",
+    "WOOPER_PALDEAN",
+    "CLODSIRE",
+    "TAUROS_PALDEAN_FIRE",
+    "TAUROS_PALDEAN_WATER",
+    "WATU",
+    "BOUNSWEET",
+    "STEENEE",
+    "TSAREENA",
+    "ARON",
+    "LAIRON",
+    "AGGRON",
+    "KLEAVOR",
+    "GLIMMET",
+    "GLIMMORA",
+    "MAREANIE",
+    "TOXAPEX",
+    "ZANGOOSE",
+    "SEVIPER",
+    "SHUPPET",
+    "BANETTE",
+    "ARCHEN",
+    "ARCHEOPS",
+    "TIRTOUGA",
+    "CARRACOSTA",
+    "LITWICK",
+    "LAMPENT",
+    "CHANDELURE",
+    "JOLTIK",
+    "GALVANTULA",
+    "MAWILE",
+    "NOIBAT",
+    "NOIVERN",
+    "SALANDIT",
+    "SALAZZLE",
+    "FLITTLE",
+    "ESPATHRA",
+    "FINIZEN",
+    "PALAFIN",
+    "AZURILL",
+    "WYNAUT",
+    "BONSLY",
+    "MIME_JR_",
+    "HAPPINY",
+    "MANTYKE",
+    "STARLY",
+    "STARAVIA",
+    "STARAPTOR",
+    "SANDILE",
+    "KROKOROK",
+    "KROOKODILE",
+    "GOROCHU",
+    "JIRACHI",
+    "PHANTUMP",
+    "TREVENANT"
+  ],
+  "changes": {
+    "SQUIRTLE": {
+      "SHELL_SMASH": {
+        "before": 27,
+        "after": 36,
+        "reason": "Delay +2 offensive/Speed setup beyond the early-midgame; ancestor reminder must respect the same unlock."
+      }
+    },
+    "WARTORTLE": {
+      "SHELL_SMASH": {
+        "before": 35,
+        "after": 36,
+        "reason": "Separate Shell Smash from pre-final-evolution progression."
+      }
+    },
+    "BLASTOISE": {
+      "SHELL_SMASH": {
+        "before": 35,
+        "after": 36,
+        "reason": "Align the family unlock with final evolution without adding an evolution reward."
+      }
+    },
+    "BUTTERFREE": {
+      "DUALWINGBEAT": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BEEDRILL": {
+      "VENOSHOCK": {
+        "before": 23,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "PIDGEY": {
+      "AERIAL_ACE": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BRAVE_BIRD": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "PIDGEOTTO": {
+      "DUALWINGBEAT": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "TAKE_DOWN": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "AERIAL_ACE": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BRAVE_BIRD": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SKY_ATTACK": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "PIDGEOT": {
+      "DUALWINGBEAT": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "AERIAL_ACE": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BRAVE_BIRD": {
+        "before": 60,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "EKANS": {
+      "SLUDGE_BOMB": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ARBOK": {
+      "SLUDGE_BOMB": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "WIGGLYTUFF": {
+      "BOUNCE": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "GYRO_BALL": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 35,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PLAY_ROUGH": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "TAKE_DOWN": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "GIGA_IMPACT": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SKULL_BASH": {
+        "before": 60,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "VILEPLUME": {
+      "LEAF_BLADE": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SEED_BOMB": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SOLAR_BLADE": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "PARAS": {
+      "GIGA_DRAIN": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ENERGY_BALL": {
+        "before": 47,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "PARASECT": {
+      "GIGA_DRAIN": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ENERGY_BALL": {
+        "before": 47,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "VENOMOTH": {
+      "POISON_FANG": {
+        "before": 21,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "LEECH_LIFE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ZEN_HEADBUTT": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "DIGLETT": {
+      "EARTH_POWER": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DUGTRIO": {
+      "TRI_ATTACK": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "EARTH_POWER": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "KADABRA": {
+      "PSYCHO_CUT": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ALAKAZAM": {
+      "PSYCHO_CUT": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MAGNEMITE": {
+      "GYRO_BALL": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MAGNETON": {
+      "GYRO_BALL": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "FARFETCH_D": {
+      "AIR_CUTTER": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "AIR_SLASH": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DODUO": {
+      "TRI_ATTACK": {
+        "before": 21,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GRIMER": {
+      "SLUDGE_BOMB": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "MUK": {
+      "SLUDGE_BOMB": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GASTLY": {
+      "PHANTOMFORCE": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "HAUNTER": {
+      "SHADOW_PUNCH": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "GENGAR": {
+      "SHADOW_PUNCH": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "VOLTORB": {
+      "GYRO_BALL": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ELECTRODE": {
+      "GYRO_BALL": {
+        "before": 47,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "CUBONE": {
+      "EARTH_POWER": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CHANSEY": {
+      "TAKE_DOWN": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "EGG_BOMB": {
+        "before": 35,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TANGELA": {
+      "SEED_BOMB": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SLAM": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "POWER_WHIP": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SEADRA": {
+      "DRAGON_DANCE": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the special role."
+      },
+      "OUTRAGE": {
+        "before": 47,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MR__MIME": {
+      "PSYCHO_CUT": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SCYTHER": {
+      "RAZOR_WIND": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "AIR_SLASH": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "JYNX": {
+      "ICE_PUNCH": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BODY_SLAM": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "AVALANCHE": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "GYARADOS": {
+      "HYDRO_PUMP": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HURRICANE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYPER_BEAM": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "JOLTEON": {
+      "THUNDER_FANG": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PIN_MISSILE": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "FLAREON": {
+      "LAVA_PLUME": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "FLAMETHROWER": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "OVERHEAT": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "CLOSE_COMBAT": {
+        "before": 37,
+        "after": 44,
+        "reason": "Keep powerful Fighting coverage after level-40 Flare Blitz."
+      },
+      "SUPERPOWER": {
+        "before": 40,
+        "after": 48,
+        "reason": "Separate the second high-power Fighting option from Flare Blitz and Close Combat."
+      }
+    },
+    "PORYGON": {
+      "DOUBLE_EDGE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "OMANYTE": {
+      "ROCK_BLAST": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "OMASTAR": {
+      "ROCK_BLAST": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "KABUTO": {
+      "ANCIENTPOWER": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "MEGA_DRAIN": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "EARTH_POWER": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SCALD": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "WATER_PULSE": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "KABUTOPS": {
+      "ANCIENTPOWER": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "MEGA_DRAIN": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "AERODACTYL": {
+      "ANCIENTPOWER": {
+        "before": 21,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYPER_BEAM": {
+        "before": 57,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "TYPHLOSION": {
+      "GYRO_BALL": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ROLLOUT": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "FLARE_BLITZ": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TOTODILE": {
+      "RAZOR_WIND": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SCALD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CROCONAW": {
+      "SCALD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SWORDS_DANCE": {
+        "before": 30,
+        "after": 38,
+        "reason": "Avoid immediate +2 Attack on the route into Feraligatr; preserve the ancestor reminder gate."
+      }
+    },
+    "FERALIGATR": {
+      "SCALD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 59,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SWORDS_DANCE": {
+        "before": 30,
+        "after": 38,
+        "reason": "Space +2 Attack after evolution and existing Aqua Tail/Crunch access."
+      },
+      "LIQUIDATION": {
+        "before": 34,
+        "after": 40,
+        "reason": "Separate reliable Water STAB with a Sheer Force interaction from the setup unlock."
+      }
+    },
+    "SENTRET": {
+      "HYPER_VOICE": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "FURRET": {
+      "HYPER_VOICE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "NOCTOWL": {
+      "TAKE_DOWN": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ZEN_HEADBUTT": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "LEDYBA": {
+      "AIR_SLASH": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BUG_BUZZ": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "LEDIAN": {
+      "SIGNAL_BEAM": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "AIR_SLASH": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "QUIVER_DANCE": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      },
+      "BUG_BUZZ": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SPINARAK": {
+      "PSYCHIC_M": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ARIADOS": {
+      "SIGNAL_BEAM": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "PSYCHIC_M": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CHINCHOU": {
+      "TAKE_DOWN": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "LANTURN": {
+      "TAKE_DOWN": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "IGGLYBUFF": {
+      "BOUNCE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PLAY_ROUGH": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "TAKE_DOWN": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BODY_SLAM": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TOGEPI": {
+      "DOUBLE_EDGE": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TOGETIC": {
+      "BOUNCE": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MAREEP": {
+      "TAKE_DOWN": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "FLAAFFY": {
+      "TAKE_DOWN": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "AMPHAROS": {
+      "TAKE_DOWN": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "HOPPIP": {
+      "BOUNCE": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ACROBATICS": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SKIPLOOM": {
+      "BOUNCE": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ACROBATICS": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "JUMPLUFF": {
+      "BOUNCE": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ACROBATICS": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SUNFLORA": {
+      "DOUBLE_EDGE": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "WOOD_HAMMER": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PETAL_BLIZZARD": {
+        "before": 72,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "QUAGSIRE": {
+      "EARTH_POWER": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "WATER_PULSE": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ESPEON": {
+      "PSYCHO_CUT": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MISDREAVUS": {
+      "PHANTOMFORCE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "FORRETRESS": {
+      "SIGNAL_BEAM": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "EARTH_POWER": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BUG_BUZZ": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ZAP_CANNON": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "QWILFISH": {
+      "HYDRO_PUMP": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SCIZOR": {
+      "RAZOR_WIND": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SNEASEL": {
+      "FREEZE_DRY": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DARK_PULSE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SLUGMA": {
+      "ROCK_SLIDE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ROLLOUT": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BODY_SLAM": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MAGCARGO": {
+      "ROCK_SLIDE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BODY_SLAM": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SWINUB": {
+      "BLIZZARD": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "PILOSWINE": {
+      "FREEZE_DRY": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BLIZZARD": {
+        "before": 51,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CORSOLA": {
+      "SPIKE_CANNON": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "ROCK_BLAST": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MANTINE": {
+      "TAKE_DOWN": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BOUNCE": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SKARMORY": {
+      "AIR_SLASH": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "PHANPY": {
+      "EARTH_POWER": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "PORYGON2": {
+      "TAKE_DOWN": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "GIGA_IMPACT": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "STANTLER": {
+      "CALM_MIND": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      }
+    },
+    "SMOOCHUM": {
+      "ICE_PUNCH": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "AVALANCHE": {
+        "before": 35,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BLISSEY": {
+      "TAKE_DOWN": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "EGG_BOMB": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BAGON": {
+      "FLAMETHROWER": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SHELGON": {
+      "FLAMETHROWER": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GLACEON": {
+      "ICE_FANG": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "LEAFEON": {
+      "MAGICAL_LEAF": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "GIGA_DRAIN": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "LEAF_STORM": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "MAGNEZONE": {
+      "GYRO_BALL": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MAMOSWINE": {
+      "FREEZE_DRY": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BLIZZARD": {
+        "before": 51,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "MESMERIA": {
+      "ICE_PUNCH": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PSYCHO_CUT": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BODY_SLAM": {
+        "before": 39,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MISMAGIUS": {
+      "PHANTOMFORCE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "PORYGON_Z": {
+      "DOUBLE_EDGE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "VENIPEDE": {
+      "VENOSHOCK": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SIGNAL_BEAM": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "WHIRLIPEDE": {
+      "VENOSHOCK": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SIGNAL_BEAM": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SCOLIPEDE": {
+      "VENOSHOCK": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "TOGEKISS": {
+      "BOUNCE": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DOUBLE_EDGE": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SKY_ATTACK": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "WEAVILE": {
+      "FREEZE_DRY": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DARK_PULSE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "NASTY_PLOT": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      }
+    },
+    "WYRDEER": {
+      "PSYBEAM": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "CALM_MIND": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      },
+      "PSYCHIC_M": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "FUTURE_SIGHT": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "YANMEGA": {
+      "SWORDS_DANCE": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ANORITH": {
+      "WATER_PULSE": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ARMALDO": {
+      "WATER_PULSE": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SIGNAL_BEAM": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GOLETT": {
+      "SHADOW_BALL": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GOLURK": {
+      "SHADOW_BALL": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DUSKULL": {
+      "SHADOW_BALL": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEX": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "FUTURE_SIGHT": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DUSKNOIR": {
+      "SHADOW_BALL": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "FUTURE_SIGHT": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "LARVESTA": {
+      "INCINERATE": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SIGNAL_BEAM": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BUG_BUZZ": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "QUIVER_DANCE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      },
+      "FIERY_DANCE": {
+        "before": 54,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "VOLCARONA": {
+      "BUG_BITE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "LEECH_LIFE": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MORGREM": {
+      "DRAINING_KISS": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DARK_PULSE": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DAZZLING_GLEAM": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "NASTY_PLOT": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      }
+    },
+    "GRIMMSNARL": {
+      "DARK_PULSE": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "NASTY_PLOT": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the physical role."
+      }
+    },
+    "FRIGIBAX": {
+      "FREEZE_DRY": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ICE_BEAM": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ARCTIBAX": {
+      "FREEZE_DRY": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ICE_BEAM": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "BAXCALIBUR": {
+      "FREEZE_DRY": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ICE_BEAM": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CERULEDGE": {
+      "INCINERATE": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEX": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "LAVA_PLUME": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEAT_WAVE": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "ROOKIDEE": {
+      "AIR_SLASH": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "HYDRAPPLE": {
+      "BULLET_SEED": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "POWER_WHIP": {
+        "before": 54,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "WOOD_HAMMER": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BRELOOM": {
+      "GIGA_DRAIN": {
+        "before": 25,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "ENERGY_BALL": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "LEAF_STORM": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "BUNEARY": {
+      "HYPER_VOICE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SIZZLIPEDE": {
+      "BUG_BUZZ": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEAT_WAVE": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CENTISKORCH": {
+      "HEAT_WAVE": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "OVERHEAT": {
+        "before": 58,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CHARJABUG": {
+      "SIGNAL_BEAM": {
+        "before": 29,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DISCHARGE": {
+        "before": 64,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "VIKAVOLT": {
+      "SPARK": {
+        "before": 23,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "FLY": {
+        "before": 50,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TRAPINCH": {
+      "EARTH_POWER": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYPER_BEAM": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "FROSLASS": {
+      "AVALANCHE": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SPOINK": {
+      "BOUNCE": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "GRUMPIG": {
+      "BOUNCE": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "OVERQWIL": {
+      "HYDRO_PUMP": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "URSARINGBM": {
+      "SLASH": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PLAY_ROUGH": {
+        "before": 29,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "CRUSH_CLAW": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BRICK_BREAK": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SWORDS_DANCE": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the special role."
+      },
+      "HAMMER_ARM": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "THRASH": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "URSALUNABM": {
+      "SLASH": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PLAY_ROUGH": {
+        "before": 29,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "CRUSH_CLAW": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BRICK_BREAK": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SWORDS_DANCE": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat setup; natural progression favors the special role."
+      },
+      "HAMMER_ARM": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "HEADLONGRUSH": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "THRASH": {
+        "before": 56,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "AXEW": {
+      "RAZOR_WIND": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "DRAGON_PULSE": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "FRAXURE": {
+      "DRAGON_PULSE": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "HAXORUS": {
+      "DRAGON_PULSE": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CRANIDOS": {
+      "ANCIENTPOWER": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "RAMPARDOS": {
+      "ANCIENTPOWER": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SHIELDON": {
+      "IRON_HEAD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "STONE_EDGE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BASTIODON": {
+      "STONE_EDGE": {
+        "before": 47,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "IRON_HEAD": {
+        "before": 51,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "HEAD_SMASH": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "CETODDLE": {
+      "FREEZE_DRY": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BLIZZARD": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "CETITAN": {
+      "FREEZE_DRY": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BLIZZARD": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "MILOTIC": {
+      "AQUA_TAIL": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "CURSOLA": {
+      "SPIKE_CANNON": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "MR__RIME": {
+      "PSYCHO_CUT": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SANDSHREW_ALOLAN": {
+      "BLIZZARD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SANDSLASH_ALOLAN": {
+      "FREEZE_DRY": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "BLIZZARD": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DIGLETT_ALOLAN": {
+      "EARTH_POWER": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "DUGTRIO_ALOLAN": {
+      "TRI_ATTACK": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "EARTH_POWER": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GEODUDE_ALOLAN": {
+      "DISCHARGE": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GRAVELER_ALOLAN": {
+      "DISCHARGE": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GOLEM_ALOLAN": {
+      "DISCHARGE": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GRIMER_ALOLAN": {
+      "SLUDGE_BOMB": {
+        "before": 37,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SLOWKING_GALARIAN": {
+      "ZEN_HEADBUTT": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PSYCHO_CUT": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ARCANINE_HISUIAN": {
+      "INCINERATE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "FLAMETHROWER": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEAT_WAVE": {
+        "before": 52,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "OVERHEAT": {
+        "before": 60,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "VOLTORB_HISUIAN": {
+      "SEED_BOMB": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "GYRO_BALL": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ELECTRODE_HISUIAN": {
+      "SEED_BOMB": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "GYRO_BALL": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "TAUROS_PALDEAN_FIRE": {
+      "HEAT_WAVE": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "OVERHEAT": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "TSAREENA": {
+      "MAGICAL_LEAF": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "LEAF_STORM": {
+        "before": 55,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "KLEAVOR": {
+      "RAZOR_WIND": {
+        "before": 31,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "GLIMMET": {
+      "ROCK_SLIDE": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "GLIMMORA": {
+      "ROCK_SLIDE": {
+        "before": 33,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "HEAD_SMASH": {
+        "before": 48,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "ARCHEN": {
+      "DRAGONBREATH": {
+        "before": 34,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HEAT_WAVE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "TIRTOUGA": {
+      "WATER_PULSE": {
+        "before": 26,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "EARTH_POWER": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SCALD": {
+        "before": 44,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "HYDRO_PUMP": {
+        "before": 45,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      },
+      "SHELL_SMASH": {
+        "before": 30,
+        "after": 38,
+        "reason": "Keep +2 setup out of the level-30 cluster and prevent an ancestor reminder shortcut."
+      }
+    },
+    "CARRACOSTA": {
+      "SHELL_SMASH": {
+        "before": 30,
+        "after": 38,
+        "reason": "Spread setup beyond the level-30 cluster, after evolution at level 37."
+      }
+    },
+    "LITWICK": {
+      "FLAME_WHEEL": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "LAMPENT": {
+      "FLAME_WHEEL": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "PHANTOMFORCE": {
+        "before": 42,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "CHANDELURE": {
+      "PHANTOMFORCE": {
+        "before": 46,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "GALVANTULA": {
+      "FURY_CUTTER": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BUG_BITE": {
+        "before": 24,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SPARK": {
+        "before": 28,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "SLASH": {
+        "before": 32,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "X_SCISSOR": {
+        "before": 38,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "WILD_CHARGE": {
+        "before": 53,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "NOIBAT": {
+      "BITE": {
+        "before": 21,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 30,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DRAGON_CLAW": {
+        "before": 41,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "NOIVERN": {
+      "BITE": {
+        "before": 21,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DUALWINGBEAT": {
+        "before": 36,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "DRAGON_CLAW": {
+        "before": 43,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SALANDIT": {
+      "POISON_FANG": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "SALAZZLE": {
+      "CROSS_POISON": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "POISON_FANG": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "BONSLY": {
+      "ANCIENTPOWER": {
+        "before": 22,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "MANTYKE": {
+      "TAKE_DOWN": {
+        "before": 27,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      },
+      "BOUNCE": {
+        "before": 40,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the special role."
+      }
+    },
+    "PHANTUMP": {
+      "HEX": {
+        "before": 20,
+        "after": null,
+        "reason": "Optional alternate-stat attack; natural progression favors the physical role."
+      }
+    },
+    "SQUIRTLE_CLONE": {
+      "SHELL_SMASH": {
+        "before": 27,
+        "after": 36,
+        "reason": "Delay +2 offensive/Speed setup beyond the early-midgame; ancestor reminder must respect the same unlock."
+      }
+    },
+    "WARTORTLE_CLONE": {
+      "SHELL_SMASH": {
+        "before": 35,
+        "after": 36,
+        "reason": "Separate Shell Smash from pre-final-evolution progression."
+      }
+    },
+    "BLASTOISE_CLONE": {
+      "SHELL_SMASH": {
+        "before": 35,
+        "after": 36,
+        "reason": "Align the family unlock with final evolution without adding an evolution reward."
+      }
+    }
+  },
+  "tutor_additions": {
+    "BUTTERFREE": [
+      "DUALWINGBEAT"
+    ],
+    "BEEDRILL": [
+      "VENOSHOCK"
+    ],
+    "PIDGEY": [
+      "AERIAL_ACE"
+    ],
+    "PIDGEOTTO": [
+      "AERIAL_ACE",
+      "DUALWINGBEAT"
+    ],
+    "PIDGEOT": [
+      "AERIAL_ACE",
+      "DUALWINGBEAT"
+    ],
+    "WIGGLYTUFF": [
+      "GIGA_IMPACT"
+    ],
+    "VILEPLUME": [
+      "LEAF_BLADE",
+      "SOLAR_BLADE"
+    ],
+    "PARAS": [
+      "GIGA_DRAIN"
+    ],
+    "PARASECT": [
+      "GIGA_DRAIN"
+    ],
+    "DIGLETT": [
+      "EARTH_POWER"
+    ],
+    "DUGTRIO": [
+      "EARTH_POWER",
+      "TRI_ATTACK"
+    ],
+    "KADABRA": [
+      "PSYCHO_CUT"
+    ],
+    "ALAKAZAM": [
+      "PSYCHO_CUT"
+    ],
+    "MAGNEMITE": [
+      "GYRO_BALL"
+    ],
+    "MAGNETON": [
+      "GYRO_BALL"
+    ],
+    "FARFETCH_D": [
+      "AIR_CUTTER",
+      "AIR_SLASH"
+    ],
+    "DODUO": [
+      "TRI_ATTACK"
+    ],
+    "GASTLY": [
+      "PHANTOMFORCE"
+    ],
+    "HAUNTER": [
+      "PHANTOMFORCE",
+      "SHADOW_PUNCH"
+    ],
+    "GENGAR": [
+      "PHANTOMFORCE",
+      "SHADOW_PUNCH"
+    ],
+    "VOLTORB": [
+      "GYRO_BALL"
+    ],
+    "ELECTRODE": [
+      "GYRO_BALL"
+    ],
+    "CUBONE": [
+      "EARTH_POWER"
+    ],
+    "MAROWAK": [
+      "EARTH_POWER"
+    ],
+    "CHANSEY": [
+      "DOUBLE_EDGE",
+      "EGG_BOMB"
+    ],
+    "TANGELA": [
+      "POWER_WHIP",
+      "SEED_BOMB",
+      "SLAM"
+    ],
+    "MR__MIME": [
+      "PSYCHO_CUT"
+    ],
+    "SCYTHER": [
+      "AIR_SLASH"
+    ],
+    "JYNX": [
+      "AVALANCHE"
+    ],
+    "GYARADOS": [
+      "HURRICANE"
+    ],
+    "JOLTEON": [
+      "PIN_MISSILE",
+      "THUNDER_FANG"
+    ],
+    "FLAREON": [
+      "LAVA_PLUME",
+      "OVERHEAT"
+    ],
+    "PORYGON": [
+      "DOUBLE_EDGE"
+    ],
+    "OMANYTE": [
+      "ROCK_BLAST"
+    ],
+    "OMASTAR": [
+      "ROCK_BLAST"
+    ],
+    "KABUTO": [
+      "ANCIENTPOWER",
+      "EARTH_POWER",
+      "HYDRO_PUMP",
+      "SCALD",
+      "WATER_PULSE"
+    ],
+    "KABUTOPS": [
+      "ANCIENTPOWER",
+      "EARTH_POWER",
+      "HYDRO_PUMP",
+      "SCALD",
+      "WATER_PULSE"
+    ],
+    "AERODACTYL": [
+      "ANCIENTPOWER"
+    ],
+    "TYPHLOSION": [
+      "GYRO_BALL"
+    ],
+    "TOTODILE": [
+      "SCALD"
+    ],
+    "CROCONAW": [
+      "SCALD"
+    ],
+    "FERALIGATR": [
+      "SCALD"
+    ],
+    "SENTRET": [
+      "HYPER_VOICE"
+    ],
+    "FURRET": [
+      "HYPER_VOICE"
+    ],
+    "LEDYBA": [
+      "AIR_SLASH"
+    ],
+    "LEDIAN": [
+      "AIR_SLASH",
+      "QUIVER_DANCE",
+      "SIGNAL_BEAM"
+    ],
+    "CHINCHOU": [
+      "TAKE_DOWN"
+    ],
+    "LANTURN": [
+      "TAKE_DOWN"
+    ],
+    "IGGLYBUFF": [
+      "BODY_SLAM",
+      "BOUNCE",
+      "DOUBLE_EDGE",
+      "PLAY_ROUGH",
+      "TAKE_DOWN"
+    ],
+    "TOGEPI": [
+      "DOUBLE_EDGE"
+    ],
+    "TOGETIC": [
+      "BOUNCE",
+      "DOUBLE_EDGE",
+      "DUALWINGBEAT"
+    ],
+    "SUDOWOODO": [
+      "ANCIENTPOWER"
+    ],
+    "HOPPIP": [
+      "ACROBATICS",
+      "BOUNCE"
+    ],
+    "SKIPLOOM": [
+      "ACROBATICS",
+      "BOUNCE"
+    ],
+    "JUMPLUFF": [
+      "ACROBATICS",
+      "BOUNCE"
+    ],
+    "SUNFLORA": [
+      "PETAL_BLIZZARD",
+      "WOOD_HAMMER"
+    ],
+    "ESPEON": [
+      "PSYCHO_CUT"
+    ],
+    "MISDREAVUS": [
+      "PHANTOMFORCE"
+    ],
+    "FORRETRESS": [
+      "EARTH_POWER",
+      "SIGNAL_BEAM"
+    ],
+    "QWILFISH": [
+      "HYDRO_PUMP"
+    ],
+    "SNEASEL": [
+      "DARK_PULSE",
+      "FREEZE_DRY"
+    ],
+    "SLUGMA": [
+      "BODY_SLAM",
+      "ROCK_SLIDE"
+    ],
+    "MAGCARGO": [
+      "BODY_SLAM",
+      "ROCK_SLIDE"
+    ],
+    "CORSOLA": [
+      "ROCK_BLAST",
+      "SPIKE_CANNON"
+    ],
+    "MANTINE": [
+      "BOUNCE",
+      "DUALWINGBEAT",
+      "TAKE_DOWN"
+    ],
+    "SKARMORY": [
+      "AIR_SLASH"
+    ],
+    "PHANPY": [
+      "EARTH_POWER"
+    ],
+    "DONPHAN": [
+      "EARTH_POWER"
+    ],
+    "PORYGON2": [
+      "DOUBLE_EDGE"
+    ],
+    "STANTLER": [
+      "CALM_MIND"
+    ],
+    "SMOOCHUM": [
+      "AVALANCHE"
+    ],
+    "BLISSEY": [
+      "DOUBLE_EDGE",
+      "EGG_BOMB"
+    ],
+    "GLACEON": [
+      "ICE_FANG"
+    ],
+    "LEAFEON": [
+      "GIGA_DRAIN",
+      "LEAF_STORM",
+      "MAGICAL_LEAF"
+    ],
+    "MAGNEZONE": [
+      "GYRO_BALL"
+    ],
+    "MESMERIA": [
+      "AVALANCHE"
+    ],
+    "MISMAGIUS": [
+      "PHANTOMFORCE"
+    ],
+    "PORYGON_Z": [
+      "DOUBLE_EDGE"
+    ],
+    "VENIPEDE": [
+      "SIGNAL_BEAM",
+      "VENOSHOCK"
+    ],
+    "WHIRLIPEDE": [
+      "SIGNAL_BEAM",
+      "VENOSHOCK"
+    ],
+    "SCOLIPEDE": [
+      "SIGNAL_BEAM",
+      "VENOSHOCK"
+    ],
+    "TOGEKISS": [
+      "BOUNCE",
+      "DOUBLE_EDGE",
+      "DUALWINGBEAT"
+    ],
+    "WEAVILE": [
+      "DARK_PULSE",
+      "FREEZE_DRY"
+    ],
+    "WYRDEER": [
+      "CALM_MIND"
+    ],
+    "ARMALDO": [
+      "SIGNAL_BEAM"
+    ],
+    "DUSKULL": [
+      "FUTURE_SIGHT",
+      "HEX"
+    ],
+    "LARVESTA": [
+      "BUG_BUZZ",
+      "FIERY_DANCE",
+      "INCINERATE",
+      "QUIVER_DANCE",
+      "SIGNAL_BEAM"
+    ],
+    "VOLCARONA": [
+      "DUALWINGBEAT"
+    ],
+    "ROOKIDEE": [
+      "AIR_SLASH"
+    ],
+    "CORVISQUIRE": [
+      "AIR_SLASH"
+    ],
+    "CORVIKNIGHT": [
+      "AIR_SLASH"
+    ],
+    "HYDRAPPLE": [
+      "POWER_WHIP",
+      "WOOD_HAMMER"
+    ],
+    "BRELOOM": [
+      "LEAF_STORM"
+    ],
+    "BUNEARY": [
+      "HYPER_VOICE"
+    ],
+    "LOPUNNY": [
+      "HYPER_VOICE"
+    ],
+    "SIZZLIPEDE": [
+      "BUG_BUZZ",
+      "HEAT_WAVE"
+    ],
+    "CENTISKORCH": [
+      "BUG_BUZZ",
+      "HEAT_WAVE",
+      "OVERHEAT"
+    ],
+    "FROSLASS": [
+      "PHANTOMFORCE"
+    ],
+    "SPOINK": [
+      "BOUNCE"
+    ],
+    "GRUMPIG": [
+      "BOUNCE"
+    ],
+    "OVERQWIL": [
+      "HYDRO_PUMP"
+    ],
+    "URSARINGBM": [
+      "HAMMER_ARM"
+    ],
+    "URSALUNABM": [
+      "HAMMER_ARM",
+      "HEADLONGRUSH"
+    ],
+    "CRANIDOS": [
+      "ANCIENTPOWER"
+    ],
+    "RAMPARDOS": [
+      "ANCIENTPOWER"
+    ],
+    "SHIELDON": [
+      "STONE_EDGE"
+    ],
+    "BASTIODON": [
+      "HEAD_SMASH",
+      "STONE_EDGE"
+    ],
+    "CETODDLE": [
+      "FREEZE_DRY"
+    ],
+    "CETITAN": [
+      "FREEZE_DRY"
+    ],
+    "MILOTIC": [
+      "AQUA_TAIL"
+    ],
+    "MR__RIME": [
+      "PSYCHO_CUT"
+    ],
+    "SIRFETCH_D": [
+      "AIR_CUTTER",
+      "AIR_SLASH"
+    ],
+    "SANDSLASH_ALOLAN": [
+      "FREEZE_DRY"
+    ],
+    "DIGLETT_ALOLAN": [
+      "EARTH_POWER"
+    ],
+    "DUGTRIO_ALOLAN": [
+      "EARTH_POWER",
+      "TRI_ATTACK"
+    ],
+    "GEODUDE_ALOLAN": [
+      "DISCHARGE"
+    ],
+    "GRAVELER_ALOLAN": [
+      "DISCHARGE"
+    ],
+    "GOLEM_ALOLAN": [
+      "DISCHARGE"
+    ],
+    "MAROWAK_ALOLAN": [
+      "EARTH_POWER"
+    ],
+    "SLOWKING_GALARIAN": [
+      "PSYCHO_CUT"
+    ],
+    "VOLTORB_HISUIAN": [
+      "GYRO_BALL",
+      "SEED_BOMB"
+    ],
+    "ELECTRODE_HISUIAN": [
+      "GYRO_BALL",
+      "SEED_BOMB"
+    ],
+    "TAUROS_PALDEAN_FIRE": [
+      "HEAT_WAVE",
+      "OVERHEAT"
+    ],
+    "GLIMMET": [
+      "ROCK_SLIDE"
+    ],
+    "GLIMMORA": [
+      "HEAD_SMASH",
+      "ROCK_SLIDE"
+    ],
+    "ARCHEN": [
+      "DRAGONBREATH",
+      "HEAT_WAVE"
+    ],
+    "TIRTOUGA": [
+      "EARTH_POWER",
+      "HYDRO_PUMP",
+      "SCALD"
+    ],
+    "LITWICK": [
+      "FLAME_WHEEL",
+      "PHANTOMFORCE"
+    ],
+    "LAMPENT": [
+      "FLAME_WHEEL",
+      "PHANTOMFORCE"
+    ],
+    "CHANDELURE": [
+      "FLAME_WHEEL",
+      "PHANTOMFORCE"
+    ],
+    "NOIBAT": [
+      "BITE",
+      "DUALWINGBEAT"
+    ],
+    "NOIVERN": [
+      "BITE",
+      "DUALWINGBEAT"
+    ],
+    "SALANDIT": [
+      "POISON_FANG"
+    ],
+    "SALAZZLE": [
+      "CROSS_POISON",
+      "POISON_FANG"
+    ],
+    "BONSLY": [
+      "ANCIENTPOWER"
+    ],
+    "MANTYKE": [
+      "BOUNCE",
+      "TAKE_DOWN"
+    ],
+    "PHANTUMP": [
+      "HEX"
+    ]
+  },
+  "unchanged_evolutions": "9ab0752d64fc3583dd8af1bf3a69cb3cbfdea3f24199ea46a44b4bd4ed31b90a",
+  "unchanged_level_one": {
+    "BULBASAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "IVYSAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "VENUSAUR": "7c9d499299fd0a5f9e4180204f61944e5d127cf977031ffcceb5be7e92253d4f",
+    "CHARMANDER": "5dacc656610be24ffec99d0577330600015c1cb46e64e8506ad2de1e555de933",
+    "CHARMELEON": "5dacc656610be24ffec99d0577330600015c1cb46e64e8506ad2de1e555de933",
+    "CHARIZARD": "cc3e8a82cb3464d37596283406cd9be07a42adf53767418a0fb03a47fab41fb4",
+    "SQUIRTLE": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "WARTORTLE": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "BLASTOISE": "97241e2017b23c821a8214d193caa4ca510c601486fb277beaca708e6a0261f6",
+    "CATERPIE": "cd08ff0e377882d774f3fea5354567bbbbb7ed3b1a46a2bdd87cf27092a3e885",
+    "METAPOD": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "BUTTERFREE": "f30688fd2549e03034ad03d0b4510a110062e917663e28e4c39491f1ec68d824",
+    "WEEDLE": "941150a640dd0abe0b97a1a723a9c5239e5f10a9f789153d670eeae8cb3ec8d9",
+    "KAKUNA": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "BEEDRILL": "272db5e5763dbc9793f2314f5af9686669466b6d0a00033e71e091c2cbce41b0",
+    "PIDGEY": "3e3db1ff237745390f7426e68e4bfa1d482d9a7e134b298c5f0407a48dadddb8",
+    "PIDGEOTTO": "3e3db1ff237745390f7426e68e4bfa1d482d9a7e134b298c5f0407a48dadddb8",
+    "PIDGEOT": "3e3db1ff237745390f7426e68e4bfa1d482d9a7e134b298c5f0407a48dadddb8",
+    "RATTATA": "a1cfd453c516bd60e059f87e74b209eaf11774409c9bc1ef10079190ec6c6ce7",
+    "RATICATE": "7b4eb14b84ff7bbeafc3c67c6ce84d5b8f06b34a635cd71984996bbb5a93d1f4",
+    "SPEAROW": "274a0e3bed5798e95b396fb2ded6c501043d2d933f2e4686d59566de39750793",
+    "FEAROW": "ca6f0a951213ecf1a293d89192e7c3ae5e78799e3def81e6cfa7ee240c68bc22",
+    "EKANS": "e8636aaaed1c51042238325ae847aab9b5149475ab54f08c1581986cc1a33397",
+    "ARBOK": "f6169fa8a1ceb99e9084696ac33bcdaaf4c9cb78cc98381b5999f9c2222f411b",
+    "PIKACHU": "78763dfff97f5c68e342412a1def64f73a330f6dcf8fe1fb10b21e6d530ced72",
+    "RAICHU": "06289716aea4b74593290d72a29d601e31951ecbb4bed52a9fe85353faf9f263",
+    "SANDSHREW": "76e5a4b02ae7f1d3f1fab189abf02c1dc82c3c2ce9a83407bea629c2488fef9d",
+    "SANDSLASH": "e4f239dfcfcf78b3ca05c97768255a466f937552b820511ddd8918b658a1962f",
+    "NIDORAN_F": "fa0f5b3b56626730536ad60ee4ec13a0baeff1f53ef5c4b4866dcdf1f862eafd",
+    "NIDORINA": "fa0f5b3b56626730536ad60ee4ec13a0baeff1f53ef5c4b4866dcdf1f862eafd",
+    "NIDOQUEEN": "f7fe7a57d8bf03bd20696cfe65a9cf55e9533f947eefc6a19992775d75f13072",
+    "NIDORAN_M": "ee46b0751a45d388dbb4b51cd3e9f7d11d4e91d345846ce6967a0ba52b54bc39",
+    "NIDORINO": "ee46b0751a45d388dbb4b51cd3e9f7d11d4e91d345846ce6967a0ba52b54bc39",
+    "NIDOKING": "eee9d2c31c7f861503d571df2e10b020f68f7d28b7ee27e8631193229a75a9a9",
+    "CLEFAIRY": "b03255f353eaf2d7848ee8f432065f59c59b93e19428080809645191b006d951",
+    "CLEFABLE": "903b110f3d92965f58eb2929d6b643701adec84b77765ef6b6abf783100a178a",
+    "VULPIX": "381e620a66a0dae3871cb6570f7ca8a4e8269f81b95e2121e6b02a74b4da88f6",
+    "NINETALES": "257e3027781e2b0e265696ab5a71870208c23f8d945f917fb69306b356d5cda1",
+    "JIGGLYPUFF": "29ac60c6f178df44c203637c306d39a85de42fb82274c81bb98f7288364d8abb",
+    "WIGGLYTUFF": "54eec76bc90f9b941b845c0602c1145ef683a89dc032a62a30bccb6c1c8f4475",
+    "ZUBAT": "a00f68fab9080521c344c40cee1b8deba4187da15cb668c33fef3912ee0e1730",
+    "GOLBAT": "6355fb70b82fd4c67a92473e1814162743731ac90f27e1ab0e7cc71c8ec99794",
+    "ODDISH": "8591423f5996709a010b13552d73501d54da477f0008555327bd63631752a6b3",
+    "GLOOM": "8591423f5996709a010b13552d73501d54da477f0008555327bd63631752a6b3",
+    "VILEPLUME": "fa7a8597b81810c42a53251c6ad0832d7a428b4f8444cd2f953282761449a2b0",
+    "PARAS": "6c725722d4974dc0d1dd73ab4dccb4a327e40ec00157fbec1347be6c514dbf71",
+    "PARASECT": "6eb812951b2dc7e8282d36e1415a6f27d95ef05264557ea812fb0aa3ecd563f2",
+    "VENONAT": "54fbaf9a30b41539d3f9959c8019016ad1f1b2de18452bdd3fcfe544fb5c2066",
+    "VENOMOTH": "acf844a05578788d961af5fa0cf40798c26e77bfd2d73a9fd20558de195bef29",
+    "DIGLETT": "ee882a21b6fc3ea0940ef52860b5bdd9d87b7fe24a81be80a98c2cf9f2a2e085",
+    "DUGTRIO": "67291ee1fe8fcc9adc78f742384ca2382d2fb98871ac4eda255c66fccbf5bdb6",
+    "MEOWTH": "6f21d94ed3d5932defccc1632da22c20418a25f2fcb3780eb8144513fc252888",
+    "PERSIAN": "6f21d94ed3d5932defccc1632da22c20418a25f2fcb3780eb8144513fc252888",
+    "PSYDUCK": "4b31f74b12c6b9dedda8921ae104220f65367fb9409c6168121c3f7cfd77ebe8",
+    "GOLDUCK": "a58142b4794affb17a58811dbe8a299c5a65610c45c779b27bfa8158acf83347",
+    "MANKEY": "1a0641f9844b0203c1cd2e5135841e33ac7063dd73923f396b949078ad10762a",
+    "PRIMEAPE": "a3c978727771039758ff36b76bebf5f0bccd976bff3037f288f4e2667c548612",
+    "GROWLITHE": "7c380309e19220f1d626df755460aedfac8adc5ab7a0ae0a214248c513f359da",
+    "ARCANINE": "c6afeba5e262cbcedfd4b159139c3977a4031755eddf4d58e366e506492c809b",
+    "POLIWAG": "630c0f9da543dc27c98fc29962bfa61c34e038cc0a7ecfe3570823e89f36bba2",
+    "POLIWHIRL": "2129a4567a80771dde7f4ce0160d39a93a222f01fffd860e0acc1d9c8eec5311",
+    "POLIWRATH": "dadf517555efb3813b0b4d8dd3c512a5f7624ff409602a7d7820eedfae3c4dd3",
+    "ABRA": "d1da84741772e0932f36edcc2096381863381226f5df0c859579a74e3e581b47",
+    "KADABRA": "e2978d472ac1e7b9a059de7b215916c5025f89d82ab70e67e6a70362059060f1",
+    "ALAKAZAM": "e2978d472ac1e7b9a059de7b215916c5025f89d82ab70e67e6a70362059060f1",
+    "MACHOP": "af1785c6a36f682cdcd0c5eef6c458e28a1c83b31d4484a2aa534da5548cf38b",
+    "MACHOKE": "af1785c6a36f682cdcd0c5eef6c458e28a1c83b31d4484a2aa534da5548cf38b",
+    "MACHAMP": "f03df7663f4979729d5e48a0b72e9d1261620b4ae613e2bd68ec29f948407760",
+    "BELLSPROUT": "4223760dc35387eaaea23c4afa2645c9cbaf39441615653dc27f6ab375eaf2d6",
+    "WEEPINBELL": "4223760dc35387eaaea23c4afa2645c9cbaf39441615653dc27f6ab375eaf2d6",
+    "VICTREEBEL": "4223760dc35387eaaea23c4afa2645c9cbaf39441615653dc27f6ab375eaf2d6",
+    "TENTACOOL": "9bd4a89a959b9fd298bac427b5edfaab8c535192c7d23ee94fd5cf0d68468fb6",
+    "TENTACRUEL": "9bd4a89a959b9fd298bac427b5edfaab8c535192c7d23ee94fd5cf0d68468fb6",
+    "GEODUDE": "26fe84809ceb1494df850c181ae643995a80d461c58ea19b8f1575f3b078cbca",
+    "GRAVELER": "26fe84809ceb1494df850c181ae643995a80d461c58ea19b8f1575f3b078cbca",
+    "GOLEM": "fbf20a35d6c4b1ddb66eadc291352572010651b83d072dd9f57f8c4d8b35abf2",
+    "PONYTA": "18c2ded9a7418f934f46376aec23dbda500d77b13fc42fb95e963adca5ff160c",
+    "RAPIDASH": "81ecdf0c746d3d5182a77339c7483f476ac2d7150abb1d01344cd2ecff431509",
+    "SLOWPOKE": "09bed55bffc8906db246d95fdc33c9cf8f5bb284f6c5de7498ce742d616781fb",
+    "SLOWBRO": "3fc7b3d7291525b52682adc5e50e95eb81c066ac19f4c0e87cabd417c7dae09c",
+    "MAGNEMITE": "c0c39a40ca7e63a369c72669c64c321ad7cbb8a54d9e8f306246553ed48e7f00",
+    "MAGNETON": "c0c39a40ca7e63a369c72669c64c321ad7cbb8a54d9e8f306246553ed48e7f00",
+    "FARFETCH_D": "4faf82d5ebb11ecf86731bc47d22d906aef8b90cbc5fbdadc63070edb4633102",
+    "DODUO": "4e8ab764b3c830be099c304a9a4796e371d3159393efd827f21695aa76a2cba7",
+    "DODRIO": "f0971f163787ae38edb1494438e80821d5b2f00d7afbbdfdff462af5b844f912",
+    "SEEL": "583e7a4865658b2cf2cbf1ccb40ede6d2c22dcd76207dbc1374fe74faa61fe6e",
+    "DEWGONG": "20c1d4dff759de9531e5bd84692c6a9a1479eb3bf95c1aad63dad4bd1fd117f7",
+    "GRIMER": "a990296a8efd28fe25871d5d4d213c868f225359d97be452a36cbed1e586b08b",
+    "MUK": "68d5d05c1ea8e63775df5bc4b6391581598a3100c4d3b9dec315cee8c5841002",
+    "SHELLDER": "4cfea8a253b27a077dac28bdc996acfac633ea5b9bdbfa3b2f1b3e3880f9b4e1",
+    "CLOYSTER": "6191a929483055fb7d34a21471c71ace923189db7fb4403ecc1fadc3b574a63e",
+    "GASTLY": "df6d1eb7c2d44142eae8919be276c8f6b34081c55a708f7174d6371449b86e84",
+    "HAUNTER": "df6d1eb7c2d44142eae8919be276c8f6b34081c55a708f7174d6371449b86e84",
+    "GENGAR": "a4ed52cc4ea2ddf0371297e7367663dc10a63dc37d6600fc4d3662462cd53872",
+    "ONIX": "e615d394ef98cf0538a3d30937ce2e9589f2f596ce9c2d8ea5747c7db7d96c58",
+    "DROWZEE": "f41d7c91b661db73549c0208d8b2c5f478b6a08f1ae085797114d65b294e1b13",
+    "HYPNO": "61b1e4ab3f2cb9add392139280b1b32b08414f097aa18c88875e0ff6bd5330e7",
+    "KRABBY": "bd3909e2f2b9f00c1c2c3324f17507871dceaed7746fc3c1831eadae76e9c1a1",
+    "KINGLER": "c405d61413886aefbae634ced329e47b8cb037b0eb18c3de089dce1428accb4b",
+    "VOLTORB": "a8016674be1abdafdbb6d5b04bde2ced507a462ac8c2ae95c634b2133f1001cd",
+    "ELECTRODE": "0943e62c48c90b2873f6e521612b74f798434a24398d179e3eb8f5d7e5cddede",
+    "EXEGGCUTE": "d926aca21b187219f1c898db054d828f04065db218dc4c1a504252957b02cc91",
+    "EXEGGUTOR": "b613bd81645937741946515b0bf18624e5b7f2119b4bc4ef8bdb48f452777492",
+    "CUBONE": "645802624d526c6d31ee5c276b569f1245afa03ed6db07c2894d45101402346f",
+    "MAROWAK": "645802624d526c6d31ee5c276b569f1245afa03ed6db07c2894d45101402346f",
+    "HITMONLEE": "5cf4de61f438a0260e3861e37bdf2e2d6f3f979ec0e5bd91c95b1cc97d6374df",
+    "HITMONCHAN": "bfda0719750baa108f5a541ec94438428645795c3d92aaeeca0225322cf01de0",
+    "LICKITUNG": "49f32a79599d3f66e10aa19e893c4e0e1692867aff7f702b9725a21873aaca15",
+    "KOFFING": "aa7554975ac21a72d9046b45cd5868c739fab691df04773fd29a3dd58e4254e1",
+    "WEEZING": "ecfd7b4a650f5c5219a50680af57ff73497d97b77d2c662ad0e2756a06f45516",
+    "RHYHORN": "eb20bf2a09c604f9dfe343ae36e9c32f5078d70259056a926c6bef1424c0af95",
+    "RHYDON": "c671ab746d7e03a19aa377088e680d17091c97e1bb2821045571781bef9add7c",
+    "CHANSEY": "5f34c6389bc22d144de43cd7645d627a44c50ce3cf847f5179b407519170e982",
+    "TANGELA": "08be53ab2f7c80260001624381fd164b5e164345aec8c689b2800bed0ed5abaf",
+    "KANGASKHAN": "c2da81756c8a0b4cec59f4c8311a2c4757e8c470c3cbaa23cf160da52fa52b0b",
+    "HORSEA": "3e2e57f6c1ff4bb6b2069faadefa9dcb771b1cb0411b2f97e4bf374afa6dd669",
+    "SEADRA": "4124052973eb5d70a3bad9c25ad7439ff25b77d1cba7373c8a875f9c1003de48",
+    "GOLDEEN": "48e0bbbaa7800cf901733b31f1215af494ff422ad210e3ea13c6df2317584d03",
+    "SEAKING": "2352e147e2d20f126bb94c7c68b00ac8e7c752bb584792434c8ffe04ae51cfde",
+    "STARYU": "96427ad95e7ae3cbca5d647ade79d86e96e2645c0ce9795a47e77fc299e4b92c",
+    "STARMIE": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "MR__MIME": "46df5af4dbb27acc9419c5c38daad3b941d2d2f30d25e05850f826847c3d63cc",
+    "SCYTHER": "4c918ddbeb7bd10faba14ac3c6d3f13c8eb886fde828a838bf1044e6bc04277e",
+    "JYNX": "87e4ef8243f858a9b9711cff715bc2cb305228475ee6da1cac67e4e4a6f797b1",
+    "ELECTABUZZ": "0886874bc3a86271e8e1f1a36886ce60044a1c63f8cb5b85c4898e5a499523d0",
+    "MAGMAR": "a09a91a436cd75898cd75ad45705fbf8180da13f5f4e790e4c682740defc9f75",
+    "PINSIR": "f2f12d546b6d7ede3e41136b03aa9f45d856cfb6bed0b28ddbeacb4e77d0a150",
+    "TAUROS": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "MAGIKARP": "7026c662f6491d3922fa595941903255d5b834b8821b759f8f1ccca9b1341b92",
+    "GYARADOS": "7135f2db38739a13de54ab6c96ed6716dcaa75bf840a0d194fd43348ef35917a",
+    "LAPRAS": "d6e850b09ee2859883004630acd41d4e30544e46736d4a301fe63d2b394f383e",
+    "DITTO": "56b666ce3c939bf29ead9e6106a5a86a75b27c371d843beb98cd397e97f163a5",
+    "EEVEE": "2f5ab78067f891fd44c5ed3da99e19fc6ec45676d6aa52a4a0a3feab067a28f0",
+    "VAPOREON": "389d272e48358d879973a7b189eccaed097605a41a11b9031270041e94f9f9dd",
+    "JOLTEON": "5fe22af31f4c3f38be022f21c812357abd6e2e5418e8d000cecdc0cbf2df4e11",
+    "FLAREON": "6359870412b04b7db8a1cb9779c47543b0ed45c1adcdf05e3eb677bff57c3d04",
+    "PORYGON": "59e817f1e2c946c8250fd0891810a524da88422bbbaeff7a159e56a08818a46a",
+    "OMANYTE": "5688e960af9d8d0d8c480656c867d3dbfae445ac41fc9d244611a00eb3f08c75",
+    "OMASTAR": "a4fa0339f488c739fa270ef9b5770f40b23f47c93cf90c5da50e1a97db0c76cd",
+    "KABUTO": "174c68bc666b431b98a39d36bb8d5405e0ba6e5f1e931b8780be1a1737150c4f",
+    "KABUTOPS": "174c68bc666b431b98a39d36bb8d5405e0ba6e5f1e931b8780be1a1737150c4f",
+    "AERODACTYL": "af00525b56f3dff9b0019ba15f87e6957ef6437e77a21833b5f74f2c5872b155",
+    "SNORLAX": "af60ea07099853fb341e1e1f81c00c5f4ff789d0b8ceb2ef8cde66807fef7b96",
+    "ARTICUNO": "9550749959e39c4fc63b5a5a7230e5866a1db5e5e8f4fde5364d912cc342bc0c",
+    "ZAPDOS": "089238a9d8bbed01bbeba6cafadb6ea642fd5ee309cba380d213e972e0827902",
+    "MOLTRES": "eb641b5a824814d1616c92827ae1b733631fa377ff28acefd37c7cd89c80d01a",
+    "DRATINI": "e8636aaaed1c51042238325ae847aab9b5149475ab54f08c1581986cc1a33397",
+    "DRAGONAIR": "d23ad9cb14ed0696a8bed02064bab2026af0b4ba055f4429825ac96cebddba92",
+    "DRAGONITE": "e5afe3c48f7d96fe27a4a2dc25e458ebf4fa40a4fb079b948738f8ab70fa495f",
+    "MEWTWO": "3d7d26200fbafd77684776ab36c16b81387392e163766aff6c1bac15e84abefa",
+    "MEW": "b79810b9faa2df2953887e5820f716a0089dbf9052f382ff078fd729f124035b",
+    "CHIKORITA": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "BAYLEEF": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "MEGANIUM": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "CYNDAQUIL": "d47a07ec71865296c36c8c9ec5238d231b1ff999f60fd1f6dd227e3354cd857d",
+    "QUILAVA": "d47a07ec71865296c36c8c9ec5238d231b1ff999f60fd1f6dd227e3354cd857d",
+    "TYPHLOSION": "2e6469667a68af8ae93833835955c17b61b6b7cc084e2c536ee5d927487c80bc",
+    "TOTODILE": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "CROCONAW": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "FERALIGATR": "0be3a3fbd6ec93140d6bf1bd150684dcf66ae99d0462790144a9f942e78dc8b2",
+    "SENTRET": "3fcec8e7fffaa2e9ba610e599c5f70a9abecae33fad931682286fd452ed9c1d9",
+    "FURRET": "3fcec8e7fffaa2e9ba610e599c5f70a9abecae33fad931682286fd452ed9c1d9",
+    "HOOTHOOT": "f9777fbf412fa503cf06bf61bb964805f870fd00636b736208b3f8edec45e38e",
+    "NOCTOWL": "24145dd174fafb4a1e5f8dd1fcfc5a1c18f9f0ebfe1311803fade70dd18d68cf",
+    "LEDYBA": "3fbeac67fd67ae2d201d32de055b91a2928c3fe2e7c394d9edd74be09b0cab08",
+    "LEDIAN": "fec59c3b86215f3011880ca622b434073620c2a6922efae83dcb6e65cb6bcf4d",
+    "SPINARAK": "dfd584ae73fd2612098dd3b820eb92d2003219ae827372e455e832b38d16bbd7",
+    "ARIADOS": "b4d4b161e5044d900600585e041da12d84e8f9c5af304b1bda251fc6b52b1f65",
+    "CROBAT": "b66c5f3b790eaca02f2a3ed5f5c540fbaeaca9481b64c14f297a5e7e58decbd6",
+    "CHINCHOU": "d5ed51c0421a5fb8b3a6772085076f6ef0f9588bb4ad24f055b6e86f1cbfed7f",
+    "LANTURN": "d223d01c7baf4886bb17fd60e66ed4e05c3a9a64ad73cc69f0afbf9013127201",
+    "PICHU": "fb7b1ade8883fc550a7549b506bb89fed8b4a45a4ae3bea3e6979af44063c9da",
+    "CLEFFA": "c3114321e8a39b1ed0b9a40c6dffa0e75e2f1d9223848273ec1d92e1693f4eb9",
+    "IGGLYBUFF": "7f06e5d8e452378e5a4d30bb71c1ad14aa48e4d2f691f3cbeaf745de9085be05",
+    "TOGEPI": "ef426c373731b50811b51140888701f99fe8c362fe5e9b6521bfb894f38d9a7e",
+    "TOGETIC": "3fa89b730902dcd2f60d872b8b13b209476d501cecc862172d33dd169fda4bf7",
+    "NATU": "916dc19471f15ceebd9663c72a3bbd5beaa38f062b41695940744d9e35b86252",
+    "XATU": "916dc19471f15ceebd9663c72a3bbd5beaa38f062b41695940744d9e35b86252",
+    "MAREEP": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "FLAAFFY": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "AMPHAROS": "7be8299fd813f18187998a3a386084a1a242966440453ec589499ce86cfab988",
+    "BELLOSSOM": "543775cc385bdb37fede3378091eff37cbf2f7b5069832d13cf6cb1e8f78e292",
+    "MARILL": "502b41c09b83794f7ed4b05341700df6c43755c7c19a612673e499092faf8e09",
+    "AZUMARILL": "502b41c09b83794f7ed4b05341700df6c43755c7c19a612673e499092faf8e09",
+    "SUDOWOODO": "d5509399fed1a585967deee344a079e6b540fb1098973653d985e1f6936c4d10",
+    "POLITOED": "0617757742de90ebabb5fda8d52e98d5dce3276fd86c91e42406d753d49edf61",
+    "HOPPIP": "ac2c7a4850c85dabd2a13cd907ad1e8f6a31aadb823372e94b5a55330e1ef6d5",
+    "SKIPLOOM": "ac2c7a4850c85dabd2a13cd907ad1e8f6a31aadb823372e94b5a55330e1ef6d5",
+    "JUMPLUFF": "ac2c7a4850c85dabd2a13cd907ad1e8f6a31aadb823372e94b5a55330e1ef6d5",
+    "AIPOM": "b4216055becf2f82a7a4a88f4004e72c99a8e5d12e173fd15c0d499ec472e0ec",
+    "SUNKERN": "c9cf3c9628c50520418c28255333ddb3633da05169510dde02d023a00d9bee0b",
+    "SUNFLORA": "db07226e0446253b66354eb462b4bd0dd8e840616ef2e32013f476b31568f555",
+    "YANMA": "71e6aedcd66d5ab77adee3a902a241a300959da8f5db39d3cb873197ceb96a57",
+    "WOOPER": "2b42a053a72ef2dc99433526982e09a8a4121596ecf89cb796192e7ac5e1417f",
+    "QUAGSIRE": "2b42a053a72ef2dc99433526982e09a8a4121596ecf89cb796192e7ac5e1417f",
+    "ESPEON": "53a6e3bb2e9f7a73182482920254775fcf86837bde2465ae7e0ff2617effd826",
+    "UMBREON": "fc83d6e703a2144110e4c11ecf9d2e9d00e55363c4578d2b48c157c7f0f7249e",
+    "MURKROW": "27916f870b271f302b2cd533eae861b1adedff58449ca7021113306e07fe1c1e",
+    "SLOWKING": "27563bfa3b77ee5a8bc8c4bc60542bded18c7c2ed7df51cc38d779e7a555b1e7",
+    "MISDREAVUS": "41c3e79d5caa6cf3ed7795f72c163350e232314115994ac8ae08f0ec92f98edc",
+    "UNOWN": "5406c1f3924be4e47e477926a4a047240453b31a2e8ccc19a861a6ebc44a26c1",
+    "WOBBUFFET": "6122eb6f4c14c24561052c09093a5283d131c48198a928ceab4bee7ba6ade48a",
+    "GIRAFARIG": "b7d9b7d8d470ee8d68c6b83551565b12c0e328d059745c1c14b4b9389b58f7a9",
+    "PINECO": "736efaaa4fa2a99c64f164236252859085870ebc3efa58ea43a702df8bbe3921",
+    "FORRETRESS": "736efaaa4fa2a99c64f164236252859085870ebc3efa58ea43a702df8bbe3921",
+    "DUNSPARCE": "7640229b4064cd780f632337bedb3a1e5d5dbd1cf01c53f8633b272f44c66448",
+    "GLIGAR": "0c741eab1616e320d7fc7800c55d191c0fd7e1b9be520787683df11e272bf6ed",
+    "STEELIX": "088c182d7bb61d115bb60b337985af234d7b32691a03392e23bfb68e9ec0ce5e",
+    "SNUBBULL": "f32cc20190625d700badb87e4b6f72327049ec37924810ddb0d90b91c4de97e4",
+    "GRANBULL": "c9c68c5bf28cacd4adb38894b58ad242a00849bc0e716490e3e33aa6bc07361b",
+    "QWILFISH": "f47af0c250ecf7ca4e12757f2ef02b0070946fd4d37737794d299822404c878f",
+    "SCIZOR": "7d231dfd70a8c801825e200cafbb2bba318f579d89535b307a1f5cb37029b8d5",
+    "SHUCKLE": "da0f97d924b06dbe85ee3c20c7b62936f6f53a7602dfb64e96c64f5806bcfaaf",
+    "HERACROSS": "84897409c7ba29e31cd71cc04b5754bd912c117990bdf507b01946238e106ae7",
+    "SNEASEL": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "TEDDIURSA": "7b8be2131353afe6d66eb5e43f45946adaa312e5dd7f5281fccebd24221f5112",
+    "URSARING": "751f12acea6b3299cee53cb7eb1eeda7e2452ab58e2db758e671d9b0235f2194",
+    "SLUGMA": "cbb109be2839c5a4e7fa31a0521bd05f9835b420d2d0ed4a0ffe8a29cf7ca753",
+    "MAGCARGO": "886f18af15623bfd1d15a027dfb00ea26223d90fdb390231eba2f2caa887f2ce",
+    "SWINUB": "baf2649a888df4f9b209ddf8b387799ca162cedb5cf125fe7236070572ccb3fd",
+    "PILOSWINE": "bf074e45300df33dcd6b978d990520a260724629499371d24e6673786197c835",
+    "CORSOLA": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "REMORAID": "d3cd0bee9eb94b21aa248405bbb657253913e750162135b66e2e018e1ce38455",
+    "OCTILLERY": "5f224695fceeb36255684e49a6573d0450a0f9084b1d9bc8fa254c53c050bed7",
+    "DELIBIRD": "17dc29e533ce38b70001e5e75514f3a46dbd89fa7db53570dde440fe11aa8fc6",
+    "MANTINE": "ea1918f55ad0ec8864d71f37c6c4109e163d882c83a6b9a419c5547cd2a02dcf",
+    "SKARMORY": "cd9af69c35783f11d0b267ace5b820728bcf72da9f828c3c2a7d4d9cf8d0e48a",
+    "HOUNDOUR": "fac0d9e96357b1c39efa83437833c35d157ccc03bbf9c637c1f1bd937912da11",
+    "HOUNDOOM": "fac0d9e96357b1c39efa83437833c35d157ccc03bbf9c637c1f1bd937912da11",
+    "KINGDRA": "088177aee2dcdd2f9211531d90a56b9c725fd00ef94ac5efdf26f1e524ebe9b7",
+    "PHANPY": "2cd878d2415c30253ddf3a99a2bdfd94a0d66ad7239965434201a91e8576041e",
+    "DONPHAN": "2f1e7f56e2ad83d5f562df9bdd548fb3e81ca584fa2fcc5492ec449614fc54b4",
+    "PORYGON2": "341e3a9b6407c8b4e97c69b73aef6eb7551e0daa051a9641f54cfcb5ba5ca108",
+    "STANTLER": "d47a07ec71865296c36c8c9ec5238d231b1ff999f60fd1f6dd227e3354cd857d",
+    "SMEARGLE": "bc7f65d61e23e4fd9f1c4e9548efe77bfe07fcbc34b649c2afd3e6e44b893488",
+    "TYROGUE": "70bc4b378ce7219657a422391d0f151bfa164a6b2665d9a3a585de8725c8ff29",
+    "HITMONTOP": "e50a9f62c4f5ba94b8d49c374e00edb3bc76c288b67f6577c8f77d7bb7bb0462",
+    "SMOOCHUM": "516098d28d3c08c6743528f084e4249d702d09695d21e1fb1aca8474e3aa00c7",
+    "ELEKID": "ecf7aecfe863a10c188adbacd1e5a91172e025efcbc62c2831562410d5324da7",
+    "MAGBY": "a09a91a436cd75898cd75ad45705fbf8180da13f5f4e790e4c682740defc9f75",
+    "MILTANK": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "BLISSEY": "5f34c6389bc22d144de43cd7645d627a44c50ce3cf847f5179b407519170e982",
+    "RAIKOU": "888c67f9db6eaaeb7055a53b78156f2567d8405d4c7f72b566300e146111472d",
+    "ENTEI": "e0b546a41fa674fb5b7dfcdc3b4422710cd4c0275ff6e9a8114c06c5abb9ef72",
+    "SUICUNE": "ebbc62e177d74c20474d214fe1bacfa539050b488d3988ca93bfca0791d2e7ae",
+    "LARVITAR": "59e0a6c5ab30ff6d1ea38317b4ebc76db61c77d44182f2c858281def03839495",
+    "PUPITAR": "0cd6311dd678b6871990b5443790a0e73e3f13b74179b36edbca1bfeb67b20b9",
+    "TYRANITAR": "44f647d947b8b3e504762f91c005a9a9c77f6ac768b5f061137af01180532abb",
+    "LUGIA": "b370f7a6c15d1bf1ef2c98ffbb9787247e9d63250c9990c68b5ed66fc64b13b1",
+    "HO_OH": "a47e93b98847bf53eb0687945c60175bdaa9ed5bf7ec4b019655e0a673bdfd55",
+    "CELEBI": "fbb3edb4f5389a02971cc4c474d1d5f6d47ab6c78668fde9914c0f76bfa7b563",
+    "CHARMANDER_CLONE": "5dacc656610be24ffec99d0577330600015c1cb46e64e8506ad2de1e555de933",
+    "CHARMELEON_CLONE": "5dacc656610be24ffec99d0577330600015c1cb46e64e8506ad2de1e555de933",
+    "CHARIZARD_CLONE": "cc3e8a82cb3464d37596283406cd9be07a42adf53767418a0fb03a47fab41fb4",
+    "SQUIRTLE_CLONE": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "WARTORTLE_CLONE": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "BLASTOISE_CLONE": "97241e2017b23c821a8214d193caa4ca510c601486fb277beaca708e6a0261f6",
+    "BULBASAUR_CLONE": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "IVYSAUR_CLONE": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "VENUSAUR_CLONE": "7c9d499299fd0a5f9e4180204f61944e5d127cf977031ffcceb5be7e92253d4f",
+    "HONCHKROW": "58f54ff9a47dbe079c692ddb4b6eadfeef584dbb353eca27bd829edf0f589214",
+    "AMBIPOM": "a91eb3bfcef2c5ab8bfe2e9cae1556f7ac345148512043e0364013b661bb37d2",
+    "ANNIHILAPE": "4083cd511c82b14f68bf8a7705bdad0da0cf69cf424cdf0dfb00dfe7afb8e52c",
+    "BAGON": "8da61b231feabbfd3b5579ffb0b3d8268949497a833c2bba250de57cb663188f",
+    "SHELGON": "8da61b231feabbfd3b5579ffb0b3d8268949497a833c2bba250de57cb663188f",
+    "SALAMENCE": "d00fb1396b409b50f0e08dd65585a064d96427e4dab1212d6412af8f39aac179",
+    "DUDUNSPARCE": "cf41a9990cdf820f927e4bf56c675eddb72642360d953a48d2c49066e7277ec4",
+    "ELECTIVIRE": "003d06e90faf665ea19bf6eeb36d63d43011eaaf1ebe1deffdf87722cf0050e3",
+    "FARIGIRAF": "dca5e5151239a691cf44cb60cc20aa10adfcd80c2733eed3b823bf15e35a0b8b",
+    "RALTS": "0c7986686f8a37cb18ec0347a9722a903aa9e9866c59c5e20da2bfe29dbbc130",
+    "KIRLIA": "ae9064309cc2431021ff06be875197e568290c566d6d27eee92d95d5c8ecfe59",
+    "GARDEVOIR": "91aea86f6dfcddd218ab920af380a5375e1a232c0d9814626cb028a1b48df2af",
+    "GALLADE": "9a85dfa3b77861177303145c9572d4e9fb5399c574de15135584ef4d5049c1bc",
+    "GLACEON": "2f017fa604c616fe0ef08cf8e273b3dd9123c69f6f58260f587cd157fd24c494",
+    "LEAFEON": "9999ec7003f926ec3ccde4dacd00563992ccf340477cb690f165b0a9b47ea1ea",
+    "SYLVEON": "a7bf933680a237bd10121cce64783139a89d56ac6e388b3fb108825f17880f63",
+    "GLISCOR": "e97f91df71a255b440ff61e6e1f0ca3afe426a56b165c488465febabe62d71fc",
+    "LICKILICKY": "49f32a79599d3f66e10aa19e893c4e0e1692867aff7f702b9725a21873aaca15",
+    "MAGMORTAR": "8c6cdb024c4ee6f5fbddfa5c16f404fdaf1aaa8d5ff3124738be931aa76eb52f",
+    "MAGNEZONE": "38cba6011ded0257b36c0e45f94da44673c93679b5f99f93dbb762df02b6f342",
+    "MAMOSWINE": "ce4d6731e93725bedccde7f9290b2706a1fade8226804a42e10fa316f6c840c0",
+    "MESMERIA": "1aea3c066a6b4760f1b754cfc522c1073bdd6b0e19265af7a25488051eb5f9d3",
+    "MISMAGIUS": "50e433b5d6379d5d025dad961c8ea9617ee549060dcc4055adbae6d5d0bf48ec",
+    "PORYGON_Z": "0608bb30b98c0d0243f56fe940cbaa6a99882ca969ca040df549e6e3a838f3ac",
+    "RHYPERIOR": "b2c2ab2d6b5514be450c07fe3c72bafb47b8c3dbd4f62bf5c154256733f49a64",
+    "VENIPEDE": "fe89450f7bfddf60903bead23a08e6ba7c228c1ae235d1288d9d92101d7f7661",
+    "WHIRLIPEDE": "366d22f5ddbf8264aec66590ee28e72168caaf8a05cd198a33af52693174c04c",
+    "SCOLIPEDE": "aab09a005ac78cd33ee7bfd6d45e25a6ac075335e3ca0156303d5d3a465745f2",
+    "TANGROWTH": "c1d31a1a53ba6337437fe18dcb655345a172b99285da2f62eb44d9f25a3dd319",
+    "TOGEKISS": "2c201363a79a5c245a3143c6cb40bfa9921e91630b15ea904b4d90946a7d1723",
+    "URSALUNA": "751f12acea6b3299cee53cb7eb1eeda7e2452ab58e2db758e671d9b0235f2194",
+    "WEAVILE": "0d85817f4e15cb35f2bc4b3ef8b510264f800a85f76843987d7e5d00c4fb4ac5",
+    "WYRDEER": "00a4fa016b60826e2a9594b1a563450b47cbfaeb60256b85839333b8cf95e6ea",
+    "YANMEGA": "51bf953ae38ed77b519193fe3276f26d8df503422c6447aee7c29110dd6ed997",
+    "LILEEP": "c219be6aecb0ca838df79618fa00c2b5956aff525e15b2f040ab9215fad36a2f",
+    "CRADILY": "2dea12e677ea867282c74a895cbbd485d60d2ac1b26d328f1b88d9b0285a2fbc",
+    "ANORITH": "113a48c58e25a49ef3c9ca8d02636278879215f5c8b7c867732bc1abe699a118",
+    "ARMALDO": "03835190274f237305e858541fd5786f41e1de57adc6080de809d67f2865c632",
+    "GOLETT": "0b0ecca3b3665d64e4104390ac456054df6a32a1cdb01861490bcd7b5dda48ed",
+    "GOLURK": "65774fdb11561bf98cd9f13d5dfaafe779f84f23cb6a58c746ad39e1b0d5430d",
+    "DUSKULL": "54f668f05bc097147479e894d34cd720d10c10614ed0d947b89bcf5f72ed7c67",
+    "DUSCLOPS": "6b26734b0357d2fcc0721e1b903e7f43eadec955bca41b7e047949b1fc1c353f",
+    "DUSKNOIR": "6b26734b0357d2fcc0721e1b903e7f43eadec955bca41b7e047949b1fc1c353f",
+    "TIMBURR": "154f433303f34d42455da5bd854ca2e050463cae316f53dd68534faa7a7957c1",
+    "GURDURR": "d58303265eedfe39f9a250374c17d13961d7c1012b05ce35c335b42a71facf41",
+    "CONKELDURR": "d58303265eedfe39f9a250374c17d13961d7c1012b05ce35c335b42a71facf41",
+    "LARVESTA": "957a8af89a5e6e3055eb80df2bb19b96248f2b461a6743097f4070e9afad10b5",
+    "VOLCARONA": "0549e67943b2a57dc60795ac6d561ba81235075afd0c2755c92e47012cd2ec88",
+    "DEINO": "9ad7017a939092f455817ae312eade6ae4f1dca7a8868544888ad5fd7037ecc3",
+    "ZWEILOUS": "4ae3d1416abef13dc54126ff3596d0b4b2c8dfd171d107078d3c6323960f965a",
+    "HYDREIGON": "d10f0320481c6461ca0d1305c63b0a826792cda02ebcc59570b1cc9f6c1e2c4c",
+    "DREEPY": "697777b21eb03341a4894027e3b6f279e974e5cc1820d487efd8e20b3c2ab66e",
+    "DRAKLOAK": "41c968bad4cddcd6b43b95b63b5e4badf81f7abf71a1243d8f6b85757be07a51",
+    "DRAGAPULT": "01338918fdad5c6f1323a0ebdcb1c58282e4a3541c3783d19ccad912610892b0",
+    "IMPIDIMP": "ec09b088bedcb28d97302d681a633464f4501ab84c787a6f3a07e875416090ce",
+    "MORGREM": "ae5d391f128aa5f1b45f7317f3833478c5e4aa8d018f6390b27d099e94d23f6d",
+    "GRIMMSNARL": "e628885f89e48c9b594fa75567d816ab6387774941a0903c7d1d2a4b26b461d1",
+    "TINKATINK": "ecfec90118ff9b799b4dbd0f438e4d30956c8f6408a4b839fa7d2df45a0d1a40",
+    "TINKATUFF": "ecfec90118ff9b799b4dbd0f438e4d30956c8f6408a4b839fa7d2df45a0d1a40",
+    "TINKATON": "ecfec90118ff9b799b4dbd0f438e4d30956c8f6408a4b839fa7d2df45a0d1a40",
+    "FRIGIBAX": "d47a07ec71865296c36c8c9ec5238d231b1ff999f60fd1f6dd227e3354cd857d",
+    "ARCTIBAX": "d47a07ec71865296c36c8c9ec5238d231b1ff999f60fd1f6dd227e3354cd857d",
+    "BAXCALIBUR": "797efba545ce8461fadad6c718566b8f81c66b57002e22a66895e735a789f8f3",
+    "CHARCADET": "f2873dae9aaee60bf7f62ca0da37f9a432b761ffc9c9cd9c03de18cdb93cc360",
+    "ARMAROUGE": "f9fa9d7411d2d3d15526d321e989c94a0ace2c618f0058d53cc71c831e7c4809",
+    "CERULEDGE": "6fd5ceb9945051e8f6f17a16d81011223f14140461622320f75b7579b4bf8925",
+    "ROOKIDEE": "916dc19471f15ceebd9663c72a3bbd5beaa38f062b41695940744d9e35b86252",
+    "CORVISQUIRE": "ab9c917fb1ac2e0aaafd2ce464accd9cc3d2325aec4934c69b8cd1a0a5d1ef94",
+    "CORVIKNIGHT": "4870b46a9645678f258eda8c7ca22f5b094cee8b165aec02a1e5aaee8ebbde85",
+    "SNOVER": "5f239d15ff3ed9f573dd290269b848271bbe483bf3bc332bf3869066db93f8fa",
+    "ABOMASNOW": "8e2be5852a79f279d7cef6f96a1679191ce93ad51019cdfa54886c1664c86747",
+    "SWABLU": "fc355a01607086d303c4d27141ad32959119335780f962dc3bf44a21b25fc452",
+    "ALTARIA": "fc355a01607086d303c4d27141ad32959119335780f962dc3bf44a21b25fc452",
+    "APPLIN": "3362caab53514be113c8f022a48ce274f5b5a24afa71c9578907e5a059d9ce25",
+    "DIPPLIN": "0bfabac5449b4a59e2dbfe726b2da385ef0a27a4feb92292f32f6fe469ad8826",
+    "APPLETUN": "167dd2516f86a26fd6d061b237fb6f54a35cd60d6eb26bb85799f01caca41eed",
+    "FLAPPLE": "8716c77b9a830990d162fe6f61b379fc961006488277dfb121bbc76fa502cd36",
+    "HYDRAPPLE": "0d2c43fbb9a35812898bed170006da0a9d81bff9d24a99ed97893fdb6b52a915",
+    "DURALUDON": "7358acabf4f06d6af7ae42aa40af38ccb29ae0eb55500c66a4882fda56adf486",
+    "ARCHALUDON": "7358acabf4f06d6af7ae42aa40af38ccb29ae0eb55500c66a4882fda56adf486",
+    "SHROOMISH": "8283866f30f29dec650259cf37633e57066433e86024c98b333ba0ba9369eb87",
+    "BRELOOM": "604532450c8bf6b2954f2d0e153d98925b18e59f29ee3b2d39ffb3f2627d4b99",
+    "BUNEARY": "9320f89cb8562ed76ba50b33049eceb5bddb17f4bd44b6dd33b4d75c4a87a1f7",
+    "LOPUNNY": "2cb0407f30ab242a32b6540de1d15c59049f834996ef15957028100607f3700b",
+    "NUMEL": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "CAMERUPT": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "SIZZLIPEDE": "380d74e6a579ae33edc3e401d7aa4cff8e3f8fef0a571b2ec10090c44f991fc6",
+    "CENTISKORCH": "a2a12bc71e20c08560e43ab1736cab52eb9ad6e1eda360aca1d685951bdeb970",
+    "GRUBBIN": "030011b9855d6597142ca58cd7737e7648a0fdf8e505146b79da1049557f58aa",
+    "CHARJABUG": "a9615e183f188bd75bd999c693a3ecc94c57251dea7814004588fde8dbdc9ee7",
+    "VIKAVOLT": "ed9b87bad99655d7fe35127b943d5743466e95059dd4b5c8cbe3332fb0c705a5",
+    "CROAGUNK": "5fdd28e8c8ac82eb464528362900bcf34d9d65a8f90f64627bb5ece31a16692a",
+    "TOXICROAK": "56ec4687fab79be773d987981cec668bdaab1e2a42fba4bf0a4e7307806803ec",
+    "DRIFLOON": "03ebb692f47d023178a186948bad801fae0a633d2731520c2dbe1be3a2695997",
+    "DRIFBLIM": "7e485ac3d5925256048edd2ad3d1c18f1eb3db576ebd88d1e2f2a17cbcbb6926",
+    "DRILBUR": "8cd75caa14e32b798710fce20e3ffbfbf3056d3820a18653f5dc6ed4d364429f",
+    "EXCADRILL": "974992644ddc8be70f364a50bf0e3a52e433e52360fcf67669f7b479b14f0cd8",
+    "KOTORA": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "RAITORA": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "GOROTORA": "e7a056d33ddce2152cc9be4d8d339183369fff44cd0730ac5ffb0d0d0929026d",
+    "FLETCHLING": "0124f0dddd0cae88dca528fb84790f74a3076563aeaef47a7e4534b81b01c5b6",
+    "FLETCHINDER": "a209053d7bbf48ec0129ae5da49c9eb87e3e96fbb2ff853a434841f0d49449a9",
+    "TALONFLAME": "c94db170d082f08289dec316521db4edde2a99c83b0ba0506ff19b737c6d4ab4",
+    "TRAPINCH": "3f17aa8ee3bea1d8288b771fce63f3721bcecbfbae5397de9d091c5eb70f8157",
+    "VIBRAVA": "9cad113cc7bef79d357632d0b9064176d94719cdaee7f18088265dc366dfd39e",
+    "FLYGON": "090d214a1ab9d8f016bb84c946b2d715fe6e8a3f0c2ef84d35f139381294390f",
+    "SNORUNT": "d19cf334950877835ecaa12f417467b773c2b82801c533786030297d028597c9",
+    "FROSLASS": "975f50f64e2ce718cc6b9341c6776d0588cefbf17f6667feb6b6085927594eda",
+    "WIMPOD": "096b5158a01ff98e4bd426de73fa2d5356f5b32c703af464c5fb92adf20822a0",
+    "GOLISOPOD": "a2b6e493d3e6fe26042d611538e44ad872f571eb822dfef65d91e912de4f6fb0",
+    "SPOINK": "7d9a83f53e02105339424d3c124fba3e3733faa0da5675b96ba949a3e2192df2",
+    "GRUMPIG": "51e1b49788539b26e75bd686a43a8268764217889181b7565bcce68d650e39ba",
+    "PAWNIARD": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "BISHARP": "459ee4f127bc5bc748665f434ae837d7e54cb9be361278e4a559804399845be0",
+    "KINGAMBIT": "459ee4f127bc5bc748665f434ae837d7e54cb9be361278e4a559804399845be0",
+    "LOTAD": "aa48901973853253bf97a92e143fe763466955cf9fc710d49cbcad0640eb8054",
+    "LOMBRE": "b83b04567209ec601606903131b10e14ee2e0fdf2a57712a88d489c64914f3ab",
+    "LUDICOLO": "b83b04567209ec601606903131b10e14ee2e0fdf2a57712a88d489c64914f3ab",
+    "OVERQWIL": "502a8f0a75ac571ea677916f96a9a5731b53478dd1546e719d9e23aab8da0f00",
+    "SCRAGGY": "f11481a1ac4f59ca7563a201efd6cdb967f76d40a54574d56bfa5e77766024c7",
+    "SCRAFTY": "f2ee191e9159278e89a56123214afddb21b925475abd622cc007ef28f1d69be4",
+    "SPHEAL": "4a8357a63c8f6fd8f127d6374c6691abb4b00a1739d174d6c42e1cf3104181f9",
+    "SEALEO": "4a8357a63c8f6fd8f127d6374c6691abb4b00a1739d174d6c42e1cf3104181f9",
+    "WALREIN": "48ed001fd75e2b3b30c3eba840d256451243c5c427e97ca59255c2160ab923fb",
+    "TEDDIURSABM": "7b8be2131353afe6d66eb5e43f45946adaa312e5dd7f5281fccebd24221f5112",
+    "URSARINGBM": "39ace672647a7c7b3f0c9f2f0ff83c6f8154840535484195ec7b8e7f622428a0",
+    "URSALUNABM": "39ace672647a7c7b3f0c9f2f0ff83c6f8154840535484195ec7b8e7f622428a0",
+    "AXEW": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "FRAXURE": "12f691c14b759816cf5b25fa4b6b233c6f8598e60d8dfe8bd0150abaaae75da1",
+    "HAXORUS": "12f691c14b759816cf5b25fa4b6b233c6f8598e60d8dfe8bd0150abaaae75da1",
+    "CRANIDOS": "1eafc57eacb78eb3e257e9ce143a1781d9ff2e2640851a51e0058973d00f99ce",
+    "RAMPARDOS": "523d3c7520cd14cf4cbed55f72f7b3ed48f568df794990a39c85f7732f2f693f",
+    "SHIELDON": "736efaaa4fa2a99c64f164236252859085870ebc3efa58ea43a702df8bbe3921",
+    "BASTIODON": "3b8123985435acec6a86aeacceb90fc7da4e7114074f5a1940f56126c10b0247",
+    "CETODDLE": "7a694985f501021d4bdb524af982aa08e1cae4539efc8b5c787177952c365346",
+    "CETITAN": "7a694985f501021d4bdb524af982aa08e1cae4539efc8b5c787177952c365346",
+    "FEEBAS": "7026c662f6491d3922fa595941903255d5b834b8821b759f8f1ccca9b1341b92",
+    "MILOTIC": "c5b23d6f2ea535153c752c4ab03d7a5a457cdd9e202a12d2be27d5d765846077",
+    "MIMIKYU": "f1629a7c322386558528ada84ce451e836cbb46737efc4357991e322d66dd1a7",
+    "CORSOLA_GALARIAN": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "CURSOLA": "e8e602921da1060b0f45b3bb2c254c31e4d37d0f250b73bcee9f840e62e51bfd",
+    "MR__RIME": "ce3ed454db7e07825b6a52ab806f570c7664bf9651e1e2126fba6f8bf0fcfba4",
+    "SIRFETCH_D": "2b91a4ee0ac9a1dc53a13b92a53b3916ab7859fc351e2948b78150ecd1592269",
+    "RIOLU": "20535b5ec27d480c4fae4a08267160a2813b97208534d7cbf5700fcf9181f3ed",
+    "LUCARIO": "4cfaba168091fdfd01d771cc9a6f79245b5c83b5e6a4d2ae61cbd233fe1badb6",
+    "TYRUNT": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "TYRANTRUM": "67d0311b43216a65672f7310381396202fa09f3b7f954206c9e8bbe616ad2ebb",
+    "AMAURA": "d9a64dbe22655f61a0250e71e37d070631df325c0b1c790603a8cfdc65d13d09",
+    "AURORUS": "a5f13fcf09fccc38c4391c35929a6719be21801b972768efbc8da965cf2d5afe",
+    "MUNCHLAX": "35e1bf3fc43632f0895f3f8898012c26f61c459b2b7a032ed1fe9da1cae3a3e2",
+    "TORKOAL": "380d74e6a579ae33edc3e401d7aa4cff8e3f8fef0a571b2ec10090c44f991fc6",
+    "RATTATA_ALOLAN": "a1cfd453c516bd60e059f87e74b209eaf11774409c9bc1ef10079190ec6c6ce7",
+    "RATICATE_ALOLAN": "4f1034045eda257776cde2587b00e40240c3bfd41d5b59fab6e5382e34640e0e",
+    "RAICHU_ALOLAN": "f4a52dde460344705e763e18fc8c06b96499aeaa4b31a1faa917ad0fe4e7cf26",
+    "SANDSHREW_ALOLAN": "3b5da936a764dc5ba57effc3a5148a23891f8844ff8b064775e29a8b8510245b",
+    "SANDSLASH_ALOLAN": "c760ae861cd4abae50b04bab811c3e85c5d843f091ce9555a97d2f2bbd7ec887",
+    "VULPIX_ALOLAN": "1e45190f0284951eec4b91d36fd05a67d5d63588b7a46fb3dbe9bd0f897d7170",
+    "NINETALES_ALOLAN": "a8fa53d16b6b6672d3250359b87d4c93d62b8a72aba66563515a113aa21a4701",
+    "DIGLETT_ALOLAN": "023ad4f550fde22dc6320cd9122396ce626a029a9a76453827f0a4c17142c4b1",
+    "DUGTRIO_ALOLAN": "244fb00f1833520bb7bf5ffc8f5fc4df51470545b6a2cdf4f3101ee00f14bcde",
+    "MEOWTH_ALOLAN": "ef640620f196ca9ba6bb227f2051a1751eeb14c67b7f849fa8898e5d198d9dba",
+    "PERSIAN_ALOLAN": "c6f6aef154bc2e50d5c372c000e0f99d62d29212db9784b1dc97f5fedc7e44c7",
+    "GEODUDE_ALOLAN": "26fe84809ceb1494df850c181ae643995a80d461c58ea19b8f1575f3b078cbca",
+    "GRAVELER_ALOLAN": "26fe84809ceb1494df850c181ae643995a80d461c58ea19b8f1575f3b078cbca",
+    "GOLEM_ALOLAN": "26fe84809ceb1494df850c181ae643995a80d461c58ea19b8f1575f3b078cbca",
+    "GRIMER_ALOLAN": "a990296a8efd28fe25871d5d4d213c868f225359d97be452a36cbed1e586b08b",
+    "MUK_ALOLAN": "a990296a8efd28fe25871d5d4d213c868f225359d97be452a36cbed1e586b08b",
+    "EXEGGUTOR_ALOLAN": "d8486c15e22074dd2e73bae1d8cce4e1dcb0f28a1ee8b1230c0c974e9c965783",
+    "MAROWAK_ALOLAN": "587dc7a47754fbd58b1f875c3e1bfc5bab0fd82e6393e5e6331ade4340d984b3",
+    "MEOWTH_GALARIAN": "ef640620f196ca9ba6bb227f2051a1751eeb14c67b7f849fa8898e5d198d9dba",
+    "PERRSERKER": "1749d72277fb581fcdd822adc9a3076632c5b233d21b643a0e9212d57149e1ef",
+    "PONYTA_GALARIAN": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "RAPIDASH_GALARIAN": "dd18e6bec21b6f42ed96aff56361059186e55b23ef055eb8086fd17fc61e429d",
+    "SLOWPOKE_GALARIAN": "3fc7b3d7291525b52682adc5e50e95eb81c066ac19f4c0e87cabd417c7dae09c",
+    "SLOWBRO_GALARIAN": "9d6bdba03fef3d5324fc076b30e84aa7c7a48b0fe54a750fb637efaa639df136",
+    "SLOWKING_GALARIAN": "2da6cbe6a6bf864e56feb433c59ce643e27197561074ee8c15bcd3d6382a109a",
+    "WEEZING_GALARIAN": "0b2b78f4972ca09322c6882ebf930604ad1dc3c8c056f59f9aa54ad15e1948c0",
+    "GROWLITHE_HISUIAN": "0304aa404536b4a274982dd2b9a412e599e0265f57764ea992df55ed5da9d2b8",
+    "ARCANINE_HISUIAN": "6f9d741c19aa07c1706d29587349c70d4132f5a4f82ae6fd04b94e2e746f556b",
+    "VOLTORB_HISUIAN": "c9b3ce28c0d8afec3eee2e6bd384e9c572ce530b62c46f151fafef4748fd70d6",
+    "ELECTRODE_HISUIAN": "c9b3ce28c0d8afec3eee2e6bd384e9c572ce530b62c46f151fafef4748fd70d6",
+    "TYPHLOSION_HISUIAN": "e1fe9ab3fbc9d0aaefd58a30d9bde0de65e47e32f2c977891fbe51160a16505c",
+    "SNEASEL_HISUIAN": "6854ddb6e5798f23f899ac91d39ea423979ca2bac0e63fba7d3f4bfc9b62b277",
+    "SNEASLER": "e08a4203d0fdbd39ba3b4768e50908feb1e537d1ad8f4cbfb1b0905cb3f5d8fa",
+    "WOOPER_PALDEAN": "42d79667573493735ea38a1297806801443188569dac264eb8c0bba307baada6",
+    "CLODSIRE": "de8ec38b9830a727382d04d63e8abf76989548f1c707a871c3b39ce5fa6806f1",
+    "TAUROS_PALDEAN_FIRE": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "TAUROS_PALDEAN_WATER": "d0047dc4b91a2eb39aa925966ecd98a84e9c3d7725abbea745b3a7fd364501f5",
+    "WATU": "916dc19471f15ceebd9663c72a3bbd5beaa38f062b41695940744d9e35b86252",
+    "BOUNSWEET": "7d9a83f53e02105339424d3c124fba3e3733faa0da5675b96ba949a3e2192df2",
+    "STEENEE": "8f13ce9d96641ce5e9ff702e5247a12dbff78f7b0f8bcb8db05e0614609e557f",
+    "TSAREENA": "25cdf0c68d835d7ae9d25cce2c2896faf8b27422a8e8517dbbe2e53f8d46502d",
+    "ARON": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "LAIRON": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "AGGRON": "7987433b9760eb1b7c1ffb5e4900d704e542a80f63d70f4152680381ed88bfe6",
+    "KLEAVOR": "49d1ca45bdea65b22f5ba777c736e5cf37d12a2699a94753b67994ed4d625b68",
+    "GLIMMET": "6d3ae1ec520e9cc9c762e1720720013cdcb24c7fb90d76c38030f3aa33b1d87d",
+    "GLIMMORA": "c80713bdaa3a3cca4dae93631bddc52298fc8c71515390e2500035850d7ecd2a",
+    "MAREANIE": "32c6f1ca76b162e3d96458dde25aba0c7b2fb9cb7d28dffd56d96634edc3e409",
+    "TOXAPEX": "0ea6fdbbc3340785b244546391d7d13baaa6880887fc3f32325b49b46344552b",
+    "ZANGOOSE": "f45db51ca915e85071d3a5a1e18a91e92393407082153a6fcb324558edbc8f4c",
+    "SEVIPER": "e73344ee90e36f169dbdb11ab840888c226b17fc691a18114c5cb16ce4f52a87",
+    "SHUPPET": "142dc8969c276e13c45ad7d0e81ea48f7498f52fd176210eb1478b568d6c7a03",
+    "BANETTE": "e5590b084942b5478e8d1f95721e148f57bc83b02f780253ae5ca5f8533eb682",
+    "ARCHEN": "71e2d4ec55041512aefb2c515f294996c9b471a53b7efdabecdd0520f2e13f90",
+    "ARCHEOPS": "71e2d4ec55041512aefb2c515f294996c9b471a53b7efdabecdd0520f2e13f90",
+    "TIRTOUGA": "c4805c90332c05a6f8c30e1cc6d2f02fe088c1543f22325e6c9331174b2684c1",
+    "CARRACOSTA": "c4805c90332c05a6f8c30e1cc6d2f02fe088c1543f22325e6c9331174b2684c1",
+    "LITWICK": "2728f19c937fd614b7d5ca36aebd6a1ad6f4bfbc095a4d208cf04cab55c752eb",
+    "LAMPENT": "2728f19c937fd614b7d5ca36aebd6a1ad6f4bfbc095a4d208cf04cab55c752eb",
+    "CHANDELURE": "20b0a21324334bbfbff7e37a6fef7e340675c78a75ade7f990734460c3f5b2b2",
+    "JOLTIK": "37503bec74a1ecedb5fb686dc1f24e0587786e0b618a018aa835c97bdfdeb2a9",
+    "GALVANTULA": "37503bec74a1ecedb5fb686dc1f24e0587786e0b618a018aa835c97bdfdeb2a9",
+    "MAWILE": "d330e1f254b694e7058665ec3009fc405aa14c909b07c1eb21c966591ebdc27b",
+    "NOIBAT": "b18dc8aec658d9155f63efa66d06f9c8027a08692f98830f95cb3721d677a2fd",
+    "NOIVERN": "6e74f4c1a502e770f1b77898aee7e7a2c1ee4317f3a024c8993034777742c00d",
+    "SALANDIT": "bfd6fc19cad6e86db7889f430f7d4294d68bfa0bbfc320482058da463d2b899f",
+    "SALAZZLE": "72eeb27b96fa7e58c718c97536628f81462a6aced919f2c391f46ffca2119afd",
+    "FLITTLE": "94bf5404661219e990771259f31f8ae05e327e00ed3220d4222780ed17347e03",
+    "ESPATHRA": "2f8296d603c0dd192ddc478a23489015a3feb1e924a3bff6b993b569e96f278e",
+    "FINIZEN": "478b12d6840dd10cb1f85351f2acb436e589cc66d3bf8791cf56a3427c943f37",
+    "PALAFIN": "3f5ac388586f76ea1d18e284a07c9944146c24d4f8637f26983c258e9c56f584",
+    "AZURILL": "8b470c8a1877125311ecd298446264c5466c7bb337877ed6dc0c7f6692e42d79",
+    "WYNAUT": "6122eb6f4c14c24561052c09093a5283d131c48198a928ceab4bee7ba6ade48a",
+    "BONSLY": "978f197a9ec4c7bc73c5b0f6cc20816cae3494234938f7beb080e24436438518",
+    "MIME_JR_": "649881c6766634db26bb64f60885dbba3b7d94390152fccc182179f20f836f41",
+    "HAPPINY": "021b80047b6050028e970482e24b8439d37e3490f2d02a9672e3a5cee68d2344",
+    "MANTYKE": "7dbdf4974c9e8694f7fa1597585cf2a9edb925fc9a17fffab4efc8b9fa445ad7",
+    "STARLY": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "STARAVIA": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "STARAPTOR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
+    "SANDILE": "664d7345f9baa309dd64ac78f799909321555e3207f086de1fe2bd4f3d7bf9ad",
+    "KROKOROK": "15be168ea2f8c3f2136f3d50467f5147d65d80c4cf1accff29b294b5d533daac",
+    "KROOKODILE": "15be168ea2f8c3f2136f3d50467f5147d65d80c4cf1accff29b294b5d533daac",
+    "GOROCHU": "eeeeaafb7db0b58e1ecbd6b14489e59f3094b90290a4fc306781485a1922e17b",
+    "JIRACHI": "12b4ceb4e935810de5fc0378cc0bd19ac659d9de14e2699ae30ea017e6a24a06",
+    "PHANTUMP": "bfaf81c62ffef85fd205ac1d878e5aff4668ca8e89b3c0f2b66106e2a1da19cc",
+    "TREVENANT": "20c3264971cac4983b018d3764eb695bdf9f889f0ce92e50aff6b0070c9c6d0e"
+  },
+  "unchanged_runtime": {
+    "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
+    "engine/events/move_deleter.asm": "9753cb116d45dd0857ee26f501fa5b7dff2b1f346e8cdc23b9b4a31243e6d2e0",
+    "main.asm": "f34c7ee4cd32f9d5aa8411180b6107af7e39964e0762d9c1d130efa86a126178"
+  }
+}

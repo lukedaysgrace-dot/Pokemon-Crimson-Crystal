@@ -174,10 +174,10 @@ SquirtleCloneEvosAttacks:
 	dbw 17, RAPID_SPIN
 	dbw 20, WATER_PULSE
 	dbw 23, PROTECT
-	dbw 27, SHELL_SMASH
 	dbw 30, IRON_DEFENSE
 	dbw 32, SKULL_BASH
 	dbw 35, AQUA_TAIL
+	dbw 36, SHELL_SMASH
 	dbw 38, RAIN_DANCE
 	dbw 41, HYDRO_PUMP
 	dbw 42, SCALD
@@ -197,7 +197,7 @@ WartortleCloneEvosAttacks:
 	dbw 18, RAPID_SPIN
 	dbw 22, WATER_PULSE
 	dbw 26, PROTECT
-	dbw 35, SHELL_SMASH
+	dbw 36, SHELL_SMASH
 	dbw 38, SKULL_BASH
 	dbw 40, IRON_DEFENSE
 	dbw 42, AQUA_TAIL
@@ -224,8 +224,8 @@ BlastoiseCloneEvosAttacks:
 	dbw 26, PROTECT
 	dbw 28, IRON_DEFENSE
 	dbw 32, BODY_PRESS
-	dbw 35, SHELL_SMASH
 	dbw 36, AURA_SPHERE
+	dbw 36, SHELL_SMASH
 	dbw 39, SKULL_BASH
 	dbw 42, SCALD
 	dbw 44, AQUA_TAIL
