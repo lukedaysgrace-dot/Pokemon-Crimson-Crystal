@@ -9,6 +9,7 @@ from collections import deque
 from pathlib import Path
 import json
 import re
+from attacking_learnsets import check_level, removed
 
 from audit_learnset_variety import ROOT, load_sources, load_technical_tutors, read
 
@@ -111,10 +112,14 @@ def audit():
             assert move in independent[roots[c]], (c, move, 'no independent breeding route')
     for c, moves in receipt['fallbacks'].items():
         for move, level in moves.items():
-            assert (level, move) in levels[c], (c, move, 'lost fallback')
+            check_level(c, move, level, levels)
+            assert move in known[c], (c, move, 'lost independent donor access')
     for c, moves in receipt['natural_level_up'].items():
         for move in moves:
-            assert any(m == move for _, m in levels[c]), (c, move, 'lost natural level-up move')
+            if move in removed(c):
+                assert move in known[c], (c, move, 'lost alternate acquisition')
+            else:
+                assert any(m == move for _, m in levels[c]), (c, move, 'lost natural level-up move')
     families = sorted(set(roots.values()))
     missing = [(c, m) for c in families for m in eggs[c] if m not in known[c]]
     assert not missing, ('egg moves without breeding or level-up access', missing)

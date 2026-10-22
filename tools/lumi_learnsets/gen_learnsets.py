@@ -726,6 +726,19 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
                 merged.append((level, 'PIXIE_PUNCH'))
         merged.sort(key=lambda row: row[0])
 
+    # Preserve the final attacking-role review after every imported layer.
+    review_path = os.path.join(REPO, "tools", "testdata", "attacking_learnset_review.json")
+    if os.path.exists(review_path):
+        with open(review_path, encoding="utf-8") as f:
+            review = json.load(f)
+        for species, moves in review['changes'].items():
+            if norm_name(species) == norm_name(label_base):
+                for move, edit in moves.items():
+                    merged = [(lv, m) for lv, m in merged if m != move]
+                    if edit['after'] is not None:
+                        merged.append((edit['after'], move))
+                merged.sort(key=lambda row: row[0])
+
     return (source, merged or None)
 
 # --------------------------------------------------------------------------
