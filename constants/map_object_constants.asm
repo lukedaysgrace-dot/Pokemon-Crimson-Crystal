@@ -174,6 +174,8 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_FISHING_BOAT         ; 28
 	const SPRITEMOVEDATA_POKEMON_LEFT         ; 29
 	const SPRITEMOVEDATA_POKEMON_RIGHT        ; 2a
+	const SPRITEMOVEDATA_APRICORN             ; 2b
+	const SPRITEMOVEDATA_APRICORN_ONE_TONE    ; 2c
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -211,6 +213,8 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const SPRITEMOVEFN_SNORLAX_SLEEP         ; 1e
 	const SPRITEMOVEFN_FISHING_BOAT          ; 1f
 	const SPRITEMOVEFN_ANIMATED_STANDING     ; 20
+	const SPRITEMOVEFN_APRICORN              ; 21
+	const SPRITEMOVEFN_APRICORN_ONE_TONE     ; 22
 
 ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
 	const_def
@@ -264,6 +268,8 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const OBJECT_ACTION_SLOW_BOUNCE   ; 11
 	const OBJECT_ACTION_SNORLAX_SLEEP ; 12
 	const OBJECT_ACTION_FISHING_BOAT  ; 13
+	const OBJECT_ACTION_APRICORN      ; 14
+	const OBJECT_ACTION_APRICORN_ONE_TONE ; 15
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def
@@ -307,6 +313,8 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const FACING_SNORLAX_STILL   ; 24
 	const FACING_FISHING_BOAT_0 ; 25
 	const FACING_FISHING_BOAT_1 ; 26
+	const FACING_APRICORN       ; 27
+	const FACING_APRICORN_ONE_TONE ; 28
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def

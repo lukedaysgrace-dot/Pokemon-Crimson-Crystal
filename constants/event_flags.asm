@@ -1803,8 +1803,8 @@
 	const EVENT_ROUTE_32_GREAT_BALL
 	const EVENT_ROUTE_32_REPEL
 	const EVENT_ROUTE_35_TM_ROCK_TOMB
-	const EVENT_ROUTE_42_ULTRA_BALL
-	const EVENT_ROUTE_42_SUPER_POTION
+	const EVENT_ROUTE_42_HIDDEN_CARBOS ; formerly the Ultra Ball; keep the save flag
+	const EVENT_ROUTE_42_HIDDEN_PP_UP ; formerly the Super Potion; keep the save flag
 	const EVENT_ROUTE_43_MAX_ETHER
 	const EVENT_ROUTE_44_MAX_REVIVE
 	const EVENT_ROUTE_44_ULTRA_BALL

@@ -11,6 +11,7 @@
 	const AZALEATOWN_SILVER
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
+	const AZALEATOWN_APRICORN
 
 AzaleaTown_MapScripts:
 	db 3 ; scene scripts
@@ -18,8 +19,9 @@ AzaleaTown_MapScripts:
 	scene_script .DummyScene1 ; SCENE_AZALEATOWN_RIVAL_BATTLE
 	scene_script .DummyScene2 ; SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .Flypoint
+	callback MAPCALLBACK_OBJECTS, .Apricorn
 
 .DummyScene0:
 	end
@@ -32,6 +34,15 @@ AzaleaTown_MapScripts:
 
 .Flypoint:
 	setflag ENGINE_FLYPOINT_AZALEA
+	return
+
+.Apricorn:
+; A picked apricorn stays gone until the tree regrows the next day.
+	setval FRUITTREE_AZALEA_TOWN
+	callasm CheckApricornTreePicked
+	iffalse .ApricornDone
+	disappear AZALEATOWN_APRICORN
+.ApricornDone:
 	return
 
 AzaleaTownRivalBattleScene1:
@@ -210,6 +221,15 @@ AzaleaTownMartSign:
 	jumpstd martsign
 
 WhiteApricornTree:
+	scall .Tree
+	setval FRUITTREE_AZALEA_TOWN
+	callasm CheckApricornTreePicked
+	iffalse .Done
+	disappear AZALEATOWN_APRICORN
+.Done:
+	end
+
+.Tree:
 	fruittree FRUITTREE_AZALEA_TOWN
 
 AzaleaTownHiddenFullHeal:
@@ -486,7 +506,7 @@ AzaleaTown_MapEvents:
 	bg_event  3,  9, BGEVENT_READ, AzaleaTownIlextForestSign
 	bg_event 31,  6, BGEVENT_ITEM, AzaleaTownHiddenFullHeal
 
-	db 12 ; object events
+	db 13 ; object events
 	object_event 31,  9, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownRocket1Script, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	object_event 21,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownGrampsScript, -1
 	object_event 15, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, AzaleaTownTeacherScript, -1
@@ -499,3 +519,4 @@ AzaleaTown_MapEvents:
 	object_event 11, 10, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
 	object_event 10, 16, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownRocket2Script, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  6,  5, SPRITE_KURT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT
+	object_event  8,  2, SPRITE_APRICORN, SPRITEMOVEDATA_APRICORN, 0, 0, -1, -1, PAL_NPC_APRICORN, OBJECTTYPE_SCRIPT, 0, WhiteApricornTree, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
