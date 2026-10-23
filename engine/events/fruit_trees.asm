@@ -62,6 +62,15 @@ TryResetFruitTrees:
 	ret nz
 	jp ResetFruitTrees
 
+CheckApricornTreePicked::
+; For maps that draw an apricorn on a fruit tree: is that apricorn gone?
+; input: wScriptVar = FRUITTREE_* constant
+; output: wScriptVar = nonzero if the tree was already picked today
+	call TryResetFruitTrees
+	ld a, [wScriptVar]
+	ld [wCurFruitTree], a
+	; fallthrough
+
 CheckFruitTree:
 	ld b, 2
 	call GetFruitTreeFlag

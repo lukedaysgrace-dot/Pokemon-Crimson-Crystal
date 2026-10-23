@@ -345,3 +345,22 @@ SpriteMovementData::
 	db FIXED_FACING ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
+
+; SPRITEMOVEDATA_APRICORN
+; An apricorn sitting on a fruit tree's canopy. It shares the tree's tile, so
+; HIGH_PRIORITY keeps it drawn in front of the tree sprite.
+	db SPRITEMOVEFN_APRICORN ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_APRICORN ; action
+	db FIXED_FACING | SLIDING ; flags1
+	db HIGH_PRIORITY ; flags2
+	db 0 ; palette flags
+
+; SPRITEMOVEDATA_APRICORN_ONE_TONE
+; As SPRITEMOVEDATA_APRICORN, but drawn with only the palette's light colour.
+	db SPRITEMOVEFN_APRICORN_ONE_TONE ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_APRICORN_ONE_TONE ; action
+	db FIXED_FACING | SLIDING ; flags1
+	db HIGH_PRIORITY ; flags2
+	db 0 ; palette flags

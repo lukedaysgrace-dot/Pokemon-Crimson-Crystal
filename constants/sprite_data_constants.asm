@@ -40,6 +40,11 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 	const PAL_NPC_TREE   ; e
 	const PAL_NPC_ROCK   ; f
 
+; Apricorns on fruit trees whose colour has no OBJ palette of its own (black,
+; white, pink, yellow) use the rock slot, which LoadApricornTreeObjectPalette
+; fills on Route 37, Route 42 and Azalea Town.
+DEF PAL_NPC_APRICORN EQU PAL_NPC_ROCK
+
 ; unused pink slot repurposed for Sour Crystal-style purple
 DEF PAL_OW_PURPLE EQU PAL_OW_PINK
 DEF PAL_NPC_PURPLE EQU PAL_NPC_PINK

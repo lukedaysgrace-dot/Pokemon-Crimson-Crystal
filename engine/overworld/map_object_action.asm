@@ -20,6 +20,8 @@ ObjectActionPairPointers:
 	dw SetFacingSlowBounce,            SetFacingFreezeBounce
 	dw SetFacingSnorlaxSleep,          SetFacingSnorlaxSleep
 	dw SetFacingFishingBoat,           SetFacingFishingBoatStill
+	dw SetFacingApricorn,              SetFacingApricorn
+	dw SetFacingApricornOneTone,       SetFacingApricornOneTone
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -253,6 +255,30 @@ SetFacingFishingBoatStill:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
+	ret
+
+SetFacingApricorn:
+	ld a, FACING_APRICORN
+	jr SetFacingApricornFrame
+
+SetFacingApricornOneTone:
+	ld a, FACING_APRICORN_ONE_TONE
+SetFacingApricornFrame:
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], a
+; Background tiles sit four pixels below standing sprites. Keep the fruit
+; in the same place on the canopy when Route 42 draws its trees as tiles.
+	ld hl, OBJECT_SPRITE_Y_OFFSET
+	add hl, bc
+	ld [hl], 0
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_42
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_42
+	ret nz
+	ld [hl], 4
 	ret
 
 SetFacingSnorlaxStill:

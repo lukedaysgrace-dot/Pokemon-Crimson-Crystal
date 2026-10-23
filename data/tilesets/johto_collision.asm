@@ -194,3 +194,5 @@
 	tilecoll WALL, WALL, FLOOR, FLOOR ; c1
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c2
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; c3
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; c4: Route 42 pink apricorn tree
+	tilecoll WALL, WALL, FLOOR, FLOOR ; c5: Route 42 green/yellow apricorn trees

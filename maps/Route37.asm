@@ -6,13 +6,32 @@
 	const ROUTE37_SUNNY
 	const ROUTE37_FRUIT_TREE2
 	const ROUTE37_FRUIT_TREE3
+	const ROUTE37_APRICORN1
+	const ROUTE37_APRICORN2
+	const ROUTE37_APRICORN3
 
 Route37_MapScripts:
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
-	callback MAPCALLBACK_OBJECTS, .Sunny
+	callback MAPCALLBACK_OBJECTS, .Apricorns
 
+.Apricorns:
+; Picked apricorns stay gone until the trees regrow the next day.
+	setval FRUITTREE_ROUTE_37_1
+	callasm CheckApricornTreePicked
+	iffalse .Apricorn2
+	disappear ROUTE37_APRICORN1
+.Apricorn2:
+	setval FRUITTREE_ROUTE_37_2
+	callasm CheckApricornTreePicked
+	iffalse .Apricorn3
+	disappear ROUTE37_APRICORN2
+.Apricorn3:
+	setval FRUITTREE_ROUTE_37_3
+	callasm CheckApricornTreePicked
+	iffalse .Sunny
+	disappear ROUTE37_APRICORN3
 .Sunny:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .SunnyAppears
@@ -106,12 +125,39 @@ Route37SilentCryptSign:
 	jumptext Route37SilentCryptSignText
 
 Route37FruitTree1:
+	scall .Tree
+	setval FRUITTREE_ROUTE_37_1
+	callasm CheckApricornTreePicked
+	iffalse .Done
+	disappear ROUTE37_APRICORN1
+.Done:
+	end
+
+.Tree:
 	fruittree FRUITTREE_ROUTE_37_1
 
 Route37FruitTree2:
+	scall .Tree
+	setval FRUITTREE_ROUTE_37_2
+	callasm CheckApricornTreePicked
+	iffalse .Done
+	disappear ROUTE37_APRICORN2
+.Done:
+	end
+
+.Tree:
 	fruittree FRUITTREE_ROUTE_37_2
 
 Route37FruitTree3:
+	scall .Tree
+	setval FRUITTREE_ROUTE_37_3
+	callasm CheckApricornTreePicked
+	iffalse .Done
+	disappear ROUTE37_APRICORN3
+.Done:
+	end
+
+.Tree:
 	fruittree FRUITTREE_ROUTE_37_3
 
 Route37HiddenEther:
@@ -258,7 +304,7 @@ Route37_MapEvents:
 	bg_event  4,  2, BGEVENT_ITEM, Route37HiddenEther
 	bg_event 15,  7, BGEVENT_READ, Route37SilentCryptSign
 
-	db 7 ; object events
+	db 10 ; object events
 	object_event  6, 12, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
 	object_event  7, 12, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
 	object_event  6,  6, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicGreg, -1
@@ -266,3 +312,6 @@ Route37_MapEvents:
 	object_event 14, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
 	object_event 15, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route37FruitTree2, -1
 	object_event 12, 12, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route37FruitTree3, -1
+	object_event 12,  9, SPRITE_APRICORN, SPRITEMOVEDATA_APRICORN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route37FruitTree1, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event 15, 10, SPRITE_APRICORN, SPRITEMOVEDATA_APRICORN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route37FruitTree2, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
+	object_event 12, 12, SPRITE_APRICORN, SPRITEMOVEDATA_APRICORN, 0, 0, -1, -1, PAL_NPC_APRICORN, OBJECTTYPE_SCRIPT, 0, Route37FruitTree3, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
