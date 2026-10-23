@@ -1786,21 +1786,17 @@ LoadRoute42ApricornTreeGFX:
 
 LoadRoute42ApricornTreeBackgroundPalette:
 ; Route 42 has no yellow background tiles. Use that free palette for the
-; original fruit-tree colors, with the mountain ground as the backdrop.
+; surrounding water/snow colors on these three tree bodies only. Their
+; artwork, solid collision and apricorn scripts are unchanged.
 	ld a, [wMapGroup]
 	cp GROUP_ROUTE_42
 	ret nz
 	ld a, [wMapNumber]
 	cp MAP_ROUTE_42
 	ret nz
-	ld hl, wOBPals1 palette PAL_OW_TREE
-	ld de, wBGPals1 palette PAL_BG_YELLOW
-	ld bc, 1 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
 	ld hl, wBGPals1 palette PAL_BG_WATER
 	ld de, wBGPals1 palette PAL_BG_YELLOW
-	ld bc, PAL_COLOR_SIZE
+	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	jp FarCopyWRAM
 
