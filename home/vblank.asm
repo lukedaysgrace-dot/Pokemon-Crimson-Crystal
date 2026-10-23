@@ -59,36 +59,26 @@ VBlank::
 VBlank0::
 ; normal operation
 
-; rng
 ; scx, scy, wy, wx
+; dma transfer (exclusive)
 ; bg map buffer
 ; palettes
-; dma transfer
-; bg map
+; tileset animation
 ; tiles
+; bg map (time permitting)
 ; oam
+; rng
 ; joypad
 ; sound
 
-	; inc frame counter
-	ld hl, hVBlankCounter
-	inc [hl]
-
-	; advance random variables
-	ldh a, [rDIV]
-	ld b, a
-	ldh a, [hRandomAdd]
-	adc b
-	ldh [hRandomAdd], a
-
-	ldh a, [rDIV]
-	ld b, a
-	ldh a, [hRandomSub]
-	sbc b
-	ldh [hRandomSub], a
-
 	ldh a, [hROMBank]
 	ldh [hROMBankBackup], a
+
+	; A long LCD-off/DI screen transfer can leave an old interrupt pending.
+	; Defer its graphics until a real VBlank instead of writing visible VRAM.
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr c, .bookkeeping
 
 	ldh a, [hSCX]
 	ldh [rSCX], a
@@ -99,23 +89,37 @@ VBlank0::
 	ldh a, [hWX]
 	ldh [rWX], a
 
-	; There's only time to call one of these in one vblank.
-	; Calls are in order of priority.
+	; Polished-style scheduling: spend VBlank on graphics first. The PC can
+	; queue two full-screen DMAs, so reserve their frame instead of combining
+	; them with a scrolling buffer and a complete palette upload.
+	ldh a, [hDMATransfer]
+	and a
+	jr z, .no_dma
+	call DMATransfer
+	jr .done
+.no_dma
+	; At CGB double speed, the largest scrolling buffer and all palettes fit
+	; together with OAM. Previously either upload deferred all later work.
+	; Keep that exclusive scheduling on hardware running at normal speed.
+	ldh a, [hCGB]
+	and a
+	jr z, .normal_speed
+	ldh a, [rKEY1]
+	bit 7, a
+	jr z, .normal_speed
 
+	call VBlank0_Graphics
+	jr .done
+
+.normal_speed
 	call UpdateBGMapBuffer
 	jr c, .done
 	call UpdatePalsIfCGB
 	jr c, .done
-	call DMATransfer
-	jr c, .done
 	call UpdateBGMap
-
-	; These have their own timing checks.
-
 	call Serve2bppRequest
 	call Serve1bppRequest
 	call AnimateTileset
-
 .done
 
 	ldh a, [hOAMUpdate]
@@ -125,6 +129,22 @@ VBlank0::
 .done_oam
 
 	; vblank-sensitive operations are done
+
+.bookkeeping
+	ld hl, hVBlankCounter
+	inc [hl]
+
+	; Keep bookkeeping outside the time-sensitive graphics budget.
+	ldh a, [rDIV]
+	ld b, a
+	ldh a, [hRandomAdd]
+	adc b
+	ldh [hRandomAdd], a
+	ldh a, [rDIV]
+	ld b, a
+	ldh a, [hRandomSub]
+	sbc b
+	ldh [hRandomSub], a
 
 	xor a
 	ld [wVBlankOccurred], a
@@ -431,3 +451,28 @@ VBlank6::
 	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	ret
+
+; Fit the scheduler beside the copy loops in unused fixed-ROM space.
+PUSHS
+SECTION "VBlank graphics scheduler", ROM0
+
+VBlank0_Graphics:
+	call UpdateBGMapBuffer
+	call UpdatePalsIfCGB
+	call AnimateTileset
+	; Tile uploads have their own early-VBlank checks. Serve them before
+	; the background refresh so a continuously enabled BG map cannot starve
+	; a pending font or sprite upload.
+	call Serve2bppRequest
+	call Serve1bppRequest
+
+	; Leave at least six scanlines for the slowest BG-map mode and OAM.
+	; Unlike Polished's mode-1 path, ours also handles BG map 1 and attrs.
+	ldh a, [rLY]
+	cp LY_VBLANK
+	ret c
+	cp LY_VBLANK + 4
+	ret nc
+	jp UpdateBGMap
+
+POPS

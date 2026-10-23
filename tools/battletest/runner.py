@@ -189,7 +189,7 @@ class Harness:
 
     def fixture_path(self):
         prefix = {'surrogate': 'menu', 'mbc30': 'menu-mbc30', 'native': 'menu-native'}[self.cartridge]
-        return FIXTURES / f"{prefix}-{self.rom_key()}.state"
+        return FIXTURES / f"{prefix}-rules-v2-{self.rom_key()}.state"
 
     def ensure_fixture(self):
         path = self.fixture_path()
@@ -210,49 +210,16 @@ class Harness:
     def bootstrap(self):
         """Fresh boot -> new game -> overworld -> START -> DEBUG (state $01).
 
-        Verified sequence: mash through title/main menu, then A (with
-        periodic STARTs to jump naming screens to END) through the intro.
+        Select the gameplay rules explicitly so engine timing improvements
+        cannot make timed button mashing choose Abilities Off by accident.
         The DEBUG start-menu entry is found by reading wMenuSelection and
         stepping until it equals STARTMENUITEM_DEBUG (9)."""
         log = print if self.verbose else (lambda *a: None)
-        log("bootstrap: booting")
-        self.tick(400)
-        log("bootstrap: title -> new game")
-        for _ in range(30):
-            self.press("start", wait=10)
-            self.press("a", wait=10)
-        for _ in range(60):
-            self.press("a", wait=10)
-        log("bootstrap: intro/naming")
-        for i in range(320):
-            self.press("a", wait=6)
-            if i % 12 == 11:
-                self.press("start", wait=6)
-        # The naming screen consumes START by moving its cursor to END; it
-        # still needs a separate A press to accept the name.  Do that before
-        # any generic menu navigation can move the cursor away again.
-        log("bootstrap: finishing naming screen")
-        self.press("start", hold=4, wait=10)
-        self.press("a", hold=4, wait=30)
-        for _ in range(40):
-            self.press("a", wait=8)
-        # Difficulty selection ends with a Yes/No confirmation whose cursor
-        # defaults to No.  Mashing A alone loops back to the difficulty menu.
-        # Advance any remaining description pages, move to Yes, and confirm;
-        # repeat defensively in case the first A only revealed another page.
-        log("bootstrap: confirming difficulty")
-        # The customized intro has several confirmation boxes (clock and
-        # difficulty).  Alternating A with UP+A accepts their default YES
-        # choice while continuing through ordinary dialogue in between.
-        for _ in range(48):
-            self.press("a", wait=8)
-            self.press("up", wait=4)
-            self.press("a", wait=12)
-        for _ in range(24):
-            self.press("a", wait=8)
-        # back out of anything accidentally opened (pack, menus)
-        for _ in range(6):
-            self.press("b", wait=10)
+        from gameplay_rules_checks import new_game
+        log("bootstrap: New Game with enhanced types/stats and abilities on")
+        new_game(self, 0)
+        if self.battle.mem.read('wGameplayRules') != 0:
+            raise RuntimeError('battle fixture selected incorrect gameplay rules')
         log("bootstrap: opening DEBUG")
         deadline = time.monotonic() + 180
         while self.state() != STATE_MENU:
