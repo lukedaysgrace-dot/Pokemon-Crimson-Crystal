@@ -1,6 +1,6 @@
 abilities_for: MACRO
 ; used in data/pokemon/base_stats/*.asm
-; mon, ability1, ability2, hiddenability
+; mon, ability1, ability2, ability3
 	db \2, \3, \4
 ENDM
 

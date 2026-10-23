@@ -53,7 +53,7 @@ CLASS_NAMES = {
 ABILITY_SLOT_INDEX = {
 	"ABILITY_1": 0,
 	"ABILITY_2": 1,
-	"HIDDEN_ABILITY": 2,
+	"ABILITY_3": 2,
 }
 
 
@@ -461,7 +461,7 @@ def render() -> str:
 					slot_label = {
 						"ABILITY_1": "slot 1",
 						"ABILITY_2": "slot 2",
-						"HIDDEN_ABILITY": "hidden",
+						"ABILITY_3": "slot 3",
 					}.get(slot, slot)
 					if not explicit_slot:
 						slot_label += ", class default"

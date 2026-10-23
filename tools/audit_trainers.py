@@ -22,7 +22,7 @@ TRAINER_TYPES = {
 	"TRAINERTYPE_ITEM_MOVES_ABILITY": (True, True, True),
 }
 
-ABILITY_SLOTS = {"ABILITY_1", "ABILITY_2", "HIDDEN_ABILITY"}
+ABILITY_SLOTS = {"ABILITY_1", "ABILITY_2", "ABILITY_3"}
 
 JOHTO_LEADER_REMATCH_GROUPS = {
 	"FalknerGroup",
@@ -246,7 +246,7 @@ def parse_party_entry(path, entry, species, moves, items):
 				fail(
 					path,
 					ability_line,
-					f"invalid ability slot {kind} {ability} (expected ABILITY_1, ABILITY_2 or HIDDEN_ABILITY)",
+					f"invalid ability slot {kind} {ability} (expected ABILITY_1, ABILITY_2 or ABILITY_3)",
 				)
 			index += 1
 		party_moves = []

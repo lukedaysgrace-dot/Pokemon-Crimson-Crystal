@@ -34,7 +34,7 @@ existing schedules. These changes add no save fields or save-layout migration.
 | HMs without occupying a moveslot | [Field HM checks](../engine/events/field_hm_interaction.asm): own the HM, earn its badge, and carry a compatible Pokémon. Party compatibility is still required. |
 | Fly from the Pokegear map | [Map input](../engine/pokegear/pokegear.asm): A already calls FieldHMPokegearTryFly. Improve its discoverability if needed rather than adding a second Fly action. |
 | Solo evolution routes | [Evolution data](../data/pokemon/evos_attacks_kanto.asm): examples include level-36 Kadabra/Machoke/Graveler/Haunter and directly using Metal Coat or Dragon Scale. Do not add a redundant trade substitute. |
-| Reusable ability changer | Elm's Ability Cap cycles available regular/hidden slots; the abilities-off choice intentionally disables it. [Item effects](../engine/items/item_effects.asm). |
+| Reusable ability changer | Elm's reusable Ability Cap freely cycles available Ability 1, Ability 2 and Ability 3 slots; the abilities-off choice intentionally disables it. [Item effects](../engine/items/item_effects.asm). |
 | Perfect-DV acquisition | Most caught, gifted, and hatched Pokémon get perfect DVs; wild Unown/Magikarp have intentional exceptions. [Pokémon creation](../engine/pokemon/move_mon.asm). |
 | Move Reminder and egg/family tutor | [Blackthorn](../maps/MoveDeletersHouse.asm): ¥1,000 level-up reminder and ¥5,000 egg/family lessons. |
 | Goldenrod utility tutor | [PP speech house](../maps/GoldenrodPPSpeechHouse.asm): several useful support moves for ¥1,000. |

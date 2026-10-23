@@ -394,7 +394,7 @@ class Builder:
           if types[0]==types[1]: types=types[:1]
           break
       # Crimson Crystal assigns abilities with:
-      # abilities_for SPECIES, ABILITY_1, ABILITY_2, HIDDEN_ABILITY
+      # abilities_for SPECIES, ABILITY_1, ABILITY_2, ABILITY_3
       am=re.search(
         r'\babilities_for\s+[A-Z0-9_]+\s*,\s*([A-Z0-9_]+)\s*,\s*([A-Z0-9_]+)\s*,\s*([A-Z0-9_]+)',
         txt(p), re.I)
@@ -407,7 +407,7 @@ class Builder:
           name=disp(x)
           if name in seen: continue
           seen.add(name)
-          ability_slots.append({'name':name,'hidden':slot==2,'slot':slot+1})
+          ability_slots.append({'name':name,'slot':slot+1})
         abilities=list(dict.fromkeys(abilities))
       else:
         # Fallback for forks that store abilities on a normal db line.
@@ -1257,12 +1257,12 @@ class Builder:
     return '<dl class="info">'+''.join(f'<div><dt>{k}</dt><dd>{html.escape(str(v))}</dd></div>' for k,v in rows)+'</dl>'
 
   def abilities_html(self, m):
-    slots=m.get('ability_slots') or [{'name':a,'hidden':False} for a in m['abilities']]
+    slots=m.get('ability_slots') or [{'name':a,'slot':slot} for slot,a in enumerate(m['abilities'],1)]
     if not slots: return '<p class="muted">No abilities.</p>'
     out=''
     for a in slots:
       d=self.ability_desc.get(re.sub('[^a-z0-9]','',a['name'].lower()),'')
-      tag='<span class="hidden-tag">Hidden ability</span>' if a['hidden'] else ''
+      tag=f'<span class="ability-slot-tag">Ability {a["slot"]}</span>'
       out+=f'<div class="ability"><b>{html.escape(a["name"])}</b>{tag}{f"<span>{html.escape(d)}</span>" if d else ""}</div>'
     return f'<div class="abilities">{out}</div>'
 
@@ -1338,7 +1338,7 @@ class Builder:
       if entry.get('abilities'):
         tags.append('ability')
         for a in entry['abilities']:
-          slot='Hidden ability' if a['slot']==3 else f'Ability slot {a["slot"]}'
+          slot=f'Ability {a["slot"]}'
           old='Empty slot' if a['before']=='NO_ABILITY' else disp(a['before'])
           sections.append(f'<p><b>{slot}:</b> {html.escape(old)} → {html.escape(disp(a["after"]))}.</p>')
       for move in entry.get('moves',[]):

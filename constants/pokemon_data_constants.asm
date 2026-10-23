@@ -27,7 +27,7 @@ BASE_DATA_SIZE   EQUS "(wCurBaseDataEnd - wCurBaseData)"
 BASE_ABILITIES      EQUS "(wBaseAbility1 - wCurBaseData)"
 BASE_ABILITY_1      EQUS "(wBaseAbility1 - wCurBaseData)"
 BASE_ABILITY_2      EQUS "(wBaseAbility2 - wCurBaseData)"
-BASE_HIDDEN_ABILITY EQUS "(wBaseHiddenAbility - wCurBaseData)"
+BASE_ABILITY_3 EQUS "(wBaseAbility3 - wCurBaseData)"
 
 ; AbilityFlags values (see data/abilities/flags.asm)
 ABILFLAG_NO_COPY       EQU %00000001
@@ -43,7 +43,7 @@ ABILFLAG_NO_INTIMIDATE EQU %01000000
 ABILITY_MASK   EQU %01100000
 ABILITY_1      EQU %00100000
 ABILITY_2      EQU %01000000
-HIDDEN_ABILITY EQU %01100000
+ABILITY_3 EQU %01100000
 
 ; caught ball (Personality bits 0-4); indexes into CaughtBallItems,
 ; PartyMenuBallGFX and CaughtBallPalMap. 0 (Poke Ball) is the default
