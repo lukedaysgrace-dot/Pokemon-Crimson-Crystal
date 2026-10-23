@@ -1,5 +1,5 @@
 	db "POISON FISH@" ; species name
-	dw 4, 110 ; height, weight
+	dw 104, 243 ; height, weight
 
 	db   "They line up in"
 	next "groups of three or"

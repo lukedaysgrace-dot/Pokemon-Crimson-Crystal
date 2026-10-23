@@ -1,5 +1,5 @@
 	db "WATER WEED@" ; species name
-	dw 10, 100 ; height, weight
+	dw 108, 57 ; height, weight
 
 	db   "This LOTAD"
 	next "was newly added"

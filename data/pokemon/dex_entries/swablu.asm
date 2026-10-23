@@ -1,5 +1,5 @@
-	db "COTTON BIR@" ; species name
-	dw 10, 100 ; height, weight
+	db "COTTON BIRD@" ; species name
+	dw 104, 26 ; height, weight
 
 	db   "This SWABLU"
 	next "was newly added"

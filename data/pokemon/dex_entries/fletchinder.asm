@@ -1,5 +1,5 @@
-	db "EMBER BIRD@" ; species name
-	dw 10, 100 ; height, weight
+	db "EMBER@" ; species name
+	dw 204, 353 ; height, weight
 
 	db   "This FLETCHINDR"
 	next "was newly added"

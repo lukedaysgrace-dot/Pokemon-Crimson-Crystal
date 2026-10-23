@@ -1,24 +1,24 @@
 LoadSpecialMapPalette:
 	ld a, [wMapTileset]
 	cp TILESET_POKECOM_CENTER
-	jr z, .pokecom_2f
+	jp z, .pokecom_2f
 	cp TILESET_BATTLE_TOWER
-	jr z, .battle_tower
+	jp z, .battle_tower
 	cp TILESET_ICE_PATH
-	jr z, .ice_path
+	jp z, .ice_path
 	cp TILESET_HOUSE
-	jr z, .house
+	jp z, .house
 	cp TILESET_RADIO_TOWER
-	jr z, .radio_tower
+	jp z, .radio_tower
 	cp TILESET_MANSION
-	jr z, .mansion_mobile
+	jp z, .mansion_mobile
 	cp TILESET_JOHTO
-	jr z, .johto
+	jp z, .johto
 	cp TILESET_JOHTO_MODERN
-	jr z, .johto_modern
+	jp z, .johto_modern
 	cp TILESET_KANTO
-	jr z, .kanto
-	jr .do_nothing
+	jp z, .kanto
+	jp .do_nothing
 
 .johto
 	ld hl, JohtoTilesetPalette
@@ -36,6 +36,16 @@ LoadSpecialMapPalette:
 	jr .load_outdoor_timeofday
 
 .kanto
+	ld a, [wMapGroup]
+	cp GROUP_VIRIDIAN_FOREST
+	jr nz, .ordinary_kanto
+	ld a, [wMapNumber]
+	cp MAP_VIRIDIAN_FOREST
+	jr nz, .ordinary_kanto
+	; Keep the map editor's custom forest colors at every time of day.
+	ld hl, ViridianForestPalette
+	jr .copy_outdoor_palette
+.ordinary_kanto
 	ld hl, KantoTilesetPalette
 .load_outdoor_timeofday
 ; Only override outdoor maps (TOWN / ROUTE); anything else uses the default.
@@ -58,6 +68,7 @@ LoadSpecialMapPalette:
 	adc a, h
 	sub l
 	ld h, a
+.copy_outdoor_palette
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	ld a, BANK(wBGPals1)
@@ -198,3 +209,6 @@ INCLUDE "gfx/tilesets/johto_modern.pal"
 
 KantoTilesetPalette:
 INCLUDE "gfx/tilesets/kanto.pal"
+
+ViridianForestPalette:
+INCLUDE "maps/ViridianForest.pal"

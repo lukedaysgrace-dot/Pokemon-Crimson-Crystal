@@ -1,5 +1,5 @@
 	db "WILD BULL@" ; species name
-	dw 14, 1100 ; height, weight
+	dw 407, 2425 ; height, weight
 
 	db   "The 'Aqua Breed'"
 	next "swims by jetting"

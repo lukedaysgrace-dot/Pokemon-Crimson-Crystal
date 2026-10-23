@@ -1,5 +1,5 @@
 	db "MOUSE@" ; species name
-	dw 7, 210 ; height, weight
+	dw 204, 463 ; height, weight
 
 	db   "When you rub its"
 	next "cheeks, a sweet"

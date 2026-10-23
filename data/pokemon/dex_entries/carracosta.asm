@@ -1,5 +1,5 @@
 	db "PROTOTURTLE@" ; species name
-	dw 3011, 1653 ; height, weight
+	dw 311, 1786 ; height, weight
 
 	db   "Its powerful jaws"
 	next "can crush steel"

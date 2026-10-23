@@ -1,5 +1,5 @@
 	db "AURA@" ; species name
-	dw 12, 540 ; height, weight
+	dw 311, 1190 ; height, weight
 
 	db   "It reads aura to"
 	next "sense feelings"

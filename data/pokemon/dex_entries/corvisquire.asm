@@ -1,5 +1,5 @@
 	db "RAVEN@@@@@" ; species name
-	dw 204, 353 ; height, weight
+	dw 207, 353 ; height, weight
 
 	db   "Many rough battles"
 	next "have sharpened its"

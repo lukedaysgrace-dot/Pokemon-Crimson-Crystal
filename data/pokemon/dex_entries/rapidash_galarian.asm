@@ -1,5 +1,5 @@
 	db "UNIQUE HORN@" ; species name
-	dw 17, 800 ; height, weight
+	dw 507, 1764 ; height, weight
 
 	db   "A psychic attack"
 	next "unleashed from"

@@ -1,5 +1,5 @@
 	db "TENDER@" ; species name
-	dw 62, 1620 ; height, weight
+	dw 2004, 3571 ; height, weight
 
 	db   "Its lovely form"
 	next "calms anger and"

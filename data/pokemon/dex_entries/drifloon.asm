@@ -1,5 +1,5 @@
 	db "BALLOON@" ; species name
-	dw 10, 100 ; height, weight
+	dw 104, 26 ; height, weight
 
 	db   "This DRIFLOON"
 	next "was newly added"

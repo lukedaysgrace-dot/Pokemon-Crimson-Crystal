@@ -1,5 +1,5 @@
 	db "FISH@" ; species name
-	dw 6, 74 ; height, weight
+	dw 200, 163 ; height, weight
 
 	db   "It can live in"
 	next "polluted water"

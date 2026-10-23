@@ -1,5 +1,5 @@
 	db "DESPOT@" ; species name
-	dw 25, 2700 ; height, weight
+	dw 802, 5952 ; height, weight
 
 	db   "Its massive jaws"
 	next "can shred thick"

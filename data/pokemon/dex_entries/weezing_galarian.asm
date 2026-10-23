@@ -1,5 +1,5 @@
 	db "POISON GAS@" ; species name
-	dw 30, 160 ; height, weight
+	dw 910, 353 ; height, weight
 
 	db   "It consumes par-"
 	next "ticles that con-"

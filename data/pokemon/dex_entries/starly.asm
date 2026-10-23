@@ -1,5 +1,5 @@
 	db "STARLING@" ; species name
-	dw 10, 44 ; height, weight
+	dw 100, 44 ; height, weight
 
 	db   "They flock in"
 	next "great numbers."

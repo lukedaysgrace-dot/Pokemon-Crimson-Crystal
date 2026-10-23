@@ -1,5 +1,5 @@
 	db "BONE KEEPER@" ; species name
-	dw 10, 340 ; height, weight
+	dw 303, 750 ; height, weight
 
 	db   "It sets the bone"
 	next "it holds on fire"

@@ -1428,6 +1428,14 @@ LoadMapPals:
 	cp ROUTE
 	ret nz
 .outside
+; Forest and cove map palettes own every slot, including the roof colors.
+	ld a, [wMapGroup]
+	cp GROUP_VIRIDIAN_FOREST
+	jr nz, .check_cove_roof
+	ld a, [wMapNumber]
+	cp MAP_VIRIDIAN_FOREST
+	ret z
+.check_cove_roof
 ; The cove uses the roof slot for plants floating on water, so keep its
 ; map palette instead of replacing those colors with Olivine's roof colors.
 	ld a, [wMapGroup]

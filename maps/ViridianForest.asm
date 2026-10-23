@@ -71,19 +71,19 @@ ViridianForestLeavingSign:
 	jumptext ViridianForestLeavingSignText
 
 ViridianForestAntidote:
-	itemball ANTIDOTE
+	itemball FULL_HEAL
 
 ViridianForestPotion:
-	itemball POTION
+	itemball HYPER_POTION
 
 ViridianForestPokeBall:
-	itemball POKE_BALL
+	itemball ULTRA_BALL
 
 ViridianForestHiddenAntidote:
-	hiddenitem ANTIDOTE, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
+	hiddenitem PROTEIN, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
 
 ViridianForestHiddenPotion:
-	hiddenitem POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
+	hiddenitem CALCIUM, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
 BugCatcherRobSeenText:
 	text "Hey! Those #MON"

@@ -1,5 +1,5 @@
 	db "JOLLY@" ; species name
-	dw 10, 100 ; height, weight
+	dw 311, 717 ; height, weight
 
 	db   "This LOMBRE"
 	next "was newly added"

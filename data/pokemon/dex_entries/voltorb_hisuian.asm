@@ -1,5 +1,5 @@
 	db "SPHERE@" ; species name
-	dw 5, 130 ; height, weight
+	dw 108, 287 ; height, weight
 
 	db   "When excited, it"
 	next "discharges the"

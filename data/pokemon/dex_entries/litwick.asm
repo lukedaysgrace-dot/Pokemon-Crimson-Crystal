@@ -1,5 +1,5 @@
 	db "CANDLE@" ; species name
-	dw 4, 6 ; height, weight
+	dw 100, 68 ; height, weight
 
 	db   "It pretends to be"
 	next "a guide, then"

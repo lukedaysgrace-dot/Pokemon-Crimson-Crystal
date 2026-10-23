@@ -1,0 +1,10 @@
+; Fixed custom lighting for Viridian Forest, matching its map-editor preview.
+; Slot order: gray, red, green, water, yellow, brown, roof, text.
+	RGB 28,31,28, 21,21,21, 13,13,13, 07,07,07 ; gray
+	RGB 28,31,28, 29,16,13, 24,06,08, 07,07,07 ; red
+	RGB 14,25,20, 09,19,05, 05,14,10, 07,07,07 ; forest foliage
+	RGB 28,31,28, 18,19,31, 01,12,19, 07,07,07 ; water
+	RGB 28,31,28, 31,31,07, 31,16,01, 07,07,07 ; yellow
+	RGB 28,31,28, 22,18,15, 17,13,10, 07,07,07 ; trunks and signs
+	RGB 28,31,28, 15,31,31, 05,17,31, 07,07,07 ; roof
+	RGB 31,31,16, 31,31,16, 14,09,00, 00,00,00 ; text

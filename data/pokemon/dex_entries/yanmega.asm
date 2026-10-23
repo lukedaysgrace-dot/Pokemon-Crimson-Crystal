@@ -1,4 +1,4 @@
-	db "OGRE DARN@" ; category name
+	db "OGRE DARNER@" ; category name
 	dw 603, 1135 ; height, weight
 
 	db   "Huge wings"

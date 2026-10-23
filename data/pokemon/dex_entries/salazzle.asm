@@ -1,5 +1,5 @@
-	db "TOXIC LIZARD@" ; species name
-	dw 311, 485 ; height, weight
+	db "TOXICLIZARD@" ; species name
+	dw 311, 489 ; height, weight
 
 	db   "Only females are"
 	next "known. It keeps a"

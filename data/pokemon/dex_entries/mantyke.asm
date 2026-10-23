@@ -1,5 +1,5 @@
 	db "KITE@" ; species name
-	dw 10, 650 ; height, weight
+	dw 303, 1433 ; height, weight
 
 	db "People organize"
 	next "tours to see this"

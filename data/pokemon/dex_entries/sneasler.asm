@@ -1,5 +1,5 @@
 	db "FREE CLIMB@" ; species name
-	dw 13, 430 ; height, weight
+	dw 403, 948 ; height, weight
 
 	db   "It attacks with"
 	next "the potent poison"

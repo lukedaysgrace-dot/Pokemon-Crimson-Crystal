@@ -1,5 +1,5 @@
 	db "HEAD BUTT@" ; species name
-	dw 16, 1025 ; height, weight
+	dw 503, 2260 ; height, weight
 
 	db   "A charging blow"
 	next "from its head can"

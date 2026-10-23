@@ -1,5 +1,5 @@
 	db "SLUDGE@" ; species name
-	dw 10, 520 ; height, weight
+	dw 303, 1146 ; height, weight
 
 	db   "Muk's coloration"
 	next "becomes increas-"

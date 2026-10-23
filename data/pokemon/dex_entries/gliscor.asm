@@ -1,4 +1,4 @@
-	db "FANG SCORP@" ; category name
+	db "FANGSCORPIO@" ; category name
 	dw 607, 937 ; height, weight
 
 	db   "Silent wings"

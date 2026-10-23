@@ -1,5 +1,5 @@
 	db "EMANATION@" ; species name
-	dw 7, 202 ; height, weight
+	dw 204, 445 ; height, weight
 
 	db   "It can sense"
 	next "emotions through"

@@ -1,4 +1,4 @@
-	db "RAGE@" ; category name
+	db "RAGE MONKEY@" ; category name
 	dw 311, 1235 ; height, weight
 
 	db   "Pure rage"

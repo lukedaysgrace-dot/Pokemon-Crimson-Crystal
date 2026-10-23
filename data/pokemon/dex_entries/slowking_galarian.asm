@@ -1,5 +1,5 @@
 	db "HEXPERT@" ; species name
-	dw 18, 795 ; height, weight
+	dw 511, 1753 ; height, weight
 
 	db   "A combination of"
 	next "toxins and the"

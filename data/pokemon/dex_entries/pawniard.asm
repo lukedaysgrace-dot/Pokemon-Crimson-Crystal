@@ -1,5 +1,5 @@
 	db "SHARP BLADE@" ; species name
-	dw 5, 102 ; height, weight
+	dw 108, 225 ; height, weight
 
 	db   "Blades cover its"
 	next "body and help it"

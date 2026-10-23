@@ -1,5 +1,5 @@
 	db "MEGATON@" ; species name
-	dw 17, 3160 ; height, weight
+	dw 507, 6967 ; height, weight
 
 	db   "It fires rocks"
 	next "charged with elec-"

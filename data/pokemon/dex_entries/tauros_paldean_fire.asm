@@ -1,5 +1,5 @@
 	db "WILD BULL@" ; species name
-	dw 14, 850 ; height, weight
+	dw 407, 1874 ; height, weight
 
 	db   "The 'Blaze Breed's'"
 	next "horns can reach"

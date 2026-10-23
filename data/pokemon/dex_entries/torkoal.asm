@@ -1,5 +1,5 @@
 	db "COAL@" ; species name
-	dw 108, 1571 ; height, weight
+	dw 108, 1773 ; height, weight
 
 	db   "It burns coal"
 	next "inside its shell"

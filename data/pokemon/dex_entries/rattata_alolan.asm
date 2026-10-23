@@ -1,5 +1,5 @@
 	db "MOUSE@" ; species name
-	dw 3, 38 ; height, weight
+	dw 100, 84 ; height, weight
 
 	db   "It has no interest"
 	next "in anything that's"

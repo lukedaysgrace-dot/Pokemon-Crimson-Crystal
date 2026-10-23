@@ -1,4 +1,4 @@
-	db "MAGNET@" ; category name
+	db "MAGNET AREA@" ; category name
 	dw 311, 3968 ; height, weight
 
 	db   "Magnets float"

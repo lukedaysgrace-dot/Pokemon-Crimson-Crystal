@@ -1,5 +1,5 @@
 	db "SHIELD@" ; species name
-	dw 13, 1495 ; height, weight
+	dw 403, 3296 ; height, weight
 
 	db   "It forms a wall"
 	next "with its allies"

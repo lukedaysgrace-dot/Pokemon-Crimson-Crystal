@@ -1,4 +1,4 @@
-	db "THUNDERBOL@" ; category name
+	db "THUNDERBOLT@" ; category name
 	dw 511, 3056 ; height, weight
 
 	db   "Electric cords"

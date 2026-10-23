@@ -1,5 +1,5 @@
 	db "BRIGHT@" ; species name
-	dw 6, 140 ; height, weight
+	dw 200, 309 ; height, weight
 
 	db "It tends to move"
 	next "in a pack. Indiv-"

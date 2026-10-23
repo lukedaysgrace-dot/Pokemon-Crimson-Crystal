@@ -1,5 +1,5 @@
 	db "COCONUT@" ; species name
-	dw 109, 4156 ; height, weight
+	dw 3509, 9162 ; height, weight
 
 	db   "It swings its long"
 	next "neck like a whip"

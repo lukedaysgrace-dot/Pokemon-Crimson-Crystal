@@ -1,5 +1,5 @@
 	db "LAND SNAKE@" ; category name
-	dw 709, 5291 ; height, weight
+	dw 1110, 864 ; height, weight
 
 	db   "Its massive frame"
 	next "shakes the earth"
