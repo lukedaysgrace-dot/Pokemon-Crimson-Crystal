@@ -1,4 +1,4 @@
-	db "FIRE@" ; category name
+	db "FIREWARRIOR@" ; category name
 	dw 411, 1874 ; height, weight
 
 	db   "Armor fused"

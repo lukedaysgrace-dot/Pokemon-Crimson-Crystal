@@ -1,5 +1,5 @@
 	db "LURING@" ; species name
-	dw 303, 758 ; height, weight
+	dw 303, 756 ; height, weight
 
 	db   "Waving its flames,"
 	next "it hypnotizes foes"

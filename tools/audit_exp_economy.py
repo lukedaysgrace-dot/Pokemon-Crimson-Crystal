@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Estimate the Hard Mode EXP economy from trainer party definitions.
+"""Estimate the capped gym portion of Hard Mode from trainer definitions.
 
 Buckets parties by their highest level, including rematches and unused teams.
 This is a screening estimate, not a campaign reachability or grinding proof.
@@ -33,7 +33,7 @@ def _load_caps():
 _CAP_ROWS = _load_caps()
 CAPS = [cap for cap, _ in _CAP_ROWS]
 # One label per cap row, read from the table's comments (the table now runs
-# through Kanto and then the Elite Four; postgame caps are a separate table).
+# through Kanto; progression caps end after Blue).
 LEADERS = [label for _, label in _CAP_ROWS]
 
 # (a, b, c, d, e) -> (a/b)*n^3 + c*n^2 + d*n - e
@@ -159,6 +159,7 @@ def main():
     print(f"Parsed {len(trainers)} trainer parties "
           f"({postgame} above the final cap of {CAPS[-1]}, excluded).")
     print("Estimate includes rematch/unused definitions; levels do not prove story availability.")
+    print("Progression caps end with Blue's sixteenth badge; later fights are outside this capped-gym screen.")
     if unknown:
         print(f"WARNING: {len(unknown)} unresolved species: "
               f"{sorted(unknown)[:8]}")

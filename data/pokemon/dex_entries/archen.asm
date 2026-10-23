@@ -1,10 +1,10 @@
 	db "FIRST BIRD@" ; species name
-	dw 15, 21 ; height, weight
+	dw 108, 209 ; height, weight
 
 	db   "Restored from a"
 	next "fossil, it is said"
-	next "to be the very"
+	next "to be the first"
 
-	page "first bird POKéMON."
-	next "It could not fly,"
-	next "only glide.@"
+	page "bird #MON. It"
+	next "could not fly and"
+	next "could only glide.@"

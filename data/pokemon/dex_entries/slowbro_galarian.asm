@@ -1,5 +1,5 @@
 	db "HERMIT CRAB@" ; species name
-	dw 16, 705 ; height, weight
+	dw 503, 1554 ; height, weight
 
 	db   "A Shellder bite"
 	next "set off a chemical"

@@ -1,5 +1,5 @@
 	db "UNIQUE HORN@" ; species name
-	dw 8, 240 ; height, weight
+	dw 207, 529 ; height, weight
 
 	db   "It will look into"
 	next "your eyes and read"

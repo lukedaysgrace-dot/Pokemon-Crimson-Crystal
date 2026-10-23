@@ -1,5 +1,5 @@
 	db "SCRATCH CAT@" ; species name
-	dw 4, 42 ; height, weight
+	dw 104, 93 ; height, weight
 
 	db   "Highly intelligent"
 	next "and prideful, it's"

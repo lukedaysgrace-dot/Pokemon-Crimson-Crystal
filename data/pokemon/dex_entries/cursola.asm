@@ -5,6 +5,6 @@
 	next "away after long"
 	next "years in the sea."
 
-	page "Its spirit branches"
-	next "wave softly in"
+	page "Its spirit branch-"
+	next "es wave softly in"
 	next "the moonlight.@"

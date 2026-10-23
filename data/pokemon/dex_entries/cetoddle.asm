@@ -1,5 +1,5 @@
 	db "TERRA WHALE@" ; species name
-	dw 12, 450 ; height, weight
+	dw 311, 992 ; height, weight
 
 	db   "It lives in snowy"
 	next "mountains and"

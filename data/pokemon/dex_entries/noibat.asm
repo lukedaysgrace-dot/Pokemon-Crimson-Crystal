@@ -1,5 +1,5 @@
 	db "SOUND WAVE@" ; species name
-	dw 108, 17 ; height, weight
+	dw 108, 176 ; height, weight
 
 	db   "Its huge ears emit"
 	next "waves that people"

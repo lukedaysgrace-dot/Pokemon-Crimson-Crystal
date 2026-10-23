@@ -1,5 +1,5 @@
 	db "LEGENDARY@" ; species name
-	dw 20, 1680 ; height, weight
+	dw 607, 3704 ; height, weight
 
 	db   "Despite its bulk,"
 	next "it deftly feints"

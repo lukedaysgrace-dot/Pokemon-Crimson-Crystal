@@ -1,5 +1,5 @@
 	db "SWORD BLADE@" ; species name
-	dw 16, 700 ; height, weight
+	dw 503, 1543 ; height, weight
 
 	db   "It commands packs"
 	next "of PAWNIARD and"

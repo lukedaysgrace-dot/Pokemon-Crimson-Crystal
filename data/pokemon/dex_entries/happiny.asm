@@ -1,5 +1,5 @@
 	db "PLAYHOUSE@" ; species name
-	dw 6, 244 ; height, weight
+	dw 200, 538 ; height, weight
 
 	db "It carries a"
 	next "round, egg-shaped"

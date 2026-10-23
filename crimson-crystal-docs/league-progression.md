@@ -83,20 +83,19 @@ individual region remain correct.
 
 ## Levels
 
-Hard Mode caps by total badges, before the Hall of Fame:
+Hard Mode caps by total badges:
 
 | Badges | Cap |
 | --- | --- |
 | 0–7 | 10, 16, 20, 25, 30, 34, 38, 45 |
 | 8–15 | 50, 54, 58, 62, 62, 62, 66, 69 |
-| 16 | 73 |
+| 16 | No progression cap |
 
-After the Hall of Fame with sixteen badges, caps follow the next Johto
-rematch: Falkner 77, Bugsy 78, Whitney 79, Morty 80, Chuck 81, Jasmine 82,
-Pryce 83 and Clair 84. Only the consecutive completed rematches advance
-this cap; stray later rematch flags do not skip an unfinished leader.
-After Clair, Mt. Silver has a cap of 90; defeating Red lifts it to 100.
-An old Hall of Fame flag with fewer badges does not skip a cap entry.
+Blue's Earth Badge completes the sixteen-badge set and removes progression-based
+level caps immediately. The first Elite Four, Johto gym rematches, League
+rematches and Mt. Silver all use ordinary leveling, as in Normal Mode. Hall of
+Fame, rematch and Red flags do not change or restore caps. An old Hall of Fame
+flag with fewer than sixteen badges does not bypass the remaining gym caps.
 Normal Mode remains uncapped. Existing event IDs and save layouts stay intact.
 
 | Campaign stretch | Trainer / boss levels | Wild levels |
@@ -175,7 +174,8 @@ milestones, the complete rematch chain, Janine's shoreline, Clair's advice,
 the rematch blockade, map visibility, native fishing routes, and compiled
 boss and encounter levels. The overworld test checks both difficulties and
 every badge count with and without the Hall of Fame flag, plus all 256
-combinations of Johto rematch flags and Red's final cap unlock.
+combinations of Johto rematch flags and both Red states to ensure caps stay
+removed after Blue.
 
 The progression suite also checks all southern-access badge combinations,
 Blue's 14/15-badge departure and migrated map flags, both gender greetings,

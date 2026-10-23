@@ -3,7 +3,7 @@
 
 Parties are sorted by level, including unused and optional parties. This is
 an EXP estimate, not a route simulation or proof of arrival levels. Gate and
-cap order follow the sixteen-badge campaign and Johto rematches before Red.
+cap order follow the sixteen gyms; progression caps end after Blue.
 --solve prints an experimental fixed point; this tool never edits game data.
 """
 
@@ -37,17 +37,14 @@ GATES = [
     ("PRYCE (2)", "PryceR"), ("CLAIR (2)", "ClairR"),
     ("RED (1)", "Red"),
 ]
-# Beating one of these advances to the next cap. The Elite Four share one
-# cap; the Hall of Fame advances into the Johto rematch tiers.
+# Beating one of these advances to the next cap; Blue ends progression caps.
 CAP_STEPS = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine",
              "Pryce", "Clair", "Brock", "Misty", "Surge", "Erika", "Janine",
-             "Sabrina", "Blaine", "Blue", "Lance", "FalknerR", "BugsyR",
-             "WhitneyR", "MortyR", "ChuckR", "JasmineR", "PryceR", "ClairR", "Red"]
-# Main campaign slots, then the event-based rematch caps (17 covers FalknerR).
+             "Sabrina", "Blaine", "Blue"]
+# The sixteen gym caps; later fights use ordinary leveling.
 CAP_GATES = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine",
              "Pryce", "Clair", "Brock", "Misty", "Surge", "Erika", "Janine",
-             "Sabrina", "Blaine", "Blue", "EliteFour", "FalknerR", "BugsyR",
-             "WhitneyR", "MortyR", "ChuckR", "JasmineR", "PryceR", "ClairR", "Red"]
+             "Sabrina", "Blaine", "Blue"]
 
 IMPORTANT = re.compile(
     r"\b(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|"
@@ -112,7 +109,7 @@ def montecarlo(parties, caps, team, skip, trials=150, seed=1):
 def current_caps():
     src = (ROOT / "engine/pokemon/experience.asm").read_text(errors="replace")
     out = []
-    for label in ("HardModeLevelCaps:", "HardModeRematchCaps:"):
+    for label in ("HardModeLevelCaps:",):
         body = src.split(label, 1)[1]
         for line in body.splitlines()[1:]:
             m = re.match(r"\s*db\s+(\d+)", line)
@@ -180,7 +177,7 @@ def main():
     caps = current_caps()
     print("=== Estimated level vs the fight's ace, current data ===")
     print("(Level-sorted trainer definitions; includes unused/optional battles, excludes wild training.)")
-    print("(Caps follow Johto, Kanto, League, Johto rematches, then Red.)\n")
+    print("(Caps follow Johto and Kanto gyms, then end after Blue.)\n")
     report(parties, caps)
     if args.solve:
         print("\n=== Fixed-point solve, targeting '6 mons, normal' ===")

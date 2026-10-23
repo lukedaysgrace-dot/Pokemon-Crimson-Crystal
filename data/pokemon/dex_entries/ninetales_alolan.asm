@@ -1,5 +1,5 @@
 	db "FOX@" ; species name
-	dw 11, 199 ; height, weight
+	dw 307, 439 ; height, weight
 
 	db   "The reason it"
 	next "guides people all"

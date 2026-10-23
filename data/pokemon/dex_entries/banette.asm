@@ -1,5 +1,5 @@
 	db "MARIONETTE@" ; species name
-	dw 307, 275 ; height, weight
+	dw 307, 276 ; height, weight
 
 	db   "An abandoned doll"
 	next "that came to life"

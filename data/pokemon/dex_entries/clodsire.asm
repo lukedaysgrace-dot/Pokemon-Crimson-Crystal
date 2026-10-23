@@ -1,5 +1,5 @@
 	db "SPINY FISH@" ; species name
-	dw 18, 2230 ; height, weight
+	dw 511, 4916 ; height, weight
 
 	db   "When attacked, it"
 	next "will retaliate by"

@@ -1,5 +1,5 @@
 	db "AURORA@" ; species name
-	dw 607, 4120 ; height, weight
+	dw 607, 4123 ; height, weight
 
 	db   "This divine"
 	next "#MON blows"

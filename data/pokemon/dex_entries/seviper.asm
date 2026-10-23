@@ -1,5 +1,5 @@
 	db "FANG SNAKE@" ; species name
-	dw 811, 1157 ; height, weight
+	dw 810, 1157 ; height, weight
 
 	db   "It sharpens its"
 	next "swordlike tail on"

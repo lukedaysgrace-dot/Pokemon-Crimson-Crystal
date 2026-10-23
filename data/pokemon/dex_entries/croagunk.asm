@@ -1,5 +1,5 @@
-	db "TOXIC MOUT@" ; species name
-	dw 10, 100 ; height, weight
+	db "TOXIC MOUTH@" ; species name
+	dw 204, 507 ; height, weight
 
 	db   "This CROAGUNK"
 	next "was newly added"

@@ -1,4 +1,4 @@
-	db "INTIMIDATION@" ; species name
+	db "INTIMIDATE@" ; species name
 	dw 411, 2123 ; height, weight
 
 	db   "Terribly"

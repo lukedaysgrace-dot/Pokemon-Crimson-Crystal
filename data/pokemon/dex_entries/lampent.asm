@@ -1,5 +1,5 @@
 	db "LAMP@" ; species name
-	dw 200, 286 ; height, weight
+	dw 200, 287 ; height, weight
 
 	db   "It lurks near"
 	next "hospitals, waiting"

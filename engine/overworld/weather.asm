@@ -44,6 +44,8 @@ SelectCurrentWeather:
 .outdoors
 	call EnsureDailyWeather
 
+	call CheckViridianForestWeather
+	jr c, .gate
 	call CheckCherrygroveWeather
 	jr c, .gate
 	call CheckLakeOfRageWeather
@@ -318,6 +320,31 @@ GenerateDailyWeather:
 	ld a, e
 	or d
 	pop hl
+	ret
+
+CheckViridianForestWeather:
+	ld a, [wMapGroup]
+	cp GROUP_VIRIDIAN_FOREST
+	jr nz, .not_forest
+	ld a, [wMapNumber]
+	cp MAP_VIRIDIAN_FOREST
+	jr nz, .not_forest
+	; Reuse one fair bit of the saved daily Kanto roll. Its area is uniform
+	; across an even number of choices, giving exactly 50% rain without a
+	; new save field or another roll on entry, reload or time-of-day refresh.
+	assert NUM_KANTO_WEATHER_AREAS % 2 == 0
+	ld a, [wWeatherDailyKanto1]
+	and 1
+	jr z, .clear
+	ld a, OW_WEATHER_RAIN
+	scf
+	ret
+.clear
+	xor a ; OW_WEATHER_NONE
+	scf
+	ret
+.not_forest
+	and a
 	ret
 
 CheckCherrygroveWeather:

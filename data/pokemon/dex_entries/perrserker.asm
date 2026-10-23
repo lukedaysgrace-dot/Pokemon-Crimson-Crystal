@@ -1,5 +1,5 @@
 	db "VIKING@" ; species name
-	dw 8, 280 ; height, weight
+	dw 207, 617 ; height, weight
 
 	db   "After many battles"
 	next "it evolved"

@@ -1,5 +1,5 @@
 	db "AXE JAW@" ; species name
-	dw 18, 1055 ; height, weight
+	dw 511, 2326 ; height, weight
 
 	db   "Its sturdy tusks"
 	next "can cut steel"

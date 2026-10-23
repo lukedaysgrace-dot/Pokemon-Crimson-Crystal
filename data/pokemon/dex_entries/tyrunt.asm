@@ -1,5 +1,5 @@
 	db "ROYAL HEIR@" ; species name
-	dw 8, 260 ; height, weight
+	dw 207, 573 ; height, weight
 
 	db   "Its large jaws can"
 	next "crush almost any"

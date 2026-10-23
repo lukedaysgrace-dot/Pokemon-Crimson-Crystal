@@ -1,5 +1,5 @@
 	db "PROTOTURTLE@" ; species name
-	dw 8, 361 ; height, weight
+	dw 204, 364 ; height, weight
 
 	db   "Restored from a"
 	next "fossil, it lived"
