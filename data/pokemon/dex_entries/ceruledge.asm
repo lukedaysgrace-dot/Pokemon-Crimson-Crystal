@@ -1,4 +1,4 @@
-	db "FIRE@" ; category name
+	db "FIRE BLADES@" ; category name
 	dw 503, 1367 ; height, weight
 
 	db   "Ghost flames"

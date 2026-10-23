@@ -1,5 +1,5 @@
 	db "TUNDRA@" ; species name
-	dw 27, 2250 ; height, weight
+	dw 810, 4960 ; height, weight
 
 	db   "It can create"
 	next "cold air and form"

@@ -1,5 +1,5 @@
 	db "SHARP CLAW@" ; species name
-	dw 9, 270 ; height, weight
+	dw 211, 595 ; height, weight
 
 	db   "Its sturdy claws"
 	next "are ideal for tra-"

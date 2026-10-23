@@ -1,5 +1,5 @@
 	db "DISGUISE@" ; species name
-	dw 2, 7 ; height, weight
+	dw 8, 15 ; height, weight
 
 	db   "It hides under"
 	next "a rag so people"

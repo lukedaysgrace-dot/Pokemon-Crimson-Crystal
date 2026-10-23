@@ -1,5 +1,5 @@
 	db "TUSK@" ; species name
-	dw 6, 180 ; height, weight
+	dw 200, 397 ; height, weight
 
 	db   "It marks trees"
 	next "with its tusks"

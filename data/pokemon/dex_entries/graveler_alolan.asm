@@ -1,5 +1,5 @@
 	db "ROCK@" ; species name
-	dw 10, 1100 ; height, weight
+	dw 303, 2425 ; height, weight
 
 	db   "Its entire body is"
 	next "tinged with elec-"

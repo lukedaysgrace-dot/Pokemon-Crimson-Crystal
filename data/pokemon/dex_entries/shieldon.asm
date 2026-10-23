@@ -1,5 +1,5 @@
 	db "SHIELD@" ; species name
-	dw 5, 570 ; height, weight
+	dw 108, 1257 ; height, weight
 
 	db   "A shieldlike face"
 	next "guards it from"

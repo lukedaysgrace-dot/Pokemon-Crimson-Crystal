@@ -147,6 +147,7 @@ test-qol-followups: pokecrystal.gbc pokecrystal_debug.gbc
 
 test-weather: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_azalea_weather.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_viridian_forest.py pokecrystal.gbc
 
 test-gameplay-rules: pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/gameplay_rules_checks.py

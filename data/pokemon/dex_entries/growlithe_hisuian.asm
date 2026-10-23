@@ -1,5 +1,5 @@
 	db "SCOUT@" ; species name
-	dw 8, 227 ; height, weight
+	dw 207, 500 ; height, weight
 
 	db   "They patrol their"
 	next "territory in"

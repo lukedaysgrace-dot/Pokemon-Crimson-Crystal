@@ -1,5 +1,5 @@
 	db "BONSAI@" ; species name
-	dw 5, 150 ; height, weight
+	dw 108, 331 ; height, weight
 
 	db "It prefers an arid"
 	next "atmposhere. It"

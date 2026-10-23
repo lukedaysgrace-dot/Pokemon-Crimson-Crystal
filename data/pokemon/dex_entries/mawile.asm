@@ -1,5 +1,5 @@
 	db "DECEIVER@" ; species name
-	dw 200, 253 ; height, weight
+	dw 200, 254 ; height, weight
 
 	db   "Its steel jaws are"
 	next "really horns that"

@@ -44,6 +44,9 @@ def main():
             ('pp-max', 'PP_MAX', 1, 'MEW', 20, 100, False),
             ('candies', 'RARE_CANDY', 2, 'MAGIKARP', 10, 20, False),
             ('hard-cap', 'RARE_CANDY', 3, 'MAGIKARP', 9, 20, False),
+            ('before-blue-cap', 'RARE_CANDY', 3, 'MAGIKARP', 68, 20, False),
+            ('after-blue-candies', 'RARE_CANDY', 2, 'MAGIKARP', 73, 20, False),
+            ('after-blue-high', 'RARE_CANDY', 2, 'MAGIKARP', 90, 20, False),
         ]:
             baseline.seek(0)
             h.pyboy.load_state(baseline)
@@ -68,9 +71,9 @@ def main():
             # overworld has loaded its alphabet into VRAM.
             h.call('LoadStandardFont')
             h.call('LoadFontsExtra')
-            if name == 'hard-cap':
-                write('wJohtoBadges', 0)
-                write('wKantoBadges', 0)
+            if name in ('hard-cap', 'before-blue-cap', 'after-blue-candies', 'after-blue-high'):
+                write('wJohtoBadges', 0 if name == 'hard-cap' else 255)
+                write('wKantoBadges', 0 if name == 'hard-cap' else 127 if name == 'before-blue-cap' else 255)
                 write('wStatusFlags', 0)
                 h.call('EngineFlagAction', bc=1 << 8, de=engine_flags['ENGINE_HARD_MODE'])
             menus = []
@@ -104,22 +107,25 @@ def main():
                     raise RuntimeError(f'{name} did not return; menus={menus}, PC={h.reg.PC:04x}\n{text}')
             finally:
                 h.pyboy.hook_deregister(*h.sym['PartyMenuSelect'])
-            expected_menus = 2 if cancel or name == 'hard-cap' else (1 if name == 'full-hp' else amount)
+            capped = name in ('hard-cap', 'before-blue-cap')
+            expected_menus = 2 if cancel or capped else (1 if name == 'full-hp' else amount)
             check(len(menus) == expected_menus, f'{name}: expected {expected_menus} pickers, got {menus}')
             check([qty for qty, _ in menus] == list(range(amount, amount - expected_menus, -1)), f'{name}: picker counts')
             for qty, row in menus:
                 check(enc(str(qty)) in row and 0xF1 in row, f'{name}: visible remaining count missing: {dec(row)}')
-            check(quantity() == (amount - 1 if cancel or name == 'hard-cap' else amount if name == 'full-hp' else 0), f'{name}: wrong consumption')
+            check(quantity() == (amount - 1 if cancel or capped else amount if name == 'full-hp' else 0), f'{name}: wrong consumption')
             if name == 'potions':
                 check(h.rd(h.s('wPartyMon1HP'), 2) == bytes([0, 41]), 'native repeated Potion healing')
             elif name == 'vitamins':
                 check(h.rd(h.s('wPartyMon1AtkExp')) == 20, 'native repeated vitamins')
             elif name in ('pp-ups', 'pp-max'):
                 check(h.rd(h.s('wPartyMon1PP')) >> 6 == 3, 'native repeated PP Ups')
-            elif name == 'candies':
+            elif name in ('candies', 'after-blue-candies', 'after-blue-high'):
                 check(h.rd(h.s('wPartyMon1Level')) == level + amount, 'native repeated Rare Candies')
             elif name == 'hard-cap':
                 check(h.rd(h.s('wPartyMon1Level')) == 10, 'repeated Rare Candies bypassed Hard cap')
+            elif name == 'before-blue-cap':
+                check(h.rd(h.s('wPartyMon1Level')) == 69, 'Rare Candies bypassed Blue\'s pre-battle cap')
             print(f'{name}: native menus passed ({len(menus)} party selections).', flush=True)
         print(f'CONSUMABLE UI TESTS PASSED: {checks} checks.', flush=True)
     finally:

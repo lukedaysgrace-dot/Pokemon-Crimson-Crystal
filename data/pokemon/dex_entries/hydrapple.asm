@@ -1,5 +1,5 @@
-	db "APPLE HYDR@" ; species name
-	dw 10, 100 ; height, weight
+	db "APPLE HYDRA@" ; species name
+	dw 511, 2050 ; height, weight
 
 	db   "This HYDRAPPLE"
 	next "was newly added"

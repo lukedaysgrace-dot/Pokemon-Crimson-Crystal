@@ -132,7 +132,7 @@
       "category": "rules",
       "title": "Hard Mode level caps",
       "before": "No badge-based player level cap.",
-      "after": "The main challenge requires all 16 badges: Johto, then Kanto, then the League. Johto caps are 10, 16, 20, 25, 30, 34, 38 and 45. Kanto caps are 50, 54, 58, 62, 62, 62, 66 and 69; the League cap is 73. Johto gym rematches advance caps from 77 to 84, then Mt. Silver uses 90; defeating Red lifts the cap to 100.",
+      "after": "The main challenge requires all 16 badges: Johto, then Kanto, then the League. Johto caps are 10, 16, 20, 25, 30, 34, 38 and 45. Kanto caps are 50, 54, 58, 62, 62, 62, 66 and 69. Earning Blue’s Earth Badge as the sixteenth badge removes progression-based level caps. The Elite Four, gym rematches and Mt. Silver have no progression cap.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [
@@ -145,7 +145,7 @@
       "category": "rules",
       "title": "Hard Mode experience bonus",
       "before": "Trainer battles award 1.5× base experience.",
-      "after": "Hard Mode trainer battles award 2× base experience, with progression constrained by the current level cap. Normal keeps the 1.5× trainer bonus.",
+      "after": "Hard Mode trainer battles award 2× base experience. Badge-based level caps apply until Blue awards the sixteenth badge, then leveling is unrestricted by progression. Normal keeps the 1.5× trainer bonus.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [
@@ -449,6 +449,21 @@
       "kind": "exception",
       "sources": [
         "engine/events/poisonstep.asm"
+      ],
+      "links": []
+    },
+    {
+      "id": "viridian-forest-rain",
+      "category": "weather",
+      "title": "Viridian Forest rain and restless trees",
+      "before": "Viridian Forest does not have its own daily rain or animated forest trees.",
+      "after": "Viridian Forest keeps its custom green palette throughout the day and night. Each day has a 50% chance of rain, remembered when you leave and return. During rain, its large trees sway with the Celebi-style animation.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "engine/overworld/weather.asm",
+        "engine/tilesets/tileset_anims.asm",
+        "maps/ViridianForest.pal"
       ],
       "links": []
     },

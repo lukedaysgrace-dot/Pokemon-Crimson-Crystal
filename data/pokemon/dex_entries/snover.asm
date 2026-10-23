@@ -1,5 +1,5 @@
 	db "FROST TREE@" ; species name
-	dw 10, 100 ; height, weight
+	dw 303, 1113 ; height, weight
 
 	db   "This SNOVER"
 	next "was newly added"

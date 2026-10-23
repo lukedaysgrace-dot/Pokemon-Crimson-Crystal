@@ -1,5 +1,5 @@
 	db "CORAL@" ; species name
-	dw 6, 5 ; height, weight
+	dw 200, 11 ; height, weight
 
 	db   "Sudden climate"
 	next "change wiped out"

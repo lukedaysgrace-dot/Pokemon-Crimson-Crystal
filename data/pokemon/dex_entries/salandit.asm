@@ -1,5 +1,5 @@
-	db "TOXIC LIZARD@" ; species name
-	dw 24, 105 ; height, weight
+	db "TOXICLIZARD@" ; species name
+	dw 200, 106 ; height, weight
 
 	db   "It burns its own"
 	next "poison to make a"

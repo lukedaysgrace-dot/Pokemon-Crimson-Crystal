@@ -53,15 +53,14 @@ UpdateLevelCap::
 	ld hl, wBadges
 	ld b, 2
 	call CountSetBits
-	ld e, a
-	ld hl, wStatusFlags
-	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
-	jr z, .load_cap
 	cp NUM_BADGES
 	jr c, .load_cap
-	jr .postgame
+	; Blue's final badge ends progression caps, as in Normal Mode.
+	ld a, MAX_LEVEL
+	jr .store_cap
 
 .load_cap
+	ld e, a
 	ld d, 0
 	ld hl, HardModeLevelCaps
 	add hl, de
@@ -70,41 +69,10 @@ UpdateLevelCap::
 	ld [wLevelCap], a
 	ret
 
-.postgame
-	ld de, EVENT_BEAT_RED
-	ld b, CHECK_FLAG
-	farcall EventFlagAction
-	ld a, c
-	and a
-	ld a, MAX_LEVEL
-	jr nz, .store_cap
-	ld hl, HardModeRematchCaps
-	ld de, EVENT_BEAT_FALKNER_REMATCH
-	ld c, NUM_JOHTO_BADGES
-.next_rematch
-	push hl
-	push de
-	push bc
-	ld b, CHECK_FLAG
-	farcall EventFlagAction
-	ld a, c
-	pop bc
-	pop de
-	pop hl
-	and a
-	jr z, .rematch_cap
-	inc hl
-	inc de
-	dec c
-	jr nz, .next_rematch
-.rematch_cap
-	ld a, [hl]
-	jr .store_cap
-
 HardModeLevelCaps:
-; Indexed by total badge count: Johto, then Kanto, then the League at 16.
+; Indexed by total badge count before Blue awards the sixteenth badge.
 ; Erika, Janine and Sabrina share a tier so any order works.
-; After the Hall of Fame with all 16 badges, follow the rematch caps below.
+; All sixteen badges use ordinary leveling, without progression caps.
 ; tools/audit_exp_economy.py reads this table for EXP screening estimates.
 	db 10 ; Falkner
 	db 16 ; Bugsy
@@ -122,21 +90,7 @@ HardModeLevelCaps:
 	db 62 ; Erika / Janine / Sabrina, third
 	db 66 ; Blaine
 	db 69 ; Blue
-	db 73 ; Elite Four, all 16 badges
-	assert @ - HardModeLevelCaps == NUM_BADGES + 1
-
-HardModeRematchCaps:
-	db 77 ; Falkner rematch
-	db 78 ; Bugsy rematch
-	db 79 ; Whitney rematch
-	db 80 ; Morty rematch
-	db 81 ; Chuck rematch
-	db 82 ; Jasmine rematch
-	db 83 ; Pryce rematch
-	db 84 ; Clair rematch
-	db 90 ; Mt. Silver / Red (Elite Four rematches are optional)
-	assert @ - HardModeRematchCaps == NUM_JOHTO_BADGES + 1
-	assert EVENT_BEAT_CLAIR_REMATCH - EVENT_BEAT_FALKNER_REMATCH == NUM_JOHTO_BADGES - 1
+	assert @ - HardModeLevelCaps == NUM_BADGES
 
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e

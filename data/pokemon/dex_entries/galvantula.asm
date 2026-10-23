@@ -1,5 +1,5 @@
 	db "ELESPIDER@" ; species name
-	dw 207, 313 ; height, weight
+	dw 207, 315 ; height, weight
 
 	db   "It spins webs of"
 	next "charged silk to"

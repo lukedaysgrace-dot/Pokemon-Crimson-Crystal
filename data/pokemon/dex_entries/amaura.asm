@@ -1,5 +1,5 @@
 	db "TUNDRA@" ; species name
-	dw 13, 252 ; height, weight
+	dw 403, 556 ; height, weight
 
 	db   "It was restored"
 	next "from a fossil kept"

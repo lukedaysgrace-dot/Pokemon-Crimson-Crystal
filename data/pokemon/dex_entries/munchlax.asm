@@ -1,5 +1,5 @@
 	db "BIG EATER@" ; species name
-	dw 6, 1050 ; height, weight
+	dw 200, 2315 ; height, weight
 
 	db   "It hides food"
 	next "under its fur and"

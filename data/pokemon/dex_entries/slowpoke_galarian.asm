@@ -1,5 +1,5 @@
 	db "DOPEY@" ; species name
-	dw 12, 360 ; height, weight
+	dw 311, 794 ; height, weight
 
 	db   "Although normally"
 	next "zoned out, its ex-"

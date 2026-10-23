@@ -1,5 +1,5 @@
 	db "POISON PIN@" ; species name
-	dw 207, 440 ; height, weight
+	dw 207, 441 ; height, weight
 
 	db   "It has a docile"
 	next "nature. If it is"

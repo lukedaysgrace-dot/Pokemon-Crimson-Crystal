@@ -1,5 +1,5 @@
 	db "SPHERE@" ; species name
-	dw 12, 710 ; height, weight
+	dw 311, 1565 ; height, weight
 
 	db   "The tissue on the"
 	next "surface of its"

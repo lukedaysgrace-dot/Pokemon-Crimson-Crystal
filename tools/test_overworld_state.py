@@ -287,7 +287,7 @@ def main():
             check(bool(read('wWeatherDailyFlags') & 128) == (old == day), f'daily {old}->{day}: weather validity')
 
     print('[level caps: both difficulties, every badge count, Hall of Fame]', flush=True)
-    caps = [10, 16, 20, 25, 30, 34, 38, 45, 50, 54, 58, 62, 62, 62, 66, 69, 73]
+    caps = [10, 16, 20, 25, 30, 34, 38, 45, 50, 54, 58, 62, 62, 62, 66, 69, 100]
     rematches = ['FALKNER', 'BUGSY', 'WHITNEY', 'MORTY', 'CHUCK', 'JASMINE', 'PRYCE', 'CLAIR']
     for leader in rematches:
         event(f'EVENT_BEAT_{leader}_REMATCH', False)
@@ -299,24 +299,46 @@ def main():
         write('wJohtoBadges', min((1 << min(badge_count, 8)) - 1, 255))
         write('wKantoBadges', (1 << max(badge_count - 8, 0)) - 1)
         h.call('UpdateLevelCap')
-        expected = (77 if hall and badge_count == 16 else caps[badge_count]) if hard else 100
+        expected = caps[badge_count] if hard else 100
         check(read('wLevelCap') == expected, f'cap hard={hard}, hall={hall}, badges={badge_count}')
 
-    print('[postgame caps: every rematch flag combination, then Red]', flush=True)
+    print('[sixteenth-badge boundary: each missing badge retains Blue\'s cap]', flush=True)
+    engine_flag('ENGINE_HARD_MODE', True)
+    for missing in range(16):
+        owned = 0xffff ^ (1 << missing)
+        write('wJohtoBadges', owned & 255)
+        write('wKantoBadges', owned >> 8)
+        h.call('UpdateLevelCap')
+        check(read('wLevelCap') == 69, f'missing badge {missing}: gym cap ended early')
+
+    print('[EXP calculation: gym caps stop applying after Blue without Hall of Fame]', flush=True)
+    write('wStatusFlags', read('wStatusFlags') & ~hall_mask)
+    for badges_owned, target, expected in ((15, 75, 69), (16, 75, 75), (16, 92, 92)):
+        info = h.build_temp_mon(con.species_index('MEW'), [con.move_index('TACKLE'), 0, 0, 0], level=target)
+        write('wCurSpecies', info['sid'])
+        h.call('GetBaseData')
+        h.call('CalcExpAtLevel', de=target << 8)
+        write('wTempMonExp', h.rd(h.s('hProduct') + 1, 3))
+        write('wJohtoBadges', 255)
+        write('wKantoBadges', 127 if badges_owned == 15 else 255)
+        h.call('UpdateLevelCap')
+        result = h.call('CalcLevel')
+        check(result['d'] == expected,
+              f'EXP-derived level: badges={badges_owned}, target={target}, got {result["d"]}')
+
+    print('[after Blue: rematch and Red flags never restore progression caps]', flush=True)
     write('wJohtoBadges', 255)
     write('wKantoBadges', 255)
     write('wStatusFlags', read('wStatusFlags') | hall_mask)
     for mask in range(256):
         for index, leader in enumerate(rematches):
             event(f'EVENT_BEAT_{leader}_REMATCH', bool(mask & (1 << index)))
-        first_missing = next((i for i in range(8) if not mask & (1 << i)), 8)
         for hard, red in product((False, True), repeat=2):
             engine_flag('ENGINE_HARD_MODE', hard)
             event('EVENT_BEAT_RED', red)
             h.call('UpdateLevelCap')
-            expected = 100 if not hard or red else 77 + first_missing if first_missing < 8 else 90
-            check(read('wLevelCap') == expected,
-                  f'postgame cap: mask={mask:#x}, hard={hard}, Red={red}')
+            check(read('wLevelCap') == 100,
+                  f'progression cap returned after Blue: mask={mask:#x}, hard={hard}, Red={red}')
 
     print('[Save/load: weather cache and daily-state fields]', flush=True)
     write('wPartyCount', 0)

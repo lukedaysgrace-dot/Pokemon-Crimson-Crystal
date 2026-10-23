@@ -35,7 +35,6 @@ _AnimateTileset::
 
 Tileset0Anim:
 TilesetJohtoModernAnim:
-TilesetKantoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -44,6 +43,19 @@ TilesetKantoAnim:
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  StandingTileFrame8
+	dw NULL,  DoneTileAnimation
+
+TilesetKantoAnim:
+	dw vTiles2 tile $14, AnimateWaterTile
+	dw ViridianForestTreeLeft, AnimateViridianForestTree
+	dw ViridianForestTreeRight, AnimateViridianForestTree
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw ViridianForestTreeLeft2, AnimateViridianForestTree
+	dw NULL,  AnimateFlowerTile
+	dw ViridianForestTreeRight2, AnimateViridianForestTree
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
@@ -465,6 +477,78 @@ AnimateWaterTile:
 
 WaterTileFrames:
 	INCBIN "gfx/tilesets/water/water.2bpp"
+
+; Block $94's upper corners are the same two base tiles used by Ilex's
+; restless trees, stored at $0a/$0d in VRAM bank 1 instead of $0c/$0f in bank 0.
+ViridianForestTreeLeft:
+	dw vTiles2 tile $0a, ForestTreeLeftFrames
+	db 0
+ViridianForestTreeRight:
+	dw vTiles2 tile $0d, ForestTreeRightFrames
+	db 0
+ViridianForestTreeLeft2:
+	dw vTiles2 tile $0a, ForestTreeLeftFrames
+	db 2
+ViridianForestTreeRight2:
+	dw vTiles2 tile $0d, ForestTreeRightFrames
+	db 2
+
+AnimateViridianForestTree:
+	ld a, [wMapGroup]
+	cp GROUP_VIRIDIAN_FOREST
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_VIRIDIAN_FOREST
+	ret nz
+	; de points to destination, frames and alternating phase.
+	ld h, d
+	ld l, e
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	inc hl
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_RAIN
+	jr z, .rain
+	cp OW_WEATHER_THUNDERSTORM
+	jr z, .rain
+	xor a ; restore the original, still tree when dry
+	jr .frame
+.rain
+	ld a, [wTileAnimationTimer]
+	call GetForestTreeFrame
+	xor [hl]
+.frame
+	add a
+	add a
+	add a ; frame 0/2 -> byte offset 0/16
+	add c
+	ld l, a
+	ld a, 0
+	adc b
+	ld h, a
+	ldh a, [rVBK]
+	push af
+	ld a, 1
+	ldh [rVBK], a
+	call .write_tile
+	pop af
+	ldh [rVBK], a
+	ret
+.write_tile
+	push hl
+	ld hl, sp+2
+	ld b, h
+	ld c, l
+	pop hl
+	ld sp, hl
+	ld h, d
+	ld l, e
+	jp WriteTile
 
 ForestTreeLeftAnimation:
 	ld hl, sp+0

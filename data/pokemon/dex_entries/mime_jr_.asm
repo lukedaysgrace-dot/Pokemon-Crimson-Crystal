@@ -1,5 +1,5 @@
 	db "MIME@" ; species name
-	dw 6, 130 ; height, weight
+	dw 200, 287 ; height, weight
 
 	db "It mimics the"
 	next "expressions and"

@@ -1,5 +1,5 @@
-	db "CANDY APP@" ; species name
-	dw 10, 100 ; height, weight
+	db "CANDY APPLE@" ; species name
+	dw 104, 214 ; height, weight
 
 	db   "This DIPPLIN"
 	next "was newly added"

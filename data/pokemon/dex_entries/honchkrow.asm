@@ -1,5 +1,5 @@
 	db "BIG BOSS@" ; species name
-	dw 211, 2730 ; height, weight
+	dw 211, 602 ; height, weight
 
 	db   "It gathers shiny"
 	next "objects and keeps"

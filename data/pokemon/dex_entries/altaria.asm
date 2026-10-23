@@ -1,5 +1,5 @@
 	db "HUMMING@" ; species name
-	dw 10, 100 ; height, weight
+	dw 307, 454 ; height, weight
 
 	db   "This ALTARIA"
 	next "was newly added"

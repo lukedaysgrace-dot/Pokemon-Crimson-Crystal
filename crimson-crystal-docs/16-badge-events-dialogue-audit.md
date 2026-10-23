@@ -4,6 +4,11 @@ Audit date: October 14, 2026. The original findings below describe the source be
 
 ## Resolution
 
+October 22 cap update: earning Blue's Earth Badge as the sixteenth badge now
+removes progression-based level caps. The first League and all postgame fights
+use ordinary leveling. Cap schedules mentioned in the historical findings below
+describe the earlier implementation.
+
 The requested fixes are implemented. The current campaign rules are documented in [league-progression.md](C:/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/crimson-crystal-docs/league-progression.md:1).
 
 - Blue remains on Cinnabar below fifteen badges, including migrated saves. His departure, gym battle and map visibility use the same requirement. Earned badges are preserved.
