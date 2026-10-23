@@ -20,6 +20,20 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
 
+`make test-engine-optimizations` verifies the unrolled copy/fill routines against
+the previous ROM loops, measures their CPU cost, and checks scrolling, palettes,
+simultaneous font/sprite uploads, every tileset animation command, two-part PC
+DMA, and deferred VBlank interrupts with the real PPU running. It also plays
+native New Game, walking, rain/snow, menus, PC/summary, battles and Save/Continue
+flows. Initial party/location/weather fixtures use private emulator memory;
+player saves are never opened. Captures are under
+`.tmpbuild/engine-optimizations-ui/` and `.tmpbuild/engine-opt-pc/`.
+
+Battle fixtures now explicitly select enhanced types/stats and abilities on
+through the New Game menus. The cache uses a `rules-v2` tag so old fixtures
+created by timed button mashing cannot silently disable abilities after an
+engine timing change.
+
 `python3 tools/battletest/olivine_muscle_band_checks.py` checks Olivine Port's
 right-facing sailor, animated Machamp icon, one-time Muscle Band gift, full-Bag
 retry and follow-up dialogue through native A-button interactions. It also
