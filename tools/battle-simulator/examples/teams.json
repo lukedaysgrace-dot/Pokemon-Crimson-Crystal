@@ -1,0 +1,182 @@
+{
+  "name": "Six-member teams / native switching and hazards",
+  "seed": 1729,
+  "max_turns": 100,
+  "player": [
+    {
+      "species": "GENGAR",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "LEVITATE",
+      "moves": [
+        "SLUDGE_BOMB",
+        "SHADOW_BALL",
+        "THUNDERBOLT",
+        "HYPER_BEAM"
+      ]
+    },
+    {
+      "species": "SNORLAX",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "THICK_FAT",
+      "moves": [
+        "SELFDESTRUCT",
+        "OUTRAGE",
+        "SUPERPOWER",
+        "EARTHQUAKE"
+      ]
+    },
+    {
+      "species": "MACHAMP",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "GUTS",
+      "moves": [
+        "CLOSE_COMBAT",
+        "SKULL_BASH",
+        "EARTHQUAKE",
+        "STONE_EDGE"
+      ]
+    },
+    {
+      "species": "ALAKAZAM",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "MAGIC_GUARD",
+      "moves": [
+        "FUTURE_SIGHT",
+        "GRASS_KNOT",
+        "HYPER_BEAM",
+        "FOCUS_BLAST"
+      ]
+    },
+    {
+      "species": "TYRANITAR",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "SAND_STREAM",
+      "moves": [
+        "FOUL_PLAY",
+        "STONE_EDGE",
+        "OUTRAGE",
+        "SUPERPOWER"
+      ]
+    },
+    {
+      "species": "DRAGONITE",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "MARVEL_SCALE",
+      "moves": [
+        "OUTRAGE",
+        "SKULL_BASH",
+        "FLY",
+        "SUPERPOWER"
+      ]
+    }
+  ],
+  "enemy": [
+    {
+      "species": "MEW",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "SYNCHRONIZE",
+      "moves": [
+        "FUTURE_SIGHT",
+        "EXPLOSION",
+        "SKY_ATTACK",
+        "SOLAR_BLADE"
+      ]
+    },
+    {
+      "species": "BLISSEY",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "SERENE_GRACE",
+      "moves": [
+        "HYPER_BEAM",
+        "SOLARBEAM",
+        "FIRE_BLAST",
+        "ICE_BEAM"
+      ]
+    },
+    {
+      "species": "SALAMENCE",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "INTIMIDATE",
+      "moves": [
+        "OUTRAGE",
+        "FLY",
+        "SUPERPOWER",
+        "THRASH"
+      ]
+    },
+    {
+      "species": "SKARMORY",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "IRON_BARBS",
+      "moves": [
+        "SKY_ATTACK",
+        "IRON_HEAD",
+        "GIGA_IMPACT",
+        "BODY_PRESS"
+      ]
+    },
+    {
+      "species": "GYARADOS",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "INTIMIDATE",
+      "moves": [
+        "SKULL_BASH",
+        "WATERFALL",
+        "OUTRAGE",
+        "BOUNCE"
+      ]
+    },
+    {
+      "species": "FORRETRESS",
+      "level": 100,
+      "dvs": 65535,
+      "happiness": 255,
+      "item": "NO_ITEM",
+      "ability": "STURDY",
+      "moves": [
+        "EXPLOSION",
+        "IRON_HEAD",
+        "EARTHQUAKE",
+        "BUG_BITE"
+      ]
+    }
+  ],
+  "scripts": {
+    "player": [
+      "switch:6"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Low Kick uses Snorlax's coded 460 kg weight",
+  "seed": 100,
+  "max_turns": 1,
+  "player": {"species": "MACHAMP", "ability": "GUTS", "moves": ["LOW_KICK"]},
+  "enemy": {"species": "SNORLAX", "ability": "IMMUNITY", "moves": ["DEFENSE_CURL"]},
+  "scripts": {"player": [1], "enemy": [1]},
+  "assertions": [{"turn": 1, "path": "actions.0.damage_attempts.0.base_power", "op": "eq", "value": 120}]
+}

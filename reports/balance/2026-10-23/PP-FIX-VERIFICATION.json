@@ -1,0 +1,10 @@
+{
+  "unit_tests": 18,
+  "native_integration_scenarios": 10,
+  "transport": "lab-v2",
+  "source_sha256": "05b5c1398f0a7eb1e8bc950b3aadefa723bbfb990f9d12a7690a371d76791c59",
+  "rom_sha256": "7abd0bd922776ec7aadd8706d1c378bf22583005b914b5b247cacceedcb66499",
+  "engine_sha256": "fe8b96aa8f31b5e9119c126aa5c4956260e7290cd54f3e547b3b36995ff1629c",
+  "unit_log_sha256": "e44d16dba55f859988fde64dc1fc1c485f71d424f0d042e675ab79984451eed3",
+  "native_log_sha256": "38a21e1d00356ea7501d396c4a7c5b03c31829db5a41c297865959a2292c5f96"
+}
