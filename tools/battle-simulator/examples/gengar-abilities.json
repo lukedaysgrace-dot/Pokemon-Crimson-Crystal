@@ -1,0 +1,17 @@
+{
+  "name": "Controlled Gengar ability comparison",
+  "mode": "cross-pool",
+  "subject_count": 3,
+  "builds": [
+    {"species": "GENGAR", "ability": "LEVITATE", "item": "LEFTOVERS", "moves": ["SHADOW_BALL", "SLUDGE_BOMB", "TOXIC", "PROTECT"]},
+    {"species": "GENGAR", "ability": "CURSED_BODY", "item": "LEFTOVERS", "moves": ["SHADOW_BALL", "SLUDGE_BOMB", "TOXIC", "PROTECT"]},
+    {"species": "GENGAR", "ability": "MERCILESS", "item": "LEFTOVERS", "moves": ["SHADOW_BALL", "SLUDGE_BOMB", "TOXIC", "PROTECT"]},
+    {"species": "MACHAMP", "ability": "GUTS", "moves": ["EARTHQUAKE", "KNOCK_OFF", "BULLET_PUNCH", "BULK_UP"]},
+    {"species": "SNORLAX", "ability": "IMMUNITY", "moves": ["CRUNCH", "REST", "BODY_SLAM", "CURSE"]},
+    {"species": "ALAKAZAM", "ability": "MAGIC_GUARD", "moves": ["PSYCHIC_M", "SHADOW_BALL", "RECOVER", "CALM_MIND"]}
+  ],
+  "repetitions": 4,
+  "seed": 20261023,
+  "max_turns": 100,
+  "policies": ["tactical", "tactical"]
+}

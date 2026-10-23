@@ -1,0 +1,9 @@
+{
+  "name": "Gengar's Levitate against a legal Earthquake user",
+  "seed": 1729,
+  "max_turns": 10,
+  "player": {"species": "GENGAR", "ability": "LEVITATE", "moves": ["SHADOW_BALL", "THUNDERBOLT", "TOXIC", "PROTECT"]},
+  "enemy": {"species": "MACHAMP", "ability": "GUTS", "moves": ["EARTHQUAKE", "BULLET_PUNCH", "LOW_KICK", "BULK_UP"]},
+  "scripts": {"player": [1], "enemy": [1]},
+  "assertions": [{"turn": 1, "path": "player.hp", "op": "eq", "value": 260, "message": "Earthquake must not damage full-health level-100 Levitate Gengar with maximum DVs and zero stat experience"}]
+}
