@@ -22,17 +22,14 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overgrow",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mega Sol",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -445,17 +442,14 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overgrow",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mega Sol",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -860,17 +854,14 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mega Sol",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Triage",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -1350,17 +1341,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flash Fire",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -1806,17 +1794,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flash Fire",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -2318,17 +2303,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flash Fire",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -2857,17 +2839,14 @@
     "ability_slots": [
       {
         "name": "Strong Jaw",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -3359,17 +3338,14 @@
     "ability_slots": [
       {
         "name": "Strong Jaw",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -3907,17 +3883,14 @@
     "ability_slots": [
       {
         "name": "Strong Jaw",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -4452,17 +4425,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tangled Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Big Pecks",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -4869,17 +4839,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tangled Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Big Pecks",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -5252,17 +5219,14 @@
     "ability_slots": [
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Big Pecks",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -5649,17 +5613,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -6064,17 +6025,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -6512,17 +6470,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -6925,17 +6880,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -7347,17 +7299,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -7766,17 +7715,14 @@
     "ability_slots": [
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -8216,17 +8162,14 @@
     "ability_slots": [
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -8667,17 +8610,14 @@
     "ability_slots": [
       {
         "name": "Drought",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "White Smoke",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Shell Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -9135,17 +9075,14 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -9574,17 +9511,14 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -10042,17 +9976,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -10536,17 +10467,14 @@
     "ability_slots": [
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Fur Coat",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -11083,17 +11011,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -11455,17 +11380,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -12057,17 +11979,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -12564,17 +12483,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -13089,12 +13005,10 @@
     "ability_slots": [
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shield Dust",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -13257,12 +13171,10 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shield Dust",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -13416,17 +13328,14 @@
     "ability_slots": [
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Effect Spore",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -13901,12 +13810,10 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shield Dust",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -14110,12 +14017,10 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shield Dust",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -14258,17 +14163,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Touch",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -14866,17 +14768,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -15310,17 +15209,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -15821,17 +15717,14 @@
     "ability_slots": [
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -16239,17 +16132,14 @@
     "ability_slots": [
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -16713,17 +16603,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -17162,17 +17049,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -17650,17 +17534,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -18131,17 +18012,14 @@
     "ability_slots": [
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -18577,17 +18455,14 @@
     "ability_slots": [
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -19061,17 +18936,14 @@
     "ability_slots": [
       {
         "name": "Merciless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -19553,12 +19425,10 @@
     "ability_slots": [
       {
         "name": "Cute Charm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -19948,12 +19818,10 @@
     "ability_slots": [
       {
         "name": "Cute Charm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -20522,17 +20390,14 @@
     "ability_slots": [
       {
         "name": "Cute Charm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unaware",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -21093,17 +20958,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cute Charm",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -21519,17 +21381,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -22117,17 +21976,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -22713,17 +22569,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -23159,17 +23012,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -23679,17 +23529,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -24229,17 +24076,14 @@
     "ability_slots": [
       {
         "name": "Sand Veil",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sand Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -24744,17 +24588,14 @@
     "ability_slots": [
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sand Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -25249,17 +25090,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anger Point",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -25675,17 +25513,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anger Point",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -26131,17 +25966,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anger Point",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -26611,17 +26443,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -27129,17 +26958,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Strong Jaw",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -27620,17 +27446,14 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rattled",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Run Away",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -28157,17 +27980,14 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rattled",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Run Away",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -28715,12 +28535,10 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Fluffy",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -29094,12 +28912,10 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Fluffy",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -29549,17 +29365,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -30026,17 +29839,14 @@
     "ability_slots": [
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unaware",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -30484,17 +30294,14 @@
     "ability_slots": [
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unaware",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -30954,17 +30761,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -31416,17 +31220,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -31872,17 +31673,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -32414,12 +32212,10 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -32544,17 +32340,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -33013,17 +32806,14 @@
     "ability_slots": [
       {
         "name": "Sand Force",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -33490,12 +33280,10 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -33919,17 +33707,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -34331,17 +34116,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -34764,17 +34546,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -35163,17 +34942,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -35569,17 +35345,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Infiltrator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -35957,17 +35730,14 @@
     "ability_slots": [
       {
         "name": "Effect Spore",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Oblivious",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -36370,17 +36140,14 @@
     "ability_slots": [
       {
         "name": "Effect Spore",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Regenerator",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -36839,17 +36606,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -37260,17 +37024,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -37711,17 +37472,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -38234,17 +37992,14 @@
     "ability_slots": [
       {
         "name": "Drizzle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -38696,12 +38451,10 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rattled",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -38875,12 +38628,10 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -39377,17 +39128,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Adaptability",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -39704,17 +39452,14 @@
     "ability_slots": [
       {
         "name": "Marvel Scale",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Wonder Skin",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -40164,17 +39909,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Veil",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Lightning Rod",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -40584,17 +40326,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Lightning Rod",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -41004,17 +40743,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -41493,17 +41229,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -42092,17 +41825,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -42727,12 +42457,10 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Run Away",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -43109,17 +42837,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Stench",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -43538,17 +43263,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Effect Spore",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -43955,17 +43677,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Triage",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -44433,17 +44152,14 @@
     "ability_slots": [
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -44955,17 +44671,14 @@
     "ability_slots": [
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Bad Dreams",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -45461,17 +45174,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -45864,17 +45574,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -46337,17 +46044,14 @@
     "ability_slots": [
       {
         "name": "Magic Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -46808,7 +46512,6 @@
     "ability_slots": [
       {
         "name": "Imposter",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -46953,17 +46656,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Aftermath",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Overcoat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -47342,12 +47042,10 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overcoat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -47810,17 +47508,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hustle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -48242,17 +47937,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hustle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -48678,17 +48370,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -49275,17 +48964,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hustle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -49705,17 +49391,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hustle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -50167,17 +49850,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -50746,17 +50426,14 @@
     "ability_slots": [
       {
         "name": "Speed Boost",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -51192,17 +50869,14 @@
     "ability_slots": [
       {
         "name": "Speed Boost",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Frisk",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -51782,17 +51456,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Solar Power",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Early Bird",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -52157,17 +51828,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Solar Power",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drought",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -52575,12 +52243,10 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Harvest",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -53055,12 +52721,10 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Harvest",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -53565,17 +53229,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rattled",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -54005,17 +53666,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rattled",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -54459,7 +54117,6 @@
     "ability_slots": [
       {
         "name": "Shadow Tag",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -54680,7 +54337,6 @@
     "ability_slots": [
       {
         "name": "Shadow Tag",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -54826,17 +54482,14 @@
     "ability_slots": [
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Run Away",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -55286,17 +54939,14 @@
     "ability_slots": [
       {
         "name": "Tinted Lens",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Wonder Skin",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -55802,17 +55452,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -56283,17 +55930,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hyper Cutter",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -56765,17 +56409,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -57280,17 +56921,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -57706,17 +57344,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Skill Link",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -58156,17 +57791,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Neutralizing Gas",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Stench",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -58586,17 +58218,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Neutralizing Gas",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Stench",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -59011,17 +58640,14 @@
     "ability_slots": [
       {
         "name": "Stench",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sticky Hold",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Touch",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -59501,17 +59127,14 @@
     "ability_slots": [
       {
         "name": "Regenerator",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sticky Hold",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Touch",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -60002,17 +59625,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Levitate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -60384,17 +60004,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Levitate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -60791,17 +60408,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Levitate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -61213,17 +60827,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Static",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Aftermath",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -61635,17 +61246,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Static",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Aftermath",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -61980,17 +61588,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Skill Link",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -62450,17 +62055,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Skill Link",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -62940,17 +62542,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rattled",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -63477,17 +63076,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Strong Jaw",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -64012,17 +63608,14 @@
     "ability_slots": [
       {
         "name": "Drought",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -64456,17 +64049,14 @@
     "ability_slots": [
       {
         "name": "Drought",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -64926,17 +64516,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Justified",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -65346,17 +64933,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -65812,17 +65396,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -66279,17 +65860,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -66784,17 +66362,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Huge Power",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -67226,17 +66801,14 @@
     "ability_slots": [
       {
         "name": "Huge Power",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -67713,17 +67285,14 @@
     "ability_slots": [
       {
         "name": "Huge Power",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -68203,17 +67772,14 @@
     "ability_slots": [
       {
         "name": "Sand Veil",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Arena Trap",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -68601,17 +68167,14 @@
     "ability_slots": [
       {
         "name": "Sand Rush",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Arena Trap",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -69094,17 +68657,14 @@
     "ability_slots": [
       {
         "name": "Vital Spirit",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Anger Point",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -69597,17 +69157,14 @@
     "ability_slots": [
       {
         "name": "Vital Spirit",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Anger Point",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -70171,17 +69728,14 @@
     "ability_slots": [
       {
         "name": "Vital Spirit",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -70748,17 +70302,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Super Luck",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -71213,17 +70764,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Limber",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Super Luck",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -71735,17 +71283,14 @@
     "ability_slots": [
       {
         "name": "Damp",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cloud Nine",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swift Swim",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -72227,17 +71772,14 @@
     "ability_slots": [
       {
         "name": "Hydration",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cloud Nine",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swift Swim",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -72789,17 +72331,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Steadfast",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -73253,17 +72792,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Steadfast",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -73736,17 +73272,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "No Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -74269,17 +73802,14 @@
     "ability_slots": [
       {
         "name": "Steadfast",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Vital Spirit",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -74652,17 +74182,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Limber",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unburden",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -75120,17 +74647,14 @@
     "ability_slots": [
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Inner Focus",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -75652,17 +75176,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Skill Link",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -76099,17 +75620,14 @@
     "ability_slots": [
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -76602,17 +76120,14 @@
     "ability_slots": [
       {
         "name": "Armor Tail",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cud Chew",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -77117,17 +76632,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Anger Point",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -77664,17 +77176,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sap Sipper",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -78152,17 +77661,14 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Vital Spirit",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -78577,17 +78083,14 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Vital Spirit",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -79069,17 +78572,14 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mega Launcher",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -79607,17 +79107,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Forewarn",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Bad Dreams",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -80031,17 +79528,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Forewarn",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Bad Dreams",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -80561,17 +80055,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Bad Dreams",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -80996,17 +80487,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Vital Spirit",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -81492,17 +80980,14 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Vital Spirit",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -82065,17 +81550,14 @@
     "ability_slots": [
       {
         "name": "Motor Drive",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -82615,17 +82097,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Filter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -83106,17 +82585,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Filter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -83630,17 +83106,14 @@
     "ability_slots": [
       {
         "name": "Tangled Feet",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Screen Cleaner",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -84219,12 +83692,10 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -84465,17 +83936,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Defiant",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -84927,17 +84395,14 @@
     "ability_slots": [
       {
         "name": "Steadfast",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Scrappy",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -85436,17 +84901,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Magic Bounce",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -85818,17 +85280,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Magic Bounce",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -86213,17 +85672,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Magic Bounce",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -86686,17 +86142,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -87111,17 +86564,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -87605,17 +87055,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -88039,17 +87486,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -88533,17 +87977,14 @@
     "ability_slots": [
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -88992,17 +88433,14 @@
     "ability_slots": [
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -89466,17 +88904,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Contrary",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -89916,17 +89351,14 @@
     "ability_slots": [
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -90369,17 +89801,14 @@
     "ability_slots": [
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Analytic",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -90889,17 +90318,14 @@
     "ability_slots": [
       {
         "name": "Skill Link",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shell Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -91282,17 +90708,14 @@
     "ability_slots": [
       {
         "name": "Skill Link",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shell Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -91698,17 +91121,14 @@
     "ability_slots": [
       {
         "name": "Storm Drain",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -92152,12 +91572,10 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -92556,17 +91974,14 @@
     "ability_slots": [
       {
         "name": "Mega Launcher",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Analytic",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -93026,17 +92441,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hydration",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -93453,17 +92865,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hydration",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -93855,17 +93264,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -94259,17 +93665,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -94712,17 +94115,14 @@
     "ability_slots": [
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cloud Nine",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -95249,17 +94649,14 @@
     "ability_slots": [
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cud Chew",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cloud Nine",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -95827,17 +95224,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -96192,17 +95586,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -96660,17 +96051,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anticipation",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -97118,17 +96506,14 @@
     "ability_slots": [
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hydration",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rain Dish",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -97587,17 +96972,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Competitive",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -98063,17 +97445,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -98516,12 +97895,10 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Magic Bounce",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -99001,17 +98378,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Magic Guard",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -99480,17 +98854,14 @@
     "ability_slots": [
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Refrigerate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -99964,17 +99335,14 @@
     "ability_slots": [
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sharpness",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Chlorophyll",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -100448,12 +99816,10 @@
     "ability_slots": [
       {
         "name": "Cute Charm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -100885,17 +100251,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Damp",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -101311,17 +100674,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Damp",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -101733,17 +101093,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sniper",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Damp",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -102200,17 +101557,14 @@
     "ability_slots": [
       {
         "name": "Immunity",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Veil",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -102757,17 +102111,14 @@
     "ability_slots": [
       {
         "name": "Poison Heal",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Veil",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -103298,17 +102649,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -103778,17 +103126,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -104175,17 +103520,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -104606,17 +103948,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -105088,17 +104427,14 @@
     "ability_slots": [
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Honey Gather",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -105610,17 +104946,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -106194,17 +105527,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Bulletproof",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -106768,17 +106098,14 @@
     "ability_slots": [
       {
         "name": "Sand Veil",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -107175,17 +106502,14 @@
     "ability_slots": [
       {
         "name": "Sand Veil",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -107640,17 +106964,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Veil",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -108055,17 +107376,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Veil",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -108489,17 +107807,14 @@
     "ability_slots": [
       {
         "name": "Iron Barbs",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Overcoat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -108949,17 +108264,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tangled Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -109366,17 +108678,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Early Bird",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tangled Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -109820,17 +109129,14 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Reckless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -110212,17 +109518,14 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Reckless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -110690,17 +109993,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rattled",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -111204,17 +110504,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -111711,17 +111008,14 @@
     "ability_slots": [
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Parental Bond",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -112305,17 +111599,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -112792,17 +112083,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -113507,17 +112795,14 @@
     "ability_slots": [
       {
         "name": "Solid Rock",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -114149,17 +113434,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -114598,17 +113880,14 @@
     "ability_slots": [
       {
         "name": "Super Luck",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Insomnia",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -115042,17 +114321,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -115481,17 +114757,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Overcoat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -115932,17 +115205,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Aerilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -116479,17 +115749,14 @@
     "ability_slots": [
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -116986,17 +116253,14 @@
     "ability_slots": [
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -117471,17 +116735,14 @@
     "ability_slots": [
       {
         "name": "Rivalry",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -117955,12 +117216,10 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Trace",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -118393,12 +117652,10 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Trace",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -118854,17 +118111,14 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Trace",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -119353,17 +118607,14 @@
     "ability_slots": [
       {
         "name": "Steadfast",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sharpness",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Justified",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -119940,17 +119191,14 @@
     "ability_slots": [
       {
         "name": "Steadfast",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -120431,17 +119679,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Justified",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -121049,12 +120294,10 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -121533,12 +120776,10 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -122035,7 +121276,6 @@
     "ability_slots": [
       {
         "name": "Disguise",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -122453,17 +121693,14 @@
     "ability_slots": [
       {
         "name": "Trace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Download",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Analytic",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -122906,17 +122143,14 @@
     "ability_slots": [
       {
         "name": "Trace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Download",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Analytic",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -123322,17 +122556,14 @@
     "ability_slots": [
       {
         "name": "Adaptability",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Download",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Analytic",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -123761,17 +122992,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -124097,17 +123325,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -124462,17 +123687,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -124945,17 +124167,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Keen Eye",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -125425,17 +124644,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -125963,17 +125179,14 @@
     "ability_slots": [
       {
         "name": "Storm Drain",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Suction Cups",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -126367,17 +125580,14 @@
     "ability_slots": [
       {
         "name": "Storm Drain",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Suction Cups",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -126824,17 +126034,14 @@
     "ability_slots": [
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -127257,17 +126464,14 @@
     "ability_slots": [
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -127761,17 +126965,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -128284,17 +127485,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -128843,17 +128041,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Filter",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -129282,17 +128477,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Filter",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -129745,17 +128937,14 @@
     "ability_slots": [
       {
         "name": "Strong Jaw",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sturdy",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -130192,17 +129381,14 @@
     "ability_slots": [
       {
         "name": "Strong Jaw",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rock Head",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -130686,17 +129872,14 @@
     "ability_slots": [
       {
         "name": "Refrigerate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Solid Rock",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -131223,17 +130406,14 @@
     "ability_slots": [
       {
         "name": "Refrigerate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Solid Rock",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -131786,17 +130966,14 @@
     "ability_slots": [
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Klutz",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "No Guard",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -132245,17 +131422,14 @@
     "ability_slots": [
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "No Guard",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -132770,17 +131944,14 @@
     "ability_slots": [
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Harvest",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -133166,17 +132337,14 @@
     "ability_slots": [
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Harvest",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -133557,17 +132725,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -133956,17 +133121,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Prankster",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pressure",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -134468,17 +133630,14 @@
     "ability_slots": [
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Prankster",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -135038,17 +134197,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -135492,17 +134648,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -135995,17 +135148,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Fist",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -136443,12 +135593,10 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -136802,12 +135950,10 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swarm",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -137270,7 +136416,6 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -137694,7 +136839,6 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -138130,12 +137274,10 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Berserk",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -138642,17 +137784,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Infiltrator",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -138988,17 +138127,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Infiltrator",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -139437,17 +138573,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Infiltrator",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -139893,17 +139026,14 @@
     "ability_slots": [
       {
         "name": "Prankster",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -140305,17 +139435,14 @@
     "ability_slots": [
       {
         "name": "Prankster",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -140688,17 +139815,14 @@
     "ability_slots": [
       {
         "name": "Prankster",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -141099,17 +140223,14 @@
     "ability_slots": [
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -141490,17 +140611,14 @@
     "ability_slots": [
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -141888,17 +141006,14 @@
     "ability_slots": [
       {
         "name": "Mold Breaker",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pickpocket",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -142284,12 +141399,10 @@
     "ability_slots": [
       {
         "name": "Thermal Exchange",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -142688,12 +141801,10 @@
     "ability_slots": [
       {
         "name": "Thermal Exchange",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -143065,12 +142176,10 @@
     "ability_slots": [
       {
         "name": "Thermal Exchange",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -143483,12 +142592,10 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flame Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -143841,17 +142948,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Weak Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mega Launcher",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -144269,17 +143373,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Weak Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -144774,17 +143875,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Big Pecks",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -145160,17 +144258,14 @@
     "ability_slots": [
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Big Pecks",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -145557,17 +144652,14 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mirror Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -146015,17 +145107,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -146498,17 +145587,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Adaptability",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -147004,17 +146090,14 @@
     "ability_slots": [
       {
         "name": "Magma Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -147393,17 +146476,14 @@
     "ability_slots": [
       {
         "name": "Solid Rock",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -147825,12 +146905,10 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -148228,12 +147306,10 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -148765,12 +147841,10 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -149287,17 +148361,14 @@
     "ability_slots": [
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shell Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hydration",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -149782,17 +148853,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shell Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -150207,17 +149275,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shell Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -150654,17 +149719,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Weak Armor",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -151102,17 +150164,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -151604,17 +150663,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Strong Jaw",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -152135,17 +151191,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -152663,17 +151716,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Immunity",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -153244,17 +152294,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overgrow",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Effect Spore",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -153679,17 +152726,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Effect Spore",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -154114,17 +153158,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Effect Spore",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -154551,17 +153592,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overgrow",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Effect Spore",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -154996,17 +154034,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Effect Spore",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -155441,17 +154476,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Effect Spore",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -155880,17 +154912,14 @@
     "ability_slots": [
       {
         "name": "Chlorophyll",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overgrow",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -156368,17 +155397,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Thick Fat",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -156856,17 +155882,14 @@
         "ability_slots": [
           {
             "name": "Chlorophyll",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Overgrow",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Thick Fat",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -157345,17 +156368,14 @@
     "ability_slots": [
       {
         "name": "Solar Power",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drought",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -157853,17 +156873,14 @@
         "ability_slots": [
           {
             "name": "Solar Power",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -158361,17 +157378,14 @@
         "ability_slots": [
           {
             "name": "Solar Power",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -158919,17 +157933,14 @@
     "ability_slots": [
       {
         "name": "Solar Power",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drought",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -159440,17 +158451,14 @@
         "ability_slots": [
           {
             "name": "Solar Power",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -159961,17 +158969,14 @@
         "ability_slots": [
           {
             "name": "Solar Power",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -160537,17 +159542,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Blaze",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drought",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -161148,17 +160150,14 @@
         "ability_slots": [
           {
             "name": "Levitate",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -161759,17 +160758,14 @@
         "ability_slots": [
           {
             "name": "Levitate",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Blaze",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drought",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -162355,17 +161351,14 @@
     "ability_slots": [
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drizzle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -162821,17 +161814,14 @@
         "ability_slots": [
           {
             "name": "Rain Dish",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -163287,17 +162277,14 @@
         "ability_slots": [
           {
             "name": "Rain Dish",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -163835,17 +162822,14 @@
     "ability_slots": [
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drizzle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -164306,17 +163290,14 @@
         "ability_slots": [
           {
             "name": "Rain Dish",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -164777,17 +163758,14 @@
         "ability_slots": [
           {
             "name": "Rain Dish",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -165251,17 +164229,14 @@
     "ability_slots": [
       {
         "name": "Mega Launcher",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Torrent",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Drizzle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -165757,17 +164732,14 @@
         "ability_slots": [
           {
             "name": "Mega Launcher",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -166263,17 +165235,14 @@
         "ability_slots": [
           {
             "name": "Mega Launcher",
-            "hidden": false,
             "slot": 1
           },
           {
             "name": "Torrent",
-            "hidden": false,
             "slot": 2
           },
           {
             "name": "Drizzle",
-            "hidden": true,
             "slot": 3
           }
         ],
@@ -166771,17 +165740,14 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -167211,17 +166177,14 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Static",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Lightning Rod",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -167637,17 +166600,14 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Competitive",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -168176,17 +167136,14 @@
     "ability_slots": [
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Volt Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -168638,17 +167595,14 @@
     "ability_slots": [
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flash Fire",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -169091,17 +168045,14 @@
     "ability_slots": [
       {
         "name": "Regenerator",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Absorb",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -169560,17 +168511,14 @@
     "ability_slots": [
       {
         "name": "Marvel Scale",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Multiscale",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -170014,17 +168962,14 @@
     "ability_slots": [
       {
         "name": "Marvel Scale",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Multiscale",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -170509,17 +169454,14 @@
     "ability_slots": [
       {
         "name": "Marvel Scale",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Multiscale",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -171186,17 +170128,14 @@
     "ability_slots": [
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sand Veil",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -171599,12 +170538,10 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -172038,12 +170975,10 @@
     "ability_slots": [
       {
         "name": "Sand Stream",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -172656,12 +171591,10 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Multiscale",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -173196,12 +172129,10 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -173739,12 +172670,10 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -174387,12 +173316,10 @@
     "ability_slots": [
       {
         "name": "Synchronize",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Trace",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -175242,7 +174169,6 @@
     "ability_slots": [
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -175713,17 +174639,14 @@
     "ability_slots": [
       {
         "name": "Snow Warning",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -176105,17 +175028,14 @@
     "ability_slots": [
       {
         "name": "Snow Warning",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -176536,17 +175456,14 @@
     "ability_slots": [
       {
         "name": "Cloud Nine",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -176984,17 +175901,14 @@
     "ability_slots": [
       {
         "name": "Cloud Nine",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Natural Cure",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Pixilate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -177498,17 +176412,14 @@
     "ability_slots": [
       {
         "name": "Ripen",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Bulletproof",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -177815,17 +176726,14 @@
     "ability_slots": [
       {
         "name": "Supersweet Syrup",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sticky Hold",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -178245,17 +177153,14 @@
     "ability_slots": [
       {
         "name": "Ripen",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -178723,17 +177628,14 @@
     "ability_slots": [
       {
         "name": "Ripen",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hustle",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -179188,17 +178090,14 @@
     "ability_slots": [
       {
         "name": "Regenerator",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Supersweet Syrup",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -179616,17 +178515,14 @@
     "ability_slots": [
       {
         "name": "Clear Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Stamina",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Steadfast",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -180058,17 +178954,14 @@
     "ability_slots": [
       {
         "name": "Stamina",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Steadfast",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -180497,17 +179390,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Heal",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -180858,17 +179748,14 @@
     "ability_slots": [
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Heal",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Quick Feet",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -181351,17 +180238,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Klutz",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Limber",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -181774,17 +180658,14 @@
     "ability_slots": [
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cute Charm",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Adaptability",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -182300,17 +181181,14 @@
     "ability_slots": [
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Drought",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Own Tempo",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -182747,17 +181625,14 @@
     "ability_slots": [
       {
         "name": "Solid Rock",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Drought",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -183219,17 +182094,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "White Smoke",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flame Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -183565,17 +182437,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flame Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -183963,17 +182832,14 @@
     "ability_slots": [
       {
         "name": "Swarm",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Hyper Cutter",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -184304,12 +183170,10 @@
     "ability_slots": [
       {
         "name": "Static",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -184686,17 +183550,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -185144,17 +184005,14 @@
     "ability_slots": [
       {
         "name": "Anticipation",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Dry Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Touch",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -185626,17 +184484,14 @@
     "ability_slots": [
       {
         "name": "Anticipation",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Dry Skin",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Touch",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -186148,17 +185003,14 @@
     "ability_slots": [
       {
         "name": "Aftermath",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unburden",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Guts",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -186607,17 +185459,14 @@
     "ability_slots": [
       {
         "name": "Aftermath",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unburden",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Guts",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -187077,17 +185926,14 @@
     "ability_slots": [
       {
         "name": "Sand Rush",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sand Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mold Breaker",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -187477,17 +186323,14 @@
     "ability_slots": [
       {
         "name": "Sand Rush",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mold Breaker",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -187926,17 +186769,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -188394,17 +187234,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -188848,17 +187685,14 @@
     "ability_slots": [
       {
         "name": "Volt Absorb",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Moxie",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -189345,12 +188179,10 @@
     "ability_slots": [
       {
         "name": "Big Pecks",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gale Wings",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -189774,12 +188606,10 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gale Wings",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -190258,12 +189088,10 @@
     "ability_slots": [
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gale Wings",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -190708,17 +189536,14 @@
     "ability_slots": [
       {
         "name": "Hyper Cutter",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Arena Trap",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -191114,17 +189939,14 @@
     "ability_slots": [
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overcoat",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tinted Lens",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -191643,17 +190465,14 @@
     "ability_slots": [
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Overcoat",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tinted Lens",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -192221,12 +191040,10 @@
     "ability_slots": [
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -192618,17 +191435,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -193109,7 +191923,6 @@
     "ability_slots": [
       {
         "name": "Rattled",
-        "hidden": false,
         "slot": 1
       }
     ],
@@ -193432,17 +192245,14 @@
     "ability_slots": [
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Veil",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Tough Claws",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -193912,17 +192722,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Gluttony",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -194333,17 +193140,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -194845,17 +193649,14 @@
     "ability_slots": [
       {
         "name": "Defiant",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -195284,17 +194085,14 @@
     "ability_slots": [
       {
         "name": "Defiant",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -195719,17 +194517,14 @@
     "ability_slots": [
       {
         "name": "Defiant",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Supreme Overlord",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -196215,17 +195010,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Own Tempo",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -196629,17 +195421,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Own Tempo",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -197122,17 +195911,14 @@
     "ability_slots": [
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Rain Dish",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Own Tempo",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -197657,17 +196443,14 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -198140,17 +196923,14 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Intimidate",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -198647,17 +197427,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -199074,17 +197851,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -199498,17 +198272,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Ice Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -199953,17 +198724,14 @@
     "ability_slots": [
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Honey Gather",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -200446,17 +199214,14 @@
     "ability_slots": [
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Quick Feet",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -200930,17 +199695,14 @@
     "ability_slots": [
       {
         "name": "Bulletproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Berserk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Mind's Eye",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -201417,17 +200179,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -201836,17 +200595,14 @@
     "ability_slots": [
       {
         "name": "Thick Fat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Slush Rush",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -202240,12 +200996,10 @@
     "ability_slots": [
       {
         "name": "Weak Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -202696,17 +201450,14 @@
     "ability_slots": [
       {
         "name": "Weak Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Regenerator",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Perish Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -203179,17 +201930,14 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -203599,17 +202347,14 @@
     "ability_slots": [
       {
         "name": "Hustle",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Guts",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Thick Fat",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -204064,17 +202809,14 @@
     "ability_slots": [
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Motor Drive",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -204599,17 +203341,14 @@
     "ability_slots": [
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -205132,17 +203871,14 @@
     "ability_slots": [
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Slush Rush",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -205662,12 +204398,10 @@
     "ability_slots": [
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -206108,12 +204842,10 @@
     "ability_slots": [
       {
         "name": "Snow Cloak",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Snow Warning",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -206564,17 +205296,14 @@
     "ability_slots": [
       {
         "name": "Tangling Hair",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -207004,17 +205733,14 @@
     "ability_slots": [
       {
         "name": "Tangling Hair",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sand Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -207480,17 +206206,14 @@
     "ability_slots": [
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -207918,17 +206641,14 @@
     "ability_slots": [
       {
         "name": "Fur Coat",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Technician",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -208401,17 +207121,14 @@
     "ability_slots": [
       {
         "name": "Magnet Pull",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -208860,17 +207577,14 @@
     "ability_slots": [
       {
         "name": "Magnet Pull",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -209369,17 +208083,14 @@
     "ability_slots": [
       {
         "name": "Magnet Pull",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Galvanize",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -209876,12 +208587,10 @@
     "ability_slots": [
       {
         "name": "Poison Touch",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -210353,17 +209062,14 @@
     "ability_slots": [
       {
         "name": "Poison Touch",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Gluttony",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -210846,17 +209552,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Harvest",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rock Head",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -211398,17 +210101,14 @@
     "ability_slots": [
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Lightning Rod",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rock Head",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -211991,17 +210691,14 @@
     "ability_slots": [
       {
         "name": "Pickup",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unnerve",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -212447,17 +211144,14 @@
     "ability_slots": [
       {
         "name": "Battle Armor",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Tough Claws",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Steely Spirit",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -212932,17 +211626,14 @@
     "ability_slots": [
       {
         "name": "Run Away",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pastel Veil",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anticipation",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -213285,17 +211976,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Pastel Veil",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Anticipation",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -213739,17 +212427,14 @@
     "ability_slots": [
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -214235,17 +212920,14 @@
     "ability_slots": [
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -214845,17 +213527,14 @@
     "ability_slots": [
       {
         "name": "Own Tempo",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unaware",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -215445,17 +214124,14 @@
     "ability_slots": [
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Neutralizing Gas",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "White Smoke",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -215899,17 +214575,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rock Head",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -216323,17 +214996,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Rock Head",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -216809,17 +215479,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Static",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Aftermath",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -217274,17 +215941,14 @@
     "ability_slots": [
       {
         "name": "Soundproof",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Static",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Aftermath",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -217731,17 +216395,14 @@
     "ability_slots": [
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Berserk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Flash Fire",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -218312,17 +216973,14 @@
     "ability_slots": [
       {
         "name": "Inner Focus",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Touch",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -218877,17 +217535,14 @@
     "ability_slots": [
       {
         "name": "Pressure",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Touch",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Technician",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -219435,17 +218090,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unaware",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -219883,17 +218535,14 @@
     "ability_slots": [
       {
         "name": "Poison Point",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Water Absorb",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Unaware",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -220336,17 +218985,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Anger Point",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Reckless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -220864,17 +219510,14 @@
     "ability_slots": [
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Anger Point",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Water Veil",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -221373,12 +220016,10 @@
     "ability_slots": [
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -221702,12 +220343,10 @@
     "ability_slots": [
       {
         "name": "Leaf Guard",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Oblivious",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -222068,17 +220707,14 @@
     "ability_slots": [
       {
         "name": "Queenly Majesty",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Moxie",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Oblivious",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -222512,17 +221148,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Filter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Barbs",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -222981,17 +221614,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Filter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Barbs",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -223473,17 +222103,14 @@
     "ability_slots": [
       {
         "name": "Rock Head",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Filter",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Iron Barbs",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -224041,17 +222668,14 @@
     "ability_slots": [
       {
         "name": "Toxic Debris",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Corrosion",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -224394,17 +223018,14 @@
     "ability_slots": [
       {
         "name": "Toxic Debris",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Corrosion",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -224767,17 +223388,14 @@
     "ability_slots": [
       {
         "name": "Merciless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Limber",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -225130,17 +223748,14 @@
     "ability_slots": [
       {
         "name": "Merciless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Limber",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Regenerator",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -225525,17 +224140,14 @@
     "ability_slots": [
       {
         "name": "Immunity",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Scrappy",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sharpness",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -226109,17 +224721,14 @@
     "ability_slots": [
       {
         "name": "Shed Skin",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -226591,17 +225200,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -227035,17 +225641,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Cursed Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Prankster",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -227527,17 +226130,14 @@
     "ability_slots": [
       {
         "name": "Reckless",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Wind Rider",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Keen Eye",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -228014,17 +226614,14 @@
     "ability_slots": [
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Wind Rider",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Keen Eye",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -228548,17 +227145,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swift Swim",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -229011,17 +227605,14 @@
     "ability_slots": [
       {
         "name": "Sturdy",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Sheer Force",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swift Swim",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -229510,17 +228101,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Flame Body",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -229920,17 +228508,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -230348,17 +228933,14 @@
     "ability_slots": [
       {
         "name": "Flash Fire",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Levitate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Cursed Body",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -230819,17 +229401,14 @@
     "ability_slots": [
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swarm",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -231235,17 +229814,14 @@
     "ability_slots": [
       {
         "name": "Compound Eyes",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Unnerve",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swarm",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -231631,17 +230207,14 @@
     "ability_slots": [
       {
         "name": "Huge Power",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Intimidate",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Sheer Force",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -232142,17 +230715,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Wind Rider",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Soundproof",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -232600,17 +231170,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Wind Rider",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Soundproof",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -233107,17 +231674,14 @@
     "ability_slots": [
       {
         "name": "Corrosion",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -233576,17 +232140,14 @@
     "ability_slots": [
       {
         "name": "Corrosion",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Poison Puppeteer",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Merciless",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -234105,17 +232666,14 @@
     "ability_slots": [
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Keen Eye",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -234500,17 +233058,14 @@
     "ability_slots": [
       {
         "name": "Competitive",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Frisk",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Speed Boost",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -234941,12 +233496,10 @@
     "ability_slots": [
       {
         "name": "Water Veil",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Swift Swim",
-        "hidden": false,
         "slot": 2
       }
     ],
@@ -235392,17 +233945,14 @@
     "ability_slots": [
       {
         "name": "Iron Fist",
-        "hidden": false,
         "slot": 1
       },
       {
         "name": "Defiant",
-        "hidden": false,
         "slot": 2
       },
       {
         "name": "Swift Swim",
-        "hidden": true,
         "slot": 3
       }
     ],
@@ -235964,7 +234514,6 @@
     "ability_slots": [
       {
         "name": "Serene Grace",
-        "hidden": false,
         "slot": 1
       }
     ],

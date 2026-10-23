@@ -820,8 +820,8 @@ DayCare_GetEggAbilitySlot:
 	ld a, [wBreedMon2Personality]
 .got_parent
 	and ABILITY_MASK
-	cp HIDDEN_ABILITY
-	jr z, .hidden
+	cp ABILITY_3
+	jr z, .slot3
 	cp ABILITY_2
 	jr z, .normal
 	ld a, ABILITY_1 ; also normalize legacy, unset personality bits
@@ -837,14 +837,14 @@ DayCare_GetEggAbilitySlot:
 	jr c, .done
 	xor ABILITY_1 | ABILITY_2 ; the other regular slot, 20% of eggs
 	jr .done
-.hidden
-	ld a, [wBaseHiddenAbility]
+.slot3
+	ld a, [wBaseAbility3]
 	and a
 	jr z, .random_regular
 	ld a, 100
 	call RandomRange
 	cp 60
-	ld a, HIDDEN_ABILITY
+	ld a, ABILITY_3
 	jr c, .done
 .random_regular
 	call GetRandomAbilitySlot

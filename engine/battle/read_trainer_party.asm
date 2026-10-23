@@ -249,7 +249,7 @@ ReadTrainerPartyPieces:
 	ld e, l
 	pop hl
 	call GetNextTrainerDataByte
-	and ABILITY_MASK ; ABILITY_1 / ABILITY_2 / HIDDEN_ABILITY
+	and ABILITY_MASK ; ABILITY_1 / ABILITY_2 / ABILITY_3
 	ld b, a
 	ld a, [de]
 	and ~ABILITY_MASK & $ff
