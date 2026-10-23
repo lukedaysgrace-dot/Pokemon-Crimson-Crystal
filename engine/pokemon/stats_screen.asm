@@ -1077,8 +1077,8 @@ StatsScreen_BluePage:
 	jr z, .slot_done
 	ld a, [wTempMonPersonality]
 	and ABILITY_MASK
-	cp HIDDEN_ABILITY
-	ld b, "H"
+	cp ABILITY_3
+	ld b, "3"
 	jr z, .got_slot
 	cp ABILITY_2
 	ld b, "2"

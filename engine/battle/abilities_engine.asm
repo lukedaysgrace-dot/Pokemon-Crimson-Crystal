@@ -5746,7 +5746,7 @@ ClearAbilitiesIfDisabled::
 
 AbilityCapCore::
 ; ABILITY CAP key item: cycle the chosen mon's ability through its
-; available slots (1 -> 2 -> hidden -> 1), skipping empty ones.
+; available slots (1 -> 2 -> 3 -> 1), skipping empty ones.
 	; With abilities turned off for this save, there is nothing to change.
 	call AbilitiesDisabled
 	jr z, .abilities_on
@@ -5787,11 +5787,11 @@ AbilityCapCore::
 	jr z, .no_second
 	set 1, e
 .no_second
-	ld a, [wBaseHiddenAbility]
+	ld a, [wBaseAbility3]
 	and a
-	jr z, .no_hidden
+	jr z, .no_slot3
 	set 2, e
-.no_hidden
+.no_slot3
 	ld a, e
 	and a
 	jr z, .no_effect ; only one ability exists
@@ -5801,18 +5801,18 @@ AbilityCapCore::
 	jr z, .from_one
 	cp ABILITY_2
 	jr z, .from_two
-	; from hidden (or unset): go to slot 1
+	; from slot 3 (or unset): go to slot 1
 	ld d, ABILITY_1
 	jr .apply
 .from_one
 	bit 1, e
 	ld d, ABILITY_2
 	jr nz, .apply
-	ld d, HIDDEN_ABILITY
+	ld d, ABILITY_3
 	jr .apply
 .from_two
 	bit 2, e
-	ld d, HIDDEN_ABILITY
+	ld d, ABILITY_3
 	jr nz, .apply
 	ld d, ABILITY_1
 .apply

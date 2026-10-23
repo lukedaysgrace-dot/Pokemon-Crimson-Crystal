@@ -21,7 +21,7 @@ import generate_trainer_party_reference as reference
 
 ROOT = Path(__file__).resolve().parents[1]
 SLEEP_MOVES = {'HYPNOSIS', 'SING', 'SLEEP_POWDER', 'SPORE', 'LOVELY_KISS', 'YAWN'}
-SLOT_INDEX = {'ABILITY_1': 0, 'ABILITY_2': 1, 'HIDDEN_ABILITY': 2}
+SLOT_INDEX = {'ABILITY_1': 0, 'ABILITY_2': 1, 'ABILITY_3': 2}
 BORROWED_MOVES = {'METRONOME', 'MIRROR_MOVE', 'MIMIC', 'SKETCH', 'TRANSFORM'}
 CONSUMABLES = {
     'BERRY', 'GOLD_BERRY', 'MIRACLEBERRY', 'MINT_BERRY', 'PRZCUREBERRY',

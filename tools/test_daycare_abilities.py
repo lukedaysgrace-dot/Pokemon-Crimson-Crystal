@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "battletest"))
 from symbols import Constants
 
 
-SLOT1, SLOT2, HIDDEN = 0x20, 0x40, 0x60
+SLOT1, SLOT2, SLOT3 = 0x20, 0x40, 0x60
 PASS = FAIL = 0
 
 
@@ -41,12 +41,12 @@ def force_random(name, value):
         h.mem[bank, addr + offset] = byte
 
 
-def samples(parent1, parent2, selected=0, second=True, hidden=True):
+def samples(parent1, parent2, selected=0, second=True, third=True):
     h.wr(h.s("wBreedMotherOrNonDitto"), selected)
     h.wr(h.s("wBreedMon1Personality"), parent1)
     h.wr(h.s("wBreedMon2Personality"), parent2)
     h.wr(h.s("wBaseAbility2"), int(second))
-    h.wr(h.s("wBaseHiddenAbility"), int(hidden))
+    h.wr(h.s("wBaseAbility3"), int(third))
     output = []
     preserved = True
     for roll in range(100):
@@ -60,14 +60,14 @@ def samples(parent1, parent2, selected=0, second=True, hidden=True):
 
 
 print("[ability inheritance probabilities and supported slots]")
-check(samples(SLOT1, HIDDEN) == {SLOT1: 80, SLOT2: 20}, "slot 1 mother: 80% slot 1, 20% slot 2; father hidden ignored")
-check(samples(HIDDEN, SLOT2, selected=1) == {SLOT2: 80, SLOT1: 20}, "slot 2 mother selected from second Day-Care slot")
-check(samples(HIDDEN, SLOT1) == {HIDDEN: 60, SLOT1: 20, SLOT2: 20}, "hidden parent: 60% hidden, 20% each regular slot")
-check(samples(SLOT1, HIDDEN, selected=1) == {HIDDEN: 60, SLOT1: 20, SLOT2: 20}, "second species parent supplies hidden slot")
-check(samples(HIDDEN, SLOT1, second=False) == {HIDDEN: 60, SLOT1: 40}, "single regular slot: failed hidden rolls use slot 1")
-check(samples(HIDDEN, SLOT1, hidden=False) == {SLOT1: 50, SLOT2: 50}, "unsupported hidden slot falls back to regular slots")
-check(samples(SLOT2, HIDDEN, second=False) == {SLOT1: 100}, "offspring without second slot always gets slot 1")
-check(samples(0x0C, HIDDEN) == {SLOT1: 80, SLOT2: 20}, "legacy unset slot normalizes to slot 1, ignoring caught-ball bits")
+check(samples(SLOT1, SLOT3) == {SLOT1: 80, SLOT2: 20}, "slot 1 mother: 80% slot 1, 20% slot 2; father ability 3 ignored")
+check(samples(SLOT3, SLOT2, selected=1) == {SLOT2: 80, SLOT1: 20}, "slot 2 mother selected from second Day-Care slot")
+check(samples(SLOT3, SLOT1) == {SLOT3: 60, SLOT1: 20, SLOT2: 20}, "ability 3 parent: 60% ability 3, 20% each regular slot")
+check(samples(SLOT1, SLOT3, selected=1) == {SLOT3: 60, SLOT1: 20, SLOT2: 20}, "second species parent supplies ability 3 slot")
+check(samples(SLOT3, SLOT1, second=False) == {SLOT3: 60, SLOT1: 40}, "single regular slot: failed ability 3 rolls use slot 1")
+check(samples(SLOT3, SLOT1, third=False) == {SLOT1: 50, SLOT2: 50}, "unsupported ability 3 slot falls back to regular slots")
+check(samples(SLOT2, SLOT3, second=False) == {SLOT1: 100}, "offspring without second slot always gets slot 1")
+check(samples(0x0C, SLOT3) == {SLOT1: 80, SLOT2: 20}, "legacy unset slot normalizes to slot 1, ignoring caught-ball bits")
 
 
 def generate(first_species, first_slot, first_male, second_species, second_slot, second_male):
@@ -93,10 +93,10 @@ def generate(first_species, first_slot, first_male, second_species, second_slot,
 
 print("[full egg creation chooses the correct ability parent]")
 eevee = constants.species_index("EEVEE")
-check(generate("EEVEE", HIDDEN, False, "EEVEE", SLOT1, True) == (eevee, HIDDEN), "female first parent passes hidden slot to Eevee egg")
-check(generate("EEVEE", HIDDEN, True, "EEVEE", SLOT2, False) == (eevee, SLOT2), "female second parent supplies slot; hidden father ignored")
-check(generate("DITTO", HIDDEN, False, "EEVEE", SLOT2, True) == (eevee, SLOT2), "Ditto first: male non-Ditto supplies ordinary slot")
-check(generate("EEVEE", HIDDEN, True, "DITTO", SLOT1, False) == (eevee, HIDDEN), "Ditto second: male non-Ditto can pass hidden slot")
+check(generate("EEVEE", SLOT3, False, "EEVEE", SLOT1, True) == (eevee, SLOT3), "female first parent passes ability 3 slot to Eevee egg")
+check(generate("EEVEE", SLOT3, True, "EEVEE", SLOT2, False) == (eevee, SLOT2), "female second parent supplies slot; ability 3 father ignored")
+check(generate("DITTO", SLOT3, False, "EEVEE", SLOT2, True) == (eevee, SLOT2), "Ditto first: male non-Ditto supplies ordinary slot")
+check(generate("EEVEE", SLOT3, True, "DITTO", SLOT1, False) == (eevee, SLOT3), "Ditto second: male non-Ditto can pass ability 3 slot")
 check(generate("BRELOOM", SLOT2, False, "BRELOOM", SLOT1, True) == (constants.species_index("SHROOMISH"), SLOT2), "expanded species evolves to different ability names while inheriting the slot")
 
 print(f"Day-Care ability tests: {PASS} passed, {FAIL} failed ({h.calls} routine calls)")

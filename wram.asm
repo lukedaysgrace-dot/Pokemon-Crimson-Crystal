@@ -2416,7 +2416,7 @@ wBasePicSize:: db ; d247
 wBaseAbilities::
 wBaseAbility1:: db ; d248
 wBaseAbility2:: db ; d249
-wBaseHiddenAbility:: db ; d24a
+wBaseAbility3:: db ; d24a
 wBasePadding:: ds 1 ; d24b
 wBaseGrowthRate:: db ; d24c
 wBaseEggGroups:: db ; d24d

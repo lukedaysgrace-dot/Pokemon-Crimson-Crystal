@@ -101,7 +101,7 @@ Kelly says she dislikes overly powerful moves and does not want to harm Pokémon
 
 ## 5. [B] Adrian — one hole in the “move for every type” lesson
 
-He introduces himself as keeping a move ready for every type, then complains that he could not find the player’s weak point. His team has super-effective coverage against seventeen of the eighteen ordinary single types, but no Ground attack for pure Electric. Ampharos’s Hidden Ability is Galvanize, so Hyper Voice DOES count as Electric coverage; this was included in the check. He can still hit Electric neutrally, so this is a small teaching/precision improvement, not proof that his broad boast is literally impossible.
+He introduces himself as keeping a move ready for every type, then complains that he could not find the player’s weak point. His team has super-effective coverage against seventeen of the eighteen ordinary single types, but no Ground attack for pure Electric. Ampharos’s Ability 3 is Galvanize, so Hyper Voice DOES count as Electric coverage; this was included in the check. He can still hit Electric neutrally, so this is a small teaching/precision improvement, not proof that his broad boast is literally impossible.
 
 **Suggested response:** Keep the roster. Ampharos can learn Bulldoze from the local technical tutors; putting it over Power Gem closes the Electric gap while the remaining team still covers the other seventeen types. Dig is also legal, but Bulldoze better expresses immediate tactical coverage. Do not assume Ampharos learns Earth Power here.
 

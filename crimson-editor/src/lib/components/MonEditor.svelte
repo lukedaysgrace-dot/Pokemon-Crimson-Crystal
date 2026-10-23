@@ -138,7 +138,7 @@
       onchange={(e) =>
         (mon.personality = (mon.personality & 159) | (Number(e.currentTarget.value) << 5))}
       >{#each [0, 1, 2, 3] as slot}<option value={slot}
-          >{slot === 0 ? 'Unset (slot 1)' : slot === 3 ? 'Hidden' : `Slot ${slot}`}: {data.abilities.find(
+          >{slot === 0 ? 'Unset (Ability 1)' : `Ability ${slot}`}: {data.abilities.find(
             (a) => a.index === species?.abilities[Math.max(0, slot - 1)],
           )?.name || 'Falls back to slot 1'}</option
         >{/each}</select

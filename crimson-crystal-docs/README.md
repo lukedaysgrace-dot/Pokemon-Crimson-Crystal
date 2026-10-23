@@ -45,6 +45,10 @@ The initial site generates:
 - A searchable Items page with all 254 items, including 54 TMs, seven HMs,
   acquisition locations, shop prices, wild held items and availability exceptions
 
+Abilities are labeled **Ability 1**, **Ability 2** and **Ability 3** throughout
+the Pokémon pages, change guide and save editor. Elm's reusable Ability Cap
+lets players freely swap between a Pokémon's available ability slots.
+
 Because your project has substantial custom engine work, the parser is intentionally tolerant. The first real run may expose a few custom data formats that need an additional parser rule; it will still generate the rest of the site.
 
 

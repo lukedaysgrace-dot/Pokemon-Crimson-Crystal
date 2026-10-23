@@ -26,7 +26,7 @@ GetAbility::
 	and ABILITY_MASK
 	cp ABILITY_2
 	jr z, .slot2
-	cp HIDDEN_ABILITY
+	cp ABILITY_3
 	jr nz, .got_ptr ; ABILITY_1, or unset bits: default to slot 1
 	inc hl
 .slot2

@@ -531,11 +531,11 @@
       "links": []
     },
     {
-      "id": "regular-and-hidden-abilities",
+      "id": "three-ability-slots",
       "category": "abilities",
-      "title": "Regular and hidden abilities",
+      "title": "Three ability slots",
       "before": "Pokémon have no abilities.",
-      "after": "Pokémon can have two regular abilities and one hidden ability. Each Pokémon page lists its abilities.",
+      "after": "Pokémon can have up to three abilities, labeled Ability 1, Ability 2 and Ability 3. Each Pokémon page lists its available slots. Use the reusable Ability Cap to freely swap between them.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
@@ -566,7 +566,7 @@
       "category": "abilities",
       "title": "Reusable Ability Cap",
       "before": "There is no ability-changing item.",
-      "after": "Use Elm’s reusable Ability Cap to cycle through a Pokémon’s regular and hidden abilities.",
+      "after": "Use Elm’s reusable Ability Cap to freely cycle through a Pokémon’s available Ability 1, Ability 2 and Ability 3 slots.",
       "comparison": "Gen 2",
       "kind": "custom",
       "sources": [
