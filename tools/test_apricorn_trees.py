@@ -107,9 +107,8 @@ def main():
         tree_art = (ROOT / 'gfx/sprites/fruit_tree.2bpp').read_bytes()
         bg_art = bytes(pb.memory[1,0x9200:0x9220]) + bytes(pb.memory[1,0x9300:0x9320])
         check(bg_art == tree_art, 'Route 42 must use the same apricorn-tree artwork as the other maps')
-        bg_colors = m.read_bytes('wBGPals1',6,4*8+2)
-        obj_colors = m.read_bytes('wOBPals1',6,6*8+2)
-        check(bg_colors == obj_colors, 'Route 42 apricorn-tree colors must match the fruit-tree sprites')
+        check(m.read_bytes('wBGPals1',8,4*8) == m.read_bytes('wBGPals1',8,3*8),
+              'Only Route 42 tree bodies must match the surrounding water/snow palette')
         check(m.read_bytes('wBGPals1',2,4*8) == m.read_bytes('wBGPals1',2,3*8),
               'Route 42 tree corners must match the surrounding ground')
         raw = m.read_bytes('wVirtualOAM', 160)
@@ -159,6 +158,8 @@ def main():
         for location, x,y, group in cases:
             enter(location,x,y)
             if location != 'ROUTE_42':
+                check(m.read_bytes('wOBPals1',6,6*8+2) == m.read_bytes('wBGPals1',6,2*8+2),
+                      location + ': apricorn trees must retain their original green colors')
                 # The map-specific replacement must not change other maps'
                 # cut-tree tiles, even when they share the Johto tileset.
                 path = 'johto_modern' if location == 'AZALEA_TOWN' else 'johto'
