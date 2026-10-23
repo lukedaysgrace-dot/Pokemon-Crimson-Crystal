@@ -385,6 +385,7 @@ BattleAnimOAMData:
 	dbbw $0f, 1, .OAMData_0f_PCP ; BATTLEANIMOAMSET_DISCHARGE_HORIZONTAL_REF
 	dbbw $10, 1, .OAMData_0f_PCP ; BATTLEANIMOAMSET_DISCHARGE_VERTICAL_REF
 	dbbw $0e, 1, .OAMData_0f_PCP ; BATTLEANIMOAMSET_DISCHARGE_DIAGONAL_REF
+	dbbw $12, 9, .OAMData_c3 ; BATTLEANIMOAMSET_GRASS_KNOT_LOOSE
 
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes

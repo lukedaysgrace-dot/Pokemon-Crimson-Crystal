@@ -20,4 +20,4 @@ ContactMoves::
 	db $cc, $4d, $25, $96, $44, $28, $ea, $37
 	; TORMENT..STICKY_WEB make no contact
 	db $00, $0c, $70
-	db $01 ; HORN_LEECH (move 440) makes contact
+	db $07 ; HORN_LEECH (440), GRASS_KNOT (441), HEAVY_SLAM (442) make contact

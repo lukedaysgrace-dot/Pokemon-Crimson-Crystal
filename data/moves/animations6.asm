@@ -781,3 +781,75 @@ BattleAnim_HornLeech_PC:
 	anim_loop 6, .loop
 	anim_wait 32
 	anim_ret
+
+; Grass Knot script, grassknot.png and its frameset from PiaCarrot/mae-pokeorange
+; sour-apple 41a4463 (the main branch at 83db98a only has an empty placeholder).
+BattleAnim_GrassKnot_PO:
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GREEN
+	anim_2gfx ANIM_GFX_GRASS_KNOT, ANIM_GFX_PLANT
+	anim_call BattleAnim_UserObj_1Row_PO
+	anim_obj ANIM_OBJ_GRASS_KNOT, 136, 56, $0
+	anim_wait 26
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_sound 0, 1, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 144, 40, $90
+	anim_wait 2
+	anim_obj ANIM_OBJ_RAZOR_LEAF, 144, 40, $50
+	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
+	anim_wait 40
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_wait 1
+	anim_clearobjs
+	anim_wait 1
+	anim_1gfx ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_HEADBUTT
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_wait 16
+	anim_ret
+
+; mae-pokeorange's BattleAnim_UserObj_1Row_3, local to this script bank.
+BattleAnim_UserObj_1Row_PO:
+	anim_battlergfx_2row
+	anim_bgeffect ANIM_BG_BATTLEROBJ_1ROW, $0, $1, $0
+	anim_wait 6
+	anim_ret
+
+BattleAnim_HeavySlam:
+; A steel sheen sweeps over the user's body (Metal Claw style), then it
+; lunges forward and lands its full weight on the target: an inverted
+; flash, a long vertical shake and dust thrown out to both sides.
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GRAY
+	anim_3gfx ANIM_GFX_REFLECT, ANIM_GFX_HIT, ANIM_GFX_SMOKE_PUFF
+	anim_obp0 $0
+	anim_call BattleAnim_TargetObj_1Row_2_PO19
+	anim_setbgpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_METALLIC
+	anim_sound 0, 0, SFX_SHINE
+	anim_wait 8
+	anim_obj ANIM_OBJ_HARDEN, 58, 84, $0
+	anim_wait 32
+	anim_obj ANIM_OBJ_HARDEN, 58, 84, $0
+	anim_wait 32
+	anim_resetobp0
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_wait 10
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
+	anim_wait 2
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
+	anim_clearobjs
+	anim_sound 0, 1, SFX_STOMP
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_Y, $60, $2, $20
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
+	anim_wait 2
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 116, 62, $28
+	anim_obj ANIM_OBJ_IMPACT_SMOKE, 156, 62, $38
+	anim_wait 8
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_HIT_YFIX, 124, 64, $0
+	anim_obj ANIM_OBJ_HIT_YFIX, 144, 64, $0
+	anim_wait 24
+	anim_setbgpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_DEFAULT
+	anim_call BattleAnim_ShowMon_0_2_PO19
+	anim_ret

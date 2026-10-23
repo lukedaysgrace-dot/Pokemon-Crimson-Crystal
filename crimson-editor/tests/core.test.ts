@@ -127,7 +127,9 @@ describe('save read/write transactions', () => {
   it('round trips Phantump, Trevenant, Horn Leech, ability slots and expanded Dex flags', () => {
     expect(game.layout.constants.SAVE_FORMAT_VERSION).toBe(4);
     expect(game.species).toHaveLength(498);
-    expect(game.moves).toHaveLength(440);
+    // Later builds append moves (441 Grass Knot, 442 Heavy Slam); indices never shift.
+    expect(game.moves).toHaveLength(game.layout.constants.NUM_ATTACKS);
+    expect(game.moves.length).toBeGreaterThanOrEqual(440);
     const horn = game.moves.find((move) => move.const === 'HORN_LEECH')!;
     const reference = JSON.parse(readFileSync(new URL('../../tools/testdata/phantump_trevenant.json', import.meta.url), 'utf8'));
     expect(horn).toMatchObject({ index: 440, power: 75, accuracy: 100, pp: 10, category: 0 });

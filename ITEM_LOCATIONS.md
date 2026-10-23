@@ -115,7 +115,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Trainer item, Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
-| [Toxic Orb](#toxic_orb) | Ground pickup, Shop, Trainer item |
+| [Toxic Orb](#toxic_orb) | Ground pickup, Shop |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
@@ -570,6 +570,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Dark Cave Blackthorn Entrance | **Gift / reward** — Talk to the pharmacist in the Blackthorn-side chamber. Tile (7, 3). |
 | Karens Room | **Trainer item** — Elite Four Karen: Houndoom Lv. 71. |
 | Radio Tower 5F | **Trainer item** — Executive Archer: Kingambit Lv. 42. |
+| Radio Tower 5F | **Trainer item** — Executive Archer: Krookodile Lv. 42. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Kingambit Lv. 74. |
 
 <a id="brick_piece"></a>
@@ -744,7 +745,10 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Day Care | **Ground pickup** — Collect the item ball. Tile (3, 3). |
 | Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
+| Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Golbat Lv. 40. |
+| Mt. Moon | **Trainer item** — Rival ?: Golbat Lv. 49. |
 | Silver Cave Outside | **Trainer item** — Elite Four Agatha: Misdreavus Lv. 86. |
+| Victory Road | **Trainer item** — Rival ?: Golbat Lv. 68. |
 
 <a id="exp_share"></a>
 ## Exp. Share
@@ -783,7 +787,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Conkeldurr Lv. 79. One-time gym rematch after defeating Morty’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ursaluna Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
-| Route 25 | **Trainer item** — Crystal Crystal: Ursaluna Lv. 69. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Heracross Lv. 77. |
 
 <a id="focus_band"></a>
@@ -969,6 +972,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Slowking Lv. 41. |
 | Ice Path 1F | **Trainer item** — Crystal Crystal: Appletun Lv. 42. |
 | Ice Path 1F | **Trainer item** — Crystal Crystal: Hydrapple Lv. 42. |
+| Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Crobat Lv. 82. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Slowking (Galarian) Lv. 83. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Slowking Lv. 83. |
 | Karens Room | **Trainer item** — Elite Four Karen: Grimmsnarl Lv. 71. |
@@ -991,6 +995,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Olivine Gym | **Trainer item** — Leader Jasmine: Corviknight Lv. 80. One-time gym rematch after defeating Chuck’s rematch. |
 | Olivine Gym | **Trainer item** — Leader Jasmine: Steelix Lv. 82. One-time gym rematch after defeating Chuck’s rematch. |
 | Pallet Town | **Trainer item** — Red: Snorlax Lv. 84. |
+| Pewter Gym | **Trainer item** — Leader Brock: Bastiodon Lv. 49. |
 | Pewter Gym | **Trainer item** — Leader Brock: Cradily Lv. 48. |
 | Pewter Gym | **Trainer item** — Leader Brock: Steelix Lv. 48. |
 | Radio Tower 5F | **Trainer item** — Executive Archer: Dusknoir Lv. 41. |
@@ -1007,7 +1012,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 25 | **Trainer item** — Crystal Crystal: Hydrapple Lv. 68. |
 | Route 25 | **Trainer item** — Crystal Crystal: Lanturn Lv. 68. |
 | Route 25 | **Trainer item** — Crystal Crystal: Meganium Lv. 70. |
-| Route 25 | **Trainer item** — Crystal Crystal: Ursaluna (Bloodmoon) Lv. 69. |
 | Route 25 | **Trainer item** — Crystal Crystal: Volcarona Lv. 68. |
 | Route 25 | **Trainer item** — Crystal Crystal: Xatu Lv. 68. |
 | Route 27 | **Trainer item** — Bird Keeper Jose: Xatu Lv. 74. |
@@ -1023,8 +1027,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Seafoam Gym | **Trainer item** — Leader Blaine: Torkoal Lv. 65. |
 | Silver Cave Outside | **Trainer item** — Elite Four Agatha: Arbok Lv. 86. |
 | Silver Cave Outside | **Trainer item** — Elite Four Agatha: Crobat Lv. 87. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Articuno Lv. 87. |
 | Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Dewgong Lv. 85. |
+| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Glaceon Lv. 87. |
 | Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Slowbro Lv. 86. |
 | Silver Cave Room 3 | **Trainer item** — Pokémon Trainer: Snorlax Lv. 89. |
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Meganium Lv. 50. |
@@ -1078,6 +1082,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Fuchsia Gym | **Trainer item** — Leader Janine: Seviper Lv. 60. |
 | Fuchsia Gym | **Trainer item** — Leader Janine: Venomoth Lv. 60. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ambipom Lv. 77. One-time gym rematch after defeating Bugsy’s rematch. |
+| Goldenrod Gym | **Trainer item** — Leader Whitney: Lopunny Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
 | Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 70. |
 | Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Karens Room | **Trainer item** — Elite Four Karen: Houndoom Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
@@ -1106,7 +1111,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 20 | **Trainer item** — Green: Mesmeria Lv. 82. |
 | Route 20 | **Trainer item** — Green: Nidoqueen Lv. 81. |
 | Route 25 | **Trainer item** — Crystal Crystal: Flapple Lv. 68. |
-| Route 27 | **Trainer item** — Bird Keeper Jose: Honchkrow Lv. 74. |
 | Route 34 | **Trainer item** — Camper Todd: Mamoswine Lv. 77. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Pinsir Lv. 74. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Venomoth Lv. 75. |
@@ -1250,8 +1254,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Cerulean Gym | **Trainer item** — Leader Misty: Azumarill Lv. 53. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Machamp Lv. 79. One-time gym rematch after defeating Morty’s rematch. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Poliwrath Lv. 81. One-time gym rematch after defeating Morty’s rematch. |
-| Goldenrod Gym | **Trainer item** — Leader Whitney: Kangaskhan Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
-| Pewter Gym | **Trainer item** — Leader Brock: Rampardos Lv. 49. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Weavile Lv. 43. |
 | Route 34 | **Trainer item** — Camper Todd: Kangaskhan Lv. 77. |
 | Viridian Gym | **Trainer item** — Leader: Scizor Lv. 68. |
@@ -1270,7 +1272,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Ice Path 1F | **Trainer item** — Crystal Crystal: Feraligatr Lv. 44. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Feraligatr Lv. 85. |
 | Mt. Moon | **Trainer item** — Rival ?: Feraligatr Lv. 53. |
-| Radio Tower 5F | **Trainer item** — Executive Ariana: Octillery Lv. 43. |
+| Radio Tower 5F | **Trainer item** — Executive Ariana: Milotic Lv. 43. |
 | Route 25 | **Trainer item** — Crystal Crystal: Feraligatr Lv. 70. |
 | Silver Cave Room 3 | **Trainer item** — Pokémon Trainer: Blastoise Lv. 90. |
 | Victory Road | **Trainer item** — Rival ?: Feraligatr Lv. 71. |
@@ -1284,7 +1286,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Weavile Lv. 41. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Weavile Lv. 83. |
 | Mt. Moon | **Trainer item** — Rival ?: Weavile Lv. 51. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Cloyster Lv. 42. |
 | Victory Road | **Trainer item** — Rival ?: Weavile Lv. 69. |
 
 <a id="pink_bow"></a>
@@ -1481,6 +1482,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Ilex Forest | **Wild Pokémon** — Farfetch'd; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 16. |
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Sirfetch'd Lv. 67. |
+| Route 27 | **Trainer item** — Bird Keeper Jose: Farfetch'd Lv. 74. |
 
 <a id="thick_club"></a>
 ## Thick Club
@@ -1498,6 +1500,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Cianwood City | **Trainer item** — Crystal Crystal: Marowak Lv. 32. |
 | Ice Path 1F | **Trainer item** — Crystal Crystal: Marowak Lv. 42. |
 | Ilex Forest | **Trainer item** — Crystal Crystal: Cubone Lv. 17. |
+| Route 25 | **Trainer item** — Crystal Crystal: Marowak Lv. 69. |
 | Route 34 | **Trainer item** — Camper Todd: Marowak (Alolan) Lv. 76. |
 
 <a id="toxic_orb"></a>
@@ -1507,10 +1510,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Goldenrod Underground Warehouse | **Ground pickup** — Warehouse item ball reached during the Radio Tower rescue. Tile (2, 1). |
 | Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
-| Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Gliscor Lv. 40. |
-| Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Gliscor Lv. 82. |
-| Mt. Moon | **Trainer item** — Rival ?: Gliscor Lv. 49. |
-| Victory Road | **Trainer item** — Rival ?: Gliscor Lv. 68. |
 
 <a id="twistedspoon"></a>
 ## Twistedspoon

@@ -485,6 +485,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_LAVA_PLUME_SMOKE
 	const ANIM_OBJ_LAVA_PLUME_EMBER
 	const ANIM_OBJ_HORN_LEECH
+	const ANIM_OBJ_GRASS_KNOT
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
 	const BATTLEANIMFUNC_00
@@ -934,6 +935,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_DISCHARGE_VERTICAL_REF
 	const BATTLEANIMFRAMESET_DISCHARGE_DIAGONAL_REF
 	const BATTLEANIMFRAMESET_DISCHARGE_DIAGONAL_REVERSE_REF
+	const BATTLEANIMFRAMESET_GRASS_KNOT
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
 	const BATTLEANIMOAMSET_00
@@ -1319,6 +1321,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_DISCHARGE_HORIZONTAL_REF
 	const BATTLEANIMOAMSET_DISCHARGE_VERTICAL_REF
 	const BATTLEANIMOAMSET_DISCHARGE_DIAGONAL_REF
+	const BATTLEANIMOAMSET_GRASS_KNOT_LOOSE
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -1499,6 +1502,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_SMALL_EXPLOSION
 	const ANIM_GFX_RECYCLE
 	const ANIM_GFX_HORN_LEECH
+	const ANIM_GFX_GRASS_KNOT
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

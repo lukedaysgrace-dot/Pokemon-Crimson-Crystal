@@ -155,6 +155,10 @@ AIPredictVariableMovePower_Core:
 	jp z, BattleRageFistPower_Core
 	cp EFFECT_HP_SCALED
 	jp z, BattleHPScaledPower_Core
+	cp EFFECT_LOW_KICK
+	jp z, BattleLowKickPower_Core
+	cp EFFECT_HEAVY_SLAM
+	jp z, BattleHeavySlamPower_Core
 	ret
 
 AIPredictVariableMoveDamage_Core:
@@ -182,6 +186,8 @@ AIPredictVariableMoveDamage_Core:
 	jr z, .flying
 	cp EFFECT_EARTHQUAKE
 	jr z, .underground
+	cp EFFECT_HEAVY_SLAM
+	jp z, BattleDoubleMinimizeDamage_Core
 	cp EFFECT_STOMP
 	ret nz
 	jp BattleDoubleMinimizeDamage_Core

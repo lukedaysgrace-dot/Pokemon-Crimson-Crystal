@@ -3274,6 +3274,52 @@ HPScaledHit:
 	kingsrock
 	endmove
 
+LowKick:
+; Low Kick, Grass Knot: power from the target's weight.
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	lowkickpower
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
+HeavySlam:
+; Heavy Slam, Heat Crash: power from the user's weight relative to the
+; target's. Doubled against, and never misses, a minimized target (Gen VI+).
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	heavyslampower
+	damagecalc
+	stab
+	damagevariation
+	doubleminimizedamage
+	checkhit
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
+	kingsrock
+	endmove
+
 
 ThreeStageBoost:
 	checkobedience

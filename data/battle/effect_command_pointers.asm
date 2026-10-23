@@ -220,3 +220,5 @@ BattleCommandPointers:
 	dw BattleCommand_ThreeStageBoost
 	dw BattleCommand_HPScaledPower
 	dw BattleCommand_Recycle
+	dw BattleCommand_LowKickPower
+	dw BattleCommand_HeavySlamPower

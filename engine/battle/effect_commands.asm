@@ -1976,6 +1976,21 @@ BattleCommand_CheckHit:
 	ret z ; Bide's release does not roll accuracy
 	cp EFFECT_SKILL_SWAP
 	ret z ; Always hits eligible targets; protection/priority checks ran above.
+	cp EFFECT_HEAVY_SLAM
+	jr nz, .not_minimize_slam
+	; Heavy Slam and Heat Crash can't miss a minimized target (Gen VI+).
+	ld a, [wEnemyMinimized]
+	ld b, a
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_minimized
+	ld a, [wPlayerMinimized]
+	ld b, a
+.got_minimized
+	ld a, b
+	and a
+	ret nz
+.not_minimize_slam
 
 	call .StatModifiers
 
@@ -6921,6 +6936,16 @@ BattleCommand_ConditionalBoost:
 BattleCommand_GyroBall:
 ; gyroball
 	callfar BattleGyroBall_Core
+	ret
+
+BattleCommand_LowKickPower:
+; lowkickpower
+	callfar BattleLowKickPower_Core
+	ret
+
+BattleCommand_HeavySlamPower:
+; heavyslampower
+	callfar BattleHeavySlamPower_Core
 	ret
 
 BattleCommand_KnockOff:

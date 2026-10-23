@@ -446,6 +446,8 @@
 	const POISON_TAIL
 	const OMINOUS_WIND
 	const HORN_LEECH
+	const GRASS_KNOT
+	const HEAVY_SLAM
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

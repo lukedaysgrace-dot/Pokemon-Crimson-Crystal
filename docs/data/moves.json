@@ -795,13 +795,13 @@
     "const": "LOW_KICK",
     "name": "Low Kick",
     "rom_name": "LOW KICK",
-    "description": "An attack that may cause flinching.",
-    "power": 50,
+    "description": "Stronger against heavier targets.",
+    "power": 1,
     "type": "Fighting",
     "category": "Physical",
     "accuracy": 100,
     "pp": 20,
-    "chance": 30
+    "chance": 0
   },
   {
     "const": "COUNTER",
@@ -3195,13 +3195,13 @@
     "const": "HEAT_CRASH",
     "name": "Heat Crash",
     "rom_name": "HEAT CRASH",
-    "description": "A hot body slam that may burn.",
-    "power": 95,
+    "description": "A fiery body slam. More if heavier.",
+    "power": 1,
     "type": "Fire",
     "category": "Physical",
     "accuracy": 100,
     "pp": 10,
-    "chance": 10
+    "chance": 0
   },
   {
     "const": "ICE_SHARD",
@@ -5274,6 +5274,30 @@
     "description": "Drains half the damage inflicted.",
     "power": 75,
     "type": "Grass",
+    "category": "Physical",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 0
+  },
+  {
+    "const": "GRASS_KNOT",
+    "name": "Grass Knot",
+    "rom_name": "GRASS KNOT",
+    "description": "Snares the target. Hurts heavy foes.",
+    "power": 1,
+    "type": "Grass",
+    "category": "Special",
+    "accuracy": 100,
+    "pp": 20,
+    "chance": 0
+  },
+  {
+    "const": "HEAVY_SLAM",
+    "name": "Heavy Slam",
+    "rom_name": "HEAVY SLAM",
+    "description": "A heavy body slam. More if heavier.",
+    "power": 1,
+    "type": "Steel",
     "category": "Physical",
     "accuracy": 100,
     "pp": 10,
