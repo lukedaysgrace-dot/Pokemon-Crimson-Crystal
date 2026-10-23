@@ -572,6 +572,8 @@ MapObjectMovementPattern:
 	dw .MovementSnorlaxSleep ; 1e
 	dw .MovementFishingBoat ; 1f
 	dw .MovementAnimatedStanding ; 20
+	dw .MovementApricorn ; 21
+	dw .MovementApricornOneTone ; 22
 
 .Null_00:
 	ret
@@ -827,6 +829,27 @@ MapObjectMovementPattern:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_FISHING_BOAT
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_04
+	ret
+
+.MovementApricorn:
+	ld a, OBJECT_ACTION_APRICORN
+	jr .MovementApricornAction
+
+.MovementApricornOneTone:
+	ld a, OBJECT_ACTION_APRICORN_ONE_TONE
+.MovementApricornAction:
+	push af
+	call EndSpriteMovement
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], STANDING
+	pop af
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], a
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04

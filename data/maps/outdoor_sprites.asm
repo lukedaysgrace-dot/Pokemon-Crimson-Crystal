@@ -437,7 +437,7 @@ VioletGroupSprites:
 	db SPRITE_CRYSTAL
 	db SPRITE_SCHOOL_GIRL ; Route 35
 	db SPRITE_PSYCHIC
-	db SPRITE_NONE
+	db SPRITE_APRICORN ; Route 37 apricorns (stationary, fits bank 1's still-sprite tail)
 	db SPRITE_FIREBREATHER_NEW ; Route 35 spinner; keep in VRAM bank 1
 	db SPRITE_JUGGLER_NEW ; Route 35 spinner; keep below the font tile range
 	db SPRITE_FAT_GUY ; non-trainer NPCs (was unused BIG_SNORLAX)
@@ -480,7 +480,7 @@ EcruteakGroupSprites:
 
 AzaleaGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_APRICORN ; Azalea Town apricorn (was unused SILVER_TROPHY filler)
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
@@ -617,7 +617,7 @@ LakeOfRageGroupSprites:
 
 MahoganyGroupSprites:
 	db SPRITE_SUICUNE
-	db SPRITE_SILVER_TROPHY
+	db SPRITE_APRICORN ; Route 42 apricorns (was unused SILVER_TROPHY filler)
 	db SPRITE_FAMICOM
 	db SPRITE_POKEDEX
 	db SPRITE_SKIER_NEW ; was SPRITE_WILL (unused filler) - for Route 44 Skier

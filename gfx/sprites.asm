@@ -261,3 +261,11 @@ SECTION "Riolu Walking Sprite", ROMX
 RioluSpriteGFX::             INCBIN "gfx/sprites/riolu.2bpp"
 RioluSpriteGFXEnd::
 assert RioluSpriteGFXEnd - RioluSpriteGFX == 24 * 16
+
+; Sour Crystal's apricorn art. Tile 0 is the shaded apricorn and tile 1 a
+; one-tone copy for apricorns that share a palette with another colour; the
+; object draws a single 8x8 tile on the fruit tree's canopy (FacingApricorn).
+SECTION "Apricorn Sprite", ROMX
+ApricornSpriteGFX::           INCBIN "gfx/sprites/apricorn.2bpp"
+ApricornSpriteGFXEnd::
+assert ApricornSpriteGFXEnd - ApricornSpriteGFX == 4 * 16

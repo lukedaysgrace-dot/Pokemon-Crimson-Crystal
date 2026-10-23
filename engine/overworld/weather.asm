@@ -1744,10 +1744,65 @@ _DecompressTilesetGFX::
 	ld a, e
 	ld de, wDecompressScratch
 	call FarDecompress
+	call LoadRoute42ApricornTreeGFX
 
 	pop af
 	ldh [rSVBK], a
 	ret
+
+LoadRoute42ApricornTreeGFX:
+; Route 42 draws its tree bodies in the background to leave OAM room for
+; Entei and the fruit. Use the very same four tiles as the SPRITE_FRUIT_TREE
+; objects in Azalea Town and Route 37, rather than Johto's small cut tree.
+; The four replaced tiles are only used by Route 42's apricorn blocks.
+; wDecompressScratch's WRAM bank is already selected by the caller.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wMapGroup)
+	ldh [rSVBK], a
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_42
+	jr nz, .other_map
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_42
+	jr nz, .other_map
+	pop af
+	ldh [rSVBK], a
+	ld a, BANK(FruitTreeSpriteGFX)
+	ld hl, FruitTreeSpriteGFX
+	ld de, wDecompressScratch + $a0 tiles
+	ld bc, 2 tiles
+	call FarCopyBytes
+	ld a, BANK(FruitTreeSpriteGFX)
+	ld hl, FruitTreeSpriteGFX + 2 tiles
+	ld de, wDecompressScratch + $b0 tiles
+	ld bc, 2 tiles
+	jp FarCopyBytes
+
+.other_map
+	pop af
+	ldh [rSVBK], a
+	ret
+
+LoadRoute42ApricornTreeBackgroundPalette:
+; Route 42 has no yellow background tiles. Use that free palette for the
+; original fruit-tree colors, with the mountain ground as the backdrop.
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_42
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_42
+	ret nz
+	ld hl, wOBPals1 palette PAL_OW_TREE
+	ld de, wBGPals1 palette PAL_BG_YELLOW
+	ld bc, 1 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	ld hl, wBGPals1 palette PAL_BG_WATER
+	ld de, wBGPals1 palette PAL_BG_YELLOW
+	ld bc, PAL_COLOR_SIZE
+	ld a, BANK(wBGPals1)
+	jp FarCopyWRAM
 
 _CopyTilesetGFX::
 ; Copy the decompressed tileset from wDecompressScratch into VRAM.

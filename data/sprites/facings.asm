@@ -39,6 +39,8 @@ Facings:
 	dw FacingSnorlaxStill
 	dw FacingFishingBoat0
 	dw FacingFishingBoat1
+	dw FacingApricorn
+	dw FacingApricornOneTone
 .End
 	dw 0
 
@@ -338,3 +340,13 @@ FacingGrass2:
 	db 2 ; #
 	db  9, -1, ABSOLUTE_TILE_ID, $fe
 	db  9,  9, ABSOLUTE_TILE_ID | X_FLIP, $fe
+
+; A single 8x8 tile centred on the top half of a fruit tree, so a row of
+; trees with apricorns still fits the 10 sprites per scanline limit.
+FacingApricorn:
+	db 1 ; #
+	db  0,  4, 0, $00
+
+FacingApricornOneTone:
+	db 1 ; #
+	db  0,  4, 0, $01

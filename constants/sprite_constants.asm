@@ -67,7 +67,7 @@
 	const SPRITE_BLACK_BELT ; 41
 	const SPRITE_RECEPTIONIST ; 42
 	const SPRITE_OFFICER ; 43
-	const SPRITE_CAL ; 44
+	const SPRITE_APRICORN ; 44 (was the unused SPRITE_CAL) ; Sour Crystal apricorn, drawn on a fruit tree
 	const SPRITE_AMPY_SICK ; 45
 	const SPRITE_CAPTAIN ; 46
 	const SPRITE_BIG_LAPRAS ; 47
